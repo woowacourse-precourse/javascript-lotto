@@ -27,6 +27,7 @@ const RESULTLINE = {
 };
 
 const ERRORLINE = Object.freeze({
+  BUY_CHECK : '[ERROR] 구매 갯수는 정수로만 입력해주세요',
   INPUT_UNIT_CHECK : '[ERROR] 구매 금액은 1,000원 단위로 입력해주세요.',
   SEPARATOR_CHECK : '[ERROR] 당첨번호는 쉼표를 사용하여 구분해주세요.',
   NUMRANGE_CHECK : '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.',

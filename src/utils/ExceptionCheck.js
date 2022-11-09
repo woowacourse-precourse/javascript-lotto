@@ -2,6 +2,9 @@ const {DEFAULTS, ERRORLINE} = require('./Constants');
 
 class ExceptionCheck{
   purchaseMoneyErrorCheck(input){
+    if (!(/^[0-9]+$/).test(input)){
+      throw new Error(ERRORLINE.BUY_CHECK);
+    }
     if (parseInt(input) % DEFAULTS.PURCHASE_UNIT !== 0){
       throw new Error(ERRORLINE.INPUT_UNIT_CHECK);
     }
