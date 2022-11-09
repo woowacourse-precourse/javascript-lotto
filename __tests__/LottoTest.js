@@ -23,10 +23,17 @@ describe("로또 클래스 테스트", () => {
     }).toBeTruthy();
   });
 
-  test.only("로또 구매를 1000원 단위로 하지 않았을 경우", () => {
+  test("로또 구매를 1000원 단위로 하지 않았을 경우", () => {
     expect(() => {
       const app = new App();
       app.checkPurchaseAmount(8500);
     }).toThrow("[ERROR] 1,000원 단위로만 구매 가능합니다.");
+  });
+
+  test.only("금액에 따른 로또 생성 횟수 테스트", () => {
+    const app = new App();
+    app.createRandomLotto(8);
+
+    expect(app.lottoArray.length).toBe(8);
   });
 });
