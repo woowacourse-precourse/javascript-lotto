@@ -1,6 +1,7 @@
 function amountValidation(input) {
-  checkAmountUnit(input);
+  checkAmountNumber(input);
   checkAmountStirng(input);
+  checkAmountEmpty(input);
 
   return true;
 }
@@ -17,7 +18,14 @@ function checkAmountUnit(input) {
   }
 }
 
+function checkAmountStirng(input) {
+  if (/[^(0-9)]/gi.test(input)) {
+    throw new Error('[ERROR] 숫자를 제외한 문자는 입력할수 없습니다.');
+  }
+}
+
 module.exports = {
   amountValidation,
   checkAmountUnit,
+  checkAmountStirng,
 };
