@@ -5,7 +5,8 @@ const Lotto = require("./Lotto");
 class App {
   play() {
     // 클래스를 분리 해서 시작
-    const numOfLotto = moneyOfBuyLotto();
+    const numOfLotto = this.moneyOfBuyLotto();
+    const myLotto = this.makeLotto(numOfLotto);
   }
 
   moneyOfBuyLotto() { 
@@ -24,16 +25,28 @@ class App {
 
   isValidMoney(money) {
     if (Number.isNaN(number)) {
-      throw `[Error] 입력 금액이 숫자형태가 아닙니다.`
+      throw new Error(`[Error] 입력 금액이 숫자형태가 아닙니다.`);
     }
 
     if (money < 1000) {
-      throw `[Error] 로또 한장의 가격은 1000원입니다. 입력한 금액: ${money}`
+      throw new Error(`[Error] 로또 한장의 가격은 1000원입니다. 입력한 금액: ${money}`);
     }
 
     if (money > 100000) {
-      throw `[Error] 한 번에 최대로 구입할 수 있는 금액은 10만원 입니다. 입력한 금액: ${money}`
+      throw new Error(`[Error] 한 번에 최대로 구입할 수 있는 금액은 10만원 입니다. 입력한 금액: ${money}`);
     }
+  }
+
+  makeLotto(countLotto) {
+    const myLotto = [];
+
+    while (myLotto.length !== countLotto) {
+      const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      const lotto = new Lotto(numbers);
+      myLotto.push(lotto);
+    }
+
+    return myLotto;
   }
 }
 
