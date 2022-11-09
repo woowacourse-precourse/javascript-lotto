@@ -39,13 +39,13 @@ class LottoManager {
   }
 
   createLottoNumbers() {
-    const numberSet = new Set();
+    const lottoNumbers = new Set();
 
-    while (numberSet.size < 6) {
-      numberSet.add(Random.pickNumberInRange(1, 45));
+    while (lottoNumbers.size < 6) {
+      lottoNumbers.add(Random.pickNumberInRange(1, 45));
     }
 
-    return [...numberSet].sort((a, b) => a - b);
+    return [...lottoNumbers].sort((a, b) => a - b);
   }
 
   get lottos() {
