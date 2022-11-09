@@ -6,6 +6,7 @@ class App {
       try {
         this.validate(purchaseAmount);
       } catch (err) {
+        this.exitGame(err.message);
         throw err;
       }
     });
@@ -25,6 +26,13 @@ class App {
       parseInt(purchaseAmount, 10) % 1000 !== 0
     );
   }
+
+  exitGame(errorMessage) {
+    Console.print(errorMessage);
+    Console.close();
+  }
 }
+
+new App().play();
 
 module.exports = App;
