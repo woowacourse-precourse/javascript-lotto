@@ -32,6 +32,14 @@ class App {
     Console.print('');
     Console.readLine('당첨 번호를 입력해주세요.\n', winningNumbersInput => {
       this.lottoManager.initWinningNumbers(winningNumbersInput);
+      this.inputBonusNumber();
+    });
+  }
+
+  inputBonusNumber() {
+    Console.print('');
+    Console.readLine('보너스 번호를 입력해주세요.\n', bonusNumberInput => {
+      this.lottoManager.initBonusNumber(bonusNumberInput);
     });
   }
 
