@@ -12,6 +12,8 @@ class LottoGame {
       this.showlottoNumOfBuying(money);
 
       this.showLotto(money);
+
+      this.getwinningNum(money);
     });
   }
 
@@ -59,8 +61,60 @@ class LottoGame {
   }
 
   getwinningNum() {
-    Console.readLine("당첨 번호를 입력해 주세요.", (winningNum) => {});
+    Console.readLine("[ERROR] 당첨 번호를 입력해 주세요.", (winningNum) => {
+      this.checkWinningNum(winningNum);
+    });
+  }
+
+  numToSplit(number) {
+    return number.split(",");
+  }
+
+  checkWinningNum(winningNum) {
+    const willCheckWinningNum = this.numToSplit(winningNum); //["1","2","3","4","5","6"]
+    if (this.checkRange(willCheckWinningNum) === false) {
+      throw new Error(`[ERROR] 0은 입력이 불가능합니다.`);
+    }
+
+    if (this.checkComma(willCheckWinningNum) === false) {
+      throw new Error(`[ERROR] ,이 연속으로 입력되었습니다.`);
+    }
+
+    if (this.checkNumLength(willCheckWinningNum) === false) {
+      throw new Error(`[ERROR] 당첨 번호는 1~45 사이에 있습니다.`);
+    }
+    if (this.checkCount(willCheckWinningNum) === false) {
+      throw new Error(`[ERROR] 당첨 번호는 6개만 입력이 가능합니다.`);
+    }
+  }
+
+  checkRange(arr) {
+    if (/^[1-9]*$/g.test(arr.join("")) === false) {
+      return false;
+    }
+  }
+  checkComma(arr) {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] === ``) {
+        return false;
+      }
+    }
+  }
+
+  checkNumLength(arr) {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] > 45) {
+        return false;
+      }
+    }
+  }
+
+  checkCount(arr) {
+    if (arr.length !== 6) {
+      return false;
+    }
   }
 }
-
 module.exports = LottoGame;
+
+// node src/index.js
