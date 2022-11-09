@@ -1,0 +1,1 @@
+        // numbers.length = 0
