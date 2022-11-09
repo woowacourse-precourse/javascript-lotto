@@ -1,8 +1,14 @@
 const { Console } = require('@woowacourse/mission-utils');
+
 const Lotto = require('./Lotto');
+const LottoManager = require('./LottoManager');
 
 class App {
-  lottos = [];
+  lottoManager;
+
+  constructor() {
+    this.lottoManager = new LottoManager();
+  }
 
   play() {
     Console.readLine('구입금액을 입력해주세요.\n', purchaseAmount => {
