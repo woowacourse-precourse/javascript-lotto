@@ -14,6 +14,10 @@ const userInput = (prompt, callback) => {
   });
 };
 
+const printOutput = (output) => {
+  MissionUtils.Console.print(`${output}\n`);
+};
+
 let app = new App();
 app.play();
 
