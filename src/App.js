@@ -40,7 +40,7 @@ class App {
   createLotto(amount) {
     for (let i = 0; i < amount; i++) {
       const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
-      Console.print(numbers);
+      Console.print(`[${numbers[0]}, ${numbers[1]}, ${numbers[2]}, ${numbers[3]}, ${numbers[4]}, ${numbers[5]}]`);
       this.arrayLotto.push(numbers);
     }
     this.lottoInput(PROMPT_LOTTO);
@@ -50,7 +50,6 @@ class App {
     Console.readLine(`\n${prompt}\n`, (input) => {
       this.arrayWinLotto = input.split(",");
       this.arrayWinLotto = this.arrayWinLotto.map(number => parseInt(number));
-      console.log(this.arrayWinLotto);
       this.bonusInput(PROMPT_BONUS);
     });
   }
@@ -110,6 +109,7 @@ class App {
       profit += parseInt(key) * this.result[key];
     }
     Console.print(`총 수익률은 ${(profit / this.money * 100).toFixed(1)}%입니다.`);
+    Console.close();
   }
 }
 
