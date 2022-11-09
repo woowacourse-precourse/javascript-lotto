@@ -5,7 +5,6 @@ const LOTTO_PRICE = 1000;
 
 class App {
   constructor() {
-    this.amountLotto = 0;
   }
 
   play() {
@@ -19,8 +18,8 @@ class App {
   }
 
   countLotto(money) {
-    this.amountLotto = money / LOTTO_PRICE;
-    MissionUtils.Console.print(`\n${this.amountLotto}개를 구매했습니다.`);
+    const amountLotto = money / LOTTO_PRICE;
+    MissionUtils.Console.print(`\n${amountLotto}개를 구매했습니다.`);
   }
 }
 
