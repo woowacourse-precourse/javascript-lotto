@@ -6,7 +6,10 @@ class App {
   }
 
   inputMoney() {
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (money) => {});
+    MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
+      if (money % 1000 !== 0 || money === "0")
+        throw new Error("[ERROR] 구입 금액은 1000원 단위 입니다.");
+    });
   }
 }
 
