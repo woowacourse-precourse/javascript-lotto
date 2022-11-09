@@ -14,15 +14,35 @@ class App {
   // 로또 번호 생성
   createLottoNumber(){
     let lottoNum = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6)
+
+    // 유효성 검사
+    const LottoCheck = new Lotto(lottoNum)
+    LottoCheck.setCheck()
     return lottoNum
   }
 
-  // 로또 번호 출력
-  LottoNumbers(times){
-    for (let i = 0; i < times; i ++){
-      console.log(this.createLottoNumber())
-    }
+  // 당첨번호
+  winNumber(){
+    let WIN_NUMBER = 0
+    MissionUtils.Console.readLine('',(winNum) => {
+      WIN_NUMBER = winNum.split(",")
+      // 유효성 검사
+      const LottoCheck = new Lotto(WIN_NUMBER)
+      LottoCheck.setCheck()
+    })
+    return WIN_NUMBER
+  }
 
+
+  // 로또 번호 출력
+  lottoNumbers(times){
+    // 당첨 번호 출력
+    const WIN_NUMBER = this.winNumber()
+    for (let i = 0; i < times; i ++){
+      let LOTTO_NUM = this.createLottoNumber()
+      console.log(LOTTO_NUM)
+      console.log(WIN_NUMBER)
+    }
   }
 
   // 로또 구입
@@ -31,7 +51,7 @@ class App {
     const checking = new Check()
     LOTTO_AMOUNT = checking.buyLotto(money)
     MissionUtils.Console.print(`${LOTTO_AMOUNT}개를 구매했습니다.`)
-    this.LottoNumbers(LOTTO_AMOUNT)
+    this.lottoNumbers(LOTTO_AMOUNT)
   }
 
   // 로또 구입 금액

@@ -20,10 +20,17 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
-    return console.log(numbers)
   }
 
   // TODO: 추가 기능 구현
+
+  setCheck(){
+    // SET 으로 중복 제거
+    const check = new Set(this.#numbers)
+    if (check.size !== 6) {
+      throw new Error("[ERROR] 중복값이 확인 되었습니다.")
+    }
+  }
   
 }
 
