@@ -10,6 +10,8 @@ class App {
     this.inputMoney();
     MissionUtils.Console.print("당첨 번호를 입력해 주세요.");
     this.winningNumberInput();
+    MissionUtils.Console.print("보너스 번호를 입력해 주세요.");
+    this.bonusNumberInput();
   }
 
   inputMoney() {
@@ -45,6 +47,10 @@ class App {
     MissionUtils.Console.readLine("", (answer) => {
       this.winningNumber = answer.split(",");
     });
+  }
+
+  bonusNumberInput() {
+    MissionUtils.Console.readLine("", (answer) => {});
   }
 }
 console.log();
