@@ -10,12 +10,28 @@ const Check = require('./Check')
 const MissionUtils = require("@woowacourse/mission-utils");
 
 class App {
+
+  // 로또 번호 생성
+  createLottoNumber(){
+    let lottoNum = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6)
+    return lottoNum
+  }
+
+  // 로또 번호 출력
+  LottoNumbers(times){
+    for (let i = 0; i < times; i ++){
+      console.log(this.createLottoNumber())
+    }
+
+  }
+
   // 로또 구입
   buyLotto(money) {
     let LOTTO_AMOUNT = 0
     const checking = new Check()
     LOTTO_AMOUNT = checking.buyLotto(money)
     MissionUtils.Console.print(`${LOTTO_AMOUNT}개를 구매했습니다.`)
+    this.LottoNumbers(LOTTO_AMOUNT)
   }
 
   // 로또 구입 금액
@@ -29,6 +45,8 @@ class App {
     })
     this.buyLotto(MONEY)
   }
+
+  // Play
   play() {
     // Start
     MissionUtils.Console.print("구입금액을 입력해 주세요.")
