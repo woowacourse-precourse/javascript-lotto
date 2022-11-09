@@ -1,5 +1,16 @@
+const { RANK } = require('./utils/constants');
+
 class Statistic {
   #stat;
+
+  constructor() {
+    this.#stat[RANK.FIRST] = 0;
+    this.#stat[RANK.SECOND] = 0;
+    this.#stat[RANK.THIRD] = 0;
+    this.#stat[RANK.FOURTH] = 0;
+    this.#stat[RANK.FIFTH] = 0;
+    this.#stat[RANK.NOPRIZE] = 0;
+  }
 
   judgeLotto(winningLotto, bonusNumber, publishedLotto) {
     return publishedLotto.reduce((judgeResult, number) => {
@@ -19,12 +30,12 @@ class Statistic {
   }
 
   judgeRank({ numberOfSame, isBonusNumberSame }) {
-    if (numberOfSame === 6) return '1ST';
-    if (numberOfSame === 5 && isBonusNumberSame) return '2ND';
-    if (numberOfSame === 5) return '3RD';
-    if (numberOfSame === 4) return '4TH';
-    if (numberOfSame === 3) return '5TH';
-    return 'NOPRIZE';
+    if (numberOfSame === 6) return RANK.FIRST;
+    if (numberOfSame === 5 && isBonusNumberSame) return RANK.SECOND;
+    if (numberOfSame === 5) return RANK.THIRD;
+    if (numberOfSame === 4) return RANK.FOURTH;
+    if (numberOfSame === 3) return RANK.FIFTH;
+    return RANK.NOPRIZE;
   }
 }
 

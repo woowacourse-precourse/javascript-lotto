@@ -1,4 +1,5 @@
 const Statistic = require('../src/Statistic');
+const { RANK } = require('../src/utils/constants');
 
 describe('통계 클래스 테스트', () => {
   const statistic = new Statistic();
@@ -22,11 +23,11 @@ describe('통계 클래스 테스트', () => {
     };
     const rankResult = statistic.judgeRank(judgeResult);
 
-    expect(rankResult).toEqual('2ND');
+    expect(rankResult).toEqual(RANK.SECOND);
   });
 
   test('해당 등수의 count를 1 증가시킨다.', () => {
-    const rank = '2ND';
+    const rank = RANK.SECOND;
     statistic.increaseRankCount(rank);
     const stat = statistic.getStat();
 
