@@ -1,3 +1,4 @@
+const MissionUtils = require("@woowacourse/mission-utils");
 class Lotto {
   #numbers;
 
@@ -13,6 +14,13 @@ class Lotto {
   }
 
   // TODO: 추가 기능 구현
+  makeLottoNumber() {
+    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+  }
+
+  makeLottoWinningNumber() {
+    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 7);
+  }
 }
 
 module.exports = Lotto;
