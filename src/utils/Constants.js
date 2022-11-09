@@ -36,6 +36,7 @@ const ERRORLINE = Object.freeze({
   NUMRANGE_CHECK : '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.',
   INPUT_CNT_CHECK : '[ERROR] 숫자는 6개만 입력해주세요.',
   BONUS_CHECK : '[ERROR] 1개의 숫자만 입력해주세요.',
+  DUPLICATE_CHECK : '[ERROR] 중복되지 않는 수들로 작성해주세요.'
 })
 
 module.exports = {DEFAULTS, MONEY, CONSOLELINE, RESULTLINE, ERRORLINE};
