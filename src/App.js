@@ -60,14 +60,14 @@ class App {
 
   getNumberSelectedByUser() {
     Console.readLine("\n당첨 번호를 입력해 주세요.\n", (userInput) => {
-      const splitedUserInput = this.getUserInputSplitedByComma(userInput);
+      const arrayedUserInput = this.getArrayedUserInput(userInput);
     });
   }
 
-  getUserInputSplitedByComma(userInput) {
-    const splitedUserInput = userInput.split(",");
+  getArrayedUserInput(userInput) {
+    const arrayedUserInput = userInput.split("");
 
-    return splitedUserInput;
+    return arrayedUserInput;
   }
 }
 
