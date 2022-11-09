@@ -13,7 +13,7 @@ class LottoGame {
 
       this.showLotto(money);
 
-      this.getwinningNum(money);
+      this.getwinningNum();
     });
   }
 
@@ -49,29 +49,30 @@ class LottoGame {
   }
 
   showLotto(money) {
-    const lottoNum = this.makeLotto(money);
+    this.userLotto = this.makeLotto(money);
 
     let i = 0;
 
-    for (; i < lottoNum.length; i++) {
-      Console.print(lottoNum[i]);
+    for (; i < this.userLotto.length; i++) {
+      Console.print(this.userLotto[i]);
     }
 
     this.lineBreak();
   }
 
   getwinningNum() {
-    Console.readLine("[ERROR] 당첨 번호를 입력해 주세요.", (winningNum) => {
-      this.checkWinningNum(winningNum);
+    Console.readLine("당첨 번호를 입력해 주세요.", (winningNum) => {
+      this.winningNum = winningNum.split(",");
+
+      this.checkWinningNum(this.winningNum);
+
+      this.lineBreak();
+
+      this.getBonusNum();
     });
   }
 
-  numToSplit(number) {
-    return number.split(",");
-  }
-
-  checkWinningNum(winningNum) {
-    const willCheckWinningNum = this.numToSplit(winningNum); //["1","2","3","4","5","6"]
+  checkWinningNum(willCheckWinningNum) {
     if (this.checkRange(willCheckWinningNum) === false) {
       throw new Error(`[ERROR] 0은 입력이 불가능합니다.`);
     }
@@ -113,6 +114,13 @@ class LottoGame {
     if (arr.length !== 6) {
       return false;
     }
+  }
+  // willCheckWinningNum => ["1","2","3","4","5","6"]
+
+  getBonusNum() {
+    Console.readLine("보너스 번호를 입력해 주세요.", (bonusNum) => {
+      Console.print(bonusNum);
+    });
   }
 }
 module.exports = LottoGame;
