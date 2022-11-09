@@ -16,7 +16,7 @@ class App {
         this.printLottos(this.lottoManager.lottos);
         this.inputWinningNumbers();
       } catch (err) {
-        this.exitGame(err.message);
+        this.exitGameByError(err.message);
         throw err;
       }
     });
@@ -35,7 +35,7 @@ class App {
     });
   }
 
-  exitGame(errorMessage) {
+  exitGameByError(errorMessage) {
     Console.print(errorMessage);
     Console.close();
   }
