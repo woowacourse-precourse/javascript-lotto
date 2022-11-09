@@ -1,6 +1,6 @@
 
 const MissionUtils = require('@woowacourse/mission-utils');
-const {DEFAULTS, MONEY, CONSOLELINE, RESULTLINE} = require('./Constants');
+const {DEFAULTS, MONEY, CONSOLELINE, RESULTLINE} = require('./utils/Constants');
 
 class Controller{
   constructor(){
