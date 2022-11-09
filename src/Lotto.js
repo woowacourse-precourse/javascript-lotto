@@ -23,6 +23,7 @@ class Lotto {
   }
 
   checkUserMoney() {
+    //문자열 상수화 필요
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (userInput) => {
       this.countTimesOfLotto(userInput);
     });
@@ -61,6 +62,12 @@ class Lotto {
         accumulator + currentValue * PRIZE_LIST[currentIndex],
       INITIAL_VALUE
     );
+  }
+
+  getEarningsRate(totalWinningMoney, userMoney) {
+    //%로 맞추기 위한 100도 상수화 해야하나?
+    const earningsRate = ((totalWinningMoney / userMoney) * 100).toFixed(2);
+    MissionUtils.Console.print(earningsRate);
   }
 }
 
