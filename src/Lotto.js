@@ -7,12 +7,21 @@ class Lotto {
   }
 
   validate(numbers) {
+    this.validateNumberLength(numbers);
+    numbers.forEach((number) => this.validateNumberRange(1, 45, number));
+  }
+
+  validateNumberLength(numbers) {
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
     }
   }
 
-  // TODO: 추가 기능 구현
+  validateNumberRange(start, end, number) {
+    if (number < start || number > end) {
+      throw new Error('[ERROR] 로또 번호는 1이상 45이하 입니다.');
+    }
+  }
 }
 
 module.exports = Lotto;
