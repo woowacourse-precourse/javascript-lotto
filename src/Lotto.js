@@ -43,6 +43,15 @@ class Lotto {
     if (countOfCorrectNumbers === 5 && lottonumbers.includes(bonusNumber)) return 2;
     if (countOfCorrectNumbers === 6) return 1;
   }
+
+  lottoRankingsCount(rankingsArray, ranking) {
+    //상수화 필요. 인덱스를 당첨상수 - 1로 고치면 if문도 하나만 써도 된다.
+    if (ranking === 1) rankingsArray[0]++;
+    if (ranking === 2) rankingsArray[1]++;
+    if (ranking === 3) rankingsArray[2]++;
+    if (ranking === 4) rankingsArray[3]++;
+    if (ranking === 5) rankingsArray[4]++;
+  }
 }
 
 module.exports = Lotto;
