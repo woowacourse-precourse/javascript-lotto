@@ -7,6 +7,7 @@ class App {
   purchase() {
     Console.readLine('구입금액을 입력해 주세요.', (money) => {
       this.money = money;
+      this.purchaseException(this.money);
     });
   }
 
