@@ -5,6 +5,7 @@ const LOTTO_PRICE = 1000;
 
 class App {
   constructor() {
+    this.arrayLotto = [];
   }
 
   play() {
@@ -20,6 +21,14 @@ class App {
   countLotto(money) {
     const amountLotto = money / LOTTO_PRICE;
     MissionUtils.Console.print(`\n${amountLotto}개를 구매했습니다.`);
+    this.createLotto(amountLotto);
+  }
+
+  createLotto(amount) {
+    for (let i = 0; i < amount; i++) {
+      const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      this.arrayLotto.push(numbers);
+    }
   }
 }
 
