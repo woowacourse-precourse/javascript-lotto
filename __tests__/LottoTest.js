@@ -37,11 +37,28 @@ describe("로또 클래스 테스트", () => {
     expect(app.lottoArray.length).toBe(8);
   });
 
-  test.only("생성된 로또 번호 오름차순 정렬 테스트", () => {
+  test("생성된 로또 번호 오름차순 정렬 테스트", () => {
     const app = new App();
 
     expect(app.sortLottoNumber([10, 35, 42, 31, 26, 1])).toStrictEqual([
       1, 10, 26, 31, 35, 42,
+    ]);
+  });
+
+  test("입력값이 , 기호로 분할이 가능한지 테스트", () => {
+    const app = new App();
+    expect(app.getArrayedUserInput("1,2,3,4,5,6")).toStrictEqual([
+      "1",
+      ",",
+      "2",
+      ",",
+      "3",
+      ",",
+      "4",
+      ",",
+      "5",
+      ",",
+      "6",
     ]);
   });
 });
