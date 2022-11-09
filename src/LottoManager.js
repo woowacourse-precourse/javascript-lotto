@@ -5,7 +5,6 @@ const Lotto = require('./Lotto');
 class LottoManager {
   #lottos = [];
   #winningNumbers = [];
-  #earningsRate = 0;
 
   initLottos(purchaseAmountInput) {
     this.validatePurchaseAmount(purchaseAmountInput);
@@ -97,14 +96,6 @@ class LottoManager {
 
   get lottos() {
     return this.#lottos;
-  }
-
-  get winningNumbers() {
-    return this.#winningNumbers;
-  }
-
-  get earningsRate() {
-    return this.#earningsRate;
   }
 }
 
