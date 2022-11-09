@@ -18,6 +18,12 @@ class Statistic {
     return this.#stat;
   }
 
+  putInStat(winningLotto, bonusNumber, publishedLotto) {
+    const judgeResult = this.judgeLotto(winningLotto, bonusNumber, publishedLotto);
+    const rank = this.judgeRank(judgeResult);
+    this.increaseRankCount(rank);
+  }
+
   judgeLotto(winningLotto, bonusNumber, publishedLotto) {
     return publishedLotto.reduce((judgeResult, number) => {
       if (winningLotto.includes(number)) {
