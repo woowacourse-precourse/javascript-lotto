@@ -26,9 +26,14 @@ class App {
 
   moneyInput(prompt) {
     Console.readLine(`${prompt}\n`, (input) => {
+      if (this.validMoneyInput(input) === false) throw new Error("[ERROR] 1,000원 단위의 금액이어야 합니다.");
       this.money = input;
       this.countLotto(input);
     });
+  }
+
+  validMoneyInput(input) {
+    if (input % LOTTO_PRICE !== 0) return false;
   }
 
   countLotto(money) {
