@@ -13,13 +13,22 @@ class App {
       );
       this.user.lottoPurchase();
       this.user.printMyLottos();
+
       this.inputWinningNumbers();
     });
   }
 
   inputWinningNumbers() {
     Console.readLine('\n' + MESSAGE.NUMBER_INPUT + '\n', winningNumbers => {
-      this.winningNumbers = new Winning(winningNumbers);
+      this.winning = new Winning(winningNumbers);
+
+      this.inputBonusNumber();
+    });
+  }
+
+  inputBonusNumber() {
+    Console.readLine('\n' + MESSAGE.BONUS_INPUT + '\n', bonusNumber => {
+      this.winning.inputBonus(bonusNumber);
     });
   }
 

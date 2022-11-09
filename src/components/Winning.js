@@ -4,6 +4,9 @@ const {
   stringToNumberOfArray,
   isNotUnique,
   isAllExceedNumberRange,
+  exceedNumberRange,
+  checkInputBonusForm,
+  checkOverlapToArray,
 } = require('../utils/winningNumberValidate');
 
 class Winning {
@@ -11,6 +14,7 @@ class Winning {
 
   constructor(winningString) {
     this.validate(winningString);
+
     this.winningNumber = stringToNumberOfArray(winningString);
   }
 
@@ -22,6 +26,19 @@ class Winning {
     if (!isNotUnique(arrayOfWinningNumbers)) throw new Error(ERROR.NOT_UNIQUE);
     if (!isAllExceedNumberRange(arrayOfWinningNumbers))
       throw new Error(ERROR.RANGE);
+  }
+
+  inputBonus(bonusNumber) {
+    this.validateBonus(bonusNumber);
+
+    this.winningNumber.push(parseInt(bonusNumber));
+  }
+
+  validateBonus(bonusNumber) {
+    if (!checkInputBonusForm(bonusNumber)) throw new Error(ERROR.BONUS_COUNT);
+    if (!exceedNumberRange(bonusNumber)) throw new Error(ERROR.RANGE);
+    if (checkOverlapToArray(parseInt(bonusNumber), this.winningNumber))
+      throw new Error(ERROR.NOT_UNIQUE);
   }
 }
 

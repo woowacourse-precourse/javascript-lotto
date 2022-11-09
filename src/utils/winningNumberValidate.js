@@ -19,10 +19,20 @@ function checkInputForm(string) {
   return /^\d{1,2},\d{1,2},\d{1,2},\d{1,2},\d{1,2},\d{1,2}$/g.test(string);
 }
 
+function checkInputBonusForm(string) {
+  return /^\d{1,2}$/g.test(string);
+}
+
+function checkOverlapToArray(value, array) {
+  return array.includes(value);
+}
+
 module.exports = {
   stringToNumberOfArray,
   isNotUnique,
   exceedNumberRange,
   isAllExceedNumberRange,
   checkInputForm,
+  checkInputBonusForm,
+  checkOverlapToArray,
 };
