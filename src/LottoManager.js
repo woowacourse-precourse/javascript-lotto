@@ -7,23 +7,23 @@ class LottoManager {
   #winningNumbers;
   #earningsRate = 0;
 
-  constructor(purchaseAmountStr) {
-    this.validatePurchaseAmount(purchaseAmountStr);
-    this.#lottos = this.issueLottos(parseInt(purchaseAmountStr, 10));
+  initLottos(purchaseAmountString) {
+    this.validatePurchaseAmount(purchaseAmountString);
+    this.#lottos = this.issueLottos(parseInt(purchaseAmountString, 10));
   }
 
-  validatePurchaseAmount(purchaseAmountStr) {
-    if (this.isInvalidPurchaseAmount(purchaseAmountStr)) {
+  validatePurchaseAmount(purchaseAmountString) {
+    if (this.isInvalidPurchaseAmount(purchaseAmountString)) {
       throw new Error(
         '[ERROR] 구입 금액은 1,000으로 나누어 떨어지는 숫자여야 합니다.',
       );
     }
   }
 
-  isInvalidPurchaseAmount(purchaseAmountStr) {
+  isInvalidPurchaseAmount(purchaseAmountString) {
     return (
-      !/^\d+$/g.test(purchaseAmountStr) ||
-      parseInt(purchaseAmountStr, 10) % 1000 !== 0
+      !/^\d+$/g.test(purchaseAmountString) ||
+      parseInt(purchaseAmountString, 10) % 1000 !== 0
     );
   }
 

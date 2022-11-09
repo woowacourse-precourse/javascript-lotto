@@ -5,10 +5,14 @@ const LottoManager = require('./LottoManager');
 class App {
   lottoManager;
 
+  constructor() {
+    this.lottoManager = new LottoManager();
+  }
+
   play() {
     Console.readLine('구입금액을 입력해주세요.\n', purchaseAmount => {
       try {
-        this.lottoManager = new LottoManager(purchaseAmount);
+        this.lottoManager.initLottos(purchaseAmount);
         this.printLottos(this.lottoManager.lottos);
         this.inputWinningNumbers();
       } catch (err) {
