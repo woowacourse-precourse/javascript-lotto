@@ -11,6 +11,8 @@ class Lotto {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
   }
+  // TO DO -
+  // 일치 개수 비교 및 통계.
 }
 
 module.exports = Lotto;

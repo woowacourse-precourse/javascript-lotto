@@ -11,13 +11,14 @@ class App {
     MissionUtils.Console.readLine(WORD_TO_PRINT, (money) => {
       money = Number(money);
       this.checkAmountOfMoneyToBuy(money);
+      this.makeRandomLottoNumber(money);
     });
   }
 
   checkAmountOfMoneyToBuy(money) {
     const CHECK_RESULT = money % 1000;
 
-    switch (CHECK_RESULT || isNaN(CHECK_RESULT)) {
+    switch (isNaN(CHECK_RESULT) || CHECK_RESULT) {
       case 0:
         break;
       case true:
