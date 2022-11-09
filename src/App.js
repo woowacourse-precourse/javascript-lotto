@@ -9,6 +9,7 @@ class App {
       try {
         this.validate(purchaseAmount);
         this.issueLottos(purchaseAmount);
+        this.printLottos(this.lottos);
       } catch (err) {
         this.exitGame(err.message);
         throw err;
@@ -41,15 +42,23 @@ class App {
     }
   }
 
+  printLottos(lottos) {
+    Console.print('');
+    Console.print(`${lottos.length}개를 구매했습니다.`);
+    lottos.forEach(lotto => Console.print(`[${lotto.numbers.join(', ')}]`));
+  }
+
   exitGame(errorMessage) {
     Console.print(errorMessage);
     Console.close();
   }
 
-  printLottos(lottoCount, lottos) {
-    Console.print(`${lottoCount}개를 구매했습니다.`);
-    lottos.forEach(lotto => Console.print(`[${lotto.join(', ')}]`));
-  }
+  /**
+   * TODO: 로또 생성 기능
+   * 6개의 숫자 무작위로 생성
+   * 하나의 로또는 1 ~ 45까지 중복 없는 숫자로 구성
+   *
+   */
 }
 
 new App().play();
