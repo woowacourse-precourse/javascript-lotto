@@ -21,6 +21,15 @@ class Lotto {
   makeLottoWinningNumber() {
     return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 7);
   }
+
+  checkUserMoney() {
+    MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (userInput) => {
+      this.countTimesOfLotto(userInput);
+    });
+  }
+  countTimesOfLotto(money) {
+    return parseInt(money / 1000);
+  }
 }
 
 module.exports = Lotto;
