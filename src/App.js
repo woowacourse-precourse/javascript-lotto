@@ -12,6 +12,8 @@ class App {
       const numberOfLotto = amount / 1000;
 
       this.showNumberOfPurchasedLotto(numberOfLotto);
+
+      this.createRandomLotto(numberOfLotto);
     });
   }
 
@@ -25,6 +27,16 @@ class App {
 
   showNumberOfPurchasedLotto(amount) {
     Console.print(`\n${amount}개를 구매했습니다.`);
+  }
+
+  createRandomLotto(amount) {
+    this.lottoArray = [];
+
+    while (this.lottoArray.length < amount) {
+      const randomLotto = Random.pickUniqueNumbersInRange(1, 45, 6);
+
+      this.lottoArray.push(randomLotto);
+    }
   }
 }
 
