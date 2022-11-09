@@ -1,6 +1,7 @@
 const { Console } = require("@woowacourse/mission-utils");
 const Budget = require("./Budget");
 const Lotto = require("./Lotto");
+const LottoMachine = require("./LottoMachine");
 
 const LOTTO_NUMBER_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.\n";
 const BUDGET_INPUT_MESSAGE = "구입금액을 입력해 주세요.\n";
@@ -9,8 +10,6 @@ class App {
   $Lotto;
   $LottoBonus;
   $Budget;
-
-  constructor() {}
 
   lottoNumberInputCb = (input) => {
     const numbers = input.split(",");
@@ -23,6 +22,8 @@ class App {
   budgetInputCb = (input) => {
     this.validateIsNotNumber(...input);
     this.$Budget = new Budget(Number(input));
+    console.log("");
+    this.$LottoMachine = new LottoMachine(this.$Budget.budget);
     console.log("");
     Console.close();
   };
