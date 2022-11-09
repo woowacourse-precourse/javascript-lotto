@@ -17,6 +17,7 @@ module.exports = {
       {
         endOfLine: 'auto',
         singleQuote: true,
+        'max-depth': ['error', 2],
       },
     ],
     semi: ['error', 'always'],
