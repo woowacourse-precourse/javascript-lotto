@@ -10,9 +10,9 @@ class App {
   }
 
   play() {
-    Console.readLine('구입금액을 입력해주세요.\n', purchaseAmount => {
+    Console.readLine('구입금액을 입력해주세요.\n', purchaseAmountInput => {
       try {
-        this.lottoManager.initLottos(purchaseAmount);
+        this.lottoManager.initLottos(purchaseAmountInput);
         this.printLottos(this.lottoManager.lottos);
         this.inputWinningNumbers();
       } catch (err) {
@@ -30,8 +30,8 @@ class App {
 
   inputWinningNumbers() {
     Console.print('');
-    Console.readLine('당첨 번호를 입력해주세요.\n', winningNumbers => {
-      this.lottoManager.initWinningNumbers(winningNumbers);
+    Console.readLine('당첨 번호를 입력해주세요.\n', winningNumbersInput => {
+      this.lottoManager.initWinningNumbers(winningNumbersInput);
     });
   }
 
