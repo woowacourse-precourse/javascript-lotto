@@ -61,7 +61,7 @@ class App {
 
   bonusInput(prompt) {
     Console.readLine(`\n${prompt}\n`, (input) => {
-      this.numberBonus = input;
+      this.numberBonus = parseInt(input);
       this.compareLottoNumbers();
     });
   }
@@ -69,18 +69,22 @@ class App {
   compareLottoNumbers() {
     this.arrayLotto.map((numbers) => {
       let countSameNumbers = 0;
+      let isBonusNumber = false;
       numbers.map((number) => {
         if(this.arrayWinLotto.includes(number)) countSameNumbers += 1;
+        if(this.numberBonus === number) isBonusNumber = true; 
       });
-      this.separateWin(countSameNumbers);
+      this.separateWin(countSameNumbers, isBonusNumber);
     });
-    Console.print(this.result);
   }
 
-  separateWin(count) {
+  separateWin(count, bonus) {
     if (count === 3) this.result['THREE_SAME'] += 1;
     if (count === 4) this.result['FOUR_SAME'] += 1;
-    if (count === 5) this.result['FIVE_SAME'] += 1;
+    if (count === 5) {
+      if (bonus === true) this.result['FIVE_BONUS_SAME'] += 1;
+      if (bonus === false) this.result['FIVE_SAME'] += 1;
+    }
     if (count === 6) this.result['SIX_SAME'] += 1;
   }
 }
