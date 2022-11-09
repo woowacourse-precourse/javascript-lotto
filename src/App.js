@@ -1,5 +1,15 @@
+const LottoGame = require("./LottoGame.js");
+
 class App {
-  play() {}
+  constructor() {
+    this.LottoGame = new LottoGame();
+  }
+  play() {
+    this.LottoGame.play();
+  }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
