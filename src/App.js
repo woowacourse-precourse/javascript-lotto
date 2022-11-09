@@ -3,10 +3,13 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class App {
   constructor() {
     this.lotteryArray = [];
+    this.winningNumber = 0;
   }
   play() {
     MissionUtils.Console.print("구입금액을 입력해 주세요.");
     this.inputMoney();
+    MissionUtils.Console.print("당첨 번호를 입력해 주세요.");
+    this.winningNumberInput();
   }
 
   inputMoney() {
@@ -36,6 +39,12 @@ class App {
     MissionUtils.Console.print(`${answer / 1000}개를 구매했습니다.`);
     for (let i = 0; i < answer / 1000; i++)
       MissionUtils.Console.print(`[${this.lotteryArray[i].join(", ")}]`);
+  }
+
+  winningNumberInput() {
+    MissionUtils.Console.readLine("", (answer) => {
+      this.winningNumber = answer.split(",");
+    });
   }
 }
 console.log();
