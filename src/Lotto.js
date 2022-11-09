@@ -1,12 +1,14 @@
 const ExceptionCheck = require('./utils/ExceptionCheck');
 const Calculate = require('./model/Calculation');
 const {MONEY} = require('./utils/Constants');
+const printResult = require('./model/Print');
 
 class Lotto {
   #numbers;
 
   constructor(numbers) {
     this.errorCheck = new ExceptionCheck();
+    this.validate(numbers);
     this.#numbers = numbers;
     this.calculate = new Calculate();
   }
@@ -19,7 +21,7 @@ class Lotto {
     const answerinNum = ans => ans.map(Number);
     const lotteryArr = (this.calculate.testAllLottos(lottos, answerinNum(answers), bonusNum));
     const yieldCheck = this.yieldCalculation(lotteryArr, baseMoney);
-    console.log(yieldCheck)
+    printResult(lotteryArr, yieldCheck);
   }
   
   yieldCalculation(arr, baseMoney){
