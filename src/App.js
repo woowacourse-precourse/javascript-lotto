@@ -3,6 +3,12 @@ const { Console, Random } = require("@woowacourse/mission-utils");
 const PROMPT_MONEY = '구입금액을 입력해 주세요.';
 const PROMPT_LOTTO = '당첨 번호를 입력해 주세요.';
 const PROMPT_BONUS = '보너스 번호를 입력해 주세요.';
+const RESULT_STATISTICS = '\n당첨 통계\n---';
+const THREE_SAME = '3개 일치 (5,000원)';
+const FOUR_SAME = '4개 일치 (50,000원)';
+const FIVE_SAME = '5개 일치 (1,500,000원)';
+const FIVE_BONUS_SAME = '5개 일치, 보너스 볼 일치 (30,000,000원)';
+const SIX_SAME = '6개 일치 (2,000,000,000원)';
 const LOTTO_PRICE = 1000;
 
 class App {
@@ -10,6 +16,13 @@ class App {
     this.arrayLotto = [];
     this.arrayWinLotto = 0;
     this.numberBonus = 0;
+    this.result = {
+      THREE_SAME : 0,
+      FOUR_SAME : 0,
+      FIVE_SAME : 0,
+      FIVE_BONUS_SAME : 0,
+      SIX_SAME : 0
+    };
   }
 
   play() {
@@ -59,8 +72,16 @@ class App {
       numbers.map((number) => {
         if(this.arrayWinLotto.includes(number)) countSameNumbers += 1;
       });
-      console.log(countSameNumbers);
+      this.separateWin(countSameNumbers);
     });
+    Console.print(this.result);
+  }
+
+  separateWin(count) {
+    if (count === 3) this.result['THREE_SAME'] += 1;
+    if (count === 4) this.result['FOUR_SAME'] += 1;
+    if (count === 5) this.result['FIVE_SAME'] += 1;
+    if (count === 6) this.result['SIX_SAME'] += 1;
   }
 }
 
