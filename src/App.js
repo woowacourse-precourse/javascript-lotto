@@ -27,6 +27,7 @@ class App {
   createLotto(amount) {
     for (let i = 0; i < amount; i++) {
       const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+      Console.print(numbers);
       this.arrayLotto.push(numbers);
     }
   }
