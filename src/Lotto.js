@@ -1,3 +1,4 @@
+const lottoValidation = require('./validation/lottoValidation');
 class Lotto {
   #numbers;
 
@@ -7,9 +8,7 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (new Set(numbers).size !== 6) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
-    }
+    lottoValidation(numbers);
   }
 
   // TODO: 추가 기능 구현
