@@ -1,4 +1,5 @@
 const Console = require("@woowacourse/mission-utils").Console;
+const Random = require("@woowacourse/mission-utils").Random;
 
 class App {
   play() {
@@ -35,8 +36,16 @@ class App {
     while (this.lottoArray.length < amount) {
       const randomLotto = Random.pickUniqueNumbersInRange(1, 45, 6);
 
-      this.lottoArray.push(randomLotto);
+      const sortedLotto = this.sortLottoNumber(randomLotto);
+
+      this.lottoArray.push(sortedLotto);
     }
+  }
+
+  sortLottoNumber(lotto) {
+    lotto.sort((a, b) => a - b);
+
+    return lotto;
   }
 }
 
