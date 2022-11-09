@@ -58,20 +58,22 @@ class LottoManager {
   }
 
   validateWinningNumbers(winningNumbers) {
-    if (this.isInvalidWinningNumbers(winningNumbers)) {
-      throw new Error(
-        '[ERROR] 당첨 번호는 1~45의 중복이 없는 숫자 6개로 구성되어야 합니다.',
-      );
+    switch (true) {
+      case this.hasNotNumber(winningNumbers):
+        throw new Error(
+          '[ERROR] 당첨 번호에 숫자가 아닌 문자가 입력되었습니다.',
+        );
+      case this.hasDuplicate(winningNumbers):
+        throw new Error('[ERROR] 당첨 번호는 중복된 숫자가 없어야 합니다.');
+      case this.hasOutOfBoundNumber(winningNumbers):
+        throw new Error(
+          '[ERROR] 당첨 번호는 1부터 45까지의 숫자로 구성되어야 합니다.',
+        );
+      case this.isNotLottoLength(winningNumbers):
+        throw new Error(
+          '[ERROR] 당첨 번호의 개수는 로또 번호의 개수와 동일해야 합니다.',
+        );
     }
-  }
-
-  isInvalidWinningNumbers(winningNumbers) {
-    return (
-      this.hasNotNumber(winningNumbers) ||
-      this.hasDuplicate(winningNumbers) ||
-      this.hasOutOfBoundNumber(winningNumbers) ||
-      this.isNotLottoLength(winningNumbers)
-    );
   }
 
   hasNotNumber(winningNumbers) {
