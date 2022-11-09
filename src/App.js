@@ -38,7 +38,7 @@ class App {
     }
   }
 
-  #getUserMoney() {
+  #getMoney() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
       if (this.#validate(money)) {
         this.#lottoCount = parseInt(money / LOTTO_PRICE, 10);
@@ -48,11 +48,8 @@ class App {
   }
 
   play() {
-    this.#getUserMoney();
+    this.#getMoney();
   }
 }
-
-const app = new App();
-app.play();
 
 module.exports = App;
