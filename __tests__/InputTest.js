@@ -19,4 +19,12 @@ describe('사용자 입력 테스트', () => {
       checkAmountStirng(input);
     }).toThrow('[ERROR]');
   });
+
+  test('입력한 금액이 공백일경우 예외가 발생한다.', () => {
+    const input = '';
+
+    expect(() => {
+      checkAmountEmpty(input);
+    }).toThrow('[ERROR]');
+  });
 });
