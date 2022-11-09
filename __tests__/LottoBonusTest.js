@@ -1,6 +1,6 @@
 const LottoBonus = require("../src/LottoBonus");
 
-describe.only("로또 클래스 테스트", () => {
+describe("로또 클래스 테스트", () => {
   test("숫자 말고 다른 값이 들어가면 에러가 발생한다.", () => {
     expect(() => {
       new LottoBonus("a1");

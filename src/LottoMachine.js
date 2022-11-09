@@ -5,12 +5,15 @@ class LottoMachine {
   tickets;
 
   constructor(budget) {
-    this.ticketNumber = budget;
-    this.tickets = this.makeLottoTicket();
+    this.ticketNumber = budget / 1000;
+    this.tickets = this.makeLottoTicket(this.ticketNumber);
   }
-
-  makeLottoTicket = () => {
-    return Random.pickUniqueNumberInRange(1, 45, 6);
+  pushTicket(acc) {
+    acc.push(Random.pickUniqueNumbersInRange(1, 45, 6));
+    return acc;
+  }
+  makeLottoTicket = (number) => {
+    return [...Array(number)].reduce(this.pushTicket, []);
   };
 }
 
