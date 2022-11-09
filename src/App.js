@@ -31,7 +31,7 @@ class App {
   inputWinningNumbers() {
     Console.print('');
     Console.readLine('당첨 번호를 입력해주세요.\n', winningNumbers => {
-      this.lottoManager.validateWinningNumbers(winningNumbers);
+      this.lottoManager.initWinningNumbers(winningNumbers);
     });
   }
 
