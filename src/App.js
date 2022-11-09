@@ -32,13 +32,6 @@ class App {
     Console.print(errorMessage);
     Console.close();
   }
-
-  /**
-   * TODO: 로또 생성 기능
-   * 6개의 숫자 무작위로 생성
-   * 하나의 로또는 1 ~ 45까지 중복 없는 숫자로 구성
-   *
-   */
 }
 
 new App().play();
