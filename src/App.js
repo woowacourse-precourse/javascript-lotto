@@ -12,7 +12,15 @@ class App {
     });
   }
 
-  lotteryCount(answer) {}
+  lotteryCount(answer) {
+    for (let i = 0; i < answer / 1000; i++) {
+      this.lotteryNumber();
+    }
+  }
+
+  lotteryIssue() {
+    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+  }
 }
 
 module.exports = App;
