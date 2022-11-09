@@ -54,10 +54,13 @@ class Controller{
   inputForBonusNum(answerSplit){
     MissionUtils.Console.readLine(CONSOLELINE.BONUSNUM_INPUT+'\n', (bonusNum) => {
       this.errorCheck.bonusNumCheck(bonusNum, answerSplit);
+      this.showResultStatistic(answerSplit, bonusNum);
     });
   }
 
-
+  showResultStatistic(answerSplit, bonusNum){
+    this.lottoGame.printOfResultFromCalc(this.lottos, answerSplit, bonusNum);
+  }
 }
 
 module.exports = Controller;
