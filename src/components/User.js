@@ -1,6 +1,9 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const { ERROR } = require("../data/constants");
-const { isPositiveNumber, isDivideThousand } = require("../utils/utils");
+const {
+  isPositiveNumber,
+  isDivideThousand,
+} = require("../utils/inputMoneyValidate");
 
 class User {
   #inputMoney;
