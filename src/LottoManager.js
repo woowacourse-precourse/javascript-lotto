@@ -5,7 +5,15 @@ const Lotto = require('./Lotto');
 class LottoManager {
   #lottos = [];
   #winningNumbers;
-  #earningsRate;
+  #earningsRate = 0;
+
+  issueLottos(purchaseAmount) {
+    const lottoCount = purchaseAmount / 1000;
+
+    for (let i = 0; i < lottoCount; i++) {
+      this.lottos.push(new Lotto(this.createLottoNumbers()));
+    }
+  }
 
   createLottoNumbers() {
     const numberSet = new Set();
@@ -15,14 +23,6 @@ class LottoManager {
     }
 
     return [...numberSet].sort((a, b) => a - b);
-  }
-
-  issueLottos(purchaseAmount) {
-    const lottoCount = purchaseAmount / 1000;
-
-    for (let i = 0; i < lottoCount; i++) {
-      this.lottos.push(new Lotto(this.createLottoNumbers()));
-    }
   }
 
   get lottos() {
