@@ -8,6 +8,10 @@ class App {
   getPurchaseAmount() {
     Console.readLine("구입금액을 입력해 주세요.\n", (amount) => {
       this.checkPurchaseAmount(amount);
+
+      const numberOfLotto = amount / 1000;
+
+      this.showNumberOfPurchasedLotto(numberOfLotto);
     });
   }
 
@@ -17,6 +21,10 @@ class App {
     }
 
     return true;
+  }
+
+  showNumberOfPurchasedLotto(amount) {
+    Console.print(`\n${amount}개를 구매했습니다.`);
   }
 }
 
