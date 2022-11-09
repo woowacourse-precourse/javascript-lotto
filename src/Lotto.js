@@ -20,6 +20,10 @@ class Lotto {
       throw new Error("[Error] 로또 번호가 중복됩니다.")
     }
   }
+
+  printLottoNumbers() {
+    MissionUtils.Console.print(this.#numbers);
+  }
 }
 
 module.exports = Lotto;

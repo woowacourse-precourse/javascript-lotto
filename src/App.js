@@ -45,8 +45,16 @@ class App {
       const lotto = new Lotto(numbers);
       myLotto.push(lotto);
     }
+    this.printMyLotto(count, myLotto);
 
     return myLotto;
+  }
+
+  printMyLotto(count, myLotto) {
+    MissionUtils.Console.print(`${count}개를 구매했습니다.`);
+    myLotto.forEach((lotto) => {
+      lotto.printLottoNumbers();
+    })
   }
 }
 
