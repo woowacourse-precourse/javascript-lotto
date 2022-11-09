@@ -1,9 +1,21 @@
+const { Random } = require('@woowacourse/mission-utils');
+
 const Lotto = require('./Lotto');
 
 class LottoManager {
   #lottos = [];
   #winningNumbers;
   #earningsRate;
+
+  createLottoNumbers() {
+    const numberSet = new Set();
+
+    while (numberSet.size < 6) {
+      numberSet.add(Random.pickNumberInRange(1, 45));
+    }
+
+    return [...numberSet];
+  }
 
   issueLottos(purchaseAmount) {
     const lottoCount = purchaseAmount / 1000;
