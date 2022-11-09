@@ -2,6 +2,7 @@ const LOTTO = {
   PRICE: 1000,
   NUMBER_START: 1,
   NUMBER_END: 45,
+  NUMBER_SELECT: 6,
 };
 
 const MESSAGE = {
