@@ -10,7 +10,7 @@ class App {
   }
 
   play() {
-    Console.readLine('구입금액을 입력해주세요.\n', purchaseAmountInput => {
+    Console.readLine('구입금액을 입력해 주세요.\n', purchaseAmountInput => {
       try {
         this.lottoManager.initLottos(purchaseAmountInput);
         this.printLottos(this.lottoManager.lottos);
