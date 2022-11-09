@@ -11,6 +11,14 @@ class Lotto {
   buyLotto(){
     MissionUtils.Console.print('구입금액을 입력해 주세요.');
   }
+  pay(){
+    MissionUtils.Console.readLine('', (pay) => {
+      MissionUtils.Console.print(pay);
+      return pay
+    });
+  }
+  
+
 
   // validate(numbers) {
     
