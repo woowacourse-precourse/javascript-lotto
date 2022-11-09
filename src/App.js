@@ -1,8 +1,10 @@
+const { Random } = require('@woowacourse/mission-utils');
+
 class App {
   play() {}
 
   getNumbers() {
-    return 1;
+    return Random.pickUniqueNumbersInRange(1, 45, 6);
   }
 }
 
