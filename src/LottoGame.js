@@ -10,6 +10,8 @@ class LottoGame {
       this.checkUserMoney(money);
 
       this.showlottoNumOfBuying(money);
+
+      this.showLotto(money);
     });
   }
 
@@ -23,13 +25,35 @@ class LottoGame {
   }
 
   lottoNumOfBuying(money) {
-    return money % 1000;
+    return money / 1000;
   }
 
   showlottoNumOfBuying(money) {
     Console.print(`${this.lottoNumOfBuying(money)}개를 구매했습니다.`);
 
     this.lineBreak();
+  }
+
+  makeLotto(money) {
+    const buyingNum = this.lottoNumOfBuying(money);
+    let lottoNum = [];
+    let i = 0;
+
+    for (; i < buyingNum; i++) {
+      let randomNum = Random.pickUniqueNumbersInRange(1, 45, 6);
+      lottoNum.push(randomNum.sort((a, b) => a - b));
+    }
+    return lottoNum;
+  }
+
+  showLotto(money) {
+    const lottoNum = this.makeLotto(money);
+
+    let i = 0;
+
+    for (; i < lottoNum.length; i++) {
+      Console.print(lottoNum[i]);
+    }
   }
 }
 
