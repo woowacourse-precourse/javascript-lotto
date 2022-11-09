@@ -28,7 +28,20 @@ class Lotto {
     });
   }
   countTimesOfLotto(money) {
+    //상수화 필요
     return parseInt(money / 1000);
+  }
+
+  winningCheck(lottonumbers, winningNumbers, bonusNumber) {
+    //상수화 필요
+    const countOfCorrectNumbers = lottonumbers.filter((number) =>
+      winningNumbers.includes(number)
+    ).length;
+    if (countOfCorrectNumbers === 3) return 5;
+    if (countOfCorrectNumbers === 4) return 4;
+    if (countOfCorrectNumbers === 5) return 3;
+    if (countOfCorrectNumbers === 5 && lottonumbers.includes(bonusNumber)) return 2;
+    if (countOfCorrectNumbers === 6) return 1;
   }
 }
 
