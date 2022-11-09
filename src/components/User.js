@@ -15,8 +15,8 @@ class User {
     if (!isDivideThousand(inputMoney)) throw new Error(ERROR.DIVIDE);
   }
 
-  print() {
-    Console.print(this.#inputMoney);
+  countAvailableLotto() {
+    return this.#inputMoney / 1000;
   }
 }
 
