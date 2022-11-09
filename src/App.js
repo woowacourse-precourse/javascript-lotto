@@ -15,6 +15,8 @@ class App {
       this.showNumberOfPurchasedLotto(numberOfLotto);
 
       this.createRandomLotto(numberOfLotto);
+
+      this.showEveryLotto();
     });
   }
 
@@ -46,6 +48,12 @@ class App {
     lotto.sort((a, b) => a - b);
 
     return lotto;
+  }
+
+  showEveryLotto() {
+    this.lottoArray.forEach((item) => {
+      Console.print(item);
+    });
   }
 }
 
