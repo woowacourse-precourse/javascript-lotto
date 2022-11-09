@@ -7,6 +7,8 @@
 
 const Lotto = require('./Lotto')
 const Check = require('./Check')
+const Stat = require('./Statistics')
+
 const MissionUtils = require("@woowacourse/mission-utils");
 
 class App {
@@ -100,7 +102,11 @@ class App {
 
   // statistics
   statistics(lottoArray,winNumber,bonus){
-    
+    for (let lotto of lottoArray) {
+      const match = new Stat(lotto,winNumber,bonus)
+      match.checkMatch()
+
+    }
   }
 }
 
