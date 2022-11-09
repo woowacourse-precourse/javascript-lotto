@@ -4,12 +4,18 @@ class Statistic {
   #stat;
 
   constructor() {
-    this.#stat[RANK.FIRST] = 0;
-    this.#stat[RANK.SECOND] = 0;
-    this.#stat[RANK.THIRD] = 0;
-    this.#stat[RANK.FOURTH] = 0;
-    this.#stat[RANK.FIFTH] = 0;
-    this.#stat[RANK.NOPRIZE] = 0;
+    this.#stat = {
+      [RANK.FIRST]: 0,
+      [RANK.SECOND]: 0,
+      [RANK.THIRD]: 0,
+      [RANK.FOURTH]: 0,
+      [RANK.FIFTH]: 0,
+      [RANK.NOPRIZE]: 0,
+    };
+  }
+
+  getStat() {
+    return this.#stat;
   }
 
   judgeLotto(winningLotto, bonusNumber, publishedLotto) {
@@ -36,6 +42,10 @@ class Statistic {
     if (numberOfSame === 4) return RANK.FOURTH;
     if (numberOfSame === 3) return RANK.FIFTH;
     return RANK.NOPRIZE;
+  }
+
+  increaseRankCount(rank) {
+    this.#stat[rank] += 1;
   }
 }
 
