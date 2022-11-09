@@ -8,12 +8,20 @@ class Lotto {
 
   validate(numbers) {
     this.validateNumberLength(numbers);
+    this.validateUnique(numbers);
     numbers.forEach((number) => this.validateNumberRange(1, 45, number));
   }
 
   validateNumberLength(numbers) {
     if (numbers.length !== 6) {
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+    }
+  }
+
+  validateUnique(numbers) {
+    const uniqueNumbers = new Set(numbers);
+    if (uniqueNumbers.length !== 6) {
+      throw new Error('[ERROR] 로또 번호는 중복없이 6개여야 합니다.');
     }
   }
 
