@@ -15,6 +15,8 @@ class App {
     });
   }
 
+  countLotto(input) {}
+
   readLine(message, callback) {
     return MissionUtils.Console.readLine(message, callback);
   }

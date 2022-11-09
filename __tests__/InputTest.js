@@ -1,6 +1,7 @@
 const {
   checkAmountUnit,
   checkAmountStirng,
+  checkAmountEmpty,
 } = require('../src/validation/amountValidation');
 
 describe('사용자 입력 테스트', () => {
