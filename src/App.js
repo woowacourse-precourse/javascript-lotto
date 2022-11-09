@@ -15,8 +15,8 @@ const userInput = (prompt, callback) => {
   });
 };
 
-const printOutput = (output) => {
-  MissionUtils.Console.print(`${output}\n`);
+const printSentence = (sentence) => {
+  MissionUtils.Console.print(sentence);
 };
 
 const countLotto = (money) => {
