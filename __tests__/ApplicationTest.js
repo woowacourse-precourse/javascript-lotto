@@ -68,4 +68,20 @@ describe("로또 테스트", () => {
       app.play();
     }).toThrow("[ERROR]");
   });
+
+  test("입력값이 0일때 ", () => {
+    mockQuestions(["0"]);
+    expect(() => {
+      const app = new App();
+      app.inputMoney(0);
+    }).toThrow("[ERROR] 구입 금액은 1000원 단위 입니다.");
+  });
+
+  test("입력값이 1000단위로 나눠지지 않을때 ", () => {
+    mockQuestions(["1100"]);
+    expect(() => {
+      const app = new App();
+      app.inputMoney(0);
+    }).toThrow("[ERROR] 구입 금액은 1000원 단위 입니다.");
+  });
 });
