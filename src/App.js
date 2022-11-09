@@ -61,6 +61,8 @@ class App {
   getNumberSelectedByUser() {
     Console.readLine("\n당첨 번호를 입력해 주세요.\n", (userInput) => {
       const arrayedUserInput = this.getArrayedUserInput(userInput);
+
+      this.checkUesrInputHaveOnlyNumberAndComma(arrayedUserInput);
     });
   }
 
@@ -68,6 +70,18 @@ class App {
     const arrayedUserInput = userInput.split("");
 
     return arrayedUserInput;
+  }
+
+  checkUesrInputHaveOnlyNumberAndComma(arrayedUserInput) {
+    arrayedUserInput.forEach((item) => {
+      const ASCII = item.charCodeAt();
+
+      if ((ASCII !== 44 && ASCII < 49) || ASCII > 57) {
+        throw new Error("숫자와 ,(쉼표) 기호만을 입력해주세요.");
+      }
+    });
+
+    return true;
   }
 }
 
