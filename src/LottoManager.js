@@ -57,6 +57,42 @@ class LottoManager {
     );
   }
 
+  validateWinningNumbers(winningNumbers) {
+    if (this.isInvalidWinningNumbers(winningNumbers)) {
+      throw new Error(
+        '[ERROR] 당첨 번호는 1~45의 중복이 없는 숫자 6개로 구성되어야 합니다.',
+      );
+    }
+  }
+
+  isInvalidWinningNumbers(winningNumbers) {
+    return (
+      this.hasNotNumber(winningNumbers) ||
+      this.hasDuplicate(winningNumbers) ||
+      this.hasOutOfBoundNumber(winningNumbers) ||
+      this.isNotLottoLength(winningNumbers)
+    );
+  }
+
+  hasNotNumber(winningNumbers) {
+    return winningNumbers.some(winningNumber => !/^\d+$/.test(winningNumber));
+  }
+
+  hasOutOfBoundNumber(winningNumbers) {
+    return winningNumbers.some(
+      winningNumber =>
+        parseInt(winningNumber, 10) < 1 || parseInt(winningNumber, 10) > 45,
+    );
+  }
+
+  hasDuplicate(winningNumbers) {
+    return winningNumbers.length !== new Set(winningNumbers).size;
+  }
+
+  isNotLottoLength(winningNumbers) {
+    return winningNumbers.length !== 6;
+  }
+
   get lottos() {
     return this.#lottos;
   }
