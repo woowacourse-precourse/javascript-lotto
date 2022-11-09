@@ -16,13 +16,7 @@ class App {
     this.arrayLotto = [];
     this.arrayWinLotto = 0;
     this.numberBonus = 0;
-    this.result = {
-      THREE_SAME : 0,
-      FOUR_SAME : 0,
-      FIVE_SAME : 0,
-      FIVE_BONUS_SAME : 0,
-      SIX_SAME : 0
-    };
+    this.result = {};
   }
 
   play() {
@@ -67,6 +61,7 @@ class App {
   }
 
   compareLottoNumbers() {
+    this.initializeResult();
     this.arrayLotto.map((numbers) => {
       let countSameNumbers = 0;
       let isBonusNumber = false;
@@ -76,16 +71,32 @@ class App {
       });
       this.separateWin(countSameNumbers, isBonusNumber);
     });
+    this.printResult();
+  }
+
+  initializeResult() {
+    this.result[THREE_SAME] = 0;
+    this.result[FOUR_SAME] = 0;
+    this.result[FIVE_SAME] = 0;
+    this.result[FIVE_BONUS_SAME] = 0;
+    this.result[SIX_SAME] = 0;
   }
 
   separateWin(count, bonus) {
-    if (count === 3) this.result['THREE_SAME'] += 1;
-    if (count === 4) this.result['FOUR_SAME'] += 1;
+    if (count === 3) this.result[THREE_SAME] += 1;
+    if (count === 4) this.result[FOUR_SAME] += 1;
     if (count === 5) {
-      if (bonus === true) this.result['FIVE_BONUS_SAME'] += 1;
-      if (bonus === false) this.result['FIVE_SAME'] += 1;
+      if (bonus === false) this.result[FIVE_SAME] += 1;
+      if (bonus === true) this.result[FIVE_BONUS_SAME] += 1;
     }
-    if (count === 6) this.result['SIX_SAME'] += 1;
+    if (count === 6) this.result[SIX_SAME] += 1;
+  }
+
+  printResult() {
+    Console.print(RESULT_STATISTICS);
+    for (let key in this.result) {
+      Console.print(`${key} - ${this.result[key]}개`);
+    }
   }
 }
 
