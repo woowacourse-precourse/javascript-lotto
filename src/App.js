@@ -17,6 +17,8 @@ class App {
       this.createRandomLotto(numberOfLotto);
 
       this.showEveryLotto();
+
+      this.getNumberSelectedByUser();
     });
   }
 
@@ -54,6 +56,10 @@ class App {
     this.lottoArray.forEach((item) => {
       Console.print(item);
     });
+  }
+
+  getNumberSelectedByUser() {
+    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (userInput) => {});
   }
 }
 
