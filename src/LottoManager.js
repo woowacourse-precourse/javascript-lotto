@@ -14,7 +14,7 @@ class LottoManager {
       numberSet.add(Random.pickNumberInRange(1, 45));
     }
 
-    return [...numberSet];
+    return [...numberSet].sort((a, b) => a - b);
   }
 
   issueLottos(purchaseAmount) {
