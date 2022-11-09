@@ -1,2 +1,4 @@
 node_modules
 jest.config.js
+.eslintrc.json
+.prettierrc.json
