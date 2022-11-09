@@ -40,6 +40,8 @@ class App {
   lottoInput(prompt) {
     Console.readLine(`\n${prompt}\n`, (input) => {
       this.arrayWinLotto = input.split(",");
+      this.arrayWinLotto = this.arrayWinLotto.map(number => parseInt(number));
+      console.log(this.arrayWinLotto);
       this.bonusInput(PROMPT_BONUS);
     });
   }
@@ -47,6 +49,17 @@ class App {
   bonusInput(prompt) {
     Console.readLine(`\n${prompt}\n`, (input) => {
       this.numberBonus = input;
+      this.compareLottoNumbers();
+    });
+  }
+
+  compareLottoNumbers() {
+    this.arrayLotto.map((numbers) => {
+      let countSameNumbers = 0;
+      numbers.map((number) => {
+        if(this.arrayWinLotto.includes(number)) countSameNumbers += 1;
+      });
+      console.log(countSameNumbers);
     });
   }
 }
