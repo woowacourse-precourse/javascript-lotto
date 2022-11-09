@@ -26,7 +26,9 @@ class App {
   }
 
   lotterySave(numbers) {
-    numbers.sort();
+    numbers.sort((a, b) => {
+      return a - b;
+    });
     this.lotteryArray.push(numbers);
   }
 
