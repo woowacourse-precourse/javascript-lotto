@@ -4,10 +4,15 @@ const { isPositiveNumber, isDivideThousand } = require("../utils/utils");
 
 class User {
   #inputMoney;
+  #lottos = [];
 
   constructor(inputMoney) {
     this.validate(inputMoney);
     this.#inputMoney = inputMoney;
+  }
+
+  randomLottoNumber() {
+    return Random.pickUniqueNumbersInRange(1, 45, 6);
   }
 
   validate(inputMoney) {
@@ -17,6 +22,18 @@ class User {
 
   countAvailableLotto() {
     return this.#inputMoney / 1000;
+  }
+
+  lottoPurchase() {
+    for (let index = 0; index < this.countAvailableLotto(); index++) {
+      this.#lottos.push(this.randomLottoNumber());
+    }
+  }
+
+  printMyLottos() {
+    this.#lottos.forEach((lotto) => {
+      Console.print(lotto);
+    });
   }
 }
 

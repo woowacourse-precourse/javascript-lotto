@@ -5,16 +5,19 @@ const User = require("./components/User");
 
 class App {
   inputMoney() {
-    Console.readLine(MESSAGE.MONEY_INPUT, (inputMoney) => {
+    Console.readLine(MESSAGE.MONEY_INPUT + "\n", (inputMoney) => {
       this.user = new User(inputMoney);
-      this.user.print();
+      Console.print(
+        "\n" + this.user.countAvailableLotto() + MESSAGE.ALERT_PURCHASE
+      );
+      this.user.lottoPurchase();
+      this.user.printMyLottos();
     });
   }
 
-  play() {}
+  play() {
+    this.inputMoney();
+  }
 }
-
-const app = new App();
-app.inputMoney();
 
 module.exports = App;
