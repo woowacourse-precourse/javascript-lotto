@@ -5,11 +5,11 @@ const Lotto = require("./Lotto");
 class App {
   play() {
     // 클래스를 분리 해서 시작
-    const numOfLotto = this.moneyOfBuyLotto();
-    const myLotto = this.makeLotto(numOfLotto);
+    const countOfLotto = this.calCountOfLotto();
+    const myLotto = this.makeLotto(countOfLotto);
   }
 
-  moneyOfBuyLotto() { 
+  calCountOfLotto() { 
     let money = 0;
 
     MissionUtils.Console.readLine(
@@ -20,7 +20,7 @@ class App {
     )
     this.isValidMoney(money);
 
-    return money;
+    return parseInt(money / 1000);
   }
 
   isValidMoney(money) {
@@ -37,10 +37,10 @@ class App {
     }
   }
 
-  makeLotto(countLotto) {
+  makeLotto(count) {
     const myLotto = [];
 
-    while (myLotto.length !== countLotto) {
+    while (myLotto.length !== count) {
       const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       const lotto = new Lotto(numbers);
       myLotto.push(lotto);
