@@ -7,24 +7,16 @@ function isNotUnique(array) {
 }
 
 function exceedNumberRange(value) {
-  return /^[1-45]*$/g.test(value);
+  if (value > 45 || value < 1) return false;
+  return true;
 }
 
 function isAllExceedNumberRange(array) {
   return array.every(exceedNumberRange);
 }
 
-function countNumberOfArray(array, length) {
-  return array.length === length;
-}
-
 function checkInputForm(string) {
-  try {
-    stringToNumberOfArray(string);
-    return true;
-  } catch {
-    return false;
-  }
+  return /^\d{1,2},\d{1,2},\d{1,2},\d{1,2},\d{1,2},\d{1,2}$/g.test(string);
 }
 
 module.exports = {
@@ -32,6 +24,5 @@ module.exports = {
   isNotUnique,
   exceedNumberRange,
   isAllExceedNumberRange,
-  countNumberOfArray,
   checkInputForm,
 };
