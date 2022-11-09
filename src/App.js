@@ -5,6 +5,11 @@ class App {
 
   play() {}
 
+  setPurchaseAmount() {
+    this.print('구입금액을 입력해 주세요.');
+    this.readLine('', (input) => {});
+  }
+
   readLine(message, callback) {
     return MissionUtils.Console.readLine(message, callback);
   }
