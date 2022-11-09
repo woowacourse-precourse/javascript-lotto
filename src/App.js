@@ -1,13 +1,18 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-
+const { amountValidation } = require('./validation/amountValidation');
 class App {
   constructor() {}
 
-  play() {}
+  play() {
+    this.setPurchaseAmount();
+  }
 
   setPurchaseAmount() {
     this.print('구입금액을 입력해 주세요.');
-    this.readLine('', (input) => {});
+    this.readLine('', (input) => {
+      if (amountValidation(input)) {
+      }
+    });
   }
 
   readLine(message, callback) {
