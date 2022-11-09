@@ -24,8 +24,15 @@ function checkAmountStirng(input) {
   }
 }
 
+function checkAmountEmpty(input) {
+  if (input === '') {
+    throw new Error('[ERROR] 공백은 입력할수 없습니다.');
+  }
+}
+
 module.exports = {
   amountValidation,
   checkAmountUnit,
   checkAmountStirng,
+  checkAmountEmpty,
 };
