@@ -34,23 +34,33 @@ class Lotto {
 
   winningCheck(lottonumbers, winningNumbers, bonusNumber) {
     //상수화 필요
-    const countOfCorrectNumbers = lottonumbers.filter((number) =>
+    const COUNT_OF_CORRECT_NUMBERS = lottonumbers.filter((number) =>
       winningNumbers.includes(number)
     ).length;
-    if (countOfCorrectNumbers === 3) return 5;
-    if (countOfCorrectNumbers === 4) return 4;
-    if (countOfCorrectNumbers === 5) return 3;
-    if (countOfCorrectNumbers === 5 && lottonumbers.includes(bonusNumber)) return 2;
-    if (countOfCorrectNumbers === 6) return 1;
+    if (COUNT_OF_CORRECT_NUMBERS === 3) return 5;
+    if (COUNT_OF_CORRECT_NUMBERS === 4) return 4;
+    if (COUNT_OF_CORRECT_NUMBERS === 5) return 3;
+    if (COUNT_OF_CORRECT_NUMBERS === 5 && lottonumbers.includes(bonusNumber)) return 2;
+    if (COUNT_OF_CORRECT_NUMBERS === 6) return 1;
   }
 
   lottoRankingsCount(rankingsArray, ranking) {
-    //상수화 필요. 인덱스를 당첨상수 - 1로 고치면 if문도 하나만 써도 된다.
+    //상수화 필요.
     if (ranking === 1) rankingsArray[0]++;
     if (ranking === 2) rankingsArray[1]++;
     if (ranking === 3) rankingsArray[2]++;
     if (ranking === 4) rankingsArray[3]++;
     if (ranking === 5) rankingsArray[4]++;
+  }
+
+  getTotalWinningMoney(rankingsArray) {
+    const PRIZE_LIST = [2000000000, 30000000, 1500000, 50000, 5000];
+    const INITIAL_VALUE = 0;
+    return rankingsArray.reduce(
+      (accumulator, currentValue, currentIndex) =>
+        accumulator + currentValue * PRIZE_LIST[currentIndex],
+      INITIAL_VALUE
+    );
   }
 }
 
