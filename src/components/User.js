@@ -11,8 +11,8 @@ class User {
   }
 
   validate(inputMoney) {
-    if (!isDivideThousand(inputMoney)) throw new Error(ERROR.DIVIDE);
     if (!isPositiveNumber(inputMoney)) throw new Error(ERROR.RANGE);
+    if (!isDivideThousand(inputMoney)) throw new Error(ERROR.DIVIDE);
   }
 
   print() {
