@@ -3,9 +3,16 @@ const { Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 
 class LottoManager {
+  #purchaseAmount = 0;
   #lottos = [];
   #winningNumbers;
   #earningsRate = 0;
+
+  constructor(purchaseAmountStr) {
+    this.validatePurchaseAmount(purchaseAmountStr);
+    this.#purchaseAmount = parseInt(purchaseAmountStr, 10);
+    this.#lottos = this.issueLottos(this.#purchaseAmount);
+  }
 
   validatePurchaseAmount(purchaseAmountStr) {
     if (this.isInvalidPurchaseAmount(purchaseAmountStr)) {
@@ -24,10 +31,13 @@ class LottoManager {
 
   issueLottos(purchaseAmount) {
     const lottoCount = purchaseAmount / 1000;
+    const lottos = [];
 
     for (let i = 0; i < lottoCount; i++) {
-      this.lottos.push(new Lotto(this.createLottoNumbers()));
+      lottos.push(new Lotto(this.createLottoNumbers()));
     }
+
+    return lottos;
   }
 
   createLottoNumbers() {
