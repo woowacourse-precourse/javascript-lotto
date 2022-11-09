@@ -14,4 +14,7 @@ const userInput = (prompt, callback) => {
   });
 };
 
+let app = new App();
+app.play();
+
 module.exports = App;
