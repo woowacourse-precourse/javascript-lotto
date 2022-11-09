@@ -31,6 +31,11 @@ class App {
     Console.print(errorMessage);
     Console.close();
   }
+
+  printLottos(lottoCount, lottos) {
+    Console.print(`${lottoCount}개를 구매했습니다.`);
+    lottos.forEach(lotto => Console.print(`[${lotto.join(', ')}]`));
+  }
 }
 
 new App().play();
