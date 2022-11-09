@@ -15,4 +15,10 @@ describe("로또 클래스 테스트", () => {
   });
 
   // 아래에 추가 테스트 작성 가능
+  test.only("로또 구매를 1000원 단위로 했을 경우", () => {
+    expect(() => {
+      const app = new App();
+      app.checkPurchaseAmount(8000);
+    }).toBeTruthy();
+  });
 });
