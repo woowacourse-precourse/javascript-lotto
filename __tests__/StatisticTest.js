@@ -34,3 +34,16 @@ describe('통계 클래스 테스트', () => {
     expect(stat[rank]).toEqual(1);
   });
 });
+
+describe('통계 클래스 최종 테스트', () => {
+  test('로또를 통계에 추가한다.', () => {
+    const statistic = new Statistic();
+    const publishedLotto = [1, 2, 3, 4, 5, 7];
+    const winningLotto = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+    statistic.putInStat(winningLotto, bonusNumber, publishedLotto);
+    const result = statistic.getStat();
+
+    expect(result[RANK.SECOND]).toEqual(1);
+  });
+});
