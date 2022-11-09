@@ -7,8 +7,12 @@ class App {
   }
 
   inputMoney() {
-    MissionUtils.Console.readLine("", (answer) => {});
+    MissionUtils.Console.readLine("", (answer) => {
+      this.lotteryCount(answer);
+    });
   }
+
+  lotteryCount(answer) {}
 }
 
 module.exports = App;
