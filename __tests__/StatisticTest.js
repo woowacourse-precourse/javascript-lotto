@@ -28,8 +28,8 @@ describe('통계 클래스 테스트', () => {
   test('해당 등수의 count를 1 증가시킨다.', () => {
     const rank = '2ND';
     statistic.increaseRankCount(rank);
-    const count = statistic.getCount();
+    const stat = statistic.getStat();
 
-    expect(count[rank]).toEqual(1);
+    expect(stat[rank]).toEqual(1);
   });
 });
