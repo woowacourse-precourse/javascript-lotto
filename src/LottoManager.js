@@ -7,6 +7,21 @@ class LottoManager {
   #winningNumbers;
   #earningsRate = 0;
 
+  validatePurchaseAmount(purchaseAmount) {
+    if (this.isInvalidPurchaseAmount(purchaseAmount)) {
+      throw new Error(
+        '[ERROR] 구입 금액은 1,000으로 나누어 떨어지는 숫자여야 합니다.',
+      );
+    }
+  }
+
+  isInvalidPurchaseAmount(purchaseAmount) {
+    return (
+      !/^\d+$/g.test(purchaseAmount) ||
+      parseInt(purchaseAmount, 10) % 1000 !== 0
+    );
+  }
+
   issueLottos(purchaseAmount) {
     const lottoCount = purchaseAmount / 1000;
 
