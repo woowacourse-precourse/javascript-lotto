@@ -7,7 +7,7 @@ class App {
     this.lottoNumbers = [];
   }
 
-  async play() {
+  play() {
     this.getBuyPrice();
   }
 
@@ -15,6 +15,7 @@ class App {
     MissionUtils.Console.readLine("구입금액읍 입력해 주세요. \n", (price) => {
       this.buyPirce = price;
       this.priceValidate();
+      this.createLottoNumber();
       MissionUtils.Console.close();
     });
   }
@@ -23,6 +24,10 @@ class App {
     if (this.buyPirce % 1000 !== 0) {
       throw new Error("[ERROR] 로또 구입 금액은 1000원 단위여야 합니다.");
     }
+  }
+
+  createLottoNumber() {
+    console.log("creating lottonumbers...");
   }
 }
 
