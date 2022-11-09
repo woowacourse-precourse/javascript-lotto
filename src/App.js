@@ -1,6 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
 
-const Lotto = require('./Lotto');
 const LottoManager = require('./LottoManager');
 
 class App {
@@ -14,7 +13,7 @@ class App {
     Console.readLine('구입금액을 입력해주세요.\n', purchaseAmount => {
       try {
         this.validate(purchaseAmount);
-        this.issueLottos(purchaseAmount);
+        this.lottoManager.issueLottos(purchaseAmount);
         this.printLottos(this.lottos);
       } catch (err) {
         this.exitGame(err.message);
