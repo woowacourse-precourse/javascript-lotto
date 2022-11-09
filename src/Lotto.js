@@ -24,9 +24,7 @@ class Lotto {
   }
 
   // TODO: 추가 기능 구현
-  print(numbers){
-    return console.log(numbers)
-  }
+  
 }
 
 module.exports = Lotto;
