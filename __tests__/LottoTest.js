@@ -45,8 +45,9 @@ describe("로또 클래스 테스트", () => {
     ]);
   });
 
-  test("입력값이 , 기호로 분할이 가능한지 테스트", () => {
+  test("string 타입 입력값이 배열로 변환되는지 테스트", () => {
     const app = new App();
+
     expect(app.getArrayedUserInput("1,2,3,4,5,6")).toStrictEqual([
       "1",
       ",",
@@ -60,5 +61,25 @@ describe("로또 클래스 테스트", () => {
       ",",
       "6",
     ]);
+  });
+
+  test("숫자와 , 기호 이 외의 문자는 에러 처리", () => {
+    expect(() => {
+      const app = new App();
+      app.checkUesrInputHaveOnlyNumberAndComma([
+        "1",
+        ",",
+        "2",
+        ",",
+        "3",
+        ",",
+        "4",
+        ",",
+        "5",
+        ",",
+        " ",
+        "6",
+      ]);
+    }).toThrow("[ERROR] 숫자와 ,(쉼표) 기호만을 입력해주세요.");
   });
 });
