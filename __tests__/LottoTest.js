@@ -30,10 +30,18 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR] 1,000원 단위로만 구매 가능합니다.");
   });
 
-  test.only("금액에 따른 로또 생성 횟수 테스트", () => {
+  test("금액에 따른 로또 생성 횟수 테스트", () => {
     const app = new App();
     app.createRandomLotto(8);
 
     expect(app.lottoArray.length).toBe(8);
+  });
+
+  test.only("생성된 로또 번호 오름차순 정렬 테스트", () => {
+    const app = new App();
+
+    expect(app.sortLottoNumber([10, 35, 42, 31, 26, 1])).toStrictEqual([
+      1, 10, 26, 31, 35, 42,
+    ]);
   });
 });
