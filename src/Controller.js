@@ -1,6 +1,6 @@
 
 const MissionUtils = require('@woowacourse/mission-utils');
-const {DEFAULTS, MONEY, CONSOLELINE, RESULTLINE} = require('./utils/Constants');
+const {CONSOLELINE, RESULTLINE} = require('./utils/Constants');
 const ExceptionCheck = require('./utils/ExceptionCheck');
 const Lotto = require("./Lotto");
 const randomNum = require('./model/Random');
@@ -10,6 +10,7 @@ class Controller{
     this.errorCheck = new ExceptionCheck();
     this.lottos = [];
     this.lottoGame;
+    this.input = 0;
   }
 
   startGame(){
@@ -19,6 +20,7 @@ class Controller{
   inputForMoney(){
     MissionUtils.Console.readLine(CONSOLELINE.PURCHASE_MONEY_INPUT+'\n', (input) => {
       this.errorCheck.purchaseMoneyErrorCheck(input);
+      this.input = input;
       this.printPurchaseNums(input/1000);
     });
   }
@@ -31,8 +33,10 @@ class Controller{
   printLottos(lotto_cnt){
     let i = 0;
     while(i < lotto_cnt){
-      this.lottos.push(randomNum());
-      MissionUtils.Console.print(randomNum());
+      const baselotto = randomNum();
+      this.lottos.push(baselotto);
+      const printBaselotto = String(baselotto).replace(/,/gi, ', ');
+      MissionUtils.Console.print(`[${printBaselotto}]`);
       i++;
     }
     this.inputForAnswerNum();
@@ -59,11 +63,8 @@ class Controller{
   }
 
   showResultStatistic(answerSplit, bonusNum){
-    this.lottoGame.printOfResultFromCalc(this.lottos, answerSplit, bonusNum);
+    this.lottoGame.printOfResultFromCalc(this.lottos, answerSplit, bonusNum, this.input);
   }
 }
 
 module.exports = Controller;
-
-const c = new Controller();
-c.startGame();
