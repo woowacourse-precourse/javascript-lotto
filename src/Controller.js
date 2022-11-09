@@ -35,19 +35,26 @@ class Controller{
       MissionUtils.Console.print(randomNum());
       i++;
     }
+    this.inputForAnswerNum();
   }
 
   inputForAnswerNum(){
     MissionUtils.Console.readLine(CONSOLELINE.ANSWERNUM_INPUT+'\n', (answerStr) => {
-      this.inputForAnswerNumCheck(answerStr);
-      this.inputForBonusNum();
+      const answerSplit = answerStr.split(',');
+      this.inputForAnswerNumCheck(answerSplit);
+      this.inputForBonusNum(answerSplit);
     });
   }
 
-  inputForAnswerNumCheck(answerStr){
-    const answerSplit = answerStr.split(',');
+  inputForAnswerNumCheck(answerSplit){
     this.errorCheck.noSeperatorErrorCheck(answerSplit);
     this.lottoGame = new Lotto(answerSplit);
+  }
+
+  inputForBonusNum(answerSplit){
+    MissionUtils.Console.readLine(CONSOLELINE.BONUSNUM_INPUT+'\n', (bonusNum) => {
+      this.errorCheck.bonusNumCheck(bonusNum, answerSplit);
+    });
   }
 
 
