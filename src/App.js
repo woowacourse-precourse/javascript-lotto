@@ -16,9 +16,8 @@ class App {
   }
 
   lotteryCount(answer) {
-    for (let i = 0; i < answer / 1000; i++) {
-      this.lotteryIssue();
-    }
+    for (let i = 0; i < answer / 1000; i++) this.lotteryIssue();
+    this.lotteryPrint(answer);
   }
 
   lotteryIssue() {
@@ -27,8 +26,15 @@ class App {
   }
 
   lotterySave(numbers) {
+    numbers.sort();
     this.lotteryArray.push(numbers);
   }
-}
 
+  lotteryPrint(answer) {
+    MissionUtils.Console.print(`${answer / 1000}개를 구매했습니다.`);
+    for (let i = 0; i < answer / 1000; i++)
+      MissionUtils.Console.print(`[${this.lotteryArray[i].join(", ")}]`);
+  }
+}
+console.log();
 module.exports = App;
