@@ -14,7 +14,7 @@ class App {
       try {
         this.validate(purchaseAmount);
         this.lottoManager.issueLottos(purchaseAmount);
-        this.printLottos(this.lottos);
+        this.printLottos(this.lottoManager.lottos);
       } catch (err) {
         this.exitGame(err.message);
         throw err;

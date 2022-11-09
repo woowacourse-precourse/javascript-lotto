@@ -1,7 +1,7 @@
 const Lotto = require('./Lotto');
 
 class LottoManager {
-  #lottos;
+  #lottos = [];
   #winningNumbers;
   #earningsRate;
 
