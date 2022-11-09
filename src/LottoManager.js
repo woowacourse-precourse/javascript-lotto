@@ -4,7 +4,7 @@ const Lotto = require('./Lotto');
 
 class LottoManager {
   #lottos = [];
-  #winningNumbers;
+  #winningNumbers = [];
   #earningsRate = 0;
 
   initLottos(purchaseAmountInput) {
@@ -46,6 +46,15 @@ class LottoManager {
     }
 
     return [...lottoNumbers].sort((a, b) => a - b);
+  }
+
+  initWinningNumbers(winningNumbersInput) {
+    const winningNumbers = winningNumbersInput.split(',');
+
+    this.validateWinningNumbers(winningNumbers);
+    this.#winningNumbers = winningNumbers.map(winningNumber =>
+      parseInt(winningNumber, 10),
+    );
   }
 
   get lottos() {
