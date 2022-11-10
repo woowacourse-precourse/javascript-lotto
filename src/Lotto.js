@@ -1,3 +1,5 @@
+const { ERROR_MESSAGES } = require('./Constant');
+
 class Lotto {
   #numbers;
 
@@ -7,8 +9,10 @@ class Lotto {
   }
 
   static validate(numbersArray) {
-    if (numbersArray.length !== 6) throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
-    if (new Set([...numbersArray]).size !== 6) throw new Error('[ERROR] 번호는 중복되지 않아야 합니다');
+    if (numbersArray.length !== 6) throw new Error(ERROR_MESSAGES.LOTTO_NUMBER_LENGTH_ONLY_SIX);
+    if (new Set([...numbersArray]).size !== 6) {
+      throw new Error(ERROR_MESSAGES.LOTTO_NUMBER_ONLY_UNIQUE);
+    }
   }
 
   // TODO: 추가 기능 구현
