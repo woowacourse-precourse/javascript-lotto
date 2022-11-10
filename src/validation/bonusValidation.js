@@ -10,7 +10,11 @@ function DoubleCheckBonus(input, WinningNumber) {
   }
 }
 
-function checkBonusOnlyNumber(input) {}
+function checkBonusOnlyNumber(input) {
+  if (Number(input) < 1 || Number(input) > 45) {
+    throw new Error('[ERROR] 1~45의 숫자만 입력할수 있습니다.');
+  }
+}
 
 module.exports = {
   bonusValidation,
