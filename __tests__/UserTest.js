@@ -9,7 +9,7 @@ describe('유저 클래스 테스트', () => {
       expect(() => {
         const user = new User();
         user.validateMoney(value);
-      }).toThrow();
+      }).toThrow('[ERROR]');
     });
   });
 
@@ -20,7 +20,7 @@ describe('유저 클래스 테스트', () => {
       expect(() => {
         const user = new User();
         user.validateMoney(value);
-      }).toThrow();
+      }).toThrow('[ERROR]');
     });
   });
 });
