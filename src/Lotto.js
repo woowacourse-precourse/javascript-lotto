@@ -18,6 +18,10 @@ class Lotto {
     if (new Set(numbers).size !== 6) {
       throw new Error("[ERROR] 로또 번호는 중복되면 안됩니다.");
     }
+
+    if (!numbers.every((number) => number >= 1 && number <= 45)) {
+      throw new Error("[ERROR] 로또 번호는 1이상 45이하의 번호만 가능합니다.");
+    }
   }
 
   sortLotto(numbers) {
