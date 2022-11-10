@@ -9,6 +9,10 @@ class View {
       this.controller.generateLotto(answer);
     });
   }
+
+  printLottos(lottos) {
+    Console.print(lottos.map((lotto) => lotto.getNumber()));
+  }
 }
 
 module.exports = View;
