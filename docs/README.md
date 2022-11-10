@@ -8,9 +8,9 @@
 [깃허브 저장소](https://github.com/woowacourse-precourse/javascript-lotto)
 
 ## 기능 목록
-[ ] 로또 발행하기  
-&nbsp;[ ] 금액 입력받기  
-&nbsp;[ ] 입력된 금액으로 몇장의 로또를 살 수 있는가?  
+*[ ] 로또 발행하기  
+*[ ] 금액 입력받기  
+    *[ ] 입력된 금액으로 몇장의 로또를 살 수 있는가?  
 &nbsp;[ ] 금액 만큼의 로또 발행  
 &nbsp;[ ] 로또 발행 시 고려사항  
 &nbsp;&nbsp;[ ] 1 ~ 45 사이의 숫자 범위이다.  
