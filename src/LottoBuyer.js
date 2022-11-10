@@ -3,7 +3,7 @@ class LottoBuyer {
 
   constructor(money) {
     LottoBuyer.#validateMoney(money);
-    this.#money = money;
+    this.#money = +money;
   }
 
   get money() {
@@ -23,7 +23,7 @@ class LottoBuyer {
       throw new Error('[ERROR] 구입금액은 숫자여야 합니다.');
     }
 
-    if (Number(money) % 1000 !== 0) {
+    if (+money % 1000 !== 0) {
       throw new Error('[ERROR] 구입금액은 1,000의 배수여야 합니다.');
     }
   }
