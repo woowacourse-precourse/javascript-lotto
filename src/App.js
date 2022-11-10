@@ -94,7 +94,18 @@ class App {
       const match = lotto.compare(winningNumber, bonusNumber);
       this.result[match] += 1;
     }
-    console.log(this.result);
+    this.printResult();
+  }
+
+  printResult() {
+    Console.print(RESULT_MEESAGE.LOTTERY_RESULT);
+    Console.print(
+      `3개 일치 (5,000원) - ${this.result[3]}개
+4개 일치 (50,000원) - ${this.result[4]}개
+5개 일치 (1,500,000원) - ${this.result[5]}개
+5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.result[5.5]}개
+6개 일치 (2,000,000,000원) - ${this.result[6]}개`
+    );
   }
 }
 
