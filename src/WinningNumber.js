@@ -29,6 +29,29 @@ class WinningNumber {
       }
     }
   }
+
+  getBonusNumber() {
+    MissionUtils.Console.readLine(MESSAGE.BONUS_NUMBER, (number) => {
+      if (this.checkBonusNumber(number)) {
+        return number;
+      } else {
+        throw new Error(ERROR.NUMBER);
+      }
+    });
+  }
+
+  checkBonusNumber(number) {
+    const NUMBER = Number(number);
+    if (
+      isNaN(NUMBER) ||
+      NUMBER < LOTTO.NUMBER_START ||
+      NUMBER > LOTTO.NUMBER_END
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }
 
 module.exports = WinningNumber;
