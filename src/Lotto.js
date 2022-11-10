@@ -8,6 +8,10 @@ class Lotto {
     this.#numbers = numbers;
   }
 
+  get numbers() {
+    return this.#numbers;
+  }
+
   static #validate(numbers) {
     if (numbers.some((number) => Number.isNaN(number))) {
       throw new Error('[ERROR] 로또 번호는 숫자여야 합니다.');

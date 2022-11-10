@@ -1,5 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 const { GAME_MESSAGE } = require('./constants/lotto');
+const Lotto = require('./Lotto');
 
 const LottoBuyer = require('./LottoBuyer');
 
@@ -10,6 +11,7 @@ class App {
 
   play() {
     this.#readMoney();
+    this.#readLottoNumber();
   }
 
   #readMoney() {
@@ -24,6 +26,16 @@ class App {
       buyerLotto.forEach((lotto) => {
         Console.print(lotto);
       });
+
+      this.#readLottoNumber();
+    });
+  }
+
+  #readLottoNumber() {
+    Console.readLine(GAME_MESSAGE.LOTTO_NUMBER_INPUT, (numbers) => {
+      const lottoNumbers = numbers.split(',').map((number) => +number);
+      this.#lotto = new Lotto(lottoNumbers);
+      Console.print(this.#lotto.numbers);
 
       Console.close();
     });
