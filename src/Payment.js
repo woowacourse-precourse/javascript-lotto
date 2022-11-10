@@ -1,20 +1,40 @@
+const Lotto = require("./Lotto");
+const LottoGenerator = require("./LottoGenerator");
 const { ERROR_MSG, paymentMsg } = require("./utils/string");
 const Validation = require("./utils/Validation");
 const WConsole = require("./utils/WConsole");
 
 class Payment {
   #money;
+  #lottoTicket;
   constructor(money) {
     this.validate(money);
-    this.money = money;
+    this.#money = parseInt(money);
+    this.#lottoTicket = this.calculateLottoTicket(money);
   }
   validate(money) {
-    Validation.throwError(money % 1000 !== 0, ERROR_MSG.PAYMENT_VAL);
+    Validation.throwError(isNaN(money), ERROR_MSG.PAYMENT_VAL);
+    Validation.throwError(parseInt(money) % 1000 !== 0, ERROR_MSG.PAYMENT_VAL);
   }
-  buyLotteryTicket() {
-    let lotteryTicket = this.money / 1000;
-    WConsole.print(paymentMsg(lotteryTicket));
-    return lotteryTicket;
+  calculateLottoTicket(money) {
+    let ticket = money / 1000;
+    WConsole.print(paymentMsg(ticket));
+    return ticket;
+  }
+  //   issueLotto() {
+  //     let lotto = new LottoGenerator();
+  //     return lotto.createLottoNumbers();
+  //   }
+  issueLottos() {
+    let lottos = [];
+    for (let i = 0; i < this.#lottoTicket; i++) {
+      //   let lottoNumbers = this.issueLotto();
+      let lotto = new Lotto(LottoGenerator.createLottoNumbers());
+      WConsole.print(`[${lotto.getNumbers().join(", ")}]`);
+      //   WConsole.print(lotto.getNumbers());
+      lottos.push(lotto);
+    }
+    return lottos;
   }
 }
 

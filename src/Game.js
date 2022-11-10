@@ -6,7 +6,7 @@ class Game {
   init() {
     const money = WConsole.readLine(STRING.INPUT_MSG.START_GAME);
     const payment = new Payment(money);
-    const lotteryTicket = payment.buyLotteryTicket();
+    const lottos = payment.issueLottos();
   }
 }
 

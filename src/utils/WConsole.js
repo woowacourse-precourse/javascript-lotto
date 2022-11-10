@@ -5,10 +5,11 @@ class WConsole {
     Console.print(message);
   }
   static readLine(question) {
+    let readAnswer;
     Console.readLine(question, (answer) => {
-      this.print(answer);
-      return answer;
+      readAnswer = answer;
     });
+    return readAnswer;
   }
   static close() {
     Console.close();
