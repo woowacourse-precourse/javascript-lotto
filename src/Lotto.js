@@ -1,4 +1,12 @@
 const lottoValidation = require('./validation/lottoValidation');
+
+class LottoBuilder {
+  constructor() {}
+
+  countAmountLotto(input) {
+    return Number(input.slice(0, input.length - 3));
+  }
+}
 class Lotto {
   #numbers;
 
@@ -14,4 +22,4 @@ class Lotto {
   // TODO: 추가 기능 구현
 }
 
-module.exports = Lotto;
+module.exports = { LottoBuilder, Lotto };

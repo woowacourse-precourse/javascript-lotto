@@ -69,12 +69,3 @@ describe('로또 테스트', () => {
     }).toThrow('[ERROR]');
   });
 });
-
-describe('App 기능 테스트', () => {
-  test('구매한 금액만큼의 로또 갯수', () => {
-    const input = '8000';
-    const app = new App();
-    const result = app.countLotto(input);
-    expect(result).toBe(8);
-  });
-});
