@@ -19,18 +19,18 @@
 ## 구현할 기능
 
 ### 컴퓨터가 로또 번호를 랜덤으로 생성
-- computerRamberNumber
+- setComputerRamberNumber
 랜덤으로 서로 다른 6자리의 숫자를 생성한다.
 
 ## 사용자
 
 ### 돈 입력
-- userInputMoney
+- getUserInputMoney
 1000원 단위로 입력받는다. 1000원 단위가 아닐경우 예외 처리한다
 ### 당첨 번호 입력
-- userLottoNumber
+- getUserLottoNumber
 서로 다른 6개의 당첨번호를 입력하고 범위는 1 이상 45 이하다
 번호는 쉼표를 기준으로 구분한다
 ### 보너스 번호 입력
-- userBonusNumber
+- getUserBonusNumber
 위에서 입력받은 사용자의 당첨번호와 겹치지 않게 1~45사이에서 1개만 입력한다
