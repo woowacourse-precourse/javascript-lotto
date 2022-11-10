@@ -1,7 +1,6 @@
 const Console = require("@woowacourse/mission-utils").Console;
 const Random = require("@woowacourse/mission-utils").Random;
 const Lotto = require("./Lotto");
-const BonusNumber = require("./BonusNumber");
 
 class App {
   play() {
@@ -66,11 +65,9 @@ class App {
 
       this.checkUesrInputHaveOnlyNumberAndComma(arrayedUserInput);
 
-      this.userLotto = this.getUserLotto(userInput);
+      const userLotto = this.getUserLotto(userInput);
 
-      const lotto = new Lotto(this.userLotto);
-
-      this.getBonusNumber();
+      new Lotto(userLotto);
     });
   }
 
@@ -98,12 +95,6 @@ class App {
     const userLotto = splitedInput.map((item) => Number(item));
 
     return userLotto;
-  }
-
-  getBonusNumber() {
-    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonus) => {
-      const bonusNumber = new BonusNumber(this.userLotto, bonus);
-    });
   }
 }
 
