@@ -16,7 +16,13 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
-  test('지불된 만큼 로또 구매 했는지 테스트', () => {
+  test('지불한 액수를 1000으로 나눠서 출력한다.', () => {
     expect(lotto.checkHowManyLottos(10000)).toEqual(10);
   })
+
+  test('구매 개수만큼 로또번호가 생성된다.', () => {
+    expect(lotto.makePaidLottoNumbers(8).length).toEqual(8);
+  })
+
+
 });
