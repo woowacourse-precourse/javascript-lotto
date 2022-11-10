@@ -94,6 +94,31 @@ class LottoManager {
     return winningNumbers.length !== 6;
   }
 
+  initBonusNumber(bonusNumberInput) {
+    this.validateBonusNumber(bonusNumberInput);
+    this.#winningNumbers.push(parseInt(bonusNumberInput, 10));
+  }
+
+  validateBonusNumber(bonusNumberInput) {
+    if (this.isNotNumber(bonusNumberInput)) {
+      throw new Error(
+        '[ERROR] 보너스 번호에 숫자가 아닌 문자가 입력되었습니다.',
+      );
+    }
+
+    if (this.isOutOfBound(parseInt(bonusNumberInput, 10))) {
+      throw new Error('[ERROR] 보너스 번호는 1부터 45까지의 숫자여야 합니다.');
+    }
+  }
+
+  isNotNumber(numberInput) {
+    return !/^\d$/.test(numberInput);
+  }
+
+  isOutOfBound(number) {
+    return number < 1 || number > 45;
+  }
+
   get lottos() {
     return this.#lottos;
   }
