@@ -22,6 +22,9 @@ const winningScore=(calWinning)=>{
     let count=[];
     for(let index=0;index<createLotto().size();index++){
         if(calWinning().result[i]==6){
+            count[7]+=1;//  보너스볼 다시 계씬
+        }
+        if(calWinning().result[i]==6){
             count[6]+=1;
         }
         if(calWinning().result[i]==5){
@@ -34,7 +37,14 @@ const winningScore=(calWinning)=>{
             count[3]+=1;
         }
     }
+    return count;
     }
+const calYield=()=>{
+    let earnMoney=count[3]*5000+count[4]*50000+count[5]+1500000+count[7]*30000000+count[6]*2000000000;
+    let yield=Math.round(earnMoney/inputAmountMoney()*100)*10;
+    return yield;
+}
 
 
-module.exports=createLotto;
+
+module.exports=createLotto,calWinning,winningScore,calYield;
