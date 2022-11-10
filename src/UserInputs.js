@@ -1,10 +1,12 @@
 const { Console } = require("@woowacourse/mission-utils");
 const Price = require('./Price');
 const MakeLottos = require('./MakeLottos');
+const PrintResults = require('./PrintResults');
 
 
 class UserInputs {
   constructor() {
+    this.printResults = new PrintResults();
     this.price = 0;
     this.lottoList = [];
   }
@@ -18,11 +20,16 @@ class UserInputs {
   };
 
   makeLottos() {
-    const amount = this.price/1000;
-    const lottoMaker = new MakeLottos(amount);
+    this.amount = this.price/1000;
+    const lottoMaker = new MakeLottos(this.amount);
     this.lottoList = lottoMaker.lottoLists
-    Console.print(this.lottoList)
+    // Console.print(this.lottoList)
+    this.printLottoLists()
   };
+
+  printLottoLists() {
+    this.printResults.printLotto(this.amount,this.lottoList)
+  }
   
   // getAnswerNumber() {
   //   Console.readLine('여기여기.\n', (answer) => {
