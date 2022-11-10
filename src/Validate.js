@@ -3,6 +3,7 @@ const validate = {
     if (typeof +input !== 'number' || Number.isNaN(input)) return false;
     if (Math.sign(+input) === -1 || !Number.isInteger(+input)) return false;
     if (input === '') return false;
+    if (+input > 45 || +input === 0) return false;
     return true;
   },
 
@@ -12,4 +13,4 @@ const validate = {
   },
 };
 
-console.log(validate.validateUnit(2020));
+console.log(validate.validateCommon(46));
