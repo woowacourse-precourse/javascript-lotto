@@ -1,5 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const {CONSOLELINE, RESULTLINE} = require('../utils/Constants');
+const {CONSOLELINE, RESULTLINE} = require('./Constants');
 
 function printResult(winArr, yieldpercent){
   MissionUtils.Console.print(CONSOLELINE.ANSWER_STATIST);
