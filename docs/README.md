@@ -32,8 +32,10 @@
         [ ] 5개가 일차하는 경우
             [ ] 5개가 일치함과 동시에 보너스 볼이 일치하는 경우
         [ ] 6개가 일치하는 경우
-    [ ] 수익률 계산하기
-        [ ] 총 수익률 계산하기
+    [ ] 총 수익률 계산하기
+        [ ] 수익률 계산하기(소수점 둘째 자리에서 반올림 예시) 총 수익률은 62.5%입니다.)
+[ ] 예외사항 발생
+
 
 ## 참고사항
 [JavaScript 코드 컨벤션](https://github.com/woowacourse/woowacourse-docs/tree/main/styleguide/javascript)
