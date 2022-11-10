@@ -1,3 +1,4 @@
+const { ERROR } = require('./utils/constants');
 class Store {
   #money;
 
@@ -7,10 +8,10 @@ class Store {
 
   validate(money) {
     if (/[^0-9]/.test(money)) {
-      throw new Error('[ERROR] 로또 구입 금액은 숫자여야 합니다.');
+      throw new Error(ERROR.NOT_A_NUMBER);
     }
     if (money % 1000) {
-      throw new Error('[ERROR] 로또 구입 금액은 천 원 단위여야 합니다.');
+      throw new Error(ERROR.UNIT_OF_THOUSAND);
     }
   }
 }
