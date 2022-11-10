@@ -119,7 +119,7 @@ class LottoManager {
   }
 
   isNotNumber(numberInput) {
-    return !/^\d$/.test(numberInput);
+    return !/^\d$/g.test(numberInput);
   }
 
   isOutOfBound(number) {
