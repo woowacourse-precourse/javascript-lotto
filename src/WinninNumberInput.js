@@ -1,5 +1,6 @@
 const {Console} = require("@woowacourse/mission-utils");
 const INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요."
+const INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요." 
 
 class WinningNumberInput{
 
@@ -19,7 +20,7 @@ class WinningNumberInput{
             return this.bonusNum.push(num);
         })
     }
-    
+
 }
 
 module.exports = WinningNumberInput;
