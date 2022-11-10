@@ -5,6 +5,7 @@ class App {
   async play() {
     await this.insertMoney();
     const LottoCount = this.insertedMoney / 1000;
+    this.printLottoCount(LottoCount);
     for(let count = 0; count <LottoCount; count++){
       this.userLottoNumberLists.push(generateUserLottoNumber());
     }
@@ -35,6 +36,9 @@ class App {
     if(IS_NOT_NUMBER.test(inputNumber)){
       throw new Error("[ERROR] 숫자만 입력해주세요.");
     }
+  }
+  printLottoCount(LottoCount){
+    MissionUtils.Console.print(`${LottoCount}개를 구매했습니다.`);
   }
   generateUserLottoNumber(){
     const generatedNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
