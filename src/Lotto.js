@@ -53,7 +53,14 @@ class Lotto {
   }
   selectBonusNumber(){
     MissionUtils.Console.print(this.SELECT_BONUS_NUMBER);
-    // this.inputBonusNumber();
+    this.inputBonusNumber();
+  }
+  inputBonusNumber(){
+    MissionUtils.Console.readLine("", (bonusNumber) => {
+      MissionUtils.Console.print(""); // 공백
+      // this.selectBonusNumber()
+      // this.컴페어 넘버스와 연결(비교계산 실행해줌
+    });
   }
 
 
