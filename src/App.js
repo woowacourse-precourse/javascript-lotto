@@ -30,26 +30,22 @@ class App {
 
   isValidMoney(money) {
     if (Number.isNaN(money)) {
-      throw new Error(`[ERROR] 입력 금액이 숫자형태가 아닙니다.`);
+      throw (`[ERROR] 입력 금액이 숫자형태가 아닙니다.`);
     }
 
     if (money < 1000) {
-      throw new Error(
-        `[ERROR] 로또 한장의 가격은 1000원입니다. 입력한 금액: ${money}`
-      );
+      throw `[ERROR] 로또 한장의 가격은 1000원입니다. 입력한 금액: ${money}`;
     }
 
     if (money > 1000000) {
-      throw new Error(
-        `[ERROR] 한 번에 최대로 구입할 수 있는 금액은 100만원 입니다. 입력한 금액: ${money}`
-      );
+      throw `[ERROR] 한 번에 최대로 구입할 수 있는 금액은 100만원 입니다. 입력한 금액: ${money}`;
     }
   }
 
   generateLottoNumber(count) {
     const myLotto = [];
 
-    while (myLotto.length !== count) { // greater than 으로 변경
+    while (myLotto.length < count) {
       const numbersOfLotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       const lotto = new Lotto(numbersOfLotto, false);
       myLotto.push(lotto);
@@ -67,26 +63,29 @@ class App {
   }
 
   getWinningNums() {
-    const winningLotto = [];
+    let winningLotto = [];
+    let bonusNumber = undefined;
 
     MissionUtils.Console.readLine(
       "당첨 번호를 입력해주세요. \n >",
       (answer) => {
-        answer.split(",").forEach((element) => {
-          winningLotto.push(Number(element));
-        });
+        winningLotto = answer.split(",");
       }
     );
     MissionUtils.Console.close();
+    winningLotto = winningLotto.map((element) => Number(element));
+    new Lotto(winningLotto);
 
     MissionUtils.Console.readLine(
       "보너스 번호를 입력해주세요. \n >",
       (answer) => {
-        winningLotto.push(Number(answer));
+        bonusNumber = Number(answer);
       }
     );
     MissionUtils.Console.close();
-    this.validWinningLotto(winningLotto, winningLotto);
+    this.validBonusNumber(winningLotto, bonusNumber);
+
+    MissionUtils.Console.print(winningLotto);
 
     return winningLotto;
   }
@@ -96,12 +95,12 @@ class App {
       throw `[ERROR] 보너스 번호가 숫자형태가 아닙니다.`;
     }
 
-    if (numSet.size !== 7) {
-      throw new Error(`[ERROR] 로또 번호가 중복됩니다.`);
+    if (num < 1 || num > 45) {
+      throw `[ERROR] 로또 번호는 1 ~ 45까지 입니다.`;
     }
 
     if (winingLotto.includes(num)) {
-      throw `[ERROR] 중복되는 숫자입니다.`
+      throw `[ERROR] 중복되는 숫자입니다.`;
     }
   }
 
