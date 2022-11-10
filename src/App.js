@@ -51,8 +51,22 @@ function winCheck(MISSIONUTILS, LOTTO) {
 function bonusCheck(MISSIONUTILS, win) {
   MISSIONUTILS.Console.readLine("\n보너스 번호를 입력해 주세요.\n", function(input2) {
     bonus = input2;
-    
+    validateBonus(bonus,win);
   });
+}
+
+function validateBonus(bonus, win) {
+  if (isNaN(bonus)){
+    throw new Error("[ERROR] 보너스 번호는 숫자만 가능합니다");
+  }
+  
+  bonus = Number(bonus);
+
+  if(bonus<1 || bonus>45){
+    throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+  }
+
+  win.checkBonus(bonus);
 }
 
 var a = new App;

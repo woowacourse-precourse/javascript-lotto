@@ -27,7 +27,12 @@ class Lotto {
     const MISSIONUTILS = require("@woowacourse/mission-utils");
     MISSIONUTILS.Console.print(this.#numbers);
   }
-  // TODO: 추가 기능 구현
+  
+  checkBonus(bonus){
+    if (this.#numbers.includes(bonus)) {
+      throw new Error("[ERROR] 보너스 번호는 로또 번호와 중복될 수 없습니다.");
+    }
+  }
 }
 
 function checkArr(checkArray,n){
