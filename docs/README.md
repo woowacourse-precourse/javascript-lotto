@@ -33,8 +33,8 @@
 - [] 구매 
     - [x] 구입 금액을 1000으로 나눈 몫을 수량으로 출력한다 "n개를 구매했습니다." print // countMyLottoSheets()
     - [x] 랜덤 번호를 가진 배열을 생성한다 // generateRandomNumbers()
-    - [] 수량만큼 랜덤 번호를 가진 배열을 출력한다 print // printLotto()
-        - [] 로또 번호를 오름차순으로 정렬한다
+    - [x] 수량만큼 랜덤 번호를 가진 배열을 출력한다 print // printLotto()
+        - [x] 로또 번호를 오름차순으로 정렬한다
 
 - [] 당첨 번호 입력
     - [] 당첨 번호 입력 안내를 출력한다 "당첨 번호를 입력해 주세요."  print // selectWinNumbers()
