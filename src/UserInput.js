@@ -14,6 +14,12 @@ const UserInput = {
     }
     return true;
   },
+  DivideByThousand(inputStr) {
+    if (Number(inputStr) % Message.THOUSAND === 0) {
+      return true;
+    }
+    return false;
+  },
 };
 
 module.exports = UserInput;
