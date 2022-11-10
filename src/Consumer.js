@@ -1,10 +1,13 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 
 class Consumer {
-  LotteryList = [];
+  #money;
+
+  #LotteryList = [];
 
   constructor(money) {
     // this.validate(money);
+    this.#money = this.money;
     this.createConsumer(money);
     this.printConsumer();
   }
@@ -35,6 +38,16 @@ class Consumer {
     this.LotteryList.forEach((lotto) => {
       Console.print(lotto);
     });
+  }
+
+  getMoney() {
+    const consumerMoney = this.#money;
+    return consumerMoney;
+  }
+
+  getConsumer() {
+    const consumerLottery = [...this.#LotteryList];
+    return consumerLottery;
   }
 }
 
