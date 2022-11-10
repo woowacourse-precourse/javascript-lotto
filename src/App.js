@@ -1,5 +1,6 @@
-const { Console, Random } = require('@woowacourse/mission-utils');
+const { Console } = require('@woowacourse/mission-utils');
 const GameTools = require('./GameTools');
+const Render = require('./Render');
 const Validator = require('./Validator');
 
 class App {
@@ -18,6 +19,7 @@ class App {
   }
 
   play() {
+    // 비즈니스 로직
     Console.print('구입금액을 입력해 주세요.');
     Console.readLine('', (money) => {
       Validator.throwErrorIfInValidMoney(money);
@@ -28,15 +30,11 @@ class App {
 
   buyLotto() {
     this.userLottoList = GameTools.issueLottoAsManyAsCount(this.lottoCount);
-    this.reportUserData();
+    this.renderIssuedLottoList();
   }
 
-  reportUserData() {
-    // UI
-    Console.print(`${this.lottoCount}개를 구매했습니다.`);
-    this.userLottoList.forEach((numbers) => {
-      Console.print(`[${numbers.join(', ')}]`);
-    });
+  renderIssuedLottoList() {
+    Render.issuedLottoList(this.lottoCount, this.userLottoList);
     this.getWinningNumber();
   }
 
