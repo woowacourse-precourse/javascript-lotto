@@ -1,4 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
+const Statistic = require("./Statistic");
 
 class Lotto {
   #numbers;
@@ -23,7 +24,7 @@ class Lotto {
     Console.readLine("\n보너스 번호를 입력해 주세요,\n", (number) => {
       this.#bonusNumber = number;
       this.iterateLotteries();
-      console.log(this.#winResult);
+      const statistic = new Statistic(this.#winResult);
     });
   }
 
