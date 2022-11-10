@@ -13,6 +13,10 @@ class Deposit {
       throw new Error('[ERROR] 로또 구입 금액은 1000원 단위만 가능합니다.');
     }
   }
+
+  getQuantity() {
+    return this.#amount / this.#priceOfLotto;
+  }
 }
 
 module.exports = Deposit;
