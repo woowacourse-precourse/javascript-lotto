@@ -10,6 +10,7 @@ class Lotto {
     this.isSixNumber(numbers);
     this.isUniqueNumber(numbers);
     this.isOnlyNumbers(numbers);
+    this.isInRange(numbers);
   }
 
   isSixNumber(numbers) {
@@ -26,6 +27,11 @@ class Lotto {
       if (Number.isNaN(Number(number)))
         throw new Error("[ERROR] 숫자 아닌거 포함");
     });
+  }
+
+  isInRange(numbers) {
+    const range = (number) => Number(number) >= 1 && Number(number <= 45);
+    if (!numbers.every(range)) throw new Error("[ERROR] 범위 밖의 숫자");
   }
   // TODO: 추가 기능 구현
 }
