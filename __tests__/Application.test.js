@@ -40,4 +40,12 @@ describe('구매 개수 파악 함수 테스트', () => {
   test('첫 번째 인수, 두 번째 인수 모두 숫자로 변환이 가능하다.', () => {
     expect(Application.purchaseCount('24000', '1000')).toEqual(24);
   });
+
+  test('전달받은 인수는 숫자로 변환이 불가능하면 예외를 발생시킨다.', () => {
+    const ERROR_TEXT = '[ERROR] 전달된 인수는 숫자로 변환이 가능해야 합니다.';
+
+    expect(() => {
+      Application.convertNumber('a1a1', 's');
+    }).toThrow(ERROR_TEXT);
+  });
 });
