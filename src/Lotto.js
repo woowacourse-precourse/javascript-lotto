@@ -29,12 +29,13 @@ class Lotto {
     return this;
   }
 
-  #isLottoRange(number) {
-    return VARIABLE_LOTTO.start <= number && number <= VARIABLE_LOTTO.end;
-  }
-
   #validateLottoRange(numbers) {
-    if (numbers.filter(this.#isLottoRange).length !== 6) {
+    if (
+      numbers.filter(
+        number =>
+          VARIABLE_LOTTO.start <= number && number <= VARIABLE_LOTTO.end,
+      ).length !== 6
+    ) {
       throw new Error(LOTTO_ERROR_MESSAGE.range);
     }
 
