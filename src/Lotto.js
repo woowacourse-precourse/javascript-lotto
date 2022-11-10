@@ -18,6 +18,16 @@ class Lotto {
     // 보너스 번호 설정
     this.#bonus = bonus;
   }
+
+  getNumbers() {
+    // 당첨 번호 반환
+    return this.#numbers;
+  }
+
+  getBonus() {
+    // 당첨 번호 반환
+    return this.#bonus;
+  }
 }
 
 module.exports = Lotto;
