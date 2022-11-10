@@ -4,24 +4,33 @@ const { createLottoNumbers } = require('./utils/lottoUtils');
 class App {
   play() {
     this.buyLotto();
+    this.lottoBundle = [];
   }
 
   buyLotto() {
     Console.readLine('구입금액을 입력해 주세요.', (money) => {
       console.log(money);
       const store = new Store(money);
-      const lottoBundle = this.getLotto(money);
+      const amount = money / 1000;
+      this.lottoBundle = this.getLotto(amount);
+      this.printBoughtLotto(amount);
     });
   }
 
-  getLotto(money) {
-    let count = money / 1000;
+  getLotto(amount) {
     const lottoBundle = [];
-    while (count--) {
+    while (amount--) {
       const lotto = createLottoNumbers();
       lottoBundle.push(lotto);
     }
     return lottoBundle;
+  }
+
+  printBoughtLotto(amount) {
+    Console.print(amount + '개를 구매했습니다.');
+    for (const lotto of this.lottoBundle) {
+      Console.print('[' + lotto + ']');
+    }
   }
 }
 
