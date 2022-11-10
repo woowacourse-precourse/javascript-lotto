@@ -17,6 +17,7 @@ class App {
       this.validateMoney(money);
       const lottos = this.exchangeLotto(+money / UNIT.MONEY);
       this.printLottos(lottos);
+      this.getWinningNumbers();
     });
   }
 
@@ -43,5 +44,28 @@ class App {
     Console.print(RESULT_MEESAGE.PURCHASE.replace("N", numbers.length));
     Console.print(numbers.join("\n"));
   }
+
+  getWinningNumbers() {
+    Console.readLine(INPUT_MESSAGE.WINNING_NUMBER, (numbers) => {
+      const winningNumbers = numbers.split(",");
+      this.validateWinningNumbers(winningNumbers);
+    });
+  }
+
+  validateWinningNumbers(numbers) {
+    if (numbers.length !== 6) {
+      throw new Error(ERROR_MESSAGE.WRONG_QUANTITY);
+    }
+
+    if (!numbers.every((number) => number >= 1 && number <= 45)) {
+      throw new Error(ERROR_MESSAGE.NOT_IN_RANGE);
+    }
+
+    if (numbers.length !== new Set(numbers).size) {
+      throw new Error(ERROR_MESSAGE.HAS_REPEAT);
+    }
+  }
 }
+
+// new App().play();
 module.exports = App;
