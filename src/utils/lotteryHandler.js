@@ -1,4 +1,4 @@
-const { Random } = require('@woowacourse/mission-utils');
+const { Random, Console } = require('@woowacourse/mission-utils');
 
 const sortLotteryNumbers = (lotteryTicket) => {
   const sortedArray = lotteryTicket.sort((a, b) => a - b);
@@ -12,4 +12,11 @@ const createLotteryTicket = () => {
   return sortedLotteryTicket;
 };
 
-module.exports = { sortLotteryNumbers, createLotteryTicket };
+const printMyLotteries = (lotteryTickets) => {
+  Console.print(`${lotteryTickets.length}개를 구매했습니다.`);
+  lotteryTickets.forEach((lottery) => {
+    Console.print(lottery);
+  });
+};
+
+module.exports = { sortLotteryNumbers, createLotteryTicket, printMyLotteries };

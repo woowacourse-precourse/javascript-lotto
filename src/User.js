@@ -1,5 +1,8 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { createLotteryTicket } = require('./utils/lotteryHandler');
+const {
+  createLotteryTicket,
+  printMyLotteries,
+} = require('./utils/lotteryHandler');
 
 class User {
   constructor() {
@@ -24,8 +27,7 @@ class User {
       this.tickets.push(newTicket);
     }
 
-    Console.print(`${this.ticketAmount}개를 구매했습니다.`);
-    console.log(this.tickets);
+    printMyLotteries(this.tickets);
   }
 }
 
