@@ -10,6 +10,13 @@ class Lotto {
     this.START_MESSAGE = "구입금액을 입력해 주세요.";
     this.SELECT_WIN_NUMBER = "당첨 번호를 입력해 주세요.";
     this.SELECT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+    this.RESULT_MESSAGE = "당첨 통계";
+    this.RESULT_UNDERSCORE = "---"
+    this.FIFTH_PLACE = "3개 일치 (5,000원) - "
+    this.FOURTH_PLACE = "4개 일치 (50,000원) - "
+    this.THIRD_PLACE = "5개 일치 (1,500,000원) - "
+    this.SECOND_PLACE = "5개 일치, 보너스 볼 일치 (30,000,000원) - "
+    this.FIRST_PLACE = "6개 일치 (2,000,000,000원) - "
   }
 
   buyLotto() {
@@ -28,41 +35,53 @@ class Lotto {
     this.printLotto(countedSheets);
   }
   generateRandomNumbers() {
-    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6); //똑같은게 출력됨 리프레시 필요
+    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6); 
     const result = numbers.sort((a, b) => a - b);
     MissionUtils.Console.print(result);
+        // this.컴페어 넘버스와 연결(비교계산 실행해줌)
   }
   printLotto(countedSheets) {
     for (let i = 0; i < countedSheets; i++) {
       this.generateRandomNumbers();
     }
     MissionUtils.Console.print("");
-    this.selectWinNumbers()
-    // this.컴페어 넘버스와 연결(비교계산 실행해줌)
+    this.selectWinNumbers();
+
   }
-  selectWinNumbers(){
-      MissionUtils.Console.print(this.SELECT_WIN_NUMBER);
-      this.inputWinNumbers();
+  selectWinNumbers() {
+    MissionUtils.Console.print(this.SELECT_WIN_NUMBER);
+    this.inputWinNumbers();
   }
-  inputWinNumbers(){
+  inputWinNumbers() {
     MissionUtils.Console.readLine("", (winNumber) => {
       MissionUtils.Console.print(""); // 공백
-      this.selectBonusNumber()
+      this.selectBonusNumber();
       // this.컴페어 넘버스와 연결(비교계산 실행해줌
     });
   }
-  selectBonusNumber(){
+  selectBonusNumber() {
     MissionUtils.Console.print(this.SELECT_BONUS_NUMBER);
     this.inputBonusNumber();
   }
-  inputBonusNumber(){
+  inputBonusNumber() {
     MissionUtils.Console.readLine("", (bonusNumber) => {
       MissionUtils.Console.print(""); // 공백
+      this.seeResult()
       // this.selectBonusNumber()
       // this.컴페어 넘버스와 연결(비교계산 실행해줌
     });
   }
+  seeResult(){
+    MissionUtils.Console.print(this.RESULT_MESSAGE);
+    MissionUtils.Console.print(this.RESULT_UNDERSCORE);
+    MissionUtils.Console.print(this.FIFTH_PLACE);
+    MissionUtils.Console.print(this.FOURTH_PLACE);
+    MissionUtils.Console.print(this.THIRD_PLACE);
+    MissionUtils.Console.print(this.SECOND_PLACE);
+    MissionUtils.Console.print(this.FIRST_PLACE);
+    MissionUtils.Console.print(`총 수익률은 {}입니다.`);  
 
+  }
 
   // validate(numbers) {
   //   if (numbers.length !== 6) {

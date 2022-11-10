@@ -36,15 +36,15 @@
     - [x] 수량만큼 랜덤 번호를 가진 배열을 출력한다 print // printLotto()
         - [x] 로또 번호를 오름차순으로 정렬한다
 
-- [] 당첨 번호 입력
+- [x] 당첨 번호 입력
     - [x] 당첨 번호 입력 안내를 출력한다 "당첨 번호를 입력해 주세요."  print // selectWinNumbers()
         - [x] 입력된 당첨 번호를 출력한다 readline // inputWinNumbers()
-    - [] 보너스 번호 입력 안내를 출력한다 "보너스 번호를 입력해 주세요." print // selectBonusNumber()
-        - [] 입력된 보너스 번호를 출력한다 readline // inputBonusNumber()
+    - [x] 보너스 번호 입력 안내를 출력한다 "보너스 번호를 입력해 주세요." print // selectBonusNumber()
+        - [x] 입력된 보너스 번호를 출력한다 readline // inputBonusNumber()
 
 - [] 당첨 통계 출력 
-    - [] 일치 개수에 따른 당첨 배열의 개수를 출력한다 "3개 일치 (5,000원 ) - n개" print // seeResult()
-    - [] 총 수익률을 출력한다 "총 수익률은 nn.n%입니다."
+    - [ㅅ] 일치 개수에 따른 당첨 배열의 개수를 출력한다 "3개 일치 (5,000원 ) - n개" print // seeResult()
+    - [ㅅ] 총 수익률을 출력한다 "총 수익률은 nn.n%입니다."
 
 - [] 에러
     - [] throw문 에러메세지는 "[ERROR]"로 시작한다 // validate()
