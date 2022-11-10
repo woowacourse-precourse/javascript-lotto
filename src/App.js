@@ -17,7 +17,17 @@ class App {
     Console.readLine('', (input) => {
       const pay = parseInt(input);
       this.#calculator = new Calculator(pay);
+      this.buyLottos();
     });
+  }
+
+  buyLottos() {
+    this.#lottos = [];
+    for (let i = 0; i < this.#calculator.calcBuyCount(); i++) {
+      const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+      const lotto = new Lotto(numbers.sort((a, b) => a - b));
+      this.#lottos.push(lotto);
+    }
   }
 }
 
