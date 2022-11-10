@@ -16,6 +16,8 @@ class Lotto {
 
   getUserPayment() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.', (userInput) => {
+      if (isNaN(userInput) == true) throw new Error('숫자를 입력 해주세요.');
+      if (userInput % 1000 !== 0) throw new Error('1,000원 단위로 입력 해주세요.');
       MissionUtils.Console.close();
       return userInput
     })
