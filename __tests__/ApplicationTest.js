@@ -1,4 +1,4 @@
-const App = require("../src/App");
+const App = require("./src/App");
 const MissionUtils = require("@woowacourse/mission-utils");
 
 const mockQuestions = (answers) => {
@@ -53,7 +53,6 @@ describe("로또 테스트", () => {
       "6개 일치 (2,000,000,000원) - 0개",
       "총 수익률은 62.5%입니다.",
     ];
-
     const logSpy = getLogSpy();
     const app = new App();
     app.play();
@@ -68,6 +67,6 @@ describe("로또 테스트", () => {
     expect(() => {
       const app = new App();
       app.play();
-    }).toThrow("[ERROR] 구입금액에 문자가 포함되어 있습니다.");
+    }).toThrow("[ERROR]");
   });
 });
