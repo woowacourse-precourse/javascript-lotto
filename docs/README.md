@@ -92,7 +92,7 @@
 
 1. Customer
    1. property
-      1. paying price
+      1. lotto number
    2. method
       1. buy lotto
       2. set lotto numbers
