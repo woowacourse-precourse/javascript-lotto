@@ -98,4 +98,11 @@ describe('오름차순 정렬 함수 테스트', () => {
 
     expect(Application.sortAscending.name).toEqual(METHOD_NAME);
   });
+
+  test('[42, 21, 23, 43, 41, 8]는 [8, 21, 23, 41, 42, 43] 형태로 정렬한다.', () => {
+    const expected = [42, 21, 23, 43, 41, 8];
+    const received = [8, 21, 23, 41, 42, 43];
+
+    expect(Application.sortAscending(expected)).toStrictEqual(received);
+  });
 });
