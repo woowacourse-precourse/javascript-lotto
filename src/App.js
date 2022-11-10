@@ -4,6 +4,7 @@ class App {
     const LOTTO = require("../src/Lotto");
 
     var answer = [0,0,0,0,0];
+    var money = [5000,50000,1500000,30000000,2000000000];
     
     MISSIONUTILS.Console.readLine("구입금액을 입력해 주세요.\n", function(input) {
       var temp = input/1000;
@@ -14,7 +15,7 @@ class App {
       var arr = new Array(temp);
       makeLotto(MISSIONUTILS, arr, temp, LOTTO);
 
-      winCheck(MISSIONUTILS, LOTTO, arr, answer);
+      winCheck(MISSIONUTILS, LOTTO, arr, answer, money);
     });
   }
 }
@@ -38,7 +39,7 @@ function makeLotto(MISSIONUTILS, arr, input, LOTTO) {
   }
 }
 
-function winCheck(MISSIONUTILS, LOTTO, arr, answer) {
+function winCheck(MISSIONUTILS, LOTTO, arr, answer, money) {
   var win;
   MISSIONUTILS.Console.readLine("\n당첨 번호를 입력해 주세요.\n", function(input1) {
     win = input1.split(",").map(Number);
@@ -46,15 +47,16 @@ function winCheck(MISSIONUTILS, LOTTO, arr, answer) {
     win.sort();
     win.print();
 
-    bonusCheck(MISSIONUTILS, win, arr, answer);
+    bonusCheck(MISSIONUTILS, win, arr, answer, money);
   });
 }
 
-function bonusCheck(MISSIONUTILS, win, arr, answer) {
+function bonusCheck(MISSIONUTILS, win, arr, answer, money) {
   MISSIONUTILS.Console.readLine("\n보너스 번호를 입력해 주세요.\n", function(input2) {
     bonus = input2;
     validateBonus(bonus,win);
     matchWin(MISSIONUTILS, win, bonus, arr, answer)
+    showWin(MISSIONUTILS, answer, money)
   });
 }
 
@@ -105,6 +107,21 @@ function plusCorrect(correct, answer){
     return;
   }
   answer[2]++;
+}
+
+function showWin(MISSIONUTILS, answer, money){
+  var index = 0;
+  var price = 0;
+  for (var j = 3; j<=6; j++){
+    price += money[index] * answer[index];
+    MISSIONUTILS.Console.print(j + "개 일치 (" + money[index].toLocaleString() + ") - " + answer[index] + "개"); 
+    if (j==5){
+      index++;
+      price += money[index] * answer[index];
+      MISSIONUTILS.Console.print(j + "개 일치, 보너스 볼 일치 (" + money[index].toLocaleString() + ") - " + answer[index] + "개");
+    }
+    index++;
+  }
 }
 
 var a = new App;
