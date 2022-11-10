@@ -39,7 +39,7 @@ class ValidCheckUtils {
         "[ERROR] 보너스 번호는 1부터 45사이의 번호만 입력 가능합니다."
       );
 
-    if (String(bonusNum).replace(/[0-9]/g, "").length > 0)
+    if (String(bonusNum).replace(/[0-9]/g, "").length > 0 || bonusNum === "")
       throw new Error("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
   }
 }
