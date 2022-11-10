@@ -13,6 +13,12 @@ const ERROR = {
   OUT_OF_NUMEBR_RANGE: `${LOTTO.MIN}~${LOTTO.MAX}사이 숫자만 가능합니다.`,
 }
 
+const COMMAND = {
+  INPUT_PURCHASE_AMOUNT: "구입금액을 입력해 주세요.\n",
+  INPUT_WINNING_NUMBERS: "당첨 번호를 입력해 주세요.\n",
+  INPUT_BOUNS_NUMBER: "보너스 번호를 입력해 주세요.\n",
+}
+
 module.exports = {
   LOTTO,
   ERROR,
