@@ -6,6 +6,8 @@ class App {
   play() {
     this.buyLotto();
     this.lottoBundle = [];
+    this.winningNumbers = [];
+    this.bonus = 0;
   }
 
   buyLotto() {
@@ -37,16 +39,30 @@ class App {
 
   createWinningNumbers() {
     Console.readLine('당첨 번호를 입력해 주세요.', (numbers) => {
-      const winningNumbers = convertWinningNumbers(numbers);
-      const lotto = new Lotto(winningNumbers);
+      this.winningNumbers = convertWinningNumbers(numbers);
+      const lotto = new Lotto(this.winningNumbers);
       this.createBonusNumber();
     });
   }
 
   createBonusNumber() {
     Console.readLine('보너스 번호를 입력해 주세요.', (bonus) => {
-      console.log(bonus);
+      this.bonus = Number(bonus);
+      this.validateBonusNumber(this.bonus);
     });
+  }
+
+  validateBonusNumber(bonus) {
+    if (isNaN(bonus)) {
+      throw new Error('[ERROR] 보너스 번호는 숫자여야 합니다.');
+    }
+    if (this.winningNumbers.includes(bonus)) {
+      throw new Error('[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.');
+    }
+
+    if (bonus <= 0 || bonus > 45) {
+      throw new Error('[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.');
+    }
   }
 }
 
