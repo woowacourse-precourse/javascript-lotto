@@ -7,6 +7,7 @@ const {
 const {
   checkWinningEmpty,
   checkWinningString,
+  checkWinningRest,
 } = require('../src/validation/winningValidation');
 
 describe('사용자 입력 테스트', () => {
@@ -49,6 +50,14 @@ describe('당첨 번호 입력 테스트', () => {
 
     expect(() => {
       checkWinningString(input);
+    }).toThrow('[ERROR]');
+  });
+
+  test('입력한 당첨 번호가 쉼표 구분이 아닐경우 예외가 발생한다.', () => {
+    const input = '123456';
+
+    expect(() => {
+      checkWinningRest(input);
     }).toThrow('[ERROR]');
   });
 });

@@ -1,5 +1,7 @@
 function winningValidation(string) {
   checkWinningEmpty(string);
+  checkWinningString(string);
+  checkWinningRest(string);
 }
 
 function checkWinningEmpty(string) {
@@ -20,4 +22,5 @@ module.exports = {
   winningValidation,
   checkWinningEmpty,
   checkWinningString,
+  checkWinningRest,
 };
