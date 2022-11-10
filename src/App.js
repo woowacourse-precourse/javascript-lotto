@@ -1,9 +1,14 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const { MESSAGE } = require('./constants/constant');
 class App {
+  constructor() {
+    this.count = 0;
+  }
   play() {
     Console.readLine(MESSAGE.INPUT_MONEY, (inputMoney) => {
       this.isValidInputMoney(inputMoney);
+      this.count = this.getLotto(inputMoney);
+      Console.print(`${this.count}개를 구매했습니다.`);
     });
   }
   isValidInputMoney(input) {
@@ -19,6 +24,9 @@ class App {
     if (input % 1000 !== 0) {
       throw new Error('1000으로 나누어 떨어지도록 입력하세요.');
     }
+  }
+  getLotto(money) {
+    return money / 1000;
   }
 }
 let app = new App();
