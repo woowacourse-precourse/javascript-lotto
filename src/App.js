@@ -1,9 +1,9 @@
-const Lotto = require('./Lotto');
+const MissionUtils = require('@woowacourse/mission-utils');
+const { start } = require('./Lotto');
 
 class App {
   play() {
-    const lotto = new Lotto();
-    lotto.start();
+    start();
   }
 }
 
