@@ -42,14 +42,19 @@ class MyLotto {
     return numbers;
   }
 
-  getMyLottoes() {
+  getPurchase() {
     // 로또 번호 반환
-    return this.#myLottoes;
+    return this.#purchase;
   }
 
   getCount() {
     // 로또 개수 반환
     return this.#count;
+  }
+
+  getMyLottoes() {
+    // 로또 번호 반환
+    return this.#myLottoes;
   }
 }
 
