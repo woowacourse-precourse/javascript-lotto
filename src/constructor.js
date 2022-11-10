@@ -5,8 +5,27 @@ const LOTTO = {
   BONUS_COUNT: 1,
 }
 
+const WINNING_CRITERIA = {
+  FIRST_PLACE: { normal: 6, bonus: 0 },
+  SECOND_PLACE:  { normal: 5, bonus: 1 },
+  THIRD_PLACE: { normal: 5, bonus: 0 },
+  FOURTH_PLACE: { normal: 4, bonus: 0 },
+  LAST_PLACE: { normal: 3, bonus: 0 },
+}
+
 const MONEY = {
   PURCHASE_UNIT: 1000,
+  FIRST_PLACE: 2000000000,
+  SECOND_PLACE: 30000000,
+  THIRD_PLACE: 1500000,
+  FOURTH_PLACE: 50000,
+  LAST_PLACE: 5000,
+}
+
+const COMMAND = {
+  INPUT_PURCHASE_AMOUNT: "구입금액을 입력해 주세요.\n",
+  INPUT_WINNING_NUMBERS: "당첨 번호를 입력해 주세요.\n",
+  INPUT_BOUNS_NUMBER: "보너스 번호를 입력해 주세요.\n",
 }
 
 const ERROR = {
@@ -18,15 +37,10 @@ const ERROR = {
   NOT_DIVIDED: `${MONEY.PURCHASE_UNIT.toLocaleString()}원 단위로 나누어 떨어져야합니다.`
 }
 
-const COMMAND = {
-  INPUT_PURCHASE_AMOUNT: "구입금액을 입력해 주세요.\n",
-  INPUT_WINNING_NUMBERS: "당첨 번호를 입력해 주세요.\n",
-  INPUT_BOUNS_NUMBER: "보너스 번호를 입력해 주세요.\n",
-}
-
 module.exports = {
   LOTTO,
-  ERROR,
-  COMMAND,
+  WINNING_CRITERIA,
   MONEY,
+  COMMAND,
+  ERROR,
 }
