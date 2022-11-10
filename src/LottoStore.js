@@ -11,7 +11,13 @@ class LottoStore {
     this.#count = 0;
   }
 
-  isThousandWon() {
+  getBuyAt() {
+    return this.#isThousandWon()
+      .#getHowMany()
+      .#buy();
+  }
+
+  #isThousandWon() {
     if (!/^[1-9]+0{3,}$/.test(this.#money)) {
       throw new Error('[ERROR] 금액 단위는 천 단위여야 합니다.');
     }
@@ -19,13 +25,13 @@ class LottoStore {
     return this;
   }
 
-  getHowMany() {
+  #getHowMany() {
     this.#count = Number(this.#money) / 1000;
 
     return this;
   }
 
-  buy() {
+  #buy() {
     return Array.from({ length: this.#count }, () =>
       Random.pickUniqueNumbersInRange(
         VARIABLE_LOTTO.start,
