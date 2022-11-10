@@ -1,6 +1,7 @@
 const { Random, Console } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const Publish = require('./Publish');
+const Winning = require('./WinningNumber');
 
 class App {
   play() {
@@ -37,8 +38,16 @@ class App {
       Console.print(publishResult[numberofLotto]);
     }
   }
+
+  enterWinningNumber() {
+    Console.readLine('당첨 번호를 입력해 주세요.', (winNumber) => {
+      this.winning = new Winning();
+      this.winning.numbertoArray(winNumber);
+      this.winning.numberException();
+    });
+  }
 }
 
 const app = new App();
-app.play();
+app.enterWinningNumber();
 module.exports = App;
