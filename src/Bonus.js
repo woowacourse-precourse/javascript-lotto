@@ -5,3 +5,5 @@ class Bonus {
     this.#number = number;
   }
 }
+
+module.exports = Bonus;

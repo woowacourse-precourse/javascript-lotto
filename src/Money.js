@@ -5,3 +5,5 @@ class Money {
     this.#number = number;
   }
 }
+
+module.exports = Money;
