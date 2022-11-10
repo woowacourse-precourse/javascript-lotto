@@ -76,11 +76,35 @@ class App {
 
       return acc;
     }, this.prizeResult);
+    this.printResult();
   }
 
   getSameNumberCount(lottoNumber) {
     return lottoNumber.filter((number) => this.winningNumber.includes(number))
       .length;
+  }
+
+  printResult() {
+    Console.print(`3개 일치 (5,000원) - ${this.prizeResult.fifth}개`);
+    Console.print(`4개 일치 (50,000원) - ${this.prizeResult.fourth}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${this.prizeResult.third}개`);
+    Console.print(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.prizeResult.second}개`
+    );
+    Console.print(`6개 일치 (2,000,000,000원) - ${this.prizeResult.first}개`);
+    this.getTotalEarningRate();
+  }
+
+  getTotalEarningRate() {
+    const totalMoney =
+      this.prizeResult.first * 200000000 +
+      this.prizeResult.second * 30000000 +
+      this.prizeResult.third * 1500000 +
+      this.prizeResult.fourth * 50000 +
+      this.prizeResult.fifth * 5000;
+    const earningRate = ((totalMoney / (this.lottoCount * 1000)) * 100).toFixed(
+      1
+    );
   }
 }
 
