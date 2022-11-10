@@ -1,5 +1,13 @@
 const Application = require('../src/Application');
 
+describe('숫자 예외 검사 함수 테스트', () => {
+  test('메소드 이름은 "validateNumber"로 정의된다.', () => {
+    const METHOD_NAME = 'validateNumber';
+
+    expect(Application.validateNumber.name).toEqual(METHOD_NAME);
+  });
+});
+
 describe('숫자 변환 함수 테스트', () => {
   test('메소드 이름은 "convertNumber"로 정의된다.', () => {
     const METHOD_NAME = 'convertNumber';
