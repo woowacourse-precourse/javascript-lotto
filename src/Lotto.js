@@ -1,3 +1,4 @@
+const inputBudget = require("./View");
 class Lotto {
   #numbers;
 
@@ -12,7 +13,9 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
+  divideBudget(budget) {
+    return Math.floor(budget / 1000);
+  }
 }
 
 module.exports = Lotto;
