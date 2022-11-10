@@ -9,7 +9,7 @@ const UserInput = {
     });
   },
   validate(inputStr) {
-    if (!Message.CHECKVALIDINPUT(inputStr)) {
+    if (!Message.CHECKVALIDINPUT.test(inputStr)) {
       return false;
     }
     return true;
