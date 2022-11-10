@@ -7,7 +7,23 @@ class User {
   }
 
   input_amount() {
-    MissionUtils.Console.readLine('구입 금액을 입력해 주세요', amount => {});
+    MissionUtils.Console.readLine('구입 금액을 입력해 주세요', amount => {
+      //입력값 확인
+      const VALIDATION = this.check_validation(amount);
+      //예외처리
+      if (!VALIDATION) {
+        throw '[ERROR] 구입 금액은 1000의 단위 숫자여야 합니다.';
+      }
+      const COUNT = amount / 1000;
+      return MissionUtils.Console.print(`${COUNT}개를 구매했습니다.`);
+      //예외가 아닐 경우 -> 몇개 구매한건지 계산
+    });
+  }
+
+  check_validation(amount) {
+    let result;
+    amount % 1000 === 0 ? (result = true) : (result = false);
+    return result;
   }
 }
 
