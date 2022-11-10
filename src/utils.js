@@ -5,18 +5,20 @@ const printMessage = (message) => {
   Console.print(message);
 }
 
-const printErrorMessage = (message) => {
-  Console.print(`${ERROR.PREFIX} ${message}`);
-}
-
 const userInput = (callback) => {
   Console.readLine((answer) => {
     callback(answer);
   })
 }
 
+const throwErrorMessage = (message) => {
+  Console.print(`${ERROR.PREFIX} ${message}`);
+  Console.close();
+  throw new Error(ERROR.PREFIX);
+}
+
 module.exports = {
   printMessage,
-  printErrorMessage,
+  throwErrorMessage,
   userInput,
 }
