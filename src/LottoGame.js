@@ -135,11 +135,11 @@ class LottoGame {
       const secondOrThird = this.secondOfThird(totalCorrect);
       const classOfLotto = this.classOfLotto(totalCorrect);
 
-      Console.print(secondOrThird);
-      Console.print(classOfLotto);
-      Console.print(
-        [...secondOrThird, ...classOfLotto].sort((a, b) => a[0] - b[0])
+      this.winningArr = [...secondOrThird, ...classOfLotto].sort((a, b) =>
+        a[0] > b[0] ? -1 : a[0] < b[0] ? 1 : 0
       );
+
+      this.render();
     });
   }
 
@@ -217,6 +217,30 @@ class LottoGame {
       }
     }
     return classOfLotto;
+  }
+
+  render() {
+    for (let i = 0; i < 5; i++) {
+      switch (this.winningArr[i][0]) {
+        case "5등":
+          Console.print(`3개 일치 (5,000원) - ${this.winningArr[i][1]}개`);
+          break;
+        case "4등":
+          Console.print(`4개 일치 (50,000원) - ${this.winningArr[i][1]}개`);
+          break;
+        case "3등":
+          Console.print(`5개 일치 (1,500,000원) - ${this.winningArr[i][1]}개`);
+          break개;
+        case "2등":
+          Console.print(`5개 일치 (30,000,000원) - ${this.winningArr[i][1]}개`);
+          break개;
+        case "1등":
+          Console.print(
+            `6개 일치 (2,000,000,000원) - ${this.winningArr[i][1]}개`
+          );
+          break;
+      }
+    }
   }
 }
 
