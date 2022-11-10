@@ -3,7 +3,7 @@ const Lotto = require('./Lotto');
 const Bonus = require('./Bonus');
 const View = require('./View');
 const { Console } = require('@woowacourse/mission-utils');
-const { createLottoNumbers, convertWinningNumbers } = require('./utils/lottoUtils');
+const { convertWinningNumbers, getLottoBundle } = require('./utils/lottoUtils');
 const { MESSAGE } = require('./utils/constants');
 
 class App {
@@ -20,19 +20,10 @@ class App {
       console.log(money);
       const store = new Store(money);
       const amount = money / 1000;
-      this.lottoBundle = this.getLotto(amount);
+      this.lottoBundle = getLottoBundle(amount);
       this.view.printBoughtLotto(amount, this.lottoBundle);
       this.createWinningNumbers();
     });
-  }
-
-  getLotto(amount) {
-    const lottoBundle = [];
-    while (amount--) {
-      const lotto = createLottoNumbers();
-      lottoBundle.push(lotto);
-    }
-    return lottoBundle;
   }
 
   createWinningNumbers() {

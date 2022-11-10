@@ -13,4 +13,13 @@ const convertWinningNumbers = (numbers) => {
     .map(Number);
 };
 
-module.exports = { createLottoNumbers, convertWinningNumbers };
+const getLottoBundle = (amount) => {
+  const lottoBundle = [];
+  while (amount--) {
+    const lotto = createLottoNumbers();
+    lottoBundle.push(lotto);
+  }
+  return lottoBundle;
+};
+
+module.exports = { createLottoNumbers, convertWinningNumbers, getLottoBundle };
