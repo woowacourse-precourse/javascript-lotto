@@ -26,12 +26,15 @@ class Lotto {
 
   inputBudgetandCalculateHowManyLottoandPrint(input) {
     this.saveBudget(input);
-    this.printHowManyLotto(this.message.returnHowManyLotto(this.budget.returnCount(this.budget.count)));
+    this.printHowManyLotto(this.message.returnHowManyLotto(this.budget.returnCount()));
   }
 
   printHowManyLotto(output) {
     this.view.output(output);
   }
 }
+
+const lt = new Lotto();
+lt.calculateHowManyLotto();
 
 module.exports = Lotto;
