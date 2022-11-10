@@ -17,6 +17,10 @@ class Lotto {
   saveBudget(input) {
     this.budget.divideBudget(input);
   }
+
+  calculateHowManyLotto() {
+    View.input(Message.ASK_BUDGET, this.doBudget.bind(this));
+  }
 }
 
 module.exports = Lotto;
