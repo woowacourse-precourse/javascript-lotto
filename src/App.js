@@ -54,16 +54,26 @@ class App {
     MissionUtils.Console.readLine(
       "\n당첨 번호를 입력해 주세요. \n",
       (number) => {
-        this.winningNumber = number;
-        this.splitWinningNumber();
+        this.winningNumber = this.splitWinningNumber(number);
+
+        this.getBonusNumber();
+      }
+    );
+  }
+
+  getBonusNumber() {
+    MissionUtils.Console.readLine(
+      "\n보너스 번호를 입력해 주세요.\n",
+      (number) => {
+        this.winningNumber.push(number);
 
         MissionUtils.Console.close();
       }
     );
   }
 
-  splitWinningNumber() {
-    console.log(this.winningNumber.split(","));
+  splitWinningNumber(number) {
+    return number.split(",");
   }
 }
 
