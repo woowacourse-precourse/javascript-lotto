@@ -1,10 +1,10 @@
 class Budget {
-  constructor(budget) {
-    this.budget = budget;
+  constructor(count) {
+    this.count = count;
   }
 
   divideBudget(budget) {
-    this.budget = Math.floor(budget / 1000);
+    this.count = Math.floor(parseInt(budget) / 1000);
   }
 }
 
