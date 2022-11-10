@@ -21,11 +21,18 @@ class Lotto {
     Console.print(message);
   }
 
+  askWinNumber() {
+    Console.readLine(`\n${COMMAND.WIN}\n`, (input) => {
+      Console.print(input);
+    });
+  }
+
   start() {
     Console.readLine(`${COMMAND.BUY}\n`, (input) => {
       this.#exception.isAllow(new PurchaseError(input));
       this.input = input;
       this.changeLotto.change(this.input);
+      this.askWinNumber();
     });
   }
 }
