@@ -1,4 +1,5 @@
 const { readLine, print } = require('./utils/ui');
+const { INPUT_MESSAGE, PRINT_MESSAGE } = require('./constants');
 const random = require('./utils/random');
 const validation = require('./validation');
 
@@ -13,7 +14,7 @@ class App {
   }
 
   inputPurchaseAmount() {
-    readLine('구입금액을 입력해 주세요.\n', (purchaseAmount) => {
+    readLine(INPUT_MESSAGE.PURCHASE_AMOUNT, (purchaseAmount) => {
       validation.isUnitOf1000(purchaseAmount);
       this.userLottoCount = purchaseAmount / 1000;
       this.generateUserLotto(this.userLottoCount);
@@ -29,7 +30,7 @@ class App {
   }
 
   printUserLottoBundle() {
-    print(`\n${this.userLottoCount}개를 구매했습니다.`);
+    print(`\n${this.userLottoCount + PRINT_MESSAGE.LOTTO_COUNT}`);
     this.userLottoBundle.forEach((lotto) => {
       const sortedLotto = lotto.sort((prev, next) => prev - next).join(', ');
       print(`[${sortedLotto}]`);
