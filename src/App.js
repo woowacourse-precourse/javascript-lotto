@@ -34,6 +34,12 @@ class App {
     if (this.winningNumber.length !== 6) {
       throw new Error("[ERROR] 당첨 번호는 6자리여야 합니다.");
     }
+
+    this.winningNumber.map((number) => {
+      if (Number(number) > 45 || Number(number) === 0) {
+        throw new Error("[ERROR] 당첨 번호가 1~45가 아닙니다.");
+      }
+    });
   }
 
   buyAmountCalculate() {
