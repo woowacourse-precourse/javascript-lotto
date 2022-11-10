@@ -6,6 +6,18 @@ describe('숫자 예외 검사 함수 테스트', () => {
 
     expect(Application.validateNumber.name).toEqual(METHOD_NAME);
   });
+
+  test('전달받은 인수는 숫자로 변환이 불가능하면 예외를 발생시킨다.', () => {
+    const ERROR_TEXT = '[ERROR] 전달된 인수는 숫자로 변환이 가능해야 합니다.';
+
+    expect(() => {
+      Application.convertNumber(NaN);
+    }).toThrow(ERROR_TEXT);
+
+    expect(() => {
+      Application.convertNumber(1000);
+    }).not.toThrow(ERROR_TEXT);
+  });
 });
 
 describe('숫자 변환 함수 테스트', () => {
