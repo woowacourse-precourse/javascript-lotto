@@ -1,24 +1,22 @@
+const Simulator = require('./Simulator');
+const Player = require('./Player');
 const Lotto = require('./Lotto');
-const Checker = require('./Checker');
-const Convertor = require('./utils/Convertor');
 
 class Game {
-  #lotto;
+  #player;
 
   constructor() {
-    this.#lotto = new Lotto();
+    this.#player = new Player();
   }
 
   playLotto() {
-    this.#lotto.buy(this.startLottoSimulation.bind(this));
+    Simulator.execute(this.lottoGame.bind(this));
   }
 
-  startLottoSimulation(priceString) {
-    Checker.isValidPriceString(priceString);
-    const price = Convertor.stringToNumber(priceString);
-    Checker.isValidPrice(price);
-    // 로또 발행
-    // 보유한 로또 출력
+  lottoGame(priceString) {
+    this.#player.buyLotto(priceString);
+    this.#player.getLotto();
+
     // 당첨 번호 등록
     // 당첨 결과 계산
     // 결과 출력

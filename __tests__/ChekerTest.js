@@ -91,6 +91,14 @@ describe('Checker 클래스 테스트', () => {
     }).toThrow('[ERROR]');
   });
 
+  test('80 00은 예외를 발생시킨다.', () => {
+    mockQuestions(['80 00']);
+
+    expect(() => {
+      Checker.isValidPriceString();
+    }).toThrow('[ERROR]');
+  });
+
   test('1단위의 금액은 예외를 발생시킨다.', () => {
     mockQuestions([1]);
 

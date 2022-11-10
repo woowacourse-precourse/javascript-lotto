@@ -1,14 +1,19 @@
-const Console = require('./utils/Console');
-
-const buyMessage = '구입금액을 입력해 주세요.\n';
+const Ticket = require('./Ticket');
+const Tickets = require('./Tickets');
 
 class Lotto {
   #numbers;
 
-  constructor() {}
+  static publish(lottos, lottoNumber) {
+    if (lottos.length >= lottoNumber) {
+      return lottos;
+    }
+    let tempLottos = [...lottos];
 
-  buy(startLottoSimulation) {
-    Console.readLine(buyMessage, startLottoSimulation);
+    tempLottos = Tickets.get(lottos, Ticket.get());
+    tempLottos = Tickets.removeDuplicatedLotto(tempLottos);
+
+    return Lotto.publish(tempLottos, lottoNumber);
   }
 }
 
