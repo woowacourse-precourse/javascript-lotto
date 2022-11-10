@@ -55,6 +55,8 @@ class App {
     let winngNumbers;
     MissionUtils.Console.readLine(WORD_TO_PRINT, (numbers) => {
       winngNumbers = numbers.split(",").map(Number);
+      MissionUtils.Console.print(winngNumbers);
+      const lotto = new Lotto(winngNumbers);
     });
   }
 
