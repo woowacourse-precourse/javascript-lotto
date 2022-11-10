@@ -1,6 +1,5 @@
 const Simulator = require('./Simulator');
 const Player = require('./Player');
-const Lotto = require('./Lotto');
 
 class Game {
   #player;

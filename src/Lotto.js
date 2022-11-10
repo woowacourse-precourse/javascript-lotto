@@ -1,23 +1,15 @@
-const Ticket = require('./Ticket');
-const Tickets = require('./Tickets');
-
 class Lotto {
   #numbers;
 
-  publishPlayersTicket(lottoNumber) {
-    let lottoTickets = [];
-
-    for (let i = 0; i < lottoNumber; i++) {
-      this.publishTicket();
-      lottoTickets = Tickets.get(lottoTickets, this.#numbers);
-      lottoTickets = Tickets.removeDuplicatedLotto(lottoTickets);
-    }
-
-    return lottoTickets;
+  constructor(numbers) {
+    this.validate(numbers);
+    this.#numbers = numbers;
   }
 
-  publishTicket() {
-    this.#numbers = Ticket.get();
+  validate(numbers) {
+    if (numbers.length !== 6) {
+      throw new Error();
+    }
   }
 }
 

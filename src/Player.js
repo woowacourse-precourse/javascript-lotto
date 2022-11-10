@@ -1,23 +1,20 @@
 const Maker = require('./utils/Maker');
-const Lotto = require('./Lotto');
+const Tickets = require('./Tickets');
 
 class Player {
-  #lotto;
+  #lotto = {
+    number: 0,
+    tickets: [],
+  };
 
-  #lottoNumber;
-
-  #lottoTickets;
-
-  constructor() {
-    this.#lotto = new Lotto();
-  }
+  constructor() {}
 
   buyLotto(priceString) {
-    this.#lottoNumber = Maker.getLottoNumber(Maker.makeUsablePrice(priceString));
+    this.#lotto.number = Maker.getLottoNumber(Maker.makeUsablePrice(priceString));
   }
 
   getLotto() {
-    this.#lottoTickets = this.#lotto.publishPlayersTicket(this.#lottoNumber);
+    this.#lotto.tickets = Tickets.publish(this.#lotto.number);
   }
 }
 
