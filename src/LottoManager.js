@@ -14,7 +14,7 @@ class LottoManager {
   validatePurchaseAmount(purchaseAmountInput) {
     if (this.isInvalidPurchaseAmount(purchaseAmountInput)) {
       throw new Error(
-        '[ERROR] 구입 금액은 1,000으로 나누어 떨어지는 숫자여야 합니다.',
+        '[ERROR] 구입 금액은 1,000원 이상의 1,000으로 나누어 떨어지는 숫자여야 합니다.',
       );
     }
   }
@@ -22,7 +22,8 @@ class LottoManager {
   isInvalidPurchaseAmount(purchaseAmountInput) {
     return (
       !/^\d+$/g.test(purchaseAmountInput) ||
-      parseInt(purchaseAmountInput, 10) % 1000 !== 0
+      parseInt(purchaseAmountInput, 10) % 1000 !== 0 ||
+      parseInt(purchaseAmountInput, 10) < 1000
     );
   }
 
