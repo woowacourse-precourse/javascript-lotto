@@ -1,14 +1,45 @@
+const { Console, Random } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const LottoGame = require("./LottoGame");
+const CalculationMoney = require("./CalculationMoney");
+const Render = require("./Render");
+const { ThemeConsumer } = require("styled-components");
 
+const calculationMoney = new CalculationMoney();
+const render = new Render();
 class App {
   play() {}
+
+  lineBreak() {
+    Console.print(``);
+  }
 
   getUserMoney() {
     Console.readLine("구매금액을 입력해 주세요.", (money) => {
       this.userInputMoney = money;
-      const lotto = new Lotto({ userInputMoney: this.userInputMoney });
+      this.checkUserMoney();
+      this.calculateMoney();
     });
+  }
+
+  checkUserMoney() {
+    const lotto = new Lotto({ userInputMoney: this.userInputMoney });
+  }
+
+  calculateMoney() {
+    const purchasedLottoCount = calculationMoney.canBuyLotto(
+      this.userInputMoney
+    );
+
+    render.showHowmanybought(purchasedLottoCount);
+
+    this.lineBreak();
+
+    this.makeLotto(purchasedLottoCount);
+  }
+
+  makeLotto(purchaedLottoNum) {
+    this.madeLotto = calculationMoney.makeLotto(purchaedLottoNum);
   }
 }
 
