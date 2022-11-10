@@ -26,6 +26,14 @@ class App {
       randomNumbers.sort((a, b) => a - b);
       this.userLottoNumbers.push(randomNumbers);
     }
+    this.reportUserData();
+  }
+
+  reportUserData() {
+    Console.print(`${this.lottoCount}개를 구매했습니다.`);
+    this.userLottoNumbers.forEach((numbers) => {
+      Console.print(numbers);
+    });
   }
 }
 
