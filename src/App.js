@@ -1,5 +1,6 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const Seed = require("../src/Seed");
+const LottoGenerator = require("../src/LottoGenerator");
 class App {
   seed;
   constructor() {}
@@ -13,7 +14,7 @@ class App {
 
   getSeedMoney = (input) => {
     this.seed = new Seed(Number(input));
-    console.log(this.seed);
+    this.Lottoticket = new LottoGenerator(this.seed.ticketAmount);
   };
 }
 
