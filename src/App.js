@@ -28,13 +28,21 @@ const showLottoNumber = (countLotto, throwInput) => {
   for(let i = 0; i<countLotto; i++){
     setLottoNumbers()
   }
+  inputLottoNumber();
 }
 
 const inputLottoNumber = () => {
   let inputSixNumber;
-  let inputBonusNumber;
   Console.readLine('당첨 번호를 입력해 주세요.\n', (num) => {
-    inputSixNumber = num.toString().split("").map((str) => Number(str));
+    inputSixNumber = num.toString().split(",").map((str) => Number(str));
+    inputBonusLotto(inputSixNumber);
+  })
+}
+
+const inputBonusLotto = (inputSixNumber) => {
+  let inputBonusNumber;
+  Console.readLine('보너스 번호를 입력해 주세요.\n', (num) => {
+    inputBonusNumber = num
   })
 }
 
