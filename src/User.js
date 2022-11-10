@@ -1,3 +1,5 @@
+const { Console } = require('@woowacourse/mission-utils');
+
 class User {
   constructor() {
     this.number = {};
@@ -8,6 +10,7 @@ class User {
   buyTickets(moneyInput) {
     this.money = Number(moneyInput);
     this.calculateTicketsAmount();
+    Console.print(`${this.ticketAmount}개를 구매했습니다.`);
   }
 
   calculateTicketsAmount() {

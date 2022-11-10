@@ -15,8 +15,8 @@
 
 ### User
 
-- [ ] User Class를 생성한다.
-- [ ] `number` field를 생성한다.
+- [x] User Class를 생성한다.
+- [x] `number` field를 생성한다.
 
   - 해당 필드는 아래와 같은 객체로 관리한다.
 
@@ -34,12 +34,21 @@
     ];
     ```
 
-- [ ] `ticketAmount` field를 생성한다.
-- [ ] 유저가 금액을 지불한 금액으로 구매한 `ticketAmount`를 할당해주는 `calculateTicketAmont`메서드를 구현한다.
+- [x] `ticketAmount` field를 생성한다.
+- [x] 유저가 금액을 지불한 금액으로 구매한 `ticketAmount`를 할당해주는 `calculateTicketAmont`메서드를 구현한다.
 
-### User의 로또 번호 입력
+### User 로또 번호 생성
 
-- [ ] 유저의 로또 번호를 입력 받는다. 번호는 쉼표를 기준으로 구분한다.
+- [ ] `Random.pickUniqueNumbersInRange()`를 이용해 당첨 번호를 `6개` 산출한다.
+
+- [ ] user.ticketAmout만큼 뽑기를 시행한다.
+
+### 로또 정답 번호 입력
+
+- [ ] Lotto 객체 내부에 필드를 추가하지 않는다.
+- [ ] Lotto class의 number에 할당한다.
+
+- [ ] 로또 정답 번호를 입력 받는다. 번호는 쉼표를 기준으로 구분한다.
 
   #### 예외처리
 
@@ -51,14 +60,6 @@
 - [ ] 보너스 번호를 입력받는다.
   #### 예외처리
   - [ ] 해당 값은 number에 해당되지 않는 번호여야한다.
-
-### 로또 번호 생성
-
-- [ ] Lotto 객체 내부에 필드를 추가하지 않는다.
-
-- [ ] `Random.pickUniqueNumbersInRange()`를 이용해 당첨 번호를 `6개` 산출한다.
-
-- [ ] Lotto class의 number에 할당한다.
 
 ### 로또 결과 출력
 
