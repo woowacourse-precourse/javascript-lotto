@@ -1,5 +1,6 @@
 class Lotto {
   #numbers;
+  #bonus;
 
   constructor(numbers) {
     this.validate(numbers);
@@ -12,7 +13,9 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
+  setBonusNum(bonus) {
+    // 보너스 번호 설정
+  }
 }
 
 module.exports = Lotto;
