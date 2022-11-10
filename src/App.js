@@ -41,7 +41,6 @@ class App {
       new Bonus(this.bonus, this.winningNumbers);
       const result = this.getResult();
       this.view.printResult(result);
-      Console.close();
     });
   }
 
