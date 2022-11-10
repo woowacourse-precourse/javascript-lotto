@@ -30,6 +30,11 @@ class App {
       throw new Error("[ERROR] 로또 구입 금액은 1000원 단위여야 합니다.");
     }
   }
+  winningNumberValidate() {
+    if (this.winningNumber.length !== 6) {
+      throw new Error("[ERROR] 당첨 번호는 6자리여야 합니다.");
+    }
+  }
 
   buyAmountCalculate() {
     this.buyAmount = this.buyPrice / 1000;
@@ -55,6 +60,7 @@ class App {
       "\n당첨 번호를 입력해 주세요. \n",
       (number) => {
         this.winningNumber = this.splitWinningNumber(number);
+        this.winningNumberValidate();
 
         this.getBonusNumber();
       }
