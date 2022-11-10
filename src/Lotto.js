@@ -1,18 +1,23 @@
 const { Console } = require("@woowacourse/mission-utils");
 
 class Lotto {
-  // #numbers;
+  #numbersOfLotto;
 
-  // constructor(numbers) {
-  //   this.validate(numbers);
-  //   this.#numbers = numbers;
-  // }
+  constructor(numbers) {
+    //   this.validate(numbers);
+    this.#numbersOfLotto = 0;
+  }
 
   // validate(numbers) {
   //   if (numbers.length !== 6) {
   //     throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
   //   }
   // }
+
+  start() {
+    Console.print("구입금액을 입력해주세요.");
+    this.inputMoney();
+  }
 
   throwError(comment) {
     throw new Error(comment);
@@ -38,14 +43,12 @@ class Lotto {
   }
 
   inputMoney() {
-    Console.readLine("구입금액을 입력해 주세요.\n", (inputMoney) => {
+    Console.readLine("", (inputMoney) => {
       this.validateInputMoney(inputMoney);
+      this.#numbersOfLotto = Number(inputMoney) / 1000;
+
       Console.close();
     });
-  }
-
-  play() {
-    this.inputMoney();
   }
 
   // TODO: 추가 기능 구현

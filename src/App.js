@@ -6,7 +6,7 @@ class App {
   }
 
   play() {
-    this.lotto.play();
+    this.lotto.start();
   }
 }
 
