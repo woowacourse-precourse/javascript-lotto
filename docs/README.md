@@ -22,6 +22,7 @@
 - lottos: 구입한 로또 번호들
 - winningLotteryNumbers: 당점번호
 - bonusNumber: 보너스 번호
+- result: 당첨 결과
 - profit: 수익률
 
 ### 메서드
@@ -35,7 +36,7 @@
 - getProfit: 수익률 구하기
 - getWinningLotteryNumbers: 당첨번호 입력 받기
 - getBonusNumber: 보너스 숫자 입력 받기
-- getPurchasePrice: 구입금액 입력 받기
+- getLottoAmount: 구입한 로또 개수 입력 받기
 - compareNumbers: 당첨 번호와 로또 번호 비교하기
 
 ## Lotto
@@ -64,11 +65,12 @@
   - [x] 당첨 번호
   - [x] 보너스 번호
 
-- [ ] 출력하기
+- [x] 출력하기
 
-  - [ ] 구입한 로또 개수
+  - [x] 구입한 로또 개수
   - [ ] 구입한 로또 번호
-  - [ ] 당첨 통계
+  - [x] 당첨 통계
+  - [ ] 수익률
 
 - [ ] 로또 번호
   - [ ] numbers 배열 (1~45) 중복된 수 없이 6숫자 뽑아내기
