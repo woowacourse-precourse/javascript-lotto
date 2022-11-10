@@ -28,4 +28,4 @@ class Consumer {
   }
 }
 
-exports.module = Consumer;
+module.exports = Consumer;

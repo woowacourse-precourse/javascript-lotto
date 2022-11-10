@@ -6,4 +6,4 @@ class App {
   }
 }
 
-exports.module = App;
+module.exports = App;

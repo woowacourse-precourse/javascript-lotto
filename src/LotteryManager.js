@@ -30,4 +30,4 @@ class LotteryManager {
 const manager = new LotteryManager();
 manager.start();
 
-exports.module = LotteryManager;
+module.exports = LotteryManager;
