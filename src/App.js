@@ -1,6 +1,10 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Lotto = require("./Lotto");
 
 class App {
+  constructor() {
+    this.totalLottoNumber = [];
+  }
   play() {
     this.inputMoney();
   }
@@ -9,14 +13,18 @@ class App {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
       if (money % 1000 !== 0 || money === "0")
         throw new Error("[ERROR] 구입 금액은 1000원 단위 입니다.");
-      const lottoTickets = this.getLottoTickets(money);
-
-      console.log(`\n${lottoTickets}개를 구매했습니다.`);
+      this.getLottoNumber(money / 1000);
+      this.inputWinnerNumber();
     });
   }
 
-  getLottoTickets(money) {
-    return money / 1000;
+  getLottoNumber(lottoTickets) {
+    MissionUtils.Console.print(`\n${lottoTickets}개를 구매했습니다.`);
+    for (let i = 0; i < lottoTickets; i++) {
+      const randomNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      const lotto = new Lotto(randomNumber);
+      this.totalLottoNumber.push(lotto.sortLotto(randomNumber));
+    }
   }
 }
 
