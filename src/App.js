@@ -16,9 +16,12 @@ class App {
       throw new Error('[EEROR] 금액은 천원 단위로 입력해주세요.');
   }
 
-  makeLotto() {}
+  makeLotto() {
+    this.quantity = money / 1000;
+    const LOTTO_NUMBER = Lotto.publish(this.quantity);
+  }
 }
 
 const app = new App();
-app.purchase();
+app.makeLotto();
 module.exports = App;
