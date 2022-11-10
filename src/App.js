@@ -19,8 +19,17 @@ class App {
   enterWinningNumber() {
     Console.readLine(Messages.INPUT_WINNER_NUMBER, (numbers) => {
       this.winningAndBonusNumbers.sixNumbersInRange(numbers);
+      this.enterBonusNumber();
+    });
+  }
+
+  enterBonusNumber() {
+    Console.readLine(Messages.INPUT_BONUS_NUMBER, (numbers) => {
+      numbers;
     });
   }
 }
+
+new App().play();
 
 module.exports = App;
