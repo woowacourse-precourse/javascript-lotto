@@ -5,8 +5,8 @@ const printMessage = (message) => {
   Console.print(message);
 }
 
-const userInput = (callback) => {
-  Console.readLine((answer) => {
+const userInput = (command, callback) => {
+  Console.readLine(command, (answer) => {
     callback(answer);
   })
 }
