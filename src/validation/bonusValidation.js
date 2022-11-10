@@ -1,4 +1,7 @@
 function bonusValidation(input, WinningNumber) {
+  DoubleCheckBonus(input, WinningNumber);
+  checkBonusOnlyNumber(input);
+
   return true;
 }
 

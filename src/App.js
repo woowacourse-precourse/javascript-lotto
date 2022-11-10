@@ -2,6 +2,7 @@ const { LottoBuilder } = require('./Lotto');
 const MissionUtils = require('@woowacourse/mission-utils');
 const { amountValidation } = require('./validation/amountValidation');
 const { winningValidation } = require('./validation/winningValidation');
+const { bonusValidation } = require('./validation/bonusValidation');
 
 class App {
   constructor() {
@@ -28,7 +29,16 @@ class App {
     this.readLine('', (input) => {
       if (winningValidation(input)) {
         this.LottoBuilder.WinningNumber = input;
-        this.print(this.LottoBuilder.WinningNumber);
+        this.setBonusNumber();
+      }
+    });
+  }
+
+  setBonusNumber() {
+    this.print('보너스 번호를 입력해 주세요.');
+    this.readLine('', (input) => {
+      if (bonusValidation(input, this.LottoBuilder.WinningNumber)) {
+        this.LottoBuilder.bonusNumber = input;
       }
     });
   }
