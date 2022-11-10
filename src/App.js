@@ -63,6 +63,8 @@ class App {
       const arrayedUserInput = this.getArrayedUserInput(userInput);
 
       this.checkUesrInputHaveOnlyNumberAndComma(arrayedUserInput);
+
+      const userLotto = this.getUserLotto(userInput);
     });
   }
 
@@ -82,6 +84,14 @@ class App {
     });
 
     return true;
+  }
+
+  getUserLotto(userInput) {
+    const splitedInput = userInput.split(",");
+
+    const userLotto = splitedInput.map((item) => Number(item));
+
+    return userLotto;
   }
 }
 
