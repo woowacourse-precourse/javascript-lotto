@@ -24,17 +24,7 @@ const getLogSpy = () => {
 };
 
 describe("로또 테스트", () => {
-  test.only("숫자 받고 에러 안 나는지 테스트", () => {
-    mockQuestions(["1,2,3,4,5,6"]);
-    const logs = ["123456"];
-    const logSpy = getLogSpy();
-    const app = new App();
-    app.play();
-    logs.forEach((log) => {
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-    });
-  });
-  /*test("기능 테스트", () => {
+  test("기능 테스트", () => {
     mockRandoms([
       [8, 21, 23, 41, 42, 43],
       [3, 5, 11, 16, 32, 38],
@@ -77,5 +67,5 @@ describe("로또 테스트", () => {
       const app = new App();
       app.play();
     }).toThrow("[ERROR]");
-  });*/
+  });
 });
