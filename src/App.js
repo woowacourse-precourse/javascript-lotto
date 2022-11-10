@@ -8,6 +8,10 @@ const {
 const Lotto = require("./Lotto");
 
 class App {
+  constructor() {
+    this.result = { 3: 0, 4: 0, 5: 0, 5.5: 0, 6: 0 };
+  }
+
   play() {
     this.getMoney();
   }
@@ -47,8 +51,8 @@ class App {
 
   getWinningNumbers() {
     Console.readLine(INPUT_MESSAGE.WINNING_NUMBER, (numbers) => {
-      this.winningNumbers = numbers.split(",");
-      this.validateWinningNumbers(winningNumbers);
+      this.winningNumber = numbers.split(",").map((number) => +number);
+      this.validateWinningNumbers(this.winningNumber);
       this.getBonusNumber();
     });
   }
@@ -71,6 +75,7 @@ class App {
     Console.readLine(INPUT_MESSAGE.BONUS_NUMBER, (number) => {
       this.validateBonusNumber(number);
       this.bonusNumber = number;
+      this.compare(this.lottos, this.winningNumber, this.bonusNumber);
     });
   }
 
@@ -78,6 +83,18 @@ class App {
     if (number < 1 || number > 45) {
       throw new Error(ERROR_MESSAGE.NOT_IN_RANGE);
     }
+
+    if (this.winningNumber.includes(number)) {
+      throw new Error(ERROR_MESSAGE.HAS_REPEAT);
+    }
+  }
+
+  compare(lottos, winningNumber, bonusNumber) {
+    for (const lotto of lottos) {
+      const match = lotto.compare(winningNumber, bonusNumber);
+      this.result[match] += 1;
+    }
+    console.log(this.result);
   }
 }
 

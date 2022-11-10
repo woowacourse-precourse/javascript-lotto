@@ -17,6 +17,24 @@ class Lotto {
   get numbers() {
     return this.#numbers;
   }
+
+  compare(winningNumber, bonusNumber) {
+    let match = 0;
+    console.log(this.#numbers, winningNumber);
+    this.#numbers.forEach((number) => {
+      if (winningNumber.includes(number)) {
+        match += 1;
+      }
+    });
+
+    if (match === 5) {
+      if (user.includes(bonusNumber)) {
+        match = 5.5;
+      }
+    }
+
+    return match;
+  }
 }
 
 module.exports = Lotto;
