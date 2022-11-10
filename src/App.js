@@ -2,11 +2,13 @@ const { Console } = require('@woowacourse/mission-utils');
 const Messages = require('./Messages');
 const LottoSeller = require('./LottoSeller');
 const WinningAndBonusNumbers = require('./WinningAndBonusNumbers');
+const Validation = require('./Validation');
 
 class App {
   constructor() {
     this.lottoSeller = new LottoSeller();
     this.winningAndBonusNumbers = new WinningAndBonusNumbers();
+    this.validation = new Validation();
   }
 
   play() {
@@ -24,8 +26,8 @@ class App {
   }
 
   enterBonusNumber() {
-    Console.readLine(Messages.INPUT_BONUS_NUMBER, (numbers) => {
-      numbers;
+    Console.readLine(Messages.INPUT_BONUS_NUMBER, (number) => {
+      this.validation.bonusNumber(number);
     });
   }
 }
