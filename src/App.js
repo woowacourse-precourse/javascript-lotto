@@ -22,7 +22,6 @@ class App {
       this.buy();
     });
   }
-
   setWinNumbers() {
     wConsole.readLine("당첨 번호를 입력해 주세요.\n", (line) => {
       if (!/^(\d{1,2}[,]){5}\d{1,2}$/.test(line))
