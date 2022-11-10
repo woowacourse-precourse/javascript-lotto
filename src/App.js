@@ -7,11 +7,12 @@ class App {
     this.lotto = [];
     this.winningNumber = [];
     this.money = 0;
+    this.bounsNumber = 0;
   }
   play() {
     Console.readLine(MESSAGE.INPUT_MONEY, (input) => {
-      this.isValidInputMoney(input);
       this.money = input;
+      this.isValidInputMoney();
       this.count = this.countLotto(this.money);
       Console.print(`${this.count}개를 구매했습니다.`);
       this.getLotto(this.count);
@@ -19,17 +20,17 @@ class App {
       this.getWinningNumber();
     });
   }
-  isValidInputMoney(input) {
-    this.isNumber(input);
-    this.isDisvisible(input);
+  isValidInputMoney() {
+    this.isNumber();
+    this.isDisvisible();
   }
-  isNumber(input) {
-    if (Number.isNaN(parseInt(input, 10))) {
+  isNumber() {
+    if (Number.isNaN(parseInt(this.money, 10))) {
       throw new Error('[ERROR] 숫자를 입력하세요.');
     }
   }
-  isDisvisible(input) {
-    if (input % 1000 !== 0) {
+  isDisvisible() {
+    if (this.money % 1000 !== 0) {
       throw new Error('[ERROR] 1000으로 나누어 떨어지도록 입력하세요.');
     }
   }
@@ -56,6 +57,13 @@ class App {
   }
   isValidWinningNumber() {
     const lotto = new Lotto(this.winningNumber);
+    Console.print(this.winningNumber);
+    this.getBonusNumber();
+  }
+  getBonusNumber() {
+    Console.readLine(MESSAGE.INPUT_BONUSNUMBER, (input) => {
+      this.bounsNumber = input;
+    });
   }
 }
 let app = new App();
