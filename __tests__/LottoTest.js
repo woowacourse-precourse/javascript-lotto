@@ -24,7 +24,7 @@ describe('로또 빌더 기능 테스트', () => {
   test('구매한 금액만큼의 로또 갯수', () => {
     const input = '8000';
     const lottoBuilder = new LottoBuilder();
-    const result = lottoBuilder.countLotto(input);
+    const result = lottoBuilder.countAmountLotto(input);
     expect(result).toBe(8);
   });
 });
