@@ -15,11 +15,11 @@ class LottoGenerator {
       for (let gameCount = 0; gameCount < TOTAL_LOTTO_GAMES; gameCount++) {
         const LOTTO_NUMBER = this.makeLottoNumber();
         MissionUtils.Console.print(LOTTO_NUMBER);
-        LottoResultCheck.winningCheck();
+        LottoResultCheck.lottoNumbersArray.push(LOTTO_NUMBER);
       }
+      LottoResultCheck.getWinningNumber();
     });
   }
 }
 
-const LOTTOGENERATOR = new LottoGenerator();
-module.exports = LOTTOGENERATOR;
+module.exports = LottoGenerator;

@@ -1,23 +1,33 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+
 class LottoResultCheck {
   constructor() {
-    this.randomSevenNumbers = this.makeLottoWinningNumber();
-    //상수화 필요
-    this.winningNumbers = this.randomSevenNumbers.slice(0, 6);
-    this.bonusNumber = this.randomSevenNumbers[6];
     this.resultArray = new Array(0).fill(5);
+    this.lottoNumbersArray = [];
+    this.winningNubmers = [];
+    this.bonusNumber = 0;
   }
 
-  makeLottoWinningNumber() {
-    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 7);
+  getWinningNumber() {
+    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (userInput) => {
+      this.winningNubmers = userInput.split(",");
+      this.getBonusNumber();
+    });
   }
 
-  winningCheck(lottonumbers) {
+  getBonusNumber() {
+    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (userInput) => {
+      this.bonusNumber = userInput;
+    });
+  }
+
+  winningCheck(lottonumbers, winningNumbers, bonusNumber) {
     //상수화 필요
-    const COUNT_OF_CORRECT_NUMBERS = lottonumbers.filter((number) => this.winningNumbers.includes(number)).length;
+    const COUNT_OF_CORRECT_NUMBERS = lottonumbers.filter((number) => winningNumbers.includes(number)).length;
     if (COUNT_OF_CORRECT_NUMBERS === 3) return this.lottoRankingsCount(5);
     if (COUNT_OF_CORRECT_NUMBERS === 4) return this.lottoRankingsCount(4);
     if (COUNT_OF_CORRECT_NUMBERS === 5) return this.lottoRankingsCount(3);
-    if (COUNT_OF_CORRECT_NUMBERS === 5 && lottonumbers.includes(this.bonusNumber)) return this.lottoRankingsCount(2);
+    if (COUNT_OF_CORRECT_NUMBERS === 5 && lottonumbers.includes(bonusNumber)) return this.lottoRankingsCount(2);
     if (COUNT_OF_CORRECT_NUMBERS === 6) return this.lottoRankingsCount(1);
   }
 
@@ -45,5 +55,6 @@ class LottoResultCheck {
     MissionUtils.Console.print(earningsRate);
   }
 }
+
 const LOTTORESULTCHECK = new LottoResultCheck();
 module.exports = LOTTORESULTCHECK;

@@ -1,10 +1,19 @@
 const LottoGenerator = require("./issueLotto");
+const LottoResultCheck = require("./resultCheck");
+const MissionUtils = require("@woowacourse/mission-utils");
 
 class LottoGameHandler {
+  constructor() {
+    this.makeLotto = new LottoGenerator();
+  }
+
   gameStart() {
-    LottoGenerator.generateLotto();
+    this.makeLotto.generateLotto();
+  }
+
+  getResult() {
+    LottoResultCheck.getWinningNumber();
   }
 }
 
-const LOTTOGAMEHANDLER = new LottoGameHandler();
-module.exports = LOTTOGAMEHANDLER;
+module.exports = LottoGameHandler;
