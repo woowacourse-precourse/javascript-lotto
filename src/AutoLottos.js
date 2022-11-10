@@ -1,3 +1,5 @@
+const { Random } = require("@woowacourse/mission-utils");
+
 class AutoLottos {
   constructor(randomLottoArray) {
     this.randomLottoArray = randomLottoArray;
