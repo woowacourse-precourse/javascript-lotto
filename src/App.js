@@ -1,7 +1,6 @@
 const { Random, Console } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const Publish = require('./Publish');
-const Winning = require('./Winning');
 
 class App {
   play() {
@@ -16,8 +15,9 @@ class App {
   }
 
   purchaseException() {
-    if (this.money % 1000 !== 0)
+    if (this.money % 1000 !== 0) {
       throw new Error('[EEROR] 금액은 천원 단위로 입력해주세요.');
+    }
     this.makeLotto();
   }
 
@@ -42,18 +42,21 @@ class App {
   enterWinningNumber() {
     Console.readLine('당첨 번호를 입력해 주세요.', (winNumber) => {
       this.numbertoArray(winNumber);
-      this.WinningNumberException();
+      this.lotto = new Lotto(this.winningArray);
+      this.enterBonusNumber();
     });
   }
 
   numbertoArray(winNumber) {
-    this.winningNumberArray = winNumber.split(',').map((number) => {
+    this.winningArray = winNumber.split(',').map((number) => {
       return parseInt(number, 10);
     });
   }
 
-  WinningNumberException() {
-    const lotto = new Lotto(this.winningNumberArray);
+  enterBonusNumber() {
+    Console.readLine('보너스 번호를 입력해 주세요.', (bonusNumber) => {
+      this.lotto.bonusExecption(bonusNumber);
+    });
   }
 }
 
