@@ -1,6 +1,11 @@
+const MissionUtils = require('@woowacourse/mission-utils');
 const LottoBuyer = require('../src/LottoBuyer');
 
 describe('로또 구매자 클래스 테스트', () => {
+  afterEach(() => {
+    MissionUtils.Console.close();
+  });
+
   test('구매 금액이 빈 값이면 예외가 발생한다.', () => {
     expect(() => {
       new LottoBuyer('');

@@ -19,7 +19,7 @@ class App {
 
       const buyerLotto = this.#buyer.lotto;
 
-      Console.print(`\n${buyerLotto.length}${GAME_MESSAGE.PURCHASE_NUMBER}`);
+      Console.print(`\n${buyerLotto.length}${GAME_MESSAGE.BUY_COUNT}`);
 
       buyerLotto.forEach((lotto) => {
         Console.print(lotto);

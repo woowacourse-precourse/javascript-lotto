@@ -19,7 +19,7 @@ describe('로또 판매처 클래스 테스트', () => {
 
     mockRandoms(randoms);
 
-    const result = LottoSales.issueLotto();
+    const result = LottoSales.pickNumbers();
 
     expect(result).toStrictEqual([8, 22, 23, 42, 43, 45]);
   });
@@ -44,7 +44,7 @@ describe('로또 판매처 클래스 테스트', () => {
 
     mockRandoms(randoms);
 
-    const result = LottoSales.issueLottos(money);
+    const result = LottoSales.issueLotto(money);
 
     expect(result).toHaveLength(length);
   });

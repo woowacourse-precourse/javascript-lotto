@@ -15,7 +15,7 @@ class LottoBuyer {
   }
 
   buyLotto() {
-    const lotto = LottoSales.issueLottos(this.#money);
+    const lotto = LottoSales.issueLotto(this.#money);
     this.#lotto = lotto;
   }
 
