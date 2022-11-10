@@ -5,7 +5,7 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    // this.validate(numbers);
     this.#numbers = numbers;
     this.START_MESSAGE = "구입금액을 입력해 주세요.";
     this.SELECT_WIN_NUMBER = "당첨 번호를 입력해 주세요.";
@@ -21,6 +21,7 @@ class Lotto {
     this.selectedBonusNumber = [];
     this.randomNumbersArr = [];
     this.countMatchedNumber = [];
+    this.countMatchedBonusNumber = [];
   }
 
   buyLotto() {
@@ -95,19 +96,26 @@ class Lotto {
       // this.selectBonusNumber()
       // this.compareNumbers();
       this.compareNumbers();
-      this.getWinners()
     });
   }
   /////////// 당첨번호 보너스번호 뽑기
 
   compareNumbers() {
     for (let i = 0; i < this.randomNumbersArr.length; i++) {
-      let matchedNumber = this.selectedWinNumber.filter((duplicated) =>
-        this.randomNumbersArr[i].includes(duplicated)
+      let matchedNumber = this.selectedWinNumber.filter((matched) =>
+        this.randomNumbersArr[i].includes(matched)
       ).length;
       this.countMatchedNumber.push(matchedNumber);
     }
+    for (let i = 0; i < this.randomNumbersArr.length; i++) {
+      let matchedBonusNumber = this.selectedBonusNumber.filter((matched) =>
+        this.randomNumbersArr[i].includes(matched)
+      ).length;
+      this.countMatchedBonusNumber.push(matchedBonusNumber);
+    }
     console.log(this.countMatchedNumber);
+    console.log(this.selectedBonusNumber[0])
+    this.getWinners()
   }
   getWinners() {
     let firstPlace = 0;
@@ -116,28 +124,28 @@ class Lotto {
     let fourthPlace = 0;
     let fifthPlace = 0;
 
-    if (this.countMatchedNumber.includes(3)) return fifthPlace++;
-    if (this.countMatchedNumber.includes(4)) return fourthPlace++;
-    if (this.countMatchedNumber.includes(5)) return thirdPlace++;
-    if (
-      this.countMatchedNumber.includes(5) &&
-      this.countMatchedNumber.includes(this.selectedBonusNumber[0])
-    )
-      return secondPlace++;
-    if (this.countMatchedNumber.includes(6)) return firstPlace++;
+    if (this.countMatchedNumber.includes(3)) fifthPlace++;
+    if (this.countMatchedNumber.includes(4)) fourthPlace++;
+    if(this.countMatchedNumber.indexOf(5) !== this.countMatchedBonusNumber.indexOf(1)){
+      thirdPlace++;
+    }
+    if(this.countMatchedNumber.indexOf(5) === this.countMatchedBonusNumber.indexOf(1)){
+      secondPlace++;
+    }
+    if (this.countMatchedNumber.includes(6)) firstPlace++;
 
     this.seeResult(firstPlace,secondPlace,thirdPlace,fourthPlace,fifthPlace);
   }
 
   ///결과 출력
-  seeResult() {
+  seeResult(firstPlace,secondPlace,thirdPlace,fourthPlace,fifthPlace) {
     MissionUtils.Console.print(this.RESULT_MESSAGE);
     MissionUtils.Console.print(this.RESULT_UNDERSCORE);
-    MissionUtils.Console.print(`this.FIFTH_PLACE${}`);
-    MissionUtils.Console.print(this.FOURTH_PLACE);
-    MissionUtils.Console.print(this.THIRD_PLACE);
-    MissionUtils.Console.print(this.SECOND_PLACE);
-    MissionUtils.Console.print(this.FIRST_PLACE);
+    MissionUtils.Console.print(`${this.FIFTH_PLACE}${fifthPlace}개`);
+    MissionUtils.Console.print(`${this.FOURTH_PLACE}${fourthPlace}개`);
+    MissionUtils.Console.print(`${this.THIRD_PLACE}${thirdPlace}개`);
+    MissionUtils.Console.print(`${this.SECOND_PLACE}${secondPlace}개`);
+    MissionUtils.Console.print(`${this.FIRST_PLACE}${firstPlace}개`);
     MissionUtils.Console.print(`총 수익률은 {}입니다.`);
   }
 
