@@ -9,13 +9,13 @@ class LottoGame {
   }
 
   play() {
-    this.createLottoPhase();
+    this.purchaseLottoPhase();
   }
 
-  createLottoPhase() {
-    this.LottoGameView.requestInput(REQUEST_MESSAGE.PURCHASE_AMOUNT, this.createLotto);
+  purchaseLottoPhase() {
+    this.LottoGameView.requestInput(REQUEST_MESSAGE.PURCHASE_AMOUNT, this.purchaseLotto);
   }
-  createLotto(purchaseAmount) {
+  purchaseLotto(purchaseAmount) {
     Validation.validatePurchaseAmount(purchaseAmount);
   }
 }
