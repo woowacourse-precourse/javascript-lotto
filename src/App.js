@@ -16,6 +16,7 @@ class App {
     Console.readLine(INPUT_MESSAGE.MONEY, (money) => {
       this.validateMoney(money);
       const lottos = this.exchangeLotto(+money / UNIT.MONEY);
+      this.printLottos(lottos);
     });
   }
 
@@ -35,6 +36,12 @@ class App {
 
   generateRandomNumbers() {
     return Random.pickUniqueNumbersInRange(1, 45, 6);
+  }
+
+  printLottos(lottos) {
+    const numbers = lottos.map((lotto) => `[${lotto.numbers}]`);
+    Console.print(RESULT_MEESAGE.PURCHASE.replace("N", numbers.length));
+    Console.print(numbers.join("\n"));
   }
 }
 module.exports = App;
