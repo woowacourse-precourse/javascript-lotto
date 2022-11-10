@@ -3,8 +3,8 @@ const Lotto = require('./Lotto');
 
 class App {
   play() {
-    Console.readLine('당첨 번호를 입력해 주세요.', (num) => {
-      Console.print(makeSixNumbersArr(num));
+    Console.readLine('당첨 번호를 입력해 주세요.', (numbers) => {
+      const lotto = new Lotto(makeSixNumbersArr(numbers));
     });
   }
 }
