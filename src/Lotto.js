@@ -1,18 +1,24 @@
+const { Console } = require("@woowacourse/mission-utils");
+
+const LottoNumber = require("./LottoNumber");
+
+const { COMMAND } = require("./utils/constant");
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    this.LottoNumber = new LottoNumber();
     this.#numbers = numbers;
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+  print(message) {
+    Console.print(message);
   }
 
-  // TODO: 추가 기능 구현
+  start() {
+    this.print(COMMAND.BUY);
+  }
 }
 
 module.exports = Lotto;

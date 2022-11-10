@@ -127,19 +127,27 @@
 
 ### 📨 출력 메시지
 
-- `구입 금액을 입력해 주세요.`
-- `N개를 구매했습니다.`
-- `당첨 번호를 입력해 주세요.`
-- `보너스 번호를 입력해 주세요`
-- `당첨 통계`
-- `---`
+- COMMAND.BUY : `구입 금액을 입력해 주세요.`
+- COMMAND.WIN : `당첨 번호를 입력해 주세요.`
+- COMMAND.BONUS : `보너스 번호를 입력해 주세요`
+
+- GUIDE.PURCHASE : `N개를 구매했습니다.`
+- GUIDE.RESULT : `당첨 통계`
+- GUIDE.LINE : `---`
+- GUIDE.PROFIT : `총 수익률은 $%입니다.`
+
+- PLACE.FIFTH : `3개 일치 (5,000원) - $개`
+- PLACE.FOURTH : `4개 일치 (50,000원) - $개`
+- PLACE.THIRD : `5개 일치 (1,500,000원) - $개`
+- PLACE.SECOND : `5개 일치, 보너스 볼 일치 (30,000,000원) - $개`
+- PLACE.FIRST : `6개 일치 (2,000,000,000원) - $개`<br><br>
 
 ### 📛 에러 메시지
 
-- ERROR_BUY : `[ERROR] 구매 금액은 1000원 단위로 입력하셔야 합니다.`
-- ERROR_WIN : `[ERROR] 올바른 당첨 번호를 입력해주세요.`
-- ERRPR_NUM : `[ERROR] 1~45 의 숫자만 입력할 수 있습니다.`
-- ERROR_BONUS : `[ERROR] 올바른 보너스 번호를 입력해주세요.`<br>
+- ERROR.PURCHASE_AMOUNT : `[ERROR] 구매 금액은 1000원 단위로 입력하셔야 합니다.`
+- ERROR.WINNING_NUMBER : `[ERROR] 올바른 당첨 번호를 입력해주세요.`
+- ERRPR.NUMBER_RANGE : `[ERROR] 1~45 의 숫자만 입력할 수 있습니다.`
+- ERROR.BONUS_NUMBER : `[ERROR] 올바른 보너스 번호를 입력해주세요.`<br>
   <br>
 
 ---
