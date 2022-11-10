@@ -26,6 +26,15 @@ class Validation {
       throw new Error('[ERROR] 1~45의 숫자만 입력가능합니다');
     });
   }
+
+  static bonusNumberValidate(input) {
+    if (input.length > 2) {
+      throw new Error('[ERROR] 1~45 숫자만 입력가능합니다');
+    }
+    if (!(Number(input) >= 1 && Number(input) <= 45)) {
+      throw new Error('[ERROR] 1~45 숫자만 입력가능합니다');
+    }
+  }
 }
 
 module.exports = Validation;

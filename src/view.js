@@ -26,6 +26,7 @@ class View {
 
   bonusNumberInput() {
     Console.readLine('보너스 번호를 입력해 주세요.', (answer) => {
+      Validation.bonusNumberValidate(answer);
       this.controller.enterBonusNumber(answer);
     });
   }
