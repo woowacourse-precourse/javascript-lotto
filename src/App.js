@@ -8,6 +8,7 @@ class App {
     this.cash = 0;
     this.purchaseLottoAmount = 0;
     this.purchaseLottoList = [];
+    this.winningNumberArr = [];
   }
 
   printPurchaseInputMessage() {
@@ -32,10 +33,18 @@ class App {
     return this.submitWinningNumber();
   }
 
+  printBonusNumberInputMessage() {
+    Console.print('');
+    Console.print('보너스 번호를 입력해 주세요.');
+    return this.submitBonusNumber();
+  }
+
   submitWinningNumber() {
     Console.readLine('', input => {
-      let inputArr = changeStrToArr(input);
-      let lotto = new Lotto(inputArr);
+      const inputArr = changeStrToArr(input);
+      const lotto = new Lotto(inputArr);
+      this.winningNumberArr = inputArr;
+      return this.printBonusNumberInputMessage();
     });
   }
 
