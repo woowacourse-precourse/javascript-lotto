@@ -5,10 +5,15 @@ class User {
     this.winning_number = '';
     this.bonus_number = '';
   }
+
+  input_amount() {
+    MissionUtils.Console.readLine('구입 금액을 입력해 주세요', amount => {});
+  }
 }
 
 module.exports = User;
 const user = new User();
+user.input_amount();
 
 // User 클래스
 //  로또 구입 금액 입력 (O)
