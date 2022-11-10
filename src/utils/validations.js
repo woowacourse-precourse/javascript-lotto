@@ -28,4 +28,4 @@ const checkMoneyValidation = (input) => {
   isValidUnit(input);
 };
 
-module.exports = { checkMoneyValidation };
+module.exports = { checkMoneyValidation, isValidNumber };
