@@ -25,6 +25,9 @@ class Lotto {
       if (Number.isNaN(NUMBER[index]) || NUMBER[index] === 0) {
         throw new Error('[ERROR] 숫자를 입력하셔야 합니다.');
       }
+      if (NUMBER[index] < 1 || NUMBER[index] > 45) {
+        throw new Error('[ERROR] 1 ~ 45 사이의 숫자를 입력 하셔야 합니다.');
+      }
     }
   }
 }
