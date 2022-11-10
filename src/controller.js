@@ -17,10 +17,16 @@ class Controller {
     }
 
     this.view.printLottos(this.lottos);
+    this.view.winningNumber();
   }
 
   enterWinningNumber(answer) {
     this.winningNumber.setWinningNumber(answer);
+    this.view.bonusNumberInput();
+  }
+
+  enterBonusNumber(answer) {
+    this.winningNumber.setBonusNumber(answer);
   }
 }
 
