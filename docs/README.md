@@ -72,6 +72,7 @@
   - get User input >> mock fn(readline)
   - lotto number exception handling(user inputs : string)
   - return winning bonus number;
+- (add) LottoCampany.setWinningLottoNumbers(winning lotto numbers);
 - Customer.winLottoStatistic( {winning numbers, winning bonus number, generate lottos} )
   - find winning numbers in generate lottos(lotto object)
     - return statistics object;
@@ -86,6 +87,26 @@
 ### use callback
 
 - if not using callback way is failed, i try solve this problem using callback
+
+## 객체 분리하기
+
+1. Customer
+   1. property
+      1. paying price
+   2. method
+      1. buy lotto
+      2. set lotto numbers
+      3. winning lotto statistics
+2. LottoStore
+   1. No property
+   2. method
+      1. generate lotto number
+3. LottoCompany
+   1. property
+      1. winning lotto numbers : include bonus
+   2. method
+      1. enter winning lotto number
+      2. enter lotto bonus number
 
 ## 미션 후기
 
