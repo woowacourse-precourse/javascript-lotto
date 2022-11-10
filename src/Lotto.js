@@ -1,3 +1,5 @@
+const { LOTTO_LENGTH, ERROR } = require("./constant/lotto");
+
 class Lotto {
   #numbers;
 
@@ -7,9 +9,21 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throwError(messege)("로또 번호는 6개여야 합니다.");
+    if (this.isNotVaildLength(numbers)) {
+      this.throwError(ERROR.NOT_SIX_NUMBER);
     }
+    if (this.isNotDiffNumbers(numbers)) {
+      this.throwError(ERROR.DUPLICATE_NUMBERS);
+    }
+  }
+
+  isNotVaildLength(numbers) {
+    return numbers.length !== LOTTO_LENGTH;
+  }
+
+  isNotDiffNumbers(numbers) {
+    const numberSet = new Set(numbers);
+    return numberSet.size !== LOTTO_LENGTH;
   }
 
   throwError(messege) {
