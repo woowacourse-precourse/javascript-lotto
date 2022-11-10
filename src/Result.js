@@ -13,16 +13,16 @@ class Result {
   }
 
   calculateOneLotto(lotto) {
-    let score = 0;
-    let matchBonus = false;
+    this.score = 0;
+    this.matchBonus = false;
 
     lotto.forEach((item) => {
       if (this.userLotto.includes(item)) {
-        score += 1;
+        this.score += 1;
       }
 
       if (item === this.bonusNumber) {
-        matchBonus = true;
+        this.matchBonus = true;
       }
     });
   }
