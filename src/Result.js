@@ -25,6 +25,38 @@ class Result {
         this.matchBonus = true;
       }
     });
+
+    this.getRanking();
+  }
+
+  getRanking() {
+    if (this.score === 3) {
+      this.fifth += 1;
+
+      return;
+    }
+
+    if (this.score === 4) {
+      this.fourth += 1;
+
+      return;
+    }
+
+    if (this.score === 5) {
+      if (this.matchBonus) {
+        this.second += 1;
+
+        return;
+      }
+
+      this.third += 1;
+
+      return;
+    }
+
+    if (this.score === 6) {
+      this.first += 1;
+    }
   }
 }
 
