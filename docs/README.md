@@ -9,8 +9,16 @@
 7. 당첨 내역을 출력한다.
 8. 수익률을 출력한다.
 
+
+
 ## 클래스 명세
+---
 ### App - 어플리케이션 UI
+변수 목록
+- myLotto : MyLotto 클래스 인스턴스
+- lotto : Lotto 클래스 인스턴스
+
+메서드
 #### `play()`
 - 어플리케이션 시작
 
@@ -71,13 +79,16 @@ Array historyNum : [3개 일치, 4개 일치, 5개 일치, 5개+보너스 일치
 - 수익률을 출력하는 함수
 - '총 수익률은 {rate}입니다'
 
-
+---
 ### MyLotto - 구매한 로또 정보 클래스
+변수 목록
 - Array[][] myLottoNums : 발행된 로또 정보를 담은 배열
 
+생성자
 #### constructor(purchaseAmount)
 - 인스턴스 생성시 구매 금액 설정
 
+메서드
 #### `countLotto(purchaseAmount)`
 - 입력받은 금액에 따른 로또 수량 계산
 - 입력값을 1,000으로 나눈 몫을 반환
@@ -92,15 +103,18 @@ Array historyNum : [3개 일치, 4개 일치, 5개 일치, 5개+보너스 일치
 #### `getMyLottoNums()`
 - myLottoNums 반환
 
-
+---
 ### Lotto - 로또 당첨 번호 클래스
+변수 목록
 - Array[] numbers : 당첨 번호 배열 (6자리)
 - Num bonus : 보너스 번호
 
+생성자
 #### constructor(numbers)
 - 인스턴스 생성시 당첨 번호 `numbers` 설정 (numbers는 len이 6인 숫자로 이루어진 배열)
 - `numbers`의 오류 여부를 `validate`로 확인
 
+메서드
 #### `validate(numbers)`
 - 당첨 번호로 전달된 배열의 오류 여부를 확인하는 함수
 - 확인 요소
