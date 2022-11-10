@@ -57,6 +57,7 @@ class App {
       winngNumbers = numbers.split(",").map(Number);
       MissionUtils.Console.print(winngNumbers);
       const lotto = new Lotto(winngNumbers);
+      lotto.inputBonusNumbers();
     });
   }
 

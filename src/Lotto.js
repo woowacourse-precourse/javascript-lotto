@@ -1,3 +1,4 @@
+const MissionUtils = require("@woowacourse/mission-utils");
 class Lotto {
   #numbers;
 
@@ -20,6 +21,16 @@ class Lotto {
       }
     }
   }
+
+  inputBonusNumbers() {
+    const WORD_TO_PRINT = "보너스 번호를 입력해 주세요.\n";
+    let bonusNumber;
+    MissionUtils.Console.readLine(WORD_TO_PRINT, (number) => {
+      bonusNumber = Number(number);
+      this.validateBonusNumber(bonusNumber);
+    });
+  }
+
   // TO DO -
   // 일치 개수 비교 및 통계.
 }
