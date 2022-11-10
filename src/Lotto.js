@@ -1,6 +1,10 @@
 class Lotto {
   #numbers;
 
+  /**
+   *
+   * @param {array} numbers: 6자리의 숫자 배열
+   */
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
