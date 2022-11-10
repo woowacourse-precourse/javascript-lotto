@@ -20,6 +20,10 @@ class WinningResult {
   getResult() {
     return this.result;
   }
+
+  calculateSum() {
+    return Object.entries(this.result).reduce((acc, [key, value]) => acc + key * value, 0);
+  }
 }
 
 module.exports = WinningResult;
