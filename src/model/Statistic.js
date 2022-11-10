@@ -1,4 +1,4 @@
-const { RANK } = require('./utils/constants');
+const { RANK } = require('../utils/constants');
 
 class Statistic {
   #stat;

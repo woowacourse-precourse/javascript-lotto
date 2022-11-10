@@ -1,4 +1,4 @@
-const BonusNumber = require('../src/BonusNumber');
+const BonusNumber = require('../src/model/BonusNumber');
 
 describe('보너스 번호 테스트', () => {
   test('보너스 번호가 하나의 숫자가 아니라면 예외가 발생한다.', () => {

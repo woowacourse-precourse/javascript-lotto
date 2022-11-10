@@ -1,4 +1,4 @@
-const Statistic = require('../src/Statistic');
+const Statistic = require('../src/model/Statistic');
 const { RANK } = require('../src/utils/constants');
 
 describe('통계 클래스 테스트', () => {
