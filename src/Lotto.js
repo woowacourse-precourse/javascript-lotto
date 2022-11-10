@@ -1,3 +1,6 @@
+const Console = require("@woowacourse/mission-utils").Console;
+const BonusNumber = require("./BonusNumber");
+
 class Lotto {
   #numbers;
 
@@ -6,6 +9,7 @@ class Lotto {
     this.checkNumberRanges(numbers);
     this.checkNoSameNumber(numbers);
     this.#numbers = numbers;
+    this.getBonusNumber();
   }
 
   validate(numbers) {
@@ -32,6 +36,12 @@ class Lotto {
     }
 
     return true;
+  }
+
+  getBonusNumber() {
+    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonus) => {
+      const bonusNumber = new BonusNumber(this.#numbers, bonus);
+    });
   }
 }
 
