@@ -23,5 +23,6 @@ module.exports = {
     'class-methods-use-this': 'off',
     'prefer-const': 'off',
     'no-new': 'off',
+    'no-plusplus': 'off',
   },
 };
