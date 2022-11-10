@@ -1,6 +1,5 @@
 const {Random} = require("@woowacourse/mission-utils");
 const {Console} = require("@woowacourse/mission-utils");
-
 class CreateRandomLotto {
     constructor(){
         this.randomLotto = [];
@@ -8,7 +7,7 @@ class CreateRandomLotto {
 
     pickRandomLotto(){
         const number = Random.pickUniqueNumbersInRange(1, 45, 6);
-        this.randomLotto.push(number);
+        this.randomLotto.push(number)
     }
 
     randomNumberSort(){
