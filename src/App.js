@@ -3,13 +3,14 @@ const UserLotto = require("./UserLotto");
 const { isValidateUserInput } = require("./utils/validator");
 class App {
   constructor() {
-    this.userLotto = new UserLotto(0);
+    this.userLotto = new UserLotto();
   }
   play() {
     MissionUtils.Console.print("구입금액을 입력해 주세요.");
     MissionUtils.Console.readLine("", (amount) => {
       if (isValidateUserInput(amount)) {
         this.userLotto.createUserLotto(amount);
+        this.userLotto.printUserLottoInformation();
       }
     });
   }

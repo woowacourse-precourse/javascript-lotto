@@ -12,6 +12,11 @@ class UserLotto {
       this.userLottoList.push(numbers);
     }
   }
+
+  printUserLottoInformation() {
+    MissionUtils.Console.print(`${this.#lottoCount}개를 구매했습니다.`);
+    this.userLottoList.map((lotto) => MissionUtils.Console.print(lotto));
+  }
 }
 
 module.exports = UserLotto;
