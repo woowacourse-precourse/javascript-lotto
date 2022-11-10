@@ -1,6 +1,4 @@
-const Lotto = require("../src/Lotto");
-
-const lotto = new Lotto();
+const Budget = require("../src/Budget");
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
@@ -17,6 +15,8 @@ describe("로또 클래스 테스트", () => {
   });
 
   test("구매 금액을 1000으로 나눈다", () => {
-    expect(lotto.divideBudget(8000)).toBe(8);
+    const budget = new Budget();
+    budget.divideBudget(8000);
+    expect(budget.returnCount()).toBe(8);
   });
 });
