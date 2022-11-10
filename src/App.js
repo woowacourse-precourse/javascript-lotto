@@ -7,19 +7,19 @@ class App {
     const LottoCount = this.insertedMoney / 1000;
     this.printLottoCount(LottoCount);
     for(let count = 0; count <LottoCount; count++){
-      this.userLottoNumberLists.push(generateUserLottoNumber());
+      this.userLottoNumberLists.push(this.generateUserLottoNumber());
     }
   }
   insertMoney(){
     MissionUtils.Console.readLine('구입금액을 입력해주세요 (1000원 단위)', (insertMoney) => {
-      insertMoneyValidCheck(insertMoney);
+      this.insertMoneyValidCheck(insertMoney);
       this.insertedMoney = insertMoney;
     });
   }
   insertMoneyValidCheck(insertMoney) {
-    isUnit1000(insertMoney);
-    isNegativeNumber(insertMoney);
-    isNumber(insertMoney);
+    this.isUnit1000(insertMoney);
+    this.isNegativeNumber(insertMoney);
+    this.isNumber(insertMoney);
   }
   isUnit1000(insertMoney){
     if (insertMoney % 1000 !== 0) {
