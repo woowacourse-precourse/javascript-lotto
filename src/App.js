@@ -5,6 +5,8 @@ const Validation = require("./Validation");
 class App {
   constructor() {
     this.lottos = [];
+    this.winningNumbers = [];
+    this.bonusNumber = null;
   }
 
   play() {
@@ -16,7 +18,20 @@ class App {
 
       Lotto.generateLottoWithLottoCount(lottoCount)
         .map((lotto) => lotto.lottoNumbers)
-        .forEach((lotto) => Console.print(lotto));
+        .forEach((lotto) => {
+          this.lottos.push(lotto);
+          Console.print(lotto);
+        });
+
+      // Console.print("\n" + Console.ASK_WINNING_NUMBER);
+
+      Console.askAndGetUserInput("\n" + Console.ASK_WINNING_NUMBER, (winningNumbers) => {
+        this.winningNumbers = winningNumbers.split(",").map(Number);
+
+        Console.askAndGetUserInput("\n" + Console.ASK_BONUS_NUMBER, (bonusNumber) => {
+          this.bonusNumber = Number(bonusNumber);
+        });
+      });
     });
   }
 }
