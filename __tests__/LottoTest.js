@@ -25,4 +25,11 @@ describe('로또 클래스 테스트', () => {
       new Lotto([1, 2, 3, 4, 5, 46]);
     }).toThrow('[ERROR]');
   });
+
+  test('로토 번호가 정상적으로 입력되는지 테스트', () => {
+    const input = [1, 2, 3, 4, 5, 6];
+    const lotto = new Lotto(input);
+
+    expect(lotto.getAllPassedError()).toEqaul(input);
+  });
 });
