@@ -24,7 +24,7 @@ class App {
   showLottoList(lists) {
     this.print(`${lists.length}개를 구매했습니다.`);
     lists.forEach((list) => {
-      this.print(`[${list}]`);
+      this.print(`[${list.join(', ')}]`);
     });
   }
 
