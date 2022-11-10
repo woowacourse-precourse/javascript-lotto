@@ -43,6 +43,15 @@ function winCheck(MISSIONUTILS, LOTTO) {
     win = new LOTTO(win);
     win.sort();
     win.print();
+
+    bonusCheck(MISSIONUTILS, win);
+  });
+}
+
+function bonusCheck(MISSIONUTILS, win) {
+  MISSIONUTILS.Console.readLine("\n보너스 번호를 입력해 주세요.\n", function(input2) {
+    bonus = input2;
+    
   });
 }
 
