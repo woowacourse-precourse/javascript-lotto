@@ -7,7 +7,8 @@ class LottoScreen {
   static insertMoney() {
     MissionUtils.Console.readLine(MESSAGE.INSERT_MONEY, (money) => {
       Validate.money(money);
-      LottoApp.buyLottos(money);
+      const lottoApp = new LottoApp(money);
+      console.log(lottoApp.getLottos()[0].getNumbers());
     });
   }
 

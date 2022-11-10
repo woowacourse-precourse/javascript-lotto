@@ -12,6 +12,15 @@ class Lotto {
     }
   }
 
+  getNumbers() {
+    return this.sort(this.#numbers);
+  }
+
+  sort(numbers) {
+    return numbers.sort((prev, next) => {
+      return prev - next;
+    });
+  }
   // TODO: 추가 기능 구현
 }
 
