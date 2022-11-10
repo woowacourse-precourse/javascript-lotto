@@ -30,6 +30,6 @@ describe('로또 클래스 테스트', () => {
     const input = [1, 2, 3, 4, 5, 6];
     const lotto = new Lotto(input);
 
-    expect(lotto.getAllPassedError()).toEqaul(input);
+    expect(lotto.getNumber()).toEqaul(input);
   });
 });
