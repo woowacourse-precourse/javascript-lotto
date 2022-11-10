@@ -1,18 +1,14 @@
-const Player = require('./Player');
-const Lotto = require('./Lotto');
+const Game = require('./Game');
 
 class App {
-  #player;
-
-  #lotto;
+  #game;
 
   constructor() {
-    this.#lotto = new Lotto();
-    this.#player = new Player();
+    this.#game = new Game();
   }
 
   play() {
-    this.#player.purchaseLotto();
+    this.#game.playLotto();
   }
 }
 
