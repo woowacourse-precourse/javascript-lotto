@@ -41,6 +41,22 @@ class App {
     return this.submitBonusNumber();
   }
 
+  printWinningResult() {
+    Console.print('');
+    Console.print('당첨 통계');
+    Console.print('---');
+    const winningResult = new WinningResult(this.purchaseLottoList, this.winningNumberArr);
+    winningResult.setResult(this.bonusNumber);
+    const result = winningResult.getResult();
+    Console.print(`3개 일치 (5,000원) - ${result[5000]}개`);
+    Console.print(`4개 일치 (50,000원) - ${result[50000]}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${result[1500000]}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${result[30000000]}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${result[2000000000]}개`);
+    Console.print(`총 수익률은 ${winningResult.setYield(this.cash)}%입니다.`);
+    Console.close();
+  }
+
   submitWinningNumber() {
     Console.readLine('', input => {
       const inputArr = changeStrToArr(input);
@@ -64,6 +80,7 @@ class App {
     Console.readLine('', input => {
       this.validateBonus(input);
       this.bonusNumber = Number(input);
+      return this.printWinningResult();
     });
   }
 
