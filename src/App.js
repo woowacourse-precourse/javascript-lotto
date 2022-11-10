@@ -12,8 +12,8 @@ class App {
   play() {
     const countOfLotto = this.buyLotto();
     const myLotto = this.generateLottoNumber(countOfLotto);
-    const winningLotto = this.getWinningNums();
-    this.calLottoProfit(myLotto, winningLotto);
+    const winningNums = this.getWinningNums();
+    this.calLottoProfit(myLotto, winningNums);
   }
 
   buyLotto() {
@@ -29,23 +29,27 @@ class App {
   }
 
   isValidMoney(money) {
-    if (isNaN(money)) {
-      throw `[ERROR] 입력 금액이 숫자형태가 아닙니다.`;
+    if (Number.isNaN(money)) {
+      throw new Error(`[ERROR] 입력 금액이 숫자형태가 아닙니다.`);
     }
 
     if (money < 1000) {
-      throw `[ERROR] 로또 한장의 가격은 1000원입니다. 입력한 금액: ${money}`;
+      throw new Error(
+        `[ERROR] 로또 한장의 가격은 1000원입니다. 입력한 금액: ${money}`
+      );
     }
 
     if (money > 1000000) {
-      throw `[ERROR] 한 번에 최대로 구입할 수 있는 금액은 100만원 입니다. 입력한 금액: ${money}`;
+      throw new Error(
+        `[ERROR] 한 번에 최대로 구입할 수 있는 금액은 100만원 입니다. 입력한 금액: ${money}`
+      );
     }
   }
 
   generateLottoNumber(count) {
     const myLotto = [];
 
-    while (myLotto.length < count) {
+    while (myLotto.length !== count) { // greater than 으로 변경
       const numbersOfLotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       const lotto = new Lotto(numbersOfLotto, false);
       myLotto.push(lotto);
@@ -63,28 +67,26 @@ class App {
   }
 
   getWinningNums() {
-    let winningLotto = [];
-    let bonusNumber = undefined;
+    const winningLotto = [];
 
     MissionUtils.Console.readLine(
       "당첨 번호를 입력해주세요. \n >",
       (answer) => {
-        winningLotto = answer.split(",");
+        answer.split(",").forEach((element) => {
+          winningLotto.push(Number(element));
+        });
       }
     );
     MissionUtils.Console.close();
-    winningLotto = winningLotto.map((element) => Number(element));
-    new Lotto(winningLotto);
 
     MissionUtils.Console.readLine(
       "보너스 번호를 입력해주세요. \n >",
       (answer) => {
-        bonusNumber = Number(answer);
+        winningLotto.push(Number(answer));
       }
     );
     MissionUtils.Console.close();
-    this.validBonusNumber(winningLotto, bonusNumber);
-    winningLotto.push(bonusNumber);
+    this.validWinningLotto(winningLotto, winningLotto);
 
     return winningLotto;
   }
@@ -94,8 +96,8 @@ class App {
       throw `[ERROR] 보너스 번호가 숫자형태가 아닙니다.`;
     }
 
-    if (num < 1 || num > 45) {
-      throw `[Error] 번호가 1 ~ 45 사이 숫자가 아닙니다.`;
+    if (numSet.size !== 7) {
+      throw new Error(`[ERROR] 로또 번호가 중복됩니다.`);
     }
 
     if (winingLotto.includes(num)) {
@@ -124,7 +126,7 @@ class App {
   moneyAccordingToRank(rank) {
     let money = 0;
 
-    switch (rank) {
+    switch(rank) {
       case 1:
         money += FIRST_LOTTO;
         break;
@@ -162,6 +164,7 @@ class App {
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${winningInfo[1]}개`);
     MissionUtils.Console.print(`총 수익률은 ${Math.floor(totalProfit * 1000) / 10}%입니다.`);
   }
+
 }
 
 module.exports = App;
