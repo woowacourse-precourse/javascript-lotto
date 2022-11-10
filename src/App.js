@@ -4,6 +4,7 @@ const Validator = require('./Validator');
 class App {
   constructor() {
     this.lottoCount = 0;
+    this.winningNumber = [];
     this.userLottoNumbers = [];
   }
 
@@ -33,6 +34,15 @@ class App {
     Console.print(`${this.lottoCount}개를 구매했습니다.`);
     this.userLottoNumbers.forEach((numbers) => {
       Console.print(numbers);
+    });
+    this.getWinningNumber();
+  }
+
+  getWinningNumber() {
+    Console.print('당첨 번호를 입력해 주세요.');
+    Console.readLine('', (winningNumber) => {
+      Validator.throwErrorIfInValidWinningNumber(winningNumber);
+      this.winningNumber = winningNumber;
     });
   }
 }
