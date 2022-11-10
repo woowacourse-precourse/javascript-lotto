@@ -1,6 +1,7 @@
+const { Console, Random } = require("@woowacourse/mission-utils");
 class Render {
   showHowmanybought(lotto) {
-    Console.print(`${this.lottoNumOfBuying(lotto)}개를 구매했습니다.`);
+    Console.print(`${lotto}개를 구매했습니다.`);
   }
 
   showMadeLotto(madeLotto) {
