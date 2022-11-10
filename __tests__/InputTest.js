@@ -79,7 +79,7 @@ describe('당첨 번호 입력 테스트', () => {
 describe('보너스 번호 입력 테스트', () => {
   test('입력한 보너스 번호가 당첨번호와 중복일 경우 예외가 발생한다.', () => {
     const input = '1';
-    const winningNumber = '1,2,3,4,5,6';
+    const winningNumber = ['1', '2', '3', '4', '5', '6'];
 
     expect(() => {
       DoubleCheckBonus(input, winningNumber);

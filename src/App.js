@@ -28,7 +28,7 @@ class App {
     this.print('당첨 번호를 입력해 주세요.');
     this.readLine('', (input) => {
       if (winningValidation(input)) {
-        this.LottoBuilder.WinningNumber = input;
+        this.LottoBuilder.WinningNumber = input.split(',');
         this.setBonusNumber();
       }
     });
