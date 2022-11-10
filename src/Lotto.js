@@ -7,7 +7,7 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
+    if (this.isNotLottoLength(numbers)) {
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
     }
 
@@ -18,6 +18,10 @@ class Lotto {
     if (this.hasOutOfBoundNumber(numbers)) {
       throw new Error('[ERROR] 로또 번호는 1 이상 45 이하여야 합니다.');
     }
+  }
+
+  isNotLottoLength(numbers) {
+    return numbers.length !== 6;
   }
 
   hasDuplicate(numbers) {
