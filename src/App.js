@@ -12,7 +12,7 @@ const buyLotto = () => {
     });
 }
 
-const setLottoNumber = () => {
+const setLottoNumbers = () => {
   const lottoNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
   lottoNumber.sort(function(a,b) {
     if(a > b) return 1;
@@ -26,7 +26,7 @@ const showLottoNumber = (countLotto, throwInput) => {
   if(throwInput > 0) throw '금액은 1,000원 단위로 입력해주세요';
   Console.print(`${countLotto}개를 구매했습니다.`);
   for(let i = 0; i<countLotto; i++){
-    setLottoNumber()
+    setLottoNumbers()
   }
 }
 
