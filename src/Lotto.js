@@ -23,20 +23,20 @@ class Lotto {
   countMyLottoSheets(payNumber) {
     const countedSheets = payNumber / 1000;
     MissionUtils.Console.print(`${countedSheets}개를 구매했습니다.`);
-    this.generateRandomNumbers()
-    // this.printLotto(countedSheets);
+    // this.generateRandomNumbers()
+    this.printLotto(countedSheets);
   }
   generateRandomNumbers() {
     const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6); //똑같은게 출력됨 리프레시 필요
-    console.log(numbers)
+    MissionUtils.Console.print(numbers);
     // this.printLotto(numbers)
     // this.validate(numbers)
   }
-  // printLotto(countedSheets, numbers){
-  //   for (let i = 0; i < countedSheets; i++) {
-  //       MissionUtils.Console.print(numbers);
-  //   }
-  // }
+  printLotto(countedSheets){
+    for(let i = 0; i < countedSheets ; i++){
+      this.generateRandomNumbers()
+    }
+  }
 
   // validate(numbers) {
 
