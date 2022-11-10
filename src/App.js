@@ -1,4 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
+const Lotto = require("../src/Lotto");
 
 const PROMPT_MONEY = '구입금액을 입력해 주세요.';
 const PROMPT_LOTTO = '당첨 번호를 입력해 주세요.';
@@ -55,6 +56,7 @@ class App {
     Console.readLine(`\n${prompt}\n`, (input) => {
       this.arrayWinLotto = input.split(",");
       this.arrayWinLotto = this.arrayWinLotto.map(number => parseInt(number));
+      new Lotto(this.arrayWinLotto);
       this.bonusInput(PROMPT_BONUS);
     });
   }
