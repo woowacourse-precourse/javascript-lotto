@@ -1,4 +1,5 @@
 const Lotto = require("../src/Lotto");
+const Buyer = require("../src/Buyer")
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
@@ -14,5 +15,19 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
-  // 아래에 추가 테스트 작성 가능
+  test("1000원 단위로 떨어지지 않으면 로또를 구매할 수 없다", () => {
+    const payment = 1400;
+    expect(() => {
+      new new Buyer(payment)();
+    }).toThrow();
+  });
+
+  test("금액은 숫자만 입력이 가능하다.", () => {
+    const payment = "testNumber";
+    expect(() => {
+      new new Buyer(payment)();
+    }).toThrow();
+  });
+
+
 });
