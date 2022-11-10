@@ -6,7 +6,7 @@ class App {
     this.purchaseLottoAmount = 0;
   }
 
-  printPurchaseMessage() {
+  printPurchaseInputMessage() {
     Console.print('구입금액을 입력해 주세요.');
     return this;
   }
@@ -14,21 +14,18 @@ class App {
   printPurchaseOutputMessage() {
     Console.print('');
     Console.print(`${this.purchaseLottoAmount}개를 구매했습니다.`);
-    return this.printPurchaseLottoList();
   }
-
-  printPurchaseLottoList() {}
 
   submitPurchaseAmount() {
     Console.readLine('', input => {
       let purchase = new Purchase(input);
-      this.purchaseLottoAmount = purchase.validateCashInput().LottoCount;
-      return this.printPurchaseOutputMessage;
+      this.purchaseLottoAmount = purchase.LottoCount;
+      return this.printPurchaseOutputMessage();
     });
   }
 
   play() {
-    this.printPurchaseMessage().submitPurchaseAmount();
+    this.printPurchaseInputMessage().submitPurchaseAmount();
   }
 }
 
