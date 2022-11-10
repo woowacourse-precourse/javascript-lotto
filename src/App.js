@@ -50,7 +50,6 @@ class App {
   };
 
   validateIsNotNumber(...numbers) {
-    console.log("numbers", numbers);
     if (numbers.some((number) => /\D/.test(number))) {
       Console.close();
       throw new Error("[ERROR] 숫자만 입력해야 합니다.");
