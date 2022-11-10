@@ -83,19 +83,23 @@ class App {
       }
     );
     MissionUtils.Console.close();
-    this.validBonusNumber(bonusNumber);
+    this.validBonusNumber(winningLotto, bonusNumber);
     winningLotto.push(bonusNumber);
 
     return winningLotto;
   }
 
-  validBonusNumber(num) {
+  validBonusNumber(winingLotto, num) {
     if (isNaN(num)) {
       throw `[ERROR] 보너스 번호가 숫자형태가 아닙니다.`;
     }
 
     if (num < 1 || num > 45) {
       throw `[Error] 번호가 1 ~ 45 사이 숫자가 아닙니다.`;
+    }
+
+    if (winingLotto.includes(num)) {
+      throw `[ERROR] 중복되는 숫자입니다.`
     }
   }
 
@@ -154,15 +158,9 @@ class App {
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${winningInfo[5]}개`);
     MissionUtils.Console.print(`4개 일치 (50,000원) - ${winningInfo[4]}개`);
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${winningInfo[3]}개`);
-    MissionUtils.Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningInfo[2]}개`
-    );
-    MissionUtils.Console.print(
-      `6개 일치 (2,000,000,000원) - ${winningInfo[1]}개`
-    );
-    MissionUtils.Console.print(
-      `총 수익률은 ${Math.floor(totalProfit * 1000) / 10}%입니다.`
-    );
+    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningInfo[2]}개`);
+    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${winningInfo[1]}개`);
+    MissionUtils.Console.print(`총 수익률은 ${Math.floor(totalProfit * 1000) / 10}%입니다.`);
   }
 }
 
