@@ -2,17 +2,32 @@ const Lotto = require("./Lotto");
 const { Console, Random } = require("@woowacourse/mission-utils");
 
 class App {
+  #lottos = [];
+
+  play() {
+    this.startGame();
+  }
+
   startGame() {
     Console.readLine("구입 금액을 입력해주세요.\n", (price) => {
       this.findPriceError(price);
 
-      // Console.print(price);
-      // this.issueLotto(price);
+      this.issueLotto(price);
     });
   }
 
-  play() {
-    this.startGame();
+  issueLotto(price) {
+    const numOfLotto = price / 1000;
+
+    Console.print(`\n${numOfLotto}개를 구매했습니다.`);
+    Array.from({ length: numOfLotto }).forEach(() => {
+      const lotto = Random.pickUniqueNumbersInRange(1, 45, 6).sort(
+        (a, b) => a - b
+      );
+
+      this.#lottos = [...this.#lottos, lotto];
+      Console.print(lotto);
+    });
   }
 
   findPriceError(price) {
