@@ -1,3 +1,5 @@
+const { LOTTO_ERROR_MESSAGE, VARIABLE_LOTTO } = require('../utils/constants');
+
 class Lotto {
   #numbers;
 
@@ -7,7 +9,7 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
+    if (numbers.length !== VARIABLE_LOTTO.len) {
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
     }
 
@@ -21,19 +23,19 @@ class Lotto {
   // TODO: 추가 기능 구현
   #validateOverlap(numbers) {
     if (numbers.length !== new Set(numbers).size) {
-      throw new Error('[ERROR] 로또 번호는 중복이 되어서는 안됩니다.');
+      throw new Error(LOTTO_ERROR_MESSAGE.overlap);
     }
 
     return this;
   }
 
   #isLottoRange(number) {
-    return 1 <= number && number <= 45;
+    return VARIABLE_LOTTO.start <= number && number <= VARIABLE_LOTTO.end;
   }
 
   #validateLottoRange(numbers) {
     if (numbers.filter(this.#isLottoRange).length !== 6) {
-      throw new Error('[ERROR] 로또 번호는 1 ~ 45사이 숫자여야 합니다.');
+      throw new Error(LOTTO_ERROR_MESSAGE.range);
     }
 
     return this;
