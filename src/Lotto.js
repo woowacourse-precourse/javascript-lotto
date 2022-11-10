@@ -19,6 +19,10 @@ class Lotto {
       Console.close();
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
     }
+
+    numbersArray.forEach((number) => {
+      isValidNumber(number);
+    });
   }
 }
 
