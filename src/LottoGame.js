@@ -1,4 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
+const GameUtils = require("./utils/GameUtils");
 const ValidCheckUtils = require("./utils/ValidCheckUtils");
 
 class LottoGame {
@@ -19,6 +20,13 @@ class LottoGame {
 
   purchaseLotto(count) {
     this.lottos = GameUtils.getLottos(count);
+    this.printLottos();
+  }
+
+  printLottos() {
+    this.lottos.forEach((lotto) => {
+      Console.print();
+    });
   }
 }
 

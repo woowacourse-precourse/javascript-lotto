@@ -17,6 +17,10 @@ class Lotto {
   get objectName() {
     return "Lotto";
   }
+
+  printNumbers() {
+    Console.print(this.#numbers);
+  }
   // TODO: 추가 기능 구현
 }
 
