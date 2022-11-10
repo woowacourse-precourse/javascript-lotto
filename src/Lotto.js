@@ -20,7 +20,7 @@ class Lotto {
 
   validateUnique(numbers) {
     const uniqueNumbers = new Set(numbers);
-    if (uniqueNumbers.length !== 6) {
+    if (uniqueNumbers.size !== 6) {
       throw new Error('[ERROR] 로또 번호는 중복없이 6개여야 합니다.');
     }
   }
