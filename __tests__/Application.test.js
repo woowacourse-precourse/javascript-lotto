@@ -69,3 +69,11 @@ describe('구매 개수 파악 함수 테스트', () => {
     }).toThrow(ERROR_TEXT);
   });
 });
+
+describe('수익률 계산 함수 테스트', () => {
+  test('메소드 이름은 "dividendRate"로 정의된다.', () => {
+    const METHOD_NAME = 'dividendRate';
+
+    expect(Application.dividendRate.name).toEqual(METHOD_NAME);
+  });
+});
