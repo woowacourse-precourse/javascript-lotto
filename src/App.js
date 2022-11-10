@@ -11,7 +11,9 @@ class App {
     });
   }
 
-  play() {}
+  play() {
+    this.startGame();
+  }
 
   findPriceError(price) {
     if (
@@ -25,5 +27,8 @@ class App {
     }
   }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
