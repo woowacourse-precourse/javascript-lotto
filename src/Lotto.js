@@ -20,7 +20,6 @@ class Lotto {
 
   compare(winningNumber, bonusNumber) {
     let match = 0;
-    console.log(this.#numbers, winningNumber);
     this.#numbers.forEach((number) => {
       if (winningNumber.includes(number)) {
         match += 1;
@@ -28,7 +27,7 @@ class Lotto {
     });
 
     if (match === 5) {
-      if (user.includes(bonusNumber)) {
+      if (this.#numbers.includes(bonusNumber)) {
         match = 5.5;
       }
     }

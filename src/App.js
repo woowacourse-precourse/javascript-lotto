@@ -4,6 +4,7 @@ const {
   ERROR_MESSAGE,
   UNIT,
   RESULT_MEESAGE,
+  PRIZE_MONEY,
 } = require("./constant/constant");
 const Lotto = require("./Lotto");
 
@@ -19,6 +20,7 @@ class App {
   getMoney() {
     Console.readLine(INPUT_MESSAGE.MONEY, (money) => {
       this.validateMoney(money);
+      this.money = money;
       this.lottos = this.exchangeLotto(+money / UNIT.MONEY);
       this.printLottos(this.lottos);
       this.getWinningNumbers();
@@ -74,7 +76,7 @@ class App {
   getBonusNumber() {
     Console.readLine(INPUT_MESSAGE.BONUS_NUMBER, (number) => {
       this.validateBonusNumber(number);
-      this.bonusNumber = number;
+      this.bonusNumber = +number;
       this.compare(this.lottos, this.winningNumber, this.bonusNumber);
     });
   }
@@ -94,10 +96,11 @@ class App {
       const match = lotto.compare(winningNumber, bonusNumber);
       this.result[match] += 1;
     }
-    this.printResult();
+    const profitRatio = this.caculateProfitRatio();
+    this.printResult(profitRatio);
   }
 
-  printResult() {
+  printResult(profitRatio) {
     Console.print(RESULT_MEESAGE.LOTTERY_RESULT);
     Console.print(
       `3개 일치 (5,000원) - ${this.result[3]}개
@@ -106,6 +109,22 @@ class App {
 5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.result[5.5]}개
 6개 일치 (2,000,000,000원) - ${this.result[6]}개`
     );
+    Console.print(RESULT_MEESAGE.PROFIT.replace("N", profitRatio));
+  }
+
+  getTotalPrize() {
+    let total = 0;
+    for (const [key, value] of Object.entries(this.result)) {
+      if (PRIZE_MONEY[key]) {
+        total += PRIZE_MONEY[key] * value;
+      }
+    }
+    return total;
+  }
+
+  caculateProfitRatio() {
+    const prize = this.getTotalPrize();
+    return (Math.round((prize / this.money) * 1000) / 10).toFixed(1);
   }
 }
 

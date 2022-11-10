@@ -8,14 +8,14 @@ const ERROR_MESSAGE = {
 };
 
 const INPUT_MESSAGE = {
-  MONEY: "구입금액을 입력해 주세요.",
-  WINNING_NUMBER: "당첨 번호를 입력해 주세요.",
-  BONUS_NUMBER: "보너스 번호를 입력해 주세요.",
+  MONEY: "구입금액을 입력해 주세요.\n",
+  WINNING_NUMBER: "당첨 번호를 입력해 주세요.\n",
+  BONUS_NUMBER: "보너스 번호를 입력해 주세요.\n",
 };
 
 const RESULT_MEESAGE = {
   PURCHASE: "N개를 구매했습니다.",
-  LOTTERY_RESULT: "당첨 통계",
+  LOTTERY_RESULT: "당첨 통계\n---",
   PROFIT: "총 수익률은 N%입니다.",
 };
 
@@ -23,4 +23,18 @@ const UNIT = {
   MONEY: 1000,
 };
 
-module.exports = { ERROR_MESSAGE, INPUT_MESSAGE, RESULT_MEESAGE, UNIT };
+const PRIZE_MONEY = {
+  3: 5000,
+  4: 50000,
+  5: 15000000,
+  5.5: 30000000,
+  6: 2000000000,
+};
+
+module.exports = {
+  ERROR_MESSAGE,
+  INPUT_MESSAGE,
+  RESULT_MEESAGE,
+  UNIT,
+  PRIZE_MONEY,
+};
