@@ -13,7 +13,7 @@ function printResult(winArr, yieldpercent){
 }
 
 function printAutoLottos(baselotto){
-  const printBaselotto = String(baselotto).replace(/,/gi, ', ');
+  const printBaselotto = baselotto.join(', ');
   MissionUtils.Console.print(`[${printBaselotto}]`);
 }
 
