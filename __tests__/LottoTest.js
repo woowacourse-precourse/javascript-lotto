@@ -17,6 +17,12 @@ describe("로또 클래스 테스트", () => {
   // 아래에 추가 테스트 작성 가능
   test("toSting", () => {
     const lotte = new Lotto([1, 2, 3, 4, 5, 6]);
-    expect(lotte.toString()).toEqual("[1, 2, 3, 4, 5, 6]")
+    expect(lotte.toString()).toEqual("[1, 2, 3, 4, 5, 6]");
+  });
+
+  test("generateNumObject", () => {
+    const lotte = new Lotto([1, 2, 3, 4, 5, 6]);
+    const numObject = lotte.generateNumObject();
+    expect(Object.keys(numObject).length).toEqual(45);
   });
 });
