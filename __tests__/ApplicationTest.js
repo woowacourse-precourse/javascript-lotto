@@ -84,4 +84,24 @@ describe("로또 테스트", () => {
       app.inputMoney(0);
     }).toThrow("[ERROR] 구입 금액은 1000원 단위 입니다.");
   });
+
+  describe("당첨번호 Test", () => {
+    test("쉼표(,)를 기준으로 6자리가 아닌경우 예외처리", () => {
+      mockQuestions(["1000", "8, 21, 23, 41, 42 43"]);
+      mockRandoms([[8, 21, 23, 41, 42, 43]]);
+      expect(() => {
+        const app = new App();
+        app.play();
+      }).toThrow("[ERROR] 쉼표(,)를 기준으로 6자리를 입력해주세요");
+    });
+
+    test("중복된 번호가 있을경우 예외처리", () => {
+      mockQuestions(["1000", "8, 21, 23, 41, 42, 42"]);
+      mockRandoms([[8, 21, 23, 41, 42, 43]]);
+      expect(() => {
+        const app = new App();
+        app.play();
+      }).toThrow("[ERROR] 중복없이 숫자를 입력해주세요.");
+    });
+  });
 });
