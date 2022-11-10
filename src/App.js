@@ -1,17 +1,25 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 
+const WINNING_PRICE = {
+  first: 2000000000,
+  second: 30000000,
+  third: 1500000,
+  fourth: 50000,
+  fifth: 5000,
+};
 class App {
   lottoAmount;
   winningLotteryNumbers;
   bonusNumber;
   lottos = [];
+  profit;
   result = {
     first: 0,
-    second: 1,
-    third: 2,
-    fourth: 3,
-    fifth: 4,
+    second: 0,
+    third: 0,
+    fourth: 0,
+    fifth: 0,
   };
 
   play() {
@@ -53,6 +61,17 @@ class App {
     });
   }
 
+  computeProfit() {
+    const totalWinningPrice =
+      5000 * this.result.fifth +
+      50000 * this.result.fourth +
+      1500000 * this.result.third +
+      30000000 * this.result.second +
+      2000000000 * this.result.first;
+    const purchaseAmount = this.lottoAmount * 1000;
+    this.profit = Math.round((totalWinningPrice / purchaseAmount) * 100) / 100;
+  }
+
   printResult() {
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.result.fifth}개`);
     MissionUtils.Console.print(`4개 일치 (50,000원) - ${this.result.fourth}개`);
@@ -65,6 +84,7 @@ class App {
     MissionUtils.Console.print(
       `6개 일치 (2,000,000,000원) - ${this.result.first}개`,
     );
+    MissionUtils.Console.print(`총 수익률은 ${this.profit}입니다.`);
   }
 }
 
