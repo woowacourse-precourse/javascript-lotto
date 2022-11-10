@@ -1,4 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
+const Validation = require('./utils/validation');
 class View {
   constructor(controller) {
     this.controller = controller;
@@ -6,6 +7,7 @@ class View {
 
   getAmountInput() {
     Console.readLine('구입금액을 입력해 주세요', (answer) => {
+      Validation.amountInputValidate(answer);
       this.controller.generateLotto(answer);
     });
   }
@@ -17,6 +19,7 @@ class View {
 
   winningNumber() {
     Console.readLine('당첨 번호를 입력해 주세요.', (answer) => {
+      Validation.winningNumberValidate(answer);
       this.controller.enterWinningNumber(answer.split(','));
     });
   }
