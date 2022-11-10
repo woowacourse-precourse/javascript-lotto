@@ -6,7 +6,7 @@ class LottoGenerator {
     return LOTTONUMBER.sort((x, y) => x - y);
   }
 
-  checkUserMoney() {
+  generateLotto() {
     //문자열 상수화 필요
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (userInput) => {
       const TOTAL_LOTTO_GAMES = parseInt(userInput / 1000);

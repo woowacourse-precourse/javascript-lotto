@@ -2,7 +2,7 @@ const LottoGenerator = require("./issueLotto");
 
 class LottoGameHandler {
   gameStart() {
-    LottoGenerator.checkUserMoney();
+    LottoGenerator.generateLotto();
   }
 }
 
