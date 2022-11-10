@@ -2,7 +2,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 
 class Console {
   static ASK_PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.\n";
-  static PURCHASE_AMOUNT_MESSAGE = "개를 구매했습니다.";
+  static LOTTO_COUNT = "개를 구매했습니다.";
 
   static askAndGetUserInput(question, callback) {
     MissionUtils.Console.readLine(question, callback);

@@ -7,7 +7,7 @@ class App {
       Validation.checkPurchaseAmount(purchaseAmount);
 
       const lottoCount = Console.calculateLottoCountWithPurchaseAmount(purchaseAmount);
-      Console.print(`\n${lottoCount}${Console.PURCHASE_AMOUNT_MESSAGE}`);
+      Console.print(`\n${lottoCount}${Console.LOTTO_COUNT}`);
     });
   }
 }
