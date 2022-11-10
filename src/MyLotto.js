@@ -42,8 +42,9 @@ class MyLotto {
     return numbers;
   }
 
-  getMyLottoNums() {
+  getMyLottoes() {
     // 로또 번호 반환
+    return this.#myLottoes;
   }
 }
 
