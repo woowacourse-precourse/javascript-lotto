@@ -7,6 +7,8 @@ class LottoGame {
 
   getUserMoney() {
     Console.readLine("구매금액을 입력해 주세요", (money) => {
+      this.userInputMoney = money;
+
       this.checkUserMoney(money);
 
       this.showlottoNumOfBuying(money);
@@ -125,8 +127,6 @@ class LottoGame {
       this.totalWinningNum = [...this.winningNum, this.bonusNum];
 
       //만약 bonuseNum 이 있어? 그러면 따로 계산
-      Console.print(this.userLotto);
-      Console.print(this.totalWinningNum);
 
       const totalCorrect = this.findCorrectNum(); //총 맞춘갯수
 
@@ -140,6 +140,8 @@ class LottoGame {
       );
 
       this.render();
+
+      Console.print(`총 수익률은 ${this.resultOfBenefit()}%입니다.`);
     });
   }
 
@@ -220,27 +222,45 @@ class LottoGame {
   }
 
   render() {
+    this.lineBreak();
+    Console.print(`---`);
+    this.lineBreak();
+    let benefit = 0;
     for (let i = 0; i < 5; i++) {
       switch (this.winningArr[i][0]) {
         case "5등":
+          benefit = benefit + 5000 * this.winningArr[i][1];
           Console.print(`3개 일치 (5,000원) - ${this.winningArr[i][1]}개`);
           break;
         case "4등":
+          benefit = benefit + 50000 * this.winningArr[i][1];
           Console.print(`4개 일치 (50,000원) - ${this.winningArr[i][1]}개`);
           break;
         case "3등":
+          benefit = benefit + 1500000 * this.winningArr[i][1];
           Console.print(`5개 일치 (1,500,000원) - ${this.winningArr[i][1]}개`);
-          break개;
+          break;
         case "2등":
+          benefit = benefit + 30000000 * this.winningArr[i][1];
           Console.print(`5개 일치 (30,000,000원) - ${this.winningArr[i][1]}개`);
-          break개;
+          break;
         case "1등":
+          benefit = benefit + 200000000 * this.winningArr[i][1];
           Console.print(
             `6개 일치 (2,000,000,000원) - ${this.winningArr[i][1]}개`
           );
           break;
       }
     }
+
+    this.benefit = benefit;
+  }
+
+  resultOfBenefit() {
+    const resultOfBenefit =
+      (parseInt(this.benefit) / parseInt(this.userInputMoney)) * 100;
+
+    return resultOfBenefit.toFixed(1);
   }
 }
 
