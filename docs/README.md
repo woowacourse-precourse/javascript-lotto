@@ -72,4 +72,4 @@ class App{
 
 ### :file_folder: 정리된 기능 리스트
 
-![feature-list](./img2.png)
+![feature-list](./feature-list.png)
