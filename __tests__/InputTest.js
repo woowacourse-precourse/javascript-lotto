@@ -60,4 +60,12 @@ describe('당첨 번호 입력 테스트', () => {
       checkWinningRest(input);
     }).toThrow('[ERROR]');
   });
+
+  test('입력한 당첨 번호가 6개가 아닐경우 예외가 발생한다.', () => {
+    const input = '1,2,3,4,5,6,7';
+
+    expect(() => {
+      checkWinningRest(input);
+    }).toThrow('[ERROR]');
+  });
 });
