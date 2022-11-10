@@ -40,6 +40,8 @@ class App {
 
   makeLotto(purchaedLottoNum) {
     this.madeLotto = calculationMoney.makeLotto(purchaedLottoNum);
+
+    render.showMadeLotto(this.madeLotto);
   }
 }
 
