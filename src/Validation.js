@@ -21,10 +21,10 @@ class Validation {
   }
 
   bonusNumber(number) {
-    const ONLY_ONE_NUMBER = '[ERROR] 1개의 숫자만 입력해주세요.';
+    const ONLY_ONE_NUMBER_MESSAGE = '[ERROR] 1개의 숫자만 입력해주세요.';
     const NOT_DUPLICATE_MESSAGE = '[ERROR] 당첨 번호와 중복되지 않는 1개의 숫자만 입력해주세요.';
 
-    if (number.length !== 1) throw new Error(ONLY_ONE_NUMBER);
+    if (number.length !== 1) throw new Error(ONLY_ONE_NUMBER_MESSAGE);
     if (this.winningNumbers.includes(number[0])) throw new Error(NOT_DUPLICATE_MESSAGE);
 
     number = Number(number);
