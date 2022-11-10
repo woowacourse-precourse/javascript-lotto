@@ -12,6 +12,13 @@ class CreateRandomLotto {
             }
         }
     }
+    
+    randomNumberSort(){
+        this.randomLotto.sort((a,b) => {
+            return a - b;
+        })
+    }
 }
+
 
 module.exports = CreateRandomLotto;
