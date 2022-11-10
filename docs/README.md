@@ -25,5 +25,18 @@
         [ ] 1 ~ 45 사이의 숫자 범위이다.
         [ ] 당첨번호와 보너스 번호는 서로 다른 숫자로 입력되어야 한다.
         [ ] 당첨번호를 쉼표를 기준으로 입력되어야 한다. 입력예시(1,2,3,4,5,6)
-[ ] 결과출력
-    [ ]
+[ ] 비교하기
+    [ ] 발행된 로또 번호와 당첨 번호 비교하기
+        [ ] 3개가 일치하는 경우
+        [ ] 4개가 일치하는 경우
+        [ ] 5개가 일차하는 경우
+            [ ] 5개가 일치함과 동시에 보너스 볼이 일치하는 경우
+        [ ] 6개가 일치하는 경우
+    [ ] 수익률 계산하기
+        [ ] 총 수익률 계산하기
+
+## 참고사항
+[JavaScript 코드 컨벤션](https://github.com/woowacourse/woowacourse-docs/tree/main/styleguide/javascript)
+[커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153)
+[MissionUtils 라이브러리](https://github.com/woowacourse-projects/javascript-mission-utils#mission-utils)
+[Airbnb 자바스크립트 스타일 가이드](https://github.com/airbnb/javascript)
