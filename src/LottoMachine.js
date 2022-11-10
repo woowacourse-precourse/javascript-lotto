@@ -28,10 +28,10 @@ class LottoMachine {
   }
 
   printEachTicket(tickets) {
-    const formatedTickets = tickets.map((ticket) =>
+    const formattedTickets = tickets.map((ticket) =>
       this.makePrintArrayFormat(ticket)
     );
-    formatedTickets.forEach((ticket) => Console.print(ticket));
+    formattedTickets.forEach((ticket) => Console.print(ticket));
   }
 
   printResultIssuedLottoTickets(number, tickets) {
