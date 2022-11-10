@@ -1,3 +1,4 @@
+const Lotto = require('../Lotto');
 const LottoGenerator = require('./LottoGenerator');
 
 class LottoGame {
@@ -20,6 +21,9 @@ class LottoGame {
     const lotto = this.lottoGenerator.getTimes(money / 1000);
     this.user.setLotto(lotto);
     this.outputConsole.userLotto(this.user.getLotto());
+    this.inputConsole.winningNumbers((numbers) => {
+      const lotto = new Lotto(numbers.split(','));
+    });
   }
 }
 
