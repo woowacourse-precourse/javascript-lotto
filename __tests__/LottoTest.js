@@ -15,4 +15,10 @@ describe("로또 클래스 테스트", () => {
   });
 
   // 아래에 추가 테스트 작성 가능
+  test("로또 번호는 정렬 되어야 한다", () => {
+    const randomNumber = [1, 3, 2, 6, 7, 5];
+    const lotto = new Lotto(randomNumber);
+
+    expect(lotto.sortLotto(randomNumber)).toEqual([1, 2, 3, 5, 6, 7]);
+  });
 });
