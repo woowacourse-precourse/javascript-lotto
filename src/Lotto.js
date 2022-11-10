@@ -1,12 +1,17 @@
 const lottoValidation = require('./validation/lottoValidation');
 
 class LottoBuilder {
-  constructor() {}
+  constructor() {
+    this.lottoList = [];
+    this.WinningNumber = [];
+    this.bonusNumber = null;
+  }
 
   countAmountLotto(input) {
     return Number(input.slice(0, input.length - 3));
   }
 }
+
 class Lotto {
   #numbers;
 
