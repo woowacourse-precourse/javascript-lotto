@@ -1,5 +1,5 @@
 const { MissionUtils } = require("@woowacourse/mission-utils");
-const {inputAmountMoney, inputWinNumber, inputBonusNumber} = require("./Input.js");
+const {inputAmountMoney, inputWinNumber, inputLottoNumber} = require("./Input.js");
 
 
 const createLotto =()=>{
@@ -9,5 +9,11 @@ const createLotto =()=>{
         MissionUtils.Console.print(inputWinNumber());
     }
     return lottoArray;
+}
+const calWinning= ()=> {
+    let result=[];
+    for(let count=0;count<lottoArray.size();count++){
+        result.push(JSON.stringify(lottoArray)===JSON.stringify(inputLottoNumber));
+    }
 }
 module.exports=createLotto;
