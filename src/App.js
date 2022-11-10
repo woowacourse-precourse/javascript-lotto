@@ -49,6 +49,7 @@ class App {
     Console.readLine('보너스 번호를 입력해 주세요.', (bonus) => {
       this.bonus = Number(bonus);
       this.validateBonusNumber(this.bonus);
+      const result = getResult();
     });
   }
 
@@ -85,6 +86,15 @@ class App {
       return 5;
     }
     return 0;
+  }
+
+  getResult() {
+    const result = new Array(6).fill(0);
+    this.lottoBundle.map((lotto) => {
+      const ranking = this.getWinningRanking(lotto);
+      result[ranking] += 1;
+    });
+    return result.slice(1, 6);
   }
 }
 
