@@ -24,11 +24,6 @@ class Purchase {
     this.#lottoCount = this.#cash / 1000;
     return this.#lottoCount;
   }
-
-  purchaseMessage() {
-    Console.print('');
-    Console.print(`${this.#lottoCount}개를 구매했습니다.`);
-  }
 }
 
 module.exports = Purchase;
