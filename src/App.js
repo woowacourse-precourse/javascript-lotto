@@ -1,6 +1,7 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-
+const Seed = require("../src/Seed");
 class App {
+  seed;
   constructor() {}
   play() {
     this.getInput("구입금액을 입력해 주세요.\n", this.getSeedMoney);
@@ -11,7 +12,8 @@ class App {
   };
 
   getSeedMoney = (input) => {
-    const seedMoney = input / 1000;
+    this.seed = new Seed(Number(input));
+    console.log(this.seed);
   };
 }
 
