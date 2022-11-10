@@ -7,7 +7,6 @@ class App {
       const buyLotto = new BuyLotto(price);
       MissionUtils.Console.print(`${buyLotto.nTimes()}개를 구매했습니다.`);
     });
-
     MissionUtils.Console.close();
   }
 }
