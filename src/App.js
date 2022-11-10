@@ -33,10 +33,11 @@ class App {
   }
 
   printAllLotto() {
-    const publishResult = this.publish.publishResult;
-    for (let numberofLotto in publishResult) {
-      Console.print(publishResult[numberofLotto]);
+    this.publishResult = this.publishResult.Result;
+    for (let numberofLotto in this.publishResult) {
+      Console.print(this.publishResult[numberofLotto]);
     }
+    this.enterWinningNumber();
   }
 
   enterWinningNumber() {
@@ -55,11 +56,11 @@ class App {
 
   enterBonusNumber() {
     Console.readLine('보너스 번호를 입력해 주세요.', (bonusNumber) => {
-      this.lotto.bonusExecption(bonusNumber);
+      this.bonusNumber = this.lotto.bonusExecption(bonusNumber);
     });
   }
 }
 
 const app = new App();
-app.enterWinningNumber();
+app.play();
 module.exports = App;

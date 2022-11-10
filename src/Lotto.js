@@ -20,10 +20,12 @@ class Lotto {
   bonusExecption(Number) {
     console.log('들어왔니');
     const ONLY_NUMBER = /^[1-45]+$/;
-    if (!ONLY_NUMBER.test(parseInt(Number)))
+    if (!ONLY_NUMBER.test(Number))
       throw new Error('[ERROR] 숫자를 입력해주세요.');
-    console.log(Number);
+    this.bonusNumber = parseInt(Number);
   }
+
+  compare() {}
 }
 
 module.exports = Lotto;
