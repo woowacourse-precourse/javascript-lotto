@@ -1,11 +1,13 @@
 const Store = require('./Store');
 const Lotto = require('./Lotto');
 const Bonus = require('./Bonus');
+const View = require('./View');
 const { Console } = require('@woowacourse/mission-utils');
 const { createLottoNumbers, convertWinningNumbers } = require('./utils/lottoUtils');
 class App {
   play() {
     this.buyLotto();
+    this.view = new View();
     this.lottoBundle = [];
     this.winningNumbers = [];
     this.bonus = 0;
@@ -17,7 +19,7 @@ class App {
       const store = new Store(money);
       const amount = money / 1000;
       this.lottoBundle = this.getLotto(amount);
-      this.printBoughtLotto(amount);
+      this.view.printBoughtLotto(amount, this.lottoBundle);
       this.createWinningNumbers();
     });
   }
@@ -29,13 +31,6 @@ class App {
       lottoBundle.push(lotto);
     }
     return lottoBundle;
-  }
-
-  printBoughtLotto(amount) {
-    Console.print(amount + '개를 구매했습니다.');
-    for (const lotto of this.lottoBundle) {
-      Console.print('[' + lotto + ']');
-    }
   }
 
   createWinningNumbers() {
@@ -51,7 +46,7 @@ class App {
       this.bonus = Number(number);
       new Bonus(this.bonus, this.winningNumbers);
       const result = this.getResult();
-      this.printResult(result);
+      this.view.printResult(result);
       Console.close();
     });
   }
@@ -84,14 +79,6 @@ class App {
       result[ranking] += 1;
     });
     return result.slice(1, 6).reverse();
-  }
-
-  printResult(result) {
-    Console.print('당첨 통계');
-    Console.print('---');
-    result.map((count, idx) => {
-      Console.print(`${idx + 3}개 일치 (5,000원) - ` + count + '개');
-    });
   }
 }
 
