@@ -32,6 +32,8 @@ Lotto.rank
 
 ### 1. 발행한 로또 출력
 
+App.printLottos
+
 ### 2. 당첨 내역 출력
 
 ### 3. 수익률 출력

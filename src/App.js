@@ -17,6 +17,7 @@ class App {
     Console.readLine('', (input) => {
       const pay = parseInt(input);
       this.#calculator = new Calculator(pay);
+
       this.buyLottos();
     });
   }
@@ -27,7 +28,16 @@ class App {
       const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
       const lotto = new Lotto(numbers.sort((a, b) => a - b));
       this.#lottos.push(lotto);
+
+      this.printLottos();
     }
+  }
+
+  printLottos() {
+    Console.print(`${this.#lottos.length}개를 구매했습니다.`);
+    this.#lottos.forEach((lotto) => {
+      Console.print(lotto.getNumbers());
+    });
   }
 }
 

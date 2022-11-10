@@ -12,6 +12,10 @@ class Lotto {
     }
   }
 
+  getNumbers() {
+    return this.#numbers;
+  }
+
   rank(winNumbers, bonusNumber) {
     let count = 0;
     winNumbers.forEach((winNumber) => {
