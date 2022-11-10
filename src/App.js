@@ -42,6 +42,14 @@ class App {
     this.madeLotto = calculationMoney.makeLotto(purchaedLottoNum);
 
     render.showMadeLotto(this.madeLotto);
+
+    this.lineBreak();
+
+    this.getWinningNum();
+  }
+
+  getWinningNum() {
+    Console.readLine("당첨 번호를 입력해 주세요.", (winningNum) => {});
   }
 }
 
