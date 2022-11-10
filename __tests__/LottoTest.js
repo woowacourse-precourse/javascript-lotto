@@ -25,4 +25,13 @@ describe("로또 클래스 테스트", () => {
     const numObject = lotte.generateNumObject();
     expect(Object.keys(numObject).length).toEqual(45);
   });
+
+  test("countingWin", () => {
+    const lotte1 = new Lotto([1, 2, 3, 4, 5, 6]);
+    const lotte2 = new Lotto([1, 2, 3, 4, 5, 7]);
+    expect(lotte1.countingWin([1, 2, 3, 4, 5, 6])).toEqual(6);
+    expect(lotte2.countingWin([1, 2, 3, 4, 5, 6])).toEqual(5);
+  })
+
+  
 });
