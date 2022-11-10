@@ -7,6 +7,9 @@ const RANK = Object.freeze({
   NOPRIZE: 'NOPRIZE',
 });
 
+const PRICE_OF_LOTTO = 1000;
+
 module.exports = {
   RANK,
+  PRICE_OF_LOTTO,
 };
