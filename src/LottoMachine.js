@@ -29,12 +29,8 @@ class LottoMachine {
   }
 
   generateLottos() {
-    const lottos = [];
     const lottosCount = this.#money / 1000;
-    for(let count = 0; count < lottosCount; count++) {
-      lottos.push(this.generateLotto);
-    }
-    return lottos;
+    return Array.from({length:lottosCount}, ()=>this.generateLotto());
   }
   
 }
