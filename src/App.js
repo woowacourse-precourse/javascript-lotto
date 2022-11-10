@@ -7,6 +7,31 @@ class App {
     this.bonusNumber = null;
   }
 
+  generateRankObject() {
+    let rankObject = {};
+    for (let i = 0; i < 6; i++) {
+      rankObject[i] = 0;
+    }
+    return rankObject;
+  }
+
+  countingRank(rankObject, winArr) {
+    winArr.forEach((number) => {
+      rankObject[number]++;
+    });
+  }
+
+  earningRate(rankObject) {
+    let prizeMoney = 0;
+    for (let i = 1; i <= 5; i++) {
+      if (rankObject[i] != 0) prizeMoney += prizeObject[i] * rankObject[i];
+    }
+    wConsole.print(
+      `총 수익률은 ${((prizeMoney / this.money) * 100).toFixed(1)}%입니다.`
+    );
+    wConsole.close();
+  }
+
   result() {
     const rankObject = this.generateRankObject();
     const winArr = this.lottes.map((lotte) =>
