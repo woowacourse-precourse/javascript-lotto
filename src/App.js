@@ -1,4 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
+const { checkMoneyValidation } = require('./utils/validations');
 
 class App {
   play() {
@@ -6,8 +7,8 @@ class App {
   }
 
   buyLotteryTicket() {
-    Console.readLine('구입금액을 입력해 주세요.', money => {
-      Console.print(money);
+    Console.readLine('구입금액을 입력해 주세요.', (moneyInput) => {
+      checkMoneyValidation(moneyInput);
       Console.close();
     });
   }
