@@ -1,41 +1,31 @@
+const LottoNumbersValidator = require('../LottoNumbersValidator/LottoNumbersValidator');
+const LottoResult = require('../LottoResult/LottoResult');
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    Lotto.#validate(numbers);
     this.#numbers = numbers;
   }
 
-  validate(numbers) {
-    this.hasLength(numbers);
-    this.hasDuplicate(numbers);
-    this.isInRange(numbers);
+  static #validate(numbers) {
+    LottoNumbersValidator.execute(numbers);
   }
 
-  hasLength(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
-    }
-  }
-
-  hasDuplicate(numbers) {
-    const DUPLICATE_INDEX = numbers.findIndex(
-      (number, index, array) => array.indexOf(number) !== index
+  compareTo(winningNumbers, bonusNumber) {
+    return new LottoResult(
+      this.#getSameNumberCount(winningNumbers),
+      this.#hasBonusNumber(bonusNumber)
     );
-
-    if (DUPLICATE_INDEX !== -1) {
-      throw new Error('[ERROR] 로또 번호는 중복이 없어야 합니다.');
-    }
   }
 
-  isInRange(numbers) {
-    const MINIMUM = 1;
-    const MAXIMUM = 45;
-    const HAS_OUT_OF_RANGE = numbers.some((number) => number < MINIMUM || number > MAXIMUM);
+  #getSameNumberCount(winningNumbers) {
+    return winningNumbers.filter((winningNumber) => this.#numbers.includes(winningNumber)).length;
+  }
 
-    if (HAS_OUT_OF_RANGE) {
-      throw new Error('[ERROR] 로또 번호는 1부터 45까지의 수만 가능합니다.');
-    }
+  #hasBonusNumber(bonusNumber) {
+    return this.#numbers.includes(bonusNumber);
   }
 }
 
