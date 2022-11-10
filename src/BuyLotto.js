@@ -8,7 +8,7 @@ class BuyLotto {
       if (AMOUNT % LOTTO.PRICE === 0) {
         this.printUserLotto(AMOUNT / LOTTO.PRICE);
       } else {
-        throw new Error(ERROR.INCORRECT_AMOUNT);
+        throw new Error(ERROR.AMOUNT);
       }
     });
   }

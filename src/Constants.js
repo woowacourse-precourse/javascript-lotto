@@ -10,7 +10,8 @@ const MESSAGE = {
 };
 
 const ERROR = {
-  INCORRECT_AMOUNT: '[ERROR] 1,000원 단위로만 구매할 수 있습니다.',
+  AMOUNT: `[ERROR] ${LOTTO.PRICE}원 단위로만 구매할 수 있습니다.`,
+  SELECT: `[ERROR] 로또 번호는 ${LOTTO.NUMBER_SELECT}개여야 합니다.`,
 };
 
 module.exports = { LOTTO, MESSAGE, ERROR };
