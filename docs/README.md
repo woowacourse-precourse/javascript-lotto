@@ -38,7 +38,7 @@
 
 - [] 당첨 번호 입력
     - [x] 당첨 번호 입력 안내를 출력한다 "당첨 번호를 입력해 주세요."  print // selectWinNumbers()
-        - [] 입력된 당첨 번호를 출력한다 readline // inputWinNumbers()
+        - [x] 입력된 당첨 번호를 출력한다 readline // inputWinNumbers()
     - [] 보너스 번호 입력 안내를 출력한다 "보너스 번호를 입력해 주세요." print // selectBonusNumber()
         - [] 입력된 보너스 번호를 출력한다 readline // inputBonusNumber()
 
