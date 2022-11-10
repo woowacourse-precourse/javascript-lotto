@@ -15,8 +15,8 @@ class App {
   getMoney() {
     Console.readLine(INPUT_MESSAGE.MONEY, (money) => {
       this.validateMoney(money);
-      const lottos = this.exchangeLotto(+money / UNIT.MONEY);
-      this.printLottos(lottos);
+      this.lottos = this.exchangeLotto(+money / UNIT.MONEY);
+      this.printLottos(this.lottos);
       this.getWinningNumbers();
     });
   }
@@ -47,8 +47,9 @@ class App {
 
   getWinningNumbers() {
     Console.readLine(INPUT_MESSAGE.WINNING_NUMBER, (numbers) => {
-      const winningNumbers = numbers.split(",");
+      this.winningNumbers = numbers.split(",");
       this.validateWinningNumbers(winningNumbers);
+      this.getBonusNumber();
     });
   }
 
@@ -65,7 +66,20 @@ class App {
       throw new Error(ERROR_MESSAGE.HAS_REPEAT);
     }
   }
+
+  getBonusNumber() {
+    Console.readLine(INPUT_MESSAGE.BONUS_NUMBER, (number) => {
+      this.validateBonusNumber(number);
+      this.bonusNumber = number;
+    });
+  }
+
+  validateBonusNumber(number) {
+    if (number < 1 || number > 45) {
+      throw new Error(ERROR_MESSAGE.NOT_IN_RANGE);
+    }
+  }
 }
 
-// new App().play();
+new App().play();
 module.exports = App;
