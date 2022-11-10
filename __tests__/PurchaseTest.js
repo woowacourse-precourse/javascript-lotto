@@ -1,5 +1,4 @@
-const Machine = require('../src/Machine');
-const { getLogSpy, mockQuestions } = require('./ApplicationTest');
+const { mockQuestions } = require('./ApplicationTest');
 const App = require('../src/App');
 
 describe('사용자의 금액 투입 테스트', () => {
