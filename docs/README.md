@@ -45,6 +45,7 @@
 - [ ] `사용자 입력 유효성 검사 테스트`
 
   - Validation.hasOnlyNumber 메서드 테스트 완료
+  - Validation.isDivisibleByLottoPrice 메서드 테스트 완료
 
 - [ ] `Application 테스트 완료`
 

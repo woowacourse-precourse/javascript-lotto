@@ -28,3 +28,23 @@ describe("Validation.hasOnlyNumber", () => {
     expect(result).toBe(true);
   });
 });
+
+describe("Validation.isDivisibleByLottoPrice", () => {
+  test("input이 로또가격으로 나누어 떨어지지 않는 경우, false를 반환해야 한다.", () => {
+    // given
+    const input = "8800";
+    // when
+    const result = Validation.isDivisibleByLottoPrice(input);
+    // then
+    expect(result).toBe(false);
+  });
+
+  test("input이 로또가격으로 나누어 떨어지는 경우, true를 반환해야 한다.", () => {
+    // given
+    const input = "8000";
+    // when
+    const result = Validation.isDivisibleByLottoPrice(input);
+    // then
+    expect(result).toBe(true);
+  });
+});
