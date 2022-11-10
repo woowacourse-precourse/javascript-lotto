@@ -4,6 +4,8 @@
 
 ### 1. 구입 금액 입력
 
+App.recordPay
+
 ### 2. 당첨 번호 입력
 
 ### 3. 보너스 번호 입력
@@ -12,13 +14,13 @@
 
 ### 1. 구입 금액으로 로또 개수 계산
 
-Calculator.calcBuyCount()
+Calculator.calcBuyCount
 
 ### 2. 개수만큼 로또 구입
 
 ### 3. 로또와 입력을 비교해서 순위를 계산
 
-Lotto.rank()
+Lotto.rank
 
 ### 4. 당첨 금액을 계산
 
