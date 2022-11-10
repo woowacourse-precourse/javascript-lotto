@@ -8,10 +8,22 @@ class Validation {
       throw new Error('[ERROR] 금액을 잘 못 입력하셨습니다');
     }
     input.split('').forEach((number) => {
-      if (number.charCodeAt() >= 48 && number.charCodeAt() <= 57) {
+      if (Number(number) >= 1 && Number(number) <= 9) {
         return;
       }
       throw new Error('[ERROR] 1~9 숫자만 입력가능합니다');
+    });
+  }
+
+  static winningNumberValidate(input) {
+    if (input.split(',').length !== 6) {
+      throw new Error('[ERROR] 1~45 서로다른 6개 수를 입력해주세요');
+    }
+    input.forEach((number) => {
+      if (Number(number) >= 1 && Number(number) <= 45) {
+        return;
+      }
+      throw new Error('[ERROR] 1~45의 숫자만 입력가능합니다');
     });
   }
 }
