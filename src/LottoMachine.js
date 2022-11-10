@@ -7,10 +7,10 @@ class LottoMachine {
   }
 
   validate(money) {
-    if(isNaN(money)) {
+    if(!!Number(money)) {
       throw new Error("[ERROR] 금액은 숫자만 입력해야 합니다.");
     }
-    if(money % 1000 !== 0 ){
+    if(Number(money) % 1000 !== 0 ){
       throw new Error("[ERROR] 금액은 1,000원 단위만 입력 가능합니다.")
     }
   }
