@@ -17,6 +17,6 @@ describe("결과 테스트", () => {
 
     result.getRanking();
 
-    expect(result.fifth).toBe(1);
+    expect(result.rank).toStrictEqual([0, 0, 0, 0, 1]);
   });
 });
