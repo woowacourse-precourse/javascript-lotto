@@ -2,7 +2,8 @@ const { Random } = require('@woowacourse/mission-utils');
 
 class LottoGenerator {
   getNumbers() {
-    return Random.pickUniqueNumbersInRange(1, 45, 6);
+    const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+    return this.sortDescending(numbers);
   }
 
   getTimes(number) {
@@ -13,6 +14,10 @@ class LottoGenerator {
       times -= 1;
     }
     return lotto;
+  }
+
+  sortDescending(numbers) {
+    return numbers.sort((a, b) => (a > b ? 1 : -1));
   }
 }
 
