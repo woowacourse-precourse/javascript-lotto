@@ -91,3 +91,11 @@ describe('수익률 계산 함수 테스트', () => {
     }).not.toThrow(NUMBER_EXCEPTION_TEXT);
   });
 });
+
+describe('오름차순 정렬 함수 테스트', () => {
+  test('메소드 이름은 "sortAscending"로 정의된다.', () => {
+    const METHOD_NAME = 'sortAscending';
+
+    expect(Application.sortAscending.name).toEqual(METHOD_NAME);
+  });
+});
