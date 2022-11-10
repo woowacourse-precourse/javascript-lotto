@@ -1,14 +1,18 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const { MESSAGE } = require('./constants/constant');
+const Lotto = require('./Lotto');
 class App {
   constructor() {
     this.count = 0;
     this.lotto = [];
+    this.winningNumber = [];
+    this.money = 0;
   }
   play() {
-    Console.readLine(MESSAGE.INPUT_MONEY, (inputMoney) => {
-      this.isValidInputMoney(inputMoney);
-      this.count = this.countLotto(inputMoney);
+    Console.readLine(MESSAGE.INPUT_MONEY, (input) => {
+      this.isValidInputMoney(input);
+      this.money = input;
+      this.count = this.countLotto(this.money);
       Console.print(`${this.count}개를 구매했습니다.`);
       this.getLotto(this.count);
       this.printLotto();
@@ -42,6 +46,9 @@ class App {
       lottoArr.sort((a, b) => a - b);
       Console.print(lottoArr);
     });
+  }
+  getWinningNumber() {
+    Console.readLine(MESSAGE.INPUT_GOAL, (input) => {});
   }
 }
 let app = new App();
