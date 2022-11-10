@@ -1,3 +1,5 @@
+const { Console } = require("@woowacourse/mission-utils");
+
 class Lotto {
   #numbers;
 
@@ -12,7 +14,18 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
+  alertHowManyBought(count) {
+    Console.print(`${count}개를 구매했습니다.`);
+  }
+
+  alertNumberOfPurchases(pickedNumbers) {
+    Console.print(pickedNumbers.join("\n"));
+  }
+
+  alertPurchaseResult(count, pickedNumbers) {
+    this.alertHowManyBought(count);
+    this.alertNumberOfPurchases(pickedNumbers);
+  }
 }
 
 module.exports = Lotto;
