@@ -11,7 +11,15 @@ class Lotto {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
   }
-
+  checkDuplicateNumber(lottoNumberArr) {
+    let notDuplicateArr = [];
+    for (let i = 0; i < lottoNumberArr.length; i++) {
+      if (notDuplicateArr.indexOf(lottoNumberArr[i]) === -1)
+        notDuplicateArr.push(lottoNumberArr[i]);
+      else return false;
+    }
+    return true;
+  }
   // TODO: 추가 기능 구현
 }
 
