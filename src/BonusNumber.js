@@ -4,6 +4,7 @@ class BonusNumber {
     this.checkOnlyNumber(bonus);
     this.checkNumberRanges(bonus);
     this.checkDuplicateWithWinningNumber(bonus);
+    this.bonusNumber = Number(bonus);
   }
 
   checkOnlyNumber(bonus) {
