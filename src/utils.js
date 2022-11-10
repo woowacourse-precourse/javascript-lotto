@@ -1,11 +1,16 @@
-const { LOTTO } = require('./constructor.js');
-const { Random, Console } = require("@woowacourse/mission-utils");
+const { Console } = require("@woowacourse/mission-utils");
 
-const createRandomLottoNumbers = () => {
-  const randoms = Random.pickUniqueNumbersInRange(LOTTO.MIN, LOTTO.MAX, LOTTO.LENGTH);
-  return randoms.sort((num1, num2) => num1 - num2);
+const printMessage = (message) => {
+  Console.print(message);
+}
+
+const userInput = (callback) => {
+  Console.readLine((answer) => {
+    callback(answer);
+  })
 }
 
 module.exports = {
-  createRandomLottoNumbers,
+  printMessage,
+  userInput,
 }
