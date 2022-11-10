@@ -5,10 +5,25 @@ const GAME_PROGRESS_MESSAGES = Object.freeze({
   ENTER_BONUS_NUMBER: '보너스 번호를 입력해 주세요.',
 });
 
-const ERROR_MESSAGES = Object.freeze({
+const LOTTO_ERROR_MESSAGES = Object.freeze({
   LOTTO_NUMBER_LENGTH_ONLY_SIX: '[ERROR] 로또 번호는 6개여야 합니다.',
   LOTTO_NUMBER_ONLY_UNIQUE: '[ERROR] 번호는 중복되지 않아야 합니다',
 });
+
+const UNIT_INVALID_ERROR_MESSAGES = '[ERROR] 1000원 단위로 입력해주세요';
+
+const COMMON_INVALID_ERROR_MESSAGES = Object.freeze({
+  ONLY_NUMBER: '[ERROR] 숫자 만 입력 가능합니다.',
+  ONLY_NUMBER_BETWEEN_1_45: '[ERROR] 1~45까지의 숫자만 입력가능합니다',
+  NOT_DECIMAL_AND_MINUS: '[ERROR] 소수와 음수는 입력 불가능 합니다.',
+  NOT_EMPTY: '[ERROR] 공백은 입력할 수 없습니다.',
+});
+
+const LOTTO_NUMBER_RANGE = {
+  MIN_RANGE: 1,
+  MAX_RANGE: 45,
+  LENGTH: 6,
+};
 
 const WINNING_NUMBER_UNITS = Object.freeze({
   FIRST_PLACE: '6개',
@@ -29,6 +44,9 @@ const WINNING_AMOUNT_UNITS = Object.freeze({
 module.exports = {
   WINNING_AMOUNT_UNITS,
   WINNING_NUMBER_UNITS,
-  ERROR_MESSAGES,
+  LOTTO_ERROR_MESSAGES,
   GAME_PROGRESS_MESSAGES,
+  COMMON_INVALID_ERROR_MESSAGES,
+  LOTTO_NUMBER_RANGE,
+  UNIT_INVALID_ERROR_MESSAGES,
 };
