@@ -85,4 +85,12 @@ describe('보너스 번호 입력 테스트', () => {
       DoubleCheckBonus(input, winningNumber);
     }).toThrow('[ERROR]');
   });
+
+  test('입력한 보너스 번호가 숫자가 아닐 경우 예외가 발생한다.', () => {
+    const input = 'a';
+
+    expect(() => {
+      checkBonusOnlyNumber(input);
+    }).toThrow('[ERROR]');
+  });
 });
