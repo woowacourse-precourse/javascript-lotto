@@ -1,4 +1,4 @@
-const { LOTTO_ERROR_MESSAGES } = require('./Constant');
+const { LOTTO_ERROR_MESSAGES, LOTTO_NUMBER_RANGE } = require('./Constant');
 
 class Lotto {
   #numbers;
@@ -9,8 +9,12 @@ class Lotto {
   }
 
   static validate(numbersArray) {
-    if (numbersArray.length !== 6) throw new Error(LOTTO_ERROR_MESSAGES.LENGTH_ONLY_SIX);
-    if (new Set([...numbersArray]).size !== 6) throw new Error(LOTTO_ERROR_MESSAGES.UNIQUE);
+    if (numbersArray.length !== LOTTO_NUMBER_RANGE.LENGTH) {
+      throw new Error(LOTTO_ERROR_MESSAGES.LENGTH_ONLY_SIX);
+    }
+    if (new Set([...numbersArray]).size !== LOTTO_NUMBER_RANGE.LENGTH) {
+      throw new Error(LOTTO_ERROR_MESSAGES.UNIQUE);
+    }
   }
 
   // TODO: 추가 기능 구현
