@@ -12,7 +12,7 @@ class LottoMachine {
   }
 
   validate(money) {
-    if(!!Number(money)) {
+    if(!Number(money)) {
       throw new Error("[ERROR] 금액은 숫자만 입력해야 합니다.");
     }
     if(Number(money) % 1000 !== 0 ){
