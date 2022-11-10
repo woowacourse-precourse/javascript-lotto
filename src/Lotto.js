@@ -29,6 +29,16 @@ class Lotto {
       }
     }
   }
+
+  checkRedundancy(numbers) {
+    let temp = [];
+    for (let number of numbers) {
+      if (temp.includes(number)) {
+        throw new Error("[ERROR] 로또 번호는 중복이 없어야 합니다.");
+      }
+      temp.push(number);
+    }
+  }
 }
 
 module.exports = Lotto;
