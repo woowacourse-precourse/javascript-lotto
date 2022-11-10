@@ -15,6 +15,9 @@ class Lotto {
       throw new Error("[ERROR] 중복값이 포함되어 있습니다.");
   }
 
+  toString() {
+    return `[${this.#numbers.join(", ")}]`;
+  }
   // TODO: 추가 기능 구현
 }
 
