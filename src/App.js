@@ -1,14 +1,20 @@
 const { Console } = require('@woowacourse/mission-utils');
+const User = require('./User');
 const { checkMoneyValidation } = require('./utils/validations');
 
 class App {
-  play() {
-    this.buyLotteryTicket();
+  constructor() {
+    this.user = new User();
   }
 
-  buyLotteryTicket() {
+  play() {
+    this.inputMoney();
+  }
+
+  inputMoney() {
     Console.readLine('구입금액을 입력해 주세요.', (moneyInput) => {
       checkMoneyValidation(moneyInput);
+      this.user.buyTickets(moneyInput);
       Console.close();
     });
   }
