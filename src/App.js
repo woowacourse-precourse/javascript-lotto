@@ -1,5 +1,7 @@
 const { Console } = require('@woowacourse/mission-utils');
 const Purchase = require('./Purchase');
+const Lotto = require('./Lotto');
+const changeStrToArr = require('./utils/changeStrToArr');
 
 class App {
   constructor() {
@@ -21,6 +23,20 @@ class App {
 
   printPurchaseLottoList() {
     this.purchaseLottoList.forEach(lotto => Console.print(lotto));
+    return this.printWinningNumberInputMessage();
+  }
+
+  printWinningNumberInputMessage() {
+    Console.print('');
+    Console.print('당첨 번호를 입력해 주세요.');
+    return this.submitWinningNumber();
+  }
+
+  submitWinningNumber() {
+    Console.readLine('', input => {
+      let inputArr = changeStrToArr(input);
+      let lotto = new Lotto(inputArr);
+    });
   }
 
   submitPurchaseAmount() {
