@@ -14,6 +14,7 @@ class App {
       const amount = money / 1000;
       this.lottoBundle = this.getLotto(amount);
       this.printBoughtLotto(amount);
+      this.createWinningNumbers();
     });
   }
 
@@ -31,6 +32,12 @@ class App {
     for (const lotto of this.lottoBundle) {
       Console.print('[' + lotto + ']');
     }
+  }
+
+  createWinningNumbers() {
+    Console.readLine('당첨 번호를 입력해 주세요.', (numbers) => {
+      console.log(numbers);
+    });
   }
 }
 
