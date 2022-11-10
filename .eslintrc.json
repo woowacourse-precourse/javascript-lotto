@@ -32,7 +32,6 @@
     "prefer-destructuring": "error",
     "prefer-template": "error",
     "template-curly-spacing": "error",
-    // default never
     "no-eval": "error",
     "no-useless-escape": "error",
     "func-style": [
@@ -226,7 +225,6 @@
       "error",
       "always"
     ],
-    // TODO
     "newline-per-chained-call": [
       "error",
       {

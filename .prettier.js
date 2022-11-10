@@ -1,6 +1,6 @@
 module.exports = {
-  // 문자열은 작은 따옴표로 통일
-  singleQuote: true,
+  // 문자열은 큰 따옴표로 통일
+  singleQuote: false,
   //코드 마지막에 세미콜른이 자동 생성
   semi: true,
   //탭의 사용을 금하고 스페이스바 사용으로 대체
