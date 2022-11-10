@@ -1,5 +1,7 @@
 const Application = require('../src/Application');
 
+const NUMBER_EXCEPTION_TEXT = '[ERROR] 전달된 인수는 숫자로 변환이 가능해야 합니다.';
+
 describe('숫자 예외 검사 함수 테스트', () => {
   test('메소드 이름은 "validateNumber"로 정의된다.', () => {
     const METHOD_NAME = 'validateNumber';
@@ -8,15 +10,13 @@ describe('숫자 예외 검사 함수 테스트', () => {
   });
 
   test('전달받은 인수는 숫자로 변환이 불가능하면 예외를 발생시킨다.', () => {
-    const ERROR_TEXT = '[ERROR] 전달된 인수는 숫자로 변환이 가능해야 합니다.';
-
     expect(() => {
       Application.convertNumber(NaN);
-    }).toThrow(ERROR_TEXT);
+    }).toThrow(NUMBER_EXCEPTION_TEXT);
 
     expect(() => {
       Application.convertNumber(1000);
-    }).not.toThrow(ERROR_TEXT);
+    }).not.toThrow(NUMBER_EXCEPTION_TEXT);
   });
 });
 
@@ -34,15 +34,13 @@ describe('숫자 변환 함수 테스트', () => {
   });
 
   test('전달받은 인수는 숫자로 변환이 불가능하면 예외를 발생시킨다.', () => {
-    const ERROR_TEXT = '[ERROR] 전달된 인수는 숫자로 변환이 가능해야 합니다.';
-
     expect(() => {
       Application.convertNumber('a1a1');
-    }).toThrow(ERROR_TEXT);
+    }).toThrow(NUMBER_EXCEPTION_TEXT);
 
     expect(() => {
       Application.convertNumber('b1b1');
-    }).toThrow(ERROR_TEXT);
+    }).toThrow(NUMBER_EXCEPTION_TEXT);
   });
 });
 
@@ -62,11 +60,9 @@ describe('구매 개수 파악 함수 테스트', () => {
   });
 
   test('전달받은 인수는 숫자로 변환이 불가능하면 예외를 발생시킨다.', () => {
-    const ERROR_TEXT = '[ERROR] 전달된 인수는 숫자로 변환이 가능해야 합니다.';
-
     expect(() => {
       Application.convertNumber('a1a1', 's');
-    }).toThrow(ERROR_TEXT);
+    }).toThrow(NUMBER_EXCEPTION_TEXT);
   });
 });
 
@@ -83,5 +79,15 @@ describe('수익률 계산 함수 테스트', () => {
 
   test('5,000원을 사용하고 2,000,000,000원을 얻는다면 수익률 40000000를 반환한다.', () => {
     expect(Application.dividendRate(5000, 2000000000)).toEqual(40000000);
+  });
+
+  test('전달받은 인수는 숫자로 변환이 불가능하면 예외를 발생시킨다.', () => {
+    expect(() => {
+      Application.dividendRate('a1a1', 's');
+    }).toThrow(NUMBER_EXCEPTION_TEXT);
+
+    expect(() => {
+      Application.dividendRate('8000', '5000');
+    }).not.toThrow(NUMBER_EXCEPTION_TEXT);
   });
 });
