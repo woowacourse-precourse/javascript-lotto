@@ -85,7 +85,7 @@ class App {
   }
 
   validateBonus(input) {
-    const regExp = /[1-9]/g;
+    const regExp = /[0-9]/g;
     const matchArr = input.match(regExp);
     if (matchArr.length !== input.length) {
       throw new Error('[ERROR] 숫자를 입력해주세요.');
