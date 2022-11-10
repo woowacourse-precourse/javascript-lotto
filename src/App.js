@@ -1,7 +1,7 @@
 const LottoGame = require("./LottoGame");
 
 class App {
-  game = LottoGame();
+  game = new LottoGame();
 
   play() {
     this.game.start();
