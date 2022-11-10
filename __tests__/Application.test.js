@@ -1,11 +1,5 @@
 const Application = require('../src/Application');
 
-let application;
-
-beforeEach(() => {
-  application = new Application();
-});
-
 describe('숫자 변환 함수 테스트', () => {
   test('메소드 이름은 "convertNumber"로 정의된다.', () => {
     const METHOD_NAME = 'convertNumber';
@@ -29,5 +23,13 @@ describe('숫자 변환 함수 테스트', () => {
     expect(() => {
       Application.convertNumber('b1b1');
     }).toThrow(ERROR_TEXT);
+  });
+});
+
+describe('구매 개수 파악 함수 테스트', () => {
+  test('메소드 이름은 "purchaseCount"로 정의된다.', () => {
+    const METHOD_NAME = 'purchaseCount';
+
+    expect(Application.convertNumber.name).toEqual(METHOD_NAME);
   });
 });
