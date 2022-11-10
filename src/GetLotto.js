@@ -21,6 +21,10 @@ class GetLotto {
     sortLottoNumber(Array) {
         return Array.sort((a,b) => a - b);
     }
+
+    exception() {
+        
+    }
 }
 
 let a = new GetLotto();
