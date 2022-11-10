@@ -23,6 +23,7 @@ const LOTTO_NUMBER_RANGE = {
   MIN_RANGE: 1,
   MAX_RANGE: 45,
   LENGTH: 6,
+  UNIT: 1000,
 };
 
 const WINNING_NUMBER_UNITS = Object.freeze({

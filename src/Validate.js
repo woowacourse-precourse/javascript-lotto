@@ -20,7 +20,7 @@ const validate = {
   },
 
   validateUnit(input) {
-    if (input % 1000 !== 0) throw new Error(UNIT_INVALID_ERROR_MESSAGES);
+    if (input % LOTTO_NUMBER_RANGE.UNIT !== 0) throw new Error(UNIT_INVALID_ERROR_MESSAGES);
     return true;
   },
 };
