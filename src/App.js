@@ -20,10 +20,22 @@ class App {
     
     const numberOfPurchase = userInput / 1000;
     this.printNumberOfPurchase(numberOfPurchase);
+    this.getLottoList(numberOfPurchase);
   }
 
   printNumberOfPurchase(number) {
     Console.print(`${number}개를 구매했습니다.`);
+  }
+
+  getLottoList(requestCount) {
+    let lottoList = [];
+    let countIndex = 0;
+
+    while (countIndex < requestCount) {
+      const lottoNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+      lottoList.push(lottoNumbers);
+      countIndex++;
+    }
   }
 }
 
