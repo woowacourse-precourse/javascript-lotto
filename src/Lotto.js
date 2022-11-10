@@ -1,3 +1,6 @@
+const ERROR_LOTTO_SIZE_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";
+const ERROR_LOTTO_OVERLAP_MESSAGE = "[ERROR] 로또 번호는 중복되는 숫자가 없어야 합니다.";
+
 class Lotto {
   #numbers;
 
@@ -13,7 +16,7 @@ class Lotto {
 
   checkLottoSize(numbers) {
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error(ERROR_LOTTO_SIZE_MESSAGE);
     }
   }
 
@@ -24,7 +27,7 @@ class Lotto {
         lottoOverlap.set(numbers[i], 1);
       }
       else {
-        throw new Error("[ERROR] 로또 번호는 중복되는 숫자가 없어야 합니다.");
+        throw new Error(ERROR_LOTTO_OVERLAP_MESSAGE);
       }
     }
   }
