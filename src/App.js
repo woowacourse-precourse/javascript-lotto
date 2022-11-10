@@ -83,7 +83,7 @@ class App {
     arrayedUserInput.forEach((item) => {
       const ASCII = item.charCodeAt();
 
-      if ((ASCII !== 44 && ASCII < 49) || ASCII > 57) {
+      if ((ASCII !== 44 && ASCII < 48) || ASCII > 57) {
         throw new Error("[ERROR] 숫자와 ,(쉼표) 기호만을 입력해주세요.");
       }
     });
