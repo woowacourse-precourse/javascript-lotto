@@ -67,7 +67,7 @@ class App {
 
       const userLotto = this.getUserLotto(userInput);
 
-      const lotto = new Lotto(userLotto);
+      const lotto = new Lotto(this.lottoArray, userLotto);
     });
   }
 
