@@ -12,4 +12,9 @@ function printResult(winArr, yieldpercent){
   MissionUtils.Console.close();
 }
 
-module.exports = printResult;
+function printAutoLottos(baselotto){
+  const printBaselotto = String(baselotto).replace(/,/gi, ', ');
+  MissionUtils.Console.print(`[${printBaselotto}]`);
+}
+
+module.exports = {printResult, printAutoLottos};

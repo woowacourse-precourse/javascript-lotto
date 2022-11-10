@@ -4,6 +4,7 @@ const {CONSOLELINE, RESULTLINE} = require('./utils/Constants');
 const ExceptionCheck = require('./utils/ExceptionCheck');
 const Lotto = require("./Lotto");
 const randomNum = require('./model/Random');
+const { printAutoLottos } = require('./utils/Print');
 
 class Controller{
   constructor(){
@@ -27,18 +28,17 @@ class Controller{
 
   printPurchaseNums(lotto_cnt){
     MissionUtils.Console.print(RESULTLINE.PURCHASE_CHECK(lotto_cnt));
-    this.printLottos(lotto_cnt);
+    this.getAutoLottos(lotto_cnt);
   }
 
-  printLottos(lotto_cnt){
-    let i = 0;
-    while(i < lotto_cnt){
+  getAutoLottos(lotto_cnt){
+    const duplicateCaseCheck = new Set();
+    while (duplicateCaseCheck.size < lotto_cnt){
       const baselotto = randomNum();
-      this.lottos.push(baselotto);
-      const printBaselotto = String(baselotto).replace(/,/gi, ', ');
-      MissionUtils.Console.print(`[${printBaselotto}]`);
-      i++;
+      duplicateCaseCheck.add(baselotto);
+      printAutoLottos(baselotto);
     }
+    this.lottos = [...duplicateCaseCheck];
     this.inputForAnswerNum();
   }
 

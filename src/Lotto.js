@@ -1,7 +1,7 @@
 const ExceptionCheck = require('./utils/ExceptionCheck');
 const Calculate = require('./model/Calculation');
 const {MONEY} = require('./utils/Constants');
-const printResult = require('./utils/Print');
+const {printResult} = require('./utils/Print');
 
 class Lotto {
   #numbers;
