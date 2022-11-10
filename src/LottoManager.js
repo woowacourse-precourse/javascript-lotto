@@ -12,19 +12,27 @@ class LottoManager {
   }
 
   validatePurchaseAmount(purchaseAmountInput) {
-    if (this.isInvalidPurchaseAmount(purchaseAmountInput)) {
-      throw new Error(
-        '[ERROR] 구입 금액은 1,000원 이상의 1,000으로 나누어 떨어지는 숫자여야 합니다.',
-      );
+    switch (true) {
+      case this.isNotNumber(purchaseAmountInput):
+        throw new Error('[ERROR] 구입 금액에 숫자가 아닌 문자가 존재합니다.');
+      case this.isSmallerThanUnitPrice(parseInt(purchaseAmountInput, 10), 1000):
+        throw new Error('[ERROR] 구입 금액은 1,000원 이상이어야 합니다.');
+      case this.isNotBeDividedByUnitPrice(
+        parseInt(purchaseAmountInput, 10),
+        1000,
+      ):
+        throw new Error(
+          '[ERROR] 구입 금액은 1,000으로 나누어 떨어지는 숫자여야 합니다.',
+        );
     }
   }
 
-  isInvalidPurchaseAmount(purchaseAmountInput) {
-    return (
-      !/^\d+$/g.test(purchaseAmountInput) ||
-      parseInt(purchaseAmountInput, 10) % 1000 !== 0 ||
-      parseInt(purchaseAmountInput, 10) < 1000
-    );
+  isNotBeDividedByUnitPrice(amount, unitPrice) {
+    return amount % unitPrice !== 0;
+  }
+
+  isSmallerThanUnitPrice(amount, unitPrice) {
+    return amount < unitPrice;
   }
 
   issueLottos(purchaseAmount) {
