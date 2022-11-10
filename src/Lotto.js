@@ -35,6 +35,23 @@ class Lotto {
     }
   }
 
+  validateBonusNum(bonuseNum) {
+    this.#numbers = bonuseNum;
+    if (bonuseNum > 45 || bonuseNum < 1) {
+      throw new Error(`[ERROR] 1~45사이의 번호를 입력해주세요`);
+    }
+    if (bonuseNum) {
+      if (/^[0-9]*$/g.test(bonuseNum) === false) {
+        throw new Error(`[ERROR] 숫자만을 입력해주세요`);
+      }
+    }
+    if (this.winningNum.includes(bonuseNum) === true) {
+      throw new Error(
+        `[ERROR] 당첨번호에 입력한 숫자를 보너스 번호에 입력할 수 없습니다.`
+      );
+    }
+  }
+
   checkRange(arr) {
     if (/^[0-9]*$/g.test(arr.join("")) === false) {
       return false;
