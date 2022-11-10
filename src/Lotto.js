@@ -43,7 +43,11 @@ class Lotto {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonus) => {
       this.bonusNumber = new BonusNumber(this.#numbers, bonus);
 
-      const result = new Result(this.lottoArray, this.#numbers, bonusNumber);
+      const result = new Result(
+        this.lottoArray,
+        this.#numbers,
+        bonusNumber.bonusNumber
+      );
     });
   }
 }
