@@ -1,4 +1,5 @@
-const { readLine } = require('./ui');
+const { readLine } = require('./utils/ui');
+const validation = require('./validation');
 
 class App {
   constructor() {
@@ -11,6 +12,7 @@ class App {
 
   inputPurchaseAmount() {
     readLine('구입금액을 입력해 주세요.\n', (amount) => {
+      validation.isUnitOf1000(amount);
       this.purchaseAmount = amount;
     });
   }
