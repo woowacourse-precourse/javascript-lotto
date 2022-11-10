@@ -34,6 +34,16 @@ class Validator {
       throw Error('[ERROR] 중복된 숫자를 입력할 수 없습니다.');
     }
   }
+
+  static throwErrorIfInValidBonusNumber(winningNumber, bonusNumber) {
+    const regex = /^\d+$/;
+    if (!regex.test(bonusNumber) || bonusNumber > 45 || bonusNumber < 1) {
+      throw Error('[ERROR] 1에서 45까지의 숫자를 입력해야 합니다.');
+    }
+    if ([...winningNumber].includes(bonusNumber)) {
+      throw Error('[ERROR] 이미 당첨 번호에 포함된 번호를 입력할 수 없습니다.');
+    }
+  }
 }
 
 module.exports = Validator;
