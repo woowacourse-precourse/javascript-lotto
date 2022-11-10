@@ -7,21 +7,36 @@ class LottoMachine {
   constructor(budget) {
     this.ticketNumber = budget / 1000;
     this.tickets = this.makeLottoTicket(this.ticketNumber);
-    this.printTickets(this.ticketNumber, this.tickets);
+    this.printResultIssuedLottoTickets(this.ticketNumber, this.tickets);
   }
   pushTicket(acc) {
-    acc.push(Random.pickUniqueNumbersInRange(1, 45, 6));
+    const newTicket = Random.pickUniqueNumbersInRange(1, 45, 6);
+    newTicket.sort((a, b) => a - b);
+    acc.push(newTicket);
     return acc;
   }
-  makeLottoTicket = (number) => {
+  makeLottoTicket(number) {
     return [...Array(number)].reduce(this.pushTicket, []);
-  };
+  }
 
-  printTickets(number, tickets) {
-    Console.print(`${number}를 구매했습니다.`);
-    tickets.forEach((ticket) => {
-      Console.print(ticket);
-    });
+  printTicketNumber(number) {
+    Console.print(`${number}개를 구매했습니다.`);
+  }
+
+  makePrintArrayFormat(array) {
+    return `[${array.join(", ")}]`;
+  }
+
+  printEachTicket(tickets) {
+    const formatedTickets = tickets.map((ticket) =>
+      this.makePrintArrayFormat(ticket)
+    );
+    formatedTickets.forEach((ticket) => Console.print(ticket));
+  }
+
+  printResultIssuedLottoTickets(number, tickets) {
+    this.printTicketNumber(number);
+    this.printEachTicket(tickets);
   }
 }
 
