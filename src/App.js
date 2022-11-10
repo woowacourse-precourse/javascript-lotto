@@ -1,5 +1,9 @@
+const LotteryManager = require('./LotteryManager');
+
 class App {
-  play() {}
+  play() {
+    LotteryManager.start();
+  }
 }
 
-module.exports = App;
+exports.module = App;
