@@ -4,6 +4,7 @@ const Lotto = require("./Lotto");
 class App {
   constructor() {
     this.totalLottoNumber = [];
+    this.winnerNumber;
   }
   play() {
     this.inputMoney();
@@ -25,6 +26,18 @@ class App {
       const lotto = new Lotto(randomNumber);
       this.totalLottoNumber.push(lotto.sortLotto(randomNumber));
     }
+  }
+
+  inputWinnerNumber() {
+    MissionUtils.Console.readLine("\n당첨 번호를 입력해 주세요.\n", (number) => {
+      if (number.split(",").length !== 6) {
+        throw new Error("[ERROR] 쉼표(,)를 기준으로 6자리를 입력해주세요");
+      }
+      this.winnerNumber = number.replace(/\s/g, "").split(",");
+      if (new Set(this.winnerNumber).size !== 6) {
+        throw new Error("[ERROR] 중복없이 숫자를 입력해주세요.");
+      }
+    });
   }
 }
 
