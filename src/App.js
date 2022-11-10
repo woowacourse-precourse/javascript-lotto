@@ -1,11 +1,12 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
+const GameTools = require('./GameTools');
 const Validator = require('./Validator');
 
 class App {
   constructor() {
     this.lottoCount = 0;
     this.winningNumber = [];
-    this.userLottoNumbers = [];
+    this.userLottoList = [];
     this.bonusNumber = 0;
     this.prizeResult = {
       first: 0,
@@ -17,36 +18,30 @@ class App {
   }
 
   play() {
-    this.buyLotto();
-  }
-
-  buyLotto() {
     Console.print('구입금액을 입력해 주세요.');
     Console.readLine('', (money) => {
       Validator.throwErrorIfInValidMoney(money);
       this.lottoCount = money / 1000;
-      this.issueLotto();
+      this.buyLotto();
     });
   }
 
-  issueLotto() {
-    while (this.userLottoNumbers.length < this.lottoCount) {
-      const randomNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
-      randomNumbers.sort((a, b) => a - b);
-      this.userLottoNumbers.push(randomNumbers);
-    }
+  buyLotto() {
+    this.userLottoList = GameTools.issueLottoAsManyAsCount(this.lottoCount);
     this.reportUserData();
   }
 
   reportUserData() {
+    // UI
     Console.print(`${this.lottoCount}개를 구매했습니다.`);
-    this.userLottoNumbers.forEach((numbers) => {
+    this.userLottoList.forEach((numbers) => {
       Console.print(`[${numbers.join(', ')}]`);
     });
     this.getWinningNumber();
   }
 
   getWinningNumber() {
+    // 비즈니스 로직
     Console.print('당첨 번호를 입력해 주세요.');
     Console.readLine('', (winningNumber) => {
       Validator.throwErrorIfInValidWinningNumber(winningNumber);
@@ -56,6 +51,7 @@ class App {
   }
 
   getBonusNumber() {
+    // 비즈니스 로직
     Console.print('보너스 번호를 입력해 주세요.');
     Console.readLine('', (bonusNumber) => {
       Validator.throwErrorIfInValidBonusNumber(this.winningNumber, bonusNumber);
@@ -65,7 +61,8 @@ class App {
   }
 
   setPrizeResult() {
-    this.prizeResult = this.userLottoNumbers.reduce((acc, cur) => {
+    // 비즈니스 로직
+    this.prizeResult = this.userLottoList.reduce((acc, cur) => {
       const sameNumberCount = this.getSameNumberCount(cur);
       const isBonusNumberMatch = cur.includes(Number(this.bonusNumber));
       if (sameNumberCount === 6) acc.first += 1;
@@ -85,6 +82,7 @@ class App {
   }
 
   printResult() {
+    // 비즈니스 로직
     Console.print(`3개 일치 (5,000원) - ${this.prizeResult.fifth}개`);
     Console.print(`4개 일치 (50,000원) - ${this.prizeResult.fourth}개`);
     Console.print(`5개 일치 (1,500,000원) - ${this.prizeResult.third}개`);
