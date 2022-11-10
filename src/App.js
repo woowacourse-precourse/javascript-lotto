@@ -25,7 +25,7 @@ const setLottoNumbers = () => {
 }
 
 const showLottoNumber = (countLotto, throwInput) => {
-  if(throwInput > 0) throw '금액은 1,000원 단위로 입력해주세요';
+  if(throwInput > 0) throw '[ERROR] 금액은 1,000원 단위로 입력해주세요';
   Console.print(`${countLotto}개를 구매했습니다.`);
   for(let i = 0; i<countLotto; i++){
     lottos[i] = setLottoNumbers()
@@ -38,6 +38,7 @@ const inputLottoNumber = () => {
   let inputSixNumber;
   Console.readLine('당첨 번호를 입력해 주세요.\n', (num) => {
     inputSixNumber = num.toString().split(",").map((str) => Number(str));
+    console.log(inputSixNumber);
     inputBonusLotto(inputSixNumber);
   })
 }
@@ -45,7 +46,9 @@ const inputLottoNumber = () => {
 const inputBonusLotto = (inputSixNumber) => {
   let inputBonusNumber;
   Console.readLine('보너스 번호를 입력해 주세요.\n', (num) => {
-    inputBonusNumber = num
+    inputBonusNumber = Number(num);
+    inputSixNumber.push(inputBonusNumber);
+    console.log(inputSixNumber);
   })
 }
 
