@@ -11,7 +11,9 @@ class Lotto {
     this.bonusNumber = 0;
 
     this.budget = new Budget();
-    this.AutoLotto = new AutoLotto();
+    this.autoLotto = new AutoLotto();
+    this.view = View;
+    this.message = Message;
   }
 
   saveBudget(input) {
@@ -19,7 +21,16 @@ class Lotto {
   }
 
   calculateHowManyLotto() {
-    View.input(Message.ASK_BUDGET, this.doBudget.bind(this));
+    this.view.input(Message.ASK_BUDGET, this.inputBudgetandCalculateHowManyLottoandPrint.bind(this));
+  }
+
+  inputBudgetandCalculateHowManyLottoandPrint(input) {
+    this.saveBudget(input);
+    this.printHowManyLotto(this.message.returnHowManyLotto(this.budget.returnCount(this.budget.count)));
+  }
+
+  printHowManyLotto(output) {
+    this.view.output(output);
   }
 }
 
