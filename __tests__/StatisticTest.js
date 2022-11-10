@@ -29,7 +29,7 @@ describe('통계 클래스 테스트', () => {
   test('해당 등수의 count를 1 증가시킨다.', () => {
     const rank = RANK.SECOND;
     statistic.increaseRankCount(rank);
-    const stat = statistic.getStat();
+    const { stat } = statistic;
 
     expect(stat[rank]).toEqual(1);
   });
@@ -42,8 +42,8 @@ describe('통계 클래스 최종 테스트', () => {
     const winningLotto = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 7;
     statistic.putInStat(winningLotto, bonusNumber, publishedLotto);
-    const result = statistic.getStat();
+    const { stat } = statistic;
 
-    expect(result[RANK.SECOND]).toEqual(1);
+    expect(stat[RANK.SECOND]).toEqual(1);
   });
 });

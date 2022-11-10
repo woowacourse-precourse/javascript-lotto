@@ -14,8 +14,8 @@ class Statistic {
     };
   }
 
-  getStat() {
-    return this.#stat;
+  get stat() {
+    return JSON.parse(JSON.stringify(this.#stat));
   }
 
   putInStat(winningLotto, bonusNumber, publishedLotto) {

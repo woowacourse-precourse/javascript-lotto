@@ -14,11 +14,11 @@ class Deposit {
     }
   }
 
-  getAmount() {
+  get amount() {
     return this.#amount;
   }
 
-  getQuantity() {
+  get quantity() {
     return this.#amount / PRICE_OF_LOTTO;
   }
 }
