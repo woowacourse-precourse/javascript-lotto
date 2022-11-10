@@ -42,7 +42,12 @@ class App {
   }
   generateUserLottoNumber(){
     const generatedNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-    return generatedNumbers;
+    const sortedNumbers = this.sortUserLottoNumber(generatedNumbers);
+    return sortedNumbers;
+  }
+  sortUserLottoNumber(generatedNumbers){
+    const sortedNumbers = generatedNumbers.sort((front,back)=>(front-back));
+    return sortedNumbers;
   }
 }
 
