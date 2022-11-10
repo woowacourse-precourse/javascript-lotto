@@ -5,7 +5,22 @@ class App {
     this.lottes = [];
     this.winNumbers = [];
     this.bonusNumber = null;
-  }  
+  }
+
+  buy() {
+    let remain = this.money;
+    let count = parseInt(this.money / 1000);
+    while (remain > 0) {
+      remain -= 1000;
+      const numbers = wRandom
+        .pickUniqueNumbersInRange(1, 45, 6)
+        .sort((a, b) => a - b);
+      this.lottes.push(new Lotto(numbers));
+    }
+    wConsole.print(count + "개를 구매했습니다.");
+    this.viewLottes();
+    this.result();
+  }
   
   setBonusNumber() {
     wConsole.readLine("보너스 번호를 입력해 주세요.\n", (line) => {
