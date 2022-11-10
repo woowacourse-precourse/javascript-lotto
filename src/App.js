@@ -3,12 +3,14 @@ const { MESSAGE } = require('./constants/constant');
 class App {
   constructor() {
     this.count = 0;
+    this.lotto = [];
   }
   play() {
     Console.readLine(MESSAGE.INPUT_MONEY, (inputMoney) => {
       this.isValidInputMoney(inputMoney);
-      this.count = this.getLotto(inputMoney);
+      this.count = this.countLotto(inputMoney);
       Console.print(`${this.count}개를 구매했습니다.`);
+      this.getLotto(this.count);
     });
   }
   isValidInputMoney(input) {
@@ -25,8 +27,14 @@ class App {
       throw new Error('1000으로 나누어 떨어지도록 입력하세요.');
     }
   }
-  getLotto(money) {
+  countLotto(money) {
     return money / 1000;
+  }
+  getLotto(count) {
+    while (this.lotto.length < count) {
+      let lotto = Random.pickUniqueNumbersInRange(1, 45, 6);
+      this.lotto.push(lotto);
+    }
   }
 }
 let app = new App();
