@@ -1,5 +1,5 @@
 const splitWinningNumbers = (numbers) => {
-  return numbers.split(",");
+  return numbers.split(",").map((num) => parseInt(num));
 };
 
 const divideBudget = (budget) => {
