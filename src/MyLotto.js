@@ -1,10 +1,12 @@
 class MyLotto {
   #purchase;
+  #count;
   #myLottoNums;
 
   constructor(purchase){
     this.validate(purchase);
-    this.purchase = purchase
+    this.#purchase = purchase;
+    this.#count = this.countLotto(purchase);
   }
 
   validate(purchase) {
@@ -14,8 +16,9 @@ class MyLotto {
     }
   }
 
-  countLotto() {
+  countLotto(purchase) {
     // 구매금액을 1,000단위로 나누어 로또 수량 계산
+    return parseInt(purchase / 1000);
   }
 
   issueLotto() {
