@@ -2,11 +2,13 @@ const { Console } = require('@woowacourse/mission-utils');
 const Messages = require('./Messages');
 const LottoSeller = require('./LottoSeller');
 const WinningAndBonusNumbers = require('./WinningAndBonusNumbers');
+const LottoManager = require('./LottoManager');
 
 class App {
   constructor() {
     this.lottoSeller = new LottoSeller();
     this.winningAndBonusNumbers = new WinningAndBonusNumbers();
+    this.lottoManager = new LottoManager();
   }
 
   play() {
@@ -26,6 +28,7 @@ class App {
   enterBonusNumber() {
     Console.readLine(Messages.INPUT_BONUS_NUMBER, (number) => {
       this.winningAndBonusNumbers.numberNotDuplicate(number);
+      this.lottoManager.winningStatics();
     });
   }
 }
