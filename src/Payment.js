@@ -28,10 +28,8 @@ class Payment {
   issueLottos() {
     let lottos = [];
     for (let i = 0; i < this.#lottoTicket; i++) {
-      //   let lottoNumbers = this.issueLotto();
       let lotto = new Lotto(LottoGenerator.createLottoNumbers());
       WConsole.print(`[${lotto.getNumbers().join(", ")}]`);
-      //   WConsole.print(lotto.getNumbers());
       lottos.push(lotto);
     }
     return lottos;
