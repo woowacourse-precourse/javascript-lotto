@@ -8,6 +8,7 @@ const {
   checkWinningEmpty,
   checkWinningString,
   checkWinningRest,
+  checkWinningSixNumber,
 } = require('../src/validation/winningValidation');
 
 describe('사용자 입력 테스트', () => {
@@ -65,7 +66,7 @@ describe('당첨 번호 입력 테스트', () => {
     const input = '1,2,3,4,5,6,7';
 
     expect(() => {
-      checkWinningRest(input);
+      checkWinningSixNumber(input);
     }).toThrow('[ERROR]');
   });
 });

@@ -2,6 +2,7 @@ function winningValidation(string) {
   checkWinningEmpty(string);
   checkWinningString(string);
   checkWinningRest(string);
+  checkWinningSixNumber(string);
 
   return true;
 }
@@ -25,9 +26,17 @@ function checkWinningRest(string) {
   }
 }
 
+function checkWinningSixNumber(string) {
+  const split = string.split(',');
+  if (split.length !== 6) {
+    throw new Error('[ERROR] 6개의 숫자만 입력할수 없습니다.');
+  }
+}
+
 module.exports = {
   winningValidation,
   checkWinningEmpty,
   checkWinningString,
   checkWinningRest,
+  checkWinningSixNumber,
 };
