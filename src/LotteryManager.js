@@ -1,29 +1,52 @@
 const { Console } = require('@woowacourse/mission-utils');
+const { INGAME_MESSAGE, PICK_TYPE } = require('./Constants');
 const Lotto = require('./Lotto');
 const Consumer = require('./Consumer');
-const { INGAME_MESSAGE } = require('./Constants');
 
 class LotteryManager {
+  #Consumer;
+
+  #Lotto;
+
   start() {
     this.create();
   }
 
   create() {
     Console.readLine(INGAME_MESSAGE.buy, (money) => {
-      const consumer = new Consumer(money);
-      this.pick(consumer);
+      this.#Consumer = new Consumer(money);
+      this.pickMain();
     });
   }
 
-  pick(consumer) {
-    // Console.readLine((picks) => {
-    //   const lotto = new Lotto(picks);
-    // });
+  pickMain() {
+    Console.readLine(INGAME_MESSAGE.pickMain, (picks) => {
+      this.#Lotto = new Lotto(picks, PICK_TYPE.main);
+      //   this.pickBonus();
+      this.checkWinLottery();
+    });
   }
 
-  printLottery() {}
+  pickBonus() {
+    // this.checkWinLottery();
+    Console.readLine(INGAME_MESSAGE.pickBonus, (picks) => {});
+  }
 
-  checkWinLottery() {}
+  checkWinLottery() {
+    const winCountList = [];
+    this.#Consumer.LotteryList.forEach((lotto) => {
+      const winCount = this.#Lotto.checkWin(lotto);
+      winCountList.push(winCount);
+    });
+
+    this.printLottery(winCountList);
+  }
+
+  printLottery(winCountList) {
+    winCountList.forEach((count) => {
+      Console.print(`${count}개 맞추었음`);
+    });
+  }
 }
 
 const manager = new LotteryManager();
