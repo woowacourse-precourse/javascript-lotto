@@ -9,6 +9,7 @@ class App {
     for(let count = 0; count <LottoCount; count++){
       this.userLottoNumberLists.push(this.generateUserLottoNumber());
     }
+    this.printGenerateUserLottoNumber(this.userLottoNumberLists);
   }
   insertMoney(){
     MissionUtils.Console.readLine('구입금액을 입력해주세요 (1000원 단위)', (insertMoney) => {
@@ -48,6 +49,9 @@ class App {
   sortUserLottoNumber(generatedNumbers){
     const sortedNumbers = generatedNumbers.sort((front,back)=>(front-back));
     return sortedNumbers;
+  }
+  printGenerateUserLottoNumber(userLottoList){
+    MissionUtils.Console.print(userLottoList);
   }
 }
 
