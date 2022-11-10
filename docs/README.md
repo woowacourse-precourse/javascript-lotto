@@ -47,6 +47,7 @@
 
   - Validation.hasOnlyNumber 메서드 테스트 완료
   - Validation.isDivisibleByLottoPrice 메서드 테스트 완료
+  - Validation.isStartedZero 메서드 테스트 완료
 
 - [ ] `Application 테스트 완료`
 

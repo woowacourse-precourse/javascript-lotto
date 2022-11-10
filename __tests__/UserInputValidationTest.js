@@ -38,6 +38,26 @@ describe("Validation.hasOnlyNumber", () => {
   });
 });
 
+describe("Validation.isStartedZero", () => {
+  test("input이 0으로 시작하면, true를 반환해야 한다.", () => {
+    // given
+    const input = "0";
+    // when
+    const result = Validation.isStartedZero(input);
+    // then
+    expect(result).toBe(true);
+  });
+
+  test("input이 0이 아닌 수로 시작하면, false를 반환해야 한다.", () => {
+    // given
+    const input = "8000";
+    // when
+    const result = Validation.isStartedZero(input);
+    // then
+    expect(result).toBe(false);
+  });
+});
+
 describe("Validation.isDivisibleByLottoPrice", () => {
   test("input이 로또가격으로 나누어 떨어지지 않는 경우, false를 반환해야 한다.", () => {
     // given
