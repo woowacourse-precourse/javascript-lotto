@@ -11,18 +11,25 @@ class LottoScreen {
     MissionUtils.Console.readLine(MESSAGE.INSERT_MONEY, (money) => {
       Validate.money(money);
       LottoScreen.lottoApp = new LottoApp(money);
-      LottoScreen.printBuyingAmount(money / CONSTANT.LOTTO_PRICE);
+      LottoScreen.printLine(money / CONSTANT.LOTTO_PRICE);
     });
   }
 
-  static printBuyingAmount(amount) {
+  static printLine(amount) {
     MissionUtils.Console.print(amount + MESSAGE.BUY_AMOUNT);
     LottoScreen.printLottoNumbers();
+    LottoScreen.lottoNumberChoice();
   }
 
   static printLottoNumbers() {
-    const lottos = LottoScreen.lottoApp.getLottos();
+    const lottos = LottoScreen.lottoApp.getLottos(); // [{lotto} , {lotto} ...]
     lottos.forEach((lotto) => MissionUtils.Console.print(lotto.getNumbers()));
+  }
+
+  static lottoNumberChoice() {
+    MissionUtils.Console.readLine(MESSAGE.LOTTO_NUMBER_CHOICE, (choice) => {
+      Validate.userChoice(choice)
+    });
   }
 }
 

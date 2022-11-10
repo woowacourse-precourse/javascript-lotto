@@ -13,6 +13,9 @@ class Validate {
       throw new Error(`[ERROR] ${MESSAGE.ERROR.VALID_MONEY}`);
     }
   }
-}
+  static userChioce(choice) {
+   // if(choice )
+  }
+} 
 
 module.exports = Validate;
