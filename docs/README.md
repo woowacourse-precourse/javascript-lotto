@@ -2,12 +2,16 @@
 
 ## 기능목록
 
-- []당첨번호 뽑기(중복되지 않는 6개의 번호와 보너스 번호 1개) Lotto#createWinningNumber()
-- []로또 구입 Lotto#buyLotto()
-  - []로또번호 뽑기(중복되지 않는 6개의 번호) Lotto#createLottoNumbers()
-  - []로또 번호 출력 Lotto#printPurchaseHistory()
+- []당첨번호 뽑기(중복되지 않는 6개의 번호와 보너스 번호 1개) #createWinningNumber()
+- []로또 구입 #buyLotto()
+  - []로또번호 뽑기(중복되지 않는 6개의 번호) #createLottoNumbers()
+  - []로또 번호 출력 #printPurchaseHistory()
 - []로또번호랑 당첨번호 비교 Lotto#compare()
   - []당첨통계 출력
+- []예외처리
+  - []로또 번호 숫자 범위는 1~45까지다.
+  - [x]1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다.
+  - []구입 금액은 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다.
 
 ## 기능 요구 사항
 
