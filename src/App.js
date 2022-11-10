@@ -1,10 +1,19 @@
 const { Console } = require('@woowacourse/mission-utils');
+const Lotto = require('./Lotto');
 
 class App {
   play() {
-    getPurchaseAmount();
+    Console.readLine('당첨 번호를 입력해 주세요.', (num) => {
+      Console.print(makeSixNumbersArr(num));
+    });
   }
 }
+
+const makeSixNumbersArr = (str) => {
+  return str.split(',');
+};
+
+// 아래는 현재 test와 무관한 코드들
 
 const getPurchaseAmount = () => {
   Console.readLine('구입금액을 입력해주세요.', (num) => {
