@@ -25,11 +25,13 @@ describe("로또 클래스 테스트", () => {
 describe("Feat 1. Customer.buyLotto", () => {
   test("입력된 금액이 천원으로 나누어 떨어진다.", () => {
     mockQuestions("8000");
-    expect(Customer.buyLotto()).toBe(Math.floor(value / 1000));
+    const customer = new Customer();
+    expect(customer.buyLotto()).toBe(8);
   });
 
   test("입력된 금액이 천원으로 나누어 떨어지지 않으면 예외가 발생한다.", () => {
     mockQuestions("8001");
-    expect(Customer.buyLotto()).toThrow("[ERROR]");
+    const customer = new Customer();
+    expect(customer.buyLotto).toThrow("[ERROR]");
   });
 });
