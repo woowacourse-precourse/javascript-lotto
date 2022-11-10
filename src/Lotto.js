@@ -42,14 +42,14 @@ class Lotto {
   }
   selectWinNumbers(){
       MissionUtils.Console.print(this.SELECT_WIN_NUMBER);
-      // this.inputWinNumbers();
+      this.inputWinNumbers();
   }
-  // inputWinNumbers(){
-  //   MissionUtils.Console.readLine("", (winNumber) => {
-  //     MissionUtils.Console.print(""); // 공백
-  //     this.countMyLottoSheets(winNumber);
-  //   });
-  // }
+  inputWinNumbers(){
+    MissionUtils.Console.readLine("", (winNumber) => {
+      MissionUtils.Console.print(""); // 공백
+      // this.컴페어 넘버스와 연결(비교계산 실행해줌
+    });
+  }
 
 
   // validate(numbers) {
