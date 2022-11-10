@@ -1,7 +1,7 @@
 const { Random, Console } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const Publish = require('./Publish');
-const Winning = require('./WinningNumber');
+const Winning = require('./Winning');
 
 class App {
   play() {
@@ -23,7 +23,7 @@ class App {
 
   makeLotto() {
     this.quantity = this.money / 1000;
-    this.PUBLISH = new Publish(this.quantity);
+    this.publish = new Publish(this.quantity);
     this.printLottoQuantity();
   }
 
@@ -33,7 +33,7 @@ class App {
   }
 
   printAllLotto() {
-    const publishResult = this.PUBLISH.publishResult;
+    const publishResult = this.publish.publishResult;
     for (let numberofLotto in publishResult) {
       Console.print(publishResult[numberofLotto]);
     }
@@ -41,10 +41,19 @@ class App {
 
   enterWinningNumber() {
     Console.readLine('당첨 번호를 입력해 주세요.', (winNumber) => {
-      this.winning = new Winning();
-      this.winning.numbertoArray(winNumber);
-      this.winning.numberException();
+      this.numbertoArray(winNumber);
+      this.WinningNumberException();
     });
+  }
+
+  numbertoArray(winNumber) {
+    this.winningNumberArray = winNumber.split(',').map((number) => {
+      return parseInt(number, 10);
+    });
+  }
+
+  WinningNumberException() {
+    const lotto = new Lotto(this.winningNumberArray);
   }
 }
 
