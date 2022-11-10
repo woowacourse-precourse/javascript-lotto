@@ -28,6 +28,13 @@ class Lotto {
     }
   }
 
+  validateBonusNumber(number) {
+    if (this.#numbers.includes(number)) {
+      Console.close();
+      throw new Error("[ERROR] 보너스 번호가 중복 되었습니다.");
+    }
+  }
+
   getPlace(number, isBonus) {
     if (number === 6) return "first";
     if (number === 5 && isBonus) return "second";
@@ -82,7 +89,10 @@ class Lotto {
     this.checkTicketsNumber(tickets, lottoBonusNumber, winningTickets);
     PLACE_ARR.map((place) => this.printEachPlace(place, winningTickets[place]));
     const yieldRate = this.calculateYieldRate(winningTickets, budget);
-    Console.print(`총 수익률은 ${yieldRate}%입니다.`);
+    const formattedYieldRate = yieldRate.toLocaleString(undefined, {
+      minimumFractionDigits: 1,
+    });
+    Console.print(`총 수익률은 ${formattedYieldRate}%입니다.`);
   };
 }
 
