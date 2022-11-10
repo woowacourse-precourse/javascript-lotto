@@ -1,7 +1,7 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 
 class Consumer {
-  #LotteryList = [];
+  LotteryList = [];
 
   constructor(money) {
     // this.validate(money);
@@ -18,12 +18,21 @@ class Consumer {
     // 추후 반복문 수정 할 것
     for (let count = 0; count < amount; count += 1) {
       const number = Random.pickUniqueNumbersInRange(1, 45, 6);
-      this.#LotteryList.push(number);
+      this.sortArray(number);
+      this.LotteryList.push(number);
     }
   }
 
+  sortArray(array) {
+    array.sort((a, b) => {
+      if (a > b) return 1;
+      if (a === b) return 0;
+      if (a < b) return -1;
+    });
+  }
+
   printConsumer() {
-    this.#LotteryList.forEach((lotto) => {
+    this.LotteryList.forEach((lotto) => {
       Console.print(lotto);
     });
   }
