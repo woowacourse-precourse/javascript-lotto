@@ -11,8 +11,7 @@ class LotteryManager {
   create() {
     Console.readLine(INGAME_MESSAGE.buy, (money) => {
       const consumer = new Consumer(money);
-      consumer.printLottery();
-      //   this.pick(consumer);
+      this.pick(consumer);
     });
   }
 
