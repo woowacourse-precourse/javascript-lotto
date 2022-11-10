@@ -1,9 +1,19 @@
+const { Console } = require("@woowacourse/mission-utils");
+
 class Lotto {
   #numbers;
+  #lotteries;
 
-  constructor(numbers) {
+  constructor(numbers, lotteries) {
     this.validate(numbers);
     this.#numbers = numbers;
+    this.#lotteries = lotteries;
+    this.inputBonusNumber();
+  }
+
+  inputBonusNumber() {
+    console.log(this.#lotteries);
+    Console.readLine("보너스 번호를 입력해 주세요,\n", (number) => {});
   }
 
   validate(numbers) {
