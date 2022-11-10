@@ -15,6 +15,7 @@ class Lotto {
 
   setBonusNum(bonus) {
     // 보너스 번호 설정
+    this.#bonus = bonus;
   }
 }
 
