@@ -17,4 +17,10 @@ const OUTPUT_PHRASE = {
   },
 };
 
-module.exports = { READLINE_PHRASE, OUTPUT_PHRASE };
+const LOTTO_RANGE = {
+  START_NUMBER: 1,
+  END_NUMBER: 45,
+  LENGTH: 9,
+};
+
+module.exports = { READLINE_PHRASE, OUTPUT_PHRASE, LOTTO_RANGE };
