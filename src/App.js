@@ -1,6 +1,7 @@
 const { LottoBuilder } = require('./Lotto');
 const MissionUtils = require('@woowacourse/mission-utils');
 const { amountValidation } = require('./validation/amountValidation');
+const { winningValidation } = require('./validation/winningValidation');
 
 class App {
   constructor() {
@@ -17,6 +18,7 @@ class App {
       if (amountValidation(input)) {
         const lottoList = this.LottoBuilder.creatLottoList(input);
         this.showLottoList(lottoList);
+        this.setWinningNumber();
       }
     });
   }
