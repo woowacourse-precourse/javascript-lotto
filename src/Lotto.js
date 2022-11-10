@@ -26,6 +26,10 @@ class Lotto {
   }
 
   validateNumberRange(start, end, number) {
+    if (Number.isNaN(number)) {
+      throw new Error('[ERROR] 로또 번호는 1이상 45이하 입니다.');
+    }
+
     if (number < start || number > end) {
       throw new Error('[ERROR] 로또 번호는 1이상 45이하 입니다.');
     }
