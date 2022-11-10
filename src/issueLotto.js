@@ -8,12 +8,8 @@ class LottoGenerator {
   checkUserMoney() {
     //문자열 상수화 필요
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (userInput) => {
-      this.countTimesOfLotto(userInput);
+      const TOTAL_LOTTO_GAMES = parseInt(userInput / 1000);
     });
-  }
-  countTimesOfLotto(money) {
-    //상수화 필요
-    return parseInt(money / 1000);
   }
 }
 
