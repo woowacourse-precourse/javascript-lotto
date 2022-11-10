@@ -1,6 +1,8 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const { Random, Console } = require("@woowacourse/mission-utils");
 
+let lottos = [];
+
 const buyLotto = () => {
   let countLotto;
   let throwInput;
@@ -19,14 +21,15 @@ const setLottoNumbers = () => {
     if(a === b) return 0;
     if(a < b) return -1;
   });
-  Console.print(lottoNumber);
+  return lottoNumber;
 }
 
 const showLottoNumber = (countLotto, throwInput) => {
   if(throwInput > 0) throw '금액은 1,000원 단위로 입력해주세요';
   Console.print(`${countLotto}개를 구매했습니다.`);
   for(let i = 0; i<countLotto; i++){
-    setLottoNumbers()
+    lottos[i] = setLottoNumbers()
+    Console.print(lottos[i]);
   }
   inputLottoNumber();
 }
