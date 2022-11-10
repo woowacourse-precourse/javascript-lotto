@@ -25,12 +25,12 @@ class App {
   }
   isNumber(input) {
     if (Number.isNaN(parseInt(input, 10))) {
-      throw new Error('숫자를 입력하세요.');
+      throw new Error('[ERROR] 숫자를 입력하세요.');
     }
   }
   isDisvisible(input) {
     if (input % 1000 !== 0) {
-      throw new Error('1000으로 나누어 떨어지도록 입력하세요.');
+      throw new Error('[ERROR] 1000으로 나누어 떨어지도록 입력하세요.');
     }
   }
   countLotto(money) {
@@ -51,7 +51,11 @@ class App {
   getWinningNumber() {
     Console.readLine(MESSAGE.INPUT_GOAL, (input) => {
       this.winningNumber = input.split(',');
+      this.isValidWinningNumber();
     });
+  }
+  isValidWinningNumber() {
+    const lotto = new Lotto(this.winningNumber);
   }
 }
 let app = new App();
