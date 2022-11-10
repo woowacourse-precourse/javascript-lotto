@@ -30,7 +30,7 @@ class Lotto {
     );
   }
 
-  get LottoNumbers() {
+  get lottoNumbers() {
     return this.#numbers;
   }
 }
