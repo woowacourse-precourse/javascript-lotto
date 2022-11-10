@@ -23,6 +23,12 @@ class View {
       this.controller.enterWinningNumber(answer.split(','));
     });
   }
+
+  bonusNumberInput() {
+    Console.readLine('보너스 번호를 입력해 주세요.', (answer) => {
+      this.controller.enterBonusNumber(answer);
+    });
+  }
 }
 
 module.exports = View;
