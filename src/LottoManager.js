@@ -109,6 +109,12 @@ class LottoManager {
     if (this.isOutOfBound(parseInt(bonusNumberInput, 10))) {
       throw new Error('[ERROR] 보너스 번호는 1부터 45까지의 숫자여야 합니다.');
     }
+
+    if (this.isDuplicateWinningNumber(parseInt(bonusNumberInput, 10))) {
+      throw new Error(
+        '[ERROR] 보너스 번호는 이전에 입력한 당첨 번호에 없는 숫자여야 합니다.',
+      );
+    }
   }
 
   isNotNumber(numberInput) {
@@ -117,6 +123,10 @@ class LottoManager {
 
   isOutOfBound(number) {
     return number < 1 || number > 45;
+  }
+
+  isDuplicateWinningNumber(number) {
+    return this.#winningNumbers.includes(number);
   }
 
   get lottos() {
