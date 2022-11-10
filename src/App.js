@@ -40,7 +40,8 @@ class App {
       this.bonus = Number(number);
       new Bonus(this.bonus, this.winningNumbers);
       const result = this.getResult();
-      this.view.printResult(result);
+      const profitRate = this.calculateProfitRate(result);
+      this.view.printResult(result, profitRate);
     });
   }
 
@@ -76,10 +77,11 @@ class App {
 
   calculateProfitRate(result) {
     const profit = result.reduce((acc, cur, idx) => {
-      acc += WINNING_MONEY[idx] * cur;
-    });
+      return acc + WINNING_MONEY[idx] * cur;
+    }, 0);
+
     const profitRate = (profit / this.money) * 100;
-    return profitRate.toFixed(2);
+    return profitRate.toFixed(1);
   }
 }
 
