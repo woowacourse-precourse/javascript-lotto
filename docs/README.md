@@ -1,35 +1,35 @@
-##🚀 기능 요구 사항##
+🚀 기능 요구 사항
 
 로또#Lotto
 
-- [ ]로또를 발행하는 기능 - createLottoNum
-  1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다.
+- [ ] 로또를 발행하는 기능 - createLottoNum
+      1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다.
 
 \*\* 자동생성 되는 클래스와 테스트를 위해서 생성자로 초기화 해주는 기능을 따로 구현
 
-- [ ]생성자를 이용해 로또 발행이 되면 번호를 검증 해주는 기능 - validate
-  6자리 인지 확인
-  중복된 숫자가 있는지
+- [ ] 생성자를 이용해 로또 발행이 되면 번호를 검증 해주는 기능 - validate
+      6자리 인지 확인
+      중복된 숫자가 있는지
 
 로또구매#LottoBuy
 
-- [ ]구입 금액을 입력 받는 기능 - inputPurchasePrice
-  로또 한장당 1000원이다.
-  1000원으로 떨어지지 않을 시 예외처리
-- [ ]발행된 로또를 출력하는 기능 - printMyLottoNum
+- [ ] 구입 금액을 입력 받는 기능 - inputPurchasePrice
+      로또 한장당 1000원이다.
+      1000원으로 떨어지지 않을 시 예외처리
+- [ ] 발행된 로또를 출력하는 기능 - printMyLottoNum
   - Lotto 클래스를 받고 출력
 
 로또 당첨번호 설정#LottoSetting
 
-- [ ]당첨번호를 입력 받는 기능 - inputWinningLottoNum
-  당첨 번호를 입력 받는다. 번호는 쉼표(,)를 기준으로 구분한다.
-- [ ]보너스 번호를 입력받는 기능 - inputBonusNum
+- [ ] 당첨번호를 입력 받는 기능 - inputWinningLottoNum
+      당첨 번호를 입력 받는다. 번호는 쉼표(,)를 기준으로 구분한다.
+- [ ] 보너스 번호를 입력받는 기능 - inputBonusNum
 
 로또 계산#LottoCalculator
 
-- [ ]로또번호를 비교하는 기능 - compareLotto
-- [ ]당첨 내역을 출력하는 기능 - printWinResult
-- [ ]수익률을 계산하는 기능 - printGainPercent
+- [ ] 로또번호를 비교하는 기능 - compareLotto
+- [ ] 당첨 내역을 출력하는 기능 - printWinResult
+- [ ] 수익률을 계산하는 기능 - printGainPercent
 
 예외처리 기능
 
