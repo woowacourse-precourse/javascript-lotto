@@ -11,6 +11,11 @@ class App {
     this.lottos = [];
   }
 
+  getPurchaseInfo(amount) {
+    const purchase = new Purchase(amount);
+    return { purchaseAmount: purchase.getPurchaseAmount(), count: purchase.getPublishCount() };
+  }
+
   createRandomLottoNumbers() {
     const randoms = Random.pickUniqueNumbersInRange(LOTTO.MIN, LOTTO.MAX, LOTTO.LENGTH);
     return randoms.sort((num1, num2) => num1 - num2);
@@ -25,13 +30,9 @@ class App {
 
   play() {
     userInput(COMMAND.INPUT_PURCHASE_AMOUNT, (amount) => {
-      const purchase = new Purchase(amount);
-      this.purchaseAmount = purchase.getPurchaseAmount();
-      
-      const publishCount = purchase.getPublishCount();
-      printMessage(`${publishCount}개 구매했습니다.`);
-      
-      this.generateUserLottos(publishCount);
+      const purchaseInfo = this.getPurchaseInfo(amount);
+      this.purchaseAmount = purchaseInfo.amount;
+      this.generateUserLottos(purchaseInfo.count);
       this.lottos.forEach(lotto => printMessage(lotto.getNumbers()));
     });
   }
