@@ -61,6 +61,10 @@ class Lotto {
         index1++;
       }
     }
+    
+    for (var n of number1){
+      checkBonus(correct, n);
+    }
 
     return correct;
   }
@@ -83,6 +87,12 @@ function checkArr(checkArray,n){
     throw new Error("[ERROR] 로또 번호는 중복될 수 없습니다.");
   }
   checkArray.push(n);
+}
+
+function checkBonus(correct, n){
+  if (n==bonus){
+    correct[1]++;
+  }
 }
 
 module.exports = Lotto;
