@@ -12,6 +12,7 @@ class Lotto {
   validate(numbers) {
     this.validateSizeIsSix(numbers);
     this.validateIsDuplicated(numbers);
+    this.validateNumberRange(numbers);
   }
   validateIsDuplicated(numbers) {
     const numbersSet = new Set(numbers);
@@ -32,6 +33,17 @@ class Lotto {
     if (this.#numbers.includes(number)) {
       Console.close();
       throw new Error("[ERROR] 보너스 번호가 중복 되었습니다.");
+    }
+  }
+
+  checkRange(number) {
+    return number < 1 || number > 45;
+  }
+
+  validateNumberRange(numbers) {
+    if (numbers.some(this.checkRange)) {
+      Console.close();
+      throw new Error("[ERROR] 1 ~ 45 사이의 수를 입력하여야 합니다.");
     }
   }
 
