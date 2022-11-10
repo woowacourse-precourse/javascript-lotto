@@ -9,6 +9,12 @@ const inputAmountMoney= () =>{
         return new Error;
     });
 } 
-
+const inputWinNumber= ()=>{
+    let lottoNumber=new Set();
+    while(lottoNumber.size<6){
+        lottoNumber.add(MissionUtils.Random.pickNumberInRange(1,45));
+    }
+    return lottoNumber;
+}
 
 module.exports = Input;
