@@ -21,6 +21,7 @@
   - [ ] make sure that there are no duplicate numbers
   - [ ] put numbers in a array
   - [ ] generator receives amount to create number of arrays
+    - [ ] amount should be a positive integer and multiple of 1000
   - [ ] each array contains 6 numbers and costs 1,000 won
 
 ## Find Winner
