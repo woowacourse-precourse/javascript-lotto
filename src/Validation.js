@@ -16,6 +16,9 @@ class Validation {
   }
 
   bonusNumber(number) {
+    const ONLY_ONE_NUMBER = '[ERROR] 1개의 숫자만 입력해주세요.';
+    if (number.length !== 1) throw new Error(ONLY_ONE_NUMBER);
+
     number = Number(number);
     if (!(number >= 1 && number <= 45)) throw new Error(this.#numberInRangeMessage);
   }
