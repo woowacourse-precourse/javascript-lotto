@@ -6,11 +6,11 @@ class InputConsole {
   }
 
   winningNumbers(callback) {
-    Console.readLine('당첨 번호를 입력해 주세요.\n', callback);
+    Console.readLine('\n당첨 번호를 입력해 주세요.\n', callback);
   }
 
   bonusNumber(callback) {
-    Console.readLine('보너스 번호를 입력해 주세요.\n', callback);
+    Console.readLine('\n보너스 번호를 입력해 주세요.\n', callback);
   }
 }
 
