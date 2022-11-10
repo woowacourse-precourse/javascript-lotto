@@ -58,7 +58,61 @@ describe('validInputMoney(inputMoney)', () => {
   });
 
   test('적절하지 않은 입력값이 들어오는 경우, 에러를 발생해야 합니다.', () => {
-    expect(lotto.validateInputMoney('8500')).toThrow("[ERROR] 유효하지 않은 값을 입력하셨습니다. 다시 확인하세요.");
+    expect(() => {
+      lotto.validateInputMoney('8500');
+    }).toThrow();
   });
 });
 
+describe('validateWinningNumbers(winningNumbers)', () => {
+  const lotto = new Lotto();
+
+  test("적절한 입력값이 들어오는 경우, true를 반환해야 합니다.", () => {
+    expect(lotto.validateWinningNumbers('1,2,3,4,5,6')).toBeTruthy();
+  });
+
+  test("공백을 포함하는 입력값도 적합한 입력값이라 판단하였습니다. 따라서 true를 반환해야 합니다.", () => {
+    expect(lotto.validateWinningNumbers('1   0 , 2   1 ,  3  3,   4, 5,      6')).toBeTruthy();
+  });
+
+  test('적절하지 않은 입력값이 들어오는 경우, 에러를 발생해야 합니다. - 숫자가 아닌 경우', () => {
+    expect(() => {
+      lotto.validateWinningNumbers('1,2,3,a,b,6');
+    }).toThrow();
+  });
+
+  test('적절하지 않은 입력값이 들어오는 경우, 에러를 발생해야 합니다. - 입력받은 수가 6개가 아닌 경우', () => {
+    expect(() => {
+      lotto.validateWinningNumbers('1,2,3,4,5');
+    }).toThrow();
+
+    expect(() => {
+      lotto.validateWinningNumbers('1,2,3,4,5,6,7');
+    }).toThrow();
+  });
+
+  test('적절하지 않은 입력값이 들어오는 경우, 에러를 발생해야 합니다. - 로또 범위 내의 수가 아닌 경우', () => {
+    expect(() => {
+      lotto.validateWinningNumbers('1,2,3,46,5,6');
+    }).toThrow();
+
+    expect(() => {
+      lotto.validateWinningNumbers('1,2,3,0,5,6');
+    }).toThrow();
+    expect(() => {
+      lotto.validateWinningNumbers('-1,2,3,4,5,6');
+    }).toThrow();
+  });
+
+  test('적절하지 않은 입력값이 들어오는 경우, 에러를 발생해야 합니다. - 자연수가 아닌 경우', () => {
+    expect(() => {
+      lotto.validateWinningNumbers('1,2,3,4.7,5,6');
+    }).toThrow();
+  });
+
+  test('적절하지 않은 입력값이 들어오는 경우, 에러를 발생해야 합니다. - 중복된 값이 존재하는 경우', () => {
+    expect(() => {
+      lotto.validateWinningNumbers('1,2,3,3,5,6');
+    }).toThrow();
+  });
+});
