@@ -13,11 +13,15 @@ class User {
   }
 
   setMoney(money) {
-    this.money = money;
+    this.money = Number(money);
   }
 
   setLotto(lotto) {
     this.lotto = lotto;
+  }
+
+  validateMoney(money) {
+    return 1;
   }
 }
 
