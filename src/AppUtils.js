@@ -4,7 +4,12 @@ class AppUtils {
     return myLottoNumbers.filter(number => winNumbers.includes(number)).length;
   }
 
-  static getWinHistory() {
+  static checkBonusNum(myLottoNumbers, bonus) {
+    // 보너스 번호 일치 여부 조회
+    return myLottoNumbers.includes(bonus);
+  }
+
+  static getHistory(myLottoes, winNumbers, bonus) {
     // 발행된 모든 로또의 당첨 내역 조회
   }
 
