@@ -8,10 +8,6 @@
 
 - 서로 다른 6자리의 수
 
-2. 당첨 번호 추첨
-
-- 서로 다른 7자리의 수 추출 및 숫자 중 하나를 보너스 번호로 지정
-
 ## 프로그램 로직 구현
 
 1. 로또 발행 횟수
@@ -51,10 +47,10 @@
 
 ## 게임 시작 - mvc 패턴화 적용
 
-model - Lotto.js, issueLotto.js, resultCheck.js, inputCheck.js
-view - view.js
-controller - controller.js
-로 나누어 패턴화 한다.
+- model -> Lotto.js, issueLotto.js, resultCheck.js, inputCheck.js
+- view -> view.js
+- controller -> controller.js
+  로 나누어 패턴화 한다.
 
 1. App.js에서 컨트롤러를 호출하여 실행
 2. 컨트롤러는 issueLotto.js 호출 후 구매금액을 입력받아 로또 발행
