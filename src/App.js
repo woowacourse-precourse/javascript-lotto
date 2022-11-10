@@ -35,34 +35,6 @@ class App {
       this.lotto.setBonusNum(parseInt(input));
     });
   }
-
-  checkMatchLottoNum(MyLottoNumbers, winNumbers) {
-    // 로또 발행 번호와 당첨 번호 일치 조회 
-    return MyLottoNumbers.filter(number => winNumbers.includes(number)).length
-  }
-
-  getWinHistory() {
-    // 발행된 모든 로또의 당첨 내역 조회
-  }
-
-  calRate() {
-    // 수익률 계산 
-  }
-
-  printMyLotto() {
-    // 구매한 로또 내역 출력
-  }
-
-  printWinHistory() {
-    // 로또 당첨 내역 출력
-  }
-
-  printRate() {
-    // 수익률 출력
-  }
 }
-
-const app = new App();
-app.play();
 
 module.exports = App;
