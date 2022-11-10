@@ -18,7 +18,7 @@
 
 ### 필드
 
-- purchasingAmount : 구입금액
+- lottoAmount: 로또 갯수
 - lottos: 구입한 로또 번호들
 - winningLotteryNumbers: 당점번호
 - bonusNumber: 보너스 번호
@@ -27,6 +27,7 @@
 ### 메서드
 
 - play: 게임 시작
+- validate: 구입 금액이 1,000원 단위가 아닌 경우
 - makeLottoNumbers: 로또 번호 생성
 - printPurchaseList: 구매 내역 출력
 - printResult: 결과 출력
@@ -34,7 +35,8 @@
 - getProfit: 수익률 구하기
 - getWinningLotteryNumbers: 당첨번호 입력 받기
 - getBonusNumber: 보너스 숫자 입력 받기
-- validate: 구입 금액이 1,000원 단위가 아닌 경우
+- getPurchasePrice: 구입금액 입력 받기
+- compareNumbers: 당첨 번호와 로또 번호 비교하기
 
 ## Lotto
 
@@ -56,6 +58,17 @@
     - [x] numbers가 배열이 아닌 경우
   - [x] #numbers 오름차순으로 리턴
 
+- [x] 입력하기
+
+  - [x] 구입금액
+  - [x] 당첨 번호
+  - [x] 보너스 번호
+
+- [ ] 출력하기
+
+  - [ ] 구입한 로또 개수
+  - [ ] 구입한 로또 번호
+  - [ ] 당첨 통계
+
 - [ ] 로또 번호
   - [ ] numbers 배열 (1~45) 중복된 수 없이 6숫자 뽑아내기
-  - [ ]
