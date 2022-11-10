@@ -4,16 +4,20 @@ const Tickets = require('./Tickets');
 class Lotto {
   #numbers;
 
-  static publish(lottos, lottoNumber) {
-    if (lottos.length >= lottoNumber) {
-      return lottos;
+  publishPlayersTicket(lottoNumber) {
+    let lottoTickets = [];
+
+    for (let i = 0; i < lottoNumber; i++) {
+      this.publishTicket();
+      lottoTickets = Tickets.get(lottoTickets, this.#numbers);
+      lottoTickets = Tickets.removeDuplicatedLotto(lottoTickets);
     }
-    let tempLottos = [...lottos];
 
-    tempLottos = Tickets.get(lottos, Ticket.get());
-    tempLottos = Tickets.removeDuplicatedLotto(tempLottos);
+    return lottoTickets;
+  }
 
-    return Lotto.publish(tempLottos, lottoNumber);
+  publishTicket() {
+    this.#numbers = Ticket.get();
   }
 }
 

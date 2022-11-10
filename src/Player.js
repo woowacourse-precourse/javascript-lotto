@@ -2,17 +2,22 @@ const Maker = require('./utils/Maker');
 const Lotto = require('./Lotto');
 
 class Player {
+  #lotto;
+
   #lottoNumber;
 
-  #lotto;
+  #lottoTickets;
+
+  constructor() {
+    this.#lotto = new Lotto();
+  }
 
   buyLotto(priceString) {
     this.#lottoNumber = Maker.getLottoNumber(Maker.makeUsablePrice(priceString));
   }
 
   getLotto() {
-    this.#lotto = Lotto.publish(this.#lottoNumber);
-    // console.log(this.#lotto);
+    this.#lottoTickets = this.#lotto.publishPlayersTicket(this.#lottoNumber);
   }
 }
 
