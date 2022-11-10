@@ -51,13 +51,13 @@
 
 ## 게임 시작 - mvc 패턴화 적용
 
-model - Lotto.js
+model - Lotto.js, issueLotto.js, resultCheck.js, inputCheck.js
 view - view.js
 controller - controller.js
 로 나누어 패턴화 한다.
 
 1. App.js에서 컨트롤러를 호출하여 실행
-2. 컨트롤러는 사용자의 구매 금액을 입력받아 이를 Lotto.js에 전달
-3. Lotto.js에서 입력 받은 구매 금액 만큼 로또 번호 추첨 진행
+2. 컨트롤러는 사용자의 구매 금액을 입력받아 Lotto.js(유효성 검증) -> issueLotto.js 순으로 전달
+3. issueLotto.js는 구매 금액 만큼 로또번호를 생성한다. 이를 resultCheck.js에 전달
 4. 다시 컨트롤러에서 사용자의 당첨 번호와 보너스 번호를 입력받고 이를 Lotto.js에 전달
-5. Lotto.js는 전달받은 번호들로 당첨 확인 및 수익률 계산 진행.
+5. Lotto.js는 전달받은 번호들의 유효성을 체크하고 resultCheck.js에 전달 후 당첨 확인 및 수익률 계산 진행.
