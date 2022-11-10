@@ -58,6 +58,28 @@ class App {
     });
   }
 
+  submitBonusNumber() {
+    Console.readLine('', input => {
+      this.validateBonus(input);
+      this.winningNumberArr.push(Number(input));
+    });
+  }
+
+  validateBonus(input) {
+    const regExp = /[1-9]/g;
+    const matchArr = input.match(regExp);
+    if (matchArr.length !== input.length) {
+      throw new Error('[ERROR] 숫자를 입력해주세요.');
+    }
+    let num = Number(input);
+    if (num < 1 || num > 45) {
+      throw new Error('[ERROR] 로또 번호는 1부터 45 사이의 수들로 이루어져야 합니다.');
+    }
+    if (this.winningNumberArr.includes(num)) {
+      throw new Error('[ERROR] 당첨번호와 중복되지 않는 수를 입력해주세요.');
+    }
+  }
+
   play() {
     this.printPurchaseInputMessage().submitPurchaseAmount();
   }
