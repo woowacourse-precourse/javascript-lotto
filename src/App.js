@@ -7,6 +7,22 @@ class App {
     this.bonusNumber = null;
   }
 
+  result() {
+    const rankObject = this.generateRankObject();
+    const winArr = this.lottes.map((lotte) =>
+      lotte.rank(this.winNumbers, this.bonusNumber)
+    );
+    this.countingRank(rankObject, winArr);
+    wConsole.print(`3개 일치 (5,000원) - ${rankObject[5]}개`);
+    wConsole.print(`4개 일치 (50,000원) - ${rankObject[4]}개`);
+    wConsole.print(`5개 일치 (1,500,000원) - ${rankObject[3]}개`);
+    wConsole.print(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankObject[2]}개`
+    );
+    wConsole.print(`6개 일치 (2,000,000,000원) - ${rankObject[1]}개`);
+    this.earningRate(rankObject);
+  }
+
   viewLottes() {
     this.lottes.forEach((lotte) => {
       wConsole.print(lotte.toString());
