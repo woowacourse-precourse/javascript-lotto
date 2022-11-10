@@ -16,7 +16,7 @@ class App {
   inputPurchase() {
     // 로또 구입 금액 입력
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (input) => {
-      this.#myLotto = new MyLotto(parseInt(input));
+      this.myLotto = new MyLotto(parseInt(input));
       this.inputWinNum();
     });
   }
@@ -24,7 +24,7 @@ class App {
   inputWinNum() {
     // 당첨 번호 입력
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (input) => {
-      this.#lotto = new Lotto(input.split(',').map(num => parseInt(num)));
+      this.lotto = new Lotto(input.split(',').map(num => parseInt(num)));
       this.inputBonusNum();
     });
   }
@@ -32,13 +32,13 @@ class App {
   inputBonusNum() {
     // 보너스 번호 입력
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.\n', (input) => {
-      this.#lotto.setBonusNum(parseInt(input));
+      this.lotto.setBonusNum(parseInt(input));
     });
   }
 
-  checkMatchLottoNum() {
+  checkMatchLottoNum(MyLottoNumbers, winNumbers) {
     // 로또 발행 번호와 당첨 번호 일치 조회 
-    
+    return MyLottoNumbers.filter(number => winNumbers.includes(number)).length
   }
 
   getWinHistory() {
