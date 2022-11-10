@@ -6,7 +6,7 @@ class LottoGame {
   pay;
   lottos;
   winningNum;
-  BonusNum;
+  bonusNum;
 
   constructor() {}
 
@@ -40,6 +40,13 @@ class LottoGame {
       this.winningNum = GameUtils.getWinnigNumbers(input);
 
       this.setBonusNumber();
+    });
+  }
+
+  setBonusNumber() {
+    Console.readLine("보너스 번호를 입력해 주세요.\n", (input) => {
+      ValidCheckUtils.checkBonusNumber(input, this.winningNum);
+      this.bonusNum = input;
     });
   }
 }

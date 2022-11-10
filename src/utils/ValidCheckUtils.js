@@ -20,14 +20,27 @@ class ValidCheckUtils {
         .length > 0
     )
       throw new Error(
-        "[ERROR] 당첨 번호는 1에서 45 사이의 번호만 사용할 수 있습니다."
+        "[ERROR] 당첨 번호는 1에서 45 사이의 번호만 입력 가능합니다."
       );
 
     if (winningNumberArray.length !== 6)
       throw new Error("[ERROR] 당첨 번호는 총 6개입니다.");
 
     if (winningNum.replace(/[0-9]|\,/g, "").length > 0)
-      throw new Error("[ERROR] 당첨 번호는 숫자만을 사용할 수 있습니다.");
+      throw new Error("[ERROR] 당첨 번호는 숫자만 입력 가능합니다.");
+  }
+
+  static checkBonusNumber(bonusNum, winningNumberArray) {
+    if (winningNumberArray.includes(bonusNum))
+      throw new Error("[ERROR] 당첨번호와 보너스 번호는 중복될 수 없습니다.");
+
+    if (Number(bonusNum) < 1 || Number(bonusNum) > 45)
+      throw new Error(
+        "[ERROR] 보너스 번호는 1부터 45사이의 번호만 입력 가능합니다."
+      );
+
+    if (String(bonusNum).replace(/[0-9]/g, "").length > 0)
+      throw new Error("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
   }
 }
 
