@@ -19,17 +19,20 @@ class Lotto {
       if (isNaN(userInput) == true) throw new Error('숫자를 입력 해주세요.');
       if (userInput % 1000 !== 0) throw new Error('1,000원 단위로 입력 해주세요.');
       MissionUtils.Console.close();
-      return userInput
+      return this.checkHowManyLottos(userInput)
     })
   }
 
+  checkHowManyLottos(payment) {
+    const boughtLottos = payment/1000;
+    MissionUtils.Console.print(boughtLottos+'개를 구매했습니다.')
+    return boughtLottos
+  }
+  
   // TODO: 추가 기능 구현
 }
 
 
-//>>>>>>>>>>>>UI test<<<<<<<<<<<<<<
-const lotto = new Lotto();
-lotto.getUserPayment();
 
 
 
