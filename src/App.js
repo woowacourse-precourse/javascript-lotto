@@ -2,6 +2,8 @@ class App {
   play() {
     const MISSIONUTILS = require("@woowacourse/mission-utils");
     const LOTTO = require("../src/Lotto");
+
+    var answer = [0,0,0,0,0];
     
     MISSIONUTILS.Console.readLine("구입금액을 입력해 주세요.\n", function(input) {
       var temp = input/1000;
@@ -12,7 +14,7 @@ class App {
       var arr = new Array(temp);
       makeLotto(MISSIONUTILS, arr, temp, LOTTO);
 
-      winCheck(MISSIONUTILS, LOTTO);
+      winCheck(MISSIONUTILS, LOTTO, arr, answer);
     });
   }
 }
@@ -36,7 +38,7 @@ function makeLotto(MISSIONUTILS, arr, input, LOTTO) {
   }
 }
 
-function winCheck(MISSIONUTILS, LOTTO) {
+function winCheck(MISSIONUTILS, LOTTO, arr, answer) {
   var win;
   MISSIONUTILS.Console.readLine("\n당첨 번호를 입력해 주세요.\n", function(input1) {
     win = input1.split(",").map(Number);
@@ -44,14 +46,15 @@ function winCheck(MISSIONUTILS, LOTTO) {
     win.sort();
     win.print();
 
-    bonusCheck(MISSIONUTILS, win);
+    bonusCheck(MISSIONUTILS, win, arr, answer);
   });
 }
 
-function bonusCheck(MISSIONUTILS, win) {
+function bonusCheck(MISSIONUTILS, win, arr, answer) {
   MISSIONUTILS.Console.readLine("\n보너스 번호를 입력해 주세요.\n", function(input2) {
     bonus = input2;
     validateBonus(bonus,win);
+    matchWin(MISSIONUTILS, win, bonus, arr, answer)
   });
 }
 
@@ -67,6 +70,41 @@ function validateBonus(bonus, win) {
   }
 
   win.checkBonus(bonus);
+}
+
+function matchWin(MISSIONUTILS, win, bonus, arr, answer){
+  for (var a of arr){
+    correct = a.match(win, bonus);
+    MISSIONUTILS.Console.print(correct);
+    matchCorrect(correct, answer)
+  }
+}
+
+function matchCorrect(correct, answer){
+  if (correct[0] == 3){
+    answer[0]++;
+    return;
+  }
+  if (correct[0] == 4){
+    answer[1]++;
+    return;
+  }
+  if (correct[0] == 5){
+    plusCorrect(correct, answer);
+  }
+  if (correct[0] == 6){
+    answer[4]++;
+    return;
+  }
+  return;
+}
+
+function plusCorrect(correct, answer){
+  if (correct[1] == 1){
+    answer[3]++;
+    return;
+  }
+  answer[2]++;
 }
 
 var a = new App;
