@@ -33,10 +33,5 @@ describe("로또 클래스 테스트", () => {
     expect(lotte2.countingWin([1, 2, 3, 4, 5, 6])).toEqual(5);
   })
 
-  test("rank", () => {
-    const lotte1 = new Lotto([1, 2, 3, 4, 5, 6]);
-    const lotte2 = new Lotto([1, 2, 3, 4, 5, 7]);
-    expect(lotte1.rank([1, 2, 3, 4, 5, 6], 7)).toEqual(1);
-    expect(lotte2.rank([1, 2, 3, 4, 5, 6], 7)).toEqual(2);
-  })
+  
 });
