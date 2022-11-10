@@ -1,6 +1,7 @@
 const Console = require("@woowacourse/mission-utils").Console;
 const Random = require("@woowacourse/mission-utils").Random;
 const Lotto = require("./Lotto");
+const BonusNumber = require("./BonusNumber");
 
 class App {
   play() {
@@ -100,7 +101,9 @@ class App {
   }
 
   getBonusNumber() {
-    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonus) => {});
+    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonus) => {
+      const bonusNumber = new BonusNumber(bonus);
+    });
   }
 }
 
