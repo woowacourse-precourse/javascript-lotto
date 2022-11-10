@@ -7,6 +7,12 @@ class App {
     this.bonusNumber = null;
   }
 
+  viewLottes() {
+    this.lottes.forEach((lotte) => {
+      wConsole.print(lotte.toString());
+    });
+  }
+
   buy() {
     let remain = this.money;
     let count = parseInt(this.money / 1000);
