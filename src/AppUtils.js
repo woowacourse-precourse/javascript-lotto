@@ -11,6 +11,24 @@ class AppUtils {
 
   static getHistory(myLottoes, winNumbers, bonus) {
     // 발행된 모든 로또의 당첨 내역 조회
+    const history = [0,0,0,0,0]
+    myLottoes.forEach(myLottoNumbers => {
+      switch(this.checkMatchLottoNum(myLottoNumbers, winNumbers)) {
+        case 3:
+          history[0] += 1;
+          break;
+        case 4:
+          history[1] += 1;
+          break;
+        case 5:
+          this.checkBonusNum(myLottoNumbers, bonus) ? history[3] += 1 : history[2] += 1;
+          break;
+        case 6:
+          history[4] += 1;
+          break;
+      }
+    })
+    return history;
   }
 
   static calRate() {
