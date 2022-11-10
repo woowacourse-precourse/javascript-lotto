@@ -34,12 +34,12 @@ class AppUtils {
   static calReward(history) {
     //상금 계산
     const amount = [5000, 50000, 1500000, 30000000, 2000000000]
-    return history.reduce((prev, curr, idx) => prev + curr * amount[idx],
-    0)
+    return history.reduce((prev, curr, idx) => prev + curr * amount[idx], 0)
   }
 
-  static calRate() {
+  static calRate(purchase, reward) {
     // 수익률 계산 
+    return reward == 0 ? 0 : Math.round(reward / purchase * 1000) / 10;
   }
 
   static printMyLotto() {
