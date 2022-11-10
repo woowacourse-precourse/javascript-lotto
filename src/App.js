@@ -1,5 +1,6 @@
 const Store = require('./Store');
 const Lotto = require('./Lotto');
+const Bonus = require('./Bonus');
 const { Console } = require('@woowacourse/mission-utils');
 const { createLottoNumbers, convertWinningNumbers } = require('./utils/lottoUtils');
 class App {
@@ -46,27 +47,13 @@ class App {
   }
 
   createBonusNumber() {
-    Console.readLine('보너스 번호를 입력해 주세요.', (bonus) => {
-      this.bonus = Number(bonus);
-      this.validateBonusNumber(this.bonus);
+    Console.readLine('보너스 번호를 입력해 주세요.', (number) => {
+      this.bonus = Number(number);
+      new Bonus(this.bonus, this.winningNumbers);
       const result = this.getResult();
       this.printResult(result);
       Console.close();
     });
-  }
-
-  validateBonusNumber(bonus) {
-    if (isNaN(bonus)) {
-      throw new Error('[ERROR] 보너스 번호는 숫자여야 합니다.');
-    }
-
-    if (this.winningNumbers.includes(bonus)) {
-      throw new Error('[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.');
-    }
-
-    if (bonus <= 0 || bonus > 45) {
-      throw new Error('[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.');
-    }
   }
 
   getWinningRanking(boughtLotto) {
