@@ -14,4 +14,6 @@ const ERROR = {
   UNIT_OF_THOUSAND: `${ERROR_PREFIX} [ERROR] 로또 구입 금액은 천 원 단위여야 합니다.`,
 };
 
-module.exports = { MESSAGE, ERROR };
+const WINNING_MONEY = [5000, 50000, 1500000, 3000000, 2000000000];
+
+module.exports = { MESSAGE, ERROR, WINNING_MONEY };

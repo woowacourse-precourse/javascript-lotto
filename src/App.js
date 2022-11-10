@@ -4,12 +4,13 @@ const Bonus = require('./Bonus');
 const View = require('./View');
 const { Console } = require('@woowacourse/mission-utils');
 const { convertWinningNumbers, getLottoBundle } = require('./utils/lottoUtils');
-const { MESSAGE } = require('./utils/constants');
+const { MESSAGE, WINNING_MONEY } = require('./utils/constants');
 
 class App {
   play() {
     this.buyLotto();
     this.view = new View();
+    this.money = 0;
     this.lottoBundle = [];
     this.winningNumbers = [];
     this.bonus = 0;
@@ -17,7 +18,7 @@ class App {
 
   buyLotto() {
     Console.readLine(MESSAGE.BUY, (money) => {
-      console.log(money);
+      this.money = money;
       const store = new Store(money);
       const amount = money / 1000;
       this.lottoBundle = getLottoBundle(amount);
@@ -72,6 +73,14 @@ class App {
       result[ranking] += 1;
     });
     return result.slice(1, 6).reverse();
+  }
+
+  calculateProfitRate(result) {
+    const profit = result.reduce((acc, cur, idx) => {
+      acc += WINNING_MONEY[idx] * cur;
+    });
+    const profitRate = (profit / this.money) * 100;
+    return profitRate.toFixed(2);
   }
 }
 
