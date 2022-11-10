@@ -32,9 +32,7 @@ class Lotto {
     let tickets = []; // 티켓 개수에 맞게끔 하나의 리스트에 각각의 티켓을 저장
     for (let i = 0; i < numberOfTicket; i++) {
       let ticket = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-      ticket.sort(function (a, b) {
-        return a - b;
-      });
+      ticket.sort((a, b) => a - b);
       tickets[i] = ticket;
       MissionUtils.Console.print(ticket);
     }
