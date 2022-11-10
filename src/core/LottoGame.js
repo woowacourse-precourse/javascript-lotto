@@ -18,11 +18,14 @@ class LottoGame {
   }
 
   purchase(money) {
-    const lotto = this.lottoGenerator.getTimes(money / 1000);
-    this.user.setLotto(lotto);
+    const lottoNumbers = this.lottoGenerator.getTimes(money / 1000);
+    this.user.setLotto(lottoNumbers);
     this.outputConsole.userLotto(this.user.getLotto());
     this.inputConsole.winningNumbers((numbers) => {
       const lotto = new Lotto(numbers.split(','));
+      this.inputConsole.bonusNumber((number) => {
+        lotto.setWinningNumbers(number);
+      });
     });
   }
 }

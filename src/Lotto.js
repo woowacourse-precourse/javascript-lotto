@@ -2,20 +2,20 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    this.validate(numbers, 6);
     this.#numbers = numbers;
   }
 
-  validate(numbers) {
-    this.validateLength(numbers);
+  validate(numbers, length) {
+    this.validateLength(numbers, length);
     this.validateDuplication(numbers);
     this.validateType(numbers);
     this.validateRange(numbers);
   }
 
-  validateLength(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+  validateLength(numbers, length) {
+    if (numbers.length !== length) {
+      throw new Error(`[ERROR] 로또 번호는 ${length}개여야 합니다.`);
     }
   }
 
@@ -39,6 +39,11 @@ class Lotto {
         throw new Error('[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.');
       }
     });
+  }
+
+  setWinningNumbers(bonusNumber) {
+    this.#numbers.push(bonusNumber);
+    this.validate(this.#numbers, 7);
   }
 
   // TODO: 추가 기능 구현
