@@ -111,20 +111,19 @@ class LottoManager {
   }
 
   validateBonusNumber(bonusNumberInput) {
-    if (this.isNotNumber(bonusNumberInput)) {
-      throw new Error(
-        '[ERROR] 보너스 번호에 숫자가 아닌 문자가 입력되었습니다.',
-      );
-    }
-
-    if (this.isOutOfBound(parseInt(bonusNumberInput, 10))) {
-      throw new Error('[ERROR] 보너스 번호는 1부터 45까지의 숫자여야 합니다.');
-    }
-
-    if (this.isDuplicateWinningNumber(parseInt(bonusNumberInput, 10))) {
-      throw new Error(
-        '[ERROR] 보너스 번호는 이전에 입력한 당첨 번호에 없는 숫자여야 합니다.',
-      );
+    switch (true) {
+      case this.isNotNumber(bonusNumberInput):
+        throw new Error(
+          '[ERROR] 보너스 번호에 숫자가 아닌 문자가 입력되었습니다.',
+        );
+      case this.isOutOfBound(parseInt(bonusNumberInput, 10)):
+        throw new Error(
+          '[ERROR] 보너스 번호는 1부터 45까지의 숫자여야 합니다.',
+        );
+      case this.isDuplicateWinningNumber(parseInt(bonusNumberInput, 10)):
+        throw new Error(
+          '[ERROR] 보너스 번호는 이전에 입력한 당첨 번호에 없는 숫자여야 합니다.',
+        );
     }
   }
 
