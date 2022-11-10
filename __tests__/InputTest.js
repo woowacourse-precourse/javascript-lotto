@@ -29,3 +29,13 @@ describe('사용자 입력 테스트', () => {
     }).toThrow('[ERROR]');
   });
 });
+
+describe('당첨 번호 입력 테스트', () => {
+  test('입력한 금액이 공백일경우 예외가 발생한다.', () => {
+    const input = '';
+
+    expect(() => {
+      checkWinningEmpty(input);
+    }).toThrow('[ERROR]');
+  });
+});
