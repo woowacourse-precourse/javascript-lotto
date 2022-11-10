@@ -5,15 +5,24 @@ class App {
   play() {
     this.inputPurchaseAmount();
   }
+
   inputPurchaseAmount() {
     MissionUtils.Console.readLine(
       READLINE_PHRASE.INPUT_PURCHASE_AMMOUNT,
-      (answer) => {
-        MissionUtils.Console.print(
-          parseInt(answer / 1000) + OUTPUT_PHRASE.RESPONSE_PURCHASE_AMMOUNT
-        );
+      (money) => {
+        this.printPurchaseQuantity(money);
       }
     );
+  }
+  printPurchaseQuantity(money) {
+    MissionUtils.Console.print(
+      OUTPUT_PHRASE.LINE_UP +
+        this.getPurchaseQuantity(money) +
+        OUTPUT_PHRASE.PURCHASE_QUANTITY
+    );
+  }
+  getPurchaseQuantity(money) {
+    return parseInt(money / 1000);
   }
 }
 

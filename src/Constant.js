@@ -5,7 +5,8 @@ const READLINE_PHRASE = {
 };
 
 const OUTPUT_PHRASE = {
-  RESPONSE_PURCHASE_AMMOUNT: "개를 구매했습니다.\n",
+  LINE_UP: "\n",
+  PURCHASE_QUANTITY: "개를 구매했습니다.",
   WINNING_STATISTICS: {
     INTRO: "당첨 통계\n" + "---\n",
     THREE_MATCHES: "3개 일치 (5,000원) - ",
