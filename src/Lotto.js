@@ -1,4 +1,4 @@
-const { Console } = require("@woowacourse/mission-utils");
+const { Console, Random } = require("@woowacourse/mission-utils");
 
 class Lotto {
   #numbersOfLotto;
@@ -46,10 +46,38 @@ class Lotto {
     Console.readLine("", (inputMoney) => {
       this.validateInputMoney(inputMoney);
       this.#numbersOfLotto = Number(inputMoney) / 1000;
+      this.buyLotto();
 
       Console.close();
     });
   }
+
+  randomSelectWithoutOverlap() {
+    const randomNumbers = [];
+    while (randomNumbers.length < 6) {
+      const number = Random.pickNumberInRange(1, 45);
+      if (randomNumbers.includes(number) === false) {
+        randomNumbers.push(number);
+      }
+    }
+
+    return randomNumbers;
+  }
+
+  getEachLottoArray() {
+    const lottoArray = this.randomSelectWithoutOverlap().sort((a, b) => a - b);
+    return lottoArray;
+  }
+
+  buyLotto() {
+    const lottoArray = [];
+    for (let i = 0; i < this.#numbersOfLotto; i++) {
+      lottoArray.push(this.getEachLottoArray());
+    }
+    Console.print(lottoArray);
+  }
+
+
 
   // TODO: 추가 기능 구현
 }
