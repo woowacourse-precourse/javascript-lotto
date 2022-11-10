@@ -5,7 +5,22 @@ class App {
     this.lottes = [];
     this.winNumbers = [];
     this.bonusNumber = null;
-  }
+  }  
+  
+  setBonusNumber() {
+    wConsole.readLine("보너스 번호를 입력해 주세요.\n", (line) => {
+      if (!/^\d+$/.test(line))
+        throw new Error("[ERROR] 보너스 번호의 형식이 올바르지 않습니다.");
+      const bonusNumber = parseInt(line);
+      if (bonusNumber < 1 || 45 < bonusNumber)
+        throw new Error("[ERROR] 보너스 번호가 범위를 벗어났습니다.");
+      if (this.winNumbers.includes(line))
+        throw new Error(
+          "[ERROR] 보너스 번호가 이미 당첨번호에 포함되어 있습니다."
+        );
+      this.bonusNumber = bonusNumber;
+      this.buy();
+    });
 
   setWinNumbers() {
     wConsole.readLine("당첨 번호를 입력해 주세요.\n", (line) => {
