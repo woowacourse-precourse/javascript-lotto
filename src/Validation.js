@@ -14,6 +14,11 @@ class Validation {
     // 1 ~ 45 범위의 숫자를 입력하지 않은 경우
     if (numbers.length !== NUMBERS_IN_RANGE.length) throw new Error(this.#numberInRangeMessage);
   }
+
+  bonusNumber(number) {
+    number = Number(number);
+    if (!(number >= 1 && number <= 45)) throw new Error(this.#numberInRangeMessage);
+  }
 }
 
 module.exports = Validation;
