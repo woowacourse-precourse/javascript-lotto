@@ -1,6 +1,6 @@
 # 우아한테크코스 3주차 미션 - 로또
 
-## 출력을 통해 기능 분석하기
+## 출력을 이용해 기능 분리하기
 
 - Customer.buyLotto(), readLine 함수를 이용해 구입 금액을 입력받고 콜백 -> 로또 생성까지
 
@@ -49,3 +49,46 @@
 6개 일치 (2,000,000,000원) - 0개
 총 수익률은 62.5%입니다.
 ```
+
+## 분리한 기능을 구체화시키기
+
+### not use callback
+
+- Customer.buyLotto()
+  - get User input >> mock fn(readline)
+  - price exception handling(price)
+  - return payingPrice;
+- LottoStore.generateLottoNumber(price)
+  - calculate buying lotto counts
+  - generate Lottos(lotto count) >> mock fn(pickUniqueNumbersInRange)
+  - lotto number exception handling(Lottos : array);
+  - return generated Lottos;
+- (add) Customer.setLottoNumbers(Lottos)
+- LottoCompany.enterWinningLottoNumber()
+  - get User input >> mock fn(readline)
+  - lotto number exception handling(user inputs : string)
+  - return winning numbers;
+- LottoCompany.enterLottoBonusNumber()
+  - get User input >> mock fn(readline)
+  - lotto number exception handling(user inputs : string)
+  - return winning bonus number;
+- Customer.winLottoStatistic( {winning numbers, winning bonus number, generate lottos} )
+  - find winning numbers in generate lottos(lotto object)
+    - return statistics object;
+  - print lotto statistic(statistics object)
+    - calculate correct 3 number()
+    - calculate correct 4 number()
+    - calculate correct 5 number()
+    - calculate correct 5 number with bonus number()
+    - calculate correct 6 number()
+  - close console
+
+### use callback
+
+- if not using callback way is failed, i try solve this problem using callback
+
+## 미션 후기
+
+### 학습 과정
+
+### 배운점
