@@ -18,6 +18,17 @@ class CreateRandomLotto {
             return a - b;
         })
     }
+
+    issuedRandomNumber(number){
+        let i =0 ;
+        while( i < number){
+            this.pickRandomLotto();
+            this.randomNumberSort()
+            console.print(this.randomLotto);
+            this.randomLotto.length = 0;
+            i++;
+        }
+    }
 }
 
 
