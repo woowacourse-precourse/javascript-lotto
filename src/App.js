@@ -6,6 +6,14 @@ class App {
     this.lottoCount = 0;
     this.winningNumber = [];
     this.userLottoNumbers = [];
+    this.bonusNumber = 0;
+    this.prizeResult = {
+      first: 0,
+      second: 0,
+      third: 0,
+      fourth: 0,
+      fifth: 0,
+    };
   }
 
   play() {
@@ -42,8 +50,23 @@ class App {
     Console.print('당첨 번호를 입력해 주세요.');
     Console.readLine('', (winningNumber) => {
       Validator.throwErrorIfInValidWinningNumber(winningNumber);
-      this.winningNumber = winningNumber;
+      this.winningNumber = winningNumber.split(',').map((num) => Number(num));
+      this.getBonusNumber();
     });
+  }
+
+  getBonusNumber() {
+    Console.print('보너스 번호를 입력해 주세요.');
+    Console.readLine('', (bonusNumber) => {
+      Validator.throwErrorIfInValidBonusNumber(this.winningNumber, bonusNumber);
+      this.bonusNumber = Number(bonusNumber);
+      this.setPrizeResult();
+    });
+  }
+
+  getSameNumberCount(lottoNumber) {
+    return lottoNumber.filter((number) => this.winningNumber.includes(number))
+      .length;
   }
 }
 
