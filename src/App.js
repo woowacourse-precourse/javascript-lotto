@@ -1,5 +1,10 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const { INPUT_MESSAGE, ERROR_MESSAGE, UNIT } = require("./constant/constant");
+const {
+  INPUT_MESSAGE,
+  ERROR_MESSAGE,
+  UNIT,
+  RESULT_MEESAGE,
+} = require("./constant/constant");
 const Lotto = require("./Lotto");
 
 class App {
@@ -10,8 +15,7 @@ class App {
   getMoney() {
     Console.readLine(INPUT_MESSAGE.MONEY, (money) => {
       this.validateMoney(money);
-      this.lotteryQuantity = +money / UNIT.MONEY;
-      const lotteries = this.exchangeLottery(this.lotteryQuantity);
+      const lottos = this.exchangeLotto(+money / UNIT.MONEY);
     });
   }
 
@@ -21,17 +25,16 @@ class App {
     }
   }
 
-  exchangeLottery(quantity) {
-    const lotteries = [];
+  exchangeLotto(quantity) {
+    const lottos = [];
     for (let i = 0; i < quantity; i++) {
-      lotteries.push(new Lotto(this.generateRandomNumbers()));
+      lottos.push(new Lotto(this.generateRandomNumbers()));
     }
-    return lotteries;
+    return lottos;
   }
 
   generateRandomNumbers() {
     return Random.pickUniqueNumbersInRange(1, 45, 6);
   }
 }
-console.log(new App().generateRandomNumbers());
 module.exports = App;

@@ -19,4 +19,8 @@ const RESULT_MEESAGE = {
   PROFIT: "총 수익률은 N%입니다.",
 };
 
-module.exports = { ERROR_MESSAGE, INPUT_MESSAGE, RESULT_MEESAGE };
+const UNIT = {
+  MONEY: 1000,
+};
+
+module.exports = { ERROR_MESSAGE, INPUT_MESSAGE, RESULT_MEESAGE, UNIT };
