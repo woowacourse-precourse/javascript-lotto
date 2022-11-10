@@ -8,9 +8,9 @@ class Lotto {
     this.#numbers = numbers;
   }
 
-  // 유효한 값 검사
   validate(numbers) {
     const numSet = new Set(numbers);
+    const escape = ["\n", "\t", "\a", "\v", "\b", "\f", "\\", "\'", "\""];
 
     if (numbers.length !== 6) {
       throw `[ERROR] 로또 번호는 6개여야 합니다.`;
@@ -19,10 +19,20 @@ class Lotto {
     if (numSet.size !== 6) {
       throw `[ERROR] 로또 번호가 중복됩니다.`;
     }
+    
+    escape.forEach((element) => {
+      if (numSet.has(element)) {
+        throw `[ERROR] 번호들은 콤마(,)로만 구분되며 이스케이프 문자를 사용하지 않습니다.`
+      }
+    })
 
     numbers.forEach((num) => {
-      if (Number.isNaN(num)) {
+      if (isNaN(num)) {
         throw `[ERROR] 숫자가 아닌 값이 있습니다.`;
+      }
+
+      if (Number(num) < 1 || Number(num) > 45) {
+        throw `[ERROR] 로또 번호는 1 ~ 45번까지만 존재합니다.`; 
       }
     });
   }
@@ -41,6 +51,7 @@ class Lotto {
       if (winningNumSet.has(num)) {
         countOfCorrectNum++;
       }
+
       if (num === bonusNumber){
         bonusFlag = true;
       }
@@ -62,10 +73,6 @@ class Lotto {
         break;
 
       case 5:
-        if (flag === true) {
-          rank = 2;
-          break;
-        } 
         rank = 3;
         break;
 
@@ -75,6 +82,10 @@ class Lotto {
       
       default:
         break;
+    }
+
+    if (rank === 3 && flag === true) {
+      rank = 2;
     }
 
     return rank;
