@@ -10,7 +10,9 @@ class App {
       purchaseShow(MISSIONUTILS, temp);
 
       var arr = new Array(temp);
-      makeLotto(MISSIONUTILS, arr, temp, LOTTO); 
+      makeLotto(MISSIONUTILS, arr, temp, LOTTO);
+
+      winCheck(MISSIONUTILS, LOTTO);
     });
   }
 }
@@ -32,6 +34,16 @@ function makeLotto(MISSIONUTILS, arr, input, LOTTO) {
     arr[i].sort();
     arr[i].print();
   }
+}
+
+function winCheck(MISSIONUTILS, LOTTO) {
+  var win;
+  MISSIONUTILS.Console.readLine("\n당첨 번호를 입력해 주세요.\n", function(input1) {
+    win = input1.split(",").map(Number);
+    win = new LOTTO(win);
+    win.sort();
+    win.print();
+  });
 }
 
 var a = new App;
