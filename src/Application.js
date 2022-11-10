@@ -16,6 +16,12 @@ class Application {
   static purchaseCount(purchaseAmount, criterion) {
     return this.convertNumber(purchaseAmount) / this.convertNumber(criterion);
   }
+
+  static dividendRate(purchaseAmount, earnings) {
+    const HUNDRED = 100;
+
+    return (this.convertNumber(earnings) / this.convertNumber(purchaseAmount)) * HUNDRED;
+  }
 }
 
 module.exports = Application;
