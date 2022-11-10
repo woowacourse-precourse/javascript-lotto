@@ -82,4 +82,10 @@ describe("로또 클래스 테스트", () => {
       ]);
     }).toThrow("[ERROR] 숫자와 ,(쉼표) 기호만을 입력해주세요.");
   });
+
+  test("배열 원소가 number 타입으로 변환되어야한다.", () => {
+    const app = new App();
+
+    expect(app.getUserLotto("1,2,3,4,5,6")).toStrictEqual([1, 2, 3, 4, 5, 6]);
+  });
 });
