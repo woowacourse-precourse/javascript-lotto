@@ -61,11 +61,34 @@ describe("로또 테스트", () => {
     });
   });
 
-  test("예외 테스트", () => {
-    mockQuestions(["1000j"]);
+  test("isValidMoney(), 금액 입력 예외 테스트", () => {
+    mockQuestions(["1000j", 900, 1000001]);
     expect(() => {
       const app = new App();
       app.play();
     }).toThrow("[ERROR]");
   });
+
+  test("generateLottoNumber(), 개수에 따른 로또 번호 생성 테스트", () => {
+    const lottonumbers = [
+      [1, 2, 3, 4, 5, 6],
+      [2, 3, 4, 5, 6, 7],
+      [3, 4, 5, 6, 7, 8]
+    ]
+    const messages = [
+      "3개를 구매했습니다.",
+      "[1, 2, 3, 4, 5, 6]",
+      "[2, 3, 4, 5, 6, 7]",
+      "[3, 4, 5, 6, 7, 8]"
+    ]
+    const logSpy = getLogSpy();
+    mockRandoms(lottonumbers);
+
+    const app = new App();
+    app.generateLottoNumber(3);
+
+    messages.forEach((output) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(output));
+    })
+  })
 });
