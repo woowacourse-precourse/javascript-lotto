@@ -64,6 +64,20 @@ class App {
     });
   }
 
+  setPrizeResult() {
+    this.prizeResult = this.userLottoNumbers.reduce((acc, cur) => {
+      const sameNumberCount = this.getSameNumberCount(cur);
+      const isBonusNumberMatch = cur.includes(Number(this.bonusNumber));
+      if (sameNumberCount === 6) acc.first += 1;
+      if (sameNumberCount === 5 && isBonusNumberMatch) acc.second += 1;
+      if (sameNumberCount === 5 && !isBonusNumberMatch) acc.third += 1;
+      if (sameNumberCount === 4) acc.fourth += 1;
+      if (sameNumberCount === 3) acc.fifth += 1;
+
+      return acc;
+    }, this.prizeResult);
+  }
+
   getSameNumberCount(lottoNumber) {
     return lottoNumber.filter((number) => this.winningNumber.includes(number))
       .length;
