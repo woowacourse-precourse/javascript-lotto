@@ -18,6 +18,8 @@ Calculator.calcBuyCount
 
 ### 2. 개수만큼 로또 구입
 
+App.buyLottos
+
 ### 3. 로또와 입력을 비교해서 순위를 계산
 
 Lotto.rank
