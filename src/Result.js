@@ -17,6 +17,8 @@ class Result {
     this.lottoArray.forEach((lotto) => {
       this.calculateOneLotto(lotto);
     });
+
+    this.showResult();
   }
 
   calculateOneLotto(lotto) {
@@ -74,6 +76,15 @@ class Result {
     if (this.score === 6) {
       this.first += 1;
     }
+  }
+
+  showResult() {
+    Console.print("\n당첨 통계\n---");
+    Console.print(`3개 일치 (5,000원) - ${this.fifth}개`);
+    Console.print(`4개 일치 (50,000원) - ${this.fourth}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${this.third}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.second}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${this.first}개`);
   }
 }
 
