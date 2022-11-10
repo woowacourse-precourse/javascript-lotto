@@ -15,7 +15,9 @@ class LottoGame {
   createLottoPhase() {
     this.LottoGameView.requestInput(REQUEST_MESSAGE.PURCHASE_MONEY, this.createLotto);
   }
-  createLotto(purchaseMoney) {}
+  createLotto(purchaseMoney) {
+    Validation.validatePurchaseMoney(purchaseMoney);
+  }
 }
 
 module.exports = LottoGame;

@@ -1,6 +1,19 @@
 const { LOTTO_PRICE } = require("./constants/condition.js");
+const { ERROR_MESSAGE } = require("./constants/message.js");
 
 class Validation {
+  static validatePurchaseMoney(purchaseMoney) {
+    if (!Validation.hasOnlyNumber(purchaseMoney)) {
+      throw new Error(ERROR_MESSAGE.INVALID_INPUT_TYPE);
+    }
+    if (Validation.isStartedZero(purchaseMoney)) {
+      throw new Error(ERROR_MESSAGE.START_WITH_ZERO);
+    }
+    if (!Validation.isDivisibleByLottoPrice(purchaseMoney)) {
+      throw new Error(ERROR_MESSAGE.INDIVISIBLE_BY_LOTTO_PRICE);
+    }
+  }
+
   static hasOnlyNumber(input, separator = "") {
     if (input) {
       return input
