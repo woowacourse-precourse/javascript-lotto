@@ -24,7 +24,7 @@ describe("로또 클래스 테스트", () => {
   test("중복이 없는 자동 로또를 생성한다.", () => {
     const autoLotto = new AutoLotto();
     autoLotto.makeRandomLottoArray(1);
-    const testSet = new Set(...autoLotto.randomLottoArray);
+    const testSet = new Set(autoLotto.randomLottoArray[0]);
     expect([...testSet].length).toBe(6);
   });
 });
