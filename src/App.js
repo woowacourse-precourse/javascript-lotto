@@ -8,6 +8,7 @@ class App {
     this.winningNumber = [];
     this.money = 0;
     this.bounsNumber = 0;
+    this.countCorrect = [0, 0, 0, 0, 0];
   }
   play() {
     Console.readLine(MESSAGE.INPUT_MONEY, (input) => {
@@ -46,12 +47,13 @@ class App {
   printLotto() {
     this.lotto.map((lottoArr) => {
       lottoArr.sort((a, b) => a - b);
-      Console.print(lottoArr);
     });
   }
   getWinningNumber() {
     Console.readLine(MESSAGE.INPUT_GOAL, (input) => {
-      this.winningNumber = input.split(',');
+      this.winningNumber = input.split(',').map((item) => {
+        return parseInt(item, 10);
+      });
       this.isValidWinningNumber();
     });
   }
@@ -63,6 +65,7 @@ class App {
     Console.readLine(MESSAGE.INPUT_BONUSNUMBER, (input) => {
       this.bounsNumber = input;
       this.isValidBonusNumber();
+      this.getResult();
     });
   }
   isValidBonusNumber() {
@@ -73,6 +76,40 @@ class App {
     if (!(1 <= this.bounsNumber && this.bounsNumber <= 45)) {
       throw new Error('[ERROR] 1~45 사이의 숫자를 입력하세요.');
     }
+  }
+  checkCorrectNumber(lotto) {
+    let winningNumberIndex = 0;
+    let lottoNumberIndex = 0;
+    let correctCount = 0;
+    while (winningNumberIndex < 6 && lottoNumberIndex < 6) {
+      if (this.winningNumber[winningNumberIndex] === lotto[lottoNumberIndex]) {
+        winningNumberIndex += 1;
+        lottoNumberIndex += 1;
+        correctCount += 1;
+        continue;
+      }
+      if (this.winningNumber[winningNumberIndex] < lotto[lottoNumberIndex]) {
+        winningNumberIndex += 1;
+        continue;
+      }
+      if (this.winningNumber[winningNumberIndex] > lotto[lottoNumberIndex]) {
+        lottoNumberIndex += 1;
+        continue;
+      }
+    }
+    console.log(correctCount);
+    if (correctCount < 3) return;
+    if (correctCount === 3) return (this.countCorrect[0] += 1);
+    if (correctCount === 4) return (this.countCorrect[1] += 1);
+    if (correctCount === 6) return (this.countCorrect[4] += 1);
+    if (correctCount === 5 && lotto.includes(parseInt(this.bounsNumber))) return (this.countCorrect[3] += 1);
+    return (this.countCorrect[2] += 1);
+  }
+  getResult() {
+    console.log(this.winningNumber);
+    this.lotto.map((pieceOfLotto) => {
+      this.checkCorrectNumber(pieceOfLotto);
+    });
   }
 }
 let app = new App();
