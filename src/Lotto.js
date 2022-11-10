@@ -15,7 +15,7 @@ class Lotto {
   }
 
   // TODO: 추가 기능 구현
-  computerRandomNumber(){
+  setComputerRandomNumber(){
     const computerNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
     console.log(computerNumbers);
   }
