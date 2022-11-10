@@ -17,7 +17,6 @@ class App {
     Console.readLine('', (input) => {
       const pay = parseInt(input);
       this.#calculator = new Calculator(pay);
-
       this.buyLottos();
     });
   }
@@ -28,9 +27,9 @@ class App {
       const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
       const lotto = new Lotto(numbers.sort((a, b) => a - b));
       this.#lottos.push(lotto);
-
-      this.printLottos();
     }
+
+    this.printLottos();
   }
 
   printLottos() {
@@ -38,6 +37,28 @@ class App {
     this.#lottos.forEach((lotto) => {
       Console.print(lotto.getNumbers());
     });
+
+    this.recordWinNumbers();
+  }
+
+  recordWinNumbers() {
+    Console.print('당첨 번호를 입력해 주세요.');
+    Console.readLine('', (input) => {
+      this.#winNumbers = input.split(',');
+      this.recordBonusNumber();
+    });
+  }
+
+  recordBonusNumber() {
+    Console.print('보너스 번호를 입력해 주세요.');
+    Console.readLine('', (input) => {
+      this.#winNumbers = input.split(',');
+      this.printStatistics();
+    });
+  }
+
+  printStatistics() {
+    Console.print('당첨 통계');
   }
 }
 

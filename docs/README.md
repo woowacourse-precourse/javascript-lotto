@@ -1,4 +1,4 @@
-# 구현할 기능 목록
+# 📝 구현할 기능 목록
 
 ## 입력
 
@@ -8,7 +8,11 @@
 
 ### 2. 당첨 번호 입력
 
+- App.recordWinNumbers
+
 ### 3. 보너스 번호 입력
+
+- App.recordBonusNumber
 
 ## 기능
 
@@ -34,6 +38,6 @@
 
 - App.printLottos
 
-### 2. 당첨 내역 출력
+### 2. 결과 출력
 
-### 3. 수익률 출력
+- App.printStatistics
