@@ -1,6 +1,7 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { REQUEST_MESSAGE } = require("./constants/message.js");
 const LottoGameView = require("./LottoGameView.js");
+const Validation = require("./Validation.js");
 
 class LottoGame {
   constructor() {
