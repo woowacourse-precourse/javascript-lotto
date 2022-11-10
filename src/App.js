@@ -3,7 +3,7 @@ const lotto=new Lotto()
 
 class App {
   play() {
-    lotto.computerRamberNumber()
+    lotto.computerRandomNumber()
   }
 }
 const app=new App();
