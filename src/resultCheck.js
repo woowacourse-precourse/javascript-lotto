@@ -4,30 +4,30 @@ class LottoResultCheck {
     //상수화 필요
     this.winningNumbers = this.randomSevenNumbers.slice(0, 6);
     this.bonusNumber = this.randomSevenNumbers[6];
-    this.resultArray = [];
+    this.resultArray = new Array(0).fill(5);
   }
 
   makeLottoWinningNumber() {
     return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 7);
   }
 
-  winningCheck(lottonumbers, winningNumbers, bonusNumber) {
+  winningCheck(lottonumbers) {
     //상수화 필요
-    const COUNT_OF_CORRECT_NUMBERS = lottonumbers.filter((number) => winningNumbers.includes(number)).length;
-    if (COUNT_OF_CORRECT_NUMBERS === 3) return 5;
-    if (COUNT_OF_CORRECT_NUMBERS === 4) return 4;
-    if (COUNT_OF_CORRECT_NUMBERS === 5) return 3;
-    if (COUNT_OF_CORRECT_NUMBERS === 5 && lottonumbers.includes(bonusNumber)) return 2;
-    if (COUNT_OF_CORRECT_NUMBERS === 6) return 1;
+    const COUNT_OF_CORRECT_NUMBERS = lottonumbers.filter((number) => this.winningNumbers.includes(number)).length;
+    if (COUNT_OF_CORRECT_NUMBERS === 3) return this.lottoRankingsCount(5);
+    if (COUNT_OF_CORRECT_NUMBERS === 4) return this.lottoRankingsCount(4);
+    if (COUNT_OF_CORRECT_NUMBERS === 5) return this.lottoRankingsCount(3);
+    if (COUNT_OF_CORRECT_NUMBERS === 5 && lottonumbers.includes(this.bonusNumber)) return this.lottoRankingsCount(2);
+    if (COUNT_OF_CORRECT_NUMBERS === 6) return this.lottoRankingsCount(1);
   }
 
-  lottoRankingsCount(rankingsArray, ranking) {
+  lottoRankingsCount(ranking) {
     //상수화 필요.
-    if (ranking === 1) rankingsArray[0]++;
-    if (ranking === 2) rankingsArray[1]++;
-    if (ranking === 3) rankingsArray[2]++;
-    if (ranking === 4) rankingsArray[3]++;
-    if (ranking === 5) rankingsArray[4]++;
+    if (ranking === 1) this.resultArray[0]++;
+    if (ranking === 2) this.resultArray[1]++;
+    if (ranking === 3) this.resultArray[2]++;
+    if (ranking === 4) this.resultArray[3]++;
+    if (ranking === 5) this.resultArray[4]++;
   }
 
   getTotalWinningMoney(rankingsArray) {
@@ -45,3 +45,5 @@ class LottoResultCheck {
     MissionUtils.Console.print(earningsRate);
   }
 }
+const LOTTORESULTCHECK = new LottoResultCheck();
+module.exports = LOTTORESULTCHECK;

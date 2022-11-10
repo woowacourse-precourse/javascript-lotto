@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const LottoResultCheck = require("./resultCheck");
 
 class LottoGenerator {
   makeLottoNumber() {
@@ -12,7 +13,9 @@ class LottoGenerator {
       const TOTAL_LOTTO_GAMES = parseInt(userInput / 1000);
       MissionUtils.Console.print(`${TOTAL_LOTTO_GAMES}개를 구매했습니다.`);
       for (let gameCount = 0; gameCount < TOTAL_LOTTO_GAMES; gameCount++) {
-        MissionUtils.Console.print(this.makeLottoNumber());
+        const LOTTO_NUMBER = this.makeLottoNumber();
+        MissionUtils.Console.print(LOTTO_NUMBER);
+        LottoResultCheck.winningCheck();
       }
     });
   }
