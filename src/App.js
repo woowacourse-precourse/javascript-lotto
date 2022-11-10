@@ -3,10 +3,7 @@ const Budget = require("./Budget");
 const Lotto = require("./Lotto");
 const LottoBonus = require("./LottoBonus");
 const LottoMachine = require("./LottoMachine");
-
-const LOTTO_NUMBER_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.\n";
-const BUDGET_INPUT_MESSAGE = "구입금액을 입력해 주세요.\n";
-const LOTTO_BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.\n";
+const { INPUT_QUESTION } = require("./constants");
 
 class App {
   $Lotto;
@@ -35,7 +32,7 @@ class App {
     this.$Lotto = new Lotto(numbersStringToNumber);
     this.printNewLine();
     this.getInput(
-      LOTTO_BONUS_NUMBER_INPUT_MESSAGE,
+      INPUT_QUESTION.LOTTO_BONUS_NUMBER,
       this.lottoBunusNumberInputCb
     );
   };
@@ -46,7 +43,7 @@ class App {
     this.printNewLine();
     this.$LottoMachine = new LottoMachine(this.$Budget.budget);
     this.printNewLine();
-    this.getInput(LOTTO_NUMBER_INPUT_MESSAGE, this.lottoNumberInputCb);
+    this.getInput(INPUT_QUESTION.LOTTO_NUMBER, this.lottoNumberInputCb);
   };
 
   validateIsNotNumber(...numbers) {
@@ -61,7 +58,7 @@ class App {
   };
 
   play() {
-    this.getInput(BUDGET_INPUT_MESSAGE, this.budgetInputCb);
+    this.getInput(INPUT_QUESTION.BUDGET, this.budgetInputCb);
   }
 }
 
