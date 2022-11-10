@@ -90,7 +90,7 @@ class LottoGame {
   }
 
   checkRange(arr) {
-    if (/^[1-9]*$/g.test(arr.join("")) === false) {
+    if (/^[0-9]*$/g.test(arr.join("")) === false) {
       return false;
     }
   }
@@ -104,7 +104,7 @@ class LottoGame {
 
   checkNumLength(arr) {
     for (let i = 0; i < arr.length; i++) {
-      if (arr[i] > 45) {
+      if (arr[i] > 45 || arr[i] < 1) {
         return false;
       }
     }
@@ -122,17 +122,56 @@ class LottoGame {
       this.bonusNum = bonusNum;
       this.checkBonusNum(this.bonusNum);
 
+      this.totalWinningNum = [...this.winningNum, this.bonusNum];
+
+      //만약 bonuseNum 이 있어? 그러면 따로 계산
       Console.print(this.userLotto);
-      Console.print(this.winningNum);
-      Console.print(this.bonusNum);
+      Console.print(this.totalWinningNum);
+
+      const totalCorrect = this.findCorrectNum(); //총 맞춘갯수
+
+      //여기서 5가있는지 확인하는게 빠르겠다.
+
+      const secondOrThird = this.secondOfThird(totalCorrect);
+      const classOfLotto = this.classOfLotto(totalCorrect);
+
+      Console.print(secondOrThird);
+      Console.print(classOfLotto);
+      Console.print(
+        [...secondOrThird, ...classOfLotto].sort((a, b) => a[0] - b[0])
+      );
     });
   }
+
+  secondOfThird(totalCorrect) {
+    let lotto = new Map();
+
+    lotto.set("2등", 0);
+    lotto.set("3등", 0);
+
+    for (let i = 0; i < totalCorrect.length; i++) {
+      if (totalCorrect[i] === 5) {
+        this.checkInBonusNum(i, lotto);
+      }
+    }
+    return lotto;
+  }
+
+  checkInBonusNum(index, lotto) {
+    if (this.userLotto[index].includes(this.bonusNum) === true) {
+      lotto.set("2등", lotto.get("2등") + 1);
+    }
+    if (this.userLotto[index].includes(this.bonusNum) === false) {
+      lotto.set("3등", lotto.get("3등") + 1);
+    }
+  }
+
   checkBonusNum(num) {
-    if (num > 45) {
+    if (num > 45 || num < 1) {
       throw new Error(`[ERROR] 1~45사이의 번호를 입력해주세요`);
     }
     if (num) {
-      if (/^[1-9]*$/g.test(num) === false) {
+      if (/^[0-9]*$/g.test(num) === false) {
         throw new Error(`[ERROR] 숫자만을 입력해주세요`);
       }
     }
@@ -142,7 +181,47 @@ class LottoGame {
       );
     }
   }
+
+  findCorrectNum() {
+    let i = 0;
+    let correctArr = [];
+
+    for (; i < this.userLotto.length; i++) {
+      let find = this.userLotto[i].filter((lottoNum) =>
+        this.totalWinningNum.includes(String(lottoNum))
+      );
+
+      correctArr.push(find.length);
+    }
+
+    return correctArr;
+  }
+
+  classOfLotto(correctArr) {
+    let classOfLotto = new Map();
+    classOfLotto.set("5등", 0);
+    classOfLotto.set("4등", 0);
+    classOfLotto.set("1등", 0);
+
+    for (let i = 0; i < correctArr.length; i++) {
+      switch (correctArr[i]) {
+        case 3:
+          classOfLotto.set("5등", classOfLotto.get("4등") + 1);
+          break;
+        case 4:
+          classOfLotto.set("4등", classOfLotto.get("3등") + 1);
+          break;
+        case 6:
+          classOfLotto.set("1등", classOfLotto.get("1등") + 1);
+          break;
+      }
+    }
+    return classOfLotto;
+  }
 }
+
 module.exports = LottoGame;
+
+// 출력할때 Case로 1,2,3,4,5 등 렌더링
 
 // node src/index.js
