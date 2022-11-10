@@ -7,3 +7,4 @@ const inputWinningNumbers = () => {
 };
 
 exports.inputBudget = inputBudget;
+exports.inputWinningNumbers = inputWinningNumbers;

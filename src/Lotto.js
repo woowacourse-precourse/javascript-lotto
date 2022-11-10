@@ -1,4 +1,4 @@
-const inputBudget = require("./View");
+const { inputBudget, inputWinnigNumbers } = require("./View");
 class Lotto {
   #numbers;
 
@@ -15,6 +15,10 @@ class Lotto {
 
   divideBudget(budget) {
     return Math.floor(budget / 1000);
+  }
+
+  splitWinningNumbers(numbers) {
+    return numbers.split(",");
   }
 }
 
