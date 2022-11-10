@@ -1,6 +1,7 @@
 const { Console } = require('@woowacourse/mission-utils');
 const Purchase = require('./Purchase');
 const Lotto = require('./Lotto');
+const WinningResult = require('./WinningResult');
 const changeStrToArr = require('./utils/changeStrToArr');
 
 class App {
@@ -9,6 +10,7 @@ class App {
     this.purchaseLottoAmount = 0;
     this.purchaseLottoList = [];
     this.winningNumberArr = [];
+    this.bonusNumber = 0;
   }
 
   printPurchaseInputMessage() {
@@ -61,7 +63,7 @@ class App {
   submitBonusNumber() {
     Console.readLine('', input => {
       this.validateBonus(input);
-      this.winningNumberArr.push(Number(input));
+      this.bonusNumber = Number(input);
     });
   }
 
