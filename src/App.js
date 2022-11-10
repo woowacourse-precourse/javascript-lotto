@@ -6,6 +6,11 @@ class App {
     this.userLotto = new UserLotto();
   }
   play() {
+    this.inputPurchaseAmount();
+    this.inputWinningNumber();
+  }
+
+  inputPurchaseAmount() {
     MissionUtils.Console.print("구입금액을 입력해 주세요.");
     MissionUtils.Console.readLine("", (amount) => {
       if (isValidateUserInput(amount)) {
