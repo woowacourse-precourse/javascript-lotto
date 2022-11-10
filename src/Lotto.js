@@ -1,11 +1,15 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+
 class Lotto {
   #numbers;
 
   constructor(numbers, BONUS_NUMBER, MONEY) {
     this.validate(numbers);
-    this.#numbers = numbers;
-
     this.errorHandler(BONUS_NUMBER, MONEY);
+
+    this.#numbers = numbers;
+    this.BONUS_NUMBER = BONUS_NUMBER;
+    this.MONEY = MONEY;
   }
 
   validate(numbers) {
@@ -33,9 +37,11 @@ class Lotto {
     if (MONEY%1000 != 0) {
       throw new Error("[ERROR] 복권의 1장당 가격은 1000원입니다.");
     }
-  }
 
-  // TODO: 추가 기능 구현
+    if (this.#numbers.includes(BONUS_NUMBER)) {
+      throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    }
+  }
 }
 
 module.exports = Lotto;
