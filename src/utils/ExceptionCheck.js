@@ -24,7 +24,7 @@ class ExceptionCheck{
       throw new Error(ERRORLINE.DUPLICATE_CHECK);
     }
     answerSplit.map((value) => {
-      if(!(/^[1-9]{1}$|^[1-4]{1}[0-9]{1}$|^45$/).test(value)){
+      if(!(/^[1-9]{1}$|^[1-4]{1}[0-5]{1}$|^45$/).test(value)){
         throw new Error(ERRORLINE.NUMRANGE_CHECK);
       }
     })
@@ -34,7 +34,7 @@ class ExceptionCheck{
     if (!(/^[0-9]+$/).test(parseInt(bonusNum))){
       throw new Error(ERRORLINE.BONUS_CHECK);
     }
-    if(!(/^[1-9]{1}$|^[1-4]{1}[0-9]{1}$|^45$/).test(parseInt(bonusNum))){
+    if(!(/^[1-9]{1}$|^[1-4]{1}[0-5]{1}$|^45$/).test(parseInt(bonusNum))){
       throw new Error(ERRORLINE.NUMRANGE_CHECK);
     }
     if(answerSplit.includes(bonusNum)){
