@@ -1,5 +1,6 @@
 class Validation {
   #notDuplicateMessage = '[ERROR] 중복되지 않는 숫자를 입력해주세요.';
+  #numberInRangeMessage = '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.';
 
   purchaseAmount(money) {
     const ZERO_REST_MESSAGE = '[ERROR] 1,000원으로 나누어 떨어지는 금액을 입력해주세요.';
@@ -7,8 +8,11 @@ class Validation {
   }
 
   winningNumber(numbers) {
+    const NUMBERS_IN_RANGE = numbers.filter((el) => Number(el) >= 1 && Number(el) <= 45);
     // 중복된 숫자를 입력한 경우
     if (new Set(numbers).size !== numbers.length) throw new Error(this.#notDuplicateMessage);
+    // 1 ~ 45 범위의 숫자를 입력하지 않은 경우
+    if (numbers.length !== NUMBERS_IN_RANGE.length) throw new Error(this.#numberInRangeMessage);
   }
 }
 
