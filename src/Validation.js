@@ -13,6 +13,9 @@ class Validation {
 
   winningNumber(numbers) {
     const NUMBERS_IN_RANGE = numbers.filter((el) => Number(el) >= 1 && Number(el) <= 45);
+    const SIX_NUMBERS_MESSAGES = '[ERROR] 6개의 당첨 번호를 입력해주세요.';
+
+    if (numbers.length !== 6) throw new Error(SIX_NUMBERS_MESSAGES);
     // 중복된 숫자를 입력한 경우
     if (new Set(numbers).size !== numbers.length) throw new Error(this.#notDuplicateMessage);
     // 1 ~ 45 범위의 숫자를 입력하지 않은 경우
