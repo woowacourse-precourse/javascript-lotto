@@ -1,9 +1,17 @@
-const Validate = require("../Validate");
+
+const CONSTANT = require("../constant");
 
 class LottoApp {
+  lottos = [];
+  constructor() {}
+
   static buyLottos(money) {
-    Validate.money(money);
-    // console.log("로또를 삽니다", money);
+    //TO DO
+    LottoApp.getLottoNumber(money / CONSTANT.LOTTO_PRICE);
+  }
+
+  static getLottoNumber(amount) {
+
   }
 }
 module.exports = LottoApp;
