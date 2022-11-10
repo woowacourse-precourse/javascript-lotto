@@ -1,5 +1,17 @@
-class App {
+const MissionUtils = require("@woowacourse/mission-utils");
+const Lotto = require("./Lotto");
+const wRandom = MissionUtils.Random;
+const wConsole = MissionUtils.Console;
 
+const prizeObject = {
+  1: 2000000000,
+  2: 30000000,
+  3: 1500000,
+  4: 50000,
+  5: 5000,
+};
+
+class App {
   constructor() {
     this.money = null;
     this.lottes = [];
@@ -68,7 +80,7 @@ class App {
     this.viewLottes();
     this.result();
   }
-  
+
   setBonusNumber() {
     wConsole.readLine("보너스 번호를 입력해 주세요.\n", (line) => {
       if (!/^\d+$/.test(line))
@@ -84,6 +96,7 @@ class App {
       this.buy();
     });
   }
+
   setWinNumbers() {
     wConsole.readLine("당첨 번호를 입력해 주세요.\n", (line) => {
       if (!/^(\d{1,2}[,]){5}\d{1,2}$/.test(line))
