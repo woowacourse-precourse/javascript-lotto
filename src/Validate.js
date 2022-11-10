@@ -5,6 +5,11 @@ const validate = {
     if (input === '') return false;
     return true;
   },
+
+  validateUnit(input) {
+    if (input % 1000 !== 0) return false;
+    return true;
+  },
 };
 
-console.log(validate.validateCommon(''));
+console.log(validate.validateUnit(2020));
