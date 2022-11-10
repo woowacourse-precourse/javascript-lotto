@@ -1,5 +1,5 @@
-const { LOTTO, ERROR } = require('./constructor.js');
-const { throwErrorMessage } = require('./utils.js');
+const { ERROR } = require('./constructor.js');
+const { throwErrorMessage, checkIsNumber, checkIsOutOfRange } = require('./utils.js');
 
 class Bonus {
   #number;
@@ -10,14 +10,10 @@ class Bonus {
   }
 
   validate(bonus, winnigNumbers) { 
-    if (isNaN(bonus)) {
-      return throwErrorMessage(ERROR.ONLY_NUMBER);
-    }
-    
+    checkIsNumber(bonus);
+  
     const number = parseInt(bonus);
-    if (number < LOTTO.MIN || number > LOTTO.MAX) {
-      return throwErrorMessage(ERROR.OUT_OF_NUMEBR_RANGE);
-    }
+    checkIsOutOfRange(bonus);
 
     if (winnigNumbers.includes(number)) {
       return throwErrorMessage(ERROR.DUPLICATE_NUMBERS);

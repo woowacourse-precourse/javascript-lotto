@@ -1,5 +1,5 @@
 const { LOTTO, ERROR, WINNING_CRITERIA } = require('./constructor.js');
-const { throwErrorMessage } = require('./utils.js');
+const { throwErrorMessage, checkIsNumber, checkIsOutOfRange } = require('./utils.js');
 
 class Lotto {
   #numbers;
@@ -19,18 +19,8 @@ class Lotto {
       throwErrorMessage(ERROR.DUPLICATE_NUMBERS);
     }
 
-    const notNumberInputs = numbers.filter(number => isNaN(number));
-    if (notNumberInputs.length != 0) {
-      throwErrorMessage(ERROR.ONLY_NUMBER);
-    }
-
-    const outOfRangeNumbers = numbers.filter(value => {
-      const number = parseInt(value);
-      return number < LOTTO.MIN || number > LOTTO.MAX;
-    })
-    if (outOfRangeNumbers.length != 0) {
-      throwErrorMessage(ERROR.OUT_OF_NUMEBR_RANGE);
-    }
+    numbers.map(number => checkIsNumber(number));
+    numbers.map(number => checkIsOutOfRange(parseInt(number)));
   }
 
   // TODO: 추가 기능 구현
