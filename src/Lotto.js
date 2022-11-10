@@ -1,4 +1,3 @@
-const { inputBudget, inputWinnigNumbers } = require("./View");
 class Lotto {
   #numbers;
 
@@ -11,14 +10,6 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
-  }
-
-  divideBudget(budget) {
-    return Math.floor(budget / 1000);
-  }
-
-  splitWinningNumbers(numbers) {
-    return numbers.split(",");
   }
 }
 
