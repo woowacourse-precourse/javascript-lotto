@@ -1,6 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { Random } = require('@woowacourse/mission-utils');
-const { sortLotteryNumbers } = require('./utils/lotteryHandler');
+const { createLotteryTicket } = require('./utils/lotteryHandler');
 
 class User {
   constructor() {
@@ -21,19 +20,12 @@ class User {
 
   getTickets() {
     while (this.ticketAmount >= this.tickets.length + 1) {
-      const newTicket = this.createLotteryTicket();
+      const newTicket = createLotteryTicket();
       this.tickets.push(newTicket);
     }
 
     Console.print(`${this.ticketAmount}개를 구매했습니다.`);
     console.log(this.tickets);
-  }
-
-  createLotteryTicket() {
-    const lotteryTicket = Random.pickUniqueNumbersInRange(1, 45, 6);
-    const sortedLotteryTicket = sortLotteryNumbers(lotteryTicket);
-
-    return sortedLotteryTicket;
   }
 }
 
