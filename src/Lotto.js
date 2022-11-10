@@ -22,13 +22,15 @@ class Lotto {
     console.log(this.#numbers);
   }
 
-  checkWin(lotto) {
+  checkWin(lotto, bonusNumber) {
     const splitNumber = this.#numbers.split(',');
     let count = 0;
+    let bonusCount = 0;
     lotto.forEach((item, index) => {
       if (item === +splitNumber[index]) count += 1;
+      if (item === +bonusNumber) bonusCount += 1;
     });
-    return count;
+    return { count, bonusCount };
   }
 }
 
