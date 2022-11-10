@@ -29,13 +29,17 @@ class MyLotto {
     const lottoes = new Array();
     for (let i=0; i<this.#count; i++){
       const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-      lottoes.push(numbers);
+      lottoes.push(this.sortNumbers(numbers));
     }
     return lottoes;
   }
 
-  sortLottoNums(numbers) {
+  sortNumbers(numbers) {
     // 로또 번호 오름차순 정렬
+    numbers.sort(function(a, b) {
+      return a - b;
+    });
+    return numbers;
   }
 
   getMyLottoNums() {
