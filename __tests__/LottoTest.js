@@ -26,4 +26,11 @@ describe('로또 클래스 테스트', () => {
       new Lotto([1, 2, 3, 4, 5, NaN]);
     }).toThrow('[ERROR]');
   });
+
+  test('로또 번호를 오름차순으로 저장한다', () => {
+    const lotto = new Lotto([5, 6, 4, 3, 1, 2]);
+    const result = lotto.numbers;
+
+    expect(result).toEqual([1, 2, 3, 4, 5, 6]);
+  });
 });
