@@ -1,6 +1,7 @@
 const User = require('./User');
+const Lotto = require('./Lotto');
 
-const { Console } = require('@woowacourse/mission-utils');
+const { Console, Random } = require('@woowacourse/mission-utils');
 
 class Machine {
   #money;
@@ -24,8 +25,19 @@ class Machine {
     });
   }
 
+  #printLotto(money) {
+    const lottoCount = money / 1000;
+    Console.print(`\n${lottoCount}개를 구매했습니다.`);
+    for (let i = 0; i < lottoCount; i++) {
+      const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+      Console.print(numbers);
+      const lotto = new Lotto(numbers);
+      this.user.lottos.push(lotto);
+    }
+  }
+
   sell() {
-    this.#getMoney();
+    this.#getMoney(this.#printLotto.bind(this));
   }
 }
 
