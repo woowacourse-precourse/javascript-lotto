@@ -1,5 +1,5 @@
 const { MONEY, ERROR } = require('./constructor');
-const { checkIsNumber } = require('./utils');
+const { checkIsNumber, throwErrorMessage } = require('./utils');
 
 class Purchase {
   #purchaseAmount
