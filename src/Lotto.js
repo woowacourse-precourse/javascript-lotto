@@ -3,13 +3,17 @@ class Lotto {
 
   constructor(numbers) {
     this.validate(numbers);
-    this.#numbers = numbers;
+    this.#numbers = numbers.sort();
   }
 
   validate(numbers) {
     this.validateNumberLength(numbers);
     this.validateUnique(numbers);
     numbers.forEach((number) => this.validateNumberRange(1, 45, number));
+  }
+
+  get numbers() {
+    return [...this.#numbers];
   }
 
   validateNumberLength(numbers) {
