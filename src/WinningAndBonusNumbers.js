@@ -12,6 +12,11 @@ class WinningAndBonusNumbers {
     this.lotto.validate(numbers);
     this.validation.winningNumber(numbers);
   }
+
+  numberNotDuplicate(number) {
+    number = number.split(',');
+    this.validation.bonusNumber(number);
+  }
 }
 
 module.exports = WinningAndBonusNumbers;
