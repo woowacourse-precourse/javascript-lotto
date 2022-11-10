@@ -62,6 +62,24 @@ describe("로또 테스트", () => {
     });
   });
 
+  test("play", () => {
+    const app = new App();
+    const setMoneyFn = jest.spyOn(app, "setMoney");
+    app.play();
+    expect(setMoneyFn).toHaveBeenCalled();
+  });
+
+  test("setMoney", () => {
+    MissionUtils.Console.readLine  = jest.fn();
+    const app = new App();
+    const setWinNumbersFn = jest.spyOn(app, "setWinNumbers");
+    app.setMoney();
+    MissionUtils.Console.readLine(() => {
+      callback("1000");
+      expect(setWinNumbersFn).toHaveBeenCalled();
+    })
+  });
+
   test("예외 테스트", () => {
     mockQuestions(["1000j"]);
     expect(() => {
