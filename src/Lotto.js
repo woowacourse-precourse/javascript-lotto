@@ -27,6 +27,7 @@ class Lotto {
   makeLottos(payment){
     const boughtLottoNumbers = this.checkHowManyLottos(payment);
     const makedLottos = this.makePaidLottoNumbers(boughtLottoNumbers);
+    this.printLottos(makedLottos);
   }
 
   checkHowManyLottos(payment) {
@@ -43,6 +44,12 @@ class Lotto {
       makedLottos.push(makedLottoNumbers);
     }
     return makedLottos
+  }
+
+  printLottos(makedLottos) {
+    makedLottos.forEach(lotto => {
+      MissionUtils.Console.print(lotto);
+    });
   }
   
   // TODO: 추가 기능 구현
