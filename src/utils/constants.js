@@ -15,5 +15,12 @@ const ERROR = {
 };
 
 const WINNING_MONEY = [5000, 50000, 1500000, 3000000, 2000000000];
+const MATCHING_MESSAGE = [
+  '3개 일치',
+  '4개 일치',
+  '5개 일치',
+  '5개 일치, 보너스 볼 일치',
+  '6개 일치',
+];
 
-module.exports = { MESSAGE, ERROR, WINNING_MONEY };
+module.exports = { MESSAGE, ERROR, WINNING_MONEY, MATCHING_MESSAGE };
