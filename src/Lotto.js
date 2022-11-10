@@ -1,7 +1,7 @@
 const { Console } = require("@woowacourse/mission-utils");
-const LottoNumber = require("./LottoNumber");
 const Exception = require("./error/exception");
 const PurchaseError = require("./error/purchase");
+const WinNumberError = require("./error/winNumber");
 const ChangeLotto = require("./ChangeLotto");
 
 const { COMMAND } = require("./utils/constant");
@@ -23,7 +23,7 @@ class Lotto {
 
   askWinNumber() {
     Console.readLine(`\n${COMMAND.WIN}\n`, (input) => {
-      Console.print(input);
+      this.#exception.isAllow(new WinNumberError(input));
     });
   }
 

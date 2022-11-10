@@ -32,6 +32,10 @@ const UNIT = Object.freeze({
   MONETARY: 1000,
   LOTTO_LENGTH: 6,
   BONUS_LENGTH: 1,
+  MIN_LENGTH: 11,
+  MAX_LENGTH: 17,
+  NOT_ALLOW: false,
+  WIN_NUMBER_CNT: 6,
 });
 
 module.exports = { COMMAND, GUIDE, PLACE, ERROR, UNIT };
