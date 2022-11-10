@@ -4,11 +4,13 @@ const Lotto = require("./Lotto");
 class Lottery {
   #lotteries = [];
   #lottery = [];
+  #quantity;
 
   inputPurchaseAmount() {
     Console.readLine("구입금액을 입력해 주세요.\n", (amount) => {
       this.validateAmount(amount);
-      this.makeRandomLotteries(+amount / 1000);
+      this.#quantity = +amount / 1000;
+      this.makeRandomLotteries(this.#quantity);
       this.inputSixNumbers();
     });
   }
@@ -19,7 +21,14 @@ class Lottery {
       this.makeRandomNumbers();
       quantityOfLotteries += 1;
     }
-    console.log(this.#lotteries);
+    this.printLotteries();
+  }
+
+  printLotteries() {
+    Console.print(`\n${this.#quantity}개를 구매했습니다.`);
+    this.#lotteries.forEach((lottery) => {
+      Console.print(lottery);
+    });
   }
 
   makeRandomNumbers() {
@@ -46,7 +55,7 @@ class Lottery {
 
   inputSixNumbers() {
     let inputNumbers = [];
-    Console.readLine("당첨 번호를 입력해 주세요.\n", (numbers) => {
+    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (numbers) => {
       inputNumbers = numbers.split(",").map((v) => +v);
       const lotto = new Lotto(inputNumbers, this.#lotteries);
     });
