@@ -21,19 +21,19 @@ describe('로또 당첨번호 입력 테스트', () => {
   test('보너스 번호 형식 테스트', () => {
     expect(() => {
       const win = new Winning('1,2,3,4,5,6');
-      win.inputBonus('1, 2, 3');
+      win.setBonusNum('1, 2, 3');
     }).toThrow(ERROR.BONUS_COUNT);
   });
   test('보너스 번호 범위 테스트', () => {
     expect(() => {
       const win = new Winning('1,2,3,4,5,6');
-      win.inputBonus('0');
+      win.setBonusNum('0');
     }).toThrow(ERROR.RANGE);
   });
   test('보너스 번호 중복 테스트', () => {
     expect(() => {
       const win = new Winning('1,2,3,4,5,6');
-      win.inputBonus('1');
+      win.setBonusNum('1');
     }).toThrow(ERROR.NOT_UNIQUE);
   });
 });

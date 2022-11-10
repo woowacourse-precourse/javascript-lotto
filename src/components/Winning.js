@@ -1,13 +1,13 @@
 const { ERROR } = require('../data/constants');
+const { setArray } = require('../utils/utils');
 const {
-  checkInputForm,
-  stringToNumberOfArray,
   isNotUnique,
-  isAllExceedNumberRange,
-  exceedNumberRange,
-  checkInputBonusForm,
-  checkOverlapToArray,
-} = require('../utils/winningNumberValidate');
+  isExceedRange,
+  isAllExceedRange,
+  isMatchForm,
+  isMatchFormBonus,
+  isOverlap,
+} = require('../utils/validate');
 
 class Winning {
   winningNumber;
@@ -15,29 +15,27 @@ class Winning {
   constructor(winningString) {
     this.validate(winningString);
 
-    this.winningNumber = stringToNumberOfArray(winningString);
+    this.winningNumber = setArray(winningString);
   }
 
   validate(winningString) {
-    if (!checkInputForm(winningString)) throw new Error(ERROR.NUMBER_WAY);
+    if (!isMatchForm(winningString)) throw new Error(ERROR.NUMBER_WAY);
 
-    const arrayOfWinningNumbers = stringToNumberOfArray(winningString);
-
-    if (!isNotUnique(arrayOfWinningNumbers)) throw new Error(ERROR.NOT_UNIQUE);
-    if (!isAllExceedNumberRange(arrayOfWinningNumbers))
-      throw new Error(ERROR.RANGE);
+    const winningNumArr = setArray(winningString);
+    if (!isNotUnique(winningNumArr)) throw new Error(ERROR.NOT_UNIQUE);
+    if (!isAllExceedRange(winningNumArr)) throw new Error(ERROR.RANGE);
   }
 
-  inputBonus(bonusNumber) {
+  setBonusNum(bonusNumber) {
     this.validateBonus(bonusNumber);
 
     this.winningNumber.push(parseInt(bonusNumber));
   }
 
   validateBonus(bonusNumber) {
-    if (!checkInputBonusForm(bonusNumber)) throw new Error(ERROR.BONUS_COUNT);
-    if (!exceedNumberRange(bonusNumber)) throw new Error(ERROR.RANGE);
-    if (checkOverlapToArray(parseInt(bonusNumber), this.winningNumber))
+    if (!isMatchFormBonus(bonusNumber)) throw new Error(ERROR.BONUS_COUNT);
+    if (!isExceedRange(bonusNumber, 1, 45)) throw new Error(ERROR.RANGE);
+    if (isOverlap(parseInt(bonusNumber), this.winningNumber))
       throw new Error(ERROR.NOT_UNIQUE);
   }
 }

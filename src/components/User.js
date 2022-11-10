@@ -1,9 +1,7 @@
-const { Console, Random } = require("@woowacourse/mission-utils");
-const { ERROR } = require("../data/constants");
-const {
-  isPositiveNumber,
-  isDivideThousand,
-} = require("../utils/inputMoneyValidate");
+const { Console, Random } = require('@woowacourse/mission-utils');
+const { ERROR } = require('../data/constants');
+const { isPositiveNumber, isDivide } = require('../utils/validate');
+const Lotto = require('./Lotto');
 
 class User {
   #inputMoney;
@@ -14,28 +12,28 @@ class User {
     this.#inputMoney = inputMoney;
   }
 
-  randomLottoNumber() {
+  validate(inputMoney) {
+    if (!isPositiveNumber(inputMoney)) throw new Error(ERROR.RANGE);
+    if (!isDivide(inputMoney, 1000)) throw new Error(ERROR.DIVIDE);
+  }
+
+  makeRandomNum() {
     return Random.pickUniqueNumbersInRange(1, 45, 6);
   }
 
-  validate(inputMoney) {
-    if (!isPositiveNumber(inputMoney)) throw new Error(ERROR.RANGE);
-    if (!isDivideThousand(inputMoney)) throw new Error(ERROR.DIVIDE);
-  }
-
-  countAvailableLotto() {
+  countBuyLimit() {
     return this.#inputMoney / 1000;
   }
 
-  lottoPurchase() {
-    for (let index = 0; index < this.countAvailableLotto(); index++) {
-      this.#lottos.push(this.randomLottoNumber());
+  setLottos() {
+    for (let index = 0; index < this.countBuyLimit(); index++) {
+      this.#lottos.push(new Lotto(this.makeRandomNum()));
     }
   }
 
   printMyLottos() {
-    this.#lottos.forEach((lotto) => {
-      Console.print(lotto);
+    this.#lottos.forEach(lotto => {
+      Console.print(lotto.print());
     });
   }
 }
