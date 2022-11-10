@@ -8,6 +8,10 @@ class Application {
 
     return result;
   }
+
+  static purchaseCount(purchaseAmount, criterion) {
+    return this.convertNumber(purchaseAmount) / this.convertNumber(criterion);
+  }
 }
 
 module.exports = Application;
