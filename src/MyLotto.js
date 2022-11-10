@@ -1,12 +1,15 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+
 class MyLotto {
   #purchase;
   #count;
-  #myLottoNums;
+  #myLottoes;
 
   constructor(purchase){
     this.validate(purchase);
     this.#purchase = purchase;
-    this.#count = this.countLotto(purchase);
+    this.#count = this.countLotto();
+    this.#myLottoes = this.issueLotto();
   }
 
   validate(purchase) {
@@ -16,16 +19,22 @@ class MyLotto {
     }
   }
 
-  countLotto(purchase) {
+  countLotto() {
     // 구매금액을 1,000단위로 나누어 로또 수량 계산
-    return parseInt(purchase / 1000);
+    return parseInt(this.#purchase / 1000);
   }
 
   issueLotto() {
     // 구매한 로또 수량에 맞게 로또 발행
+    const lottoes = new Array();
+    for (let i=0; i<this.#count; i++){
+      const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      lottoes.push(numbers);
+    }
+    return lottoes;
   }
 
-  sortLottoNums() {
+  sortLottoNums(numbers) {
     // 로또 번호 오름차순 정렬
   }
 
