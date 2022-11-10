@@ -22,6 +22,12 @@ class App {
       throw new Error("[ERROR] 음수 또는 0원은 투입할 수 없습니다.");
     }
   }
+  isNumber(inputNumber){
+    const IS_NOT_NUMBER = /\D/g;
+    if(IS_NOT_NUMBER.test(inputNumber)){
+      throw new Error("[ERROR] 숫자만 입력해주세요.");
+    }
+  }
 }
 
 module.exports = App;
