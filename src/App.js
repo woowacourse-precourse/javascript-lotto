@@ -1,9 +1,10 @@
 const LottoGame = require("./LottoGame");
 
 class App {
-  play() {
-    const lottoGame = new LottoGame(); //입력값을 여기서
-    lottoGame.getUserMoney();
+  play() {}
+
+  getUserMoney() {
+    Console.readLine("구매금액을 입력해 주세요.", (money) => {});
   }
 }
 
