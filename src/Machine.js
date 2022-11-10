@@ -18,17 +18,19 @@ class Machine {
     return true;
   }
 
-  #getMoney() {
+  #getMoney(cb) {
     Console.readLine('구입금액을 입력해주세요.\n', (answer) => {
       this.#money = Number(answer);
       this.#checkAmount();
+
+      return cb(answer);
     });
   }
 
   #printLotto(money) {
     const lottoCount = money / 1000;
     Console.print(`\n${lottoCount}개를 구매했습니다.`);
-    for (let i = 0; i < lottoCount; i++) {
+    for (let i = 0; i < lottoCount; i += 1) {
       const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
       Console.print(numbers);
       const lotto = new Lotto(numbers);
