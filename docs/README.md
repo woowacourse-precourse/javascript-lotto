@@ -130,7 +130,7 @@
 - COMMAND.BUY : `구입 금액을 입력해 주세요.`
 - COMMAND.WIN : `당첨 번호를 입력해 주세요.`
 - COMMAND.BONUS : `보너스 번호를 입력해 주세요` <br>
-- GUIDE.PURCHASE : `N개를 구매했습니다.`
+- GUIDE.PURCHASE : `개를 구매했습니다.`
 - GUIDE.RESULT : `당첨 통계`
 - GUIDE.LINE : `---`
 - GUIDE.PROFIT : `총 수익률은 $%입니다.` <br>

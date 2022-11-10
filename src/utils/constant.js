@@ -1,11 +1,11 @@
 const COMMAND = Object.freeze({
-  BUY: "구입 금액을 입력해 주세요.",
+  BUY: "구입금액을 입력해 주세요.",
   WIN: "당첨 번호를 입력해 주세요.",
   BONUS: "보너스 번호를 입력해 주세요",
 });
 
 const GUIDE = Object.freeze({
-  PURCHASE: "N개를 구매했습니다.",
+  PURCHASE: "개를 구매했습니다.",
   RESULT: "당첨 통계",
   LINE: "---",
   PROFIT: "총 수익률은 $%입니다.",
@@ -27,11 +27,11 @@ const ERROR = Object.freeze({
   BONUS_NUMBER: "[ERROR] 올바른 보너스 번호를 입력해주세요.",
 });
 
-const EXCEPTION = Object.freeze({
+const UNIT = Object.freeze({
   NUM_RANGE: /[1-45]/,
-  UNIT: 1000,
+  MONETARY: 1000,
   LOTTO_LENGTH: 6,
   BONUS_LENGTH: 1,
 });
 
-module.exports = { COMMAND, GUIDE, PLACE, ERROR, EXCEPTION };
+module.exports = { COMMAND, GUIDE, PLACE, ERROR, UNIT };

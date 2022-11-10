@@ -1,4 +1,4 @@
-const { ERROR, EXCEPTION } = require("../utils/constant");
+const { ERROR, UNIT } = require("../utils/constant");
 const Exception = require("./exception");
 
 class PurchaseError extends Exception {
@@ -11,7 +11,7 @@ class PurchaseError extends Exception {
   }
 
   isAllowAmount() {
-    return Number(this.#input) % EXCEPTION.UNIT;
+    return Number(this.#input) % UNIT.MONETARY;
   }
 
   checkInput() {
