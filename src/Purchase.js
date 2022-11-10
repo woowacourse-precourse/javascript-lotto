@@ -8,10 +8,11 @@ class Purchase {
   #lottoList;
 
   constructor(cash) {
+    this.validateCashInput(cash);
     this.#lottoCount = 0;
     this.#cash = cash;
     this.#lottoList = [];
-    this.validateCashInput(this.#cash);
+    this.setLottoCount();
     this.makeLottoList(this.#lottoCount);
   }
 
@@ -22,7 +23,10 @@ class Purchase {
     if (value <= 0) {
       throw new Error('[ERROR] 양수 값을 입력해주세요.');
     }
-    this.#lottoCount = value / 1000;
+  }
+
+  setLottoCount() {
+    this.#lottoCount = this.#cash / 1000;
   }
 
   get Cash() {
