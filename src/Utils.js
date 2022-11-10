@@ -18,3 +18,5 @@ class Utils {
         return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
     }
 }
+
+module.exports = Utils;
