@@ -7,10 +7,10 @@ class Publish {
   }
 
   create(lottoQuantity) {
-    this.publishResult = new Object();
+    this.result = new Object();
     for (let time = 0; time < lottoQuantity; time++) {
       let randomNumber = Random.pickUniqueNumbersInRange(1, 10, 6);
-      this.publishResult[time] = randomNumber;
+      this.result[time] = randomNumber;
     }
   }
 }

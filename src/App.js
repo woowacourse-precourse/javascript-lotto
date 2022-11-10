@@ -33,7 +33,7 @@ class App {
   }
 
   printAllLotto() {
-    this.publishResult = this.publishResult.Result;
+    this.publishResult = this.publish.result;
     for (let numberofLotto in this.publishResult) {
       Console.print(this.publishResult[numberofLotto]);
     }
