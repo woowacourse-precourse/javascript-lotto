@@ -24,12 +24,12 @@ class Lotto {
     printResult(winLotteryAfterCalc, rateOfReturn);
   }
   
-  yieldCalculation(arr, baseMoney){
-    const money = arr.map((value,idx) => {
+  yieldCalculation(winLottery, baseMoney){
+    const moneyEach = winLottery.map((value,idx) => {
       return value * MONEY.MONEY_SUCCESS[idx];
     })
-    const sum = money.reduce((a,b) => (a+b));
-    return (sum*100/baseMoney).toFixed(1);
+    const sumOftotal = moneyEach.reduce((a,b) => (a+b));
+    return (sumOftotal*100/baseMoney).toFixed(1);
   }
 
 }
