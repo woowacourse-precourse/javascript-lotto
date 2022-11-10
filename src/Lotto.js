@@ -10,15 +10,23 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
     }
+
+    if (this.hasDuplicate(numbers)) {
+      throw new Error('[ERROR] 로또 번호는 중복이 없어야 합니다.');
+    }
+
+    if (this.hasOutOfBoundNumber(numbers)) {
+      throw new Error('[ERROR] 로또 번호는 1 이상 45 이하여야 합니다.');
+    }
   }
 
-  /**
-   * TODO: 추가 기능 구현
-   * 1. 당첨 내역
-   * 2. 수익률
-   * 3. 1부터 45의 숫자가 아닌 경우 예외 처리
-   * 4. 로또 발행 및 오름차순 정렬하여 번호와 수량 반환
-   */
+  hasDuplicate(numbers) {
+    return numbers.length !== new Set(numbers).size;
+  }
+
+  hasOutOfBoundNumber(numbers) {
+    return numbers.some(number => number < 1 || number > 45);
+  }
 
   get numbers() {
     return this.#numbers;
