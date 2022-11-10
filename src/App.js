@@ -15,6 +15,7 @@ class App {
     this.print('구입금액을 입력해 주세요.');
     this.readLine('', (input) => {
       if (amountValidation(input)) {
+        const lottoList = this.LottoBuilder.creatLottoList(input);
       }
     });
   }
