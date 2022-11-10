@@ -49,7 +49,9 @@ class App {
     Console.readLine('보너스 번호를 입력해 주세요.', (bonus) => {
       this.bonus = Number(bonus);
       this.validateBonusNumber(this.bonus);
-      const result = getResult();
+      const result = this.getResult();
+      this.printResult(result);
+      Console.close();
     });
   }
 
@@ -94,7 +96,15 @@ class App {
       const ranking = this.getWinningRanking(lotto);
       result[ranking] += 1;
     });
-    return result.slice(1, 6);
+    return result.slice(1, 6).reverse();
+  }
+
+  printResult(result) {
+    Console.print('당첨 통계');
+    Console.print('---');
+    result.map((count, idx) => {
+      Console.print(`${idx + 3}개 일치 (5,000원) - ` + count + '개');
+    });
   }
 }
 
