@@ -14,6 +14,10 @@ class Deposit {
     }
   }
 
+  getAmount() {
+    return this.#amount;
+  }
+
   getQuantity() {
     return this.#amount / PRICE_OF_LOTTO;
   }
