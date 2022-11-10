@@ -5,4 +5,12 @@ const createLottoNumbers = () => {
   return lotto;
 };
 
-module.exports = { createLottoNumbers };
+const convertWinningNumbers = (numbers) => {
+  const replacedNumbers = numbers.replace(/[^-\,0-9]/g, '');
+  return replacedNumbers
+    .split(',')
+    .filter((number) => number !== '')
+    .map(Number);
+};
+
+module.exports = { createLottoNumbers, convertWinningNumbers };

@@ -1,6 +1,9 @@
 const Store = require('./Store');
 const { Console } = require('@woowacourse/mission-utils');
-const { createLottoNumbers } = require('./utils/lottoUtils');
+const {
+  createLottoNumbers,
+  convertWinningNumbers,
+} = require('./utils/lottoUtils');
 class App {
   play() {
     this.buyLotto();
@@ -36,7 +39,8 @@ class App {
 
   createWinningNumbers() {
     Console.readLine('당첨 번호를 입력해 주세요.', (numbers) => {
-      console.log(numbers);
+      const winningNumbers = convertWinningNumbers(numbers);
+      console.log(winningNumbers);
     });
   }
 }
