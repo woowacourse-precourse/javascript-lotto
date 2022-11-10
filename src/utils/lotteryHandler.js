@@ -1,6 +1,6 @@
-const calculateLotteryTicketAmout = (money) => {
-  const amount = money % 1000;
-  return amount;
+const sortLotteryNumbers = (lotteryTicket) => {
+  const sortedArray = lotteryTicket.sort((a, b) => a - b);
+  return sortedArray;
 };
 
-module.exports = calculateLotteryTicketAmout;
+module.exports = { sortLotteryNumbers };

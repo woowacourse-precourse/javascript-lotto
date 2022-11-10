@@ -39,9 +39,9 @@
 
 ### User 로또 번호 생성
 
-- [ ] `Random.pickUniqueNumbersInRange()`를 이용해 당첨 번호를 `6개` 산출한다.
+- [x] `Random.pickUniqueNumbersInRange()`를 이용해 당첨 번호를 `6개` 산출한다.(오름차순 정렬)
 
-- [ ] user.ticketAmout만큼 뽑기를 시행한다.
+- [x] user.ticketAmout만큼 뽑기를 시행한다.
 
 ### 로또 정답 번호 입력
 
