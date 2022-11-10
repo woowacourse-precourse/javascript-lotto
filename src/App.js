@@ -41,7 +41,7 @@ class App {
   reportUserData() {
     Console.print(`${this.lottoCount}개를 구매했습니다.`);
     this.userLottoNumbers.forEach((numbers) => {
-      Console.print(numbers);
+      Console.print(`[${numbers.join(', ')}]`);
     });
     this.getWinningNumber();
   }
@@ -105,6 +105,12 @@ class App {
     const earningRate = ((totalMoney / (this.lottoCount * 1000)) * 100).toFixed(
       1
     );
+    this.printEarningRate(earningRate);
+  }
+
+  printEarningRate(earningRate) {
+    Console.print(`총 수익률은 ${earningRate}%입니다.`);
+    Console.close();
   }
 }
 
