@@ -1,9 +1,14 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+const Lotto = require("./Lotto");
+
 class LottoMachine {
   #money;
+  #lottos;
 
   constructor(money){
     this.validate(money);
-    this.#money = money;
+    this.#money = Number(money);
+    this.#lottos = this.generateLottos();
   }
 
   validate(money) {
@@ -13,6 +18,16 @@ class LottoMachine {
     if(Number(money) % 1000 !== 0 ){
       throw new Error("[ERROR] 금액은 1,000원 단위만 입력 가능합니다.")
     }
+  }
+
+  generateLottos() {
+    const lottos = [];
+    const lottosCount = this.#money / 1000;
+    for(let count = 0; count < lottosCount; count++) {
+      const newLotto = new Lotto(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
+      lottos.push(newLotto);
+    }
+    return lottos;
   }
   
 }
