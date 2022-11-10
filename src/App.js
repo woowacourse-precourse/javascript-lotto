@@ -30,6 +30,13 @@ const showLottoNumber = (countLotto, throwInput) => {
   }
 }
 
+const inputLottoNumber = () => {
+  let inputSixNumber;
+  let inputBonusNumber;
+  Console.readLine('당첨 번호를 입력해 주세요.\n', (num) => {
+    inputSixNumber = num.toString().split("").map((str) => Number(str));
+  })
+}
 
 class App {
   play() {
