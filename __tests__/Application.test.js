@@ -30,6 +30,10 @@ describe('구매 개수 파악 함수 테스트', () => {
   test('메소드 이름은 "purchaseCount"로 정의된다.', () => {
     const METHOD_NAME = 'purchaseCount';
 
-    expect(Application.convertNumber.name).toEqual(METHOD_NAME);
+    expect(Application.purchaseCount.name).toEqual(METHOD_NAME);
+  });
+
+  test('첫 번째 인수 24000, 두 번째 인수 1000을 전달하면 24를 반환한다.', () => {
+    expect(Application.purchaseCount(24000, 1000)).toEqual(24);
   });
 });
