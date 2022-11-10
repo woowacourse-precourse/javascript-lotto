@@ -66,9 +66,9 @@ class App {
 
       this.checkUesrInputHaveOnlyNumberAndComma(arrayedUserInput);
 
-      const userLotto = this.getUserLotto(userInput);
+      this.userLotto = this.getUserLotto(userInput);
 
-      const lotto = new Lotto(userLotto);
+      const lotto = new Lotto(this.userLotto);
 
       this.getBonusNumber();
     });
@@ -102,7 +102,7 @@ class App {
 
   getBonusNumber() {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonus) => {
-      const bonusNumber = new BonusNumber(bonus);
+      const bonusNumber = new BonusNumber(this.userLotto, bonus);
     });
   }
 }
