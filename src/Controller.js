@@ -26,14 +26,14 @@ class Controller{
     });
   }
 
-  printPurchaseNums(lotto_cnt){
-    MissionUtils.Console.print(RESULTLINE.PURCHASE_CHECK(lotto_cnt));
-    this.getAutoLottos(lotto_cnt);
+  printPurchaseNums(purchaseCnt){
+    MissionUtils.Console.print(RESULTLINE.PURCHASE_CHECK(purchaseCnt));
+    this.getAutoLottos(purchaseCnt);
   }
 
-  getAutoLottos(lotto_cnt){
+  getAutoLottos(purchaseCnt){
     const duplicateCaseCheck = new Set();
-    while (duplicateCaseCheck.size < lotto_cnt){
+    while (duplicateCaseCheck.size < purchaseCnt){
       const baselotto = randomNum();
       duplicateCaseCheck.add(baselotto);
       printAutoLottos(baselotto);
