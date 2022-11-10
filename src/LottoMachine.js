@@ -20,12 +20,19 @@ class LottoMachine {
     }
   }
 
+  generateSixNumber() {
+    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+  }
+
+  generateLotto() {
+    return new Lotto(this.generateSixNumber());
+  }
+
   generateLottos() {
     const lottos = [];
     const lottosCount = this.#money / 1000;
     for(let count = 0; count < lottosCount; count++) {
-      const newLotto = new Lotto(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
-      lottos.push(newLotto);
+      lottos.push(this.generateLotto);
     }
     return lottos;
   }
