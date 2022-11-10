@@ -17,11 +17,14 @@ class Lotto {
     if (isDuplicated(numbers)) {
       throw new Error('[ERROR] 중복된 번호가 없어야 합니다.');
     }
-    Console.print('중복되지 않은 6개의 번호 입니다.');
 
     numbers.forEach((number) => {
       if (isNaN(Number(number))) {
         throw new Error('[ERROR] 다른 형식이 아닌 숫자만 입력해 주세요.');
+      }
+
+      if (!is1To45(Number(number))) {
+        throw new Error('[ERROR] 1부터 45 사이의 숫자만 입력해 주세요.');
       }
     });
   }
@@ -30,6 +33,13 @@ class Lotto {
 const isDuplicated = (arr) => {
   const set = new Set(arr);
   if (set.size !== 6) {
+    return true;
+  }
+  return false;
+};
+
+const is1To45 = (num) => {
+  if (num >= 1 && num <= 45) {
     return true;
   }
   return false;
