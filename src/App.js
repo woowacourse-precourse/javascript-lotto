@@ -8,11 +8,19 @@ const Purchase = require('./Purchase.js');
 class App {
   constructor() {
     this.purchaseAmount = 0;
+    this.lottos = [];
   }
 
   createRandomLottoNumbers() {
     const randoms = Random.pickUniqueNumbersInRange(LOTTO.MIN, LOTTO.MAX, LOTTO.LENGTH);
     return randoms.sort((num1, num2) => num1 - num2);
+  }
+
+  generateUserLottos(count) {
+    for (let number = 0; number < count; number++) {
+      const randoms = this.createRandomLottoNumbers();
+      this.lottos.push(new Lotto(randoms));
+    }
   }
 
   play() {
@@ -22,6 +30,9 @@ class App {
       
       const publishCount = purchase.getPublishCount();
       printMessage(`${publishCount}개 구매했습니다.`);
+      
+      this.generateUserLottos(publishCount);
+      this.lottos.forEach(lotto => printMessage(lotto.getNumbers()));
     });
   }
 }
