@@ -9,6 +9,11 @@ const inputAmountMoney= () =>{
         return new Error;
     });
 } 
+const inputBonuseNumber=() => {
+    MissionUtils.Console.readline("보너스 번호를 입력해 주세요.", bonusNumber=>{
+        return bonusNumber;
+    })
+}
 const inputWinNumber= ()=>{
     let lottoNumber=new Set();
     while(lottoNumber.size<6){
@@ -17,4 +22,4 @@ const inputWinNumber= ()=>{
     return lottoNumber;
 }
 
-module.exports = Input;
+module.exports = inputAmountMoney, inputBonuseNumber, inputWinNumber;
