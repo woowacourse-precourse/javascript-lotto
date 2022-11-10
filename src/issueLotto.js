@@ -2,7 +2,8 @@ const MissionUtils = require("@woowacourse/mission-utils");
 
 class LottoGenerator {
   makeLottoNumber() {
-    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    const LOTTONUMBER = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    return LOTTONUMBER.sort((x, y) => x - y);
   }
 
   checkUserMoney() {
