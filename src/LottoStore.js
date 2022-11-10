@@ -1,5 +1,5 @@
 const { Random } = require('@woowacourse/mission-utils');
-const { VARIABLE_LOTTO } = require('../utils/constants');
+const { VARIABLE_LOTTO, LOTTO_ERROR_MESSAGE } = require('../utils/constants');
 
 class LottoStore {
   #money;
@@ -18,15 +18,15 @@ class LottoStore {
   }
 
   #isThousandWon() {
-    if (!/^[1-9]+0{3,}$/.test(this.#money)) {
-      throw new Error('[ERROR] 금액 단위는 천 단위여야 합니다.');
+    if (!VARIABLE_LOTTO.priceRegex.test(this.#money)) {
+      throw new Error(LOTTO_ERROR_MESSAGE.priceLimit);
     }
 
     return this;
   }
 
   #getHowMany() {
-    this.#count = Number(this.#money) / 1000;
+    this.#count = Number(this.#money) / VARIABLE_LOTTO.priceUnit;
 
     return this;
   }
