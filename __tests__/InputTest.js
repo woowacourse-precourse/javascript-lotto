@@ -11,6 +11,11 @@ const {
   checkWinningSixNumber,
 } = require('../src/validation/winningValidation');
 
+const {
+  DoubleCheckBonus,
+  checkBonusOnlyNumber,
+} = require('../src/validation/bonusValidation');
+
 describe('사용자 입력 테스트', () => {
   test('입력한 금액이 1000원 단위가 아닐경우 예외가 발생한다.', () => {
     const input = '1001';
@@ -67,6 +72,17 @@ describe('당첨 번호 입력 테스트', () => {
 
     expect(() => {
       checkWinningSixNumber(input);
+    }).toThrow('[ERROR]');
+  });
+});
+
+describe('보너스 번호 입력 테스트', () => {
+  test('입력한 보너스 번호가 당첨번호와 중복일 경우 예외가 발생한다.', () => {
+    const input = '1';
+    const winningNumber = '1,2,3,4,5,6';
+
+    expect(() => {
+      DoubleCheckBonus(input, winningNumber);
     }).toThrow('[ERROR]');
   });
 });

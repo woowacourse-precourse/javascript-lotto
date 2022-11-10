@@ -23,6 +23,16 @@ class App {
     });
   }
 
+  setWinningNumber() {
+    this.print('당첨 번호를 입력해 주세요.');
+    this.readLine('', (input) => {
+      if (winningValidation(input)) {
+        this.LottoBuilder.WinningNumber = input;
+        this.print(this.LottoBuilder.WinningNumber);
+      }
+    });
+  }
+
   showLottoList(lists) {
     this.print(`${lists.length}개를 구매했습니다.`);
     lists.forEach((list) => {
