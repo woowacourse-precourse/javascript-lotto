@@ -2,14 +2,14 @@ const { LOTTO_PRICE } = require("./constants/condition.js");
 const { ERROR_MESSAGE } = require("./constants/message.js");
 
 class Validation {
-  static validatePurchaseMoney(purchaseMoney) {
-    if (!Validation.hasOnlyNumber(purchaseMoney)) {
+  static validatePurchaseAmount(purchaseAmount) {
+    if (!Validation.hasOnlyNumber(purchaseAmount)) {
       throw new Error(ERROR_MESSAGE.INVALID_INPUT_TYPE);
     }
-    if (Validation.isStartedZero(purchaseMoney)) {
+    if (Validation.isStartedZero(purchaseAmount)) {
       throw new Error(ERROR_MESSAGE.START_WITH_ZERO);
     }
-    if (!Validation.isDivisibleByLottoPrice(purchaseMoney)) {
+    if (!Validation.isDivisibleByLottoPrice(purchaseAmount)) {
       throw new Error(ERROR_MESSAGE.INDIVISIBLE_BY_LOTTO_PRICE);
     }
   }
@@ -27,8 +27,8 @@ class Validation {
   static isStartedZero(input) {
     return input.startsWith("0");
   }
-  static isDivisibleByLottoPrice(purchaseMoney) {
-    const remainder = purchaseMoney % LOTTO_PRICE;
+  static isDivisibleByLottoPrice(purchaseAmount) {
+    const remainder = purchaseAmount % LOTTO_PRICE;
 
     return remainder === 0;
   }

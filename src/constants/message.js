@@ -1,8 +1,8 @@
-const PURCHASE_MONEY = `구입금액을 입력해 주세요.
+const PURCHASE_AMOUNT = `구입금액을 입력해 주세요.
 `;
 
 const REQUEST_MESSAGE = {
-  PURCHASE_MONEY,
+  PURCHASE_AMOUNT,
 };
 
 const INVALID_INPUT_TYPE = "[ERROR] 숫자 외의 문자를 입력할 수 없습니다. 게임 종료!";
