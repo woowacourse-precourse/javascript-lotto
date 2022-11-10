@@ -31,6 +31,21 @@ class Lotto {
     });
   }
 
+  validateBonusNumber(bonusNumber) {
+    for (let i = 0; i < this.#numbers.length; i++) {
+      if (this.#numbers[i] === bonusNumber) {
+        throw new Error("[ERROR] 로또 번호와 중복된 숫자입니다!");
+      }
+
+      if (bonusNumber <= 0 || bonusNumber > 45) {
+        throw new Error("[ERROR] 1 ~ 45 숫자가 아닙니다!");
+      }
+
+      if (isNaN(bonusNumber)) {
+        throw new Error("[ERROR] 숫자가 아닙니다!");
+      }
+    }
+  }
   // TO DO -
   // 일치 개수 비교 및 통계.
 }
