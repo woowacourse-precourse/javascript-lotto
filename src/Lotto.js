@@ -12,6 +12,16 @@ class Lotto {
     }
   }
 
+  sort(){
+    this.#numbers.sort(function(a, b) {
+      return a - b;
+    }); 
+  }
+
+  print(){
+    const MISSIONUTILS = require("@woowacourse/mission-utils");
+    MISSIONUTILS.Console.print(this.#numbers);
+  }
   // TODO: 추가 기능 구현
 }
 
