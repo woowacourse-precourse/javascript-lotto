@@ -15,4 +15,5 @@ function checkWinningRest(string) {}
 module.exports = {
   winningValidation,
   checkWinningEmpty,
+  checkWinningString,
 };

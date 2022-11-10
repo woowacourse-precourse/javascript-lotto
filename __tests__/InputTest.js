@@ -4,7 +4,10 @@ const {
   checkAmountEmpty,
 } = require('../src/validation/amountValidation');
 
-const { checkWinningEmpty } = require('../src/validation/winningValidation');
+const {
+  checkWinningEmpty,
+  checkWinningString,
+} = require('../src/validation/winningValidation');
 
 describe('사용자 입력 테스트', () => {
   test('입력한 금액이 1000원 단위가 아닐경우 예외가 발생한다.', () => {
@@ -33,11 +36,19 @@ describe('사용자 입력 테스트', () => {
 });
 
 describe('당첨 번호 입력 테스트', () => {
-  test('입력한 금액이 공백일경우 예외가 발생한다.', () => {
+  test('입력한 당첨 번호가 공백일경우 예외가 발생한다.', () => {
     const input = '';
 
     expect(() => {
       checkWinningEmpty(input);
+    }).toThrow('[ERROR]');
+  });
+
+  test('입력한 당첨 번호가 숫자가 아닐경우 예외가 발생한다.', () => {
+    const input = '1,2,3,4,5,a';
+
+    expect(() => {
+      checkWinningString(input);
     }).toThrow('[ERROR]');
   });
 });
