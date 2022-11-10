@@ -1,7 +1,10 @@
-const Lotto = require("./Lotto");
+const LottoGenerator = require("./issueLotto");
 
 class LottoGameHandler {
   gameStart() {
-    Lotto.checkUserMoney();
+    LottoGenerator.checkUserMoney();
   }
 }
+
+const LOTTOGAMEHANDLER = new LottoGameHandler();
+module.exports = LOTTOGAMEHANDLER;

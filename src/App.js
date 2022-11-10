@@ -1,5 +1,11 @@
+const LottoGameHandler = require("./controller");
+
 class App {
-  play() {}
+  play() {
+    LottoGameHandler.gameStart();
+  }
 }
 
+const Appli = new App();
+Appli.play();
 module.exports = App;

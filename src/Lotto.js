@@ -1,4 +1,3 @@
-const MissionUtils = require("@woowacourse/mission-utils");
 class Lotto {
   #numbers;
 
@@ -14,30 +13,14 @@ class Lotto {
   }
 
   // TODO: 추가 기능 구현
-  makeLottoNumber() {
-    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-  }
 
   makeLottoWinningNumber() {
     return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 7);
   }
 
-  checkUserMoney() {
-    //문자열 상수화 필요
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (userInput) => {
-      this.countTimesOfLotto(userInput);
-    });
-  }
-  countTimesOfLotto(money) {
-    //상수화 필요
-    return parseInt(money / 1000);
-  }
-
   winningCheck(lottonumbers, winningNumbers, bonusNumber) {
     //상수화 필요
-    const COUNT_OF_CORRECT_NUMBERS = lottonumbers.filter((number) =>
-      winningNumbers.includes(number)
-    ).length;
+    const COUNT_OF_CORRECT_NUMBERS = lottonumbers.filter((number) => winningNumbers.includes(number)).length;
     if (COUNT_OF_CORRECT_NUMBERS === 3) return 5;
     if (COUNT_OF_CORRECT_NUMBERS === 4) return 4;
     if (COUNT_OF_CORRECT_NUMBERS === 5) return 3;
@@ -58,8 +41,7 @@ class Lotto {
     const PRIZE_LIST = [2000000000, 30000000, 1500000, 50000, 5000];
     const INITIAL_VALUE = 0;
     return rankingsArray.reduce(
-      (accumulator, currentValue, currentIndex) =>
-        accumulator + currentValue * PRIZE_LIST[currentIndex],
+      (accumulator, currentValue, currentIndex) => accumulator + currentValue * PRIZE_LIST[currentIndex],
       INITIAL_VALUE
     );
   }
