@@ -10,6 +10,7 @@ class LottoNumberGenerator {
   }
 
   #isInputNumbersValid(numbers) {
+    if (this.#isNegativeNumber(numbers)) throw Error("[ERROR] 양수만 입력해주세요.");
     if (this.#isNotConsistOnlyNumber(numbers)) throw Error("[ERROR] 숫자만 입력 가능합니다.");
     if (this.#isNotDividedThousand(numbers)) throw Error("[ERROR] 천원 단위 입력을 해주세요.");
   }
@@ -20,5 +21,9 @@ class LottoNumberGenerator {
 
   #isNotConsistOnlyNumber(input) {
     return /[^0-9]/g.test(input);
+  }
+
+  #isNegativeNumber(input) {
+    return input.match(/^(-?)[0-9]+$/);
   }
 }
