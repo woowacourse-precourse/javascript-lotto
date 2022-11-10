@@ -11,6 +11,7 @@ class App {
       this.count = this.countLotto(inputMoney);
       Console.print(`${this.count}개를 구매했습니다.`);
       this.getLotto(this.count);
+      this.printLotto();
     });
   }
   isValidInputMoney(input) {
@@ -35,6 +36,12 @@ class App {
       let lotto = Random.pickUniqueNumbersInRange(1, 45, 6);
       this.lotto.push(lotto);
     }
+  }
+  printLotto() {
+    this.lotto.map((lottoArr) => {
+      lottoArr.sort((a, b) => a - b);
+      Console.print(lottoArr);
+    });
   }
 }
 let app = new App();
