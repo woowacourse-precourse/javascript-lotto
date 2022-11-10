@@ -6,6 +6,7 @@ class App {
     this.buyPrice;
     this.buyAmount;
     this.lottoArray = [];
+    this.winningNumber;
   }
   play() {
     this.gameStart();
@@ -16,12 +17,11 @@ class App {
   }
 
   getBuyPrice() {
-    MissionUtils.Console.readLine("구입금액읍 입력해 주세요. \n", (price) => {
+    MissionUtils.Console.readLine("구입금액을 입력해 주세요. \n", (price) => {
       this.buyPrice = price;
       this.priceValidate();
       this.createLottoNumber();
-
-      MissionUtils.Console.close();
+      this.getWinningNumber();
     });
   }
 
@@ -48,6 +48,22 @@ class App {
     this.lottoArray.map((data) => {
       console.log(data);
     });
+  }
+
+  getWinningNumber() {
+    MissionUtils.Console.readLine(
+      "\n당첨 번호를 입력해 주세요. \n",
+      (number) => {
+        this.winningNumber = number;
+        this.splitWinningNumber();
+
+        MissionUtils.Console.close();
+      }
+    );
+  }
+
+  splitWinningNumber() {
+    console.log(this.winningNumber.split(","));
   }
 }
 
