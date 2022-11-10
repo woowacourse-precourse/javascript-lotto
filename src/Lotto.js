@@ -3,8 +3,11 @@ const { Console, Random } = require("@woowacourse/mission-utils");
 class Lotto {
   #numbersOfLotto;
   #lottoArray;
+  #winningNumbers;
+  #regExp;
 
   constructor() {
+    this.#regExp = / /g;
     this.#numbersOfLotto = 0;
     this.#lottoArray = [];
   }
@@ -43,7 +46,7 @@ class Lotto {
     Console.readLine("", (inputMoney) => {
       this.validateInputMoney(inputMoney);
       this.#numbersOfLotto = Number(inputMoney) / 1000;
-      return this.buyLotto();
+      this.buyLotto();
     });
   }
 
@@ -76,24 +79,26 @@ class Lotto {
   }
 
   validateWinningNumbers(winningNumbers) {
-    const regExp = / /g;
+    const winningNumbersArray = winningNumbers.replace(this.#regExp, '').split(',');
     const valid = (element) => (
       this.isNumber(element) &&
       Number(element) >= 1 &&
       Number(element) <= 45 &&
       Number(element) % 1 === 0);
-    if (!winningNumbers.replace(regExp, '').split(',').every(valid)) {
+    if (!winningNumbersArray.every(valid)) {
       this.throwError("[ERROR] 입력하신 당첨 번호가 유효하지 않습니다. 다시 확인해주세요.")
     }
 
-    ([...(new Set(winningNumbers.replace(regExp, '').split(',')))].length !== 6) ? this.throwError("[ERROR] 입력하신 당첨 번호에 중복된 입력값이 존재합니다.") : true;
+    return ([...(new Set(winningNumbersArray))].length !== 6) ?
+      this.throwError("[ERROR] 입력하신 당첨 번호가 유효하지 않습니다. 다시 확인해주세요.") : true;
   }
 
   inputWinningNumbers() {
     Console.print("\n당첨 번호를 입력해 주세요.");
     Console.readLine("", (winningNumbers) => {
       this.validateWinningNumbers(winningNumbers);
-      Console.close();
+      this.#winningNumbers = winningNumbers.replace(this.#regExp, '').split(',');
+      this.inputBonusNumber();
     });
   }
 
@@ -104,9 +109,30 @@ class Lotto {
     }
     this.#printLottoList();
 
-    return this.inputWinningNumbers();
+    this.inputWinningNumbers();
   }
 
+  validateBonusNumber(bonusNumber) {
+    if (!(
+      this.isNumber(bonusNumber) &&
+      Number(bonusNumber) >= 1 &&
+      Number(bonusNumber) <= 45 &&
+      Number(bonusNumber) % 1 === 0
+    )) {
+      this.throwError("[ERROR] 입력하신 보너스 번호가 유효하지 않습니다. 다시 확인해주세요.")
+    }
+
+    return (this.#winningNumbers.includes(bonusNumber)) ?
+      this.throwError("[ERROR] 입력하신 보너스 번호가 유효하지 않습니다. 다시 확인해주세요.") : true;
+  }
+
+  inputBonusNumber() {
+    Console.print("\n보너스 번호를 입력해 주세요.");
+    Console.readLine("", (bonusNumber) => {
+      this.validateBonusNumber(bonusNumber);
+      Console.close();
+    });
+  }
 
 
   // TODO: 추가 기능 구현
