@@ -16,6 +16,7 @@ class App {
       Console.print(`${this.count}개를 구매했습니다.`);
       this.getLotto(this.count);
       this.printLotto();
+      this.getWinningNumber();
     });
   }
   isValidInputMoney(input) {
@@ -48,7 +49,9 @@ class App {
     });
   }
   getWinningNumber() {
-    Console.readLine(MESSAGE.INPUT_GOAL, (input) => {});
+    Console.readLine(MESSAGE.INPUT_GOAL, (input) => {
+      this.winningNumber = input.split(',');
+    });
   }
 }
 let app = new App();
