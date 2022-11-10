@@ -13,7 +13,4 @@ module.exports = {
   printWidth: 80,
   // 화살표 함수가 하나의 매개변수를 받을 때 괄호 생략
   arrowParens: "avoid",
-  // function parenthesis 앞에 공백
-  insertSpaceBeforeFunctionParenthesis: "true",
-  insertSpaceAfterFunctionKeywordForAnonymousFunctions: "true",
 };

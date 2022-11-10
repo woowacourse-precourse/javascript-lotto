@@ -1,9 +1,9 @@
 {
   "parserOptions": {
-    "ecmaVersion": 2021
+    "ecmaVersion": 13
   },
   "env": {
-    "es6": true,
+    "es2022": true,
     "node": true,
     "jest": true
   },
@@ -43,7 +43,7 @@
     "prefer-rest-params": "error",
     "default-param-last": "error",
     "no-new-func": "error",
-    "space-before-function-paren": "error",
+    "space-before-function-paren": "off",
     "space-before-blocks": "error",
     "no-param-reassign": "error",
     "prefer-spread": "error",
