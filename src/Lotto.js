@@ -12,7 +12,27 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
+  isMoneyValid(numbers) {
+    if (isNaN(numbers)) return false;
+    if (!/[0-9]{4,}/.test(numbers)) return false;
+    if (parseInt(numbers) % 1000 !== 0) return false;
+    return true;
+  }
+
+  isLottoNumberInputValid(numbers) {
+    const NUMBERS_FROM_INPUT = numbers.split(",");
+    if (/[^\d,]/g.test(numbers)) return false;
+    if (NUMBERS_FROM_INPUT.length !== 6) return false;
+    if (NUMBERS_FROM_INPUT.find((arrayElement) => parseInt(arrayElement) < 1 || parseInt(arrayElement) > 45))
+      return false;
+    return true;
+  }
+
+  isBonusNumberValid(bonusNumber) {
+    if (+bonusNumber < 1 || +bonusNumber > 45) return false;
+    if (numbers.includes(bonusNumber)) return false;
+    return true;
+  }
 }
 
 module.exports = Lotto;
