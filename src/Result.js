@@ -8,13 +8,22 @@ class Result {
 
   calculateEachLotto() {
     this.lottoArray.forEach((lotto) => {
-      let score = 0;
+      this.calculateOneLotto(lotto);
+    });
+  }
 
-      lotto.forEach((item) => {
-        if (this.userLotto.includes(item)) {
-          score += 1;
-        }
-      });
+  calculateOneLotto(lotto) {
+    let score = 0;
+    let matchBonus = false;
+
+    lotto.forEach((item) => {
+      if (this.userLotto.includes(item)) {
+        score += 1;
+      }
+
+      if (item === this.bonusNumber) {
+        matchBonus = true;
+      }
     });
   }
 }
