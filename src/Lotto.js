@@ -18,13 +18,9 @@ class Lotto {
     }
   }
 
-  checkEachElement(numbers) {
-    for (let element of numbers) {
-      if (isNaN(element)) {
-        throw new Error("[ERROR] 로또 번호는 숫자여야 합니다.");
-      }
-      const ELEMENT_IN_NUMBER = parseInt(element);
-      if (ELEMENT_IN_NUMBER < 1 || ELEMENT_IN_NUMBER > 45) {
+  checkEachNumberInValidRange(numbers) {
+    for (let number of numbers) {
+      if (number < 1 || number > 45) {
         throw new Error("[ERROR] 로또 번호는 1-45 사이 숫자여야 합니다.");
       }
     }
