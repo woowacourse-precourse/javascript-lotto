@@ -56,6 +56,7 @@ class App {
     if (isNaN(bonus)) {
       throw new Error('[ERROR] 보너스 번호는 숫자여야 합니다.');
     }
+
     if (this.winningNumbers.includes(bonus)) {
       throw new Error('[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.');
     }
@@ -63,6 +64,27 @@ class App {
     if (bonus <= 0 || bonus > 45) {
       throw new Error('[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.');
     }
+  }
+
+  getWinningRanking(boughtLotto) {
+    const matchingNumbers = boughtLotto.filter((number) => this.winningNumbers.includes(number));
+    const matchingCount = matchingNumbers.length;
+    const hasBonus = boughtLotto.includes(this.bonus);
+
+    if (matchingCount === 6) {
+      return 1;
+    }
+    if (matchingCount === 5) {
+      if (hasBonus) return 2;
+      return 3;
+    }
+    if (matchingCount === 4) {
+      return 4;
+    }
+    if (matchingCount === 3) {
+      return 5;
+    }
+    return 0;
   }
 }
 
