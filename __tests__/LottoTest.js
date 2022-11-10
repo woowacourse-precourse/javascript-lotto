@@ -1,4 +1,5 @@
 const Lotto = require("../src/Lotto");
+const Bonus = require("../src/Bonus");
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
@@ -19,18 +20,30 @@ describe("로또 클래스 테스트", () => {
     expect(() => {
       new Lotto(["가", 2, 3, "나", 5, 6]);
     }).toThrow("[ERROR]");
-  })
+  });
 
   test("로또 번호의 개수가 6개가 되지 않으면 예외가 발생한다.", () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5]);
     }).toThrow("[ERROR]");
-  })
+  });
 
   test("로또 번호의 숫자가 1 ~ 45 범위를 벗어나면 예외가 발생한다.", () => {
     expect(() => {
       new Lotto([46, 2, 3, 4, 5, 6]);
     }).toThrow("[ERROR]");
-  })
+  });
   
+  test("보너스 번호의 숫자가 1 ~ 45 범위를 벗어나면 예외가 발생한다.", () => {
+    expect(() => {
+      new Bonus(50);
+    }).toThrow("[ERROR]");
+  });
+
+  test("보너스 번호가 숫자가 아니면 예외가 발생한다.", () => {
+    expect(() => {
+      new Bonus("다");
+    }).toThrow("[ERROR]");
+  });
+
 });
