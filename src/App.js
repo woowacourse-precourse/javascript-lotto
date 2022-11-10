@@ -4,6 +4,8 @@ const Bonus = require('./Bonus');
 const View = require('./View');
 const { Console } = require('@woowacourse/mission-utils');
 const { createLottoNumbers, convertWinningNumbers } = require('./utils/lottoUtils');
+const { MESSAGE } = require('./utils/constants');
+
 class App {
   play() {
     this.buyLotto();
@@ -14,7 +16,7 @@ class App {
   }
 
   buyLotto() {
-    Console.readLine('구입금액을 입력해 주세요.', (money) => {
+    Console.readLine(MESSAGE.BUY, (money) => {
       console.log(money);
       const store = new Store(money);
       const amount = money / 1000;
@@ -34,7 +36,7 @@ class App {
   }
 
   createWinningNumbers() {
-    Console.readLine('당첨 번호를 입력해 주세요.', (numbers) => {
+    Console.readLine(MESSAGE.CREATE_WINNING_NUMBERS, (numbers) => {
       this.winningNumbers = convertWinningNumbers(numbers);
       const lotto = new Lotto(this.winningNumbers);
       this.createBonusNumber();
@@ -42,7 +44,7 @@ class App {
   }
 
   createBonusNumber() {
-    Console.readLine('보너스 번호를 입력해 주세요.', (number) => {
+    Console.readLine(MESSAGE.CREATE_BONUS_NUMBER, (number) => {
       this.bonus = Number(number);
       new Bonus(this.bonus, this.winningNumbers);
       const result = this.getResult();
