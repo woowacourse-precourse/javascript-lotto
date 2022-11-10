@@ -18,16 +18,16 @@
 - myLotto : MyLotto 클래스 인스턴스
 - lotto : Lotto 클래스 인스턴스
 
-메서드
+UI 메서드
 #### `play()`
 - 어플리케이션 시작
 
 #### `inputPurchase()`
 - 로또 구입 금액을 입력
-- 입력값을 MyLotto 생성자 인자로 넘겨줌
-- 확인 요소
-    - 숫자여야함
-    - 콤마 제거
+- 입력값을 `parseInt` 후 MyLotto 생성자 인자로 넘겨줌
+- 에러 확인 
+    - 수로만 이루어진 문자열
+    - 콤마 등 제거
 
 #### `inputWinNum()`
 - 당첨 번호 입력
@@ -37,6 +37,7 @@
 #### `inputBonusNum()`
 - 보너스 번호 입력
 
+내부 작업 메서드
 #### `checkMatchLottoNum(myLottoNum, winNum)`
 - 로또 하나의 발행번호와 당첨번호와 일치 조회 함수
 - 일치하는 번호 개수를 반환
@@ -82,11 +83,14 @@ Array historyNum : [3개 일치, 4개 일치, 5개 일치, 5개+보너스 일치
 ---
 ### MyLotto - 구매한 로또 정보 클래스
 변수 목록
-- Array[][] myLottoNums : 발행된 로또 정보를 담은 배열
+- num purchase : 구입 금액
+- num count : 발행된 로또 개수
+- 2d array myLottoes : 발행된 로또들의 정보를 담은 배열
 
 생성자
-#### constructor(purchaseAmount)
+#### constructor(구매금액)
 - 인스턴스 생성시 구매 금액 설정
+- `validate`로 구매 금액이 1,000원으로 나누어 떨어지는지 확인 
 
 메서드
 #### `countLotto(purchaseAmount)`
@@ -97,10 +101,10 @@ Array historyNum : [3개 일치, 4개 일치, 5개 일치, 5개+보너스 일치
 - 구매한 로또 수량에 맞게 발행
 - 중복되지 않는 1~45인 6개의 숫자를 무작위로 뽑음
 
-#### `sortLottoNums()`
-- 오름차순으로 로또번호 정렬
+#### `sortNumbers()`
+- 오름차순으로 한 회차의 로또번호 정렬
 
-#### `getMyLottoNums()`
+#### `getMyLottoes()`
 - myLottoNums 반환
 
 ---
@@ -117,7 +121,7 @@ Array historyNum : [3개 일치, 4개 일치, 5개 일치, 5개+보너스 일치
 메서드
 #### `validate(numbers)`
 - 당첨 번호로 전달된 배열의 오류 여부를 확인하는 함수
-- 확인 요소
+- 에러 확인
     - 길이가 6인 배열이어야 함
     - 각 수가 1~45 범위 내 존재해야 함
     - 중복된 수가 존재하지 않아야 함
