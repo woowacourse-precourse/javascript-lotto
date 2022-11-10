@@ -18,10 +18,13 @@ class LottoApp {
     let lottoArray = [];
 
     while (lottoArray.length < buyAmount) {
-      const random = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      const random = MissionUtils.Random.pickUniqueNumbersInRange(
+        CONSTANT.LOTTO_START,
+        CONSTANT.LOTTO_END,
+        CONSTANT.LOTTO_LENGTH
+      );
       lottoArray.push(new Lotto(random));
     }
-
     return lottoArray;
   }
 
