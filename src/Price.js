@@ -1,4 +1,5 @@
 // const { Console } = require("@woowacourse/mission-utils");
+const MakeLottos = require('./MakeLottos');
 
 class Price {
   #numbers;

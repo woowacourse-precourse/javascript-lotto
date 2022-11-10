@@ -1,3 +1,4 @@
+const { Console } = require("@woowacourse/mission-utils");
 const UserInputs = require('./UserInputs');
 
 class App {
@@ -6,8 +7,9 @@ class App {
   }
 
   play() {
-    this.UserInputs.getPrice()
+    this.UserInputs.getPrice();
   }
+
 }
 
 const app = new App();

@@ -1,0 +1,2 @@
+rice()
+    // this.price = u
