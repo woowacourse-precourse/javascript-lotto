@@ -46,6 +46,11 @@ class MyLotto {
     // 로또 번호 반환
     return this.#myLottoes;
   }
+
+  getCount() {
+    // 로또 개수 반환
+    return this.#count;
+  }
 }
 
 module.exports = MyLotto;
