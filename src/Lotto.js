@@ -23,6 +23,10 @@ class Lotto {
     if (number >= 1 && number <= 45) return true;
     return false;
   }
+
+  get lotto() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
