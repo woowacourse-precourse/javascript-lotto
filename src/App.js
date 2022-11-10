@@ -2,6 +2,12 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const { READLINE_PHRASE, OUTPUT_PHRASE, LOTTO_RANGE } = require("./Constant");
 
 class App {
+  constructor() {
+    this.lottoArrays;
+    this.winningNumbers;
+    this.bonusNumber;
+  }
+
   play() {
     this.inputPurchaseAmount();
   }
@@ -29,13 +35,19 @@ class App {
   }
 
   printLottoNumberArray(money) {
+    let LottoArrays = [];
+
     for (
       let sequence = 1;
       sequence < this.getPurchaseQuantity(money);
       sequence++
     ) {
-      MissionUtils.Console.print(this.getLottoNumber());
+      let LottoArray = this.getLottoNumber();
+
+      MissionUtils.Console.print(LottoArray);
+      LottoArrays.push(LottoArray);
     }
+    this.lottoArrays = LottoArrays;
   }
   getLottoNumber() {
     return MissionUtils.Random.pickUniqueNumbersInRange(
@@ -52,7 +64,8 @@ class App {
       OUTPUT_PHRASE.LINE_UP + READLINE_PHRASE.INPUT_WINNING_NUMBER,
       (WinningNumbers) => {
         let splitWinningNumbers = WinningNumbers.split(",");
-        console.log(splitWinningNumbers);
+
+        this.winningNumbers = splitWinningNumbers;
         this.inputBonusNumber();
       }
     );
@@ -62,7 +75,7 @@ class App {
     MissionUtils.Console.readLine(
       OUTPUT_PHRASE.LINE_UP + READLINE_PHRASE.INPUT_BONUS_NUMBER,
       (bonusNumber) => {
-        console.log(bonusNumber);
+        this.bonusNumber = bonusNumber;
       }
     );
   }
