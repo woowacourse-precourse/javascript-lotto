@@ -53,9 +53,11 @@ describe("로또 테스트", () => {
       "6개 일치 (2,000,000,000원) - 0개",
       "총 수익률은 62.5%입니다.",
     ];
+
     const logSpy = getLogSpy();
     const app = new App();
     app.play();
+
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
@@ -66,6 +68,6 @@ describe("로또 테스트", () => {
     expect(() => {
       const app = new App();
       app.play();
-    }).toThrow("[ERROR]");
+    }).toThrow("[ERROR] 구입금액에 문자가 포함되어 있습니다.");
   });
 });
