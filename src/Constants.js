@@ -18,8 +18,8 @@ const WINNING_STATISTICS = {
     `5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningCount}개`,
   PLACE_1ST: (winningCount) => `6개 일치 (2,000,000,000원) - ${winningCount}개`,
 };
-const YIELD = {
-  YIELD_MESSAGE: (yield) => `총 수익률은 ${yield}%입니다.`,
+const EARNINGS = {
+  YIELD_MESSAGE: (earnings) => `총 수익률은 ${earnings}%입니다.`,
 };
 
 module.exports = {
@@ -33,5 +33,5 @@ module.exports = {
   BONUS_NUMBER_MESSAGE,
   WINNING_STATISTICS_MESSAGE,
   WINNING_STATISTICS,
-  YIELD,
+  EARNINGS,
 };
