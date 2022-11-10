@@ -1,4 +1,4 @@
-const { Console } = require('@woowacourse/mission-utils');
+const { Console, Random } = require('@woowacourse/mission-utils');
 const Validator = require('./Validator');
 
 class App {
@@ -16,7 +16,16 @@ class App {
     Console.readLine('', (money) => {
       Validator.throwErrorIfInValidMoney(money);
       this.lottoCount = money / 1000;
+      this.issueLotto();
     });
+  }
+
+  issueLotto() {
+    while (this.userLottoNumbers.length < this.lottoCount) {
+      const randomNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+      randomNumbers.sort((a, b) => a - b);
+      this.userLottoNumbers.push(randomNumbers);
+    }
   }
 }
 
