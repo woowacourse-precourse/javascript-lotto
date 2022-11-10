@@ -6,11 +6,11 @@ const LOTTO = {
 }
 
 const WINNING_CRITERIA = {
-  FIRST_PLACE: { normal: 6, bonus: 0 },
-  SECOND_PLACE:  { normal: 5, bonus: 1 },
-  THIRD_PLACE: { normal: 5, bonus: 0 },
-  FOURTH_PLACE: { normal: 4, bonus: 0 },
-  LAST_PLACE: { normal: 3, bonus: 0 },
+  FIRST_PLACE: { rank: 1, equals: 6, bonus: 0 },
+  SECOND_PLACE:  { rank: 2, equals: 5, bonus: 1 },
+  THIRD_PLACE: { rank: 3, equals: 5, bonus: 0 },
+  FOURTH_PLACE: { rank: 4, equals: 4, bonus: 0 },
+  LAST_PLACE: { rank:5, equals: 3, bonus: 0 },
 }
 
 const MONEY = {
