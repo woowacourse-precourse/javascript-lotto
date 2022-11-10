@@ -1,4 +1,4 @@
-const Console = require("@woowacourse/mission-utils");
+const {Console} = require("@woowacourse/mission-utils");
 const CreateRandomLotto = require("./CreateRandomLotto")
 const createRandomLotto = new CreateRandomLotto();
 const INPUT_MONEY_MESSAGE = "구입금액을 입력해 주세요."

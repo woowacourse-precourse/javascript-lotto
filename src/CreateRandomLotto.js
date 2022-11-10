@@ -1,18 +1,16 @@
-const Random = require("@woowacourse/mission-utils");
+const {Random} = require("@woowacourse/mission-utils");
+const {Console} = require("@woowacourse/mission-utils");
+
 class CreateRandomLotto {
     constructor(){
         this.randomLotto = [];
     }
 
     pickRandomLotto(){
-        while(this.randomLotto.length < 6){
-            let computerNumber = Random.pickNumberInRange(1, 45);
-            if(!this.randomLotto.includes(computerNumber)){
-                this.randomLotto.push(computerNumber)
-            }
-        }
+        const number = Random.pickUniqueNumbersInRange(1, 45, 6);
+        this.randomLotto.push(number);
     }
-    
+
     randomNumberSort(){
         this.randomLotto.sort((a,b) => {
             return a - b;
@@ -24,12 +22,13 @@ class CreateRandomLotto {
         while( i < number){
             this.pickRandomLotto();
             this.randomNumberSort()
-            console.print(this.randomLotto);
+            Console.print(this.randomLotto);
             this.randomLotto.length = 0;
             i++;
         }
     }
 }
+
 
 
 module.exports = CreateRandomLotto;
