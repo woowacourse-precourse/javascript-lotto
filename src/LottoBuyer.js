@@ -1,13 +1,22 @@
+const LottoSales = require('./LottoSales');
+
 class LottoBuyer {
   #money;
+
+  #lotto;
 
   constructor(money) {
     LottoBuyer.#validateMoney(money);
     this.#money = +money;
   }
 
-  get money() {
-    return this.#money;
+  get lotto() {
+    return this.#lotto;
+  }
+
+  buyLotto() {
+    const lotto = LottoSales.issueLottos(this.#money);
+    this.#lotto = lotto;
   }
 
   static #validateMoney(money) {
