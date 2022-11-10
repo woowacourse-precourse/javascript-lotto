@@ -14,6 +14,10 @@ class Lotto {
     this.#validateOverlap(numbers).#validateLottoRange(numbers);
   }
 
+  getNumber() {
+    return this.#numbers;
+  }
+
   // TODO: 추가 기능 구현
   #validateOverlap(numbers) {
     if (numbers.length !== new Set(numbers).size) {
