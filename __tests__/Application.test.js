@@ -36,4 +36,8 @@ describe('구매 개수 파악 함수 테스트', () => {
   test('첫 번째 인수 24000, 두 번째 인수 1000을 전달하면 24를 반환한다.', () => {
     expect(Application.purchaseCount(24000, 1000)).toEqual(24);
   });
+
+  test('첫 번째 인수, 두 번째 인수 모두 숫자로 변환이 가능하다.', () => {
+    expect(Application.purchaseCount('24000', '1000')).toEqual(24);
+  });
 });
