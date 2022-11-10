@@ -10,6 +10,7 @@ class LottoGame {
 
   start() {
     this.inputConsole.userMoney((money) => {
+      this.user.validateMoney(money);
       this.user.setMoney(money);
       this.purchase(this.user.getMoney());
     });

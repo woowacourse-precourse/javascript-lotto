@@ -21,7 +21,15 @@ class User {
   }
 
   validateMoney(money) {
-    return 1;
+    if (money === '0') {
+      return;
+    }
+    if (!Number(money)) {
+      throw new Error('숫자가 아닙니다');
+    }
+    if (Number(money) % 1000 !== 0) {
+      throw new Error('1000원 단위가 아닙니다.');
+    }
   }
 }
 
