@@ -1,3 +1,5 @@
+const { Console } = require("@woowacourse/mission-utils");
+
 class Lotto {
   #numbers;
 
@@ -12,6 +14,9 @@ class Lotto {
     }
   }
 
+  get objectName() {
+    return "Lotto";
+  }
   // TODO: 추가 기능 구현
 }
 

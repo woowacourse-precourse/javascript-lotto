@@ -9,6 +9,17 @@ class GameUtils {
     randomNumbers.sort((a, b) => Number(a) - Number(b));
     return randomNumbers;
   };
+
+  static getLottos = (count) => {
+    let lottos = [];
+
+    for (let i = 0; i < Number(count); i++) {
+      const lotto = new Lotto(this.getRandomNumberArray());
+      lottos.push(lotto);
+    }
+
+    return lottos;
+  };
 }
 
 module.exports = GameUtils;

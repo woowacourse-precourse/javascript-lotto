@@ -13,7 +13,12 @@ class LottoGame {
     Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
       ValidCheckUtils.checkPay(input);
       this.pay = input;
+      this.purchaseLotto(Number(this.pay) / 1000);
     });
+  }
+
+  purchaseLotto(count) {
+    this.lottos = GameUtils.getLottos(count);
   }
 }
 
