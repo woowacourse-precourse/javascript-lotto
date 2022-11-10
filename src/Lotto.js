@@ -22,6 +22,7 @@ class Lotto {
     this.randomNumbersArr = [];
     this.countMatchedNumber = [];
     this.countMatchedBonusNumber = [];
+    this.myPayment = "";
   }
 
   buyLotto() {
@@ -29,13 +30,15 @@ class Lotto {
     this.pay();
   }
   pay() {
-    MissionUtils.Console.readLine("", (payNumber) => {
+    MissionUtils.Console.readLine("", (payment) => {
       MissionUtils.Console.print(""); // 공백
-      this.countMyLottoSheets(payNumber);
+      this.countMyLottoSheets(payment);
+      // this.myPayment.push(payment)
+      this.myPayment = payment
     });
   }
-  countMyLottoSheets(payNumber) {
-    const countedSheets = payNumber / 1000;
+  countMyLottoSheets(payment) {
+    const countedSheets = payment / 1000;
     MissionUtils.Console.print(`${countedSheets}개를 구매했습니다.`);
     this.printLotto(countedSheets);
   }
@@ -46,10 +49,6 @@ class Lotto {
     const sortedRandomNumbers = Rannumbers.sort((a, b) => a - b);
     this.randomNumbersArr.push(sortedRandomNumbers);
     MissionUtils.Console.print(sortedRandomNumbers);
-    // this.compareRandomNumbers(sortedRandomNumbers)
-    // this.컴페어 넘버스와 연결(비교계산 실행해줌)
-    // this.compareNumbers(sortedRandomNumbers)
-    // return sortedRandomNumbers
   }
   ////////////랜덤번호 배열 뽑기
 
@@ -68,20 +67,15 @@ class Lotto {
   }
   inputWinNumbers() {
     MissionUtils.Console.readLine("", (winNumber) => {
-      // this.selectedWinNumber.push(winNumber.split(","));
+
       const splitedWinNumber = winNumber.split(",").map(Number);
       for (let i = 0; i < 6; i++) {
         this.selectedWinNumber.push(splitedWinNumber[i]);
       }
-      // this.answerBox.push(answer.split("").map(Number));
-      // while (this.selectedWinNumber.length < 7) {
-      //   this.selectedWinNumber.push(winNumber);
-      // }
 
       MissionUtils.Console.print(""); // 공백
       this.selectBonusNumber();
-      // return winNumber
-      // this.compareNumbers(winNumber)
+
     });
   }
   selectBonusNumber() {
@@ -92,9 +86,6 @@ class Lotto {
     MissionUtils.Console.readLine("", (bonusNumber) => {
       this.selectedBonusNumber.push(Number(bonusNumber));
       MissionUtils.Console.print(""); // 공백
-      // this.seeResult();
-      // this.selectBonusNumber()
-      // this.compareNumbers();
       this.compareNumbers();
     });
   }
@@ -118,27 +109,58 @@ class Lotto {
     this.getWinners()
   }
   getWinners() {
-    let firstPlace = 0;
+    // let firstPlace = 0;
     let secondPlace = 0;
     let thirdPlace = 0;
-    let fourthPlace = 0;
-    let fifthPlace = 0;
+    // let fourthPlace = 0;
+    // let fifthPlace = 0;
 
-    if (this.countMatchedNumber.includes(3)) fifthPlace++;
-    if (this.countMatchedNumber.includes(4)) fourthPlace++;
-    if(this.countMatchedNumber.indexOf(5) !== this.countMatchedBonusNumber.indexOf(1)){
-      thirdPlace++;
-    }
-    if(this.countMatchedNumber.indexOf(5) === this.countMatchedBonusNumber.indexOf(1)){
-      secondPlace++;
-    }
-    if (this.countMatchedNumber.includes(6)) firstPlace++;
+    // if (this.countMatchedNumber.includes(3)) fifthPlace++; //같은 당첨일때 수량이 늘어나야하는데 안늘어남. 
+    let firstPlace = this.countMatchedNumber.filter(element => 6 === element).length
+    // let secondPlace = this.countMatchedNumber.filter(element => 5 === element).length
+    // let thirdPlace = this.countMatchedNumber.filter(element => 5 === element).length
+    let fourthPlace = this.countMatchedNumber.filter(element => 4 === element).length
+    let fifthPlace = this.countMatchedNumber.filter(element => 3 === element).length
 
-    this.seeResult(firstPlace,secondPlace,thirdPlace,fourthPlace,fifthPlace);
+    for (let i = 0; i <  this.countMatchedNumber.length; i++) {
+      if(this.countMatchedNumber[i] === 5 && this.countMatchedBonusNumber[i] === 1){
+        secondPlace++;
+      }
+    }
+    for (let i = 0; i <  this.countMatchedNumber.length; i++) {
+      if(this.countMatchedNumber.includes(5) && !this.countMatchedNumber[i] === 5 && this.countMatchedBonusNumber[i] === 1){
+        thirdPlace++;
+      }
+    }
+    // if (this.countMatchedNumber.includes(4)) fourthPlace++;
+    // if(this.countMatchedNumber.includes(5) && this.countMatchedNumber.indexOf(5) !== this.countMatchedBonusNumber.indexOf(1)){
+    //   thirdPlace++;
+    // }
+    // if(this.countMatchedNumber.indexOf(5) === this.countMatchedBonusNumber.indexOf(1)){
+    //   secondPlace++;
+    // }
+    // if (this.countMatchedNumber.includes(6)) firstPlace++;
+
+    this.calculateYieldRatio(firstPlace,secondPlace,thirdPlace,fourthPlace,fifthPlace);
+  }
+  calculateYieldRatio(firstPlace,secondPlace,thirdPlace,fourthPlace,fifthPlace){
+    const firstReward = 2000000000
+    const secondReward = 30000000
+    const thirdReward = 1500000
+    const fourthReward = 50000
+    const fifthReward = 5000
+
+    const addReward = (firstReward * firstPlace) + (secondReward * secondPlace) + (thirdReward * thirdPlace) +(fourthReward * fourthPlace) +(fifthReward * fifthPlace) 
+
+    const positiveTotalCalculate = ((this.myPayment - addReward) / this.myPayment) * 100
+    const negativeTotalCalculate = 100 - positiveTotalCalculate
+
+
+    this.seeResult(firstPlace,secondPlace,thirdPlace,fourthPlace,fifthPlace,positiveTotalCalculate,negativeTotalCalculate);
   }
 
   ///결과 출력
-  seeResult(firstPlace,secondPlace,thirdPlace,fourthPlace,fifthPlace) {
+  seeResult(firstPlace,secondPlace,thirdPlace,fourthPlace,fifthPlace,positiveTotalCalculate,negativeTotalCalculate) {
     MissionUtils.Console.print(this.RESULT_MESSAGE);
     MissionUtils.Console.print(this.RESULT_UNDERSCORE);
     MissionUtils.Console.print(`${this.FIFTH_PLACE}${fifthPlace}개`);
@@ -146,7 +168,15 @@ class Lotto {
     MissionUtils.Console.print(`${this.THIRD_PLACE}${thirdPlace}개`);
     MissionUtils.Console.print(`${this.SECOND_PLACE}${secondPlace}개`);
     MissionUtils.Console.print(`${this.FIRST_PLACE}${firstPlace}개`);
-    MissionUtils.Console.print(`총 수익률은 {}입니다.`);
+    if (positiveTotalCalculate < 100){
+      return MissionUtils.Console.print(`총 수익률은 ${negativeTotalCalculate}%입니다.`);
+    }
+    if(positiveTotalCalculate > 100) {
+      return MissionUtils.Console.print(`총 수익률은 ${positiveTotalCalculate}%입니다.`)} ;
+    if(positiveTotalCalculate === 100){
+      return MissionUtils.Console.print("총 수익률은 100%입니다.")} ;
+
+    }
   }
 
   // validate(numbers) {
@@ -154,7 +184,7 @@ class Lotto {
   //     throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
   //   }
   // }
-}
+
 
 const lotto = new Lotto();
 // lotto.buyLotto();
