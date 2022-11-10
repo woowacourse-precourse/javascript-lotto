@@ -3,9 +3,11 @@ const { READLINE_PHRASE, OUTPUT_PHRASE, LOTTO_RANGE } = require("./Constant");
 
 class App {
   constructor() {
+    this.purchaseAmount;
     this.lottoArrays;
     this.winningNumbers;
     this.bonusNumber;
+    this.winningAmount;
   }
 
   play() {
@@ -16,38 +18,40 @@ class App {
     MissionUtils.Console.readLine(
       READLINE_PHRASE.INPUT_PURCHASE_AMMOUNT,
       (money) => {
-        this.printPurchaseQuantity(money);
-        this.printLottoNumberArray(money);
+        this.purchaseAmount = money;
 
+        this.printPurchaseQuantity();
+        this.printLottoNumberArray();
         this.inputWinningNumbers();
       }
     );
   }
-  printPurchaseQuantity(money) {
+  printPurchaseQuantity() {
+    MissionUtils.Console.print("");
     MissionUtils.Console.print(
-      OUTPUT_PHRASE.LINE_UP +
-        this.getPurchaseQuantity(money) +
+      this.getPurchaseQuantity(this.purchaseAmount) +
         OUTPUT_PHRASE.PURCHASE_QUANTITY
     );
   }
-  getPurchaseQuantity(money) {
-    return parseInt(money / 1000);
+  getPurchaseQuantity() {
+    return parseInt(this.purchaseAmount / 1000);
   }
 
-  printLottoNumberArray(money) {
-    let LottoArrays = [];
+  printLottoNumberArray() {
+    let lottoArrays = [];
 
     for (
       let sequence = 1;
-      sequence <= this.getPurchaseQuantity(money);
+      sequence <= this.getPurchaseQuantity(this.purchaseAmount);
       sequence++
     ) {
-      let LottoArray = this.getLottoNumber();
+      let lottoArray = this.getLottoNumber();
 
-      MissionUtils.Console.print(LottoArray);
-      LottoArrays.push(LottoArray);
+      let stringLottoArray = lottoArray.join(", ");
+      MissionUtils.Console.print("[" + stringLottoArray + "]");
+      lottoArrays.push(lottoArray);
     }
-    this.lottoArrays = LottoArrays;
+    this.lottoArrays = lottoArrays;
   }
   getLottoNumber() {
     return MissionUtils.Random.pickUniqueNumbersInRange(
@@ -130,16 +134,31 @@ class App {
     MissionUtils.Console.print(
       OUTPUT_PHRASE.WINNING_STATISTICS.ALL_MATCHES + `${coincide.allMatches}개`
     );
-  }
 
+    this.winningAmount =
+      5000 * coincide.threeMatches +
+      50000 * coincide.fourMatches +
+      1500000 * coincide.fiveMatches +
+      30000000 * coincide.fiveAndBonusMatches +
+      2000000000 * coincide.allMatches;
+
+    let myyield = this.getYield();
+
+    MissionUtils.Console.print(`총 수익률은 ${myyield}%입니다.`);
+    MissionUtils.Console.close();
+  }
   getMatchCount(A, B) {
     let arr = new Set(A.concat(B));
     arr = [...arr];
+    console.log(A.length + B.length - arr.length);
 
     return A.length + B.length - arr.length;
   }
   getBonusMatch(A, B) {
     return A.includes(B);
+  }
+  getYield() {
+    return parseFloat(100 * (this.winningAmount / this.purchaseAmount));
   }
 }
 
