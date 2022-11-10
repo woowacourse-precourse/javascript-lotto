@@ -11,6 +11,9 @@ class Validation {
 
     return false;
   }
+  static isStartedZero(input) {
+    return input.startsWith("0");
+  }
   static isDivisibleByLottoPrice(purchaseMoney) {
     const remainder = purchaseMoney % LOTTO_PRICE;
 
