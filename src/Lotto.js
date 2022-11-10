@@ -1,3 +1,4 @@
+const { divideBudget, inputWinningNumbers, inputBonusNumber } = require("./Logic");
 class Lotto {
   #numbers;
 
