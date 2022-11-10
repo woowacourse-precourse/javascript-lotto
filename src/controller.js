@@ -1,10 +1,13 @@
 const { Random } = require('@woowacourse/mission-utils');
+const Lotto = require('./Lotto');
 const View = require('./view');
+const WinningNumber = require('./winning-number');
 
 class Controller {
   constructor() {
     this.lottos = [];
     this.view = new View(this);
+    this.winningNumber = new WinningNumber();
   }
 
   generateLotto(answer) {
@@ -14,6 +17,10 @@ class Controller {
     }
 
     this.view.printLottos(this.lottos);
+  }
+
+  enterWinningNumber(answer) {
+    this.winningNumber.setWinningNumber(answer);
   }
 }
 
