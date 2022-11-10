@@ -5,10 +5,14 @@ class Purchase {
 
   #lottoCount;
 
+  #lottoList;
+
   constructor(cash) {
     this.#lottoCount = 0;
     this.#cash = cash;
+    this.#lottoList = [];
     this.validateCashInput(this.#cash);
+    this.makeLottoList(this.#lottoCount);
   }
 
   validateCashInput(value) {
@@ -21,8 +25,24 @@ class Purchase {
     this.#lottoCount = value / 1000;
   }
 
+  get Cash() {
+    return this.#cash;
+  }
+
   get LottoCount() {
     return this.#lottoCount;
+  }
+
+  get LottoList() {
+    return this.#lottoList;
+  }
+
+  makeLottoList(count) {
+    this.#lottoList = [];
+    for (let i = 0; i < count; i++) {
+      const numbers = Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
+      this.#lottoList.push(numbers);
+    }
   }
 }
 
