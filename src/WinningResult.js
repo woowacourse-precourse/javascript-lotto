@@ -24,6 +24,11 @@ class WinningResult {
   calculateSum() {
     return Object.entries(this.result).reduce((acc, [key, value]) => acc + key * value, 0);
   }
+
+  setYield(cash) {
+    this.sum = this.calculateSum();
+    return Math.round((this.sum * 10000) / cash) / 100;
+  }
 }
 
 module.exports = WinningResult;

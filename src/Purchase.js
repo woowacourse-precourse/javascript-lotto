@@ -10,7 +10,7 @@ class Purchase {
   constructor(cash) {
     this.validateCashInput(cash);
     this.#lottoCount = 0;
-    this.#cash = cash;
+    this.#cash = Number(cash);
     this.#lottoList = [];
     this.setLottoCount();
     this.makeLottoList(this.#lottoCount);
