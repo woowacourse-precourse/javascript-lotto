@@ -1,3 +1,4 @@
+const MissionUtils = require('@woowacourse/mission-utils');
 const lottoValidation = require('./validation/lottoValidation');
 
 class LottoBuilder {
@@ -5,6 +6,11 @@ class LottoBuilder {
     this.lottoList = [];
     this.WinningNumber = [];
     this.bonusNumber = null;
+  }
+
+  creatLottoNumber() {
+    const randomNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    return randomNumber.sort((a, b) => a - b);
   }
 
   countAmountLotto(input) {

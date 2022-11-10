@@ -1,7 +1,11 @@
+const { LottoBuilder } = require('./Lotto');
 const MissionUtils = require('@woowacourse/mission-utils');
 const { amountValidation } = require('./validation/amountValidation');
+
 class App {
-  constructor() {}
+  constructor() {
+    this.LottoBuilder = new LottoBuilder();
+  }
 
   play() {
     this.setPurchaseAmount();
