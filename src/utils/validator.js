@@ -1,5 +1,5 @@
 function isValidateUserInput(amount) {
-  if (amount.length === 0) {
+  if (amount.trim().length === 0) {
     throw new Error("[ERROR] 입력 내용이 없습니다.");
   }
   if (amount === "0") {
