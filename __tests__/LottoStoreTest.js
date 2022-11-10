@@ -6,10 +6,7 @@ describe('로또 가게 클래스 테스트', () => {
     const lottoStore = new LottoStore('a');
 
     expect(() => {
-      lottoStore
-        .isThousandWon()
-        .getHowMany()
-        .buy();
+      lottoStore.getBuyAt();
     }).toThrow('[ERROR]');
   });
 
@@ -17,10 +14,7 @@ describe('로또 가게 클래스 테스트', () => {
     const lottoStore = new LottoStore('a1000');
 
     expect(() => {
-      lottoStore
-        .isThousandWon()
-        .getHowMany()
-        .buy();
+      lottoStore.getBuyAt();
     }).toThrow('[ERROR]');
   });
 
@@ -28,10 +22,7 @@ describe('로또 가게 클래스 테스트', () => {
     const lottoStore = new LottoStore('1a000');
 
     expect(() => {
-      lottoStore
-        .isThousandWon()
-        .getHowMany()
-        .buy();
+      lottoStore.getBuyAt();
     }).toThrow('[ERROR]');
   });
 
@@ -39,10 +30,7 @@ describe('로또 가게 클래스 테스트', () => {
     const lottoStore = new LottoStore('1200');
 
     expect(() => {
-      lottoStore
-        .isThousandWon()
-        .getHowMany()
-        .buy();
+      lottoStore.getBuyAt();
     }).toThrow('[ERROR]');
   });
 
@@ -50,10 +38,7 @@ describe('로또 가게 클래스 테스트', () => {
     const lottoStore = new LottoStore(' 12000');
 
     expect(() => {
-      lottoStore
-        .isThousandWon()
-        .getHowMany()
-        .buy();
+      lottoStore.getBuyAt();
     }).toThrow('[ERROR]');
   });
 
@@ -61,20 +46,14 @@ describe('로또 가게 클래스 테스트', () => {
     const lottoStore = new LottoStore('12000 ');
 
     expect(() => {
-      lottoStore
-        .isThousandWon()
-        .getHowMany()
-        .buy();
+      lottoStore.getBuyAt();
     }).toThrow('[ERROR]');
   });
 
   test('옳은 입력값 - 주어진 돈만큼 로또가 나왔는지 확인', () => {
     const lottoStore = new LottoStore('12000');
 
-    const lottoCount = lottoStore
-      .isThousandWon()
-      .getHowMany()
-      .buy().length;
+    const lottoCount = lottoStore.getBuyAt().length;
 
     expect(lottoCount).toEqual(12);
 
