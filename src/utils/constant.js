@@ -27,4 +27,11 @@ const ERROR = Object.freeze({
   BONUS_NUMBER: "[ERROR] 올바른 보너스 번호를 입력해주세요.",
 });
 
-module.exports = { COMMAND, GUIDE, PLACE, ERROR };
+const EXCEPTION = Object.freeze({
+  NUM_RANGE: /[1-45]/,
+  UNIT: 1000,
+  LOTTO_LENGTH: 6,
+  BONUS_LENGTH: 1,
+});
+
+module.exports = { COMMAND, GUIDE, PLACE, ERROR, EXCEPTION };

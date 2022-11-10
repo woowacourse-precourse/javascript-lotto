@@ -1,15 +1,18 @@
 const { Console } = require("@woowacourse/mission-utils");
-
 const LottoNumber = require("./LottoNumber");
+const Exception = require("./error/exception");
+const PurchaseError = require("./error/purchase");
 
 const { COMMAND } = require("./utils/constant");
 
 class Lotto {
   #numbers;
+  #exception;
 
   constructor(numbers) {
-    this.LottoNumber = new LottoNumber();
     this.#numbers = numbers;
+    this.#exception = new Exception();
+    this.LottoNumber = new LottoNumber();
   }
 
   print(message) {
@@ -17,7 +20,9 @@ class Lotto {
   }
 
   start() {
-    this.print(COMMAND.BUY);
+    Console.readLine(`${COMMAND.BUY}\n`, (input) => {
+      this.#exception.isAllow(new PurchaseError(input));
+    });
   }
 }
 
