@@ -9,6 +9,9 @@ class MyLotto {
 
   validate(purchase) {
     // 구매금악 1,000단위로 나누어 떨어지는지 확인 
+    if (purchase % 1000 != 0) {
+      throw new Error("[ERROR] 구입 금액은 1,000원으로 나누어 떨어져야 합니다");
+    }
   }
 
   countLotto() {
