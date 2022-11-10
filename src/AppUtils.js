@@ -31,6 +31,13 @@ class AppUtils {
     return history;
   }
 
+  static calReward(history) {
+    //상금 계산
+    const amount = [5000, 50000, 1500000, 30000000, 2000000000]
+    return history.reduce((prev, curr, idx) => prev + curr * amount[idx],
+    0)
+  }
+
   static calRate() {
     // 수익률 계산 
   }
