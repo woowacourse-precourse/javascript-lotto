@@ -8,6 +8,8 @@ class Lotto {
     // this.validate(numbers);
     this.#numbers = numbers;
     this.START_MESSAGE = "구입금액을 입력해 주세요.";
+    this.SELECT_WIN_NUMBER = "당첨 번호를 입력해 주세요.";
+    this.SELECT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
   }
 
   buyLotto() {
@@ -34,11 +36,23 @@ class Lotto {
     for (let i = 0; i < countedSheets; i++) {
       this.generateRandomNumbers();
     }
-    // this.
+    MissionUtils.Console.print("");
+    this.selectWinNumbers()
+    // this.컴페어 넘버스와 연결(비교계산 실행해줌)
   }
+  selectWinNumbers(){
+      MissionUtils.Console.print(this.SELECT_WIN_NUMBER);
+      // this.inputWinNumbers();
+  }
+  // inputWinNumbers(){
+  //   MissionUtils.Console.readLine("", (winNumber) => {
+  //     MissionUtils.Console.print(""); // 공백
+  //     this.countMyLottoSheets(winNumber);
+  //   });
+  // }
+
 
   // validate(numbers) {
-
   //   if (numbers.length !== 6) {
   //     throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
   //   }

@@ -26,19 +26,21 @@
 
 ### 출력
 
-- [] 시작 
+- [x] 시작 
     - [x] 구입 금액 입력 안내를 출력한다 "구입금액을 입력해 주세요." print // buyLotto()
-    - [x] 구입 금액을 출력한다 readline // pay()
+        - [x] 입력된 구입 금액을 출력한다 readline // pay()
 
-- [] 구매 
+- [x] 구매 
     - [x] 구입 금액을 1000으로 나눈 몫을 수량으로 출력한다 "n개를 구매했습니다." print // countMyLottoSheets()
     - [x] 랜덤 번호를 가진 배열을 생성한다 // generateRandomNumbers()
     - [x] 수량만큼 랜덤 번호를 가진 배열을 출력한다 print // printLotto()
         - [x] 로또 번호를 오름차순으로 정렬한다
 
 - [] 당첨 번호 입력
-    - [] 당첨 번호 입력 안내를 출력한다 "당첨 번호를 입력해 주세요."  print // selectWinNumbers()
+    - [x] 당첨 번호 입력 안내를 출력한다 "당첨 번호를 입력해 주세요."  print // selectWinNumbers()
+        - [] 입력된 당첨 번호를 출력한다 readline // inputWinNumbers()
     - [] 보너스 번호 입력 안내를 출력한다 "보너스 번호를 입력해 주세요." print // selectBonusNumber()
+        - [] 입력된 보너스 번호를 출력한다 readline // inputBonusNumber()
 
 - [] 당첨 통계 출력 
     - [] 일치 개수에 따른 당첨 배열의 개수를 출력한다 "3개 일치 (5,000원 ) - n개" print // seeResult()
