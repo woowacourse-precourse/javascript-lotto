@@ -11,6 +11,7 @@ class App {
       READLINE_PHRASE.INPUT_PURCHASE_AMMOUNT,
       (money) => {
         this.printPurchaseQuantity(money);
+        this.printLottoNumberArray(money);
       }
     );
   }
@@ -23,6 +24,23 @@ class App {
   }
   getPurchaseQuantity(money) {
     return parseInt(money / 1000);
+  }
+
+  printLottoNumberArray(money) {
+    for (
+      let sequence = 1;
+      sequence < this.getPurchaseQuantity(money);
+      sequence++
+    ) {
+      MissionUtils.Console.print(this.getLottoNumber());
+    }
+  }
+  getLottoNumber() {
+    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 9).sort(
+      (compare1, compare2) => {
+        return compare1 - compare2;
+      }
+    );
   }
 }
 
