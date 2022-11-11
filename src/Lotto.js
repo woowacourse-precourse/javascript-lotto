@@ -31,7 +31,8 @@ class Lotto {
   }
   isNumber(numbers){
     const IS_NOT_NUMBER = /\D/g;
-    if(IS_NOT_NUMBER.test(numbers)){
+    const numbersArrayToString = numbers.join("");
+    if(IS_NOT_NUMBER.test(numbersArrayToString)){
       throw new Error("[ERROR] 로또 번호는 문자가 아닌 숫자여야 합니다.");
     }
   }
