@@ -25,7 +25,7 @@ class App {
     MissionUtils.Console.print(LottoCount + Notice.BUY_LOTTO)
     for (let i = 0; i<LottoCount; i++){
       let RandomNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
-      MissionUtils.Console.print(`[${RandomNumber.join(', ')}]`);
+      MissionUtils.Console.print(`[${RandomNumber.join(',')}]`);
       this.Lotto.validate(RandomNumber);
       this.Lottobuynumber.push(`${RandomNumber}`)
     }
@@ -37,8 +37,18 @@ class App {
   }
   setWinNumber(numbers){
     numbers = numbers.split(',')
+    this.getInputMaxMin(numbers)
     this.Lotto.validate(numbers)
     this.Winnumber = numbers
+  }
+  getInputMaxMin(numbers){
+    for (let i in numbers){
+      numbers[i] = parseInt(numbers[i])
+    }
+    const max = Math.max(...numbers)
+    const min = Math.min(...numbers)
+    console.log(max,min)
+    this.Lotto.validateInputRange(max,min)
   }
 }
 
