@@ -34,7 +34,7 @@ class Validation {
   }
 
   static validateLottoNumber(lottoNumbers) {
-    if (Validation.isValidLottoLength(lottoNumbers)) {
+    if (Validation.isValidLottoNumberLength(lottoNumbers)) {
       throw new Error(ERROR_MESSAGE.INVALID_LOTTO_LENGTH);
     }
     if (Validation.hasUniqueLottoNumber(lottoNumbers)) {
@@ -42,7 +42,7 @@ class Validation {
     }
   }
 
-  static isValidLottoLength(lottoNumbers) {
+  static isValidLottoNumberLength(lottoNumbers) {
     return lottoNumbers.length !== LOTTO_DIGITS;
   }
   static hasUniqueLottoNumber(lottoNumbers) {
