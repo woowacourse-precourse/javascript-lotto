@@ -1,6 +1,14 @@
-const { Console } = require("@woowacourse/mission-utils");
+const { Console, Random } = require("@woowacourse/mission-utils");
 
-const { MESSAGE, AMOUNT_UNIT, ERROR } = require("../src/utils/constants");
+const {
+  NUMBER_COUNT,
+  AMOUNT_UNIT,
+  MIN_NUMBER,
+  MAX_NUMBER,
+  MESSAGE,
+  ERROR,
+  STATISTICS,
+} = require("../src/utils/constants");
 
 class App {
   play() {}
@@ -32,6 +40,20 @@ class App {
   //구매 금액으로 로또 몇장 살 수 있는지 계산하기
   countAvailableQuantity(amount) {
     return Number(amount) / AMOUNT_UNIT;
+  }
+
+  //랜덤 번호 뽑아주기
+  generateLottoNumbers() {
+    return Random.pickUniqueNumbersInRange(
+      MIN_NUMBER,
+      MAX_NUMBER,
+      NUMBER_COUNT
+    );
+  }
+
+  //숫자를 오름차순으로 정렬하기
+  ascendingSort(numberArray) {
+    return numberArray.sort((a, b) => a - b);
   }
 }
 
