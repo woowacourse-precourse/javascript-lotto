@@ -1,13 +1,13 @@
 const { Console } = require('@woowacourse/mission-utils');
 const Messages = require('./Messages');
-const CountAndLottos = require('./CountAndLottos');
+const LottoSeller = require('./LottoSeller');
 const WinningAndBonusNumbers = require('./WinningAndBonusNumbers');
 const Lotto = require('./Lotto');
 const Validation = require('./Validation');
 
 class App {
   constructor() {
-    this.countAndLottos = new CountAndLottos();
+    this.lottoSeller = new LottoSeller();
     this.winningAndBonusNumbers = new WinningAndBonusNumbers();
     this.lotto = new Lotto();
     this.validation = new Validation();
@@ -22,10 +22,10 @@ class App {
   }
 
   printCountAndLottos(money) {
-    this.countAndLottos.countBuying(money);
-    this.countAndLottos.printLottos(money);
+    this.lottoSeller.countBuying(money);
+    this.lottoSeller.printLottos(money);
 
-    let lottos = this.countAndLottos.getLottos();
+    let lottos = this.lottoSeller.getLottos();
     this.enterWinningNumber(lottos);
   }
 
