@@ -4,7 +4,8 @@ const MESSAGE = {
   WIN_NUMBERS: '당첨 번호를 입력해 주세요. : ',
   BONUS_NUMBER: '보너스 번호를 입력해 주세요. : ',
 };
-function input(callback1, callback2, callback3) {
+
+function input(callback1, callback2, callback3, resultFunc) {
   MissionUtils.Console.readLine(MESSAGE.MONEY, (input) => {
     callback1.call(this, input);
     MissionUtils.Console.readLine(MESSAGE.WIN_NUMBERS, (input) => {
@@ -12,6 +13,7 @@ function input(callback1, callback2, callback3) {
       MissionUtils.Console.readLine(MESSAGE.BONUS_NUMBER, (input) => {
         callback3.call(this, input);
         MissionUtils.Console.close();
+        resultFunc.call(this);
       });
     });
   });
