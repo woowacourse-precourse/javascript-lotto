@@ -1,9 +1,10 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const MESSAGES = require('./constants');
+const { MESSAGES } = require('./constants');
 
-class gamePrint {
-  static gameStart() {
+class GamePrint {
+  static sheets(sheets) {
+    MissionUtils.Console.print(`${sheets}${MESSAGES.GAME.buySheets}`);
   }
 }
 
-module.exports = gamePrint;
+module.exports = GamePrint;

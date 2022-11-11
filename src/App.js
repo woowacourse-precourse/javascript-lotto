@@ -14,6 +14,7 @@ class App {
       this.purchaseAmount = GameUtils.filterPurchaseAmount(amount);
       this.purchaseAmount = Validator.amountValidCheck(this.purchaseAmount);
       this.sheets = GameUtils.getSheets(this.purchaseAmount);
+      GamePrint.sheets(this.sheets);
       this.submitLotto();
     });
   }
@@ -30,6 +31,7 @@ class App {
     MissionUtils.Console.readLine(MESSAGES.GAME.requireBonusNumbers, (input) => {
       input = GameUtils.toArray(input);
       Validator.bonusValidCheck(input, this.winningLotto);
+      this.bonus = input;
       MissionUtils.Console.close();
     });
   }
