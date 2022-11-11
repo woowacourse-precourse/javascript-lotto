@@ -1,8 +1,8 @@
 const CONSTANT = {
   MESSAGE: {
     PRICE: '구입금액을 입력해 주세요.\n',
-    LOTTOARRAY: '개를 구매했습니다.',
-    ANSWER: '당첨 번호를 입력해 주세요.\n',
+    LOTTO_ARRAY: '개를 구매했습니다.',
+    ANSWER: '\n당첨 번호를 입력해 주세요.\n',
     BONUS: '보너스 번호를 입력해 주세요.\n',
     // END: '게임을 종료합니다.',
   },
@@ -13,13 +13,17 @@ const CONSTANT = {
   //   NOTHING: '낫싱',
   // },
 
-  // ERROR: {
-  //   INVALID_OPTION: '옵션에 없는 값입니다.',
-  //   INVALID_LENGTH: '세 개의 숫자만 입력해주세요.',
-  //   INVALID_TYPE: '숫자만 입력해주세요.',
-  //   INVALID_RANGE: '0은 입력할 수 없는 숫자입니다.',
-  //   DUPLICATED_NUMBER: '중복된 숫자는 사용할 수 없습니다.',
-  // },
+  ERROR: {
+    INVALID_PRICE: '[ERROR] 구입 금액은 1000단위여야 합니다.',
+    INVALID_LOTTO_LENGTH: '[ERROR] 로또 번호는 6개여야 합니다.',
+    INVALID_LOTTO_RANGE: '[ERROR] 로또 번호는 1~45사이의 수여야 합니다.',
+    INVALID_LOTTO_REPEATE: '[ERROR] 로또 번호는 중복되면 안됩니다.',
+    INVALID_LOTTO_WORDS: '[ERROR] 로또 번호에는 (,)와 숫자 이외의 문자가 있으면 안됩니다.',
+    // INVALID_LENGTH: '세 개의 숫자만 입력해주세요.',
+    // INVALID_TYPE: '숫자만 입력해주세요.',
+    // INVALID_RANGE: '0은 입력할 수 없는 숫자입니다.',
+    // DUPLICATED_NUMBER: '중복된 숫자는 사용할 수 없습니다.',
+  },
 
   // NUMBER: {
   //   WIN: 3,

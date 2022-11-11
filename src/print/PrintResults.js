@@ -4,11 +4,11 @@ const { MESSAGE } = require('../utils/Constants');
 class PrintResults {
 
   printLotto(amount, lottoLists) {
-    Console.print(`\n${amount}${MESSAGE.LOTTOARRAY}`)
+    Console.print(`\n${amount}${MESSAGE.LOTTO_ARRAY}`)
     lottoLists.forEach(lotto => {
       Console.print(lotto)
     });
-  }
+  };
 
 }
 

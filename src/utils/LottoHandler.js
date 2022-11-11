@@ -33,15 +33,15 @@ class LottoHandler {
 
   printLottoLists() {
     this.printResults.printLotto(this.amount,this.lottoList)
-    // this.getLottoAnswerNumber()
+    this.getLottoAnswerNumber()
   }
 
-  // getLottoAnswerNumber() {
-  //   Console.readLine(MESSAGE.ANSWER, (answer) => {
-  //     new Lotto(answer);
-  //     this.answerNumber = answer;
-  //   });
-  // };
+  getLottoAnswerNumber() {
+    Console.readLine(MESSAGE.ANSWER, (answer) => {
+      new Lotto(answer);
+      this.answerNumber = answer;
+    });
+  };
   
   // getAnswerNumber() {
   //   Console.readLine('여기여기.\n', (answer) => {

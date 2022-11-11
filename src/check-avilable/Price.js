@@ -1,5 +1,6 @@
 // const { Console } = require("@woowacourse/mission-utils");
 // const MakeLottos = require('../MakeLottos');
+const { ERROR } = require('../utils/Constants');
 
 class Price {
   #numbers;
@@ -11,7 +12,7 @@ class Price {
 
   validate(numbers) {
     if (numbers % 1000 !== 0) {
-      throw new Error("[ERROR] 구입 금액은 1000단위여야 합니다.");
+      throw new Error(ERROR.INVALID_PRICE);
     }
   }
 
