@@ -6,15 +6,16 @@ class App {
   lottoNumArr;
 
   play() {
-    this.buyLotto();
+    MissionUtils.Console.readLine(LOTTO_MESSAGE.INPUT_MONEY_MSG, (money) => {
+      this.buyLotto(money);
+      this.inputWinNum();
+    });
   }
 
-  buyLotto() {
-    MissionUtils.Console.readLine(LOTTO_MESSAGE.INPUT_MONEY_MSG, (money) => {
-      Lotto.checkMoney(money);
-      this.lottoNumArr = Lotto.genLottoNumArr(money);
-      Lotto.printLottoNumArr(this.lottoNumArr);
-    });
+  buyLotto(money) {
+    Lotto.checkMoney(money);
+    this.lottoNumArr = Lotto.genLottoNumArr(money);
+    Lotto.printLottoNumArr(this.lottoNumArr);
   }
 }
 
