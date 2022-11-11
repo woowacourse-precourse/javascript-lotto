@@ -11,6 +11,12 @@ class Application {
     }
   }
 
+  static validateArrayLength(numbers, criterion) {
+    if (numbers.length !== criterion) {
+      throw new Error(`[ERROR] 배열의 길이는 ${criterion}개여야 합니다.`);
+    }
+  }
+
   static convertNumber(target) {
     const result = parseInt(target, 10);
 
