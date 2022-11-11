@@ -10,7 +10,7 @@ class Lotto {
   }
 
   validate(numbers) {
-    Validator.throwErrorIfInValidWinningNumbers(numbers);
+    Validator.throwErrorIfInvalidWinningNumbers(numbers);
   }
 
   get winningNumbers() {
