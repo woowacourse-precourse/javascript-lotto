@@ -1,3 +1,9 @@
+const MissionUtils = require('@woowacourse/mission-utils');
+
+afterAll(() => {
+  MissionUtils.Console.close();
+});
+
 const Application = require('../src/Application');
 
 const NUMBER_EXCEPTION_TEXT = '[ERROR] 전달된 인수는 숫자로 변환이 가능해야 합니다.';
@@ -219,5 +225,25 @@ describe('정수 판단 함수 테스트', () => {
     expect(() => {
       Application.validateInteger(11);
     }).not.toThrow();
+  });
+
+  describe('개수 파악 함수 테스트', () => {
+    test('메소드 이름은 "isMatcheCount"로 정의된다.', () => {
+      const METHOD_NAME = 'isMatcheCount';
+
+      expect(Application.isMatcheCount.name).toEqual(METHOD_NAME);
+    });
+
+    test('주어진 값이 3과 일치하면 true를 반환한다.', () => {
+      const COUNT = 3;
+
+      expect(Application.isMatcheCount(COUNT, 3)).toBeTruthy();
+    });
+
+    test('주어진 값이 3과 일치하지 않으면 false를 반환한다.', () => {
+      const COUNT = 4;
+
+      expect(Application.isMatcheCount(COUNT, 3)).toBeFalsy();
+    });
   });
 });
