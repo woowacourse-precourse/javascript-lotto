@@ -39,3 +39,5 @@
 - getUserBonusNumber
 위에서 입력받은 사용자의 당첨번호와 겹치지 않게 1~45사이에서 1개만 입력한다
 
+### 투입한 금액만큼 컴퓨터가 로또번호 생성
+- createLottoNumArrays
