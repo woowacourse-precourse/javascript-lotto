@@ -40,6 +40,12 @@ class Application {
 
     return target.sort((targetA, targetB) => targetA - targetB);
   }
+
+  static checkArrayDuplicate(array) {
+    if (new Set(array).size !== array.length) {
+      throw new Error('[ERROR] 중복되는 요소는 포함할 수 없습니다.');
+    }
+  }
 }
 
 module.exports = Application;
