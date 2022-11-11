@@ -21,4 +21,9 @@ describe("로또 클래스 테스트", () => {
       lotto.checkAmount(1500);
     }).toThrow("[ERROR]");
   });
+
+  test("로또 구입 개수 확인하기", () => {
+    const result = lotto.purchaseLotto(10000);
+    expect(result).toBe(10);
+  });
 });
