@@ -5,26 +5,26 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    Lotto.#validate(numbers);
+    this.#validate(numbers);
     this.#numbers = numbers;
   }
 
-  static #validate(numbers) {
+  #validate(numbers) {
     LottoNumbersValidator.execute(numbers);
   }
 
   compareTo(winningNumbers, bonusNumber) {
     return new LottoResult(
-      this.#getSameNumberCount(winningNumbers),
-      this.#hasBonusNumber(bonusNumber)
+      this.#getMatchedNumberCount(winningNumbers),
+      this.#isBonusNumberMatched(bonusNumber)
     );
   }
 
-  #getSameNumberCount(winningNumbers) {
+  #getMatchedNumberCount(winningNumbers) {
     return winningNumbers.filter((winningNumber) => this.#numbers.includes(winningNumber)).length;
   }
 
-  #hasBonusNumber(bonusNumber) {
+  #isBonusNumberMatched(bonusNumber) {
     return this.#numbers.includes(bonusNumber);
   }
 }
