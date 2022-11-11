@@ -11,10 +11,19 @@ class App {
   #userPrizeNumber;
   #userBonusNumber;
 
+  #ranking = {
+    first: 0,
+    second: 0,
+    third: 0,
+    fourth: 0,
+    fifth: 0,
+  };
+
   play() {
     // this.start();
-    this.setPrizeNumber();
-    console.log(this.getBonusMatch([1, 2, 3, 4, 5, 6], 8));
+    // this.setPrizeNumber();
+    console.log(this.getRanking(3, false));
+    console.log(this.#ranking.fifth);
   }
 
   start() {
@@ -105,8 +114,16 @@ class App {
   }
 
   getBonusMatch(userPrizeNumbers, winBonusNumber) {
-    const count = userPrizeNumbers.includes(winBonusNumber) ? 1 : 0;
+    const count = userPrizeNumbers.includes(winBonusNumber);
     return count;
+  }
+
+  getRanking(matchNumber, isBonus) {
+    if (matchNumber === 3) this.#ranking.fifth += 1;
+    if (matchNumber === 4) this.#ranking.fourth += 1;
+    if (matchNumber === 5 && isBonus === false) this.#ranking.third += 1;
+    if (matchNumber === 5 && isBonus === true) this.#ranking.second += 1;
+    if (matchNumber === 6) this.#ranking.first += 1;
   }
 }
 
