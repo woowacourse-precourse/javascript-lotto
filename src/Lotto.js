@@ -1,28 +1,26 @@
-const { isValidNumber } = require('./utils/validations');
+const { checkLottoNumbersValidation } = require('./utils/validations');
+const { changeToNumbersArray } = require('./utils/lotteryHandler');
 
 class Lotto {
   #numbers;
 
   constructor(numbers) {
     this.validate(numbers);
-    this.#numbers = numbers;
+    const numbersArray = changeToNumbersArray(numbers);
+    this.#numbers = { numbers: numbersArray, bonusNumber: 0 };
   }
 
   validate(numbers) {
-    if (!numbers.includes(',')) {
-      Console.close();
-      throw new Error('[ERROR] 당첨 번호는 쉼표로 구분해야 합니다.');
-    }
+    checkLottoNumbersValidation(numbers);
+  }
 
-    const numbersArray = numbers.split(',');
-    if (numbersArray.length === 6) {
-      Console.close();
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
-    }
+  set numbers(numbers) {
+    checkLottoNumbersValidation(numbers);
+    this.#numbers = numbers;
+  }
 
-    numbersArray.forEach((number) => {
-      isValidNumber(number);
-    });
+  get numbers() {
+    return this.#numbers;
   }
 }
 

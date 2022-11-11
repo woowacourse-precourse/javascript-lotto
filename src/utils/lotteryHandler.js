@@ -19,4 +19,16 @@ const printMyLotteries = (lotteryTickets) => {
   });
 };
 
-module.exports = { sortLotteryNumbers, createLotteryTicket, printMyLotteries };
+const changeToNumbersArray = (stringInput) => {
+  const stringsArray = stringInput.split(',');
+  const numbersArray = stringsArray.map((string) => Number(string));
+
+  return numbersArray;
+};
+
+module.exports = {
+  sortLotteryNumbers,
+  createLotteryTicket,
+  printMyLotteries,
+  changeToNumbersArray,
+};

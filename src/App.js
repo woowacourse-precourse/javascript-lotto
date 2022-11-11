@@ -18,14 +18,14 @@ class App {
     Console.readLine('구입금액을 입력해 주세요.', (moneyInput) => {
       checkMoneyValidation(moneyInput);
       this.user.buyTickets(moneyInput);
-
-      Console.close();
+      this.inputLottoNumbers();
     });
   }
 
   inputLottoNumbers() {
     Console.readLine('당첨 번호를 입력해 주세요.', (inputNumbers) => {
       this.lotto = new Lotto(inputNumbers);
+      Console.close();
     });
   }
 }
