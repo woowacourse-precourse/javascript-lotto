@@ -1,5 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const App = require("../src/App.js");
+const Lotto = require("../src/Lotto.js");
 const Checker = require("../src/Checker.js");
 
 describe("입력한 금액 값", () => {
@@ -28,5 +29,47 @@ describe("입력한 금액 값", () => {
         checker.isCorrectMoney(incorrect[i]);
       }).toThrow();
     }
+  });
+});
+
+describe("입력한 당첨 번호 값", () => {
+  const app = new App();
+  const answer = [1, 2, 3, 4, 5, 6];
+  const ticket = [
+    [1, 2, 3, 4, 5, 6],
+    [7, 8, 9, 10, 11, 12],
+    [13, 14, 15, 16, 17, 18],
+  ];
+
+  test("이 조건에 맞는 적합한 값인지", () => {
+    const lotto = new Lotto(answer, ticket);
+    expect(lotto.validate).toBeTruthy();
+  });
+
+  test("이 6개의 번호가 아닐 경우 예외가 발생하는 지", () => {
+    const incorrect = [1, 2, 3, 4, 5, 6, 7];
+
+    expect(() => {
+      const lotto = new Lotto(incorrect, ticket);
+      lotto.validate(incorrect);
+    }).toThrow();
+  });
+
+  test("이 1~45 사이의 숫자가 아닐 경우 예외가 발생하는 지", () => {
+    const incorrect = [100, 2, 3, 4, 5, 6];
+
+    expect(() => {
+      const lotto = new Lotto(incorrect, ticket);
+      lotto.validate(incorrect);
+    }).toThrow();
+  });
+
+  test("이 중복되는 경우 예외가 발생하는 지", () => {
+    const incorrect = [1, 2, 2, 4, 5, 6];
+
+    expect(() => {
+      const lotto = new Lotto(incorrect, ticket);
+      lotto.validate(incorrect);
+    }).toThrow();
   });
 });
