@@ -16,6 +16,9 @@ class Lotto {
       throw new Error("[ERROR] 중복된 숫자가 있습니다.");
     }
     numbers.map((number) => {
+      if (isNaN(number)) {
+        throw new Error("[ERROR] 숫자가 아닌 값을 입력했습니다.");
+      }
       if (number < 1 || number > 45) {
         throw new Error("[ERROR] 1-45 사이의 숫자가 아닙니다.");
       }
