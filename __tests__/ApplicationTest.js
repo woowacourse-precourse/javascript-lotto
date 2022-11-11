@@ -105,5 +105,22 @@ describe('로또 테스트', () => {
     });
   });
 
+  test('당첨 번호 예외 발생.', () => {
+    mockQuestions(['1,2,3,4,5,5']);
+    expect(() => {
+      const app = new App();
+      app.inputWinningNumbers();
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호가 중복 번호일 경우 예외 발생.', () => {
+    mockQuestions(['1,2,3,4,5,6', '3']);
+    expect(() => {
+      const app = new App();
+      app.inputWinningNumbers();
+      app.inputBonusNumber();
+    }).toThrow('[ERROR]');
+  });
+
   MissionUtils.Console.close();
 });
