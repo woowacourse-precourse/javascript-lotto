@@ -105,12 +105,18 @@ class Result {
   }
 
   showEarningsRate() {
+    const earningsRate = this.getEarningsRate();
+
+    Console.print(`총 수익률은 ${earningsRate}%입니다.`);
+    Console.close();
+  }
+
+  getEarningsRate() {
     const prize = this.getPrize();
 
     const earningsRate = ((prize / this.amount) * 100).toFixed(1);
 
-    Console.print(`총 수익률은 ${earningsRate}%입니다.`);
-    Console.close();
+    return earningsRate;
   }
 }
 
