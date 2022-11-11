@@ -32,11 +32,11 @@ class GetLotto {
     }
 
     isItNumber(money) {
-        if (isNaN(money)) throw new Error('돈이 아닙니다.');
+        if (isNaN(money)) throw new Error('[ERROR] 돈이 아닙니다.');
     }
 
     rightAmount(money) {
-        if (money % 1000 !== 0) throw new Error('천원 단위로 입력해주세요.');
+        if (money % 1000 !== 0) throw new Error('[ERROR] 천원 단위로 입력해주세요.');
     }
 }
 
