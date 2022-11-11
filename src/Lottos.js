@@ -11,7 +11,7 @@ class Lottos {
     let NUMBERS = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
     const LOTTO = new Lotto(NUMBERS);
     NUMBERS = LOTTO.order_lotto();
-    return NUMBERS;
+    return `[${String(NUMBERS).split(',').join(', ')}]`;
   }
 
   issue_lottos() {
