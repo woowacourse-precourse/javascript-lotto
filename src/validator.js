@@ -16,6 +16,10 @@ class Validator {
     if (parseInt(money, 10) % 1000 !== 0)
       throw Error(ERROR_MESSAGES.MONEY_MUST_BE_DIVIDED_INTO_1000);
   }
+
+  // validateIsInputSixDigitNumber(numbers) {
+  //   if (numbers.split(','))
+  // }
 }
 
 module.exports = Validator;

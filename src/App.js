@@ -4,6 +4,10 @@ const Lotto = require('./Lotto');
 const Validator = require('./validator');
 
 class App {
+  #winnerNumber;
+
+  #bonusNumber;
+
   constructor() {
     this.validator = new Validator();
   }
@@ -16,14 +20,15 @@ class App {
     Console.readLine(MESSAGES.INPUT, (money) => {
       this.validator.validateInput(money);
       this.processLottoPurchase(money);
+      this.inputWinnerNumber();
     });
   }
 
-  pickRandomNumbers() {
-    return Random.pickUniqueNumbersInRange(1, 45, 6);
+  processLottoPurchase(number) {
+    const lottos = this.buyLotto(number / 1000);
+    this.showLotto(lottos);
   }
 
-  // 구매할 로또의 개수를 받으면 해당 개수만큼 로또를 배열로 리턴함
   buyLotto(number) {
     const tokens = this.createToken(number);
     const lottos = tokens.map((token) => new Lotto(token));
@@ -35,12 +40,10 @@ class App {
     lottos.forEach((lotto) => Console.print(lotto.getNumbers()));
   }
 
-  processLottoPurchase(number) {
-    const lottos = this.buyLotto(number / 1000);
-    this.showLotto(lottos);
+  pickRandomNumbers() {
+    return Random.pickUniqueNumbersInRange(1, 45, 6);
   }
 
-  // 정수값을 받으면 해당 수만큼의 토큰을 리턴함
   createToken(number) {
     let count = 0;
     const tokens = [];
@@ -49,6 +52,21 @@ class App {
       count += 1;
     }
     return tokens;
+  }
+
+  inputWinnerNumber() {
+    Console.readLine(MESSAGES.INPUT_WINNER_NUMBER, (winnerNumber) => {
+      this.#winnerNumber = winnerNumber
+        .split(',')
+        .map((number) => +number.trim());
+      this.inputBonusNumber();
+    });
+  }
+
+  inputBonusNumber() {
+    Console.readLine(MESSAGES.INPUT_BONUS_NUMBER, (bonusNumber) => {
+      this.#bonusNumber = +bonusNumber;
+    });
   }
 }
 
