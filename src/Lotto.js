@@ -12,9 +12,11 @@ class Lotto {
     const filteredNumbers = numbers.filter((number) => 1 <= number && number <= 45);
     return filteredNumbers.length !== numbers.length;
   }
+
   isDuplicated(numbers) {
     return numbers.length !== new Set(numbers).size;
   }
+
   validate(numbers) {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
