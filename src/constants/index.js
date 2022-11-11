@@ -53,7 +53,7 @@ const ERROR_MESSAGE = {
     '[ERROR] 보너스 번호는 당첨번호와 중복되지 않는 수를 입력해주세요.',
   NUM_IN_RANGE_ERROR: '[ERROR] 로또 번호는 1부터 45 사이의 수들로 이루어져야 합니다.',
   NOT_DIVIDE_BY_THOUSAND_ERROR: '[ERROR] 1,000으로 나누어떨어지는 금액을 입력해주세요.',
-  NOT_POSITIVE_NUMBER_ERROR: '[ERROR] 1,000으로 나누어떨어지는 금액을 입력해주세요.',
+  NOT_POSITIVE_NUMBER_ERROR: '[ERROR] 양수 값을 입력해주세요.',
   WINNING_NUMBER_NOT_DIFFERENT_NUMBER_ERROR:
     '[ERROR] 로또 번호는 서로 다른 숫자로 이루어져야 합니다.',
   WINNING_NUMBER_LENGTH_ERROR: '[ERROR] 로또 번호는 6개여야 합니다.',
