@@ -17,8 +17,8 @@ describe("로또 클래스 테스트", () => {
   // 아래에 추가 테스트 작성 가능
   test("(금액 / 1000)개만큼의 복권을 발행한다.", () => {
     const lotto = new Lotto();
-    const useMoney = (lotto.useMoney = 10000);
-    expect(lotto.lottoCountReturn(useMoney)).toEqual(10);
+    lotto.useMoney = 10000;
+    expect(lotto.lottoCountReturn(lotto.useMoney)).toEqual(10);
   });
 
   test("복권을 발행 할 때 중복 되지 않는 숫자 6개를 1~45의 범위에서 발행", () => {
@@ -31,5 +31,13 @@ describe("로또 클래스 테스트", () => {
     const array = [4, 8, 10, 20, 30, 44];
     lotto.lottoSort([10, 4, 30, 20, 8, 44]);
     expect(lotto.myLotto[0]).toMatchObject(array);
+  });
+
+  test("당첨 번호 + 보너스 번호와 발행 받은 복권의 번호와 비교", () => {
+    const lotto = new Lotto();
+    lotto.myLotto = [[1, 2, 3, 4, 5, 6]];
+    lotto.winNumber = [1, 2, 3, 10, 20, 30];
+    lotto.myLottoAndWinNumber();
+    expect(lotto.winLotto.fifth).toEqual(1);
   });
 });
