@@ -8,7 +8,7 @@ class Validation {
       throw new Error('[ERROR] 금액을 잘 못 입력하셨습니다');
     }
     input.split('').forEach((number) => {
-      if (Number(number) >= 1 && Number(number) <= 9) {
+      if (Number(number) >= 0 && Number(number) <= 9) {
         return;
       }
       throw new Error('[ERROR] 1~9 숫자만 입력가능합니다');
