@@ -1,20 +1,24 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const Validation = require('./Validation');
+const Lotto = require('./Lotto');
 
 class LottoSeller {
   constructor() {
-    this.validation = new Validation();
+    this.lotto = new Lotto();
     this.lottoNumbersList = [];
   }
 
-  resultsForCountAndNumbers(money) {
-    this.validation.purchaseAmount(money);
-
+  countBuying(money) {
     const COUNT_LOTTO = money / 1000;
     Console.print(`\n${COUNT_LOTTO}개를 구매했습니다.`);
-    for (let i = 0; i < COUNT_LOTTO; i++) {
+  }
+
+  printLottos(money) {
+    const COUNT_LOTTO = money / 1000;
+
+    for (let count = 1; count <= COUNT_LOTTO; count++) {
       let randomNumberInRange = Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
       Console.print(`[${randomNumberInRange.join(', ')}]`);
+      this.lotto.validate(randomNumberInRange);
       this.lottoNumbersList.push(randomNumberInRange);
     }
   }
