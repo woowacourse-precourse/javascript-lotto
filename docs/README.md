@@ -13,7 +13,7 @@
 
 사용자가 잘못된 값을 입력할 경우 throw문을 사용해 예외를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 종료한다.
 
-- [ ] 로또 번호 유효성 검사 - Lotto#validateLottoNums() 
+- [x] 로또 번호 유효성 검사 - Lotto#validateLottoNums() 
   - 생성한 로또번호에 중복된 수가 있으면 예외 처리한다.
   - 생성한 로또번호의 개수가 6개가 아니면 예외 처리한다.
 - [ ] 로또 구입 금액 유효성 검사 - Lotto#validateLottoCost()
