@@ -18,7 +18,22 @@ class App {
       const COST = parseInt(answer);
       let lottos = this.publishLottos(COST); // 로또 발급
       this.printMyLottos(lottos);
-      // TODO: 당첨 번호 입력
+
+      this.getInputWinningNumbers(lottos, COST);
+    })
+  }
+
+  /**
+   * 비용 입력을 받은 뒤, 당첨 번호를 입력받는 함수
+   * @param {Lotto[]} lottos 
+   * @param {number} cost 
+   */
+  getInputWinningNumbers(lottos, cost) {
+    MissionUtils.Console.print("당첨 번호를 입력해 주세요.");
+    MissionUtils.Console.readLine("", (answer) => {
+      const WINNING_NUMBERS = this.convertSixInputsToNumbers(answer);
+      const WON_LOTTO = new Lotto(WINNING_NUMBERS); // 당첨 번호를 담은 로또 객체
+      // TODO: 보너스 번호 입력
     })
   }
 
