@@ -13,7 +13,7 @@ class Lotto {
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
     }
 
-    this.#validateOverlap(numbers).#validateLottoRange(numbers);
+    this.#validateOverlap(numbers);
   }
 
   getNumber() {
@@ -24,19 +24,6 @@ class Lotto {
   #validateOverlap(numbers) {
     if (numbers.length !== new Set(numbers).size) {
       throw new Error(LOTTO_ERROR_MESSAGE.overlap);
-    }
-
-    return this;
-  }
-
-  #validateLottoRange(numbers) {
-    if (
-      numbers.filter(
-        number =>
-          VARIABLE_LOTTO.start <= number && number <= VARIABLE_LOTTO.end,
-      ).length !== 6
-    ) {
-      throw new Error(LOTTO_ERROR_MESSAGE.range);
     }
 
     return this;
