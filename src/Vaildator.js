@@ -29,19 +29,16 @@ class Vaildator {
     return set.size === array.length;
   }
 
+  static isRightLottoNumber(number) {
+    return (
+      this.isPositiveNumber(number) &&
+      this.isRangeIn(util.LOTTO_RANGE_MIN, util.LOTTO_RANGE_MAX, number)
+    );
+  }
+
   static isRightLottoNumbers(target) {
     const lottoNumbers = target.split(',').map((e) => +e);
-    if (
-      lottoNumbers.some(
-        (lottoNumber) =>
-          !this.isPositiveNumber(lottoNumber) ||
-          !this.isRangeIn(
-            util.LOTTO_RANGE_MIN,
-            util.LOTTO_RANGE_MAX,
-            lottoNumber
-          )
-      )
-    ) {
+    if (!lottoNumbers.every(this.isRightLottoNumber.bind(this))) {
       return false;
     }
     return (
