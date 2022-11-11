@@ -22,7 +22,7 @@ class Deposit {
     }
 
     if (amount % PRICE_OF_LOTTO) {
-      throw new Error('[ERROR] 로또 구입 금액은 1000원 단위만 가능합니다.');
+      throw new Error(`[ERROR] 로또 구입 금액은 ${PRICE_OF_LOTTO}원 단위만 가능합니다.`);
     }
   }
 }
