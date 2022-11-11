@@ -1,10 +1,8 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const Lotto = require("./Lotto");
-const Bonus = require("./Bonus");
 const Money = require("./Money");
 const UI = require("./UI");
 
-class Calculation {
+class Buy {
   countCalculate() {
     const moneyInput = UI.lottoBuy();
     const money = new Money(Number(moneyInput));
@@ -22,4 +20,4 @@ class Calculation {
   }
 }
 
-module.exports = Calculation;
+module.exports = Buy;

@@ -1,10 +1,10 @@
-const Calculation = require("./Calculation");
+const Buy = require("./Buy");
 
 class App {
   play() {
-    const cal = new Calculation();
-    const gameCount = cal.countCalculate();
-    const gameNumbers = cal.randomNumbers(gameCount);
+    const buy = new Buy();
+    const gameCount = buy.countCalculate();
+    const gameNumbers = buy.randomNumbers(gameCount);
   }
 }
 
