@@ -1,3 +1,4 @@
+const { RULE, NUMBER_RANGE, DECIMAL_PLACE } = require('../utils/constants');
 const { pickUniqueNumbersInRange, calcPercentRounding } = require('../utils/utils');
 const View = require('../view/View');
 const Lotto = require('../Lotto');
@@ -23,7 +24,11 @@ class Controller {
 
     Array.from({ length: this.deposit.quantity })
       .forEach(() => {
-        const numbers = pickUniqueNumbersInRange(1, 45, 6);
+        const numbers = pickUniqueNumbersInRange(
+          NUMBER_RANGE.START,
+          NUMBER_RANGE.END,
+          RULE.FIRST.NUMBER_OF_SAME,
+        );
         const newLotto = new Lotto(numbers);
         purchasedLottos.push(newLotto);
         View.printArray(newLotto.numbers);
@@ -77,7 +82,7 @@ class Controller {
     const percentageRevenue = calcPercentRounding(
       this.statistic.revenue,
       this.deposit.amount,
-      1,
+      DECIMAL_PLACE,
     );
 
     View.printPercentageRevenue(percentageRevenue);
