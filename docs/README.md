@@ -11,7 +11,7 @@
 
 ## UI 로직
 
-- [ ] 구매한 로또를 보여준다. - Output#printLottos()
+- [x] 구매한 로또를 보여준다. - Output#printLottos()
 
 ## 예외 처리
 
