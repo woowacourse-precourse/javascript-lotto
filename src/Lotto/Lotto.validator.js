@@ -1,6 +1,7 @@
 export default class LottoValidator {
   static checkLotto(lottoDto) {
-    this.#checkLottoLenght(lottoDto);
+    this.#checkLottoLength(lottoDto);
+    this.#checkLottoNumbers(lottoDto);
   }
 
   static #checkLottoLength(lottoDto) {
