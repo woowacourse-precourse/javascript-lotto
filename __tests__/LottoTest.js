@@ -54,4 +54,10 @@ describe('Validator 클래스 테스트', () => {
       false
     );
   });
+
+  test('isUniqueElementArray: 중복이 없는 배열인지 확인하는 기능 테스트', () => {
+    expect(Vaildator.isUniqueElementArray([1, 2, 3, 4, 5, 6])).toEqual(true);
+    expect(Vaildator.isUniqueElementArray([1, 2, 3, 4, 5, 5])).toEqual(false);
+    expect(Vaildator.isUniqueElementArray([6, 2, 3, 4, 5, 6])).toEqual(false);
+  });
 });
