@@ -26,4 +26,9 @@ describe("로또 클래스 테스트", () => {
     const result = lotto.purchaseLotto(10000);
     expect(result).toBe(10);
   });
+
+  test("로또 구입 후 그 개수만큼 반복문을 돌아 출력되는지 확인하기", () => {
+    const result = lotto.printLotto(6);
+    expect(result).toHaveLength(6);
+  });
 });
