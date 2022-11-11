@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Lotto = require("./Lotto");
 
 class App {
   play() {
@@ -57,6 +58,18 @@ class App {
       throw new Error("[ERROR] 보너스 번호는 1-45 범위 숫자여야 합니다.");
     if (wonLotto.includesNumber(NUMBER))
       throw new Error("[ERROR] 보너스 번호는 기존 당첨 번호와 중복될 수 없습니다.");
+  }
+
+  publishLottos(pay) {
+    const PURCHASE_QUANTITY = pay / 1000;
+    let lottos = []; // 구매한 로또들
+
+    for (let i = 0; i < PURCHASE_QUANTITY; i++) {
+      const NUMBERS = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      lottos.push(new Lotto(NUMBERS));
+    }
+
+    return lottos;
   }
 }
 
