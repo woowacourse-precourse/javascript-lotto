@@ -22,7 +22,8 @@ class Lotto {
   }
 
   purchaseLotto(amount) {
-    return amount / 1000;
+    const num = amount / 1000;
+    return num;
   }
 }
 
