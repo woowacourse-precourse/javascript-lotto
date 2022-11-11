@@ -22,6 +22,10 @@ class Lotto {
       throw new Error("[ERROR] 중복된 숫자가 있습니다.");
     } 
   }
+
+  getNumbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
