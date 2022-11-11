@@ -1,6 +1,7 @@
 const { ERROR_MESSAGE } = require("./constants");
 class Bonus {
   bonus;
+
   constructor(number) {
     this.validation(number);
     this.bonus = Number(number);

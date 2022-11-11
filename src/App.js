@@ -9,6 +9,7 @@ class App {
   lottoTicket;
   winningNumber;
   bonusNumber;
+
   play() {
     this.getInput(INPUT_MESSAGE.SEED_MONEY, this.getSeedMoney);
   }
@@ -39,8 +40,5 @@ class App {
     );
   };
 }
-
-const app = new App();
-app.play();
 
 module.exports = App;

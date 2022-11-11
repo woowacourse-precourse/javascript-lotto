@@ -71,5 +71,4 @@ describe("로또 클래스 테스트", () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
-  // 아래에 추가 테스트 작성 가능
 });
