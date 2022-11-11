@@ -55,14 +55,21 @@
 ### not use callback
 
 - [v] Customer.buyLotto()
-  - get User input >> mock fn(readline)
-  - price exception handling(price)
-  - return payingPrice;
-- [v] LottoStore.generateLottoNumber(price)
-  - calculate buying lotto counts
-  - generate Lottos(lotto count) >> mock fn(pickUniqueNumbersInRange)
-  - lotto number exception handling(Lottos : array);
-  - return generated Lottos;
+
+  - readLine() : get input
+  - transfer type : string -> int
+  - price exception handling
+  - return money;
+
+- [v] LottoStore.generateLotto(money)
+
+  - calculateLottoCount(money)
+  - generateLottoNumber(lotto count) >> mock fn
+    - Lotto.constructor
+    - Lotto.validate() : numbers.length validate
+    - Lotto.isUniqueNumberValidate()
+  - return Lotto Instance Array
+
 - (add) Customer.setLottoNumbers(Lottos)
 - LottoCompany.enterWinningLottoNumber()
   - get User input >> mock fn(readline)
