@@ -1,65 +1,68 @@
 const { ERROR_MESSAGE, LOTTO, REGEX } = require('./constants');
 
 class Validator {
+  static throwError(message) {
+    throw new Error(`[ERROR] ${message}`);
+  }
+
   static throwErrorIfInvalidMoney(money) {
-    this.throwErrorIfhasBlack(money);
-    this.throwErrorIfstartsWithZero(money);
+    this.throwErrorIfHasBlack(money);
+    this.throwErrorIfStartsWithZero(money);
     if (!REGEX.money.test(money)) {
-      throw Error(ERROR_MESSAGE.INT_FORM);
+      this.throwError(ERROR_MESSAGE.INT_FORM);
     }
     if (money % LOTTO.PRICE) {
-      throw Error(ERROR_MESSAGE.HAS_MOD);
+      this.throwError(ERROR_MESSAGE.HAS_MOD);
     }
   }
 
   static throwErrorIfInvalidWinningNumbers(inputValue) {
-    this.throwErrorIfhasBlack(inputValue);
+    this.throwErrorIfHasBlack(inputValue);
     const winningNumbers = inputValue.split(',');
     if (!REGEX.winningNumber.test(inputValue)) {
-      throw Error(ERROR_MESSAGE.WINNING_NUM_FORM);
+      this.throwError(ERROR_MESSAGE.WINNING_NUM_FORM);
     }
     winningNumbers.forEach((number) => {
-      this.throwErrorIfstartsWithZero(number);
+      this.throwErrorIfStartsWithZero(number);
     });
     if (winningNumbers.length !== LOTTO.LENGTH) {
-      throw Error(ERROR_MESSAGE.LENGTH);
+      this.throwError(ERROR_MESSAGE.LENGTH);
     }
     winningNumbers.forEach((number) => {
-      this.throwErrorIfoutOfRange(number);
+      this.throwErrorIfOutOfRange(number);
     });
     if (new Set(winningNumbers).size < LOTTO.LENGTH) {
-      throw Error(ERROR_MESSAGE.DUPLICATION);
+      this.throwError(ERROR_MESSAGE.DUPLICATION);
     }
   }
 
   static throwErrorIfInvalidBonusNumber(winningNumbers, bonusNumber) {
-    this.throwErrorIfhasBlack(bonusNumber);
-    this.outOfRange(bonusNumber);
-    this.throwErrorIfstartsWithZero(bonusNumber);
-    this.throwErrorIfoutOfRange(bonusNumber);
+    this.throwErrorIfHasBlack(bonusNumber);
+    this.throwErrorIfStartsWithZero(bonusNumber);
+    this.throwErrorIfOutOfRange(bonusNumber);
     if (!REGEX.bonusNumber.test(bonusNumber)) {
-      throw Error(ERROR_MESSAGE.INT_FORM);
+      this.throwError(ERROR_MESSAGE.INT_FORM);
     }
     if (winningNumbers.split(',').includes(bonusNumber)) {
-      throw Error(ERROR_MESSAGE.WINNING_HAS);
+      this.throwError(ERROR_MESSAGE.WINNING_HAS);
     }
   }
 
-  static throwErrorIfhasBlack(string) {
+  static throwErrorIfHasBlack(string) {
     if (string.includes(' ')) {
-      throw Error(ERROR_MESSAGE.HAS_BLACK);
+      this.throwError(ERROR_MESSAGE.HAS_BLACK);
     }
   }
 
-  static throwErrorIfstartsWithZero(string) {
+  static throwErrorIfStartsWithZero(string) {
     if (string.startsWith('0')) {
-      throw Error(ERROR_MESSAGE.START_WITH_ZERO);
+      this.throwError(ERROR_MESSAGE.START_WITH_ZERO);
     }
   }
 
-  static throwErrorIfoutOfRange(number) {
+  static throwErrorIfOutOfRange(number) {
     if (number < 1 || number > 45) {
-      throw Error(ERROR_MESSAGE.OUT_OF_RANGE);
+      this.throwError(ERROR_MESSAGE.OUT_OF_RANGE);
     }
   }
 }
