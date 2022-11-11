@@ -135,10 +135,12 @@ describe('로또 클래스 테스트', () => {
         expect(Lotto.isThreeMatche.name).toEqual(METHOD_NAME);
       });
 
-      test('주어진 값이 3과 일치하면 true를 반환한다.', () => {
+      test('주어진 값이 3과 일치하면 [1, 0, 0, 0, 0, 0]를 반환한다.', () => {
         const COUNT = 3;
+        const target = [0, 0, 0, 0, 0, 0];
+        const expected = [1, 0, 0, 0, 0, 0];
 
-        expect(Lotto.isThreeMatche(COUNT)).toBeTruthy();
+        expect(Lotto.isThreeMatche(COUNT, target)).toStrictEqual(expected);
       });
     });
 
