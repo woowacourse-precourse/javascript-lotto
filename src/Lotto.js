@@ -11,7 +11,7 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error(LOTTO_MESSAGE.LOTTO_NUM_LENGTH_ERROR_MSG);
     }
   }
 
@@ -22,7 +22,7 @@ class Lotto {
     const IS_VALID = IS_TYPE_NUMBER && IS_MULTIPLE_THOUSAND;
 
     if (!IS_VALID) {
-      throw new Error("[ERROR] 금액은 1000의 배수인 숫자이여야 합니다.");
+      throw new Error(LOTTO_MESSAGE.LOTTO_PRICE_ERROR_MSG);
     }
   }
 
