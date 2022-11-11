@@ -1,7 +1,8 @@
 const Console = require("@woowacourse/mission-utils").Console;
 
 class Result {
-  constructor(lottoArray, userLotto, bonusNumber) {
+  constructor(amount, lottoArray, userLotto, bonusNumber) {
+    this.amount = amount;
     this.lottoArray = lottoArray;
     this.userLotto = userLotto;
     this.bonusNumber = bonusNumber;
@@ -17,6 +18,10 @@ class Result {
     });
 
     this.showResult();
+
+    this.getPrize();
+
+    this.showEarningsRate();
   }
 
   calculateOneLotto(lotto) {
@@ -97,6 +102,15 @@ class Result {
     });
 
     return finalPrize;
+  }
+
+  showEarningsRate() {
+    const prize = this.getPrize();
+
+    const earningsRate = ((prize / this.amount) * 100).toFixed(1);
+
+    Console.print(`총 수익률은 ${earningsRate}%입니다.`);
+    Console.close();
   }
 }
 

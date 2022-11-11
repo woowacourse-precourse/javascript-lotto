@@ -5,7 +5,8 @@ const Result = require("./Result");
 class Lotto {
   #numbers;
 
-  constructor(lottoArray, numbers) {
+  constructor(amount, lottoArray, numbers) {
+    this.amount = amount;
     this.lottoArray = lottoArray;
     this.checkNumberRanges(numbers);
     this.checkNoSameNumber(numbers);
@@ -41,9 +42,10 @@ class Lotto {
 
   getBonusNumber() {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonus) => {
-      this.bonusNumber = new BonusNumber(this.#numbers, bonus);
+      const bonusNumber = new BonusNumber(this.#numbers, bonus);
 
       const result = new Result(
+        this.amount,
         this.lottoArray,
         this.#numbers,
         bonusNumber.bonusNumber
