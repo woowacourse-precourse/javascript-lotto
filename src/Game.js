@@ -21,10 +21,17 @@ class Game {
     this.#myLottosArray = this.myLottos.getMyLottos();
   }
 
+  printMyLottosArray() {
+    this.#myLottosArray.forEach((item) => {
+      Console.print(item);
+    });
+  }
+
   getInputPurchaseMoney() {
     Console.readLine(MESSAGE.INPUT_PURCHASE_MONEY, (money) => {
       this.initPurchase(money);
       this.initMyLottos();
+      this.printMyLottosArray();
     });
   }
 }
