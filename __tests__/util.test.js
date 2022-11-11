@@ -1,7 +1,7 @@
 const App = require("../src/App");
 const { ERROR } = require("../src/utils/constants");
 
-describe.only("입력한 구매 금액이 유효한 값인지 검사한다.", () => {
+describe("입력한 구매 금액이 유효한 값인지 검사한다.", () => {
   test("금액에 숫자 이외의 값이 있다면 예외가 발생한다.", () => {
     expect(() => {
       const app = new App();
@@ -31,5 +31,29 @@ describe.only("입력한 구매 금액이 유효한 값인지 검사한다.", ()
       app.validateInput("37400");
       app.validateInput("10000001");
     }).toThrow(ERROR.INDIVISIBLE);
+  });
+});
+
+describe.only("구매 금액으로 로또를 구매할 수 있는 수량을 검사한다.", () => {
+  test("구매 금액이 숫자로 들어올 때 1000으로 나눈 값을 반환한다.", () => {
+    const app = new App();
+    expect(app.countAvailableQuantity(1000)).toEqual(1);
+    expect(app.countAvailableQuantity(3000)).toEqual(3);
+    expect(app.countAvailableQuantity(8000)).toEqual(8);
+    expect(app.countAvailableQuantity(10000)).toEqual(10);
+    expect(app.countAvailableQuantity(35000)).toEqual(35);
+    expect(app.countAvailableQuantity(248000)).toEqual(248);
+    expect(app.countAvailableQuantity(2147000000)).toEqual(2147000);
+  });
+
+  test("구매 금액이 문자열로 들어올 때 1000으로 나눈 값을 반환한다.", () => {
+    const app = new App();
+    expect(app.countAvailableQuantity("1000")).toEqual(1);
+    expect(app.countAvailableQuantity("3000")).toEqual(3);
+    expect(app.countAvailableQuantity("8000")).toEqual(8);
+    expect(app.countAvailableQuantity("10000")).toEqual(10);
+    expect(app.countAvailableQuantity("35000")).toEqual(35);
+    expect(app.countAvailableQuantity("248000")).toEqual(248);
+    expect(app.countAvailableQuantity("2147000000")).toEqual(2147000);
   });
 });
