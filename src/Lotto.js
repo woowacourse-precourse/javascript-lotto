@@ -13,10 +13,6 @@ class Lotto {
     Validator.throwErrorIfInvalidWinningNumbers(numbers);
   }
 
-  get winningNumbers() {
-    return this.#numbers;
-  }
-
   prizeResult(userLottoList, bonusNumber, result) {
     return userLottoList.reduce((acc, cur) => {
       const matchingNumberCount = GameTools.getMatchingNumberCount(
