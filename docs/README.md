@@ -56,6 +56,10 @@
   - Validation.isDivisibleByLottoPrice 메서드 테스트 완료
   - Validation.isStartedZero 메서드 테스트 완료
 
+- [x] `로또 생성 기능 테스트`
+
+  - LottoGame.createLottos 메서드 테스트 완료
+
 - [ ] `Application 테스트 완료`
 
 ### 상수로 관리한 것📝
