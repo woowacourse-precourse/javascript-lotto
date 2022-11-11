@@ -7,12 +7,14 @@ class LottoBuy {
 
   main() {
     Console.readLine(INPUT.BUY, this.inputPurchasePrice.bind(this));
+    return this.#lottos;
   }
 
   inputPurchasePrice(price) {
     this.validate(price);
     this.createMyLottos(price / LOTTO.PRICE);
     this.printLottos();
+    return;
   }
 
   validate(price) {
@@ -25,6 +27,7 @@ class LottoBuy {
       const lotto = new Lotto();
       this.#lottos.push(lotto);
     }
+    return;
   }
 
   printLottos() {
@@ -32,6 +35,7 @@ class LottoBuy {
     this.#lottos.forEach((lotto) => {
       lotto.printNumbers();
     });
+    return;
   }
 }
 
