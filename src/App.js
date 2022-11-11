@@ -3,6 +3,7 @@ const Purchase = require('./Purchase');
 const Lotto = require('./Lotto');
 const WinningResult = require('./WinningResult');
 const changeStrToArr = require('./utils/changeStrToArr');
+const { validateBonus } = require('./utils/validator');
 
 class App {
   constructor() {
@@ -78,25 +79,10 @@ class App {
 
   submitBonusNumber() {
     Console.readLine('', input => {
-      this.validateBonus(input);
+      validateBonus(this.winningNumberArr, input);
       this.bonusNumber = Number(input);
       return this.printWinningResult();
     });
-  }
-
-  validateBonus(input) {
-    const regExp = /[0-9]/g;
-    const matchArr = input.match(regExp);
-    if (matchArr.length !== input.length) {
-      throw new Error('[ERROR] 숫자를 입력해주세요.');
-    }
-    let num = Number(input);
-    if (num < 1 || num > 45) {
-      throw new Error('[ERROR] 로또 번호는 1부터 45 사이의 수들로 이루어져야 합니다.');
-    }
-    if (this.winningNumberArr.includes(num)) {
-      throw new Error('[ERROR] 당첨번호와 중복되지 않는 수를 입력해주세요.');
-    }
   }
 
   play() {

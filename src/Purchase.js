@@ -1,4 +1,5 @@
 const { Random } = require('@woowacourse/mission-utils');
+const { validateCashInput } = require('./utils/validator');
 
 class Purchase {
   #cash;
@@ -8,21 +9,12 @@ class Purchase {
   #lottoList;
 
   constructor(cash) {
-    this.validateCashInput(cash);
+    validateCashInput(cash);
     this.#lottoCount = 0;
     this.#cash = Number(cash);
     this.#lottoList = [];
     this.setLottoCount();
     this.makeLottoList(this.#lottoCount);
-  }
-
-  validateCashInput(value) {
-    if (value % 1000 !== 0) {
-      throw new Error('[ERROR] 1,000으로 나누어떨어지는 금액을 입력해주세요.');
-    }
-    if (value <= 0) {
-      throw new Error('[ERROR] 양수 값을 입력해주세요.');
-    }
   }
 
   setLottoCount() {
