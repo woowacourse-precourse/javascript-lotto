@@ -208,16 +208,21 @@ describe("여러 로또 비교 테스트", () => {
   const APP = new App();
   const PRIZE_INFORMATION = new PrizeInformation();
 
+  const WON_LOTTO = new Lotto([1, 2, 3, 4, 5, 6]);
+  const BONUS = 7;
+
+  let lottos = [new Lotto([1, 2, 3, 4, 5, 6]), new Lotto([1, 2, 3, 4, 5, 7]),
+  new Lotto([1, 2, 3, 4, 5, 8]), new Lotto([3, 4, 5, 6, 7, 8]),
+  new Lotto([10, 11, 12, 13, 14, 15]), new Lotto([30, 31, 32, 33, 34, 7])];
+
+  APP.compareMyLottosWithWinningNumbers(lottos, WON_LOTTO, BONUS, PRIZE_INFORMATION);
+
   test("여러 로또를 비교하여 하나의 자료 구조에 저장할 수 있다", () => {
-    const WON_LOTTO = new Lotto([1, 2, 3, 4, 5, 6]);
-    const BONUS = 7;
-
-    let lottos = [new Lotto([1, 2, 3, 4, 5, 6]), new Lotto([1, 2, 3, 4, 5, 7]),
-    new Lotto([1, 2, 3, 4, 5, 8]), new Lotto([3, 4, 5, 6, 7, 8]),
-    new Lotto([10, 11, 12, 13, 14, 15]), new Lotto([30, 31, 32, 33, 34, 7])];
-
-    APP.compareMyLottosWithWinningNumbers(lottos, WON_LOTTO, BONUS, PRIZE_INFORMATION);
-
     expect(PRIZE_INFORMATION.quantity).toEqual([2, 1, 1, 1, 1, 0]);
   });
+
+  test("여러 로또를 비교하여 그 수익을 계산할 수 있다", () => {
+    const RESULT = PRIZE_INFORMATION.getTotalPrize();
+    expect(RESULT).toBe(2031550000);
+  })
 })
