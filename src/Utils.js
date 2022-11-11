@@ -15,7 +15,7 @@ class Utils {
     }
 
     getLottoNumbers() {
-        return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+        return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort();
     }
 }
 
