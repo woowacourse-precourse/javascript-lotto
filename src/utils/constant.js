@@ -25,6 +25,7 @@ const ERROR = Object.freeze({
   WINNING_NUMBER: "[ERROR] 올바른 당첨 번호를 입력해주세요.",
   NUMBER_RANGE: "[ERROR] 1~45 의 숫자만 입력할 수 있습니다.",
   BONUS_NUMBER: "[ERROR] 올바른 보너스 번호를 입력해주세요.",
+  DUPLICATE: "[ERROR] 로또 번호는 서로 다른 6개의 1~45 이내의 숫자여야 합니다.",
 });
 
 const UNIT = Object.freeze({

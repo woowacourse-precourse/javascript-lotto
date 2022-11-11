@@ -1,4 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
+const Lotto = require("./Lotto");
 const LottoNumber = require("./LottoNumber");
 
 const { GUIDE, UNIT } = require("./utils/constant");
