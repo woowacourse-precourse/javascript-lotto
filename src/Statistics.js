@@ -1,3 +1,5 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+
 class Statistics {
   constructor(totalLottoNumber, winnerNumber, bonusNumber) {
     this.totalLottoNumber = totalLottoNumber;
@@ -9,9 +11,7 @@ class Statistics {
     const totalRankingArr = [0, 0, 0, 0, 0];
     const numberOfMatchingNumbersRankedArr = this.getNumberOfMatchingNumbersRankedArr();
     numberOfMatchingNumbersRankedArr.map((num) => {
-      if (num - 2 >= 0) {
-        return totalRankingArr[num - 2]++;
-      }
+      if (num - 2 >= 0) return totalRankingArr[num - 2]++;
     });
     return totalRankingArr;
   }
@@ -33,17 +33,13 @@ class Statistics {
 
   getNumberOfMatchingWinnerNumbers(numbers) {
     const numberOfWinnerNumber = numbers.map((number) => {
-      if (number.toString() === this.winnerNumber[index]) {
-        return number;
-      }
+      if (number.toString() === this.winnerNumber[index]) return number;
     });
     return numberOfWinnerNumber.filter((number) => number !== undefined).length;
   }
 
   compareWithBonusNumber(numbers) {
-    if (numbers.includes(Number(this.bonusNumber))) {
-      return 5;
-    }
+    if (numbers.includes(Number(this.bonusNumber))) return 5;
     return 4;
   }
 }
