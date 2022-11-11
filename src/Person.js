@@ -9,8 +9,7 @@ class Person {
         MissionUtils.Console.readLine(MESSAGE.ENTER_CASH, (cache) => {
             SYSTEM.isCorrectCache(cache);
             this.lotto = SYSTEM.publishLotto(cache);
-            console.log(this.lotto);
-
+            SYSTEM.compareLotto(this.lotto);
         });
     }
 }

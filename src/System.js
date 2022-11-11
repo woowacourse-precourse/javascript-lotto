@@ -1,5 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const { ERROR, MESSAGE } = require('./Constants')
+const Lotto = require('./Lotto');
 const SYSTEM = Object.freeze({
     print(message) {
         MissionUtils.Console.print(message);
@@ -15,17 +16,13 @@ const SYSTEM = Object.freeze({
     },
 
     makeLotto() {
-        return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-    },
-
-    sortLotto(lotto) {
-        return lotto.sort((a, b) => a - b);
+        return new Lotto(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
     },
 
     autoWrite(maxCount) {
         let lottos = [];
         for (let count = 0; count < maxCount; count++) {
-            let lotto = this.sortLotto(this.makeLotto());
+            let lotto = this.makeLotto();
             lottos.push(lotto);
         }
 
@@ -35,12 +32,18 @@ const SYSTEM = Object.freeze({
 
     printLottos(lottos, maxCount) {
         this.print(`\n${maxCount}${MESSAGE.BUY_LOTTOS_COUNT}`);
-        lottos.forEach(lotto => { SYSTEM.print(lotto); });
+        lottos.forEach(lotto => { SYSTEM.print(lotto.getNumber()); });
     },
 
     publishLotto(cache) {
         let maxCount = cache / 1000;
         return this.autoWrite(maxCount);
+    },
+
+    compareLotto() {
+        MissionUtils.Console.readLine(MESSAGE.ENTER_WINNING_LOTTO, (winningLotto) => {
+            winningLotto = new Lotto(winningLotto.split(",").map(Number));
+        });
     },
 
     exit() {
