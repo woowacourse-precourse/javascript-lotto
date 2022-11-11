@@ -6,7 +6,10 @@ const MESSAGE = {
   THIRD_RANKING_MESSAGE: '5개 일치 (1,500,000원) - ',
   SECOND_RANKING_MESSAGE: '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
   FIRST_RANKING_MESSAGE: '6개 일치 (2,000,000,000원) - ',
-  YIELD_MESSAGE: '총 수익률은 ',
+  YIELD_MESSAGE: {
+    FIRST: '총 수익률은 ',
+    END: '%입니다.',
+  },
 };
 
 const printMessage = {
@@ -34,6 +37,11 @@ const printMessage = {
     );
     MissionUtils.Console.print(
       `${MESSAGE.FIRST_RANKING_MESSAGE}${resultObject.six}개`
+    );
+  },
+  printYeild(yeild) {
+    MissionUtils.Console.print(
+      `${MESSAGE.YIELD_MESSAGE.FIRST}${yeild}${MESSAGE.YIELD_MESSAGE.END}`
     );
   },
 };

@@ -61,6 +61,7 @@ class App {
       this.money
     );
     printMessage.printResult(result.score);
+    printMessage.printYeild(result.getYeild());
   }
 }
 
