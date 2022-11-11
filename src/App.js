@@ -1,7 +1,20 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+const Console = MissionUtils.Console;
+const Random = MissionUtils.Random;
+
 class App {
-  play() {}
+  play() {
+    this.lottoMoney();
+  }
+
+  lottoMoney() {
+    Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
+      Console.print(`\n${money/1000}개를 구매했습니다.`);
+    });
+  }
 }
 
-module.exports = App;
+//const app = new App();
+//app.play();
 
-//const MissionUtils = require("@woowacourse/mission-utils");
+module.exports = App;
