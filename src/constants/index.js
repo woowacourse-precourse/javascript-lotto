@@ -22,7 +22,6 @@ const MESSAGE = Object.freeze({
   ASK_BUDGET: '구입금액을 입력해 주세요.',
   ASK_WINNING_NUM: '\n당첨 번호를 입력해 주세요.',
   ASK_BONUS_NUMBER: '\n보너스 번호를 입력해 주세요.',
-  NULL: '',
   STATISTICS_NOTIFICATION: '\n당첨 통계',
   DIVISION_LINE: '---',
 });
