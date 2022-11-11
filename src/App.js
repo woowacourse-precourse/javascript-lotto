@@ -31,7 +31,8 @@ class App {
   };
 
   getBonusNumber = (input) => {
-    this.bonus = new Bonus(input);
+    this.bonusNumber = new Bonus(input);
+    this.winningNumber.isUniqueBonus(this.bonusNumber.bonus);
   };
 }
 

@@ -4,7 +4,7 @@ class Bonus {
   bonus;
   constructor(number) {
     this.validation(number);
-    this.bonus = number;
+    this.bonus = Number(number);
   }
   validation(number) {
     this.isBonusInRange(number);

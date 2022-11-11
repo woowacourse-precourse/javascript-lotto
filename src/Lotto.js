@@ -3,7 +3,8 @@ class Lotto {
 
   constructor(numbers) {
     this.validate(numbers);
-    //this.#numbers = numbers;
+    this.#numbers = numbers.map((number) => Number(number));
+    //console.log(this.#numbers);
   }
 
   validate(numbers) {
@@ -34,6 +35,9 @@ class Lotto {
     if (!numbers.every(range)) throw new Error("[ERROR] 범위 밖의 숫자");
   }
   // TODO: 추가 기능 구현
+  isUniqueBonus(bonus) {
+    if (this.#numbers.includes(bonus)) throw new Error("[ERROR] 보너스 겹침");
+  }
 }
 
 module.exports = Lotto;
