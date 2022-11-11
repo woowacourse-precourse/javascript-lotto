@@ -1,4 +1,4 @@
-const { Console } = require("@woowacourse/mission-utils");
+const Validation = require("./Validation");
 
 class LottoBonus {
   number;
@@ -9,14 +9,7 @@ class LottoBonus {
   }
 
   validate(number) {
-    this.validateIsProperNumber(number);
-  }
-
-  validateIsProperNumber(number) {
-    if (0 > number || 45 < number) {
-      Console.close();
-      throw new Error("[ERROR] 1~45 사이의 숫자를 입력하여야 합니다.");
-    }
+    Validation.validateNumberRange(number);
   }
 }
 

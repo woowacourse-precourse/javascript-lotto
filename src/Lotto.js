@@ -1,5 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { PLACE_MESSAGE, PLACE_ARR, WINNING_PRICE } = require("./constants");
+const Validation = require("./Validation");
 
 class Lotto {
   #numbers;
@@ -10,41 +11,9 @@ class Lotto {
   }
 
   validate(numbers) {
-    this.validateSizeIsSix(numbers);
-    this.validateIsDuplicated(numbers);
-    this.validateNumberRange(numbers);
-  }
-  validateIsDuplicated(numbers) {
-    const numbersSet = new Set(numbers);
-    if (numbersSet.size !== numbers.length) {
-      Console.close();
-      throw new Error("[ERROR] 로또 번호에 중복된 숫자가 포함되어 있습니다.");
-    }
-  }
-
-  validateSizeIsSix(numbers) {
-    if (numbers.length !== 6) {
-      Console.close();
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
-  }
-
-  validateBonusNumber(number) {
-    if (this.#numbers.includes(number)) {
-      Console.close();
-      throw new Error("[ERROR] 보너스 번호가 중복 되었습니다.");
-    }
-  }
-
-  checkRange(number) {
-    return number < 1 || number > 45;
-  }
-
-  validateNumberRange(numbers) {
-    if (numbers.some(this.checkRange)) {
-      Console.close();
-      throw new Error("[ERROR] 1 ~ 45 사이의 수를 입력하여야 합니다.");
-    }
+    Validation.validateSizeIsSix(numbers);
+    Validation.validateIsDuplicated(numbers);
+    Validation.validateNumbersRange(numbers);
   }
 
   getPlace(number, isBonus) {
@@ -54,6 +23,10 @@ class Lotto {
     if (number === 4) return "forth";
     if (number === 3) return "fifth";
     return "boom";
+  }
+
+  checkIsDuplicated(number) {
+    Validation.validateBonusNumber(number, this.#numbers);
   }
 
   compareLottoNumber = (ticket, lottoBonusNumber) => {
