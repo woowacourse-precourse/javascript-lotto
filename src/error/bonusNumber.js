@@ -1,9 +1,6 @@
 const Exception = require("./exception");
 
-const App = require("../App");
-
 const { ERROR, UNIT } = require("../utils/constant");
-const Lotto = require("../Lotto");
 
 class BonusNumber extends Exception {
   #input;
@@ -14,7 +11,7 @@ class BonusNumber extends Exception {
   }
 
   isDuplicate(comparison) {
-    if (comparison.includes(this.#input)) return true;
+    if (comparison.includes(Number(this.#input))) return true;
     return false;
   }
 

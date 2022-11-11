@@ -5,6 +5,7 @@ const WinNumberError = require("./error/winNumber");
 const ChangeLotto = require("./ChangeLotto");
 const Lotto = require("./Lotto");
 const BonusNumber = require("./error/bonusNumber");
+const CompareLotto = require("./CompareLotto");
 
 const { COMMAND } = require("./utils/constant");
 
@@ -16,8 +17,10 @@ class App {
     this.#exception = new Exception();
     this.changeLotto = new ChangeLotto();
     this.input = 0;
+    this.userLotto = [];
     this.winNumber = [];
     this.bonusNumber = 0;
+    this.rank = {};
   }
 
   print(message) {
@@ -27,7 +30,7 @@ class App {
   askWinNumber() {
     Console.readLine(`\n${COMMAND.WIN}\n`, (input) => {
       this.#exception.isAllow(new WinNumberError(input));
-      this.winNumber = input.split(",");
+      this.winNumber = input.split(",").map(Number);
       this.askBonusNumber();
     });
   }
@@ -36,14 +39,24 @@ class App {
     Console.readLine(`\n${COMMAND.BONUS}\n`, (input) => {
       this.#exception.isAllow(new BonusNumber(input), this.winNumber);
       this.bonusNumber = input;
+      this.compareNumber();
     });
+  }
+
+  compareNumber() {
+    this.rank = new CompareLotto(
+      this.userLotto,
+      this.winNumber,
+      this.bonusNumber
+    ).compare();
+    console.log(this.rank);
   }
 
   play() {
     Console.readLine(`${COMMAND.BUY}\n`, (input) => {
       this.#exception.isAllow(new PurchaseError(input));
       this.input = input;
-      this.changeLotto.change(this.input);
+      this.userLotto = this.changeLotto.change(this.input);
       this.askWinNumber();
     });
   }

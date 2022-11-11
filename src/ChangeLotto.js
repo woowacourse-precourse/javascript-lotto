@@ -30,6 +30,7 @@ class ChangeLotto {
     this.informPcs(this.pcs);
     this.receiveLotto(this.pcs);
     this.lottoNumbers.forEach((v) => Console.print(v));
+    return this.lottoNumbers;
   }
 }
 
