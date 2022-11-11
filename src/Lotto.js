@@ -1,3 +1,5 @@
+const { ERROR } = require('./Constants')
+
 class Lotto {
   #numbers;
 
@@ -12,11 +14,15 @@ class Lotto {
 
   validate(numbers) {
     let uniqueNumbers = new Set(numbers);
+
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error(ERROR.NOT_SIX_NUMBER);
     }
     if (uniqueNumbers.size !== 6) {
-      throw new Error("[ERROR] 중복된 숫자가 포함되어있습니다.");
+      throw new Error(ERROR.NOT_UNIQUE);
+    }
+    if (uniqueNumbers.has(NaN)) {
+      throw new Error(ERROR.NOT_NUMBER);
     }
   }
 
