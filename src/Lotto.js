@@ -11,6 +11,15 @@ class Lotto {
     if (numbers.length != 6) {
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
     }
+    const set = new Set(numbers);
+    if (set.size != 6) {
+      throw new Error('[ERROR] 중복되는 숫자가 없어야 합니다.');
+    }
+    for (let num of numbers) {
+      if (num <= 0 || num >= 46) {
+        throw new Error('[ERROR] 당첨번호는 1~45 까지의 숫자만 가능합니다.');
+      }
+    }
     this.test();
   }
   test() {
