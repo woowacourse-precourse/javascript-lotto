@@ -38,7 +38,7 @@ class Game {
 
   printMyLottosArray() {
     this.#myLottosArray.forEach((item) => {
-      Console.print(item);
+      Console.print(`[${item.join(', ')}]`);
     });
   }
 
