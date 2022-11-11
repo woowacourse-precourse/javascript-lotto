@@ -1,12 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-
-const LOTTO_AMOUNT = Object.freeze([
-  5000,
-  50000,
-  1500000,
-  30000000,
-  2000000000,
-]);
+const { LOTTO_AMOUNT } = require('../utils/constants');
 
 class LottoAdjustment {
   #scoreBoard;

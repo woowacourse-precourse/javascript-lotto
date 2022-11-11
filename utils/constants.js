@@ -15,7 +15,16 @@ const LOTTO_ERROR_MESSAGE = Object.freeze({
   priceLimit: '[ERROR] 금액 단위는 천 단위여야 합니다.',
 });
 
+const LOTTO_AMOUNT = Object.freeze([
+  5000,
+  50000,
+  1500000,
+  30000000,
+  2000000000,
+]);
+
 module.exports = {
   VARIABLE_LOTTO,
   LOTTO_ERROR_MESSAGE,
+  LOTTO_AMOUNT,
 };
