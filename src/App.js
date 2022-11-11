@@ -14,6 +14,7 @@ class App {
   play() {
     // this.start();
     this.setPrizeNumber();
+    console.log(this.getBonusMatch([1, 2, 3, 4, 5, 6], 8));
   }
 
   start() {
@@ -90,6 +91,22 @@ class App {
   isRange(number) {
     if (number >= 1 && number <= 45) return true;
     return false;
+  }
+
+  getPrizeMatch(userPrizeNumbers, winPrizeNumbers) {
+    const matchArr = userPrizeNumbers.filter(item => {
+      if (winPrizeNumbers.includes(item)) {
+        return item;
+      }
+      return null;
+    });
+    const count = matchArr.length;
+    return count;
+  }
+
+  getBonusMatch(userPrizeNumbers, winBonusNumber) {
+    const count = userPrizeNumbers.includes(winBonusNumber) ? 1 : 0;
+    return count;
   }
 }
 
