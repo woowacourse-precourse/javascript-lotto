@@ -6,15 +6,17 @@ class App {
   budget;
 
   play() {
-    this.getUserBudget(INPUT_BUDGET, this.validateUserBudget);
+    this.getUserBudget(INPUT_BUDGET);
   }
 
-  getUserBudget(INPUT_BUDGET, validateUserBudget) {
-    Console.readLine(INPUT_BUDGET, validateUserBudget);
+  getUserBudget(INPUT_BUDGET) {
+    Console.readLine(INPUT_BUDGET, (input) => {
+      this.validateUserBudget(input);
+    });
   }
 
-  validateUserBudget(input) {
-    this.budget = new UserBudget(Number(input));
+  validateUserBudget(budget) {
+    this.budget = new UserBudget(Number(budget));
   }
 }
 
