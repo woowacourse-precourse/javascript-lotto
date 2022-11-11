@@ -17,11 +17,13 @@ class Lotto {
     }
   }
 
-  checkWinNumRange() {
+  static checkWinNumRange(numbers) {
     const filteredWinNum = numbers.filter(
       (number) =>
-        LOTTO_SETTING.LOTTO_NUM_MIN <= number <= LOTTO_SETTING.LOTTO_NUM_MAX
+        LOTTO_SETTING.LOTTO_NUM_MIN <= number &&
+        number <= LOTTO_SETTING.LOTTO_NUM_MAX
     );
+
     const IS_VALID_RANGE = filteredWinNum.length === numbers.length;
     if (!IS_VALID_RANGE) {
       throw new Error(LOTTO_MESSAGE.WIN_NUM_RANGE_ERROR_MSG);
