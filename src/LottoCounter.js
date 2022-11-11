@@ -12,11 +12,11 @@ class LottoCounter {
   }
 
   isValidCash(cash) {
-    if (cash % NUMBER.INPUT_UNITS !== 0) {
-      throw ERROR.NOT_1000_UNIT;
-    }
     if (cash < NUMBER.INPUT_UNITS) {
       throw ERROR.NOT_ENOUGH_CASH;
+    }
+    if (cash % NUMBER.INPUT_UNITS !== 0) {
+      throw ERROR.NOT_1000_UNIT;
     }
 
     return true;
