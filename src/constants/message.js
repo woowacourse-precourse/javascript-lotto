@@ -1,4 +1,4 @@
-const { LOTTO_DIGITS } = require("./condition.js");
+const { LOTTO_DIGITS, LOTTO_NUM_MIN_RANGE, LOTTO_NUM_MAX_RANGE } = require("./condition.js");
 
 const PURCHASE_AMOUNT = `구입금액을 입력해 주세요.
 `;
@@ -16,6 +16,7 @@ const INDIVISIBLE_BY_LOTTO_PRICE =
   "[ERROR] 입력값이 로또 가격으로 나누어 떨어지지 않습니다. 게임 종료!";
 const INVALID_LOTTO_LENGTH = `[ERROR] 로또 번호는 ${LOTTO_DIGITS}개여야 합니다.`;
 const DUPLICATE_LOTTO_NUMBER = "[ERROR] 로또 번호에 중복된 숫자가 있습니다.";
+const INVALID_LOTTO_NUMBER_RANGE = `[ERROR] 로또 번호의 범위는 ${LOTTO_NUM_MIN_RANGE} ~ ${LOTTO_NUM_MAX_RANGE} 이여야 합니다.`;
 
 const ERROR_MESSAGE = {
   INVALID_INPUT_TYPE,
@@ -23,6 +24,7 @@ const ERROR_MESSAGE = {
   INDIVISIBLE_BY_LOTTO_PRICE,
   INVALID_LOTTO_LENGTH,
   DUPLICATE_LOTTO_NUMBER,
+  INVALID_LOTTO_NUMBER_RANGE,
 };
 
 module.exports = { REQUEST_MESSAGE, ERROR_MESSAGE };
