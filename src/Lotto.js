@@ -78,7 +78,7 @@ class Lotto {
       if (WonLotto.includesNumber(number)) correspondence++;
     })
 
-    return this.getPrize(correspondence, WonLotto.includesNumber(bonus));
+    return this.getPrize(correspondence, this.includesNumber(bonus));
   }
 
   getPrize(correspondence, bonusCorrespondence) {

@@ -1,6 +1,7 @@
 const Lotto = require("../src/Lotto");
 const App = require("../src/App");
 const MissionUtils = require("@woowacourse/mission-utils");
+const { PrizeInformation } = require("../src/LottoInfo");
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();
@@ -114,7 +115,7 @@ describe("로또 보너스 번호 입력 테스트", () => {
   });
 })
 
-describe("로또 클래스 테스트", () => {
+describe("로또 클래스 예외 발생 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 6, 7]);
@@ -170,46 +171,53 @@ describe("로또 발행 테스트", () => {
 
 describe("로또 결과 반환 테스트", () => {
   const WON_LOTTO = new Lotto([2, 3, 4, 5, 6, 7]);
+  const BONUS = 8;
 
   test("6개 일치는 1등이다", () => {
     const MY_LOTTO = new Lotto([2, 3, 4, 5, 6, 7]);
-    const BONUS = 8;
-
     expect(MY_LOTTO.compareWithWinningNumbers(WON_LOTTO, BONUS)).toBe(1);
   });
 
-  test("5개 일치하고 보너스도 일치하면 2등이다", () => {
-    const MY_LOTTO = new Lotto([1, 2, 3, 4, 5, 6]);
-    const BONUS = 7;
-
+  test("5개 일치하고 보너스 볼이 일치하면 2등이다", () => {
+    const MY_LOTTO = new Lotto([2, 3, 4, 5, 6, 8]);
     expect(MY_LOTTO.compareWithWinningNumbers(WON_LOTTO, BONUS)).toBe(2);
   });
 
-  test("5개 일치하고 보너스는 불일치하면 3등이다", () => {
-    const MY_LOTTO = new Lotto([1, 2, 3, 4, 5, 6]);
-    const BONUS = 9;
-
+  test("5개 일치하고 보너스 볼이 불일치하면 3등이다", () => {
+    const MY_LOTTO = new Lotto([2, 3, 4, 5, 6, 9]);
     expect(MY_LOTTO.compareWithWinningNumbers(WON_LOTTO, BONUS)).toBe(3);
   });
 
   test("4개 일치는 4등이다", () => {
-    const MY_LOTTO = new Lotto([4, 5, 6, 7, 8, 9]);
-    const BONUS = 10;
-
+    const MY_LOTTO = new Lotto([2, 3, 4, 5, 9, 10]);
     expect(MY_LOTTO.compareWithWinningNumbers(WON_LOTTO, BONUS)).toBe(4);
   });
 
   test("3개 일치는 5등이다", () => {
-    const MY_LOTTO = new Lotto([5, 6, 7, 8, 9, 10]);
-    const BONUS = 11;
-
+    const MY_LOTTO = new Lotto([2, 3, 4, 9, 10, 11]);
     expect(MY_LOTTO.compareWithWinningNumbers(WON_LOTTO, BONUS)).toBe(5);
   });
 
   test("3개 미만 일치하면 아무 것도 얻지 못한다", () => {
-    const MY_LOTTO = new Lotto([6, 7, 8, 9, 10, 11]);
-    const BONUS = 30;
-
+    const MY_LOTTO = new Lotto([2, 3, 9, 10, 11, 12]);
     expect(MY_LOTTO.compareWithWinningNumbers(WON_LOTTO, BONUS)).toBe(0);
+  });
+})
+
+describe("여러 로또 비교 테스트", () => {
+  const APP = new App();
+  const PRIZE_INFORMATION = new PrizeInformation();
+
+  test("여러 로또를 비교하여 하나의 자료 구조에 저장할 수 있다", () => {
+    const WON_LOTTO = new Lotto([1, 2, 3, 4, 5, 6]);
+    const BONUS = 7;
+
+    let lottos = [new Lotto([1, 2, 3, 4, 5, 6]), new Lotto([1, 2, 3, 4, 5, 7]),
+    new Lotto([1, 2, 3, 4, 5, 8]), new Lotto([3, 4, 5, 6, 7, 8]),
+    new Lotto([10, 11, 12, 13, 14, 15]), new Lotto([30, 31, 32, 33, 34, 7])];
+
+    APP.compareMyLottosWithWinningNumbers(lottos, WON_LOTTO, BONUS, PRIZE_INFORMATION);
+
+    expect(PRIZE_INFORMATION.quantity).toEqual([2, 1, 1, 1, 1, 0]);
   });
 })

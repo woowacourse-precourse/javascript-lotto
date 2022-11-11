@@ -1,5 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
+const { PrizeInformation } = require("./LottoInfo");
 
 class App {
   play() {
@@ -77,6 +78,13 @@ class App {
 
     lottos.forEach((lotto) => {
       lotto.printNumbers();
+    })
+  }
+
+  compareMyLottosWithWinningNumbers(lottos, WON_LOTTO, bonus, PRIZE_INFORMATION) {
+    lottos.forEach((lotto) => {
+      const PLACE = lotto.compareWithWinningNumbers(WON_LOTTO, bonus);
+      PRIZE_INFORMATION.quantity[PLACE]++;
     })
   }
 }
