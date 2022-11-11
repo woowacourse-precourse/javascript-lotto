@@ -10,25 +10,6 @@ afterAll(() => {
 });
 
 describe('로또 클래스 테스트', () => {
-  test('로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.', () => {
-    expect(() => {
-      new Lotto([1, 2, 3, 4, 5, 6, 7]);
-    }).toThrow(ERROR_TEXT);
-  });
-
-  test('배열이 아니면 예외를 발생한다.', () => {
-    expect(() => {
-      new Lotto(1, 2, 3, 4, 5, 6);
-    }).toThrow(ERROR_TEXT);
-  });
-
-  // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
-  test('로또 번호에 중복된 숫자가 있으면 예외가 발생한다.', () => {
-    expect(() => {
-      new Lotto([1, 2, 3, 4, 5, 5]);
-    }).toThrow(ERROR_TEXT);
-  });
-
   describe('로또 발행 메소드 테스트', () => {
     test('메소드 이름은 "createLotto"로 정의된다.', () => {
       const METHOD_NAME = 'createLotto';
@@ -88,6 +69,27 @@ describe('로또 클래스 테스트', () => {
       [1, 3, 5, 14, 22, 45]];
     const prize = [1, 2, 3, 4, 5, 6];
     const bonus = 7;
+
+    test('로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.', () => {
+      expect(() => {
+        const lotto = new Lotto([[1, 2, 3, 4, 5, 6, 7]]);
+        lotto.getLottoResult();
+      }).toThrow(ERROR_TEXT);
+    });
+
+    test('배열이 아니면 예외를 발생한다.', () => {
+      expect(() => {
+        const lotto = new Lotto(1, 2, 3, 4, 5, 6);
+        lotto.getLottoResult();
+      }).toThrow(ERROR_TEXT);
+    });
+
+    test('로또 번호에 중복된 숫자가 있으면 예외가 발생한다.', () => {
+      expect(() => {
+        const lotto = new Lotto([[1, 2, 3, 4, 5, 5]]);
+        lotto.getLottoResult();
+      }).toThrow(ERROR_TEXT);
+    });
 
     test('메소드 이름은 "getLottoResult"로 정의된다.', () => {
       const METHOD_NAME = 'getLottoResult';
