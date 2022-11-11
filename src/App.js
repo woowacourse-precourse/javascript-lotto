@@ -58,7 +58,49 @@ class App {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (number) => {
       new Bonus(number);
       this.bonusNumber = parseInt(number, 10);
+      this.compare(this.publishList, this.winningNumbers, this.bonusNumber);
     });
+  }
+
+  compare(publish, winning, bonus) {
+    let total = {
+      three: 0,
+      four: 0,
+      five: 0,
+      bonus: 0,
+      six: 0,
+    };
+
+    publish.forEach((piece) => {
+      let count = { winning: 0, bonus: 0 };
+      piece.forEach((number) => {
+        this.countWinning(number, winning, count);
+        this.countBonus(number, bonus, count);
+      });
+      this.countTotal(count, total);
+    });
+  }
+
+  countWinning(number, winning, count) {
+    if (winning.includes(number)) {
+      count.winning += 1;
+    }
+  }
+
+  countBonus(number, bonus, count) {
+    if (number === bonus) {
+      count.bonus += 1;
+    }
+  }
+
+  countTotal(count, total) {
+    if (count.winning === 3) total.three += 1;
+    if (count.winning === 4) total.four += 1;
+    if (count.winning === 5) {
+      if (count.bonus === 1) total.bonus += 1;
+      else total.five += 1;
+    }
+    if (count.winning === 6) total.six += 1;
   }
 }
 
