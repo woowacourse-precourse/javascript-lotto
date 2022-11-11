@@ -2,6 +2,7 @@ const { Console, Random } = require("@woowacourse/mission-utils");
 const Money = require("./Money");
 const Type = require("./Type");
 const Lotto = require("./Lotto");
+const Bonus = require("./Bonus");
 
 class App {
   constructor() {
@@ -55,6 +56,7 @@ class App {
 
   inputBonus() {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (number) => {
+      new Bonus(number);
       this.bonusNumber = parseInt(number, 10);
     });
   }
