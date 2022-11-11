@@ -34,7 +34,11 @@ class Application {
   }
 
   static purchaseCount(purchaseAmount, criterion) {
-    return this.convertNumber(purchaseAmount) / this.convertNumber(criterion);
+    const result = this.convertNumber(purchaseAmount) / this.convertNumber(criterion);
+
+    this.validateInteger(result);
+
+    return result;
   }
 
   static earningsRate(purchaseAmount, earnings) {
