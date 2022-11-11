@@ -1,13 +1,10 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Constant = require("./Constant");
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.messages = {
-      inputMoney: "구입금액을 입력해 주세요.",
-      inputWinNumberPrint: "당첨 번호를 입력해 주세요.",
-      inputBonusNumberPrint: "보너스 번호를 입력해 주세요.",
-    };
     this.myLotto = [];
     this.useMoney = 0;
     this.winNumber = 0;
@@ -26,12 +23,12 @@ class Lotto {
   validate(numbers) {
     if (Array.isArray(numbers)) {
       if (numbers.length !== 6) {
-        throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+        throw new Error(Constant.ERROR_MESSAGES.sixLength);
       }
       for (let i = 0; i < numbers.length; i++) {
         let validationArray = numbers.splice(i, 1);
         if (validationArray.includes(numbers[i]))
-          throw new Error("[ERROR] 중복된 로또 번호가 있습니다.");
+          throw new Error(Constant.ERROR_MESSAGES.overlapNumber);
       }
     }
   }
@@ -47,10 +44,9 @@ class Lotto {
   }
 
   inputMoney() {
-    MissionUtils.Console.print(`${this.messages.inputMoney}`);
+    MissionUtils.Console.print(`${Constant.INPUT_MESSAGES.money}`);
     MissionUtils.Console.readLine("", (answer) => {
-      if (answer % 1000 !== 0)
-        throw new Error("[ERROR] 1,000원 단위로 입력 바랍니다.");
+      if (answer % 1000 !== 0) throw new Error(Constant.ERROR_MESSAGES.money);
       this.useMoney = answer;
     });
   }
@@ -64,7 +60,9 @@ class Lotto {
   }
 
   lottoCountPrint() {
-    MissionUtils.Console.print(`${this.lottoCountReturn()}개를 구매했습니다.`);
+    MissionUtils.Console.print(
+      `${Constant.MESSAGES_SNIPPETS.lottoCountPrint(this.lottoCountReturn())}`
+    );
   }
 
   lottoCountReturn() {
@@ -87,14 +85,14 @@ class Lotto {
   }
 
   inputWinNumber() {
-    MissionUtils.Console.print(`${this.messages.inputWinNumberPrint}`);
+    MissionUtils.Console.print(`${Constant.INPUT_MESSAGES.winNumberPrint}`);
     MissionUtils.Console.readLine("", (answer) => {
       this.winNumber = answer.split(",");
     });
   }
 
   inputBonusNumber() {
-    MissionUtils.Console.print(`${this.messages.inputBonusNumberPrint}`);
+    MissionUtils.Console.print(`${Constant.INPUT_MESSAGES.bonusNumberPrint}`);
     MissionUtils.Console.readLine("", (answer) => {
       this.bonusNumber = parseInt(answer);
     });
@@ -125,31 +123,35 @@ class Lotto {
   }
 
   lottoResultPrint() {
-    MissionUtils.Console.print("당첨통계\n---");
-    MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.winLotto.fifth}개`);
+    MissionUtils.Console.print(Constant.MESSAGES_SNIPPETS.winnig);
     MissionUtils.Console.print(
-      `4개 일치 (50,000원) - ${this.winLotto.fourth}개`
+      `${Constant.MESSAGES_SNIPPETS.threeMatch(this.winLotto.fifth)}`
     );
     MissionUtils.Console.print(
-      `5개 일치 (1,500,000원) - ${this.winLotto.third}개`
+      `${Constant.MESSAGES_SNIPPETS.fourMatch(this.winLotto.fourth)}`
     );
     MissionUtils.Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.winLotto.second}개`
+      `${Constant.MESSAGES_SNIPPETS.fiveMatch(this.winLotto.third)}`
     );
     MissionUtils.Console.print(
-      `6개 일치 (2,000,000,000원) - ${this.winLotto.first}개`
+      `${Constant.MESSAGES_SNIPPETS.fiveBonusMatch(this.winLotto.second)}`
+    );
+    MissionUtils.Console.print(
+      `${Constant.MESSAGES_SNIPPETS.sixMatch(this.winLotto.first)}`
     );
   }
 
   rateOfReturnPrint() {
     const rateOfReturn =
-      this.winLotto.first * 2000000000 +
-      this.winLotto.second * 30000000 +
-      this.winLotto.third * 1500000 +
-      this.winLotto.fourth * 50000 +
-      this.winLotto.fifth * 5000;
+      this.winLotto.first * Constant.NUMBER.first +
+      this.winLotto.second * Constant.NUMBER.second +
+      this.winLotto.third * Constant.NUMBER.third +
+      this.winLotto.fourth * Constant.NUMBER.fourth +
+      this.winLotto.fifth * Constant.NUMBER.fifth;
     MissionUtils.Console.print(
-      `총 수익률은 ${((rateOfReturn / this.useMoney) * 100).toFixed(1)}%입니다.`
+      `${Constant.MESSAGES_SNIPPETS.rateOfReturn(
+        ((rateOfReturn / this.useMoney) * 100).toFixed(1)
+      )}`
     );
     MissionUtils.Console.close();
   }
