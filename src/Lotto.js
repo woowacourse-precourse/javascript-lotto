@@ -14,9 +14,9 @@ class Lotto {
   }
   validationCheckList(numbers){
     this.validate(numbers);
-    this.isDuplication(numbers);
-    this.isInRange(numbers);
     this.isNumber(numbers);
+    this.isInRange(numbers);
+    this.isDuplication(numbers);
   }
   bonusValidationCheckList(lottoNumbers, bonusNumber){
     this.isBonusLengthOne(bonusNumber);
