@@ -1,6 +1,7 @@
 const Application = require('../src/Application');
 
 const NUMBER_EXCEPTION_TEXT = '[ERROR] 전달된 인수는 숫자로 변환이 가능해야 합니다.';
+const ARRAY_EXCEPTION_TEXT = '[ERROR] 전달된 인수는 배열 타입만 가능 합니다.';
 
 describe('숫자 예외 검사 함수 테스트', () => {
   test('메소드 이름은 "validateNumber"로 정의된다.', () => {
@@ -112,5 +113,15 @@ describe('배열 예외 검사 함수 테스트', () => {
     const METHOD_NAME = 'validateArray';
 
     expect(Application.validateArray.name).toEqual(METHOD_NAME);
+  });
+
+  test('전달된 인수는 배열이 아니면 예외를 발생시킨다.', () => {
+    expect(() => {
+      Application.validateArray(12312);
+    }).toThrow(ARRAY_EXCEPTION_TEXT);
+
+    expect(() => {
+      Application.validateArray([12312]);
+    }).not.toThrow(ARRAY_EXCEPTION_TEXT);
   });
 });
