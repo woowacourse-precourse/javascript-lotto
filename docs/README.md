@@ -4,7 +4,7 @@
   - [x] (예외처리) 1000보다 작을 경우
   - [x] (예외처리) 로또 가격(1000원)으로 나누어 떨어지지 않는 경우
 - [x] 로또 구입금액으로 로또 발행 수량을 생성한다. LottoAmount#getLottoCount
-- [ ] 로또(1부터 45사이의 중복되지 않은 6개)를 생성한다. NumberGenerator#createRandomNumbers
+- [x] 로또(1부터 45사이의 중복되지 않은 6개)를 생성한다. NumberGenerator#createRandomNumbers
 - [ ] 로또 번호에 대한 예외처리를 한다. LottoNumber#validate
   - [ ] (예외처리) 각 숫자가 1부터 45사이의 숫자가 아닌 경우
 - [ ] 로또에 대한 예외처리를 한다. Lotto#validate
