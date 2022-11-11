@@ -1,11 +1,19 @@
-const { Console } = require('@woowacourse/mission-utils');
+const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 
 class App {
   play() {
-    getWinningNumbers();
+    getPurchaseAmount();
   }
 }
+
+const getHowManyLottos = (money) => {
+  const numberOfTicket = money / 1000;
+
+  Console.print(`${numberOfTicket}개를 구매했습니다.`);
+};
+
+// 아래는 구입금액, 당첨번호 입력받기 관련 함수들
 
 const getWinningNumbers = () => {
   Console.readLine('당첨 번호를 입력해 주세요.', (numbers) => {
@@ -20,7 +28,7 @@ const makeSixNumbersArr = (str) => {
 const getPurchaseAmount = () => {
   Console.readLine('구입금액을 입력해주세요.', (num) => {
     if (isDivisibleBy1000(num)) {
-      Console.print('올바른 금액입니다.');
+      getHowManyLottos(num);
     } else {
       errorMessage();
     }
