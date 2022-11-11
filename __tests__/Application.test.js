@@ -106,3 +106,11 @@ describe('오름차순 정렬 함수 테스트', () => {
     expect(Application.sortAscending(expected)).toStrictEqual(received);
   });
 });
+
+describe('배열 예외 검사 함수 테스트', () => {
+  test('메소드 이름은 "validateArray"로 정의된다.', () => {
+    const METHOD_NAME = 'validateArray';
+
+    expect(Application.validateArray.name).toEqual(METHOD_NAME);
+  });
+});
