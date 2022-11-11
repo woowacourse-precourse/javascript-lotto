@@ -27,6 +27,14 @@ class App {
     Console.readLine(`\n${COMMAND.WIN}\n`, (input) => {
       this.#exception.isAllow(new WinNumberError(input));
       this.winNumber = input.split(",");
+      this.askBonusNumber();
+    });
+  }
+
+  askBonusNumber() {
+    Console.readLine(`\n${COMMAND.BONUS}\n`, (input) => {
+      this.#exception.isAllow();
+      this.bonusNumber = input;
     });
   }
 
