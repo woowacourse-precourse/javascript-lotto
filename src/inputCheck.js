@@ -13,6 +13,7 @@ class ValidationCheck {
   }
 
   isWinningNumberValid(winningNumber) {
-    if (/[^\d,]/g.test(this.#numbers)) throw new Error("[ERROR] 숫자+',' 형태로 입력해 주세요. ex) 1,2,3,4,5,6");
+    if (/\d{1,},\d{1,},\d{1,},\d{1,},\d{1,},\d{1,}/g.test(winningNumber))
+      throw new Error("[ERROR] 숫자+',' 형태로 입력해 주세요. ex) 1,2,3,4,5,6");
   }
 }
