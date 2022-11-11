@@ -1,5 +1,6 @@
-const Maker = require('./utils/Maker');
+const Data = require('./utils/Data');
 const Tickets = require('./Tickets');
+const GameOutput = require('./GameOutput');
 
 class Player {
   #lotto = {
@@ -7,14 +8,19 @@ class Player {
     tickets: [],
   };
 
-  constructor() {}
-
   buyLotto(priceString) {
-    this.#lotto.number = Maker.getLottoNumber(Maker.makeUsablePrice(priceString));
+    this.#lotto.number = Data.getLottoNumber(Data.makeUsablePrice(priceString));
   }
 
   getLotto() {
     this.#lotto.tickets = Tickets.publish(this.#lotto.number);
+  }
+
+  printLotto() {
+    GameOutput.printNewLine();
+    GameOutput.printLottoNumber(this.#lotto.number);
+    GameOutput.printLottos(Data.convertLottosToPrintableLottos(this.#lotto.tickets));
+    GameOutput.printNewLine();
   }
 }
 

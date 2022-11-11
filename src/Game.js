@@ -9,13 +9,13 @@ class Game {
   }
 
   playLotto() {
-    Simulator.execute(this.lottoGame.bind(this));
+    Simulator.execute(this.#lottoGame.bind(this));
   }
 
-  lottoGame(priceString) {
+  #lottoGame(priceString) {
     this.#player.buyLotto(priceString);
     this.#player.getLotto();
-
+    this.#player.printLotto();
     // 당첨 번호 등록
     // 당첨 결과 계산
     // 결과 출력
