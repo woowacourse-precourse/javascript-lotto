@@ -10,6 +10,7 @@ class App {
     this.lottoCounter;
     this.numberGenerator = new NumberGenerator();
     this.lottos = [];
+    this.firstPlaceLotto;
   }
 
   play() {
@@ -42,6 +43,17 @@ class App {
     MissionUtils.Console.print('');
     MissionUtils.Console.print(`${this.countOfLotto}개를 구매했습니다.`);
     this.lottos.map((lotto) => MissionUtils.Console.print(lotto));
+    MissionUtils.Console.print('');
+
+    this.inputNumbersOfFirstPlace();
+  }
+
+  inputNumbersOfFirstPlace() {
+    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (input) => {
+      input = input.split(',').map((num) => Number(num));
+      let newLotto = new Lotto(input);
+      this.firstPlaceLotto = newLotto.getLottoNumbers();
+    });
   }
 }
 
