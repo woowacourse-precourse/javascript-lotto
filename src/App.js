@@ -10,8 +10,12 @@ class App {
   async play() {
     try {
       let input = await this.getInputMoney();
+
       Console.print(`${input / 1000}개를 구매했습니다.`);
+
       let Lottos = this.publishLotto(input / 1000);
+
+      this.printLottosNumbers(Lottos);
     } catch (e) {}
   }
 
@@ -38,6 +42,12 @@ class App {
     return new Array(count)
       .fill(undefined)
       .map((e) => new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6)));
+  }
+
+  printLottosNumbers(Lottos) {
+    Lottos.forEach((e) => {
+      Console.print(e.getNumbers());
+    });
   }
 }
 
