@@ -11,4 +11,19 @@ function isValidateUserInput(amount) {
   return true;
 }
 
+function isValidateBonusNumber(bonusNumber) {
+  if (isNaN(bonusNumber)) {
+    throw new Error("[ERROR] 숫자가 아닙니다.");
+  }
+  if (bonusNumber.trim().length < 1) {
+    throw new Error("[ERROR] 아무 것도 입력하지 않았습니다.");
+  }
+  if (bonusNumber < 1 || bonusNumber > 45) {
+    throw new Error("[ERROR] 1-45 사이의 숫자가 아닙니다.");
+  }
+
+  return true;
+}
+
 exports.isValidateUserInput = isValidateUserInput;
+exports.isValidateBonusNumber = isValidateBonusNumber;
