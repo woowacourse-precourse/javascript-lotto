@@ -94,25 +94,29 @@ class App {
   compareNumbers() {
     this.lottos.forEach((lotto) => {
       const numbersOfMatch = this.winningLotteryNumbers.filter((num) => lotto.includes(num)).length;
-      switch (numbersOfMatch) {
-        case 3:
-          this.result.fifth += 1;
-          break;
-        case 4:
-          this.result.fourth += 1;
-          break;
-        case 5:
-          if (!lotto.includes(this.bonusNumber)) {
-            this.result.third += 1;
-          } else {
-            this.result.second += 1;
-          }
-        case 6:
-          this.result.first += 1;
-        default:
-          return;
-      }
+      this.winLotto(numbersOfMatch);
     });
+  }
+
+  winLotto(matchNumber) {
+    switch (matchNumber) {
+      case 3:
+        this.result.fifth += 1;
+        break;
+      case 4:
+        this.result.fourth += 1;
+        break;
+      case 5:
+        if (!lotto.includes(this.bonusNumber)) {
+          this.result.third += 1;
+        } else {
+          this.result.second += 1;
+        }
+      case 6:
+        this.result.first += 1;
+      default:
+        return;
+    }
   }
 
   printResult() {
