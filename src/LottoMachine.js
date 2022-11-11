@@ -11,6 +11,10 @@ class LottoMachine {
     this.#lottos = this.generateLottos();
   }
 
+  get lottos() {
+    return this.#lottos;
+  }
+
   validate(money) {
     if (!Number(money)) {
       throw new Error("[ERROR] 금액은 숫자만 입력해야 합니다.");
