@@ -1,4 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils/");
+const Lotto = require("../src/Lotto");
 class App {
   lottoCount;
 
@@ -9,6 +10,8 @@ class App {
   async play() {
     try {
       let input = await this.getInputMoney();
+      Console.print(`${input / 1000}개를 구매했습니다.`);
+      let Lottos = this.publishLotto(input / 1000);
     } catch (e) {}
   }
 
@@ -29,6 +32,12 @@ class App {
     if (input === "") return false;
     if (/[\D]/.test(input)) return false;
     else return true;
+  }
+
+  publishLotto(count) {
+    return new Array(count)
+      .fill(undefined)
+      .map((e) => new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6)));
   }
 }
 
