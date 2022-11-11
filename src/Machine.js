@@ -8,6 +8,8 @@ class Machine {
 
   #winningNumbers;
 
+  #bonusNumber;
+
   constructor() {
     this.user = new User();
     this.#money = 0;
@@ -41,8 +43,8 @@ class Machine {
     }
   }
 
-  #checkRange() {
-    this.#winningNumbers.forEach((number) => {
+  #checkRange(numbers) {
+    numbers.forEach((number) => {
       if (number < 1 || number > 45) {
         throw Error('[ERROR] 당첨 번호는 1과 45 사이의 숫자여야 합니다.');
       }
@@ -53,7 +55,7 @@ class Machine {
     this.#checkLength();
     this.#checkIsAllNum();
     this.#checkIsAllUnique();
-    this.#checkRange();
+    this.#checkRange(this.#winningNumbers);
   }
 
   getMoney(cb) {
@@ -74,7 +76,42 @@ class Machine {
       const lotto = new Lotto(numbers);
       this.user.lottos.push(lotto);
     }
-    this.#getWinningNumbers();
+    this.#getWinningNumbers(this.#getBonusNumber.bind(this));
+  }
+
+  #checkIsNum() {
+    if (Number.isNaN(this.#bonusNumber)) {
+      throw Error('[ERROR] 보너스 번호는 숫자여야 합니다.');
+    }
+  }
+
+  #checkUnique() {
+    const finalNumbers = new Set(
+      this.#winningNumbers.concat(this.#bonusNumber)
+    );
+
+    if (finalNumbers.size === this.#winningNumbers.length) {
+      throw Error('[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.');
+    }
+  }
+
+  #checkBonusRange() {
+    if (this.#bonusNumber < 1 || this.#bonusNumber > 45) {
+      throw Error('[ERROR] 보너스 번호는 1과 45 사이의 숫자여야 합니다.');
+    }
+  }
+
+  #checkBonusNumber() {
+    this.#checkIsNum();
+    this.#checkBonusRange();
+    this.#checkUnique();
+  }
+
+  #getBonusNumber() {
+    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (answer) => {
+      this.#bonusNumber = Number(answer);
+      this.#checkBonusNumber();
+    });
   }
 
   checkSeparator(answer) {
@@ -83,11 +120,13 @@ class Machine {
     }
   }
 
-  #getWinningNumbers() {
+  #getWinningNumbers(cb) {
     Console.readLine('\n당첨 번호를 입력해 주세요.\n', (answer) => {
       this.checkSeparator(answer);
       this.#winningNumbers = answer.split(',').map((number) => Number(number));
       this.#checkWinningNumbers();
+
+      return cb();
     });
   }
 
