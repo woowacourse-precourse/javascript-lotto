@@ -14,6 +14,8 @@
 
 - [x] 자신의 로또 번호를 출력한다.
 
+- [x] 자신의 로또 번호 배열을 반환함.
+
 로또구매#LottoBuy
 
 - [x] 구입 금액을 입력 받는 기능 - inputPurchasePrice
@@ -29,8 +31,8 @@
 
 - [x] 당첨번호를 입력 받는 기능 - inputWinLottoNum
       당첨 번호를 입력 받는다. 번호는 쉼표(,)를 기준으로 구분한다.
-- [x] 당첨번호를 배열로 리턴하는 기능 - exportWinLottoArray
-- [ ] 보너스 번호를 입력받는 기능 - inputBonusNum
+- [x] 당첨번호를 로또 클래스로 바꾸는 기능 - winNumToLottoClass
+- [x] 보너스 번호를 입력받는 기능 - inputBonusNum
 
 로또 계산#LottoCalculator
 
@@ -43,5 +45,5 @@
 **예외 상황 시 에러 문구를 출력해야 한다. 단, 에러 문구는 "[ERROR]"로 시작해야 한다.**
 
 - [x] 구입 금액을 입력 받는 기능 : 1000원으로 나누어 떨어지지 않는 경우 예외처리 하는 기능 -isValidPrice
-- [ ] 당첨번호를 입력 받는 기능 : 로또 숫자가 아니면 예외처리 하는 기능 - isLottoNum
+- [x] 당첨번호를 입력 받는 기능 : 로또 숫자가 아니면 예외처리 하는 기능 - isLottoNum
 - [ ] 보너스 번호를 입력받는 기능 : 중복숫자를 넣으면 예외처리 하는 기능 - isValidBonusNum

@@ -38,6 +38,10 @@ class Lotto {
   printNumbers() {
     Console.print(this.#numbers);
   }
+
+  getLottoArr() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;

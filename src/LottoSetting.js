@@ -1,23 +1,24 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { INPUT } = require("./lib/library");
+const { INPUT, EXCEPTION } = require("./lib/library");
 const Lotto = require("./Lotto");
 
 class LottoSetting {
   #winLotto;
   #bonusNum;
 
-  async main() {
-    await this.inputWinLottoNum();
+  main() {
+    this.inputWinLottoNum();
+    return this;
   }
 
   inputWinLottoNum() {
-    return new Promise((resolve, reject) => {
-      Console.readLine(INPUT.WIN_NUMBER, this.exportWinLottoArray.bind(this));
-      resolve();
+    Console.readLine(INPUT.WIN_NUMBER, (string) => {
+      this.winNumToLottoClass(string);
+      this.inputBonusNum();
     });
   }
 
-  exportWinLottoArray(string) {
+  winNumToLottoClass(string) {
     const strArr = string.split(",");
     const numArr = strArr.map((char) => parseInt(char));
     this.#winLotto = this.isLottoNum(numArr);
@@ -35,9 +36,21 @@ class LottoSetting {
     return lotto;
   }
 
-  inputBonusNum() {}
+  inputBonusNum() {
+    Console.readLine(INPUT.BONUS, (number) => {
+      this.#bonusNum = this.isBonusNum(number);
+      Console.print(this.#bonusNum);
+    });
+  }
+
+  isBonusNum(number) {
+    const num = parseInt(number);
+    if (num < 1 || num > 45) throw EXCEPTION("숫자 범위 초과");
+    if (this.#winLotto.getLottoArr().includes(num))
+      throw EXCEPTION("로또번호와 중복됩니다.");
+    return num;
+  }
 }
 const a = new LottoSetting();
-a.main();
 
 module.exports = LottoSetting;
