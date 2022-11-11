@@ -225,4 +225,9 @@ describe("여러 로또 비교 테스트", () => {
     const RESULT = PRIZE_INFORMATION.getTotalPrize();
     expect(RESULT).toBe(2031550000);
   })
+
+  test("여러 로또를 비교하여 총 수익률을 계산할 수 있다", () => {
+    const RESULT = APP.getIncomeRate(6000, PRIZE_INFORMATION);
+    expect(RESULT).toBe(33859166.7);
+  })
 })

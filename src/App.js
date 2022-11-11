@@ -103,6 +103,18 @@ class App {
       PRIZE_INFORMATION.quantity[PLACE]++;
     })
   }
+
+  /**
+   * 구매 비용과 총 수익을 바탕으로 총 수익률을 계산하는 함수
+   * @param {number} pay 로또 구매 비용
+   * @param {PrizeInformation} PRIZE_INFORMATION 로또 당첨 정보
+   * @returns {number} 총 수익률
+   */
+  getIncomeRate(pay, PRIZE_INFORMATION) {
+    const INCOME_RATE = PRIZE_INFORMATION.getTotalPrize() * 100 / pay;
+
+    return Math.round(INCOME_RATE * 10) / 10; // 소수점 둘째 자리에서 반올림
+  }
 }
 
 module.exports = App;
