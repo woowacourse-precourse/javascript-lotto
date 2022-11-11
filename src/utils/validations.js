@@ -28,4 +28,11 @@ const checkMoneyValidation = (input) => {
   isValidUnit(input);
 };
 
-module.exports = { checkMoneyValidation, isValidNumber };
+const isValidRange = (number) => {
+  if (number >= 1 || number <= 45) return;
+
+  Console.close();
+  throw new Error('[ERROR] 입력할 수 있는 범위는 1에서 45 사이입니다.');
+};
+
+module.exports = { checkMoneyValidation, isValidNumber, isValidRange };
