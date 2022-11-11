@@ -13,13 +13,13 @@ class LottoCounter {
 
   isValidCash(cash) {
     if (cash < NUMBER.INPUT_UNITS) {
-      throw ERROR.NOT_ENOUGH_CASH;
+      throw ERROR.MUST_INPUT_MORE_THAN_1000;
     }
     if (cash % NUMBER.INPUT_UNITS !== 0) {
-      throw ERROR.NOT_1000_UNIT;
+      throw ERROR.MUST_BE_1000_UNIT;
     }
     if (!Number.isInteger(cash)) {
-      throw '[ERROR] 숫자만 입력해야 합니다.';
+      throw ERROR.MUST_BE_NUMBER;
     }
 
     return true;
