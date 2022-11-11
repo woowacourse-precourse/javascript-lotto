@@ -237,10 +237,10 @@ class Lotto {
 
 ## 기능 목록
 
-1. [ ] 로또 구입 금액을 입력 받는다. -getLottoPrice
-2. [ ] 발행한 로또 수량을 출력한다. - buyLottoCount
-3. [ ] 로또 번호를 출력한다.  -printLotto
-  3-1 [ ] 로또 번호는 오름차순 정렬한다. -sortLotto
+1. [o] 로또 구입 금액을 입력 받는다. -buyLottoPrice
+2. [o] 발행한 로또 수량을 출력한다. - buyLottoCount
+3. [o] 로또 번호를 출력한다.  -printLotto
+  3-1 [o] 로또 번호는 오름차순 정렬한다. -sortLotto
 4. [ ] 당첨 번호를 입력 받는다. - lottoNumber
 5. [ ] 보너스번호를 입력받는다. - bonusNumber
 6. [ ]당첨 내역을 출력한다 - resultLotto
