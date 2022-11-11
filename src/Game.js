@@ -35,13 +35,13 @@ class Game {
   }
 
   printLottoQuantity(lottoQuantity) {
-    Console.print(`${lottoQuantity}개를 구매했습니다.\n`);
+    Console.print(`\n${lottoQuantity}개를 구매했습니다.`);
   }
 
   showLottoNumbers(lottoQuantity) {
     const lottoNumbersArray = this.lotto.createLottoNumbers(lottoQuantity);
     lottoNumbersArray.forEach((lottoNumbers) => {
-      Console.print(`${lottoNumbers}\n`);
+      Console.print(`[${lottoNumbers}]`);
     });
   }
 }
