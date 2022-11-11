@@ -15,7 +15,7 @@ class Lotto {
 
   checkNumber(numbers) {
     const invalidList = numbers.filter((number) => {
-      return Number.isNaN(number);
+      return isNaN(number);
       // Error: 숫자+숫자아닌값 조합인 경우 예외 처리가 되지 않음.
     });
     if (invalidList.length > 0) {
