@@ -2,7 +2,7 @@
 
 ## 기능 목록
 
-- [ ] 1부터 45까지의 중복되지 않는 숫자 6개 로또 번호를 오름차순으로 생성한다. - LottoGenerator#createLottoNums()
+- [x] 1부터 45까지의 중복되지 않는 숫자 6개 로또 번호를 오름차순으로 생성한다. - LottoGenerator#createLottoNums()
 - [ ] 구입금액 만큼 로또를 발행한다. - LottoGenerator#publishLotto()
 - [ ] 로또번호와 당첨번호를 비교한다. - Lotto#compareLottoNums()
   - [ ] 몇개가 일치하는지 확인한다. - Lotto#countCorrectNums() 
