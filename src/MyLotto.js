@@ -1,6 +1,6 @@
 const { Random } = require("@woowacourse/mission-utils");
 
-class MyLottery {
+class MyLotto {
   #money;
 
   constructor(money) {
@@ -14,6 +14,12 @@ class MyLottery {
     if (money % 1000 !== 0)
       throw new Error("[ERROR] 1000원으로 나누어 떨어져야 합니다.");
   }
+
+  getMyLottery(money) {
+    const purchaseAmount = money % 1000;
+    const myLottos = Random.pickUniqueNumbersInRange(1, 45, 6);
+    return myLottos;
+  }
 }
 
-module.exports = MyLottery;
+module.exports = MyLotto;
