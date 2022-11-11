@@ -2,6 +2,7 @@ const View = require("./View");
 const Message = require("./Message");
 const AutoLotto = require("./AutoLotto");
 const Budget = require("./Budget");
+const Constant = require("./constant/Constant");
 
 class Lotto {
   #numbers;
@@ -65,7 +66,7 @@ class Lotto {
   }
 
   saveWinningNumbers(input) {
-    this.numbers = input.split(",").map((number) => parseInt(number));
+    this.numbers = input.split(Constant.COMMA).map((number) => parseInt(number));
     this.inputBonusNumber();
   }
 
