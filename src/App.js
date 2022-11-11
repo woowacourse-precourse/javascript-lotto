@@ -1,11 +1,11 @@
 const { InputConsole, OutputConsole } = require('./Console');
 const { LottoComputerDto, LottoUserDto } = require('./LottoDto');
-
+const { LOTTO_COST } = require('./Resource');
 class App {
   async play() {
     const money = await InputConsole.getMoney();
     const LottoArrays = Array.from(
-      { length: money / 1000 },
+      { length: money / LOTTO_COST },
       () => new LottoUserDto(),
     );
     LottoArrays.forEach((lotto) => {
@@ -15,3 +15,5 @@ class App {
 }
 
 module.exports = App;
+
+new App().play();
