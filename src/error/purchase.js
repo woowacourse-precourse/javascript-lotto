@@ -11,7 +11,7 @@ class PurchaseError extends Exception {
   }
 
   isAllowAmount() {
-    return Number(this.#input) % UNIT.MONETARY;
+    return Number(this.#input) % UNIT.MONETARY === 0 ? false : true;
   }
 
   checkInput() {

@@ -49,7 +49,6 @@ class App {
       this.winNumber,
       this.bonusNumber
     ).compare();
-    console.log(this.rank);
   }
 
   play() {

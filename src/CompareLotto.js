@@ -42,6 +42,7 @@ class CompareLotto {
   }
 
   compare() {
+    console.log(this.userLotto);
     for (let i = 1; i < 6; i++) this.rank[i] = 0;
     this.userLotto.forEach((lotto) => {
       const [correctCnt, correctBonus] = this.cntCorrect(lotto);
