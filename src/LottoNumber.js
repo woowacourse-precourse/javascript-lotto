@@ -18,5 +18,5 @@ class LottoNumber {
   }
 }
 
-const lotto = new LottoNumber();
-exports.lotto = lotto;
+const lottoNumber = new LottoNumber();
+exports.lottoNumber = lottoNumber;
