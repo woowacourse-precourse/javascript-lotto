@@ -25,6 +25,11 @@ class LotteryDraw extends Struct{
             )).split(',').join(', ')}]`);
         };
     };
+    buy() {
+        MissionUtils.Console.print(`${this.money}개를 구매했습니다.`);
+        this.randomLotto();
+        this.randomLottoPrint();
+    };
 };
 
 module.exports = LotteryDraw;
