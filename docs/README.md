@@ -34,7 +34,7 @@
 
 </br>
 
-## [&nbsp; ] 구입 금액 입력값 확인하기 - `LottoMachine`.checkInputMoney()   
+## [✅] 구입 금액 입력값 확인하기 - `LottoMachine`.checkInputMoney()   
 ❗ 1,000원으로 나누어떨어지지 않는 경우 예외 처리를 한다.  
 `throw`문을 사용해 예외를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 종료한다.
 
