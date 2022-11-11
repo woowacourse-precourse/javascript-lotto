@@ -33,5 +33,11 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
+  test("당첨 번호와 보너스 숫자가 겹치면 예외를 발생한다.", () => {
+    expect(() => {
+      const bonus = new Bonus();
+      bonus.isUniqueBonus([1, 2, 3, 4, 5, 6], 5);
+    }).toThrow("[ERROR]");
+  });
   // 아래에 추가 테스트 작성 가능
 });
