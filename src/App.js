@@ -1,32 +1,8 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const { printError, isPositiveInteger } = require('./Utils');
+const { LOTTO_END, LOTTO_PRICE, LOTTO_START, REVENUE } = require('./Constants');
 
-const LOTTO_PRICE = 1000;
-const LOTTO_START = 1;
-const LOTTO_END = 45;
-const REVENUE = {
-  3: {
-    message: '3개 일치 (5,000원)',
-    revenue: 5000,
-  },
-  4: {
-    message: '4개 일치 (50,000원)',
-    revenue: 50000,
-  },
-  5: {
-    message: '5개 일치 (1,500,000원)',
-    revenue: 1500000
-  },
-  '5B': {
-    message: '5개 일치, 보너스 볼 일치(30,000,000원)',
-    revenue: 30000000
-  }
-  6: {
-    message: '6개 일치 (2,000,000,000원)',
-    revenue: 2000000000
-  }
-},
 class App {
   #money;
   #lottos;
@@ -38,11 +14,11 @@ class App {
     this.#money = 0;
     this.#lottos = [];
     this.#result = {
-      '3개 일치 (5000원)': 0,
-      '4개 일치 (50,000원)': 0,
-      '5개 일치 (1,500,000원)': 0,
-      '5개 일치, 보너스 볼 일치 (30,000,000원)': 0,
-      '6개 일치 (2,000,000,000원)': 0,
+      3: 0,
+      4: 0,
+      5: 0,
+      '5B': 0,
+      6: 0,
     };
   }
 
@@ -79,38 +55,29 @@ class App {
     }
   }
 
-  // FIXME: 15줄 아래가 되도록 변경할 것, 보너스 볼 추가할 것
   #storeResult(matchCount) {
-    switch (matchCount) {
-      case 3:
-        this.#result['3개 일치 (5000원)'] += 1;
-        break;
-      case 4:
-        this.#result['4개 일치 (50,000원)'] += 1;
-        break;
-      case 5:
-        this.#result['5개 일치 (1,500,000원)'] += 1;
-        break;
-      case 6:
-        this.#result['6개 일치 (2,000,000,000원)'] += 1;
-        break;
-      default:
-        null;
+    if (matchCount !== 5) {
+      this.#result[matchCount] += 1;
     }
   }
 
   #printResult() {
     MissionUtils.Console.print('당첨 통계');
     MissionUtils.Console.print('---');
+    // FIXME: 객체는 순서대로 안 나옴 - 순서대로 나오게 할 것
     Object.keys(this.#result).forEach((rank) => {
-      MissionUtils.Console.print(`${rank} - ${this.#result[rank]}개`);
+      MissionUtils.Console.print(
+        `${REVENUE[rank].message} - ${this.#result[rank]}개`,
+      );
     });
   }
 
   #matchLotto() {
     this.#lottos.forEach((lotto) => {
-      const matchNumbers = lotto.countMatchNumbers(this.#winningNumber);
-      this.#storeResult(matchNumbers);
+      const matchCount = lotto.countMatchNumbers(this.#winningNumber);
+      if (matchCount >= 3) {
+        this.#storeResult(matchCount);
+      }
     });
   }
 
