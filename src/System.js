@@ -1,11 +1,14 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { ERROR } = require('./Constants')
+const { ERROR, MESSAGE } = require('./Constants')
 const SYSTEM = Object.freeze({
     print(message) {
         MissionUtils.Console.print(message);
     },
 
     isCorrectCache(cache) {
+        if (isNaN(cache)) {
+            throw new Error(ERROR.CACHE_IS_NOT_NUMBER);
+        }
         if (cache % 1000) {
             throw new Error(ERROR.INVAID_CACHE);
         }
@@ -25,7 +28,14 @@ const SYSTEM = Object.freeze({
             let lotto = this.sortLotto(this.makeLotto());
             lottos.push(lotto);
         }
+
+        this.printLottos(lottos, maxCount);
         return lottos;
+    },
+
+    printLottos(lottos, maxCount) {
+        this.print(`\n${maxCount}${MESSAGE.BUY_LOTTOS_COUNT}`);
+        lottos.forEach(lotto => { SYSTEM.print(lotto); });
     },
 
     publishLotto(cache) {
