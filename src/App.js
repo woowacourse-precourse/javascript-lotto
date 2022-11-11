@@ -9,9 +9,10 @@ class App {
 
   constructor() {
     this.lottoCounter;
+    this.purchasedLottos = [];
+    this.lottoNumbersOfFirstPlace;
+    this.bonusNumber;
     this.numberGenerator = new NumberGenerator();
-    this.lottos = [];
-    this.firstPlaceLotto;
   }
 
   play() {
@@ -22,6 +23,7 @@ class App {
     MissionUtils.Console.readLine(MESSAGE.INPUT_CASH, (input) => {
       this.lottoCounter = new LottoCounter(input);
       this.countOfLotto = this.lottoCounter.getCountOfLotto();
+
       this.makeLotto();
     });
   }
@@ -33,27 +35,38 @@ class App {
       let numbers = this.numberGenerator.createRandomSixNumbers();
 
       let newLotto = new Lotto(numbers);
-      this.lottos.push(newLotto.getLottoNumbers());
+      this.purchasedLottos.push(newLotto.getLottoNumbers());
 
       num -= 1;
     }
+
     this.printLottos();
   }
 
   printLottos() {
     MissionUtils.Console.print('');
-    MissionUtils.Console.print(this.countOfLotto + MESSAGE.PURCHASE_LOTTO);
-    this.lottos.map((lotto) => MissionUtils.Console.print(lotto));
+    MissionUtils.Console.print(
+      this.countOfLotto + MESSAGE.COUNT_OF_PURCHASED_LOTTOS
+    );
+    this.purchasedLottos.map((lotto) => MissionUtils.Console.print(lotto));
     MissionUtils.Console.print('');
 
     this.inputNumbersOfFirstPlace();
   }
 
   inputNumbersOfFirstPlace() {
-    MissionUtils.Console.readLine(MESSAGE.INPUT_NUMBERS, (input) => {
+    MissionUtils.Console.readLine(MESSAGE.INPUT_LOTTO_NUMBERS, (input) => {
       input = input.split(',').map((num) => Number(num));
       let newLotto = new Lotto(input);
-      this.firstPlaceLotto = newLotto.getLottoNumbers();
+      this.lottoNumbersOfFirstPlace = newLotto.getLottoNumbers();
+
+      this.inputBonusNumber();
+    });
+  }
+
+  inputBonusNumber() {
+    MissionUtils.Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (input) => {
+      console.log(input);
     });
   }
 }
