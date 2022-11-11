@@ -1,12 +1,12 @@
 const TICKET_PRICE = 1000;
 
-const TARGET_CONFIG = {
+const GAME_RANGE = {
     RANGE_MIN: 1,
     RANGE_MAX: 45,
     NUM_LENGTH: 6,
 };
 
-const BONUS_CONFIG = {
+const BONUS_RANGE = {
     BONUS_MIN: 1,
     BONUS_MAX: 45,
     BONUS_LENGTH: 1,
@@ -97,9 +97,9 @@ const GAME_INPUT_ERRORS = {
 };
 
 module.exports = {
-    GAME_RANGE: TARGET_CONFIG,
-    BONUS_NUM: BONUS_CONFIG,
-    PRIZE_RANK: PRIZES,
+    GAME_RANGE,
+    BONUS_RANGE,
+    PRIZES,
     PRIZE_CONFIG,
     TICKET_PRICE,
     USER_INPUT_PHRASE,
