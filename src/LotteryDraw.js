@@ -66,6 +66,12 @@ class LotteryDraw extends Struct{
         MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.winningList[7]}개`);
         MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${this.winningList[6]}개`);
     };
+    revenueCalculation() {
+        for (let index = 3; index < this.winningList.length; index++) {
+            this.revenue += this.winningList[index] * this.winningMoney[index];
+        };
+        this.revenue = ((this.revenue / (this.money * 1000))) * 100;
+    };
 };
 
 module.exports = LotteryDraw;
