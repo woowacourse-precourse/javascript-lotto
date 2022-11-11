@@ -66,6 +66,10 @@ class Application {
 
     return result;
   }
+
+  static isMatcheCount(count, datumPoint) {
+    return count === datumPoint;
+  }
 }
 
 module.exports = Application;
