@@ -7,9 +7,17 @@ const ERROR_MESSAGE_NOTONLY_NUMBER =
   "[ERROR] 구입 금액은 숫자만 입력 가능합니다.";
 
 const LOTTO_PRICE = 1000;
-module.exports = {
+
+const GUIDE_MESSAGE = {
   PURCHASEAMOUNT_INPUT_MESSAGE,
+};
+const ERROR_MESSAGE = {
   ERROR_MESSAGE_UNDIVIDED,
   ERROR_MESSAGE_NOTONLY_NUMBER,
+};
+
+module.exports = {
+  GUIDE_MESSAGE,
+  ERROR_MESSAGE,
   LOTTO_PRICE,
 };

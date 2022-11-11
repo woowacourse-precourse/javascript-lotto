@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { PURCHASEAMOUNT_INPUT_MESSAGE } = require("./constants");
+const { GUIDE_MESSAGE } = require("./Constants");
 const Validation = require("./validation");
 
 class App {
@@ -8,7 +8,7 @@ class App {
   }
   inputPurchaseAmount() {
     MissionUtils.Console.readLine(
-      PURCHASEAMOUNT_INPUT_MESSAGE,
+      GUIDE_MESSAGE.PURCHASEAMOUNT_INPUT_MESSAGE,
       (purchaseAmount) => {
         Validation.checkPurchaseAmount(purchaseAmount);
         console.log(purchaseAmount);
