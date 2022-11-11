@@ -25,8 +25,19 @@ describe('Validator 클래스 테스트', () => {
     expect(Vaildator.isRangeIn(1, 45, 46)).toEqual(false);
     expect(Vaildator.isRangeIn(1, 45, 0)).toEqual(false);
   });
+
   test('isLottoLength: 로또 개수가 6개인지 테스트한다.', () => {
     expect(Vaildator.isLottoLength(5)).toEqual(false);
     expect(Vaildator.isLottoLength(6)).toEqual(true);
+  });
+
+  test('isPositiveNumber: 양의 정수인지 판단한다.', () => {
+    expect(Vaildator.isPositiveNumber('1000')).toEqual(true);
+    expect(Vaildator.isPositiveNumber(1000)).toEqual(true);
+    expect(Vaildator.isPositiveNumber('32.4')).toEqual(false);
+    expect(Vaildator.isPositiveNumber(32.4)).toEqual(false);
+    expect(Vaildator.isPositiveNumber(0)).toEqual(false);
+    expect(Vaildator.isPositiveNumber('0')).toEqual(false);
+    expect(Vaildator.isPositiveNumber('121ss')).toEqual(false);
   });
 });
