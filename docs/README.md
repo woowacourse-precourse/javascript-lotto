@@ -16,13 +16,13 @@
 
 로또구매#LottoBuy
 
-- [ ] 구입 금액을 입력 받는 기능 - inputPurchasePrice
+- [x] 구입 금액을 입력 받는 기능 - inputPurchasePrice
       로또 한장당 1000원이다.
 - [x] 예외 처리 -validate
       1000원으로 떨어지지 않을 시 예외처리
       숫자인지 확인
-- [ ] 로또를 발행하는 기능 - createMyLottos
-- [ ] 발행된 로또를 출력하는 기능 - printLottos
+- [x] 로또를 발행하는 기능 - createMyLottos
+- [x] 발행된 로또를 출력하는 기능 - printLottos
   - Lotto 클래스를 받고 출력
 
 로또 당첨번호 설정#LottoSetting

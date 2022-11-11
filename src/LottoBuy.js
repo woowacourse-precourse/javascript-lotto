@@ -1,12 +1,18 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { INPUT, LOTTO, EXCEPTION } = require("./lib/library");
+const { INPUT, PRINT, LOTTO, EXCEPTION } = require("./lib/library");
 const Lotto = require("./Lotto");
 
 class LottoBuy {
-  #Lottos;
+  #lottos = [];
 
-  inputPurchasePrice() {
-    Console.readline(INPUT.BUY, (price) => {});
+  main() {
+    Console.readLine(INPUT.BUY, this.inputPurchasePrice.bind(this));
+  }
+
+  inputPurchasePrice(price) {
+    this.validate(price);
+    this.createMyLottos(price / LOTTO.PRICE);
+    this.printLottos();
   }
 
   validate(price) {
@@ -17,9 +23,16 @@ class LottoBuy {
   createMyLottos(count) {
     for (let i = 0; i < count; i++) {
       const lotto = new Lotto();
-      this.#Lottos.push(lotto);
+      this.#lottos.push(lotto);
     }
   }
 
-  printLottos() {}
+  printLottos() {
+    Console.print(PRINT.BUY(this.#lottos.length));
+    this.#lottos.forEach((lotto) => {
+      lotto.printNumbers();
+    });
+  }
 }
+
+module.exports = LottoBuy;
