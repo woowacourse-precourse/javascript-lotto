@@ -1,8 +1,10 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+
+const { Random, Console } = MissionUtils;
+
 class Lotto {
   #numbers;
-
   /**
-   *
    * @param {array} numbers: 6자리의 숫자 배열
    */
   constructor(numbers) {
@@ -15,8 +17,6 @@ class Lotto {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
   }
-
-  // TODO: 추가 기능 구현
 }
 
 module.exports = Lotto;
