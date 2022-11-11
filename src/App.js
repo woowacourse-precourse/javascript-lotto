@@ -20,7 +20,7 @@ class App {
       Console.readLine("구매금액을 입력해 주세요.\n", (input) => {
         if (!this.isValidInput(input)) {
           reject(() => {
-            throw new Error("유효하지 않은값");
+            throw new Error("[ERROR]유효하지 않은값");
           });
         } else resolve(input);
       });
