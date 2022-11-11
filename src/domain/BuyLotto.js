@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const Exceptions = require("../domain/exception");
+const Exceptions = require("./Exception");
 
 let exception = new Exceptions();
 
@@ -11,8 +11,8 @@ class BuyLotto {
 
   getLotto() {
     MissionUtils.Console.readLine("구입 금액 입력.", (pay) => {
-      exception.inputNotNumber(pay);
-      exception.priceNotThousands(pay);
+      exception.checkInputNotNumber(pay);
+      exception.checkPriceNotThousands(pay);
       this.price = Number(pay);
       this.lottoCount = this.price / 1000;
       MissionUtils.Console.print(`${this.lottoCount}개 구입`);

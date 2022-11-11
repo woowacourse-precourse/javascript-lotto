@@ -237,12 +237,18 @@ class Lotto {
 
 ## 기능 목록
 
-1. [o] 로또 구입 금액을 입력 받는다. -buyLottoPrice
-2. [o] 발행한 로또 수량을 출력한다. - buyLottoCount
+**BuyLotto**
+1. [o] 로또 구입 금액을 입력 받는다. -getLotto
+2. [o] 발행한 로또 수량을 출력한다. - BuyLotto.count
 3. [o] 로또 번호를 출력한다.  -printLotto
-  3-1 [o] 로또 번호는 오름차순 정렬한다. -sortLotto
-4. [ ] 당첨 번호를 입력 받는다. - lottoNumber
-5. [ ] 보너스번호를 입력받는다. - bonusNumber
+  3-1 [o] 로또 번호는 오름차순 정렬한다.
+
+**GetWinLotto**
+4. [o] 당첨 번호를 입력 받는다. - getLottoNumber
+  4-1 [o] 당첨 번호는 쉼표(,)를 기준으로 구분한다.
+5. [o] 보너스번호를 입력받는다. - getBonusNumber
+
+**CheckLotto**
 6. [ ]당첨 내역을 출력한다 - resultLotto
 7. [ ]총 수익률을 출력한다 - earningsRate
   7-1 [ ]총 수익률은 소숫점 둘째 자리에서 반올림한다 -roundOffEarningsRate
@@ -252,12 +258,12 @@ class Lotto {
   **buyLottoPrice**
     구입 금액은 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우
     구입 금액이 숫자가 아닌 경우
-  **lottoNumber**
+  **getLottoNumber**
     당첨번호가 6개가 아닌 경우
     당첨번호가 숫자가 아닌 경우
     당첨 번호에 중복이 있는 경우
     당첨 번호가 1-45를 벗어나는 경우
-  **bonusNumber**
+  **getBonusNumber**
     보너스번호가 숫자가 아닌경우
-    보너스번호가 당첨 번호가 1-45를 벗어나는 경우
+    보너스번호가 1-45를 벗어나는 경우
     보너스번호가 당첨번호와 중복인경우
