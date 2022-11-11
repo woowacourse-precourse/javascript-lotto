@@ -15,9 +15,13 @@ const getHowManyLottos = (money) => {
   const lottos = [];
 
   while (lottos.length < numberOfTicket) {
-    lottos.push(Random.pickUniqueNumbersInRange(1, 45, 6));
+    lottos.push(
+      Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b)
+    );
   }
-  return lottos;
+  lottos.forEach((lotto) => {
+    Console.print(lotto);
+  });
 };
 
 // 아래는 구입금액, 당첨번호 입력받기 관련 함수들
