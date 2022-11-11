@@ -14,6 +14,7 @@ const calculateMatch = (lottos, totalNumber, bonusNumber) => {
     "4등": 0,
     "5등": 0,
   };
+  const account = lottos.length * 1000;
 
   for (const lotto of lottos) {
     let count = 0;
@@ -50,6 +51,19 @@ const calculateMatch = (lottos, totalNumber, bonusNumber) => {
     `5개 일치, 보너스 볼 일치 (30,000,000원) - ${rank["2등"]}개`
   );
   MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${rank["1등"]}개`);
+
+  MissionUtils.Console.print(
+    `총 수익률은 ${
+      ((rank["5등"] * 5000 +
+        rank["4등"] * 50000 +
+        rank["3등"] * 1500000 +
+        rank["2등"] * 30000000 +
+        rank["1등"] * 30000000) /
+        account) *
+      100
+    }%입니다.`
+  );
+  MissionUtils.Console.close();
 };
 
 module.exports = {
