@@ -19,7 +19,7 @@ class Lotto {
     }
   }
 
-  checkBonusNum(numbers){
+  checkBonusNumLength(numbers){
     if (numbers.length !== 1){
       throw new Error("[ERROR] 로또 번호는 1개여야 합니다.");
     }
