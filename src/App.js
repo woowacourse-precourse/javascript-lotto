@@ -70,6 +70,7 @@ class App {
         throw new Error(ERROR_MESSAGE.manyInputPrize);
 
       this.#userPrizeNumber = prizeNumberArray;
+      this.setBonusNumber();
     });
   }
 
