@@ -66,6 +66,8 @@ class App {
       this.validateBonusNumber(number);
       this.bonusNumber = number;
       this.getResult();
+      this.printResult();
+      Console.close();
     });
   }
 
@@ -99,6 +101,30 @@ class App {
     } else if (matchCount === 3) {
       this.result.fifth += 1;
     }
+  }
+
+  printResult() {
+    const winnings = this.getWinnings();
+    const RateOfReturn = (winnings / this.myMoney * 100).toFixed(1);
+    const result = `
+당첨 통계
+---
+3개 일치 (5,000원) - ${this.result.fifth}개
+4개 일치 (50,000원) - ${this.result.fourth}개
+5개 일치 (1,500,000원) - ${this.result.third}개
+5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.result.second}개
+6개 일치 (2,000,000,000원) - ${this.result.first}개
+총 수익률은 ${RateOfReturn}%입니다.`;
+    Console.print(result);
+  }
+
+  getWinnings() {
+    const firstWinnings = this.result.first * 2000000000;
+    const secondWinnings = this.result.second * 30000000;
+    const thirdWinnings = this.result.third * 1500000;
+    const fourthWinnings = this.result.fourth * 50000;
+    const fifthWinnings = this.result.fifth * 5000;
+    return firstWinnings + secondWinnings + thirdWinnings + fourthWinnings + fifthWinnings;
   }
 }
 
