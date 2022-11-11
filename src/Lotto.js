@@ -6,6 +6,7 @@ class Lotto {
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
+    this.insertBonusNumber(this.#numbers);
   }
   validate(numbers) {
     if (numbers.length != 6) {
@@ -20,18 +21,30 @@ class Lotto {
         throw new Error('[ERROR] 당첨번호는 1~45 까지의 숫자만 가능합니다.');
       }
     }
-    this.test();
   }
-  test() {
-    MissionUtils.Console.print('test');
+  insertBonusNumber(numbers) {
+    MissionUtils.Console.readLine('보너스번호를 입력해주세요.\n', (num) => {
+      const bonusNumber = parseInt(num);
+      if (numbers.includes(bonusNumber)) {
+        throw new Error(
+          '[ERROR] 보너스 번호가 당첨 번호 중 중복되는 숫자입니다.'
+        );
+      }
+      if (bonusNumber <= 0 || bonusNumber >= 46) {
+        throw new Error('[ERROR] 보너스번호는 1~45 까지의 숫자만 가능합니다.');
+      }
+    });
   }
+  // test() {
+  //   MissionUtils.Console.print('test');
+  //   MissionUtils.Console.print(this.#numbers);
+  // }
 }
 
 // 당첨번호 입력 메소드
 function insertLottoNumber() {
   MissionUtils.Console.readLine('당첨번호를 입력해주세요.\n', (num) => {
     const lottoNumber = num.split(',').map((element) => parseInt(element));
-    MissionUtils.Console.print(lottoNumber);
     const lotto = new Lotto(lottoNumber);
   });
 }
