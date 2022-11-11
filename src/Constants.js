@@ -1,5 +1,6 @@
 const MESSAGE = Object.freeze({
     ENTER_CASH: "구입금액을 입력해 주세요.\n",
+    BUY_LOTTOS_COUNT: "개를 구매했습니다."
 })
 
 const ERROR = Object.freeze({
