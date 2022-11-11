@@ -1,4 +1,5 @@
 const { LOTTO_ERROR_MESSAGES, LOTTO_NUMBER_RANGE } = require('./Constant');
+const utils = require('./Utils');
 
 class Lotto {
   #numbers;
@@ -21,6 +22,20 @@ class Lotto {
   // TODO: 추가 기능 구현
   ascendingSortLottoArray() {
     this.#numbers.sort((a, b) => a - b);
+  }
+
+  static generateLottoArray(generateNumber) {
+    const lottoNumbers = [];
+    for (let i = generateNumber; i === 0; i -= 1) {
+      lottoNumbers.push(
+        utils.generateRandomNumberArray(
+          LOTTO_NUMBER_RANGE.MIN_RANGE,
+          LOTTO_NUMBER_RANGE.MAX_RANGE,
+          LOTTO_NUMBER_RANGE.LENGTH,
+        ),
+      );
+    }
+    return lottoNumbers;
   }
 }
 
