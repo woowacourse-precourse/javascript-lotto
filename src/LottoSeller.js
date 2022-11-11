@@ -5,12 +5,18 @@ const Validator = require('./Validator');
 class LottoSeller {
   #lottos;
 
+  #LOTTO_PRICE = 1000;
+
   set lottos(lottoList) {
     this.#lottos = lottoList;
   }
 
   get lottos() {
     return this.#lottos;
+  }
+
+  get lottoPrice() {
+    return this.#LOTTO_PRICE;
   }
 
   isValidMoney(input) {
@@ -22,6 +28,11 @@ class LottoSeller {
     // 양수인지 확인
     // 1000으로 나누어떨어지는지 확인
     // --> NumberTools 같은애 만들어서 확인 NumberUtil
+  }
+
+  countLottoTicket(money) {
+    this.isValidMoney(money);
+    return money / this.lottoPrice;
   }
 
   // count 개수만큼 로또 발행
@@ -41,7 +52,7 @@ class LottoSeller {
   purchase = (money) => {
     //  검증()
     // 하나씩 배열에 추가
-    this.issueLotto(/* this.countLottoTicket(money) */);
+    this.issueLotto(this.countLottoTicket(money));
   };
 }
 
