@@ -6,10 +6,10 @@ const Validator = require('./Validator');
 
 class App {
   constructor() {
-    this.lottoCount = 0;
-    this.winningNumbers = [];
-    this.userLottoList = [];
-    this.bonusNumber = 0;
+    this.lotto;
+    this.lottoCount;
+    this.userLottoList;
+    this.bonusNumber;
     this.prizeResult = {
       first: 0,
       second: 0,
@@ -45,7 +45,7 @@ class App {
     Console.readLine('', (inputValue) => {
       Validator.throwErrorIfInValidFormOfWinningNumber(inputValue);
       const winningNumbers = inputValue.split(',').map((num) => Number(num));
-      this.winningNumbers = winningNumbers;
+      this.lotto = new Lotto(winningNumbers);
       this.getBonusNumber();
     });
   }
@@ -54,39 +54,26 @@ class App {
     // 비즈니스 로직
     Console.print('보너스 번호를 입력해 주세요.');
     Console.readLine('', (bonusNumber) => {
+      Validator.throwErrorIfInValidBonusNumber(
+        this.lotto.winningNumbers,
+        bonusNumber
+      );
       this.bonusNumber = Number(bonusNumber);
       this.setPrizeResult();
     });
   }
 
   setPrizeResult() {
-    // 비즈니스 로직
-    this.prizeResult = this.userLottoList.reduce((acc, cur) => {
-      const sameNumberCount = GameTools.getMachingNumberCount(
-        cur,
-        this.winningNumbers
-      );
-      const isBonusNumberMatch = cur.includes(this.bonusNumber);
-      if (sameNumberCount === 6) acc.first += 1;
-      if (sameNumberCount === 5 && isBonusNumberMatch) acc.second += 1;
-      if (sameNumberCount === 5 && !isBonusNumberMatch) acc.third += 1;
-      if (sameNumberCount === 4) acc.fourth += 1;
-      if (sameNumberCount === 3) acc.fifth += 1;
-
-      return acc;
-    }, this.prizeResult);
+    this.prizeResult = this.lotto.prizeResult(
+      this.userLottoList,
+      this.bonusNumber,
+      this.prizeResult
+    );
     this.printResult();
   }
 
   printResult() {
-    // 비즈니스 로직
-    Console.print(`3개 일치 (5,000원) - ${this.prizeResult.fifth}개`);
-    Console.print(`4개 일치 (50,000원) - ${this.prizeResult.fourth}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${this.prizeResult.third}개`);
-    Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.prizeResult.second}개`
-    );
-    Console.print(`6개 일치 (2,000,000,000원) - ${this.prizeResult.first}개`);
+    Render.winningResult(this.prizeResult);
     this.getTotalEarningRate();
   }
 
