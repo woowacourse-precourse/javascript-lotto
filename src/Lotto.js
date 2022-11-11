@@ -41,10 +41,11 @@ class Lotto {
     if (this.#numbers.includes(bonus)) throw new Error("[ERROR] 보너스 겹침");
   }
 
-  calculate(lottoList, bonus) {
+  calculate(money, lottoList, bonus) {
     const statistic = this.calculateStatistics(lottoList, bonus);
     const rank = this.calculateRank(statistic);
     this.showMatchResult(rank);
+    this.showRateOfReturn(money, rank);
   }
 
   calculateStatistics(lottoList, bonusNumber) {
@@ -73,12 +74,25 @@ class Lotto {
   }
 
   showMatchResult(result) {
-    Console.print("당첨 통계\n---\n");
+    Console.print("\n당첨 통계\n---");
     Console.print(`3개 일치 (5,000원) - ${result[0]}개`);
     Console.print(`4개 일치 (50,000원) - ${result[1]}개`);
     Console.print(`5개 일치 (1,500,000원) - ${result[2]}개`);
     Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${result[4]}개`);
     Console.print(`6개 일치 (2,000,000,000원) - ${result[3]}개`);
+  }
+
+  showRateOfReturn(seed, profit) {
+    const seedMoney = seed * 1000;
+    const priceByCorrection = [5000, 50000, 1500000, 2000000000, 30000000];
+    const totalProfit = profit.reduce(
+      (acc, cur, idx) => acc + cur * priceByCorrection[idx],
+      0
+    );
+    Console.print(
+      `총 수익률은${((totalProfit / seedMoney) * 100).toFixed(1)}%입니다.`
+    );
+    Console.close();
   }
 }
 

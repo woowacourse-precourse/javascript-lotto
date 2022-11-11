@@ -18,7 +18,7 @@ class LottoGenerator {
   }
 
   printTicketAmount(ticket) {
-    Console.print(`${ticket}개를 구매했습니다.`);
+    Console.print(`\n${ticket}개를 구매했습니다.`);
   }
 
   printTicketList(tickets) {
