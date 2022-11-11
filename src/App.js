@@ -27,7 +27,7 @@ class App {
       let RandomNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
       MissionUtils.Console.print(`[${RandomNumber.join(',')}]`);
       this.Lotto.validate(RandomNumber);
-      this.Lottobuynumber.push(`${RandomNumber}`)
+      this.Lottobuynumber.push(RandomNumber)
     }
   }
   inputLottoNumber(){
@@ -40,6 +40,7 @@ class App {
     this.getInputMaxMin(numbers)
     this.Lotto.validate(numbers)
     this.Winnumber = numbers
+    this.checkNumber()
   }
   getInputMaxMin(numbers){
     for (let i in numbers){
@@ -47,8 +48,14 @@ class App {
     }
     const max = Math.max(...numbers)
     const min = Math.min(...numbers)
-    console.log(max,min)
     this.Lotto.validateInputRange(max,min)
+  }
+  checkNumber(){
+    console.log(this.Lottobuynumber)
+    for (let i=0; i<this.Lottobuynumber.length; i++){
+      let correctNumber = this.Lottobuynumber[i].filter(x=> this.Winnumber.includes(x))
+      console.log(correctNumber)
+    }
   }
 }
 
