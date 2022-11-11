@@ -1,15 +1,15 @@
 const countCorrectNumber = require('../src/utils/countCorrectNumber');
-const getLottoQuantity = require('../src/utils/getLottoQuantity');
+const getLottoQuantity = require('../src/utils/getLotteryQuantity');
 const isBonusNumberCorrect = require('../src/utils/isBonusNumberCorrect');
 const returnMyRank = require('../src/utils/returnMyRank');
 
 describe('유틸 함수 동작 테스트', () => {
-  //   test('금액에 맞는 구매 로또의 개수를 리턴하는 함수', () => {
-  //     expect(getLottoQuantity('11000')).toBe(11);
-  //     expect(getLottoQuantity('1000')).toBe(1);
-  //     expect(getLottoQuantity('31200')).toBe(31);
-  //     expect(getLottoQuantity('500')).toBe(0);
-  //   });
+  test('금액에 맞는 구매 로또의 개수를 리턴하는 함수', () => {
+    expect(getLottoQuantity('11000')).toBe(11);
+    expect(getLottoQuantity('1000')).toBe(1);
+    expect(getLottoQuantity('31200')).toBe(31);
+    expect(getLottoQuantity('500')).toBe(0);
+  });
 
   test('구매 로또의 정답 개수를 리턴하는 함수', () => {
     expect(countCorrectNumber([1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7])).toBe(5);
