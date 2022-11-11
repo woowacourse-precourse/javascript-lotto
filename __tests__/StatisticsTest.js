@@ -32,7 +32,6 @@ describe("compareBonus Number Test", () => {
     const bonusNumber = "13";
     const statistics = new Statistics(totalLottoNumber, winnerNumber, bonusNumber);
     const result = statistics.getNumberOfMatchingNumbersRanked(numbers);
-
     expect(result).toBe(5);
   });
 });

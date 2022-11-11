@@ -24,6 +24,10 @@ const getLogSpy = () => {
 };
 
 describe("로또 테스트", () => {
+  let app;
+  beforeEach(() => {
+    app = new App();
+  });
   test("기능 테스트", () => {
     mockRandoms([
       [8, 21, 23, 41, 42, 43],
@@ -54,7 +58,6 @@ describe("로또 테스트", () => {
       "총 수익률은 62.5%입니다.",
     ];
     const logSpy = getLogSpy();
-    const app = new App();
     app.play();
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
@@ -64,7 +67,6 @@ describe("로또 테스트", () => {
   test("예외 테스트", () => {
     mockQuestions(["1000j"]);
     expect(() => {
-      const app = new App();
       app.play();
     }).toThrow("[ERROR]");
   });
@@ -72,7 +74,6 @@ describe("로또 테스트", () => {
   test("입력값이 0일때 ", () => {
     mockQuestions(["0"]);
     expect(() => {
-      const app = new App();
       app.inputMoney(0);
     }).toThrow("[ERROR] 구입 금액은 1000원 단위 입니다.");
   });
@@ -80,7 +81,6 @@ describe("로또 테스트", () => {
   test("입력값이 1000단위로 나눠지지 않을때 ", () => {
     mockQuestions(["1100"]);
     expect(() => {
-      const app = new App();
       app.inputMoney(0);
     }).toThrow("[ERROR] 구입 금액은 1000원 단위 입니다.");
   });
@@ -90,7 +90,6 @@ describe("로또 테스트", () => {
       mockQuestions(["1000", "8, 21, 23, 41, 42 43"]);
       mockRandoms([[8, 21, 23, 41, 42, 43]]);
       expect(() => {
-        const app = new App();
         app.play();
       }).toThrow("[ERROR] 쉼표(,)를 기준으로 6자리를 입력해주세요");
     });
@@ -99,7 +98,6 @@ describe("로또 테스트", () => {
       mockQuestions(["1000", "8, 21, 23, 41, 42, 42"]);
       mockRandoms([[8, 21, 23, 41, 42, 43]]);
       expect(() => {
-        const app = new App();
         app.play();
       }).toThrow("[ERROR] 중복없이 숫자를 입력해주세요.");
     });
@@ -108,7 +106,6 @@ describe("로또 테스트", () => {
       mockQuestions(["1000", "8, 21, 23, 41, 42, 43", "0"]);
       mockRandoms([[8, 21, 23, 41, 42, 43]]);
       expect(() => {
-        const app = new App();
         app.play();
       }).toThrow("[ERROR] 1에서 45까지의 번호를 입력해주세요");
     });
