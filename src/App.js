@@ -1,5 +1,13 @@
+const User = require('./User');
+const Lotto = require('./Lotto');
 class App {
-  play() {}
+  play() {
+    const user = new User();
+    user.input_amount();
+  }
 }
 
 module.exports = App;
+
+const app = new App();
+app.play();

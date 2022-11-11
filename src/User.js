@@ -1,4 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+const Lottos = require('./Lottos');
 class User {
   constructor() {
     this.amount = '';
@@ -26,7 +27,9 @@ class User {
       }
       const COUNT = amount / 1000;
       this.setAmount(amount);
-      return MissionUtils.Console.print(`\n${COUNT}개를 구매했습니다.`);
+      MissionUtils.Console.print(`\n${COUNT}개를 구매했습니다.`);
+      const lottos = new Lottos(COUNT);
+      lottos.issue_lottos();
     });
   }
 

@@ -13,6 +13,12 @@ class Lottos {
     NUMBERS = LOTTO.order_lotto();
     return NUMBERS;
   }
+
+  issue_lottos() {
+    for (let i = 0; i < this.number; i++) {
+      MissionUtils.Console.print(this.issue_one_lotto());
+    }
+  }
 }
 
 module.exports = Lottos;
