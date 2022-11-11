@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { INGAME_MESSAGE, PICK_TYPE } = require('./Constants');
+const { INGAME_MESSAGE, PICK_TYPE, RANK_INDEX, RANK_REWARD, RANK_PRINT } = require('./Constants');
 const Lotto = require('./Lotto');
 const Consumer = require('./Consumer');
 
@@ -33,56 +33,45 @@ class LotteryManager {
   }
 
   checkWinLottery(bonusNumber) {
-    const winCountList = [];
-    const winBonusCountList = [];
-    this.#Consumer.LotteryList.forEach((lotto) => {
-      const { winCount, winBonusCount } = this.#Lotto.checkWin(lotto, bonusNumber);
-      winCountList.push(winCount);
-      winBonusCountList.push(winBonusCount);
+    const winList = [0, 0, 0, 0, 0, 0];
+    let total = 0;
+
+    this.#Consumer.lotteryList.forEach((lotto) => {
+      const [winCount, winBonusCount] = this.#Lotto.checkWin(lotto, bonusNumber);
+      const { winIndex, reward } = this.countLottery(winCount, winBonusCount);
+      winList[winIndex] += 1;
+      total += reward;
     });
 
-    this.countLottery(winCountList, winBonusCountList);
+    this.printLottery(winList);
+    this.printProfit(total);
   }
 
-  countLottery(winCountList, winBonusCountList) {
-    // 추후 수정 필요
-    let total = 0;
-    const winList = [0, 0, 0, 0, 0];
-    for (let index = 0; index < winCountList.length; index += 1) {
-      if (winCountList[index] === 3) {
-        total += 5000;
-        winList[0] += 1;
-      } else if (winCountList[index] === 4) {
-        total += 50000;
-        winList[1] += 1;
-      } else if (winCountList[index] === 5 && winBonusCountList[index] === 0) {
-        total += 1500000;
-        winList[2] += 1;
-      } else if (winCountList[index] === 5 && winBonusCountList[index] === 1) {
-        total += 30000000;
-        winList[3] += 1;
-      } else if (winCountList[index] === 6) {
-        total += 2000000000;
-        winList[4] += 1;
-      }
-    }
-
-    this.printLottery(winList);
-    this.printYield(total);
+  // 아예 몇등인지 리턴해주는게 더 좋을거같음
+  countLottery(winCount, winBonusCount) {
+    if (winCount === 6) return { winIndex: RANK_INDEX.first, reward: RANK_REWARD.first };
+    if (winCount === 5 && winBonusCount) return { winIndex: RANK_INDEX.second, reward: RANK_REWARD.second };
+    if (winCount === 5) return { winIndex: RANK_INDEX.third, reward: RANK_REWARD.third };
+    if (winCount === 4) return { winIndex: RANK_INDEX.fourth, reward: RANK_REWARD.fourth };
+    if (winCount === 3) return { winIndex: RANK_INDEX.fifth, reward: RANK_REWARD.fifth };
+    return { winIndex: RANK_INDEX.lose, reward: RANK_REWARD.lose };
   }
 
   printLottery(winList) {
     // 추후 수정 필요
-    Console.print(`3개 일치 (5,000원) - ${winList[0]}`);
-    Console.print(`4개 일치 (50,000원) - ${winList[1]}`);
-    Console.print(`5개 일치 (1,500,000원) - ${winList[2]}`);
-    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${winList[3]}`);
-    Console.print(`6개 일치 (2,000,000,000원) - ${winList[4]}`);
+    Console.print(`${INGAME_MESSAGE.statistic}`);
+    Console.print(`${RANK_PRINT.fifth}${winList[RANK_INDEX.fifth]}개`);
+    Console.print(`${RANK_PRINT.fourth}${winList[RANK_INDEX.fourth]}개`);
+    Console.print(`${RANK_PRINT.third}${winList[RANK_INDEX.third]}개`);
+    Console.print(`${RANK_PRINT.second}${winList[RANK_INDEX.second]}개`);
+    Console.print(`${RANK_PRINT.first}${winList[RANK_INDEX.first]}개`);
   }
 
-  printYield(total) {
+  printProfit(total) {
     // 추후 수정 필요
-    Console.print(total);
+    const money = this.#Consumer.getMoney();
+    const profit = ((total / money) * 100).toFixed(1);
+    Console.print(`총 수익률은 ${profit}%입니다.`);
   }
 }
 
