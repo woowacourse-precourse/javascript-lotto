@@ -1,10 +1,12 @@
 class BonusNumber {
   constructor(userLotto, bonus) {
     this.userLotto = userLotto;
+
     this.checkOnlyNumber(bonus);
     this.checkNumberRanges(bonus);
     this.checkDuplicateWithWinningNumber(bonus);
-    this.bonusNumber = Number(bonus);
+
+    this.userBonus = Number(bonus);
   }
 
   checkOnlyNumber(bonus) {
