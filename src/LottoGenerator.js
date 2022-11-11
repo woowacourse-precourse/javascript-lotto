@@ -2,12 +2,11 @@ const { Console, Random } = require("@woowacourse/mission-utils");
 
 class LottoGenerator {
   ticketLists;
-  tickets;
   constructor(ticketAmount) {
     this.ticketLists = this.generateLottoNumber(Number(ticketAmount));
     this.printTicketAmount(ticketAmount);
-    this.tickets = this.sortAscending(this.ticketLists);
-    this.printTicketList(this.tickets);
+    this.sortAscending(this.ticketLists);
+    this.printTicketList(this.ticketLists);
   }
 
   generateLottoNumber(ticketNumber) {
