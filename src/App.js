@@ -27,23 +27,20 @@ class App {
 
     this.lottoBundle = getLottoBundle(amount);
     this.view.printBoughtLotto(amount, this.lottoBundle);
-    this.createWinningNumbers();
+
+    Console.readLine(MESSAGE.BUY, (numbers) => this.createWinningNumbers(numbers));
   }
 
-  createWinningNumbers() {
-    Console.readLine(MESSAGE.CREATE_WINNING_NUMBERS, (numbers) => {
-      this.winningNumbers = convertWinningNumbers(numbers);
-      this.lotto = new Lotto(this.winningNumbers);
-      this.createBonusNumber();
-    });
+  createWinningNumbers(numbers) {
+    this.winningNumbers = convertWinningNumbers(numbers);
+    this.lotto = new Lotto(this.winningNumbers);
+    Console.readLine(MESSAGE.CREATE_BONUS_NUMBER, (number) => this.createBonusNumber(number));
   }
 
-  createBonusNumber() {
-    Console.readLine(MESSAGE.CREATE_BONUS_NUMBER, (number) => {
-      this.bonus = Number(number);
-      new Bonus(this.bonus, this.winningNumbers);
-      this.createWinningStatistics();
-    });
+  createBonusNumber(number) {
+    this.bonus = Number(number);
+    new Bonus(this.bonus, this.winningNumbers);
+    this.createWinningStatistics();
   }
 
   createWinningStatistics() {
