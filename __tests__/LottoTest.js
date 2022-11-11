@@ -1,7 +1,7 @@
 const Lotto = require("../src/Lotto");
 const App = require("../src/App");
 
-describe("입력 예외 발생 테스트", () => {
+describe("입력 테스트", () => {
   const APP = new App();
 
   test("입력한 로또 구매 비용이 숫자가 아니면 예외가 발생한다.", () => {
@@ -16,6 +16,26 @@ describe("입력 예외 발생 테스트", () => {
       const INPUT = "20500";
       APP.checkCost(INPUT)
     }).toThrow("[ERROR]")
+  });
+
+  test("입력한 로또 번호 중 숫자가 아닌 것이 있으면 예외가 발생한다.", () => {
+    expect(() => {
+      const INPUT = "1,2,a,4,5,6";
+      APP.convertSixInputsToNumbers(INPUT)
+    }).toThrow("[ERROR]")
+  });
+
+  test("입력한 로또 번호에 콤마가 올바르지 않게 들어있으면 예외가 발생한다.", () => {
+    expect(() => {
+      const INPUT = "1,2,3,4,5,6,";
+      APP.convertSixInputsToNumbers(INPUT)
+    }).toThrow("[ERROR]")
+  });
+
+  test("로또 번호를 올바르게 입력했다면 숫자로 변환이 가능하다", () => {
+    const INPUT = "1,3,5,7,10,13";
+    const RESULT = APP.convertSixInputsToNumbers(INPUT);
+    expect(RESULT).toEqual([1, 3, 5, 7, 10, 13])
   });
 })
 
