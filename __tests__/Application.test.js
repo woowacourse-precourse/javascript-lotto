@@ -203,3 +203,11 @@ describe('랜덤 숫자 생성 함수 테스트', () => {
     expect(Application.createUniqueNumbers(START, END, LENGTH)).toHaveLength(LENGTH);
   });
 });
+
+describe('정수 판단 함수 테스트', () => {
+  test('메소드 이름은 "validateInteger"로 정의된다.', () => {
+    const METHOD_NAME = 'validateInteger';
+
+    expect(Application.validateInteger.name).toEqual(METHOD_NAME);
+  });
+});
