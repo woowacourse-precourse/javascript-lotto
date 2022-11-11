@@ -26,3 +26,4 @@
 - [ ] 단위 테스트
   - [ ] 클래스 별 기능 단위 테스트
   - [ ] ExceptionTest 
+  - [ ] LottoGameTest
