@@ -19,4 +19,12 @@ describe("결과 테스트", () => {
 
     expect(result.rank).toStrictEqual([0, 0, 0, 0, 1]);
   });
+
+  test("총 상금 산출", () => {
+    const result = new Result([[1, 2, 3, 4, 5, 7]], [1, 2, 3, 4, 5, 6], 7);
+
+    const finalPrize = result.getPrize();
+
+    expect(finalPrize).toBe(30000000);
+  });
 });
