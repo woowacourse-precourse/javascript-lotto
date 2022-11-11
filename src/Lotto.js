@@ -44,7 +44,7 @@ class Lotto {
         this.amount,
         this.lottoArray,
         this.#numbers,
-        bonusNumber.bonusNumber
+        bonusNumber.userBonus
       );
     });
   }
