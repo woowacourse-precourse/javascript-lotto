@@ -3,7 +3,20 @@ class Lotto {
 
   constructor(winnigNumbers) {
     this.validate(winnigNumbers, 6);
-    this.#numbers = winnigNumbers;
+    this.#numbers = this.castWinningNumbers(winnigNumbers);
+  }
+
+  getWinningNumbers() {
+    return this.#numbers;
+  }
+
+  setWinningNumbers(bonusNumber) {
+    this.validate([...this.#numbers, bonusNumber], 7);
+    this.#numbers.push(Number(bonusNumber));
+  }
+
+  castWinningNumbers(winnigNumbers) {
+    return winnigNumbers.map((number) => Number(number));
   }
 
   validate(winnigNumbers, length) {
@@ -20,18 +33,19 @@ class Lotto {
     }
   }
 
-  validateDuplication(winnigNumbers) {
-    if (new Set(winnigNumbers).size !== winnigNumbers.length) {
-      throw new Error('[ERROR] 로또 번호에 중복된 수가 존재하면 안됩니다.');
-    }
-  }
-
   validateType(winnigNumbers) {
     winnigNumbers.forEach((number) => {
       if (!Number(number)) {
         throw new Error('[ERROR] 로또 번호는 숫자여야 합니다.');
       }
     });
+  }
+
+  validateDuplication(winnigNumbers) {
+    const removedDuplicateWinningNumbers = new Set(this.castWinningNumbers(winnigNumbers));
+    if (removedDuplicateWinningNumbers.size !== winnigNumbers.length) {
+      throw new Error('[ERROR] 로또 번호에 중복된 수가 존재하면 안됩니다.');
+    }
   }
 
   validateRange(winnigNumbers) {
@@ -48,15 +62,6 @@ class Lotto {
         throw new Error('[ERROR] 로또 번호에 공백이 포함되면 안됩니다.');
       }
     });
-  }
-
-  getWinningNumbers() {
-    return this.#numbers;
-  }
-
-  setWinningNumbers(bonusNumber) {
-    this.#numbers.push(bonusNumber);
-    this.validate(this.#numbers, 7);
   }
 }
 
