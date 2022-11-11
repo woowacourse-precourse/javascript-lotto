@@ -6,7 +6,7 @@ const {
 } = require('./libs/const');
 
 class App {
-  #lottoArr = [];
+  #totalLotto = [];
 
   play() {
     this.start();
@@ -19,7 +19,27 @@ class App {
     });
   }
 
-  purchase(money) {}
+  purchase(money) {
+    const count = money / 1000;
+    Console.print(`${count}${BUY_MESSAGE}`);
+    for (let i = 0; i < count; i += 1) {
+      const lottoArray = this.setLotto();
+      const stringArray = this.convertFromArrayToString(lottoArray);
+      Console.print(stringArray);
+      this.#totalLotto.push(lottoArray);
+    }
+  }
+
+  convertFromArrayToString(array) {
+    const lastIndex = array.length - 1;
+    const initialValue = '';
+    const arrStr = array.reduce((previousValue, currentValue, index) => {
+      if (index !== lastIndex) return `${previousValue}${currentValue}, `;
+      return `${previousValue}${currentValue}`;
+    }, initialValue);
+    const string = `[${arrStr}]`;
+    return string;
+  }
 
   setLotto() {
     const randomArr = Random.pickUniqueNumbersInRange(1, 45, 6);
