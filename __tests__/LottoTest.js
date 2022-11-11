@@ -20,6 +20,12 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
+  test("로또 번호가 1~45 범위를 벗어나면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([101, 1, 2, 3, 4, 5]);
+    }).toThrow("[ERROR]");
+  });
+
   test("로또 번호 출력 하기", () => {
     const logSpy = getLogSpy();
     const lottos = [

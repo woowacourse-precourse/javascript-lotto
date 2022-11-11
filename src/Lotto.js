@@ -1,11 +1,17 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { Random, Console } = require("@woowacourse/mission-utils");
 
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
-    this.#numbers = numbers;
+    if (numbers !== undefined) {
+      this.validate(numbers);
+      this.#numbers = numbers;
+    }
+    if (numbers === undefined) {
+      this.#numbers = [];
+      this.createLottoNum();
+    }
   }
 
   validate(numbers) {
@@ -21,12 +27,17 @@ class Lotto {
     });
   }
 
+  createLottoNum() {
+    while (this.#numbers.length < 6) {
+      const number = Random.pickNumberInRange(1, 45);
+      if (!this.#numbers.includes(number)) this.#numbers.push(number);
+    }
+    this.#numbers.sort((a, b) => a - b);
+  }
+
   printNumbers() {
-    MissionUtils.Console.print(this.#numbers);
+    Console.print(this.#numbers);
   }
 }
-
-new Lotto([1, 2, 3, 4, 5, 6]).printNumbers();
-new Lotto([6, 12, 23, 34, 40, 45]).printNumbers();
 
 module.exports = Lotto;
