@@ -2,11 +2,13 @@ const { readLine, print } = require('./utils/ui');
 const { INPUT_MESSAGE, PRINT_MESSAGE } = require('./constants');
 const random = require('./utils/random');
 const validation = require('./validation');
+const Lotto = require('./Lotto');
 
 class App {
   constructor() {
     this.userLottoCount = 0;
     this.userLottoBundle = [];
+    this.winningNumber = [];
   }
 
   play() {
@@ -19,6 +21,7 @@ class App {
       this.userLottoCount = purchaseAmount / 1000;
       this.generateUserLotto(this.userLottoCount);
       this.printUserLottoBundle();
+      this.inputWinningNumber();
     });
   }
 
@@ -34,6 +37,12 @@ class App {
     this.userLottoBundle.forEach((lotto) => {
       const sortedLotto = lotto.sort((prev, next) => prev - next).join(', ');
       print(`[${sortedLotto}]`);
+    });
+  }
+
+  inputWinningNumber() {
+    readLine(INPUT_MESSAGE.WINNING_NUMBER, (numbers) => {
+      this.winningNumber = new Lotto(numbers).getLottoNumbers();
     });
   }
 }
