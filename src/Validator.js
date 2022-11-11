@@ -13,18 +13,16 @@ class Validator {
     }
   }
 
-  static throwErrorIfInvalidFormOfWinningNumber(inputValue) {
+  static throwErrorIfInvalidWinningNumbers(inputValue) {
+    const winningNumbers = inputValue.split(',');
     if (!REGEX.winningNumber.test(inputValue)) {
       throw Error(ERROR_MESSAGE.WINNING_NUM_FORM);
     }
-    inputValue.split(',').forEach((number) => {
-      if (number[0] === '0') {
+    winningNumbers.forEach((number) => {
+      if (number.startsWith('0')) {
         throw Error(ERROR_MESSAGE.INT_FORM);
       }
     });
-  }
-
-  static throwErrorIfInvalidWinningNumbers(winningNumbers) {
     if (winningNumbers.length !== LOTTO.LENGTH) {
       throw Error(ERROR_MESSAGE.LOTTO_NUM_LENGTH);
     }
@@ -46,7 +44,7 @@ class Validator {
     ) {
       throw Error(ERROR_MESSAGE.LOTTO_NUM_RANGE);
     }
-    if (winningNumbers.includes(Number(bonusNumber))) {
+    if (winningNumbers.split(',').includes(bonusNumber)) {
       throw Error(ERROR_MESSAGE.INCLUDED_WINNING_NUM);
     }
   }

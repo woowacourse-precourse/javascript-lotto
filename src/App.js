@@ -8,12 +8,12 @@ const { LOTTO, MESSAGE } = require('./constants');
 
 class App {
   constructor() {
-    this.lotto;
-    this.userLottos;
-    this.winningState = {
+    this.lotto = undefined;
+    this.userLottos = [];
+    this.stateOfPrize = {
       first: 0,
       second: 0,
-      third: 0,
+      tirth: 0,
       fourth: 0,
       fifth: 0,
     };
@@ -47,9 +47,7 @@ class App {
 
   askWinningNumbers() {
     Console.print(MESSAGE.ASK_WINNING_NUM);
-    Console.readLine('', (inputValue) => {
-      Validator.throwErrorIfInvalidFormOfWinningNumber(inputValue);
-      const winningNumbers = inputValue.split(',').map((num) => Number(num));
+    Console.readLine('', (winningNumbers) => {
       this.lotto = new Lotto(winningNumbers);
 
       this.askBonusNumber(winningNumbers);
@@ -66,11 +64,7 @@ class App {
   }
 
   printWinningStatistics(bonusNumber) {
-    this.lotto.checkStateOfPrize(
-      this.userLottos,
-      bonusNumber,
-      this.winningState
-    );
+    this.lotto.stateOfWinning(this.userLottos, bonusNumber, this.stateOfPrize);
 
     this.exitGame();
   }

@@ -7,31 +7,35 @@ class Lotto {
 
   constructor(numbers) {
     this.validate(numbers);
-    this.#numbers = numbers;
+    this.#numbers = numbers.split(',').sort((a, b) => a - b);
   }
 
   validate(numbers) {
     Validator.throwErrorIfInvalidWinningNumbers(numbers);
   }
 
-  checkStateOfPrize(userLottos, bonusNumber, initState) {
+  get winningNumbers() {
+    return this.#numbers;
+  }
+
+  stateOfWinning(userLottos, bonusNumber, stateOfPrize) {
     const winningState = userLottos.reduce((state, lotto) => {
       const matchingCount = GameTools.getMatchingNumCount(lotto, this.#numbers);
       const matchesBonusNumber = lotto.includes(Number(bonusNumber));
       if (matchingCount === 6) state.first += 1;
-      else if (matchingCount === 5 && matchesBonusNumber) state.second += 1;
+      if (matchingCount === 5 && matchesBonusNumber) state.second += 1;
       if (matchingCount === 5 && !matchesBonusNumber) state.third += 1;
       if (matchingCount === 4) state.fourth += 1;
       if (matchingCount === 3) state.fifth += 1;
 
       return state;
-    }, initState);
+    }, stateOfPrize);
 
-    this.checkRateOfReturn(winningState, userLottos.length);
+    this.calcRateOfReturn(winningState, userLottos.length);
   }
 
-  checkRateOfReturn(winningState, CountOfLotto) {
-    const rateOfReturn = GameTools.calcRateOfReturn(winningState, CountOfLotto);
+  calcRateOfReturn(winningState, countOfLotto) {
+    const rateOfReturn = GameTools.calcRateOfReturn(winningState, countOfLotto);
 
     this.renderGameResult(winningState, rateOfReturn);
   }
