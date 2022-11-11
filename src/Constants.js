@@ -16,19 +16,21 @@ const PICK_LENGTH = {
 };
 
 const RANK_INDEX = {
-  first: 4,
-  second: 3,
+  first: 0,
+  second: 1,
   third: 2,
-  fourth: 1,
-  fifth: 0,
+  fourth: 3,
+  fifth: 4,
+  lose: 5,
 };
 
-const RANK_PRIZE = {
-  fitrst: 2000000000,
+const RANK_REWARD = {
+  first: 2000000000,
   second: 30000000,
   third: 15000000,
   fourth: 50000,
   fifth: 5000,
+  lose: 0,
 };
 
 const RANK_PRINT = {
@@ -44,6 +46,6 @@ module.exports = {
   PICK_TYPE,
   PICK_LENGTH,
   RANK_INDEX,
-  RANK_PRIZE,
+  RANK_REWARD,
   RANK_PRINT,
 };
