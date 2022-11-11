@@ -1,4 +1,4 @@
-const { ERROR_MSG } = require("./utils/string");
+const { ERROR_MSG, RANK, PRIZE } = require("./utils/string");
 const Validation = require("./utils/Validation");
 
 class Lotto {
@@ -45,8 +45,31 @@ class Lotto {
   getNumbers() {
     return this.#numbers;
   }
-
-  // TODO: 추가 기능 구현
+  compareNums(matchingNums) {
+    let match = this.isWinning(matchingNums.winning.getNumbers());
+    if (match <= 2) {
+      return { match, rank: null };
+    }
+    let rank = RANK[match];
+    if (match === 5) {
+      rank = this.isBonus(matchingNums.bonus);
+    }
+    return { match, rank };
+  }
+  isWinning(winningArr) {
+    let win = 0;
+    const lottoArr = this.#numbers;
+    for (const num of lottoArr) {
+      if (winningArr.includes(num)) {
+        win++;
+      }
+    }
+    return win;
+  }
+  isBonus(bonusNum) {
+    const rank = this.#numbers.includes(bonusNum) ? "SECOND" : "THIRD";
+    return rank;
+  }
 }
 
 module.exports = Lotto;
