@@ -1,5 +1,7 @@
 const { Console } = require("@woowacourse/mission-utils");
+const ValidateBonus = require("./ValidateBonus");
 const Statistic = require("./Statistic");
+const ValidateLotto = require("./ValidateLotto");
 const { MIN_MATCH, MAX_MATCH } = require("./constants");
 
 class Lotto {
@@ -13,16 +15,7 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
-    let idx = 0;
-    while (idx < 6) {
-      if (numbers.indexOf(numbers[idx]) != numbers.lastIndexOf(numbers[idx])) {
-        throw new Error("[ERROR] 로또 번호는 중복되어서는 안 됩니다.");
-      }
-      idx += 1;
-    }
+    ValidateLotto(numbers);
   }
 
   setWinResult() {
@@ -37,6 +30,8 @@ class Lotto {
     let bonusNumber;
     Console.readLine("보너스 번호를 입력해 주세요,\n", (number) => {
       bonusNumber = number;
+
+      ValidateBonus(this.#numbers, bonusNumber);
       this.iterateLotteries(lotteries, winResult, bonusNumber);
 
       const statistic = new Statistic(winResult, lotteries.length);
