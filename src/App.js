@@ -1,21 +1,26 @@
 const { Console, Random } = require("@woowacourse/mission-utils/");
 class App {
-  #lottoCount;
+  lottoCount;
 
   constructor() {
-    this.#lottoCount = 0;
+    this.lottoCount = 0;
   }
 
   play() {
-    this.getInputMoney();
+    this.getInputMoney().then((input) => {
+      this.lottoCount = this.getLottoCount(input);
+    });
   }
 
   getInputMoney() {
-    Console.readline(question, (input) => {
-      if (!this.isValidInput(input)) {
-        throw new Error("유효하지 않은 값");
-      }
-      this.setLottoCount.bind(this.getLottoCount(input));
+    return new Promise((resolve, reject) => {
+      Console.readLine("입력 : ", (input) => {
+        if (!this.isValidInput(input)) {
+          reject(() => {
+            throw new Error("유효하지 않은값");
+          });
+        } else resolve(input);
+      });
     });
   }
 
@@ -26,12 +31,16 @@ class App {
     else return true;
   }
 
-  getLottoCount = (input) => {
+  getLottoCount(input) {
     return input / 1000;
-  };
+  }
 
   setLottoCount(count) {
-    this.#lottoCount = count;
+    this.lottoCount = count;
+  }
+
+  showLottoCount() {
+    Console.print("발행된 로또", this.lottoCount);
   }
 }
 
