@@ -1,6 +1,8 @@
 const LOTTO_PRICE = 1000;
 const LOTTO_START = 1;
 const LOTTO_END = 45;
+const LOTTO_NUMBER_COUNT = 6;
+const MINIMUM_MATCH_COUNT = 3;
 const REVENUE = {
   3: {
     message: '3개 일치 (5,000원)',
@@ -28,5 +30,7 @@ module.exports = {
   LOTTO_PRICE,
   LOTTO_END,
   LOTTO_START,
+  LOTTO_NUMBER_COUNT,
   REVENUE,
+  MINIMUM_MATCH_COUNT,
 };

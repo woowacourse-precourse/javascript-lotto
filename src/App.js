@@ -1,7 +1,14 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const { printError, isPositiveInteger, isDuplicated } = require('./Utils');
-const { LOTTO_END, LOTTO_PRICE, LOTTO_START, REVENUE } = require('./Constants');
+const {
+  LOTTO_END,
+  LOTTO_PRICE,
+  LOTTO_START,
+  REVENUE,
+  LOTTO_NUMBER_COUNT,
+  MINIMUM_MATCH_COUNT,
+} = require('./Constants');
 const UI = require('./UI');
 
 const ui = new UI();
@@ -42,7 +49,7 @@ class App {
     let lotto = MissionUtils.Random.pickUniqueNumbersInRange(
       LOTTO_START,
       LOTTO_END,
-      6,
+      LOTTO_NUMBER_COUNT,
     );
     lotto = lotto.sort(function (a, b) {
       return a - b;
@@ -80,7 +87,6 @@ class App {
     );
     ui.print(`6개 일치 (2,000,000,000원) - ${this.#result[6]}개`);
     ui.print(`총 수익률은 ${this.#getRevenue()}%입니다.`);
-    MissionUtils.Console.close();
   }
 
   #matchLotto() {
@@ -89,7 +95,7 @@ class App {
         this.#winningNumber,
         this.#bonusNumber,
       );
-      if (matchCount >= 3) {
+      if (matchCount >= MINIMUM_MATCH_COUNT) {
         this.#result[matchCount] += 1;
       }
     });
@@ -103,6 +109,7 @@ class App {
       this.#bonusNumber = bonusNumber;
       this.#matchLotto();
       this.#printResult();
+      MissionUtils.Console.close();
     });
   }
 
