@@ -1,5 +1,6 @@
 const MESSAGE = Object.freeze({
     ENTER_CASH: "구입금액을 입력해 주세요.\n",
+    ENTER_BOUNS_NUMBER: "보너스 번호를 입력해 주세요.\n",
     ENTER_WINNING_LOTTO: "당첨 번호를 입력해 주세요.\n",
     BUY_LOTTOS_COUNT: "개를 구매했습니다."
 });
@@ -10,7 +11,8 @@ const ERROR = Object.freeze({
     NOT_SIX_NUMBER: "[ERROR] 로또 번호는 총 6개여야 합니다.",
     NOT_UNIQUE: "[ERROR] 중복된 숫자가 포함되어있습니다.",
     NOT_NUMBER: "[ERROR] 숫자가 아닌 값이 포함되어있습니다.",
-    INVAID_NUMBER: "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."
+    INVAID_NUMBER: "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.",
+    HAS_NUMBER: "[ERROR] 당첨번호에 이미 포함되어있는 숫자입니다."
 });
 
 module.exports = { MESSAGE, ERROR };
