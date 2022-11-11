@@ -15,9 +15,9 @@ class App {
 
   createNumber() {
     for (let i = 1; i <= numOfLotto; i++) {
-      lottoNumObj[`lotto${i}`] = Random.pickUniqueNumbersInRange(1, 45, 6);
-    }
-    for (let i = 1; i <= numOfLotto; i++) {
+      lottoNumObj[`lotto${i}`] = Random.pickUniqueNumbersInRange(1, 45, 6).sort(function(a, b)  {
+        return a - b;
+      });
       Console.print(lottoNumObj[`lotto${i}`]);
     }
   }
@@ -26,5 +26,8 @@ class App {
     this.lottoMoney();
   }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
