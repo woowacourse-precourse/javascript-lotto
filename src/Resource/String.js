@@ -1,8 +1,10 @@
-export const INPUT = {
-  GET_MONEY: '구입금액을 입력해 주세요.',
+const INPUT = {
+  GET_MONEY: '구입금액을 입력해 주세요.\n',
 };
 
-export const OUTPUT = {};
+const OUTPUT = {};
 
 Object.freeze(INPUT);
 Object.freeze(OUTPUT);
+
+module.exports = { INPUT, OUTPUT };

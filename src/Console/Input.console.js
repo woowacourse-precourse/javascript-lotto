@@ -1,6 +1,8 @@
 const Console = require('./Console');
 const { INPUT } = require('../Resource/String');
 
-export default class InputConsole {
-  static getMoney = () => Console.Input(INPUT.GET_MONEY);
+class InputConsole {
+  static getMoney = async () => Console.input(INPUT.GET_MONEY);
 }
+
+module.exports = InputConsole;

@@ -1,3 +1,5 @@
 const Console = require('./Console');
 
-export default class OutputConsole {}
+class OutputConsole {}
+
+module.exports = OutputConsole;
