@@ -33,7 +33,7 @@ class Statistics {
 
   getNumberOfMatchingWinnerNumbers(numbers) {
     const numberOfWinnerNumber = numbers.map((number) => {
-      if (number.toString() === this.winnerNumber[index]) return number;
+      if (this.winnerNumber.includes(number.toString())) return number;
     });
     return numberOfWinnerNumber.filter((number) => number !== undefined).length;
   }
