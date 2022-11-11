@@ -31,7 +31,7 @@ class Lotto {
   }
   getUserBonusNumber(computerNumberArray,userLottoNumber){
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.\n', (bonusMoney) => {
-      this.calculatePrizeLottery(computerNumberArray,userLottoNumber,bonusMoney)
+      this.calculatePrizeLottery(computerNumberArray,userLottoNumber,Number(bonusMoney))
     });
   }
   createLottoNumArrays(money){
@@ -54,11 +54,34 @@ class Lotto {
     })
     this.getUserLottoNumber(computerNumberArray)
   }
-  calculatePrizeLottery(){
+  calculatePrizeLottery(computerNumberArray,userLottoNumber,bonusMoney){
+    let userLottoArray=userLottoNumber.split(',').map((e)=>Number(e))
+    computerNumberArray.forEach((eachNumberArray)=>this.checkLottery(eachNumberArray,userLottoArray,bonusMoney))
+  }
+  checkLottery(eachNumberArray,userLottoArray,bonusMoney){
+    let count=0
+    eachNumberArray.forEach((comNumber)=>{
+      if(userLottoArray.includes(comNumber)){
+        count++
+      }
+    })
+    console.log(count);
+    if(count===5) this.checkLotteryHelper(eachNumberArray,bonusMoney)
+    return count
+  }
+  checkLotteryHelper(eachNumberArray,bonusMoney){
+    console.log(eachNumberArray,bonusMoney);
+    if(eachNumberArray.includes(bonusMoney)){
+      console.log(`5등 당점`);
 
+    }
   }
   showPrizeLottery(){
-
+    MissionUtils.Console.print(`3개 일치 (5000원) - $개`)
+    MissionUtils.Console.print(`4개 일치 (50,000원) - $개`)
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - $개`)
+    MissionUtils.Console.print(`5개 일치 (3,000,000원) - $개`)
+    MissionUtils.Console.print(`3개 일치 (2,000,000,000원) - $개`)
   }
 }
 
