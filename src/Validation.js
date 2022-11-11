@@ -1,29 +1,25 @@
+const { ERROR_MONEY } = require("./constants/messages");
+
 class Validation {
   checkType = (purchaseAmount) => {
-    if (isNaN(purchaseAmount))
-      throw new Error("[ERROR] 숫자를 입력해야합니다.");
+    if (isNaN(purchaseAmount)) throw new Error(ERROR_MONEY.TYPE_NUMBER);
   };
 
   checkNotZero = (purchaseAmount) => {
-    if (purchaseAmount === "0")
-      throw new Error("[ERROR] 0이 아닌 1,000단위로 금액을 입력해야합니다.");
+    if (purchaseAmount === "0") throw new Error(ERROR_MONEY.ZERO);
   };
 
   checkEmpty = (purchaseAmount) => {
-    if (purchaseAmount.length === 0)
-      throw new Error(
-        "[ERROR] 공백이 아닌 1,000원단위로 금액을 입력해야합니다."
-      );
+    if (purchaseAmount.length === 0) throw new Error(ERROR_MONEY.EMPTY);
   };
 
   checkNotThousandUnit = (purchaseAmount) => {
     if (purchaseAmount % 1000 !== 0)
-      throw new Error("[ERROR] 1,000원단위로 금액을 입력해야합니다.");
+      throw new Error(ERROR_MONEY.NOT_THOUSAND_UNIT);
   };
 
   checkNegativeInput = (purchaseAmount) => {
-    if (purchaseAmount < 0)
-      throw new Error("[ERROR] 양수의 1,000원단위로 금액을 입력해야합니다.");
+    if (purchaseAmount < 0) throw new Error(ERROR_MONEY.NEGATIVE_INPUT);
   };
 
   isValidMoney = (purchaseAmount) => {

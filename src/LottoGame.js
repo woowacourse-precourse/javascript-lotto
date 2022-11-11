@@ -1,5 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const { GAME_MESSAGES } = require("./constants/messages");
 const Validation = require("./Validation");
+
 const mConsole = MissionUtils.Console;
 
 class LottoGame {
@@ -8,13 +10,10 @@ class LottoGame {
   }
 
   getMoney() {
-    mConsole.readLine("구입금액을 입력해 주세요.\n", (purchaseAmount) => {
+    mConsole.readLine(GAME_MESSAGES.PURCHASE_MONEY, (purchaseAmount) => {
       if (this.validation.isValidMoney(purchaseAmount)) return purchaseAmount;
     });
   }
 }
-
-const lottoGame = new LottoGame();
-lottoGame.getMoney();
 
 module.exports = LottoGame;
