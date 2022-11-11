@@ -4,8 +4,26 @@ const INPUT_MESSAGE = {
   BONUS_NUMBER: '\n보너스 번호를 입력해 주세요.\n',
 };
 
+const WINNING_AMOUNT = [
+  '5,000',
+  '50,000',
+  '1,500,000',
+  '30,000,000',
+  '2,000,000,000',
+];
+
 const PRINT_MESSAGE = {
   LOTTO_COUNT: '개를 구매했습니다.',
+  WINNING_STATISTICS_TITLE: '\n당첨 통계\n---\n',
+  WINNING_STATISTICS_RESULT(
+    sameNumberCount,
+    winningAmount,
+    userWinningLottoCount
+  ) {
+    return `${sameNumberCount}개 일치 ${
+      WINNING_AMOUNT[winningAmount - 3]
+    }원 - ${userWinningLottoCount}개\n`;
+  },
 };
 
 const ERROR = '[ERROR]';
