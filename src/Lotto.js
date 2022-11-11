@@ -1,6 +1,3 @@
-const { MissionUtils } = require("@woowacourse/mission-utils");
-const PURCHASEAMOUNT_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
-
 class Lotto {
   #numbers;
 
@@ -9,14 +6,7 @@ class Lotto {
     this.#numbers = numbers;
   }
 
-  play() {
-    MissionUtils.Console.readLine(
-      PURCHASEAMOUNT_INPUT_MESSAGE,
-      (purchaseAmount) => {
-        // 구입 금액 유효성 검사
-      }
-    );
-  }
+  play() {}
 
   validate(numbers) {
     if (numbers.length !== 6) {
