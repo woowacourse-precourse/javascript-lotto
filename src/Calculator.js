@@ -1,4 +1,8 @@
 class Calculator {
+  static statistics(totalWinning, purchageAmount) {
+    return (totalWinning / purchageAmount) * 100;
+  }
+
   static toFixedNumber(number) {
     return number.toFixed(2);
   }
