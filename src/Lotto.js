@@ -24,23 +24,14 @@ class Lotto {
       this.createLottoNumArrays(money)
     });
   }
-  divideMoney(money){
-    let quotient=Math.floor(money/1000)
-    return quotient
-  }
-  showLottoArrays(computerNumberArray){
-    computerNumberArray.forEach((e)=>{
-      MissionUtils.Console.print(e)
-    })
-  }
   getUserLottoNumber(computerNumberArray){
-    MissionUtils.Console.readLine('1~45사이의 서로 다른 숫자 6개를 입력해주세요.\n', (userLottoNumber) => {
-      console.log(`닉네임: ${userLottoNumber}`);
+    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (userLottoNumber) => {
+      this.getUserBonusNumber(computerNumberArray,userLottoNumber)
     });
   }
-  getUserBonusNumber(){
-    MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.\n', (money) => {
-      console.log(`닉네임: ${money}`);
+  getUserBonusNumber(computerNumberArray,userLottoNumber){
+    MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.\n', (bonusMoney) => {
+      this.calculatePrizeLottery(computerNumberArray,userLottoNumber,bonusMoney)
     });
   }
   createLottoNumArrays(money){
@@ -50,6 +41,24 @@ class Lotto {
       computerNumberArray.push(this.setComputerRandomNumber())
     }
     this.showLottoArrays(computerNumberArray)
+  }
+  divideMoney(money){
+    // 테스트 케이스 작성
+    // 1000보다 작을경우, 나누어떨어지지 않을경우, 숫자 앞자리가 0일경우, 문자가 있을경우,음수일경우
+    let quotient=money/1000
+    return quotient
+  }
+  showLottoArrays(computerNumberArray){
+    computerNumberArray.forEach((e)=>{
+      MissionUtils.Console.print(e)
+    })
+    this.getUserLottoNumber(computerNumberArray)
+  }
+  calculatePrizeLottery(){
+
+  }
+  showPrizeLottery(){
+
   }
 }
 
