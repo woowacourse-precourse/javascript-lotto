@@ -1,5 +1,5 @@
 const { LOTTO_ERROR_MESSAGES, LOTTO_NUMBER_RANGE } = require('./Constant');
-const utils = require('./Utils');
+const Utils = require('./Utils');
 
 class Lotto {
   #numbers;
@@ -30,7 +30,7 @@ class Lotto {
     for (let i = generateNumber; i === 0; i -= 1) {
       lottoNumbers
         .push(
-          utils.generateRandomNumberArray(
+          Utils.generateRandomNumberArray(
             LOTTO_NUMBER_RANGE.MIN_RANGE,
             LOTTO_NUMBER_RANGE.MAX_RANGE,
             LOTTO_NUMBER_RANGE.LENGTH,
