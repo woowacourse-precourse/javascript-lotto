@@ -13,6 +13,7 @@ class NumberCompare{
         this.matchFourNumbers(createNum, winningNum);
         this.matchFiveNumbers(createNum, winningNum);
         this.matchFiveAndBonusNumbers(createNum, winningNum, bonusNum);
+        this.matchSixNumbers(createNum, winningNum);
         this.lottoRanking;
     }
 
@@ -42,6 +43,13 @@ class NumberCompare{
         let duplicateBonusNum = createNum.filter((el) => bonusNum.includes(el));
         if(duplicateNum.length == 5 && duplicateBonusNum.length == 1){
             this.lottoRanking[3] += 1;
+        }
+    }
+
+    matchSixNumbers(createNum, winningNum){
+        let duplicateNum = createNum.filter((el) => winningNum.includes(el));
+        if(duplicateNum.length == 6){
+            this.lottoRanking[4] += 1;
         }
     }
 }
