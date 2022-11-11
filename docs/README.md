@@ -2,7 +2,7 @@
 
 ## 출력을 이용해 기능 분리하기
 
-<!-- - Customer.buyLotto(), readLine 함수를 이용해 구입 금액을 입력받고 콜백 -> 로또 생성까지
+- Customer.buyLotto(), readLine 함수를 이용해 구입 금액을 입력받고 콜백 -> 로또 생성까지
 
 ```
 구입금액을 입력해 주세요.
@@ -48,13 +48,13 @@
 5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
 6개 일치 (2,000,000,000원) - 0개
 총 수익률은 62.5%입니다.
-``` -->
+```
 
 ## 분리한 기능을 구체화시키기
 
 ### not use callback
 
-<!-- - Customer.buyLotto()
+- Customer.buyLotto()
   - get User input >> mock fn(readline)
   - price exception handling(price)
   - return payingPrice;
@@ -82,11 +82,11 @@
     - calculate correct 5 number()
     - calculate correct 5 number with bonus number()
     - calculate correct 6 number()
-  - close console -->
+  - close console
 
 ### use callback
 
-- call App.play
+<!-- - call App.play
   - buyLotto()
     - readline(answer =>
       - exception
@@ -102,11 +102,11 @@
               - winning lotto statistic(answer1, answer2, numbers)
                 - find winning number in generated numbers(), return statistic
               - print lotto statistic(statistic)
-              - close
+              - close -->
 
 ## 객체 분리하기
 
-<!-- 1. Customer
+1. Customer
    1. property
       1. lotto number
    2. method
@@ -122,10 +122,15 @@
       1. winning lotto numbers : include bonus
    2. method
       1. enter winning lotto number
-      2. enter lotto bonus number -->
+      2. enter lotto bonus number
 
 ## 미션 후기
 
 ### 학습 과정
+
+- 기능 설계 고민
+  - [ ] 콜백 사용
+  - [v] 콜백 사용 X
+  - 단위 테스트에서나 다른 면에서 콜백을 사용하지 않는 것이 좋다고 판단했습니다. 다만, 테스트를 어떻게 통과할지는 고민을 조금 더 해야할 듯 싶습니다.
 
 ### 배운점
