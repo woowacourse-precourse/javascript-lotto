@@ -26,6 +26,17 @@ class GameUtils {
 
     return winningNumberArray;
   }
+
+  static getYield(ranks, pay) {
+    const reward = [2000000000, 30000000, 1500000, 50000, 5000];
+    let totalReward = 0;
+    reward.forEach((rw, i) => {
+      totalReward += ranks[i] * rw;
+    });
+
+    return ((totalReward / pay) * 100).toFixed(1);
+  }
+
   static getRank(lottoNumber, winningNumber, bonusNumber) {
     const sameNumberCount = this.getSameNumberCount(lottoNumber, winningNumber);
     const isHaveBonusNumber = this.getIsHaveBonusNumber(
