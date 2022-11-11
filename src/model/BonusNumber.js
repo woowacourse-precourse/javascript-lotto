@@ -6,6 +6,10 @@ class BonusNumber {
     this.#value = value;
   }
 
+  get value() {
+    return this.#value;
+  }
+
   validate(value) {
     this.validateIsNumber(value);
     this.validateNumberRange(1, 45, value);
