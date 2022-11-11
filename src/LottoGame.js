@@ -1,6 +1,6 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Exception = require('./Exception');
-const { CONSOLE_MESSAGE, PARAMETERS } = require('./utils/constants');
+const { CONSOLE_MESSAGE, PARAMETERS, RESULT_MESSAGE } = require('./utils/constants');
 
 class LottoGame {
   constructor() {
@@ -14,6 +14,7 @@ class LottoGame {
     MissionUtils.Console.readLine(`${CONSOLE_MESSAGE.purchaseAmount}`, (input) => {
       this.exception.validatePurchaseAmount(input);
       this.purchaseCount = input / PARAMETERS.purchaseAmountUnit;
+      this.print(RESULT_MESSAGE.purchase(this.purchaseCount));
     });
   }
 
