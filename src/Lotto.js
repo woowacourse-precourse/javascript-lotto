@@ -1,3 +1,5 @@
+const validation = require('./validation');
+
 class Lotto {
   #numbers;
 
@@ -6,7 +8,9 @@ class Lotto {
     this.#numbers = numbers;
   }
 
-  validate(numbers) {}
+  validate(numbers) {
+    validation.isLottoNumber(numbers);
+  }
 
   // TODO: 추가 기능 구현
   getLottoNumbers() {
