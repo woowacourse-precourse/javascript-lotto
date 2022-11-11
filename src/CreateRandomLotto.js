@@ -3,6 +3,7 @@ const {Console} = require("@woowacourse/mission-utils");
 class CreateRandomLotto {
     constructor(){
         this.randomLotto;
+        this.saveRandomLotto = [];
     }
 
     pickRandomLotto(){
@@ -21,6 +22,7 @@ class CreateRandomLotto {
             this.pickRandomLotto();
             this.randomNumberSort();
             Console.print(this.randomLotto);
+            this.saveRandomLotto.push(this.randomLotto);
             this.randomLotto.length = 0;
             i++;
         }
