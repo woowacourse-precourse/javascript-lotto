@@ -19,12 +19,12 @@ const COMMON_INVALID_ERROR_MESSAGES = Object.freeze({
   NOT_EMPTY: '[ERROR] 공백은 입력할 수 없습니다.',
 });
 
-const LOTTO_NUMBER_RANGE = {
+const LOTTO_NUMBER_RANGE = Object.freeze({
   MIN_RANGE: 1,
   MAX_RANGE: 45,
   LENGTH: 6,
   UNIT: 1000,
-};
+});
 
 const WINNING_NUMBER_UNITS = Object.freeze({
   FIRST_PLACE: '6개',
