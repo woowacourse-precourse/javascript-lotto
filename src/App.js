@@ -18,7 +18,7 @@ class App {
   }
 
   validateMoney(money) {
-    if (!Number.isNaN(money)) {
+    if (Number.isNaN(+money)) {
       throw new Error('[ERROR] 올바르지 않은 금액입니다.');
     }
     if (Number(money) % 1000 !== 0) {
