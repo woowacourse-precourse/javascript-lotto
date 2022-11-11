@@ -13,7 +13,7 @@ class App {
       MissionUtils.Console.print('');
       MissionUtils.Console.print(`${lottoCount}개를 구매했습니다.`);
       lottoArr.map((lotto) => {
-        new Lotto(lotto);
+        new Lotto(lotto, lottoCost);
         MissionUtils.Console.print(lotto);
       });
     });
