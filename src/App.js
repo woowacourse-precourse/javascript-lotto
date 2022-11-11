@@ -16,7 +16,17 @@ class App {
   play() {
     Console.readLine(Messages.ENTER_MONEY, (money) => {
       this.validation.purchaseAmount(money);
+
+      this.printCountAndLottos(money);
     });
+  }
+
+  printCountAndLottos(money) {
+    this.countAndLottos.countBuying(money);
+    this.countAndLottos.printLottos(money);
+
+    let lottos = this.countAndLottos.getLottos();
+    this.enterWinningNumber(lottos);
   }
 
   enterWinningNumber() {
