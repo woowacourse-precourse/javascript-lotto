@@ -1,5 +1,4 @@
-const ERROR = require('./utils/constants.js');
-const NUMBER = require('./utils/constants.js');
+const { ERROR, NUMBER } = require('./utils/constants.js');
 
 class LottoCounter {
   constructor(cash) {
