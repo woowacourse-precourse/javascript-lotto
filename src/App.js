@@ -11,14 +11,21 @@ const getHowManyLottos = (money) => {
   const numberOfTicket = money / 1000;
 
   Console.print(`${numberOfTicket}개를 구매했습니다.`);
+  printLottos(publishLottos(numberOfTicket));
+};
 
+const publishLottos = (num) => {
   const lottos = [];
 
-  while (lottos.length < numberOfTicket) {
+  while (lottos.length < num) {
     lottos.push(
       Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b)
     );
   }
+  return lottos;
+};
+
+const printLottos = (lottos) => {
   lottos.forEach((lotto) => {
     Console.print(lotto);
   });
