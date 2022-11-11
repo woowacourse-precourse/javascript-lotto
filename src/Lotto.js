@@ -1,9 +1,19 @@
 class Lotto {
-  #numbers;
+  #numbers = [];
 
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
+  }
+
+  lottoNumbers() {
+    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (answer) => {
+      this.#numbers.push(answer);
+    });
+
+    MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (answer) => {
+      this.#numbers.push(answer);
+    });
   }
 
   validate(numbers) {
