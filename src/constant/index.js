@@ -12,4 +12,9 @@ const BONUS_LOTTO_ERROR = Object.freeze({
   INCLUDES: '[ERROR] 보너스 번호와 일치하는 당첨 번호가 있습니다.',
 });
 
-module.exports = { LOTTO_ERROR, BONUS_LOTTO_ERROR };
+const AMOUNt_ERROR = Object.freeze({
+  AMOUNT: '[ERROR] 로또는 돈으로 구입 가능합니다',
+  UNIT: '[ERROR] 로또 구입은 1000원 단위로 가능합니다',
+});
+
+module.exports = { LOTTO_ERROR, BONUS_LOTTO_ERROR, AMOUNt_ERROR };
