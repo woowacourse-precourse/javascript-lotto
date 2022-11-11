@@ -13,7 +13,6 @@ const accountInput = () => {
 
 const lottoPrint = (account) => {
   MissionUtils.Console.print(`\n${account / 1000}개를 구매했습니다.`);
-  MissionUtils.Console.close();
 };
 
 const checkAccountValidation = (input) => {
@@ -46,15 +45,29 @@ const generateNumber = async (count) => {
 
 const printLottoNumber = (tickets) => {
   tickets.map((element) => MissionUtils.Console.print(element));
+  winningNumberInput();
 };
 
 const winningNumberInput = () => {
-  MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.\n", (input) => {
-    const lotto = new Lotto(input);
-  });
+  MissionUtils.Console.readLine(
+    "\n당첨 번호를 입력해 주세요.\n",
+    (winningNumber) => {
+      const lotto = new Lotto(winningNumber);
+      bonusNumberInput(winningNumber);
+    }
+  );
+};
+
+const bonusNumberInput = (winningNumber) => {
+  winningNumber = winningNumber.split(",").map((num) => Number(num));
+  MissionUtils.Console.readLine(
+    "\n보너스 번호를 입력해 주세요.\n",
+    (bonusNumber) => {}
+  );
 };
 
 module.exports = {
   accountInput,
   winningNumberInput,
+  bonusNumberInput,
 };

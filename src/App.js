@@ -1,9 +1,12 @@
-const { accountInput, winningNumberInput } = require("./libs/ui/Ui");
+const {
+  accountInput,
+  winningNumberInput,
+  bonusNumberInput,
+} = require("./libs/ui/Ui");
 
 class App {
   play() {
-    // accountInput();
-    winningNumberInput();
+    accountInput();
   }
 }
 
