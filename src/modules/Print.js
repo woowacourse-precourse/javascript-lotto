@@ -47,6 +47,8 @@ class Print {
         );
       }
     }
+    //종료
+    MissionUtils.Console.close();
   }
 }
 module.exports = Print;

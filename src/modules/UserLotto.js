@@ -6,6 +6,9 @@ class UserLotto {
     for (let index = 0; index < nTime; index += 1) {
       this.#number.push(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
     }
+    //종료
+    MissionUtils.Console.close();
+
     return this.#number;
   }
   //로또 번호 출력
@@ -14,6 +17,8 @@ class UserLotto {
     this.#number.forEach((arr) =>
       MissionUtils.Console.print(`[${arr.join(", ")}]`)
     );
+    //종료
+    MissionUtils.Console.close();
   }
   //오름차순 정렬
   LottoSort() {

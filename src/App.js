@@ -19,6 +19,8 @@ class App {
       nTime = BUYLOTTO.nTimes();
       MissionUtils.Console.print(`${nTime}개를 구매했습니다.`);
     });
+    // 종료
+    MissionUtils.Console.close();
 
     //로또 번호 1~45까지의 서로 다른 임의의 수 6자리를 뽑는다.
     const USERLOTTO = new UserLotto();
