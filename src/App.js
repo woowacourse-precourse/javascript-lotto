@@ -4,6 +4,7 @@ const Lotto = require('./Lotto');
 const WinningResult = require('./WinningResult');
 const changeStrToArr = require('./utils/changeStrToArr');
 const { validateBonus } = require('./utils/validator');
+const { MESSAGE, WINNING_PRIZE } = require('./constants');
 
 class App {
   constructor() {
@@ -15,13 +16,13 @@ class App {
   }
 
   printPurchaseInputMessage() {
-    Console.print('구입금액을 입력해 주세요.');
+    Console.print(MESSAGE.INPUT_CASH);
     return this;
   }
 
   printPurchaseOutputMessage() {
     Console.print('');
-    Console.print(`${this.purchaseLottoAmount}개를 구매했습니다.`);
+    Console.print(MESSAGE.BOUGHT_LOTTO_INFO(this.purchaseLottoAmount));
     return this.printPurchaseLottoList();
   }
 
@@ -32,29 +33,29 @@ class App {
 
   printWinningNumberInputMessage() {
     Console.print('');
-    Console.print('당첨 번호를 입력해 주세요.');
+    Console.print(MESSAGE.INPUT_WINNING_NUMBER);
     return this.submitWinningNumber();
   }
 
   printBonusNumberInputMessage() {
     Console.print('');
-    Console.print('보너스 번호를 입력해 주세요.');
+    Console.print(MESSAGE.INPUT_BONUS_NUMBER);
     return this.submitBonusNumber();
   }
 
   printWinningResult() {
     Console.print('');
-    Console.print('당첨 통계');
+    Console.print(MESSAGE.WINNING_RESULT);
     Console.print('---');
     const winningResult = new WinningResult(this.purchaseLottoList, this.winningNumberArr);
     winningResult.setResult(this.bonusNumber);
     const result = winningResult.getResult();
-    Console.print(`3개 일치 (5,000원) - ${result[5000]}개`);
-    Console.print(`4개 일치 (50,000원) - ${result[50000]}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${result[1500000]}개`);
-    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${result[30000000]}개`);
-    Console.print(`6개 일치 (2,000,000,000원) - ${result[2000000000]}개`);
-    Console.print(`총 수익률은 ${winningResult.setYield(this.cash)}%입니다.`);
+    Console.print(MESSAGE.FIFTH_PLACE_RESULT(result[WINNING_PRIZE.FIFTH]));
+    Console.print(MESSAGE.FOURTH_PLACE_RESULT(result[WINNING_PRIZE.FOURTH]));
+    Console.print(MESSAGE.THIRD_PLACE_RESULT(result[WINNING_PRIZE.THIRD]));
+    Console.print(MESSAGE.SECOND_PLACE_RESULT(result[WINNING_PRIZE.SECOND]));
+    Console.print(MESSAGE.FIRST_PLACE_RESULT(result[WINNING_PRIZE.FIRST]));
+    Console.print(MESSAGE.TOTAL_YIELD_RESULT(winningResult.setYield(this.cash)));
     Console.close();
   }
 

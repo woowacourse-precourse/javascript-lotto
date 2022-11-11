@@ -1,3 +1,5 @@
+const { YIELD, WINNING_PRIZE } = require('./constants');
+
 class WinningResult {
   constructor(lottoArr, winningNumberArr) {
     this.lottoArr = lottoArr;
@@ -9,11 +11,11 @@ class WinningResult {
   setResult(bonusNumber) {
     this.lottoArr.forEach(lotto => {
       let sameArr = lotto.filter(num => this.winningNumberArr.includes(num));
-      if (sameArr.length === 3) this.result[5000]++;
-      if (sameArr.length === 4) this.result[50000]++;
-      if (sameArr.length === 5 && lotto.includes(bonusNumber)) this.result[30000000]++;
-      if (sameArr.length === 5 && !lotto.includes(bonusNumber)) this.result[1500000]++;
-      if (sameArr.length === 6) this.result[2000000000]++;
+      if (sameArr.length === 3) this.result[WINNING_PRIZE.FIFTH]++;
+      if (sameArr.length === 4) this.result[WINNING_PRIZE.FOURTH]++;
+      if (sameArr.length === 5 && lotto.includes(bonusNumber)) this.result[WINNING_PRIZE.THIRD]++;
+      if (sameArr.length === 5 && !lotto.includes(bonusNumber)) this.result[WINNING_PRIZE.SECOND]++;
+      if (sameArr.length === 6) this.result[WINNING_PRIZE.FIRST]++;
     });
   }
 
@@ -27,7 +29,7 @@ class WinningResult {
 
   setYield(cash) {
     this.sum = this.calculateSum();
-    return Math.round((this.sum * 1000) / cash) / 10;
+    return Math.round((this.sum * YIELD.PERCENT * YIELD.ROUND) / cash) / YIELD.ROUND;
   }
 }
 

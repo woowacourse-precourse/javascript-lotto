@@ -1,5 +1,6 @@
 const { Random } = require('@woowacourse/mission-utils');
 const { validateCashInput } = require('./utils/validator');
+const { MONEY_UNIT, LOTTO_NUMBER } = require('./constants');
 
 class Purchase {
   #cash;
@@ -18,7 +19,7 @@ class Purchase {
   }
 
   setLottoCount() {
-    this.#lottoCount = this.#cash / 1000;
+    this.#lottoCount = this.#cash / MONEY_UNIT;
   }
 
   get Cash() {
@@ -36,7 +37,11 @@ class Purchase {
   makeLottoList(count) {
     this.#lottoList = [];
     for (let i = 0; i < count; i++) {
-      const numbers = Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
+      const numbers = Random.pickUniqueNumbersInRange(
+        LOTTO_NUMBER.START,
+        LOTTO_NUMBER.END,
+        LOTTO_NUMBER.LENGTH,
+      ).sort((a, b) => a - b);
       this.#lottoList.push(numbers);
     }
   }

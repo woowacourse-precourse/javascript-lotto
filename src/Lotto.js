@@ -1,3 +1,5 @@
+const { ERROR_MESSAGE, LOTTO_NUMBER } = require('./constants');
+
 class Lotto {
   #numbers;
 
@@ -7,18 +9,18 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+    if (numbers.length !== LOTTO_NUMBER.LENGTH) {
+      throw new Error(ERROR_MESSAGE.WINNING_NUMBER_LENGTH_ERROR);
     }
     const numberSet = new Set(numbers);
     if (numberSet.size !== numbers.length) {
-      throw new Error('[ERROR] 로또 번호는 서로 다른 숫자로 이루어져야 합니다.');
+      throw new Error(ERROR_MESSAGE.WINNING_NUMBER_NOT_DIFFERENT_NUMBER_ERROR);
     }
     let isNumberInRange = numbers.every(number => {
-      return number && number >= 1 && number <= 45;
+      return number && number >= LOTTO_NUMBER.START && number <= LOTTO_NUMBER.END;
     });
     if (!isNumberInRange) {
-      throw new Error('[ERROR] 로또 번호는 1부터 45 사이의 수들로 이루어져야 합니다.');
+      throw new Error(ERROR_MESSAGE.NUM_IN_RANGE_ERROR);
     }
   }
 }
