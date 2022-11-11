@@ -27,7 +27,7 @@
 
 로또 당첨번호 설정#LottoSetting
 
-- [ ] 당첨번호를 입력 받는 기능 - inputWinLottoNum
+- [x] 당첨번호를 입력 받는 기능 - inputWinLottoNum
       당첨 번호를 입력 받는다. 번호는 쉼표(,)를 기준으로 구분한다.
 - [x] 당첨번호를 배열로 리턴하는 기능 - exportWinLottoArray
 - [ ] 보너스 번호를 입력받는 기능 - inputBonusNum
