@@ -4,13 +4,16 @@ const {
   ERROR_MESSAGE,
   BUY_MESSAGE,
   WIN_MESSAGE,
+  WINNING_AMOUNT,
+  YIELD_MESSAGE,
 } = require('./libs/const');
-const Lotto = require('./Lotto');
 
 class App {
   #totalLotto = [];
   #userPrizeNumber;
   #userBonusNumber;
+  #winningAmount = 0;
+  #purchaseAmount = 0;
 
   #ranking = {
     first: 0,
@@ -27,6 +30,7 @@ class App {
   start() {
     Console.readLine(QUESTION_MESSAGE.buy, money => {
       if (money % 1000 !== 0) throw new Error(ERROR_MESSAGE.purchase);
+      this.#purchaseAmount = money;
       this.purchase(money);
     });
   }
@@ -134,10 +138,11 @@ class App {
   }
 
   printUtil(message, count) {
-    Console.print(`${message}${count}${WIN_MESSAGE.some}`);
+    Console.print(`${message} ${count}${WIN_MESSAGE.some}`);
   }
 
   printWinner() {
+    this.winningAmountCalculation();
     Console.print(WIN_MESSAGE.statistics);
     Console.print(WIN_MESSAGE.divideLine);
     this.printUtil(WIN_MESSAGE.fifth, this.#ranking.fifth);
@@ -145,11 +150,37 @@ class App {
     this.printUtil(WIN_MESSAGE.third, this.#ranking.third);
     this.printUtil(WIN_MESSAGE.second, this.#ranking.second);
     this.printUtil(WIN_MESSAGE.first, this.#ranking.first);
+    this.printYield();
+  }
+
+  winningAmountCalculation() {
+    this.#winningAmount += this.#ranking.fifth * WINNING_AMOUNT.fifth;
+    this.#winningAmount += this.#ranking.fourth * WINNING_AMOUNT.fourth;
+    this.#winningAmount += this.#ranking.third * WINNING_AMOUNT.third;
+    this.#winningAmount += this.#ranking.second * WINNING_AMOUNT.second;
+    this.#winningAmount += this.#ranking.first * WINNING_AMOUNT.first;
+  }
+
+  printYield() {
+    const yieldPercent = (
+      (this.#winningAmount / this.#purchaseAmount) *
+      100
+    ).toFixed(1);
+
+    const localeYeild = this.convertLocale(yieldPercent);
+
+    Console.print(`${YIELD_MESSAGE.front} ${localeYeild}${YIELD_MESSAGE.back}`);
+  }
+
+  convertLocale(number) {
+    const convert = number
+      .toString()
+      .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+    return convert;
   }
 }
 
 const app = new App();
-
 app.play();
 
 module.exports = App;

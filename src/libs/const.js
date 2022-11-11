@@ -21,12 +21,25 @@ const QUESTION_MESSAGE = Object.freeze({
 const WIN_MESSAGE = Object.freeze({
   statistics: '당첨 통계',
   divideLine: '---',
-  fifth: '3개 일치 (5,000원) - ',
-  fourth: '4개 일치 (50,000원) - ',
-  third: '5개 일치 (1,500,000원) - ',
-  second: '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
-  first: '6개 일치 (2,000,000,000원) - ',
+  fifth: '3개 일치 (5,000원) -',
+  fourth: '4개 일치 (50,000원) -',
+  third: '5개 일치 (1,500,000원) -',
+  second: '5개 일치, 보너스 볼 일치 (30,000,000원) -',
+  first: '6개 일치 (2,000,000,000원) -',
   some: '개',
+});
+
+const YIELD_MESSAGE = Object.freeze({
+  front: '총 수익률은',
+  back: '%입니다.',
+});
+
+const WINNING_AMOUNT = Object.freeze({
+  fifth: 5000,
+  fourth: 50000,
+  third: 1500000,
+  second: 30000000,
+  first: 2000000000,
 });
 
 module.exports = {
@@ -34,4 +47,6 @@ module.exports = {
   ERROR_MESSAGE,
   BUY_MESSAGE,
   WIN_MESSAGE,
+  WINNING_AMOUNT,
+  YIELD_MESSAGE,
 };
