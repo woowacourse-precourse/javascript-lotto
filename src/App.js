@@ -87,11 +87,8 @@ class App {
 
   #matchLotto() {
     this.#lottos.forEach((lotto) => {
-      const lottoNumbers = lotto.getNumbers();
-      const matchNumbers = lottoNumbers.filter((number) =>
-        this.#winningNumber.includes(number),
-      );
-      this.#storeResult(matchNumbers.length);
+      const matchNumbers = lotto.countMatchNumbers(this.#winningNumber);
+      this.#storeResult(matchNumbers);
     });
   }
 
@@ -124,6 +121,7 @@ class App {
   #getMoney() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
       if (this.#validate(money)) {
+        this.#money = money;
         this.#startLotto();
       }
     });
