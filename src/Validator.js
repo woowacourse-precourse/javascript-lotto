@@ -15,9 +15,9 @@ class Validator {
   }
 
   static throwErrorIfInValidFormOfWinningNumber(inputValue) {
-    const regex = /^(\d+,){5}\d+$/;
+    const regex = /^(\d+,)+\d+$/;
     if (!regex.test(inputValue)) {
-      throw Error('[ERROR] 여섯개의 숫자를 ,로 구분해 입력해야 합니다.');
+      throw Error('[ERROR] 숫자를 ,로 구분해 입력해야 합니다.');
     }
     inputValue.split(',').forEach((number) => {
       if (number[0] === '0') {
@@ -26,23 +26,26 @@ class Validator {
     });
   }
 
-  static throwErrorIfInValidWinningNumber(winningNumber) {
-    winningNumber.forEach((number) => {
+  static throwErrorIfInValidWinningNumbers(winningNumbers) {
+    if (winningNumbers.length !== 6) {
+      throw Error('[ERROR] 로또 번호는 6개여야 합니다.');
+    }
+    winningNumbers.forEach((number) => {
       if (number > 45 || number < 1) {
         throw Error('[ERROR] 1에서 45까지의 숫자를 입력해야 합니다.');
       }
     });
-    if (new Set(winningNumber).size < 6) {
+    if (new Set(winningNumbers).size < 6) {
       throw Error('[ERROR] 중복된 숫자를 입력할 수 없습니다.');
     }
   }
 
-  static throwErrorIfInValidBonusNumber(winningNumber, bonusNumber) {
+  static throwErrorIfInValidBonusNumber(winningNumbers, bonusNumber) {
     const regex = /^\d+$/;
     if (!regex.test(bonusNumber) || bonusNumber > 45 || bonusNumber < 1) {
       throw Error('[ERROR] 1에서 45까지의 숫자를 입력해야 합니다.');
     }
-    if (winningNumber.includes(Number(bonusNumber))) {
+    if (winningNumbers.includes(Number(bonusNumber))) {
       throw Error('[ERROR] 이미 당첨 번호에 포함된 번호를 입력할 수 없습니다.');
     }
   }
