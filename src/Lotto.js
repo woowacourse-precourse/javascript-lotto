@@ -59,7 +59,7 @@ class Lotto {
       match3: 0,
       match4: 0,
       match5: 0,
-      match5withBonus: 0,
+      match5andBonus: 0,
       match6: 0,
     };
 
@@ -70,7 +70,7 @@ class Lotto {
     matchedCounts.forEach(({ count, bonus }) => {
       if (count < 3) return;
       if (bonus && count === 5) {
-        statistics.match5withBonus = statistics.match5withBonus + 1;
+        statistics.match5andBonus = statistics.match5andBonus + 1;
         return;
       }
       const key = `match${count}`;
@@ -78,6 +78,49 @@ class Lotto {
     });
 
     return statistics;
+  }
+
+  getEarningRate(statistics) {
+    const priceList = {
+      match3: 5000,
+      match4: 50000,
+      match5: 1500000,
+      match5andBonus: 30000000,
+      match6: 2000000000,
+    };
+    const earning = Object.entries(statistics).reduce(
+      (prev, { key, count }) => prev + count * priceList[key],
+      0
+    );
+    return (earning / this.#purchasedAmount) * 100;
+  }
+
+  getMessageOfStatistics(statistics) {
+    const messageGenerators = {
+      match3(count) {
+        return `3개 일치 (5,000원) - ${count}개`;
+      },
+      match4(count) {
+        return `4개 일치 (50,000원) - ${count}개`;
+      },
+      match5(count) {
+        return `5개 일치 (1,500,000원) - ${count}개`;
+      },
+      match5andBonus(count) {
+        return `5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`;
+      },
+      match6(count) {
+        return `6개 일치 (2,000,000,000원) - ${count}개`;
+      },
+    };
+
+    const messages = Object.entries(statistics).map(([key, count]) =>
+      messageGenerators[key](count)
+    );
+
+    messages.push(`총 수익률은 ${this.getEarningRate(getEarningRate)}%입니다.`);
+
+    return messages.join("\n");
   }
 }
 

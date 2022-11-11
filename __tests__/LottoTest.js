@@ -75,7 +75,7 @@ describe("로또 클래스 테스트", () => {
       match3: 1,
       match4: 1,
       match5: 0,
-      match5withBonus: 0,
+      match5andBonus: 0,
       match6: 1,
     };
 
