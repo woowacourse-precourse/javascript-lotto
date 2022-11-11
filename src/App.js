@@ -8,6 +8,21 @@ class App {
   }
 
   /**
+   * 비용 입력을 받고 처리하는 함수
+   */
+  getInputCost() {
+    MissionUtils.Console.print("구입금액을 입력해 주세요.");
+    MissionUtils.Console.readLine("", (answer) => {
+      this.checkCost(answer);
+
+      const COST = parseInt(answer);
+      let lottos = this.publishLottos(COST); // 로또 발급
+      this.printMyLottos(lottos);
+      // TODO: 당첨 번호 입력
+    })
+  }
+
+  /**
    * 비용 입력이 올바른 입력인지 판단하는 함수
    * @param {string} cost 입력한 비용
    */
