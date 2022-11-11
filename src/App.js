@@ -1,12 +1,13 @@
 const { Console } = require('@woowacourse/mission-utils');
 const GameTools = require('./GameTools');
+const Lotto = require('./Lotto');
 const Render = require('./Render');
 const Validator = require('./Validator');
 
 class App {
   constructor() {
     this.lottoCount = 0;
-    this.winningNumber = [];
+    this.winningNumbers = [];
     this.userLottoList = [];
     this.bonusNumber = 0;
     this.prizeResult = {
@@ -35,15 +36,16 @@ class App {
 
   renderIssuedLottoList() {
     Render.issuedLottoList(this.lottoCount, this.userLottoList);
-    this.getWinningNumber();
+    this.getWinningNumbers();
   }
 
-  getWinningNumber() {
+  getWinningNumbers() {
     // 비즈니스 로직
     Console.print('당첨 번호를 입력해 주세요.');
-    Console.readLine('', (winningNumber) => {
-      Validator.throwErrorIfInValidWinningNumber(winningNumber);
-      this.winningNumber = winningNumber.split(',').map((num) => Number(num));
+    Console.readLine('', (inputValue) => {
+      Validator.throwErrorIfInValidFormOfWinningNumber(inputValue);
+      const winningNumbers = inputValue.split(',').map((num) => Number(num));
+      this.winningNumbers = winningNumbers;
       this.getBonusNumber();
     });
   }
@@ -52,7 +54,10 @@ class App {
     // 비즈니스 로직
     Console.print('보너스 번호를 입력해 주세요.');
     Console.readLine('', (bonusNumber) => {
-      Validator.throwErrorIfInValidBonusNumber(this.winningNumber, bonusNumber);
+      Validator.throwErrorIfInValidBonusNumber(
+        this.winningNumbers,
+        bonusNumber
+      );
       this.bonusNumber = Number(bonusNumber);
       this.setPrizeResult();
     });
@@ -75,7 +80,7 @@ class App {
   }
 
   getSameNumberCount(lottoNumber) {
-    return lottoNumber.filter((number) => this.winningNumber.includes(number))
+    return lottoNumber.filter((number) => this.winningNumbers.includes(number))
       .length;
   }
 
