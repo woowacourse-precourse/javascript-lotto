@@ -31,25 +31,33 @@ const showLottoNumber = (countLotto, throwInput) => {
     lottos[i] = setLottoNumbers()
     Console.print(lottos[i]);
   }
-  inputLottoNumber();
+  inputLottoNumber(lottos);
 }
 
-const inputLottoNumber = () => {
+const inputLottoNumber = (lottos) => {
   let inputSixNumber;
   Console.readLine('당첨 번호를 입력해 주세요.\n', (num) => {
     inputSixNumber = num.toString().split(",").map((str) => Number(str));
     console.log(inputSixNumber);
-    inputBonusLotto(inputSixNumber);
+    inputBonusLotto(inputSixNumber, lottos);
   })
 }
 
-const inputBonusLotto = (inputSixNumber) => {
+const inputBonusLotto = (inputSixNumber, lottos) => {
   let inputBonusNumber;
   Console.readLine('보너스 번호를 입력해 주세요.\n', (num) => {
     inputBonusNumber = Number(num);
     inputSixNumber.push(inputBonusNumber);
     console.log(inputSixNumber);
+    compareLotto(inputSixNumber, lottos);
   })
+}
+
+const compareLotto = (inputSixNumber, lottos) => {
+  let checkLength = [];
+  for(let i = 0; i < lottos.length; i++){
+   checkLength[i] = inputSixNumber.filter(num => lottos[i].includes(num)).length;
+  }
 }
 
 class App {
