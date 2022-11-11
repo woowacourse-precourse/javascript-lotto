@@ -1,10 +1,12 @@
+const { THOUSAND } = require("./constant/Constant");
+
 class Budget {
   constructor(count) {
     this.count = count;
   }
 
   divideBudget(budget) {
-    this.count = Math.floor(parseInt(budget) / 1000);
+    this.count = Math.floor(parseInt(budget) / THOUSAND);
   }
 
   returnCount() {
