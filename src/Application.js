@@ -5,6 +5,12 @@ class Application {
     }
   }
 
+  static validateArray(target) {
+    if (!Array.isArray(target)) {
+      throw new TypeError('[ERROR] 전달된 인수는 배열 타입만 가능 합니다.');
+    }
+  }
+
   static convertNumber(target) {
     const result = parseInt(target, 10);
 
