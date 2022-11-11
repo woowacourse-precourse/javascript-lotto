@@ -9,6 +9,7 @@ class App {
     this.quantity = 0;
     this.publishList = [];
     this.winningNumbers = [];
+    this.bonusNumber = 0;
   }
 
   play() {
@@ -48,6 +49,13 @@ class App {
       this.type = new Type();
       this.winningNumbers = this.type.changeType(numbers);
       new Lotto(this.winningNumbers);
+      this.inputBonus();
+    });
+  }
+
+  inputBonus() {
+    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (number) => {
+      this.bonusNumber = parseInt(number, 10);
     });
   }
 }
