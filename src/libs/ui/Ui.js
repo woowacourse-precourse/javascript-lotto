@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Lotto = require("../../Lotto");
 
 const accountInput = () => {
   MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
@@ -19,7 +20,6 @@ const checkAccountValidation = (input) => {
   const account = Number(input);
 
   if (input.length !== String(account).length) {
-    console.log(account.length);
     throw new Error("[ERROR] 잘못된 입력입니다.");
   }
   if (account < 1000) {
@@ -48,6 +48,13 @@ const printLottoNumber = (tickets) => {
   tickets.map((element) => MissionUtils.Console.print(element));
 };
 
+const winningNumberInput = () => {
+  MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.\n", (input) => {
+    const lotto = new Lotto(input);
+  });
+};
+
 module.exports = {
   accountInput,
+  winningNumberInput,
 };
