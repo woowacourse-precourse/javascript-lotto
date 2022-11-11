@@ -7,6 +7,7 @@ class App {
   lottoCount;
   lottoArray = [];
   winningNumbers;
+  bonusNumber;
 
   constructor() {
     this.print = new Output();
@@ -41,12 +42,20 @@ class App {
   }
 
   getWinningNumbers(numbers) {
+    this.validWinningNumbers(numbers);
     this.winningNumbers = this.winningNumbersConverter(numbers);
   }
 
   winningNumbersConverter(numbers) {
     const winningNumberArray = numbers.split(',').map((item) => parseInt(item));
     return winningNumberArray;
+  }
+  
+  validWinningNumbers(numbers) {
+    const reg = /^([0-9]+,){5}([0-9]+){1}$/;
+    if (!reg.test(numbers)) {
+      throw new Error('[ERROR] 당첨 숫자 입력의 형식이 잘못되었습니다.');
+    }
   }
 }
 
