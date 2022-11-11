@@ -31,6 +31,9 @@ class App {
   }
 
   validateMoney(money) {
+    if (money <= 0) {
+      throw new Error('[ERROR] 최소 구입 금액은 1,000원입니다.');
+    }
     if (Number.isNaN(money)) {
       throw new Error('[ERROR] 구입 금액은 숫자만 입력해 주세요.');
     }
