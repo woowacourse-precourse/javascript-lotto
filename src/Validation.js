@@ -34,12 +34,19 @@ class Validation {
   }
 
   static validateLottoNumber(lottoNumbers) {
-    if (lottoNumbers.length !== LOTTO_DIGITS) {
+    if (Validation.isValidLottoLength(lottoNumbers)) {
       throw new Error(ERROR_MESSAGE.INVALID_LOTTO_LENGTH);
     }
-    if (new Set(lottoNumbers).size !== LOTTO_DIGITS) {
+    if (Validation.hasUniqueLottoNumber(lottoNumbers)) {
       throw new Error(ERROR_MESSAGE.DUPLICATE_LOTTO_NUMBER);
     }
+  }
+
+  static isValidLottoLength(lottoNumbers) {
+    return lottoNumbers.length !== LOTTO_DIGITS;
+  }
+  static hasUniqueLottoNumber(lottoNumbers) {
+    return new Set(lottoNumbers).size !== LOTTO_DIGITS;
   }
 }
 
