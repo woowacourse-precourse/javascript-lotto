@@ -7,6 +7,13 @@ class App {
     this.winningNumbers;
     this.bonusNumber;
     this.myLottos = [];
+    this.result = {
+      first: 0,
+      second: 0,
+      third: 0,
+      fourth: 0,
+      fifth: 0,
+    };
   }
 
   play() {
@@ -58,6 +65,7 @@ class App {
       const number = Number(input);
       this.validateBonusNumber(number);
       this.bonusNumber = number;
+      this.getResult();
     });
   }
 
@@ -67,6 +75,29 @@ class App {
     }
     if (this.winningNumbers.includes(number)) {
       throw new Error('[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.');
+    }
+  }
+
+  getResult() {
+    this.myLottos.forEach((lotto) => {
+      const matchNumbers = lotto.filter((number) => this.winningNumbers.includes(number));
+      const hasBonusNumber = lotto.some((number) => number === this.bonusNumber);
+      this.updateResult(matchNumbers, hasBonusNumber);
+    });
+  }
+
+  updateResult(matchNumbers, hasBonusNumber) {
+    const matchCount = matchNumbers.length;
+    if (matchCount === 6) {
+      this.result.first += 1;
+    } else if (matchCount === 5 && hasBonusNumber) {
+      this.result.second += 1;
+    } else if (matchCount === 5 && !hasBonusNumber) {
+      this.result.third += 1;
+    } else if (matchCount === 4) {
+      this.result.fourth += 1;
+    } else if (matchCount === 3) {
+      this.result.fifth += 1;
     }
   }
 }
