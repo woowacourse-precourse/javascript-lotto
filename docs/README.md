@@ -52,7 +52,8 @@
 - calculatePrizeLottery
 ### 각 배열마다 당첨됬는지 확인하기
 - checkLottery
-
+### 5등 당첨 확인 함수
+- checkLotteryHelper
 ### 당첨 내역 출력하기
 - showPrizeLottery
 ## 수익률 계산하기
