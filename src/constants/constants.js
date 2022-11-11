@@ -1,5 +1,5 @@
 const GAME_MESSAGE = {
-  INSERT_PURCHASE_COST: '구입금액을 입력해 주세요.',
+  INSERT_PURCHASE_COST: '구입금액을 입력해 주세요.\n',
   PURCHASE_AMOUNT: (count) => `${count}개를 구매했습니다.`,
   INSERT_WIN_NUMBER: '당첨 번호를 입력해 주세요.',
   GET_RANK_STATISTICS: '당첨 통계\n---',
@@ -34,12 +34,15 @@ const CORRECT_NUMBER = {
   7: '1',
 };
 
-const LOTTERY_LENGTH = 6;
+const LOTTERY_INFORMATION = {
+  COST: 1000,
+  LENGTH: 6,
+};
 
 module.exports = {
   GAME_MESSAGE,
   RANK_STATISTICS_MESSAGE,
-  LOTTERY_LENGTH,
+  LOTTERY_INFORMATION,
   LOTTERY_PRIZE,
   CORRECT_NUMBER,
 };
