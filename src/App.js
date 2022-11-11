@@ -4,7 +4,7 @@ const { PrizeInformation } = require("./LottoInfo");
 
 class App {
   play() {
-
+    this.getInputCost();
   }
 
   /**
@@ -167,8 +167,11 @@ class App {
    * @param {number} incomeRate 총 수익률
    */
   printIncomeRate(incomeRate) {
-    MissionUtils.Console.print(`총 수익률은 ${incomeRate}입니다.`);
+    MissionUtils.Console.print(`총 수익률은 ${incomeRate.toFixed(1)}%입니다.`);
   }
 }
+
+const APP = new App();
+APP.play();
 
 module.exports = App;
