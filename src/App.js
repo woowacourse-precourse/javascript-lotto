@@ -74,6 +74,14 @@ class App {
     }
   }
 
+  #printResult() {
+    MissionUtils.Console.print('당첨 통계');
+    MissionUtils.Console.print('---');
+    Object.keys(this.#result).forEach((rank) => {
+      MissionUtils.Console.print(`${rank} - ${this.#result[rank]}개`);
+    });
+  }
+
   #matchLotto() {
     this.#lottos.forEach((lotto) => {
       const lottoNumbers = lotto.getNumbers();
@@ -90,6 +98,7 @@ class App {
       (bonusNumber) => {
         this.#bonusNumber = bonusNumber;
         this.#matchLotto();
+        this.#printResult();
       },
     );
   }
