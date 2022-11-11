@@ -11,6 +11,11 @@ class LotteryDraw extends Struct{
             this.money = money / 1000;
         });
     };
+    randomLotto() {
+        for (let index = 0; index < this.money; index++) {
+            this.lottoBox.push(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
+        };
+    };
 };
 
 module.exports = LotteryDraw;
