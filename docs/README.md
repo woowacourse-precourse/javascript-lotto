@@ -24,16 +24,16 @@
 [✅] ✏️ 로또 구입 금액을 입력 받는다. `Person.buy()`
 - 구입 금액은 1,000원 단위로 입력
 
-[✅] ✏️ 로또 구입 금액 값이 올바른 값인지 판단한다. `SYSTEM.isCorrectCash()`
+[✅] ✏️ 로또 구입 금액 값이 올바른 값인지 판단한다. `SYSTEM.isCorrectCash(cash)`
 - 1,000원으로 나누어 떨어지지 않는 경우 예외 발생
   - `[ERROR] 구입 금액은 1000원 단위여야합니다.`
 
-[✅] ✏️ 구입 개수 만큼 로토를 발행한다. `SYSTEM.publishLotto()` 
+[✅] ✏️ 구입 개수 만큼 로토를 발행한다. `SYSTEM.publishLotto(cash)` 
 - 로또 번호는 구입 개수만큼 자동으로 생성 `SYSTEM.autoWrite(maxCount)`
   - 로또 개별 생성 `SYSTEM.makeLotto()`
-- 로또 번호는 `오름차순으로 정렬` `SYSTEM.sortLotto(lotto)`
+- 로또 번호는 `오름차순으로 정렬` `SYSTEM.sortLotto(numbers)`
 
-[✅] ✏️ 발행한 로또 수량 및 번호를 출력한다. `SYSTEM.printLottos`
+[✅] ✏️ 발행한 로또 수량 및 번호를 출력한다. `SYSTEM.printLottos(lottos, maxCount)`
 > 8개를 구매했습니다.  
 > [8, 21, 23, 41, 42, 43]  
 > [3, 5, 11, 16, 32, 38]  
@@ -44,23 +44,23 @@
 > [2, 13, 22, 32, 38, 45]  
 > [1, 3, 5, 14, 22, 45]    
     
-[✅] ✏️ 당첨 번호를 입력 받는다. `SYSTEMS.makeWinningLotto()` 
+[✅] ✏️ 당첨 번호를 입력 받는다. `SYSTEMS.makeWinningLotto(lottos, cash)` 
 - 번호는 쉼표(,)를 기준으로 구분  
   
-[✅] ✏️ 입력한 당첨번호가 올바른 값인지 판단한다. `Lottos.vaildate()`
+[✅] ✏️ 입력한 당첨번호가 올바른 값인지 판단한다. `Lottos.validate()`
 - 사용자가 잘못된 값을 입력할 경우 throw문을 사용해 예외 발생
   - `[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.`
   - `[ERROR] 로또 번호는 총 6개여야 합니다.`
   
-[✅] ✏️ 보너스 번호를 입력 받는다. `SYSTEMS.makeBonusNumber()`
+[✅] ✏️ 보너스 번호를 입력 받는다. `SYSTEMS.makeBonusNumber(lottos, winningLotto, cash)`
 - 보너스 번호는 당첨번호에 포함되지 않는 수
 - 1~45 사이의 수
 
-[✅] ✏️ 입력한 보너스 번호가 올바른 값인지 판단한다. `SYSTEM.isCorrectBonusNumber()`
+[✅] ✏️ 입력한 보너스 번호가 올바른 값인지 판단한다. `SYSTEM.isCorrectBonusNumber(bonusNumber, winningLotto)`
 - 사용자가 잘못된 값을 입력할 경우 throw문을 사용해 예외 발생
   - `[ERROR] 보너스 번호는 1부터 45 사이의 숫자 하나여야 합니다.`
 
-[✅] ✏️당첨 내역을 출력한다. `SYSTEM.printResult()`
+[✅] ✏️당첨 내역을 출력한다. `SYSTEM.printResult(lottos, winningLotto, bonusNumber, cash)`
 > 당첨 통계  
 > &#45;&#45;&#45;   
 > 3개 일치 (5,000원) - 1개  
@@ -69,7 +69,7 @@
 > 5개 일치, 보너스 볼 일치 (30,000,000원) - 0개  
 > 6개 일치 (2,000,000,000원) - 0개
 
-[✅] ✏️ 수익율을 출력한다. `SYSTEM.printResult()`
+[✅] ✏️ 수익율을 출력한다. `SYSTEM.printResult(lottos, winningLotto, bonusNumber, cash)`
 - 수익률은 `소수점 둘째 자리에서 반올림` 
 - 수익률이 `4자리 이상일 경우 단위별로 쉼표를 추가`
   - (ex. 100.0%, 51.5%, 1,000,000.0%)
