@@ -1,5 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Notice = require("./NoticeMessage.js")
+const Error = require("./ErrorMessage.js")
 const Lotto = require("./Lotto.js")
 class App {
   constructor(){
@@ -7,8 +8,13 @@ class App {
   }
   play() {
     MissionUtils.Console.readLine(Notice.INPUT_MONEY,(money) => {
-      console.log(money)
+      this.inputMoneyValidate(money)
     });
+  }
+  inputMoneyValidate(money){
+    if (money % 1000 != 0) {
+      throw Error.UNIT_ERROR;
+    }
   }
 }
 
