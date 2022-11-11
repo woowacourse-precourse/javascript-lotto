@@ -1,9 +1,9 @@
 const Money = require("../src/Money");
 
 describe("금액 클래스 테스트", () => {
-  test("구입 금액이 숫자가 아니면 예외가 발생한다.", () => {
+  test("구입 금액에 숫자가 아닌 게 포함되어있으면 예외가 발생한다.", () => {
     expect(() => {
-      new Money("가나다");
+      new Money("1000다");
     }).toThrow("[ERROR]");
   });
 
