@@ -10,12 +10,11 @@ class App {
   async play() {
     try {
       let input = await this.getInputMoney();
-
+      Console.print("\n");
       Console.print(`${input / 1000}개를 구매했습니다.`);
-
       let Lottos = this.publishLotto(input / 1000);
-
       this.printLottosNumbers(Lottos);
+      Console.print("\n");
     } catch (e) {}
   }
 
