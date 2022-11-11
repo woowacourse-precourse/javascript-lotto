@@ -74,38 +74,54 @@ class Lotto {
   }
   calculatePrizeLottery(computerNumberArray, userLottoNumber, bonusMoney) {
     let userLottoArray = userLottoNumber.split(",").map((e) => Number(e));
-    let countArray=[]
-    let counted=0
+    let countArray = [];
+    let counted = 0;
     computerNumberArray.forEach((eachNumberArray) => {
-      counted=this.checkLottery(eachNumberArray, userLottoArray, bonusMoney);
-      countArray.push(counted)
+      counted = this.checkLottery(eachNumberArray, userLottoArray, bonusMoney);
+      countArray.push(counted);
     });
-    this.showPrizeLottery(countArray)
+    this.showPrizeLottery(countArray);
   }
   checkLottery(eachNumberArray, userLottoArray, bonusMoney) {
     let count = 0;
+    let checkBonus = 0;
     eachNumberArray.forEach((comNumber) => {
       if (userLottoArray.includes(comNumber)) {
         count++;
       }
     });
-    // console.log(count);
-    if (count === 5) this.checkLotteryHelper(eachNumberArray, bonusMoney);
-    return count;
+    if (count === 5) {
+      let bonus = this.checkLotteryHelper(eachNumberArray, bonusMoney);
+      checkBonus = bonus;
+    }
+    return count + checkBonus;
   }
   checkLotteryHelper(eachNumberArray, bonusMoney) {
-    console.log(eachNumberArray, bonusMoney);
     if (eachNumberArray.includes(bonusMoney)) {
-      console.log(`5등 당점`);
+      return 2;
     }
   }
   showPrizeLottery(countArray) {
-    console.log(countArray);
-    // MissionUtils.Console.print(`3개 일치 (5000원) - $개`)
-    // MissionUtils.Console.print(`4개 일치 (50,000원) - $개`)
-    // MissionUtils.Console.print(`5개 일치 (1,500,000원) - $개`)
-    // MissionUtils.Console.print(`5개 일치,보너스 볼 일치 (3,000,000원) - $개`)
-    // MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - $개`)
+    switch (countArray) {
+      case 3:
+        MissionUtils.Console.print(`3개 일치 (5000원) - ${countArray}개`)
+        break;
+      case 4:
+        MissionUtils.Console.print(`4개 일치 (50,000원) - ${countArray}개`)
+        break;
+      case 5:
+        MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${countArray}개`)
+        break;
+      case 6:
+        MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${countArray}개`)
+        break;
+        case 7:
+        MissionUtils.Console.print(`5개 일치,보너스 볼 일치 (3,000,000원) - ${countArray}개`)
+        break;
+      default:
+        MissionUtils.Console.print('당첨된게 없습니다.')
+        MissionUtils.Console.close()
+    }
   }
 }
 
