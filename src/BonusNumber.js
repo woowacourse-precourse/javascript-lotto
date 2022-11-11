@@ -1,3 +1,9 @@
+const ERROR_ONLY_NUMBER = "[ERROR] 숫자만이 입력 가능합니다.";
+const ERROR_OUT_OF_RANGE =
+  "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
+const ERROR_DUPLICATE_EXIST =
+  "[ERROR] 6개의 당첨 번호로 입력한 숫자는 보너스 번호로 사용 할 수 없습니다.";
+
 class BonusNumber {
   constructor(userLotto, bonus) {
     this.userLotto = userLotto;
@@ -16,7 +22,7 @@ class BonusNumber {
       const ASCII = item.charCodeAt();
 
       if (ASCII < 48 || ASCII > 57) {
-        throw new Error("[ERROR] 숫자만이 입력 가능합니다.");
+        throw new Error(ERROR_ONLY_NUMBER);
       }
     });
   }
@@ -25,7 +31,7 @@ class BonusNumber {
     const bonusNumber = Number(bonus);
 
     if (bonusNumber < 1 || bonusNumber > 45) {
-      throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+      throw new Error(ERROR_OUT_OF_RANGE);
     }
   }
 
@@ -33,9 +39,7 @@ class BonusNumber {
     const bonusNumber = Number(bonus);
 
     if (this.userLotto.includes(bonusNumber)) {
-      throw new Error(
-        "[ERROR] 6개의 당첨 번호로 입력한 숫자는 보너스 번호로 사용 할 수 없습니다."
-      );
+      throw new Error(ERROR_DUPLICATE_EXIST);
     }
   }
 }

@@ -1,5 +1,7 @@
 const Console = require("@woowacourse/mission-utils").Console;
 
+const NOTIFY_WINNING_STATE = "\n당첨 통계\n---";
+
 class Result {
   constructor(amount, lottoArray, userLotto, bonusNumber) {
     this.amount = Number(amount);
@@ -82,7 +84,7 @@ class Result {
   }
 
   showResult() {
-    Console.print("\n당첨 통계\n---");
+    Console.print(NOTIFY_WINNING_STATE);
     Console.print(`3개 일치 (5,000원) - ${this.rank[4]}개`);
     Console.print(`4개 일치 (50,000원) - ${this.rank[3]}개`);
     Console.print(`5개 일치 (1,500,000원) - ${this.rank[2]}개`);
