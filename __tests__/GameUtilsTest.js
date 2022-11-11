@@ -27,4 +27,12 @@ describe("GameUtils 테스트", () => {
       expect(result).toBeTruthy();
     })
   });
+  test("로또 개수 산출 확인", () => {
+    const input = [1000, 5000, 10000, 15000];
+    const result = [1, 5, 10, 15];
+    input.forEach((subject, idx) => {  
+      const sheets = GameUtils.getSheets(subject);
+      expect(sheets).toBe(result[idx]);
+    })
+  });
 });
