@@ -5,10 +5,8 @@ class Validator {
     if (!REGEX.money.test(money)) {
       throw Error(ERROR_MESSAGE.MONEY_FORM);
     }
-    if (money) {
-      if (money % LOTTO.PRICE) {
-        throw Error(ERROR_MESSAGE.MONEY_MULTIPLE);
-      }
+    if (money % LOTTO.PRICE) {
+      throw Error(ERROR_MESSAGE.MONEY_MULTIPLE);
     }
     if (money[0] === '0') {
       throw Error(ERROR_MESSAGE.INT_FORM);
