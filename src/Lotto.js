@@ -21,7 +21,7 @@ class Lotto {
     const matchNumbers = this.#numbers.filter((number) =>
       winningNumber.includes(number),
     );
-    if (matchNumbers === 5 && this.#numbers.includes(bonusNumber)) {
+    if (matchNumbers.length === 5 && this.#numbers.includes(bonusNumber)) {
       return '5B';
     }
     return matchNumbers.length;

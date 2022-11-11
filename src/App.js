@@ -92,7 +92,7 @@ class App {
         this.#winningNumber,
         this.#bonusNumber,
       );
-      if (matchCount >= MINIMUM_MATCH_COUNT) {
+      if (matchCount >= MINIMUM_MATCH_COUNT || matchCount === '5B') {
         this.#result[matchCount] += 1;
       }
     });
@@ -103,7 +103,7 @@ class App {
       if (!isPositiveInteger(bonusNumber)) {
         printError('양의 정수만 입력해주세요.');
       }
-      this.#bonusNumber = bonusNumber;
+      this.#bonusNumber = Number(bonusNumber);
       this.#matchLotto();
       this.#printResult();
       ui.end();
