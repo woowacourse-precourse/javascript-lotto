@@ -1,4 +1,4 @@
-const { Random } = require("@woowacourse/mission-utils");
+const { Console, Random } = require("@woowacourse/mission-utils");
 
 class MyLotto {
   #money;
@@ -24,6 +24,12 @@ class MyLotto {
       );
     }
     return myLottos;
+  }
+
+  printMyLottery(myLottos) {
+    for (let i = 0; i < myLottos.length; i++) {
+      Console.print(myLottos[i]);
+    }
   }
 }
 
