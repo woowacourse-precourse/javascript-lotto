@@ -3,11 +3,11 @@ const { Console, Random } = require('@woowacourse/mission-utils');
 class Consumer {
   #money;
 
-  #LotteryList = [];
+  lotteryList = [];
 
   constructor(money) {
     // this.validate(money);
-    this.#money = this.money;
+    this.#money = +money;
     this.createConsumer(money);
     this.printConsumer();
   }
@@ -22,7 +22,7 @@ class Consumer {
     for (let count = 0; count < amount; count += 1) {
       const number = Random.pickUniqueNumbersInRange(1, 45, 6);
       this.sortArray(number);
-      this.LotteryList.push(number);
+      this.lotteryList.push(number);
     }
   }
 
@@ -35,19 +35,17 @@ class Consumer {
   }
 
   printConsumer() {
-    this.LotteryList.forEach((lotto) => {
+    const amount = this.#money / 1000;
+    Console.print(`\n${amount}개를 구매했습니다`);
+    this.lotteryList.forEach((lotto) => {
       Console.print(lotto);
     });
+    Console.print('\n');
   }
 
   getMoney() {
     const consumerMoney = this.#money;
     return consumerMoney;
-  }
-
-  getConsumer() {
-    const consumerLottery = [...this.#LotteryList];
-    return consumerLottery;
   }
 }
 
