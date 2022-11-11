@@ -84,8 +84,7 @@ class App {
     );
     MissionUtils.Console.close();
     this.validBonusNumber(winningLotto, bonusNumber);
-
-    MissionUtils.Console.print(winningLotto);
+    winningLotto.push(bonusNumber);
 
     return winningLotto;
   }
@@ -161,7 +160,7 @@ class App {
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${winningInfo[3]}개`);
     MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningInfo[2]}개`);
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${winningInfo[1]}개`);
-    MissionUtils.Console.print(`총 수익률은 ${Math.floor(totalProfit * 1000) / 10}%입니다.`);
+    MissionUtils.Console.print(`총 수익률은 ${Math.round(totalProfit * 1000) / 10}%입니다.`);
   }
 
 }
