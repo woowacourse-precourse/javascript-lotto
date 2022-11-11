@@ -12,8 +12,7 @@ class GameTools {
     return lottoes;
   }
 
-  static getMachingNumberCount(userNumbers, winningNumbers) {
-    console.log(winningNumbers);
+  static getMatchingNumberCount(userNumbers, winningNumbers) {
     return userNumbers.filter((number) => winningNumbers.includes(number))
       .length;
   }
