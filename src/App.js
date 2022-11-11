@@ -1,6 +1,7 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const Money = require("./Money");
 const Type = require("./Type");
+const Lotto = require("./Lotto");
 
 class App {
   constructor() {
@@ -46,6 +47,7 @@ class App {
     Console.readLine("\n당첨 번호를 입력해 주세요.\n", (numbers) => {
       this.type = new Type();
       this.winningNumbers = this.type.changeType(numbers);
+      new Lotto(this.winningNumbers);
     });
   }
 }
