@@ -4,6 +4,7 @@ class Buyer {
 
   constructor(payment) {
     this.isValidpayment(payment);
+    this.setLottoCount();
   }
 
   isValidpayment(payment) {
