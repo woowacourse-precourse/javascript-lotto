@@ -62,6 +62,14 @@ class App {
     const totalRankingArr = statistics.getTotalRankingArr();
     statistics.printTotalLottoResult(totalRankingArr);
   }
+
+  getPrizeMoneyArr(totalRankingArr) {
+    const currency = [5000, 50000, 1500000, 30000000, 2000000000];
+    const prizeMoneyArr = totalRankingArr.map((lotto, index) => {
+      if (lotto !== 0) return lotto * currency[index];
+    });
+    return prizeMoneyArr.filter((money) => money !== undefined);
+  }
 }
 
 const app = new App();
