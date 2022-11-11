@@ -53,12 +53,7 @@ class Lotto {
       }
       rankCount = this.winningStatics(numbersCount, bonusCount, rankCount);
     }
-    this.test(rankCount);
-  }
-
-  test(tmp) {
-    MissionUtils.Console.print('test');
-    MissionUtils.Console.print(tmp);
+    this.resultLotto(rankCount);
   }
   // 통계 자료 만드는 메소드
   winningStatics(numbersCount, bonusCount, rankCount) {
@@ -75,6 +70,20 @@ class Lotto {
     if (count == 6) tmp[4] += 1;
 
     return tmp;
+  }
+
+  resultLotto(rankCount) {
+    MissionUtils.Console.print('당첨 통계');
+    MissionUtils.Console.print('---');
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${rankCount[0]}개`);
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${rankCount[1]}개`);
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${rankCount[2]}개`);
+    MissionUtils.Console.print(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankCount[3]}개`
+    );
+    MissionUtils.Console.print(
+      `6개 일치 (2,000,000,000원) - ${rankCount[4]}개`
+    );
   }
 }
 
