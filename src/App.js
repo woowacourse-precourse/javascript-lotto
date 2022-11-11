@@ -36,9 +36,17 @@ class App {
     this.#lottos.forEach(lotto => lotto.print());
   }
 
+  inputWinningNumbers() {
+    Console.readLine('당첨 번호를 입력해 주세요.', answer => {
+      const numbers = answer.split(',').map(Number);
+      this.#winningNumbers = new Lotto(numbers);
+    });
+  }
+
   play() {
     this.inputMoney();
     this.buyingLotto();
+    this.inputWinningNumbers();
     Console.close();
   }
 }
