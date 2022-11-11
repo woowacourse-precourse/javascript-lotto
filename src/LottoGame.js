@@ -39,8 +39,9 @@ class LottoGame {
   createLottos(lottoQuantity) {
     this.lottos = Array.from({ length: lottoQuantity }, () => {
       const lottoNumbers = this.generateLottoNumbers();
+      const ascendingNumbers = lottoNumbers.sort((numA, numB) => numA - numB);
 
-      return new Lotto(lottoNumbers);
+      return new Lotto(ascendingNumbers);
     });
   }
 }
