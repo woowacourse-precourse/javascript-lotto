@@ -1,9 +1,11 @@
+const { ERROR_MESSAGE, MONEY_UNIT, LOTTO_NUMBER } = require('../constants');
+
 function validateCashInput(value) {
-  if (value % 1000 !== 0) {
-    throw new Error('[ERROR] 1,000으로 나누어떨어지는 금액을 입력해주세요.');
+  if (value % MONEY_UNIT !== 0) {
+    throw new Error(ERROR_MESSAGE.NOT_DIVIDE_BY_THOUSAND_ERROR);
   }
   if (value <= 0) {
-    throw new Error('[ERROR] 양수 값을 입력해주세요.');
+    throw new Error(ERROR_MESSAGE.NOT_POSITIVE_NUMBER_ERROR);
   }
 }
 
@@ -11,14 +13,14 @@ function validateBonus(winningNumberArr, input) {
   const regExp = /[0-9]/g;
   const matchArr = input.match(regExp);
   if (matchArr.length !== input.length) {
-    throw new Error('[ERROR] 숫자를 입력해주세요.');
+    throw new Error(ERROR_MESSAGE.NOT_NUMBER_ERROR);
   }
   let num = Number(input);
-  if (num < 1 || num > 45) {
-    throw new Error('[ERROR] 로또 번호는 1부터 45 사이의 수들로 이루어져야 합니다.');
+  if (num < LOTTO_NUMBER.START || num > LOTTO_NUMBER.END) {
+    throw new Error(ERROR_MESSAGE.NUM_IN_RANGE_ERROR);
   }
   if (winningNumberArr.includes(num)) {
-    throw new Error('[ERROR] 당첨번호와 중복되지 않는 수를 입력해주세요.');
+    throw new Error(ERROR_MESSAGE.BONUS_NUMBER_NOT_DIFFERENT_NUMBER_ERROR);
   }
 }
 
