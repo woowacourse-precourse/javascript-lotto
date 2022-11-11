@@ -1,18 +1,22 @@
 const LottoGenerator = require("./issueLotto");
 const LottoResultCheck = require("./resultCheck");
-const MissionUtils = require("@woowacourse/mission-utils");
 
 class LottoGameHandler {
   constructor() {
     this.makeLotto = new LottoGenerator();
   }
 
-  gameStart() {
-    this.makeLotto.generateLotto();
+  async gameStart() {
+    await this.makeLotto.generateLotto();
+    await this.getResult();
   }
 
-  getResult() {
-    LottoResultCheck.getWinningNumber();
+  async getResult() {
+    await LottoResultCheck.getWinningNumber();
+    await LottoResultCheck.getBonusNumber();
+    for (let idx = 0; idx < LottoResultCheck.lottoNumbersArray.length; idx++)
+      LottoResultCheck.winningCheck(LottoResultCheck.lottoNumbersArray[idx]);
+    LottoResultCheck.getTotalWinningMoney();
   }
 }
 
