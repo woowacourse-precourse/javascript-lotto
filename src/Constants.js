@@ -1,8 +1,15 @@
 const MESSAGE = Object.freeze({
-    ENTER_CASH: "구입금액을 입력해 주세요.\n",
-    ENTER_BOUNS_NUMBER: "보너스 번호를 입력해 주세요.\n",
-    ENTER_WINNING_LOTTO: "당첨 번호를 입력해 주세요.\n",
-    BUY_LOTTOS_COUNT: "개를 구매했습니다."
+    ENTER_CASH: "구입금액을 입력해 주세요.",
+    ENTER_BOUNS_NUMBER: "보너스 번호를 입력해 주세요.",
+    ENTER_WINNING_LOTTO: "당첨 번호를 입력해 주세요.",
+    BUY_LOTTOS_COUNT: "개를 구매했습니다.",
+    RANK_TEXT: [
+        "6개 일치 (2,000,000,000원)",
+        "5개 일치, 보너스 볼 일치 (30,000,000원)",
+        "5개 일치 (1,500,000원)",
+        "4개 일치 (50,000원)",
+        "3개 일치 (5,000원)"
+    ],
 });
 
 const ERROR = Object.freeze({
@@ -14,5 +21,6 @@ const ERROR = Object.freeze({
     INVAID_NUMBER: "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.",
     HAS_NUMBER: "[ERROR] 당첨번호에 이미 포함되어있는 숫자입니다."
 });
+
 
 module.exports = { MESSAGE, ERROR };
