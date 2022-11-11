@@ -13,18 +13,21 @@ class CheckLotto {
   checkLotto() {
     this.#result = this.#controller.lottos
       .map((lotto) => lotto.getNumber().map((number) => String(number)))
-      .reduce((total, lotto) => {
-        let count = 0;
-        const winningNumber = this.#controller.winningNumber.getWinningNumber();
-        winningNumber.forEach((number) => {
-          if (lotto.includes(number)) {
-            count += 1;
-          }
-        });
-        if (count === 5 && this.#isSecond(lotto)) count += 0.5;
-        if (count >= 3) this.#combineCount(total, count);
-        return total;
-      }, {});
+      .reduce(
+        (total, lotto) => {
+          let count = 0;
+          const winningNumber = this.#controller.winningNumber.getWinningNumber();
+          winningNumber.forEach((number) => {
+            if (lotto.includes(number)) {
+              count += 1;
+            }
+          });
+          if (count === 5 && this.#isSecond(lotto)) count += 0.5;
+          if (count >= 3) total[count] += 1;
+          return total;
+        },
+        { 3: 0, 4: 0, 5: 0, 5.5: 0, 6: 0 },
+      );
   }
 
   #isSecond(lotto) {
@@ -34,14 +37,6 @@ class CheckLotto {
     }
 
     return false;
-  }
-
-  #combineCount(total, count) {
-    if (!total[count]) {
-      total[count] = 1;
-      return;
-    }
-    total[count] += 1;
   }
 }
 
