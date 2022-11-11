@@ -8,7 +8,7 @@ class User {
     let lottoPrice = 0;
     MissionUtils.Console.readLine("금액을 입력해주세요", (price) => {
       lottoPrice = price;
-    })
+    });
     if (lottoPrice % LOTTO_PRICE != 0 || lottoPrice <= 0 || lottoPrice === String || SPECIAL_CHARACTERS.test(lottoPrice)) {
       throw "[ERROR]";
     }
