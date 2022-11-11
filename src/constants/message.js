@@ -2,9 +2,12 @@ const { LOTTO_DIGITS } = require("./condition.js");
 
 const PURCHASE_AMOUNT = `구입금액을 입력해 주세요.
 `;
+const WINNING_NUMBERS = `당첨 번호를 입력해 주세요.
+`;
 
 const REQUEST_MESSAGE = {
   PURCHASE_AMOUNT,
+  WINNING_NUMBERS,
 };
 
 const INVALID_INPUT_TYPE = "[ERROR] 숫자 외의 문자를 입력할 수 없습니다. 게임 종료!";
