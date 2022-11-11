@@ -15,8 +15,14 @@ class App {
 
   purChaseLotto() {
     Console.readLine('구입금액을 입력해 주세요.\n', (amount) => {
-      console.log(new PurChase(amount).showLottoTickets(amount));
+      this.printLotto(new PurChase(amount).showLottoTickets(amount));
     });
+  }
+
+  printLotto(lotteryTickets) {
+    Console.print(`${lotteryTickets.length}개를 구매했습니다.`);
+    lotteryTickets.forEach((lottery) => Console.print(lottery));
+    this.inputLottoNumber();
   }
 
   inputLottoNumber() {
