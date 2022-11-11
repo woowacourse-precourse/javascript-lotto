@@ -1,3 +1,4 @@
+const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('../src/Lotto');
 
 describe('로또 클래스 테스트', () => {
@@ -24,4 +25,6 @@ describe('로또 클래스 테스트', () => {
       new Lotto([1, 2, 3, 4, 'a', 6]);
     }).toThrow('[ERROR]');
   });
+
+  MissionUtils.Console.close();
 });

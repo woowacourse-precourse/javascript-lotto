@@ -80,5 +80,30 @@ describe('로또 테스트', () => {
     }).toThrow('[ERROR]');
   });
 
+  test('구매 및 출력 테스트', () => {
+    mockRandoms([
+      [8, 21, 23, 41, 42, 43],
+      [3, 5, 11, 16, 32, 38],
+      [7, 11, 16, 35, 36, 44],
+      [1, 8, 11, 31, 41, 42],
+    ]);
+    mockQuestions(['4000']);
+    const logs = [
+      '4개를 구매했습니다.',
+      '[8, 21, 23, 41, 42, 43]',
+      '[3, 5, 11, 16, 32, 38]',
+      '[7, 11, 16, 35, 36, 44]',
+      '[1, 8, 11, 31, 41, 42]',
+    ];
+    const logSpy = getLogSpy();
+    const app = new App();
+    app.inputMoney();
+    app.buyingLotto();
+    app.printLottos();
+    logs.forEach(log => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
   MissionUtils.Console.close();
 });
