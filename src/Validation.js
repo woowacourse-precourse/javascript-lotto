@@ -41,12 +41,17 @@ class Validation {
       throw new Error(ERROR_MESSAGE.DUPLICATE_LOTTO_NUMBER);
     }
   }
-
   static isValidLottoNumberLength(lottoNumbers) {
     return lottoNumbers.length !== LOTTO_DIGITS;
   }
   static hasUniqueLottoNumber(lottoNumbers) {
     return new Set(lottoNumbers).size !== LOTTO_DIGITS;
+  }
+
+  static validateWinningNumbers(winningNumbers) {
+    if (!Validation.hasOnlyNumber(winningNumbers, ",")) {
+      throw new Error(ERROR_MESSAGE.INVALID_INPUT_TYPE);
+    }
   }
 }
 

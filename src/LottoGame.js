@@ -50,7 +50,9 @@ class LottoGame {
   }
 
   saveWinningNumbersPhase() {
-    this.LottoGameView.requestInput(REQUEST_MESSAGE.WINNING_NUMBERS, (winningNumbers) => {});
+    this.LottoGameView.requestInput(REQUEST_MESSAGE.WINNING_NUMBERS, (winningNumbers) => {
+      Validation.validateWinningNumbers(winningNumbers);
+    });
   }
 }
 
