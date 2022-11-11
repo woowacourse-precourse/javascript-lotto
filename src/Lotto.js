@@ -31,7 +31,6 @@ class Lotto {
 
   process() {
     this.inputMoney();
-    this.lottoCountPrint();
     this.lotto();
     this.inputNumberAndBonusNumber();
     this.lottoResult();
@@ -46,20 +45,24 @@ class Lotto {
     });
   }
 
-  lottoCountReturn() {
-    return this.useMoney / 1000;
+  lotto() {
+    this.lottoCountPrint();
+    for (let i = 0; i < this.lottoCountReturn(); i++) {
+      this.lottoSort(this.lottoNumber());
+      this.lottoPrint(i);
+    }
   }
 
   lottoCountPrint() {
     MissionUtils.Console.print(`${this.lottoCountReturn()}개를 구매했습니다.`);
   }
 
-  lotto() {
-    for (let i = 0; i < this.lottoCountReturn(); i++) {
-      const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-      this.lottoSort(numbers);
-      this.lottoPrint(i);
-    }
+  lottoCountReturn() {
+    return this.useMoney / 1000;
+  }
+
+  lottoNumber() {
+    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
   }
 
   lottoSort(numbers) {
