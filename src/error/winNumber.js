@@ -27,7 +27,7 @@ class WinNumberError extends Exception {
 
   checkRange(allow) {
     this.numbers.forEach((num) => {
-      if (num < 1 || num > 45) {
+      if (num < UNIT.MIN_NUMBER || num > UNIT.MAX_NUMBER) {
         allow = allow && false;
       }
     });
@@ -42,7 +42,7 @@ class WinNumberError extends Exception {
   }
 
   checkInput() {
-    if (!this.isAllowNumbers()) throw new Error(ERROR.WINNING_NUMBER);
+    if (!this.isAllowNumbers()) throw new Error(ERROR.WIN_NUMBER);
   }
 }
 

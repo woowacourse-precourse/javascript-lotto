@@ -22,15 +22,19 @@ const PLACE = Object.freeze({
 
 const ERROR = Object.freeze({
   PURCHASE_AMOUNT: "[ERROR] 구매 금액은 1000원 단위로 입력하셔야 합니다.",
-  WINNING_NUMBER: "[ERROR] 올바른 당첨 번호를 입력해주세요.",
+  WIN_NUMBER: "[ERROR] 올바른 당첨 번호를 입력해주세요.",
   NUMBER_RANGE: "[ERROR] 1~45 의 숫자만 입력할 수 있습니다.",
   BONUS_NUMBER: "[ERROR] 올바른 보너스 번호를 입력해주세요.",
-  DUPLICATE: "[ERROR] 로또 번호는 서로 다른 6개의 1~45 이내의 숫자여야 합니다.",
+  WIN_NUMBER_DUPLICATE:
+    "[ERROR] 로또 번호는 서로 다른 6개의 1~45 이내의 숫자여야 합니다.",
+  BONUS_NUMBER_DUPLICATE: "[ERROR] 보너스 번호는 당첨번호와 중복되면 안됩니다.",
 });
 
 const UNIT = Object.freeze({
   NUM_RANGE: /[1-45]/,
   MONETARY: 1000,
+  MIN_NUMBER: 1,
+  MAX_NUMBER: 45,
   LOTTO_LENGTH: 6,
   BONUS_LENGTH: 1,
   MIN_LENGTH: 11,

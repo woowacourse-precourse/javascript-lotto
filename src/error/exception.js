@@ -1,6 +1,6 @@
 class Exception {
-  isAllow(target) {
-    target.checkInput();
+  isAllow(target, comparison) {
+    target.checkInput(comparison);
   }
 }
 

@@ -4,6 +4,7 @@ const PurchaseError = require("./error/purchase");
 const WinNumberError = require("./error/winNumber");
 const ChangeLotto = require("./ChangeLotto");
 const Lotto = require("./Lotto");
+const BonusNumber = require("./error/bonusNumber");
 
 const { COMMAND } = require("./utils/constant");
 
@@ -33,7 +34,7 @@ class App {
 
   askBonusNumber() {
     Console.readLine(`\n${COMMAND.BONUS}\n`, (input) => {
-      this.#exception.isAllow();
+      this.#exception.isAllow(new BonusNumber(input), this.winNumber);
       this.bonusNumber = input;
     });
   }
