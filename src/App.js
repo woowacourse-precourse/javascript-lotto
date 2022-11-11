@@ -1,4 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
+const { READ_MESSAGE, RESULT_MESSAGE } = require('./constants/message');
 const Calculator = require('./Calculator');
 const Lotto = require('./Lotto');
 
@@ -17,7 +18,7 @@ class App {
   }
 
   recordPay() {
-    Console.readLine('구입금액을 입력해 주세요.\n', (input) => {
+    Console.readLine(READ_MESSAGE.pay, (input) => {
       const pay = parseInt(input);
       this.#calculator = new Calculator(pay);
       this.buyLottos();
@@ -44,14 +45,14 @@ class App {
   }
 
   recordWinNumbers() {
-    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (input) => {
+    Console.readLine(READ_MESSAGE.winNumbers, (input) => {
       this.#winNumbers = input.split(',').map((number) => parseInt(number));
       this.recordBonusNumber();
     });
   }
 
   recordBonusNumber() {
-    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (input) => {
+    Console.readLine(READ_MESSAGE.bonusNumber, (input) => {
       this.#bonusNumber = parseInt(input);
       this.calculateResult();
     });
@@ -74,16 +75,14 @@ class App {
   }
 
   printResult() {
-    Console.print('\n당첨 통계\n---');
-    Console.print(`3개 일치 (5,000원) - ${this.#rankingCount[5]}개`);
-    Console.print(`4개 일치 (50,000원) - ${this.#rankingCount[4]}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${this.#rankingCount[3]}개`);
-    Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.#rankingCount[2]}개`
-    );
-    Console.print(`6개 일치 (2,000,000,000원) - ${this.#rankingCount[1]}개`);
-    Console.print(`총 수익률은 ${this.#profitRate}%입니다.`);
+    Console.print(RESULT_MESSAGE.head);
+    for (let ranking = 5; ranking >= 1; ranking--) {
+      Console.print(
+        `${RESULT_MESSAGE.rank[ranking]} - ${this.#rankingCount[ranking]}개`
+      );
+    }
 
+    Console.print(`총 수익률은 ${this.#profitRate}%입니다.`);
     Console.close();
   }
 }
