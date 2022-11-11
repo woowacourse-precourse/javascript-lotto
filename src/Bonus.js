@@ -1,5 +1,4 @@
-const { Console, Random } = require("@woowacourse/mission-utils");
-
+const { ERROR_MESSAGE } = require("./constants");
 class Bonus {
   bonus;
   constructor(number) {
@@ -12,7 +11,7 @@ class Bonus {
 
   isBonusInRange(bonus) {
     if (!(Number(bonus) >= 1 && Number(bonus) <= 45))
-      throw new Error("[ERROR] 범위 외 숫자");
+      throw new Error(ERROR_MESSAGE.BONUS_RANGE);
   }
 }
 

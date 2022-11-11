@@ -1,5 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { STATISTIC_MESSAGE } = require("./constants");
+const { STATISTIC_MESSAGE, ERROR_MESSAGE } = require("./constants");
 class Lotto {
   #numbers;
 
@@ -17,28 +17,29 @@ class Lotto {
   }
 
   isSixNumber(numbers) {
-    if (numbers.length !== 6) throw new Error("[ERROR] 입력 숫자가 6개가 아님");
+    if (numbers.length !== 6) throw new Error(ERROR_MESSAGE.WINNING_SIX);
   }
 
   isUniqueNumber(numbers) {
     if (new Set(numbers).size !== 6)
-      throw new Error("[ERROR] 겹치는 숫자 존재");
+      throw new Error(ERROR_MESSAGE.WINNING_DUPLICATE);
   }
 
   isOnlyNumbers(numbers) {
     numbers.forEach((number) => {
       if (Number.isNaN(Number(number)))
-        throw new Error("[ERROR] 숫자 아닌거 포함");
+        throw new Error(ERROR_MESSAGE.WINNING_NOT_NUMBER);
     });
   }
 
   isInRange(numbers) {
     const range = (number) => Number(number) >= 1 && Number(number <= 45);
-    if (!numbers.every(range)) throw new Error("[ERROR] 범위 밖의 숫자");
+    if (!numbers.every(range)) throw new Error(ERROR_MESSAGE.WINNING_RANGE);
   }
   // TODO: 추가 기능 구현
   isUniqueBonus(bonus) {
-    if (this.#numbers.includes(bonus)) throw new Error("[ERROR] 보너스 겹침");
+    if (this.#numbers.includes(bonus))
+      throw new Error(ERROR_MESSAGE.BONUS_OVERLAP);
   }
 
   calculate(money, lottoList, bonus) {

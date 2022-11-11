@@ -1,3 +1,4 @@
+const { ERROR_MESSAGE } = require("./constants");
 class Seed {
   seedMoney;
   ticketAmount;
@@ -11,7 +12,7 @@ class Seed {
   }
 
   isDiviedByThousand(seed) {
-    if (seed % 1000 !== 0) throw new Error("[ERROR] 1000원 단위 아님");
+    if (seed % 1000 !== 0) throw new Error(ERROR_MESSAGE.SEED_THOUSAND);
   }
 
   numberOfLottos(money) {
