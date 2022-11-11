@@ -41,7 +41,6 @@ class App {
       numbers.push(parseInt(element));
     })
 
-    numbers.sort((a, b) => (a - b));
     return numbers;
   }
 
@@ -66,6 +65,7 @@ class App {
 
     for (let i = 0; i < PURCHASE_QUANTITY; i++) {
       const NUMBERS = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      NUMBERS.sort((a, b) => (a - b)); // 오름차순 정렬
       lottos.push(new Lotto(NUMBERS));
     }
 
