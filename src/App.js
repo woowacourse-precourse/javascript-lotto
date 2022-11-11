@@ -6,14 +6,14 @@ const LOTTO_PRICE = 1000;
 const LOTTO_START = 1;
 const LOTTO_END = 45;
 class App {
-  #lottoCount;
+  #money;
   #lottos;
   #winningNumber;
   #bonusNumber;
   #result;
 
   constructor() {
-    this.#lottoCount = 0;
+    this.#money = 0;
     this.#lottos = [];
     this.#result = {
       '3개 일치 (5000원)': 0,
@@ -49,8 +49,9 @@ class App {
   }
 
   #printLotto() {
-    MissionUtils.Console.print(`${this.#lottoCount}개를 구매했습니다.`);
-    for (let count = 0; count < this.#lottoCount; count += 1) {
+    const lottoCount = parseInt(this.#money / LOTTO_PRICE, 10);
+    MissionUtils.Console.print(`${lottoCount}개를 구매했습니다.`);
+    for (let count = 0; count < lottoCount; count += 1) {
       const lotto = this.#publishLotto();
       MissionUtils.Console.print(lotto);
     }
@@ -123,7 +124,6 @@ class App {
   #getMoney() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
       if (this.#validate(money)) {
-        this.#lottoCount = parseInt(money / LOTTO_PRICE, 10);
         this.#startLotto();
       }
     });
