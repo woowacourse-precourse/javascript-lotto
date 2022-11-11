@@ -10,8 +10,8 @@ const utils = {
   close() {
     MissionUtils.Console.close();
   },
-  generateRandomNumber(minRange, maxRange) {
-    return MissionUtils.Random.pickNumberInRange(minRange, maxRange);
+  generateRandomNumberArray(minRange, maxRange, length) {
+    return MissionUtils.Random.pickNumberInRange(minRange, maxRange, length);
   },
 };
 
