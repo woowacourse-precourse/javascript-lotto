@@ -8,7 +8,7 @@ class App {
 
   constructor() {
     this.lottoCounter;
-    this.numberGenerator;
+    this.numberGenerator = new NumberGenerator();
     this.lottos = [];
   }
 
@@ -25,16 +25,22 @@ class App {
   }
 
   makeLotto() {
-    this.numberGenerator = new NumberGenerator();
+    let num = this.countOfLotto;
 
-    while (this.countOfLotto !== 0) {
+    while (num !== 0) {
       let numbers = this.numberGenerator.createRandomSixNumbers();
 
       let newLotto = new Lotto(numbers);
       this.lottos.push(newLotto.getNumbers());
 
-      this.countOfLotto -= 1;
+      num -= 1;
     }
+    this.printLottos();
+  }
+
+  printLottos() {
+    MissionUtils.Console.print('');
+    MissionUtils.Console.print(`${this.countOfLotto}개를 구매했습니다.`);
   }
 }
 
