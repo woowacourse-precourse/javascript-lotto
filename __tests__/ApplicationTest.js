@@ -103,5 +103,14 @@ describe("로또 테스트", () => {
         app.play();
       }).toThrow("[ERROR] 중복없이 숫자를 입력해주세요.");
     });
+
+    test("보너스 번호가 범위를 초과 했을때 예외처리", () => {
+      mockQuestions(["1000", "8, 21, 23, 41, 42, 43", "0"]);
+      mockRandoms([[8, 21, 23, 41, 42, 43]]);
+      expect(() => {
+        const app = new App();
+        app.play();
+      }).toThrow("[ERROR] 1에서 45까지의 번호를 입력해주세요");
+    });
   });
 });
