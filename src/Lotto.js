@@ -12,6 +12,9 @@ class Lotto {
     
     const validNumber = numbers.filter(number => number > 0 && number < 46);
     if (numbers !== validNumber) throw new Error("[ERROR] 1과 45사이의 숫자를 입력해주세요.")
+    
+    const RegExp = /^[0-9|,]+$/;
+    if (RegExp.test(numvers)) throw new Error("[ERROR] 올바른 형식으로 입력해주세요.");
   }
 
 
