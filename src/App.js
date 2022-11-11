@@ -31,7 +31,7 @@ class App {
       let numbers = this.numberGenerator.createRandomSixNumbers();
 
       let newLotto = new Lotto(numbers);
-      this.lottos.push(newLotto.getNumbers());
+      this.lottos.push(newLotto.getLottoNumbers());
 
       num -= 1;
     }
