@@ -106,6 +106,16 @@ describe('오름차순 정렬 함수 테스트', () => {
 
     expect(Application.sortAscending(expected)).toStrictEqual(received);
   });
+
+  test('전달된 인수는 배열이 아니면 예외를 발생시킨다.', () => {
+    expect(() => {
+      Application.sortAscending(1234);
+    }).toThrow(ARRAY_EXCEPTION_TEXT);
+
+    expect(() => {
+      Application.sortAscending([1, 2, 3, 4]);
+    }).not.toThrow(ARRAY_EXCEPTION_TEXT);
+  });
 });
 
 describe('배열 예외 검사 함수 테스트', () => {
