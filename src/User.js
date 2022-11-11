@@ -12,4 +12,7 @@ class User {
     return price;
   }
 
+  lottoNumberOfPapers(price) {
+    return price / 1000;
+  }
 }
