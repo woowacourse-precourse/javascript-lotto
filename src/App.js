@@ -1,5 +1,19 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+const Lotto = require("./Lotto");
+const BuyLottery = require("./BuyLottery");
+
 class App {
-  play() {}
+  play() {
+    inputOutputAmount();
+    buyLotto();
+  }
+  inputOutputAmount() {
+    MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (amount) => {
+      MissionUtils.Console.print("구입금액을 입력해 주세요.");
+      MissionUtils.Console.print(amount);
+      this.amount = amount;
+    });
+  }
 }
 
 module.exports = App;
