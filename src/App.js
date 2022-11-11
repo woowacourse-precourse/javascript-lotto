@@ -1,5 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
+const Statistics = require("./Statistics");
 
 class App {
   constructor() {
@@ -51,7 +52,13 @@ class App {
         throw new Error("1에서 45까지의 번호를 입력해주세요");
       }
       this.bonusNumber = number;
+      this.getStatisticsAboutLotto();
     });
+  }
+
+  getStatisticsAboutLotto() {
+    MissionUtils.Console.print("\n당첨 통계\n---");
+    const statistics = new Statistics(this.totalLottoNumber, this.winnerNumber, this.bonusNumber);
   }
 }
 
