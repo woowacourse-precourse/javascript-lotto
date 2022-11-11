@@ -59,7 +59,7 @@ class App {
 
   showEveryLotto() {
     this.lottoArray.forEach((item) => {
-      Console.print(item);
+      Console.print(`[${item.join(", ")}]`);
     });
   }
 
