@@ -7,6 +7,7 @@ const LOTTO = Object.freeze({
 });
 
 const ERROR_MESSAGE = Object.freeze({
+  ERROR_FORM: '[ERROR] ',
   HAS_BLACK: '입력에 공백을 포함시킬 수 없습니다.',
   START_WITH_ZERO: '정수의 앞에 0이 올 수 없습니다.',
   OUT_OF_RANGE: '1에서 45까지의 숫자를 입력해야 합니다.',

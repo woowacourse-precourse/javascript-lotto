@@ -2,7 +2,7 @@ const { ERROR_MESSAGE, LOTTO, REGEX } = require('./constants');
 
 class Validator {
   static throwError(message) {
-    throw new Error(`[ERROR] ${message}`);
+    throw new Error(`${ERROR_MESSAGE.ERROR_FORM}${message}`);
   }
 
   static throwErrorIfInvalidMoney(money) {
