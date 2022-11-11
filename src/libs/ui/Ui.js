@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const { lottoStatistics } = require("../lottoFunction/lottoResult");
 const Lotto = require("../../Lotto");
 
 const accountInput = () => {
@@ -45,25 +46,26 @@ const generateNumber = async (count) => {
 
 const printLottoNumber = (tickets) => {
   tickets.map((element) => MissionUtils.Console.print(element));
-  winningNumberInput();
+  winningNumberInput(tickets);
 };
 
-const winningNumberInput = () => {
+const winningNumberInput = (tickets) => {
   MissionUtils.Console.readLine(
     "\n당첨 번호를 입력해 주세요.\n",
     (winningNumber) => {
       const lotto = new Lotto(winningNumber);
-      bonusNumberInput(winningNumber);
+      bonusNumberInput(winningNumber, tickets);
     }
   );
 };
 
-const bonusNumberInput = (winningNumber) => {
+const bonusNumberInput = (winningNumber, tickets) => {
   winningNumber = winningNumber.split(",").map((num) => Number(num));
   MissionUtils.Console.readLine(
     "\n보너스 번호를 입력해 주세요.\n",
     (bonusNumber) => {
       checkBonusValidation(bonusNumber, winningNumber);
+      lottoStatistics(tickets, winningNumber, bonusNumber);
     }
   );
 };
