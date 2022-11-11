@@ -7,9 +7,13 @@ class LottoView {
   static getPurchaseAmount() {
     Console.readLine(`${INPUT_MESSAGES.AMOUNT}\n`, (money) => {
       Validator.checkValidInput(money);
-      const lottoCount = money / LOTTO_INFO.PRICE;
-      Console.print(`\n${OUTPUT_MESSAGES.BUY(lottoCount)}`);
+      this.printLottoCount(money);
     });
+  }
+
+  static printLottoCount(money) {
+    const lottoCount = money / LOTTO_INFO.PRICE;
+    Console.print(`\n${OUTPUT_MESSAGES.BUY(lottoCount)}`);
   }
 }
 
