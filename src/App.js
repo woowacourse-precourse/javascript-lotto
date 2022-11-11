@@ -39,7 +39,6 @@ class App {
 
   makeLotto(purchaedLottoNum) {
     this.userHaveLotto = calculationMoney.makeLotto(purchaedLottoNum);
-
     render.showMadeLotto(this.userHaveLotto);
 
     this.lineBreak();
@@ -72,34 +71,17 @@ class App {
         this.totalWinningNum
       );
 
-      this.checkSecondClass(winningNumArr);
-
-      render.renderResult(this.result);
+      this.checkLottoResultOfClass(winningNumArr);
     });
   }
 
-  checkSecondClass(winningNumArr) {
-    if (winningNumArr.includes(5) === true) {
-      this.secondOrThird = calculationMoney.resultOfSecondOrThirdClass(
-        this.userHaveLotto,
-        this.bonusNum,
-        winningNumArr
-      );
-    }
-    if (winningNumArr.includes(5) === false) {
-      this.resultOfLottoClass =
-        calculationMoney.resultOfLottoClass(winningNumArr);
-      Console.print(this.secondOrThird);
-      Console.print(this.resultOfLottoClass);
-
-      this.result = this.resultOfLottoClass;
-      if (winningNumArr.includes(5)) {
-        this.result = [
-          ...this.resultOfLottoClass,
-          ...this.resultOfSecondOrThirdClass,
-        ].sort((a, b) => (a[0] > b[0] ? -1 : a[0] < b[0] ? 1 : 0));
-      }
-    }
+  checkLottoResultOfClass(winningNumArr) {
+    const result = calculationMoney.resultOfLottoClass(
+      winningNumArr,
+      this.userHaveLotto,
+      this.bonusNum
+    );
+    Console.print(result);
   }
 }
 
