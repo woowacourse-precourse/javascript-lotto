@@ -1,4 +1,4 @@
-const { readLine, print } = require('./utils/ui');
+const { readLine, print, close } = require('./utils/ui');
 const { INPUT_MESSAGE, PRINT_MESSAGE, WINNING_AMOUNT } = require('./constants');
 const random = require('./utils/random');
 const validation = require('./validation');
@@ -66,6 +66,7 @@ class App {
     });
     const profitRate = this.calculateProfitRate(userWinningStatistics);
     print(PRINT_MESSAGE.PROFIT_RATE(profitRate));
+    close();
   }
 
   calculateUserWinningNumberCount(lottoNumbers) {
