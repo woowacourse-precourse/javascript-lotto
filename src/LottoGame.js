@@ -16,4 +16,8 @@ class LottoGame {
       this.purchaseCount = input / PARAMETERS.purchaseAmountUnit;
     });
   }
+
+  print(message) {
+    MissionUtils.Console.print(message);
+  }
 }
