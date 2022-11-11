@@ -52,6 +52,10 @@ class Result {
     }
     this.#sameResultArray[2] += 1;
   }
+
+  getWinningResult() {
+    return this.#sameResultArray;
+  }
 }
 
 module.exports = Result;
