@@ -1,4 +1,5 @@
 const NUMBER_COUNT = 6;
+const AMOUNT_UNIT = 1000;
 const MIN_NUMBER = 1;
 const MAX_NUMBER = 45;
 
@@ -34,6 +35,7 @@ Object.freeze(ERROR);
 
 module.exports = {
   NUMBER_COUNT,
+  AMOUNT_UNIT,
   MIN_NUMBER,
   MAX_NUMBER,
   MESSAGE,
