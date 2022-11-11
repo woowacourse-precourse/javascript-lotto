@@ -2,13 +2,19 @@ const Console = require("@woowacourse/mission-utils").Console;
 const Random = require("@woowacourse/mission-utils").Random;
 const Lotto = require("./Lotto");
 
+const ASK_AMOUNTS_MESSAGE = "구입금액을 입력해 주세요.\n";
+const ASK_WINNING_NUMBER_MESSAGE = "\n당첨 번호를 입력해 주세요.\n";
+const ERROR_NOT_THOUSAND_UNIT = "[ERROR] 1,000원 단위로만 구매 가능합니다.";
+const ERROR_NOT_NUMBER_AND_COMMA =
+  "[ERROR] 숫자와 ,(쉼표) 기호만을 입력해주세요.";
+
 class App {
   play() {
     this.getPurchaseAmount();
   }
 
   getPurchaseAmount() {
-    Console.readLine("구입금액을 입력해 주세요.\n", (amount) => {
+    Console.readLine(ASK_AMOUNTS_MESSAGE, (amount) => {
       this.checkPurchaseAmount(amount);
 
       const numberOfLotto = amount / 1000;
@@ -25,7 +31,7 @@ class App {
 
   checkPurchaseAmount(amount) {
     if (amount % 1000 !== 0) {
-      throw new Error("[ERROR] 1,000원 단위로만 구매 가능합니다.");
+      throw new Error(ERROR_NOT_THOUSAND_UNIT);
     }
   }
 
@@ -58,7 +64,7 @@ class App {
   }
 
   getWinningNumber(amount) {
-    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (userInput) => {
+    Console.readLine(ASK_WINNING_NUMBER_MESSAGE, (userInput) => {
       const arrayedUserInput = this.getArrayedUserInput(userInput);
 
       this.checkUesrInputHaveOnlyNumberAndComma(arrayedUserInput);
@@ -80,7 +86,7 @@ class App {
       const ASCII = item.charCodeAt();
 
       if ((ASCII !== 44 && ASCII < 48) || ASCII > 57) {
-        throw new Error("[ERROR] 숫자와 ,(쉼표) 기호만을 입력해주세요.");
+        throw new Error(ERROR_NOT_NUMBER_AND_COMMA);
       }
     });
   }
