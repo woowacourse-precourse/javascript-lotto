@@ -26,9 +26,38 @@ const changeToNumbersArray = (stringInput) => {
   return numbersArray;
 };
 
+/* Check Lottery Result */
+const checkLottery = (ticket, lottoNumbers, bonusNumber) => {
+  let count = 0;
+  let getBonus = false;
+
+  ticket.forEach((ticketNumber) => {
+    if (lottoNumbers.includes(ticketNumber)) {
+      count += 1;
+    }
+
+    if (ticketNumber === bonusNumber) {
+      getBonus = true;
+    }
+  });
+
+  return { count, getBonus };
+};
+
+const getLotteryResult = (tickets, numbers, bonusNumber) => {
+  const totalResult = [];
+  tickets.forEach((ticket) => {
+    const lotteryResult = checkLottery(ticket, numbers, bonusNumber);
+    totalResult.push(lotteryResult);
+  });
+
+  return totalResult;
+};
+
 module.exports = {
   sortLotteryNumbers,
   createLotteryTicket,
   printMyLotteries,
   changeToNumbersArray,
+  getLotteryResult,
 };

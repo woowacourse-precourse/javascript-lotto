@@ -2,12 +2,11 @@ const User = require('./User');
 const Lotto = require('./Lotto');
 const { Console } = require('@woowacourse/mission-utils');
 const { checkMoneyValidation } = require('./utils/validations');
+const { getLotteryResult } = require('./utils/lotteryHandler');
 
 class App {
   constructor() {
     this.user = new User();
-    this.lottoNumbers = [];
-    this.bonusNumber = 0;
   }
 
   play() {
@@ -32,7 +31,15 @@ class App {
   inputBonusNumber() {
     Console.readLine('보너스 번호를 입력해 주세요.', (bonusNumber) => {
       this.lotto.setBonusNumber(bonusNumber);
+      this.printLottoResult();
     });
+  }
+
+  printLottoResult() {
+    const { numbers, bonusNumber } = this.lotto.numbers;
+    const { tickets } = this.user;
+    getLotteryResult(tickets, numbers, bonusNumber);
+    Console.close();
   }
 }
 
