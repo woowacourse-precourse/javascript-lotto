@@ -3,10 +3,10 @@ const MissionUtils = require('@woowacourse/mission-utils');
 class Lotto {
   #numbers; // 얘는 당첨번호임
 
-  constructor(numbers) {
+  constructor(numbers, tickets) {
     this.validate(numbers);
     this.#numbers = numbers;
-    this.insertBonusNumber(this.#numbers);
+    this.insertBonusNumber(this.#numbers, tickets);
   }
   validate(numbers) {
     if (numbers.length != 6) {
@@ -22,7 +22,7 @@ class Lotto {
       }
     }
   }
-  insertBonusNumber(numbers) {
+  insertBonusNumber(numbers, tickets) {
     MissionUtils.Console.readLine('보너스번호를 입력해주세요.\n', (num) => {
       const bonusNumber = parseInt(num);
       if (numbers.includes(bonusNumber)) {
@@ -33,19 +33,56 @@ class Lotto {
       if (bonusNumber <= 0 || bonusNumber >= 46) {
         throw new Error('[ERROR] 보너스번호는 1~45 까지의 숫자만 가능합니다.');
       }
+      this.ticketCheck(numbers, bonusNumber, tickets);
     });
   }
-  // test() {
-  //   MissionUtils.Console.print('test');
-  //   MissionUtils.Console.print(this.#numbers);
-  // }
+
+  // 각 티켓당 당첨 번호 확인 메소드
+  ticketCheck(numbers, bonusNumber, tickets) {
+    let rankCount = [0, 0, 0, 0, 0];
+    for (let ticket of tickets) {
+      let numbersCount = 0;
+      let bonusCount = 0;
+      for (let num of ticket) {
+        if (numbers.includes(num)) {
+          numbersCount += 1;
+        }
+        if (num == bonusNumber) {
+          bonusCount += 1;
+        }
+      }
+      rankCount = this.winningStatics(numbersCount, bonusCount, rankCount);
+    }
+    this.test(rankCount);
+  }
+
+  test(tmp) {
+    MissionUtils.Console.print('test');
+    MissionUtils.Console.print(tmp);
+  }
+  // 통계 자료 만드는 메소드
+  winningStatics(numbersCount, bonusCount, rankCount) {
+    let tmp = [];
+    tmp = rankCount;
+    MissionUtils.Console.print(numbersCount);
+    MissionUtils.Console.print(bonusCount);
+
+    let count = numbersCount + bonusCount;
+    if (count == 3) tmp[0] += 1;
+    if (count == 4) tmp[1] += 1;
+    if (count == 5) tmp[2] += 1;
+    if (count == 6 && bonusCount == 1) tmp[3] += 1;
+    if (count == 6) tmp[4] += 1;
+
+    return tmp;
+  }
 }
 
 // 당첨번호 입력 메소드
-function insertLottoNumber() {
+function insertLottoNumber(tickets) {
   MissionUtils.Console.readLine('당첨번호를 입력해주세요.\n', (num) => {
     const lottoNumber = num.split(',').map((element) => parseInt(element));
-    const lotto = new Lotto(lottoNumber);
+    const lotto = new Lotto(lottoNumber, tickets);
   });
 }
 
@@ -61,7 +98,7 @@ function buyTicket(money) {
     tickets[i] = ticket;
     MissionUtils.Console.print(ticket);
   }
-  insertLottoNumber();
+  insertLottoNumber(tickets);
 }
 
 // 시작 메소드
