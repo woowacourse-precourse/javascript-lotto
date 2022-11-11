@@ -7,6 +7,8 @@ class Lotto {
   }
   constructor(lottoNumbers, bonusNumber) {
     this.bonusValidationCheckList(lottoNumbers, bonusNumber);
+    this.isInRange(bonusNumber);
+    this.isNumber(bonusNumber);
   }
 
   getNumbers(){
