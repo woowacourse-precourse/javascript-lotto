@@ -1,5 +1,11 @@
 /* eslint-disable no-new */
+const MissionUtils = require('@woowacourse/mission-utils');
+
 const Lotto = require('../src/Lotto');
+
+afterAll(() => {
+  MissionUtils.Console.close();
+});
 
 describe('로또 클래스 테스트', () => {
   test('로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.', () => {
@@ -26,6 +32,12 @@ describe('로또 클래스 테스트', () => {
       const METHOD_NAME = 'createLotto';
 
       expect(Lotto.createLotto.name).toEqual(METHOD_NAME);
+    });
+
+    test('길이가 6인 배열을 반환한다.', () => {
+      const LENGTH = 6;
+
+      expect(Lotto.createLotto()).toHaveLength(LENGTH);
     });
   });
 });
