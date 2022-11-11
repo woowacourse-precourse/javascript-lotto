@@ -3,6 +3,7 @@ const Money = require("./Money");
 const Type = require("./Type");
 const Lotto = require("./Lotto");
 const Bonus = require("./Bonus");
+const Result = require("./Result");
 
 class App {
   constructor() {
@@ -79,6 +80,8 @@ class App {
       });
       this.countTotal(count, total);
     });
+
+    this.printResult(total);
   }
 
   countWinning(number, winning, count) {
@@ -101,6 +104,14 @@ class App {
       else total.five += 1;
     }
     if (count.winning === 6) total.six += 1;
+  }
+
+  printResult(total) {
+    Console.print(`\n당첨 통계\n---`);
+
+    Object.entries(total).forEach(([number, quantity]) => {
+      new Result([number, quantity]);
+    });
   }
 }
 
