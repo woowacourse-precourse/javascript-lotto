@@ -30,6 +30,8 @@ class Application {
   }
 
   static sortAscending(target) {
+    this.validateArray(target);
+
     return target.sort((targetA, targetB) => targetA - targetB);
   }
 }
