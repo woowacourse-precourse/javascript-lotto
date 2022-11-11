@@ -25,8 +25,8 @@ class App {
 
   /**
    * 비용 입력을 받은 뒤, 당첨 번호를 입력받는 함수
-   * @param {Lotto[]} lottos 
-   * @param {number} cost 
+   * @param {Lotto[]} lottos 구매한 로또 객체들
+   * @param {number} cost 로또 구매 비용
    */
   getInputWinningNumbers(lottos, cost) {
     MissionUtils.Console.print("당첨 번호를 입력해 주세요.");
@@ -37,6 +37,12 @@ class App {
     })
   }
 
+  /**
+   * 당첨 번호 입력을 받은 뒤, 보너스 번호를 입력받고 마무리하는 함수
+   * @param {Lotto[]} lottos 구매한 로또 객체들
+   * @param {number} cost 로또 구매 비용
+   * @param {Lotto} WON_LOTTO 당첨 번호가 담긴 로또 객체
+   */
   getInputBonusNumber(lottos, cost, WON_LOTTO) {
     MissionUtils.Console.print("보너스 번호를 입력해 주세요.");
     MissionUtils.Console.readLine("", (answer) => {
