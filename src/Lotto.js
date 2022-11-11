@@ -23,4 +23,17 @@ class Lotto {
   }
 }
 
+class LottoPurchase {
+
+  constructor(amount) {
+    this.amount = amount
+  }
+
+  divide(amount) {
+    if (amount % 1000 !== 0) {
+      throw new Error("[ERROR] 입력한 금액이 1,000원 단위여야 합니다. ")
+    }
+  }
+}
+
 module.exports = Lotto;
