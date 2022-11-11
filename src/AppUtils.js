@@ -52,7 +52,8 @@ class AppUtils {
   static printMyLotto(myLotto) {
     // 구매한 로또 내역 출력
     myLotto.getMyLottoes().forEach(numbers => {
-      MissionUtils.Console.print(numbers);
+      let numStr = '[' + numbers.toString().replace(/,/g, ', ') + ']';
+      MissionUtils.Console.print(numStr);
     });
   }
 
