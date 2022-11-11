@@ -42,7 +42,7 @@ class Machine {
 
   #checkWinningNumbers() {
     this.#checkLength();
-    // this.#checkIsAllNum();
+    this.#checkIsAllNum();
     // this.#checkIsAllUnique();
     // this.#checkRange();
     // this.#checkSeparator();
