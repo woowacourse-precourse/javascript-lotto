@@ -3,7 +3,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class Utils {
 
     print(msg) {
-        MissionUtils.Console.print(msg);
+        return MissionUtils.Console.print(msg);
     }
 
     readLine(query, callback) {
@@ -19,4 +19,4 @@ class Utils {
     }
 }
 
-module.exports = Utils;
+module.exports = new Utils();
