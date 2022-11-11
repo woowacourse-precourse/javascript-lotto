@@ -3,6 +3,7 @@ class WinningExceptionHandling {
         this.lengthCheck(winning);
         this.overlapCheck(winning);
         this.rangeCheck(winning);
+        this.letterCheck(winning);
     };
     lengthCheck(winning) {
         if (winning.length !== 6) {
@@ -22,6 +23,14 @@ class WinningExceptionHandling {
           };
         };
       };
+    letterCheck(winning) {
+        const regex = /[^0-9]/g;
+        const result = String(winning).replace(regex, '');
+        if (result.length !== winning.join("").length){
+            throw new Error("[ERROR] 로또 번호는 숫자만 입력해야 합니다.");
+        };
+    };
+
 };
 
 module.exports = WinningExceptionHandling;
