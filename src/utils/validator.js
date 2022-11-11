@@ -7,6 +7,11 @@ function validateCashInput(value) {
   if (value <= 0) {
     throw new Error(ERROR_MESSAGE.NOT_POSITIVE_NUMBER_ERROR);
   }
+  const regExp = /[0-9]/g;
+  const matchArr = value.match(regExp);
+  if (matchArr.length !== value.length) {
+    throw new Error(ERROR_MESSAGE.NOT_NUMBER_ERROR);
+  }
 }
 
 function validateBonus(winningNumberArr, input) {
