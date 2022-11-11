@@ -1,3 +1,4 @@
+const { Console } = require("@woowacourse/mission-utils");
 const Game = require("./Game");
 const Lotto = require("./Lotto");
 const Exception = require("./Exception");
@@ -23,5 +24,8 @@ class App {
     this.purchaseLotto();
   }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
