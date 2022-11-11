@@ -188,4 +188,12 @@ describe('랜덤 숫자 생성 함수 테스트', () => {
 
     expect(Application.createUniqueNumbers.name).toEqual(METHOD_NAME);
   });
+
+  test('길이가 8인 배열을 반환한다.', () => {
+    const START = 1;
+    const END = 45;
+    const LENGTH = 8;
+
+    expect(Application.createUniqueNumbers(START, END, LENGTH)).toHaveLength(LENGTH);
+  });
 });
