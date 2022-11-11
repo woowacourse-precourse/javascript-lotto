@@ -7,9 +7,12 @@ const {
   LOTTO_DIGITS,
 } = require("./constants/condition.js");
 const LottoGameView = require("./LottoGameView.js");
+const Lotto = require("./Lotto.js");
 const Validation = require("./Validation.js");
 
 class LottoGame {
+  lottos;
+
   constructor() {
     this.LottoGameView = new LottoGameView();
   }
@@ -23,12 +26,19 @@ class LottoGame {
   }
   purchaseLotto(purchaseAmount) {
     Validation.validatePurchaseAmount(purchaseAmount);
+    const lottoQuantity = this.getLottoQuantity(purchaseAmount);
+    this.createLotto(lottoQuantity);
   }
+
   getLottoQuantity(purchaseAmount) {
     return parseInt(purchaseAmount, 10) / LOTTO_PRICE;
   }
   generateLottoNumbers() {
     return Random.pickUniqueNumbersInRange(LOTTO_NUM_MIN_RANGE, LOTTO_NUM_MAX_RANGE, LOTTO_DIGITS);
+  }
+  createLotto(lottoQuantity) {
+    const lottoNumbers = this.generateLottoNumbers();
+    this.lottos = Array.from({ length: lottoQuantity }, () => new Lotto(lottoNumbers));
   }
 }
 
