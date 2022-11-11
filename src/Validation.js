@@ -1,4 +1,9 @@
-const { LOTTO_PRICE, LOTTO_DIGITS } = require("./constants/condition.js");
+const {
+  LOTTO_PRICE,
+  LOTTO_DIGITS,
+  LOTTO_NUM_MIN_RANGE,
+  LOTTO_NUM_MAX_RANGE,
+} = require("./constants/condition.js");
 const { ERROR_MESSAGE } = require("./constants/message.js");
 
 class Validation {
@@ -47,6 +52,13 @@ class Validation {
   static hasUniqueLottoNumber(lottoNumbers) {
     return new Set(lottoNumbers).size === LOTTO_DIGITS;
   }
+  static isValidLottoNumberRange(lottoNumbers) {
+    const isValidRange = (number) => {
+      return LOTTO_NUM_MIN_RANGE <= number && number <= LOTTO_NUM_MAX_RANGE;
+    };
+
+    return lottoNumbers.map(Number).every(isValidRange);
+  }
 
   static validateWinningNumbers(winningNumbers) {
     const winningNumbersArr = winningNumbers.split(",");
@@ -56,6 +68,9 @@ class Validation {
     }
     if (!Validation.isValidLottoNumberLength(winningNumbersArr)) {
       throw new Error(ERROR_MESSAGE.INVALID_LOTTO_LENGTH);
+    }
+    if (!Validation.isValidLottoNumberRange(winningNumbersArr)) {
+      throw new Error(ERROR_MESSAGE.INVALID_LOTTO_NUMBER_RANGE);
     }
   }
 }
