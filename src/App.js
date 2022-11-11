@@ -6,16 +6,16 @@ class App {
   userLottoNumberLists = [];
   async play() {
     await this.insertMoney();
-    const LottoCount = this.insertedMoney / 1000;
-    this.printLottoCount(LottoCount);
-    for(let count = 0; count <LottoCount; count++){
+    const LOTTO_COUNT = this.insertedMoney / 1000;
+    this.printLottoCount(LOTTO_COUNT);
+    for(let count = 0; count <LOTTO_COUNT; count++){
       this.userLottoNumberLists.push(this.generateUserLottoNumber());
     }
     this.printGenerateUserLottoNumber(this.userLottoNumberLists);
     const prizeNumber = await this.enterPrizeNumber();
     const lotto = new Lotto(prizeNumber);
     const bonusNumber = await this.enterBonusNumber();
-    const bonus = new Lotto(prizeNumber, bonusNumber);
+    const bonus = new Lotto(lotto.getNumbers(), bonusNumber);
   }
   insertMoney(){
     MissionUtils.Console.readLine('구입금액을 입력해주세요 (1000원 단위)', (insertMoney) => {

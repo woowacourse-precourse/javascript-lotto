@@ -2,17 +2,16 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validationCheckList(numbers);
+    this.lottoValidationCheckList(numbers);
     this.#numbers = numbers;
   }
   constructor(lottoNumbers, bonusNumber) {
     this.bonusValidationCheckList(lottoNumbers, bonusNumber);
   }
-
   getNumbers(){
     return this.#numbers;
   }
-  validationCheckList(numbers){
+  lottoValidationCheckList(numbers){
     this.validate(numbers);
     this.isNumber(numbers);
     this.isInRange(numbers);
