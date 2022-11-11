@@ -8,6 +8,10 @@ class LottoCounter {
     this.countOfLotto = this.inputtedCash / NUMBER.INPUT_UNITS;
   }
 
+  countLotto() {
+    return this.countOfLotto;
+  }
+
   isValidCash(cash) {
     if (cash % NUMBER.INPUT_UNITS !== 0) {
       throw ERROR.NOT_1000_UNIT;
