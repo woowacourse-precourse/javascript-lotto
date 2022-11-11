@@ -1,0 +1,23 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["eslint:recommended", "airbnb-base"],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module"
+  },
+  "rules": {
+    "consistent-return": "off",
+    "import/extensions": "off",
+    "no-alert": "off",
+    "import/prefer-default-export": "off",
+    "class-methods-use-this": "off",
+    "no-new": "off",
+    "implicit-arrow-linebreak": "off",
+    "comma-dangle": "off",
+    "no-loop-func": "off",
+    "no-underscore-dangle": "off"
+  }
+}
