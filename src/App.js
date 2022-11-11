@@ -60,12 +60,6 @@ class App {
     }
   }
 
-  #storeResult(matchCount) {
-    if (matchCount !== 5) {
-      this.#result[matchCount] += 1;
-    }
-  }
-
   #getRevenue() {
     Object.keys(this.#result).forEach((rank) => {
       this.#revenue += REVENUE[rank].revenue * this.#result[rank];
@@ -96,7 +90,7 @@ class App {
         this.#bonusNumber,
       );
       if (matchCount >= 3) {
-        this.#storeResult(matchCount);
+        this.#result[matchCount] += 1;
       }
     });
   }
