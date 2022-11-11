@@ -7,7 +7,7 @@ const Lotto = require("./Lotto");
 const BonusNumber = require("./error/bonusNumber");
 const CompareLotto = require("./CompareLotto");
 
-const { COMMAND } = require("./utils/constant");
+const { COMMAND, GUIDE, RANK, PRIZE_MONEY } = require("./utils/constant");
 const Profit = require("./Profit");
 
 class App {
@@ -52,6 +52,24 @@ class App {
       this.bonusNumber
     ).compare();
     this.profit = new Profit(this.input, this.rank).calculate();
+    this.printResult();
+    Console.close();
+  }
+
+  printResult() {
+    Console.print(`\n${GUIDE.TITLE}\n${GUIDE.LINE}`);
+    Object.keys(RANK)
+      .reverse()
+      .forEach((nowRank) => {
+        Console.print(
+          `${GUIDE[nowRank]} (${PRIZE_MONEY[RANK[nowRank]]
+            .toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}${GUIDE.WON}) ${GUIDE.BAR} ${
+            this.rank[nowRank]
+          }${GUIDE.PCS}`
+        );
+      });
+    Console.print(`${GUIDE.TOTAL_PROFIT} ${this.profit}${GUIDE.PERCENT}`);
   }
 
   play() {

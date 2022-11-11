@@ -6,10 +6,18 @@ const COMMAND = Object.freeze({
 
 const GUIDE = Object.freeze({
   PURCHASE: "개를 구매했습니다.",
-  RESULT: "당첨 통계",
+  TITLE: "당첨 통계",
   LINE: "---",
-  PROFIT: "총 수익률은 $%입니다.",
+  BAR: "-",
+  TOTAL_PROFIT: "총 수익률은 ",
+  PERCENT: "%입니다.",
+  WON: "원",
   PCS: "개",
+  1: "6개 일치 ",
+  2: "5개 일치, 보너스 볼 일치 ",
+  3: "5개 일치 ",
+  4: "4개 일치 ",
+  5: "3개 일치 ",
 });
 
 const ERROR = Object.freeze({
