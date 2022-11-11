@@ -35,6 +35,7 @@
 - [ ] `입력에 대한 유효성 테스트 (InputValidationTest)`
 
   - [x] 구입 금액이 로또 금액으로 나누어 떨어지는지에 대한 메서드 테스트 (Validation.isDivided)
+  - [x] 구입 금액이 모두 숫자인지 검사하는 메서드 테스트 (Validation.isOnlyNumber)
 
 ## 🚀 기능 요구 사항
 
