@@ -27,6 +27,9 @@ class CreateRandomLotto {
             i++;
         }
     }
+    getLottoRandom(){
+        return this.saveRandomLotto;
+    }
 }
 
 
