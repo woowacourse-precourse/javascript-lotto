@@ -36,16 +36,16 @@ describe('inputCheck 클래스 테스트', () => {
     });
   });
 
-  describe('checkUserInputNumber 함수 확인', () => {
+  describe('userInputNumber 함수 확인', () => {
     it('올바른 숫자를 입력하였을 때 input 10_000 return 10', () => {
       inputCheck = new InputCheck(10_000);
-      expect(inputCheck.checkUserInputNumber()).toBe(10);
+      expect(inputCheck.userInputNumber()).toBe(10);
     });
 
     it('올바르지 않은 숫자를 입력하였을 때 throw', () => {
       inputCheck = new InputCheck(5555);
       expect(() => {
-        inputCheck.checkUserInputNumber();
+        inputCheck.userInputNumber();
       }).toThrow('[ERROR] 로또 구입 금액이 올바르지 않습니다');
     });
   });

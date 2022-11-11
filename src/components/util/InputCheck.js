@@ -4,7 +4,7 @@ class InputCheck {
     this.numberOfLotto;
   }
 
-  checkUserInputNumber() {
+  userInputNumber() {
     this.isNumber();
     if (this.canNotBuy()) throw '[ERROR] 로또 구입 금액이 올바르지 않습니다';
     this.numberOfLotto = this.howManyBuy();
