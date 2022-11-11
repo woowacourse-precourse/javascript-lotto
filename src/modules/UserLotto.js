@@ -10,9 +10,16 @@ class UserLotto {
   }
   //로또 번호 출력
   LottoPrint() {
+    this.LottoSort();
     this.#number.forEach((arr) =>
       MissionUtils.Console.print(`[${arr.join(", ")}]`)
     );
+  }
+  //오름차순 정렬
+  LottoSort() {
+    this.#number.forEach((arr) => {
+      arr.sort((a, b) => a - b);
+    });
   }
 }
 module.exports = UserLotto;
