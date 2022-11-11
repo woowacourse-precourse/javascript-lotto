@@ -14,7 +14,7 @@ class Lotto {
       throw new Error("[ERROR] 로또 번호는 중복이 없어야 합니다.");
     }
   }
-  checkDuplicateNumber(lottoNumberArr) {
+  duplicateNumber(lottoNumberArr) {
     let notDuplicateArr = [];
     for (let i = 0; i < lottoNumberArr.length; i++) {
       if (notDuplicateArr.indexOf(lottoNumberArr[i]) === -1)
