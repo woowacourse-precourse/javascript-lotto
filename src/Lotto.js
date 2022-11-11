@@ -41,6 +41,7 @@ class Lotto {
 
   calculate(ticket, lottoList, bonus) {
     const statistic = this.calculateStatistics(lottoList, bonus);
+    const rank = this.calculateRank(statistic);
   }
 
   calculateStatistics(lottoList, bonusNumber) {
@@ -53,6 +54,19 @@ class Lotto {
       });
       return total;
     });
+  }
+
+  calculateRank(arr) {
+    let rank = { 3: 0, 4: 0, 5: 0, 6: 0, alpha: 0 };
+    arr.forEach((number) => {
+      if (number.bonus === 1 && number.winning + number.bonus >= 3) {
+        if (number.winning === 4) rank["alpha"] += 1;
+        else rank[number.winning + 1] += 1;
+      } else if (number.bonus === 0 && number.winning >= 3) {
+        rank[number.winning] += 1;
+      }
+    });
+    return Object.values(rank);
   }
 }
 
