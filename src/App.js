@@ -41,10 +41,14 @@ class App {
     Console.readLine(MESSAGE.CREATE_BONUS_NUMBER, (number) => {
       this.bonus = Number(number);
       new Bonus(this.bonus, this.winningNumbers);
-      const result = this.getResult();
-      const profitRate = this.calculateProfitRate(result);
-      this.view.printResult(result, profitRate);
+      this.createWinningStatistics();
     });
+  }
+
+  createWinningStatistics() {
+    const result = this.getResult();
+    const profitRate = this.calculateProfitRate(result);
+    this.view.printResult(result, profitRate);
   }
 
   getWinningRanking(boughtLotto) {
