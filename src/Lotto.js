@@ -26,8 +26,6 @@ class Lotto {
         throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
       }
     });
-
-    return true;
   }
 
   checkNoSameNumber(numbers) {
@@ -36,8 +34,6 @@ class Lotto {
     if (arrayRemovedDuplicate.size !== 6) {
       throw new Error("[ERROR] 로또 번호는 모두 다른 숫자여야 합니다.");
     }
-
-    return true;
   }
 
   getBonusNumber() {
