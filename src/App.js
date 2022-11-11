@@ -70,11 +70,6 @@ class App {
       this.bonusNumber,
       this.prizeResult
     );
-    this.printResult();
-  }
-
-  printResult() {
-    Render.winningResult(this.prizeResult);
     this.getTotalEarningRate();
   }
 
@@ -83,11 +78,15 @@ class App {
       this.prizeResult,
       this.lottoCount
     );
-    this.printEarningRate(rateOfReturn);
+    this.printStatistics(rateOfReturn);
   }
 
-  printEarningRate(rateOfReturn) {
-    Render.rateOfReturn(rateOfReturn);
+  printStatistics(rateOfReturn) {
+    Render.WinningStatistics(this.prizeResult, rateOfReturn);
+    this.exitGame();
+  }
+
+  exitGame() {
     Console.close();
   }
 }

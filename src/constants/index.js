@@ -21,9 +21,11 @@ const ERROR_MESSAGE = Object.freeze({
 
 const MESSAGE = Object.freeze({
   ASK_BUDGET: '구입금액을 입력해 주세요.',
-  ASK_WINNING_NUM: '당첨 번호를 입력해 주세요.',
-  ASK_BONUS_NUMBER: '보너스 번호를 입력해 주세요.',
+  ASK_WINNING_NUM: '\n당첨 번호를 입력해 주세요.',
+  ASK_BONUS_NUMBER: '\n보너스 번호를 입력해 주세요.',
   NULL: '',
+  STATISTICS_NOTIFICATION: '\n당첨 통계',
+  DIVISION_LINE: '---',
 });
 
 const PRIZE_MONEY = Object.freeze({
@@ -37,7 +39,7 @@ const PRIZE_MONEY = Object.freeze({
 const PLACES_OF_DECIMALS = 1;
 
 const RENDER_MESSAGE = Object.freeze({
-  purchaseNotification: (count) => `${count}개를 구매했습니다`,
+  purchaseNotification: (count) => `\n${count}개를 구매했습니다`,
   issuedLotto: (numbers) => `[${numbers.join(', ')}]`,
   matchThree: (count) => `3개 일치 (5,000원) - ${count}개`,
   matchFour: (count) => `4개 일치 (50,000원) - ${count}개`,

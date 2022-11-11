@@ -1,6 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 
-const { RENDER_MESSAGE } = require('./constants');
+const { RENDER_MESSAGE, MESSAGE } = require('./constants');
 
 class Render {
   static issuedLottoList(count, lottoList) {
@@ -10,15 +10,14 @@ class Render {
     });
   }
 
-  static winningResult(prizeResult) {
+  static WinningStatistics(prizeResult, rateOfReturn) {
+    Console.print(MESSAGE.STATISTICS_NOTIFICATION);
+    Console.print(MESSAGE.DIVISION_LINE);
     Console.print(RENDER_MESSAGE.matchThree(prizeResult.fifth));
     Console.print(RENDER_MESSAGE.matchFour(prizeResult.fourth));
     Console.print(RENDER_MESSAGE.matchFiveAndBonus(prizeResult.third));
     Console.print(RENDER_MESSAGE.matchFive(prizeResult.second));
     Console.print(RENDER_MESSAGE.matchSix(prizeResult.first));
-  }
-
-  static rateOfReturn(rateOfReturn) {
     Console.print(RENDER_MESSAGE.rateOfReturn(rateOfReturn));
   }
 }
