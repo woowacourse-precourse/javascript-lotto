@@ -18,8 +18,8 @@ class App {
       if (!isValid) {
         throw new Error(USER_MONEY_INPUT_ERROR);
       }
-      this.lotteryQuantity = this.issueLotteries(userMoneyInput);
-      MissionUtils.Console.print(this.lotteryQuantity);
+      this.lotteryQuantity = this.countLotteries(userMoneyInput);
+      MissionUtils.Console.print(`${this.lotteryQuantity}개를 구매했습니다.`);
     });
   }
 
@@ -34,7 +34,7 @@ class App {
     return true;
   }
 
-  issueLotteries(userMoneyInput) {
+  countLotteries(userMoneyInput) {
     const lotteryQunatity = userMoneyInput / 1000;
     return lotteryQunatity;
   }
