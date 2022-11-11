@@ -1,10 +1,12 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Lotto = require("../src/Lotto");
+
 const {
   READLINE_PHRASE,
   OUTPUT_PHRASE,
   LOTTO_RANGE,
   ERROR_MESSAGE,
-} = require("./Constant");
+} = require("./constant/Constant");
 
 class App {
   constructor() {
@@ -85,7 +87,7 @@ class App {
       OUTPUT_PHRASE.LINE_UP + READLINE_PHRASE.INPUT_WINNING_NUMBER,
       (winningNumbers) => {
         let splitWinningNumbers = winningNumbers.split(",");
-        this.isValidWinningNumbers(splitWinningNumbers);
+        new Lotto(splitWinningNumbers);
 
         this.winningNumbers = splitWinningNumbers.map(Number);
         this.inputBonusNumber();
@@ -93,24 +95,6 @@ class App {
     );
   }
 
-  isValidWinningNumbers(splitWinningNumbers) {
-    if (isNaN(splitWinningNumbers.join(""))) {
-      throw new Error(ERROR_MESSAGE.INVALID_WINNING_NUMBER.NOT_A_NUMBER);
-    }
-    if (splitWinningNumbers.length != 6) {
-      throw new Error(ERROR_MESSAGE.INVALID_WINNING_NUMBER.INVALID_LENGTH);
-    }
-    splitWinningNumbers.map((item) => {
-      if (item > 45 || item < 1) {
-        throw new Error(ERROR_MESSAGE.INVALID_WINNING_NUMBER.NOT_IN_RANGE);
-      }
-    });
-    let removedDuplication = new Set(splitWinningNumbers);
-    removedDuplication = [...removedDuplication];
-    if (removedDuplication.length != 6) {
-      throw new Error(ERROR_MESSAGE.INVALID_WINNING_NUMBER.IS_DUPLICATED);
-    }
-  }
   inputBonusNumber() {
     MissionUtils.Console.readLine(
       OUTPUT_PHRASE.LINE_UP + READLINE_PHRASE.INPUT_BONUS_NUMBER,
