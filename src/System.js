@@ -40,9 +40,36 @@ const SYSTEM = Object.freeze({
         return this.autoWrite(maxCount);
     },
 
-    compareLotto() {
+
+    getResult(lotto) {
+        this.makeWinningLotto(lotto);
+    },
+
+    makeWinningLotto(lotto) {
         MissionUtils.Console.readLine(MESSAGE.ENTER_WINNING_LOTTO, (winningLotto) => {
             winningLotto = new Lotto(winningLotto.split(",").map(Number));
+            this.makeBonusNumber(lotto, winningLotto);
+        });
+    },
+
+    isCorrectBonusNumber(number, winningLotto) {
+        let uniqueNumbers = new Set(winningLotto);
+
+        if (uniqueNumbers.has(number)) {
+            throw new Error(ERROR.HAS_NUMBER);
+        }
+        if (isNaN(number)) {
+            throw new Error(ERROR.NOT_NUMBER);
+        }
+        if (number < 1 || number > 45) {
+            throw new Error(ERROR.INVAID_NUMBER);
+        }
+
+    },
+
+    makeBonusNumber(lotto, winningLotto) {
+        MissionUtils.Console.readLine(MESSAGE.ENTER_BOUNS_NUMBER, (bonusNumber) => {
+            bonusNumber = Number(bonusNumber);
         });
     },
 
