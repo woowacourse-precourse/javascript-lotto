@@ -1,5 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 const { MESSAGE } = require('./lib/constants');
+const MyLottos = require('./MyLottos');
 const Purchase = require('./Purchase');
 
 class Game {
@@ -15,9 +16,15 @@ class Game {
     this.#purchaseAccount = this.purchase.getPurchaseAccount();
   }
 
+  initMyLottos() {
+    this.myLottos = new MyLottos(this.#purchaseAccount);
+    this.#myLottosArray = this.myLottos.getMyLottos();
+  }
+
   getInputPurchaseMoney() {
     Console.readLine(MESSAGE.INPUT_PURCHASE_MONEY, (money) => {
       this.initPurchase(money);
+      this.initMyLottos();
     });
   }
 }
