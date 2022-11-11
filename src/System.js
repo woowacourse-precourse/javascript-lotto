@@ -70,6 +70,8 @@ const SYSTEM = Object.freeze({
     makeBonusNumber(lotto, winningLotto) {
         MissionUtils.Console.readLine(MESSAGE.ENTER_BOUNS_NUMBER, (bonusNumber) => {
             bonusNumber = Number(bonusNumber);
+            this.isCorrectBonusNumber(bonusNumber, winningLotto.getNumber());
+            console.log(winningLotto.getNumber(), bonusNumber);
         });
     },
 
