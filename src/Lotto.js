@@ -5,6 +5,9 @@ class Lotto {
     this.validationCheckList(numbers);
     this.#numbers = numbers;
   }
+  getNumbers(){
+    return this.#numbers;
+  }
   validationCheckList(numbers){
     this.validate(numbers);
     this.isDuplication(numbers);
