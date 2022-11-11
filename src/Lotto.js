@@ -36,20 +36,20 @@ class Lotto {
     const range = (number) => Number(number) >= 1 && Number(number <= 45);
     if (!numbers.every(range)) throw new Error(ERROR_MESSAGE.WINNING_RANGE);
   }
-  // TODO: 추가 기능 구현
+
   isUniqueBonus(bonus) {
     if (this.#numbers.includes(bonus))
       throw new Error(ERROR_MESSAGE.BONUS_OVERLAP);
   }
 
   calculate(money, lottoList, bonus) {
-    const statistic = this.calculateStatistics(lottoList, bonus);
-    const rank = this.calculateRank(statistic);
+    const matchCount = this.calculateMatch(lottoList, bonus);
+    const rank = this.calculateRank(matchCount);
     this.showMatchResult(rank);
     this.showRateOfReturn(money, rank);
   }
 
-  calculateStatistics(lottoList, bonusNumber) {
+  calculateMatch(lottoList, bonusNumber) {
     const totalWinner = [...this.#numbers, bonusNumber];
     return lottoList.map((list) => {
       let total = { winning: 0, bonus: 0 };
@@ -61,14 +61,14 @@ class Lotto {
     });
   }
 
-  calculateRank(arr) {
+  calculateRank(matchArray) {
     let rank = { 3: 0, 4: 0, 5: 0, 6: 0, alpha: 0 };
-    arr.forEach((number) => {
-      if (number.bonus === 1 && number.winning + number.bonus >= 3) {
-        if (number.winning === 4) rank["alpha"] += 1;
-        else rank[number.winning + 1] += 1;
-      } else if (number.bonus === 0 && number.winning >= 3) {
-        rank[number.winning] += 1;
+    matchArray.forEach((match) => {
+      if (match.bonus === 1 && match.winning + match.bonus >= 3) {
+        if (match.winning === 4) rank["alpha"] += 1;
+        else rank[match.winning + 1] += 1;
+      } else if (match.bonus === 0 && match.winning >= 3) {
+        rank[match.winning] += 1;
       }
     });
     return Object.values(rank);
@@ -84,15 +84,14 @@ class Lotto {
   }
 
   showRateOfReturn(seedMoney, profit) {
-    const priceByCorrection = [5000, 50000, 1500000, 2000000000, 30000000];
+    const priceByCorrect = [5000, 50000, 1500000, 2000000000, 30000000];
     const totalProfit = profit.reduce(
-      (acc, cur, idx) => acc + cur * priceByCorrection[idx],
+      (totalPrice, win, idx) => totalPrice + win * priceByCorrect[idx],
       0
     );
+    const rateOfReturn = (totalProfit / seedMoney) * 100;
     Console.print(
-      `${STATISTIC_MESSAGE.YIELD}${((totalProfit / seedMoney) * 100).toFixed(
-        1
-      )}%입니다.`
+      `${STATISTIC_MESSAGE.EARN}${rateOfReturn.toFixed(1)}%입니다.`
     );
     Console.close();
   }

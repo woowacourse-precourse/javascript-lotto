@@ -7,12 +7,14 @@ class Seed {
     this.numberOfLottos(seed);
     this.seedMoney = seed;
   }
-  validate(seed) {
-    this.isDiviedByThousand(seed);
+  validate(money) {
+    this.isDiviedByThousand(money);
   }
 
-  isDiviedByThousand(seed) {
-    if (seed % 1000 !== 0) throw new Error(ERROR_MESSAGE.SEED_THOUSAND);
+  isDiviedByThousand(money) {
+    if (money % 1000 !== 0) {
+      throw new Error(ERROR_MESSAGE.SEED_THOUSAND);
+    }
   }
 
   numberOfLottos(money) {

@@ -11,7 +11,7 @@ const STATISTIC_MESSAGE = {
   FIVE: "5개 일치 (1,500,000원)",
   FIVE_ALPHA: "5개 일치, 보너스 볼 일치 (30,000,000원)",
   SIX: "6개 일치 (2,000,000,000원)",
-  YIELD: "총 수익률은 ",
+  EARN: "총 수익률은 ",
 };
 
 const ERROR_MESSAGE = {

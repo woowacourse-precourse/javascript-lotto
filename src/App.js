@@ -1,4 +1,4 @@
-const { Console, Random } = require("@woowacourse/mission-utils");
+const { Console } = require("@woowacourse/mission-utils");
 const Seed = require("../src/Seed");
 const LottoGenerator = require("../src/LottoGenerator");
 const Lotto = require("../src/Lotto");
@@ -9,7 +9,6 @@ class App {
   lottoTicket;
   winningNumber;
   bonusNumber;
-  constructor() {}
   play() {
     this.getInput(INPUT_MESSAGE.SEED_MONEY, this.getSeedMoney);
   }
