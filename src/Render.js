@@ -15,35 +15,47 @@ class Render {
     Console.print(``);
   }
 
-  renderResult(result) {
+  showResult(result) {
     this.lineBreak();
+
+    Console.print(`당첨 통계`);
     Console.print(`---`);
+
     this.lineBreak();
+
     let benefit = 0;
     for (let i = 0; i < 5; i++) {
-      switch (this.result[i][0]) {
+      switch (
+        result[i][0] //
+      ) {
         case "5등":
-          benefit = benefit + 5000 * this.result[i][1];
-          Console.print(`3개 일치 (5,000원) - ${this.result[i][1]}개`);
+          benefit = benefit + 5000 * result[i][1];
+          Console.print(`3개 일치 (5,000원) - ${result[i][1]}개`);
           break;
         case "4등":
-          benefit = benefit + 50000 * this.result[i][1];
-          Console.print(`4개 일치 (50,000원) - ${this.result[i][1]}개`);
+          benefit = benefit + 50000 * result[i][1];
+          Console.print(`4개 일치 (50,000원) - ${result[i][1]}개`);
           break;
         case "3등":
-          benefit = benefit + 1500000 * this.result[i][1];
-          Console.print(`5개 일치 (1,500,000원) - ${this.result[i][1]}개`);
+          benefit = benefit + 1500000 * result[i][1];
+          Console.print(`5개 일치 (1,500,000원) - ${result[i][1]}개`);
           break;
         case "2등":
-          benefit = benefit + 30000000 * this.result[i][1];
-          Console.print(`5개 일치 (30,000,000원) - ${this.result[i][1]}개`);
+          benefit = benefit + 30000000 * result[i][1];
+          Console.print(`5개 일치 (30,000,000원) - ${result[i][1]}개`);
           break;
         case "1등":
-          benefit = benefit + 200000000 * this.result[i][1];
-          Console.print(`6개 일치 (2,000,000,000원) - ${this.result[i][1]}개`);
+          benefit = benefit + 200000000 * result[i][1];
+          Console.print(`6개 일치 (2,000,000,000원) - ${result[i][1]}개`);
           break;
       }
     }
+  }
+
+  showRateOfReturn(winningAmount, userInputMoney) {
+    let rateOfReturn =
+      (parseInt(winningAmount) / parseInt(userInputMoney)) * 100;
+    Console.print(`총 수익률은 ${rateOfReturn.toFixed(1)}% 입니다.`);
   }
 }
 module.exports = Render;

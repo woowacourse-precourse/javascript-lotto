@@ -90,11 +90,17 @@ class App {
   }
 
   renderOfResult(result) {
-    render.renderResult([...result]);
+    render.showResult([...result]);
+
+    this.makeWinningAmount([...result]);
   }
 
   makeWinningAmount(result) {
     const winningAmount = calculationMoney.makeWinningAmount(result);
+
+    Console.print(winningAmount);
+
+    render.showRateOfReturn(winningAmount, this.userInputMoney);
   }
 }
 
