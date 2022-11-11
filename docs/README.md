@@ -31,31 +31,48 @@
 ### 돈 입력
 - getUserInputMoney
 1000원 단위로 입력받는다. 1000원 단위가 아닐경우 예외 처리한다
+
 ### 당첨 번호 입력
 - getUserLottoNumber
 서로 다른 6개의 당첨번호를 입력하고 범위는 1 이상 45 이하다
 번호는 쉼표를 기준으로 구분한다
+
 ### 보너스 번호 입력
 - getUserBonusNumber
 위에서 입력받은 사용자의 당첨번호와 겹치지 않게 1~45사이에서 1개만 입력한다
+bonusMoney는 Number로 바꿔준다
 
 ### 구매한 갯수 보여주기
 - showAmountOfMoney
+
 ### 투입한 금액만큼 컴퓨터가 로또번호 생성
 - createLottoNumArrays
+아래 divideMoney에서 얻은 몫을 이용해서 몫 만큼 로또번호를 생성하고 showAmountOfMoney로 보내 출력시킨다.
+반복문에서 생성된 로또번호는 배열에 담겨서 전체 배열을 보여주는 함수로 간다.
 
 ### 돈을 1000원 단위로 나눠 몫 만들기
 - divideMoney
+
+
+[!] 2차원 배열형태에서 일차원 배열로 보여주고 나면 각각의 일차원 배열들에서 로또가 당첨됬는지 안됬지는 계산하기 위해서 checkLottery, checkLotteryHelper를 통해서 등수를 확인후 배열을 showPrizeLottery로 반환한다
+이때, 5개 + 보너스숫자로 2등을 한 사람은 2를 더해서 7일경우에 2등을 하게 만든다.
 
 ### 형식대로 로또번호 보여주기
 - showLottoArrays
 
 ### 당첨 내역 계산하기
 - calculatePrizeLottery
+
 ### 각 배열마다 당첨됬는지 확인하기
 - checkLottery
+
 ### 5등 당첨 확인 함수
 - checkLotteryHelper
+
 ### 당첨 내역 출력하기
 - showPrizeLottery
+따로 3,4,5,6,7의 갯수를 구해서 몇 개가 일치하는지 화면에 뿌려준다
+아무것도 당첨된게 없다면 throw를 통해 당첨된게 없다고 한뒤 프로그램을 종료한다
+
+
 ## 수익률 계산하기
