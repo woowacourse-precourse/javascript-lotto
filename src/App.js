@@ -41,11 +41,14 @@ class App {
     Console.readLine(Messages.ENTER_BONUS_NUMBER, (bonus) => {
       this.winningAndBonusNumbers.numberNotDuplicate(bonus);
 
-      Console.print(Messages.WINNING_STATICS);
-      this.lotto.lottosWinningBonus(lottos, winning, bonus);
-
-      Console.close();
+      this.printWinningStatics(lottos, winning, bonus);
     });
+  }
+
+  printWinningStatics(lottos, winning, bonus) {
+    Console.print(Messages.WINNING_STATICS);
+    this.lotto.lottosWinningBonus(lottos, winning, bonus);
+    Console.close();
   }
 }
 
