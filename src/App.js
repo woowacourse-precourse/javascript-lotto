@@ -4,11 +4,12 @@ const Bonus = require('./Bonus');
 const View = require('./View');
 const { Console } = require('@woowacourse/mission-utils');
 const { convertWinningNumbers, getLottoBundle } = require('./utils/lottoUtils');
-const { MESSAGE, WINNING_MONEY } = require('./utils/constants');
+const { MESSAGE } = require('./utils/constants');
 
 class App {
   constructor() {
     this.view = new View();
+    this.lotto = null;
     this.money = 0;
     this.lottoBundle = [];
     this.winningNumbers = [];
@@ -32,7 +33,7 @@ class App {
   createWinningNumbers() {
     Console.readLine(MESSAGE.CREATE_WINNING_NUMBERS, (numbers) => {
       this.winningNumbers = convertWinningNumbers(numbers);
-      const lotto = new Lotto(this.winningNumbers);
+      this.lotto = new Lotto(this.winningNumbers);
       this.createBonusNumber();
     });
   }
@@ -46,48 +47,9 @@ class App {
   }
 
   createWinningStatistics() {
-    const result = this.getResult();
-    const profitRate = this.calculateProfitRate(result);
+    const result = this.lotto.getResult(this.lottoBundle);
+    const profitRate = this.lotto.calculateProfitRate(result, this.money);
     this.view.printResult(result, profitRate);
-  }
-
-  getWinningRanking(boughtLotto) {
-    const matchingNumbers = boughtLotto.filter((number) => this.winningNumbers.includes(number));
-    const matchingCount = matchingNumbers.length;
-    const hasBonus = boughtLotto.includes(this.bonus);
-
-    if (matchingCount === 6) {
-      return 1;
-    }
-    if (matchingCount === 5) {
-      if (hasBonus) return 2;
-      return 3;
-    }
-    if (matchingCount === 4) {
-      return 4;
-    }
-    if (matchingCount === 3) {
-      return 5;
-    }
-    return 0;
-  }
-
-  getResult() {
-    const result = new Array(6).fill(0);
-    this.lottoBundle.map((lotto) => {
-      const ranking = this.getWinningRanking(lotto);
-      result[ranking] += 1;
-    });
-    return result.slice(1, 6).reverse();
-  }
-
-  calculateProfitRate(result) {
-    const profit = result.reduce((acc, cur, idx) => {
-      return acc + WINNING_MONEY[idx] * cur;
-    }, 0);
-
-    const profitRate = (profit / this.money) * 100;
-    return profitRate.toFixed(1);
   }
 }
 
