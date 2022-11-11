@@ -1,3 +1,4 @@
+const Lotto = require('./Lotto');
 const Validator = require('./Validator');
 
 // 사용자가 방문해서 사는 곳
@@ -26,7 +27,10 @@ class LottoSeller {
   // count 개수만큼 로또 발행
   issueLotto(count) {
     const lottos = [];
-    console.log('issueLotto', count);
+
+    while (lottos.length < count) {
+      lottos.push(Lotto.purchase());
+    }
 
     // 로또 발행하는 부분
     // 다 발행되면
@@ -37,8 +41,7 @@ class LottoSeller {
   purchase = (money) => {
     //  검증()
     // 하나씩 배열에 추가
-    this.isValidMoney(money);
-    this.issueLotto('count 테스트');
+    this.issueLotto(/* this.countLottoTicket(money) */);
   };
 }
 
