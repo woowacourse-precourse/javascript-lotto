@@ -17,10 +17,10 @@ class App {
   }
 
   issueLotto(price) {
-    const numOfLotto = price / 1000;
+    const countOfLotto = price / 1000;
 
-    Console.print(`\n${numOfLotto}개를 구매했습니다.`);
-    Array.from({ length: numOfLotto }).forEach(() => {
+    Console.print(`\n${countOfLotto}개를 구매했습니다.`);
+    Array.from({ length: countOfLotto }).forEach(() => {
       const lotto = Random.pickUniqueNumbersInRange(1, 45, 6).sort(
         (a, b) => a - b
       );
