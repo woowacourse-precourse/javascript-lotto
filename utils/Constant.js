@@ -6,7 +6,7 @@ const LOTTO_NUMBER = Object.freeze({
 });
 
 const LOTT0_MESSAGE = {
-  START: "구입금액을 입력해 주세요.",
+  INPUT: "구입금액을 입력해 주세요.",
 };
 
 module.exports = { LOTTO_NUMBER, LOTT0_MESSAGE };

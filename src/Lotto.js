@@ -1,3 +1,8 @@
+const { Random } = require("@woowacourse/mission-utils");
+const { Console } = require("@woowacourse/mission-utils");
+const { LOTT0_MESSAGE } = require("./../utils/Constant");
+const LottoNumbers = require("./LottoNumber");
+
 class Lotto {
   #numbers;
 
@@ -13,6 +18,15 @@ class Lotto {
   }
 
   // TODO: 추가 기능 구현
+  start() {
+    this.inputMoney();
+  }
+
+  inputMoney() {
+    Console.readLine(LOTT0_MESSAGE.INPUT, (money) => {
+      Console.print(money);
+    });
+  }
 }
 
 module.exports = Lotto;
