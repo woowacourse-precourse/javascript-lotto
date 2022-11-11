@@ -7,6 +7,7 @@ class LottoGenerator {
   }
 
   publishLotto(lottoCost) {
+    if (isNaN(lottoCost)) throw new Error('[ERROR] 숫자가 아닙니다.'); 
     const lottoArr = [];
     const lottoCount = +lottoCost / 1000;
     for (let i = 0; i < lottoCount; i++) {
