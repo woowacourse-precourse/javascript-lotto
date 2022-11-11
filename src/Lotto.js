@@ -1,4 +1,5 @@
-//에러 전부 상수화 필요
+const { ERROR_LOTTO_NUMBER, VALUE_NUMBER } = require("./constants");
+
 class Lotto {
   #numbers;
 
@@ -8,12 +9,18 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    if (numbers.length !== VALUE_NUMBER.TOTAL_LOTTO_NUMBERS) {
+      throw new Error(ERROR_LOTTO_NUMBER.NOT_SIX);
     }
-    if (new Set(numbers).size !== numbers.length) throw new Error("[ERROR] 중복되는 숫자가 있습니다.");
-    if (numbers.find((arrayElement) => parseInt(arrayElement) < 1 || parseInt(arrayElement) > 45))
-      throw new Error("[ERROR] 숫자는 1-45 사이의 수여야 합니다.");
+    if (new Set(numbers).size !== numbers.length) throw new Error(ERROR_LOTTO_NUMBER.DUPLICATE_NUMBER);
+    if (
+      numbers.find(
+        (arrayElement) =>
+          parseInt(arrayElement) < VALUE_NUMBER.SMALLEST_LOTTO_NUMBER ||
+          parseInt(arrayElement) > VALUE_NUMBER.BIGGEST_LOTTO_NUMBER
+      )
+    )
+      throw new Error(ERROR_LOTTO_NUMBER.OUT_OF_RANGE);
   }
 }
 

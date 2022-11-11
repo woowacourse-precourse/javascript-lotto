@@ -1,8 +1,9 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const { GET_INPUT, GRADE, VALUE_NUMBER } = require("./constants");
 
 class LottoResultCheck {
   constructor() {
-    this.resultArray = new Array(5).fill(0);
+    this.resultArray = new Array(Object.keys(GRADE).length).fill(0);
     this.userMoney = 0;
     this.lottoNumbersArray = [];
     this.winningNumbers = [];
@@ -11,7 +12,7 @@ class LottoResultCheck {
 
   getWinningNumber() {
     return new Promise((resolve, reject) => {
-      MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (userInput) => {
+      MissionUtils.Console.readLine(GET_INPUT.WINNING_NUMBER, (userInput) => {
         this.winningNumbers = userInput.split(",").map((arrayElement) => parseInt(arrayElement));
         resolve(userInput);
       });
@@ -20,7 +21,7 @@ class LottoResultCheck {
 
   getBonusNumber() {
     return new Promise((resolve, reject) => {
-      MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (userInput) => {
+      MissionUtils.Console.readLine(GET_INPUT.BONUS_NUMBER, (userInput) => {
         this.bonusNumber = userInput;
         resolve(userInput);
       });
@@ -28,26 +29,38 @@ class LottoResultCheck {
   }
 
   winningCheck(lottonumbers) {
-    //상수화 필요
     const COUNT_OF_CORRECT_NUMBERS = lottonumbers.filter((number) => this.winningNumbers.includes(number)).length;
-    if (COUNT_OF_CORRECT_NUMBERS === 3) return this.lottoRankingsCount(5);
-    if (COUNT_OF_CORRECT_NUMBERS === 4) return this.lottoRankingsCount(4);
-    if (COUNT_OF_CORRECT_NUMBERS === 5) return this.lottoRankingsCount(3);
-    if (COUNT_OF_CORRECT_NUMBERS === 5 && lottonumbers.includes(this.bonusNumber)) return this.lottoRankingsCount(2);
-    if (COUNT_OF_CORRECT_NUMBERS === 6) return this.lottoRankingsCount(1);
+    if (COUNT_OF_CORRECT_NUMBERS === VALUE_NUMBER.NUMBERS_OF_WIN_FIFTH_PRIZE)
+      return this.lottoRankingsCount(GRADE.FIFTH_GRADE);
+    if (COUNT_OF_CORRECT_NUMBERS === VALUE_NUMBER.NUMBERS_OF_WIN_FOURTH_PRIZE)
+      return this.lottoRankingsCount(GRADE.FOURTH_GRADE);
+    if (COUNT_OF_CORRECT_NUMBERS === VALUE_NUMBER.NUMBERS_OF_WIN_THIRD_PRIZE)
+      return this.lottoRankingsCount(GRADE.THIRD_GRADE);
+    if (
+      COUNT_OF_CORRECT_NUMBERS === VALUE_NUMBER.NUMBERS_OF_WIN_SECOND_PRIZE &&
+      lottonumbers.includes(this.bonusNumber)
+    )
+      return this.lottoRankingsCount(GRADE.SECOND_GRADE);
+    if (COUNT_OF_CORRECT_NUMBERS === VALUE_NUMBER.NUMBERS_OF_WIN_FIRST_PRIZE)
+      return this.lottoRankingsCount(GRADE.FIRST_GRADE);
   }
 
   lottoRankingsCount(ranking) {
-    //상수화 필요.
-    if (ranking === 1) this.resultArray[0]++;
-    if (ranking === 2) this.resultArray[1]++;
-    if (ranking === 3) this.resultArray[2]++;
-    if (ranking === 4) this.resultArray[3]++;
-    if (ranking === 5) this.resultArray[4]++;
+    if (ranking === GRADE.FIRST_GRADE) this.resultArray[GRADE.FIRST_GRADE - 1]++;
+    if (ranking === GRADE.SECOND_GRADE) this.resultArray[GRADE.SECOND_GRADE - 1]++;
+    if (ranking === GRADE.THIRD_GRADE) this.resultArray[GRADE.THIRD_GRADE - 1]++;
+    if (ranking === GRADE.FOURTH_GRADE) this.resultArray[GRADE.FOURTH_GRADE - 1]++;
+    if (ranking === GRADE.FIFTH_GRADE) this.resultArray[GRADE.FIFTH_GRADE - 1]++;
   }
 
   getTotalWinningMoney() {
-    const PRIZE_LIST = [2000000000, 30000000, 1500000, 50000, 5000];
+    const PRIZE_LIST = [
+      VALUE_NUMBER.FIRST_PRIZE,
+      VALUE_NUMBER.SECOND_PRIZE,
+      VALUE_NUMBER.THIRD_PRIZE,
+      VALUE_NUMBER.FOURTH_PRIZE,
+      VALUE_NUMBER.FIFTH_PRIZE,
+    ];
     const INITIAL_VALUE = 0;
     const TOTAL_WINNING_MONEY = this.resultArray.reduce(
       (accumulator, currentValue, currentIndex) => accumulator + currentValue * PRIZE_LIST[currentIndex],

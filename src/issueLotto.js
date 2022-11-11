@@ -1,19 +1,24 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const LottoResultCheck = require("./resultCheck");
+const { GET_INPUT, VALUE_NUMBER } = require("./constants");
 
 class LottoGenerator {
   makeLottoNumber() {
-    const LOTTONUMBER = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    const LOTTONUMBER = MissionUtils.Random.pickUniqueNumbersInRange(
+      VALUE_NUMBER.SMALLEST_LOTTO_NUMBER,
+      VALUE_NUMBER.BIGGEST_LOTTO_NUMBER,
+      VALUE_NUMBER.TOTAL_LOTTO_NUMBERS
+    );
     return LOTTONUMBER.sort((x, y) => x - y);
   }
 
   generateLotto() {
-    //문자열 상수화 필요
     return new Promise((resolve, reject) => {
-      MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (userInput) => {
+      MissionUtils.Console.readLine(GET_INPUT.MONEY, (userInput) => {
         resolve(userInput);
         LottoResultCheck.userMoney = userInput;
-        const TOTAL_LOTTO_GAMES = parseInt(userInput / 1000);
+        const TOTAL_LOTTO_GAMES = parseInt(userInput / VALUE_NUMBER.MONEY_FOR_ONE_GAME);
+        //이 부분도 상수화 해야하나?
         MissionUtils.Console.print(`${TOTAL_LOTTO_GAMES}개를 구매했습니다.`);
         for (let gameCount = 0; gameCount < TOTAL_LOTTO_GAMES; gameCount++) {
           const LOTTO_NUMBER = this.makeLottoNumber();
