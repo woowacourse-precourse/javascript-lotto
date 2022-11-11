@@ -15,6 +15,7 @@ class Lotto {
   constructor(amount, lottoArray, numbers) {
     this.amount = amount;
     this.lottoArray = lottoArray;
+    this.validate(numbers);
     this.checkNumberRanges(numbers);
     this.checkNoSameNumber(numbers);
     this.#numbers = numbers;
