@@ -5,13 +5,20 @@ const MAX_LOTTO_NUM = 45;
 const NUM_OF_LOTTO = 6;
 
 class LottoGenerator {
-  constructor(numOfPurchasedLotto) {
-    this.lottos = this.generateLottos(numOfPurchasedLotto);
+  constructor(money) {
+    this.money = money;
+    this.numOfLottos = this.getNumOfLottos(money);
+    this.lottos = this.generateLottoNum(this.numOfLottos);
   }
 
-  generateLottos(numOfPurchasedLotto) {
+  getNumOfLottos(money) {
+    const MIN_UNIT = 1000;
+    return parseInt(money / MIN_UNIT);
+  }
+
+  generateLottos(numOfLottos) {
     let lottos = [];
-    for (let i = 0; i < numOfPurchasedLotto; i += 1) {
+    for (let i = 0; i < numOfLottos; i += 1) {
       const ONE_LOTTO_NUM = this.generateLottoNum();
       lottos.push(this.sortArr(ONE_LOTTO_NUM));
     }
