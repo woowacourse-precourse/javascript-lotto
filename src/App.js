@@ -78,16 +78,11 @@ class App {
   }
 
   getTotalEarningRate() {
-    const totalMoney =
-      this.prizeResult.first * 200000000 +
-      this.prizeResult.second * 30000000 +
-      this.prizeResult.third * 1500000 +
-      this.prizeResult.fourth * 50000 +
-      this.prizeResult.fifth * 5000;
-    const earningRate = ((totalMoney / (this.lottoCount * 1000)) * 100).toFixed(
-      1
+    const rateOfReturn = GameTools.calcRateOfReturn(
+      this.prizeResult,
+      this.lottoCount
     );
-    this.printEarningRate(earningRate);
+    this.printEarningRate(rateOfReturn);
   }
 
   printEarningRate(earningRate) {
