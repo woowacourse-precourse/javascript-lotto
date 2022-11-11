@@ -31,7 +31,14 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
+  checkIsNumber(numbers) {
+    const checker = /^[0-9]+$/;
+    numbers.forEach((number) => {
+      if (!checker.test(number)) {
+        throw new Error('[ERROR] 로또 번호는 숫자여야 합니다.');
+      }
+    });
+  }
 }
 
 module.exports = Lotto;
