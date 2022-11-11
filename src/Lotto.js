@@ -51,6 +51,20 @@ class Lotto {
     Console.print(`5개 일치 (1,500,000원) - ${winningArray[2]}개`);
     Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningArray[3]}개`);
     Console.print(`6개 일치 (2,000,000,000원) - ${winningArray[4]}개`);
+
+    this.printRate(winningArray, money);
+  }
+
+  printRate(winningArray, money) {
+    let profit =
+      winningArray[0] * 5000 +
+      winningArray[1] * 50000 +
+      winningArray[2] * 1500000 +
+      winningArray[3] * 30000000 +
+      winningArray[4] * 2000000000;
+    let rate = ((profit / (money * 1000)) * 100).toFixed(1);
+
+    Console.print(`총 수익률은 ${rate}%입니다.`);
   }
 }
 
