@@ -76,6 +76,9 @@ class LotteryDraw extends Struct{
         this.revenueCalculation();
         MissionUtils.Console.print(`총 수익률은 ${this.revenue.toFixed(1)}%입니다.`);
     };
+    lottoClose() {
+        MissionUtils.Console.close();
+    };
 };
 
 module.exports = LotteryDraw;
