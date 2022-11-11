@@ -8,18 +8,16 @@ class App {
     WINNING_MESSAGE: "당첨 번호를 입력해 주세요.",
     BONUS_MESSAGE: "보너스 번호를 입력해 주세요.",
   };
-  // lottoGenerator = new LottoGenerator();
   constructor() {}
 
   play() {
+    this.inputPrice();
+  }
+  inputPrice() {
     Console.readLine(`${this.message.START_MESSAGE}\n`, (payment) => {
       const lottoGenerator = new LottoGenerator();
-      lottoGenerator.validatePayment(payment);
+      this.myLotto = lottoGenerator.generate(payment);
     });
-  }
-
-  printMessage(message) {
-    Console.print(message);
   }
 }
 const app = new App();

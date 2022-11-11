@@ -1,9 +1,24 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+const { Random } = MissionUtils;
+
 class LottoGenerator {
   #PRICE = 1000;
 
   constructor(payment) {
     this.payment = payment;
   }
+
+  generate(payment) {
+    const count = parseInt(payment) / this.#PRICE;
+    const myLotto = [];
+    this.validatePayment(payment);
+    while (myLotto.length < count) {
+      const randomLotto = Random.pickUniqueNumbersInRange(1, 45, 6);
+      myLotto.push(randomLotto);
+    }
+    return myLotto;
+  }
+
   validatePayment(input) {
     const payment = parseInt(input);
     if (isNaN(input)) {
