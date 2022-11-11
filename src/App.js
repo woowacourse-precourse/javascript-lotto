@@ -5,16 +5,14 @@ const Lotto = require('./Lotto');
 class App {
   #calculator;
   #lottos;
-  #rankingCount;
   #winNumbers;
   #bonusNumber;
-
-  constructor() {
-    this.#lottos = [];
-    this.#rankingCount = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
-  }
+  #rankingCount;
+  #profitRate;
 
   play() {
+    this.#lottos = [];
+    this.#rankingCount = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
     this.recordPay();
   }
 
@@ -68,10 +66,26 @@ class App {
       this.#calculator.addPrize(ranking);
     });
 
+    this.#profitRate = this.#calculator
+      .calcProfitRate()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
     this.printResult();
   }
 
-  printResult() {}
+  printResult() {
+    Console.print('\n당첨 통계\n---');
+    Console.print(`3개 일치 (5,000원) - ${this.#rankingCount[5]}개`);
+    Console.print(`4개 일치 (50,000원) - ${this.#rankingCount[4]}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${this.#rankingCount[3]}개`);
+    Console.print(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.#rankingCount[2]}개`
+    );
+    Console.print(`6개 일치 (2,000,000,000원) - ${this.#rankingCount[1]}개`);
+    Console.print(`총 수익률은 ${this.#profitRate}%입니다.`);
+
+    Console.close();
+  }
 }
 
 const app = new App();

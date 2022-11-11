@@ -46,6 +46,6 @@
 
 - App.printLottos
 
-### 2. 결과 출력
+### 2. 당첨 통계 출력
 
-- App.printStatistics
+- App.printResult
