@@ -9,3 +9,5 @@ class Vaildator {
     return target === util.LOTTO_MAX_LENGTH;
   }
 }
+
+module.exports = Vaildator;
