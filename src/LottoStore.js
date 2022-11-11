@@ -11,6 +11,10 @@ class LottoStore {
     this.#count = 0;
   }
 
+  getLottoPayment() {
+    return this.#money;
+  }
+
   getBuyAt() {
     return this.#isThousandWon()
       .#getHowMany()
