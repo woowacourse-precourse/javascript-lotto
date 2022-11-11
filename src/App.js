@@ -2,6 +2,7 @@ const LottoCounter = require('./LottoCounter');
 const MissionUtils = require('@woowacourse/mission-utils');
 
 class App {
+  #countOfLotto;
   constructor() {
     this.lottoCounter;
   }
@@ -13,7 +14,8 @@ class App {
   inputCash() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (input) => {
       this.lottoCounter = new LottoCounter(input);
-      console.log(this.lottoCounter.countLotto());
+      this.countOfLotto = this.lottoCounter.getCountOfLotto();
+      console.log(this.countOfLotto);
     });
   }
 }

@@ -8,7 +8,7 @@ class LottoCounter {
     this.countOfLotto = this.inputtedCash / NUMBER.INPUT_UNITS;
   }
 
-  countLotto() {
+  getCountOfLotto() {
     return this.countOfLotto;
   }
 
@@ -17,7 +17,7 @@ class LottoCounter {
       throw ERROR.NOT_1000_UNIT;
     }
     if (cash < NUMBER.INPUT_UNITS) {
-      throw Error.ERROR.NOT_ENOUGH_CASH;
+      throw ERROR.NOT_ENOUGH_CASH;
     }
 
     return true;
