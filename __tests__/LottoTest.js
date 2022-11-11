@@ -1,3 +1,4 @@
+/* eslint-disable no-new */
 const Lotto = require('../src/Lotto');
 
 describe('로또 클래스 테스트', () => {
@@ -18,5 +19,13 @@ describe('로또 클래스 테스트', () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 5]);
     }).toThrow('[ERROR]');
+  });
+
+  describe('로또 발행 메소드 테스트', () => {
+    test('메소드 이름은 "createLotto"로 정의된다.', () => {
+      const METHOD_NAME = 'createLotto';
+
+      expect(Lotto.createLotto.name).toEqual(METHOD_NAME);
+    });
   });
 });
