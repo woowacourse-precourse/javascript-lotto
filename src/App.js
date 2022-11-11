@@ -1,18 +1,13 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const { READLINE_PHRASE, OUTPUT_PHRASE } = require("./constant/Constant");
+const LottoMachine = require("../src/LottoMachine");
 const Lotto = require("../src/Lotto");
 const Bonus = require("../src/Bonus");
-
-const {
-  READLINE_PHRASE,
-  OUTPUT_PHRASE,
-  LOTTO_RANGE,
-  ERROR_MESSAGE,
-} = require("./constant/Constant");
 
 class App {
   constructor() {
     this.purchaseAmount;
-    this.lottoArrays;
+    this.lottoMachineOutput;
     this.winningNumbers;
     this.bonusNumber;
     this.winningAmount;
@@ -26,70 +21,21 @@ class App {
     MissionUtils.Console.readLine(
       READLINE_PHRASE.INPUT_PURCHASE_AMMOUNT,
       (money) => {
-        this.isValidPurchaseAmount(money);
+        const lottoMachine = new LottoMachine(money);
         this.purchaseAmount = money;
+        this.lottoMachineOutput = lottoMachine.lottoMachineOutput;
 
-        this.printPurchaseQuantity();
-        this.printLottoNumberArray();
-        this.inputWinningNumbers();
+        this.inputLottoNumbers();
       }
     );
   }
-  isValidPurchaseAmount(input) {
-    if (isNaN(input)) {
-      throw new Error(ERROR_MESSAGE.INVALID_PURCHASE_AMOUMT.NOT_A_NUMBER);
-    }
-    if (input % 1000) {
-      throw new Error(ERROR_MESSAGE.INVALID_PURCHASE_AMOUMT.INVALID_UNIT);
-    }
-    if (input < 1000) {
-      throw new Error(ERROR_MESSAGE.INVALID_PURCHASE_AMOUMT.INVALID_NUMBER);
-    }
-  }
-  printPurchaseQuantity() {
-    MissionUtils.Console.print("");
-    MissionUtils.Console.print(
-      this.getPurchaseQuantity(this.purchaseAmount) +
-        OUTPUT_PHRASE.PURCHASE_QUANTITY
-    );
-  }
-  getPurchaseQuantity() {
-    return parseInt(this.purchaseAmount / 1000);
-  }
 
-  printLottoNumberArray() {
-    let lottoArrays = [];
-
-    for (
-      let sequence = 1;
-      sequence <= this.getPurchaseQuantity(this.purchaseAmount);
-      sequence++
-    ) {
-      let lottoArray = this.getLottoNumber();
-
-      let stringLottoArray = lottoArray.join(", ");
-      MissionUtils.Console.print("[" + stringLottoArray + "]");
-      lottoArrays.push(lottoArray);
-    }
-    this.lottoArrays = lottoArrays;
-  }
-  getLottoNumber() {
-    return MissionUtils.Random.pickUniqueNumbersInRange(
-      LOTTO_RANGE.START_NUMBER,
-      LOTTO_RANGE.END_NUMBER,
-      LOTTO_RANGE.LENGTH
-    ).sort((compare1, compare2) => {
-      return compare1 - compare2;
-    });
-  }
-
-  inputWinningNumbers() {
+  inputLottoNumbers() {
     MissionUtils.Console.readLine(
       OUTPUT_PHRASE.LINE_UP + READLINE_PHRASE.INPUT_WINNING_NUMBER,
       (winningNumbers) => {
         let splitWinningNumbers = winningNumbers.split(",");
         new Lotto(splitWinningNumbers);
-
         this.winningNumbers = splitWinningNumbers.map(Number);
         this.inputBonusNumber();
       }
@@ -102,7 +48,6 @@ class App {
       (bonusNumber) => {
         new Bonus(bonusNumber, this.winningNumbers);
         this.bonusNumber = Number(bonusNumber);
-
         this.printWinningStastics();
       }
     );
@@ -121,7 +66,7 @@ class App {
       allMatches: 0,
     };
 
-    this.lottoArrays.forEach((item) => {
+    this.lottoMachineOutput.forEach((item) => {
       let matchCount = this.getMatchCount(item, this.winningNumbers);
       let bonusMatch = this.getBonusMatch(item, this.bonusNumber);
       if (matchCount == 3) {
