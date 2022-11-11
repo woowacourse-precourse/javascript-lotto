@@ -10,15 +10,15 @@
 8. 수익률을 출력한다.
 
 
-
-## 클래스 명세
 ---
+## 클래스 명세
+
 ### App - 어플리케이션 UI
-변수 목록
+#### 변수 목록
 - myLotto : MyLotto 클래스 인스턴스
 - lotto : Lotto 클래스 인스턴스
 
-UI 메서드
+#### 함수 목록
 #### `play()`
 - 어플리케이션 시작
 
@@ -32,29 +32,49 @@ UI 메서드
 #### `inputWinNum()`
 - 당첨 번호 입력
 - 6개의 숫자를 콤마(,)로 구분하여 입력
-- 문자열로 파싱하여 Lotto 생성자 인자로 넘겨줌
+- 문자열을 배열로 파싱하여 Lotto 생성자 인자로 넘겨줌
 
 #### `inputBonusNum()`
 - 보너스 번호 입력
 
-내부 작업 메서드
-#### `checkMatchLottoNum(myLottoNum, winNum)`
+#### `validate()`
+- 숫자 입력 여부 확인
+- 문자나 수가 아닌 값이 포함되어 있을 경우 에러 발생
+
+#### `getResult()`
+- 로또 결과 출력 및 종료
+
+
+---
+### AppUtils - 어플리케이션 로직 함수
+#### 연산 함수
+#### `checkMatchLottoNum(myLottoNumbers, winNum)`
 - 로또 하나의 발행번호와 당첨번호와 일치 조회 함수
 - 일치하는 번호 개수를 반환
 
-#### `getWinHistory(myLottoNums, winNum)`
+#### `checkBonusNum(myLottoNumbers, bonus)`
+- 보너스 번호 일치 여부 조회 함수
+- 보너스 번호가 있을 경우 true/ 없을 경우 false
+
+#### `getHistory(myLottoes, winNum)`
 - 발행된 모든 로또의 당첨 내역을 조회하는 함수
 - 발행 로또를 순회하며 `checkMatchLottoNum`호출하고 결과를 배열에 저장
 ```
-Array historyNum : [3개 일치, 4개 일치, 5개 일치, 5개+보너스 일치, 6개 일치]
+Array history : [3개 일치, 4개 일치, 5개 일치, 5개+보너스 일치, 6개 일치]
 ```
 - 해당 배열을 반환
 
-#### `calRate()`
+#### `calReward(history)`
+- 상금을 계산하는 함수
+
+#### `calRate(reward)`
 - 수익률을 계산하는 함수
 - 소수점 둘째 자리에서 반올림
 
-#### `printMyLotto(MyLotto)`
+#### `printCountLotto(myLotto)`
+- 구매한 로또 개수를 출력하는 함수
+
+#### `printMyLotto(myLotto)`
 - 구매한 로또 내역을 출력하는 함수
 - 출력 형식
 ```
@@ -63,36 +83,49 @@ Array historyNum : [3개 일치, 4개 일치, 5개 일치, 5개+보너스 일치
 ...
 ```
 
-#### `printWinHistory(historyNum)`
+#### 출력 함수
+#### `printHistories(histories)`
 - 로또 당첨 내역을 출력하는 함수
 - 출력형식
 ```
-당첨 통계
----
-3개 일치 (5,000원) - {}개
-4개 일치 (50,000원) - {}개
-5개 일치 (1,500,000원) - {}개
-5개 일치, 보너스 볼 일치 (30,000,000원) - {}개
-6개 일치 (2,000,000,000원) - {}개
+3개 일치 (5,000원) - {histories[0]}개
+4개 일치 (50,000원) - {histories[1]}개
+5개 일치 (1,500,000원) - {histories[2]}개
+5개 일치, 보너스 볼 일치 (30,000,000원) - {histories[3]}개
+6개 일치 (2,000,000,000원) - {histories[4]}개
 ```
 
 #### `printRate(rate)`
 - 수익률을 출력하는 함수
-- '총 수익률은 {rate}입니다'
+- 출력형식
+```
+총 수익률은 {rate}%입니다
+```
+
+### `printRate(myLotto, reward)`
+- 당첨 통계를 출력하는 함수
+- 당첨 내역 `histories`를 받아 `printHistories()`에 전달
+- 수익률 `rate`를 받아 `printRate()`에 전달
+- 출력 형식
+```
+당첨 통계
+---
+{로또 당첨 내역}
+{수익률}
+```
+
 
 ---
 ### MyLotto - 구매한 로또 정보 클래스
-변수 목록
+#### 변수 목록
 - num purchase : 구입 금액
 - num count : 발행된 로또 개수
 - 2d array myLottoes : 발행된 로또들의 정보를 담은 배열
 
-생성자
 #### constructor(구매금액)
 - 인스턴스 생성시 구매 금액 설정
 - `validate`로 구매 금액이 1,000원으로 나누어 떨어지는지 확인 
 
-메서드
 #### `countLotto(purchaseAmount)`
 - 입력받은 금액에 따른 로또 수량 계산
 - 입력값을 1,000으로 나눈 몫을 반환
@@ -107,18 +140,23 @@ Array historyNum : [3개 일치, 4개 일치, 5개 일치, 5개+보너스 일치
 #### `getMyLottoes()`
 - myLottoNums 반환
 
+#### `getCount()`
+- count 반환
+
+#### `getPurchase()`
+- purchase 반환
+
+
 ---
 ### Lotto - 로또 당첨 번호 클래스
-변수 목록
+#### 변수 목록
 - Array[] numbers : 당첨 번호 배열 (6자리)
 - Num bonus : 보너스 번호
 
-생성자
 #### constructor(numbers)
 - 인스턴스 생성시 당첨 번호 `numbers` 설정 (numbers는 len이 6인 숫자로 이루어진 배열)
 - `numbers`의 오류 여부를 `validate`로 확인
 
-메서드
 #### `validate(numbers)`
 - 당첨 번호로 전달된 배열의 오류 여부를 확인하는 함수
 - 에러 확인
@@ -128,4 +166,15 @@ Array historyNum : [3개 일치, 4개 일치, 5개 일치, 5개+보너스 일치
 
 #### `setBonusNum(bonus)`
 - 보너스 번호를 설정하는 함수
-- 1~45인 1개의 수를 입력받음
+
+#### `bonusValidate(bonus)`
+- 보너스 번호 유효 검사 함수
+- 에러확인
+    - 1~45인 1개의 수를 입력받음
+    - 기존의 당첨 번호와 중복되지 않아야 함
+
+#### `getNumbers()`
+- 당첨 번호 반환
+
+#### `getBonus()`
+- 보너스 번호 반환
