@@ -45,4 +45,13 @@ describe('Validator 클래스 테스트', () => {
     expect(Vaildator.isRightAmount(8000)).toEqual(true);
     expect(Vaildator.isRightAmount(8001)).toEqual(false);
   });
+
+  test('isDuplicateNumberInArray: 숫자가 배열 안에 이미 포함되어있는지 확인하는 기능 테스트', () => {
+    expect(Vaildator.isDuplicateNumberInArray([1, 2, 3, 4, 5, 6], 1)).toEqual(
+      true
+    );
+    expect(Vaildator.isDuplicateNumberInArray([1, 2, 3, 4, 5, 6], 7)).toEqual(
+      false
+    );
+  });
 });
