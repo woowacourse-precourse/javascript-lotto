@@ -1,36 +1,51 @@
-const MissionUtils = require('@woowacourse/mission-utils');
-
 class Lotto {
     #numbers;
 
     constructor(numbers) {
+        this.validate(numbers);
         this.#numbers = numbers;
     }
 
-    // 구입금액에 해당하는 만큼의 로또를 보여주는 함수
-    showLotto(numbers) {
-        for (let i = 0; i < numbers; i++) {
-            this.printLotto();
+    // 검증 함수
+    validate(numbers) {
+        this.onlySixNumbers(numbers);
+        this.validateLimitRangeNumber(numbers);
+        this.validateNumber(numbers);
+        this.validateMulty(numbers);
+    }
+
+    // 6보다 작거나 큰 개수의 숫자를 걸러주는 함수
+    onlySixNumbers(numbers) {
+        if (numbers.length !== 6) {
+            throw new Error('[ERROR] 당첨 번호는 6개 입력해야 합니다.');
         }
     }
 
-    // 로또들을 출력하는 함수
-    printLotto() {
-        MissionUtils.Console.print(this.pickLotto());
+    // 1~45사이의 숫자 검증 함수
+    validateLimitRangeNumber(numbers) {
+        for (let i = 0; i < numbers.length; i++) {
+            if (numbers[i] > 45 || numbers[i] === 0 || numbers[i] < 0) {
+                throw new Error('[ERROR] 당첨 번호는 1 ~ 45사이의 숫자를 입력해야 합니다.');
+            }
+        }
     }
 
-    // 로또들의 숫자를 랜덤하게 뽑는 함수
-    pickLotto() {
-        const pickLottoArray = MissionUtils.Random.pickUniqueNumbersInRange(1,45,6).sort(function (a, b) {
-            if (a > b) return 1;
-            if (a === b) return 0;
-            if (a < b) return -1;
-        });
-        const pickLottoString = pickLottoArray.join(', ');
-        return `[${pickLottoString}]`;
+    // 배열의 요소가 숫자로 구성되어 있는지 검증 함수
+    validateNumber(array) {
+        const number = array.map((item) => Number.isNaN(item));
+        if (number.includes(true)) {
+            throw new Error('[ERROR] 당첨 번호는 숫자를 입력해야 합니다.');
+        }
+    }
+
+    // 배열의 요소가 중복되는지 검증 함수
+    validateMulty(array) {
+        const set = new Set();
+        array.map((item) => set.add(item));
+        if (set.size !== 6) {
+            throw new Error('[ERROR] 당첨 번호는 중복 숫자가 불가합니다.');
+        }
     }
 }
-
-let lotto = new Lotto();
 
 module.exports = Lotto;
