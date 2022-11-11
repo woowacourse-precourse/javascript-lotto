@@ -96,6 +96,7 @@ class Lotto {
     }
     return count + checkBonus;
   }
+  
   checkLotteryHelper(eachNumberArray, bonusMoney) {
     if (eachNumberArray.includes(bonusMoney)) {
       return 2;
