@@ -27,7 +27,7 @@ class GetLotto {
 
     checkValue(money) {
         this.isItNumber(money);
-        this.rightAmount(moeny);
+        this.rightAmount(money);
         return true;
     }
 
