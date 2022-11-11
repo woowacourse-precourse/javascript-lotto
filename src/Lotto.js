@@ -8,12 +8,15 @@ class Lotto {
   constructor(numbers) {
     this.#numbers = numbers;
     this.validate(numbers);
+    this.validate_indepence(numbers);
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
+    if (numbers.length !== MESSAGE.LOTTO_LENGTH) {
+      console.log(numbers, numbers.length);
       throw new Error(MESSAGE.LOTTO_SIZE_ERROR);
     }
+    return true;
   }
   validate_indepence(numbers) {
     const setWinLotto = new Set();
@@ -21,10 +24,10 @@ class Lotto {
     winLottoArr.forEach((eachLottoNum) => {
       setWinLotto.add(eachLottoNum);
     });
-    if (setWinLotto.size !== 6) {
+    if (setWinLotto.size !== MESSAGE.LOTTO_LENGTH) {
       throw new Error(MESSAGE.LOTTO_SAME_NUMBER_ERROR);
     }
-    return numbers;
+    return true;
   }
 
   // TODO: 추가 기능 구현
@@ -50,7 +53,17 @@ class Lotto {
       winLotto = winNumber;
     });
     winLotto = winLotto.replace(MESSAGE.LOTTO_WIN_SEPERATOR, '');
-    return this.validate_indepence(winLotto);
+    this.validate(winLotto);
+    this.validate_indepence(winLotto);
+    return winLotto;
+  }
+
+  getBounsLotto() {
+    let bounsLotto;
+    MissionUtils.Console.readLine(MESSAGE.LOTTO_BONUS, (bonusNumber) => {
+      bounsLotto = bonusNumber;
+    });
+    return bounsLotto;
   }
 }
 
