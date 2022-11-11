@@ -20,6 +20,9 @@ class InputWinningNumber{
 
     bonusNumber(){
         Console.readLine(INPUT_BONUS_NUMBER, (num) => {
+            this.lotto.checkBonusNumLength(num);
+            this.lotto.checkLottoNumber(num);
+            this.lotto.isNotLottoNumber(num);
             return this.bonusNum.push(num);
         })
     }
