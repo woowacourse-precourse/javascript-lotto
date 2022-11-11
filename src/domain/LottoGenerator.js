@@ -6,9 +6,25 @@ const NUM_OF_LOTTO = 6;
 
 class LottoGenerator {
   constructor(money) {
+    this.isInputMoneyValid(money);
     this.money = money;
     this.numOfLottos = this.getNumOfLottos(money);
     this.lottos = this.generateLottoNum(this.numOfLottos);
+  }
+
+  isInputMoneyValid(money) {
+    if (!money) {
+      throw new Error('[ERROR] 구입 금액을 입력해야 합니다.');
+    }
+    if (!Number.isInteger(money)) {
+      throw new Error('[ERROR] 숫자만 입력할 수 있습니다.');
+    }
+    if (money < 0) {
+      throw new Error('[ERROR] 금액은 0보다 커야 합니다.');
+    }
+    if (money % 1000 !== 0) {
+      throw new Error('[ERROR] 천 원 단위로 입력해야 합니다.');
+    }
   }
 
   getNumOfLottos(money) {
