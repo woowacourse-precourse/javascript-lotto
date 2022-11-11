@@ -54,7 +54,7 @@
 
 ### not use callback
 
-- Customer.buyLotto()
+- [v] Customer.buyLotto()
   - get User input >> mock fn(readline)
   - price exception handling(price)
   - return payingPrice;

@@ -16,16 +16,15 @@ class Customer {
   }
 
   payMoney() {
-    const input = MissionUtils.Console.readLine(
+    const paidMoney = MissionUtils.Console.readLine(
       "구입금액을 입력해 주세요.\n",
       (money) => {
-        return money;
+        return parseInt(money);
       }
     );
-    const inputInt = parseInt(input);
-    if (inputInt % 1000 !== 0)
+    if (paidMoney % 1000 !== 0)
       throw new Error("[ERROR] 구입 금액이 천원 단위가 아닙니다");
-    return inputInt;
+    return paidMoney;
   }
 }
 
