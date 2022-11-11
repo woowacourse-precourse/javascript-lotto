@@ -1,7 +1,7 @@
 const { PRICE_PER_SHEET } = require('../constants');
 
 class GameUtils {
-  static toArrayLotto(input) {
+  static toArray(input) {
     input = GameUtils.removeBlank(input).split(',');
     input = input.map(item => Number(item));
     return input;
