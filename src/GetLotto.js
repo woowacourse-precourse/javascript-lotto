@@ -25,7 +25,4 @@ class GetLotto {
     }
 }
 
-let a = new GetLotto();
-a.lottoNumberPackage(5000);
-
 module.exports = GetLotto;
