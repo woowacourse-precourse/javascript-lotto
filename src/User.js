@@ -33,7 +33,7 @@ class User {
     });
   }
 
-  check_validation(amount) {
+  validate_amount(amount) {
     let result;
     amount % 1000 === 0 ? (result = true) : (result = false);
     return result;
@@ -44,9 +44,24 @@ class User {
       '\n당첨 번호를 입력해 주세요.\n',
       winning_number => {
         winning_number = winning_number.split(',');
+        const VALIDATION = this.validate_winning_number(winning_number);
+        if (!VALIDATION) {
+          throw new Error('[Error] 롯또 번호는 1~45 사이의 숫자입니다.');
+        }
         this.setWinningNumber(winning_number);
+        console.log(this.winning_number);
       },
     );
+  }
+
+  validate_winning_number(numbers) {
+    let validation = true;
+    numbers.map(number => {
+      if (!(number >= '1' && number <= 45)) {
+        validation = false;
+      }
+    });
+    return validation;
   }
 
   input_bonus_number() {
@@ -62,11 +77,3 @@ class User {
 module.exports = User;
 const user = new User();
 user.input_winning_number();
-
-// User 클래스
-//  로또 구입 금액 입력 (O)
-//  예외처리 (1) 구입 금액 입력값이 1000으로 나누어 떨어지지 않으면 예외처리 (O)
-//  당첨번호 입력
-//  보너스번호 입력
-//  예외처리 (2) 당첨/보너스 번호 입력값이 1 ~ 45 사이의 숫자 6개가 아닌 경우 예외 처리
-//  예외처리 시, [ERROR]로 시작하는 에러 메시지 출력
