@@ -10,4 +10,8 @@ const MESSAGES = {
   },
 }
 
-module.exports = MESSAGES;
+const PRICE_PER_SHEET = 1000;
+
+
+exports.MESSAGES = MESSAGES;
+exports.PRICE_PER_SHEET = PRICE_PER_SHEET;
