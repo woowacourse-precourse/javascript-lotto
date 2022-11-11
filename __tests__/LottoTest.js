@@ -167,5 +167,20 @@ describe('로또 클래스 테스트', () => {
         expect(Lotto.isFiveMatche(COUNT)).toBeTruthy();
       });
     });
+
+    describe('보너스 볼 일치 파악 메소드', () => {
+      test('메소드 이름은 "isBonusMatche"로 정의된다.', () => {
+        const METHOD_NAME = 'isBonusMatche';
+
+        expect(Lotto.isBonusMatche.name).toEqual(METHOD_NAME);
+      });
+
+      test('주어진 값이 보너스 값과 일치하면 true를 반환한다.', () => {
+        const target = [1, 2, 3, 4, 5, 6];
+        const BONUS = 4;
+
+        expect(Lotto.isBonusMatche(target, BONUS)).toBeTruthy();
+      });
+    });
   });
 });
