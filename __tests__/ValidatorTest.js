@@ -11,6 +11,18 @@ describe("amountValidCheck 테스트", () => {
     });
     expect(Validator.isBlank(blank)).toBe(MESSAGES.ERROR.isBlank);
   });
+  test("공백 유무 판별", () => {
+    const normalNumbers = ['1341', '23134', '1243124141', '1'];
+    const haveBlankNumbers = ['1  21 3', '   123', '123   '];
+    normalNumbers.forEach(subject => {      
+      const result = Validator.hasBlank(subject);
+      expect(result).toBeUndefined();
+    });
+    haveBlankNumbers.forEach(subject => {      
+      const result = Validator.hasBlank(subject);
+      expect(result).toBe(MESSAGES.ERROR.hasBlank);
+    });
+  });
   test("숫자 여부 판별", () => {
     const numbers = [1341, 23134, 1243124141, 1];
     const notNumbers = ['oneTwo', '@!#!@$>', '123abc'];
