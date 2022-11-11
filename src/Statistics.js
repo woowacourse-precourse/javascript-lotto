@@ -43,19 +43,26 @@ class Statistics {
     return 4;
   }
 
-  printLottoResult(totalRankingArr) {
+  printTotalLottoResult(totalRankingArr) {
     const prizeMoneyArr = ["5,000", "50,000", "1,500,000", "30,000,000", "2,000,000,000"];
     const rankingArr = [3, 4, 5, 5, 6];
     return totalRankingArr.map((lotto, index) => {
-      if (index === 3) {
-        return MissionUtils.Console.print(
-          `${rankingArr[index]}개 일치, 보너스 볼 일치 (${prizeMoneyArr[index]}원) - ${lotto}개`
-        );
-      }
-      return MissionUtils.Console.print(
-        `${rankingArr[index]}개 일치 (${prizeMoneyArr[index]}원) - ${lotto}개`
-      );
+      index === 3
+        ? this.printSecondPlaceLotto(rankingArr, index, prizeMoneyArr, lotto)
+        : this.printLottoExceptSecondPlace(rankingArr, index, prizeMoneyArr, lotto);
     });
+  }
+
+  printSecondPlaceLotto(rankingArr, index, prizeMoneyArr, lotto) {
+    return MissionUtils.Console.print(
+      `${rankingArr[index]}개 일치, 보너스 볼 일치 (${prizeMoneyArr[index]}원) - ${lotto}개`
+    );
+  }
+
+  printLottoExceptSecondPlace(rankingArr, index, prizeMoneyArr, lotto) {
+    return MissionUtils.Console.print(
+      `${rankingArr[index]}개 일치 (${prizeMoneyArr[index]}원) - ${lotto}개`
+    );
   }
 }
 module.exports = Statistics;
