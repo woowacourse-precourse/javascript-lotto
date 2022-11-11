@@ -1,6 +1,5 @@
 const Validator = class {
   static isLength = (target, length) => {
-    if (Number(amount) < LOTTO_AMOUNT.VALID_UNIT) throw new Error("[ERROR] 1,000원 이상으로 입력해주세요.");
     if (target.length !== length) throw new Error(`[ERROR] 번호는 ${length}개여야 합니다.`);
     return true;
   };
@@ -16,7 +15,7 @@ const Validator = class {
   };
 
   static isDuplicated = (origin) => {
-    if (new Set(origin).size !== origin.length) throw new Error("[ERROR] 중복된이 존재합니다.");
+    if (new Set(origin).size !== origin.length) throw new Error("[ERROR] 중복이 존재합니다.");
     return true;
   };
 
