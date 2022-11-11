@@ -6,10 +6,10 @@ class Person {
     }
 
     buy() {
-        MissionUtils.Console.readLine(MESSAGE.ENTER_CASH, (cache) => {
-            SYSTEM.isCorrectCache(cache);
-            this.lottos = SYSTEM.publishLotto(cache);
-            SYSTEM.getResult(this.lottos, cache);
+        MissionUtils.Console.readLine(MESSAGE.ENTER_CASH, (cash) => {
+            SYSTEM.isCorrectCash(cash);
+            this.lottos = SYSTEM.publishLotto(cash);
+            SYSTEM.getResult(this.lottos, cash);
         });
     }
 }

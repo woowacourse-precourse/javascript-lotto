@@ -6,12 +6,12 @@ const SYSTEM = Object.freeze({
         MissionUtils.Console.print(message);
     },
 
-    isCorrectCache(cache) {
-        if (isNaN(cache)) {
-            throw new Error(ERROR.CACHE_IS_NOT_NUMBER);
+    isCorrectCash(cash) {
+        if (isNaN(cash)) {
+            throw new Error(ERROR.CASH_IS_NOT_NUMBER);
         }
-        if (cache % 1000) {
-            throw new Error(ERROR.INVAID_CACHE);
+        if (cash % 1000) {
+            throw new Error(ERROR.INVAID_CASH);
         }
     },
 
@@ -35,20 +35,20 @@ const SYSTEM = Object.freeze({
         lottos.forEach(lotto => { SYSTEM.print(`[${lotto.getNumber().join(', ')}]`); });
     },
 
-    publishLotto(cache) {
-        let maxCount = cache / 1000;
+    publishLotto(cash) {
+        let maxCount = cash / 1000;
         return this.autoWrite(maxCount);
     },
 
 
-    getResult(lottos, cache) {
-        this.makeWinningLotto(lottos, cache);
+    getResult(lottos, cash) {
+        this.makeWinningLotto(lottos, cash);
     },
 
-    makeWinningLotto(lottos, cache) {
+    makeWinningLotto(lottos, cash) {
         MissionUtils.Console.readLine(MESSAGE.ENTER_WINNING_LOTTO, (winningLotto) => {
             winningLotto = new Lotto(winningLotto.split(",").map(Number));
-            this.makeBonusNumber(lottos, winningLotto.getNumber(), cache);
+            this.makeBonusNumber(lottos, winningLotto.getNumber(), cash);
         });
     },
 
@@ -67,11 +67,11 @@ const SYSTEM = Object.freeze({
 
     },
 
-    makeBonusNumber(lottos, winningLotto, cache) {
+    makeBonusNumber(lottos, winningLotto, cash) {
         MissionUtils.Console.readLine(MESSAGE.ENTER_BOUNS_NUMBER, (bonusNumber) => {
             bonusNumber = Number(bonusNumber);
             this.isCorrectBonusNumber(bonusNumber, winningLotto);
-            this.printResult(lottos, winningLotto, bonusNumber, cache);
+            this.printResult(lottos, winningLotto, bonusNumber, cash);
         });
     },
 
@@ -84,14 +84,14 @@ const SYSTEM = Object.freeze({
         return rank - 1;
     },
 
-    calulateRate(cache, result) {
+    calulateRate(cash, result) {
         let winnings = [2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000];
         let revenue = winnings.reduce((sum, money, rank) => sum + (result[rank] * money), 0);
-        return Math.round(revenue / cache * 100 * 10) / 10;
+        return Math.round(revenue / cash * 100 * 10) / 10;
 
     },
 
-    printResult(lottos, winningLotto, bonusNumber, cache) {
+    printResult(lottos, winningLotto, bonusNumber, cash) {
         let result = new Array(5).fill(0);
 
         for (let lotto of lottos) {
@@ -103,7 +103,7 @@ const SYSTEM = Object.freeze({
             let rankIndex = rank - 1;
             SYSTEM.print(`${MESSAGE.RANK_TEXT[rankIndex]} - ${result[rankIndex]}개`)
         }
-        let rate = this.calulateRate(cache, result);
+        let rate = this.calulateRate(cash, result);
         SYSTEM.print(`총 수익률은 ${rate}%입니다.`);
         this.exit();
 
