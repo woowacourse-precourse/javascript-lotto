@@ -9,6 +9,7 @@ class App {
     this.winnerNumber;
     this.bonusNumber;
   }
+
   play() {
     this.inputMoney();
   }
@@ -35,8 +36,8 @@ class App {
 
   inputWinnerNumber() {
     MissionUtils.Console.readLine("\n당첨 번호를 입력해 주세요.\n", (number) => {
-      this.validateSixNumberByComma(number);
       this.winnerNumber = number.replace(/\s/g, "").split(",");
+      this.validateSixNumberByComma(number);
       this.validateNumberWithoutDuplicate();
       this.inputBonusNumber();
     });
@@ -56,9 +57,7 @@ class App {
 
   inputBonusNumber() {
     MissionUtils.Console.readLine("\n보너스 번호를 입력해 주세요.\n", (number) => {
-      if (number < 1 || number > 45) {
-        throw new Error("[ERROR] 1에서 45까지의 번호를 입력해주세요");
-      }
+      if (number < 1 || number > 45) throw new Error("[ERROR] 1에서 45까지의 번호를 입력해주세요");
       this.bonusNumber = number;
       this.getStatisticsAboutLotto();
     });
@@ -67,13 +66,13 @@ class App {
   getStatisticsAboutLotto() {
     MissionUtils.Console.print("\n당첨 통계\n---");
     const statistics = new Statistics(this.totalLottoNumber, this.winnerNumber, this.bonusNumber);
-    const totalRankingArr = statistics.getTotalRankingArr();
-    statistics.printTotalLottoResult(totalRankingArr);
-    this.getLottoRateOfReturn(totalRankingArr);
+    const totalRanking = statistics.getTotalRanking();
+    statistics.printTotalLottoResult(totalRanking);
+    this.getLottoRateOfReturn(totalRanking);
   }
 
-  getLottoRateOfReturn(totalRankingArr) {
-    const totalPrizeMoney = this.getTotalPrizeMoney(totalRankingArr);
+  getLottoRateOfReturn(totalRanking) {
+    const totalPrizeMoney = this.getTotalPrizeMoney(totalRanking);
     const lottoRateOfReturn = (
       (Math.round((totalPrizeMoney / this.payMoney) * 1000) / 1000) *
       100
@@ -82,18 +81,18 @@ class App {
     MissionUtils.Console.close();
   }
 
-  getTotalPrizeMoney(totalRankingArr) {
-    return this.getPrizeMoneyArr(totalRankingArr).reduce((totalMoney, prizeMoney) => {
+  getTotalPrizeMoney(totalRanking) {
+    return this.getPrizeMoney(totalRanking).reduce((totalMoney, prizeMoney) => {
       return (totalMoney += prizeMoney);
     }, 0);
   }
 
-  getPrizeMoneyArr(totalRankingArr) {
+  getPrizeMoney(totalRanking) {
     const currency = [5000, 50000, 1500000, 30000000, 2000000000];
-    const prizeMoneyArr = totalRankingArr.map((lotto, index) => {
+    const prizeMoney = totalRanking.map((lotto, index) => {
       if (lotto !== 0) return lotto * currency[index];
     });
-    return prizeMoneyArr.filter((money) => money !== undefined);
+    return prizeMoney.filter((money) => money !== undefined);
   }
 }
 

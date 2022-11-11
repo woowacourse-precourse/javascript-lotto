@@ -7,13 +7,13 @@ class Statistics {
     this.bonusNumber = bonusNumber;
   }
 
-  getTotalRankingArr() {
-    const totalRankingArr = [0, 0, 0, 0, 0];
+  getTotalRanking() {
+    const totalRanking = [0, 0, 0, 0, 0];
     const numberOfMatchingNumbersRankedArr = this.getNumberOfMatchingNumbersRankedArr();
     numberOfMatchingNumbersRankedArr.map((num) => {
-      if (num - 2 >= 0) return totalRankingArr[num - 2]++;
+      if (num - 2 >= 0) return (totalRanking[num - 2] += 1);
     });
-    return totalRankingArr;
+    return totalRanking;
   }
 
   getNumberOfMatchingNumbersRankedArr() {
@@ -28,6 +28,7 @@ class Statistics {
     if (numberOfMatchingWinnerNumbers > 1 && numberOfMatchingWinnerNumbers <= 4) {
       return numberOfMatchingWinnerNumbers - 1;
     }
+
     return numberOfMatchingWinnerNumbers;
   }
 
@@ -43,25 +44,25 @@ class Statistics {
     return 4;
   }
 
-  printTotalLottoResult(totalRankingArr) {
-    const prizeMoneyArr = ["5,000", "50,000", "1,500,000", "30,000,000", "2,000,000,000"];
-    const rankingArr = [3, 4, 5, 5, 6];
-    return totalRankingArr.map((lotto, index) => {
+  printTotalLottoResult(totalRanking) {
+    const prizeMoney = ["5,000", "50,000", "1,500,000", "30,000,000", "2,000,000,000"];
+    const ranking = [3, 4, 5, 5, 6];
+    return totalRanking.map((lotto, index) => {
       index === 3
-        ? this.printSecondPlaceLotto(rankingArr, index, prizeMoneyArr, lotto)
-        : this.printLottoExceptSecondPlace(rankingArr, index, prizeMoneyArr, lotto);
+        ? this.printSecondPlaceLotto(ranking, index, prizeMoney, lotto)
+        : this.printLottoExceptSecondPlace(ranking, index, prizeMoney, lotto);
     });
   }
 
-  printSecondPlaceLotto(rankingArr, index, prizeMoneyArr, lotto) {
+  printSecondPlaceLotto(ranking, index, prizeMoney, lotto) {
     return MissionUtils.Console.print(
-      `${rankingArr[index]}개 일치, 보너스 볼 일치 (${prizeMoneyArr[index]}원) - ${lotto}개`
+      `${ranking[index]}개 일치, 보너스 볼 일치 (${prizeMoney[index]}원) - ${lotto}개`
     );
   }
 
-  printLottoExceptSecondPlace(rankingArr, index, prizeMoneyArr, lotto) {
+  printLottoExceptSecondPlace(ranking, index, prizeMoney, lotto) {
     return MissionUtils.Console.print(
-      `${rankingArr[index]}개 일치 (${prizeMoneyArr[index]}원) - ${lotto}개`
+      `${ranking[index]}개 일치 (${prizeMoney[index]}원) - ${lotto}개`
     );
   }
 }
