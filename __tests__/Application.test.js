@@ -163,3 +163,11 @@ describe('배열 길이 예외 검사 함수 테스트', () => {
     }).not.toThrow('[ERROR]');
   });
 });
+
+describe('배열 중복 검사 함수 테스트', () => {
+  test('메소드 이름은 "checkArrayDuplicate"로 정의된다.', () => {
+    const METHOD_NAME = 'checkArrayDuplicate';
+
+    expect(Application.checkArrayDuplicate.name).toEqual(METHOD_NAME);
+  });
+});
