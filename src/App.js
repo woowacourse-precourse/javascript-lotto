@@ -1,5 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 const { PURCHASE } = require('./constants');
+const { validate, isPurchaseInput } = require('./Validator');
 
 class App {
   #purchaseAmout = 0;
@@ -10,6 +11,7 @@ class App {
 
   askPurchaseAmount() {
     Console.readLine(PURCHASE.INPUT, answer => {
+      validate(answer, isPurchaseInput);
       this.#purchaseAmout = answer;
     });
   }
