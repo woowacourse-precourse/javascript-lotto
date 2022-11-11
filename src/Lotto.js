@@ -13,6 +13,7 @@ class Lotto {
 
     Application.validateArray(numbers);
     Application.validateArrayLength(numbers, CRITERION);
+    Application.checkArrayDuplicate(numbers);
   }
 
   // TODO: 추가 기능 구현
