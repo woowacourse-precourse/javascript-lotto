@@ -1,5 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const MyLottery = require("./MyLottery");
+const MyLotto = require("./MyLotto");
 
 class App {
   play() {
@@ -8,9 +8,10 @@ class App {
 
   purchaseAmount() {
     Console.readLine("구매금액을 입력해 주세요.\n", (amount) => {
-      const myLottery = new MyLottery(amount);
+      const lottos = new MyLotto(amount);
       Console.close();
-      Console.print(amount);
+      let myLottos = lottos.getMyLottery(amount);
+      Console.print(myLottos);
     });
   }
 }

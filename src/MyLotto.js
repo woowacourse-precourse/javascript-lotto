@@ -16,8 +16,13 @@ class MyLotto {
   }
 
   getMyLottery(money) {
-    const purchaseAmount = money % 1000;
-    const myLottos = Random.pickUniqueNumbersInRange(1, 45, 6);
+    const purchaseAmount = money / 1000;
+    const myLottos = new Array(purchaseAmount);
+    for (let i = 0; i < purchaseAmount; i++) {
+      myLottos[i] = Random.pickUniqueNumbersInRange(1, 45, 6).sort(
+        (a, b) => a - b
+      );
+    }
     return myLottos;
   }
 }
