@@ -3,7 +3,7 @@ const lotto=new Lotto()
 
 class App {
   play() {
-    lotto.computerRandomNumber()
+    lotto.getUserInputMoney()
   }
 }
 const app=new App();
