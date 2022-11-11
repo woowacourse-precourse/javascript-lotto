@@ -42,7 +42,7 @@ class Lotto {
     else if (matches === 4) winningArray[1] += 1;
     else if (matches === 5) winningArray[2] += 1;
     else if (matches === 5 && bonus === 1) winningArray[3] += 1;
-    else winningArray[4] += 1;
+    else if (matches === 6) winningArray[4] += 1;
   }
 
   printWinningHistory(winningArray, money) {
