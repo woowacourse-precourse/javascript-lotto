@@ -72,6 +72,9 @@ class Validation {
     if (!Validation.isValidLottoNumberRange(winningNumbersArr)) {
       throw new Error(ERROR_MESSAGE.INVALID_LOTTO_NUMBER_RANGE);
     }
+    if (!Validation.hasUniqueLottoNumber(winningNumbersArr)) {
+      throw new Error(ERROR_MESSAGE.DUPLICATE_LOTTO_NUMBER);
+    }
   }
 }
 
