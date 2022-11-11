@@ -30,8 +30,24 @@ class App {
       MissionUtils.Console.print(NUMBERS.sort((a, b) => a - b));
       LOTTO_NUMBER.push(NUMBERS);
     }
-
+    this.winNumber();
     return LOTTO_NUMBER;
+  }
+
+  winNumber() {
+    MissionUtils.Console.print('\n당첨번호를 쉼표로 구분하여 입력해 주세요.');
+    MissionUtils.Console.readLine('', (userInput) => {
+      const WIN_NUMBER_ARRAY = userInput.split(',').map((item) => +item);
+      this.checkWinNumber(WIN_NUMBER_ARRAY);
+    });
+  }
+
+  checkWinNumber(winNumberArray) {
+    const NUMBER_ARRAY = new Lotto(winNumberArray);
+    NUMBER_ARRAY.duplicate();
+    NUMBER_ARRAY.checkNumber();
+
+    return NUMBER_ARRAY;
   }
 }
 
