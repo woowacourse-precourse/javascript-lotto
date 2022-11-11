@@ -27,13 +27,15 @@ class Lotto {
   static generateLottoArray(generateNumber) {
     const lottoNumbers = [];
     for (let i = generateNumber; i === 0; i -= 1) {
-      lottoNumbers.push(
-        utils.generateRandomNumberArray(
-          LOTTO_NUMBER_RANGE.MIN_RANGE,
-          LOTTO_NUMBER_RANGE.MAX_RANGE,
-          LOTTO_NUMBER_RANGE.LENGTH,
-        ),
-      );
+      lottoNumbers
+        .push(
+          utils.generateRandomNumberArray(
+            LOTTO_NUMBER_RANGE.MIN_RANGE,
+            LOTTO_NUMBER_RANGE.MAX_RANGE,
+            LOTTO_NUMBER_RANGE.LENGTH,
+          ),
+        )
+        .sort((a, b) => a - b);
     }
     return lottoNumbers;
   }
