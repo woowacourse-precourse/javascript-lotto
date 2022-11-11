@@ -41,6 +41,7 @@ class App {
   printLottos() {
     MissionUtils.Console.print('');
     MissionUtils.Console.print(`${this.countOfLotto}개를 구매했습니다.`);
+    this.lottos.map((lotto) => MissionUtils.Console.print(lotto));
   }
 }
 
