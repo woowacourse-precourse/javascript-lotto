@@ -41,7 +41,7 @@ class Lotto {
     if (this.#numbers.includes(bonus)) throw new Error("[ERROR] 보너스 겹침");
   }
 
-  calculate(ticket, lottoList, bonus) {
+  calculate(lottoList, bonus) {
     const statistic = this.calculateStatistics(lottoList, bonus);
     const rank = this.calculateRank(statistic);
     this.showMatchResult(rank);

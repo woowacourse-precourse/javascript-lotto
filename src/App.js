@@ -21,7 +21,7 @@ class App {
   getSeedMoney = (input) => {
     this.seed = new Seed(Number(input));
     this.lottoTicket = new LottoGenerator(this.seed.ticketAmount);
-    this.getInput("\n당첨 번호를 입력해 주세요.\n", this.getWinnerNumber);
+    //this.getInput("\n당첨 번호를 입력해 주세요.\n", this.getWinnerNumber);
   };
 
   getWinnerNumber = (input) => {
