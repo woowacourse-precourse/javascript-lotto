@@ -11,7 +11,7 @@ class App {
     this.validMoney(parseInt(money));
     this.lottoCount = parseInt(money) / 1000;
     for (let i = 0; i < this.lottoCount; i++) {
-      const lotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      const lotto = this.getRandomLottoNumber();
       this.lottoArray.push(new Lotto(lotto));
     }
   }
@@ -20,6 +20,10 @@ class App {
     if (money % 1000 !== 0) {
       throw new Error('[Error] 구입 금액은 1,000원 단위 입니다.');
     }
+  }
+
+  getRandomLottoNumber() {
+    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
   }
 }
 
