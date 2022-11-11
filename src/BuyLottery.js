@@ -3,6 +3,10 @@ class BuyLottery {
     if (money % 1000 !== 0)
       throw new Error("[ERROR] 금액은 1000원 단위로 나누어 떨어져야 합니다.");
   }
+  numberOfpurchases(money) {
+    let numberOfPurchases = money / 1000;
+    return numberOfPurchases;
+  }
 }
 
 module.exports = BuyLottery;
