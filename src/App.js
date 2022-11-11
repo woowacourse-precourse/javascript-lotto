@@ -37,6 +37,18 @@ class App {
     })
   }
 
+  getInputBonusNumber(lottos, cost, WON_LOTTO) {
+    MissionUtils.Console.print("보너스 번호를 입력해 주세요.");
+    MissionUtils.Console.readLine("", (answer) => {
+      this.checkBonusNumber(answer, WON_LOTTO);
+      const BONUS = parseInt(answer);
+
+      const PRIZE_INFORMATION = new PrizeInformation();
+      this.compareMyLottosWithWinningNumbers(lottos, WON_LOTTO, BONUS, PRIZE_INFORMATION);
+      // TODO: 당첨 통계 출력 후 수익률 계산
+    })
+  }
+
   /**
    * 비용 입력이 올바른 입력인지 판단하는 함수
    * @param {string} cost 입력한 비용

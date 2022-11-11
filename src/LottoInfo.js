@@ -1,3 +1,5 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+
 class PrizeInformation {
     constructor() {
         this.message = ["", "3개 일치", "4개 일치", "5개 일치", "5개 일치, 보너스 볼 일치", "6개 일치"];
@@ -16,6 +18,17 @@ class PrizeInformation {
         }
 
         return result;
+    }
+
+    /**
+     * 당첨 통계를 출력하는 함수
+     */
+    printPrizes() {
+        MissionUtils.Console.print("당첨 통계");
+        MissionUtils.Console.print("---");
+        for (let i = this.prize.length - 1; i > 0; i--) {
+            MissionUtils.Console.print(`${this.message[i]} (${this.prize[i].toLocaleString()}) - ${this.quantity[i]}개`);
+        }
     }
 }
 
