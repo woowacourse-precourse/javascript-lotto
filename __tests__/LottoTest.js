@@ -60,4 +60,13 @@ describe('Validator 클래스 테스트', () => {
     expect(Vaildator.isUniqueElementArray([1, 2, 3, 4, 5, 5])).toEqual(false);
     expect(Vaildator.isUniqueElementArray([6, 2, 3, 4, 5, 6])).toEqual(false);
   });
+
+  test('isRightLottoNumber: 로또 번호 문자열을 만들 수 있는지 확인하는 기능 테스트', () => {
+    expect(Vaildator.isRightLottoNumbers('1,2,3,4,5,6,7')).toEqual(false);
+    expect(Vaildator.isRightLottoNumbers('1,2,3,4,5,5')).toEqual(false);
+    expect(Vaildator.isRightLottoNumbers('1,2,3,4,5,55')).toEqual(false);
+    expect(Vaildator.isRightLottoNumbers('1,2,3,4,5.4,5')).toEqual(false);
+    expect(Vaildator.isRightLottoNumbers('1,2,sdf,4,sdf,5')).toEqual(false);
+    expect(Vaildator.isRightLottoNumbers('1, 2, 3, 4, 5, 6,')).toEqual(false);
+  });
 });
