@@ -133,5 +133,17 @@ describe('로또 클래스 테스트', () => {
 
       expect(Lotto.isMatcheCount.name).toEqual(METHOD_NAME);
     });
+
+    test('주어진 값이 3과 일치하면 true를 반환한다.', () => {
+      const COUNT = 3;
+
+      expect(Lotto.isMatcheCount(COUNT, 3)).toBeTruthy();
+    });
+
+    test('주어진 값이 3과 일치하지 않으면 false를 반환한다.', () => {
+      const COUNT = 4;
+
+      expect(Lotto.isMatcheCount(COUNT, 3)).toBeFalsy();
+    });
   });
 });
