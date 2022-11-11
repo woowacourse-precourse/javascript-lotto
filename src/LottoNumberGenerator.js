@@ -5,11 +5,11 @@ class LottoNumberGenerator {
   inputNumberFromUser() {
     readLine("구입 금액을 입력해주세요.", (input) => {
       this.#inputNumber = input;
-      this.#isInputNumbersValid(this.#inputNumber);
+      this.isInputNumbersValid(this.#inputNumber);
     });
   }
 
-  #isInputNumbersValid(numbers) {
+  isInputNumbersValid(numbers) {
     if (this.#isInputless(numbers)) throw Error("[ERROR] 입력이 없습니다.");
     if (this.#isNegativeNumber(numbers)) throw Error("[ERROR] 양수만 입력해주세요.");
     if (this.#isNotConsistOnlyNumber(numbers)) throw Error("[ERROR] 숫자만 입력 가능합니다.");
@@ -29,6 +29,7 @@ class LottoNumberGenerator {
   }
 
   #isNegativeNumber(input) {
-    return input.match(/^(-?)[0-9]+$/);
+    return +input < 0;
   }
 }
+module.exports = LottoNumberGenerator;
