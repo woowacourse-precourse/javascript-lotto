@@ -21,8 +21,40 @@ describe("로또 클래스 테스트", () => {
     const isValid = false;
 
     number.forEach((output) => {
-      console.log(output);
       expect(app.isValidInput(output)).toEqual(isValid);
     });
   });
+
+  test("[입력]로또 번호에 잘못된 입력시", () => {
+    const app = new App();
+    const throwInput = [
+      "",
+      "1,2,3,4,목,금",
+      "1,5,6",
+      "7",
+      "8,8,8,8,8,41,30",
+      "70,1,2,3,4,5",
+      "-1,5,4,3,2,1",
+      "44,,55,65,,,78",
+    ];
+    const trueInput = ["1,2,3,4,5,6", "5,4,9,12,6,45"];
+
+    throwInput.forEach((output, idx) => {
+      expect(() => {
+        app.isValidWinNumbers(output);
+      }).toThrow("[ERROR]");
+    });
+
+    trueInput.forEach((output, idx) => {
+      expect(app.isValidWinNumbers(output)).toEqual(true);
+    });
+  });
+
+  // test("로또 발행하기", () => {
+  //   const app = new App();
+  //   const number = 6;
+  //   const result = app.publishLotto(number);
+
+  //   expect(result).toContain();
+  // });
 });
