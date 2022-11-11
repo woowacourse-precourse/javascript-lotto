@@ -23,8 +23,12 @@ class LottoNumberGenerator {
   }
 
   isLottoSetValid(set) {
+    if (this.#hasDuplicatedValue(set)) return false;
     if (this.#isLengthNotEqualsToSix(set)) return false;
     return true;
+  }
+  #hasDuplicatedValue(numbers) {
+    return numbers.length !== new Set(numbers).size;
   }
 
   #isLengthNotEqualsToSix(numbers) {
