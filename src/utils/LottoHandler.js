@@ -2,6 +2,7 @@ const { Console } = require("@woowacourse/mission-utils");
 const { MESSAGE } = require('./Constants');
 const Price = require('../check-avilable/Price');
 const Lotto = require('../check-avilable/Lotto');
+const Bonus = require('../check-avilable/Bonus');
 const MakeLottos = require('./MakeLottos');
 const PrintResults = require('../print/PrintResults');
 
@@ -9,11 +10,12 @@ const PrintResults = require('../print/PrintResults');
 class LottoHandler {
   constructor() {
     this.printResults = new PrintResults();
-    this.price = 0;
-    this.lottoList = [];
-    this.amount = 0;
-    this.answerNumber = [];
-  }
+    this.price;
+    this.lottoList;
+    this.amount;
+    this.answerNumber;
+    this.bonusNumber;
+  };
 
   getPrice() {
     Console.readLine(MESSAGE.PRICE, (answer) => {
@@ -27,7 +29,6 @@ class LottoHandler {
     this.amount = this.price/1000;
     const lottoMaker = new MakeLottos(this.amount);
     this.lottoList = lottoMaker.lottoLists
-    // Console.print(this.lottoList)
     this.printLottoLists()
   };
 
@@ -40,9 +41,19 @@ class LottoHandler {
     Console.readLine(MESSAGE.ANSWER, (answer) => {
       new Lotto(answer);
       this.answerNumber = answer;
+      this.getBonusNumber(this.answerNumber);
     });
   };
   
+  getBonusNumber(answerNumber) {
+    Console.readLine(MESSAGE.BONUS, (answer) => {
+      new Bonus(answer,answerNumber);
+      this.bonusNumber = answer;
+      // this.getBonusNumber(this.answerNumber);
+    });
+  };
+
+
   // getAnswerNumber() {
   //   Console.readLine('여기여기.\n', (answer) => {
   //     new Price(answer)
