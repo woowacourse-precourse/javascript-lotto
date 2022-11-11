@@ -7,13 +7,16 @@ const { convertWinningNumbers, getLottoBundle } = require('./utils/lottoUtils');
 const { MESSAGE, WINNING_MONEY } = require('./utils/constants');
 
 class App {
-  play() {
-    this.buyLotto();
+  constructor() {
     this.view = new View();
     this.money = 0;
     this.lottoBundle = [];
     this.winningNumbers = [];
     this.bonus = 0;
+  }
+
+  play() {
+    this.buyLotto();
   }
 
   buyLotto() {
