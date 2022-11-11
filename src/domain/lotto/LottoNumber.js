@@ -1,5 +1,5 @@
 class LottoNumber {
-  static RULE = Object.freeze({
+  static RANGE = Object.freeze({
     min: 1,
     max: 45,
   });
