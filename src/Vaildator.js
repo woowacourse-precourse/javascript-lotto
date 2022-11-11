@@ -35,7 +35,11 @@ class Vaildator {
       lottoNumbers.some(
         (lottoNumber) =>
           !this.isPositiveNumber(lottoNumber) ||
-          !this.isRangeIn(1, 45, lottoNumber)
+          !this.isRangeIn(
+            util.LOTTO_RANGE_MIN,
+            util.LOTTO_RANGE_MAX,
+            lottoNumber
+          )
       )
     ) {
       return false;
