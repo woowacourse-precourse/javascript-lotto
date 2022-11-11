@@ -1,12 +1,14 @@
 const { Console } = require("@woowacourse/mission-utils");
 const GameUtils = require("./utils/GameUtils");
 const ValidCheckUtils = require("./utils/ValidCheckUtils");
+const Constant = require("./utils/Constant");
 
 class LottoGame {
   pay;
   lottos;
   winningNum;
   bonusNum;
+  lottoRanks;
 
   constructor() {}
 
@@ -58,7 +60,18 @@ class LottoGame {
       this.winningNum,
       this.bonusNum
     );
+
+    this.printResult();
   }
+
+  printResult() {
+    this.lottoRanks.forEach((r, i) => {
+      Console.print(`${Constant.RESULT_STRING[i]}${r}개`);
+    });
+    Console.print(
+      `총 수익률은 ${GameUtils.getYield(this.lottoRanks, this.pay)}%입니다.`
+    );
+    Console.close();
   }
 }
 
