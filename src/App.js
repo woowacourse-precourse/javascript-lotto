@@ -52,8 +52,15 @@ class App {
     readLine(INPUT_MESSAGE.BONUS_NUMBER, (bonusNumber) => {
       validation.isBonusNumber(bonusNumber, this.winningNumber);
       this.bonusNumber = parseInt(bonusNumber, 10);
+      this.printUserWinningStatistics();
     });
   }
+
+  printUserWinningStatistics() {
+    print(PRINT_MESSAGE.WINNING_STATISTICS_TITLE);
+    const userWinningStatistics = this.calculateUserWinningStatistics();
+  }
+
   calculateUserWinningNumberCount(lottoNumbers) {
     const userWinningNumberCount = lottoNumbers.filter((number) =>
       this.winningNumber.includes(number)
@@ -65,6 +72,22 @@ class App {
       return 'bonus';
     }
     return userWinningNumberCount;
+  }
+
+  calculateUserWinningStatistics() {
+    const userWinningStatistics = [0, 0, 0, 0, 0];
+    this.userLottoBundle.forEach((userLotto) => {
+      const userWinningNumberCount =
+        this.calculateUserWinningNumberCount(userLotto);
+      if (userWinningNumberCount === 'bonus') userWinningStatistics[3] += 1;
+      if (userWinningNumberCount === 6) {
+        userWinningStatistics[4] += 1;
+        return;
+      }
+      if (userWinningNumberCount >= 3)
+        userWinningStatistics[userWinningNumberCount - 3] += 1;
+    });
+    return userWinningStatistics;
   }
 }
 
