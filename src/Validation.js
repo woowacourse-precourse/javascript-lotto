@@ -1,0 +1,5 @@
+class Validation {
+    constructor() {
+        
+    }
+}

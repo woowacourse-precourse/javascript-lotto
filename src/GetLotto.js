@@ -6,6 +6,7 @@ class GetLotto {
     }
 
     lottoNumberPackage(money) {
+        this.checkValue(money);
         const lottoCount = this.howManyLotto(money);
         Console.print(`${lottoCount}개를 구매했습니다.`)
         for (let i = 0; i < lottoCount; i++) {
@@ -22,6 +23,20 @@ class GetLotto {
 
     sortLottoNumber(Array) {
         return Array.sort((a,b) => a - b);
+    }
+
+    checkValue(money) {
+        this.isItNumber(money);
+        this.rightAmount(moeny);
+        return true;
+    }
+
+    isItNumber(money) {
+        if (isNaN(money)) throw new Error('돈이 아닙니다.');
+    }
+
+    rightAmount(money) {
+        if (money % 1000 !== 0) throw new Error('천원 단위로 입력해주세요.');
     }
 }
 

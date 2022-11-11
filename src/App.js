@@ -1,4 +1,4 @@
-const { Console } = require('@woowacourse/mission-utils');
+const {  Console } = require('@woowacourse/mission-utils');
 const GetLotto = require('./GetLotto');
 const GetNumber = require('./GetNumber');
 
@@ -29,6 +29,6 @@ class App {
 }
 
 let a = new App();
-a.getBonusNumber();
+a.getWinNumber();
 
 module.exports = App;
