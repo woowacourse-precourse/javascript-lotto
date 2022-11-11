@@ -17,7 +17,7 @@
 - [x] 1~45 사이의 랜덤한 번호를 반환하는 함수 만들기: MissionUtils에서 제공(pickUniqueNumbersInRange)
 - [x] 번호가 겹치는 지를 확인하는 함수 만들기: MissionUtils에서 제공(pickUniqueNumbersInRange)
 - [x] 이 과정을 6번 반복하여 겹치지 않는 6자리의 숫자를 생성하기: MissionUtils에서 제공(pickUniqueNumbersInRange)
-- [ ] 생성한 6자리의 숫자를 `#numbers` 프로퍼티에 할당하기
+- [x] 생성한 6자리의 숫자를 `#numbers` 프로퍼티에 할당하기
 
 ### Lotto 클래스를 활용해서 받은 로또 번호를 비교하기
 
