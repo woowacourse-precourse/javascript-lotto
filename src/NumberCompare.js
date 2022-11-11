@@ -10,6 +10,9 @@ class NumberCompare{
 
     lottoResults(){
         this.matchThreeNumbers(createNum,winningNum);
+        this.matchFourNumbers(createNum, winningNum);
+        this.matchFiveNumbers(createNum, winningNum);
+        this.matchFiveAndBonusNumbers(createNum, winningNum, bonusNum);
         this.lottoRanking;
     }
 
@@ -31,6 +34,14 @@ class NumberCompare{
         let duplicateNum = createNum.filter((el) => winningNum.includes(el));
         if(duplicateNum.length == 5){
             this.lottoRanking[2] += 1;
+        }
+    }
+
+    matchFiveAndBonusNumbers(createNum, winningNum, bonusNum){
+        let duplicateNum = createNum.filter((el) => winningNum.includes(el));
+        let duplicateBonusNum = createNum.filter((el) => bonusNum.includes(el));
+        if(duplicateNum.length == 5 && duplicateBonusNum.length == 1){
+            this.lottoRanking[3] += 1;
         }
     }
 }
