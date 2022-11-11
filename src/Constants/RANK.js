@@ -1,20 +1,3 @@
-const INGAME_MESSAGE = {
-  buy: '구입금액을 입력해 주세요.\n',
-  pickMain: '당첨 번호를 입력해 주세요.\n',
-  pickBonus: '보너스 번호를 입력해 주세요.\n',
-  statistic: '당첨 통계\n ---',
-};
-
-const PICK_TYPE = {
-  main: 0,
-  bonus: 1,
-};
-
-const PICK_LENGTH = {
-  main: 6,
-  bonus: 1,
-};
-
 const RANK_INDEX = {
   first: 0,
   second: 1,
@@ -42,9 +25,6 @@ const RANK_PRINT = {
 };
 
 module.exports = {
-  INGAME_MESSAGE,
-  PICK_TYPE,
-  PICK_LENGTH,
   RANK_INDEX,
   RANK_REWARD,
   RANK_PRINT,
