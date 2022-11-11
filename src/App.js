@@ -1,5 +1,6 @@
 const LottoCounter = require('./LottoCounter');
 const NumberGenerator = require('./NumberGenerator');
+const Lotto = require('./Lotto');
 const MissionUtils = require('@woowacourse/mission-utils');
 
 class App {
@@ -28,7 +29,10 @@ class App {
 
     while (this.countOfLotto !== 0) {
       let numbers = this.numberGenerator.createRandomSixNumbers();
-      console.log(numbers);
+
+      let newLotto = new Lotto(numbers);
+      this.lottos.push(newLotto.getNumbers());
+
       this.countOfLotto -= 1;
     }
   }
