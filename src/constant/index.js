@@ -1,4 +1,4 @@
-const ERROR = Object.freeze({
+const LOTTO_ERROR = Object.freeze({
   LEGNTH: '[ERROR] 로또 번호는 6개여야 합니다.',
   SPLIT: '[ERROR] 로또 번호는 쉼표로 구분된 숫자여야 합니다.',
   REPEAT: '[ERROR] 로또 번호는 중복되어서는 안 됩니다.',
@@ -6,4 +6,10 @@ const ERROR = Object.freeze({
   RANGE: '[ERROR] 로또 번호는 1 ~ 45 사이의 숫자여야 합니다.',
 });
 
-module.exports = ERROR;
+const BONUS_LOTTO_ERROR = Object.freeze({
+  RANGE: '[ERROR] 로또 번호는 1 ~ 45 사이의 숫자여야 합니다.',
+  BONUSLENGTH: '[ERROR] 보너스 로또 번호는 1개여야 합니다.',
+  INCLUDES: '[ERROR] 보너스 번호와 일치하는 당첨 번호가 있습니다.',
+});
+
+module.exports = { LOTTO_ERROR, BONUS_LOTTO_ERROR };
