@@ -13,22 +13,32 @@ function isLengthOfSix(numbers) {
 }
 
 function isOutOf1To45(numbers) {
-  if (
-    numbers.find(
-      (number) => number < 1 || number > 45 || Number.isNaN(numbers)
-    ) === undefined
-  ) {
+  if (Array.isArray(numbers)) {
+    if (
+      numbers.find(
+        (number) => number < 1 || number > 45 || Number.isNaN(numbers)
+      ) === undefined
+    )
+      return true;
+    return false;
+  }
+  if (numbers >= 1 && numbers <= 45) return true;
+  return false;
+}
+
+function isNotDuplicateWinningNumber(numbers) {
+  const removeDuplicateNumber = new Set(numbers);
+  if (numbers.length === removeDuplicateNumber.size) {
     return true;
   }
   return false;
 }
 
-function isNotDuplicateNumber(numbers) {
-  const removeDupkicateNumber = new Set(numbers);
-  if (numbers.length === removeDupkicateNumber.size) {
-    return true;
+function isNotDuplicateBonusNumber(bonusNumber, winningNumber) {
+  if (winningNumber.includes(bonusNumber)) {
+    return false;
   }
-  return false;
+  return true;
 }
 
 const validation = {
@@ -37,6 +47,7 @@ const validation = {
       throw new Error(ERROR_MESSAGE.PURCHASE_AMOUNT_UNIT);
     }
   },
+
   isLottoNumber(numbers) {
     const convertedNumbersToInt = numbers
       .split(',')
@@ -49,8 +60,18 @@ const validation = {
     if (!isOutOf1To45(convertedNumbersToInt))
       throw new Error(ERROR_MESSAGE.OUT_OF_RANGE);
 
-    if (!isNotDuplicateNumber(convertedNumbersToInt))
+    if (!isNotDuplicateWinningNumber(convertedNumbersToInt))
       throw new Error(ERROR_MESSAGE.DUPLICATE_NUMBER);
+  },
+
+  isBonusNumber(bonusNumber, winningNumber) {
+    const convertedNumberToInt = parseInt(bonusNumber, 10);
+    if (!isOutOf1To45(convertedNumberToInt)) {
+      throw new Error(ERROR_MESSAGE.OUT_OF_RANGE);
+    }
+    if (!isNotDuplicateBonusNumber(convertedNumberToInt, winningNumber)) {
+      throw new Error(ERROR_MESSAGE.DUPLICATE_NUMBER);
+    }
   },
 };
 

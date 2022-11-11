@@ -49,8 +49,9 @@ class App {
   }
 
   inputBonusNumber() {
-    readLine(INPUT_MESSAGE.BONUS_NUMBER, (number) => {
-      this.bonusNumber = parseInt(number, 10);
+    readLine(INPUT_MESSAGE.BONUS_NUMBER, (bonusNumber) => {
+      validation.isBonusNumber(bonusNumber, this.winningNumber);
+      this.bonusNumber = parseInt(bonusNumber, 10);
     });
   }
 }
