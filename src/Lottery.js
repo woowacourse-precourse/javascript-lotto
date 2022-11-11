@@ -25,20 +25,14 @@ class Lottery {
   }
 
   printLotteries() {
-    Console.print(`\n${this.#quantity}개를 구매했습니다.`);
+    Console.print(`${this.#quantity}개를 구매했습니다.`);
     this.#lotteries.forEach((lottery) => {
-      Console.print(lottery);
+      Console.print("[" + lottery.join(", ") + "]");
     });
   }
 
   makeRandomNumbers() {
-    this.#lottery = [];
-    while (this.#lottery.length < 6) {
-      const number = Random.pickNumberInRange(1, 45);
-      if (!this.#lottery.includes(number)) {
-        this.#lottery.push(number);
-      }
-    }
+    this.#lottery = Random.pickUniqueNumbersInRange(1, 45, 6);
     this.sortLottery(this.#lottery);
     this.#lotteries.push(this.#lottery);
   }
@@ -55,7 +49,7 @@ class Lottery {
 
   inputSixNumbers() {
     let inputNumbers = [];
-    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (numbers) => {
+    Console.readLine("당첨 번호를 입력해 주세요.\n", (numbers) => {
       inputNumbers = numbers.split(",").map((v) => +v);
       const lotto = new Lotto(inputNumbers, this.#lotteries);
     });
