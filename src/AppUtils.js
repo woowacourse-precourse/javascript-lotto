@@ -16,18 +16,10 @@ class AppUtils {
     const histories = [0,0,0,0,0]
     myLottoes.forEach(myLottoNumbers => {
       switch(this.checkMatchLottoNum(myLottoNumbers, winNumbers)) {
-        case 3:
-          histories[0] += 1;
-          break;
-        case 4:
-          histories[1] += 1;
-          break;
-        case 5:
-          this.checkBonusNum(myLottoNumbers, bonus) ? histories[3] += 1 : histories[2] += 1;
-          break;
-        case 6:
-          histories[4] += 1;
-          break;
+        case 3: histories[0] += 1; break;
+        case 4: histories[1] += 1; break;
+        case 5: this.checkBonusNum(myLottoNumbers, bonus) ? histories[3] += 1 : histories[2] += 1; break;
+        case 6: histories[4] += 1; break;
       }
     })
     return histories;
