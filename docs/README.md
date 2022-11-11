@@ -9,6 +9,10 @@
   - [ ] 보너스 번호가 일치하는지 확인한다. - LottoMatching#isEqualBonusNum()
 - [ ] 수익률을 구한다. - IncomeRate#getIncomeRate()
 
+## UI 로직
+
+- [ ] 구매한 로또를 보여준다. - Output#printLottos()
+
 ## 예외 처리
 
 사용자가 잘못된 값을 입력할 경우 throw문을 사용해 예외를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 종료한다.
