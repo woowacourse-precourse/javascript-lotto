@@ -3,12 +3,19 @@ const {
   isValidateBonusNumber,
 } = require("../src/utils/validator");
 
-describe("isValidateUserInput 함수 테스트", () => {
+describe.only("isValidateUserInput 함수 테스트", () => {
   test("공백 입력 테스트", () => {
     let amount = "    ";
     expect(() => {
       isValidateUserInput(amount);
     }).toThrow("[ERROR] 입력 내용이 없습니다.");
+  });
+
+  test("숫자가 아닌 것을 했을 때 테스트", () => {
+    let amount = "가나다";
+    expect(() => {
+      isValidateUserInput(amount);
+    }).toThrow("[ERROR] 숫자가 아닌 값을 입력했습니다.");
   });
 
   test("0입력 테스트", () => {
@@ -22,7 +29,7 @@ describe("isValidateUserInput 함수 테스트", () => {
     let amount = "1234";
     expect(() => {
       isValidateUserInput(amount);
-    }).toThrow();
+    }).toThrow("[ERROR] 1000원으로 나누어 떨어지지 않습니다.");
   });
 });
 
