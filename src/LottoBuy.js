@@ -14,5 +14,12 @@ class LottoBuy {
       throw EXCEPTION("올바른 가격을 입력해 주세요.");
   }
 
+  createMyLottos(count) {
+    for (let i = 0; i < count; i++) {
+      const lotto = new Lotto();
+      this.#Lottos.push(lotto);
+    }
+  }
+
   printLottos() {}
 }
