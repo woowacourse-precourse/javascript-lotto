@@ -51,6 +51,12 @@ describe('로또 클래스 테스트', () => {
     throwExceptionWinningNumbers(winningNumbers);
   });
 
+  test('당첨 번호에 공백이 포함되어 있을 경우 예외가 발생한다.', () => {
+    const winningNumbers = [1, 2, 3, '  4', 5, 46];
+
+    throwExceptionWinningNumbers(winningNumbers);
+  });
+
   test('보너스 번호가 숫자가 아니면 예외가 발생한다.', () => {
     const bonusNumbers = ['a', 'A', ' ', '', '.'];
 
@@ -71,6 +77,12 @@ describe('로또 클래스 테스트', () => {
 
   test('보너스 번호가 46이상의 숫자일 때 예외가 발생한다.', () => {
     const bonusNumber = 46;
+
+    throwExceptionBonusNumber(bonusNumber);
+  });
+
+  test('보너스 번호에 공백이 포함되어 있을 경우 예외가 발생한다.', () => {
+    const bonusNumber = '7  ';
 
     throwExceptionBonusNumber(bonusNumber);
   });
