@@ -1,7 +1,7 @@
 const { ERROR_MESSGE, LOTTO } = require('./constants');
 
 class Validator {
-  static throwErrorIfInValidMoney(money) {
+  static throwErrorIfInvalidMoney(money) {
     const regex = /^\d+$/;
     if (!regex.test(money)) {
       throw Error(ERROR_MESSGE.MONEY_FORM);
@@ -16,7 +16,7 @@ class Validator {
     }
   }
 
-  static throwErrorIfInValidFormOfWinningNumber(inputValue) {
+  static throwErrorIfInvalidFormOfWinningNumber(inputValue) {
     const regex = /^(\d+,)+\d+$/;
     if (!regex.test(inputValue)) {
       throw Error(ERROR_MESSGE.WINNING_NUM_FORM);
@@ -28,7 +28,7 @@ class Validator {
     });
   }
 
-  static throwErrorIfInValidWinningNumbers(winningNumbers) {
+  static throwErrorIfInvalidWinningNumbers(winningNumbers) {
     if (winningNumbers.length !== LOTTO.LENGTH) {
       throw Error(ERROR_MESSGE.LOTTO_NUM_LENGTH);
     }
@@ -42,7 +42,7 @@ class Validator {
     }
   }
 
-  static throwErrorIfInValidBonusNumber(winningNumbers, bonusNumber) {
+  static throwErrorIfInvalidBonusNumber(winningNumbers, bonusNumber) {
     const regex = /^\d+$/;
     if (
       !regex.test(bonusNumber) ||
