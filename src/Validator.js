@@ -4,8 +4,8 @@ const {
   COMMON_INVALID_ERROR_MESSAGES,
 } = require('./Constant');
 
-const validate = {
-  validateCommon(input) {
+class Validator {
+  static common(input) {
     if (typeof +input !== 'number' || Number.isNaN(input)) {
       throw new Error(COMMON_INVALID_ERROR_MESSAGES.ONLY_NUMBER);
     }
@@ -17,12 +17,14 @@ const validate = {
       throw new Error(COMMON_INVALID_ERROR_MESSAGES.ONLY_NUMBER_BETWEEN_1_45);
     }
     return true;
-  },
+  }
 
-  validateUnit(input) {
+  static Unit(input) {
     if (input % LOTTO_NUMBER_RANGE.UNIT !== 0) throw new Error(UNIT_INVALID_ERROR_MESSAGES);
     return true;
-  },
-};
+  }
+}
 
-console.log(validate.validateCommon(''));
+console.log(Validator.validateCommon(''));
+
+module.exports = Validator;
