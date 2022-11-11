@@ -35,6 +35,10 @@ class Lotto {
       temp.push(number);
     }
   }
+
+  includesNumber(number) {
+    return this.#numbers.includes(number);
+  }
 }
 
 module.exports = Lotto;

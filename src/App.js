@@ -23,6 +23,7 @@ class App {
     let elements = input.split(",");
     let numbers = [];
     elements.forEach((element) => {
+      // TODO: 예외 처리 부분은 따로 함수로 리팩토링하는 것이 좋겠다.
       if (isNaN(element))
         throw new Error("[ERROR] 당첨 번호는 숫자여야 합니다.");
       if (element === "")
@@ -31,6 +32,16 @@ class App {
     })
 
     return numbers;
+  }
+
+  checkBonusNumber(number, wonLotto) {
+    if (isNaN(number) || number === "")
+      throw new Error("[ERROR] 보너스 번호는 숫자여야 합니다.");
+    const NUMBER = parseInt(number);
+    if (NUMBER < 1 || NUMBER > 45)
+      throw new Error("[ERROR] 보너스 번호는 1-45 범위 숫자여야 합니다.");
+    if (wonLotto.includesNumber(NUMBER))
+      throw new Error("[ERROR] 보너스 번호는 기존 당첨 번호와 중복될 수 없습니다.");
   }
 }
 
