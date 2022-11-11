@@ -47,7 +47,7 @@ class App {
   }
 
   createWinningStatistics() {
-    const result = this.lotto.getResult(this.lottoBundle);
+    const result = this.lotto.getResult(this.lottoBundle, this.bonus);
     const profitRate = this.lotto.calculateProfitRate(result, this.money);
     this.view.printResult(result, profitRate);
   }
