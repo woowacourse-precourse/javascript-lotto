@@ -1,4 +1,5 @@
 const ThrowError = require('./components/ThrowError');
+const ERROR = require('./constant');
 
 class Lotto {
   #numbers;
@@ -10,7 +11,7 @@ class Lotto {
 
   showValidateResult(lottoNumber) {
     const resultMessage = this.validate(lottoNumber);
-    return resultMessage ? ThrowError(resultMessage) : true;
+    return resultMessage ? ThrowError(ERROR[resultMessage]) : true;
   }
 
   validate(numbers) {
@@ -33,7 +34,7 @@ class Lotto {
   }
 
   isNumberCorrect(numbersList) {
-    return numbersList.length !== 6 ? 'LENGTH' : false;
+    return numbersList.length !== 6 ? 'LEGNTH' : false;
   }
 
   isNumberRepeated(numbersList) {
