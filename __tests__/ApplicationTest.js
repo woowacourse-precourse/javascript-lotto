@@ -76,4 +76,13 @@ describe('로또 테스트', () => {
       app.play();
     }).toThrow('[ERROR]');
   });
+
+  test('예외 테스트: 정답번호와 보너스번호가 중복되는 경우', () => {
+    mockRandoms([[8, 21, 23, 41, 42, 43]]);
+    mockQuestions(['1000', '1,2,3,4,5,6', '6']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
 });
