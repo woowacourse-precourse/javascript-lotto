@@ -5,7 +5,7 @@ const Lotto = require('../check-avilable/Lotto');
 const Bonus = require('../check-avilable/Bonus');
 const MakeLottos = require('./MakeLottos');
 const PrintResults = require('../print/PrintResults');
-
+const Calculate = require('./Calculate');
 
 class LottoHandler {
   constructor() {
@@ -49,9 +49,15 @@ class LottoHandler {
     Console.readLine(MESSAGE.BONUS, (answer) => {
       new Bonus(answer,answerNumber);
       this.bonusNumber = answer;
+      this.startCalculate();
       // this.getBonusNumber(this.answerNumber);
     });
   };
+  
+  startCalculate() {
+    const calculate = new Calculate();
+    calculate.rankingCalculate(this.lottoList, this.answerNumber, this.bonusNumber);
+  }
 
 
   // getAnswerNumber() {

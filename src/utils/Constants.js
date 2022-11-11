@@ -23,12 +23,12 @@ const CONSTANT = {
     INVALID_BONUS_WORDS: '[ERROR] 보너스 번호에는 정수만 입력해야 합니다.',
   },
 
-  // NUMBER: {
-  //   WIN: 3,
-  //   ARRAY_LENGTH: 3,
-  //   MIN_RANGE: 1,
-  //   MAX_RANGE: 9,
-  // },
+  NUMBER: {
+    ANSWER_COUNT: [3,4,5,5,6],
+    // ARRAY_LENGTH: 3,
+    // MIN_RANGE: 1,
+    // MAX_RANGE: 9,
+  },
 };
 
 module.exports = CONSTANT;
