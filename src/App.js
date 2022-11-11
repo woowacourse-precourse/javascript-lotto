@@ -1,6 +1,7 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const input = require('./UI/Input');
 const Lotto = require('./Lotto');
+const printMessage = require('./UI/printMessage');
 
 class App {
   lottos = [];
@@ -23,10 +24,17 @@ class App {
       const lottoNumbers = this.getRandomNumber();
       this.lottos.push(new Lotto(lottoNumbers));
     }
+    printMessage.printLottos(this.lottos);
   }
 
-  setWinLotto(inputNumbers) {}
-  setBonusNumber(inputNumber) {}
+  setWinLotto(inputNumbers) {
+    const inputNumbersArray = inputNumbers.split(',').map(Number);
+    this.winLotto = new Lotto(inputNumbersArray);
+  }
+
+  setBonusNumber(inputNumber) {
+    this.bonusNumber = Number(inputNumber);
+  }
 
   checkMoney(money) {
     if (money % 1000 != 0) {
