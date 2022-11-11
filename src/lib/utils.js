@@ -18,4 +18,13 @@ const printWinningResult = (winningArray, percentage) => {
   );
 };
 
-module.exports = { convertAnswerIntoArray, printWinningResult };
+const getRevenue = (winningArray) => {
+  const first = winningArray[0] * 5000;
+  const second = winningArray[1] * 50000;
+  const third = winningArray[2] * 1500000;
+  const fourth = winningArray[3] * 30000000;
+  const fifth = winningArray[4] * 2000000000;
+  return first + second + third + fourth + fifth;
+};
+
+module.exports = { convertAnswerIntoArray, printWinningResult, getRevenue };
