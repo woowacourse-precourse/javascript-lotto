@@ -2,7 +2,7 @@ const Console = require("@woowacourse/mission-utils").Console;
 
 class Result {
   constructor(amount, lottoArray, userLotto, bonusNumber) {
-    this.amount = amount;
+    this.amount = Number(amount);
     this.lottoArray = lottoArray;
     this.userLotto = userLotto;
     this.bonusNumber = bonusNumber;
