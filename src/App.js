@@ -1,4 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+const Lotto = require('./Lotto');
 const { printError, isPositiveInteger } = require('./Utils');
 
 const LOTTO_PRICE = 1000;
@@ -25,24 +26,42 @@ class App {
   }
 
   #publishLotto() {
+    let lotto = MissionUtils.Random.pickUniqueNumbersInRange(
+      LOTTO_START,
+      LOTTO_END,
+      6,
+    );
+    lotto = lotto.sort(function (a, b) {
+      return a - b;
+    });
+    this.#lottos.push(lotto);
+    return lotto;
+  }
+
+  #printLotto() {
+    MissionUtils.Console.print(`${this.#lottoCount}개를 구매했습니다.`);
     for (let count = 0; count < this.#lottoCount; count += 1) {
-      let lotto = MissionUtils.Random.pickUniqueNumbersInRange(
-        LOTTO_START,
-        LOTTO_END,
-        6,
-      );
-      lotto = lotto.sort(function (a, b) {
-        return a - b;
-      });
-      this.#lottos.push(lotto);
+      const lotto = this.#publishLotto();
+      MissionUtils.Console.print(lotto);
     }
+  }
+
+  #getWinningNumber() {
+    MissionUtils.Console.readLine('당첨 번호을 입력해 주세요.\n', (numbers) => {
+      new Lotto(numbers.split(','));
+    });
+  }
+
+  #startLotto() {
+    this.#printLotto();
+    this.#getWinningNumber();
   }
 
   #getMoney() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
       if (this.#validate(money)) {
         this.#lottoCount = parseInt(money / LOTTO_PRICE, 10);
-        this.#publishLotto();
+        this.#startLotto();
       }
     });
   }
@@ -51,5 +70,8 @@ class App {
     this.#getMoney();
   }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
