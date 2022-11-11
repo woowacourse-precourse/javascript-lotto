@@ -125,5 +125,13 @@ describe('로또 클래스 테스트', () => {
 
       expect(lotto.getLottoResult(prize, bonus)[4]).toEqual(2);
     });
+
+    describe('3개 일치 파악 메소드', () => {
+      test('메소드 이름은 "isThreeMatche"로 정의된다.', () => {
+        const METHOD_NAME = 'isThreeMatche';
+
+        expect(Lotto.isThreeMatche.name).toEqual(METHOD_NAME);
+      });
+    });
   });
 });
