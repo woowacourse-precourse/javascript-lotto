@@ -1,15 +1,7 @@
 const { NUMBER_OF_LOTTO_PURCHASED } = require("./Console");
 const Console = require("./Console");
 const Lotto = require("./Lotto");
-// 값을 받고 받은 값 만큼 자동으로 랜던함 로또를 출력했다. (해결)
-// 당첨 번호와 보너스 번호도 입력 받을 수 있다. (해결)
-// 당첨번호는 예외처리를 해야한다 (추가로 lottㅐ클래스를 활용해야한다.) (해결할 수 있음)
-// (1). 1-45까지의 숫자만 가능하고, (2) 아무값도 입력하지 않으면 안된다. 했음
-// (3) 중복된 번호가 있으면 안된다.
-// 보너스 번호 또한 예외처리를 해야한다.
-// (1). 형식이 올바라야하고, (2). 1~45사이의 숫자여야하고.
-// (3). 당첨번호에서 이미 입력한 숫자이면 안된다.
-//
+
 class App {
   constructor() {
     this.money = null;
@@ -20,6 +12,14 @@ class App {
 
   setBonusNumber() {
     Console.askUserInput(`\n${Console.ASK_BONUS_NUMBER}`, (bonusNumber) => {
+      if (/[^0-9]/g.test(bonusNumber))
+        throw new Error("[Error] 입력된 형식이 올바르지 않습니다.");
+      if (bonusNumber < 1 || 45 < bonusNumber)
+        throw new Error(
+          "[ERROR] 보너스 번호는 1부터 45사이의 숫자여야 합니다."
+        );
+      if (this.winNumbers.includes(bonusNumber))
+        throw new Error("[ERROR] 당첨 번호에 포함되어 있는 번호입니다.");
       this.bonusNumber = Number(bonusNumber);
     });
   }
@@ -27,7 +27,7 @@ class App {
   setWinNumber() {
     Console.askUserInput(`\n${Console.ASK_WIN_NUMBER}`, (winningNumber) => {
       if (!/^(\d{1,2}[,]){5}\d{1,2}$/.test(winningNumber))
-        throw new Error("[ERROR] 입력형식이 올바르지 않습니다.");
+        throw new Error("[ERROR] 입력된 형식이 올바르지 않습니다.");
       const NUMBER = winningNumber.split(",").map((number) => {
         if (number < 1 || 45 < number)
           throw new Error(
