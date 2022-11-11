@@ -5,6 +5,10 @@ const INPUT_BUDGET = '구입금액을 입력해 주세요.\n';
 class App {
   budget;
 
+  printSpaceLine() {
+    Console.print('');
+  }
+
   play() {
     this.getUserBudget(INPUT_BUDGET);
   }
@@ -18,10 +22,6 @@ class App {
 
   validateUserBudget(budget) {
     this.budget = new UserBudget(Number(budget));
-  }
-
-  printSpaceLine() {
-    Console.print('');
   }
 }
 
