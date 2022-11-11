@@ -8,6 +8,8 @@ class Lotto {
   validationCheckList(numbers){
     this.validate(numbers);
     this.isDuplication(numbers);
+    this.isInRange(numbers);
+    this.isNumber(numbers);
   }
   validate(numbers) {
     if (numbers.length !== 6) {
@@ -27,7 +29,12 @@ class Lotto {
       }
     })
   }
-  // TODO: 추가 기능 구현
+  isNumber(numbers){
+    const IS_NOT_NUMBER = /\D/g;
+    if(IS_NOT_NUMBER.test(numbers)){
+      throw new Error("[ERROR] 로또 번호는 문자가 아닌 숫자여야 합니다.");
+    }
+  }
 }
 
 module.exports = Lotto;
