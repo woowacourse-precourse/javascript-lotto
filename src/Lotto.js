@@ -71,6 +71,34 @@ class Lotto {
     const NUMBERS_IN_STRING = convertArrayToString(this.#numbers);
     MissionUtils.Console.print(NUMBERS_IN_STRING);
   }
+
+  compareWithWinningNumbers(WonLotto, bonus) {
+    let correspondence = 0;
+    this.#numbers.forEach((number) => {
+      if (WonLotto.includesNumber(number)) correspondence++;
+    })
+
+    return this.getPrize(correspondence, WonLotto.includesNumber(bonus));
+  }
+
+  getPrize(correspondence, bonusCorrespondence) {
+    switch (correspondence) {
+      case 3:
+        return 5;
+
+      case 4:
+        return 4;
+
+      case 5:
+        return (bonusCorrespondence) ? 2 : 3;
+
+      case 6:
+        return 1;
+
+      default:
+        return 0;
+    }
+  }
 }
 
 module.exports = Lotto;

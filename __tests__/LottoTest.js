@@ -166,4 +166,50 @@ describe("로또 발행 테스트", () => {
       expect(LOG_SPY).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
+});
+
+describe("로또 결과 반환 테스트", () => {
+  const WON_LOTTO = new Lotto([2, 3, 4, 5, 6, 7]);
+
+  test("6개 일치는 1등이다", () => {
+    const MY_LOTTO = new Lotto([2, 3, 4, 5, 6, 7]);
+    const BONUS = 8;
+
+    expect(MY_LOTTO.compareWithWinningNumbers(WON_LOTTO, BONUS)).toBe(1);
+  });
+
+  test("5개 일치하고 보너스도 일치하면 2등이다", () => {
+    const MY_LOTTO = new Lotto([1, 2, 3, 4, 5, 6]);
+    const BONUS = 7;
+
+    expect(MY_LOTTO.compareWithWinningNumbers(WON_LOTTO, BONUS)).toBe(2);
+  });
+
+  test("5개 일치하고 보너스는 불일치하면 3등이다", () => {
+    const MY_LOTTO = new Lotto([1, 2, 3, 4, 5, 6]);
+    const BONUS = 9;
+
+    expect(MY_LOTTO.compareWithWinningNumbers(WON_LOTTO, BONUS)).toBe(3);
+  });
+
+  test("4개 일치는 4등이다", () => {
+    const MY_LOTTO = new Lotto([4, 5, 6, 7, 8, 9]);
+    const BONUS = 10;
+
+    expect(MY_LOTTO.compareWithWinningNumbers(WON_LOTTO, BONUS)).toBe(4);
+  });
+
+  test("3개 일치는 5등이다", () => {
+    const MY_LOTTO = new Lotto([5, 6, 7, 8, 9, 10]);
+    const BONUS = 11;
+
+    expect(MY_LOTTO.compareWithWinningNumbers(WON_LOTTO, BONUS)).toBe(5);
+  });
+
+  test("3개 미만 일치하면 아무 것도 얻지 못한다", () => {
+    const MY_LOTTO = new Lotto([6, 7, 8, 9, 10, 11]);
+    const BONUS = 30;
+
+    expect(MY_LOTTO.compareWithWinningNumbers(WON_LOTTO, BONUS)).toBe(0);
+  });
 })
