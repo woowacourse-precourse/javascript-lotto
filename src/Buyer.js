@@ -17,6 +17,7 @@ class Buyer {
   setLottoCount() {
     this.lottoCount = this.payment / 1000;
   }
+
 }
 
 module.exports = Buyer;
