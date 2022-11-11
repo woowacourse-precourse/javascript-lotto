@@ -79,13 +79,10 @@ class App {
   #printResult() {
     ui.print('당첨 통계');
     ui.print('---');
-    ui.print(`3개 일치 (5,000원) - ${this.#result[3]}개`);
-    ui.print(`4개 일치 (50,000원) - ${this.#result[4]}개`);
-    ui.print(`5개 일치 (1,500,000원) - ${this.#result[5]}개`);
-    ui.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.#result['5B']}개`,
-    );
-    ui.print(`6개 일치 (2,000,000,000원) - ${this.#result[6]}개`);
+    const orders = [3, 4, 5, '5B', 6];
+    orders.forEach((order) => {
+      ui.print(`${REVENUE[order].message} - ${this.#result[order]}개`);
+    });
     ui.print(`총 수익률은 ${this.#getRevenue()}%입니다.`);
   }
 
