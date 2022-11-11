@@ -32,4 +32,6 @@ const WINNING = {
   },
 };
 
-module.exports = { LOTTO, INPUT, PRINT, WINNING };
+const EXCEPTION = (ment) => new Error(`[ERROR] ${ment}`);
+
+module.exports = { LOTTO, INPUT, PRINT, WINNING, EXCEPTION };
