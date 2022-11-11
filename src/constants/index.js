@@ -3,7 +3,6 @@ const LOTTO = Object.freeze({
   MIN_NUMBER: 1,
   MAX_NUMBER: 45,
   LENGTH: 6,
-  SPLIT_WITH: ',',
   NUM_OF_PRIZE: 5,
 });
 

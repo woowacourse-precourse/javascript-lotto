@@ -17,7 +17,7 @@ class Validator {
     if (!REGEX.winningNumber.test(inputValue)) {
       throw Error(ERROR_MESSAGE.WINNING_NUM_FORM);
     }
-    inputValue.split(LOTTO.SPLIT_WITH).forEach((number) => {
+    inputValue.split(',').forEach((number) => {
       if (number[0] === '0') {
         throw Error(ERROR_MESSAGE.INT_FORM);
       }

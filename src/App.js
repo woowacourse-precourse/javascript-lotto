@@ -9,9 +9,7 @@ const { LOTTO, MESSAGE } = require('./constants');
 class App {
   constructor() {
     this.lotto;
-    this.lottoCount;
     this.userLottos;
-    this.bonusNumber;
     this.winningState = {
       first: 0,
       second: 0,
@@ -37,11 +35,13 @@ class App {
 
   issueLotto() {
     this.userLottos = GameTools.issueLottoAsManyAsCount(this.lottoCount);
+
     this.renderIssuedLottoList();
   }
 
   renderIssuedLottoList() {
     Render.issuedLottoList(this.lottoCount, this.userLottos);
+
     this.getWinningNumbers();
   }
 
@@ -49,9 +49,7 @@ class App {
     Console.print(MESSAGE.ASK_WINNING_NUM);
     Console.readLine(MESSAGE.NULL, (inputValue) => {
       Validator.throwErrorIfInvalidFormOfWinningNumber(inputValue);
-      const winningNumbers = inputValue
-        .split(LOTTO.SPLIT_WITH)
-        .map((num) => Number(num));
+      const winningNumbers = inputValue.split(',').map((num) => Number(num));
       this.lotto = new Lotto(winningNumbers);
 
       this.getBonusNumber(winningNumbers);
@@ -62,42 +60,24 @@ class App {
     Console.print(MESSAGE.ASK_BONUS_NUMBER);
     Console.readLine(MESSAGE.NULL, (bonusNumber) => {
       Validator.throwErrorIfInvalidBonusNumber(winningNumbers, bonusNumber);
-      // this.bonusNumber = Number(bonusNumber);
-      // this.setPrizeResult();
-      this.checkGameResult(bonusNumber);
+
+      this.printWinningStatistics(bonusNumber);
     });
   }
 
   printWinningStatistics(bonusNumber) {
-    this.lotto.statusOfPrize(this.userLottos, bonusNumber, this.winningState);
+    this.lotto.checkStateOfPrize(
+      this.userLottos,
+      bonusNumber,
+      this.winningState
+    );
+
     this.exitGame();
   }
 
-  // setPrizeResult() {
-  //   this.prizeResult = this.lotto.prizeResult(
-  //     this.userLottos,
-  //     this.bonusNumber,
-  //     this.prizeResult
-  //   );
-  //   this.getTotalEarningRate();
-  // }
-
-  // getTotalEarningRate() {
-  //   const rateOfReturn = GameTools.calcRateOfReturn(
-  //     this.prizeResult,
-  //     this.lottoCount
-  //   );
-  //   this.printStatistics(rateOfReturn);
-  // }
-
-  // printStatistics(rateOfReturn) {
-  //   Render.WinningStatistics(this.prizeResult, rateOfReturn);
-  //   this.exitGame();
-  // }
-
-  // exitGame() {
-  //   Console.close();
-  // }
+  exitGame() {
+    Console.close();
+  }
 }
 
 const app = new App();
