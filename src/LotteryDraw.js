@@ -44,6 +44,21 @@ class LotteryDraw extends Struct{
         });
         new BonusExceptionHandling(this.bonus,this.winning);
     };
+    winningCheck() {
+        this.lottoBox.map((numbers) => {
+            for (let index = 0; index < numbers.length; index++) {
+                if (numbers.indexOf(this.winning[index]) >= 0) {
+                    this.check++;
+                };
+            };
+            if (this.check === 5 && numbers.indexOf(this.bonus) >= 0) {
+                this.winningList[this.winningList.length - 1] += 1;
+                this.check = 0;
+            };
+            this.winningList[this.check] += 1;
+            this.check = 0;
+        });
+    };
 };
 
 module.exports = LotteryDraw;
