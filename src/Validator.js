@@ -8,12 +8,8 @@ class Validator {
   static throwErrorIfInvalidMoney(money) {
     this.throwErrorIfHasBlack(money);
     this.throwErrorIfStartsWithZero(money);
-    if (!REGEX.money.test(money)) {
-      this.throwError(ERROR_MESSAGE.INT_FORM);
-    }
-    if (money % LOTTO.PRICE) {
-      this.throwError(ERROR_MESSAGE.HAS_MOD);
-    }
+    if (!REGEX.money.test(money)) this.throwError(ERROR_MESSAGE.INT_FORM);
+    if (money % LOTTO.PRICE) this.throwError(ERROR_MESSAGE.HAS_MOD);
   }
 
   static throwErrorIfInvalidWinningNumbers(inputValue) {
@@ -49,21 +45,15 @@ class Validator {
   }
 
   static throwErrorIfHasBlack(string) {
-    if (string.includes(' ')) {
-      this.throwError(ERROR_MESSAGE.HAS_BLACK);
-    }
+    if (string.includes(' ')) this.throwError(ERROR_MESSAGE.HAS_BLACK);
   }
 
   static throwErrorIfStartsWithZero(string) {
-    if (string.startsWith('0')) {
-      this.throwError(ERROR_MESSAGE.START_WITH_ZERO);
-    }
+    if (string.startsWith('0')) this.throwError(ERROR_MESSAGE.START_WITH_ZERO);
   }
 
   static throwErrorIfOutOfRange(number) {
-    if (number < 1 || number > 45) {
-      this.throwError(ERROR_MESSAGE.OUT_OF_RANGE);
-    }
+    if (number < 1 || number > 45) this.throwError(ERROR_MESSAGE.OUT_OF_RANGE);
   }
 }
 
