@@ -32,7 +32,7 @@ class Lotto {
 
   checkDuplication(numbers) {
     const numberSet = new Set(numbers);
-    if ([...numberSet].length !== LOTTO.COUNT) {
+    if ([...numberSet].length !== LOTTO.LENGTH) {
       throw new Error(ERRORS.DUPLICATION);
     }
   }
