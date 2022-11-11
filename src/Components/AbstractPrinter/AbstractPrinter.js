@@ -3,7 +3,7 @@ class AbstractPrinter {
   winningMoney = '';
   matchedLottoCount = '';
 
-  setMatchedNumberCount(matchedNumberCount) {
+  setLottoNumberCount(matchedNumberCount) {
     this.matchedNumberCount = matchedNumberCount;
 
     return this;
