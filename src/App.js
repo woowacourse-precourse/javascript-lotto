@@ -33,6 +33,11 @@ class App {
   getBonusNumber = (input) => {
     this.bonusNumber = new Bonus(input);
     this.winningNumber.isUniqueBonus(this.bonusNumber.bonus);
+    this.winningNumber.calculate(
+      this.seed.ticketAmount,
+      this.lottoTicket.ticketLists,
+      this.bonusNumber.bonus
+    );
   };
 }
 

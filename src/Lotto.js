@@ -38,6 +38,22 @@ class Lotto {
   isUniqueBonus(bonus) {
     if (this.#numbers.includes(bonus)) throw new Error("[ERROR] 보너스 겹침");
   }
+
+  calculate(ticket, lottoList, bonus) {
+    const statistic = this.calculateStatistics(lottoList, bonus);
+  }
+
+  calculateStatistics(lottoList, bonusNumber) {
+    const totalWinner = [...this.#numbers, bonusNumber];
+    return lottoList.map((list) => {
+      let total = { winning: 0, bonus: 0 };
+      totalWinner.forEach((x) => {
+        if (list.includes(x) && x === bonusNumber) total.bonus += 1;
+        else if (list.includes(x)) total.winning += 1;
+      });
+      return total;
+    });
+  }
 }
 
 module.exports = Lotto;
