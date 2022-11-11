@@ -31,8 +31,18 @@ class App {
   }
 
   getRandomLottoNumber() {
-    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    const randomNumberArray = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    return this.sortLottoNumber(randomNumberArray);
+  }
+
+  sortLottoNumber(array) {
+    return array.sort((a, b) => {
+      return a - b;
+    });
   }
 }
+
+const app = new App();
+app.getLottos(8000)
 
 module.exports = App;
