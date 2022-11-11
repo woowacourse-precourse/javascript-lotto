@@ -86,19 +86,19 @@ class CalculationMoney {
     for (let i = 0; i < result.length; i++) {
       switch (result[i][0]) {
         case "5등":
-          sum = sum + 5000 * result[i][1];
+          winningAmount = winningAmount + 5000 * result[i][1];
           break;
         case "4등":
-          sum = sum + 50000 * result[i][1];
+          winningAmount = winningAmount + 50000 * result[i][1];
           break;
         case "3등":
-          sum = sum + 1500000 * result[i][1];
+          winningAmount = winningAmount + 1500000 * result[i][1];
           break;
         case "2등":
-          sum = sum + 30000000 * result[i][1];
+          winningAmount = winningAmount + 30000000 * result[i][1];
           break;
         case "1등":
-          sum = sum + 2000000000 * result[i][1];
+          winningAmount = winningAmount + 2000000000 * result[i][1];
           break;
       }
     }
@@ -106,22 +106,3 @@ class CalculationMoney {
   }
 }
 module.exports = CalculationMoney;
-
-/*
-resultOfSecondOrThirdClass(madeLotto, bonuseNum, winningNumArr) {
-    let lotto = new Map();
-    lotto.set("2등", 0);
-    lotto.set("3등", 0);
-    for (let i = 0; i < madeLotto.length; i++) {
-      if (winningNumArr[i] === 5 && madeLotto[i].includes(bonuseNum) === true) {
-        lotto.set("2등", lotto.get("2등") + 1);
-      }
-      if (
-        winningNumArr[i] === 5 &&
-        madeLotto[i].includes(bonuseNum) === false
-      ) {
-        lotto.set("3등", lotto.get("3등") + 1);
-      }
-    }
-    return lotto;
-  }*/
