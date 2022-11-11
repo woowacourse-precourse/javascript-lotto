@@ -1,20 +1,21 @@
 const { Console } = require('@woowacourse/mission-utils');
 const Messages = require('./Messages');
-const LottoSeller = require('./LottoSeller');
+const CountAndLottos = require('./CountAndLottos');
 const WinningAndBonusNumbers = require('./WinningAndBonusNumbers');
-const LottoManager = require('./LottoManager');
+const Lotto = require('./Lotto');
+const Validation = require('./Validation');
 
 class App {
   constructor() {
-    this.lottoSeller = new LottoSeller();
+    this.countAndLottos = new CountAndLottos();
     this.winningAndBonusNumbers = new WinningAndBonusNumbers();
-    this.lottoManager = new LottoManager();
+    this.lotto = new Lotto();
+    this.validation = new Validation();
   }
 
   play() {
-    Console.readLine(Messages.INPUT_MONEY, (money) => {
-      this.lottoSeller.resultsForCountAndNumbers(money);
-      this.enterWinningNumber();
+    Console.readLine(Messages.ENTER_MONEY, (money) => {
+      this.validation.purchaseAmount(money);
     });
   }
 
