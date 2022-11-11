@@ -14,6 +14,13 @@ class App {
       this.amount = amount;
     });
   }
+  buyLotto() {
+    const buyLottery = new BuyLottery();
+    buyLottery.checkAmout(this.amount);
+    const quantity = buyLottery.numberOfpurchases(this.amount);
+    const lottos = buyLottery.createRendomLotto(quantity);
+    this.lottos = lottos;
+  }
 }
 
 module.exports = App;
