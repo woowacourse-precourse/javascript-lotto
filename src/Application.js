@@ -23,7 +23,7 @@ class Application {
     return this.convertNumber(purchaseAmount) / this.convertNumber(criterion);
   }
 
-  static dividendRate(purchaseAmount, earnings) {
+  static earningsRate(purchaseAmount, earnings) {
     const HUNDRED = 100;
 
     return (this.convertNumber(earnings) / this.convertNumber(purchaseAmount)) * HUNDRED;
