@@ -6,18 +6,30 @@ class Lotto {
     this.#numbers = numbers;
   }
 
+  /**
+   * 생성자로 들어온 매개변수 numbers가 올바른 입력인지 판단하는 함수
+   * @param {*} numbers 생성자로 들어온 숫자 배열
+   */
   validate(numbers) {
     this.checkLengthEqualsSix(numbers);
     this.checkEachNumberInValidRange(numbers);
     this.checkRedundancy(numbers);
   }
 
+  /**
+   * 생성자로 들어온 매개변수 numbers의 길이가 6인지 판단하는 함수
+   * @param {*} numbers 생성자로 들어온 숫자 배열
+   */
   checkLengthEqualsSix(numbers) {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
   }
 
+  /**
+   * 생성자로 들어온 매개변수 numbers의 각 숫자가 1-45 범위에 있는지 판단하는 함수
+   * @param {*} numbers 생성자로 들어온 숫자 배열
+   */
   checkEachNumberInValidRange(numbers) {
     for (let number of numbers) {
       if (number < 1 || number > 45) {
@@ -26,6 +38,10 @@ class Lotto {
     }
   }
 
+  /**
+   * 생성자로 들어온 매개변수 numbers의 각 숫자가 서로 중복이 없는지 판단하는 함수
+   * @param {*} numbers 생성자로 들어온 숫자 배열
+   */
   checkRedundancy(numbers) {
     let temp = [];
     for (let number of numbers) {
@@ -36,6 +52,11 @@ class Lotto {
     }
   }
 
+  /**
+   * 특정 숫자가 이 로또 객체의 숫자에 포함되어 있는지를 반환하는 함수
+   * @param {*} number 비교할 숫자
+   * @returns 포함 여부(boolean)
+   */
   includesNumber(number) {
     return this.#numbers.includes(number);
   }

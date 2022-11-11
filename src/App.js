@@ -44,6 +44,11 @@ class App {
     return numbers;
   }
 
+  /**
+   * 보너스 번호 입력이 올바른지 판단하는 함수
+   * @param {*} number 입력한 보너스 번호
+   * @param {*} wonLotto 현재 저장된 당첨 번호에 대한 로또 객체
+   */
   checkBonusNumber(number, wonLotto) {
     if (isNaN(number) || number === "")
       throw new Error("[ERROR] 보너스 번호는 숫자여야 합니다.");
