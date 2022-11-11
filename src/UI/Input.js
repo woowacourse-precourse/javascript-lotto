@@ -11,6 +11,7 @@ function input(callback1, callback2, callback3) {
       callback2.call(this, input);
       MissionUtils.Console.readLine(MESSAGE.BONUS_NUMBER, (input) => {
         callback3.call(this, input);
+        MissionUtils.Console.close();
       });
     });
   });
