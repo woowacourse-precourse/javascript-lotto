@@ -11,8 +11,7 @@ class App {
    * 비용 입력을 받고 처리하는 함수
    */
   getInputCost() {
-    MissionUtils.Console.print("구입금액을 입력해 주세요.");
-    MissionUtils.Console.readLine("", (answer) => {
+    MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (answer) => {
       this.checkCost(answer);
 
       const COST = parseInt(answer);
@@ -29,8 +28,7 @@ class App {
    * @param {number} cost 로또 구매 비용
    */
   getInputWinningNumbers(lottos, cost) {
-    MissionUtils.Console.print("당첨 번호를 입력해 주세요.");
-    MissionUtils.Console.readLine("", (answer) => {
+    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.\n", (answer) => {
       const WINNING_NUMBERS = this.convertSixInputsToNumbers(answer);
       const WON_LOTTO = new Lotto(WINNING_NUMBERS); // 당첨 번호를 담은 로또 객체
       this.getInputBonusNumber(lottos, cost, WON_LOTTO);
@@ -44,8 +42,7 @@ class App {
    * @param {Lotto} WON_LOTTO 당첨 번호가 담긴 로또 객체
    */
   getInputBonusNumber(lottos, cost, WON_LOTTO) {
-    MissionUtils.Console.print("보너스 번호를 입력해 주세요.");
-    MissionUtils.Console.readLine("", (answer) => {
+    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.\n", (answer) => {
       this.checkBonusNumber(answer, WON_LOTTO);
       const BONUS = parseInt(answer);
 
