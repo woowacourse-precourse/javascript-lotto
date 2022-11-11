@@ -30,7 +30,7 @@ class App {
 
   readWinnigNumbers() {
     Console.readLine('당첨 번호를 입력해 주세요.\n', (input) => {
-      this.winningNumbers = input.split(',').map(Number);
+      this.winningNumbers = new Set(input.split(',').map(Number));
     });
   }
 
