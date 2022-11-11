@@ -1,5 +1,7 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
+const { lookup } = require('dns');
 const Exception = require('../src/Exception');
+const Lotto = require('./Lotto');
 
 class App {
     play() {
@@ -10,11 +12,12 @@ class App {
         Console.readLine('구입금액을 입력해주세요.', (money) => {
             this.verification(money, 'unit');
             Console.print(money);
-            Console.close();
+            const lotto = new Lotto('1');
+            lotto.inputWinningnumber();
         });
     }
 
-    /** @typedef {'unit'} type */
+    /** @typedef {('unit' | 'lottoNumber')} type */
     /** @type {function (string, type) : void} */
     verification(input, type) {
         const exception = new Exception();
