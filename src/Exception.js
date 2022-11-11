@@ -1,7 +1,7 @@
 const { ERROR_MESSAGE, PARAMETERS } = require('./utils/constants');
 
 class Exception {
-  validatevalidatePurchaseAmount(input) {
+  validatePurchaseAmount(input) {
     this.checkIsDigit(input);
 
     if (input % PARAMETERS.purchaseAmountUnit !== 0) {
