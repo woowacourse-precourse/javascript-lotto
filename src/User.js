@@ -20,7 +20,7 @@ class User {
 
   input_amount() {
     MissionUtils.Console.readLine('구입 금액을 입력해 주세요\n', amount => {
-      const VALIDATION = this.check_validation(amount);
+      const VALIDATION = this.validate_amount(amount);
       if (!VALIDATION) {
         throw new Error('[ERROR] 구입 금액은 1000의 단위 숫자여야 합니다.');
       }
@@ -84,5 +84,3 @@ class User {
 }
 
 module.exports = User;
-const user = new User();
-user.input_winning_number();
