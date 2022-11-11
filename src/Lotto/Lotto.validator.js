@@ -1,4 +1,4 @@
-class LottoValidator {
+export default class LottoValidator {
   static checkLotto(lottoDto) {
     this.#checkLottoLenght(lottoDto);
   }
@@ -21,5 +21,3 @@ class LottoValidator {
     }
   }
 }
-
-module.exports = LottoValidator;
