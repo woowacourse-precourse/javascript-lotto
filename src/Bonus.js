@@ -21,7 +21,7 @@ class Bonus extends Lotto{
     }
   }
   isDuplication(lottoNumbers, bonusNumber){
-    if(lottoNumbers.includes(bonusNumber)){
+    if(lottoNumbers.indexOf(bonusNumber)){
       throw new Error("[ERROR] 보너스 번호가 당첨번호와 중복됩니다.");
     }    
   }
