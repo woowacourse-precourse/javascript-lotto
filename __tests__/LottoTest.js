@@ -1,5 +1,29 @@
 const Lotto = require("../src/Lotto");
 const App = require("../src/App");
+const MissionUtils = require("@woowacourse/mission-utils");
+
+const mockQuestions = (answers) => {
+  MissionUtils.Console.readLine = jest.fn();
+  answers.reduce((acc, input) => {
+    return acc.mockImplementationOnce((question, callback) => {
+      callback(input);
+    });
+  }, MissionUtils.Console.readLine);
+};
+
+const mockRandoms = (numbers) => {
+  MissionUtils.Random.pickUniqueNumbersInRange = jest.fn();
+  numbers.reduce((acc, number) => {
+    return acc.mockReturnValueOnce(number);
+  }, MissionUtils.Random.pickUniqueNumbersInRange);
+};
+
+const getLogSpy = () => {
+  const logSpy = jest.spyOn(MissionUtils.Console, "print");
+  logSpy.mockClear();
+  return logSpy;
+};
+
 
 describe("로또 구매 비용 입력 테스트", () => {
   const APP = new App();
@@ -44,7 +68,7 @@ describe("로또 당첨 번호 입력 테스트", () => {
   });
 
   test("로또 번호를 올바르게 입력했다면 숫자로 변환이 가능하다", () => {
-    const INPUT = "1,3,5,13,7,10";
+    const INPUT = "1,3,5,7,10,13";
     const RESULT = APP.convertSixInputsToNumbers(INPUT);
     expect(RESULT).toEqual([1, 3, 5, 7, 10, 13])
   });
@@ -116,4 +140,30 @@ describe("로또 클래스 테스트", () => {
   });
 });
 
+describe("로또 발행 테스트", () => {
+  test("로또 5개 발행하기", () => {
+    mockRandoms([
+      [8, 21, 23, 41, 42, 43],
+      [3, 5, 11, 16, 32, 38],
+      [7, 11, 16, 35, 36, 44],
+      [1, 8, 11, 31, 41, 42],
+      [13, 14, 16, 38, 42, 45]
+    ]);
+    const LOGS = [
+      "5개를 구매했습니다.",
+      "[8, 21, 23, 41, 42, 43]",
+      "[3, 5, 11, 16, 32, 38]",
+      "[7, 11, 16, 35, 36, 44]",
+      "[1, 8, 11, 31, 41, 42]",
+      "[13, 14, 16, 38, 42, 45]"
+    ];
+    const LOG_SPY = getLogSpy();
+    const APP = new App();
+    const MY_LOTTOS = APP.publishLottos(5000);
+    APP.printMyLottos(MY_LOTTOS);
 
+    LOGS.forEach((log) => {
+      expect(LOG_SPY).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+})

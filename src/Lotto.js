@@ -1,3 +1,6 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+const { convertArrayToString } = require("./utils");
+
 class Lotto {
   #numbers;
 
@@ -59,6 +62,14 @@ class Lotto {
    */
   includesNumber(number) {
     return this.#numbers.includes(number);
+  }
+
+  /**
+   * 이 로또의 번호를 출력하는 함수
+   */
+  printNumbers() {
+    const NUMBERS_IN_STRING = convertArrayToString(this.#numbers);
+    MissionUtils.Console.print(NUMBERS_IN_STRING);
   }
 }
 
