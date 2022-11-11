@@ -23,23 +23,26 @@ class App {
   };
 
   play() {
-    this.getLottoAmount();
-  }
-
-  getLottoAmount() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.', (price) => {
-      if (!Number(price)) {
-        throw new Error('[ERROR] 구입금액은 숫자여야 합니다.');
-      }
-      if (parseInt(price) % 1000 !== 0) {
-        throw new Error('[ERROR] 구입금액은 1,000원 단위로 입력하셔야 합니다.');
-      }
-      this.lottoAmount = parseInt(price) / 1000;
-      this.makeLottoNumbers(this.lottoAmount);
-
+      this.validate(price);
+      this.getLottoAmount(price);
       this.printPurchaseList();
       this.getWinningLotteryNumbers();
     });
+  }
+
+  getLottoAmount(price) {
+    this.lottoAmount = parseInt(price) / 1000;
+    this.makeLottoNumbers(this.lottoAmount);
+  }
+
+  validate(price) {
+    if (!Number(price)) {
+      throw new Error('[ERROR] 구입금액은 숫자여야 합니다.');
+    }
+    if (parseInt(price) % 1000 !== 0) {
+      throw new Error('[ERROR] 구입금액은 1,000원 단위로 입력하셔야 합니다.');
+    }
   }
 
   getWinningLotteryNumbers() {
