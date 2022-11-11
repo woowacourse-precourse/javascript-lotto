@@ -175,5 +175,9 @@ describe('배열 중복 검사 함수 테스트', () => {
     expect(() => {
       Application.checkArrayDuplicate([1, 2, 3, 4, 5, 5]);
     }).toThrow('[ERROR]');
+
+    expect(() => {
+      Application.checkArrayDuplicate([1, 2, 3, 4, 5, 6]);
+    }).not.toThrow('[ERROR]');
   });
 });
