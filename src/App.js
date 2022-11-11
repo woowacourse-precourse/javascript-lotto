@@ -2,6 +2,9 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const BuyLotto = require("./modules/BuyLotto");
 const UserLotto = require("./modules/UserLotto");
 const AnswerLotto = require("./modules/AnswerLotto");
+const CorrectLotto = require("./modules/CorrectLotto");
+const Award = require("./modules/Award");
+
 class App {
   play() {
     //로또 구입 금액을 입력하면 해당하는 로또를 발행한다.
@@ -20,6 +23,12 @@ class App {
     const ANSWERLOTTO = new AnswerLotto();
     const answer = ANSWERLOTTO.haveAnswer();
     const bonus = ANSWERLOTTO.bonusAnswer();
+    // 로또 번호와 당첨 번호를 비교한다.
+    const CORRECT = new CorrectLotto(lottoArr, answer, bonus);
+    const correctArr = CORRECT.haveCorrect();
+    // 몇개 일치하는 지에 따라 상금을 정한다.
+    const AWARD = new Award(correctArr, CORRECT.haveBonus());
+    const priceArr = AWARD.haveAward();
     // 로또 게임을 종료한다.
     MissionUtils.Console.close();
   }
