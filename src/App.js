@@ -1,5 +1,20 @@
+const LottoBuy = require("./LottoBuy");
+const LottoSetting = require("./LottoSetting");
+const MissionUtils = require("@woowacourse/mission-utils");
+const { INPUT } = require("./lib/library");
+
 class App {
-  play() {}
+  async play() {
+    // const myLotto = new LottoBuy();
+    // const lottoSetting = new LottoSetting();
+    // MissionUtils.Console.readLine(INPUT.BUY, (price) => {
+    //   myLotto.inputPurchasePrice(price);
+    //   lottoSetting.main();
+    // });
+  }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;

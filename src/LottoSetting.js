@@ -8,7 +8,7 @@ class LottoSetting {
 
   main() {
     this.inputWinLottoNum();
-    return this;
+    return;
   }
 
   inputWinLottoNum() {
@@ -50,7 +50,10 @@ class LottoSetting {
       throw EXCEPTION("로또번호와 중복됩니다.");
     return num;
   }
+
+  getWinInfo() {
+    return { lotto: this.#winLotto, num: this.#bonusNum };
+  }
 }
-const a = new LottoSetting();
 
 module.exports = LottoSetting;

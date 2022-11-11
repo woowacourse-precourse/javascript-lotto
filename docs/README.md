@@ -33,6 +33,7 @@
       당첨 번호를 입력 받는다. 번호는 쉼표(,)를 기준으로 구분한다.
 - [x] 당첨번호를 로또 클래스로 바꾸는 기능 - winNumToLottoClass
 - [x] 보너스 번호를 입력받는 기능 - inputBonusNum
+- [x] 당첨번호와 보너스 번호를 반환하는 기능 - getWinInfo
 
 로또 계산#LottoCalculator
 
