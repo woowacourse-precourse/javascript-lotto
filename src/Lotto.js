@@ -38,6 +38,7 @@ class Lotto {
   }
 
   printLottoNumbers() {
+    this.#numbers.sort((a, b) => a - b);
     MissionUtils.Console.print(`[${this.#numbers.join(", ")}]`);
   }
 
