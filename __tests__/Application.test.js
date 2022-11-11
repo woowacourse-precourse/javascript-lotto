@@ -135,3 +135,11 @@ describe('배열 예외 검사 함수 테스트', () => {
     }).not.toThrow(ARRAY_EXCEPTION_TEXT);
   });
 });
+
+describe('배열 길이 예외 검사 함수 테스트', () => {
+  test('메소드 이름은 "validateArrayLength"로 정의된다.', () => {
+    const METHOD_NAME = 'validateArrayLength';
+
+    expect(Application.validateArrayLength.name).toEqual(METHOD_NAME);
+  });
+});
