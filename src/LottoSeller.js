@@ -22,6 +22,10 @@ class LottoSeller {
       this.lottoArray.push(uniqueNumberInRange);
     }
   }
+
+  getLottos() {
+    return this.lottoArray;
+  }
 }
 
 module.exports = LottoSeller;
