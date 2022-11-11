@@ -5,6 +5,12 @@ class Statistics {
     this.bonusNumber = bonusNumber;
   }
 
+  getNumberOfMatchingNumbersRankedArr() {
+    return this.totalLottoNumber.flatMap((numbers) =>
+      this.getNumberOfMatchingNumbersRanked(numbers)
+    );
+  }
+
   getNumberOfMatchingNumbersRanked(numbers) {
     const numberOfMatchingWinnerNumbers = this.getNumberOfMatchingWinnerNumbers(numbers);
     if (numberOfMatchingWinnerNumbers === 5) return this.compareWithBonusNumber(numbers);
