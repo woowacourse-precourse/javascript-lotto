@@ -6,11 +6,11 @@ const {
 
 class Validation {
   static checkPurchaseAmount(purchaseAmount) {
-    if (!Validation.isDivided(purchaseAmount)) {
-      throw new Error(ERROR_MESSAGE_UNDIVIDED);
+    if (!this.isDivided(purchaseAmount)) {
+      return ERROR_MESSAGE_UNDIVIDED;
     }
-    if (Validation.isOnlyNumber(purchaseAmount)) {
-      throw new Error(ERROR_MESSAGE_NOTONLY_NUMBER);
+    if (this.isOnlyNumber(purchaseAmount)) {
+      return ERROR_MESSAGE_NOTONLY_NUMBER;
     }
   }
 
