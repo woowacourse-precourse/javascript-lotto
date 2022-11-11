@@ -1,4 +1,4 @@
-const { Random } = require('@woowacourse/mission-utils');
+const { Random, Console } = require('@woowacourse/mission-utils');
 const { VARIABLE_LOTTO, LOTTO_ERROR_MESSAGE } = require('../utils/constants');
 
 class LottoStore {
@@ -6,16 +6,29 @@ class LottoStore {
 
   #count;
 
+  #lottos;
+
   constructor(money) {
     this.#money = money;
     this.#count = 0;
+    this.#lottos = this.#getBuyAt();
+
+    this.print();
   }
 
-  getLottoPayment() {
+  getMoney() {
     return this.#money;
   }
 
-  getBuyAt() {
+  getLottos() {
+    return this.#lottos;
+  }
+
+  print() {
+    [...this.#lottos].forEach(lotto => Console.print(lotto));
+  }
+
+  #getBuyAt() {
     return this.#isThousandWon()
       .#getHowMany()
       .#buy();
