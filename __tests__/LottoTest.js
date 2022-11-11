@@ -17,6 +17,13 @@ describe("로또 구매 비용 입력 테스트", () => {
       APP.checkCost(INPUT)
     }).toThrow("[ERROR]")
   });
+
+  test("로또 구매 비용을 올바르게 입력하면 예외가 발생하지 않는다.", () => {
+    expect(() => {
+      const INPUT = "15000";
+      APP.checkCost(INPUT)
+    }).not.toThrow("[ERROR]")
+  });
 })
 
 describe("로또 당첨 번호 입력 테스트", () => {
@@ -100,7 +107,13 @@ describe("로또 클래스 테스트", () => {
     expect(() => {
       new Lotto([1, 2, 50, 3, 4, 5]);
     }).toThrow("[ERROR]");
-  })
+  });
+
+  test("로또 번호를 올바르게 넣으면 예외가 발생하지 않는다.", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, 6]);
+    }).not.toThrow("[ERROR]");
+  });
 });
 
 
