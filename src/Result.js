@@ -86,6 +86,18 @@ class Result {
     );
     Console.print(`6개 일치 (2,000,000,000원) - ${this.rank[0]}개`);
   }
+
+  getPrize() {
+    const eachPrize = [2000000000, 30000000, 1500000, 50000, 5000];
+
+    let finalPrize = 0;
+
+    this.rank.forEach((item, index) => {
+      finalPrize += item * eachPrize[index];
+    });
+
+    return finalPrize;
+  }
 }
 
 module.exports = Result;
