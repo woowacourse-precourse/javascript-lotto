@@ -29,7 +29,10 @@ class Lotto {
   printNumbers() {
     Console.print(`[${this.#numbers.join(", ")}]`);
   }
-  // TODO: 추가 기능 구현
+
+  getNumbers() {
+    return this.#numbers.map((number) => String(number));
+  }
 }
 
 module.exports = Lotto;

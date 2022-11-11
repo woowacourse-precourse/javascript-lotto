@@ -27,14 +27,25 @@ class GameUtils {
     return winningNumberArray;
   }
 
+  static getTotalRankArray(lottos, winningNumber, bonusNumber) {
+    let rankArray = [0, 0, 0, 0, 0];
+
+    lottos.forEach((lotto) => {
+      const rank = this.getRank(lotto.getNumbers(), winningNumber, bonusNumber);
+      if (rank) rankArray[5 - Number(rank)] += 1;
+    });
+
+    return rankArray;
+  }
+
   static getYield(ranks, pay) {
-    const reward = [2000000000, 30000000, 1500000, 50000, 5000];
+    const reward = [5000, 50000, 1500000, 30000000, 2000000000];
     let totalReward = 0;
     reward.forEach((rw, i) => {
       totalReward += ranks[i] * rw;
     });
 
-    return ((totalReward / pay) * 100).toFixed(1);
+    return ((totalReward / Number(pay)) * 100).toFixed(1);
   }
 
   static getRank(lottoNumber, winningNumber, bonusNumber) {

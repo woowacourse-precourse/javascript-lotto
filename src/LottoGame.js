@@ -47,7 +47,18 @@ class LottoGame {
     Console.readLine("보너스 번호를 입력해 주세요.\n", (input) => {
       ValidCheckUtils.checkBonusNumber(input, this.winningNum);
       this.bonusNum = input;
+
+      this.setLottoRanks();
     });
+  }
+
+  setLottoRanks() {
+    this.lottoRanks = GameUtils.getTotalRankArray(
+      this.lottos,
+      this.winningNum,
+      this.bonusNum
+    );
+  }
   }
 }
 
