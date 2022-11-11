@@ -6,8 +6,7 @@ const createLottoNumbers = () => {
 };
 
 const convertWinningNumbers = (numbers) => {
-  const replacedNumbers = numbers.replace(/[^-\,0-9]/g, '');
-  return replacedNumbers
+  return numbers
     .split(',')
     .filter((number) => number !== '')
     .map(Number);

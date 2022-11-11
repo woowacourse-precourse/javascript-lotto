@@ -12,6 +12,10 @@ class Lotto {
       throw new Error(ERROR.NOT_ENOUGH_NUMBER);
     }
 
+    if (/[^\,0-9]/.test(String(numbers))) {
+      throw new Error(ERROR.NOT_A_NUMBER);
+    }
+
     if (new Set(numbers).size !== 6) {
       throw new Error(ERROR.DUPLICATE);
     }
