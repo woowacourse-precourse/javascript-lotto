@@ -1,3 +1,5 @@
+const MissionUtils = require('@woowacourse/mission-utils');
+
 class Application {
   static validateNumber(target) {
     if (Number.isNaN(target)) {
@@ -45,6 +47,14 @@ class Application {
     if (new Set(array).size !== array.length) {
       throw new Error('[ERROR] 중복되는 요소는 포함할 수 없습니다.');
     }
+  }
+
+  static createUniqueNumbers(start, end, length) {
+    const result = MissionUtils.Random.pickUniqueNumbersInRange(start, end, length);
+
+    MissionUtils.Console.close();
+
+    return result;
   }
 }
 
