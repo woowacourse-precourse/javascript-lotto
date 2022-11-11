@@ -32,7 +32,6 @@ const SYSTEM = Object.freeze({
 
     printLottos(lottos, maxCount) {
         this.print(`${maxCount}${MESSAGE.BUY_LOTTOS_COUNT}`);
-        // lottos.forEach(lotto => { SYSTEM.print(lotto.getNumber()); });
         lottos.forEach(lotto => { SYSTEM.print(`[${lotto.getNumber().join(', ')}]`); });
     },
 
