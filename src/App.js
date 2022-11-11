@@ -17,8 +17,8 @@ class App {
     if (amount < 1000)
       throw new Error("[ERROR] 구매금액은 1000원 이상이어야 합니다.");
     const regex = /[^0-9]/g;
-    if (amount.match(regex).length !== 0)
-      throw new Error("[ERROR] 숫자만 입력해 주세요.");
+    if (amount / 1000 !== 0)
+      throw new Error("[ERROR] 1000원으로 나누어 떨어져야 합니다.");
   }
 }
 
