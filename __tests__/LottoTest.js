@@ -63,5 +63,13 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
+  test("test.", () => {
+    const logs = ["총 수익률은 62.5%입니다."];
+    const logSpy = getLogSpy();
+    new Lotto([1, 2, 3, 4, 5, 6]).showRateOfReturn(8, [1, 0, 0, 0, 0]);
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
   // 아래에 추가 테스트 작성 가능
 });

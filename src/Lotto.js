@@ -74,7 +74,7 @@ class Lotto {
   }
 
   showMatchResult(result) {
-    Console.print("\n당첨 통계\n---");
+    Console.print("당첨 통계\n---");
     Console.print(`3개 일치 (5,000원) - ${result[0]}개`);
     Console.print(`4개 일치 (50,000원) - ${result[1]}개`);
     Console.print(`5개 일치 (1,500,000원) - ${result[2]}개`);
@@ -90,7 +90,7 @@ class Lotto {
       0
     );
     Console.print(
-      `총 수익률은${((totalProfit / seedMoney) * 100).toFixed(1)}%입니다.`
+      `총 수익률은 ${((totalProfit / seedMoney) * 100).toFixed(1)}%입니다.`
     );
     Console.close();
   }
