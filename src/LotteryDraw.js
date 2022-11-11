@@ -30,6 +30,14 @@ class LotteryDraw extends Struct{
         this.randomLotto();
         this.randomLottoPrint();
     };
+    winningNumber() {
+        MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (winning) => {
+            this.winning = winning.split(',').map((number) =>
+                Number(number)
+            );
+        });
+        new WinningExceptionHandling(this.winning);
+    };
 };
 
 module.exports = LotteryDraw;
