@@ -10,15 +10,14 @@ class GameTools {
         LOTTO.MIN_NUMBER,
         LOTTO.MAX_NUMBER,
         LOTTO.LENGTH
-      );
-      randomNumbers.sort((a, b) => a - b);
+      ).sort((a, b) => a - b);
       lottoes.push(randomNumbers);
     }
 
     return lottoes;
   }
 
-  static getMatchingNumberCount(userNumbers, winningNumbers) {
+  static getMatchingNumCount(userNumbers, winningNumbers) {
     return userNumbers.filter((number) => winningNumbers.includes(number))
       .length;
   }
