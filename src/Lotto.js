@@ -37,6 +37,13 @@ class Lotto {
     MissionUtils.Console.close();
     return lottery;
   }
+
+  sortArray(array) {
+    array.sort(function compare(a, b) {
+      return a - b;
+    });
+    return array;
+  }
 }
 const lotto = new Lotto();
 //lotto.inputAmount();
