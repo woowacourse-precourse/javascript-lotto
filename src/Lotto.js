@@ -34,6 +34,7 @@ class Lotto {
       }
       this.countWinning(matches, bonusNumber, winningArray);
     }
+    this.printWinningHistory(winningArray, lottos.length);
   }
 
   countWinning(matches, bonus, winningArray) {
@@ -42,6 +43,14 @@ class Lotto {
     else if (matches === 5) winningArray[2] += 1;
     else if (matches === 5 && bonus === 1) winningArray[3] += 1;
     else winningArray[4] += 1;
+  }
+
+  printWinningHistory(winningArray, money) {
+    Console.print(`3개 일치 (5,000원) - ${winningArray[0]}개`);
+    Console.print(`4개 일치 (50,000원) - ${winningArray[1]}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${winningArray[2]}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningArray[3]}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${winningArray[4]}개`);
   }
 }
 
