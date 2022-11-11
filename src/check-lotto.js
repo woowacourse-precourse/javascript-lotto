@@ -6,8 +6,13 @@ class CheckLotto {
     this.#controller = controller;
   }
 
-  getresult() {
-    return this.#result;
+  getWinningresult() {
+    const sortedResult = Object.entries(this.#result).sort(([a], [b]) => (a < b ? -1 : 1));
+    const winningResult = [];
+    sortedResult.forEach((result) => {
+      winningResult.push(result[1]);
+    });
+    return winningResult;
   }
 
   checkLotto() {
