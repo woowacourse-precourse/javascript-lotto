@@ -9,7 +9,7 @@ class Publish {
   create(lottoQuantity) {
     this.result = new Object();
     for (let time = 0; time < lottoQuantity; time++) {
-      let randomNumber = Random.pickUniqueNumbersInRange(1, 10, 6);
+      let randomNumber = Random.pickUniqueNumbersInRange(1, 45, 6);
       this.result[time] = randomNumber;
     }
   }

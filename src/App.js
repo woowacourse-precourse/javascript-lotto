@@ -74,6 +74,13 @@ class App {
       `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.lotto.secondCount}개`
     );
     Console.print(`6개 일치 (2,000,000,000원) - ${this.lotto.firstCount}개`);
+    this.totalReturn();
+  }
+
+  totalReturn() {
+    Console.print(
+      `총 수익률은 ${this.lotto.profitCalculator(this.money)}%입니다.`
+    );
   }
 }
 

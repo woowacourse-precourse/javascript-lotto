@@ -62,15 +62,18 @@ class Lotto {
     }
   }
 
-  firstPrize() {}
-
-  secondPrize() {}
-
-  thirdPrize() {}
-
-  fourthPrize() {}
-
-  fifthPrize() {}
+  profitCalculator(payment) {
+    console.log(payment);
+    const PROFIT =
+      ((this.firstCount * 2000000000 +
+        this.secondCount * 30000000 +
+        this.thirdCount * 1500000 +
+        this.fourthCount * 50000 +
+        this.fourthCount * 5000) /
+        payment) *
+      100;
+    return Math.round(PROFIT * 100) / 100;
+  }
 }
 
 module.exports = Lotto;
