@@ -10,6 +10,7 @@ class Lotto {
     this.checkLottoLength(numbers);
     this.checkLottoNumber(numbers);
     this.checkDuplicateNumber(numbers);
+    this.isNotLottoNumber(numbers);
   }
 
   checkLottoLength(numbers){
@@ -30,6 +31,12 @@ class Lotto {
     const set = new Set(numbers);
     if(set.size < numbers.length){
       throw new Error("[ERROR] 로또 번호안에 중복 숫자가 존재합니다.");
+    }
+  }
+
+  isNotLottoNumber(numbers){
+    if(isNaN(numbers)){
+      throw new Error("[ERROR] 로또의 값이 숫자가 아닙니다.");
     }
   }
 }
