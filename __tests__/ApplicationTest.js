@@ -23,7 +23,7 @@ const getLogSpy = () => {
   return logSpy;
 };
 
-describe.skip("로또 테스트", () => {
+describe("로또 테스트", () => {
   test("로또 구매를 1000원 단위로 했을 경우", () => {
     expect(() => {
       const app = new App();
