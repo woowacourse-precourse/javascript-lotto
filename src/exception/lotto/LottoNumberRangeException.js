@@ -1,10 +1,12 @@
 const Exception = require('../Exception');
 
 class LottoNumberRangeException extends Exception {
-  static #ERROR_MESSAGE = '로또 번호는 6개로 이루어져야 합니다.';
+  constructor(range) {
+    super(LottoNumberRangeException.#getErrorMessage(range));
+  }
 
-  constructor(length) {
-    super(`${LottoNumberRangeException.#ERROR_MESSAGE} ${length}개`);
+  static #getErrorMessage({ min, max }) {
+    return `로또 번호는 ${min}부터 ${max}사이 숫자여야 합니다.`;
   }
 }
 
