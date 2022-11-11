@@ -17,7 +17,7 @@ class App {
 
   getInputMoney() {
     return new Promise((resolve, reject) => {
-      Console.readLine("입력 : ", (input) => {
+      Console.readLine("구매금액을 입력해 주세요.\n", (input) => {
         if (!this.isValidInput(input)) {
           reject(() => {
             throw new Error("유효하지 않은값");
