@@ -26,6 +26,7 @@ class App {
     Console.readLine(MESSAGE.NULL, (money) => {
       Validator.throwErrorIfInvalidMoney(money);
       this.lottoCount = money / LOTTO.PRICE;
+
       this.buyLotto();
     });
   }
@@ -48,17 +49,15 @@ class App {
         .split(LOTTO.SPLIT_WITH)
         .map((num) => Number(num));
       this.lotto = new Lotto(winningNumbers);
-      this.getBonusNumber();
+
+      this.getBonusNumber(winningNumbers);
     });
   }
 
-  getBonusNumber() {
+  getBonusNumber(winningNumbers) {
     Console.print(MESSAGE.ASK_BONUS_NUMBER);
     Console.readLine(MESSAGE.NULL, (bonusNumber) => {
-      Validator.throwErrorIfInvalidBonusNumber(
-        this.lotto.winningNumbers,
-        bonusNumber
-      );
+      Validator.throwErrorIfInvalidBonusNumber(winningNumbers, bonusNumber);
       this.bonusNumber = Number(bonusNumber);
       this.setPrizeResult();
     });
