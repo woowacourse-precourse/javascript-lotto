@@ -5,6 +5,10 @@ class Lotto {
     this.validationCheckList(numbers);
     this.#numbers = numbers;
   }
+  constructor(lottoNumbers, bonusNumber) {
+    this.bonusValidationCheckList(lottoNumbers, bonusNumber);
+  }
+
   getNumbers(){
     return this.#numbers;
   }
@@ -13,6 +17,9 @@ class Lotto {
     this.isDuplication(numbers);
     this.isInRange(numbers);
     this.isNumber(numbers);
+  }
+  bonusValidationCheckList(lottoNumbers, bonusNumber){
+    this.isBonusDuplicateWithLotto(lottoNumbers, bonusNumber);
   }
   validate(numbers) {
     if (numbers.length !== 6) {
@@ -24,6 +31,11 @@ class Lotto {
     if(deDuplicationNumbers.size !== 6){
       throw new Error("[ERROR] 로또 번호는 중복되지 않는 6개의 숫자여야 합니다.");
     }
+  }
+  isBonusDuplicateWithLotto(lottoNumbers, bonusNumber){
+    if(lottoNumbers.includes(bonusNumber)){
+      throw new Error("[ERROR] 보너스 번호가 당첨번호와 중복됩니다.");
+    }    
   }
   isInRange(numbers){
     numbers.forEach((number)=>{
