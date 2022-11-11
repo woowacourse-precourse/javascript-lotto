@@ -1,4 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
+const { RULE, STATISTIC_PRINT } = require('../utils/constants');
 
 class View {
   static printStart() {
@@ -28,11 +29,11 @@ class View {
     Console.print('');
     Console.print('당첨 통계');
     Console.print('---');
-    Console.print(`3개 일치 (5,000원) - ${statistic.stat.FIFTH}개`);
-    Console.print(`4개 일치 (50,000원) - ${statistic.stat.FOURTH}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${statistic.stat.THIRD}개`);
-    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${statistic.stat.SECOND}개`);
-    Console.print(`6개 일치 (2,000,000,000원) - ${statistic.stat.FIRST}개`);
+    Console.print(`${STATISTIC_PRINT.FIFTH} - ${statistic.stat[RULE.FIFTH.RANK]}개`);
+    Console.print(`${STATISTIC_PRINT.FOURTH} - ${statistic.stat[RULE.FOURTH.RANK]}개`);
+    Console.print(`${STATISTIC_PRINT.THIRD} - ${statistic.stat[RULE.THIRD.RANK]}개`);
+    Console.print(`${STATISTIC_PRINT.SECOND} - ${statistic.stat[RULE.SECOND.RANK]}개`);
+    Console.print(`${STATISTIC_PRINT.FIRST} - ${statistic.stat[RULE.FIRST.RANK]}개`);
   }
 
   static printPercentageRevenue(percentageRevenue) {
