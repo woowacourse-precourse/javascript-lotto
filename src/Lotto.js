@@ -1,27 +1,30 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+const { THOUSAND } = require('./MESSAGE');
 const MESSAGE = require('./MESSAGE');
 
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
     this.#numbers = numbers;
+    this.validate(numbers);
   }
 
   validate(numbers) {
-    const set = new Set();
     if (numbers.length !== 6) {
-      MissionUtils.Console.close();
       throw new Error(MESSAGE.LOTTO_SIZE_ERROR);
     }
-    for (let number = 0; number < numbers; number += 1) {
-      set.add(numbers[i]);
-    }
-    if (set.size !== MESSAGE.LOTTO_LENGTH) {
-      MissionUtils.Console.close();
+  }
+  validate_indepence(numbers) {
+    const setWinLotto = new Set();
+    const winLottoArr = [...numbers];
+    winLottoArr.forEach((eachLottoNum) => {
+      setWinLotto.add(eachLottoNum);
+    });
+    if (setWinLotto.size !== 6) {
       throw new Error(MESSAGE.LOTTO_SAME_NUMBER_ERROR);
     }
+    return numbers;
   }
 
   // TODO: 추가 기능 구현
@@ -41,9 +44,14 @@ class Lotto {
     });
   }
 
-  getWinLotto()
-
-
+  getWinLotto() {
+    let winLotto;
+    MissionUtils.Console.readLine(MESSAGE.LOTTO_WIN, (winNumber) => {
+      winLotto = winNumber;
+    });
+    winLotto = winLotto.replace(MESSAGE.LOTTO_WIN_SEPERATOR, '');
+    return this.validate_indepence(winLotto);
+  }
 }
 
 module.exports = Lotto;
