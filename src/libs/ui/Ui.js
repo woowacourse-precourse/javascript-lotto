@@ -62,8 +62,19 @@ const bonusNumberInput = (winningNumber) => {
   winningNumber = winningNumber.split(",").map((num) => Number(num));
   MissionUtils.Console.readLine(
     "\n보너스 번호를 입력해 주세요.\n",
-    (bonusNumber) => {}
+    (bonusNumber) => {
+      checkBonusValidation(bonusNumber, winningNumber);
+    }
   );
+};
+
+const checkBonusValidation = (bonusNumber, winningNumber) => {
+  bonusNumber = Number(bonusNumber);
+  winningNumber.map((num) => {
+    if (num === bonusNumber) {
+      throw new Error("[ERROR] 보너스 번호는 로또 번호와 중복될 수 없습니다.");
+    }
+  });
 };
 
 module.exports = {
