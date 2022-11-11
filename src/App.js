@@ -24,7 +24,7 @@ class App {
   play() {
     Console.print(MESSAGE.ASK_BUDGET);
     Console.readLine(MESSAGE.NULL, (money) => {
-      Validator.throwErrorIfInValidMoney(money);
+      Validator.throwErrorIfInvalidMoney(money);
       this.lottoCount = money / LOTTO.PRICE;
       this.buyLotto();
     });
@@ -43,7 +43,7 @@ class App {
   getWinningNumbers() {
     Console.print(MESSAGE.ASK_WINNING_NUM);
     Console.readLine(MESSAGE.NULL, (inputValue) => {
-      Validator.throwErrorIfInValidFormOfWinningNumber(inputValue);
+      Validator.throwErrorIfInvalidFormOfWinningNumber(inputValue);
       const winningNumbers = inputValue
         .split(LOTTO.SPLIT_WITH)
         .map((num) => Number(num));
@@ -55,7 +55,7 @@ class App {
   getBonusNumber() {
     Console.print(MESSAGE.ASK_BONUS_NUMBER);
     Console.readLine(MESSAGE.NULL, (bonusNumber) => {
-      Validator.throwErrorIfInValidBonusNumber(
+      Validator.throwErrorIfInvalidBonusNumber(
         this.lotto.winningNumbers,
         bonusNumber
       );

@@ -49,6 +49,12 @@ const RENDER_MESSAGE = Object.freeze({
   rateOfReturn: (rateOfReturn) => `총 수익률은 ${rateOfReturn}%입니다.`,
 });
 
+const REGEX = Object.freeze({
+  money: /^\d+$/,
+  winningNumber: /^(\d+,)+\d+$/,
+  bonusNumber: /^\d+$/,
+});
+
 module.exports = {
   LOTTO,
   ERROR_MESSAGE,
@@ -56,4 +62,5 @@ module.exports = {
   PRIZE_MONEY,
   PLACES_OF_DECIMALS,
   RENDER_MESSAGE,
+  REGEX,
 };
