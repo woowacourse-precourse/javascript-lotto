@@ -3,7 +3,7 @@ const Seed = require("../src/Seed");
 const LottoGenerator = require("../src/LottoGenerator");
 const Lotto = require("../src/Lotto");
 const Bonus = require("../src/Bonus");
-
+const { INPUT_MESSAGE } = require("../src/constants");
 class App {
   seed;
   lottoTicket;
@@ -11,7 +11,7 @@ class App {
   bonusNumber;
   constructor() {}
   play() {
-    this.getInput("구입금액을 입력해 주세요.\n", this.getSeedMoney);
+    this.getInput(INPUT_MESSAGE.SEED_MONEY, this.getSeedMoney);
   }
 
   getInput = (message, inputFunction) => {
@@ -21,13 +21,13 @@ class App {
   getSeedMoney = (input) => {
     this.seed = new Seed(Number(input));
     this.lottoTicket = new LottoGenerator(this.seed.ticketAmount);
-    this.getInput("\n당첨 번호를 입력해 주세요.\n", this.getWinnerNumber);
+    this.getInput(INPUT_MESSAGE.WINNING_NUMBER, this.getWinnerNumber);
   };
 
   getWinnerNumber = (input) => {
     const splitByComma = input.split(",");
     this.winningNumber = new Lotto(splitByComma);
-    this.getInput("\n보너스 번호를 입력해 주세요.\n", this.getBonusNumber);
+    this.getInput(INPUT_MESSAGE.BONUS_NUMBER, this.getBonusNumber);
   };
 
   getBonusNumber = (input) => {
