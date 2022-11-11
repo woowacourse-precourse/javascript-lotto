@@ -13,7 +13,7 @@ class App {
     this.stateOfPrize = {
       first: 0,
       second: 0,
-      tirth: 0,
+      third: 0,
       fourth: 0,
       fifth: 0,
     };

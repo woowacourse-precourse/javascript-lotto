@@ -7,15 +7,14 @@ class Lotto {
 
   constructor(numbers) {
     this.validate(numbers);
-    this.#numbers = numbers.split(',').sort((a, b) => a - b);
+    this.#numbers = numbers
+      .split(',')
+      .map((num) => Number(num))
+      .sort((a, b) => a - b);
   }
 
   validate(numbers) {
     Validator.throwErrorIfInvalidWinningNumbers(numbers);
-  }
-
-  get winningNumbers() {
-    return this.#numbers;
   }
 
   stateOfWinning(userLottos, bonusNumber, stateOfPrize) {
@@ -30,12 +29,17 @@ class Lotto {
 
       return state;
     }, stateOfPrize);
-
-    this.calcRateOfReturn(winningState, userLottos.length);
+    this.calcTotalPrize(winningState, userLottos.length);
   }
 
-  calcRateOfReturn(winningState, countOfLotto) {
-    const rateOfReturn = GameTools.calcRateOfReturn(winningState, countOfLotto);
+  calcTotalPrize(winningState, countOfLotto) {
+    const totalPrize = GameTools.calcTotalPrize(winningState);
+
+    this.calcRateOfReturn(winningState, totalPrize, countOfLotto);
+  }
+
+  calcRateOfReturn(winningState, totalPrize, countOfLotto) {
+    const rateOfReturn = GameTools.calcRateOfReturn(totalPrize, countOfLotto);
 
     this.renderGameResult(winningState, rateOfReturn);
   }

@@ -22,14 +22,19 @@ class GameTools {
       .length;
   }
 
-  static calcRateOfReturn(prizeResult, lottoCount) {
+  static calcTotalPrize(winningState) {
     const prizeMoney = Object.values(PRIZE_MONEY);
-    const winningCount = Object.values(prizeResult);
+    const winningCount = Object.values(winningState);
     let totalPrizeMoney = 0;
     for (let i = 0; i < LOTTO.NUM_OF_PRIZE; i++) {
       totalPrizeMoney += winningCount[i] * prizeMoney[i];
     }
-    const rateOfReturn = (totalPrizeMoney / (lottoCount * LOTTO.PRICE)) * 100;
+
+    return totalPrizeMoney;
+  }
+
+  static calcRateOfReturn(totalPrize, countOfLotto) {
+    const rateOfReturn = (totalPrize / (countOfLotto * LOTTO.PRICE)) * 100;
 
     return rateOfReturn.toFixed(PLACES_OF_DECIMALS);
   }
