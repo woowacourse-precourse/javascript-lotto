@@ -29,6 +29,10 @@ class Lotto {
     }
   }
 
+  get numbers() {
+    return this.#numbers;
+  }
+
   print() {
     const sortedNumbers = this.#numbers.sort((a, b) => a - b);
     const output = "[" + sortedNumbers.join(", ") + "]";
