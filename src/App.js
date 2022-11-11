@@ -68,12 +68,11 @@ class App {
   }
 
   #getRevenue() {
-    Object.keys(this.#result).forEach((rank) => {
-      this.#revenue += REVENUE[rank].revenue * this.#result[rank];
-    });
+    for (const [key, value] of Object.entries(this.#result)) {
+      this.#revenue += REVENUE[key].revenue * value;
+    }
     const revenuePercentage = (this.#revenue / this.#money) * 100;
     const roundNumber = Math.round(revenuePercentage * 10) / 10;
-    console.log(roundNumber);
     return roundNumber;
   }
 
