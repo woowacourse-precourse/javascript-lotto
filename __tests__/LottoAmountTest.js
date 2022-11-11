@@ -3,7 +3,7 @@ const LottoAmountDivideException = require("../src/exception/lotto/LottoAmountDi
 const LottoAmountLessException = require("../src/exception/lotto/LottoAmountLessException");
 const LottoAmountNotNumberException = require("../src/exception/lotto/LottoAmountNotNumberException");
 
-describe("로또 클래스 테스트", () => {
+describe("LottoAmount 클래스 테스트", () => {
   test("로또 금액이 조건에 만족하는 경우", () => {
     const amount = LottoAmount.from(1000).getValue();
     expect(amount).toEqual(1000);
