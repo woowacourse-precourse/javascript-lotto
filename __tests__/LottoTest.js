@@ -32,9 +32,15 @@ describe("로또 클래스 테스트", () => {
     expect(result).toHaveLength(6);
   });
 
-  test("오름차순 정렬이 되는지 확인하기", () => {
+  test("오름차순 정렬이 맞는지 확인하기", () => {
     const input = [1, 4, 10, 35, 43, 45];
     const result = lotto.sortArray(input);
     expect(result).toEqual(input);
+  });
+
+  test("뒤섞여있는 배열을 오름차순 정렬", () => {
+    const input = [1, 30, 41, 25, 11, 9];
+    const result = lotto.sortArray(input);
+    expect(result).toEqual([1, 9, 11, 25, 30, 41]);
   });
 });
