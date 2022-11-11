@@ -5,14 +5,15 @@ const convertAnswerIntoArray = (answer) => {
   return answer.split(',').map((item) => Number(item));
 };
 
-const printWinningResult = (winningArray) => {
+const printWinningResult = (winningArray, percentage) => {
   Console.print(
     MESSAGE.RESULT(
       winningArray[0],
       winningArray[1],
       winningArray[2],
       winningArray[3],
-      winningArray[4]
+      winningArray[4],
+      percentage
     )
   );
 };
