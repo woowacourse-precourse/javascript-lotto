@@ -25,7 +25,6 @@ class Result {
       if (currentScore == 6) this.score.six++;
     });
   }
-
   getScore(Lotto) {
     let count = 0;
     Lotto.lottoNumbers.forEach((num) => {
@@ -40,6 +39,19 @@ class Result {
     }
   }
 
+  getYeild() {
+    return parseFloat(
+      (
+        ((this.score.three * 5000 +
+          this.score.four * 50000 +
+          this.score.five * 1500000 +
+          this.score.fiveAndBonus * 30000000 +
+          this.score.six * 200000000) /
+          this.money) *
+        100
+      ).toFixed(2)
+    );
+  }
 }
 
 module.exports = Result;
