@@ -12,6 +12,12 @@ class App {
     this.lottos = [];
   }
 
+  setWinNumbers() {
+    Console.askUserInput(`\n${Console.ASK_WIN_NUMBER}`, (winningNumber) => {
+      this.winNumbers = winningNumber.split(",").map((number) => number * 1);
+    });
+  }
+
   printRandomLotto() {
     const LOTTO_COUNT = this.money / 1000;
     Console.printMessage(`\n${LOTTO_COUNT}${NUMBER_OF_LOTTO_PURCHASED}`);
@@ -19,9 +25,11 @@ class App {
       this.lottos.push(lotto);
       Console.printMessage(lotto);
     });
+
+    this.setWinNumbers();
   }
 
-  getUserQuantityOfLotto() {
+  setUserQuantityOfLotto() {
     Console.askUserInput(Console.ASK_BUY_LOTTO_AMOUNT, (input) => {
       if (/[^0-9]/g.test(input))
         throw new Error("[ERROR] 구입금액에 문자가 포함되어 있습니다.");
@@ -36,7 +44,7 @@ class App {
   }
 
   play() {
-    this.getUserQuantityOfLotto();
+    this.setUserQuantityOfLotto();
   }
 }
 
