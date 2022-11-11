@@ -70,10 +70,53 @@ describe('로또 클래스 테스트', () => {
   });
 
   describe('당첨 결과 메소드 테스트', () => {
+    const boughtLotto = [
+      [8, 21, 23, 41, 42, 43],
+      [3, 5, 11, 16, 32, 38],
+      [7, 11, 16, 35, 36, 44],
+      [1, 8, 11, 31, 41, 42],
+      [13, 14, 16, 38, 42, 45],
+      [7, 11, 30, 40, 42, 43],
+      [2, 13, 22, 32, 38, 45],
+      [1, 3, 5, 14, 22, 45]];
+    const prize = [1, 2, 3, 4, 5, 6];
+    const bonus = 7;
+
     test('메소드 이름은 "getLottoResult"로 정의된다.', () => {
       const METHOD_NAME = 'getLottoResult';
+      const lotto = new Lotto(boughtLotto);
 
-      expect(Lotto.getLottoResult.name).toEqual(METHOD_NAME);
+      expect(lotto.getLottoResult.name).toEqual(METHOD_NAME);
+    });
+
+    test('배열의 0번째 인덱스는 1 요소가 들어있다.', () => {
+      const lotto = new Lotto(boughtLotto);
+
+      expect(lotto.getLottoResult(prize, bonus)[0]).toEqual(1);
+    });
+
+    test('배열의 1번째 인덱스는 0 요소가 들어있다.', () => {
+      const lotto = new Lotto(boughtLotto);
+
+      expect(lotto.getLottoResult(prize, bonus)[1]).toEqual(0);
+    });
+
+    test('배열의 2번째 인덱스는 0 요소가 들어있다.', () => {
+      const lotto = new Lotto(boughtLotto);
+
+      expect(lotto.getLottoResult(prize, bonus)[2]).toEqual(0);
+    });
+
+    test('배열의 3번째 인덱스는 0 요소가 들어있다.', () => {
+      const lotto = new Lotto(boughtLotto);
+
+      expect(lotto.getLottoResult(prize, bonus)[3]).toEqual(0);
+    });
+
+    test('배열의 4번째 인덱스는 0 요소가 들어있다.', () => {
+      const lotto = new Lotto(boughtLotto);
+
+      expect(lotto.getLottoResult(prize, bonus)[4]).toEqual(0);
     });
   });
 });
