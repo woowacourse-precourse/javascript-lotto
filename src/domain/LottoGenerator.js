@@ -9,7 +9,7 @@ class LottoGenerator {
     this.isInputMoneyValid(money);
     this.money = money;
     this.numOfLottos = this.getNumOfLottos(money);
-    this.lottos = this.generateLottoNum(this.numOfLottos);
+    this.lottos = this.generateLottos(this.numOfLottos);
   }
 
   isInputMoneyValid(money) {
@@ -33,6 +33,7 @@ class LottoGenerator {
   }
 
   generateLottos(numOfLottos) {
+    console.log('개수', numOfLottos);
     let lottos = [];
     for (let i = 0; i < numOfLottos; i += 1) {
       const ONE_LOTTO_NUM = this.generateLottoNum();
