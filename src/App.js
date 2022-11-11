@@ -9,7 +9,7 @@ class App {
     // const lottoSetting = new LottoSetting();
     // MissionUtils.Console.readLine(INPUT.BUY, (price) => {
     //   myLotto.inputPurchasePrice(price);
-    //   lottoSetting.main();
+    //   lottoSetting.inputWinLottoNum();
     // });
   }
 }

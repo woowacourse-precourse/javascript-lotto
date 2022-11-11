@@ -6,11 +6,6 @@ class LottoSetting {
   #winLotto;
   #bonusNum;
 
-  main() {
-    this.inputWinLottoNum();
-    return;
-  }
-
   inputWinLottoNum() {
     Console.readLine(INPUT.WIN_NUMBER, (string) => {
       this.winNumToLottoClass(string);
