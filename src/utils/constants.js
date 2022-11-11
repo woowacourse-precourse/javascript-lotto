@@ -28,11 +28,11 @@ const ERROR = {
   NOT_SIX: "[ERROR] 로또 번호는 6개여야 합니다.",
 };
 
-MESSAGE.freeze();
-STATISTICS.freeze();
-ERROR.freeze();
+Object.freeze(MESSAGE);
+Object.freeze(STATISTICS);
+Object.freeze(ERROR);
 
-module.export = {
+module.exports = {
   NUMBER_COUNT,
   MIN_NUMBER,
   MAX_NUMBER,
