@@ -184,5 +184,19 @@ describe('로또 클래스 테스트', () => {
         expect(Lotto.isBonusMatche(target, BONUS)).toBeTruthy();
       });
     });
+
+    describe('6개 일치 파악 메소드', () => {
+      test('메소드 이름은 "isSixMatche"로 정의된다.', () => {
+        const METHOD_NAME = 'isSixMatche';
+
+        expect(Lotto.isSixMatche.name).toEqual(METHOD_NAME);
+      });
+
+      test('주어진 값이 6과 일치하면 true를 반환한다.', () => {
+        const COUNT = 6;
+
+        expect(Lotto.isSixMatche(COUNT)).toBeTruthy();
+      });
+    });
   });
 });
