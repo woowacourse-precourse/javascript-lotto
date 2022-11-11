@@ -13,7 +13,9 @@ const printMessage = {
   printLottos(LottosArray) {
     MissionUtils.Console.print(`${LottosArray.length}${MESSAGE.BUY_MESSAGE}`);
     LottosArray.forEach((Lotto) => {
-      MissionUtils.Console.print(Lotto.lottoNumbers);
+      MissionUtils.Console.print(
+        `[${String(Lotto.lottoNumbers).replace(/,/g, ', ')}]`
+      );
     });
   },
 
