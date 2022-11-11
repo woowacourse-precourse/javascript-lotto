@@ -62,7 +62,8 @@ class App {
   }
 
   winningResult() {
-    this.lotto.comapre(this.publishResult);
+    this.lotto.compare(this.publishResult);
+    this.printWinningResult();
   }
 }
 
