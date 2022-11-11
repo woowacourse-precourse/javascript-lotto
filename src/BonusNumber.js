@@ -9,6 +9,13 @@ class BonusNumber{
     });
     return bonusNumber;
   }
+
+  lottoBonusNumberDuplicationCheck(lottoWinningNumber, bonusNumber) {
+    if (!lottoWinningNumber.includes(bonusNumber)) {
+      return bonusNumber;
+    }
+    return -1;
+  }
 }
 
 module.exports = BonusNumber;
