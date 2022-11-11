@@ -180,4 +180,22 @@ describe("입력받은 당첨 번호가 유효한 입력인지 검사한다.", (
       App.makeNumberArray(["1 0", "3 0", "2 2", "4 4", "5 8"]);
     }).toThrow(ERROR.IS_NAN);
   });
+
+  test("배열 요소 중 연속된 숫자의 앞뒤에 있는 공백은 제거한 후 숫자 배열을 반환한다.", () => {
+    expect(App.makeNumberArray([" 1", "2", "3  ", "4 ", " 5  "])).toEqual([
+      1, 2, 3, 4, 5,
+    ]);
+    expect(App.makeNumberArray(["  1", "  2", "  3", "  4", "  5"])).toEqual([
+      1, 2, 3, 4, 5,
+    ]);
+    expect(App.makeNumberArray(["1  ", "2  ", "3  ", "4  ", "5  "])).toEqual([
+      1, 2, 3, 4, 5,
+    ]);
+    expect(App.makeNumberArray([" 1 ", " 2 ", " 3 ", " 4 ", " 5 "])).toEqual([
+      1, 2, 3, 4, 5,
+    ]);
+    expect(
+      App.makeNumberArray([" 12 ", " 23 ", " 32 ", " 41 ", " 45 "])
+    ).toEqual([12, 23, 32, 41, 45]);
+  });
 });
