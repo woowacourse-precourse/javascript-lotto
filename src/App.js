@@ -33,7 +33,7 @@ class App {
     MissionUtils.Console.readLine("", (answer) => {
       const WINNING_NUMBERS = this.convertSixInputsToNumbers(answer);
       const WON_LOTTO = new Lotto(WINNING_NUMBERS); // 당첨 번호를 담은 로또 객체
-      // TODO: 보너스 번호 입력
+      this.getInputBonusNumber(lottos, cost, WON_LOTTO);
     })
   }
 
@@ -45,7 +45,11 @@ class App {
 
       const PRIZE_INFORMATION = new PrizeInformation();
       this.compareMyLottosWithWinningNumbers(lottos, WON_LOTTO, BONUS, PRIZE_INFORMATION);
-      // TODO: 당첨 통계 출력 후 수익률 계산
+      PRIZE_INFORMATION.printPrizes(); // 당첨 통계 출력
+
+      const INCOME_RATE = this.getIncomeRate(cost, PRIZE_INFORMATION);
+      this.printIncomeRate(INCOME_RATE);
+      MissionUtils.Console.close();
     })
   }
 
