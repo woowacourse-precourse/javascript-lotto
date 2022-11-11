@@ -9,6 +9,7 @@ class App {
   #winningNumber;
   #bonusNumber;
   #result;
+  #revenue;
 
   constructor() {
     this.#money = 0;
@@ -20,6 +21,7 @@ class App {
       '5B': 0,
       6: 0,
     };
+    this.#revenue = 0;
   }
 
   #validate(money) {
@@ -61,6 +63,15 @@ class App {
     }
   }
 
+  #getRevenue() {
+    Object.keys(this.#result).forEach((rank) => {
+      this.#revenue += REVENUE[rank].revenue * this.#result[rank];
+    });
+    const revenuePercentage = (this.#revenue / this.#money) * 100;
+    const roundNumber = Math.round(revenuePercentage * 10) / 10;
+    return roundNumber;
+  }
+
   #printResult() {
     MissionUtils.Console.print('당첨 통계');
     MissionUtils.Console.print('---');
@@ -70,6 +81,8 @@ class App {
         `${REVENUE[rank].message} - ${this.#result[rank]}개`,
       );
     });
+    MissionUtils.Console.print(`총 수익률은 ${this.#getRevenue()}%입니다.`);
+    MissionUtils.Console.close();
   }
 
   #matchLotto() {
