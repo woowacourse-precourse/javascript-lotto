@@ -33,7 +33,7 @@ class LottoAmount {
   }
 
   getLottoCount() {
-    
+    return this.#value / LottoAmount.#LOTTO_PRICE;
   }
 }
 
