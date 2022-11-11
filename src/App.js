@@ -54,6 +54,18 @@ class App {
       this.bonusNumber = parseInt(bonusNumber, 10);
     });
   }
+  calculateUserWinningNumberCount(lottoNumbers) {
+    const userWinningNumberCount = lottoNumbers.filter((number) =>
+      this.winningNumber.includes(number)
+    ).length;
+    if (
+      userWinningNumberCount === 5 &&
+      lottoNumbers.includes(this.bonusNumber)
+    ) {
+      return 'bonus';
+    }
+    return userWinningNumberCount;
+  }
 }
 
 const app = new App();
