@@ -27,7 +27,7 @@
 
 # 📝 기능 목록
 
-## [&nbsp; ] 구입 금액 입력받기 - `LottoMachine`.inputMoney()
+## [✅] 구입 금액 입력받기 - `LottoMachine`.inputMoney()
 1,000원 단위로 구입 금액을 입력받는다.
 
 **MissionUtils 라이브러리**에서 제공하는 `Console.readLine()`를 활용하여 사용자에게 구입 금액을 입력받는다.  
