@@ -21,5 +21,13 @@ class CorrectLotto {
     });
     return this.#count; // ex [0, 2, 0, 1, 0, 0, 1, 3]
   }
+  haveBonus() {
+    this.haveCorrect();
+    let bonusArr;
+    if (this.#count.includes(5))
+      bonusArr = this.#lottoArr[this.#count.indexOf(5)];
+
+    return bonusArr.includes(Number(this.#bonus));
+  }
 }
 module.exports = CorrectLotto;
