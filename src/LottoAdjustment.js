@@ -1,3 +1,13 @@
+const { Console } = require('@woowacourse/mission-utils');
+
+const LOTTO_AMOUNT = Object.freeze([
+  5000,
+  50000,
+  1500000,
+  30000000,
+  2000000000,
+]);
+
 class LottoAdjustment {
   #scoreBoard;
 
@@ -6,6 +16,14 @@ class LottoAdjustment {
     this.payment = payment;
 
     this.#scoreBoard = [0, 0, 0, 0, 0];
+  }
+
+  print() {
+    this.#compareLotto()
+      .#template()
+      .forEach(sentence => Console.print(sentence));
+
+    Console.close();
   }
 
   #matchLottoFor(lottoToBuy) {
@@ -34,7 +52,7 @@ class LottoAdjustment {
     }
   }
 
-  matchLottoCount() {
+  #compareLotto() {
     [...this.payment.getBuyAt()]
       .map(lottoToBuy => [
         this.#matchLottoFor(lottoToBuy),
@@ -43,12 +61,33 @@ class LottoAdjustment {
       .forEach(([lottoCount, bonusCount]) => {
         this.#setScoreToMatch([lottoCount, bonusCount]);
       });
+
+    return this;
   }
 
-  calculate() {
-    this.matchLottoCount();
+  #getIncome() {
+    const result = String(
+      Math.round(
+        (LOTTO_AMOUNT.reduce((acc, moneyUnit, index) => {
+          return acc + moneyUnit * this.#scoreBoard[index];
+        }, 0) /
+          this.payment.getLottoPayment()) *
+          1000,
+      ),
+    ).split('');
+    result.splice(result.length - 1, 0, '.');
+    return result.join('');
+  }
 
-    return this.#scoreBoard;
+  #template() {
+    return [
+      `3개 일치 (5,000원) - ${this.#scoreBoard[0]}개`,
+      `4개 일치 (50,000원) - ${this.#scoreBoard[1]}개`,
+      `5개 일치 (1,500,000원) - ${this.#scoreBoard[2]}개`,
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.#scoreBoard[3]}개`,
+      `6개 일치 (2,000,000,000원) - ${this.#scoreBoard[4]}개`,
+      `총 수익률은 ${this.#getIncome()}%입니다.`,
+    ];
   }
 }
 
