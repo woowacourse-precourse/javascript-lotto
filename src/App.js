@@ -67,8 +67,10 @@ class App {
         break;
       case 5:
         this.#result['5개 일치 (1,500,000원)'] += 1;
+        break;
       case 6:
         this.#result['6개 일치 (2,000,000,000원)'] += 1;
+        break;
       default:
         null;
     }
