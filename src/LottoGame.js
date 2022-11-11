@@ -13,7 +13,7 @@ class LottoGame {
   }
 
   purchaseLottoPhase() {
-    this.LottoGameView.requestInput(REQUEST_MESSAGE.PURCHASE_AMOUNT, this.purchaseLotto);
+    this.LottoGameView.requestInput(REQUEST_MESSAGE.PURCHASE_AMOUNT, this.purchaseLotto.bind(this));
   }
   purchaseLotto(purchaseAmount) {
     Validation.validatePurchaseAmount(purchaseAmount);
