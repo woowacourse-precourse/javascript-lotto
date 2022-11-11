@@ -6,11 +6,13 @@ class App {
   constructor(){
     this.Lotto = new Lotto()
     this.Lottobuynumber = [];
+    this.Winnumber = ''
   }
   play() {
     MissionUtils.Console.readLine(Notice.INPUT_MONEY,(money) => {
       this.inputMoneyValidate(money)
       this.makeRandomnumber(money)
+      this.inputLottoNumber()
     });
   }
   inputMoneyValidate(money){
@@ -27,6 +29,16 @@ class App {
       this.Lotto.validate(RandomNumber);
       this.Lottobuynumber.push(`${RandomNumber}`)
     }
+  }
+  inputLottoNumber(){
+    MissionUtils.Console.readLine(Notice.INPUT_LOTTO,(numbers) => {
+      this.setWinNumber(numbers)
+    });
+  }
+  setWinNumber(numbers){
+    numbers = numbers.split(',')
+    this.Lotto.validate(numbers)
+    this.Winnumber = numbers
   }
 }
 
