@@ -5,6 +5,7 @@ class App {
   constructor() {
     this.myMoney;
     this.winningNumbers;
+    this.bonusNumber;
     this.myLottos = [];
   }
 
@@ -55,7 +56,18 @@ class App {
   requestBonusNumberInput() {
     Console.readLine('\n보너스 번호를 입력해 주세요.\n', (input) => {
       const number = Number(input);
+      this.validateBonusNumber(number);
+      this.bonusNumber = number;
     });
+  }
+
+  validateBonusNumber(number) {
+    if (Number.isNaN(number) || number < 1 || number > 45) {
+      throw new Error('[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.');
+    }
+    if (this.winningNumbers.includes(number)) {
+      throw new Error('[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.');
+    }
   }
 }
 
