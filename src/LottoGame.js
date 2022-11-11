@@ -30,6 +30,8 @@ class LottoGame {
     this.createLottos(lottoQuantity);
     this.LottoGameView.printLottoQuantity(lottoQuantity);
     this.LottoGameView.printEachLottoNumbers(this.lottos);
+
+    this.saveWinningNumbersPhase();
   }
 
   getLottoQuantity(purchaseAmount) {
@@ -45,6 +47,10 @@ class LottoGame {
 
       return new Lotto(ascendingNumbers);
     });
+  }
+
+  saveWinningNumbersPhase() {
+    this.LottoGameView.requestInput(REQUEST_MESSAGE.WINNING_NUMBERS, (winningNumbers) => {});
   }
 }
 
