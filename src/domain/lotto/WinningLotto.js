@@ -1,15 +1,20 @@
+const WinningLottoDuplicatedException = require('../../exception/lotto/WinningLottoDuplicatedException');
 const Lotto = require('./Lotto');
+const LottoNumber = require('./LottoNumber');
 
 class WinningLotto extends Lotto {
   #bonusNumber;
 
   constructor(numbers, bonusNumber) {
     super(numbers);
-    this.#bonusNumber = bonusNumber;
+    WinningLotto.validate(numbers, bonusNumber);
+    this.#bonusNumber = LottoNumber.of(bonusNumber);
   }
 
   static validate(numbers, bonusNumber) {
-
+    if (numbers.includes(bonusNumber)) {
+      throw new WinningLottoDuplicatedException(bonusNumber);
+    }
   }
 
   static of(numbers, bonusNumber) {
