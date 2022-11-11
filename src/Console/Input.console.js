@@ -1,7 +1,8 @@
 const Console = require('./Console');
+const { INPUT } = require('../Resource/String');
 
 class InputConsole {
-  static getMoney = () => Console.Input('구입금액을 입력해 주세요.');
+  static getMoney = () => Console.Input(INPUT.GET_MONEY);
 }
 
 export default InputConsole;
