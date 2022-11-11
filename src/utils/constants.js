@@ -12,6 +12,10 @@ const CONSOLE_MESSAGE = {
   lottoResult: '당첨 통계\n---',
 };
 
+const RESULT_MESSAGE = {
+  purchase: (input) => `${input}개를 구매했습니다.`,
+}
+
 const ERROR_MESSAGE = {
   nonDigitInput: '[ERROR] 숫자만 입력해 주세요',
   inValidUnitOfMoney: '[ERROR] 구매 금액은 1,000 단위로 입력해 주세요',
@@ -25,5 +29,6 @@ const ERROR_MESSAGE = {
 module.exports = {
   PARAMETERS,
   CONSOLE_MESSAGE,
+  RESULT_MESSAGE,
   ERROR_MESSAGE,
 };
