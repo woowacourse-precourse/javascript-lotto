@@ -48,7 +48,7 @@ class App {
     let count = 0;
     const tokens = [];
     while (count < number) {
-      tokens.push(this.pickRandomNumbers());
+      tokens.push(this.pickRandomNumbers().sort((a, b) => a - b));
       count += 1;
     }
     return tokens;
