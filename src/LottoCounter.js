@@ -12,14 +12,14 @@ class LottoCounter {
   }
 
   isValidCash(cash) {
+    if (Number.isNaN(Number(cash))) {
+      throw ERROR.MUST_BE_NUMBER;
+    }
     if (cash < NUMBER.INPUT_UNITS) {
       throw ERROR.MUST_INPUT_MORE_THAN_1000;
     }
     if (cash % NUMBER.INPUT_UNITS !== 0) {
       throw ERROR.MUST_BE_1000_UNIT;
-    }
-    if (Number(cash) === NaN) {
-      throw ERROR.MUST_BE_NUMBER;
     }
 
     return true;
