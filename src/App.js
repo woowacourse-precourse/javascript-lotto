@@ -26,7 +26,7 @@ class App {
 
     //문자가 섞여있지 않은지 검사
     if (trimmedInput.match(RegExp(/([^0-9])/g)) !== null) {
-      throw new Error(ERROR.INVALID_INPUT);
+      throw new Error(ERROR.ONLY_NUMBER);
     }
 
     //금액이 1000으로 나눠떨어지는지 검사

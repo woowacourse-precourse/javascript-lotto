@@ -7,7 +7,7 @@ const MESSAGE = {
   ENTER_PURCHASE_AMOUNT: "구입금액을 입력해 주세요.\n",
   ENTER_WINNING_NUMBERS: "당첨 번호를 입력해 주세요.\n",
   ENTER_BONUS_NUMBER: "보너스 번호를 입력해 주세요.\n",
-  NUMBER_OF_PURCHASE: (count) => `${count}개를 구매했습니다.`,
+  QUANTITY_OF_PURCHASE: (count) => `${count}개를 구매했습니다.`,
 };
 
 const STATISTICS = {
@@ -24,7 +24,7 @@ const STATISTICS = {
 const ERROR = {
   OUT_OF_RANGE: "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.",
   DUPLICATED: "[ERROR] 로또 번호는 중복된 숫자가 없어야 합니다.",
-  INVALID_INPUT: "[ERROR] 잘못된 입력입니다.",
+  ONLY_NUMBER: "[ERROR] 잘못된 입력입니다.",
   INDIVISIBLE: "[ERROR] 구입금액은 1000원으로 나누어 떨어져야 합니다.",
   NOT_SIX: "[ERROR] 로또 번호는 6개여야 합니다.",
 };
