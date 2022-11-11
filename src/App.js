@@ -3,6 +3,7 @@ const {
   QUESTION_MESSAGE,
   ERROR_MESSAGE,
   BUY_MESSAGE,
+  WIN_MESSAGE,
 } = require('./libs/const');
 const Lotto = require('./Lotto');
 
@@ -20,10 +21,7 @@ class App {
   };
 
   play() {
-    // this.start();
-    // this.setPrizeNumber();
-    console.log(this.getRanking(3, false));
-    console.log(this.#ranking.fifth);
+    this.start();
   }
 
   start() {
@@ -42,6 +40,7 @@ class App {
       Console.print(stringArray);
       this.#totalLotto.push(lottoArray);
     }
+    this.setPrizeNumber();
   }
 
   convertFromArrayToString(array) {
@@ -62,16 +61,17 @@ class App {
   }
 
   setPrizeNumber() {
-    Console.readLine(QUESTION_MESSAGE.prize, numbers => {
-      if (numbers.includes(',') === false) throw new Error(ERROR_MESSAGE.comma);
-      const prizeNumberArray = numbers.split(',').map(item => item.trim());
+    Console.readLine(QUESTION_MESSAGE.prize, userInput => {
+      if (userInput.includes(',') === false)
+        throw new Error(ERROR_MESSAGE.comma);
+      const prizeStringArray = userInput.split(',').map(item => item.trim());
+      const prizeNumberArray = prizeStringArray.map(item => Number(item));
       const set = new Set();
-      prizeNumberArray.forEach(item => {
-        const number = Number(item);
+      prizeNumberArray.forEach(number => {
         if (this.isRange(number) === false) {
           throw new Error(ERROR_MESSAGE.range);
         }
-        set.add(item);
+        set.add(number);
       });
       const isOverlap = set.size !== prizeNumberArray.length;
 
@@ -85,15 +85,22 @@ class App {
   }
 
   setBonusNumber() {
-    Console.readLine(QUESTION_MESSAGE.bonus, number => {
+    Console.readLine(QUESTION_MESSAGE.bonus, userInput => {
+      const number = Number(userInput);
+      if (userInput.includes(',') === true)
+        throw new Error(ERROR_MESSAGE.manyInputBonus);
       if (this.#userPrizeNumber.includes(number) === true)
         throw new Error(ERROR_MESSAGE.overlapBonus);
-      if (number.includes(',') === true)
-        throw new Error(ERROR_MESSAGE.manyInputBonus);
       if (this.isRange(number) === false) {
         throw new Error(ERROR_MESSAGE.range);
       }
       this.#userBonusNumber = number;
+      this.#totalLotto.forEach(item => {
+        const matchCount = this.getPrizeMatch(item, this.#userPrizeNumber);
+        const isBonus = this.getBonusMatch(item, this.#userBonusNumber);
+        this.getRanking(matchCount, isBonus);
+      });
+      this.printWinner();
     });
   }
 
@@ -124,6 +131,20 @@ class App {
     if (matchNumber === 5 && isBonus === false) this.#ranking.third += 1;
     if (matchNumber === 5 && isBonus === true) this.#ranking.second += 1;
     if (matchNumber === 6) this.#ranking.first += 1;
+  }
+
+  printUtil(message, count) {
+    Console.print(`${message}${count}${WIN_MESSAGE.some}`);
+  }
+
+  printWinner() {
+    Console.print(WIN_MESSAGE.statistics);
+    Console.print(WIN_MESSAGE.divideLine);
+    this.printUtil(WIN_MESSAGE.fifth, this.#ranking.fifth);
+    this.printUtil(WIN_MESSAGE.fourth, this.#ranking.fourth);
+    this.printUtil(WIN_MESSAGE.third, this.#ranking.third);
+    this.printUtil(WIN_MESSAGE.second, this.#ranking.second);
+    this.printUtil(WIN_MESSAGE.first, this.#ranking.first);
   }
 }
 
