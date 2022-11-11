@@ -51,5 +51,9 @@ describe('로또 클래스 테스트', () => {
     test('8000을 전달하면 배열 8개를 반환한다.', () => {
       expect(Lotto.buyLotto('8000')).toHaveLength(8);
     });
+
+    test('요소의 길이는 6이다.', () => {
+      expect(Lotto.buyLotto('8000')[0]).toHaveLength(6);
+    });
   });
 });
