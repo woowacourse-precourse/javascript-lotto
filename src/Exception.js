@@ -1,20 +1,14 @@
 class Exception {
-    constructor(money, type) {
-        this.money = money;
-        this.type = type;
-    }
-
-    checkInputException() {
-        if (this.type === 'unit') {
-            return this.isThousand(this.money);
-        }
-    }
-
     isThousand(money) {
         if (+money / 1000 !== Math.floor(+money / 1000))
             throw new Error('[ERROR] 천원 단위의 숫자를 입력해주세요.');
 
         return true;
+    }
+    isSix(lotto) {
+        const length = lotto.length;
+        if (length !== 6)
+            throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
     }
 }
 

@@ -17,8 +17,8 @@ class App {
     /** @typedef {'unit'} type */
     /** @type {function (string, type) : void} */
     verification(input, type) {
-        const exception = new Exception(input, type);
-        exception.checkInputException();
+        const exception = new Exception();
+        if (type === 'unit') exception.isThousand(input);
     }
 }
 
