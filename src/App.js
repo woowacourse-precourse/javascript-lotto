@@ -42,21 +42,21 @@ class App {
   renderIssuedLottoList(lottoCount) {
     Render.issuedLottoList(lottoCount, this.userLottos);
 
-    this.getWinningNumbers();
+    this.askWinningNumbers();
   }
 
-  getWinningNumbers() {
+  askWinningNumbers() {
     Console.print(MESSAGE.ASK_WINNING_NUM);
     Console.readLine(MESSAGE.NULL, (inputValue) => {
       Validator.throwErrorIfInvalidFormOfWinningNumber(inputValue);
       const winningNumbers = inputValue.split(',').map((num) => Number(num));
       this.lotto = new Lotto(winningNumbers);
 
-      this.getBonusNumber(winningNumbers);
+      this.askBonusNumber(winningNumbers);
     });
   }
 
-  getBonusNumber(winningNumbers) {
+  askBonusNumber(winningNumbers) {
     Console.print(MESSAGE.ASK_BONUS_NUMBER);
     Console.readLine(MESSAGE.NULL, (bonusNumber) => {
       Validator.throwErrorIfInvalidBonusNumber(winningNumbers, bonusNumber);
