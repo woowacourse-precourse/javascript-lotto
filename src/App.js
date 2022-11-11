@@ -1,4 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+const userInput = require('./Input');
 const Lotto = require('./Lotto');
 const Output = require('./Output');
 
@@ -10,7 +11,9 @@ class App {
     this.print = new Output();
   }
 
-  play() {}
+  play() {
+    userInput.call(this, this.getLottos, () => {}, () => {}, () => {})
+  }
 
   getLottos(money) {
     this.validMoney(parseInt(money));
@@ -43,6 +46,6 @@ class App {
 }
 
 const app = new App();
-app.getLottos(8000)
+app.play()
 
 module.exports = App;
