@@ -1,13 +1,13 @@
 const { Console } = require("@woowacourse/mission-utils");
-const UserInputs = require('./UserInputs');
+const LottoHandler = require('./utils/LottoHandler');
 
 class App {
   constructor() {
-    this.UserInputs = new UserInputs();
+    this.LottoHandler = new LottoHandler();
   }
 
   play() {
-    this.UserInputs.getPrice();
+    this.LottoHandler.getPrice();
   }
 
 }

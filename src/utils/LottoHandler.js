@@ -1,18 +1,22 @@
 const { Console } = require("@woowacourse/mission-utils");
-const Price = require('./Price');
+const { MESSAGE } = require('./Constants');
+const Price = require('../check-avilable/Price');
+const Lotto = require('../check-avilable/Lotto');
 const MakeLottos = require('./MakeLottos');
-const PrintResults = require('./PrintResults');
+const PrintResults = require('../print/PrintResults');
 
 
-class UserInputs {
+class LottoHandler {
   constructor() {
     this.printResults = new PrintResults();
     this.price = 0;
     this.lottoList = [];
+    this.amount = 0;
+    this.answerNumber = [];
   }
 
   getPrice() {
-    Console.readLine('구입금액을 입력해 주세요.\n', (answer) => {
+    Console.readLine(MESSAGE.PRICE, (answer) => {
       new Price(answer);
       this.price = answer;
       this.makeLottos();
@@ -29,7 +33,15 @@ class UserInputs {
 
   printLottoLists() {
     this.printResults.printLotto(this.amount,this.lottoList)
+    // this.getLottoAnswerNumber()
   }
+
+  // getLottoAnswerNumber() {
+  //   Console.readLine(MESSAGE.ANSWER, (answer) => {
+  //     new Lotto(answer);
+  //     this.answerNumber = answer;
+  //   });
+  // };
   
   // getAnswerNumber() {
   //   Console.readLine('여기여기.\n', (answer) => {
@@ -41,4 +53,4 @@ class UserInputs {
 
 }
 
-module.exports = UserInputs;
+module.exports = LottoHandler;

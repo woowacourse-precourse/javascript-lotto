@@ -9,9 +9,15 @@ class MakeLottos {
   makeNewLottos(amount) {
     let arr = []
     for (let i = 0 ; i < amount ; i++) {
-      arr.push((Random.pickUniqueNumbersInRange(1, 45, 6)));
+      arr.push(this.sortLotto(Random.pickUniqueNumbersInRange(1, 45, 6)));
     }
     return arr
+  };
+
+  sortLotto(lottoNumbers) {
+    return lottoNumbers.sort(function(a, b)  {
+      return a - b;
+    });
   }
 
 }
