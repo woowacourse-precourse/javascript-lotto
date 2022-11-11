@@ -12,4 +12,24 @@ describe("게임 유틸 클래스 테스트", () => {
       expect(lottos[i].objectName).toEqual("Lotto");
     }
   });
-});
+
+  test("getRank는 로또 번호와 당첨 번호, 보너스 번호를 입력하면 등수를 반환한다.", () => {
+    const lottos = [
+      [1, 2, 3, 4, 5, 6],
+      [1, 7, 3, 4, 5, 6],
+      [1, 8, 3, 4, 5, 6],
+      [1, 8, 9, 4, 5, 6],
+      [1, 8, 9, 10, 5, 6],
+      [1, 8, 9, 10, 11, 6],
+      [1, 8, 9, 10, 11, 12],
+    ];
+    const winningNumber = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+    const ranks = [1, 2, 3, 4, 5, undefined, undefined];
+
+    lottos.forEach((lotto, i) => {
+      expect(GameUtils.getRank(lotto, winningNumber, bonusNumber)).toEqual(
+        ranks[i]
+      );
+    });
+  });
