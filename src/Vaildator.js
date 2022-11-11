@@ -23,6 +23,11 @@ class Vaildator {
   static isDuplicateNumberInArray(array, number) {
     return array.includes(number);
   }
+
+  static isUniqueElementArray(array) {
+    const set = new Set(array);
+    return set.size === array.length;
+  }
 }
 
 module.exports = Vaildator;
