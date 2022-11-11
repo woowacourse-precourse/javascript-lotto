@@ -44,3 +44,6 @@
 
 ### 돈을 1000원 단위로 나눠 몫 만들기
 - divideMoney
+
+### 형식대로 로또번호 보여주기
+- showLottoArrays
