@@ -37,8 +37,11 @@ class LottoGame {
     return Random.pickUniqueNumbersInRange(LOTTO_NUM_MIN_RANGE, LOTTO_NUM_MAX_RANGE, LOTTO_DIGITS);
   }
   createLottos(lottoQuantity) {
-    const lottoNumbers = this.generateLottoNumbers();
-    this.lottos = Array.from({ length: lottoQuantity }, () => new Lotto(lottoNumbers));
+    this.lottos = Array.from({ length: lottoQuantity }, () => {
+      const lottoNumbers = this.generateLottoNumbers();
+
+      return new Lotto(lottoNumbers);
+    });
   }
 }
 
