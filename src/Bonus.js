@@ -7,10 +7,6 @@ class Bonus {
   }
 
   validate(bonus, winningNumbers) {
-    if (bonus.length !== 1) {
-      throw new Error('[ERROR] 보너스 번호의 길이는 1이어야 합니다.');
-    }
-
     if (winningNumbers.includes(bonus)) {
       throw new Error('[ERROR] 보너스 번호와 당첨 번호가 중복되었습니다.');
     }
