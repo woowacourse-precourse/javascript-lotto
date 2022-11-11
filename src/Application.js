@@ -22,6 +22,10 @@ class Application {
 
     return (this.convertNumber(earnings) / this.convertNumber(purchaseAmount)) * HUNDRED;
   }
+
+  static sortAscending(target) {
+    return target.sort((targetA, targetB) => targetA - targetB);
+  }
 }
 
 module.exports = Application;
