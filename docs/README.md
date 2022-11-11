@@ -59,6 +59,7 @@
 - [x] `로또 생성 기능 테스트`
 
   - LottoGame.createLottos 메서드 테스트 완료
+  - Lotto 클래스 테스트 완료
 
 - [ ] `Application 테스트 완료`
 
