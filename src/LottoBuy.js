@@ -37,6 +37,10 @@ class LottoBuy {
     });
     return;
   }
+
+  getMyLottos() {
+    return this.#lottos;
+  }
 }
 
 module.exports = LottoBuy;

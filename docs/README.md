@@ -26,6 +26,7 @@
 - [x] 로또를 발행하는 기능 - createMyLottos
 - [x] 발행된 로또를 출력하는 기능 - printLottos
   - Lotto 클래스를 받고 출력
+- [x] 로또 목록을 반환하는 기능 - getMyLottos
 
 로또 당첨번호 설정#LottoSetting
 
