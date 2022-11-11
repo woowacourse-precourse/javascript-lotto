@@ -115,6 +115,14 @@ class App {
 
     return Math.round(INCOME_RATE * 10) / 10; // 소수점 둘째 자리에서 반올림
   }
+
+  /**
+   * 계산한 총 수익률을 출력하는 함수
+   * @param {number} incomeRate 총 수익률
+   */
+  printIncomeRate(incomeRate) {
+    MissionUtils.Console.print(`총 수익률은 ${incomeRate}입니다.`);
+  }
 }
 
 module.exports = App;
