@@ -6,6 +6,8 @@ const { Console, Random } = require('@woowacourse/mission-utils');
 class Machine {
   #money;
 
+  #winningNumbers;
+
   constructor() {
     this.user = new User();
     this.#money = 0;
@@ -18,7 +20,7 @@ class Machine {
     return true;
   }
 
-  #getMoney(cb) {
+  getMoney(cb) {
     Console.readLine('구입금액을 입력해주세요.\n', (answer) => {
       this.#money = Number(answer);
       this.#checkAmount();
@@ -36,10 +38,17 @@ class Machine {
       const lotto = new Lotto(numbers);
       this.user.lottos.push(lotto);
     }
+    this.#getWinningNumbers(() => console.log('test'));
+  }
+
+  #getWinningNumbers(cb) {
+    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (answer) => {
+      this.#winningNumbers = answer.split(',').map((number) => Number(number));
+    });
   }
 
   sell() {
-    this.#getMoney(this.#printLotto.bind(this));
+    this.getMoney(this.#printLotto.bind(this));
   }
 }
 
