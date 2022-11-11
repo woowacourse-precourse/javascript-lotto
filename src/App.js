@@ -6,10 +6,10 @@ class App {
     this.lottoCount = 0;
   }
 
-  play() {
-    this.getInputMoney().then((input) => {
-      this.lottoCount = this.getLottoCount(input);
-    });
+  async play() {
+    try {
+      let input = await this.getInputMoney();
+    } catch (e) {}
   }
 
   getInputMoney() {
@@ -29,18 +29,6 @@ class App {
     if (input === "") return false;
     if (/[\D]/.test(input)) return false;
     else return true;
-  }
-
-  getLottoCount(input) {
-    return input / 1000;
-  }
-
-  setLottoCount(count) {
-    this.lottoCount = count;
-  }
-
-  showLottoCount() {
-    Console.print("발행된 로또", this.lottoCount);
   }
 }
 
