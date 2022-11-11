@@ -1,5 +1,5 @@
 class AbstractLottoWinning {
-  matchedNumberCount;
+  lottoNumberCount;
   winningMoney;
   printer;
 
@@ -9,7 +9,7 @@ class AbstractLottoWinning {
 
   printCount() {
     this.printer
-      .setMatchedNumberCount(String(this.matchedNumberCount))
+      .setLottoNumberCount(String(this.lottoNumberCount.getLottoNumberCount()))
       .setWinningMoney(this.winningMoney.addSeperator())
       .setMatchedLottoCount(String(this.count()))
       .print();
