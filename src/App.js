@@ -2,6 +2,7 @@ const LottoCounter = require('./LottoCounter');
 const NumberGenerator = require('./NumberGenerator');
 const Lotto = require('./Lotto');
 const MissionUtils = require('@woowacourse/mission-utils');
+const { MESSAGE } = require('./utils/constants');
 
 class App {
   #countOfLotto;
@@ -18,7 +19,7 @@ class App {
   }
 
   inputCash() {
-    MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (input) => {
+    MissionUtils.Console.readLine(MESSAGE.INPUT_CASH, (input) => {
       this.lottoCounter = new LottoCounter(input);
       this.countOfLotto = this.lottoCounter.getCountOfLotto();
       this.makeLotto();
@@ -41,7 +42,7 @@ class App {
 
   printLottos() {
     MissionUtils.Console.print('');
-    MissionUtils.Console.print(`${this.countOfLotto}개를 구매했습니다.`);
+    MissionUtils.Console.print(this.countOfLotto + MESSAGE.PURCHASE_LOTTO);
     this.lottos.map((lotto) => MissionUtils.Console.print(lotto));
     MissionUtils.Console.print('');
 
@@ -49,7 +50,7 @@ class App {
   }
 
   inputNumbersOfFirstPlace() {
-    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (input) => {
+    MissionUtils.Console.readLine(MESSAGE.INPUT_NUMBERS, (input) => {
       input = input.split(',').map((num) => Number(num));
       let newLotto = new Lotto(input);
       this.firstPlaceLotto = newLotto.getLottoNumbers();

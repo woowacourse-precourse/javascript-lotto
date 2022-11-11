@@ -7,4 +7,10 @@ const NUMBER = {
   INPUT_UNITS: 1000,
 };
 
-module.exports = { ERROR, NUMBER };
+const MESSAGE = {
+  INPUT_CASH: '구입금액을 입력해 주세요.\n',
+  PURCHASE_LOTTO: '개를 구매했습니다.',
+  INPUT_NUMBERS: '당첨 번호를 입력해 주세요.\n',
+};
+
+module.exports = { ERROR, NUMBER, MESSAGE };
