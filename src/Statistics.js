@@ -42,5 +42,20 @@ class Statistics {
     if (numbers.includes(Number(this.bonusNumber))) return 5;
     return 4;
   }
+
+  printLottoResult(totalRankingArr) {
+    const prizeMoneyArr = ["5,000", "50,000", "1,500,000", "30,000,000", "2,000,000,000"];
+    const rankingArr = [2, 3, 4, 5, 6];
+    return totalRankingArr.map((lotto, index) => {
+      if (index === 3) {
+        return MissionUtils.Console.print(
+          `${rankingArr[index]}개 일치, 보너스 볼 일치 (${prizeMoneyArr[index]}원) - ${lotto}개`
+        );
+      }
+      return MissionUtils.Console.print(
+        `${rankingArr[index]}개 일치 (${prizeMoneyArr[index]}원) - ${lotto}개`
+      );
+    });
+  }
 }
 module.exports = Statistics;

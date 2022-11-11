@@ -59,6 +59,8 @@ class App {
   getStatisticsAboutLotto() {
     MissionUtils.Console.print("\n당첨 통계\n---");
     const statistics = new Statistics(this.totalLottoNumber, this.winnerNumber, this.bonusNumber);
+    const totalRankingArr = statistics.getTotalRankingArr();
+    statistics.printLottoResult(totalRankingArr);
   }
 }
 
