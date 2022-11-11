@@ -7,6 +7,7 @@ const Result = require('./Result');
 
 class App {
   lottos = [];
+  money;
   winLotto;
   bonusNumber;
 
@@ -21,6 +22,7 @@ class App {
   }
 
   getLottosByMoney(money) {
+    this.money = money;
     this.checkMoney(money);
     const lottoNums = money / 1000;
     for (let x = 0; x < lottoNums; x++) {
