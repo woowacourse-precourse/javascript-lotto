@@ -5,6 +5,7 @@ const MESSAGES = {
   ERROR: {
     isBlank: '공백이 아닌 값을 입력해주세요!',
     isNotNumber: '숫자를 입력해주세요!',
+    hasBlank: '공백이 없는 숫자를 입력해주세요!',
   },
 }
 
