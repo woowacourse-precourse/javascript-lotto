@@ -4,7 +4,7 @@ class Calculator {
   }
 
   static toFixedNumber(number) {
-    return number.toFixed(2);
+    return number.toFixed(1);
   }
 }
 
