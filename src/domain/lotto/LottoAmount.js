@@ -1,6 +1,7 @@
+const NotNumberException = require('../../exception/NotNumberException');
 const LottoAmountDivideException = require('../../exception/lotto/LottoAmountDivideException');
 const LottoAmountLessException = require('../../exception/lotto/LottoAmountLessException');
-const LottoAmountNotNumberException = require('../../exception/lotto/LottoAmountNotNumberException');
+const { checkNotNumber } = require('../../util/validate');
 
 class LottoAmount {
   static #LOTTO_PRICE = 1000;
@@ -17,8 +18,8 @@ class LottoAmount {
   }
 
   static validate(value) {
-    if (Number.isNaN(parseInt(value, 10)) || typeof value !== 'number') {
-      throw new LottoAmountNotNumberException(value);
+    if (checkNotNumber(value)) {
+      throw new NotNumberException(value);
     }
     if (value < LottoAmount.#LOTTO_PRICE) {
       throw new LottoAmountLessException(LottoAmount.#LOTTO_PRICE);

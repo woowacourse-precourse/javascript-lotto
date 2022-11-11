@@ -1,7 +1,7 @@
 const LottoAmount = require("../src/domain/lotto/LottoAmount");
 const LottoAmountDivideException = require("../src/exception/lotto/LottoAmountDivideException");
 const LottoAmountLessException = require("../src/exception/lotto/LottoAmountLessException");
-const LottoAmountNotNumberException = require("../src/exception/lotto/LottoAmountNotNumberException");
+const NotNumberException = require("../src/exception/NotNumberException");
 
 describe("LottoAmount 클래스 테스트", () => {
   test("로또 금액이 조건에 만족하는 경우", () => {
@@ -12,13 +12,13 @@ describe("LottoAmount 클래스 테스트", () => {
   test("로또 금액이 숫자가 아닌 경우", () => {
     expect(() => {
       new LottoAmount('a');
-    }).toThrow(LottoAmountNotNumberException);
+    }).toThrow(NotNumberException);
     expect(() => {
       new LottoAmount([1, 2, 3, 4, 5, 5]);
-    }).toThrow(LottoAmountNotNumberException);
+    }).toThrow(NotNumberException);
     expect(() => {
       new LottoAmount();
-    }).toThrow(LottoAmountNotNumberException);
+    }).toThrow(NotNumberException);
   });
   
   test("로또 금액이 로또 가격보다 낮은 경우", () => {
