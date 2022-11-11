@@ -18,6 +18,7 @@ class App {
   inputPurchase() {
     // 로또 구입 금액 입력
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (input) => {
+      this.validate(input);
       MissionUtils.Console.print('');
       this.myLotto = new MyLotto(parseInt(input));
       AppUtils.printCountLotto(this.myLotto);
@@ -31,7 +32,10 @@ class App {
     // 당첨 번호 입력
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (input) => {
       MissionUtils.Console.print('');
-      this.winlotto = new Lotto(input.split(',').map(num => parseInt(num)));
+      this.winlotto = new Lotto(input.split(',').map(number => {
+        this.validate(number);
+        return parseInt(number);
+      }));
       this.inputBonusNum();
     });
   }
@@ -39,10 +43,18 @@ class App {
   inputBonusNum() {
     // 보너스 번호 입력
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.\n', (input) => {
+      this.validate(input);
       MissionUtils.Console.print('');
       this.winlotto.setBonusNum(parseInt(input));
       this.getResult();
     });
+  }
+
+  validate(input) {
+    // 숫자 입력 여부 확인
+    if (!input.match(/^[0-9]+$/)){
+      throw new Error("[ERROR] 숫자만 입력해 주세요.");
+    }
   }
 
   getResult() {
@@ -51,8 +63,5 @@ class App {
     MissionUtils.Console.close();
   }
 }
-
-// const app = new App();
-// app.play();
 
 module.exports = App;
