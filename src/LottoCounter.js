@@ -18,6 +18,9 @@ class LottoCounter {
     if (cash % NUMBER.INPUT_UNITS !== 0) {
       throw ERROR.NOT_1000_UNIT;
     }
+    if (!Number.isInteger(cash)) {
+      throw '[ERROR] 숫자만 입력해야 합니다.';
+    }
 
     return true;
   }
