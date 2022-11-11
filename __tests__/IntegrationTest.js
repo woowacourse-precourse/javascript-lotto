@@ -59,6 +59,7 @@ describe("로또 테스트", () => {
 
   test("(당첨 번호 입력시 쉼표 x) 예외 테스트", () => {
     mockQuestions(["1000", '1 2 3 4 5 6']);
+    mockRandoms([[1, 3, 5, 14, 22, 45]]);
     expect(() => {
       const app = new App();
       app.play();
@@ -67,6 +68,7 @@ describe("로또 테스트", () => {
 
   test("(당첨 번호 입력시 문자) 예외 테스트", () => {
     mockQuestions(["1000", '1,2,3,a,5,6']);
+    mockRandoms([[1, 3, 5, 14, 22, 45]]);
     expect(() => {
       const app = new App();
       app.play();
@@ -75,6 +77,7 @@ describe("로또 테스트", () => {
 
   test("(보너스 문자 입력 시) 예외 테스트", () => {
     mockQuestions(["1000", '1,2,3,4,5,6', '100']);
+    mockRandoms([[1, 3, 5, 14, 22, 45]]);
     expect(() => {
       const app = new App();
       app.play();
