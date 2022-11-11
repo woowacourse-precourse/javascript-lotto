@@ -5,6 +5,10 @@ class App {
 
   }
 
+  /**
+   * 비용 입력이 올바른 입력인지 판단하는 함수
+   * @param {*} cost 입력한 비용
+   */
   checkCost(cost) {
     if (isNaN(cost)) {
       MissionUtils.Console.close();
@@ -19,6 +23,11 @@ class App {
     }
   }
 
+  /**
+   * 입력한 당첨 번호를 각각 숫자 형태로 반환하는 함수
+   * @param {*} input 입력한 당첨 번호 문자열
+   * @returns 각 번호를 숫자 형태로 오름차순으로 저장한 배열
+   */
   convertSixInputsToNumbers(input) {
     let elements = input.split(",");
     let numbers = [];
@@ -31,6 +40,7 @@ class App {
       numbers.push(parseInt(element));
     })
 
+    numbers.sort((a, b) => (a - b));
     return numbers;
   }
 

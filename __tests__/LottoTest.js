@@ -44,7 +44,7 @@ describe("로또 당첨 번호 입력 테스트", () => {
   });
 
   test("로또 번호를 올바르게 입력했다면 숫자로 변환이 가능하다", () => {
-    const INPUT = "1,3,5,7,10,13";
+    const INPUT = "1,3,5,13,7,10";
     const RESULT = APP.convertSixInputsToNumbers(INPUT);
     expect(RESULT).toEqual([1, 3, 5, 7, 10, 13])
   });
