@@ -1,10 +1,10 @@
-export const READ_MESSAGE = {
+const READ_MESSAGE = {
   pay: '구입금액을 입력해 주세요.\n',
   winNumbers: '\n당첨 번호를 입력해 주세요.\n',
   bonusNumber: '\n보너스 번호를 입력해 주세요.\n',
 };
 
-export const RESULT_MESSAGE = {
+const RESULT_MESSAGE = {
   head: '\n당첨 통계\n---',
   rank: {
     1: '6개 일치 (2,000,000,000원)',
@@ -13,4 +13,9 @@ export const RESULT_MESSAGE = {
     4: '4개 일치 (50,000원)',
     5: '3개 일치 (5,000원)',
   },
+};
+
+module.exports = {
+  READ_MESSAGE,
+  RESULT_MESSAGE,
 };
