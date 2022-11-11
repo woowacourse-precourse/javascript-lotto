@@ -5,6 +5,7 @@ const Purchase = require('./Purchase');
 const { convertAnswerIntoArray } = require('./lib/utils');
 const Lotto = require('./Lotto');
 const Bonus = require('./Bonus');
+const Result = require('./Result');
 
 class Game {
   #purchaseMoney;
@@ -12,6 +13,7 @@ class Game {
   #purchaseAccount;
   #winningNumbers;
   #bonusNumber;
+  #winningCount;
 
   constructor() {}
 
@@ -34,6 +36,11 @@ class Game {
   initBonusNumber(bonus, winningNumbers) {
     this.bonus = new Bonus(bonus, winningNumbers);
     this.#bonusNumber = this.bonus.getBonusNumber();
+  }
+
+  initResult(userLottos, winningNumber, bonusNumber) {
+    this.result = new Result(userLottos, winningNumber, bonusNumber);
+    this.#winningCount = this.result.getWinningResult();
   }
 
   printMyLottosArray() {
@@ -61,6 +68,11 @@ class Game {
   getInputBonusNumber() {
     Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (bonus) => {
       this.initBonusNumber(bonus, this.#winningNumbers);
+      this.initResult(
+        this.#myLottosArray,
+        this.#winningNumbers,
+        this.#bonusNumber
+      );
     });
   }
 }
