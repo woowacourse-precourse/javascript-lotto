@@ -25,7 +25,7 @@ class App {
   }
 
   printPurchaseLottoList() {
-    this.purchaseLottoList.forEach(lotto => Console.print(lotto));
+    this.purchaseLottoList.forEach(lotto => Console.print(`[${lotto}]`));
     return this.printWinningNumberInputMessage();
   }
 
