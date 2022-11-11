@@ -31,7 +31,7 @@ class App {
     });
   }
 
-  isValidInput(input) {
+  isValidMoney(input) {
     if (input % 1000 != 0) return false;
     if (input === "") return false;
     if (/[\D]/.test(input)) return false;
