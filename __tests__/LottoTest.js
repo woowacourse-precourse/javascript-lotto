@@ -22,7 +22,11 @@ describe('Validator 클래스 테스트', () => {
   test('isRangeIn : 범위 내의 숫자인지 테스트한다.', () => {
     expect(Vaildator.isRangeIn(1, 45, 1)).toEqual(true);
     expect(Vaildator.isRangeIn(1, 45, 45)).toEqual(true);
-    expect(Vaildator.isRangeIn(1, 45, 46)).toEqual(true);
-    expect(Vaildator.isRangeIn(1, 45, 0)).toEqual(true);
+    expect(Vaildator.isRangeIn(1, 45, 46)).toEqual(false);
+    expect(Vaildator.isRangeIn(1, 45, 0)).toEqual(false);
+  });
+  test('isLottoLength: 로또 개수가 6개인지 테스트한다.', () => {
+    expect(Vaildator.isLottoLength(5)).toEqual(false);
+    expect(Vaildator.isLottoLength(6)).toEqual(true);
   });
 });
