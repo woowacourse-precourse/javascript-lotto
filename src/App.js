@@ -21,11 +21,21 @@ class App {
     }
   }
 
-  createLotto(money) {}
+  createLotto(qunatity) {
+    for (let i = 0; i < qunatity; i++) {
+      const lottoNumbers = MissionUtils.Random.pickUniqueNumbersInRange(
+        1,
+        45,
+        6
+      ).sort((a, b) => a - b);
+      MissionUtils.Console.print(lottoNumbers);
+    }
+  }
 
   countLotto(money) {
     const lottoQuantity = money / 1000;
     MissionUtils.Console.print(`\n${lottoQuantity}개를 구매했습니다.`);
+    this.createLotto(lottoQuantity);
   }
 }
 
