@@ -27,6 +27,10 @@ class Purchase {
   getNumberTypeMoney() {
     return this.#money;
   }
+
+  getPurchaseAccount() {
+    return this.#money / 1000;
+  }
 }
 
 module.exports = Purchase;
