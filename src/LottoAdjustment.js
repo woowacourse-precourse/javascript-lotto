@@ -46,7 +46,7 @@ class LottoAdjustment {
   }
 
   #compareLotto() {
-    [...this.payment.getBuyAt()]
+    [...this.payment.getLottos()]
       .map(lottoToBuy => [
         this.#matchLottoFor(lottoToBuy),
         this.#matchBonusFor(lottoToBuy),
@@ -64,7 +64,7 @@ class LottoAdjustment {
         (LOTTO_AMOUNT.reduce((acc, moneyUnit, index) => {
           return acc + moneyUnit * this.#scoreBoard[index];
         }, 0) /
-          this.payment.getLottoPayment()) *
+          this.payment.getMoney()) *
           1000,
       ),
     ).split('');
