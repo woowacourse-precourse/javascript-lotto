@@ -13,6 +13,15 @@ class LottoNumberGenerator {
     });
   }
 
+  #generateLotto(numberSet) {
+    while (numberSet.size < this.#numberOfLottos) {
+      const numberArray = pickUniqueNumbersInRange(1, 45, 6);
+
+      if (this.isLottoSetValid(numberArray))
+        numberSet.add(this.#makeArrayAscendingOrder(numberArray));
+    }
+  }
+
   #makeArrayAscendingOrder(array) {
     return array.sort((a, b) => a - b);
   }
@@ -56,5 +65,3 @@ class LottoNumberGenerator {
   }
 }
 module.exports = LottoNumberGenerator;
-const a = new LottoNumberGenerator();
-a.inputNumberFromUser();
