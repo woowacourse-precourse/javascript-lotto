@@ -1,11 +1,11 @@
-const { Console } = require("@woowacourse/mission-utils");
+const { Random } = require("@woowacourse/mission-utils");
 const { NUMBERS } = require("./Constants");
 
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    // this.validate(numbers);
     this.#numbers = numbers;
   }
 
@@ -17,7 +17,7 @@ class Lotto {
   createLottoNumbers(lottoQuantity) {
     const lottoNumbersArray = [];
     for (let i = 0; i < lottoQuantity; i++) {
-      const lottoNumbers = Console.Random.pickUniqueNumbersInRange(
+      const lottoNumbers = Random.pickUniqueNumbersInRange(
         NUMBERS.FIRST,
         NUMBERS.LAST,
         NUMBERS.LOTTO
@@ -27,11 +27,11 @@ class Lotto {
     return lottoNumbersArray;
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
-  }
+  // validate(numbers) {
+  //   if (numbers.length !== 6) {
+  //     throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+  //   }
+  // }
 
   // TODO: 추가 기능 구현
   // 로또 번호의 갯수가 6개 이상
