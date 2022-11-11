@@ -66,6 +66,11 @@ class App {
     const wordsList = words.split(",");
     return wordsList;
   }
+  enterBonusNumber(){
+    MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (inputBonusNumber) => {
+      return inputBonusNumber;
+    });
+  }
 }
 
 module.exports = App;
