@@ -61,6 +61,17 @@ class App {
     const statistics = new Statistics(this.totalLottoNumber, this.winnerNumber, this.bonusNumber);
     const totalRankingArr = statistics.getTotalRankingArr();
     statistics.printTotalLottoResult(totalRankingArr);
+    this.getLottoRateOfReturn(totalRankingArr);
+  }
+
+  getLottoRateOfReturn(totalRankingArr) {
+    const totalPrizeMoney = this.getTotalPrizeMoney(totalRankingArr);
+    const lottoRateOfReturn = (
+      (Math.round((totalPrizeMoney / this.payMoney) * 1000) / 1000) *
+      100
+    ).toFixed(1);
+    MissionUtils.Console.print(`총 수익률은 ${lottoRateOfReturn}%입니다.`);
+    MissionUtils.Console.close();
   }
 
   getTotalPrizeMoney(totalRankingArr) {
