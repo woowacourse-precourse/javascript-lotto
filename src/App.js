@@ -8,6 +8,8 @@ class App {
   // eslint-disable-next-line no-useless-constructor
   lotteryQuantity = 0;
 
+  lotteryArray = [];
+
   constructor() {
     MissionUtils.Console.print(USER_MONEY_INPUT_REQUEST);
   }
@@ -19,7 +21,11 @@ class App {
         throw new Error(USER_MONEY_INPUT_ERROR);
       }
       this.lotteryQuantity = this.countLotteries(userMoneyInput);
-      MissionUtils.Console.print(`${this.lotteryQuantity}개를 구매했습니다.`);
+      MissionUtils.Console.print(`\n${this.lotteryQuantity}개를 구매했습니다.`);
+      this.lotteryArray = this.issueLotteries(this.lotteryQuantity);
+      this.lotteryArray.forEach((oneLottery) => {
+        MissionUtils.Console.print(oneLottery);
+      });
     });
   }
 
@@ -37,6 +43,16 @@ class App {
   countLotteries(userMoneyInput) {
     const lotteryQunatity = userMoneyInput / 1000;
     return lotteryQunatity;
+  }
+
+  issueLotteries(lotteryQuantity) {
+    const lotteryArray = [];
+    for (let cnt = 1; cnt <= lotteryQuantity; cnt += 1) {
+      const oneLottery = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      oneLottery.sort((a, b) => a - b);
+      lotteryArray.push(oneLottery);
+    }
+    return lotteryArray;
   }
 }
 
