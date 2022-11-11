@@ -49,18 +49,14 @@ const validation = {
   },
 
   isLottoNumber(numbers) {
-    const convertedNumbersToInt = numbers
-      .split(',')
-      .map((number) => parseInt(number, 10));
-    if (!isNumberAndComma(numbers)) throw new Error(ERROR_MESSAGE.NUMBER_COMMA);
+    if (!isNumberAndComma(numbers.join(',')))
+      throw new Error(ERROR_MESSAGE.NUMBER_COMMA);
 
-    if (!isLengthOfSix(convertedNumbersToInt))
-      throw new Error(ERROR_MESSAGE.LOTTO_LENGTH);
+    if (!isLengthOfSix(numbers)) throw new Error(ERROR_MESSAGE.LOTTO_LENGTH);
 
-    if (!isOutOf1To45(convertedNumbersToInt))
-      throw new Error(ERROR_MESSAGE.OUT_OF_RANGE);
+    if (!isOutOf1To45(numbers)) throw new Error(ERROR_MESSAGE.OUT_OF_RANGE);
 
-    if (!isNotDuplicateWinningNumber(convertedNumbersToInt))
+    if (!isNotDuplicateWinningNumber(numbers))
       throw new Error(ERROR_MESSAGE.DUPLICATE_NUMBER);
   },
 

@@ -4,6 +4,7 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
+    console.log(Array.isArray(numbers));
     this.validate(numbers);
     this.#numbers = numbers;
   }
@@ -14,7 +15,7 @@ class Lotto {
 
   // TODO: 추가 기능 구현
   getLottoNumbers() {
-    return this.#numbers.split(',').map((number) => parseInt(number, 10));
+    return this.#numbers;
   }
 }
 

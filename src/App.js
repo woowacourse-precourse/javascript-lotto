@@ -43,7 +43,9 @@ class App {
 
   inputWinningNumber() {
     readLine(INPUT_MESSAGE.WINNING_NUMBER, (numbers) => {
-      this.winningNumber = new Lotto(numbers).getLottoNumbers();
+      this.winningNumber = new Lotto(
+        numbers.split(',').map((number) => parseInt(number, 10))
+      ).getLottoNumbers();
       this.inputBonusNumber();
     });
   }
