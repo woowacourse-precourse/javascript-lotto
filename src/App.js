@@ -4,6 +4,7 @@ const Lotto = require('./Lotto');
 class App {
   constructor() {
     this.myMoney;
+    this.winningNumbers;
     this.myLottos = [];
   }
 
@@ -17,6 +18,7 @@ class App {
       this.validateMoney(money);
       this.myMoney = money;
       this.createLotto(this.myMoney);
+      this.requestWinningNumbersInput();
     });
   }
 
@@ -39,6 +41,14 @@ class App {
       this.myLottos.push(lottoNumbers);
       Console.print(`[${lottoNumbers.join(', ')}]`);
     }
+  }
+
+  requestWinningNumbersInput() {
+    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (input) => {
+      const numbers = input.split(',').map((digit) => Number(digit));
+      const winningLotto = new Lotto(numbers);
+      this.winningNumbers = winningLotto.getNumbers();
+    });
   }
 }
 
