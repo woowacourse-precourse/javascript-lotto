@@ -15,7 +15,7 @@ class App {
     const prizeNumber = await this.enterPrizeNumber();
     const lotto = new Lotto(prizeNumber);
     const bonusNumber = await this.enterBonusNumber();
-    const bonus = new Bonus(bonusNumber);
+    const bonus = new Bonus(lotto.getNumbers(),bonusNumber);
   }
   insertMoney(){
     MissionUtils.Console.readLine('구입금액을 입력해주세요 (1000원 단위)', (insertMoney) => {
