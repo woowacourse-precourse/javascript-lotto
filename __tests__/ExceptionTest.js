@@ -14,7 +14,7 @@ describe('사용자 입력 값에 대한 예외 클래스 테스트', () => {
 
     PURCHASE_AMOUNTS.forEach((amount) => {
       expect(() => {
-        exception.validatevalidatePurchaseAmount(amount);
+        exception.validatePurchaseAmount(amount);
       }).toThrow('[ERROR]');
     });
   });
