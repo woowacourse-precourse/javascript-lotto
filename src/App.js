@@ -1,4 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+const Lotto = require('./Lotto');
 const { printError, isPositiveInteger } = require('./Utils');
 
 const LOTTO_PRICE = 1000;
@@ -7,6 +8,7 @@ const LOTTO_END = 45;
 class App {
   #lottoCount;
   #lottos;
+  #winningNumber;
 
   constructor() {
     this.#lottoCount = 0;
@@ -33,7 +35,7 @@ class App {
     lotto = lotto.sort(function (a, b) {
       return a - b;
     });
-    this.#lottos.push(lotto);
+    this.#lottos.push(new Lotto(lotto));
     return lotto;
   }
 
@@ -45,8 +47,18 @@ class App {
     }
   }
 
+  #getWinningNumber() {
+    MissionUtils.Console.readLine(
+      '당첨 번호를 입력해 주세요.\n',
+      (winningNumber) => {
+        this.#winningNumber = winningNumber;
+      },
+    );
+  }
+
   #startLotto() {
     this.#printLotto();
+    this.#getWinningNumber();
   }
 
   #getMoney() {
