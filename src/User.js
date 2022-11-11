@@ -48,6 +48,15 @@ class User {
       },
     );
   }
+
+  input_bonus_number() {
+    MissionUtils.Console.readLine(
+      '\n보너스 번호를 입력해 주세요.\n',
+      bonus_number => {
+        this.setBonusNumber(bonus_number);
+      },
+    );
+  }
 }
 
 module.exports = User;
