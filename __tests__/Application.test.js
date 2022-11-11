@@ -181,3 +181,11 @@ describe('배열 중복 검사 함수 테스트', () => {
     }).not.toThrow('[ERROR]');
   });
 });
+
+describe('랜덤 숫자 생성 함수 테스트', () => {
+  test('메소드 이름은 "createUniqueNumbers"로 정의된다.', () => {
+    const METHOD_NAME = 'createUniqueNumbers';
+
+    expect(Application.createUniqueNumbers.name).toEqual(METHOD_NAME);
+  });
+});
