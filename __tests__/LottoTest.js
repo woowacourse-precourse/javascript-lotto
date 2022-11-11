@@ -40,4 +40,12 @@ describe('로또 클래스 테스트', () => {
       expect(Lotto.createLotto()).toHaveLength(LENGTH);
     });
   });
+
+  describe('로또 구매 메소드 테스트', () => {
+    test('메소드 이름은 "buyLotto"로 정의된다.', () => {
+      const METHOD_NAME = 'buyLotto';
+
+      expect(Lotto.buyLotto.name).toEqual(METHOD_NAME);
+    });
+  });
 });
