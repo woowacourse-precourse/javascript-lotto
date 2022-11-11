@@ -15,4 +15,11 @@ class User {
   lottoNumberOfPapers(price) {
     return price / 1000;
   }
+
+  createLottoNumber(numberOfPapers) {
+    let lottoNumber = [];
+    for (let paper = 0; paper < numberOfPapers; paper++) {
+      lottoNumber[i].push(MISSION.Random.pickUniqueNumbersInRange(1, 45, 6));
+    }
+  }
 }
