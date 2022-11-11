@@ -1,7 +1,7 @@
 const Lotto = require("../src/Lotto");
 const App = require("../src/App");
 
-describe("입력 테스트", () => {
+describe("로또 구매 비용 입력 테스트", () => {
   const APP = new App();
 
   test("입력한 로또 구매 비용이 숫자가 아니면 예외가 발생한다.", () => {
@@ -17,7 +17,9 @@ describe("입력 테스트", () => {
       APP.checkCost(INPUT)
     }).toThrow("[ERROR]")
   });
+})
 
+describe("로또 당첨 번호 입력 테스트", () => {
   test("입력한 로또 번호 중 숫자가 아닌 것이 있으면 예외가 발생한다.", () => {
     expect(() => {
       const INPUT = "1,2,a,4,5,6";
