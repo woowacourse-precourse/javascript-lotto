@@ -17,6 +17,15 @@ class App {
     Console.readLine(`${this.message.START_MESSAGE}\n`, (payment) => {
       const lottoGenerator = new LottoGenerator();
       this.myLotto = lottoGenerator.generate(payment);
+      this.printMyLotto(this.myLotto);
+    });
+  }
+  printMyLotto(myLotto) {
+    const PURCHASE_MESSAGE = `\n${myLotto.length}개를 구매했습니다.`;
+    Console.print(PURCHASE_MESSAGE);
+    myLotto.forEach((lotto) => {
+      lotto.sort((a, b) => a - b);
+      Console.print(lotto);
     });
   }
 }
