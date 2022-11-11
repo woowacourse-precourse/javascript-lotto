@@ -35,15 +35,23 @@ class App {
 
   inputWinnerNumber() {
     MissionUtils.Console.readLine("\n당첨 번호를 입력해 주세요.\n", (number) => {
-      if (number.split(",").length !== 6) {
-        throw new Error("[ERROR] 쉼표(,)를 기준으로 6자리를 입력해주세요");
-      }
+      this.validateSixNumberByComma(number);
       this.winnerNumber = number.replace(/\s/g, "").split(",");
-      if (new Set(this.winnerNumber).size !== 6) {
-        throw new Error("[ERROR] 중복없이 숫자를 입력해주세요.");
-      }
+      this.validateNumberWithoutDuplicate();
       this.inputBonusNumber();
     });
+  }
+
+  validateSixNumberByComma(number) {
+    if (number.split(",").length !== 6) {
+      throw new Error("[ERROR] 쉼표(,)를 기준으로 6자리를 입력해주세요");
+    }
+  }
+
+  validateNumberWithoutDuplicate() {
+    if (new Set(this.winnerNumber).size !== 6) {
+      throw new Error("[ERROR] 중복없이 숫자를 입력해주세요.");
+    }
   }
 
   inputBonusNumber() {
