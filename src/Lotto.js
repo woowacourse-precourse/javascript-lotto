@@ -22,7 +22,7 @@ class Lotto {
 
   // 내 로또번호와 당첨번호를 통한 등수확인 메서드 (안에는 당첨번호 들어가도록)
   checkMyLotteryRank(answer) {
-    // 정답 번호 개수 리턴 유틸함수 호출
+    const countResult = countCorrectNumber(this.#numbers, answer);
     // 정답 번호 개수에 따른 등수 리턴
     // 문자열로 반환.
     return '등수';
