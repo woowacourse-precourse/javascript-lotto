@@ -13,8 +13,7 @@ class Controller {
   }
 
   generateDeposit(input) {
-    const deposit = new Deposit(Number(input));
-    this.deposit = deposit;
+    this.deposit = new Deposit(Number(input));
     View.printQuantity(this.deposit.quantity);
     this.purchase();
   }
@@ -44,8 +43,7 @@ class Controller {
   }
 
   generateWinningLotto(input) {
-    const winningLotto = new Lotto(input.split(',').map(Number));
-    this.winningLotto = winningLotto;
+    this.winningLotto = new Lotto(input.split(',').map(Number));
     this.handleBonusNumberView();
   }
 
@@ -56,23 +54,21 @@ class Controller {
 
   generateBonusNumber(input) {
     this.#validateBonusNumber(input);
-    const bonusNumber = new BonusNumber(Number(input));
-    this.bonusNumber = bonusNumber;
+    this.bonusNumber = new BonusNumber(Number(input));
     this.generateStatistic();
   }
 
   generateStatistic() {
-    const statistic = new Statistic();
+    this.statistic = new Statistic();
 
     this.purchasedLottos.forEach((purchasedLotto) => {
-      statistic.putInStat(
+      this.statistic.putInStat(
         this.winningLotto.numbers,
         this.bonusNumber.value,
         purchasedLotto.numbers,
       );
     });
 
-    this.statistic = statistic;
     this.renderStatistic();
   }
 
