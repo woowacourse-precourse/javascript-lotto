@@ -47,3 +47,9 @@
 
 ### 형식대로 로또번호 보여주기
 - showLottoArrays
+
+### 당첨 내역 계산하기
+- calculatePrizeLottery
+### 당첨 내역 출력하기
+- showPrizeLottery
+## 수익률 계산하기
