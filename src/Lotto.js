@@ -24,6 +24,7 @@ class Lotto {
   lottosWinningBonus(lottos, winning, bonus) {
     winning = winning.split(',');
 
+    let winningArray = [0, 0, 0, 0, 0];
     for (let i = 0; i < lottos.length; i++) {
       let matches = 0;
       let bonusNumber = 0;
@@ -31,7 +32,16 @@ class Lotto {
         if (lottos[i].includes(Number(winning[j]))) matches += 1;
         if (matches === 5 && lottos[i].includes(bonus)) bonusNumber += 1;
       }
+      this.countWinning(matches, bonusNumber, winningArray);
     }
+  }
+
+  countWinning(matches, bonus, winningArray) {
+    if (matches === 3) winningArray[0] += 1;
+    else if (matches === 4) winningArray[1] += 1;
+    else if (matches === 5) winningArray[2] += 1;
+    else if (matches === 5 && bonus === 1) winningArray[3] += 1;
+    else winningArray[4] += 1;
   }
 }
 
