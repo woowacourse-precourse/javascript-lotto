@@ -20,4 +20,9 @@ describe("로또 클래스 테스트", () => {
     const useMoney = (lotto.useMoney = 10000);
     expect(lotto.lottoCountReturn(useMoney)).toEqual(10);
   });
+
+  test("복권을 발행 할 때 중복 되지 않는 숫자 6개를 1~45의 범위에서 발행", () => {
+    const lotto = new Lotto();
+    expect(lotto.lottoNumber()).toHaveLength(6);
+  });
 });
