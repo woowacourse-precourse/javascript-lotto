@@ -40,7 +40,11 @@ class Lotto {
     for(let i=0;i<amountOfMoney;i++){
       computerNumberArray.push(this.setComputerRandomNumber())
     }
+    this.showAmountOfMoney(amountOfMoney)
     this.showLottoArrays(computerNumberArray)
+  }
+  showAmountOfMoney(amount){
+    MissionUtils.Console.print(`${amount}개를 구매했습니다.`)
   }
   divideMoney(money){
     // 테스트 케이스 작성
@@ -73,7 +77,6 @@ class Lotto {
     console.log(eachNumberArray,bonusMoney);
     if(eachNumberArray.includes(bonusMoney)){
       console.log(`5등 당점`);
-
     }
   }
   showPrizeLottery(){
