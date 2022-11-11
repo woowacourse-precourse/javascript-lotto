@@ -36,7 +36,15 @@ describe.only('예외 사항 테스트', () => {
         }).toThrow('[ERROR]');
     });
 
-    // test('로또 번호의 갯수가 6개인지 확인', () => {
-    //     expect(() => {});
-    // });
+    test('로또 번호의 갯수가 6개인지 확인', () => {
+        expect(() => {
+            const exception = new Exception();
+            exception.isSix([1, 2, 3, 4, 5, 6, 7]);
+        }).toThrow('[ERROR]');
+
+        expect(() => {
+            const exception = new Exception();
+            exception.isSix([1, 2, 3, 4, 5]);
+        }).toThrow('[ERROR]');
+    });
 });
