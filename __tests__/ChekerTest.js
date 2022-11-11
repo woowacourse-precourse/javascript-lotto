@@ -123,5 +123,81 @@ describe('Checker 클래스 테스트', () => {
     }).toThrow('[ERROR]');
   });
 
-  // Lotto Number 클래스도 여기서 테스트해야 됨
+  test('false는 예외를 발생시킨다.', () => {
+    expect(() => {
+      Checker.isValidSixNumbersString(false);
+    }).toThrow('[ERROR]');
+  });
+
+  test("''는 예외를 발생시킨다.", () => {
+    expect(() => {
+      Checker.isValidSixNumbersString('');
+    }).toThrow('[ERROR]');
+  });
+
+  test('null은 예외를 발생시킨다.', () => {
+    expect(() => {
+      Checker.isValidSixNumbersString(null);
+    }).toThrow('[ERROR]');
+  });
+
+  test('undefined는 예외를 발생시킨다.', () => {
+    expect(() => {
+      Checker.isValidSixNumbersString(undefined);
+    }).toThrow('[ERROR]');
+  });
+
+  test('0은 예외를 발생시킨다.', () => {
+    expect(() => {
+      Checker.isValidSixNumbersString(0);
+    }).toThrow('[ERROR]');
+  });
+
+  test('NaN은 예외를 발생시킨다.', () => {
+    expect(() => {
+      Checker.isValidSixNumbersString(NaN);
+    }).toThrow('[ERROR]');
+  });
+
+  test('1, 2, 3, 4, 5, 6 과 같은 입력은 예외를 발생시킨다.', () => {
+    expect(() => {
+      Checker.isValidSixNumbersString('1, 2, 3, 4, 5, 6');
+    }).toThrow('[ERROR]');
+  });
+
+  test('[1, 2, 3, 4, 5, 6] 과 같은 입력은 예외를 발생시킨다.', () => {
+    expect(() => {
+      Checker.isValidSixNumbersString([1, 2, 3, 4, 5, 6]);
+    }).toThrow('[ERROR]');
+  });
+
+  test('false는 예외를 발생시킨다.', () => {
+    expect(() => {
+      Checker.isValidSixNumbersString(false);
+    }).toThrow('[ERROR]');
+  });
+
+  test('[1, 2, 3, 4, 5, 6, 7]은 예외를 발생시킨다.', () => {
+    expect(() => {
+      Checker.isValidSixNumbers([1, 2, 3, 4, 5, 6, 7]);
+    }).toThrow('[ERROR]');
+  });
+
+  test('[1, 2, 3, 4, 5]은 예외를 발생시킨다.', () => {
+    expect(() => {
+      Checker.isValidSixNumbers([1, 2, 3, 4, 5]);
+    }).toThrow('[ERROR]');
+  });
+
+  test('[0, 2, 3, 4, 5, 45]은 예외를 발생시킨다.', () => {
+    expect(() => {
+      Checker.isValidSixNumbers([0, 2, 3, 4, 5, 45]);
+    }).toThrow('[ERROR]');
+  });
+
+  test('[1, 1, 3, 4, 5, 6]은 예외를 발생시킨다.', () => {
+    expect(() => {
+      Checker.isValidSixNumbers([1, 1, 3, 4, 5, 6]);
+    }).toThrow('[ERROR]');
+  });
 });

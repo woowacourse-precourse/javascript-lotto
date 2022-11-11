@@ -95,11 +95,6 @@ class Checker {
       Console.close();
       throw new Error(`${Checker.#errorMessage.head} ${Checker.#errorMessage.duplication}`);
     }
-
-    if (!Validator.checkSortByAscending(sixNumbers)) {
-      Console.close();
-      throw new Error(`${Checker.#errorMessage.head} ${Checker.#errorMessage.ascendingSort}`);
-    }
   }
 }
 

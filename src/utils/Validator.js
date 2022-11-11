@@ -1,3 +1,5 @@
+const Ticket = require('../Ticket');
+
 class Validator {
   static checkTruthy(truthy) {
     return Boolean(truthy);
@@ -45,12 +47,6 @@ class Validator {
 
   static checkUniqueNumber(numbers) {
     return numbers.every((number, i) => numbers.indexOf(number) === i);
-  }
-
-  static checkSortByAscending(array) {
-    const ascendingSorted = array.sort((a, b) => a - b);
-
-    return array === ascendingSorted;
   }
 }
 
