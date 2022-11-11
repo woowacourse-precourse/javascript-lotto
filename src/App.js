@@ -5,6 +5,8 @@ class App {
   constructor() {
     this.numberOfPurchases = 0;
     this.purchasedLottos = [];
+    this.winningNumber = [];
+    this.bonusNumber = 0;
   }
 
   buyLotto() {
@@ -41,14 +43,37 @@ class App {
     }
   }
 
+  enterWinningNumber() {
+    Console.readLine('\n당첨 번호를 입력해 주세요.', (answer) => {
+      this.winningNumber = answer.replace(" ", "").split(",").map(item => Number(item));
+      new Lotto(this.winningNumber);
+    });
+  }
+
+  enterBonusNumber() {
+    Console.readLine('\n보너스 번호를 입력해 주세요.', (answer) => {
+      const bonus = Number(answer);
+
+      if (typeof bonus !== "number") {
+        throw new Error("[ERROR] 숫자만 입력하세요.");
+      }
+      if (bonus < 1 || bonus > 45) {
+        throw new Error("[ERROR] 1 ~ 45 사이의 숫자만 입력하세요.");
+      }
+      if (this.winningNumber.includes(bonus)) {
+        throw new Error("[ERROR] 당첨 번호에 보너스 숫자가 존재합니다.")
+      }
+      
+      this.bonusNumber = bonus;
+    });
+  }
+
   play() {
     this.buyLotto();
     this.printLotto();
-
+    this.enterWinningNumber();
+    this.enterBonusNumber();
   }
 }
-
-const lotto = new App();
-lotto.play();
 
 module.exports = App;
