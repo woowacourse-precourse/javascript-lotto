@@ -45,3 +45,30 @@ describe("amountValidCheck 테스트", () => {
     });
   });
 });
+
+describe('bonusValidCheck 테스트', () => {
+  test('보너스 중복 테스트', () => {    
+    const input = 10;
+    const DuplicatedInput = 3;
+    const lottos = [
+      [1, 2, 3, 4, 5, 6],
+      [11, 22, 3, 44, 15, 6],
+      [11, 3, 44, 44, 15, 6],
+      [7, 4, 12, 41, 3, 6]
+    ];
+    lottos.forEach(lotto => {
+      const result = Validator.isDuplicatedBonus(input ,lotto);
+      expect(result).toBeUndefined();
+    });    
+    lottos.forEach(lotto => {   
+      expect(() => Validator.isDuplicatedBonus(DuplicatedInput, lotto)).toThrowError(MESSAGES.ERROR.isDuplicatedBonus);
+    });
+  });
+  
+  test('보너스 개수 테스트', () => {    
+    const input = [1];
+    const diffrentLengthInput = [1, 2];
+    expect(Validator.isDiffrentBonusLength(input)).toBeUndefined();
+    expect(() => Validator.isDiffrentBonusLength(diffrentLengthInput)).toThrowError(MESSAGES.ERROR.isDiffrentBonusLength);
+  });
+});
