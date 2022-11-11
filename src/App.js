@@ -9,10 +9,19 @@ class App {
   #lottoCount;
   #lottos;
   #winningNumber;
+  #bonusNumber;
+  #result;
 
   constructor() {
     this.#lottoCount = 0;
     this.#lottos = [];
+    this.#result = {
+      '3개 일치 (5000원)': 0,
+      '4개 일치 (50,000원)': 0,
+      '5개 일치 (1,500,000원)': 0,
+      '5개 일치, 보너스 볼 일치 (30,000,000원)': 0,
+      '6개 일치 (2,000,000,000원)': 0,
+    };
   }
 
   #validate(money) {
@@ -47,11 +56,50 @@ class App {
     }
   }
 
+  // FIXME: 15줄 아래가 되도록 변경할 것, 보너스 볼 추가할 것
+  #storeResult(matchCount) {
+    switch (matchCount) {
+      case 3:
+        this.#result['3개 일치 (5000원)'] += 1;
+        break;
+      case 4:
+        this.#result['4개 일치 (50,000원)'] += 1;
+        break;
+      case 5:
+        this.#result['5개 일치 (1,500,000원)'] += 1;
+      case 6:
+        this.#result['6개 일치 (2,000,000,000원)'] += 1;
+      default:
+        null;
+    }
+  }
+
+  #matchLotto() {
+    this.#lottos.forEach((lotto) => {
+      const lottoNumbers = lotto.getNumbers();
+      const matchNumbers = lottoNumbers.filter((number) =>
+        this.#winningNumber.includes(number),
+      );
+      this.#storeResult(matchNumbers.length);
+    });
+  }
+
+  #getBonusNumber() {
+    MissionUtils.Console.readLine(
+      '보너스 번호를 입력해 주세요.\n',
+      (bonusNumber) => {
+        this.#bonusNumber = bonusNumber;
+        this.#matchLotto();
+      },
+    );
+  }
+
   #getWinningNumber() {
     MissionUtils.Console.readLine(
       '당첨 번호를 입력해 주세요.\n',
       (winningNumber) => {
         this.#winningNumber = winningNumber;
+        this.#getBonusNumber();
       },
     );
   }
