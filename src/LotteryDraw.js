@@ -1,8 +1,8 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Struct = require('./Struct');
 const MoneyExceptionHandling = require('./MoneyExceptionHandling');
-const WinningExceptionHandling = require('./WinningExceptionHandling');
 const BonusExceptionHandling = require('./BonusExceptionHandling');
+const Lotto = require('./Lotto');
 class LotteryDraw extends Struct{ 
     moneyInput() {
         MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
@@ -36,7 +36,7 @@ class LotteryDraw extends Struct{
                 Number(number)
             );
         });
-        new WinningExceptionHandling(this.winning);
+        new Lotto(this.winning);
     };
     bonusNumber() {
         MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.\n', (bonus) => {
