@@ -1,3 +1,5 @@
+const MissionUtils = require('@woowacourse/mission-utils');
+
 class Lotto {
   #numbers;
 
@@ -12,6 +14,7 @@ class Lotto {
 
   validate(numbers) {
     this.checkLength(numbers);
+    this.checkIsNumber(numbers);
     this.checkDuplicate(numbers);
   }
 
@@ -26,6 +29,7 @@ class Lotto {
     numbers.forEach((number) => {
       set.add(number);
     });
+
     if (set.size != 6) {
       throw new Error('[ERROR] 로또 번호는 중복되면 안됩니다. ');
     }
@@ -33,11 +37,9 @@ class Lotto {
 
   checkIsNumber(numbers) {
     const checker = /^[0-9]+$/;
-    numbers.forEach((number) => {
-      if (!checker.test(number)) {
-        throw new Error('[ERROR] 로또 번호는 숫자여야 합니다.');
-      }
-    });
+    const checkedArray = numbers.filter((n) => checker.test(n));
+    if (checkedArray.length != 6)
+      throw new Error('[ERROR] 로또 번호는 숫자여야 합니다.');
   }
 }
 
