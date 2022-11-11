@@ -25,7 +25,14 @@ class LottoStore {
   }
 
   print() {
-    [...this.#lottos].forEach(lotto => Console.print(lotto));
+    Console.print(`${this.#count}개를 구매했습니다.`);
+    [...this.#lottos].forEach(lotto => {
+      const result = JSON.stringify(lotto.sort((x, y) => x - y)).replace(
+        /,/g,
+        ', ',
+      );
+      Console.print(result);
+    });
   }
 
   #getBuyAt() {
