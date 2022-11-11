@@ -73,6 +73,7 @@ class App {
     });
     const revenuePercentage = (this.#revenue / this.#money) * 100;
     const roundNumber = Math.round(revenuePercentage * 10) / 10;
+    console.log(roundNumber);
     return roundNumber;
   }
 
@@ -109,7 +110,7 @@ class App {
       this.#bonusNumber = bonusNumber;
       this.#matchLotto();
       this.#printResult();
-      MissionUtils.Console.close();
+      ui.end();
     });
   }
 

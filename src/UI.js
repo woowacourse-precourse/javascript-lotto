@@ -12,6 +12,10 @@ class UI {
   printError(message) {
     throw Error(`[ERROR] ${message}`);
   }
+
+  end() {
+    MissionUtils.Console.close();
+  }
 }
 
 module.exports = UI;
