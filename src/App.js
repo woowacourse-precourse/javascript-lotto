@@ -43,10 +43,24 @@ class App {
     });
   }
 
+  inputBonusNumber() {
+    Console.readLine('보너스 번호를 입력해 주세요.', answer => {
+      this.validateBonusNumber(answer);
+      this.#bounsNumber = Number(answer);
+    });
+  }
+
+  validateBonusNumber(number) {
+    if (this.#winningNumbers.getNumbers().includes(+number)) {
+      throw new Error('[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.');
+    }
+  }
+
   play() {
     this.inputMoney();
     this.buyingLotto();
     this.inputWinningNumbers();
+    this.inputBonusNumber();
     Console.close();
   }
 }

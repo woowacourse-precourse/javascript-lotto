@@ -23,6 +23,10 @@ class Lotto {
   print() {
     Console.print(`[${this.#numbers.join(', ')}]`);
   }
+
+  getNumbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
