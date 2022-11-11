@@ -2,11 +2,13 @@ const { Console, Random } = require("@woowacourse/mission-utils");
 const Seed = require("../src/Seed");
 const LottoGenerator = require("../src/LottoGenerator");
 const Lotto = require("../src/Lotto");
+const Bonus = require("../src/Bonus");
 
 class App {
   seed;
   lottoTicket;
-  winning;
+  winningNumber;
+  bonusNumber;
   constructor() {}
   play() {
     this.getInput("구입금액을 입력해 주세요.\n", this.getSeedMoney);
@@ -24,12 +26,12 @@ class App {
 
   getWinnerNumber = (input) => {
     const splitByComma = input.split(",");
-    this.winning = new Lotto(splitByComma);
+    this.winningNumber = new Lotto(splitByComma);
     this.getInput("\n보너스 번호를 입력해 주세요.\n", this.getBonusNumber);
   };
 
   getBonusNumber = (input) => {
-    Console.print(input);
+    this.bonus = new Bonus(input);
   };
 }
 
