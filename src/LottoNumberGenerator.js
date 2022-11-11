@@ -4,6 +4,7 @@ class LottoNumberGenerator {
   #numberOfLottos;
   inputNumberFromUser() {
     readLine("구입 금액을 입력해주세요.", (input) => {
+      console.log(this.#isNotAllArrayElementsTypeNumber([44, 2, "a", 4, 5, 6]));
       if (this.isInputNumbersValid(input)) {
         this.#numberOfLottos = this.#getNumberOfLottos(+input);
       }
@@ -22,17 +23,14 @@ class LottoNumberGenerator {
     return true;
   }
 
-  isLottoSetValid(set) {
-    if (this.#hasDuplicatedValue(set)) return false;
-    if (this.#isLengthNotEqualsToSix(set)) return false;
+  isLottoSetValid(lottoList) {
+    if (this.#hasDuplicatedValue(lottoList)) return false;
+
     return true;
   }
+
   #hasDuplicatedValue(numbers) {
     return numbers.length !== new Set(numbers).size;
-  }
-
-  #isLengthNotEqualsToSix(numbers) {
-    return numbers.length !== 6;
   }
 
   #isNotDividedThousand(input) {
@@ -52,3 +50,5 @@ class LottoNumberGenerator {
   }
 }
 module.exports = LottoNumberGenerator;
+const a = new LottoNumberGenerator();
+a.inputNumberFromUser();
