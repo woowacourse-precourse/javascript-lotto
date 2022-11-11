@@ -6,13 +6,14 @@ const Output = require('./Output');
 class App {
   lottoCount;
   lottoArray = [];
+  winningNumbers;
 
   constructor() {
     this.print = new Output();
   }
 
   play() {
-    userInput.call(this, this.getLottos, () => {}, () => {}, () => {})
+    userInput.call(this, this.getLottos, this.getWinningNumbers, () => {}, () => {})
   }
 
   getLottos(money) {
@@ -37,6 +38,15 @@ class App {
   getRandomLottoNumber() {
     const randomNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
     return randomNumbers.sort((a, b) => a - b);
+  }
+
+  getWinningNumbers(numbers) {
+    this.winningNumbers = this.winningNumbersConverter(numbers);
+  }
+
+  winningNumbersConverter(numbers) {
+    const winningNumberArray = numbers.split(',').map((item) => parseInt(item));
+    return winningNumberArray;
   }
 }
 
