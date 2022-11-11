@@ -54,10 +54,6 @@ class App {
     // 비즈니스 로직
     Console.print('보너스 번호를 입력해 주세요.');
     Console.readLine('', (bonusNumber) => {
-      Validator.throwErrorIfInValidBonusNumber(
-        this.winningNumbers,
-        bonusNumber
-      );
       this.bonusNumber = Number(bonusNumber);
       this.setPrizeResult();
     });
@@ -66,8 +62,11 @@ class App {
   setPrizeResult() {
     // 비즈니스 로직
     this.prizeResult = this.userLottoList.reduce((acc, cur) => {
-      const sameNumberCount = this.getSameNumberCount(cur);
-      const isBonusNumberMatch = cur.includes(Number(this.bonusNumber));
+      const sameNumberCount = GameTools.getMachingNumberCount(
+        cur,
+        this.winningNumbers
+      );
+      const isBonusNumberMatch = cur.includes(this.bonusNumber);
       if (sameNumberCount === 6) acc.first += 1;
       if (sameNumberCount === 5 && isBonusNumberMatch) acc.second += 1;
       if (sameNumberCount === 5 && !isBonusNumberMatch) acc.third += 1;
@@ -77,11 +76,6 @@ class App {
       return acc;
     }, this.prizeResult);
     this.printResult();
-  }
-
-  getSameNumberCount(lottoNumber) {
-    return lottoNumber.filter((number) => this.winningNumbers.includes(number))
-      .length;
   }
 
   printResult() {
