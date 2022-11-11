@@ -1,19 +1,12 @@
-const { Console } = require('@woowacourse/mission-utils');
-const { PURCHASE } = require('./constants');
-const { validate, isPurchaseInput } = require('./Validator');
+const LottoGame = require('./LottoGame');
 
 class App {
-  #purchaseAmout = 0;
-
-  play() {
-    this.askPurchaseAmount();
+  constructor() {
+    this.LottoGame = new LottoGame();
   }
 
-  askPurchaseAmount() {
-    Console.readLine(PURCHASE.INPUT, answer => {
-      validate(answer, isPurchaseInput);
-      this.#purchaseAmout = answer;
-    });
+  play() {
+    this.LottoGame.start();
   }
 }
 
