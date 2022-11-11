@@ -1,27 +1,14 @@
-const { LOTTO_ERROR_MESSAGE, VARIABLE_LOTTO } = require('../utils/constants');
+const { validateLottoRange } = require('../utils/method');
 
 class Bonus {
   #number;
 
   constructor(number) {
-    this.#number = number;
-    this.validate(number);
-  }
-
-  validate(number) {
-    this.#validateLottoRange(number);
+    this.#number = validateLottoRange(number);
   }
 
   getNumber() {
-    return +this.#number;
-  }
-
-  #validateLottoRange(number) {
-    if (!VARIABLE_LOTTO.regex.test(number)) {
-      throw new Error(LOTTO_ERROR_MESSAGE.range);
-    }
-
-    return this;
+    return this.#number;
   }
 }
 
