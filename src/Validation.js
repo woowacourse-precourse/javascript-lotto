@@ -1,4 +1,4 @@
-const { LOTTO_PRICE } = require("./constants/condition.js");
+const { LOTTO_PRICE, LOTTO_DIGITS } = require("./constants/condition.js");
 const { ERROR_MESSAGE } = require("./constants/message.js");
 
 class Validation {
@@ -31,6 +31,15 @@ class Validation {
     const remainder = purchaseAmount % LOTTO_PRICE;
 
     return remainder === 0;
+  }
+
+  static validateLottoNumber(lottoNumbers) {
+    if (lottoNumbers.length !== LOTTO_DIGITS) {
+      throw new Error(ERROR_MESSAGE.INVALID_LOTTO_LENGTH);
+    }
+    if (new Set(lottoNumbers).size !== LOTTO_DIGITS) {
+      throw new Error(ERROR_MESSAGE.DUPLICATE_LOTTO_NUMBER);
+    }
   }
 }
 
