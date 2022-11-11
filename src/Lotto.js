@@ -16,7 +16,6 @@ class Lotto {
     Application.checkArrayDuplicate(numbers);
   }
 
-  // TODO: 추가 기능 구현
   static createLotto() {
     const START = 1;
     const END = 45;
@@ -26,6 +25,13 @@ class Lotto {
     const sortedArray = Application.sortAscending(randomNumbers);
 
     return sortedArray;
+  }
+
+  static buyLotto(purchaseAmount) {
+    const UNIT_AMOUNT = 1000;
+    const lottoCount = Application.purchaseCount(purchaseAmount, UNIT_AMOUNT);
+
+    return Array.from({ length: lottoCount }, this.createLotto);
   }
 }
 
