@@ -43,6 +43,8 @@ class App {
 
       Console.print(Messages.WINNING_STATICS);
       this.lotto.lottosWinningBonus(lottos, winning, bonus);
+
+      Console.close();
     });
   }
 }
