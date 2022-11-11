@@ -1,9 +1,10 @@
 const Lotto = require("../src/Lotto");
+const lotto = new Lotto();
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
     expect(() => {
-      new Lotto([1, 2, 3, 4, 5, 6, 7]);
+      lotto.validate([1, 2, 3, 4, 5, 6, 7]);
     }).toThrow("[ERROR]");
   });
 
@@ -15,4 +16,9 @@ describe("로또 클래스 테스트", () => {
   });
 
   // 아래에 추가 테스트 작성 가능
+  test("로또 금액이 1000단위가 아니라면 예외가 발생한다.", () => {
+    expect(() => {
+      lotto.checkAmount(1500);
+    }).toThrow("[ERROR]");
+  });
 });
