@@ -1,4 +1,4 @@
-const ERROR = require('./constant');
+const { ERROR, CONDITION } = require('./constant');
 
 class Validator {
   #numbers;
@@ -8,12 +8,13 @@ class Validator {
   }
 
   isValidateLength() {
-    return this.#numbers.length === 6;
+    return this.#numbers.length === CONDITION.LOTTO_LENGTH;
   }
 
   isValidateRange() {
     for (let number of this.#numbers) {
-      if (!(1 <= number && number <= 45)) return false;
+      if (!(CONDITION.MIN_NUMBER <= number && number <= CONDITION.MAX_NUMBER))
+        return false;
     }
 
     return true;
@@ -21,6 +22,21 @@ class Validator {
 
   isDuplicate() {
     return new Set(this.#numbers).size !== this.#numbers.length;
+  }
+
+  isPurchasable() {
+    return this.#numbers >= CONDITION.LOTTO_PRICE;
+  }
+
+  isDivisible() {
+    return this.#numbers % CONDITION.LOTTO_PRICE === 0;
+  }
+
+  purchaseAmountValidate() {
+    console.log(this.#numbers);
+    if (!this.isPurchasable()) throw new Error(ERROR.PURCHASABLE);
+
+    if (!this.isDivisible()) throw new Error(ERROR.DIVISIBLE);
   }
 
   lottoNumberValidate() {
