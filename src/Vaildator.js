@@ -28,6 +28,23 @@ class Vaildator {
     const set = new Set(array);
     return set.size === array.length;
   }
+
+  static isRightLottoNumbers(target) {
+    const lottoNumbers = target.split(',').map((e) => +e);
+    if (
+      lottoNumbers.some(
+        (lottoNumber) =>
+          !this.isPositiveNumber(lottoNumber) ||
+          !this.isRangeIn(1, 45, lottoNumber)
+      )
+    ) {
+      return false;
+    }
+    return (
+      this.isUniqueElementArray(lottoNumbers) &&
+      this.isLottoLength(lottoNumbers.length)
+    );
+  }
 }
 
 module.exports = Vaildator;
