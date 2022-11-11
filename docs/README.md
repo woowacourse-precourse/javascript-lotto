@@ -28,7 +28,11 @@
 
 - Lotto.rank
 
-### 4. 순위에 맞는 수익을 계산
+### 4. 총 수입을 계산
+
+- App.calculateResult
+
+#### 4-1. 순위에 맞는 수익을 계산
 
 - Calculator.addPrize
 

@@ -5,8 +5,14 @@ const Lotto = require('./Lotto');
 class App {
   #calculator;
   #lottos;
+  #rankingCount;
   #winNumbers;
   #bonusNumber;
+
+  constructor() {
+    this.#lottos = [];
+    this.#rankingCount = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+  }
 
   play() {
     this.recordPay();
@@ -22,7 +28,6 @@ class App {
   }
 
   buyLottos() {
-    this.#lottos = [];
     for (let i = 0; i < this.#calculator.calcBuyCount(); i++) {
       const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
       const lotto = new Lotto(numbers.sort((a, b) => a - b));
@@ -33,33 +38,46 @@ class App {
   }
 
   printLottos() {
+    Console.print();
     Console.print(`${this.#lottos.length}개를 구매했습니다.`);
     this.#lottos.forEach((lotto) => {
-      Console.print(lotto.getNumbers());
+      Console.print(`[${lotto.getNumbers().join(', ')}]`);
     });
 
     this.recordWinNumbers();
   }
 
   recordWinNumbers() {
+    Console.print();
     Console.print('당첨 번호를 입력해 주세요.');
     Console.readLine('', (input) => {
-      this.#winNumbers = input.split(',');
+      this.#winNumbers = input.split(',').map((number) => parseInt(number));
       this.recordBonusNumber();
     });
   }
 
   recordBonusNumber() {
+    Console.print();
     Console.print('보너스 번호를 입력해 주세요.');
     Console.readLine('', (input) => {
-      this.#winNumbers = input.split(',');
-      this.printStatistics();
+      this.#bonusNumber = parseInt(input);
+      this.calculateResult();
     });
   }
 
-  printStatistics() {
-    Console.print('당첨 통계');
+  calculateResult() {
+    this.#lottos.forEach((lotto) => {
+      const ranking = lotto.rank(this.#winNumbers, this.#bonusNumber);
+      if (ranking === 0) return;
+
+      this.#rankingCount[ranking] += 1;
+      this.#calculator.addPrize(ranking);
+    });
+
+    this.printResult();
   }
+
+  printResult() {}
 }
 
 const app = new App();
