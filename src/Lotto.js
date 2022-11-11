@@ -61,12 +61,15 @@ class Lotto {
     return randomNumbers;
   }
 
+  isValidLottoArray(lottoArray) {
+    return (lottoArray.length !== 6 ||
+      ![... new Set(lottoArray)]
+        .every((value, idx) => value === lottoArray[idx])) ? false : true;
+  }
+
   getEachLottoArray() {
     const lottoArray = this.randomSelectWithoutOverlap().sort((a, b) => a - b);
-    if (
-      lottoArray.length !== 6 ||
-      ![... new Set(lottoArray)]
-        .every((value, idx) => value === lottoArray[idx])) {
+    if (this.isValidLottoArray(lottoArray) === false) {
       this.throwError("[ERROR] 로또 구매 내역을 불러오는데 실패하였습니다.");
     }
     return lottoArray;
@@ -98,6 +101,8 @@ class Lotto {
     Console.readLine("", (winningNumbers) => {
       this.validateWinningNumbers(winningNumbers);
       this.#winningNumbers = winningNumbers.replace(this.#regExp, '').split(',');
+      console.log(this.#winningNumbers);
+      console.log([...this.#winningNumbers].includes('5'));
       this.inputBonusNumber();
     });
   }
@@ -122,7 +127,7 @@ class Lotto {
       this.throwError("[ERROR] 입력하신 보너스 번호가 유효하지 않습니다. 다시 확인해주세요.")
     }
 
-    return (this.#winningNumbers.includes(bonusNumber)) ?
+    return ([...this.#winningNumbers].includes(bonusNumber)) ?
       this.throwError("[ERROR] 입력하신 보너스 번호가 유효하지 않습니다. 다시 확인해주세요.") : true;
   }
 
