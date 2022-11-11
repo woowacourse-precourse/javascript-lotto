@@ -19,6 +19,13 @@ class NumberCompare{
             this.lottoRanking[0] += 1;
         }
     }
+
+    matchFourNumbers(createNum, winningNum){
+        let duplicateNum = createNum.filter((el) => winningNum.includes(el));
+        if(duplicateNum.length == 4){
+            this.lottoRanking[1] += 1;
+        }
+    }
 }
 
 
