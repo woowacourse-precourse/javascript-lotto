@@ -1,16 +1,16 @@
-const { RANK } = require('../utils/constants');
+const { RULE } = require('../utils/constants');
 
 class Statistic {
   #stat;
 
   constructor() {
     this.#stat = {
-      [RANK.FIRST]: 0,
-      [RANK.SECOND]: 0,
-      [RANK.THIRD]: 0,
-      [RANK.FOURTH]: 0,
-      [RANK.FIFTH]: 0,
-      [RANK.NOPRIZE]: 0,
+      [RULE.FIRST.RANK]: 0,
+      [RULE.SECOND.RANK]: 0,
+      [RULE.THIRD.RANK]: 0,
+      [RULE.FOURTH.RANK]: 0,
+      [RULE.FIFTH.RANK]: 0,
+      [RULE.NOPRIZE.RANK]: 0,
     };
   }
 
@@ -19,11 +19,11 @@ class Statistic {
   }
 
   get revenue() {
-    const firstRevenue = this.#stat[RANK.FIRST] * 2000000000;
-    const secondRevenue = this.#stat[RANK.SECOND] * 30000000;
-    const thirdRevenue = this.#stat[RANK.THIRD] * 1500000;
-    const fourthRevenue = this.#stat[RANK.FOURTH] * 50000;
-    const fifthRevenue = this.#stat[RANK.FIFTH] * 5000;
+    const firstRevenue = this.#stat[RULE.FIRST.RANK] * RULE.FIRST.WINNING_AMOUNT;
+    const secondRevenue = this.#stat[RULE.SECOND.RANK] * RULE.SECOND.WINNING_AMOUNT;
+    const thirdRevenue = this.#stat[RULE.THIRD.RANK] * RULE.THIRD.WINNING_AMOUNT;
+    const fourthRevenue = this.#stat[RULE.FOURTH.RANK] * RULE.FOURTH.WINNING_AMOUNT;
+    const fifthRevenue = this.#stat[RULE.FIFTH.RANK] * RULE.FIFTH.WINNING_AMOUNT;
     return firstRevenue + secondRevenue + thirdRevenue + fourthRevenue + fifthRevenue;
   }
 
@@ -51,12 +51,12 @@ class Statistic {
   }
 
   judgeRank({ numberOfSame, isBonusNumberSame }) {
-    if (numberOfSame === 6) return RANK.FIRST;
-    if (numberOfSame === 5 && isBonusNumberSame) return RANK.SECOND;
-    if (numberOfSame === 5) return RANK.THIRD;
-    if (numberOfSame === 4) return RANK.FOURTH;
-    if (numberOfSame === 3) return RANK.FIFTH;
-    return RANK.NOPRIZE;
+    if (numberOfSame === RULE.FIRST.NUMBER_OF_SAME) return RULE.FIRST.RANK;
+    if (numberOfSame === RULE.SECOND.NUMBER_OF_SAME && isBonusNumberSame) return RULE.SECOND.RANK;
+    if (numberOfSame === RULE.THIRD.NUMBER_OF_SAME) return RULE.THIRD.RANK;
+    if (numberOfSame === RULE.FOURTH.NUMBER_OF_SAME) return RULE.FOURTH.RANK;
+    if (numberOfSame === RULE.FIFTH.NUMBER_OF_SAME) return RULE.FIFTH.RANK;
+    return RULE.NOPRIZE.RANK;
   }
 
   increaseRankCount(rank) {
