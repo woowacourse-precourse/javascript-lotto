@@ -4,13 +4,14 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    Lotto.validateLength(numbers);
+    Lotto.validate(numbers);
     this.#numbers = numbers;
   }
 
-  static validateLength(numbers) {
+  static validate(numbers) {
     const CRITERION = 6;
 
+    Application.validateArray(numbers);
     Application.validateArrayLength(numbers, CRITERION);
   }
 
