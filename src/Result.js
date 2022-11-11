@@ -44,6 +44,14 @@ class Result {
     }
     return;
   }
+
+  checkBonus() {
+    if (this.#winningNumber.includes(this.#bonusNumber)) {
+      this.#sameResultArray[3] += 1;
+      return;
+    }
+    this.#sameResultArray[2] += 1;
+  }
 }
 
 module.exports = Result;
