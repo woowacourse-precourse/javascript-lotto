@@ -19,6 +19,12 @@ class Application {
     }
   }
 
+  static validateInteger(number) {
+    if (!Number.isInteger(number)) {
+      throw new Error('[ERROR] 주어진 값이 정수여야 합니다.');
+    }
+  }
+
   static convertNumber(target) {
     const result = parseInt(target, 10);
 
