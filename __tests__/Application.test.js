@@ -62,7 +62,7 @@ describe('구매 개수 파악 함수 테스트', () => {
 
   test('전달받은 인수는 숫자로 변환이 불가능하면 예외를 발생시킨다.', () => {
     expect(() => {
-      Application.convertNumber('a1a1', 's');
+      Application.purchaseCount('1111', 's');
     }).toThrow(NUMBER_EXCEPTION_TEXT);
   });
 });
