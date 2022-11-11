@@ -9,6 +9,8 @@ class App {
     this.money = 0;
     this.bounsNumber = 0;
     this.countCorrect = [0, 0, 0, 0, 0];
+    this.winnings = 0;
+    this.yield = 0;
   }
   play() {
     Console.readLine(MESSAGE.INPUT_MONEY, (input) => {
@@ -47,6 +49,7 @@ class App {
   printLotto() {
     this.lotto.map((lottoArr) => {
       lottoArr.sort((a, b) => a - b);
+      Console.print(`[${lottoArr.join(', ')}]`);
     });
   }
   getWinningNumber() {
@@ -66,6 +69,9 @@ class App {
       this.bounsNumber = input;
       this.isValidBonusNumber();
       this.getResult();
+      this.getWinnings();
+      this.getYield();
+      this.printResult();
     });
   }
   isValidBonusNumber() {
@@ -97,7 +103,6 @@ class App {
         continue;
       }
     }
-    console.log(correctCount);
     if (correctCount < 3) return;
     if (correctCount === 3) return (this.countCorrect[0] += 1);
     if (correctCount === 4) return (this.countCorrect[1] += 1);
@@ -106,10 +111,24 @@ class App {
     return (this.countCorrect[2] += 1);
   }
   getResult() {
-    console.log(this.winningNumber);
     this.lotto.map((pieceOfLotto) => {
       this.checkCorrectNumber(pieceOfLotto);
     });
+  }
+  getWinnings() {
+    const winnings = [5000, 50000, 1500000, 30000000, 2000000000];
+    this.countCorrect.map((count, index) => {
+      count ? (this.winnings += winnings[index]) : null;
+    });
+  }
+  getYield() {
+    this.yield = Math.round((this.winnings / this.money) * 1000) / 10;
+  }
+  printResult() {
+    Console.print(
+      `3개 일치 (5,000원) - ${this.countCorrect[0]}개\n4개 일치 (50,000원) - ${this.countCorrect[1]}개\n5개 일치 (1,500,000원) - ${this.countCorrect[2]}개\n5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.countCorrect[3]}개\n6개 일치 (2,000,000,000원) - ${this.countCorrect[4]}개\n총 수익률은 ${this.yield}%입니다.`
+    );
+    Console.close();
   }
 }
 let app = new App();
