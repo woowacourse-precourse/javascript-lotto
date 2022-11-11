@@ -28,6 +28,22 @@ class Result {
 
     this.rankCount(sum);
   }
+
+  rankCount(sum) {
+    if (sum === 3) {
+      this.#sameResultArray[0] += 1;
+    }
+    if (sum === 4) {
+      this.#sameResultArray[1] += 1;
+    }
+    if (sum === 5) {
+      this.checkBonus();
+    }
+    if (sum === 6) {
+      this.#sameResultArray[4] += 1;
+    }
+    return;
+  }
 }
 
 module.exports = Result;
