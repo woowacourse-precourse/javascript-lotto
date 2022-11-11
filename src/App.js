@@ -12,9 +12,16 @@ class App {
     this.lottos = [];
   }
 
-  setWinNumbers() {
+  setBonusNumber() {
+    Console.askUserInput(`\n${Console.ASK_BONUS_NUMBER}`, (bonusNumber) => {
+      this.bonusNumber = Number(bonusNumber);
+    });
+  }
+
+  setWinNumber() {
     Console.askUserInput(`\n${Console.ASK_WIN_NUMBER}`, (winningNumber) => {
       this.winNumbers = winningNumber.split(",").map((number) => number * 1);
+      this.setBonusNumber();
     });
   }
 
@@ -26,7 +33,7 @@ class App {
       Console.printMessage(lotto);
     });
 
-    this.setWinNumbers();
+    this.setWinNumber();
   }
 
   setUserQuantityOfLotto() {
