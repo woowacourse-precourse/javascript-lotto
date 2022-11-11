@@ -48,6 +48,13 @@ class App {
       const numbers = input.split(',').map((digit) => Number(digit));
       const winningLotto = new Lotto(numbers);
       this.winningNumbers = winningLotto.getNumbers();
+      this.requestBonusNumberInput();
+    });
+  }
+
+  requestBonusNumberInput() {
+    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (input) => {
+      const number = Number(input);
     });
   }
 }
