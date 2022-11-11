@@ -18,6 +18,15 @@ class Statistic {
     return JSON.parse(JSON.stringify(this.#stat));
   }
 
+  get revenue() {
+    const firstRevenue = this.#stat[RANK.FIRST] * 2000000000;
+    const secondRevenue = this.#stat[RANK.SECOND] * 30000000;
+    const thirdRevenue = this.#stat[RANK.THIRD] * 1500000;
+    const fourthRevenue = this.#stat[RANK.FOURTH] * 50000;
+    const fifthRevenue = this.#stat[RANK.FIFTH] * 5000;
+    return firstRevenue + secondRevenue + thirdRevenue + fourthRevenue + fifthRevenue;
+  }
+
   putInStat(winningLotto, bonusNumber, publishedLotto) {
     const judgeResult = this.judgeLotto(winningLotto, bonusNumber, publishedLotto);
     const rank = this.judgeRank(judgeResult);
