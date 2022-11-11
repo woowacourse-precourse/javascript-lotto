@@ -142,4 +142,24 @@ describe('배열 길이 예외 검사 함수 테스트', () => {
 
     expect(Application.validateArrayLength.name).toEqual(METHOD_NAME);
   });
+
+  test('배열의 요소가 6개가 넘어가면 예외가 발생한다.', () => {
+    expect(() => {
+      Application.validateArrayLength([1, 2, 3, 4, 5, 6, 7], 6);
+    }).toThrow('[ERROR]');
+
+    expect(() => {
+      Application.validateArrayLength([1, 2, 3, 4, 5, 6], 6);
+    }).not.toThrow('[ERROR]');
+  });
+
+  test('배열의 요소가 7개가 넘어가면 예외가 발생한다.', () => {
+    expect(() => {
+      Application.validateArrayLength([1, 2, 3, 4, 5, 6], 7);
+    }).toThrow('[ERROR]');
+
+    expect(() => {
+      Application.validateArrayLength([1, 2, 3, 4, 5, 6, 7], 7);
+    }).not.toThrow('[ERROR]');
+  });
 });
