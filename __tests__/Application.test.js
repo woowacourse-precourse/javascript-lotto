@@ -65,6 +65,12 @@ describe('구매 개수 파악 함수 테스트', () => {
       Application.purchaseCount('1111', 's');
     }).toThrow(NUMBER_EXCEPTION_TEXT);
   });
+
+  test('나누어 떨어지지 않는 경우 예외 처리한다.', () => {
+    expect(() => {
+      Application.purchaseCount(1100, 1000);
+    }).toThrow();
+  });
 });
 
 describe('수익률 계산 함수 테스트', () => {
