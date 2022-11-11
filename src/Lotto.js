@@ -9,6 +9,7 @@ class Lotto {
   validate(numbers) {
     this.checkNumber(numbers);
     this.checkLength(numbers);
+    this.checkRange(numbers);
   }
 
   checkNumber(numbers) {
@@ -26,6 +27,17 @@ class Lotto {
     if (numbers.length !== LOTTO_LENGTH) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
+  }
+
+  checkRange(numbers) {
+    const MINIMUN_NUMBER = 1;
+    const MAXIMUN_NUMBER = 45;
+
+    numbers.forEach((number) => {
+      if (number < MINIMUN_NUMBER || number > MAXIMUN_NUMBER) {
+        throw new Error("[ERROR] 로또 번호는 1과 45 사이의 숫자여야 합니다");
+      }
+    });
   }
 }
 
