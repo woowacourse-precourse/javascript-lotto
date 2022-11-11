@@ -2,17 +2,17 @@ const LottoCounter = require('./LottoCounter');
 const NumberGenerator = require('./NumberGenerator');
 const Lotto = require('./Lotto');
 const BonusNumber = require('./BonusNumber');
+const WinningChecker = require('./WinningChecker');
 const MissionUtils = require('@woowacourse/mission-utils');
 const { MESSAGE } = require('./utils/constants');
 
 class App {
-  #countOfLotto;
-
   constructor() {
-    this.lottoCounter;
+    this.countOfLotto;
     this.purchasedLottos = [];
-    this.winningLottoNumbers;
+    this.winningNumbers;
     this.bonusNumber;
+    this.lottoCounter;
     this.numberGenerator = new NumberGenerator();
   }
 
@@ -52,14 +52,14 @@ class App {
     this.purchasedLottos.map((lotto) => MissionUtils.Console.print(lotto));
     MissionUtils.Console.print('');
 
-    this.inputWinningLottoNumbers();
+    this.inputWinningNumbers();
   }
 
-  inputWinningLottoNumbers() {
+  inputWinningNumbers() {
     MissionUtils.Console.readLine(MESSAGE.INPUT_LOTTO_NUMBERS, (input) => {
       input = input.split(',').map((num) => Number(num));
       let newLotto = new Lotto(input);
-      this.winningLottoNumbers = newLotto.getLottoNumbers();
+      this.winningNumbers = newLotto.getLottoNumbers();
 
       this.inputBonusNumber();
     });
@@ -67,12 +67,20 @@ class App {
 
   inputBonusNumber() {
     MissionUtils.Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (input) => {
-      let newBonusNumber = new BonusNumber(
-        Number(input),
-        this.winningLottoNumbers
-      );
+      let newBonusNumber = new BonusNumber(Number(input), this.winningNumbers);
       this.bonusNumber = newBonusNumber.getBonusNumber();
+
+      this.checkWinning();
     });
+  }
+
+  checkWinning() {
+    let checkWinner = new WinningChecker(
+      this.purchasedLottos,
+      this.winningNumbers,
+      this.bonusNumber
+    );
+    checkWinner.findCountOfWinning();
   }
 }
 
