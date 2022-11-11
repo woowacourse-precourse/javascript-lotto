@@ -51,7 +51,7 @@
 
 1. model
 
-- Lotto.js: 유효성 검증
+- Lotto.js, inputCheck.js: 유효성 검증
 - issueLotto.js: 로또 번호 생성
 - resultCheck.js: 당첨 여부 파악
 
