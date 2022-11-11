@@ -2,7 +2,7 @@ class CorrectLotto {
   #lottoArr = [];
   #answer;
   #bonus;
-  #count = [];
+  #correctArr = [];
   constructor(lottoArr = [], answer, bonus) {
     this.#lottoArr = lottoArr;
     this.#answer = answer;
@@ -10,8 +10,9 @@ class CorrectLotto {
   }
   //몇개의 숫자가 같은지 알 수 있다.
   haveCorrect() {
+    this.#correctArr = [];
     this.#lottoArr.forEach((arr) => {
-      this.#count.push(
+      this.#correctArr.push(
         arr.reduce(
           (count, element) =>
             this.#answer.includes(element) ? (count += 1) : count,
@@ -19,13 +20,13 @@ class CorrectLotto {
         )
       );
     });
-    return this.#count; // ex [0, 2, 0, 1, 0, 0, 1, 3]
+    return this.#correctArr; // ex [0, 2, 0, 1, 0, 0, 1, 3]
   }
   haveBonus() {
     this.haveCorrect();
     let bonusArr = [];
-    if (this.#count.includes(5))
-      bonusArr = this.#lottoArr[this.#count.indexOf(5)];
+    if (this.#correctArr.includes(5))
+      bonusArr = this.#lottoArr[this.#correctArr.indexOf(5)];
     return bonusArr.includes(Number(this.#bonus));
   }
 }

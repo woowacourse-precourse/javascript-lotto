@@ -1,9 +1,12 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const AWARDDATA = require("./modules/AWARDDATA");
+
 const BuyLotto = require("./modules/BuyLotto");
 const UserLotto = require("./modules/UserLotto");
 const AnswerLotto = require("./modules/AnswerLotto");
 const CorrectLotto = require("./modules/CorrectLotto");
 const Award = require("./modules/Award");
+const Print = require("./modules/Print");
 
 class App {
   play() {
@@ -28,7 +31,11 @@ class App {
     const correctArr = CORRECT.haveCorrect();
     // 몇개 일치하는 지에 따라 상금을 정한다.
     const AWARD = new Award(correctArr, CORRECT.haveBonus());
-    const priceArr = AWARD.haveAward();
+    const price = AWARD.haveAward();
+    // 상금 개수와 일치 개수에 따라 출력한다.
+    const PRINT = new Print();
+    const object = PRINT.haveObject(correctArr);
+
     // 로또 게임을 종료한다.
     MissionUtils.Console.close();
   }
