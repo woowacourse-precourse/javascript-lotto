@@ -17,6 +17,10 @@ class Render {
     );
     Console.print(`6개 일치 (2,000,000,000원) - ${prizeResult.first}개`);
   }
+
+  static rateOfReturn(rateOfReturn) {
+    Console.print(`총 수익률은 ${rateOfReturn}입니다.`);
+  }
 }
 
 module.exports = Render;

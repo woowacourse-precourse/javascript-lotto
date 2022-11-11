@@ -85,8 +85,8 @@ class App {
     this.printEarningRate(rateOfReturn);
   }
 
-  printEarningRate(earningRate) {
-    Console.print(`총 수익률은 ${earningRate}%입니다.`);
+  printEarningRate(rateOfReturn) {
+    Render.rateOfReturn(rateOfReturn);
     Console.close();
   }
 }
