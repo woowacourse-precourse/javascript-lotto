@@ -27,7 +27,7 @@ class WinningResult {
 
   setYield(cash) {
     this.sum = this.calculateSum();
-    return Math.round((this.sum * 10000) / cash) / 100;
+    return Math.round((this.sum * 1000) / cash) / 10;
   }
 }
 
