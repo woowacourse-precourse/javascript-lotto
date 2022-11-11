@@ -59,6 +59,11 @@ class App {
   printUserWinningStatistics() {
     print(PRINT_MESSAGE.WINNING_STATISTICS_TITLE);
     const userWinningStatistics = this.calculateUserWinningStatistics();
+    userWinningStatistics.forEach((winningCount, index) => {
+      print(
+        PRINT_MESSAGE.WINNING_STATISTICS_RESULT(index + 3, index, winningCount)
+      );
+    });
   }
 
   calculateUserWinningNumberCount(lottoNumbers) {

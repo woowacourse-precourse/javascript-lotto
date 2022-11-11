@@ -15,14 +15,14 @@ const WINNING_AMOUNT = [
 const PRINT_MESSAGE = {
   LOTTO_COUNT: '개를 구매했습니다.',
   WINNING_STATISTICS_TITLE: '\n당첨 통계\n---\n',
-  WINNING_STATISTICS_RESULT(
-    sameNumberCount,
-    winningAmount,
-    userWinningLottoCount
-  ) {
-    return `${sameNumberCount}개 일치 ${
-      WINNING_AMOUNT[winningAmount - 3]
-    }원 - ${userWinningLottoCount}개\n`;
+  WINNING_STATISTICS_RESULT(sameNumberCount, index, userWinningLottoCount) {
+    if (index === 3) {
+      return `5개 일치, 보너스 볼 일치 (${WINNING_AMOUNT[index]}원) - ${userWinningLottoCount}개`;
+    }
+    if (index === 4) {
+      return `6개 일치 (${WINNING_AMOUNT[index]}원) - ${userWinningLottoCount}개`;
+    }
+    return `${sameNumberCount}개 일치 (${WINNING_AMOUNT[index]}원) - ${userWinningLottoCount}개`;
   },
 };
 
