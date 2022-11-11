@@ -22,6 +22,15 @@ class LottoNumberGenerator {
     return true;
   }
 
+  isLottoSetValid(set) {
+    if (this.#isLengthNotEqualsToSix(set)) return false;
+    return true;
+  }
+
+  #isLengthNotEqualsToSix(numbers) {
+    return numbers.length !== 6;
+  }
+
   #isNotDividedThousand(input) {
     return input === "0" || input % 1000 !== 0;
   }
