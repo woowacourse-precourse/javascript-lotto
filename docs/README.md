@@ -58,7 +58,7 @@
   - get User input >> mock fn(readline)
   - price exception handling(price)
   - return payingPrice;
-- LottoStore.generateLottoNumber(price)
+- [v] LottoStore.generateLottoNumber(price)
   - calculate buying lotto counts
   - generate Lottos(lotto count) >> mock fn(pickUniqueNumbersInRange)
   - lotto number exception handling(Lottos : array);
@@ -116,7 +116,9 @@
 2. LottoStore
    1. No property
    2. method
-      1. generate lotto number
+      1. generate lotto
+         1. calculate lotto count
+         2. generate lotto number
 3. LottoCompany
    1. property
       1. winning lotto numbers : include bonus
