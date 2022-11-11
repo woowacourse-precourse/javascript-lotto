@@ -25,4 +25,11 @@ describe("로또 클래스 테스트", () => {
     const lotto = new Lotto();
     expect(lotto.lottoNumber()).toHaveLength(6);
   });
+
+  test("발행한 복권을 오름차순으로 정렬하고 배열에 따로 저장", () => {
+    const lotto = new Lotto();
+    const array = [4, 8, 10, 20, 30, 44];
+    lotto.lottoSort([10, 4, 30, 20, 8, 44]);
+    expect(lotto.myLotto[0]).toMatchObject(array);
+  });
 });
