@@ -1,5 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const { MESSAGE } = require('./constants/constant');
+const { MESSAGE, ERROR_MESSAGE } = require('./constants/constant');
 const Lotto = require('./Lotto');
 class App {
   constructor() {
@@ -29,12 +29,12 @@ class App {
   }
   isInputNumber(input) {
     if (Number.isNaN(parseInt(input, 10))) {
-      throw new Error('[ERROR] 숫자를 입력하세요.');
+      throw new Error(ERROR_MESSAGE.NAN_ERROR);
     }
   }
   isMoneyDisvisible() {
     if (this.money % 1000 !== 0) {
-      throw new Error('[ERROR] 1000으로 나누어 떨어지도록 입력하세요.');
+      throw new Error(ERROR_MESSAGE.NOT_DISVISIBLE);
     }
   }
   countLotto(money) {
@@ -80,7 +80,7 @@ class App {
   }
   isBonusNumberInRange() {
     if (!(1 <= this.bounsNumber && this.bounsNumber <= 45)) {
-      throw new Error('[ERROR] 1~45 사이의 숫자를 입력하세요.');
+      throw new Error(ERROR_MESSAGE.NOT_IN_RANGE);
     }
   }
   checkCorrectNumber(lotto) {
