@@ -2,4 +2,4 @@ class App {
   play() {}
 }
 
-module.exports = App;
+module.exports = App
