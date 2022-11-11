@@ -3,7 +3,7 @@ const { CONSOLE_MESSAGE, PARAMETERS } = require('./utils/constants');
 
 class LottoGame {
   constructor() {
-    this.purchaseCount = 0; 
+    this.purchaseCount = 0;
   }
 
   start() {}
@@ -11,6 +11,6 @@ class LottoGame {
   getPurchaseAmount() {
     MissionUtils.Console.readLine(`${CONSOLE_MESSAGE.purchaseAmount}`, (input) => {
       this.purchaseCount = input / PARAMETERS.purchaseAmountUnit;
-    })
+    });
   }
 }
