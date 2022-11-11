@@ -3,6 +3,7 @@ class Lotto {
 
   constructor(numbers) {
     this.validate(numbers);
+    this.validateNumberDuplication(numbers);
     this.#numbers = numbers;
   }
 
@@ -12,7 +13,19 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
+  validateNumberDuplication(numbers) {
+    const numberSet = new Set();
+    numbers.forEach((number) => {
+      numberSet.add(number);
+    });
+    if (numberSet.size !== 6) {
+      throw new Error("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+    }
+  }
+
+  getLottoNumbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
