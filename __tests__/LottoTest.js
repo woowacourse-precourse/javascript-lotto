@@ -139,5 +139,19 @@ describe('로또 클래스 테스트', () => {
         expect(Lotto.isThreeMatche(COUNT)).toBeTruthy();
       });
     });
+
+    describe('4개 일치 파악 메소드', () => {
+      test('메소드 이름은 "isFourMatche"로 정의된다.', () => {
+        const METHOD_NAME = 'isFourMatche';
+
+        expect(Lotto.isFourMatche.name).toEqual(METHOD_NAME);
+      });
+
+      test('주어진 값이 4와 일치하면 true를 반환한다.', () => {
+        const COUNT = 4;
+
+        expect(Lotto.isFourMatche(COUNT)).toBeTruthy();
+      });
+    });
   });
 });
