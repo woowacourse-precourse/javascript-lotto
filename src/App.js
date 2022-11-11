@@ -28,6 +28,11 @@ class App {
 
     return true;
   }
+
+  //구매 금액으로 로또 몇장 살 수 있는지 계산하기
+  countAvailableQuantity(amount) {
+    return Number(amount) / AMOUNT_UNIT;
+  }
 }
 
 module.exports = App;
