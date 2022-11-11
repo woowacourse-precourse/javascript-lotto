@@ -10,7 +10,7 @@ class Lotto {
 
   validate(numbers) {
     if (typeof numbers !== "object") {
-      throw new TypeError("[ERROR] numbers의 타입은 object 타입이어야 합니다.");
+      throw new TypeError("[ERROR] numbers 인자의 타입은 object 타입이어야 합니다.");
     }
 
     if (numbers.length !== 6) {
