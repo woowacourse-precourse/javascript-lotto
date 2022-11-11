@@ -38,6 +38,12 @@ class LotteryDraw extends Struct{
         });
         new WinningExceptionHandling(this.winning);
     };
+    bonusNumber() {
+        MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.\n', (bonus) => {
+            this.bonus = Number(bonus);
+        });
+        new BonusExceptionHandling(this.bonus,this.winning);
+    };
 };
 
 module.exports = LotteryDraw;
