@@ -5,12 +5,12 @@ const { INPUT } = require("./lib/library");
 
 class App {
   async play() {
-    // const myLotto = new LottoBuy();
-    // const lottoSetting = new LottoSetting();
-    // MissionUtils.Console.readLine(INPUT.BUY, (price) => {
-    //   myLotto.inputPurchasePrice(price);
-    //   lottoSetting.inputWinLottoNum();
-    // });
+    const myLotto = new LottoBuy();
+    const lottoSetting = new LottoSetting();
+    MissionUtils.Console.readLine(INPUT.BUY, (price) => {
+      myLotto.inputPurchasePrice(price);
+      lottoSetting.inputWinLottoNum();
+    });
   }
 }
 

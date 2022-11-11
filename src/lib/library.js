@@ -4,13 +4,13 @@ const LOTTO = {
 
 const INPUT = {
   BUY: "구입금액을 입력해 주세요.\n",
-  WIN_NUMBER: "당첨 번호를 입력해 주세요.\n",
-  BONUS: "보너스 번호를 입력해 주세요.\n",
+  WIN_NUMBER: "\n당첨 번호를 입력해 주세요.\n",
+  BONUS: "\n보너스 번호를 입력해 주세요.\n",
 };
 
 const PRINT = {
-  BUY: (count) => `${count}개를 구매했습니다.`,
-  RESULT: "당첨 통계\n ---\n",
+  BUY: (count) => `\n${count}개를 구매했습니다.`,
+  RESULT: "\n당첨 통계\n ---\n",
   GAIN_PECENT: (percent) => `총 수익률은 ${percent}%입니다.\n`,
 };
 
