@@ -28,6 +28,7 @@ class LottoGame {
     Validation.validatePurchaseAmount(purchaseAmount);
     const lottoQuantity = this.getLottoQuantity(purchaseAmount);
     this.createLottos(lottoQuantity);
+    this.LottoGameView.printLottoQuantity(lottoQuantity);
   }
 
   getLottoQuantity(purchaseAmount) {
