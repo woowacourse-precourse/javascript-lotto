@@ -33,9 +33,18 @@ class App {
 
     while (countIndex < requestCount) {
       const lottoNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+      lottoNumbers.sort((a, b) => a - b);
       lottoList.push(lottoNumbers);
       countIndex++;
     }
+
+    this.printLottoList(lottoList);
+  }
+
+  printLottoList(lottoList) {
+    lottoList.forEach((lottoNumbers) => {
+      Console.print(lottoNumbers);
+    });
   }
 }
 
