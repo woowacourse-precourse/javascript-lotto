@@ -1,11 +1,13 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const Money = require("./Money");
+const Type = require("./Type");
 
 class App {
   constructor() {
     this.money = 0;
     this.quantity = 0;
     this.publishList = [];
+    this.winningNumbers = [];
   }
 
   play() {
@@ -36,6 +38,15 @@ class App {
       this.publishList.push(publishPiece);
       Console.print(JSON.stringify(publishPiece).replace(/,/g, ", "));
     }
+
+    this.inputWinning();
+  }
+
+  inputWinning() {
+    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (numbers) => {
+      this.type = new Type();
+      this.winningNumbers = this.type.changeType(numbers);
+    });
   }
 }
 
