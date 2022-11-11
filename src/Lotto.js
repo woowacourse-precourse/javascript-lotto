@@ -28,6 +28,9 @@ class Lotto {
     if (uniqueNumbers.has(NaN)) {
       throw new Error(ERROR.NOT_NUMBER);
     }
+    if (numbers.some((value) => value < 1 || value > 45)) {
+      throw new Error(ERROR.INVAID_NUMBER);
+    }
   }
 
   // TODO: 추가 기능 구현
