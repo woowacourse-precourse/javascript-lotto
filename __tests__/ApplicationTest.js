@@ -68,4 +68,12 @@ describe('로또 테스트', () => {
       app.play();
     }).toThrow('[ERROR]');
   });
+
+  test('예외 테스트: 돈이 문자인 경우', () => {
+    mockQuestions(['asdfaj']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
 });
