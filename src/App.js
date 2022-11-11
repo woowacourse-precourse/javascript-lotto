@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Lotto = require("./Lotto.js");
 class App {
   insertedMoney;
   userLottoNumberLists = [];
@@ -11,6 +12,7 @@ class App {
     }
     this.printGenerateUserLottoNumber(this.userLottoNumberLists);
     const prizeNumber = await this.enterPrizeNumber();
+    const lotto = new Lotto(prizeNumber);
   }
   insertMoney(){
     MissionUtils.Console.readLine('구입금액을 입력해주세요 (1000원 단위)', (insertMoney) => {
