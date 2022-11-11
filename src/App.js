@@ -7,7 +7,13 @@ const Lotto = require("./Lotto");
 const BonusNumber = require("./error/bonusNumber");
 const CompareLotto = require("./CompareLotto");
 
-const { COMMAND, GUIDE, RANK, PRIZE_MONEY } = require("./utils/constant");
+const {
+  COMMAND,
+  GUIDE,
+  RANK,
+  PRIZE_MONEY,
+  CORRECT,
+} = require("./utils/constant");
 const Profit = require("./Profit");
 
 class App {
@@ -62,7 +68,7 @@ class App {
       .reverse()
       .forEach((nowRank) => {
         Console.print(
-          `${GUIDE[nowRank]} (${PRIZE_MONEY[RANK[nowRank]]
+          `${CORRECT[nowRank]} (${PRIZE_MONEY[RANK[nowRank]]
             .toString()
             .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}${GUIDE.WON}) ${GUIDE.BAR} ${
             this.rank[nowRank]

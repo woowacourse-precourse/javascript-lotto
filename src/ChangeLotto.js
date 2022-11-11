@@ -29,7 +29,7 @@ class ChangeLotto {
     this.pcs = this.changePcs(input);
     this.informPcs(this.pcs);
     this.receiveLotto(this.pcs);
-    this.lottoNumbers.forEach((v) => Console.print(v));
+    this.lottoNumbers.forEach((v) => Console.print(`[${v.join(", ")}]`));
     return this.lottoNumbers;
   }
 }

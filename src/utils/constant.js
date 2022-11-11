@@ -9,15 +9,18 @@ const GUIDE = Object.freeze({
   TITLE: "당첨 통계",
   LINE: "---",
   BAR: "-",
-  TOTAL_PROFIT: "총 수익률은 ",
+  TOTAL_PROFIT: "총 수익률은",
   PERCENT: "%입니다.",
   WON: "원",
   PCS: "개",
-  1: "6개 일치 ",
-  2: "5개 일치, 보너스 볼 일치 ",
-  3: "5개 일치 ",
-  4: "4개 일치 ",
-  5: "3개 일치 ",
+});
+
+CORRECT = Object.freeze({
+  1: "6개 일치",
+  2: "5개 일치, 보너스 볼 일치",
+  3: "5개 일치",
+  4: "4개 일치",
+  5: "3개 일치",
 });
 
 const ERROR = Object.freeze({
@@ -59,4 +62,4 @@ const PRIZE_MONEY = Object.freeze({
   FIFTH: 5000,
 });
 
-module.exports = { COMMAND, GUIDE, ERROR, UNIT, RANK, PRIZE_MONEY };
+module.exports = { COMMAND, GUIDE, CORRECT, ERROR, UNIT, RANK, PRIZE_MONEY };
