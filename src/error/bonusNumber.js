@@ -19,7 +19,11 @@ class BonusNumber extends Exception {
   }
 
   isAllowNumber() {
-    return this.#input < UNIT.MIN_NUMBER || this.#input > UNIT.MAX_NUMBER;
+    return (
+      this.#input < UNIT.MIN_NUMBER ||
+      this.#input > UNIT.MAX_NUMBER ||
+      isNaN(this.#input)
+    );
   }
 
   checkInput(comparison) {
