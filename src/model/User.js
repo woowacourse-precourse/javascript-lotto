@@ -1,23 +1,24 @@
 class User {
   constructor() {
     this.money = 0;
-    this.lotto = [];
+    this.lottoNumbers = [];
   }
 
   getMoney() {
     return this.money;
   }
 
-  getLotto() {
-    return this.lotto;
+  getLottoNumbers() {
+    return this.lottoNumbers;
   }
 
   setMoney(money) {
+    this.validateMoney(money);
     this.money = Number(money);
   }
 
-  setLotto(lotto) {
-    this.lotto = lotto;
+  setLottoNumbers(lottoNumbers) {
+    this.lottoNumbers = lottoNumbers;
   }
 
   validateMoney(money) {

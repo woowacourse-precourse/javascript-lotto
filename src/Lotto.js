@@ -41,12 +41,14 @@ class Lotto {
     });
   }
 
+  getWinningNumbers() {
+    return this.#numbers;
+  }
+
   setWinningNumbers(bonusNumber) {
     this.#numbers.push(bonusNumber);
     this.validate(this.#numbers, 7);
   }
-
-  // TODO: 추가 기능 구현
 }
 
 module.exports = Lotto;

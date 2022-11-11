@@ -1,4 +1,4 @@
-const LottoGame = require('./core/LottoGame');
+const LottoGame = require('./controller/LottoGame');
 const User = require('./model/User');
 const InputConsole = require('./view/InputConsole');
 const OutputConsole = require('./view/OutputConsole');
