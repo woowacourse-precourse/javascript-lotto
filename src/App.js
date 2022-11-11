@@ -63,6 +63,12 @@ class App {
     statistics.printTotalLottoResult(totalRankingArr);
   }
 
+  getTotalPrizeMoney(totalRankingArr) {
+    return this.getPrizeMoneyArr(totalRankingArr).reduce((totalMoney, prizeMoney) => {
+      return (totalMoney += prizeMoney);
+    }, 0);
+  }
+
   getPrizeMoneyArr(totalRankingArr) {
     const currency = [5000, 50000, 1500000, 30000000, 2000000000];
     const prizeMoneyArr = totalRankingArr.map((lotto, index) => {
