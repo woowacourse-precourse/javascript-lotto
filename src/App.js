@@ -15,8 +15,7 @@ class App {
 
   purChaseLotto() {
     Console.readLine('구입금액을 입력해 주세요.\n', (amount) => {
-      this.purChaseLottoAmount = new PurChase(amount) ? Number(amount) / 1000 : '';
-      this.inputLottoNumber();
+      console.log(new PurChase(amount).showLottoTickets(amount));
     });
   }
 
@@ -27,13 +26,8 @@ class App {
         this.fullLottoNumber = new BonusLotto([lottoInput.split(','), bonusInput])
           ? [lottoInput.split(','), bonusInput]
           : '';
-        this.showStats();
       });
     });
-  }
-
-  showStats() {
-    console.log(this.purChaseLottoAmount, this.fullLottoNumber);
   }
 }
 
