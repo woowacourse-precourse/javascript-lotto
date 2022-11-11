@@ -1,4 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
+const { validateLottoRange } = require('../utils/method');
 
 const LottoAdjustment = require('./LottoAdjustment');
 const Lotto = require('./Lotto');
@@ -29,7 +30,9 @@ class App {
 
   #drawLotto() {
     Console.readLine('당첨 번호를 입력해 주세요.\n', input => {
-      const inputNumArr = input.split(',').map(value => Number(value));
+      const inputNumArr = input
+        .split(',')
+        .map(value => validateLottoRange(value));
 
       this.#lotto = new Lotto(inputNumArr);
 
