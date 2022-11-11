@@ -4,7 +4,7 @@ class View {
   printBoughtLotto(amount, lottoBundle) {
     Console.print(amount + '개를 구매했습니다.');
     for (const lotto of lottoBundle) {
-      Console.print('[' + lotto + ']');
+      Console.print('[' + lotto.join(', ') + ']');
     }
   }
 

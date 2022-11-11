@@ -14,7 +14,7 @@ const ERROR = {
   UNIT_OF_THOUSAND: `${ERROR_PREFIX} [ERROR] 로또 구입 금액은 천 원 단위여야 합니다.`,
 };
 
-const WINNING_MONEY = [5000, 50000, 1500000, 3000000, 2000000000];
+const WINNING_MONEY = [5000, 50000, 1500000, 30000000, 2000000000];
 const MATCHING_MESSAGE = [
   '3개 일치',
   '4개 일치',
