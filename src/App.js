@@ -10,9 +10,9 @@ class App {
   constructor() {
     this.lotto;
     this.lottoCount;
-    this.userLottoList;
+    this.userLottos;
     this.bonusNumber;
-    this.prizeResult = {
+    this.winningState = {
       first: 0,
       second: 0,
       third: 0,
@@ -22,22 +22,26 @@ class App {
   }
 
   play() {
+    this.askBuget();
+  }
+
+  askBuget() {
     Console.print(MESSAGE.ASK_BUDGET);
     Console.readLine(MESSAGE.NULL, (money) => {
       Validator.throwErrorIfInvalidMoney(money);
       this.lottoCount = money / LOTTO.PRICE;
 
-      this.buyLotto();
+      this.issueLotto();
     });
   }
 
-  buyLotto() {
-    this.userLottoList = GameTools.issueLottoAsManyAsCount(this.lottoCount);
+  issueLotto() {
+    this.userLottos = GameTools.issueLottoAsManyAsCount(this.lottoCount);
     this.renderIssuedLottoList();
   }
 
   renderIssuedLottoList() {
-    Render.issuedLottoList(this.lottoCount, this.userLottoList);
+    Render.issuedLottoList(this.lottoCount, this.userLottos);
     this.getWinningNumbers();
   }
 
@@ -58,36 +62,42 @@ class App {
     Console.print(MESSAGE.ASK_BONUS_NUMBER);
     Console.readLine(MESSAGE.NULL, (bonusNumber) => {
       Validator.throwErrorIfInvalidBonusNumber(winningNumbers, bonusNumber);
-      this.bonusNumber = Number(bonusNumber);
-      this.setPrizeResult();
+      // this.bonusNumber = Number(bonusNumber);
+      // this.setPrizeResult();
+      this.checkGameResult(bonusNumber);
     });
   }
 
-  setPrizeResult() {
-    this.prizeResult = this.lotto.prizeResult(
-      this.userLottoList,
-      this.bonusNumber,
-      this.prizeResult
-    );
-    this.getTotalEarningRate();
-  }
-
-  getTotalEarningRate() {
-    const rateOfReturn = GameTools.calcRateOfReturn(
-      this.prizeResult,
-      this.lottoCount
-    );
-    this.printStatistics(rateOfReturn);
-  }
-
-  printStatistics(rateOfReturn) {
-    Render.WinningStatistics(this.prizeResult, rateOfReturn);
+  printWinningStatistics(bonusNumber) {
+    this.lotto.statusOfPrize(this.userLottos, bonusNumber, this.winningState);
     this.exitGame();
   }
 
-  exitGame() {
-    Console.close();
-  }
+  // setPrizeResult() {
+  //   this.prizeResult = this.lotto.prizeResult(
+  //     this.userLottos,
+  //     this.bonusNumber,
+  //     this.prizeResult
+  //   );
+  //   this.getTotalEarningRate();
+  // }
+
+  // getTotalEarningRate() {
+  //   const rateOfReturn = GameTools.calcRateOfReturn(
+  //     this.prizeResult,
+  //     this.lottoCount
+  //   );
+  //   this.printStatistics(rateOfReturn);
+  // }
+
+  // printStatistics(rateOfReturn) {
+  //   Render.WinningStatistics(this.prizeResult, rateOfReturn);
+  //   this.exitGame();
+  // }
+
+  // exitGame() {
+  //   Console.close();
+  // }
 }
 
 const app = new App();
