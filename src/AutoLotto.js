@@ -1,6 +1,6 @@
 const { Random } = require("@woowacourse/mission-utils");
 
-class AutoLottos {
+class AutoLotto {
   constructor(randomLottoArray) {
     this.randomLottoArray = randomLottoArray;
   }
@@ -9,11 +9,11 @@ class AutoLottos {
     const randomLottoArray = [];
 
     while (randomLottoArray.length < count) {
-      randomLottoArray.push(Random.pickUniqueNumbersInRange(1, 45, 6));
+      randomLottoArray.push(Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b));
     }
 
     this.randomLottoArray = randomLottoArray;
   }
 }
 
-module.exports = AutoLottos;
+module.exports = AutoLotto;
