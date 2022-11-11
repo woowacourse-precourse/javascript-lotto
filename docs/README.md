@@ -50,6 +50,9 @@
 
 ### 당첨 내역 계산하기
 - calculatePrizeLottery
+### 각 배열마다 당첨됬는지 확인하기
+- checkLottery
+
 ### 당첨 내역 출력하기
 - showPrizeLottery
 ## 수익률 계산하기
