@@ -1,26 +1,18 @@
 class LottoResult {
-  #matchedNumberCount;
-  #isBonusNumberMatched;
+  #lottoNumberCount;
+  #bonusNumberCount;
 
-  constructor(matchedNumberCount, isBonusNumberMatched) {
-    this.#matchedNumberCount = matchedNumberCount;
-    this.#isBonusNumberMatched = isBonusNumberMatched;
+  constructor(lottoNumberCount, bonusNumberCount) {
+    this.#lottoNumberCount = lottoNumberCount;
+    this.#bonusNumberCount = bonusNumberCount;
   }
 
-  getMatchedNumberCount() {
-    return this.#matchedNumberCount;
-  }
+  isWinning(winningLottoNumberCount, winningBonusNumberCount) {
+    const isSame = this.#lottoNumberCount.isSame(winningLottoNumberCount);
 
-  isBonusNumberMatched() {
-    return this.#isBonusNumberMatched;
-  }
+    if (!winningBonusNumberCount) return isSame;
 
-  hasEqualNumberCount(lottoResult) {
-    return this.#matchedNumberCount === lottoResult.getMatchedNumberCount();
-  }
-
-  hasBonusNumber(lottoResult) {
-    return this.#isBonusNumberMatched === lottoResult.isBonusNumberMatched();
+    return isSame && this.#bonusNumberCount.isSame(winningBonusNumberCount);
   }
 }
 
