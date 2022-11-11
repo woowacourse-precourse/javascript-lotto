@@ -1,24 +1,35 @@
-const { PICK_TYPE, PICK_LENGTH } = require('./Constants');
+const {
+  checkSplitSymbol,
+  checkNumberOfDigit,
+  checkMainNumberInRange,
+  checkBonusNumberInRange,
+  checkMainNumberOverlap,
+  checkBonusNumberOverlap,
+} = require('./Validation');
+const { PICK_TYPE } = require('./Constants/PICK');
 
 class Lotto {
   #numbers;
 
   constructor(numbers, type) {
-    // this.validate(numbers, type);
-    this.#numbers = numbers;
+    this.validate(numbers.split(',').map(Number), type);
+    this.#numbers = numbers.split(',').map(Number);
   }
 
   // 추후 검증 파트를 개별 파일로 분리할 예정
   validate(numbers, type) {
-    if (numbers.length !== PICK_LENGTH.main && type === PICK_TYPE.main) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+    if (type === PICK_TYPE.main) {
+      checkSplitSymbol(numbers);
+      checkMainNumberInRange(numbers);
+      checkMainNumberOverlap(numbers);
     }
-    if (numbers.length !== PICK_LENGTH.bonus && type === PICK_TYPE.bonus) {
-      throw new Error('[ERROR] 보너스 번호는 1개여야 합니다.');
+    if (type === PICK_TYPE.bonus) {
+      checkBonusNumberInRange(numbers);
+      checkBonusNumberOverlap(numbers);
     }
+    checkNumberOfDigit(numbers);
   }
 
-  // 수정 필요
   checkWin(lotto, bonusNumber) {
     const winNumber = this.#numbers.split(',').map(Number);
     let count = 0;

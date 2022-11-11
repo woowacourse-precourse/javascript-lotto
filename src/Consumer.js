@@ -1,4 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
+const { checkAppropriateUnit } = require('./Validation');
 
 class Consumer {
   #money;
@@ -6,13 +7,15 @@ class Consumer {
   lotteryList = [];
 
   constructor(money) {
-    // this.validate(money);
+    this.validate(+money);
     this.#money = +money;
     this.createConsumer(money);
     this.printConsumer();
   }
 
-  validate(money) {}
+  validate(money) {
+    checkAppropriateUnit(money);
+  }
 
   createConsumer(money) {
     // 천원 당 1장
