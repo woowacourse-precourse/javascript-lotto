@@ -3,6 +3,13 @@ const PURCHASE = Object.freeze({
   UNIT: 1000,
 });
 
+const LOTTO = Object.freeze({
+  MIN_NUMBER: 1,
+  MAX_NUMBER: 45,
+  SIZE: 6,
+});
+
 module.exports = {
   PURCHASE,
+  LOTTO,
 };
