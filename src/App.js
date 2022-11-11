@@ -4,8 +4,8 @@ const BuyLottery = require("./BuyLottery");
 
 class App {
   play() {
-    inputOutputAmount();
-    buyLotto();
+    this.inputOutputAmount();
+    this.buyLotto();
   }
   inputOutputAmount() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (amount) => {
