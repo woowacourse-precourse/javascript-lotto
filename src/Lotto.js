@@ -28,15 +28,15 @@ class Lotto {
   getResult(lottoBundle, bonus) {
     const result = new Array(6).fill(0);
     lottoBundle.map((lotto) => {
-      const ranking = this.getWinningRanking(lotto, bonus);
+      const matchingCount = lotto.filter((number) => this.#numbers.includes(number)).length;
+      const hasBonus = lotto.includes(bonus);
+      const ranking = this.getWinningRanking(matchingCount, hasBonus);
       result[ranking] += 1;
     });
     return result.slice(1, 6).reverse();
   }
 
-  getWinningRanking(lotto, bonus) {
-    const matchingCount = lotto.filter((number) => this.#numbers.includes(number)).length;
-    const hasBonus = lotto.includes(bonus);
+  getWinningRanking(matchingCount, hasBonus) {
     if (matchingCount === 6) {
       return 1;
     }
