@@ -34,7 +34,12 @@ class Machine {
     });
   }
 
-  #checkIsAllUnique() {}
+  #checkIsAllUnique() {
+    const set = new Set(this.#winningNumbers);
+    if (set.size !== this.#winningNumbers.length) {
+      throw Error('[ERROR] 당첨 번호는 중복되지 않아야 합니다.');
+    }
+  }
 
   #checkRange() {}
 
@@ -43,7 +48,7 @@ class Machine {
   #checkWinningNumbers() {
     this.#checkLength();
     this.#checkIsAllNum();
-    // this.#checkIsAllUnique();
+    this.#checkIsAllUnique();
     // this.#checkRange();
     // this.#checkSeparator();
   }
