@@ -1,5 +1,5 @@
 const { readLine, print } = require('./utils/ui');
-const { INPUT_MESSAGE, PRINT_MESSAGE } = require('./constants');
+const { INPUT_MESSAGE, PRINT_MESSAGE, WINNING_AMOUNT } = require('./constants');
 const random = require('./utils/random');
 const validation = require('./validation');
 const Lotto = require('./Lotto');
@@ -64,6 +64,8 @@ class App {
         PRINT_MESSAGE.WINNING_STATISTICS_RESULT(index + 3, index, winningCount)
       );
     });
+    const profitRate = this.calculateProfitRate(userWinningStatistics);
+    print(PRINT_MESSAGE.PROFIT_RATE(profitRate));
   }
 
   calculateUserWinningNumberCount(lottoNumbers) {
@@ -93,6 +95,18 @@ class App {
         userWinningStatistics[userWinningNumberCount - 3] += 1;
     });
     return userWinningStatistics;
+  }
+
+  calculateProfitRate(winningStatistics) {
+    const winningAmount = WINNING_AMOUNT.map((amount) =>
+      parseInt(amount.replace(/,/g, ''), 10)
+    );
+    const totalProfit = winningStatistics.reduce(
+      (sum, winningCount, index) => sum + winningCount * winningAmount[index],
+      0
+    );
+    const profitRate = (totalProfit / (this.userLottoCount * 1000)) * 100;
+    return profitRate.toFixed(1);
   }
 }
 

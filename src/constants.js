@@ -24,6 +24,9 @@ const PRINT_MESSAGE = {
     }
     return `${sameNumberCount}개 일치 (${WINNING_AMOUNT[index]}원) - ${userWinningLottoCount}개`;
   },
+  PROFIT_RATE(profitRate) {
+    return `총 수익률은 ${profitRate}%입니다.`;
+  },
 };
 
 const ERROR = '[ERROR]';
@@ -40,4 +43,5 @@ module.exports = {
   INPUT_MESSAGE,
   PRINT_MESSAGE,
   ERROR_MESSAGE,
+  WINNING_AMOUNT,
 };
