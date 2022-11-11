@@ -80,6 +80,30 @@ class CalculationMoney {
     }
     return classOfLotto;
   }
+
+  makeWinningAmount(result) {
+    let winningAmount = 0;
+    for (let i = 0; i < result.length; i++) {
+      switch (result[i][0]) {
+        case "5등":
+          sum = sum + 5000 * result[i][1];
+          break;
+        case "4등":
+          sum = sum + 50000 * result[i][1];
+          break;
+        case "3등":
+          sum = sum + 1500000 * result[i][1];
+          break;
+        case "2등":
+          sum = sum + 30000000 * result[i][1];
+          break;
+        case "1등":
+          sum = sum + 2000000000 * result[i][1];
+          break;
+      }
+    }
+    return winningAmount;
+  }
 }
 module.exports = CalculationMoney;
 

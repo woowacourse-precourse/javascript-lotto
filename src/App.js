@@ -64,24 +64,37 @@ class App {
 
       lotto.validateBonusNum(this.bonusNum, this.winningNum);
 
-      this.totalWinningNum = [...this.winningNum, this.bonusNum];
-
-      const winningNumArr = calculationMoney.makeWinningNumArr(
-        this.userHaveLotto,
-        this.totalWinningNum
-      );
-
-      this.checkLottoResultOfClass(winningNumArr);
+      this.calculateOfLotto();
     });
   }
 
-  checkLottoResultOfClass(winningNumArr) {
+  calculateOfLotto() {
+    this.totalWinningNum = [...this.winningNum, this.bonusNum];
+
+    const winningNumArr = calculationMoney.makeWinningNumArr(
+      this.userHaveLotto,
+      this.totalWinningNum
+    );
+
+    this.makeLottoResult(winningNumArr);
+  }
+
+  makeLottoResult(winningNumArr) {
     const result = calculationMoney.resultOfLottoClass(
       winningNumArr,
       this.userHaveLotto,
       this.bonusNum
     );
-    Console.print(result);
+
+    this.renderOfResult(result);
+  }
+
+  renderOfResult(result) {
+    render.renderResult([...result]);
+  }
+
+  makeWinningAmount(result) {
+    const winningAmount = calculationMoney.makeWinningAmount(result);
   }
 }
 
