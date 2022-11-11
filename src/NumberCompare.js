@@ -27,7 +27,7 @@ class NumberCompare{
         }
     }
 
-    matchFourNumbers(createNum, winningNum){
+    matchFiveNumbers(createNum, winningNum){
         let duplicateNum = createNum.filter((el) => winningNum.includes(el));
         if(duplicateNum.length == 5){
             this.lottoRanking[2] += 1;
