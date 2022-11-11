@@ -19,6 +19,10 @@ class Vaildator {
   static isRightAmount(amount) {
     return amount % util.AMOUNT_PER_GAME === 0;
   }
+
+  static isDuplicateNumberInArray(array, number) {
+    return array.includes(number);
+  }
 }
 
 module.exports = Vaildator;
