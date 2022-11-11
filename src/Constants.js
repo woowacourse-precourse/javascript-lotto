@@ -4,4 +4,12 @@ const MESSAGES = {
   ERROR_AMOUNT_UNIT: "구입 금액은 1000원 단위여야 합니다.",
 };
 
-module.exports = { MESSAGES };
+const NUMBERS = {
+  LOTTO: 6,
+  BONUS: 1,
+  FIRST: 1,
+  LAST: 45,
+  AMOUNT: 1000,
+};
+
+module.exports = { MESSAGES, NUMBERS };
