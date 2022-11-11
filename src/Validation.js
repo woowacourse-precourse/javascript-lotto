@@ -49,8 +49,13 @@ class Validation {
   }
 
   static validateWinningNumbers(winningNumbers) {
+    const winningNumbersArr = winningNumbers.split(",");
+
     if (!Validation.hasOnlyNumber(winningNumbers, ",")) {
       throw new Error(ERROR_MESSAGE.INVALID_INPUT_TYPE);
+    }
+    if (!Validation.isValidLottoNumberLength(winningNumbersArr)) {
+      throw new Error(ERROR_MESSAGE.INVALID_LOTTO_LENGTH);
     }
   }
 }
