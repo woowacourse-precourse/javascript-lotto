@@ -62,8 +62,23 @@ const checkLottoNumbersValidation = (inputNumbers) => {
   });
 };
 
+/* Bonus Number Validation */
+const checkBonusIsDuplicated = (bonusNumber, numbers) => {
+  if (!numbers.includes(Number(bonusNumber))) return;
+
+  Console.close();
+  throw new Error('[ERROR] 당첨 번호와 중복된 번호는 선택할 수 없습니다.');
+};
+
+const checkBonusNumberValidation = (bonusNumber, numbers) => {
+  isValidNumber(bonusNumber);
+  isValidRange(bonusNumber);
+  checkBonusIsDuplicated(bonusNumber, numbers);
+};
+
 module.exports = {
   checkMoneyValidation,
   checkLottoNumbersValidation,
+  checkBonusNumberValidation,
   isValidNumber,
 };

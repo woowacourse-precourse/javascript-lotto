@@ -1,4 +1,7 @@
-const { checkLottoNumbersValidation } = require('./utils/validations');
+const {
+  checkLottoNumbersValidation,
+  checkBonusNumberValidation,
+} = require('./utils/validations');
 const { changeToNumbersArray } = require('./utils/lotteryHandler');
 
 class Lotto {
@@ -14,13 +17,13 @@ class Lotto {
     checkLottoNumbersValidation(numbers);
   }
 
-  set numbers(numbers) {
-    checkLottoNumbersValidation(numbers);
-    this.#numbers = numbers;
-  }
-
   get numbers() {
     return this.#numbers;
+  }
+
+  setBonusNumber(inputNumber) {
+    checkBonusNumberValidation(inputNumber, this.#numbers.numbers);
+    this.#numbers.bonusNumber = Number(inputNumber);
   }
 }
 

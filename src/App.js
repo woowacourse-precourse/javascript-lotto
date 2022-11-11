@@ -25,7 +25,13 @@ class App {
   inputLottoNumbers() {
     Console.readLine('당첨 번호를 입력해 주세요.', (inputNumbers) => {
       this.lotto = new Lotto(inputNumbers);
-      Console.close();
+      this.inputBonusNumber();
+    });
+  }
+
+  inputBonusNumber() {
+    Console.readLine('보너스 번호를 입력해 주세요.', (bonusNumber) => {
+      this.lotto.setBonusNumber(bonusNumber);
     });
   }
 }
