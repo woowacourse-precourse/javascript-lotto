@@ -7,6 +7,14 @@ class BuyLottery {
     let numberOfPurchases = money / 1000;
     return numberOfPurchases;
   }
+  createRendomLotto(lotteryNumber) {
+    let totalLottoNumbers = [];
+    while (lotteryNumber !== arr.length) {
+      const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      totalLottoNumbers.push(numbers);
+    }
+    return totalLottoNumbers;
+  }
 }
 
 module.exports = BuyLottery;
