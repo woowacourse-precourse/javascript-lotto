@@ -68,4 +68,12 @@ describe('로또 클래스 테스트', () => {
       }).not.toThrow(ERROR_TEXT);
     });
   });
+
+  describe('당첨 결과 메소드 테스트', () => {
+    test('메소드 이름은 "getLottoResult"로 정의된다.', () => {
+      const METHOD_NAME = 'getLottoResult';
+
+      expect(Lotto.getLottoResult.name).toEqual(METHOD_NAME);
+    });
+  });
 });
