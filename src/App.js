@@ -19,7 +19,7 @@ class App {
 
       this.showEveryLotto();
 
-      this.getNumberSelectedByUser(amount);
+      this.getWinningNumber(amount);
     });
   }
 
@@ -57,7 +57,7 @@ class App {
     });
   }
 
-  getNumberSelectedByUser(amount) {
+  getWinningNumber(amount) {
     Console.readLine("\n당첨 번호를 입력해 주세요.\n", (userInput) => {
       const arrayedUserInput = this.getArrayedUserInput(userInput);
 
