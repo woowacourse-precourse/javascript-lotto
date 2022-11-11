@@ -27,7 +27,7 @@ class LottoGame {
   purchaseLotto(purchaseAmount) {
     Validation.validatePurchaseAmount(purchaseAmount);
     const lottoQuantity = this.getLottoQuantity(purchaseAmount);
-    this.createLotto(lottoQuantity);
+    this.createLottos(lottoQuantity);
   }
 
   getLottoQuantity(purchaseAmount) {
@@ -36,7 +36,7 @@ class LottoGame {
   generateLottoNumbers() {
     return Random.pickUniqueNumbersInRange(LOTTO_NUM_MIN_RANGE, LOTTO_NUM_MAX_RANGE, LOTTO_DIGITS);
   }
-  createLotto(lottoQuantity) {
+  createLottos(lottoQuantity) {
     const lottoNumbers = this.generateLottoNumbers();
     this.lottos = Array.from({ length: lottoQuantity }, () => new Lotto(lottoNumbers));
   }
