@@ -20,6 +20,19 @@ class Lotto {
       }
     }
   }
+
+  lottosWinningBonus(lottos, winning, bonus) {
+    winning = winning.split(',');
+
+    for (let i = 0; i < lottos.length; i++) {
+      let matches = 0;
+      let bonusNumber = 0;
+      for (let j = 0; j < winning.length; j++) {
+        if (lottos[i].includes(Number(winning[j]))) matches += 1;
+        if (matches === 5 && lottos[i].includes(bonus)) bonusNumber += 1;
+      }
+    }
+  }
 }
 
 module.exports = Lotto;

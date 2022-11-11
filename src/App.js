@@ -42,6 +42,7 @@ class App {
       this.winningAndBonusNumbers.numberNotDuplicate(bonus);
 
       Console.print(Messages.WINNING_STATICS);
+      this.lotto.lottosWinningBonus(lottos, winning, bonus);
     });
   }
 }
