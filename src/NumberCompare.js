@@ -52,6 +52,10 @@ class NumberCompare{
             this.lottoRanking[4] += 1;
         }
     }
+
+    getLottoRanking(){
+        return this.lottoRanking;
+    }
 }
 
 
