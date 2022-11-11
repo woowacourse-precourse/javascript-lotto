@@ -41,3 +41,6 @@
 
 ### 투입한 금액만큼 컴퓨터가 로또번호 생성
 - createLottoNumArrays
+
+### 돈을 1000원 단위로 나눠 몫 만들기
+- divideMoney
