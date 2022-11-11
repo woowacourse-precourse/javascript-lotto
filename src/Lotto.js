@@ -1,4 +1,4 @@
-const MissionUtils = require("@woowacourse/mission-utils")
+const MissionUtils = require("@woowacourse/mission-utils");
 
 class Lotto {
   #numbers;
@@ -9,9 +9,15 @@ class Lotto {
   }
 
   inputPurchaseAmount() {
-    Console.readLine('구입금액을 입력해 주세요.', (purchaseAmount) => {
-      is1000Multiple(purchaseAmount)
+    Console.readLine("구입금액을 입력해 주세요.", (purchaseAmount) => {
+      is1000Multiple(purchaseAmount);
     });
+  }
+
+  is1000Multiple(purchaseAmount) {
+    if(purchaseAmount % 1000 !== 0){
+      throw new Error("[ERROR] 로또 구입 금액은 1000의 배수여야 합니다.")
+    }
   }
 
   validate(numbers) {
@@ -19,7 +25,6 @@ class Lotto {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
   }
-
 }
 
 module.exports = Lotto;
