@@ -22,8 +22,8 @@ class User {
   }
 
   validateMoney(money) {
-    if (money === '0') {
-      return;
+    if (money.includes(' ')) {
+      throw new Error('[ERROR] 로또 구입 금액에 공백이 포함되어 있습니다.');
     }
     if (!Number(money)) {
       throw new Error('[ERROR] 로또 구입 금액이 숫자가 아닙니다');
