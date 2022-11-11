@@ -34,18 +34,18 @@ class Validation {
   }
 
   static validateLottoNumber(lottoNumbers) {
-    if (Validation.isValidLottoNumberLength(lottoNumbers)) {
+    if (!Validation.isValidLottoNumberLength(lottoNumbers)) {
       throw new Error(ERROR_MESSAGE.INVALID_LOTTO_LENGTH);
     }
-    if (Validation.hasUniqueLottoNumber(lottoNumbers)) {
+    if (!Validation.hasUniqueLottoNumber(lottoNumbers)) {
       throw new Error(ERROR_MESSAGE.DUPLICATE_LOTTO_NUMBER);
     }
   }
   static isValidLottoNumberLength(lottoNumbers) {
-    return lottoNumbers.length !== LOTTO_DIGITS;
+    return lottoNumbers.length === LOTTO_DIGITS;
   }
   static hasUniqueLottoNumber(lottoNumbers) {
-    return new Set(lottoNumbers).size !== LOTTO_DIGITS;
+    return new Set(lottoNumbers).size === LOTTO_DIGITS;
   }
 
   static validateWinningNumbers(winningNumbers) {
