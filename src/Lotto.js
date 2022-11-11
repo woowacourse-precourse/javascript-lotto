@@ -5,6 +5,7 @@ class Lotto {
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
+    this.getBonusNumber();
   }
 
   validate(numbers) {
@@ -24,6 +25,20 @@ class Lotto {
       }
 
       if (!is1To45(Number(number))) {
+        throw new Error('[ERROR] 1부터 45 사이의 숫자만 입력해 주세요.');
+      }
+    });
+  }
+
+  getBonusNumber() {
+    Console.readLine('보너스 번호를 입력해 주세요.', (num) => {
+      const bonusNumber = num;
+
+      if (isNaN(Number(bonusNumber))) {
+        throw new Error('[ERROR] 다른 형식이 아닌 숫자만 입력해 주세요.');
+      }
+
+      if (!is1To45(bonusNumber)) {
         throw new Error('[ERROR] 1부터 45 사이의 숫자만 입력해 주세요.');
       }
     });
