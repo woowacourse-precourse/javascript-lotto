@@ -1,5 +1,7 @@
-class App {
+const App = class {
+  constructor() {}
+
   play() {}
-}
+};
 
 module.exports = App;
