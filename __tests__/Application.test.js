@@ -210,4 +210,14 @@ describe('정수 판단 함수 테스트', () => {
 
     expect(Application.validateInteger.name).toEqual(METHOD_NAME);
   });
+
+  test('나누어 떨어지지 않는 경우 예외 처리한다.', () => {
+    expect(() => {
+      Application.validateInteger(11.5);
+    }).toThrow();
+
+    expect(() => {
+      Application.validateInteger(11);
+    }).not.toThrow();
+  });
 });
