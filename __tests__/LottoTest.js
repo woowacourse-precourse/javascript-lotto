@@ -174,6 +174,14 @@ describe('로또 클래스 테스트', () => {
 
         expect(Lotto.isFiveMatche(COUNT, target)).toStrictEqual(expected);
       });
+
+      test('주어진 값이 5와 보너스 값 둘 다 일치하면 [0, 0, 0, 1, 0]를 반환한다.', () => {
+        const COUNT = 5;
+        const target = [0, 0, 0, 0, 0];
+        const expected = [0, 0, 0, 1, 0];
+
+        expect(Lotto.isFiveMatche(COUNT, target, [1, 3, 5, 14, 22, 45], 3)).toStrictEqual(expected);
+      });
     });
 
     describe('보너스 볼 일치 파악 메소드', () => {
