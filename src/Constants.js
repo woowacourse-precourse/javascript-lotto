@@ -7,7 +7,8 @@ const MESSAGE = Object.freeze({
 const ERROR = Object.freeze({
     INVAID_CACHE: "[ERROR] 구입 금액은 1000원 단위여야합니다.\n",
     CACHE_IS_NOT_NUMBER: "[ERROR] 입력값은 숫자여야 합니다.\n",
-    NOT_SIX_NUMBER: "[ERROR] 로또 번호는 6개여야 합니다."
+    NOT_SIX_NUMBER: "[ERROR] 로또 번호는 6개여야 합니다.",
+    NOT_UNIQUE: "[ERROR] 중복된 숫자가 포함되어있습니다."
 });
 
 module.exports = { MESSAGE, ERROR };
