@@ -1,19 +1,39 @@
+const { Console } = require('@woowacourse/mission-utils');
+const { GAME_MESSAGE } = require('./constants/constants');
+const getLottoQuantity = require('./utils/getLotteryQuantity');
+
 class App {
   #winNumber;
   #bonusNumber;
   #myLottoList;
+  #startMoney;
+  #earnedMoney;
 
-  play() {}
+  constructor() {
+    this.#myLottoList = {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 0,
+    };
+  }
+
+  play() {
+    return this.buy();
+  }
 
   // 구입 금액 입력 메서드
   buy() {
-    // 구입 금액 입력받기
-    // 입력받은 금액으로 getLottoQuantity호출
-    // 구매 수량에 맞게 로또 생성 메서드 호출
+    Console.readLine(GAME_MESSAGE.INSERT_PURCHASE_COST, (userInput) => {
+      this.#startMoney = Number(userInput);
+      const lotteryQuantity = getLottoQuantity(this.#startMoney);
+      return this.makeLotteries(lotteryQuantity);
+    });
   }
 
   // 로또 수량만큼 로또 생성하는 메서드 (new Lotto())
-  makeLottery() {
+  makeLotteries() {
     // makeRandomLottoNumber() 호출
   }
 
@@ -29,7 +49,10 @@ class App {
   }
 
   // 수익률 출력하기
-  printBenefitRate() {}
+  printProfitRate() {}
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
