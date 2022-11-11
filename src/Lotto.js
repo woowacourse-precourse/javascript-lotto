@@ -1,3 +1,5 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+
 class Lotto {
   #numbers;
 
@@ -12,7 +14,15 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
+  static checkMoney(money) {
+    const IS_TYPE_NUMBER = !Number.isNaN(money);
+    const IS_MULTIPLE_THOUSAND = Number(money) % 1000 === 0;
+    const IS_VALID = IS_TYPE_NUMBER && IS_MULTIPLE_THOUSAND;
+
+    if (!IS_VALID) {
+      throw new Error("[ERROR] 금액은 1000의 배수인 숫자이여야 합니다.");
+    }
+  }
 }
 
 module.exports = Lotto;
