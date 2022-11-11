@@ -237,7 +237,7 @@ class Lotto {
 
 ## 기능 목록
 
-1. [ ] 로또 구입 금액을 입력 받는다. -buyLottoPrice
+1. [ ] 로또 구입 금액을 입력 받는다. -getLottoPrice
 2. [ ] 발행한 로또 수량을 출력한다. - buyLottoCount
 3. [ ] 로또 번호를 출력한다.  -printLotto
   3-1 [ ] 로또 번호는 오름차순 정렬한다. -sortLotto
