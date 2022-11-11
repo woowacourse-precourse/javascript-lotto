@@ -1,3 +1,5 @@
+const { Random } = require("@woowacourse/mission-utils");
+
 class Lotto {
   #numbers;
 
@@ -13,6 +15,10 @@ class Lotto {
     if (numbers.length !== [...new Set(numbers)].length) {
       throw new Error("[ERROR] 중복된 숫자가 없어야 합니다.");
     }
+  }
+
+  makeSixNumbers() {
+    return Random.pickUniqueNumbersInRange(1, 45, 6);
   }
 }
 
