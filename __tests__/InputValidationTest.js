@@ -1,7 +1,3 @@
-const {
-  ERROR_MESSAGE_NOTONLY_NUMBER,
-  ERROR_MESSAGE_UNDIVIDED,
-} = require("../src/constants.js");
 const Validation = require("../src/Validation.js");
 
 describe("Validation.isDivided", () => {
