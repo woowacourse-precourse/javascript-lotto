@@ -83,4 +83,13 @@ describe("로또 클래스 테스트", () => {
 
     expect(winStatistics).toEqual(statistics);
   });
+
+  test("복권 구매", () => {
+    const MONEY = 5000;
+    const PRICE_OF_ONE_LOTTO = 1000;
+    const BOUGHT_COUNT = MONEY / PRICE_OF_ONE_LOTTO;
+    const boutghtLotto = Lotto.buy(MONEY);
+    console.log(">>>", boutghtLotto);
+    expect(boutghtLotto.length).toEqual(BOUGHT_COUNT);
+  });
 });

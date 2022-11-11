@@ -1,4 +1,4 @@
-const { Console } = require("@woowacourse/mission-utils");
+const { Console, Random } = require("@woowacourse/mission-utils");
 
 class Lotto {
   #numbers;
@@ -12,6 +12,24 @@ class Lotto {
     this.#purchasedAmount = purchasedAmount;
     this.#purchasedNumbers = purchasedNumbers;
     this.#bonus = bonus;
+  }
+
+  static generateNumbers() {
+    const MINIMUM = 1;
+    const MAXIMUM = 45;
+    const LENGTH = 6;
+    return Random.pickUniqueNumbersInRange(MINIMUM, MAXIMUM, LENGTH);
+  }
+
+  static buy(money) {
+    const boughtLotto = [];
+    const PRICE_OF_ONE_LOTTO = 1000;
+    const numberOfLottoTicketsBought = money / PRICE_OF_ONE_LOTTO;
+
+    for (let i = 0; i < numberOfLottoTicketsBought; i++) {
+      boughtLotto.push(this.generateNumbers());
+    }
+    return boughtLotto;
   }
 
   validate(numbers) {
