@@ -16,9 +16,9 @@ class Lotto {
       throw ERROR.MUST_INPUT_ONLY_NUMBER;
     }
     if (
-      numbers.some((num) => {
-        num < NUMBER.MIN_LOTTO_NUMBER || num > NUMBER.MAX_LOTTO_NUMBER;
-      })
+      numbers.some(
+        (num) => num < NUMBER.MIN_LOTTO_NUMBER || num > NUMBER.MAX_LOTTO_NUMBER
+      )
     ) {
       throw ERROR.MUST_BE_WITHIN_RANGE;
     }
