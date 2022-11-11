@@ -5,13 +5,33 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    this.checkWinNumLength(numbers);
+    this.checkWinNumRange(numbers);
+    this.checkWinNumDuplicate(numbers);
     this.#numbers = numbers;
   }
 
-  validate(numbers) {
+  checkWinNumLength(numbers) {
     if (numbers.length !== 6) {
-      throw new Error(LOTTO_MESSAGE.LOTTO_NUM_LENGTH_ERROR_MSG);
+      throw new Error(LOTTO_MESSAGE.WIN_NUM_LENGTH_ERROR_MSG);
+    }
+  }
+
+  checkWinNumRange() {
+    const filteredWinNum = numbers.filter(
+      (number) =>
+        LOTTO_SETTING.LOTTO_NUM_MIN <= number <= LOTTO_SETTING.LOTTO_NUM_MAX
+    );
+    const IS_VALID_RANGE = filteredWinNum.length === numbers.length;
+    if (!IS_VALID_RANGE) {
+      throw new Error(LOTTO_MESSAGE.WIN_NUM_RANGE_ERROR_MSG);
+    }
+  }
+  checkWinNumDuplicate(numbers) {
+    const setWinNum = new Set(numbers);
+    const IS_DUPLICATE = setWinNum.size < numbers.length;
+    if (IS_DUPLICATE) {
+      throw new Error(LOTTO_MESSAGE.WIN_NUM_DUPLICATE_ERROR_MSG);
     }
   }
 

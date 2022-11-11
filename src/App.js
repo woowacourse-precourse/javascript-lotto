@@ -17,6 +17,18 @@ class App {
     this.lottoNumArr = Lotto.genLottoNumArr(money);
     Lotto.printLottoNumArr(this.lottoNumArr);
   }
+
+  inputWinNum() {
+    MissionUtils.Console.readLine(
+      LOTTO_MESSAGE.INPUT_WIN_NUM_MSG,
+      (numbers) => {
+        const winNum = numbers.split(",").map((number) => Number(number));
+        const lotto = new Lotto(winNum);
+      }
+    );
+  }
 }
+
+new App().play();
 
 module.exports = App;
