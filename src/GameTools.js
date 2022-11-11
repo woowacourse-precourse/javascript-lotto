@@ -1,10 +1,16 @@
 const { Random } = require('@woowacourse/mission-utils');
 
+const { LOTTO, PRIZE_MONEY, PLACES_OF_DECIMALS } = require('./constants');
+
 class GameTools {
   static issueLottoAsManyAsCount(count) {
     const lottoes = [];
     while (lottoes.length < count) {
-      const randomNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+      const randomNumbers = Random.pickUniqueNumbersInRange(
+        LOTTO.MIN_NUMBER,
+        LOTTO.MAX_NUMBER,
+        LOTTO.LENGTH
+      );
       randomNumbers.sort((a, b) => a - b);
       lottoes.push(randomNumbers);
     }
@@ -18,15 +24,15 @@ class GameTools {
   }
 
   static calcRateOfReturn(prizeResult, lottoCount) {
-    const prizeMoney = [2000000000, 30000000, 1500000, 50000, 5000];
+    const prizeMoney = Object.values(PRIZE_MONEY);
     const winningCount = Object.values(prizeResult);
     let totalPrizeMoney = 0;
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < LOTTO.NUM_OF_PRIZE; i++) {
       totalPrizeMoney += winningCount[i] * prizeMoney[i];
     }
-    const rateOfReturn = (totalPrizeMoney / (lottoCount * 1000)) * 100;
+    const rateOfReturn = (totalPrizeMoney / (lottoCount * LOTTO.PRICE)) * 100;
 
-    return rateOfReturn.toFixed(1);
+    return rateOfReturn.toFixed(PLACES_OF_DECIMALS);
   }
 }
 

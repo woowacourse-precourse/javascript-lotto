@@ -1,8 +1,10 @@
 const { Console } = require('@woowacourse/mission-utils');
+
 const GameTools = require('./GameTools');
 const Lotto = require('./Lotto');
 const Render = require('./Render');
 const Validator = require('./Validator');
+const { LOTTO, MESSAGE } = require('./constants');
 
 class App {
   constructor() {
@@ -20,11 +22,10 @@ class App {
   }
 
   play() {
-    // 비즈니스 로직
-    Console.print('구입금액을 입력해 주세요.');
-    Console.readLine('', (money) => {
+    Console.print(MESSAGE.ASK_BUDGET);
+    Console.readLine(MESSAGE.NULL, (money) => {
       Validator.throwErrorIfInValidMoney(money);
-      this.lottoCount = money / 1000;
+      this.lottoCount = money / LOTTO.PRICE;
       this.buyLotto();
     });
   }
@@ -40,20 +41,20 @@ class App {
   }
 
   getWinningNumbers() {
-    // 비즈니스 로직
-    Console.print('당첨 번호를 입력해 주세요.');
-    Console.readLine('', (inputValue) => {
+    Console.print(MESSAGE.ASK_WINNING_NUM);
+    Console.readLine(MESSAGE.NULL, (inputValue) => {
       Validator.throwErrorIfInValidFormOfWinningNumber(inputValue);
-      const winningNumbers = inputValue.split(',').map((num) => Number(num));
+      const winningNumbers = inputValue
+        .split(LOTTO.SPLIT_WITH)
+        .map((num) => Number(num));
       this.lotto = new Lotto(winningNumbers);
       this.getBonusNumber();
     });
   }
 
   getBonusNumber() {
-    // 비즈니스 로직
-    Console.print('보너스 번호를 입력해 주세요.');
-    Console.readLine('', (bonusNumber) => {
+    Console.print(MESSAGE.ASK_BONUS_NUMBER);
+    Console.readLine(MESSAGE.NULL, (bonusNumber) => {
       Validator.throwErrorIfInValidBonusNumber(
         this.lotto.winningNumbers,
         bonusNumber
