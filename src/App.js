@@ -19,8 +19,7 @@ class App {
   }
 
   recordPay() {
-    Console.print('구입금액을 입력해 주세요.');
-    Console.readLine('', (input) => {
+    Console.readLine('구입금액을 입력해 주세요.\n', (input) => {
       const pay = parseInt(input);
       this.#calculator = new Calculator(pay);
       this.buyLottos();
@@ -38,8 +37,7 @@ class App {
   }
 
   printLottos() {
-    Console.print();
-    Console.print(`${this.#lottos.length}개를 구매했습니다.`);
+    Console.print(`\n${this.#lottos.length}개를 구매했습니다.`);
     this.#lottos.forEach((lotto) => {
       Console.print(`[${lotto.getNumbers().join(', ')}]`);
     });
@@ -48,18 +46,14 @@ class App {
   }
 
   recordWinNumbers() {
-    Console.print();
-    Console.print('당첨 번호를 입력해 주세요.');
-    Console.readLine('', (input) => {
+    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (input) => {
       this.#winNumbers = input.split(',').map((number) => parseInt(number));
       this.recordBonusNumber();
     });
   }
 
   recordBonusNumber() {
-    Console.print();
-    Console.print('보너스 번호를 입력해 주세요.');
-    Console.readLine('', (input) => {
+    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (input) => {
       this.#bonusNumber = parseInt(input);
       this.calculateResult();
     });
