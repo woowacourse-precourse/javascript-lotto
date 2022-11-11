@@ -17,10 +17,13 @@ class Lotto {
     }
   }
 
-  countMatchNumbers(winningNumber) {
+  countMatchNumbers(winningNumber, bonusNumber) {
     const matchNumbers = this.#numbers.filter((number) =>
       winningNumber.includes(number),
     );
+    if (matchNumbers === 5 && this.#numbers.includes(bonusNumber)) {
+      return '5B';
+    }
     return matchNumbers.length;
   }
 }
