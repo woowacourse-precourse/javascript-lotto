@@ -4,7 +4,7 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    Lotto.#validate(numbers);
+    Lotto.#validateNumbers(numbers);
     this.#numbers = numbers;
   }
 
@@ -12,12 +12,21 @@ class Lotto {
     return this.#numbers;
   }
 
-  static #validate(numbers) {
+  setBonusNumber(number) {
+    this.#validateBonusNumber(number);
+    this.bonusNumber = number;
+  }
+
+  static #isNumberInRange(number) {
+    return number < RULE.RANGE_START || number > RULE.RANGE_END;
+  }
+
+  static #validateNumbers(numbers) {
     if (numbers.length !== 6) {
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
     }
 
-    if (numbers.some((number) => number < RULE.RANGE_START || number > RULE.RANGE_END)) {
+    if (numbers.some((number) => Lotto.#isNumberInRange(number))) {
       throw new Error('[ERROR] 로또 번호는 1-45 사이의 수여야 합니다.');
     }
 
@@ -26,7 +35,15 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
+  #validateBonusNumber(number) {
+    if (this.#numbers.includes(number)) {
+      throw new Error('[ERROR] 로또 번호와 중복된 번호를 입력하였습니다.');
+    }
+
+    if (Lotto.#isNumberInRange(number)) {
+      throw new Error('[ERROR] 보너스 번호는 1-45 사이의 수여야 합니다.');
+    }
+  }
 }
 
 module.exports = Lotto;

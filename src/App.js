@@ -41,7 +41,17 @@ class App {
       });
 
       this.#lotto = new Lotto(lottoNumbers);
-      Console.print(this.#lotto.numbers);
+
+      this.#readBonusNumber();
+    });
+  }
+
+  #readBonusNumber() {
+    Console.readLine(GAME_MESSAGE.BONUS_NUMBER_INPUT, (number) => {
+      App.#validateNumberInput(number);
+
+      this.#lotto.setBonusNumber(+number);
+      Console.print(this.#lotto);
 
       Console.close();
     });
