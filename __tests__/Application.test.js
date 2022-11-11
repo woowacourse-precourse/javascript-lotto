@@ -68,27 +68,27 @@ describe('구매 개수 파악 함수 테스트', () => {
 });
 
 describe('수익률 계산 함수 테스트', () => {
-  test('메소드 이름은 "dividendRate"로 정의된다.', () => {
-    const METHOD_NAME = 'dividendRate';
+  test('메소드 이름은 "earningsRate"로 정의된다.', () => {
+    const METHOD_NAME = 'earningsRate';
 
-    expect(Application.dividendRate.name).toEqual(METHOD_NAME);
+    expect(Application.earningsRate.name).toEqual(METHOD_NAME);
   });
 
   test('8,000원을 사용하고 5,000원을 얻는다면 수익률 62.5를 반환한다.', () => {
-    expect(Application.dividendRate(8000, 5000)).toEqual(62.5);
+    expect(Application.earningsRate(8000, 5000)).toEqual(62.5);
   });
 
   test('5,000원을 사용하고 2,000,000,000원을 얻는다면 수익률 40000000를 반환한다.', () => {
-    expect(Application.dividendRate(5000, 2000000000)).toEqual(40000000);
+    expect(Application.earningsRate(5000, 2000000000)).toEqual(40000000);
   });
 
   test('전달받은 인수는 숫자로 변환이 불가능하면 예외를 발생시킨다.', () => {
     expect(() => {
-      Application.dividendRate('a1a1', 's');
+      Application.earningsRate('a1a1', 's');
     }).toThrow(NUMBER_EXCEPTION_TEXT);
 
     expect(() => {
-      Application.dividendRate('8000', '5000');
+      Application.earningsRate('8000', '5000');
     }).not.toThrow(NUMBER_EXCEPTION_TEXT);
   });
 });
