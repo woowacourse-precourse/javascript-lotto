@@ -24,6 +24,29 @@ class Lotto {
       throw new Error('[ERROR] 1 부터 45 사이의 숫자를 입력해주세요.');
     this.bonusNumber = parseInt(Number);
   }
+
+  compare(publishResult) {
+    for (i = 0; i < publishResult.length; i++) {
+      this.winningCount = 0;
+      publishResult[i].map((x) => {
+        this.comapreResult(publishResult[i], x);
+      });
+    }
+  }
+
+  comapreResult(publish, winning) {
+    if (publish.includes(winning)) return (this.winningCount += 1);
+  }
+
+  firstPrize() {}
+
+  secondPrize() {}
+
+  thirdPrize() {}
+
+  fourthPrize() {}
+
+  fifthPrize() {}
 }
 
 module.exports = Lotto;

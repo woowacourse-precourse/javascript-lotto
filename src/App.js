@@ -56,8 +56,13 @@ class App {
 
   enterBonusNumber() {
     Console.readLine('보너스 번호를 입력해 주세요.', (bonusNumber) => {
-      this.bonusNumber = this.lotto.bonusExecption(bonusNumber);
+      this.lotto.bonusExecption(bonusNumber);
+      this.winningResult();
     });
+  }
+
+  winningResult() {
+    this.lotto.comapre(this.publishResult);
   }
 }
 
