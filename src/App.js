@@ -1,5 +1,4 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const AWARDDATA = require("./modules/AWARDDATA");
 
 const BuyLotto = require("./modules/BuyLotto");
 const UserLotto = require("./modules/UserLotto");
@@ -35,7 +34,7 @@ class App {
     // 상금 개수와 일치 개수에 따라 출력한다.
     const PRINT = new Print();
     const object = PRINT.haveObject(correctArr);
-
+    PRINT.doPrint();
     // 로또 게임을 종료한다.
     MissionUtils.Console.close();
   }
