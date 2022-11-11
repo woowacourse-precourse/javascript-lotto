@@ -2,6 +2,9 @@ function isValidateUserInput(amount) {
   if (amount.trim().length === 0) {
     throw new Error("[ERROR] 입력 내용이 없습니다.");
   }
+  if (isNaN(amount)) {
+    throw new Error("[ERROR] 숫자가 아닌 값을 입력했습니다.");
+  }
   if (amount === "0") {
     throw new Error("[ERROR] 0을 입력하셨습니다.");
   }
