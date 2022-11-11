@@ -43,7 +43,7 @@ class User {
         winning_number = winning_number.split(',');
         const VALIDATION = this.validate_winning_number(winning_number);
         if (!VALIDATION) {
-          throw new Error('[Error] 롯또 번호는 1~45 사이의 숫자입니다.');
+          throw new Error('[Error] 롯또 번호는 1~45 사이의 6자리 숫자입니다.');
         }
         this.setWinningNumber(winning_number);
       },
@@ -52,6 +52,7 @@ class User {
 
   validate_winning_number(numbers) {
     let validation = true;
+    if (numbers.length != 6) validation = false;
     numbers.map(number => {
       if (!(number >= '1' && number <= 45)) {
         validation = false;
