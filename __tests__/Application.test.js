@@ -170,4 +170,10 @@ describe('배열 중복 검사 함수 테스트', () => {
 
     expect(Application.checkArrayDuplicate.name).toEqual(METHOD_NAME);
   });
+
+  test('중복되는 요소를 발견하면 예외를 발생시킨다.', () => {
+    expect(() => {
+      Application.checkArrayDuplicate([1, 2, 3, 4, 5, 5]);
+    }).toThrow('[ERROR]');
+  });
 });
