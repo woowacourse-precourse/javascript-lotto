@@ -15,20 +15,20 @@ class App {
   // 보너스번호
   bonusNumber(){
     let BONUS = 0
-    MissionUtils.Console.readLine('',(bonus) => {
-      MissionUtils.Console.print('보너스 번호를 입력해 주세요')
+    MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.',(bonus) => {
+      MissionUtils.Console.print('보너스 번호를 입력해 주세요.')
       BONUS = bonus
     })
-    console.log(BONUS)
+    MissionUtils.Console.print(BONUS)
     return BONUS
   }
   
   // 당첨번호
   winNumber(){
     let WIN_NUMBER = 0
-    MissionUtils.Console.readLine('',(winNum) => {
+    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.',(winNum) => {
       MissionUtils.Console.print(`당첨 번호를 입력해 주세요.`)
-      console.log(winNum)
+      MissionUtils.Console.print(winNum)
       WIN_NUMBER = winNum.split(",")
       // 유효성 검사
       const LottoCheck = new Lotto(WIN_NUMBER)
@@ -42,7 +42,7 @@ class App {
     let lottoNumbersArray = []
     for (let i = 0; i < times; i ++){
       let LOTTO_NUM = this.createLottoNumber()
-      console.log(LOTTO_NUM)
+      MissionUtils.Console.print(`[${LOTTO_NUM.join(", ")}]`)
       lottoNumbersArray.push(LOTTO_NUM)
     }
     return lottoNumbersArray
@@ -73,10 +73,10 @@ class App {
   // 로또 구입 금액
   money() {
     let MONEY = 0
-    MissionUtils.Console.readLine('', (number) => {
+    MissionUtils.Console.readLine('구입금액을 입력해 주세요.', (number) => {
       const checking = new Check()
       checking.checkNumbers(number)
-      console.log(`${number}`)
+      MissionUtils.Console.print(`${number}`)
       MONEY = number
     })
     return MONEY
@@ -102,7 +102,7 @@ class App {
 
   yield(money,result){
     let ANSWER = ( result / money ) * 100
-    console.log(`총 수익률은 ${ANSWER}입니다.`)
+    MissionUtils.Console.print(`총 수익률은 ${ANSWER}%입니다.`)
   }
 
   // statistics
@@ -138,15 +138,15 @@ class App {
   ResultSwitch(key){
     switch(key[0]){
       case '5':
-        return console.log(`3개 일치 (5,000원) - ${key[1]}개`)
+        return MissionUtils.Console.print(`3개 일치 (5,000원) - ${key[1]}개`)
       case '4':
-        return console.log(`4개 일치 (50,000원) - ${key[1]}개`)
+        return MissionUtils.Console.print(`4개 일치 (50,000원) - ${key[1]}개`)
       case '3':
-        return console.log(`5개 일치 (1,500,000원) - ${key[1]}개`)
+        return MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${key[1]}개`)
       case '2':
-        return console.log(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${key[1]}개`)
+        return MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${key[1]}개`)
       case '1':
-        return console.log(`6개 일치 (2,000,000,000원) - ${key[1]}개`)
+        return MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${key[1]}개`)
     }
   }
   total(key){
