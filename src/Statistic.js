@@ -1,14 +1,43 @@
 const { Console } = require("@woowacourse/mission-utils");
+const { MATCH_MSG, PAYOUT, MIN_MATCH, MAX_MATCH } = require("./constants");
 
 class Statistic {
   #result;
-  constructor(result) {
+  #winnerRank = [];
+  #profit;
+  #quantity;
+
+  constructor(result, quantity) {
     this.#result = result;
-    this.print();
+    this.#quantity = quantity;
   }
 
-  print() {
-    Console.print(this.#result);
+  sortWinner() {
+    for (let matchCnt = MIN_MATCH; matchCnt <= MAX_MATCH; matchCnt++) {
+      this.#result.get(matchCnt)
+        ? this.#winnerRank.push(this.#result.get(matchCnt))
+        : this.#winnerRank.push(0);
+    }
+  }
+
+  calcProfit() {
+    let sumOfPayout = 0;
+    this.#winnerRank.forEach((winner, idx) => {
+      sumOfPayout += +winner * PAYOUT[idx];
+    });
+
+    this.#profit =
+      100 -
+      ((this.#quantity * 1000 - sumOfPayout) / (this.#quantity * 1000)) * 100;
+  }
+
+  printStatistic() {
+    this.sortWinner();
+    MATCH_MSG.forEach((msg, idx) => {
+      Console.print(msg + `${this.#winnerRank[idx]}개`);
+    });
+    this.calcProfit();
+    Console.print(`총 수익률은 ${this.#profit}%입니다.`);
     Console.close();
   }
 }
