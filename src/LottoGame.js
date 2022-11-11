@@ -29,6 +29,7 @@ class LottoGame {
     const lottoQuantity = this.getLottoQuantity(purchaseAmount);
     this.createLottos(lottoQuantity);
     this.LottoGameView.printLottoQuantity(lottoQuantity);
+    this.LottoGameView.printEachLottoNumbers(this.lottos);
   }
 
   getLottoQuantity(purchaseAmount) {
