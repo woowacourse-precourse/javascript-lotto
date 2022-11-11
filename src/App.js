@@ -55,6 +55,13 @@ class App {
   ascendingSort(numberArray) {
     return numberArray.sort((a, b) => a - b);
   }
+
+  //당첨 번호 입력 요청하기
+  getWinningNumbers() {
+    Console.readLine(MESSAGE.ENTER_WINNING_NUMBERS, (numbers) => {
+      console.log(numbers);
+    });
+  }
 }
 
 module.exports = App;
