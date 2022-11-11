@@ -12,29 +12,40 @@ class Lotto {
 
     this.budget = new Budget();
     this.autoLotto = new AutoLotto();
-    this.view = View;
-    this.message = Message;
+  }
+
+  lottoPurchase() {
+    View.input(Message.ASK_BUDGET, this.calculateHowManyLottoandPrint.bind(this));
+  }
+
+  calculateHowManyLottoandPrint(input) {
+    this.saveBudget(input);
+    this.printHowManyLotto(Message.returnHowManyLotto(this.budget.returnCount()));
+    this.makeAutoLottoandPrint(this.budget.count);
   }
 
   saveBudget(input) {
     this.budget.divideBudget(input);
   }
 
-  calculateHowManyLotto() {
-    this.view.input(Message.ASK_BUDGET, this.inputBudgetandCalculateHowManyLottoandPrint.bind(this));
-  }
-
-  inputBudgetandCalculateHowManyLottoandPrint(input) {
-    this.saveBudget(input);
-    this.printHowManyLotto(this.message.returnHowManyLotto(this.budget.returnCount()));
-  }
-
   printHowManyLotto(output) {
-    this.view.output(output);
+    View.output(output);
+  }
+
+  makeAutoLottoandPrint(count) {
+    this.makeAutoLotto(count);
+    this.printAutoLotto();
+  }
+
+  makeAutoLotto(count) {
+    this.autoLotto.makeRandomLottoArray(count);
+  }
+
+  printAutoLotto() {
+    this.autoLotto.randomLottoArray.forEach((array) => {
+      View.output(array);
+    });
   }
 }
-
-const lt = new Lotto();
-lt.calculateHowManyLotto();
 
 module.exports = Lotto;
