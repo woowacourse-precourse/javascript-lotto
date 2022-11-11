@@ -70,17 +70,24 @@
     - Lotto.isUniqueNumberValidate()
   - return Lotto Instance Array
 
-- (add) Customer.setLottoNumbers(Lottos)
-- LottoCompany.enterWinningLottoNumber()
+- [v] Customer.buyLotto(Lottos) : set lottoInstance
+
+- [ ] LottoCompany.enterWinningLottoNumber()
+
   - get User input >> mock fn(readline)
   - lotto number exception handling(user inputs : string)
   - return winning numbers;
-- LottoCompany.enterLottoBonusNumber()
+
+- [ ] LottoCompany.enterLottoBonusNumber()
+
   - get User input >> mock fn(readline)
   - lotto number exception handling(user inputs : string)
   - return winning bonus number;
-- (add) LottoCampany.setWinningLottoNumbers(winning lotto numbers);
-- Customer.winLottoStatistic( {winning numbers, winning bonus number, generate lottos} )
+
+- [ ] LottoCampany.setWinningLottoNumbers(winning lotto numbers);
+
+- [ ] Customer.winLottoStatistic( {winning numbers, winning bonus number, generate lottos} )
+
   - find winning numbers in generate lottos(lotto object)
     - return statistics object;
   - print lotto statistic(statistics object)
