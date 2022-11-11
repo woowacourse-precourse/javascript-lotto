@@ -12,6 +12,8 @@ class App {
 
   inputAmount() {}
 
+  issueLottos() {}
+
   setAmount(amount) {
     this.#amount = amount;
   }

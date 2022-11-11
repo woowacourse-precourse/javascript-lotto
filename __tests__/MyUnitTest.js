@@ -16,4 +16,13 @@ describe('My Unit test', () => {
       app.setAmount(amount);
     }).toThrow('[ERROR]');
   });
+
+  test('로또 구입 금액만큼의 로또가 발행되지 않으면 오류가 난다.', () => {
+    const app = new App();
+    const amount = 5000;
+    app.setAmount(amount);
+    app.issueLottos();
+    const lottos = app.getLottos();
+    expect(lottos).toHaveLength(amount / 1000);
+  });
 });
