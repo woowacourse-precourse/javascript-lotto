@@ -29,17 +29,19 @@ class App {
     this.enterWinningNumber(lottos);
   }
 
-  enterWinningNumber() {
-    Console.readLine(Messages.INPUT_WINNER_NUMBER, (numbers) => {
-      this.winningAndBonusNumbers.sixNumbersInRange(numbers);
-      this.enterBonusNumber();
+  enterWinningNumber(lottos) {
+    Console.readLine(Messages.ENTER_WINNER_NUMBER, (winning) => {
+      this.winningAndBonusNumbers.sixNumbersInRange(winning);
+
+      this.enterBonusNumber(lottos, winning);
     });
   }
 
-  enterBonusNumber() {
-    Console.readLine(Messages.INPUT_BONUS_NUMBER, (number) => {
-      this.winningAndBonusNumbers.numberNotDuplicate(number);
-      this.lottoManager.winningStatics();
+  enterBonusNumber(lottos, winning) {
+    Console.readLine(Messages.ENTER_BONUS_NUMBER, (bonus) => {
+      this.winningAndBonusNumbers.numberNotDuplicate(bonus);
+
+      Console.print(Messages.WINNING_STATICS);
     });
   }
 }
