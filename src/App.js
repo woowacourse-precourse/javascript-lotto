@@ -16,18 +16,17 @@ class App {
   }
 
   play() {
-    this.buyLotto();
+    Console.readLine(MESSAGE.BUY, (money) => this.buyLotto(money));
   }
 
-  buyLotto() {
-    Console.readLine(MESSAGE.BUY, (money) => {
-      this.money = money;
-      const store = new Store(money);
-      const amount = money / 1000;
-      this.lottoBundle = getLottoBundle(amount);
-      this.view.printBoughtLotto(amount, this.lottoBundle);
-      this.createWinningNumbers();
-    });
+  buyLotto(money) {
+    new Store(money);
+    this.money = money;
+    const amount = money / 1000;
+
+    this.lottoBundle = getLottoBundle(amount);
+    this.view.printBoughtLotto(amount, this.lottoBundle);
+    this.createWinningNumbers();
   }
 
   createWinningNumbers() {
