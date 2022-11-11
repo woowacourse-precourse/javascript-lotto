@@ -1,14 +1,20 @@
-const { readLine } = require("./Missionutils");
+const { readLine, pickUniqueNumbersInRange } = require("./Missionutils");
 
 class LottoNumberGenerator {
   #numberOfLottos;
+  #selectedLottoNumberSet = new Set();
   inputNumberFromUser() {
     readLine("구입 금액을 입력해주세요.", (input) => {
-      console.log(this.#isNotAllArrayElementsTypeNumber([44, 2, "a", 4, 5, 6]));
       if (this.isInputNumbersValid(input)) {
         this.#numberOfLottos = this.#getNumberOfLottos(+input);
       }
+
+      this.#generateLotto(this.#selectedLottoNumberSet);
     });
+  }
+
+  #makeArrayAscendingOrder(array) {
+    return array.sort((a, b) => a - b);
   }
 
   #getNumberOfLottos(money) {
