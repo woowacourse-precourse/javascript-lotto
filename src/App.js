@@ -9,7 +9,7 @@ class App {
 
   /**
    * 비용 입력이 올바른 입력인지 판단하는 함수
-   * @param {*} cost 입력한 비용
+   * @param {string} cost 입력한 비용
    */
   checkCost(cost) {
     if (isNaN(cost)) {
@@ -27,7 +27,7 @@ class App {
 
   /**
    * 입력한 당첨 번호를 각각 숫자 형태로 반환하는 함수
-   * @param {*} input 입력한 당첨 번호 문자열
+   * @param {string} input 입력한 당첨 번호 문자열
    * @returns 각 번호를 숫자 형태로 오름차순으로 저장한 배열
    */
   convertSixInputsToNumbers(input) {
@@ -47,8 +47,8 @@ class App {
 
   /**
    * 보너스 번호 입력이 올바른지 판단하는 함수
-   * @param {*} number 입력한 보너스 번호
-   * @param {*} wonLotto 현재 저장된 당첨 번호에 대한 로또 객체
+   * @param {string} number 입력한 보너스 번호
+   * @param {Lotto} wonLotto 현재 저장된 당첨 번호에 대한 로또 객체
    */
   checkBonusNumber(number, wonLotto) {
     if (isNaN(number) || number === "")
@@ -60,6 +60,11 @@ class App {
       throw new Error("[ERROR] 보너스 번호는 기존 당첨 번호와 중복될 수 없습니다.");
   }
 
+  /**
+   * 구매 비용에 따라 로또 여러 장을 발급하는 함수
+   * @param {number} pay 로또 구매 비용
+   * @returns 구매한 로또 객체들이 담긴 배열
+   */
   publishLottos(pay) {
     const PURCHASE_QUANTITY = pay / 1000;
     let lottos = []; // 구매한 로또들
@@ -73,6 +78,10 @@ class App {
     return lottos;
   }
 
+  /**
+   * 구매한 로또 번호들을 출력하는 함수
+   * @param {Lotto[]} lottos 구매한 로또 객체들이 담긴 배열
+   */
   printMyLottos(lottos) {
     MissionUtils.Console.print(`${lottos.length}개를 구매했습니다.`);
 
@@ -81,6 +90,13 @@ class App {
     })
   }
 
+  /**
+   * 구매한 로또 번호들을 당첨 번호와 보너스 볼과 비교하고 결과를 저장하는 함수
+   * @param {Lotto[]} lottos 구매한 로또 객체들이 담긴 배열
+   * @param {Lotto} WON_LOTTO 당첨 번호가 담긴 로또 객체
+   * @param {number} bonus 보너스 번호
+   * @param {PrizeInformation} PRIZE_INFORMATION 당첨에 대한 정보가 담긴 객체 
+   */
   compareMyLottosWithWinningNumbers(lottos, WON_LOTTO, bonus, PRIZE_INFORMATION) {
     lottos.forEach((lotto) => {
       const PLACE = lotto.compareWithWinningNumbers(WON_LOTTO, bonus);

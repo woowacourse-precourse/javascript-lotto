@@ -11,7 +11,7 @@ class Lotto {
 
   /**
    * 생성자로 들어온 매개변수 numbers가 올바른 입력인지 판단하는 함수
-   * @param {*} numbers 생성자로 들어온 숫자 배열
+   * @param {number[]} numbers 생성자로 들어온 숫자 배열
    */
   validate(numbers) {
     this.checkLengthEqualsSix(numbers);
@@ -21,7 +21,7 @@ class Lotto {
 
   /**
    * 생성자로 들어온 매개변수 numbers의 길이가 6인지 판단하는 함수
-   * @param {*} numbers 생성자로 들어온 숫자 배열
+   * @param {number[]} numbers 생성자로 들어온 숫자 배열
    */
   checkLengthEqualsSix(numbers) {
     if (numbers.length !== 6) {
@@ -31,7 +31,7 @@ class Lotto {
 
   /**
    * 생성자로 들어온 매개변수 numbers의 각 숫자가 1-45 범위에 있는지 판단하는 함수
-   * @param {*} numbers 생성자로 들어온 숫자 배열
+   * @param {number[]} numbers 생성자로 들어온 숫자 배열
    */
   checkEachNumberInValidRange(numbers) {
     for (let number of numbers) {
@@ -43,7 +43,7 @@ class Lotto {
 
   /**
    * 생성자로 들어온 매개변수 numbers의 각 숫자가 서로 중복이 없는지 판단하는 함수
-   * @param {*} numbers 생성자로 들어온 숫자 배열
+   * @param {number[]} numbers 생성자로 들어온 숫자 배열
    */
   checkRedundancy(numbers) {
     let temp = [];
@@ -57,7 +57,7 @@ class Lotto {
 
   /**
    * 특정 숫자가 이 로또 객체의 숫자에 포함되어 있는지를 반환하는 함수
-   * @param {*} number 비교할 숫자
+   * @param {number} number 비교할 숫자
    * @returns 포함 여부(boolean)
    */
   includesNumber(number) {
@@ -72,6 +72,12 @@ class Lotto {
     MissionUtils.Console.print(NUMBERS_IN_STRING);
   }
 
+  /**
+   * 해당 로또를 당첨 번호 및 보너스 번호와 비교하여 등수를 반환하는 함수
+   * @param {Lotto} WonLotto 당첨 번호를 담은 로또 객체
+   * @param {number} bonus 보너스 볼 번호
+   * @returns 당첨 등수
+   */
   compareWithWinningNumbers(WonLotto, bonus) {
     let correspondence = 0;
     this.#numbers.forEach((number) => {
@@ -81,6 +87,12 @@ class Lotto {
     return this.getPrize(correspondence, this.includesNumber(bonus));
   }
 
+  /**
+   * 일치한 번호 개수와 보너스 번호 일치 여부를 바탕으로 등수를 반환하는 함수
+   * @param {number} correspondence 당첨 번호와 일치한 번호 개수
+   * @param {boolean} bonusCorrespondence 보너스 번호 일치 여부
+   * @returns 등수
+   */
   getPrize(correspondence, bonusCorrespondence) {
     switch (correspondence) {
       case 3:
