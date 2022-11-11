@@ -9,9 +9,8 @@ class App {
   constructor() {
     this.purchaseAmount;
     this.lottoMachineOutput;
-    this.winningNumbers;
+    this.lottoNumbers;
     this.bonusNumber;
-    this.winningAmount;
   }
 
   play() {
@@ -34,10 +33,10 @@ class App {
   inputLottoNumbers() {
     MissionUtils.Console.readLine(
       OUTPUT_PHRASE.LINE_UP + READLINE_PHRASE.INPUT_WINNING_NUMBER,
-      (winningNumbers) => {
-        let splitWinningNumbers = winningNumbers.split(",");
-        new Lotto(splitWinningNumbers);
-        this.winningNumbers = splitWinningNumbers.map(Number);
+      (numbers) => {
+        let splitNumbers = numbers.split(",");
+        new Lotto(splitNumbers);
+        this.lottoNumbers = splitNumbers.map(Number);
 
         this.inputBonusNumber();
       }
@@ -48,7 +47,7 @@ class App {
     MissionUtils.Console.readLine(
       OUTPUT_PHRASE.LINE_UP + READLINE_PHRASE.INPUT_BONUS_NUMBER,
       (bonusNumber) => {
-        new Bonus(bonusNumber, this.winningNumbers);
+        new Bonus(bonusNumber, this.lottoNumbers);
         this.bonusNumber = Number(bonusNumber);
 
         this.printWinningStastics();
@@ -58,7 +57,7 @@ class App {
 
   printWinningStastics() {
     const winningStastics = new WinningStastics(
-      this.winningNumbers,
+      this.lottoNumbers,
       this.bonusNumber,
       this.purchaseAmount,
       this.lottoMachineOutput
