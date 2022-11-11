@@ -1,5 +1,6 @@
 const Io = require("./utils/Io");
 const Validator = require("./utils/Validator");
+const { LOTTO_AMOUNT } = require("./constants/index");
 
 const Seller = ((_) => {
   const Private = Symbol();
@@ -11,12 +12,17 @@ const Seller = ((_) => {
 
     requestLottoBuy() {
       this.#io.readline("구입금액을 입력해주세요.", (amount) => {
-        if (!Validator.isValidAmount(amount)) this.#io.close();
+        if (!this.validateAmount(amount)) this.#io.close();
       });
+    }
+
+    validateAmount(amount) {
+      Validator.isNumber(amount);
+      Validator.isDivisible(amount, LOTTO_AMOUNT.VALID_UNIT);
+      Validator.isGreaterOrEqual(amount, LOTTO_AMOUNT.VALID_UNIT);
+      return true;
     }
   };
 })();
-
-new Seller().requestLottoBuy();
 
 module.exports = Seller;
