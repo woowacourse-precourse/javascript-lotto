@@ -1,8 +1,10 @@
 class Seed {
+  seedMoney;
   ticketAmount;
   constructor(seed) {
     this.validate(seed);
     this.numberOfLottos(seed);
+    this.seedMoney = seed;
   }
   validate(seed) {
     this.isDiviedByThousand(seed);

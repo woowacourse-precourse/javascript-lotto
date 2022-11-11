@@ -82,8 +82,8 @@ class Lotto {
     Console.print(`6개 일치 (2,000,000,000원) - ${result[3]}개`);
   }
 
-  showRateOfReturn(seed, profit) {
-    const seedMoney = seed * 1000;
+  showRateOfReturn(seedMoney, profit) {
+    console.log(seedMoney);
     const priceByCorrection = [5000, 50000, 1500000, 2000000000, 30000000];
     const totalProfit = profit.reduce(
       (acc, cur, idx) => acc + cur * priceByCorrection[idx],

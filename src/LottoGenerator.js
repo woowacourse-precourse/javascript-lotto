@@ -21,13 +21,13 @@ class LottoGenerator {
     Console.print(`\n${ticket}개를 구매했습니다.`);
   }
 
+  sortAscending(ticketList) {
+    return ticketList.map((ticket) => ticket.sort((a, b) => a - b));
+  }
+
   printTicketList(tickets) {
     const newList = tickets.map((ticket) => `[${ticket.join(", ")}]`);
     newList.forEach((ticket) => Console.print(ticket));
-  }
-
-  sortAscending(ticketList) {
-    return ticketList.map((ticket) => ticket.sort((a, b) => a - b));
   }
 }
 module.exports = LottoGenerator;
