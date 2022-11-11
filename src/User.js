@@ -21,6 +21,7 @@ class User {
     for (let paper = 0; paper < numberOfPapers; paper++) {
       lottoNumber[paper] = (MISSION.Random.pickUniqueNumbersInRange(1, 45, 6));
     }
+    return lottoNumber;
   }
 }
 
