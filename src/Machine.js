@@ -41,16 +41,19 @@ class Machine {
     }
   }
 
-  #checkRange() {}
-
-  #checkSeparator() {}
+  #checkRange() {
+    this.#winningNumbers.forEach((number) => {
+      if (number < 1 || number > 45) {
+        throw Error('[ERROR] 당첨 번호는 1과 45 사이의 숫자여야 합니다.');
+      }
+    });
+  }
 
   #checkWinningNumbers() {
     this.#checkLength();
     this.#checkIsAllNum();
     this.#checkIsAllUnique();
-    // this.#checkRange();
-    // this.#checkSeparator();
+    this.#checkRange();
   }
 
   getMoney(cb) {
@@ -74,8 +77,15 @@ class Machine {
     this.#getWinningNumbers();
   }
 
+  checkSeparator(answer) {
+    if (!answer.includes(',')) {
+      throw Error('[ERROR] 당첨 번호는 쉼표로 구분되어야 합니다.');
+    }
+  }
+
   #getWinningNumbers() {
     Console.readLine('\n당첨 번호를 입력해 주세요.\n', (answer) => {
+      this.checkSeparator(answer);
       this.#winningNumbers = answer.split(',').map((number) => Number(number));
       this.#checkWinningNumbers();
     });
