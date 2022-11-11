@@ -19,8 +19,9 @@ class LottoGame {
 
   publishLotteries() {
     const count = this.#purchaseAmout / PURCHASE.UNIT;
-    const lotteries = new Array(count).fill(
-      new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6)),
+    const lotteries = Array.from(
+      { length: count },
+      () => new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6)),
     );
     this.#lotteries = lotteries;
   }
