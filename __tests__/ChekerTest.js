@@ -122,4 +122,6 @@ describe('Checker 클래스 테스트', () => {
       Checker.isValidPrice();
     }).toThrow('[ERROR]');
   });
+
+  // Lotto Number 클래스도 여기서 테스트해야 됨
 });

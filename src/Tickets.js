@@ -5,7 +5,7 @@ class Tickets {
     let lottoTickets = [];
 
     for (let i = 0; i < lottoNumber; i++) {
-      lottoTickets = Tickets.#get(lottoTickets, Ticket.sortLottoNumber(Ticket.get()));
+      lottoTickets = Tickets.#get(lottoTickets, Ticket.sortByAscendingNumber(Ticket.get()));
       lottoTickets = Tickets.#removeDuplicatedLotto(lottoTickets);
     }
 

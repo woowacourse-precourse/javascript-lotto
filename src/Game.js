@@ -1,24 +1,38 @@
-const Simulator = require('./Simulator');
+const GameInput = require('./GameInput');
+const GameOutput = require('./GameOutput');
 const Player = require('./Player');
+const LottoNumber = require('./LottoNumber');
 
 class Game {
   #player;
 
-  constructor() {
-    this.#player = new Player();
-  }
+  #lottoNumber;
 
   playLotto() {
-    Simulator.execute(this.#lottoGame.bind(this));
+    GameInput.enter(GameOutput.message.price, this.#buyLotto.bind(this));
   }
 
-  #lottoGame(priceString) {
+  #buyLotto(priceString) {
+    this.#player = new Player();
     this.#player.buyLotto(priceString);
     this.#player.getLotto();
     this.#player.printLotto();
-    // 당첨 번호 등록
-    // 당첨 결과 계산
-    // 결과 출력
+
+    GameInput.enter(GameOutput.message.sixNumbers, this.#registerSixNumbers.bind(this));
+  }
+
+  #registerSixNumbers(sixNumbersString) {
+    this.#lottoNumber = new LottoNumber();
+    this.#lottoNumber.registerSixNumbers(sixNumbersString);
+
+    GameInput.enter(GameOutput.message.bonusNumber, this.#registerBonus.bind(this));
+  }
+
+  #registerBonus(bonusString) {
+    this.#lottoNumber.registerBonus(bonusString);
+
+    // TODO 당첨 결과 계산
+    // TODO 결과 출력
   }
 }
 

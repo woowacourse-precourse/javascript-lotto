@@ -5,7 +5,7 @@ class Ticket {
     return Random.pickUniqueNumbersInRange(1, 45, 6);
   }
 
-  static sortLottoNumber(lotto) {
+  static sortByAscendingNumber(lotto) {
     return lotto.sort((a, b) => a - b);
   }
 }

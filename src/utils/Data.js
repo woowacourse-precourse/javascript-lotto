@@ -1,16 +1,13 @@
 const Checker = require('../Checker');
+const Ticket = require('../Ticket');
 
 class Data {
   static makeUsablePrice(priceString) {
     Checker.isValidPriceString(priceString);
-    const price = Data.convertStringToNumber(priceString);
+    const price = parseInt(priceString, 10);
     Checker.isValidPrice(price);
 
     return price;
-  }
-
-  static convertStringToNumber(string) {
-    return parseInt(string, 10);
   }
 
   static getLottoNumber(price) {
@@ -44,6 +41,12 @@ class Data {
 
   static #createPrintableTicketWithNewLine(ticket) {
     return `[${ticket.join(', ')}]\n`;
+  }
+
+  static makeUsableSixNumbers(sixNumbersString) {
+    Checker.isValidSixNumbersString(sixNumbersString);
+    const sixNumbers = Ticket.sortByAscendingNumber(sixNumbersString.split(',').map(Number));
+    Checker.isValidSixNumbers(sixNumbers);
   }
 }
 
