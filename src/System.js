@@ -1,4 +1,8 @@
-class System {
+const MissionUtils = require("@woowacourse/mission-utils");
 
-}
-module.exports = System;
+const SYSTEM = Object.freeze({
+    print(message) {
+        MissionUtils.Console.print(message);
+    }
+})
+module.exports = { SYSTEM };
