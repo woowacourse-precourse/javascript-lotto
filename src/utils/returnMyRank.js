@@ -4,7 +4,7 @@ const returnMyRank = (countResult, bonusResult) => {
   let result = countResult + bonusResult;
 
   if (result === 6) if (bonusResult === 0) result += 1;
-  return CORRECT_NUMBER[result];
+  return String(CORRECT_NUMBER[result]);
 };
 
 module.exports = returnMyRank;
