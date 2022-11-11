@@ -24,26 +24,23 @@ const LOTTO_RANGE = {
 };
 
 const ERROR_MESSAGE = {
-  ERROR: "[ERROR] ",
   INVALID_PURCHASE_AMOUMT: {
-    NOT_A_NUMBER: ERROR_MESSAGE.ERROR + "구매금액은 숫자로만 입력가능합니다.",
+    NOT_A_NUMBER: "[ERROR] 구매금액은 숫자로만 입력가능합니다.",
+    INVALID_UNIT: "[ERROR] 구매금액은 1,000원 단위로만 입력가능합니다.",
+    INVALID_NUMBER: "[ERROR] 구매금액은 1,000원부터 입력가능합니다.",
   },
   INVALID_WINNING_NUMBER: {
-    NOT_A_NUMBER: ERROR_MESSAGE.ERROR + "당첨번호는 숫자로 이루어져야합니다",
-    NOT_IN_RANGE:
-      ERROR_MESSAGE.ERROR + "당첨번호는 1 ~ 45 범위안의 숫자만 가능합니다.",
-    INVALID_LENGTH:
-      ERROR_MESSAGE.ERROR + "당첨번호는 6개의 숫자로만 입력가능합니다.",
-    IS_DUPLICATED:
-      ERROR_MESSAGE.ERROR + "당첨번호를 구성하는 숫자가 중복되어서는 안됩니다.",
+    NOT_A_NUMBER: "[ERROR] 당첨번호는 숫자로 이루어져야합니다",
+    NOT_IN_RANGE: "[ERROR] 당첨번호는 1이상 45이하의 숫자로만 입력가능합니다.",
+    INVALID_LENGTH: "[ERROR] 당첨번호는 6개의 숫자로만 입력가능합니다.",
+    IS_DUPLICATED: "[ERROR] 당첨번호가 중복되어서는 안됩니다.",
   },
   INVALID_BONUS_NUMBER: {
-    NOT_A_NUMBER: ERROR_MESSAGE.ERROR + "보너스번호는 숫자로만 입력가능합니다",
-    IS_DUPLICATED:
-      ERROR_MESSAGE.ERROR + "보너스번호는 당첨번호와 중복되어선 안됩니다.",
+    NOT_A_NUMBER: "[ERROR] 보너스번호는 숫자로만 입력가능합니다",
+    IS_DUPLICATED: "[ERROR] 보너스번호는 당첨번호와 중복되어선 안됩니다.",
     NOT_IN_RANGE:
-      ERROR_MESSAGE.ERROR + "보너스번호는 1 ~ 45 범위안의 숫자만 가능합니다.",
+      "[ERROR] 보너스번호는 1이상 45이하의 숫자로만 입력가능합니다.",
   },
 };
 
-module.exports = { READLINE_PHRASE, OUTPUT_PHRASE, LOTTO_RANGE };
+module.exports = { READLINE_PHRASE, OUTPUT_PHRASE, LOTTO_RANGE, ERROR_MESSAGE };

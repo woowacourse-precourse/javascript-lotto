@@ -1,5 +1,10 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { READLINE_PHRASE, OUTPUT_PHRASE, LOTTO_RANGE } = require("./Constant");
+const {
+  READLINE_PHRASE,
+  OUTPUT_PHRASE,
+  LOTTO_RANGE,
+  ERROR_MESSAGE,
+} = require("./Constant");
 
 class App {
   constructor() {
@@ -18,6 +23,7 @@ class App {
     MissionUtils.Console.readLine(
       READLINE_PHRASE.INPUT_PURCHASE_AMMOUNT,
       (money) => {
+        this.isValidPurchaseAmount(money);
         this.purchaseAmount = money;
 
         this.printPurchaseQuantity();
@@ -25,6 +31,17 @@ class App {
         this.inputWinningNumbers();
       }
     );
+  }
+  isValidPurchaseAmount(input) {
+    if (isNaN(input)) {
+      throw new Error(ERROR_MESSAGE.INVALID_PURCHASE_AMOUMT.NOT_A_NUMBER);
+    }
+    if (input % 1000) {
+      throw new Error(ERROR_MESSAGE.INVALID_PURCHASE_AMOUMT.INVALID_UNIT);
+    }
+    if (input < 1000) {
+      throw new Error(ERROR_MESSAGE.INVALID_PURCHASE_AMOUMT.INVALID_NUMBER);
+    }
   }
   printPurchaseQuantity() {
     MissionUtils.Console.print("");
@@ -66,8 +83,9 @@ class App {
   inputWinningNumbers() {
     MissionUtils.Console.readLine(
       OUTPUT_PHRASE.LINE_UP + READLINE_PHRASE.INPUT_WINNING_NUMBER,
-      (WinningNumbers) => {
-        let splitWinningNumbers = WinningNumbers.split(",");
+      (winningNumbers) => {
+        let splitWinningNumbers = winningNumbers.split(",");
+        this.isValidWinningNumbers(splitWinningNumbers);
 
         this.winningNumbers = splitWinningNumbers.map(Number);
         this.inputBonusNumber();
@@ -75,15 +93,45 @@ class App {
     );
   }
 
+  isValidWinningNumbers(splitWinningNumbers) {
+    if (isNaN(splitWinningNumbers.join(""))) {
+      throw new Error(ERROR_MESSAGE.INVALID_WINNING_NUMBER.NOT_A_NUMBER);
+    }
+    if (splitWinningNumbers.length != 6) {
+      throw new Error(ERROR_MESSAGE.INVALID_WINNING_NUMBER.INVALID_LENGTH);
+    }
+    splitWinningNumbers.map((item) => {
+      if (item > 45 || item < 1) {
+        throw new Error(ERROR_MESSAGE.INVALID_WINNING_NUMBER.NOT_IN_RANGE);
+      }
+    });
+    let removedDuplication = new Set(splitWinningNumbers);
+    removedDuplication = [...removedDuplication];
+    if (removedDuplication.length != 6) {
+      throw new Error(ERROR_MESSAGE.INVALID_WINNING_NUMBER.IS_DUPLICATED);
+    }
+  }
   inputBonusNumber() {
     MissionUtils.Console.readLine(
       OUTPUT_PHRASE.LINE_UP + READLINE_PHRASE.INPUT_BONUS_NUMBER,
       (bonusNumber) => {
+        this.isValidBonusNumber(bonusNumber);
         this.bonusNumber = Number(bonusNumber);
 
         this.printWinningStastics();
       }
     );
+  }
+  isValidBonusNumber(bonusNumber) {
+    if (isNaN(bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.INVALID_BONUS_NUMBER.NOT_A_NUMBER);
+    }
+    if (this.winningNumbers.includes(bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.INVALID_BONUS_NUMBER.IS_DUPLICATED);
+    }
+    if (bonusNumber < 1 || bonusNumber > 45) {
+      throw new Error(ERROR_MESSAGE.INVALID_BONUS_NUMBER.NOT_IN_RANGE);
+    }
   }
 
   printWinningStastics() {
@@ -142,7 +190,7 @@ class App {
       30000000 * coincide.fiveAndBonusMatches +
       2000000000 * coincide.allMatches;
 
-    let myyield = this.getYield();
+    let myyield = this.getYield().toFixed(1);
 
     MissionUtils.Console.print(`총 수익률은 ${myyield}%입니다.`);
     MissionUtils.Console.close();
@@ -150,7 +198,6 @@ class App {
   getMatchCount(A, B) {
     let arr = new Set(A.concat(B));
     arr = [...arr];
-    console.log(A.length + B.length - arr.length);
 
     return A.length + B.length - arr.length;
   }
