@@ -102,6 +102,9 @@ class App {
 
   // statistics
   statistics(lottoArray,winNumber,bonus){
+    let RESULT = {}
+    console.log('################################################################ this is reuslt')
+    console.log(RESULT)
     for (let lotto of lottoArray) {
       const match = new Stat(lotto,winNumber,bonus)
       match.checkMatch()
