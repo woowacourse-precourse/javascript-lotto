@@ -16,6 +16,15 @@ class LotteryDraw extends Struct{
             this.lottoBox.push(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
         };
     };
+    randomLottoPrint() {
+        for (let index = 0; index < this.money; index++) {
+            MissionUtils.Console.print(`[${String(this.lottoBox[index].sort(
+                (first, second) => {
+                    return first - second;
+                }
+            )).split(',').join(', ')}]`);
+        };
+    };
 };
 
 module.exports = LotteryDraw;
