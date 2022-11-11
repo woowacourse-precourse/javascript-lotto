@@ -73,32 +73,36 @@ class App {
   // 로또 구입 금액
   money() {
     let MONEY = 0
-    let LOTTO_ARRAY = []
     MissionUtils.Console.readLine('', (number) => {
       const checking = new Check()
       checking.checkNumbers(number)
       console.log(`${number}`)
       MONEY = number
     })
-    LOTTO_ARRAY = this.buyLotto(MONEY)
-    return LOTTO_ARRAY
+    return MONEY
   }
 
   // Play
   play() {
+    let MONEY = 0
     let LOTTO_ARRAY  = []
     let WIN_NUMBER = []
     let BONUS = 0
-    // Start
     MissionUtils.Console.print("구입금액을 입력해 주세요.")
-    LOTTO_ARRAY = this.money()
+    MONEY = this.money()
+    LOTTO_ARRAY = this.buyLotto(MONEY)
     WIN_NUMBER = this.winNumber()
     BONUS = this.bonusNumber()
 
     MissionUtils.Console.print("당첨 통계")
     MissionUtils.Console.print("---")
     let RESULT = this.statistics(LOTTO_ARRAY,WIN_NUMBER,BONUS)
-    console.log(RESULT)
+    this.yield(MONEY,RESULT)
+  }
+
+  yield(money,result){
+    let ANSWER = ( result / money ) * 100
+    console.log(`총 수익률은 ${ANSWER}입니다.`)
   }
 
   // statistics
