@@ -73,11 +73,11 @@ class App {
 
   computeProfit() {
     const totalWinningPrice =
-      5000 * this.result.fifth +
-      50000 * this.result.fourth +
-      1500000 * this.result.third +
-      30000000 * this.result.second +
-      2000000000 * this.result.first;
+      WINNING_PRICE.fifth * this.result.fifth +
+      WINNING_PRICE.fourth * this.result.fourth +
+      WINNING_PRICE.third * this.result.third +
+      WINNING_PRICE.second * this.result.second +
+      WINNING_PRICE.first * this.result.first;
     const purchaseAmount = this.lottoAmount * 1000;
     const profitPercent = (totalWinningPrice / purchaseAmount) * 100;
     this.profit = Math.round(profitPercent * 100) / 100;
