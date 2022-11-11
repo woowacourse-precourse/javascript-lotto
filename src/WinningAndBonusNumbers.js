@@ -9,6 +9,7 @@ class WinningAndBonusNumbers {
 
   sixNumbersInRange(numbers) {
     numbers = numbers.split(',');
+    this.lotto.validate(numbers);
     this.validation.winningNumber(numbers);
   }
 
