@@ -4,8 +4,9 @@ class Bonus extends Lotto{
     #bonusNumber
     #lottoNumbers
   constructor(lottoNumber ,bonusNumber) {
+    super(lottoNumber);
     this.#lottoNumbers = lottoNumber;
-    this.bonusValidationCheckList(bonusNumber);
+    this.bonusValidationCheckList(lottoNumber,bonusNumber);
     this.#bonusNumber = bonusNumber;
   }
   bonusValidationCheckList(lottoNumbers, bonusNumber){
