@@ -1,18 +1,35 @@
-const Lotto = require("../src/Lotto");
+const LottoNumberGenerator = require("../src/LottoNumberGenerator");
 
-describe("로또 클래스 테스트", () => {
-  test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
+const generator = new LottoNumberGenerator();
+describe("입력 예외 테스트", () => {
+  //expectThrow();
+  test("입력 받은 금액이 숫자로 구성 되어있지 않다면 예외가 발생한다.", () => {
     expect(() => {
-      new Lotto([1, 2, 3, 4, 5, 6, 7]);
-    }).toThrow("[ERROR]");
-  });
-
-  // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
-  test("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.", () => {
+      generator.isInputNumbersValid("  ");
+    }).toThrow("[ERROR] 숫자만 입력 가능합니다.");
     expect(() => {
-      new Lotto([1, 2, 3, 4, 5, 5]);
-    }).toThrow("[ERROR]");
+      generator.isInputNumbersValid("122415000a");
+    }).toThrow("[ERROR] 숫자만 입력 가능합니다.");
   });
-
-  // 아래에 추가 테스트 작성 가능
+  test("입력 받은 금액이 음수라면 예외가 발생한다.", () => {
+    expect(() => {
+      generator.isInputNumbersValid("-1");
+    }).toThrow("ERROR] 양수만 입력해주세요.");
+    expect(() => {
+      generator.isInputNumbersValid("-5000");
+    }).toThrow("ERROR] 양수만 입력해주세요.");
+  });
+  test("입력 받은 금액이 1000원 단위가 아니라면, 예외가 발생한다.", () => {
+    expect(() => {
+      generator.isInputNumbersValid("5200");
+    }).toThrow("[ERROR] 천원 단위 입력을 해주세요.");
+    expect(() => {
+      generator.isInputNumbersValid("10009");
+    }).toThrow("[ERROR] 천원 단위 입력을 해주세요.");
+  });
+  test("입력 받은 금액이 없다면 예외가 발생한다.", () => {
+    expect(() => {
+      generator.isInputNumbersValid("");
+    }).toThrow("[ERROR] 입력이 없습니다.");
+  });
 });
