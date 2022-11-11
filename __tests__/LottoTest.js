@@ -151,10 +151,12 @@ describe('로또 클래스 테스트', () => {
         expect(Lotto.isFourMatche.name).toEqual(METHOD_NAME);
       });
 
-      test('주어진 값이 4와 일치하면 true를 반환한다.', () => {
+      test('주어진 값이 4와 일치하면 [0, 1, 0, 0, 0, 0]를 반환한다.', () => {
         const COUNT = 4;
+        const target = [0, 0, 0, 0, 0, 0];
+        const expected = [0, 1, 0, 0, 0, 0];
 
-        expect(Lotto.isFourMatche(COUNT)).toBeTruthy();
+        expect(Lotto.isFourMatche(COUNT, target)).toStrictEqual(expected);
       });
     });
 
