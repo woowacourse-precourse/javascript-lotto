@@ -12,14 +12,6 @@ const GUIDE = Object.freeze({
   PCS: "개",
 });
 
-const PLACE = Object.freeze({
-  FIFTH: "3개 일치 (5,000원) - ",
-  FOURTH: "4개 일치 (50,000원) - ",
-  THIRD: "5개 일치 (1,500,000원) - ",
-  SECOND: "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
-  FIRST: "6개 일치 (2,000,000,000원) - ",
-});
-
 const ERROR = Object.freeze({
   PURCHASE_AMOUNT: "[ERROR] 구매 금액은 1000원 단위로 입력하셔야 합니다.",
   WIN_NUMBER: "[ERROR] 올바른 당첨 번호를 입력해주세요.",
@@ -43,4 +35,20 @@ const UNIT = Object.freeze({
   WIN_NUMBER_CNT: 6,
 });
 
-module.exports = { COMMAND, GUIDE, PLACE, ERROR, UNIT };
+const RANK = Object.freeze({
+  1: "FIRST",
+  2: "SECOND",
+  3: "THIRD",
+  4: "FOURTH",
+  5: "FIFTH",
+});
+
+const PRIZE_MONEY = Object.freeze({
+  FIRST: 2000000000,
+  SECOND: 30000000,
+  THIRD: 1500000,
+  FOURTH: 50000,
+  FIFTH: 5000,
+});
+
+module.exports = { COMMAND, GUIDE, ERROR, UNIT, RANK, PRIZE_MONEY };

@@ -8,6 +8,7 @@ const BonusNumber = require("./error/bonusNumber");
 const CompareLotto = require("./CompareLotto");
 
 const { COMMAND } = require("./utils/constant");
+const Profit = require("./Profit");
 
 class App {
   #exception;
@@ -21,6 +22,7 @@ class App {
     this.winNumber = [];
     this.bonusNumber = 0;
     this.rank = {};
+    this.profit = 0;
   }
 
   print(message) {
@@ -49,6 +51,7 @@ class App {
       this.winNumber,
       this.bonusNumber
     ).compare();
+    this.profit = new Profit(this.input, this.rank).calculate();
   }
 
   play() {
