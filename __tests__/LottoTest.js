@@ -16,7 +16,7 @@ describe("입력 예외 발생 테스트", () => {
       const INPUT = "20500";
       APP.checkCost(INPUT)
     }).toThrow("[ERROR]")
-  })
+  });
 })
 
 describe("로또 클래스 테스트", () => {
