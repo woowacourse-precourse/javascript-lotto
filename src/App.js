@@ -1,18 +1,26 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
+const Output = require('./Output');
 
 class App {
   lottoCount;
   lottoArray = [];
+
+  constructor() {
+    this.print = new Output();
+  }
 
   play() {}
 
   getLottos(money) {
     this.validMoney(parseInt(money));
     this.lottoCount = parseInt(money) / 1000;
+    this.print.printUserLottoCount(this.lottoCount);
     for (let i = 0; i < this.lottoCount; i++) {
-      const lotto = this.getRandomLottoNumber();
-      this.lottoArray.push(new Lotto(lotto));
+      const randomLotto = this.getRandomLottoNumber();
+      this.lottoArray.push(new Lotto(randomLotto));
+
+      this.print.printUserLottoNumber(randomLotto);
     }
   }
 
