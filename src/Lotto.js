@@ -32,7 +32,7 @@ class Lotto {
   }
 
   printLotto(numbers) {
-    return MissionUtils.Console.print(numbers);
+    return MissionUtils.Console.print(`[${numbers.toString().replace(/\,/g, ", ")}]`);
   }
 }
 
