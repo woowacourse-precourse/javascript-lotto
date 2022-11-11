@@ -1,14 +1,15 @@
 const AbstractLottoWinning = require('../AbstractLottoWinning/AbstractLottoWinning');
+const LottoNumberCount = require('../LottoNumberCount/LottoNumberCount');
 const Money = require('../Money/Money');
 const Printer = require('../Printer/Printer');
 
 class Lotto4thWinning extends AbstractLottoWinning {
-  matchedNumberCount = 4;
+  lottoNumberCount = new LottoNumberCount(4);
   winningMoney = new Money(50_000);
   printer = new Printer();
 
   isSatisfied(lottoResult) {
-    return this.matchedNumberCount === lottoResult.getMatchedNumberCount();
+    return lottoResult.isWinning(this.lottoNumberCount);
   }
 }
 
