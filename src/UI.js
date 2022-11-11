@@ -9,7 +9,7 @@ const lottoBuy = () => {
   return input;
 };
 
-const winningNumber = () => {
+const winningNumbers = () => {
   let input;
   MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (answer) => {
     console.log(answer);
@@ -29,6 +29,6 @@ const bonusNumber = () => {
 
 module.exports = {
   lottoBuy,
-  winningNumber,
+  winningNumbers,
   bonusNumber,
 };
