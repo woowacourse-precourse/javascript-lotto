@@ -28,7 +28,7 @@
 - 1,000원으로 나누어 떨어지지 않는 경우 예외 발생
   - `[ERROR] 구입 금액은 1000원 단위여야합니다.`
 
-[❌] ✏️ 구입 개수 만큼 로토를 발행한다. `SYSTEM.publishLotto(cache)`
+[✅] ✏️ 구입 개수 만큼 로토를 발행한다. `SYSTEM.publishLotto(cache)` 
 - 로또 번호는 구입 개수만큼 자동으로 생성 `SYSTEM.autoWrite(maxCount)`
   - 로또 개별 생성 `SYSTEM.makeLotto()`
 - 로또 번호는 `오름차순으로 정렬` `SYSTEM.sortLotto(lotto)`
