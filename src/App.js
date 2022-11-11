@@ -27,8 +27,6 @@ class App {
     if (amount % 1000 !== 0) {
       throw new Error("[ERROR] 1,000원 단위로만 구매 가능합니다.");
     }
-
-    return true;
   }
 
   showNumberOfPurchasedLotto(amount) {
@@ -85,8 +83,6 @@ class App {
         throw new Error("[ERROR] 숫자와 ,(쉼표) 기호만을 입력해주세요.");
       }
     });
-
-    return true;
   }
 
   getUserLotto(userInput) {
