@@ -4,11 +4,11 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    Lotto.validate(numbers);
+    Lotto.validateLength(numbers);
     this.#numbers = numbers;
   }
 
-  static validate(numbers) {
+  static validateLength(numbers) {
     const CRITERION = 6;
 
     Application.validateArrayLength(numbers, CRITERION);
