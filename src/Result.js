@@ -61,12 +61,12 @@ class Result {
   getThirdRankOrSecondRank() {
     if (this.score === 5) {
       if (this.matchBonus) {
-        this.rank[2] += 1;
+        this.rank[1] += 1;
 
         return;
       }
 
-      this.rank[1] += 1;
+      this.rank[2] += 1;
     }
   }
 
