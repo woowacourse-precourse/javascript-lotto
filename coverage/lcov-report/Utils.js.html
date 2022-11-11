@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for Lotto.js</title>
+    <title>Code coverage report for Utils.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="prettify.css" />
     <link rel="stylesheet" href="base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="index.html">All files</a> Lotto.js</h1>
+        <h1><a href="index.html">All files</a> Utils.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">85.71% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/7</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>3/4</span>
+                <span class='fraction'>5/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">85.71% </span>
+                <span class="strong">75% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>3/4</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/7</span>
+                <span class='fraction'>5/6</span>
             </div>
         
             
@@ -84,61 +84,49 @@
 <a name='L19'></a><a href='#L19'>19</a>
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
-<a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L22'></a><a href='#L22'>22</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">class Lotto {
-  #numbers;
+<span class="cline-any cline-yes">2x</span></td><td class="text"><pre class="prettyprint lang-js">const MissionUtils = require("@woowacourse/mission-utils");
 &nbsp;
-  constructor(numbers) {
-    this.validate(numbers);
-    // this.#numbers = numbers;
-<span class="cstat-no" title="statement not covered" >    console.log(numbers);</span>
-  }
+class Utils {
 &nbsp;
-  validate(numbers) {
-  
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-    } 
-    
-    <span class="missing-if-branch" title="else path not taken" >E</span>if(numbers.length !== new Set(numbers).size) {
-      throw new Error("[ERROR] 로또 번호는 중복될 수 없습니다.");
+    print(msg) {
+        return MissionUtils.Console.print(msg);
     }
-    
-  }
 &nbsp;
-  // TODO: 추가 기능 구현
+    readLine(query, callback) {
+        MissionUtils.Console.readLine(query, callback);
+    }
+&nbsp;
+    close() {
+        MissionUtils.Console.close();
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    ge</span>tLottoNumbers() {
+<span class="cstat-no" title="statement not covered" >        return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);</span>
+    }
 }
 &nbsp;
-module.exports = Lotto;
-&nbsp;</pre></td></tr></table></pre>
+module.exports = new Utils();</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
