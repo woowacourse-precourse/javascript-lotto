@@ -1,5 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("../src/Lotto");
+const Bonus = require("../src/Bonus");
 
 const {
   READLINE_PHRASE,
@@ -99,23 +100,12 @@ class App {
     MissionUtils.Console.readLine(
       OUTPUT_PHRASE.LINE_UP + READLINE_PHRASE.INPUT_BONUS_NUMBER,
       (bonusNumber) => {
-        this.isValidBonusNumber(bonusNumber);
+        new Bonus(bonusNumber, this.winningNumbers);
         this.bonusNumber = Number(bonusNumber);
 
         this.printWinningStastics();
       }
     );
-  }
-  isValidBonusNumber(bonusNumber) {
-    if (isNaN(bonusNumber)) {
-      throw new Error(ERROR_MESSAGE.INVALID_BONUS_NUMBER.NOT_A_NUMBER);
-    }
-    if (this.winningNumbers.includes(bonusNumber)) {
-      throw new Error(ERROR_MESSAGE.INVALID_BONUS_NUMBER.IS_DUPLICATED);
-    }
-    if (bonusNumber < 1 || bonusNumber > 45) {
-      throw new Error(ERROR_MESSAGE.INVALID_BONUS_NUMBER.NOT_IN_RANGE);
-    }
   }
 
   printWinningStastics() {
