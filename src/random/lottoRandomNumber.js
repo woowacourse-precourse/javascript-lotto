@@ -1,13 +1,16 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
-const lottoRandomNumber = (lottoAmount) => {
-    let userAnswer = [];
-    for (let i = 0; i < lottoAmount; i++) {
-        const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-        userAnswer.push(numbers);
-    }
+const lottoRandomNumber = () => {
+    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
 
-    return userAnswer;
+    return numbers;
 }
 
-module.exports = lottoRandomNumber
+const sortedLottoNumbers = () => {
+    const lottoNumbers = lottoRandomNumber();
+    const sortedNumbers = lottoNumbers.sort((a, b) => a - b);
+
+    return sortedNumbers;
+}
+
+module.exports = sortedLottoNumbers
