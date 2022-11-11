@@ -1,5 +1,7 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { INGAME_MESSAGE, PICK_TYPE, RANK_INDEX, RANK_REWARD, RANK_PRINT } = require('./Constants');
+const { INGAME_MESSAGE } = require('./Constants/MESSAGE');
+const { PICK_TYPE } = require('./Constants/PICK');
+const { RANK_INDEX, RANK_REWARD, RANK_PRINT } = require('./Constants/RANK');
 const Lotto = require('./Lotto');
 const Consumer = require('./Consumer');
 
