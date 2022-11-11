@@ -13,10 +13,10 @@ class Lotto {
     if (numbers !== undefined) {
       const NUMBERS_IN_RANGE = numbers.filter((el) => Number(el) >= 1 && Number(el) <= 45);
 
-      if (numbers.length !== 6) throw new Error(Messages.SIX_NUMBERS_MESSAGES);
-      if (numbers.length !== new Set(numbers).size) throw new Error(Messages.NOT_DUPLICATE_MESSAGE);
+      if (numbers.length !== 6) throw new Error(Messages.SIX_NUMBERS);
+      if (numbers.length !== new Set(numbers).size) throw new Error(Messages.NOT_DUPLICATE);
       if (numbers.length !== NUMBERS_IN_RANGE.length) {
-        throw new Error(Messages.NUMBERS_IN_RANGE_MESSAGE);
+        throw new Error(Messages.NUMBERS_IN_RANGE);
       }
     }
   }
