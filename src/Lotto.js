@@ -2,6 +2,7 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
+    console.log(numbers);
     this.validate(numbers);
     this.#numbers = numbers;
   }
