@@ -3,6 +3,14 @@ class InputCheck {
     this.number = number;
     this.numberOfLotto;
   }
+
+  checkUserInputNumber() {
+    this.isNumber();
+    if (this.canNotBuy()) throw '[ERROR] 로또 구입 금액이 올바르지 않습니다';
+    this.numberOfLotto = this.howManyBuy();
+    return this.numberOfLotto;
+  }
+
   isNumber() {
     if (/\D/.test(this.number)) throw '[ERROR] 숫자이외의 문자가 존재합니다.';
   }
@@ -13,13 +21,6 @@ class InputCheck {
 
   howManyBuy() {
     return this.number / 1000;
-  }
-
-  checkUserInputNumber() {
-    this.isNumber();
-    if (this.canNotBuy()) throw '[ERROR] 로또 구입 금액이 올바르지 않습니다';
-    this.numberOfLotto = this.howManyBuy();
-    return this.numberOfLotto;
   }
 }
 
