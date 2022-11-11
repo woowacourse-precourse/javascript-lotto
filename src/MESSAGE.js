@@ -9,7 +9,11 @@ const MESSAGE = {
   LAST_RANGE: 45,
   LOTTO_LENGTH: 6,
   LOTTO_INIT_STR: '######',
-  SEPERATOR: ', ',
+  USER_LOTTO_SEPERATOR: ', ',
+  LOTTO_SIZE_ERROR: '[ERROR] 로또 번호는 6개여야 합니다. ',
+  LOTTO_SAME_NUMBER_ERROR: '[ERROR] 로또 번호는 중복되지 않아야 합니다',
+  LOTTO_WIN: '당첨 번호를 입력해 주세요.',
+  LOTTO_WIN_SEPERATOR: /,/g,
 };
 
 module.exports = MESSAGE;
