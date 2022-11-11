@@ -38,6 +38,8 @@
 
 ### 5. 수익률 계산
 
+- Calculator.calcProfitRate
+
 ## 출력
 
 ### 1. 발행한 로또 출력

@@ -1,11 +1,12 @@
 class Calculator {
   #pay;
-  #prizeMap;
   #totalPrize;
+  #prizeMap;
 
   constructor(pay) {
     this.validate(pay);
     this.#pay = pay;
+    this.#totalPrize = 0;
     this.#prizeMap = {
       1: 2000000000,
       2: 30000000,
@@ -13,7 +14,6 @@ class Calculator {
       4: 50000,
       5: 5000,
     };
-    this.#totalPrize = 0;
   }
 
   validate(pay) {}
@@ -24,6 +24,10 @@ class Calculator {
 
   addPrize(ranking) {
     this.#totalPrize += this.#prizeMap[ranking];
+  }
+
+  calcProfitRate() {
+    return ((this.#totalPrize / this.#pay) * 100).toFixed(1);
   }
 }
 
