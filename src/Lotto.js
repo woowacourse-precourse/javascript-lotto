@@ -1,6 +1,6 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const Utils = require("./Utils");
-
+const ValidateInput = require("./ValidateInput");
 class Lotto {
   #numbers;
 
@@ -16,6 +16,10 @@ class Lotto {
   }
 
   // TODO: 추가 기능 구현
+  returnNumbers() {
+    ValidateInput.validateWinningNumbers(this.#numbers);
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;

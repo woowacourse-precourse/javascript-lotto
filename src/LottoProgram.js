@@ -1,37 +1,27 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const Utils = require("./Utils");
+const ValidateInput = require("./ValidateInput");
+const Lotto = require("./Lotto");
 
 class LottoProgram {
-  #numbersOfLotto;
   #lottoArray;
   #regExp;
+  #numbersOfLotto;
 
   constructor() {
-    this.utils = new Utils();
-    // this.#numbers = numbers;
-    this.#regExp = / /g;
-    this.#numbersOfLotto = 0;
+    // this.validtateInput = new ValidateInput();
     this.#lottoArray = [];
-    this.winningNumbers = '';
-  }
-
-  validateInputMoney(inputMoney) {
-    return (
-      this.utils.isBlank(inputMoney) ||
-      !this.utils.isNumber(inputMoney) ||
-      !this.utils.isThousandUnit(inputMoney)
-    ) ? this.utils.throwError("[ERROR] 유효하지 않은 값을 입력하셨습니다. 다시 확인하세요.")
-      : true;
+    this.#numbersOfLotto = 0;
   }
 
   start() {
-    Console.print("구입금액을 입력해주세요.");
     this.inputMoney();
   }
 
   inputMoney() {
-    Console.readLine("", (inputMoney) => {
-      this.validateInputMoney(inputMoney);
+    Console.readLine("구입금액을 입력해주세요.\n", (inputMoney) => {
+      // this.validtateInput.validateInputMoney(inputMoney);
+      ValidateInput.validateInputMoney(inputMoney);
       this.#numbersOfLotto = Number(inputMoney) / 1000;
       this.buyLotto();
     });
@@ -57,9 +47,10 @@ class LottoProgram {
   }
 
   getEachLottoArray() {
+    const utils = new Utils();
     const lottoArray = this.randomSelectWithoutOverlap().sort((a, b) => a - b);
     if (this.isValidLottoArray(lottoArray) === false) {
-      this.utils.throwError("[ERROR] 로또 구매 내역을 불러오는데 실패하였습니다.");
+      utils.throwError("[ERROR] 로또 구매 내역을 불러오는데 실패하였습니다.");
     }
     return lottoArray;
   }
@@ -70,30 +61,13 @@ class LottoProgram {
     }
   }
 
-  isValidLottoNumber(number) {
-    return (
-      this.utils.isNumber(number) &&
-      Number(number) >= 1 &&
-      Number(number) <= 45 &&
-      Number(number) % 1 === 0
-    );
-  }
-
-  validateWinningNumbers(winningNumbers) {
-    const winningNumbersArray = winningNumbers.replace(this.#regExp, '').split(',');
-    if (!winningNumbersArray.every(this.isValidLottoNumber)) {
-      this.utils.throwError("[ERROR] 입력하신 당첨 번호가 유효하지 않습니다. 다시 확인해주세요.")
-    }
-
-    return ([...(new Set(winningNumbersArray))].length !== 6) ?
-      this.utils.throwError("[ERROR] 입력하신 당첨 번호가 유효하지 않습니다. 다시 확인해주세요.") : true;
-  }
-
   inputWinningNumbers() {
-    Console.print("\n당첨 번호를 입력해 주세요.");
-    Console.readLine("", (winningNumbers) => {
-      this.validateWinningNumbers(winningNumbers);
-      this.winningNumbers = winningNumbers.replace(this.#regExp, '').split(',');
+    Console.readLine("당첨 번호를 입력해 주세요.\n", (inputNumbers) => {
+      const winningNumbersArray = inputNumbers.replace(this.#regExp, '').split(',');
+      const lotto = new Lotto(winningNumbersArray);
+      this.winningNumbers = lotto.returnNumbers();
+      // this.validtateInput.validateWinningNumbers(winningNumbers);
+      // this.winningNumbers = winningNumbers.replace(this.#regExp, '').split(',');
       this.inputBonusNumber();
     });
   }
@@ -108,19 +82,11 @@ class LottoProgram {
     this.inputWinningNumbers();
   }
 
-  validateBonusNumber(bonusNumber) {
-    if (!this.isValidLottoNumber(bonusNumber)) {
-      this.utils.throwError("[ERROR] 입력하신 보너스 번호가 유효하지 않습니다. 다시 확인해주세요.")
-    }
-
-    return ([...this.winningNumbers].includes(bonusNumber)) ?
-      this.utils.throwError("[ERROR] 입력하신 보너스 번호가 유효하지 않습니다. 다시 확인해주세요.") : true;
-  }
-
   inputBonusNumber() {
     Console.print("\n보너스 번호를 입력해 주세요.");
     Console.readLine("", (bonusNumber) => {
-      this.validateBonusNumber(bonusNumber);
+      // this.validtateInput.validateBonusNumber(this.winningNumbers, bonusNumber);
+      ValidateInput.validateBonusNumber(this.winningNumbers, bonusNumber);
       Console.close();
     });
   }
