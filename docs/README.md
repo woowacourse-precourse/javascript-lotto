@@ -4,19 +4,22 @@
 
 - [x] 1부터 45까지의 중복되지 않는 숫자 6개 로또 번호를 오름차순으로 생성한다. - LottoGenerator#createLottoNums()
 - [x] 구입금액 만큼 로또를 발행한다. - LottoGenerator#publishLotto()
-- [ ] 로또번호와 당첨번호를 비교한다. - Lotto#compareLottoNums()
-  - [ ] 몇개가 일치하는지 확인한다. - Lotto#countCorrectNums() 
-  - [ ] 보너스 번호가 일치하는지 확인한다. - Lotto#isEqualBonusNum()
+- [ ] 로또번호와 당첨번호를 비교한다. - LottoMatching#compareLottoNums()
+  - [ ] 몇개가 일치하는지 확인한다. - LottoMatching#countCorrectNums() 
+  - [ ] 보너스 번호가 일치하는지 확인한다. - LottoMatching#isEqualBonusNum()
 - [ ] 수익률을 구한다. - IncomeRate#getIncomeRate()
 
 ## 예외 처리
 
 사용자가 잘못된 값을 입력할 경우 throw문을 사용해 예외를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 종료한다.
 
-- [x] 로또 구입 금액을 입력 받는다. 구입 금액은 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다.
-- [x] 생성한 로또번호에 중복된 수가 있으면 예외 처리한다.
-- [ ] 구입 금액 입력 값이 숫자가 아닌 경우 예외 처리한다.
-- [ ] 구입 금액 입력 값이 정수가 아닌 경우 예외 처리한다.
+- [ ] 로또 번호 유효성 검사 - Lotto#validateLottoNums() 
+  - 생성한 로또번호에 중복된 수가 있으면 예외 처리한다.
+  - 생성한 로또번호의 개수가 6개가 아니면 예외 처리한다.
+- [ ] 로또 구입 금액 유효성 검사 - Lotto#validateLottoCost()
+  - 구입금액이 1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다.
+  - 구입 금액 입력 값이 숫자가 아닌 경우 예외 처리한다.
+- [ ] 구입 금액 입력 값이 정수가 아닌 경우 예외 처리한다. - LottoGenerator#publishLotto()
 - [ ] 당첨 번호의 숫자 범위가 1~45가 아닐 경우 예외 처리.
 - [ ] 당첨 번호 추첨 시 수가 중복되는 경우 예외 처리.
 - [ ] 당첨 번호를 입력 받을 시, 쉼표(,)가 다섯개가 아닌 경우 예외 처리.
