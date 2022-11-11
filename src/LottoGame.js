@@ -1,6 +1,11 @@
-const { Console } = require("@woowacourse/mission-utils");
+const { Console, Random } = require("@woowacourse/mission-utils");
 const { REQUEST_MESSAGE } = require("./constants/message.js");
-const { LOTTO_PRICE } = require("./constants/condition.js");
+const {
+  LOTTO_PRICE,
+  LOTTO_NUM_MIN_RANGE,
+  LOTTO_NUM_MAX_RANGE,
+  LOTTO_DIGITS,
+} = require("./constants/condition.js");
 const LottoGameView = require("./LottoGameView.js");
 const Validation = require("./Validation.js");
 
@@ -21,6 +26,9 @@ class LottoGame {
   }
   getLottoQuantity(purchaseAmount) {
     return parseInt(purchaseAmount, 10) / LOTTO_PRICE;
+  }
+  generateLottoNumbers() {
+    return Random.pickUniqueNumbersInRange(LOTTO_NUM_MIN_RANGE, LOTTO_NUM_MAX_RANGE, LOTTO_DIGITS);
   }
 }
 
