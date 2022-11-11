@@ -3,18 +3,18 @@ const MissionUtils = require('@woowacourse/mission-utils');
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();
-  answers.reduce((acc, input) => {
-    return acc.mockImplementationOnce((question, callback) => {
-      callback(input);
-    });
-  }, MissionUtils.Console.readLine);
+  answers.reduce(
+    (acc, input) => acc.mockImplementationOnce((question, callback) => { callback(input); }),
+    MissionUtils.Console.readLine,
+  );
 };
 
 const mockRandoms = (numbers) => {
   MissionUtils.Random.pickUniqueNumbersInRange = jest.fn();
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, MissionUtils.Random.pickUniqueNumbersInRange);
+  numbers.reduce(
+    (acc, number) => acc.mockReturnValueOnce(number),
+    MissionUtils.Random.pickUniqueNumbersInRange,
+  );
 };
 
 const getLogSpy = () => {
