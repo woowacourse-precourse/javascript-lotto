@@ -6,7 +6,6 @@ class Stat {
     }
 
     checkBonus(lotto,bonus){
-        console.log('this is checkBonus')
         if (lotto.includes(parseInt(bonus))) {
             return 2
         }
@@ -14,7 +13,6 @@ class Stat {
 
     // 등수 확인
     checkRank(count,lotto,winNum,bonus){
-        console.log('this is checkRank')
         switch (count) {
             case 6:
                 return 1
@@ -39,9 +37,7 @@ class Stat {
         return this.checkRank(COUNT,lotto,winNum,bonus)
     }
     checkMatch(){
-        let RANK = this.checkNumber(this.LOTTO,this.WIN_NUM,this.BONUS)
-        console.log('+++++++++++')
-        console.log(RANK)
+        return this.checkNumber(this.LOTTO,this.WIN_NUM,this.BONUS)
     }
 }
 

@@ -97,18 +97,72 @@ class App {
 
     MissionUtils.Console.print("당첨 통계")
     MissionUtils.Console.print("---")
-    this.statistics(LOTTO_ARRAY,WIN_NUMBER,BONUS)
+    let RESULT = this.statistics(LOTTO_ARRAY,WIN_NUMBER,BONUS)
+    console.log(RESULT)
   }
 
   // statistics
   statistics(lottoArray,winNumber,bonus){
-    let RESULT = {}
-    console.log('################################################################ this is reuslt')
-    console.log(RESULT)
+    let RESULT = {
+      '1' : 0,
+      '2' : 0,
+      '3' : 0,
+      '4' : 0,
+      '5' : 0
+    }
     for (let lotto of lottoArray) {
       const match = new Stat(lotto,winNumber,bonus)
-      match.checkMatch()
+      RESULT[match.checkMatch()] += 1
+    }
+    return this.printResult(RESULT)
+  }
 
+  printResult(result){
+    // 총 수익 계산하기
+    let TOTAL_MONEY = 0
+    result = Object.entries(result).reverse()
+    for ( let key of result) {
+      if (key[0] === 'undefined') {
+        continue
+      }
+      this.ResultSwitch(key)
+      TOTAL_MONEY += this.total(key)
+    }
+    return TOTAL_MONEY
+  }
+
+  ResultSwitch(key){
+    switch(key[0]){
+      case '5':
+        return console.log(`3개 일치 (5,000원) - ${key[1]}개`)
+      case '4':
+        return console.log(`4개 일치 (50,000원) - ${key[1]}개`)
+      case '3':
+        return console.log(`5개 일치 (1,500,000원) - ${key[1]}개`)
+      case '2':
+        return console.log(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${key[1]}개`)
+      case '1':
+        return console.log(`6개 일치 (2,000,000,000원) - ${key[1]}개`)
+    }
+  }
+  total(key){
+    if (key[1] === 0){
+      return 0
+    }
+    return this.totalSwitch(key)
+  }
+  totalSwitch(key){
+    switch(key[0]){
+      case '5':
+        return 5000
+      case '4':
+        return 50000
+      case '3':
+        return 1500000
+      case '2':
+        return 30000000
+      case '1':
+        return 2000000000
     }
   }
 }
