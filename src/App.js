@@ -10,6 +10,7 @@ class App {
       this.userLottoNumberLists.push(this.generateUserLottoNumber());
     }
     this.printGenerateUserLottoNumber(this.userLottoNumberLists);
+    const prizeNumber = await this.enterPrizeNumber();
   }
   insertMoney(){
     MissionUtils.Console.readLine('구입금액을 입력해주세요 (1000원 단위)', (insertMoney) => {
@@ -55,8 +56,13 @@ class App {
   }
   enterPrizeNumber(){
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (inputPrizeNumberWithComma) => {
-      
+    const prizeNumberList = this.splitWordsToComma(inputPrizeNumberWithComma);
+    return prizeNumberList;
     });
+  }
+  splitWordsToComma(words){
+    const wordsList = words.split(",");
+    return wordsList;
   }
 }
 
