@@ -24,6 +24,10 @@ class InputWinningNumber{
     getWinningNum(){
         return this.winningNum;
     }
+
+    getBonusNum(){
+        return this.bonusNum;
+    }
 }
 
 module.exports = InputWinningNumber;
