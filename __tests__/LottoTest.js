@@ -40,3 +40,15 @@ describe('로또 구입 금액 유효성 검사', () => {
     });
   });
 });
+
+describe('issueLotteries 함수 테스트', () => {
+  test('구입금액에 해당하는 만큼 로또 발행 검사', () => {
+    const app = new App();
+    const testInput = ['9000', '10000', '11000', '178000', '959000'];
+    const testOutput = [9, 10, 11, 178, 959];
+    testInput.forEach((testElement, idx) => {
+      const result = app.issueLotteries(testElement);
+      expect(result).toEqual(testOutput[idx]);
+    });
+  });
+});
