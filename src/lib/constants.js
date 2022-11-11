@@ -13,6 +13,12 @@ const VALUE = {
   LOTTO_NUMBER_COUNT: 6,
 };
 
-const ERROR = {};
+const ERROR = {
+  PURCHASE_MONEY_NOT_DIVISIBLE:
+    '[ERROR] 로또의 구입 금액은 1000원 단위로 입력해주세요.',
+  PURCHASE_MONEY_LESS_STANDARD:
+    '[ERROR] 로또의 구입 금액은 1000원 이상으로 입력해주세요.',
+  PURCHASE_MONEY_NAN: '[ERROR] 로또의 구입 금액은 숫자만 입력 가능합니다.',
+};
 
 module.exports = { MESSAGE, ERROR, VALUE };
