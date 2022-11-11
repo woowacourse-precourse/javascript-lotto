@@ -18,7 +18,7 @@ class LottoCounter {
     if (cash % NUMBER.INPUT_UNITS !== 0) {
       throw ERROR.MUST_BE_1000_UNIT;
     }
-    if (!Number.isInteger(cash)) {
+    if (Number(cash) === NaN) {
       throw ERROR.MUST_BE_NUMBER;
     }
 
