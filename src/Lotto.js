@@ -27,10 +27,14 @@ class Lotto {
       }
       for (let i = 0; i < numbers.length; i++) {
         let validationArray = numbers.splice(i, 1);
-        if (validationArray.includes(numbers[i]))
-          throw new Error(Constant.ERROR_MESSAGES.overlapNumber);
+        this.overlap(numbers, validationArray, i);
       }
     }
+  }
+
+  overlap(numbers, validationArray, index) {
+    if (validationArray.includes(numbers[index]))
+      throw new Error(Constant.ERROR_MESSAGES.overlapNumber);
   }
 
   process() {
