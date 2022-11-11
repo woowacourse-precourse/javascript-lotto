@@ -9,6 +9,7 @@ class App {
     this.userLottoCount = 0;
     this.userLottoBundle = [];
     this.winningNumber = [];
+    this.bonusNumber = 0;
   }
 
   play() {
@@ -43,6 +44,13 @@ class App {
   inputWinningNumber() {
     readLine(INPUT_MESSAGE.WINNING_NUMBER, (numbers) => {
       this.winningNumber = new Lotto(numbers).getLottoNumbers();
+      this.inputBonusNumber();
+    });
+  }
+
+  inputBonusNumber() {
+    readLine(INPUT_MESSAGE.BONUS_NUMBER, (number) => {
+      this.bonusNumber = parseInt(number, 10);
     });
   }
 }
