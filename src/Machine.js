@@ -26,7 +26,13 @@ class Machine {
     }
   }
 
-  #checkIsAllNum() {}
+  #checkIsAllNum() {
+    this.#winningNumbers.forEach((number) => {
+      if (Number.isNaN(number)) {
+        throw Error('[ERROR] 당첨 번호는 숫자여야 합니다.');
+      }
+    });
+  }
 
   #checkIsAllUnique() {}
 
