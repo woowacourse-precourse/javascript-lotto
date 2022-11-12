@@ -1,4 +1,7 @@
-const { isDuplicated, printError } = require('./Utils');
+const { isDuplicated } = require('./Utils');
+const UI = require('./UI');
+
+const ui = new UI();
 
 class Lotto {
   #numbers;
@@ -10,10 +13,10 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      printError('로또 번호는 6개여야 합니다.');
+      ui.printError('로또 번호는 6개여야 합니다.');
     }
     if (isDuplicated(numbers)) {
-      printError('로또 번호가 중복되었습니다.');
+      ui.printError('로또 번호가 중복되었습니다.');
     }
   }
 
