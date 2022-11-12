@@ -14,3 +14,5 @@ const MESSAGE = {
     RATE_OF_RETURN: (decimal) => `총 수익률은 ${decimal}%입니다.`,
   },
 };
+
+module.exports = Object.freeze(MESSAGE);
