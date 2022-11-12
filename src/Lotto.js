@@ -79,10 +79,11 @@ class Lotto {
     });
   }
 
-  static checkBonusNum(bonusNum) {
+  static checkBonusNum(bonusNum, winNums) {
     const IS_TYPE_NUMBER = !Number.isNaN(bonusNum);
     const IS_VALID_RANGE = 1 <= bonusNum && bonusNum <= 45;
-    const IS_VALID = IS_TYPE_NUMBER && IS_VALID_RANGE;
+    const IS_DUPLICATE = winNums.includes(bonusNum);
+    const IS_VALID = IS_TYPE_NUMBER && IS_VALID_RANGE && !IS_DUPLICATE;
     if (!IS_VALID) {
       throw new Error(LOTTO_MESSAGE.BONUS_NUM_ERROR_MSG);
     }

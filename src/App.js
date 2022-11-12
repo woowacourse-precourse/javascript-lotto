@@ -4,9 +4,17 @@ const { LOTTO_MESSAGE, LOTTO_SETTING } = require("./constant.js");
 
 class App {
   lottoNumArr;
-  winNum;
+  winNums;
   bonusNum;
   order = 0;
+  result = {
+    fifth: 0,
+    forth: 0,
+    third: 0,
+    second: 0,
+    first: 0,
+  };
+  profit = 0;
 
   play() {
     if (this.order === LOTTO_SETTING.PLAYER_TOTAL_ORDER) {
@@ -26,7 +34,7 @@ class App {
         }
         if (this.order === LOTTO_SETTING.INPUT_BONUS_NUM_ORDER) {
           const bonusNum = playerInput;
-          this.inputBonusNum(bonusNum);
+          this.inputBonusNum(bonusNum, this.winNums);
         }
         this.order++;
         this.play();
@@ -44,11 +52,11 @@ class App {
   inputWinNum(winNums) {
     const numbers = winNums.split(",").map((number) => Number(number));
     const lotto = new Lotto(numbers);
-    this.winNum = lotto.numbers;
+    this.winNums = lotto.numbers;
   }
 
-  inputBonusNum(bonusNum) {
-    Lotto.checkBonusNum(bonusNum);
+  inputBonusNum(bonusNum, winNums) {
+    Lotto.checkBonusNum(bonusNum, winNums);
     this.bonusNum = bonusNum;
   }
 }
