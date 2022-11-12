@@ -1,7 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
 class App {
-  money=0;
+  lottoCount=0;
   userLottoNumbers=[];
   winningNumbers=[];
 
@@ -15,41 +15,46 @@ class App {
 
   insertMoney(){
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.', (answer) => {
-      this.money = answer/1000;
-      this.makeLottoNumber();
+      this.lottoCount = this.lottoPurchaseCount(answer);
+      this.lottoNumberPrint(this.lottoCount);
+      // this.makeLottoNumber();
     })
   }
 
   lottoPurchaseCount(money){
-    return answer/1000;
-  }
-  
-  makeLottoNumber(){
-    for(let i=0; i<this.money; i++){
-      const numbers = this.lottoNumberSort(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
-      this.lottoNumberPrint(numbers);
-      this.userLottoNumbers.push(numbers);
-    }
-    this.winningNumberInput();
+    return money/1000;
   }
 
   lottoNumberPrint(numbers){
-    MissionUtils.Console.print("["+numbers.join(", ")+"]")
+    MissionUtils.Console.print(numbers+"개를 구매했습니다.");
   }
 
-  lottoNumberSort(numbers){
-    function compareNumbers(a, b) {
-      return a - b;
-    }
+  // makeLottoNumber(){
+  //   for(let i=0; i<this.lottoCount; i++){
+  //     const numbers = this.lottoNumberSort(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
+  //     this.lottoNumberPrint(numbers);
+  //     this.userLottoNumbers.push(numbers);
+  //   }
+  //   this.winningNumberInput();
+  // }
 
-    return numbers.sort(compareNumbers)
-  }
+  // lottoNumberPrint(numbers){
+  //   MissionUtils.Console.print("["+numbers.join(", ")+"]")
+  // }
 
-  winningNumberInput(){
-    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (answer) => {
-      this.winningNumbers=answer.split(',');
-    })
-  }
+  // lottoNumberSort(numbers){
+  //   function compareNumbers(a, b) {
+  //     return a - b;
+  //   }
+
+  //   return numbers.sort(compareNumbers)
+  // }
+
+  // winningNumberInput(){
+  //   MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (answer) => {
+  //     this.winningNumbers=answer.split(',');
+  //   })
+  // }
 
  
 }
