@@ -16,6 +16,7 @@ class App {
       this.printLottosNumbers(Lottos);
       Console.print("\n");
       let winNumbers = await this.getWinNumbers();
+      Console.print("\n");
     } catch (e) {}
   }
 
@@ -50,8 +51,7 @@ class App {
     });
   }
 
-  isValidWinNumbers(input) {
-    let winNumbers = new Set(input.split(","));
+  isValidWinNumbers(winNumbers) {
     if (winNumbers.size != 6) return false;
     winNumbers.forEach((number) => {
       if (/[\D]/.test(number)) {
@@ -69,11 +69,14 @@ class App {
   getWinNumbers() {
     return new Promise((resolve, reject) => {
       Console.readLine("당첨 번호를 입력해 주세요.\n", (input) => {
-        if (!this.isValidWinNumbers(input)) {
+        let winNumbers = new Set(input.split(","));
+        if (!this.isValidWinNumbers(winNumbers)) {
           reject(() => {
             throw new Error("[ERROR]유효하지 않은값");
           });
-        } else resolve(input);
+        } else {
+          resolve(winNumbers);
+        }
       });
     });
   }
