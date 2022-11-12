@@ -1,4 +1,4 @@
-const GAME_MESSAGE = {
+const APP_MESSAGE = {
   INSERT_PURCHASE_COST: '구입금액을 입력해 주세요.\n',
   PURCHASE_AMOUNT: (count) => `${count}개를 구매했습니다.`,
   INSERT_WIN_NUMBER: '당첨 번호를 입력해 주세요.',
@@ -40,7 +40,7 @@ const LOTTERY_INFORMATION = {
 };
 
 module.exports = {
-  GAME_MESSAGE,
+  APP_MESSAGE,
   RANK_STATISTICS_MESSAGE,
   LOTTERY_INFORMATION,
   LOTTERY_PRIZE,
