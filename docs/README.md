@@ -54,6 +54,9 @@ Random 값은 **MissionUtils 라이브러리**의 `Random.pickUniqueNumbersInRan
 ### [✅] 로또 번호 출력하기 - LottoMachine.printLottoNumber()
 **MissionUtils 라이브러리**에서 제공하는 `Console.print()`를 활용하여 출력한다.
 
+### [&nbsp; ] 로또 발행하기 - LottoMachine.publishLotto()
+위의 과정을 통해 생성된 로또를 사용자에게 발행한다.
+
 </br>
 
 ## [&nbsp; ] 당첨 번호와 보너스 번호 입력 - `LottoManager` 
