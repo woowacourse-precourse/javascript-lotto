@@ -40,6 +40,12 @@ class Lotto {
       throw new Error("[ERROR] 보너스 점수는 1 이상 45 이하의 정수여야 합니다.");
     }
   }
+
+  bonusDuplicateCheck(bonus) {
+    if(this.#numbers.includes(bonus)) {
+      throw new Error("[ERROR] 보너스 점수는 당첨 번호와 중복되면 안됩니다.");
+    }
+  }
 }
 
 module.exports = Lotto;

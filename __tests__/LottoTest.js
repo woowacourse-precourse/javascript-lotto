@@ -38,4 +38,14 @@ describe("로또 클래스 테스트", () => {
       }).toThrowError("[ERROR] 보너스 점수는 1 이상 45 이하의 정수여야 합니다.");
     }
   });
+
+  test("보너스 번호가 당첨 번호와 중복된다면 예외가 발생한다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+
+    for(let number of [1, 2, 3, 4, 5, 6]){
+      expect(() => {
+        lotto.bonusDuplicateCheck(number);
+      }).toThrowError("[ERROR] 보너스 점수는 당첨 번호와 중복되면 안됩니다.");
+    }
+  });
 });
