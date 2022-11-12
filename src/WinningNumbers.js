@@ -24,8 +24,12 @@ class WinningNumbers {
       lotto.validate(bonusNumber,1);
       MissionUtils.Console.close();
 
-      return lotto.checkResult([winningNumber, bonusNumber],this.makedLottos)
+      return this.deliverLottos([winningNumber, bonusNumber])
       })
+    }
+
+    deliverLottos(winningAndBonusNum) {
+      lotto.checkResult(winningAndBonusNum,this.makedLottos)
     }
     
 }
