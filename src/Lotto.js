@@ -10,7 +10,7 @@ class Lotto {
 
   validate(numbers, limit) {
     if (numbers.length !== limit) {
-      throw new Error(`[ERROR] 로또 번호는 ${limit}개여야 합니다.`);
+      throw new Error(`[ERROR] 입력 번호는 ${limit}개여야 합니다.`);
     }
     
     numbers.forEach(number => {
@@ -22,8 +22,19 @@ class Lotto {
     if(Array.from(orderedNumbers).length !== limit){
       throw new Error("[ERROR] 중복된 숫자가 있습니다.")
     }
-    
+
     return 
+  }
+
+  validateBonus(winningNumber,bonusNumber){
+    winningNumber.forEach(number => {
+      if(number == bonusNumber[0])
+      throw new Error(`[ERROR] 당첨 번호와 중복됩니다.`);
+    });
+  }
+
+  checkResult(lottoAndBonusNum, makedLottos){
+
   }
 
 
@@ -36,7 +47,6 @@ class Lotto {
 
 
 //>>>>>>>>>>>>test<<<<<<<<<<<<<<
-// const lotto = new Lotto();
 // lotto.inputWinningNumber();
 // lotto.start()
 
