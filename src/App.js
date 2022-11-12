@@ -11,7 +11,13 @@ class App {
     this.lottos = [];
     this.winningNumbers = [];
     this.bonus = 0;
-  }
+    this.result = { 
+      1: { count: 0, prize: MONEY.FIRST_PLACE },
+      2: { count: 0, prize: MONEY.SECOND_PLACE },
+      3: { count: 0, prize: MONEY.THIRD_PLACE },
+      4: { count: 0, prize: MONEY.FOURTH_PLACE },
+      5: { count: 0, prize: MONEY.LAST_PLACE },
+    }}
 
   createRandomLottoNumbers() {
     const randoms = Random.pickUniqueNumbersInRange(LOTTO.MIN, LOTTO.MAX, LOTTO.LENGTH);
