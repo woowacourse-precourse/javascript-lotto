@@ -6,7 +6,9 @@ class App {
     // const lotto = new Lotto();
   }
 
-  async play() {}
+  async play() {
+    
+  }
 
   userInput() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요. \n', async (userMoney) => {
@@ -14,6 +16,13 @@ class App {
       resolve();
     });     
   }
+
+  prizeInput() {
+    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요. \n', (userMoney) => {
+      MissionUtils.Console.print(userMoney.split(','));
+    })
+  }
+
 
   numberOfAvailablePurchase(userMoney) {
     if (!(userMoney % 1000)) {
