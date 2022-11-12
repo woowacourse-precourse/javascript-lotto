@@ -21,6 +21,7 @@ class LottoView {
     this.readLine('', (input) => {
       if (amountValidation(input)) {
         const lottoList = this.LottoBuilder.creatLottoList(input);
+        this.LottoBuilder.lottoList = lottoList;
         this.showLottoList(lottoList);
         this.setWinningNumber();
       }

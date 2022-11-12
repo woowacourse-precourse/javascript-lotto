@@ -17,8 +17,6 @@ class LottoBuilder {
       .fill(countLotto)
       .forEach((_) => lottoList.push(this.#creatLottoNumber()));
 
-    this.lottoList = lottoList;
-
     return lottoList;
   }
 
