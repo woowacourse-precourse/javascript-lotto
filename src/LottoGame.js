@@ -59,30 +59,35 @@ class LottoGame {
     LottoView.getUserInput(`\n${INPUT_MESSAGES.BONUS_NUMBER}\n`, (bonusNumber) => {
       this.#bonusNumber = bonusNumber;
       LottoView.printStatsMessage();
-
-      // 메서드 분리하기
-      const userLottos = this.user.getLottos();
-      userLottos.forEach((lotto) => {
-        const count = this.#countMatchLottoNumbers(lotto);
-        if (count === 3) {
-          this.user.setMatchLottos('three');
-        }
-        if (count === 4) {
-          this.user.setMatchLottos('four');
-        }
-        if (count === 5) {
-          this.user.setMatchLottos('five');
-        }
-        if (count === 6) {
-          this.user.setMatchLottos('six');
-        }
-      });
-      LottoView.printMatchNumbers(this.user.getMatchLottos());
+      this.#matchLottos();
     });
   }
 
+  #matchLottos() {
+    const userLottos = this.user.getLottos();
+    userLottos.forEach((lotto) => {
+      const lottoCount = this.#countMatchLottoNumbers(lotto);
+      const hasBonusNumber = this.#isMatchBonusLottoNumber(this.#bonusNumber, lotto);
+      if (lottoCount === 3) {
+        this.user.setMatchLottos('three');
+      }
+      if (lottoCount === 4) {
+        this.user.setMatchLottos('four');
+      }
+      if (lottoCount === 5 && !hasBonusNumber) {
+        this.user.setMatchLottos('five');
+      }
+      if (lottoCount === 6) {
+        this.user.setMatchLottos('six');
+      }
+      if (lottoCount === 5 && hasBonusNumber) {
+        this.user.setMatchLottos('bonus');
+      }
+    });
+    LottoView.printMatchNumbers(this.user.getMatchLottos());
+  }
+
   #countMatchLottoNumbers(userLottoNumbers) {
-    // 당첨 번호와 유저 번호와 비교 후 몇개가 일치하는지 체크
     let count = 0;
     const winNumbers = this.#winNumbers.split(',').map(Number);
     winNumbers.forEach((winNumber) => {
@@ -93,8 +98,10 @@ class LottoGame {
     return count;
   }
 
-  #countMatchBonusLottoNumber(bonusNumber, userLottoNumbers) {
-    // 보너스 번호와 유저 번호와 비교 후 일치하는지 체크
+  #isMatchBonusLottoNumber(bonusNumber, userLottoNumbers) {
+    if (userLottoNumbers.includes(Number(bonusNumber))) {
+      return true;
+    }
   }
 }
 
