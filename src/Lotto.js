@@ -1,4 +1,5 @@
 const { Messages } = require('./constants');
+const { isOutOfRange } = require('./isOutOfRange');
 
 class Lotto {
   #numbers;
@@ -12,8 +13,8 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error(Messages.ERROR_LOTTO_NUMBERS_LENGTH);
     }
-    const isOutOfRange = numbers.some((number) => number < 1 || number > 45);
-    if (isOutOfRange) {
+    const outOfRange = numbers.some(isOutOfRange);
+    if (outOfRange) {
       throw new Error(Messages.ERROR_LOTTO_NUMBER_RANGE);
     }
     const numberSet = new Set(numbers);
