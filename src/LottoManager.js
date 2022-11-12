@@ -9,14 +9,12 @@ class LottoManager {
   }
 
   inputWinningNumbers() {
-    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (winningNumbers) => {
+    MissionUtils.Console.readLine('\n당첨 번호를 입력해 주세요.\n', (winningNumbers) => {
       winningNumbers = winningNumbers.split(',');
       this.#winningNumbers = winningNumbers.map((idx) => Number(idx));
       this.checkInputWinningNumbers();
 
       this.inputBonusNumber();
-      this.checkInputBonusNumber();
-
     });
   }
 
@@ -76,7 +74,7 @@ class LottoManager {
 
 }
 
-const lottoManager = new LottoManager();
-lottoManager.start();
+// const lottoManager = new LottoManager();
+// lottoManager.start();
 
 module.exports = LottoManager;

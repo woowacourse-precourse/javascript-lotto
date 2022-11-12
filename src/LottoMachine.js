@@ -6,9 +6,12 @@ const LottoManager = require("./LottoManager");
 class LottoMachine {
   #money;
   #count;
+  #winningNumbers;
+  #bonusNumber;
 
   constructor() {
     this.user = new User();
+    this.lottoManager = new LottoManager();
     this.#money = 0;
     this.#count = 0;
   }
@@ -25,6 +28,13 @@ class LottoMachine {
     this.publishLotto(numbers);
   }
 
+  callLottoManager() {
+    this.lottoManager.start( () => {
+      this.#winningNumbers = this.lottoManager.getWinningNumbers();
+      this.#bonusNumber = this.lottoManager.getBonusNumber();
+    });    
+  }
+
   inputMoney() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
       this.#money = Number(money);
@@ -32,11 +42,19 @@ class LottoMachine {
       
       this.checkInputMoney();
       this.printLottoAmount();
+      
       for (let index = 0; index < this.#count; index++) {
         this.makeLotto();
       }
-      console.log(this.user);
+      
+      // console.log(this.user);
+
+      this.callLottoManager();
     });
+  }
+
+  print() {
+    console.log(this.#winningNumbers, this.#bonusNumber)
   }
 
   checkInputMoney() {
