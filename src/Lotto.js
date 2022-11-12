@@ -3,9 +3,9 @@ class Lotto {
 
   constructor(numbers) {
     this.validate(numbers);
-    this.overlap(numbers);
-    this.character(numbers);
-    this.range(numbers);
+    this.overlapCheck(numbers);
+    this.characterCheck(numbers);
+    this.rangeCheck(numbers);
     this.#numbers = numbers;
   }
 
@@ -16,14 +16,14 @@ class Lotto {
   }
 
   // TODO: 추가 기능 구현
-  overlap(numbers) {
+  overlapCheck(numbers) {
     const set = new Set(numbers);
     if (numbers.length !== set.size) {
       throw new Error("[ERROR] 로또 번호는 서로 다른 숫자여야 합니다.");
     }
   }
 
-  character(numbers) {
+  characterCheck(numbers) {
     for (let i = 0; i < numbers.length; i++) {
       if (typeof numbers[i] != "number") {
         throw new Error("[ERROR] 로또 번호는 숫자여야 합니다.");
@@ -31,7 +31,7 @@ class Lotto {
     }
   }
 
-  range(numbers) {
+  rangeCheck(numbers) {
     for (let i = 0; i < numbers.length; i++) {
       if (numbers[i] > 45 || numbers[i] < 1) {
         throw new Error("[ERROR] 로또 번호는 1에서 45사이의 숫자여야 합니다.");

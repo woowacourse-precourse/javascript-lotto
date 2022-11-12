@@ -3,20 +3,22 @@ const Money = require("./Money");
 const UI = require("./UI");
 
 class Buy {
+  gameCount;
+  gameNumbers;
+
   countCalculate() {
     const moneyInput = UI.lottoBuy();
     const money = new Money(Number(moneyInput));
-    const count = money.calculate(moneyInput);
-    return count;
+    this.gameCount = money.divide(moneyInput);
   }
 
-  randomNumbers(count) {
-    let numbers = new Array(count);
+  randomNumbers() {
+    let numbers = new Array(this.gameCount);
     for (let i = 0; i < count; i++) {
       numbers[i] = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       numbers.sort((a, b) => a - b);
     }
-    return numbers;
+    this.gameNumbers = numbers;
   }
 }
 

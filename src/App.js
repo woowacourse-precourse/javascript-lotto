@@ -1,5 +1,6 @@
 const Buy = require("./Buy");
 const Match = require("./Match");
+const Result = require("./Result");
 
 class App {
   play() {
@@ -8,9 +9,8 @@ class App {
     const gameNumbers = buy.randomNumbers(gameCount);
     const match = new Match();
     match.countMatchingNumbers(gameNumbers);
-    console.log(match.bonusFlag);
-    console.log(match.matchRecord);
-
+    const result = new Result();
+    result.rankingCalculate(match.matchRecord, match.bonusFlag);
   }
 }
 
