@@ -61,11 +61,29 @@ describe("로또 테스트", () => {
     });
   });
 
-  test("예외 테스트", () => {
-    mockQuestions(["1000j"]);
-    expect(() => {
-      const app = new App();
-      app.play();
-    }).toThrow("[ERROR]");
+  test("(5개&보너스 번호)인 경우 보너스 번호가 있는 등수로만 계산한다.", () => {
+    mockRandoms([
+      [1, 2, 3, 4, 5, 10],
+    ]);
+    mockQuestions(["1000", "1,2,3,4,5,6", "10"]);
+    const logs = [
+      "5개 일치 (1,500,000원) - 0개",
+      "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
+      "총 수익률은 3,000,000.0%입니다.",
+    ];
+    const logSpy = getLogSpy();
+    const app = new App();
+    app.play();
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
   });
+
+  // test("예외 테스트", () => {
+  //   mockQuestions(["1000j"]);
+  //   expect(() => {
+  //     const app = new App();
+  //     app.play();
+  //   }).toThrow("[ERROR]");
+  // });
 });
