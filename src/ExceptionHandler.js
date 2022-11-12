@@ -2,7 +2,7 @@ const Constant = require("../src/constant/Constant");
 
 class ExceptionHandler {
   static budgetUnit(budget) {
-    if (budget % 1000 !== 0) throw new Error("[ERROR] 단위를 정확히 입력해주세요.");
+    if (parseInt(budget) % 1000 !== 0) throw new Error("[ERROR] 단위를 정확히 입력해주세요.");
   }
 
   static winningNumberLength(winningNumber) {
@@ -12,6 +12,12 @@ class ExceptionHandler {
   static winningNumberRedundancy(winningNumber) {
     const checkSet = new Set(winningNumber.split(Constant.COMMA));
     if ([...checkSet].length < 6) throw new Error("[ERROR] 당첨 번호를 중복없이 입력해주세요.");
+  }
+
+  static bonusNumberRange(bonusNumber) {
+    if (bonusNumber < 1 && bonusNumber > 45) {
+      throw new Error("[ERROR] 1부터 45까지의 숫자를 입력해주세요.");
+    }
   }
 }
 
