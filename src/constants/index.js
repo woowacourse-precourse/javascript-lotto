@@ -28,7 +28,7 @@ const PRIZE_MONEY = [2000000000, 30000000, 1500000, 50000, 5000];
 
 const ERROR_MESSAGE = Object.freeze({
   ERROR_FORM: '[ERROR] ',
-  HAS_BLACK: '입력에 공백을 포함시킬 수 없습니다.',
+  HAS_BLANK: '입력에 공백을 포함시킬 수 없습니다.',
   START_WITH_ZERO: '정수의 앞에 0이 올 수 없습니다.',
   OUT_OF_RANGE: '1에서 45까지의 숫자를 입력해야 합니다.',
   INT_FORM: '음이아닌 정수를 입력해야 합니다.',

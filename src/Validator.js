@@ -51,7 +51,7 @@ class Validator {
   }
 
   static throwErrorIfHasBlack(string) {
-    if (string.includes(' ')) this.throwError(ERROR_MESSAGE.HAS_BLACK);
+    if (string.includes(' ')) this.throwError(ERROR_MESSAGE.HAS_BLANK);
   }
 
   static throwErrorIfStartsWithZero(string) {
