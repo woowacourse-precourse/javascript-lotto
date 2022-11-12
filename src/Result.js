@@ -31,16 +31,24 @@ class Result {
     this.matchBonus = false;
 
     lotto.forEach((item) => {
-      if (this.userLotto.includes(item)) {
-        this.score += 1;
-      }
+      this.calculateScore(item);
 
-      if (item === this.bonusNumber) {
-        this.matchBonus = true;
-      }
+      this.checkBonusNumber(item);
     });
 
     this.getRanking();
+  }
+
+  calculateScore(item) {
+    if (this.userLotto.includes(item)) {
+      this.score += 1;
+    }
+  }
+
+  checkBonusNumber(item) {
+    if (item === this.bonusNumber) {
+      this.matchBonus = true;
+    }
   }
 
   getRanking() {
