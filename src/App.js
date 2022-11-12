@@ -65,13 +65,13 @@ class App {
       this.winnerNumber,
       this.bonusNumber
     );
-    const totalRanking = matchingNumber.getTotalRanking();
-    matchingNumber.printTotalLottoResult(totalRanking);
-    this.getLottoProfitRate(totalRanking);
+    const numberOfMathcingNumbers = matchingNumber.getNumberOfMatchingNumbersByRank();
+    matchingNumber.printLottoResult(numberOfMathcingNumbers);
+    this.getLottoProfitRate(numberOfMathcingNumbers);
   }
 
-  getLottoProfitRate(totalRanking) {
-    const totalPrizeMoney = this.calculateTotalPrizeMoney(totalRanking);
+  getLottoProfitRate(numberOfMathcingNumbers) {
+    const totalPrizeMoney = this.calculateTotalPrizeMoney(numberOfMathcingNumbers);
     const lottoProfitRate = this.calculateProfitRate(totalPrizeMoney, this.payMoney);
     MissionUtils.Console.print(`총 수익률은 ${lottoProfitRate}%입니다.`);
     MissionUtils.Console.close();
@@ -81,15 +81,15 @@ class App {
     return ((Math.round((totalPrizeMoney / payMoney) * 1000) / 1000) * 100).toFixed(1);
   }
 
-  calculateTotalPrizeMoney(totalRanking) {
-    return this.calculatePrizeMoney(totalRanking).reduce((totalMoney, prizeMoney) => {
+  calculateTotalPrizeMoney(numberOfMathcingNumbers) {
+    return this.calculatePrizeMoney(numberOfMathcingNumbers).reduce((totalMoney, prizeMoney) => {
       return (totalMoney += prizeMoney);
     }, 0);
   }
 
-  calculatePrizeMoney(totalRanking) {
+  calculatePrizeMoney(numberOfMathcingNumbers) {
     const currency = [5000, 50000, 1500000, 30000000, 2000000000];
-    const prizeMoney = totalRanking.map((lotto, index) => {
+    const prizeMoney = numberOfMathcingNumbers.map((lotto, index) => {
       if (lotto !== 0) return lotto * currency[index];
     });
     return prizeMoney.filter((money) => money !== undefined);

@@ -7,44 +7,44 @@ class MatchingNumber {
     this.bonusNumber = bonusNumber;
   }
 
-  getTotalRanking() {
-    const totalRanking = [0, 0, 0, 0, 0];
-    const numberOfMatchingNumbersRankedArr = this.getNumberOfMatchingNumbersRankedArr();
-    numberOfMatchingNumbersRankedArr.map((num) => {
-      if (num - 2 >= 0) return (totalRanking[num - 2] += 1);
+  getNumberOfMatchingNumbersByRank() {
+    const numberOfMathcingNumbers = [0, 0, 0, 0, 0];
+    const numberOfMatchingNumbersByRank = this.lineUpNumberOfMatchingNumbersByRankArr();
+    numberOfMatchingNumbersByRank.map((num) => {
+      if (num - 2 >= 0) return (numberOfMathcingNumbers[num - 2] += 1);
     });
-    return totalRanking;
+    return numberOfMathcingNumbers;
   }
 
-  getNumberOfMatchingNumbersRankedArr() {
+  lineUpNumberOfMatchingNumbersByRankArr() {
     return this.totalLottoNumber.flatMap((numbers) =>
-      this.getNumberOfMatchingNumbersRanked(numbers)
+      this.lineUpNumberOfMatchingNumbersByRank(numbers)
     );
   }
 
-  getNumberOfMatchingNumbersRanked(numbers) {
-    const numberOfMatchingWinnerNumbers = this.getNumberOfMatchingWinnerNumbers(numbers);
-    if (numberOfMatchingWinnerNumbers === 5) return this.compareWithBonusNumber(numbers);
-    if (numberOfMatchingWinnerNumbers > 1 && numberOfMatchingWinnerNumbers <= 4) {
-      return numberOfMatchingWinnerNumbers - 1;
+  lineUpNumberOfMatchingNumbersByRank(numbers) {
+    const numberOfMatchingNumbers = this.getMatchingNumber(numbers).length;
+    if (numberOfMatchingNumbers === 5)
+      return this.getNumberOfNumbersCompareWtihBonusNumber(numbers);
+    if (numberOfMatchingNumbers > 1 && numberOfMatchingNumbers <= 4) {
+      return numberOfMatchingNumbers - 1;
     }
-
-    return numberOfMatchingWinnerNumbers;
+    return numberOfMatchingNumbers;
   }
 
-  getNumberOfMatchingWinnerNumbers(numbers) {
+  getMatchingNumber(numbers) {
     const numberOfWinnerNumber = numbers.map((number) => {
       if (this.winnerNumber.includes(number.toString())) return number;
     });
-    return numberOfWinnerNumber.filter((number) => number !== undefined).length;
+    return numberOfWinnerNumber.filter((number) => number !== undefined);
   }
 
-  compareWithBonusNumber(numbers) {
+  getNumberOfNumbersCompareWtihBonusNumber(numbers) {
     if (numbers.includes(Number(this.bonusNumber))) return 5;
     return 4;
   }
 
-  printTotalLottoResult(totalRanking) {
+  printLottoResult(totalRanking) {
     const prizeMoney = ["5,000", "50,000", "1,500,000", "30,000,000", "2,000,000,000"];
     const ranking = [3, 4, 5, 5, 6];
     return totalRanking.map((lotto, index) => {
