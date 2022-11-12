@@ -47,4 +47,16 @@ describe.only('예외 사항 테스트', () => {
             exception.isSix([1, 2, 3, 4, 5]);
         }).toThrow('[ERROR]');
     });
+
+    test('로또의 번호가 숫자인지 확인 (보너스 번호 포함)', () => {
+        expect(() => {
+            const exception = new LottoException();
+            exception.isNumber([1, 2, 3, 4, 5, 'a']);
+        }).toThrow('[ERROR]');
+
+        expect(() => {
+            const exception = new LottoException();
+            exception.isNumber('a');
+        }).toThrow('[ERROR]');
+    });
 });

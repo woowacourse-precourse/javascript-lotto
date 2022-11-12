@@ -29,7 +29,7 @@ class Lotto {
         });
     }
 
-    /** @typedef {'lottoNumber'} type */
+    /** @typedef {('lottoNumber' | )} type */
     /** @type {function (string, type) : void} */
     verification(input, type) {
         const exception = new LottoException();
