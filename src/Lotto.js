@@ -8,6 +8,10 @@ class Lotto {
     Validator.validateLottoNumbers(numbers);
     this.#numbers = numbers;
   }
+
+  getLottoNumbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
