@@ -24,9 +24,9 @@ class LottoGameModel {
 
   generateLottos() {
     for (let i = 0; i < this.lottoCount; i++) {
-      const lotto = pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
+      const lottoArr = pickUniqueNumbersInRange(1, 45, 6);
 
-      this.lottos.push(new Lotto(lotto));
+      this.lottos.push(new Lotto(lottoArr));
     }
   }
 }

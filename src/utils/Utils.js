@@ -14,7 +14,9 @@ const Utils = {
   },
 
   pickUniqueNumbersInRange(start, end, count) {
-    return Random.pickUniqueNumbersInRange(start, end, count);
+    return Random.pickUniqueNumbersInRange(start, end, count).sort(
+      (a, b) => a - b
+    );
   },
 };
 
