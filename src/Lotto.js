@@ -1,7 +1,9 @@
-const { isDuplicated } = require('./Utils');
+const { LOTTO_NUMBER_COUNT } = require('./Constants');
 const UI = require('./UI');
+const Validation = require('./Validation');
 
 const ui = new UI();
+const validation = new Validation();
 
 class Lotto {
   #numbers;
@@ -12,11 +14,11 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      ui.printError('로또 번호는 6개여야 합니다.');
-    }
-    if (isDuplicated(numbers)) {
-      ui.printError('로또 번호가 중복되었습니다.');
+    try {
+      validation.checkArrayLength(numbers, LOTTO_NUMBER_COUNT);
+      validation.checkDuplication(numbers);
+    } catch (error) {
+      ui.printError(error);
     }
   }
 
