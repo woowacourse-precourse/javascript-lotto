@@ -55,7 +55,7 @@ class Lotto {
     for (let hit = 0; hit < 5; hit += 1) {
       MissionUtils.Console.print(`${STATISTICS_TEMPLATE[hit]} - ${MATCHED_COUNT[hit]}개`);
     }
-    // this.printProfitRate(purchasedLottoNumbers.length, MATCHED_COUNT);
+    this.printProfitRate(purchasedLottoNumbers.length, MATCHED_COUNT);
   }
 
   NumberOfMatchedLotto(purchasedLottoNumbers) {
@@ -83,6 +83,24 @@ class Lotto {
     }
     this.#numbers.push(BONUS_NUMBER);
     return [HIT_COUNT, bounsHit];
+  }
+
+  printProfitRate(tickets, matched) {
+    let profitRate = this.computeProfitRate(tickets, matched);
+    // Insert comma after every 1000 digits.
+    profitRate = profitRate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    MissionUtils.Console.print(`총 수익률은 ${profitRate}%입니다.`);
+    MissionUtils.Console.close();
+  }
+
+  computeProfitRate(tickets, matched) {
+    const PROFIT_TEMPLATE = [5000, 50000, 1500000, 30000000, 2000000000];
+    let profit = 0;
+    for (let compute = 0; compute < 5; compute += 1) {
+      profit += (PROFIT_TEMPLATE[compute] * matched[compute]);
+    }
+    // toBeFixed() returns a string
+    return ((profit / (tickets * 1000)) * 100).toFixed(1);
   }
 }
 
