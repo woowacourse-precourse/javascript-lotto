@@ -22,6 +22,8 @@ class Lotto {
    * @param {number} bonus 
    */
   setBonus(bonus) {
+    if (this.#numbers.includes(bonus))
+      throw new Error("[ERROR] 보너스 번호는 6개 번호에 포함되어선 안됩니다.");
     this.#bonus = bonus;
   }
 
