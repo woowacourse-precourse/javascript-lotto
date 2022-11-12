@@ -95,6 +95,20 @@ class App {
   saveWinNumbers(answer) {
     const winNumberArray = answer.split(',');
     this.winNumberList = winNumberArray.map((number) => Number(number));
+
+    print('\n');
+
+    return this.inputBonusNumber();
+  }
+
+  inputBonusNumber() {
+    readLine(GAME_MESSAGE.input_bonus_number, (answer) => this.getBonusNumber(answer));
+  }
+
+  getBonusNumber(answer) {
+    // TODO
+    // 보너스 번호 관련 유효성 검사
+    // 맴버변수에 금액 저장
   }
 }
 
