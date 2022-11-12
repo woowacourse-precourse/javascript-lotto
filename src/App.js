@@ -22,6 +22,10 @@ class App {
     return Random.pickUniqueNumbersInRange(1, 45, 6);
   }
 
+  sortLottoNumberInAscendignOrder(lottoNumber){
+    return lottoNumber.sort((a, b) => a - b);
+  }
+
   play() {
     Console.print(ASK_LOTTO_PRICE);
     Console.readLine('',price => this.buyLotto(price))
