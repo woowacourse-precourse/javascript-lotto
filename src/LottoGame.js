@@ -12,12 +12,11 @@ class LottoGame {
   #bonusNumber;
 
   constructor() {
-    this.lottoView = new LottoView();
     this.user = new User();
   }
 
   start() {
-    this.lottoView.getUserInput(`${INPUT_MESSAGES.AMOUNT}\n`, (money) => {
+    LottoView.getUserInput(`${INPUT_MESSAGES.AMOUNT}\n`, (money) => {
       Validator.checkValidMoney(money);
       this.countLottos(money);
     });
@@ -43,12 +42,16 @@ class LottoGame {
   countLottos(money) {
     this.user.setLottoCount(lottoCount(money));
     this.user.setLottos(this.craeteLottos(this.user.getLottoCount()));
-    this.lottoView.printLottoCount(this.user.getLottoCount());
-    this.lottoView.printUserLottos(this.user.getLottos());
+    LottoView.printLottoCount(this.user.getLottoCount());
+    LottoView.printUserLottos(this.user.getLottos());
 
-    this.lottoView.getUserInput(`\n${INPUT_MESSAGES.WINNER_NUMBER}\n`, (winNumbers) => {
+    LottoView.getUserInput(`\n${INPUT_MESSAGES.WINNER_NUMBER}\n`, (winNumbers) => {
       Validator.checkWinNumbers(winNumbers);
       this.#winNumbers = winNumbers;
+
+      LottoView.getUserInput(`\n${INPUT_MESSAGES.BONUS_NUMBER}\n`, (bonusNumber) => {
+        this.#bonusNumber = bonusNumber;
+      });
     });
   }
 }
