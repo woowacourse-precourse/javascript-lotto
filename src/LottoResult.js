@@ -27,8 +27,7 @@ class LottoResult {
   }
 
   #checkBonus(lotto) {
-    if (lotto.includes(this.#bonusNumber)) return true;
-    return false;
+    return lotto.includes(this.#bonusNumber);
   }
 
   #checkLottos(lottos) {
@@ -37,7 +36,7 @@ class LottoResult {
       if (sameNumbers == 3) this.#numberOfRanks[RANK.FIFTH_INDEX]++;
       if (sameNumbers == 4) this.#numberOfRanks[RANK.FOURTH_INDEX]++;
       if (sameNumbers == 5) {
-        this.#checkBonus()
+        this.#checkBonus(lotto)
           ? this.#numberOfRanks[RANK.SECOND_INDEX]++
           : this.#numberOfRanks[RANK.THIRD_INDEX]++;
       }
@@ -49,7 +48,7 @@ class LottoResult {
     let totalReward = 0;
 
     this.#numberOfRanks.forEach((numberOfRank, index) => {
-      totalReward += numberOfRank * REWARD.MONEY_ARRAY[index];
+      totalReward += numberOfRank * RANK.MONEY_ARRAY[index];
     });
     return totalReward;
   }
@@ -61,21 +60,10 @@ class LottoResult {
 
   printLottoResult() {
     MissionUtils.Console.print(COMMENT.WINTITLE);
-    MissionUtils.Console.print(
-      COMMENT.FIFTH + this.#numberOfRanks[RANK.FIFTH_INDEX] + "개"
-    );
-    MissionUtils.Console.print(
-      COMMENT.FOURTH + this.#numberOfRanks[RANK.FOURTH_INDEX] + "개"
-    );
-    MissionUtils.Console.print(
-      COMMENT.THIRD + this.#numberOfRanks[RANK.THIRD_INDEX] + "개"
-    );
-    MissionUtils.Console.print(
-      COMMENT.SECOND + this.#numberOfRanks[RANK.SECOND_INDEX] + "개"
-    );
-    MissionUtils.Console.print(
-      COMMENT.FIRST + this.#numberOfRanks[RANK.FIRST_INDEX] + "개"
-    );
+
+    this.#numberOfRanks.forEach((number, index) => {
+      MissionUtils.Console.print(COMMENT.RESULT_ARRAY[index] + number + "개");
+    });
     MissionUtils.Console.print("총 수익률은 " + this.#yield + "%입니다.");
     MissionUtils.Console.close();
   }
