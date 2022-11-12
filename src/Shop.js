@@ -1,24 +1,47 @@
-const { ERROR } = require('./utiles/Constant');
+const { ERROR, LOTTO } = require('./utiles/Constant');
+const { Random } = require('@woowacourse/mission-utils');
+
 class Shop {
   #money;
+  #count;
 
   constructor(money) {
-    this.validate(money);
+    this.#validate(money);
     this.#money = money;
+    this.#count = this.getLottoCount();
   }
 
-  validate(money) {
+  #validate(money) {
     if (isNaN(money)) throw new Error(`${ERROR.PREFIX} ${ERROR.NUMBER_ONLY}`);
     if (this.#invalidMonetaryUnit(money))
       throw new Error(`${ERROR.PREFIX} ${ERROR.MONETARY_UNIT}`);
-    return true;
+  }
+
+  getLottoCount() {
+    return this.#money / 1000;
   }
 
   #invalidMonetaryUnit(money) {
     return money % 1000;
   }
-}
 
-const shop = new Shop(1500);
+  getLottoNumbers() {
+    const lottos = [];
+
+    while (lottos.length !== this.#count) {
+      lottos.push(this.#generateLottoNumbers());
+    }
+    return lottos;
+  }
+
+  #generateLottoNumbers() {
+    const lotto = Random.pickUniqueNumbersInRange(
+      LOTTO.RANGE_MIN,
+      LOTTO.RANGE_MAX,
+      LOTTO.COUNT
+    );
+    return lotto.sort((a, b) => a - b);
+  }
+}
 
 module.exports = Shop;
