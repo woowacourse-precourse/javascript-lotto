@@ -11,6 +11,10 @@ class App {
       Console.print("\n");
       let winNumbers = await this.getWinNumbers();
       Console.print("\n");
+      let bonusNumbers = await this.getBonusNumber();
+      if (winNumbers.has(bonusNumbers)) {
+        throw new Error("[ERROR]");
+      }
     } catch (e) {}
   }
 
@@ -47,24 +51,21 @@ class App {
 
   isValidWinNumbers(winNumbers) {
     if (winNumbers.size != 6) return false;
-    winNumbers.forEach((number) => {
-      if (/[\D]/.test(number)) return false;
-      if (number == "") return false;
-      if (Number(number) < 1 || Number(number) > 45) return false;
-    });
-    return true;
+    if (winNumbers.has(NaN)) return false;
+    if ([...winNumbers].filter((e) => e < 1 || e > 45).length == 0) return true;
+    else return false;
   }
 
   getWinNumbers() {
     return new Promise((resolve, reject) => {
       Console.readLine("당첨 번호를 입력해 주세요.\n", (input) => {
         let winNumbers = new Set(input.split(",").map(Number));
-        if (!this.isValidWinNumbers(winNumbers)) {
+        if (this.isValidWinNumbers(winNumbers)) {
+          resolve(winNumbers);
+        } else {
           reject(() => {
             throw new Error("[ERROR]유효하지 않은값");
           });
-        } else {
-          resolve(winNumbers);
         }
       });
     });
