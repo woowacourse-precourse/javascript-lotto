@@ -9,6 +9,7 @@ class Lotto {
     if (this.#isLengthNotEqualsSix(numbers)) throw Error("6자리가 아님ㅋ");
     if (this.#isIncludeNotNumber(numbers)) throw Error("숫자가 아님ㅋ");
     if (this.#isNotRangeValid(numbers)) throw Error("1~45 사이의 숫자만 쓰셈ㅋ");
+    if (this.#isDuplicatedValueExist(numbers)) throw Error("중복된 숫자 안됨ㅋ");
   }
 
   #isNotRangeValid(numbers) {
@@ -25,6 +26,10 @@ class Lotto {
 
   #getSplittedNumber(numbers) {
     this.#winningNumbers = Array.from(numbers.split(","), this.#convertArgsStringToInt);
+  }
+
+  #isDuplicatedValueExist(numbers) {
+    return numbers.length !== new Set(numbers).size;
   }
 
   #convertArgsStringToInt(input) {
