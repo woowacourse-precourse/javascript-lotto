@@ -9,6 +9,13 @@ class Validation {
   isValidInputMoney(money) {
     this.isInputNumber(money);
     this.isMoneyDisvisible(money);
+    this.isMoreThen1000(money);
+  }
+
+  isMoreThen1000(input) {
+    if (input < 1000) {
+      throw new Error(ERROR_MESSAGE.IS_LESS_THEN_1000);
+    }
   }
 
   isInputNumber(input) {
@@ -36,7 +43,7 @@ class Validation {
 
   isBonusNumberNotInWinningNumber(input) {
     if (this.winningNumber.includes(parseInt(input, 10))) {
-      throw new Error(ERROR_MESSAGE.Is_Already_Winning_Numbers);
+      throw new Error(ERROR_MESSAGE.IS_ALREADY_WINNING_NUMBERS);
     }
   }
 
