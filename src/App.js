@@ -6,6 +6,7 @@ class App {
   inputAmount;
   generatedLottos = [];
   lottoNumbers;
+  bonusNumber;
 
   play() {
     this.askForAmount();
