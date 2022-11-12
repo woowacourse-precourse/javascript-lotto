@@ -5,25 +5,29 @@ const lotto = new Lotto();
 
 
 class WinningNumbers {
-    constructor() {}
+    constructor() {
+      this.makedLottos = [];
+    }
 
     inputWinningNumbers() {
-      MissionUtils.Console.readLine(`당첨 번호를 입력해 주세요.`, (userInput) => {
+      MissionUtils.Console.readLine(`\n당첨 번호를 입력해 주세요.\n`, (userInput) => {
       const winningNumber = userInput.split(',');
       lotto.validate(winningNumber,6);
+
       return this.inputBonusNumbers(winningNumber)
       })
     }
 
     inputBonusNumbers(winningNumber) {
-      MissionUtils.Console.readLine(`보너스 번호를 입력해 주세요.`, (userInput) => {
-      MissionUtils.Console.close();
+      MissionUtils.Console.readLine(`\n보너스 번호를 입력해 주세요.\n`, (userInput) => {
       const bonusNumber = userInput.split(',')
       lotto.validate(bonusNumber,1);
-      return [winningNumber, bonusNumber]
+      MissionUtils.Console.close();
+
+      return lotto.checkResult([winningNumber, bonusNumber],this.makedLottos)
       })
     }
-
+    
 }
 
 module.exports = WinningNumbers;
