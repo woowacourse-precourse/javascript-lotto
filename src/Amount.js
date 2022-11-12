@@ -6,6 +6,10 @@ class Amount {
   /** @type {number} */
   #amount;
 
+  /**
+   *
+   * @param {string} message
+   */
   async setInputAmount(message) {
     const amount = await Utils.readLine(message);
     this.validate(Number(amount));
