@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 const MissionUtils = require('@woowacourse/mission-utils');
 
 afterAll(() => {
@@ -244,6 +245,14 @@ describe('정수 판단 함수 테스트', () => {
       const COUNT = 4;
 
       expect(Application.isMatcheCount(COUNT, 3)).toBeFalsy();
+    });
+  });
+
+  describe('배열 복사 함수 테스트', () => {
+    test('메소드 이름은 "copyArray"로 정의된다.', () => {
+      const METHOD_NAME = 'copyArray';
+
+      expect(Application.copyArray.name).toEqual(METHOD_NAME);
     });
   });
 });
