@@ -290,5 +290,47 @@ describe('로또 클래스 테스트', () => {
 
       expect(Lotto.calculateTotalAmount.name).toEqual(METHOD_NAME);
     });
+
+    test('3개 일치가 2개 있으면 10,000원을 반환한다.', () => {
+      const winningAmount = [2, 0, 0, 0, 0];
+      const expected = 10000;
+
+      expect(Lotto.calculateTotalAmount(winningAmount)).toEqual(expected);
+    });
+
+    test('4개 일치가 2개 있으면 100,000원을 반환한다.', () => {
+      const winningAmount = [0, 2, 0, 0, 0];
+      const expected = 100000;
+
+      expect(Lotto.calculateTotalAmount(winningAmount)).toEqual(expected);
+    });
+
+    test('5개 일치가 1개 있으면 1,500,000원을 반환한다.', () => {
+      const winningAmount = [0, 0, 1, 0, 0];
+      const expected = 1500000;
+
+      expect(Lotto.calculateTotalAmount(winningAmount)).toEqual(expected);
+    });
+
+    test('5개 일치, 보너스 볼 일치가 1개 있으면 30,000,000원을 반환한다.', () => {
+      const winningAmount = [0, 0, 1, 0, 0];
+      const expected = 30000000;
+
+      expect(Lotto.calculateTotalAmount(winningAmount)).toEqual(expected);
+    });
+
+    test('6개 일치가 1개 있으면 2,000,000,000원을 반환한다.', () => {
+      const winningAmount = [0, 0, 1, 0, 0];
+      const expected = 2000000000;
+
+      expect(Lotto.calculateTotalAmount(winningAmount)).toEqual(expected);
+    });
+
+    test('2,031,555,000원을 반환한다.', () => {
+      const winningAmount = [1, 1, 1, 1, 1];
+      const expected = 2031555000;
+
+      expect(Lotto.calculateTotalAmount(winningAmount)).toEqual(expected);
+    });
   });
 });
