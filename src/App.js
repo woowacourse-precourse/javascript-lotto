@@ -1,7 +1,9 @@
-const { Console } = require("@woowacourse/mission-utils");
+const { Console, Random } = require("@woowacourse/mission-utils");
 
 class App {
   inputAmount;
+  generatedLottos = [];
+
   play() {
     this.askForAmount();
   }
@@ -24,7 +26,15 @@ class App {
     this.generateLotto();
   }
 
-  generateLotto() {}
+  generateLotto() {
+    const quantityOfLottos = this.inputAmount / 1000;
+    for (let i = 0; i < quantityOfLottos; i++) {
+      this.generatedLottos.push(Random.pickUniqueNumbersInRange(1, 45, 6));
+    }
+    this.generatedLottos = this.generatedLottos.map((el) =>
+      el.sort((a, b) => a - b)
+    );
+  }
 }
 
 const app = new App();
