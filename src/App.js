@@ -6,6 +6,7 @@ class App {
     winningNumbers = []
     bonusNumber
     rank = [0, 0, 0, 0, 0]
+    rateOfReturn=0;
 
     constructor() {}
 
@@ -84,7 +85,7 @@ class App {
             console.log(this.winningCount(i)>2)
             if (
                 this.winningCount(i) === 5 &&
-                this.winningNumbers.includes(this.bonusNumber)
+                this.userLottoNumbers.includes(this.bonusNumber)
             ) {
                 this.rank[4] += 1
             }
@@ -95,6 +96,8 @@ class App {
         this.winningStatistics();
     }
 
+
+
     winningStatistics(){
       MissionUtils.Console.print("당첨 통계\n---");
       MissionUtils.Console.print("3개 일치 (5,000원) - " + this.rank[3]);
@@ -102,7 +105,9 @@ class App {
       MissionUtils.Console.print("5개 일치 (1,500,000원) - " + this.rank[1]);
       MissionUtils.Console.print("5개 일치, 보너스 볼 일치 (30,000,000원) - "+ this.rank[4]);
       MissionUtils.Console.print("6개 일치 (2,000,000,000원) - "+ this.rank[0]);
+      MissionUtils.Console.print("총 수익률은 "+)
     }
+
 
 }
 
