@@ -76,6 +76,14 @@ class Application {
 
     return newArray;
   }
+
+  static add(targetA, targetB) {
+    return this.convertNumber(targetA) + this.convertNumber(targetB);
+  }
+
+  static multiplication(targetA, targetB) {
+    return this.convertNumber(targetA) * this.convertNumber(targetB);
+  }
 }
 
 module.exports = Application;
