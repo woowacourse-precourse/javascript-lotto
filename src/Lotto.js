@@ -1,4 +1,4 @@
-const { ERROR, LOTTO } = require('./utiles/Constant');
+const { ERROR, LOTTO, MONEY } = require('./utiles/Constant');
 
 // 로또회사
 
@@ -53,9 +53,19 @@ class Lotto {
   }
 
   getMatchCount(oneLottoNumbers) {
+    const winningNumbersDeletedBonus = this.#numbers.slice(0, LOTTO.COUNT);
+
     return oneLottoNumbers.filter((lottoNumber) =>
-      this.#numbers.include(lottoNumber)
+      winningNumbersDeletedBonus.includes(lottoNumber)
     ).length;
+  }
+
+  #isBonus(oneLottoNumbers) {
+    const bonusNumber = this.#numbers[LOTTO.COUNT];
+    const matchCount = this.getMatchCount(oneLottoNumbers);
+    return (
+      oneLottoNumbers.includes(bonusNumber) && matchCount === LOTTO.COUNT - 1
+    );
   }
 }
 
