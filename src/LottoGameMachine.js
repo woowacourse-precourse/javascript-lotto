@@ -1,6 +1,9 @@
 const { Console } = require('@woowacourse/mission-utils');
+const Lotto = require('./Lotto');
 const ERROR = require('./constants/error');
 const MESSAGE = require('./constants/message');
+const generateLottoNumbers = require('./utils/generateRandomLottoNumbers');
+const Validator = require('./Validator');
 
 class LottoGameMachine {
   constructor() {
@@ -8,9 +11,9 @@ class LottoGameMachine {
   }
 
   setTotalPurchaseAmount() {
-    Console.readLine(MESSAGE.INPUT.TOTAL_PURCHASE_AMOUNT, (answer) => {
-      if (answer % 1000) throw new Error(ERROR.TOTAL_PURCHASE_AMOUNT);
-      this.totalPurchaseAmount = answer;
+    Console.readLine(MESSAGE.INPUT.TOTAL_PURCHASE_AMOUNT, (totalPurchaseAmount) => {
+      Validator.validateTotalPurchaseAmount(totalPurchaseAmount);
+      this.totalPurchaseAmount = totalPurchaseAmount;
     });
   }
 }

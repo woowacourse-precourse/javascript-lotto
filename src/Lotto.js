@@ -1,27 +1,12 @@
 const ERROR = require('./constants/error');
+const Validator = require('./Validator');
 
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    Validator.validateLottoNumbers(numbers);
     this.#numbers = numbers;
-  }
-
-  validate(numbers) {
-    const uniqueNumbers = [...new Set(numbers)];
-
-    if (numbers.length !== 6) {
-      throw new Error(ERROR.SIX_NUMBERS);
-    }
-
-    if (uniqueNumbers.length !== 6) {
-      throw new Error(ERROR.UNIQUE_NUMBERS);
-    }
-
-    if (uniqueNumbers.some((number) => number < 1 && number > 45)) {
-      throw new Error(ERROR.FROM1TO45_NUMBERS);
-    }
   }
 }
 
