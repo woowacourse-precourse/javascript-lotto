@@ -51,14 +51,13 @@ class App {
   getWinningLottoNumber() {
     Console.print(`\n${ASK_WINNING_LOTTO_NUMBER}`);
     Console.readline("", (input) => {
-      const inputNumber = input.split(",").map(Number)
-      this.isValidinput(inputNumber);
-      this.winningLottoNumber = inputNumber;
+      const inputValue = input.split(",").map(Number)
+      this.isValidinput(inputValue);
+      this.winningLottoNumber = inputValue;
     });
   }
 
-  isValidinput(input) {
-    const inputValue = input.split(",").map(Number);
+  isValidLottoNumber(inputValue) {
     inputValue.forEach((value) => {
       if (isNaN(value)) {
         throw new Error("[ERROR] 로또 번호는 숫자여야 합니다.");
@@ -75,7 +74,18 @@ class App {
   getBonusLottoNumber() {
     Console.print(`\n${ASK_BONUS_LOTTO_NUMBER}`);
     Console.readline("", (input) => {
+      this.isValidBonusNumber(input);
+      this.BonusLottoNumber = Number(input)
     });
+  }
+
+  isValidBonusNumber(input){
+    if(isNaN(input)) throw new Error("[ERROR] 보너스 번호는 숫자여야 합니다.")
+    if (this.winningLottoNumber.includes(+input)) {
+      throw new Error(
+        "[ERROR] 보너스 번호는 로또 번호와 중복되지 않는 숫자여야 합니다."
+      );
+    }
   }
 
 
