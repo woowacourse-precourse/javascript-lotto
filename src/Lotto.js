@@ -102,6 +102,17 @@ class Lotto {
 
     return count;
   }
+
+  static analysisWinningAmount(winningAmount, count, lottoArray, bonus) {
+    let copiedWinningAmount = Application.copyArray(winningAmount);
+
+    copiedWinningAmount = Lotto.isThreeMatche(count, copiedWinningAmount);
+    copiedWinningAmount = Lotto.isFourMatche(count, copiedWinningAmount);
+    copiedWinningAmount = Lotto.isFiveMatche(count, copiedWinningAmount, lottoArray, bonus);
+    copiedWinningAmount = Lotto.isSixMatche(count, copiedWinningAmount);
+
+    return copiedWinningAmount;
+  }
 }
 
 module.exports = Lotto;
