@@ -16,6 +16,8 @@ class App {
   winningNumberInputHandler = (userMoney) => {
     const PURCHASE_LOTTO = new PurchaseLotto(userMoney);
     this.purchasedLottoNumbers = PURCHASE_LOTTO.purchasedLottoNumbers;
+    const REQUIRE_WINNING_NUMBER = '\n당첨 번호를 입력해 주세요.\n';
+    MissionUtils.Console.readLine(REQUIRE_WINNING_NUMBER, this.bonusNumberInputHandler);
   };
 }
 
