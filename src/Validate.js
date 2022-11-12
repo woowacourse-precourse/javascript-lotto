@@ -17,10 +17,25 @@ class Validate {
 
   static isNumberValid(number) {
     if (+number < CONSTANT.LOTTO_START) {
-      throw new Error(`${MESSAGE.ERROR.WIN_NUMBER}`);
+      throw new Error(`${MESSAGE.ERROR.PREFIX} ${MESSAGE.ERROR.WIN_NUMBER}`);
     }
     if (+number > CONSTANT.LOTTO_END) {
-      throw new Error(`${MESSAGE.ERROR.WIN_NUMBER}`);
+      throw new Error(`${MESSAGE.ERROR.PREFIX} ${MESSAGE.ERROR.WIN_NUMBER}`);
+    }
+  }
+
+  static isDuplicated(numberArray) {
+    return numberArray.length !== [...new Set(numberArray)].length;
+  }
+
+  static lottoNumber(lottoNumber) {
+    lottoNumber.forEach((number) => Validate.isNumberValid(number));
+
+    if (Validate.isDuplicated(lottoNumber)) {
+      throw new Error(`${MESSAGE.ERROR.PREFIX} ${MESSAGE.ERROR.LOTTO_NUMBER}`);
+    }
+    if (lottoNumber.length !== CONSTANT.LOTTO_LENGTH) {
+      throw new Error(`${MESSAGE.ERROR.PREFIX} ${MESSAGE.ERROR.LOTTO_LENGTH}`);
     }
   }
 
@@ -31,6 +46,10 @@ class Validate {
     const regExp = new RegExp(CONSTANT.REGEXP, "gm");
     if (!regExp.test(numbers)) {
       throw new Error(`${MESSAGE.ERROR.PREFIX} ${MESSAGE.ERROR.WIN_NUMBER}`);
+    }
+
+    if (Validate.isDuplicated(winNumberArray)) {
+      throw new Error(`${MESSAGE.ERROR.PREFIX} ${MESSAGE.ERROR.LOTTO_NUMBER}`);
     }
   }
 

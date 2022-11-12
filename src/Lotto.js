@@ -1,16 +1,26 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const CONSTANT = require("./constant");
+const Validate = require("./Validate");
+const Utils = require("./domain/Utils");
+
 class Lotto {
   #numbers;
 
-  constructor() {
-    const numbers = this.getRandomNumbers();
-    this.validate(numbers);
-    this.#numbers = numbers;
+  constructor(test = null) {
+    if (test) {
+      Validate.lottoNumber(test);
+      this.#numbers = test;
+    }
+
+    if (!test) {
+      const numbers = this.getRandomNumbers();
+      Validate.lottoNumber(numbers);
+      this.#numbers = numbers;
+    }
   }
 
   get numbers() {
-    return this.sort(this.#numbers);
+    return Utils.sort(this.#numbers);
   }
 
   set numbers(numbers) {
@@ -25,17 +35,6 @@ class Lotto {
     );
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
-  }
-
-  sort(numbers) {
-    return numbers.sort((prev, next) => {
-      return prev - next;
-    });
-  }
   // TODO: 추가 기능 구현 여기에 정답과 자신을 비교하는 메서드 .
 }
 

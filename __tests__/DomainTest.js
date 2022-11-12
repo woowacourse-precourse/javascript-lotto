@@ -43,4 +43,42 @@ describe("로또 어플리케이션 테스트케이스", () => {
       expect(number).toBeLessThanOrEqual(45);
     });
   });
+
+  test("정답이 중복이면 예외가 발생합니다.", () => {
+    const test = ["1000", "1,2,3,4,5,5"];
+    setTestEnv(test);
+
+    expect(() => {
+      LottoScreen.insertMoney();
+      LottoScreen.selectWinNumber();
+    }).toThrow("[ERROR]");
+  });
+
+  test("정답이 범위를 벗어나면 예외가 발생합니다.", () => {
+    const test = ["1000", "1,300,3,4,5,5"];
+    setTestEnv(test);
+
+    expect(() => {
+      LottoScreen.insertMoney();
+      LottoScreen.selectWinNumber();
+    }).toThrow("[ERROR]");
+  });
+
+  test("정답의 길이가 잘못되면 예외가 발생합니다.", () => {
+    const test = ["1000", "1,2,3,4,5,5,7"];
+    setTestEnv(test);
+
+    expect(() => {
+      LottoScreen.insertMoney();
+      LottoScreen.selectWinNumber();
+    }).toThrow("[ERROR]");
+
+    const testTwo = ["1000", "1,2,3,4,5"];
+    setTestEnv(testTwo);
+
+    expect(() => {
+      LottoScreen.insertMoney();
+      LottoScreen.selectWinNumber();
+    }).toThrow("[ERROR]");
+  });
 });
