@@ -34,7 +34,7 @@ class Controller {
   }
 
   generateLotto(answer) {
-    const quantity = answer / UNIT_AMOUNT;
+    const quantity = Math.trunc(answer / UNIT_AMOUNT);
     this.totalAmount = quantity * UNIT_AMOUNT;
 
     for (let count = 0; count < quantity; count += 1) {
