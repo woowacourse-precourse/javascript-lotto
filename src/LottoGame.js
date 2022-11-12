@@ -51,7 +51,7 @@ class LottoGame {
 
   saveWinningNumbersPhase() {
     this.LottoGameView.requestInput(REQUEST_MESSAGE.WINNING_NUMBERS, (winningNumbers) => {
-      Validation.validateWinningNumbers(winningNumbers);
+      Validation.validateLottoNumber(winningNumbers.split(","));
     });
   }
 }

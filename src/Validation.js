@@ -20,7 +20,6 @@ class Validation {
       throw new Error(ERROR_MESSAGE.INDIVISIBLE_BY_LOTTO_PRICE);
     }
   }
-
   static hasOnlyNumber(input) {
     if (input) {
       return input.map((eachLetter) => parseInt(eachLetter, 10)).every((number) => !isNaN(number));
@@ -38,8 +37,14 @@ class Validation {
   }
 
   static validateLottoNumber(lottoNumbers) {
+    if (!Validation.hasOnlyNumber(lottoNumbers)) {
+      throw new Error(ERROR_MESSAGE.INVALID_INPUT_TYPE);
+    }
     if (!Validation.isValidLottoNumberLength(lottoNumbers)) {
       throw new Error(ERROR_MESSAGE.INVALID_LOTTO_LENGTH);
+    }
+    if (!Validation.isValidLottoNumberRange(lottoNumbers)) {
+      throw new Error(ERROR_MESSAGE.INVALID_LOTTO_NUMBER_RANGE);
     }
     if (!Validation.hasUniqueLottoNumber(lottoNumbers)) {
       throw new Error(ERROR_MESSAGE.DUPLICATE_LOTTO_NUMBER);
@@ -57,23 +62,6 @@ class Validation {
     };
 
     return lottoNumbers.map(Number).every(isValidRange);
-  }
-
-  static validateWinningNumbers(winningNumbers) {
-    const winningNumbersArr = winningNumbers.split(",");
-
-    if (!Validation.hasOnlyNumber(winningNumbersArr)) {
-      throw new Error(ERROR_MESSAGE.INVALID_INPUT_TYPE);
-    }
-    if (!Validation.isValidLottoNumberLength(winningNumbersArr)) {
-      throw new Error(ERROR_MESSAGE.INVALID_LOTTO_LENGTH);
-    }
-    if (!Validation.isValidLottoNumberRange(winningNumbersArr)) {
-      throw new Error(ERROR_MESSAGE.INVALID_LOTTO_NUMBER_RANGE);
-    }
-    if (!Validation.hasUniqueLottoNumber(winningNumbersArr)) {
-      throw new Error(ERROR_MESSAGE.DUPLICATE_LOTTO_NUMBER);
-    }
   }
 }
 
