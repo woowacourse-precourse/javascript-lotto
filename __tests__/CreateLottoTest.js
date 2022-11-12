@@ -6,13 +6,13 @@ describe("LottoGame.createLottos", () => {
 
   afterEach(() => Console.close());
 
-  test("input숫자와 생성된 로또의 개수는 같아야 한다.", () => {
+  test("input 숫자로 생성된 로또의 개수는 input과 같아야 한다.", () => {
     // given
     const input = 8;
     // when
     lottoGame.createLottos(input);
-    const result = lottoGame.lottos.length;
+    const result = lottoGame.lottos;
     // then
-    expect(result).toBe(8);
+    expect(result).toHaveLength(input);
   });
 });
