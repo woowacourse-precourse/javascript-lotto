@@ -20,6 +20,7 @@ const ui = new UI();
 
 class App {
   #money;
+  #lottoCount;
   #lottos;
   #winningNumber;
   #bonusNumber;
@@ -55,8 +56,9 @@ class App {
     if (this.#winningNumber.length !== LOTTO_NUMBER_COUNT) {
       printError('당첨 번호 6개를 입력해 주세요.');
     }
-    if (isDuplicated(this.#winningNumber))
+    if (isDuplicated(this.#winningNumber)) {
       printError('당첨 번호가 중복되었습니다.');
+    }
 
     this.#winningNumber.forEach((number) => {
       if (
@@ -98,12 +100,11 @@ class App {
   }
 
   #printLotto() {
-    const lottoCount = parseInt(this.#money / LOTTO_PRICE, 10);
-    ui.print(`${lottoCount}개를 구매했습니다.`);
-    for (let count = 0; count < lottoCount; count += 1) {
-      const lotto = this.#publishLotto();
-      ui.print(`[${lotto.join(', ')}]`);
-    }
+    ui.print(`${this.#lottoCount}개를 구매했습니다.`);
+    this.#lottos.forEach((lotto) => {
+      const lottoNumbers = lotto.getNumbers();
+      ui.print(`[${lottoNumbers.join(', ')}]`);
+    });
   }
 
   #getRevenue() {
@@ -156,6 +157,9 @@ class App {
   }
 
   #startLotto() {
+    for (let count = 0; count < this.#lottoCount; count += 1) {
+      this.#publishLotto();
+    }
     this.#printLotto();
     this.#getWinningNumber();
   }
@@ -164,6 +168,7 @@ class App {
     ui.input('구입금액을 입력해 주세요.\n', (money) => {
       this.#money = money;
       if (this.#validateMoney()) {
+        this.#lottoCount = parseInt(this.#money / LOTTO_PRICE, 10);
         this.#startLotto();
       }
     });
