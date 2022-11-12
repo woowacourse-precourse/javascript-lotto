@@ -33,6 +33,13 @@ class Lotto {
     this.checkBonusNumberValidity(bonus);
     this.#numbers.push(+bonus);
   }
+
+  checkBonusNumberValidity(num) {
+    this.checkNumberValidity(num);
+    if (this.#numbers.includes(+num)) {
+      throw new Error('[ERROR] 보너스 번호는 로또 번호와 중복되면 안됩니다.');
+    }
+  }
 }
 
 module.exports = Lotto;
