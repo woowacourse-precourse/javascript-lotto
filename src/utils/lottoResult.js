@@ -13,17 +13,17 @@ lottoResult.getAllMatchingNumbersResult = (userAllLottoNumbers, winningNumbers, 
 
 lottoResult.getMatchingNumbersResult = (userLottoNumbers, winningNumbers, bonusNumber) => {
   let winningNumbersResult = 0;
-  let bonusResult = 0;
+  let bonusNumberResult = 0;
 
   userLottoNumbers.forEach((userLottoNumber) => {
     if (winningNumbers.includes(userLottoNumber)) {
       winningNumbersResult += 1;
     } else if (bonusNumber === userLottoNumber) {
-      bonusResult += 1;
+      bonusNumberResult += 1;
     }
   });
 
-  return [winningNumbersResult, bonusResult];
+  return [winningNumbersResult, bonusNumberResult];
 };
 
 lottoResult.getLank = (matchingNumbersResult) => {
