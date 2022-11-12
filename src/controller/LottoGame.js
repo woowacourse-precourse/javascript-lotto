@@ -1,5 +1,6 @@
 const Lotto = require('../Lotto');
 const lottoGenerator = require('../utils/lottoGenerator');
+const lottoResult = require('../utils/lottoResult');
 
 class LottoGame {
   constructor(inputConsole, outputConsole, user) {
@@ -36,7 +37,11 @@ class LottoGame {
   }
 
   result(winningNumbers) {
-    console.log(winningNumbers, 99999);
+    const matchingNumbersResult = lottoResult.getAllMatchingNumbersResult(
+      this.user.getLottoNumbers(),
+      winningNumbers.slice(0, 6),
+      winningNumbers[6],
+    );
   }
 }
 
