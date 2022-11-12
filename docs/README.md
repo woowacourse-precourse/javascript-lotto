@@ -60,7 +60,9 @@
 - 사용자가 잘못된 값을 입력할 경우 throw문을 사용해 예외 발생
   - `[ERROR] 보너스 번호는 1부터 45 사이의 숫자 하나여야 합니다.`
 
-[✅] ✏️당첨 내역을 출력한다. `SYSTEM.printResult(lottos, winningLotto, bonusNumber, cash)`
+[✅] ✏️당첨 내역을 출력한다. `SYSTEM.printResult(lottos, winningLotto, bonusNumber, cash)`  
+&nbsp;&nbsp;&nbsp;&nbsp; [❌] ✏️ 당첨 결과 데이터를 저장하는 배열을 생성한다.  
+ &nbsp;&nbsp;&nbsp;&nbsp; [❌] ✏️ 당첨 통계를 출력한다.  
 > 당첨 통계  
 > &#45;&#45;&#45;   
 > 3개 일치 (5,000원) - 1개  
@@ -69,7 +71,7 @@
 > 5개 일치, 보너스 볼 일치 (30,000,000원) - 0개  
 > 6개 일치 (2,000,000,000원) - 0개
 
-[✅] ✏️ 수익율을 출력한다. `SYSTEM.printResult(lottos, winningLotto, bonusNumber, cash)`
+ &nbsp;&nbsp;&nbsp;&nbsp; [✅] ✏️ 수익율을 출력한다. `SYSTEM.printResult(lottos, winningLotto, bonusNumber, cash)`
 - 수익률은 `소수점 둘째 자리에서 반올림` 
 - 수익률이 `4자리 이상일 경우 단위별로 쉼표를 추가`
   - (ex. 100.0%, 51.5%, 1,000,000.0%)
