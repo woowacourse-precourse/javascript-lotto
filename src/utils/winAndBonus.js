@@ -13,13 +13,13 @@ class Win {
 
   inputWinNumbers(lottos) {
     Console.readLine(WIN_NUMBERS_MESSAGE, (userInput) => {
-      this.#winNumbers = userInput;
-
-      if (!validateWinNumbers(this.#winNumbers)) {
+      if (!validateWinNumbers(userInput)) {
         Console.close();
       }
 
-      bonusNumbers.inputBonusNumber(lottos);
+      this.#winNumbers = userInput.split(",").map(Number);
+
+      bonusNumbers.inputBonusNumber(lottos, this.#winNumbers);
     });
   }
 
@@ -31,18 +31,13 @@ class Win {
 class Bonus {
   #bonusNumbers;
 
-  inputBonusNumber(lottos) {
+  inputBonusNumber(lottos, winLottos) {
     Console.readLine(BONUS_NUMBERS_MESSAGE, (userInput) => {
-      this.#bonusNumbers = userInput;
-
-      if (!validateBonusNumber(this.#bonusNumbers)) {
+      if (!validateBonusNumber(userInput, winLottos)) {
         Console.close();
       }
+      this.#bonusNumbers = +userInput;
     });
-  }
-
-  getNumbers() {
-    return this.#bonusNumbers;
   }
 }
 

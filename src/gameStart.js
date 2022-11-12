@@ -15,12 +15,13 @@ class UserLottos {
 
   purchasedCostInput() {
     Console.readLine(GAME_START_MESSAGE, (userInput) => {
-      this.#userPrice = userInput;
-
-      if (validatePurchaseCost(this.#userPrice)) {
-        this.makeLottos();
-        winNumbers.inputWinNumbers(this.#userLottos);
+      if (!validatePurchaseCost(userInput)) {
+        Console.close();
       }
+
+      this.#userPrice = userInput;
+      this.makeLottos();
+      winNumbers.inputWinNumbers(this.#userLottos);
     });
   }
 

@@ -9,6 +9,7 @@ const LOTTO_MESSAGE = {
   CHECK_RANGE: `[ERROR] 당첨 번호는 1 ~ 45 사이의 숫자만 입력해야 합니다.`,
   CHECK_DUPLICATION: `[ERROR] 중복된 번호가 존재합니다.`,
   CHECK_VALIDATION_INPUT: `[ERROR] 숫자 이외의 값을 입력하셨습니다.`,
+  CHECK_BONUS_IN_WIN: `[ERROR] 당첨 번호와 보너스 번호가 중복됩니다.`,
 };
 
 const PRICE_TYPE = {
@@ -22,6 +23,7 @@ const LOTTO_TYPE = {
   NOT_RANGE: `Only numbers for the Range`,
   IS_DUPLICATION: `Exists Duplication`,
   IS_VALIDATION: `Exists other than a Number`,
+  IS_BONUS_IN_WIN: `Exists bonus number in win numbers`,
 };
 
 module.exports = {

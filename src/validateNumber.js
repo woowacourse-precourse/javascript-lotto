@@ -30,6 +30,9 @@ const existNotNumberInInput = (userInput) => +userInput;
 const checkBonusRange = (userInput) =>
   +userInput >= RANGE.START && +userInput <= RANGE.END;
 
+const checkDuplicationInWinNumbers = (userInput, winLottos) =>
+  winLottos.includes(+userInput);
+
 function validatePurchaseCost(userInput) {
   if (!insideNotNumber(userInput)) {
     UserInputValidationError.priceErrorMessage(PRICE_TYPE.NOT_NUMBER);
@@ -66,13 +69,17 @@ function validateWinNumbers(userInput) {
   return true;
 }
 
-function validateBonusNumber(userInput) {
+function validateBonusNumber(userInput, winLottos) {
   if (checkValidationInput(userInput) || !existNotNumberInInput(userInput)) {
     UserInputValidationError.lottoErrorMessage(LOTTO_TYPE.IS_VALIDATION);
   }
 
   if (!checkBonusRange(userInput)) {
     UserInputValidationError.lottoErrorMessage(LOTTO_TYPE.NOT_RANGE);
+  }
+
+  if (checkDuplicationInWinNumbers(userInput, winLottos)) {
+    UserInputValidationError.lottoErrorMessage(LOTTO_TYPE.IS_BONUS_IN_WIN);
   }
 
   return true;

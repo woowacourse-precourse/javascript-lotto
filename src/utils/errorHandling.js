@@ -35,6 +35,9 @@ class UserInputValidationError {
       case LOTTO_TYPE.IS_VALIDATION:
         Console.print(LOTTO_MESSAGE.CHECK_VALIDATION_INPUT);
         throw new Error(LOTTO_TYPE.IS_VALIDATION);
+      case LOTTO_TYPE.IS_BONUS_IN_WIN:
+        Console.print(LOTTO_MESSAGE.CHECK_BONUS_IN_WIN);
+        throw new Error(LOTTO_TYPE.IS_BONUS_IN_WIN);
     }
   }
 }
