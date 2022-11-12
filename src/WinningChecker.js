@@ -4,6 +4,7 @@ class WinningChecker {
     this.winningNumbers = winningNumbers;
     this.bonusNumber = bonusNumber;
     this.countOfSameNum = this.countSameNum();
+    this.hasBonusNum = this.hasBonusNum();
   }
 
   countSameNum() {
@@ -12,6 +13,13 @@ class WinningChecker {
       if (this.winningNumbers.includes(number)) sum += 1;
     });
     return sum;
+  }
+
+  hasBonusNum() {
+    if (this.lottoNumbers.includes(this.bonusNumber)) {
+      return true;
+    }
+    return false;
   }
 }
 
