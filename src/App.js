@@ -33,6 +33,7 @@ class App {
       this.userLottoArray.forEach((oneLottery) => {
         MissionUtils.Console.print(oneLottery.getNumbers());
       });
+      const winningLotto = this.inputWinningLotto();
     });
   }
 
@@ -61,6 +62,17 @@ class App {
       this.userLottoArray.push(userLotto);
     }
     return this.userLottoArray;
+  }
+
+  inputWinningLotto() {
+    MissionUtils.Console.print('당첨 번호를 입력해 주세요.');
+    MissionUtils.Console.readLine('', (winningNumber) => {
+      const winningNumberArray = winningNumber
+        .split(',')
+        .map((number) => parseInt(number, 10));
+      const winningLotto = this.makeWinningLotto(winningNumberArray);
+      return winningLotto;
+    });
   }
 }
 
