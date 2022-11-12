@@ -24,7 +24,7 @@ const STATISTICS = {
 const ERROR = {
   OUT_OF_RANGE: "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.",
   DUPLICATED: "[ERROR] 로또 번호는 중복된 숫자가 없어야 합니다.",
-  ONLY_NUMBER: "[ERROR] 구입금액은 숫자로만 입력해야 합니다.",
+  ONLY_NUMBER: "[ERROR] 숫자로만 입력해야 합니다.",
   INDIVISIBLE: "[ERROR] 구입금액은 1000원으로 나누어 떨어져야 합니다.",
   NOT_SIX: "[ERROR] 로또 번호는 6개여야 합니다.",
   ONLY_NUMBER_AND_COMMA:
