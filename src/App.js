@@ -9,6 +9,13 @@ const {
   ERROR,
   STATISTICS,
 } = require("../src/utils/constants");
+const {
+  hasChar,
+  isDivisible,
+  hasCharExceptComma,
+  makeSplit,
+  makeNumberArray,
+} = require("../src/utils/utils");
 
 class App {
   play() {}
@@ -26,30 +33,16 @@ class App {
     const trimmedInput = input.trim();
 
     //문자가 섞여있지 않은지 검사
-    if (App.hasChar(trimmedInput)) {
+    if (hasChar(trimmedInput)) {
       throw new Error(ERROR.ONLY_NUMBER);
     }
 
     //금액이 1000으로 나눠떨어지는지 검사
     //TODO user로 넘겨도 될듯?
-    if (!App.isDivisible(trimmedInput)) {
+    if (!isDivisible(trimmedInput)) {
       throw new Error(ERROR.INDIVISIBLE);
     }
 
-    return true;
-  }
-
-  static hasChar(input) {
-    if (/([^0-9])/g.test(input)) {
-      return true;
-    }
-    return false;
-  }
-
-  static isDivisible(input) {
-    if (Number(input) % AMOUNT_UNIT !== 0) {
-      return false;
-    }
     return true;
   }
 
@@ -65,11 +58,6 @@ class App {
       MAX_NUMBER,
       NUMBER_COUNT
     );
-  }
-
-  //숫자를 오름차순으로 정렬하기
-  ascendingSort(numberArray) {
-    return numberArray.sort((a, b) => a - b);
   }
 
   //당첨 번호 입력 요청하기
@@ -97,29 +85,6 @@ class App {
     return numberArray;
   }
 
-  static hasCharExceptComma(string) {
-    if (RegExp(/([^?!,0-9 ])/g).test(string)) {
-      return true;
-    }
-    return false;
-  }
-
-  static makeSplit(string) {
-    const array = string.split(",");
-    if (array.includes("") || array.includes(" ")) {
-      throw new Error(ERROR.MISUSE_COMMA);
-    }
-    return array;
-  }
-
-  static makeNumberArray(array) {
-    const numberArray = array.map(Number);
-    if (numberArray.includes(NaN)) {
-      throw new Error(ERROR.IS_NAN);
-    }
-    return numberArray;
-  }
-
   //보너스 번호 입력 요청하기
   getBonusNumber() {
     Console.readLine(MESSAGE.ENTER_BONUS_NUMBER, (number) => {
@@ -130,7 +95,7 @@ class App {
   validateBonusNumber(number) {
     const trimmedNumber = number.trim();
 
-    if (App.hasChar(trimmedNumber)) {
+    if (hasChar(trimmedNumber)) {
       throw new Error(ERROR.ONLY_NUMBER);
     }
   }
