@@ -4,6 +4,7 @@ class Lotto {
   constructor(numbers) {
     this.validate(numbers);
     this.duplicateCheck(numbers);
+    this.numberRangeCheck(numbers);
     this.#numbers = numbers;
   }
 
@@ -19,6 +20,12 @@ class Lotto {
 
     if(tempNumbers.length < 6){
       throw new Error("[ERROR] 로또 번호는 중복되면 안됩니다.");
+    }
+  }
+
+  numberRangeCheck(numbers) {
+    for(let number of numbers){
+      if(number < 1 || number > 45) throw new Error("[ERROR] 로또 번호는 1 이상 45 이하의 정수여야 합니다.");
     }
   }
 }

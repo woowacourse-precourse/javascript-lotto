@@ -13,5 +13,11 @@ describe("로또 클래스 테스트", () => {
     }).toThrowError("[ERROR] 로또 번호는 중복되면 안됩니다.");
   });
 
-  // 아래에 추가 테스트 작성 가능
+  test("로또 번호가 1보다 작거나 45보다 크면 예외가 발생한다.", () => {
+    for(let tempNumbers of [[0, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 46]]){
+      expect(() => {
+        new Lotto(tempNumbers);
+      }).toThrowError("[ERROR] 로또 번호는 1 이상 45 이하의 정수여야 합니다.");
+    }
+  });
 });
