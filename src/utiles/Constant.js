@@ -22,11 +22,13 @@ const MONEY = Object.freeze({
 });
 
 const ERROR = Object.freeze({
-  PREFIX: '[ERROR] ',
+  PREFIX: '[ERROR]',
   RANGE: '로또 번호는 min부터 max 사이의 숫자여야 합니다.',
   MONETARY_UNIT: ' 로또는 1,000원 단위로만 구매할 수 있습니다.',
-  COUNTS: `로또 번호는 ${LOTTO.COUNT}개여야 합니다.`,
+  COUNT: `로또 번호는 ${LOTTO.COUNT}개여야 합니다.`,
   NUMBER_ONLY: '숫자만 입력해주세요.',
   COMMA: '쉼표로 구분해 입력해주세요.',
   DUPLICATION: '중복된 번호는 입력할 수 없습니다.',
 });
+
+module.exports = { SENTENCE, LOTTO, MONEY, ERROR };
