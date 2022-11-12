@@ -13,7 +13,7 @@ class App {
 
   play() {}
 
-  getMoney() {
+  setMoney() {
     let money;
     MissionUtils.Console.readLine(
       Message.ENTER_MONEY_MESSAGE,
@@ -21,7 +21,7 @@ class App {
     );
 
     App.#validateMoney(money);
-    this.#money += money;
+    this.#money = money;
   }
 }
 
