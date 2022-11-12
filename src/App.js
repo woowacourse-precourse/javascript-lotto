@@ -1,5 +1,19 @@
+const { Console } = require("@woowacourse/mission-utils");
+
 class App {
-  play() {}
+
+  play() {
+    this.requestForLotto();
+  }
+
+  requestForLotto() {
+    Console.readLine('구매 금액을 1,000단위로 입력해주세요.\n', moneyValue => {
+      return moneyValue;
+    });
+  }
 }
 
-module.exports = App;
+const app = new App();
+app.play();
+
+module.exports = App; 
