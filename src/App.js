@@ -63,8 +63,17 @@ class App {
       this.setWinnigNumbers(numbers.split(','));
       userInput(COMMAND.INPUT_BOUNS_NUMBER, (number) => {
         this.setBonusNumber(number);
+        this.printResult();
       })
     });
+  }
+
+  printResult() {
+    this.checkLottoResult();
+    printRankCountMessage(this.result);
+    
+    const earningsRate = this.calcEarningsRate();
+    printRatioMessage(earningsRate);
   }
 
   play() {
