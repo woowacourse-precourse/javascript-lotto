@@ -166,6 +166,15 @@ class App {
     });
   }
 
+  caclulateEarningsRate(rankingResult, lottoPayment){
+    const totalReword = rankingResult.reduce((sum,value)=>{
+      sum += value.reword * value.count;
+      return sum;
+    },0)
+    const percentage= (totalReword/lottoPayment)
+    return (percentage*100).toFixed(1);
+  }
+
   play() {
     Console.print(ASK_LOTTO_PRICE);
     // Console.readLine('',price => this.buyLotto(price))
