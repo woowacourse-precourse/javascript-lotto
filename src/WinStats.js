@@ -1,5 +1,14 @@
+const { Console } = require("@woowacourse/mission-utils");
+
 class WinStats {
   statValue;
+  prizeByMatchingNumbers = [
+    { 3: 5000 },
+    { 4: 50000 },
+    { 5: 1500000 },
+    { 5: 30000000 },
+    { 6: 2000000000 },
+  ];
 
   constructor(generatedLottos, lottoNumbers, bonusNumber) {
     this.makeStats(generatedLottos, lottoNumbers, bonusNumber);
@@ -32,6 +41,19 @@ class WinStats {
       }
     }
     this.statValue = statValue;
+    this.printWinStats();
+  }
+
+  printWinStats() {
+    for (let i = 0; i < 5; i++) {
+      const key = Object.keys(this.prizeByMatchingNumbers[i])[0];
+      const value = this.prizeByMatchingNumbers[i][key].toLocaleString();
+      i === 3
+        ? Console.print(
+            `${key}개 일치, 보너스 볼 일치 (${value}원) - ${this.statValue[i]}개`
+          )
+        : Console.print(`${key}개 일치 (${value}원) - ${this.statValue[i]}개`);
+    }
   }
 }
 
