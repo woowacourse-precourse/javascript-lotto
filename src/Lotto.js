@@ -26,6 +26,17 @@ class Lotto {
     }
   }
 
+  static getPrizeStatus(matchCount, bonusMatchBool) {
+    if (matchCount === LottoConfig.PRIZE_1_CORRECT_COUNT) return LottoConfig.PRIZE_1;
+    if (matchCount === LottoConfig.PRIZE_2_3_CORRECT_COUNT) {
+      if (bonusMatchBool) return LottoConfig.PRIZE_2;
+      return LottoConfig.PRIZE_3;
+    }
+    if (matchCount === LottoConfig.PRIZE_4_CORRECT_COUNT) return LottoConfig.PRIZE_4;
+    if (matchCount === LottoConfig.PRIZE_5_CORRECT_COUNT) return LottoConfig.PRIZE_5;
+    return LottoConfig.NO_PRIZE;
+  }
+
   toString(separator = ' ') {
     return this.#numbers.join(separator);
   }
