@@ -1,4 +1,6 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+let MONEY = 0; // 구입한 금액
+const TICKETS = [];
 
 class Lotto {
   #numbers; // 얘는 당첨번호임
@@ -27,7 +29,7 @@ class Lotto {
       const bonusNumber = parseInt(num);
       if (numbers.includes(bonusNumber)) {
         throw new Error(
-          '[ERROR] 보너스 번호가 당첨 번호 중 중복되는 숫자입니다.'
+          '[ERROR] 보너스 번호가 당첨 번호 중 중복되는 숫자입니다.',
         );
       }
       if (bonusNumber <= 0 || bonusNumber >= 46) {
@@ -53,14 +55,12 @@ class Lotto {
       }
       rankCount = this.winningStatics(numbersCount, bonusCount, rankCount);
     }
-    this.resultLotto(rankCount);
+    this.resultLottoPrint(rankCount);
   }
   // 통계 자료 만드는 메소드
   winningStatics(numbersCount, bonusCount, rankCount) {
     let tmp = [];
     tmp = rankCount;
-    MissionUtils.Console.print(numbersCount);
-    MissionUtils.Console.print(bonusCount);
 
     let count = numbersCount + bonusCount;
     if (count == 3) tmp[0] += 1;
@@ -72,18 +72,35 @@ class Lotto {
     return tmp;
   }
 
-  resultLotto(rankCount) {
+  resultLottoPrint(rankCount) {
     MissionUtils.Console.print('당첨 통계');
     MissionUtils.Console.print('---');
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${rankCount[0]}개`);
     MissionUtils.Console.print(`4개 일치 (50,000원) - ${rankCount[1]}개`);
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${rankCount[2]}개`);
     MissionUtils.Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankCount[3]}개`
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankCount[3]}개`,
     );
     MissionUtils.Console.print(
-      `6개 일치 (2,000,000,000원) - ${rankCount[4]}개`
+      `6개 일치 (2,000,000,000원) - ${rankCount[4]}개`,
     );
+    this.revenueRatioPrint(MONEY, rankCount);
+  }
+
+  revenueRatioPrint(MONEY, rankCount) {
+    let revenue = 0;
+    let revenueRatio = 0;
+    for (let i = 0; i < rankCount.length; i++) {
+      if (i == 0) revenue += 5000 * rankCount[i];
+      if (i == 1) revenue += 50000 * rankCount[i];
+      if (i == 2) revenue += 1500000 * rankCount[i];
+      if (i == 3) revenue += 30000000 * rankCount[i];
+      if (i == 4) revenue += 2000000000 * rankCount[i];
+    }
+    revenueRatio = (revenue / MONEY) * 100;
+    revenueRatio = Math.round(revenueRatio * 100) / 100;
+    MissionUtils.Console.print(`총 수익률은 ${revenueRatio}%입니다.`);
+    MissionUtils.Console.close();
   }
 }
 
@@ -105,7 +122,7 @@ function buyTicket(money) {
     const ticket = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
     ticket.sort((a, b) => a - b);
     tickets[i] = ticket;
-    MissionUtils.Console.print(ticket);
+    MissionUtils.Console.print(`[${ticket.join(', ')}]`);
   }
   insertLottoNumber(tickets);
 }
@@ -116,6 +133,7 @@ function start() {
     if (money % 1000 !== 0) {
       throw new Error('[ERROR] 1,000원 단위로 나누어 떨어져야 합니다.');
     }
+    MONEY = money;
     buyTicket(money);
   });
 }
