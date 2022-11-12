@@ -25,7 +25,7 @@ describe('✅ Validator 클래스 : 구입 금액 테스트', () => {
       invalidMoney.forEach((money) => {
         Validator.checkValidMoney(money);
       });
-    }).toThrowError(`${ERROR_MESSAGES.INVALID_PURCHASE}`);
+    }).toThrowError(`${ERROR_MESSAGES.INVALID_EMPTY_INPUT}`);
   });
 
   test('🖐 사용자 숫자가 아닌 값을 입력하면 에러가 발생한다.', () => {
