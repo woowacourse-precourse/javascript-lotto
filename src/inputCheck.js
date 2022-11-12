@@ -8,10 +8,11 @@ class ValidationCheck {
     return true;
   }
 
-  isBonusNumberValid(bonusNumber) {
+  isBonusNumberValid(winningNumbers, bonusNumber) {
+    if (isNaN(bonusNumber)) throw new Error(ERROR_INPUT.NOT_NUMBER);
     if (+bonusNumber < VALUE_NUMBER.SMALLEST_LOTTO_NUMBER || +bonusNumber > VALUE_NUMBER.BIGGEST_LOTTO_NUMBER)
       throw new Error(ERROR_INPUT.BONUS_NUMBER_OUT_OF_RANGE);
-    if (numbers.includes(bonusNumber)) throw new Error(ERROR_INPUT.BONUS_NUMBER_DUPLICATE);
+    if (winningNumbers.includes(parseInt(bonusNumber))) throw new Error(ERROR_INPUT.BONUS_NUMBER_DUPLICATE);
     return true;
   }
 

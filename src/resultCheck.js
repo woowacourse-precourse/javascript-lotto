@@ -33,7 +33,7 @@ class LottoResultCheck {
   getBonusNumber() {
     return new Promise((resolve, reject) => {
       MissionUtils.Console.readLine(GET_INPUT.BONUS_NUMBER, (userInput) => {
-        INPUT_CHECK.isBonusNumberValid(userInput);
+        INPUT_CHECK.isBonusNumberValid(this.winningNumbers, userInput);
         this.bonusNumber = userInput;
         resolve(userInput);
       });
