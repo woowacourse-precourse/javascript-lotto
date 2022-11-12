@@ -66,6 +66,24 @@ class Lotto {
       ? (count += 0.5)
       : count;
   }
+
+  rank(correct) {
+    if (correct === 3) {
+      return (this.stats[4] += 1);
+    }
+    if (correct === 4) {
+      return (this.stats[3] += 1);
+    }
+    if (correct === 5) {
+      return (this.stats[2] += 1);
+    }
+    if (correct === 5.5) {
+      return (this.stats[1] += 1);
+    }
+    if (correct === 6) {
+      return (this.stats[0] += 1);
+    }
+  }
 }
 
 module.exports = { LottoBuilder, Lotto };
