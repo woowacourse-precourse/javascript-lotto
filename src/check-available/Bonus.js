@@ -9,10 +9,9 @@ class Bonus {
   };
 
   checkNumber(bonus, answerNumber) {
-    const answerNumberList = answerNumber.split(',');
     this.checkWords(bonus);
     this.checkRange(bonus);
-    this.checkSameNumber(bonus, answerNumberList);
+    this.checkSameNumber(bonus, answerNumber);
   };
 
   checkRange(bonus) {
@@ -21,8 +20,8 @@ class Bonus {
     };
   };
 
-  checkSameNumber(bonus, answerNumberList) {
-    if (answerNumberList.includes(bonus)) {
+  checkSameNumber(bonus, answerNumber) {
+    if (answerNumber.includes(bonus)) {
       throw new Error(`${ERROR.INVALID_BONUS_SAME_ANSWER}`);
     };
   };

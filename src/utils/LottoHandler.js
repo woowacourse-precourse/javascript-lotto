@@ -39,8 +39,8 @@ class LottoHandler {
 
   getLottoAnswerNumber() {
     Console.readLine(MESSAGE.ANSWER, (answer) => {
-      new Lotto(answer.split(','));
-      this.answerNumber = answer;
+      this.answerNumber = answer.split(',');
+      new Lotto(this.answerNumber);
       this.getBonusNumber(this.answerNumber);
     });
   };
