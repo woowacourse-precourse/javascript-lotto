@@ -17,6 +17,15 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
     }
+    this.deduplication(numbers);
+  }
+
+  deduplication(numbers) {
+    const set = new Set(numbers);
+
+    if (numbers.length !== set.size) {
+      throw new Error('[ERROR] 중복되지 않은 번호를 입력해주세요.');
+    }
   }
 
   // TODO: 추가 기능 구현
