@@ -1,5 +1,10 @@
+const LottoGameMachine = require('./LottoGameMachine');
+
 class App {
-  play() {}
+  play() {
+    const lottoGameMachine = new LottoGameMachine();
+    lottoGameMachine.startLottoGameMachine();
+  }
 }
 
 module.exports = App;
