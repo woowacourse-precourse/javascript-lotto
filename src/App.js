@@ -115,14 +115,18 @@ class App {
     return roundNumber;
   }
 
-  #printResult() {
+  #printRevenuePercentage() {
+    const revenuePercentage = this.#getRevenue();
+    ui.print(`총 수익률은 ${revenuePercentage}%입니다.`);
+  }
+
+  #printAnalysis() {
     ui.print('당첨 통계');
     ui.print('---');
     const orders = [3, 4, 5, '5B', 6];
     orders.forEach((order) => {
       ui.print(`${REVENUE[order].message} - ${this.#result[order]}개`);
     });
-    ui.print(`총 수익률은 ${this.#getRevenue()}%입니다.`);
   }
 
   #matchLotto() {
@@ -131,6 +135,7 @@ class App {
         this.#winningNumber,
         this.#bonusNumber,
       );
+
       if (matchCount >= MINIMUM_MATCH_COUNT || matchCount === '5B') {
         this.#result[matchCount] += 1;
       }
@@ -140,9 +145,11 @@ class App {
   #getBonusNumber() {
     ui.input('보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
       this.#bonusNumber = Number(bonusNumber);
+
       if (this.#validateBonusNumber(bonusNumber)) {
         this.#matchLotto();
-        this.#printResult();
+        this.#printAnalysis();
+        this.#printRevenuePercentage();
         ui.end();
       }
     });
@@ -159,6 +166,7 @@ class App {
     for (let count = 0; count < this.#lottoCount; count += 1) {
       this.#publishLotto();
     }
+
     this.#printLotto();
     this.#getWinningNumber();
   }
