@@ -29,14 +29,14 @@ class Lotto {
     this.calcTotalPrize(winningState, userLottos.length);
   }
 
-  calcTotalPrize(winningState, countOfLotto) {
+  calcTotalPrize(winningState, countOfLottos) {
     const totalPrize = GameTools.calcTotalPrize(winningState);
 
-    this.calcRateOfReturn(winningState, totalPrize, countOfLotto);
+    this.calcRateOfReturn(winningState, totalPrize, countOfLottos);
   }
 
-  calcRateOfReturn(winningState, totalPrize, countOfLotto) {
-    const rateOfReturn = GameTools.calcRateOfReturn(totalPrize, countOfLotto);
+  calcRateOfReturn(winningState, totalPrize, countOfLottos) {
+    const rateOfReturn = GameTools.calcRateOfReturn(totalPrize, countOfLottos);
 
     this.renderGameResult(winningState, rateOfReturn);
   }

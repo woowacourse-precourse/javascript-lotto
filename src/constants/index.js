@@ -50,7 +50,7 @@ const RENDER_MESSAGE = Object.freeze({
 
 const REGEX = Object.freeze({
   money: /^\d+$/,
-  winningNumber: /^(\d+,)+\d+$/,
+  winningNumbers: /^(\d+,)+\d+$/,
   bonusNumber: /^\d+$/,
 });
 

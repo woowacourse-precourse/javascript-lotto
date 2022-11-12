@@ -4,17 +4,17 @@ const { LOTTO, PRIZE_MONEY, PLACES_OF_DECIMALS } = require('./constants');
 
 class GameTools {
   static issueLottoAsManyAsCount(count) {
-    const lottoes = [];
-    while (lottoes.length < count) {
+    const lottos = [];
+    while (lottos.length < count) {
       const randomNumbers = Random.pickUniqueNumbersInRange(
         LOTTO.MIN_NUMBER,
         LOTTO.MAX_NUMBER,
         LOTTO.LENGTH
       ).sort((a, b) => a - b);
-      lottoes.push(randomNumbers);
+      lottos.push(randomNumbers);
     }
 
-    return lottoes;
+    return lottos;
   }
 
   static getMatchingNumCount(userNumbers, winningNumbers) {
@@ -33,8 +33,8 @@ class GameTools {
     return totalPrizeMoney;
   }
 
-  static calcRateOfReturn(totalPrize, countOfLotto) {
-    const rateOfReturn = (totalPrize / (countOfLotto * LOTTO.PRICE)) * 100;
+  static calcRateOfReturn(totalPrize, countOfLottos) {
+    const rateOfReturn = (totalPrize / (countOfLottos * LOTTO.PRICE)) * 100;
 
     return rateOfReturn.toFixed(PLACES_OF_DECIMALS);
   }

@@ -27,20 +27,20 @@ class App {
     Console.print(MESSAGE.ASK_BUDGET);
     Console.readLine('', (money) => {
       Validator.throwErrorIfInvalidMoney(money);
-      const lottoCount = money / LOTTO.PRICE;
+      const countOfLottos = money / LOTTO.PRICE;
 
-      this.issueLotto(lottoCount);
+      this.issueLotto(countOfLottos);
     });
   }
 
-  issueLotto(lottoCount) {
-    this.userLottos = GameTools.issueLottoAsManyAsCount(lottoCount);
+  issueLotto(countOfLottos) {
+    this.userLottos = GameTools.issueLottoAsManyAsCount(countOfLottos);
 
-    this.renderIssuedLottoList(lottoCount);
+    this.renderIssuedLottoList(countOfLottos);
   }
 
-  renderIssuedLottoList(lottoCount) {
-    Render.issuedLottoList(lottoCount, this.userLottos);
+  renderIssuedLottoList(countOfLottos) {
+    Render.issuedLottoList(countOfLottos, this.userLottos);
 
     this.askWinningNumbers();
   }
