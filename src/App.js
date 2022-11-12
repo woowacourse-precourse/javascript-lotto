@@ -8,13 +8,15 @@ class App {
 
   async play() {
     await this.userInput();
-    await this.prizeInput();
+    await this.prizeInput()
+    await this.bonusInput();
   }
 
   userInput() {
+
     return new Promise((resolve, reject) => {
       MissionUtils.Console.readLine('구입금액을 입력해 주세요. \n', (userMoney) => {
-        this.numberOfAvailablePurchase(userMoney);
+        this.lottoPurchase(userMoney);
         resolve();
       })
     })    
@@ -23,13 +25,27 @@ class App {
   prizeInput() {
     return new Promise((resolve, reject) => {
       MissionUtils.Console.readLine('당첨 번호를 입력해 주세요. \n', (prizeNumber) => {
-        MissionUtils.Console.print(prizeNumber.split(','));
+        new Lotto(prizeNumber.split(','));
+        resolve(prizeNumber);
+      })
+    })
+    
+  }
+
+  bonusInput() {
+    return new Promise((resolve, reject) => {
+      MissionUtils.Console.readLine('보너스 번호를 입력해 주세요. \n', (bonusNumber) => {
+        MissionUtils.Console.print(bonusNumber);
         resolve();
       })
     })
     
   }
-  
+
+  lottoPurchase(userMoney) {
+    this.numberOfAvailablePurchase(userMoney);
+  }
+
   numberOfAvailablePurchase(userMoney) {
     if (!(userMoney % 1000)) {
       let availablePurchaseNumber = parseInt(userMoney / 1000);
