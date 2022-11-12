@@ -1,7 +1,10 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
+const BonusNumberError = require("./BonusNumberError");
 const {PAYMENT_MESSAGE,SELECT_NUMBER_MESSAGE,RESULT_MESSAGE,BLANK_SPACE} =require("./stringConst");
 const {REWARD } =require("./numberConst");
+
+
 class App {
 
   constructor(){
@@ -26,16 +29,20 @@ class App {
       const countedSheets = payment / 1000;
       this.myCountedSheets = countedSheets
       this.printLotto();
+      this.getPayError(payment)
     });
-    this.getPayError()
+   
   }
-  getPayError(){
-    if (this.myPayment % 1000 !== 0) {
-      throw new Error("[ERROR] 1,000원 단위로 입력해주세요");
-    }
-    if(isNaN(this.myPayment)){
+  getPayError(payment){
+    
+    const regExp = new RegExp("^[0-9]+$");
+    if(!regExp.test(payment)){
       throw new Error("[ERROR] 숫자만 입력해주세요");
     }
+    if (payment % 1000 !== 0) {
+      throw new Error("[ERROR] 1,000원 단위로 입력해주세요");
+    }
+    
   }
   // 랜덤번호 배열 뽑기
   generateRandomNumbers() {
@@ -68,15 +75,13 @@ class App {
       const splited = numbers.split(",").map(Number)
       const lotto = new Lotto(splited);
       lotto.validate(splited); 
-
+      
       const splitedWinNumber = numbers.split(",").map(Number);
       for (let i = 0; i < 6; i++) {
         this.selectedWinNumber.push(splitedWinNumber[i]);
       }
-
       MissionUtils.Console.print(BLANK_SPACE.line); // 공백
       this.selectBonusNumber();
-
     });
   }
   selectBonusNumber() {
@@ -85,11 +90,12 @@ class App {
   }
   inputBonusNumber() {
     MissionUtils.Console.readLine("", (bonusNumber) => {
-
-      // const lotto = new Lotto(bonusNumber);
-      // lotto.validateBonusNumber(bonusNumber); 
+      
+      const bonusNumberError = new BonusNumberError(bonusNumber);
+      bonusNumberError.validateBonusNumber(bonusNumber); 
 
       this.selectedBonusNumber.push(Number(bonusNumber));
+    
       MissionUtils.Console.print(""); // 공백
       this.compareNumbers();
     });

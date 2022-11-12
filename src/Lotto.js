@@ -10,25 +10,19 @@ class Lotto {
   }
 
   validate(splited) {
-    // MissionUtils.Console.readLine("", (winNumbers) => {
-    //   const splitedWinNumber = winNumbers.split(",").map(Number);
-    //   for (let i = 0; i < 6; i++) {
-    //     this.selectedWinNumber.push(splitedWinNumber[i]);
-    //   }
-    //   numbers = winNumbers
-    //   MissionUtils.Console.print(""); // 공백
-    //   this.selectBonusNumber();
-    // });
-    // numbers.split(",")
-    // const splited = numbers.split(",").map(Number)
-
-    console.log(splited)
     if (splited.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
     const setNumbers = new Set(splited)
     if(splited.length !== setNumbers.size){
-      throw new Error("[ERROR] 중복되지 않는 번호를 입력해 주세요");
+      throw new Error("[ERROR] 중복되지 않는 번호를 입력해 주세요.");
+    }
+    const regExp = new RegExp("^[0-9]+$");
+    if(splited.filter((element) =>!regExp.test(element)).length !== 0){
+      throw new Error("[ERROR] 숫자만 입력해 주세요.");
+    }
+    if(splited.filter((element) => element < 1 || element > 45).length !== 0){
+      throw new Error("[ERROR] 1부터 45까지의 숫자만 입력해 주세요.");
     }
   }
 

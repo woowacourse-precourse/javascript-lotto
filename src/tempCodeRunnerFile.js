@@ -1,1 +1,1 @@
-countMyLottoSheets
+const splited = numbers.split(",").map(Number)
