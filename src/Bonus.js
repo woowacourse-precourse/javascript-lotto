@@ -19,15 +19,14 @@ class Bonus {
     }
   }
 
-  matchBonus(game){
-    for(const item of game){
-      if (item === this.#number){
+  matchBonus(game) {
+    for (const item of game) {
+      if (item === this.#number) {
         return 1;
       }
     }
     return 0;
   }
-  
 }
 
 module.exports = Bonus;
