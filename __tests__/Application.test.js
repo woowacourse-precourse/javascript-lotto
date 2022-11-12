@@ -279,4 +279,22 @@ describe('정수 판단 함수 테스트', () => {
       }).toThrow(NUMBER_EXCEPTION_TEXT);
     });
   });
+
+  describe('곱하기 함수 테스트', () => {
+    test('메소드 이름은 "multiplication"로 정의된다.', () => {
+      const METHOD_NAME = 'multiplication';
+
+      expect(Application.multiplication.name).toEqual(METHOD_NAME);
+    });
+
+    test('20 * 30은 600를 반환한다.', () => {
+      expect(Application.multiplication(20, 30)).toBe(600);
+    });
+
+    test('전달받은 인수는 숫자로 변환이 불가능하면 예외를 발생시킨다.', () => {
+      expect(() => {
+        Application.multiplication(1, 'z');
+      }).toThrow(NUMBER_EXCEPTION_TEXT);
+    });
+  });
 });
