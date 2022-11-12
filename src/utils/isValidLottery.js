@@ -8,7 +8,7 @@ const isValidLottery = (lottery) => {
 
   lottery.forEach((separateNumber) => {
     if (!Number.isInteger(separateNumber))
-      result = EXCEPTION_REASON.INPUT_ERROR;
+      result = EXCEPTION_REASON.INPUT_DECIMAL;
     if (isNaN(separateNumber)) result = EXCEPTION_REASON.INPUT_ERROR;
     if (separateNumber < 1 || separateNumber > 45)
       result = EXCEPTION_REASON.INPUT_ERROR;
