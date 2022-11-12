@@ -22,7 +22,7 @@ class App {
 
   makeLottoNumber(){
     for(let i=0; i<this.money; i++){
-      const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      const numbers = this.lottoNumberSort(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
       this.lottoNumberPrint(numbers);
       this.userLottoNumbers.push(numbers);
     }
@@ -30,6 +30,14 @@ class App {
 
   lottoNumberPrint(numbers){
     MissionUtils.Console.print("["+numbers.join(", ")+"]")
+  }
+
+  lottoNumberSort(numbers){
+    function compareNumbers(a, b) {
+      return a - b;
+    }
+
+    return numbers.sort(compareNumbers)
   }
 
  
