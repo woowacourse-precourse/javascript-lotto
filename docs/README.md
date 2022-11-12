@@ -48,7 +48,7 @@
 Random 값은 **MissionUtils 라이브러리**의 `Random.pickUniqueNumbersInRange()`를 활용한다.  
 1부터 45 범위의 숫자를 중복 없이 6개 생성한다.
 
-### [&nbsp; ] 로또 번호 정렬하기 - LottoMachine.sortLottoNumber()
+### [✅] 로또 번호 정렬하기 - LottoMachine.sortLottoNumber()
 생성된 6개의 번호를 오름차순으로 정렬한다.
 
 ### [&nbsp; ] 로또 번호 출력하기 - LottoMachine.printLottoNumber()
