@@ -27,18 +27,16 @@ class LottoGenerator {
     return sortNumbers(randomNumbers);
   }
 
-  getGeneratedLotto() {
-    return this.#generatedLotto;
-  }
-
   generate(amount) {
     const quantity = this.#calculateQuantity(amount);
 
     for (let i = 0; i < quantity; i++) {
       this.#generatedLotto[i] = this.#createRandomNumbers();
     }
+  }
 
-    console.log(this.#generatedLotto);
+  getGeneratedLotto() {
+    return this.#generatedLotto;
   }
 }
 
