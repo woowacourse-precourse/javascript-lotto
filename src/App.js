@@ -1,11 +1,13 @@
-const LottoScreen = require("./View/LottoScreen");
+const LottoController = require("./domain/LottoController");
 
 class App {
   play() {
-    LottoScreen.insertMoney();
+    const lottoController = new LottoController();
+    lottoController.start();
   }
 }
 
 const app = new App();
 app.play();
+
 module.exports = App;

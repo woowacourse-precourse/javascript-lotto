@@ -1,6 +1,6 @@
-const MESSAGE = require("./View/Message");
-const CONSTANT = require("./constant");
-const Utils = require("./domain/Utils");
+const MESSAGE = require("../assets/Message");
+const CONSTANT = require("../assets/constant");
+const Utils = require("../assets/Utils");
 
 class Validate {
   static money(money) {
@@ -53,9 +53,13 @@ class Validate {
     }
   }
 
-  static bonuseNumber(number) {
-    Validate.isNumberValid(number);
-    if (!Number.isInteger(+number)) {
+  static bonuseNumber(bonuse, winNumber) {
+    Validate.isNumberValid(bonuse);
+    if (!Number.isInteger(+bonuse)) {
+      throw new Error(`${MESSAGE.ERROR.PREFIX} ${MESSAGE.ERROR.BONUSE_NUMBER}`);
+    }
+
+    if (Utils.stringToArray(winNumber).includes(+bonuse)) {
       throw new Error(`${MESSAGE.ERROR.PREFIX} ${MESSAGE.ERROR.BONUSE_NUMBER}`);
     }
   }
