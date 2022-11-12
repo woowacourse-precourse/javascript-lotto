@@ -67,6 +67,10 @@ class App {
   printProFit(profitList) {
     const profitFigure = new Profit([this.money, profitList]).calculateProfit();
     Console.print(PRINT_MESSAGE.PROFIT(profitFigure));
+    this.gameEnd();
+  }
+
+  gameEnd() {
     Console.close();
   }
 }
