@@ -1,9 +1,8 @@
-const Lotto = require('./Lotto');
+const LottoGame = require('./LottoGame');
 
 class App {
   play() {
-    const lotto = new Lotto();
-    lotto.start();
+    new LottoGame();
   }
 }
 
