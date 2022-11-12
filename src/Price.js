@@ -1,16 +1,34 @@
 const { ERROR } = require('./utils/Constants');
 
 class Price {
-  #numbers;
+  #price;
 
-  constructor(numbers) {
-    this.validate(numbers);
-    this.#numbers = numbers;
+  constructor(price) {
+    this.#price = price;
+    this.checkPrice(this.#price);
   };
 
-  validate(numbers) {
-    if (numbers % 1000 !== 0) {
-      throw new Error(`${ERROR.INVALID_PRICE}`);
+  checkPrice(price) {
+    this.checkWord(price);
+    this.checkRange(Number(price));
+    this.checkDivision(Number(price));
+  };
+
+  checkWord(price) {
+    if ((/[^0-9]/g).test(price)) {
+      throw new Error(`${ERROR.INVALID_PRICE_WORD}`);
+    };
+  };
+
+  checkRange(price) {
+    if (price < 1) {
+      throw new Error(`${ERROR.INVALID_PRICE_RANGE}`);
+    };
+  };
+
+  checkDivision(price) {
+    if (price % 1000 !== 0) {
+      throw new Error(`${ERROR.INVALID_PRICE_DIVISION}`);
     };
   };
 };

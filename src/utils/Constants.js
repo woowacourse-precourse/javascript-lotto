@@ -20,7 +20,9 @@ const CONSTANT = {
   },
 
   ERROR: {
-    INVALID_PRICE: '[ERROR] 구입 금액은 1000단위여야 합니다.',
+    INVALID_PRICE_WORD: '[ERROR] 구입 금액은 정수형이여야 합니다.',
+    INVALID_PRICE_RANGE: '[ERROR] 구입 금액은 양의 정수여야 합니다.',
+    INVALID_PRICE_DIVISION: '[ERROR] 구입 금액은 1000단위여야 합니다.',
     INVALID_LOTTO_LENGTH: '[ERROR] 로또 번호는 6개여야 합니다.',
     INVALID_LOTTO_RANGE: '[ERROR] 로또 번호는 1~45사이의 수여야 합니다.',
     INVALID_LOTTO_REPEATE: '[ERROR] 로또 번호는 중복되면 안됩니다.',
