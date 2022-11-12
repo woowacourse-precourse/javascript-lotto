@@ -8,11 +8,14 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error(ERROR.LOTTO_1);
+    }
+
+    const uniqueNumbers = new Set(numbers);
+    if ([...uniqueNumbers].length !== 6) {
+      throw new Error(ERROR.LOTTO_2);
     }
   }
-
-  // TODO: 추가 기능 구현
 }
 
 module.exports = Lotto;
