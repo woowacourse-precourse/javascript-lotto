@@ -12,4 +12,17 @@ describe('로또 구매 테스트', () => {
       new Purchase('50006');
     }).toThrow('[ERROR] 구입 금액은 1000단위여야 합니다.');
   });
+
+  test('로또 발행 개수가 정확한지 확인한다.', () => {
+    const purchase = new Purchase('8000');
+
+    expect(purchase.numbers.length).toBe(8);
+  });
+
+  test('로또 번호가 6개인지 확인한다.', () => {
+    const purchase = new Purchase('8000');
+    const numbers = purchase.numbers;
+
+    numbers.forEach((number) => expect(number.length).toBe(6));
+  });
 });
