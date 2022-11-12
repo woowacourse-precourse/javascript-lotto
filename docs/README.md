@@ -50,16 +50,16 @@
 makeLottoNum() - 로또 번호 생성 함수 ✔
 
 buyLotto()- 로또 구입 금액 입력 함수 ✔
-예외처리/ 숫자 입력 검사
+예외처리/ 숫자 입력 검사 ✔
 
 getWinNum() - 당첨 번호 입력 함수
 getBonusNum() - 보너스 번호 입력 함수
 
-구입한 로또 출력 함수
+printBuyLotto() - 구입한 로또 출력 함수
 calcRateOfReturn() - 수익률 계산 함수
 printLottoResult() - 당첨내역 출력 함수
 
 <Lotto>
 validate() - 예외처리 추가) 숫자 입력 검사 ✔
-                           숫자 중복 검사
+                           숫자 중복 검사✔
 getNumbers() - 입력한 당첨번호 리턴 ✔
