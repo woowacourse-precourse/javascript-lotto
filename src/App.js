@@ -30,9 +30,8 @@ class App {
   }
 
   buyLotto() {
-    while (this.#money >= LottoConfig.PRICE) {
+    for (let purchase = 0; purchase < this.#money; purchase += LottoConfig.PRICE) {
       this.#lottoList.push(new Lotto());
-      this.#money -= LottoConfig.PRICE;
     }
   }
 
