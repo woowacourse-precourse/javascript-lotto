@@ -14,29 +14,34 @@ class App {
   BonusLottoNumber;
   rankingResult = [
     {
-      rank:1,
+      rank: 1,
+      matchCount: 6,
       reword: 2000000000,
-      count: 0
+      count: 0,
     },
     {
-      rank:2,
+      rank: 2,
+      matchCount: 5,
       reword: 30000000,
-      count: 0
+      count: 0,
     },
     {
-      rank:3,
+      rank: 3,
+      matchCount: 5,
       reword: 1500000,
-      count: 0
+      count: 0,
     },
     {
-      rank:4,
+      rank: 4,
+      matchCount: 4,
       reword: 50000,
-      count: 0
+      count: 0,
     },
     {
-      rank:5,
+      rank: 5,
+      matchCount: 3,
       reword: 5000,
-      count: 0
+      count: 0,
     },
   ];
 
@@ -126,29 +131,38 @@ class App {
     }, 0);
   }
 
-  hasBounsNumber(lottoNumber,bounsLotto) {
+  hasBounsNumber(lottoNumber, bounsLotto) {
     return lottoNumber.includes(bounsLotto);
   }
 
-  makeRankingResult(issuedLotto, winningLottoNumber,bounsLotto) {
+  makeRankingResult(issuedLotto, winningLottoNumber, bounsLotto) {
     issuedLotto.forEach((lotto) => {
       let matchCount = this.calculateOverlappintNumberCount(
         lotto,
         winningLottoNumber
       );
-      if (matchCount == 6) this.rankingResult[0].count+=1;
-      if (matchCount==5 && this.hasBounsNumber(lotto,bounsLotto)){
+      if (matchCount == 6) this.rankingResult[0].count += 1;
+      if (matchCount == 5 && this.hasBounsNumber(lotto, bounsLotto)) {
         this.rankingResult[1].count += 1;
       }
-      if(matchCount==5 && !this.hasBounsNumber(lotto,bounsLotto)){
+      if (matchCount == 5 && !this.hasBounsNumber(lotto, bounsLotto)) {
         this.rankingResult[1].count += 1;
       }
-      if(matchCount==4){
+      if (matchCount == 4) {
         this.rankingResult[2].count += 1;
       }
-      if(matchCount==3){
+      if (matchCount == 3) {
         this.rankingResult[3].count += 1;
       }
+    });
+  }
+
+  printRankingResult(rankingResult) {
+    Console.print("\n당첨 통계\n---");
+    rankingResult.forEach((value) => {
+      Console.print(
+        `${value.matchCount}개 일치 (${value.reword}원) - ${value.count}개`
+      );
     });
   }
 
@@ -157,8 +171,9 @@ class App {
     // Console.readLine('',price => this.buyLotto(price))
 
     this.makeissuedLotto(8);
-    this.printIssuendLotto(this.issuedLotto)
-    this.matchedNumberResult(this.issuedLotto,[1,2,3,4,5,6],7)
+    this.printIssuendLotto(this.issuedLotto);
+    this.makeRankingResult(this.issuedLotto, [1, 2, 3, 4, 5, 6], 7);
+    this.printRankingResult(this.rankingResult)
   }
 }
 
