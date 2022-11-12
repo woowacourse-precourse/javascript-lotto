@@ -1,5 +1,5 @@
-// const { Random } = require("@woowacourse/mission-utils");
-// const { NUMBERS } = require("./Constants");
+const { Random } = require("@woowacourse/mission-utils");
+const { NUMBERS } = require("./Constants");
 const Validation = require("./Validation");
 
 class Lotto {
@@ -18,12 +18,12 @@ class Lotto {
    * @param {number} loqttoQuantity - 플레이어의 구매금액에 해당하는 로또 갯수
    * @returns {array} - 로또 번호가 담긴 배열(로또 번호 오름차순 정렬)
    */
-  createLottoNumbers(lottoQuantity) {
+  static createLottoNumbers(lottoQuantity) {
     const lottoNumbersArray = [];
     for (let i = 0; i < lottoQuantity; i++) {
       const lottoNumbers = Random.pickUniqueNumbersInRange(
-        NUMBERS.FIRST,
-        NUMBERS.LAST,
+        NUMBERS.MIN_RANGE,
+        NUMBERS.MAX_RANGE,
         NUMBERS.LOTTO
       );
       lottoNumbersArray.push(lottoNumbers.sort());

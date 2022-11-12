@@ -6,9 +6,7 @@ class Game {
   //필드
 
   //생성자
-  constructor() {
-    this.lotto = new Lotto();
-  }
+  constructor() {}
 
   //메서드
   purchaseLotto() {
@@ -39,7 +37,7 @@ class Game {
   }
 
   showLottoNumbers(lottoQuantity) {
-    const lottoNumbersArray = this.lotto.createLottoNumbers(lottoQuantity);
+    const lottoNumbersArray = Lotto.createLottoNumbers(lottoQuantity);
     lottoNumbersArray.forEach((lottoNumbers) => {
       Console.print(`[${lottoNumbers}]`);
     });
