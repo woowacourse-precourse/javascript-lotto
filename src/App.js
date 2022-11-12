@@ -4,7 +4,7 @@ const Lotto = require('./Lotto');
 const BonusNumber = require('./BonusNumber');
 const WinningChecker = require('./WinningChecker');
 const MissionUtils = require('@woowacourse/mission-utils');
-const { MESSAGE } = require('./utils/constants');
+const { MESSAGE, NUMBER } = require('./utils/constants');
 
 class App {
   constructor() {
@@ -13,6 +13,8 @@ class App {
     this.winningNumbers;
     this.bonusNumber;
     this.lottoCounter;
+    this.winningResult = [];
+    this.countOfRanking = [0, 0, 0, 0, 0, 0];
     this.numberGenerator = new NumberGenerator();
   }
 
@@ -75,12 +77,43 @@ class App {
   }
 
   checkWinning() {
-    let checkWinner = new WinningChecker(
-      this.purchasedLottos,
-      this.winningNumbers,
-      this.bonusNumber
+    this.purchasedLottos.forEach((lottoNumbers) => {
+      let checkWinner = new WinningChecker(
+        lottoNumbers,
+        this.winningNumbers,
+        this.bonusNumber
+      );
+      this.winningResult.push(checkWinner.getWinningRank());
+    });
+
+    this.countWinningRank();
+  }
+
+  countWinningRank() {
+    this.winningResult.forEach((result) => {
+      this.countOfRanking[result] += 1;
+    });
+
+    this.printWinningResult();
+  }
+
+  printWinningResult() {
+    MissionUtils.Console.print('\n당첨 통계\n---');
+    MissionUtils.Console.print(
+      `3개 일치 (5,000원) - ${this.countOfRanking[5]}개`
     );
-    checkWinner.findCountOfWinning();
+    MissionUtils.Console.print(
+      `4개 일치 (50,000원) - ${this.countOfRanking[4]}개`
+    );
+    MissionUtils.Console.print(
+      `5개 일치 (1,500,000원) - ${this.countOfRanking[3]}개`
+    );
+    MissionUtils.Console.print(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.countOfRanking[2]}개`
+    );
+    MissionUtils.Console.print(
+      `6개 일치 (2,000,000,000원) - ${this.countOfRanking[1]}개`
+    );
   }
 }
 
