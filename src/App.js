@@ -11,6 +11,7 @@ class App {
     match.countMatchingNumbers(buy.gameNumbers);
     const result = new Result();
     result.rankingCalculate(match.matchRecord, match.bonusFlag);
+    result.yieldCalculate(buy.gameCount)
   }
 }
 

@@ -16,6 +16,18 @@ class Result {
     this.ranking[4] = record[3];
     UI.printWinning(this.ranking);
   }
+
+  yieldCalculate(count) {
+    const spending = count * 1000;
+    const earning =
+      this.ranking[0] * 5000 +
+      this.ranking[1] * 50000 +
+      this.ranking[2] * 1500000 +
+      this.ranking[3] * 30000000 +
+      this.ranking[4] * 2000000000;
+    this.yield = Math.round((earning / spending) * 100 * 10) / 10;
+    console.log(this.yield);
+  }
 }
 
 module.exports = Result;
