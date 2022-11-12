@@ -93,7 +93,7 @@ Random 값은 **MissionUtils 라이브러리**의 `Random.pickUniqueNumbersInRan
 </br>
 
 ## [&nbsp; ] 당첨 결과 분석 - `resultAnalysis`  
-### [&nbsp; ] 로또 번호와 당첨 번호 비교하기 - resultAnalysis.compareNumber()
+### [✅] 로또 번호와 당첨 번호 비교하기 - resultAnalysis.compareNumber()
 로또 번호와 당첨 번호 중 몇 개가 일치하는지 확인한다.   
 5개 일치 시, 추가로 보너스 번호와 일치하는지 확인한다.
 
