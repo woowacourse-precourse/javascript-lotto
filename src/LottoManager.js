@@ -4,11 +4,6 @@ class LottoManager {
   #winningNumbers;
   #bonusNumber;
   
-  constructor() {
-    // this.#winningNumbers = [];
-    // this.#bonusNumber = 0;
-  }
-
   start() {
     this.inputWinningNumbers();
   }
@@ -17,10 +12,10 @@ class LottoManager {
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (winningNumbers) => {
       winningNumbers = winningNumbers.split(',');
       this.#winningNumbers = winningNumbers.map((idx) => Number(idx));
-      console.log(this.#winningNumbers);
-
       this.checkInputWinningNumbers();
+
       this.inputBonusNumber();
+      this.checkInputBonusNumber();
 
     });
   }
@@ -51,11 +46,24 @@ class LottoManager {
   }
 
   inputBonusNumber() {
-    MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
+    MissionUtils.Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
       this.#bonusNumber = Number(bonusNumber);
-
-      console.log(this.#bonusNumber);
+      this.checkInputBonusNumber();
     });
+  }
+
+  checkInputBonusNumber() { 
+    if (Number.isNaN(this.#bonusNumber) === true) {
+      throw Error("[ERROR] 숫자를 입력해주세요.");
+    }
+
+    if ((this.#bonusNumber < 1) || (45 < this.#bonusNumber)) {
+      throw Error("[ERROR] 1부터 45사이의 숫자를 입력해주세요.");
+    }
+
+    if (this.#winningNumbers.includes(this.#bonusNumber)) {
+      throw Error("[ERROR] 당첨 번호와 중복되지 않게 입력해주세요.");
+    }
   }
 
 }
