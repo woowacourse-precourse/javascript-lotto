@@ -15,6 +15,16 @@ class App {
     });     
   }
 
+  numberOfAvailablePurchase(userMoney) {
+    if (!(userMoney % 1000)) {
+      let availablePurchaseNumber = parseInt(userMoney / 1000);
+      MissionUtils.Console.print(`\n${availablePurchaseNumber}개를 구매했습니다.`);
+      return this.buyRandomLotto(availablePurchaseNumber);
+    }
+    throw new Error(`[ERROR] 천원단위로 입력해주세요`);
+  }
+
+
   
 }
 
