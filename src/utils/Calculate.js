@@ -17,14 +17,13 @@ class Calculate {
     this.printRank.showRanking(this.ranking);
   };
 
-  // prizeCalculate(price) {
-  //   for (let i = 0; i < 5; i++) {
-  //     this.prizeMoney += NUMBER.PRIZE_MONEY[i] * this.ranking[i];
-  //   };
-  //   this.earnPercentage = this.prizeMoney
-  //   Console.print(this.prizeMoney);
-
-  // };
+  prizeCalculate(price) {
+    for (let i = 0; i < 5; i++) {
+      this.prizeMoney += NUMBER.PRIZE_MONEY[i] * this.ranking[i];
+    };
+    this.earnPercentage = (this.prizeMoney / price * 100).toFixed(1);
+    // this.printRank.showPriz(this.earnPercentage);
+  };
 
 };
 

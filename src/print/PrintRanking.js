@@ -10,6 +10,10 @@ class PrintRanking {
     };
   };
 
+  showPriz(prizePercent) {
+    Console.print(`${RESULT.BENEFIT} ${prizePercent}%입니다.`);
+    Console.close();
+  };
 
 };
 
