@@ -222,5 +222,12 @@ describe('로또 클래스 테스트', () => {
 
       expect(Lotto.calculateCount.name).toEqual(METHOD_NAME);
     });
+
+    test('주어진 배열의 값이 5개가 일치하면 5를 반환한다.', () => {
+      const target = [11, 12, 13, 14, 15, 19];
+      const expected = [11, 12, 13, 14, 15, 16];
+
+      expect(Lotto.calculateCount(target, expected)).toEqual(5);
+    });
   });
 });
