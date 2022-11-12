@@ -15,14 +15,16 @@ class Lotto {
   constructor(amount, bundleOfLotto, numbers) {
     this.amount = amount;
     this.bundleOfLotto = bundleOfLotto;
-    this.validate(numbers);
+
+    this.checkLottoLength(numbers);
     this.checkNumberRanges(numbers);
     this.checkNoSameNumber(numbers);
     this.#numbers = numbers;
+
     this.getBonusNumber();
   }
 
-  validate(numbers) {
+  checkLottoLength(numbers) {
     if (numbers.length !== 6) {
       throw new Error(ERROR_NOT_LENGTH_SIX);
     }
@@ -48,7 +50,7 @@ class Lotto {
     Console.readLine(ASK_BONUS_NUMBER, (bonus) => {
       const bonusNumber = new BonusNumber(this.#numbers, bonus);
 
-      const result = new Result(
+      new Result(
         this.amount,
         this.bundleOfLotto,
         this.#numbers,
