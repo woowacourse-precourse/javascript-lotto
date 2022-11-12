@@ -52,7 +52,7 @@ class Lotto {
         bonusNumber
       );
 
-      Console.print(numberOfWonTicket);
+      this.printSummary(this.getSummary(numberOfWonTicket));
     });
   }
 
@@ -77,6 +77,45 @@ class Lotto {
       return matchedNumbers.length + 10;
     }
     return matchedNumbers.length;
+  }
+
+  getSummary(arr) {
+    const winList = new Array(5).fill(0);
+    arr.forEach((value) => {
+      if (value >= 3 && value <= 5) {
+        winList[value - 3] += 1;
+      }
+      if (value === 6) {
+        winList[4] += 1;
+      }
+      if (value > 6) {
+        winList[3] += 1;
+      }
+    });
+
+    return winList;
+  }
+
+  printSummary(arr) {
+    const descriptionArr = [
+      '3개 일치',
+      '4개 일치',
+      '5개 일치',
+      '5개 일치, 보너스 볼 일치',
+      '6개 일치',
+    ];
+    const prizeMoneyArr = [
+      '5,000',
+      '50,000',
+      '1,500,000',
+      '30,000,000',
+      '2,000,000,000',
+    ];
+
+    arr.forEach((value, index) => {
+      const script = `${descriptionArr[index]} (${prizeMoneyArr[index]}원) - ${value}개`;
+      Console.print(script);
+    });
   }
 
   isIncluded(num) {
