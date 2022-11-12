@@ -15,6 +15,18 @@ const Validate = {
       return true;
     return false;
   },
+
+  existIsNotNumberAndComma(answer) {
+    const exceptNumberAndComma = /[^0-9|^,]/;
+    if (exceptNumberAndComma.test(answer)) return true;
+    return false;
+  },
+
+  existIsNotNumber(answer) {
+    const exceptNumber = /[^0-9]/;
+    if (exceptNumber.test(answer)) return true;
+    return false;
+  },
 };
 
 module.exports = Validate;

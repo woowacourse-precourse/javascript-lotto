@@ -9,18 +9,22 @@ const MESSAGE = Object.freeze({
 });
 
 const ERROR = "[ERROR]";
-const ERROR_MESSAGE = Object.freeze({
-  LOTTO_LENGTH_6: `${ERROR} 로또 번호는 6개여야 합니다.`,
-  LOTTO_DUPLICATE_NUMBER: `${ERROR} 로또 번호는 중복되지 않아야 합니다.`,
-  LOTTO_RANGE_FROM_1_TO_45: `${ERROR} 로또 번호의 숫자 범위는 1~45입니다.`,
 
-  INPUT_ONLY_MULTIPLE_OF_1000: `${ERROR} 1,000원 단위로만 입력이 가능합니다.`,
-  INPUT_ONLY_NUMBER_AND_COMMA: `${ERROR} 숫자와 쉼표(,)만 입력이 가능합니다.`,
-  INPUT_ONLY_NUMBER: `${ERROR} 숫자만 입력이 가능합니다.`,
+const LOTTO_ERROR_MESSAGE = Object.freeze({
+  LENGTH_6: `${ERROR} 로또 번호는 6개여야 합니다.`,
+  DUPLICATE_NUMBER: `${ERROR} 로또 번호는 중복되지 않아야 합니다.`,
+  RANGE_FROM_1_TO_45: `${ERROR} 로또 번호의 숫자 범위는 1~45입니다.`,
+});
+
+const INPUT_ERROR_MESSAGE = Object.freeze({
+  ONLY_MULTIPLE_OF_1000: `${ERROR} 1,000원 단위로만 입력이 가능합니다.`,
+  ONLY_NUMBER_AND_COMMA: `${ERROR} 숫자와 쉼표(,)만 입력이 가능합니다.`,
+  ONLY_NUMBER: `${ERROR} 숫자만 입력이 가능합니다.`,
 });
 
 module.exports = {
   QUERY,
   MESSAGE,
-  ERROR_MESSAGE,
+  LOTTO_ERROR_MESSAGE,
+  INPUT_ERROR_MESSAGE,
 };

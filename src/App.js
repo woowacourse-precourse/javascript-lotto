@@ -1,11 +1,12 @@
 const Lotto = require("./Lotto");
+const WinningLotto = require("./WinningLotto");
 const UI = require("./UI");
-const { isNotMultipleOf1000 } = require("./Validate");
-const { ERROR_MESSAGE } = require("./Constant");
 const { pickUniqueNumbersInRange } = require("./Utils");
 
 class App {
   #lottoListOfUser;
+
+  #winningLotto;
 
   constructor() {
     this.#lottoListOfUser = [];
@@ -13,14 +14,11 @@ class App {
 
   play() {
     UI.askHowMuchBuy((answer) => {
-      if (isNotMultipleOf1000(answer)) {
-        throw new Error(ERROR_MESSAGE.INPUT_ONLY_MULTIPLE_OF_1000);
-      }
-
       this.createLottos(answer / 1000);
+
       UI.showBoughtLottos(this.#lottoListOfUser);
 
-      // TODO 2. 당첨 로또 생성
+      this.askWinningLottoNumbers();
     });
   }
 
@@ -28,6 +26,24 @@ class App {
     for (let i = 0; i < amount; i += 1) {
       this.#lottoListOfUser.push(new Lotto(pickUniqueNumbersInRange(1, 45, 6)));
     }
+  }
+
+  askWinningLottoNumbers() {
+    UI.askWinningLottoNumbers((answer) => {
+      this.createWinningLotto(Array.from(answer.split(","), Number));
+
+      this.askBonusNumber();
+    });
+  }
+
+  createWinningLotto(numbers) {
+    this.#winningLotto = new WinningLotto(numbers);
+  }
+
+  askBonusNumber() {
+    UI.askBonusNumber((answer) => {
+      this.#winningLotto.setBonusNumber(parseInt(answer, 10));
+    });
   }
 }
 
