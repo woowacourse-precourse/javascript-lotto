@@ -19,16 +19,16 @@ const {
 } = require('./constants/error');
 
 class App {
+  #money;
   #winningNumbers;
   #bonusNumber;
   #lottos;
-  #correct;
+  #matching;
 
   constructor() {
     this.#winningNumbers = [];
-    this.#bonusNumber = 0;
     this.#lottos = [];
-    this.#correct = [0, 0, 0, 0, 0, 0];
+    this.#matching = [0, 0, 0, 0, 0, 0];
   }
 
   isDistinct(numbers) {
@@ -81,6 +81,7 @@ class App {
 
   buyLottos(money) {
     this.validateMoney(money);
+    this.#money = money;
     for (let i = 0; i < money / 1000; i += 1) this.issueLotto();
   }
 
@@ -101,29 +102,28 @@ class App {
     this.#bonusNumber = number;
   }
 
-  tryMatching(lotto) {
+  calculateMatching(lotto) {
     const correct = lotto.filter((number) =>
       this.#winningNumbers.includes(number)
     ).length;
 
-    switch (correct) {
-      case 3:
-        this.#correct[CORRECT_THREE] += 1;
-        break;
-      case 4:
-        this.#correct[CORRECT_FOUR] += 1;
-        break;
-      case 5:
-        this.#correct[
-          lotto.includes(this.#bonusNumber) ? CORRECT_FIVE_BONUS : CORRECT_FIVE
-        ] += 1;
-        break;
-      case 6:
-        this.#correct[CORRECT_SIX] += 1;
-        break;
-      default:
-        break;
+    if (correct === 3) this.#matching[CORRECT_THREE] += 1;
+    if (correct === 4) this.#matching[CORRECT_FOUR] += 1;
+    if (correct === 5) {
+      this.#matching[
+        lotto.includes(this.#bonusNumber) ? CORRECT_FIVE_BONUS : CORRECT_FIVE
+      ] += 1;
     }
+    if (correct === 6) this.#matching[CORRECT_SIX] += 1;
+  }
+
+  getEarningRate() {
+    let prize = 0;
+    this.#matching.forEach(
+      (matchedNumber, index) => (prize += matchedNumber * PRIZE[index])
+    );
+
+    return prize / this.#money;
   }
 
   readWinningNumbers() {
