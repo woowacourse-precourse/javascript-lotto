@@ -1,23 +1,32 @@
-const MissionUtils = require('@woowacourse/mission-utils');
+const { Console, Random } = require('@woowacourse/mission-utils');
 const { LOTTO, MESSAGE, ERROR } = require('./Constants');
+const WinningNumbers = require('./WinningNumbers');
 
-class BuyLotto {
+class BuyLottoTwo {
+  amount;
   lottoList = [];
+  winning;
+  bonus;
 
-  getPurchaseAmount() {
-    MissionUtils.Console.readLine(MESSAGE.PURCHASE_AMOUNT, (amount) => {
+  constructor() {
+    this.getAmount();
+  }
+
+  getAmount() {
+    Console.readLine(MESSAGE.PURCHASE_AMOUNT, (amount) => {
       const AMOUNT = Number(amount);
       if (AMOUNT % LOTTO.PRICE === 0) {
-        this.setLottoNumber(AMOUNT / LOTTO.PRICE);
+        this.amount = AMOUNT / LOTTO.PRICE;
+        this.setLottoList(this.amount);
       } else {
         throw new Error(ERROR.AMOUNT);
       }
     });
   }
 
-  setLottoNumber(amount) {
+  setLottoList(amount) {
     for (let i = 0; i < amount; i++) {
-      const LOTTO_NUMBER = MissionUtils.Random.pickUniqueNumbersInRange(
+      const LOTTO_NUMBER = Random.pickUniqueNumbersInRange(
         LOTTO.NUMBER_START,
         LOTTO.NUMBER_END,
         LOTTO.NUMBER_SELECT
@@ -25,15 +34,22 @@ class BuyLotto {
       LOTTO_NUMBER.sort((x, y) => x - y);
       this.lottoList.push(LOTTO_NUMBER);
     }
-    this.printUserLotto(this.lottoList);
+    this.printLottoList(this.lottoList);
   }
 
-  printUserLotto(lottoLitst) {
-    MissionUtils.Console.print(`${lottoLitst.length}개를 구매했습니다.`);
-    for (let i = 0; i < lottoLitst.length; i++) {
-      MissionUtils.Console.print(lottoLitst[i]);
+  printLottoList(lottoList) {
+    Console.print(`${lottoList.length}개를 구매했습니다.`);
+    for (let i = 0; i < lottoList.length; i++) {
+      Console.print(lottoList[i]);
     }
+    this.getWinningNumbers();
+  }
+
+  getWinningNumbers() {
+    const winningNumbers = new WinningNumbers();
+    this.winning = winningNumbers.winning;
+    this.bonus = winningNumbers.bonus;
   }
 }
 
-module.exports = BuyLotto;
+module.exports = BuyLottoTwo;

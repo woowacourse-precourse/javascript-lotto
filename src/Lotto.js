@@ -1,18 +1,11 @@
-const { LOTTO, ERROR } = require('./Constants');
+const { Console } = require('@woowacourse/mission-utils');
 
 class Lotto {
   #numbers;
 
   constructor(numbers, winningNumber, bonusNumber) {
-    this.validate(numbers);
     this.#numbers = numbers;
     this.checkLotto(numbers, winningNumber, bonusNumber);
-  }
-
-  validate(numbers) {
-    if (numbers.length !== LOTTO.NUMBER_SELECT) {
-      throw new Error(ERROR.SELECT);
-    }
   }
 
   checkLotto(numbers, winningNumber, bonusNumber) {
@@ -26,7 +19,7 @@ class Lotto {
         bonus += 1;
       }
     }
-    this.lottoResult(winning, bonus);
+    return this.lottoResult(winning, bonus);
   }
 
   lottoResult(winning, bonus) {

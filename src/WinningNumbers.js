@@ -1,12 +1,20 @@
-const MissionUtils = require('@woowacourse/mission-utils');
+const { Console } = require('@woowacourse/mission-utils');
 const { LOTTO, MESSAGE, ERROR } = require('./Constants');
 
-class WinningNumber {
+class WinningNumbers {
+  winning;
+  bonus;
+
+  constructor() {
+    this.getWinningNumber();
+  }
+
   getWinningNumber() {
-    MissionUtils.Console.readLine(MESSAGE.WINNING_NUMBER, (number) => {
+    Console.readLine(MESSAGE.WINNING_NUMBER, (number) => {
       const NUMBER = number.replace(/ /gi, '').split(',');
       if (this.checkWinningNumber(NUMBER)) {
-        return NUMBER;
+        this.winning = NUMBER;
+        this.getBonusNumber();
       } else {
         throw new Error(ERROR.NUMBER);
       }
@@ -31,9 +39,9 @@ class WinningNumber {
   }
 
   getBonusNumber() {
-    MissionUtils.Console.readLine(MESSAGE.BONUS_NUMBER, (number) => {
+    Console.readLine(MESSAGE.BONUS_NUMBER, (number) => {
       if (this.checkBonusNumber(number)) {
-        return number;
+        this.bonus = number;
       } else {
         throw new Error(ERROR.NUMBER);
       }
@@ -45,7 +53,8 @@ class WinningNumber {
     if (
       isNaN(NUMBER) ||
       NUMBER < LOTTO.NUMBER_START ||
-      NUMBER > LOTTO.NUMBER_END
+      NUMBER > LOTTO.NUMBER_END ||
+      this.winning.includes(NUMBER)
     ) {
       return false;
     } else {
@@ -54,4 +63,4 @@ class WinningNumber {
   }
 }
 
-module.exports = WinningNumber;
+module.exports = WinningNumbers;
