@@ -30,6 +30,8 @@ describe("Lotto 메서드 테스트", () => {
     expect(lotto.getBonus()).toEqual(7);
   });
 	test("setBonus() 에러 - numbers에 있는 값 추가", () => {
-    expect(lotto.setBonus(6)).toThrow("[ERROR]");
+    expect(() => {
+			lotto.setBonus(6)
+		}).toThrow("[ERROR]");
   });
 });

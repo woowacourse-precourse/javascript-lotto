@@ -3,7 +3,7 @@ const Ticket = require("../Ticket");
 describe("Ticket 메서드 테스트", () => {
 	const ticket = new Ticket([1, 2, 3, 4, 5, 6]);
 	test("pirce()", () => {
-    expect(Ticket.price()).toEqual(1000);
+    expect(ticket.price()).toEqual(1000);
   });
   test("hasNumber() - 값이 있을 때", () => {
     expect(ticket.hasNumber(2)).toEqual(true);
