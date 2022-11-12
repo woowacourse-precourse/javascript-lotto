@@ -1,6 +1,6 @@
 const Lotto = require("./Lotto");
 const UI = require("./UI");
-const { isMultipleOf1000 } = require("./Validate");
+const { isNotMultipleOf1000 } = require("./Validate");
 const { ERROR_MESSAGE } = require("./Constant");
 const { pickUniqueNumbersInRange } = require("./Utils");
 
@@ -13,7 +13,7 @@ class App {
 
   play() {
     UI.askHowMuchBuy((answer) => {
-      if (isMultipleOf1000(answer)) {
+      if (isNotMultipleOf1000(answer)) {
         throw new Error(ERROR_MESSAGE.INPUT_ONLY_MULTIPLE_OF_1000);
       }
 

@@ -1,5 +1,5 @@
 const Validate = {
-  isMultipleOf1000(answer) {
+  isNotMultipleOf1000(answer) {
     if (answer % 1000 !== 0) return true;
     return false;
   },
