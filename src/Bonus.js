@@ -18,6 +18,16 @@ class Bonus {
       throw new Error("[ERROR] 보너스 번호는 숫자여야 합니다.");
     }
   }
+
+  matchBonus(game){
+    for(const item of game){
+      if (item === this.#number){
+        return 1;
+      }
+    }
+    return 0;
+  }
+  
 }
 
 module.exports = Bonus;

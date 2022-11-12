@@ -7,7 +7,10 @@ class App {
     const gameCount = buy.countCalculate();
     const gameNumbers = buy.randomNumbers(gameCount);
     const match = new Match();
-    const record = match.countMatchingNumbers(gameNumbers);
+    match.countMatchingNumbers(gameNumbers);
+    console.log(match.bonusFlag);
+    console.log(match.matchRecord);
+
   }
 }
 

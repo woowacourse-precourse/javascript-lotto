@@ -4,17 +4,22 @@ const Bonus = require("./Bonus");
 const UI = require("./UI");
 
 class Match {
+  matchRecord = [0, 0, 0, 0];
+  bonusFlag = 0;
+
   countMatchingNumbers(games) {
-    let matchRecord = [0, 0, 0, 0];
     let count = 0;
-    const str = UI.winningNumbers();
-    const arr = str.split(",").map(Number);
-    const lotto = new Lotto(arr);
+    const winNumbers = UI.winningNumbers();
+    const lotto = new Lotto(winNumbers.split(",").map(Number));
+    const bonusNumber = Number(UI.bonusNumber());
+    const bonus = new Bonus(bonusNumber);
     for (const game of games) {
       count = lotto.matchNumbers(game);
-      if (count >= 3) matchRecord[count - 3] += 1;
+      if (count >= 3) this.matchRecord[count - 3] += 1;
+      if (count === 5){
+        this.bonusFlag = bonus.matchBonus(game);
+      }
     }
-    return matchRecord;
   }
 }
 
