@@ -5,6 +5,9 @@ class Prize {
     this.third = 0;
     this.second = 0;
     this.first = 0;
+
+    this.total = 0;
+    this.rateOfReturn = 0;
   }
 }
 
