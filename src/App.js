@@ -91,11 +91,18 @@ class App {
     }
   }
 
-  calculateOverlappintNumberCount(winningLottoNumber, lottoNumber){
-    return lottoNumber.reduce(
-      (sum, number) => (winningLottoNumber.includes(number) ? (sum += 1) : null),
-      0
-    );
+  calculateOverlappintNumberCount(lottoNumber, winningLottoNumber){
+    return lottoNumber.reduce((sum, number) => {
+      winningLottoNumber.includes(number) ? (sum += 1) : null;
+      return sum;
+    }, 0);
+  }
+
+  winningResult(winningLottoNumber, issuedLotto){
+    issuedLotto.forEach((lotto) => {
+      
+    });
+
   }
 
 
