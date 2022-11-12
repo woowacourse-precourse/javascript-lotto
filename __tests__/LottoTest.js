@@ -20,4 +20,12 @@ describe("로또 클래스 테스트", () => {
       }).toThrowError("[ERROR] 로또 번호는 1 이상 45 이하의 정수여야 합니다.");
     }
   });
+
+  test("보너스 번호가 정수가 아니라면 예외가 발생한다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+
+    expect(() => {
+      lotto.bonusCharacterCheck('string');
+    }).toThrowError("[ERROR] 보너스 점수는 정수로 입력해야 합니다.");
+  });
 });
