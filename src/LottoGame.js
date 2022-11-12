@@ -4,6 +4,7 @@ const { Random } = require('./utils/missionUtil');
 const { INPUT_MESSAGES } = require('./common/messages');
 const LottoView = require('./LottoView');
 const User = require('./User');
+const Lotto = require('./Lotto');
 
 class LottoGame {
   constructor() {
@@ -23,6 +24,15 @@ class LottoGame {
       LOTTO_INFO.END_NUMBER,
       LOTTO_INFO.COUNT
     );
+  }
+
+  craeteLottos(lottoCount) {
+    const lottos = [];
+    for (let i = 0; i < lottoCount; i++) {
+      const lotto = new Lotto(this.generateLottoNumbers());
+      lottos.push(lotto.getLotto());
+    }
+    return lottos;
   }
 
   countLottos(money) {
