@@ -1,1 +1,5 @@
-class LottoGameModel {}
+class LottoGameModel {
+  constructor() {}
+}
+
+module.exports = LottoGameModel;
