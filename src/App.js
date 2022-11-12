@@ -5,6 +5,8 @@ const Utils = require("./Utils");
 
 const MESSAGE = Object.freeze({
   PLEASE_MONEY: "구입금액을 입력해 주세요.\n",
+  PLEASE_WINNING_NUMBERS: "\n당첨 번호를 입력해 주세요.\n",
+  PLEASE_BONUS_NUMBER: "\n보너스 번호를 입력해 주세요.\n",
 });
 
 const ERROR = Object.freeze({
@@ -14,6 +16,7 @@ const ERROR = Object.freeze({
 class App {
   constructor() {
     this.lottoMachine = new LottoMachine();
+    this.lotto = null;
   }
 
   play() {
@@ -30,7 +33,7 @@ class App {
     this.isValidMoney(money);
     this.printPurchasedLottos(money);
     Console.readLine(
-      "\n당첨 번호를 입력해 주세요.\n",
+      MESSAGE.PLEASE_WINNING_NUMBERS,
       this.pleaseWinningNumbers.bind(this)
     );
   }
@@ -46,11 +49,19 @@ class App {
   }
 
   pleaseWinningNumbers(inputNumbers) {
-    const lotto = new Lotto(Utils.transformStringToNumberArray(inputNumbers));
+    this.lotto = new Lotto(Utils.transformStringToNumberArray(inputNumbers));
+    Console.readLine(
+      MESSAGE.PLEASE_BONUS_NUMBER,
+      this.pleaseBonusNumber.bind(this)
+    );
   }
-}
 
-const app = new App();
-app.play();
+  pleaseBonusNumber(inputNumber) {
+    this.lotto.addBonusNumber(parseInt(inputNumber, 10));
+  }
+
+  // TODO
+  // 당첨 통계 기능 구현
+}
 
 module.exports = App;
