@@ -1,16 +1,18 @@
-const InstanceException = require('../../exception/InstanceException');
 const Lotto = require('./Lotto');
+const { createRandomNumbers } = require('../generator/NumberGenerator');
+const InstanceException = require('../../exception/InstanceException');
 
 class LottoTicket {
   #lottos;
 
-  constructor(lottos) {
+  constructor(count) {
+    const lottos = LottoTicket.createRandomLotto(count);
     LottoTicket.validate(lottos);
     this.#lottos = lottos;
   }
 
-  static of(lottos) {
-    return new LottoTicket(lottos);
+  static of(count) {
+    return new LottoTicket(count);
   }
 
   static validate(lottos) {
@@ -23,8 +25,13 @@ class LottoTicket {
     }
   }
 
+  static createRandomLotto(count) {
+    return Array.from({ length: count }, () => Lotto.of(createRandomNumbers()));
+  }
+
   getLottos() {
     return this.#lottos;
   }
 }
+
 module.exports = LottoTicket;
