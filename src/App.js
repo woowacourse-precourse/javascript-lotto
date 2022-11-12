@@ -71,7 +71,7 @@ class App {
 
       const userLotto = this.getUserLotto(userInput);
 
-      const lotto = new Lotto(amount, this.bundleOfLotto, userLotto);
+      new Lotto(amount, this.bundleOfLotto, userLotto);
     });
   }
 
