@@ -163,4 +163,15 @@ describe("로또 클래스 테스트", () => {
     expect(count).toEqual(ouput);
   });
 
+  test("보너스번호 확인", () => {
+    const lotto = [1,2,3,4,5,6]
+    const bonuslotto = 5
+    const ouput = true;
+
+    const app = new App();
+    const count = app.checkBounsNumber(lotto, bonuslotto);
+    
+    expect(count).toEqual(ouput);
+  });
+
 });
