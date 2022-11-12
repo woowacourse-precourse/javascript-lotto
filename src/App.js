@@ -40,9 +40,21 @@ class App {
   }
 
   inputWininngNumber() {
-    Console.readLine(`당첨 번호를 입력해 주세요.\n`, (input) => {
+    Console.readLine(INPUT_MSG.WINNING_NUMBER, (input) => {
       const numbers = input.split(",").map(Number);
       this.winningNumber = new Lotto(numbers);
+
+      this.inputBonusNumber();
+    });
+  }
+  inputBonusNumber() {
+    Console.readLine(INPUT_MSG.BONUS_NUMBER, (input) => {
+      input = Number(input);
+      if (!this.validator.checkLottoNumber(input))
+        Utils.error(ERROR_MSG.OVER_RANGE);
+      if (this.winningNumber.isIncludes(input))
+        Utils.error(ERROR_MSG.LOTTO_DUPLICATED);
+      this.bonusNumber = input;
     });
   }
 

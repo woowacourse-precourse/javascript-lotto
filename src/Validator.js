@@ -9,6 +9,9 @@ class Validator {
     }
     return -1;
   }
+  checkLottoNumber(number) {
+    return Utils.isNumber(number) || (number >= 1 && number <= 45);
+  }
 }
 
 module.exports = Validator;

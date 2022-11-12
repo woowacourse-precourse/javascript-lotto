@@ -27,6 +27,10 @@ class Lotto {
   isNotLottoNumber(number) {
     return number.some((value) => value < 1 || value > 45);
   }
+  isIncludes(number) {
+    return this.#numbers.includes(number);
+  }
+
   getLotto() {
     return `[${this.#numbers.join(", ")}]`;
   }
