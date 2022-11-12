@@ -1,14 +1,11 @@
 const { Console } = require("@woowacourse/mission-utils");
 const Utils = require("./Utils");
-const ValidateInput = require("./ValidateInput");
-const Lotto = require("./Lotto");
 
 class BuyLotto {
-  constructor() {
+  constructor(numbersOfLotto) {
     this.lottoArray = [];
-    this.validateInput = new ValidateInput();
     this.utils = new Utils();
-    this.lotto = new Lotto();
+    this.buyLotto(numbersOfLotto);
   }
 
   buyLotto(numbersOfLotto) {
@@ -16,17 +13,11 @@ class BuyLotto {
     this.#printLottoList(numbersOfLotto);
   }
 
-  getEachLottoArray() {
-    const lottoArray = this.utils.randomSelectWithoutOverlap();
-    this.lotto.validate(lottoArray)
-    return lottoArray;
-  }
-
   #printLottoList(numbersOfLotto) {
     for (let count = 0; count < numbersOfLotto; count++) {
-      const lottoArray = this.getEachLottoArray()
-      Console.print(`[${lottoArray.join(', ')}]`);
-      this.lottoArray.push(this.getEachLottoArray());
+      const oneTicketLotto = this.utils.randomSelectWithoutOverlap();
+      Console.print(`[${oneTicketLotto.join(', ')}]`);
+      this.lottoArray.push(oneTicketLotto);
     }
     Console.print("");
   }
