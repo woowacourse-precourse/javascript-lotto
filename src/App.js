@@ -3,6 +3,7 @@ const Lotto = require('./Lotto');
 
 class App {
   myTickets = [];
+  purchaseAmount;
 
   play() {
     Console.readLine('구입금액을 입력해주세요.', (num) => {
@@ -15,6 +16,7 @@ class App {
   }
 
   getHowManyLottos(money) {
+    this.purchaseAmount = money;
     const numberOfTicket = money / 1000;
 
     Console.print(`${numberOfTicket}개를 구매했습니다.`);
@@ -34,7 +36,11 @@ class App {
 
   getWinningNumbers() {
     Console.readLine('당첨 번호를 입력해 주세요.', (numbers) => {
-      new Lotto(makeSixNumbersArr(numbers), this.myTickets);
+      new Lotto(
+        makeSixNumbersArr(numbers),
+        this.myTickets,
+        this.purchaseAmount
+      );
     });
   }
 
@@ -60,8 +66,5 @@ const isDivisibleBy1000 = (num) => {
 const errorMessage = () => {
   throw new Error('[ERROR] 1000원 단위로 금액을 입력해주세요.');
 };
-
-const app = new App();
-app.play();
 
 module.exports = App;

@@ -1,12 +1,13 @@
 const { Console } = require('@woowacourse/mission-utils');
+const App = require('../src/App');
 
 class Lotto {
   #numbers;
 
-  constructor(numbers, myTickets) {
+  constructor(numbers, myTickets, purchaseAmount) {
     this.validate(numbers);
     this.#numbers = numbers;
-    this.getBonusNumber(myTickets);
+    this.getBonusNumber(myTickets, purchaseAmount);
   }
 
   validate(numbers) {
@@ -31,7 +32,7 @@ class Lotto {
     });
   }
 
-  getBonusNumber(myTickets) {
+  getBonusNumber(myTickets, purchaseAmount) {
     Console.readLine('보너스 번호를 입력해 주세요.', (num) => {
       const bonusNumber = Number(num);
       if (isNaN(bonusNumber)) {
@@ -46,6 +47,9 @@ class Lotto {
         throw new Error('[ERROR] 로또 번호 6개와 다른 수를 입력해주세요');
       }
 
+      Console.print('당첨 통계');
+      Console.print('---');
+
       const numberOfWonTicket = this.getNumberOfWonTicket(
         myTickets,
         this.#numbers,
@@ -53,6 +57,12 @@ class Lotto {
       );
 
       this.printSummary(this.getSummary(numberOfWonTicket));
+
+      const earningsRate = this.calculateEarnings(
+        this.getSummary(numberOfWonTicket),
+        purchaseAmount
+      );
+      this.printEarningsRate(earningsRate);
     });
   }
 
@@ -116,6 +126,22 @@ class Lotto {
       const script = `${descriptionArr[index]} (${prizeMoneyArr[index]}원) - ${value}개`;
       Console.print(script);
     });
+  }
+
+  calculateEarnings(wonCountArr, purchaseAmount) {
+    let totalEarnings = 0;
+    const prizeMoney = [5000, 50000, 1500000, 30000000, 2000000000];
+
+    wonCountArr.forEach((value, index) => {
+      totalEarnings += prizeMoney[index] * value;
+    });
+
+    return (totalEarnings / purchaseAmount) * 100;
+  }
+
+  printEarningsRate(earningsRate) {
+    Console.print(`총 수익률은 ${earningsRate}%입니다.`);
+    Console.close();
   }
 
   isIncluded(num) {
