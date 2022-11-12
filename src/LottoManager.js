@@ -1,11 +1,20 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const LottoCalculator = require("./LottoCalculator");
 
 class LottoManager {
   #winningNumbers;
   #bonusNumber;
-  
+
   start() {
     this.inputWinningNumbers();
+  }
+
+  sendToCalculator() {  
+    const lottoCalculator = new LottoCalculator();
+    lottoCalculator.winningNumbers = this.#winningNumbers
+    lottoCalculator.bonusNumber = this.#bonusNumber;
+
+    lottoCalculator.print();
   }
 
   inputWinningNumbers() {
@@ -47,6 +56,8 @@ class LottoManager {
     MissionUtils.Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
       this.#bonusNumber = Number(bonusNumber);
       this.checkInputBonusNumber();
+
+      this.sendToCalculator();
     });
   }
 
