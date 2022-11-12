@@ -7,11 +7,13 @@ class Lotto {
   }
 
   validate(numbers) {
-    // this.isThatNumber(numbers);
-    // this.numberNet(numbers);
-    // this.isThatDuplicate(numbers);
-    // this.itThatRightFormat(numbers);
-    this.isThatSix(numbers);
+    if (numbers !== undefined) {
+      this.isThatNumber(numbers);
+      this.numberNet(numbers);
+      this.isThatDuplicate(numbers);
+      this.itThatRightFormat(numbers);
+      this.isThatSix(numbers);
+    }
   }
 
   // bonusValidate(number) {
@@ -21,9 +23,9 @@ class Lotto {
   //   this.isThatNumber(number);
   // }
 
-  isThatSix(numbers) {
-    if (numbers.length !== 6) throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-  }
+  // isThatSix(numbers) {
+  //   if (numbers.length !== 6) throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+  // }
 
   // isThatNumber(numbers) {
   //   const RegExp = /^[1-9]+$/;

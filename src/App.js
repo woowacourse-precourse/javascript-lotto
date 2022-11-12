@@ -7,7 +7,7 @@ class App {
   constructor() {
     this.GetLotto = new GetLotto();
     this.GetNumber = new GetNumber();
-    this.Lotto = new Lotto();
+    this.lotto = new Lotto();
   }
 
   play() {
@@ -18,7 +18,7 @@ class App {
 
   getWinNumber() {
     Console.readLine("당첨 번호를 입력해 주세요.", (numbers) => {
-      this.Lotto.validate(numbers);
+      this.lotto.validate(numbers);
       this.GetNumber.toWin(numbers);
     });
   }
@@ -31,6 +31,6 @@ class App {
 }
 
 let a = new App();
-a.play();
+a.getWinNumber();
 
 module.exports = App;
