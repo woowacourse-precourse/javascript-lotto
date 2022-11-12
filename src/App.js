@@ -9,13 +9,13 @@ class App {
 
   play() {
     this.askForAmount();
-    this.generateLotto();
   }
 
   askForAmount() {
     Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
       this.inputAmount = Number(input);
       new InputAmount(input);
+      this.generateLotto();
     });
   }
 
@@ -34,7 +34,7 @@ class App {
   askForLottoNumbers() {
     Console.readLine("\n당첨 번호를 입력해 주세요.\n", (input) => {
       this.lottoNumbers = input.split(",").map((el) => Number(el));
-      this.validateInputLottoNumbers();
+      new Lotto(this.lottoNumbers);
     });
   }
 }
