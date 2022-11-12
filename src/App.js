@@ -80,11 +80,14 @@ class App {
   }
 
   isValidBonusNumber(input){
-    if(isNaN(input)) throw new Error("[ERROR] 보너스 번호는 숫자여야 합니다.")
+    if (isNaN(input)) throw new Error("[ERROR] 보너스 번호는 숫자여야 합니다.");
     if (this.winningLottoNumber.includes(+input)) {
       throw new Error(
         "[ERROR] 보너스 번호는 로또 번호와 중복되지 않는 숫자여야 합니다."
       );
+    }
+    if (input.length() !== 1) {
+      throw new Error("[ERROR] 보너스 번호는 하나입니다.");
     }
   }
 
