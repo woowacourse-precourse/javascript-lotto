@@ -103,13 +103,17 @@ class App {
     return lottoNumber.includes(BonusLottoNumber);
   }
 
-  matchedNumberResult(issuedLotto){
+  matchedNumberResult(issuedLotto, winningLottoNumber){
     return issuedLotto.reduce((totalResult, lotto) => {
       totalResult.push(
-        this.calculateOverlappintNumberCount(lotto, this.winningLottoNumber)
+        this.calculateOverlappintNumberCount(lotto, winningLottoNumber)
       );
       return totalResult;
     }, []);
+  }
+
+  findRankingResult(totalResult, rankingCount){
+    return totalResult.filter(value=>value==rankingCount).length();
   }
 
 
