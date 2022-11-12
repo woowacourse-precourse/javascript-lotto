@@ -23,4 +23,11 @@ describe("로또 클래스 테스트", () => {
       if (lottoMachine.isNotANumber("abc!")) throw new Error(MESSAGE.ERROR.PAYMENT_MUST_BE_NUMBER);
     }).toThrow("[ERROR]");
   });
+
+  test("로또 구입 금액이 1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다.", () => {
+    expect(() => {
+      const lottoMachine = new LottoMachine();
+      if (!lottoMachine.isChange("abc!")) throw new Error(MESSAGE.ERROR.CHANGE_MUST_BE_ZERO);
+    }).toThrow("[ERROR]");
+  });
 });
