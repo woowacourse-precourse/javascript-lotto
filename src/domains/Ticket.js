@@ -1,4 +1,4 @@
-const Random = require('./utils/Random');
+const Random = require('./Random');
 
 class Ticket {
   static get() {

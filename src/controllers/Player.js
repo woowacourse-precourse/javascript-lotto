@@ -1,17 +1,14 @@
-const DataProcessor = require('./utils/DataProcessor');
-const Tickets = require('./Tickets');
-const GameOutput = require('./GameOutput');
+const DataProcessor = require('../domains/DataProcessor');
+const Tickets = require('../domains/Tickets');
+const GameOutput = require('../views/GameOutput');
 
 class Player {
   #lotto = {};
 
-  buyLotto(purchaseAmount) {
+  purchaseLotto(purchaseAmount) {
     this.#lotto.quantity = DataProcessor.getQuantityOfLotto(
       DataProcessor.processRowDataOfPurchaseAmount(purchaseAmount)
     );
-  }
-
-  getLotto() {
     this.#lotto.tickets = Tickets.publish(this.#lotto.quantity);
   }
 

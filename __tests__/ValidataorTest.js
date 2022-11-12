@@ -1,4 +1,4 @@
-const Validator = require('../src/utils/Validator');
+const Validator = require('../src/domains/Validator');
 
 describe('Validator 클래스 Truthy 테스트', () => {
   test('checkTruthy에 true 입력은 true다.', () => {

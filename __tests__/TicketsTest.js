@@ -1,4 +1,4 @@
-const Tickets = require('../src/Tickets');
+const Tickets = require('../src/domains/Tickets');
 
 describe('Tickets 클래스 테스트', () => {
   const ticket = Tickets.publish(1);

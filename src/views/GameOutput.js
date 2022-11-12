@@ -1,4 +1,4 @@
-const Console = require('./utils/Console');
+const Console = require('../domains/Console');
 
 class GameOutput {
   static message = {

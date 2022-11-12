@@ -1,5 +1,5 @@
-const Validator = require('./Validator');
-const Console = require('./Console');
+const Validator = require('../domains/Validator');
+const Console = require('../domains/Console');
 
 class DataChecker {
   static #errorMessage = {

@@ -1,5 +1,5 @@
-const GameInput = require('./GameInput');
-const GameOutput = require('./GameOutput');
+const GameInput = require('../domains/GameInput');
+const GameOutput = require('../views/GameOutput');
 const Player = require('./Player');
 const WinningNumber = require('./WinningNumber');
 
@@ -12,8 +12,7 @@ class Game {
 
   #buyLotto(purchaseAmount) {
     this.#instance.player = new Player();
-    this.#instance.player.buyLotto(purchaseAmount);
-    this.#instance.player.getLotto();
+    this.#instance.player.purchaseLotto(purchaseAmount);
     this.#instance.player.printLotto();
 
     GameInput.enter(GameOutput.message.sixNumbers, this.#registerSixNumbers.bind(this));

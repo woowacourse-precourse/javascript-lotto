@@ -1,5 +1,5 @@
-const DataChecker = require('./DataChecker');
-const Ticket = require('../Ticket');
+const DataChecker = require('../controllers/DataChecker');
+const Ticket = require('./Ticket');
 
 class DataProcessor {
   static processRowDataOfPurchaseAmount(rowData) {

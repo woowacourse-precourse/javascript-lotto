@@ -1,4 +1,4 @@
-const DataProcessor = require('./utils/DataProcessor');
+const DataProcessor = require('../domains/DataProcessor');
 
 class WinningNumber {
   #data = {};
