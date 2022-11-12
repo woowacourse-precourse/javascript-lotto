@@ -25,4 +25,16 @@ describe('사용자 입력 값 유효성 테스트', () => {
     expect(CHECKED1).toBeFalsy();
     expect(CHECKED2).toBeTruthy();
   });
+
+  test('입력 값이 1,000원 단위로 나누어 떨어지는지 확인', () => {
+    const [input1, input2] = ['10500', '14000'];
+
+    const [CHECKED1, CHECKED2] = [
+      INPUT_CHECK.checkUnit(input1),
+      INPUT_CHECK.checkUnit(input2),
+    ];
+
+    expect(CHECKED1).toBeFalsy();
+    expect(CHECKED2).toBeTruthy();
+  });
 });
