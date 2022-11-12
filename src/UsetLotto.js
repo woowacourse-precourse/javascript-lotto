@@ -23,7 +23,7 @@ class UserLotto {
     });
   }
   compareLotto(myLotto, winLotto) {
-    const numberCounter = 0;
+    let numberCounter = 0;
     const winLottoArr = [...winLotto];
     myLotto.forEach((eachLottoNumber) => {
       if (winLottoArr.includes(String(eachLottoNumber))) {
@@ -31,6 +31,13 @@ class UserLotto {
       }
     });
     return numberCounter;
+  }
+
+  compareBonusNumber(myLotto, bonusNumber) {
+    if (myLotto.includes(Number(bonusNumber))) {
+      return true;
+    }
+    return false;
   }
 }
 
