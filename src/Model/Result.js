@@ -1,5 +1,3 @@
-const MissionUtils = require('@woowacourse/mission-utils');
-
 class Result {
   score = {
     three: 0,
@@ -8,13 +6,11 @@ class Result {
     fiveAndBonus: 0,
     six: 0,
   };
+  game;
 
-  constructor(LottosArray, winLotto, bonusNumber, money) {
-    this.winLotto = winLotto;
-    this.bonusNumber = bonusNumber;
-    this.money = money;
-
-    LottosArray.forEach((lotto) => {
+  constructor(LottoGame) {
+    this.game = LottoGame;
+    this.game.lottos.forEach((lotto) => {
       const currentScore = this.getScore(lotto);
       if (currentScore == 3) this.score.three++;
       if (currentScore == 4) this.score.four++;
@@ -25,16 +21,17 @@ class Result {
       if (currentScore == 6) this.score.six++;
     });
   }
+
   getScore(Lotto) {
     let count = 0;
     Lotto.lottoNumbers.forEach((num) => {
-      if (this.winLotto.lottoNumbers.includes(num)) count++;
+      if (this.game.winLotto.lottoNumbers.includes(num)) count++;
     });
     return count;
   }
 
   getIsBonus(Lotto) {
-    if (Lotto.lottoNumbers.includes(this.bonusNumber)) {
+    if (Lotto.lottoNumbers.includes(this.game.bonusNumber)) {
       return true;
     }
   }
@@ -47,7 +44,7 @@ class Result {
           this.score.five * 1500000 +
           this.score.fiveAndBonus * 30000000 +
           this.score.six * 200000000) /
-          this.money) *
+          this.game.money) *
         100
       ).toFixed(2)
     );
