@@ -42,7 +42,7 @@ class GameTools {
     if (matchingCount === LOTTO.LENGTH - 2) return RANK.FOUR;
     if (matchingCount === LOTTO.LENGTH - 3) return RANK.FIVE;
 
-    return -1;
+    return RANK.FAIL;
   }
 
   static calcTotalPrize(winningState) {

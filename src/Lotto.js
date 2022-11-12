@@ -20,7 +20,7 @@ class Lotto {
       const matchingCount = GameTools.getMatchingNumCount(lotto, this.#numbers);
       const matchesBonusNum = lotto.includes(Number(bonusNumber));
       const rank = GameTools.getWinningRanking(matchingCount, matchesBonusNum);
-      if (rank !== -1) state[rank] += 1;
+      if (rank !== RANK.FAIL) state[rank] += 1;
 
       return state;
     }, Array(LOTTO.NUM_OF_PRIZE).fill(0));

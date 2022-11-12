@@ -18,6 +18,7 @@ const RANK = Object.freeze({
   THREE: 2,
   FOUR: 3,
   FIVE: 4,
+  FAIL: -1,
 });
 
 const PRIZE_MONEY = [2000000000, 30000000, 1500000, 50000, 5000];
