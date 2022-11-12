@@ -4,6 +4,7 @@ class Lotto {
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
+    this.#printLottoNumbers();
   }
 
   validate(numbers) {
@@ -12,7 +13,7 @@ class Lotto {
     }
   }
 
-  showNumber() {
+  #printLottoNumbers() {
     console.log(this.#numbers);
   }
 
