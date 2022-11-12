@@ -26,6 +26,10 @@ class App {
     return lottoNumber.sort((a, b) => a - b);
   }
 
+  printLottoNumber(lottoNumber) {
+    return Console.print(`[${lottoNumber.join(',')}]`)
+  }
+
   play() {
     Console.print(ASK_LOTTO_PRICE);
     Console.readLine('',price => this.buyLotto(price))
