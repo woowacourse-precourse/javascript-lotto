@@ -50,5 +50,17 @@ describe("로또 구입 금액 입력 테스트", () => {
     expect(() => {
       testLottoGame.validate(100000009);
     }).toThrow(ERROR_MESSAGE);
+
+    expect(() => {
+      testLottoGame.validate(1000.7);
+    }).toThrow(ERROR_MESSAGE);
+
+    expect(() => {
+      testLottoGame.validate(500000.123);
+    }).toThrow(ERROR_MESSAGE);
+
+    expect(() => {
+      testLottoGame.validate(500000.000123);
+    }).toThrow(ERROR_MESSAGE);
   });
 });
