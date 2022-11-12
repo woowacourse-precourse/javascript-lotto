@@ -24,36 +24,41 @@ const RANKING = Object.freeze({
     MATCH: 3,
     BONUS: false,
     PRICE: '5000',
-    MESSAGE: '3개 일치 (5,000원) - ',
-    COUNTUNIT: '개',
+    MESSAGE(MATCHNUMER) {
+      return `3개 일치 (5,000원) - ${MATCHNUMER}개`;
+    },
   },
   FOURTH: {
     MATCH: 4,
     BONUS: false,
     PRICE: '50000',
-    MESSAGE: '4개 일치 (50,000원) -  ',
-    COUNTUNIT: '개',
+    MESSAGE(MATCHNUMER) {
+      return `4개 일치 (50,000원) -  ${MATCHNUMER}개`;
+    },
   },
   THREE: {
     MATCH: 5,
     BONUS: false,
     PRICE: '1500000',
-    MESSAGE: '5개 일치 (1,500,000원) - ',
-    COUNTUNIT: '개',
+    MESSAGE(MATCHNUMER) {
+      return `5개 일치 (1,500,000원) - ${MATCHNUMER}개`;
+    },
   },
   TWO: {
     MATCH: 5,
     BONUS: true,
     PRICE: '30000000',
-    MESSAGE: '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
-    COUNTUNIT: '개',
+    MESSAGE(MATCHNUMER) {
+      return `5개 일치, 보너스 볼 일치 (30,000,000원) - ${MATCHNUMER}개`;
+    },
   },
   ONE: {
     MATCH: 6,
     BONUS: false,
     PRICE: '2000000000',
-    MESSAGE: '6개 일치 (2,000,000,000원) - ',
-    COUNTUNIT: '개',
+    MESSAGE(MATCHNUMER) {
+      return `6개 일치 (2,000,000,000원) - ${MATCHNUMER}개`;
+    },
   },
 });
 
@@ -69,7 +74,7 @@ const PRINT_MESSAGE = Object.freeze({
   WINNING: '당첨 통계',
   DIVIDE: '---',
   PROFIT(FIGURE) {
-    return `총 수익률은 ${FIGURE} 입니다.`;
+    return `총 수익률은 ${FIGURE}% 입니다.`;
   },
   PURCHASENUMBER(NUMBER) {
     return `${NUMBER}개를 구매했습니다`;

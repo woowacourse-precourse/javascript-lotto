@@ -9,7 +9,7 @@ const Statistics = require('./Statistics');
 class App {
   constructor() {
     this.money;
-    this.purChaseLotto;
+    this.purChaseLottoNumber;
     this.fullLottoNumber;
   }
 
@@ -21,7 +21,7 @@ class App {
     Console.readLine(INPUT_MESSAGE.BUY, (amount) => {
       const lotteryTickets = new PurChase(amount).showLottoTickets(amount);
       this.money = amount;
-      this.purChaseLotto = lotteryTickets;
+      this.purChaseLottoNumber = lotteryTickets;
       this.printLotto(lotteryTickets);
     });
   }
@@ -42,15 +42,15 @@ class App {
   inputBonusLottoNumber(lottoInput) {
     Console.readLine(INPUT_MESSAGE.BONUSNUMBER, (bonusInput) => {
       const fullNumber = [lottoInput.split(','), bonusInput];
-      this.fullLottoNumber = new BonusLotto(fullNumber) ? [fullNumber] : '';
+      this.fullLottoNumber = new BonusLotto(fullNumber) ? fullNumber : '';
       this.printStats();
     });
   }
 
   printStats() {
     Console.print(PRINT_MESSAGE.WINNING);
-    Console.print(PRINT_MESSAGE.WINNING);
-    const result = new Statistics(this.fullLottoNumber, this.purChaseLotto).showResult();
+    Console.print(PRINT_MESSAGE.DIVIDE);
+    const result = new Statistics(this.fullLottoNumber, this.purChaseLottoNumber).showResult();
     const profitList = Object.keys(RANKING).map((rank) => {
       const matchNumberInfo = RANKING[rank];
       const matchNumber = RANKING[rank]['MATCH'];
@@ -58,7 +58,7 @@ class App {
         result[matchNumber] && result[matchNumber]['bonus'] === matchNumberInfo['BONUS']
           ? result[matchNumber]['count']
           : 0;
-      Console.print(`${matchNumberInfo['MESSAGE']}${matchCount}${matchNumberInfo['COUNTUNIT']}`);
+      Console.print(`${matchNumberInfo.MESSAGE(matchCount)}`);
       return { matchCount, matchMoney: matchNumberInfo['PRICE'] };
     });
     this.printProFit(profitList);
@@ -67,6 +67,7 @@ class App {
   printProFit(profitList) {
     const profitFigure = new Profit([this.money, profitList]).calculateProfit();
     Console.print(PRINT_MESSAGE.PROFIT(profitFigure));
+    Console.close();
   }
 }
 
