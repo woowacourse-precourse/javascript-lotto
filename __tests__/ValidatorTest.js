@@ -1,7 +1,7 @@
 const Validator = require('../src/Validator');
 const { ERROR_MESSAGES } = require('../src/common/messages');
 
-describe('Validator 클래스 : 구입 금액 테스트', () => {
+describe('✅ Validator 클래스 : 구입 금액 테스트', () => {
   test('🖐 사용자가 1,000으로 나누어 떨어지지 않는 금액을 입력하면 에러가 발생한다.', () => {
     const invalidMoney = '1234';
 
@@ -17,9 +17,19 @@ describe('Validator 클래스 : 구입 금액 테스트', () => {
       Validator.checkValidMoney(invalidMoney);
     }).toThrowError(`${ERROR_MESSAGES.INVALID_NEGATIVE_NUMBER}`);
   });
+
+  test('🖐 사용자가 미입력 또는 공백, 0을 입력하면 에러가 발생한다.', () => {
+    const invalidMoney = ['0', '', ' '];
+
+    expect(() => {
+      invalidMoney.forEach((money) => {
+        Validator.checkValidMoney(money);
+      });
+    }).toThrowError(`${ERROR_MESSAGES.INVALID_PURCHASE}`);
+  });
 });
 
-describe('Validator 클래스 : 당첨 번호 테스트', () => {
+describe('✅ Validator 클래스 : 당첨 번호 테스트', () => {
   test('🖐 사용자가 숫자가 아닌 번호를 입력하면 에러가 발생한다', () => {
     const invalidInputs = ['우테코 조아요', '', ' ', 'Reason', '1a', '1e4'];
 
