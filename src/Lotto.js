@@ -8,6 +8,11 @@ class Lotto {
   validate(numbers) {
     if (this.#isLengthNotEqualsSix(numbers)) throw Error("6자리가 아님ㅋ");
     if (this.#isIncludeNotNumber(numbers)) throw Error("숫자가 아님ㅋ");
+    if (this.#isNotRangeValid(numbers)) throw Error("1~45 사이의 숫자만 쓰셈ㅋ");
+  }
+
+  #isNotRangeValid(numbers) {
+    return numbers.some((number) => number < 1 || number > 45);
   }
 
   #isLengthNotEqualsSix(numbers) {
