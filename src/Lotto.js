@@ -1,17 +1,16 @@
-const ConsoleWork = require('./ConsoleWork');
+const onsoleWork = require('./ConsoleWork');
 const Message = require('./Message');
 
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    // this.validate(numbers);
     this.#numbers = numbers;
   }
 
-  static playGame() {
-    ConsoleWork.print(Message.START_MESSAGE);
-    ConsoleWork.takeInput('', (message) => ConsoleWork.print(message));
+  startGame() {
+    console.log(this.#numbers);
   }
 }
 
