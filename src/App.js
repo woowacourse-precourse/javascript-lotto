@@ -76,6 +76,13 @@ class App {
   }
 
   readBonusNumber({ lottos, winningLotto }) {
+    Console.readLine(MESSAGE.ENTER_BONUS_NUMBER, (bonusNumber) => {
+      this.validateBonusNumber(bonusNumber);
+      return;
+    });
+  }
+
+  validateBonusNumber(bonusNumber) {
     return;
   }
 }
