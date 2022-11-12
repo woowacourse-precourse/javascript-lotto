@@ -4,19 +4,16 @@ const Lotto = require('./Lotto');
 const { Console, Random } = require('@woowacourse/mission-utils');
 
 class Machine {
-  #money;
-
   #winningNumbers;
 
   #bonusNumber;
 
   constructor() {
     this.user = new User();
-    this.#money = 0;
   }
 
   #checkAmount() {
-    if (this.#money % 1000 !== 0) {
+    if (this.user.money % 1000 !== 0) {
       throw Error('[ERROR] 로또는 1000원 단위로 구매가 가능합니다.');
     }
     return true;
@@ -58,27 +55,6 @@ class Machine {
     this.#checkRange(this.#winningNumbers);
   }
 
-  getMoney(cb) {
-    Console.readLine('구입금액을 입력해주세요.\n', (answer) => {
-      this.#money = Number(answer);
-      this.#checkAmount();
-
-      return cb(answer);
-    });
-  }
-
-  #printLotto(money) {
-    const lottoCount = money / 1000;
-    Console.print(`\n${lottoCount}개를 구매했습니다.`);
-    for (let i = 0; i < lottoCount; i += 1) {
-      const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
-      Console.print(numbers);
-      const lotto = new Lotto(numbers);
-      this.user.lottos.push(lotto);
-    }
-    this.#getWinningNumbers(this.#getBonusNumber.bind(this));
-  }
-
   #checkIsNum() {
     if (Number.isNaN(this.#bonusNumber)) {
       throw Error('[ERROR] 보너스 번호는 숫자여야 합니다.');
@@ -107,17 +83,35 @@ class Machine {
     this.#checkUnique();
   }
 
-  #getBonusNumber() {
-    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (answer) => {
-      this.#bonusNumber = Number(answer);
-      this.#checkBonusNumber();
-    });
-  }
-
   checkSeparator(answer) {
     if (!answer.includes(',')) {
       throw Error('[ERROR] 당첨 번호는 쉼표로 구분되어야 합니다.');
     }
+  }
+
+  sell() {
+    this.getMoney(this.#printLotto.bind(this));
+  }
+
+  getMoney(cb) {
+    Console.readLine('구입금액을 입력해주세요.\n', (answer) => {
+      this.user.money = Number(answer);
+      this.#checkAmount();
+
+      return cb(answer);
+    });
+  }
+
+  #printLotto(money) {
+    const lottoCount = money / 1000;
+    Console.print(`\n${lottoCount}개를 구매했습니다.`);
+    for (let i = 0; i < lottoCount; i += 1) {
+      const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+      Console.print(numbers);
+      const lotto = new Lotto(numbers);
+      this.user.lottos.push(lotto);
+    }
+    this.#getWinningNumbers(this.#getBonusNumber.bind(this));
   }
 
   #getWinningNumbers(cb) {
@@ -130,8 +124,61 @@ class Machine {
     });
   }
 
-  sell() {
-    this.getMoney(this.#printLotto.bind(this));
+  #getBonusNumber() {
+    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (answer) => {
+      this.#bonusNumber = Number(answer);
+      this.#checkBonusNumber();
+      this.#printResult();
+    });
+  }
+
+  #count() {
+    this.user.getLottos().forEach((lotto) => {
+      this.setWinningCount(lotto);
+      this.setBonusCount(lotto);
+      this.#calcScore(lotto);
+    });
+  }
+
+  #calcScore(lotto) {
+    if (lotto.winningCount === 3) {
+      this.user.three += 1;
+    }
+    if (lotto.winningCount === 4) {
+      this.user.four += 1;
+    }
+    if (lotto.winningCount === 5) {
+      this.user.five += 1;
+    }
+    if (lotto.winningCount === 6) {
+      this.user.six += 1;
+    }
+    if (lotto.winningCount !== 6) {
+      if (lotto.winningCount + lotto.bonusCount === 6) {
+        this.user.fiveBonus += 1;
+      }
+    }
+  }
+
+  setWinningCount(lotto) {
+    lotto.getNumbers().forEach((number) => {
+      if (this.#winningNumbers.includes(number)) {
+        lotto.plusWinningCount();
+      }
+    });
+  }
+
+  setBonusCount(lotto) {
+    if (this.#bonusNumber === lotto.getNumbers()) {
+      lotto.plusBonusCount();
+    }
+  }
+
+  #printResult() {
+    Console.print('\n당첨 통계');
+    Console.print('---');
+    this.#count();
+    this.user.getScore();
   }
 }
 
