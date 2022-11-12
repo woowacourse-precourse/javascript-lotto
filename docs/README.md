@@ -51,7 +51,7 @@ Random 값은 **MissionUtils 라이브러리**의 `Random.pickUniqueNumbersInRan
 ### [✅] 로또 번호 정렬하기 - LottoMachine.sortLottoNumber()
 생성된 6개의 번호를 오름차순으로 정렬한다.
 
-### [&nbsp; ] 로또 번호 출력하기 - LottoMachine.printLottoNumber()
+### [✅] 로또 번호 출력하기 - LottoMachine.printLottoNumber()
 **MissionUtils 라이브러리**에서 제공하는 `Console.print()`를 활용하여 출력한다.
 
 </br>
