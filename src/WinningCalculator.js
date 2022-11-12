@@ -50,7 +50,8 @@ class WinningCalculator {
     const purchaseAmount = this.#lottos.length * 1000;
     const prizeMoney = this.getPrizeMoney();
 
-    return Math.round((prizeMoney / purchaseAmount) * 10);
+    const rateOfReturn = Math.round((prizeMoney / purchaseAmount) * 1000) / 10;
+    MissionUtils.Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
   }
 
   printRank() {
@@ -59,6 +60,13 @@ class WinningCalculator {
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${this.#rank[2]}개`);
     MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.#rank[1]}개`);
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${this.#rank[0]}개`);
+  }
+
+  print() {
+    MissionUtils.Console.print("당첨 통계");
+    MissionUtils.Console.print("---");
+    this.printRank();
+    this.printRateOfReturn();
   }
 }
 
