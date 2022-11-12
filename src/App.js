@@ -80,7 +80,8 @@ class App {
   readBonusNumber({ lottos, winningLotto }) {
     Console.readLine(MESSAGE.ENTER_BONUS_NUMBER, (bonusNumber) => {
       this.validateBonusNumber({ bonusNumber, winningLotto });
-      return;
+      bonusNumber = parseInt(bonusNumber);
+      return this.countLottoResult({ lottos, winningLotto, bonusNumber });
     });
   }
 
@@ -94,6 +95,10 @@ class App {
     if (winningLotto.getLottoNumbers().includes(parseInt(bonusNumber))) {
       throw new Error(ERROR_MESSAGE.INVALID_BONUS_NUMBER);
     }
+  }
+
+  countLottoResult({ lottos, winningLotto, bonusNumber }) {
+    return;
   }
 }
 
