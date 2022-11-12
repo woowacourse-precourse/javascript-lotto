@@ -127,4 +127,12 @@ describe("로또 클래스 테스트", () => {
       app.isValidinput(input);
     }).toThrow();
   });
+
+  test("로또 번호는 숫자여야 합니다.", () => {
+    const input = "1,2,3,4,0,56";
+    const app = new App();
+    expect(() => {
+      app.isValidinput(input);
+    }).toThrow();
+  });
 });
