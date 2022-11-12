@@ -45,12 +45,10 @@ class CalculationLotto {
  * @param {Array<number>} lottoList
  * @param {Array<number>} winNumberList
  * @param {number} bonusNumber
- * @param {number} lottoPrice
  */
-  calculationLottoResult(lottoList, winNumberList, bonusNumber, lottoPrice) {
+  calculationLottoResult(lottoList, winNumberList, bonusNumber) {
     this.winNumberList = winNumberList;
     this.bonusNumber = bonusNumber;
-    this.lottoPrice = lottoPrice;
 
     lottoList.forEach((lotto) => this.matchLottoNumber(lotto));
 
@@ -97,8 +95,13 @@ class CalculationLotto {
     return this;
   }
 
-  calculationLottoRate() {
-    const rate = (this.lottoWinPrice / this.lottoPrice) * 100;
+  /**
+   *
+   * @param {number} lottoPrice
+   * @returns
+   */
+  calculationLottoRate(lottoPrice) {
+    const rate = (this.lottoWinPrice / lottoPrice) * 100;
     this.lottoRate = rate;
 
     return this;

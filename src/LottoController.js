@@ -1,10 +1,11 @@
 const { GAME_MESSAGE } = require('./lib/Constants');
 const { readLine } = require('./lib/Utils');
-const Price = require('./Price');
-const Lottery = require('./Lottery');
-const Lotto = require('./Lotto');
+
 const Bonus = require('./Bonus');
 const CalculationLotto = require('./CalculationLotto');
+const Lottery = require('./Lottery');
+const Lotto = require('./Lotto');
+const Price = require('./Price');
 
 class LottoController {
   price;
@@ -60,9 +61,9 @@ class LottoController {
 
     const calculationLotto = new CalculationLotto();
     calculationLotto
-      .calculationLottoResult(lottoList, winNumberList, bonusNumber, lottoPrice)
+      .calculationLottoResult(lottoList, winNumberList, bonusNumber)
       .matchResult()
-      .calculationLottoRate()
+      .calculationLottoRate(lottoPrice)
       .printResult();
   }
 }
