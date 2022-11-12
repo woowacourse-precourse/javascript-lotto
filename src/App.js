@@ -47,11 +47,15 @@ class App {
 
   inputBonusNumber() {
     MissionUtils.Console.readLine("\n보너스 번호를 입력해 주세요.\n", (number) => {
-      if (number < 1 || number > 45 || !new RegExp("^[0-9]+$").test(number))
-        throw new Error("[ERROR] 1에서 45까지의 번호를 입력해주세요");
       this.bonusNumber = number;
+      this.validateInputBonusNumber(number);
       this.getStatisticsAboutLotto();
     });
+  }
+
+  validateInputBonusNumber(number) {
+    if (number < 1 || number > 45 || !new RegExp("^[0-9]+$").test(number))
+      throw new Error("[ERROR] 1에서 45까지의 번호를 입력해주세요");
   }
 
   getStatisticsAboutLotto() {
