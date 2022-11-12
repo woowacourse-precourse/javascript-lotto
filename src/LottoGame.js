@@ -1,11 +1,20 @@
 const { LOTTO_INFO } = require('./common/constants');
-const LottoView = require('./LottoView');
+const { lottoCount } = require('./utils/calculator');
 const { Random } = require('./utils/missionUtil');
+const { INPUT_MESSAGES } = require('./common/messages');
+const LottoView = require('./LottoView');
+const User = require('./User');
 
 class LottoGame {
   constructor() {
-    const lottoView = new LottoView();
-    lottoView.getPurchaseAmount();
+    this.lottoView = new LottoView();
+    this.user = new User();
+  }
+
+  start() {
+    this.lottoView.getUserInput(`${INPUT_MESSAGES.AMOUNT}\n`, (money) => {
+      this.countLottos(money);
+    });
   }
 
   generateLottoNumbers() {
@@ -14,6 +23,11 @@ class LottoGame {
       LOTTO_INFO.END_NUMBER,
       LOTTO_INFO.COUNT
     );
+  }
+
+  countLottos(money) {
+    this.user.setLottoCount(lottoCount(money));
+    return this.lottoView.printLottoCount(this.user.getLottoCount());
   }
 }
 
