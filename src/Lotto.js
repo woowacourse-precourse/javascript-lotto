@@ -19,11 +19,8 @@ class Lotto {
     const winningState = userLottos.reduce((state, lotto) => {
       const matchingCount = GameTools.getMatchingNumCount(lotto, this.#numbers);
       const matchesBonusNum = lotto.includes(Number(bonusNumber));
-      if (matchingCount === 6) state[RANK.ONE] += 1;
-      else if (matchingCount === 5 && matchesBonusNum) state[RANK.TWO] += 1;
-      else if (matchingCount === 5 && !matchesBonusNum) state[RANK.THREE] += 1;
-      else if (matchingCount === 4) state[RANK.FOUR] += 1;
-      else if (matchingCount === 3) state[RANK.FIVE] += 1;
+      const rank = GameTools.getWinningRanking(matchingCount, matchesBonusNum);
+      if (rank !== -1) state[rank] += 1;
 
       return state;
     }, Array(LOTTO.NUM_OF_PRIZE).fill(0));

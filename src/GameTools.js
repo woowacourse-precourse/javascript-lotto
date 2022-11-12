@@ -5,6 +5,7 @@ const {
   PRIZE_MONEY,
   PLACES_OF_DECIMALS,
   DELIMITER,
+  RANK,
 } = require('./constants');
 
 class GameTools {
@@ -22,9 +23,26 @@ class GameTools {
     return lottos;
   }
 
+  static stringToSortedNumberArray(string) {
+    return string
+      .split(DELIMITER)
+      .map((num) => Number(num))
+      .sort((a, b) => a - b);
+  }
+
   static getMatchingNumCount(userNumbers, winningNumbers) {
     return userNumbers.filter((number) => winningNumbers.includes(number))
       .length;
+  }
+
+  static getWinningRanking(matchingCount, matchesBonusNum) {
+    if (matchingCount === LOTTO.LENGTH) return RANK.ONE;
+    if (matchingCount + matchesBonusNum === LOTTO.LENGTH) return RANK.TWO;
+    if (matchingCount === LOTTO.LENGTH - 1) return RANK.THREE;
+    if (matchingCount === LOTTO.LENGTH - 2) return RANK.FOUR;
+    if (matchingCount === LOTTO.LENGTH - 3) return RANK.FIVE;
+
+    return -1;
   }
 
   static calcTotalPrize(winningState) {
@@ -40,13 +58,6 @@ class GameTools {
     const rateOfReturn = (totalPrize / (countOfLottos * LOTTO.PRICE)) * 100;
 
     return rateOfReturn.toFixed(PLACES_OF_DECIMALS);
-  }
-
-  static stringToSortedNumberArray(string) {
-    return string
-      .split(DELIMITER)
-      .map((num) => Number(num))
-      .sort((a, b) => a - b);
   }
 }
 
