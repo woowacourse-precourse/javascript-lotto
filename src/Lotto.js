@@ -9,27 +9,8 @@ class Lotto {
         this.#numbers = numbers;
     }
 
-    inputWinningLotto() {
-        this.inputWinningnumber();
-    }
-
-    inputWinningnumber() {
-        Console.readLine('당첨 번호를 입력해 주세요.\n', (numbers) => {
-            const lotto = numbers.split(',').map((number) => number.trim());
-            this.#numbers['numbers'] = lotto;
-            this.inputBonusnumber();
-        });
-    }
-
-    inputBonusnumber() {
-        Console.readLine('보너스 번호를 입력해 주세요.\n', (bonus) => {
-            this.verification(this.#numbers['numbers'], bonus);
-            this.#numbers['bonus'] = bonus;
-        });
-    }
-
-    // 자동 복권
-    makeLotto() {
+    // 자동 복권 (로또 한장)
+    makeRandomLotto() {
         const lotto = Random.pickUniqueNumbersInRange(1, 45, 6);
         return lotto;
     }
@@ -39,6 +20,39 @@ class Lotto {
         console.log(
             `[${lotto[0]},${lotto[1]},${lotto[2]},${lotto[3]},${lotto[4]},${lotto[5]}]`
         );
+    }
+
+    // 자동 복권 (로또 여러장)
+    makeRandomLottos(number) {
+        const lottos = [];
+
+        for (let index = 1; index <= number; index++) {
+            const currentNumbers = this.makeRandomLotto();
+            this.showLottoNumbers(currentNumbers);
+            lottos.push(currentNumbers);
+        }
+
+        return lottos;
+    }
+
+    compare(lottos) {
+        let count = 0;
+        lottos.forEach((lotto) => {
+            for (let number of lotto) {
+                this.#numbers['numbers'].findIndex((e) => e === number)
+                    ? count++
+                    : (count += 0);
+            }
+
+            // judgement
+            if (count === 6) return '1등';
+
+            if (count === 5) return '2등';
+
+            if (count === 4) return '3등';
+
+            if (count === 3) return '4등';
+        });
     }
 
     verification(lotto, bonus) {
@@ -57,4 +71,6 @@ class Lotto {
 
 module.exports = Lotto;
 
-console.log(Random.pickUniqueNumbersInRange(1, 45, 6));
+// const l = new Lotto({});
+
+// l.inputWinningLotto();
