@@ -12,7 +12,7 @@ class Lotto {
 
   validate(numbers) {
     if (this.isNotVaildLength(numbers)) {
-      this.utils.throwError(ERROR.NOT_SIX_NUMBER);
+      this.utils.throwError(ERROR.NOT_SIX_NUMBERS);
     }
     if (this.isNotDiffNumbers(numbers)) {
       this.utils.throwError(ERROR.DUPLICATE_NUMBERS);
