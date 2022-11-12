@@ -1,97 +1,10 @@
 const { Console } = require('@woowacourse/mission-utils');
-const {
-    InputException,
-    LottoException,
-    BonusException,
-} = require('../src/Exception');
-const Lotto = require('./Lotto');
+const Input = require('./Input');
 
 class App {
-    money;
-    lottoNumbers;
-    bonusNumber;
-    randomLottoNumbers;
-
-    inputException = new InputException();
-    lottoException = new LottoException();
-    bonusException = new BonusException();
-    lottoInstance = new Lotto();
-
     play() {
-        // this.process();
-        this.inputMoney();
-    }
-
-    inputMoney() {
-        // return new Promise((resolve, reject) => {
-        //     Console.readLine('구입금액을 입력해주세요.\n', (money) => {
-        //         this.inputException.checkInputException(money);
-        //         console.log(`${+money / 1000}개를 구매했습니다.`);
-        //         this.randomLottoNumbers = this.lottoClass.makeRandomLottos(
-        //             +money / 1000
-        //         );
-        //         resolve(money);
-        //     });
-        // });
-
-        Console.readLine('구입금액을 입력해주세요.\n', (money) => {
-            this.inputException.checkInputException(money);
-            Console.print(`${+money / 1000}개를 구매했습니다.`);
-            this.money = money;
-            this.randomLottoNumbers = this.lottoInstance.makeRandomLottos(
-                +money / 1000
-            );
-            this.inputLottoNumbers();
-        });
-    }
-
-    inputLottoNumbers() {
-        // return new Promise((resolve, reject) => {
-        //     Console.readLine('당첨 번호를 입력해 주세요.\n', (string) => {
-        //         let lotto = string.split(',').map((number) => number.trim());
-        //         this.lottoException.checkLottoException(lotto);
-        //         resolve(lotto);
-        //     });
-        // });
-
-        Console.readLine('당첨 번호를 입력해 주세요.\n', (string) => {
-            let lotto = string.split(',').map((number) => number.trim());
-
-            this.lottoException.checkLottoException(lotto);
-            this.lottoNumbers = lotto;
-            this.inputBonusNumber();
-        });
-    }
-
-    inputBonusNumber() {
-        // return new Promise((resolve, reject) => {
-        //     Console.readLine('보너스 번호를 입력해 주세요.\n', (bonus) => {
-        //         this.bonusException.checkBonusException(bonus);
-        //         resolve(bonus);
-        //     });
-        // });
-
-        Console.readLine('보너스 번호를 입력해 주세요.\n', (bonus) => {
-            this.bonusException.checkBonusException(bonus);
-            this.bonusNumber = bonus;
-            this.process();
-        });
-    }
-
-    process() {
-        // this.money = await this.inputMoney();
-        // this.lottoNumbers = await this.inputLottoNumbers();
-        // this.bonusNumber = await this.inputBonusNumber();
-        // this.inputMoney();
-        const compareResult = this.compare(
-            this.lottoNumbers,
-            this.bonusNumber,
-            this.randomLottoNumbers
-        );
-        const finalResult = this.showResult(compareResult);
-        const profitRate = this.calProfitRate(finalResult);
-        Console.print(`총 수익률은 ${profitRate}%입니다.`);
-        Console.close();
+        const input = new Input();
+        input.start();
     }
 
     compare(winningNumbers, bonusNumber, randomNumbers) {
