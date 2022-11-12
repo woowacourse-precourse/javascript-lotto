@@ -1,11 +1,10 @@
-const consoleWork = require('./consoleWork');
+const consoleWork = require('./ConsoleWork');
 const Lotto = require('./Lotto');
+
 class App {
-  constructor() {
-    this.consoleWork = consoleWork;
-    this.Lotto = Lotto;
+  play() {
+    Lotto.playGame();
   }
-  play() {}
 }
 
 const app = new App();
