@@ -1,6 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const { lookup } = require('dns');
-const Exception = require('../src/Exception');
+const { LottoException } = require('../src/Exception');
 
 class Lotto {
     #numbers;
@@ -17,10 +16,10 @@ class Lotto {
         });
     }
 
-    /** @typedef {('unit' | 'lottoNumber')} type */
+    /** @typedef {'lottoNumber'} type */
     /** @type {function (string, type) : void} */
     verification(input, type) {
-        const exception = new Exception();
+        const exception = new LottoException();
         if (type === 'lottoNumber') exception.isSix(input);
     }
 

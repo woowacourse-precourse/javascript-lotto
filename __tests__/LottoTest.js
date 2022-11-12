@@ -1,5 +1,5 @@
 const Lotto = require('../src/Lotto');
-const Exception = require('../src/Exception');
+const { InputException, LottoException } = require('../src/Exception');
 
 describe('로또 클래스 테스트', () => {
     test('로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.', () => {
@@ -21,29 +21,29 @@ describe('로또 클래스 테스트', () => {
 describe.only('예외 사항 테스트', () => {
     test('입력 금액이 천원 단위인지 확인', () => {
         expect(() => {
-            const exception = new Exception();
+            const exception = new InputException();
             exception.isThousand('13200');
         }).toThrow('[ERROR]');
 
         expect(() => {
-            const exception = new Exception();
+            const exception = new InputException();
             exception.isThousand('13010');
         }).toThrow('[ERROR]');
 
         expect(() => {
-            const exception = new Exception();
+            const exception = new InputException();
             exception.isThousand('130100');
         }).toThrow('[ERROR]');
     });
 
     test('로또 번호의 갯수가 6개인지 확인', () => {
         expect(() => {
-            const exception = new Exception();
+            const exception = new LottoException();
             exception.isSix([1, 2, 3, 4, 5, 6, 7]);
         }).toThrow('[ERROR]');
 
         expect(() => {
-            const exception = new Exception();
+            const exception = new LottoException();
             exception.isSix([1, 2, 3, 4, 5]);
         }).toThrow('[ERROR]');
     });
