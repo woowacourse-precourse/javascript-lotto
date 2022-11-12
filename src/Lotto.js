@@ -113,6 +113,19 @@ class Lotto {
 
     return copiedWinningAmount;
   }
+
+  getLottoResult(winningNumbers, bonus) {
+    let winningAmount = [0, 0, 0, 0, 0];
+
+    this.#numbers.forEach((value) => {
+      Lotto.validate(value);
+
+      const count = Lotto.calculateCount(winningNumbers, value);
+      winningAmount = Lotto.analysisWinningAmount(winningAmount, count, value, bonus);
+    });
+
+    return winningAmount;
+  }
 }
 
 module.exports = Lotto;
