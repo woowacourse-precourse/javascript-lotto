@@ -3,6 +3,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class App {
   money=0;
   userLottoNumbers=[];
+  winningNumbers=[];
 
   constructor(){
 
@@ -13,21 +14,25 @@ class App {
   }
 
   insertMoney(){
-    MissionUtils.Console.readLine('구입금액을 입력해 주세요. ', (answer) => {
+    MissionUtils.Console.readLine('구입금액을 입력해 주세요.', (answer) => {
       this.money = answer/1000;
       this.makeLottoNumber();
-  })
+    })
   }
 
   makeLottoNumber(){
     for(let i=0; i<this.money; i++){
       const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-      MissionUtils.Console.print("["+numbers.join(", ")+"]")
+      this.lottoNumberPrint(numbers);
       this.userLottoNumbers.push(numbers);
     }
-    MissionUtils.Console.close();
   }
 
+  lottoNumberPrint(numbers){
+    MissionUtils.Console.print("["+numbers.join(", ")+"]")
+  }
+
+ 
 }
 const app = new App();
 app.play();
