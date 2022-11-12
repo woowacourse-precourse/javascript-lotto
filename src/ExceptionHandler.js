@@ -6,7 +6,7 @@ class ExceptionHandler {
   }
 
   static winningNumberLength(winningNumber) {
-    if (winningNumber.split(Constant.COMMA).length > 6) throw new Error("[ERROR] 숫자를 6개 입력해주세요.");
+    if (winningNumber.split(Constant.COMMA).length !== 6) throw new Error("[ERROR] 숫자를 6개 입력해주세요.");
   }
 
   static winningNumberRedundancy(winningNumber) {
