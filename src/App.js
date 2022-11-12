@@ -56,8 +56,17 @@ class App {
 
   // 로또 당첨번호 생성
   makeWinNumber() {
-    // 당첨번호 입력
-    // 보너스 넘버 입력
+    Console.readLine(APP_MESSAGE.INSERT_WIN_NUMBER, (userInput) => {
+      const answerLottery = userInput.split(',').map((separateInput) => {
+        separateInput = Number(separateInput.trim());
+        return separateInput;
+      });
+
+      if (!isValidLottery(answerLottery))
+        return this.makeException('INPUT_EXCEPTION');
+
+      this.#winNumber = answerLottery;
+    });
   }
 
   // 수익률 출력하기
