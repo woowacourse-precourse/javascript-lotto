@@ -28,7 +28,7 @@ class App {
       const pickedNumbers = Random.pickUniqueNumbersInRange(1, 45, 6).sort(
         (a, b) => a - b
       );
-      Console.print(pickedNumbers);
+      Console.print(`[${pickedNumbers.join(", ")}]`);
       this.generatedLottos.push(pickedNumbers);
     }
     this.askForLottoNumbers();
