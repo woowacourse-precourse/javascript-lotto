@@ -38,6 +38,21 @@ class WinningCalculator {
     });
   }
 
+  getPrizeMoney() {
+    const prize = [2000000000, 30000000, 1500000, 50000, 5000];
+
+    return this.#rank.reduce((acc, currentRank, idx) => {
+      return acc + currentRank * prize[idx];
+    }, 0);
+  }
+
+  printRateOfReturn() {
+    const purchaseAmount = this.#lottos.length * 1000;
+    const prizeMoney = this.getPrizeMoney();
+
+    return Math.round((prizeMoney / purchaseAmount) * 10);
+  }
+
   printRank() {
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.#rank[4]}개`);
     MissionUtils.Console.print(`4개 일치 (50,000원) - ${this.#rank[3]}개`);
