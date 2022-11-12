@@ -33,7 +33,6 @@ class LottoGenerator {
   }
 
   generateLottos(numOfLottos) {
-    console.log('개수', numOfLottos);
     let lottos = [];
     for (let i = 0; i < numOfLottos; i += 1) {
       const ONE_LOTTO_NUM = this.generateLottoNum();
