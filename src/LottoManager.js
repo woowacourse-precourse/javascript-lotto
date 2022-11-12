@@ -20,6 +20,8 @@ class LottoManager {
       console.log(this.#winningNumbers);
 
       this.checkInputWinningNumbers();
+      this.inputBonusNumber();
+
     });
   }
 
@@ -47,6 +49,15 @@ class LottoManager {
   filterRange(arr, a, b) {
     return arr.filter(arr => (arr >= a && arr <= b));
   }
+
+  inputBonusNumber() {
+    MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
+      this.#bonusNumber = Number(bonusNumber);
+
+      console.log(this.#bonusNumber);
+    });
+  }
+
 }
 
 const lottoManager = new LottoManager();
