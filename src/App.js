@@ -1,13 +1,14 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
-
 const CalculationMoney = require("./CalculationMoney");
 const Render = require("./Render");
+const { validateMoney, validateBonusNum } = require("./CheckBonusAndMoney");
 
-const lotto = new Lotto();
 const calculationMoney = new CalculationMoney();
 const render = new Render();
 class App {
+  // 생성자함수를 생성하면 바로 데이터 검사를 할 수 있게만들어야통과함
+
   play() {
     this.getUserMoney();
   }
@@ -17,9 +18,10 @@ class App {
   }
 
   getUserMoney() {
-    Console.readLine("구매금액을 입력해 주세요.", (money) => {
+    Console.readLine(`구매금액을 입력해 주세요.\n`, (money) => {
       this.userInputMoney = money;
-      lotto.validateMoney(this.userInputMoney);
+
+      validateMoney(money);
 
       this.showPurchasedLotto();
     });
@@ -39,6 +41,7 @@ class App {
 
   makeLotto(purchaedLottoNum) {
     this.userHaveLotto = calculationMoney.makeLotto(purchaedLottoNum);
+
     render.showMadeLotto(this.userHaveLotto);
 
     this.lineBreak();
@@ -47,22 +50,27 @@ class App {
   }
 
   getWinningNum() {
-    Console.readLine("당첨 번호를 입력해 주세요.", (winningNum) => {
-      this.winningNum = winningNum.split(",");
+    Console.readLine(
+      "당첨 번호를 입력해 주세요.\n",
+      (userInputOfWinningNum) => {
+        this.winningNum = userInputOfWinningNum.split(",");
 
-      lotto.validateWinningNum(this.winningNum);
+        const lotto = new Lotto(this.winningNum);
 
-      this.lineBreak();
+        this.lineBreak();
 
-      this.getBonusNum();
-    });
+        this.getBonusNum();
+      }
+    );
   }
 
   getBonusNum() {
-    Console.readLine("보너스 번호를 입력해 주세요.", (bonusNum) => {
+    Console.readLine("보너스 번호를 입력해 주세요.\n", (bonusNum) => {
       this.bonusNum = bonusNum;
 
-      lotto.validateBonusNum(this.bonusNum, this.winningNum);
+      validateBonusNum(bonusNum, this.winningNum);
+
+      this.lineBreak();
 
       this.calculateOfLotto();
     });
@@ -98,9 +106,9 @@ class App {
   makeWinningAmount(result) {
     const winningAmount = calculationMoney.makeWinningAmount(result);
 
-    Console.print(winningAmount);
-
     render.showRateOfReturn(winningAmount, this.userInputMoney);
+
+    Console.close();
   }
 }
 

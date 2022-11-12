@@ -31,8 +31,6 @@ class CalculationMoney {
     return winningNumArr; // 맞춘 로또 몇개인지 배열!
   }
   checkInBonus(usersLotto, bonusNum, { index }) {
-    Console.print(usersLotto[index]); // 이건 당첨번호
-    Console.print(bonusNum);
     if (usersLotto[index].includes(parseInt(bonusNum)) === true) {
       return true;
     }
