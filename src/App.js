@@ -62,8 +62,6 @@ class App {
       this.winningNumbers.push(answer);
     })
   }
-
- 
 }
 const app = new App();
 app.play();
