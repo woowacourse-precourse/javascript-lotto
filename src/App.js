@@ -1,4 +1,4 @@
-const { Console, Random } = require("@woowacourse/mission-utils");
+const { Console, Random } = require('@woowacourse/mission-utils');
 const {
   PRICE_PER_LOTTO,
   LOTTO_LENGTH,
@@ -7,9 +7,9 @@ const {
   LOTTO,
   MESSAGE,
   ERROR_MESSAGE,
-} = require("./domain/constant");
-const Util = require("./Util");
-const Lotto = require("./Lotto");
+} = require('./domain/constant');
+const Util = require('./Util');
+const Lotto = require('./Lotto');
 
 class App {
   purchaseAmount = 0;
@@ -68,7 +68,7 @@ class App {
   printLottos(lottos) {
     Console.print(MESSAGE.PURCHASE_QUANTITY(lottos.length));
     lottos.forEach((lotto) => Console.print(lotto.getLottoNumbers()));
-    Console.print("\n");
+    Console.print('\n');
     return this.readWinningNumbers(lottos);
   }
 

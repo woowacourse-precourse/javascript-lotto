@@ -1,16 +1,16 @@
-const Util = require("./Util");
+const Util = require('./Util');
 const {
   LOTTO_LENGTH,
   LOTTO_START,
   LOTTO_END,
   ERROR_MESSAGE,
-} = require("./domain/constant");
+} = require('./domain/constant');
 
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    if (typeof numbers === "string") {
+    if (typeof numbers === 'string') {
       this.validateWinningNumbers(numbers);
       numbers = this.winningNumbersToArray(numbers);
     }
@@ -51,7 +51,7 @@ class Lotto {
   }
 
   winningNumbersToArray(winningNumbers) {
-    const winningNumbersArr = winningNumbers.split(",");
+    const winningNumbersArr = winningNumbers.split(',');
     return winningNumbersArr.map((num) => parseInt(num));
   }
 }
