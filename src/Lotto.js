@@ -16,9 +16,7 @@ class Lotto {
     Lotto.#rangeTest(numbers);
   }
 
-  static validateWinningNumbers(winningNumbers, bonusNumber) {
-    Lotto.validateNumbers(winningNumbers);
-
+  static validateBonusNumber(bonusNumber, winningNumbers) {
     Lotto.#typeTest([bonusNumber]);
     Lotto.#rangeTest([bonusNumber]);
     if (new Set(winningNumbers).has(bonusNumber)) {
