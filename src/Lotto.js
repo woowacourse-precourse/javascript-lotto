@@ -24,7 +24,7 @@ class Lotto {
   }
 
   inputBonusNumbers(boughtLottos) {
-    const WORD_TO_PRINT = "보너스 번호를 입력해 주세요.\n";
+    const WORD_TO_PRINT = "\n보너스 번호를 입력해 주세요.\n";
     let bonusNumber;
     MissionUtils.Console.readLine(WORD_TO_PRINT, (number) => {
       bonusNumber = Number(number);
@@ -60,8 +60,6 @@ class Lotto {
         this.compareBoughtLottoAndBonusNumber(boughtLottos[i], bonusNumber)
       );
     }
-    console.log(totalLottoNumberStatistics, "맞힌 로또 번호개수");
-    console.log(totalLottoBonusNumberStatistics, "맞힌 보너스 번호 개수");
     this.countWinningLotto(
       totalLottoNumberStatistics,
       totalLottoBonusNumberStatistics,
@@ -85,14 +83,7 @@ class Lotto {
         numbersOfWinningLotto[totalLottoNumberStatistics[i]] += 1;
       }
     }
-    console.log(numbersOfWinningLotto, "로또 당첨 장 몇개");
     this.calculateRateOfReturn(numbersOfWinningLotto, lengthOfBoughtLottos);
-
-    // 1. for문 돌려서 totalLottoNumberStatictics값이 3이 몇개인지,4,그냥 5개, 5개 && 보너스, 6개 일치가 각각 몇개인지
-    // 센다. 이거 배열에 담기.
-    // 2. 당첨률 계산 함수 호출 : calculate수익률 => [5000,5만,150만,3천만,20억] * 위에 계산한 배열이랑 각각 index로 계산
-    // 수익률 = (수익 금액/(app.boughtlottos.length) * 1000) * 100 프로
-    // 3. printWinningStatics(수익률) 호출
   }
 
   calculateRateOfReturn(numbersOfWinningLotto, lengthOfBoughtLottos) {
@@ -106,6 +97,25 @@ class Lotto {
     }
     rateOfReturn = (totalWinningMoney / (lengthOfBoughtLottos * 1000)) * 100;
     rateOfReturn = rateOfReturn.toFixed(1);
+    this.printWinningStatistics(rateOfReturn, numbersOfWinningLotto);
+  }
+
+  printWinningStatistics(rateOfReturn, numbersOfWinningLotto) {
+    const LOTTO_WINNING_STATISTICS_AMOUNT = [
+      "3개 일치 (5,000원) - ",
+      "4개 일치 (50,000원) - ",
+      "5개 일치 (1,500,000원) - ",
+      "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
+      "6개 일치 (2,000,000,000원) - ",
+    ];
+    MissionUtils.Console.print("\n당첨 통계\n---");
+    for (let i = 0; i < 5; i++) {
+      MissionUtils.Console.print(
+        `${LOTTO_WINNING_STATISTICS_AMOUNT[i]}${numbersOfWinningLotto[i]}개`
+      );
+    }
+    MissionUtils.Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
+    MissionUtils.Console.close();
   }
 
   compareBoughtLottoAndWinningNumbers(boughtLotto) {

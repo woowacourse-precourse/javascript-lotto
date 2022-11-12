@@ -36,7 +36,7 @@ class App {
   }
 
   printBoughtNumberOfLotto(NUMBER_OF_LOTTO) {
-    const WORD_TO_PRINT = `${NUMBER_OF_LOTTO}개를 구매했습니다.\n`;
+    const WORD_TO_PRINT = ` \n${NUMBER_OF_LOTTO}개를 구매했습니다.`;
     MissionUtils.Console.print(WORD_TO_PRINT);
   }
 
@@ -45,19 +45,22 @@ class App {
       const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       this.boughtLottos.push(numbers);
     }
-    MissionUtils.Console.print(this.boughtLottos);
+    for (const boughtLotto of this.boughtLottos) {
+      MissionUtils.Console.print(boughtLotto);
+    }
+
     this.inputWinningNumbers();
   }
   // 당첨 번호 입력 받기
   // 이때 new Lotto 생성하자.
 
   inputWinningNumbers() {
-    const WORD_TO_PRINT = "당첨 번호를 입력해주세요.\n";
+    const WORD_TO_PRINT = "\n당첨 번호를 입력해주세요.\n";
     let winngNumbers;
     let bonusNumber;
     MissionUtils.Console.readLine(WORD_TO_PRINT, (numbers) => {
       winngNumbers = numbers.split(",").map(Number);
-      MissionUtils.Console.print(winngNumbers);
+
       const lotto = new Lotto(winngNumbers);
       bonusNumber = lotto.inputBonusNumbers(this.boughtLottos);
     });
