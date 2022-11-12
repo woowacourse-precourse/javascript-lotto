@@ -44,6 +44,15 @@ class LottoResult {
       if (sameNumbers == 6) this.#numberOfRanks[RANK.FIRST_INDEX]++;
     });
   }
+
+  #getTotalReward() {
+    let totalReward = 0;
+
+    this.#numberOfRanks.forEach((numberOfRank, index) => {
+      totalReward += numberOfRank * REWARD.MONEY_ARRAY[index];
+    });
+    return totalReward;
+  }
 }
 
 module.exports = LottoResult;
