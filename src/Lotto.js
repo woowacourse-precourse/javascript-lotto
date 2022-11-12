@@ -50,12 +50,14 @@ class Lotto {
     Console.readLine(ASK_BONUS_NUMBER, (bonus) => {
       const bonusNumber = new BonusNumber(this.#numbers, bonus);
 
-      new Result(
+      const result = new Result(
         this.amount,
         this.bundleOfLotto,
         this.#numbers,
         bonusNumber.userBonus
       );
+
+      result.calculateEachLotto();
     });
   }
 }
