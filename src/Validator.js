@@ -1,4 +1,10 @@
-const { ERROR_MESSAGE, LOTTO, REGEX, DELIMITER } = require('./constants');
+const {
+  ERROR_MESSAGE,
+  LOTTO,
+  REGEX,
+  DELIMITER,
+  INPUT,
+} = require('./constants');
 
 class Validator {
   winningNumbers;
@@ -51,11 +57,15 @@ class Validator {
   }
 
   static throwErrorIfHasBlack(string) {
-    if (string.includes(' ')) this.throwError(ERROR_MESSAGE.HAS_BLANK);
+    if (string.includes(INPUT.CAN_NOT_INCLUDES)) {
+      this.throwError(ERROR_MESSAGE.HAS_BLANK);
+    }
   }
 
   static throwErrorIfStartsWithZero(string) {
-    if (string.startsWith('0')) this.throwError(ERROR_MESSAGE.START_WITH_ZERO);
+    if (string.startsWith(INPUT.CAN_NOT_STARTS_WITH)) {
+      this.throwError(ERROR_MESSAGE.START_WITH_ZERO);
+    }
   }
 
   static throwErrorIfOutOfRange(number) {

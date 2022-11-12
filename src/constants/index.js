@@ -20,11 +20,15 @@ const RANK = Object.freeze({
   FIVE: 4,
 });
 
-const PLACES_OF_DECIMALS = 1;
-
-const DELIMITER = ',';
-
 const PRIZE_MONEY = [2000000000, 30000000, 1500000, 50000, 5000];
+
+const MESSAGE = Object.freeze({
+  ASK_BUDGET: '구입금액을 입력해 주세요.\n',
+  ASK_WINNING_NUMBER: '\n당첨 번호를 입력해 주세요.\n',
+  ASK_BONUS_NUMBER: '\n보너스 번호를 입력해 주세요.\n',
+  STATISTICS_NOTIFICATION: '\n당첨 통계',
+  DIVISION_LINE: '---',
+});
 
 const ERROR_MESSAGE = Object.freeze({
   ERROR_FORM: '[ERROR] ',
@@ -39,14 +43,6 @@ const ERROR_MESSAGE = Object.freeze({
   WINNING_HAS: '이미 당첨 번호에 포함된 번호를 입력할 수 없습니다.',
 });
 
-const MESSAGE = Object.freeze({
-  ASK_BUDGET: '구입금액을 입력해 주세요.\n',
-  ASK_WINNING_NUMBER: '\n당첨 번호를 입력해 주세요.\n',
-  ASK_BONUS_NUMBER: '\n보너스 번호를 입력해 주세요.\n',
-  STATISTICS_NOTIFICATION: '\n당첨 통계',
-  DIVISION_LINE: '---',
-});
-
 const RENDER_MESSAGE = Object.freeze({
   purchaseNotification: (count) => `\n${count}개를 구매했습니다.`,
   issuedLotto: (numbers) => `[${numbers.join(', ')}]`,
@@ -58,14 +54,24 @@ const RENDER_MESSAGE = Object.freeze({
   rateOfReturn: (rateOfReturn) => `총 수익률은 ${rateOfReturn}%입니다.`,
 });
 
+const INPUT = {
+  CAN_NOT_INCLUDES: ' ',
+  CAN_NOT_STARTS_WITH: '0',
+};
+
+const DELIMITER = ',';
+
+const PLACES_OF_DECIMALS = 1;
+
 module.exports = {
   LOTTO,
-  RANK,
-  ERROR_MESSAGE,
-  MESSAGE,
-  PRIZE_MONEY,
-  PLACES_OF_DECIMALS,
-  RENDER_MESSAGE,
   REGEX,
+  RANK,
+  PRIZE_MONEY,
+  MESSAGE,
+  ERROR_MESSAGE,
+  RENDER_MESSAGE,
+  INPUT,
   DELIMITER,
+  PLACES_OF_DECIMALS,
 };
