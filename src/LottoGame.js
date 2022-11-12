@@ -18,6 +18,7 @@ class LottoGame {
   purchase(number) {
     Console.print(`\n${number}개를 구매했습니다.`);
     this.issue(number);
+    this.printLottoNumbers();
   }
 
   issue(number) {
@@ -27,6 +28,12 @@ class LottoGame {
       this.purchaseList.push(lottoNumbers);
       count += 1;
     }
+  }
+
+  printLottoNumbers() {
+    this.purchaseList.forEach((lottoNumbers) => {
+      Console.print(`[${lottoNumbers.join(', ')}]`);
+    });
   }
 }
 

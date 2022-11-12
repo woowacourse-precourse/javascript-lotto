@@ -5,9 +5,9 @@
 - [x] 구입금액문구 출력 및 입력 `run` 및 `inputmoney`
 - [x] 구입 갯수 출력 `purchase`
   - [ ] 구입 금액 1000원 당 로또 발행 1회이다. `checkPurchasePrice`
-- [ ] 구입한 로또 목록 출력
+- [x] 구입한 로또 목록 출력
   - [x] 1~45까지의 중복되지 않는 6자리의 숫자를 발행 횟수만큼 뽑는다. `issue`
-  - [ ] 로또 발행 횟수 만큼 로또 번호 목록을 출력한다. `printLottoNumbers`
+  - [x] 로또 발행 횟수 만큼 로또 번호 목록을 출력한다. `printLottoNumbers`
 - [ ] 당첨번호 문구 출력 및 입력 `drawWinningNumbers`
 - [ ] 보너스번호 문구 출력 및 입력 `drawBonuseNumber`
 - [ ] 당첨통계 출력
