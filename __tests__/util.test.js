@@ -13,6 +13,13 @@ describe("입력한 구매 금액이 유효한 값인지 검사한다.", () => {
     expect(utils.hasChar("1000원")).toEqual(true);
     expect(utils.hasChar("1000won")).toEqual(true);
     expect(utils.hasChar("anything")).toEqual(true);
+    expect(utils.hasChar("3 00 0")).toEqual(true);
+    expect(utils.hasChar("3 0 0")).toEqual(true);
+    expect(utils.hasChar("$1000")).toEqual(true);
+    expect(utils.hasChar("1000$")).toEqual(true);
+    expect(utils.hasChar("10,000")).toEqual(true);
+    expect(utils.hasChar("100,000")).toEqual(true);
+    expect(utils.hasChar("1,000")).toEqual(true);
   });
 
   test("금액이 1000원으로 나눠떨어지지 않으면 false를 반환한다.", () => {
