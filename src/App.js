@@ -30,7 +30,7 @@ function inputPurchaseAmount() {
 }
 
 function is1000Multiple(purchaseAmount) {
-  if (purchaseAmount % 1000 !== 0) {
+  if (purchaseAmount % 1000 !== 0 || parseInt(purchaseAmount / 1000) === 0) {
     throw new Error("[ERROR] 로또 구입 금액은 1000의 배수여야 합니다.");
   }
   makeCandidateNumberSets(parseInt(purchaseAmount / 1000));
