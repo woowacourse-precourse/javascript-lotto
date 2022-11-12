@@ -1,6 +1,6 @@
 const { Random } = require('@woowacourse/mission-utils');
-const { LOTTO, COMMAND, ERROR, MONEY, MESSAGE } = require('./constructor.js');
-const { printMessage, userInput, throwErrorMessage } = require('./utils.js');
+const { LOTTO, COMMAND, MESSAGE } = require('./constructor.js');
+const { printMessage, userInput } = require('./utils.js');
 const Lotto = require('./Lotto.js');
 const Bonus = require('./Bonus.js');
 const Purchase = require('./Purchase.js');
@@ -9,11 +9,6 @@ class App {
   constructor() {
     this.purchaseAmount = 0;
     this.lottos = [];
-  }
-
-  getPurchaseInfo(amount) {
-    const purchase = new Purchase(amount);
-    return { purchaseAmount: purchase.getPurchaseAmount(), count: purchase.getPublishCount() };
   }
 
   createRandomLottoNumbers() {
@@ -29,11 +24,14 @@ class App {
   }
 
   play() {
-    userInput(COMMAND.INPUT_PURCHASE_AMOUNT, (amount) => {
-      const purchaseInfo = this.getPurchaseInfo(amount);
-      this.purchaseAmount = purchaseInfo.amount;
-      this.generateUserLottos(purchaseInfo.count);
-      this.lottos.forEach(lotto => printMessage(lotto.getNumbers()));
+    userInput(COMMAND.INPUT_PURCHASE_AMOUNT, (number) => {
+      const purchase = new Purchase(number);
+      this.purchaseAmount = purchase.getPurchaseAmount();
+      const count = purchase.getPublishCount();
+      this.generateUserLottos(count);
+      printMessage(`${count}${MESSAGE.PURCHASE_AMOUNT}`);
+      this.lottos.forEach(lotto => printMessage(lotto.getNumbersToArrayFormat()));
+      this.getResult();
     });
   }
 }
