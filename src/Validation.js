@@ -10,6 +10,9 @@ class Validation {
   static validatePurchaseAmount(purchaseAmount) {
     const purchaseAmountArr = purchaseAmount.split("");
 
+    if (Validation.isEmptyInput(purchaseAmount)) {
+      throw new Error(ERROR_MESSAGE.EMPTY_INPUT);
+    }
     if (!Validation.hasOnlyNumber(purchaseAmountArr)) {
       throw new Error(ERROR_MESSAGE.INVALID_INPUT_TYPE);
     }
@@ -38,6 +41,9 @@ class Validation {
   }
 
   static validateLottoNumber(lottoNumbers) {
+    if (Validation.isEmptyInput(lottoNumbers)) {
+      throw new Error(ERROR_MESSAGE.EMPTY_INPUT);
+    }
     if (!Validation.hasOnlyNumber(lottoNumbers)) {
       throw new Error(ERROR_MESSAGE.INVALID_INPUT_TYPE);
     }
