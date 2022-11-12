@@ -2,6 +2,8 @@ const DEFAULT_PRICE = 1000;
 const LOTTO_NUMBER_MIN = 1;
 const LOTTO_NUMBER_MAX = 45;
 const LOTTO_LENGTH = 6;
+const BONUS_CHECK = 5;
+const BONUS_COUNT = 0.5;
 const PURCHASE_MESSAGE = '구입금액을 입력해 주세요.';
 const PURCHASE_COUNT_MESSAGE = (purchaseCount) =>
   `${purchaseCount}개를 구매했습니다.`;
@@ -19,12 +21,15 @@ const WINNING_STATISTICS = {
 const EARNINGS = {
   YIELD_MESSAGE: (earnings) => `총 수익률은 ${earnings}%입니다.`,
 };
+const LINE = '---';
 
 module.exports = {
   DEFAULT_PRICE,
   LOTTO_NUMBER_MIN,
   LOTTO_NUMBER_MAX,
   LOTTO_LENGTH,
+  BONUS_CHECK,
+  BONUS_COUNT,
   PURCHASE_MESSAGE,
   PURCHASE_COUNT_MESSAGE,
   WINNING_NUMBER_MESSAGE,
@@ -32,4 +37,5 @@ module.exports = {
   WINNING_STATISTICS_MESSAGE,
   WINNING_STATISTICS,
   EARNINGS,
+  LINE,
 };
