@@ -136,7 +136,7 @@ class Lotto {
       totalEarnings += prizeMoney[index] * value;
     });
 
-    return (totalEarnings / purchaseAmount) * 100;
+    return Math.round((totalEarnings / purchaseAmount) * 100 * 10) / 10;
   }
 
   printEarningsRate(earningsRate) {
