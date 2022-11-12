@@ -13,7 +13,8 @@ class LottoView {
 
   static printUserLottos(lottos) {
     lottos.forEach((lotto) => {
-      print(lotto);
+      const lottoNumbers = lotto.join(', ');
+      print(`[${lottoNumbers}]`);
     });
   }
 
