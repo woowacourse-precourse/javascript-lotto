@@ -47,10 +47,13 @@ class App {
     Console.readLine(LOTTO_QUESTION.bonus, input => {
       this.#bonus = new Bonus(input);
 
-      const lottoPayment = new LottoAdjustment({
-        draw: new LottoDrawFactory({ lotto: this.#lotto, bonus: this.#bonus }),
-        payment: this.#lottoStore,
-      });
+      const lottoPayment = new LottoAdjustment(
+        new LottoDrawFactory({
+          lotto: this.#lotto,
+          bonus: this.#bonus,
+          lottoStore: this.#lottoStore,
+        }),
+      );
 
       lottoPayment.print();
     });
