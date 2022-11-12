@@ -1,4 +1,7 @@
-const { VARIABLE_LOTTO, LOTTO_ERROR_MESSAGE } = require('../utils/constants');
+const {
+  VARIABLE_LOTTO,
+  LOTTO_ERROR_MESSAGE,
+} = require('../../utils/constants');
 
 class LottoDrawFactory {
   constructor({ lotto, bonus }) {
