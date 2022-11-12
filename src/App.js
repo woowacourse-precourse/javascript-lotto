@@ -35,6 +35,14 @@ class App {
     this.generatedLottos = this.generatedLottos.map((el) =>
       el.sort((a, b) => a - b)
     );
+    this.printLotto();
+  }
+
+  printLotto() {
+    const generatedLottos = this.generatedLottos;
+    for (let i = 0; i < generatedLottos.length; i++) {
+      Console.print(generatedLottos[i]);
+    }
   }
 }
 
