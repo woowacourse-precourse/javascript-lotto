@@ -39,7 +39,7 @@ class Validator {
 
   static checkWinNumbersSeparator(winNumbers) {
     const splitNumberLength = winNumbers.match(/,/g, '').length;
-    if (String(splitNumberLength) !== `${LOTTO_INFO.COUNT}`) {
+    if (String(splitNumberLength) !== `${LOTTO_INFO.COUNT - 1}`) {
       throw new Error(`${ERROR_MESSAGES.INVALID_SEPARATOR}`);
     }
   }
