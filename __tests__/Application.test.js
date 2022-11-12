@@ -261,4 +261,22 @@ describe('정수 판단 함수 테스트', () => {
       expect(Application.copyArray(array) !== array).toBeTruthy();
     });
   });
+
+  describe('더하기 함수 테스트', () => {
+    test('메소드 이름은 "add"로 정의된다.', () => {
+      const METHOD_NAME = 'add';
+
+      expect(Application.add.name).toEqual(METHOD_NAME);
+    });
+
+    test('1 + 1은 2를 반환한다.', () => {
+      expect(Application.add(1, 1)).toBe(2);
+    });
+
+    test('전달받은 인수는 숫자로 변환이 불가능하면 예외를 발생시킨다.', () => {
+      expect(() => {
+        Application.add(1, 'z');
+      }).toThrow(NUMBER_EXCEPTION_TEXT);
+    });
+  });
 });
