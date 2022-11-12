@@ -36,4 +36,11 @@ describe("금액 입력 예외 처리", () => {
       app.play();
     }).toThrow("[ERROR]");
   });
+  test("숫자 외 문자를 입력하면 예외가 발생한다.", () => {
+    mockQuestions(["300a0"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
 });
