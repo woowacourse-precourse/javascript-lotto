@@ -12,6 +12,12 @@ class Lotto {
     return this.#numbers;
   }
 
+  set winningNums(input) {
+    if (Validation.isRightBonus(this.#numbers, input)) {
+      this.#numbers.push(Number(input));
+    }
+  }
+
   validate(numbers) {
     return Validation.isRightInput(numbers);
   }

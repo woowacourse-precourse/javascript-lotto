@@ -19,6 +19,14 @@ class Validation {
     return true;
   }
 
+  static isRightBonus(numbers, bonus) {
+    const bonusNum = this.isRightSingleNum(bonus);
+    if (numbers.some((number) => number === bonusNum)) {
+      throw new InputError(MESSAGES.DUPLICATED_INPUT);
+    }
+    return true;
+  }
+
   static isRightSingleNum(bonus) {
     const number = Number(bonus);
     if (Number.isNaN(number)) throw new InputError(MESSAGES.NOT_A_NUMBER);

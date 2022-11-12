@@ -30,6 +30,13 @@ class App {
   }
 
   #askBonusNum() {
+    Console.readLine(`\n${MESSAGES.GET_BONUS}\n`, (number) => {
+      this.lotto.winningNums = number;
+      this.#showResult();
+    });
+  }
+
+  #showResult() {
     Console.print(this.lotto.winningNums);
   }
 }
