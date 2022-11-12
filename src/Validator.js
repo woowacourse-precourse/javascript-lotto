@@ -23,12 +23,12 @@ class Validator {
     lottoNumbers.forEach(this.validateLottoNumber.bind(this));
   }
 
-  static validateLottoNumber(bonusNumber) {
-    if (!this.isNaturalNumber(bonusNumber)) {
+  static validateLottoNumber(number) {
+    if (!this.isNaturalNumber(number)) {
       throw new Error(ERROR.NATURAL_NUMBER);
     }
 
-    if (!this.isBetween1And45(bonusNumber)) {
+    if (!this.isBetween1And45(number)) {
       throw new Error(ERROR.BETWEEN_1_TO_45_NUMBERS);
     }
   }

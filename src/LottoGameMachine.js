@@ -9,6 +9,7 @@ class LottoGameMachine {
     this.totalPurchaseAmount = 0;
     this.totalLottosCount = 0;
     this.Lottos = new Map();
+    this.winningLotto = new Map();
   }
 
   setTotalPurchaseAmount() {
@@ -33,8 +34,22 @@ class LottoGameMachine {
   printLottoNumbers() {
     Console.print(MESSAGE.OUTPUT.TOTAL_PURCHASE_AMOUNT(this.totalLottosCount));
     for (const lottoNumbers of this.Lottos.values()) {
-      Console.print(lottoNumbers.getLottoNumbers());
+      Console.print(typeof lottoNumbers.getLottoNumbers());
     }
+  }
+
+  setWinningLottoNumbers() {
+    Console.readLine(MESSAGE.INPUT.WINNING_LOTTO_NUMBERS, (numbers) => {
+      const numbersArray = numbers.split(',');
+      this.winningLotto.set('당첨 번호', new Lotto(numbersArray));
+    });
+  }
+
+  setBonusLottoNumber() {
+    Console.readLine(MESSAGE.INPUT.BONUS_LOTTO_NUMBER, (number) => {
+      Validator.validateLottoNumber(number);
+      this.winningLotto.set('보너스 번호', Number(number));
+    });
   }
 }
 

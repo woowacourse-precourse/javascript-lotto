@@ -18,10 +18,10 @@
 - [x] 사용자에게 구입 금액을 입력받는다. : `setTotalPurchaseAmount`
 - [x] 구입 금액에 해당하는 만큼 로또를 발행한다. : `setLottos`
   - `generateRandomLottoNumbers` util 함수를 사용한다.
-- [ ] 생성된 번호들을 출력한다. : `printLottoNumbers`
-- [ ] 당첨번호와 보너스 번호를 입력받는다.
-  - [ ] 당첨번호 입력 : `setWinningLottoNumbers`
-  - [ ] 보너스 번호 입력: `setBonusLottoNumber`
+- [x] 생성된 번호들을 출력한다. : `printLottoNumbers`
+- [x] 당첨번호와 보너스 번호를 입력받는다.
+  - [x] 당첨번호 입력 : `setWinningLottoNumbers`
+  - [x] 보너스 번호 입력: `setBonusLottoNumber`
 - [ ] 통계를 출력하고 로또 게임을 종료한다.
 
   - [ ] 수익률 통계 : `printRateOfReturn`
