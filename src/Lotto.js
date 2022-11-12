@@ -50,39 +50,62 @@ class Lotto {
   }
 
   winningStatistics(bonusNumber, boughtLottos) {
-    let totalLottoNumberStatictics = [];
-    let totalLottoBonusNumberStatictics = [];
+    let totalLottoNumberStatistics = [];
+    let totalLottoBonusNumberStatistics = [];
     for (let i = 0; i < boughtLottos.length; i++) {
-      totalLottoNumberStatictics.push(
+      totalLottoNumberStatistics.push(
         this.compareBoughtLottoAndWinningNumbers(boughtLottos[i])
       );
-      totalLottoBonusNumberStatictics.push(
+      totalLottoBonusNumberStatistics.push(
         this.compareBoughtLottoAndBonusNumber(boughtLottos[i], bonusNumber)
       );
     }
-    console.log(totalLottoNumberStatictics, "맞힌 로또 번호개수");
-    console.log(totalLottoBonusNumberStatictics, "맞힌 보너스 번호 개수");
+    console.log(totalLottoNumberStatistics, "맞힌 로또 번호개수");
+    console.log(totalLottoBonusNumberStatistics, "맞힌 보너스 번호 개수");
     this.countWinningLotto(
-      totalLottoNumberStatictics,
-      totalLottoBonusNumberStatictics
+      totalLottoNumberStatistics,
+      totalLottoBonusNumberStatistics,
+      boughtLottos.length
     );
   }
 
   countWinningLotto(
-    totalLottoNumberStatictics,
-    totalLottoBonusNumberStatictics
+    totalLottoNumberStatistics,
+    totalLottoBonusNumberStatistics,
+    lengthOfBoughtLottos
   ) {
     let numbersOfWinningLotto = Array.from({ length: 8 }, () => 0);
-    for (let i = 0; i < totalLottoNumberStatictics.length; i++) {
+    for (let i = 0; i < totalLottoNumberStatistics.length; i++) {
       if (
-        totalLottoNumberStatictics[i] === 5 &&
-        totalLottoBonusNumberStatictics[i] === 1
+        totalLottoNumberStatistics[i] === 5 &&
+        totalLottoBonusNumberStatistics[i] === 1
       ) {
         numbersOfWinningLotto[6] += 1;
       } else {
-        numbersOfWinningLotto[totalLottoNumberStatictics[i]] += 1;
+        numbersOfWinningLotto[totalLottoNumberStatistics[i]] += 1;
       }
     }
+    console.log(numbersOfWinningLotto, "로또 당첨 장 몇개");
+    this.calculateRateOfReturn(numbersOfWinningLotto, lengthOfBoughtLottos);
+
+    // 1. for문 돌려서 totalLottoNumberStatictics값이 3이 몇개인지,4,그냥 5개, 5개 && 보너스, 6개 일치가 각각 몇개인지
+    // 센다. 이거 배열에 담기.
+    // 2. 당첨률 계산 함수 호출 : calculate수익률 => [5000,5만,150만,3천만,20억] * 위에 계산한 배열이랑 각각 index로 계산
+    // 수익률 = (수익 금액/(app.boughtlottos.length) * 1000) * 100 프로
+    // 3. printWinningStatics(수익률) 호출
+  }
+
+  calculateRateOfReturn(numbersOfWinningLotto, lengthOfBoughtLottos) {
+    const MONEY_TO_GET_ARRAY = [5000, 500000, 1500000, 30000000, 2000000000];
+    let totalWinningMoney = 0;
+    let rateOfReturn;
+
+    numbersOfWinningLotto = numbersOfWinningLotto.slice(3, 8);
+    for (let i = 0; i < 5; i++) {
+      totalWinningMoney += MONEY_TO_GET_ARRAY[i] * numbersOfWinningLotto[i];
+    }
+    rateOfReturn = (totalWinningMoney / (lengthOfBoughtLottos * 1000)) * 100;
+    rateOfReturn = rateOfReturn.toFixed(1);
   }
 
   compareBoughtLottoAndWinningNumbers(boughtLotto) {
