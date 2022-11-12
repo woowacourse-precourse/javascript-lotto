@@ -14,15 +14,17 @@
 
 4. 생성된 로또를 출력하기.(printLottosNumbers)
 
-5. 당첨 숫자 6개를 입력받기.
+5. 당첨 숫자 6개를 입력받기. (getWinNumbers)
+   (isValidWinNumbers)
 
    - 1-45 사이의 숫자가 중복이 없이 입력 받기
    - 6개만 입력받기
    - 입력 필
 
-6. 보너스 숫자 1개 입력받기
+6. 보너스 숫자 1개 입력받기(getBonusNumber)
+   (isValidBonusNumber)
 
-   - 기존 6개와 중복 허용 여부 (고민중)
+   - 기존 6개와 중복 허용하지 않음.
    - 1-45 사이의 숫자
    - 1개만
    - 입력 필
