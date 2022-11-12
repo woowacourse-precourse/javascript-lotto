@@ -14,6 +14,8 @@ class App {
       winning: null,
     }
     this.prize = JSON.parse(JSON.stringify(PRIZE));
+    this.totalPrizeMoney = 0;
+    this.yield = 0;
   }
   play() {
     this.submitAmount();
@@ -26,7 +28,6 @@ class App {
       GamePrint.sheets(this.lotto.sheets);
       this.lotto.user = getUserLottos(this.lotto.sheets);
       GamePrint.userLottos(this.lotto.user);
-      console.log(this.lotto.user);
       this.submitLotto();
     });
   }
@@ -43,6 +44,7 @@ class App {
       this.lotto.winning.getBonus(input);
       this.getResult();
       console.log(this.prize);
+      console.log(this.totalPrizeMoney);
       MissionUtils.Console.close();
     });
   }
@@ -53,13 +55,17 @@ class App {
     });
   }
   setPrize(match) {
+    match.lotto = match.lotto.toString();
     if(match.lotto === '6' && match.bonus === false) {
+      this.totalPrizeMoney += this.prize[match.lotto].nonBonus.winningAmount;
       return this.prize[match.lotto].nonBonus.ea += 1;
     }
     if(match.lotto === '6' && match.bonus === true) {
+      this.totalPrizeMoney += this.prize[match.lotto].hasBonus.winningAmount;
       return this.prize[match.lotto].hasBonus.ea += 1;
     }
     if(Object.keys(this.prize).includes(match.lotto)) {
+      this.totalPrizeMoney += this.prize[match.lotto].winningAmount;
       return this.prize[match.lotto].ea += 1;
     }
   }

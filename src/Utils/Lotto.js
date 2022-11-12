@@ -25,7 +25,6 @@ class Lotto {
         return matchCount.bonus = true;
       }
     });
-    matchCount.lotto = matchCount.lotto.toString();
     return matchCount;
   }
 }
