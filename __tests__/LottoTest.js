@@ -62,4 +62,32 @@ describe('로또 당첨&보너스 번호 검사', () => {
 
     expect(() => Lotto.validateWinningNumbers(winningNumbers, bonusNumber)).not.toThrow();
   });
+
+  test('예외: 보너스 번호가 숫자가 아닐 경우', () => {
+    const winningNumbers = [16, 26, 29, 31, 36, 8];
+    const bonusNumber = '11';
+
+    expect(() => Lotto.validateWinningNumbers(winningNumbers, bonusNumber)).toThrow('[ERROR]');
+  });
+
+  test('예외: 보너스 번호가 1개가 아닐 경우', () => {
+    const winningNumbers = [16, 26, 29, 31, 36, 8];
+    const bonusNumber = [11, 22];
+
+    expect(() => Lotto.validateWinningNumbers(winningNumbers, bonusNumber)).toThrow('[ERROR]');
+  });
+
+  test('예외: 보너스 번호가 당첨 번호와 중복될 경우', () => {
+    const winningNumbers = [16, 26, 29, 31, 36, 8];
+    const bonusNumber = 36;
+
+    expect(() => Lotto.validateWinningNumbers(winningNumbers, bonusNumber)).toThrow('[ERROR]');
+  });
+
+  test('예외: 보너스 번호가 정해진 범위 밖일 경우', () => {
+    const winningNumbers = [16, 26, 29, 31, 36, 8];
+    const bonusNumber = 121687;
+
+    expect(() => Lotto.validateWinningNumbers(winningNumbers, bonusNumber)).toThrow('[ERROR]');
+  });
 });
