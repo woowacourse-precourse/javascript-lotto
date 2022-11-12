@@ -6,7 +6,7 @@ class Lotto {
         this.#numbers = numbers;
     }
 
-    // 검증 함수
+    // 당첨 번호 검증 함수
     validate(numbers) {
         this.onlySixNumbers(numbers);
         this.validateLimitRangeNumber(numbers);

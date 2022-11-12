@@ -1,5 +1,6 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
+const Bonus = require('./BonusLotto');
 
 const ONE_LOTTO_PRICE = 1000;
 
@@ -16,14 +17,10 @@ class App {
     // 구입 금액 입력 받는 함수의 callback
     callBackOfPurchase(price) {
         const numberOfLotto = price / ONE_LOTTO_PRICE;
-        return MissionUtils.Console.print(`\n${numberOfLotto}개를 구매했습니다.`), this.validatePurchasePrice(price), this.showRandomLotto(numberOfLotto);
-    }
-
-    // 구입 금액 검증 함수
-    validatePurchasePrice(price) {
         if (price % ONE_LOTTO_PRICE !== 0 || price === String(0)) {
-            throw '[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.';
+            throw new Error('[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.');
         }
+        return MissionUtils.Console.print(`\n${numberOfLotto}개를 구매했습니다.`), this.showRandomLotto(numberOfLotto);
     }
 
     // 구입금액에 해당하는 만큼의 로또를 보여주는 함수
@@ -50,17 +47,32 @@ class App {
         return `[${pickLottoString}]`;
     }
 
-    // 당첨 번호를 입력받는 함수
+    // 당첨 번호를 입력 받는 함수
     inputWinnigLotto() {
         MissionUtils.Console.readLine('\n당첨 번호를 입력해 주세요.\n', (input) => {
             const newInput = this.changeStringToArray(input);
             let lotto = new Lotto(newInput);
+            this.inputWinnigBonusLotto(newInput);
+        });
+    }
+
+    // 보너스 번호를 입력 받는 함수
+    inputWinnigBonusLotto(lotto) {
+        MissionUtils.Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNum) => {
+            const newBonus = this.changeStringToArray(bonusNum);
+            console.log(lotto);
+            console.log(newBonus);
+            let bonus = new Bonus(newBonus, lotto);
         });
     }
 
     // 문자열을 배열로 바꿔주는 함수
     changeStringToArray(string) {
-        return string.split(',').map((array) => Number(array));
+        if (string.includes(',')) {
+            return string.split(',').map((array) => Number(array));
+        } else {
+            return string.split().map((array) => Number(array));
+        }
     }
 }
 
