@@ -1,8 +1,9 @@
-const { Console } = require('@woowacourse/mission-utils');
+const { Console, Random } = require('@woowacourse/mission-utils');
 
 class LottoGame {
   constructor() {
     this.money = 0;
+    this.purchaseList = [];
   }
 
   run() {
@@ -16,6 +17,16 @@ class LottoGame {
 
   purchase(number) {
     Console.print(`\n${number}개를 구매했습니다.`);
+    this.issue(number);
+  }
+
+  issue(number) {
+    let count = 0;
+    while (count < number) {
+      const lottoNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+      this.purchaseList.push(lottoNumbers);
+      count += 1;
+    }
   }
 }
 

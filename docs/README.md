@@ -6,7 +6,7 @@
 - [x] 구입 갯수 출력 `purchase`
   - [ ] 구입 금액 1000원 당 로또 발행 1회이다. `checkPurchasePrice`
 - [ ] 구입한 로또 목록 출력
-  - [ ] 1~45까지의 중복되지 않는 6자리의 숫자를 발행 횟수만큼 뽑는다. `issue`
+  - [x] 1~45까지의 중복되지 않는 6자리의 숫자를 발행 횟수만큼 뽑는다. `issue`
   - [ ] 로또 발행 횟수 만큼 로또 번호 목록을 출력한다. `printLottoNumbers`
 - [ ] 당첨번호 문구 출력 및 입력 `drawWinningNumbers`
 - [ ] 보너스번호 문구 출력 및 입력 `drawBonuseNumber`
@@ -91,3 +91,13 @@
 - 보너스번호 입력
   - 번호는 1~45의 숫자다.
   - 번호가 당첨번호와 중복되면 안된다.
+
+## 기능 세부 사항
+
+- 구입한 로또 목록 출력
+  - 1~45까지의 중복되지 않는 6자리의 숫자를 발행 횟수만큼 뽑는다. `issue`
+    - `MissionUtils`라이브러리에서 제공하는 `Random.pickUniueNumbersInRange`를 활용한다.
+    - 생성자에 `purchaseList`를 추가하고 로또 번호를 이 리스트에 담는다.
+  - 로또 발행 횟수 만큼 로또 번호 목록을 출력한다. `printLottoNumbers`
+    - `forEach`를 활용해 구매한 모든 로또 번호를 출력한다.
+    - 요구한 출력 형식을 맞추기 위해 출력 형식은 `[${lottoNumbers.join(', ')}]`와 같이 한다.
