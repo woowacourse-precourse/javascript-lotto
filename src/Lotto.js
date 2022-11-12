@@ -11,30 +11,37 @@ class Lotto {
     this.thirdCount = 0;
     this.fourthCount = 0;
     this.fifthCount = 0;
+    this.ONLY_NUMBER = /^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$/;
   }
 
   validate(numbers) {
     if (numbers.length !== 6) {
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
     }
-    this.deduplication(numbers);
+    this.deduplicationException(numbers);
   }
 
-  deduplication(numbers) {
+  // TODO: 추가 기능 구현
+  numberException(number) {
+    if (!this.ONLY_NUMBER.test(number))
+      throw new Error('[ERROR] 1부터 45 사이의 숫자를 입력해주세요.');
+  }
+
+  deduplicationException(numbers) {
     const set = new Set(numbers);
 
     if (numbers.length !== set.size) {
       throw new Error('[ERROR] 중복되지 않은 번호를 입력해주세요.');
     }
+    numbers.map((number) => {
+      this.numberException(number);
+    });
   }
 
-  // TODO: 추가 기능 구현
   bonusExecption(number) {
-    const ONLY_NUMBER = /^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$/;
-    if (!ONLY_NUMBER.test(number))
-      throw new Error('[ERROR] 1 부터 45 사이의 숫자를 입력해주세요.');
     if (this.#numbers.includes(number))
       throw new Error('[ERROR] 당첨 번호와 중복되지 않는 숫자를 입력해주세요.');
+    this.numberException(number);
     this.bonusNumber = parseInt(number);
   }
 
