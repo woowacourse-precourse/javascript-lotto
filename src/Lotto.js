@@ -15,7 +15,7 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
+  // 생성된 로또번호 확인 기능
   getNumbers() {
     return this.#numbers;
   }
