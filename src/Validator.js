@@ -1,6 +1,8 @@
 const { ERROR_MESSAGE, LOTTO, REGEX } = require('./constants');
 
 class Validator {
+  winningNumbers;
+
   static throwError(message) {
     throw new Error(`${ERROR_MESSAGE.ERROR_FORM}${message}`);
   }
@@ -14,11 +16,14 @@ class Validator {
 
   static throwErrorIfInvalidWinningForm(inputValue) {
     this.throwErrorIfHasBlack(inputValue);
-    const winningNumbers = inputValue.split(',');
-    if (!REGEX.winningNumbers.test(inputValue)) {
+    this.throwErrorIfHasBlack(inputValue);
+    this.winningNumbers = inputValue.split(',');
+    if (!REGEX.winningNumbers.test(this.winningNumbers)) {
       this.throwError(ERROR_MESSAGE.WINNING_NUM_FORM);
     }
-    winningNumbers.forEach((number) => this.throwErrorIfStartsWithZero(number));
+    this.winningNumbers.forEach((number) => {
+      this.throwErrorIfStartsWithZero(number);
+    });
   }
 
   static throwErrorIfInvalidWinningNumbers(winningNumbers) {
@@ -33,14 +38,14 @@ class Validator {
     }
   }
 
-  static throwErrorIfInvalidBonusNumber(winningNumbers, bonusNumber) {
+  static throwErrorIfInvalidBonusNumber(bonusNumber) {
     this.throwErrorIfHasBlack(bonusNumber);
     this.throwErrorIfStartsWithZero(bonusNumber);
     this.throwErrorIfOutOfRange(bonusNumber);
     if (!REGEX.bonusNumber.test(bonusNumber)) {
       this.throwError(ERROR_MESSAGE.INT_FORM);
     }
-    if (winningNumbers.includes(Number(bonusNumber))) {
+    if (this.winningNumbers.includes(bonusNumber)) {
       this.throwError(ERROR_MESSAGE.WINNING_HAS);
     }
   }
