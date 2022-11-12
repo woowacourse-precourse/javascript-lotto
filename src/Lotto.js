@@ -65,7 +65,19 @@ class Lotto {
       }));
     }
 
+    this.printTicket(lotteryTicket, MONEY/1000);
+    
     return lotteryTicket
   };
+
+  printTicket(lotteryTicket, MONEY) {
+    MissionUtils.Console.print(`${MONEY}개를 구매했습니다.`);
+
+    lotteryTicket.forEach((item) => {
+      let temp = '[' + String(item.join(', ')) + ']';
+      MissionUtils.Console.print(temp);
+    });
+  }
 }
+
 module.exports = Lotto;
