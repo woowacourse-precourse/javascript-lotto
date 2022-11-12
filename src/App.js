@@ -74,6 +74,16 @@ const countScore = (checkLength,lottos, last) => {
   let third = checkLength.filter(num => 5 === num).length;
   let fourth = checkLength.filter(num => 4 === num).length;
   let fiveth = checkLength.filter(num => 3 === num).length;
+  showCount(first,second,third,fourth,fiveth);
+}
+
+const showCount = (first, second, third, fourth, fiveth) => {
+  Console.print("당첨 통계\n---");
+  Console.print(`3개 일치 (5,000원) - ${fiveth}개`);
+  Console.print(`4개 일치 (50,000원) - ${fourth}개`);
+  Console.print(`5개 일치 (1,500,000원) - ${third}개`);
+  Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${second}개`);
+  Console.print(`6개 일치 (2,000,000,000원) - ${first}개`);
 }
 
 class App {
