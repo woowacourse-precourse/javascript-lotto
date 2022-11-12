@@ -28,9 +28,8 @@ class Lotto {
 
   // TODO: 추가 기능 구현
   getResult(input, bonus) {
-    console.log(`count hit ${this.countHit(input)}`);
     let hitCount = this.countHit(input);
-    let prize = -1;
+    let prize = 0;
 
     if(hitCount == 6) prize = 1;
     else if(hitCount == 5 && this.isHitBonus(input, bonus)) {
@@ -62,9 +61,5 @@ class Lotto {
   }
 
 }
-
-
-const temp = new Lotto([1,2,3,4,5,6]);
-console.log(temp.getResult([1,2,3,4,5,7], 7));
 
 module.exports = Lotto;

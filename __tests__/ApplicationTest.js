@@ -57,7 +57,8 @@ describe("로또 테스트", () => {
     const app = new App();
     app.play();
     logs.forEach((log) => {
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+      
+      console.log(expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log)));
     });
   });
 
