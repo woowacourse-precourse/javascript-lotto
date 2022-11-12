@@ -23,11 +23,9 @@ class GameTools {
   }
 
   static calcTotalPrize(winningState) {
-    const prizeMoney = Object.values(PRIZE_MONEY);
-    const winningCount = Object.values(winningState);
     let totalPrizeMoney = 0;
     for (let i = 0; i < LOTTO.NUM_OF_PRIZE; i++) {
-      totalPrizeMoney += winningCount[i] * prizeMoney[i];
+      totalPrizeMoney += winningState[i] * PRIZE_MONEY[i];
     }
 
     return totalPrizeMoney;

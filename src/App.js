@@ -10,13 +10,6 @@ class App {
   constructor() {
     this.lotto = undefined;
     this.userLottos = [];
-    this.stateOfPrize = {
-      first: 0,
-      second: 0,
-      third: 0,
-      fourth: 0,
-      fifth: 0,
-    };
   }
 
   play() {
@@ -57,7 +50,7 @@ class App {
   }
 
   printWinningStatistics(bonusNumber) {
-    this.lotto.stateOfWinning(this.userLottos, bonusNumber, this.stateOfPrize);
+    this.lotto.stateOfWinning(this.userLottos, bonusNumber);
 
     this.exitGame();
   }

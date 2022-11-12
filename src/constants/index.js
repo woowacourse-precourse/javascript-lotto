@@ -6,6 +6,16 @@ const LOTTO = Object.freeze({
   NUM_OF_PRIZE: 5,
 });
 
+const RANK = Object.freeze({
+  ONE: 0,
+  TWO: 1,
+  THREE: 2,
+  FOUR: 3,
+  FIVE: 4,
+});
+
+const PRIZE_MONEY = [2000000000, 30000000, 1500000, 50000, 5000];
+
 const ERROR_MESSAGE = Object.freeze({
   ERROR_FORM: '[ERROR] ',
   HAS_BLACK: '입력에 공백을 포함시킬 수 없습니다.',
@@ -25,14 +35,6 @@ const MESSAGE = Object.freeze({
   ASK_BONUS_NUMBER: '\n보너스 번호를 입력해 주세요.\n',
   STATISTICS_NOTIFICATION: '\n당첨 통계',
   DIVISION_LINE: '---',
-});
-
-const PRIZE_MONEY = Object.freeze({
-  first: 2000000000,
-  second: 30000000,
-  third: 1500000,
-  fourth: 50000,
-  fifth: 5000,
 });
 
 const PLACES_OF_DECIMALS = 1;
@@ -56,6 +58,7 @@ const REGEX = Object.freeze({
 
 module.exports = {
   LOTTO,
+  RANK,
   ERROR_MESSAGE,
   MESSAGE,
   PRIZE_MONEY,
