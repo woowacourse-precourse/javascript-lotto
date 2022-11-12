@@ -3,7 +3,6 @@ const LottoModel = require("./LottoModel");
 const Lotto = require("./Lotto");
 const lottoView = new LottoView();
 const lottoModel = new LottoModel();
-// const lotto = new Lotto();
 
 class App {
   play() {
@@ -11,6 +10,9 @@ class App {
       amount = amount / 1000;
       const lottos = lottoModel.createLottos(amount);
       lottoView.printLottos(amount, lottos);
+      lottoView.getLottoNumbers().then((numbers) => {
+        console.log(numbers);
+      });
     });
   }
 }
