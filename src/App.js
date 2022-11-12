@@ -39,7 +39,15 @@ class App {
       this.winnerNumber = number.replace(/\s/g, "").split(",");
       this.validateSixNumberByComma(number);
       this.validateNumberWithoutDuplicate();
+      this.validateFromOneToFourtyFiveNumber();
       this.inputBonusNumber();
+    });
+  }
+  validateFromOneToFourtyFiveNumber() {
+    this.numberWithoutSpace.map((number) => {
+      if (number < 1 || number > 45 || !new RegExp("^[0-9]+$").test(number)) {
+        throw new Error("[ERROR] 쉼표(,)를 기준으로 1부터 45까지의 숫자만 입력 해주세요");
+      }
     });
   }
 
