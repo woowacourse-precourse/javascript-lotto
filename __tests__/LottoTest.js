@@ -123,4 +123,14 @@ describe('로또 클래스 테스트', () => {
     const ANSWER = LOTTO.NumberOfMatchedLotto(PURCHASED_LOTTOS);
     expect(ANSWER).toEqual([1, 1, 2, 3, 1]);
   });
+
+  test('수익률 테스트', () => {
+    const LOTTO = new Lotto(['1', '2', '3', '4', '5', '6']);
+    LOTTO.setBounusNumber('7');
+    const PROFIT_TEMPLATE = [5000, 50000, 1500000, 30000000, 2000000000];
+    const PROFIT_SUM = PROFIT_TEMPLATE.reduce((sum, current) => sum + current, 0);
+    const PROFIT_RATE = LOTTO.computeProfitRate(8, [1, 1, 1, 1, 1]);
+    const EXPECTED = ((PROFIT_SUM / (8 * 1000)) * 100).toFixed(1);
+    expect(PROFIT_RATE).toBe(EXPECTED);
+  });
 });
