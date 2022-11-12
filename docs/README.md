@@ -73,12 +73,15 @@ Random 값은 **MissionUtils 라이브러리**의 `Random.pickUniqueNumbersInRan
   
 `throw`문을 사용해 예외를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 종료한다.
 
-### [&nbsp; ] 보너스 번호 입력받기 - LottoManager.inputBonusNumber()  
+### [✅] 보너스 번호 입력받기 - LottoManager.inputBonusNumber()  
 **MissionUtils 라이브러리**에서 제공하는 `Console.readLine()`를 활용하여 입력받는다.   
-당첨 번호와 중복 없이 1개의 번호를 입력받는다.
 
 ### [&nbsp; ] 보너스 번호 확인하기 - LottoManager.checkInputBonusNumber()     
 ❗ 잘못된 값을 입력할 경우 예외 처리를 한다.  
+- 숫자가 아닌 경우
+- 1부터 45사이의 값이 아닌 경우    
+- 당첨 번호와 중복인 경우
+
 `throw`문을 사용해 예외를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 종료한다.
 
 </br>
