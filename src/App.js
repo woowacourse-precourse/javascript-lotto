@@ -171,6 +171,19 @@ class App {
 
     return this.printResult();
   }
+
+  printResult() {
+    print('\n당첨 통계');
+    print('---\n');
+
+    Object.keys(this.lottoResult).forEach((key) => {
+      const value = this.lottoResult[key];
+      return print(`${value.text}${value.count}개`);
+    });
+
+    print(`총 수익률은 ${this.lottoRate}%입니다.`);
+    return true;
+  }
 }
 
 const app = new App();
