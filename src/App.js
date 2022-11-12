@@ -13,7 +13,7 @@ class App {
   }
 
   getPurchaseAmount() {
-    Console.readLine(MESSEGE.INPUT_PURCHASE_AMOUNT, (input) => {
+    Console.readLine(`${MESSEGE.INPUT_PURCHASE_AMOUNT}\n`, (input) => {
       if (this.isNotDividedByThousand(input))
         this.utils.throwError(ERROR.NOT_DIVIDED_BY_THOUSAND);
 
