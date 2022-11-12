@@ -26,7 +26,6 @@ class Validator {
     const checkList = [
       this.#checkValidWinNumbers,
       this.#checkWinNumbersLenght,
-      this.#checkWinNumbersSeparator,
       this.#checkWinNumbersRange,
     ];
     checkList.forEach((checkValid) => {
@@ -46,13 +45,6 @@ class Validator {
     const splitNumberLength = winNumbers.split(',').length;
     if (String(splitNumberLength) !== `${LOTTO_INFO.COUNT}`) {
       throw new Error(`${ERROR_MESSAGES.INVALID_LOTTO_COUNT}`);
-    }
-  }
-
-  static #checkWinNumbersSeparator(winNumbers) {
-    const splitNumberLength = winNumbers.match(/,/g, '').length;
-    if (String(splitNumberLength) !== `${LOTTO_INFO.COUNT - 1}`) {
-      throw new Error(`${ERROR_MESSAGES.INVALID_SEPARATOR}`);
     }
   }
 
