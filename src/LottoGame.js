@@ -48,6 +48,7 @@ class LottoGame {
     Console.print(`\n${number}개를 구매했습니다.`);
     this.issue(number);
     this.printLottoNumbers();
+    this.drawWinningNumbers();
   }
 
   issue(number) {
@@ -76,6 +77,7 @@ class LottoGame {
     Console.readLine('\n보너스 번호를 입력해 주세요.\n', (input) => {
       this.winningNumber.bonuse = input;
       this.calculateResult();
+      this.printResult();
     });
   }
 
@@ -84,7 +86,7 @@ class LottoGame {
     this.calculateYield();
   }
 
-  calcaulateMatching() {
+  calculateMatching() {
     this.purchaseList.forEach((lottoNumbers) => {
       const matchingCount = this.countMatching(lottoNumbers);
       this.result[matchingCount] += 1;
@@ -106,6 +108,17 @@ class LottoGame {
 
   calculateYield() {
     this.result.yield = ((this.result.earn / this.money) * 100).toFixed(1);
+  }
+
+  printResult() {
+    Console.print('\n당첨 통계\n---');
+    Console.print(`3개 일치 (5,000원) - ${this.result[3]}개
+4개 일치 (50,000원) - ${this.result[4]}개
+5개 일치 (1,500,000원) - ${this.result[5]}개
+5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.result.bonuse}개
+6개 일치 (2,000,000,000원) - ${this.result[6]}개
+총 수익률은 ${this.result.yield}%입니다.`);
+    Console.close();
   }
 }
 
