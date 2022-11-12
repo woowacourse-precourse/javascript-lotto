@@ -1,13 +1,14 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const BuyLotto = require("./utils/BuyLotto");
+const BuyLotto = require("./BuyLotto");
+const { MESSAGE } = require("./constant/constant");
 
 class Lotto {
   #numbers;
 
   constructor(numbers) {
     // this.validate(numbers);
-    this.#numbers = numbers;
-    this.buyLotto = new BuyLotto();
+    this.#numbers = numbers; // input user's value
+    this.buylotto = new BuyLotto();
   }
 
   // validate(numbers) {
@@ -17,10 +18,7 @@ class Lotto {
   // }
 
   start() {
-    const buyLotto = this.buyLotto.howMuch();
-    this.numbers = buyLotto;
-
-    // const buyLotto = this.BuyLotto.making();
+    this.buylotto.howMuch();
   }
 
   // userInputNumber() {
@@ -31,14 +29,6 @@ class Lotto {
   //     }
   //   });
   //   return this.#numbers;
-  // }
-
-  // making() {
-  //   const makeNumbers = [];
-  //   const number = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-  //   makeNumbers.push(number);
-  //   console.log(makeNumbers);
-  //   this.number = number;
   // }
 }
 
