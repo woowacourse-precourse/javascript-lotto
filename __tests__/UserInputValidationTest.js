@@ -99,3 +99,14 @@ describe("Validation.isValidLottoNumberLength", () => {
     expect(result).toBe(false);
   });
 });
+
+describe("Validation.hasUniqueLottoNumber", () => {
+  test("로또 번호에 중복된 숫자가 있으면, false를 반환해야 한다.", () => {
+    // given
+    const input = [1, 2, 3, 4, 5, 5];
+    // when
+    const result = Validation.hasUniqueLottoNumber(input);
+    // then
+    expect(result).toBe(false);
+  });
+});
