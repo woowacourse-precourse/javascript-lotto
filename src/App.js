@@ -6,6 +6,7 @@ class App {
     money;
     lottoNumbers;
     bonusNumber;
+    randomLottoNumbers;
 
     play() {
         this.process();
@@ -17,6 +18,14 @@ class App {
         this.money = await this.inputMoney();
         this.lottoNumbers = await this.inputLottoNumbers();
         this.bonusNumber = await this.inputBonusNumber();
+
+        const compareResult = this.compare(
+            this.lottoNumbers,
+            this.bonusNumber,
+            this.randomLottoNumbers
+        );
+
+        const finalResult = this.showResult(compareResult);
     }
 
     inputMoney() {
@@ -25,7 +34,7 @@ class App {
                 this.verification(money);
                 console.log(`${+money / 1000}개를 구매했습니다.`);
                 const lotto = new Lotto();
-                lotto.makeRandomLottos(+money / 1000);
+                this.randomLottoNumbers = lotto.makeRandomLottos(+money / 1000);
                 resolve(money);
             });
         });
@@ -45,6 +54,51 @@ class App {
                 resolve(bonus);
             });
         });
+    }
+
+    compare(winningNumbers, bonusNumber, randomNumbers) {
+        let arr = [];
+
+        randomNumbers.forEach((lotto) => {
+            let count = 0;
+            let current = lotto;
+
+            for (let number of lotto) {
+                winningNumbers.indexOf(number.toString()) > -1
+                    ? count++
+                    : (count += 0);
+            }
+
+            arr.push(count);
+
+            if (count === 5 && current.findIndex((e) => e === bonusNumber)) {
+                arr.pop();
+                arr.push(6);
+            }
+            if (count === 6) {
+                arr.pop();
+                arr.push(7);
+            }
+        });
+
+        return arr;
+    }
+
+    showResult(compareResult) {
+        const result = {
+            '3': ['3개 일치 (5,000원) - ', 0],
+            '4': ['4개 일치 (50,000원) - ', 0],
+            '5': ['5개 일치 (1,500,000원) - ', 0],
+            '6': ['5개 일치, 보너스 볼 일치 (30,000,000원) - ', 0],
+            '7': ['6개 일치 (2,000,000,000원) - ', 0],
+        };
+        compareResult.forEach((number) => {
+            if (+number >= 3) result[number.toString()][1]++;
+        });
+
+        for (let key in result) {
+            console.log(`${result[key][0]} + ${result[key][1]}개`);
+        }
     }
 
     verification(input) {
