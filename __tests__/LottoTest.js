@@ -166,12 +166,29 @@ describe("로또 클래스 테스트", () => {
   test("보너스번호 확인", () => {
     const lotto = [1,2,3,4,5,6]
     const bonuslotto = 5
-    const ouput = true;
+    const output = true;
 
     const app = new App();
     const count = app.checkBounsNumber(lotto, bonuslotto);
     
-    expect(count).toEqual(ouput);
+    expect(count).toEqual(output);
   });
+
+  test("전체 로또 추첨 결과 확인", ()=>{
+    const issuedLotto = [
+      [1, 2, 3, 4],
+      [2, 4, 6, 8],
+      [3, 4, 5, 6],
+      [1, 2, 3, 5],
+    ];
+    const winniglotto = [1, 3, 5, 6];
+    const output = [2, 1, 3, 3];
+
+    const app = new App();
+    const arr = app.matchedNumberResult(issuedLotto,winniglotto);
+    expect(arr).toEqual(output);
+
+    
+  })
 
 });
