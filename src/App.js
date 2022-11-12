@@ -5,7 +5,7 @@ const BonusNumber = require('./BonusNumber');
 const WinningChecker = require('./WinningChecker');
 const RateOfReturnCalculator = require('./RateOfReturnCalculator');
 const MissionUtils = require('@woowacourse/mission-utils');
-const { MESSAGE, NUMBER } = require('./utils/constants');
+const { MESSAGE } = require('./utils/constants');
 
 class App {
   constructor() {
@@ -51,7 +51,11 @@ class App {
     MissionUtils.Console.print(
       this.countOfLotto + MESSAGE.COUNT_OF_PURCHASED_LOTTOS
     );
-    this.purchasedLottos.map((lotto) => MissionUtils.Console.print(lotto));
+    this.purchasedLottos.map((lotto) => {
+      MissionUtils.Console.print(
+        `[${lotto[0]}, ${lotto[1]}, ${lotto[2]}, ${lotto[3]}, ${lotto[4]}, ${lotto[5]}]`
+      );
+    });
     MissionUtils.Console.print('');
 
     this.inputWinningNumbers();
