@@ -54,8 +54,6 @@ class App {
 
     this.inputWinningNumbers();
   }
-  // 당첨 번호 입력 받기
-  // 이때 new Lotto 생성하자.
 
   inputWinningNumbers() {
     const WORD_TO_PRINT = "\n당첨 번호를 입력해주세요.\n";
