@@ -59,6 +59,23 @@ const RANKING = Object.freeze({
 
 const DECIMAL_PLACES = 10;
 
+const INPUT_MESSAGE = Object.freeze({
+  BUY: '구입금액을 입력해 주세요.\n',
+  LOTTONUMBER: '당첨 번호를 입력해 주세요.\n',
+  BONUSNUMBER: '보너스 번호를 입력해 주세요.\n',
+});
+
+const PRINT_MESSAGE = Object.freeze({
+  WINNING: '당첨 통계',
+  DIVIDE: '---',
+  PROFIT(FIGURE) {
+    return `총 수익률은 ${FIGURE} 입니다.`;
+  },
+  PURCHASENUMBER(NUMBER) {
+    return `${NUMBER}개를 구매했습니다`;
+  },
+});
+
 module.exports = {
   LOTTO_ERROR,
   BONUS_LOTTO_ERROR,
@@ -66,4 +83,6 @@ module.exports = {
   BONUS_NUMBER,
   RANKING,
   DECIMAL_PLACES,
+  INPUT_MESSAGE,
+  PRINT_MESSAGE,
 };

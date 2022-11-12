@@ -1,6 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 const BonusLotto = require('./BonusLotto');
-const { RANKING } = require('./constant');
+const { RANKING, INPUT_MESSAGE, PRINT_MESSAGE } = require('./constant');
 const Lotto = require('./Lotto');
 const Profit = require('./Profit');
 const PurChase = require('./Purchase');
@@ -18,7 +18,7 @@ class App {
   }
 
   purChaseLotto() {
-    Console.readLine('구입금액을 입력해 주세요.\n', (amount) => {
+    Console.readLine(INPUT_MESSAGE.BUY, (amount) => {
       const lotteryTickets = new PurChase(amount).showLottoTickets(amount);
       this.money = amount;
       this.purChaseLotto = lotteryTickets;
@@ -27,29 +27,31 @@ class App {
   }
 
   printLotto(lotteryTickets) {
-    Console.print(`${lotteryTickets.length}개를 구매했습니다.`);
+    Console.print(PRINT_MESSAGE.PURCHASENUMBER(lotteryTickets.length));
     lotteryTickets.forEach((lottery) => Console.print(lottery));
     this.inputLottoNumber();
   }
 
   inputLottoNumber() {
-    Console.readLine('당첨 번호를 입력해 주세요.\n', (lottoInput) => {
+    Console.readLine(INPUT_MESSAGE.LOTTONUMBER, (lottoInput) => {
       new Lotto(lottoInput);
-      Console.readLine('보너스 번호를 입력해 주세요.\n', (bonusInput) => {
-        this.fullLottoNumber = new BonusLotto([lottoInput.split(','), bonusInput])
-          ? [lottoInput.split(','), bonusInput]
-          : '';
-        this.printStats();
-      });
+      this.inputBonusLottoNumber(lottoInput);
+    });
+  }
+
+  inputBonusLottoNumber(lottoInput) {
+    Console.readLine(INPUT_MESSAGE.BONUSNUMBER, (bonusInput) => {
+      const fullNumber = [lottoInput.split(','), bonusInput];
+      this.fullLottoNumber = new BonusLotto(fullNumber) ? [fullNumber] : '';
+      this.printStats();
     });
   }
 
   printStats() {
-    Console.print('당첨 통계');
-    Console.print('---');
+    Console.print(PRINT_MESSAGE.WINNING);
+    Console.print(PRINT_MESSAGE.WINNING);
     const result = new Statistics(this.fullLottoNumber, this.purChaseLotto).showResult();
-    const rankKeys = Object.keys(RANKING);
-    const profitList = rankKeys.map((rank) => {
+    const profitList = Object.keys(RANKING).map((rank) => {
       const matchNumberInfo = RANKING[rank];
       const matchNumber = RANKING[rank]['MATCH'];
       const matchCount =
@@ -63,7 +65,8 @@ class App {
   }
 
   printProFit(profitList) {
-    Console.print(`총 수익률은 ${new Profit([this.money, profitList]).calculateProfit()}% 입니다.`);
+    const profitFigure = new Profit([this.money, profitList]).calculateProfit();
+    Console.print(PRINT_MESSAGE.PROFIT(profitFigure));
   }
 }
 
