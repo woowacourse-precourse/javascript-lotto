@@ -104,6 +104,30 @@ describe('로또 클래스 로또 추첨 테스트', () => {
   });
 });
 
+describe('로또 클래스 수익률 계산 테스트', () => {
+  test('수익률을 계산한다. 1', () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+
+    lotto.firstCount = 0;
+    lotto.secondCount = 1;
+    lotto.thirdCount = 1;
+    lotto.fourthCount = 1;
+    lotto.fifthCount = 1;
+    expect(lotto.profitCalculator(3000)).toEqual(1051833.33);
+  });
+
+  test('수익률을 계산한다. 2', () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+
+    lotto.firstCount = 0;
+    lotto.secondCount = 0;
+    lotto.thirdCount = 0;
+    lotto.fourthCount = 0;
+    lotto.fifthCount = 1;
+    expect(lotto.profitCalculator(9000)).toEqual(55.55);
+  });
+});
+
 describe('App 클래스 테스트', () => {
   test('입력 받은 당첨 번호를 배열로 바꾼다', () => {
     const app = new App();

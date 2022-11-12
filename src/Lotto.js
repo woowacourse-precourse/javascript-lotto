@@ -23,7 +23,6 @@ class Lotto {
     this.deduplicationException(numbers);
   }
 
-  // TODO: 추가 기능 구현
   numberException(number) {
     const ONLY_NUMBER = /^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$/;
     if (!ONLY_NUMBER.test(number))
