@@ -72,6 +72,14 @@ class App {
     }
   }
 
+  getBonusLottoNumber() {
+    Console.print(`\n${ASK_BONUS_LOTTO_NUMBER}`);
+    Console.readline("", (input) => {
+    });
+  }
+
+
+
   play() {
     Console.print(ASK_LOTTO_PRICE);
     // Console.readLine('',price => this.buyLotto(price))
