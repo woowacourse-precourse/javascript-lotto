@@ -24,7 +24,9 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
+  toString(separator = ' ') {
+    return this.#numbers.join(separator);
+  }
 }
 
 module.exports = Lotto;
