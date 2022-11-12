@@ -110,3 +110,14 @@ describe("Validation.hasUniqueLottoNumber", () => {
     expect(result).toBe(false);
   });
 });
+
+describe("Validation.isValidLottoNumberRange", () => {
+  test("각 로또 번호 중 하나라도 지정된 범위를 벗어나면, false를 반환해야 한다.", () => {
+    // given
+    const input = [1, 2, 3, 4, 5, 50];
+    // when
+    const result = Validation.isValidLottoNumberRange(input);
+    // then
+    expect(result).toBe(false);
+  });
+});
