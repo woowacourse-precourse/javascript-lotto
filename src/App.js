@@ -5,7 +5,7 @@ const Lotto = require('./Lotto');
 class App {
   play() {
     this.inputMessage('구입금액을 입력해 주세요.', (amount) => {
-      new Purchase(Number(amount));
+      new Purchase(amount);
     });
   }
   inputMessage(text, callback) {

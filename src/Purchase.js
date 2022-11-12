@@ -2,6 +2,7 @@ class Purchase {
     #amount;
 
     constructor(amount) {
+        amount = Number(amount);
         this.validate(amount);
         this.#amount = amount;
     }
