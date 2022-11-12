@@ -4,7 +4,14 @@ const INPUT = {
 
 const OUTPUT = {};
 
+const ERROR = {
+  MONEY_UNIT: '[Error] 돈의 단위는 1000원 입니다.',
+  LOTTO_LENGTH: '[Error] 숫자가 6개 이어야 합니다.',
+  LOTTO_RANGE: '[Error] 숫자의 범위는 1~45이어야 합니다.',
+};
+
 Object.freeze(INPUT);
 Object.freeze(OUTPUT);
+Object.freeze(ERROR);
 
-module.exports = { INPUT, OUTPUT };
+module.exports = { INPUT, OUTPUT, ERROR };

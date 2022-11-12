@@ -1,3 +1,5 @@
+const { ERROR } = require('../Resource');
+
 class LottoValidator {
   static checkLotto(numbers) {
     this.#checkLottoLength(numbers);
@@ -6,13 +8,13 @@ class LottoValidator {
 
   static checkMoney(number) {
     if (+number / 1000 == 0) {
-      throw new Error('[Error] 돈의 단위는 1000원 입니다.');
+      throw new Error(ERROR.MONEY_UNIT);
     }
   }
 
   static #checkLottoLength(numbers) {
     if (numbers.length !== 6) {
-      throw new Error('[Error] 숫자가 6개 이어야 합니다.');
+      throw new Error(ERROR.LOTTO_LENGTH);
     }
   }
 
@@ -24,7 +26,7 @@ class LottoValidator {
 
   static #checkLottoNumber(number) {
     if (number < '1' || number > '45') {
-      throw new Error('[Error] 숫자의 범위는 1~45이어야 합니다.');
+      throw new Error(ERROR.LOTTO_RANGE);
     }
   }
 }
