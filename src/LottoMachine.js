@@ -2,19 +2,6 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
 class LottoMachine {
-  #money;
-  #lottos;
-
-  constructor(money) {
-    this.validate(money);
-    this.#money = Number(money);
-    this.#lottos = this.generateLottos();
-  }
-
-  get lottos() {
-    return this.#lottos;
-  }
-
   validate(money) {
     if (!Number(money)) {
       throw new Error("[ERROR] 금액은 숫자만 입력해야 합니다.");
@@ -32,8 +19,10 @@ class LottoMachine {
     return new Lotto(this.generateSixNumber());
   }
 
-  generateLottos() {
-    const lottosCount = this.#money / 1000;
+  generateLottos(money) {
+    this.#validate(money);
+    const lottosCount = money / 1000;
+
     return Array.from({ length: lottosCount }, () => this.generateLotto());
   }
 
