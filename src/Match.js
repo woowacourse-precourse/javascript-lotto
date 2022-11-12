@@ -16,7 +16,7 @@ class Match {
     for (const game of games) {
       count = lotto.matchNumbers(game);
       if (count >= 3) this.matchRecord[count - 3] += 1;
-      if (count === 5){
+      if (count === 5) {
         this.bonusFlag = bonus.matchBonus(game);
       }
     }
