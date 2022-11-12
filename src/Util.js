@@ -1,5 +1,5 @@
 class Util {
-  static consistsOfNumbers(str) {
+  static isNumericInput(str) {
     const NUMBER_REGEXP = /^[0-9]+$/;
     return NUMBER_REGEXP.test(str);
   }
