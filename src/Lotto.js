@@ -26,6 +26,10 @@ class Lotto {
     }
     return matchNumbers.length;
   }
+
+  getNumbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
