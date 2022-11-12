@@ -2,7 +2,6 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const INPUT_ERROR = require('./Constants');
 
 class App {
-  #lottos = [];
   #bonus = 0;
 
   play() {
@@ -24,23 +23,25 @@ class App {
 
   InputLottos() {
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (answer) => {
-      this.isDuplicated(answer, this.#lottos);
-      this.#lottos.push(answer);
+      const lottos = answer.split(',');
+      this.isDuplicated(lottos);
+      this.InputBonus(lottos);
     });
   }
 
-  InputBonus() {
+  InputBonus(array) {
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (answer) => {
-      this.#bonus = answer;
+      array.push(answer);
+      this.isDuplicated(array);
     });
   }
 
-  isDuplicated(number, array) {
-    if(array.includes(Number(number))){
+  isDuplicated(array) {
+    const set = new Set(array);
+    if(array.length != set.size){
       throw INPUT_ERROR.DUPLICATED;
     }
   }
-
 }
 
 const app = new App;
