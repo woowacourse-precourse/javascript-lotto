@@ -1,11 +1,11 @@
-## 기능 목록
+## ✒ 기능 목록
 - [x] 로또 구입 가격을 1000원 단위로 입력받는다.
     ```
     <예외상황>
     1000단위로 나누어 떨어지지 않는 경우
     ```
 
-- [x] 가격에 따른 수량만큼 로또 발행(1~45 중 중복 없는 6개의 수)
+- [x] 가격에 따른 수량만큼 로또 발행 (1~45 중 중복 없는 6개의 수)
 
 - [x] 수량과 발행된 로또 출력(오름차순)
 
@@ -37,3 +37,24 @@
 
 - [x] 수익률 계산기능
     - [x] 수익률 출력 (소수점 둘째 자리에서 반올림)
+
+<br />
+
+## :file_folder: 파일 구조
+```
+📦src
+ ┣ 📂check-avilable
+ ┃ ┣ 📜Bonus.js
+ ┃ ┣ 📜Lotto.js
+ ┃ ┗ 📜Price.js
+ ┣ 📂lotto-make-and-calculate
+ ┃ ┣ 📜Calculate.js
+ ┃ ┣ 📜MakeLottos.js
+ ┃ ┗ 📜RankingCalculate.js
+ ┣ 📂print
+ ┃ ┗ 📜PrintResults.js
+ ┣ 📂utils
+ ┃ ┣ 📜Constants.js
+ ┃ ┗ 📜LottoHandler.js
+ ┗ 📜App.js
+ ```
