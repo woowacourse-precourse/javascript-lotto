@@ -29,7 +29,7 @@ class WinningNumber {
   #getBonusNumber() {
     MissionUtils.Console.readLine(COMMENT.BONUS, (number) => {
       if (this.#validateBonusNumber(number)) {
-        this.#bonusNumber = number;
+        this.#bonusNumber = Number(number);
         const lottoResult = new LottoResult(
           this.#winningNumbers,
           this.#bonusNumber,
@@ -68,6 +68,7 @@ class WinningNumber {
     if (!number.match(REGEX.LOTTO_RANGE)) {
       throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
+    return true;
   }
 }
 
