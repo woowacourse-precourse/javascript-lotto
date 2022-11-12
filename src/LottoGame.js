@@ -97,15 +97,13 @@ class LottoGame {
   }
 
   countMatching(lottoNumbers) {
-    let count = 0;
-    this.winningNumber.main.forEach((number) => {
-      count += lottoNumbers.includes(Number(number)) ? 1 : 0;
-    });
-    return count === 5 ? this.checkBonus(lottoNumbers) : count;
+    const lottoNumbersSet = new Set(lottoNumbers);
+    const count = this.winningNumber.main.filter((number) => lottoNumbersSet.has(number)).length;
+    return count === 5 ? this.checkBonus(lottoNumbersSet) : count;
   }
 
   checkBonus(lottoNumbers) {
-    return lottoNumbers.includes(this.winningNumber.bonus) ? 'bonus' : 5;
+    return lottoNumbers.has(this.winningNumber.bonus) ? 'bonus' : 5;
   }
 
   calculateRate() {
