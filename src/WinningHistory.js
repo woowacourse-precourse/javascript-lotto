@@ -13,6 +13,7 @@ class WinningHistory{
         this.fourthPlace();
         this.thirdPlace();
         this.secondPlace();
+        this.firstPlace();
     }
 
     fifthPlace(){
@@ -29,5 +30,9 @@ class WinningHistory{
     
     secondPlace(){
         Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.lottoRanking[3]}개`)
+    }
+
+    firstPlace(){
+        Console.print(`6개 일치 (2,000,000,000원) - ${this.lottoRanking[4]}개`)
     }
 }
