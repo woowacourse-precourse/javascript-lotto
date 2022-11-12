@@ -28,6 +28,17 @@ describe('로또 클래스 테스트', () => {
 
     expect(result).toBe(5);
   });
+
+  test('로또 번호와 당첨 번호 비교', () => {
+    const count = 5;
+    const lottoNumber = [1, 2, 3, 4, 5, 6];
+    const bonus = 6;
+
+    const lotto = new Lotto();
+    const result = lotto.compareBonus(count, lottoNumber, bonus);
+
+    expect(result).toBe(5.5);
+  });
 });
 
 describe('로또 빌더 기능 테스트', () => {
