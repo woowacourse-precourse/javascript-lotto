@@ -16,8 +16,7 @@ class App {
 
     return new Promise((resolve, reject) => {
       MissionUtils.Console.readLine('구입금액을 입력해 주세요. \n', (userMoney) => {
-        this.lottoPurchase(userMoney);
-        resolve();
+        resolve(this.lottoPurchase(userMoney));
       })
     })    
   }
@@ -25,8 +24,9 @@ class App {
   prizeInput() {
     return new Promise((resolve, reject) => {
       MissionUtils.Console.readLine('당첨 번호를 입력해 주세요. \n', (prizeNumber) => {
-        new Lotto(prizeNumber.split(','));
-        resolve(prizeNumber);
+        const prizeNumberArray = prizeNumber.split(',');
+        new Lotto(prizeNumberArray);
+        resolve(prizeNumberArray);
       })
     })
     
