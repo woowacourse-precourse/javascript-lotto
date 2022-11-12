@@ -20,7 +20,7 @@ class Validator {
       throw new Error(ERROR.UNIQUE_NUMBERS);
     }
 
-    lottoNumbers.forEach(this.validateLottoNumber);
+    lottoNumbers.forEach(this.validateLottoNumber.bind(this));
   }
 
   static validateLottoNumber(bonusNumber) {

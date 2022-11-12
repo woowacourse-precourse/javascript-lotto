@@ -1,8 +1,8 @@
 const MESSAGE = {
   INPUT: {
-    TOTAL_PURCHASE_AMOUNT: '구입금액을 입력해 주세요.',
-    WINNING_LOTTO_NUMBERS: '당첨 번호를 입력해 주세요.',
-    BONUS_LOTTO_NUMBER: '보너스 번호를 입력해 주세요.',
+    TOTAL_PURCHASE_AMOUNT: '구입금액을 입력해 주세요.\n',
+    WINNING_LOTTO_NUMBERS: '당첨 번호를 입력해 주세요.\n',
+    BONUS_LOTTO_NUMBER: '보너스 번호를 입력해 주세요.\n',
   },
   OUTPUT: {
     WINNING_HISTORY: '당첨 통계\n---\n',
