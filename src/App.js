@@ -24,8 +24,7 @@ class App {
   }
 
   askBuget() {
-    Console.print(MESSAGE.ASK_BUDGET);
-    Console.readLine('', (money) => {
+    Console.readLine(MESSAGE.ASK_BUDGET, (money) => {
       Validator.throwErrorIfInvalidMoney(money);
 
       this.issueLotto(money / LOTTO.PRICE);
@@ -45,8 +44,7 @@ class App {
   }
 
   askWinningNumbers() {
-    Console.print(MESSAGE.ASK_WINNING_NUMBER);
-    Console.readLine('', (inputValue) => {
+    Console.readLine(MESSAGE.ASK_WINNING_NUMBER, (inputValue) => {
       Validator.throwErrorIfInvalidWinningForm(inputValue);
       const winningNumbers = inputValue.split(',').map((num) => Number(num));
       this.lotto = new Lotto(winningNumbers);
@@ -56,8 +54,7 @@ class App {
   }
 
   askBonusNumber(winningNumbers) {
-    Console.print(MESSAGE.ASK_BONUS_NUMBER);
-    Console.readLine('', (bonusNumber) => {
+    Console.readLine(MESSAGE.ASK_BONUS_NUMBER, (bonusNumber) => {
       Validator.throwErrorIfInvalidBonusNumber(winningNumbers, bonusNumber);
 
       this.printWinningStatistics(bonusNumber);
