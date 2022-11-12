@@ -64,4 +64,26 @@ describe('로또 클래스 테스트', () => {
     lotto.compare({ 0: [7, 9, 12, 28, 33, 42] });
     expect(lotto.winningCount).toEqual(0);
   });
+
+  test('등수별 당첨 용지 개수 테스트 => (first, second, third, fourth, fifth)Count', () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    lotto.bonusNumber = parseInt(10);
+    lotto.compare({
+      0: [1, 2, 3, 4, 5, 6],
+      1: [1, 2, 3, 4, 5, 10],
+      2: [1, 2, 3, 4, 6, 10],
+      3: [1, 2, 3, 4, 5, 42],
+      4: [1, 2, 3, 4, 5, 23],
+      5: [1, 2, 3, 4, 5, 33],
+      6: [1, 2, 3, 4, 30, 42],
+      7: [1, 2, 3, 4, 10, 42],
+      8: [1, 2, 3, 18, 23, 42],
+      9: [1, 2, 3, 10, 23, 42],
+    });
+    expect(lotto.firstCount).toEqual(1);
+    expect(lotto.secondCount).toEqual(2);
+    expect(lotto.thirdCount).toEqual(3);
+    expect(lotto.fourthCount).toEqual(2);
+    expect(lotto.fifthCount).toEqual(2);
+  });
 });
