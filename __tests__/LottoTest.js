@@ -215,4 +215,12 @@ describe('로또 클래스 테스트', () => {
       });
     });
   });
+
+  describe('당첨 횟수 카운트 메소드 테스트', () => {
+    test('메소드 이름은 "calculateCount"로 정의된다.', () => {
+      const METHOD_NAME = 'calculateCount';
+
+      expect(Lotto.calculateCount.name).toEqual(METHOD_NAME);
+    });
+  });
 });
