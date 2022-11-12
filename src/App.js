@@ -63,26 +63,27 @@ class App {
     const statistics = new Statistics(this.totalLottoNumber, this.winnerNumber, this.bonusNumber);
     const totalRanking = statistics.getTotalRanking();
     statistics.printTotalLottoResult(totalRanking);
-    this.getLottoRateOfReturn(totalRanking);
+    this.getLottoProfitRate(totalRanking);
   }
 
-  getLottoRateOfReturn(totalRanking) {
-    const totalPrizeMoney = this.getTotalPrizeMoney(totalRanking);
-    const lottoRateOfReturn = (
-      (Math.round((totalPrizeMoney / this.payMoney) * 1000) / 1000) *
-      100
-    ).toFixed(1);
-    MissionUtils.Console.print(`총 수익률은 ${lottoRateOfReturn}%입니다.`);
+  getLottoProfitRate(totalRanking) {
+    const totalPrizeMoney = this.calculateTotalPrizeMoney(totalRanking);
+    const lottoProfitRate = this.calculateProfitRate(totalPrizeMoney, this.payMoney);
+    MissionUtils.Console.print(`총 수익률은 ${lottoProfitRate}%입니다.`);
     MissionUtils.Console.close();
   }
 
-  getTotalPrizeMoney(totalRanking) {
-    return this.getPrizeMoney(totalRanking).reduce((totalMoney, prizeMoney) => {
+  calculateProfitRate(totalPrizeMoney, payMoney) {
+    return ((Math.round((totalPrizeMoney / payMoney) * 1000) / 1000) * 100).toFixed(1);
+  }
+
+  calculateTotalPrizeMoney(totalRanking) {
+    return this.calculatePrizeMoney(totalRanking).reduce((totalMoney, prizeMoney) => {
       return (totalMoney += prizeMoney);
     }, 0);
   }
 
-  getPrizeMoney(totalRanking) {
+  calculatePrizeMoney(totalRanking) {
     const currency = [5000, 50000, 1500000, 30000000, 2000000000];
     const prizeMoney = totalRanking.map((lotto, index) => {
       if (lotto !== 0) return lotto * currency[index];
