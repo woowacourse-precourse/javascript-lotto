@@ -152,4 +152,15 @@ describe("로또 클래스 테스트", () => {
     }).toThrow();
   });
 
+  test("겹치는 번호의 개수를 계산합니다.", () => {
+    const lotto = [1,2,3,4,5,6]
+    const winniglotto = [1,2,3,6,7,8]
+    const ouput = 4;
+
+    const app = new App();
+    const count = app.calculateOverlappintNumberCount(lotto, winniglotto);
+    
+    expect(count).toEqual(ouput);
+  });
+
 });
