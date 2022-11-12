@@ -14,6 +14,23 @@ class Lotto {
     this.#numbers = numbers;
   }
 
+  get numbers() {
+    return this.#numbers.slice(0, LOTTO.LENGTH);
+  }
+
+  get bonusNumber() {
+    if (this.#numbers.length === LOTTO.LENGTH + 1) {
+      return this.#numbers[this.#numbers.length - 1];
+    }
+    return null;
+  }
+
+  addBonusNumber(number) {
+    this.checkRange(number);
+    this.checkDuplication([...this.#numbers, number]);
+    this.#numbers.push(number);
+  }
+
   validate(numbers) {
     this.checkLength(numbers);
     this.checkDuplication(numbers);
@@ -39,6 +56,7 @@ class Lotto {
 
   checkRange(number) {
     if (
+      typeof number !== "number" ||
       Number.isNaN(Number(number)) ||
       number < LOTTO.RANGE_MIN ||
       number > LOTTO.RANGE_MAX
