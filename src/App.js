@@ -56,8 +56,10 @@ class App {
       );
     }
 
+    console.log(typeof MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
+
     this.lottoArray.map((data) => {
-      console.log(data);
+      MissionUtils.Console.print(data);
     });
   }
 
@@ -86,6 +88,10 @@ class App {
 
   splitWinningNumber(number) {
     return number.split(",");
+  }
+
+  compareLottoNumber() {
+    this.lottoArray.map((numbers) => {});
   }
 }
 
