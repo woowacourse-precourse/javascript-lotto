@@ -59,10 +59,10 @@ class DataProcessor {
     return rowData.split(',').map(Number);
   }
 
-  static processRowDataOfBonus(rowData) {
+  static processRowDataOfBonus(rowData, sixNumbers) {
     DataChecker.isValidRowDataOfBonus(rowData);
     const bonus = DataProcessor.#convertStringToNumber(rowData);
-    DataChecker.isValidBonus(bonus);
+    DataChecker.isValidBonus(bonus, sixNumbers);
 
     return bonus;
   }

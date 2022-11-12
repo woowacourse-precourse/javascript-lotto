@@ -114,7 +114,7 @@ class DataChecker {
     }
   }
 
-  static isValidBonus(bonus) {
+  static isValidBonus(bonus, sixNumbers) {
     if (!Validator.checkTruthy(bonus)) {
       Console.close();
       throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.falsy}`);
@@ -128,6 +128,11 @@ class DataChecker {
     if (!Validator.checkRangeOfLottoNumber(bonus)) {
       Console.close();
       throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.range}`);
+    }
+
+    if (!Validator.checkUniqueNumber([...sixNumbers, bonus])) {
+      Console.close();
+      throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.duplication}`);
     }
   }
 }

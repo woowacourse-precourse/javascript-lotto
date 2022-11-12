@@ -11,7 +11,7 @@ class WinningNumber {
   }
 
   registerBonus(bonus) {
-    this.#data.bonus = DataProcessor.processRowDataOfBonus(bonus);
+    this.#data.bonus = DataProcessor.processRowDataOfBonus(bonus, this.#data.sixNumbers);
   }
 }
 
