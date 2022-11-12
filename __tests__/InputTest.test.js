@@ -4,8 +4,6 @@ const Validation = require('../src/Validation');
 describe('사용자 입력 예외 테스트', () => {
 
     let app;
-    let val;
-
     beforeEach(() => {
         app = new App();
     });
@@ -30,17 +28,17 @@ describe('사용자 입력 예외 테스트', () => {
 
     test('당첨 번호 입력 시 콤마(,)를 사용해 구분해야 한다.', () => {
         expect(() => {
-            app.setTargetNumbers('123456');
+            app.lottoGame.setTargetNumbers('123456');
         }).toThrow('[ERROR]');
     });
 
     test('당첨 번호는 1~45 사이의 6자리를 입력해야한다.', () => {
         expect(() => {
-            app.setTargetNumbers('0,1,2,3,4,5');
+            app.lottoGame.setTargetNumbers('0,1,2,3,4,5');
         }).toThrow();
 
         expect(() => {
-            app.setTargetNumbers('0,1,2,3,4');
+            app.lottoGame.setTargetNumbers('0,1,2,3,4');
         }).toThrow('[ERROR]');
     });
 

@@ -2,6 +2,7 @@ const Utils = require("./Utils");
 const Lotto = require("./Lotto");
 const Validation = require('./Validation');
 
+
 const prizeObject = [
     [0, 0],
     [2000000000, 0],
@@ -11,12 +12,50 @@ const prizeObject = [
     [5000, 0],
 ];
 
+const gameSetting = {
+    length: 0,
+    maxNumber: 0,
+    minPrice: 0,
+}
+
+class GameBuilder {
+
+    lottoLength(length) {
+        this.lottoLength = length;
+        return this;
+    }
+
+    maxNumber(max) {
+        this.maxNumber = max;
+        return this;
+    }
+
+    minPrice(price) {
+        this.minPrice = price;
+        return this;
+    }
+
+    build() {
+        return new LottoGame(this.lottoLength, this.maxNumber, this.minPrice);
+    }
+}
+
 class LottoGame {
-    constructor() {
+    constructor(lottoLength, maxNumber, minPrice) {
+        this.lottoLength = lottoLength;
+        this.maxNumber = maxNumber;
+        this.minPrice = minPrice;
+
+        gameSetting.length = this.lottoLength;
+        gameSetting.maxNumber = this.maxNumber;
+        gameSetting.minPrice = this.minPrice;
+
+        
         this.lottoContainer = undefined;
         this.issuedLottos = [];
         this.bonusNumber = 0;
         this.cost = 0;
+
     }
 
     play() {
@@ -58,8 +97,8 @@ class LottoGame {
     countLottos(input) {
         let count = 0;
 
-        if(input % 1000 == 0) count = input / 1000;
-        else throw new Error('[ERROR] 금액은 1000원 단위로 숫자만 입력해주세요.');
+        if(input % this.minPrice == 0) count = input / this.minPrice;
+        else throw new Error(`[ERROR] 금액은 ${this.minPrice}원 단위로 숫자만 입력해주세요.`);
 
         return count;
     }
@@ -96,13 +135,13 @@ class LottoGame {
 
         let countComma = input.match(/,/g).length ? input.match(/,/g).length : 0;
 
-        if(countComma !== 5) throw new Error('[ERROR] 당첨 번호는 콤마(,)를 사용해서 구분해주세요.(5개)');
+        if(countComma !== (gameSetting.length - 1)) throw new Error(`[ERROR] 당첨 번호는 콤마(,)를 사용해서 구분해주세요.(${gameSetting.length - 1}개)`);
         
         let array = input.split(',').map(num => Number(num));
 
         let max = Math.max(...array);
         
-        if(max > 45 || array.includes(0)) throw new Error('[ERROR] 번호는 1~45 사이의 수 6자리를 입력해주세요.');
+        if(max > gameSetting.maxNumber || array.includes(0)) throw new Error(`[ERROR] 번호는 1~${gameSetting.maxNumber} 사이의 수 ${gameSetting.length}자리를 입력해주세요.`);
 
         return array.sort();
     }
@@ -121,7 +160,7 @@ class LottoGame {
         return ((earnMoney / this.cost)* 100).toFixed(1);
         }
 
-        showStaticstic() {
+    showStaticstic() {
         const benefitRate = this.getBenefitRate();
 
         const msg = `
@@ -147,4 +186,5 @@ class LottoGame {
 }
 
 
-module.exports = LottoGame;
+exports.gameSetting = gameSetting;
+exports.GameBuilder = GameBuilder;

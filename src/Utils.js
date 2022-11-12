@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const setting = require('./LottoGame');
 
 class Utils {
 
@@ -15,7 +16,7 @@ class Utils {
     }
 
     getLottoNumbers() {
-        return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort();
+        return MissionUtils.Random.pickUniqueNumbersInRange(1, setting.gameSetting.maxNumber, setting.gameSetting.length).sort();
     }
 }
 
