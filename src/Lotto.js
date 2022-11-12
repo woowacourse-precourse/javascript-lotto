@@ -20,6 +20,11 @@ class Lotto {
   makeSixNumbers() {
     return Random.pickUniqueNumbersInRange(1, 45, 6);
   }
+
+  makeBonusNumber() {
+    return Random.pickUniqueNumbersInRange(1, 45, 1).join('');
+  }
+
 }
 
 module.exports = Lotto;
