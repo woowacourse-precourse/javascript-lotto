@@ -9,13 +9,11 @@ const BonusNumber = require('../model/BonusNumber');
 class Controller {
   start() {
     View.printStart();
-    View.readLine(this.generateDeposit.bind(this));
-  }
-
-  generateDeposit(input) {
-    this.deposit = new Deposit(Number(input));
-    View.printQuantity(this.deposit.quantity);
-    this.purchase();
+    View.readLine((input) => {
+      this.deposit = new Deposit(Number(input));
+      View.printQuantity(this.deposit.quantity);
+      this.purchase();
+    });
   }
 
   purchase() {
@@ -34,28 +32,24 @@ class Controller {
       });
 
     this.purchasedLottos = purchasedLottos;
-    this.handleWinningLottoView();
+    this.generateWinningLotto();
   }
 
-  handleWinningLottoView() {
+  generateWinningLotto() {
     View.printWinningLotto();
-    View.readLine(this.generateWinningLotto.bind(this));
+    View.readLine((input) => {
+      this.winningLotto = new Lotto(input.split(',').map(Number));
+      this.generateBonusNumber();
+    });
   }
 
-  generateWinningLotto(input) {
-    this.winningLotto = new Lotto(input.split(',').map(Number));
-    this.handleBonusNumberView();
-  }
-
-  handleBonusNumberView() {
+  generateBonusNumber() {
     View.printBonusNumber();
-    View.readLine(this.generateBonusNumber.bind(this));
-  }
-
-  generateBonusNumber(input) {
-    this.#validateBonusNumber(input);
-    this.bonusNumber = new BonusNumber(Number(input));
-    this.generateStatistic();
+    View.readLine((input) => {
+      this.#validateBonusNumber(input);
+      this.bonusNumber = new BonusNumber(Number(input));
+      this.generateStatistic();
+    });
   }
 
   generateStatistic() {
