@@ -1,3 +1,5 @@
+const { Console, Random } = require("@woowacourse/mission-utils");
+
 class Lotto {
   #numbers;
 
@@ -13,6 +15,10 @@ class Lotto {
   }
 
   // TODO: 추가 기능 구현
+  printNumbers() {
+    const joinedNumbers = this.#numbers.join(", ");
+    Console.print(`[${joinedNumbers}]\n`);
+  }
 }
 
 module.exports = Lotto;

@@ -38,18 +38,25 @@ class App {
     const lottos = [];
     for (let i = 0; i < numberOfLotto; i++) {
       const lottoNumbers = this.generateLottoNumber();
+
       lottos.push(new Lotto(lottoNumbers));
     }
+
+    this.printLotto(lottos);
   }
 
   generateLottoNumber() {
     const count = 6;
-    const numbers = [];
-    for (let i = 0; i < count; i++) {
-      numbers.push(Random.pickUniqueNumbersInRange(1, 45, count));
-    }
+
+    const numbers = Random.pickUniqueNumbersInRange(1, 45, count);
 
     return numbers.sort();
+  }
+
+  printLotto(lottos) {
+    for (let i = 0; i < lottos.length; i++) {
+      lottos[i].printNumbers();
+    }
   }
 }
 
