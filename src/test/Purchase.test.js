@@ -16,13 +16,13 @@ describe('로또 구매 테스트', () => {
   test('로또 발행 개수가 정확한지 확인한다.', () => {
     const purchase = new Purchase('8000');
 
-    expect(purchase.numbers.length).toBe(8);
+    expect(purchase.numberList.length).toBe(8);
   });
 
   test('로또 번호가 6개인지 확인한다.', () => {
     const purchase = new Purchase('8000');
-    const numbers = purchase.numbers;
+    const numberList = purchase.numberList;
 
-    numbers.forEach((number) => expect(number.length).toBe(6));
+    numberList.forEach((number) => expect(number.length).toBe(6));
   });
 });
