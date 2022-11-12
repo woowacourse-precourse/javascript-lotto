@@ -15,6 +15,16 @@ class LottoResult {
     this.#checkLottos(lottos);
     this.#calculateYeild(money);
   }
+
+  #getSameNumbers(Lottos) {
+    let sameNumbers = 0;
+    Lottos.forEach((number) => {
+      if (this.#winningNumbers.includes(number)) {
+        sameNumbers++;
+      }
+    });
+    return sameNumbers;
+  }
 }
 
 module.exports = LottoResult;
