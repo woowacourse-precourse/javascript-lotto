@@ -22,5 +22,9 @@ describe("로또 클래스 테스트", () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 46]);
     }).toThrow("[ERROR]");
+
+    expect(() => {
+      new Lotto([1, NaN, 3, 4, 5, 45]);
+    }).toThrow("[ERROR]");
   });
 });
