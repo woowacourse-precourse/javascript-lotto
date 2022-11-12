@@ -9,7 +9,6 @@ class Lotto {
     // 문자열
     this.validate(numbers);
     this.#numbers = numbers;
-    this.printMyLottery();
   }
 
   validate(numbers) {
