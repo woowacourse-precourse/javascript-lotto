@@ -39,6 +39,15 @@ class InputException {
     }
   }
 
+  #isDuplicates(numbers) {
+    const length = numbers.length;
+    const size = new Set(numbers).size;
+
+    if (length !== size) {
+      throw new Error('[ERROR] 중복된 번호가 없이 입력해야 합니다.');
+    }
+  }
+
   handlePurchaseAmountException(amount) {
     this.#isNoValue(amount);
     this.#isNotANumber(amount);
@@ -50,6 +59,7 @@ class InputException {
     this.#isNoValue(numbers);
     this.#isInCorrectLength(numbers, 6);
     this.#isNotRange(numbers);
+    this.#isDuplicates(numbers);
   }
 }
 
