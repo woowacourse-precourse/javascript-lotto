@@ -3,7 +3,6 @@ const CheckLotto = require('./check-lotto');
 const Lotto = require('./Lotto');
 const Calculate = require('./utils/calculate');
 const { NUMBER_LIMIT, ERROR_MASSAGE } = require('./utils/constant');
-const Validation = require('./utils/validation');
 const View = require('./view');
 const WinningNumber = require('./winning-number');
 
@@ -18,7 +17,6 @@ class Controller {
     this.view = new View(this);
     this.winningNumber = new WinningNumber();
     this.checklotto = new CheckLotto(this);
-    this.validation = new Validation(this);
     this.calculate = new Calculate(this);
   }
 
@@ -46,7 +44,7 @@ class Controller {
     }
 
     View.printLottos(this.lottos);
-    this.view.winningNumber();
+    this.view.winningNumberInput();
   }
 
   enterWinningNumber(answer) {
@@ -72,7 +70,7 @@ class Controller {
   }
 
   init() {
-    this.view.getAmountInput();
+    this.view.AmountInput();
   }
 }
 
