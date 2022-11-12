@@ -85,7 +85,9 @@ class Lotto {
 
   static checkBonusNum(bonusNum, winNums) {
     const IS_TYPE_NUMBER = !Number.isNaN(bonusNum);
-    const IS_VALID_RANGE = 1 <= bonusNum && bonusNum <= 45;
+    const IS_VALID_RANGE =
+      LOTTO_SETTING.LOTTO_NUM_MIN <= bonusNum &&
+      bonusNum <= LOTTO_SETTING.LOTTO_NUM_MAX;
     const IS_DUPLICATE = winNums.includes(Number(bonusNum));
     const IS_VALID = IS_TYPE_NUMBER && IS_VALID_RANGE && !IS_DUPLICATE;
     if (!IS_VALID) {
@@ -97,7 +99,6 @@ class Lotto {
     const bonusAndWinMatchNum = this.filterMatchNum();
     const onlyMatchNum =
       this.deleteBonusNumExceptSecondLottery(bonusAndWinMatchNum);
-    console.log("onlyMatchNum", onlyMatchNum);
 
     let resultLottery = {};
     for (let matchNum in RESULT_MATCH_COUNT) {
@@ -127,7 +128,10 @@ class Lotto {
         // 보너스 번호랑 같기만하면 false
         // 그외 보너스 번호랑 다르면 true
         (matchNum) => {
-          if (matchNum === this.bonusNum && matchNums.length === 6) {
+          if (
+            matchNum === this.bonusNum &&
+            matchNums.length === RESULT_MATCH_COUNT.FIRST_OR_SECOND_LOTTERY
+          ) {
             return true;
           }
 
