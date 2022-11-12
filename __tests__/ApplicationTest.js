@@ -69,3 +69,29 @@ describe('로또 테스트', () => {
     }).toThrow('[ERROR]');
   });
 });
+
+describe('구입 금액 입력 및 검사', () => {
+  test('정상', () => {
+    const app = new App();
+    mockQuestions(['15000']);
+    expect(() => { app.setMoney(); }).not.toThrow();
+  });
+
+  test('예외: 입력값이 자연수가 아님', () => {
+    const app = new App();
+    mockQuestions(['-121687']);
+    expect(() => { app.setMoney(); }).toThrow();
+  });
+
+  test('예외: 입력값이 숫자조차 아님', () => {
+    const app = new App();
+    mockQuestions(['사랑해요']);
+    expect(() => { app.setMoney(); }).toThrow();
+  });
+
+  test('예외: 입력값이 1000의 배수가 아님', () => {
+    const app = new App();
+    mockQuestions(['121687']);
+    expect(() => { app.setMoney(); }).toThrow();
+  });
+});
