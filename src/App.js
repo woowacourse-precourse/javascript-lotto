@@ -4,8 +4,8 @@ const Lotto = require('./Lotto');
 const BonusNumber = require('./BonusNumber');
 const WinningChecker = require('./WinningChecker');
 const RateOfReturnCalculator = require('./RateOfReturnCalculator');
-const print = require('./utils/utils');
-const MissionUtils = require('@woowacourse/mission-utils');
+const { print, close } = require('./utils/utils');
+const { Console } = require('@woowacourse/mission-utils');
 const { MESSAGE } = require('./utils/constants');
 
 class App {
@@ -24,8 +24,8 @@ class App {
   }
 
   inputCash() {
-    MissionUtils.Console.readLine(MESSAGE.INPUT_CASH, (input) => {
-      let lottoCounter = new LottoCounter(input);
+    Console.readLine(MESSAGE.INPUT_CASH, (inputtedCash) => {
+      let lottoCounter = new LottoCounter(inputtedCash);
       this.countOfLotto = lottoCounter.getCountOfLotto();
 
       this.makeLotto();
@@ -59,7 +59,7 @@ class App {
   }
 
   inputWinningNumbers() {
-    MissionUtils.Console.readLine(MESSAGE.INPUT_LOTTO_NUMBERS, (input) => {
+    Console.readLine(MESSAGE.INPUT_LOTTO_NUMBERS, (input) => {
       input = input.split(',').map((num) => Number(num));
       let newLotto = new Lotto(input);
       this.winningNumbers = newLotto.getLottoNumbers();
@@ -69,7 +69,7 @@ class App {
   }
 
   inputBonusNumber() {
-    MissionUtils.Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (input) => {
+    Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (input) => {
       let newBonusNumber = new BonusNumber(Number(input), this.winningNumbers);
       this.bonusNumber = newBonusNumber.getBonusNumber();
 
@@ -122,7 +122,7 @@ class App {
   }
 
   close() {
-    MissionUtils.Console.close();
+    close();
   }
 }
 

@@ -1,5 +1,7 @@
-const MissionUtils = require('@woowacourse/mission-utils');
+const { Console } = require('@woowacourse/mission-utils');
 
-const print = (message) => MissionUtils.Console.print(message);
+const print = (message) => Console.print(message);
 
-module.exports = print;
+const close = () => Console.close();
+
+module.exports = { print, close };
