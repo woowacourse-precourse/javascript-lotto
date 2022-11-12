@@ -243,11 +243,11 @@ class App {
 }
 ```
 
-- 프로그램의 메인 로직을 따라서 실행
-- 사용자가 값을 입력할 때를 기준으로 로직을 순차적으로 실행한다  
+- 프로그램의 메인 로직을 따라서 실행합니다
+- 사용자가 값을 입력할 때를 기준으로 로직을 순차적으로 실행합니다
   시작 - 당첨번호값 입력 - 보너스번호값 입력 - 통계출력 - 게임종료 순
-- 각각의 phase에서는 getValueWithType() 실행
-- 게임에 필요한 값들을 저장.  
+- 각각의 phase에서는 getValueWithType() 실행합니다
+- 게임에 필요한 값들을 저장합니다.  
   구입금액, 당첨번호, 보너스번호
 
 </br>
@@ -282,6 +282,21 @@ class Input {
 class Print {}
 ```
 
+```javascript
+// 예외 처리와 관련된 클래스
+class ExceptionrCheck {
+  #errorCheckMethodList;
+
+  #setErrorCheckMethoList() {}
+  #isMethodIn(exceptionType) {}
+
+  check() {}
+}
+```
+
+- 예외 처리를 위해 필요한 부모클래스입니다.
+- 자식클래스에서 에러처리를 할 때는 에러처리할 메소드를 만들고 ExceptionrCheck를 super()로 상속받아 사용합니다.
+
 </br>
 
 ### 2. 핵심 로직
@@ -304,7 +319,28 @@ class Print {}
 
 ```
 
-### 에러 처리 로직
+### 에러 처리 클래스 생성 로직
+
+```javascript
+
+    //클래스 정리
+    부모 클래스 == ExceptionCheck 클래스
+    자식 클래스 == 예외처리를 구현할 클래스
+
+    //전처리 과정
+
+    자식 클래스) 프로토타입 메소드 작성
+                ↓
+    자식 클래스) super()로 ExceptionCheck 클래스 상속
+                ↓
+    부모 클래스) Object.getProtoTypeOf(this)로 자식 클래스의 프로토타입 메소드 #exceptionCheckmethodList에 저장
+
+    //사용과정
+    자식 클래스) 인스턴스 생성 후 부모 클래스의 check() 메소드로 예외처리 메소드를 불러오기
+                ↓
+    부모 클래스) check 메소드는 #isMethodIn으로 메서드 존재 여부 확인 이후에 자식클래스에서 만든 예외처리 프로토타입 메소드 반환
+
+```
 
 </details open>
 
@@ -321,7 +357,11 @@ class Print {}
 ### 📍 입력값 처리 기능
 
 - [x] 프로젝트에 필요한 값 입력 기능
-- [ ] 입력값 에러 처리 기능
+
+### 📍 예외 처리 기능
+
+- [x] 예외 처리 기능에 사용되는 클래스 구현
+- [ ] 입력값 예외 처리 기능
 
 ### 📍 로또 번호 처리 기능
 
