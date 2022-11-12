@@ -7,4 +7,10 @@ const ERROR_MESSAGE = {
   UNIT_ERROR: "[ERROR] 1,000으로 나누어 떨어지는 금액을 입력해주세요.",
 };
 
-module.exports = { GAME_MESSAGE, ERROR_MESSAGE };
+const LOTTO_VALUE = {
+  MIN: 1,
+  MAX: 45,
+  LENGTH: 6,
+};
+
+module.exports = { GAME_MESSAGE, ERROR_MESSAGE, LOTTO_VALUE };
