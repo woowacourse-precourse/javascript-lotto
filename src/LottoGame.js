@@ -40,6 +40,9 @@ class LottoGame {
   }
 
   inputMoney(input) {
+    if (input % 1000 !== 0) {
+      throw new Error('[ERROR] 구입금액의 단위는 1000원입니다.');
+    }
     this.money = Number(input);
     this.purchase(this.money / 1000);
   }
