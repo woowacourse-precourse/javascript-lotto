@@ -15,6 +15,7 @@ class App {
     }
     getMoney(input) {
         let now = this.checkMoney(input);
+        let lottoList = this.makeLotto(now);
     }
     checkMoney(input) {
         if (isNaN(input))
@@ -23,5 +24,17 @@ class App {
             throw new Error("[ERROR] 1000원 단위로 입력해 주세요.");
         return Number(input) / 1000;
     }
+    makeLotto(int) {
+        let res = [];
+        for (let i = 0; i < int; i++)
+            res.push(
+                new Lotto(
+                    MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6)
+                )
+            );
+        return res;
+    }
 }
+const app = new App();
+console.log(app.makeLotto(5));
 module.exports = App;
