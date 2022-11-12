@@ -28,4 +28,14 @@ describe("로또 클래스 테스트", () => {
       lotto.bonusCharacterCheck('string');
     }).toThrowError("[ERROR] 보너스 점수는 정수로 입력해야 합니다.");
   });
+
+  test("보너스 1보다 작거나 45보다 크면 예외가 발생한다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+
+    for(let number of [0, 46]){
+      expect(() => {
+        lotto.bonusRangeCheck(number);
+      }).toThrowError("[ERROR] 보너스 점수는 1 이상 45 이하의 정수여야 합니다.");
+    }
+  });
 });

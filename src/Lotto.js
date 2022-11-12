@@ -34,6 +34,12 @@ class Lotto {
       throw new Error("[ERROR] 보너스 점수는 정수로 입력해야 합니다.");
     }
   }
+
+  bonusRangeCheck(bonus) {
+    if(bonus < 1 || bonus > 45) {
+      throw new Error("[ERROR] 보너스 점수는 1 이상 45 이하의 정수여야 합니다.");
+    }
+  }
 }
 
 module.exports = Lotto;
