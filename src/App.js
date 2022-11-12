@@ -50,7 +50,7 @@ class App {
   }
 
   printWinningStatistics(bonusNumber) {
-    this.lotto.stateOfWinning(this.userLottos, bonusNumber);
+    this.lotto.informStateOfWinning(this.userLottos, bonusNumber);
 
     this.exitGame();
   }

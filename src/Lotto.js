@@ -15,7 +15,7 @@ class Lotto {
     Validator.throwErrorIfInvalidWinningNumbers(numbers);
   }
 
-  stateOfWinning(userLottos, bonusNumber) {
+  informStateOfWinning(userLottos, bonusNumber) {
     const winningState = userLottos.reduce((state, lotto) => {
       const matchingCount = GameTools.getMatchingNumCount(lotto, this.#numbers);
       const matchesBonusNum = lotto.includes(Number(bonusNumber));
@@ -27,7 +27,6 @@ class Lotto {
 
       return state;
     }, Array(LOTTO.NUM_OF_PRIZE).fill(0));
-    console.log(winningState);
 
     this.calcTotalPrize(winningState, userLottos.length);
   }
