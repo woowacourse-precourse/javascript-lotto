@@ -1,4 +1,4 @@
-const { Console, Random } = require("@woowacourse/mission-utils");
+const { Console } = require("@woowacourse/mission-utils");
 const Utils = require("./Utils");
 const ValidateInput = require("./ValidateInput");
 const BuyLotto = require("./BuyLotto");
@@ -10,8 +10,10 @@ class LottoProgram {
   constructor() {
     this.validateInput = new ValidateInput();
     this.utils = new Utils();
-    this.buyLotto = new BuyLotto;
+    this.buyLotto = new BuyLotto();
+    this.lotto = new Lotto();
     this.winningNumbers;
+    this.bonusNumber;
   }
 
   start() {
@@ -38,9 +40,20 @@ class LottoProgram {
 
   inputBonusNumber() {
     Console.readLine("보너스 번호를 입력해 주세요.\n", (bonusNumber) => {
-      this.validateInput.validateBonusNumber(this.winningNumbers, bonusNumber);
+      this.bonusNumber = bonusNumber;
+      this.validateInput.validateBonusNumber(this.winningNumbers, this.bonusNumber);
+      this.getWinningStat();
       Console.close();
     });
+  }
+
+  getWinningStat() {
+    Console.print("\n당첨 통계\n---")
+    this.lotto.lottosWinningBonus(
+      this.buyLotto.getLottoArray(),
+      this.winningNumbers,
+      this.bonusNumber
+    );
   }
 }
 
