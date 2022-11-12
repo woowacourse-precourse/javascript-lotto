@@ -20,15 +20,17 @@ class Validator {
       throw new Error(ERROR.UNIQUE_NUMBERS);
     }
 
-    lottoNumbers.forEach((number) => {
-      if (!this.isNaturalNumber(number)) {
-        throw new Error(ERROR.NATURAL_NUMBER);
-      }
+    lottoNumbers.forEach(this.validateLottoNumber);
+  }
 
-      if (!this.isBetween1And45(number)) {
-        throw new Error(ERROR.BETWEEN_1_TO_45_NUMBERS);
-      }
-    });
+  static validateLottoNumber(bonusNumber) {
+    if (!this.isNaturalNumber(bonusNumber)) {
+      throw new Error(ERROR.NATURAL_NUMBER);
+    }
+
+    if (!this.isBetween1And45(bonusNumber)) {
+      throw new Error(ERROR.BETWEEN_1_TO_45_NUMBERS);
+    }
   }
 
   static isNaturalNumber(value) {
