@@ -41,7 +41,7 @@
 ## [&nbsp; ] 로또 발행 - `LottoMachine`   
 구입 금액에 해당하는 만큼 로또를 발행한다.  
 발행한 로또 수량과 번호를 출력한다. 로또 번호는 오름차순으로 정렬한다.
-### [&nbsp; ] 로또 구매 수량 출력하기 - LottoMachine.printLottoAmount()  
+### [✅] 로또 구매 수량 출력하기 - LottoMachine.printLottoAmount()  
 **MissionUtils 라이브러리**에서 제공하는 `Console.print()`를 활용하여 출력한다.
 
 ### [&nbsp; ] 로또 번호 생성하기 - LottoMachine.makeLottoNumber()  
