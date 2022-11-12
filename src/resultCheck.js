@@ -1,13 +1,4 @@
-const MissionUtils = require("@woowacourse/mission-utils");
-const { GET_INPUT, GRADE, VALUE_NUMBER } = require("./constants");
-const { resultMessage } = require("./view");
-const Lotto = require("./Lotto");
-
-const ValidationCheck = require("./inputCheck");
-const INPUT_CHECK = new ValidationCheck();
-
-const MessageViewer = require("./view");
-const viewer = new MessageViewer();
+const { GRADE, VALUE_NUMBER } = require("./constants");
 
 class LottoResultCheck {
   constructor() {
@@ -16,28 +7,6 @@ class LottoResultCheck {
     this.lottoNumbersArray = [];
     this.winningNumbers = [];
     this.bonusNumber = 0;
-  }
-
-  getWinningNumber() {
-    return new Promise((resolve, reject) => {
-      MissionUtils.Console.readLine(GET_INPUT.WINNING_NUMBER, (userInput) => {
-        INPUT_CHECK.isWinningNumberValid(userInput);
-        const WINNING_NUMBERS = userInput.split(",").map((arrayElement) => parseInt(arrayElement));
-        new Lotto(WINNING_NUMBERS);
-        resolve(userInput);
-        this.winningNumbers = WINNING_NUMBERS;
-      });
-    });
-  }
-
-  getBonusNumber() {
-    return new Promise((resolve, reject) => {
-      MissionUtils.Console.readLine(GET_INPUT.BONUS_NUMBER, (userInput) => {
-        INPUT_CHECK.isBonusNumberValid(this.winningNumbers, userInput);
-        this.bonusNumber = userInput;
-        resolve(userInput);
-      });
-    });
   }
 
   winningCheck(lottonumbers) {
@@ -65,7 +34,7 @@ class LottoResultCheck {
     if (ranking === GRADE.FIFTH_GRADE) this.resultArray[GRADE.FIFTH_GRADE - 1]++;
   }
 
-  getTotalWinningMoney() {
+  getEarningsRate() {
     const PRIZE_LIST = [
       VALUE_NUMBER.FIRST_PRIZE,
       VALUE_NUMBER.SECOND_PRIZE,
@@ -78,13 +47,9 @@ class LottoResultCheck {
       (accumulator, currentValue, currentIndex) => accumulator + currentValue * PRIZE_LIST[currentIndex],
       INITIAL_VALUE
     );
-    this.getEarningsRate(TOTAL_WINNING_MONEY);
-  }
-
-  getEarningsRate(totalWinningMoney) {
     //%로 맞추기 위한 100도 상수화 해야하나?
-    const earningsRate = ((totalWinningMoney / this.userMoney) * 100).toFixed(1);
-    viewer.resultMessage(this.resultArray, earningsRate);
+    const earningsRate = ((TOTAL_WINNING_MONEY / this.userMoney) * 100).toFixed(1);
+    return earningsRate;
   }
 }
 
