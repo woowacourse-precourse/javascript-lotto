@@ -11,6 +11,14 @@ const MESSAGES = {
   WRONG_RANGE: '1 ~ 45 사이에 숫자를 넣어주세요.',
 };
 
+const RESULTS = {
+  0: '3개 일치 (5,000원) - ',
+  1: '4개 일치 (50,000원) - ',
+  2: '5개 일치 (1,500,000원) - ',
+  3: '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
+  4: '6개 일치 (2,000,000,000원) - ',
+};
+
 const CONSTANTS = {
   PREFIX: '[ERROR] ',
   BEGIN: 1,
@@ -18,7 +26,11 @@ const CONSTANTS = {
   MAX: 45,
 };
 
+const PRIZE = [5000, 50000, 1500000, 30000000, 2000000000];
+
 module.exports = {
+  MESSAGES,
   CONSTANTS,
-  MESSAGES
+  RESULTS,
+  PRIZE,
 };

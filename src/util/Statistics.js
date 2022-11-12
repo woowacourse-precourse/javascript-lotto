@@ -34,6 +34,10 @@ class Statistics {
     }
   }
 
+  static rateOfReturn(profit, principal) {
+    return parseFloat(((profit / principal) * 100).toFixed(1));
+  }
+
 }
 
 module.exports = Statistics;

@@ -1,8 +1,8 @@
-const Machine = require('./Machine');
 const Player = require('./Player');
 const Lotto = require('./Lotto');
+const Machine = require('./Machine');
 const { Console, Statistics } = require('./util');
-const { MESSAGES } = require('./constants');
+const { MESSAGES, PRIZE, RESULTS } = require('./constants');
 
 class App {
   play() {
@@ -39,8 +39,15 @@ class App {
   #showResult() {
     const [tickets, luckyNum] = [this.player.pocket, this.lotto.winningNums];
     const count = Statistics.countWinning(tickets, luckyNum);
-
-    Console.print(count);
+    let profit = 0;
+    Console.print('\n당첨 통계\n---');
+    for (let i = 0; i < count.length; i++) {
+      Console.print(`${RESULTS[i]}${count[i]}개`);
+      profit += Number(PRIZE[i]) * Number(count[i]);
+    }
+    const ROR = Statistics.rateOfReturn(profit, this.machine.insertedMoney);
+    Console.print(`총 수익률은 ${ROR}%입니다.`);
+    Console.close();
   }
 }
 
