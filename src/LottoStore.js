@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { validate, isPurchaseInput } = require('./Validator');
+const { validate, isPurchaseInput, isWinningNumber } = require('./Validator');
 const { MESSAGE, LOTTO } = require('./constants');
 const Lotto = require('./Lotto');
 
@@ -47,6 +47,7 @@ class LottoStore {
   }
 
   handleWinningNumbers(answer) {
+    validate(answer, isWinningNumber);
     this.#winningNumbers = answer.split(',').map(Number);
   }
 }

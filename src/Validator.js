@@ -5,6 +5,7 @@ class Validator {
   static #ERROR_MESSAGE = Object.freeze({
     isPurchaseInput: '로또 구입 금액은 1,000원 단위의 숫자입니다.',
     isLottoNumber: '로또 번호는 1부터 45 사이의 숫자여야 합니다.',
+    isWinningNumber: '당첨 번호는 쉼표로 구분되는 로또 번호여야 합니다.',
   });
 
   static validate(input, validator) {
@@ -24,6 +25,11 @@ class Validator {
       number => number >= LOTTO.MIN_NUMBER && number <= LOTTO.MAX_NUMBER,
     );
     return new Set(lottoNumbers).size === LOTTO.SIZE;
+  }
+
+  static isWinningNumber(input) {
+    const winningNumbers = input.split(',').map(Number);
+    return Validator.isLottoNumber(winningNumbers);
   }
 }
 
