@@ -19,11 +19,8 @@ class Lotto {
 
   validate(numbers) {
     const validCheck = isValidLottery(numbers);
-    if (validCheck === EXCEPTION_REASON.INPUT_LENGTH_ERROR) {
-      throw new Error(EXCEPTION_MESSAGE.INPUT_LENGTH_ERROR);
-    }
-    if (validCheck === EXCEPTION_REASON.INPUT_OVERLAPPED) {
-      throw new Error(EXCEPTION_MESSAGE.INPUT_OVERLAPPED);
+    if (validCheck !== true) {
+      throw new Error(EXCEPTION_MESSAGE[validCheck]);
     }
   }
 
