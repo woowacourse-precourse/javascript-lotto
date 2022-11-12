@@ -10,7 +10,8 @@ class Lotto {
 
   constructor(numbers) {
     Lotto.validate(numbers);
-    this.#numbers = numbers.map(Lotto.#toLottoNumber);
+    numbers.forEach(LottoNumber.validate);
+    this.#numbers = numbers;
   }
 
   static validate(numbers) {
@@ -21,7 +22,6 @@ class Lotto {
       throw new LottoHasDuplicatedException();
     }
   }
-  // TODO: 추가 기능 구현
 
   static of(numbers) {
     return new Lotto(numbers);
@@ -43,11 +43,11 @@ class Lotto {
 
   countSameNumber(lotto) {
     Lotto.validateLotto(lotto);
-    return this.#numbers.filter((number) => lotto.includes(number.getNumber())).length;
+    return this.#numbers.filter((number) => lotto.includes(number)).length;
   }
 
   includes(number) {
-    return this.#numbers.some((value) => value.getNumber() === number);
+    return this.#numbers.some((value) => value === number);
   }
 }
 
