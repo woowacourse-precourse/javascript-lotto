@@ -9,7 +9,7 @@
   - [x] 1~45까지의 중복되지 않는 6자리의 숫자를 발행 횟수만큼 뽑는다. `issue`
   - [x] 로또 발행 횟수 만큼 로또 번호 목록을 출력한다. `printLottoNumbers`
 - [x] 당첨번호 문구 출력 및 입력 `drawWinningNumbers`
-- [x] 보너스번호 문구 출력 및 입력 `drawBonuseNumber`
+- [x] 보너스번호 문구 출력 및 입력 `drawBonusNumber`
 - [x] 당첨통계 출력
   - [x] 당첨번호와 뽑은 로또를 비교해 당첨 데이터를 구한다. `calculateResult`
   - [x] 구입금액과 당첨금액을 활용해 수익률을 구한다. `calculateYield`
@@ -26,7 +26,7 @@
   - [x] 각 번호의 구분을 `,`로 한다.
   - [ ] 번호는 1~45의 숫자다.
   - [x] 번호가 중복되면 안된다.
-- [x] 보너스번호 입력 `BonuseLotto`
+- [x] 보너스번호 입력 `BonusLotto`
   - [ ] 번호는 1~45의 숫자다.
   - [x] 번호가 당첨번호와 중복되면 안된다.
 
@@ -113,8 +113,8 @@
 - 당첨 번호 입력
 
   - 생성자에 당첨 번호와 보너스 번호를 담는 객체 `winningNumber`를 추가한다.
-  - `winningNumber`는 메인 당첨 번호를 담는 `main`과 보너스 번호를 담는 `bonuse`로 이루어져 있다.
-    - `winningNumber = { main: [], bonuse: [] }`
+  - `winningNumber`는 메인 당첨 번호를 담는 `main`과 보너스 번호를 담는 `bonus`로 이루어져 있다.
+    - `winningNumber = { main: [], bonus: [] }`
   - 당첨 번호를 가져오기 위해서 lotto 클래스를 활용한다.
     - lotto 클래스에서 번호를 가져오기 위한 메서드 `getNumbers`를 추가한다.
     - lotto 클래스의 `validate`에서 중복성 검사를 하는 로직을 추가한다.
@@ -137,7 +137,7 @@
       5: 0,
       6: 0,
       //5개가 맞고 보너스 번호까지 맞은 경우
-      bonuse: 0,
+      bonus: 0,
       //얻은 금액 합계
       earn: 0,
       //수익률
@@ -167,7 +167,7 @@ const LOTTO_PRICE = {
   5: 1500000,
   6: 2000000000,
   // 2등 상금
-  bonuse: 30000000,
+  bonus: 30000000,
 };
 ```
 

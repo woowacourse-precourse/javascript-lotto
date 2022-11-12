@@ -1,8 +1,8 @@
-class BonuseLotto {
+class BonusLotto {
   #number;
 
   constructor(number, winningNumbers) {
-    BonuseLotto.validate(number, winningNumbers);
+    BonusLotto.validate(number, winningNumbers);
     this.#number = number;
   }
 
@@ -17,4 +17,4 @@ class BonuseLotto {
   }
 }
 
-module.exports = BonuseLotto;
+module.exports = BonusLotto;
