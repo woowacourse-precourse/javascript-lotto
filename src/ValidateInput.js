@@ -14,14 +14,6 @@ class ValidateInput {
     );
   }
 
-  isValidLottoArray(lottoArray) {
-    return (
-      lottoArray.length === 6 &&
-      new Set(lottoArray).size === 6 &&
-      lottoArray.toString() === lottoArray.sort((a, b) => a - b).toString()
-    );
-  }
-
   validateInputMoney(inputMoney) {
     return (!(
       this.utils.isBlank(inputMoney) ||
