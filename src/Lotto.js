@@ -29,6 +29,11 @@ class Lotto {
   getLottoNumbers() {
     return this.#numbers ? this.#numbers : [];
   }
+
+  winningNumbersToArray(winningNumbers) {
+    const winningNumbersArr = winningNumbers.split(",");
+    return winningNumbersArr.map((num) => parseInt(num));
+  }
 }
 
 module.exports = Lotto;
