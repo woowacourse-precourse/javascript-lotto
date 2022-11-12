@@ -14,6 +14,7 @@ class LottoMarket {
   }
 
   showLottoes(buyingLottoes) {
+    Console.print(`${buyingLottoes.length}개를 구매했습니다.`)
     let Lottoes = buyingLottoes.reduce((acc, cur) => {
       Console.print(cur.getNumbers());
     }, []);
