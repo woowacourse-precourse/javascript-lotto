@@ -1,43 +1,38 @@
 const {
   checkSplitSymbol,
-  checkNumberOfDigit,
-  checkMainNumberInRange,
-  checkBonusNumberInRange,
+  checkNumber,
+  checkRange,
   checkMainNumberOverlap,
   checkBonusNumberOverlap,
 } = require('./Validation');
-const { PICK_TYPE } = require('./Constants/PICK');
+const { PICK_INDEX } = require('./Constants/PICK');
 
 class Lotto {
   #numbers;
 
-  constructor(numbers, type) {
-    this.validate(numbers.split(',').map(Number), type);
-    this.#numbers = numbers.split(',').map(Number);
+  constructor(mainNumber, bonusNumber) {
+    this.validate(mainNumber.toString().split(',').map(Number), +bonusNumber);
+    this.#numbers = mainNumber.toString().split(',').map(Number);
+    this.#numbers.push(+bonusNumber);
   }
 
-  // 추후 검증 파트를 개별 파일로 분리할 예정
-  validate(numbers, type) {
-    if (type === PICK_TYPE.main) {
-      checkSplitSymbol(numbers);
-      checkMainNumberInRange(numbers);
-      checkMainNumberOverlap(numbers);
-    }
-    if (type === PICK_TYPE.bonus) {
-      checkBonusNumberInRange(numbers);
-      checkBonusNumberOverlap(numbers);
-    }
-    checkNumberOfDigit(numbers);
+  validate(mainNumber, bonusNumber) {
+    checkSplitSymbol(mainNumber);
+    checkNumber(mainNumber, bonusNumber);
+    checkRange(mainNumber, bonusNumber);
+    checkMainNumberOverlap(mainNumber);
+    checkBonusNumberOverlap(mainNumber, bonusNumber);
   }
 
-  checkWin(lotto, bonusNumber) {
-    const winNumber = this.#numbers.split(',').map(Number);
+  checkWin(lotto) {
+    const main = this.#numbers.slice(PICK_INDEX.mainStart, PICK_INDEX.bonusStart);
+    const bonus = this.#numbers[PICK_INDEX.bonusStart];
     let count = 0;
     let bonusCount = 0;
 
     lotto.forEach((number) => {
-      if (winNumber.includes(number)) count += 1;
-      if (number === +bonusNumber) bonusCount += 1;
+      if (main.includes(number)) count += 1;
+      if (bonus === number) bonusCount += 1;
     });
 
     return [count, bonusCount];
