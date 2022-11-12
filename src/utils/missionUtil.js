@@ -1,6 +1,14 @@
-const MissionUtils = require('@woowacourse/mission-utils');
+const { Random, Console } = require('@woowacourse/mission-utils');
+
+const print = (message) => {
+  return Console.print(message);
+};
+const readLine = (query, callback) => {
+  return Console.readLine(query, callback);
+};
 
 module.exports = {
-  Random: MissionUtils.Random,
-  Console: MissionUtils.Console,
+  Random,
+  print,
+  readLine,
 };
