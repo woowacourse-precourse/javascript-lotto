@@ -4,7 +4,7 @@ class OutputConsole {
   printUserLotto(lotto) {
     Console.print(`\n${lotto.length}개를 구매했습니다.`);
     lotto.forEach((numbers) => {
-      Console.print(numbers);
+      Console.print(`[${numbers.join(', ')}]`);
     });
   }
 
