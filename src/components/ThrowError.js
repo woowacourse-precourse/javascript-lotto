@@ -1,4 +1,5 @@
-const { Console } = require('@woowacourse/mission-utils');
+const { LIBRARY_URL } = require('../constant');
+const { Console } = require(LIBRARY_URL);
 
 function ThrowError(errorMessage) {
   Console.close();

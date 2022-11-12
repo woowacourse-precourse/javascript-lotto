@@ -1,3 +1,5 @@
+const LIBRARY_URL = '@woowacourse/mission-utils';
+
 const LOTTO_INFO = Object.freeze({
   SPLITUNIT: ',',
   START_RANGE: 1,
@@ -98,6 +100,7 @@ const PRINT_MESSAGE = Object.freeze({
 });
 
 module.exports = {
+  LIBRARY_URL,
   LOTTO_INFO,
   BONUSLOTTO_INFO,
   LOTTO_ERROR,

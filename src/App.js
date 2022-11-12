@@ -1,6 +1,6 @@
-const { Console } = require('@woowacourse/mission-utils');
+const { RANKING, INPUT_MESSAGE, PRINT_MESSAGE, LOTTO_INFO, LIBRARY_URL } = require('./constant');
+const { Console } = require(LIBRARY_URL);
 const BonusLotto = require('./BonusLotto');
-const { RANKING, INPUT_MESSAGE, PRINT_MESSAGE, LOTTO_INFO } = require('./constant');
 const Lotto = require('./Lotto');
 const Profit = require('./Profit');
 const PurChase = require('./Purchase');

@@ -1,6 +1,6 @@
-const { Random } = require('@woowacourse/mission-utils');
+const { AMOUNt_ERROR, LOTTO_INFO, LIBRARY_URL } = require('./constant');
+const { Random } = require(LIBRARY_URL);
 const ThrowError = require('./components/ThrowError');
-const { AMOUNt_ERROR, LOTTO_INFO } = require('./constant');
 
 class PurChase {
   #money;
