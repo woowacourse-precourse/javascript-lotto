@@ -5,6 +5,13 @@ const LottoConfig = {
   MIN_NUMBER: 1,
   NUMBERS: 6,
 
+  PRIZE_1: 1,
+  PRIZE_2: 2,
+  PRIZE_3: 3,
+  PRIZE_4: 4,
+  PRIZE_5: 5,
+  NO_PRIZE: 0,
+
   PRIZE_1_CORRECT_COUNT: 6,
   PRIZE_2_3_CORRECT_COUNT: 5,
   PRIZE_4_CORRECT_COUNT: 4,
