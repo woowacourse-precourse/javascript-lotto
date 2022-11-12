@@ -10,7 +10,7 @@ const mockQuestions = (answers) => {
   }, MissionUtils.Console.readLine);
 };
 
-const mockRandoms = (numbers) => {
+const mockRandoms = (numbers) => { 
   MissionUtils.Random.pickUniqueNumbersInRange = jest.fn();
   numbers.reduce((acc, number) => {
     return acc.mockReturnValueOnce(number);
