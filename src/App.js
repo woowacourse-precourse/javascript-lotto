@@ -9,12 +9,13 @@ class App {
   order = 0;
 
   play() {
+    if (this.order === LOTTO_SETTING.PLAYER_TOTAL_ORDER) {
+      return;
+    }
+
     MissionUtils.Console.readLine(
       LOTTO_MESSAGE.PLAYER_INPUT_MSG[this.order],
       (playerInput) => {
-        if (this.order === LOTTO_SETTING.PLAYER_TOTAL_ORDER) {
-          return;
-        }
         if (this.order === LOTTO_SETTING.INPUT_MONEY_ORDER) {
           const money = playerInput;
           this.buyLotto(money);
@@ -36,6 +37,7 @@ class App {
   buyLotto(money) {
     Lotto.checkMoney(money);
     this.lottoNumArr = Lotto.genLottoNumArr(money);
+    Lotto.printBuyLottoMSG(money);
     Lotto.printLottoNumArr(this.lottoNumArr);
   }
 

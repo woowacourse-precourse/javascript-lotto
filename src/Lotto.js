@@ -51,9 +51,6 @@ class Lotto {
 
   static genLottoNumArr(money) {
     const LOTTO_NUM_COUNT = money / LOTTO_SETTING.LOTTO_PRICE;
-    MissionUtils.Console.print(
-      LOTTO_NUM_COUNT + LOTTO_MESSAGE.BUY_LOTTO_NUM_MSG
-    );
 
     let lottoNumArr = [];
     for (let count = 0; count < LOTTO_NUM_COUNT; count++) {
@@ -66,6 +63,13 @@ class Lotto {
     }
 
     return lottoNumArr;
+  }
+
+  static printBuyLottoMSG(money) {
+    const LOTTO_NUM_COUNT = money / LOTTO_SETTING.LOTTO_PRICE;
+    MissionUtils.Console.print(
+      LOTTO_NUM_COUNT + LOTTO_MESSAGE.BUY_LOTTO_NUM_MSG
+    );
   }
 
   static printLottoNumArr(lottoNumArr) {
