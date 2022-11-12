@@ -3,9 +3,13 @@ const Lotto = require('./Lotto')
 
 class App {
   numberOfLotto;
+  myLottos = [];
+  luckyNumbers = [];
+  bonusNumber;
 
   play() {
     this.pay();
+    this.draw();
   }
 
   pay() {
@@ -16,13 +20,34 @@ class App {
   }
 
   publish() {
-    Console.print(`${this.numberOfLotto}개를 구매했습니다.`);
+    Console.print(`\n${this.numberOfLotto}개를 구매했습니다.`);
     for(let i = 0; i < this.numberOfLotto; i++) {
       const lotto = new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6))
-      Console.print(lotto.getNumbers());
+      this.myLottos.push(lotto.getNumbers());
     }
+    this.printLottos();
+    this.draw();
   }
 
+  printLottos() {
+    this.myLottos.map(myLotto => {
+      Console.print(myLotto);
+    })
+  }
+
+  draw() {
+    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (input) => {
+      this.luckyNumbers = input.split(",").map(Number);
+      this.setBonus();
+
+    });
+  }
+  setBonus() {
+    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (input) => {
+      this.bonusNumber = Number(input)
+      console.log(this.luckyNumbers, this.bonusNumber)
+    });
+  }
   
 }
 
