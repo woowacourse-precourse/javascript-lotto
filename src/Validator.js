@@ -36,6 +36,13 @@ class Validator {
       throw new Error(`${ERROR_MESSAGES.INVALID_LOTTO_COUNT}`);
     }
   }
+
+  static checkWinNumbersSeparator(winNumbers) {
+    const splitNumberLength = winNumbers.match(/,/g, '').length;
+    if (String(splitNumberLength) !== `${LOTTO_INFO.COUNT}`) {
+      throw new Error(`${ERROR_MESSAGES.INVALID_SEPARATOR}`);
+    }
+  }
 }
 
 module.exports = Validator;
