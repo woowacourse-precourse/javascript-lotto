@@ -11,9 +11,9 @@ class App {
   #myLotteryRankList;
   #startMoney;
   #earnedMoney;
+  #myLotteryQuantity;
 
   constructor() {
-    this.#myLotteryList = [];
     this.#myLotteryRankList = {
       1: 0,
       2: 0,
@@ -31,18 +31,20 @@ class App {
   buy() {
     Console.readLine(GAME_MESSAGE.INSERT_PURCHASE_COST, (userInput) => {
       this.#startMoney = Number(userInput);
-      const lotteryQuantity = getLottoQuantity(this.#startMoney);
-      return this.makeLotteries(lotteryQuantity);
+      this.#myLotteryQuantity = getLottoQuantity(this.#startMoney);
+      this.#myLotteryList = Array(this.#myLotteryQuantity).fill({}); // 처음부터 Array(Object) 모양 고정시켜 V8 Map Space에 불필요한 hiddenClass 생성을 막기 위함 (push 사용 x)
+      return this.makeLotteries();
     });
   }
 
   // 로또 수량만큼 로또 생성하는 메서드 (new Lotto())
-  makeLotteries(quantity) {
-    // makeRandomLottoNumber() 호출
-    for (let lotteryCount = 0; lotteryCount < quantity; lotteryCount += 1) {
+  makeLotteries() {
+    this.#myLotteryList = this.#myLotteryList.map((blankObject) => {
       const myLottery = makeRandomLottoNumber();
-      this.#myLotteryList.push(new Lotto(myLottery));
-    }
+      blankObject = new Lotto(myLottery);
+      return blankObject;
+    });
+    return this.myLotteryResult();
   }
 
   // 로또 결과 출력하기
