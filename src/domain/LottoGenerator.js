@@ -4,7 +4,13 @@ class LottoGenerator {
   createLotto() {}
 
   createLottoNumbers() {
-    return Random.pickUniqueNumbersInRange(1, 45, 6);
+    const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+
+    return this.#sortAscending(numbers);
+  }
+
+  #sortAscending(numbers) {
+    return [...numbers].sort((a, b) => a - b);
   }
 }
 
