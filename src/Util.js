@@ -16,6 +16,11 @@ class Util {
   static isDivisibleBy(str, unit) {
     return parseInt(str) % unit === 0;
   }
+
+  static hasDuplicateElements(arr) {
+    const setToCompare = new Set(arr);
+    return arr.length !== setToCompare.size;
+  }
 }
 
 module.exports = Util;
