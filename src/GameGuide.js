@@ -1,14 +1,17 @@
-const { Console } = require('@woowacourse/mission-utils');
-const PLEASE_ENTER_TEXT = '을 입력해 주세요.';
+const { ENTER_PURCHASE_AMOUNT, PLEASE_ENTER_TEXT } = require('./constans');
+
+const title = {
+  [ENTER_PURCHASE_AMOUNT]: '구입금액'
+};
 
 // 출력을 담당
 class GameGuide {
-  makeInputGuideText(title) {
-    return `${title}${PLEASE_ENTER_TEXT}`;
+  makeInputGuideText(inputType) {
+    return `${title[inputType]}${PLEASE_ENTER_TEXT}`;
   }
 
-  printInputGuideText(title) {
-    console.log(this.makeInputGuideText(title));
+  printInputGuideText(inputType) {
+    console.log(this.makeInputGuideText(inputType));
   }
 }
 

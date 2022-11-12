@@ -1,0 +1,7 @@
+const ENTER_PURCHASE_AMOUNT = 'ENTER_PURCHASE_AMOUNT';
+const PLEASE_ENTER_TEXT = '을 입력해 주세요.';
+
+module.exports = {
+  ENTER_PURCHASE_AMOUNT,
+  PLEASE_ENTER_TEXT
+};
