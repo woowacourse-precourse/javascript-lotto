@@ -88,7 +88,7 @@ class User {
         if (!VALIDATION) {
           throw new Error('[Error] 롯또 번호는 1~45 사이의 숫자입니다.');
         }
-        this.setBonusNumber(bonus_number);
+        this.setBonusNumber(Number(bonus_number));
         this.calculate();
       },
     );
@@ -103,12 +103,13 @@ class User {
   }
 
   calculate() {
-    const CALCULATE = new Calculate();
-    CALCULATE.print_result(
-      this.lottos,
+    const CALCULATE = new Calculate(
+      this.amount,
       this.winning_number,
-      Number(this.bonus_number),
+      this.bonus_number,
+      this.lottos,
     );
+    CALCULATE.print_result();
   }
 }
 
