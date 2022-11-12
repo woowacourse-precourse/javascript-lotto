@@ -1,11 +1,13 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { validateLottoRange } = require('../utils/method');
 
 const LottoAdjustment = require('./LottoAdjustment');
 const Lotto = require('./Lotto');
 const LottoStore = require('./LottoStore');
 const LottoDrawFactory = require('./LottoDrawFactory');
 const Bonus = require('./Bonus');
+
+const { LOTTO_QUESTION } = require('../utils/constants');
+const { validateLottoRange } = require('../utils/method');
 
 class App {
   #lottoStore;
@@ -21,7 +23,7 @@ class App {
   }
 
   #buyLotto() {
-    Console.readLine('구입금액을 입력해주세요.\n', input => {
+    Console.readLine(LOTTO_QUESTION.money, input => {
       this.#lottoStore = new LottoStore(input);
 
       this.#drawLotto();
@@ -29,7 +31,7 @@ class App {
   }
 
   #drawLotto() {
-    Console.readLine('당첨 번호를 입력해 주세요.\n', input => {
+    Console.readLine(LOTTO_QUESTION.lotto, input => {
       const inputNumArr = input
         .split(',')
         .map(value => validateLottoRange(value));
@@ -41,7 +43,7 @@ class App {
   }
 
   #drawBonus() {
-    Console.readLine('보너스 번호를 입력해 주세요.\n', input => {
+    Console.readLine(LOTTO_QUESTION.bonus, input => {
       this.#bonus = new Bonus(input);
 
       const lottoPayment = new LottoAdjustment({
