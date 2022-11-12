@@ -13,7 +13,6 @@ class App {
     this.purchasedLottos = [];
     this.winningNumbers;
     this.bonusNumber;
-    this.lottoCounter;
     this.winningResult = [];
     this.countOfRanking = [null, 0, 0, 0, 0, 0];
     this.numberGenerator = new NumberGenerator();
@@ -25,8 +24,8 @@ class App {
 
   inputCash() {
     MissionUtils.Console.readLine(MESSAGE.INPUT_CASH, (input) => {
-      this.lottoCounter = new LottoCounter(input);
-      this.countOfLotto = this.lottoCounter.getCountOfLotto();
+      let lottoCounter = new LottoCounter(input);
+      this.countOfLotto = lottoCounter.getCountOfLotto();
 
       this.makeLotto();
     });
@@ -126,7 +125,6 @@ class App {
     );
 
     let rateOfReturn = calculator.getRateOfReturn();
-
     MissionUtils.Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
   }
 }
