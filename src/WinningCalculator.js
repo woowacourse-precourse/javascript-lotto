@@ -63,7 +63,7 @@ class WinningCalculator {
   }
 
   print() {
-    MissionUtils.Console.print("당첨 통계");
+    MissionUtils.Console.print("\n당첨 통계");
     MissionUtils.Console.print("---");
     this.printRank();
     this.printRateOfReturn();
