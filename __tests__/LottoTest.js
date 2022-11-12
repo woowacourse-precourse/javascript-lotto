@@ -1,4 +1,5 @@
 /* eslint-disable no-new */
+/* eslint-disable max-lines-per-function */
 const MissionUtils = require('@woowacourse/mission-utils');
 
 const Lotto = require('../src/Lotto');
@@ -191,11 +192,12 @@ describe('로또 클래스 테스트', () => {
         expect(Lotto.isBonusMatche.name).toEqual(METHOD_NAME);
       });
 
-      test('주어진 값이 보너스 값과 일치하면 true를 반환한다.', () => {
-        const target = [1, 2, 3, 4, 5, 6];
+      test('주어진 값이 보너스 값과 일치하면 [0, 0, 0, 1, 0]를 반환한다.', () => {
         const BONUS = 4;
+        const target = [1, 2, 3, 4, 5, 6];
+        const expected = [0, 0, 0, 1, 0];
 
-        expect(Lotto.isBonusMatche(target, BONUS)).toBeTruthy();
+        expect(Lotto.isBonusMatche(target, BONUS, [0, 0, 0, 0, 0])).toStrictEqual(expected);
       });
     });
 
