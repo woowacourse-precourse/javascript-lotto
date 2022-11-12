@@ -12,6 +12,12 @@ class LottoValidator {
     }
   }
 
+  static splitLottoNumbers (lottoNumbersString) {
+    const lottoNumbers = lottoNumbersString.split(',');
+    this.LottoValidator(lottoNumbers);
+    return lottoNumbers;
+  }
+
   static #checkLottoLength(numbers) {
     if (numbers.length !== 6) {
       throw new Error(ERROR.LOTTO_LENGTH);

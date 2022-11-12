@@ -10,8 +10,7 @@ class InputConsole {
   };
   static getLotto = async () => {
     const lottoNumbersString = await Console.input(INPUT.GET_LOTTO);
-    const lottoNumbers = lottoNumbersString.split(',');
-    return lottoNumbers
+    return LottoValidator.splitLottoNumbers(lottoNumbersString);
   };
 }
 
