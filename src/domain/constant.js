@@ -15,7 +15,7 @@ const MESSAGE = {
   FOURTH_PLACE: "4개 일치 (50,000원) - ",
   FIFTH_PLACE: "3개 일치 (5,000원) - ",
   EA: "개",
-  PURCHASE_QUANTITY: (quantity) => `${quantity}개를 구매했습니다.\n`,
+  PURCHASE_QUANTITY: (quantity) => `\n${quantity}개를 구매했습니다.`,
   TOTAL_RATE_OF_RETURN: (rateOfReturn) =>
     `총 수익률은 ${rateOfReturn}%입니다.\n`,
 };

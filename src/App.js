@@ -38,7 +38,6 @@ class App {
 
   countLottoQuantity(purchaseAmount) {
     const lottoQuantity = purchaseAmount / PRICE_PER_LOTTO;
-    Console.print(MESSAGE.PURCHASE_QUANTITY(lottoQuantity));
     return this.makeLottos(lottoQuantity);
   }
 
@@ -48,7 +47,7 @@ class App {
       const lottoNumbers = Util.getSortedArrayInAsc(this.getLottoNumbers());
       lottos.push(new Lotto(lottoNumbers));
     }
-    return;
+    return this.printLottos(lottos);
   }
 
   getLottoNumbers() {
@@ -61,6 +60,14 @@ class App {
     }
     return lottoNumbers;
   }
+
+  printLottos(lottos) {
+    Console.print(MESSAGE.PURCHASE_QUANTITY(lottos.length));
+    lottos.forEach((lotto) => Console.print(lotto.getLottoNumbers()));
+  }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
