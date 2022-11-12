@@ -79,6 +79,11 @@ class App {
     this.#lottos.push(lotto);
   }
 
+  buyLottos(money) {
+    this.validateMoney(money);
+    for (let i = 0; i < money / 1000; i += 1) this.issueLotto();
+  }
+
   play() {
     Console.print('구입 금액을 입력해주세요.');
     Console.close();
