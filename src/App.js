@@ -26,15 +26,10 @@ class App {
   askBuget() {
     Console.readLine(MESSAGE.ASK_BUDGET, (money) => {
       Validator.throwErrorIfInvalidMoney(money);
+      this.userLottos = GameTools.issueLottoAsManyAsCount(money / LOTTO.PRICE);
 
-      this.issueLotto(money / LOTTO.PRICE);
+      this.renderIssuedLottoList(money / LOTTO.PRICE);
     });
-  }
-
-  issueLotto(countOfLottos) {
-    this.userLottos = GameTools.issueLottoAsManyAsCount(countOfLottos);
-
-    this.renderIssuedLottoList(countOfLottos);
   }
 
   renderIssuedLottoList(countOfLottos) {
