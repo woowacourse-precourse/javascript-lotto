@@ -10,8 +10,8 @@ class generateLottoNum {
     const lottoArr = []
     const lottoCount = lottoCost / 1000
     for(let i=0; i<lottoCount;i++) lottoArr.push(this.createLottoNum())
-    
-    return lottoArr
+
+    return [lottoCount, lottoArr]
   }
 }
 
