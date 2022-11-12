@@ -14,7 +14,7 @@
 
 ## Lotto를 살 수 있는 `LottoGameMachine` 클래스를 생성한다.
 
-- [ ] 게임 머신을 킨다. : `startLottoGameMachine`
+- [x] 게임 머신을 킨다. : `startLottoGameMachine`
 - [x] 사용자에게 구입 금액을 입력받는다. : `setTotalPurchaseAmount`
 - [x] 구입 금액에 해당하는 만큼 로또를 발행한다. : `setLottos`
   - `generateRandomLottoNumbers` util 함수를 사용한다.
