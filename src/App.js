@@ -1,13 +1,16 @@
-const Lotto = require("./Lotto");
 const LottoView = require("./LottoView");
+const LottoModel = require("./LottoModel");
+const Lotto = require("./Lotto");
 const lottoView = new LottoView();
+const lottoModel = new LottoModel();
+// const lotto = new Lotto();
 
 class App {
   play() {
-    let purchaseAmount;
     lottoView.getPurchaseAmount().then((amount) => {
-      purchaseAmount = amount / 1000;
-      console.log(purchaseAmount);
+      amount = amount / 1000;
+      const lottos = lottoModel.createLottos(amount);
+      console.log(lottos);
     });
   }
 }
