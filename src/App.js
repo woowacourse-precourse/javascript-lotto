@@ -1,11 +1,13 @@
 const MissionUtils = require('@woowacourse/mission-utils')
 
 class App {
+    money=0
     lottoCount = 0
     userLottoNumbers = []
     winningNumbers = []
     bonusNumber
     rank = [0, 0, 0, 0, 0]
+    prizeMoney=[2000000000, 1500000, 50000, 5000, 30000000]
     rateOfReturn=0;
 
     constructor() {}
@@ -16,7 +18,8 @@ class App {
 
     insertMoney() {
         MissionUtils.Console.readLine('구입금액을 입력해 주세요.', (answer) => {
-            this.lottoCount = this.lottoPurchaseCount(answer)
+            this.money=answer
+            this.lottoCount = this.lottoPurchaseCount(this.money)
             this.lottoCountPrint(this.lottoCount)
             this.makeLottoNumber()
         })
@@ -88,7 +91,15 @@ class App {
             if (this.winningCount(i) > 2)
               this.rank[6-this.winningCount(i)]+=1
         }
-        this.winningStatistics();
+        this.calculationOfEarnings();
+    }
+
+    calculationOfEarnings(){
+      for(let i=0; i<this.rank.length; i++){
+        this.rateOfReturn += this.rank[i]*this.prizeMoney[i];
+      }
+      this.rateOfReturn=this.rateOfReturn/this.money*100;
+      this.winningStatistics();
     }
 
     winningStatistics(){
@@ -98,8 +109,8 @@ class App {
       MissionUtils.Console.print("5개 일치 (1,500,000원) - " + this.rank[1]+"개");
       MissionUtils.Console.print("5개 일치, 보너스 볼 일치 (30,000,000원) - "+ this.rank[4]+"개");
       MissionUtils.Console.print("6개 일치 (2,000,000,000원) - "+ this.rank[0]+"개");
+      MissionUtils.Console.print("총 수익률은 "+this.rateOfReturn+"%입니다.")
     }
-
 
 }
 
