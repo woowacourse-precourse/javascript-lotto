@@ -1,6 +1,7 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const Payment = require('./Payment');
+const BonuseLotto = require('./BonuseLotto');
 
 const LOTTO_PRICE = {
   purchase: 1000,
@@ -20,7 +21,7 @@ class LottoGame {
     this.purchaseList = [];
     this.winningNumber = {
       main: [],
-      bonuse: [],
+      bonuse: 0,
     };
     this.result = {
       0: 0,
@@ -76,7 +77,7 @@ class LottoGame {
 
   drawBonuseNumber() {
     Console.readLine('\n보너스 번호를 입력해 주세요.\n', (input) => {
-      this.winningNumber.bonuse = input;
+      this.winningNumber.bonuse = new BonuseLotto(input, this.winningNumber.main).getNumber();
       this.calculateResult();
       this.printResult();
     });
