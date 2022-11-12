@@ -103,9 +103,9 @@ class App {
   }
 
   calculateMatching(lotto) {
-    const correct = lotto.filter((number) =>
-      this.#winningNumbers.includes(number)
-    ).length;
+    const correct = lotto
+      .getNumbers()
+      .filter((number) => this.#winningNumbers.includes(number)).length;
 
     if (correct === 3) this.#matching[CORRECT_THREE] += 1;
     if (correct === 4) this.#matching[CORRECT_FOUR] += 1;
