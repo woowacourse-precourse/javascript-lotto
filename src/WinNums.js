@@ -1,12 +1,12 @@
 class WinNums {
   constructor(winNums) {
-    this.isWinNumInRange(winNums);
-    this.isWinNumOverlap(winNums);
+    this.isInRange(winNums);
+    this.isOverlap(winNums);
     this.isNumsCountSix(winNums);
-    this.hasBlankWinNums(winNums);
+    this.hasBlank(winNums);
   }
 
-  isWinNumInRange(winNums) {
+  isInRange(winNums) {
     const winNumsArr = winNums.split(',');
     winNumsArr.map((winNum) => {
       if (winNum < 1 || winNum > 45) {
@@ -15,7 +15,7 @@ class WinNums {
     });
   }
 
-  isWinNumOverlap(winNums) {
+  isOverlap(winNums) {
     const winNumsArr = winNums.split(',');
     const set = new Set(winNumsArr);
     if (set.size < winNumsArr.length) {
@@ -30,7 +30,7 @@ class WinNums {
     }
   }
 
-  hasBlankWinNums(winNums) {
+  hasBlank(winNums) {
     const winNumsArr = winNums.split('');
     winNumsArr.map((el) => {
       if (el === ' ') throw new Error('[ERROR] 입력에 공백이 있습니다.');
