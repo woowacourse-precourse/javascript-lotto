@@ -44,7 +44,7 @@
 ### [✅] 로또 구매 수량 출력하기 - LottoMachine.printLottoAmount()  
 **MissionUtils 라이브러리**에서 제공하는 `Console.print()`를 활용하여 출력한다.
 
-### [&nbsp; ] 로또 번호 생성하기 - LottoMachine.makeLottoNumber()  
+### [✅] 로또 번호 생성하기 - LottoMachine.makeLottoNumber()  
 Random 값은 **MissionUtils 라이브러리**의 `Random.pickUniqueNumbersInRange()`를 활용한다.  
 1부터 45 범위의 숫자를 중복 없이 6개 생성한다.
 
