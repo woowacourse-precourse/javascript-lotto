@@ -12,7 +12,7 @@ class LottoGameController {
     Console.readLine(INPUT_MESSAGE.MONEY, (input) => {
       MoneyValidator.validate(input);
 
-      this.lottoGameModel.payMoney(input);
+      this.lottoGameModel.buyLotto(input);
     });
   }
 }
