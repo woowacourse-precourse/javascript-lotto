@@ -4,9 +4,11 @@ class App {
   constructor() {
     this.myMoney = 0;
   }
+
   play() {
     this.start();
   }
+
   start() {
     let piece = 0;
     MissionUtils.Console.readLine("구입금액을 입력해 주세요. ", (answer) => {
@@ -23,6 +25,7 @@ class App {
       this.createLottoBundle(piece);
     });
   }
+
   createLottoBundle(piece) {
     const bundle = [];
     for (let i = 0; i < piece; i++) {
@@ -44,6 +47,7 @@ class App {
     }
     this.inputLottoNumber(bundle);
   }
+
   inputLottoNumber(bundle) {
     let numbers = [];
     MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (answer) => {
@@ -51,6 +55,27 @@ class App {
       if (new Lotto(answerArray)) {
         answerArray.forEach((x) => numbers.push(+x));
       }
+      this.inputBonusNumber(bundle, numbers);
+    });
+  }
+
+  inputBonusNumber(bundle, numbers) {
+    let bonus = 0;
+    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (answer) => {
+      if (numbers.includes(+answer)) {
+        throw new Error(
+          "[ERROR] 보너스 번호는 입력한 당첨 번호와 중복될 수 없습니다."
+        );
+      }
+      if (+answer > 45 || +answer < 1) {
+        throw new Error(
+          "[ERROR] 보너스 번호는 1부터 45까지의 수만 입력할 수 있습니다."
+        );
+      }
+      if (isNaN(+answer)) {
+        throw new Error("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
+      }
+      bonus += +answer;
     });
   }
 }
