@@ -17,7 +17,7 @@ class Lotto {
       throw new Error(`${ERROR.PREFIX} ${ERROR.DUPLICATION}`);
     if (isNaN(numbers.join('')))
       throw new Error(`${ERROR.PREFIX} ${ERROR.NUMBER_ONLY}`);
-    if (this.#invalidRange(numbers))
+    if (this.#invalidNumbersRange(numbers))
       throw new Error(`${ERROR.PREFIX} ${ERROR.RANGE}`);
   }
 
@@ -29,12 +29,27 @@ class Lotto {
     return new Set(numbers).size !== numbers.length;
   }
 
-  #invalidRange(numbers) {
-    const filteredNumbers = numbers.filter(
-      (number) => LOTTO.RANGE_MIN <= number && LOTTO.RANGE_MAX >= number
-    ).length;
+  #invalidNumbersRange(numbers) {
+    return (
+      numbers.filter((number) => this.#inRange(number)).length !==
+      numbers.length
+    );
+  }
 
-    return filteredNumbers !== numbers.length;
+  #inRange(number) {
+    return LOTTO.RANGE_MIN <= number && LOTTO.RANGE_MAX >= number;
+  }
+
+  addBonusNumber(bonusNumber) {
+    this.#validateBonusNumber(bonusNumber);
+    this.#numbers.push(bonusNumber);
+  }
+
+  #validateBonusNumber(bonusNumber) {
+    if (isNaN(bonusNumber))
+      throw new Error(`${ERROR.PREFIX} ${ERROR.NUMBER_ONLY}`);
+    if (!this.#inRange(bonusNumber))
+      throw new Error(`${ERROR.PREFIX} ${ERROR.RANGE}`);
   }
 }
 
