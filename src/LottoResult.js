@@ -25,6 +25,11 @@ class LottoResult {
     });
     return sameNumbers;
   }
+
+  #checkBonus(lotto) {
+    if (lotto.includes(this.#bonusNumber)) return true;
+    return false;
+  }
 }
 
 module.exports = LottoResult;
