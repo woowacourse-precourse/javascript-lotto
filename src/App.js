@@ -10,7 +10,13 @@ class App {
   requestPay() {
     Console.readLine(Message.GAME_START, (pay) => {
       this.CheckValue.isValidPay(pay);
+      this.countLotto(pay);
     });
+  }
+
+  countLotto(pay) {
+    this.lottoCount = pay / 1000;
+    Console.print(`${this.lottoCount}개를 구매했습니다.`);
   }
 }
 
