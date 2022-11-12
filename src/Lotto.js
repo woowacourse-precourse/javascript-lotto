@@ -55,6 +55,16 @@ class Lotto {
     rangeTest(numbers);
   }
 
+  static validateWinningNumbers(winningNumbers, bonusNumber) {
+    Lotto.validateNumbers(winningNumbers);
+
+    typeTest([bonusNumber]);
+    rangeTest([bonusNumber]);
+    if (new Set(winningNumbers).has(bonusNumber)) {
+      throw new Error(Message.ERROR_DUPLICATE_BONUS_NUMBER);
+    }
+  }
+
   toString(separator = ' ') {
     return this.#numbers.join(separator);
   }
