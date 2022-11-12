@@ -53,6 +53,11 @@ class LottoResult {
     });
     return totalReward;
   }
+
+  #calculateYeild(money) {
+    const reward = this.#getTotalReward();
+    this.#yield = (reward / money) * 100;
+  }
 }
 
 module.exports = LottoResult;
