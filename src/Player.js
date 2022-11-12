@@ -1,25 +1,27 @@
-const Data = require('./utils/Data');
+const DataProcessor = require('./utils/DataProcessor');
 const Tickets = require('./Tickets');
 const GameOutput = require('./GameOutput');
 
 class Player {
   #lotto = {
-    number: 0,
+    quantity: 0,
     tickets: [],
   };
 
-  buyLotto(priceString) {
-    this.#lotto.number = Data.getLottoNumber(Data.makeUsablePrice(priceString));
+  buyLotto(purchaseAmount) {
+    this.#lotto.quantity = DataProcessor.getQuantityOfLotto(
+      DataProcessor.processRowDataOfPurchaseAmount(purchaseAmount)
+    );
   }
 
   getLotto() {
-    this.#lotto.tickets = Tickets.publish(this.#lotto.number);
+    this.#lotto.tickets = Tickets.publish(this.#lotto.quantity);
   }
 
   printLotto() {
     GameOutput.printNewLine();
-    GameOutput.printLottoNumber(this.#lotto.number);
-    GameOutput.printLottos(Data.convertLottosToPrintableLottos(this.#lotto.tickets));
+    GameOutput.printQuantityOfLotto(this.#lotto.quantity);
+    GameOutput.printLottos(DataProcessor.convertLottosToPrintableLottos(this.#lotto.tickets));
     GameOutput.printNewLine();
   }
 }

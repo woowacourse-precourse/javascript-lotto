@@ -1,35 +1,36 @@
 const GameInput = require('./GameInput');
 const GameOutput = require('./GameOutput');
 const Player = require('./Player');
-const LottoNumber = require('./LottoNumber');
+const WinningNumber = require('./WinningNumber');
 
 class Game {
-  #player;
-
-  #lottoNumber;
+  #instance = {
+    player: null,
+    winningNumber: null,
+  };
 
   playLotto() {
-    GameInput.enter(GameOutput.message.price, this.#buyLotto.bind(this));
+    GameInput.enter(GameOutput.message.purchaseAmount, this.#buyLotto.bind(this));
   }
 
-  #buyLotto(priceString) {
-    this.#player = new Player();
-    this.#player.buyLotto(priceString);
-    this.#player.getLotto();
-    this.#player.printLotto();
+  #buyLotto(purchaseAmount) {
+    this.#instance.player = new Player();
+    this.#instance.player.buyLotto(purchaseAmount);
+    this.#instance.player.getLotto();
+    this.#instance.player.printLotto();
 
     GameInput.enter(GameOutput.message.sixNumbers, this.#registerSixNumbers.bind(this));
   }
 
-  #registerSixNumbers(sixNumbersString) {
-    this.#lottoNumber = new LottoNumber();
-    this.#lottoNumber.registerSixNumbers(sixNumbersString);
+  #registerSixNumbers(sixNumbers) {
+    this.#instance.winningNumber = new WinningNumber();
+    this.#instance.winningNumber.registerSixNumbers(sixNumbers);
 
-    GameInput.enter(GameOutput.message.bonusNumber, this.#registerBonus.bind(this));
+    GameInput.enter(GameOutput.message.bonus, this.#registerBonus.bind(this));
   }
 
-  #registerBonus(bonusString) {
-    this.#lottoNumber.registerBonus(bonusString);
+  #registerBonus(bonus) {
+    this.#instance.winningNumber.registerBonus(bonus);
 
     // TODO 당첨 결과 계산
     // TODO 결과 출력

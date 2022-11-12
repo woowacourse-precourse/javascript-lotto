@@ -1,5 +1,3 @@
-const Ticket = require('../Ticket');
-
 class Validator {
   static checkTruthy(truthy) {
     return Boolean(truthy);
@@ -9,10 +7,10 @@ class Validator {
     return typeof string === 'string';
   }
 
-  static checkFormatPrice(format) {
+  static checkOnlyNumbersInString(string) {
     const numberRegExp = /^[0-9]+$/;
 
-    return numberRegExp.test(format);
+    return numberRegExp.test(string);
   }
 
   static checkDividedBy1000(number) {
@@ -24,9 +22,9 @@ class Validator {
   }
 
   static checkFormatSixNumbers(format) {
-    const numberRegExp = /^[0-9|,]+$/;
+    const sixNumbersRegExp = /^[0-9|,]+$/;
 
-    return numberRegExp.test(format);
+    return sixNumbersRegExp.test(format);
   }
 
   static checkArrayType(array) {
@@ -42,7 +40,11 @@ class Validator {
   }
 
   static checkSixNumbersRange(sixNumbers) {
-    return sixNumbers.every(number => number >= 1 && number <= 45);
+    return sixNumbers.every(number => Validator.checkRangeOfLottoNumber(number));
+  }
+
+  static checkRangeOfLottoNumber(lottoNumber) {
+    return lottoNumber >= 1 && lottoNumber <= 45;
   }
 
   static checkUniqueNumber(numbers) {

@@ -1,5 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const Checker = require('../src/Checker');
+const DataChecker = require('../src/DataChecker');
 
 const mockQuestions = answers => {
   MissionUtils.Console.readLine = jest.fn();
@@ -10,12 +10,12 @@ const mockQuestions = answers => {
   }, MissionUtils.Console.readLine);
 };
 
-describe('Checker 클래스 테스트', () => {
+describe('DataChecker 클래스 테스트', () => {
   test("''은 예외를 발생시킨다.", () => {
     mockQuestions(['']);
 
     expect(() => {
-      Checker.isValidPriceString();
+      DataChecker.isValidRowDataOfPurchaseAmount();
     }).toThrow('[ERROR]');
   });
 
@@ -23,7 +23,7 @@ describe('Checker 클래스 테스트', () => {
     mockQuestions([null]);
 
     expect(() => {
-      Checker.isValidPriceString();
+      DataChecker.isValidRowDataOfPurchaseAmount();
     }).toThrow('[ERROR]');
   });
 
@@ -31,7 +31,7 @@ describe('Checker 클래스 테스트', () => {
     mockQuestions([undefined]);
 
     expect(() => {
-      Checker.isValidPriceString();
+      DataChecker.isValidRowDataOfPurchaseAmount();
     }).toThrow('[ERROR]');
   });
 
@@ -39,7 +39,7 @@ describe('Checker 클래스 테스트', () => {
     mockQuestions([NaN]);
 
     expect(() => {
-      Checker.isValidPriceString();
+      DataChecker.isValidRowDataOfPurchaseAmount();
     }).toThrow('[ERROR]');
   });
 
@@ -47,7 +47,7 @@ describe('Checker 클래스 테스트', () => {
     mockQuestions([0]);
 
     expect(() => {
-      Checker.isValidPriceString();
+      DataChecker.isValidRowDataOfPurchaseAmount();
     }).toThrow('[ERROR]');
   });
 
@@ -55,7 +55,7 @@ describe('Checker 클래스 테스트', () => {
     mockQuestions([false]);
 
     expect(() => {
-      Checker.isValidPriceString();
+      DataChecker.isValidRowDataOfPurchaseAmount();
     }).toThrow('[ERROR]');
   });
 
@@ -63,7 +63,7 @@ describe('Checker 클래스 테스트', () => {
     mockQuestions([8000]);
 
     expect(() => {
-      Checker.isValidPriceString();
+      DataChecker.isValidRowDataOfPurchaseAmount();
     }).toThrow('[ERROR]');
   });
 
@@ -71,7 +71,7 @@ describe('Checker 클래스 테스트', () => {
     mockQuestions([{}]);
 
     expect(() => {
-      Checker.isValidPriceString();
+      DataChecker.isValidRowDataOfPurchaseAmount();
     }).toThrow('[ERROR]');
   });
 
@@ -79,7 +79,7 @@ describe('Checker 클래스 테스트', () => {
     mockQuestions([[]]);
 
     expect(() => {
-      Checker.isValidPriceString();
+      DataChecker.isValidRowDataOfPurchaseAmount();
     }).toThrow('[ERROR]');
   });
 
@@ -87,7 +87,7 @@ describe('Checker 클래스 테스트', () => {
     mockQuestions(['8000ERROR']);
 
     expect(() => {
-      Checker.isValidPriceString();
+      DataChecker.isValidRowDataOfPurchaseAmount();
     }).toThrow('[ERROR]');
   });
 
@@ -95,7 +95,7 @@ describe('Checker 클래스 테스트', () => {
     mockQuestions(['80 00']);
 
     expect(() => {
-      Checker.isValidPriceString();
+      DataChecker.isValidRowDataOfPurchaseAmount();
     }).toThrow('[ERROR]');
   });
 
@@ -103,7 +103,7 @@ describe('Checker 클래스 테스트', () => {
     mockQuestions([1]);
 
     expect(() => {
-      Checker.isValidPrice();
+      DataChecker.isValidPurchaseAmount();
     }).toThrow('[ERROR]');
   });
 
@@ -111,7 +111,7 @@ describe('Checker 클래스 테스트', () => {
     mockQuestions([10]);
 
     expect(() => {
-      Checker.isValidPrice();
+      DataChecker.isValidPurchaseAmount();
     }).toThrow('[ERROR]');
   });
 
@@ -119,85 +119,85 @@ describe('Checker 클래스 테스트', () => {
     mockQuestions([100]);
 
     expect(() => {
-      Checker.isValidPrice();
+      DataChecker.isValidPurchaseAmount();
     }).toThrow('[ERROR]');
   });
 
   test('false는 예외를 발생시킨다.', () => {
     expect(() => {
-      Checker.isValidSixNumbersString(false);
+      DataChecker.isValidRowDataOfSixNumbers(false);
     }).toThrow('[ERROR]');
   });
 
   test("''는 예외를 발생시킨다.", () => {
     expect(() => {
-      Checker.isValidSixNumbersString('');
+      DataChecker.isValidRowDataOfSixNumbers('');
     }).toThrow('[ERROR]');
   });
 
   test('null은 예외를 발생시킨다.', () => {
     expect(() => {
-      Checker.isValidSixNumbersString(null);
+      DataChecker.isValidRowDataOfSixNumbers(null);
     }).toThrow('[ERROR]');
   });
 
   test('undefined는 예외를 발생시킨다.', () => {
     expect(() => {
-      Checker.isValidSixNumbersString(undefined);
+      DataChecker.isValidRowDataOfSixNumbers(undefined);
     }).toThrow('[ERROR]');
   });
 
   test('0은 예외를 발생시킨다.', () => {
     expect(() => {
-      Checker.isValidSixNumbersString(0);
+      DataChecker.isValidRowDataOfSixNumbers(0);
     }).toThrow('[ERROR]');
   });
 
   test('NaN은 예외를 발생시킨다.', () => {
     expect(() => {
-      Checker.isValidSixNumbersString(NaN);
+      DataChecker.isValidRowDataOfSixNumbers(NaN);
     }).toThrow('[ERROR]');
   });
 
   test('1, 2, 3, 4, 5, 6 과 같은 입력은 예외를 발생시킨다.', () => {
     expect(() => {
-      Checker.isValidSixNumbersString('1, 2, 3, 4, 5, 6');
+      DataChecker.isValidRowDataOfSixNumbers('1, 2, 3, 4, 5, 6');
     }).toThrow('[ERROR]');
   });
 
   test('[1, 2, 3, 4, 5, 6] 과 같은 입력은 예외를 발생시킨다.', () => {
     expect(() => {
-      Checker.isValidSixNumbersString([1, 2, 3, 4, 5, 6]);
+      DataChecker.isValidRowDataOfSixNumbers([1, 2, 3, 4, 5, 6]);
     }).toThrow('[ERROR]');
   });
 
   test('false는 예외를 발생시킨다.', () => {
     expect(() => {
-      Checker.isValidSixNumbersString(false);
+      DataChecker.isValidRowDataOfSixNumbers(false);
     }).toThrow('[ERROR]');
   });
 
   test('[1, 2, 3, 4, 5, 6, 7]은 예외를 발생시킨다.', () => {
     expect(() => {
-      Checker.isValidSixNumbers([1, 2, 3, 4, 5, 6, 7]);
+      DataChecker.isValidSixNumbers([1, 2, 3, 4, 5, 6, 7]);
     }).toThrow('[ERROR]');
   });
 
   test('[1, 2, 3, 4, 5]은 예외를 발생시킨다.', () => {
     expect(() => {
-      Checker.isValidSixNumbers([1, 2, 3, 4, 5]);
+      DataChecker.isValidSixNumbers([1, 2, 3, 4, 5]);
     }).toThrow('[ERROR]');
   });
 
   test('[0, 2, 3, 4, 5, 45]은 예외를 발생시킨다.', () => {
     expect(() => {
-      Checker.isValidSixNumbers([0, 2, 3, 4, 5, 45]);
+      DataChecker.isValidSixNumbers([0, 2, 3, 4, 5, 45]);
     }).toThrow('[ERROR]');
   });
 
   test('[1, 1, 3, 4, 5, 6]은 예외를 발생시킨다.', () => {
     expect(() => {
-      Checker.isValidSixNumbers([1, 1, 3, 4, 5, 6]);
+      DataChecker.isValidSixNumbers([1, 1, 3, 4, 5, 6]);
     }).toThrow('[ERROR]');
   });
 });

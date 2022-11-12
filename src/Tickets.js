@@ -1,10 +1,10 @@
 const Ticket = require('./Ticket');
 
 class Tickets {
-  static publish(lottoNumber) {
+  static publish(lottoQuantity) {
     let lottoTickets = [];
 
-    for (let i = 0; i < lottoNumber; i++) {
+    for (let i = 0; i < lottoQuantity; i++) {
       lottoTickets = Tickets.#get(lottoTickets, Ticket.sortByAscendingNumber(Ticket.get()));
       lottoTickets = Tickets.#removeDuplicatedLotto(lottoTickets);
     }
