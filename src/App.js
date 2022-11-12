@@ -3,22 +3,23 @@ const {
   LottoPurchaseDto,
   LottoInputDto,
 } = require('./LottoDto');
-const { LOTTO_COST } = require('./Resource');
+const { LOTTO } = require('./Resource');
 
 class App {
-  #LottoPurchases = [];
-  #LottoInputDto;
+  #lottoPurchaseDtos = [];
+  #lottoInputDto;
 
   async play() {
     const money = await InputConsole.getMoney();
 
-    this.#LottoPurchases = Array.from(
-      { length: money / LOTTO_COST },
+    this.#lottoPurchaseDtos = Array.from(
+      { length: money / LOTTO.LOTTO_COST },
       () => new LottoPurchaseDto(),
     );
+    OutputConsole.lottoNumbers(this.#lottoPurchaseDtos);
 
     const lottoNumbers = await InputConsole.getLotto();
-    this.#LottoInputDto = new LottoInputDto(lottoNumbers, 0);
+    this.#lottoInputDto = new LottoInputDto(lottoNumbers, 0);
   }
 }
 

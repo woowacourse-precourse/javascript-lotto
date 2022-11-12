@@ -20,7 +20,7 @@ class LottoValidator {
   }
 
   static #checkLottoOverlap(numbers) {
-    if (new Set(numbers).size() !== LOTTO.LOTTO_SIZE) {
+    if (new Set(numbers).size !== LOTTO.LOTTO_SIZE) {
       throw new Error(ERROR.LOTTO_OVERLAP);
     }
   }
