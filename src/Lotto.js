@@ -1,3 +1,4 @@
+const App = require("./App");
 const MissionUtils = require("@woowacourse/mission-utils");
 class Lotto {
   #numbers;
@@ -28,6 +29,7 @@ class Lotto {
     MissionUtils.Console.readLine(WORD_TO_PRINT, (number) => {
       bonusNumber = Number(number);
       this.validateBonusNumber(bonusNumber);
+      this.winningStatistics(bonusNumber);
     });
   }
 
@@ -45,6 +47,39 @@ class Lotto {
         throw new Error("[ERROR] 숫자가 아닙니다!");
       }
     }
+  }
+
+  winningStatistics(bonusNumber) {
+    const app = new App();
+    let totalLottoNumberStatictics = [];
+    let totalLottoBonusNumberStatictics = [];
+    for (let i = 0; i < app.boughtLottos.length; i++) {
+      totalLottoNumberStatictics.push(
+        this.compareBoughtLottoAndWinningNumbers(app.boughtLottos[i])
+      );
+      totalLottoBonusNumberStatictics.push(
+        this.compareBoughtLottoAndBonusNumber(app.boughtLottos[i], bonusNumber)
+      );
+    }
+  }
+
+  compareBoughtLottoAndWinningNumbers(boughtLotto) {
+    let countSameLottoNumbers = 0;
+    for (let i = 0; i < boughtLotto.length; i++) {
+      if (this.#numbers.includes(boughtLotto[i])) {
+        countSameLottoNumbers += 1;
+      }
+    }
+    return countSameLottoNumbers;
+  }
+  compareBoughtLottoAndBonusNumber(boughtLotto, bonusNumber) {
+    let isSameWithBonusNumbers;
+    for (let i = 0; i < boughtLotto.length; i++) {
+      if (boughtLotto[i] === bonusNumber) {
+        isSameWithBonusNumbers = 1;
+      }
+    }
+    return isSameWithBonusNumbers;
   }
   // TO DO -
   // 일치 개수 비교 및 통계.

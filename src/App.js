@@ -60,14 +60,6 @@ class App {
       lotto.inputBonusNumbers();
     });
   }
-
-  // 보너스 번호 입력 받기, playfh return: lotto에서 정의.
-
-  // 비교하는 거 lotto에서 정의(play에서 보너스 번호랑, 로또 2차원배열 전달)
-  // 그리고 개수 반환받아서 통계 배열에 push
-
-  // play가 통계 배열을 lotto로 전달
-  // lotto에서 통계 출력하는 함수 정의
 }
 
 const app = new App();
