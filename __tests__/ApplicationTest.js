@@ -130,3 +130,23 @@ describe('로또 구매', () => {
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
   });
 });
+
+describe('당첨 번호 입력', () => {
+  test('정상', () => {
+    const answer = [1, 2, 3, 4, 5, 6];
+    mockQuestions([answer.join(',')]);
+    expect(App.inputWinningNumbers()).toEqual(answer);
+  });
+
+  test('예외: 구분자가 쉼표가 아닌 경우', () => {
+    const answer = [1, 2, 3, 4, 5, 6];
+    mockQuestions([answer.join('&')]);
+    expect(() => App.inputWinningNumbers()).toThrow('[ERROR]');
+  });
+
+  test('예외: 구분자가 쉼표와 공백으로 이루어진 경우', () => {
+    const answer = [1, 2, 3, 4, 5, 6];
+    mockQuestions([answer.join(', ')]);
+    expect(() => App.inputWinningNumbers()).toThrow('[ERROR]');
+  });
+});
