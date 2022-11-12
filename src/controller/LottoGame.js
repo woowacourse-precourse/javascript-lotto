@@ -42,6 +42,7 @@ class LottoGame {
       winningNumbers.slice(0, 6),
       winningNumbers[6],
     );
+    console.log(lottoResult.getLank(matchingNumbersResult));
   }
 }
 
