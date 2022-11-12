@@ -86,8 +86,25 @@ class App {
             let now = this.LOTTO_LIST[i].check(this.CHECK_LIST);
             this.WIN_LIST[now]++;
         }
+        this.printResult();
+    }
+    printResult() {
+        MissionUtils.Console.print(
+            `3개 일치 (5,000원) - ${this.WIN_LIST[1]}개
+4개 일치 (50,000원) - ${this.WIN_LIST[2]}개
+5개 일치 (1,500,000원) - ${this.WIN_LIST[3]}개
+5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.WIN_LIST[4]}개
+6개 일치 (2,000,000,000원) - ${this.WIN_LIST[5]}개`
+        );
+        MissionUtils.Console.print(
+            `총 수익률은 ${this.calculateProfitPercent}%입니다.`
+        );
+    }
+    calculateProfitPercent() {
+        let result = [0n, 5n, 500n, 1500n, 30000n, 2000000n];
+        let sum = 0n;
+        for (let i in this.WIN_LIST) sum += result[i] * this.WIN_LIST[i];
+        return Number((1000n * sum) / BigInt(this.BUY)) / 10;
     }
 }
-const app = new App();
-console.log(app.makeLotto(5));
 module.exports = App;
