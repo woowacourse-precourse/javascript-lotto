@@ -5,7 +5,7 @@ class Validation {
    * 플레이어가 게임 중 입력 값이 형식에 어긋날 경우 예외를 발생시킵니다.
    * @param {string} playerInput - 플레이어의 입력
    */
-  checkAmountExceptions(playerInput) {
+  static checkAmountExceptions(playerInput) {
     if (Number(playerInput) % 1000 !== 0) {
       throw new Error(MESSAGES.ERROR_AMOUNT_UNIT);
     }
@@ -32,7 +32,7 @@ class Validation {
     if (!this.isValidNumberofNumbers(bonusNumber, NUMBERS.BONUS)) {
       throw new Error(MESSAGES.ERROR_INVALID_NUMBER);
     }
-    if (!this.isValidRangeOfNumber(bonusNumber)) {
+    if (!this.isValidRangeOfBonusNumber(bonusNumber)) {
       throw new Error(MESSAGES.ERROR_INVALID_RANGE);
     }
   }
@@ -43,8 +43,7 @@ class Validation {
    * @param {number} number - 당첨 번호의 갯수
    */
   static isValidNumberofNumbers(inputNumbers, number) {
-    console.log("inputNumbers,number", inputNumbers, number);
-    if (inputNumbers) return inputNumbers.length === number;
+    return inputNumbers.length === number;
   }
 
   static isValidRangeOfNumber(inputNumbers) {
@@ -57,6 +56,14 @@ class Validation {
 
   static hasUniqueLottoNumber(inputNumbers) {
     return new Set(inputNumbers).size === NUMBERS.LOTTO;
+  }
+
+  static isValidRangeOfBonusNumber(inputNumber) {
+    const isValidRange = (number) => {
+      return NUMBERS.MIN_RANGE <= number && number <= NUMBERS.MAX_RANGE;
+    };
+
+    return isValidRange(inputNumber);
   }
 }
 
