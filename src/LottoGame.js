@@ -11,7 +11,7 @@ class LottoGame {
   buyLotto() {
     Console.readLine('구입금액을 입력해 주세요.\n', (lottoCost) => {
       const [lottoCount, lottoArr] = this.lottoGenerator.publishLotto(lottoCost);
-      this.validateLottoNumAndCost(lottoArr, lottoCost);
+      this.validateLottoNums(lottoArr);
       this.viewLottos(lottoCount, lottoArr);
       this.inputWinNums(lottoArr);
     });
@@ -26,9 +26,9 @@ class LottoGame {
     Console.print('');
   }
 
-  validateLottoNumAndCost(lottoArr, lottoCost) {
+  validateLottoNums(lottoArr) {
     lottoArr.map((lotto) => {
-      new Lotto(lotto, lottoCost);
+      new Lotto(lotto);
     });
   }
 

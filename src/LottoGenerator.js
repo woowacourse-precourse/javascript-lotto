@@ -1,4 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+const LottoCost = require('./LottoCost');
 
 class LottoGenerator {
   createLottoNums() {
@@ -7,7 +8,7 @@ class LottoGenerator {
   }
 
   publishLotto(lottoCost) {
-    if (isNaN(lottoCost)) throw new Error('[ERROR] 숫자가 아닙니다.'); 
+    new LottoCost(lottoCost);
     const lottoArr = [];
     const lottoCount = +lottoCost / 1000;
     for (let i = 0; i < lottoCount; i++) {
