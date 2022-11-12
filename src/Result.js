@@ -10,21 +10,25 @@ class Result {
   constructor() {
     this.winningNumbers = [];
     this.bonusNumber = null;
+    this.lotto = null;
   }
 
   setWinningNumbers() {
     Console.readLine(MESSAGE_INPUT_WINNING_NUMBERS, (winningNumbers) => {
-      let numbersArray = winningNumbers.split(",").trim();
+      let numbersArray = winningNumbers.split(",");
       console.log(numbersArray);
-      new Lotto(numbersArray);
+      this.lotto = new Lotto(numbersArray);
       this.winningNumbers = numbersArray;
+      this.setBonusNumber(winningNumbers);
     });
   }
 
-  setBonusNumber() {
+  setBonusNumber(winningNumbers) {
     Console.readLine(MESSAGE_INPUT_BONUS_NUMBER, (bonusNumber) => {
-      Lotto.rangeValidate(bonusNumber);
+      this.lotto.bonusValidate(winningNumbers, bonusNumber);
       this.bonusNumber = bonusNumber;
     });
   }
 }
+
+module.exports = Result;
