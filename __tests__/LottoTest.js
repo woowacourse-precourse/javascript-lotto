@@ -230,4 +230,12 @@ describe('로또 클래스 테스트', () => {
       expect(Lotto.calculateCount(target, expected)).toEqual(5);
     });
   });
+
+  describe('당첨 통계 메소드 테스트', () => {
+    test('메소드 이름은 "analysisWinningAmount"로 정의된다.', () => {
+      const METHOD_NAME = 'analysisWinningAmount';
+
+      expect(Lotto.analysisWinningAmount.name).toEqual(METHOD_NAME);
+    });
+  });
 });
