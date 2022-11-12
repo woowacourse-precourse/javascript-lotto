@@ -4,6 +4,16 @@ const LOTTO_LENGTH = 6;
 
 const BONUS_LENGTH = 1;
 
+const PRIZE = {
+  3: { ea: 0, winningAmount: 5000 },
+  4: { ea: 0, winningAmount: 50000 },
+  5: { ea: 0, winningAmount: 1500000 },
+  6: { 
+    hasBonus: { ea: 0, winningAmount: 30000000 },
+    nonBonus: { ea: 0, winningAmount: 2000000000 },    
+  }
+};
+
 const HEADER = {
   error: '[ERROR]',
 }
@@ -33,3 +43,4 @@ exports.MESSAGES = MESSAGES;
 exports.PRICE_PER_SHEET = PRICE_PER_SHEET;
 exports.LOTTO_LENGTH = LOTTO_LENGTH;
 exports.BONUS_LENGTH = BONUS_LENGTH;
+exports.PRIZE = PRIZE;

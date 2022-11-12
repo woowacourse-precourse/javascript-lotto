@@ -16,6 +16,18 @@ class Lotto {
     Validator.bonusValidCheck(bonus, this.#numbers);
     this.bonus = bonus;
   }
+  compare(UserLotto) {
+    const matchCount = { lotto: 0, bonus: false};
+    UserLotto.forEach(number => {
+      if(this.#numbers.includes(number)) return matchCount.lotto += 1;
+      if(this.bonus.includes(number)) {
+        matchCount.lotto += 1;
+        return matchCount.bonus = true;
+      }
+    });
+    matchCount.lotto = matchCount.lotto.toString();
+    return matchCount;
+  }
 }
 
 function getUserLottos(sheets) {
