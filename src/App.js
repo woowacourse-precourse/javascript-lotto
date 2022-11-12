@@ -8,6 +8,7 @@ const ASK_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
 class App {
   lottoCount;
+  issuedLotto=[];
   winningLottoNumber;
   BonusLottoNumber;
 
@@ -30,6 +31,15 @@ class App {
 
   printLottoNumber(lottoNumber) {
     return Console.print(`[${lottoNumber.join(', ')}]`)
+  }
+
+  makeissuedLotto(lottoCount){
+    for(let i =0;i<lottoCount;i++){
+      let lottoNumber = this.sortLottoNumberInAscendignOrder(
+        this.makeLottoNumber()
+      );
+      this.issuedLotto.push(lottoNumber)
+    }
   }
 
   printIssuendLotto(lottoCount){
