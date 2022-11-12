@@ -58,6 +58,27 @@ class LottoResult {
     const reward = this.#getTotalReward();
     this.#yield = (reward / money) * 100;
   }
+
+  printLottoResult() {
+    MissionUtils.Console.print(COMMENT.WINTITLE);
+    MissionUtils.Console.print(
+      COMMENT.FIFTH + this.#numberOfRanks[RANK.FIFTH_INDEX] + "개"
+    );
+    MissionUtils.Console.print(
+      COMMENT.FOURTH + this.#numberOfRanks[RANK.FOURTH_INDEX] + "개"
+    );
+    MissionUtils.Console.print(
+      COMMENT.THIRD + this.#numberOfRanks[RANK.THIRD_INDEX] + "개"
+    );
+    MissionUtils.Console.print(
+      COMMENT.SECOND + this.#numberOfRanks[RANK.SECOND_INDEX] + "개"
+    );
+    MissionUtils.Console.print(
+      COMMENT.FIRST + this.#numberOfRanks[RANK.FIRST_INDEX] + "개"
+    );
+    MissionUtils.Console.print("총 수익률은 " + this.#yield + "%입니다.");
+    MissionUtils.Console.close();
+  }
 }
 
 module.exports = LottoResult;
