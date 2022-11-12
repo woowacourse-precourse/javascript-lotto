@@ -27,6 +27,12 @@
 
 # 📝 기능 목록
 
+대략적인 흐름
+- Machine에서 구입 금액을 입력 받고 금액에 따라 로또를 발행함  
+- 발행한 로또는 User에게 넘겨주고, Manager를 호출함
+- Manager는 당첨 번호와 보너스 번호를 선정하고(= 입력 받아서) 다시 Machine에 입력함(= 넘겨줌)
+- Machine은 유저의 로또 번호와 당첨 번호 및 보너스 번호를 비교하여 결과를 분석하고 보여줌
+
 ## [🔵] 구입 금액 입력 - `LottoMachine`
 ### [✅] 구입 금액 입력받기 - LottoMachine.inputMoney()
 1,000원 단위로 구입 금액을 입력받는다.  
@@ -59,7 +65,7 @@ Random 값은 **MissionUtils 라이브러리**의 `Random.pickUniqueNumbersInRan
 
 </br>
 
-## [&nbsp; ] 당첨 번호와 보너스 번호 입력 - `LottoManager` 
+## [✅] 당첨 번호와 보너스 번호 입력 - `LottoManager` 
 ### [✅] 당첨 번호 입력받기 - LottoManager.inputWinningNumbers()
 **MissionUtils 라이브러리**에서 제공하는 `Console.readLine()`를 활용하여 입력받는다.   
 서로 다른 6개의 번호를 입력받으며 쉼표(,)를 기준으로 구분한다.
