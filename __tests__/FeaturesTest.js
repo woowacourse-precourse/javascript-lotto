@@ -6,5 +6,12 @@ describe('기능 테스트', () => {
         expect(() => app.isPurchaseAmountValid('1200')).toThrow(
             '[ERROR] 로또를 살 수 없는 금액입니다.'
         );
-    })
+    });
+
+    test('중복된 번호 입력 예외 처리', () => {
+        const app = new App();
+        expect(() => app.isDuplicated('1', [1])).toThrow(
+            '[ERROR] 중복된 번호입니다.'
+        );
+    });
 })
