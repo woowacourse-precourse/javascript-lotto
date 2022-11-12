@@ -1,8 +1,10 @@
+const { ERROR_MESSAGE_WINNING_NUMBER, LOTTO_RULE } = require('./utils/constant');
+
 class Lotto {
   #numbers;
 
   constructor(winnigNumbers) {
-    this.validate(winnigNumbers, 6);
+    this.validate(winnigNumbers, LOTTO_RULE.WINNING_NUMBERS_LENGTH);
     this.#numbers = this.castWinningNumbers(winnigNumbers);
   }
 
@@ -11,7 +13,7 @@ class Lotto {
   }
 
   setWinningNumbers(bonusNumber) {
-    this.validate([...this.#numbers, bonusNumber], 7);
+    this.validate([...this.#numbers, bonusNumber], LOTTO_RULE.WINNING_NUMBERS_LENGTH + 1);
     this.#numbers.push(Number(bonusNumber));
   }
 
@@ -29,14 +31,16 @@ class Lotto {
 
   validateLength(winnigNumbers, length) {
     if (winnigNumbers.length !== length) {
-      throw new Error(`[ERROR] 로또 번호는 ${length}개여야 합니다.`);
+      throw new Error(
+        `${ERROR_MESSAGE_WINNING_NUMBER.NOT_VALID_LENGTH.START_SENTENCE} ${length}${ERROR_MESSAGE_WINNING_NUMBER.NOT_VALID_LENGTH.END_SENTENCE}`,
+      );
     }
   }
 
   validateType(winnigNumbers) {
     winnigNumbers.forEach((number) => {
       if (!Number(number)) {
-        throw new Error('[ERROR] 로또 번호는 숫자여야 합니다.');
+        throw new Error(ERROR_MESSAGE_WINNING_NUMBER.NOT_VALID_TYPE);
       }
     });
   }
@@ -44,14 +48,17 @@ class Lotto {
   validateDuplication(winnigNumbers) {
     const removedDuplicateWinningNumbers = new Set(this.castWinningNumbers(winnigNumbers));
     if (removedDuplicateWinningNumbers.size !== winnigNumbers.length) {
-      throw new Error('[ERROR] 로또 번호에 중복된 수가 존재하면 안됩니다.');
+      throw new Error(ERROR_MESSAGE_WINNING_NUMBER.NOT_VALID_DUPLICATE);
     }
   }
 
   validateRange(winnigNumbers) {
     winnigNumbers.forEach((number) => {
-      if (Number(number) < 1 || Number(number) > 45) {
-        throw new Error('[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.');
+      if (
+        Number(number) < LOTTO_RULE.WINNING_NUMBERS_MIN_NUMBER ||
+        Number(number) > LOTTO_RULE.WINNING_NUMBERS_MAX_NUMBER
+      ) {
+        throw new Error(ERROR_MESSAGE_WINNING_NUMBER.NOT_VALID_RANGE);
       }
     });
   }
@@ -59,7 +66,7 @@ class Lotto {
   validateBlank(winnigNumbers) {
     winnigNumbers.forEach((number) => {
       if (String(number).includes(' ')) {
-        throw new Error('[ERROR] 로또 번호에 공백이 포함되면 안됩니다.');
+        throw new Error(ERROR_MESSAGE_WINNING_NUMBER.NOT_VALID_BLANK);
       }
     });
   }

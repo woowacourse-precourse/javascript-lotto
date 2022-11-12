@@ -1,3 +1,5 @@
+const { ERROR_MESSAGE_PURCHASE_AMOUNT, LOTTO_RULE } = require('../utils/constant');
+
 class User {
   constructor() {
     this.money = 0;
@@ -23,13 +25,13 @@ class User {
 
   validateMoney(money) {
     if (money.includes(' ')) {
-      throw new Error('[ERROR] 로또 구입 금액에 공백이 포함되어 있습니다.');
+      throw new Error(ERROR_MESSAGE_PURCHASE_AMOUNT.NOT_VALID_BLANK);
     }
     if (!Number(money)) {
-      throw new Error('[ERROR] 로또 구입 금액이 숫자가 아닙니다');
+      throw new Error(ERROR_MESSAGE_PURCHASE_AMOUNT.NOT_VALID_TYPE);
     }
-    if (Number(money) % 1000 !== 0) {
-      throw new Error('[ERROR] 로또 구입 금액이 1000원 단위가 아닙니다.');
+    if (Number(money) % LOTTO_RULE.MONEY_UNIT !== 0) {
+      throw new Error(ERROR_MESSAGE_PURCHASE_AMOUNT.NOT_VALID_UNIT);
     }
   }
 }

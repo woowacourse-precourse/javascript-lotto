@@ -1,5 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 const Lotto = require('../Lotto');
+const { INPUT_MESSAGE, LOTTO_RULE } = require('../utils/constant');
 const lottoGenerator = require('../utils/lottoGenerator');
 const lottoResult = require('../utils/lottoResult');
 
@@ -11,27 +12,27 @@ class LottoGame {
   }
 
   start() {
-    this.inputConsole.trigger('구입금액을 입력해 주세요.\n', (money) => {
+    this.inputConsole.trigger(INPUT_MESSAGE.PURCHASE_AMOUNT, (money) => {
       this.user.setMoney(money);
       this.generateUserLottoNumbers(this.user.getMoney());
     });
   }
 
   generateUserLottoNumbers(money) {
-    this.user.setLottoNumbers(lottoGenerator.getTimes(money / 1000));
+    this.user.setLottoNumbers(lottoGenerator.getTimes(money / LOTTO_RULE.MONEY_UNIT));
     this.outputConsole.printUserLotto(this.user.getLottoNumbers());
     this.inputWinningNumbers();
   }
 
   inputWinningNumbers() {
-    this.inputConsole.trigger('\n당첨 번호를 입력해 주세요.\n', (winningNumbers) => {
-      const lotto = new Lotto(winningNumbers.split(','));
+    this.inputConsole.trigger(INPUT_MESSAGE.WINNING_NUMBERS, (winningNumbers) => {
+      const lotto = new Lotto(winningNumbers.split(LOTTO_RULE.INPUT_WINNING_NUMBERS_SPLIT));
       this.inputBonusNumber(lotto);
     });
   }
 
   inputBonusNumber(lotto) {
-    this.inputConsole.trigger('\n보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
+    this.inputConsole.trigger(INPUT_MESSAGE.BONUS_NUMBER, (bonusNumber) => {
       lotto.setWinningNumbers(bonusNumber);
       this.resultRank(lotto.getWinningNumbers(bonusNumber));
     });
@@ -40,8 +41,8 @@ class LottoGame {
   resultRank(winningNumbers) {
     const matchingNumbersResult = lottoResult.getAllMatchingNumbersResult(
       this.user.getLottoNumbers(),
-      winningNumbers.slice(0, 6),
-      winningNumbers[6],
+      winningNumbers.slice(0, LOTTO_RULE.WINNING_NUMBERS_LENGTH),
+      winningNumbers[LOTTO_RULE.WINNING_NUMBERS_LENGTH],
     );
     const rank = lottoResult.getLank(matchingNumbersResult);
     this.outputConsole.printLank(rank);
@@ -50,7 +51,7 @@ class LottoGame {
 
   resultProfitRate(rank) {
     const profit = lottoResult.getProfit(rank);
-    const profitRate = (profit / this.user.money) * 100;
+    const profitRate = (profit / this.user.money) * LOTTO_RULE.PROFIT_RATE_PERCENT;
     this.outputConsole.printProfitRate(profitRate);
     this.end();
   }

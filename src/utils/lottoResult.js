@@ -1,3 +1,5 @@
+const { PRIZE_MONEY, MATCHING_NUMBERS_COUNT } = require('./constant');
+
 lottoResult = {};
 
 lottoResult.getAllMatchingNumbersResult = (userAllLottoNumbers, winningNumbers, bonusNumber) => {
@@ -30,23 +32,26 @@ lottoResult.getLank = (matchingNumbersResult) => {
   const rank = Array.from({ length: 5 }, () => 0);
 
   matchingNumbersResult.forEach(([winningCount, bonusCount]) => {
-    if (winningCount === 6) {
+    if (winningCount === MATCHING_NUMBERS_COUNT.FIRST_PLACE) {
       rank[0] += 1;
       return;
     }
-    if (winningCount === 5 && bonusCount === 1) {
+    if (
+      winningCount === MATCHING_NUMBERS_COUNT.SECOND_PLACE &&
+      bonusCount === MATCHING_NUMBERS_COUNT.SECOND_PLACE_BONUS
+    ) {
       rank[1] += 1;
       return;
     }
-    if (winningCount === 5) {
+    if (winningCount === MATCHING_NUMBERS_COUNT.THIRD_PLACE) {
       rank[2] += 1;
       return;
     }
-    if (winningCount === 4) {
+    if (winningCount === MATCHING_NUMBERS_COUNT.FOURTH_PLACE) {
       rank[3] += 1;
       return;
     }
-    if (winningCount === 3) {
+    if (winningCount === MATCHING_NUMBERS_COUNT.FIFTH_PLACE) {
       rank[4] += 1;
     }
   });
@@ -55,11 +60,11 @@ lottoResult.getLank = (matchingNumbersResult) => {
 
 lottoResult.getProfit = ([firstPlace, secondPlace, thirdPlace, fourthPlace, fifthPlace]) => {
   const profit = [
-    firstPlace * 2000000000,
-    secondPlace * 30000000,
-    thirdPlace * 1500000,
-    fourthPlace * 50000,
-    fifthPlace * 5000,
+    firstPlace * PRIZE_MONEY.FIRST_PLACE,
+    secondPlace * PRIZE_MONEY.SECOND_PLACE,
+    thirdPlace * PRIZE_MONEY.THIRD_PLACE,
+    fourthPlace * PRIZE_MONEY.FOURTH_PLACE,
+    fifthPlace * PRIZE_MONEY.FIFTH_PLACE,
   ];
   return profit.reduce((sum, currentValue) => sum + currentValue, 0);
 };

@@ -1,9 +1,14 @@
 const { Random } = require('@woowacourse/mission-utils');
+const { LOTTO_RULE } = require('./constant');
 
 const lottoGenerator = {};
 
 lottoGenerator.getNumbers = () => {
-  const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+  const numbers = Random.pickUniqueNumbersInRange(
+    LOTTO_RULE.WINNING_NUMBERS_MIN_NUMBER,
+    LOTTO_RULE.WINNING_NUMBERS_MAX_NUMBER,
+    LOTTO_RULE.WINNING_NUMBERS_LENGTH,
+  );
   return lottoGenerator.sortDescendingNumbers(numbers);
 };
 
