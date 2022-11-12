@@ -38,7 +38,7 @@
 
 </br>
 
-## [🔵] 로또 발행 - `LottoMachine`   
+## [🔵] 로또 발행 - `LottoMachine`.makeLotto()   
 구입 금액에 해당하는 만큼 로또를 발행한다.  
 발행한 로또 수량과 번호를 출력한다. 로또 번호는 오름차순으로 정렬한다.
 ### [✅] 로또 구매 수량 출력하기 - LottoMachine.printLottoAmount()  
