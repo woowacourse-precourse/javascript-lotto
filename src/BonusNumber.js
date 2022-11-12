@@ -1,4 +1,4 @@
-const ERROR_ONLY_NUMBER = "[ERROR] 숫자만이 입력 가능합니다.";
+const ERROR_NOT_ONLY_NUMBER = "[ERROR] 숫자만이 입력 가능합니다.";
 const ERROR_OUT_OF_RANGE =
   "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
 const ERROR_DUPLICATE_EXIST =
@@ -7,10 +7,11 @@ const ERROR_DUPLICATE_EXIST =
 class BonusNumber {
   constructor(userLotto, bonus) {
     this.userLotto = userLotto;
+    this.bonusForCheck = Number(bonus);
 
     this.checkOnlyNumber(bonus);
-    this.checkNumberRanges(bonus);
-    this.checkDuplicateWithWinningNumber(bonus);
+    this.checkNumberRanges();
+    this.checkDuplicateWithWinningNumber();
 
     this.userBonus = Number(bonus);
   }
@@ -22,23 +23,19 @@ class BonusNumber {
       const ASCII = item.charCodeAt();
 
       if (ASCII < 48 || ASCII > 57) {
-        throw new Error(ERROR_ONLY_NUMBER);
+        throw new Error(ERROR_NOT_ONLY_NUMBER);
       }
     });
   }
 
-  checkNumberRanges(bonus) {
-    const bonusNumber = Number(bonus);
-
-    if (bonusNumber < 1 || bonusNumber > 45) {
+  checkNumberRanges() {
+    if (this.bonusForCheck < 1 || this.bonusForCheck > 45) {
       throw new Error(ERROR_OUT_OF_RANGE);
     }
   }
 
-  checkDuplicateWithWinningNumber(bonus) {
-    const bonusNumber = Number(bonus);
-
-    if (this.userLotto.includes(bonusNumber)) {
+  checkDuplicateWithWinningNumber() {
+    if (this.userLotto.includes(this.bonusForCheck)) {
       throw new Error(ERROR_DUPLICATE_EXIST);
     }
   }
