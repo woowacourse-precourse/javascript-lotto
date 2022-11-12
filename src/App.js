@@ -171,7 +171,7 @@ class App {
 
   calculateRateOfReturn({ ranks, totalWinnings }) {
     let rateOfReturn = (totalWinnings / this.purchaseAmount) * 100;
-    rateOfReturn = rateOfReturn.toFixed(2);
+    rateOfReturn = rateOfReturn.toFixed(1);
     return this.printLottoResult({ ranks, rateOfReturn });
   }
 
