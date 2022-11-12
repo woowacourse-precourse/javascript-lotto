@@ -21,7 +21,7 @@ describe("Validation.hasOnlyNumber", () => {
 
   test("input이 없는 경우, false를 반환해야 한다.", () => {
     // given
-    const input = "";
+    const input = [];
     // when
     const result = Validation.hasOnlyNumber(input);
     // then
