@@ -48,9 +48,8 @@ class MatchingNumber {
     const prizeMoney = ["5,000", "50,000", "1,500,000", "30,000,000", "2,000,000,000"];
     const ranking = [3, 4, 5, 5, 6];
     return totalRanking.map((lotto, index) => {
-      index === 3
-        ? this.printSecondPlaceLotto(ranking, index, prizeMoney, lotto)
-        : this.printLottoExceptSecondPlace(ranking, index, prizeMoney, lotto);
+      if (index === 3) return this.printSecondPlaceLotto(ranking, index, prizeMoney, lotto);
+      return this.printLottoExceptSecondPlace(ranking, index, prizeMoney, lotto);
     });
   }
 
