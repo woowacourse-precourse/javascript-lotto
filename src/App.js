@@ -1,16 +1,20 @@
 const { Console } = require('@woowacourse/mission-utils');
 const { GAME_MESSAGE } = require('./constants/constants');
+const Lotto = require('./Lotto');
 const getLottoQuantity = require('./utils/getLotteryQuantity');
+const makeRandomLottoNumber = require('./utils/makeRandomLottoNumber');
 
 class App {
   #winNumber;
   #bonusNumber;
-  #myLottoList;
+  #myLotteryList;
+  #myLotteryRankList;
   #startMoney;
   #earnedMoney;
 
   constructor() {
-    this.#myLottoList = {
+    this.#myLotteryList = [];
+    this.#myLotteryRankList = {
       1: 0,
       2: 0,
       3: 0,
@@ -33,8 +37,12 @@ class App {
   }
 
   // 로또 수량만큼 로또 생성하는 메서드 (new Lotto())
-  makeLotteries() {
+  makeLotteries(quantity) {
     // makeRandomLottoNumber() 호출
+    for (let lotteryCount = 0; lotteryCount < quantity; lotteryCount += 1) {
+      const myLottery = makeRandomLottoNumber();
+      this.#myLotteryList.push(new Lotto(myLottery));
+    }
   }
 
   // 로또 결과 출력하기
