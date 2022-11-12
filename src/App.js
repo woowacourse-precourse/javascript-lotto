@@ -1,7 +1,7 @@
-const Lotto = require("./Lotto.js");
+const LottoGame = require("./LottoGame.js");
 class App {
   play() {
-    Lotto.LottoGame();
+    new LottoGame().buyLotto();
   }
 }
 

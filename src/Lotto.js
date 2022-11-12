@@ -1,7 +1,4 @@
-const MissionUtils = require("@woowacourse/mission-utils");
 const STATIC = require("./Static");
-const UserLotto = require("./UserLotto");
-const BonusNum = require("./BonusNum");
 
 class Lotto {
   #numbers;
@@ -55,45 +52,45 @@ class Lotto {
   };
 }
 
-buyMoneyError = (money) => {
-  if (money % 1000 != 0) {
-    throw new Error(STATIC.MESSAGE.ERR_BUY);
-  }
-};
+// buyMoneyError = (money) => {
+//   if (money % 1000 != 0) {
+//     throw new Error(STATIC.MESSAGE.ERR_BUY);
+//   }
+// };
 
-createUserLotto = (money) => {
-  return [...Array(money / 1000).keys()].map(() => {
-    const randLotto = new UserLotto().number;
-    MissionUtils.Console.print(randLotto);
-    return randLotto;
-  });
-};
+// createUserLotto = (money) => {
+//   return [...Array(money / 1000).keys()].map(() => {
+//     const randLotto = new UserLotto().number;
+//     MissionUtils.Console.print(randLotto);
+//     return randLotto;
+//   });
+// };
 
-inputLottoNum = () => {
-  MissionUtils.Console.readLine(STATIC.MESSAGE.LUCKY, (number) => {
-    const lotto = new Lotto(number.split(","));
-    inputBonusNum(lotto);
-  });
-};
+// inputLottoNum = (userPickLotto) => {
+//   MissionUtils.Console.readLine(STATIC.MESSAGE.LUCKY, (number) => {
+//     const lotto = new Lotto(number.split(","));
+//     inputBonusNum(lotto, userPickLotto);
+//   });
+// };
 
-inputBonusNum = (lotto) => {
-  MissionUtils.Console.readLine(STATIC.MESSAGE.BONUS, (number) => {
-    const bonusNumber = new BonusNum(number, lotto.getNumber());
-  });
-};
+// inputBonusNum = (lotto, userPickLotto) => {
+//   MissionUtils.Console.readLine(STATIC.MESSAGE.BONUS, (number) => {
+//     const bonusNumber = new BonusNum(number, lotto.getNumber()).bonusNum;
+//     CheckPrize.startCheck(lotto, userPickLotto);
+//   });
+// };
 
-buyLotto = () => {
-  MissionUtils.Console.readLine(STATIC.MESSAGE.BUYMONEY, (money) => {
-    buyMoneyError(money);
-    MissionUtils.Console.print(money / 1000 + STATIC.MESSAGE.BUYNUM);
-    const userPickLotto = createUserLotto(money);
-    inputLottoNum();
-  });
-};
+// buyLotto = () => {
+//   MissionUtils.Console.readLine(STATIC.MESSAGE.BUYMONEY, (money) => {
+//     buyMoneyError(money);
+//     MissionUtils.Console.print(money / 1000 + STATIC.MESSAGE.BUYNUM);
+//     const userPickLotto = createUserLotto(money);
+//     inputLottoNum(userPickLotto);
+//   });
+// };
 
-LottoGame = () => {
-  buyLotto();
-};
+// LottoGame = () => {
+//   buyLotto();
+// };
 
-exports.Lotto = Lotto;
-exports.LottoGame = LottoGame;
+module.exports = Lotto;
