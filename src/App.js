@@ -31,7 +31,13 @@ class App {
     if (!Util.isDivisibleBy(purchaseAmount, PRICE_PER_LOTTO)) {
       throw new Error(ERROR_MESSAGE.NON_DIVISIBLE_INPUT);
     }
-    return true;
+    return this.countLottoQuantity(purchaseAmount);
+  }
+
+  countLottoQuantity(purchaseAmount) {
+    const lottoQuantity = purchaseAmount / PRICE_PER_LOTTO;
+    Console.print(MESSAGE.PURCHASE_QUANTITY(lottoQuantity));
+    return;
   }
 }
 
