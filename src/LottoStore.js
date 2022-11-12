@@ -8,24 +8,46 @@ class LottoStore {
 
   #lottoTickets = [];
 
+  #winningNumbers = [];
+
   enter() {
-    Console.readLine(`${MESSAGE.PURCHASE_QUESTION}\n`, answer => {
-      validate(answer, isPurchaseInput);
-      this.#purchaseAmount = Number(answer);
-      this.sellLottoTickets();
-    });
+    this.askPurchaseAmount();
+  }
+
+  askPurchaseAmount() {
+    Console.readLine(
+      `${MESSAGE.PURCHASE_QUESTION}\n`,
+      this.handleSellingLotto.bind(this),
+    );
+  }
+
+  handleSellingLotto(answer) {
+    validate(answer, isPurchaseInput);
+    this.#purchaseAmount = Number(answer);
+    this.sellLottoTickets();
+    this.printSoldTickets();
+    this.askWinningNumbers();
   }
 
   sellLottoTickets() {
     const count = this.#purchaseAmount / LOTTO.PRICE;
     this.#lottoTickets = Array.from({ length: count }, Lotto.generateTicket);
-    this.printSoldTickets();
-    return this;
   }
 
   printSoldTickets() {
     Console.print(`\n${this.#lottoTickets.length}${MESSAGE.PURCHASE_RESULT}`);
     this.#lottoTickets.forEach(ticket => Console.print(ticket.toString()));
+  }
+
+  askWinningNumbers() {
+    Console.readLine(
+      `\n${MESSAGE.WINNING_QUESTION}\n`,
+      this.handleWinningNumbers.bind(this),
+    );
+  }
+
+  handleWinningNumbers(answer) {
+    this.#winningNumbers = answer.split(',').map(Number);
   }
 }
 
