@@ -7,6 +7,9 @@ const MESSAGES = {
 
 const CONSTANTS = {
   PREFIX: '[ERROR] ',
+  BEGIN: 1,
+  END: 6,
+  MAX: 45,
 };
 
 module.exports = {

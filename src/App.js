@@ -1,4 +1,5 @@
 const Machine = require('./Machine');
+const Player = require('./Player');
 const { Console } = require('./util');
 const { MESSAGES } = require('./constants');
 
@@ -15,7 +16,13 @@ class App {
   }
 
   #issueLottery() {
-    Console.print(this.machine.insertedMoney);
+    const tickets = this.machine.insertMoney(this.machine.insertedMoney);
+    this.player = new Player(tickets);
+    this.#askWinningNum();
+  }
+
+  #askWinningNum() {
+    Console.print('done.')
   }
 }
 
