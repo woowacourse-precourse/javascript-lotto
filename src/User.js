@@ -1,10 +1,13 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lottos = require('./Lottos');
+const Lotto = require('./Lotto');
+const Calculate = require('./Calculate');
 class User {
   constructor() {
     this.amount = '';
     this.winning_number = '';
     this.bonus_number = '';
+    this.lottos = '';
   }
 
   setAmount(amount) {
@@ -19,6 +22,10 @@ class User {
     this.bonus_number = bonus_number;
   }
 
+  setLottos(lottos) {
+    this.lottos = lottos;
+  }
+
   input_amount() {
     MissionUtils.Console.readLine('구입 금액을 입력해 주세요\n', amount => {
       const VALIDATION = this.validate_amount(amount);
@@ -28,9 +35,15 @@ class User {
       const COUNT = amount / 1000;
       this.setAmount(amount);
       MissionUtils.Console.print(`\n${COUNT}개를 구매했습니다.`);
-      const lottos = new Lottos(COUNT);
-      lottos.issue_lottos();
+      this.issue_lottos(COUNT);
+      this.input_winning_number();
     });
+  }
+
+  issue_lottos(count) {
+    const lottos = new Lottos(count);
+    lottos.issue_lottos();
+    this.setLottos(lottos.lottos);
   }
 
   validate_amount(amount) {
@@ -48,7 +61,6 @@ class User {
         if (!VALIDATION) {
           throw new Error('[Error] 롯또 번호는 1~45 사이의 6자리 숫자입니다.');
         }
-        this.setWinningNumber(winning_number);
       },
     );
   }
