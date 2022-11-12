@@ -9,17 +9,16 @@ const mockRandoms = (numbers) => {
   );
 };
 
-describe('로또 클래스 테스트', () => {
-  test('로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.', () => {
+describe('로또 발행 테스트', () => {
+  test('예외: 로또 번호의 개수가 6개 초과', () => {
     expect(() => new Lotto([1, 2, 3, 4, 5, 6, 7])).toThrow('[ERROR]');
   });
 
-  // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
-  test('로또 번호에 중복된 숫자가 있으면 예외가 발생한다.', () => {
+  test('예외: 로또 번호에 중복된 숫자가 있음', () => {
     expect(() => new Lotto([1, 2, 3, 4, 5, 5])).toThrow('[ERROR]');
   });
 
-  test('자동 로또 번호 생성 성공', () => {
+  test('정상: 자동 로또 번호 생성', () => {
     const randomLotto = [16, 26, 29, 31, 36, 8];
     const correctOutput = randomLotto.sort((a, b) => a - b).join(', ');
 
@@ -30,7 +29,7 @@ describe('로또 클래스 테스트', () => {
     expect(lotto).toEqual(correctOutput);
   });
 
-  test('수동 로또 번호 입력 성공', () => {
+  test('정상: 수동 로또 번호 입력', () => {
     const myLotto = [16, 26, 29, 31, 36, 8];
     const correctOutput = myLotto.sort((a, b) => a - b).join(', ');
 
