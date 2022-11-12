@@ -90,7 +90,7 @@ class App {
       LOTTO_END,
       LOTTO_NUMBER_COUNT,
     );
-    lotto = lotto.sort(function (a, b) {
+    lotto = lotto.sort((a, b) => {
       return a - b;
     });
     this.#lottos.push(new Lotto(lotto));
