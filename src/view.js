@@ -13,9 +13,9 @@ class View {
     Console.close();
   }
 
-  getAmountInput() {
+  AmountInput() {
     Console.readLine(ENTER_AMOUNT, (answer) => {
-      this.controller.generateLotto(answer);
+      this.controller.amountInputValidate(answer);
     });
   }
 
@@ -25,7 +25,7 @@ class View {
     lottos.forEach((lotto) => Console.print(`[${String(lotto.getNumber()).replace(/,/g, ', ')}]`));
   }
 
-  winningNumber() {
+  winningNumberInput() {
     Console.readLine(ENTER_WINNING_NUMBER, (answer) => {
       this.controller.enterWinningNumber(answer.split(','));
     });
