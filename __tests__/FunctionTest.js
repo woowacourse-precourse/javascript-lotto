@@ -1,5 +1,6 @@
 const App = require("../src/App");
 const MissionUtils = require("@woowacourse/mission-utils");
+const Result = require("../src/Result");
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();
@@ -59,6 +60,34 @@ describe("기능 테스트", () => {
 
     const app = new App();
     app.publishLotto(quantity);
+
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  test("당첨 내역 출력", () => {
+    const logSpy = getLogSpy();
+    const quantity = [1, 0, 0, 1, 1];
+    const number = [
+      "3개 일치",
+      "4개 일치",
+      "5개 일치",
+      "5개 일치, 보너스 볼 일치",
+      "6개 일치",
+    ];
+    const reward = [5000, 50000, 1500000, 30000000, 2000000000];
+    const logs = [
+      "3개 일치 (5,000원) - 1개",
+      "4개 일치 (50,000원) - 0개",
+      "5개 일치 (1,500,000원) - 0개",
+      "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
+      "6개 일치 (2,000,000,000원) - 1개",
+    ];
+
+    for (let index = 0; index < quantity.length; index++) {
+      new Result(quantity[index], number[index], reward[index]);
+    }
 
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
