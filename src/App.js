@@ -12,6 +12,7 @@ class App {
       lottoView.printLottos(amount, lottos);
       lottoView.getLottoNumbers().then((numbers) => {
         console.log(numbers);
+        const lotto = new Lotto(numbers);
       });
     });
   }
