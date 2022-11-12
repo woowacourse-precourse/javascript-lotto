@@ -95,9 +95,18 @@
 ## 기능 세부 사항
 
 - 구입한 로또 목록 출력
+
   - 1~45까지의 중복되지 않는 6자리의 숫자를 발행 횟수만큼 뽑는다. `issue`
     - `MissionUtils`라이브러리에서 제공하는 `Random.pickUniueNumbersInRange`를 활용한다.
     - 생성자에 `purchaseList`를 추가하고 로또 번호를 이 리스트에 담는다.
   - 로또 발행 횟수 만큼 로또 번호 목록을 출력한다. `printLottoNumbers`
     - `forEach`를 활용해 구매한 모든 로또 번호를 출력한다.
     - 요구한 출력 형식을 맞추기 위해 출력 형식은 `[${lottoNumbers.join(', ')}]`와 같이 한다.
+
+- 당첨 번호 입력
+  - 생성자에 당첨 번호와 보너스 번호를 담는 객체 `winningNumber`를 추가한다.
+  - `winningNumber`는 메인 당첨 번호를 담는 `main`과 보너스 번호를 담는 `bonuse`로 이루어져 있다.
+    - `winningNumber = { main: [], bonuse: [] }`
+  - 당첨 번호를 가져오기 위해서 lotto 클래스를 활용한다.
+    - lotto 클래스에서 번호를 가져오기 위한 메서드 `getNumbers`를 추가한다.
+    - lotto 클래스의 `validate`에서 중복성 검사를 하는 로직을 추가한다.
