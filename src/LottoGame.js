@@ -1,5 +1,6 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
+const Payment = require('./Payment');
 
 const LOTTO_PRICE = {
   purchase: 1000,
@@ -40,10 +41,7 @@ class LottoGame {
   }
 
   inputMoney(input) {
-    if (input % 1000 !== 0) {
-      throw new Error('[ERROR] 구입금액의 단위는 1000원입니다.');
-    }
-    this.money = Number(input);
+    this.money = new Payment(Number(input)).getMoney();
     this.purchase(this.money / 1000);
   }
 
