@@ -4,6 +4,8 @@ const Lotto = require('./Lotto');
 class App {
   constructor() {
     this.userLottos = [];
+    this.winningLotto = [];
+    this.winningBonusLottoNumber = 0;
   }
 
   play() {
@@ -15,6 +17,9 @@ class App {
       for(const userLotto of this.userLottos) { 
         Utils.print(userLotto);
       }
+      Utils.readLine('당첨 번호를 입력해 주세요.\n', (input) => {
+        const winningLotto = this.createLottoArray(input);
+      });
     });
   }
 
@@ -40,7 +45,11 @@ class App {
       lottos.push(Utils.pickNumberInLotto());
     }
     return lottos;
-  } 
+  }
+
+  createLottoArray(input){
+    console.log(input);
+  }
 }
 
 const app = new App();
