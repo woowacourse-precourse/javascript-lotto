@@ -6,6 +6,7 @@ class App {
   myPayment;
   myLottoNumber;
   allLottos = [];
+  bonusNumber;
 
   play() {
     Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
@@ -47,10 +48,11 @@ class App {
     Console.readLine("당첨 번호를 입력해 주세요.\n", (myLottoNumber) => {
       myLottoNumber = this.convertToArr(myLottoNumber);
       this.myLottoNumber = new Lotto(myLottoNumber).getNumbers();
-      Console.print(this.myLottoNumber);
+      this.inputBonusNumber();
     });
   }
 
+  // 입력한 당첨 번호를 유효한 로또 번호로 변환하는 기능
   convertToArr(str) {
     let arr = [];
     let left = 0;
@@ -65,6 +67,30 @@ class App {
     arr.push(Number(str.slice(left)));
 
     return arr;
+  }
+
+  // 사용자가 보너스 번호를 입력하는 기능
+  inputBonusNumber() {
+    Console.readLine("보너스 번호를 입력해주세요.\n", (bonusNumber) => {
+      if (this.checkBonusNumber(bonusNumber)) {
+        this.bonusNumber = bonusNumber;
+      }
+    });
+  }
+
+  checkBonusNumber(number) {
+    number = Number(number);
+    if (number > 45 || number < 1 || isNaN(number)) {
+      throw new Error("[ERROR] 1 ~ 45 사이의 숫자만 입력해주세요.");
+    }
+
+    if (this.myLottoNumber.includes(number)) {
+      throw new Error(
+        "[ERROR] 입력하신 로또번호와 중복되지 않는 번호를 입력해주세요."
+      );
+    }
+
+    return true;
   }
 }
 
