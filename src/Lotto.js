@@ -17,7 +17,7 @@ class Lotto {
   validate(numbers) {
     this.checkLength(numbers);
     this.checkDuplication(numbers);
-    this.checkRange(numbers);
+    this.checkRangeNumbers(numbers);
   }
 
   checkLength(numbers) {
@@ -28,21 +28,23 @@ class Lotto {
 
   checkDuplication(numbers) {
     const numberSet = new Set(numbers);
-    if ([...numberSet].length !== LOTTO.LENGTH) {
+    if ([...numberSet].length !== numbers.length) {
       throw new Error(ERRORS.DUPLICATION);
     }
   }
 
-  checkRange(numbers) {
-    numbers.forEach((number) => {
-      if (
-        Number.isNaN(Number(number)) ||
-        number < LOTTO.RANGE_MIN ||
-        number > LOTTO.RANGE_MAX
-      ) {
-        throw new Error(ERRORS.RANGE);
-      }
-    });
+  checkRangeNumbers(numbers) {
+    numbers.forEach(this.checkRange);
+  }
+
+  checkRange(number) {
+    if (
+      Number.isNaN(Number(number)) ||
+      number < LOTTO.RANGE_MIN ||
+      number > LOTTO.RANGE_MAX
+    ) {
+      throw new Error(ERRORS.RANGE);
+    }
   }
 }
 
