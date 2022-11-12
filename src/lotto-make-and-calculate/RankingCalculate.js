@@ -1,4 +1,4 @@
-const { NUMBER } = require('./Constants');
+const { NUMBER } = require('../utils/Constants');
 
 class RankingCalculate {
   constructor(lottoList, answer, bonus) {

@@ -3,9 +3,9 @@ const { MESSAGE } = require('./Constants');
 const Price = require('../check-avilable/Price');
 const Lotto = require('../check-avilable/Lotto');
 const Bonus = require('../check-avilable/Bonus');
-const MakeLottos = require('./MakeLottos');
+const MakeLottos = require('../lotto-make-and-calculate/MakeLottos');
 const PrintResults = require('../print/PrintResults');
-const Calculate = require('./Calculate');
+const Calculate = require('../lotto-make-and-calculate/Calculate');
 
 class LottoHandler {
   constructor() {
