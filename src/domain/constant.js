@@ -6,7 +6,7 @@ const MESSAGE = {
   START_GAME: "로또 게임을 시작합니다.",
   FINISH_GAME: "로또 게임을 종료합니다.",
   ENTER_PURCHASE_AMOUNT: "구입금액을 입력해 주세요.\n",
-  ENTER_WINNING_NUMBER: "당첨 번호를 입력해 주세요.\n",
+  ENTER_WINNING_NUMBERS: "당첨 번호를 입력해 주세요.\n",
   ENTER_BONUS_NUMBER: "보너스 번호를 입력해 주세요.\n",
   WINNING_STATISTICS: "당첨 통계\n---\n",
   FIRST_PLACE: "6개 일치 (2,000,000,000원) - ",
@@ -28,6 +28,8 @@ const ERROR_MESSAGE = {
   INVALID_LENGTH_LOTTO: "[ERROR] 로또 번호는 6개여야 합니다.",
   OUT_OF_RANGE_LOTTO: "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.",
   HAS_DUPLICATE_NUMBERS: "[ERROR] 로또 번호 6개는 서로 달라야 합니다.",
+  INVALID_WINNING_NUMBERS:
+    "[ERROR] 당첨 번호 입력은 '숫자,숫자,숫자,숫자,숫자,숫자'형식이어야 합니다.",
 };
 
 module.exports = {
