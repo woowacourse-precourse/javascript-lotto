@@ -3,7 +3,7 @@ class Prize {
     amount: 2_000_000_000,
     matchCount: 6,
     match(matchCount) {
-      return matchCount === 6;
+      return Prize.FIRST.matchCount === matchCount;
     },
   });
 
@@ -11,7 +11,7 @@ class Prize {
     amount: 30_000_000,
     matchCount: 5,
     match(matchCount, isBonus) {
-      return matchCount === 5 && isBonus;
+      return Prize.SECOND.matchCount === matchCount && isBonus;
     },
   });
 
@@ -19,7 +19,7 @@ class Prize {
     amount: 1_500_000,
     matchCount: 5,
     match(matchCount, isBonus) {
-      return matchCount === 5 && !isBonus;
+      return Prize.THIRD.matchCount === matchCount && !isBonus;
     },
   });
 
@@ -27,7 +27,7 @@ class Prize {
     amount: 50_000,
     matchCount: 4,
     match(matchCount) {
-      return matchCount === 4;
+      return Prize.FOURTH.matchCount === matchCount;
     },
   });
 
@@ -35,12 +35,11 @@ class Prize {
     amount: 5_000,
     matchCount: 3,
     match(matchCount) {
-      return matchCount === 3;
+      return Prize.FIFTH.matchCount === matchCount;
     },
   });
 
   static getPrize(matchCount, isBonus) {
-
   }
 }
 
