@@ -27,9 +27,8 @@ class App {
     Console.print(MESSAGE.ASK_BUDGET);
     Console.readLine('', (money) => {
       Validator.throwErrorIfInvalidMoney(money);
-      const countOfLottos = money / LOTTO.PRICE;
 
-      this.issueLotto(countOfLottos);
+      this.issueLotto(money / LOTTO.PRICE);
     });
   }
 
@@ -46,7 +45,7 @@ class App {
   }
 
   askWinningNumbers() {
-    Console.print(MESSAGE.ASK_WINNING_NUM);
+    Console.print(MESSAGE.ASK_WINNING_NUMBER);
     Console.readLine('', (inputValue) => {
       Validator.throwErrorIfInvalidWinningForm(inputValue);
       const winningNumbers = inputValue.split(',').map((num) => Number(num));
