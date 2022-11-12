@@ -3,16 +3,15 @@ const { readLine } = require('../utils/Utils');
 const { MoneyValidator } = require('../utils/Validator');
 
 class LottoGameController {
-  constructor(model, view) {
+  constructor(model) {
     this.lottoGameModel = model;
-    this.lottoGameView = view;
   }
 
   start() {
     readLine(INPUT_MESSAGE.MONEY, (input) => {
       MoneyValidator.validate(input);
 
-      this.lottoGameModel.buyLotto(input, this.lottoGameView);
+      this.lottoGameModel.buyLotto(input);
     });
   }
 }

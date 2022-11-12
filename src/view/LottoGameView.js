@@ -1,7 +1,7 @@
 const { print } = require('../utils/Utils');
 
 class LottoGameView {
-  printLottoCount(count) {
+  static printLottoCount(count) {
     print(`${count}개를 구매했습니다.`);
   }
 }

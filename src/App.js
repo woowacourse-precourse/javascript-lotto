@@ -5,11 +5,7 @@ const LottoGameView = require('./view/LottoGameView');
 class App {
   constructor() {
     this.lottoGameModel = new LottoGameModel();
-    this.lottoGameView = new LottoGameView();
-    this.lottoGameController = new LottoGameController(
-      this.lottoGameModel,
-      this.lottoGameView
-    );
+    this.lottoGameController = new LottoGameController(this.lottoGameModel);
   }
   play() {
     this.lottoGameController.start();

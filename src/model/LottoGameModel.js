@@ -1,12 +1,12 @@
 const Lotto = require('../Lotto');
 const { pickUniqueNumbersInRange } = require('../utils/Utils');
+const LottoGameView = require('../view/LottoGameView');
 
 class LottoGameModel {
-  constructor(view) {
+  constructor() {
     this.money;
     this.lottoCount;
     this.lottos = [];
-    this.lottoGameView = view;
   }
 
   buyLotto(money) {
@@ -19,7 +19,7 @@ class LottoGameModel {
   payMoney() {
     this.lottoCount = this.money / 1000;
 
-    this.lottoGameView.printLottoCount(this.lottoCount);
+    LottoGameView.printLottoCount(this.lottoCount);
   }
 
   generateLottos() {
