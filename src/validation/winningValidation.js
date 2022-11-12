@@ -30,8 +30,8 @@ function checkWinningRest(string) {
 
 function checkWinningSixNumber(string) {
   const split = string.split(',');
-  if (split.length !== 6) {
-    throw new Error(ERROR.WINNING.ONLY_SIX_NUMBER);
+  if (new Set(split).size !== 6) {
+    throw new Error(ERROR.WINNING.NOT_OVERLAP_SIX_NUMBER);
   }
 }
 
