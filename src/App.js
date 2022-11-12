@@ -1,11 +1,11 @@
-const Purchase=require('./Purchase')
+const PurchasePrice=require('./PurchasePrice')
 
 class App {
   constructor() {}
 
   play() {
 
-    Purchase.getPurchasePrice()
+    PurchasePrice.getPurchasePrice()
     
   }
 

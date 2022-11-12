@@ -1,17 +1,16 @@
-const { Console } = require('@woowacourse/mission-utils');
+const { Console } = require('@woowacourse/mission-utils')
 
-class Purchase {
+class PurchasePrice {
   //구입 금액 입력
   static getPurchasePrice() {
     Console.readLine('구입금액을 입력해 주세요.', (price) => {
-      
-      
-    //fn으로 구현로직을 만들어 놓았으므로 price에 첫번째 값인 8000이 들어감
 
-      Purchase.vaildatePurchasePrice(price)
 
-      Console.print(`${price/1000}개를 구매했습니다.`);
-      
+      //fn으로 구현로직을 만들어 놓았으므로 price에 첫번째 값인 8000이 들어감
+      PurchasePrice.vaildatePurchasePrice(price)
+
+      Console.print(`${price / 1000}개를 구매했습니다.`)
+
       return price
     })
   }
@@ -32,4 +31,4 @@ class Purchase {
   }
 }
 
-module.exports = Purchase
+module.exports = PurchasePrice
