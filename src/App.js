@@ -1,12 +1,15 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const Bonus = require('./BonusLotto');
-// const LottoStorage = require('./ResultOfLotto/LottoStorage');
 const WinningLotto = require('./ResultOfLotto/FinalWinningLotto');
 
 const ONE_LOTTO_PRICE = 1000;
 
 class App {
+    constructor() {
+        this.purchasedLotto = [];
+    }
+
     play() {
         this.lottoStart();
     }
@@ -45,6 +48,7 @@ class App {
             if (a === b) return 0;
             if (a < b) return -1;
         });
+        this.purchasedLotto.push(pickLottoArray);
         const pickLottoString = pickLottoArray.join(', ');
         return `[${pickLottoString}]`;
     }
@@ -62,10 +66,8 @@ class App {
     inputWinnigBonusLotto(lotto) {
         MissionUtils.Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNum) => {
             const newBonus = this.changeStringToArray(bonusNum);
-            console.log(lotto);
-            console.log(newBonus);
-            new WinningLotto(lotto, newBonus);
             new Bonus(newBonus, lotto);
+            new WinningLotto(this.purchasedLotto, lotto, bonusNum);
         });
     }
 
