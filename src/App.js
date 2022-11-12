@@ -12,7 +12,7 @@ class App {
       sheets: null,
       user: null,
       winning: null,
-      generator: null,
+      generator: new Lotto(),
     }
   }
   play() {
@@ -24,7 +24,6 @@ class App {
       this.lotto.amount = Validator.amountValidCheck(this.lotto.amount);
       this.lotto.sheets = GameUtils.getSheets(this.lotto.amount);
       GamePrint.sheets(this.lotto.sheets);
-      this.lotto.generator = new Lotto();
       this.lotto.user = this.lotto.generator.getUserLottos(this.lotto.sheets);
       GamePrint.userLottos(this.lotto.user);
       this.submitLotto();
