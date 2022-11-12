@@ -1,6 +1,8 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const Bonus = require('./BonusLotto');
+// const LottoStorage = require('./ResultOfLotto/LottoStorage');
+const WinningLotto = require('./ResultOfLotto/FinalWinningLotto');
 
 const ONE_LOTTO_PRICE = 1000;
 
@@ -51,7 +53,7 @@ class App {
     inputWinnigLotto() {
         MissionUtils.Console.readLine('\n당첨 번호를 입력해 주세요.\n', (input) => {
             const newInput = this.changeStringToArray(input);
-            let lotto = new Lotto(newInput);
+            new Lotto(newInput);
             this.inputWinnigBonusLotto(newInput);
         });
     }
@@ -62,7 +64,8 @@ class App {
             const newBonus = this.changeStringToArray(bonusNum);
             console.log(lotto);
             console.log(newBonus);
-            let bonus = new Bonus(newBonus, lotto);
+            new WinningLotto(lotto, newBonus);
+            new Bonus(newBonus, lotto);
         });
     }
 
