@@ -27,6 +27,9 @@ const checkNumberCount = (numbers) => {
 const checkLottoNumbers = (numbers) => {
   const splitNumbers = numbers.split(",");
   if (checkNumberCount(splitNumbers)) throw COUNT_ERROR;
+  for (const number of splitNumbers) {
+    if (checkNaN(Number(number))) throw NAN_ERROR;
+  }
 };
 
 module.exports = {
