@@ -12,11 +12,11 @@ const BONUS_LENGTH = 1;
 const PRIZE = {
   3: { ea: 0, winningAmount: 5000 },
   4: { ea: 0, winningAmount: 50000 },
-  5: { ea: 0, winningAmount: 1500000 },
-  6: { 
-    hasBonus: { ea: 0, winningAmount: 30000000 },
-    nonBonus: { ea: 0, winningAmount: 2000000000 },    
-  }
+  5: { 
+    hasBonus: { ea: 0, winningAmount: 1500000 },
+    nonBonus: { ea: 0, winningAmount: 30000000 },    
+  },
+  6: { ea: 0, winningAmount: 2000000000 },
 };
 
 const HEADER = {

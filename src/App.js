@@ -43,23 +43,24 @@ class App {
       input = GameUtils.toArray(input);
       this.lotto.winning.getBonus(input);
       this.getResult();
+      console.log(this.prize);
+      GamePrint.result(this.prize);
       MissionUtils.Console.close();
     });
   }
   getResult() {
     this.lotto.user.forEach(lotto => {
       const match = this.lotto.winning.compare(lotto);
-      this.setPrize(match);
+      this.setPrize(match);      
     });
     this.profitRate = GameUtils.getProfitRate(this.lotto.amount, this.totalPrizeMoney);
   }
   setPrize(match) {
-    match.lotto = match.lotto.toString();
-    if(match.lotto === '6' && match.bonus === false) {
+    if(match.lotto === '5' && match.bonus === false) {
       this.totalPrizeMoney += this.prize[match.lotto].nonBonus.winningAmount;
       return this.prize[match.lotto].nonBonus.ea += 1;
     }
-    if(match.lotto === '6' && match.bonus === true) {
+    if(match.lotto === '5' && match.bonus === true) {
       this.totalPrizeMoney += this.prize[match.lotto].hasBonus.winningAmount;
       return this.prize[match.lotto].hasBonus.ea += 1;
     }
