@@ -9,11 +9,11 @@ const INPUT_BONUS_NUMBER = '보너스 번호를 입력해 주세요.';
 const STATISTICS = '당첨 통계';
 const DIVIDER = '---';
 
-const FIRST_PRIZE = '2,000,000,000원';
-const SECOND_PRIZE = '30,000,000원';
-const THIRD_PRIZE = '1,500,000원';
-const FOURTH_PRIZE = '50,000원';
-const FIFTH_PRIZE = '5,000원';
+const FIRST_PRIZE = '6개 일치 (2,000,000,000원)';
+const SECOND_PRIZE = '5개 일치, 보너스 볼 일치';
+const THIRD_PRIZE = '5개 일치 (1,500,000원)';
+const FOURTH_PRIZE = '4개 일치 (50,000원)';
+const FIFTH_PRIZE = '3개 일치 (5,000원)';
 
 module.exports = {
   LOTTO_PRICE,

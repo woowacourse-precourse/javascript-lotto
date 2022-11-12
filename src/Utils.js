@@ -22,6 +22,10 @@ class Utils {
     });
   }
 
+  static close() {
+    Console.close();
+  }
+
   /**
    *
    * @param {number} startInclusive
