@@ -2,7 +2,7 @@ const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto.js');
 
 const LOTTO_PRICE = 1000;
-const LOOTO_PRIZE = {
+const LOTTO_PRIZE = {
   FIRST: 2000000000,
   SECOND: 30000000,
   THIRD: 1500000,
@@ -82,6 +82,16 @@ class App {
     return 0;
   }
 
+  calculateProfits() {
+    let sum = 0;
+    Object.values(LOTTO_PRIZE).forEach((prize, idx) => {
+      if (this.#result[idx] > 0) {
+        sum += prize * this.#result[idx];
+      }
+    });
+    this.#profits = Math.round((sum / this.#money) * 1000) / 10;
+  }
+
   calculateResult() {
     const result = [0, 0, 0, 0, 0];
     this.#lottos.forEach(lotto => {
@@ -96,11 +106,12 @@ class App {
   printResult() {
     const str = [
       '당첨 통계\n---',
-      `3개 일치 (${LOOTO_PRIZE.FIFTH.toLocaleString('ko-KR')}원) - ${this.#result[4]}개`,
-      `4개 일치 (${LOOTO_PRIZE.FOURTH.toLocaleString('ko-KR')}원) - ${this.#result[3]}개`,
-      `5개 일치 (${LOOTO_PRIZE.THIRD.toLocaleString('ko-KR')}원) - ${this.#result[2]}개`,
-      `5개 일치, 보너스 볼 일치 (${LOOTO_PRIZE.SECOND.toLocaleString('ko-KR')}원) - ${this.#result[1]}개`,
-      `6개 일치 (${LOOTO_PRIZE.FIRST.toLocaleString('ko-KR')}원) - ${this.#result[0]}개`,
+      `3개 일치 (${LOTTO_PRIZE.FIFTH.toLocaleString('ko-KR')}원) - ${this.#result[4]}개`,
+      `4개 일치 (${LOTTO_PRIZE.FOURTH.toLocaleString('ko-KR')}원) - ${this.#result[3]}개`,
+      `5개 일치 (${LOTTO_PRIZE.THIRD.toLocaleString('ko-KR')}원) - ${this.#result[2]}개`,
+      `5개 일치, 보너스 볼 일치 (${LOTTO_PRIZE.SECOND.toLocaleString('ko-KR')}원) - ${this.#result[1]}개`,
+      `6개 일치 (${LOTTO_PRIZE.FIRST.toLocaleString('ko-KR')}원) - ${this.#result[0]}개`,
+      `총 수익률은 ${this.#profits}%입니다.`,
     ].join('\n');
     Console.print(str);
   }
@@ -112,6 +123,7 @@ class App {
     this.inputWinningNumbers();
     this.inputBonusNumber();
     this.calculateResult();
+    this.calculateProfits();
     this.printResult();
     Console.close();
   }
