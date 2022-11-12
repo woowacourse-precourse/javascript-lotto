@@ -1,5 +1,6 @@
 class Lotto {
   #numbers = [];
+  #bonus = 0;
 
   constructor(numbers) {
     this.validate(numbers);
@@ -10,9 +11,11 @@ class Lotto {
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (answer) => {
       this.#numbers.push(answer);
     });
+  }
 
+  bonusNumbers() {
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (answer) => {
-      this.#numbers.push(answer);
+      this.#bonus = answer;
     });
   }
 
