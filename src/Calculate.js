@@ -52,6 +52,13 @@ class Calculate {
     });
     return ans;
   }
+
+  print_result(lottos, winning, bonus) {
+    const ANS = this.count_rank(lottos, winning, bonus);
+    ANS.map((ans, i) => {
+      MissionUtils.Console.print(`${result[i]} - ${ans}개`);
+    });
+  }
 }
 
 module.exports = Calculate;
