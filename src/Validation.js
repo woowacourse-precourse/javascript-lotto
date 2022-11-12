@@ -20,14 +20,13 @@ class Validation {
       throw new Error(ERROR_MESSAGE.INDIVISIBLE_BY_LOTTO_PRICE);
     }
   }
+  static isEmptyInput(input) {
+    return input.length === 0;
+  }
   static hasOnlyNumber(input) {
     const isNumber = (number) => !isNaN(number);
 
-    if (input.length) {
-      return input.map((eachLetter) => parseInt(eachLetter, 10)).every(isNumber);
-    }
-
-    return false;
+    return input.map((eachLetter) => parseInt(eachLetter, 10)).every(isNumber);
   }
   static isStartedZero(input) {
     return input.startsWith("0");
