@@ -1,5 +1,9 @@
+const View = require("../view/View");
+
 class Controller {
-  constructor() {}
+  constructor() {
+    const view = new View(this);
+  }
 
   init() {}
 }
