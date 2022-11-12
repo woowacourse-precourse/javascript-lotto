@@ -3,7 +3,7 @@ const { Console, Random } = MissionUtils;
 const User = require('./User');
 const LottoMarket = require('./LottoMarket');
 const Result = require('./Result');
-const {MESSAGE_INPUT_PURCHASE_AMOUNT} =require('./constants');
+const {MESSAGE_INPUT_PURCHASE_AMOUNT} =require('./Constants');
 
 class App {
   play() {

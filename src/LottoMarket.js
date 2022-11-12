@@ -1,7 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require('./Lotto');
 const { Console, Random } = MissionUtils;
-const constants = require("./constants");
+const constants = require("./Constants");
 
 class LottoMarket {
     purchaseLotto(money) {
@@ -14,7 +14,7 @@ class LottoMarket {
     }
 
     showLottoes(buyingLottoes) {
-        Console.print(`${buyingLottoes.length}개를 구매했습니다.`)
+        Console.print(`\n${buyingLottoes.length}개를 구매했습니다.`)
         let Lottoes = buyingLottoes.reduce((acc, cur) => {
             Console.print(cur.getNumbers());
         }, []);

@@ -1,8 +1,8 @@
 module.exports = Object.freeze({
   MESSAGE_INPUT_PURCHASE_AMOUNT: `구입금액을 입력해 주세요.\n`,
-  MESSAGE_INPUT_WINNING_NUMBERS: `당첨 번호를 입력해 주세요.\n`,
-  MESSAGE_INPUT_BONUS_NUMBER: `보너스 번호를 입력해 주세요.\n`,
-  MESSAGE_OUTPUT_WINNING_STATISTICS: `당첨 통계 \n---`,
+  MESSAGE_INPUT_WINNING_NUMBERS: `\n당첨 번호를 입력해 주세요.\n`,
+  MESSAGE_INPUT_BONUS_NUMBER: `\n보너스 번호를 입력해 주세요.\n`,
+  MESSAGE_OUTPUT_WINNING_STATISTICS: `\n당첨 통계 \n---`,
   FIRST_PRIZE: 2000000000,
   SECOND_BONUS_PRIZE: 30000000,
   SECOND_PRIZE: 1500000,

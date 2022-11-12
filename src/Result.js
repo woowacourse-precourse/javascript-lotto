@@ -7,8 +7,8 @@ const {
   SECOND_BONUS_PRIZE,
   SECOND_PRIZE,
   THIRD_PRIZE,
-  FOURTH_PRIZE,
-} = require("./constants");
+  FOURTH_PRIZE, MESSAGE_OUTPUT_WINNING_STATISTICS,
+} = require("./Constants");
 const Lotto = require("./Lotto");
 
 class Result {
@@ -92,6 +92,7 @@ class Result {
   }
 
   matchingResult() {
+    Console.print(MESSAGE_OUTPUT_WINNING_STATISTICS);
     this.resultStatics.map((number, index) => {
       if (index === 4) return;
       if (index === 3) {
