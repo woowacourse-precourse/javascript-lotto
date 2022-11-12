@@ -10,7 +10,7 @@ class App {
     lottoView.getPurchaseAmount().then((amount) => {
       amount = amount / 1000;
       const lottos = lottoModel.createLottos(amount);
-      console.log(lottos);
+      lottoView.printLottos(amount, lottos);
     });
   }
 }

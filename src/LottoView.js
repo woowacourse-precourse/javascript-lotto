@@ -18,6 +18,13 @@ class LottoView {
   }
 
   inputLottoNumbers() {}
+
+  printLottos(amount, lottos) {
+    MissionUtils.Console.print(`${amount}개를 구매했습니다.`);
+    for (const lotto of lottos) {
+      MissionUtils.Console.print(lotto.sort());
+    }
+  }
 }
 
 module.exports = LottoView;
