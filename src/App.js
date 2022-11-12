@@ -26,8 +26,7 @@ class App {
     const trimmedInput = input.trim();
 
     //문자가 섞여있지 않은지 검사
-    //TODO match -> test 변경
-    if (trimmedInput.match(RegExp(/([^0-9])/g)) !== null) {
+    if (App.hasChar(trimmedInput)) {
       throw new Error(ERROR.ONLY_NUMBER);
     }
 
@@ -38,6 +37,13 @@ class App {
     }
 
     return true;
+  }
+
+  static hasChar(input) {
+    if (/([^0-9])/g.test(input)) {
+      return true;
+    }
+    return false;
   }
 
   //구매 금액으로 로또 몇장 살 수 있는지 계산하기
@@ -71,7 +77,7 @@ class App {
     const trimmedInput = input.trim();
 
     //문자가 없는지 검사
-    if (hasChar(string)) {
+    if (hasCharExceptComma(string)) {
       throw new Error(ERROR.ONLY_NUMBER_AND_COMMA);
     }
 
@@ -84,7 +90,7 @@ class App {
     return numberArray;
   }
 
-  static hasChar(string) {
+  static hasCharExceptComma(string) {
     if (RegExp(/([^?!,0-9 ])/g).test(string)) {
       return true;
     }
@@ -117,7 +123,7 @@ class App {
   validateBonusNumber(number) {
     const trimmedNumber = number.trim();
 
-    if (/([^0-9])/g.test(trimmedNumber)) {
+    if (App.hasChar(trimmedNumber)) {
       throw new Error(ERROR.ONLY_NUMBER);
     }
   }
