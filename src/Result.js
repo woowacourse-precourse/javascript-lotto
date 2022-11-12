@@ -10,8 +10,6 @@ class Result {
     this.bonusNumber = bonusNumber;
 
     this.rank = [0, 0, 0, 0, 0];
-
-    this.calculateEachLotto();
   }
 
   calculateEachLotto() {
