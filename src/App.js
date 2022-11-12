@@ -1,5 +1,9 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { APP_MESSAGE, EXCEPTION_MESSAGE } = require('./constants/constants');
+const {
+  APP_MESSAGE,
+  EXCEPTION_MESSAGE,
+  EXCEPTION_REASON,
+} = require('./constants/constants');
 const Lotto = require('./Lotto');
 const getLottoQuantity = require('./utils/getLotteryQuantity');
 const isValidLottery = require('./utils/isValidLottery');
@@ -62,8 +66,8 @@ class App {
         return separateInput;
       });
 
-      if (!isValidLottery(answerLottery))
-        return this.makeException('INPUT_ERROR');
+      const validCheck = isValidLottery(answerLottery);
+      if (validCheck !== true) return this.makeException(validCheck);
 
       this.#winNumber = answerLottery;
       return this.makeBonusNumber();
@@ -74,7 +78,7 @@ class App {
     Console.readLine(APP_MESSAGE.INSERT_BONUS_NUMBER, (userInput) => {
       const inputBonusNumber = Number(userInput);
       if (this.#winNumber.includes(inputBonusNumber))
-        return this.makeException('INPUT_OVERLAPPED');
+        return this.makeException(EXCEPTION_REASON.INPUT_OVERLAPPED);
 
       this.#bonusNumber = inputBonusNumber;
       Console.print(this.#bonusNumber);
