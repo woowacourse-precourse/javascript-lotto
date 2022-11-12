@@ -25,10 +25,10 @@
 - [x] 당첨 순위를 취합한다. : `collectRankingCount`
 - [x] 수익률을 계산한다. : `calculateProfitRate`
   - 수익률은 소수점 둘째 자리에서 반올림한다.
-- [ ] 통계를 출력하고 로또 게임을 종료한다.
-  - [ ] 당첨 통계 : `printRankingCount`
-  - [ ] 수익률 통계 : `printProfitRate`
-  - [ ] 로또 게임 종료 : `endLottoGame`
+- [x] 통계를 출력하고 로또 게임을 종료한다.
+  - [x] 당첨 통계 : `printRankingCount`
+  - [x] 수익률 통계 : `printProfitRate`
+  - [x] 로또 게임 종료 : `endLottoGame`
 
 ## 유효한 값인지 판단하는 `Validatior` 클래스를 생성한다.
 

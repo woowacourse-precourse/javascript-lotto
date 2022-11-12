@@ -18,11 +18,27 @@ class LottoGameMachine {
     this.setTotalPurchaseAmount();
   }
 
+  endLottoGame() {
+    Console.close();
+  }
+
   printLottoNumbers() {
     Console.print(MESSAGE.OUTPUT.TOTAL_PURCHASE_AMOUNT(this.totalLottosCount));
     for (const lotto of this.Lottos.values()) {
-      Console.print(lotto.getLottoNumbers());
+      Console.print(`[${lotto.getLottoNumbers().join(', ')}]`);
     }
+  }
+
+  printRankingCount() {
+    Console.print(MESSAGE.OUTPUT.MATCH_3(this.rankingCount[4]));
+    Console.print(MESSAGE.OUTPUT.MATCH_4(this.rankingCount[3]));
+    Console.print(MESSAGE.OUTPUT.MATCH_5(this.rankingCount[2]));
+    Console.print(MESSAGE.OUTPUT.MATCH_5_BOUNS(this.rankingCount[1]));
+    Console.print(MESSAGE.OUTPUT.MATCH_6(this.rankingCount[1]));
+  }
+
+  printProfitRate() {
+    Console.print(MESSAGE.OUTPUT.PROFIT_RATE(this.profitRate));
   }
 
   setTotalPurchaseAmount() {
@@ -47,7 +63,9 @@ class LottoGameMachine {
   setWinningLottoNumbers() {
     Console.readLine(MESSAGE.INPUT.WINNING_LOTTO_NUMBERS, (numbers) => {
       const numbersArray = numbers.split(',');
-      this.winningLotto.set('당첨 번호', new Lotto(numbersArray));
+
+      Validator.validateLottoNumbers(numbersArray);
+      this.winningLotto.set('당첨 번호', numbersArray.map(Number));
       this.setBonusLottoNumber();
     });
   }
@@ -56,6 +74,12 @@ class LottoGameMachine {
     Console.readLine(MESSAGE.INPUT.BONUS_LOTTO_NUMBER, (number) => {
       Validator.validateLottoNumber(number);
       this.winningLotto.set('보너스 번호', Number(number));
+
+      this.collectRankingCount();
+      this.calculateProfitRate();
+      this.printRankingCount();
+      this.printProfitRate();
+      this.endLottoGame();
     });
   }
 
@@ -71,7 +95,7 @@ class LottoGameMachine {
     const profit = this.rankingCount.reduce((acc, cur, index) => acc + cur * prize[index], 0);
     const profitRate = (profit / this.totalPurchaseAmount) * 100;
 
-    return profitRate.toFixed(1);
+    this.profitRate = profitRate.toFixed(1);
   }
 }
 
