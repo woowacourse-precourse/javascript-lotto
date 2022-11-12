@@ -69,16 +69,18 @@ class App {
   }
 
   readWinningNumbers(lottos) {
-    Console.readLine(MESSAGE.ENTER_WINNING_NUMBERS, (winningNumbers) =>
-      this.readBonusNumber(new Lotto(winningNumbers))
-    );
+    Console.readLine(MESSAGE.ENTER_WINNING_NUMBERS, (winningNumbers) => {
+      const winningLotto = new Lotto(winningNumbers);
+      return this.readBonusNumber({ lottos, winningLotto });
+    });
   }
 
-  readBonusNumber(winningLotto) {
+  readBonusNumber({ lottos, winningLotto }) {
     return;
   }
 }
 
 const app = new App();
 app.play();
+
 module.exports = App;
