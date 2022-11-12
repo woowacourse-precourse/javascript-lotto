@@ -34,6 +34,11 @@ class App {
       return randomLotto;
   }
 
+  makeRandomLotto() {
+    const randomLotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    return randomLotto.sort((a,b) => a-b);
+  }
+
 
   
 }
