@@ -7,6 +7,7 @@ const ASK_WINNING_LOTTO_NUMBER = "당첨 번호를 입력해 주세요.";
 const ASK_BONUS_LOTTO_NUMBER = "보너스 번호를 입력해 주세요.";
 
 class App {
+  lottoPayment;
   lottoCount;
   issuedLotto = [];
   winningLottoNumber;
@@ -101,6 +102,16 @@ class App {
   checkBounsNumber(lottoNumber, BonusLottoNumber) {
     return lottoNumber.includes(BonusLottoNumber);
   }
+
+  matchedNumberResult(issuedLotto){
+    return issuedLotto.reduce((totalResult, lotto) => {
+      totalResult.push(
+        this.calculateOverlappintNumberCount(lotto, this.winningLottoNumber)
+      );
+      return totalResult;
+    }, []);
+  }
+
 
   play() {
     Console.print(ASK_LOTTO_PRICE);
