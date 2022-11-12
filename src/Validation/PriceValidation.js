@@ -10,6 +10,7 @@ class PriceValidation extends Validation {
   validate() {
     this.checkIsEmpty();
     this.checkIsNumber();
+    this.checkIsUnitNumber();
   }
 
   checkIsEmpty() {
@@ -23,6 +24,14 @@ class PriceValidation extends Validation {
     const regExp = /^[0-9]+$/;
     if (!regExp.test(this.answer)) {
       throw new Error(PRICE_ERROR_MESSAGE.not_valid_number);
+    }
+    return true;
+  }
+
+  checkIsUnitNumber() {
+    const price = Number(this.answer);
+    if (price % 1000 !== 0) {
+      throw new Error(PRICE_ERROR_MESSAGE.not_valid_unit_number);
     }
     return true;
   }
