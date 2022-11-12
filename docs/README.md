@@ -1,5 +1,7 @@
 # 로또 게임 기능 구현 목록
 
+> 사용자가 잘못된 값을 입력할 경우 throw문을 사용해 예외를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 종료한다.
+
 ## 로또에 대한 기능이 들어있는 `Lotto` 클래스를 생성한다.
 
 - [x] 입력된 로또 번호가 유효한 값인지 확인한다. : `validate`
@@ -14,7 +16,7 @@
 
 - [x] 사용자에게 구입 금액을 입력받는다. : `setTotalPurchaseAmount`
 - [ ] 구입 금액에 해당하는 만큼 로또를 발행한다. : `setLottos`
-- `generateRandomLottoNumbers` util 함수를 사용한다.
+  - `generateRandomLottoNumbers` util 함수를 사용한다.
 - [ ] 생성된 번호들을 출력한다. : `printLottoNumbers`
 - [ ] 당첨번호와 보너스 번호를 입력받는다.
   - [ ] 당첨번호 입력 : `setWinningLottoNumbers`
@@ -24,6 +26,18 @@
   - [ ] 수익률 통계 : `printRateOfReturn`
     - 수익률은 소수점 둘째 자리에서 반올림한다.
   - [ ] 로또 게임 종료 : `endLottoGame`
+
+## 유효한 값인지 판단하는 `Validatior` 클래스를 생성한다.
+
+- [ ] 구입 금액 : `validateTotalPurchaseAmount`
+  - [ ] 자연수인지 판단 : `isNaturalNumber`
+  - [ ] 1,000원 단위인지 판단 : `isThousands`
+- [ ] 로또 번호 : `validateLottoNumbers`
+  - [ ] 1~45의 자연수인지 판단 : `isBetween1And45`
+  - [ ] 중복된 수가 존재하는지 판단 : `isUniqueNumbers`
+  - [ ] 6개의 숫자로 이루어져있는지 판단 : `isSixNumbers`
+- [ ] 보너스 번호 : `validateBonusLottoNumber`
+  - [ ] 1~45의 자연수인지 판단 : `isBetween1And45`
 
 ## utils/
 
@@ -36,11 +50,3 @@
 
 - [x] 예외 처리 문구를 상수로 저장한다. : `error.js`
 - [x] 게임에 기본적으로 출력되는 문구를 상수로 저장한다. : `message.js`
-
-## 예외 처리
-
-> 사용자가 잘못된 값을 입력할 경우 throw문을 사용해 예외를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 종료한다.
-
-- 구입 금액을 1,000원 단위로 입력하지 않은 경우
-- 당첨 번호 입력 시 1~45의 수를 쉼표를 기준으로 중복되지 않는 6개를 입력하지 않은 경우
-- 보너스 번호 입력 시 1~45의 수 하나를 입력하지 않은 경우
