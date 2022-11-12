@@ -8,7 +8,7 @@
 - [x] 구입한 로또 목록 출력
   - [x] 1~45까지의 중복되지 않는 6자리의 숫자를 발행 횟수만큼 뽑는다. `issue`
   - [x] 로또 발행 횟수 만큼 로또 번호 목록을 출력한다. `printLottoNumbers`
-- [ ] 당첨번호 문구 출력 및 입력 `drawWinningNumbers`
+- [x] 당첨번호 문구 출력 및 입력 `drawWinningNumbers`
 - [ ] 보너스번호 문구 출력 및 입력 `drawBonuseNumber`
 - [ ] 당첨통계 출력
   - [ ] 당첨번호와 뽑은 로또를 비교해 당첨 데이터를 구한다. `calculateResult`
