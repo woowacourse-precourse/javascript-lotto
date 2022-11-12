@@ -4,6 +4,7 @@ const isBonusNumberCorrect = require('../src/utils/isBonusNumberCorrect');
 const makeRandomLottoNumber = require('../src/utils/makeRandomLottoNumber');
 const returnMyRank = require('../src/utils/returnMyRank');
 const isValidLottery = require('../src/utils/isValidLottery');
+const calculateProfit = require('../src/utils/calculateProfit');
 
 describe('유틸 함수 동작 테스트', () => {
   test('금액에 맞는 구매 로또의 개수를 리턴하는 함수', () => {
@@ -65,5 +66,17 @@ describe('유틸 함수 동작 테스트', () => {
 
   test('답안 로또 번호 유효성 확인', () => {
     expect(isValidLottery([1, 2, 3, 4, 5, 6])).toBe(true);
+  });
+
+  test('로또를 통해 번 금액 반환 함수 테스트', () => {
+    expect(calculateProfit({ 0: 28, 1: 0, 2: 0, 3: 0, 4: 0, 5: 2 })).toBe(
+      10000
+    );
+    expect(calculateProfit({ 0: 5, 1: 0, 2: 0, 3: 0, 4: 0, 5: 3 })).toBe(15000);
+    expect(calculateProfit({ 0: 7, 1: 0, 2: 0, 3: 0, 4: 1, 5: 2 })).toBe(60000);
+    expect(calculateProfit({ 0: 9, 1: 0, 2: 0, 3: 0, 4: 1, 5: 0 })).toBe(50000);
+    expect(calculateProfit({ 0: 29, 1: 0, 2: 0, 3: 1, 4: 0, 5: 1 })).toBe(
+      1505000
+    );
   });
 });
