@@ -10,10 +10,11 @@ const {
 
 class App {
   async play() {
-    const amount = new Amount();
-    await amount.setInputAmount(`${INPUT_AMOUNT_MESSAGE}\n`);
+    const lottoAmount = new Amount();
+    await lottoAmount.setInputAmount(`${INPUT_AMOUNT_MESSAGE}\n`);
+    const amount = lottoAmount.getAmount();
 
-    const user = new User(amount.getAmount());
+    const user = new User(amount);
     const userNumbersList = user.getNumbersList();
 
     this.printUserNumberList(userNumbersList);
@@ -27,8 +28,10 @@ class App {
     const lotto = new Lotto(numbers);
 
     const statistics = lotto.getStatistics(userNumbersList, bonus);
+    const revenue = lotto.calculateRevenue(statistics, amount);
 
     Utils.print(statistics);
+    Utils.print(revenue);
   }
 
   /**
