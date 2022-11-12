@@ -54,16 +54,16 @@ describe("로또 테스트", () => {
   //   });
   // });
 
-  test("발행한 로또 개수 테스트", () => {
-    mockQuestions(["8000"]);
-    const logs = [
-      "8개를 구매했습니다."
-    ];
-    const logSpy = getLogSpy();
-    const app = new App();
-    app.play();
-    logs.forEach((log) => {
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-    });
-  });
+  // test("발행한 로또 개수 테스트", () => {
+  //   mockQuestions(["8000"]);
+  //   const logs = [
+  //     "8개를 구매했습니다."
+  //   ];
+  //   const logSpy = getLogSpy();
+  //   const app = new App();
+  //   app.play();
+  //   logs.forEach((log) => {
+  //     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+  //   });
+  // });
 });
