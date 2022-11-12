@@ -73,7 +73,7 @@ class App {
   inputBonusNumber() {
     Console.readLine("\n보너스 번호를 입력해주세요.\n", (bonusNumber) => {
       if (this.checkBonusNumber(bonusNumber)) {
-        this.bonusNumber = bonusNumber;
+        this.bonusNumber = Number(bonusNumber);
       }
       this.outputStatus();
     });
