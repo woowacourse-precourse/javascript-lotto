@@ -31,10 +31,6 @@ const CONSTANT = {
   NUMBER: {
     ANSWER_COUNT: [3,4,5,5,6],
     PRIZE_MONEY: [5000, 50000, 1500000, 30000000, 2000000000],
-    
-    // ARRAY_LENGTH: 3,
-    // MIN_RANGE: 1,
-    // MAX_RANGE: 9,
   },
 };
 

@@ -12,7 +12,7 @@ class Price {
 
   validate(numbers) {
     if (numbers % 1000 !== 0) {
-      throw new Error(ERROR.INVALID_PRICE);
+      throw new Error(`${ERROR.ERROR_MESSAGE}${ERROR.INVALID_PRICE}`);
     }
   }
 

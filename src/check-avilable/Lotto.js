@@ -1,47 +1,54 @@
-// const { Console } = require("@woowacourse/mission-utils");
+const { Console } = require("@woowacourse/mission-utils");
 const { ERROR } = require('../utils/Constants');
 
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.#numbers = numbers;
+    this.#numbers = this.changeType(numbers)
     this.checkNumber(this.#numbers);
   };
 
+  changeType(numbers) {
+    return numbers.map((number) => Number(number))
+  }
+
   checkNumber(numbers) {
-    const numberList = numbers.split(',');
-    this.checkLength(numberList);
-    this.checkRange(numberList);
-    this.checkSameNumber(numberList);
+    this.checkLength(numbers);
+    this.checkRange(numbers);
+    this.checkSameNumber(numbers);
     this.checkWords(numbers);
   };
 
-  checkLength(numberList) {
-    if (numberList.length !== 6) {
+  checkLength(numbers) {
+    if (numbers.length !== 6) {
       throw new Error(`${ERROR.ERROR_MESSAGE}${ERROR.INVALID_LOTTO_LENGTH}`);
     }
   }
 
-  checkRange(numberList) {
-    numberList.forEach(eachNumber => {
+  checkRange(numbers) {
+    numbers.forEach(eachNumber => {
       if (eachNumber < 1 || eachNumber > 45) {
         throw new Error(`${ERROR.ERROR_MESSAGE}${ERROR.INVALID_LOTTO_RANGE}`);
       }
     });
   };
 
-  checkSameNumber(numberList) {
-    const deleteRepeatedNumber = new Set(numberList)
+  checkSameNumber(numbers) {
+    const deleteRepeatedNumber = new Set(numbers)
     if (deleteRepeatedNumber.size !== 6) {
       throw new Error(`${ERROR.ERROR_MESSAGE}${ERROR.INVALID_LOTTO_RANGE}`);
     }
   }
 
   checkWords(numbers) {
-    if (numbers.match(/[^0-9,]/g) !== null) {
+    const eachElement = numbers.filter((number) => {toString(number).match(/[^0-9,]/g)})
+    if (eachElement.length > 0) {
       throw new Error(`${ERROR.ERROR_MESSAGE}${ERROR.INVALID_LOTTO_WORDS}`);
     }
+    // if (numbers.includes(/[^0-9,]/g) !== null) {
+    //   throw new Error(`${ERROR.ERROR_MESSAGE}${ERROR.INVALID_LOTTO_WORDS}`);
+    // }
   }
 }
 
