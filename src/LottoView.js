@@ -29,8 +29,8 @@ class LottoView {
     print(`${OUTPUT_MESSAGES.TOTAL(`${LOTTO_MATCH.SIX}`, `${WINNING_AMOUNT[1]}`, six)}`);
   }
 
-  static printRate() {
-    // 수익률 출력
+  static printRate(rate) {
+    print(`${OUTPUT_MESSAGES.TOTAL_PROFIT(rate)}`);
   }
 }
 
