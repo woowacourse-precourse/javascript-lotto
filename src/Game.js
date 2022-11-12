@@ -4,10 +4,7 @@ const Player = require('./Player');
 const WinningNumber = require('./WinningNumber');
 
 class Game {
-  #instance = {
-    player: null,
-    winningNumber: null,
-  };
+  #instance = {};
 
   playLotto() {
     GameInput.enter(GameOutput.message.purchaseAmount, this.#buyLotto.bind(this));

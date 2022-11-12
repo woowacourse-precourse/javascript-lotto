@@ -3,10 +3,7 @@ const Tickets = require('./Tickets');
 const GameOutput = require('./GameOutput');
 
 class Player {
-  #lotto = {
-    quantity: 0,
-    tickets: [],
-  };
+  #lotto = {};
 
   buyLotto(purchaseAmount) {
     this.#lotto.quantity = DataProcessor.getQuantityOfLotto(

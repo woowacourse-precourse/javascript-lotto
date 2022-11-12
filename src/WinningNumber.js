@@ -1,10 +1,7 @@
 const DataProcessor = require('./utils/DataProcessor');
 
 class WinningNumber {
-  #data = {
-    sixNumbers: 0,
-    bonus: 0,
-  };
+  #data = {};
 
   registerSixNumbers(sixNumbers) {
     this.#data.sixNumbers = DataProcessor.processRowDataOfSixNumbers(sixNumbers);
