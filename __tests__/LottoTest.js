@@ -43,4 +43,11 @@ describe("금액 입력 예외 처리", () => {
       app.play();
     }).toThrow("[ERROR]");
   });
+  test("1000원 단위가 아니면 예외가 발생한다.", () => {
+    mockQuestions(["2400"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
 });
