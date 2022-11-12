@@ -2,10 +2,10 @@ const MissionUtils = require('@woowacourse/mission-utils');
 
 const Lotto = require('../src/Lotto');
 const LottoDrawFactory = require('../src/LottoDrawFactory');
-const LottoAdjustment = require('../src/LottoAdjustment');
 
 const Bonus = require('../src/domain/Bonus');
 const LottoStore = require('../src/domain/LottoStore');
+const LottoAdjustment = require('../src/domain/LottoAdjustment');
 
 const mockRandoms = numbers => {
   MissionUtils.Random.pickUniqueNumbersInRange = jest.fn();

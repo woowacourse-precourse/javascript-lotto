@@ -1,11 +1,11 @@
 const { Console } = require('@woowacourse/mission-utils');
 
-const LottoAdjustment = require('./LottoAdjustment');
 const Lotto = require('./Lotto');
 const LottoDrawFactory = require('./LottoDrawFactory');
 
 const Bonus = require('./domain/Bonus');
 const LottoStore = require('./domain/LottoStore');
+const LottoAdjustment = require('./domain/LottoAdjustment');
 
 const { LOTTO_QUESTION } = require('../utils/constants');
 const { validateLottoRange } = require('../utils/method');

@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { LOTTO_AMOUNT, VARIABLE_LOTTO } = require('../utils/constants');
+const { LOTTO_AMOUNT, VARIABLE_LOTTO } = require('../../utils/constants');
 
 class LottoAdjustment {
   #scoreBoard;
