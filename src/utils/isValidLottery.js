@@ -1,12 +1,19 @@
 const { EXCEPTION_REASON } = require('../constants/constants');
 
 const isValidLottery = (lottery) => {
+  let result = true;
   const checkLotteryLength = new Set(lottery).size;
-  if (checkLotteryLength !== 6) return EXCEPTION_REASON.INPUT_LENGTH_ERROR;
-  for (let lotteryIndex = 0; lotteryIndex < lottery.length; lotteryIndex += 1) {
-    if (isNaN(lottery[lotteryIndex])) return EXCEPTION_REASON.INPUT_OVERLAPPED;
-  }
-  return true;
+  if (lottery.length !== 6) return EXCEPTION_REASON.INPUT_LENGTH_ERROR;
+  if (checkLotteryLength < 6) return EXCEPTION_REASON.INPUT_OVERLAPPED;
+
+  lottery.forEach((separateNumber) => {
+    if (!Number.isInteger(separateNumber))
+      result = EXCEPTION_REASON.INPUT_ERROR;
+    if (isNaN(separateNumber)) result = EXCEPTION_REASON.INPUT_ERROR;
+    if (separateNumber < 1 || separateNumber > 45)
+      result = EXCEPTION_REASON.INPUT_ERROR;
+  });
+  return result;
 };
 
 module.exports = isValidLottery;
