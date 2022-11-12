@@ -28,6 +28,10 @@ class Bonus {
     this.#lotteries.forEach((lottery) => {
       this.checkLottery(lottery);
     });
+    this.submitResult();
+  }
+
+  submitResult() {
     const statistic = new Statistic(this.#winResult, this.#lotteries.length);
     statistic.printStatistic();
   }

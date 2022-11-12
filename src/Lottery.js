@@ -6,13 +6,10 @@ class Lottery {
   #lottery = [];
   #quantity;
 
-  inputPurchaseAmount() {
-    Console.readLine("구입금액을 입력해 주세요.\n", (amount) => {
-      this.validateAmount(amount);
-      this.#quantity = +amount / 1000;
-      this.makeRandomLotteries(this.#quantity);
-      this.inputSixNumbers();
-    });
+  constructor(amount) {
+    this.validateAmount(amount);
+    this.#quantity = +amount / 1000;
+    this.makeRandomLotteries(this.#quantity);
   }
 
   makeRandomLotteries(quantity) {
