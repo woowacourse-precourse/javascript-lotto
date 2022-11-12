@@ -39,6 +39,25 @@ class WinningNumber {
     });
     //TODO: 보너스 번호 유효 판별
   }
+
+  #checkValidNumbers(numbers) {
+    if (numbers.length !== 6) {
+      throw new Error(ERROR.WINNING_1);
+    }
+
+    numbers.forEach((number) => {
+      if (!number.match(REGEX.LOTTO_RANGE)) {
+        throw new Error(ERROR.WINNING_2);
+      }
+    });
+
+    const uniqueNumbers = new Set(numbers);
+    if ([...uniqueNumbers].length !== 6) {
+      throw new Error(ERROR.WINNING_3);
+    }
+
+    return true;
+  }
 }
 
 module.exports = WinningNumber;
