@@ -7,6 +7,7 @@ class App {
   constructor() {
     this.utils = new Utils();
     this.AmountNum;
+    this.WinningNumbers;
   }
 
   play() {
@@ -46,7 +47,14 @@ class App {
 
   getWinningNumber() {
     Console.readLine(`${MESSEGE.INPUT_WINNING_NUMBER}\n`, (input) => {
-      const number = new Lotto(input.split(","));
+      this.WinningNumbers = new Lotto(input.split(","));
+      this.getBonusNumber();
+    });
+  }
+
+  getBonusNumber() {
+    Console.readLine(`${MESSEGE.INPUT_BONUS_NUMBER}\n`, (input) => {
+      this.WinningNumbers.setBonusNum(input);
     });
   }
 }

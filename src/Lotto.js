@@ -43,6 +43,13 @@ class Lotto {
   get() {
     return this.#numbers;
   }
+
+  setBonusNum(number) {
+    if (this.isNotInVaildRange(number)) {
+      this.utils.throwError(ERROR.NOT_IN_VAILD_RANGE);
+    }
+    this.#numbers.push(number);
+  }
 }
 
 module.exports = Lotto;
