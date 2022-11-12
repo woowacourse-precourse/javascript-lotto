@@ -38,6 +38,7 @@ class User {
       this.issue_lottos(COUNT);
       this.input_winning_number();
     });
+    return;
   }
 
   issue_lottos(count) {
@@ -73,7 +74,7 @@ class User {
     let validation = true;
     if (numbers.length != 6) validation = false;
     numbers.map(number => {
-      if (!(number >= '1' && number <= 45)) {
+      if (!(number >= 1 && number <= 45)) {
         validation = false;
       }
     });
