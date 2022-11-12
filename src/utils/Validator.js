@@ -1,6 +1,8 @@
+const { ERROR_MESSAGE } = require('../constant');
+
 class NumberValidator {
   static isValidNumber(input) {
-    if (isNaN(input)) throw new Error('[ERROR] 숫자를 입력해 주세요.');
+    if (isNaN(input)) throw new Error(ERROR_MESSAGE.TYPE);
   }
 }
 
@@ -15,8 +17,7 @@ class MoneyValidator extends NumberValidator {
   }
 
   static isValidMoney(input) {
-    if (input % 1000)
-      throw new Error('[ERROR] 1,000원 단위의 금액을 입력해 주세요.');
+    if (input % 1000) throw new Error(ERROR_MESSAGE.CURRENCY_UNIT);
   }
 }
 
