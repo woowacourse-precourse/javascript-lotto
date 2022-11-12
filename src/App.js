@@ -21,7 +21,7 @@ class App {
       this.buyPrice = price;
       this.priceValidate();
       this.createLottoNumber();
-      this.getWinningNumber();
+      //this.getWinningNumber();
     });
   }
 
@@ -63,41 +63,11 @@ class App {
 
       MissionUtils.Console.print(data);
     });
-  }
-
-  getWinningNumber() {
-    MissionUtils.Console.readLine(
-      "\n당첨 번호를 입력해 주세요. \n",
-      (number) => {
-        this.winningNumber = this.splitWinningNumber(number);
-
-        this.winningNumberValidate();
-
-        this.getBonusNumber();
-      }
-    );
-  }
-
-  getBonusNumber() {
-    MissionUtils.Console.readLine(
-      "\n보너스 번호를 입력해 주세요.\n",
-      (number) => {
-        this.winningNumber.push(Number(number));
-        this.winningNumber.sort((a, b) => {
-          return a - b;
-        });
-
-        MissionUtils.Console.close();
-      }
-    );
-  }
-
-  splitWinningNumber(number) {
-    return number.split(",").map(Number);
+    this.compareLottoNumber();
   }
 
   compareLottoNumber() {
-    this.lottoArray.map((numbers) => {});
+    new Lotto(this.lottoArray);
   }
 }
 
