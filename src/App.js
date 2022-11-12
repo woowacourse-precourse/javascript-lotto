@@ -1,5 +1,5 @@
 const { GAME_MESSAGE, PRICE_MEASURE } = require('./lib/Constants');
-const { readLine } = require('./lib/Utils');
+const { print, readLine } = require('./lib/Utils');
 const PriceValidation = require('./Validation/PriceValidation');
 
 class App {
@@ -24,6 +24,12 @@ class App {
   saveLottoPriceAndCount(answer) {
     this.lottoPrice = Number(answer);
     this.lottoCount = this.lottoPrice / PRICE_MEASURE;
+
+    return this.printLottoCount();
+  }
+
+  printLottoCount() {
+    print(`\n${this.lottoCount}개를 구매했습니다.`);
   }
 }
 
