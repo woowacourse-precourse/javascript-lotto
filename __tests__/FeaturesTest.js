@@ -10,7 +10,7 @@ describe('기능 테스트', () => {
 
     test('중복된 번호 입력 예외 처리', () => {
         const app = new App();
-        expect(() => app.isDuplicated('1', [1])).toThrow(
+        expect(() => app.isDuplicated(['1', '1'])).toThrow(
             '[ERROR] 중복된 번호입니다.'
         );
     });
