@@ -45,13 +45,13 @@ class App {
     while (this.bundleOfLotto.length < amount) {
       const randomLotto = Random.pickUniqueNumbersInRange(1, 45, 6);
 
-      const sortedLotto = this.sortLottoNumber(randomLotto);
+      const sortedLotto = this.getSortedLotto(randomLotto);
 
       this.bundleOfLotto.push(sortedLotto);
     }
   }
 
-  sortLottoNumber(lotto) {
+  getSortedLotto(lotto) {
     lotto.sort((a, b) => a - b);
 
     return lotto;
