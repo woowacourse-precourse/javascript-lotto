@@ -1,3 +1,5 @@
+const { NUMBER } = require('./utils/constants');
+
 class WinningChecker {
   constructor(lottoNumbers, winningNumbers, bonusNumber) {
     this.lottoNumbers = lottoNumbers;
@@ -24,22 +26,32 @@ class WinningChecker {
   }
 
   findWinningRank() {
-    if (this.countOfSameNum === 6) {
-      return 1;
+    if (this.countOfSameNum === NUMBER.TO_WIN_FIRST_PLACE) {
+      return NUMBER.FIRST_PLACE;
     }
-    if (this.countOfSameNum === 5 && this.hasBonusNum) {
-      return 2;
+    if (
+      this.countOfSameNum === NUMBER.TO_WIN_SECOND_PLACE &&
+      this.hasBonusNum
+    ) {
+      return NUMBER.SECOND_PLACE;
     }
-    if (this.countOfSameNum === 5 && !this.hasBonusNum) {
-      return 3;
+    if (
+      this.countOfSameNum === NUMBER.TO_WIN_SECOND_PLACE &&
+      !this.hasBonusNum
+    ) {
+      return NUMBER.THIRD_PLACE;
     }
-    if (this.countOfSameNum === 4) {
-      return 4;
+    if (this.countOfSameNum === NUMBER.TO_WIN_FOURTH_PLACE) {
+      return NUMBER.FOURTH_PLACE;
     }
-    if (this.countOfSameNum === 3) {
-      return 5;
+    if (this.countOfSameNum === NUMBER.TO_WIN_FIFTH_PLACE) {
+      return NUMBER.FIFTH_PLACE;
     }
     return null;
+  }
+
+  getWinningRank() {
+    return this.winningRank;
   }
 }
 
