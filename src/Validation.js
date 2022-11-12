@@ -70,6 +70,12 @@ class Validation {
 
     return lottoNumbers.map(Number).every(isValidRange);
   }
+
+  static validateBonusNumber(bonusNumber) {
+    if (Validation.isEmptyInput(bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.EMPTY_INPUT);
+    }
+  }
 }
 
 module.exports = Validation;

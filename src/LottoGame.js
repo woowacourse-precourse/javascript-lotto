@@ -60,7 +60,9 @@ class LottoGame {
     });
   }
   saveBonusNumberPhase() {
-    this.LottoGameView.requestInput(REQUEST_MESSAGE.BONUS_NUMBER, (bonusNumber) => {});
+    this.LottoGameView.requestInput(REQUEST_MESSAGE.BONUS_NUMBER, (bonusNumber) => {
+      Validation.validateBonusNumber(bonusNumber.split(""));
+    });
   }
 }
 
