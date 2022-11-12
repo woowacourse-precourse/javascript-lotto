@@ -22,7 +22,7 @@ class User {
     Console.print(`4개 일치 (50,000원) - ${this.four}개`);
     Console.print(`5개 일치 (1,500,000원) - ${this.five}개`);
     Console.print(
-      `5개 일치, 보너스 볼 일치(30,000,000원) - ${this.fiveBonus}개`
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.fiveBonus}개`
     );
     Console.print(`6개 일치 (2,000,000,000원) - ${this.six}개`);
   }
@@ -36,7 +36,7 @@ class User {
   }
 
   getProfit() {
-    const profit = (this.profit / this.money).toFixed(1);
+    const profit = ((this.profit / this.money) * 100).toFixed(1);
     return Console.print(`총 수익률은 ${profit}%입니다.`);
   }
 }
