@@ -1,4 +1,4 @@
-const { LOTTO_RESULT_MESSAGE, LOTTO_RESULT_PRICE } = require('./lib/Constants');
+const { LOTTO_RESULT_MESSAGE, LOTTO_RESULT_PRICE, LOTTO_RESURL_STATISTICS_MESSAGE } = require('./lib/Constants');
 const { print } = require('./lib/Utils');
 
 class CalculationLotto {
@@ -108,8 +108,7 @@ class CalculationLotto {
   }
 
   printResult() {
-    print('\n당첨 통계');
-    print('---\n');
+    print(LOTTO_RESURL_STATISTICS_MESSAGE);
 
     Object.keys(this.lottoResult).forEach((key) => {
       const value = this.lottoResult[key];
