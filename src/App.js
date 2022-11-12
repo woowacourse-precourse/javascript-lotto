@@ -57,13 +57,11 @@ class App {
   }
 
   getLottoNumbers() {
-    const lottoNumbers = [];
-    while (!Util.hasNElements(lottoNumbers, LOTTO_LENGTH)) {
-      const number = Random.pickNumberInRange(1, 45);
-      if (!lottoNumbers.includes(number)) {
-        lottoNumbers.push(number);
-      }
-    }
+    const lottoNumbers = Random.pickUniqueNumbersInRange(
+      LOTTO_START,
+      LOTTO_END,
+      LOTTO_LENGTH
+    );
     return lottoNumbers;
   }
 
