@@ -33,7 +33,9 @@ class LottoProgram {
   inputWinningNumbers() {
     Console.readLine("당첨 번호를 입력해 주세요.\n", (inputWinningNumbers) => {
       this.winningNumbers = inputWinningNumbers.replace(this.#regExp, '').split(',');
-      this.validateInput.validateWinningNumbers(this.winningNumbers);
+      if (!this.validateInput.validateWinningNumbers(this.winningNumbers)) {
+        this.utils.throwError("[ERROR] 입력하신 당첨 번호가 유효하지 않습니다. 다시 확인해주세요.");
+      }
       this.inputBonusNumber();
     });
   }
@@ -41,7 +43,9 @@ class LottoProgram {
   inputBonusNumber() {
     Console.readLine("보너스 번호를 입력해 주세요.\n", (bonusNumber) => {
       this.bonusNumber = bonusNumber;
-      this.validateInput.validateBonusNumber(this.winningNumbers, this.bonusNumber);
+      if (!this.validateInput.validateBonusNumber(this.winningNumbers, this.bonusNumber)) {
+        this.utils.throwError("[ERROR] 입력하신 보너스 번호가 유효하지 않습니다. 다시 확인해주세요.");
+      }
       this.getWinningStat();
       Console.close();
     });
