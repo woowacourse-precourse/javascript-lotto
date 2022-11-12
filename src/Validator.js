@@ -12,15 +12,16 @@ class Validator {
     if (money % LOTTO.PRICE) this.throwError(ERROR_MESSAGE.HAS_MOD);
   }
 
-  static throwErrorIfInvalidWinningNumbers(inputValue) {
+  static throwErrorIfInvalidWinningForm(inputValue) {
     this.throwErrorIfHasBlack(inputValue);
     const winningNumbers = inputValue.split(',');
-    if (!REGEX.winningNumber.test(inputValue)) {
+    if (!REGEX.winningNumbers.test(inputValue)) {
       this.throwError(ERROR_MESSAGE.WINNING_NUM_FORM);
     }
-    winningNumbers.forEach((number) => {
-      this.throwErrorIfStartsWithZero(number);
-    });
+    winningNumbers.forEach((number) => this.throwErrorIfStartsWithZero(number));
+  }
+
+  static throwErrorIfInvalidWinningNumbers(winningNumbers) {
     if (winningNumbers.length !== LOTTO.LENGTH) {
       this.throwError(ERROR_MESSAGE.LENGTH);
     }
@@ -39,7 +40,7 @@ class Validator {
     if (!REGEX.bonusNumber.test(bonusNumber)) {
       this.throwError(ERROR_MESSAGE.INT_FORM);
     }
-    if (winningNumbers.split(',').includes(bonusNumber)) {
+    if (winningNumbers.includes(Number(bonusNumber))) {
       this.throwError(ERROR_MESSAGE.WINNING_HAS);
     }
   }

@@ -47,7 +47,9 @@ class App {
 
   askWinningNumbers() {
     Console.print(MESSAGE.ASK_WINNING_NUM);
-    Console.readLine('', (winningNumbers) => {
+    Console.readLine('', (inputValue) => {
+      Validator.throwErrorIfInvalidWinningForm(inputValue);
+      const winningNumbers = inputValue.split(',').map((num) => Number(num));
       this.lotto = new Lotto(winningNumbers);
 
       this.askBonusNumber(winningNumbers);
