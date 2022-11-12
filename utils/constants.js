@@ -3,7 +3,6 @@ const VARIABLE_LOTTO = Object.freeze({
   start: 1,
   end: 45,
   len: 6,
-
   priceUnit: 1000,
   priceRegex: /^[1-9]+0{3,}$/,
 });
@@ -23,8 +22,15 @@ const LOTTO_AMOUNT = Object.freeze([
   2000000000,
 ]);
 
+const LOTTO_QUESTION = Object.freeze({
+  money: '구입금액을 입력해주세요.\n',
+  lotto: '당첨 번호를 입력해 주세요.\n',
+  bonus: '보너스 번호를 입력해 주세요.\n',
+});
+
 module.exports = {
   VARIABLE_LOTTO,
   LOTTO_ERROR_MESSAGE,
   LOTTO_AMOUNT,
+  LOTTO_QUESTION,
 };
