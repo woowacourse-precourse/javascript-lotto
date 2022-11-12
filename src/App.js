@@ -35,7 +35,7 @@ class App {
   printAllLotto() {
     this.publishResult = this.publish.result;
     for (let numberofLotto in this.publishResult) {
-      Console.print(this.publishResult[numberofLotto]);
+      Console.print(`[${this.publishResult[numberofLotto].join(', ')}]`);
     }
     this.enterWinningNumber();
   }
