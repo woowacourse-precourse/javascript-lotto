@@ -17,23 +17,23 @@ class Lotto {
         Console.readLine('당첨 번호를 입력해 주세요.\n', (lotto) => {
             const lottoArray = lotto.split(',').map((number) => number.trim());
             this.#numbers = lottoArray;
-            this.verification(lottoArray, 'lottoNumber');
+            this.verification(lottoArray, 'notBonus');
             this.inputBonusnumber();
-            Console.close();
         });
     }
 
     inputBonusnumber() {
         Console.readLine('보너스 번호를 입력해 주세요.\n', (bonus) => {
+            this.verification(bonus, 'bonus');
             this.#numbers.push(bonus);
         });
     }
 
-    /** @typedef {('lottoNumber' | )} type */
+    /** @typedef {('notBonus' | 'bonus' )} type */
     /** @type {function (string, type) : void} */
     verification(input, type) {
-        const exception = new LottoException();
-        if (type === 'lottoNumber') exception.isSix(input);
+        const exception = new LottoException(input, type);
+        exception.checkLottoException();
     }
 
     // validate(numbers) {

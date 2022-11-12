@@ -21,42 +21,42 @@ describe('로또 클래스 테스트', () => {
 describe.only('예외 사항 테스트', () => {
     test('입력 금액이 천원 단위인지 확인', () => {
         expect(() => {
-            const exception = new InputException();
-            exception.isThousand('13200');
+            const exception = new InputException('13200');
+            exception.checkInputException();
         }).toThrow('[ERROR]');
 
         expect(() => {
-            const exception = new InputException();
-            exception.isThousand('13010');
+            const exception = new InputException('13010');
+            exception.checkInputException();
         }).toThrow('[ERROR]');
 
         expect(() => {
-            const exception = new InputException();
-            exception.isThousand('130100');
+            const exception = new InputException('130100');
+            exception.checkInputException();
         }).toThrow('[ERROR]');
     });
 
     test('로또 번호의 갯수가 6개인지 확인', () => {
         expect(() => {
-            const exception = new LottoException();
-            exception.isSix([1, 2, 3, 4, 5, 6, 7]);
+            const exception = new LottoException([1, 2, 3, 4, 5, 6, 7]);
+            exception.checkLottoException();
         }).toThrow('[ERROR]');
 
         expect(() => {
-            const exception = new LottoException();
-            exception.isSix([1, 2, 3, 4, 5]);
+            const exception = new LottoException([1, 2, 3, 4, 5]);
+            exception.checkLottoException();
         }).toThrow('[ERROR]');
     });
 
     test('로또의 번호가 숫자인지 확인 (보너스 번호 포함)', () => {
         expect(() => {
-            const exception = new LottoException();
-            exception.isNumber([1, 2, 3, 4, 5, 'a']);
+            const exception = new LottoException([1, 2, 3, 4, 5, 'a']);
+            exception.checkLottoException();
         }).toThrow('[ERROR]');
 
         expect(() => {
-            const exception = new LottoException();
-            exception.isNumber('a');
+            const exception = new LottoException('a', 'bonus');
+            exception.checkLottoException();
         }).toThrow('[ERROR]');
     });
 });
