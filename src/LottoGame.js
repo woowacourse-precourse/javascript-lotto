@@ -1,5 +1,6 @@
 const LottoGenerator = require('./LottoGenerator');
 const Lotto = require('./Lotto');
+const Bonus = require('./Bonus');
 const PlayInfo = require('./PlayInfo');
 
 const lottoGenerator = new LottoGenerator();
@@ -14,6 +15,10 @@ class LottoGame {
 
   drawLotto(numbers) {
     const lotto = new Lotto(numbers);
+  }
+
+  drawBonus(number) {
+    const bonus = new Bonus(number);
   }
 }
 

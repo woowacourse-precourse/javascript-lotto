@@ -5,7 +5,6 @@ const { Console } = require('@woowacourse/mission-utils');
 const { ENTER_PURCHASE_AMOUNT, ENTER_WINNING_NUMBERS, ENTER_BONUS_NUMBER } = require('./constans');
 
 const gameGuide = new GameGuide();
-
 const lottoGame = new LottoGame();
 
 class App {
@@ -35,6 +34,7 @@ class App {
     Console.readLine('', (inputValue) => {
       const number = toNumberType(inputValue);
       console.log(number);
+      lottoGame.drawBonus(number);
     });
   }
 

@@ -61,6 +61,11 @@ class InputException {
     this.#isNotRange(numbers);
     this.#isDuplicates(numbers);
   }
+
+  handleBonusNumberException(number) {
+    this.#isNoValue(number);
+    this.#isNotRange([number]);
+  }
 }
 
 module.exports = InputException;
