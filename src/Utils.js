@@ -13,10 +13,6 @@ class Utils {
     return (input % 1000 === 0);
   }
 
-  throwError(comment) {
-    throw new Error(comment);
-  }
-
   randomSelectWithoutOverlap() {
     const randomNumbers = [];
     while (randomNumbers.length < 6) {
@@ -26,6 +22,10 @@ class Utils {
       }
     }
     return randomNumbers.sort((a, b) => a - b);
+  }
+
+  throwError(comment) {
+    throw new Error(comment);
   }
 }
 
