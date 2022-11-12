@@ -1,6 +1,7 @@
 const { GAME_MESSAGE, PRICE_MEASURE } = require('./lib/Constants');
 const { print, readLine, pickUniqueNumbersInRange } = require('./lib/Utils');
 const PriceValidation = require('./Validation/PriceValidation');
+const WinNumbersValidation = require('./Validation/WinNumbersValidation');
 
 class App {
   lottoPrice = 0;
@@ -8,6 +9,8 @@ class App {
   lottoCount = 0;
 
   lottoList = [];
+
+  winNumberList = [];
 
   play() {
     readLine(GAME_MESSAGE.input_price, (answer) => this.getLottoPrice(answer));
@@ -79,10 +82,19 @@ class App {
     readLine(GAME_MESSAGE.input_win_number, (answer) => this.getWinNumbers(answer));
   }
 
-  getWinNumbers() {
-    // TODO
-    // 당첨 번호 관련 유효성 검사
-    // 맴버변수에 금액 저장
+  getWinNumbers(answer) {
+    App.winNumberValidate(answer);
+    this.saveWinNumbers(answer);
+  }
+
+  static winNumberValidate(answer) {
+    const winNumberValidate = new WinNumbersValidation(answer);
+    return winNumberValidate.validate();
+  }
+
+  saveWinNumbers(answer) {
+    const winNumberArray = answer.split(',');
+    this.winNumberList = winNumberArray.map((number) => Number(number));
   }
 }
 
