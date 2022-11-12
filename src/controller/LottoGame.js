@@ -32,17 +32,25 @@ class LottoGame {
   inputBonusNumber(lotto) {
     this.inputConsole.trigger('\n보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
       lotto.setWinningNumbers(bonusNumber);
-      this.result(lotto.getWinningNumbers(bonusNumber));
+      this.resultRank(lotto.getWinningNumbers(bonusNumber));
     });
   }
 
-  result(winningNumbers) {
+  resultRank(winningNumbers) {
     const matchingNumbersResult = lottoResult.getAllMatchingNumbersResult(
       this.user.getLottoNumbers(),
       winningNumbers.slice(0, 6),
       winningNumbers[6],
     );
-    this.outputConsole.printLank(lottoResult.getLank(matchingNumbersResult));
+    const rank = lottoResult.getLank(matchingNumbersResult);
+    this.outputConsole.printLank(rank);
+    this.resultProfitRate(rank);
+  }
+
+  resultProfitRate(rank) {
+    const profit = lottoResult.getProfit(rank);
+    const profitRate = Math.round((profit / this.user.money) * 1000) / 10;
+    console.log(profitRate);
   }
 }
 

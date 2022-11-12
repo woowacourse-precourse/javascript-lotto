@@ -54,7 +54,14 @@ lottoResult.getLank = (matchingNumbersResult) => {
 };
 
 lottoResult.getProfit = ([firstPlace, secondPlace, thirdPlace, fourthPlace, fifthPlace]) => {
-  return 1;
+  const profit = [
+    firstPlace * 2000000000,
+    secondPlace * 30000000,
+    thirdPlace * 1500000,
+    fourthPlace * 50000,
+    fifthPlace * 5000,
+  ];
+  return profit.reduce((sum, currentValue) => sum + currentValue, 0);
 };
 
 module.exports = lottoResult;
