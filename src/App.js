@@ -14,6 +14,7 @@ class App {
   }
 
   validateUserInput(purchaseLotto) {
+    if (purchaseLotto < 1000) throw new Error(LOTTO_ERROR_MESSAGE.UNDER_MONEY);
     if (isNaN(purchaseLotto)) throw new Error(LOTTO_ERROR_MESSAGE.NOT_NUMBER);
     if (purchaseLotto % 1000 !== 0) throw new Error(LOTTO_ERROR_MESSAGE.NOT_DIVIDE);
 
