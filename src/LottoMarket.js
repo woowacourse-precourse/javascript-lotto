@@ -15,7 +15,7 @@ class LottoMarket {
 
   showLottoes(buyingLottoes) {
     let Lottoes = buyingLottoes.reduce((acc, cur) => {
-      Console.print(cur);
+      Console.print(cur.getNumbers());
     }, []);
   }
 
@@ -40,3 +40,5 @@ class LottoMarket {
     return winningNumbers.includes(newNumber);
   }
 }
+
+module.exports = LottoMarket;
