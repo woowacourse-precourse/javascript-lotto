@@ -38,6 +38,13 @@ class GameTools {
 
     return rateOfReturn.toFixed(PLACES_OF_DECIMALS);
   }
+
+  static stringToSortedNumberArray(string) {
+    return string
+      .split(',')
+      .map((num) => Number(num))
+      .sort((a, b) => a - b);
+  }
 }
 
 module.exports = GameTools;
