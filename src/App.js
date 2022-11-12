@@ -1,5 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 const LottoMachine = require("./domain/LottoMachine");
+const Lotto = require("./Lotto");
 const Utils = require("./Utils");
 
 const MESSAGE = Object.freeze({
@@ -28,6 +29,10 @@ class App {
   pleaseMoney(money) {
     this.isValidMoney(money);
     this.printPurchasedLottos(money);
+    Console.readLine(
+      "\n당첨 번호를 입력해 주세요.\n",
+      this.pleaseWinningNumbers.bind(this)
+    );
   }
 
   printPurchasedLottos(money) {
@@ -39,6 +44,13 @@ class App {
       Console.print(purchasedLotto);
     });
   }
+
+  pleaseWinningNumbers(inputNumbers) {
+    const lotto = new Lotto(Utils.transformStringToNumberArray(inputNumbers));
+  }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
