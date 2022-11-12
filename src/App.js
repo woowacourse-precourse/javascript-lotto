@@ -49,8 +49,8 @@ class App {
 
   inputBonusNumber() {
     MissionUtils.Console.readLine("\n보너스 번호를 입력해 주세요.\n", (number) => {
-      this.bonusNumber = number;
-      this.validateInputBonusNumber(number);
+      this.bonusNumber = number.replace(/\s/g, "").split(",");
+      this.validateInputBonusNumber(this.bonusNumber);
       this.loadMatchingNumberAboutLotto();
     });
   }
