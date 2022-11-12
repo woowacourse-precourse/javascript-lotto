@@ -6,10 +6,11 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (this.#isLengthNotEqualsSix(numbers)) throw Error("6자리가 아님ㅋ");
-    if (this.#isIncludeNotNumber(numbers)) throw Error("숫자가 아님ㅋ");
-    if (this.#isNotRangeValid(numbers)) throw Error("1~45 사이의 숫자만 쓰셈ㅋ");
-    if (this.#isDuplicatedValueExist(numbers)) throw Error("중복된 숫자 안됨ㅋ");
+    if (this.#isLengthNotEqualsSix(numbers)) throw Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    if (this.#isIncludeNotNumber(numbers)) throw Error("[ERROR] 로또 번호는 숫자여야 합니다.");
+    if (this.#isNotRangeValid(numbers)) throw Error("[ERROR] 로또 번호의 범위는 1~45 입니다.");
+    if (this.#isDuplicatedValueExist(numbers))
+      throw Error("[ERROR] 로또 번호는 중복되지 않습니다.");
   }
 
   #isNotRangeValid(numbers) {
