@@ -74,7 +74,7 @@ class App {
     Console.readLine(APP_MESSAGE.INSERT_BONUS_NUMBER, (userInput) => {
       const inputBonusNumber = Number(userInput);
       if (this.#winNumber.includes(inputBonusNumber))
-        return this.makeException('OVERLAPPED_NUMBER');
+        return this.makeException('INPUT_OVERLAPPED');
 
       this.#bonusNumber = inputBonusNumber;
       Console.print(this.#bonusNumber);
