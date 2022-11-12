@@ -1,5 +1,5 @@
 const { GAME_MESSAGE } = require('./lib/Constants');
-const { readLine } = require('./lib/Utils');
+const { readLine, close } = require('./lib/Utils');
 
 const Bonus = require('./Bonus');
 const CalculationLotto = require('./CalculationLotto');
@@ -65,6 +65,8 @@ class LottoController {
       .matchResult()
       .calculationLottoRate(lottoPrice)
       .printResult();
+
+    close();
   }
 }
 
