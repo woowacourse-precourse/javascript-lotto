@@ -1,19 +1,121 @@
+const { Console } = require('@woowacourse/mission-utils');
+const {
+  ERROR_MESSAGE,
+  WINNING_AMOUNT,
+  WIN_MESSAGE,
+  YIELD_MESSAGE,
+} = require('./libs/const');
+const Utils = require('./libs/Utils');
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    console.log(numbers);
     this.validate(numbers);
     this.#numbers = numbers;
+    this.bonusNumber = null;
+    this.ranking = {
+      first: 0,
+      second: 0,
+      third: 0,
+      fourth: 0,
+      fifth: 0,
+    };
+    this.winningAmount = 0;
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
-    }
+    if (numbers.length !== 6) throw new Error(ERROR_MESSAGE.manyInputPrize);
+    const lottoSet = new Set();
+    numbers.forEach(number => {
+      if (Utils.isRange(number) === false) {
+        throw new Error(ERROR_MESSAGE.range);
+      }
+      lottoSet.add(number);
+    });
+    const isOverlap = lottoSet.size !== numbers.length;
+
+    if (isOverlap) throw new Error(ERROR_MESSAGE.overlapPrize);
   }
 
   // TODO: 추가 기능 구현
+
+  bonusValidate(number) {
+    if (this.#numbers.includes(number) === true)
+      throw new Error(ERROR_MESSAGE.overlapBonus);
+    if (Utils.isRange(number) === false) {
+      throw new Error(ERROR_MESSAGE.range);
+    }
+  }
+
+  setBonusNum(userInput) {
+    const number = Number(userInput);
+    if (userInput.includes(',') === true)
+      throw new Error(ERROR_MESSAGE.manyInputBonus);
+    this.bonusValidate(number);
+    this.bonusNumber = number;
+    return number;
+  }
+
+  getPrizeMatch(userLottoNumber) {
+    const matchArr = userLottoNumber.filter(item => {
+      if (this.#numbers.includes(item)) {
+        return item;
+      }
+      return null;
+    });
+    const count = matchArr.length;
+    return count;
+  }
+
+  getBonusMatch(userLottoNumber) {
+    const isContainBonus = userLottoNumber.includes(this.bonusNumber);
+    return isContainBonus;
+  }
+
+  winCheck(userLottoes) {
+    userLottoes.forEach(item => {
+      const matchCount = this.getPrizeMatch(item);
+      const isBonus = this.getBonusMatch(item);
+      this.getRanking(matchCount, isBonus);
+    });
+  }
+
+  getRanking(matchNumber, isBonus) {
+    if (matchNumber === 3) this.ranking.fifth += 1;
+    if (matchNumber === 4) this.ranking.fourth += 1;
+    if (matchNumber === 5 && isBonus === false) this.ranking.third += 1;
+    if (matchNumber === 5 && isBonus === true) this.ranking.second += 1;
+    if (matchNumber === 6) this.ranking.first += 1;
+  }
+
+  winningAmountCalculation() {
+    this.winningAmount += this.ranking.fifth * WINNING_AMOUNT.fifth;
+    this.winningAmount += this.ranking.fourth * WINNING_AMOUNT.fourth;
+    this.winningAmount += this.ranking.third * WINNING_AMOUNT.third;
+    this.winningAmount += this.ranking.second * WINNING_AMOUNT.second;
+    this.winningAmount += this.ranking.first * WINNING_AMOUNT.first;
+  }
+
+  printWinner() {
+    Console.print(WIN_MESSAGE.statistics);
+    Console.print(WIN_MESSAGE.divideLine);
+    Utils.printUtil(WIN_MESSAGE.fifth, this.ranking.fifth);
+    Utils.printUtil(WIN_MESSAGE.fourth, this.ranking.fourth);
+    Utils.printUtil(WIN_MESSAGE.third, this.ranking.third);
+    Utils.printUtil(WIN_MESSAGE.second, this.ranking.second);
+    Utils.printUtil(WIN_MESSAGE.first, this.ranking.first);
+  }
+
+  printYield(purchaseAmount) {
+    const yieldPercent = ((this.winningAmount / purchaseAmount) * 100).toFixed(
+      1,
+    );
+
+    const localeYeild = Utils.convertLocale(yieldPercent);
+
+    Console.print(`${YIELD_MESSAGE.front} ${localeYeild}${YIELD_MESSAGE.back}`);
+  }
 }
 
 module.exports = Lotto;
