@@ -9,7 +9,7 @@ const makeLottoArray = (lottoCount) => {
   for (let i = 0; i < lottoCount; i++) {
     lottoArray.push(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
   }
-  console.log(lottoArray);
+  return lottoArray;
 };
 
 module.exports = { getLottoNumber, makeLottoArray };

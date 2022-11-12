@@ -1,14 +1,24 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+const { Console } = require("@woowacourse/mission-utils");
+
 const { getLottoNumber, makeLottoArray } = require("./LottoGenerator");
+const { makeWinLottoNumber } = require("./Judgement");
 
 class App {
-  constructor() {}
+  constructor() {
+    this.lottoArray = [];
+    this.lottoWinNumber;
+  }
 
   play() {
+    // 로또 구입액 인풋
     // Console.readLine("구입금액을 입력해 주세요.", (userInputPrice) => {
-    //   Lotto.getLottoNumber(userInputPrice); // return 값으로 갯수 불러오기
+    //   this.lottoArray = makeLottoArray(getLottoNumber(userInputPrice));
+    //   console.log(this.lottoArray, "play");
     // });
 
-    makeLottoArray(getLottoNumber(8000));
+    // 로또 당첨번호 배열 생성
+    makeWinLottoNumber();
   }
 }
 const app = new App();
