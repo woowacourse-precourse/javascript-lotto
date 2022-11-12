@@ -5,6 +5,7 @@ const ERROR_MASSAGE = Object.freeze({
   INCORRECT_INPUT: '[ERROR] 금액을 잘 못 입력하셨습니다',
   POSSIBLE_AMOUNT_NUMBER: '[ERROR] 1~9 숫자만 입력가능합니다',
   POSSIBLE_LOTTO_NUMBER: '[ERROR] 1~45의 숫자만 입력가능합니다',
+  DUPLICATE_NUMBER: '[ERROR] 당첨번호와 보너스 번호가 일치합니다',
 });
 
 const OUTPUT_MESSAGE = Object.freeze({
@@ -34,6 +35,7 @@ const NUMBER_LIMIT = Object.freeze({
   MIN_NUMBER: 1,
   MAX_NUMBER: 45,
   QUANTITY: 6,
+  MAX_PURCHASES: 100000,
 });
 
 module.exports = {
