@@ -1,18 +1,31 @@
+const { Console, Random } = require('@woowacourse/mission-utils');
+const { LOTTO } = require('./Constants');
+
 class Lotto {
   #numbers;
 
-  constructor(numbers) {
-    this.#numbers = numbers;
+  // constructor(numbers) {
+  //   this.#numbers = numbers;
+  // }
+
+  getLotto() {
+    const lotto = Random.pickUniqueNumbersInRange(
+      LOTTO.NUMBER_START,
+      LOTTO.NUMBER_END,
+      LOTTO.NUMBER_SELECT
+    );
+    lotto.sort((x, y) => x - y);
+    return lotto;
   }
 
   checkLotto(numbers, winningNumber, bonusNumber) {
     let winning = 0;
     let bonus = 0;
     for (let i = 0; i < numbers.length; i++) {
-      if (winningNumber.includes(String(numbers[i]))) {
+      if (winningNumber.includes(numbers[i])) {
         winning += 1;
       }
-      if (String(numbers[i]) === bonusNumber) {
+      if (numbers[i] === bonusNumber) {
         bonus += 1;
       }
     }

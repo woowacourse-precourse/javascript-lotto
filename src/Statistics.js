@@ -9,19 +9,14 @@ class Statistics {
   ranking4 = 0;
   ranking5 = 0;
 
-  constructor(lottoList, winning, bonus) {
-    this.amount = lottoList.length;
-    this.lottoList = lottoList;
-    this.winning = winning;
-    this.bonus = bonus;
-    this.getRanking();
+  constructor() {
+    this.lotto = new Lotto();
   }
 
-  getRanking() {
-    const lotto = new Lotto();
-    for (let i = 0; i < this.lottoList.length; i++) {
-      const numbers = this.lottoList[i];
-      const result = lotto.checkLotto(numbers, this.winning, this.bonus);
+  getRanking(lottoList, winning, bonus) {
+    for (let i = 0; i < lottoList.length; i++) {
+      const numbers = lottoList[i];
+      const result = this.lotto.checkLotto(numbers, winning, bonus);
       switch (result) {
         case 'Ranking1':
           this.ranking1 += 1;
@@ -40,10 +35,10 @@ class Statistics {
           break;
       }
     }
-    this.printResult();
+    this.printResult(lottoList.length);
   }
 
-  printResult() {
+  printResult(amount) {
     const PRIZE_MONEY_1 = this.ranking1 * 2000000000;
     const PRIZE_MONEY_2 = this.ranking2 * 30000000;
     const PRIZE_MONEY_3 = this.ranking3 * 1500000;
@@ -56,8 +51,8 @@ class Statistics {
         PRIZE_MONEY_3 +
         PRIZE_MONEY_4 +
         PRIZE_MONEY_5) /
-      (this.amount * LOTTO.PRICE);
-    Console.print('당첨 통계');
+      (amount * LOTTO.PRICE);
+    Console.print('\n당첨 통계');
     Console.print('---');
     Console.print(`3개 일치 (5,000원) - ${this.ranking5}개`);
     Console.print(`4개 일치 (50,000원) - ${this.ranking4}개`);
