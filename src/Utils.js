@@ -13,15 +13,18 @@ class Utils {
     return (input % 1000 === 0);
   }
 
+  isValidLottoNumber = (number) => {
+    return (
+      Number(number) >= 1 &&
+      Number(number) <= 45 &&
+      Number(number) % 1 === 0 &&
+      this.isNumber(number)
+    );
+  }
+
   randomSelectWithoutOverlap() {
-    const randomNumbers = [];
-    while (randomNumbers.length < 6) {
-      const number = Random.pickNumberInRange(1, 45);
-      if (randomNumbers.includes(number) === false) {
-        randomNumbers.push(number);
-      }
-    }
-    return randomNumbers.sort((a, b) => a - b);
+    const randomNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+    return [...randomNumbers].join(',').split(',').sort((a, b) => a - b);
   }
 
   throwError(comment) {
