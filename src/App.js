@@ -18,12 +18,15 @@ class App {
   inputMoney() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
       this.payMoney = money;
-      if (this.payMoney % 1000 !== 0 || this.payMoney === "0")
-        throw new Error("[ERROR] 구입 금액은 1000원 단위 입니다.");
-
+      this.validateInputMoney(this.payMoney);
       this.getLottoNumber(this.payMoney / 1000);
       this.inputWinnerNumber();
     });
+  }
+
+  validateInputMoney(payMoney) {
+    if (payMoney % 1000 !== 0 || payMoney === "0")
+      throw new Error("[ERROR] 구입 금액은 1000원 단위 입니다.");
   }
 
   getLottoNumber(lottoTickets) {
