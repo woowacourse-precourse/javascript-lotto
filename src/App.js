@@ -51,16 +51,6 @@ class App {
     });
   }
 
-  setWinningNumbers(numbers) {
-    this.validateNumbers(numbers);
-    this.#winningNumbers = numbers;
-  }
-
-  setBonusNumber(number) {
-    this.isInRange(number);
-    this.#bonusNumber = number;
-  }
-
   validateMoney(money) {
     if (
       !/^[0-9]+$/.test(money) ||
@@ -93,10 +83,30 @@ class App {
     );
   }
 
+  setWinningNumbers(numbers) {
+    this.validateNumbers(numbers);
+    this.#winningNumbers = numbers;
+  }
+
+  setBonusNumber(number) {
+    this.isInRange(number);
+    this.#bonusNumber = number;
+  }
+
+  readWinningNumbers() {
+    Console.readLine('당첨 번호를 입력해주세요\n', (input) => {
+      this.setWinningNumbers(input.split(','));
+      Console.readLine('보너스 번호를 입력해주세요\n', (input) => {
+        this.setBonusNumber(input);
+      });
+    });
+  }
+
   play() {
     Console.readLine('구입 금액을 입력해주세요.\n', (input) => {
       this.buyLottos(input);
       this.printLottos();
+      this.readWinningNumbers();
     });
   }
 }
