@@ -1,11 +1,8 @@
 const MissionUtils= require("@woowacourse/mission-utils");
-const Input = require("./Input.js");
-
 
 class Calculator{
 
     createLottoNumber(count){
-        let input=new Input();
         let lottoNumber=[];
         while(lottoNumber.length<count){
             lottoNumber.push(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
@@ -16,21 +13,21 @@ class Calculator{
         }
         return lottoNumber;
     }
-    calWinning(lottoArr,winNumber){
+    calWinning(arr,number){
         let result=[];
-        for(let index=0;index<lottoArr.length;index++){
-            result.push(lottoArr[index].filter(x => winNumber.includes(x)));
+        for(let index=0;index<arr.length;index++){
+            result.push(arr[index].filter(x => number.includes(x)));
         }
         return result;
     }
 
-    winningScore(result,lottoArr,bonusNumber){
+    winningScore(result,arr,number){
         let count=new Array(result.length).fill(0);
         for(let index=0;index<result.length;index++){
             if(result[index].length==6){
                 count[7]+=1;
             }
-            else if(result[index].length==5&&lottoArr[i].includes(bonusNumber)){
+            else if(result[index].length==5&&arr[i].includes(number)){
                 count[6]+=1;
             }
             else if(result[index].length==5){
@@ -46,9 +43,9 @@ class Calculator{
         return count;
         }
 
-    calYield(winningArr,moneycount){
-        let earnMoney=winningArr[3]*5000+winningArr[4]*50000+winningArr[5]*1500000+winningArr[7]*30000000+winningArr[6]*2000000000;
-        let lottoYield=((earnMoney/(moneycount*1000)*100));
+    calYield(arr,count){
+        let earnMoney=arr[3]*5000+arr[4]*50000+arr[5]*1500000+arr[7]*30000000+arr[6]*2000000000;
+        let lottoYield=((earnMoney/(count*1000)*100));
         return lottoYield;
     }
 
