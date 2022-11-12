@@ -60,8 +60,17 @@ class App {
   BonusNumberInput(){
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (answer) => {
       this.winningNumbers.push(answer);
+      this.winningCount()
     })
   }
+
+  winningCount(){
+    for(let i=0; i<this.userLottoNumbers.length; i++){
+      this.userLottoNumbers[i].filter(lotto => this.winningNumbers.includes(String(lotto))).length;
+    }
+  }
+
+  
 }
 const app = new App();
 app.play();
