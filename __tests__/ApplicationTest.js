@@ -24,13 +24,6 @@ const getLogSpy = () => {
 };
 
 describe("로또 테스트", () => {
-  test("로또 구매를 1000원 단위로 했을 경우", () => {
-    expect(() => {
-      const app = new App();
-      app.checkPurchaseAmount(8000);
-    }).toBeTruthy();
-  });
-
   test("로또 구매를 1000원 단위로 하지 않았을 경우", () => {
     expect(() => {
       const app = new App();
@@ -42,13 +35,13 @@ describe("로또 테스트", () => {
     const app = new App();
     app.createRandomLotto(8);
 
-    expect(app.lottoArray.length).toBe(8);
+    expect(app.bundleOfLotto.length).toBe(8);
   });
 
   test("생성된 로또 번호 오름차순 정렬 테스트", () => {
     const app = new App();
 
-    expect(app.sortLottoNumber([10, 35, 42, 31, 26, 1])).toStrictEqual([
+    expect(app.getSortedLotto([10, 35, 42, 31, 26, 1])).toStrictEqual([
       1, 10, 26, 31, 35, 42,
     ]);
   });
