@@ -13,8 +13,13 @@ class App {
   enterAmount() {
     Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
       this.#Buyer = new Buyer(money);
-      Console.close();
+      this.showPurchaseLottos();
     });
+  }
+
+  showPurchaseLottos() {
+    this.#Buyer.countLotto();
+    this.#Buyer.createLottos();
   }
 }
 

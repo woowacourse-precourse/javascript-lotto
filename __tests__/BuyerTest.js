@@ -17,4 +17,24 @@ describe("구매자 클래스 테스트", () => {
       new Buyer(1234);
     }).toThrowError("[ERROR] 금액은 1000으로 나누어떨어져야 합니다.");
   });
+
+  test("입력된 금액에 맞게 로또 개수를 정한다.", () => {
+    const buyer = new Buyer(4000);
+    buyer.countLotto();
+
+    expect(buyer.getLottoNumbers()).toBe(4);
+  });
+
+  test("로또 개수에 맞게 6개의 난수를 담은 리스트를 생성한다.", () => {
+    const buyer = new Buyer(4000);
+    buyer.countLotto();
+    buyer.createLottos();
+    const testPurchaseLottos = buyer.getPurchaseLottos();
+
+    expect(testPurchaseLottos.length).toBe(4);
+
+    for(let purchaseLotto of testPurchaseLottos){
+      expect(purchaseLotto.length).toBe(6);
+    }
+  });
 });
