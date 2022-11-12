@@ -34,10 +34,10 @@ class Lotto {
         return lotto;
     }
 
-    showLottoNumbers(Lotto) {
-        console.log();
+    showLottoNumbers(lotto) {
+        lotto.sort((a, b) => a - b);
         console.log(
-            `[${Lotto[0]},${Lotto[1]},${Lotto[2]},${Lotto[3]},${Lotto[4]},${Lotto[5]}]`
+            `[${lotto[0]},${lotto[1]},${lotto[2]},${lotto[3]},${lotto[4]},${lotto[5]}]`
         );
     }
 
