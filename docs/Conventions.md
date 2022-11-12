@@ -6,7 +6,9 @@
 
 -> 일관성, 가독성, 간결성, 불변성, side effect, scope isolation & reusability, cleaner code, 빌트인 방법 권장
 
-1.  모든 참조형은 재할당 여부에 따라 const나 let을 사용하라 (블록스코프)
+1.  변수는 재할당 여부에 따라 const나 let을 사용하라 (블록스코프)
+   - 가독성을 위해 한 줄에 하나만 선언
+   - 선언은 한 번만
 
 2.  객체
 
@@ -288,12 +290,13 @@
 
 (Airbnb style guide)
 
-- obj, 함수, 인스턴스 : camelCase
+- obj, 함수, 인스턴스, 변수 : camelCase
 - class, constructor : PascalCase
 - export하는 것이 빈 object나 function library, singleton인 경우 PascalCase를 사용
 - private property : 선두에 \_(언더스코어) 사용
 - this의 참조를 변수에 저장하지 말고, 화살표함수나 Function#bind 이용하기 (더 관용적인 표현이 있다면 bind도 사용하지 않는 것을 추천)
 
+- JS의 변수명에는 문자, 숫자, $, _만 명명 가능, 첫 글자는 숫자가 될 수 없음
 - 최대 두 단어, 문맥 중복 자제
 - 축약 지양
 - 동사로 시작 (get,set,is,has,can,..)
