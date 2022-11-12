@@ -16,8 +16,8 @@ class LottoGame {
       this.money = money;
       this.gameCnt = money / 1000;
       MissionUtils.Console.print(this.gameCnt + STATIC.MESSAGE.BUYNUM);
-      this.userPickLotto = this.createUserLotto(money);
-      this.inputLottoNum(this.userPickLotto);
+      this.userPickLotto = this.createUserLotto();
+      this.inputLottoNum();
     });
   };
 
@@ -27,30 +27,30 @@ class LottoGame {
     }
   };
 
-  createUserLotto = (money) => {
-    return [...Array(money / 1000).keys()].map(() => {
+  createUserLotto = () => {
+    return [...Array(this.money / 1000).keys()].map(() => {
       const randLotto = new UserLotto().number;
       MissionUtils.Console.print(randLotto);
       return randLotto;
     });
   };
 
-  inputLottoNum = (userPickLotto) => {
+  inputLottoNum = () => {
     MissionUtils.Console.readLine(STATIC.MESSAGE.LUCKY, (number) => {
       const lotto = new Lotto(number.split(","));
-      this.inputBonusNum(lotto, userPickLotto);
+      this.inputBonusNum(lotto);
     });
   };
 
-  inputBonusNum = (lotto, userPickLotto) => {
+  inputBonusNum = (lotto) => {
     MissionUtils.Console.readLine(STATIC.MESSAGE.BONUS, (number) => {
       const bonusNumber = new BonusNum(number, lotto.getNumber()).bonusNum;
-      startCheck(lotto, userPickLotto);
+      startCheck(lotto, this.userPickLotto, bonusNumber);
     });
   };
 }
 
-const startCheck = (lotto, userPickLotto) => {
+const startCheck = () => {
   announceResult();
 };
 
