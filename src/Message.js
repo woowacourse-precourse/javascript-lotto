@@ -30,6 +30,10 @@ class Message {
   static returnFirstPrizeResult(count) {
     return `6개 일치 (2,000,000,000원) - ${count}개`;
   }
+
+  static returnYield(rateOfReturn) {
+    return `총 수익률은 ${rateOfReturn}%입니다.`;
+  }
 }
 
 module.exports = Message;
