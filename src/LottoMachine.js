@@ -25,6 +25,7 @@ class LottoMachine {
       for (let index = 0; index < this.#count; index++) {
         const numbers = this.makeLottoNumber();
         this.sortLottoNumber(numbers);
+        this.printLottoNumber(numbers);
       }
       
     });
@@ -50,7 +51,11 @@ class LottoMachine {
     numbers.sort(function(a, b) {
       return a - b;
     });
-    console.log(numbers);
+    // console.log(numbers);
+  }
+
+  printLottoNumber(numbers) {
+    MissionUtils.Console.print(numbers);
   }
 
 }
