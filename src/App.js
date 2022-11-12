@@ -1,11 +1,13 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Console = MissionUtils.Console;
+const Random = MissionUtils.Random;
 
 class App {
   constructor() {
     this.LOTTO_TICKET_PRICE = 1000;
     this.money = 0;
     this.lottoCount = 0;
+    this.lottoNumber = [];
   }
   play() {
     this.injectMoney();
@@ -18,7 +20,17 @@ class App {
       }
       this.lottoCount += Number(money) / this.LOTTO_TICKET_PRICE;
       this.money += Number(money);
+      this.makeRandomLottoNumber();
     });
+  }
+
+  makeRandomLottoNumber() {
+    for (let i = 0; i < this.lottoCount; i++) {
+      const lottoNumber = Random.pickUniqueNumbersInRange(1, 45, 6);
+      const updateNumber = [...this.lottoNumber];
+      updateNumber.push(lottoNumber.sort((a, b) => a - b));
+      this.lottoNumber = updateNumber;
+    }
   }
 }
 
