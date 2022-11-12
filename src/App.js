@@ -35,6 +35,10 @@ class App {
     Console.print(message);
   }
 
+  divideUnit(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   askWinNumber() {
     Console.readLine(`\n${COMMAND.WIN}\n`, (input) => {
       this.#exception.isAllow(new WinNumberError(input));
@@ -57,6 +61,10 @@ class App {
       this.winNumber,
       this.bonusNumber
     ).compare();
+    this.getProgit();
+  }
+
+  getProgit() {
     this.profit = new Profit(this.input, this.rank).calculate();
     this.printResult();
     Console.close();
@@ -68,11 +76,9 @@ class App {
       .reverse()
       .forEach((nowRank) => {
         Console.print(
-          `${CORRECT[nowRank]} (${PRIZE_MONEY[RANK[nowRank]]
-            .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}${GUIDE.WON}) ${GUIDE.BAR} ${
-            this.rank[nowRank]
-          }${GUIDE.PCS}`
+          `${CORRECT[nowRank]} (${this.divideUnit(PRIZE_MONEY[RANK[nowRank]])}${
+            GUIDE.WON
+          }) ${GUIDE.BAR} ${this.rank[nowRank]}${GUIDE.PCS}`
         );
       });
     Console.print(`${GUIDE.TOTAL_PROFIT} ${this.profit}${GUIDE.PERCENT}`);
