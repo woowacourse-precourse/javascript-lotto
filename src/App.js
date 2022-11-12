@@ -72,6 +72,22 @@ class App {
         );
     });
   }
+
+  checkLottoNumbers() {
+    this.lottoArray.map((numbers) => {
+      let sameNumberCount = 0;
+      let isbonusNumber = false;
+
+      numbers.map((number) => {
+        if (this.prizeNumber.includes(number)) {
+          sameNumberCount += 1;
+        }
+        if (this.bonusNumber === number) {
+          isbonusNumber = true;
+        }
+      });
+    });
+  }
 }
 
 const app = new App();
