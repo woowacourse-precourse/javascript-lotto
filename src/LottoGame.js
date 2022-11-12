@@ -1,6 +1,7 @@
 const { Console } = require('@woowacourse/mission-utils');
 const LottoGenerator = require('./LottoGenerator');
 const Lotto = require('./Lotto');
+const WinNums = require('./WinNums');
 
 class LottoGame {
   constructor() {
@@ -12,7 +13,7 @@ class LottoGame {
       const [lottoCount, lottoArr] = this.lottoGenerator.publishLotto(lottoCost);
       this.validateLottoNumAndCost(lottoArr, lottoCost);
       this.viewLottos(lottoCount, lottoArr);
-      this.inputWinNum(lottoArr);
+      this.inputWinNums(lottoArr);
     });
   }
 
@@ -33,14 +34,14 @@ class LottoGame {
 
   inputWinNums(lottoArr) {
     Console.readLine('당첨 번호를 입력해 주세요.\n', (winNums) => {
-      this.inputBonusNum(lottoArr, winNum);
+      new WinNums(winNums);
+      this.inputBonusNum(lottoArr, winNums);
     });
   }
   
-  inputBonusNum(lottoArr, winNum) {
+  inputBonusNum(lottoArr, winNums) {
     Console.print('');
     Console.readLine('보너스 번호를 입력해 주세요.\n', (bonusNum) => {
-
     });
   }
 }
