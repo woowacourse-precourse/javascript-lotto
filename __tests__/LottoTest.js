@@ -188,17 +188,40 @@ describe("로또 클래스 테스트", () => {
     const winningLotto = [1, 2, 3, 4, 5, 6];
     const bonusLotto = 7
     const output = [
-      { rank: 1, reword: 2000000000, count: 0 },
-      { rank: 2, reword: 30000000, count: 0 },
-      { rank: 3, reword: 1500000, count: 0 },
-      { rank: 4, reword: 50000, count: 3 },
-      { rank: 5, reword: 5000, count: 0 },
+      { rank: 1, matchCount: 6, reword: 2000000000, count: 0 },
+      { rank: 2, matchCount: 5, reword: 30000000, count: 0 },
+      { rank: 3, matchCount: 5, reword: 1500000, count: 0 },
+      { rank: 4, matchCount: 4, reword: 50000, count: 3 },
+      { rank: 5, matchCount: 3, reword: 5000, count: 0 },
     ];
 
     const app = new App();
     app.makeRankingResult(issuedLotto,winningLotto,bonusLotto)
     
     expect(app.rankingResult).toEqual(output);
+  })
+
+  test("수익률 계산",()=>{
+    const issuedLotto = [
+      [10, 11, 22, 27, 34, 35],
+      [7, 25, 26, 31, 32, 38],
+      [2, 4, 5, 15, 22, 35],
+      [15, 23, 27, 30, 33, 41],
+      [3, 4, 6, 20, 24, 39],
+      [5, 11, 19, 32, 37, 40],
+      [7, 15, 21, 34, 38, 45],
+      [3, 4, 5, 13, 31, 38],
+    ];
+    const winningLotto = [1, 2, 3, 4, 5, 6];
+    const bonusLotto = 7
+    const lottoPayment = 230000;
+    const output = 65.2
+
+    const app = new App();
+    app.makeRankingResult(issuedLotto,winningLotto,bonusLotto)
+    const received = app.caclulateEarningsRate(app.rankingResult,lottoPayment)
+
+    expect(received).toEqual(output);
   })
 
 });
