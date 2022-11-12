@@ -50,7 +50,9 @@ class WinningHistory{
 
     lottoRevenueRound(revenueTotal){
         let revenueRound = revenueTotal.toFixed(1);
-        Console.print(`총 수익률은 ${revenueRound}입니다.`)
+        Console.print(`총 수익률은 ${revenueRound}입니다.`);
     }
     
 }
+
+module.exports = WinningHistory;
