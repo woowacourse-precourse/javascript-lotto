@@ -83,7 +83,7 @@ class LottoResultCheck {
 
   getEarningsRate(totalWinningMoney) {
     //%로 맞추기 위한 100도 상수화 해야하나?
-    const earningsRate = ((totalWinningMoney / this.userMoney) * 100).toFixed(2);
+    const earningsRate = ((totalWinningMoney / this.userMoney) * 100).toFixed(1);
     viewer.resultMessage(this.resultArray, earningsRate);
   }
 }
