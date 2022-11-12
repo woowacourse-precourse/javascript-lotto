@@ -4,6 +4,7 @@ const Type = require("./Type");
 const Lotto = require("./Lotto");
 const Bonus = require("./Bonus");
 const Count = require("./Count");
+const Result = require("./Result");
 
 class App {
   constructor() {
@@ -59,16 +60,35 @@ class App {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (number) => {
       this.bonusNumber = parseInt(number, 10);
       new Bonus(this.bonusNumber, this.winningNumbers);
-      this.countBenefit();
+      this.getReward();
     });
   }
 
-  countBenefit() {
+  getReward() {
     const count = new Count(
       this.publishList,
       this.winningNumbers,
       this.bonusNumber
     );
+
+    this.printResult(count);
+    this.countBenefit(count);
+  }
+
+  printResult(count) {
+    Console.print(`\n당첨 통계\n---`);
+
+    count.quantityList.forEach((quantity, index) => {
+      const result = new Result(
+        quantity,
+        count.numberList[index],
+        count.rewardList[index]
+      );
+      count.totalReward += result.totalReward;
+    });
+  }
+
+  countBenefit(count) {
     const benefit = (count.totalReward / this.money) * 100;
     const benefitRate = Math.round(benefit * 10) / 10;
     this.printBenefit(benefitRate);

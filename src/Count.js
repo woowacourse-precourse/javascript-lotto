@@ -1,5 +1,4 @@
 const { Console } = require("@woowacourse/mission-utils");
-const Result = require("./Result");
 
 class Calculate {
   #publish;
@@ -32,8 +31,6 @@ class Calculate {
       });
       this.countTotal(count);
     });
-
-    this.printResult();
   }
 
   countWinning(number, count) {
@@ -56,19 +53,6 @@ class Calculate {
       else this.quantityList[2] += 1;
     }
     if (count.winning === 6) this.quantityList[4] += 1;
-  }
-
-  printResult() {
-    Console.print(`\n당첨 통계\n---`);
-
-    this.quantityList.forEach((quantity, index) => {
-      const result = new Result(
-        quantity,
-        this.numberList[index],
-        this.rewardList[index]
-      );
-      this.totalReward += result.totalReward;
-    });
   }
 }
 
