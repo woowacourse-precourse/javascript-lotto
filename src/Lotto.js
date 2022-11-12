@@ -64,6 +64,13 @@ class Lotto {
     return { matchCount, bonusMatchBool };
   }
 
+  getPrize(winningNumbers, bonusNumber) {
+    const { matchCount, bonusMatchBool } = this.match(winningNumbers, bonusNumber);
+    const prizeStatus = Lotto.getPrizeStatus(matchCount, bonusMatchBool);
+    const prizeMoney = Lotto.getPrizeMoney(prizeStatus);
+    return { prizeStatus, prizeMoney };
+  }
+
   static #randomLotto() {
     return MissionUtils.Random.pickUniqueNumbersInRange(
       LottoConfig.MIN_NUMBER,
