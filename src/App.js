@@ -26,13 +26,16 @@ class App {
 
   getBonusWinningNumberFromUser(myLottoNumbers, winningNumber) {
     readLine("보너스 번호를 입력해 주세요.", (bonusNumber) => {
-      this.#winningNumbers = new Lotto({ winningNumber, bonus: +bonusNumber });
+      const lotto = new Lotto({ winningNumber, bonus: +bonusNumber });
+      this.#winningNumbers = lotto.getConvertedLottoNumber();
       this.getResult(myLottoNumbers);
     });
   }
+
   getResult(myLottoNumbers) {
     this.calculateWinningCount(myLottoNumbers);
   }
+
   calculateWinningCount(myLottoNumbers) {
     new Calculator(myLottoNumbers, this.#winningNumbers);
   }
