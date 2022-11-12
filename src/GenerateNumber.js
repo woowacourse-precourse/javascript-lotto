@@ -1,7 +1,7 @@
 const { Random } = require("@woowacourse/mission-utils");
 
-class LottoNumber {
-  make() {
+class GenerateNumber {
+  generate() {
     const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
     return this.sortNumbers(numbers);
   }
@@ -11,4 +11,4 @@ class LottoNumber {
   }
 }
 
-module.exports = LottoNumber;
+module.exports = GenerateNumber;

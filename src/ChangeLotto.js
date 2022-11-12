@@ -1,12 +1,12 @@
 const { Console } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
-const LottoNumber = require("./LottoNumber");
+const GenerateNumber = require("./GenerateNumber");
 
 const { GUIDE, UNIT } = require("./utils/constant");
 
 class ChangeLotto {
   constructor() {
-    this.lottoNumber = new LottoNumber();
+    this.lottoNumber = new GenerateNumber();
     this.pcs = 0;
     this.lottoNumbers = [];
   }
@@ -21,7 +21,7 @@ class ChangeLotto {
 
   receiveLotto(pcs) {
     for (let i = 0; i < pcs; i++) {
-      this.lottoNumbers.push(this.lottoNumber.make());
+      this.lottoNumbers.push(this.lottoNumber.generate());
     }
   }
 

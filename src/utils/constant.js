@@ -7,12 +7,12 @@ const COMMAND = Object.freeze({
 const GUIDE = Object.freeze({
   PURCHASE: "개를 구매했습니다.",
   TITLE: "당첨 통계",
-  LINE: "---",
-  BAR: "-",
   TOTAL_PROFIT: "총 수익률은",
   PERCENT: "%입니다.",
   WON: "원",
   PCS: "개",
+  LINE: "---",
+  BAR: "-",
 });
 
 CORRECT = Object.freeze({
