@@ -2,6 +2,7 @@ const { GAME_MESSAGE, PRICE_MEASURE } = require('./lib/Constants');
 const { print, readLine, pickUniqueNumbersInRange } = require('./lib/Utils');
 const PriceValidation = require('./Validation/PriceValidation');
 const WinNumbersValidation = require('./Validation/WinNumbersValidation');
+const BonusNumberValidation = require('./Validation/BonusNumberValidation');
 
 class App {
   lottoPrice = 0;
@@ -106,9 +107,17 @@ class App {
   }
 
   getBonusNumber(answer) {
-    // TODO
-    // 보너스 번호 관련 유효성 검사
-    // 맴버변수에 금액 저장
+    App.bonusNumberValidate(answer, this.winNumberList);
+    this.saveBonusNumber(answer);
+  }
+
+  static bonusNumberValidate(answer, winNumberList) {
+    const bonusNumberValidate = new BonusNumberValidation(answer, winNumberList);
+    return bonusNumberValidate.validate();
+  }
+
+  saveBonusNumber(answer) {
+    this.bonusNumber = Number(answer);
   }
 }
 
