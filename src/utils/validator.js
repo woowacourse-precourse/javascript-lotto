@@ -14,12 +14,15 @@ function isValidateUserInput(amount) {
   return true;
 }
 
-function isValidateBonusNumber(bonusNumber) {
+function isValidateBonusNumber(bonusNumber, winningNumber) {
   if (isNaN(bonusNumber)) {
     throw new Error("[ERROR] 숫자가 아닙니다.");
   }
   if (bonusNumber < 1 || bonusNumber > 45) {
     throw new Error("[ERROR] 1-45 사이의 숫자가 아닙니다.");
+  }
+  if (winningNumber.includes(bonusNumber)) {
+    throw new Error("[ERROR] 당첨 번호에 포함된 숫자 입니다.");
   }
 
   return true;
