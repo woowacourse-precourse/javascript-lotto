@@ -13,7 +13,7 @@ class App {
 
   play() {}
 
-  #getMoney() {
+  getMoney() {
     let money;
     MissionUtils.Console.readLine(
       Message.ENTER_MONEY_MESSAGE,
