@@ -21,6 +21,10 @@ class Util {
     const setToCompare = new Set(arr);
     return arr.length !== setToCompare.size;
   }
+
+  static hasNElements(arr, num) {
+    return arr.length === num;
+  }
 }
 
 module.exports = Util;
