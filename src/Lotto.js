@@ -60,6 +60,12 @@ class Lotto {
       }
     }, 0);
   }
+
+  compareBonus(count, lotto, bonus) {
+    return count === 5 && lotto.includes(Number(bonus))
+      ? (count += 0.5)
+      : count;
+  }
 }
 
 module.exports = { LottoBuilder, Lotto };
