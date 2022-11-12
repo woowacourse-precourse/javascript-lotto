@@ -11,6 +11,14 @@ class App {
       const lottos = new MyLotto(amount);
       let myLottos = lottos.getMyLottery(amount);
       lottos.printMyLottery(myLottos);
+      this.getWinningNumbers();
+    });
+  }
+
+  getWinningNumbers() {
+    Console.readLine("당첨 번호를 입력해 주세요.", (numbers) => {
+      const winningNumbers = numbers.split(",");
+      Console.print(winningNumbers);
       Console.close();
     });
   }
