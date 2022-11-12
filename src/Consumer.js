@@ -10,6 +10,7 @@ class Consumer {
     this.validate(+money);
     this.#money = +money;
     this.createConsumer(money);
+    this.printAmount();
     this.printConsumer();
   }
 
@@ -37,11 +38,14 @@ class Consumer {
     });
   }
 
-  printConsumer() {
+  printAmount() {
     const amount = this.#money / 1000;
-    Console.print(`\n${amount}개를 구매했습니다`);
+    Console.print(`${amount}개를 구매했습니다.`);
+  }
+
+  printConsumer() {
     this.lotteryList.forEach((lotto) => {
-      Console.print(lotto);
+      Console.print(`[${lotto.join(', ').trim()}]`);
     });
     Console.print('\n');
   }
