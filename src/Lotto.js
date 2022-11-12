@@ -42,6 +42,19 @@ class Lotto {
     }
     return true;
   }
+
+  #createLottos(number) {
+    const lottosArray = [];
+    MissionUtils.Console.print("\n" + number + "개를 구매했습니다.");
+
+    [...Array(number)].forEach(() => {
+      const test = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      MissionUtils.Console.print("[" + test.join(", ") + "]");
+      lottosArray.push(test);
+    });
+
+    return lottosArray;
+  }
 }
 
 module.exports = Lotto;
