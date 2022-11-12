@@ -64,8 +64,13 @@ Random 값은 **MissionUtils 라이브러리**의 `Random.pickUniqueNumbersInRan
 **MissionUtils 라이브러리**에서 제공하는 `Console.readLine()`를 활용하여 입력받는다.   
 서로 다른 6개의 번호를 입력받으며 쉼표(,)를 기준으로 구분한다.
 
-### [&nbsp; ] 당첨 번호 확인하기 - LottoManager.checkInputWinningNumbers()   
+### [✅] 당첨 번호 확인하기 - LottoManager.checkInputWinningNumbers()   
 ❗ 잘못된 값을 입력할 경우 예외 처리를 한다.  
+- 숫자가 아닌 경우
+- 6개를 입력하지 않은 경우
+- 중복이 있는 경우
+- 1부터 45사이의 값이 아닌 경우 - LottoManager.filterRange()
+  
 `throw`문을 사용해 예외를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 종료한다.
 
 ### [&nbsp; ] 보너스 번호 입력받기 - LottoManager.inputBonusNumber()  
