@@ -7,6 +7,7 @@ class BuyLotto {
   constructor() {
     this.price = 0;
     this.lottoCount = 0;
+    this.myLottos = [];
   }
 
   getLotto() {
@@ -24,7 +25,10 @@ class BuyLotto {
     for (let index = 0; index < lottoCount; index++) {
       let lotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       lotto.sort((first, second) => first - second);
+      this.myLottos.push(lotto);
       MissionUtils.Console.print(lotto);
     }
   }
 }
+
+module.exports = BuyLotto;

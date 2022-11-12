@@ -1,6 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Exceptions = require("./Exception");
 let exception = new Exceptions();
+
 class GetWinLotto {
   constructor() {
     this.lottoNumbers = [];
@@ -40,5 +41,4 @@ class GetWinLotto {
   }
 }
 
-let getWinLotto = new GetWinLotto();
-console.log(getWinLotto.getLottoNumbers());
+module.exports = GetWinLotto;

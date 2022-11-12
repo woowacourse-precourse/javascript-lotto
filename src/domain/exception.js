@@ -1,7 +1,4 @@
 class Exceptions {
-  constructor() {
-    this.exception = [];
-  }
 
   checkPriceNotThousands(price) {
     if (price % 1000 !== 0)
