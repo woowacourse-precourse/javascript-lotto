@@ -52,11 +52,10 @@ class Lotto {
       throw new Error(`${ERROR.PREFIX} ${ERROR.RANGE}`);
   }
 
-  getMatchCount(lottoNumbers) {
-    return lottoNumbers.reduce((count, lottoNumber) => {
-      if (this.#numbers.includes(lottoNumber)) count++;
-      return count;
-    }, 0);
+  getMatchCount(oneLottoNumbers) {
+    return oneLottoNumbers.filter((lottoNumber) =>
+      this.#numbers.include(lottoNumber)
+    ).length;
   }
 }
 
