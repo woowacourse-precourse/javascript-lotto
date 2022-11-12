@@ -29,13 +29,7 @@ class App {
   }
 
   randomNums() {
-    let nums = [];
-    while (nums.length < 6) {
-      let number = Random.pickNumberInRange(1, 45);
-      if (!nums.includes(number)) {
-        nums.push(number);
-      }
-    }
+    let nums = Random.pickUniqueNumbersInRange(1, 45, 6);
     nums.sort((a,b) => a-b);
     return nums;
   }
