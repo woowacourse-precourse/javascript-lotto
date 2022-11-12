@@ -10,6 +10,7 @@ class App {
     this.purchaseAmount = 0;
     this.lottos = [];
     this.winningNumbers = [];
+    this.bonus = 0;
   }
 
   createRandomLottoNumbers() {
@@ -29,9 +30,17 @@ class App {
     this.winningNumbers = lotto.getNumbers();
   }
 
+  setBonusNumber(number) {
+    const bonus = new Bonus(number, this.winningNumbers);
+    this.bonus = bonus.getNumber();
+  }
+
   getResult() {
     userInput(COMMAND.INPUT_WINNING_NUMBERS, (numbers) => {
       this.setWinnigNumbers(numbers.split(','));
+      userInput(COMMAND.INPUT_BOUNS_NUMBER, (number) => {
+        this.setBonusNumber(number);
+      })
     });
   }
 
