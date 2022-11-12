@@ -8,10 +8,10 @@ class App {
   }
 
   play() {
-    this.getPurchaseAmout();
+    this.getPurchaseAmount();
   }
 
-  getPurchaseAmout() {
+  getPurchaseAmount() {
     Console.readLine(MESSEGE.INPUT_PURCHASE_AMOUNT, (input) => {
       if (this.isNotDividedByThousand(input))
         this.utils.throwError(ERROR.NOT_DIVIDED_BY_THOUSAND);
