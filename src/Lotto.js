@@ -19,6 +19,24 @@ class Lotto {
     print() {
         MissionUtils.Console.print(this.#numbers);
     }
+
+    check(arr) {
+        let score = this.score(arr);
+        if (score < 6) return 0;
+        if (score < 8) return 1;
+        if (score < 10) return 2;
+        if (score < 11) return 3;
+        if (score < 12) return 4;
+        return 5;
+    }
+
+    score(arr) {
+        let sum = 0;
+        for (let i in this.#numbers) {
+            sum += arr[this.#numbers[i]];
+        }
+        return sum;
+    }
 }
 
 module.exports = Lotto;
