@@ -26,7 +26,7 @@ const MESSAGE = {
   ENTER_PURCHASE_AMOUNT: "구입금액을 입력해 주세요.\n",
   ENTER_WINNING_NUMBERS: "당첨 번호를 입력해 주세요.\n",
   ENTER_BONUS_NUMBER: "\n보너스 번호를 입력해 주세요.\n",
-  WINNING_STATISTICS: "당첨 통계\n---\n",
+  WINNING_STATISTICS: "\n당첨 통계\n---",
   FIRST_PLACE: "6개 일치 (2,000,000,000원) - ",
   SECOND_PLACE: "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
   THIRD_PLACE: "5개 일치 (1,500,000원) - ",
