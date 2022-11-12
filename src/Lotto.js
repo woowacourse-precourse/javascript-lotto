@@ -35,12 +35,12 @@ class Lotto {
     };
   };
 
-  checkWords(numbers) {
-    const eachElement = numbers.filter((number) => { toString(number).match(/[^0-9,]/g) });
-    if (eachElement.length > 0) {
-      throw new Error(`${ERROR.INVALID_LOTTO_WORDS}`);
-    };
-  };
+  // checkWords(numbers) {
+  //   const eachWord = numbers.filter((x) => (/[^0-9]/g).test(x));
+  //   if (eachWord.length > 0) {
+  //     throw new Error(`${ERROR.INVALID_LOTTO_WORDS}`);
+  //   }
+  // };
 };
 
 module.exports = Lotto;
