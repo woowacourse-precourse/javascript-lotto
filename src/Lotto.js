@@ -66,6 +66,7 @@ class Lotto {
       totalLottoBonusNumberStatistics,
       boughtLottos.length
     );
+    return [totalLottoNumberStatistics, totalLottoBonusNumberStatistics];
   }
 
   countWinningLotto(
@@ -85,6 +86,7 @@ class Lotto {
       }
     }
     this.calculateRateOfReturn(numbersOfWinningLotto, lengthOfBoughtLottos);
+    return numbersOfWinningLotto;
   }
 
   calculateRateOfReturn(numbersOfWinningLotto, lengthOfBoughtLottos) {
