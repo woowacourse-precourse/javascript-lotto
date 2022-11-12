@@ -7,7 +7,7 @@ const {
   SECOND_BONUS_PRIZE,
   SECOND_PRIZE,
   THIRD_PRIZE,
-  FOURTH_PRIZE, MESSAGE_OUTPUT_WINNING_STATISTICS,
+  FOURTH_PRIZE, MESSAGE_OUTPUT_WINNING_STATISTICS, UNIT,
 } = require("./Constants");
 const Lotto = require("./Lotto");
 
@@ -85,7 +85,7 @@ class Result {
 
   yieldCalculation(userLottoCount){
     let totalAmount = this.profitCalculation();
-    let spending = userLottoCount * 1000;
+    let spending = userLottoCount * UNIT;
     let profit = totalAmount;
     let result = profit/spending;
     this.userProfit = Math.round(result * 1000) / 10;

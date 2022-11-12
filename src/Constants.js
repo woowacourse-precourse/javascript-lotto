@@ -8,4 +8,5 @@ module.exports = Object.freeze({
   SECOND_PRIZE: 1500000,
   THIRD_PRIZE: 50000,
   FOURTH_PRIZE: 5000,
+  UNIT: 1000,
 });

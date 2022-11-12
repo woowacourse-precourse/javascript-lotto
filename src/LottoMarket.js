@@ -2,11 +2,12 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require('./Lotto');
 const { Console, Random } = MissionUtils;
 const constants = require("./Constants");
+const {UNIT} = require("./Constants");
 
 class LottoMarket {
     purchaseLotto(money) {
         let userLottos = [];
-        while (userLottos.length < parseInt(money / 1000)) {
+        while (userLottos.length < parseInt(money / UNIT)) {
             userLottos.push(new Lotto(this.drawLottery()));
         }
         this.showLottoes(userLottos);
