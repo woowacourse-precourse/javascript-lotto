@@ -4,7 +4,11 @@ const lottoView = new LottoView();
 
 class App {
   play() {
-    lottoView.inputPurchaseAmount();
+    let purchaseAmount;
+    lottoView.getPurchaseAmount().then((amount) => {
+      purchaseAmount = amount / 1000;
+      console.log(purchaseAmount);
+    });
   }
 }
 
