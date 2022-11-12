@@ -1,6 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const Statistics = require("./Statistics");
+const WinnerNumber = require("./WinnerNumber");
 
 class App {
   constructor() {
@@ -36,31 +37,9 @@ class App {
 
   inputWinnerNumber() {
     MissionUtils.Console.readLine("\n당첨 번호를 입력해 주세요.\n", (number) => {
-      this.winnerNumber = number.replace(/\s/g, "").split(",");
-      this.validateSixNumberByComma(number);
-      this.validateNumberWithoutDuplicate();
-      this.validateFromOneToFourtyFiveNumber();
+      this.winnerNumber = new WinnerNumber(number).getNumberWithoutSpace();
       this.inputBonusNumber();
     });
-  }
-  validateFromOneToFourtyFiveNumber() {
-    this.numberWithoutSpace.map((number) => {
-      if (number < 1 || number > 45 || !new RegExp("^[0-9]+$").test(number)) {
-        throw new Error("[ERROR] 쉼표(,)를 기준으로 1부터 45까지의 숫자만 입력 해주세요");
-      }
-    });
-  }
-
-  validateSixNumberByComma(number) {
-    if (number.split(",").length !== 6) {
-      throw new Error("[ERROR] 쉼표(,)를 기준으로 6자리를 입력해주세요");
-    }
-  }
-
-  validateNumberWithoutDuplicate() {
-    if (new Set(this.winnerNumber).size !== 6) {
-      throw new Error("[ERROR] 중복없이 숫자를 입력해주세요.");
-    }
   }
 
   inputBonusNumber() {
