@@ -1,5 +1,16 @@
 const Validation = require("../src/Validation.js");
 
+describe("Validation.isEmptyInput", () => {
+  test("input이 없는 경우, true를 반환해야 한다.", () => {
+    // given
+    const input = "";
+    // when
+    const result = Validation.isEmptyInput(input);
+    // then
+    expect(result).toBe(true);
+  });
+});
+
 describe("Validation.hasOnlyNumber", () => {
   test("input에 숫자외에 문자가 포함된 경우, false를 반환해야 한다.", () => {
     // given

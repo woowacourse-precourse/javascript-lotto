@@ -1,6 +1,12 @@
 const Lotto = require("../src/Lotto");
 
 describe("로또 클래스 테스트", () => {
+  test("로또 번호가 없으면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([]);
+    }).toThrow("[ERROR]");
+  });
+
   test("로또 번호에 숫자외의 문자가 있으면 예외가 발생한다.", () => {
     expect(() => {
       new Lotto(["일", 2, 3, 4, 5, 5]);
