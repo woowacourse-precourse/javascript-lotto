@@ -24,6 +24,16 @@ const bonusNumber = () => {
   return input;
 };
 
+const printBuying = (count) => {
+  MissionUtils.Console.print(`${count}개를 구매했습니다.`);
+}
+
+const printGameNumber = (games) => {
+  for(game of games){
+    MissionUtils.Console.print(game);
+  }
+};
+
 const printWinning = (rank) => {
   MissionUtils.Console.print(`3개 일치 (5,000원) - ${rank[0]}개`);
   MissionUtils.Console.print(`4개 일치 (50,000원) - ${rank[1]}개`);
@@ -36,5 +46,7 @@ module.exports = {
   lottoBuy,
   winningNumbers,
   bonusNumber,
+  printBuying,
+  printGameNumber,
   printWinning
 };
