@@ -32,8 +32,8 @@ class LottoGame {
       5: 0,
       6: 0,
       bonus: 0,
-      yield: 0,
-      earn: 0,
+      rate: 0,
+      profit: 0,
     };
   }
 
@@ -85,14 +85,14 @@ class LottoGame {
 
   calculateResult() {
     this.calculateMatching();
-    this.calculateYield();
+    this.calculateRate();
   }
 
   calculateMatching() {
     this.purchaseList.forEach((lottoNumbers) => {
       const matchingCount = this.countMatching(lottoNumbers);
       this.result[matchingCount] += 1;
-      this.result.earn += LOTTO_PRICE[matchingCount];
+      this.result.profit += LOTTO_PRICE[matchingCount];
     });
   }
 
@@ -108,8 +108,8 @@ class LottoGame {
     return lottoNumbers.includes(this.winningNumber.bonus) ? 'bonus' : 5;
   }
 
-  calculateYield() {
-    this.result.yield = ((this.result.earn / this.money) * 100).toFixed(1);
+  calculateRate() {
+    this.result.rate = ((this.result.profit / this.money) * 100).toFixed(1);
   }
 
   printResult() {
@@ -119,7 +119,7 @@ class LottoGame {
 5개 일치 (1,500,000원) - ${this.result[5]}개
 5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.result.bonus}개
 6개 일치 (2,000,000,000원) - ${this.result[6]}개
-총 수익률은 ${this.result.yield}%입니다.`);
+총 수익률은 ${this.result.rate}%입니다.`);
     Console.close();
   }
 }
