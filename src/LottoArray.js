@@ -4,7 +4,10 @@ class LottoArray {
     this.lottoArray = this.purchaseLotto(this.amount);
   }
 
-  countAmount(cash) {}
+  countAmount(cash) {
+    const amount = Math.floor(cash / 1000);
+    return amount;
+  }
 
   purchaseLotto(amount) {}
 }
