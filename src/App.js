@@ -28,7 +28,7 @@ class App {
   constructor() {
     this.#winningNumbers = [];
     this.#lottos = [];
-    this.#matching = [0, 0, 0, 0, 0, 0];
+    this.#matching = [0, 0, 0, 0, 0];
   }
 
   isDistinct(numbers) {
@@ -81,7 +81,7 @@ class App {
 
   buyLottos(money) {
     this.validateMoney(money);
-    this.#money = money;
+    this.#money = Number(money);
     for (let i = 0; i < money / 1000; i += 1) this.issueLotto();
   }
 
@@ -94,12 +94,12 @@ class App {
 
   setWinningNumbers(numbers) {
     this.validateNumbers(numbers);
-    this.#winningNumbers = numbers;
+    this.#winningNumbers = numbers.map((number) => Number(number));
   }
 
   setBonusNumber(number) {
     this.isInRange(number);
-    this.#bonusNumber = number;
+    this.#bonusNumber = Number(number);
   }
 
   calculateMatching(lotto) {
@@ -126,11 +126,27 @@ class App {
     return prize / this.#money;
   }
 
+  printResult() {
+    Console.print(`
+당첨 통계
+---
+3개 일치 (5,000원) - ${this.#matching[CORRECT_THREE]}개
+4개 일치 (50,000원) - ${this.#matching[CORRECT_FOUR]}개
+5개 일치 (1,500,000원) - ${this.#matching[CORRECT_FIVE]}개
+5개 일치, 보너스 볼 일치 (30,000,000원) - ${
+      this.#matching[CORRECT_FIVE_BONUS]
+    }개
+6개 일치 (2,000,000,000원) - ${this.#matching[CORRECT_SIX]}개
+총 수익률은 ${this.getEarningRate().toFixed(1)}%입니다.`);
+  }
+
   readWinningNumbers() {
     Console.readLine('당첨 번호를 입력해주세요\n', (input) => {
       this.setWinningNumbers(input.split(','));
       Console.readLine('보너스 번호를 입력해주세요\n', (input) => {
         this.setBonusNumber(input);
+        this.#lottos.forEach((lotto) => this.calculateMatching(lotto));
+        this.printResult();
       });
     });
   }
