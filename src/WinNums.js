@@ -1,8 +1,9 @@
-class WinNum {
+class WinNums {
   constructor(winNums) {
     this.isWinNumInRange(winNums);
     this.isWinNumOverlap(winNums);
     this.isNumsCountSix(winNums);
+    this.hasBlankWinNums(winNums);
   }
 
   isWinNumInRange(winNums) {
@@ -28,6 +29,13 @@ class WinNum {
       throw new Error('[ERROR] 숫자 여섯개를 입력해주세요.');
     }
   }
+
+  hasBlankWinNums(winNums) {
+    const winNumsArr = winNums.split('');
+    winNumsArr.map((el) => {
+      if (el === ' ') throw new Error('[ERROR] 입력에 공백이 있습니다.');
+    }); 
+  }
 }
 
-module.exports = WinNum;
+module.exports = WinNums;
