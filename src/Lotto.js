@@ -1,3 +1,4 @@
+const MissionUtils = require("@woowacourse/mission-utils");
 class Lotto {
   #numbers;
 
@@ -41,6 +42,18 @@ class Lotto {
       money_result = 5000
     }
     return money_result
+  }
+  
+  get_lotto_number(){
+    let temp_string = "["
+    for (let i = 0; i < this.#numbers.length; i++){
+      if (i !== this.#numbers.length -1){
+        temp_string = temp_string + this.#numbers[i] + ", "
+      } else if ((i === this.#numbers.length -1)){
+        temp_string = temp_string + this.#numbers[i] + "]"
+      }
+    }    
+    MissionUtils.Console.print(temp_string)
   }
 }
 

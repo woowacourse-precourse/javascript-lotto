@@ -7,13 +7,22 @@ const main_loop = ()=>{
     }
     input_money = parseInt(answer)/1000
     MissionUtils.Console.print(`${input_money}개를 구매했습니다.`)
-    let Lottos = []
-    for (let i = 0; i < input_money; i++){
-      Lottos.push(new Lotto())
+    let Lottos = random_lotto_generate(input_money)
+    for (let i = 0; i < Lottos.length; i++){
+      Lottos[i].get_lotto_number()
     }
   })
 }
 
+const random_lotto_generate = (input_money) => {
+  let Lottos = []
+  for (let i = 0; i < input_money; i++){
+    let numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    temp_lot = new Lotto(numbers)
+    Lottos.push(temp_lot)
+  }
+  return Lottos
+}
 
 class App {
   play() {
