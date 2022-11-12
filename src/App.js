@@ -2,17 +2,12 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("../src/Lotto.js");
 
 class App {
-  play() {
-    inputPurchaseAmount();
 
-    // const lotto = new Lotto();
+  async play() {
+    inputPurchaseAmount();
+    await inputWinningNumbers()
   }
 }
-
-module.exports = App;
-
-const app = new App();
-app.play();
 
 function inputPurchaseAmount() {
   MissionUtils.Console.readLine(
@@ -40,8 +35,12 @@ function makeCandidateNumberSets(purchaseNumber) {
 }
 
 function makeCandidateNumber() {
-  const candidateNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6)
-  return candidateNumbers.sort(sortNumbers)
+  const candidateNumbers = MissionUtils.Random.pickUniqueNumbersInRange(
+    1,
+    45,
+    6
+  );
+  return candidateNumbers.sort(sortNumbers);
 }
 
 function printCandidateNumberSets(candidateNumberSets) {
@@ -59,3 +58,19 @@ function sortNumbers(a, b) {
     return 0;
   }
 }
+
+async function inputWinningNumbers() {
+  let winningNumbers = null
+  MissionUtils.Console.readLine(
+    "당첨 번호를 입력해 주세요.\n",
+    (inputNumbers) => {
+      winningNumbers = inputNumbers.split(",");
+    }
+  );
+  return winningNumbers
+}
+
+module.exports = App;
+
+const app = new App();
+app.play();
