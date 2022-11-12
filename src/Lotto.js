@@ -90,6 +90,18 @@ class Lotto {
 
     return newArray;
   }
+
+  static calculateCount(winningNumbers, value) {
+    let count = 0;
+
+    winningNumbers.forEach((item) => {
+      if (value.includes(item)) {
+        count += 1;
+      }
+    });
+
+    return count;
+  }
 }
 
 module.exports = Lotto;
