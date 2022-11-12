@@ -55,8 +55,8 @@ class App {
 
   createLotto() {
     while (this.myLottos.length < this.purchaseCount) {
-      const numbers = Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
-      const lotto = new Lotto(numbers);
+      const uniqueRandomNumbers = Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
+      const lotto = new Lotto(uniqueRandomNumbers);
       const lottoNumbers = lotto.getNumbers();
       this.myLottos.push(lottoNumbers);
     }
@@ -65,7 +65,8 @@ class App {
   printLottos() {
     this.myLottos.forEach((lotto) => {
       const lottoNumbers = lotto.join(', ');
-      Console.print(`[${lottoNumbers}]`);
+      const lottoNumbersWithBrackets = `[${lottoNumbers}]`;
+      Console.print(lottoNumbersWithBrackets);
     });
   }
 
