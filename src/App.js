@@ -3,7 +3,7 @@ const Money = require("./Money");
 const Type = require("./Type");
 const Lotto = require("./Lotto");
 const Bonus = require("./Bonus");
-const Result = require("./Result");
+const Count = require("./Count");
 
 class App {
   constructor() {
@@ -59,67 +59,17 @@ class App {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (number) => {
       this.bonusNumber = parseInt(number, 10);
       new Bonus(this.bonusNumber, this.winningNumbers);
-      this.compare(this.publishList, this.winningNumbers, this.bonusNumber);
+      this.countBenefit();
     });
   }
 
-  compare(publish, winning, bonus) {
-    let total = {
-      three: 0,
-      four: 0,
-      five: 0,
-      bonus: 0,
-      six: 0,
-    };
-
-    publish.forEach((piece) => {
-      let count = { winning: 0, bonus: 0 };
-      piece.forEach((number) => {
-        this.countWinning(number, winning, count);
-        this.countBonus(number, bonus, count);
-      });
-      this.countTotal(count, total);
-    });
-
-    this.printResult(total);
-  }
-
-  countWinning(number, winning, count) {
-    if (winning.includes(number)) {
-      count.winning += 1;
-    }
-  }
-
-  countBonus(number, bonus, count) {
-    if (number === bonus) {
-      count.bonus += 1;
-    }
-  }
-
-  countTotal(count, total) {
-    if (count.winning === 3) total.three += 1;
-    if (count.winning === 4) total.four += 1;
-    if (count.winning === 5) {
-      if (count.bonus === 1) total.bonus += 1;
-      else total.five += 1;
-    }
-    if (count.winning === 6) total.six += 1;
-  }
-
-  printResult(total) {
-    Console.print(`\n당첨 통계\n---`);
-
-    let totalReward = 0;
-    Object.entries(total).forEach(([number, quantity]) => {
-      const result = new Result([number, quantity]);
-      totalReward += result.totalReward;
-    });
-
-    this.countBenefit(totalReward);
-  }
-
-  countBenefit(totalReward) {
-    const benefit = (totalReward / this.money) * 100;
+  countBenefit() {
+    const count = new Count(
+      this.publishList,
+      this.winningNumbers,
+      this.bonusNumber
+    );
+    const benefit = (count.totalReward / this.money) * 100;
     const benefitRate = Math.round(benefit * 10) / 10;
     this.printBenefit(benefitRate);
   }
