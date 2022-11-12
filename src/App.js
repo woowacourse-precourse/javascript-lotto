@@ -179,7 +179,8 @@ class App {
   }
 
   finish() {
-    return;
+    Console.print(MESSAGE.FINISH_GAME);
+    Console.close();
   }
 }
 
