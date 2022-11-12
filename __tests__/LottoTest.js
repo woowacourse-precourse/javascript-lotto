@@ -20,9 +20,9 @@ describe("로또 클래스 테스트", () => {
     const number = ["1400", "50", "", "한글", "10005", "900", "나1000"];
     const isValid = false;
 
-    number.forEach((output) => {
-      expect(app.isValidInput(output)).toEqual(isValid);
-    });
+    number.forEach((output) =>
+      expect(app.isValidMoney(output)).toEqual(isValid)
+    );
   });
 
   test("[입력]로또 번호에 잘못된 입력시", () => {
