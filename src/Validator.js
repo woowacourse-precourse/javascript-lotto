@@ -4,6 +4,9 @@ const { LOTTO_INFO } = require('./common/constants');
 
 class Validator {
   static checkValidMoney(money) {
+    if (money < 0) {
+      throw new Error(`${ERROR_MESSAGES.INVALID_NEGATIVE_NUMBER}`);
+    }
     if (!Number(money) || money === ' ') {
       throw new Error(`${ERROR_MESSAGES.INVALID_PURCHASE}`);
     }
