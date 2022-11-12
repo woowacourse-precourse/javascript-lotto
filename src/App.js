@@ -58,7 +58,7 @@ class App {
   getWinNumbers() {
     return new Promise((resolve, reject) => {
       Console.readLine("당첨 번호를 입력해 주세요.\n", (input) => {
-        let winNumbers = new Set(input.split(","));
+        let winNumbers = new Set(input.split(",").map(Number));
         if (!this.isValidWinNumbers(winNumbers)) {
           reject(() => {
             throw new Error("[ERROR]유효하지 않은값");
