@@ -1,7 +1,5 @@
-const { Console } = require("@woowacourse/mission-utils");
 const { NUMBER } = require('../utils/Constants');
 const RankingCalculate = require('./RankingCalculate');
-// const PrintRanking = require('../print/PrintRanking')
 const PrintResults = require('../print/PrintResults');
 
 class Calculate {
@@ -25,7 +23,6 @@ class Calculate {
     this.earnPercentage = (this.prizeMoney / price * 100).toFixed(1);
     this.printResult.printPriz(this.earnPercentage);
   };
-
 };
 
 module.exports = Calculate;

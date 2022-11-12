@@ -14,7 +14,7 @@ class MakeLottos {
   };
 
   sortLotto(lottoNumbers) {
-    return lottoNumbers.sort(function(a, b)  {
+    return lottoNumbers.sort(function(a, b) {
       return a - b;
     });
   };

@@ -1,4 +1,3 @@
-const { Console } = require("@woowacourse/mission-utils");
 const { NUMBER } = require('./Constants');
 
 class RankingCalculate {

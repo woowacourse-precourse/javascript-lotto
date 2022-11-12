@@ -1,4 +1,3 @@
-// const { Console } = require("@woowacourse/mission-utils");
 const { ERROR } = require('../utils/Constants');
 
 class Bonus {

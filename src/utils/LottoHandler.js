@@ -29,18 +29,16 @@ class LottoHandler {
     this.amount = this.price/1000;
     const lottoMaker = new MakeLottos(this.amount);
     this.lottoList = lottoMaker.lottoLists
-    this.printLottoLists()
+    this.printLottoLists();
   };
 
   printLottoLists() {
-    this.printResults.printLotto(this.amount,this.lottoList)
-    this.getLottoAnswerNumber()
-  }
+    this.printResults.printLotto(this.amount,this.lottoList);
+    this.getLottoAnswerNumber();
+  };
 
   getLottoAnswerNumber() {
     Console.readLine(MESSAGE.ANSWER, (answer) => {
-      // let a = answer.split(',');
-      // Console.print(a)
       new Lotto(answer.split(','));
       this.answerNumber = answer;
       this.getBonusNumber(this.answerNumber);
@@ -52,7 +50,6 @@ class LottoHandler {
       new Bonus(answer,answerNumber);
       this.bonusNumber = answer;
       this.startCalculate();
-      // this.getBonusNumber(this.answerNumber);
     });
   };
   
@@ -60,17 +57,7 @@ class LottoHandler {
     const calculate = new Calculate();
     calculate.rankingCalculate(this.lottoList, this.answerNumber, this.bonusNumber);
     calculate.prizeCalculate(this.price);
-  }
-
-
-  // getAnswerNumber() {
-  //   Console.readLine('여기여기.\n', (answer) => {
-  //     new Price(answer)
-  //     this.price = answer
-  //     // Console.print('000000000000000000')
-  //   });
-  // };
-
-}
+  };
+};
 
 module.exports = LottoHandler;
