@@ -67,6 +67,26 @@ class Lotto {
       oneLottoNumbers.includes(bonusNumber) && matchCount === LOTTO.COUNT - 1
     );
   }
+
+  #initLottoResultStorage() {
+    const storage = {};
+    for (let key in MONEY) {
+      storage[key] = 0;
+    }
+    return storage;
+  }
+
+  getLottoResult(allLottoNumbers) {
+    const lottoResult = this.#initLottoResultStorage();
+
+    allLottoNumbers.forEach((oneLottoNumbers) => {
+      const matchCount = this.getMatchCount(oneLottoNumbers);
+      if (this.#isBonus(oneLottoNumbers)) lottoResult['MATCH_5_BONUS']++;
+      else if (matchCount >= 3) lottoResult[`MATCH_${matchCount}`]++;
+    });
+
+    return lottoResult;
+  }
 }
 
 module.exports = Lotto;
