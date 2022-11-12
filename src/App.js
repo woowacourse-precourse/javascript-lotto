@@ -1,6 +1,6 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
-const { Messages, winnings } = require('./constants');
+const { Messages, winnings, getPurchaseMessage, getResultMessage } = require('./constants');
 
 class App {
   constructor() {
@@ -45,7 +45,8 @@ class App {
 
   createLotto(money) {
     const numberToCreate = money / 1000;
-    Console.print(`\n${numberToCreate}개를 구매했습니다.`);
+    const purchaseMessage = getPurchaseMessage(numberToCreate);
+    Console.print(purchaseMessage);
     while (this.myLottos.length < numberToCreate) {
       const numbers = Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
       const lotto = new Lotto(numbers);
@@ -108,27 +109,23 @@ class App {
   }
 
   printResult() {
-    const winnings = this.getWinnings();
-    const RateOfReturn = (winnings / this.myMoney * 100).toFixed(1);
-    const result = `
-당첨 통계
----
-3개 일치 (5,000원) - ${this.result.fifth}개
-4개 일치 (50,000원) - ${this.result.fourth}개
-5개 일치 (1,500,000원) - ${this.result.third}개
-5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.result.second}개
-6개 일치 (2,000,000,000원) - ${this.result.first}개
-총 수익률은 ${RateOfReturn}%입니다.`;
+    const { first, second, third, fourth, fifth } = this.result;
+    const rateOfReturn = this.getRateOfReturn();
+    const result = getResultMessage(first, second, third, fourth, fifth, rateOfReturn);
     Console.print(result);
   }
 
-  getWinnings() {
-    const firstWinnings = this.result.first * winnings.FIRST;
-    const secondWinnings = this.result.second * winnings.SECOND;
-    const thirdWinnings = this.result.third * winnings.THIRD;
-    const fourthWinnings = this.result.fourth * winnings.FOURTH;
-    const fifthWinnings = this.result.fifth * winnings.FIFTH;
-    return firstWinnings + secondWinnings + thirdWinnings + fourthWinnings + fifthWinnings;
+  getRateOfReturn() {
+    const { first, second, third, fourth, fifth } = this.result;
+    const totalWinnings = (
+      (first * winnings.FIRST)
+      + (second * winnings.SECOND)
+      + (third * winnings.THIRD)
+      + (fourth * winnings.FOURTH)
+      + (fifth * winnings.FIFTH)
+    );
+    const rateOfReturn = (totalWinnings / this.myMoney * 100).toFixed(1);
+    return rateOfReturn;
   }
 }
 
