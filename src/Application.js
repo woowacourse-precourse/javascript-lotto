@@ -62,8 +62,6 @@ class Application {
   static createUniqueNumbers(start, end, length) {
     const result = MissionUtils.Random.pickUniqueNumbersInRange(start, end, length);
 
-    MissionUtils.Console.close();
-
     return result;
   }
 
