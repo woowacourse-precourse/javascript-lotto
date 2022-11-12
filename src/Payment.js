@@ -14,13 +14,16 @@ class Payment {
     if (!regExp.test(money)) {
       throw new Error('[ERROR] 입력값이 숫자가 아닙니다.');
     }
-    if (money % 1000 !== 0) {
+    if (Number(money) === 0) {
+      throw new Error('[ERROR] 구입금액은 0원보다 커야 합니다.');
+    }
+    if (Number(money) % 1000 !== 0) {
       throw new Error('[ERROR] 구입금액의 단위는 1000원입니다.');
     }
   }
 
   getMoney() {
-    return this.#money;
+    return Number(this.#money);
   }
 }
 
