@@ -19,7 +19,7 @@ class App {
   getWinningNumbers() {
     Console.readLine("당첨 번호를 입력해 주세요.", (numbers) => {
       const winningNumbers = numbers.split(",");
-
+      const lotto = new Lotto(winningNumbers);
       Console.print(winningNumbers);
       Console.close();
     });
