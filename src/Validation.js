@@ -24,9 +24,16 @@ const checkNumberCount = (numbers) => {
   if (numbers.length !== 6) return true;
 };
 
+const checkRange = (numbers) => {
+  for (const number of numbers) {
+    if (Number(number) < 1 || Number(number) > 45) return true;
+  }
+};
+
 const checkLottoNumbers = (numbers) => {
   const splitNumbers = numbers.split(",");
   if (checkNumberCount(splitNumbers)) throw COUNT_ERROR;
+  if (checkRange(splitNumbers)) throw RANGE_ERROR;
   for (const number of splitNumbers) {
     if (checkNaN(Number(number))) throw NAN_ERROR;
   }
