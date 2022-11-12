@@ -1,5 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 const LottoMachine = require("./domain/LottoMachine");
+const Utils = require("./Utils");
 
 const MESSAGE = Object.freeze({
   PLEASE_MONEY: "구입금액을 입력해 주세요.\n",
@@ -11,7 +12,6 @@ const ERROR = Object.freeze({
 
 class App {
   constructor() {
-    this.money = null;
     this.lottoMachine = new LottoMachine();
   }
 
@@ -27,7 +27,17 @@ class App {
 
   pleaseMoney(money) {
     this.isValidMoney(money);
-    this.money = parseInt(money, 10);
+    this.printPurchasedLottos(money);
+  }
+
+  printPurchasedLottos(money) {
+    const lottos = this.lottoMachine.buy(money);
+    const lottosAmount = lottos.length;
+    Console.print(`\n${lottosAmount}개를 구매했습니다.`);
+    lottos.forEach((lotto) => {
+      const purchasedLotto = Utils.transformArrayToString(lotto);
+      Console.print(purchasedLotto);
+    });
   }
 }
 
