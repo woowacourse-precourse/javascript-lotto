@@ -6,6 +6,11 @@ const LottoManager = require("./LottoManager");
 class LottoMachine {
   #money;
   #count;
+  user;
+
+  constructor() {
+    this.user = new User();
+  }
 
   start() {
     this.inputMoney();
@@ -19,7 +24,7 @@ class LottoMachine {
   }
 
   callLottoManager() {
-    this.lottoManager = new LottoManager();
+    this.lottoManager = new LottoManager(this.user.usersLottos);
     this.lottoManager.start();    
   }
 
@@ -69,10 +74,10 @@ class LottoMachine {
   }
 
   publishLotto(numbers) {
-    this.user = new User();
     const lotto = new Lotto(numbers);
     const lottoNumbers = lotto.getterLottoNumbers();
     this.user.usersLottos.push(lottoNumbers);
+    console.log(this.user);
   }
 }
 

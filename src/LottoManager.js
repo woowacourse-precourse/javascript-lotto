@@ -4,17 +4,22 @@ const LottoCalculator = require("./LottoCalculator");
 class LottoManager {
   #winningNumbers;
   #bonusNumber;
+  usersLottos;
+
+  constructor(usersLottos) {
+    this.usersLottos = usersLottos;
+  }
 
   start() {
     this.inputWinningNumbers();
   }
 
   sendToCalculator() {  
-    const lottoCalculator = new LottoCalculator();
+    const lottoCalculator = new LottoCalculator(this.usersLottos);
     lottoCalculator.winningNumbers = this.#winningNumbers
     lottoCalculator.bonusNumber = this.#bonusNumber;
 
-    lottoCalculator.print();
+    lottoCalculator.calculate();
   }
 
   inputWinningNumbers() {
