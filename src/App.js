@@ -81,20 +81,19 @@ class App {
 
   requestBonusNumberInput() {
     Console.readLine(Messages.REQUEST_BONUS_NUMBER_INPUT, (input) => {
-      const number = Number(input);
-      this.validateBonusNumber(number);
-      this.bonusNumber = number;
+      this.bonusNumber = Number(input);
+      this.validateBonusNumber();
       this.getResult();
       this.printResult();
       Console.close();
     });
   }
 
-  validateBonusNumber(number) {
-    if (isOutOfRange(number)) {
+  validateBonusNumber() {
+    if (isOutOfRange(this.bonusNumber)) {
       throw new Error(Messages.ERROR_BONUS_NUMBER_RANGE);
     }
-    if (this.winningNumbers.includes(number)) {
+    if (this.winningNumbers.includes(this.bonusNumber)) {
       throw new Error(Messages.ERROR_BONUS_NUMBER_DUPLICATE);
     }
   }
