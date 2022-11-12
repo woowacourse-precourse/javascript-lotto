@@ -1,14 +1,13 @@
 // @ts-check
 
 const Utils = require('./Utils.js');
-const { INPUT_AMOUNT_MESSAGE } = require('./const.js');
 
 class Amount {
   /** @type {number} */
   #amount;
 
-  async setInputAmount() {
-    const amount = await Utils.readLine(INPUT_AMOUNT_MESSAGE);
+  async setInputAmount(message) {
+    const amount = await Utils.readLine(message);
     this.validate(Number(amount));
     this.#amount = Number(amount);
   }
