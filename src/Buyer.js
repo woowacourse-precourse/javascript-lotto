@@ -74,12 +74,19 @@ class Buyer {
     }
     
     printPurchaseLottos() {
-        for(let purchaseLotto of this.#purchaseLottos){
-            Console.print(purchaseLotto);
-        }
+        this.#purchaseLottos.forEach((purchaseLotto) => {
+            Console.print(this.createOutputPurchaseLotto(JSON.stringify(purchaseLotto)));
+        });
     }
 
-    
+    createOutputPurchaseLotto(purchaseLotto) {
+        let outputPurchaseLotto = '';
+        for(let i = 0; i < purchaseLotto.length; i++){
+            outputPurchaseLotto += purchaseLotto[i];
+            if(purchaseLotto[i] === ',') outputPurchaseLotto += ' ';
+        }
+        return outputPurchaseLotto;
+    }
 }
 
 module.exports = Buyer;
