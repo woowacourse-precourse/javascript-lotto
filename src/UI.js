@@ -59,6 +59,10 @@ const printWinning = (rank) => {
   MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${rank[4]}개`);
 };
 
+const printProfit = (profit) => {
+  MissionUtils.Console.print(`총 수익률은 ${profit}%입니다.`);
+}
+
 module.exports = {
   lottoBuy,
   winningNumbers,
@@ -66,4 +70,5 @@ module.exports = {
   printBuying,
   printGameNumber,
   printWinning,
+  printProfit
 };
