@@ -76,22 +76,22 @@ function inputWinningNumbers() {
     "당첨 번호를 입력해 주세요.\n",
     (inputNumbers) => {
       const winningNumbers = inputNumbers.split(",").map((x) => parseInt(x));
-      new Lotto(winningNumbers)
+      app.setWinningNumbers(winningNumbers);
+      const lotto = new Lotto(winningNumbers);
+      inputBonusNumber(winningNumbers, lotto);
     }
   );
-  // inputBonusNumber();
 }
 
-// function inputBonusNumber() {
-//   MissionUtils.Console.readLine(
-//     "보너스 번호를 입력해 주세요.\n",
-//     (bonusNumber) => {
-//       app.setBonusNumber(parseInt(bonusNumber));
-//     }
-//   );
-//   // startLotto();
-// }
-
+function inputBonusNumber(winningNumbers, lotto) {
+  MissionUtils.Console.readLine(
+    "보너스 번호를 입력해 주세요.\n",
+    (bonusNumber) => {
+      app.setBonusNumber(parseInt(bonusNumber));
+      lotto.validateBonus(winningNumbers, parseInt(bonusNumber));
+    }
+  );
+}
 
 module.exports = App;
 

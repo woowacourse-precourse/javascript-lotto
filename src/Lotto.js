@@ -13,12 +13,22 @@ class Lotto {
     if (deduplicationNumbers.size !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
-    this.rangeValidate(numbers.toString());
+    this.validateWinningNumbersRange(numbers.toString());
   }
 
-  rangeValidate(numbers) {
-    if(!numbers.match(/[1-45]{6}/)){
+  validateWinningNumbersRange(numbers) {
+    if (!numbers.match(/[1-45]/)) {
       throw new Error("[ERROR] 로또 번호는 1 ~ 45 사이의 숫자입니다.");
+    }
+  }
+
+  validateBonus(numbers, bonusNumber) {
+    if (numbers.includes(bonusNumber)) {
+      throw new Error("[ERROR] 이미 로또번호에 포함된 번호입니다.");
+    }
+
+    if (1 > bonusNumber || bonusNumber > 45) {
+      throw new Error("[ERROR] 보너스 번호는 1 ~ 45 사이의 숫자입니다.");
     }
   }
 }
