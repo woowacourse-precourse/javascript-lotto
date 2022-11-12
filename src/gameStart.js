@@ -49,10 +49,6 @@ class UserLottos {
 
     return this.#userLottos.push(numbers);
   }
-
-  getLottos() {
-    return this.#userLottos;
-  }
 }
 
 const game = new UserLottos();
