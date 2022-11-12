@@ -57,4 +57,5 @@ calcRateOfReturn() - 수익률 계산 함수
 printLottoResult() - 당첨내역 출력 함수
 
 <Lotto>
-getNumbers() - 입력한 당첨번호 리턴
+validate() - 예외처리 추가) 숫자 입력 검사 ✔
+getNumbers() - 입력한 당첨번호 리턴 ✔
