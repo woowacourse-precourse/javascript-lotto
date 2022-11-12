@@ -11,6 +11,7 @@ class App {
     this.lottoCount = 0;
     this.lottoNumber = [];
     this.winNumber = [];
+    this.bonusNumber = [];
   }
   play() {
     this.injectMoney();
@@ -51,6 +52,14 @@ class App {
       const lotto = new Lotto(inputNumber);
       lotto.validate(inputNumber);
       this.winNumber = inputNumber;
+      this.enterBonusNumber();
+    });
+  }
+
+  enterBonusNumber() {
+    Console.readLine('\n보너스 번호를 입력해 주세요.\n', input => {
+      const inputNumber = Number(input);
+      this.bonusNumber.push(inputNumber);
     });
   }
 }
