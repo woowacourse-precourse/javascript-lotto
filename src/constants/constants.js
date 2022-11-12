@@ -8,6 +8,7 @@ const APP_MESSAGE = {
 
 const EXCEPTION_MESSAGE = {
   INPUT_ERROR: '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.',
+  OVERLAPPED_NUMBER: '[ERROR] 중복된 번호를 입력하셨습니다.',
 };
 
 const RANK_STATISTICS_MESSAGE = {
