@@ -1,4 +1,4 @@
-const { Random } = require("@woowacourse/mission-utils");
+const { Random, Console } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
 class LottoCompany {
@@ -26,9 +26,19 @@ class LottoCompany {
     return lottos;
   }
 
-  makeWinningNumbers() {}
+  makeWinningNumbers() {
+    Console.print("당첨 번호를 입력해 주세요");
+    Console.readLine("", (input) => {
+      this.#winningNumbers = input.split(",").map((elem) => Number(elem));
+    });
+  }
 
-  makeBonusNumber() {}
+  makeBonusNumber() {
+    Console.print("보너스 번호를 입력해 주세요");
+    Console.readLine("", (input) => {
+      this.#bonusNumber = Number(input);
+    });
+  }
 
   checkResult(lotto) {
     const lottoNumbers = lotto.getNumbers();
@@ -53,6 +63,8 @@ class LottoCompany {
   winningMoney(winningRank) {
     return this.#winningMoney[winningRank - 1];
   }
+
+  printReportByResults(winningResults) {}
 
   notifyLottoResult() {}
 
