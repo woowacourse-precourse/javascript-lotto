@@ -6,6 +6,7 @@ const convertAnswerIntoArray = (answer) => {
 };
 
 const printWinningResult = (winningArray, percentage) => {
+  Console.print(MESSAGE.OUTPUT_WINNING_STATISTICS);
   Console.print(
     MESSAGE.RESULT(
       winningArray[0],
@@ -27,4 +28,13 @@ const getRevenue = (winningArray) => {
   return first + second + third + fourth + fifth;
 };
 
-module.exports = { convertAnswerIntoArray, printWinningResult, getRevenue };
+const getRateOfReturn = (revenue, purchaseMoney) => {
+  return ((revenue / purchaseMoney) * 100).toFixed(1);
+};
+
+module.exports = {
+  convertAnswerIntoArray,
+  printWinningResult,
+  getRevenue,
+  getRateOfReturn,
+};
