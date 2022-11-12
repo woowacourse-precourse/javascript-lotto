@@ -66,6 +66,14 @@ class LottoManager {
     }
   }
 
+  getWinningNumbers() {
+    return this.#winningNumbers;
+  }
+
+  getBonusNumber() {
+    return this.#bonusNumber;
+  }
+
 }
 
 const lottoManager = new LottoManager();
