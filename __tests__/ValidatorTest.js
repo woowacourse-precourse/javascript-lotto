@@ -7,7 +7,15 @@ describe('Validator 클래스 : 구입 금액 테스트', () => {
 
     expect(() => {
       Validator.checkValidMoney(invalidMoney);
-    }).toThrowError(`${ERROR_MESSAGES.INVALID_MONEY}`);
+    }).toThrowError(`${ERROR_MESSAGES.INVALID_REST_MONEY}`);
+  });
+
+  test('🖐 사용자가 음수를 입력하면 에러가 발생한다', () => {
+    const invalidMoney = '-1';
+
+    expect(() => {
+      Validator.checkValidMoney(invalidMoney);
+    }).toThrowError(`${ERROR_MESSAGES.INVALID_NEGATIVE_NUMBER}`);
   });
 });
 
