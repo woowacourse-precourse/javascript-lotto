@@ -32,6 +32,16 @@ class Lotto {
       }
     });
   }
+
+  #checkValidMoney(money) {
+    if (money < 1000) {
+      throw new Error(ERROR.MONEY_2);
+    }
+    if (money % 1000 != 0) {
+      throw new Error(ERROR.MONEY_1);
+    }
+    return true;
+  }
 }
 
 module.exports = Lotto;
