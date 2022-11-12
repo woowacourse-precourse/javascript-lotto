@@ -20,7 +20,6 @@ describe("로또 클래스 테스트", () => {
       lot = new Lotto([1, 2, 3, 4, 5, 6]);
       sol = "1, 2, 4, 7, 10, 11"
       bouns = "22"
-      console.log(lot.calculate_cnt(sol, bouns))
     }).toThrow("[ERROR]");
   });
 });
