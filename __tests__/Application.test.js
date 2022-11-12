@@ -254,5 +254,11 @@ describe('정수 판단 함수 테스트', () => {
 
       expect(Application.copyArray.name).toEqual(METHOD_NAME);
     });
+
+    test('기존 배열과 새로운 배열은 서로 다른 참조를 가르킨다.', () => {
+      const array = [1, 4, 5, 6];
+
+      expect(Application.copyArray(array) !== array).toBeTruthy();
+    });
   });
 });
