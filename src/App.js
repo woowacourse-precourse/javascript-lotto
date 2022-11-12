@@ -19,6 +19,7 @@ class App {
     Console.print(`${this.numberOfLotto}개를 구매했습니다.`);
     for(let i = 0; i < this.numberOfLotto; i++) {
       const lotto = new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6))
+      Console.print(lotto.getNumbers());
     }
   }
 
