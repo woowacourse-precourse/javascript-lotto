@@ -30,13 +30,11 @@ class Lotto {
 
   calcTotalPrize(winningState, countOfLottos) {
     const totalPrize = GameTools.calcTotalPrize(winningState);
-
     this.calcRateOfReturn(winningState, totalPrize, countOfLottos);
   }
 
   calcRateOfReturn(winningState, totalPrize, countOfLottos) {
     const rateOfReturn = GameTools.calcRateOfReturn(totalPrize, countOfLottos);
-
     this.renderGameResult(winningState, rateOfReturn);
   }
 

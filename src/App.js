@@ -25,7 +25,6 @@ class App {
 
   renderIssuedLottoList(countOfLottos) {
     Render.issuedLottoList(countOfLottos, this.userLottos);
-
     this.askWinningNumbers();
   }
 
@@ -42,14 +41,12 @@ class App {
   askBonusNumber() {
     Console.readLine(MESSAGE.ASK_BONUS_NUMBER, (bonusNumber) => {
       Validator.throwErrorIfInvalidBonusNumber(bonusNumber);
-
       this.printWinningStatistics(bonusNumber);
     });
   }
 
   printWinningStatistics(bonusNumber) {
     this.lotto.informStateOfWinning(this.userLottos, bonusNumber);
-
     this.exitGame();
   }
 
