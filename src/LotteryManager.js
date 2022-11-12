@@ -11,6 +11,7 @@ class LotteryManager {
 
   start() {
     this.create();
+    return Console.close();
   }
 
   create() {

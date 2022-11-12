@@ -4,6 +4,11 @@ function checkAppropriateUnit(money) {
   if (money % 1000 !== 0) throw new Error(`${ERROR_MESSAGE.appropriateUnit}`);
 }
 
+function checkAppropriateMoney(money) {
+  const RegExp = /^[1-9]$/;
+  if (RegExp.test(money)) throw new Error(`${ERROR_MESSAGE.appropriateMoney}`);
+}
+
 function checkSplitSymbol(mainNumber) {
   if (Number.isNaN(mainNumber)) throw new Error(`${ERROR_MESSAGE.splitSymbol}`);
 }
@@ -34,6 +39,7 @@ function checkBonusNumberOverlap(mainNumber, bonusNumber) {
 
 module.exports = {
   checkAppropriateUnit,
+  checkAppropriateMoney,
   checkSplitSymbol,
   checkNumber,
   checkRange,

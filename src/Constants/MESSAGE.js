@@ -7,6 +7,7 @@ const INGAME_MESSAGE = {
 
 const ERROR_MESSAGE = {
   appropriateUnit: '[ERROR] : 구입금액은 천원단위로 입력해야합니다.',
+  appropriateMoney: '[ERROR] : 적절하지 않은 구입금액입니다.',
   splitSymbol: '[ERROR] : 당첨번호는 , 단위로 구분하여 입력해야합니다.',
   mainNumber: '[ERROR] : 당첨번호는 6자를 입력해야합니다.',
   bonusNumber: '[ERROR] : 보너스 번호는 1자를 입력해야합니다.',

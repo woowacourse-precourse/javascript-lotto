@@ -2,7 +2,8 @@ const LotteryManager = require('./LotteryManager');
 
 class App {
   play() {
-    LotteryManager.start();
+    const manager = new LotteryManager();
+    manager.start();
   }
 }
 
