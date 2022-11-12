@@ -30,4 +30,11 @@ describe("로또 클래스 테스트", () => {
       if (!lottoMachine.isChange("abc!")) throw new Error(MESSAGE.ERROR.CHANGE_MUST_BE_ZERO);
     }).toThrow("[ERROR]");
   });
+
+  test("로또는 6가지로 서로 다른 숫자로 이루어진 배열이다.", () => {
+    expect(() => {
+      const lottoMachine = new LottoMachine();
+      lottoMachine.getRandomNumberLottos().every((lotto) => lotto.every((number) => number >= 1 && number <= 45));
+    }).toBeTruthy();
+  });
 });
