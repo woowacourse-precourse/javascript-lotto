@@ -56,10 +56,11 @@ class App {
         if (arr.length !== 6)
             throw new Error("[ERROR] 당첩 번호는 6개여야 합니다.");
         for (let i in arr) {
-            this.checkWinNumber(arr[i]);
+            this.checkWinNumber(arr[i], 2);
         }
+        this.getBonusNumber();
     }
-    checkWinNumber(int) {
+    checkWinNumber(int, value) {
         if (isNaN(int)) throw new Error("[ERROR] 입력 금액은 숫자여야 합니다.");
         if (int < 1 || int > 45)
             throw new Error(
@@ -67,7 +68,15 @@ class App {
             );
         if (this.CHECK_LIST[int] > 0)
             throw new Error("[ERROR] 중복되지 않는 수를 입력해야 합니다.");
-        this.CHECK_LIST[int] += 2;
+        this.CHECK_LIST[int] += value;
+    }
+    getBonusNumber() {
+        MissionUtils.Console.readLine(
+            "\n보너스 번호를 입력해 주세요.\n",
+            (answer) => {
+                this.checkWinNumber(Number(answer), 1);
+            }
+        );
     }
 }
 const app = new App();
