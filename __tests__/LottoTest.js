@@ -85,15 +85,31 @@ describe("로또 클래스 테스트", () => {
     expect(logSpy).toHaveBeenCalledWith(ouput);
   });
 
-  test("로또 번호 출력",()=>{
-    const number = [1,2,3,4,5,6];
-    const output = '[1, 2, 3, 4, 5, 6]';
+  test("로또 번호 출력", () => {
+    const number = [1, 2, 3, 4, 5, 6];
+    const output = "[1, 2, 3, 4, 5, 6]";
 
     const app = new App();
     const logSpy = getLogSpy();
-    app.printLottoNumber(number)
-    
+    app.printLottoNumber(number);
+
+    expect(logSpy).toHaveBeenCalledWith(output);
+  });
+
+
+  test("여러개의 로또 번호 출력", ()=>{
+    const issuedLotto = [
+      [8, 21, 23, 41, 42, 43],
+      [3, 5, 11, 16, 32, 38],
+      [7, 11, 16, 35, 36, 44],
+    ];
+    const output = "[8, 21, 23, 41, 42, 43]"
+      "[3, 5, 11, 16, 32, 38]"
+      "[7, 11, 16, 35, 36, 44]";
+    const app = new App();
+    const logSpy = getLogSpy();
+    app.printIssuendLotto(issuedLotto);
+
     expect(logSpy).toHaveBeenCalledWith(output);
   })
-
 });
