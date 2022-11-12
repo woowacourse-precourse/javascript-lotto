@@ -98,7 +98,22 @@ class App {
   }
 
   countLottoResult({ lottos, winningLotto, bonusNumber }) {
-    return;
+    const winningLottoNumbers = winningLotto.getLottoNumbers();
+    const matchCounts = [];
+    const hasBonusNumberArr = [];
+
+    lottos.forEach((lotto) => {
+      const lottoNumbers = lotto.getLottoNumbers();
+      matchCounts.push(this.getMatchCount(lottoNumbers, winningLottoNumbers));
+      if (this.hasBonusNumber(lottoNumbers, bonusNumber)) {
+        hasBonusNumberArr.push(true);
+      }
+      if (!this.hasBonusNumber(lottoNumbers, bonusNumber)) {
+        hasBonusNumberArr.push(false);
+      }
+    });
+
+    return this.countLottoRanks({ matchCounts, hasBonusNumberArr });
   }
 
   getMatchCount(lottoNumbers, winningLottoNumbers) {
@@ -113,6 +128,10 @@ class App {
 
   hasBonusNumber(lottoNumbers, bonusNumber) {
     return lottoNumbers.includes(bonusNumber);
+  }
+
+  countLottoRanks({ matchCounts, hasBonusNumberArr }) {
+    return;
   }
 }
 
