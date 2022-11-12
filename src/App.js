@@ -1,5 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 const BonusLotto = require('./BonusLotto');
+const { RANKING } = require('./constant');
 const Lotto = require('./Lotto');
 const PurChase = require('./Purchase');
 const Statistics = require('./Statistics');
@@ -43,7 +44,20 @@ class App {
   printStats() {
     Console.print('당첨 통계');
     Console.print('---');
-    console.log(new Statistics(this.fullLottoNumber, this.purChaseLotto).showResult());
+    const result = new Statistics(this.fullLottoNumber, this.purChaseLotto).showResult();
+    const rankKeys = Object.keys(RANKING);
+    rankKeys.forEach((rank) => {
+      const matchNumberInfo = RANKING[rank];
+      const matchNumber = RANKING[rank]['MATCH'];
+      Console.print(
+        `${matchNumberInfo['MESSAGE']}${
+          result[matchNumber] && result[matchNumber]['bonus'] === matchNumberInfo['BONUS']
+            ? result[matchNumber]['count']
+            : 0
+        }${matchNumberInfo['COUNTUNIT']}`
+      );
+    });
+
     Console.print('---');
   }
 }
