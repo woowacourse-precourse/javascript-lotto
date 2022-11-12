@@ -80,6 +80,8 @@ class App {
     if (isDuplicated([...this.#winningNumber, this.#bonusNumber])) {
       printError('당첨 번호와 보너스 번호가 중복되었습니다.');
     }
+
+    return true;
   }
 
   #publishLotto() {
