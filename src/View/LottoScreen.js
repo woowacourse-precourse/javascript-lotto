@@ -18,7 +18,7 @@ class LottoScreen {
   static printLine(amount) {
     MissionUtils.Console.print(amount + MESSAGE.BUY_AMOUNT);
     LottoScreen.printLottoNumbers();
-    LottoScreen.lottoNumberChoice();
+    LottoScreen.selectWinNumber();
   }
 
   static printLottoNumbers() {
@@ -26,9 +26,10 @@ class LottoScreen {
     lottos.forEach((lotto) => MissionUtils.Console.print(lotto.getNumbers()));
   }
 
-  static lottoNumberChoice() {
+  static selectWinNumber() {
     MissionUtils.Console.readLine(MESSAGE.LOTTO_NUMBER_CHOICE, (choice) => {
-      Validate.userChoice(choice)
+      Validate.selectWinNumber(choice);
+      
     });
   }
 }
