@@ -26,12 +26,23 @@ class App {
   }
 
   inputWinningNumber() {
-    MissionUtils.Console.print("당첨 번호를 입력해 주세요.");
+    MissionUtils.Console.print("\n당첨 번호를 입력해 주세요.");
     MissionUtils.Console.readLine("", (numbers) => {
       const splitNumbers = numbers.split(",");
       const numbersArr = splitNumbers.map((number) => Number(number));
       this.lotto = new Lotto(numbersArr);
       this.inputBonusNumber();
+    });
+  }
+
+  inputBonusNumber() {
+    MissionUtils.Console.print("\n보너스 번호를 입력해 주세요.");
+    MissionUtils.Console.readLine("", (inputBonus) => {
+      const bonusNumber = Number(inputBonus);
+      const winningNumber = this.lotto.getNumbers();
+      if (isValidateBonusNumber(bonusNumber, winningNumber)) {
+        this.printResult(bonusNumber);
+      }
     });
   }
 }
