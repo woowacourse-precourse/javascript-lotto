@@ -59,11 +59,25 @@ class Calculate {
       MissionUtils.Console.print(`${result[i]} - ${ans}개`);
     });
   }
+
+  calculate_profit() {
+    const COUNT_RANK = this.count_rank();
+    // console.log(COUNT_RANK);
+    const PROFIT = COUNT_RANK.reduce((sum, rank, i) => {
+      if (rank === 0) return sum;
+      return (sum += rank * money[i]);
+    }, 0);
+
+    return PROFIT;
+  }
 }
 
 module.exports = Calculate;
-
-const calculate = new Calculate();
+// const calculate = new Calculate(1000, [8, 11, 12, 14, 21, 36], 7, [
+//   [8, 11, 12, 13, 20, 35],
+// ]);
+// console.log(calculate.print_result());
+// const calculate = new Calculate();
 // console.log(
 //   calculate.calculate_lottos(
 //     [
