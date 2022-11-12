@@ -8,6 +8,11 @@ const {REWARD } =require("./numberConst");
 class App {
 
   constructor(){
+    this.FIFTH_PLACE = "3개 일치 (5,000원) - ";
+    this.FOURTH_PLACE = "4개 일치 (50,000원) - ";
+    this.THIRD_PLACE = "5개 일치 (1,500,000원) - ";
+    this.SECOND_PLACE = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
+    this.FIRST_PLACE = "6개 일치 (2,000,000,000원) - ";
     this.selectedWinNumber = [];
     this.selectedBonusNumber = [];
     this.randomNumbersArr = [];
@@ -75,7 +80,7 @@ class App {
       const splited = numbers.split(",").map(Number)
       const lotto = new Lotto(splited);
       lotto.validate(splited); 
-      
+
       const splitedWinNumber = numbers.split(",").map(Number);
       for (let i = 0; i < 6; i++) {
         this.selectedWinNumber.push(splitedWinNumber[i]);
@@ -155,12 +160,6 @@ class App {
     this.calculateYieldRatio(firstPlace,secondPlace,thirdPlace,fourthPlace,fifthPlace);
   }
   calculateYieldRatio(firstPlace,secondPlace,thirdPlace,fourthPlace,fifthPlace){
-    // const firstReward = 2000000000
-    // const secondReward = 30000000
-    // const thirdReward = 1500000
-    // const fourthReward = 50000
-    // const fifthReward = 5000
-
     const addReward = (REWARD.first * firstPlace) + (REWARD.second * secondPlace) + (REWARD.third * thirdPlace) +(REWARD.fourth * fourthPlace) +(REWARD.fifth * fifthPlace) 
 
     const positiveTotalCalculate = ((this.myPayment - addReward) / this.myPayment) * 100
@@ -202,10 +201,7 @@ class App {
       return MissionUtils.Console.print("총 수익률은 100%입니다.")} ;
     if(negativeTotalCalculate === 0){
       return MissionUtils.Console.print("총 수익률은 0%입니다.")}
-      
     }
-
-
 
 }
 
