@@ -1,5 +1,9 @@
 class LottoManager {
-  buyLottos() {}
+  #lottos;
+
+  buyLottos(money, lottoCompany) {
+    this.#lottos = lottoCompany.publishLottos(money);
+  }
 
   printLottosStatus() {}
 
@@ -9,3 +13,5 @@ class LottoManager {
 
   calculateYield() {}
 }
+
+module.exports = LottoManager;
