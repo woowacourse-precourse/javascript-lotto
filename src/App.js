@@ -2,11 +2,13 @@ const { Console } = require('@woowacourse/mission-utils');
 const BonusLotto = require('./BonusLotto');
 const { RANKING } = require('./constant');
 const Lotto = require('./Lotto');
+const Profit = require('./Profit');
 const PurChase = require('./Purchase');
 const Statistics = require('./Statistics');
 
 class App {
   constructor() {
+    this.money;
     this.purChaseLotto;
     this.fullLottoNumber;
   }
@@ -18,6 +20,7 @@ class App {
   purChaseLotto() {
     Console.readLine('구입금액을 입력해 주세요.\n', (amount) => {
       const lotteryTickets = new PurChase(amount).showLottoTickets(amount);
+      this.money = amount;
       this.purChaseLotto = lotteryTickets;
       this.printLotto(lotteryTickets);
     });
@@ -46,19 +49,21 @@ class App {
     Console.print('---');
     const result = new Statistics(this.fullLottoNumber, this.purChaseLotto).showResult();
     const rankKeys = Object.keys(RANKING);
-    rankKeys.forEach((rank) => {
+    const profitList = rankKeys.map((rank) => {
       const matchNumberInfo = RANKING[rank];
       const matchNumber = RANKING[rank]['MATCH'];
-      Console.print(
-        `${matchNumberInfo['MESSAGE']}${
-          result[matchNumber] && result[matchNumber]['bonus'] === matchNumberInfo['BONUS']
-            ? result[matchNumber]['count']
-            : 0
-        }${matchNumberInfo['COUNTUNIT']}`
-      );
+      const matchCount =
+        result[matchNumber] && result[matchNumber]['bonus'] === matchNumberInfo['BONUS']
+          ? result[matchNumber]['count']
+          : 0;
+      Console.print(`${matchNumberInfo['MESSAGE']}${matchCount}${matchNumberInfo['COUNTUNIT']}`);
+      return { matchCount, matchMoney: matchNumberInfo['PRICE'] };
     });
+    this.printProFit(profitList);
+  }
 
-    Console.print('---');
+  printProFit(profitList) {
+    Console.print(`총 수익률은 ${new Profit([this.money, profitList]).calculateProfit()}% 입니다.`);
   }
 }
 
