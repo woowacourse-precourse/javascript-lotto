@@ -1,5 +1,6 @@
 const { createTestScheduler } = require('jest');
 const Lotto = require('../src/Lotto');
+const App = require('../src/App');
 
 describe('로또 클래스 예외 테스트', () => {
   test('로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.', () => {
@@ -100,5 +101,13 @@ describe('로또 클래스 로또 추첨 테스트', () => {
     expect(lotto.thirdCount).toEqual(3);
     expect(lotto.fourthCount).toEqual(2);
     expect(lotto.fifthCount).toEqual(2);
+  });
+});
+
+describe('App 클래스 테스트', () => {
+  test('입력 받은 당첨 번호를 배열로 바꾼다', () => {
+    const app = new App();
+    app.numbertoArray('1,2,3,4,5,6');
+    expect(app.winningArray).toEqual([1, 2, 3, 4, 5, 6]);
   });
 });
