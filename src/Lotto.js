@@ -1,5 +1,4 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-
 const STATIC = require("./Static");
 
 class Lotto {
@@ -31,7 +30,11 @@ buyLotto = (lotto) => {
   });
 };
 
-module.exports = Lotto;
+LottoGame = () => {
+  buyLotto();
+};
+
+module.exports = LottoGame;
 
 //입력 받고
 // 체크 후 userlotto 생성을 하자

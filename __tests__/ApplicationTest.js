@@ -61,8 +61,15 @@ describe("로또 테스트", () => {
     });
   });
 
-  test("예외 테스트", () => {
+  test("예외 테스트: 숫자가 아닌 다른 값을 입력했을 때", () => {
     mockQuestions(["1000j"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+  test("예외 테스트: 1000으로 나뉘어지지 않는 값 로또 구매 값으로 입력했을 때", () => {
+    mockQuestions(["1001"]);
     expect(() => {
       const app = new App();
       app.play();
