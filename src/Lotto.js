@@ -27,6 +27,10 @@ class Lotto {
       }
     });
   }
+
+  getNumbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
