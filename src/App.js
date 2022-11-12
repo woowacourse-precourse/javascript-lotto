@@ -21,8 +21,8 @@ class App {
   }
 
   prizeInput() {
-    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요. \n', (userMoney) => {
-      MissionUtils.Console.print(userMoney.split(','));
+    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요. \n', (prizeNumber) => {
+      MissionUtils.Console.print(prizeNumber.split(','));
     })
   }
 
