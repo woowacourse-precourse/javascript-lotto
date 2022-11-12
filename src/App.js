@@ -45,7 +45,7 @@ class App {
 
   // 사용자가 당첨 번호를 입력하는 기능
   inputMyNumber() {
-    Console.readLine("당첨 번호를 입력해 주세요.\n", (myLottoNumber) => {
+    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (myLottoNumber) => {
       myLottoNumber = this.convertToArr(myLottoNumber);
       this.myLottoNumber = new Lotto(myLottoNumber).getNumbers();
       this.inputBonusNumber();
@@ -71,7 +71,7 @@ class App {
 
   // 사용자가 보너스 번호를 입력하는 기능
   inputBonusNumber() {
-    Console.readLine("보너스 번호를 입력해주세요.\n", (bonusNumber) => {
+    Console.readLine("\n보너스 번호를 입력해주세요.\n", (bonusNumber) => {
       if (this.checkBonusNumber(bonusNumber)) {
         this.bonusNumber = bonusNumber;
       }
@@ -143,9 +143,6 @@ class App {
       sumOfMoney += el[1];
     }
 
-    Console.print(winStatus);
-    Console.print(sumOfMoney);
-
     this.myResult(winStatus, sumOfMoney);
   }
 
@@ -159,9 +156,9 @@ class App {
 5개 일치 (1,500,000원) - ${winStatus["3"]}개
 5개 일치, 보너스 볼 일치 (30,000,000원) - ${winStatus["2"]}개
 6개 일치 (2,000,000,000원) - ${winStatus["1"]}개
-총 수익률은 ${
+총 수익률은 ${(
       Math.round((sumOfMoney / this.myPayment) * 100 * 10) / 10
-    }%입니다.`);
+    ).toLocaleString("ko-KR")}%입니다.`);
     Console.close();
   }
 }
