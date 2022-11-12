@@ -12,6 +12,7 @@ const Validation = require("./Validation.js");
 
 class LottoGame {
   lottos;
+  winningNumbers;
 
   constructor() {
     this.LottoGameView = new LottoGameView();
@@ -51,7 +52,9 @@ class LottoGame {
 
   saveWinningNumbersPhase() {
     this.LottoGameView.requestInput(REQUEST_MESSAGE.WINNING_NUMBERS, (winningNumbers) => {
-      Validation.validateLottoNumber(winningNumbers.split(","));
+      const winningNumbersArr = winningNumbers.split(",");
+      Validation.validateLottoNumber(winningNumbersArr);
+      this.winningNumbers = winningNumbersArr;
     });
   }
 }
