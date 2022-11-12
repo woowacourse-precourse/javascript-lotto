@@ -39,7 +39,7 @@ class App {
     for (let i=0; i < this.numberOfPurchases; i++) {
       let lotto = new Lotto(this.randomNums());
       this.purchasedLottos.push(lotto.getNumbers());
-      Console.print(lotto.getNumbers());
+      Console.print(`[${lotto.getNumbers().join(", ")}]`);
     }
   }
 
@@ -103,7 +103,7 @@ class App {
     Console.print(`5개 일치 (1,500,000원) - ${this.fiveMatch}개`);
     Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.bonusFiveMatch}개`);
     Console.print(`6개 일치 (2,000,000,000원) - ${this.sixMatch}개`);
-    Console.print(`총 수익률은 ${this.profitRate}% 입니다.`);
+    Console.print(`총 수익률은 ${this.profitRate}%입니다.`);
   }
 
   play() {
@@ -114,6 +114,7 @@ class App {
     this.compareNumber();
     this.calcProfitRate();
     this.printResult();
+    Console.close();
   }
 }
 
