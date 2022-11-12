@@ -62,6 +62,7 @@ class LottoGame {
   saveBonusNumberPhase() {
     this.LottoGameView.requestInput(REQUEST_MESSAGE.BONUS_NUMBER, (bonusNumber) => {
       Validation.validateBonusNumber(bonusNumber, this.winningNumbers);
+      this.bonusNumber = bonusNumber;
     });
   }
 }
