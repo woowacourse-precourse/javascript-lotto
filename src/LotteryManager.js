@@ -1,6 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
 const { INGAME_MESSAGE } = require('./Constants/MESSAGE');
-const { PICK_TYPE } = require('./Constants/PICK');
 const { RANK_INDEX, RANK_REWARD, RANK_PRINT } = require('./Constants/RANK');
 const Lotto = require('./Lotto');
 const Consumer = require('./Consumer');
@@ -22,35 +21,34 @@ class LotteryManager {
   }
 
   pickMain() {
-    Console.readLine(INGAME_MESSAGE.pickMain, (picks) => {
-      this.#Lotto = new Lotto(picks, PICK_TYPE.main);
-      this.pickBonus();
+    Console.readLine(INGAME_MESSAGE.pickMain, (mainPick) => {
+      this.pickBonus(mainPick);
     });
   }
 
-  pickBonus() {
-    Console.readLine(INGAME_MESSAGE.pickBonus, (picks) => {
-      this.checkWinLottery(picks);
+  pickBonus(mainPick) {
+    Console.readLine(INGAME_MESSAGE.pickBonus, (bonusPick) => {
+      this.#Lotto = new Lotto(mainPick, bonusPick);
+      this.checkWinLottery();
     });
   }
 
-  checkWinLottery(bonusNumber) {
+  checkWinLottery() {
     const winList = [0, 0, 0, 0, 0, 0];
     let total = 0;
 
     this.#Consumer.lotteryList.forEach((lotto) => {
-      const [winCount, winBonusCount] = this.#Lotto.checkWin(lotto, bonusNumber);
-      const { winIndex, reward } = this.countLottery(winCount, winBonusCount);
+      const [winCount, winBonusCount] = this.#Lotto.checkWin(lotto);
+      const { winIndex, reward } = this.countWinLottery(winCount, winBonusCount);
       winList[winIndex] += 1;
       total += reward;
     });
 
-    this.printLottery(winList);
+    this.printWinLottery(winList);
     this.printProfit(total);
   }
 
-  // 아예 몇등인지 리턴해주는게 더 좋을거같음
-  countLottery(winCount, winBonusCount) {
+  countWinLottery(winCount, winBonusCount) {
     if (winCount === 6) return { winIndex: RANK_INDEX.first, reward: RANK_REWARD.first };
     if (winCount === 5 && winBonusCount) return { winIndex: RANK_INDEX.second, reward: RANK_REWARD.second };
     if (winCount === 5) return { winIndex: RANK_INDEX.third, reward: RANK_REWARD.third };
@@ -59,7 +57,7 @@ class LotteryManager {
     return { winIndex: RANK_INDEX.lose, reward: RANK_REWARD.lose };
   }
 
-  printLottery(winList) {
+  printWinLottery(winList) {
     // 추후 수정 필요
     Console.print(`${INGAME_MESSAGE.statistic}`);
     Console.print(`${RANK_PRINT.fifth}${winList[RANK_INDEX.fifth]}개`);
@@ -76,8 +74,5 @@ class LotteryManager {
     Console.print(`총 수익률은 ${profit}%입니다.`);
   }
 }
-
-const manager = new LotteryManager();
-manager.start();
 
 module.exports = LotteryManager;
