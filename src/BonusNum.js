@@ -6,12 +6,10 @@ class BonusNum {
     this.validateIsRange(number);
     this.validateIsDuplicate(number, lottoNumbers);
     this.bonusNum = number;
-    console.log(this.bonusNum);
   }
 
   validateIsNum(number) {
-    console.log(isNaN(number));
-    if (isNaN(parseInt(number))) {
+    if (isNaN(number)) {
       throw new Error(STATIC.MESSAGE.ERR_INPUT);
     }
   }
@@ -28,5 +26,6 @@ class BonusNum {
     }
   };
 }
+const a = new BonusNum(11, [1, 2, 3, 4, 5, 6]);
 
 module.exports = BonusNum;
