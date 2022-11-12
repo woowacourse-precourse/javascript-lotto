@@ -48,7 +48,7 @@ class Lotto {
   }
 
   winningCalculation(purchaseLottos, bonus) {
-    let resultTable = { reward: 0 };
+    let resultTable = { reward: 0, first: 0, second: 0, third: 0, fourth: 0, fifth: 0 };
     for(let purchaseLotto of purchaseLottos) {
       const sameCount = this.sameCheck(purchaseLotto);
       if(sameCount < 3) continue;
@@ -57,7 +57,7 @@ class Lotto {
       resultTable = {
         ...resultTable,
         reward: resultTable.reward += reward,
-        [rank]: resultTable.rank ? resultTable.rank += 1 : 1,
+        [rank]: resultTable[rank] += 1,
       }
     }
     return resultTable;
@@ -74,7 +74,7 @@ class Lotto {
   rewardCheck(purchaseLotto, sameCount, bonus) {
     switch(sameCount) {
       case 3: {
-        return [5000, 'fifty'];
+        return [5000, 'fifth'];
       } 
       case 4: {
         return [50000, 'fourth']
