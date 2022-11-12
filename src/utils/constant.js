@@ -1,11 +1,11 @@
 const ERROR_MASSAGE = Object.freeze({
-  DIFFERENT_NUMBER: '[ERROR] 서로 다른 6개 번호여야 합니다',
-  LOTTO_NUMBER_LENGTH: '[ERROR] 로또 번호는 6개여야 합니다.',
-  MAX_PURCHASES: '[ERROR] 일주일 최대 구매 금액은 10만원입니다',
-  INCORRECT_INPUT: '[ERROR] 금액을 잘 못 입력하셨습니다',
-  POSSIBLE_AMOUNT_NUMBER: '[ERROR] 1~9 숫자만 입력가능합니다',
-  POSSIBLE_LOTTO_NUMBER: '[ERROR] 1~45의 숫자만 입력가능합니다',
-  DUPLICATE_NUMBER: '[ERROR] 당첨번호와 보너스 번호가 일치합니다',
+  DIFFERENT_NUMBER_MESSAGE: '[ERROR] 서로 다른 6개 번호여야 합니다',
+  LOTTO_NUMBER_LENGTH_MESSAGE: '[ERROR] 로또 번호는 6개여야 합니다.',
+  MAX_PURCHASES_MESSAGE: '[ERROR] 일주일 최대 구매 금액은 10만원입니다',
+  INCORRECT_INPUT_MESSAGE: '[ERROR] 금액을 잘 못 입력하셨습니다',
+  POSSIBLE_AMOUNT_NUMBER_MESSAGE: '[ERROR] 1~9 숫자만 입력가능합니다',
+  POSSIBLE_LOTTO_NUMBER_MESSAGE: '[ERROR] 1~45의 숫자만 입력가능합니다',
+  DUPLICATE_NUMBER_MESSAGE: '[ERROR] 당첨번호와 보너스 번호가 일치합니다',
 });
 
 const OUTPUT_MESSAGE = Object.freeze({
