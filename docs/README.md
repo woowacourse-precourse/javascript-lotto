@@ -1,8 +1,8 @@
-<center>
+<div align="center">
 
 # **로또 🎱**
 
-</center>
+</div>
 
 ### 작성자 : 이의현
 
@@ -28,11 +28,11 @@
 
 <br/>
 
-<center>
+<div align="center">
 
 ## **🗒 구현 리스트**
 
-</center>
+</div>
 
 ---
 
