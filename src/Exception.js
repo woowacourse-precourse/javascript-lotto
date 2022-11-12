@@ -1,10 +1,6 @@
 class InputException {
-    constructor(input) {
-        this.input = input;
-    }
-
-    checkInputException() {
-        this.isThousand(this.input);
+    checkInputException(input) {
+        this.isThousand(input);
     }
 
     isThousand(money) {
@@ -16,23 +12,16 @@ class InputException {
 }
 
 class LottoException {
-    constructor(lotto, bonus) {
-        this.lotto = lotto;
-        this.bonus = bonus;
+    checkLottoException(lotto) {
+        this.isSix(lotto);
+        this.isNumber(lotto);
+        this.isDuplication(lotto);
     }
 
-    checkLottoException() {
-        this.isSix(this.lotto);
-        this.isNumber(this.lotto, this.bonus);
-        this.isDuplication(this.lotto, this.bonus);
-    }
-
-    isNumber(lotto, bonus) {
+    isNumber(lotto) {
         for (let number of lotto) {
             if (isNaN(+number)) throw Error('[ERROR] 숫자를 입력해주세요.');
         }
-
-        if (isNaN(+bonus)) throw Error('[ERROR] 숫자를 입력해주세요.');
     }
 
     isSix(lotto) {
@@ -43,15 +32,10 @@ class LottoException {
         return true;
     }
 
-    isDuplication(lotto, bonus) {
+    isDuplication(lotto) {
         const inputSet = new Set(lotto);
 
         if (inputSet.size !== 6)
-            throw new Error('[ERROR] 서로 다른 수를 입력해주세요.');
-
-        inputSet.add(bonus);
-
-        if (inputSet.size !== 7)
             throw new Error('[ERROR] 서로 다른 수를 입력해주세요.');
     }
 }

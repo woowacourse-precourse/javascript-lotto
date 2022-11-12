@@ -21,72 +21,44 @@ describe('로또 클래스 테스트', () => {
 describe.only('예외 사항 테스트', () => {
     test('입력 금액이 천원 단위인지 확인', () => {
         expect(() => {
-            const exception = new InputException('13200');
-            exception.checkInputException();
+            const exception = new InputException();
+            exception.checkInputException('13200');
         }).toThrow('[ERROR]');
 
         expect(() => {
-            const exception = new InputException('13010');
-            exception.checkInputException();
+            const exception = new InputException();
+            exception.checkInputException('13010');
         }).toThrow('[ERROR]');
 
         expect(() => {
-            const exception = new InputException('130100');
-            exception.checkInputException();
+            const exception = new InputException();
+            exception.checkInputException('130100');
         }).toThrow('[ERROR]');
     });
 
     test('당첨 번호의 갯수가 6개인지 확인', () => {
         expect(() => {
-            const exception = new LottoException(
-                ['1', '2', '3', '4', '5', '6', '7'],
-                '8'
-            );
-            exception.checkLottoException();
+            const exception = new LottoException();
+            exception.checkLottoException(['1', '2', '3', '4', '5', '6', '7']);
         }).toThrow('[ERROR]');
 
         expect(() => {
-            const exception = new LottoException(
-                ['1', '2', '3', '4', '5'],
-                '6'
-            );
-            exception.checkLottoException();
+            const exception = new LottoException();
+            exception.checkLottoException(['1', '2', '3', '4', '5']);
         }).toThrow('[ERROR]');
     });
 
-    test('당첨 번호가 숫자인지 확인 (보너스 번호 포함)', () => {
+    test('당첨 번호가 숫자인지 확인 (보너스 번호 포함 x)', () => {
         expect(() => {
-            const exception = new LottoException(
-                ['1', '2', '3', '4', '5', 'a'],
-                '7'
-            );
-            exception.checkLottoException();
-        }).toThrow('[ERROR]');
-
-        expect(() => {
-            const exception = new LottoException(
-                ['1', '2', '3', '4', '5', '6'],
-                'a'
-            );
-            exception.checkLottoException();
+            const exception = new LottoException();
+            exception.checkLottoException(['1', '2', '3', '4', '5', 'a']);
         }).toThrow('[ERROR]');
     });
 
-    test('당첨 번호가 서로 다른 수인지 확인 (보너스 번호 포함)', () => {
+    test('당첨 번호가 서로 다른 수인지 확인 (보너스 번호 포함 x)', () => {
         expect(() => {
-            const exception = new LottoException(
-                ['1', '2', '3', '4', '5', '3'],
-                '7'
-            );
-            exception.checkLottoException();
-        }).toThrow('[ERROR]');
-
-        expect(() => {
-            const exception = new LottoException(
-                ['1', '2', '3', '4', '5', '6'],
-                '3'
-            );
-            exception.checkLottoException();
+            const exception = new LottoException();
+            exception.checkLottoException(['1', '2', '3', '4', '5', '3']);
         }).toThrow('[ERROR]');
     });
 });
