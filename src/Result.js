@@ -7,7 +7,9 @@ const {
   SECOND_BONUS_PRIZE,
   SECOND_PRIZE,
   THIRD_PRIZE,
-  FOURTH_PRIZE, MESSAGE_OUTPUT_WINNING_STATISTICS, UNIT,
+  FOURTH_PRIZE,
+  MESSAGE_OUTPUT_WINNING_STATISTICS,
+  UNIT,
 } = require("./Constants");
 const Lotto = require("./Lotto");
 
@@ -75,19 +77,18 @@ class Result {
     return (this.resultStatics[winCount - 3] += 1);
   }
 
-  showResult(userLottoCount){
+  showResult(userLottoCount) {
     this.yieldCalculation(userLottoCount);
     this.matchingResult();
     this.profitResult();
     Console.close();
   }
 
-
-  yieldCalculation(userLottoCount){
+  yieldCalculation(userLottoCount) {
     let totalAmount = this.profitCalculation();
     let spending = userLottoCount * UNIT;
     let profit = totalAmount;
-    let result = profit/spending;
+    let result = profit / spending;
     this.userProfit = Math.round(result * 1000) / 10;
   }
 
@@ -96,7 +97,7 @@ class Result {
     this.resultStatics.map((number, index) => {
       if (index === 4) return;
       if (index === 3) {
-        Console.print(this.resultTemplate(true, index + 1, number))
+        Console.print(this.resultTemplate(true, index + 1, number));
         Console.print(this.resultTemplate(false, index, number));
         return;
       }
@@ -105,19 +106,23 @@ class Result {
   }
 
   resultTemplate(bonus, index, number) {
-    const PRIZE = this.prizes[index].toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    const PRIZE = this.prizes[index]
+      .toString()
+      .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     const NOT_BONUS = `${index + 3}개 일치 (${PRIZE})원 - ${number}개`;
-    const BONUS = `${index + 2}개 일치, 보너스볼 일치 (${PRIZE})원 - ${number}개`;
-    return bonus? BONUS : NOT_BONUS;
+    const BONUS = `${
+      index + 2
+    }개 일치, 보너스볼 일치 (${PRIZE})원 - ${number}개`;
+    return bonus ? BONUS : NOT_BONUS;
   }
 
-  profitResult(){
+  profitResult() {
     Console.print(`총 수익률은 ${this.userProfit}%입니다.`);
   }
 
-  profitCalculation(){
-    return this.resultStatics.reduce((amount, prize,index) => {
-      return amount += prize * this.prizes[index];
+  profitCalculation() {
+    return this.resultStatics.reduce((amount, prize, index) => {
+      return (amount += prize * this.prizes[index]);
     }, 0);
   }
 }

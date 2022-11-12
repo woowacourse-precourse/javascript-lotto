@@ -1,18 +1,18 @@
-const LottoMarket = require('./LottoMarket');
+const LottoMarket = require("./LottoMarket");
 
-class User{
-    constructor() {
-        this.money = null;
-        this.lottoNums = null;
-    }
+class User {
+  constructor() {
+    this.money = null;
+    this.lottoNums = null;
+  }
 
-    setUserMoney(money){
-        this.money = money;
-    }
+  setUserMoney(money) {
+    this.money = money;
+  }
 
-    buyLotto(lottoMarket){
-        this.lottoNums = lottoMarket.purchaseLotto(this.money);
-    }
+  buyLotto(lottoMarket) {
+    this.lottoNums = lottoMarket.purchaseLotto(this.money);
+  }
 }
 
 module.exports = User;
