@@ -42,9 +42,50 @@ class Lotto {
   }
 
   bonusDuplicateCheck(bonus) {
-    console.log(this.#numbers);
     if(this.#numbers.includes(Number(bonus))) {
       throw new Error("[ERROR] 보너스 점수는 당첨 번호와 중복되면 안됩니다.");
+    }
+  }
+
+  winningCalculation(purchaseLottos, bonus) {
+    let resultTable = { reward: 0 };
+    for(let purchaseLotto of purchaseLottos) {
+      const sameCount = this.sameCheck(purchaseLotto);
+      if(sameCount < 3) continue;
+
+      const [reward, rank] = this.rewardCheck(purchaseLotto, sameCount, bonus);
+      resultTable = {
+        ...resultTable,
+        reward: resultTable.reward += reward,
+        [rank]: resultTable.rank ? resultTable.rank += 1 : 1,
+      }
+    }
+    return resultTable;
+  };
+
+  sameCheck(purchaseLotto) {
+    let sameCount = 0;
+    purchaseLotto.forEach((number) => {
+      if(this.#numbers.includes(number)) sameCount += 1;
+    });
+    return sameCount;
+  }
+
+  rewardCheck(purchaseLotto, sameCount, bonus) {
+    switch(sameCount) {
+      case 3: {
+        return [5000, 'fifty'];
+      } 
+      case 4: {
+        return [50000, 'fourth']
+      }
+      case 5: {
+        if(purchaseLotto.includes(Number(bonus))) return [30000000, 'second'];
+        return [1500000, 'third'];
+      }
+      case 6: {
+        return [2000000000, 'first'];
+      }
     }
   }
 }

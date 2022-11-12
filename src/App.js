@@ -46,8 +46,15 @@ class App {
       this.#Lotto.bonusRangeCheck(bonus);
       this.#Lotto.bonusDuplicateCheck(bonus);
       this.#bonus = bonus;
+
+      this.winningCalculation();
     });
   }
+
+  winningCalculation() {
+    const purchaseLottos = this.#Buyer.getPurchaseLottos()
+    const resultTable = this.#Lotto.winningCalculation(purchaseLottos, this.#bonus);
+  }
 }
-const app = new App; app.play();
+
 module.exports = App;

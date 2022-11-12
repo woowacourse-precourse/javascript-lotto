@@ -48,4 +48,22 @@ describe("로또 클래스 테스트", () => {
       }).toThrowError("[ERROR] 보너스 점수는 당첨 번호와 중복되면 안됩니다.");
     }
   });
+
+  test("일치하는 숫자의 개수 별로 금액 반환한다.", () => {
+    const tempInputValue = [
+      [[1, 2, 3, 4, 5, 6], '7'], 
+      [[1, 2, 3, 4, 5, 7], '7'], 
+      [[1, 2, 3, 4, 5, 7], '8'], 
+      [[1, 2, 3, 4, 7, 8], '9'], 
+      [[1, 2, 3, 7, 8, 9], '10'], 
+      [[1, 2, 7, 8, 9, 10], '11'], 
+    ]
+    const tempResult = [2000000000, 30000000, 1500000, 50000, 5000, 0];
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+
+    for(let i = 0; i < 6; i++) {
+      const tempWinning = lotto.winningCalculation([tempInputValue[i][0]], tempInputValue[i][1]);
+      expect(tempWinning.reward).toBe(tempResult[i]);
+    }
+  });
 });
