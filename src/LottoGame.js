@@ -118,6 +118,7 @@ class LottoGame {
     Object.entries(matchLottos).forEach(([matchingNumbers, count]) => {
       if (count) {
         totalRate += ((PRIZE_MONEY[matchingNumbers] * count) / amountPaid) * 100;
+        totalRate = totalRate.toFixed(1);
       }
     });
     LottoView.printRate(totalRate);
