@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { LOTTO_AMOUNT } = require('../utils/constants');
+const { LOTTO_AMOUNT, VARIABLE_LOTTO } = require('../utils/constants');
 
 class LottoAdjustment {
   #scoreBoard;
@@ -21,12 +21,12 @@ class LottoAdjustment {
 
   #matchLottoFor(lottoToBuy) {
     return lottoToBuy.filter(lottoNumber =>
-      this.draw.getNumber('lotto').includes(lottoNumber),
+      this.draw.getNumber(VARIABLE_LOTTO.lotto).includes(lottoNumber),
     ).length;
   }
 
   #matchBonusFor(lottoToBuy) {
-    return lottoToBuy.includes(this.draw.getNumber('bonus'));
+    return lottoToBuy.includes(this.draw.getNumber(VARIABLE_LOTTO.bonus));
   }
 
   #setScoreToMatch([lottoCount, bonusCount]) {
