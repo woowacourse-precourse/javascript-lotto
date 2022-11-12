@@ -31,6 +31,9 @@ class Util {
   }
 
   static isBetween(numbers, start, end) {
+    if (typeof numbers === "string") {
+      return start <= parseInt(numbers) && parseInt(numbers) <= end;
+    }
     return numbers.every((num) => start <= num && num <= end);
   }
 }
