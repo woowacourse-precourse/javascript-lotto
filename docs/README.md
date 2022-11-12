@@ -62,7 +62,7 @@
 
 [✅] ✏️당첨 내역을 출력한다. `SYSTEM.printResult(lottos, winningLotto, bonusNumber, cash)`  
 &nbsp;&nbsp;&nbsp;&nbsp; [✅] ✏️ 당첨 결과 데이터를 저장하는 배열을 생성한다.  
- &nbsp;&nbsp;&nbsp;&nbsp; [❌] ✏️ 당첨 통계를 출력한다.  
+ &nbsp;&nbsp;&nbsp;&nbsp; [✅] ✏️ 당첨 통계를 출력한다.  
 > 당첨 통계  
 > &#45;&#45;&#45;   
 > 3개 일치 (5,000원) - 1개  
