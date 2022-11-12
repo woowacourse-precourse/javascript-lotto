@@ -18,6 +18,7 @@ class LottoCompany {
   }
 
   publishLottos(money) {
+    this.validateMoney(money);
     const lottoCount = money / this.#lottoPrice;
     const lottos = Array(lottoCount);
     for (let i = 0; i < lottoCount; i += 1) {
@@ -28,18 +29,53 @@ class LottoCompany {
     return lottos;
   }
 
+  validateMoney(money) {
+    const moneyNumber = Number(money);
+    if (!Number.isInteger(moneyNumber) && moneyNumber > 0) {
+      throw new Error("[ERROR] 0 이상 정수를 입력해주세요.");
+    }
+    if (moneyNumber % this.#lottoPrice !== 0) {
+      throw new Error(
+        "[ERROR] 로또 가격과 나누어 떨어지는 값을 입력해야 합니다."
+      );
+    }
+  }
+
   makeWinningNumbers() {
     Console.print("당첨 번호를 입력해 주세요");
     Console.readLine("", (input) => {
+      this.validateWinningNumbers(input);
       this.#winningNumbers = input.split(",").map((elem) => Number(elem));
     });
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  validateWinningNumbers(input) {
+    const numbers = input.split(",").map((elem) => Number(elem));
+    if (
+      !numbers.every((elem) => Number.isInteger(elem) && elem > 0 && elem < 46)
+    ) {
+      throw new Error("[ERROR] 1이상 45이하 정수만을 입력해야합니다.");
+    }
+    if (numbers.length !== 6) {
+      throw new Error("[ERROR] 정수인 숫자를 6개 입력해야합니다.");
+    }
   }
 
   makeBonusNumber() {
     Console.print("보너스 번호를 입력해 주세요");
     Console.readLine("", (input) => {
+      this.validateBonusNumber(input);
       this.#bonusNumber = Number(input);
     });
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  validateBonusNumber(input) {
+    const number = Number(input);
+    if (!Number.isInteger(number) || !(number > 0 && number < 46)) {
+      throw new Error("[ERROR] 1이상 45이하 정수를 입력해야합니다.");
+    }
   }
 
   checkResult(lotto) {
