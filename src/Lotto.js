@@ -17,6 +17,8 @@ class Lotto {
       throw new Error(`${ERROR.PREFIX} ${ERROR.DUPLICATION}`);
     if (isNaN(numbers.join('')))
       throw new Error(`${ERROR.PREFIX} ${ERROR.NUMBER_ONLY}`);
+    if (this.#invalidRange(numbers))
+      throw new Error(`${ERROR.PREFIX} ${ERROR.RANGE}`);
   }
 
   #invalidLength(numbers) {
