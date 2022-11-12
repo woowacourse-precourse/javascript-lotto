@@ -26,6 +26,7 @@ class App {
       GamePrint.sheets(this.lotto.sheets);
       this.lotto.generator = new Lotto();
       this.lotto.user = this.lotto.generator.getUserLottos(this.lotto.sheets);
+      GamePrint.userLottos(this.lotto.user);
       this.submitLotto();
     });
   }
