@@ -36,17 +36,25 @@ class CalculationLotto {
 
   isBonusMatch = false;
 
+  lottoPrice = 0;
+
+  lottoWinPrice = 0;
+
   /**
  *
  * @param {Array<number>} lottoList
  * @param {Array<number>} winNumberList
  * @param {number} bonusNumber
+ * @param {number} lottoPrice
  */
-  calculationLottoResult(lottoList, winNumberList, bonusNumber) {
+  calculationLottoResult(lottoList, winNumberList, bonusNumber, lottoPrice) {
     this.winNumberList = winNumberList;
     this.bonusNumber = bonusNumber;
+    this.lottoPrice = lottoPrice;
 
     lottoList.forEach((lotto) => this.matchLottoNumber(lotto));
+
+    return this;
   }
 
   matchLottoNumber(lotto) {
@@ -56,15 +64,13 @@ class CalculationLotto {
     const { length } = matchLottoList;
 
     this.matchCount = (this.isBonusMatch ? 1 : 0) + length;
-
-    return this;
   }
 
   matchResult() {
     if (this.isBonusMatch && this.matchCount === 5) {
       this.lottoResult.bonus.count += 1;
       this.lottoWinPrice += this.lottoResult.bonus.price;
-      return true;
+      return this;
     }
 
     switch (this.matchCount) {
@@ -85,7 +91,7 @@ class CalculationLotto {
         this.lottoWinPrice += this.lottoResult.six.price;
         break;
       default:
-        return false;
+        return this;
     }
 
     return this;
@@ -107,7 +113,7 @@ class CalculationLotto {
       return print(`${value.text}${value.count}개`);
     });
 
-    print(`총 수익률은 ${this.lottoRate}%입니다.`);
+    print(`총 수익률은 ${this.lottoRate || 0}%입니다.`);
     return true;
   }
 }
