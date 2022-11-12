@@ -1,3 +1,5 @@
+const { Random } = require("@woowacourse/mission-utils");
+
 class Utils {
   isBlank(input) {
     return !input;
@@ -13,6 +15,17 @@ class Utils {
 
   throwError(comment) {
     throw new Error(comment);
+  }
+
+  randomSelectWithoutOverlap() {
+    const randomNumbers = [];
+    while (randomNumbers.length < 6) {
+      const number = Random.pickNumberInRange(1, 45);
+      if (randomNumbers.includes(number) === false) {
+        randomNumbers.push(number);
+      }
+    }
+    return randomNumbers.sort((a, b) => a - b);
   }
 }
 

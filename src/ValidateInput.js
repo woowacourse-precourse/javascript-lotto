@@ -14,6 +14,14 @@ class ValidateInput {
     );
   }
 
+  isValidLottoArray(lottoArray) {
+    return (
+      lottoArray.length === 6 &&
+      new Set(lottoArray).size === 6 &&
+      lottoArray.toString() === lottoArray.sort((a, b) => a - b).toString()
+    );
+  }
+
   validateInputMoney(inputMoney) {
     return (!(
       this.utils.isBlank(inputMoney) ||
@@ -32,11 +40,10 @@ class ValidateInput {
   }
 
   validateBonusNumber(winningNumbers, bonusNumber) {
-    if (!this.isValidLottoNumber(bonusNumber)) {
-      this.utils.throwError("[ERROR] 입력하신 보너스 번호가 유효하지 않습니다. 다시 확인해주세요.")
-    }
-
-    return ([...winningNumbers].includes(bonusNumber)) ?
+    return (
+      !this.isValidLottoNumber(bonusNumber) ||
+      winningNumbers.includes(bonusNumber)
+    ) ?
       this.utils.throwError("[ERROR] 입력하신 보너스 번호가 유효하지 않습니다. 다시 확인해주세요.") : true;
   }
 }
