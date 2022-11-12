@@ -5,19 +5,16 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.checkWinNumLength(numbers);
-    this.checkWinNumRange(numbers);
-    this.checkWinNumDuplicate(numbers);
     this.#numbers = numbers;
   }
 
-  checkWinNumLength(numbers) {
+  static checkWinNumLength(numbers) {
     if (numbers.length !== 6) {
       throw new Error(LOTTO_MESSAGE.WIN_NUM_LENGTH_ERROR_MSG);
     }
   }
 
-  checkWinNumRange(numbers) {
+  static checkWinNumRange(numbers) {
     const filteredWinNum = numbers.filter(
       (number) =>
         LOTTO_SETTING.LOTTO_NUM_MIN <= number &&
@@ -30,7 +27,7 @@ class Lotto {
     }
   }
 
-  checkWinNumDuplicate(numbers) {
+  static checkWinNumDuplicate(numbers) {
     const setWinNum = new Set(numbers);
     const IS_DUPLICATE = setWinNum.size < numbers.length;
     if (IS_DUPLICATE) {
@@ -82,7 +79,7 @@ class Lotto {
   static checkBonusNum(bonusNum, winNums) {
     const IS_TYPE_NUMBER = !Number.isNaN(bonusNum);
     const IS_VALID_RANGE = 1 <= bonusNum && bonusNum <= 45;
-    const IS_DUPLICATE = winNums.includes(bonusNum);
+    const IS_DUPLICATE = winNums.includes(Number(bonusNum));
     const IS_VALID = IS_TYPE_NUMBER && IS_VALID_RANGE && !IS_DUPLICATE;
     if (!IS_VALID) {
       throw new Error(LOTTO_MESSAGE.BONUS_NUM_ERROR_MSG);

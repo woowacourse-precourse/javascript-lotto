@@ -34,7 +34,7 @@ class App {
         }
         if (this.order === LOTTO_SETTING.INPUT_BONUS_NUM_ORDER) {
           const bonusNum = playerInput;
-          this.inputBonusNum(bonusNum, this.winNums);
+          this.inputBonusNum(bonusNum);
         }
         this.order++;
         this.play();
@@ -51,14 +51,16 @@ class App {
 
   inputWinNum(winNums) {
     const numbers = winNums.split(",").map((number) => Number(number));
-    const lotto = new Lotto(numbers);
-    this.winNums = lotto.numbers;
+    Lotto.checkWinNumLength(numbers);
+    Lotto.checkWinNumDuplicate(numbers);
+    Lotto.checkWinNumRange(numbers);
+    this.winNums = numbers;
   }
 
-  inputBonusNum(bonusNum, winNums) {
-    Lotto.checkBonusNum(bonusNum, winNums);
+  inputBonusNum(bonusNum) {
+    Lotto.checkBonusNum(bonusNum, this.winNums);
     this.bonusNum = bonusNum;
   }
 }
-
+new App().play();
 module.exports = App;
