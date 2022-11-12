@@ -36,5 +36,5 @@ module.exports = {
   lottoBuy,
   winningNumbers,
   bonusNumber,
-  printRanking
+  printWinning
 };
