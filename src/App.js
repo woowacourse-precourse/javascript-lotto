@@ -12,6 +12,22 @@ class App {
     MissionUtils.Console.readLine("구입 금액을 입력해 주세요.", (input) => {
       this.lottoMachine = new LottoMachine(input);
       this.lottoMachine.print();
+
+      this.getWinningNumberInput();
+    });
+  }
+
+  getWinningNumberInput() {
+    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (winningNumberInput) => {
+      MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (bonusNumberInput) => {
+        const winningNumbers = winningNumberInput.split(",").map((number) => Number(number));
+        const bonusNumber = Number(bonusNumberInput);
+        this.winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+
+        const winningCalculator = new WinningCalculator(this.lottoMachine.lottos, this.winningLotto);
+        winningCalculator.print();
+        MissionUtils.Console.close();
+      });
     });
   }
 }
