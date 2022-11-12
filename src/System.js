@@ -6,13 +6,10 @@ const SYSTEM = Object.freeze({
         MissionUtils.Console.print(message);
     },
 
-    isCorrectCash(cash) {
-        if (isNaN(cash)) {
-            throw new Error(ERROR.CASH_IS_NOT_NUMBER);
-        }
-        if (cash % 1000) {
-            throw new Error(ERROR.INVAID_CASH);
-        }
+    // publishLotto callback chain start
+    publishLotto(cash) {
+        let maxCount = cash / 1000;
+        return this.autoWrite(maxCount);
     },
 
     makeLotto() {
@@ -35,12 +32,7 @@ const SYSTEM = Object.freeze({
         lottos.forEach(lotto => { SYSTEM.print(`[${lotto.getNumber().join(', ')}]`); });
     },
 
-    publishLotto(cash) {
-        let maxCount = cash / 1000;
-        return this.autoWrite(maxCount);
-    },
-
-
+    // getResult() callback chain start
     getResult(lottos, cash) {
         this.makeWinningLotto(lottos, cash);
     },
@@ -75,6 +67,24 @@ const SYSTEM = Object.freeze({
         });
     },
 
+
+    printResult(lottos, winningLotto, bonusNumber, cash) {
+        let results = new Array(5).fill(0);
+
+        for (let lotto of lottos) {
+            let rankIndex = this.compare(lotto.getNumber(), new Set(winningLotto), bonusNumber);
+            results[rankIndex]++;
+        }
+
+        for (let rank = 5; rank >= 1; rank--) {
+            let rankIndex = rank - 1;
+            SYSTEM.print(`${MESSAGE.RANK_TEXT[rankIndex]} - ${results[rankIndex]}개`)
+        }
+        let rate = this.calulateRate(cash, results);
+        SYSTEM.print(`총 수익률은 ${rate}%입니다.`);
+        this.exit();
+    },
+
     compare(lotto, winningLotto, bonusNumber) {
         let rank = 8;
         for (let number of lotto) {
@@ -88,24 +98,6 @@ const SYSTEM = Object.freeze({
         let winnings = [2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000];
         let revenue = winnings.reduce((sum, money, rank) => sum + (result[rank] * money), 0);
         return Math.round(revenue / cash * 100 * 10) / 10;
-
-    },
-
-    printResult(lottos, winningLotto, bonusNumber, cash) {
-        let result = new Array(5).fill(0);
-
-        for (let lotto of lottos) {
-            let rankIndex = this.compare(lotto.getNumber(), new Set(winningLotto), bonusNumber);
-            result[rankIndex]++;
-        }
-
-        for (let rank = 5; rank >= 1; rank--) {
-            let rankIndex = rank - 1;
-            SYSTEM.print(`${MESSAGE.RANK_TEXT[rankIndex]} - ${result[rankIndex]}개`)
-        }
-        let rate = this.calulateRate(cash, result);
-        SYSTEM.print(`총 수익률은 ${rate}%입니다.`);
-        this.exit();
 
     },
 
