@@ -7,6 +7,7 @@ class Lotto {
     this.isNumbers();
     this.isValidRange();
     this.isOverlapped();
+    this.isNaturalNumber();
   }
 
   validate(numbers) {
@@ -21,6 +22,12 @@ class Lotto {
       throw new Error(
         "[ERROR] 당첨 번호는 쉼표(,)를 기준으로 구분된 숫자여야 합니다."
       );
+  }
+
+  isNaturalNumber() {
+    const numbers = this.#numbers;
+    if (numbers.filter((el) => Math.round(el) !== el).length > 0)
+      throw new Error("[ERROR] 당첨 번호는 자연수여야 합니다.");
   }
 
   isValidRange() {

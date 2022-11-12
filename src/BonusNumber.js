@@ -5,6 +5,7 @@ class BonusNumber {
     this.validate(number);
     this.isValidRange();
     this.duplicateCheck(lottoNumbers);
+    this.isNaturalNumber();
   }
 
   validate(number) {
@@ -24,6 +25,12 @@ class BonusNumber {
     const number = this.#number;
     if (lottoNumbers.includes(number))
       throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+  }
+
+  isNaturalNumber() {
+    const number = this.#number;
+    if (Math.round(number) !== number)
+      throw new Error("[ERROR] 보너스 번호는 자연수여야 합니다.");
   }
 }
 
