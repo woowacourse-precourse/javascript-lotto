@@ -2,6 +2,11 @@ const PRICE_PER_SHEET = 1000;
 
 const LOTTO_LENGTH = 6;
 
+const LOTTO_RANGE = {
+  start: 1,
+  end: 45,
+}
+
 const BONUS_LENGTH = 1;
 
 const PRIZE = {
@@ -44,3 +49,4 @@ exports.PRICE_PER_SHEET = PRICE_PER_SHEET;
 exports.LOTTO_LENGTH = LOTTO_LENGTH;
 exports.BONUS_LENGTH = BONUS_LENGTH;
 exports.PRIZE = PRIZE;
+exports.LOTTO_RANGE = LOTTO_RANGE;

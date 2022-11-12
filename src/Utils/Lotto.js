@@ -1,7 +1,7 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Validator = require('./Validator');
 const GamePrint = require('../GamePrint');
-const { LOTTO_LENGTH } = require('../constants');
+const { LOTTO_LENGTH, LOTTO_RANGE } = require('../constants');
 
 class Lotto {
   #numbers;
@@ -33,7 +33,7 @@ class Lotto {
 function getUserLottos(sheets) {
   const lottos = [];
   while(lottos.length < sheets) {
-    const lotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, LOTTO_LENGTH);
+    const lotto = MissionUtils.Random.pickUniqueNumbersInRange(LOTTO_RANGE.start, LOTTO_RANGE.end, LOTTO_LENGTH);
     lotto.sort((a,b) => a - b);
     lottos.push(lotto);
   }
