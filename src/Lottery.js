@@ -17,18 +17,20 @@ class Lottery {
       lottos.push(lotto.sort((a, b) => a - b));
     }
 
-    this.lottoList = lottos;
+    this.#lottoList = lottos;
 
     return this;
   }
 
   printLottoList() {
-    this.lottoList.forEach((lotto) => {
+    this.#lottoList.forEach((lotto) => {
       const lottoMessage = Lottery.getLottoPrintMessage(lotto);
       print(lottoMessage);
     });
 
     print('\n');
+
+    return this;
   }
 
   static getLottoPrintMessage(lotto = []) {
