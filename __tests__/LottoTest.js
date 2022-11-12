@@ -1,4 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+const { LottoConfig } = require('../src/Config');
 const Lotto = require('../src/Lotto');
 
 const mockRandoms = (numbers) => {
@@ -181,5 +182,31 @@ describe('로또 번호 맞추기 기능 검사', () => {
     const lotto = new Lotto(myNumbers);
     const { bonusMatchBool } = lotto.match(winningNumbers, bonusNumber);
     expect(bonusMatchBool).toEqual(true);
+  });
+});
+
+describe('당첨 등수 계산 기능 검사', () => {
+  test('1등', () => {
+    expect(Lotto.getPrizeStatus(6, false)).toEqual(LottoConfig.PRIZE_1);
+  });
+
+  test('2등', () => {
+    expect(Lotto.getPrizeStatus(5, true)).toEqual(LottoConfig.PRIZE_2);
+  });
+
+  test('3등', () => {
+    expect(Lotto.getPrizeStatus(5, false)).toEqual(LottoConfig.PRIZE_3);
+  });
+
+  test('4등', () => {
+    expect(Lotto.getPrizeStatus(4, true)).toEqual(LottoConfig.PRIZE_4);
+  });
+
+  test('5등', () => {
+    expect(Lotto.getPrizeStatus(3, false)).toEqual(LottoConfig.PRIZE_5);
+  });
+
+  test('꽝', () => {
+    expect(Lotto.getPrizeStatus(2, true)).toEqual(LottoConfig.NO_PRIZE);
   });
 });
