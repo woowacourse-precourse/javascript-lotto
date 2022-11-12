@@ -7,6 +7,7 @@ const Lotto = require("../src/Lotto");
 class App {
   #Buyer;
   #Lotto;
+  #bonus;
 
   play() {
     this.enterAmount();
@@ -30,11 +31,19 @@ class App {
     Console.readLine('\n당첨 번호를 입력해 주세요.\n', (numbers) => {
       const tempNumbers = this.splitCharacter(numbers);
       this.#Lotto = new Lotto(tempNumbers);
+
+      this.enterBonus();
     });
   }
 
   splitCharacter(numbers) {
     return numbers.split(',').map(Number);
+  }
+
+  enterBonus() {
+    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonus) => {
+      this.#bonus = bonus;
+    });
   }
 }
 
