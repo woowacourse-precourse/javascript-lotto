@@ -15,4 +15,4 @@ class ExceptionHandler {
   }
 }
 
-exports.module = ExceptionHandler;
+module.exports = ExceptionHandler;
