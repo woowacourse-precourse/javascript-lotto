@@ -6,7 +6,7 @@ class Profit {
   }
 
   calculateProfit() {
-    const profitRate = this.calculateTotalAmount(this.matchInfo) / parseInt(this.amount);
+    const profitRate = (this.calculateTotalAmount(this.matchInfo) / parseInt(this.amount)) * 100;
     return Math.round(profitRate * DECIMAL_PLACES) / DECIMAL_PLACES;
   }
 

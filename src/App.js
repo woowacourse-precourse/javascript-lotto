@@ -1,6 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 const BonusLotto = require('./BonusLotto');
-const { RANKING, INPUT_MESSAGE, PRINT_MESSAGE } = require('./constant');
+const { RANKING, INPUT_MESSAGE, PRINT_MESSAGE, LOTTO_INFO } = require('./constant');
 const Lotto = require('./Lotto');
 const Profit = require('./Profit');
 const PurChase = require('./Purchase');
@@ -28,20 +28,20 @@ class App {
 
   printLotto(lotteryTickets) {
     Console.print(PRINT_MESSAGE.PURCHASENUMBER(lotteryTickets.length));
-    lotteryTickets.forEach((lottery) => Console.print(lottery));
+    lotteryTickets.forEach((lottery) => Console.print(PRINT_MESSAGE.LOTTERY(lottery)));
     this.inputLottoNumber();
   }
 
   inputLottoNumber() {
-    Console.readLine(INPUT_MESSAGE.LOTTONUMBER, (lottoInput) => {
+    Console.readLine(INPUT_MESSAGE.LOTTONUMBERS, (lottoInput) => {
       new Lotto(lottoInput);
       this.inputBonusLottoNumber(lottoInput);
     });
   }
 
   inputBonusLottoNumber(lottoInput) {
-    Console.readLine(INPUT_MESSAGE.BONUSNUMBER, (bonusInput) => {
-      const fullNumber = [lottoInput.split(','), bonusInput];
+    Console.readLine(INPUT_MESSAGE.BONUSNUMBERS, (bonusInput) => {
+      const fullNumber = [lottoInput.split(LOTTO_INFO.SPLITUNIT), bonusInput];
       this.fullLottoNumber = new BonusLotto(fullNumber) ? fullNumber : '';
       this.printStats();
     });
@@ -77,4 +77,4 @@ class App {
 
 new App().play();
 
-// module.exports = App;
+module.exports = App;

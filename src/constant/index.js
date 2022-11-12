@@ -26,8 +26,8 @@ const BONUSLOTTO_ERROR = Object.freeze({
 });
 
 const AMOUNt_ERROR = Object.freeze({
-  AMOUNT: '[ERROR] 로또는 돈으로 구입 가능합니다',
-  UNIT: '[ERROR] 로또 구입은 1000원 단위로 가능합니다',
+  AMOUNT: '[ERROR] 로또는 돈으로 구입 가능합니다.',
+  UNIT: '[ERROR] 로또 구입은 1000원 단위로 가능합니다.',
 });
 
 const BONUS_NUMBER = 5;
@@ -46,7 +46,7 @@ const RANKING = Object.freeze({
     BONUS: false,
     JACKPOT: '50000',
     MESSAGE(MATCHNUMER) {
-      return `4개 일치 (50,000원) -  ${MATCHNUMER}개`;
+      return `4개 일치 (50,000원) - ${MATCHNUMER}개`;
     },
   },
   THREE: {
@@ -79,18 +79,21 @@ const DECIMAL_PLACES = 10;
 
 const INPUT_MESSAGE = Object.freeze({
   BUY: '구입금액을 입력해 주세요.\n',
-  LOTTONUMBER: '당첨 번호를 입력해 주세요.\n',
-  BONUSNUMBER: '보너스 번호를 입력해 주세요.\n',
+  LOTTONUMBERS: '당첨 번호를 입력해 주세요.\n',
+  BONUSNUMBERS: '보너스 번호를 입력해 주세요.\n',
 });
 
 const PRINT_MESSAGE = Object.freeze({
+  LOTTERY(LOTTONUMBERLIST) {
+    return `[${LOTTONUMBERLIST.join(`, `)}]`;
+  },
   WINNING: '당첨 통계',
   DIVIDE: '---',
   PROFIT(FIGURE) {
-    return `총 수익률은 ${FIGURE}% 입니다.`;
+    return `총 수익률은 ${FIGURE}%입니다.`;
   },
   PURCHASENUMBER(NUMBER) {
-    return `${NUMBER}개를 구매했습니다`;
+    return `${NUMBER}개를 구매했습니다.`;
   },
 });
 

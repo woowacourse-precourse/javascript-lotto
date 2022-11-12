@@ -15,10 +15,10 @@ class Statistics {
           : false;
       return [countNumber, bonusMatch];
     });
-    return this.matchWinInfo(matchList);
+    return this.matchInfo(matchList);
   }
 
-  matchWinInfo(matchList) {
+  matchInfo(matchList) {
     return matchList.reduce((matchAcc, [match, bonus]) => {
       matchAcc[match] = { bonus, count: (matchAcc[match] ? matchAcc[match]['count'] : 0) + 1 };
       return matchAcc;
