@@ -13,4 +13,4 @@ const sortedLottoNumbers = () => {
     return sortedNumbers;
 }
 
-module.exports = sortedLottoNumbers
+module.exports = sortedLottoNumbers;
