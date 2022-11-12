@@ -39,17 +39,17 @@ class Lotto {
   #numbers;
 
   constructor(numbers, lottoList, bonusNumber) {
-    this.validate(numbers);
     this.#numbers = numbers;
     this.lottoList = lottoList;
     this.bonusNumber = bonusNumber;
-    this.stats = [];
+    this.stats = [0, 0, 0, 0, 0];
+    this.yield = null;
   }
 
-  validate(numbers) {
-    lottoValidation(numbers);
+  progress(numbers) {
+    if (lottoValidation(numbers)) {
+    }
   }
-  // TODO: 추가 기능 구현
 }
 
 module.exports = { LottoBuilder, Lotto };

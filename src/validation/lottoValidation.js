@@ -1,6 +1,8 @@
 function lottoValidation(numbers) {
   checkSixNumber(numbers);
   checkUsefulNumber(numbers);
+
+  return true;
 }
 
 function checkSixNumber(numbers) {
