@@ -1,4 +1,4 @@
-const { LOTTO_INFO, LOTTO_MATCH } = require('./common/constants');
+const { LOTTO_INFO, LOTTO_MATCH, PRIZE_MONEY } = require('./common/constants');
 const { lottoCount } = require('./utils/calculator');
 const { Random } = require('./utils/missionUtil');
 const { INPUT_MESSAGES } = require('./common/messages');
@@ -72,6 +72,7 @@ class LottoGame {
       this.#addMatchLottos(lottoCount, hasBonusNumber);
     });
     LottoView.printMatchNumbers(this.user.getMatchLottos());
+    this.#calculateRate();
   }
 
   #addMatchLottos(lottoCount, hasBonusNumber) {
@@ -84,11 +85,11 @@ class LottoGame {
     if (lottoCount === LOTTO_MATCH.FIVE && !hasBonusNumber) {
       this.user.setMatchLottos('five');
     }
-    if (lottoCount === LOTTO_MATCH.SIX) {
-      this.user.setMatchLottos('six');
-    }
     if (lottoCount === LOTTO_MATCH.FIVE && hasBonusNumber) {
       this.user.setMatchLottos('bonus');
+    }
+    if (lottoCount === LOTTO_MATCH.SIX) {
+      this.user.setMatchLottos('six');
     }
   }
 
@@ -104,13 +105,19 @@ class LottoGame {
   }
 
   #hasBonusLottoNumber(bonusNumber, userLottoNumbers) {
-    if (userLottoNumbers.includes(Number(bonusNumber))) {
-      return true;
-    }
+    userLottoNumbers.includes(Number(bonusNumber));
   }
 
   #calculateRate() {
-    // 수익률 계산
+    const amountPaid = this.user.getMoney();
+    const matchLottos = this.user.getMatchLottos();
+    let totalRate = 0;
+    Object.entries(matchLottos).forEach(([matchingNumbers, count]) => {
+      if (count) {
+        totalRate += ((PRIZE_MONEY[matchingNumbers] * count) / amountPaid) * 100;
+      }
+    });
+    LottoView.printRate(totalRate);
   }
 }
 
