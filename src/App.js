@@ -31,6 +31,16 @@ class App {
     }
   }
 
+  calcEarningsRate() {
+    let total = 0;
+    for (const key in this.result) {
+      const { count, prize } = this.result[key];
+      total += (count * prize);
+    }
+    const earningsRate = (total / this.purchaseAmount) * 100;
+    return Math.round(earningsRate * 100) / 100;
+  }
+
   setWinnigNumbers(numbers) {
     const lotto = new Lotto(numbers);
     this.winningNumbers = lotto.getNumbers();
