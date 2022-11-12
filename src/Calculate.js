@@ -21,6 +21,12 @@ class Calculate {
     }, 0);
     return COUNT;
   }
+
+  check_bonus(bonus, lotto) {
+    let count = 0;
+    if (lotto.includes(bonus)) count++;
+    return count;
+  }
 }
 
 module.exports = Calculate;
