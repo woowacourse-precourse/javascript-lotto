@@ -42,7 +42,7 @@ class LottoGame {
   }
 
   inputMoney(input) {
-    this.money = new Payment(Number(input)).getMoney();
+    this.money = new Payment(input).getMoney();
     this.purchase(this.money / 1000);
   }
 
