@@ -21,4 +21,14 @@ describe('Validator 클래스 : 당첨 번호 테스트', () => {
       });
     }).toThrowError(`${ERROR_MESSAGES.INVALID_INPUT}`);
   });
+
+  test('🖐 사용자가 당첨 번호를 6개 미만 또는 초과 입력 시 에러가 발생한다.', () => {
+    const invalidInputs = ['1,2,3,4,5', '1', '1,2,3,4,5,6,7'];
+
+    expect(() => {
+      invalidInputs.forEach((input) => {
+        Validator.checkWinNumbers(input);
+      });
+    }).toThrowError(`${ERROR_MESSAGES.INVALID_LOTTO_COUNT}`);
+  });
 });
