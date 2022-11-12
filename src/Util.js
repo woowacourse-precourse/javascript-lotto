@@ -29,6 +29,10 @@ class Util {
   static getSortedArrayInAsc(arr) {
     return [...arr].sort((a, b) => a - b);
   }
+
+  static isBetween(numbers, start, end) {
+    return numbers.every((num) => start <= num && num <= end);
+  }
 }
 
 module.exports = Util;
