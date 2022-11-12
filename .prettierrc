@@ -3,7 +3,7 @@
   "useTabs": false,
   "tabWidth": 2,
   "singleQuote": true,
-  "printWidth": 80,
+  "printWidth": 100,
   "arrowParens": "always",
   "endOfLine": "lf"
 }
