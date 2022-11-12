@@ -1,4 +1,4 @@
-const { VARIABLE_LOTTO } = require('../utils/constants');
+const { VARIABLE_LOTTO, LOTTO_ERROR_MESSAGE } = require('../utils/constants');
 
 class LottoDrawFactory {
   constructor({ lotto, bonus }) {
@@ -10,18 +10,18 @@ class LottoDrawFactory {
 
   getNumber(type) {
     switch (type) {
-      case 'lotto':
+      case VARIABLE_LOTTO.lotto:
         return this.lotto.getNumber();
-      case 'bonus':
+      case VARIABLE_LOTTO.bonus:
         return this.bonus.getNumber();
       default:
-        throw new Error('type을 명시해야합나디.');
+        throw new Error(LOTTO_ERROR_MESSAGE.factoryTypeError);
     }
   }
 
   #validate() {
     if (this.#validateOverlap()) {
-      throw new Error('[ERROR] 보너스 번호와 로또 번호가 중복입니다!!');
+      throw new Error(LOTTO_ERROR_MESSAGE.overlap);
     }
 
     return this;
