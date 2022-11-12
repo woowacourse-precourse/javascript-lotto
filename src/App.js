@@ -75,9 +75,11 @@ class App {
       if (this.checkBonusNumber(bonusNumber)) {
         this.bonusNumber = bonusNumber;
       }
+      this.outputStatus();
     });
   }
 
+  // 보너스 번호가 유효한 번호인지 검증하는 기능
   checkBonusNumber(number) {
     number = Number(number);
     if (number > 45 || number < 1 || isNaN(number)) {
@@ -91,6 +93,35 @@ class App {
     }
 
     return true;
+  }
+
+  // 로또 번호를 확인하여 당첨 내역을 출력하는 기능
+  outputStatus() {
+    let result = [];
+
+    for (let lotto of this.allLottos) {
+      result.push(
+        this.checkLottoWin(lotto, this.myLottoNumber, this.bonusNumber)
+      );
+    }
+  }
+
+  // 로또 한 판의 당첨 여부를 확인하는 기능
+  checkLottoWin(lotto, myLottoNumber, bonusNumber) {
+    let counter = 0;
+
+    for (let number of myLottoNumber) {
+      if (lotto.includes(number)) {
+        counter++;
+      }
+    }
+
+    if (counter === 3) return [5, 5_000];
+    if (counter === 4) return [4, 50_000];
+    if (counter === 5 && !lotto.includes(bonusNumber)) return [3, 1_500_000];
+    if (counter === 5 && lotto.includes(bonusNumber)) return [2, 30_000_000];
+    if (counter === 6) return [1, 2_000_000_000];
+    return [6, 0];
   }
 }
 
