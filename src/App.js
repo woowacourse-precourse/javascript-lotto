@@ -42,6 +42,16 @@ class App {
         });
       MissionUtils.Console.print(str);
     }
+    this.inputLottoNumber(bundle);
+  }
+  inputLottoNumber(bundle) {
+    let numbers = [];
+    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (answer) => {
+      let answerArray = answer.split(",");
+      if (new Lotto(answerArray)) {
+        answerArray.forEach((x) => numbers.push(+x));
+      }
+    });
   }
 }
 const app = new App();
