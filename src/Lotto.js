@@ -1,3 +1,11 @@
+const Util = require("./Util");
+const {
+  LOTTO_LENGTH,
+  LOTTO_START,
+  LOTTO_END,
+  ERROR_MESSAGE,
+} = require("./domain/constant");
+
 class Lotto {
   #numbers;
 
@@ -7,8 +15,14 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    if (!Util.isBetween(numbers, LOTTO_START, LOTTO_END)) {
+      throw new Error(ERROR_MESSAGE.OUT_OF_RANGE_LOTTO);
+    }
+    if (Util.hasDuplicateElements(numbers)) {
+      throw new Error(ERROR_MESSAGE.HAS_DUPLICATE_NUMBERS);
+    }
+    if (!Util.hasNElements(numbers, LOTTO_LENGTH)) {
+      throw new Error(ERROR_MESSAGE.INVALID_LENGTH_LOTTO);
     }
   }
 

@@ -1,5 +1,7 @@
 const PRICE_PER_LOTTO = 1000;
 const LOTTO_LENGTH = 6;
+const LOTTO_START = 1;
+const LOTTO_END = 45;
 const MESSAGE = {
   START_GAME: "로또 게임을 시작합니다.",
   FINISH_GAME: "로또 게임을 종료합니다.",
@@ -23,6 +25,16 @@ const ERROR_MESSAGE = {
   NON_POSITIVE_INPUT: "[ERROR] 구입금액은 0보다 커야 합니다.",
   ZERO_START_INPUT: "[ERROR] 구입금액은 0으로 시작할 수 없습니다.",
   NON_DIVISIBLE_INPUT: "[ERROR] 구입금액은 1,000원 단위로 입력해야 합니다.",
+  INVALID_LENGTH_LOTTO: "[ERROR] 로또 번호는 6개여야 합니다.",
+  OUT_OF_RANGE_LOTTO: "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.",
+  HAS_DUPLICATE_NUMBERS: "[ERROR] 로또 번호 6개는 서로 달라야 합니다.",
 };
 
-module.exports = { PRICE_PER_LOTTO, LOTTO_LENGTH, MESSAGE, ERROR_MESSAGE };
+module.exports = {
+  PRICE_PER_LOTTO,
+  LOTTO_LENGTH,
+  LOTTO_START,
+  LOTTO_END,
+  MESSAGE,
+  ERROR_MESSAGE,
+};
