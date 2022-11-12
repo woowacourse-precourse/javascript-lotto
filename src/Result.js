@@ -1,9 +1,8 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { Console, Random } = MissionUtils;
+const { Console } = MissionUtils;
 const {
   MESSAGE_INPUT_WINNING_NUMBERS,
   MESSAGE_INPUT_BONUS_NUMBER,
-  MESSAGE_OUTPUT_WINNING_STATISTICS,
   FIRST_PRIZE,
   SECOND_BONUS_PRIZE,
   SECOND_PRIZE,
@@ -18,14 +17,14 @@ class Result {
     this.bonusNumber = null;
     this.lotto = null;
     this.resultStatics = [0, 0, 0, 0, 0];
-    this.prices = [
+    this.prizes = [
       FOURTH_PRIZE,
       THIRD_PRIZE,
       SECOND_PRIZE,
       FIRST_PRIZE,
       SECOND_BONUS_PRIZE,
     ];
-    this.totalPrice = 0;
+    this.userProfit = 0;
   }
 
   setWinningNumbers(userLottoesNumbers) {
@@ -51,7 +50,7 @@ class Result {
       let compareResult = this.numberComparison(userLottoNumbers);
       this.setWinLottoes(compareResult);
     });
-    this.showResult();
+    this.showResult(userLottoes.length);
   }
 
   numberComparison(userLottoNumbers) {
@@ -76,24 +75,49 @@ class Result {
     return (this.resultStatics[winCount - 3] += 1);
   }
 
-  showResult() {
+  showResult(userLottoCount){
+    this.yieldCalculation(userLottoCount);
+    this.matchingResult();
+    this.profitResult();
+    Console.close();
+  }
+
+
+  yieldCalculation(userLottoCount){
+    let totalAmount = this.profitCalculation();
+    let spending = userLottoCount * 1000;
+    let profit = totalAmount;
+    let result = profit/spending;
+    this.userProfit = Math.round(result * 1000) / 10;
+  }
+
+  matchingResult() {
     this.resultStatics.map((number, index) => {
       if (index === 4) return;
       if (index === 3) {
-        Console.print(
-          `${index + 2}개 일치, 보너스볼 일치 (${
-            this.prices[index + 1]
-          })원 - ${number}개`
-        );
-        Console.print(this.resultTemplate(index, number));
+        Console.print(this.resultTemplate(true, index + 1, number))
+        Console.print(this.resultTemplate(false, index, number));
         return;
       }
-      Console.print(this.resultTemplate(index, number));
+      Console.print(this.resultTemplate(false, index, number));
     });
   }
 
-  resultTemplate(index, number) {
-    return `${index + 3}개 일치 (${this.prices[index]})원 - ${number}개`;
+  resultTemplate(bonus, index, number) {
+    const PRIZE = this.prizes[index].toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    const NOT_BONUS = `${index + 3}개 일치 (${PRIZE})원 - ${number}개`;
+    const BONUS = `${index + 2}개 일치, 보너스볼 일치 (${PRIZE})원 - ${number}개`;
+    return bonus? BONUS : NOT_BONUS;
+  }
+
+  profitResult(){
+    Console.print(`총 수익률은 ${this.userProfit}%입니다.`);
+  }
+
+  profitCalculation(){
+    return this.resultStatics.reduce((amount, prize,index) => {
+      return amount += prize * this.prizes[index];
+    }, 0);
   }
 }
 
