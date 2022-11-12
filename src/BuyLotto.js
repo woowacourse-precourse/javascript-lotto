@@ -27,7 +27,7 @@ class BuyLotto {
 
   #printLottoList() {
     for (const lotto of this.lottoArray) {
-      Console.print(lotto);
+      Console.print(`[${lotto.join(', ')}]`);
     }
     Console.print("");
   }
@@ -37,4 +37,4 @@ class BuyLotto {
   }
 }
 
-module.exports = BuyLotto
+module.exports = BuyLotto;
