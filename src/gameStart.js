@@ -6,22 +6,20 @@ const {
   RANGE,
 } = require("./constant/inputMessage");
 const Lotto = require("./Lotto");
-const { validateInputNumber } = require("./validateNumber");
+const { winNumbers } = require("./utils/winAndBonus");
+const { validatePurchaseCost } = require("./validateNumber");
 
 class UserLottos {
   #userPrice;
   #userLottos;
 
-  constructor(userInput) {
-    this.#userPrice = userInput;
-  }
-
   purchasedCostInput() {
     Console.readLine(GAME_START_MESSAGE, (userInput) => {
       this.#userPrice = userInput;
 
-      if (validateInputNumber(this.#userPrice)) {
+      if (validatePurchaseCost(this.#userPrice)) {
         this.makeLottos();
+        winNumbers.inputWinNumbers(this.#userLottos);
       }
     });
   }
@@ -49,6 +47,10 @@ class UserLottos {
     }
 
     return this.#userLottos.push(numbers);
+  }
+
+  getLottos() {
+    return this.#userLottos;
   }
 }
 
