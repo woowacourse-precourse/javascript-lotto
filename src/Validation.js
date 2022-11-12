@@ -1,48 +1,42 @@
-const { PICK_TYPE, PICK_LENGTH } = require('./Constants/PICK');
 const { ERROR_MESSAGE } = require('./Constants/MESSAGE');
 
 function checkAppropriateUnit(money) {
   if (money % 1000 !== 0) throw new Error(`${ERROR_MESSAGE.appropriateUnit}`);
 }
 
-function checkSplitSymbol(numbers) {
-  if (Number.isNaN(numbers)) throw new Error(`${ERROR_MESSAGE.splitSymbol}`);
+function checkSplitSymbol(mainNumber) {
+  if (Number.isNaN(mainNumber)) throw new Error(`${ERROR_MESSAGE.splitSymbol}`);
 }
 
-function checkNumberOfDigit(numbers, type) {
-  if (type === PICK_TYPE.main) {
-    if (numbers.length !== PICK_LENGTH.main) throw new Error(`${ERROR_MESSAGE.mainNumberOfDigit}`);
-  }
-  if (type === PICK_TYPE.bonus) {
-    if (numbers.length !== PICK_LENGTH.bonus) throw new Error(`${ERROR_MESSAGE.bonusNumberOfDigit}`);
-  }
-}
-
-function checkMainNumberInRange(numbers) {
-  numbers.forEach((number) => {
-    if (number < 1 || number > 45) throw new Error(`${ERROR_MESSAGE.numberInRange}`);
+function checkNumber(mainNumber, bonusNumber) {
+  const RegExp = /^[1-9]{1}$/;
+  mainNumber.forEach((number) => {
+    if (!RegExp.test(number)) throw new Error(`${ERROR_MESSAGE.mainNumber}`);
   });
+  if (!RegExp.test(bonusNumber)) throw new Error(`${ERROR_MESSAGE.bonusNumber}`);
 }
 
-function checkBonusNumberInRange(number) {
-  if (number < 1 || number > 45) throw new Error(`${ERROR_MESSAGE.numberInRange}`);
+function checkRange(mainNumber, bonusNumber) {
+  mainNumber.forEach((number) => {
+    if (number < 0 || number > 45) throw new Error(`${ERROR_MESSAGE.numberRange}`);
+  });
+  if (bonusNumber < 0 || bonusNumber > 45) throw new Error(`${ERROR_MESSAGE.numberRange}`);
 }
 
-function checkMainNumberOverlap(numbers) {
-  const numberSet = new Set(numbers);
-  if (numberSet.size !== numbers.length) throw new Error(`${ERROR_MESSAGE.mainNumberOverlap}`);
+function checkMainNumberOverlap(mainNumber) {
+  const numberSet = new Set(mainNumber);
+  if (numberSet.size !== mainNumber.length) throw new Error(`${ERROR_MESSAGE.mainNumberOverlap}`);
 }
 
-function checkBonusNumberOverlap(numbers, bonusNumber) {
-  if (numbers.includes(bonusNumber)) throw new Error(`${ERROR_MESSAGE.bonusNumberOverlap}`);
+function checkBonusNumberOverlap(mainNumber, bonusNumber) {
+  if (mainNumber.includes(bonusNumber)) throw new Error(`${ERROR_MESSAGE.bonusNumberOverlap}`);
 }
 
 module.exports = {
   checkAppropriateUnit,
   checkSplitSymbol,
-  checkNumberOfDigit,
-  checkMainNumberInRange,
-  checkBonusNumberInRange,
+  checkNumber,
+  checkRange,
   checkMainNumberOverlap,
   checkBonusNumberOverlap,
 };
