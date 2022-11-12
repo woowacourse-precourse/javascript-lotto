@@ -9,19 +9,50 @@ const randomLotto = function getRandomLottoNumber() {
   );
 };
 
+const typeTest = function lottoNumberTypeTest(numbers) {
+  const success = numbers.reduce(
+    (prevBool, number) => prevBool && (typeof number === 'number'),
+    true,
+  );
+  if (!success) {
+    throw new TypeError(Message.ERROR_NUMBER_TYPE);
+  }
+};
+
+const rangeTest = function lottoNumberRangeTest(numbers) {
+  const success = numbers.reduce(
+    (prevBool, number) => (
+      prevBool
+      && LottoConfig.MIN_NUMBER <= number
+      && number <= LottoConfig.MAX_NUMBER
+    ),
+    true,
+  );
+  if (!success) {
+    throw new RangeError(Message.ERROR_LOTTO_RANGE);
+  }
+};
+
+const duplicateTest = function duplicateLottoNumberTest(numbers) {
+  const set = new Set(numbers);
+  if (set.size !== 6) {
+    throw new Error(Message.ERROR_LOTTO_NUMBERS);
+  }
+};
+
 class Lotto {
   #numbers;
 
   constructor(numbers = randomLotto()) {
-    this.validate(numbers);
+    Lotto.validateNumbers(numbers);
     numbers.sort((a, b) => a - b);
     this.#numbers = numbers;
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
-    }
+  static validateNumbers(numbers) {
+    typeTest(numbers);
+    duplicateTest(numbers);
+    rangeTest(numbers);
   }
 
   toString(separator = ' ') {
