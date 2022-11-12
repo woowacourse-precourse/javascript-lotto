@@ -1,4 +1,5 @@
 const PRICE_PER_LOTTO = 1000;
+const LOTTO_LENGTH = 6;
 const MESSAGE = {
   START_GAME: "로또 게임을 시작합니다.",
   FINISH_GAME: "로또 게임을 종료합니다.",
@@ -24,4 +25,4 @@ const ERROR_MESSAGE = {
   NON_DIVISIBLE_INPUT: "[ERROR] 구입금액은 1,000원 단위로 입력해야 합니다.",
 };
 
-module.exports = { PRICE_PER_LOTTO, MESSAGE, ERROR_MESSAGE };
+module.exports = { PRICE_PER_LOTTO, LOTTO_LENGTH, MESSAGE, ERROR_MESSAGE };

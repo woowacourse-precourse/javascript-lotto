@@ -1,10 +1,12 @@
-const { Console } = require("@woowacourse/mission-utils");
+const { Console, Random } = require("@woowacourse/mission-utils");
 const {
   PRICE_PER_LOTTO,
+  LOTTO_LENGTH,
   MESSAGE,
   ERROR_MESSAGE,
 } = require("./domain/constant");
 const Util = require("./Util");
+const Lotto = require("./Lotto");
 
 class App {
   play() {
@@ -38,6 +40,17 @@ class App {
     const lottoQuantity = purchaseAmount / PRICE_PER_LOTTO;
     Console.print(MESSAGE.PURCHASE_QUANTITY(lottoQuantity));
     return;
+  }
+
+  getLottoNumbers() {
+    const lottoNumbers = [];
+    while (!Util.hasNElements(lottoNumbers, LOTTO_LENGTH)) {
+      const number = Random.pickNumberInRange(1, 45);
+      if (!lottoNumbers.includes(number)) {
+        lottoNumbers.push(number);
+      }
+    }
+    return lottoNumbers;
   }
 }
 
