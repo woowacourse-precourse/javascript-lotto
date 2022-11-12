@@ -111,13 +111,6 @@ class App {
 
   printResult() {
     const { first, second, third, fourth, fifth } = this.result;
-    const rateOfReturn = this.getRateOfReturn();
-    const result = getResultMessage(first, second, third, fourth, fifth, rateOfReturn);
-    Console.print(result);
-  }
-
-  getRateOfReturn() {
-    const { first, second, third, fourth, fifth } = this.result;
     const totalWinnings = (
       (first * winnings.FIRST)
       + (second * winnings.SECOND)
@@ -126,7 +119,8 @@ class App {
       + (fifth * winnings.FIFTH)
     );
     const rateOfReturn = (totalWinnings / this.myMoney * 100).toFixed(1);
-    return rateOfReturn;
+    const result = getResultMessage(first, second, third, fourth, fifth, rateOfReturn);
+    Console.print(result);
   }
 }
 
