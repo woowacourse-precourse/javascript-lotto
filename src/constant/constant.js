@@ -6,4 +6,8 @@ const MESSAGE = {
   PRIZE_RESULT: "당첨 통계",
 };
 
-module.exports = { MESSAGE };
+const CONDITION = {
+  MIN_PRICE: 1000,
+};
+
+module.exports = { MESSAGE, CONDITION };
