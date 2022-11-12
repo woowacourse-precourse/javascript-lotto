@@ -10,6 +10,10 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
+    if (typeof numbers === "string") {
+      this.validateWinningNumbers(numbers);
+      numbers = this.winningNumbersToArray(numbers);
+    }
     this.validate(numbers);
     this.#numbers = numbers;
   }

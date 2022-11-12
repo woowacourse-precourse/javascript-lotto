@@ -64,10 +64,18 @@ class App {
   printLottos(lottos) {
     Console.print(MESSAGE.PURCHASE_QUANTITY(lottos.length));
     lottos.forEach((lotto) => Console.print(lotto.getLottoNumbers()));
+    return this.readWinningNumbers(lottos);
+  }
+
+  readWinningNumbers(lottos) {
+    Console.readLine(MESSAGE.ENTER_WINNING_NUMBERS, (winningNumbers) =>
+      this.readBonusNumber(new Lotto(winningNumbers))
+    );
+  }
+
+  readBonusNumber(winningLotto) {
+    return;
   }
 }
-
-const app = new App();
-app.play();
 
 module.exports = App;
