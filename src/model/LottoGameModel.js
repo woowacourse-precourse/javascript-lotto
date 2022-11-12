@@ -1,12 +1,12 @@
-const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('../Lotto');
-const { print, pickUniqueNumbersInRange } = require('../utils/Utils');
+const { pickUniqueNumbersInRange } = require('../utils/Utils');
 
 class LottoGameModel {
-  constructor() {
+  constructor(view) {
     this.money;
     this.lottoCount;
     this.lottos = [];
+    this.lottoGameView = view;
   }
 
   buyLotto(money) {
@@ -19,7 +19,7 @@ class LottoGameModel {
   payMoney() {
     this.lottoCount = this.money / 1000;
 
-    print(`${this.lottoCount}개를 구매했습니다.`);
+    this.lottoGameView.printLottoCount(this.lottoCount);
   }
 
   generateLottos() {
