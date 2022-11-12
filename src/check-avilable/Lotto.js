@@ -21,28 +21,28 @@ class Lotto {
 
   checkLength(numbers) {
     if (numbers.length !== 6) {
-      throw new Error(`${ERROR.ERROR_MESSAGE}${ERROR.INVALID_LOTTO_LENGTH}`);
+      throw new Error(`${ERROR.INVALID_LOTTO_LENGTH}`);
     };
   };
 
   checkRange(numbers) {
     const eachNumber = numbers.filter((number) => number < 1 || number > 45);
     if (eachNumber.length > 0) {
-      throw new Error(`${ERROR.ERROR_MESSAGE}${ERROR.INVALID_LOTTO_RANGE}`);
+      throw new Error(`${ERROR.INVALID_LOTTO_RANGE}`);
     };
   };
 
   checkSameNumber(numbers) {
     const deleteRepeatedNumber = new Set(numbers);
     if (deleteRepeatedNumber.size !== 6) {
-      throw new Error(`${ERROR.ERROR_MESSAGE}${ERROR.INVALID_LOTTO_RANGE}`);
+      throw new Error(`${ERROR.INVALID_LOTTO_RANGE}`);
     };
   };
 
   checkWords(numbers) {
     const eachElement = numbers.filter((number) => { toString(number).match(/[^0-9,]/g) });
     if (eachElement.length > 0) {
-      throw new Error(`${ERROR.ERROR_MESSAGE}${ERROR.INVALID_LOTTO_WORDS}`);
+      throw new Error(`${ERROR.INVALID_LOTTO_WORDS}`);
     };
   };
 };

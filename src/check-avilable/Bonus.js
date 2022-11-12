@@ -17,19 +17,19 @@ class Bonus {
 
   checkRange(bonus) {
     if (bonus < 1 || bonus > 45) {
-      throw new Error(`${ERROR.ERROR_MESSAGE}${ERROR.INVALID_BONUS_RANGE}`);
+      throw new Error(`${ERROR.INVALID_BONUS_RANGE}`);
     };
   };
 
   checkSameNumber(bonus, answerNumberList) {
     if (answerNumberList.includes(bonus)) {
-      throw new Error(`${ERROR.ERROR_MESSAGE}${ERROR.INVALID_BONUS_SAME_ANSWER}`);
+      throw new Error(`${ERROR.INVALID_BONUS_SAME_ANSWER}`);
     };
   };
 
   checkWords(bonus) {
     if (bonus.match(/[^0-9]/g) !== null) {
-      throw new Error(`${ERROR.ERROR_MESSAGE}${ERROR.INVALID_BONUS_WORDS}`);
+      throw new Error(`${ERROR.INVALID_BONUS_WORDS}`);
     };
   };
 };
