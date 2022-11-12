@@ -9,6 +9,12 @@ class WinnerNumber {
     return this.number.replace(/\s/g, "").split(",");
   }
 
+  validateRange() {
+    this.validateFromOneToFourtyFiveNumber();
+    this.validateSixNumberByComma();
+    this.validateNumberWithoutDuplicate();
+  }
+
   validateFromOneToFourtyFiveNumber() {
     this.numberWithoutSpace.map((number) => {
       if (number < 1 || number > 45 || !new RegExp("^[0-9]+$").test(number)) {
@@ -27,12 +33,6 @@ class WinnerNumber {
     if (new Set(this.numberWithoutSpace).size !== 6) {
       throw new Error("[ERROR] 중복없이 숫자를 입력해주세요.");
     }
-  }
-
-  validateRange() {
-    this.validateSixNumberByComma();
-    this.validateNumberWithoutDuplicate();
-    this.validateFromOneToFourtyFiveNumber();
   }
 }
 

@@ -7,7 +7,7 @@ const ProfitRate = require("./ProfitRate.");
 class App {
   constructor() {
     this.totalLottoNumber = [];
-    this.payMoney = 0;
+    this.payMoney;
     this.winnerNumber;
     this.bonusNumber;
   }
