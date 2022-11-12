@@ -1,6 +1,18 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 
+const LOTTO_PRICE = {
+  purchase: 1000,
+  0: 0,
+  1: 0,
+  2: 0,
+  3: 5000,
+  4: 50000,
+  5: 1500000,
+  6: 2000000000,
+  bonuse: 30000000,
+};
+
 class LottoGame {
   constructor() {
     this.money = 0;
@@ -8,7 +20,19 @@ class LottoGame {
     this.winningNumber = {
       main: [],
       bonuse: [],
-    },
+    };
+    this.result = {
+      0: 0,
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 0,
+      6: 0,
+      bonuse: 0,
+      yield: 0,
+      earn: 0,
+    };
   }
 
   run() {
@@ -51,7 +75,33 @@ class LottoGame {
   drawBonuseNumber() {
     Console.readLine('\n보너스 번호를 입력해 주세요.\n', (input) => {
       this.winningNumber.bonuse = input;
+      this.calculateResult();
     });
+  }
+
+  calculateResult() {
+    this.calculateMatching();
+    // this.calculateYield();
+  }
+
+  calcaulateMatching() {
+    this.purchaseList.forEach((lottoNumbers) => {
+      const matchingCount = this.countMatching(lottoNumbers);
+      this.result[matchingCount] += 1;
+      this.result.earn += LOTTO_PRICE[matchingCount];
+    });
+  }
+
+  countMatching(lottoNumbers) {
+    let count = 0;
+    this.winningNumber.main.forEach((number) => {
+      count += lottoNumbers.includes(Number(number)) ? 1 : 0;
+    });
+    return count === 5 ? this.checkBonuse(lottoNumbers) : count;
+  }
+
+  checkBonuse(lottoNumbers) {
+    return lottoNumbers.includes(this.winningNumber.bonuse) ? 'bonuse' : 5;
   }
 }
 

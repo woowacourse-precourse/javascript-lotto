@@ -11,7 +11,7 @@
 - [x] 당첨번호 문구 출력 및 입력 `drawWinningNumbers`
 - [x] 보너스번호 문구 출력 및 입력 `drawBonuseNumber`
 - [ ] 당첨통계 출력
-  - [ ] 당첨번호와 뽑은 로또를 비교해 당첨 데이터를 구한다. `calculateResult`
+  - [x] 당첨번호와 뽑은 로또를 비교해 당첨 데이터를 구한다. `calculateResult`
   - [ ] 구입금액과 당첨금액을 활용해 수익률을 구한다. `calculateYield`
   - [ ] 당첨 데이터를 바탕으로 당첨 통계를 출력한다. `printResult`
 
