@@ -21,8 +21,10 @@ class Validation {
     }
   }
   static hasOnlyNumber(input) {
+    const isNumber = (number) => !isNaN(number);
+
     if (input.length) {
-      return input.map((eachLetter) => parseInt(eachLetter, 10)).every((number) => !isNaN(number));
+      return input.map((eachLetter) => parseInt(eachLetter, 10)).every(isNumber);
     }
 
     return false;
