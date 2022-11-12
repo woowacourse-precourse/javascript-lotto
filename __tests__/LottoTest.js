@@ -23,6 +23,13 @@ describe('로또 클래스 테스트', () => {
     }).toThrow('[ERROR]');
   });
 
+  test('보너스 번호가 숫자가 아니라면 예외가 발생한다.', () => {
+    expect(() => {
+      const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+      lotto.bonusExecption('로또');
+    }).toThrow('[ERROR]');
+  });
+
   test('몇개 맞췄는지 테스트 => winningCount = 6 ', () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     lotto.compare({ 0: [1, 2, 3, 4, 5, 6] });
