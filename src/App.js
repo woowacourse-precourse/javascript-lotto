@@ -4,6 +4,7 @@ class App {
   lottoCount=0;
   userLottoNumbers=[];
   winningNumbers=[];
+  bonusNumber;
 
   constructor(){
 
@@ -59,7 +60,7 @@ class App {
 
   BonusNumberInput(){
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (answer) => {
-      this.winningNumbers.push(answer);
+      this.bonusNumber=Number(answer);
       this.winningCount()
     })
   }
@@ -71,6 +72,7 @@ class App {
   }
 
   
+
 }
 const app = new App();
 app.play();
