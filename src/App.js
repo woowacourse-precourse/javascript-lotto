@@ -25,14 +25,46 @@ class App {
       "\n당첨 번호를 입력해 주세요. \n",
       (winningNum) => {
         const winningLotto = winningNum.split(",");
+        const winningNumber = winningLotto.map((el) => {
+          if (typeof el === "string") return Number(el);
+        });
         MissionUtils.Console.readLine(
           "\n보너스 번호를 입력해 주세요. \n",
           (bonusNum) => {
-            this.statistics(winningLotto, bonusNum);
+            const NumBonusLotto = Number(bonusNum);
+            this.compareLotto(userLottos, winningNumber, NumBonusLotto);
           }
         );
       }
     );
+  }
+  compareLotto(userLottos, winningNum, bonusNum) {
+    let winObj = {
+      three: 0,
+      four: 0,
+      five: 0,
+      five_bonus: 0,
+      six: 0,
+    };
+    for (let i = 0; i < userLottos.length; i++) {
+      let count = 0;
+      let bonusCount = 0;
+      for (let j = 0; j < userLottos[i].length; j++) {
+        if (userLottos[i].includes(winningNum[j])) count++;
+        if (userLottos[i].includes(bonusNum)) bonusCount++;
+      }
+      if (count === 3) winObj.three++;
+      else if (count === 4) winObj.four++;
+      else if (count === 5) {
+        if (bonusCount > 0) winObj.five_bonus++;
+        else winObj.five++;
+      } else if (count === 6) winObj.six++;
+    }
+    this.giveStatistics(winObj);
+  }
+
+  giveStatistics(winObj) {
+    console.log(winObj);
   }
   play() {
     this.makeUserLottoNumber();
