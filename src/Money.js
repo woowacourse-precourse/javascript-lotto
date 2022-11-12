@@ -1,4 +1,5 @@
 const { ERROR } = require("./constants/messges");
+const { MONEY } = require("./constants/values");
 
 class Money {
   #money;
@@ -20,8 +21,7 @@ class Money {
   }
 
   checkUnit(money) {
-    const UNIT = 1000;
-    if (parseInt(money, 10) % UNIT !== 0) {
+    if (parseInt(money, 10) % MONEY.UNIT !== 0) {
       throw new Error(ERROR.MONEY_UNIT);
     }
   }

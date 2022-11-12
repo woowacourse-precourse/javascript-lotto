@@ -6,6 +6,7 @@ const Bonus = require("./Bonus");
 const Count = require("./Count");
 const Result = require("./Result");
 const { INPUT, OUTPUT } = require("./constants/messges");
+const { LOTTO, MONEY } = require("./constants/values");
 
 class App {
   constructor() {
@@ -25,21 +26,17 @@ class App {
   }
 
   printQuantity(money) {
-    const UNIT = 1000;
-    this.quantity = parseInt(money, 10) / UNIT;
+    this.quantity = parseInt(money, 10) / MONEY.UNIT;
     Console.print(`${OUTPUT.LINE}${this.quantity}${OUTPUT.BUY}`);
     this.publishLotto(this.quantity);
   }
 
   publishLotto(quantity) {
     for (let turn = 0; turn < quantity; turn++) {
-      const MINIMUN_NUMBER = 1;
-      const MAXIMUN_NUMBER = 45;
-      const NUMBER_LENGTH = 6;
       const publishPiece = Random.pickUniqueNumbersInRange(
-        MINIMUN_NUMBER,
-        MAXIMUN_NUMBER,
-        NUMBER_LENGTH
+        LOTTO.MINIMUM,
+        LOTTO.MAXIMUM,
+        LOTTO.LENGTH
       );
       this.publishList.push(publishPiece);
       Console.print(JSON.stringify(publishPiece).replace(/,/g, ", "));

@@ -1,4 +1,5 @@
 const { ERROR } = require("./constants/messges");
+const { LOTTO } = require("./constants/values");
 
 class Lotto {
   #numbers;
@@ -26,25 +27,21 @@ class Lotto {
   }
 
   checkLength(numbers) {
-    const LOTTO_LENGTH = 6;
-    if (numbers.length !== LOTTO_LENGTH) {
+    if (numbers.length !== LOTTO.LENGTH) {
       throw new Error(ERROR.LOTTO_LENGTH);
     }
   }
 
   checkRange(numbers) {
-    const MINIMUN_NUMBER = 1;
-    const MAXIMUN_NUMBER = 45;
-
     numbers.forEach((number) => {
-      if (number < MINIMUN_NUMBER || number > MAXIMUN_NUMBER) {
+      if (number < LOTTO.MINIMUM || number > LOTTO.MAXIMUM) {
         throw new Error(ERROR.LOTTO_RANGE);
       }
     });
   }
 
   checkDuplicate(numbers) {
-    if ([...new Set(numbers)].length < 6) {
+    if ([...new Set(numbers)].length < LOTTO.LENGTH) {
       throw new Error(ERROR.LOTTO_DUPLICATE);
     }
   }

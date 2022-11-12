@@ -1,4 +1,4 @@
-const { Console } = require("@woowacourse/mission-utils");
+const { REWARD_LIST, MATCH_LIST } = require("./constants/values");
 
 class Calculate {
   #publish;
@@ -10,14 +10,8 @@ class Calculate {
     this.#winning = winning;
     this.#bonus = bonus;
     this.quantityList = [0, 0, 0, 0, 0];
-    this.numberList = [
-      "3개 일치",
-      "4개 일치",
-      "5개 일치",
-      "5개 일치, 보너스 볼 일치",
-      "6개 일치",
-    ];
-    this.rewardList = [5000, 50000, 1500000, 30000000, 2000000000];
+    this.numberList = MATCH_LIST;
+    this.rewardList = REWARD_LIST;
     this.totalReward = 0;
     this.compare();
   }

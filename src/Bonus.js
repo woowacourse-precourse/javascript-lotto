@@ -1,4 +1,5 @@
 const { ERROR } = require("./constants/messges");
+const { LOTTO } = require("./constants/values");
 
 class Bonus {
   #number;
@@ -21,10 +22,7 @@ class Bonus {
   }
 
   checkRange(number) {
-    const MINIMUN_NUMBER = 1;
-    const MAXIMUN_NUMBER = 45;
-
-    if (number < MINIMUN_NUMBER || number > MAXIMUN_NUMBER) {
+    if (number < LOTTO.MINIMUM || number > LOTTO.MAXIMUM) {
       throw new Error(ERROR.BONUS_RANGE);
     }
   }
