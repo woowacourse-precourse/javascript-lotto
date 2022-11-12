@@ -27,6 +27,16 @@ describe('✅ Validator 클래스 : 구입 금액 테스트', () => {
       });
     }).toThrowError(`${ERROR_MESSAGES.INVALID_PURCHASE}`);
   });
+
+  test('🖐 사용자 숫자가 아닌 값을 입력하면 에러가 발생한다.', () => {
+    const invalidMoney = ['1e3', 'abc', '우테코 조아요'];
+
+    expect(() => {
+      invalidMoney.forEach((money) => {
+        Validator.checkValidMoney(money);
+      });
+    }).toThrowError(`${ERROR_MESSAGES.INVALID_NOT_MONEY}`);
+  });
 });
 
 describe('✅ Validator 클래스 : 당첨 번호 테스트', () => {
