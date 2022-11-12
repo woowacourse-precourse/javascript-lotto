@@ -42,13 +42,13 @@ const ERROR_LOTTO_NUMBER = {
 
 const GET_INPUT = {
   MONEY: "구입금액을 입력해 주세요.\n",
-  WINNING_NUMBER: "당첨 번호를 입력해 주세요.\n",
-  BONUS_NUMBER: "보너스 번호를 입력해 주세요.\n",
+  WINNING_NUMBER: "\n당첨 번호를 입력해 주세요.\n",
+  BONUS_NUMBER: "\n보너스 번호를 입력해 주세요.\n",
 };
 
 const RESULT = {
   BORDER_LINE: "---",
-  RESULT_STATISTICS_MESSAGE: "당첨 통계",
+  RESULT_STATISTICS_MESSAGE: "\n당첨 통계",
   RESULT_STATISTICS_5TH: "3개 일치 (5,000원)",
   RESULT_STATISTICS_4TH: "4개 일치 (50,000원)",
   RESULT_STATISTICS_3RD: "5개 일치 (1,500,000원)",

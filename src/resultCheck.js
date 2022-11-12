@@ -1,5 +1,8 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const { GET_INPUT, GRADE, VALUE_NUMBER } = require("./constants");
+const { resultMessage } = require("./view");
+const MessageViewer = require("./view");
+const viewer = new MessageViewer();
 
 class LottoResultCheck {
   constructor() {
@@ -72,7 +75,7 @@ class LottoResultCheck {
   getEarningsRate(totalWinningMoney) {
     //%로 맞추기 위한 100도 상수화 해야하나?
     const earningsRate = ((totalWinningMoney / this.userMoney) * 100).toFixed(2);
-    MissionUtils.Console.print(earningsRate);
+    viewer.resultMessage(this.resultArray, earningsRate);
   }
 }
 
