@@ -14,6 +14,7 @@ class Lotto {
     this.checkLength(numbers);
     this.checkIsNumber(numbers);
     this.checkDuplicate(numbers);
+    this.checkNumberRange(numbers);
   }
 
   checkLength(numbers) {
@@ -38,6 +39,13 @@ class Lotto {
     const checkedArray = numbers.filter((n) => checker.test(n));
     if (checkedArray.length != 6)
       throw new Error('[ERROR] 로또 번호는 숫자여야 합니다.');
+  }
+
+  checkNumberRange(numbers) {
+    const checkedArray = numbers.filter((n) => n > 0 && n < 46);
+    if (checkedArray.length != 6) {
+      throw new Error('[ERROR] 로또 번호의 범위를 벗어났습니다.');
+    }
   }
 }
 
