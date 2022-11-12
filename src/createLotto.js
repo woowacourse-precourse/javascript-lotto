@@ -1,4 +1,5 @@
-const { Random } = require('@woowacourse/mission-utils');
+const { Random, Console } = require('@woowacourse/mission-utils');
+const { LOTTO_OUTPUT } = require('./constants');
 
 function createLottoNumbers(qauntity) {
   const purchaseLottoNumbers = [];
@@ -7,7 +8,14 @@ function createLottoNumbers(qauntity) {
     purchaseLottoNumbers.push(Random.pickUniqueNumbersInRange(1, 45, 6));
   }
 
-  return purchaseLottoNumbers;
+  printCreateLottoNumbers(purchaseLottoNumbers);
 }
 
-module.exports = createLottoNumbers;
+function printCreateLottoNumbers(lottoNumbers) {
+  Console.print(`\n${lottoNumbers.length}${LOTTO_OUTPUT.LOTTO_QUANTITY}`);
+  lottoNumbers.forEach((lotto) => {
+    Console.print(lotto);
+  });
+}
+
+module.exports = createLottoNumbers, printCreateLottoNumbers;

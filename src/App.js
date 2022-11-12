@@ -1,10 +1,11 @@
 const { Console } = require('@woowacourse/mission-utils');
 const { LOTTO_USER_INPUT, LOTTO_ERROR_MESSAGE } = require('./constants');
+const createLottoNumbers = require('./createLotto');
 
 class App {
   play() {
     Console.readLine(LOTTO_USER_INPUT.PURCHASE_LOTTO, (purchaseLotto) => {
-      if (this.validateUserInput(purchaseLotto)) Console.print(purchaseLotto/1000);
+      if (this.validateUserInput(purchaseLotto)) createLottoNumbers(purchaseLotto/1000);
     });
   }
 
