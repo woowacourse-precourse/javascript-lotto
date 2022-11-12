@@ -24,6 +24,7 @@ class App {
 
   InputLottos() {
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (answer) => {
+      this.isDuplicated(answer, this.#lottos);
       this.#lottos.push(answer);
     });
   }
@@ -33,6 +34,13 @@ class App {
       this.#bonus = answer;
     });
   }
+
+  isDuplicated(number, array) {
+    if(array.includes(Number(number))){
+      throw INPUT_ERROR.DUPLICATED;
+    }
+  }
+
 }
 
 const app = new App;
