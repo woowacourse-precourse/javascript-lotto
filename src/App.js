@@ -6,7 +6,10 @@ class App {
   #money = 0;
 
   static #validateMoney(money) {
-    if (money % LottoConfig.PRICE !== 0) {
+    if (
+      money < LottoConfig.PRICE
+      || money % LottoConfig.PRICE !== 0
+    ) {
       throw new Error(Message.ERROR_MONEY);
     }
   }
