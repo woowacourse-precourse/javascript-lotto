@@ -14,18 +14,17 @@ class Lotto {
     }
 
     inputWinningnumber() {
-        Console.readLine('당첨 번호를 입력해 주세요.\n', (lotto) => {
-            const lottoArray = lotto.split(',').map((number) => number.trim());
-            this.#numbers[numbers] = lottoArray;
-            this.verification(lottoArray, 'notBonus');
+        Console.readLine('당첨 번호를 입력해 주세요.\n', (numbers) => {
+            const lotto = numbers.split(',').map((number) => number.trim());
+            this.#numbers['numbers'] = lotto;
             this.inputBonusnumber();
         });
     }
 
     inputBonusnumber() {
         Console.readLine('보너스 번호를 입력해 주세요.\n', (bonus) => {
-            this.verification(bonus, 'bonus');
-            this.bonusNumber[bonus] = bonus;
+            this.verification(this.#numbers['numbers'], bonus);
+            this.#numbers['bonus'] = bonus;
         });
     }
 
@@ -42,10 +41,8 @@ class Lotto {
         );
     }
 
-    /** @typedef {('notBonus' | 'bonus' )} type */
-    /** @type {function (string, type) : void} */
-    verification(input, type) {
-        const exception = new LottoException(input, type);
+    verification(lotto, bonus) {
+        const exception = new LottoException(lotto, bonus);
         exception.checkLottoException();
     }
 
