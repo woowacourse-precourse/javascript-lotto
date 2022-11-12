@@ -2,6 +2,19 @@ const PRICE_PER_LOTTO = 1000;
 const LOTTO_LENGTH = 6;
 const LOTTO_START = 1;
 const LOTTO_END = 45;
+
+const LOTTO = {
+  SIX: 6,
+  FIVE: 5,
+  FOUR: 4,
+  THREE: 3,
+  FIRST_PLACE: 1,
+  SECOND_PLACE: 2,
+  THIRD_PLACE: 3,
+  FOURTH_PLACE: 4,
+  FIFTH_PLACE: 5,
+};
+
 const MESSAGE = {
   START_GAME: "로또 게임을 시작합니다.",
   FINISH_GAME: "로또 게임을 종료합니다.",
@@ -39,6 +52,7 @@ module.exports = {
   LOTTO_LENGTH,
   LOTTO_START,
   LOTTO_END,
+  LOTTO,
   MESSAGE,
   ERROR_MESSAGE,
 };

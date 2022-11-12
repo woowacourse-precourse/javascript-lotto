@@ -4,6 +4,7 @@ const {
   LOTTO_LENGTH,
   LOTTO_START,
   LOTTO_END,
+  LOTTO,
   MESSAGE,
   ERROR_MESSAGE,
 } = require("./domain/constant");
@@ -131,6 +132,23 @@ class App {
   }
 
   countLottoRanks({ matchCounts, hasBonusNumberArr }) {
+    const ranks = [0, 0, 0, 0, 0, 0];
+    for (let idx = 0; idx < matchCounts.length; idx++) {
+      if (matchCounts[idx] === LOTTO.SIX) ranks[LOTTO.FIRST_PLACE] += 1;
+      else if (matchCounts[idx] === LOTTO.FIVE && hasBonusNumberArr[idx]) {
+        ranks[LOTTO.SECOND_PLACE] += 1;
+      } else if (matchCounts[idx] === LOTTO.FIVE && !hasBonusNumberArr[idx]) {
+        ranks[LOTTO.THIRD_PLACE] += 1;
+      } else if (matchCounts[idx] === LOTTO.FOUR) {
+        ranks[LOTTO.FOURTH_PLACE] += 1;
+      } else if (matchCounts[idx] === LOTTO.THREE) {
+        ranks[LOTTO.FIFTH_PLACE] += 1;
+      }
+    }
+    return this.calculateRateOfReturn(ranks);
+  }
+
+  calculateRateOfReturn(ranks) {
     return;
   }
 }
