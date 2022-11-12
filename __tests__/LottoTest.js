@@ -18,6 +18,22 @@ describe('로또 발행 테스트', () => {
     expect(() => new Lotto([1, 2, 3, 4, 5, 5])).toThrow('[ERROR]');
   });
 
+  test('예외: 입력 번호가 숫자가 아님', () => {
+    expect(() => new Lotto([1, 3, 5, 7, '사랑해요', 11])).toThrow('[ERROR]');
+  });
+
+  test('예외: 입력 번호가 숫자 형태지만 숫자는 아님', () => {
+    expect(() => new Lotto(['1', '3', '5', '7', '9', '11'])).toThrow('[ERROR]');
+  });
+
+  test('예외: 입력 번호가 범위를 벗어남', () => {
+    expect(() => new Lotto([0, 1, 2, 3, 4, 5])).toThrow('[ERROR]');
+  });
+
+  test('예외: 입력 번호가 범위를 벗어남', () => {
+    expect(() => new Lotto([41, 42, 43, 44, 45, 46])).toThrow('[ERROR]');
+  });
+
   test('정상: 자동 로또 번호 생성', () => {
     const randomLotto = [16, 26, 29, 31, 36, 8];
     const correctOutput = randomLotto.sort((a, b) => a - b).join(', ');
