@@ -124,15 +124,15 @@ class App {
   printResult() {
     const { first, second, third, fourth, fifth } = this.result;
     const totalWinnings = (
-      (first * winnings.FIRST)
-      + (second * winnings.SECOND)
-      + (third * winnings.THIRD)
-      + (fourth * winnings.FOURTH)
-      + (fifth * winnings.FIFTH)
+      first * winnings.FIRST
+      + second * winnings.SECOND
+      + third * winnings.THIRD
+      + fourth * winnings.FOURTH
+      + fifth * winnings.FIFTH
     );
     const rateOfReturn = (totalWinnings / this.purchaseMoney * 100).toFixed(1);
-    const result = getResultMessage(first, second, third, fourth, fifth, rateOfReturn);
-    Console.print(result);
+    const resultMessage = getResultMessage(first, second, third, fourth, fifth, rateOfReturn);
+    Console.print(resultMessage);
   }
 }
 
