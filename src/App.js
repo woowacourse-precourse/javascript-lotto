@@ -126,6 +126,12 @@ class App {
 
     let rateOfReturn = calculator.getRateOfReturn();
     MissionUtils.Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
+
+    this.close();
+  }
+
+  close() {
+    MissionUtils.Console.close();
   }
 }
 
