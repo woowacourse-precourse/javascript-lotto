@@ -13,10 +13,20 @@ class Buyer {
         this.#money = money;
     }
 
+    // 필드를 반환하는 메서드
     getMoney() {
         return this.#money;
     }
 
+    getLottoNumbers() {
+        return this.#lottoNumbers;
+    }
+
+    getPurchaseLottos() {
+        return this.#purchaseLottos;
+    }
+
+    // 입력된 금액을 예외처리하는 메서드
     stringException(money) {
         if (!Number(money)) {
             throw new Error("[ERROR] 금액은 정수로 입력해야 합니다.");
@@ -29,6 +39,7 @@ class Buyer {
         }
     }
 
+    // 금액에 맞체 로또 개수를 정하고 출력하는 메서드
     countLotto() {
         this.#lottoNumbers = this.#money / 1000;
         this.printLottoNumbers();
@@ -38,10 +49,7 @@ class Buyer {
         Console.print(`\n${this.#lottoNumbers}개를 구매했습니다.`);
     }
 
-    getLottoNumbers() {
-        return this.#lottoNumbers;
-    }
-
+    // 로또 개수에 맞게 번호가 담긴 리스트를 생성하고 출력하는 메서드
     createLottos() {
         const tempLottos = [];
         for(let i = 0; i < this.#lottoNumbers; i++){
@@ -64,16 +72,14 @@ class Buyer {
         })
         return tempNumbers;
     }
-
+    
     printPurchaseLottos() {
         for(let purchaseLotto of this.#purchaseLottos){
             Console.print(purchaseLotto);
         }
     }
 
-    getPurchaseLottos() {
-        return this.#purchaseLottos;
-    }
+    
 }
 
 module.exports = Buyer;
