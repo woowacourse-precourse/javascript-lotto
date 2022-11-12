@@ -9,9 +9,11 @@ class Prize {
     { 5: 30000000 },
     { 6: 2000000000 },
   ];
+  totalPrize = 0;
 
   constructor(generatedLottos, lottoNumbers, bonusNumber) {
     this.makeStats(generatedLottos, lottoNumbers, bonusNumber);
+    this.totalPrize = this.totalPrize;
   }
 
   makeStats(generatedLottos, lottoNumbers, bonusNumber) {
@@ -53,6 +55,14 @@ class Prize {
             `${key}개 일치, 보너스 볼 일치 (${value}원) - ${this.statValue[i]}개`
           )
         : Console.print(`${key}개 일치 (${value}원) - ${this.statValue[i]}개`);
+    }
+    this.getTotalPrize();
+  }
+
+  getTotalPrize() {
+    for (let i = 0; i < this.statValue.length; i++) {
+      const value = Object.values(this.prizeByMatchingNumbers[i])[0];
+      this.totalPrize += value * this.statValue[i];
     }
   }
 }

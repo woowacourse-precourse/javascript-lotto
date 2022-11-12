@@ -52,7 +52,18 @@ class App {
 
   printWinStats() {
     Console.print("\n당첨 통계\n---");
-    new Prize(this.generatedLottos, this.lottoNumbers, this.bonusNumber);
+    const prize = new Prize(
+      this.generatedLottos,
+      this.lottoNumbers,
+      this.bonusNumber
+    );
+    this.printYieldRate(prize);
+  }
+
+  printYieldRate(prize) {
+    const totalPrize = prize.totalPrize;
+    const yieldRate = ((totalPrize / this.inputAmount) * 100).toFixed(1);
+    Console.print(`총 수익률은 ${yieldRate}%입니다.`);
   }
 }
 
