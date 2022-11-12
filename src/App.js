@@ -67,19 +67,14 @@ class App {
       this.#calculator.addPrize(ranking);
     });
 
-    this.#profitRate = this.#calculator
-      .calcProfitRate()
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
+    this.#profitRate = this.#calculator.calcProfitRate().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     this.printResult();
   }
 
   printResult() {
     Console.print(RESULT_MESSAGE.head);
     for (let ranking = 5; ranking >= 1; ranking--) {
-      Console.print(
-        `${RESULT_MESSAGE.rank[ranking]} - ${this.#rankingCount[ranking]}개`
-      );
+      Console.print(`${RESULT_MESSAGE.rank[ranking]} - ${this.#rankingCount[ranking]}개`);
     }
 
     Console.print(`총 수익률은 ${this.#profitRate}%입니다.`);
