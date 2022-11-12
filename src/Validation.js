@@ -6,7 +6,7 @@ class Validation {
    * @param {string} playerInput - 플레이어의 입력
    */
   checkAmountExceptions(playerInput) {
-    if (Number(playerInput) % 1000 !== 0) {
+    if (Number(playerInput) % NUMBERS !== 0) {
       throw new Error(MESSAGES.ERROR_AMOUNT_UNIT);
     }
   }
@@ -17,13 +17,13 @@ class Validation {
    */
   static validateWinningNumbers(winningNumbers) {
     if (!this.isValidNumberofNumbers(winningNumbers, NUMBERS.LOTTO)) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error(MESSAGES.ERROR_INVALID_NUMBER);
     }
     if (!this.isValidRangeOfNumber(winningNumbers)) {
-      throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+      throw new Error(MESSAGES.ERROR_INVALID_RANGE);
     }
     if (!this.hasUniqueLottoNumber(winningNumbers)) {
-      throw new Error("[ERROR] 로또 번호는 중복이 없어야 합니다.");
+      throw new Error(MESSAGES.ERROR_DUPLICATION_NUMBERS);
     }
   }
 
