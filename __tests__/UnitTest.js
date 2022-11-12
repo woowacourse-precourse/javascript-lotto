@@ -1,4 +1,4 @@
-const calculateEarnings = require('../src/test');
+const calculateEarnings = require('../src/forTest');
 
 describe('수익률 계산 테스트', () => {
   test('5장 사서 5등 1개 당첨', () => {
