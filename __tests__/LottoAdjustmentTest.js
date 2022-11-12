@@ -1,7 +1,7 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 
 const Lotto = require('../src/Lotto');
-const Bonus = require('../src/Bonus');
+const Bonus = require('../src/domain/Bonus');
 const LottoStore = require('../src/LottoStore');
 const LottoDrawFactory = require('../src/LottoDrawFactory');
 const LottoAdjustment = require('../src/LottoAdjustment');

@@ -4,7 +4,7 @@ const LottoAdjustment = require('./LottoAdjustment');
 const Lotto = require('./Lotto');
 const LottoStore = require('./LottoStore');
 const LottoDrawFactory = require('./LottoDrawFactory');
-const Bonus = require('./Bonus');
+const Bonus = require('./domain/Bonus');
 
 const { LOTTO_QUESTION } = require('../utils/constants');
 const { validateLottoRange } = require('../utils/method');

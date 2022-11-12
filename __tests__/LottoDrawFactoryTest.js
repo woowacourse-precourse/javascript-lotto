@@ -1,5 +1,5 @@
 const Lotto = require('../src/Lotto');
-const Bonus = require('../src/Bonus');
+const Bonus = require('../src/domain/Bonus');
 const LottoDrawFactory = require('../src/LottoDrawFactory');
 
 describe('LottoDrawFactory 클래스 테스트', () => {

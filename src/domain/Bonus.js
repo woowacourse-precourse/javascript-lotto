@@ -1,4 +1,4 @@
-const { validateLottoRange } = require('../utils/method');
+const { validateLottoRange } = require('../../utils/method');
 
 class Bonus {
   #number;
