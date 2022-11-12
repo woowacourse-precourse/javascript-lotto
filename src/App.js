@@ -10,9 +10,13 @@ class App {
   }
 
   costValidation(cost) {
-    if (cost % 1000 !== 0) {
+    if (parseInt(cost) % 1000 !== 0) {
       throw new Error("[ERROR] 1,000원 단위로 금액을 맞춰주세요.");
     }
+    if (isNaN(cost)) {
+      throw new Error("[ERROR] 숫자로 입력해주세요.");
+    }
+
     return cost;
   }
 
@@ -23,31 +27,24 @@ class App {
   }
 
   getLottoSort(lottoNumber) {
-    lottoNumber.sort(function (x, y) {
-      return x - y;
-    });
+    lottoNumber.sort((x, y) => x - y);
   }
 
   getLottoNum(lottoCount) {
+    let str = "";
+
     for (let i = 0; i < lottoCount; i++) {
       let lottoNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       this.getLottoSort(lottoNumber);
       this.myLotto.push(lottoNumber);
-      MissionUtils.Console.print(this.myLotto[i]);
-    }
-  }
 
-  winNumValidation(winNum) {
-    const set = new Set(winNum);
-
-    for (let number of winNum) {
-      if (number < 1 || 45 < number) {
-        throw new Error("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+      for (let j = 0; j < 6; j++) {
+        str += String(this.myLotto[i][j]) + ", ";
       }
-    }
 
-    if (set.size !== winNum.length) {
-      throw new Error("[ERROR] 중복되지 않는 번호로 입력하세요.");
+      const newStr = str.substring(0, str.length - 2);
+      MissionUtils.Console.print(`[${newStr}]`);
+      str = "";
     }
   }
 
@@ -63,7 +60,6 @@ class App {
       let winNum = number.split(",", 6).map(function (item) {
         return parseInt(item, 10);
       });
-      this.winNumValidation(winNum);
       this.winLotto = new Lotto(winNum);
       this.getBonusNum();
     });
@@ -90,7 +86,7 @@ class App {
 
   play() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (cost) => {
-      this.buyCost = this.costValidation(parseInt(cost));
+      this.buyCost = this.costValidation(cost);
       const lottoCount = this.getLottoTicketCount(this.buyCost);
 
       MissionUtils.Console.print(`${lottoCount}개를 구매했습니다.`);
