@@ -35,6 +35,13 @@ class Lotto {
         return lotto;
     }
 
+    showLottoNumbers(Lotto) {
+        console.log();
+        console.log(
+            `[${Lotto[0]},${Lotto[1]},${Lotto[2]},${Lotto[3]},${Lotto[4]},${Lotto[5]}]`
+        );
+    }
+
     /** @typedef {('notBonus' | 'bonus' )} type */
     /** @type {function (string, type) : void} */
     verification(input, type) {

@@ -25,18 +25,11 @@ class App {
 
         for (let index = 1; index <= number; index++) {
             const currentNumbers = lotto.makeLotto();
-            this.showLottoNumbers(currentNumbers);
+            lotto.showLottoNumbers(currentNumbers);
             lottos.push(currentNumbers);
         }
 
         return lottos;
-    }
-
-    showLottoNumbers(Lotto) {
-        console.log();
-        console.log(
-            `[${Lotto[0]},${Lotto[1]},${Lotto[2]},${Lotto[3]},${Lotto[4]},${Lotto[5]}]`
-        );
     }
 
     verification(input) {
