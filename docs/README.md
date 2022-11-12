@@ -76,7 +76,7 @@ Random 값은 **MissionUtils 라이브러리**의 `Random.pickUniqueNumbersInRan
 ### [✅] 보너스 번호 입력받기 - LottoManager.inputBonusNumber()  
 **MissionUtils 라이브러리**에서 제공하는 `Console.readLine()`를 활용하여 입력받는다.   
 
-### [&nbsp; ] 보너스 번호 확인하기 - LottoManager.checkInputBonusNumber()     
+### [✅] 보너스 번호 확인하기 - LottoManager.checkInputBonusNumber()     
 ❗ 잘못된 값을 입력할 경우 예외 처리를 한다.  
 - 숫자가 아닌 경우
 - 1부터 45사이의 값이 아닌 경우    
