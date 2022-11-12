@@ -9,6 +9,7 @@ class Result {
     this.#quantity = quantity;
     this.#number = 0;
     this.#reward = 0;
+    this.totalReward = 0;
     this.check(number);
   }
 
@@ -30,6 +31,7 @@ class Result {
       this.#reward = 30000000;
 
       this.printBonus(this.#number, this.#reward, this.#quantity);
+      this.countTotalReward(this.#reward, this.#quantity);
       return;
     }
     if (number === "six") {
@@ -38,6 +40,7 @@ class Result {
     }
 
     this.print(this.#number, this.#reward, this.#quantity);
+    this.countTotalReward(this.#reward, this.#quantity);
   }
 
   print(number, reward, quantity) {
@@ -50,6 +53,10 @@ class Result {
     Console.print(
       `${number}개 일치, 보너스 볼 일치 (${reward}원) - ${quantity}개`
     );
+  }
+
+  countTotalReward(reward, quantity) {
+    this.totalReward += reward * quantity;
   }
 }
 

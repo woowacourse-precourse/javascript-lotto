@@ -109,9 +109,19 @@ class App {
   printResult(total) {
     Console.print(`\n당첨 통계\n---`);
 
+    let totalReward = 0;
     Object.entries(total).forEach(([number, quantity]) => {
-      new Result([number, quantity]);
+      const result = new Result([number, quantity]);
+      totalReward += result.totalReward;
     });
+
+    this.countBenefit(totalReward);
+  }
+
+  countBenefit(totalReward) {
+    const benefit = (totalReward / this.money) * 100;
+    const benefitRate = Math.round(benefit * 10) / 10;
+    Console.print(benefitRate);
   }
 }
 
