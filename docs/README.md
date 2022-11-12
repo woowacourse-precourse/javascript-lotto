@@ -14,7 +14,7 @@
   - [x] 당첨번호와 뽑은 로또를 비교해 당첨 데이터를 구한다. `calculateResult`
   - [x] 구입금액과 당첨금액을 활용해 수익률을 구한다. `calculateYield`
   - [x] 당첨 데이터를 바탕으로 당첨 통계를 출력한다. `printResult`
-- [ ] App 클래스 play 메서드 구현
+- [x] App 클래스 play 메서드 구현
 
 예외 사항
 
