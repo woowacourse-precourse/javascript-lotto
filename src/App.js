@@ -54,6 +54,8 @@ class App {
     });
 
     print('\n');
+
+    return this.inputWinNumbers();
   }
 
   static getLottoPrintMessage(lotto = []) {
@@ -71,6 +73,16 @@ class App {
     });
 
     return open + message + close;
+  }
+
+  inputWinNumbers() {
+    readLine(GAME_MESSAGE.input_win_number, (answer) => this.getWinNumbers(answer));
+  }
+
+  getWinNumbers() {
+    // TODO
+    // 당첨 번호 관련 유효성 검사
+    // 맴버변수에 금액 저장
   }
 }
 
