@@ -12,9 +12,31 @@ class App {
     process() {
         Console.readLine('구입금액을 입력해주세요.\n', (money) => {
             this.verification(money, 'unit');
+            console.log(`${+money / 1000}개를 구매했습니다.`);
+            this.makeLottos(+money / 1000);
             const lotto = new Lotto([]);
             lotto.inputWinningnumber();
         });
+    }
+
+    makeLottos(number) {
+        const lotto = new Lotto();
+        const lottos = [];
+
+        for (let index = 1; index <= number; index++) {
+            const currentNumbers = lotto.makeLotto();
+            this.showLottoNumbers(currentNumbers);
+            lottos.push(currentNumbers);
+        }
+
+        return lottos;
+    }
+
+    showLottoNumbers(Lotto) {
+        console.log();
+        console.log(
+            `[${Lotto[0]},${Lotto[1]},${Lotto[2]},${Lotto[3]},${Lotto[4]},${Lotto[5]}]`
+        );
     }
 
     verification(input) {

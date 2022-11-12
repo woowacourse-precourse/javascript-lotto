@@ -9,7 +9,7 @@ class Lotto {
         this.#numbers = numbers;
     }
 
-    inputLotto() {
+    inputWinningLotto() {
         this.inputWinningnumber();
     }
 
@@ -29,6 +29,12 @@ class Lotto {
         });
     }
 
+    // 자동 복권
+    makeLotto() {
+        const lotto = Random.pickUniqueNumbersInRange(1, 45, 6);
+        return lotto;
+    }
+
     /** @typedef {('notBonus' | 'bonus' )} type */
     /** @type {function (string, type) : void} */
     verification(input, type) {
@@ -46,3 +52,5 @@ class Lotto {
 }
 
 module.exports = Lotto;
+
+console.log(Random.pickUniqueNumbersInRange(1, 45, 6));
