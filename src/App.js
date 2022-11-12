@@ -110,6 +110,10 @@ class App {
     });
     return matchCount;
   }
+
+  hasBonusNumber(lottoNumbers, bonusNumber) {
+    return lottoNumbers.includes(bonusNumber);
+  }
 }
 
 const app = new App();
