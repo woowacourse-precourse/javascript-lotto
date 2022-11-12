@@ -84,9 +84,18 @@ class App {
     for (let i = 0; i < money / 1000; i += 1) this.issueLotto();
   }
 
+  printLottos() {
+    Console.print(`\n${this.#lottos.length}개를 구매했습니다.`);
+    this.#lottos.forEach((lotto) =>
+      Console.print(`[${lotto.getNumbers().join(', ')}]`)
+    );
+  }
+
   play() {
-    Console.print('구입 금액을 입력해주세요.');
-    Console.close();
+    Console.readLine('구입 금액을 입력해주세요.\n', (input) => {
+      this.buyLottos(input);
+      this.printLottos();
+    });
   }
 }
 
