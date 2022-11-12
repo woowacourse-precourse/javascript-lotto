@@ -23,6 +23,7 @@ const Seller = ((_) => {
       if (!this.validateAmount(amount)) this.#io.close();
       this.#buyer.setBuyLottoNumber = amount;
       this.#buyer.setLottos = this.#giveLottos();
+      this.#notifyBuyLotto();
     }
 
     #giveLottos() {
@@ -37,6 +38,11 @@ const Seller = ((_) => {
           LOTTO_NUMBER.VALID_NUMBER_LENGTH
         )
       ).getSortedLotto();
+    }
+
+    #notifyBuyLotto() {
+      this.#io.print(`\n${this.#buyer.buyLottoNumber}개를 구매했습니다.`);
+      this.#buyer.lottos.forEach(this.#io.print);
     }
 
     validateAmount(amount) {
