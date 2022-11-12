@@ -33,7 +33,7 @@ describe("isValidateUserInput 함수 테스트", () => {
   });
 });
 
-describe("isValidateBonusNumber 함수 테스트", () => {
+describe.only("isValidateBonusNumber 함수 테스트", () => {
   test("보너스 번호 입력 값이 숫자가 아닌지 테스트", () => {
     let bonusNumber = "2,7";
     expect(() => {
@@ -53,5 +53,13 @@ describe("isValidateBonusNumber 함수 테스트", () => {
     expect(() => {
       isValidateBonusNumber(bonusNumber);
     }).toBeTruthy;
+  });
+
+  test("보너스 번호 입력 값이 당첨 번호에 포함되어 있는지 테스트", () => {
+    let bonusNumber = 1;
+    let winningNumber = [1, 2, 3, 4, 5, 6];
+    expect(() => {
+      isValidateBonusNumber(bonusNumber, winningNumber);
+    }).toThrow("[ERROR] 당첨 번호에 포함된 숫자 입니다.");
   });
 });
