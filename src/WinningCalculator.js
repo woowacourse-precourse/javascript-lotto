@@ -40,6 +40,10 @@ class WinningCalculator {
     return rank;
   }
 
+  getPurchaseAmount() {
+    return this.#lottos.length * 1000;
+  }
+
   getPrizeMoney() {
     const prize = [2000000000, 30000000, 1500000, 50000, 5000];
 
@@ -48,11 +52,15 @@ class WinningCalculator {
     }, 0);
   }
 
-  printRateOfReturn() {
-    const purchaseAmount = this.#lottos.length * 1000;
+  getRateOfReturn() {
+    const purchaseAmount = this.getPurchaseAmount();
     const prizeMoney = this.getPrizeMoney();
 
-    const rateOfReturn = Math.round((prizeMoney / purchaseAmount) * 1000) / 10;
+    return Math.round((prizeMoney / purchaseAmount) * 1000) / 10;
+  }
+
+  printRateOfReturn() {
+    const rateOfReturn = this.getRateOfReturn();
     MissionUtils.Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
   }
 
