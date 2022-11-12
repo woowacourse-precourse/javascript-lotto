@@ -48,7 +48,16 @@ class Lotto {
 
   progress(numbers) {
     if (lottoValidation(numbers)) {
+      this.setStats(this.#numbers, this.lottoList, this.bonusNumber);
     }
+  }
+
+  setStats(numbers, lottos, bonus) {
+    lottos.forEach((lotto) => {
+      const count = this.countLotto(lotto, numbers);
+      const countLotto = this.compareBonus(count, lotto, bonus);
+      this.rank(countLotto);
+    });
   }
 
   prizeCalculation(stats) {
