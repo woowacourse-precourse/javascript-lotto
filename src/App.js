@@ -1,7 +1,7 @@
 const MU = require("@woowacourse/mission-utils");
 class App {
   play() {
-    this.buyLotto();
+   this.buyLotto();
   }
   buyLotto(){
     MU.Console.readLine('구입금액을 입력해 주세요.',(money) => {
@@ -22,16 +22,18 @@ class App {
   }
   makeLottoNum(purchaseNum){
     let Lottos = [purchaseNum];
-    MU.Console.print(purchaseNum);
     for(let i = 0; i < purchaseNum; i++){
       Lottos[i] = MU.Random.pickUniqueNumbersInRange(1,45,6);
-      MU.Console.print(Lottos[i]);
     }
-   // this.printBuyLotto(Lottos);
+    this.printBuyLotto(Lottos);
     return MU.Console.close();
   }
   printBuyLotto(Lottos){
     for(let i = 0; i < Lottos.length; i++){
+      MU.Console.print(Lottos[i]);
+      Lottos[i].sort((a,b) => {
+        return a-b;
+      });
       MU.Console.print(Lottos[i]);
     }
   }
