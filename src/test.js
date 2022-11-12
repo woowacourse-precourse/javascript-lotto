@@ -1,24 +1,16 @@
 const { Console } = require('@woowacourse/mission-utils');
-const printSummary = (arr) => {
-  const descriptionArr = [
-    '3개 일치',
-    '4개 일치',
-    '5개 일치',
-    '5개 일치, 보너스 볼 일치',
-    '6개 일치',
-  ];
-  const prizeMoneyArr = [
-    '5,000',
-    '50,000',
-    '1,500,000',
-    '30,000,000',
-    '2,000,000,000',
-  ];
 
-  arr.forEach((value, index) => {
-    const script = `${descriptionArr[index]} (${prizeMoneyArr[index]}원) - ${value}개`;
-    Console.print(script);
+// 수익률 계산 테스트
+
+const calculateEarnings = (wonCountArr, purchaseAmount) => {
+  let totalEarnings = 0;
+  const prizeMoney = [5000, 50000, 1500000, 30000000, 2000000000];
+
+  wonCountArr.forEach((value, index) => {
+    totalEarnings += prizeMoney[index] * value;
   });
+
+  return (totalEarnings / purchaseAmount) * 100;
 };
 
-module.exports = printSummary;
+module.exports = calculateEarnings;

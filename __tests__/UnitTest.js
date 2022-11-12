@@ -1,19 +1,23 @@
-const printSummary = require('../src/test');
+const calculateEarnings = require('../src/test');
 
-describe('당첨 내역 출력 테스트', () => {
-  test('1등 당첨 1개', () => {
-    expect(printSummary([0, 0, 0, 0, 1])).toEqual();
+describe('수익률 계산 테스트', () => {
+  test('5장 사서 5등 1개 당첨', () => {
+    expect(calculateEarnings([1, 0, 0, 0, 0], 5000)).toBe((5000 / 5000) * 100);
   });
 
-  test('5등 당첨 10개', () => {
-    expect(printSummary([10, 0, 0, 0, 0])).toEqual();
+  test('1장 사서 1등 1개 당첨', () => {
+    expect(calculateEarnings([0, 0, 0, 0, 1], 1000)).toBe(
+      (2000000000 / 1000) * 100
+    );
   });
 
-  test('2등 당첨 2개', () => {
-    expect(printSummary([0, 0, 0, 2, 0])).toEqual();
+  test('10장 사서 2등 2개 당첨', () => {
+    expect(calculateEarnings([0, 0, 0, 2, 0], 10000)).toBe(
+      ((30000000 * 2) / 10000) * 100
+    );
   });
 
-  test('3등 당첨 1개', () => {
-    expect(printSummary([0, 0, 1, 0, 0])).toEqual();
+  test('100장 사서 당첨 없음', () => {
+    expect(calculateEarnings([0, 0, 0, 0, 0], 100000)).toBe((0 / 100000) * 100);
   });
 });
