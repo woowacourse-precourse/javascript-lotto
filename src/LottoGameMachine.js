@@ -8,12 +8,21 @@ class LottoGameMachine {
   constructor() {
     this.totalPurchaseAmount = 0;
     this.totalLottosCount = 0;
+    this.profitRate = 0;
+    this.rankingCount = new Array(5).fill(0);
     this.Lottos = new Map();
     this.winningLotto = new Map();
   }
 
   startLottoGameMachine() {
     this.setTotalPurchaseAmount();
+  }
+
+  printLottoNumbers() {
+    Console.print(MESSAGE.OUTPUT.TOTAL_PURCHASE_AMOUNT(this.totalLottosCount));
+    for (const lotto of this.Lottos.values()) {
+      Console.print(lotto.getLottoNumbers());
+    }
   }
 
   setTotalPurchaseAmount() {
@@ -29,17 +38,9 @@ class LottoGameMachine {
 
   setLottos() {
     let count = 0;
-
     while (count < this.totalLottosCount) {
       count += 1;
       this.Lottos.set(`로또${count}`, new Lotto(generateLottoNumbers()));
-    }
-  }
-
-  printLottoNumbers() {
-    Console.print(MESSAGE.OUTPUT.TOTAL_PURCHASE_AMOUNT(this.totalLottosCount));
-    for (const lottoNumbers of this.Lottos.values()) {
-      Console.print(lottoNumbers.getLottoNumbers());
     }
   }
 
@@ -56,6 +57,21 @@ class LottoGameMachine {
       Validator.validateLottoNumber(number);
       this.winningLotto.set('보너스 번호', Number(number));
     });
+  }
+
+  collectRankingCount() {
+    for (const lotto of this.Lottos.values()) {
+      const ranking = lotto.getRanking(this.winningLotto);
+      if (ranking) this.rankingCount[ranking - 1] += 1;
+    }
+  }
+
+  calculateProfitRate() {
+    const prize = [2000000000, 30000000, 1500000, 50000, 5000];
+    const profit = this.rankingCount.reduce((acc, cur, index) => acc + cur * prize[index], 0);
+    const profitRate = (profit / this.totalPurchaseAmount) * 100;
+
+    return profitRate.toFixed(1);
   }
 }
 
