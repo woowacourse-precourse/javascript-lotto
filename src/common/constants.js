@@ -3,7 +3,7 @@ const LOTTO_INFO = {
   BEGIN_NUMBER: 1,
   END_NUMBER: 45,
   COUNT: 6,
-  BONUS_COUNT: 1,
+  TOTAL_COUNT: 7,
 };
 
 const LOTTO_MATCH = {

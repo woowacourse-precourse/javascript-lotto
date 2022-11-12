@@ -62,6 +62,7 @@ class LottoGame {
       LottoView.printStatsMessage();
       Validator.checkValidBonusNumber(bonusNumber);
       Validator.checkBonusNumberRange(bonusNumber);
+      Validator.checkDuplicateBonusNumber(this.#winNumbers, bonusNumber);
       this.#matchLottos();
     });
   }

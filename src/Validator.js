@@ -83,7 +83,14 @@ class Validator {
       throw new Error(`${ERROR_MESSAGES.INVALID_LOTTO_NUMBER_RANGE}`);
     }
   }
-  static checkDuplicateBonusNumber(bonusNumber) {} // 당첨 번호랑 중복있는지 확인
+
+  static checkDuplicateBonusNumber(winNumbers, bonusNumber) {
+    const lottos = [...winNumbers.split(','), bonusNumber];
+    const removalDuplicateNumber = [...new Set(lottos)];
+    if (removalDuplicateNumber.length !== LOTTO_INFO.TOTAL_COUNT) {
+      throw new Error(`${ERROR_MESSAGES.DUPLICATE_NUMBER}`);
+    }
+  }
 }
 
 module.exports = Validator;
