@@ -27,7 +27,7 @@ class App {
     while (quantity > 0) {
       const lotto = createLotto().getNumbers();
       this.allLottos.push(lotto);
-      Console.print(lotto);
+      Console.print(`[${lotto.join(", ")}]`);
       quantity--;
     }
   }
