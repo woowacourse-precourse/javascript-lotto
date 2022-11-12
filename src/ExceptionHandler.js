@@ -19,6 +19,12 @@ class ExceptionHandler {
       throw new Error("[ERROR] 1부터 45까지의 숫자를 입력해주세요.");
     }
   }
+
+  static bonusNumberCannotBeWinningNumber(winningNumbers, bonusNumber) {
+    if (winningNumbers.includes(bonusNumber)) {
+      throw new Error("[ERROR] 보너스 번호는 당첨 번호와 같을 수 없습니다.");
+    }
+  }
 }
 
 module.exports = ExceptionHandler;
