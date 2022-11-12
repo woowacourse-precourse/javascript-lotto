@@ -1,4 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
+const CheckValue = require("./CheckValue");
 const Message = require("./Message");
 
 class App {
@@ -7,7 +8,9 @@ class App {
   }
 
   requestPay() {
-    Console.readLine(Message.GAME_START, (pay) => {});
+    Console.readLine(Message.GAME_START, (pay) => {
+      this.CheckValue.isValidPay(pay);
+    });
   }
 }
 
