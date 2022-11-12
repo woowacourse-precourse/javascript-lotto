@@ -6,9 +6,9 @@ const isValidLottery = require('./utils/isValidLottery');
 const makeRandomLottoNumber = require('./utils/makeRandomLottoNumber');
 
 class App {
-  #myLotteryList;
   #startMoney;
   #myLotteryQuantity;
+  #myLotteryList;
   #winNumber;
   #bonusNumber;
   #myLotteryRankList;
@@ -16,6 +16,7 @@ class App {
 
   constructor() {
     this.#myLotteryRankList = {
+      0: 0,
       1: 0,
       2: 0,
       3: 0,
@@ -77,7 +78,17 @@ class App {
 
       this.#bonusNumber = inputBonusNumber;
       Console.print(this.#bonusNumber);
-      return this.printProfitRate();
+      return this.calculateResult();
+    });
+  }
+
+  calculateResult() {
+    this.#myLotteryList.forEach((lottery) => {
+      const result = lottery.returnMyLotteryRank(
+        this.#winNumber,
+        this.#bonusNumber
+      );
+      this.#myLotteryRankList[result] += 1;
     });
   }
 
