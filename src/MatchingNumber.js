@@ -1,4 +1,4 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { Console } = require("@woowacourse/mission-utils");
 
 class MatchingNumber {
   constructor(totalLottoNumber, winnerNumber, bonusNumber) {
@@ -53,15 +53,13 @@ class MatchingNumber {
   }
 
   printSecondPlaceLotto(ranking, index, prizeMoney, lotto) {
-    return MissionUtils.Console.print(
+    return Console.print(
       `${ranking[index]}개 일치, 보너스 볼 일치 (${prizeMoney[index]}원) - ${lotto}개`
     );
   }
 
   printLottoExceptSecondPlace(ranking, index, prizeMoney, lotto) {
-    return MissionUtils.Console.print(
-      `${ranking[index]}개 일치 (${prizeMoney[index]}원) - ${lotto}개`
-    );
+    return Console.print(`${ranking[index]}개 일치 (${prizeMoney[index]}원) - ${lotto}개`);
   }
 }
 module.exports = MatchingNumber;

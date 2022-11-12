@@ -1,4 +1,4 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { Console, Random } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const WinnerNumber = require("./WinnerNumber");
 const MatchingNumber = require("./MatchingNumber");
@@ -17,7 +17,7 @@ class App {
   }
 
   inputMoney() {
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
+    Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
       this.payMoney = money;
       this.validateInputMoney(this.payMoney);
       this.getLottoNumber(this.payMoney / 1000);
@@ -32,23 +32,23 @@ class App {
   }
 
   getLottoNumber(lottoTickets) {
-    MissionUtils.Console.print(`\n${lottoTickets}개를 구매했습니다.`);
+    Console.print(`\n${lottoTickets}개를 구매했습니다.`);
     for (let i = 0; i < lottoTickets; i++) {
-      const randomNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      const randomNumber = Random.pickUniqueNumbersInRange(1, 45, 6);
       const lotto = new Lotto(randomNumber);
       this.totalLottoNumber.push(lotto.sortLotto(randomNumber));
     }
   }
 
   inputWinnerNumber() {
-    MissionUtils.Console.readLine("\n당첨 번호를 입력해 주세요.\n", (number) => {
+    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (number) => {
       this.winnerNumber = new WinnerNumber(number).getNumberWithoutSpace();
       this.inputBonusNumber();
     });
   }
 
   inputBonusNumber() {
-    MissionUtils.Console.readLine("\n보너스 번호를 입력해 주세요.\n", (number) => {
+    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (number) => {
       this.bonusNumber = number.replace(/\s/g, "").split(",");
       this.validateInputBonusNumber(this.bonusNumber);
       this.loadMatchingNumberAboutLotto();
@@ -62,7 +62,7 @@ class App {
   }
 
   loadMatchingNumberAboutLotto() {
-    MissionUtils.Console.print("\n당첨 통계\n---");
+    Console.print("\n당첨 통계\n---");
     const matchingNumber = new MatchingNumber(
       this.totalLottoNumber,
       this.winnerNumber,
@@ -75,8 +75,8 @@ class App {
 
   loadLottoProfitRate(numberOfMathcingNumbers) {
     const lottoProfitRate = new ProfitRate(numberOfMathcingNumbers, this.payMoney).getProfitRate();
-    MissionUtils.Console.print(`총 수익률은 ${lottoProfitRate}%입니다.`);
-    MissionUtils.Console.close();
+    Console.print(`총 수익률은 ${lottoProfitRate}%입니다.`);
+    Console.close();
   }
 }
 

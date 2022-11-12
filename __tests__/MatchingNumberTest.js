@@ -1,4 +1,4 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { Console } = require("@woowacourse/mission-utils");
 const MatchingNumber = require("../src/MatchingNumber");
 
 const totalLottoNumber = [
@@ -12,7 +12,7 @@ const numbers = [1, 5, 6, 10, 11, 13];
 
 describe("로또 당첨 통계 부분 Test", () => {
   afterEach(() => {
-    MissionUtils.Console.close();
+    Console.close();
   });
 
   test("5개 일치할때 보너스번호가 포함되어 있지 않을경우 결과값은 4인지 테스트", () => {

@@ -1,9 +1,9 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { Console } = require("@woowacourse/mission-utils");
 const WinnerNumber = require("../src/WinnerNumber");
 
 describe("당첨번호 예외 테스트", () => {
   afterEach(() => {
-    MissionUtils.Console.close();
+    Console.close();
   });
 
   test("범위초과 숫자인 46이 포함 되어 있을 경우 예외 발생", () => {

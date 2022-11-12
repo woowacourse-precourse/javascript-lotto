@@ -1,4 +1,4 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { Console } = require("@woowacourse/mission-utils");
 
 class Lotto {
   #numbers;
@@ -32,7 +32,7 @@ class Lotto {
   }
 
   printLotto(numbers) {
-    return MissionUtils.Console.print(`[${numbers.toString().replace(/\,/g, ", ")}]`);
+    return Console.print(`[${numbers.toString().replace(/\,/g, ", ")}]`);
   }
 }
 
