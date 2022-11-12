@@ -1,5 +1,33 @@
 const BuyLottery = require("../src/BuyLottery");
+const MissionUtils = require("@woowacourse/mission-utils");
+const mockRandoms = (numbers) => {
+  MissionUtils.Random.pickUniqueNumbersInRange = jest.fn();
+  numbers.reduce((acc, number) => {
+    return acc.mockReturnValueOnce(number);
+  }, MissionUtils.Random.pickUniqueNumbersInRange);
+};
 describe("로또 구입 테스트", () => {
+  test("로또 구입", () => {
+    const buyLottery = new BuyLottery();
+    mockRandoms([
+      [18, 41, 9, 22, 26, 39],
+      [7, 32, 8, 3, 9, 40],
+      [43, 23, 42, 13, 33, 7],
+      [36, 3, 38, 41, 30, 35],
+      [12, 22, 23, 45, 18, 19],
+    ]);
+
+    expect(buyLottery.buy(5000)).toEqual({
+      quentity: 5,
+      lottos: [
+        [18, 41, 9, 22, 26, 39],
+        [7, 32, 8, 3, 9, 40],
+        [43, 23, 42, 13, 33, 7],
+        [36, 3, 38, 41, 30, 35],
+        [12, 22, 23, 45, 18, 19],
+      ],
+    });
+  });
   test("예외 - 1000단이로 나누어 떨어질때", () => {
     const buyLottery = new BuyLottery();
 
