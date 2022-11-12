@@ -60,6 +60,7 @@ class LottoGame {
     LottoView.getUserInput(`\n${INPUT_MESSAGES.BONUS_NUMBER}\n`, (bonusNumber) => {
       this.#bonusNumber = bonusNumber;
       LottoView.printStatsMessage();
+      Validator.checkValidBonusNumber(bonusNumber);
       this.#matchLottos();
     });
   }

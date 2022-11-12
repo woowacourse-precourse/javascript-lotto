@@ -8,7 +8,7 @@ class Validator {
       throw new Error(`${ERROR_MESSAGES.INVALID_NEGATIVE_NUMBER}`);
     }
     if (!Number(money) || money === ' ') {
-      throw new Error(`${ERROR_MESSAGES.INVALID_PURCHASE}`);
+      throw new Error(`${ERROR_MESSAGES.INVALID_EMPTY_INPUT}`);
     }
     if (rest(money) > 0) {
       throw new Error(`${ERROR_MESSAGES.INVALID_REST_MONEY}`);
@@ -60,11 +60,20 @@ class Validator {
   static #checkWinNumbersRange(winNumbers) {
     const splitNumber = winNumbers.split(',');
     splitNumber.forEach((number) => {
-      if (number < 1 || number > 45) {
+      if (number < LOTTO_INFO.BEGIN_NUMBER || number > LOTTO_INFO.END_NUMBER) {
         throw new Error(`${ERROR_MESSAGES.INVALID_LOTTO_NUMBER_RANGE}`);
       }
     });
   }
+
+  static checkValidBonusNumber(bonusNumber) {
+    if (bonusNumber < 0) {
+      throw new Error(`${ERROR_MESSAGES.INVALID_NEGATIVE_NUMBER}`);
+    }
+  }
+
+  static checkBonusNumberRange(bonusNumber) {} // 1~45 사이 숫자인지 확인
+  static checkDuplicateBonusNumber(bonusNumber) {} // 당첨 번호랑 중복있는지 확인
 }
 
 module.exports = Validator;
