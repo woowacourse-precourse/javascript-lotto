@@ -22,7 +22,7 @@ class LottoGame {
     });
   }
 
-  generateLottoNumbers() {
+  static generateLottoNumbers() {
     return Random.pickUniqueNumbersInRange(
       LOTTO_INFO.BEGIN_NUMBER,
       LOTTO_INFO.END_NUMBER,
@@ -33,7 +33,7 @@ class LottoGame {
   craeteLottos(lottoCount) {
     const lottos = [];
     for (let i = 0; i < lottoCount; i++) {
-      const lotto = new Lotto(this.generateLottoNumbers());
+      const lotto = new Lotto(LottoGame.generateLottoNumbers());
       lottos.push(lotto.getLotto());
     }
     return lottos;
