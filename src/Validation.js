@@ -10,14 +10,19 @@ function checkAppropriateMoney(money) {
 }
 
 function checkSplitSymbol(mainNumber) {
-  if (Number.isNaN(mainNumber)) throw new Error(`${ERROR_MESSAGE.splitSymbol}`);
+  if (Number.isNaN(mainNumber[0])) throw new Error(`${ERROR_MESSAGE.splitSymbol}`);
 }
 
-function checkNumber(mainNumber, bonusNumber) {
+function checkMainNumber(mainNumber) {
   const RegExp = /^[1-9]{1}$/;
+  if (mainNumber.length !== 6) throw new Error(`${ERROR_MESSAGE.mainNumber}`);
   mainNumber.forEach((number) => {
     if (!RegExp.test(number)) throw new Error(`${ERROR_MESSAGE.mainNumber}`);
   });
+}
+
+function checkBonusNumber(bonusNumber) {
+  const RegExp = /^[1-9]{1}$/;
   if (!RegExp.test(bonusNumber)) throw new Error(`${ERROR_MESSAGE.bonusNumber}`);
 }
 
@@ -41,7 +46,8 @@ module.exports = {
   checkAppropriateUnit,
   checkAppropriateMoney,
   checkSplitSymbol,
-  checkNumber,
+  checkMainNumber,
+  checkBonusNumber,
   checkRange,
   checkMainNumberOverlap,
   checkBonusNumberOverlap,

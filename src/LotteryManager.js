@@ -59,7 +59,6 @@ class LotteryManager {
   }
 
   printWinLottery(winList) {
-    // 추후 수정 필요
     Console.print(`${INGAME_MESSAGE.statistic}`);
     Console.print(`${RANK_PRINT.fifth}${winList[RANK_INDEX.fifth]}개`);
     Console.print(`${RANK_PRINT.fourth}${winList[RANK_INDEX.fourth]}개`);
@@ -69,7 +68,6 @@ class LotteryManager {
   }
 
   printProfit(total) {
-    // 추후 수정 필요
     const money = this.#Consumer.getMoney();
     const profit = ((total / money) * 100).toFixed(1);
     Console.print(`총 수익률은 ${profit}%입니다.`);

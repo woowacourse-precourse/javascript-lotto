@@ -1,6 +1,7 @@
 const {
   checkSplitSymbol,
-  checkNumber,
+  checkMainNumber,
+  checkBonusNumber,
   checkRange,
   checkMainNumberOverlap,
   checkBonusNumberOverlap,
@@ -18,7 +19,8 @@ class Lotto {
 
   validate(mainNumber, bonusNumber) {
     checkSplitSymbol(mainNumber);
-    checkNumber(mainNumber, bonusNumber);
+    checkMainNumber(mainNumber);
+    checkBonusNumber(bonusNumber);
     checkRange(mainNumber, bonusNumber);
     checkMainNumberOverlap(mainNumber);
     checkBonusNumberOverlap(mainNumber, bonusNumber);
