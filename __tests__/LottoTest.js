@@ -50,6 +50,15 @@ describe("로또 클래스 테스트", () => {
     });
   });
 
+  test("[입력]보너스 번호에 잘못된 입력시", () => {
+    const app = new App();
+    const throwInput = ["", "46", "0", "한글", "e"];
+
+    throwInput.forEach((output, idx) => {
+      expect(app.isValidBonusNumber(output)).toEqual(false);
+    });
+  });
+
   // test("로또 발행하기", () => {
   //   const app = new App();
   //   const number = 6;
