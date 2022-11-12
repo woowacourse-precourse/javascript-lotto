@@ -1,25 +1,27 @@
-const { readLine, pickUniqueNumbersInRange } = require("./Missionutils");
+const { pickUniqueNumbersInRange } = require("./Missionutils");
 
-class LottoNumberGenerator {
-  #numberOfLottos;
+class MyNumberGenerator {
+  #countOfLottos;
   #selectedLottoNumberSet = new Set();
-  inputNumberFromUser() {
-    readLine("구입 금액을 입력해주세요.", (input) => {
-      if (this.isInputNumbersValid(input)) {
-        this.#numberOfLottos = this.#getNumberOfLottos(+input);
-      }
 
-      this.#generateLotto(this.#selectedLottoNumberSet);
-    });
+  generateMyLottoNumber(moneyInput) {
+    this.isInputNumbersValid(moneyInput);
+    this.#getNumberOfLottos(+moneyInput);
+    this.#setMyLottoNumbers();
+    return this.#selectedLottoNumberSet;
   }
 
-  #generateLotto(numberSet) {
-    while (numberSet.size < this.#numberOfLottos) {
-      const numberArray = pickUniqueNumbersInRange(1, 45, 6);
-
-      if (this.isLottoSetValid(numberArray))
-        numberSet.add(this.#makeArrayAscendingOrder(numberArray));
+  #setMyLottoNumbers() {
+    let pickedNumber;
+    while (this.#selectedLottoNumberSet.size < this.#countOfLottos) {
+      pickedNumber = pickUniqueNumbersInRange(1, 45, 6);
+      this.#addValidNumberIntoSet(pickedNumber);
     }
+  }
+
+  #addValidNumberIntoSet(pickedNumber) {
+    if (this.isLottoSetValid(pickedNumber))
+      this.#selectedLottoNumberSet.add(this.#makeArrayAscendingOrder(pickedNumber));
   }
 
   #makeArrayAscendingOrder(array) {
@@ -27,7 +29,7 @@ class LottoNumberGenerator {
   }
 
   #getNumberOfLottos(money) {
-    return money / 1000;
+    this.#countOfLottos = money / 1000;
   }
 
   isInputNumbersValid(numbers) {
@@ -35,12 +37,10 @@ class LottoNumberGenerator {
     if (this.#isNegativeNumber(numbers)) throw Error("[ERROR] 양수만 입력해주세요.");
     if (this.#isNotConsistOnlyNumber(numbers)) throw Error("[ERROR] 숫자만 입력 가능합니다.");
     if (this.#isNotDividedThousand(numbers)) throw Error("[ERROR] 천원 단위 입력을 해주세요.");
-    return true;
   }
 
   isLottoSetValid(lottoList) {
     if (this.#hasDuplicatedValue(lottoList)) return false;
-
     return true;
   }
 
@@ -64,4 +64,4 @@ class LottoNumberGenerator {
     return +input < 0;
   }
 }
-module.exports = LottoNumberGenerator;
+module.exports = MyNumberGenerator;
