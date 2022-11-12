@@ -27,7 +27,7 @@
 
 ## utils/
 
-- [ ] 로또 번호를 랜덤으로 생성한다. : `generateRandomLottoNumbers`
+- [x] 로또 번호를 랜덤으로 생성한다. : `generateRandomLottoNumbers`
   - 로또 번호의 숫자 범위는 1~45까지이다.
   - 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다.
   - 오름차순으로 정렬하여 배열에 담아 return한다.
