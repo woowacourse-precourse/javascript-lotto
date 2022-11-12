@@ -12,6 +12,10 @@ class Util {
   static isPositiveNumber(str) {
     return parseInt(str) > 0;
   }
+
+  static isDivisibleBy(str, unit) {
+    return parseInt(str) % unit === 0;
+  }
 }
 
 module.exports = Util;
