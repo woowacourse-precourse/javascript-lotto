@@ -16,7 +16,7 @@ class Exceptions {
   checkInputDuplicate(input) {
     let uniqueInput = [...new Set(input)];
     if (uniqueInput.length !== input.length)
-      throw new Error("[ERROR] 입력값에 중복값이 있습니다");
+      throw "[ERROR]";
   }
   checkInputRange(input) {
     const FIRST_NUMBER = 1;
