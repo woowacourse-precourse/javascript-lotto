@@ -1,8 +1,9 @@
 class Lotto {
   #winningNumbers;
   constructor(numbers) {
-    this.#getConvertedWinningLottoNumber(numbers);
-    this.validate(this.#winningNumbers);
+    numbers["winningNumber"] = this.#getConvertedWinningLottoNumber(numbers["winningNumber"]);
+    this.validate(numbers["winningNumber"]);
+    this.#winningNumbers = numbers;
   }
 
   validate(numbers) {
@@ -22,23 +23,23 @@ class Lotto {
   }
 
   #getConvertedWinningLottoNumber(numbers) {
-    this.#getSplittedNumber(numbers);
+    return this.#getSplittedNumber(numbers);
   }
 
   #getSplittedNumber(numbers) {
-    this.#winningNumbers = Array.from(numbers.split(","), this.#convertArgsStringToInt);
+    return Array.from(numbers.split(","), this.#convertArgsStringToInt);
   }
 
   #isDuplicatedValueExist(numbers) {
     return numbers.length !== new Set(numbers).size;
   }
 
-  #convertArgsStringToInt(input) {
-    return +input;
+  #convertArgsStringToInt(number) {
+    return +number;
   }
 
-  #isIncludeNotNumber(input) {
-    return input.includes(NaN);
+  #isIncludeNotNumber(numbers) {
+    return numbers.includes(NaN);
   }
 }
 
