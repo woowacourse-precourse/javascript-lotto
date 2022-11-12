@@ -26,23 +26,23 @@ class App {
   requestMoneyInput() {
     Console.readLine(Messages.REQUEST_MONEY_INPUT, (input) => {
       const money = Number(input);
-      this.validateMoney(money);
       this.purchaseMoney = money;
       this.purchaseCount = money / UNIT;
+      this.validatePurchaseMoney();
       this.printPurchaseMessage();
       this.createLotto();
       this.requestWinningNumbersInput();
     });
   }
 
-  validateMoney(money) {
-    if (money < UNIT) {
+  validatePurchaseMoney() {
+    if (this.purchaseMoney < UNIT) {
       throw new Error(Messages.ERROR_MINIMUM_MONEY_INPUT);
     }
-    if (Number.isNaN(money)) {
+    if (Number.isNaN(this.purchaseMoney)) {
       throw new Error(Messages.ERROR_NUMBER_ONLY);
     }
-    if (!Number.isInteger(money / UNIT)) {
+    if (!Number.isInteger(this.purchaseCount)) {
       throw new Error(Messages.ERROR_1000_UNITS_ONLY);
     }
   }
