@@ -24,8 +24,9 @@ class MatchingNumber {
 
   lineUpNumberOfMatchingNumbersByRank(numbers) {
     const numberOfMatchingNumbers = this.getMatchingNumber(numbers).length;
-    if (numberOfMatchingNumbers === 5)
+    if (numberOfMatchingNumbers === 5) {
       return this.getNumberOfNumbersCompareWtihBonusNumber(numbers);
+    }
     if (numberOfMatchingNumbers > 1 && numberOfMatchingNumbers <= 4) {
       return numberOfMatchingNumbers - 1;
     }

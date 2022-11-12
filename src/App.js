@@ -26,8 +26,9 @@ class App {
   }
 
   validateInputMoney(payMoney) {
-    if (payMoney % 1000 !== 0 || payMoney === "0")
+    if (payMoney % 1000 !== 0 || payMoney === "0") {
       throw new Error("[ERROR] 구입 금액은 1000원 단위 입니다.");
+    }
   }
 
   getLottoNumber(lottoTickets) {
@@ -55,8 +56,9 @@ class App {
   }
 
   validateInputBonusNumber(number) {
-    if (number < 1 || number > 45 || !new RegExp("^[0-9]+$").test(number))
+    if (number < 1 || number > 45 || !new RegExp("^[0-9]+$").test(number)) {
       throw new Error("[ERROR] 1에서 45까지의 번호를 입력해주세요");
+    }
   }
 
   loadMatchingNumberAboutLotto() {
