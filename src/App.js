@@ -1,6 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
-const console = MissionUtils.Console;
 
 const LOTTO_NUMBER_LENGTH = 6;
 const LOTTO_RANGE_BEGIN = 1;
@@ -10,6 +9,9 @@ const ERROR_HEADER = '[ERROR]';
 const ERROR_WRONG_LENGTH = `${ERROR_HEADER} 로또 번호는 6개여야 합니다.`;
 const ERROR_DUPLICATED = `${ERROR_HEADER} 로또 번호는 중복되지 않아야 합니다.`;
 const ERROR_WRONG_RANGE = `${ERROR_HEADER} 로또 번호는 1부터 45까지의 정수여야 합니다.'`;
+const ERROR_WRONG_MONEY = `${ERROR_HEADER} 구입 금액은 1,000원 단위의 정수여야 합니다.`;
+
+const console = MissionUtils.Console;
 
 class App {
   #winningNumbers;
@@ -50,6 +52,16 @@ class App {
   setBonusNumber(number) {
     this.isInRange(number);
     this.#bonusNumber = number;
+  }
+
+  validateMoney(money) {
+    if (
+      !/^[0-9]+$/.test(money) ||
+      Number(money) <= 0 ||
+      Number(money) % 1000 !== 0
+    ) {
+      throw new Error(ERROR_WRONG_MONEY);
+    }
   }
 
   play() {
