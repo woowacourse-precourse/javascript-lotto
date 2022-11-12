@@ -25,6 +25,20 @@ class App {
       console.print(moneyChange + "개를 구매했습니다.");
     }
   }
+
+  // 구입 금액에 해당하는 만큼 로또 발행, 출력
+  creatLottos = [];
+
+  creatLotto() {
+    for (let i = 0; i < moneyChange; i++) {
+      let lottoArray = Random.pickUniqueNumbersInRange(1, 45, 6);
+      let lottoArraySort = lottoArray.sort(function (a, b) {
+        return a - b;
+      });
+      creatLottos.push(lottoArraySort);
+      console.print(creatLottos);
+    }
+  }
 }
 
 module.exports = App;
