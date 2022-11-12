@@ -7,12 +7,30 @@ class App {
 
   #lottoList = [];
 
+  static inputWinningNumbers() {
+    let input;
+    MissionUtils.Console.readLine(
+      Message.ENTER_WINNING_NUMBERS_MESSAGE,
+      (answer) => { input = answer.trimRight(); },
+    );
+
+    App.#validateSeparator(input);
+    return input.split(AppConfig.INPUT_SEPARATOR).map(Number);
+  }
+
   static #validateMoney(money) {
     if (
       money < LottoConfig.PRICE
       || money % LottoConfig.PRICE !== 0
     ) {
       throw new Error(Message.ERROR_MONEY);
+    }
+  }
+
+  static #validateSeparator(input) {
+    const inputFormat = new RegExp(`^[1-9]+(${AppConfig.INPUT_SEPARATOR}[1-9]+)+$`);
+    if (!inputFormat.test(input)) {
+      throw new Error(Message.ERROR_SEPARATOR);
     }
   }
 
