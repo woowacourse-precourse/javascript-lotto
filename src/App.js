@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { GUIDE_MESSAGE } = require("./Constants");
+const { GUIDE_MESSAGE, LOTTO_PRICE } = require("./Constants");
 const Validation = require("./validation");
 
 class App {
@@ -12,8 +12,15 @@ class App {
       (purchaseAmount) => {
         Validation.checkPurchaseAmount(purchaseAmount);
         console.log(purchaseAmount);
+        this.lottoBuying(purchaseAmount);
       }
     );
+  }
+  lottoBuying(purchaseAmount) {
+    const lottoCount = this.getLottoCount(purchaseAmount);
+  }
+  getLottoCount(purchaseAmount) {
+    return parseInt(purchaseAmount, 10) / LOTTO_PRICE;
   }
 }
 
