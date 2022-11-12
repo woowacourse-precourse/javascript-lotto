@@ -12,8 +12,9 @@ class Purchase {
   }
 
   getHowManyLottos() {
+    Console.print(`${this.numberOfTicket}개를 구매했습니다.`);
     this.publishLottos(this.numberOfTicket);
-    this.printLottos(this.numberOfTicket);
+    this.printLottos();
     this.getWinningNumbers();
   }
 
@@ -27,7 +28,9 @@ class Purchase {
 
   printLottos() {
     this.myTickets.forEach((ticket) => {
-      Console.print(ticket);
+      Console.print(
+        `[${ticket[0]}, ${ticket[1]}, ${ticket[2]}, ${ticket[3]}, ${ticket[4]}, ${ticket[5]}]`
+      );
     });
   }
 

@@ -5,7 +5,6 @@ class App {
   play() {
     Console.readLine('구입금액을 입력해주세요.', (num) => {
       if (isDivisibleBy1000(num)) {
-        Console.print(`${num / 1000}개를 구매했습니다.`);
         new Purchase(num).getHowManyLottos();
       } else {
         errorMessage();
