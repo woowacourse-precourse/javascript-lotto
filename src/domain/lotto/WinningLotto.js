@@ -8,7 +8,8 @@ class WinningLotto extends Lotto {
   constructor(numbers, bonusNumber) {
     super(numbers);
     WinningLotto.validate(numbers, bonusNumber);
-    this.#bonusNumber = LottoNumber.of(bonusNumber);
+    LottoNumber.validate(bonusNumber);
+    this.#bonusNumber = bonusNumber;
   }
 
   static validate(numbers, bonusNumber) {
