@@ -1,3 +1,16 @@
+const LOTTO_INFO = Object.freeze({
+  SPLITUNIT: ',',
+  START_RANGE: 1,
+  LAST_RANGE: 45,
+  PRICE: 1000,
+  PICK: 6,
+});
+
+const BONUSLOTTO_INFO = Object.freeze({
+  START_RANGE: 1,
+  LAST_RANGE: 45,
+});
+
 const LOTTO_ERROR = Object.freeze({
   LEGNTH: '[ERROR] 로또 번호는 6개여야 합니다.',
   SPLIT: '[ERROR] 로또 번호는 쉼표로 구분된 숫자여야 합니다.',
@@ -6,7 +19,7 @@ const LOTTO_ERROR = Object.freeze({
   RANGE: '[ERROR] 로또 번호는 1 ~ 45 사이의 숫자여야 합니다.',
 });
 
-const BONUS_LOTTO_ERROR = Object.freeze({
+const BONUSLOTTO_ERROR = Object.freeze({
   RANGE: '[ERROR] 로또 번호는 1 ~ 45 사이의 숫자여야 합니다.',
   BONUSLENGTH: '[ERROR] 보너스 로또 번호는 1개여야 합니다.',
   INCLUDES: '[ERROR] 보너스 번호와 일치하는 당첨 번호가 있습니다.',
@@ -23,7 +36,7 @@ const RANKING = Object.freeze({
   FIVE: {
     MATCH: 3,
     BONUS: false,
-    PRICE: '5000',
+    JACKPOT: '5000',
     MESSAGE(MATCHNUMER) {
       return `3개 일치 (5,000원) - ${MATCHNUMER}개`;
     },
@@ -31,7 +44,7 @@ const RANKING = Object.freeze({
   FOURTH: {
     MATCH: 4,
     BONUS: false,
-    PRICE: '50000',
+    JACKPOT: '50000',
     MESSAGE(MATCHNUMER) {
       return `4개 일치 (50,000원) -  ${MATCHNUMER}개`;
     },
@@ -39,7 +52,7 @@ const RANKING = Object.freeze({
   THREE: {
     MATCH: 5,
     BONUS: false,
-    PRICE: '1500000',
+    JACKPOT: '1500000',
     MESSAGE(MATCHNUMER) {
       return `5개 일치 (1,500,000원) - ${MATCHNUMER}개`;
     },
@@ -47,7 +60,7 @@ const RANKING = Object.freeze({
   TWO: {
     MATCH: 5,
     BONUS: true,
-    PRICE: '30000000',
+    JACKPOT: '30000000',
     MESSAGE(MATCHNUMER) {
       return `5개 일치, 보너스 볼 일치 (30,000,000원) - ${MATCHNUMER}개`;
     },
@@ -55,7 +68,7 @@ const RANKING = Object.freeze({
   ONE: {
     MATCH: 6,
     BONUS: false,
-    PRICE: '2000000000',
+    JACKPOT: '2000000000',
     MESSAGE(MATCHNUMER) {
       return `6개 일치 (2,000,000,000원) - ${MATCHNUMER}개`;
     },
@@ -82,8 +95,10 @@ const PRINT_MESSAGE = Object.freeze({
 });
 
 module.exports = {
+  LOTTO_INFO,
+  BONUSLOTTO_INFO,
   LOTTO_ERROR,
-  BONUS_LOTTO_ERROR,
+  BONUSLOTTO_ERROR,
   AMOUNt_ERROR,
   BONUS_NUMBER,
   RANKING,

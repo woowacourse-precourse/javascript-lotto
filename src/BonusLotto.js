@@ -1,5 +1,5 @@
 const ThrowError = require('./components/ThrowError');
-const { BONUS_LOTTO_ERROR } = require('./constant');
+const { BONUSLOTTO_ERROR, BONUSLOTTO_INFO } = require('./constant');
 
 class BonusLotto {
   #number;
@@ -11,7 +11,7 @@ class BonusLotto {
 
   showValidateResult(fullLottoNumber) {
     const resultMessage = this.validate(fullLottoNumber);
-    return resultMessage ? ThrowError(BONUS_LOTTO_ERROR[resultMessage]) : fullLottoNumber;
+    return resultMessage ? ThrowError(BONUSLOTTO_ERROR[resultMessage]) : fullLottoNumber;
   }
 
   validate(fullNumber) {
@@ -28,7 +28,10 @@ class BonusLotto {
   }
 
   isNumberRange(number) {
-    return Number(number) >= 1 && Number(number) <= 45 ? false : 'RANGE';
+    return Number(number) >= BONUSLOTTO_INFO.START_RANGE &&
+      Number(number) <= BONUSLOTTO_INFO.LAST_RANGE
+      ? false
+      : 'RANGE';
   }
 
   isIncludesNumber(mainNumber, bonusNumber) {

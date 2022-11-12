@@ -1,6 +1,6 @@
 const { Random } = require('@woowacourse/mission-utils');
 const ThrowError = require('./components/ThrowError');
-const { AMOUNt_ERROR } = require('./constant');
+const { AMOUNt_ERROR, LOTTO_INFO } = require('./constant');
 
 class PurChase {
   #money;
@@ -16,12 +16,18 @@ class PurChase {
   }
 
   generatLottoTickets() {
-    return Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
+    return Random.pickUniqueNumbersInRange(
+      LOTTO_INFO.START_RANGE,
+      LOTTO_INFO.LAST_RANGE,
+      LOTTO_INFO.PICK
+    ).sort((a, b) => a - b);
   }
 
   validateResult(purchaseAmount) {
     const resultMessage = this.validate(purchaseAmount);
-    return resultMessage ? ThrowError(AMOUNt_ERROR[resultMessage]) : Number(purchaseAmount) / 1000;
+    return resultMessage
+      ? ThrowError(AMOUNt_ERROR[resultMessage])
+      : Number(purchaseAmount) / LOTTO_INFO.PRICE;
   }
 
   validate(purchaseAmount) {
@@ -33,7 +39,7 @@ class PurChase {
   }
 
   unitValidation(purchaseAmount) {
-    return Number(purchaseAmount) % 1000 ? 'UNIT' : false;
+    return Number(purchaseAmount) % LOTTO_INFO.PRICE ? 'UNIT' : false;
   }
 }
 

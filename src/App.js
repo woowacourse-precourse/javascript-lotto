@@ -59,7 +59,7 @@ class App {
           ? result[matchNumber]['count']
           : 0;
       Console.print(`${matchNumberInfo.MESSAGE(matchCount)}`);
-      return { matchCount, matchMoney: matchNumberInfo['PRICE'] };
+      return { matchCount, matchMoney: matchNumberInfo['JACKPOT'] };
     });
     this.printProFit(profitList);
   }

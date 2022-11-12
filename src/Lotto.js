@@ -1,5 +1,5 @@
 const ThrowError = require('./components/ThrowError');
-const { LOTTO_ERROR } = require('./constant');
+const { LOTTO_ERROR, LOTTO_INFO } = require('./constant');
 
 class Lotto {
   #numbers;
@@ -30,20 +30,22 @@ class Lotto {
   }
 
   isSplit(numbers) {
-    return !numbers.includes(',') ? 'SPLIT' : false;
+    return !numbers.includes(LOTTO_INFO.SPLITUNIT) ? 'SPLIT' : false;
   }
 
   isNumberCorrect(numbersList) {
-    return numbersList.length !== 6 ? 'LEGNTH' : false;
+    return numbersList.length !== LOTTO_INFO.PICK ? 'LEGNTH' : false;
   }
 
   isNumberRepeated(numbersList) {
-    return new Set(numbersList).size !== 6 ? 'REPEAT' : false;
+    return new Set(numbersList).size !== LOTTO_INFO.PICK ? 'REPEAT' : false;
   }
 
   isNumberRange(numbersList) {
-    return numbersList.filter((eachNumber) => Number(eachNumber) >= 1 && Number(eachNumber) <= 45)
-      .length !== 6
+    return numbersList.filter(
+      (eachNumber) =>
+        Number(eachNumber) >= LOTTO_INFO.START_RANGE && Number(eachNumber) <= LOTTO_INFO.LAST_RANGE
+    ).length !== LOTTO_INFO.PICK
       ? 'RANGE'
       : false;
   }
