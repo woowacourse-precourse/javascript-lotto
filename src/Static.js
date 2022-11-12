@@ -8,6 +8,7 @@ const MESSAGE = {
   EANR: "총 수익률은 ",
   ERR_INPUT: "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.",
   ERR_BUY: "[ERROR] 금액은 1000원단위여야 합니다.",
+  ERR_DUPLICATE: "[ERROR] 로또 번호는 중복되면 안됩니다.",
 };
 
 const LOTTERY_AMOUNT = {

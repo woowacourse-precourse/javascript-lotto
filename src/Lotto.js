@@ -9,6 +9,7 @@ class Lotto {
     this.validate(numbers);
     this.validateIsNum(numbers);
     this.validateIsRange(numbers);
+    this.validateIsDuplicate(numbers);
     this.#numbers = numbers;
   }
 
@@ -34,6 +35,19 @@ class Lotto {
     });
   };
   // TODO: 추가 기능 구현
+
+  validateIsDuplicate = (numbers) => {
+    numbers.map((number, idx) => {
+      if (!this.duplicateCheck([...numbers], idx, number)) {
+        throw new Error(STATIC.MESSAGE.ERR_DUPLICATE);
+      }
+    });
+  };
+
+  duplicateCheck = (answer, idx, val) => {
+    answer.splice(idx, 1);
+    return answer.every((e) => e != val);
+  };
 }
 
 inputLottoNum = () => {
