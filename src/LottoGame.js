@@ -2,6 +2,7 @@ const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const Payment = require('./Payment');
 const LottoBonus = require('./LottoBonus');
+const LottoIssuer = require('./LottoIssuer');
 
 const LOTTO_PRICE = {
   purchase: 1000,
@@ -18,7 +19,7 @@ const LOTTO_PRICE = {
 class LottoGame {
   constructor() {
     this.money = 0;
-    this.purchaseList = [];
+    this.lottoIssuer = new LottoIssuer();
     this.winningNumber = {
       main: [],
       bonus: 0,
@@ -48,24 +49,9 @@ class LottoGame {
 
   purchase(number) {
     Console.print(`\n${number}개를 구매했습니다.`);
-    this.issue(number);
-    this.printLottoNumbers();
+    this.lottoIssuer.issue(number);
+    this.lottoIssuer.print();
     this.drawWinningNumbers();
-  }
-
-  issue(number) {
-    let count = 0;
-    while (count < number) {
-      const lottoNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
-      this.purchaseList.push(lottoNumbers);
-      count += 1;
-    }
-  }
-
-  printLottoNumbers() {
-    this.purchaseList.forEach((lottoNumbers) => {
-      Console.print(`[${lottoNumbers.join(', ')}]`);
-    });
   }
 
   drawWinningNumbers() {
@@ -89,7 +75,7 @@ class LottoGame {
   }
 
   calculateMatching() {
-    this.purchaseList.forEach((lottoNumbers) => {
+    this.lottoIssuer.getLotteries().forEach((lottoNumbers) => {
       const matchingCount = this.countMatching(lottoNumbers);
       this.result[matchingCount] += 1;
       this.result.profit += LOTTO_PRICE[matchingCount];
