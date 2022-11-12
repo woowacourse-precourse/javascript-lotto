@@ -15,6 +15,16 @@ class App {
       }
     });
   }
+
+  // 금액 로또로 변환
+  checkMoney(answer) {
+    let moneyChange = answer / 1000;
+    if (!Number.isInteger(moneyChange)) {
+      throw new Error("[ERROR] 알맞은 값을 입력하지 않았습니다.");
+    } else {
+      console.print(moneyChange + "개를 구매했습니다.");
+    }
+  }
 }
 
 module.exports = App;
