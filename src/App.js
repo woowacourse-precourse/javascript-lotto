@@ -1,5 +1,6 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const { MESSAGE, ERROR_MESSAGE } = require('./constants/constant');
+const { MESSAGE } = require('./constants/constant');
+const Validation = require('./Validation');
 const Lotto = require('./Lotto');
 
 class App {
@@ -8,39 +9,23 @@ class App {
     this.lotto = [];
     this.winningNumber = [];
     this.money = 0;
-    this.bounsNumber = 0;
+    this.bonusNumber = 0;
     this.countCorrect = [0, 0, 0, 0, 0];
     this.winnings = 0;
     this.yield = 0;
+    this.validation = new Validation();
   }
 
   play() {
     Console.readLine(MESSAGE.INPUT_MONEY, (input) => {
       this.money = input;
-      this.isValidInputMoney();
+      this.validation.isValidInputMoney(this.money);
       this.count = this.countLotto(this.money);
       Console.print(`${this.count}개를 구매했습니다.`);
       this.getLotto(this.count);
       this.printLotto();
       this.getWinningNumber();
     });
-  }
-
-  isValidInputMoney() {
-    this.isInputNumber(this.money);
-    this.isMoneyDisvisible();
-  }
-
-  isInputNumber(input) {
-    if (Number.isNaN(parseInt(input, 10))) {
-      throw new Error(ERROR_MESSAGE.NAN_ERROR);
-    }
-  }
-
-  isMoneyDisvisible() {
-    if (this.money % 1000 !== 0) {
-      throw new Error(ERROR_MESSAGE.NOT_DISVISIBLE);
-    }
   }
 
   countLotto(money) {
@@ -64,35 +49,20 @@ class App {
   getWinningNumber() {
     Console.readLine(MESSAGE.INPUT_GOAL, (input) => {
       this.winningNumber = input.split(',').map((item) => parseInt(item, 10));
-      this.isValidWinningNumber();
+      this.validation.isValidWinningNumber(this.winningNumber);
+      this.getBonusNumber();
     });
-  }
-
-  isValidWinningNumber() {
-    const lotto = new Lotto(this.winningNumber);
-    this.getBonusNumber();
   }
 
   getBonusNumber() {
     Console.readLine(MESSAGE.INPUT_BONUSNUMBER, (input) => {
-      this.bounsNumber = input;
-      this.isValidBonusNumber();
+      this.bonusNumber = input;
+      this.validation.isValidBonusNumber(input);
       this.getResult();
       this.getWinnings();
       this.getYield();
       this.printResult();
     });
-  }
-
-  isValidBonusNumber() {
-    this.isInputNumber(this.bounsNumber);
-    this.isBonusNumberInRange();
-  }
-
-  isBonusNumberInRange() {
-    if (!(this.bounsNumber >= 1 && this.bounsNumber <= 45)) {
-      throw new Error(ERROR_MESSAGE.NOT_IN_RANGE);
-    }
   }
 
   checkCorrectNumber(lotto) {
@@ -125,7 +95,7 @@ class App {
       this.countCorrect[4] += 1;
       return;
     }
-    if (correctCount === 5 && lotto.includes(parseInt(this.bounsNumber, 10))) {
+    if (correctCount === 5 && lotto.includes(parseInt(this.bonusNumber, 10))) {
       this.countCorrect[3] += 1;
       return;
     }
