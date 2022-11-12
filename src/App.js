@@ -4,6 +4,12 @@ const {
   LOTTO_NUMBER_LENGTH,
   LOTTO_RANGE_BEGIN,
   LOTTO_RANGE_END,
+  PRIZE,
+  CORRECT_THREE,
+  CORRECT_FOUR,
+  CORRECT_FIVE,
+  CORRECT_FIVE_BONUS,
+  CORRECT_SIX,
 } = require('./constants/lotto');
 const {
   ERROR_WRONG_LENGTH,
@@ -16,11 +22,13 @@ class App {
   #winningNumbers;
   #bonusNumber;
   #lottos;
+  #correct;
 
   constructor() {
     this.#winningNumbers = [];
     this.#bonusNumber = 0;
     this.#lottos = [];
+    this.#correct = [0, 0, 0, 0, 0, 0];
   }
 
   isDistinct(numbers) {
@@ -91,6 +99,31 @@ class App {
   setBonusNumber(number) {
     this.isInRange(number);
     this.#bonusNumber = number;
+  }
+
+  tryMatching(lotto) {
+    const correct = lotto.filter((number) =>
+      this.#winningNumbers.includes(number)
+    ).length;
+
+    switch (correct) {
+      case 3:
+        this.#correct[CORRECT_THREE] += 1;
+        break;
+      case 4:
+        this.#correct[CORRECT_FOUR] += 1;
+        break;
+      case 5:
+        this.#correct[
+          lotto.includes(this.#bonusNumber) ? CORRECT_FIVE_BONUS : CORRECT_FIVE
+        ] += 1;
+        break;
+      case 6:
+        this.#correct[CORRECT_SIX] += 1;
+        break;
+      default:
+        break;
+    }
   }
 
   readWinningNumbers() {
