@@ -1,5 +1,5 @@
 class Lotto {
-  #numbers;
+  #numbers; // 구매한 로또 번호
 
   constructor(numbers) {
     this.validate(numbers);
