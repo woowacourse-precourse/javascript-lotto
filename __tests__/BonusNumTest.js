@@ -1,6 +1,6 @@
 const BonusNum = require("../src/BonusNum");
 
-describe("로또 클래스 테스트", () => {
+describe("보너스번호 클래스 테스트", () => {
   test("예외테스트: 로또 보너스 번호가 로또 번호와 겹치면 에러 발생.", () => {
     expect(() => {
       new BonusNum(1, [1, 2, 3, 4, 5, 6]);

@@ -8,7 +8,12 @@ class LottoGame {
   money;
   gameCnt;
   userPickLotto;
-  constructor() {}
+  userEarn;
+  constructor() {
+    this.money = 0;
+    this.gameCnt = 0;
+    this.userEarn = 0;
+  }
 
   buyLotto = () => {
     MissionUtils.Console.readLine(STATIC.MESSAGE.BUYMONEY, (money) => {
@@ -45,14 +50,19 @@ class LottoGame {
   inputBonusNum = (lotto) => {
     MissionUtils.Console.readLine(STATIC.MESSAGE.BONUS, (number) => {
       const bonusNumber = new BonusNum(number, lotto.getNumber()).bonusNum;
-      startCheck(lotto, this.userPickLotto, bonusNumber);
+      startCheckResult(lotto, this.userPickLotto, bonusNumber);
     });
   };
 }
 
-const startCheck = () => {
+const startCheckResult = (lotto, userPickLotto, bonusNumber) => {
+  userPickLotto.map((e) => {
+    checkResult(lotto, e, bonusNumber);
+  });
   announceResult();
 };
+
+const checkResult = (lotto, userPickLotto, bonusNumber) => {};
 
 const announceResult = () => {
   MissionUtils.Console.print(STATIC.MESSAGE.STATISTIC + "\n" + "---");
