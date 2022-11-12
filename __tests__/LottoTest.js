@@ -91,3 +91,95 @@ describe('로또 당첨&보너스 번호 검사', () => {
     expect(() => Lotto.validateWinningNumbers(winningNumbers, bonusNumber)).toThrow('[ERROR]');
   });
 });
+
+describe('로또 번호 맞추기 기능 검사', () => {
+  test('0개 맞음', () => {
+    const winningNumbers = [16, 26, 29, 31, 36, 8];
+    const bonusNumber = 11;
+    const myNumbers = [1, 2, 3, 4, 5, 6];
+
+    const lotto = new Lotto(myNumbers);
+    const { matchCount } = lotto.match(winningNumbers, bonusNumber);
+    expect(matchCount).toEqual(0);
+  });
+
+  test('1개 맞음', () => {
+    const winningNumbers = [16, 26, 29, 31, 36, 8];
+    const bonusNumber = 11;
+    const myNumbers = [1, 2, 3, 4, 5, 8];
+
+    const lotto = new Lotto(myNumbers);
+    const { matchCount } = lotto.match(winningNumbers, bonusNumber);
+    expect(matchCount).toEqual(1);
+  });
+
+  test('2개 맞음', () => {
+    const winningNumbers = [16, 26, 29, 31, 36, 8];
+    const bonusNumber = 11;
+    const myNumbers = [1, 2, 3, 4, 36, 8];
+
+    const lotto = new Lotto(myNumbers);
+    const { matchCount } = lotto.match(winningNumbers, bonusNumber);
+    expect(matchCount).toEqual(2);
+  });
+
+  test('3개 맞음', () => {
+    const winningNumbers = [16, 26, 29, 31, 36, 8];
+    const bonusNumber = 11;
+    const myNumbers = [1, 2, 3, 8, 36, 31];
+
+    const lotto = new Lotto(myNumbers);
+    const { matchCount } = lotto.match(winningNumbers, bonusNumber);
+    expect(matchCount).toEqual(3);
+  });
+
+  test('4개 맞음', () => {
+    const winningNumbers = [16, 26, 29, 31, 36, 8];
+    const bonusNumber = 11;
+    const myNumbers = [1, 2, 29, 8, 36, 31];
+
+    const lotto = new Lotto(myNumbers);
+    const { matchCount } = lotto.match(winningNumbers, bonusNumber);
+    expect(matchCount).toEqual(4);
+  });
+
+  test('5개 맞음', () => {
+    const winningNumbers = [16, 26, 29, 31, 36, 8];
+    const bonusNumber = 11;
+    const myNumbers = [1, 26, 29, 31, 36, 8];
+
+    const lotto = new Lotto(myNumbers);
+    const { matchCount } = lotto.match(winningNumbers, bonusNumber);
+    expect(matchCount).toEqual(5);
+  });
+
+  test('6개 맞음', () => {
+    const winningNumbers = [16, 26, 29, 31, 36, 8];
+    const bonusNumber = 11;
+    const myNumbers = [8, 16, 26, 29, 31, 36];
+
+    const lotto = new Lotto(myNumbers);
+    const { matchCount } = lotto.match(winningNumbers, bonusNumber);
+    expect(matchCount).toEqual(6);
+  });
+
+  test('보너스 번호 틀림', () => {
+    const winningNumbers = [16, 26, 29, 31, 36, 8];
+    const bonusNumber = 11;
+    const myNumbers = [8, 16, 26, 29, 31, 36];
+
+    const lotto = new Lotto(myNumbers);
+    const { bonusMatchBool } = lotto.match(winningNumbers, bonusNumber);
+    expect(bonusMatchBool).toEqual(false);
+  });
+
+  test('보너스 번호 맞음', () => {
+    const winningNumbers = [16, 26, 29, 31, 36, 8];
+    const bonusNumber = 11;
+    const myNumbers = [11, 16, 26, 29, 31, 36];
+
+    const lotto = new Lotto(myNumbers);
+    const { bonusMatchBool } = lotto.match(winningNumbers, bonusNumber);
+    expect(bonusMatchBool).toEqual(true);
+  });
+});
