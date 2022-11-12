@@ -33,6 +33,13 @@ class Validate {
       throw new Error(`${MESSAGE.ERROR.PREFIX} ${MESSAGE.ERROR.WIN_NUMBER}`);
     }
   }
+
+  static bonuseNumber(number) {
+    Validate.isNumberValid(number);
+    if (!Number.isInteger(+number)) {
+      throw new Error(`${MESSAGE.ERROR.PREFIX} ${MESSAGE.ERROR.BONUSE_NUMBER}`);
+    }
+  }
 }
 
 module.exports = Validate;
