@@ -27,6 +27,26 @@ class LottoCompany {
 
   makeBonusNumber() {}
 
+  checkResult(lotto) {
+    const lottoNumbers = lotto.getNumbers();
+    const sameNumberCount = LottoCompany.countSameNumbersOfAscSortedArrays(
+      lottoNumbers,
+      this.#winningNumbers
+    );
+    const isBonus = lottoNumbers.includes(this.#bonusNumber);
+    return this.winningTemplate(sameNumberCount, isBonus);
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  winningTemplate(count, bonus) {
+    if (count === 6) return 1;
+    if (count === 5 && bonus) return 2;
+    if (count === 5) return 3;
+    if (count === 4) return 4;
+    if (count === 3) return 5;
+    return -1;
+  }
+
   notifyLottoResult() {}
 
   static countSameNumbersOfAscSortedArrays(ascSortedNums1, ascSortedNums2) {
