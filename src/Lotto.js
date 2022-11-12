@@ -17,7 +17,7 @@ class Lotto {
 
   inputBonusNumber(lotteries) {
     let bonusNumber;
-    Console.readLine("보너스 번호를 입력해 주세요,\n", (number) => {
+    Console.readLine("\n보너스 번호를 입력해 주세요,\n", (number) => {
       bonusNumber = number;
 
       const bonus = new Bonus(this.#numbers, bonusNumber, lotteries);

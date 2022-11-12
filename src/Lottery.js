@@ -25,7 +25,7 @@ class Lottery {
   }
 
   printLotteries() {
-    Console.print(`${this.#quantity}개를 구매했습니다.`);
+    Console.print(`\n${this.#quantity}개를 구매했습니다.`);
     this.#lotteries.forEach((lottery) => {
       Console.print("[" + lottery.join(", ") + "]");
     });
@@ -49,7 +49,7 @@ class Lottery {
 
   inputSixNumbers() {
     let inputNumbers = [];
-    Console.readLine("당첨 번호를 입력해 주세요.\n", (numbers) => {
+    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (numbers) => {
       inputNumbers = numbers.split(",").map((v) => +v);
       const lotto = new Lotto(inputNumbers, this.#lotteries);
     });

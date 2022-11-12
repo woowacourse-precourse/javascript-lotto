@@ -39,10 +39,10 @@ class Bonus {
         matchCount += 1;
       }
     });
-    this.calcMatchCount(matchCount);
+    this.calcMatchCount(matchCount, lottery);
   }
 
-  calcMatchCount(matchCount) {
+  calcMatchCount(matchCount, lottery) {
     if (matchCount == 6) matchCount += 1;
     if (matchCount == 5) this.checkBonus(lottery) ? (matchCount += 1) : "";
     if (matchCount > 2) this.makeWinResult(matchCount);
