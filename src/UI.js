@@ -9,7 +9,9 @@ const {
 class UI {
   static showBoughtLottos(lottoListOfUser) {
     print(`${lottoListOfUser.length}${MESSAGE.BOUGHT_LOTTOS}`);
-    lottoListOfUser.forEach((lotto) => print(lotto.getNumbers()));
+    lottoListOfUser.forEach((lotto) => {
+      print(`[${lotto.getNumbers().join(", ")}]`);
+    });
     print("");
   }
 
