@@ -15,6 +15,11 @@ const MESSAGE = {
   LOTTO_WIN: '당첨 번호를 입력해 주세요.',
   LOTTO_WIN_SEPERATOR: /,/g,
   LOTTO_BONUS: '보너스 번호를 입력해 주세요.',
+  Three: 3,
+  Four: 4,
+  Five: 5,
+  FiveBonus: 7,
+  Six: 6,
 };
 
 module.exports = MESSAGE;
