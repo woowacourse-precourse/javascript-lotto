@@ -8,7 +8,9 @@ const { ERROR_MESSAGE } = require("./constants/message.js");
 
 class Validation {
   static validatePurchaseAmount(purchaseAmount) {
-    if (!Validation.hasOnlyNumber(purchaseAmount)) {
+    const purchaseAmountArr = purchaseAmount.split("");
+
+    if (!Validation.hasOnlyNumber(purchaseAmountArr)) {
       throw new Error(ERROR_MESSAGE.INVALID_INPUT_TYPE);
     }
     if (Validation.isStartedZero(purchaseAmount)) {
@@ -19,12 +21,9 @@ class Validation {
     }
   }
 
-  static hasOnlyNumber(input, separator = "") {
+  static hasOnlyNumber(input) {
     if (input) {
-      return input
-        .split(separator)
-        .map((eachLetter) => parseInt(eachLetter, 10))
-        .every((number) => !isNaN(number));
+      return input.map((eachLetter) => parseInt(eachLetter, 10)).every((number) => !isNaN(number));
     }
 
     return false;
@@ -63,7 +62,7 @@ class Validation {
   static validateWinningNumbers(winningNumbers) {
     const winningNumbersArr = winningNumbers.split(",");
 
-    if (!Validation.hasOnlyNumber(winningNumbers, ",")) {
+    if (!Validation.hasOnlyNumber(winningNumbersArr)) {
       throw new Error(ERROR_MESSAGE.INVALID_INPUT_TYPE);
     }
     if (!Validation.isValidLottoNumberLength(winningNumbersArr)) {
