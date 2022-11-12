@@ -1,3 +1,4 @@
+const InstanceException = require('../../exception/InstanceException');
 const LottoHasDuplicatedException = require('../../exception/lotto/LottoHasDuplicatedException');
 const LottoLengthException = require('../../exception/lotto/LottoLengthException');
 const LottoNumber = require('./LottoNumber');
@@ -30,7 +31,14 @@ class Lotto {
     return LottoNumber.of(number);
   }
 
+  static validateLotto(lotto) {
+    if (!(lotto instanceof Lotto)) {
+      throw new InstanceException('Lotto');
+    }
+  }
+
   countSameNumber(lotto) {
+    Lotto.validateLotto(lotto);
     return this.#numbers.filter((number) => lotto.includes(number.getNumber())).length;
   }
 
