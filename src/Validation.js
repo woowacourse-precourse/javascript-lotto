@@ -89,7 +89,7 @@ class Validation {
     }
   }
   static isUniqueBonusNumber(bonusNumber, winningNumbers) {
-    return winningNumbers.includes(bonusNumber);
+    return !winningNumbers.includes(bonusNumber);
   }
 }
 
