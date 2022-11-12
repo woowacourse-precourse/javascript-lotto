@@ -2,13 +2,13 @@
 
 const LOTTO_USER_INPUT = {
   PURCHASE_LOTTO: '구입금액을 입력해 주세요.\n',
-  WIN_LOTTO_NUMBERS: '당첨 번호를 입력해 주세요.\n',
-  BONUS_LOTTO_NUMBER: '보너스 번호를 입력해 주세요.\n',
+  WIN_LOTTO_NUMBERS: '\n당첨 번호를 입력해 주세요.\n',
+  BONUS_LOTTO_NUMBER: '\n보너스 번호를 입력해 주세요.\n',
 };
 
 const LOTTO_OUTPUT = {
   LOTTO_QUANTITY: '개를 구매했습니다.',
-  SUMMARY_LOTTO: '당첨 통계',
+  SUMMARY_LOTTO: '\n당첨 통계',
   HYPHEN: '---',
   FIFTH_PLACE: '3개 일치 (5,000원) - ',
   FOURTH_PLACE: '4개 일치 (5,0000원) - ',
