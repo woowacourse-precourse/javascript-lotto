@@ -153,19 +153,11 @@ class App {
 
   calculateWinnings(ranks) {
     let totalWinnings = 0;
-    ranks.forEach((rank) => {
-      if (rank === LOTTO.FIRST_PLACE) {
-        totalWinnings += LOTTO.FIRST_PLACE_WINNINGS;
-      } else if (rank === LOTTO.SECOND_PLACE) {
-        totalWinnings += LOTTO.SECOND_PLACE_WINNINGS;
-      } else if (rank === LOTTO.THIRD_PLACE) {
-        totalWinnings += LOTTO.THIRD_PLACE_WINNINGS;
-      } else if (rank === LOTTO.FOURTH_PLACE) {
-        totalWinnings += LOTTO.FOURTH_PLACE_WINNINGS;
-      } else if (rank === LOTTO.FIFTH_PLACE) {
-        totalWinnings += LOTTO.FIFTH_PLACE_WINNINGS;
-      }
-    });
+    totalWinnings += ranks[LOTTO.FIRST_PLACE] * LOTTO.FIRST_PLACE_WINNINGS;
+    totalWinnings += ranks[LOTTO.SECOND_PLACE] * LOTTO.SECOND_PLACE_WINNINGS;
+    totalWinnings += ranks[LOTTO.THIRD_PLACE] * LOTTO.THIRD_PLACE_WINNINGS;
+    totalWinnings += ranks[LOTTO.FOURTH_PLACE] * LOTTO.FOURTH_PLACE_WINNINGS;
+    totalWinnings += ranks[LOTTO.FIFTH_PLACE] * LOTTO.FIFTH_PLACE_WINNINGS;
     return this.calculateRateOfReturn({ ranks, totalWinnings });
   }
 
