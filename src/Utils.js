@@ -14,7 +14,7 @@ class Utils {
     }
 
     static pickNumberInLotto(){
-        return Random.pickUniqueNumbersInRange(1, 45, 6);
+        return Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
     }
 }
 

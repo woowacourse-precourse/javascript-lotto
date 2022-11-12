@@ -10,11 +10,10 @@ class App {
     Utils.readLine('구입금액을 입력해 주세요.', (input) => {
       const amount = this.validateAmount(Number(input));
       const quantity = this.countLottoQuantity(amount);
-      Utils.print(`${quantity}개를 구매했습니다.`);
+      Utils.print(`\n${quantity}개를 구매했습니다.`);
       this.userLottos = this.createLotto(quantity);
-      console.log(this.userLottos)
-    });
 
+    });
   }
 
   validateAmount(input){
@@ -40,7 +39,6 @@ class App {
     }
     return lottos;
   } 
-
 }
 
 const app = new App();
