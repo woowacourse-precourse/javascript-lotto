@@ -11,7 +11,7 @@ class App {
       const [USER, LOTTO_MARKET, RESULT] = this.init()
       USER.setUserMoney(purchaseAmount);
       USER.buyLotto(LOTTO_MARKET);
-      RESULT.setWinningNumbers();
+      RESULT.setWinningNumbers(USER.lottoNums);
     })
   }
 
