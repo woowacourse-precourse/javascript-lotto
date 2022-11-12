@@ -1,4 +1,12 @@
 class Prize {
+  static NONE = Object.freeze({
+    amount: 0,
+    matchCount: 3,
+    match(matchCount) {
+      return Prize.FIFTH.matchCount > matchCount;
+    },
+  });
+
   static FIRST = Object.freeze({
     amount: 2_000_000_000,
     matchCount: 6,
