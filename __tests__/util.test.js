@@ -93,14 +93,14 @@ describe("구매 금액으로 로또를 구매할 수 있는 수량을 검사한
 
 describe("입력받은 당첨 번호가 유효한 입력인지 검사한다.", () => {
   test("문자열에 쉼표와 숫자 이외의 문자가 있다면 true를 반환한다.", () => {
-    expect(App.hasChar("1,2,3,4w,5")).toEqual(true);
-    expect(App.hasChar("1,2,ww,wer,3,45")).toEqual(true);
-    expect(App.hasChar("a,b,c,d,e,f")).toEqual(true);
-    expect(App.hasChar("one,2,3,4,5,six")).toEqual(true);
-    expect(App.hasChar("one,two,three,four,five,six")).toEqual(true);
-    expect(App.hasChar("1,2,#,4,5,6")).toEqual(true);
-    expect(App.hasChar("1,2,',4,5,6")).toEqual(true);
-    expect(App.hasChar('1,2,3,",5,6')).toEqual(true);
+    expect(App.hasCharExceptComma("1,2,3,4w,5")).toEqual(true);
+    expect(App.hasCharExceptComma("1,2,ww,wer,3,45")).toEqual(true);
+    expect(App.hasCharExceptComma("a,b,c,d,e,f")).toEqual(true);
+    expect(App.hasCharExceptComma("one,2,3,4,5,six")).toEqual(true);
+    expect(App.hasCharExceptComma("one,two,three,four,five,six")).toEqual(true);
+    expect(App.hasCharExceptComma("1,2,#,4,5,6")).toEqual(true);
+    expect(App.hasCharExceptComma("1,2,',4,5,6")).toEqual(true);
+    expect(App.hasCharExceptComma('1,2,3,",5,6')).toEqual(true);
   });
 
   test("문자열에 쉼표가 연속적으로 존재한다면 예외가 발생한다.", () => {
