@@ -1,6 +1,11 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const { GET_INPUT, GRADE, VALUE_NUMBER } = require("./constants");
 const { resultMessage } = require("./view");
+const Lotto = require("./Lotto");
+
+const ValidationCheck = require("./inputCheck");
+const INPUT_CHECK = new ValidationCheck();
+
 const MessageViewer = require("./view");
 const viewer = new MessageViewer();
 
@@ -16,8 +21,11 @@ class LottoResultCheck {
   getWinningNumber() {
     return new Promise((resolve, reject) => {
       MissionUtils.Console.readLine(GET_INPUT.WINNING_NUMBER, (userInput) => {
-        this.winningNumbers = userInput.split(",").map((arrayElement) => parseInt(arrayElement));
+        INPUT_CHECK.isWinningNumberValid(userInput);
+        const WINNING_NUMBERS = userInput.split(",").map((arrayElement) => parseInt(arrayElement));
+        new Lotto(WINNING_NUMBERS);
         resolve(userInput);
+        this.winningNumbers = WINNING_NUMBERS;
       });
     });
   }
@@ -25,6 +33,7 @@ class LottoResultCheck {
   getBonusNumber() {
     return new Promise((resolve, reject) => {
       MissionUtils.Console.readLine(GET_INPUT.BONUS_NUMBER, (userInput) => {
+        INPUT_CHECK.isBonusNumberValid(userInput);
         this.bonusNumber = userInput;
         resolve(userInput);
       });

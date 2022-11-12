@@ -16,7 +16,9 @@ class ValidationCheck {
   }
 
   isWinningNumberValid(winningNumber) {
-    if (/\d{1,},\d{1,},\d{1,},\d{1,},\d{1,},\d{1,}/g.test(winningNumber))
+    if (!/\d{1,},\d{1,},\d{1,},\d{1,},\d{1,},\d{1,}/g.test(winningNumber))
       throw new Error(ERROR_INPUT.WINNING_NUMBER_IS_NOT_VALID);
   }
 }
+
+module.exports = ValidationCheck;
