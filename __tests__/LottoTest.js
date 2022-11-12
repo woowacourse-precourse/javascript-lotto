@@ -96,20 +96,27 @@ describe("로또 클래스 테스트", () => {
     expect(logSpy).toHaveBeenCalledWith(output);
   });
 
-
-  test("여러개의 로또 번호 출력", ()=>{
+  test("여러개의 로또 번호 출력", () => {
     const issuedLotto = [
       [8, 21, 23, 41, 42, 43],
       [3, 5, 11, 16, 32, 38],
       [7, 11, 16, 35, 36, 44],
     ];
-    const output = "[8, 21, 23, 41, 42, 43]"
-      "[3, 5, 11, 16, 32, 38]"
-      "[7, 11, 16, 35, 36, 44]";
+    const output = "[8, 21, 23, 41, 42, 43]";
+    ("[3, 5, 11, 16, 32, 38]");
+    ("[7, 11, 16, 35, 36, 44]");
     const app = new App();
     const logSpy = getLogSpy();
     app.printIssuendLotto(issuedLotto);
 
     expect(logSpy).toHaveBeenCalledWith(output);
-  })
+  });
+
+  test("로또 번호는 중복되지 않는 숫자여야 합니다.", () => {
+    const input = "1,2,3,4,4,5";
+    const app = new App();
+    expect(() => {
+      app.isValidinput(input);
+    }).toThrow();
+  });
 });
