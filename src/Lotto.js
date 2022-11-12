@@ -1,5 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
+const STATIC = require("./Static");
+
 class Lotto {
   #numbers;
 
@@ -17,6 +19,19 @@ class Lotto {
   // TODO: 추가 기능 구현
 }
 
-buyLotto = () => {};
+buyMoneyError = (money) => {
+  if (money % 1000 != 0) {
+    throw new Error(STATIC.MESSAGE.ERR_BUY);
+  }
+};
+
+buyLotto = (lotto) => {
+  MissionUtils.Console.readLine(STATIC.MESSAGE.BUYMONEY, (answer) => {
+    buyMoneyError(answer);
+  });
+};
 
 module.exports = Lotto;
+// const a = new Lotto();
+// console.log(STATIC.MESSAGE);
+buyLotto();
