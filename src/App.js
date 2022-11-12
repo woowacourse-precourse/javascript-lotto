@@ -4,11 +4,13 @@ const { Lotto, createLotto } = require("./Lotto");
 
 class App {
   myPayment;
+  myLottoNumber;
   allLottos = [];
 
   play() {
     Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
       this.buyLotto(money);
+      this.inputMyNumber();
     });
   }
 
@@ -39,6 +41,34 @@ class App {
       throw new Error("[ERROR] 로또는 1,000원 단위로 구매 가능합니다.");
     }
   }
+
+  // 사용자가 당첨 번호를 입력하는 기능
+  inputMyNumber() {
+    Console.readLine("당첨 번호를 입력해 주세요.\n", (myLottoNumber) => {
+      myLottoNumber = this.convertToArr(myLottoNumber);
+      this.myLottoNumber = new Lotto(myLottoNumber).getNumbers();
+      Console.print(this.myLottoNumber);
+    });
+  }
+
+  convertToArr(str) {
+    let arr = [];
+    let left = 0;
+
+    for (let i = 1; i < str.length; i++) {
+      if (str[i] === ",") {
+        arr.push(Number(str.slice(left, i)));
+        left = i + 1;
+      }
+    }
+
+    arr.push(Number(str.slice(left)));
+
+    return arr;
+  }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;

@@ -10,8 +10,19 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
+    if (numbers.length !== 6 || numbers.length !== new Set(numbers).size) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    }
+
+    for (let number of numbers) {
+      if (
+        number < 1 ||
+        number > 45 ||
+        isNaN(number) ||
+        parseInt(number) !== number
+      ) {
+        throw new Error("[ERROR] 로또 번호는 1 ~ 45 까지의 숫자만 가능합니다.");
+      }
     }
   }
 
@@ -30,5 +41,7 @@ const createLotto = () => {
   return new Lotto(numbers);
 };
 
-module.exports = Lotto;
-module.exports = createLotto;
+module.exports = {
+  Lotto,
+  createLotto,
+};
