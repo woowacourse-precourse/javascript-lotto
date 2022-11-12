@@ -12,7 +12,9 @@ class App {
       const quantity = this.countLottoQuantity(amount);
       Utils.print(`\n${quantity}개를 구매했습니다.`);
       this.userLottos = this.createLotto(quantity);
-
+      for(const userLotto of this.userLottos) { 
+        Utils.print(userLotto);
+      }
     });
   }
 
