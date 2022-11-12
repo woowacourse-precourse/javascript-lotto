@@ -69,7 +69,7 @@ class Lotto {
   }
 
   prizeCalculation(stats) {
-    const rewardArray = [
+    const moneyArray = [
       MONEY.RANK_ONE,
       MONEY.RANK_TWO,
       MONEY.RANK_THREE,
@@ -79,7 +79,7 @@ class Lotto {
 
     return stats.reduce((money, value, index) => {
       if (value > 0) {
-        return (money += rewardArray[index] * value);
+        return (money += moneyArray[index] * value);
       } else {
         return money;
       }
