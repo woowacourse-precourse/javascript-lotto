@@ -193,11 +193,9 @@ describe('로또 클래스 테스트', () => {
       });
 
       test('주어진 값이 보너스 값과 일치하면 [0, 0, 0, 1, 0]를 반환한다.', () => {
-        const BONUS = 4;
-        const target = [1, 2, 3, 4, 5, 6];
         const expected = [0, 0, 0, 1, 0];
 
-        expect(Lotto.isBonusMatche(target, BONUS, [0, 0, 0, 0, 0])).toStrictEqual(expected);
+        expect(Lotto.isBonusMatche([0, 0, 0, 0, 0])).toStrictEqual(expected);
       });
     });
 
