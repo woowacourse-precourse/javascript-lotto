@@ -10,7 +10,18 @@ const PRICE_ERROR_MESSAGE = {
   not_valid_answer: '[ERROR] 입력값이 없습니다.',
 };
 
+const WIN_NUMBER_ERROR_MESSAGE = {
+  not_valid_answer: '[ERROR] 입력값이 없습니다.',
+  not_valid_division: '[ERROR] 구분은 쉼표(,)를 사용해주세요.',
+  not_valid_range_number: '[ERROR] 1부터 45까지의 숫자를 입력해주세요',
+  not_valid_overlap_number: '[ERROR] 중복되는 숫자는 입력할 수 없습니다.',
+};
+
+const PRICE_MEASURE = 1000;
+
 module.exports = {
   GAME_MESSAGE,
   PRICE_ERROR_MESSAGE,
+  WIN_NUMBER_ERROR_MESSAGE,
+  PRICE_MEASURE,
 };
