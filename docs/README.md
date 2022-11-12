@@ -13,7 +13,9 @@
   - [x] (예외처리) 배열에 중복인 로또 번호들이 있는 경우
 - [x] 보너스 번호에 대한 예외처리를 한다. WinningLotto#validate
   - [x] (예외처리) 보너스 번호가 당첨(로또) 번호에 포함되는지 확인한다. 
-- [ ] 로또 번호와 당첨 번호 사이에 같은 숫자의 개수를 구한다. Lotto#countSameNumber
+- [ ] 로또 번호와 다른 로또 번호 사이에 같은 숫자의 개수를 구한다. Lotto#countSameNumber
+- [ ] 인수에 대한 예외처리를 한다. Lotto#validateLotto
+  - [ ] (예외처리) instance가 Lotto인지 확인한다. 
 - [ ] 보너스 번호가 당첨 번호에 포함되는지 확인한다. Lotto#includes
 - [ ] 일치하는 개수를 통해 당첨 결과을 구한다. Prize#getPrize
 - [ ] 수익률을 구한다. Result#getProfit
