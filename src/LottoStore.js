@@ -10,6 +10,8 @@ class LottoStore {
 
   #winningNumbers = [];
 
+  #bonusNumber = 0;
+
   enter() {
     this.askPurchaseAmount();
   }
@@ -49,6 +51,18 @@ class LottoStore {
   handleWinningNumbers(answer) {
     validate(answer, isWinningNumber);
     this.#winningNumbers = answer.split(',').map(Number);
+    this.askBonusNumber();
+  }
+
+  askBonusNumber() {
+    Console.readLine(
+      `\n${MESSAGE.BONUS_QUESTION}\n`,
+      this.handleBonusNumber.bind(this),
+    );
+  }
+
+  handleBonusNumber(answer) {
+    this.#bonusNumber = answer;
   }
 }
 
