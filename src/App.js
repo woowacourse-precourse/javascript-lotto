@@ -74,6 +74,11 @@ class App {
       return winningLotto;
     });
   }
+
+  makeWinningLotto(winningNumberArray) {
+    const winningLotto = new Lotto(winningNumberArray);
+    return winningLotto;
+  }
 }
 
 const app = new App();
