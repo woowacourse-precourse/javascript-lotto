@@ -3,6 +3,7 @@ const NumberGenerator = require('./NumberGenerator');
 const Lotto = require('./Lotto');
 const BonusNumber = require('./BonusNumber');
 const WinningChecker = require('./WinningChecker');
+const RateOfReturnCalculator = require('./RateOfReturnCalculator');
 const MissionUtils = require('@woowacourse/mission-utils');
 const { MESSAGE, NUMBER } = require('./utils/constants');
 
@@ -14,7 +15,7 @@ class App {
     this.bonusNumber;
     this.lottoCounter;
     this.winningResult = [];
-    this.countOfRanking = [0, 0, 0, 0, 0, 0];
+    this.countOfRanking = [null, 0, 0, 0, 0, 0];
     this.numberGenerator = new NumberGenerator();
   }
 
@@ -114,6 +115,19 @@ class App {
     MissionUtils.Console.print(
       `6개 일치 (2,000,000,000원) - ${this.countOfRanking[1]}개`
     );
+
+    this.printRateOfReturn();
+  }
+
+  printRateOfReturn() {
+    let calculator = new RateOfReturnCalculator(
+      this.countOfRanking,
+      this.countOfLotto
+    );
+
+    let rateOfReturn = calculator.getRateOfReturn();
+
+    MissionUtils.Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
   }
 }
 
