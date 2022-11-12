@@ -1,4 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
+const Lotto = require("./Lotto");
 
 class App {
   inputAmount;
@@ -31,18 +32,11 @@ class App {
   generateLotto() {
     const quantityOfLottos = this.inputAmount / 1000;
     for (let i = 0; i < quantityOfLottos; i++) {
-      this.generatedLottos.push(Random.pickUniqueNumbersInRange(1, 45, 6));
-    }
-    this.generatedLottos = this.generatedLottos.map((el) =>
-      el.sort((a, b) => a - b)
-    );
-    this.printLotto();
-  }
-
-  printLotto() {
-    const generatedLottos = this.generatedLottos;
-    for (let i = 0; i < generatedLottos.length; i++) {
-      Console.print(generatedLottos[i]);
+      const pickedNumbers = Random.pickUniqueNumbersInRange(1, 45, 6).sort(
+        (a, b) => a - b
+      );
+      Console.print(pickedNumbers);
+      this.generatedLottos.push(pickedNumbers);
     }
     this.askForLottoNumbers();
   }
