@@ -28,7 +28,16 @@ class App {
   };
 
   printHitStatistics = (bonusNumber) => {
+    this.lotto.setBounusNumber(bonusNumber);
+    this.lotto.printHitStatistics(this.purchasedLottoNumbers);
   };
+}
+
+try {
+  const app = new App();
+  app.play();
+} catch {
+  MissionUtils.Console.close();
 }
 
 module.exports = App;

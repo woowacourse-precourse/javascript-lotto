@@ -40,6 +40,50 @@ class Lotto {
       throw new Error('[ERROR] 보너스 번호는 로또 번호와 중복되면 안됩니다.');
     }
   }
+
+  printHitStatistics(purchasedLottoNumbers) {
+    const HIT_STASTICS = '\n당첨 통계\n---';
+    const STATISTICS_TEMPLATE = [
+      '3개 일치 (5,000원)',
+      '4개 일치 (50,000원)',
+      '5개 일치 (1,500,000원)',
+      '5개 일치, 보너스 볼 일치 (30,000,000원)',
+      '6개 일치 (2,000,000,000원)',
+    ];
+    MissionUtils.Console.print(HIT_STASTICS);
+    const MATCHED_COUNT = this.NumberOfMatchedLotto(purchasedLottoNumbers);
+    for (let hit = 0; hit < 5; hit += 1) {
+      MissionUtils.Console.print(`${STATISTICS_TEMPLATE[hit]} - ${MATCHED_COUNT[hit]}개`);
+    }
+    // this.printProfitRate(purchasedLottoNumbers.length, MATCHED_COUNT);
+  }
+
+  NumberOfMatchedLotto(purchasedLottoNumbers) {
+    // 3 4 5 6 5(bonus)
+    const MATCHED_COUNT = [0, 0, 0, 0, 0];
+    purchasedLottoNumbers.forEach((purchased) => {
+      const [HIT_COUNT, BONUS_HIT] = this.countHitNumbers(purchased);
+      const NORMAL_MATCHED = () => { MATCHED_COUNT[HIT_COUNT - 3] += 1; };
+      const BONUS_MATCHED = () => { MATCHED_COUNT[HIT_COUNT - 1] += 1; };
+      const COUNT_MATCHING = BONUS_HIT ? () => BONUS_MATCHED() : () => NORMAL_MATCHED();
+      COUNT_MATCHING();
+    });
+    // 3 4 5 5(bonus) 6
+    [MATCHED_COUNT[3], MATCHED_COUNT[4]] = [MATCHED_COUNT[4], MATCHED_COUNT[3]];
+    return MATCHED_COUNT;
+  }
+
+  countHitNumbers(purchased) {
+    const BONUS_NUMBER = this.#numbers.pop();
+    const MATCHED_NUMBERS = purchased.filter((num) => this.#numbers.includes(num));
+    const HIT_COUNT = MATCHED_NUMBERS.length;
+    let bounsHit = false;
+    if (HIT_COUNT === 5 && purchased.includes(BONUS_NUMBER)) {
+      bounsHit = true;
+    }
+    this.#numbers.push(BONUS_NUMBER);
+    return [HIT_COUNT, bounsHit];
+  }
 }
 
 module.exports = Lotto;
