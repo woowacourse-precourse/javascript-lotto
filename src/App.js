@@ -18,6 +18,11 @@ class App {
   makePayment() {
     this.readLine("구임금액을 입력해주세요.", (value) => {
       const money = value;
+
+      if (money % 1000 !== 0) {
+        this.print("1000원 단위로 입력해주세요.");
+        this.makePayment();
+      }
     });
   }
 }
