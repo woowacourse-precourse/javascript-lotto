@@ -10,19 +10,18 @@ class Game {
 
   #purchaseAmount;
 
-  #winningNumber;
-
-  #bonusNumber;
-
-  #lottoRank;
-
   constructor() {
     this.#lottos = [];
+    this.#winningNumber = new Set();
     this.#purchaseAmount = INIT;
+    this.#bonusNumber = INIT;
+    this.#lottoRank = [];
   }
 
   start() {
     Console.readLine(MESSAGE.PURCHASE_INPUT, (money) => {
+      Error.purchase(money);
+
       this.#purchaseAmount = +money;
       this.purchaseLotto();
     });
@@ -34,6 +33,13 @@ class Game {
     this.#lottos = Functions.generateLottos(lottoCount);
     Console.print(MESSAGE.PURCHASE_COUNT(lottoCount));
     this.printLottos();
+  }
+
+  printLottos() {
+    this.#lottos.forEach((lotto) => {
+      Console.print(lotto);
+    });
+    this.getWinningNumbers();
   }
 }
 
