@@ -4,6 +4,7 @@ class WinNums {
     this.isOverlap(winNums);
     this.isNumsCountSix(winNums);
     this.hasBlank(winNums);
+    this.isInteger(winNums);
   }
 
   isInRange(winNums) {
@@ -35,6 +36,13 @@ class WinNums {
     winNumsArr.map((el) => {
       if (el === ' ') throw new Error('[ERROR] 입력에 공백이 있습니다.');
     }); 
+  }
+
+  isInteger(winNums) {
+    const winNumsArr = winNums.split(',');
+    winNumsArr.map((winNum) => {
+      if (+winNum % 1 !== 0) throw new Error('[ERROR] 정수를 입력해 주세요.');
+    });
   }
 }
 
