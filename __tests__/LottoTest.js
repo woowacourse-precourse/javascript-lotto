@@ -1,3 +1,4 @@
+const { createTestScheduler } = require('jest');
 const Lotto = require('../src/Lotto');
 
 describe('로또 클래스 테스트', () => {
@@ -20,5 +21,47 @@ describe('로또 클래스 테스트', () => {
       const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
       lotto.bonusExecption(parseInt(1));
     }).toThrow('[ERROR]');
+  });
+
+  test('몇개 맞췄는지 테스트 => winningCount = 6 ', () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    lotto.compare({ 0: [1, 2, 3, 4, 5, 6] });
+    expect(lotto.winningCount).toEqual(6);
+  });
+
+  test('몇개 맞췄는지 테스트 => winningCount = 5 ', () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    lotto.compare({ 0: [1, 2, 3, 4, 5, 7] });
+    expect(lotto.winningCount).toEqual(5);
+  });
+
+  test('몇개 맞췄는지 테스트 => winningCount = 4 ', () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    lotto.compare({ 0: [1, 2, 3, 4, 7, 12] });
+    expect(lotto.winningCount).toEqual(4);
+  });
+
+  test('몇개 맞췄는지 테스트 => winningCount = 3 ', () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    lotto.compare({ 0: [1, 2, 3, 7, 12, 33] });
+    expect(lotto.winningCount).toEqual(3);
+  });
+
+  test('몇개 맞췄는지 테스트 => winningCount = 2 ', () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    lotto.compare({ 0: [1, 2, 7, 9, 12, 33] });
+    expect(lotto.winningCount).toEqual(2);
+  });
+
+  test('몇개 맞췄는지 테스트 => winningCount = 1 ', () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    lotto.compare({ 0: [1, 7, 9, 12, 28, 33] });
+    expect(lotto.winningCount).toEqual(1);
+  });
+
+  test('몇개 맞췄는지 테스트 => winningCount = 0 ', () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    lotto.compare({ 0: [7, 9, 12, 28, 33, 42] });
+    expect(lotto.winningCount).toEqual(0);
   });
 });
