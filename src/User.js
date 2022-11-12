@@ -69,6 +69,7 @@ class User {
   }
 
   validate_winning_number(numbers) {
+    new Lotto(numbers);
     let validation = true;
     if (numbers.length != 6) validation = false;
     numbers.map(number => {
