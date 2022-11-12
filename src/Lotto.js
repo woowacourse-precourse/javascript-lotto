@@ -1,6 +1,11 @@
 const { Console } = require('@woowacourse/mission-utils');
+const {
+  EXCEPTION_MESSAGE,
+  EXCEPTION_REASON,
+} = require('./constants/constants');
 const countCorrectNumber = require('./utils/countCorrectNumber');
 const isBonusNumberCorrect = require('./utils/isBonusNumberCorrect');
+const isValidLottery = require('./utils/isValidLottery');
 const returnMyRank = require('./utils/returnMyRank');
 
 class Lotto {
@@ -13,8 +18,12 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+    const validCheck = isValidLottery(numbers);
+    if (validCheck === EXCEPTION_REASON.INPUT_LENGTH_ERROR) {
+      throw new Error(EXCEPTION_MESSAGE.INPUT_LENGTH_ERROR);
+    }
+    if (validCheck === EXCEPTION_REASON.INPUT_OVERLAPPED) {
+      throw new Error(EXCEPTION_MESSAGE.INPUT_OVERLAPPED);
     }
   }
 
