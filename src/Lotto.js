@@ -63,6 +63,10 @@ class Lotto {
     }, 0);
   }
 
+  yieldCalculation(money, lottoList) {
+    return ((money / (lottoList.length * 1000)) * 100).toFixed(1);
+  }
+
   countLotto(lotto, numbers) {
     return lotto.reduce((count, value) => {
       if (numbers.includes(value.toString())) {
