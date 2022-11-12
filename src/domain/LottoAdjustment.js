@@ -1,12 +1,19 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { LOTTO_AMOUNT, VARIABLE_LOTTO } = require('../../utils/constants');
+const { LOTTO_AMOUNT, VARIABLE_FACTORY } = require('../../utils/constants');
 
 class LottoAdjustment {
+  #lotto;
+
+  #bonus;
+
+  #payment;
+
   #scoreBoard;
 
-  constructor({ draw, payment }) {
-    this.draw = draw;
-    this.payment = payment;
+  constructor(inputs) {
+    this.#lotto = inputs.getInstance(VARIABLE_FACTORY.lotto);
+    this.#bonus = inputs.getInstance(VARIABLE_FACTORY.bonus);
+    this.#payment = inputs.getInstance(VARIABLE_FACTORY.lottoStore);
 
     this.#scoreBoard = [0, 0, 0, 0, 0];
   }
@@ -21,12 +28,12 @@ class LottoAdjustment {
 
   #matchLottoFor(lottoToBuy) {
     return lottoToBuy.filter(lottoNumber =>
-      this.draw.getNumber(VARIABLE_LOTTO.lotto).includes(lottoNumber),
+      this.#lotto.getNumber().includes(lottoNumber),
     ).length;
   }
 
   #matchBonusFor(lottoToBuy) {
-    return lottoToBuy.includes(this.draw.getNumber(VARIABLE_LOTTO.bonus));
+    return lottoToBuy.includes(this.#bonus.getNumber());
   }
 
   #setScoreToMatch([lottoCount, bonusCount]) {
@@ -46,7 +53,7 @@ class LottoAdjustment {
   }
 
   #compareLotto() {
-    [...this.payment.getLottos()]
+    [...this.#payment.getLottos()]
       .map(lottoToBuy => [
         this.#matchLottoFor(lottoToBuy),
         this.#matchBonusFor(lottoToBuy),
@@ -64,7 +71,7 @@ class LottoAdjustment {
         (LOTTO_AMOUNT.reduce((acc, moneyUnit, index) => {
           return acc + moneyUnit * this.#scoreBoard[index];
         }, 0) /
-          this.payment.getMoney()) *
+          this.#payment.getMoney()) *
           1000,
       ),
     ).split('');
