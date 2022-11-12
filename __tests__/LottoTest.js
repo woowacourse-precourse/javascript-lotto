@@ -25,4 +25,11 @@ describe('로또 클래스 테스트', () => {
       new Lotto([1, 2, 3, 4, 5, 46]);
     }).toThrow(`${ERROR.PREFIX} ${ERROR.RANGE}`);
   });
+
+  test('로또 번호가 당첨 번호와 몇 개 일치하는지 확인', () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    lotto.addBonusNumber(7);
+
+    expect(lotto.getMatchCount([1, 2, 3, 4, 8, 10])).toEqual(4);
+  });
 });
