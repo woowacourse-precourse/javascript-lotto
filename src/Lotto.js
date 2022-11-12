@@ -8,7 +8,10 @@ class Lotto {
     this.getWinningNumber();
     this.bonusNumber;
     this.collectNumber;
-    this.result = [0, 0, 0, 0, 0];
+    this.matchNumber = [0, 0, 0, 0, 0];
+    this.yield = 0;
+
+    this.winningMoney = [5000, 50000, 1500000, 30000000, 2000000000];
   }
 
   compareNumbers() {
@@ -52,35 +55,54 @@ class Lotto {
       );
 
       if (this.collectNumber.length === 3) {
-        this.result[0]++;
+        this.matchNumber[0]++;
       }
       if (this.collectNumber.length === 4) {
-        this.result[1]++;
+        this.matchNumber[1]++;
       }
       if (this.collectNumber.length === 5) {
-        this.result[2]++;
+        this.matchNumber[2]++;
       }
       if (
         this.collectNumber.length === 5 &&
         numbers.includes(this.bonusNumber)
       ) {
-        this.result[3]++;
+        this.matchNumber[3]++;
       }
       if (this.collectNumber.length === 6) {
-        this.result[4]++;
+        this.matchNumber[4]++;
       }
     });
 
     MissionUtils.Console.print("\n당첨 통계\n---");
 
-    MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.result[0]} 개`);
-    MissionUtils.Console.print(`4개 일치 (50,000원) - ${this.result[1]} 개`);
-    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${this.result[2]} 개`);
     MissionUtils.Console.print(
-      `5개 일치 (30,000,000원) - ${this.result[3]} 개`
+      `3개 일치 (5,000원) - ${this.matchNumber[0]} 개`
     );
     MissionUtils.Console.print(
-      `6개 일치 (2,000,000,000원) - ${this.result[4]} 개`
+      `4개 일치 (50,000원) - ${this.matchNumber[1]} 개`
+    );
+    MissionUtils.Console.print(
+      `5개 일치 (1,500,000원) - ${this.matchNumber[2]} 개`
+    );
+    MissionUtils.Console.print(
+      `5개 일치 (30,000,000원) - ${this.matchNumber[3]} 개`
+    );
+    MissionUtils.Console.print(
+      `6개 일치 (2,000,000,000원) - ${this.matchNumber[4]} 개`
+    );
+
+    this.yield += this.matchNumber[0] * this.winningMoney[0];
+    this.yield += this.matchNumber[1] * this.winningMoney[1];
+    this.yield += this.matchNumber[2] * this.winningMoney[2];
+    this.yield += this.matchNumber[3] * this.winningMoney[3];
+    this.yield += this.matchNumber[4] * this.winningMoney[4];
+
+    MissionUtils.Console.print(
+      `총 수익률은 ${(
+        (this.yield / (this.#numbers.length * 1000)) *
+        100
+      ).toFixed(1)}%입니다.`
     );
   }
   winningNumberValidate() {
