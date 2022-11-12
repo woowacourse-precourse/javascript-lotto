@@ -1,6 +1,11 @@
 class InputException {
     checkInputException(input) {
+        this.isNumber(input);
         this.isThousand(input);
+    }
+
+    isNumber(number) {
+        if (isNaN(+number)) throw Error('[ERROR] 숫자를 입력해주세요.');
     }
 
     isThousand(money) {

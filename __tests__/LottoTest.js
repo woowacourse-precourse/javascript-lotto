@@ -22,7 +22,7 @@ describe('로또 클래스 테스트', () => {
     // 아래에 추가 테스트 작성 가능
 });
 
-describe.only('예외 사항 테스트', () => {
+describe('예외 사항 테스트', () => {
     test('입력 금액이 천원 단위인지 확인', () => {
         expect(() => {
             const exception = new InputException();

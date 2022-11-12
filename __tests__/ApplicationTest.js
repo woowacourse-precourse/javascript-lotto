@@ -71,12 +71,12 @@ describe('로또 테스트', () => {
 });
 
 // 임시, 후에 삭제 예정.
-describe.only('test', () => {
-    test('split 메서드로 주어진 값을 구분', () => {
-        const input = '1,2';
-        const result = input.split(',');
+// describe.only('test', () => {
+//     test('split 메서드로 주어진 값을 구분', () => {
+//         const input = '1,2';
+//         const result = input.split(',');
 
-        expect(result).toContain('2', '1');
-        expect(result).toContainEqual('1', '2');
-    });
-});
+//         expect(result).toContain('2', '1');
+//         expect(result).toContainEqual('1', '2');
+//     });
+// });
