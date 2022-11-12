@@ -23,9 +23,17 @@ class Validator {
   }
 
   static checkValidWinNumbers(winNumbers) {
+    const splitNumberLength = winNumbers.split(',').length;
     const isNotNumber = Number.isNaN(Number(winNumbers));
-    if (isNotNumber) {
+    if (String(splitNumberLength) !== `${LOTTO_INFO.COUNT}` && isNotNumber) {
       throw new Error(`${ERROR_MESSAGES.INVALID_INPUT}`);
+    }
+  }
+
+  static checkWinNumbersLenght(winNumbers) {
+    const splitNumberLength = winNumbers.split(',').length;
+    if (String(splitNumberLength) !== `${LOTTO_INFO.COUNT}`) {
+      throw new Error(`${ERROR_MESSAGES.INVALID_LOTTO_COUNT}`);
     }
   }
 }
