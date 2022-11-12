@@ -36,6 +36,7 @@ const NUMBER_LIMIT = Object.freeze({
   MAX_NUMBER: 45,
   QUANTITY: 6,
   MAX_PURCHASES: 100000,
+  UNIT_AMOUNT: 1000,
 });
 
 module.exports = {
