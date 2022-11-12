@@ -34,7 +34,49 @@ describe('로또 클래스 테스트', () => {
 
   test('로또 번호에 숫자 이외의 문자가 들어오면 예외가 발생한다.', () => {
     expect(() => {
-      new Lotto([0, 'a', 3, 4, 5, 6]);
+      new Lotto(['0', 'a', '3', '4', '5', '6']);
     }).toThrow('[ERROR] 로또 번호는 1 ~ 45 사이의 숫자여야 합니다.');
+  });
+
+  test('보너스 번호를 여러개 입력하는 경우 예외가 발생한다.', () => {
+    expect(() => {
+      const LOTTO = new Lotto(['1', '2', '3', '4', '5', '6']);
+      LOTTO.setBounusNumber('5 5');
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호를 여러개 입력하는 경우 예외가 발생한다.', () => {
+    expect(() => {
+      const LOTTO = new Lotto(['1', '2', '3', '4', '5', '6']);
+      LOTTO.setBounusNumber('5, 5');
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호가 1 ~ 45를 벗어나는 경우 예외가 발생한다.', () => {
+    expect(() => {
+      const LOTTO = new Lotto(['1', '2', '3', '4', '5', '6']);
+      LOTTO.setBounusNumber('46');
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호가 1 ~ 45를 벗어나는 경우 예외가 발생한다.', () => {
+    expect(() => {
+      const LOTTO = new Lotto(['1', '2', '3', '4', '5', '6']);
+      LOTTO.setBounusNumber('0');
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호가 숫자가 아닌 문자인 경우 예외가 발생한다.', () => {
+    expect(() => {
+      const LOTTO = new Lotto(['1', '2', '3', '4', '5', '6']);
+      LOTTO.setBounusNumber('abc');
+    }).toThrow('[ERROR]');
+  });
+
+  test('당첨 번호와 보너스 번호가 중복되는 경우 예외가 발생한다.', () => {
+    expect(() => {
+      const LOTTO = new Lotto(['1', '2', '3', '4', '5', '6']);
+      LOTTO.setBounusNumber('6');
+    }).toThrow('[ERROR]');
   });
 });
