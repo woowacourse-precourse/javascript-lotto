@@ -15,6 +15,13 @@ class LottoManager {
     });
   }
 
+  printLottosStatus() {
+    Console.print(`${this.#lottos.length}개를 구매했습니다.`);
+    this.#lottos.forEach((lotto) => {
+      Console.print(lotto.getNumbers());
+    });
+  }
+
   checkResults(lottoCompany) {
     this.#winningResults = [];
     this.#lottos.forEach((lotto) => {
