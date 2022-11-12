@@ -22,6 +22,7 @@ class Lotto {
       if (numbers.toString() !== numbers.sort((a, b) => a - b).toString()) {
         throw new Error("[ERROR] 로또 번호는 오름차순 정렬되어야 합니다.");
       }
+      return true;
     }
   }
 
