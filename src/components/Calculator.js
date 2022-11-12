@@ -1,50 +1,57 @@
-const { MissionUtils } = require("@woowacourse/mission-utils");
-const {inputAmountMoney, inputWinNumber, inputLottoNumber} = require("./Input.js");
+const MissionUtils= require("@woowacourse/mission-utils");
+const Input = require("./Input.js");
 
 
-const createLotto =()=>{
-    let lottoArray=[];
-    while(count<inputAmountMoney()){
-        lottoArray.push(inputWinNumber());
-        MissionUtils.Console.print(inputWinNumber());
+class Calculator{
+
+    createLottoNumber(count){
+        let input=new Input();
+        let lottoNumber=[];
+        while(lottoNumber.length<count){
+            lottoNumber.push(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
+        }
+        let arr=Object.keys(lottoNumber).map(item=>lottoNumber[item]);
+        for(let i=0;i<lottoNumber.length;i++){
+            MissionUtils.Console.print(`[${arr[i][0]}, ${arr[i][1]}, ${arr[i][2]}, ${arr[i][3]}, ${arr[i][4]}, ${arr[i][5]}]`)
+        }
+        return lottoNumber;
     }
-    return lottoArray;
+    calWinning(lottoArr,winNumber){
+        let result=[];
+        for(let index=0;index<lottoArr.length;index++){
+            result.push(lottoArr[index].filter(x => winNumber.includes(x)));
+        }
+        return result;
+    }
+
+    winningScore(result,lottoArr,bonusNumber){
+        let count=new Array(result.length).fill(0);
+        for(let index=0;index<result.length;index++){
+            if(result[index].length==6){
+                count[7]+=1;
+            }
+            else if(result[index].length==5&&lottoArr[i].includes(bonusNumber)){
+                count[6]+=1;
+            }
+            else if(result[index].length==5){
+                count[5]+=1;
+            }
+            else if(result[index].length==4){
+                count[4]+=1;
+            }
+            else if(result[index].length==3){
+                count[3]+=1;
+            }
+        }
+        return count;
+        }
+
+    calYield(winningArr,moneycount){
+        let earnMoney=winningArr[3]*5000+winningArr[4]*50000+winningArr[5]*1500000+winningArr[7]*30000000+winningArr[6]*2000000000;
+        let lottoYield=((earnMoney/(moneycount*1000)*100));
+        return lottoYield;
+    }
+
+
 }
-const calWinning= ()=> {
-    let result=[];
-    for(let count=0;count<lottoArray.size();count++){
-        result.push(JSON.stringify(lottoArray)===JSON.stringify(inputLottoNumber));
-    }
-    return result;
-}
-
-const winningScore=(calWinning)=>{
-    let count=[];
-    for(let index=0;index<createLotto().size();index++){
-        if(calWinning().result[i]==6){
-            count[7]+=1;//  보너스볼 다시 계씬
-        }
-        if(calWinning().result[i]==6){
-            count[6]+=1;
-        }
-        if(calWinning().result[i]==5){
-            count[5]+=1;
-        }
-        if(calWinning().result[i]==4){
-            count[4]+=1;
-        }
-        if(calWinning().result[i]==3){
-            count[3]+=1;
-        }
-    }
-    return count;
-    }
-const calYield=()=>{
-    let earnMoney=count[3]*5000+count[4]*50000+count[5]+1500000+count[7]*30000000+count[6]*2000000000;
-    let yield=Math.round(earnMoney/inputAmountMoney()*100)*10;
-    return yield;
-}
-
-
-
-module.exports=createLotto,calWinning,winningScore,calYield;
+module.exports=Calculator;

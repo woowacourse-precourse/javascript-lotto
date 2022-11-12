@@ -1,34 +1,43 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Check=require("./Check.js");
+const Lotto= require("../Lotto.js");
 
-const inputAmountMoney= () =>{
-    MissionUtils.Console.readline("구입금액을 입력해 주세요.",lottomoney=>{
+class Input{
+
+    inputAmountMoney(){
+        let check= new Check();
+        let lottomoney;
+        MissionUtils.Console.readLine('구입금액을 입력해 주세요.',money=>{
+            if(check.checkDivideMoney(money)){
+                lottomoney=money;
+            }
+        });
         return lottomoney;
-    });
-} 
-const inputMoneyCount=()=>{
-    if(inputAmountMoney()%1000==0){
-        count=inputAmountMoney()/1000;
+    } 
+    inputMoneyCount(){
+        let count=this.inputAmountMoney()/1000;
         return count;
     }
-    return new Error;
-}
-const inputLottoNumber=() => {
-    MissionUtils.Console.readline("당첨 번호를 입력해 주세요.", winNumber=>{
+    inputWinNumber(){
+        let check= new Check();
+        let winNumber;
+        MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", number=>{
+            if(check.checkWinNumVaildation(number)==true){
+                winNumber=number;
+            }
+        })
         return winNumber;
-    })
-
-}
-const inputBonusNumber=()=> {
-    MissionUtils.Console.readline("보너스 번호를 입력해 주세요.", bonusNumber=>{
-        return bonusNumber;
-    })
-}
-const inputWinNumber= ()=>{
-    let lottoNumber=new Set();
-    while(lottoNumber.size<inputAmountMoney()){
-        lottoNumber.add(MissionUtils.Random.pickUniqueNumbersInRange(1,45,6));
     }
-    return lottoNumber;
+    inputBonusNumber(){
+        let bonusNumber;
+        MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", number=>{
+            bonusNumber=number;
+
+        })
+        MissionUtils.Console.close();
+        return bonusNumber;
+    }
+
 }
 
-module.exports = inputAmountMoney,inputMoneyCount, inputLottoNumber,inputBonusNumber, inputWinNumber;
+module.exports = Input;
