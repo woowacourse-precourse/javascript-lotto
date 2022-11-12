@@ -28,6 +28,11 @@ const COMMAND = {
   INPUT_BOUNS_NUMBER: '보너스 번호를 입력해 주세요.\n',
 }
 
+const MESSAGE = {
+  PURCHASE_AMOUNT: '개를 구매했습니다.',
+  WINNING_STATUS: '당첨 통계\n___',
+}
+
 const ERROR = {
   PREFIX: '[ERROR]',
   DUPLICATE_NUMBERS: '중복된 숫자가 있습니다.',
@@ -42,5 +47,6 @@ module.exports = {
   WINNING_CRITERIA,
   MONEY,
   COMMAND,
+  MESSAGE,
   ERROR,
 }
