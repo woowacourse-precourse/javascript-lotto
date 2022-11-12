@@ -39,6 +39,15 @@ class App {
   countLottoQuantity(purchaseAmount) {
     const lottoQuantity = purchaseAmount / PRICE_PER_LOTTO;
     Console.print(MESSAGE.PURCHASE_QUANTITY(lottoQuantity));
+    return this.makeLottos(lottoQuantity);
+  }
+
+  makeLottos(lottoQuantity) {
+    const lottos = [];
+    while (lottos.length < lottoQuantity) {
+      const lottoNumbers = Util.getSortedArrayInAsc(this.getLottoNumbers());
+      lottos.push(new Lotto(lottoNumbers));
+    }
     return;
   }
 
