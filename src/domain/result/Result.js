@@ -4,15 +4,23 @@ const Prize = require('./Prize');
 const InstanceException = require('../../exception/InstanceException');
 
 class Result {
+  static #PROFIT = Object.freeze({
+    percentage: 100,
+    decimalPoint: 1,
+  });
+
   #prizes = new Map();
 
+  #prizeMoney = 0;
+
   constructor(lottoTicket, winningLotto) {
-    Result.validate();
+    Result.validate(lottoTicket, winningLotto);
     this.#prizes = new Map();
     this.lottoTicket = lottoTicket;
     this.winningLotto = winningLotto;
     this.#initializePrizes();
     this.#countPrize();
+    this.#setPrizeMoney();
   }
 
   static from(lottoTicket, winningLotto) {
@@ -33,8 +41,10 @@ class Result {
     return this.#prizes;
   }
 
-  getProfit() {
-
+  getProfit(lottoAmount) {
+    return (
+      (this.#prizeMoney * Result.#PROFIT.percentage) / lottoAmount
+    ).toFixed(Result.#PROFIT.decimalPoint).toLocaleString();
   }
 
   #initializePrizes() {
@@ -51,6 +61,13 @@ class Result {
       const prize = Prize.getPrize(matchCount, isBonus);
       const newValue = this.#prizes.get(prize) + 1;
       this.#prizes.set(prize, newValue);
+    });
+  }
+
+  #setPrizeMoney() {
+    this.#prizes.forEach((value, key) => {
+      const { amount } = key;
+      this.#prizeMoney += amount * value;
     });
   }
 }
