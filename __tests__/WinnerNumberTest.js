@@ -26,7 +26,7 @@ describe("당첨번호 예외 테스트", () => {
 
   test("쉼표(,)를 기준으로 6자리가 아닌경우 예외 발생", () => {
     expect(() => {
-      new WinnerNumber("1,2,3,4,5 6");
+      new WinnerNumber("1,2,3,4,5,6,7");
     }).toThrow("[ERROR] 쉼표(,)를 기준으로 6자리를 입력해주세요");
   });
 

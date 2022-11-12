@@ -87,7 +87,7 @@ describe("로또 테스트", () => {
 
   describe("당첨번호 Test", () => {
     test("쉼표(,)를 기준으로 6자리가 아닌경우 예외처리", () => {
-      mockQuestions(["1000", "8, 21, 23, 41, 42 43"]);
+      mockQuestions(["1000", "8, 21, 23, 41, 42,43, 45"]);
       mockRandoms([[8, 21, 23, 41, 42, 43]]);
       expect(() => {
         app.play();
