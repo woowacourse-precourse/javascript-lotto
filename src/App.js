@@ -7,6 +7,12 @@ class App {
     this.purchasedLottos = [];
     this.winningNumber = [];
     this.bonusNumber = 0;
+    this.sixMatch = 0;
+    this.fiveMatch = 0;
+    this.bonusFiveMatch = 0;
+    this.fourMatch = 0;
+    this.threeMatch = 0;
+    this.profitRate = 0;
   }
 
   buyLotto() {
@@ -68,11 +74,40 @@ class App {
     });
   }
 
+  compareNumber() {
+    this.purchasedLottos.map(lotto => {
+      let duplicate = lotto.filter(item => this.winningNumber.includes(item));
+      switch (duplicate.length) {
+        case 6:
+          this.sixMatch += 1;
+          break;
+        case 5:
+          if (this.bonusCheck(lotto)) {
+            this.bonusFiveMatch += 1;
+            break;
+          }
+          this.fiveMatch += 1;
+          break;
+        case 4:
+          this.fourMatch += 1;
+          break;
+        case 3:
+          this.threeMatch += 1;
+          break;
+      }
+    })
+  }
+
+  bonusCheck(lotto) {
+    if (lotto.includes(this.bonusNumber)) return true;
+  }
+
   play() {
     this.buyLotto();
     this.printLotto();
     this.enterWinningNumber();
     this.enterBonusNumber();
+    this.compareNumber();
   }
 }
 
