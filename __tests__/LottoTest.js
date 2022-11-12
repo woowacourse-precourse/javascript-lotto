@@ -48,6 +48,19 @@ describe('로또 클래스 테스트', () => {
 
     expect(result).toBe(55000);
   });
+
+  test('로또 순위에 따른 수익률 비교', () => {
+    const winningMoney = 5000;
+    const lottoList = [
+      [1, 2, 3, 4, 5, 6, 7],
+      [11, 12, 13, 14, 15, 16, 17],
+    ];
+
+    const lotto = new Lotto();
+    const result = lotto.yieldCalculation(winningMoney, lottoList);
+
+    expect(result).toBe('250.0');
+  });
 });
 
 describe('로또 빌더 기능 테스트', () => {
