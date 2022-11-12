@@ -32,12 +32,12 @@
 - [x] 구입 금액 : `validateTotalPurchaseAmount`
   - [x] 자연수인지 판단 : `isNaturalNumber`
   - [x] 1,000원 단위인지 판단 : `isThousands`
-- [ ] 로또 번호 : `validateLottoNumbers`
-  - [ ] 1~45의 자연수인지 판단 : `isBetween1And45`
-  - [ ] 중복된 수가 존재하는지 판단 : `isUniqueNumbers`
-  - [ ] 6개의 숫자로 이루어져있는지 판단 : `isSixNumbers`
+- [x] 로또 번호 : `validateLottoNumbers`
+  - [x] 6개의 숫자로 이루어져있는지 판단 : `isSixNumbers`
+  - [x] 중복된 수가 존재하는지 판단 : `isUniqueNumbers`
+  - [x] 1~45의 자연수인지 판단 : `isBetween1And45`
 - [ ] 보너스 번호 : `validateBonusLottoNumber`
-  - [ ] 1~45의 자연수인지 판단 : `isBetween1And45`
+  - [x] 1~45의 자연수인지 판단 : `isBetween1And45`
 
 ## utils/
 
