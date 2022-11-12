@@ -12,18 +12,24 @@ const main_loop = ()=>{
     MissionUtils.Console.print(`${input_money}개를 구매했습니다.`)
     MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (solution)=>{
       MissionUtils.Console.print(`${solution}`)
-      MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (bouns)=>{
-        MissionUtils.Console.print(`${bouns}`)
-        let Lottos = random_lotto_generate(input_money)
-        let result = {"0":0, "5000":0, "50000":0, "1500000":0, "30000000":0, "2000000000":0}    
-        for (let i = 0; i < Lottos.length; i++){
-          Lottos[i].get_lotto_number()
-          let temp_lot_result = Lottos[i].calculate_cnt(solution, bouns)
-          result[temp_lot_result] += 1          
-        }
-        calculate_benefit(result, input_money)
-      })
+      core_lotto_loop(input_money, solution)
     })
+  })
+}
+
+const core_lotto_loop = (input_money, solution) => {
+  MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (bouns)=>{
+    MissionUtils.Console.print(`${bouns}`)
+    let Lottos = random_lotto_generate(input_money)
+    let result = {"0":0, "5000":0, "50000":0, "1500000":0, "30000000":0, "2000000000":0}    
+    for (let i = 0; i < Lottos.length; i++){
+      Lottos[i].get_lotto_number()
+      let temp_lot_result = Lottos[i].calculate_cnt(solution, bouns)
+      result[temp_lot_result] += 1          
+    }
+    MissionUtils.Console.print("당첨 통계")
+    MissionUtils.Console.print("---")
+    calculate_benefit(result, input_money)
   })
 }
 
@@ -37,31 +43,22 @@ const random_lotto_generate = (input_money) => {
   return Lottos
 }
 
-const calculate_benefit = (final_result, input_money) => {
-  MissionUtils.Console.print("당첨 통계")
-  MissionUtils.Console.print("---")
+const lotto_convert_table = {
+  "0":"",
+  "5000":"3개 일치 (5,000원)",
+  "50000":"4개 일치 (50,000원)",
+  "1500000":"5개 일치 (1,500,000원)",
+  "30000000":"5개 일치, 보너스 볼 일치 (30,000,000원)",
+  "2000000000":"6개 일치 (2,000,000,000원)"
+}
+
+const calculate_benefit = (final_result, input_money) => {  
   total_earn = 0
   for (i in final_result){
     total_earn += parseInt(i)*parseInt(final_result[i])
-    switch(i){
-      case "0":
-        break
-      case "5000":
-        MissionUtils.Console.print(`3개 일치 (5,000원) - ${final_result[i]}개`)
-        break
-      case "50000":
-        MissionUtils.Console.print(`4개 일치 (50,000원) - ${final_result[i]}개`)
-        break
-      case "1500000":
-        MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${final_result[i]}개`)
-        break
-      case "30000000":
-        MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${final_result[i]}개`)
-        break
-      case "2000000000":
-        MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${final_result[i]}개`)
-        break
-    }    
+    if (i !== 0){
+      MissionUtils.Console.print(`${lotto_convert_table[i]} - ${final_result[i]}개`)
+    }
   }
   final_benefit_ratio = (total_earn/(parseInt(input_money)*1000))*100
   MissionUtils.Console.print(`총 수익률은 ${final_benefit_ratio}%입니다.`)
