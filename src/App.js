@@ -65,7 +65,17 @@ class App {
     Console.print(`5개 일치 (1,500,000원) - ${resultTable.third}개`);
     Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${resultTable.second}개`);
     Console.print(`6개 일치 (2,000,000,000원) - ${resultTable.first}개`);
+
+    this.showYield(resultTable.reward);
+  }
+
+  showYield(reward) {
+    const investmentAmount = this.#Buyer.getMoney();
+    const YIELD = ( reward / investmentAmount ) * 100;
+
+    Console.print(`총 수익률은 ${YIELD.toFixed(1)}%입니다.`);
+    Console.close();
   }
 }
-const app = new App; app.play();
+
 module.exports = App;
