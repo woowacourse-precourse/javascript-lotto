@@ -1,5 +1,6 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
+const { Messages, winnings } = require('./constants');
 
 class App {
   constructor() {
@@ -21,7 +22,7 @@ class App {
   }
 
   requestMoneyInput() {
-    Console.readLine('구입 금액을 입력해 주세요.\n', (input) => {
+    Console.readLine(Messages.REQUEST_MONEY_INPUT, (input) => {
       const money = Number(input);
       this.validateMoney(money);
       this.myMoney = money;
@@ -32,13 +33,13 @@ class App {
 
   validateMoney(money) {
     if (money <= 0) {
-      throw new Error('[ERROR] 최소 구입 금액은 1,000원입니다.');
+      throw new Error(Messages.ERROR_MINIMUM_MONEY_INPUT);
     }
     if (Number.isNaN(money)) {
-      throw new Error('[ERROR] 구입 금액은 숫자만 입력해 주세요.');
+      throw new Error(Messages.ERROR_NUMBER_ONLY);
     }
     if (!Number.isInteger(money / 1000)) {
-      throw new Error('[ERROR] 구입 금액은 1,000원 단위로 입력해 주세요.');
+      throw new Error(Messages.ERROR_1000_UNITS_ONLY);
     }
   }
 
@@ -55,7 +56,7 @@ class App {
   }
 
   requestWinningNumbersInput() {
-    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (input) => {
+    Console.readLine(Messages.REQUEST_WINNING_NUMBERS_INPUT, (input) => {
       const numbers = input.split(',').map((digit) => Number(digit));
       const winningLotto = new Lotto(numbers);
       this.winningNumbers = winningLotto.getNumbers();
@@ -64,7 +65,7 @@ class App {
   }
 
   requestBonusNumberInput() {
-    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (input) => {
+    Console.readLine(Messages.REQUEST_BONUS_NUMBER_INPUT, (input) => {
       const number = Number(input);
       this.validateBonusNumber(number);
       this.bonusNumber = number;
@@ -76,10 +77,10 @@ class App {
 
   validateBonusNumber(number) {
     if (Number.isNaN(number) || number < 1 || number > 45) {
-      throw new Error('[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.');
+      throw new Error(Messages.ERROR_BONUS_NUMBER_RANGE);
     }
     if (this.winningNumbers.includes(number)) {
-      throw new Error('[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.');
+      throw new Error(Messages.ERROR_BONUS_NUMBER_DUPLICATE);
     }
   }
 
@@ -122,11 +123,11 @@ class App {
   }
 
   getWinnings() {
-    const firstWinnings = this.result.first * 2000000000;
-    const secondWinnings = this.result.second * 30000000;
-    const thirdWinnings = this.result.third * 1500000;
-    const fourthWinnings = this.result.fourth * 50000;
-    const fifthWinnings = this.result.fifth * 5000;
+    const firstWinnings = this.result.first * winnings.FIRST;
+    const secondWinnings = this.result.second * winnings.SECOND;
+    const thirdWinnings = this.result.third * winnings.THIRD;
+    const fourthWinnings = this.result.fourth * winnings.FOURTH;
+    const fifthWinnings = this.result.fifth * winnings.FIFTH;
     return firstWinnings + secondWinnings + thirdWinnings + fourthWinnings + fifthWinnings;
   }
 }
