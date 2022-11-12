@@ -9,9 +9,11 @@ class LottoProgram {
   #numbersOfLotto;
 
   constructor() {
-    // this.validtateInput = new ValidateInput();
     this.#lottoArray = [];
     this.#numbersOfLotto = 0;
+    this.validateInput = new ValidateInput();
+    this.utils = new Utils();
+    this.winningNumbers;
   }
 
   start() {
@@ -20,8 +22,9 @@ class LottoProgram {
 
   inputMoney() {
     Console.readLine("구입금액을 입력해주세요.\n", (inputMoney) => {
-      // this.validtateInput.validateInputMoney(inputMoney);
-      ValidateInput.validateInputMoney(inputMoney);
+      if (!this.validateInput.validateInputMoney(inputMoney)) {
+        this.utils.throwError("[ERROR] 유효하지 않은 값을 입력하셨습니다. 다시 확인하세요.");
+      }
       this.#numbersOfLotto = Number(inputMoney) / 1000;
       this.buyLotto();
     });
@@ -47,10 +50,9 @@ class LottoProgram {
   }
 
   getEachLottoArray() {
-    const utils = new Utils();
     const lottoArray = this.randomSelectWithoutOverlap().sort((a, b) => a - b);
     if (this.isValidLottoArray(lottoArray) === false) {
-      utils.throwError("[ERROR] 로또 구매 내역을 불러오는데 실패하였습니다.");
+      this.utils.throwError("[ERROR] 로또 구매 내역을 불러오는데 실패하였습니다.");
     }
     return lottoArray;
   }
@@ -62,12 +64,9 @@ class LottoProgram {
   }
 
   inputWinningNumbers() {
-    Console.readLine("당첨 번호를 입력해 주세요.\n", (inputNumbers) => {
-      const winningNumbersArray = inputNumbers.replace(this.#regExp, '').split(',');
-      const lotto = new Lotto(winningNumbersArray);
-      this.winningNumbers = lotto.returnNumbers();
-      // this.validtateInput.validateWinningNumbers(winningNumbers);
-      // this.winningNumbers = winningNumbers.replace(this.#regExp, '').split(',');
+    Console.readLine("당첨 번호를 입력해 주세요.\n", (inputWinningNumbers) => {
+      this.winningNumbers = inputWinningNumbers.replace(this.#regExp, '').split(',');
+      this.validateInput.validateWinningNumbers(this.winningNumbers);
       this.inputBonusNumber();
     });
   }
@@ -78,15 +77,12 @@ class LottoProgram {
       this.#lottoArray.push(this.getEachLottoArray());
     }
     this.#printLottoList();
-
     this.inputWinningNumbers();
   }
 
   inputBonusNumber() {
-    Console.print("\n보너스 번호를 입력해 주세요.");
-    Console.readLine("", (bonusNumber) => {
-      // this.validtateInput.validateBonusNumber(this.winningNumbers, bonusNumber);
-      ValidateInput.validateBonusNumber(this.winningNumbers, bonusNumber);
+    Console.readLine("보너스 번호를 입력해 주세요.\n", (bonusNumber) => {
+      this.validateInput.validateBonusNumber(this.winningNumbers, bonusNumber);
       Console.close();
     });
   }
