@@ -53,4 +53,8 @@ lottoResult.getLank = (matchingNumbersResult) => {
   return rank;
 };
 
+lottoResult.getProfit = ([firstPlace, secondPlace, thirdPlace, fourthPlace, fifthPlace]) => {
+  return 1;
+};
+
 module.exports = lottoResult;

@@ -115,4 +115,23 @@ describe('당첨 통계 계산 테스트', () => {
 
     expect(result).toEqual(answer);
   });
+
+  test('당첨 내역만큼 총 수익을 계산한다.', () => {
+    const ranks = [
+      [1, 0, 0, 0, 0],
+      [1, 1, 0, 0, 0],
+      [0, 2, 1, 0, 0],
+      [1, 0, 1, 3, 0],
+      [0, 0, 1, 0, 2],
+      [0, 0, 0, 0, 0],
+    ];
+    const answers = [2000000000, 2030000000, 61500000, 2001650000, 1510000, 0];
+
+    ranks.forEach((rank, index) => {
+      const result = lottoResult.getProfit(rank);
+      const answer = answers[index];
+
+      expect(result).toEqual(answer);
+    });
+  });
 });
