@@ -1,23 +1,30 @@
+const STATIC = require("./Static");
 class BonusNum {
-  num;
-  constructor(number) {
-    this.validateIsOneDigit(number);
-    vali;
-    this.num = number;
+  bonusNum;
+  constructor(number, lottoNumbers) {
+    this.validateIsNum(number);
+    this.validateIsRange(number);
+    this.validateIsDuplicate(number, lottoNumbers);
+    this.bonusNum = number;
   }
-  validateIsOneDigit(number) {
-    if (numbers > 9) {
-      throw new Error("[ERROR]  번호는 6개여야 합니다.");
+
+  validateIsNum(number) {
+    if (isNaN(parseInt(number))) {
+      throw new Error(STATIC.MESSAGE.ERR_INPUT);
     }
   }
 
-  validateIsNum(numbers) {
-    numbers.map((e) => {
-      if (isNaN(parseInt(e))) {
-        throw new Error("숫자를 입력하세요!");
-      }
-    });
-  }
+  validateIsRange = (number) => {
+    if (number >= 45 || number < 1) {
+      throw new Error(STATIC.MESSAGE.ERR_INPUT);
+    }
+  };
+
+  validateIsDuplicate = (number, lottoNumbers) => {
+    if (lottoNumbers.includes(number)) {
+      throw new Error(STATIC.MESSAGE.ERR_DUPLICATE);
+    }
+  };
 }
 
 module.exports = BonusNum;
