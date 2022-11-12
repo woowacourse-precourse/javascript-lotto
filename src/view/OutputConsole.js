@@ -16,6 +16,10 @@ class OutputConsole {
     Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${secondPlace}개`);
     Console.print(`6개 일치 (2,000,000,000원) - ${firstPlace}개`);
   }
+
+  printProfitRate(profitRate) {
+    Console.print(`총 수익률은 ${profitRate.toFixed(1)}%입니다.`);
+  }
 }
 
 module.exports = OutputConsole;

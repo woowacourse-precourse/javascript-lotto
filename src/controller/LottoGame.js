@@ -1,3 +1,4 @@
+const { Console } = require('@woowacourse/mission-utils');
 const Lotto = require('../Lotto');
 const lottoGenerator = require('../utils/lottoGenerator');
 const lottoResult = require('../utils/lottoResult');
@@ -49,8 +50,13 @@ class LottoGame {
 
   resultProfitRate(rank) {
     const profit = lottoResult.getProfit(rank);
-    const profitRate = Math.round((profit / this.user.money) * 1000) / 10;
-    console.log(profitRate);
+    const profitRate = (profit / this.user.money) * 100;
+    this.outputConsole.printProfitRate(profitRate);
+    this.end();
+  }
+
+  end() {
+    Console.close();
   }
 }
 
