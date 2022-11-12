@@ -1,4 +1,4 @@
-const LOTTOVALUE = require("./Static");
+const STATIC = require("./Static");
 const MissionUtils = require("@woowacourse/mission-utils");
 
 class UserLotto {
@@ -7,15 +7,20 @@ class UserLotto {
     this.number = this.createNumber();
     console.log(this.number);
   }
+
   createNumber = () => {
     let i = 0;
     const answer = [];
-    while (i < LOTTOVALUE.LENGTH) {
-      let randVal = MissionUtils.Random.pickNumberInRange(
-        LOTTOVALUE.MIN,
-        LOTTOVALUE.MAX
-      );
-      if (this.duplicateCheck(answer, randVal)) {
+    while (i < STATIC.LOTTOVALUE.LENGTH) {
+      if (
+        this.duplicateCheck(
+          answer,
+          (randVal = MissionUtils.Random.pickNumberInRange(
+            STATIC.LOTTOVALUE.MIN,
+            STATIC.LOTTOVALUE.MAX
+          ))
+        )
+      ) {
         answer.push(randVal);
         i++;
       }
@@ -23,21 +28,10 @@ class UserLotto {
 
     return answer;
   };
+
   duplicateCheck = (answer, val) => {
     return answer.every((e) => val !== e);
   };
 }
-
-buyMoneyError = (money) => {
-  if (money % 1000 != 0) {
-    throw new Error(STATIC.MESSAGE.ERR_BUY);
-  }
-};
-
-buyLotto = (lotto) => {
-  MissionUtils.Console.readLine(STATIC.MESSAGE.BUYMONEY, (answer) => {
-    buyMoneyError(answer);
-  });
-};
 
 module.exports = UserLotto;

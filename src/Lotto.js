@@ -18,5 +18,6 @@ class Lotto {
 }
 
 module.exports = Lotto;
-// const a = new Lotto();
-// console.log(STATIC.MESSAGE);
+
+//입력 받고
+// 체크 후 userlotto 생성을 하자
