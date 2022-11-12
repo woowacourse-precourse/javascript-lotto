@@ -54,6 +54,7 @@ class App {
     this.print(`당첨 통계`);
     this.print(`---`);
     this.showRankList(lottoRanks);
+    this.showYield(lottoYield);
   }
 
   showLottoList(lists) {
@@ -69,6 +70,10 @@ class App {
     this.print(`5개 일치 (1,500,000원) - ${lottoRanks[2]}개`);
     this.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${lottoRanks[1]}개`);
     this.print(`6개 일치 (2,000,000,000원) - ${lottoRanks[0]}개`);
+  }
+
+  showYield(lottoYield) {
+    this.print(`총 수익률은 ${lottoYield}%입니다.`);
   }
 
   readLine(message, callback) {
