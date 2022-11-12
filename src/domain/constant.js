@@ -30,6 +30,8 @@ const ERROR_MESSAGE = {
   HAS_DUPLICATE_NUMBERS: "[ERROR] 로또 번호 6개는 서로 달라야 합니다.",
   INVALID_WINNING_NUMBERS:
     "[ERROR] 당첨 번호 입력은 '숫자,숫자,숫자,숫자,숫자,숫자'형식이어야 합니다.",
+  INVALID_BONUS_NUMBER:
+    "[ERROR] 보너스 번호는 당첨 번호와 다른 숫자여야 합니다.",
 };
 
 module.exports = {

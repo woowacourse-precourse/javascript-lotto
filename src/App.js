@@ -2,6 +2,8 @@ const { Console, Random } = require("@woowacourse/mission-utils");
 const {
   PRICE_PER_LOTTO,
   LOTTO_LENGTH,
+  LOTTO_START,
+  LOTTO_END,
   MESSAGE,
   ERROR_MESSAGE,
 } = require("./domain/constant");
@@ -77,13 +79,21 @@ class App {
 
   readBonusNumber({ lottos, winningLotto }) {
     Console.readLine(MESSAGE.ENTER_BONUS_NUMBER, (bonusNumber) => {
-      this.validateBonusNumber(bonusNumber);
+      this.validateBonusNumber({ bonusNumber, winningLotto });
       return;
     });
   }
 
-  validateBonusNumber(bonusNumber) {
-    return;
+  validateBonusNumber({ bonusNumber, winningLotto }) {
+    if (
+      !Util.isNumericInput(bonusNumber) ||
+      !Util.isBetween(bonusNumber, LOTTO_START, LOTTO_END)
+    ) {
+      throw new Error(ERROR_MESSAGE.OUT_OF_RANGE_LOTTO);
+    }
+    if (winningLotto.getLottoNumbers().includes(parseInt(bonusNumber))) {
+      throw new Error(ERROR_MESSAGE.INVALID_BONUS_NUMBER);
+    }
   }
 }
 
