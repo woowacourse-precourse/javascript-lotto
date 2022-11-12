@@ -14,7 +14,7 @@ class RateOfReturnCalculator {
     });
 
     let rateOfReturn = (totalProfit / (this.countOfLotto * 1000)) * 100;
-    return rateOfReturn;
+    return rateOfReturn.toFixed(1);
   }
 
   getRateOfReturn() {
