@@ -2,6 +2,7 @@ const { Random } = require('@woowacourse/mission-utils');
 const CheckLotto = require('./check-lotto');
 const Lotto = require('./Lotto');
 const Calculate = require('./utils/calculate');
+const { NUMBER_LIMIT } = require('./utils/constant');
 const Validation = require('./utils/validation');
 const View = require('./view');
 const WinningNumber = require('./winning-number');
@@ -17,12 +18,15 @@ class Controller {
   }
 
   generateLotto(answer) {
-    const quantity = answer / 1000;
-    this.totalAmount = quantity * 1000;
+    const { MIN_NUMBER, MAX_NUMBER, QUANTITY, UNIT_AMOUNT } = NUMBER_LIMIT;
+    const quantity = answer / UNIT_AMOUNT;
+    this.totalAmount = quantity * UNIT_AMOUNT;
     Validation.amountInputValidate(answer);
 
     for (let count = 0; count < quantity; count += 1) {
-      this.lottos.push(new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6)));
+      this.lottos.push(
+        new Lotto(Random.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, QUANTITY)),
+      );
     }
 
     View.printLottos(this.lottos);
