@@ -22,5 +22,7 @@ const ERROR = Object.freeze({
     HAS_NUMBER: "[ERROR] 당첨번호에 이미 포함되어있는 숫자입니다."
 });
 
+const WINNING_LOTTO = [2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000];
 
-module.exports = { MESSAGE, ERROR };
+
+module.exports = { MESSAGE, ERROR, WINNING_LOTTO };

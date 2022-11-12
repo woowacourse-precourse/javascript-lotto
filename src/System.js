@@ -95,7 +95,7 @@ const SYSTEM = Object.freeze({
     },
 
     calulateRate(cash, result) {
-        let winnings = [2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000];
+        let winnings = WINNING_LOTTO;
         let revenue = winnings.reduce((sum, money, rank) => sum + (result[rank] * money), 0);
         return Math.round(revenue / cash * 100 * 10) / 10;
 
