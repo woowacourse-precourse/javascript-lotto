@@ -1,7 +1,7 @@
 const { Console } = require("@woowacourse/mission-utils");
 const GameUtils = require("./utils/GameUtils");
 const ValidCheckUtils = require("./utils/ValidCheckUtils");
-const Constant = require("./utils/Constant");
+const Result = require("./message/Result");
 
 class LottoGame {
   pay;
@@ -66,7 +66,7 @@ class LottoGame {
 
   printResult() {
     this.lottoRanks.forEach((r, i) => {
-      Console.print(`${Constant.RESULT_STRING[i]}${r}개`);
+      Console.print(`${Result.RESULT_STRING[i]}${r}개`);
     });
     Console.print(
       `총 수익률은 ${GameUtils.getYield(this.lottoRanks, this.pay)}%입니다.`

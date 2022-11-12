@@ -1,4 +1,4 @@
-class Constant {
+class Result {
   static RESULT_STRING = [
     "3개 일치 (5,000원) - ",
     "4개 일치 (50,000원) - ",
@@ -8,4 +8,4 @@ class Constant {
   ];
 }
 
-module.exports = Constant;
+module.exports = Result;
