@@ -8,8 +8,7 @@ class WinningCalculator {
   constructor(lottos, winningLotto) {
     this.#lottos = lottos;
     this.#winningLotto = winningLotto;
-    this.#rank = Array.from({ length: 5 }, () => 0);
-    this.calculateRank();
+    this.#rank = this.calculateRank();
   }
 
   getMatchNumber(numbers, winningNumbers) {
@@ -17,25 +16,28 @@ class WinningCalculator {
   }
 
   calculateRank() {
+    const rank = Array(5).fill(0);
     this.#lottos.map((lotto) => {
       const matchNumber = this.getMatchNumber(lotto.numbers, this.#winningLotto.numbers);
 
       if (matchNumber.length === 6) {
-        this.#rank[0]++;
+        rank[0]++;
       }
       if (matchNumber.length === 5 && lotto.numbers.includes(this.#winningLotto.bonusNumber)) {
-        this.#rank[1]++;
+        rank[1]++;
       }
       if (matchNumber.length === 5 && !lotto.numbers.includes(this.#winningLotto.bonusNumber)) {
-        this.#rank[2]++;
+        rank[2]++;
       }
       if (matchNumber.length === 4) {
-        this.#rank[3]++;
+        rank[3]++;
       }
       if (matchNumber.length === 3) {
-        this.#rank[4]++;
+        rank[4]++;
       }
     });
+
+    return rank;
   }
 
   getPrizeMoney() {
