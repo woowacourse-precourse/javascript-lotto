@@ -1,6 +1,7 @@
 const countCorrectNumber = require('../src/utils/countCorrectNumber');
 const getLottoQuantity = require('../src/utils/getLotteryQuantity');
 const isBonusNumberCorrect = require('../src/utils/isBonusNumberCorrect');
+const makeRandomLottoNumber = require('../src/utils/makeRandomLottoNumber');
 const returnMyRank = require('../src/utils/returnMyRank');
 
 describe('유틸 함수 동작 테스트', () => {
@@ -38,5 +39,26 @@ describe('유틸 함수 동작 테스트', () => {
     expect(returnMyRank(5, 0)).toBe('3');
     expect(returnMyRank(5, 1)).toBe('2');
     expect(returnMyRank(6, 0)).toBe('1');
+  });
+
+  test('로또 랜덤 번호 생성 유효성 확인', () => {
+    expect(
+      (() => {
+        const result = makeRandomLottoNumber();
+        return new Set(result).size;
+      })()
+    ).toBe(6);
+    expect(
+      (() => {
+        const result = makeRandomLottoNumber();
+        return new Set(result).size;
+      })()
+    ).toBe(6);
+    expect(
+      (() => {
+        const result = makeRandomLottoNumber();
+        return new Set(result).size;
+      })()
+    ).toBe(6);
   });
 });
