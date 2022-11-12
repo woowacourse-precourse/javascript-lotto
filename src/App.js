@@ -1,15 +1,29 @@
-const { GAME_MESSAGE } = require('./lib/Constants');
+const { GAME_MESSAGE, PRICE_MEASURE } = require('./lib/Constants');
 const { readLine } = require('./lib/Utils');
+const PriceValidation = require('./Validation/PriceValidation');
 
 class App {
+  lottoPrice = 0;
+
+  lottoCount = 0;
+
   play() {
     readLine(GAME_MESSAGE.input_price, (answer) => this.getLottoPrice(answer));
   }
 
   getLottoPrice(answer) {
-    // TODO
-    // 금액 관련 유효성 검사
-    // 맴버변수에 금액 저장
+    App.lottoPriceValidate(answer);
+    this.saveLottoPriceAndCount(answer);
+  }
+
+  static lottoPriceValidate(answer) {
+    const priceValidation = new PriceValidation(answer);
+    return priceValidation.validate();
+  }
+
+  saveLottoPriceAndCount(answer) {
+    this.lottoPrice = Number(answer);
+    this.lottoCount = this.lottoPrice / PRICE_MEASURE;
   }
 }
 
