@@ -237,5 +237,50 @@ describe('로또 클래스 테스트', () => {
 
       expect(Lotto.analysisWinningAmount.name).toEqual(METHOD_NAME);
     });
+
+    describe('개수 일치 테스트', () => {
+      const { analysisWinningAmount } = Lotto;
+      const winningAmount = [0, 0, 0, 0, 0];
+
+      test('3개가 일치한다면 [1, 0, 0, 0, 0]을 반환한다.', () => {
+        const expected = [1, 0, 0, 0, 0];
+        const currentLotto = [11, 12, 13, 14, 15, 19];
+        const BONUS = 7;
+
+        expect(analysisWinningAmount(winningAmount, 3, currentLotto, BONUS)).toEqual(expected);
+      });
+
+      test('4개가 일치한다면 [0, 1, 0, 0, 0]을 반환한다.', () => {
+        const expected = [0, 1, 0, 0, 0];
+        const currentLotto = [11, 12, 13, 14, 15, 19];
+        const BONUS = 7;
+
+        expect(analysisWinningAmount(winningAmount, 4, currentLotto, BONUS)).toEqual(expected);
+      });
+
+      test('5개가 일치한다면 [0, 0, 1, 0, 0]을 반환한다.', () => {
+        const expected = [0, 0, 1, 0, 0];
+        const currentLotto = [11, 12, 13, 14, 15, 19];
+        const BONUS = 7;
+
+        expect(analysisWinningAmount(winningAmount, 5, currentLotto, BONUS)).toEqual(expected);
+      });
+
+      test('5개 일치, 보너스 볼 일치한다면 [0, 0, 0, 1, 0]을 반환한다.', () => {
+        const expected = [0, 0, 0, 1, 0];
+        const currentLotto = [7, 12, 13, 14, 15, 19];
+        const BONUS = 7;
+
+        expect(analysisWinningAmount(winningAmount, 5, currentLotto, BONUS)).toEqual(expected);
+      });
+
+      test('6개가 일치한다면 [0, 0, 0, 0, 1]을 반환한다.', () => {
+        const expected = [0, 0, 0, 0, 1];
+        const currentLotto = [11, 12, 13, 14, 15, 19];
+        const BONUS = 7;
+
+        expect(analysisWinningAmount(winningAmount, 6, currentLotto, BONUS)).toEqual(expected);
+      });
+    });
   });
 });
