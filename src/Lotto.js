@@ -130,6 +130,8 @@ class Lotto {
   getLottoResult(winningNumbers, bonus) {
     let winningAmount = [0, 0, 0, 0, 0];
 
+    Lotto.validate(winningNumbers);
+
     this.#numbers.forEach((value) => {
       Lotto.validate(value);
 
