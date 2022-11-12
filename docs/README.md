@@ -1,13 +1,13 @@
 # 미션 - 로또
 
-<details>
+<details open>
     <summary>
     <h2 style="display:inline"> ✅ 미션 요구사항</h2></br>
     우테코 3주차 로또 미션에 대한 요구사항입니다.
     </summary>
 
 </br>
-<details>
+<details open>
     <summary>
        <h3 style="display:inline;"> 🚀 기능 요구 사항!</h2>
     </summary>
@@ -124,8 +124,8 @@
 총 수익률은 62.5%입니다.
 ```
 
-</details>
-<details>
+</details open>
+<details open>
     <summary> 
         <h3 style="display: inline"> 🎯 프로그래밍 요구사항 </h3>
 </summary>
@@ -199,9 +199,9 @@ class Lotto {
 }
 ```
 
-</details>
+</details open>
 
-<details>
+<details open>
     <summary> 
          <h3 style="display: inline"> ✏️ 과제 진행 요구 사항 </h3>
     </summary>
@@ -212,12 +212,12 @@ class Lotto {
   - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
 
-</details>
-</details>
+</details open>
+</details open>
 
 ---
 
-<details>
+<details open>
     <summary>
         <h2 style="display:inline-block;"> ✍🏻 프로젝트 관련 주요사항 </h2> 
         </br>
@@ -230,17 +230,54 @@ class Lotto {
 
 ```javascript
 // 프로그램의 현재 상태와 당첨번호를 관리하는 클래스
-class App {}
+class App {
+  #purchaseMoney;
+  #winningNumber;
+  #bonusNumber;
 
+  play(){}
+  winningNumberPhase(){}
+  bonusNumberPhase(){}
+  statisticPhase(){}
+  end()
+}
+```
+
+- 프로그램의 메인 로직을 따라서 실행
+- 사용자가 값을 입력할 때를 기준으로 로직을 순차적으로 실행한다  
+  시작 - 당첨번호값 입력 - 보너스번호값 입력 - 통계출력 - 게임종료 순
+- 각각의 phase에서는 getValueWithType() 실행
+- 게임에 필요한 값들을 저장.  
+  구입금액, 당첨번호, 보너스번호
+
+</br>
+
+```javascript
 // 생성된 로또번호와 관련된 클래스
 class Lotto {}
+```
 
+</br>
+
+```javascript
 // 로또 구입 목록과 관련된 클래스
 class Customer {}
+```
 
-// 값을 입력하는 콘솔과 관련된 클래스
-class Input {}
+</br>
 
+```javascript
+/* 입력값과 관련된 클래스 */
+class Input {
+  getValueWithType(type, callback) {}
+}
+```
+
+- getValueWitheType() : 입력할 값의 type과, 입력값을 저장할 수 있는 callback함수를 받아서 입력된 값 저장
+
+</br>
+
+```javascript
 // 값을 출력하는 콘솔과 관련된 클래스
 class Print {}
 ```
@@ -249,35 +286,42 @@ class Print {}
 
 ### 2. 핵심 로직
 
+### 메인 로직
+
 ```
 
     구매금액 입력받기
-    ↓
+          ↓
     금액만큼 Lotto 구입
-    ↓
+          ↓
     당첨번호 입력받기
-    ↓
+          ↓
+    보너스번호 입력받기
+          ↓
     로또번호 당첨확인
-    ↓
+          ↓
     통계 출력
+
 ```
 
-</details>
+### 에러 처리 로직
+
+</details open>
 
 ---
 
-<details>
+<details open>
     <summary>
-        <h2 style="display:inline-block;"> 📌 구현할 기능 목록  </h2> 
+        <h2 style="display:inline-block;"> 📌 구현할 기능 목록  </h2>
         </br>
-         요구사항을 만족하기 위해 작성한 기능 목록입니다.   
+         요구사항을 만족하기 위해 작성한 기능 목록입니다.
     </summary>
 </br>
 
 ### 📍 입력값 처리 기능
 
-- 구입금액 입력 기능
-- 당첨번호 입력 (6자리 + 보너스) 기능
+- [x] 프로젝트에 필요한 값 입력 기능
+- [ ] 입력값 에러 처리 기능
 
 ### 📍 로또 번호 처리 기능
 
@@ -291,11 +335,11 @@ class Print {}
 - 수익률 출력
 - 에러 출력
 
-</details>
+</details open>
 
 ---
 
-<details>
+<details open>
     <summary>
         <h2 style="display:inline-block;"> 📜 테스트 목록  </h2>
         </br>
@@ -306,6 +350,10 @@ class Print {}
 
 </br>
 
-</details>
+</details open>
 
 ---
+
+```
+
+```
