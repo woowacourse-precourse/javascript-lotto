@@ -38,8 +38,39 @@ class Calculate {
     });
     return CALCULATE;
   }
+
+  //   [3,0],[4,0],[5,0],[5,1],[6,0] : 5등 4등 3등 2등 1등
+  count_rank(lottos, winning, bonus) {
+    let ans = [0, 0, 0, 0, 0];
+    const RESULTS = this.calculate_lottos(lottos, winning, bonus);
+    RESULTS.map(result => {
+      if (result[0] === 3) ans[0] += 1;
+      if (result[0] === 4) ans[1] += 1;
+      if (result[0] === 5 && result[1] === 0) ans[2] += 1;
+      if (result[0] === 5 && result[1] === 1) ans[3] += 1;
+      if (result[0] === 6) ans[4] += 1;
+    });
+    return ans;
+  }
 }
 
 module.exports = Calculate;
 
 const calculate = new Calculate();
+// console.log(
+//   calculate.calculate_lottos(
+//     [
+//       [3, 7, 14, 15, 22, 24],
+//       [1, 10, 12, 37, 39, 43],
+//       [3, 4, 18, 22, 28, 32],
+//       [7, 14, 22, 30, 31, 32],
+//       [1, 2, 6, 8, 19, 22],
+//     ],
+//     [1, 2, 3, 4, 5, 6],
+//     7,
+//   ),
+// );
+// console.log(calculate.check_bonus(13, [2, 4, 6, 13, 31, 35]));
+// console.log(
+//   calculate.count_rank([[30, 31, 33, 38, 39, 41]], [30, 31, 41, 33, 1, 2], 3),
+// );
