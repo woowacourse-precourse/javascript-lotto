@@ -16,10 +16,16 @@ class Lotto {
   }
 
   getNumbers() {
-    return this.#numbers;
+    return this.#numbers.sort(function (a, b) {
+      return a - b;
+    });
   }
 
-  // TODO: 추가 기능 구현
+  match(winNumbers, bonusNumber) {
+    const lottoNumbers = this.#numbers;
+
+    lottoNumbers.filter((value) => winNumbers.includes(value));
+  }
 }
 
 module.exports = Lotto;
