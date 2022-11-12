@@ -1,6 +1,7 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const { InputException, BonusException } = require('../Exception');
-const Lottos = require('./Lotto');
+const { InputException, BonusException } = require('./Exception');
+const Lotto = require('./Lotto');
+const Output = require('./Output');
 
 class Input {
     money;
@@ -29,9 +30,9 @@ class Input {
         Console.readLine('당첨 번호를 입력해 주세요.\n', (string) => {
             let lotto = string.split(',').map((number) => number.trim());
 
-            const exception = new Lottos(lotto); // 검증
+            const exception = new Lotto(lotto); // 검증
 
-            this.winningRottoNumber = lotto; // 당첨 번호 저장 (#numbers)
+            this.winningRottoNumber = lotto; // 당첨 번호 저장
 
             this.inputBonusNumber(); // 다음 단계
         });
