@@ -39,15 +39,12 @@ class Lotto {
   }
 
   compare(publishResult) {
-    const PublishLength = Object.keys(publishResult).length;
-    for (let i = 0; i < PublishLength; i++) {
+    for (let index in publishResult) {
       this.winningCount = 0;
-      publishResult[i].map((x) => {
-        //if (this.#numbers.includes(x)) return (this.winningCount += 1);
-        this.comapreResult(x, this.#numbers);
+      publishResult[index].map((publish) => {
+        this.comapreResult(publish, this.#numbers);
       });
-      console.log(this.winningCount);
-      this.compareDivision(publishResult[i]);
+      this.compareDivision(publishResult[index]);
     }
   }
 
@@ -74,7 +71,6 @@ class Lotto {
   }
 
   profitCalculator(payment) {
-    console.log(payment);
     const PROFIT =
       ((this.firstCount * 2000000000 +
         this.secondCount * 30000000 +
