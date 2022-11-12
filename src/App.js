@@ -1,5 +1,6 @@
 const Utils = require("./Utils");
 const Lotto = require("./Lotto");
+const Validation = require('./Validation');
 
 const prizeObject = [
   [0, 0],
@@ -18,51 +19,64 @@ class App {
     this.issuedLottos = [];
     this.bonusNumber = 0;
     this.cost = 0;
+
   }
   
   play() {
-    Utils.readLine('구입금액을 입력해 주세요.\n', (input) => {
-      this.cost = this.onValidation(Number(input));
+    this.onInput('구입금액을 입력해주세요.\n', this.onGame);
+  }
+
+  onInput(question, callback) {
+    Utils.readLine(question, callback.bind(this));
+  }
+
+  onGame(input) {
+      Validation.validate(input);
+      this.cost = Number(input);
+      
       const nLottos = this.countLottos(this.cost);
       
       this.issuedLottos = this.issueLottery(nLottos)
       
       Utils.print(`${nLottos}개를 구매했습니다.`);
-      // for(let lotto of this.issuedLottos) Utils.print(lotto);
 
       this.showIssuedLottos();
+      
+      this.onInput('\n당첨 번호를 입력해 주세요.\n', this.onInputTargetNumbers);
+  }
 
-      Utils.readLine('\n당첨 번호를 입력해 주세요.\n', (input) => {
-        this.lottoContainer = new Lotto(this.setTargetNumbers(input));
-        Utils.readLine('\n보너스 번호를 입력해 주세요.\n', (input) => {
-          this.bonusNumber = this.setBonusNumber(input);
-          this.showStaticstic();
+  onInputTargetNumbers(input) {
+    this.lottoContainer = new Lotto(this.setTargetNumbers(input));
 
-          Utils.close();
-        });
-      });
-    });
+    this.onInput('\n보너스 번호를 입력해 주세요.\n', this.onInputBonusNumber);
+  }
+
+  onInputBonusNumber(input) {
+    this.bonusNumber = Number(input);
+    this.lottoContainer.validate(this.bonusNumber);
+    this.showStaticstic();
+    Utils.close();
   }
 
   showIssuedLottos() {
     for(let lotto of this.issuedLottos) {
-      let msg = '[';
-      for(let i = 0; i < lotto.length; i++) {
-          if(i == lotto.length - 1) msg += lotto[i] + ']';
-          else msg += lotto[i] + ', ';
-      }
-      Utils.print(msg);
+      Utils.print(this.buildText(lotto));
     }
   }
 
+  buildText(lotto) {
+    let msg = '[';
 
-  onValidation(input) {
-    
-    if(typeof input !== 'number' || Number.isNaN(input)) throw new Error('[ERROR] 금액은 1000원 단위로 숫자만 입력해주세요.');
+    for(let i = 0; i < lotto.length; i++) {
+      if(i == lotto.length - 1) {
+        msg += lotto[i] + ']';
+        break;
+      }
+      
+      msg += lotto[i] + ', ';
+    }
 
-    if(input < 1000) throw new Error('[ERROR] 로또 구입의 최소 금액은 1000원 입니다.');
-
-    return input;
+    return msg;
   }
 
   countLottos(input) {
@@ -77,7 +91,6 @@ class App {
   issueLottery(iter) {
     let array = [];
 
-    // console.log();
     for(let i = 0; i < iter; i++) array.push(Utils.getLottoNumbers().sort((a, b) => a - b));
 
     return array;
@@ -93,21 +106,14 @@ class App {
     let array = input.split(',').map(num => Number(num));
 
     let max = Math.max(...array);
-
-    if(max > 45 || array.includes(0)) throw new Error('[ERROR] 번호는 1~45 사이의 수를 입력해주세요.');
+    
+    if(max > 45 || array.includes(0)) throw new Error('[ERROR] 번호는 1~45 사이의 수 6자리를 입력해주세요.');
 
     return array.sort();
   }
 
-  setBonusNumber(input) {
-    input = Number(input);
-    if(Number.isNaN(input) || input > 45 || input <= 0) throw new Error('[ERROR] 번호는 1~45 사이의 수를 입력해주세요.');
 
-    return input;
-  }
-
-  showStaticstic() {
-
+  getBenefitRate() {
     let prize;
     let earnMoney = 0;
 
@@ -117,7 +123,11 @@ class App {
       earnMoney += prizeObject[prize][0];
     } 
 
-    const benefitRate = ((earnMoney / this.cost)* 100).toFixed(1);
+    return ((earnMoney / this.cost)* 100).toFixed(1);
+  }
+
+  showStaticstic() {
+    const benefitRate = this.getBenefitRate();
 
     const msg = `
 당첨 통계
@@ -131,7 +141,6 @@ class App {
     `
 
     Utils.print(msg);
-    Utils.close();
   }
 
   commaDelimeter(num) {

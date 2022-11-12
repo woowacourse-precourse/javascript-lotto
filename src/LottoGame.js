@@ -1,0 +1,5 @@
+class LottoGame {
+    constructor() {}
+
+    
+}
