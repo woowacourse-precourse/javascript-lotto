@@ -1,0 +1,52 @@
+const { MESSAGES, NUMBERS } = require("./Constants");
+
+class Validation {
+  /**
+   * 플레이어가 게임 중 입력 값이 형식에 어긋날 경우 예외를 발생시킵니다.
+   * @param {string} playerInput - 플레이어의 입력
+   */
+  checkAmountExceptions(playerInput) {
+    if (Number(playerInput) % 1000 !== 0) {
+      throw new Error(MESSAGES.ERROR_AMOUNT_UNIT);
+    }
+  }
+
+  /**
+   * 플레이어가 게임 중 당첨 번호가 형식에 어긋날 경우 예외를 발생시킵니다.
+   * @param {array} winningNumbers - 플레이어가 입력한 당첨 번호
+   */
+  static validateWinningNumbers(winningNumbers) {
+    if (!this.isValidNumberofNumbers(winningNumbers, NUMBERS.LOTTO)) {
+      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    }
+    if (!this.isValidRangeOfNumber(winningNumbers)) {
+      throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+    if (!this.hasUniqueLottoNumber(winningNumbers)) {
+      throw new Error("[ERROR] 로또 번호는 중복이 없어야 합니다.");
+    }
+  }
+
+  /**
+   * 플레이어가 게임 중 입력한 당첨 번호가 형식에 어긋날 경우 예외를 발생시킵니다.
+   * @param {array} inputNumbers - 당첨 번호
+   * @param {number} number - 당첨 번호의 갯수
+   */
+  static isValidNumberofNumbers(inputNumbers, number) {
+    return inputNumbers.length === number;
+  }
+
+  static isValidRangeOfNumber(inputNumbers) {
+    const isValidRange = (number) => {
+      return NUMBERS.MIN_RANGE <= number && number <= NUMBERS.MAX_RANGE;
+    };
+
+    return inputNumbers.map(Number).every(isValidRange);
+  }
+
+  static hasUniqueLottoNumber(inputNumbers) {
+    return new Set(inputNumbers).size === NUMBERS.LOTTO;
+  }
+}
+
+module.exports = Validation;
