@@ -102,10 +102,21 @@ class App {
     if (lotto.includes(this.bonusNumber)) return true;
   }
 
-  CalcProfitRate() {
+  calcProfitRate() {
     let sum = 0;
     sum = this.threeMatch * 5000 + this.fourMatch * 50000 + this.fiveMatch * 1500000 + this.bonusFiveMatch * 30000000 + this.sixMatch * 2000000000;
-    this.profitRate = ((sum / (this.numberOfPurchases * 1000)) * 100).toFixed(2);
+    this.profitRate = ((sum / (this.numberOfPurchases * 1000)) * 100).toFixed(1);
+  }
+
+  printResult() {
+    Console.print(`당첨 통계`);
+    Console.print(`---`);
+    Console.print(`3개 일치 (5,000원) - ${this.threeMatch}개`);
+    Console.print(`4개 일치 (50,000원) - ${this.fourMatch}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${this.fiveMatch}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.bonusFiveMatch}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${this.sixMatch}개`);
+    Console.print(`총 수익률은 ${this.profitRate}% 입니다.`);
   }
 
   play() {
@@ -114,7 +125,8 @@ class App {
     this.enterWinningNumber();
     this.enterBonusNumber();
     this.compareNumber();
-    this.CalcProfitRate();
+    this.calcProfitRate();
+    this.printResult();
   }
 }
 
