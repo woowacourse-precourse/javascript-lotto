@@ -26,6 +26,7 @@ class App {
       this.lottoNumberPrint(numbers);
       this.userLottoNumbers.push(numbers);
     }
+    this.winningNumberInput();
   }
 
   lottoNumberPrint(numbers){
@@ -38,6 +39,12 @@ class App {
     }
 
     return numbers.sort(compareNumbers)
+  }
+
+  winningNumberInput(){
+    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (answer) => {
+      this.winningNumbers=answer.split(',');
+    })
   }
 
  
