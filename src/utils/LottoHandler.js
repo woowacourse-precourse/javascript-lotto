@@ -20,7 +20,7 @@ class LottoHandler {
   getPrice() {
     Console.readLine(MESSAGE.PRICE, (answer) => {
       new Price(answer);
-      this.price = answer;
+      this.price = Number(answer);
       this.makeLottos();
     });
   };
