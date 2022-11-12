@@ -2,6 +2,7 @@ const Lotto = require("./Lotto");
 const MissionUtils = require("@woowacourse/mission-utils");
 
 class App {
+    LOTTO_LIST = [];
     play() {
         this.start();
     }
@@ -15,7 +16,8 @@ class App {
     }
     getMoney(input) {
         let now = this.checkMoney(input);
-        let lottoList = this.makeLotto(now);
+        this.LOTTO_LIST = this.makeLotto(now);
+        this.printLotto(this.LOTTO_LIST);
     }
     checkMoney(input) {
         if (isNaN(input))
@@ -34,6 +36,12 @@ class App {
             );
         return res;
     }
+    printLotto(arr) {
+        MissionUtils.Console.print(`${arr.length}개를 구매했습니다.`);
+        for (let i in arr) arr.print();
+        this.getWinNumbers();
+    }
+    getWinNumbers() {}
 }
 const app = new App();
 console.log(app.makeLotto(5));
