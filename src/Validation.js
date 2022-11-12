@@ -35,7 +35,7 @@ class Validation {
     return input.startsWith("0");
   }
   static isDivisibleByLottoPrice(purchaseAmount) {
-    const remainder = purchaseAmount % LOTTO_PRICE;
+    const remainder = parseInt(purchaseAmount, 10) % LOTTO_PRICE;
 
     return remainder === 0;
   }
