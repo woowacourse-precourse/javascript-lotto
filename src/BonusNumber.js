@@ -6,10 +6,6 @@ class BonusNumber {
     this.bonusNumber = bonusNumber;
   }
 
-  getBonusNumber() {
-    return this.bonusNumber;
-  }
-
   valid(number, numbers) {
     if (numbers.includes(number)) {
       throw ERROR.MUST_NOT_BE_INCLUDED_IN_WINNING_NUMBER;
@@ -20,6 +16,10 @@ class BonusNumber {
     if (Number.isNaN(number)) {
       throw ERROR.MUST_INPUT_ONLY_NUMBER;
     }
+  }
+
+  getBonusNumber() {
+    return this.bonusNumber;
   }
 }
 

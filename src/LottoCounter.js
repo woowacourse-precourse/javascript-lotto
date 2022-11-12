@@ -7,10 +7,6 @@ class LottoCounter {
     this.countOfLotto = this.inputtedCash / NUMBER.INPUT_UNITS;
   }
 
-  getCountOfLotto() {
-    return this.countOfLotto;
-  }
-
   isValidCash(cash) {
     if (Number.isNaN(Number(cash))) {
       throw ERROR.MUST_BE_NUMBER;
@@ -23,6 +19,10 @@ class LottoCounter {
     }
 
     return true;
+  }
+
+  getCountOfLotto() {
+    return this.countOfLotto;
   }
 }
 
