@@ -5,6 +5,7 @@ class WinningChecker {
     this.bonusNumber = bonusNumber;
     this.countOfSameNum = this.countSameNum();
     this.hasBonusNum = this.hasBonusNum();
+    this.winningRank = this.findWinningRank();
   }
 
   countSameNum() {
@@ -20,6 +21,25 @@ class WinningChecker {
       return true;
     }
     return false;
+  }
+
+  findWinningRank() {
+    if (this.countOfSameNum === 6) {
+      return 1;
+    }
+    if (this.countOfSameNum === 5 && this.hasBonusNum) {
+      return 2;
+    }
+    if (this.countOfSameNum === 5 && !this.hasBonusNum) {
+      return 3;
+    }
+    if (this.countOfSameNum === 4) {
+      return 4;
+    }
+    if (this.countOfSameNum === 3) {
+      return 5;
+    }
+    return null;
   }
 }
 
