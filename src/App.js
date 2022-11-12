@@ -121,7 +121,12 @@ class App {
   countBenefit(totalReward) {
     const benefit = (totalReward / this.money) * 100;
     const benefitRate = Math.round(benefit * 10) / 10;
-    Console.print(benefitRate);
+    this.printBenefit(benefitRate);
+  }
+
+  printBenefit(rate) {
+    Console.print(`총 수익률은 ${rate}%입니다.`);
+    Console.close();
   }
 }
 
