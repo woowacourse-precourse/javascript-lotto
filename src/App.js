@@ -1,13 +1,14 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
 const { INPUT_MSG, ERROR_MSG } = require("./constants/Message");
 const Lotto = require("./Lotto");
+const Utils = require("./Utils");
 const Validator = require("./Validator");
 
 class App {
   constructor() {
     this.validator = new Validator();
     this.lottos = [];
-    this.winningNumber = [];
+    this.winningNumber;
     this.bonusNumber = 0;
     this.purchase = 0;
   }
@@ -28,18 +29,23 @@ class App {
   inputPurchase() {
     Console.readLine(INPUT_MSG.PURCHASE_AMOUT, (input) => {
       const purchaseAmount = this.validator.checkPurchaseAmount(input, 1000);
-      if (purchaseAmount === -1) this.error(ERROR_MSG.PURCHASE_AMOUT);
+      if (purchaseAmount === -1) Utils.error(ERROR_MSG.PURCHASE_AMOUT);
 
       this.createLotto(purchaseAmount);
       this.printLotto(purchaseAmount);
+      this.inputWininngNumber();
 
-      Console.close();
+      // Console.close();
     });
   }
-  error(msg) {
-    Console.close();
-    throw new Error(`[ERROR] ${msg}`);
+
+  inputWininngNumber() {
+    Console.readLine(`당첨 번호를 입력해 주세요.\n`, (input) => {
+      const numbers = input.split(",").map(Number);
+      this.winningNumber = new Lotto(numbers);
+    });
   }
+
   play() {
     this.inputPurchase();
   }
