@@ -25,6 +25,13 @@ class App {
     Console.readLine(LOTTO_USER_INPUT.WIN_LOTTO_NUMBERS, (winLottoNumbers) => {
       const lottoNumbersAnswer = winLottoNumbers.split(',');
       new Lotto(lottoNumbersAnswer);
+      this.inputBonusLottoNumber(lottoNumbersAnswer);
+    });
+  }
+
+  inputBonusLottoNumber() {
+    Console.readLine(LOTTO_USER_INPUT.BONUS_LOTTO_NUMBER, (bonusLottoNumber) => {
+      Console.print(bonusLottoNumber);
     });
   }
 }
