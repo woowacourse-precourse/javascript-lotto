@@ -75,6 +75,9 @@ class Validation {
     if (Validation.isEmptyInput(bonusNumber)) {
       throw new Error(ERROR_MESSAGE.EMPTY_INPUT);
     }
+    if (!Validation.hasOnlyNumber(bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.INVALID_INPUT_TYPE);
+    }
   }
 }
 
