@@ -35,6 +35,13 @@ class App {
       this.#money -= LottoConfig.PRICE;
     }
   }
+
+  printLottoList() {
+    MissionUtils.Console.print(Message.buy(this.#lottoList.length));
+    this.#lottoList.forEach((lotto) => {
+      MissionUtils.Console.print(Message.lottoNumber(lotto));
+    });
+  }
 }
 
 module.exports = App;
