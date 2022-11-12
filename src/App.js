@@ -4,6 +4,7 @@ const Lotto = require('./Lotto');
 const BonusNumber = require('./BonusNumber');
 const WinningChecker = require('./WinningChecker');
 const RateOfReturnCalculator = require('./RateOfReturnCalculator');
+const print = require('./utils/utils');
 const MissionUtils = require('@woowacourse/mission-utils');
 const { MESSAGE } = require('./utils/constants');
 
@@ -36,10 +37,8 @@ class App {
 
     while (num !== 0) {
       let numbers = this.numberGenerator.createRandomSixNumbers();
-
       let newLotto = new Lotto(numbers);
       this.purchasedLottos.push(newLotto.getLottoNumbers());
-
       num -= 1;
     }
 
@@ -47,16 +46,14 @@ class App {
   }
 
   printLottos() {
-    MissionUtils.Console.print('');
-    MissionUtils.Console.print(
-      this.countOfLotto + MESSAGE.COUNT_OF_PURCHASED_LOTTOS
-    );
+    print('');
+    print(this.countOfLotto + MESSAGE.COUNT_OF_PURCHASED_LOTTOS);
     this.purchasedLottos.map((lotto) => {
-      MissionUtils.Console.print(
+      print(
         `[${lotto[0]}, ${lotto[1]}, ${lotto[2]}, ${lotto[3]}, ${lotto[4]}, ${lotto[5]}]`
       );
     });
-    MissionUtils.Console.print('');
+    print('');
 
     this.inputWinningNumbers();
   }
@@ -102,22 +99,12 @@ class App {
   }
 
   printWinningResult() {
-    MissionUtils.Console.print('\n당첨 통계\n---');
-    MissionUtils.Console.print(
-      `3개 일치 (5,000원) - ${this.countOfRanking[5]}개`
-    );
-    MissionUtils.Console.print(
-      `4개 일치 (50,000원) - ${this.countOfRanking[4]}개`
-    );
-    MissionUtils.Console.print(
-      `5개 일치 (1,500,000원) - ${this.countOfRanking[3]}개`
-    );
-    MissionUtils.Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.countOfRanking[2]}개`
-    );
-    MissionUtils.Console.print(
-      `6개 일치 (2,000,000,000원) - ${this.countOfRanking[1]}개`
-    );
+    print(MESSAGE.WINNING_HISTORY);
+    print(MESSAGE.INFO_OF_FIFTH_PLACE + `${this.countOfRanking[5]}개`);
+    print(MESSAGE.INFO_OF_FOURTH_PLACE + `${this.countOfRanking[4]}개`);
+    print(MESSAGE.INFO_OF_THIRD_PLACE + `${this.countOfRanking[3]}개`);
+    print(MESSAGE.INFO_OF_SECOND_PLACE + `${this.countOfRanking[2]}개`);
+    print(MESSAGE.INFO_OF_FIRST_PLACE + `${this.countOfRanking[1]}개`);
 
     this.printRateOfReturn();
   }
@@ -129,7 +116,7 @@ class App {
     );
 
     let rateOfReturn = calculator.getRateOfReturn();
-    MissionUtils.Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
+    print(`총 수익률은 ${rateOfReturn}%입니다.`);
 
     this.close();
   }
