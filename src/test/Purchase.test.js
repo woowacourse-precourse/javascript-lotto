@@ -12,7 +12,9 @@ describe('로또 구매 테스트', () => {
       new Purchase('50006');
     }).toThrow('[ERROR] 구입 금액은 1000단위여야 합니다.');
   });
+});
 
+describe('로또 발행 테스트', () => {
   test('로또 발행 개수가 정확한지 확인한다.', () => {
     const purchase = new Purchase('8000');
 
