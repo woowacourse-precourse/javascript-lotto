@@ -1,19 +1,19 @@
 class InputException {
   #isNotANumber(value) {
     if (isNaN(value)) {
-      throw new Error('[ERROR] 구입금액은 숫자만 입력할 수 있습니다.');
+      throw new Error('[ERROR] 숫자만 입력할 수 있습니다.');
     }
   }
 
   #isNegativeOrZero(value) {
     if (Math.sign(value) !== 1) {
-      throw new Error('[ERROR] 구입금액은 양수만 입력할 수 있습니다.');
+      throw new Error('[ERROR] 양수만 입력할 수 있습니다.');
     }
   }
 
   #isNotDivisibleBy1000(amount) {
     if (amount % 1000 !== 0) {
-      throw new Error('[ERROR] 구입금액은 1000원 단위로 입력할 수 있습니다.');
+      throw new Error('[ERROR] 1000원 단위로 입력할 수 있습니다.');
     }
   }
 
@@ -23,11 +23,33 @@ class InputException {
     }
   }
 
+  #isInCorrectLength(numbers, count) {
+    if (numbers.length !== count) {
+      throw new Error(`[ERROR] ${count}개의 번호를 입력해야 합니다.`);
+    }
+  }
+
+  #isNotRange(numbers) {
+    const filteredNumber = numbers.filter(
+      (number) => this.#isNotANumber(number) || number <= 0 || number > 45
+    );
+
+    if (filteredNumber.length) {
+      throw new Error('[ERROR] 1~45까지의 숫자를 입력해야 합니다.');
+    }
+  }
+
   handlePurchaseAmountException(amount) {
     this.#isNoValue(amount);
     this.#isNotANumber(amount);
     this.#isNegativeOrZero(amount);
     this.#isNotDivisibleBy1000(amount);
+  }
+
+  handleWinningNumbersException(numbers) {
+    this.#isNoValue(numbers);
+    this.#isInCorrectLength(numbers, 6);
+    this.#isNotRange(numbers);
   }
 }
 
