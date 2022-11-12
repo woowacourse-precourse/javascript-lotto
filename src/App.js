@@ -100,6 +100,16 @@ class App {
   countLottoResult({ lottos, winningLotto, bonusNumber }) {
     return;
   }
+
+  getMatchCount(lottoNumbers, winningLottoNumbers) {
+    let matchCount = 0;
+    winningLottoNumbers.forEach((num) => {
+      if (lottoNumbers.includes(num)) {
+        matchCount += 1;
+      }
+    });
+    return matchCount;
+  }
 }
 
 const app = new App();
