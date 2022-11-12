@@ -11,9 +11,9 @@ afterAll(() => {
   MissionUtils.Console.close();
 });
 
-describe('isBlank(input)', () => {
-  const utils = new Utils();
+const utils = new Utils();
 
+describe('isBlank(input)', () => {
   test('빈 문자열이 입력값을 들어오는 경우, true가 반환되어야 합니다', () => {
     expect(utils.isBlank('')).toBeTruthy();
   });
@@ -24,8 +24,6 @@ describe('isBlank(input)', () => {
 });
 
 describe('isNumber(input)', () => {
-  const utils = new Utils();
-
   test('문자열이 숫자로만 구성된 경우 true가 반환되어야 합니다.', () => {
     expect(utils.isNumber('123')).toBeTruthy();
   });
@@ -40,8 +38,6 @@ describe('isNumber(input)', () => {
 });
 
 describe('isThousandUnit(input)', () => {
-  const utils = new Utils();
-
   test('입력값이 1000 단위로 나누어질 경우, true가 반환되어야 합니다.', () => {
     expect(utils.isThousandUnit('8000')).toBeTruthy();
   });

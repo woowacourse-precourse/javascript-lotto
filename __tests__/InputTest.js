@@ -21,119 +21,61 @@ afterAll(() => {
   MissionUtils.Console.close();
 });
 
-describe('validateInputMoney(inputMoney)', () => {
-  const validateInput = new ValidateInput();
+const validateInput = new ValidateInput();
 
+describe('validateInputMoney(inputMoney)', () => {
   test("적절한 입력값이 들어오는 경우, true를 반환해야 합니다.", () => {
     expect(validateInput.validateInputMoney('8000')).toBeTruthy();
   });
 
-  test('적절하지 않은 입력값이 들어오는 경우, 에러를 발생해야 합니다.', () => {
-    expect(() => {
-      validateInput.validateInputMoney('8500');
-    }).toThrow();
+  test('적절하지 않은 입력값이 들어오는 경우, false를 반환해야 합니다.', () => {
+    expect(validateInput.validateInputMoney('8500')).toBeFalsy();
   });
 });
 
-describe('validateWinningNumbers(winningNumbers)', () => {
-  const validateInput = new ValidateInput();
-
+describe('validateBonusNumber(bonusNumber)', () => {
   test("적절한 입력값이 들어오는 경우, true를 반환해야 합니다.", () => {
-    expect(validateInput.validateWinningNumbers('1,2,3,4,5,6')).toBeTruthy();
-  });
-
-  test("공백을 포함하는 입력값도 적합한 입력값이라 판단하였습니다. 따라서 true를 반환해야 합니다.", () => {
-    expect(validateInput.validateWinningNumbers('1   0 , 2   1 ,  3  3,   4, 5,      6')).toBeTruthy();
+    expect(validateInput.validateBonusNumber([1, 2, 3, 4, 5, 6], '7')).toBeTruthy();
   });
 
   test('적절하지 않은 입력값이 들어오는 경우, 에러를 발생해야 합니다. - 숫자가 아닌 경우', () => {
     expect(() => {
-      validateInput.validateWinningNumbers('1,2,3,a,b,6');
-    }).toThrow();
-  });
-
-  test('적절하지 않은 입력값이 들어오는 경우, 에러를 발생해야 합니다. - 입력받은 수가 6개가 아닌 경우', () => {
-    expect(() => {
-      validateInput.validateWinningNumbers('1,2,3,4,5');
-    }).toThrow();
-
-    expect(() => {
-      validateInput.validateWinningNumbers('1,2,3,4,5,6,7');
-    }).toThrow();
-  });
-
-  test('적절하지 않은 입력값이 들어오는 경우, 에러를 발생해야 합니다. - 로또 범위 내의 수가 아닌 경우', () => {
-    expect(() => {
-      validateInput.validateWinningNumbers('1,2,3,46,5,6');
-    }).toThrow();
-
-    expect(() => {
-      validateInput.validateWinningNumbers('1,2,3,0,5,6');
-    }).toThrow();
-    expect(() => {
-      validateInput.validateWinningNumbers('-1,2,3,4,5,6');
-    }).toThrow();
-  });
-
-  test('적절하지 않은 입력값이 들어오는 경우, 에러를 발생해야 합니다. - 자연수가 아닌 경우', () => {
-    expect(() => {
-      validateInput.validateWinningNumbers('1,2,3,4.7,5,6');
-    }).toThrow();
-  });
-
-  test('적절하지 않은 입력값이 들어오는 경우, 에러를 발생해야 합니다. - 중복된 값이 존재하는 경우', () => {
-    expect(() => {
-      validateInput.validateWinningNumbers('1,2,3,3,5,6');
-    }).toThrow();
-  });
-});
-
-describe('validateBonusNumber(winningNumbers)', () => {
-  const validateInput = new ValidateInput();
-
-  test("적절한 입력값이 들어오는 경우, true를 반환해야 합니다.", () => {
-    expect(validateInput.validateBonusNumber('7')).toBeTruthy();
-  });
-
-  test('적절하지 않은 입력값이 들어오는 경우, 에러를 발생해야 합니다. - 숫자가 아닌 경우', () => {
-    expect(() => {
-      validateInput.validateBonusNumber('a');
+      validateInput.validateBonusNumber([1, 2, 3, 4, 5, 6], 'a');
     }).toThrow();
   });
 
   test('적절하지 않은 입력값이 들어오는 경우, 에러를 발생해야 합니다. - 입력받은 수가 1개가 아닌 경우', () => {
     expect(() => {
-      validateInput.validateBonusNumber('1,2');
+      validateInput.validateBonusNumber([1, 2, 3, 4, 5, 6], '1,2');
     }).toThrow();
 
     expect(() => {
-      validateInput.validateBonusNumber('');
+      validateInput.validateBonusNumber([1, 2, 3, 4, 5, 6], '');
     }).toThrow();
   });
 
   test('적절하지 않은 입력값이 들어오는 경우, 에러를 발생해야 합니다. - 로또 범위 내의 수가 아닌 경우', () => {
     expect(() => {
-      validateInput.validateBonusNumber('46');
+      validateInput.validateBonusNumber([1, 2, 3, 4, 5, 6], '46');
     }).toThrow();
 
     expect(() => {
-      validateInput.validateBonusNumber('0');
+      validateInput.validateBonusNumber([1, 2, 3, 4, 5, 6], '0');
     }).toThrow();
     expect(() => {
-      validateInput.validateBonusNumber('-12');
+      validateInput.validateBonusNumber([1, 2, 3, 4, 5, 6], '-12');
     }).toThrow();
   });
 
   test('적절하지 않은 입력값이 들어오는 경우, 에러를 발생해야 합니다. - 자연수가 아닌 경우', () => {
     expect(() => {
-      validateInput.validateBonusNumber('4.7');
+      validateInput.validateBonusNumber([1, 2, 3, 4, 5, 6], '4.7');
     }).toThrow();
   });
 
   test('적절하지 않은 입력값이 들어오는 경우, 에러를 발생해야 합니다. - 중복된 값이 존재하는 경우', () => {
     expect(() => {
-      mockQuestions(["8000", "1,2,3,4,5,6", "3"]);
-      validateInput.start();
+      validateInput.validateBonusNumber([1, 2, 3, 4, 5, 6], 4);
     }).toThrow();
   });
 });
