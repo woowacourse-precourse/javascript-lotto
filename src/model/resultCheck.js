@@ -1,4 +1,4 @@
-const { GRADE, VALUE_NUMBER } = require("./constants");
+const { GRADE, VALUE_NUMBER } = require("../utils/constants");
 
 class LottoResultCheck {
   constructor() {

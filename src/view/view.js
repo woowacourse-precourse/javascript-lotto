@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { GRADE, RESULT } = require("./constants");
+const { GRADE, RESULT } = require("../utils/constants");
 
 class MessageViewer {
   numberOfGamesMessage(numberOfGames) {

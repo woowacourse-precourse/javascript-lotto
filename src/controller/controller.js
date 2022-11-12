@@ -1,10 +1,10 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const LottoResultCheck = require("./resultCheck");
-const LottoGenerator = require("./issueLotto");
-const Lotto = require("./Lotto");
-const MessageViewer = require("./view");
-const ValidationCheck = require("./inputCheck");
-const { GET_INPUT, VALUE_NUMBER } = require("./constants");
+const LottoResultCheck = require("../model/resultCheck");
+const LottoGenerator = require("../model/issueLotto");
+const Lotto = require("../Lotto");
+const MessageViewer = require("../view/view");
+const ValidationCheck = require("../model/inputCheck");
+const { GET_INPUT, VALUE_NUMBER } = require("../utils/constants");
 
 class LottoGameHandler {
   constructor() {

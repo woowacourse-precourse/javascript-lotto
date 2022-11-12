@@ -1,4 +1,4 @@
-const { ERROR_INPUT, VALUE_NUMBER } = require("./constants");
+const { ERROR_INPUT, VALUE_NUMBER } = require("../utils/constants");
 
 class ValidationCheck {
   isMoneyValid(money) {

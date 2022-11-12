@@ -1,4 +1,4 @@
-const { ERROR_LOTTO_NUMBER, VALUE_NUMBER } = require("./constants");
+const { ERROR_LOTTO_NUMBER, VALUE_NUMBER } = require("../src/utils/constants");
 
 class Lotto {
   #numbers;

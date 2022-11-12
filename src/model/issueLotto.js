@@ -1,8 +1,8 @@
-const MessageViewer = require("./view");
+const MessageViewer = require("../view/view");
 
 const MissionUtils = require("@woowacourse/mission-utils");
-const LottoResultCheck = require("./resultCheck");
-const { VALUE_NUMBER } = require("./constants");
+const LottoResultCheck = require("../model/resultCheck");
+const { VALUE_NUMBER } = require("../utils/constants");
 
 class LottoGenerator {
   constructor() {
