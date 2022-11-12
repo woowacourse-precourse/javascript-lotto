@@ -79,3 +79,23 @@ describe("Validation.isDivisibleByLottoPrice", () => {
     expect(result).toBe(true);
   });
 });
+
+describe("Validation.isValidLottoNumberLength", () => {
+  test("로또 번호가 지정된 길이보다 긴 경우, false를 반환해야 한다.", () => {
+    // given
+    const input = [1, 2, 3, 4, 5, 6, 7];
+    // when
+    const result = Validation.isValidLottoNumberLength(input);
+    // then
+    expect(result).toBe(false);
+  });
+
+  test("로또 번호가 지정된 길이보다 짧은 경우, false를 반환해야 한다.", () => {
+    // given
+    const input = [1, 2, 3, 4, 5];
+    // when
+    const result = Validation.isValidLottoNumberLength(input);
+    // then
+    expect(result).toBe(false);
+  });
+});
