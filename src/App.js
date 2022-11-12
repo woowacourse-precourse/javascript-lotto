@@ -3,6 +3,9 @@ const Lotto = require("./Lotto");
 class App {
   constructor() {
     this.lottoArray = [];
+    this.prizeNumber = 0;
+    this.bonusNumber = 0;
+    this.result = {};
   }
 
   play() {
@@ -30,6 +33,7 @@ class App {
         6
       ).sort((a, b) => a - b);
       MissionUtils.Console.print(lottoNumbers);
+      this.lottoArray.push(lottoNumbers);
     }
     this.inputLottoNumber();
   }
@@ -42,9 +46,30 @@ class App {
 
   inputLottoNumber() {
     MissionUtils.Console.readLine(`당첨 번호를 입력해 주세요.\n`, (number) => {
-      const prizeNumber = number.split(",");
-      MissionUtils.Console.print(prizeNumber);
-      // new Lotto(prizeNumber);
+      this.prizeNumber = number.split(",");
+      new Lotto(this.prizeNumber);
+      this.prizeNumber = this.prizeNumber.map((number) => parseInt(number));
+      this.inputBonusNumber();
+    });
+  }
+
+  inputBonusNumber() {
+    MissionUtils.Console.readLine(`보너스 번호를 입력해 주세요.\n`, (bonus) => {
+      this.bonusValidate(bonus);
+      this.bonusNumber = parseInt(bonus);
+    });
+  }
+
+  bonusValidate() {
+    if (!(parseInt(input) >= 1 && parseInt(input) <= 45))
+      throw new Error(
+        "[ERROR] 보너스 번호는 1부터 45까지의 숫자만 입력할 수 있습니다."
+      );
+    this.lottoArray.map((number) => {
+      if (number === parseInt(bonus))
+        throw new Error(
+          "[ERROR] 당첨 번호와 중복된 숫자를 입력할 수 없습니다."
+        );
     });
   }
 }
