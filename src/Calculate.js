@@ -58,6 +58,8 @@ class Calculate {
     ANS.map((ans, i) => {
       MissionUtils.Console.print(`${result[i]} - ${ans}개`);
     });
+    const RESULT = this.calculate_rate();
+    MissionUtils.Console.print(`총 수익률은 ${RESULT}%입니다.`);
   }
 
   calculate_profit() {
@@ -69,6 +71,14 @@ class Calculate {
     }, 0);
 
     return PROFIT;
+  }
+
+  calculate_rate() {
+    const PROFIT = this.calculate_profit();
+    // console.log(PROFIT);
+    const ANSWER = (PROFIT / this.amount) * 100;
+    const RESULT = Math.round(ANSWER * 100) / 100;
+    return RESULT;
   }
 }
 

@@ -110,6 +110,7 @@ class User {
       this.lottos,
     );
     CALCULATE.print_result();
+    CALCULATE.calculate_profit();
   }
 }
 
