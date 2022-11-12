@@ -17,4 +17,11 @@ const MESSAGE = {
     `총 수익률은 ${rateOfReturn}%입니다.\n`,
 };
 
-module.exports = { PRICE_PER_LOTTO, MESSAGE };
+const ERROR_MESSAGE = {
+  NON_NUMERIC_INPUT: "[ERROR] 구입금액은 숫자로만 입력해야 합니다.",
+  NON_POSITIVE_INPUT: "[ERROR] 구입금액은 0보다 커야 합니다.",
+  ZERO_START_INPUT: "[ERROR] 구입금액은 0으로 시작할 수 없습니다.",
+  NON_DIVISIBLE_INPUT: "[ERROR] 구입금액은 1,000원 단위로 입력해야 합니다.",
+};
+
+module.exports = { PRICE_PER_LOTTO, MESSAGE, ERROR_MESSAGE };
