@@ -49,6 +49,7 @@ class LottoGame {
       Validator.checkValidWinNumbers(winNumbers);
       Validator.checkWinNumbersLenght(winNumbers);
       Validator.checkWinNumbersSeparator(winNumbers);
+      Validator.checkWinNumbersRange(winNumbers);
       this.#winNumbers = winNumbers;
     });
   }

@@ -43,6 +43,15 @@ class Validator {
       throw new Error(`${ERROR_MESSAGES.INVALID_SEPARATOR}`);
     }
   }
+
+  static checkWinNumbersRange(winNumbers) {
+    const splitNumber = winNumbers.split(',');
+    splitNumber.forEach((number) => {
+      if (number < 1 || number > 45) {
+        throw new Error(`${ERROR_MESSAGES.INVALID_LOTTO_NUMBER_RANGE}`);
+      }
+    });
+  }
 }
 
 module.exports = Validator;
