@@ -32,12 +32,10 @@ class App {
     Console.readLine(INPUT_MSG.PURCHASE_AMOUT, (input) => {
       const purchaseAmount = this.validator.checkPurchaseAmount(input, 1000);
       if (purchaseAmount === -1) Utils.error(ERROR_MSG.PURCHASE_AMOUT);
-
+      this.purchase = input;
       this.createLotto(purchaseAmount);
       this.printLotto(purchaseAmount);
       this.inputWininngNumber();
-
-      // Console.close();
     });
   }
 
@@ -59,6 +57,7 @@ class App {
       this.bonusNumber = input;
       this.getWinningLottos();
       this.printWinning();
+      this.printRate();
 
       Console.close();
     });
@@ -73,11 +72,17 @@ class App {
   }
 
   printWinning() {
+    const price = [0, 2000000000, 30000000, 1500000, 50000, 5000];
     Console.print("당첨통계\n---");
     for (let rank = 5; rank > 0; rank--) {
       Console.print(`${WINNING_MSG[rank]}${this.winningLotto[rank]}`);
-      this.profit += this.winningLotto[rank];
+      this.profit += this.winningLotto[rank] * price[rank];
     }
+  }
+
+  printRate() {
+    const rate = ((this.profit / this.purchase) * 100).toFixed(2);
+    Console.print(`총 수익률은 ${rate.toLocaleString("ko-KR")}%입니다.`);
   }
 
   play() {
