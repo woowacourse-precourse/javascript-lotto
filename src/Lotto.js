@@ -50,6 +50,16 @@ class Lotto {
     if (lottoValidation(numbers)) {
     }
   }
+
+  countLotto(lotto, numbers) {
+    return lotto.reduce((count, value) => {
+      if (numbers.includes(value.toString())) {
+        return count + 1;
+      } else {
+        return count;
+      }
+    }, 0);
+  }
 }
 
 module.exports = { LottoBuilder, Lotto };
