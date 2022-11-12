@@ -3,6 +3,31 @@ const { Random } = require('@woowacourse/mission-utils');
 class Purchase {
   constructor(purchasePrice) {
     this.validate(purchasePrice);
+    this.amount = Number(purchasePrice) / 1000;
+    this.numbers = [];
+    this.createN();
+  }
+
+  createN() {
+    for (let i = 0; i < this.amount; i++) {
+      this.create();
+    }
+  }
+
+  create() {
+    const lottoNumber = [];
+
+    while (lottoNumber.length !== 6) {
+      const number = Random.pickNumberInRange(1, 45);
+
+      if (lottoNumber.includes(number)) {
+        continue;
+      }
+
+      lottoNumber.push(number);
+    }
+
+    this.numbers.push(lottoNumber);
   }
 
   validate(purchasePrice) {
