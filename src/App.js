@@ -171,8 +171,13 @@ class App {
       sum += value.reword * value.count;
       return sum;
     },0)
-    const percentage= (totalReword/lottoPayment)
-    return (percentage*100).toFixed(1);
+    const percentage= (totalReword/lottoPayment)*100
+    return Number(percentage.toFixed(1));
+  }
+
+  printEarningsRate(){
+    const earningRate = this.caclulateEarningsRate(this.rankingResult,8000)
+    Console.print(`총 수익률은 ${earningRate}%입니다.`)
   }
 
   play() {
@@ -183,6 +188,7 @@ class App {
     this.printIssuendLotto(this.issuedLotto);
     this.makeRankingResult(this.issuedLotto, [1, 2, 3, 4, 5, 6], 7);
     this.printRankingResult(this.rankingResult)
+    this.printEarningsRate();
   }
 }
 
