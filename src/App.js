@@ -1,15 +1,13 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const View = require('./utils/View');
+const LottoGame = require('./LottoGame');
 
 class App {
   constructor() {
-    this.view = new View();
+    this.lottoGame = new LottoGame();
   }
 
   play() {
-    MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (lottoCost) => {
-      const lottos = this.view.lottos(lottoCost);
-    });
+    this.lottoGame.buyLotto();
   }
 }
 

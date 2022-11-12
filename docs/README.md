@@ -4,14 +4,14 @@
 
 - [x] 1부터 45까지의 중복되지 않는 숫자 6개 로또 번호를 오름차순으로 생성한다. - LottoGenerator#createLottoNums()
 - [x] 구입금액 만큼 로또를 발행한다. - LottoGenerator#publishLotto()
-- [ ] 로또번호와 당첨번호를 비교한다. - LottoMatching#compareLottoNums()
-  - [ ] 몇개가 일치하는지 확인한다. - LottoMatching#countCorrectNums() 
-  - [ ] 보너스 번호가 일치하는지 확인한다. - LottoMatching#isEqualBonusNum()
-- [ ] 수익률을 구한다. - IncomeRate#getIncomeRate()
+- [ ] 로또번호와 당첨번호를 비교한다. - LottoGame#compareLottoNums()
+  - [ ] 몇개가 일치하는지 확인한다. - LottoGame#countCorrectNums() 
+  - [ ] 보너스 번호가 일치하는지 확인한다. - LottoGame#isEqualBonusNum()
+- [ ] 수익률을 구한다. - LottoGame#getIncomeRate()
 
 ## UI 로직
 
-- [x] 구매한 로또를 보여준다. - View#lottos()
+- [x] 구매한 로또를 보여준다. - LottoGame#viewLottos()
 
 ## 예외 처리
 
