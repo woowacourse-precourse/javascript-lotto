@@ -51,7 +51,7 @@ class App {
   getWinningLottoNumber() {
     Console.print(`\n${ASK_WINNING_LOTTO_NUMBER}`);
     Console.readline("", (input) => {
-      const inputValue = input.split(",").map(Number)
+      const inputValue = input.split(",").map(Number);
       this.isValidinput(inputValue);
       this.winningLottoNumber = inputValue;
     });
@@ -79,7 +79,7 @@ class App {
     });
   }
 
-  isValidBonusNumber(input){
+  isValidBonusNumber(input) {
     if (isNaN(input)) throw new Error("[ERROR] 보너스 번호는 숫자여야 합니다.");
     if (this.winningLottoNumber.includes(+input)) {
       throw new Error(
@@ -91,25 +91,20 @@ class App {
     }
   }
 
-  calculateOverlappintNumberCount(lottoNumber, winningLottoNumber){
+  calculateOverlappintNumberCount(lottoNumber, winningLottoNumber) {
     return lottoNumber.reduce((sum, number) => {
       winningLottoNumber.includes(number) ? (sum += 1) : null;
       return sum;
     }, 0);
   }
 
-  winningResult(winningLottoNumber, issuedLotto){
-    issuedLotto.forEach((lotto) => {
-      
-    });
-
+  checkBounsNumber(lottoNumber, BonusLottoNumber) {
+    return lottoNumber.includes(BonusLottoNumber);
   }
-
 
   play() {
     Console.print(ASK_LOTTO_PRICE);
     // Console.readLine('',price => this.buyLotto(price))
-
   }
 }
 
