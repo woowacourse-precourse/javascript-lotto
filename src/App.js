@@ -1,6 +1,6 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
-const { Messages, winnings, getPurchaseMessage, getResultMessage } = require('./constants');
+const { UNIT, Messages, winnings, getPurchaseMessage, getResultMessage } = require('./constants');
 
 class App {
   constructor() {
@@ -32,19 +32,19 @@ class App {
   }
 
   validateMoney(money) {
-    if (money < 1000) {
+    if (money < UNIT) {
       throw new Error(Messages.ERROR_MINIMUM_MONEY_INPUT);
     }
     if (Number.isNaN(money)) {
       throw new Error(Messages.ERROR_NUMBER_ONLY);
     }
-    if (!Number.isInteger(money / 1000)) {
+    if (!Number.isInteger(money / UNIT)) {
       throw new Error(Messages.ERROR_1000_UNITS_ONLY);
     }
   }
 
   createLotto(money) {
-    const numberToCreate = money / 1000;
+    const numberToCreate = money / UNIT;
     const purchaseMessage = getPurchaseMessage(numberToCreate);
     Console.print(purchaseMessage);
     while (this.myLottos.length < numberToCreate) {

@@ -1,4 +1,6 @@
 module.exports = {
+  UNIT: 1000,
+
   Messages: {
     REQUEST_MONEY_INPUT: '구입금액을 입력해 주세요.\n',
     REQUEST_WINNING_NUMBERS_INPUT: '\n당첨 번호를 입력해 주세요.\n',
@@ -12,6 +14,7 @@ module.exports = {
     ERROR_BONUS_NUMBER_RANGE: '[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.',
     ERROR_BONUS_NUMBER_DUPLICATE: '[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.',
   },
+
   winnings: {
     FIRST: 2000000000,
     SECOND: 30000000,
@@ -19,9 +22,11 @@ module.exports = {
     FOURTH: 50000,
     FIFTH: 5000,
   },
+
   getPurchaseMessage(number) {
     return `\n${number}개를 구매했습니다.`;
   },
+
   getResultMessage(first, second, third, fourth, fifth, rateOfReturn) {
     return (
       `\n당첨 통계\n---\n`
