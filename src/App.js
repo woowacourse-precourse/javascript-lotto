@@ -105,6 +105,13 @@ class App {
     }
     return numberArray;
   }
+
+  //보너스 번호 입력 요청하기
+  getBonusNumber() {
+    Console.readLine(MESSAGE.ENTER_BONUS_NUMBER, (number) => {
+      console.log(number);
+    });
+  }
 }
 
 module.exports = App;
