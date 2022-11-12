@@ -1,4 +1,4 @@
-const { COMMENT, ERROR, REGEX } = require("./constant");
+const { COMMENT, REGEX } = require("./constant");
 const MissionUtils = require("@woowacourse/mission-utils");
 const LottoResult = require("./LottoResult");
 
@@ -18,7 +18,7 @@ class WinningNumber {
   getWinningNumbers() {
     MissionUtils.Console.readLine(COMMENT.WINNING, (numberString) => {
       const inputsArray = numberString.split(",");
-      if (this.#checkValidNumbers(inputsArray)) {
+      if (this.#validateWinningNumbers(inputsArray)) {
         const numbersArray = inputsArray.map((input) => Number(input));
         this.#winningNumbers = numbersArray;
         this.#getBonusNumber();
@@ -28,35 +28,46 @@ class WinningNumber {
 
   #getBonusNumber() {
     MissionUtils.Console.readLine(COMMENT.BONUS, (number) => {
-      this.#bonusNumber = number;
-      const lottoResult = new LottoResult(
-        this.#winningNumbers,
-        this.#bonusNumber,
-        this.#lottos,
-        this.#money
-      );
-      lottoResult.printLottoResult();
+      if (this.#validateBonusNumber(number)) {
+        this.#bonusNumber = number;
+        const lottoResult = new LottoResult(
+          this.#winningNumbers,
+          this.#bonusNumber,
+          this.#lottos,
+          this.#money
+        );
+        lottoResult.printLottoResult();
+      }
     });
-    //TODO: 보너스 번호 유효 판별
   }
 
-  #checkValidNumbers(numbers) {
+  #validateWinningNumbers(numbers) {
     if (numbers.length !== 6) {
-      throw new Error(ERROR.WINNING_1);
+      throw new Error("[ERROR] 당첨 번호는 6개여야 합니다.");
     }
 
     numbers.forEach((number) => {
       if (!number.match(REGEX.LOTTO_RANGE)) {
-        throw new Error(ERROR.WINNING_2);
+        throw new Error("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
       }
     });
 
     const uniqueNumbers = new Set(numbers);
     if ([...uniqueNumbers].length !== 6) {
-      throw new Error(ERROR.WINNING_3);
+      throw new Error("[ERROR] 당첨 번호는 중복될 수 없습니다.");
     }
 
     return true;
+  }
+
+  #validateBonusNumber(number) {
+    if (this.#winningNumbers.includes(number)) {
+      throw new Error("[ERROR] 보너스 번호는 당첨번호와 중복될 수 없습니다.");
+    }
+
+    if (!number.match(REGEX.LOTTO_RANGE)) {
+      throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
   }
 }
 
