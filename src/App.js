@@ -6,10 +6,15 @@ class App {
   }
 
   inputMoney() {
-    MissionUtils.Console.readLine('구입금액을 입력해 주세요.', (answer) => {
-      MissionUtils.Console.print(answer);
+    MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (answer) => {
       if (this.validateMoney(answer)) {
-        MissionUtils.Console.print(`${this.countTickets(answer)}개를 구매했습니다.`);
+        const tickets = [];
+        const ticketsCount = this.countTickets(answer);
+        MissionUtils.Console.print(`\n${ticketsCount}개를 구매했습니다.`);
+        for (let i = 0; i < ticketsCount; i += 1) {
+          tickets.push(this.generateRandomNumbers());
+        }
+        tickets.map((ticket) => MissionUtils.Console.print(ticket));
       }
     });
   }
@@ -27,6 +32,10 @@ class App {
 
   countTickets(answer) {
     return answer / 1000;
+  }
+
+  generateRandomNumbers() {
+    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6); // [1, 10, 7, 8, 5, 3]
   }
 }
 
