@@ -1,7 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const User = require("./User");
-
+const LottoManager = require("./LottoManager");
 
 class LottoMachine {
   #money;
@@ -18,6 +18,13 @@ class LottoMachine {
 
   }
 
+  makeLotto() {
+    const numbers = this.makeLottoNumber();
+    this.sortLottoNumber(numbers);
+    this.printLottoNumber(numbers);
+    this.publishLotto(numbers);
+  }
+
   inputMoney() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
       this.#money = Number(money);
@@ -26,12 +33,9 @@ class LottoMachine {
       this.checkInputMoney();
       this.printLottoAmount();
       for (let index = 0; index < this.#count; index++) {
-        const numbers = this.makeLottoNumber();
-        this.sortLottoNumber(numbers);
-        this.printLottoNumber(numbers);
-        this.publishLotto(numbers);
+        this.makeLotto();
       }
-      
+      console.log(this.user);
     });
   }
 
@@ -66,8 +70,6 @@ class LottoMachine {
     const lotto = new Lotto(numbers);
     const lottoNumbers = lotto.getterLottoNumbers();
     this.user.usersLottos.push(lottoNumbers);
-
-    console.log(this.user);
   }
 
 }
