@@ -13,7 +13,10 @@ class App {
     });
   }
   makeLottoNum(purchaseNum){
-    let Lottos = [purchaseNum][6];
+    let Lottos = [purchaseNum];
+    for(let i = 0; i < purchaseNum; i++){
+      Lottos[i] = MU.Random.pickUniqueNumbersInRange(1,45,6);
+    }
   }
 }
 
