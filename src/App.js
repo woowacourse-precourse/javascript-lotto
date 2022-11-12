@@ -1,5 +1,6 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 
+const User = require("../src/User");
 const {
   NUMBER_COUNT,
   AMOUNT_UNIT,
@@ -11,38 +12,33 @@ const {
 } = require("../src/utils/constants");
 const {
   hasChar,
-  isDivisible,
   hasCharExceptComma,
   makeSplit,
   makeNumberArray,
 } = require("../src/utils/utils");
 
 class App {
+  user;
+
+  constructor() {
+    this.user = new User();
+  }
+
   play() {}
 
-  //구매 금액 입력 요청하기
   getPurchaseAmount() {
     Console.readLine(MESSAGE.ENTER_PURCHASE_AMOUNT, (amount) => {
-      console.log(amount);
+      const trimmedAmount = amount.trim();
+      if (this.validateInput(trimmedAmount)) {
+        this.user.setPurchaseAmount = trimmedAmount;
+      }
     });
   }
 
-  //구매 금액 유효성 검사하기
   validateInput(input) {
-    //TODO trim하고 줘야하나?
-    const trimmedInput = input.trim();
-
-    //문자가 섞여있지 않은지 검사
-    if (hasChar(trimmedInput)) {
+    if (hasChar(input)) {
       throw new Error(ERROR.ONLY_NUMBER);
     }
-
-    //금액이 1000으로 나눠떨어지는지 검사
-    //TODO user로 넘겨도 될듯?
-    if (!isDivisible(trimmedInput)) {
-      throw new Error(ERROR.INDIVISIBLE);
-    }
-
     return true;
   }
 
