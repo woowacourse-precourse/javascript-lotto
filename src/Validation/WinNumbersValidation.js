@@ -11,6 +11,7 @@ class WinNumbersValidation extends Validation {
     this.checkIsEmpty();
     this.checkIsValidDivision();
     this.checkIsRangeNumber();
+    this.checkIsOverlapNumber();
   }
 
   checkIsEmpty() {
@@ -38,6 +39,16 @@ class WinNumbersValidation extends Validation {
       }
       return true;
     });
+  }
+
+  checkIsOverlapNumber() {
+    const winNumberArray = this.answer.split(',');
+    const winNumberSet = new Set(winNumberArray);
+
+    if (winNumberArray.length !== winNumberSet.size) {
+      throw new Error(WIN_NUMBER_ERROR_MESSAGE.not_valid_overlap_number);
+    }
+    return true;
   }
 }
 
