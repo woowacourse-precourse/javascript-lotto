@@ -56,7 +56,7 @@ class Controller {
     this.statistic = new Statistic();
 
     this.purchasedLottos.forEach((purchasedLotto) => {
-      this.statistic.putInStat(
+      this.statistic.putInCounts(
         this.winningLotto.numbers,
         this.bonusNumber.value,
         purchasedLotto.numbers,

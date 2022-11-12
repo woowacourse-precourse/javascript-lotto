@@ -1,10 +1,10 @@
 const { RULE } = require('../utils/constants');
 
 class Statistic {
-  #stat;
+  #counts;
 
   constructor() {
-    this.#stat = {
+    this.#counts = {
       [RULE.FIRST.RANK]: 0,
       [RULE.SECOND.RANK]: 0,
       [RULE.THIRD.RANK]: 0,
@@ -14,20 +14,20 @@ class Statistic {
     };
   }
 
-  get stat() {
-    return JSON.parse(JSON.stringify(this.#stat));
+  get counts() {
+    return JSON.parse(JSON.stringify(this.#counts));
   }
 
   get revenue() {
-    const firstRevenue = this.#stat[RULE.FIRST.RANK] * RULE.FIRST.WINNING_AMOUNT;
-    const secondRevenue = this.#stat[RULE.SECOND.RANK] * RULE.SECOND.WINNING_AMOUNT;
-    const thirdRevenue = this.#stat[RULE.THIRD.RANK] * RULE.THIRD.WINNING_AMOUNT;
-    const fourthRevenue = this.#stat[RULE.FOURTH.RANK] * RULE.FOURTH.WINNING_AMOUNT;
-    const fifthRevenue = this.#stat[RULE.FIFTH.RANK] * RULE.FIFTH.WINNING_AMOUNT;
+    const firstRevenue = this.#counts[RULE.FIRST.RANK] * RULE.FIRST.WINNING_AMOUNT;
+    const secondRevenue = this.#counts[RULE.SECOND.RANK] * RULE.SECOND.WINNING_AMOUNT;
+    const thirdRevenue = this.#counts[RULE.THIRD.RANK] * RULE.THIRD.WINNING_AMOUNT;
+    const fourthRevenue = this.#counts[RULE.FOURTH.RANK] * RULE.FOURTH.WINNING_AMOUNT;
+    const fifthRevenue = this.#counts[RULE.FIFTH.RANK] * RULE.FIFTH.WINNING_AMOUNT;
     return firstRevenue + secondRevenue + thirdRevenue + fourthRevenue + fifthRevenue;
   }
 
-  putInStat(winningLotto, bonusNumber, publishedLotto) {
+  putInCounts(winningLotto, bonusNumber, publishedLotto) {
     const judgeResult = this.judgeLotto(winningLotto, bonusNumber, publishedLotto);
     const rank = this.judgeRank(judgeResult);
     this.increaseRankCount(rank);
@@ -60,7 +60,7 @@ class Statistic {
   }
 
   increaseRankCount(rank) {
-    this.#stat[rank] += 1;
+    this.#counts[rank] += 1;
   }
 }
 
