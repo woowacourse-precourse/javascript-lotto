@@ -11,7 +11,7 @@ class App {
       Console.print("\n");
       let winNumbers = await this.getWinNumbers();
       Console.print("\n");
-      let bonusNumbers = await this.getBonusNumber();
+      let bonusNumber = await this.getBonusNumber();
     } catch (e) {}
   }
 
@@ -51,8 +51,9 @@ class App {
   isValidWinNumbers(winNumbers) {
     if (winNumbers.size != 6) return false;
     if (winNumbers.has(NaN)) return false;
-    if ([...winNumbers].filter((e) => e < 1 || e > 45).length == 0) return true;
-    else return false;
+    if ([...winNumbers].filter((e) => e < 1 || e > 45).length != 0)
+      return false;
+    else return true;
   }
 
   getWinNumbers() {
