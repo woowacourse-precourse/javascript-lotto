@@ -42,15 +42,14 @@ class App {
     }
   }
 
-  printIssuendLotto(lottoCount){
-    for(let i =0;i<lottoCount;i++){
-      let lottoNumber = this.sortLottoNumberInAscendignOrder(this.makeLottoNumber())
-      this.printLottoNumber(lottoNumber)
-    }
+  printIssuendLotto(issuedLotto){
+    issuedLotto.forEach((value)=>{
+      this.printLottoNumber(value);
+    })
   }
 
   getWinningLottoNumber(){
-    Console.print(ASK_WINNING_LOTTO_NUMBER);
+    Console.print(`\n${ASK_WINNING_LOTTO_NUMBER}`);
     Console.readline(
       "",
       (number) => (this.winningLottoNumber = number.split(",").map(Number))
