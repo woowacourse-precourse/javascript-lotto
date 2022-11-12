@@ -10,6 +10,9 @@ class GamePrint {
       MissionUtils.Console.print(lotto);
     });    
   }
+  static lottoNumber(numbers) {
+    MissionUtils.Console.print(numbers);
+  }
 }
 
 module.exports = GamePrint;
