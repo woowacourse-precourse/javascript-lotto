@@ -15,11 +15,15 @@ class App {
       if (userMoney) {
         const buyLotto = new BuyLotto(Number(userMoney));
         this.userLottoArr = buyLotto.userLottoArr;
-        UI.print(`${this.userLottoArr.length}${BUY_LOTTO.PURCHASE}`);
-        this.userLottoArr.forEach((currentLotto) => {
-          UI.print(currentLotto);
-        });
+        this.printLotto();
       }
+    });
+  }
+
+  printLotto() {
+    UI.print(`${this.userLottoArr.length}${BUY_LOTTO.PURCHASE}`);
+    this.userLottoArr.forEach((currentLotto) => {
+      UI.print(currentLotto);
     });
   }
 }
