@@ -19,6 +19,10 @@ class UserLotto {
       MissionUtils.Console.print(`[${lotto.join(", ")}]`);
     });
   }
+
+  getUserLottoList() {
+    return this.userLottoList;
+  }
 }
 
 module.exports = UserLotto;
