@@ -3,22 +3,25 @@ const {
   APP_MESSAGE,
   EXCEPTION_MESSAGE,
   EXCEPTION_REASON,
+  LOTTERY_PRIZE,
 } = require('./constants/constants');
 const Lotto = require('./Lotto');
+const calculateProfit = require('./utils/calculateProfit');
 const getLottoQuantity = require('./utils/getLotteryQuantity');
 const isValidLottery = require('./utils/isValidLottery');
 const makeRandomLottoNumber = require('./utils/makeRandomLottoNumber');
 
 class App {
   #startMoney;
+  #earnedMoney;
   #myLotteryQuantity;
   #myLotteryList;
   #winNumber;
   #bonusNumber;
   #myLotteryRankList;
-  #earnedMoney;
 
   constructor() {
+    this.#earnedMoney = 0;
     this.#myLotteryRankList = {
       0: 0,
       1: 0,
@@ -81,7 +84,6 @@ class App {
         return this.makeException(EXCEPTION_REASON.INPUT_OVERLAPPED);
 
       this.#bonusNumber = inputBonusNumber;
-      Console.print(this.#bonusNumber);
       return this.calculateResult();
     });
   }
@@ -94,10 +96,14 @@ class App {
       );
       this.#myLotteryRankList[result] += 1;
     });
+    Console.print(this.#myLotteryRankList);
+    return this.calculateProfitRate();
   }
 
-  // 수익률 출력하기
-  printProfitRate() {}
+  // 수익률 계산
+  calculateProfitRate() {
+    this.#earnedMoney = calculateProfit(this.#myLotteryRankList);
+  }
 
   makeException(errorName) {
     throw new Error(EXCEPTION_MESSAGE[errorName]);
