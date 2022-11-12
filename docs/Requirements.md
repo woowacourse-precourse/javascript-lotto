@@ -78,7 +78,7 @@
 + 함수 / 메서드의 길이가 15라인을 넘지 않는다.
 + 함수 / 메서드가 한 가지 일만 담당한다.
 + else를 지양한다. if 조건에서 return 활용 / 상황에 맞게 if/else, switch문 사용
-+ 핵심 로직 / UI 로직 구분 -> 핵심 로직에 대한 단위테스트 구현
++ 핵심 로직 / UI 로직(Console.readLine, print) 구분 -> 핵심 로직에 대한 단위테스트만 구현
 
 - 라이브러리
   - MissionUtils - Random / Console API를 사용하여 구현하기
