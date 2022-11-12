@@ -36,26 +36,56 @@ describe.only('예외 사항 테스트', () => {
         }).toThrow('[ERROR]');
     });
 
-    test('로또 번호의 갯수가 6개인지 확인', () => {
+    test('당첨 번호의 갯수가 6개인지 확인', () => {
         expect(() => {
-            const exception = new LottoException([1, 2, 3, 4, 5, 6, 7]);
+            const exception = new LottoException(
+                ['1', '2', '3', '4', '5', '6', '7'],
+                '8'
+            );
             exception.checkLottoException();
         }).toThrow('[ERROR]');
 
         expect(() => {
-            const exception = new LottoException([1, 2, 3, 4, 5]);
+            const exception = new LottoException(
+                ['1', '2', '3', '4', '5'],
+                '6'
+            );
             exception.checkLottoException();
         }).toThrow('[ERROR]');
     });
 
-    test('로또의 번호가 숫자인지 확인 (보너스 번호 포함)', () => {
+    test('당첨 번호가 숫자인지 확인 (보너스 번호 포함)', () => {
         expect(() => {
-            const exception = new LottoException([1, 2, 3, 4, 5, 'a']);
+            const exception = new LottoException(
+                ['1', '2', '3', '4', '5', 'a'],
+                '7'
+            );
             exception.checkLottoException();
         }).toThrow('[ERROR]');
 
         expect(() => {
-            const exception = new LottoException('a', 'bonus');
+            const exception = new LottoException(
+                ['1', '2', '3', '4', '5', '6'],
+                'a'
+            );
+            exception.checkLottoException();
+        }).toThrow('[ERROR]');
+    });
+
+    test('당첨 번호가 서로 다른 수인지 확인 (보너스 번호 포함)', () => {
+        expect(() => {
+            const exception = new LottoException(
+                ['1', '2', '3', '4', '5', '3'],
+                '7'
+            );
+            exception.checkLottoException();
+        }).toThrow('[ERROR]');
+
+        expect(() => {
+            const exception = new LottoException(
+                ['1', '2', '3', '4', '5', '6'],
+                '3'
+            );
             exception.checkLottoException();
         }).toThrow('[ERROR]');
     });
