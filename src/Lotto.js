@@ -17,7 +17,7 @@ class Lotto {
     }
   }
 
-  static checkWinNumRange(numbers) {
+  checkWinNumRange(numbers) {
     const filteredWinNum = numbers.filter(
       (number) =>
         LOTTO_SETTING.LOTTO_NUM_MIN <= number &&
@@ -29,6 +29,7 @@ class Lotto {
       throw new Error(LOTTO_MESSAGE.WIN_NUM_RANGE_ERROR_MSG);
     }
   }
+
   checkWinNumDuplicate(numbers) {
     const setWinNum = new Set(numbers);
     const IS_DUPLICATE = setWinNum.size < numbers.length;
@@ -72,6 +73,15 @@ class Lotto {
       const sortedLottoNum = lottoNum.sort((a, b) => a - b);
       MissionUtils.Console.print(sortedLottoNum);
     });
+  }
+
+  static checkBonusNum(bonusNum) {
+    const IS_TYPE_NUMBER = !Number.isNaN(bonusNum);
+    const IS_VALID_RANGE = 1 <= bonusNum && bonusNum <= 45;
+    const IS_VALID = IS_TYPE_NUMBER && IS_VALID_RANGE;
+    if (!IS_VALID) {
+      throw new Error(LOTTO_MESSAGE.BONUS_NUM_ERROR_MSG);
+    }
   }
 }
 
