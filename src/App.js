@@ -20,6 +20,10 @@ class App {
     })
   }
 
+  lottoPurchaseCount(money){
+    return answer/1000;
+  }
+  
   makeLottoNumber(){
     for(let i=0; i<this.money; i++){
       const numbers = this.lottoNumberSort(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
