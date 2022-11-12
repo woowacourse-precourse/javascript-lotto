@@ -55,7 +55,12 @@ class LottoGame {
       const winningNumbersArr = winningNumbers.split(",");
       Validation.validateLottoNumber(winningNumbersArr);
       this.winningNumbers = winningNumbersArr;
+
+      this.saveBonusNumberPhase();
     });
+  }
+  saveBonusNumberPhase() {
+    this.LottoGameView.requestInput(REQUEST_MESSAGE.BONUS_NUMBER, (bonusNumber) => {});
   }
 }
 
