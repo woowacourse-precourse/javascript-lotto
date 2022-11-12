@@ -10,8 +10,8 @@ class Bonus {
 
   checkNumber(bonus, answerNumber) {
     this.checkWords(bonus);
-    this.checkRange(bonus);
-    this.checkSameNumber(bonus, answerNumber);
+    this.checkRange(Number(bonus));
+    this.checkSameNumber(Number(bonus), answerNumber);
   };
 
   checkRange(bonus) {
@@ -27,7 +27,7 @@ class Bonus {
   };
 
   checkWords(bonus) {
-    if (bonus.match(/[^0-9]/g) !== null) {
+    if ((/[\D]/g).test(bonus)) {
       throw new Error(`${ERROR.INVALID_BONUS_WORDS}`);
     };
   };
