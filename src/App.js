@@ -13,6 +13,40 @@ class App {
 
   winNumberList = [];
 
+  bonusNumber = 0;
+
+  lottoWinPrice = 0;
+
+  lottoRate = 0;
+
+  lottoResult = {
+    three: {
+      count: 0,
+      text: GAME_MESSAGE.result_three_match,
+      price: 5000,
+    },
+    four: {
+      count: 0,
+      text: GAME_MESSAGE.result_four_match,
+      price: 50000,
+    },
+    five: {
+      count: 0,
+      text: GAME_MESSAGE.result_five_match,
+      price: 1500000,
+    },
+    bonus: {
+      count: 0,
+      text: GAME_MESSAGE.result_five_bonus_match,
+      price: 30000000,
+    },
+    six: {
+      count: 0,
+      text: GAME_MESSAGE.result_six_match,
+      price: 2000000000,
+    },
+  };
+
   play() {
     readLine(GAME_MESSAGE.input_price, (answer) => this.getLottoPrice(answer));
   }
