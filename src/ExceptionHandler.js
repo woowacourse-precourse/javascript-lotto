@@ -21,8 +21,15 @@ class ExceptionHandler {
   }
 
   static bonusNumberCannotBeWinningNumber(winningNumbers, bonusNumber) {
+    console.log(winningNumbers, bonusNumber);
     if (winningNumbers.includes(bonusNumber)) {
       throw new Error("[ERROR] 보너스 번호는 당첨 번호와 같을 수 없습니다.");
+    }
+  }
+
+  static isNotaNumber(input) {
+    if (isNaN(input)) {
+      throw new Error("[ERROR] 숫자를 입력해 주세요.");
     }
   }
 }
