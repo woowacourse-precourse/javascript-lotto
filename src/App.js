@@ -22,9 +22,9 @@ class App {
   makeLottoNumber(){
     for(let i=0; i<this.money; i++){
       const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      MissionUtils.Console.print("["+numbers.join(", ")+"]")
       this.userLottoNumbers.push(numbers);
     }
-    MissionUtils.Console.print(this.userLottoNumbers)
     MissionUtils.Console.close();
   }
 
