@@ -19,7 +19,7 @@ class LottoDrawFactory {
     this.#validate();
   }
 
-  getNumber(type) {
+  getInstance(type) {
     switch (type) {
       case VARIABLE_FACTORY.lotto:
         return this.#lotto;
