@@ -39,6 +39,12 @@ class App {
     return randomLotto.sort((a,b) => a-b);
   }
 
+  showLottoList(randomLotto) {
+    randomLotto.forEach(element => {
+      MissionUtils.Console.print(element);
+    });
+  }
+
 
   
 }
