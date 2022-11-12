@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Lotto = require("./Lotto");
 
 class LottoMachine {
   #money;
@@ -21,6 +22,10 @@ class LottoMachine {
       
       this.checkInputMoney();
       this.printLottoAmount();
+      for (let index = 0; index < this.#count; index++) {
+        this.makeLottoNumber();
+      }
+      
     });
   }
 
@@ -33,6 +38,11 @@ class LottoMachine {
   printLottoAmount() {
     this.#count = this.#money / 1000;
     MissionUtils.Console.print(`\n${this.#count}개를 구매했습니다.`);
+  }
+
+  makeLottoNumber() {
+    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    console.log(numbers);
   }
 
 }
