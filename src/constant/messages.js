@@ -5,10 +5,16 @@ const MESSAGES = {
   INPUT_BONUS_NUMBER: '보너스 번호를 입력해 주세요.',
 };
 
+const RESULT_MESSAGES = {
+  RETURN_RATE_IS: '총 수익률은',
+  THAT: '입니다.',
+};
+
 const ERROR_MESSAGES = {
-  NUMBER_LENGTH_MUST_BE_SIX: '[ERROR] 로또 번호는 6개여야 합니다',
+  NUMBERS_LENGTH_MUST_BE_SIX: '[ERROR] 로또 번호는 6개여야 합니다',
   INPUT_TYPE_MUST_BE_NUBMER: '[ERROR] 입력 금액은 숫자여야 합니다',
   MONEY_MUST_BE_DIVIDED_INTO_1000: '[ERROR] 금액은 1,000원 단위여야 합니다',
+  NUMBERS_MUST_NOT_OVERLAP: '[ERROR] 로또 번호에 중복된 숫자가 있습니다.',
 };
 
 const PRIZE_MESSAGES = {
@@ -29,6 +35,7 @@ const MATCHING_MESSAGES = {
 
 module.exports = {
   MESSAGES,
+  RESULT_MESSAGES,
   ERROR_MESSAGES,
   PRIZE_MESSAGES,
   MATCHING_MESSAGES,

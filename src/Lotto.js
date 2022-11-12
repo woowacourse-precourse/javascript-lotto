@@ -1,3 +1,5 @@
+const { ERROR_MESSAGES } = require('./constant/messages');
+
 class Lotto {
   #numbers;
 
@@ -7,24 +9,25 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
-    }
+    this.validateLength(numbers);
     this.validateDoubled(numbers);
+  }
+
+  validateLength(numbers) {
+    if (numbers.length !== 6) {
+      throw new Error(ERROR_MESSAGES.NUMBERS_LENGTH_MUST_BE_SIX);
+    }
   }
 
   validateDoubled(numbers) {
     const set = Array.from(new Set(numbers));
-
     if (numbers.length !== set.length)
-      throw new Error('[ERROR] 로또 번호에 중복된 숫자가 있습니다.');
+      throw new Error(ERROR_MESSAGES.NUMBERS_MUST_NOT_OVERLAP);
   }
 
   getNumbers() {
     return this.#numbers;
   }
-
-  // TODO: 추가 기능 구현
 }
 
 module.exports = Lotto;

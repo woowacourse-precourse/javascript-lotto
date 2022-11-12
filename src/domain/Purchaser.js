@@ -10,16 +10,15 @@ class Purchaser {
   }
 
   buyLotto(number) {
-    console.log('buyLotoo');
     const tokens = this.createToken(number);
     const lottos = tokens.map((token) => new Lotto(token));
     return lottos;
   }
 
   createToken(number) {
-    let count = 0;
-    const tokens = [];
     const numberGenerator = new NumberGenerator();
+    const tokens = [];
+    let count = 0;
     while (count < number) {
       tokens.push(numberGenerator.pickRandomNumbers().sort((a, b) => a - b));
       count += 1;
@@ -27,20 +26,7 @@ class Purchaser {
     return tokens;
   }
 
-  // 로또 번호와 당첨 번호 및 보너스 번호를 비교하여 몇개나 일치하는지 리턴하는 함수
-  compare(lottoToken, numbers, bonusNumber) {
-    let count = 0;
-    let bonus = 0;
-    bonus = lottoToken.includes(bonusNumber) ? 1 : 0;
-    numbers.forEach((number) => {
-      if (lottoToken.includes(number)) count += 1;
-    });
-
-    return { count, bonus };
-  }
-
   countMatchedNumber(lottos, winnerNumber, bonusNumber) {
-    console.log('countMatchedNumber', lottos);
     let matchedCountList = [0, 0, 0, 0, 0, 0, 0, 0];
     lottos.forEach((lotto) => {
       const { count, bonus } = this.compare(
@@ -55,6 +41,19 @@ class Purchaser {
     return matchedCountList;
   }
 
+  // 로또 번호와 당첨 번호 및 보너스 번호를 비교하여 몇개나 일치하는지 리턴하는 함수
+  compare(lottoToken, winnerNumber, bonusNumber) {
+    let count = 0;
+    const bonus = lottoToken.includes(bonusNumber) ? 1 : 0;
+
+    count = 0;
+    count = winnerNumber.reduce(
+      (acc, cur) => (acc += lottoToken.includes(cur) ? 1 : 0),
+      0
+    );
+    return { count, bonus };
+  }
+
   computeMatchingNumber(count, bonus, list) {
     const matchedCount = [...list];
     if (count === 5 && bonus === 1) matchedCount[count + bonus] += 1;
@@ -67,22 +66,18 @@ class Purchaser {
   }
 
   getRevenue(matchedCountList) {
-    console.log('getRevenu', matchedCountList);
-    let revenue = 0;
-    matchedCountList.forEach((num, idx) => {
-      revenue += PRIZE[idx] * num;
-    });
-    console.log(revenue);
+    return this.computeRevenue(matchedCountList);
+  }
+
+  computeRevenue(matchedCountList) {
+    const revenue = matchedCountList.reduce(
+      (acc, cur, idx) => (acc += PRIZE[idx] * cur),
+      0
+    );
     return revenue;
   }
 
   getReturnRate(money, revenue) {
-    console.log(
-      'getReturnrate',
-      revenue,
-      money,
-      +((revenue / money) * 100).toFixed(1)
-    );
     return +((revenue / money) * 100).toFixed(1);
   }
 }

@@ -29,7 +29,16 @@ describe('로또 클래스 테스트', () => {
   });
 
   // compare(): 로또 번호와 당첨 번호 및 보너스 번호를 비교하여 몇개나 일치하는지 반환
-  // test('compare 함수가')
+  test('compare함수 테스트', () => {
+    const purchaser = new Purchaser();
+    const lottoToken = [1, 4, 6, 23, 28, 40];
+    const winnerNumber = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+    expect(purchaser.compare(lottoToken, winnerNumber, bonusNumber)).toEqual({
+      count: 3,
+      bonus: 0,
+    });
+  });
 
   // getReturnRate(): 수익률을 계산하는 함수
   test('수익률이 소수점 둘째 자리에서 반올림 되는지 검사', () => {

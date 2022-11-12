@@ -5,12 +5,9 @@ const {
   PRIZE_MESSAGES,
 } = require('./constant/messages');
 const Purchaser = require('./domain/Purchaser');
-// const Purchaser = require('./domain/Purchaser');
 const Validator = require('./validator');
 
 class App {
-  #money;
-
   #winnerNumber;
 
   #bonusNumber;
@@ -25,26 +22,23 @@ class App {
     this.inputMoney();
   }
 
-  // UI
   inputMoney() {
     Console.readLine(MESSAGES.INPUT, (money) => {
       this.validator.validateInput(money);
       this.purchaser = new Purchaser(money);
       this.#lottos = this.purchaser.buyLotto(money / 1000);
-      this.showLotto();
+      this.showLottoNumber();
       this.inputWinnerNumber();
     });
   }
 
-  // UI
-  showLotto() {
+  showLottoNumber() {
     Console.print(`${this.#lottos.length}${MESSAGES.BUY_LOTTO}`);
     this.#lottos.forEach((lotto) =>
       Console.print(`[${lotto.getNumbers().join(', ')}]`)
     );
   }
 
-  // UI
   inputWinnerNumber() {
     Console.readLine(MESSAGES.INPUT_WINNER_NUMBER, (winnerNumber) => {
       this.#winnerNumber = winnerNumber
@@ -54,7 +48,6 @@ class App {
     });
   }
 
-  // UI
   inputBonusNumber() {
     Console.readLine(MESSAGES.INPUT_BONUS_NUMBER, (bonusNumber) => {
       this.#bonusNumber = +bonusNumber;
@@ -62,25 +55,18 @@ class App {
       Console.close();
     });
   }
-  // 당첨 내역을 출력한다
-  // 로또 번호와 당첨번호 + 보너스번호가 몇개나 일치하는지 검사
-  // 일치하는 수에 해당하는 배열 인덱스에 접근해서 해당 값을 ++
-  // 그 배열 정보를 가지고 당첨 내역 출력
 
-  // UI
   showResult() {
-    const matchedCount = this.purchaser.countMatchedNumber(
+    const matchedCountList = this.purchaser.countMatchedNumber(
       this.#lottos,
       this.#winnerNumber,
       this.#bonusNumber
     );
-    this.showSameNumber(matchedCount);
-    this.showReturnRate(matchedCount);
-    console.log('same', matchedCount);
+    this.showMatchedNumber(matchedCountList);
+    this.showReturnRate(matchedCountList);
   }
 
-  // UI
-  showSameNumber(list) {
+  showMatchedNumber(list) {
     Object.keys(MATCHING_MESSAGES).forEach((matched, idx) => {
       Console.print(
         `${MATCHING_MESSAGES[matched]} ${PRIZE_MESSAGES[matched]} - ${
