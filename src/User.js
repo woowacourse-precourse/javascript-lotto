@@ -1,7 +1,7 @@
 class User {
+  #money = 0;
   #lottoCount = 0;
   #lottos = [];
-  #totalMoney = 0;
   #matchLottos = {
     three: 0,
     four: 0,
@@ -9,6 +9,14 @@ class User {
     six: 0,
     bonus: 0,
   };
+
+  setMoney(money) {
+    this.#money = money;
+  }
+
+  getMoney() {
+    return this.#money;
+  }
 
   setLottoCount(count) {
     this.#lottoCount = count;
