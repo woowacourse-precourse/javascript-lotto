@@ -1,3 +1,5 @@
+const { BONUS_NUMBER } = require('./constant');
+
 class Statistics {
   constructor(lottoNumber, buyLottery) {
     [this.lottoNumber, this.bonusLottoNumber] = lottoNumber;
@@ -5,18 +7,26 @@ class Statistics {
   }
 
   showResult() {
-    return this.buyLottery
-      .map((lottery) => {
-        const countNumber = this.compareNumbers(this.lottoNumber, lottery);
-        const bonusMatch =
-          countNumber === 5 ? this.compareBonusNumber(this.bonusLottoNumber, lottery) : false;
-        return [countNumber, bonusMatch];
-      })
-      .filter(([correctNumber, _]) => correctNumber >= 3);
+    const matchList = this.buyLottery.map((lottery) => {
+      const countNumber = this.compareNumbers(this.lottoNumber, lottery);
+      const bonusMatch =
+        countNumber === BONUS_NUMBER
+          ? this.compareBonusNumber(this.bonusLottoNumber, lottery)
+          : false;
+      return [countNumber, bonusMatch];
+    });
+    return this.matchWinInfo(matchList);
+  }
+
+  matchWinInfo(matchList) {
+    return matchList.reduce((matchAcc, [match, bonus]) => {
+      matchAcc[match] = { bonus, count: (matchAcc[match] ? matchAcc[match]['count'] : 0) + 1 };
+      return matchAcc;
+    }, {});
   }
 
   compareNumbers(answer, quest) {
-    return answer.filter((x) => quest.includes(Number(x))).length;
+    return answer.filter((number) => quest.includes(Number(number))).length;
   }
 
   compareBonusNumber(answer, quest) {

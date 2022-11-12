@@ -17,4 +17,34 @@ const AMOUNt_ERROR = Object.freeze({
   UNIT: '[ERROR] 로또 구입은 1000원 단위로 가능합니다',
 });
 
-module.exports = { LOTTO_ERROR, BONUS_LOTTO_ERROR, AMOUNt_ERROR };
+const BONUS_NUMBER = 5;
+
+const RANKING = Object.freeze({
+  FIVE: {
+    MATCH: 3,
+    BONUS: false,
+    PRICE: '5,000',
+  },
+  FOURTH: {
+    MATCH: 4,
+    BONUS: false,
+    PRICE: '50,000',
+  },
+  THREE: {
+    MATCH: 5,
+    BONUS: false,
+    PRICE: '1,500,000',
+  },
+  TWO: {
+    MATCH: 5,
+    BONUS: true,
+    PRICE: '30,000,000',
+  },
+  ONE: {
+    MATCH: 6,
+    BONUS: false,
+    PRICE: '2,000,000,000',
+  },
+});
+
+module.exports = { LOTTO_ERROR, BONUS_LOTTO_ERROR, AMOUNt_ERROR, BONUS_NUMBER };
