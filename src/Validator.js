@@ -70,6 +70,12 @@ class Validator {
     if (bonusNumber < 0) {
       throw new Error(`${ERROR_MESSAGES.INVALID_NEGATIVE_NUMBER}`);
     }
+    if (!Number(bonusNumber) || bonusNumber === ' ') {
+      throw new Error(`${ERROR_MESSAGES.INVALID_EMPTY_INPUT}`);
+    }
+    if (bonusNumber.includes('e') || Number.isNaN(Number(bonusNumber))) {
+      throw new Error(`${ERROR_MESSAGES.INVALID_BONUS_NUMBER}`);
+    }
   }
 
   static checkBonusNumberRange(bonusNumber) {} // 1~45 사이 숫자인지 확인
