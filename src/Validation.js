@@ -71,7 +71,7 @@ class Validation {
     return lottoNumbers.map(Number).every(isValidRange);
   }
 
-  static validateBonusNumber(bonusNumber) {
+  static validateBonusNumber(bonusNumber, winningNumbers) {
     const splittedNumberArr = [...bonusNumber];
     const wholeNumberArr = [bonusNumber];
 
@@ -84,6 +84,12 @@ class Validation {
     if (!Validation.isValidLottoNumberRange(wholeNumberArr)) {
       throw new Error(ERROR_MESSAGE.INVALID_LOTTO_NUMBER_RANGE);
     }
+    if (!Validation.isUniqueBonusNumber(bonusNumber, winningNumbers)) {
+      throw new Error(ERROR_MESSAGE.DUPLICATE_LOTTO_NUMBER);
+    }
+  }
+  static isUniqueBonusNumber(bonusNumber, winningNumbers) {
+    return winningNumbers.includes(bonusNumber);
   }
 }
 
