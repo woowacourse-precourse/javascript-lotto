@@ -199,3 +199,27 @@ describe("입력받은 당첨 번호가 유효한 입력인지 검사한다.", (
     ).toEqual([12, 23, 32, 41, 45]);
   });
 });
+
+describe("입력받은 보너스 번호가 유효한 입력인지 검사한다.", () => {
+  test("입력에 문자가 있다면 에러가 발생한다.", () => {
+    const app = new App();
+    expect(() => {
+      app.validateBonusNumber("u12");
+    }).toThrow(ERROR.ONLY_NUMBER);
+    expect(() => {
+      app.validateBonusNumber("1 2");
+    }).toThrow(ERROR.ONLY_NUMBER);
+    expect(() => {
+      app.validateBonusNumber("3ee");
+    }).toThrow(ERROR.ONLY_NUMBER);
+    expect(() => {
+      app.validateBonusNumber("asdb");
+    }).toThrow(ERROR.ONLY_NUMBER);
+    expect(() => {
+      app.validateBonusNumber("34 5");
+    }).toThrow(ERROR.ONLY_NUMBER);
+    expect(() => {
+      app.validateBonusNumber("bcd 123");
+    }).toThrow(ERROR.ONLY_NUMBER);
+  });
+});
