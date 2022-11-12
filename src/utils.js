@@ -47,6 +47,10 @@ const printRankCountMessage = (result) => {
   printMessage(message);
 }
 
+const printRatioMessage = (percent) => {
+  printMessage(`총 수익률은 ${percent.toLocaleString()}%입니다.`);
+}
+
 module.exports = {
   printMessage,
   userInput,
@@ -54,4 +58,5 @@ module.exports = {
   checkIsNumber,
   checkIsOutOfRange,
   printRankCountMessage,
+  printRatioMessage,
 }
