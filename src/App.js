@@ -5,6 +5,8 @@ const Lotto = require('./Lotto');
 class App {
   #money = 0;
 
+  #lottoList = [];
+
   static #validateMoney(money) {
     if (
       money < LottoConfig.PRICE
@@ -25,6 +27,13 @@ class App {
 
     App.#validateMoney(money);
     this.#money = money;
+  }
+
+  buyLotto() {
+    while (this.#money >= LottoConfig.PRICE) {
+      this.#lottoList.push(new Lotto());
+      this.#money -= LottoConfig.PRICE;
+    }
   }
 }
 
