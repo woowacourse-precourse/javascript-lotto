@@ -7,7 +7,9 @@ const buyLotto = () => {
   let countLotto;
   let throwInput;
   let input;
+  let numberReg = /^[0-9]+$/;
   Console.readLine('구입금액을 입력해 주세요.\n', (num) => {
+    if(!numberReg.test(num)) throw '[ERROR] 숫자만 입력 가능합니다.';
     countLotto = Number(num) / 1000;
     throwInput = Number(num) % 1000;
     Console.print(`${countLotto}개를 구매했습니다.`);
