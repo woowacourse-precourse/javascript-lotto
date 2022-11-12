@@ -9,9 +9,10 @@ class Lotto {
   }
 
   validate(numbers) {
-    const LENGTH = numbers.length;
+    const LENGTH = new Set(numbers).size;
+
     if (LENGTH !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다!");
+      throw new Error("[ERROR] 로또 번호는 서로 다른 6개여야 합니다!");
     }
     for (let i = 0; i < LENGTH; i++) {
       if (isNaN(numbers[i])) {
@@ -102,7 +103,7 @@ class Lotto {
 
   printWinningStatistics(rateOfReturn, numbersOfWinningLotto) {
     const LOTTO_WINNING_STATISTICS_TABLE_TO_PRINT =
-      organizationWordToPrintWinningStatistics();
+      this.organizationWordToPrintWinningStatistics();
 
     const RATE_OF_RETURN_WORD_TO_PRINT = `총 수익률은 ${rateOfReturn}%입니다.`;
 

@@ -43,6 +43,9 @@ class App {
   makeRandomLottoNumber(NUMBER_OF_LOTTO) {
     for (let i = 0; i < NUMBER_OF_LOTTO; i++) {
       const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      numbers.sort((a, b) => {
+        return a - b;
+      });
       this.boughtLottos.push(numbers);
     }
     for (const boughtLotto of this.boughtLottos) {
