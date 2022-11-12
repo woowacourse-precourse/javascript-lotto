@@ -44,14 +44,20 @@ class LottoGame {
     this.user.setLottos(this.craeteLottos(this.user.getLottoCount()));
     LottoView.printLottoCount(this.user.getLottoCount());
     LottoView.printUserLottos(this.user.getLottos());
+    this.createWinLottoNumbers();
+  }
 
+  createWinLottoNumbers() {
     LottoView.getUserInput(`\n${INPUT_MESSAGES.WINNER_NUMBER}\n`, (winNumbers) => {
       Validator.checkWinNumbers(winNumbers);
       this.#winNumbers = winNumbers;
+      this.createWinBonusNumber();
+    });
+  }
 
-      LottoView.getUserInput(`\n${INPUT_MESSAGES.BONUS_NUMBER}\n`, (bonusNumber) => {
-        this.#bonusNumber = bonusNumber;
-      });
+  createWinBonusNumber() {
+    LottoView.getUserInput(`\n${INPUT_MESSAGES.BONUS_NUMBER}\n`, (bonusNumber) => {
+      this.#bonusNumber = bonusNumber;
     });
   }
 }
