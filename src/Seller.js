@@ -19,11 +19,19 @@ const Seller = ((_) => {
       this.#io.readline("구입금액을 입력해주세요.\n", this.#proceedLottoSale.bind(this));
     }
 
+    requestLottoWinNumber() {
+      this.#io.readline("\n당첨 번호를 입력해 주세요.\n", this.#proceedLottoWinNumber.bind(this));
+    }
+
     #proceedLottoSale(amount) {
       if (!this.validateAmount(amount)) this.#io.close();
       this.#buyer.setBuyLottoNumber = amount;
       this.#buyer.setLottos = this.#giveLottos();
       this.#notifyBuyLotto();
+    }
+
+    #proceedLottoWinNumber(winNumber) {
+      this.validateWinNumber(winNumber);
     }
 
     #giveLottos() {
@@ -49,6 +57,13 @@ const Seller = ((_) => {
       Validator.isNumber(amount)
         .isDivisible(amount, LOTTO_AMOUNT.VALID_UNIT)
         .isGreaterOrEqual(amount, LOTTO_AMOUNT.VALID_UNIT);
+      return true;
+    }
+
+    validateWinNumber(winNumber) {
+      const numbers = winNumber.split(",").map(Number);
+      const comma = winNumber.split(/\d/).join("");
+      Validator.isLength(numbers, 6).isLength(comma, 5).isLength(winNumber, 11);
       return true;
     }
   };
