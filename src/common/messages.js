@@ -34,7 +34,8 @@ const ERROR = '[ERROR]';
 const ERROR_MESSAGES = {
   INVALID_REST_MONEY: `${ERROR} 1,000으로 나누어 떨어지지 않는 값은 입력할 수 없습니다.`,
   INVALID_NOT_MONEY: `${ERROR} 숫자가 아닌 값은 입력할 수 없습니다.`,
-  INVALID_PURCHASE: `${ERROR} 0 또는 0보다 작은 값은 입력할 수 없습니다.`,
+  INVALID_PURCHASE: `${ERROR} 미입력 및 공백, 0은 입력할 수 없습니다.`,
+  INVALID_NEGATIVE_NUMBER: `${ERROR} 음수는 입력할 수 없습니다. `,
   INVALID_INPUT: `${ERROR} 숫자가 아닌 값은 입력할 수 없습니다. (구분자는 ,만 사용 가능)`,
   INVALID_LOTTO_NUMBER_RANGE: `${ERROR} 로또 번호는 1부터 45 사이의 숫자여야 합니다.`,
   INVALID_LOTTO_COUNT: `${ERROR} 로또 번호는 6개를 입력해야 합니다. (6개 미만 또는 6개 초과)`,
