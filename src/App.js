@@ -20,7 +20,7 @@ class App {
     Console.print(`\n${lottoCount}개를 구매했습니다`)
   }
 
-  issuedLottoNumber() {
+  makeLottoNumber() {
     return Random.pickUniqueNumbersInRange(1, 45, 6);
   }
 
@@ -34,7 +34,7 @@ class App {
 
   printIssuendLotto(lottoCount){
     for(let i =0;i<lottoCount;i++){
-      let lottoNumber = this.sortLottoNumberInAscendignOrder(this.issuedLottoNumber())
+      let lottoNumber = this.sortLottoNumberInAscendignOrder(this.makeLottoNumber())
       this.printLottoNumber(lottoNumber)
     }
   }
