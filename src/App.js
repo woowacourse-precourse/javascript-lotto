@@ -7,17 +7,10 @@ class App {
   winNums;
   bonusNum;
   order = 0;
-  result = {
-    fifth: 0,
-    forth: 0,
-    third: 0,
-    second: 0,
-    first: 0,
-  };
-  profit = 0;
 
   play() {
     if (this.order === LOTTO_SETTING.PLAYER_TOTAL_ORDER) {
+      this.printResult();
       return;
     }
 
@@ -59,8 +52,14 @@ class App {
 
   inputBonusNum(bonusNum) {
     Lotto.checkBonusNum(bonusNum, this.winNums);
-    this.bonusNum = bonusNum;
+    this.bonusNum = Number(bonusNum);
+  }
+
+  printResult() {
+    const lotto = new Lotto(this.winNums, this.bonusNum, this.lottoNumArr);
+    lotto.calResult();
   }
 }
+
 new App().play();
 module.exports = App;

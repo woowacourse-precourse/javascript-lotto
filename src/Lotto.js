@@ -1,11 +1,18 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { LOTTO_MESSAGE, LOTTO_SETTING } = require("./constant.js");
+const {
+  LOTTO_MESSAGE,
+  LOTTO_SETTING,
+  RESULT_MATCH_COUNT,
+} = require("./constant.js");
 
 class Lotto {
   #numbers;
 
-  constructor(numbers) {
-    this.#numbers = numbers;
+  constructor(winNums, bonusNum, lottoNumArr) {
+    this.#numbers = winNums;
+    this.bonusNum = bonusNum;
+    this.totalWinNums = [...winNums, bonusNum];
+    this.lottoNumArr = lottoNumArr;
   }
 
   static checkWinNumLength(numbers) {
@@ -84,6 +91,74 @@ class Lotto {
     if (!IS_VALID) {
       throw new Error(LOTTO_MESSAGE.BONUS_NUM_ERROR_MSG);
     }
+  }
+
+  calResult() {
+    const bonusAndWinMatchNum = this.filterMatchNum();
+    const onlyMatchNum =
+      this.deleteBonusNumExceptSecondLottery(bonusAndWinMatchNum);
+    console.log("onlyMatchNum", onlyMatchNum);
+
+    let resultLottery = {};
+    for (let matchNum in RESULT_MATCH_COUNT) {
+      resultLottery[matchNum] = this.classifyLottery(onlyMatchNum, matchNum);
+    }
+
+    const FirstSecondLottery = this.splitFirstandSecondLottery(resultLottery);
+    delete resultLottery.FIRST_OR_SECOND_LOTTERY;
+    resultLottery = { ...resultLottery, ...FirstSecondLottery };
+
+    console.log("resultLottery", resultLottery);
+  }
+
+  filterMatchNum() {
+    const bonusAndWinMatchNum = this.lottoNumArr.map((lottoNum) =>
+      this.totalWinNums.filter((winNum) => lottoNum.includes(winNum))
+    );
+
+    return bonusAndWinMatchNum;
+  }
+
+  deleteBonusNumExceptSecondLottery(bonusAndWinMatchNum) {
+    console.log("bonusAndWinMatchNum", bonusAndWinMatchNum);
+    return bonusAndWinMatchNum.map((matchNums) =>
+      matchNums.filter(
+        // 보너스 번호랑 같으면서 length === 6 (2등)이면 true
+        // 보너스 번호랑 같기만하면 false
+        // 그외 보너스 번호랑 다르면 true
+        (matchNum) => {
+          if (matchNum === this.bonusNum && matchNums.length === 6) {
+            return true;
+          }
+
+          if (matchNum === this.bonusNum) {
+            return false;
+          }
+
+          return true;
+        }
+      )
+    );
+  }
+
+  classifyLottery(onlyMatchNum, matchNum) {
+    return onlyMatchNum.filter(
+      (result) => result.length === RESULT_MATCH_COUNT[matchNum]
+    );
+  }
+
+  splitFirstandSecondLottery(resultLottery) {
+    const SECOND_LOTTERY = resultLottery.FIRST_OR_SECOND_LOTTERY.filter(
+      (result) => result.includes(this.bonusNum)
+    );
+
+    const FIRST_LOTTERY = resultLottery.FIRST_OR_SECOND_LOTTERY.filter(
+      (result) => !result.includes(this.bonusNum)
+    );
+    return {
+      SECOND_LOTTERY,
+      FIRST_LOTTERY,
+    };
   }
 }
 
