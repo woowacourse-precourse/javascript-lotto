@@ -1,18 +1,21 @@
+const {Console} = require("@woowacourse/mission-utils");
+
 class Buyer {
   payment;
   lottoCount;
-
-  constructor(payment) {
-    this.isValidpayment(payment);
-    this.setLottoCount();
-  }
 
   isValidpayment(payment) {
     if (payment % 1000 > 0) {
       throw new Error("[ERROR] 1000원 단위만 입력 가능합니다.");
     }
     if (isNaN(payment)) throw new Error("[ERROR] 숫자만 입력 가능합니다.");
-    this.payment = payment;
+  }
+
+  getLottoPayment(){
+    Console.readLine("", (payment) => {
+      this.isValidpayment(payment);
+      this.payment = payment;
+    });
   }
 
   setLottoCount() {
