@@ -29,9 +29,9 @@
 
 ## 유효한 값인지 판단하는 `Validatior` 클래스를 생성한다.
 
-- [ ] 구입 금액 : `validateTotalPurchaseAmount`
-  - [ ] 자연수인지 판단 : `isNaturalNumber`
-  - [ ] 1,000원 단위인지 판단 : `isThousands`
+- [x] 구입 금액 : `validateTotalPurchaseAmount`
+  - [x] 자연수인지 판단 : `isNaturalNumber`
+  - [x] 1,000원 단위인지 판단 : `isThousands`
 - [ ] 로또 번호 : `validateLottoNumbers`
   - [ ] 1~45의 자연수인지 판단 : `isBetween1And45`
   - [ ] 중복된 수가 존재하는지 판단 : `isUniqueNumbers`
