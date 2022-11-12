@@ -19,7 +19,13 @@ class LottoStore {
   sellLottoTickets() {
     const count = this.#purchaseAmount / LOTTO.PRICE;
     this.#lottoTickets = Array.from({ length: count }, Lotto.generateTicket);
+    this.printSoldTickets();
     return this;
+  }
+
+  printSoldTickets() {
+    Console.print(`\n${this.#lottoTickets.length}${MESSAGE.PURCHASE_RESULT}`);
+    this.#lottoTickets.forEach(ticket => Console.print(ticket.toString()));
   }
 }
 

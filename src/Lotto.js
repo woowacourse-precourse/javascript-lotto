@@ -7,7 +7,7 @@ class Lotto {
 
   constructor(numbers) {
     validate(numbers, isLottoNumber);
-    this.#numbers = numbers;
+    this.#numbers = numbers.sort((a, b) => a - b);
   }
 
   static generateTicket() {
@@ -15,6 +15,10 @@ class Lotto {
     return new Lotto(
       Random.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, SIZE),
     );
+  }
+
+  toString() {
+    return `[${this.#numbers.join(', ')}]`;
   }
 }
 
