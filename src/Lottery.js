@@ -35,20 +35,8 @@ class Lottery {
   }
 
   static getLottoPrintMessage(lotto = []) {
-    const { length } = lotto;
-    let message = '';
-    const open = '[';
-    const close = ']';
-
-    lotto.forEach((number, index) => {
-      if (index === 0 || index === length) {
-        message += number;
-        return;
-      }
-      message += `, ${number}`;
-    });
-
-    return open + message + close;
+    const stringLotto = JSON.stringify(lotto);
+    return stringLotto.replace(/,/gi, ', ');
   }
 
   getLottoList() {
