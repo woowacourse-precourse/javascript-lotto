@@ -116,7 +116,7 @@ describe("로또 클래스 테스트", () => {
     const input = "1,2,3,4,4,5";
     const app = new App();
     expect(() => {
-      app.isValidinput(input);
+      app.isValidLottoNumber(input);
     }).toThrow();
   });
 
@@ -124,7 +124,7 @@ describe("로또 클래스 테스트", () => {
     const input = "1,2,3,4,4,k";
     const app = new App();
     expect(() => {
-      app.isValidinput(input);
+      app.isValidLottoNumber(input);
     }).toThrow();
   });
 
@@ -132,7 +132,24 @@ describe("로또 클래스 테스트", () => {
     const input = "1,2,3,4,0,56";
     const app = new App();
     expect(() => {
-      app.isValidinput(input);
+      app.isValidLottoNumber(input);
     }).toThrow();
   });
+
+  test("보너스 번호는 숫자여야 합니다.", () => {
+    const input = "k";
+    const app = new App();
+    expect(() => {
+      app.isValidBonusNumber(input);
+    }).toThrow();
+  });
+
+  test("보너스 번호는 하나여야 합니다.", () => {
+    const input = "12";
+    const app = new App();
+    expect(() => {
+      app.isValidBonusNumber(input);
+    }).toThrow();
+  });
+
 });
