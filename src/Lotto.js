@@ -1,7 +1,18 @@
+const MissionUtils = require('@woowacourse/mission-utils');
+const { LottoConfig, Message } = require('./Config');
+
+const randomLotto = function getRandomLottoNumber() {
+  return MissionUtils.Random.pickUniqueNumbersInRange(
+    LottoConfig.MIN_NUMBER,
+    LottoConfig.MAX_NUMBER,
+    LottoConfig.NUMBERS,
+  );
+};
+
 class Lotto {
   #numbers;
 
-  constructor(numbers) {
+  constructor(numbers = randomLotto()) {
     this.validate(numbers);
     this.#numbers = numbers;
   }
