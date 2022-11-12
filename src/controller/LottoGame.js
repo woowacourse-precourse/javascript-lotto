@@ -18,7 +18,7 @@ class LottoGame {
 
   generateUserLottoNumbers(money) {
     this.user.setLottoNumbers(lottoGenerator.getTimes(money / 1000));
-    this.outputConsole.userLotto(this.user.getLottoNumbers());
+    this.outputConsole.printUserLotto(this.user.getLottoNumbers());
     this.inputWinningNumbers();
   }
 
@@ -42,7 +42,7 @@ class LottoGame {
       winningNumbers.slice(0, 6),
       winningNumbers[6],
     );
-    console.log(lottoResult.getLank(matchingNumbersResult));
+    this.outputConsole.printLank(lottoResult.getLank(matchingNumbersResult));
   }
 }
 
