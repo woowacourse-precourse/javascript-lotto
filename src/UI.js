@@ -2,7 +2,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const ErrorCase = require("./ErrorCase");
 
 const CASH_INPUT_MESSAGE = "구입금액을 입력해 주세요.\n";
-const CASH_INPUT_ERROR_MESSAGE = "잘못된 금액입니다.";
+const CASH_INPUT_ERROR_MESSAGE = "[ERROR] 잘못된 금액입니다. 금액은 숫자로 입력해주세요.";
 
 const getCashInput = () => {
   return new Promise((resolve, reject) =>
