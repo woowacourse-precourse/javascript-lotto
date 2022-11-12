@@ -9,6 +9,7 @@ const ERROR = {
   MONEY_UNIT: '[Error] 돈의 단위는 1000원 입니다.',
   LOTTO_LENGTH: '[Error] 숫자가 6개 이어야 합니다.',
   LOTTO_RANGE: '[Error] 숫자의 범위는 1~45이어야 합니다.',
+  LOTTO_OVERLAP: '[ERROR] 6개의 번호가 모두 겹치면 안된다.',
 };
 
 Object.freeze(INPUT);
