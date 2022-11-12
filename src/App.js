@@ -57,8 +57,8 @@ class App {
 
   inputBonus() {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (number) => {
-      new Bonus(number);
       this.bonusNumber = parseInt(number, 10);
+      new Bonus(this.bonusNumber, this.winningNumbers);
       this.compare(this.publishList, this.winningNumbers, this.bonusNumber);
     });
   }
