@@ -7,7 +7,8 @@ class App {
   }
 
   async play() {
-    
+    this.userInput();
+    this.prizeInput();
   }
 
   userInput() {
