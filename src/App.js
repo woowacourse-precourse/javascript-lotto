@@ -68,7 +68,7 @@ class App {
       this.winnerNumber,
       this.bonusNumber
     );
-    const numberOfMathcingNumbers = matchingNumber.getNumberOfMatchingNumbersByRank();
+    const numberOfMathcingNumbers = matchingNumber.getNumberOfMatchingNumbersFromThreeToSix();
     matchingNumber.printLottoResult(numberOfMathcingNumbers);
     this.loadLottoProfitRate(numberOfMathcingNumbers);
   }

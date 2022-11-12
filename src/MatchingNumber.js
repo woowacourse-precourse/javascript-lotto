@@ -7,22 +7,20 @@ class MatchingNumber {
     this.bonusNumber = bonusNumber;
   }
 
-  getNumberOfMatchingNumbersByRank() {
-    const numberOfMathcingNumbers = [0, 0, 0, 0, 0];
-    const numberOfMatchingNumbersByRank = this.lineUpNumberOfMatchingNumbersByRankArr();
-    numberOfMatchingNumbersByRank.map((num) => {
-      if (num - 2 >= 0) return (numberOfMathcingNumbers[num - 2] += 1);
+  getNumberOfMatchingNumbersFromThreeToSix() {
+    const numberOfMatchingNumbersFromThreeToSix = [0, 0, 0, 0, 0];
+    const numberOfMatchingNumbers = this.getNumberOfMatchingNumbers();
+    numberOfMatchingNumbers.map((num) => {
+      if (num - 2 >= 0) return (numberOfMatchingNumbersFromThreeToSix[num - 2] += 1);
     });
-    return numberOfMathcingNumbers;
+    return numberOfMatchingNumbersFromThreeToSix;
   }
 
-  lineUpNumberOfMatchingNumbersByRankArr() {
-    return this.totalLottoNumber.flatMap((numbers) =>
-      this.lineUpNumberOfMatchingNumbersByRank(numbers)
-    );
+  getNumberOfMatchingNumbers() {
+    return this.totalLottoNumber.flatMap((numbers) => this.getNumberOfMatchingNumber(numbers));
   }
 
-  lineUpNumberOfMatchingNumbersByRank(numbers) {
+  getNumberOfMatchingNumber(numbers) {
     const numberOfMatchingNumbers = this.getMatchingNumber(numbers).length;
     if (numberOfMatchingNumbers === 5) {
       return this.getNumberOfNumbersCompareWtihBonusNumber(numbers);
