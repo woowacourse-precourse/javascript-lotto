@@ -1,5 +1,6 @@
 const Lotto = require("../src/Lotto");
-const Buyer = require("../src/Buyer")
+const Buyer = require("../src/Buyer");
+const App = require("../src/App")
 const {Console, Random} = require("@woowacourse/mission-utils");
 
 const mockQuestions = (answers) => {
@@ -9,6 +10,19 @@ const mockQuestions = (answers) => {
       callback(input);
     });
   }, Console.readLine);
+};
+
+const mockRandoms = (numbers) => {
+  Random.pickUniqueNumbersInRange = jest.fn();
+  numbers.reduce((acc, number) => {
+    return acc.mockReturnValueOnce(number);
+  }, Random.pickUniqueNumbersInRange);
+};
+
+const getLogSpy = () => {
+  const logSpy = jest.spyOn(Console, "print");
+  logSpy.mockClear();
+  return logSpy;
 };
 
 describe("로또 클래스 테스트", () => {
@@ -27,9 +41,9 @@ describe("로또 클래스 테스트", () => {
 
   test("1000원 단위로 떨어지지 않으면 로또를 구매할 수 없다", () => {
     const payment = 1400;
-    const buyer = new Buyer;
+    const buyer = new Buyer();
     expect(() => {
-      buyer.isValidpayment(payment)
+      buyer.isValidpayment(payment);
     }).toThrow();
   });
 
@@ -37,7 +51,7 @@ describe("로또 클래스 테스트", () => {
     const payment = "testPayment";
     const buyer = new Buyer();
     expect(() => {
-      buyer.isValidpayment(payment)
+      buyer.isValidpayment(payment);
     }).toThrow();
   });
 
@@ -50,7 +64,7 @@ describe("로또 클래스 테스트", () => {
     expect(buyer.payment).toEqual(outputPayment);
   });
 
-  test("로또금액에 따른 구매가능한 로또 개수를 출력한다.", ()=>{
+  test("로또금액에 따른 구매가능한 로또 개수를 계산한다.", () => {
     const payment = ["8000"];
     const outputCount = 8;
     const buyer = new Buyer();
@@ -58,5 +72,28 @@ describe("로또 클래스 테스트", () => {
     buyer.getLottoPayment(payment);
     buyer.setLottoCount(buyer.payment);
     expect(buyer.lottoCount).toEqual(outputCount);
+  });
+
+  test("로또 구매 개수가 출력", () => {
+    const lottoCount = 8;
+    const ouput = `\n8개를 구매했습니다`;
+
+    const app = new App();
+    const logSpy = getLogSpy();
+    app.printLottoCount(lottoCount);
+
+    expect(logSpy).toHaveBeenCalledWith(ouput);
+  });
+
+  test("로또 번호 출력",()=>{
+    const number = [1,2,3,4,5,6];
+    const output = '[1, 2, 3, 4, 5, 6]';
+
+    const app = new App();
+    const logSpy = getLogSpy();
+    app.printLottoNumber(number)
+    
+    expect(logSpy).toHaveBeenCalledWith(output);
   })
+
 });
