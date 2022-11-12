@@ -62,6 +62,27 @@ class Lotto {
     }
     console.log(totalLottoNumberStatictics, "맞힌 로또 번호개수");
     console.log(totalLottoBonusNumberStatictics, "맞힌 보너스 번호 개수");
+    this.countWinningLotto(
+      totalLottoNumberStatictics,
+      totalLottoBonusNumberStatictics
+    );
+  }
+
+  countWinningLotto(
+    totalLottoNumberStatictics,
+    totalLottoBonusNumberStatictics
+  ) {
+    let numbersOfWinningLotto = Array.from({ length: 8 }, () => 0);
+    for (let i = 0; i < totalLottoNumberStatictics.length; i++) {
+      if (
+        totalLottoNumberStatictics[i] === 5 &&
+        totalLottoBonusNumberStatictics[i] === 1
+      ) {
+        numbersOfWinningLotto[6] += 1;
+      } else {
+        numbersOfWinningLotto[totalLottoNumberStatictics[i]] += 1;
+      }
+    }
   }
 
   compareBoughtLottoAndWinningNumbers(boughtLotto) {
