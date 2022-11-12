@@ -1,5 +1,5 @@
 const COMMENT = require("./comment");
 const REGEX = require("./regex");
-const REWARD = require("./reward");
+const RANK = require("./rank");
 
-module.exports = { COMMENT, REGEX, REWARD };
+module.exports = { COMMENT, REGEX, RANK };
