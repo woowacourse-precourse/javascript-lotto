@@ -6,32 +6,41 @@ const Lotto = require('../src/Utils/Lotto');
 const { MESSAGES } = require('./constants');
 
 class App {
+  constructor() {
+    this.lotto = {
+      amount: null,
+      sheets: null,
+      user: null,
+      winning: null,
+      generator: null,
+    }
+  }
   play() {
     this.submitAmount();
   }
   submitAmount() {    
     MissionUtils.Console.readLine(MESSAGES.GAME.requirePurchaseAmount, (amount) => {
-      this.purchaseAmount = GameUtils.filterPurchaseAmount(amount);
-      this.purchaseAmount = Validator.amountValidCheck(this.purchaseAmount);
-      this.sheets = GameUtils.getSheets(this.purchaseAmount);
-      GamePrint.sheets(this.sheets);
+      this.lotto.amount = GameUtils.filterPurchaseAmount(amount);
+      this.lotto.amount = Validator.amountValidCheck(this.lotto.amount);
+      this.lotto.sheets = GameUtils.getSheets(this.lotto.amount);
+      GamePrint.sheets(this.lotto.sheets);
+      this.lotto.generator = new Lotto();
+      this.lotto.user = this.lotto.generator.getUserLottos(this.lotto.sheets);
       this.submitLotto();
     });
   }
   submitLotto() {    
     MissionUtils.Console.readLine(MESSAGES.GAME.requireLottoNumbers, (input) => {
       input = GameUtils.toArray(input);
-      const lotto = new Lotto(input);
-      this.winningLotto = lotto.getWinningLotto();
-      console.log(this.winningLotto);
+      this.lotto.winning = this.lotto.generator.getWinningLotto(input);
       this.submitBonus();
     });
   }
   submitBonus() {    
     MissionUtils.Console.readLine(MESSAGES.GAME.requireBonusNumbers, (input) => {
       input = GameUtils.toArray(input);
-      Validator.bonusValidCheck(input, this.winningLotto);
-      this.bonus = input;
+      Validator.bonusValidCheck(input, this.lotto.winning);
+      this.lotto.bonus = input;
       MissionUtils.Console.close();
     });
   }
