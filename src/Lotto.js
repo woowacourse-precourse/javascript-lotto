@@ -1,3 +1,7 @@
+const { COMMENT, ERROR } = require("./constant");
+const MissionUtils = require("@woowacourse/mission-utils");
+const WinningNumber = require("./WinningNumber");
+
 class Lotto {
   #numbers;
 
@@ -15,6 +19,18 @@ class Lotto {
     if ([...uniqueNumbers].length !== 6) {
       throw new Error(ERROR.LOTTO_2);
     }
+  }
+
+  getMoneyOfLottos() {
+    MissionUtils.Console.readLine(COMMENT.PURCHASE, (money) => {
+      if (this.#checkValidMoney(money)) {
+        const numberOfLottos = money / 1000;
+        const lottos = this.#createLottos(numberOfLottos);
+
+        const winningNumber = new WinningNumber(lottos, money);
+        winningNumber.getWinningNumbers();
+      }
+    });
   }
 }
 
