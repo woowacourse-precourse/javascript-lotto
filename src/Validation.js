@@ -72,12 +72,12 @@ class Validation {
   }
 
   static validateBonusNumber(bonusNumber) {
-    const bonusNumberArr = bonusNumber.split("");
+    const splittedNumberArr = [...bonusNumber];
 
     if (Validation.isEmptyInput(bonusNumber)) {
       throw new Error(ERROR_MESSAGE.EMPTY_INPUT);
     }
-    if (!Validation.hasOnlyNumber(bonusNumberArr)) {
+    if (!Validation.hasOnlyNumber(splittedNumberArr)) {
       throw new Error(ERROR_MESSAGE.INVALID_INPUT_TYPE);
     }
   }
