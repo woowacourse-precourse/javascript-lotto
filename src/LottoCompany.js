@@ -10,6 +10,8 @@ class LottoCompany {
 
   #bonusNumber;
 
+  #winningIntruction;
+
   constructor(lottoPrice, winningMoney) {
     this.#lottoPrice = lottoPrice;
     this.#winningMoney = winningMoney;
@@ -60,13 +62,34 @@ class LottoCompany {
     return -1;
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  rankToResult(winningRank) {
+    if (winningRank === 1) return [6, false];
+    if (winningRank === 2) return [5, true];
+    if (winningRank === 3) return [5, false];
+    if (winningRank === 4) return [4, false];
+    if (winningRank === 5) return [3, false];
+    return null;
+  }
+
   winningMoney(winningRank) {
     return this.#winningMoney[winningRank - 1];
   }
 
-  printReportByResults(winningResults) {}
+  printReportByRanks(ranks) {
+    const rankCounts = Array(5).fill(0);
+    ranks.forEach((rank) => {
+      rankCounts[rank - 1] += 1;
+    });
 
-  notifyLottoResult() {}
+    let reports = "당첨 통계\n---\n";
+    for (let i = 4; i > -1; i -= 1) {
+      reports += `${this.rankToResult(i + 1)[0]}개 일치`;
+      if (i === 1) reports += ", 보너스 볼 일치";
+      reports += `(${this.#winningMoney[i]}원) - ${rankCounts[i]}개\n`;
+    }
+    Console.print(reports);
+  }
 
   static countSameNumbersOfAscSortedArrays(ascSortedNums1, ascSortedNums2) {
     let i = 0;
