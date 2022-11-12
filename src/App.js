@@ -4,6 +4,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class App {
     LOTTO_LIST = [];
     CHECK_LIST = [0] * 46;
+    BUY = 0;
 
     play() {
         this.start();
@@ -17,8 +18,8 @@ class App {
         );
     }
     getMoney(input) {
-        let now = this.checkMoney(input);
-        this.LOTTO_LIST = this.makeLotto(now);
+        this.BUY = this.checkMoney(input);
+        this.LOTTO_LIST = this.makeLotto(this.BUY);
         this.printLotto(this.LOTTO_LIST);
     }
     checkMoney(input) {
