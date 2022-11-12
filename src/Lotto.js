@@ -26,6 +26,14 @@ class Lotto {
   #duplication(numbers) {
     return new Set(numbers).size !== numbers.length;
   }
+
+  #invalidRange(numbers) {
+    const filteredNumbers = numbers.filter(
+      (number) => LOTTO.RANGE_MIN <= number && LOTTO.RANGE_MAX >= number
+    ).length;
+
+    return filteredNumbers !== numbers.length;
+  }
 }
 
 module.exports = Lotto;
