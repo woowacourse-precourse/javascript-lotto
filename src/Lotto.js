@@ -14,6 +14,10 @@ class Lotto {
     }
   }
 
+  userInput(number) {
+    return number
+  }
+  
   buyLotto() {
     Console.readLine("숫자를 입력해 주세요: ", this.userInput)
   }
