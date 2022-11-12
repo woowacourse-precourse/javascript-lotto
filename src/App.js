@@ -19,7 +19,7 @@ class App {
   buyLotto(money) {
     this.checkErrorBuyingLotto(money);
 
-    this.myPayment = money;
+    this.myPayment = Number(money);
     let quantity = money / 1_000;
 
     Console.print(`\n${quantity}개를 구매했습니다.`);
@@ -95,7 +95,7 @@ class App {
     return true;
   }
 
-  // 로또 번호를 확인하여 당첨 내역을 출력하는 기능
+  // 로또 번호를 확인하여 당첨 내역을 확인하는 기능
   outputStatus() {
     let result = [];
 
@@ -104,6 +104,8 @@ class App {
         this.checkLottoWin(lotto, this.myLottoNumber, this.bonusNumber)
       );
     }
+
+    this.calculateOutput(result);
   }
 
   // 로또 한 판의 당첨 여부를 확인하는 기능
@@ -122,6 +124,45 @@ class App {
     if (counter === 5 && lotto.includes(bonusNumber)) return [2, 30_000_000];
     if (counter === 6) return [1, 2_000_000_000];
     return [6, 0];
+  }
+
+  // 당첨 내역을 계산하는 기능
+  calculateOutput(result) {
+    let winStatus = {
+      6: 0,
+      5: 0,
+      4: 0,
+      3: 0,
+      2: 0,
+      1: 0,
+    };
+    let sumOfMoney = 0;
+
+    for (let el of result) {
+      winStatus[el[0]]++;
+      sumOfMoney += el[1];
+    }
+
+    Console.print(winStatus);
+    Console.print(sumOfMoney);
+
+    this.myResult(winStatus, sumOfMoney);
+  }
+
+  // 당첨 내역을 출력하고, 게임을 종료하는 기능
+  myResult(winStatus, sumOfMoney) {
+    Console.print(`
+당첨 통계
+---
+3개 일치 (5,000원) - ${winStatus["5"]}개
+4개 일치 (50,000원) - ${winStatus["4"]}개
+5개 일치 (1,500,000원) - ${winStatus["3"]}개
+5개 일치, 보너스 볼 일치 (30,000,000원) - ${winStatus["2"]}개
+6개 일치 (2,000,000,000원) - ${winStatus["1"]}개
+총 수익률은 ${
+      Math.round((sumOfMoney / this.myPayment) * 100 * 10) / 10
+    }%입니다.`);
+    Console.close();
   }
 }
 
