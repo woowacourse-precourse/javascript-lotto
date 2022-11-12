@@ -32,7 +32,7 @@ class App {
   }
 
   validateMoney(money) {
-    if (money <= 0) {
+    if (money < 1000) {
       throw new Error(Messages.ERROR_MINIMUM_MONEY_INPUT);
     }
     if (Number.isNaN(money)) {
