@@ -49,6 +49,7 @@ class Lotto {
   progress(numbers) {
     if (lottoValidation(numbers)) {
       this.setStats(this.#numbers, this.lottoList, this.bonusNumber);
+      this.setYield(this.stats, this.lottoList);
     }
   }
 
@@ -58,6 +59,11 @@ class Lotto {
       const countLotto = this.compareBonus(count, lotto, bonus);
       this.rank(countLotto);
     });
+  }
+
+  setYield(stats, lottoList) {
+    const money = this.prizeCalculation(stats);
+    this.yield = this.yieldCalculation(money, lottoList);
   }
 
   prizeCalculation(stats) {
