@@ -1,12 +1,14 @@
 const { Console } = require('@woowacourse/mission-utils');
 const { LOTTO, MESSAGE, ERROR } = require('./Constants');
+const Statistics = require('./Statistics');
 
 class WinningNumbers {
   winning;
   bonus;
 
-  constructor() {
+  constructor(lottoList) {
     this.getWinningNumber();
+    this.lottoList = lottoList;
   }
 
   getWinningNumber() {
@@ -42,6 +44,7 @@ class WinningNumbers {
     Console.readLine(MESSAGE.BONUS_NUMBER, (number) => {
       if (this.checkBonusNumber(number)) {
         this.bonus = number;
+        this.getRanking();
       } else {
         throw new Error(ERROR.NUMBER);
       }
@@ -60,6 +63,11 @@ class WinningNumbers {
     } else {
       return true;
     }
+  }
+
+  getRanking() {
+    const statistics = new Statistics(this.lottoList, this.winning, this.bonus);
+    return statistics;
   }
 }
 

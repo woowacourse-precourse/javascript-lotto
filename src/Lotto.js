@@ -1,21 +1,18 @@
-const { Console } = require('@woowacourse/mission-utils');
-
 class Lotto {
   #numbers;
 
-  constructor(numbers, winningNumber, bonusNumber) {
+  constructor(numbers) {
     this.#numbers = numbers;
-    this.checkLotto(numbers, winningNumber, bonusNumber);
   }
 
   checkLotto(numbers, winningNumber, bonusNumber) {
     let winning = 0;
     let bonus = 0;
     for (let i = 0; i < numbers.length; i++) {
-      if (winningNumber.includes(numbers[i])) {
+      if (winningNumber.includes(String(numbers[i]))) {
         winning += 1;
       }
-      if (numbers[i] === bonusNumber) {
+      if (String(numbers[i]) === bonusNumber) {
         bonus += 1;
       }
     }

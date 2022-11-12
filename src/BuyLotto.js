@@ -2,11 +2,9 @@ const { Console, Random } = require('@woowacourse/mission-utils');
 const { LOTTO, MESSAGE, ERROR } = require('./Constants');
 const WinningNumbers = require('./WinningNumbers');
 
-class BuyLottoTwo {
+class BuyLotto {
   amount;
   lottoList = [];
-  winning;
-  bonus;
 
   constructor() {
     this.getAmount();
@@ -46,10 +44,9 @@ class BuyLottoTwo {
   }
 
   getWinningNumbers() {
-    const winningNumbers = new WinningNumbers();
-    this.winning = winningNumbers.winning;
-    this.bonus = winningNumbers.bonus;
+    const winningNumbers = new WinningNumbers(this.lottoList);
+    return winningNumbers;
   }
 }
 
-module.exports = BuyLottoTwo;
+module.exports = BuyLotto;
