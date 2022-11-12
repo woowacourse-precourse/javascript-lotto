@@ -22,6 +22,7 @@ class App {
 
   //구매 금액 유효성 검사하기
   validateInput(input) {
+    //TODO trim하고 줘야하나?
     const trimmedInput = input.trim();
 
     //문자가 섞여있지 않은지 검사
@@ -111,6 +112,14 @@ class App {
     Console.readLine(MESSAGE.ENTER_BONUS_NUMBER, (number) => {
       console.log(number);
     });
+  }
+
+  validateBonusNumber(number) {
+    const trimmedNumber = number.trim();
+
+    if (/([^0-9])/g.test(trimmedNumber)) {
+      throw new Error(ERROR.ONLY_NUMBER);
+    }
   }
 }
 
