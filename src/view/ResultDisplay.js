@@ -5,8 +5,8 @@ class ResultDisplay {
     Console.print(`${result.lottoQuantity}개를 구매했습니다.`);
 
     result.lottoNums.forEach((nums) => {
-      let sortedNum = nums.sort((a, b) => a - b);
-      Console.print(sortedNum);
+      let sortedNum = nums.sort((a, b) => a - b).join(', ');
+      Console.print(`[${sortedNum}]`);
     });
   }
 }
