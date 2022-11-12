@@ -40,6 +40,7 @@ class App {
       if (bonusValidation(input, this.LottoBuilder.WinningNumber)) {
         this.LottoBuilder.bonusNumber = input;
         this.setLotto();
+        this.finish();
       }
     });
   }
@@ -82,6 +83,10 @@ class App {
 
   print(message) {
     return MissionUtils.Console.print(message);
+  }
+
+  finish() {
+    return MissionUtils.Console.close();
   }
 }
 
