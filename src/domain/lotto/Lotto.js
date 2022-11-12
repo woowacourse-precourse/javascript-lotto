@@ -31,7 +31,7 @@ class Lotto {
   }
 
   countSameNumber(lotto) {
-
+    return this.#numbers.filter((number) => lotto.includes(number.getNumber())).length;
   }
 
   includes(number) {
