@@ -30,11 +30,11 @@ describe("로또 어플리케이션 테스트케이스", () => {
     LottoScreen.insertMoney();
 
     //로또객체를 필드로 가진다.
-    expect(LottoScreen.lottoApp.getLottos()[0] instanceof Lotto).toBe(true);
-    expect(LottoScreen.lottoApp.getLottos().length).toBe(money / 1000);
+    expect(LottoScreen.lottoApp.lottos[0] instanceof Lotto).toBe(true);
+    expect(LottoScreen.lottoApp.lottos.length).toBe(money / 1000);
 
     //배열의 길이는 항상 6이다.
-    const lotto = LottoScreen.lottoApp.getLottos()[0].getNumbers();
+    const lotto = LottoScreen.lottoApp.lottos[0].numbers;
     expect(lotto.length).toBe(6);
 
     //항상 1이상 45 이하 가 나온다.

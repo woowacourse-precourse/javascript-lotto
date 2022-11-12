@@ -22,14 +22,13 @@ class LottoScreen {
   }
 
   static printLottoNumbers() {
-    const lottos = LottoScreen.lottoApp.getLottos(); // [{lotto} , {lotto} ...]
-    lottos.forEach((lotto) => MissionUtils.Console.print(lotto.getNumbers()));
+    const lottos = LottoScreen.lottoApp.lottos; // [{lotto} , {lotto} ...]
+    lottos.forEach((lotto) => MissionUtils.Console.print(lotto.numbers));
   }
 
   static selectWinNumber() {
     MissionUtils.Console.readLine(MESSAGE.LOTTO_NUMBER_CHOICE, (choice) => {
       Validate.selectWinNumber(choice);
-      
     });
   }
 }
