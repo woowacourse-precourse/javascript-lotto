@@ -42,7 +42,7 @@ class App {
     }
 
     lottoNumberPrint(numbers) {
-        MissionUtils.Console.print('[' + numbers + ']')
+        MissionUtils.Console.print('[' + numbers.join(', ') + ']')
     }
 
     lottoNumberSort(numbers) {
@@ -81,31 +81,23 @@ class App {
 
     putWinNumToArray() {
         for (let i = 0; i < this.userLottoNumbers.length; i++) {
-            console.log(this.winningCount(i))
-            console.log(this.winningCount(i)>2)
             if (
                 this.winningCount(i) === 5 &&
                 this.userLottoNumbers.includes(this.bonusNumber)
-            ) {
-                this.rank[4] += 1
-            }
-            if (this.winningCount(i) > 2){
+            ) this.rank[4] += 1
+            if (this.winningCount(i) > 2)
               this.rank[6-this.winningCount(i)]+=1
-            }
         }
         this.winningStatistics();
     }
 
-
-
     winningStatistics(){
       MissionUtils.Console.print("당첨 통계\n---");
-      MissionUtils.Console.print("3개 일치 (5,000원) - " + this.rank[3]);
-      MissionUtils.Console.print("4개 일치 (50,000원) - " + this.rank[2]);
-      MissionUtils.Console.print("5개 일치 (1,500,000원) - " + this.rank[1]);
-      MissionUtils.Console.print("5개 일치, 보너스 볼 일치 (30,000,000원) - "+ this.rank[4]);
-      MissionUtils.Console.print("6개 일치 (2,000,000,000원) - "+ this.rank[0]);
-      MissionUtils.Console.print("총 수익률은 "+)
+      MissionUtils.Console.print("3개 일치 (5,000원) - " + this.rank[3]+"개");
+      MissionUtils.Console.print("4개 일치 (50,000원) - " + this.rank[2]+"개");
+      MissionUtils.Console.print("5개 일치 (1,500,000원) - " + this.rank[1]+"개");
+      MissionUtils.Console.print("5개 일치, 보너스 볼 일치 (30,000,000원) - "+ this.rank[4]+"개");
+      MissionUtils.Console.print("6개 일치 (2,000,000,000원) - "+ this.rank[0]+"개");
     }
 
 
