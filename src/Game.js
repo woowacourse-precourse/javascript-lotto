@@ -2,7 +2,12 @@ const { Console } = require('@woowacourse/mission-utils');
 const { MESSAGE } = require('./lib/constants');
 const MyLottos = require('./MyLottos');
 const Purchase = require('./Purchase');
-const { convertAnswerIntoArray } = require('./lib/utils');
+const {
+  convertAnswerIntoArray,
+  printWinningResult,
+  getRevenue,
+  getRateOfReturn,
+} = require('./lib/utils');
 const Lotto = require('./Lotto');
 const Bonus = require('./Bonus');
 const Result = require('./Result');
@@ -43,6 +48,10 @@ class Game {
     this.#winningCount = this.result.getWinningResult();
   }
 
+  getPercentage() {
+    return getRateOfReturn(getRevenue(this.#winningCount), this.#purchaseMoney);
+  }
+
   printMyLottosArray() {
     this.#myLottosArray.forEach((item) => {
       Console.print(`[${item.join(', ')}]`);
@@ -73,6 +82,8 @@ class Game {
         this.#winningNumbers,
         this.#bonusNumber
       );
+      printWinningResult(this.#winningCount, this.getPercentage());
+      Console.close();
     });
   }
 }
