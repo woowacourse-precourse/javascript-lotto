@@ -5,6 +5,7 @@ const Lotto = require("./Lotto");
 const Bonus = require("./Bonus");
 const Count = require("./Count");
 const Result = require("./Result");
+const { INPUT, OUTPUT } = require("./constants/messges");
 
 class App {
   constructor() {
@@ -16,7 +17,7 @@ class App {
   }
 
   play() {
-    Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
+    Console.readLine(`${INPUT.BUY}${OUTPUT.LINE}`, (money) => {
       new Money(money);
       this.money = money;
       this.printQuantity(this.money);
@@ -26,7 +27,7 @@ class App {
   printQuantity(money) {
     const UNIT = 1000;
     this.quantity = parseInt(money, 10) / UNIT;
-    Console.print(`\n${this.quantity}개를 구매했습니다.`);
+    Console.print(`${OUTPUT.LINE}${this.quantity}${OUTPUT.BUY}`);
     this.publishLotto(this.quantity);
   }
 
@@ -48,16 +49,19 @@ class App {
   }
 
   inputWinning() {
-    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (numbers) => {
-      this.type = new Type();
-      this.winningNumbers = this.type.changeType(numbers);
-      new Lotto(this.winningNumbers);
-      this.inputBonus();
-    });
+    Console.readLine(
+      `${OUTPUT.LINE}${INPUT.WINNNG}${OUTPUT.LINE}`,
+      (numbers) => {
+        this.type = new Type();
+        this.winningNumbers = this.type.changeType(numbers);
+        new Lotto(this.winningNumbers);
+        this.inputBonus();
+      }
+    );
   }
 
   inputBonus() {
-    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (number) => {
+    Console.readLine(`${OUTPUT.LINE}${INPUT.BONUS}${OUTPUT.LINE}`, (number) => {
       this.bonusNumber = parseInt(number, 10);
       new Bonus(this.bonusNumber, this.winningNumbers);
       this.getReward();
@@ -76,7 +80,7 @@ class App {
   }
 
   printResult(count) {
-    Console.print(`\n당첨 통계\n---`);
+    Console.print(`${OUTPUT.LINE}${OUTPUT.RESULT_TITLE}`);
 
     count.quantityList.forEach((quantity, index) => {
       const result = new Result(
