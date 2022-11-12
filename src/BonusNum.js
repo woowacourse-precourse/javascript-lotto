@@ -6,9 +6,11 @@ class BonusNum {
     this.validateIsRange(number);
     this.validateIsDuplicate(number, lottoNumbers);
     this.bonusNum = number;
+    console.log(this.bonusNum);
   }
 
   validateIsNum(number) {
+    console.log(isNaN(number));
     if (isNaN(parseInt(number))) {
       throw new Error(STATIC.MESSAGE.ERR_INPUT);
     }

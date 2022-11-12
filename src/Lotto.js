@@ -60,7 +60,6 @@ inputLottoNum = () => {
 inputBonusNum = (lottoNums) => {
   MissionUtils.Console.readLine(STATIC.MESSAGE.BONUS, (number) => {
     const bonusNumber = new BonusNum(number, lottoNums);
-    console.log(bonusNumber);
   });
 };
 
