@@ -59,12 +59,15 @@ class Lotto {
   static isFiveMatche(count, array, target = [], bonus = 0) {
     const DATUM_POINT = 5;
     const newArray = [...array];
+    const isFive = Application.isMatcheCount(count, DATUM_POINT);
 
-    if (Application.isMatcheCount(count, DATUM_POINT) && target.includes(bonus)) {
+    if (isFive && target.includes(bonus)) {
       return Lotto.isBonusMatche(newArray);
     }
 
-    newArray[2] += 1;
+    if (isFive) {
+      newArray[2] += 1;
+    }
 
     return newArray;
   }
