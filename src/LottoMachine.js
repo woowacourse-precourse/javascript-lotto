@@ -20,15 +20,15 @@ class LottoMachine {
   }
 
   generateLottos(money) {
-    this.#validate(money);
+    this.validate(money);
     const lottosCount = money / 1000;
 
     return Array.from({ length: lottosCount }, () => this.generateLotto());
   }
 
-  print() {
-    MissionUtils.Console.print(`\n${this.#lottos.length}개를 구매했습니다.`);
-    this.#lottos.forEach((lotto) => lotto.print());
+  print(lottos) {
+    MissionUtils.Console.print(`\n${lottos.length}개를 구매했습니다.`);
+    lottos.forEach((lotto) => lotto.print());
   }
 }
 
