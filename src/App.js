@@ -24,6 +24,16 @@ class App {
     throw new Error(`[ERROR] 천원단위로 입력해주세요`);
   }
 
+  buyRandomLotto(availablePurchaseNumber) {
+    let randomLotto = [];
+      while (availablePurchaseNumber > 0) {
+        randomLotto.push(this.makeRandomLotto());
+        availablePurchaseNumber--;
+      }
+      this.showLottoList(randomLotto);
+      return randomLotto;
+  }
+
 
   
 }
