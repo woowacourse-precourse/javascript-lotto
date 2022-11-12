@@ -28,7 +28,7 @@ const Message = {
   ENTER_BONUS_NUMBER_MESSAGE: '보너스 번호를 입력해 주세요.\n',
 
   ERROR_MONEY: '[ERROR] 구입금액이 1000의 배수가 아닙니다.',
-  ERROR_LOTTO_RAANGE: `[ERROR] 로또 번호는 ${LottoConfig.MIN_NUMBER} 이상 ${LottoConfig.MAX_NUMBER} 이하의 자연수여야 합니다.`,
+  ERROR_LOTTO_RANGE: `[ERROR] 로또 번호는 ${LottoConfig.MIN_NUMBER} 이상 ${LottoConfig.MAX_NUMBER} 이하의 자연수여야 합니다.`,
   ERROR_LOTTO_NUMBERS: `[ERROR] 로또 번호는 ${LottoConfig.NUMBERS}개의 숫자로 이루어져야 합니다.`,
   ERROR_NUMBER_TYPE: '[ERROR] 로또 번호는 숫자여야 합니다.',
 
