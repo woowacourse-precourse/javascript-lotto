@@ -1,4 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
+const countCorrectNumber = require('./utils/countCorrectNumber');
 const isBonusNumberCorrect = require('./utils/isBonusNumberCorrect');
 const returnMyRank = require('./utils/returnMyRank');
 
