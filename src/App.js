@@ -4,6 +4,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class App {
     LOTTO_LIST = [];
     CHECK_LIST = [0] * 46;
+    WIN_LIST = [0] * 6;
     BUY = 0;
 
     play() {
@@ -78,6 +79,13 @@ class App {
                 this.checkWinNumber(Number(answer), 1);
             }
         );
+        this.calculate();
+    }
+    calculate() {
+        for (let i in this.LOTTO_LIST) {
+            let now = this.LOTTO_LIST[i].check(this.CHECK_LIST);
+            this.WIN_LIST[now]++;
+        }
     }
 }
 const app = new App();
