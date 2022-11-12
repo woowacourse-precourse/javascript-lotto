@@ -28,4 +28,16 @@ class UserLotto {
   };
 }
 
+buyMoneyError = (money) => {
+  if (money % 1000 != 0) {
+    throw new Error(STATIC.MESSAGE.ERR_BUY);
+  }
+};
+
+buyLotto = (lotto) => {
+  MissionUtils.Console.readLine(STATIC.MESSAGE.BUYMONEY, (answer) => {
+    buyMoneyError(answer);
+  });
+};
+
 module.exports = UserLotto;
