@@ -75,7 +75,7 @@ class App {
     Console.print(`\n${ASK_BONUS_LOTTO_NUMBER}`);
     Console.readline("", (input) => {
       this.isValidBonusNumber(input);
-      this.BonusLottoNumber = Number(input)
+      this.BonusLottoNumber = Number(input);
     });
   }
 
@@ -91,11 +91,18 @@ class App {
     }
   }
 
+  calculateOverlappintNumberCount(winningLottoNumber, lottoNumber){
+    return lottoNumber.reduce(
+      (sum, number) => (winningLottoNumber.includes(number) ? (sum += 1) : null),
+      0
+    );
+  }
 
 
   play() {
     Console.print(ASK_LOTTO_PRICE);
     // Console.readLine('',price => this.buyLotto(price))
+
   }
 }
 
