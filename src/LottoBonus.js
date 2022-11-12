@@ -1,10 +1,10 @@
 const { checkBonusNumberDuplicate, checkNumberRange } = require('./LottoValidation');
 
-class BonusLotto {
+class LottoBonus {
   #number;
 
   constructor(number, winningNumbers) {
-    BonusLotto.validate(number, winningNumbers);
+    LottoBonus.validate(number, winningNumbers);
     this.#number = number;
   }
 
@@ -14,8 +14,8 @@ class BonusLotto {
   }
 
   getNumber() {
-    return this.#number;
+    return Number(this.#number);
   }
 }
 
-module.exports = BonusLotto;
+module.exports = LottoBonus;
