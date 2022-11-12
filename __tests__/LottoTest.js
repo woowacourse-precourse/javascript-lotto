@@ -210,3 +210,29 @@ describe('당첨 등수 계산 기능 검사', () => {
     expect(Lotto.getPrizeStatus(2, true)).toEqual(LottoConfig.NO_PRIZE);
   });
 });
+
+describe('당첨금 계산 기능 검사', () => {
+  test('1등', () => {
+    expect(Lotto.getPrizeMoney(LottoConfig.PRIZE_1)).toEqual(2000000000);
+  });
+
+  test('2등', () => {
+    expect(Lotto.getPrizeMoney(LottoConfig.PRIZE_2)).toEqual(30000000);
+  });
+
+  test('3등', () => {
+    expect(Lotto.getPrizeMoney(LottoConfig.PRIZE_3)).toEqual(1500000);
+  });
+
+  test('4등', () => {
+    expect(Lotto.getPrizeMoney(LottoConfig.PRIZE_4)).toEqual(50000);
+  });
+
+  test('5등', () => {
+    expect(Lotto.getPrizeMoney(LottoConfig.PRIZE_5)).toEqual(5000);
+  });
+
+  test('꽝', () => {
+    expect(Lotto.getPrizeMoney(LottoConfig.NO_PRIZE)).toEqual(0);
+  });
+});
