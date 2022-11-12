@@ -19,6 +19,9 @@ class App {
       }
       Utils.readLine('당첨 번호를 입력해 주세요.\n', (input) => {
         const winningLotto = this.createLottoArray(input);
+        Utils.readLine('보너스 번호를 입력해 주세요.\n', (input) => {
+            this.winningBonusLottoNumber = input;
+        });
       });
     });
   }
