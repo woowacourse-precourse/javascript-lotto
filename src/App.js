@@ -31,6 +31,7 @@ class App {
       this.validatePurchaseMoney();
       this.printPurchaseMessage();
       this.createLotto();
+      this.printLottos();
       this.requestWinningNumbersInput();
     });
   }
@@ -58,8 +59,14 @@ class App {
       const lotto = new Lotto(numbers);
       const lottoNumbers = lotto.getNumbers();
       this.myLottos.push(lottoNumbers);
-      Console.print(`[${lottoNumbers.join(', ')}]`);
     }
+  }
+
+  printLottos() {
+    this.myLottos.forEach((lotto) => {
+      const lottoNumbers = lotto.join(', ');
+      Console.print(`[${lottoNumbers}]`);
+    });
   }
 
   requestWinningNumbersInput() {
