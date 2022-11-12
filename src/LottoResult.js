@@ -30,6 +30,20 @@ class LottoResult {
     if (lotto.includes(this.#bonusNumber)) return true;
     return false;
   }
+
+  #checkLottos(lottos) {
+    lottos.forEach((lotto) => {
+      const sameNumbers = this.#getSameNumbers(lotto);
+      if (sameNumbers == 3) this.#numberOfRanks[RANK.FIFTH_INDEX]++;
+      if (sameNumbers == 4) this.#numberOfRanks[RANK.FOURTH_INDEX]++;
+      if (sameNumbers == 5) {
+        this.#checkBonus()
+          ? this.#numberOfRanks[RANK.SECOND_INDEX]++
+          : this.#numberOfRanks[RANK.THIRD_INDEX]++;
+      }
+      if (sameNumbers == 6) this.#numberOfRanks[RANK.FIRST_INDEX]++;
+    });
+  }
 }
 
 module.exports = LottoResult;
