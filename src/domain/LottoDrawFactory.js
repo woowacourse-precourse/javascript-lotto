@@ -1,24 +1,34 @@
 const {
-  VARIABLE_LOTTO,
+  VARIABLE_FACTORY,
   LOTTO_ERROR_MESSAGE,
+  VARIABLE_LOTTO,
 } = require('../../utils/constants');
 
 class LottoDrawFactory {
-  constructor({ lotto, bonus }) {
-    this.lotto = lotto;
-    this.bonus = bonus;
+  #lotto;
+
+  #bonus;
+
+  #lottoStore;
+
+  constructor({ lotto, bonus, lottoStore }) {
+    this.#lotto = lotto;
+    this.#bonus = bonus;
+    this.#lottoStore = lottoStore;
 
     this.#validate();
   }
 
   getNumber(type) {
     switch (type) {
-      case VARIABLE_LOTTO.lotto:
-        return this.lotto.getNumber();
-      case VARIABLE_LOTTO.bonus:
-        return this.bonus.getNumber();
+      case VARIABLE_FACTORY.lotto:
+        return this.#lotto;
+      case VARIABLE_FACTORY.bonus:
+        return this.#bonus;
+      case VARIABLE_FACTORY.lottoStore:
+        return this.#lottoStore;
       default:
-        throw new Error(LOTTO_ERROR_MESSAGE.factoryTypeError);
+        throw new Error(VARIABLE_FACTORY.factoryTypeError);
     }
   }
 
@@ -32,7 +42,7 @@ class LottoDrawFactory {
 
   #validateOverlap() {
     return (
-      new Set([...this.lotto.getNumber(), this.bonus.getNumber()]).size ===
+      new Set([...this.#lotto.getNumber(), this.#bonus.getNumber()]).size ===
       VARIABLE_LOTTO.len
     );
   }
