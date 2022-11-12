@@ -51,6 +51,13 @@ class App {
     this.bonus = bonus.getNumber();
   }
 
+  checkLottoResult() {
+    this.lottos.forEach(lotto => {
+      const rank = lotto.checkRank(this.winningNumbers, this.bonus);
+      if (rank != 0) this.result[rank].count += 1;
+    })
+  }
+
   getResult() {
     userInput(COMMAND.INPUT_WINNING_NUMBERS, (numbers) => {
       this.setWinnigNumbers(numbers.split(','));
