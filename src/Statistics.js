@@ -1,4 +1,4 @@
-const { BONUS_NUMBER } = require('./constant');
+const { BONUS_NUMBER, RANKING } = require('./constant');
 
 class Statistics {
   constructor(lottoNumber, buyLottery) {
@@ -7,6 +7,19 @@ class Statistics {
   }
 
   showResult() {
+    const result = this.matchInfo();
+    return Object.keys(RANKING).map((rank) => {
+      const matchNumberInfo = RANKING[rank];
+      const matchNumber = RANKING[rank]['MATCH'];
+      const matchCount =
+        result[matchNumber] && result[matchNumber]['bonus'] === matchNumberInfo['BONUS']
+          ? result[matchNumber]['count']
+          : 0;
+      return { matchCount, matchMoney: matchNumberInfo['JACKPOT'], matchNumberInfo };
+    });
+  }
+
+  matchInfo() {
     const matchList = this.buyLottery.map((lottery) => {
       const countNumber = this.compareNumbers(this.lottoNumber, lottery);
       const bonusMatch =
@@ -15,10 +28,6 @@ class Statistics {
           : false;
       return [countNumber, bonusMatch];
     });
-    return this.matchInfo(matchList);
-  }
-
-  matchInfo(matchList) {
     return matchList.reduce((matchAcc, [match, bonus]) => {
       matchAcc[match] = { bonus, count: (matchAcc[match] ? matchAcc[match]['count'] : 0) + 1 };
       return matchAcc;

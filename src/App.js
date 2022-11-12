@@ -1,4 +1,4 @@
-const { RANKING, INPUT_MESSAGE, PRINT_MESSAGE, LOTTO_INFO, LIBRARY_URL } = require('./constant');
+const { INPUT_MESSAGE, PRINT_MESSAGE, LOTTO_INFO, LIBRARY_URL } = require('./constant');
 const { Console } = require(LIBRARY_URL);
 const BonusLotto = require('./BonusLotto');
 const Lotto = require('./Lotto');
@@ -51,17 +51,8 @@ class App {
     Console.print(PRINT_MESSAGE.WINNING);
     Console.print(PRINT_MESSAGE.DIVIDE);
     const result = new Statistics(this.fullLottoNumber, this.purChaseLottoNumber).showResult();
-    const profitList = Object.keys(RANKING).map((rank) => {
-      const matchNumberInfo = RANKING[rank];
-      const matchNumber = RANKING[rank]['MATCH'];
-      const matchCount =
-        result[matchNumber] && result[matchNumber]['bonus'] === matchNumberInfo['BONUS']
-          ? result[matchNumber]['count']
-          : 0;
-      Console.print(`${matchNumberInfo.MESSAGE(matchCount)}`);
-      return { matchCount, matchMoney: matchNumberInfo['JACKPOT'] };
-    });
-    this.printProFit(profitList);
+    result.forEach((x) => Console.print(x.matchNumberInfo.MESSAGE(x.matchCount)));
+    this.printProFit(result);
   }
 
   printProFit(profitList) {
