@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const App = require('../src/App');
+const App = require('./App');
 
 class Lotto {
   #numbers;
