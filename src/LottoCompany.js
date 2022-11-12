@@ -4,12 +4,15 @@ const Lotto = require("./Lotto");
 class LottoCompany {
   #lottoPrice;
 
+  #winningMoney;
+
   #winningNumbers;
 
   #bonusNumber;
 
-  constructor(lottoPrice) {
+  constructor(lottoPrice, winningMoney) {
     this.#lottoPrice = lottoPrice;
+    this.#winningMoney = winningMoney;
   }
 
   publishLottos(money) {
@@ -45,6 +48,10 @@ class LottoCompany {
     if (count === 4) return 4;
     if (count === 3) return 5;
     return -1;
+  }
+
+  winningMoney(winningRank) {
+    return this.#winningMoney[winningRank - 1];
   }
 
   notifyLottoResult() {}
