@@ -16,7 +16,7 @@ class Lotto {
     inputWinningnumber() {
         Console.readLine('당첨 번호를 입력해 주세요.\n', (lotto) => {
             const lottoArray = lotto.split(',').map((number) => number.trim());
-            this.#numbers = lottoArray;
+            this.#numbers[numbers] = lottoArray;
             this.verification(lottoArray, 'notBonus');
             this.inputBonusnumber();
         });
@@ -25,7 +25,7 @@ class Lotto {
     inputBonusnumber() {
         Console.readLine('보너스 번호를 입력해 주세요.\n', (bonus) => {
             this.verification(bonus, 'bonus');
-            this.#numbers.push(bonus);
+            this.bonusNumber[bonus] = bonus;
         });
     }
 

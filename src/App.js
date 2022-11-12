@@ -14,7 +14,7 @@ class App {
             this.verification(money, 'unit');
             console.log(`${+money / 1000}개를 구매했습니다.`);
             this.makeLottos(+money / 1000);
-            const lotto = new Lotto([]);
+            const lotto = new Lotto({});
             lotto.inputWinningnumber();
         });
     }
