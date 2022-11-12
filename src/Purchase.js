@@ -1,4 +1,4 @@
-const { ERROR } = require('./lib/constants');
+const { ERROR, VALUE } = require('./lib/constants');
 
 class Purchase {
   #money;
@@ -15,11 +15,11 @@ class Purchase {
       throw new Error(ERROR.PURCHASE_MONEY_NAN);
     }
 
-    if (numberMoney % 1000 !== 0) {
+    if (numberMoney % VALUE.LOTTO_PRICE !== 0) {
       throw new Error(ERROR.PURCHASE_MONEY_NOT_DIVISIBLE);
     }
 
-    if (numberMoney < 1000) {
+    if (numberMoney < VALUE.LOTTO_PRICE) {
       throw new Error(ERROR.PURCHASE_MONEY_LESS_STANDARD);
     }
   }
@@ -29,7 +29,7 @@ class Purchase {
   }
 
   getPurchaseAccount() {
-    return this.#money / 1000;
+    return this.#money / VALUE.LOTTO_PRICE;
   }
 }
 
