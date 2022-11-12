@@ -46,31 +46,6 @@ class Lotto {
     return 0;
   }
 
-  toString(separator = ' ') {
-    return this.#numbers.join(separator);
-  }
-
-  match(winningNumbers, bonusNumber) {
-    let matchCount = 0;
-    let bonusMatchBool = false;
-    const numbers = new Set(this.#numbers);
-
-    winningNumbers.forEach((value) => {
-      if (numbers.has(value)) matchCount += 1;
-    });
-
-    if (numbers.has(bonusNumber)) bonusMatchBool = true;
-
-    return { matchCount, bonusMatchBool };
-  }
-
-  getPrize(winningNumbers, bonusNumber) {
-    const { matchCount, bonusMatchBool } = this.match(winningNumbers, bonusNumber);
-    const prizeStatus = Lotto.getPrizeStatus(matchCount, bonusMatchBool);
-    const prizeMoney = Lotto.getPrizeMoney(prizeStatus);
-    return { prizeStatus, prizeMoney };
-  }
-
   static #randomLotto() {
     return MissionUtils.Random.pickUniqueNumbersInRange(
       LottoConfig.MIN_NUMBER,
@@ -108,6 +83,31 @@ class Lotto {
     if (set.size !== 6) {
       throw new Error(Message.ERROR_LOTTO_NUMBERS);
     }
+  }
+
+  toString(separator = ' ') {
+    return this.#numbers.join(separator);
+  }
+
+  match(winningNumbers, bonusNumber) {
+    let matchCount = 0;
+    let bonusMatchBool = false;
+    const numbers = new Set(this.#numbers);
+
+    winningNumbers.forEach((value) => {
+      if (numbers.has(value)) matchCount += 1;
+    });
+
+    if (numbers.has(bonusNumber)) bonusMatchBool = true;
+
+    return { matchCount, bonusMatchBool };
+  }
+
+  getPrize(winningNumbers, bonusNumber) {
+    const { matchCount, bonusMatchBool } = this.match(winningNumbers, bonusNumber);
+    const prizeStatus = Lotto.getPrizeStatus(matchCount, bonusMatchBool);
+    const prizeMoney = Lotto.getPrizeMoney(prizeStatus);
+    return { prizeStatus, prizeMoney };
   }
 }
 
