@@ -5,20 +5,18 @@ afterAll(() => {
   MissionUtils.Console.close();
 });
 
-const buyLotto = new BuyLotto();
-
-describe("getEachLottoArray()", () => {
+describe("BuyLotto클래스 테스트", () => {
+  const buyLotto = new BuyLotto(10);
+  const lottoArray = buyLotto.getLottoArray();
   test("getEachLottoArray() 메서드의 반환값의 길이가 6인지 확인합니다.", () => {
-    for (let i = 0; i < 1000; i++) {
-      const lottoArray = buyLotto.getEachLottoArray();
-      expect(lottoArray.length === 6).toBeTruthy();
+    for (let i = 0; i < 10; i++) {
+      expect(lottoArray[i].length === 6).toBeTruthy();
     }
   });
 
   test("getEachLottoArray() 메서드의 반환값에 중복되는 요소가있는지 확인합니다.", () => {
-    for (let i = 0; i < 1000; i++) {
-      const lottoArray = buyLotto.getEachLottoArray();
-      expect([...new Set(lottoArray)].every((value, idx) => value === lottoArray[idx])).toBeTruthy();
+    for (let i = 0; i < 10; i++) {
+      expect([...new Set(lottoArray[i])].every((value, idx) => value === lottoArray[i][idx])).toBeTruthy();
     }
   })
 });
