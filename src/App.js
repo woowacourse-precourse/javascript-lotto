@@ -1,7 +1,12 @@
+const User = require('./User.js');
+const Lotto = require('./Lotto.js');
 const Utils = require('./Utils.js');
 const Amount = require('./Amount.js');
-const User = require('./User.js');
-const { OUTPUT_COUNT_MESSAGE, INPUT_AMOUNT_MESSAGE } = require('./const.js');
+const {
+  INPUT_AMOUNT_MESSAGE,
+  INPUT_BONUS_NUMBER,
+  INPUT_LOTTO_NUMBERS,
+} = require('./const.js');
 
 class App {
   async play() {
@@ -12,6 +17,18 @@ class App {
     const userNumbersList = user.getNumbersList();
 
     this.printUserNumberList(userNumbersList);
+
+    const inputLottoNumbers = await Utils.readLine(
+      `\n${INPUT_LOTTO_NUMBERS}\n`
+    );
+    const bonus = await Utils.readLine(`${INPUT_BONUS_NUMBER}\n`);
+    const numbers = Utils.separateNumbers(inputLottoNumbers, ',');
+
+    const lotto = new Lotto(numbers);
+
+    const statistics = lotto.getStatistics(userNumbersList, bonus);
+
+    Utils.print(statistics);
   }
 
   /**
@@ -19,7 +36,7 @@ class App {
    * @param {number[][]} userNumbersList
    */
   printUserNumberList(userNumbersList) {
-    Utils.print(`\n${userNumbersList.length} ${OUTPUT_COUNT_MESSAGE}`);
+    Utils.print(`\n${userNumbersList.length}개를 구매했습니다.`);
     userNumbersList.forEach((numbers) => Utils.print(numbers));
   }
 }

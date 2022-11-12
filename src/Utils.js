@@ -32,6 +32,16 @@ class Utils {
   static getRandomNumbers(startInclusive, endInclusive, count) {
     return Random.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
   }
+
+  /**
+   *
+   * @param {string} str
+   * @param {string} separator
+   * @returns {number[]}
+   */
+  static separateNumbers(str, separator) {
+    return str.split(separator).map((number) => Number(number));
+  }
 }
 
 module.exports = Utils;
