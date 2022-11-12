@@ -73,4 +73,5 @@ LottoGame = () => {
   buyLotto();
 };
 
-module.exports = LottoGame;
+exports.Lotto = Lotto;
+exports.LottoGame = LottoGame;

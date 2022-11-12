@@ -25,5 +25,3 @@ const LOTTOVALUE = {
 };
 
 module.exports = { MESSAGE, LOTTERY_AMOUNT, LOTTOVALUE };
-// module.exports = LOTTERY_AMOUNT;
-// module.exports = LOTTOVALUE;

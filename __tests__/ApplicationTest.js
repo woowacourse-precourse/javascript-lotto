@@ -68,6 +68,7 @@ describe("로또 테스트", () => {
       app.play();
     }).toThrow("[ERROR]");
   });
+
   test("예외 테스트: 1000으로 나뉘어지지 않는 값 로또 구매 값으로 입력했을 때", () => {
     mockQuestions(["1001"]);
     expect(() => {
