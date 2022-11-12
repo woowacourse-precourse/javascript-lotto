@@ -23,38 +23,47 @@ const RANKING = Object.freeze({
   FIVE: {
     MATCH: 3,
     BONUS: false,
-    PRICE: '5,000',
+    PRICE: '5000',
     MESSAGE: '3개 일치 (5,000원) - ',
     COUNTUNIT: '개',
   },
   FOURTH: {
     MATCH: 4,
     BONUS: false,
-    PRICE: '50,000',
+    PRICE: '50000',
     MESSAGE: '4개 일치 (50,000원) -  ',
     COUNTUNIT: '개',
   },
   THREE: {
     MATCH: 5,
     BONUS: false,
-    PRICE: '1,500,000',
+    PRICE: '1500000',
     MESSAGE: '5개 일치 (1,500,000원) - ',
     COUNTUNIT: '개',
   },
   TWO: {
     MATCH: 5,
     BONUS: true,
-    PRICE: '30,000,000',
+    PRICE: '30000000',
     MESSAGE: '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
     COUNTUNIT: '개',
   },
   ONE: {
     MATCH: 6,
     BONUS: false,
-    PRICE: '2,000,000,000',
+    PRICE: '2000000000',
     MESSAGE: '6개 일치 (2,000,000,000원) - ',
     COUNTUNIT: '개',
   },
 });
 
-module.exports = { LOTTO_ERROR, BONUS_LOTTO_ERROR, AMOUNt_ERROR, BONUS_NUMBER, RANKING };
+const DECIMAL_PLACES = 10;
+
+module.exports = {
+  LOTTO_ERROR,
+  BONUS_LOTTO_ERROR,
+  AMOUNt_ERROR,
+  BONUS_NUMBER,
+  RANKING,
+  DECIMAL_PLACES,
+};
