@@ -13,7 +13,7 @@ class LottoGameView {
 
   receivePurchaseAmount(callback) {
     Console.readLine(MESSAGE.INPUT.PURCHASE_AMOUNT, (amount) => {
-      this.game.setPurchaseAmount(amount);
+      this.game.setPurchaseAmount(Number(amount));
       callback();
     });
   }
