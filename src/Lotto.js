@@ -101,21 +101,30 @@ class Lotto {
   }
 
   printWinningStatistics(rateOfReturn, numbersOfWinningLotto) {
-    const LOTTO_WINNING_STATISTICS_AMOUNT = [
+    const LOTTO_WINNING_STATISTICS_TABLE_TO_PRINT =
+      organizationWordToPrintWinningStatistics();
+
+    const RATE_OF_RETURN_WORD_TO_PRINT = `총 수익률은 ${rateOfReturn}%입니다.`;
+
+    MissionUtils.Console.print("\n당첨 통계\n---");
+    for (let i = 0; i < 5; i++) {
+      MissionUtils.Console.print(
+        `${LOTTO_WINNING_STATISTICS_TABLE_TO_PRINT[i]}${numbersOfWinningLotto[i]}개`
+      );
+    }
+    MissionUtils.Console.print(RATE_OF_RETURN_WORD_TO_PRINT);
+    MissionUtils.Console.close();
+  }
+
+  organizationWordToPrintWinningStatistics() {
+    const LOTTO_WINNING_STATISTICS_TABLE = [
       "3개 일치 (5,000원) - ",
       "4개 일치 (50,000원) - ",
       "5개 일치 (1,500,000원) - ",
       "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
       "6개 일치 (2,000,000,000원) - ",
     ];
-    MissionUtils.Console.print("\n당첨 통계\n---");
-    for (let i = 0; i < 5; i++) {
-      MissionUtils.Console.print(
-        `${LOTTO_WINNING_STATISTICS_AMOUNT[i]}${numbersOfWinningLotto[i]}개`
-      );
-    }
-    MissionUtils.Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
-    MissionUtils.Console.close();
+    return LOTTO_WINNING_STATISTICS_TABLE;
   }
 
   compareBoughtLottoAndWinningNumbers(boughtLotto) {
