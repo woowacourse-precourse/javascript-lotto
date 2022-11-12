@@ -35,6 +35,14 @@ class App {
     Console.readLine("\n당첨 번호를 입력해 주세요.\n", (input) => {
       this.lottoNumbers = input.split(",").map((el) => Number(el));
       new Lotto(this.lottoNumbers);
+      this.askForBonusNumber();
+    });
+  }
+
+  askForBonusNumber() {
+    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (input) => {
+      this.bonusNumber = Number(input);
+      new BonusNumber(input);
     });
   }
 }
