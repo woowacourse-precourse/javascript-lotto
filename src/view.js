@@ -1,6 +1,9 @@
 const { Console } = require('@woowacourse/mission-utils');
 const { OUTPUT_MESSAGE } = require('./utils/constant');
 
+const { ENTER_AMOUNT, ENTER_WINNING_NUMBER, ENTER_BONUS_NUMBER, WINNING_STATISTICS } =
+  OUTPUT_MESSAGE;
+
 class View {
   constructor(controller) {
     this.controller = controller;
@@ -11,7 +14,7 @@ class View {
   }
 
   getAmountInput() {
-    Console.readLine(OUTPUT_MESSAGE.ENTER_AMOUNT, (answer) => {
+    Console.readLine(ENTER_AMOUNT, (answer) => {
       this.controller.generateLotto(answer);
     });
   }
@@ -23,13 +26,13 @@ class View {
   }
 
   winningNumber() {
-    Console.readLine(OUTPUT_MESSAGE.ENTER_WINNING_NUMBER, (answer) => {
+    Console.readLine(ENTER_WINNING_NUMBER, (answer) => {
       this.controller.enterWinningNumber(answer.split(','));
     });
   }
 
   bonusNumberInput() {
-    Console.readLine(OUTPUT_MESSAGE.ENTER_BONUS_NUMBER, (answer) => {
+    Console.readLine(ENTER_BONUS_NUMBER, (answer) => {
       this.controller.enterBonusNumber(answer);
     });
   }
@@ -37,7 +40,7 @@ class View {
   static printWinningResult(result, earningRate) {
     const [fifthRanking, forthRanking, thirdRanking, secondRanking, firstRanking] = result;
 
-    Console.print(OUTPUT_MESSAGE.WINNING_STATISTICS);
+    Console.print(WINNING_STATISTICS);
 
     Console.print(
       `3개 일치 (5,000원) - ${fifthRanking}개\n4개 일치 (50,000원) - ${forthRanking}개\n5개 일치 (1,500,000원) - ${thirdRanking}개\n5개 일치, 보너스 볼 일치 (30,000,000원) - ${secondRanking}개\n6개 일치 (2,000,000,000원) - ${firstRanking}개`,

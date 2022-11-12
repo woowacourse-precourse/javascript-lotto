@@ -1,5 +1,7 @@
 const { PRIZE_MONEY } = require('./constant');
 
+const { FIFTH_RANKING, FORTH_RANKING, THIRD_RANKING, SECOND_RANKING, FIRST_RANKING } = PRIZE_MONEY;
+
 class Calculate {
   constructor(controller) {
     this.controller = controller;
@@ -16,11 +18,11 @@ class Calculate {
 
   static #getProfits(results) {
     const PRIZE_MONEYS = [
-      PRIZE_MONEY.FIFTH_RANKING,
-      PRIZE_MONEY.FORTH_RANKING,
-      PRIZE_MONEY.THIRD_RANKING,
-      PRIZE_MONEY.SECOND_RANKING,
-      PRIZE_MONEY.FIRST_RANKING,
+      FIFTH_RANKING,
+      FORTH_RANKING,
+      THIRD_RANKING,
+      SECOND_RANKING,
+      FIRST_RANKING,
     ];
     let grossEarnings = 0;
 

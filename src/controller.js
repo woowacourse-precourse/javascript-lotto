@@ -7,6 +7,8 @@ const Validation = require('./utils/validation');
 const View = require('./view');
 const WinningNumber = require('./winning-number');
 
+const { MIN_NUMBER, MAX_NUMBER, QUANTITY, UNIT_AMOUNT } = NUMBER_LIMIT;
+
 class Controller {
   constructor() {
     this.lottos = [];
@@ -18,7 +20,6 @@ class Controller {
   }
 
   generateLotto(answer) {
-    const { MIN_NUMBER, MAX_NUMBER, QUANTITY, UNIT_AMOUNT } = NUMBER_LIMIT;
     const quantity = answer / UNIT_AMOUNT;
     this.totalAmount = quantity * UNIT_AMOUNT;
     Validation.amountInputValidate(answer);
