@@ -1,7 +1,7 @@
 const Machine = require('./Machine');
 const Player = require('./Player');
 const Lotto = require('./Lotto');
-const { Console } = require('./util');
+const { Console, Statistics } = require('./util');
 const { MESSAGES } = require('./constants');
 
 class App {
@@ -37,7 +37,10 @@ class App {
   }
 
   #showResult() {
-    Console.print(this.lotto.winningNums);
+    const [tickets, luckyNum] = [this.player.pocket, this.lotto.winningNums];
+    const count = Statistics.countWinning(tickets, luckyNum);
+
+    Console.print(count);
   }
 }
 
