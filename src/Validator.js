@@ -21,6 +21,13 @@ class Validator {
       throw new Error(`${ERROR_MESSAGES.DUPLICATE_NUMBER}`);
     }
   }
+
+  static checkValidWinNumbers(winNumbers) {
+    const isNotNumber = Number.isNaN(Number(winNumbers));
+    if (isNotNumber) {
+      throw new Error(`${ERROR_MESSAGES.INVALID_INPUT}`);
+    }
+  }
 }
 
 module.exports = Validator;

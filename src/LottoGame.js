@@ -5,8 +5,12 @@ const { INPUT_MESSAGES } = require('./common/messages');
 const LottoView = require('./LottoView');
 const User = require('./User');
 const Lotto = require('./Lotto');
+const Validator = require('./Validator');
 
 class LottoGame {
+  #winNumbers;
+  #bonusNumber;
+
   constructor() {
     this.lottoView = new LottoView();
     this.user = new User();
@@ -40,6 +44,11 @@ class LottoGame {
     this.user.setLottos(this.craeteLottos(this.user.getLottoCount()));
     this.lottoView.printLottoCount(this.user.getLottoCount());
     this.lottoView.printUserLottos(this.user.getLottos());
+
+    this.lottoView.getUserInput(`\n${INPUT_MESSAGES.WINNER_NUMBER}\n`, (winNumbers) => {
+      Validator.checkValidWinNumbers(winNumbers);
+      this.#winNumbers = winNumbers;
+    });
   }
 }
 
