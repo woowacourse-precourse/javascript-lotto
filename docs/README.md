@@ -38,10 +38,11 @@
 
 로또 계산#LottoCalculator
 
-- [x] 로또번호를 비교하는 기능 - compareLotto
 - [ ] 당첨 내역을 출력하는 기능 - printWinResult
 - [ ] 수익률을 계산하는 기능 - printGainPercent
 - [x] 로또 당첨 내역을 집계하는 기능 - resultCaculator
+- [x] 로또번호를 비교하는 기능 - compareLotto
+- [x] 로또 당첨 객체를 계산하는 기능 - calculatorWiningResult
 
 예외처리 기능
 

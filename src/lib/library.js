@@ -32,6 +32,14 @@ const WINNING = {
   },
 };
 
+const RESULT = {
+  FIRST: 0,
+  SECOND: 0,
+  THIRD: 0,
+  FOURTH: 0,
+  FIFTH: 0,
+};
+
 const EXCEPTION = (ment) => new Error(`[ERROR] ${ment}`);
 
-module.exports = { LOTTO, INPUT, PRINT, WINNING, EXCEPTION };
+module.exports = { RESULT, LOTTO, INPUT, PRINT, WINNING, EXCEPTION };

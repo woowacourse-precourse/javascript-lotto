@@ -1,4 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
+const { WINNING, PRINT, RESULT } = require("./lib/library");
 const Lotto = require("./Lotto");
 
 class LottoCalculate {
@@ -18,7 +19,7 @@ class LottoCalculate {
       const result = this.compareLotto(lotto, win, bonus);
       if (result !== undefined) resultArr.push(result);
     });
-    return resultArr;
+    return this.calculatorWiningResult(resultArr);
   }
 
   compareLotto(my, win, bonus) {
@@ -36,7 +37,21 @@ class LottoCalculate {
     }
   }
 
-  printWinResult(result) {}
+  calculatorWiningResult(result) {
+    const wining = { ...RESULT };
+    result.map((num) => {
+      if (num === 1) wining.FIRST++;
+      if (num === 2) wining.SECOND++;
+      if (num === 3) wining.THIRD++;
+      if (num === 4) wining.FOURTH++;
+      if (num === 5) wining.FIFTH++;
+    });
+    return wining;
+  }
+
+  printWinResult(result) {
+    Console.print(PRINT.RESULT);
+  }
   printGainPercent() {}
 }
 
