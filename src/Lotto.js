@@ -1,5 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const STATIC = require("./Static");
+const UserLotto = require("./UserLotto");
 
 class Lotto {
   #numbers;
@@ -25,8 +26,15 @@ buyMoneyError = (money) => {
 };
 
 buyLotto = (lotto) => {
-  MissionUtils.Console.readLine(STATIC.MESSAGE.BUYMONEY, (answer) => {
-    buyMoneyError(answer);
+  MissionUtils.Console.readLine(STATIC.MESSAGE.BUYMONEY, (money) => {
+    buyMoneyError(money);
+    const userPickLotto = createUserLotto(money);
+  });
+};
+
+createUserLotto = (money) => {
+  return [...Array(money / 1000).keys()].map(() => {
+    return new UserLotto().number;
   });
 };
 
