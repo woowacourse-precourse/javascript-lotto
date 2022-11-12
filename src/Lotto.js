@@ -60,10 +60,8 @@ class Lotto {
         this.compareBoughtLottoAndBonusNumber(boughtLottos[i], bonusNumber)
       );
     }
-    // this.countWinningLotto(
-    //   totalLottoNumberStatictics,
-    //   totalLottoBonusNumberStatictics
-    // );
+    console.log(totalLottoNumberStatictics, "맞힌 로또 번호개수");
+    console.log(totalLottoBonusNumberStatictics, "맞힌 보너스 번호 개수");
   }
 
   compareBoughtLottoAndWinningNumbers(boughtLotto) {
