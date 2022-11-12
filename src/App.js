@@ -9,7 +9,7 @@ class App {
   }
 
   askForAmount() {
-    Console.readLine("구입금액을 입력해 주세요.", (input) => {
+    Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
       this.inputAmount = Number(input);
       this.validateInputAmount();
     });
@@ -23,6 +23,7 @@ class App {
       inputAmount / 1000 !== Math.floor(inputAmount / 1000)
     )
       throw error;
+    Console.print(`\n${inputAmount / 1000}개를 구매했습니다.`);
     this.generateLotto();
   }
 
