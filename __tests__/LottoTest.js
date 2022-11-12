@@ -291,6 +291,12 @@ describe('로또 클래스 테스트', () => {
       expect(Lotto.calculateTotalAmount.name).toEqual(METHOD_NAME);
     });
 
+    test('배열의 길이가 5가 아니면 예외를 발생한다.', () => {
+      expect(() => {
+        Lotto.calculateTotalAmount([2, 0, 0, 0, 0, 0]);
+      }).toThrow(ERROR_TEXT);
+    });
+
     test('3개 일치가 2개 있으면 10,000원을 반환한다.', () => {
       const winningAmount = [2, 0, 0, 0, 0];
       const expected = 10000;
@@ -313,14 +319,14 @@ describe('로또 클래스 테스트', () => {
     });
 
     test('5개 일치, 보너스 볼 일치가 1개 있으면 30,000,000원을 반환한다.', () => {
-      const winningAmount = [0, 0, 1, 0, 0];
+      const winningAmount = [0, 0, 0, 1, 0];
       const expected = 30000000;
 
       expect(Lotto.calculateTotalAmount(winningAmount)).toEqual(expected);
     });
 
     test('6개 일치가 1개 있으면 2,000,000,000원을 반환한다.', () => {
-      const winningAmount = [0, 0, 1, 0, 0];
+      const winningAmount = [0, 0, 0, 0, 1];
       const expected = 2000000000;
 
       expect(Lotto.calculateTotalAmount(winningAmount)).toEqual(expected);
