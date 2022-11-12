@@ -1,10 +1,7 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
-const {
-  isPositiveInteger,
-  isDuplicated,
-  isIncludeInRange,
-} = require('./Utils');
+const UI = require('./UI');
+const Validation = require('./Validation');
 const {
   LOTTO_END,
   LOTTO_PRICE,
@@ -13,9 +10,9 @@ const {
   LOTTO_NUMBER_COUNT,
   MINIMUM_MATCH_COUNT,
 } = require('./Constants');
-const UI = require('./UI');
 
 const ui = new UI();
+const validation = new Validation();
 
 class App {
   #money;
@@ -40,46 +37,42 @@ class App {
   }
 
   #validateMoney() {
-    if (!isPositiveInteger(this.#money)) {
-      ui.printError('금액을 숫자로 입력해주세요.');
-    }
-    if (this.#money % LOTTO_PRICE !== 0) {
-      ui.printError('1000원 단위로 입력해주세요.');
+    try {
+      validation.checkPositiveInteger(this.#money);
+      validation.checkSplitIntoDivisor(this.#money, LOTTO_PRICE);
+    } catch (error) {
+      ui.printError(error);
     }
 
     return true;
   }
 
-  // FIXME: 15줄 아래로 줄일 것
   #validateWinningNumbers() {
-    if (this.#winningNumber.length !== LOTTO_NUMBER_COUNT) {
-      ui.printError('당첨 번호 6개를 입력해 주세요.');
+    try {
+      validation.checkArrayLength(this.#winningNumber, LOTTO_NUMBER_COUNT);
+      validation.checkDuplication(this.#winningNumber);
+      this.#winningNumber.forEach((number) => {
+        validation.checkPositiveInteger(number);
+        validation.checkNumberIncludeInRange(number, LOTTO_START, LOTTO_END);
+      });
+    } catch (error) {
+      ui.printError(error);
     }
-    if (isDuplicated(this.#winningNumber)) {
-      ui.printError('당첨 번호가 중복되었습니다.');
-    }
-
-    this.#winningNumber.forEach((number) => {
-      if (
-        !isPositiveInteger(number) ||
-        !isIncludeInRange(number, LOTTO_START, LOTTO_END)
-      ) {
-        ui.printError('당첨 번호는 숫자만 입력해주세요.');
-      }
-    });
 
     return true;
   }
 
   #validateBonusNumber() {
-    if (
-      !isPositiveInteger(this.#bonusNumber) ||
-      !isIncludeInRange(this.#bonusNumber, LOTTO_START, LOTTO_END)
-    ) {
-      ui.printError('1부터 45 사이의 숫자를 입력해주세요.');
-    }
-    if (isDuplicated([...this.#winningNumber, this.#bonusNumber])) {
-      ui.printError('당첨 번호와 보너스 번호가 중복되었습니다.');
+    try {
+      validation.checkPositiveInteger(this.#bonusNumber);
+      validation.checkNumberIncludeInRange(
+        this.#bonusNumber,
+        LOTTO_START,
+        LOTTO_END,
+      );
+      validation.checkDuplication([...this.#winningNumber, this.#bonusNumber]);
+    } catch (error) {
+      ui.printError(error);
     }
 
     return true;
