@@ -1,20 +1,30 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
-const { LOTTO_MESSAGE } = require("./constant.js");
+const { LOTTO_MESSAGE, LOTTO_SETTING } = require("./constant.js");
 
 class App {
   lottoNumArr;
+  order = 0;
 
   play() {
-    MissionUtils.Console.readLine(LOTTO_MESSAGE.INPUT_MONEY_MSG, (money) => {
-      this.buyLotto(money);
-      MissionUtils.Console.readLine(
-        LOTTO_MESSAGE.INPUT_WIN_NUM_MSG,
-        (winNums) => {
+    MissionUtils.Console.readLine(
+      LOTTO_MESSAGE.PLAYER_INPUT_MSG[this.order],
+      (playerInput) => {
+        if (this.order === LOTTO_SETTING.PLAYER_TOTAL_ORDER) {
+          return;
+        }
+        if (this.order === LOTTO_SETTING.INPUT_MONEY_ORDER) {
+          const money = playerInput;
+          this.buyLotto(money);
+        }
+        if (this.order === LOTTO_SETTING.INPUT_WIN_NUM_ORDER) {
+          const winNums = playerInput;
           this.inputWinNum(winNums);
         }
-      );
-    });
+        this.order++;
+        this.play();
+      }
+    );
   }
 
   buyLotto(money) {
