@@ -21,11 +21,13 @@ class App {
   getInputMoney() {
     return new Promise((resolve, reject) => {
       Console.readLine("구매금액을 입력해 주세요.\n", (input) => {
-        if (!this.isValidMoney(input)) {
+        if (this.isValidMoney(input)) {
+          resolve(input);
+        } else {
           reject(() => {
             throw new Error("[ERROR]유효하지 않은값");
           });
-        } else resolve(input);
+        }
       });
     });
   }
