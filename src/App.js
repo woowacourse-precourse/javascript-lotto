@@ -2,6 +2,9 @@ const Lotto = require("../src/Lotto");
 const MissionUtils = require("@woowacourse/mission-utils");
 const main_loop = ()=>{
   MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (answer)=>{
+    if (parseInt(answer)!=answer){
+      throw new Error("[ERROR] 정상적인 숫자가 아닙니다.") 
+    }
     if (parseInt(answer)%1000!==0){
       throw new Error("[ERROR] 금액은 천원단위로 입력해야 합니다.")
     }
@@ -18,7 +21,7 @@ const main_loop = ()=>{
           let temp_lot_result = Lottos[i].calculate_cnt(solution, bouns)
           result[temp_lot_result] += 1          
         }
-        calculate_benefit(result, input_money)    
+        calculate_benefit(result, input_money)
       })
     })
   })
@@ -59,10 +62,9 @@ const calculate_benefit = (final_result, input_money) => {
         MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${final_result[i]}개`)
         break
     }    
-    final_benefit_ratio = (total_earn/(parseInt(input_money)*1000))*100
-    MissionUtils.Console.print(`총 수익률은 ${final_benefit_ratio}%입니다.`)
   }
-
+  final_benefit_ratio = (total_earn/(parseInt(input_money)*1000))*100
+  MissionUtils.Console.print(`총 수익률은 ${final_benefit_ratio}%입니다.`)
 }
 
 class App {
