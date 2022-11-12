@@ -1,5 +1,6 @@
-const { ERROR, UNIT } = require("../utils/constant");
 const Exception = require("./exception");
+
+const { ERROR, UNIT } = require("../utils/constant");
 
 class PurchaseError extends Exception {
   #input;
@@ -7,15 +8,23 @@ class PurchaseError extends Exception {
   constructor(input) {
     super();
 
-    this.#input = input;
+    this.#input = Number(input);
+  }
+  isZero() {
+    return this.#input !== 0 ? UNIT.ALLOW : UNIT.NOT_ALLOW;
   }
 
-  isAllowAmount() {
-    return Number(this.#input) % UNIT.MONETARY === 0 ? false : true;
+  isNegative() {
+    return this.#input > 0 ? UNIT.ALLOW : UNIT.NOT_ALLOW;
+  }
+
+  isAllowUnit() {
+    return this.#input % UNIT.MONETARY === 0 ? UNIT.ALLOW : UNIT.NOT_ALLOW;
   }
 
   checkInput() {
-    if (this.isAllowAmount()) throw new Error(ERROR.PURCHASE_AMOUNT);
+    if (this.isZero() || this.isNegative() || this.isAllowUnit())
+      throw new Error(ERROR.PURCHASE_AMOUNT);
   }
 }
 

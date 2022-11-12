@@ -34,16 +34,18 @@ const ERROR = Object.freeze({
 });
 
 const UNIT = Object.freeze({
-  NUM_RANGE: /[1-45]/,
   MONETARY: 1000,
   MIN_NUMBER: 1,
   MAX_NUMBER: 45,
-  LOTTO_LENGTH: 6,
-  BONUS_LENGTH: 1,
   MIN_LENGTH: 11,
   MAX_LENGTH: 17,
-  NOT_ALLOW: false,
+  LOTTO_LENGTH: 6,
   WIN_NUMBER_CNT: 6,
+  BONUS_LENGTH: 1,
+  DEFAULT: 0,
+  ALLOW: false,
+  NOT_ALLOW: true,
+  STORAGE_SPACE: [],
 });
 
 const RANK = Object.freeze({

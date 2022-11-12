@@ -1,4 +1,3 @@
-const { Console } = require("@woowacourse/mission-utils");
 const Exception = require("./error/exception");
 const PurchaseError = require("./error/purchase");
 const WinNumberError = require("./error/winNumber");
@@ -6,15 +5,17 @@ const ChangeLotto = require("./ChangeLotto");
 const Lotto = require("./Lotto");
 const BonusNumber = require("./error/bonusNumber");
 const CompareLotto = require("./CompareLotto");
+const Profit = require("./Profit");
 
+const { Console } = require("@woowacourse/mission-utils");
 const {
   COMMAND,
   GUIDE,
   RANK,
   PRIZE_MONEY,
   CORRECT,
+  UNIT,
 } = require("./utils/constant");
-const Profit = require("./Profit");
 
 class App {
   #exception;
@@ -23,19 +24,15 @@ class App {
     this.Lotto = new Lotto();
     this.#exception = new Exception();
     this.changeLotto = new ChangeLotto();
-    this.input = 0;
-    this.userLotto = [];
-    this.winNumber = [];
-    this.bonusNumber = 0;
+    this.input = UNIT.DEFAULT;
+    this.bonusNumber = UNIT.DEFAULT;
+    this.profit = UNIT.DEFAULT;
+    this.userLotto = UNIT.STORAGE_SPACE;
+    this.winNumber = UNIT.STORAGE_SPACE;
     this.rank = {};
-    this.profit = 0;
   }
 
-  print(message) {
-    Console.print(message);
-  }
-
-  divideUnit(number) {
+  divideThousandUnit(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
@@ -61,11 +58,15 @@ class App {
       this.winNumber,
       this.bonusNumber
     ).compare();
-    this.getProgit();
+    this.getProfit();
   }
 
-  getProgit() {
-    this.profit = new Profit(this.input, this.rank).calculate();
+  getProfit() {
+    const [integer, decimal] = new Profit(this.input, this.rank)
+      .calculate()
+      .split(".")
+      .map(Number);
+    this.profit = `${this.divideThousandUnit(integer)}.${decimal}`;
     this.printResult();
     Console.close();
   }
@@ -76,9 +77,9 @@ class App {
       .reverse()
       .forEach((nowRank) => {
         Console.print(
-          `${CORRECT[nowRank]} (${this.divideUnit(PRIZE_MONEY[RANK[nowRank]])}${
-            GUIDE.WON
-          }) ${GUIDE.BAR} ${this.rank[nowRank]}${GUIDE.PCS}`
+          `${CORRECT[nowRank]} (${this.divideThousandUnit(
+            PRIZE_MONEY[RANK[nowRank]]
+          )}${GUIDE.WON}) ${GUIDE.BAR} ${this.rank[nowRank]}${GUIDE.PCS}`
         );
       });
     Console.print(`${GUIDE.TOTAL_PROFIT} ${this.profit}${GUIDE.PERCENT}`);

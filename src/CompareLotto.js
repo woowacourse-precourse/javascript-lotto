@@ -1,9 +1,11 @@
+const { RANK } = require("./utils/constant");
+
 class CompareLotto {
   constructor(userLotto, winNumber, bonusNumber) {
     this.userLotto = userLotto;
     this.winNumber = winNumber;
     this.bonusNumber = bonusNumber;
-    this.rank = {};
+    this.ranking = {};
   }
 
   saveResult(correctCnt, correctBonus) {
@@ -11,20 +13,20 @@ class CompareLotto {
     const calculatedValue = COMPARE_NUMBER - correctCnt;
     switch (calculatedValue) {
       case 2:
-        this.rank[1] += 1;
+        this.ranking[1] += 1;
         break;
       case 3:
         if (correctBonus) {
-          this.rank[2] += 1;
+          this.ranking[2] += 1;
           break;
         }
-        this.rank[3] += 1;
+        this.ranking[3] += 1;
         break;
       case 4:
-        this.rank[4] += 1;
+        this.ranking[4] += 1;
         break;
       case 5:
-        this.rank[5] += 1;
+        this.ranking[5] += 1;
         break;
     }
   }
@@ -42,12 +44,14 @@ class CompareLotto {
   }
 
   compare() {
-    for (let i = 1; i < 6; i++) this.rank[i] = 0;
+    Object.keys(RANK).forEach((number) => {
+      this.ranking[number] = 0;
+    });
     this.userLotto.forEach((lotto) => {
       const [correctCnt, correctBonus] = this.cntCorrect(lotto);
       if (correctCnt > 2) this.saveResult(correctCnt, correctBonus);
     });
-    return this.rank;
+    return this.ranking;
   }
 }
 
