@@ -15,7 +15,11 @@ class App {
   }
 
   printbuyLotto(lottoCount){
-    Console.print(`${lottoCount}를 구매했습니다`)
+    Console.print(`\n${lottoCount}를 구매했습니다`)
+  }
+
+  issuedLottoNumber() {
+    return Random.pickUniqueNumbersInRange(1, 45, 6);
   }
 
   play() {
