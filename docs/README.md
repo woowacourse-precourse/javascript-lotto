@@ -220,5 +220,5 @@ class Lotto {
 
 - [x] 1~45 사이의 임의의 서로 다른 6자리 수를 생성하는 기능 - `LottoGenerator#createLottoNumbers`
 - [x] 생성한 6자리 수 오름차순으로 정렬하기 - `LottoGenrator#sortAscending`
-- [ ] 생성한 6자리 수를 Lotto클래스에 넣어 로또 발행하기 - `LottoGenerator#createLotto`;
+- [x] 생성한 6자리 수를 Lotto클래스에 넣어 로또 발행하기 - `LottoGenerator#createLotto`;
 - [ ] 발행할 로또 개수(입력받은 금액 / 로또 가격(1,000))만큼 로또 생성하기

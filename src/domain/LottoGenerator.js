@@ -1,9 +1,14 @@
 const { Random } = require('@woowacourse/mission-utils');
 
-class LottoGenerator {
-  createLotto() {}
+const Lotto = require('./Lotto');
 
-  createLottoNumbers() {
+class LottoGenerator {
+  createLotto() {
+    const numbers = this.#createLottoNumbers();
+    return new Lotto(numbers);
+  }
+
+  #createLottoNumbers() {
     const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
 
     return this.#sortAscending(numbers);

@@ -3,8 +3,8 @@ const { LottoGenerator } = require('./domain');
 class App {
   play() {
     const generator = new LottoGenerator();
-    const numbers = generator.createLottoNumbers();
-    console.log(numbers);
+    const lotto = generator.createLotto();
+    console.log(lotto.numbers);
   }
 }
 
