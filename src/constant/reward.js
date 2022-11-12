@@ -1,0 +1,5 @@
+const MONEY_ARRAY = [5000, 50000, 15000000, 30000000, 2000000000];
+
+module.exports = {
+  MONEY_ARRAY,
+};
