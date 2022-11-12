@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 const { Console } = require('@woowacourse/mission-utils');
 
 class User {
@@ -9,6 +10,7 @@ class User {
     this.five = 0;
     this.fiveBonus = 0;
     this.six = 0;
+    this.profit = 0;
   }
 
   getLottos() {
@@ -23,6 +25,19 @@ class User {
       `5개 일치, 보너스 볼 일치(30,000,000원) - ${this.fiveBonus}개`
     );
     Console.print(`6개 일치 (2,000,000,000원) - ${this.six}개`);
+  }
+
+  setProfit() {
+    this.profit = this.three * 5000
+      + this.four * 50000
+      + this.five * 1500000
+      + this.fiveBonus * 30000000
+      + this.six * 2000000000;
+  }
+
+  getProfit() {
+    const profit = (this.profit / this.money).toFixed(1);
+    return Console.print(`총 수익률은 ${profit}%입니다.`);
   }
 }
 

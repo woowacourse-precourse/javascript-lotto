@@ -138,6 +138,7 @@ class Machine {
       this.setBonusCount(lotto);
       this.#calcScore(lotto);
     });
+    this.user.setProfit();
   }
 
   #calcScore(lotto) {
@@ -179,6 +180,7 @@ class Machine {
     Console.print('---');
     this.#count();
     this.user.getScore();
+    this.user.getProfit();
   }
 }
 
