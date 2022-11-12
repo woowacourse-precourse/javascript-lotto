@@ -1,6 +1,8 @@
 class Lotto {
   #numbers;
 
+  //여기에 내가 구입한 로또번호들을 구현하면 되는 듯?
+  
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;

@@ -1,5 +1,16 @@
+const Purchase=require('./Purchase')
+
 class App {
-  play() {}
+  constructor() {}
+
+  play() {
+
+    Purchase.getPurchasePrice()
+    
+  }
+
+  
+
 }
 
-module.exports = App;
+module.exports = App
