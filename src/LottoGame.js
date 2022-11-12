@@ -18,6 +18,7 @@ class LottoGame {
 
   start() {
     this.lottoView.getUserInput(`${INPUT_MESSAGES.AMOUNT}\n`, (money) => {
+      Validator.checkValidMoney(money);
       this.countLottos(money);
     });
   }

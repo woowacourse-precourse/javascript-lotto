@@ -5,7 +5,11 @@ const { LOTTO_INFO } = require('./common/constants');
 class Validator {
   static checkValidMoney(money) {
     if (rest(money) > 0) {
-      throw new Error(`${ERROR_MESSAGES.INVALID_MONEY}`);
+      throw new Error(`${ERROR_MESSAGES.INVALID_REST_MONEY}`);
+    }
+
+    if (money.includes('e') || Number.isNaN(Number(money))) {
+      throw new Error(`${ERROR_MESSAGES.INVALID_NOT_MONEY}`);
     }
   }
 
