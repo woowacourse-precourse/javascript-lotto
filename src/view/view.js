@@ -7,7 +7,7 @@ class MessageViewer {
   }
 
   issuedLottoNumberMessage(lottoNumber) {
-    MissionUtils.Console.print(lottoNumber);
+    MissionUtils.Console.print("[" + lottoNumber.join(", ") + "]");
   }
 
   resultMessage(resultArray, earningsRate) {
