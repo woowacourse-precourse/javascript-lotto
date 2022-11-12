@@ -18,6 +18,7 @@ class LottoGame {
   start() {
     LottoView.getUserInput(`${INPUT_MESSAGES.AMOUNT}\n`, (money) => {
       Validator.checkValidMoney(money);
+      this.user.setMoney(money);
       this.countLottos(money);
     });
   }
@@ -67,24 +68,28 @@ class LottoGame {
     const userLottos = this.user.getLottos();
     userLottos.forEach((lotto) => {
       const lottoCount = this.#countMatchLottoNumbers(lotto);
-      const hasBonusNumber = this.#isMatchBonusLottoNumber(this.#bonusNumber, lotto);
-      if (lottoCount === 3) {
-        this.user.setMatchLottos('three');
-      }
-      if (lottoCount === 4) {
-        this.user.setMatchLottos('four');
-      }
-      if (lottoCount === 5 && !hasBonusNumber) {
-        this.user.setMatchLottos('five');
-      }
-      if (lottoCount === 6) {
-        this.user.setMatchLottos('six');
-      }
-      if (lottoCount === 5 && hasBonusNumber) {
-        this.user.setMatchLottos('bonus');
-      }
+      const hasBonusNumber = this.#hasBonusLottoNumber(this.#bonusNumber, lotto);
+      this.#addMatchLottos(lottoCount, hasBonusNumber);
     });
     LottoView.printMatchNumbers(this.user.getMatchLottos());
+  }
+
+  #addMatchLottos(lottoCount, hasBonusNumber) {
+    if (lottoCount === LOTTO_MATCH.THREE) {
+      this.user.setMatchLottos('three');
+    }
+    if (lottoCount === LOTTO_MATCH.FOUR) {
+      this.user.setMatchLottos('four');
+    }
+    if (lottoCount === LOTTO_MATCH.FIVE && !hasBonusNumber) {
+      this.user.setMatchLottos('five');
+    }
+    if (lottoCount === LOTTO_MATCH.SIX) {
+      this.user.setMatchLottos('six');
+    }
+    if (lottoCount === LOTTO_MATCH.FIVE && hasBonusNumber) {
+      this.user.setMatchLottos('bonus');
+    }
   }
 
   #countMatchLottoNumbers(userLottoNumbers) {
@@ -98,10 +103,14 @@ class LottoGame {
     return count;
   }
 
-  #isMatchBonusLottoNumber(bonusNumber, userLottoNumbers) {
+  #hasBonusLottoNumber(bonusNumber, userLottoNumbers) {
     if (userLottoNumbers.includes(Number(bonusNumber))) {
       return true;
     }
+  }
+
+  #calculateRate() {
+    // 수익률 계산
   }
 }
 
