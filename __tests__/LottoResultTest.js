@@ -92,4 +92,27 @@ describe('당첨 통계 계산 테스트', () => {
 
     expect(result).toEqual(answer);
   });
+
+  test('맞춘 당첨 번호의 개수와 보너스 번호의 개수에 맞게 1등부터 5등까지 달성한 횟수를 계산한다.', () => {
+    const matchingNumbersResult = [
+      [6, 0],
+      [5, 1],
+      [5, 0],
+      [4, 0],
+      [3, 0],
+      [2, 0],
+      [1, 0],
+      [0, 0],
+      [5, 0],
+      [5, 1],
+      [4, 1],
+      [3, 1],
+      [2, 1],
+      [5, 0],
+    ];
+    const result = lottoResult.getLank(matchingNumbersResult);
+    const answer = [1, 2, 3, 2, 2];
+
+    expect(result).toEqual(answer);
+  });
 });

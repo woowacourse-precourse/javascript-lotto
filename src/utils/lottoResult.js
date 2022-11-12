@@ -26,4 +26,8 @@ lottoResult.getMatchingNumbersResult = (userLottoNumbers, winningNumbers, bonusN
   return [winningNumbersResult, bonusResult];
 };
 
+lottoResult.getLank = (matchingNumbersResult) => {
+  return 1;
+};
+
 module.exports = lottoResult;
