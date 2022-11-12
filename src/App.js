@@ -1,11 +1,14 @@
 const { Console } = require('@woowacourse/mission-utils');
 
 const MESSAGE = require('./utils/constants');
+const RandomNumbers = require('./RandomNumbers');
 
 class App {
   play() {
     Console.readLine(MESSAGE.PURCHASE_AMOUT, (amount) => {
-      this.print(`총 구매 : ${amount}`);
+      this.amount = amount;
+      // this.print(`총 구매 갯수: ${parseInt(this.amount / 1000)}`);
+      this.print('랜덤넘버 : ' + RandomNumbers.generate());
     });
   }
 
