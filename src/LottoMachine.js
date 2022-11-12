@@ -23,7 +23,8 @@ class LottoMachine {
       this.checkInputMoney();
       this.printLottoAmount();
       for (let index = 0; index < this.#count; index++) {
-        this.makeLottoNumber();
+        const numbers = this.makeLottoNumber();
+        this.sortLottoNumber(numbers);
       }
       
     });
@@ -42,6 +43,13 @@ class LottoMachine {
 
   makeLottoNumber() {
     const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    return numbers;
+  }
+
+  sortLottoNumber(numbers) {
+    numbers.sort(function(a, b) {
+      return a - b;
+    });
     console.log(numbers);
   }
 
