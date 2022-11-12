@@ -25,6 +25,20 @@ class WinningNumber {
       }
     });
   }
+
+  #getBonusNumber() {
+    MissionUtils.Console.readLine(COMMENT.BONUS, (number) => {
+      this.#bonusNumber = number;
+      const lottoResult = new LottoResult(
+        this.#winningNumbers,
+        this.#bonusNumber,
+        this.#lottos,
+        this.#money
+      );
+      lottoResult.printLottoResult();
+    });
+    //TODO: 보너스 번호 유효 판별
+  }
 }
 
 module.exports = WinningNumber;
