@@ -1,9 +1,13 @@
 class Lotto {
   #winningNumbers;
   constructor(numbers) {
-    numbers["winningNumber"] = this.#getConvertedWinningLottoNumber(numbers["winningNumber"]);
+    numbers["winningNumber"] = this.#setConvertedWinningLottoNumber(numbers["winningNumber"]);
     this.validate(numbers["winningNumber"]);
     this.#winningNumbers = numbers;
+  }
+
+  getConvertedLottoNumber() {
+    return this.#winningNumbers;
   }
 
   validate(numbers) {
@@ -22,11 +26,11 @@ class Lotto {
     return numbers.length !== 6;
   }
 
-  #getConvertedWinningLottoNumber(numbers) {
-    return this.#getSplittedNumber(numbers);
+  #setConvertedWinningLottoNumber(numbers) {
+    return this.#setSplittedNumber(numbers);
   }
 
-  #getSplittedNumber(numbers) {
+  #setSplittedNumber(numbers) {
     return Array.from(numbers.split(","), this.#convertArgsStringToInt);
   }
 
