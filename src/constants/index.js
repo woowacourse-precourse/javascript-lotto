@@ -6,6 +6,12 @@ const LOTTO = Object.freeze({
   NUM_OF_PRIZE: 5,
 });
 
+const REGEX = Object.freeze({
+  money: /^\d+$/,
+  winningNumbers: /^(\d+,)+\d+$/,
+  bonusNumber: /^\d+$/,
+});
+
 const RANK = Object.freeze({
   ONE: 0,
   TWO: 1,
@@ -13,6 +19,10 @@ const RANK = Object.freeze({
   FOUR: 3,
   FIVE: 4,
 });
+
+const PLACES_OF_DECIMALS = 1;
+
+const DELIMITER = ',';
 
 const PRIZE_MONEY = [2000000000, 30000000, 1500000, 50000, 5000];
 
@@ -37,8 +47,6 @@ const MESSAGE = Object.freeze({
   DIVISION_LINE: '---',
 });
 
-const PLACES_OF_DECIMALS = 1;
-
 const RENDER_MESSAGE = Object.freeze({
   purchaseNotification: (count) => `\n${count}개를 구매했습니다.`,
   issuedLotto: (numbers) => `[${numbers.join(', ')}]`,
@@ -50,12 +58,6 @@ const RENDER_MESSAGE = Object.freeze({
   rateOfReturn: (rateOfReturn) => `총 수익률은 ${rateOfReturn}%입니다.`,
 });
 
-const REGEX = Object.freeze({
-  money: /^\d+$/,
-  winningNumbers: /^(\d+,)+\d+$/,
-  bonusNumber: /^\d+$/,
-});
-
 module.exports = {
   LOTTO,
   RANK,
@@ -65,4 +67,5 @@ module.exports = {
   PLACES_OF_DECIMALS,
   RENDER_MESSAGE,
   REGEX,
+  DELIMITER,
 };

@@ -1,6 +1,11 @@
 const { Random } = require('@woowacourse/mission-utils');
 
-const { LOTTO, PRIZE_MONEY, PLACES_OF_DECIMALS } = require('./constants');
+const {
+  LOTTO,
+  PRIZE_MONEY,
+  PLACES_OF_DECIMALS,
+  DELIMITER,
+} = require('./constants');
 
 class GameTools {
   static issueLottoAsManyAsCount(count) {
@@ -39,7 +44,7 @@ class GameTools {
 
   static stringToSortedNumberArray(string) {
     return string
-      .split(',')
+      .split(DELIMITER)
       .map((num) => Number(num))
       .sort((a, b) => a - b);
   }

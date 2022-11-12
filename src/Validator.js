@@ -1,4 +1,4 @@
-const { ERROR_MESSAGE, LOTTO, REGEX } = require('./constants');
+const { ERROR_MESSAGE, LOTTO, REGEX, DELIMITER } = require('./constants');
 
 class Validator {
   winningNumbers;
@@ -17,7 +17,7 @@ class Validator {
   static throwErrorIfInvalidWinningForm(inputValue) {
     this.throwErrorIfHasBlack(inputValue);
     this.throwErrorIfHasBlack(inputValue);
-    this.winningNumbers = inputValue.split(',');
+    this.winningNumbers = inputValue.split(DELIMITER);
     if (!REGEX.winningNumbers.test(this.winningNumbers)) {
       this.throwError(ERROR_MESSAGE.WINNING_NUM_FORM);
     }
@@ -59,7 +59,9 @@ class Validator {
   }
 
   static throwErrorIfOutOfRange(number) {
-    if (number < 1 || number > 45) this.throwError(ERROR_MESSAGE.OUT_OF_RANGE);
+    if (number < LOTTO.MIN_NUMBER || number > LOTTO.MAX_NUMBER) {
+      this.throwError(ERROR_MESSAGE.OUT_OF_RANGE);
+    }
   }
 }
 
