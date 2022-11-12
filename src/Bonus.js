@@ -2,7 +2,7 @@ const InputException = require('./InputException');
 
 const inputException = new InputException();
 
-class Lotto {
+class Bonus {
   #number;
 
   constructor(number) {
@@ -14,7 +14,9 @@ class Lotto {
     inputException.handleBonusNumberException(number);
   }
 
-  // TODO: 추가 기능 구현
+  isBelong(numbers) {
+    inputException.handleBelongException(numbers, this.#number);
+  }
 }
 
-module.exports = Lotto;
+module.exports = Bonus;

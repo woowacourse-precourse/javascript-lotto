@@ -14,7 +14,9 @@ class Lotto {
     inputException.handleWinningNumbersException(numbers);
   }
 
-  // TODO: 추가 기능 구현
+  getNumbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;

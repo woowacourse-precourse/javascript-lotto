@@ -15,10 +15,14 @@ class LottoGame {
 
   drawLotto(numbers) {
     const lotto = new Lotto(numbers);
+    playInfo.setWinningNumbers(lotto.getNumbers());
   }
 
   drawBonus(number) {
+    const numbers = playInfo.getWinningNumbers();
     const bonus = new Bonus(number);
+
+    bonus.isBelong(numbers);
   }
 }
 

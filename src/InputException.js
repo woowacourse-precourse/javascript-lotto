@@ -66,6 +66,12 @@ class InputException {
     this.#isNoValue(number);
     this.#isNotRange([number]);
   }
+
+  handleBelongException(numbers, number) {
+    if (numbers.includes(number)) {
+      throw new Error('[ERROR] 당첨 번호에 없는 숫자를 입력해야 합니다.');
+    }
+  }
 }
 
 module.exports = InputException;
