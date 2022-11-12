@@ -42,7 +42,7 @@ class App {
 
     for (let number of winNum) {
       if (number < 1 || 45 < number) {
-        throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        throw new Error("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
       }
     }
 
@@ -65,28 +65,28 @@ class App {
       });
       this.winNumValidation(winNum);
       this.winLotto = new Lotto(winNum);
-      // this.getBonusNum();
+      this.getBonusNum();
     });
   }
 
-  // bonusValidation(bonusNum) {
-  //   if (this.winLotto.getWinLotto().includes(bonusNum)) {
-  //     throw new Error("[ERROR] 당첨 번호와 겹치지 않는 번호로 입력하세요.");
-  //   }
-  //   if (bonusNum < 1 || 45 < bonusNum) {
-  //     throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-  //   }
-  // }
+  bonusValidation(bonusNum) {
+    if (this.winLotto.getWinLotto().includes(bonusNum)) {
+      throw new Error("[ERROR] 당첨 번호와 겹치지 않는 번호로 입력하세요.");
+    }
+    if (bonusNum < 1 || 45 < bonusNum) {
+      throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+  }
 
-  // getBonusNum() {
-  //   MissionUtils.Console.readLine(
-  //     "보너스 번호를 입력해 주세요.\n",
-  //     (number) => {
-  //       const bonusNum = parseInt(number);
-  //       this.bonusValidation(bonusNum);
-  //     }
-  //   );
-  // }
+  getBonusNum() {
+    MissionUtils.Console.readLine(
+      "보너스 번호를 입력해 주세요.\n",
+      (number) => {
+        this.bonusValidation(parseInt(number));
+        this.bonusNum = parseInt(number);
+      }
+    );
+  }
 
   play() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (cost) => {
