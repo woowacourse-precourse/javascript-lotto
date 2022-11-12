@@ -26,6 +26,5 @@ class BonusNum {
     }
   };
 }
-const a = new BonusNum(11, [1, 2, 3, 4, 5, 6]);
 
 module.exports = BonusNum;

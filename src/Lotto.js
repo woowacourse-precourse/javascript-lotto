@@ -2,6 +2,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const STATIC = require("./Static");
 const UserLotto = require("./UserLotto");
 const BonusNum = require("./BonusNum");
+
 class Lotto {
   #numbers;
 
@@ -48,25 +49,37 @@ class Lotto {
     answer.splice(idx, 1);
     return answer.every((e) => e != val);
   };
+
+  getNumber = () => {
+    return this.#numbers;
+  };
 }
-
-inputLottoNum = () => {
-  MissionUtils.Console.readLine(STATIC.MESSAGE.LUCKY, (number) => {
-    const lotto = new Lotto(number.split(","));
-    inputBonusNum(number.split(","));
-  });
-};
-
-inputBonusNum = (lottoNums) => {
-  MissionUtils.Console.readLine(STATIC.MESSAGE.BONUS, (number) => {
-    const bonusNumber = new BonusNum(number, lottoNums);
-  });
-};
 
 buyMoneyError = (money) => {
   if (money % 1000 != 0) {
     throw new Error(STATIC.MESSAGE.ERR_BUY);
   }
+};
+
+createUserLotto = (money) => {
+  return [...Array(money / 1000).keys()].map(() => {
+    const randLotto = new UserLotto().number;
+    MissionUtils.Console.print(randLotto);
+    return randLotto;
+  });
+};
+
+inputLottoNum = () => {
+  MissionUtils.Console.readLine(STATIC.MESSAGE.LUCKY, (number) => {
+    const lotto = new Lotto(number.split(","));
+    inputBonusNum(lotto);
+  });
+};
+
+inputBonusNum = (lotto) => {
+  MissionUtils.Console.readLine(STATIC.MESSAGE.BONUS, (number) => {
+    const bonusNumber = new BonusNum(number, lotto.getNumber());
+  });
 };
 
 buyLotto = () => {
@@ -75,14 +88,6 @@ buyLotto = () => {
     MissionUtils.Console.print(money / 1000 + STATIC.MESSAGE.BUYNUM);
     const userPickLotto = createUserLotto(money);
     inputLottoNum();
-  });
-};
-
-createUserLotto = (money) => {
-  return [...Array(money / 1000).keys()].map(() => {
-    const randLotto = new UserLotto().number;
-    MissionUtils.Console.print(randLotto);
-    return randLotto;
   });
 };
 
