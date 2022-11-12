@@ -18,6 +18,7 @@
   - [x] (예외처리) instance가 Lotto인지 확인한다. 
 - [x] 보너스 번호가 당첨 번호에 포함되는지 확인한다. Lotto#includes
 - [x] 일치하는 개수를 통해 당첨 결과을 구한다. Prize#getPrize
+- [ ] 당첨 결과 개수를 구한다 Result#countPrize
 - [ ] 수익률을 구한다. Result#getProfit
   - 수익률은 소수점 둘째 자리에서 반올림한다.
   - 1000보다 큰 수익률은 세 자릿수마다 `,`콤마를 추가한다.
