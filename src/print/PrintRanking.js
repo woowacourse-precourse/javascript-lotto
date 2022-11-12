@@ -6,12 +6,13 @@ class PrintRanking {
     Console.print(RESULT.RESULT_START);
     
     for (let i = 0; i < 5; i++) {
-      Console.print(`${RESULT.RANKING_LIST[i]}${ranking[i]}`);
+      Console.print(`${RESULT.RANKING_LIST[i]}${ranking[i]}${RESULT.RANKING_LIST_FINISH}`);
     };
   };
 
   showPriz(prizePercent) {
-    Console.print(`${RESULT.BENEFIT} ${prizePercent}%입니다.`);
+    const commaPrizePercent = prizePercent.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    Console.print(`${RESULT.BENEFIT}${commaPrizePercent}${RESULT.BENEFIT_FINISH}`);
     Console.close();
   };
 

@@ -22,7 +22,7 @@ class Calculate {
       this.prizeMoney += NUMBER.PRIZE_MONEY[i] * this.ranking[i];
     };
     this.earnPercentage = (this.prizeMoney / price * 100).toFixed(1);
-    // this.printRank.showPriz(this.earnPercentage);
+    this.printRank.showPriz(this.earnPercentage);
   };
 
 };

@@ -7,26 +7,26 @@ class Lotto {
   constructor(numbers) {
     this.#numbers = numbers;
     this.checkNumber(this.#numbers);
-  }
+  };
 
   checkNumber(numbers) {
-    const numberList = numbers.split(',')
-    this.checkLength(numberList)
-    this.checkRange(numberList)
-    this.checkSameNumber(numberList)
-    this.checkWords(numbers)
-  }
+    const numberList = numbers.split(',');
+    this.checkLength(numberList);
+    this.checkRange(numberList);
+    this.checkSameNumber(numberList);
+    this.checkWords(numbers);
+  };
 
   checkLength(numberList) {
     if (numberList.length !== 6) {
-      throw new Error(ERROR.INVALID_LOTTO_LENGTH);
+      throw new Error(`${ERROR.ERROR_MESSAGE}${ERROR.INVALID_LOTTO_LENGTH}`);
     }
   }
 
   checkRange(numberList) {
     numberList.forEach(eachNumber => {
       if (eachNumber < 1 || eachNumber > 45) {
-        throw new Error(ERROR.INVALID_LOTTO_RANGE);
+        throw new Error(`${ERROR.ERROR_MESSAGE}${ERROR.INVALID_LOTTO_RANGE}`);
       }
     });
   };
@@ -34,13 +34,13 @@ class Lotto {
   checkSameNumber(numberList) {
     const deleteRepeatedNumber = new Set(numberList)
     if (deleteRepeatedNumber.size !== 6) {
-      throw new Error(ERROR.INVALID_LOTTO_RANGE);
+      throw new Error(`${ERROR.ERROR_MESSAGE}${ERROR.INVALID_LOTTO_RANGE}`);
     }
   }
 
   checkWords(numbers) {
     if (numbers.match(/[^0-9,]/g) !== null) {
-      throw new Error(ERROR.INVALID_LOTTO_WORDS);
+      throw new Error(`${ERROR.ERROR_MESSAGE}${ERROR.INVALID_LOTTO_WORDS}`);
     }
   }
 }
