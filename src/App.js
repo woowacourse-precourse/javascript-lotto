@@ -67,31 +67,43 @@ class App {
             '보너스 번호를 입력해 주세요.',
             (answer) => {
                 this.bonusNumber = Number(answer)
-                this.winningCount()
+                this.putWinNumToArray()
             }
         )
     }
 
     winningCount(order) {
-        this.userLottoNumbers[order].filter((lotto) =>
+        return this.userLottoNumbers[order].filter((lotto) =>
             this.winningNumbers.includes(String(lotto))
         ).length
     }
 
     putWinNumToArray() {
         for (let i = 0; i < this.userLottoNumbers.length; i++) {
+            console.log(this.winningCount(i))
+            console.log(this.winningCount(i)>2)
             if (
-                this.winningCount(i) == 5 &&
+                this.winningCount(i) === 5 &&
                 this.winningNumbers.includes(this.bonusNumber)
             ) {
-                rank[4] += 1
+                this.rank[4] += 1
             }
-            if (this.winningCount(i) >= 3)
-                this.rank[this.winningCount(i) - 6] += 1
+            if (this.winningCount(i) > 2){
+              this.rank[6-this.winningCount(i)]+=1
+            }
         }
+        this.winningStatistics();
     }
 
-    
+    winningStatistics(){
+      MissionUtils.Console.print("당첨 통계\n---");
+      MissionUtils.Console.print("3개 일치 (5,000원) - " + this.rank[3]);
+      MissionUtils.Console.print("4개 일치 (50,000원) - " + this.rank[2]);
+      MissionUtils.Console.print("5개 일치 (1,500,000원) - " + this.rank[1]);
+      MissionUtils.Console.print("5개 일치, 보너스 볼 일치 (30,000,000원) - "+ this.rank[4]);
+      MissionUtils.Console.print("6개 일치 (2,000,000,000원) - "+ this.rank[0]);
+    }
+
 }
 
 const app = new App()
