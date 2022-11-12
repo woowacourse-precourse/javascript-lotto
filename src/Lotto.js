@@ -25,6 +25,9 @@ class Lotto {
       if (1 > element || element > 45) {
         throw new Error("[ERROR] 로또 번호는 1 ~ 45 사이의 숫자입니다.");
       }
+      if (isNaN(element)) {
+        throw new Error("[ERROR] 로또 번호는 숫자여야 합니다.");
+      }
     });
   }
 
@@ -35,6 +38,10 @@ class Lotto {
 
     if (1 > bonusNumber || bonusNumber > 45) {
       throw new Error("[ERROR] 보너스 번호는 1 ~ 45 사이의 숫자입니다.");
+    }
+
+    if (isNaN(bonusNumber)) {
+      throw new Error("[ERROR] 보너스 번호는 숫자여야 합니다.");
     }
   }
 }
