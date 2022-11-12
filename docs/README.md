@@ -30,8 +30,8 @@
 대략적인 흐름
 - Machine에서 구입 금액을 입력 받고 금액에 따라 로또를 발행함  
 - 발행한 로또는 User에게 넘겨주고, Manager를 호출함
-- Manager는 당첨 번호와 보너스 번호를 선정하고(= 입력 받아서) 다시 Machine에 입력함(= 넘겨줌)
-- Machine은 유저의 로또 번호와 당첨 번호 및 보너스 번호를 비교하여 결과를 분석하고 보여줌
+- Manager는 당첨 번호와 보너스 번호를 선정하고(= 입력 받아서) Analysis에 넘겨줌
+- Analysis는 유저의 로또 번호와 당첨 번호 및 보너스 번호를 비교하여 결과를 분석하고 보여줌
 
 ## [🔵] 구입 금액 입력 - `LottoMachine`
 ### [✅] 구입 금액 입력받기 - LottoMachine.inputMoney()
@@ -65,7 +65,7 @@ Random 값은 **MissionUtils 라이브러리**의 `Random.pickUniqueNumbersInRan
 
 </br>
 
-## [✅] 당첨 번호와 보너스 번호 입력 - `LottoManager` 
+## [🔵] 당첨 번호와 보너스 번호 입력 - `LottoManager` 
 ### [✅] 당첨 번호 입력받기 - LottoManager.inputWinningNumbers()
 **MissionUtils 라이브러리**에서 제공하는 `Console.readLine()`를 활용하여 입력받는다.   
 서로 다른 6개의 번호를 입력받으며 쉼표(,)를 기준으로 구분한다.
@@ -92,15 +92,15 @@ Random 값은 **MissionUtils 라이브러리**의 `Random.pickUniqueNumbersInRan
 
 </br>
 
-## [&nbsp; ] 당첨 결과 분석 - `LottoMachine`  
-### [&nbsp; ] 로또 번호와 당첨 번호 비교하기 - LottoMachine.compareNumber()
+## [&nbsp; ] 당첨 결과 분석 - `resultAnalysis`  
+### [&nbsp; ] 로또 번호와 당첨 번호 비교하기 - resultAnalysis.compareNumber()
 로또 번호와 당첨 번호 중 몇 개가 일치하는지 확인한다.   
 5개 일치 시, 추가로 보너스 번호와 일치하는지 확인한다.
 
-### [&nbsp; ] 당첨 결과 통계 내기 - LottoMachine.calculateResult()  
+### [&nbsp; ] 당첨 결과 통계 내기 - resultAnalysis.calculateResult()  
 비교 결과를 통해 1등 ~ 5등 결과 및 수익률을 통계 낸다.
 
-### [&nbsp; ] 당첨 결과 출력하기 - LottoMachine.printResult()  
+### [&nbsp; ] 당첨 결과 출력하기 - resultAnalysis.printResult()  
 **MissionUtils 라이브러리**에서 제공하는 `Console.print()`를 활용하여 출력한다.
 
 </br>
