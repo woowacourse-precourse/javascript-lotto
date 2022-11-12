@@ -283,4 +283,12 @@ describe('로또 클래스 테스트', () => {
       });
     });
   });
+
+  describe('당첨금 총액 계산 메소드 테스트', () => {
+    test('메소드 이름은 "calculateTotalAmount"로 정의된다.', () => {
+      const METHOD_NAME = 'calculateTotalAmount';
+
+      expect(Lotto.calculateTotalAmount.name).toEqual(METHOD_NAME);
+    });
+  });
 });
