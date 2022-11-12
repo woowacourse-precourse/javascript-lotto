@@ -6,15 +6,15 @@ describe("로또 구입 금액 입력 테스트", () => {
   test("구입 금액이 숫자가 아니면 예외가 발생한다.", () => {
     const ERROR_MESSAGE = "[ERROR] 숫자만 입력해주세요.";
     expect(() => {
-      testLottoGame.validate('3h5');
+      testLottoGame.validate(Number('3h5'));
     }).toThrow(ERROR_MESSAGE);
 
     expect(() => {
-      testLottoGame.validate('zzz');
+      testLottoGame.validate(Number('zzz'));
     }).toThrow(ERROR_MESSAGE);
 
     expect(() => {
-      testLottoGame.validate('12@');
+      testLottoGame.validate(Number('12@'));
     }).toThrow(ERROR_MESSAGE);
   });
 
