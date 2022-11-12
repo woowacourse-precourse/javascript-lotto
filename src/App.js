@@ -41,8 +41,9 @@ class App {
         return res;
     }
     printLotto(arr) {
-        MissionUtils.Console.print(`${arr.length}개를 구매했습니다.`);
-        for (let i in arr) arr[i].print();
+        let str = `${arr.length}개를 구매했습니다.`;
+        for (let i in arr) str += "\n" + arr[i].print();
+        MissionUtils.Console.print(str);
         this.getWinNumbers();
     }
     getWinNumbers() {
