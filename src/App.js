@@ -118,6 +118,58 @@ class App {
 
   saveBonusNumber(answer) {
     this.bonusNumber = Number(answer);
+    return this.calculationLottoResult();
+  }
+
+  calculationLottoResult() {
+    this.lottoList.forEach((lotto) => this.matchLottoNumber(lotto));
+  }
+
+  matchLottoNumber(lotto) {
+    const isBonusMatch = !!lotto.filter((number) => number === this.bonusNumber).length;
+    const matchLottoNumber = lotto.filter((number) => this.winNumberList.includes(number));
+    const { length } = matchLottoNumber;
+    const matchCount = (isBonusMatch ? 1 : 0) + length;
+
+    return this.matchResult(matchCount, isBonusMatch);
+  }
+
+  matchResult(matchCount, isBonusMatch) {
+    if (isBonusMatch && matchCount === 5) {
+      this.lottoResult.bonus.count += 1;
+      this.lottoWinPrice += this.lottoResult.bonus.price;
+      return true;
+    }
+
+    switch (matchCount) {
+      case 3:
+        this.lottoResult.three.count += 1;
+        this.lottoWinPrice += this.lottoResult.three.price;
+        break;
+      case 4:
+        this.lottoResult.four.count += 1;
+        this.lottoWinPrice += this.lottoResult.four.price;
+        break;
+      case 5:
+        this.lottoResult.five.count += 1;
+        this.lottoWinPrice += this.lottoResult.five.price;
+        break;
+      case 6:
+        this.lottoResult.six.count += 1;
+        this.lottoWinPrice += this.lottoResult.six.price;
+        break;
+      default:
+        return false;
+    }
+
+    return this.calculationLottoRate();
+  }
+
+  calculationLottoRate() {
+    const rate = (this.lottoWinPrice / this.lottoPrice) * 100;
+    this.lottoRate = rate;
+
+    return this.printResult();
   }
 }
 
