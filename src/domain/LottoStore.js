@@ -1,5 +1,8 @@
 const { Random, Console } = require('@woowacourse/mission-utils');
-const { VARIABLE_LOTTO, LOTTO_ERROR_MESSAGE } = require('../utils/constants');
+const {
+  VARIABLE_LOTTO,
+  LOTTO_ERROR_MESSAGE,
+} = require('../../utils/constants');
 
 class LottoStore {
   #money;

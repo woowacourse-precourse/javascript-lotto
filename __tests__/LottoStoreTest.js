@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const LottoStore = require('../src/LottoStore');
+const LottoStore = require('../src/domain/LottoStore');
 
 describe('로또 가게 클래스 테스트', () => {
   test('a - 금액이 숫자 + 뒷글자가 000이 아니면 에러 처리', () => {
