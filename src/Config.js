@@ -31,6 +31,7 @@ const Message = {
   ERROR_LOTTO_RANGE: `[ERROR] 로또 번호는 ${LottoConfig.MIN_NUMBER} 이상 ${LottoConfig.MAX_NUMBER} 이하의 자연수여야 합니다.`,
   ERROR_LOTTO_NUMBERS: `[ERROR] 로또 번호는 서로 다른 ${LottoConfig.NUMBERS}개의 숫자로 이루어져야 합니다.`,
   ERROR_NUMBER_TYPE: '[ERROR] 로또 번호는 숫자여야 합니다.',
+  ERROR_DUPLICATE_BONUS_NUMBER: '[ERROR] 보너스 번호와 당첨 번호가 중복됩니다.',
 
   buy(count) {
     return `${count}개를 구매했습니다.`;
