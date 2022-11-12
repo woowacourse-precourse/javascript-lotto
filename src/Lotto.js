@@ -26,6 +26,10 @@ class Lotto {
   checkPurchaseAmount(inputMoney) {
     //금액 입력 예외 처리
     MissionUtils.Console.print(`inputMoney : ${inputMoney}`);
+    const INPUTMONEY = parseInt(inputMoney);
+    if (INPUTMONEY < 1000) {
+      throw new Error("[ERROR] 1000원 이상으로 입력하세요.");
+    }
   }
 
   // TODO: 추가 기능 구현
