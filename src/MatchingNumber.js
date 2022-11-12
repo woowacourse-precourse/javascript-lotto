@@ -1,6 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
-class Statistics {
+class MatchingNumber {
   constructor(totalLottoNumber, winnerNumber, bonusNumber) {
     this.totalLottoNumber = totalLottoNumber;
     this.winnerNumber = winnerNumber;
@@ -66,4 +66,4 @@ class Statistics {
     );
   }
 }
-module.exports = Statistics;
+module.exports = MatchingNumber;

@@ -1,6 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
-const Statistics = require("./Statistics");
+const MatchingNumber = require("./MatchingNumber");
 const WinnerNumber = require("./WinnerNumber");
 
 class App {
@@ -49,7 +49,7 @@ class App {
     MissionUtils.Console.readLine("\n보너스 번호를 입력해 주세요.\n", (number) => {
       this.bonusNumber = number;
       this.validateInputBonusNumber(number);
-      this.getStatisticsAboutLotto();
+      this.getMatchingNumberAboutLotto();
     });
   }
 
@@ -58,11 +58,15 @@ class App {
       throw new Error("[ERROR] 1에서 45까지의 번호를 입력해주세요");
   }
 
-  getStatisticsAboutLotto() {
+  getMatchingNumberAboutLotto() {
     MissionUtils.Console.print("\n당첨 통계\n---");
-    const statistics = new Statistics(this.totalLottoNumber, this.winnerNumber, this.bonusNumber);
-    const totalRanking = statistics.getTotalRanking();
-    statistics.printTotalLottoResult(totalRanking);
+    const matchingNumber = new MatchingNumber(
+      this.totalLottoNumber,
+      this.winnerNumber,
+      this.bonusNumber
+    );
+    const totalRanking = matchingNumber.getTotalRanking();
+    matchingNumber.printTotalLottoResult(totalRanking);
     this.getLottoProfitRate(totalRanking);
   }
 
