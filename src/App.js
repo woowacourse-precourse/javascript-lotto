@@ -5,10 +5,10 @@ const Result = require("./Result");
 class App {
   play() {
     const buy = new Buy();
-    const gameCount = buy.countCalculate();
-    const gameNumbers = buy.randomNumbers(gameCount);
+    buy.countCalculate();
+    buy.randomNumbers();
     const match = new Match();
-    match.countMatchingNumbers(gameNumbers);
+    match.countMatchingNumbers(buy.gameNumbers);
     const result = new Result();
     result.rankingCalculate(match.matchRecord, match.bonusFlag);
   }
