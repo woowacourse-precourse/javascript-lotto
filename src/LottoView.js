@@ -29,6 +29,7 @@ class LottoView {
   }
 
   setWinningNumber() {
+    this.print(INPUT_TEXT.LINE_BREAK);
     this.print(INPUT_TEXT.WINNING_NUMBER);
     this.readLine('', (input) => {
       if (winningValidation(input)) {
@@ -39,6 +40,7 @@ class LottoView {
   }
 
   setBonusNumber() {
+    this.print(INPUT_TEXT.LINE_BREAK);
     this.print(INPUT_TEXT.BONUS_NUMBER);
     this.readLine('', (input) => {
       if (bonusValidation(input, this.LottoBuilder.WinningNumber)) {
@@ -56,6 +58,7 @@ class LottoView {
   }
 
   setOutputStats(lottoRanks, lottoYield) {
+    this.print(INPUT_TEXT.LINE_BREAK);
     this.print(STATS_TEXT.WINNING_STATS);
     this.print(STATS_TEXT.HORIZONTAL_LINE);
     this.showRankList(lottoRanks);
@@ -63,6 +66,7 @@ class LottoView {
   }
 
   showLottoList(lists) {
+    this.print(INPUT_TEXT.LINE_BREAK);
     this.print(`${lists.length}${INPUT_TEXT.BOUGHT}`);
     lists.forEach((list) => {
       this.print(`[${list.join(', ')}]`);
