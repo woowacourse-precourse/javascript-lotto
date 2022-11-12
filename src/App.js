@@ -1,11 +1,12 @@
-const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
+const { Console, Random } = require('@woowacourse/mission-utils');
 const { UNIT, Messages, winnings, getPurchaseMessage, getResultMessage } = require('./constants');
 const { isOutOfRange } = require('./isOutOfRange');
 
 class App {
   constructor() {
-    this.myMoney;
+    this.purchaseMoney;
+    this.purchaseCount;
     this.winningNumbers;
     this.bonusNumber;
     this.myLottos = [];
@@ -26,8 +27,10 @@ class App {
     Console.readLine(Messages.REQUEST_MONEY_INPUT, (input) => {
       const money = Number(input);
       this.validateMoney(money);
-      this.myMoney = money;
-      this.createLotto(this.myMoney);
+      this.purchaseMoney = money;
+      this.purchaseCount = money / UNIT;
+      this.printPurchaseMessage();
+      this.createLotto();
       this.requestWinningNumbersInput();
     });
   }
@@ -44,11 +47,13 @@ class App {
     }
   }
 
-  createLotto(money) {
-    const numberToCreate = money / UNIT;
-    const purchaseMessage = getPurchaseMessage(numberToCreate);
+  printPurchaseMessage() {
+    const purchaseMessage = getPurchaseMessage(this.purchaseCount);
     Console.print(purchaseMessage);
-    while (this.myLottos.length < numberToCreate) {
+}
+
+  createLotto() {
+    while (this.myLottos.length < this.purchaseCount) {
       const numbers = Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
       const lotto = new Lotto(numbers);
       const lottoNumbers = lotto.getNumbers();
@@ -118,7 +123,7 @@ class App {
       + (fourth * winnings.FOURTH)
       + (fifth * winnings.FIFTH)
     );
-    const rateOfReturn = (totalWinnings / this.myMoney * 100).toFixed(1);
+    const rateOfReturn = (totalWinnings / this.purchaseMoney * 100).toFixed(1);
     const result = getResultMessage(first, second, third, fourth, fifth, rateOfReturn);
     Console.print(result);
   }
