@@ -15,7 +15,6 @@ class App {
       if (+answer % 1000 > 0) {
         throw new Error("[ERROR] 천원 단위로만 구매 가능합니다.");
       }
-
       this.myMoney += +answer;
       piece = +answer / 1000;
       if (isNaN(piece)) {
@@ -120,7 +119,7 @@ class App {
       collectCount[2] * 1_500_000 +
       collectCount[3] * 30_000_000 +
       collectCount[4] * 2_000_000_000;
-    const yield = ((LottoMoney / myMoney) * 100).toFixed(1);
+    const rate = ((LottoMoney / myMoney) * 100).toFixed(1);
     MissionUtils.Console.print(`
 당첨 통계
 ---
@@ -129,7 +128,7 @@ class App {
 5개 일치 (1,500,000원) - ${collectCount[2]}개
 5개 일치, 보너스 볼 일치 (30,000,000원) - ${collectCount[3]}개
 6개 일치 (2,000,000,000원) - ${collectCount[4]}개
-총 수익률은 ${yield}%입니다.
+총 수익률은 ${rate}%입니다.
 `);
     this.close();
   }
