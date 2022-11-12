@@ -1,19 +1,10 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
-
+const {PAYMENT_MESSAGE,SELECT_NUMBER_MESSAGE,RESULT_MESSAGE,BLANK_SPACE} =require("./stringConst");
+const {REWARD } =require("./numberConst");
 class App {
 
   constructor(){
-    this.START_MESSAGE = "구입금액을 입력해 주세요.";
-    this.SELECT_WIN_NUMBER = "당첨 번호를 입력해 주세요.";
-    this.SELECT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
-    this.RESULT_MESSAGE = "당첨 통계";
-    this.RESULT_UNDERSCORE = "---";
-    this.FIFTH_PLACE = "3개 일치 (5,000원) - ";
-    this.FOURTH_PLACE = "4개 일치 (50,000원) - ";
-    this.THIRD_PLACE = "5개 일치 (1,500,000원) - ";
-    this.SECOND_PLACE = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
-    this.FIRST_PLACE = "6개 일치 (2,000,000,000원) - ";
     this.selectedWinNumber = [];
     this.selectedBonusNumber = [];
     this.randomNumbersArr = [];
@@ -30,7 +21,7 @@ class App {
     this.pay()
   }
   pay() {
-    MissionUtils.Console.readLine(`${this.START_MESSAGE}\n`, (payment) => {
+    MissionUtils.Console.readLine(`${PAYMENT_MESSAGE.request}\n`, (payment) => {
       this.myPayment = payment
       const countedSheets = payment / 1000;
       this.myCountedSheets = countedSheets
@@ -55,7 +46,7 @@ class App {
     const sortedRandomNumbersForPrint = Rannumbers.sort((a, b) => a - b).join(", ");
     this.randomNumbersArrForPrint.push(sortedRandomNumbersForPrint);
   }
-  repeat(){ // 이름 바꾸기 랜덤번호 뽑기를 반복시켜주는 함수
+  repeatGenerateRandomNumbers(){ // 이름 바꾸기 랜덤번호 뽑기를 반복시켜주는 함수
     for (let i = 0; i < this.myCountedSheets; i++) {
       this.generateRandomNumbers();
     }
@@ -63,7 +54,7 @@ class App {
     return `[${joined}]`;
   }
   printLotto() { // 괄호에 countedSheets 있었음
-    MissionUtils.Console.print(`\n${this.myCountedSheets}개를 구매했습니다.\n${this.repeat()}`);
+    MissionUtils.Console.print(`\n${this.myCountedSheets}개를 구매했습니다.\n${this.repeatGenerateRandomNumbers()}`);
     this.inputWinNumbers()
   }
 
@@ -72,7 +63,7 @@ class App {
   //   MissionUtils.Console.print(this.SELECT_WIN_NUMBER);
   // }
   inputWinNumbers() {
-    MissionUtils.Console.readLine(`\n${this.SELECT_WIN_NUMBER}\n`, (numbers) => {
+    MissionUtils.Console.readLine(`\n${SELECT_NUMBER_MESSAGE.winNumber}\n`, (numbers) => {
       console.log(numbers.split(",").map(Number))
       const splited = numbers.split(",").map(Number)
       const lotto = new Lotto(splited);
@@ -83,17 +74,21 @@ class App {
         this.selectedWinNumber.push(splitedWinNumber[i]);
       }
 
-      MissionUtils.Console.print(""); // 공백
+      MissionUtils.Console.print(BLANK_SPACE.line); // 공백
       this.selectBonusNumber();
 
     });
   }
   selectBonusNumber() {
-    MissionUtils.Console.print(this.SELECT_BONUS_NUMBER);
+    MissionUtils.Console.print(SELECT_NUMBER_MESSAGE.bonusNumber);
     this.inputBonusNumber();
   }
   inputBonusNumber() {
     MissionUtils.Console.readLine("", (bonusNumber) => {
+
+      // const lotto = new Lotto(bonusNumber);
+      // lotto.validateBonusNumber(bonusNumber); 
+
       this.selectedBonusNumber.push(Number(bonusNumber));
       MissionUtils.Console.print(""); // 공백
       this.compareNumbers();
@@ -107,16 +102,16 @@ class App {
         this.randomNumbersArr[i].includes(matched)
       ).length;
       this.countMatchedNumber.push(matchedNumber);
-    }
+    } // 여기서 나누고
     for (let i = 0; i < this.randomNumbersArr.length; i++) {
       let matchedBonusNumber = this.selectedBonusNumber.filter((matched) =>
         this.randomNumbersArr[i].includes(matched)
       ).length;
       this.countMatchedBonusNumber.push(matchedBonusNumber);
-    }
+    } // 여기서 나누고 
     console.log(this.countMatchedNumber);
     console.log(this.selectedBonusNumber[0])
-    this.getWinners()
+    this.getWinners() // 다음거 실행
   }
   getWinners() {
     // let firstPlace = 0;
@@ -131,7 +126,7 @@ class App {
     // let thirdPlace = this.countMatchedNumber.filter(element => 5 === element).length
     let fourthPlace = this.countMatchedNumber.filter(element => 4 === element).length
     let fifthPlace = this.countMatchedNumber.filter(element => 3 === element).length
-
+// 2,3등 구분?
     for (let i = 0; i <  this.countMatchedNumber.length; i++) {
       if(this.countMatchedNumber[i] === 5 && this.countMatchedBonusNumber[i] === 1){
         secondPlace++;
@@ -154,13 +149,13 @@ class App {
     this.calculateYieldRatio(firstPlace,secondPlace,thirdPlace,fourthPlace,fifthPlace);
   }
   calculateYieldRatio(firstPlace,secondPlace,thirdPlace,fourthPlace,fifthPlace){
-    const firstReward = 2000000000
-    const secondReward = 30000000
-    const thirdReward = 1500000
-    const fourthReward = 50000
-    const fifthReward = 5000
+    // const firstReward = 2000000000
+    // const secondReward = 30000000
+    // const thirdReward = 1500000
+    // const fourthReward = 50000
+    // const fifthReward = 5000
 
-    const addReward = (firstReward * firstPlace) + (secondReward * secondPlace) + (thirdReward * thirdPlace) +(fourthReward * fourthPlace) +(fifthReward * fifthPlace) 
+    const addReward = (REWARD.first * firstPlace) + (REWARD.second * secondPlace) + (REWARD.third * thirdPlace) +(REWARD.fourth * fourthPlace) +(REWARD.fifth * fifthPlace) 
 
     const positiveTotalCalculate = ((this.myPayment - addReward) / this.myPayment) * 100
     const negativeTotalCalculate = 100 - positiveTotalCalculate
@@ -181,8 +176,10 @@ class App {
   // }
   ///결과 출력
   seeResult(firstPlace,secondPlace,thirdPlace,fourthPlace,fifthPlace,positiveTotalCalculate,negativeTotalCalculate) {
-    MissionUtils.Console.print(this.RESULT_MESSAGE);
-    MissionUtils.Console.print(this.RESULT_UNDERSCORE);
+    MissionUtils.Console.print(RESULT_MESSAGE.statistics);
+    MissionUtils.Console.print(RESULT_MESSAGE.underscore);
+
+    //  등수 개수 출력
     MissionUtils.Console.print(`${this.FIFTH_PLACE}${fifthPlace}개`);
     MissionUtils.Console.print(`${this.FOURTH_PLACE}${fourthPlace}개`);
     MissionUtils.Console.print(`${this.THIRD_PLACE}${thirdPlace}개`);

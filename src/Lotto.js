@@ -23,7 +23,6 @@ class Lotto {
     // const splited = numbers.split(",").map(Number)
 
     console.log(splited)
-    console.log(this.#numbers)
     if (splited.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
@@ -32,6 +31,12 @@ class Lotto {
       throw new Error("[ERROR] 중복되지 않는 번호를 입력해 주세요");
     }
   }
+
+  // validateBonusNumber (bonusNumber){
+  //   if (bonusNumber.length !== 1) {
+  //     throw new Error("[ERROR] 보너스 번호는 1개여야 합니다.");
+  //   }
+  // }
 }
 
 // const lotto = new Lotto();
