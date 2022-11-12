@@ -102,12 +102,19 @@ class App {
     if (lotto.includes(this.bonusNumber)) return true;
   }
 
+  CalcProfitRate() {
+    let sum = 0;
+    sum = this.threeMatch * 5000 + this.fourMatch * 50000 + this.fiveMatch * 1500000 + this.bonusFiveMatch * 30000000 + this.sixMatch * 2000000000;
+    this.profitRate = ((sum / (this.numberOfPurchases * 1000)) * 100).toFixed(2);
+  }
+
   play() {
     this.buyLotto();
     this.printLotto();
     this.enterWinningNumber();
     this.enterBonusNumber();
     this.compareNumber();
+    this.CalcProfitRate();
   }
 }
 
