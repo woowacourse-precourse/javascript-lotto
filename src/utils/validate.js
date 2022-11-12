@@ -1,3 +1,5 @@
 const isNumberType = (value) => !isNaN(value);
 
-module.exports = { isNumberType };
+const isThousandUnits = (value) => value % 1000 === 0;
+
+module.exports = { isNumberType, isThousandUnits };

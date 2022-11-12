@@ -1,3 +1,3 @@
-const { isNumberType } = require("./validate");
+const { isNumberType, isThousandUnits } = require("./validate");
 
-module.exports = { isNumberType };
+module.exports = { isNumberType, isThousandUnits };

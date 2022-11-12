@@ -1,6 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { GAME_MESSAGE, ERROR_MESSAGE } = require("./constants/index");
-const { isNumberType } = require("./utils/index");
+const { isNumberType, isThousandUnits } = require("./utils/index");
 
 class LottoGame {
   #purchaseAmount;
@@ -15,6 +15,10 @@ class LottoGame {
   isPurchaseAmountValid(purchaseAmount) {
     if (!isNumberType(purchaseAmount)) {
       throw ERROR_MESSAGE.TYPE_ERROR;
+    }
+
+    if (!isThousandUnits(purchaseAmount)) {
+      throw ERROR_MESSAGE.UNIT_ERROR;
     }
   }
 }
