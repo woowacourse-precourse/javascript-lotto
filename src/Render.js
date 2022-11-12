@@ -3,9 +3,9 @@ const { Console } = require('@woowacourse/mission-utils');
 const { RENDER_MESSAGE, MESSAGE } = require('./constants');
 
 class Render {
-  static issuedLottoList(countOfLottos, lottos) {
+  static issuedLottoList(countOfLottos, userLottos) {
     Console.print(RENDER_MESSAGE.purchaseNotification(countOfLottos));
-    lottos.forEach((lotto) => {
+    userLottos.forEach((lotto) => {
       Console.print(RENDER_MESSAGE.issuedLotto(lotto));
     });
   }
