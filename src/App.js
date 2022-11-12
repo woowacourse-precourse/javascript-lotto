@@ -35,7 +35,7 @@ class App {
   }
 
   printLotto() {
-    Console.print(`\n${this.numberOfPurchases}개를 구매했습니다.`);
+    Console.print(`${this.numberOfPurchases}개를 구매했습니다.`);
     for (let i=0; i < this.numberOfPurchases; i++) {
       let lotto = new Lotto(this.randomNums());
       this.purchasedLottos.push(lotto.getNumbers());
@@ -44,14 +44,14 @@ class App {
   }
 
   enterWinningNumber() {
-    Console.readLine('\n당첨 번호를 입력해 주세요.', (answer) => {
+    Console.readLine('당첨 번호를 입력해 주세요.\n', (answer) => {
       this.winningNumber = answer.replace(" ", "").split(",").map(item => Number(item));
       new Lotto(this.winningNumber);
     });
   }
 
   enterBonusNumber() {
-    Console.readLine('\n보너스 번호를 입력해 주세요.', (answer) => {
+    Console.readLine('보너스 번호를 입력해 주세요.\n', (answer) => {
       const bonus = Number(answer);
 
       if (typeof bonus !== "number") {
@@ -70,25 +70,18 @@ class App {
 
   compareNumber() {
     this.purchasedLottos.map(lotto => {
-      let duplicate = lotto.filter(item => this.winningNumber.includes(item));
-      switch (duplicate.length) {
-        case 6:
-          this.sixMatch += 1;
-          break;
-        case 5:
-          if (this.bonusCheck(lotto)) {
-            this.bonusFiveMatch += 1;
-            break;
-          }
-          this.fiveMatch += 1;
-          break;
-        case 4:
-          this.fourMatch += 1;
-          break;
-        case 3:
-          this.threeMatch += 1;
-          break;
-      }
+      let duplicate = lotto.filter(item => this.winningNumber.includes(item)).length;
+      
+      if (duplicate === 6) this.sixMatch += 1; 
+      if (duplicate === 5) {
+        if (this.bonusCheck(lotto)) {
+          this.bonusFiveMatch += 1;
+          return;
+        }
+        this.fiveMatch += 1;
+      } 
+      if (duplicate === 4) this.fourMatch += 1;
+      if (duplicate === 3) this.threeMatch += 1;
     })
   }
 
