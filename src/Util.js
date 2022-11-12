@@ -25,6 +25,10 @@ class Util {
   static hasNElements(arr, num) {
     return arr.length === num;
   }
+
+  static getSortedArrayInAsc(arr) {
+    return [...arr].sort((a, b) => a - b);
+  }
 }
 
 module.exports = Util;
