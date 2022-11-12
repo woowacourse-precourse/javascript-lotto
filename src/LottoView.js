@@ -15,6 +15,10 @@ class LottoView {
       Console.print(lotto);
     });
   }
+
+  static printStatsMessage() {
+    Console.print(`\n${OUTPUT_MESSAGES.WIN_STATS}`);
+  }
 }
 
 module.exports = LottoView;

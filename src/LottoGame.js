@@ -58,6 +58,7 @@ class LottoGame {
   createWinBonusNumber() {
     LottoView.getUserInput(`\n${INPUT_MESSAGES.BONUS_NUMBER}\n`, (bonusNumber) => {
       this.#bonusNumber = bonusNumber;
+      LottoView.printStatsMessage();
     });
   }
 }

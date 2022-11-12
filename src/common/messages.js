@@ -13,9 +13,7 @@ const INPUT_MESSAGES = {
 };
 
 const OUTPUT_MESSAGES = {
-  WIN_STATS: `당첨 통계
-  ---
-  `,
+  WIN_STATS: '당첨 통계\n---',
   BUY(number) {
     return `${number}개를 구매했습니다.`;
   },
