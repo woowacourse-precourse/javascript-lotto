@@ -3,6 +3,10 @@ const { MESSAGE } = require('./constants/constant');
 const Validation = require('./Validation');
 const Lotto = require('./Lotto');
 
+function countLotto(money) {
+  return money / 1000;
+}
+
 class App {
   constructor() {
     this.count = 0;
@@ -20,16 +24,12 @@ class App {
     Console.readLine(MESSAGE.INPUT_MONEY, (input) => {
       this.money = input;
       this.validation.isValidInputMoney(this.money);
-      this.count = this.countLotto(this.money);
+      this.count = countLotto(this.money);
       Console.print(`${this.count}개를 구매했습니다.`);
       this.getLotto(this.count);
       this.printLotto();
       this.getWinningNumber();
     });
-  }
-
-  countLotto(money) {
-    return money / 1000;
   }
 
   getLotto(count) {

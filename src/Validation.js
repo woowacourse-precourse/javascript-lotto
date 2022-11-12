@@ -2,6 +2,10 @@ const { ERROR_MESSAGE } = require('./constants/constant');
 const Lotto = require('./Lotto');
 
 class Validation {
+  constructor() {
+    this.winningNumber = [];
+  }
+
   isValidInputMoney(money) {
     this.isInputNumber(money);
     this.isMoneyDisvisible(money);
@@ -21,11 +25,19 @@ class Validation {
 
   isValidWinningNumber(input) {
     const lotto = new Lotto(input);
+    this.winningNumber = input;
   }
 
   isValidBonusNumber(input) {
     this.isInputNumber(input);
     this.isBonusNumberInRange(input);
+    this.isBonusNumberNotInWinningNumber(input);
+  }
+
+  isBonusNumberNotInWinningNumber(input) {
+    if (this.winningNumber.includes(parseInt(input, 10))) {
+      throw new Error(ERROR_MESSAGE.Is_Already_Winning_Numbers);
+    }
   }
 
   isBonusNumberInRange(input) {
