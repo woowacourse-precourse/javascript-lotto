@@ -20,7 +20,28 @@ class App {
         throw new Error("[ERROR] 숫자만 입력 가능합니다.");
       }
       MissionUtils.Console.print(`${piece}개를 구매했습니다.`);
+      this.createLottoBundle(piece);
     });
+  }
+  createLottoBundle(piece) {
+    const bundle = [];
+    for (let i = 0; i < piece; i++) {
+      bundle.push(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
+    }
+    for (let i = 0; i < bundle.length; i++) {
+      let str = "";
+      JSON.stringify(bundle[i].sort((a, b) => a - b))
+        .split("")
+        .forEach((y) => {
+          if (y === ",") {
+            str += ", ";
+          }
+          if (y !== ",") {
+            str += y;
+          }
+        });
+      MissionUtils.Console.print(str);
+    }
   }
 }
 const app = new App();
