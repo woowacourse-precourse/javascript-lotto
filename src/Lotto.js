@@ -1,3 +1,7 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+const { Console } = require("@woowacourse/mission-utils");
+const { getLottoNumber, makeLottoArray } = require("./LottoGenerator");
+
 class Lotto {
   #numbers;
 
@@ -14,5 +18,6 @@ class Lotto {
 
   // TODO: 추가 기능 구현
 }
+const lotto = new Lotto();
 
 module.exports = Lotto;
