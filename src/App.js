@@ -32,7 +32,7 @@ class App {
 
     //금액이 1000으로 나눠떨어지는지 검사
     //TODO user로 넘겨도 될듯?
-    if (Number(trimmedInput) % AMOUNT_UNIT !== 0) {
+    if (!App.isDivisible(trimmedInput)) {
       throw new Error(ERROR.INDIVISIBLE);
     }
 
@@ -44,6 +44,13 @@ class App {
       return true;
     }
     return false;
+  }
+
+  static isDivisible(input) {
+    if (Number(input) % AMOUNT_UNIT !== 0) {
+      return false;
+    }
+    return true;
   }
 
   //구매 금액으로 로또 몇장 살 수 있는지 계산하기
