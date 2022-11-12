@@ -46,10 +46,7 @@ class LottoGame {
     this.lottoView.printUserLottos(this.user.getLottos());
 
     this.lottoView.getUserInput(`\n${INPUT_MESSAGES.WINNER_NUMBER}\n`, (winNumbers) => {
-      Validator.checkValidWinNumbers(winNumbers);
-      Validator.checkWinNumbersLenght(winNumbers);
-      Validator.checkWinNumbersSeparator(winNumbers);
-      Validator.checkWinNumbersRange(winNumbers);
+      Validator.checkWinNumbers(winNumbers);
       this.#winNumbers = winNumbers;
     });
   }

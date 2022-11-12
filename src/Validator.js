@@ -22,29 +22,41 @@ class Validator {
     }
   }
 
-  static checkValidWinNumbers(winNumbers) {
-    const splitNumberLength = winNumbers.split(',').length;
-    const isNotNumber = Number.isNaN(Number(winNumbers));
-    if (String(splitNumberLength) !== `${LOTTO_INFO.COUNT}` && isNotNumber) {
+  static checkWinNumbers(winNumbers) {
+    const checkList = [
+      this.#checkValidWinNumbers,
+      this.#checkWinNumbersLenght,
+      this.#checkWinNumbersSeparator,
+      this.#checkWinNumbersRange,
+    ];
+    checkList.forEach((checkValid) => {
+      checkValid(winNumbers);
+    });
+  }
+
+  static #checkValidWinNumbers(winNumbers) {
+    const removalSeparatorNumbers = winNumbers.split(',').join('');
+    const isNotNumber = Number.isNaN(Number(removalSeparatorNumbers));
+    if (isNotNumber) {
       throw new Error(`${ERROR_MESSAGES.INVALID_INPUT}`);
     }
   }
 
-  static checkWinNumbersLenght(winNumbers) {
+  static #checkWinNumbersLenght(winNumbers) {
     const splitNumberLength = winNumbers.split(',').length;
     if (String(splitNumberLength) !== `${LOTTO_INFO.COUNT}`) {
       throw new Error(`${ERROR_MESSAGES.INVALID_LOTTO_COUNT}`);
     }
   }
 
-  static checkWinNumbersSeparator(winNumbers) {
+  static #checkWinNumbersSeparator(winNumbers) {
     const splitNumberLength = winNumbers.match(/,/g, '').length;
     if (String(splitNumberLength) !== `${LOTTO_INFO.COUNT - 1}`) {
       throw new Error(`${ERROR_MESSAGES.INVALID_SEPARATOR}`);
     }
   }
 
-  static checkWinNumbersRange(winNumbers) {
+  static #checkWinNumbersRange(winNumbers) {
     const splitNumber = winNumbers.split(',');
     splitNumber.forEach((number) => {
       if (number < 1 || number > 45) {
