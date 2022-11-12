@@ -4,7 +4,7 @@
 
 ## 로또에 대한 기능이 들어있는 `Lotto` 클래스를 생성한다.
 
-- [x] 입력된 로또 번호가 유효한 값인지 확인한다. : `validate`
+- [ ] 로또 번호를 return한다. : `getLottoNumbers`
 - [ ] 로또 번호와 당첨 번호를 비교하여 당첨 내역을 알려준다. : `getWinningHistory`
   - 1등: 6개 번호 일치 / 2,000,000,000원
   - 2등: 5개 번호 + 보너스 번호 일치 / 30,000,000원
@@ -15,7 +15,7 @@
 ## Lotto를 살 수 있는 `LottoGameMachine` 클래스를 생성한다.
 
 - [x] 사용자에게 구입 금액을 입력받는다. : `setTotalPurchaseAmount`
-- [ ] 구입 금액에 해당하는 만큼 로또를 발행한다. : `setLottos`
+- [x] 구입 금액에 해당하는 만큼 로또를 발행한다. : `setLottos`
   - `generateRandomLottoNumbers` util 함수를 사용한다.
 - [ ] 생성된 번호들을 출력한다. : `printLottoNumbers`
 - [ ] 당첨번호와 보너스 번호를 입력받는다.
