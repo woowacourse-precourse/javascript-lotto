@@ -12,16 +12,18 @@ class App {
   play() {
     Console.readLine(MESSAGE.PURCHASE_AMOUT, (amount) => {
       this.amount = amount;
-      this.lotteryPurchase(amount);
+      this.#lotteryPurchase(amount);
     });
   }
 
-  lotteryPurchase() {
-    for (let i = 0; i < parseInt(this.amount / 1000); i++) {
+  #lotteryPurchase() {
+    const lotteryNumber = parseInt(this.amount / 1000);
+
+    this.print(`${lotteryNumber}개를 구매했습니다.`);
+    for (let i = 0; i < lotteryNumber; i++) {
       const lotto = new Lotto(RandomNumbers.generate());
       this.lottoList.push(lotto);
     }
-    console.log(this.lottoList[0].showNumber());
   }
 
   print(message) {
