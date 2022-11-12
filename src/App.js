@@ -12,15 +12,18 @@ const Util = require("./Util");
 const Lotto = require("./Lotto");
 
 class App {
+  purchaseAmount = 0;
+
   play() {
     this.start();
   }
 
   start() {
     Console.print(MESSAGE.START_GAME);
-    Console.readLine(MESSAGE.ENTER_PURCHASE_AMOUNT, (purchaseAmount) =>
-      this.validatePerchaseAmount(purchaseAmount)
-    );
+    Console.readLine(MESSAGE.ENTER_PURCHASE_AMOUNT, (purchaseAmount) => {
+      this.purchaseAmount = purchaseAmount;
+      return this.validatePerchaseAmount(purchaseAmount);
+    });
   }
 
   validatePerchaseAmount(purchaseAmount) {
