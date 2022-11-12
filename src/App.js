@@ -1,5 +1,9 @@
-const { Console, Random } = require('@woowacourse/mission-utils');
-const { InputException, LottoException } = require('../src/Exception');
+const { Console } = require('@woowacourse/mission-utils');
+const {
+    InputException,
+    LottoException,
+    BonusException,
+} = require('../src/Exception');
 const Lotto = require('./Lotto');
 
 class App {
@@ -10,7 +14,8 @@ class App {
 
     inputException = new InputException();
     lottoException = new LottoException();
-    LottoClass = new Lotto();
+    bonusException = new BonusException();
+    lottoClass = new Lotto();
 
     play() {
         this.process();
@@ -37,7 +42,7 @@ class App {
             Console.readLine('구입금액을 입력해주세요.\n', (money) => {
                 this.inputException.checkInputException(money);
                 console.log(`${+money / 1000}개를 구매했습니다.`);
-                this.randomLottoNumbers = LottoClass.makeRandomLottos(
+                this.randomLottoNumbers = this.lottoClass.makeRandomLottos(
                     +money / 1000
                 );
                 resolve(money);
@@ -58,6 +63,7 @@ class App {
     inputBonusNumber() {
         return new Promise((resolve, reject) => {
             Console.readLine('보너스 번호를 입력해 주세요.\n', (bonus) => {
+                this.bonusException.checkBonusException(bonus);
                 resolve(bonus);
             });
         });
