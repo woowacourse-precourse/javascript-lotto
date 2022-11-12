@@ -1,5 +1,5 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
-const { INPUT_MSG, ERROR_MSG } = require("./constants/Message");
+const { INPUT_MSG, ERROR_MSG, WINNING_MSG } = require("./constants/Message");
 const Lotto = require("./Lotto");
 const Utils = require("./Utils");
 const Validator = require("./Validator");
@@ -11,6 +11,8 @@ class App {
     this.winningNumber;
     this.bonusNumber = 0;
     this.purchase = 0;
+    this.winningLotto = new Array(6).fill(0);
+    this.profit = 0;
   }
   printLotto(number) {
     Console.print(`${number}개를 구매했습니다.`);
@@ -55,7 +57,27 @@ class App {
       if (this.winningNumber.isIncludes(input))
         Utils.error(ERROR_MSG.LOTTO_DUPLICATED);
       this.bonusNumber = input;
+      this.getWinningLottos();
+      this.printWinning();
+
+      Console.close();
     });
+  }
+
+  getWinningLottos() {
+    for (let lotto of this.lottos) {
+      this.winningLotto[
+        lotto.compare(this.winningNumber.getNumber(), this.bonusNumber)
+      ] += 1;
+    }
+  }
+
+  printWinning() {
+    Console.print("당첨통계\n---");
+    for (let rank = 5; rank > 0; rank--) {
+      Console.print(`${WINNING_MSG[rank]}${this.winningLotto[rank]}`);
+      this.profit += this.winningLotto[rank];
+    }
   }
 
   play() {

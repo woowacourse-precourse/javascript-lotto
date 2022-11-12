@@ -30,7 +30,24 @@ class Lotto {
   isIncludes(number) {
     return this.#numbers.includes(number);
   }
-
+  compare(winningLotto, bonusNumber) {
+    switch (new Set([...winningLotto, ...this.#numbers]).size) {
+      case 6:
+        return 1;
+      case 7:
+        if (winningLotto.includes(bonusNumber)) return 2;
+        return 3;
+      case 8:
+        return 4;
+      case 9:
+        return 5;
+      default:
+        return 0;
+    }
+  }
+  getNumber() {
+    return this.#numbers;
+  }
   getLotto() {
     return `[${this.#numbers.join(", ")}]`;
   }
