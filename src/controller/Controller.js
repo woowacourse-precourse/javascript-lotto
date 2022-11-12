@@ -67,7 +67,7 @@ class Controller {
   }
 
   renderStatistic() {
-    View.printStatistic(this.statistic);
+    View.printStatistic(this.statistic.counts);
 
     const percentageRevenue = calcPercentRounding(
       this.statistic.revenue,

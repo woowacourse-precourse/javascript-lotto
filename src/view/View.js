@@ -25,15 +25,15 @@ class View {
     Console.print('보너스 번호를 입력해 주세요.');
   }
 
-  static printStatistic(statistic) {
+  static printStatistic(counts) {
     Console.print('');
     Console.print('당첨 통계');
     Console.print('---');
-    Console.print(`${STATISTIC_PRINT.FIFTH} - ${statistic.stat[RULE.FIFTH.RANK]}개`);
-    Console.print(`${STATISTIC_PRINT.FOURTH} - ${statistic.stat[RULE.FOURTH.RANK]}개`);
-    Console.print(`${STATISTIC_PRINT.THIRD} - ${statistic.stat[RULE.THIRD.RANK]}개`);
-    Console.print(`${STATISTIC_PRINT.SECOND} - ${statistic.stat[RULE.SECOND.RANK]}개`);
-    Console.print(`${STATISTIC_PRINT.FIRST} - ${statistic.stat[RULE.FIRST.RANK]}개`);
+    Console.print(`${STATISTIC_PRINT.FIFTH} - ${counts[RULE.FIFTH.RANK]}개`);
+    Console.print(`${STATISTIC_PRINT.FOURTH} - ${counts[RULE.FOURTH.RANK]}개`);
+    Console.print(`${STATISTIC_PRINT.THIRD} - ${counts[RULE.THIRD.RANK]}개`);
+    Console.print(`${STATISTIC_PRINT.SECOND} - ${counts[RULE.SECOND.RANK]}개`);
+    Console.print(`${STATISTIC_PRINT.FIRST} - ${counts[RULE.FIRST.RANK]}개`);
   }
 
   static printPercentageRevenue(percentageRevenue) {
