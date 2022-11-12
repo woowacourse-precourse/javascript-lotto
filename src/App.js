@@ -7,10 +7,8 @@ const Validator = require('./Validator');
 const { LOTTO, MESSAGE } = require('./constants');
 
 class App {
-  constructor() {
-    this.lotto = undefined;
-    this.userLottos = [];
-  }
+  lotto;
+  userLottos;
 
   play() {
     this.askBuget();
@@ -37,13 +35,13 @@ class App {
       const winningNumbers = GameTools.stringToSortedNumberArray(inputValue);
       this.lotto = new Lotto(winningNumbers);
 
-      this.askBonusNumber(winningNumbers);
+      this.askBonusNumber();
     });
   }
 
-  askBonusNumber(winningNumbers) {
+  askBonusNumber() {
     Console.readLine(MESSAGE.ASK_BONUS_NUMBER, (bonusNumber) => {
-      Validator.throwErrorIfInvalidBonusNumber(winningNumbers, bonusNumber);
+      Validator.throwErrorIfInvalidBonusNumber(bonusNumber);
 
       this.printWinningStatistics(bonusNumber);
     });
