@@ -4,7 +4,7 @@ const MESSAGE = {
     `\n${purchaseAccount}개를 구매했습니다.`,
   INPUT_WINNING_NUMBER: '\n당첨 번호를 입력해주세요.\n',
   INPUT_BONUS_NUMBER: '\n보너스 번호를 입력해주세요.\n',
-  OUTPUT_WINNING_STATISTICS: '당첨 통계\n---',
+  OUTPUT_WINNING_STATISTICS: '\n당첨 통계\n---',
   RESULT: (
     fifthPlace,
     fourthPlace,
