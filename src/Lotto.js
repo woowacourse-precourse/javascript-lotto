@@ -1,5 +1,6 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const lottoValidation = require('./validation/lottoValidation');
+const { RANK, MATCH, MONEY } = require('./constant/constant');
 
 class LottoBuilder {
   constructor() {
@@ -70,7 +71,13 @@ class Lotto {
   }
 
   prizeCalculation(stats) {
-    const rewardArray = [2000000000, 30000000, 1500000, 50000, 5000];
+    const rewardArray = [
+      MONEY.RANK_ONE,
+      MONEY.RANK_TWO,
+      MONEY.RANK_THREE,
+      MONEY.RANK_FOUR,
+      MONEY.RANK_FIVE,
+    ];
 
     return stats.reduce((money, value, index) => {
       if (value > 0) {
@@ -96,26 +103,26 @@ class Lotto {
   }
 
   compareBonus(count, lotto, bonus) {
-    return count === 5 && lotto.includes(Number(bonus))
+    return count === MATCH.FIVE && lotto.includes(Number(bonus))
       ? (count += 0.5)
       : count;
   }
 
   rank(correct) {
-    if (correct === 3) {
-      return (this.stats[4] += 1);
+    if (correct === MATCH.THREE) {
+      return (this.stats[RANK.FIVE] += 1);
     }
-    if (correct === 4) {
-      return (this.stats[3] += 1);
+    if (correct === MATCH.FOUR) {
+      return (this.stats[RANK.FOUR] += 1);
     }
-    if (correct === 5) {
-      return (this.stats[2] += 1);
+    if (correct === MATCH.FIVE) {
+      return (this.stats[RANK.THREE] += 1);
     }
-    if (correct === 5.5) {
-      return (this.stats[1] += 1);
+    if (correct === MATCH.FIVE_BONUS) {
+      return (this.stats[RANK.TWO] += 1);
     }
-    if (correct === 6) {
-      return (this.stats[0] += 1);
+    if (correct === MATCH.SIX) {
+      return (this.stats[RANK.ONE] += 1);
     }
   }
 }

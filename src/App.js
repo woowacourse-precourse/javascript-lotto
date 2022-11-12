@@ -3,7 +3,7 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const { amountValidation } = require('./validation/amountValidation');
 const { winningValidation } = require('./validation/winningValidation');
 const { bonusValidation } = require('./validation/bonusValidation');
-
+const { INPUT_TEXT, STATS_TEXT, RANK } = require('./constant/constant');
 class App {
   constructor() {
     this.LottoBuilder = new LottoBuilder();
@@ -14,7 +14,7 @@ class App {
   }
 
   setPurchaseAmount() {
-    this.print('구입금액을 입력해 주세요.');
+    this.print(INPUT_TEXT.PURCHASE_AMOUNT);
     this.readLine('', (input) => {
       if (amountValidation(input)) {
         const lottoList = this.LottoBuilder.creatLottoList(input);
@@ -25,7 +25,7 @@ class App {
   }
 
   setWinningNumber() {
-    this.print('당첨 번호를 입력해 주세요.');
+    this.print(INPUT_TEXT.WINNING_NUMBER);
     this.readLine('', (input) => {
       if (winningValidation(input)) {
         this.LottoBuilder.WinningNumber = input.split(',');
@@ -35,7 +35,7 @@ class App {
   }
 
   setBonusNumber() {
-    this.print('보너스 번호를 입력해 주세요.');
+    this.print(INPUT_TEXT.BONUS_NUMBER);
     this.readLine('', (input) => {
       if (bonusValidation(input, this.LottoBuilder.WinningNumber)) {
         this.LottoBuilder.bonusNumber = input;
@@ -52,29 +52,29 @@ class App {
   }
 
   setOutputStats(lottoRanks, lottoYield) {
-    this.print(`당첨 통계`);
-    this.print(`---`);
+    this.print(STATS_TEXT.WINNING_STATS);
+    this.print(STATS_TEXT.HORIZONTAL_LINE);
     this.showRankList(lottoRanks);
     this.showYield(lottoYield);
   }
 
   showLottoList(lists) {
-    this.print(`${lists.length}개를 구매했습니다.`);
+    this.print(`${lists.length}${INPUT_TEXT.BOUGHT}`);
     lists.forEach((list) => {
       this.print(`[${list.join(', ')}]`);
     });
   }
 
   showRankList(lottoRanks) {
-    this.print(`3개 일치 (5,000원) - ${lottoRanks[4]}개`);
-    this.print(`4개 일치 (50,000원) - ${lottoRanks[3]}개`);
-    this.print(`5개 일치 (1,500,000원) - ${lottoRanks[2]}개`);
-    this.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${lottoRanks[1]}개`);
-    this.print(`6개 일치 (2,000,000,000원) - ${lottoRanks[0]}개`);
+    this.print(`${STATS_TEXT.MATCH_THREE}${lottoRanks[RANK.FIVE]}개`);
+    this.print(`${STATS_TEXT.MATCH_FOUR}${lottoRanks[RANK.FOUR]}개`);
+    this.print(`${STATS_TEXT.MATCH_FIVE}${lottoRanks[RANK.THREE]}개`);
+    this.print(`${STATS_TEXT.MATCH_FIVE_BONUS}${lottoRanks[RANK.TWO]}개`);
+    this.print(`${STATS_TEXT.MATCH_SIX}${lottoRanks[RANK.ONE]}개`);
   }
 
   showYield(lottoYield) {
-    this.print(`총 수익률은 ${lottoYield}%입니다.`);
+    this.print(`${STATS_TEXT.YIELD}${lottoYield}${STATS_TEXT.YIELD_ENDING}`);
   }
 
   readLine(message, callback) {
