@@ -5,6 +5,10 @@ const APP_MESSAGE = {
   GET_RANK_STATISTICS: '당첨 통계\n---',
 };
 
+const EXCEPTION_MESSAGE = {
+  INPUT_ERROR: '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.',
+};
+
 const RANK_STATISTICS_MESSAGE = {
   RANK_5: (count) => `3개 일치 (5,000원) - ${count}개`,
   RANK_4: (count) => `4개 일치 (50,000원) - ${count}개`,
@@ -41,6 +45,7 @@ const LOTTERY_INFORMATION = {
 
 module.exports = {
   APP_MESSAGE,
+  EXCEPTION_MESSAGE,
   RANK_STATISTICS_MESSAGE,
   LOTTERY_INFORMATION,
   LOTTERY_PRIZE,
