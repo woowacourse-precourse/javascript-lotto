@@ -12,9 +12,6 @@ class App {
       let winNumbers = await this.getWinNumbers();
       Console.print("\n");
       let bonusNumbers = await this.getBonusNumber();
-      if (winNumbers.has(bonusNumbers)) {
-        throw new Error("[ERROR]");
-      }
     } catch (e) {}
   }
 
@@ -67,6 +64,24 @@ class App {
         } else {
           reject(() => {
             throw new Error("[ERROR]유효하지 않은값");
+          });
+        }
+      });
+    });
+  }
+
+  isValidBonusNumber(input) {
+    return Number(input) >= 1 && Number(input) <= 45;
+  }
+
+  getBonusNumber() {
+    return new Promise((resolve, reject) => {
+      Console.readLine(" 번호를 입력해 주세요.\n", (input) => {
+        if (this.isValidBonusNumber(input)) {
+          resolve(input);
+        } else {
+          reject(() => {
+            throw new Error("[ERROR] 유효하지 않은값");
           });
         }
       });
