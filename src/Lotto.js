@@ -1,4 +1,6 @@
+const { Random } = require('@woowacourse/mission-utils');
 const { validate, isLottoNumber } = require('./Validator');
+const { LOTTO } = require('./constants');
 
 class Lotto {
   #numbers;
@@ -7,7 +9,13 @@ class Lotto {
     validate(numbers, isLottoNumber);
     this.#numbers = numbers;
   }
-  // TODO: 추가 기능 구현
+
+  static generateTicket() {
+    const { MIN_NUMBER, MAX_NUMBER, SIZE } = LOTTO;
+    return new Lotto(
+      Random.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, SIZE),
+    );
+  }
 }
 
 module.exports = Lotto;

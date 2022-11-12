@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { PURCHASE, LOTTO } = require('./constants');
+const { LOTTO } = require('./constants');
 
 class Validator {
   static #ERROR_MESSAGE = Object.freeze({
@@ -16,7 +16,7 @@ class Validator {
 
   static isPurchaseInput(input) {
     const NUMBER_INPUT_PATTERN = /^[1-9][0-9]+$/;
-    return NUMBER_INPUT_PATTERN.test(input) && !(Number(input) % PURCHASE.UNIT);
+    return NUMBER_INPUT_PATTERN.test(input) && !(Number(input) % LOTTO.PRICE);
   }
 
   static isLottoNumber(numbers) {
