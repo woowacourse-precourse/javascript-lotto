@@ -43,7 +43,7 @@ class App {
       input = GameUtils.toArray(input);
       this.lotto.winning.getBonus(input);
       this.getResult();
-      GamePrint.result(this.prize);
+      GamePrint.result(this.prize, this.profitRate);
       MissionUtils.Console.close();
     });
   }

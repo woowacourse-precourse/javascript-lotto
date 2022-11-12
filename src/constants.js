@@ -30,6 +30,8 @@ const MESSAGES = {
     requireBonusNumbers: '보너스 번호를 입력해 주세요.',
 
     buySheets: '개를 구매했습니다.',
+    
+    resultHeader: '당첨 통계\n---',
   },
   ERROR: {
     isBlank: `${HEADER.error} 공백이 아닌 값을 입력해주세요!`,

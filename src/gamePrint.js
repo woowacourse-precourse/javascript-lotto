@@ -14,7 +14,8 @@ class GamePrint {
   static lottoNumber(numbers) {
     MissionUtils.Console.print(numbers);
   }
-  static result(prize) {
+  static result(prize, profitRate) {
+    MissionUtils.Console.print(MESSAGES.GAME.resultHeader);
     for(let rank in prize) {
       if(rank === '5') {
         MissionUtils.Console.print(`${rank}개 일치 (${GameUtils.addComma(prize[rank].nonBonus.winningAmount)}원) - ${prize[rank].nonBonus.ea}개`);
@@ -23,6 +24,7 @@ class GamePrint {
       }
       MissionUtils.Console.print(`${rank}개 일치 (${GameUtils.addComma(prize[rank].winningAmount)}원) - ${prize[rank].ea}개`);
     }
+    MissionUtils.Console.print(`총 수익률은 ${profitRate}%입니다.`);
   }
 }
 
