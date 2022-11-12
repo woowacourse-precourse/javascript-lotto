@@ -57,6 +57,7 @@ class LottoHandler {
   startCalculate() {
     const calculate = new Calculate();
     calculate.rankingCalculate(this.lottoList, this.answerNumber, this.bonusNumber);
+    // calculate.prizeCalculate(this.price);
   }
 
 

@@ -6,11 +6,13 @@ const CONSTANT = {
     BONUS: '\n보너스 번호를 입력해 주세요.\n',
   },
 
-  // RESULT: {
-  //   BALL: '볼',
-  //   STRIKE: '스트라이크',
-  //   NOTHING: '낫싱',
-  // },
+  RESULT: {
+    RESULT_START: '당첨 통계\n---',
+    RANKING_LIST: ['3개 일치 (5,000원) - ', '4개 일치 (50,000원) - ', 
+    '5개 일치 (1,500,000원) - ', '5개 일치, 보너스 볼 일치 (30,000,000원) - ', 
+    '6개 일치 (2,000,000,000원) - '],
+    BENEFIT: '총 수익률은 ',
+  },
 
   ERROR: {
     INVALID_PRICE: '[ERROR] 구입 금액은 1000단위여야 합니다.',
@@ -25,6 +27,8 @@ const CONSTANT = {
 
   NUMBER: {
     ANSWER_COUNT: [3,4,5,5,6],
+    PRIZE_MONEY: [5000, 50000, 1500000, 30000000, 2000000000],
+    
     // ARRAY_LENGTH: 3,
     // MIN_RANGE: 1,
     // MAX_RANGE: 9,
