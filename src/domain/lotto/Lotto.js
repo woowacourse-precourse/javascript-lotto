@@ -35,7 +35,7 @@ class Lotto {
   }
 
   includes(number) {
-
+    return this.#numbers.some((value) => value.getNumber() === number);
   }
 }
 
