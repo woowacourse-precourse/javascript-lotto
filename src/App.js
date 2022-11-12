@@ -1,5 +1,6 @@
 const Machine = require('./Machine');
 const Player = require('./Player');
+const Lotto = require('./Lotto');
 const { Console } = require('./util');
 const { MESSAGES } = require('./constants');
 
@@ -22,7 +23,14 @@ class App {
   }
 
   #askWinningNum() {
-    Console.print('done.')
+    Console.readLine(`\n${MESSAGES.GET_LOTTOS}\n`, (numbers) => {
+      this.lotto = new Lotto(numbers.split(',').map(Number));
+      this.#askBonusNum();
+    });
+  }
+
+  #askBonusNum() {
+    Console.print(this.lotto.winningNums);
   }
 }
 
