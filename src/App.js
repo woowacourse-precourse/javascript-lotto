@@ -1,5 +1,6 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
+const Validator = require('./Validator');
 const {
   LOTTO_NUMBER_LENGTH,
   LOTTO_RANGE_BEGIN,
@@ -11,12 +12,6 @@ const {
   CORRECT_FIVE_BONUS,
   CORRECT_SIX,
 } = require('./constants/lotto');
-const {
-  ERROR_WRONG_LENGTH,
-  ERROR_DUPLICATED,
-  ERROR_WRONG_RANGE,
-  ERROR_WRONG_MONEY,
-} = require('./constants/error');
 
 class App {
   #money;
@@ -31,44 +26,6 @@ class App {
     this.#matching = [0, 0, 0, 0, 0];
   }
 
-  isDistinct(numbers) {
-    let set = new Set(numbers);
-    return numbers.length === set.size;
-  }
-
-  isInRange(number) {
-    return (
-      /^[0-9]+$/.test(number) &&
-      number >= LOTTO_RANGE_BEGIN &&
-      number <= LOTTO_RANGE_END
-    );
-  }
-
-  validateNumbers(numbers) {
-    if (numbers.length !== LOTTO_NUMBER_LENGTH) {
-      throw new Error(ERROR_WRONG_LENGTH);
-    }
-    if (!this.isDistinct(numbers)) {
-      throw new Error(ERROR_DUPLICATED);
-    }
-
-    numbers.forEach((number) => {
-      if (!this.isInRange(Number(number))) {
-        throw new Error(ERROR_WRONG_RANGE);
-      }
-    });
-  }
-
-  validateMoney(money) {
-    if (
-      !/^[0-9]+$/.test(money) ||
-      Number(money) <= 0 ||
-      Number(money) % 1000 !== 0
-    ) {
-      throw new Error(ERROR_WRONG_MONEY);
-    }
-  }
-
   issueLotto() {
     const numbers = Random.pickUniqueNumbersInRange(
       LOTTO_RANGE_BEGIN,
@@ -80,7 +37,7 @@ class App {
   }
 
   buyLottos(money) {
-    this.validateMoney(money);
+    Validator.validateMoney(money);
     this.#money = Number(money);
     for (let i = 0; i < money / 1000; i += 1) this.issueLotto();
   }
@@ -93,12 +50,12 @@ class App {
   }
 
   setWinningNumbers(numbers) {
-    this.validateNumbers(numbers);
+    Validator.validateNumbers(numbers);
     this.#winningNumbers = numbers.map((number) => Number(number));
   }
 
   setBonusNumber(number) {
-    this.isInRange(number);
+    Validator.isInRange(number);
     this.#bonusNumber = Number(number);
   }
 
