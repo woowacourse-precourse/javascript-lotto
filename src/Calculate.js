@@ -60,6 +60,7 @@ class Calculate {
     });
     const RESULT = this.calculate_rate();
     MissionUtils.Console.print(`총 수익률은 ${RESULT}%입니다.`);
+    return MissionUtils.Console.close();
   }
 
   calculate_profit() {
