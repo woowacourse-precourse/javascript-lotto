@@ -43,6 +43,34 @@ class App {
     }
 
     this.lottoList = lottos;
+
+    return this.printLottoList();
+  }
+
+  printLottoList() {
+    this.lottoList.forEach((lotto) => {
+      const lottoMessage = App.getLottoPrintMessage(lotto);
+      print(lottoMessage);
+    });
+
+    print('\n');
+  }
+
+  static getLottoPrintMessage(lotto = []) {
+    const { length } = lotto;
+    let message = '';
+    const open = '[';
+    const close = ']';
+
+    lotto.forEach((number, index) => {
+      if (index === 0 || index === length) {
+        message += number;
+        return;
+      }
+      message += `, ${number}`;
+    });
+
+    return open + message + close;
   }
 }
 
