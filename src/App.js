@@ -7,15 +7,17 @@ class App {
   }
 
   async play() {
-    this.userInput();
-    this.prizeInput();
+    await this.userInput();
+    await this.prizeInput();
   }
 
   userInput() {
-    MissionUtils.Console.readLine('구입금액을 입력해 주세요. \n', async (userMoney) => {
-      this.numberOfAvailablePurchase(userMoney);
-      resolve();
-    });     
+    return new Promise((resolve, reject) => {
+      MissionUtils.Console.readLine('구입금액을 입력해 주세요. \n', (userMoney) => {
+        this.numberOfAvailablePurchase(userMoney);
+        resolve();
+      })
+    })    
   }
 
   prizeInput() {
@@ -54,9 +56,9 @@ class App {
       MissionUtils.Console.print(element);
     });
   }
-
-
-  
 }
+
+const lto = new App();
+lto.play();
 
 module.exports = App;
