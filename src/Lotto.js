@@ -30,6 +30,20 @@ class Lotto {
     return this.#numbers.join(separator);
   }
 
+  match(winningNumbers, bonusNumber) {
+    let matchCount = 0;
+    let bonusMatchBool = false;
+    const numbers = new Set(this.#numbers);
+
+    winningNumbers.forEach((value) => {
+      if (numbers.has(value)) matchCount += 1;
+    });
+
+    if (numbers.has(bonusNumber)) bonusMatchBool = true;
+
+    return { matchCount, bonusMatchBool };
+  }
+
   static #randomLotto() {
     return MissionUtils.Random.pickUniqueNumbersInRange(
       LottoConfig.MIN_NUMBER,
