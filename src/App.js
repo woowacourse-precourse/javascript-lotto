@@ -3,6 +3,7 @@ const { Console, Random } = require("@woowacourse/mission-utils");
 class App {
   inputAmount;
   generatedLottos = [];
+  lottoNumbers;
 
   play() {
     this.askForAmount();
@@ -43,6 +44,14 @@ class App {
     for (let i = 0; i < generatedLottos.length; i++) {
       Console.print(generatedLottos[i]);
     }
+    this.askForLottoNumbers();
+  }
+
+  askForLottoNumbers() {
+    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (input) => {
+      this.lottoNumbers = input.split(",").map((el) => Number(el));
+      this.validateInputLottoNumbers();
+    });
   }
 }
 
