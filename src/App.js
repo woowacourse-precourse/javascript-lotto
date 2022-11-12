@@ -15,7 +15,7 @@ class App {
     }
     this.prize = JSON.parse(JSON.stringify(PRIZE));
     this.totalPrizeMoney = 0;
-    this.yield = 0;
+    this.profitRate = 0;
   }
   play() {
     this.submitAmount();
@@ -43,8 +43,6 @@ class App {
       input = GameUtils.toArray(input);
       this.lotto.winning.getBonus(input);
       this.getResult();
-      console.log(this.prize);
-      console.log(this.totalPrizeMoney);
       MissionUtils.Console.close();
     });
   }
@@ -53,6 +51,7 @@ class App {
       const match = this.lotto.winning.compare(lotto);
       this.setPrize(match);
     });
+    this.profitRate = GameUtils.getProfitRate(this.lotto.amount, this.totalPrizeMoney);
   }
   setPrize(match) {
     match.lotto = match.lotto.toString();

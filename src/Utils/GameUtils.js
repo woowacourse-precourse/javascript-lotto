@@ -19,6 +19,12 @@ class GameUtils {
     const nonBlank = value.replace(regex, '');
     return nonBlank;
   }
+  static getProfitRate(amount, total) {
+    if(total === 0) return 0;
+    const decimalValue = (total / amount) * 100;
+    const profitRate = decimalValue.toFixed(2);
+    return profitRate;
+  }
 }
 
 module.exports = GameUtils;
