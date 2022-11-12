@@ -14,7 +14,6 @@ class Lotto {
     }
     numbers.forEach(this.checkNumberValidity);
     const UNIQUE_NUMBERS = new Set(numbers);
-
     if (UNIQUE_NUMBERS.size !== 6) {
       throw new Error('[ERROR] 로또 번호는 중복이 없어야 합니다.');
     }
@@ -28,6 +27,11 @@ class Lotto {
     if (!VALID_NUMBER_REGEX.test(num) || !VALID_BOUND) {
       throw new Error('[ERROR] 로또 번호는 1 ~ 45 사이의 숫자여야 합니다.');
     }
+  }
+
+  setBounusNumber(bonus) {
+    this.checkBonusNumberValidity(bonus);
+    this.#numbers.push(+bonus);
   }
 }
 
