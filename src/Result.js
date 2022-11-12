@@ -3,9 +3,9 @@ const Console = require("@woowacourse/mission-utils").Console;
 const NOTIFY_WINNING_STATE = "\n당첨 통계\n---";
 
 class Result {
-  constructor(amount, lottoArray, userLotto, bonusNumber) {
+  constructor(amount, bundleOfLotto, userLotto, bonusNumber) {
     this.amount = Number(amount);
-    this.lottoArray = lottoArray;
+    this.bundleOfLotto = bundleOfLotto;
     this.userLotto = userLotto;
     this.bonusNumber = bonusNumber;
 
@@ -15,7 +15,7 @@ class Result {
   }
 
   calculateEachLotto() {
-    this.lottoArray.forEach((lotto) => {
+    this.bundleOfLotto.forEach((lotto) => {
       this.calculateOneLotto(lotto);
     });
 

@@ -40,14 +40,14 @@ class App {
   }
 
   createRandomLotto(amount) {
-    this.lottoArray = [];
+    this.bundleOfLotto = [];
 
-    while (this.lottoArray.length < amount) {
+    while (this.bundleOfLotto.length < amount) {
       const randomLotto = Random.pickUniqueNumbersInRange(1, 45, 6);
 
       const sortedLotto = this.sortLottoNumber(randomLotto);
 
-      this.lottoArray.push(sortedLotto);
+      this.bundleOfLotto.push(sortedLotto);
     }
   }
 
@@ -58,7 +58,7 @@ class App {
   }
 
   showEveryLotto() {
-    this.lottoArray.forEach((item) => {
+    this.bundleOfLotto.forEach((item) => {
       Console.print(`[${item.join(", ")}]`);
     });
   }
@@ -71,7 +71,7 @@ class App {
 
       const userLotto = this.getUserLotto(userInput);
 
-      const lotto = new Lotto(amount, this.lottoArray, userLotto);
+      const lotto = new Lotto(amount, this.bundleOfLotto, userLotto);
     });
   }
 

@@ -12,9 +12,9 @@ const ERROR_SAME_NUMBER_EXIST =
 class Lotto {
   #numbers;
 
-  constructor(amount, lottoArray, numbers) {
+  constructor(amount, bundleOfLotto, numbers) {
     this.amount = amount;
-    this.lottoArray = lottoArray;
+    this.bundleOfLotto = bundleOfLotto;
     this.validate(numbers);
     this.checkNumberRanges(numbers);
     this.checkNoSameNumber(numbers);
@@ -50,7 +50,7 @@ class Lotto {
 
       const result = new Result(
         this.amount,
-        this.lottoArray,
+        this.bundleOfLotto,
         this.#numbers,
         bonusNumber.userBonus
       );
