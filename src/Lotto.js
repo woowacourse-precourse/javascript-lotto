@@ -1,18 +1,44 @@
-const Lotto = class {
+const ErrorBoundary = require('./error/ErrorBoundary');
+const { LOTTO_ERROR_MESSAGE } = require('./constants/lotto');
+
+const Lotto = class extends ErrorBoundary {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    super();
     this.#numbers = numbers;
+    this.setup();
+  }
+
+  setup() {
+    const validateLottoCallback = () => this.validate(this.#numbers);
+    this.errorLogger.onCallback(validateLottoCallback);
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+    const isNumberLengthValid = numbers.length === 6;
+    const isNumberRangeDuplicated = numbers.length === [...new Set(numbers)].length;
+    const isNumberRangeValid = numbers.every(number => number >= 1 && number <= 45);
+
+    const isLottoIsValid = isNumberLengthValid && isNumberRangeDuplicated && isNumberLengthValid;
+    if (isLottoIsValid === true) {
+      return { status: true };
     }
+
+    const lottoErrorMessage = this.getLottoErrorMessage({
+      isNumberLengthValid,
+      isNumberRangeDuplicated,
+      isNumberRangeValid,
+    });
+
+    return { status: false, message: lottoErrorMessage };
   }
 
-  // TODO: 추가 기능 구현
+  getLottoErrorMessage({ isNumberLengthValid, isNumberRangeDuplicated, isNumberRangeValid }) {
+    if (isNumberLengthValid === false) return LOTTO_ERROR_MESSAGE.LENGTH;
+    if (isNumberRangeDuplicated === false) return LOTTO_ERROR_MESSAGE.DUPLICATED;
+    if (isNumberRangeValid === false) return LOTTO_ERROR_MESSAGE.RANGE;
+  }
 };
 
 module.exports = Lotto;
