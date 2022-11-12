@@ -22,7 +22,11 @@ class Lotto {
   }
 
   isInRange(number) {
-    return number >= LOTTO_RANGE_BEGIN && number <= LOTTO_RANGE_END;
+    return (
+      /^[0-9]+$/.test(number) &&
+      number >= LOTTO_RANGE_BEGIN &&
+      number <= LOTTO_RANGE_END
+    );
   }
 
   validateNumbers(numbers) {
@@ -33,7 +37,7 @@ class Lotto {
       throw new Error(ERROR_DUPLICATED);
     }
     numbers.forEach((number) => {
-      if (!/^[0-9]{1,2}$/.test(number) || !this.isInRange(Number(number))) {
+      if (!this.isInRange(Number(number))) {
         throw new Error(ERROR_WRONG_RANGE);
       }
     });
