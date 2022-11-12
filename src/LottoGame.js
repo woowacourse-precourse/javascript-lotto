@@ -81,7 +81,7 @@ class LottoGame {
 
   calculateResult() {
     this.calculateMatching();
-    // this.calculateYield();
+    this.calculateYield();
   }
 
   calcaulateMatching() {
@@ -102,6 +102,10 @@ class LottoGame {
 
   checkBonuse(lottoNumbers) {
     return lottoNumbers.includes(this.winningNumber.bonuse) ? 'bonuse' : 5;
+  }
+
+  calculateYield() {
+    this.result.yield = ((this.result.earn / this.money) * 100).toFixed(1);
   }
 }
 
