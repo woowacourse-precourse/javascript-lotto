@@ -111,7 +111,9 @@ class App {
     if (correct === 4) this.#matching[CORRECT_FOUR] += 1;
     if (correct === 5) {
       this.#matching[
-        lotto.includes(this.#bonusNumber) ? CORRECT_FIVE_BONUS : CORRECT_FIVE
+        lotto.getNumbers().includes(this.#bonusNumber)
+          ? CORRECT_FIVE_BONUS
+          : CORRECT_FIVE
       ] += 1;
     }
     if (correct === 6) this.#matching[CORRECT_SIX] += 1;
@@ -123,10 +125,11 @@ class App {
       (matchedNumber, index) => (prize += matchedNumber * PRIZE[index])
     );
 
-    return prize / this.#money;
+    return (prize / this.#money) * 100;
   }
 
   printResult() {
+    this.#lottos.forEach((lotto) => this.calculateMatching(lotto));
     Console.print(`
 당첨 통계
 ---
@@ -138,14 +141,15 @@ class App {
     }개
 6개 일치 (2,000,000,000원) - ${this.#matching[CORRECT_SIX]}개
 총 수익률은 ${this.getEarningRate().toFixed(1)}%입니다.`);
+
+    Console.close();
   }
 
   readWinningNumbers() {
-    Console.readLine('당첨 번호를 입력해주세요\n', (input) => {
+    Console.readLine('\n당첨 번호를 입력해주세요\n', (input) => {
       this.setWinningNumbers(input.split(','));
-      Console.readLine('보너스 번호를 입력해주세요\n', (input) => {
+      Console.readLine('\n보너스 번호를 입력해주세요\n', (input) => {
         this.setBonusNumber(input);
-        this.#lottos.forEach((lotto) => this.calculateMatching(lotto));
         this.printResult();
       });
     });
