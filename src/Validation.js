@@ -31,8 +31,8 @@ class Validation {
 
     return input.map((eachLetter) => parseInt(eachLetter, 10)).every(isNumber);
   }
-  static isStartedZero(input) {
-    return input.startsWith("0");
+  static isStartedZero(purchaseAmount) {
+    return purchaseAmount.startsWith("0");
   }
   static isDivisibleByLottoPrice(purchaseAmount) {
     const remainder = parseInt(purchaseAmount, 10) % LOTTO_PRICE;
