@@ -44,13 +44,16 @@ class Lotto {
     this.bonusNumber = bonusNumber;
     this.stats = [0, 0, 0, 0, 0];
     this.yield = null;
+    this.validate(numbers);
   }
 
-  progress(numbers) {
-    if (lottoValidation(numbers)) {
-      this.setStats(this.#numbers, this.lottoList, this.bonusNumber);
-      this.setYield(this.stats, this.lottoList);
-    }
+  validate(numbers) {
+    lottoValidation(numbers);
+  }
+
+  progress() {
+    this.setStats(this.#numbers, this.lottoList, this.bonusNumber);
+    this.setYield(this.stats, this.lottoList);
   }
 
   setStats(numbers, lottos, bonus) {
