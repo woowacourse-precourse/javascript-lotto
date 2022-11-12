@@ -1,16 +1,6 @@
 const Lotto=require("../Lotto.js");
 class Check{
 
-    checkNumberRange(winningArr){
-        for(let index=0;index<winningArr.length;index++){
-            if(winningArr[index]>=1&&winningArr[index]<=45){
-                return true;
-            }
-            return false;
-        }
-        
-    }
-
     checkDivideMoney(money){
         if(!(money%1000==0)){
             throw new Error("[ERROR]");
@@ -21,9 +11,10 @@ class Check{
     checkWinNumVaildation(winningstr){; 
         let winningArr=winningstr.split(",").map(Number);
         let lotto=new Lotto(winningArr);
-        if(!this.checkNumberRange(winningArr)){
-            throw new Error("[ERROR]");
-        }
+        // if(!lotto.checkNumberRange(winningArr)){
+        //     throw new Error("[ERROR]");
+        // }
+        lotto.checkNumberRange(winningArr);
         lotto.validate(winningArr);
         lotto.checkUniqueRange(winningArr);
         return true;
