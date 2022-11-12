@@ -62,12 +62,17 @@ class App {
   }
 
   lottosWinningBonus() {
+    console.log(this.lottoInfo['lottos'][0].length);
     for (let i = 0; i < this.lottoInfo['lottos'].length; i++) {
       this.lottoInfo.numberOfCorrectNumbers = 0;
       this.lottoInfo.bonusNumber = 0;
       for (let j = 0; j < this.winningNumbers.length; j++) {
-        if (this.lottoInfo['lottos'][i].includes(this.winningNumbers[j])) this.lottoInfo.numberOfCorrectNumbers += 1;
-        if (this.lottoInfo.numberOfCorrectNumbers === 5 && this.lottoInfo['lottos'][i].includes(this.bonusNumber)) this.lottoInfo.bonusNumber += 1;
+        if (this.lottoInfo['lottos'][i].includes(this.winningNumbers[j])) {
+          this.lottoInfo.numberOfCorrectNumbers += 1;
+        }
+        if (this.lottoInfo.numberOfCorrectNumbers === 5 && this.lottoInfo['lottos'][i].includes(this.bonusNumber)) {
+          this.lottoInfo.bonusNumber += 1;
+        }
       }
       this.countWinning();
     }

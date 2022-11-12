@@ -13,11 +13,12 @@ class InputMoney {
   }
 
   validateMoney(inputMoney) {
-    return (!(
-      this.utils.isBlank(inputMoney) ||
-      !this.utils.isNumber(inputMoney) ||
-      !this.utils.isThousandUnit(inputMoney)
-    ));
+    return (
+      !this.utils.isBlank(inputMoney) &&
+      this.utils.isNumber(inputMoney) &&
+      this.utils.isThousandUnit(inputMoney) &&
+      this.utils.isPositive(inputMoney)
+    );
   }
 }
 

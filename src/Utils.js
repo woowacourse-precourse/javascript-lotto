@@ -13,6 +13,10 @@ class Utils {
     return (input % 1000 === 0);
   }
 
+  isPositive(input) {
+    return (input >= 0);
+  }
+
   isValidLottoNumber = (number) => {
     return (
       Number(number) >= 1 &&
