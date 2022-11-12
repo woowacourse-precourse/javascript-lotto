@@ -1,5 +1,6 @@
 const { Console } = require('./utils/missionUtil');
 const { OUTPUT_MESSAGES, WINNING_AMOUNT } = require('./common/messages');
+const { LOTTO_MATCH } = require('./common/constants');
 
 class LottoView {
   static getUserInput(query, callback) {
@@ -20,12 +21,14 @@ class LottoView {
     Console.print(`\n${OUTPUT_MESSAGES.WIN_STATS}`);
   }
 
-  static printMatchNumbers() {
-    Console.print(`${OUTPUT_MESSAGES.TOTAL(3, `${WINNING_AMOUNT[5]}`, 0)}`); // 카운트 추가 및 하드코딩 수정하기
-    Console.print(`${OUTPUT_MESSAGES.TOTAL(4, `${WINNING_AMOUNT[4]}`, 0)}`); // 카운트 추가 및 하드코딩 수정하기
-    Console.print(`${OUTPUT_MESSAGES.TOTAL(5, `${WINNING_AMOUNT[3]}`, 0)}`); // 카운트 추가 및 하드코딩 수정하기
-    Console.print(`${OUTPUT_MESSAGES.TOTAL_BONUS(`${WINNING_AMOUNT[2]}`, 0)}`); // 카운트 추가 및 하드코딩 수정하기
-    Console.print(`${OUTPUT_MESSAGES.TOTAL(6, `${WINNING_AMOUNT[1]}`, 0)}`); // 카운트 추가 및 하드코딩 수정하기
+  static printMatchNumbers({ three, four, five, fiveBounus, six }) {
+    Console.print(
+      `${OUTPUT_MESSAGES.TOTAL(`${LOTTO_MATCH.THREE}`, `${WINNING_AMOUNT[5]}`, three)}`
+    );
+    Console.print(`${OUTPUT_MESSAGES.TOTAL(`${LOTTO_MATCH.FOUR}`, `${WINNING_AMOUNT[4]}`, four)}`);
+    Console.print(`${OUTPUT_MESSAGES.TOTAL(`${LOTTO_MATCH.FIVE}`, `${WINNING_AMOUNT[3]}`, five)}`);
+    Console.print(`${OUTPUT_MESSAGES.TOTAL_BONUS(`${WINNING_AMOUNT[2]}`, fiveBounus)}`);
+    Console.print(`${OUTPUT_MESSAGES.TOTAL(`${LOTTO_MATCH.SIX}`, `${WINNING_AMOUNT[1]}`, six)}`);
   }
 }
 
