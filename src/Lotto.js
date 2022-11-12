@@ -83,10 +83,6 @@ class Lotto {
     }
   }
 
-  toString(separator = ' ') {
-    return this.#numbers.join(separator);
-  }
-
   match(winningNumbers, bonusNumber) {
     let matchCount = 0;
     let bonusMatchBool = false;
@@ -106,6 +102,10 @@ class Lotto {
     const prizeStatus = Lotto.getPrizeStatus(matchCount, bonusMatchBool);
     const prizeMoney = Lotto.getPrizeMoney(prizeStatus);
     return { prizeStatus, prizeMoney };
+  }
+
+  toString(separator = ' ') {
+    return this.#numbers.join(separator);
   }
 }
 

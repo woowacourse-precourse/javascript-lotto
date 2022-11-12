@@ -18,6 +18,12 @@ class App {
 
   play() {}
 
+  buyLotto() {
+    for (let purchase = 0; purchase < this.#money; purchase += LottoConfig.PRICE) {
+      this.#lottoList.push(new Lotto());
+    }
+  }
+
   setMoney() {
     let money;
     MissionUtils.Console.readLine(
@@ -27,12 +33,6 @@ class App {
 
     App.#validateMoney(money);
     this.#money = money;
-  }
-
-  buyLotto() {
-    for (let purchase = 0; purchase < this.#money; purchase += LottoConfig.PRICE) {
-      this.#lottoList.push(new Lotto());
-    }
   }
 
   printLottoList() {
