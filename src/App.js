@@ -54,7 +54,6 @@ class App {
     return this.makeWinNumber();
   }
 
-  // 로또 당첨번호 생성
   makeWinNumber() {
     Console.readLine(APP_MESSAGE.INSERT_WIN_NUMBER, (userInput) => {
       const answerLottery = userInput.split(',').map((separateInput) => {
@@ -63,9 +62,22 @@ class App {
       });
 
       if (!isValidLottery(answerLottery))
-        return this.makeException('INPUT_EXCEPTION');
+        return this.makeException('INPUT_ERROR');
 
       this.#winNumber = answerLottery;
+      return this.makeBonusNumber();
+    });
+  }
+
+  makeBonusNumber() {
+    Console.readLine(APP_MESSAGE.INSERT_BONUS_NUMBER, (userInput) => {
+      const inputBonusNumber = Number(userInput);
+      if (this.#winNumber.includes(inputBonusNumber))
+        return this.makeException('OVERLAPPED_NUMBER');
+
+      this.#bonusNumber = inputBonusNumber;
+      Console.print(this.#bonusNumber);
+      return this.printProfitRate();
     });
   }
 
