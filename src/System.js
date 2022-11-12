@@ -71,10 +71,7 @@ const SYSTEM = Object.freeze({
     printResult(lottos, winningLotto, bonusNumber, cash) {
         let results = this.makeResults(lottos, winningLotto, bonusNumber);
 
-        for (let rank = 5; rank >= 1; rank--) {
-            let rankIndex = rank - 1;
-            SYSTEM.print(`${MESSAGE.RANK_TEXT[rankIndex]} - ${results[rankIndex]}개`)
-        }
+        this.printWinningHistory(results);
 
         let rate = this.calulateRate(cash, results);
         SYSTEM.print(`총 수익률은 ${rate}%입니다.`);
@@ -98,6 +95,13 @@ const SYSTEM = Object.freeze({
             if (rank === 3 && lotto.includes(bonusNumber)) rank--;
         }
         return rank - 1;
+    },
+
+    printWinningHistory(results) {
+        for (let rank = 5; rank >= 1; rank--) {
+            let rankIndex = rank - 1;
+            SYSTEM.print(`${MESSAGE.RANK_TEXT[rankIndex]} - ${results[rankIndex]}개`)
+        }
     },
 
     calulateRate(cash, result) {
