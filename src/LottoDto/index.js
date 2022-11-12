@@ -1,5 +1,5 @@
 const LottoValidator = require('./Lotto.validator');
-const LottoComputerDto = require('./LottoComputer.dto');
-const LottoUserDto = require('./LottoUser.dto');
+const LottoInputDto = require('./LottoInputDto.dto');
+const LottoPurchaseDto = require('./LottoPurchaseDto.dto');
 
-module.exports = { LottoValidator, LottoComputerDto, LottoUserDto };
+module.exports = { LottoValidator, LottoInputDto, LottoPurchaseDto };
