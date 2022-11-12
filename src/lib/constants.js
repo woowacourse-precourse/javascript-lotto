@@ -29,6 +29,10 @@ const ERROR = {
   PURCHASE_MONEY_LESS_STANDARD:
     '[ERROR] 로또의 구입 금액은 1000원 이상으로 입력해주세요.',
   PURCHASE_MONEY_NAN: '[ERROR] 로또의 구입 금액은 숫자만 입력 가능합니다.',
+  LOTTO_LENGTH_ERROR: '[ERROR] 로또 번호는 6개여야 합니다.',
+  DUPLICATE_LOTTO_ERROR: '[ERROR] 로또 번호는 중복되면 안됩니다.',
+  INCORRECT_RANGE_ERROR: '[ERROR] 1-45 범위의 숫자를 입력해주세요.',
+  DUPLICATE_BONUS_ERROR: '[ERROR] 보너스 번호와 당첨 번호가 중복되었습니다.',
 };
 
 module.exports = { MESSAGE, ERROR, VALUE };
