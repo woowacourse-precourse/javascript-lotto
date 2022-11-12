@@ -10,16 +10,22 @@ class Lotto {
 
   validate(numbers) {
     const deduplicationNumbers = new Set(numbers);
-    if (deduplicationNumbers.size !== 6) {
+    if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
-    this.validateWinningNumbersRange(numbers.toString());
+    if (deduplicationNumbers.size !== 6) {
+      throw new Error("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+    }
+    this.validateWinningNumbersRange(numbers);
   }
 
   validateWinningNumbersRange(numbers) {
-    if (!numbers.match(/[1-45]/)) {
-      throw new Error("[ERROR] 로또 번호는 1 ~ 45 사이의 숫자입니다.");
-    }
+    console.log(numbers);
+    numbers.forEach((element) => {
+      if (1 > element || element > 45) {
+        throw new Error("[ERROR] 로또 번호는 1 ~ 45 사이의 숫자입니다.");
+      }
+    });
   }
 
   validateBonus(numbers, bonusNumber) {
