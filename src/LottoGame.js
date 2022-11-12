@@ -5,6 +5,10 @@ class LottoGame {
   constructor() {
     this.money = 0;
     this.purchaseList = [];
+    this.winningNumber = {
+      main: [],
+      bonuse: [],
+    },
   }
 
   run() {
@@ -40,6 +44,13 @@ class LottoGame {
   drawWinningNumbers() {
     Console.readLine('\n당첨 번호를 입력해 주세요.\n', (input) => {
       this.winningNumber.main = new Lotto(input.split(',')).getNumbers();
+      this.drawBonuseNumber();
+    });
+  }
+
+  drawBonuseNumber() {
+    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (input) => {
+      this.winningNumber.bonuse = input;
     });
   }
 }
