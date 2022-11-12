@@ -16,7 +16,6 @@ class Player {
     GameOutput.printNewLine();
     GameOutput.printQuantityOfLotto(this.#lotto.quantity);
     GameOutput.printLottos(DataProcessor.convertLottosToPrintableLottos(this.#lotto.tickets));
-    GameOutput.printNewLine();
   }
 }
 

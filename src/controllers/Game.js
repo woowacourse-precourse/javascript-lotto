@@ -2,6 +2,8 @@ const GameInput = require('../domains/GameInput');
 const GameOutput = require('../views/GameOutput');
 const Player = require('./Player');
 const WinningNumber = require('./WinningNumber');
+const Lotto = require('./Lotto');
+const Console = require('../domains/Console');
 
 class Game {
   #instance = {};
@@ -28,8 +30,19 @@ class Game {
   #registerBonus(bonus) {
     this.#instance.winningNumber.registerBonus(bonus);
 
-    // TODO 당첨 결과 계산
-    // TODO 결과 출력
+    this.#calculateLottoResult();
+  }
+
+  #calculateLottoResult() {
+    this.#instance.lotto = new Lotto(this.#instance.winningNumber.getSixNumbers());
+    this.#instance.lotto.calculateResult();
+    this.#instance.lotto.printResult();
+
+    this.#endGame();
+  }
+
+  #endGame() {
+    Console.close();
   }
 }
 

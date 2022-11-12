@@ -10,6 +10,14 @@ class WinningNumber {
   registerBonus(bonus) {
     this.#data.bonus = DataProcessor.processRowDataOfBonus(bonus, this.#data.sixNumbers);
   }
+
+  getSixNumbers() {
+    return [...this.#data.sixNumbers];
+  }
+
+  getBonus() {
+    return this.#data.bonus;
+  }
 }
 
 module.exports = WinningNumber;

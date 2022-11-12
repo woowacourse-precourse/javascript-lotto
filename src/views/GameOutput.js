@@ -3,8 +3,8 @@ const Console = require('../domains/Console');
 class GameOutput {
   static message = {
     purchaseAmount: '구입금액을 입력해 주세요.\n',
-    sixNumbers: '당첨 번호를 입력해 주세요.\n',
-    bonus: '보너스 번호를 입력해 주세요.\n',
+    sixNumbers: '\n당첨 번호를 입력해 주세요.\n',
+    bonus: '\n보너스 번호를 입력해 주세요.\n',
   };
 
   static printNewLine() {
