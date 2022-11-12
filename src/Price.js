@@ -1,7 +1,32 @@
+const { PRICE_MEASURE } = require('./lib/Constants');
+const { print } = require('./lib/Utils');
+const PriceValidation = require('./Validation/PriceValidation');
+
 class Price {
   #lottoPrice = 0;
 
   #lottoCount = 0;
+
+  constructor(answer) {
+    Price.validate(answer);
+    this.saveLottoPriceAndCount(answer);
+  }
+
+  static validate(answer) {
+    const priceValidation = new PriceValidation(answer);
+    return priceValidation.validate();
+  }
+
+  saveLottoPriceAndCount(answer) {
+    this.#lottoPrice = Number(answer);
+    this.#lottoCount = this.#lottoPrice / PRICE_MEASURE;
+
+    return this.printLottoCount();
+  }
+
+  printLottoCount() {
+    return print(`\n${this.#lottoCount}개를 구매했습니다.`);
+  }
 
   getLottoPrice() {
     return this.#lottoPrice;
