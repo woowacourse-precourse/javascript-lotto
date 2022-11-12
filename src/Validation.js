@@ -21,7 +21,7 @@ class Validation {
     }
   }
   static hasOnlyNumber(input) {
-    if (input) {
+    if (input.length) {
       return input.map((eachLetter) => parseInt(eachLetter, 10)).every((number) => !isNaN(number));
     }
 
