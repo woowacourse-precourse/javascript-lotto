@@ -40,13 +40,13 @@ describe("로또 클래스 테스트", () => {
     const trueInput = ["1,2,3,4,5,6", "5,4,9,12,6,45"];
 
     throwInput.forEach((output, idx) => {
-      expect(() => {
-        app.isValidWinNumbers(output);
-      }).toThrow("[ERROR]");
+      let winNumbers = new Set(output.split(",").map(Number));
+      expect(app.isValidWinNumbers(winNumbers)).toEqual(false);
     });
 
     trueInput.forEach((output, idx) => {
-      expect(app.isValidWinNumbers(output)).toEqual(true);
+      let winNumbers = new Set(output.split(",").map(Number));
+      expect(app.isValidWinNumbers(winNumbers)).toEqual(true);
     });
   });
 
