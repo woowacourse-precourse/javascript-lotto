@@ -41,6 +41,19 @@ const ascendingSort = (numberArray) => {
   return numberArray.sort((a, b) => a - b);
 };
 
+const isOutOfRange = (numberArray) => {
+  return numberArray.some(
+    (number) => number < MIN_NUMBER || number > MAX_NUMBER
+  );
+};
+
+const hasDuplicate = (numberArray) => {
+  if (new Set(numberArray).size !== NUMBER_COUNT) {
+    return true;
+  }
+  return false;
+};
+
 module.exports = {
   hasChar,
   isDivisible,
@@ -48,4 +61,6 @@ module.exports = {
   makeSplit,
   makeNumberArray,
   ascendingSort,
+  isOutOfRange,
+  hasDuplicate,
 };
