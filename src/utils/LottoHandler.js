@@ -1,8 +1,8 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { MESSAGE } = require('./Constants');
-const Price = require('../check-available/Price');
-const Lotto = require('../check-available/Lotto');
-const Bonus = require('../check-available/Bonus');
+const Price = require('../Price');
+const Lotto = require('../Lotto');
+const Bonus = require('../Bonus');
 const MakeLottos = require('../lotto-make-and-calculate/MakeLottos');
 const PrintResults = require('../print/PrintResults');
 const Calculate = require('../lotto-make-and-calculate/Calculate');
@@ -39,8 +39,9 @@ class LottoHandler {
 
   getLottoAnswerNumber() {
     Console.readLine(MESSAGE.ANSWER, (answer) => {
-      this.answerNumber = answer.split(',');
-      new Lotto(this.answerNumber);
+      let answerNumber = answer.split(',').map((number) => Number(number));
+      new Lotto(answerNumber);
+      this.answerNumber = answerNumber;
       this.getBonusNumber(this.answerNumber);
     });
   };

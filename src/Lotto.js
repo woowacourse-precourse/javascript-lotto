@@ -1,15 +1,11 @@
-const { ERROR } = require('../utils/Constants');
+const { ERROR } = require('./utils/Constants');
 
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.#numbers = this.changeType(numbers);
+    this.#numbers = numbers;
     this.checkNumber(this.#numbers);
-  };
-
-  changeType(numbers) {
-    return numbers.map((number) => Number(number));
   };
 
   checkNumber(numbers) {
