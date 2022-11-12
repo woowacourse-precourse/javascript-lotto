@@ -3,8 +3,8 @@ const MissionUtils = require("@woowacourse/mission-utils");
 
 class App {
     LOTTO_LIST = [];
-    CHECK_LIST = [0] * 46;
-    WIN_LIST = [0] * 6;
+    CHECK_LIST = Array(46).fill(0);
+    WIN_LIST = Array(6).fill(0);
     BUY = 0;
 
     play() {
@@ -42,7 +42,7 @@ class App {
     }
     printLotto(arr) {
         MissionUtils.Console.print(`${arr.length}개를 구매했습니다.`);
-        for (let i in arr) arr.print();
+        for (let i in arr) arr[i].print();
         this.getWinNumbers();
     }
     getWinNumbers() {
@@ -77,9 +77,9 @@ class App {
             "\n보너스 번호를 입력해 주세요.\n",
             (answer) => {
                 this.checkWinNumber(Number(answer), 1);
+                this.calculate();
             }
         );
-        this.calculate();
     }
     calculate() {
         for (let i in this.LOTTO_LIST) {
@@ -97,13 +97,14 @@ class App {
 6개 일치 (2,000,000,000원) - ${this.WIN_LIST[5]}개`
         );
         MissionUtils.Console.print(
-            `총 수익률은 ${this.calculateProfitPercent}%입니다.`
+            `총 수익률은 ${this.calculateProfitPercent()}%입니다.`
         );
     }
     calculateProfitPercent() {
         let result = [0n, 5n, 500n, 1500n, 30000n, 2000000n];
         let sum = 0n;
-        for (let i in this.WIN_LIST) sum += result[i] * this.WIN_LIST[i];
+        for (let i in this.WIN_LIST)
+            sum += result[i] * BigInt(this.WIN_LIST[i]);
         return Number((1000n * sum) / BigInt(this.BUY)) / 10;
     }
 }
