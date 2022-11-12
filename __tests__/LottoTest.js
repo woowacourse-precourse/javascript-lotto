@@ -54,3 +54,12 @@ describe('로또 발행 테스트', () => {
     expect(lotto).toEqual(correctOutput);
   });
 });
+
+describe('로또 당첨&보너스 번호 검사', () => {
+  test('정상', () => {
+    const winningNumbers = [16, 26, 29, 31, 36, 8];
+    const bonusNumber = 11;
+
+    expect(() => Lotto.validateWinningNumbers(winningNumbers, bonusNumber)).not.toThrow();
+  });
+});
