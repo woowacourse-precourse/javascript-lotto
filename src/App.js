@@ -31,6 +31,15 @@ class App {
       updateNumber.push(lottoNumber.sort((a, b) => a - b));
       this.lottoNumber = updateNumber;
     }
+    this.printLotto();
+  }
+
+  printLotto() {
+    const lottoList = this.lottoNumber
+      .map((x, index) => '[' + this.lottoNumber[index].join(', ') + ']')
+      .join('\n');
+
+    Console.print(`\n${this.lottoCount}개를 구매했습니다.\n${lottoList}`);
   }
 }
 
