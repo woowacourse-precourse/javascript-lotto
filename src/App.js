@@ -7,13 +7,13 @@ class App {
   }
 
   async play() {
-    await this.userInput();
-    await this.prizeInput()
-    await this.bonusInput();
+    const user = await this.userInput();
+    const prize = await this.prizeInput()
+    const bonus = await this.bonusInput();
+    this.isBonusInPrize(bonus, prize);
   }
 
   userInput() {
-
     return new Promise((resolve, reject) => {
       MissionUtils.Console.readLine('구입금액을 입력해 주세요. \n', (userMoney) => {
         resolve(this.lottoPurchase(userMoney));
@@ -35,8 +35,10 @@ class App {
   bonusInput() {
     return new Promise((resolve, reject) => {
       MissionUtils.Console.readLine('보너스 번호를 입력해 주세요. \n', (bonusNumber) => {
-        MissionUtils.Console.print(bonusNumber);
-        resolve();
+        if (parseInt(bonusNumber) < 1 || parseInt(bonusNumber) > 45) {
+          throw new Error("[ERROR] 보너스 번호는 1 ~ 45사이의 번호여야 합니다.")
+        }
+        resolve(bonusNumber);
       })
     })
     
@@ -74,6 +76,12 @@ class App {
     randomLotto.forEach(element => {
       MissionUtils.Console.print(element);
     });
+  }
+
+  isBonusInPrize(bonus, prize) {
+    if (prize.includes(bonus)) {
+      throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.")
+    }
   }
 }
 
