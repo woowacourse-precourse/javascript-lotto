@@ -23,13 +23,13 @@ class Lotto {
     }
   }
 
-  inputBonusNumbers() {
+  inputBonusNumbers(boughtLottos) {
     const WORD_TO_PRINT = "보너스 번호를 입력해 주세요.\n";
     let bonusNumber;
     MissionUtils.Console.readLine(WORD_TO_PRINT, (number) => {
       bonusNumber = Number(number);
       this.validateBonusNumber(bonusNumber);
-      this.winningStatistics(bonusNumber);
+      this.winningStatistics(bonusNumber, boughtLottos);
     });
   }
 
@@ -49,18 +49,21 @@ class Lotto {
     }
   }
 
-  winningStatistics(bonusNumber) {
-    const app = new App();
+  winningStatistics(bonusNumber, boughtLottos) {
     let totalLottoNumberStatictics = [];
     let totalLottoBonusNumberStatictics = [];
-    for (let i = 0; i < app.boughtLottos.length; i++) {
+    for (let i = 0; i < boughtLottos.length; i++) {
       totalLottoNumberStatictics.push(
-        this.compareBoughtLottoAndWinningNumbers(app.boughtLottos[i])
+        this.compareBoughtLottoAndWinningNumbers(boughtLottos[i])
       );
       totalLottoBonusNumberStatictics.push(
-        this.compareBoughtLottoAndBonusNumber(app.boughtLottos[i], bonusNumber)
+        this.compareBoughtLottoAndBonusNumber(boughtLottos[i], bonusNumber)
       );
     }
+    // this.countWinningLotto(
+    //   totalLottoNumberStatictics,
+    //   totalLottoBonusNumberStatictics
+    // );
   }
 
   compareBoughtLottoAndWinningNumbers(boughtLotto) {
@@ -73,7 +76,7 @@ class Lotto {
     return countSameLottoNumbers;
   }
   compareBoughtLottoAndBonusNumber(boughtLotto, bonusNumber) {
-    let isSameWithBonusNumbers;
+    let isSameWithBonusNumbers = 0;
     for (let i = 0; i < boughtLotto.length; i++) {
       if (boughtLotto[i] === bonusNumber) {
         isSameWithBonusNumbers = 1;
@@ -84,5 +87,4 @@ class Lotto {
   // TO DO -
   // 일치 개수 비교 및 통계.
 }
-
 module.exports = Lotto;
