@@ -31,4 +31,14 @@ describe('Validator 클래스 : 당첨 번호 테스트', () => {
       });
     }).toThrowError(`${ERROR_MESSAGES.INVALID_LOTTO_COUNT}`);
   });
+
+  test(`🖐 사용자가 당첨 번호가 1 ~ 45 사이 숫자가 아니면 에러가 발생한다.`, () => {
+    const invalidInputs = ['46,47,48,4,5,6', '0,-1,7,48,5,1'];
+
+    expect(() => {
+      invalidInputs.forEach((input) => {
+        Validator.checkWinNumbers(input);
+      });
+    }).toThrowError(`${ERROR_MESSAGES.INVALID_LOTTO_NUMBER_RANGE}`);
+  });
 });
