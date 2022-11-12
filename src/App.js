@@ -1,9 +1,8 @@
 const GameGuide = require('./GameGuide');
-
 const LottoGame = require('./LottoGame');
-const { toNumberType } = require('./util');
+const { toNumberType, splitByComma } = require('./util');
 const { Console } = require('@woowacourse/mission-utils');
-const { ENTER_PURCHASE_AMOUNT } = require('./constans');
+const { ENTER_PURCHASE_AMOUNT, ENTER_WINNING_NUMBERS } = require('./constans');
 
 const gameGuide = new GameGuide();
 
@@ -16,12 +15,27 @@ class App {
     Console.readLine('', (inputValue) => {
       const amount = toNumberType(inputValue);
       lottoGame.issueLotto(amount);
+      this.enterUserInput(ENTER_WINNING_NUMBERS);
+    });
+  }
+
+  enterWinningNumbers() {
+    gameGuide.printInputGuideText(ENTER_WINNING_NUMBERS);
+
+    Console.readLine('', (inputValue) => {
+      const numbers = splitByComma(inputValue);
+      console.log(numbers);
+      lottoGame.drawLotto(numbers);
     });
   }
 
   enterUserInput(inputType) {
     if (inputType === ENTER_PURCHASE_AMOUNT) {
       this.enterPurchaseAmount();
+    }
+
+    if (inputType === ENTER_WINNING_NUMBERS) {
+      this.enterWinningNumbers();
     }
   }
 
@@ -31,6 +45,6 @@ class App {
 }
 
 const app = new App();
-app.play();
+app.enterWinningNumbers();
 
 module.exports = App;
