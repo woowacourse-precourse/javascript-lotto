@@ -1,11 +1,14 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
+const User = require("./User");
+
 
 class LottoMachine {
   #money;
   #count;
 
   constructor() {
+    this.user = new User();
     this.#money = 0;
     this.#count = 0;
   }
@@ -26,6 +29,7 @@ class LottoMachine {
         const numbers = this.makeLottoNumber();
         this.sortLottoNumber(numbers);
         this.printLottoNumber(numbers);
+        this.publishLotto(numbers);
       }
       
     });
@@ -56,6 +60,14 @@ class LottoMachine {
 
   printLottoNumber(numbers) {
     MissionUtils.Console.print(numbers);
+  }
+
+  publishLotto(numbers) {
+    const lotto = new Lotto(numbers);
+    const lottoNumbers = lotto.getterLottoNumbers();
+    this.user.usersLottos.push(lottoNumbers);
+
+    console.log(this.user);
   }
 
 }
