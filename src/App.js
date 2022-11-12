@@ -1,6 +1,7 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const { MESSEGE, ERROR } = require("./constant/lotto");
 const Utils = require("./utils/utils");
+const Lotto = require("./Lotto");
 
 class App {
   constructor() {
@@ -39,6 +40,14 @@ class App {
       amountNum -= 1;
       Console.print(newTicket);
     }
+
+    this.getWinningNumber();
+  }
+
+  getWinningNumber() {
+    Console.readLine(`${MESSEGE.INPUT_WINNING_NUMBER}\n`, (input) => {
+      const number = new Lotto(input.split(","));
+    });
   }
 }
 

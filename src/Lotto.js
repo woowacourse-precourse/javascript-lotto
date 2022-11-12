@@ -17,6 +17,14 @@ class Lotto {
     if (this.isNotDiffNumbers(numbers)) {
       this.utils.throwError(ERROR.DUPLICATE_NUMBERS);
     }
+
+    const orderedNumbers = numbers.sort((a, b) => a - b);
+    if (
+      this.isNotInVaildRange(orderedNumbers[0]) ||
+      this.isNotInVaildRange(orderedNumbers[5])
+    ) {
+      this.utils.throwError(ERROR.NOT_IN_VAILD_RANGE);
+    }
   }
 
   isNotVaildLength(numbers) {
@@ -26,6 +34,14 @@ class Lotto {
   isNotDiffNumbers(numbers) {
     const numberSet = new Set(numbers);
     return numberSet.size !== LOTTO_LENGTH;
+  }
+
+  isNotInVaildRange(number) {
+    return !(+number > 0 && +number <= 45);
+  }
+
+  get() {
+    return this.#numbers;
   }
 }
 
