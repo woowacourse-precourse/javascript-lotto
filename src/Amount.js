@@ -8,19 +8,9 @@ class Amount {
 
   /**
    *
-   * @param {string} message
-   */
-  async setInputAmount(message) {
-    const amount = await Utils.readLine(message);
-    this.validate(Number(amount));
-    this.#amount = Number(amount);
-  }
-
-  /**
-   *
    * @param {number} amount
    */
-  validate(amount) {
+  #validate(amount) {
     if (!Number.isInteger(amount)) {
       throw new Error('[ERROR] 금액은 1,000 단위의 정수여야 합니다.');
     }
@@ -28,6 +18,17 @@ class Amount {
     if (amount % 1000 !== 0) {
       throw new Error('[ERROR] 금액은 1,000원 단위여야 합니다.');
     }
+  }
+
+  /**
+   *
+   * @param {string} message
+   */
+  async setInputAmount(message) {
+    const amount = await Utils.readLine(message);
+
+    this.#validate(Number(amount));
+    this.#amount = Number(amount);
   }
 
   /**
