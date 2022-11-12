@@ -40,6 +40,8 @@ class Prize {
   });
 
   static getPrize(matchCount, isBonus) {
+    const { values } = Object;
+    return values(Prize).find(({ match }) => match(matchCount, isBonus));
   }
 }
 
