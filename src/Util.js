@@ -8,6 +8,10 @@ class Util {
     const ZERO_START_REGEXP = /^[0]+/;
     return ZERO_START_REGEXP.test(str);
   }
+
+  static isPositiveNumber(str) {
+    return parseInt(str) > 0;
+  }
 }
 
 module.exports = Util;
