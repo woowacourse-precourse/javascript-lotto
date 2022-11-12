@@ -1,12 +1,6 @@
 const { Console, Random } = require("@woowacourse/mission-utils/");
 const Lotto = require("../src/Lotto");
 class App {
-  lottoCount;
-
-  constructor() {
-    this.lottoCount = 0;
-  }
-
   async play() {
     try {
       let money = await this.getInputMoney();
@@ -36,7 +30,7 @@ class App {
     if (input % 1000 != 0) return false;
     if (input === "") return false;
     if (/[\D]/.test(input)) return false;
-    else return true;
+    return true;
   }
 
   publishLotto(count) {
@@ -54,14 +48,9 @@ class App {
   isValidWinNumbers(winNumbers) {
     if (winNumbers.size != 6) return false;
     winNumbers.forEach((number) => {
-      if (/[\D]/.test(number)) {
-        return false;
-      }
-      if (number == "") {
-        return false;
-      } else if (Number(number) < 1 || Number(number) > 45) {
-        return false;
-      }
+      if (/[\D]/.test(number)) return false;
+      if (number == "") return false;
+      if (Number(number) < 1 || Number(number) > 45) return false;
     });
     return true;
   }
