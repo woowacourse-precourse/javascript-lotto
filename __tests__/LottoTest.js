@@ -79,4 +79,48 @@ describe('로또 클래스 테스트', () => {
       LOTTO.setBounusNumber('6');
     }).toThrow('[ERROR]');
   });
+
+  test('당첨 번호 개수 확인하기1', () => {
+    const LOTTO = new Lotto(['1', '2', '3', '4', '5', '6']);
+    LOTTO.setBounusNumber('7');
+    const PURCHASED_LOTTOS = [
+      [1, 2, 3, 4, 5, 6], // 6개 일치
+      [1, 2, 3, 4, 5, 9], // 5개 일치
+      [1, 2, 3, 4, 7, 8], // 4개 일치
+      [1, 2, 3, 7, 8, 9], // 3개 일치
+    ];
+    let count = 6;
+    PURCHASED_LOTTOS.forEach((purchased) => {
+      const [HIT_COUNT, BONUS_HIT] = LOTTO.countHitNumbers(purchased);
+      expect(HIT_COUNT).toBe(count);
+      expect(BONUS_HIT).toBeFalsy();
+      count -= 1;
+    });
+  });
+
+  test('당첨 번호 개수 확인하기2 - 보너스 포함', () => {
+    const LOTTO = new Lotto(['1', '2', '3', '4', '5', '6']);
+    LOTTO.setBounusNumber('7');
+    const PURCHASED_LOTTO = [1, 2, 3, 4, 5, 7]; // 5개 일치 + (보너스 볼)
+    const [HIT_COUNT, BONUS_HIT] = LOTTO.countHitNumbers(PURCHASED_LOTTO);
+    expect(HIT_COUNT).toBe(5);
+    expect(BONUS_HIT).toBeTruthy();
+  });
+
+  test('당첨 번호 개수 확인하기3', () => {
+    const LOTTO = new Lotto(['1', '2', '3', '4', '5', '6']);
+    LOTTO.setBounusNumber('7');
+    const PURCHASED_LOTTOS = [
+      [1, 2, 3, 4, 5, 6], // 6개 일치
+      [1, 2, 3, 4, 5, 7], // 5개 일치 + (보너스 볼)
+      [1, 2, 3, 6, 5, 7], // 5개 일치 + (보너스 볼)
+      [1, 2, 4, 6, 5, 7], // 5개 일치 + (보너스 볼)
+      [1, 2, 3, 4, 5, 9], // 5개 일치
+      [1, 2, 3, 4, 6, 9], // 5개 일치
+      [1, 2, 3, 4, 7, 8], // 4개 일치
+      [1, 2, 3, 7, 8, 9], // 3개 일치
+    ];
+    const ANSWER = LOTTO.NumberOfMatchedLotto(PURCHASED_LOTTOS);
+    expect(ANSWER).toEqual([1, 1, 2, 3, 1]);
+  });
 });
