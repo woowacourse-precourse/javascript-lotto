@@ -18,6 +18,16 @@ describe('로또 클래스 테스트', () => {
       new Lotto().progress([1, 2, 3, 4, 5, 99]);
     }).toThrow('[ERROR]');
   });
+
+  test('로또 번호와 당첨 번호 비교', () => {
+    const lottoNumber = [1, 2, 3, 4, 5, 6];
+    const numbers = ['1', '2', '3', '4', '5', '7'];
+
+    const lotto = new Lotto();
+    const result = lotto.countLotto(lottoNumber, numbers);
+
+    expect(result).toBe(5);
+  });
 });
 
 describe('로또 빌더 기능 테스트', () => {
