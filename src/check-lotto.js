@@ -2,6 +2,7 @@ const { RANGKING_COUNT } = require('./utils/constant');
 
 class CheckLotto {
   #controller;
+
   #result;
 
   constructor(controller) {
@@ -38,6 +39,7 @@ class CheckLotto {
 
         if (count === RANGKING_COUNT.THIRD_RANKING_COUNT && this.#isSecond(lotto)) count += 0.5;
 
+        // eslint-disable-next-line no-param-reassign
         if (count >= RANGKING_COUNT.FIFTH_RANKING_COUNT) total[count] += 1;
 
         return total;
