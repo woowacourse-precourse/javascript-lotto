@@ -49,7 +49,7 @@ class LottoHandler {
   getBonusNumber(answerNumber) {
     Console.readLine(MESSAGE.BONUS, (answer) => {
       new Bonus(answer,answerNumber);
-      this.bonusNumber = answer;
+      this.bonusNumber = Number(answer);
       this.startCalculate();
     });
   };

@@ -1,43 +1,55 @@
-const { NUMBER } = require('../utils/Constants');
-
 class RankingCalculate {
+  #lottoList;
+  #answer;
+  #bonus;
+
   constructor(lottoList, answer, bonus) {
-    this.lottoList = lottoList;
-    this.answer = answer;
-    this.bonus = bonus;
+    this.#lottoList = lottoList;
+    this.#answer = answer;
+    this.#bonus = Number(bonus);
+    this.lottoCalculateList = lottoList;
+    this.eachLotto;
+    this.rankListCount = [0,0,0,0,0];
     this.rankList = this.rankCalculateStart();
   };
 
   rankCalculateStart() {
-    let rank = [0,0,0,0,0];
-
-    for (let i = 0;i < 5;i++) {
-      rank[i] = this.countAnswer(NUMBER.ANSWER_COUNT[i], i);
-    };
-
-    return rank;
-  };
-
-  countAnswer(correctNum, index) {
-    let CorrectCount = 0;
-
-    for (let i = 0; i < this.lottoList.length; i++) {
-      CorrectCount += this.countEachAnswer(this.lottoList[i], correctNum, index);
-    };
+    const lottoListLength = this.#lottoList.length;
     
-    return CorrectCount;
+    for (let i = 0; i < lottoListLength; i++) {
+      this.eachLotto = this.lottoCalculateList.pop();
+      this.countMatchLength(this.eachLotto);
+    };
+    return this.rankListCount;
   };
 
-  countEachAnswer(eachAnswer, correctNum, index) {
-    if ((index === 3) &&  eachAnswer.filter(eachNumber => this.answer.includes(eachNumber)).length === correctNum) {
-      return 1;
-    };
+  countMatchLength(eachLotto) {
+    let matchLength = eachLotto.filter(eachNumber => this.#answer.includes(eachNumber)).length;
+    this.countRanking(matchLength);
+  };
 
-    if (eachAnswer.filter(eachNumber => this.answer.includes(eachNumber)).length === correctNum) {
-      return 1;
+  countRanking(matchLength) {
+    switch (matchLength) {
+      case 6:
+        this.rankListCount[4] += 1;
+        break;
+      case 5:
+        this.rankListCount[this.chechBonusAndFive()] += 1;
+        break;
+      case 4:
+        this.rankListCount[1] += 1;
+        break;
+      case 3:
+        this.rankListCount[0] += 1;
+        break;
     };
+  };
 
-    return 0;
+  chechBonusAndFive() {
+    if (this.eachLotto.includes(this.#bonus)) {
+      return 3;
+    };
+    return 2;
   };
 };
 
