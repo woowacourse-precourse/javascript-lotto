@@ -3,14 +3,6 @@ const IGameCtrl = class {
     throw Error('메서드구현필요');
   }
 
-  game() {
-    throw Error('메서드구현필요');
-  }
-
-  play() {
-    throw Error('메서드구현필요');
-  }
-
   gameProcess() {
     throw Error('메서드구현필요');
   }

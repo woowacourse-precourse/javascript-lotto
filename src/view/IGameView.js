@@ -1,9 +1,9 @@
 const IGameView = class {
-  static input() {
+  static input(message, callback) {
     throw Error('메서드구현필요');
   }
 
-  static output() {
+  static output(message) {
     throw Error('메서드구현필요');
   }
 
