@@ -97,7 +97,6 @@ class Machine {
     Console.readLine('구입금액을 입력해주세요.\n', (answer) => {
       this.user.money = Number(answer);
       this.#checkAmount();
-
       return cb(answer);
     });
   }
@@ -107,7 +106,7 @@ class Machine {
     Console.print(`\n${lottoCount}개를 구매했습니다.`);
     for (let i = 0; i < lottoCount; i += 1) {
       const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
-      Console.print(numbers);
+      Console.print('[' + numbers.join(', ') + ']');
       const lotto = new Lotto(numbers);
       this.user.lottos.push(lotto);
     }
@@ -181,6 +180,10 @@ class Machine {
     this.#count();
     this.user.getScore();
     this.user.getProfit();
+  }
+
+  printSpace() {
+    Console.print('\n');
   }
 }
 
