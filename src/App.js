@@ -50,6 +50,10 @@ class App {
   // 로또 결과 출력하기
   myLotteryResult() {
     // Lotto.checkMyLotteryRank() 사용
+    Console.print(GAME_MESSAGE.PURCHASE_AMOUNT(this.#myLotteryQuantity));
+    this.#myLotteryList.forEach((lottery) => {
+      lottery.printMyLottery();
+    });
   }
 
   // 로또 당첨번호 생성
