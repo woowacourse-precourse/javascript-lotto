@@ -49,7 +49,7 @@ class App {
       this.boughtLottos.push(numbers);
     }
     for (const boughtLotto of this.boughtLottos) {
-      MissionUtils.Console.print(boughtLotto);
+      MissionUtils.Console.print(`[${boughtLotto.join(", ")}]`);
     }
 
     this.inputWinningNumbers();
