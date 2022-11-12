@@ -73,12 +73,16 @@ class Validation {
 
   static validateBonusNumber(bonusNumber) {
     const splittedNumberArr = [...bonusNumber];
+    const wholeNumberArr = [bonusNumber];
 
     if (Validation.isEmptyInput(bonusNumber)) {
       throw new Error(ERROR_MESSAGE.EMPTY_INPUT);
     }
     if (!Validation.hasOnlyNumber(splittedNumberArr)) {
       throw new Error(ERROR_MESSAGE.INVALID_INPUT_TYPE);
+    }
+    if (!Validation.isValidLottoNumberRange(wholeNumberArr)) {
+      throw new Error(ERROR_MESSAGE.INVALID_LOTTO_NUMBER_RANGE);
     }
   }
 }
