@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { ERROR, MESSAGE } = require('./Constants')
+const { ERROR, MESSAGE, WINNING_LOTTO } = require('./Constants')
 const Lotto = require('./Lotto');
 const SYSTEM = Object.freeze({
     print(message) {
@@ -69,20 +69,26 @@ const SYSTEM = Object.freeze({
 
 
     printResult(lottos, winningLotto, bonusNumber, cash) {
+        let results = this.makeResults(lottos, winningLotto, bonusNumber);
+
+        for (let rank = 5; rank >= 1; rank--) {
+            let rankIndex = rank - 1;
+            SYSTEM.print(`${MESSAGE.RANK_TEXT[rankIndex]} - ${results[rankIndex]}개`)
+        }
+
+        let rate = this.calulateRate(cash, results);
+        SYSTEM.print(`총 수익률은 ${rate}%입니다.`);
+        this.exit();
+    },
+
+    makeResults(lottos, winningLotto, bonusNumber) {
         let results = new Array(5).fill(0);
 
         for (let lotto of lottos) {
             let rankIndex = this.compare(lotto.getNumber(), new Set(winningLotto), bonusNumber);
             results[rankIndex]++;
         }
-
-        for (let rank = 5; rank >= 1; rank--) {
-            let rankIndex = rank - 1;
-            SYSTEM.print(`${MESSAGE.RANK_TEXT[rankIndex]} - ${results[rankIndex]}개`)
-        }
-        let rate = this.calulateRate(cash, results);
-        SYSTEM.print(`총 수익률은 ${rate}%입니다.`);
-        this.exit();
+        return results;
     },
 
     compare(lotto, winningLotto, bonusNumber) {
