@@ -50,7 +50,7 @@ class App {
     MissionUtils.Console.readLine("\n보너스 번호를 입력해 주세요.\n", (number) => {
       this.bonusNumber = number;
       this.validateInputBonusNumber(number);
-      this.getMatchingNumberAboutLotto();
+      this.loadMatchingNumberAboutLotto();
     });
   }
 
@@ -59,7 +59,7 @@ class App {
       throw new Error("[ERROR] 1에서 45까지의 번호를 입력해주세요");
   }
 
-  getMatchingNumberAboutLotto() {
+  loadMatchingNumberAboutLotto() {
     MissionUtils.Console.print("\n당첨 통계\n---");
     const matchingNumber = new MatchingNumber(
       this.totalLottoNumber,
@@ -68,10 +68,10 @@ class App {
     );
     const numberOfMathcingNumbers = matchingNumber.getNumberOfMatchingNumbersByRank();
     matchingNumber.printLottoResult(numberOfMathcingNumbers);
-    this.getLottoProfitRate(numberOfMathcingNumbers);
+    this.loadLottoProfitRate(numberOfMathcingNumbers);
   }
 
-  getLottoProfitRate(numberOfMathcingNumbers) {
+  loadLottoProfitRate(numberOfMathcingNumbers) {
     const lottoProfitRate = new ProfitRate(numberOfMathcingNumbers, this.payMoney).getProfitRate();
     MissionUtils.Console.print(`총 수익률은 ${lottoProfitRate}%입니다.`);
     MissionUtils.Console.close();
