@@ -6,6 +6,11 @@ const toNumberType = function toNumberType(value) {
   return Number(value);
 };
 
+const sortNumbers = function sortNumbers(numbers) {
+  return numbers.sort((a, b) => a - b);
+};
+
 module.exports = {
-  toNumberType
+  toNumberType,
+  sortNumbers
 };
