@@ -23,20 +23,17 @@ class ValidateInput {
   }
 
   validateWinningNumbers(winningNumbers) {
-    if (![...winningNumbers].every(this.isValidLottoNumber)) {
-      this.utils.throwError("[ERROR] 입력하신 당첨 번호가 유효하지 않습니다. 다시 확인해주세요.")
-    }
-
-    return ([...(new Set(winningNumbers))].length !== 6) ?
-      this.utils.throwError("[ERROR] 입력하신 당첨 번호가 유효하지 않습니다. 다시 확인해주세요.") : true;
+    return (!(
+      ![...winningNumbers].every(this.isValidLottoNumber) ||
+      [...(new Set(winningNumbers))].length !== 6
+    ));
   }
 
   validateBonusNumber(winningNumbers, bonusNumber) {
-    return (
+    return (!(
       !this.isValidLottoNumber(bonusNumber) ||
       winningNumbers.includes(bonusNumber)
-    ) ?
-      this.utils.throwError("[ERROR] 입력하신 보너스 번호가 유효하지 않습니다. 다시 확인해주세요.") : true;
+    ));
   }
 }
 
