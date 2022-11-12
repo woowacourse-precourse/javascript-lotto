@@ -1,27 +1,17 @@
 class WinningChecker {
-  constructor(purchasedLottos, winningNumbers, bonusNumber) {
-    this.purchasedLottos = purchasedLottos;
+  constructor(lottoNumbers, winningNumbers, bonusNumber) {
+    this.lottoNumbers = lottoNumbers;
     this.winningNumbers = winningNumbers;
     this.bonusNumber = bonusNumber;
-    this.countOfWinning = {
-      firstPlace: 0,
-      secondPlace: 0,
-      thirdPlace: 0,
-      fourthPlace: 0,
-      fifthPlace: 0,
-    };
+    this.countOfSameNum = this.countSameNum();
   }
 
-  findCountOfWinning() {
-    let array = [];
-    this.purchasedLottos.forEach((lottoNumbers) => {
-      let numbers = lottoNumbers.filter((number) =>
-        this.winningNumbers.includes(number)
-      );
-      array.push(numbers);
+  countSameNum() {
+    let sum = 0;
+    this.lottoNumbers.forEach((number) => {
+      if (this.winningNumbers.includes(number)) sum += 1;
     });
-
-    this.purchasedLottos = [...array];
+    return sum;
   }
 }
 
