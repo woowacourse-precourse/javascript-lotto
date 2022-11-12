@@ -29,7 +29,7 @@ describe('로또 클래스 테스트', () => {
     expect(result).toBe(5);
   });
 
-  test('로또 번호와 당첨 번호 비교', () => {
+  test('로또 번호와 보너스 번호 비교', () => {
     const count = 5;
     const lottoNumber = [1, 2, 3, 4, 5, 6];
     const bonus = 6;
@@ -38,6 +38,15 @@ describe('로또 클래스 테스트', () => {
     const result = lotto.compareBonus(count, lottoNumber, bonus);
 
     expect(result).toBe(5.5);
+  });
+
+  test('로또 순위에 따른 당첨금 비교', () => {
+    const statsNumber = [0, 0, 0, 1, 1];
+
+    const lotto = new Lotto();
+    const result = lotto.prizeCalculation(statsNumber);
+
+    expect(result).toBe(55000);
   });
 });
 
