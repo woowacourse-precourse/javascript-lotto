@@ -169,26 +169,36 @@ describe("로또 클래스 테스트", () => {
     const output = true;
 
     const app = new App();
-    const count = app.checkBounsNumber(lotto, bonuslotto);
+    const count = app.hasBounsNumber(lotto, bonuslotto);
     
     expect(count).toEqual(output);
   });
 
-  test("전체 로또 추첨 결과 확인", ()=>{
+  test("순위별 당첨자 수 구하기", ()=>{
     const issuedLotto = [
-      [1, 2, 3, 4],
-      [2, 4, 6, 8],
-      [3, 4, 5, 6],
-      [1, 2, 3, 5],
+      [10, 11, 22, 27, 34, 35],
+      [7, 25, 26, 31, 32, 38],
+      [2, 4, 5, 15, 22, 35],
+      [15, 23, 27, 30, 33, 41],
+      [3, 4, 6, 20, 24, 39],
+      [5, 11, 19, 32, 37, 40],
+      [7, 15, 21, 34, 38, 45],
+      [3, 4, 5, 13, 31, 38],
     ];
-    const winniglotto = [1, 3, 5, 6];
-    const output = [2, 1, 3, 3];
+    const winningLotto = [1, 2, 3, 4, 5, 6];
+    const bonusLotto = 7
+    const output = [
+      { rank: 1, reword: 2000000000, count: 0 },
+      { rank: 2, reword: 30000000, count: 0 },
+      { rank: 3, reword: 1500000, count: 0 },
+      { rank: 4, reword: 50000, count: 3 },
+      { rank: 5, reword: 5000, count: 0 },
+    ];
 
     const app = new App();
-    const arr = app.matchedNumberResult(issuedLotto,winniglotto);
-    expect(arr).toEqual(output);
-
+    app.makeRankingResult(issuedLotto,winningLotto,bonusLotto)
     
+    expect(app.rankingResult).toEqual(output);
   })
 
 });
