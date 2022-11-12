@@ -16,7 +16,7 @@ class GamePrint {
   static result(prize) {
     for(let rank in prize) {
       if(rank === '5') {
-        MissionUtils.Console.print(`${rank}개 일치 (${prize[rank].nonBonus.winningAmount}원) - ${prize[rank].nonBonus.winningAmount}개`);
+        MissionUtils.Console.print(`${rank}개 일치 (${prize[rank].nonBonus.winningAmount}원) - ${prize[rank].nonBonus.ea}개`);
         MissionUtils.Console.print(`${rank}개 일치, 보너스 볼 일치 (${prize[rank].hasBonus.winningAmount}원) - ${prize[rank].hasBonus.ea}개`);
         continue;
       }
