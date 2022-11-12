@@ -37,6 +37,15 @@ class Lotto {
     return LottoConfig.NO_PRIZE;
   }
 
+  static getPrizeMoney(prizeStatus) {
+    if (prizeStatus === LottoConfig.PRIZE_1) return LottoConfig.PRIZE_1_MONEY;
+    if (prizeStatus === LottoConfig.PRIZE_2) return LottoConfig.PRIZE_2_MONEY;
+    if (prizeStatus === LottoConfig.PRIZE_3) return LottoConfig.PRIZE_3_MONEY;
+    if (prizeStatus === LottoConfig.PRIZE_4) return LottoConfig.PRIZE_4_MONEY;
+    if (prizeStatus === LottoConfig.PRIZE_5) return LottoConfig.PRIZE_5_MONEY;
+    return 0;
+  }
+
   toString(separator = ' ') {
     return this.#numbers.join(separator);
   }
