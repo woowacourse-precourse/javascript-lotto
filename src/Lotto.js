@@ -7,6 +7,8 @@ class Lotto {
 
   constructor(numbers) {
     this.validate(numbers);
+    this.validateIsNum(numbers);
+    this.validateIsRange(numbers);
     this.#numbers = numbers;
   }
 
@@ -16,8 +18,33 @@ class Lotto {
     }
   }
 
+  validateIsNum = (numbers) => {
+    numbers.map((e) => {
+      if (isNaN(parseInt(e))) {
+        throw new Error(STATIC.MESSAGE.ERR_INPUT);
+      }
+    });
+  };
+
+  validateIsRange = (numbers) => {
+    numbers.map((e) => {
+      if (e >= 45 || e < 1) {
+        throw new Error(STATIC.MESSAGE.ERR_INPUT);
+      }
+    });
+  };
   // TODO: 추가 기능 구현
 }
+
+inputLottoNum = () => {
+  MissionUtils.Console.readLine(STATIC.MESSAGE.LUCKY, (number) => {
+    const lotto = new Lotto(number.split(","));
+  });
+};
+
+inputBonusNum = () => {
+  MissionUtils.Console.readLine(STATIC.MESSAGE.BONUS, (number) => {});
+};
 
 buyMoneyError = (money) => {
   if (money % 1000 != 0) {
@@ -28,13 +55,17 @@ buyMoneyError = (money) => {
 buyLotto = (lotto) => {
   MissionUtils.Console.readLine(STATIC.MESSAGE.BUYMONEY, (money) => {
     buyMoneyError(money);
+    MissionUtils.Console.print(money / 1000 + STATIC.MESSAGE.BUYNUM);
     const userPickLotto = createUserLotto(money);
+    inputLottoNum();
   });
 };
 
 createUserLotto = (money) => {
   return [...Array(money / 1000).keys()].map(() => {
-    return new UserLotto().number;
+    const randLotto = new UserLotto().number;
+    MissionUtils.Console.print(randLotto);
+    return randLotto;
   });
 };
 
@@ -43,6 +74,3 @@ LottoGame = () => {
 };
 
 module.exports = LottoGame;
-
-//입력 받고
-// 체크 후 userlotto 생성을 하자
