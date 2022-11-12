@@ -10,24 +10,24 @@ const buyLotto = () => {
   Console.readLine('구입금액을 입력해 주세요.\n', (num) => {
     countLotto = Number(num) / 1000;
     throwInput = Number(num) % 1000;
-    showLottoNumber(countLotto,throwInput);
-    });
+    showLottoNumber(countLotto, throwInput);
+  });
 }
 
 const setLottoNumbers = () => {
   const lottoNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-  lottoNumber.sort(function(a,b) {
-    if(a > b) return 1;
-    if(a === b) return 0;
-    if(a < b) return -1;
+  lottoNumber.sort(function (a, b) {
+    if (a > b) return 1;
+    if (a === b) return 0;
+    if (a < b) return -1;
   });
   return lottoNumber;
 }
 
 const showLottoNumber = (countLotto, throwInput) => {
-  if(throwInput > 0) throw '[ERROR] 금액은 1,000원 단위로 입력해주세요';
+  if (throwInput > 0) throw '[ERROR] 금액은 1,000원 단위로 입력해주세요';
   Console.print(`${countLotto}개를 구매했습니다.`);
-  for(let i = 0; i<countLotto; i++){
+  for (let i = 0; i < countLotto; i++) {
     lottos[i] = setLottoNumbers()
     Console.print(lottos[i]);
   }
@@ -55,9 +55,25 @@ const inputBonusLotto = (inputSixNumber, lottos) => {
 
 const compareLotto = (inputSixNumber, lottos) => {
   let checkLength = [];
-  for(let i = 0; i < lottos.length; i++){
-   checkLength[i] = inputSixNumber.filter(num => lottos[i].includes(num)).length;
+  let last = inputSixNumber.pop();
+  console.log(last);
+  for (let i = 0; i < lottos.length; i++) {
+    checkLength[i] = inputSixNumber.filter(num => lottos[i].includes(num)).length;
   }
+  countScore(checkLength,lottos,last);
+}
+
+const countScore = (checkLength,lottos, last) => {
+  let second = 0;
+  for(let i = 0; i < lottos.length; i++){
+    if (lottos[i].includes(last) && checkLength[i] === 4) {
+      second++;
+    }
+  }
+  let first = checkLength.filter(num => 6 === num).length;
+  let third = checkLength.filter(num => 5 === num).length;
+  let fourth = checkLength.filter(num => 4 === num).length;
+  let fiveth = checkLength.filter(num => 3 === num).length;
 }
 
 class App {
