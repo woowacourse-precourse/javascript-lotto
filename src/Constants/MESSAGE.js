@@ -8,9 +8,9 @@ const INGAME_MESSAGE = {
 const ERROR_MESSAGE = {
   appropriateUnit: '[ERROR] : 구입금액은 천원단위로 입력해야합니다.',
   splitSymbol: '[ERROR] : 당첨번호는 , 단위로 구분하여 입력해야합니다.',
-  mainNumberOfDigit: '[ERROR] : 당첨번호는 6자를 입력해야합니다.',
-  bonusNumberOfDigit: '[ERROR] : 보너스 번호는 1자를 입력해야합니다.',
-  numberInRange: '[ERROR] : 로또 번호는 1부터 45 사이의 숫자여야 합니다.',
+  mainNumber: '[ERROR] : 당첨번호는 6자를 입력해야합니다.',
+  bonusNumber: '[ERROR] : 보너스 번호는 1자를 입력해야합니다.',
+  numberRange: '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.',
   mainNumberOverlap: '[ERROR] : 당첨번호는 중복된 번호를 입력할 수 없습니다.',
   bonusNumberOverlap: '[ERROR] : 보너스번호가 중복되었습니다.',
 };
