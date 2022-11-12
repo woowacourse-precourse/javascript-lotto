@@ -6,15 +6,15 @@ const LOTTO = {
 };
 
 const MESSAGE = {
-  PURCHASE_AMOUNT: '구입금액을 입력해 주세요.\n',
-  WINNING_NUMBER: '\n당첨 번호를 입력해 주세요.\n',
-  BONUS_NUMBER: '\n보너스 번호를 입력해 주세요.\n',
+  PURCHASE_AMOUNT: '구입금액을 입력해 주세요.',
+  WINNING_NUMBER: '당첨 번호를 입력해 주세요.',
+  BONUS_NUMBER: '보너스 번호를 입력해 주세요.',
 };
 
 const ERROR = {
   AMOUNT: `[ERROR] ${LOTTO.PRICE}원 단위로만 구매할 수 있습니다.`,
   SELECT: `[ERROR] 로또 번호는 ${LOTTO.NUMBER_SELECT}개여야 합니다.`,
-  NUMBER: `[ERROR] 로또 번호는 ${LOTTO.NUMBER_START}부터 ${LOTTO.NUMBER_END} 사이의 숫자여야 합니다.`,
+  NUMBER: `[ERROR] 로또 번호는 ${LOTTO.NUMBER_START}부터 ${LOTTO.NUMBER_END} 사이의 중복되지 않는 숫자여야 합니다.`,
 };
 
 module.exports = { LOTTO, MESSAGE, ERROR };

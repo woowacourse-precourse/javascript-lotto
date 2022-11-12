@@ -1,21 +1,22 @@
-const { Console, Random } = require('@woowacourse/mission-utils');
-const { LOTTO } = require('./Constants');
+const { LOTTO, ERROR } = require('./Constants');
 
 class Lotto {
   #numbers;
 
-  // constructor(numbers) {
-  //   this.#numbers = numbers;
-  // }
+  constructor(numbers) {
+    this.validate(numbers);
+    this.#numbers = numbers;
+  }
 
-  getLotto() {
-    const lotto = Random.pickUniqueNumbersInRange(
-      LOTTO.NUMBER_START,
-      LOTTO.NUMBER_END,
-      LOTTO.NUMBER_SELECT
-    );
-    lotto.sort((x, y) => x - y);
-    return lotto;
+  validate(numbers) {
+    if (numbers.length !== LOTTO.NUMBER_SELECT) {
+      throw new Error(ERROR.SELECT);
+    }
+    for (let i = 0; i < numbers.length; i++) {
+      if (numbers.indexOf(numbers[i]) !== numbers.lastIndexOf(numbers[i])) {
+        throw new Error(ERROR.NUMBER);
+      }
+    }
   }
 
   checkLotto(numbers, winningNumber, bonusNumber) {

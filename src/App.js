@@ -1,7 +1,6 @@
-const { Console } = require('@woowacourse/mission-utils');
-const { MESSAGE } = require('./Constants');
+const { Console, Random } = require('@woowacourse/mission-utils');
+const { LOTTO, MESSAGE } = require('./Constants');
 const Validate = require('./Validate');
-const Lotto = require('./Lotto');
 const Statistics = require('./Statistics');
 
 class App {
@@ -12,7 +11,6 @@ class App {
 
   constructor() {
     this.validate = new Validate();
-    this.lotto = new Lotto();
     this.statistics = new Statistics();
   }
 
@@ -23,18 +21,29 @@ class App {
     });
   }
 
+  getLotto() {
+    const lotto = Random.pickUniqueNumbersInRange(
+      LOTTO.NUMBER_START,
+      LOTTO.NUMBER_END,
+      LOTTO.NUMBER_SELECT
+    );
+    lotto.sort((x, y) => x - y);
+    return lotto;
+  }
+
   getLottoList(amount) {
     for (let i = 0; i < amount; i++) {
-      const lotto = this.lotto.getLotto();
+      const lotto = this.getLotto();
       this.lottoList.push(lotto);
     }
     this.printLottoList(this.lottoList);
   }
 
   printLottoList(lottoList) {
-    Console.print(`\n${this.amount}개를 구매했습니다.`);
+    Console.print(`${this.amount}개를 구매했습니다.`);
     lottoList.forEach((lotto) => {
-      Console.print(lotto);
+      const TEXT = lotto.join(', ');
+      Console.print(`[${TEXT}]`);
     });
     this.getWinningNumber();
   }
