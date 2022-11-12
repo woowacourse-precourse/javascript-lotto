@@ -76,7 +76,39 @@ class App {
         throw new Error("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
       }
       bonus += +answer;
+      this.statistics(bundle, numbers, bonus);
     });
+  }
+
+  statistics(bundle, numbers, bonus) {
+    const collectCount = [0, 0, 0, 0, 0];
+    for (let i = 0; i < bundle.length; i++) {
+      let count = 0;
+      let bonusCount = 0;
+      if (bundle[i].includes(bonus)) {
+        bonusCount += 1;
+      }
+      for (let j = 0; j < bundle[i].length; j++) {
+        if (bundle[i].includes(numbers[j])) {
+          count += 1;
+        }
+      }
+      if (count === 3) {
+        collectCount[0]++;
+      }
+      if (count === 4) {
+        collectCount[1]++;
+      }
+      if (count === 5 && bonusCount !== 1) {
+        collectCount[2]++;
+      }
+      if (count === 5 && bonusCount === 1) {
+        collectCount[3]++;
+      }
+      if (count === 6) {
+        collectCount[4]++;
+      }
+    }
   }
 }
 const app = new App();
