@@ -25,6 +25,20 @@ class GameUtils {
     const profitRate = decimalValue.toFixed(2);
     return profitRate;
   }
+  static addComma(value) {
+    let addedComma = '';
+    value = Array.from(value.toString());
+    let digit = 0;
+    for(let i = value.length - 1; i >= 0; i--) {
+      if(digit === 3) {
+        addedComma = ',' + addedComma;
+        digit = 0;
+      }
+      addedComma = value[i] + addedComma;
+      digit += 1;
+    }
+    return addedComma;
+  }
 }
 
 module.exports = GameUtils;
