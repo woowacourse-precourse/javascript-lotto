@@ -59,3 +59,10 @@ const printArray = (array) => {
 
 getInput(getNumber, returnArray, printArray);
 ```
+
+## 예외 처리
+
+1. 구매 금액에 숫자가 아닌 다른 문자가 들어올 수 없다.
+2. 구매 금액은 1000으로 나눌 수 있는 숫자여야한다.
+3. 당첨 번호는 6개의 숫자여야 한다.
+4. 보너스 번호는 당첨 번호와 같을 수 없다.
