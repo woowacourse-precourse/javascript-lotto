@@ -42,9 +42,12 @@ class App {
 
   enterBonus() {
     Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonus) => {
+      this.#Lotto.bonusCharacterCheck(bonus);
+      this.#Lotto.bonusRangeCheck(bonus);
+      this.#Lotto.bonusDuplicateCheck(bonus);
       this.#bonus = bonus;
     });
   }
 }
-
+const app = new App; app.play();
 module.exports = App;

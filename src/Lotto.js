@@ -42,7 +42,8 @@ class Lotto {
   }
 
   bonusDuplicateCheck(bonus) {
-    if(this.#numbers.includes(bonus)) {
+    console.log(this.#numbers);
+    if(this.#numbers.includes(Number(bonus))) {
       throw new Error("[ERROR] 보너스 점수는 당첨 번호와 중복되면 안됩니다.");
     }
   }
