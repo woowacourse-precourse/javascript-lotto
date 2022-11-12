@@ -1,8 +1,8 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { MESSAGE } = require('./Constants');
-const Price = require('../check-avilable/Price');
-const Lotto = require('../check-avilable/Lotto');
-const Bonus = require('../check-avilable/Bonus');
+const Price = require('../check-available/Price');
+const Lotto = require('../check-available/Lotto');
+const Bonus = require('../check-available/Bonus');
 const MakeLottos = require('../lotto-make-and-calculate/MakeLottos');
 const PrintResults = require('../print/PrintResults');
 const Calculate = require('../lotto-make-and-calculate/Calculate');

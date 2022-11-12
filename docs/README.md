@@ -43,7 +43,7 @@
 ## :file_folder: 파일 구조
 ```
 📦src
- ┣ 📂check-avilable
+ ┣ 📂check-available
  ┃ ┣ 📜Bonus.js
  ┃ ┣ 📜Lotto.js
  ┃ ┗ 📜Price.js
@@ -58,3 +58,26 @@
  ┃ ┗ 📜LottoHandler.js
  ┗ 📜App.js
  ```
+
+ <br />
+
+ ## :clipboard: 각 파일의 기능
+ ### App.js
+ - 애플리케이션 실행(=시동)
+ - LottoHandler의 getPrice()를 실행함으로 프로그램이 시작하게 함
+
+ ### utils/LottoHandler.js
+ - 프로세스 실행
+ - 값 입력, 로또값 생성, 계산 등 프로세스를 순서대로 실행할 수 있게 함
+
+ ### check-available
+ - 입력받은 값에 대한 유효성을 검사
+ - 예외상황일 경우 throw문으로 예외처리
+
+ ### lotto-make-and-calculate
+ - 직접적인 계산을 하는 기능들의 집합
+ - 로또값 생성, 랭킹 계산, 수익률 계산
+
+ ### print
+ - 결과 출력
+ - 발행된 로또와 개수 출력, 랭킹 출력, 수익률 출력
