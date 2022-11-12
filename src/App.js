@@ -16,7 +16,7 @@ class App {
 
   purchaseException() {
     if (this.money % 1000 !== 0) {
-      throw new Error('[EEROR] 금액은 천원 단위로 입력해주세요.');
+      throw new Error('[ERROR] 금액은 천원 단위로 입력해주세요.');
     }
     this.makeLotto();
   }
