@@ -23,7 +23,11 @@ class Game {
     this.target = undefined; //무엇을 위한 target ..?
     this.io = MissionUtils.Console;
     this.CreateNum;
-    this.lottoNum = []; //빈배열 무엇을위한 ..?
+    this.lottoNum = []; //당첨숫자
+    this.bonuslottoNum = []; //보너스숫자
+    this.commonNum = []; //공통숫자
+    this.scoreArray = { "1등": 0, "2등": 0, "3등": 0, "4등": 0, "5등": 0 };
+    this.totalValue;
     // this.validation = new Validation(this.targetLength); //Validation 거르기
   }
   play() {
@@ -45,6 +49,8 @@ class Game {
   }
   validate2(input, n) {
     let result = [];
+    console.log(input.split(","));
+    console.log(n);
     if (input.split(",").length !== n) {
       throw new Error("[ERROR] 숫자 6개를 , 로 구분해주세요 ");
     }
@@ -56,6 +62,16 @@ class Game {
     if (result.includes(NaN) == true) {
       throw new Error("숫자로만 입력하세요");
     }
+    let splitArray = input.split(",");
+    // console.log(splitArray);
+    const setCollection = new Set(splitArray);
+    // console.log(setCollection);
+    const isDuplicate = setCollection.size < splitArray.length;
+    // console.log(isDuplicate);
+    if (isDuplicate) {
+      throw new Error("중복된값");
+    }
+
     return result;
   }
 
@@ -70,8 +86,12 @@ class Game {
   }
   ResultedNum(input) {
     // 당첨숫자
+    console.log(); //띄어쓰기 있으면
+    if (input.includes(" ")) {
+      input = input.replace(/ /gi, "");
+    }
     this.validate2(input, 6);
-    this.start(QuestionText.bonusText, this.ResultedBonusNum);
+    this.start(QuestionText.bonusText, this.ResultedBonusNum); //보너스 번호를 입력해 주세요.
     this.lottoNum += input;
   }
   ResultedBonusNum(input) {
@@ -79,31 +99,78 @@ class Game {
     if ([Number(input)].includes(NaN) == true) {
       throw new Error("숫자로만 입력하세요");
     }
-    this.lottoNum += "," + input;
-    this.scoreResult(this.lottoNum, this.CreateNum);
+
+    this.bonuslottoNum += input; //보너스 숫자를 당첨숫자배열에 추가
+    this.lottoNum += "," + input; //보너스 숫자를 당첨숫자배열에 추가
+
+    this.commonNum = this.CommonResult(this.lottoNum, this.CreateNum);
+    this.viewResult(this.commonNum);
   }
   onGame(input) {
     this.validate(input);
+    this.buyingPrice = input;
     let buyingNum = input / 1000;
-    console.log(buyingNum);
     this.CreateNum = this.buyingLotto(buyingNum); //n개
-    this.start(QuestionText.resultText, this.ResultedNum);
+    this.start(QuestionText.resultText, this.ResultedNum); //당첨 번호를 입력해 주세요
   }
   buyingLotto(num) {
+    //로또 구매후 구매만큼 랜덤숫자 출력
     this.io.print(`${num}개를 구매했습니다.`);
     let result = [];
     let count = 0;
     for (let i = 0; i < num; i++) {
       result[count++] = this.RadomSet().sort((a, b) => a - b);
     }
-    console.log(...result);
+    return result;
+  }
+  CommonResult(loNum, creNum) {
+    console.log("loNum : ", loNum);
+    //공통숫자 출력
+    this.validate2(loNum, 7);
+    // 교집합(Intersection)
+    let result = [];
+    for (let i of creNum) {
+      result.push(i.filter((x) => loNum.includes(x)));
+    }
     return result;
   }
 
-  scoreResult(loNum, creNum) {
-    let newLoNum = this.validate2(loNum, 7);
-    console.log(newLoNum);
-    for (let i = 0; i < loNum.length; i++) {}
+  ROEcalc(score) {
+    let result = [];
+    result.push(score["1등"] * 2000000000);
+    result.push(score["2등"] * 30000000);
+    result.push(score["3등"] * 1500000);
+    result.push(score["4등"] * 50000);
+    result.push(score["5등"] * 5000);
+    let totalValue = result.reduce(function (accumulator, currentValue, index) {
+      // console.log(`*****${index}번째 index*****`);
+      // console.log(`accumulator : ${accumulator}`);
+      // console.log(`currentValue : ${currentValue}`);
+      // console.log("\n");
+      return accumulator + currentValue;
+    });
+    this.totalValue = totalValue;
+    let calValue = (this.totalValue / this.buyingPrice) * 100;
+    calValue = Math.round(calValue * 10) / 10;
+    this.io.print(`총 수익률은 ${calValue}%입니다.`);
+  }
+  viewResult(commonNum) {
+    let bonusCorret = false;
+    if (commonNum.includes(this.bonuslottoNum) == true) bonusCorret = true;
+    for (let i of commonNum) {
+      if (i.length == 6) this.scoreArray["1등"] += 1;
+      if (i.length == 5 && bonusCorret) this.scoreArray["2등"] += 1;
+      if (i.length == 5) this.scoreArray["3등"] += 1;
+      if (i.length == 4) this.scoreArray["4등"] += 1;
+      if (i.length == 3) this.scoreArray["5등"] += 1;
+    }
+    this.io.print(`당첨 통계
+3개 일치 (5,000원) -${this.scoreArray["5등"]}개
+4개 일치 (50,000원) - ${this.scoreArray["4등"]}개
+5개 일치 (1,500,000원) - ${this.scoreArray["3등"]}개
+5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.scoreArray["2등"]}개
+6개 일치 (2,000,000,000원) - ${this.scoreArray["1등"]}개`);
+    this.ROEcalc(this.scoreArray);
   }
 }
 module.exports = LottoBuild;

@@ -207,22 +207,22 @@ const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
 - `Lotto`에 필드를 추가할 수 없다.
 
 ```javascript
-class Lotto {
-  #numbers;
+// class Lotto {
+//   #numbers;
 
-  constructor(numbers) {
-    this.validate(numbers);
-    this.#numbers = numbers;
-  }
+//   constructor(numbers) {
+//     this.validate(numbers);
+//     this.#numbers = numbers;
+//   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error();
-    }
-  }
+//   validate(numbers) {
+//     if (numbers.length !== 6) {
+//       throw new Error();
+//     }
+//   }
 
-  // TODO: 추가 기능 구현
-}
+//   // TODO: 추가 기능 구현
+// }
 ```
 
 ---
