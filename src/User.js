@@ -61,6 +61,9 @@ class User {
         if (!VALIDATION) {
           throw new Error('[Error] 롯또 번호는 1~45 사이의 6자리 숫자입니다.');
         }
+        const toNumbers = arr => arr.map(Number);
+        this.setWinningNumber(toNumbers(winning_number));
+        this.input_bonus_number();
       },
     );
   }
