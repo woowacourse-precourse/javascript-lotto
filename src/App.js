@@ -7,8 +7,8 @@ class App {
   }
 
   start() {
-    Console.print(MESSAGE.startGame);
-    Console.readLine(MESSAGE.enterPurchaseAmount, (purchaseAmount) =>
+    Console.print(MESSAGE.START_GAME);
+    Console.readLine(MESSAGE.ENTER_PURCHASE_AMOUNT, (purchaseAmount) =>
       this.validatePerchaseAmount(purchaseAmount)
     );
   }
