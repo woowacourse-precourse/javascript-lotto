@@ -41,6 +41,7 @@
 - [ ] 로또번호를 비교하는 기능 - compareLotto
 - [ ] 당첨 내역을 출력하는 기능 - printWinResult
 - [ ] 수익률을 계산하는 기능 - printGainPercent
+- [ ] 로또 내역을 집계하는 기능 - resultCaculator
 
 예외처리 기능
 
