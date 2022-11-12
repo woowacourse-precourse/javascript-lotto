@@ -20,7 +20,7 @@
 - [x] 일치하는 개수를 통해 당첨 결과을 구한다. Prize#getPrize
 - [x] 로또 구입금액 만큼 랜덤 로또를 생성한다. LottoTicket#createRandomLotto
 - [x] 당첨 결과 개수를 구한다 Result#countPrize
-- [ ] 수익률을 구한다. Result#getProfit
+- [x] 수익률을 구한다. Result#getProfit
   - 수익률은 소수점 둘째 자리에서 반올림한다.
   - 1000보다 큰 수익률은 세 자릿수마다 `,`콤마를 추가한다.
 ## UI 관련
