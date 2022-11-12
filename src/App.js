@@ -4,6 +4,7 @@ const Lotto = require("../src/Lotto.js");
 class App {
   constructor() {
     this.winningNumbers = [];
+    this.bonusNumber = null
   }
 
   play() {
@@ -13,7 +14,12 @@ class App {
   setWinningNumbers(winningNumbers) {
     this.winningNumbers = winningNumbers;
   }
+
+  setBonusNumber(bonusNumber) {
+    this.bonusNumber = bonusNumber;
+  }
 }
+
 
 function inputPurchaseAmount() {
   MissionUtils.Console.readLine(
@@ -72,6 +78,16 @@ function inputWinningNumbers() {
     (inputNumbers) => {
       const winningNumbers = inputNumbers.split(',').map(x => parseInt(x))
       app.setWinningNumbers(winningNumbers);
+    }
+  );
+  inputBonusNumber()
+}
+
+function inputBonusNumber() {
+  MissionUtils.Console.readLine(
+    "보너스 번호를 입력해 주세요.\n",
+    (bonusNumber) => {
+      app.setBonusNumber(parseInt(bonusNumber));
     }
   );
 }
