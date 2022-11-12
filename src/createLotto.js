@@ -14,7 +14,7 @@ function createLottoNumbers(qauntity) {
 function printCreateLottoNumbers(lottoNumbers) {
   Console.print(`\n${lottoNumbers.length}${LOTTO_OUTPUT.LOTTO_QUANTITY}`);
   lottoNumbers.forEach((lotto) => {
-    Console.print(lotto);
+    Console.print(lotto.sort((a, b) => a - b));
   });
 }
 
