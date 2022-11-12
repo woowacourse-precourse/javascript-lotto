@@ -38,6 +38,19 @@ function checkPurchaseAmount(inputMoney) {
 
 function printLottoNumber(lottoCnt) {
   MissionUtils.Console.print(`${lottoCnt}개를 구매했습니다.`);
+  pickRandomNumber(lottoCnt).forEach((lottoSixNum) =>
+    MissionUtils.Console.print(lottoSixNum)
+  );
+}
+
+function pickRandomNumber(lottoCnt) {
+  let pickNumberArray = [];
+  for (let i = 0; i < lottoCnt; i++) {
+    pickNumberArray.push(
+      MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6)
+    );
+  }
+  return pickNumberArray;
 }
 
 // TODO: 추가 기능 구현
