@@ -47,6 +47,12 @@ class App {
   setLotto() {
     const lotto = this.LottoBuilder.build();
     lotto.progress();
+    this.setOutputStats(lotto.stats, lotto.yield);
+  }
+
+  setOutputStats(lottoRanks, lottoYield) {
+    this.print(`당첨 통계`);
+    this.print(`---`);
   }
 
   showLottoList(lists) {
