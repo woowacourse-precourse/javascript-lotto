@@ -12,6 +12,33 @@ class App {
   issuedLotto = [];
   winningLottoNumber;
   BonusLottoNumber;
+  rankingResult = [
+    {
+      rank:1,
+      reword: 2000000000,
+      count: 0
+    },
+    {
+      rank:2,
+      reword: 30000000,
+      count: 0
+    },
+    {
+      rank:3,
+      reword: 1500000,
+      count: 0
+    },
+    {
+      rank:4,
+      reword: 50000,
+      count: 0
+    },
+    {
+      rank:5,
+      reword: 5000,
+      count: 0
+    },
+  ];
 
   buyLotto(price) {
     const buyer = new Buyer(price);
@@ -99,31 +126,43 @@ class App {
     }, 0);
   }
 
-  checkBounsNumber(lottoNumber, BonusLottoNumber) {
-    return lottoNumber.includes(BonusLottoNumber);
+  hasBounsNumber(lottoNumber,bounsLotto) {
+    return lottoNumber.includes(bounsLotto);
   }
 
-  matchedNumberResult(issuedLotto, winningLottoNumber){
-    return issuedLotto.reduce((totalResult, lotto) => {
-      totalResult.push(
-        this.calculateOverlappintNumberCount(lotto, winningLottoNumber)
+  makeRankingResult(issuedLotto, winningLottoNumber,bounsLotto) {
+    issuedLotto.forEach((lotto) => {
+      let matchCount = this.calculateOverlappintNumberCount(
+        lotto,
+        winningLottoNumber
       );
-      return totalResult;
-    }, []);
+      if (matchCount == 6) this.rankingResult[0].count+=1;
+      if (matchCount==5 && this.hasBounsNumber(lotto,bounsLotto)){
+        this.rankingResult[1].count += 1;
+      }
+      if(matchCount==5 && !this.hasBounsNumber(lotto,bounsLotto)){
+        this.rankingResult[1].count += 1;
+      }
+      if(matchCount==4){
+        this.rankingResult[2].count += 1;
+      }
+      if(matchCount==3){
+        this.rankingResult[3].count += 1;
+      }
+    });
   }
-
-  findRankingResult(totalResult, rankingCount){
-    return totalResult.filter(value=>value==rankingCount).length();
-  }
-
 
   play() {
     Console.print(ASK_LOTTO_PRICE);
     // Console.readLine('',price => this.buyLotto(price))
+
+    this.makeissuedLotto(8);
+    this.printIssuendLotto(this.issuedLotto)
+    this.matchedNumberResult(this.issuedLotto,[1,2,3,4,5,6],7)
   }
 }
 
-// const app = new App();
-// app.play();
+const app = new App();
+app.play();
 
-module.exports = App;
+// module.exports = App;
