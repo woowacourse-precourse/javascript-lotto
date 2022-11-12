@@ -70,6 +70,12 @@ class Application {
   static isMatcheCount(count, datumPoint) {
     return count === datumPoint;
   }
+
+  static copyArray(array) {
+    const newArray = [...array];
+
+    return newArray;
+  }
 }
 
 module.exports = Application;
