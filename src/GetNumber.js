@@ -2,17 +2,16 @@ const Lotto = require('./Lotto');
 
 class GetNumber {
     constructor() {
-        this.validate = new Lotto().validate();
-        this.bonusValidate = new Lotto().bonusValidate();
+        this.Lotto = new Lotto();
     }
     toWin(numbers) {
-        this.validate(numbers);
         numbers = numbers.split(',');
+        this.Lotto.validate(numbers);
         console.log(numbers);
     };
 
     bonus(number) {
-        this.bonusValidate(number);
+        this.Lotto.bonusValidate(number);
         console.log(number);
     }
 }
