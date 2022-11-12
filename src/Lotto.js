@@ -114,6 +114,21 @@ class Lotto {
     return copiedWinningAmount;
   }
 
+  static calculateTotalAmount(winningAmount) {
+    const MAX_LENGTH = 5;
+
+    Application.validateArrayLength(winningAmount, MAX_LENGTH);
+
+    const copiedWinningAmount = Application.copyArray(winningAmount);
+    const THREE = copiedWinningAmount[0] * 5000;
+    const FOUR = copiedWinningAmount[1] * 50000;
+    const FIVE = copiedWinningAmount[2] * 1500000;
+    const FIVE_AND_BONUS = copiedWinningAmount[3] * 30000000;
+    const SIX = copiedWinningAmount[4] * 2000000000;
+
+    return [THREE, FOUR, FIVE, FIVE_AND_BONUS, SIX].reduce((a, b) => a + b);
+  }
+
   getLottoResult(winningNumbers, bonus) {
     let winningAmount = [0, 0, 0, 0, 0];
 
