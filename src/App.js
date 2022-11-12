@@ -1,9 +1,12 @@
 const { LottoBuilder } = require('./Lotto');
 const MissionUtils = require('@woowacourse/mission-utils');
-const { amountValidation } = require('./validation/amountValidation');
-const { winningValidation } = require('./validation/winningValidation');
-const { bonusValidation } = require('./validation/bonusValidation');
+const {
+  amountValidation,
+  winningValidation,
+  bonusValidation,
+} = require('./validation/validation');
 const { INPUT_TEXT, STATS_TEXT, RANK } = require('./constant/constant');
+
 class App {
   constructor() {
     this.LottoBuilder = new LottoBuilder();
