@@ -6,14 +6,12 @@ const accountInput = () => {
   MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
     checkAccountValidation(input);
     lottoPrint(input);
-    generateNumber(input).then((tickets) => {
-      printLottoNumber(tickets);
-    });
+    generateNumber(input);
   });
 };
 
 const lottoPrint = (account) => {
-  MissionUtils.Console.print(`\n${account / 1000}개를 구매했습니다.`);
+  MissionUtils.Console.print(`${account / 1000}개를 구매했습니다.`);
 };
 
 const checkAccountValidation = (input) => {
@@ -30,22 +28,29 @@ const checkAccountValidation = (input) => {
   }
 };
 
-const generateNumber = async (count) => {
+const generateNumber = (count) => {
   const lottos = [];
   const lottoCount = count / 1000;
+
   for (let i = 0; i < lottoCount; i++) {
-    const lotto = await MissionUtils.Random.pickUniqueNumbersInRange(
-      1,
-      45,
-      6
-    ).sort((a, b) => a - b);
+    const lotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort(
+      (a, b) => a - b
+    );
     lottos.push(lotto);
   }
-  return lottos;
+
+  printLottoNumber(lottos);
 };
 
 const printLottoNumber = (tickets) => {
-  tickets.map((element) => MissionUtils.Console.print(element));
+  for (const ticket of tickets) {
+    let output = "";
+    for (const num of ticket) {
+    }
+  }
+  tickets.map((element) =>
+    MissionUtils.Console.print(`[${element.join(", ")}]`)
+  );
   winningNumberInput(tickets);
 };
 

@@ -2,7 +2,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 
 const lottoStatistics = (lottos, winningNumber, bonusNumber) => {
   const totalNumber = [...winningNumber, Number(bonusNumber)];
-  MissionUtils.Console.print("당첨 통계\n---");
+  MissionUtils.Console.print("\n당첨 통계\n---");
   calculateMatch(lottos, totalNumber, bonusNumber);
 };
 
@@ -54,13 +54,15 @@ const calculateMatch = (lottos, totalNumber, bonusNumber) => {
 
   MissionUtils.Console.print(
     `총 수익률은 ${
-      ((rank["5등"] * 5000 +
-        rank["4등"] * 50000 +
-        rank["3등"] * 1500000 +
-        rank["2등"] * 30000000 +
-        rank["1등"] * 30000000) /
-        account) *
-      100
+      Math.round(
+        ((rank["5등"] * 5000 +
+          rank["4등"] * 50000 +
+          rank["3등"] * 1500000 +
+          rank["2등"] * 30000000 +
+          rank["1등"] * 30000000) /
+          account) *
+          1000
+      ) / 10
     }%입니다.`
   );
   MissionUtils.Console.close();
