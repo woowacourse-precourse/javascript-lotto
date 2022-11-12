@@ -9,10 +9,23 @@ class Lotto {
         this.#numbers = numbers;
     }
 
+    inputLotto() {
+        this.inputWinningnumber();
+    }
+
     inputWinningnumber() {
-        Console.readLine('당첨 번호를 입력해 주세요.', (lotto) => {
+        Console.readLine('당첨 번호를 입력해 주세요.\n', (lotto) => {
             const lottoArray = lotto.split(',').map((number) => number.trim());
+            this.#numbers = lottoArray;
             this.verification(lottoArray, 'lottoNumber');
+            this.inputBonusnumber();
+            Console.close();
+        });
+    }
+
+    inputBonusnumber() {
+        Console.readLine('보너스 번호를 입력해 주세요.\n', (bonus) => {
+            this.#numbers.push(bonus);
         });
     }
 
