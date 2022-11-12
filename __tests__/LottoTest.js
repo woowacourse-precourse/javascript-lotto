@@ -15,4 +15,10 @@ describe('로또 클래스 테스트', () => {
   });
 
   // 아래에 추가 테스트 작성 가능
+  test('보너스 번호가 로또 번호에 중복되면 예외가 발생한다.', () => {
+    expect(() => {
+      const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+      lotto.bonusExecption(parseInt(1));
+    }).toThrow('[ERROR]');
+  });
 });
