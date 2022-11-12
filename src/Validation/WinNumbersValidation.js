@@ -10,6 +10,7 @@ class WinNumbersValidation extends Validation {
   validate() {
     this.checkIsEmpty();
     this.checkIsValidDivision();
+    this.checkIsRangeNumber();
   }
 
   checkIsEmpty() {
@@ -25,6 +26,18 @@ class WinNumbersValidation extends Validation {
       throw new Error(WIN_NUMBER_ERROR_MESSAGE.not_valid_division);
     }
     return true;
+  }
+
+  checkIsRangeNumber() {
+    const winNumberArray = this.answer.split(',');
+    const regExp = /^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$/;
+
+    winNumberArray.forEach((number) => {
+      if (!regExp.test(number)) {
+        throw new Error(WIN_NUMBER_ERROR_MESSAGE.not_valid_range_number);
+      }
+      return true;
+    });
   }
 }
 
