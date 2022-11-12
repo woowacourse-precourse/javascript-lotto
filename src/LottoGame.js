@@ -61,6 +61,7 @@ class LottoGame {
       this.#bonusNumber = bonusNumber;
       LottoView.printStatsMessage();
       Validator.checkValidBonusNumber(bonusNumber);
+      Validator.checkBonusNumberRange(bonusNumber);
       this.#matchLottos();
     });
   }

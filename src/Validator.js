@@ -67,18 +67,22 @@ class Validator {
   }
 
   static checkValidBonusNumber(bonusNumber) {
+    if (bonusNumber.includes('e') || Number.isNaN(Number(bonusNumber))) {
+      throw new Error(`${ERROR_MESSAGES.INVALID_BONUS_NUMBER}`);
+    }
     if (bonusNumber < 0) {
       throw new Error(`${ERROR_MESSAGES.INVALID_NEGATIVE_NUMBER}`);
     }
     if (!Number(bonusNumber) || bonusNumber === ' ') {
       throw new Error(`${ERROR_MESSAGES.INVALID_EMPTY_INPUT}`);
     }
-    if (bonusNumber.includes('e') || Number.isNaN(Number(bonusNumber))) {
-      throw new Error(`${ERROR_MESSAGES.INVALID_BONUS_NUMBER}`);
-    }
   }
 
-  static checkBonusNumberRange(bonusNumber) {} // 1~45 사이 숫자인지 확인
+  static checkBonusNumberRange(bonusNumber) {
+    if (bonusNumber < LOTTO_INFO.BEGIN_NUMBER || bonusNumber > LOTTO_INFO.END_NUMBER) {
+      throw new Error(`${ERROR_MESSAGES.INVALID_LOTTO_NUMBER_RANGE}`);
+    }
+  }
   static checkDuplicateBonusNumber(bonusNumber) {} // 당첨 번호랑 중복있는지 확인
 }
 
