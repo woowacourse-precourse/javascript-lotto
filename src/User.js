@@ -1,5 +1,6 @@
 class User {
   #lottoCount = 0;
+  #lottos = [];
 
   setLottoCount(count) {
     this.#lottoCount = count;
@@ -7,6 +8,14 @@ class User {
 
   getLottoCount() {
     return this.#lottoCount;
+  }
+
+  setLottos(lottos) {
+    this.#lottos = lottos;
+  }
+
+  getLottos() {
+    return this.#lottos;
   }
 }
 

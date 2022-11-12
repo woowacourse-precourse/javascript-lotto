@@ -9,6 +9,12 @@ class LottoView {
   printLottoCount(count) {
     Console.print(`\n${OUTPUT_MESSAGES.BUY(count)}`);
   }
+
+  printUserLottos(lottos) {
+    lottos.forEach((lotto) => {
+      Console.print(lotto);
+    });
+  }
 }
 
 module.exports = LottoView;

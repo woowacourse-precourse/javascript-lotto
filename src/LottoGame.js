@@ -23,7 +23,7 @@ class LottoGame {
       LOTTO_INFO.BEGIN_NUMBER,
       LOTTO_INFO.END_NUMBER,
       LOTTO_INFO.COUNT
-    );
+    ).sort((a, b) => a - b);
   }
 
   craeteLottos(lottoCount) {
@@ -37,7 +37,9 @@ class LottoGame {
 
   countLottos(money) {
     this.user.setLottoCount(lottoCount(money));
-    return this.lottoView.printLottoCount(this.user.getLottoCount());
+    this.user.setLottos(this.craeteLottos(this.user.getLottoCount()));
+    this.lottoView.printLottoCount(this.user.getLottoCount());
+    this.lottoView.printUserLottos(this.user.getLottos());
   }
 }
 
