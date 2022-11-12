@@ -26,11 +26,11 @@ describe('LottoDrawFactory 클래스 테스트', () => {
 
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     const bonus = new Bonus('7');
+    const lottoStore = new LottoStore('1000')
 
-    const lottoAdjustment = new LottoAdjustment({
-      draw: new LottoDrawFactory({ lotto, bonus }),
-      payment: new LottoStore('1000'),
-    });
+    const lottoAdjustment = new LottoAdjustment(
+      new LottoDrawFactory({ lotto, bonus, lottoStore })
+    );
 
     const logSpy = getLogSpy();
 
@@ -56,10 +56,11 @@ describe('LottoDrawFactory 클래스 테스트', () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     const bonus = new Bonus('7');
 
-    const lottoAdjustment = new LottoAdjustment({
-      draw: new LottoDrawFactory({ lotto, bonus }),
-      payment: new LottoStore('1000'),
-    });
+    const lottoStore = new LottoStore('1000')
+
+    const lottoAdjustment = new LottoAdjustment(
+      new LottoDrawFactory({ lotto, bonus, lottoStore })
+    );
 
     const logSpy = getLogSpy();
 
@@ -84,11 +85,11 @@ describe('LottoDrawFactory 클래스 테스트', () => {
 
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     const bonus = new Bonus('7');
+    const lottoStore = new LottoStore('1000')
 
-    const lottoAdjustment = new LottoAdjustment({
-      draw: new LottoDrawFactory({ lotto, bonus }),
-      payment: new LottoStore('1000'),
-    });
+    const lottoAdjustment = new LottoAdjustment(
+      new LottoDrawFactory({ lotto, bonus, lottoStore })
+    );
 
     const logSpy = getLogSpy();
 
