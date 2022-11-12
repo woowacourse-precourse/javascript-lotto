@@ -13,10 +13,7 @@ class BuyLotto {
 
   buyLotto(numbersOfLotto) {
     Console.print(`\n${numbersOfLotto}개를 구매했습니다.`);
-    for (let i = 0; i < numbersOfLotto; i++) {
-      this.lottoArray.push(this.getEachLottoArray());
-    }
-    this.#printLottoList();
+    this.#printLottoList(numbersOfLotto);
   }
 
   getEachLottoArray() {
@@ -25,9 +22,11 @@ class BuyLotto {
     return lottoArray;
   }
 
-  #printLottoList() {
-    for (const lotto of this.lottoArray) {
-      Console.print(`[${lotto.join(', ')}]`);
+  #printLottoList(numbersOfLotto) {
+    for (let count = 0; count < numbersOfLotto; count++) {
+      const lottoArray = this.getEachLottoArray()
+      Console.print(`[${lottoArray.join(', ')}]`);
+      this.lottoArray.push(this.getEachLottoArray());
     }
     Console.print("");
   }
