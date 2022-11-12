@@ -124,7 +124,7 @@ describe('로또 클래스 수익률 계산 테스트', () => {
     lotto.thirdCount = 0;
     lotto.fourthCount = 0;
     lotto.fifthCount = 1;
-    expect(lotto.profitCalculator(9000)).toEqual(55.55);
+    expect(lotto.profitCalculator(9000)).toEqual(55.56);
   });
 });
 

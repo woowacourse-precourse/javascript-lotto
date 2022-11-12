@@ -82,7 +82,7 @@ class Lotto {
         this.secondCount * 30000000 +
         this.thirdCount * 1500000 +
         this.fourthCount * 50000 +
-        this.fourthCount * 5000) /
+        this.fifthCount * 5000) /
         payment) *
       100;
     return Math.round(PROFIT * 100) / 100;
