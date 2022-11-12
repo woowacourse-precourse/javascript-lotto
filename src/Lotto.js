@@ -44,8 +44,11 @@ class Lotto {
       const criteria = WINNING_CRITERIA[key];
       if (this.isWin(criteria, count, bonus)) return criteria.rank;
     }
-
     return 0;
+  }
+
+  getNumbersToArrayFormat() {
+    return `[${this.#numbers.join(', ')}]`
   }
 }
 
