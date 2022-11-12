@@ -2,7 +2,7 @@ const { Console, Random } = require("@woowacourse/mission-utils");
 const BonusNumber = require("./BonusNumber");
 const InputAmount = require("./InputAmount");
 const Lotto = require("./Lotto");
-const WinStats = require("./WinStats");
+const Prize = require("./Prize");
 
 class App {
   inputAmount;
@@ -52,7 +52,7 @@ class App {
 
   printWinStats() {
     Console.print("\n당첨 통계\n---");
-    new WinStats(this.generatedLottos, this.lottoNumbers, this.bonusNumber);
+    new Prize(this.generatedLottos, this.lottoNumbers, this.bonusNumber);
   }
 }
 

@@ -1,6 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 
-class WinStats {
+class Prize {
   statValue;
   prizeByMatchingNumbers = [
     { 3: 5000 },
@@ -57,4 +57,4 @@ class WinStats {
   }
 }
 
-module.exports = WinStats;
+module.exports = Prize;
