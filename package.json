@@ -25,6 +25,7 @@
   "engineStrict": true,
   "engines": {
     "npm": ">=6.0.0",
-    "node": ">=14.0.0"
+    "node": ">=14.0.0",
+    "a":"1"
   }
 }
