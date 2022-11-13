@@ -1,9 +1,10 @@
 const { Console } = require("@woowacourse/mission-utils");
-const WinnerNumber = require("./domain/WinnerNumber");
+const { LOTTO_RANGE, INPUT_MESSAGE, OUTPUT_MESSAGE } = require("./constants");
+const BonusNumber = require("./domain/BonusNumber");
 const MatchingNumber = require("./MatchingNumber");
 const ProfitRate = require("./ProfitRate.");
-const { LOTTO_RANGE, ERROR_MESSAGE, INPUT_MESSAGE, OUTPUT_MESSAGE } = require("./constants");
 const Payment = require("./domain/Payment");
+const WinnerNumber = require("./domain/WinnerNumber");
 
 class App {
   constructor() {
@@ -38,16 +39,9 @@ class App {
 
   inputBonusNumber() {
     Console.readLine(INPUT_MESSAGE.bonusNumber, (number) => {
-      this.bonusNumber = number.replace(/\s/g, "").split(",");
-      this.validateInputBonusNumber(this.bonusNumber);
+      this.bonusNumber = new BonusNumber(number).getBonusNumberWithoutSpace(number);
       this.loadMatchingNumberAboutLotto();
     });
-  }
-
-  validateInputBonusNumber(number) {
-    if (number < 1 || number > 45 || !new RegExp("^[0-9]+$").test(number)) {
-      throw new Error(ERROR_MESSAGE.lottoRange);
-    }
   }
 
   loadMatchingNumberAboutLotto() {
