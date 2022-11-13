@@ -69,6 +69,19 @@ class App {
       Console.print(`[${this.lottoArray[i].join(", ")}]`);
     }
   }
+
+  //당첨번호 입력
+  enterNumbers() {
+    this.enterWinningNum();
+    this.enterBonusNum();
+  }
+
+  enterWinningNum() {
+    Console.readLine("당첨 번호를 입력해주세요.", (answer) => {
+      this.winningNum = answer.split(",").map((item) => Number(item));
+      this.checkDuplication(this.winningNum);
+    });
+  }
 }
 
 module.exports = App;
