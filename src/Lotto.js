@@ -26,6 +26,10 @@ class Lotto {
   getLottoNumbers() {
     return this.#numbers;
   }
+
+  getLottoNumbersByString() {
+    return `[${[...this.#numbers].join(", ")}]`;
+  }
 }
 
 module.exports = Lotto;

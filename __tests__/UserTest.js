@@ -1,4 +1,4 @@
-const User = require("../src/user");
+const User = require("../src/User");
 
 describe("유저 클래스 테스트", () => {
   test("changeMoney 메소드로 유저의 구매금액을 변경할 때, 천원 단위가 아니라면 예외가 발생한다.", () => {
