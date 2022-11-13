@@ -1,7 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const { LOTTO_PRIZE } = require("../utils/lottoPrize");
 
-class isResult {
+class IsResult {
   constructor(userLotto, winningNum, bounsNumber, userCost) {
     this.userLottoArray = userLotto;
     this.winningNumArray = winningNum;
@@ -91,4 +91,4 @@ class isResult {
 
 }
 
-module.exports = isResult;
+module.exports = IsResult;
