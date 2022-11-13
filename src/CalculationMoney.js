@@ -1,23 +1,22 @@
-const { Console, Random } = require("@woowacourse/mission-utils");
+const { Random } = require("@woowacourse/mission-utils");
 
-class CalculationMoney {
-  canBuyLotto(money) {
+class CalculationOfLottoGame {
+  HowManyCanBuyLotto(money) {
     return money / 1000;
   }
 
-  makeLotto(parchaedLottoNum) {
+  makeUsersLotto(numOfLotto) {
     let lottoNum = [];
     let i = 0;
 
-    for (; i < parchaedLottoNum; i++) {
+    for (; i < numOfLotto; i++) {
       let randomNum = Random.pickUniqueNumbersInRange(1, 45, 6);
-
       lottoNum.push(randomNum.sort((a, b) => a - b));
     }
     return lottoNum;
   }
 
-  makeWinningNumArr(usersLotto, winLotto) {
+  makeWinningOfLottoArr(usersLotto, winLotto) {
     let i = 0;
     let winningNumArr = [];
 
@@ -31,7 +30,7 @@ class CalculationMoney {
 
     return winningNumArr; // 맞춘 로또 몇개인지 배열!
   }
-  checkInBonus(usersLotto, bonusNum, { index }) {
+  checkOfBonusNumHave(usersLotto, bonusNum, { index }) {
     if (usersLotto[index].includes(parseInt(bonusNum)) === true) {
       return true;
     }
@@ -59,14 +58,16 @@ class CalculationMoney {
 
         case 5:
           if (
-            this.checkInBonus(userHaveLotto, bonusNum, { index: i }) === false
+            this.checkOfBonusNumHave(userHaveLotto, bonusNum, { index: i }) ===
+            false
           ) {
             classOfLotto.set("3등", classOfLotto.get("3등") + 1);
             break;
           }
 
           if (
-            this.checkInBonus(userHaveLotto, bonusNum, { index: i }) === true
+            this.checkOfBonusNumHave(userHaveLotto, bonusNum, { index: i }) ===
+            true
           ) {
             classOfLotto.set("2등", classOfLotto.get("2등") + 1);
             break;
@@ -80,7 +81,7 @@ class CalculationMoney {
     return classOfLotto;
   }
 
-  makeWinningAmount(result) {
+  makeAmountOfWinningMoney(result) {
     let winningAmount = 0;
     for (let i = 0; i < result.length; i++) {
       switch (result[i][0]) {
@@ -104,4 +105,6 @@ class CalculationMoney {
     return winningAmount;
   }
 }
-module.exports = CalculationMoney;
+const calculationOfLottoGame = new CalculationOfLottoGame();
+
+module.exports = calculationOfLottoGame;

@@ -1,10 +1,15 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
-const CalculationMoney = require("./CalculationMoney");
+const {
+  HowManyCanBuyLotto,
+  makeAmountOfWinningMoney,
+  makeUsersLotto,
+  resultOfLottoClass,
+  makeWinningOfLottoArr,
+} = require("./CalculationMoney");
 const Render = require("./Render");
 const { validateMoney, validateBonusNum } = require("./CheckBonusAndMoney");
 
-const calculationMoney = new CalculationMoney();
 const render = new Render();
 class App {
   // 생성자함수를 생성하면 바로 데이터 검사를 할 수 있게만들어야통과함
@@ -28,19 +33,17 @@ class App {
   }
 
   showPurchasedLotto() {
-    const purchasedLottoCount = calculationMoney.canBuyLotto(
-      this.userInputMoney
-    );
+    const numOfLotto = HowManyCanBuyLotto(this.userInputMoney);
 
-    render.showHowmanybought(purchasedLottoCount);
+    render.showHowmanybought(numOfLotto);
 
     this.lineBreak();
 
-    this.makeLotto(purchasedLottoCount);
+    this.makeLotto(numOfLotto);
   }
 
-  makeLotto(purchaedLottoNum) {
-    this.userHaveLotto = calculationMoney.makeLotto(purchaedLottoNum);
+  makeLotto(numOfLotto) {
+    this.userHaveLotto = makeUsersLotto(numOfLotto);
 
     render.showMadeLotto(this.userHaveLotto);
 
@@ -79,7 +82,7 @@ class App {
   calculateOfLotto() {
     this.totalWinningNum = [...this.winningNum, this.bonusNum];
 
-    const winningNumArr = calculationMoney.makeWinningNumArr(
+    const winningNumArr = makeWinningOfLottoArr(
       this.userHaveLotto,
       this.totalWinningNum
     );
@@ -88,7 +91,7 @@ class App {
   }
 
   makeLottoResult(winningNumArr) {
-    const result = calculationMoney.resultOfLottoClass(
+    const result = resultOfLottoClass(
       winningNumArr,
       this.userHaveLotto,
       this.bonusNum
@@ -104,7 +107,7 @@ class App {
   }
 
   makeWinningAmount(result) {
-    const winningAmount = calculationMoney.makeWinningAmount(result);
+    const winningAmount = makeAmountOfWinningMoney(result);
 
     render.showRateOfReturn(winningAmount, this.userInputMoney);
 
