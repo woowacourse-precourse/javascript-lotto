@@ -44,6 +44,12 @@ class View {
   printWinningNumberUniqueErrorMessage() {
     throw new Error(messages.WINNING_NUMBER_ERROR_UNIQUE_NUMBERS_MESSAGE);
   }
+
+  getBonusNumberFromUser() {
+    Console.readLine(messages.BONUS_NUMBER_MESSAGE, (userInput) => {
+      this.controller.setBonusNumberFromUser(userInput);
+    });
+  }
 }
 
 module.exports = View;
