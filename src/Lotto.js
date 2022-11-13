@@ -1,5 +1,3 @@
-const { Random } = require("@woowacourse/mission-utils");
-
 class Lotto {
   #numbers;
 
@@ -23,11 +21,8 @@ class Lotto {
   }
 
   // TODO: 추가 기능 구현
-  static generateLottoWithLottoCount(lottoCount) {
-    return Array.from(
-      { length: lottoCount },
-      () => new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => (a > b ? 1 : -1)))
-    );
+  static calculateLottoCountWithPurchaseAmount(purchaseAmount) {
+    return Math.floor(purchaseAmount / 1000);
   }
 
   get lottoNumbers() {
