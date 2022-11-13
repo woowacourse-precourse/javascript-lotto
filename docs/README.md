@@ -1,18 +1,26 @@
 # 📝 구현할 기능 목록
 
-## 입력
+## 입력 / 출력
 
 ### 1. 구입 금액 입력
 
 - App.recordPay
 
-### 2. 당첨 번호 입력
+### 2. 구입한 로또 출력
+
+- App.printLottos
+
+### 3. 당첨 번호 입력
 
 - App.recordWinNumbers
 
-### 3. 보너스 번호 입력
+### 4. 보너스 번호 입력
 
 - App.recordBonusNumber
+
+### 5. 당첨 통계 출력
+
+- App.printResult
 
 ## 기능
 
@@ -39,13 +47,3 @@
 ### 5. 수익률 계산
 
 - Calculator.calcProfitRate
-
-## 출력
-
-### 1. 발행한 로또 출력
-
-- App.printLottos
-
-### 2. 당첨 통계 출력
-
-- App.printResult
