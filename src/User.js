@@ -1,25 +1,29 @@
-const { Random } = require("@woowacourse/mission-utils");
-
-const { isDivisible, countAvailableQuantity } = require("./utils/utils");
-const { ERROR } = require("./utils/constants");
+const Lotto = require('./Lotto');
+const { isDivisible } = require('./utils/utils');
+const { ERROR, AMOUNT_UNIT } = require('./utils/constants');
 
 class User {
-  purchaseAmount;
-  quantity;
-  lottos;
-
   constructor(purchaseAmount) {
     this.validate(purchaseAmount);
-    this.purchaseAmount = purchaseAmount;
-    this.quantity = countAvailableQuantity(purchaseAmount);
-    //FIXME: App에서 뽑아오기
-    this.lottos = User.generateLottoNumbers(this.quantity);
+    this.purchaseAmount = Number(purchaseAmount);
   }
 
-  validate(input) {
-    if (!isDivisible(input)) {
+  validate(amount) {
+    if (!isDivisible(amount)) {
       throw new Error(ERROR.INDIVISIBLE);
     }
+  }
+
+  buyLotto() {
+    const quantity = this.purchaseAmount / AMOUNT_UNIT;
+    const lottos = [];
+    for (let lottoQuantity = 0; lottoQuantity < quantity; lottoQuantity++) {
+      lottos.push(Lotto.createAutoLotto());
+    }
+
+    this.lottos = lottos;
+
+    return { quantity, lottos };
   }
 }
 

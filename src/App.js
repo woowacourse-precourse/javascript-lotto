@@ -1,48 +1,47 @@
-const { Console } = require("@woowacourse/mission-utils");
+const { Console } = require('@woowacourse/mission-utils');
 
-const User = require("../src/User");
-const Lotto = require("./Lotto");
-const LottoGame = require("./LottoGame");
-const { MESSAGE, ERROR } = require("../src/utils/constants");
-const {
-  hasChar,
-  hasCharExceptComma,
-  makeSplit,
-  makeNumberArray,
-  isOutOfRange,
-} = require("../src/utils/utils");
+const User = require('./User');
+const Lotto = require('./Lotto');
+const Draw = require('./Draw');
+const { MESSAGE, ERROR } = require('../src/utils/constants');
+const { hasChar, hasCharExceptComma, isOutOfRange, parseNumbers } = require('../src/utils/utils');
 
 class App {
+  constructor() {
+    this.draw = new Draw();
+  }
+
   play() {
     this.getPurchaseAmount();
   }
 
   getPurchaseAmount() {
-    Console.readLine(MESSAGE.ENTER_PURCHASE_AMOUNT, (amount) => {
+    Console.readLine(MESSAGE.ENTER_PURCHASE_AMOUNT, amount => {
       const trimmedAmount = amount.trim();
-      this.validateInput(trimmedAmount);
-      this.user = new User(trimmedAmount);
-      this.printBoughtLottos();
+      this.validateAmount(trimmedAmount);
+      this.draw.user = new User(trimmedAmount);
+
+      this.printBoughtLottos(this.draw.user.buyLotto());
       this.getWinningNumbers();
     });
   }
 
-  validateInput(input) {
-    if (hasChar(input)) {
+  validateAmount(amount) {
+    if (hasChar(amount)) {
       throw new Error(ERROR.ONLY_NUMBER);
     }
   }
 
-  printBoughtLottos() {
-    Console.print(MESSAGE.QUANTITY_OF_PURCHASE(this.user.quantity));
-    this.user.lottos.forEach((lotto) => Console.print(lotto.toString()));
+  printBoughtLottos({ quantity, lottos }) {
+    Console.print(MESSAGE.QUANTITY_OF_PURCHASE(quantity));
+    lottos.forEach(lotto => Console.print(lotto.toString()));
   }
 
   getWinningNumbers() {
-    Console.readLine(MESSAGE.ENTER_WINNING_NUMBERS, (numbers) => {
+    Console.readLine(MESSAGE.ENTER_WINNING_NUMBERS, numbers => {
       const trimmedNumbers = numbers.trim();
       this.validateWinningNumbers(trimmedNumbers);
-      this.winningNumbers = new Lotto(this.parseNumbers(trimmedNumbers));
+      this.draw.winningNumbers = new Lotto(parseNumbers(trimmedNumbers)).numbers;
       this.getBonusNumber();
     });
   }
@@ -53,24 +52,13 @@ class App {
     }
   }
 
-  parseNumbers(numbers) {
-    const array = makeSplit(numbers);
-    const numberArray = makeNumberArray(array);
-
-    return numberArray;
-  }
-
+  //FIXME: 형변환 통일
   getBonusNumber() {
-    Console.readLine(MESSAGE.ENTER_BONUS_NUMBER, (number) => {
+    Console.readLine(MESSAGE.ENTER_BONUS_NUMBER, number => {
       const trimmedNumber = number.trim();
       this.validateBonusNumber(trimmedNumber);
-      this.bonusNumber = Number(trimmedNumber);
-      this.lottoGame = new LottoGame(
-        this.user,
-        this.winningNumbers,
-        this.bonusNumber
-      );
-      this.lottoGame.start();
+      this.draw.bonusNumber = Number(trimmedNumber);
+      this.draw.start();
     });
   }
 
@@ -81,11 +69,11 @@ class App {
       throw new Error(ERROR.ONLY_NUMBER);
     }
 
-    if (isOutOfRange([number])) {
+    if (isOutOfRange([Number(number)])) {
       throw new Error(ERROR.OUT_OF_RANGE);
     }
 
-    if (this.winningNumbers.numbers.includes(Number(number))) {
+    if (hasDuplicate([...this.draw.winningNumbers, Number(number)])) {
       throw new Error(ERROR.DUPLICATED_BONUS);
     }
   }
