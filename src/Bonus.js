@@ -1,9 +1,11 @@
+const Input = require('./Input');
 const BonusValidation = require('./Validation/BonusValidation');
 
-class Bonus {
+class Bonus extends Input {
   #bonusNumber = 0;
 
   constructor(answer, winNumberList) {
+    super(answer);
     Bonus.validate(answer, winNumberList);
     this.save(answer);
   }

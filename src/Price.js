@@ -1,13 +1,15 @@
 const { PRICE_MEASURE } = require('./lib/Constants');
 const { print } = require('./lib/Utils');
+const Input = require('./Input');
 const PriceValidation = require('./Validation/PriceValidation');
 
-class Price {
+class Price extends Input {
   #lottoPrice = 0;
 
   #lottoCount = 0;
 
   constructor(answer) {
+    super(answer);
     Price.validate(answer);
     this.save(answer);
   }

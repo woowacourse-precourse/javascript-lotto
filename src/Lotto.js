@@ -1,10 +1,12 @@
 const { print } = require('./lib/Utils');
+const Input = require('./Input');
 const WinNumbersValidation = require('./Validation/WinNumbersValidation');
 
-class Lotto {
+class Lotto extends Input {
   #numbers;
 
   constructor(answer) {
+    super(answer);
     const stringAnswer = typeof answer === 'string' ? answer : JSON.stringify(answer);
     Lotto.validate(stringAnswer);
     this.save(stringAnswer);
