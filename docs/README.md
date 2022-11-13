@@ -23,26 +23,26 @@
 - 어플리케이션 시작
 
 #### `inputPurchase()`
-- 로또 구입 금액을 입력
+- 로또 구입 금액을 입력 - validate
 - 입력값을 `parseInt` 후 MyLotto 생성자 인자로 넘겨줌
-- 에러 확인 
-    - 수로만 이루어진 문자열
-    - 콤마 등 제거
 
 #### `inputWinNum()`
-- 당첨 번호 입력
+- 당첨 번호 입력 - validate
 - 6개의 숫자를 콤마(,)로 구분하여 입력
 - 문자열을 배열로 파싱하여 Lotto 생성자 인자로 넘겨줌
 
 #### `inputBonusNum()`
-- 보너스 번호 입력
+- 보너스 번호 입력 - validate
+
+#### `getResult()`
+- 로또 결과 출력 및 종료
 
 #### `validate()`
 - 숫자 입력 여부 확인
 - 문자나 수가 아닌 값이 포함되어 있을 경우 에러 발생
 
-#### `getResult()`
-- 로또 결과 출력 및 종료
+#### `printStrings(strs)`
+- 파라미터로 전달된 문자열/문자열 배열 `strs`를 출력하는 함수
 
 
 ---
@@ -56,37 +56,42 @@
 - 보너스 번호 일치 여부 조회 함수
 - 보너스 번호가 있을 경우 true/ 없을 경우 false
 
-#### `getHistory(myLottoes, winNum)`
+#### `getHistories(myLottoes, winNum)`
 - 발행된 모든 로또의 당첨 내역을 조회하는 함수
-- 발행 로또를 순회하며 `checkMatchLottoNum`호출하고 결과를 배열에 저장
+- 발행 로또를 순회하며 `checkMatchLottoNum`호출하고 결과를 배열에 아래 순서로 저장
 ```
-Array history : [3개 일치, 4개 일치, 5개 일치, 5개+보너스 일치, 6개 일치]
+Array histories : [3개 일치, 4개 일치, 5개 일치, 5개+보너스 일치, 6개 일치]
 ```
-- 해당 배열을 반환
+- `histories` 배열을 반환
 
 #### `calReward(history)`
 - 상금을 계산하는 함수
 
 #### `calRate(reward)`
 - 수익률을 계산하는 함수
-- 소수점 둘째 자리에서 반올림
+- 수익률을 소수점 둘째 자리에서 반올림하여 반환
+- 당첨금이 0원일 경우 수익률은 0을 반환
 
-#### `printCountLotto(myLotto)`
-- 구매한 로또 개수를 출력하는 함수
-
-#### `printMyLotto(myLotto)`
-- 구매한 로또 내역을 출력하는 함수
-- 출력 형식
+#### toString
+#### `toStringCountLotto(myLotto)`
+- 구매한 로또 개수 문자열 반환
+- 반환 문자열 형식
 ```
 {len(myLottoNums)}개를 구매했습니다.
+```
+
+#### `toStringMyLotto(myLotto)`
+- 구매한 로또 내역 문자열 반환
+- 반환 문자열 형식
+```
 [8, 21, 23, 41, 42, 43]
+[1, 14, 17, 37, 38, 45]
 ...
 ```
 
-#### 출력 함수
-#### `printHistories(histories)`
-- 로또 당첨 내역을 출력하는 함수
-- 출력형식
+#### `toStringHistories(histories)`
+- 로또 당첨 내역 문자열 반환
+- 반환 문자열 형식
 ```
 3개 일치 (5,000원) - {histories[0]}개
 4개 일치 (50,000원) - {histories[1]}개
@@ -95,18 +100,18 @@ Array history : [3개 일치, 4개 일치, 5개 일치, 5개+보너스 일치, 6
 6개 일치 (2,000,000,000원) - {histories[4]}개
 ```
 
-#### `printRate(rate)`
-- 수익률을 출력하는 함수
-- 출력형식
+#### `toStringRate(rate)`
+- 수익률을 문자열 반환
+- 반환 문자열 형식
 ```
 총 수익률은 {rate}%입니다
 ```
 
-### `printRate(myLotto, reward)`
-- 당첨 통계를 출력하는 함수
-- 당첨 내역 `histories`를 받아 `printHistories()`에 전달
-- 수익률 `rate`를 받아 `printRate()`에 전달
-- 출력 형식
+### `toStringStat(myLotto, reward)`
+- 당첨 통계 문자열 반환
+- 로또 당첨 내역: `histories`를 받아 `toStringHistories()`에 전달
+- 수익률: `rate`를 받아 `toStringRate()`에 전달
+- 반환 문자열 형식
 ```
 당첨 통계
 ---
