@@ -10,7 +10,7 @@ function getCountByPay(pay) {
   return pay / PRICE;
 }
 
-function getRandomNumbers(idx) {
+function getRandomNumbers() {
   const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
   return numbers.sort((a, b) => a - b);
 }

@@ -17,9 +17,9 @@ class App {
 
       Console.print(lottoCnt + CONSOLE_MESSAGE.Purchase);
       for (let i = 0; i < lottoCnt; i++) {
-        const randomNumbers = getRandomNumbers(i);
+        const randomNumbers = getRandomNumbers();
 
-        Console.print(randomNumbers);
+        Console.print(`[${randomNumbers.join(", ")}]`);
         this.#lottos.push(new Lotto(randomNumbers));
       }
 
