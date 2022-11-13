@@ -3,11 +3,8 @@ const UserLottos = require("./model/UserLottos");
 
 class App {
   constructor() {
-    this.purchaseAmout = 0;
-    this.userLottoCount = 0;
-    this.userLottos = new UserLottos();
-    this.userLottoNumbers = [];
-    this.winningLottoNumber = [];
+    this.userLottos = null;
+    this.winningLotto = null;
     this.bonusNumber = 0;
   }
 
@@ -16,9 +13,8 @@ class App {
     MissionUtils.Console.readLine(
       "구입금액을 입력해 주세요.",
       (purchaseAmount) => {
-        this.purchaseAmout = purchaseAmount;
-        this.userLottoNumbers = this.userLottos.getNumbers(purchaseAmount);
-        this.winningLotto = this.askWinningLottoNumber();
+        this.userLottos = new UserLottos(purchaseAmount);
+        askWinningLottoNumber();
       }
     );
   }
