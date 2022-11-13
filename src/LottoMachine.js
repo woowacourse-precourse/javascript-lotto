@@ -34,7 +34,7 @@ class LottoMachine {
     const lottos = [];
 
     while (this.#payment !== 0) {
-      const numbers = Random.pickUniqueNumbersInRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, LOTTO.NUMBER_MAX_LENGTH);
+      const numbers = Random.pickUniqueNumbersInRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, LOTTO.NUMBER_COUNT);
       const lotto = new Lotto(numbers);
 
       lottos.push(lotto.getNumbers());
