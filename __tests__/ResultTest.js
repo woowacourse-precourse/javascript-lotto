@@ -155,4 +155,15 @@ describe("결과 테스트", () => {
 
     expect(earningsRate).toBe("62.5");
   });
+
+  test("수익률이 1000 이상이면 쉼표로 구분해야한다.", () => {
+    const result = new Result([[1, 2, 3, 4, 5, 7]], [1, 2, 3, 4, 5, 6], 7);
+
+    result.getEarningsRateMarkedByComma = jest.fn();
+
+    result.earningsRate = "1000.0";
+    result.checkEarningsRateOverThousand();
+
+    expect(result.getEarningsRateMarkedByComma).toHaveBeenCalled();
+  });
 });
