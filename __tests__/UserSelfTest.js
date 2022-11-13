@@ -1,5 +1,5 @@
 const User = require('../src/User');
-const { errMsg } = require('../src/constants');
+const { ERR_MSG } = require('../src/constants');
 
 describe('셀프 유저 테스트', () => {
   test('로또 구입 금액 예외 테스트', () => {
@@ -20,7 +20,7 @@ describe('셀프 유저 테스트', () => {
     purchaseAmout.forEach(amount => {
       expect(() => {
         const user = new User(amount);
-      }).toThrow(errMsg.invalidPurchaseAmout);
+      }).toThrow(ERR_MSG.invalidPurchaseMoney);
     });
   });
 });
