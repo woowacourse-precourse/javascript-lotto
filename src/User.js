@@ -30,6 +30,10 @@ class User {
     return list;
   }
 
+  /**
+   *
+   * @returns {number[][]}
+   */
   getNumbersList() {
     return this.#numbersList;
   }

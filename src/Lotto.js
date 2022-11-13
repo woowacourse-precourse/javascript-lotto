@@ -2,7 +2,7 @@
 
 const { LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER } = require('./const');
 
-const PRIZE = ['none', 'fifth', 'fourth', 'third', 'first'];
+const PRIZE_WITHOUT_SECOND = ['none', 'fifth', 'fourth', 'third', 'first'];
 const PRIZE_REWARD = {
   first: 2000000000,
   second: 30000000,
@@ -106,13 +106,13 @@ class Lotto {
    * @returns {string}
    */
   #getPrize(count, isBonusCorrect) {
-    const shiftedCount = Math.max(count - 2, 0);
-
     if (isBonusCorrect && count === 5) {
       return 'second';
     }
 
-    return PRIZE[shiftedCount];
+    const shiftedCount = Math.max(count - 2, 0);
+
+    return PRIZE_WITHOUT_SECOND[shiftedCount];
   }
 
   /**

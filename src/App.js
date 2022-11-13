@@ -1,3 +1,5 @@
+// @ts-check
+
 const User = require('./User.js');
 const Lotto = require('./Lotto.js');
 const Utils = require('./Utils.js');
@@ -17,15 +19,44 @@ const {
 
 class App {
   async play() {
-    const lottoAmount = new Amount();
-    await lottoAmount.setInputAmount(`${INPUT_AMOUNT_MESSAGE}\n`);
-    const amount = lottoAmount.getAmount();
-
-    const user = new User(amount);
-    const userNumbersList = user.getNumbersList();
-
+    const amount = await this.getLottoAmount();
+    const userNumbersList = this.getUserNumberList(amount);
     this.printUserNumberList(userNumbersList);
 
+    const { statistics, revenue } = await this.getStatistics(
+      amount,
+      userNumbersList
+    );
+    this.printStatistics(statistics, revenue);
+
+    Utils.close();
+  }
+
+  async getLottoAmount() {
+    const lottoAmount = new Amount();
+    await lottoAmount.setInputAmount(`${INPUT_AMOUNT_MESSAGE}\n`);
+
+    return lottoAmount.getAmount();
+  }
+
+  /**
+   *
+   * @param {number} amount
+   * @returns
+   */
+  getUserNumberList(amount) {
+    const user = new User(amount);
+
+    return user.getNumbersList();
+  }
+
+  /**
+   *
+   * @param {number} amount
+   * @param {number[][]} userNumbersList
+   * @returns
+   */
+  async getStatistics(amount, userNumbersList) {
     const inputLottoNumbers = await Utils.readLine(
       `\n${INPUT_LOTTO_NUMBERS}\n`
     );
@@ -34,11 +65,10 @@ class App {
 
     const lotto = new Lotto(numbers);
 
-    const statistics = lotto.getStatistics(userNumbersList, bonus);
+    const statistics = lotto.getStatistics(userNumbersList, Number(bonus));
     const revenue = lotto.calculateRevenue(statistics, amount);
 
-    this.printStatistics(statistics, revenue);
-    Utils.close();
+    return { statistics, revenue };
   }
 
   /**
@@ -53,7 +83,7 @@ class App {
   /**
    *
    * @param {{first: number, second: number, third:number, fourth:number, fifth:number}} statistics
-   * @param {number} revenue
+   * @param {string} revenue
    */
   printStatistics(statistics, revenue) {
     Utils.print(`\n${STATISTICS}`);

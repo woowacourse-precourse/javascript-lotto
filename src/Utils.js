@@ -3,7 +3,7 @@ const { Console, Random } = require('@woowacourse/mission-utils');
 class Utils {
   /**
    *
-   * @param {string} message
+   * @param {string | Array} message
    */
   static print(message) {
     Console.print(message);
@@ -12,13 +12,11 @@ class Utils {
   /**
    *
    * @param {string} message
-   * @param {Function} callback
+   * @returns {Promise<string>}
    */
   static readLine(message) {
-    return new Promise((resolve, reject) => {
-      Console.readLine(message, (answer) => {
-        resolve(answer);
-      });
+    Console.readLine(message, (answer) => {
+      resolve(answer);
     });
   }
 
