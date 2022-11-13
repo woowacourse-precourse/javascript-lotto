@@ -44,6 +44,26 @@ class App {
       const WIN_NUMBER = userInput.split(',').map((item) => +item);
       const LOTTO_ARRAY = lottoNumber;
       new Lotto(WIN_NUMBER);
+      this.bonusNumber(WIN_NUMBER, LOTTO_ARRAY, investment);
+    });
+  }
+
+  bonusNumber(winNumber, lottoNumber, investment) {
+    MissionUtils.Console.print('\n보너스 번호를 입력해 주세요.');
+    MissionUtils.Console.readLine('', (userInput) => {
+      const BONUS_NUMBER = parseInt(userInput);
+      if (Number.isNaN(BONUS_NUMBER)) {
+        throw new Error('[ERROR] 보너스 번호는 숫자만 입력하셔야 합니다.');
+      }
+      if (winNumber.includes(BONUS_NUMBER)) {
+        throw new Error('[ERROR] 당첨 번호와 보너스 번호는 중복될 수 없습니다.');
+      }
+      if (BONUS_NUMBER < 1 || BONUS_NUMBER > 45) {
+        throw new Error('[ERROR] 보너스 번호는 1 ~ 45 사이의 숫자를 입력 하셔야 합니다.');
+      }
+      const LOTTO_NUMBER_ARRAY = lottoNumber;
+      const WIN_NUMBER_ARRAY = winNumber;
+      const BONUS_NUMBER_ARRAY = [BONUS_NUMBER];
     });
   }
 }
