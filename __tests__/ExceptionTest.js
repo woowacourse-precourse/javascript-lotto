@@ -18,4 +18,13 @@ describe('사용자 입력 값에 대한 예외 클래스 테스트', () => {
       }).toThrow('[ERROR]');
     });
   });
+
+  test('로또 당첨 번호 입력시 중복된 숫자가 있는 경우 예외가 발생한다', () => {
+    const exception = new Exception();
+    const WINNING_NUMBER = [1, 2, 3, 4, 4, 5];
+
+    expect(() => {
+      exception.validateWinningNumber(WINNING_NUMBER);
+    }).toThrow('[ERROR]');
+  });
 });
