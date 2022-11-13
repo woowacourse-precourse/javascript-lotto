@@ -18,9 +18,16 @@ const getCashInput = () => {
 };
 
 class UI {
+  static makeSpaceAfterSection() {
+    MissionUtils.Console.print("");
+  }
+
   static async getCash() {
     try {
       const cash = await getCashInput();
+
+      UI.makeSpaceAfterSection();
+
       return cash;
     } catch {
       throw new Error(CASH_INPUT_ERROR_MESSAGE);
@@ -41,6 +48,8 @@ class UI {
   static printPurchasedLottoStatus(purchased) {
     UI.printPurchasedLottoAmount(purchased);
     UI.printPurchasedLottoList(purchased);
+
+    UI.makeSpaceAfterSection();
   }
 }
 
