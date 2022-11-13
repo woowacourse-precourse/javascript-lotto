@@ -1,4 +1,5 @@
 const { Random } = require('@woowacourse/mission-utils');
+const { Console } = require('@woowacourse/mission-utils');
 
 class LottoMachine {
   lottoTicketsCount;
@@ -7,6 +8,7 @@ class LottoMachine {
   constructor(budget) {
     this.lottoTicketsCount = budget / 1000;
     this.userBuyedTickets = this.makeLottoTickets(this.lottoTicketsCount);
+    this.printBuyedLottoResult(this.lottoTicketsCount, this.userBuyedTickets);
   }
 
   pushNumberInTickets(lottoTicket) {
@@ -19,6 +21,15 @@ class LottoMachine {
 
   makeLottoTickets(number) {
     return [...Array(number)].reduce(this.pushNumberInTickets, []);
+  }
+
+  printBuyedLottoResult(ticketsCount, userBuyedTickets) {
+    this.printTicketsCount(ticketsCount);
+    this.printLottoNumberInTickets(userBuyedTickets);
+  }
+
+  printTicketsCount(ticketsCount) {
+    Console.print(`${ticketsCount}개를 구매했습니다.`);
   }
 }
 
