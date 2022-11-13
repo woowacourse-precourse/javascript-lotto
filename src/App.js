@@ -2,7 +2,7 @@ const Lotto = require('./Lotto');
 const { Console, Random } = require('@woowacourse/mission-utils');
 
 class App {
-  #lottos = [];
+  #issuedLottos = [];
   #Lotto;
 
   play() {
@@ -26,7 +26,7 @@ class App {
         (a, b) => a - b
       );
 
-      this.#lottos = [...this.#lottos, lotto];
+      this.#issuedLottos = [...this.#issuedLottos, lotto];
       Console.print(lotto);
     });
 
