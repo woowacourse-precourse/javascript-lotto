@@ -60,6 +60,7 @@ class LottoMachine {
 
   validateWinningNumbers(numbers) {
     if (this.isOutOfRange(numbers)) throw new Error(MESSAGE.ERROR.OUT_OF_RANGE_NUMBER);
+    if (numbers.some(this.isNotANumber)) throw new Error(MESSAGE.ERROR.WINNING_NUMBER_MUST_BE_NUMBER);
   }
 
   isOutOfRange(numbers) {
