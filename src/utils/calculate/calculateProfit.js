@@ -1,4 +1,4 @@
-const { LOTTERY_PRIZE } = require('../constants/constants');
+const { LOTTERY_PRIZE } = require('../../constants/constants');
 
 const calculateProfit = (userResult) => {
   let earnedMoney = 0;

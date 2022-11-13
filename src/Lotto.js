@@ -1,12 +1,9 @@
 const { Console } = require('@woowacourse/mission-utils');
-const {
-  EXCEPTION_MESSAGE,
-  EXCEPTION_REASON,
-} = require('./constants/constants');
-const countCorrectNumber = require('./utils/countCorrectNumber');
-const isBonusNumberCorrect = require('./utils/isBonusNumberCorrect');
-const isValidLottery = require('./utils/isValidLottery');
-const returnMyRank = require('./utils/returnMyRank');
+const { EXCEPTION_MESSAGE } = require('./constants/constants');
+const countIncludeNumber = require('./utils/count/countIncludeNumber');
+const verifyValidBonusNumber = require('./utils/verify/verifyValidBonusNumber');
+const verifyValidLottery = require('./utils/verify/verifyValidLottery');
+const processLotteryRank = require('./utils/process/processLotteryRank');
 
 class Lotto {
   #numbers;
@@ -17,7 +14,7 @@ class Lotto {
   }
 
   validate(numbers) {
-    const validCheck = isValidLottery(numbers);
+    const validCheck = verifyValidLottery(numbers);
     if (validCheck !== true) {
       throw new Error(EXCEPTION_MESSAGE[validCheck]);
     }
@@ -28,9 +25,9 @@ class Lotto {
   }
 
   returnMyLotteryRank(answer, bonusNumber) {
-    const countResult = countCorrectNumber(this.#numbers, answer);
-    const bonusResult = isBonusNumberCorrect(bonusNumber, answer);
-    const result = returnMyRank(countResult, bonusResult);
+    const countResult = countIncludeNumber(this.#numbers, answer);
+    const bonusResult = verifyValidBonusNumber(bonusNumber, answer);
+    const result = processLotteryRank(countResult, bonusResult);
 
     return result;
   }

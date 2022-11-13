@@ -1,4 +1,4 @@
-const countCorrectNumber = (number1, number2) => {
+const countIncludeNumber = (number1, number2) => {
   let count = 0;
   number1.forEach((v) => {
     if (number2.includes(v)) count++;
@@ -6,4 +6,4 @@ const countCorrectNumber = (number1, number2) => {
   return count;
 };
 
-module.exports = countCorrectNumber;
+module.exports = countIncludeNumber;

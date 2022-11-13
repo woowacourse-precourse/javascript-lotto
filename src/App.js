@@ -6,12 +6,12 @@ const {
   RANK_STATISTICS_MESSAGE,
 } = require('./constants/constants');
 const Lotto = require('./Lotto');
-const calculateProfit = require('./utils/calculateProfit');
-const getLottoQuantity = require('./utils/getLotteryQuantity');
-const getProfitRate = require('./utils/getProfitRate');
-const isValidLottery = require('./utils/isValidLottery');
-const makeRandomLottoNumber = require('./utils/makeRandomLottoNumber');
-const verifyNumberType = require('./utils/verifyNumberType');
+const calculateProfit = require('./utils/calculate/calculateProfit');
+const countPurchasedLotteries = require('./utils/count/countPurchasedLotteries');
+const calculateProfitRate = require('./utils/calculate/calculateProfitRate');
+const verifyValidLottery = require('./utils/verify/verifyValidLottery');
+const processRandomLottoNumber = require('./utils/process/processRandomLottoNumber');
+const verifyNumberType = require('./utils/verify/verifyNumberType');
 
 class App {
   #startMoney;
@@ -43,7 +43,7 @@ class App {
       if (!verifyNumberType(userInput))
         this.makeException(EXCEPTION_REASON.INPUT_NOT_NUMBER);
       this.#startMoney = Number(userInput);
-      this.#myLotteryQuantity = getLottoQuantity(this.#startMoney);
+      this.#myLotteryQuantity = countPurchasedLotteries(this.#startMoney);
       this.#myLotteryList = Array(this.#myLotteryQuantity).fill({}); // 처음부터 Array(Object) 모양 고정시켜 V8 Map Space에 불필요한 hiddenClass 생성을 막기 위함 (push 사용 x)
       return this.makeLotteries();
     });
@@ -51,7 +51,7 @@ class App {
 
   makeLotteries() {
     this.#myLotteryList = this.#myLotteryList.map((blankObject) => {
-      const myLottery = makeRandomLottoNumber();
+      const myLottery = processRandomLottoNumber();
       blankObject = new Lotto(myLottery);
       return blankObject;
     });
@@ -73,7 +73,7 @@ class App {
         return separateInput;
       });
 
-      const validCheck = isValidLottery(answerLottery);
+      const validCheck = verifyValidLottery(answerLottery);
       if (validCheck !== true) return this.makeException(validCheck);
 
       this.#winNumber = answerLottery;
@@ -106,7 +106,7 @@ class App {
   // 수익률 계산
   calculateProfitRate() {
     this.#earnedMoney = calculateProfit(this.#myLotteryRankList);
-    this.#profitRate = getProfitRate(this.#startMoney, this.#earnedMoney);
+    this.#profitRate = calculateProfitRate(this.#startMoney, this.#earnedMoney);
     return this.printResult();
   }
 

@@ -1,6 +1,6 @@
-const { EXCEPTION_REASON } = require('../constants/constants');
+const { EXCEPTION_REASON } = require('../../constants/constants');
 
-const isValidLottery = (lottery) => {
+const verifyValidLottery = (lottery) => {
   let result = true;
   const checkLotteryLength = new Set(lottery).size;
   if (lottery.length !== 6) return EXCEPTION_REASON.INPUT_LENGTH_ERROR;
@@ -16,4 +16,4 @@ const isValidLottery = (lottery) => {
   return result;
 };
 
-module.exports = isValidLottery;
+module.exports = verifyValidLottery;
