@@ -61,8 +61,15 @@ describe("로또 테스트", () => {
     });
   });
 
-  test("예외 테스트", () => {
+  test("예외 테스트 - 숫자가 아닌 문자열의 input", () => {
     mockQuestions(["1000j"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+  test("예외 테스트 - 10으로 나누어 떨어지지 않는 숫자의 input", () => {
+    mockQuestions(["1900"]);
     expect(() => {
       const app = new App();
       app.play();
