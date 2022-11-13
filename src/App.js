@@ -1,6 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const Money = require("./Money");
-const Type = require("./Type");
 const Lotto = require("./Lotto");
 const Bonus = require("./Bonus");
 const Count = require("./Count");
@@ -49,9 +48,8 @@ class App {
     Console.readLine(
       `${OUTPUT.LINE}${INPUT.WINNNG}${OUTPUT.LINE}`,
       (numbers) => {
-        this.type = new Type();
-        this.winningNumbers = this.type.changeType(numbers);
-        new Lotto(this.winningNumbers);
+        const lotto = new Lotto(numbers);
+        this.winningNumbers = lotto.lottoList;
         this.inputBonus();
       }
     );

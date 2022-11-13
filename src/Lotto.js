@@ -5,8 +5,17 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
-    this.#numbers = numbers;
+    this.#numbers = [];
+    this.lottoList = [];
+    this.changeIntoArray(numbers);
+  }
+
+  changeIntoArray(numbers) {
+    numbers.split(",").forEach((number) => {
+      this.#numbers.push(number);
+    });
+
+    this.validate(this.#numbers);
   }
 
   validate(numbers) {
@@ -14,12 +23,13 @@ class Lotto {
     this.checkLength(numbers);
     this.checkRange(numbers);
     this.checkDuplicate(numbers);
+
+    this.changeIntoNumber(numbers);
   }
 
   checkNumber(numbers) {
     const invalidList = numbers.filter((number) => {
       return isNaN(number);
-      // Error: 숫자+숫자아닌값 조합인 경우 예외 처리가 되지 않음.
     });
     if (invalidList.length > 0) {
       throw new Error(ERROR.LOTTO_NUMBER);
@@ -44,6 +54,12 @@ class Lotto {
     if ([...new Set(numbers)].length < LOTTO.LENGTH) {
       throw new Error(ERROR.LOTTO_DUPLICATE);
     }
+  }
+
+  changeIntoNumber(numbers) {
+    this.lottoList = numbers.map((number) => {
+      return (number = parseInt(number, 10));
+    });
   }
 }
 
