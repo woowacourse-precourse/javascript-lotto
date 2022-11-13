@@ -1,5 +1,6 @@
 const PHRASE = {
   PURCHASE_AMOUNT: '구입금액을 입력해 주세요.',
+  LOTTO_COUNT: '개를 구매했습니다.',
 };
 
 const ERROR = {

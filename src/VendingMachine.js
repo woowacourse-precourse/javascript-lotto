@@ -20,6 +20,8 @@ class VendingMachine {
 
   makeLotto(input) {
     const count = input / 1000;
+    this.printLottoCount(count);
+
     for (let i = 0; i < count; i++) {
       this.generateLottoNumber();
       new Lotto(this.#lottoNumber);
@@ -33,6 +35,10 @@ class VendingMachine {
       const number = Random.pickNumberInRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER);
       if (!this.#lottoNumber.includes(number)) this.#lottoNumber.push(number);
     }
+  }
+
+  printLottoCount(count) {
+    Console.print(count + PHRASE.LOTTO_COUNT);
   }
 }
 
