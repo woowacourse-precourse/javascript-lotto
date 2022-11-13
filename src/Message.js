@@ -13,6 +13,10 @@ class Message {
       throw new Error('문자열을 입력해야 합니다.');
     }
   }
+
+  static enterPurchaseAmount() {
+    return '구입금액을 입력해 주세요. \n';
+  }
 }
 
 module.exports = Message;
