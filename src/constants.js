@@ -2,6 +2,8 @@ const PRICE_PER_SHEET = 1000;
 
 const LOTTO_LENGTH = 6;
 
+const ROUNDING_DIGIT = 1;
+
 const LOTTO_RANGE = {
   start: 1,
   end: 45,
@@ -52,3 +54,4 @@ exports.LOTTO_LENGTH = LOTTO_LENGTH;
 exports.BONUS_LENGTH = BONUS_LENGTH;
 exports.PRIZE = PRIZE;
 exports.LOTTO_RANGE = LOTTO_RANGE;
+exports.ROUNDING_DIGIT = ROUNDING_DIGIT;

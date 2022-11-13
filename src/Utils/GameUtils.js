@@ -1,4 +1,4 @@
-const { PRICE_PER_SHEET } = require('../constants');
+const { PRICE_PER_SHEET, ROUNDING_DIGIT } = require('../constants');
 
 class GameUtils {
   static toArray(input) {
@@ -22,7 +22,7 @@ class GameUtils {
   static getProfitRate(amount, total) {
     if(total === 0) return 0;
     const decimalValue = (total / amount) * 100;
-    const profitRate = decimalValue.toFixed(2);
+    const profitRate = decimalValue.toFixed(ROUNDING_DIGIT);
     return profitRate;
   }
   static addComma(value) {
