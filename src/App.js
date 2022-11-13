@@ -17,6 +17,11 @@ class App {
     ];
   }
 
+  getLottoNumber(item) {
+    this.lottos = Array.from({ length: item }, () =>
+      Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b)
+    );
+  }
   play() {}
 }
 
