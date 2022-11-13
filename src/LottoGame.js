@@ -62,7 +62,16 @@ class LottoGame {
     this.LottoGameView.requestInput(REQUEST_MESSAGE.BONUS_NUMBER, (bonusNumber) => {
       Validation.validateBonusNumber(bonusNumber, this.winningNumbers);
       this.bonusNumber = Number(bonusNumber);
+
+      this.drawLottoPhase();
     });
+  }
+
+  drawLottoPhase() {
+    const eachLottoNumbers = this.getEachLottoNumbers();
+  }
+  getEachLottoNumbers() {
+    return this.lottos.map((lotto) => lotto.getNumbers());
   }
 }
 
