@@ -25,6 +25,7 @@ const ERROR_INPUT = {
   NOT_NUMBER: "[ERROR] 숫자를 입력해 주세요.",
   UNDER_FOUR_LETTERS: "[ERROR] 4자리 이상의 숫자를 입력해 주세요.",
   NOT_THOUSAND_UNIT: "[ERROR] 1000원 단위의 금액을 입력해 주세요.",
+  BONUS_NUMBER_NOT_NATURAL_NUMBER: "[ERROR] 1-45 사이의 자연수를 입력해주세요.",
   BONUS_NUMBER_OUT_OF_RANGE: "[ERROR] 보너스 숫자는 1-45 사이의 수여야 합니다.",
   BONUS_NUMBER_DUPLICATE: "[ERROR] 이전에 입력한 번호가 보너스 숫자와 중복됩니다.",
   WINNING_NUMBER_IS_NOT_VALID: "[ERROR] 숫자+',' 형태로 입력해 주세요. ex) 1,2,3,4,5,6",

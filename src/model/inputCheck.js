@@ -10,6 +10,7 @@ class ValidationCheck {
 
   isBonusNumberValid(winningNumbers, bonusNumber) {
     if (isNaN(bonusNumber)) throw new Error(ERROR_INPUT.NOT_NUMBER);
+    if (/[^0-9]/.test(bonusNumber)) throw new Error(ERROR_INPUT.BONUS_NUMBER_NOT_NATURAL_NUMBER);
     if (+bonusNumber < VALUE_NUMBER.FIRST_LOTTO_NUMBER || +bonusNumber > VALUE_NUMBER.LAST_LOTTO_NUMBER)
       throw new Error(ERROR_INPUT.BONUS_NUMBER_OUT_OF_RANGE);
     if (winningNumbers.includes(parseInt(bonusNumber))) throw new Error(ERROR_INPUT.BONUS_NUMBER_DUPLICATE);
