@@ -30,6 +30,14 @@ class Exception {
       throw new Error(ERROR_MESSAGE.nonDigitInput);
     }
   }
+
+  checkIsNumberInRange(number) {
+    const [START, END] = PARAMETERS.lottoNumberRange;
+
+    if (number < START || number > END) {
+      throw new Error(ERROR_MESSAGE.outOfRange);
+    }
+  }
 }
 
 module.exports = Exception;
