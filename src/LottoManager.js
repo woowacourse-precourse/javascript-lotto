@@ -20,6 +20,12 @@ class LottoManager {
 
       LottoUtils.printLottoCount(lottoCount);
       LottoUtils.printLotto(lottoTickets);
+
+      Console.readLine(MESSAGE.WINNING, (winningNumberString) => {
+        const winningNumbers = winningNumberString
+          .split(",")
+          .map((number) => stringToNumber(number));
+      });
     });
   }
 }
