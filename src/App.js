@@ -13,8 +13,11 @@ class App {
   }
 
   printLotto() {
-    MissionUtils.Console.print(`${this.#lottoCount}개를 구매했습니다.`);
-    this.#totalLotto.forEach((lotto) => MissionUtils.Console.print([...lotto].sort((a, b) => a - b)));
+    MissionUtils.Console.print(`\n${this.#lottoCount}개를 구매했습니다.`);
+    for(let i = 0; i<this.#totalLotto.length; i++) {
+      this.#totalLotto[i].sort((a, b) => a - b)
+      MissionUtils.Console.print(this.#totalLotto[i]);
+    }
   }
 
   enterAmount() {
@@ -33,6 +36,7 @@ class App {
       this.#totalLotto.push(lotto.getNumbers());
     }
     this.printLotto();
+    MissionUtils.Console.close();
   }
 
   play() {
