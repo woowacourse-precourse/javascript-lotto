@@ -7,6 +7,7 @@ const APP_MESSAGE = {
 };
 
 const EXCEPTION_MESSAGE = {
+  INPUT_NOT_NUMBER: '[ERROR] 숫자만 입력해주세요.',
   INPUT_ERROR: '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.',
   INPUT_LENGTH_ERROR: '[ERROR] 6개의 숫자를 입력하셔야 합니다.',
   INPUT_OVERLAPPED: '[ERROR] 중복된 번호를 입력하셨습니다.',
@@ -14,6 +15,7 @@ const EXCEPTION_MESSAGE = {
 };
 
 const EXCEPTION_REASON = {
+  INPUT_NOT_NUMBER: 'INPUT_NOT_NUMBER',
   INPUT_ERROR: 'INPUT_ERROR',
   INPUT_LENGTH_ERROR: 'INPUT_LENGTH_ERROR',
   INPUT_OVERLAPPED: 'INPUT_OVERLAPPED',
