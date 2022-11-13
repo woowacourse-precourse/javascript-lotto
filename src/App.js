@@ -8,6 +8,7 @@ class App {
     this.utils = new Utils();
     this.AmountNum;
     this.WinningNumbers;
+    this.lotteryTickets;
   }
 
   play() {
@@ -32,7 +33,6 @@ class App {
     Console.print(`${amountNum}${MESSEGE.TELL_PURCHASE_AMOUNT}`);
 
     let lotteryTickets = [];
-
     while (amountNum) {
       const newTicket = Random.pickUniqueNumbersInRange(1, 45, 6).sort(
         (a, b) => a - b
@@ -41,6 +41,8 @@ class App {
       amountNum -= 1;
       Console.print(newTicket);
     }
+
+    this.lotteryTickets = lotteryTickets;
     this.askWinningNumbers();
   }
 
