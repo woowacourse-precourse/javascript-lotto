@@ -12,7 +12,6 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    // 문자열
     this.validate(numbers);
     this.#numbers = numbers;
   }
