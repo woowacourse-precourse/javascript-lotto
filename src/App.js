@@ -31,7 +31,8 @@ class App {
     MissionUtils.Console.print(`${number}개를 구매했습니다.`)
     const numbersList=[];
     for(let i=0;i<number;i++){
-      const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);      
+      let numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);      
+      numbers=numbers.toString();
       numbersList.push(numbers);
     }
     this.printLottoNumber(numbersList);  
@@ -44,9 +45,10 @@ class App {
     this.compare(numbersList);
   }
   compare(numbersList){
-    const winingNubers=Lotto.createWiningNumber();
+    const winingNumbers=Lotto.createWiningNumber();
     for(let i=0;i<numbersList.length;i++){
-
+      let checkNumberList=numbersList[i].split(',');
+      let duplicate=winingNumbers.filter(x=>checkNumberList.includes(x)).length;
     }
   }
 }
