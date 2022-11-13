@@ -27,11 +27,13 @@ class Lotto {
   }
 
   getStatistics({ myLottos, bonusNumber }) {
-    const resultLotto = { first: 0, second: 0, third: 0, fourth: 0, fifth: 0, fail: 0 };
+    const resultLotto = {};
 
     myLottos.forEach(lotto => {
       const myPrize = this.checkLotto({ lotto, bonusNumber });
-      resultLotto[myPrize] += 1;
+      const isUndefined = resultLotto[myPrize];
+
+      resultLotto[myPrize] = isUndefined ? 1 : resultLotto[myPrize] + 1;
     });
 
     return resultLotto;
