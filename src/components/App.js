@@ -1,3 +1,9 @@
+const {
+  LOTTO_PRICE,
+  RANGE_OF_LOTTO_NUMBER,
+  TOTAL_COUNTS,
+} = require('../utils/constants');
+
 const Lotto = require('./Lotto');
 const { Console, Random } = require('@woowacourse/mission-utils');
 
@@ -18,13 +24,17 @@ class App {
   }
 
   issueLotto(price) {
-    const numOfLotto = price / 1000;
+    const numOfLotto = price / LOTTO_PRICE;
 
     Console.print(`\n${numOfLotto}개를 구매했습니다.`);
     Array.from({ length: numOfLotto }).forEach(() => {
-      const lotto = Random.pickUniqueNumbersInRange(1, 45, 6).sort(
-        (a, b) => a - b
-      );
+      const { MIN, MAX } = RANGE_OF_LOTTO_NUMBER;
+
+      const lotto = Random.pickUniqueNumbersInRange(
+        MIN,
+        MAX,
+        TOTAL_COUNTS
+      ).sort((a, b) => a - b);
 
       this.#issuedLottos = [...this.#issuedLottos, lotto];
 
@@ -58,7 +68,7 @@ class App {
     if (
       Number.isNaN(+price) ||
       typeof +price !== 'number' ||
-      price % 1000 !== 0
+      price % LOTTO_PRICE !== 0
     ) {
       throw new Error(
         '[ERROR] 구입 금액은 1000원 단위의 숫자로 입력해야 합니다.'
