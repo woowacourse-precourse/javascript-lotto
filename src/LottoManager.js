@@ -30,6 +30,8 @@ class LottoManager {
 
         Console.readLine(MESSAGE.BONUS, (bonusNumberString) => {
           const bonusNumber = stringToNumber(bonusNumberString);
+          Validation.validateNumbers([bonusNumber]);
+          Validation.validateBonusNumbers(winningNumbers, [bonusNumber]);
         });
       });
     });

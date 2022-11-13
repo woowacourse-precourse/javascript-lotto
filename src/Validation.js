@@ -40,6 +40,16 @@ class Validation {
       throw new Error(MESSAGE.ERROR.WINNING_NUMBER_LENGTH);
     }
   }
+
+  static validateBonusNumbers(winningNumbers, bonusNumber) {
+    if (bonusNumber.length !== BONUS_LENGTH) {
+      throw new Error(MESSAGE.ERROR.BONUS_NUMBER_LENGTH);
+    }
+
+    if (winningNumbers.includes(bonusNumber[0])) {
+      throw new Error(MESSAGE.ERROR.NUMBER_DUPLICATE);
+    }
+  }
 }
 
 module.exports = Validation;
