@@ -64,6 +64,7 @@ class LottoMachine {
 
   validateBonusNumber(number) {
     if (this.isOutOfRange(number)) throw new Error(MESSAGE.ERROR.OUT_OF_RANGE_NUMBER);
+    if (this.isNotANumber(number)) throw new Error(MESSAGE.ERROR.BONUS_NUMBER_MUST_BE_NUMBER);
   }
 
   isNotANumber(number) {
