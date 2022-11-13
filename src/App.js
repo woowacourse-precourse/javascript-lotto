@@ -10,6 +10,7 @@ class App {
     this.Winnumber = ''
     this.correctList =[0,0,0,0,0]
     this.getMoney = [5000,50000,1500000,30000000,2000000000]
+    this.ratio = 0
   }
   play() {
     MissionUtils.Console.readLine(Notice.INPUT_MONEY,(money) => {
@@ -66,6 +67,7 @@ class App {
       let bonusNumberStatus = this.Lottobuynumber[i].includes(Number(this.bonusnumber))
       this.makeCorrectList(correctNumber,bonusNumberStatus)
     }
+    this.calculateReturn()
     this.printResult()
   }
   makeCorrectList(list,status){
@@ -89,6 +91,8 @@ class App {
     for (let i = 0; i<5; i++){
       MissionUtils.Console.print(Notice.RESULT_MESSAGE[i] + this.correctList[i] + "개")
     }
+    MissionUtils.Console.print(`총 수익률은 ${this.ratio}% 입니다.`)
+    MissionUtils.Console.close()
   }
   calculateReturn(){
     let earn = 0
@@ -97,7 +101,7 @@ class App {
       earn += this.correctList[i] * this.getMoney[i]
     }
     const earningratio = (earn/buy).toFixed(2)
-    return earningratio
+    this.ratio = earningratio
   }
 }
 
