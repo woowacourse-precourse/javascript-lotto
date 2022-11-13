@@ -22,13 +22,14 @@ class App {
   #printLottos(lottos) {
     Console.print(`\n${lottos.length}개를 구매했습니다.`);
     lottos.forEach((lotto) => Console.print(lotto.toString()));
+
+    this.#enterWinningNumber(lottos);
   }
 
-  enterWinningNumber(lottos) {
+  #enterWinningNumber(lottos) {
     Console.readLine(Messages.ENTER_WINNER_NUMBER, (winning) => {
-      this.winningAndBonusNumbers.sixNumbersInRange(winning);
-
-      this.enterBonusNumber(lottos, winning);
+      winning = winning.split(',').map(Number);
+      const winningLotto = new Lotto(winning);
     });
   }
 
