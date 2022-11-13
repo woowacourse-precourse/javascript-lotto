@@ -5,30 +5,26 @@ class MatchingNumber {
     this.totalLottoNumber = totalLottoNumber;
     this.winnerNumber = winnerNumber;
     this.bonusNumber = bonusNumber;
+    this.lottoResult = [0, 0, 0, 0, 0];
   }
 
-  getNumberOfMatchingNumbersFromThreeToSix() {
-    const numberOfMatchingNumbersFromThreeToSix = [0, 0, 0, 0, 0];
-    const numberOfMatchingNumbers = this.getNumberOfMatchingNumbers();
-    numberOfMatchingNumbers.map((num) => {
-      if (num - 2 >= 0) return (numberOfMatchingNumbersFromThreeToSix[num - 2] += 1);
-    });
-    return numberOfMatchingNumbersFromThreeToSix;
+  getResultOfThreeToFiveMatchingNumbers() {
+    this.totalLottoNumber.flatMap((numbers) => this.countNumberOfMatchingNumbers(numbers));
+    return this.lottoResult;
   }
 
-  getNumberOfMatchingNumbers() {
-    return this.totalLottoNumber.flatMap((numbers) => this.getNumberOfMatchingNumber(numbers));
-  }
-
-  getNumberOfMatchingNumber(numbers) {
+  countNumberOfMatchingNumbers(numbers) {
     const numberOfMatchingNumbers = this.getMatchingNumber(numbers).length;
-    if (numberOfMatchingNumbers === 5) {
-      return this.getNumberOfNumbersCompareWtihBonusNumber(numbers);
+    if (numberOfMatchingNumbers === 6) {
+      return (this.lottoResult[numberOfMatchingNumbers - 2] += 1);
     }
-    if (numberOfMatchingNumbers > 1 && numberOfMatchingNumbers <= 4) {
-      return numberOfMatchingNumbers - 1;
+    if (numberOfMatchingNumbers === 5 && this.isContainBonusNumber(numbers)) {
+      return (this.lottoResult[numberOfMatchingNumbers - 2] += 1);
     }
-    return numberOfMatchingNumbers;
+    if (numberOfMatchingNumbers >= 3) {
+      return (this.lottoResult[numberOfMatchingNumbers - 3] += 1);
+    }
+    return;
   }
 
   getMatchingNumber(numbers) {
