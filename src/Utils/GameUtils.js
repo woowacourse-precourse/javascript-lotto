@@ -6,6 +6,11 @@ class GameUtils {
     input = GameUtils.removeComma(input);
     return input;
   }
+  static toArray(input) {
+    input = GameUtils.removeBlank(input).split(',');
+    input = input.map(item => Number(item));
+    return input;
+  }
   static removeComma(value) {
     const regex = /[,'원']/g;
     value = value.replace(regex, '');

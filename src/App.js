@@ -33,14 +33,14 @@ class App {
   }
   submitWinningLotto() {    
     MissionUtils.Console.readLine(MESSAGES.GAME.requireLottoNumbers, (input) => {
-      input = GameUtils.toNonCommaArray(input);
+      input = GameUtils.toArray(input);
       this.winningLotto = new Lotto(input);
       this.submitBonus();
     });
   }
   submitBonus() {    
     MissionUtils.Console.readLine(MESSAGES.GAME.requireBonusNumbers, (input) => {
-      input = GameUtils.toNonCommaArray(input);
+      input = GameUtils.toArray(input);
       this.winningLotto.setBonus(input);
       this.getResult();
       GamePrint.result(this.prize, this.revenueRate);
