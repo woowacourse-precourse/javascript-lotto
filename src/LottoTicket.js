@@ -7,11 +7,18 @@ class LottoTicket{
 
     constructor() {
         this.purchase_numbers = this.createNumbers();
+        this.sort();
     }
 
     createNumbers(){
         const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
         return numbers;
+    }
+
+    sort(){
+        this.purchase_numbers.sort(function(a, b) {
+            return a - b;
+        });
     }
 
     getNumbers(){
