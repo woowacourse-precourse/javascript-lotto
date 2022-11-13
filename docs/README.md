@@ -11,8 +11,8 @@
 - [x] 당첨번호 문구 출력 및 입력 `drawWinningNumbers`
 - [x] 보너스번호 문구 출력 및 입력 `drawBonusNumber`
 - [x] 당첨통계 출력
-  - [x] 당첨번호와 뽑은 로또를 비교해 당첨 데이터를 구한다. `calculateResult`
-  - [x] 구입금액과 당첨금액을 활용해 수익률을 구한다. `calculateRate`
+  - [x] 당첨번호와 뽑은 로또를 비교해 중복 횟수를 구한다. `calculateMatching`
+  - [x] 구입금액과 당첨금액을 활용해 수익률을 구한다. `calculateProfitRate`
   - [x] 당첨 데이터를 바탕으로 당첨 통계를 출력한다. `printResult`
 - [x] App 클래스 play 메서드 구현
 
@@ -48,8 +48,8 @@
 
 리펙토링
 
-- [x] 로또를 발행하는 로직 클래스화
-- [x] 로또 당첨 통계 계산 및 출력 로직 클래스화
+- [x] 로또를 발행하는 로직 클래스화 `LottoIssuer`
+- [x] 로또 당첨 통계 계산 및 출력 로직 클래스화 `LottoResult`
 - [x] `Lotto`클래스에 `LottoBonus` 클래스 활용
 - [x] `LottoGame` 클래스 생성자 제거 후 프라이빗 필드 추가
   - [x] 이에 따른 `LottoGame`에 종속된 클래스 변경
