@@ -12,10 +12,13 @@ class Game {
 
   #winningNumber;
 
+  #bonusNumber;
+
   constructor() {
     this.#lottos = [];
     this.#winningNumber = new Set();
     this.#purchaseAmount = INIT;
+    this.#bonusNumber = INIT;
   }
 
   start() {
@@ -48,6 +51,13 @@ class Game {
 
       const lottoClass = new Lotto(this.#winningNumber);
       this.getBonusNumber();
+    });
+  }
+
+  getBonusNumber() {
+    Console.readLine(MESSAGE.BONUS_INPUT, (inputNumber) => {
+      this.#bonusNumber = +inputNumber;
+      this.rankWinningResult();
     });
   }
 }
