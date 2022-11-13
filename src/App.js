@@ -55,6 +55,10 @@ class App {
       );
     });
   }
+
+  printReturnRate() {
+    Console.print(`총 수익률은 ${this.lottoSimulator.calcReturnRate(this.purchaseMoney)}%입니다.`);
+  }
 }
 
 module.exports = App;
