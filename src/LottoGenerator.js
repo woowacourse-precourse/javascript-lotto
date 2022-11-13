@@ -1,4 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
+const { LOTTO } = require("./constants");
 
 class LottoGenerator {
   ticketLists;
@@ -12,7 +13,13 @@ class LottoGenerator {
   generateLottoNumber(ticketNumber) {
     let ticketArray = [];
     for (let count = 0; count < ticketNumber; count += 1) {
-      ticketArray.push(Random.pickUniqueNumbersInRange(1, 45, 6));
+      ticketArray.push(
+        Random.pickUniqueNumbersInRange(
+          LOTTO.MIN_RANGE,
+          LOTTO.MAX_RANGE,
+          LOTTO.WINNING_MAX,
+        ),
+      );
     }
     return ticketArray;
   }

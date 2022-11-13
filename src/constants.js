@@ -24,4 +24,13 @@ const ERROR_MESSAGE = {
   WINNING_RANGE: "[ERROR] 유효 범위 외 숫자가 존재합니다.",
 };
 
-module.exports = { INPUT_MESSAGE, STATISTIC_MESSAGE, ERROR_MESSAGE };
+const LOTTO = {
+  MIN_RANGE: 1,
+  MAX_RANGE: 45,
+  WINNING_MAX: 6,
+  PERCENT: 100,
+  DECIMAL: 1,
+  MONEY_UNIT: 1000,
+};
+
+module.exports = { INPUT_MESSAGE, STATISTIC_MESSAGE, ERROR_MESSAGE, LOTTO };

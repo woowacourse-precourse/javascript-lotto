@@ -1,4 +1,4 @@
-const { ERROR_MESSAGE } = require("./constants");
+const { ERROR_MESSAGE, LOTTO } = require("./constants");
 class Bonus {
   bonus;
 
@@ -11,7 +11,7 @@ class Bonus {
   }
 
   isBonusInRange(bonus) {
-    if (!(Number(bonus) >= 1 && Number(bonus) <= 45))
+    if (!(Number(bonus) >= LOTTO.MIN_RANGE && Number(bonus) <= LOTTO.MAX_RANGE))
       throw new Error(ERROR_MESSAGE.BONUS_RANGE);
   }
 }

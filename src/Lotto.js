@@ -1,5 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { STATISTIC_MESSAGE, ERROR_MESSAGE } = require("./constants");
+const { STATISTIC_MESSAGE, ERROR_MESSAGE, LOTTO } = require("./constants");
 class Lotto {
   #numbers;
 
@@ -16,11 +16,12 @@ class Lotto {
   }
 
   isSixNumber(numbers) {
-    if (numbers.length !== 6) throw new Error(ERROR_MESSAGE.WINNING_SIX);
+    if (numbers.length !== LOTTO.WINNING_MAX)
+      throw new Error(ERROR_MESSAGE.WINNING_SIX);
   }
 
   isUniqueNumber(numbers) {
-    if (new Set(numbers).size !== 6)
+    if (new Set(numbers).size !== LOTTO.WINNING_MAX)
       throw new Error(ERROR_MESSAGE.WINNING_DUPLICATE);
   }
 
@@ -32,7 +33,8 @@ class Lotto {
   }
 
   isInRange(numbers) {
-    const range = (number) => Number(number) >= 1 && Number(number <= 45);
+    const range = (number) =>
+      Number(number) >= LOTTO.MIN_RANGE && Number(number <= LOTTO.MAX_RANGE);
     if (!numbers.every(range)) throw new Error(ERROR_MESSAGE.WINNING_RANGE);
   }
 
@@ -86,11 +88,11 @@ class Lotto {
     const priceByCorrect = [5000, 50000, 1500000, 2000000000, 30000000];
     const totalProfit = profit.reduce(
       (totalPrice, win, idx) => totalPrice + win * priceByCorrect[idx],
-      0
+      0,
     );
-    const rateOfReturn = (totalProfit / seedMoney) * 100;
+    const rateOfReturn = (totalProfit / seedMoney) * LOTTO.PERCENT;
     Console.print(
-      `${STATISTIC_MESSAGE.EARN}${rateOfReturn.toFixed(1)}%입니다.`
+      `${STATISTIC_MESSAGE.EARN}${rateOfReturn.toFixed(LOTTO.DECIMAL)}%입니다.`,
     );
     Console.close();
   }
