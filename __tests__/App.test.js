@@ -70,4 +70,13 @@ describe('App 클래스 테스트', () => {
       expect(App.createLottoResult(userLottos, winningNumbers, bonus)).toStrictEqual(expected);
     });
   });
+  describe('getEarningsRate()', () => {
+    test('8000, 5000을 전달하면 62.5를 반환한다.', () => {
+      const principal = 8000;
+      const earning = 5000;
+      const expected = 62.5;
+
+      expect(App.getEarningsRate(principal, earning)).toStrictEqual(expected);
+    });
+  });
 });
