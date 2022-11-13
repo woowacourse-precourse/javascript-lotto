@@ -1,3 +1,4 @@
+const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 
 class LottoUser {
@@ -31,6 +32,10 @@ class LottoUser {
       lottos.push(new Lotto(this.makeRandomSixNumbers()));
     }
     return lottos;
+  }
+
+  makeRandomSixNumbers() {
+    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
   }
 }
 
