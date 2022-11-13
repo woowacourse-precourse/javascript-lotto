@@ -12,14 +12,14 @@ describe("로또 머신 클래스 테스트", () => {
   test("금액이 숫자가 아닐 경우 예외가 발생한다.", () => {
     expect(() => {
       const lottoMachine = new LottoMachine();
-      lottoMachine.generateLottos("천원");
+      lottoMachine.getPurchaseCount("천원");
     }).toThrow("[ERROR] 금액은 숫자만 입력해야 합니다.");
   });
 
   test("금액이 1,000원 단위로 입력되지 않을 경우 예외가 발생한다.", () => {
     expect(() => {
       const lottoMachine = new LottoMachine();
-      lottoMachine.generateLottos("1500");
+      lottoMachine.getPurchaseCount("1500");
     }).toThrow("[ERROR] 금액은 1,000원 단위만 입력 가능합니다.");
   });
 
@@ -37,7 +37,7 @@ describe("로또 머신 클래스 테스트", () => {
     mockRandoms(mockArray);
 
     const lottoMachine = new LottoMachine();
-    const lottos = lottoMachine.generateLottos("8000");
+    const lottos = lottoMachine.getLottos(8);
 
     lottos.forEach((lotto, idx) => {
       expect(lotto.numbers).toEqual(mockArray[idx]);

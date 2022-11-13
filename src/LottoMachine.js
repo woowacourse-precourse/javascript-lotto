@@ -27,11 +27,13 @@ class LottoMachine {
     return new Lotto(this.#generateSixNumber());
   }
 
-  generateLottos(money) {
+  getPurchaseCount(money) {
     this.#validate(money);
-    const lottosCount = money / 1000;
+    return Number(money) / 1000;
+  }
 
-    return Array.from({ length: lottosCount }, () => this.#generateLotto());
+  getLottos(purchaseCount) {
+    return Array.from({ length: purchaseCount }, () => this.#generateLotto());
   }
 
   print(lottos) {
