@@ -13,6 +13,14 @@ class Lotto {
   }
 
   getStatistics({ myLottos, bonusNumber }) {}
+
+  checkLotto({ lotto, bonusNumber }) {
+    const isCorrectNumbers = number => this.#numbers.indexOf(number) !== -1;
+    const correctNumbers = lotto.filter(number => isCorrectNumbers(number));
+    const iscorrectBonusNumber = this.#numbers.indexOf(bonusNumber) !== -1;
+
+    return { iscorrectBonusNumber, count: correctNumbers.length };
+  }
 }
 
 module.exports = Lotto;
