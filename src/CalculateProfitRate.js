@@ -1,23 +1,23 @@
 const { MONEY } = require('./utiles/Constant');
 
 class CalculateProfitRate {
-  #getWinningMoney(winLottosCount) {
+  getWinningMoney(winLottosCount) {
     return Object.values(winLottosCount).reduce(
       (totalProfit, winLottoCount, i) => {
         const moneyWithFormat = Object.values(MONEY)[i];
-        const winningMoney = this.#removeMoneyFormat(moneyWithFormat);
+        const winningMoney = this.removeMoneyFormat(moneyWithFormat);
         return (totalProfit += winningMoney * winLottoCount);
       },
       0
     );
   }
 
-  #removeMoneyFormat(moneyWithFormat) {
+  removeMoneyFormat(moneyWithFormat) {
     return moneyWithFormat.split(/원|,/).join('');
   }
 
   getProfitRate(money, winLottosCount) {
-    const winningMoney = this.#getWinningMoney(winLottosCount);
+    const winningMoney = this.getWinningMoney(winLottosCount);
     return parseFloat(((winningMoney / money) * 100).toFixed(2));
   }
 }
