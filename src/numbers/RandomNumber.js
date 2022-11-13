@@ -12,6 +12,14 @@ class RandomNumber {
       COMPUTER_NUMBER.push(NUMBER);
     }
     this.computerNumbers = COMPUTER_NUMBER;
+    this.showNumbers();
+  }
+
+  showNumbers() {
+    this.computerNumbers.forEach(function (purchaseNumber) {
+      console.log(purchaseNumber);
+    });
   }
 }
+
 module.exports = RandomNumber;
