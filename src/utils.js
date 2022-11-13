@@ -1,3 +1,6 @@
+const round = (num) => {
+  return (+(Math.round(num + "e+1") + "e-1")).toFixed(1);
+}
 
 const changePrintFormat = () => {
   String.prototype.format = function() {
@@ -5,5 +8,4 @@ const changePrintFormat = () => {
   };
 }
 
-module.exports = { changePrintFormat };
-   
+module.exports = { round, changePrintFormat };
