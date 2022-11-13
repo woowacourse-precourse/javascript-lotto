@@ -34,9 +34,32 @@ class Lotto {
     const privateNumbers = this.getNumbers();
     const countArr = [];
     for (let lottoIndex = 0; lottoIndex < userLottoList.length; lottoIndex++) {
-      countArr.push(this.compareNumbers());
+      countArr.push(
+        this.compareNumbers(
+          userLottoList[lottoIndex],
+          privateNumbers,
+          bonusNumber
+        )
+      );
     }
     return countArr;
+  }
+
+  compareNumbers(userLotto, winningNumber, bonusNumber) {
+    const countResult = [];
+    let count = 0;
+    for (let index = 0; index < winningNumber.length; index++) {
+      if (userLotto.includes(winningNumber[index])) {
+        count++;
+      }
+    }
+    if (count === 5 && userLotto.includes(bonusNumber)) {
+      countResult.push(count, bonusNumber);
+    }
+    if (count !== 5 || !userLotto.includes(bonusNumber)) {
+      countResult.push(count);
+    }
+    return countResult;
   }
 }
 
