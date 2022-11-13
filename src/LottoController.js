@@ -5,7 +5,13 @@ const LottoViewer = require('./LottoViewer.js');
 const Customer = require('./Customer.js');
 
 class LottoController {
-  constructor() {}
+  constructor() {
+    this.lottoPublisher = new LottoPublisher();
+    this.lottoStore = new LottoStore();
+    this.lottoViewer = new LottoViewer();
+
+    this.init();
+  }
   init() {}
 }
 
