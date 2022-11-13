@@ -29,19 +29,26 @@ class Purchase {
     return this.#lottoCount;
   }
 
+  makeRandomNumberArr() {
+    return Random.pickUniqueNumbersInRange(
+      LOTTO_NUMBER.START,
+      LOTTO_NUMBER.END,
+      LOTTO_NUMBER.LENGTH,
+    ).sort((a, b) => a - b);
+  }
+
   makeLottoSet(count) {
     for (let i = 0; i < count; i++) {
-      const numbers = Random.pickUniqueNumbersInRange(
-        LOTTO_NUMBER.START,
-        LOTTO_NUMBER.END,
-        LOTTO_NUMBER.LENGTH,
-      ).sort((a, b) => a - b);
+      const numbers = this.makeRandomNumberArr();
       this.#lottoSet.add(JSON.stringify(numbers));
     }
+
     let lottoSetSize = this.#lottoSet.size;
+
     if (count !== lottoSetSize) {
       return this.makeLottoSet(count - lottoSetSize);
     }
+
     return this.#lottoSet;
   }
 }
