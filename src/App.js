@@ -21,7 +21,7 @@ class App {
     return;
   }
 */
-  enterAnswerNums(){
+  enterWinningNums(){
     Console.readLine('\n당첨 번호를 입력해 주세요.\n',(answer) =>{
       const answerList = answer.split(',');
       console.log(answerList);
@@ -41,7 +41,7 @@ class App {
       Console.print(oneLine);
     }
 
-    this.enterAnswerNums();
+    this.enterWinningNums();
     //console.log(allLines);
   }
 
