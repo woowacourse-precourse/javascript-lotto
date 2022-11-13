@@ -109,10 +109,10 @@ class Result {
     const PRIZE = this.prizes[index]
       .toString()
       .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-    const NOT_BONUS = `${index + 3}개 일치 (${PRIZE})원 - ${number}개`;
+    const NOT_BONUS = `${index + 3}개 일치 (${PRIZE}원) - ${number}개`;
     const BONUS = `${
-      index + 2
-    }개 일치, 보너스볼 일치 (${PRIZE})원 - ${number}개`;
+      index + 1
+    }개 일치, 보너스 볼 일치 (${PRIZE}원) - ${number}개`;
     return bonus ? BONUS : NOT_BONUS;
   }
 
