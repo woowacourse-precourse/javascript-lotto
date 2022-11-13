@@ -6,6 +6,7 @@ class App {
   constructor(){
     this.Lotto = new Lotto()
     this.Lottobuynumber = [];
+    this.bonusnumber = 0;
     this.Winnumber = ''
     this.correctList =[0,0,0,0,0]
   }
@@ -36,12 +37,18 @@ class App {
       this.setWinNumber(numbers)
     });
   }
+  inputBonusNumber(){
+    MissionUtils.Console.readLine(Notice.INPUT_BONUS,(numbers) => {
+      this.bonusnumber = numbers
+      this.checkNumber()
+    });
+  }
   setWinNumber(numbers){
     numbers = numbers.split(',')
     this.getInputMaxMin(numbers)
     this.Lotto.validate(numbers)
     this.Winnumber = numbers
-    this.checkNumber()
+    this.inputBonusNumber()
   }
   getInputMaxMin(numbers){
     for (let i in numbers){
@@ -52,7 +59,6 @@ class App {
     this.Lotto.validateInputRange(max,min)
   }
   checkNumber(){
-    console.log(this.Lottobuynumber)
     for (let i=0; i<this.Lottobuynumber.length; i++){
       let correctNumber = this.Lottobuynumber[i].filter(x=> this.Winnumber.includes(x))
       this.makeCorrectList(correctNumber)
