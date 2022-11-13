@@ -1,5 +1,5 @@
 /* eslint-disable no-empty-function */
-const MissionUtils = require('@woowacourse/mission-utils');
+const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 
 const USER_MONEY_INPUT_REQUEST = '구입금액을 입력해 주세요.';
@@ -7,13 +7,14 @@ const USER_MONEY_INPUT_ERROR = '[ERROR] 구입금액이 올바르지 않습니�
 const LOTTO_QUANTITY_OUTPUT = '개를 구매했습니다.';
 const WINNING_LOTTO_REQUEST = '\n당첨 번호를 입력해 주세요.';
 const BONUS_NUMBER_REQUEST = '\n보너스 번호를 입력해 주세요.';
+
 class App {
   // eslint-disable-next-line no-useless-constructor
-  lotteryQuantity = 0;
+  // lotteryQuantity = 0;
 
-  lotteryArray = [];
+  prizeSum = 0;
 
-  winningNumber = [];
+  winResult = [];
 
   userLottoArray = [];
 
@@ -21,26 +22,34 @@ class App {
 
   winningLotto;
 
-  constructor() {
-    MissionUtils.Console.print(USER_MONEY_INPUT_REQUEST);
-  }
+  userCost = 0;
+
+  rateOfReturn = 0.0;
+
+  // eslint-disable-next-line no-useless-constructor
+  constructor() {}
 
   play() {
-    MissionUtils.Console.readLine('', (userMoneyInput) => {
-      const isValid = this.isValidMoney(userMoneyInput);
-      if (!isValid) {
-        throw new Error(USER_MONEY_INPUT_ERROR);
-      }
-      this.lotteryQuantity = this.countLotteries(userMoneyInput);
-      MissionUtils.Console.print(
-        `\n${this.lotteryQuantity}${LOTTO_QUANTITY_OUTPUT}`,
-      );
-      this.userLottoArray = this.issueLotteries(this.lotteryQuantity);
-      this.userLottoArray.forEach((oneLottery) => {
-        MissionUtils.Console.print(oneLottery.getNumbers());
-      });
-      this.winningLotto = this.inputWinningLotto();
+    Console.print(USER_MONEY_INPUT_REQUEST);
+    this.startLotto();
+  }
+
+  startLotto() {
+    Console.readLine('', (userMoneyInput) => {
+      this.buyLottery(userMoneyInput);
+      this.inputWinningLotto();
     });
+  }
+
+  buyLottery(userMoneyInput) {
+    const isValidMoney = this.isValidMoney(userMoneyInput);
+    if (!isValidMoney) {
+      throw new Error(USER_MONEY_INPUT_ERROR);
+    }
+    this.userCost = userMoneyInput;
+    const lotteryQuantity = this.countLotteries(this.userCost);
+    Console.print(`\n${lotteryQuantity}${LOTTO_QUANTITY_OUTPUT}`);
+    this.issueLotteries(lotteryQuantity);
   }
 
   isValidMoney(userMoneyInput) {
@@ -61,24 +70,32 @@ class App {
   }
 
   issueLotteries(lotteryQuantity) {
+    this.userLottoArray = this.pickRandomLotteries(lotteryQuantity);
+    this.userLottoArray.forEach((oneLottery) => {
+      const lottoNumbers = oneLottery.join(', ');
+      Console.print(`[${lottoNumbers}]`);
+    });
+  }
+
+  pickRandomLotteries(lotteryQuantity) {
+    const userLottoArray = [];
     for (let cnt = 1; cnt <= lotteryQuantity; cnt += 1) {
-      const oneLottery = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      const oneLottery = Random.pickUniqueNumbersInRange(1, 45, 6);
       oneLottery.sort((a, b) => a - b);
       const userLotto = this.makeLottoInstance(oneLottery);
-      this.userLottoArray.push(userLotto);
+      userLottoArray.push(userLotto.getNumbers());
     }
-    return this.userLottoArray;
+    return userLottoArray;
   }
 
   inputWinningLotto() {
-    MissionUtils.Console.print(WINNING_LOTTO_REQUEST);
-    MissionUtils.Console.readLine('', (winningNumber) => {
+    Console.print(WINNING_LOTTO_REQUEST);
+    Console.readLine('', (winningNumber) => {
       const winningNumberArray = winningNumber
         .split(',')
         .map((number) => parseInt(number, 10));
-      const winningLotto = this.makeLottoInstance(winningNumberArray);
-      this.bonusNumber = this.inputBonusNumber();
-      return winningLotto;
+      this.winningLotto = this.makeLottoInstance(winningNumberArray);
+      this.inputBonusNumber();
     });
   }
 
@@ -88,13 +105,14 @@ class App {
   }
 
   inputBonusNumber() {
-    MissionUtils.Console.print(BONUS_NUMBER_REQUEST);
-    MissionUtils.Console.readLine('', (bonusNumber) => {
+    Console.print(BONUS_NUMBER_REQUEST);
+    Console.readLine('', (bonusNumber) => {
       const inputBonusNumber = parseInt(bonusNumber, 10);
       if (!this.isValidNumber(inputBonusNumber)) {
         throw new Error('[ERROR] 유효한 번호가 아닙니다.');
       }
-      return inputBonusNumber;
+      this.bonusNumber = bonusNumber;
+      this.lotteryDraw();
     });
   }
 
