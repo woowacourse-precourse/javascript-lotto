@@ -5,7 +5,7 @@ const MESSAGE = Object.freeze({
     BONUS: '보너스 번호를 입력해 주세요.\n',
   },
   OUTPUT: {
-    PURCHASE_COUNT: '개를 구매했습니다.\n',
+    PURCHASE_COUNT: '개를 구매했습니다.',
   }
 });
 

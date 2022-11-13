@@ -1,5 +1,6 @@
 const Lotto = require("./Lotto");
-const { Random } = require("@woowacourse/mission-utils");
+const { Random, Console } = require("@woowacourse/mission-utils");
+const MESSAGE = require("./Message");
 const LOTTERY_PRICE = 1000;
 
 class LottoGame {
@@ -33,8 +34,8 @@ class LottoGame {
       const lotto = this.getNewLotto();
       this.lotteries.push(lotto);
     }
-    
-    this.view.gameFinish();
+
+    this.printPurchasedLotteries(lottoQuantity);
   }
 
   getLottoQuantity() {
@@ -46,6 +47,17 @@ class LottoGame {
     lottoNumber.sort((a, b) => a - b);
     const lotto = new Lotto(lottoNumber);
     return lotto;
+  }
+
+  printPurchasedLotteries(lottoQuantity) {
+    Console.print(`${lottoQuantity}${MESSAGE.OUTPUT.PURCHASE_COUNT}`);
+    this.lotteries.forEach((lotto) => {
+      const number = lotto.getNumber();
+      const printNumber = number.map((num) => num).join(', ');
+      Console.print(`[${printNumber}]`);
+    });
+
+    this.view.gameFinish();
   }
 }
 
