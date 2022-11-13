@@ -1,13 +1,14 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 
 class LottoIssuer {
-  constructor() {
+  constructor(number) {
     this.lotteries = [];
+    this.number = number;
   }
 
-  issue(number) {
+  issue() {
     let count = 0;
-    while (count < number) {
+    while (count < this.number) {
       const lottoNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
       this.lotteries.push(lottoNumbers);
       count += 1;
@@ -15,6 +16,7 @@ class LottoIssuer {
   }
 
   print() {
+    Console.print(`\n${this.number}개를 구매했습니다.`);
     this.lotteries.forEach((lottoNumbers) => {
       Console.print(`[${lottoNumbers.join(', ')}]`);
     });
