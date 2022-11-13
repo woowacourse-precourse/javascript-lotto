@@ -16,11 +16,7 @@ class Statistics {
   }
 
   setRanks(type, newState) {
-    if (type === "first") this.ranks.first = newState;
-    if (type === "second") this.ranks.second = newState;
-    if (type === "third") this.ranks.third = newState;
-    if (type === "fourth") this.ranks.fourth = newState;
-    if (type === "fifth") this.ranks.fifth = newState;
+    this.ranks[type] = newState;
   }
 
   getRateOfReturn() {
