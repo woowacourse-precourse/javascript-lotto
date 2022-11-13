@@ -1,5 +1,3 @@
-const MissionUtils = require('@woowacourse/mission-utils');
-
 class Calculate{
   constructor(){
     this.getWinningCnt = new Array(5).fill(0); //1등(index 0) ~ 5등(index 4)
