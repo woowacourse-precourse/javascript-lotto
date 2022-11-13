@@ -26,5 +26,6 @@ const MESSAGE = Object.freeze({
   ERROR_NO_INTEGER: '[ERROR] 정수를 입력해야 합니다.',
   ERROR_OUT_OF_RANGE: '[ERROR] 1~45 사이 숫자여야 합니다.',
   ERROR_NO_THOUSAND_WON: '[ERROR] 천원 단위로 입력하세요.',
+  ERROR_BONUS_IN_NUMS: '[ERROR] 보너스 번호가 당첨번호 안에 있습니다.',
 });
 module.exports = { CONSTANT, PRIZE_MONEY, MESSAGE };
