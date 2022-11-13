@@ -2,6 +2,7 @@ const { Console } = require('@woowacourse/mission-utils');
 const LottoGenerator = require('./LottoGenerator');
 const Lotto = require('./Lotto');
 const WinNums = require('./WinNums');
+const BonusNum = require('./BonusNum');
 
 class LottoGame {
   constructor() {
@@ -42,6 +43,7 @@ class LottoGame {
   inputBonusNum(lottoArr, winNums) {
     Console.print('');
     Console.readLine('보너스 번호를 입력해 주세요.\n', (bonusNum) => {
+      new BonusNum(bonusNum);
     });
   }
 }
