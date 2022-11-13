@@ -42,4 +42,10 @@ describe("로또 클래스 테스트", () => {
       lotto.duplicate([1, 2, 3, 4, 5, 5]);
     }).toThrow("[ERROR]");
   });
+
+  test("로또 번호가 1 ~ 45 사이의 숫자인지 확인한다.", () => {
+    expect(() => {
+      lotto.inrangeNumber([1, 4, 10, 40, 33, 47]);
+    }).toThrow("[ERROR]");
+  });
 });

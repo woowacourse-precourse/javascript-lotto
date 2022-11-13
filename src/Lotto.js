@@ -67,6 +67,14 @@ class Lotto {
       throw new Error("[ERROR] 로또 번호가 중복되어서는 안됩니다.");
     }
   }
+
+  inrangeNumber(numbers) {
+    for (var int = 0; int < numbers.length; int++) {
+      if (numbers[int] > 45) {
+        throw new Error("[ERROR] 1 ~ 45 사이의 수가 아닙니다.");
+      }
+    }
+  }
 }
 const lotto = new Lotto();
 //lotto.inputAmount();
