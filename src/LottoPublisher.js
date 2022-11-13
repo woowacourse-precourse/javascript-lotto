@@ -1,3 +1,5 @@
+const { isValidLottoNumbers } = require('../../backup/src/new/util/utils');
+
 class LottoPublisher {
   #winningNumbers = [];
   #bonusNumber;
@@ -8,6 +10,10 @@ class LottoPublisher {
 
   get bonusNumber() {
     return this.#bonusNumber;
+  }
+
+  validateWinningNumbers(numbers) {
+    isValidLottoNumbers(numbers);
   }
 }
 
