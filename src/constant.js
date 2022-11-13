@@ -15,6 +15,14 @@ const LOTTO_MESSAGE = Object.freeze({
     "[ERROR] 보너스번호는 1~45사이의 당첨번호와 중복되지않는 숫자이어야합니다",
 });
 
+const RESULT_MESSAGE = Object.freeze({
+  FIFTH_LOTTERY: "3개 일치 (5,000원) - ",
+  FOURTH_LOTTERY: "4개 일치 (50,000원) - ",
+  THIRD_LOTTERY: "5개 일치 (1,500,000원) - ",
+  SECOND_LOTTERY: "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
+  FIRST_LOTTERY: "6개 일치 (2,000,000,000원) - ",
+});
+
 const LOTTO_SETTING = Object.freeze({
   LOTTO_PRICE: 1000,
 
@@ -35,4 +43,9 @@ const RESULT_MATCH_COUNT = Object.freeze({
   FIRST_OR_SECOND_LOTTERY: 6,
 });
 
-module.exports = { LOTTO_MESSAGE, LOTTO_SETTING, RESULT_MATCH_COUNT };
+module.exports = {
+  LOTTO_MESSAGE,
+  LOTTO_SETTING,
+  RESULT_MATCH_COUNT,
+  RESULT_MESSAGE,
+};

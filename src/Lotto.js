@@ -3,6 +3,7 @@ const {
   LOTTO_MESSAGE,
   LOTTO_SETTING,
   RESULT_MATCH_COUNT,
+  RESULT_MESSAGE,
 } = require("./constant.js");
 
 class Lotto {
@@ -101,15 +102,18 @@ class Lotto {
       this.deleteBonusNumExceptSecondLottery(bonusAndWinMatchNum);
 
     let resultLottery = {};
-    for (let matchNum in RESULT_MATCH_COUNT) {
-      resultLottery[matchNum] = this.classifyLottery(onlyMatchNum, matchNum);
+    for (let matchCount in RESULT_MATCH_COUNT) {
+      resultLottery[matchCount] = this.classifyLottery(
+        onlyMatchNum,
+        matchCount
+      );
     }
 
     const FirstSecondLottery = this.splitFirstandSecondLottery(resultLottery);
     delete resultLottery.FIRST_OR_SECOND_LOTTERY;
     resultLottery = { ...resultLottery, ...FirstSecondLottery };
 
-    console.log("resultLottery", resultLottery);
+    this.resultLottery = resultLottery;
   }
 
   filterMatchNum() {
@@ -121,7 +125,6 @@ class Lotto {
   }
 
   deleteBonusNumExceptSecondLottery(bonusAndWinMatchNum) {
-    console.log("bonusAndWinMatchNum", bonusAndWinMatchNum);
     return bonusAndWinMatchNum.map((matchNums) =>
       matchNums.filter(
         // 보너스 번호랑 같으면서 length === 6 (2등)이면 true
@@ -145,9 +148,9 @@ class Lotto {
     );
   }
 
-  classifyLottery(onlyMatchNum, matchNum) {
+  classifyLottery(onlyMatchNum, matchCount) {
     return onlyMatchNum.filter(
-      (result) => result.length === RESULT_MATCH_COUNT[matchNum]
+      (result) => result.length === RESULT_MATCH_COUNT[matchCount]
     );
   }
 
@@ -163,6 +166,14 @@ class Lotto {
       SECOND_LOTTERY,
       FIRST_LOTTERY,
     };
+  }
+
+  printResult() {
+    for (let rank in this.resultLottery) {
+      MissionUtils.Console.print(
+        `${RESULT_MESSAGE[rank] + this.resultLottery[rank].length}개`
+      );
+    }
   }
 }
 

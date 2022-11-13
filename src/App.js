@@ -58,6 +58,7 @@ class App {
   printResult() {
     const lotto = new Lotto(this.winNums, this.bonusNum, this.lottoNumArr);
     lotto.calResult();
+    lotto.printResult();
   }
 }
 
