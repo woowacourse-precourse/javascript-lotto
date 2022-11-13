@@ -11,13 +11,12 @@ class App {
   input_bonus;
 
   play(){
-    this.inputWinNumber();
+    this.inputMoney();
   }
 
   inputMoney(){
     Console.readLine('구입금액을 입력해 주세요.\n', (input) => {
-      if(isNaN(input))
-        throw new Error("[Error] 숫자를 입력해주세요.");
+      // this.notNumberCheck(input);
       this.input_money = input;
     });
   }
@@ -28,6 +27,13 @@ class App {
       const input_lotto = new Lotto(input);
       this.input_lotto = input_lotto;
     });  
+  }
+
+  inputBonusNumber(){
+    Console.readLine('보너스 번호를 입력해 주세요.\n', (input) => {
+      // notNumberCheck();
+      this.input_bonus = input;
+    });
   }
 }
 
