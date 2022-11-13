@@ -48,7 +48,11 @@ class App {
   }
 
   inputNumber() {
-    Console.readLine(MESSAGE.INPUT_NUMBER, (number) => {});
+    Console.readLine(MESSAGE.INPUT_NUMBER, (number) => {
+      number = number.split(",").map(Number);
+
+      this.validator.checkNumberValid(number);
+    });
   }
 
   error(message) {
