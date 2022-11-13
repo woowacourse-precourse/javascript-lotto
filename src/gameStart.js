@@ -21,7 +21,7 @@ class UserLottos {
 
       this.#userPrice = userInput;
       this.makeLottos();
-      winNumbers.inputWinNumbers(this.#userLottos);
+      winNumbers.inputWinNumbers(this.#userLottos, this.#userPrice);
     });
   }
 

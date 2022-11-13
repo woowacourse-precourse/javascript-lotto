@@ -1,5 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { LOTTO_MESSAGE } = require("./constant/errorMessage");
+const { SHOW_LOTTOS } = require("./constant/inputMessage");
 const { removeDuplication } = require("./utils/removeDuplication");
 
 class Lotto {
@@ -23,7 +24,7 @@ class Lotto {
   // TODO: 추가 기능 구현
 
   get getLotto() {
-    Console.print(this.#numbers);
+    Console.print(SHOW_LOTTOS(this.#numbers));
     return this.#numbers;
   }
 }
