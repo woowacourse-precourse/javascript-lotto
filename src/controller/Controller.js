@@ -48,7 +48,11 @@ class Controller {
     );
   }
 
-  getBonusNum(bonusNum) {}
+  getBonusNum(bonusNum) {
+    if (!this.InputCheck.checkBonusInput(bonusNum)) {
+      throw new Error('[ERROR] 입력한 보너스 번호가 올바르지 않습니다.');
+    }
+  }
 }
 
 module.exports = Controller;

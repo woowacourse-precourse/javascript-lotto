@@ -13,6 +13,12 @@ class InputCheck {
     return false;
   }
 
+  checkBonusInput(input) {
+    const IS_NUM_AND_RANGE = /[1-9]$/.test(input) && input <= 45;
+
+    return IS_NUM_AND_RANGE;
+  }
+
   checkIsNum(input) {
     return /^[0-9]*$/g.test(input);
   }
