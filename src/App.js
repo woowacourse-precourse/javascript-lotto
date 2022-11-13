@@ -174,6 +174,18 @@ class App {
     this.winResult.forEach((element, idx) => {
       Console.print(`${PRINT_STRING[idx]}${element}개`);
     });
+    this.getRateOfReturn();
+  }
+
+  getRateOfReturn() {
+    this.winResult.forEach((element, idx) => {
+      this.prizeSum += element * PRIZE_MONEY[idx];
+    });
+    this.rateOfReturn = ((this.prizeSum / this.userCost) * 100).toFixed(1);
+    const rateOfReturnString = this.rateOfReturn
+      .toString()
+      .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+    Console.print(`총 수익률은 ${rateOfReturnString}%입니다.`);
   }
 }
 
