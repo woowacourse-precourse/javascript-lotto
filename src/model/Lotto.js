@@ -1,13 +1,13 @@
 class Lotto {
   #numbers;
 
-  constructor(controller, numbers) {
+  constructor (controller, numbers) {
     this.controller = controller;
     this.validate(numbers);
     this.#numbers = numbers;
   }
 
-  isArraySplitByComma(numbersArray) {
+  isArraySplitByComma (numbersArray) {
     if (numbersArray.length !== 6) {
       this.controller.throwErrorWithMessage("winningNumberCommaNumberError");
     }
@@ -17,23 +17,27 @@ class Lotto {
     }
   }
 
-  isArrayInRange(numbersArray) {
+  isArrayInRange (numbersArray) {
     for (const singleElement of numbersArray) {
       if (1 > singleElement || singleElement > 45) this.controller.throwErrorWithMessage("WinningNumberRangeError");
     }
   }
 
-  isArrayUnique(numbersArray) {
+  isArrayUnique (numbersArray) {
     const numbersSet = new Set(numbersArray);
     if (numbersSet.size !== 6) this.controller.throwErrorWithMessage("WinningNumberUniqueError");
   }
 
-  validate(numbers) {
+  validate (numbers) {
     if (typeof numbers !== "undefined") {
       this.isArraySplitByComma(numbers);
       this.isArrayInRange(numbers);
       this.isArrayUnique(numbers);
     }
+  }
+
+  getLottoNumbers () {
+    return this.#numbers;
   }
 }
 
