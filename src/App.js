@@ -1,6 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const Purchase = require("./Purchase");
 const Lotto = require("./Lotto");
+const Purchase = require("./Purchase");
+const Winning = require("./Winning");
 class App {
   lottoIssuance = (count) => {
     MissionUtils.Console.print(`${count}개를 구매했습니다.`);
