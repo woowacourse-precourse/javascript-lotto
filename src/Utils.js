@@ -6,7 +6,7 @@ class Utils {
     throw new Error(`[ERROR] ${msg}`);
   }
   static toFixedsecond(number) {
-    return Math.floor(number * 100) / 100;
+    return Math.round(number * 100) / 100;
   }
 }
 
