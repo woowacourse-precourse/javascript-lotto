@@ -11,6 +11,22 @@ class UserInterface {
     });
     return purchaseAmount;
   }
+
+  winnerNumberRequest() {
+    // TODO: 당첨 번호 입력 기능
+  }
+
+  bonusNumberRequest() {
+    // TODO: 보너스 번호 입력 기능
+  }
+
+  printLottoNumber() {
+    // TODO: 몇개를 구매했는지 출력 하는 기능
+  }
+
+  printLottoArray() {
+    // TODO: 구입한 로또 번호 출력 기능.
+  }
 }
 
 module.exports = UserInterface;
