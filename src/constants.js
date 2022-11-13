@@ -5,4 +5,9 @@ const LOTTO = {
   NUMBER_COUNT: 6,
 };
 
-module.exports = { LOTTO };
+const CASHER = {
+  ASK_MONEY: '구입금액을 입력해 주세요.',
+  NOTICE_PURCHASE_QUANTITY: '개를 구매했습니다.',
+};
+
+module.exports = { LOTTO, CASHER };
