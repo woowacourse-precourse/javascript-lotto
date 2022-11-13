@@ -1,8 +1,8 @@
 const { YIELD, WINNING_PRIZE } = require('./constants');
 
 class WinningResult {
-  constructor(lottoArr, winningNumberArr) {
-    this.lottoArr = lottoArr;
+  constructor(lottoSet, winningNumberArr) {
+    this.lottoArr = [...lottoSet].map(elem => JSON.parse(elem));
     this.winningNumberArr = winningNumberArr;
     this.result = { 5000: 0, 50000: 0, 1500000: 0, 30000000: 0, 2000000000: 0 };
     this.sum = 0;

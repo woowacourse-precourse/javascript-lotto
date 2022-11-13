@@ -7,15 +7,14 @@ class Purchase {
 
   #lottoCount;
 
-  #lottoList;
+  #lottoSet;
 
   constructor(cash) {
     validateCashInput(cash);
     this.#lottoCount = 0;
     this.#cash = Number(cash);
-    this.#lottoList = [];
+    this.#lottoSet = new Set();
     this.setLottoCount();
-    this.makeLottoList(this.#lottoCount);
   }
 
   setLottoCount() {
@@ -30,20 +29,20 @@ class Purchase {
     return this.#lottoCount;
   }
 
-  get LottoList() {
-    return this.#lottoList;
-  }
-
-  makeLottoList(count) {
-    this.#lottoList = [];
+  makeLottoSet(count) {
     for (let i = 0; i < count; i++) {
       const numbers = Random.pickUniqueNumbersInRange(
         LOTTO_NUMBER.START,
         LOTTO_NUMBER.END,
         LOTTO_NUMBER.LENGTH,
       ).sort((a, b) => a - b);
-      this.#lottoList.push(numbers);
+      this.#lottoSet.add(JSON.stringify(numbers));
     }
+    let lottoSetSize = this.#lottoSet.size;
+    if (count !== lottoSetSize) {
+      return this.makeLottoSet(count - lottoSetSize);
+    }
+    return this.#lottoSet;
   }
 }
 

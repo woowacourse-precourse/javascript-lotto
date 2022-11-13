@@ -10,7 +10,7 @@ class App {
   constructor() {
     this.cash = 0;
     this.purchaseLottoAmount = 0;
-    this.purchaseLottoList = [];
+    this.purchaseLottoSet = new Set();
     this.winningNumberArr = [];
     this.bonusNumber = 0;
   }
@@ -27,7 +27,7 @@ class App {
   }
 
   printPurchaseLottoList() {
-    this.purchaseLottoList.forEach(lotto => Console.print(`[${lotto}]`));
+    this.purchaseLottoSet.forEach(lotto => Console.print(lotto));
     return this.printWinningNumberInputMessage();
   }
 
@@ -47,7 +47,7 @@ class App {
     Console.print('');
     Console.print(MESSAGE.WINNING_RESULT);
     Console.print('---');
-    const winningResult = new WinningResult(this.purchaseLottoList, this.winningNumberArr);
+    const winningResult = new WinningResult(this.purchaseLottoSet, this.winningNumberArr);
     winningResult.setResult(this.bonusNumber);
     const result = winningResult.getResult();
     Console.print(MESSAGE.FIFTH_PLACE_RESULT(result[WINNING_PRIZE.FIFTH]));
@@ -73,7 +73,7 @@ class App {
       let purchase = new Purchase(input);
       this.cash = purchase.Cash;
       this.purchaseLottoAmount = purchase.LottoCount;
-      this.purchaseLottoList = purchase.LottoList;
+      this.purchaseLottoSet = purchase.makeLottoSet(this.purchaseLottoAmount);
       return this.printPurchaseOutputMessage();
     });
   }
