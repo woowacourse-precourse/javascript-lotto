@@ -64,6 +64,7 @@ class Lotto {
       if (matchedNum.length == 5 && this.compareBonusNumber(ticket)) {
         let value = this.resultMap.get("5B");
         this.resultMap.set("5B", value + 1);
+        continue;
       }
       if (matchedNum.length >= 3) {
         let value = this.resultMap.get(matchedNum.length);
