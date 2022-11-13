@@ -9,6 +9,17 @@ class App {
     this.Generator = new Generator();
   }
 
+  getPurchaseAmount() {
+    print('구입금액을 입력해 주세요.');
+    readLine('', (purchaseAmount) =>  {
+      this.Generator.generateRandomNumbers(purchaseAmount);
+      print();
+      this.printNumberOfRandomNumbers(this.Generator.getNumberOfRandomNumbers());
+      this.printRandomNumbers(this.Generator.getRandomNumbers());
+      this.getLottoNumber();
+    });
+  }
+
   printNumberOfRandomNumbers(numberOfRandoms) {
     print(`${numberOfRandoms}개를 구매했습니다.`);
   }
@@ -35,15 +46,8 @@ class App {
   }
 
   play() {
-    print('구입금액을 입력해 주세요.');
-    readLine('', (purchaseAmount) =>  {
-      this.Generator.generateRandomNumbers(purchaseAmount);
-      print();
-      this.printNumberOfRandomNumbers(this.Generator.getNumberOfRandomNumbers());
-      this.printRandomNumbers(this.Generator.getRandomNumbers());
-      this.getLottoNumber();
-    });
+    this.getPurchaseAmount();
   }
 }
-new App().play();
+
 module.exports = App;
