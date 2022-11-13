@@ -54,7 +54,7 @@ function bonusCheck(MISSIONUTILS, win, arr, answer, money, input) {
   MISSIONUTILS.Console.readLine("\n보너스 번호를 입력해 주세요.\n", function(input2) {
     bonus = input2;
     validateBonus(bonus,win);
-    matchWin(MISSIONUTILS, win, bonus, arr, answer)
+    matchWin(win, bonus, arr, answer)
     showWin(MISSIONUTILS, answer, money, input)
   });
 }
@@ -73,7 +73,7 @@ function validateBonus(bonus, win) {
   win.checkBonus(bonus);
 }
 
-function matchWin(MISSIONUTILS, win, bonus, arr, answer){
+function matchWin(win, bonus, arr, answer){
   for (var a of arr){
     correct = a.match(win, bonus);
     matchCorrect(correct, answer)
@@ -111,7 +111,7 @@ function showWin(MISSIONUTILS, answer, money, input){
   var index = [0];
   var price = 0;
   MISSIONUTILS.Console.print("");
-  MISSIONUTILS.Console.print("당첨통계");
+  MISSIONUTILS.Console.print("당첨 통계");
   MISSIONUTILS.Console.print("---");
   for (var j = 3; j<=6; j++){
     price += money[index[0]] * answer[index[0]];
@@ -133,11 +133,8 @@ function showFiveBallBonus(j,index, price, money, answer, MISSIONUTILS){
 
 function showRate(MISSIONUTILS, price, input){
   var rate = price/input*100;
-  MISSIONUTILS.Console.print("총 수익률은 " + rate.toFixed(1) + "%입니다");
+  MISSIONUTILS.Console.print("총 수익률은 " + rate.toFixed(1) + "%입니다.");
   MISSIONUTILS.Console.close();
 }
-
-var a = new App;
-a.play();
 
 module.exports = App;
