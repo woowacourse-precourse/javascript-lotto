@@ -1,3 +1,5 @@
+const { LOTTO_PRICE } = require('./constants/price');
+
 class Validator {
   static checkNumber(number) {
     if (isNaN(number)) throw new Error('[ERROR] 숫자를 입력해야 합니다.');
@@ -17,6 +19,12 @@ class Validator {
     numbers.forEach((number) => {
       this.checkLottoNumber(number);
     });
+  }
+
+  static checkPay(pay) {
+    this.checkNumber(pay);
+    if (pay < LOTTO_PRICE) throw new Error('[ERROR] 로또 단가 이상 입력해야 합니다.');
+    if (pay % LOTTO_PRICE !== 0) throw new Error('[ERROR] 로또 단가에 나누어 떨어져야 합니다.');
   }
 }
 
