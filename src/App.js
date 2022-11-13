@@ -4,6 +4,7 @@ const { Random, Console } = require('@woowacourse/mission-utils');
 class App {
   constructor() {
     this.lottoList = [];
+    this.winningLotto = [];
   }
   play() {
     this.inputMoney();
@@ -26,6 +27,13 @@ class App {
       this.lottoList.push(Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b));
       Console.print(this.lottoList[i]);
     }
+    this.inputLotto();
+  }
+  inputLotto() {
+    Console.readLine('\n당첨 번호를 입력해주세요.\n', (input) => {
+      this.winningLotto = input.split(',').map(Number);
+      new Lotto(this.winningLotto);
+    });
   }
 }
 
