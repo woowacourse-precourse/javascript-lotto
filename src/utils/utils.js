@@ -1,4 +1,10 @@
-const { AMOUNT_UNIT, ERROR } = require("./constants");
+const {
+  NUMBER_COUNT,
+  AMOUNT_UNIT,
+  MIN_NUMBER,
+  MAX_NUMBER,
+  ERROR,
+} = require("./constants");
 
 const hasChar = (input) => {
   if (/([^0-9])/g.test(input)) {
