@@ -111,15 +111,23 @@ class App {
     if (!this.isInRange(bonusNumber)) {
       throw new Error(`[Error] 로또 번호는 1부터 45 사이의 숫자여야 합니다.`);
     }
+    if (this.isReapted([...this.winningNumbers, bonusNumber])) {
+      throw new Error(`[Error] 동일한 숫자가 포함되어 있습니다.`);
+    }
+
     return parseInt(bonusNumber, 10);
   }
-
   askBonusNumber() {
     Console.readLine("보너스 번호를 입력해 주세요.", (bonusNumber) => {
       const validatedNum = this.validateBonusNumber(bonusNumber);
       this.bonusNumber = validatedNum;
+
+      this.calResult();
     });
   }
+
+  calResult() {}
+  printResult() {}
 }
 
 module.exports = App;
