@@ -3,7 +3,7 @@ class WinNums {
     this.isInRange(winNums);
     this.isOverlap(winNums);
     this.isNumsCountSix(winNums);
-    this.hasBlank(winNums);
+    this.isBlankOrSpot(winNums);
     this.isInteger(winNums);
   }
 
@@ -31,10 +31,10 @@ class WinNums {
     }
   }
 
-  hasBlank(winNums) {
+  isBlankOrSpot(winNums) {
     const winNumsArr = winNums.split('');
     winNumsArr.map((el) => {
-      if (el === ' ') throw new Error('[ERROR] 입력에 공백이 있습니다.');
+      if (el === '.' || el === ' ') throw new Error('[ERROR] 숫자만 입력해주세요.');
     }); 
   }
 
