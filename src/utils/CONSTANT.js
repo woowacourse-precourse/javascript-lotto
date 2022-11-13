@@ -1,7 +1,5 @@
 // good
-const TICKET = {
-  price: 1000,
-};
+const TICKET_PRICE = 1000;
 const RANK = [
   {
     rank: 'FIFTH',
@@ -35,4 +33,4 @@ const RANK = [
   },
 
 ];
-module.exports = { TICKET, RANK };
+module.exports = { TICKET_PRICE, RANK };

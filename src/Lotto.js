@@ -1,4 +1,4 @@
-const { isSixNumbers, isNumbersUnique, isNumbersInRange } = require('./validation');
+const { isSixNumbers, isNumbersUnique, isNumbersInRange } = require('./utils/validation');
 
 class Lotto {
   #numbers;
