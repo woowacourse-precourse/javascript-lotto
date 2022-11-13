@@ -13,10 +13,8 @@ class LottoGame {
   constructor() {}
 
   start() {
-    GameUtils.getUserInput(
-      "구입금액을 입력해 주세요.\n",
-      ValidCheckUtils.checkPay
-    ).then((input) => {
+    Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
+      ValidCheckUtils.checkPay(input);
       this.pay = input;
       this.purchaseLotto(Number(this.pay) / 1000);
     });
@@ -38,21 +36,16 @@ class LottoGame {
   }
 
   setWinnigNumber() {
-    GameUtils.getUserInput(
-      "당첨 번호를 입력해 주세요.\n",
-      ValidCheckUtils.checkWinningNumber
-    ).then((input) => {
+    Console.readLine("당첨 번호를 입력해 주세요.\n", (input) => {
+      ValidCheckUtils.checkWinningNumber(input);
       this.winningNum = GameUtils.getWinnigNumbers(input);
       this.setBonusNumber();
     });
   }
 
   setBonusNumber() {
-    GameUtils.getUserInput(
-      "보너스 번호를 입력해 주세요.\n",
-      ValidCheckUtils.checkBonusNumber,
-      this.winningNum
-    ).then((input) => {
+    Console.readLine("보너스 번호를 입력해 주세요.\n", (input) => {
+      ValidCheckUtils.checkBonusNumber(input, this.winningNum);
       this.bonusNum = input;
       this.setLottoRanks();
     });

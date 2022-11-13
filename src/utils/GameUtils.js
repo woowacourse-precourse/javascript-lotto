@@ -1,18 +1,8 @@
-const { Random, Console } = require("@woowacourse/mission-utils");
+const { Random } = require("@woowacourse/mission-utils");
 const Lotto = require("../Lotto");
 
 class GameUtils {
   constructor() {}
-
-  static getUserInput(guidString, validate, additionalParameter) {
-    return new Promise((resolve, reject) => {
-      Console.readLine(guidString, (input) => {
-        if (additionalParameter) validate(input, additionalParameter);
-        else validate(input);
-        resolve(input);
-      });
-    });
-  }
 
   static getRandomNumberArray() {
     let randomNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
