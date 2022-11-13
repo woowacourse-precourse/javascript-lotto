@@ -61,8 +61,24 @@ describe("로또 테스트", () => {
     });
   });
 
-  test("예외 테스트", () => {
+  test("로또 구입 금액에 문자가 입력되었을 때 예외 테스트", () => {
     mockQuestions(["1000j"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+
+  test("로또 구입 금액의 단위에 대한 예외 테스트", () => {
+    mockQuestions(["999"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+
+  test("로또 구입 금액의 범위에 대한 예외 테스트", () => {
+    mockQuestions(["0"]);
     expect(() => {
       const app = new App();
       app.play();

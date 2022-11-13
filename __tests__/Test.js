@@ -1,5 +1,5 @@
 const { makeString } = require('../src/Print');
-const { getStatisticsMessage } = require('../src/constant/Constant');
+const { getProfitMessage, getStatisticsMessage } = require('../src/constant/Constant');
 
 describe("기능 테스트", () => {
   test("발행 로또 출력 스트링을 만드는 함수 테스트", () => {
