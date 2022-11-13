@@ -10,6 +10,10 @@ class Controller {
     this.InputCheck = new InputCheck();
     this.ResultDisplay = new ResultDisplay();
     this.LottoRandomNum = new LottoRandomNum();
+
+    this.lottoNum;
+    this.winSplitNum;
+    this.bonusNum;
   }
 
   start() {
@@ -22,7 +26,10 @@ class Controller {
   getLotto(amount) {
     if (!this.InputCheck.checkAmountInput(amount))
       throw new Error('[ERROR] 입력한 구입 금액이 올바르지 않습니다.');
+
     const result = this.LottoRandomNum.getLottoNum(amount);
+    this.lottoNum = result.lottoNums;
+
     this.ResultDisplay.printRandomNum(result);
     this.inputWinningNum();
   }
@@ -36,6 +43,8 @@ class Controller {
 
   getWinningNum(winningNum) {
     const splitNum = winningNum.split(',');
+    this.winSplitNum = splitNum;
+
     const lottoNumValid = new Lotto(splitNum);
     lottoNumValid.validate(splitNum);
     this.inputBonusNum();
@@ -52,7 +61,11 @@ class Controller {
     if (!this.InputCheck.checkBonusInput(bonusNum)) {
       throw new Error('[ERROR] 입력한 보너스 번호가 올바르지 않습니다.');
     }
+    this.bonusNum = bonusNum;
+    this.getLottoResult();
   }
+
+  getLottoResult() {}
 }
 
 module.exports = Controller;
