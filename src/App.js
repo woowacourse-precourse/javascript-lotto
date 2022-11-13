@@ -17,10 +17,17 @@ class App {
   }
 
   getWinningNumbers() {
-    Console.readLine("당첨 번호를 입력해 주세요.", (numbers) => {
+    Console.readLine("당첨 번호를 입력해 주세요.\n", (numbers) => {
       const winningNumbers = numbers.split(",");
       const lotto = new Lotto(winningNumbers);
-      Console.print(winningNumbers);
+      this.getBonusNumber(lotto);
+      // Console.print(winningNumbers);
+    });
+  }
+
+  getBonusNumber(lotto, winningNumbers) {
+    Console.readLine("보너스 번호를 입력해 주세요.\n", (number) => {
+      const bonus = lotto.validateBonus(Number(number));
       Console.close();
     });
   }
