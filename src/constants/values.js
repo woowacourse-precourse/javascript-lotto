@@ -40,6 +40,12 @@ const MATCH_LIST = [
   MATCH.SIX,
 ];
 
+const CALCULATION = {
+  DECIMAL_NUMBER: 10,
+  PERCENTILE: 100,
+  SCORE: 1,
+};
+
 module.exports = {
   LOTTO,
   MONEY,
@@ -47,4 +53,5 @@ module.exports = {
   REWARD_LIST,
   MATCH,
   MATCH_LIST,
+  CALCULATION,
 };

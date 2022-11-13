@@ -5,7 +5,7 @@ const Bonus = require("./Bonus");
 const Count = require("./Count");
 const Result = require("./Result");
 const { INPUT, OUTPUT } = require("./constants/messges");
-const { LOTTO, MONEY } = require("./constants/values");
+const { LOTTO, MONEY, CALCULATION } = require("./constants/values");
 
 class App {
   constructor() {
@@ -25,7 +25,7 @@ class App {
   }
 
   printQuantity(money) {
-    this.quantity = parseInt(money, 10) / MONEY.UNIT;
+    this.quantity = parseInt(money, CALCULATION.DECIMAL_NUMBER) / MONEY.UNIT;
     Console.print(`${OUTPUT.LINE}${this.quantity}${OUTPUT.BUY}`);
     this.publishLotto(this.quantity);
   }
@@ -57,7 +57,7 @@ class App {
 
   inputBonus() {
     Console.readLine(`${OUTPUT.LINE}${INPUT.BONUS}${OUTPUT.LINE}`, (number) => {
-      this.bonusNumber = parseInt(number, 10);
+      this.bonusNumber = parseInt(number, CALCULATION.DECIMAL_NUMBER);
       new Bonus(this.bonusNumber, this.winningNumbers);
       this.getReward();
     });
@@ -88,7 +88,7 @@ class App {
   }
 
   countBenefit(totalReward, money) {
-    const benefit = (totalReward / money) * 100;
+    const benefit = (totalReward / money) * CALCULATION.PERCENTILE;
     const benefitRate = Math.round(benefit * 10) / 10;
     this.printBenefit(benefitRate);
   }

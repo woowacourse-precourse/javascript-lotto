@@ -1,5 +1,5 @@
 const { ERROR } = require("./constants/messges");
-const { LOTTO } = require("./constants/values");
+const { LOTTO, CALCULATION } = require("./constants/values");
 
 class Lotto {
   #numbers;
@@ -58,7 +58,7 @@ class Lotto {
 
   changeIntoNumber(numbers) {
     this.lottoList = numbers.map((number) => {
-      return (number = parseInt(number, 10));
+      return (number = parseInt(number, CALCULATION.DECIMAL_NUMBER));
     });
   }
 }
