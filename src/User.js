@@ -1,11 +1,14 @@
-const { Random, Console } = require("@woowacourse/mission-utils");
+const { Random } = require("@woowacourse/mission-utils");
 
-const { isDivisible, ascendingSort } = require("./utils/utils");
+const {
+  isDivisible,
+  ascendingSort,
+  countAvailableQuantity,
+} = require("./utils/utils");
 const {
   MIN_NUMBER,
   MAX_NUMBER,
   NUMBER_COUNT,
-  AMOUNT_UNIT,
   ERROR,
 } = require("./utils/constants");
 const Lotto = require("./Lotto");
@@ -18,7 +21,7 @@ class User {
   constructor(purchaseAmount) {
     this.validate(purchaseAmount);
     this.purchaseAmount = purchaseAmount;
-    this.quantity = User.countAvailableQuantity(purchaseAmount);
+    this.quantity = countAvailableQuantity(purchaseAmount);
     this.lottos = User.generateLottoNumbers(this.quantity);
   }
 
@@ -28,12 +31,6 @@ class User {
     }
   }
 
-  //구매 금액으로 로또 몇장 살 수 있는지 계산하기
-  static countAvailableQuantity(amount) {
-    return Number(amount) / AMOUNT_UNIT;
-  }
-
-  //랜덤 번호 뽑아주기
   static generateLottoNumbers(quantity) {
     const lottos = [];
     for (let i = 0; i < quantity; i++) {

@@ -60,6 +60,10 @@ const hasDuplicate = (numberArray) => {
   return false;
 };
 
+const countAvailableQuantity = (amount) => {
+  return Number(amount) / AMOUNT_UNIT;
+};
+
 module.exports = {
   hasChar,
   isDivisible,
@@ -69,4 +73,5 @@ module.exports = {
   ascendingSort,
   isOutOfRange,
   hasDuplicate,
+  countAvailableQuantity,
 };
