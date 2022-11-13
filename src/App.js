@@ -62,18 +62,19 @@ class App {
   checkNumber(){
     for (let i=0; i<this.Lottobuynumber.length; i++){
       let correctNumber = this.Lottobuynumber[i].filter(x=> this.Winnumber.includes(x))
-      this.makeCorrectList(correctNumber)
+      let bonusNumberStatus = this.Lottobuynumber[i].includes(Number(this.bonusnumber))
+      this.makeCorrectList(correctNumber,bonusNumberStatus)
     }
     this.printResult()
   }
-  makeCorrectList(list){
+  makeCorrectList(list,status){
     if (list.length ==3){
       this.correctList[0] += 1;
     }
     else if (list.length == 4){
       this.correctList[1] += 1;
     }
-    else if (list.length == 5 && list.includes(this.bonusnumber)){
+    else if (list.length == 5 && status == true){
       this.correctList[3] += 1;
     }
     else if (list.length == 5) {
