@@ -43,7 +43,7 @@ class App {
   InputBonus(array) {
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (answer) => {
       array.push(answer);
-      this.isDuplicated(array);
+      Lotto.isDuplicated.call(array);
     });
   }
 
