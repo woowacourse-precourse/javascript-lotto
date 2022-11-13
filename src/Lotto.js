@@ -9,21 +9,23 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (Lotto.isThatNull) {
-      Console.close();
-      throw new Error("[ERROR] 값을 입력해 주세요.");
-    }
-    if (Lotto.isThatSix(numbers)) {
-      Console.close();
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
-    if (!Lotto.itThatRightFormat(numbers)) {
-      Console.close();
-      throw new Error("[ERROR] 올바른 형식으로 입력해주세요.");
-    }
-    if (Lotto.numberNet(numbers)) {
-      Console.close();
-      throw new Error("[ERROR] 1과 45사이의 숫자를 입력해주세요.");
+    if (numbers !== undefined) {
+      if (!Lotto.itThatRightFormat(numbers)) {
+        Console.close();
+        throw new Error("[ERROR] 올바른 형식으로 입력해주세요.");
+      }
+      if (!Lotto.isThatSix(numbers)) {
+        Console.close();
+        throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      }
+      if (Lotto.numberNet(numbers)) {
+        Console.close();
+        throw new Error("[ERROR] 1과 45사이의 숫자를 입력해주세요.");
+      }
+      if (Lotto.isThatDuplicate(numbers)) {
+        Console.close();
+        throw new Error("[ERROR] 중복되는 숫자가 존재합니다.");
+      }
     }
   }
 
@@ -34,21 +36,16 @@ class Lotto {
   //   this.isThatNumber(number);
   // }
 
-  static isThatNull(numbers) {
-    return numbers !== undefined;
-  }
-
   static isThatSix(numbers) {
-    return numbers.length !== 6;
+    return numbers.length === 6;
   }
 
-  // isThatDuplicate(numbers) {
-  //   if (numbers.length !== new Set(numbers).size) throw new Error("[ERROR] 중복되는 숫자가 존재합니다.");
-  //   return ;
-  // }
+  static isThatDuplicate(numbers) {
+    return numbers.length !== new Set(numbers).size;
+  }
 
   static itThatRightFormat(numbers) {
-    const RegExp = /^[0-9|,]+$/;
+    const RegExp = /^[1-9|,]+$/;
     return RegExp.test(numbers);
   }
 
