@@ -6,20 +6,26 @@ class LottoCalculator {
   winningNumbers;
   bonusNumber;
   usersLottos;
+  usersMoney;
+  usersTotalRank = [];
+  rankReward = [0, 2000000000, 30000000, 1500000, 50000, 5000];
+  checkRank = [0, 0, 0, 0, 0, 0];
+  rewardMoney = 0;
+  yield;
 
   constructor(usersLottos) {
     this.usersLottos = usersLottos;
+    this.usersMoney = this.usersLottos.length * 1000;
   }
 
   calculate() {
-    const compareResult = [];
-
     this.usersLottos.forEach((usersLotto) => {
       const rank = this.compareNumber(usersLotto);
-      compareResult.push(rank);
+      this.usersTotalRank.push(rank);
     });
+    console.log(this.usersTotalRank);
 
-    console.log(compareResult);
+    this.calculateResult();
   }
 
   compareNumber(usersLotto) {
@@ -40,8 +46,19 @@ class LottoCalculator {
         return 3;
       case 4: return 4;
       case 3: return 5;
-    } return -1;
+    } return 0;
   }
+
+  calculateResult() {
+    this.usersTotalRank.forEach((rank) => {
+      this.rewardMoney += this.rankReward[rank];
+      this.checkRank[rank] += 1;
+    });    
+    console.log(this.rewardMoney, this.checkRank);
+    this.yield = (this.rewardMoney / this.usersMoney).toFixed(1);
+    console.log(this.yield);
+  }
+  
 }
 
 module.exports = LottoCalculator;
