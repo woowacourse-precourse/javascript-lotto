@@ -10,7 +10,7 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error(Message.ERROR_LOTTO_NUMBERS_LENGTH);
+      throw new Error(Message.ERROR_LOTTO_NUMBER_LENGTH);
     }
     const outOfRange = numbers.some((number) => (
       Number.isNaN(number) || !Number.isInteger(number) || number < 1 || number > 45

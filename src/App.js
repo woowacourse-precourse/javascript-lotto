@@ -24,7 +24,7 @@ class App {
   }
 
   requestMoneyInput() {
-    Console.readLine(Message.REQUEST_PURCHASE_MONEY_INPUT, (input) => {
+    Console.readLine(Message.PURCHASE_MONEY_INPUT, (input) => {
       const money = Number(input);
       this.purchaseMoney = money;
       this.purchaseCount = money / Money.UNIT;
@@ -38,13 +38,13 @@ class App {
 
   validatePurchaseMoney() {
     if (this.purchaseMoney < Money.UNIT) {
-      throw new Error(Message.ERROR_MINIMUM_MONEY_INPUT);
+      throw new Error(Message.ERROR_MONEY_MINIMUM_INPUT);
     }
     if (Number.isNaN(this.purchaseMoney)) {
-      throw new Error(Message.ERROR_NUMBER_ONLY);
+      throw new Error(Message.ERROR_MONEY_NUMBER_ONLY);
     }
     if (!Number.isInteger(this.purchaseCount)) {
-      throw new Error(Message.ERROR_1000_UNIT_ONLY);
+      throw new Error(Message.ERROR_MONEY_1000UNIT_ONLY);
     }
   }
 
@@ -58,7 +58,7 @@ class App {
   }
 
   requestWinningNumbersInput() {
-    Console.readLine(Message.REQUEST_WINNING_NUMBERS_INPUT, (input) => {
+    Console.readLine(Message.WINNING_NUMBERS_INPUT, (input) => {
       const numbers = input.split(',').map((digit) => Number(digit));
       const winningLotto = new Lotto(numbers);
       this.winningNumbers = winningLotto.getNumbers();
@@ -67,7 +67,7 @@ class App {
   }
 
   requestBonusNumberInput() {
-    Console.readLine(Message.REQUEST_BONUS_NUMBER_INPUT, (input) => {
+    Console.readLine(Message.BONUS_NUMBER_INPUT, (input) => {
       this.bonusNumber = Number(input);
       this.validateBonusNumber();
       this.getResult();

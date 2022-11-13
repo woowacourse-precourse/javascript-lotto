@@ -4,14 +4,14 @@ const Money = require('./Money');
 class Message {
   constructor() {}
 
-  static REQUEST_PURCHASE_MONEY_INPUT = '구입금액을 입력해 주세요.\n';
-  static REQUEST_WINNING_NUMBERS_INPUT = '\n당첨 번호를 입력해 주세요.\n';
-  static REQUEST_BONUS_NUMBER_INPUT = '\n보너스 번호를 입력해 주세요.\n';
+  static PURCHASE_MONEY_INPUT = '구입금액을 입력해 주세요.\n';
+  static WINNING_NUMBERS_INPUT = '\n당첨 번호를 입력해 주세요.\n';
+  static BONUS_NUMBER_INPUT = '\n보너스 번호를 입력해 주세요.\n';
 
-  static ERROR_MINIMUM_MONEY_INPUT = '[ERROR] 최소 구입금액은 1,000원입니다.';
-  static ERROR_NUMBER_ONLY = '[ERROR] 구입금액은 숫자만 입력해야 합니다.';
-  static ERROR_1000_UNIT_ONLY = '[ERROR] 구입금액은 1,000원 단위로 입력해야 합니다.';
-  static ERROR_LOTTO_NUMBERS_LENGTH = '[ERROR] 로또 번호는 6개여야 합니다.';
+  static ERROR_MONEY_MINIMUM_INPUT = '[ERROR] 최소 구입금액은 1,000원입니다.';
+  static ERROR_MONEY_NUMBER_ONLY = '[ERROR] 구입금액은 숫자만 입력해야 합니다.';
+  static ERROR_MONEY_1000UNIT_ONLY = '[ERROR] 구입금액은 1,000원 단위로 입력해야 합니다.';
+  static ERROR_LOTTO_NUMBER_LENGTH = '[ERROR] 로또 번호는 6개여야 합니다.';
   static ERROR_LOTTO_NUMBER_ONLY = '[ERROR] 로또 번호는 정수여야 합니다.';
   static ERROR_LOTTO_NUMBER_RANGE = '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.';
   static ERROR_LOTTO_NUMBER_DUPLICATE = '[ERROR] 로또 번호는 서로 중복되지 않아야 합니다.';
