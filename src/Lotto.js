@@ -32,6 +32,14 @@ class Lotto {
       randomNumbers = randomNumbers.sort((a, b) => a - b);
       lottoList[i] = randomNumbers;
     }
+    this.printLottoList(total, lottoList);
+  }
+
+  printLottoList(total, lottoList) {
+    Console.print(`\n${total}개를 구매했습니다.`);
+    for(let i = 0; i < total; i++) {
+      Console.print(lottoList[i]);
+    }
   }
 
   buyLotto() {
