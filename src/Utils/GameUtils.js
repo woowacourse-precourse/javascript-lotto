@@ -1,12 +1,12 @@
 const { PRICE_PER_SHEET, ROUNDING_DIGIT } = require('../constants');
 
 class GameUtils {
-  static toNonCommaArray(input) {
+  static removeMarkingStandardMoney(input) {
     input = GameUtils.removeBlank(input).split(',');
     input = input.map(item => Number(item));
     return input;
   }
-  static amountToNumber(value) {
+  static removeComma(value) {
     const regex = /[,'원']/g;
     value = value.replace(regex, '');
     return value;

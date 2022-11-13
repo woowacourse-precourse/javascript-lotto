@@ -20,7 +20,7 @@ class App {
   }
   submitAmount() {
     MissionUtils.Console.readLine(MESSAGES.GAME.requirePurchaseAmount, (amount) => {
-      this.amount = GameUtils.amountToNumber(amount);
+      this.amount = GameUtils.removeMarkingStandardMoney(amount);
       this.amount = Validator.amountValidCheck(this.amount);
       this.sheets = GameUtils.getSheets(this.amount);
       GamePrint.sheets(this.sheets);
