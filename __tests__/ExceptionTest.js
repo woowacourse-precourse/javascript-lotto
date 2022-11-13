@@ -43,7 +43,7 @@ describe('2. 하나의 로또를 발행하는 기능에 대한 예외 처리', (
     test('로또의 숫자들 중 숫자가 아닌 것이 있을 때 예외가 발생한다.', () => {
         const input = [1, '2', 3, 4, 5, 6];
  
-        expect(() => lottoException.isOutOfRange(input))
+        expect(() => lottoException.includeNotNumber(input))
         .toThrow("[ERROR] 생성된 로또에 숫자가 아닌 원소가 포함되어 있습니다.");
     });
 
