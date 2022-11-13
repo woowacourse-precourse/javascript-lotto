@@ -16,7 +16,7 @@
 
 - [x] 로또 번호를 return한다. : `getLottoNumbers`
 - [x] 로또 번호와 당첨 번호를 비교하여 맞은 개수를 return한다. : `getMatchCount`
-- [ ] 보너스 번호가 있는지 확인한다. : `hasBonusNumber`
+- [x] 보너스 번호가 있는지 확인한다. : `hasBonusNumber`
 
 ## Lotto를 살 수 있는 `LottoGameMachine` 클래스를 생성한다.
 
