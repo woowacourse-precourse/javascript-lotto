@@ -8,6 +8,10 @@ class LottoGameController {
   }
 
   start() {
+    this.setGame();
+  }
+
+  setGame() {
     readLine(INPUT_MESSAGE.MONEY, (input) => {
       MoneyValidator.validate(input);
 
