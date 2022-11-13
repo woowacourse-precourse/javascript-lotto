@@ -15,7 +15,7 @@ class LottoCost {
     }
     const input = lottoCost.split('');
     input.map((el) => {
-      if (el === ' ') throw new Error('[ERROR] 공백을 제거해주세요.');
+      if (el === ' ' || el === '.') throw new Error('[ERROR] 숫자만 입력해주세요.');
     });
   }
 }
