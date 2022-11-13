@@ -6,13 +6,20 @@ const MESSAGE = require("../constant/message");
 const { commaizeNumber } = require("../utils/common");
 
 class LottoUtils {
-  static printLottoCount(count) {
-    Console.print(MESSAGE.PURCHASE(count));
-  }
-
   static printLotto(tickets) {
+    let count = tickets.length;
+
+    Console.print(MESSAGE.PURCHASE(count));
+
     tickets.forEach((ticket) => {
-      Console.print(ticket.numbers);
+      let message = "";
+      ticket.numbers.map((number, index) => {
+        message += number;
+        if (index !== ticket.numbers.length - 1) {
+          message += ", ";
+        }
+      });
+      Console.print(`[${message}]`);
     });
   }
 
@@ -58,7 +65,6 @@ class LottoUtils {
     Console.print(MESSAGE.RESULT);
     console.log(result);
     Object.keys(result).forEach((key) => {
-      console.log(key);
       Console.print(
         MESSAGE.RANK(key, result[key], commaizeNumber(RANK_REWARD[key]))
       );
