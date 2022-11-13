@@ -62,6 +62,7 @@ class LottoMachine {
     if (this.isOutOfRange(numbers)) throw new Error(MESSAGE.ERROR.OUT_OF_RANGE_NUMBER);
     if (numbers.some(this.isNotANumber)) throw new Error(MESSAGE.ERROR.WINNING_NUMBER_MUST_BE_NUMBER);
     if (this.isIncorrectCount(numbers)) throw new Error(MESSAGE.ERROR.WINNING_NUMBER_COUNT);
+    if (this.isDuplicateNumbers(numbers)) throw new Error(MESSAGE.ERROR.WINNING_NUMBER_MUST_NOT_BE_DUPLICATE);
   }
 
   isOutOfRange(numbers) {
@@ -70,6 +71,10 @@ class LottoMachine {
 
   isIncorrectCount(numbers) {
     return numbers.length !== LOTTO.NUMBER_COUNT;
+  }
+
+  isDuplicateNumbers(numbers) {
+    return numbers.length !== new Set(numbers).size;
   }
 }
 
