@@ -26,6 +26,12 @@ class Lotto {
     }
   }
 
+  isUnitOfThousnds(amount) {
+    if (+amount % 1000 !== 0) {
+      throw new Error('[ERROR] 천원 단위로 입력해 주세요.');
+    }
+  }
+
   // TODO: 추가 기능 구현
 }
 
