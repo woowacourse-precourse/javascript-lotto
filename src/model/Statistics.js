@@ -22,6 +22,14 @@ class Statistics {
     if (type === "fourth") this.ranks.fourth = newState;
     if (type === "fifth") this.ranks.fifth = newState;
   }
+
+  getRateOfReturn() {
+    return this.rateOfReturn;
+  }
+
+  setRateOfReturn(newRateOfReturn) {
+    this.rateOfReturn = newRateOfReturn;
+  }
 }
 
 module.exports = Statistics;
