@@ -51,7 +51,12 @@ class App {
       this.bonusNumber = bonusNumber;
     });
   }
-
+  validateWinningNumbers(winningNumbers) {
+    if (winningNumbers.length !== 6) {
+      throw new Error("[ERROR] 당첨 로또 번호의 길이가 6개 이상입니다.");
+    }
+  }
+  validateBonusNumber(bonusNumber) {}
   play() {}
 }
 
