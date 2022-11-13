@@ -35,29 +35,29 @@ class Lotto {
   }
 
   static isThreeMatche(count, array) {
-    const DATUM_POINT = 3;
+    const [DATUM_POINT, POINT, INCREASE] = [3, 0, 1];
     const newArray = Application.copyArray(array);
 
     if (Application.isMatcheCount(count, DATUM_POINT)) {
-      newArray[0] += 1;
+      newArray[POINT] += INCREASE;
     }
 
     return newArray;
   }
 
   static isFourMatche(count, array) {
-    const DATUM_POINT = 4;
+    const [DATUM_POINT, POINT, INCREASE] = [4, 1, 1];
     const newArray = Application.copyArray(array);
 
     if (Application.isMatcheCount(count, DATUM_POINT)) {
-      newArray[1] += 1;
+      newArray[POINT] += INCREASE;
     }
 
     return newArray;
   }
 
   static isFiveMatche(count, array, target = [], bonus = 0) {
-    const DATUM_POINT = 5;
+    const [DATUM_POINT, POINT, INCREASE] = [5, 2, 1];
     const newArray = Application.copyArray(array);
     const isFive = Application.isMatcheCount(count, DATUM_POINT);
 
@@ -66,26 +66,27 @@ class Lotto {
     }
 
     if (isFive) {
-      newArray[2] += 1;
+      newArray[POINT] += INCREASE;
     }
 
     return newArray;
   }
 
   static isBonusMatche(array) {
+    const [POINT, INCREASE] = [3, 1];
     const newArray = Application.copyArray(array);
 
-    newArray[3] += 1;
+    newArray[POINT] += INCREASE;
 
     return newArray;
   }
 
   static isSixMatche(count, array) {
-    const DATUM_POINT = 6;
+    const [DATUM_POINT, POINT, INCREASE] = [6, 4, 1];
     const newArray = Application.copyArray(array);
 
     if (Application.isMatcheCount(count, DATUM_POINT)) {
-      newArray[4] += 1;
+      newArray[POINT] += INCREASE;
     }
 
     return newArray;
