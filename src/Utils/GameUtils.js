@@ -2,27 +2,17 @@ const { PRICE_PER_SHEET, ROUNDING_DIGIT } = require('../constants');
 
 class GameUtils {
   static removeMarkingStandardMoney(input) {
-    input = GameUtils.removeBlank(input);
-    input = GameUtils.removeComma(input);
+    input = GameUtils.#removeBlank(input);
+    input = GameUtils.#removeComma(input);
     return input;
   }
   static toArray(input) {
-    input = GameUtils.removeBlank(input).split(',');
+    input = GameUtils.#removeBlank(input).split(',');
     input = input.map(item => Number(item));
     return input;
   }
-  static removeComma(value) {
-    const regex = /[,'원']/g;
-    value = value.replace(regex, '');
-    return value;
-  }
   static getSheets(amount) {
     return amount / PRICE_PER_SHEET;
-  }
-  static removeBlank(value) {
-    const regex = /\s/g;
-    const nonBlank = value.replace(regex, '');
-    return nonBlank;
   }
   static getRevenueRate(amount, total) {
     if(total === 0) return 0;
@@ -43,6 +33,16 @@ class GameUtils {
       digit += 1;
     }
     return addedComma;
+  }
+  static #removeComma(value) {
+    const regex = /[,'원']/g;
+    value = value.replace(regex, '');
+    return value;
+  }
+  static #removeBlank(value) {
+    const regex = /\s/g;
+    const nonBlank = value.replace(regex, '');
+    return nonBlank;
   }
 }
 
