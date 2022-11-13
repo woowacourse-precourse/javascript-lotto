@@ -8,6 +8,7 @@ class LottoGame {
     this.#user = undefined;
   }
 
+  //Call the appropriate method according to the lotto game scenario
   start() {
     this.inputAmount();
   }
