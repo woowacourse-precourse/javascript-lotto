@@ -1,27 +1,25 @@
-const {
-  checkLottoRange,
-  checkDuplicate,
-  checkLength,
-  checkNumberRange,
-  checkBonusNumberDuplicate,
-} = require('./LottoValidation');
+const LottoBonus = require('./LottoBonus');
+const { checkLottoRange, checkDuplicate, checkLength } = require('./LottoValidation');
 
 class Lotto {
   #numbers;
 
-  constructor(winningNumber, bonusNumber) {
+  constructor(winningNumber) {
     const winning = winningNumber.map((number) => Number(number));
-    const bonus = Number(bonusNumber);
-    Lotto.validate(winning, bonus);
-    this.#numbers = { winning, bonus };
+    Lotto.validate(winning);
+    this.bonus = null;
+    this.#numbers = { winning };
   }
 
-  static validate(winningNumber, bonusNumber) {
-    checkLottoRange(winningNumber);
-    checkNumberRange(bonusNumber);
-    checkLength(winningNumber);
-    checkDuplicate(winningNumber);
-    checkBonusNumberDuplicate(bonusNumber, winningNumber);
+  static validate(winning) {
+    checkLottoRange(winning);
+    checkLength(winning);
+    checkDuplicate(winning);
+  }
+
+  setBonusNumber(bonusNumber) {
+    const bonus = new LottoBonus(bonusNumber, this.#numbers.winning).getNumber();
+    this.#numbers.bonus = bonus;
   }
 
   getNumbers() {
