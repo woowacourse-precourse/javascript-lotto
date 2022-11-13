@@ -1,12 +1,14 @@
 const View = require("../view/View");
 const UserNumber = require("../model/UserNumber");
 const Lotto = require("../model/Lotto");
+const Statistics = require("../model/Statistics");
 
 class Controller {
   constructor() {
     this.view = new View(this);
     this.userNumber = new UserNumber(this);
     this.lotto = new Lotto(this);
+    this.statistics = new Statistics();
   }
 
   printReadOnlyMessage(type, data) {
