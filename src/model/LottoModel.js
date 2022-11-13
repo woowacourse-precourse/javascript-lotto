@@ -4,6 +4,7 @@ const Validate = require("../domain/Validate");
 const Utils = require("../assets/Utils");
 
 class LottoModel {
+  controller;
   #lottos = [];
   #winNumber = "";
   #bonuse = "";
@@ -35,6 +36,15 @@ class LottoModel {
     this.#bonuse = number;
   }
 
+  get result() {
+    const resultList = [];
+
+    this.lottos.forEach((lotto) =>
+      resultList.push(lotto.getResult(this.#winNumber, this.#bonuse))
+    ); // 결과값은 맞은 갯수의 집합으로 이뤄진 배열이다.
+    return resultList;
+  }
+
   buyLottos(money) {
     const buyAmount = money / CONSTANT.LOTTO_PRICE;
     let lottoArray = [];
@@ -44,15 +54,5 @@ class LottoModel {
     }
     return lottoArray;
   }
-
-  // evaluateResult() {
-  //   const winNumberArray = Utils.stringToArray(this.#winNumber);
-  //   const matchedArray = [];
-
-  //   this.#lottos.forEach((lotto, index) => {
-  //     const matchedResult = lotto.resultMatch(winNumberArray, this.#bonuse);
-  //     matchedArray.push(matchedResult.length); //
-  //   });
-  // }
 }
 module.exports = LottoModel;

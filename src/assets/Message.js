@@ -1,4 +1,4 @@
-const MESSAGE = {
+const MESSAGE = Object.freeze({
   INSERT_MONEY: `구입금액을 입력해 주세요.
 `,
   BUY_AMOUNT: `개를 구매했습니다.`,
@@ -18,6 +18,6 @@ const MESSAGE = {
     LOTTO_NUMBER: `로또 번호는 중복되지 않게 선택해야 합니다.`,
     LOTTO_LENGTH: `로또 번호는 6개여야 합니다.`,
   },
-};
+});
 
 module.exports = MESSAGE;
