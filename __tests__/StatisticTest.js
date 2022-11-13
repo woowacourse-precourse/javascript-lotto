@@ -23,11 +23,11 @@ describe('통계 클래스 테스트', () => {
     };
     const rankResult = statistic.judgeRank(judgeResult);
 
-    expect(rankResult).toEqual(RULE.SECOND.RANK);
+    expect(rankResult).toEqual(RULE.SECOND.TYPE);
   });
 
   test('해당 등수의 count를 1 증가시킨다.', () => {
-    const rank = RULE.SECOND.RANK;
+    const rank = RULE.SECOND.TYPE;
     statistic.increaseRankCount(rank);
     const { counts } = statistic;
 
@@ -44,6 +44,6 @@ describe('통계 클래스 최종 테스트', () => {
     statistic.putInCounts(winningLotto, bonusNumber, publishedLotto);
     const { counts } = statistic;
 
-    expect(counts[RULE.SECOND.RANK]).toEqual(1);
+    expect(counts[RULE.SECOND.TYPE]).toEqual(1);
   });
 });

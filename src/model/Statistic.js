@@ -5,12 +5,12 @@ class Statistic {
 
   constructor() {
     this.#counts = {
-      [RULE.FIRST.RANK]: 0,
-      [RULE.SECOND.RANK]: 0,
-      [RULE.THIRD.RANK]: 0,
-      [RULE.FOURTH.RANK]: 0,
-      [RULE.FIFTH.RANK]: 0,
-      [RULE.NOPRIZE.RANK]: 0,
+      [RULE.FIRST.TYPE]: 0,
+      [RULE.SECOND.TYPE]: 0,
+      [RULE.THIRD.TYPE]: 0,
+      [RULE.FOURTH.TYPE]: 0,
+      [RULE.FIFTH.TYPE]: 0,
+      [RULE.NOPRIZE.TYPE]: 0,
     };
   }
 
@@ -19,11 +19,11 @@ class Statistic {
   }
 
   get revenue() {
-    const firstRevenue = this.#counts[RULE.FIRST.RANK] * RULE.FIRST.WINNING_AMOUNT;
-    const secondRevenue = this.#counts[RULE.SECOND.RANK] * RULE.SECOND.WINNING_AMOUNT;
-    const thirdRevenue = this.#counts[RULE.THIRD.RANK] * RULE.THIRD.WINNING_AMOUNT;
-    const fourthRevenue = this.#counts[RULE.FOURTH.RANK] * RULE.FOURTH.WINNING_AMOUNT;
-    const fifthRevenue = this.#counts[RULE.FIFTH.RANK] * RULE.FIFTH.WINNING_AMOUNT;
+    const firstRevenue = this.#counts[RULE.FIRST.TYPE] * RULE.FIRST.PRIZE_MONEY;
+    const secondRevenue = this.#counts[RULE.SECOND.TYPE] * RULE.SECOND.PRIZE_MONEY;
+    const thirdRevenue = this.#counts[RULE.THIRD.TYPE] * RULE.THIRD.PRIZE_MONEY;
+    const fourthRevenue = this.#counts[RULE.FOURTH.TYPE] * RULE.FOURTH.PRIZE_MONEY;
+    const fifthRevenue = this.#counts[RULE.FIFTH.TYPE] * RULE.FIFTH.PRIZE_MONEY;
     return firstRevenue + secondRevenue + thirdRevenue + fourthRevenue + fifthRevenue;
   }
 
@@ -51,12 +51,12 @@ class Statistic {
   }
 
   judgeRank({ numberOfSame, isBonusNumberSame }) {
-    if (numberOfSame === RULE.FIRST.NUMBER_OF_SAME) return RULE.FIRST.RANK;
-    if (numberOfSame === RULE.SECOND.NUMBER_OF_SAME && isBonusNumberSame) return RULE.SECOND.RANK;
-    if (numberOfSame === RULE.THIRD.NUMBER_OF_SAME) return RULE.THIRD.RANK;
-    if (numberOfSame === RULE.FOURTH.NUMBER_OF_SAME) return RULE.FOURTH.RANK;
-    if (numberOfSame === RULE.FIFTH.NUMBER_OF_SAME) return RULE.FIFTH.RANK;
-    return RULE.NOPRIZE.RANK;
+    if (numberOfSame === RULE.FIRST.NUMBER_OF_SAME) return RULE.FIRST.TYPE;
+    if (numberOfSame === RULE.SECOND.NUMBER_OF_SAME && isBonusNumberSame) return RULE.SECOND.TYPE;
+    if (numberOfSame === RULE.THIRD.NUMBER_OF_SAME) return RULE.THIRD.TYPE;
+    if (numberOfSame === RULE.FOURTH.NUMBER_OF_SAME) return RULE.FOURTH.TYPE;
+    if (numberOfSame === RULE.FIFTH.NUMBER_OF_SAME) return RULE.FIFTH.TYPE;
+    return RULE.NOPRIZE.TYPE;
   }
 
   increaseRankCount(rank) {

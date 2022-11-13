@@ -29,11 +29,11 @@ class View {
     Console.print('');
     Console.print('당첨 통계');
     Console.print('---');
-    Console.print(`${STATISTIC_PRINT.FIFTH} - ${counts[RULE.FIFTH.RANK]}개`);
-    Console.print(`${STATISTIC_PRINT.FOURTH} - ${counts[RULE.FOURTH.RANK]}개`);
-    Console.print(`${STATISTIC_PRINT.THIRD} - ${counts[RULE.THIRD.RANK]}개`);
-    Console.print(`${STATISTIC_PRINT.SECOND} - ${counts[RULE.SECOND.RANK]}개`);
-    Console.print(`${STATISTIC_PRINT.FIRST} - ${counts[RULE.FIRST.RANK]}개`);
+    Console.print(`${STATISTIC_PRINT.FIFTH} - ${counts[RULE.FIFTH.TYPE]}개`);
+    Console.print(`${STATISTIC_PRINT.FOURTH} - ${counts[RULE.FOURTH.TYPE]}개`);
+    Console.print(`${STATISTIC_PRINT.THIRD} - ${counts[RULE.THIRD.TYPE]}개`);
+    Console.print(`${STATISTIC_PRINT.SECOND} - ${counts[RULE.SECOND.TYPE]}개`);
+    Console.print(`${STATISTIC_PRINT.FIRST} - ${counts[RULE.FIRST.TYPE]}개`);
   }
 
   static printPercentageRevenue(percentageRevenue) {

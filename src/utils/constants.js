@@ -1,40 +1,41 @@
 const RULE = Object.freeze({
   FIRST: {
-    RANK: 'FIRST',
+    TYPE: 'FIRST',
     NUMBER_OF_SAME: 6,
-    WINNING_AMOUNT: 2000000000,
+    PRIZE_MONEY: 2000000000,
   },
   SECOND: {
-    RANK: 'SECOND',
+    TYPE: 'SECOND',
     NUMBER_OF_SAME: 5,
-    WINNING_AMOUNT: 30000000,
+    PRIZE_MONEY: 30000000,
   },
   THIRD: {
-    RANK: 'THIRD',
+    TYPE: 'THIRD',
     NUMBER_OF_SAME: 5,
-    WINNING_AMOUNT: 1500000,
+    PRIZE_MONEY: 1500000,
   },
   FOURTH: {
-    RANK: 'FOURTH',
+    TYPE: 'FOURTH',
     NUMBER_OF_SAME: 4,
-    WINNING_AMOUNT: 50000,
+    PRIZE_MONEY: 50000,
   },
   FIFTH: {
-    RANK: 'FIFTH',
+    TYPE: 'FIFTH',
     NUMBER_OF_SAME: 3,
-    WINNING_AMOUNT: 5000,
+    PRIZE_MONEY: 5000,
   },
   NOPRIZE: {
-    RANK: 'NOPRIZE',
+    TYPE: 'NOPRIZE',
+    PRIZE_MONEY: 0,
   },
 });
 
 const STATISTIC_PRINT = Object.freeze({
-  FIRST: `${RULE.FIRST.NUMBER_OF_SAME}개 일치 (${RULE.FIRST.WINNING_AMOUNT.toLocaleString()}원)`,
-  SECOND: `${RULE.SECOND.NUMBER_OF_SAME}개 일치, 보너스 볼 일치 (${RULE.SECOND.WINNING_AMOUNT.toLocaleString()}원)`,
-  THIRD: `${RULE.THIRD.NUMBER_OF_SAME}개 일치 (${RULE.THIRD.WINNING_AMOUNT.toLocaleString()}원)`,
-  FOURTH: `${RULE.FOURTH.NUMBER_OF_SAME}개 일치 (${RULE.FOURTH.WINNING_AMOUNT.toLocaleString()}원)`,
-  FIFTH: `${RULE.FIFTH.NUMBER_OF_SAME}개 일치 (${RULE.FIFTH.WINNING_AMOUNT.toLocaleString()}원)`,
+  FIRST: `${RULE.FIRST.NUMBER_OF_SAME}개 일치 (${RULE.FIRST.PRIZE_MONEY.toLocaleString()}원)`,
+  SECOND: `${RULE.SECOND.NUMBER_OF_SAME}개 일치, 보너스 볼 일치 (${RULE.SECOND.PRIZE_MONEY.toLocaleString()}원)`,
+  THIRD: `${RULE.THIRD.NUMBER_OF_SAME}개 일치 (${RULE.THIRD.PRIZE_MONEY.toLocaleString()}원)`,
+  FOURTH: `${RULE.FOURTH.NUMBER_OF_SAME}개 일치 (${RULE.FOURTH.PRIZE_MONEY.toLocaleString()}원)`,
+  FIFTH: `${RULE.FIFTH.NUMBER_OF_SAME}개 일치 (${RULE.FIFTH.PRIZE_MONEY.toLocaleString()}원)`,
 });
 
 const NUMBER_RANGE = Object.freeze({
