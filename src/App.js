@@ -86,7 +86,7 @@ class App {
     ) {
       throw new Error(ERROR_MESSAGE.OUT_OF_RANGE_LOTTO);
     }
-    if (winningLotto.getLottoNumbers().includes(parseInt(bonusNumber))) {
+    if (winningLotto.hasBonusNumber(parseInt(bonusNumber))) {
       throw new Error(ERROR_MESSAGE.INVALID_BONUS_NUMBER);
     }
   }
