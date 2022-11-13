@@ -1,3 +1,4 @@
+const { ERROR_MESSAGES } = require('../utils/constants');
 const { Console } = require('@woowacourse/mission-utils');
 
 class Lotto {
@@ -81,11 +82,9 @@ class Lotto {
   }
 
   validateWinningNubmer(winnigNums) {
-    if (winnigNums.length !== 6) {
-      throw new Error(
-        `[ERROR] 당첨 번호는 중복되지 않는 1 ~ 45 사이의 숫자 6개를 ','로 구분하여 입력해야 합니다.`
-      );
-    }
+    const { WINNING_NUMS } = ERROR_MESSAGES;
+
+    if (winnigNums.length !== 6) throw new Error(WINNING_NUMS);
 
     winnigNums.some((num) => {
       if (
@@ -93,37 +92,27 @@ class Lotto {
         Number.isNaN(+num) ||
         +num < 1 ||
         +num > 45
-      ) {
-        throw new Error(
-          `[ERROR] 당첨 번호는 중복되지 않는 1 ~ 45 사이의 숫자 6개를 ','로 구분하여 입력해야 합니다.`
-        );
-      }
+      )
+        throw new Error(WINNING_NUMS);
     });
 
-    if (winnigNums.length !== new Set(winnigNums).size) {
-      throw new Error(
-        `[ERROR] 당첨 번호는 중복되지 않는 1 ~ 45 사이의 숫자 6개를 ','로 구분하여 입력해야 합니다.`
-      );
-    }
+    if (winnigNums.length !== new Set(winnigNums).size)
+      throw new Error(WINNING_NUMS);
   }
 
   validateBonusNumber(bonusNumber) {
+    const { BOUNS_NUM } = ERROR_MESSAGES;
+
     if (
       typeof bonusNumber !== 'number' ||
       Number.isNaN(bonusNumber) ||
       bonusNumber < 1 ||
       bonusNumber > 45
-    ) {
-      throw new Error(
-        `[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 1 ~ 45 사이의 숫자 1개를 입력해야 합니다.`
-      );
-    }
+    )
+      throw new Error(BOUNS_NUM);
 
-    if (this.#winnigNums.some((num) => num === bonusNumber)) {
-      throw new Error(
-        `[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 1 ~ 45 사이의 숫자 1개를 입력해야 합니다.`
-      );
-    }
+    if (this.#winnigNums.some((num) => num === bonusNumber))
+      throw new Error(BOUNS_NUM);
   }
 }
 

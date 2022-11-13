@@ -2,6 +2,7 @@ const {
   LOTTO_PRICE,
   RANGE_OF_LOTTO_NUMBER,
   TOTAL_COUNTS,
+  ERROR_MESSAGES,
 } = require('../utils/constants');
 
 const Lotto = require('./Lotto');
@@ -73,9 +74,7 @@ class App {
       typeof +price !== 'number' ||
       price % LOTTO_PRICE !== 0
     ) {
-      throw new Error(
-        '[ERROR] 구입 금액은 1000원 단위의 숫자로 입력해야 합니다.'
-      );
+      throw new Error(ERROR_MESSAGES.PRICE);
     }
   }
 }
