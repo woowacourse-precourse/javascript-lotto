@@ -13,6 +13,7 @@ class App {
       const budget = input.trim();
       const lottoCount = this.calcLottoCount(budget);
       const lottos = this.createLottos(lottoCount);
+      this.printLottos(lottoCount, lottos);
       this.finish();
     });
   }
@@ -44,6 +45,13 @@ class App {
       lottos.push(lotto);
     }
     return lottos;
+  }
+
+  printLottos(lottoCount, lottos) {
+    Console.print(`\n${lottoCount}개를 구매했습니다.`);
+    lottos.forEach((lotto) => {
+      Console.print(lotto.getNumbers());
+    });
   }
 }
 
