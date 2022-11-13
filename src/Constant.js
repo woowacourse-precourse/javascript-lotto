@@ -24,7 +24,7 @@ class Constant {
     outOfRange: '로또 번호는 1부터 45 사이의 숫자여야 합니다.',
     notNumber: '숫자여야 합니다.',
     only1000WonUnits: '구입금액은 1,000원 단위여야 합니다.',
-    only6Numbers: '로또 번호는 6개의 숫자여야 합니다.',
+    only6Numbers: '로또 번호는 6개여야 합니다.',
   });
 }
 
