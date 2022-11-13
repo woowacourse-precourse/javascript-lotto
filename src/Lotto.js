@@ -10,11 +10,10 @@ class Lotto {
 
   validate(numbers) {
     if(numbers!==undefined){
-      console.log(numbers);
-      let numArr=numbers.split(',')
-      if (numArr.length !== 6) throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-      if(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(numbers)) throw new Error("한글은 불가능 합니다.")
-      if(/[a-zA-Z]/g.test(numbers)) throw new Error("영어는 불가능 합니다.")
+      if([...new Set(numbers)].join('').length!==6) throw "[ERROR]"
+      if (numbers.length !== 6) throw "[ERROR]"
+      if(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(numbers)) throw "[ERROR]"
+      if(/[a-zA-Z]/g.test(numbers)) throw "[ERROR]"
     }
   }
 
@@ -32,12 +31,10 @@ class Lotto {
     });
   }
   checkInputMoney(money){
-    if(Number(money)%1000!==0){
-      throw "1000원 단위로 나누어 떨어져야 합니다."
-    }
-    if(Number(money)===0){
-      throw "0은 입력할수 없습니다."
-    }
+    if(Number(money)<0) throw "[ERROR]"
+    if(money[0]==='0') throw "[ERROR]"
+    if(Number(money)%1000!==0) throw "[ERROR]"
+    if(Number(money)===0) throw "[ERROR]"
   }
 
   getUserLottoNumber(computerNumberArray,amountOfMoney) {
@@ -66,9 +63,9 @@ class Lotto {
     );
   }
   checkBonusNumber(bonusNumber){
-    if(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(bonusNumber)) throw new Error("한글은 불가능 합니다.")
-    if(/[a-zA-Z]/g.test(bonusNumber)) throw new Error("영어는 불가능 합니다.")
-    if(Number(bonusNumber)<1 || Number(bonusNumber)>45) throw new Error("1~45 사이의 정수만 입력하세요")
+    if(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(bonusNumber)) throw "[ERROR]"
+    if(/[a-zA-Z]/g.test(bonusNumber)) throw "[ERROR]"
+    if(Number(bonusNumber)<1 || Number(bonusNumber)>45) throw "[ERROR]"
   }
   createLottoNumArrays(money) {
     let amountOfMoney = this.divideMoney(money);
@@ -85,8 +82,6 @@ class Lotto {
   }
   
   divideMoney(money) {
-    // 테스트 케이스 작성
-    // 1000보다 작을경우, 나누어떨어지지 않을경우, 숫자 앞자리가 0일경우, 문자가 있을경우,음수일경우
     let quotient = money / 1000;
     return quotient;
   }
