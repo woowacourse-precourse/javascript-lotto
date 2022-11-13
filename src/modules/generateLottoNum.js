@@ -1,6 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
-class generateLottoNum {
+class GenerateLottoNum {
   createLottoNum() {
     const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
     return numbers;
@@ -14,4 +14,4 @@ class generateLottoNum {
   }
 }
 
-module.exports = generateLottoNum;
+module.exports = GenerateLottoNum;
