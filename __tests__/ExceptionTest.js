@@ -1,6 +1,4 @@
 const errorCheck = require('../src/utils/ExceptionCheck');
-
-//const errorCheck = new ExceptionCheck();
 const answer_example = [1,2,3,4,5,6];
 
 describe("예외 throw 테스트 (Lotto test와 ApplicationTest 속 예외 제외)", () => {
@@ -21,6 +19,13 @@ describe("예외 throw 테스트 (Lotto test와 ApplicationTest 속 예외 제�
   test("6개의 숫자가 들어오지 않은 경우(구분자를 제대로 사용하지 않은 경우 포함)", () => {
     expect(() => {
       const input = [1,2,3,4,5];
+      errorCheck.noSeperatorErrorCheck(input);
+    }).toThrow("[ERROR]");
+  });
+
+  test("구분자를 제대로 사용하지 않은 경우", () => {
+    expect(() => {
+      const input = [12345,,,,];
       errorCheck.noSeperatorErrorCheck(input);
     }).toThrow("[ERROR]");
   });
