@@ -1,5 +1,10 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { validate, isPurchaseInput, isWinningNumber } = require('./Validator');
+const {
+  validate,
+  isPurchaseInput,
+  areWinningNumbers,
+  isBonusNumber,
+} = require('./Validator');
 const { MESSAGE, LOTTO } = require('./constants');
 const Lotto = require('./Lotto');
 
@@ -17,9 +22,8 @@ class LottoStore {
   }
 
   askPurchaseAmount() {
-    Console.readLine(
-      `${MESSAGE.PURCHASE_QUESTION}\n`,
-      this.handleSellingLotto.bind(this),
+    Console.readLine(`${MESSAGE.PURCHASE_QUESTION}\n`, answer =>
+      this.handleSellingLotto(answer),
     );
   }
 
@@ -42,27 +46,26 @@ class LottoStore {
   }
 
   askWinningNumbers() {
-    Console.readLine(
-      `\n${MESSAGE.WINNING_QUESTION}\n`,
-      this.handleWinningNumbers.bind(this),
+    Console.readLine(`\n${MESSAGE.WINNING_QUESTION}\n`, answer =>
+      this.handleWinningNumbers(answer),
     );
   }
 
   handleWinningNumbers(answer) {
-    validate(answer, isWinningNumber);
+    validate(answer, areWinningNumbers);
     this.#winningNumbers = answer.split(',').map(Number);
     this.askBonusNumber();
   }
 
   askBonusNumber() {
-    Console.readLine(
-      `\n${MESSAGE.BONUS_QUESTION}\n`,
-      this.handleBonusNumber.bind(this),
+    Console.readLine(`\n${MESSAGE.BONUS_QUESTION}\n`, answer =>
+      this.handleBonusNumber(answer),
     );
   }
 
   handleBonusNumber(answer) {
-    this.#bonusNumber = answer;
+    validate(answer, isBonusNumber(this.#winningNumbers));
+    this.#bonusNumber = Number(answer);
   }
 }
 

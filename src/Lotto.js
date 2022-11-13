@@ -1,12 +1,12 @@
 const { Random } = require('@woowacourse/mission-utils');
-const { validate, isLottoNumber } = require('./Validator');
+const { validate, areLottoNumbers } = require('./Validator');
 const { LOTTO } = require('./constants');
 
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    validate(numbers, isLottoNumber);
+    validate(numbers, areLottoNumbers);
     this.#numbers = numbers.sort((a, b) => a - b);
   }
 
