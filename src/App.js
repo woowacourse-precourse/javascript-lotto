@@ -1,7 +1,8 @@
 const { Console, Random, } = require('@woowacourse/mission-utils');
-const { LOTTO, MESSAGE, ERROR_MESSAGE, } = require('./domain/constant');
+const { LOTTO, MESSAGE, } = require('./domain/constant');
 const Util = require('./Util');
 const Lotto = require('./Lotto');
+const Validation = require('./domain/Validation')
 
 class App {
   purchaseAmount = 0;
@@ -13,25 +14,10 @@ class App {
   start() {
     Console.print(MESSAGE.START_GAME);
     Console.readLine(MESSAGE.ENTER_PURCHASE_AMOUNT, (purchaseAmount) => {
+      Validation.validatePerchaseAmount(purchaseAmount);
       this.purchaseAmount = purchaseAmount;
-      this.validatePerchaseAmount(purchaseAmount);
       return this.countLottoQuantity(purchaseAmount);
     });
-  }
-
-  validatePerchaseAmount(purchaseAmount) {
-    if (!Util.isNumericInput(purchaseAmount)) {
-      throw new Error(ERROR_MESSAGE.NON_NUMERIC_INPUT);
-    }
-    if (!Util.isPositiveNumber(purchaseAmount)) {
-      throw new Error(ERROR_MESSAGE.NON_POSITIVE_INPUT);
-    }
-    if (Util.isZeroStartInput(purchaseAmount)) {
-      throw new Error(ERROR_MESSAGE.ZERO_START_INPUT);
-    }
-    if (!Util.isDivisibleBy(purchaseAmount, LOTTO.PRICE)) {
-      throw new Error(ERROR_MESSAGE.NON_DIVISIBLE_INPUT);
-    }
   }
 
   countLottoQuantity(purchaseAmount) {
@@ -66,27 +52,11 @@ class App {
 
   readWinningNumbers(lottos) {
     Console.readLine(MESSAGE.ENTER_WINNING_NUMBERS, (winningNumbersInput) => {
-      this.validateWinningNumbersInput(winningNumbersInput);
+      Validation.validateWinningNumbersInput(winningNumbersInput);
       const winningNumbers = this.winningNumbersToArray(winningNumbersInput);
-      this.validateWinningNumbers(winningNumbers);
+      Validation.validateWinningNumbers(winningNumbers);
       return this.readBonusNumber({ lottos, winningNumbers });
     });
-  }
-
-  validateWinningNumbersInput(str) {
-    const NUMBER_COMMA_REGEXP = /^[0-9,]+$/;
-    const START_IS_COMMA_REGEXP = /^[,]/;
-    const END_IS_COMMA_REGEXP = /[,]$/;
-    const DUPLICATE_COMMA_REGEXP = /[,]{2,}/;
-
-    if (
-      !NUMBER_COMMA_REGEXP.test(str) ||
-      DUPLICATE_COMMA_REGEXP.test(str) ||
-      START_IS_COMMA_REGEXP.test(str) ||
-      END_IS_COMMA_REGEXP.test(str)
-    ) {
-      throw new Error(ERROR_MESSAGE.INVALID_WINNING_NUMBERS);
-    }
   }
 
   winningNumbersToArray(winningNumbers) {
@@ -94,36 +64,12 @@ class App {
     return winningNumbersArr.map((num) => parseInt(num));
   }
 
-  validateWinningNumbers(numbers) {
-    if (!Util.hasNElements(numbers, LOTTO.LENGTH)) {
-      throw new Error(ERROR_MESSAGE.INVALID_LENGTH_LOTTO);
-    }
-    if (!Util.isBetween(numbers, LOTTO.START, LOTTO.END)) {
-      throw new Error(ERROR_MESSAGE.OUT_OF_RANGE_LOTTO);
-    }
-    if (Util.hasDuplicateElements(numbers)) {
-      throw new Error(ERROR_MESSAGE.HAS_DUPLICATE_NUMBERS);
-    }
-  }
-
   readBonusNumber({ lottos, winningNumbers }) {
     Console.readLine(MESSAGE.ENTER_BONUS_NUMBER, (bonusNumber) => {
-      this.validateBonusNumber({ bonusNumber, winningNumbers });
+      Validation.validateBonusNumber({ bonusNumber, winningNumbers });
       bonusNumber = parseInt(bonusNumber);
       return this.countLottoResult({ lottos, winningNumbers, bonusNumber });
     });
-  }
-
-  validateBonusNumber({ bonusNumber, winningNumbers }) {
-    if (
-      !Util.isNumericInput(bonusNumber) ||
-      !Util.isBetween(bonusNumber, LOTTO.START, LOTTO.END)
-    ) {
-      throw new Error(ERROR_MESSAGE.OUT_OF_RANGE_LOTTO);
-    }
-    if (winningNumbers.includes(parseInt(bonusNumber))) {
-      throw new Error(ERROR_MESSAGE.INVALID_BONUS_NUMBER);
-    }
   }
 
   countLottoResult({ lottos, winningNumbers, bonusNumber }) {
