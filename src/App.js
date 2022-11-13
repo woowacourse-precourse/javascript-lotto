@@ -1,10 +1,11 @@
 const {Console} = require("@woowacourse/mission-utils");
 const {Random} = require("@woowacourse/mission-utils");
 
-const lotto = require("./Lotto");
+const Lotto = require("./Lotto.js");
 
 class App {
   constructor() {};
+
   getErrorMessage(errorCase){
     const ERROR_MESSAGE = '[ERROR] ';
     let NEW_ERROR = '';
@@ -16,7 +17,7 @@ class App {
     return NEW_ERROR;
   }
 
-  //5. 보너스 번호 입력받기
+  //6. 보너스 번호 입력받기
   enterBonus(winningNums){
     Console.readLine('\n보너스 번호를 입력해 주세요.\n',(bonus) =>{
       if(winningNums.includes(bonus)){
@@ -27,11 +28,13 @@ class App {
     })  
   }
 
-  //4. 당첨 번호 입력받기
+  //5. 당첨 번호 입력받기
   enterWinningNums(){
     Console.readLine('\n당첨 번호를 입력해 주세요.\n',(answer) =>{
       const answerList = answer.split(',');
       //console.log(answerList);
+      const lotto = new Lotto(answerList);
+      console.log(lotto)
       return this.enterBonus(answerList);
 
     })
@@ -41,6 +44,7 @@ class App {
     
   }
 */
+//4. 로또 수량만큼 랜덤으로 로또 번호 생성
   makeLottoNums(amount){
     let allLines = []; //
     for(var i=0; i<amount; i++){
