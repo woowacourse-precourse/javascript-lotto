@@ -40,7 +40,10 @@ class App {
   }
   askWinningNumbers() {
     Console.readLine("당첨 번호를 입력해 주세요.\n", (winningNumbers) => {
-      this.winningNumbers = winningNumbers;
+      const splitWinningNumbers = winningNumbers
+        .split(",")
+        .map((number) => parseInt(number.trim(), 10));
+      this.winningNumbers = splitWinningNumbers;
     });
   }
   askBonusNumber() {
@@ -48,6 +51,7 @@ class App {
       this.bonusNumber = bonusNumber;
     });
   }
+
   play() {}
 }
 
