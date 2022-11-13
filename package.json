@@ -2,6 +2,7 @@
   "name": "javascript-lotto",
   "version": "1.0.0",
   "description": "우아한테크코스 프리코스 로또 미션",
+  "type": "module",
   "dependencies": {
     "@woowacourse/mission-utils": "^1.0.6"
   },
