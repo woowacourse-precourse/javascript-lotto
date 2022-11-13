@@ -1,3 +1,4 @@
+const { Console } = require("@woowacourse/mission-utils");
 const MESSAGE = require("./constant/message");
 const Validation = require("./Validation");
 const { stringToNumber } = require("./utils/common");
@@ -32,8 +33,21 @@ class LottoManager {
           const bonusNumber = stringToNumber(bonusNumberString);
           Validation.validateNumbers([bonusNumber]);
           Validation.validateBonusNumbers(winningNumbers, [bonusNumber]);
+
+          const result = LottoUtils.getLottoResult(
+            lottoTickets,
+            winningNumbers,
+            bonusNumber
+          );
+          LottoUtils.printResult(result);
         });
       });
     });
   }
+
+  start() {
+    this.receivePurchaseCost();
+  }
 }
+
+module.exports = LottoManager;
