@@ -45,25 +45,27 @@ class Lotto {
     return array;
   }
 
-  winningNumber(number) {
+  winningNumber(numbers) {
     MissionUtils.Console.readLine("당첨 번호를 입력해주세요.", (answer) => {
-      const number = answer.split(",");
-      console.log(number);
+      const numbers = answer.split(",");
+      this.validate(numbers);
+      console.log(numbers);
+      this.duplicate(numbers);
+      console.log(numbers);
       MissionUtils.Console.close();
     });
-    return number;
   }
 
   validate(numbers) {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
+    return numbers;
   }
 
   duplicate(numbers) {
     const setNumbers = new Set(numbers);
-    console.log(setNumbers);
-    if (setNumbers.length !== numbers.length) {
+    if (setNumbers.size !== numbers.length) {
       throw new Error("[ERROR] 로또 번호가 중복되어서는 안됩니다.");
     }
   }
