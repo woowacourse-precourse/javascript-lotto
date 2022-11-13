@@ -1,5 +1,6 @@
 const LottoAmount = require('../domain/lotto/LottoAmount');
 const LottoTicket = require('../domain/lotto/LottoTicket');
+const WinningLotto = require('../domain/lotto/WinningLotto');
 const InputView = require('../view/InputView');
 const PrintView = require('../view/PrintView');
 
@@ -7,6 +8,8 @@ class Controller {
   #lottoAmount;
 
   #lottoTicket;
+
+  #winningLotto;
 
   static create() {
     return new Controller();
@@ -23,6 +26,22 @@ class Controller {
 
     PrintView.printLottoCount(lottoCount);
     PrintView.printLottoTicket(this.#lottoTicket);
+
+    this.inputWinningLotto();
+  }
+
+  inputWinningLotto() {
+    InputView.inputWinningLottoNumbers(this.answerWinningLottoNumbers.bind(this));
+  }
+
+  answerWinningLottoNumbers(winningNumbers) {
+    InputView.inputBonusNumber(this.answerBonusNumber(winningNumbers).bind(this));
+  }
+
+  answerBonusNumber(winningNumbers) {
+    return (answer) => {
+      this.#winningLotto = WinningLotto.of(winningNumbers, answer);
+    };
   }
 }
 
