@@ -26,6 +26,12 @@ class View {
       Console.print(singleLottoCombination);
     }
   }
+
+  getWinningNumberFromUser() {
+    Console.readLine(messages.WINNING_NUMBER_MESSAGE, (userInput) => {
+      this.controller.setWinningNumber(userInput);
+    });
+  }
 }
 
 module.exports = View;
