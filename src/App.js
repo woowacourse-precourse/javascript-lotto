@@ -3,9 +3,15 @@ const { LottoConfig, AppConfig, Message } = require('./Config');
 const Lotto = require('./Lotto');
 
 class App {
-  #money = 0;
+  #money;
 
-  #lottoList = [];
+  #lottoList;
+
+  #prizeStatistics;
+
+  constructor() {
+    this.reset();
+  }
 
   static inputWinningNumbers() {
     let input;
@@ -41,6 +47,17 @@ class App {
     if (!inputFormat.test(input)) {
       throw new Error(Message.ERROR_SEPARATOR);
     }
+  }
+
+  reset() {
+    this.#money = 0;
+    this.#lottoList = [];
+    this.#prizeStatistics = { prizeMoney: 0 };
+    this.#prizeStatistics[LottoConfig.PRIZE_1] = 0;
+    this.#prizeStatistics[LottoConfig.PRIZE_2] = 0;
+    this.#prizeStatistics[LottoConfig.PRIZE_3] = 0;
+    this.#prizeStatistics[LottoConfig.PRIZE_4] = 0;
+    this.#prizeStatistics[LottoConfig.PRIZE_5] = 0;
   }
 
   play() {}
