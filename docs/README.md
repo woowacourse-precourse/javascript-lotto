@@ -2,7 +2,7 @@
 
 ## 기능 목록
 
-- [ ] 1부터 45까지의 서로 다른 임의의 수 6개를 생성, 정렬한다. - NumberGenerator#generateRandomNumbers()
+- [x] 1부터 45까지의 서로 다른 임의의 수 6개를 생성, 정렬한다. - NumberGenerator#generateRandomNumbers()
 - [ ] 숫자 6개를 비교할 수 있다. - Referee#compare()
 - [ ] 몇 개의 숫자가 같은지를 알 수 있다. - Judge#countCorrect()
   - [ ] 숫자 3개만 일치하면 5등이다.
