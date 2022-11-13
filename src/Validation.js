@@ -17,8 +17,8 @@ class Validation {
     }
   }
 
-  checkDuplication(numbers) {
-    if (numbers.length !== new Set(numbers).size) {
+  checkDuplication(array) {
+    if (array.length !== new Set(array).size) {
       throw '중복된 번호가 존재합니다.';
     }
   }
