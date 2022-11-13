@@ -1,5 +1,4 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { calRate } = require("./AppUtils");
 const AppUtils = require('./AppUtils');
 const Lotto = require('./Lotto.js');
 const MyLotto = require("./MyLotto.js");
@@ -21,8 +20,8 @@ class App {
       this.validate(input);
       MissionUtils.Console.print('');
       this.myLotto = new MyLotto(parseInt(input));
-      AppUtils.printCountLotto(this.myLotto);
-      AppUtils.printMyLotto(this.myLotto);
+      this.printStrings(AppUtils.toStringCountLotto(this.myLotto));
+      this.printStrings(AppUtils.toStringMyLotto(this.myLotto));
       MissionUtils.Console.print('');
       this.inputWinNum();
     });
@@ -50,17 +49,27 @@ class App {
     });
   }
 
+  getResult() {
+    // 결과 출력 및 종료
+    this.printStrings(AppUtils.toStringStat(this.myLotto, this.winlotto));
+    MissionUtils.Console.close();
+  }
+
   validate(input) {
     // 숫자 입력 여부 확인
     if (!input.match(/^[0-9]+$/)){
-      throw new Error("[ERROR] 숫자만 입력해 주세요.");
+      throw new Error("[ERROR] 숫자를 입력해 주세요.");
     }
   }
 
-  getResult() {
-    // 결과 출력 및 종료
-    AppUtils.printWinStat(this.myLotto, this.winlotto)
-    MissionUtils.Console.close();
+  printStrings(strs) {
+    if (Array.isArray(strs)) {
+      strs.forEach(str => {
+        MissionUtils.Console.print(str);
+      });
+    } else {
+      MissionUtils.Console.print(strs);
+    }
   }
 }
 
