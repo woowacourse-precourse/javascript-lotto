@@ -15,6 +15,7 @@ class User {
 
   handlePurchaseAmount(purchaseAmount) {
     this.checkPurchaseAmount(purchaseAmount);
+    this.purchaseAmount = purchaseAmount;
     this.purchaseQuantity = purchaseAmount / 1000;
   }
 
