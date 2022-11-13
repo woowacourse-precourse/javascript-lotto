@@ -1,7 +1,14 @@
 // 콘솔 메시지 목록
 const MESSAGES = {
   BUY: "개를 구매했습니다.",
-  WIN: "당첨 통계\n---",
+  STATISTICS: {
+    INIT: "당첨 통계\n---",
+    FIFTH: "3개 일치 (5,000원) - ",
+    FOURTH: "4개 일치 (50,000원) - ",
+    THIRD: "5개 일치 (1,500,000원) - ",
+    SECOND: "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
+    FIRST: "6개 일치 (2,000,000,000원) - ",
+  },
   EXCEPTIONS: {
     PURCHASE: {
       UNIT_EXCEPTION: "[ERROR] 구입 금액을 1,000원 단위로 입력해주세요.",
