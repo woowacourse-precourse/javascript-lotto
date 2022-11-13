@@ -1,6 +1,10 @@
-const { Console } = require("@woowacourse/mission-utils");
+const { Console, Random } = require("@woowacourse/mission-utils");
 
 class Utils {
+  pickUniqueNumbersInRange(startInclusive, endInclusive, count) {
+    Random.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
+  }
+
   print(output) {
     Console.print(output);
   }

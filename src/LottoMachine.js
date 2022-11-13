@@ -1,4 +1,4 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { pickUniqueNumbersInRange } = require("./Utils");
 const Lotto = require("./Lotto");
 
 class LottoMachine {
@@ -20,7 +20,7 @@ class LottoMachine {
   }
 
   #generateSixNumber() {
-    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    return pickUniqueNumbersInRange(1, 45, 6);
   }
 
   #generateLotto() {

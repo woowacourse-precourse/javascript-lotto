@@ -1,5 +1,3 @@
-const MissionUtils = require("@woowacourse/mission-utils");
-
 class WinningCalculator {
   #getMatchNumber(playerNumbers, winningNumbers) {
     return playerNumbers.filter((number) => winningNumbers.includes(number));
@@ -8,21 +6,11 @@ class WinningCalculator {
   #getRankIndex(playerNumbers, winningNumbers, bonusNumber) {
     const matchNumber = this.#getMatchNumber(playerNumbers, winningNumbers);
 
-    if (matchNumber.length === 6) {
-      return 0;
-    }
-    if (matchNumber.length === 5 && playerNumbers.includes(bonusNumber)) {
-      return 1;
-    }
-    if (matchNumber.length === 5 && !playerNumbers.includes(bonusNumber)) {
-      return 2;
-    }
-    if (matchNumber.length === 4) {
-      return 3;
-    }
-    if (matchNumber.length === 3) {
-      return 4;
-    }
+    if (matchNumber.length === 6) return 0;
+    if (matchNumber.length === 5 && playerNumbers.includes(bonusNumber)) return 1;
+    if (matchNumber.length === 5 && !playerNumbers.includes(bonusNumber)) return 2;
+    if (matchNumber.length === 4) return 3;
+    if (matchNumber.length === 3) return 4;
   }
 
   getRankCount(playerLottos, winningLotto) {
