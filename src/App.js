@@ -22,6 +22,10 @@ class App {
   createLottoNumber() {
     return Random.pickUniqueNumbersInRange(1, 45, 6);
   }
+
+  sortAscendingOrderLottoNumber(lottoNumber) {
+    return lottoNumber.sort((a, b) => a - b);
+  }
 }
 
 const app = new App();
