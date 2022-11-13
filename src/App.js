@@ -6,6 +6,7 @@ class App {
     this.money = 0;
     this.lottoCount = 0;
     this.lottos = [];
+    this.winningNumber = null;
   }
 
   play() {
@@ -14,6 +15,7 @@ class App {
       this.money = parseInt(answer);
       this.getLottoCount();
       this.getLottoNumbers();
+      this.setWinningNumber();
     });
   }
 
@@ -49,6 +51,13 @@ class App {
     Console.print(`${this.lottoCount}개를 구매했습니다.`);
     this.lottos.forEach((lotto) => {
       Console.print(`[${lotto.getLotto().join(", ")}]`);
+    });
+  }
+
+  setWinningNumber() {
+    Console.readLine("당첨 번호를 입력해 주세요.\n", (answer) => {
+      const numbers = answer.split(",");
+      this.winningNumber = new Lotto(numbers).getLotto().map(Number);
     });
   }
 }
