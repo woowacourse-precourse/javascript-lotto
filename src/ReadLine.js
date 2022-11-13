@@ -22,6 +22,14 @@ class ReadLine {
       callbackFunc(userNumberArray);
     });
   }
+
+  inputOriginal(message, callbackFunc) {
+    this.#readLine(message, (draft) => {
+      ReadLine.validate(draft);
+
+      callbackFunc(draft);
+    });
+  }
 }
 
 module.exports = ReadLine;
