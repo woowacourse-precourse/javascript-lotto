@@ -56,7 +56,7 @@ class LottoMachine {
   }
 
   validateWinningNumbers(numbers) {
-    if (this.isOutOfRange(numbers)) throw new Error(MESSAGE.ERROR.OUT_OF_RANGE_NUMBER);
+    if (numbers.some(this.isOutOfRange)) throw new Error(MESSAGE.ERROR.OUT_OF_RANGE_NUMBER);
     if (numbers.some(this.isNotANumber)) throw new Error(MESSAGE.ERROR.WINNING_NUMBER_MUST_BE_NUMBER);
     if (this.isIncorrectCount(numbers)) throw new Error(MESSAGE.ERROR.WINNING_NUMBER_COUNT);
     if (this.isDuplicateNumbers(numbers)) throw new Error(MESSAGE.ERROR.WINNING_NUMBER_MUST_NOT_BE_DUPLICATE);
@@ -74,10 +74,8 @@ class LottoMachine {
     return number % LOTTO.PRICE === 0;
   }
 
-  isOutOfRange(numbers) {
-    if (Array.isArray(numbers)) return !numbers.every((number) => number >= LOTTO.MIN_NUMBER && number <= LOTTO.MAX_NUMBER);
-
-    return !(numbers >= LOTTO.MIN_NUMBER && numbers <= LOTTO.MAX_NUMBER);
+  isOutOfRange(number) {
+    return !(number >= LOTTO.MIN_NUMBER && number <= LOTTO.MAX_NUMBER);
   }
 
   isIncorrectCount(numbers) {
