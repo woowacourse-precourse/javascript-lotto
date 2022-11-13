@@ -32,7 +32,11 @@ class UserInterface {
   }
 
   static bonusNumberRequest() {
-    // TODO: 보너스 번호 입력 기능
+    let bonusNumber;
+    Console.readLine(INPUT_MESSAGE.BONUS_INPUT, (number) => {
+      bonusNumber = number;
+    });
+    return bonusNumber;
   }
 }
 

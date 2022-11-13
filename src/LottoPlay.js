@@ -15,6 +15,7 @@ class LottoPlay {
     UserInterface.printLottoArray(lottoArray);
     const winnerNumber = UserInterface.winnerNumberRequest();
     const winnerNumberArray = CheckError.checkWinnerNumber(winnerNumber);
+    const bonusNumber = UserInterface.bonusNumberRequest();
   }
 
   purchaseLotto(purchaseAmount) {
