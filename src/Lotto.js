@@ -15,18 +15,19 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== LOTTO_LENGTH) throw new Error(`[ERROR] 로또 번호는 ${LOTTO_LENGTH}개여야 합니다.`);
-    this.validatLuckyNumbers(numbers);
+    this.validateInputNumbers(numbers);
   }
 
   // TODO: 추가 기능 구현
-  validatLuckyNumbers(numbers) {
-    for(let idex = 0; idex < numbers.length; idex++){
-      if(isNaN(numbers[idex]) || numbers.join("").charCodeAt(numbers[idex]) == 32) throw new Error ("[ERROR] 숫자만 입력해주세요.");
+  validateInputNumbers(numbers) {
+    for(let index = 0; index < numbers.length; index++){
+      if(isNaN(numbers[index]) || numbers.join("").charCodeAt(numbers[index]) == 32) throw new Error ("[ERROR] 정확한 번호를 입력해주세요.");
     }
-    for(let idex of numbers) {
-      if(idex > 45 || idex < 1) throw new Error(`[ERROR] 로또 번호는 ${START_LOTTO_NUMBER}부터 ${END_LOTTO_NUMBER}까지 입니다.`);
+    for(let index of numbers) {
+      if(index == null) continue;
+      if(index > END_LOTTO_NUMBER || index < START_LOTTO_NUMBER) throw new Error(`[ERROR] 로또 번호는 ${START_LOTTO_NUMBER}부터 ${END_LOTTO_NUMBER}까지 입니다.`);
     }
-    if(new Set(numbers).size !== LOTTO_LENGTH) throw new Error("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+    if(new Set(numbers).size !== LOTTO_LENGTH && numbers[0] !== null) throw new Error("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
   }
 }
 
