@@ -173,7 +173,6 @@ class App {
     const reward = [0, 2000000000, 30000000, 1500000, 50000, 5000];
     let sum = 0;
     for (let idx = 0; idx < reward.length; idx++) {
-      console.log(ranks[idx]);
       sum += ranks[idx] * reward[idx];
     }
     return sum;
@@ -199,6 +198,7 @@ class App {
     });
     this.printRanks();
     this.printRateOfReturn();
+    Console.close();
   }
 }
 
