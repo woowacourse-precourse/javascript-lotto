@@ -23,6 +23,12 @@ class Lotto {
   hasBonusNumber(bonusNumber) {
     return this.numbers.includes(bonusNumber);
   }
+
+  countDuplicateNumber(winningNumber) {
+    return this.numbers
+      .filter(number => winningNumber.includes(number))
+      .length;
+  }
 }
 
 module.exports = Lotto;
