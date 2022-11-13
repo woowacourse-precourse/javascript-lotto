@@ -1,4 +1,8 @@
 const App = require("../src/App");
+const Buy = require("../src/Buy");
+const Match = require("../src/Match");
+const Result = require("../src/Result");
+
 const MissionUtils = require("@woowacourse/mission-utils");
 
 const mockQuestions = (answers) => {
@@ -67,5 +71,36 @@ describe("로또 테스트", () => {
       const app = new App();
       app.play();
     }).toThrow("[ERROR]");
+  });
+
+  test("로또 발행 횟수 테스트", () => {
+    mockQuestions(["5000"]);
+    const logs = [
+      "5개를 구매했습니다.",
+    ];
+    const logSpy = getLogSpy();
+    const buy = new Buy();
+    buy.countCalculate();
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  test("랜덤 넘버 생성 테스트", () => {
+    mockRandoms([
+      [3, 5, 11, 19, 22, 37],
+    ]);
+    mockQuestions(["1000"]);
+    const logs = [
+      "1개를 구매했습니다.",
+      "[3, 5, 11, 19, 22, 37]",
+    ];
+    const logSpy = getLogSpy();
+    const buy = new Buy();
+    buy.countCalculate();
+    buy.randomNumbers();
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
   });
 });
