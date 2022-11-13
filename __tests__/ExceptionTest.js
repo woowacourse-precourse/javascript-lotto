@@ -27,4 +27,17 @@ describe('사용자 입력 값에 대한 예외 클래스 테스트', () => {
       exception.validateWinningNumber(WINNING_NUMBER);
     }).toThrow('[ERROR]');
   });
+
+  test('로또 당첨 번호 입력시 쉽표를 기준으로 구분하지 않은 경우 예외가 발생한다', () => {
+    const exception = new Exception();
+    const WINNING_NUMBER_INPUTS = ['123456', '1-2-3-4-5-6', '1 2 3 4 5 6'];
+
+    WINNING_NUMBER_INPUTS.forEach((input) => {
+      const WINNING_NUMBER = input.split(',');
+
+      expect(() => {
+        exception.validateWinningNumber(WINNING_NUMBER);
+      }).toThrow('[ERROR]');
+    });
+  });
 });
