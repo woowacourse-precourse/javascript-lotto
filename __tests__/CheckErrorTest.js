@@ -24,4 +24,9 @@ describe("CheckError 클래스 테스트", () => {
       CheckError.checkPurchaseAmount(0);
     }).toThrow("[ERROR]");
   });
+  test("로또 배열이 오름차순으로 정렬되지 않았을 경우 예외 처리", () => {
+    expect(() => {
+      CheckError.checkLottoSort([[9, 8, 7, 6, 5, 4]]);
+    }).toThrow("[ERROR]");
+  });
 });
