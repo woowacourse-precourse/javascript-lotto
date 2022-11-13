@@ -15,6 +15,14 @@ class Lotto {
     }
   }
 
+  getLotto(){
+    return this.#numbers;
+  }
+
+  printLotto(){
+    Console.print(this.#numbers);
+  }
+
   // TODO: 추가 기능 구현
 }
 
