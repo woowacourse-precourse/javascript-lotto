@@ -6,7 +6,7 @@ class LottoGenerator {
     const randomNumbers = Random.pickUniqueNumbersInRange(
       LOTTO_SPEC.MIN_NUMBER,
       LOTTO_SPEC.MAX_NUMBER,
-      LOTTO_SPEC.COUNT,
+      LOTTO_SPEC.LENGTH,
     );
     return randomNumbers.sort((numA, numB) => numA - numB);
   }

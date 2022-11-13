@@ -1,10 +1,5 @@
 const LottoGenerator = require("./LottoGenerator");
-const { LOTTO_SPEC } = require("../constants");
-
-const ERRORS = Object.freeze({
-  RANGE: "[ERROR] 1000원 이상 입력해주세요.",
-  NOT_DIVIDE: "[ERROR] 1000원 단위로 입력해주세요.",
-});
+const { LOTTO_SPEC, ERROR_MESSAGES } = require("../constants");
 
 class LottoMachine {
   buy(money) {
@@ -15,19 +10,19 @@ class LottoMachine {
 
   validate(money) {
     this.isValidRange(money);
-    this.isDiv(money);
+    this.isValidUnit(money);
   }
 
   isValidRange(money) {
     if (money < LOTTO_SPEC.MONEY_UNIT) {
-      throw new Error(ERRORS.RANGE);
+      throw new Error(ERROR_MESSAGES.MONEY_RANGE);
     }
   }
 
-  isDiv(money) {
+  isValidUnit(money) {
     const remainder = money % LOTTO_SPEC.MONEY_UNIT;
     if (remainder !== 0) {
-      throw new Error(ERRORS.NOT_DIVIDE);
+      throw new Error(ERROR_MESSAGES.MONEY_UNIT);
     }
   }
 }

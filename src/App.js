@@ -3,17 +3,7 @@ const LottoMachine = require("./domain/LottoMachine");
 const LottoStatistics = require("./domain/LottoStatistics");
 const Lotto = require("./Lotto");
 const Utils = require("./Utils");
-
-const MESSAGE = Object.freeze({
-  PLEASE_MONEY: "구입금액을 입력해 주세요.\n",
-  PLEASE_WINNING_NUMBERS: "\n당첨 번호를 입력해 주세요.\n",
-  PLEASE_BONUS_NUMBER: "\n보너스 번호를 입력해 주세요.\n",
-  BUY: "개를 구매했습니다.",
-});
-
-const ERROR = Object.freeze({
-  MONEY_NOT_NUMBER: "[ERROR] 금액은 숫자여야 합니다.",
-});
+const { UI_MESSAGES, ERROR_MESSAGES } = require("./constants");
 
 class App {
   constructor() {
@@ -24,12 +14,12 @@ class App {
   }
 
   play() {
-    Console.readLine(MESSAGE.PLEASE_MONEY, this.pleaseMoney.bind(this));
+    Console.readLine(UI_MESSAGES.PLEASE_MONEY, this.pleaseMoney.bind(this));
   }
 
   isValidMoney(money) {
     if (Number.isNaN(Number(money))) {
-      throw new Error(ERROR.MONEY_NOT_NUMBER);
+      throw new Error(ERROR_MESSAGES.MONEY_VALUE);
     }
   }
 
@@ -37,7 +27,7 @@ class App {
     this.isValidMoney(money);
     this.printBuyingLottos(money);
     Console.readLine(
-      MESSAGE.PLEASE_WINNING_NUMBERS,
+      UI_MESSAGES.PLEASE_WINNING_NUMBERS,
       this.pleaseWinningNumbers.bind(this),
     );
   }
@@ -45,7 +35,7 @@ class App {
   printBuyingLottos(money) {
     this.buyingLottos = this.lottoMachine.buy(money);
     const lottosAmount = this.buyingLottos.length;
-    Console.print(`\n${lottosAmount}${MESSAGE.BUY}`);
+    Console.print(`\n${lottosAmount}${UI_MESSAGES.BUY}`);
     this.buyingLottos.forEach((buyingLotto) => {
       Console.print(Utils.transformArrayToString(buyingLotto));
     });
@@ -56,7 +46,7 @@ class App {
       Utils.transformStringToNumberArray(inputWinningNumbers),
     );
     Console.readLine(
-      MESSAGE.PLEASE_BONUS_NUMBER,
+      UI_MESSAGES.PLEASE_BONUS_NUMBER,
       this.pleaseBonusNumber.bind(this),
     );
   }

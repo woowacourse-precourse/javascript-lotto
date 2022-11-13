@@ -1,10 +1,4 @@
-const { LOTTO_SPEC } = require("./constants");
-
-const ERRORS = Object.freeze({
-  LENGTH: "[ERROR] 로또 번호는 6개여야 합니다.",
-  DUPLICATION: "[ERROR] 로또 번호는 중복되지 않아야 합니다.",
-  RANGE: "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.",
-});
+const { LOTTO_SPEC, ERROR_MESSAGES } = require("./constants");
 
 class Lotto {
   #numbers;
@@ -15,11 +9,11 @@ class Lotto {
   }
 
   get numbers() {
-    return this.#numbers.slice(0, LOTTO_SPEC.COUNT);
+    return this.#numbers.slice(0, LOTTO_SPEC.LENGTH);
   }
 
   get bonusNumber() {
-    if (this.#numbers.length === LOTTO_SPEC.COUNT + 1) {
+    if (this.#numbers.length === LOTTO_SPEC.LENGTH + 1) {
       return this.#numbers[this.#numbers.length - 1];
     }
     return null;
@@ -38,15 +32,15 @@ class Lotto {
   }
 
   checkLength(numbers) {
-    if (numbers.length !== LOTTO_SPEC.COUNT) {
-      throw new Error(ERRORS.LENGTH);
+    if (numbers.length !== LOTTO_SPEC.LENGTH) {
+      throw new Error(ERROR_MESSAGES.LOTTO_LENGTH);
     }
   }
 
   checkDuplication(numbers) {
     const numberSet = new Set(numbers);
     if ([...numberSet].length !== numbers.length) {
-      throw new Error(ERRORS.DUPLICATION);
+      throw new Error(ERROR_MESSAGES.LOTTO_DUPLICATION);
     }
   }
 
@@ -61,7 +55,7 @@ class Lotto {
       number < LOTTO_SPEC.MIN_NUMBER ||
       number > LOTTO_SPEC.MAX_NUMBER
     ) {
-      throw new Error(ERRORS.RANGE);
+      throw new Error(ERROR_MESSAGES.LOTTO_LENGTH);
     }
   }
 }
