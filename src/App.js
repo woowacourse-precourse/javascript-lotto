@@ -3,8 +3,9 @@ const { LottoGenerator } = require('./domain');
 class App {
   play() {
     const generator = new LottoGenerator();
-    const lotto = generator.createLotto();
-    console.log(lotto.numbers);
+    const lottoArray = generator.createMultipleLotto(8);
+
+    lottoArray.forEach((lotto) => console.log(lotto.numbers));
   }
 }
 

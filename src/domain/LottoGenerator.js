@@ -3,8 +3,15 @@ const { Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 
 class LottoGenerator {
+  createMultipleLotto(count) {
+    const lottoArray = new Array(count).fill(null);
+
+    return lottoArray.map(() => this.createLotto());
+  }
+
   createLotto() {
     const numbers = this.#createLottoNumbers();
+
     return new Lotto(numbers);
   }
 
