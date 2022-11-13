@@ -7,12 +7,17 @@ class Lotto {
   }
 
   validate(numbers) {
+    console.log('로또클래스테스트');
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+    }
+    if (numbers.filter((v) => v >= 1 && v <= 45).length !== 6) {
+      throw new Error('[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.');
+    }
+    if (new Set(numbers).size !== 6) {
+      throw new Error('[ERROR] 로또 번호는 중복되지 않는 숫자여야 합니다.');
     }
   }
-
-  // TODO: 추가 기능 구현
 }
 
 module.exports = Lotto;
