@@ -34,11 +34,11 @@ class LottoController {
                     lotto.numbers
                   )
                 );
-                const arranged = this.lottoViewer.arrangeLottoResult(
+                const arranged = this.lottoViewer.arrangeLottoWinningResult(
                   matchedLottoNumbers,
                   lottoCount * 1000
                 );
-                this.lottoViewer.printLottoStats(arranged);
+                this.lottoViewer.printLottoWinningStats(arranged);
               }
             );
           }
