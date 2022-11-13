@@ -12,10 +12,11 @@ class Lotto extends Exception {
     this.numbers = [];
   }
 
-  duplicateCheck(allow) {
+  duplicateCheck() {
+    let allow = UNIT.ALLOW;
     const numbersLength = [...new Set(this.#numbers)].length;
     if (numbersLength !== UNIT.LOTTO_LENGTH) {
-      allow = allow && false;
+      allow = allow || UNIT.NOT_ALLOW;
     }
     return allow;
   }
@@ -35,14 +36,18 @@ class Lotto extends Exception {
     return check;
   }
 
-  isAllowNumbers() {
-    if (this.checkCnt() || this.checkRange()) return UNIT.NOT_ALLOW;
-    return UNIT.ALLOW;
+  isAllowNumber() {
+    let allow = UNIT.ALLOW;
+    this.#numbers.forEach((num) => {
+      if (num % 1 !== 0) allow = allow || UNIT.NOT_ALLOW;
+    });
+    return allow;
   }
 
   checkInput() {
-    if (this.isAllowNumbers()) throw new Error(ERROR.WIN_NUMBER);
-    if (!this.duplicateCheck(true)) throw new Error(ERROR.WIN_NUMBER_DUPLICATE);
+    if (this.checkCnt() || this.checkRange() || this.isAllowNumber())
+      throw new Error(ERROR.WIN_NUMBER);
+    if (this.duplicateCheck()) throw new Error(ERROR.WIN_NUMBER_DUPLICATE);
   }
 }
 

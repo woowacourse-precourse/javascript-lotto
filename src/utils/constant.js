@@ -37,8 +37,6 @@ const UNIT = Object.freeze({
   MONETARY: 1000,
   MIN_NUMBER: 1,
   MAX_NUMBER: 45,
-  MIN_LENGTH: 11,
-  MAX_LENGTH: 17,
   MIN_CNT: 2,
   LOTTO_LENGTH: 6,
   WIN_NUMBER_CNT: 6,
