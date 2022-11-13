@@ -6,13 +6,6 @@ const DetectError = require("./DetectError");
 
 class App {
   constructor() {
-    this.lottoPrize = {
-      3: [0, 5000],
-      4: [0, 50000],
-      5: [0, 1500000],
-      6: [0, 30000000],
-      7: [0, 2000000000],
-    };
     this.purchaseMoney;
   }
 
@@ -43,7 +36,6 @@ class App {
         throw new Error(`${Message.ERROR_MESSAGE.RANGE}`);
       }
       this.caculateResult(user, przNum, bonusNumber);
-      this.showResult();
       MissionUtils.Console.close();
     });
   }
@@ -102,12 +94,21 @@ class App {
   caculateResult(user, prize, bonus) {
     DetectError.prototype.isBonusInPrize(prize, bonus);
 
+    let lottoPrize = {
+      3: [0, 5000],
+      4: [0, 50000],
+      5: [0, 1500000],
+      6: [0, 30000000],
+      7: [0, 2000000000],
+    };
+
     user.forEach((element) => {
-      this.makeLottoPrize(element, prize, bonus);
+      lottoPrize = this.makeLottoPrize(element, prize, bonus, lottoPrize);
     });
+    this.showResult(lottoPrize);
   }
 
-  makeLottoPrize(element, prize, bonus) {
+  makeLottoPrize(element, prize, bonus, lottoPrize) {
     let cnt = 0;
     for (let i = 0; i < prize.length; i++) {
       const n = parseInt(prize[i]);
@@ -117,35 +118,34 @@ class App {
     }
 
     if (element.includes(bonus) || cnt >= 5) {
-      this.lottoPrize[cnt + 1][0] += 1;
+      lottoPrize[cnt + 1][0] += 1;
     }else if (cnt >= 3) {
-      this.lottoPrize[cnt][0] += 1;
+      lottoPrize[cnt][0] += 1;
     }
+    return lottoPrize;
   }
 
-  showResult() {
+  showResult(lottoPrize) {
     MissionUtils.Console.print(`\n${Message.SUB_MESSAGE.RESULT}`);
     MissionUtils.Console.print(`${Message.SUB_MESSAGE.BLANK}`);
 
     let i = 3;
     Message.WINNING_RESULT.forEach((msg) => {
-      MissionUtils.Console.print(`${msg} ${this.lottoPrize[i][0]}개`);
+      MissionUtils.Console.print(`${msg} ${lottoPrize[i][0]}개`);
       i++;
     })
 
-    let sum = this.totalRevenue();
+    let sum = this.totalRevenue(lottoPrize);
     let revenue = (sum / this.purchaseMoney) * 100;
     let total = parseFloat(revenue.toFixed(2));
 
-    MissionUtils.Console.print(
-      `총 수익률은 ${total}%입니다.`
-    );
+    MissionUtils.Console.print(`총 수익률은 ${total}%입니다.`);
   }
 
-  totalRevenue() {
+  totalRevenue(lottoPrize) {
     let sum = 0;
     for (let i = 3; i <= 7; i++) {
-      sum += this.lottoPrize[i][0] * this.lottoPrize[i][1];
+      sum += lottoPrize[i][0] * lottoPrize[i][1];
     }
     return sum;
   }
