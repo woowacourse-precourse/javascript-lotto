@@ -1,28 +1,32 @@
-const { Random, Console } = require('@woowacourse/mission-utils');
+const { Console } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const Publish = require('./Publish');
+const { MONEY, REQUIRE, PRIZE, INPUT_TEXT, ERROR_TEXT } = require('./Constant');
 
 class App {
+  constructor() {}
+
   play() {
+    //todo. 숫자 하드코딩 없애기
     this.purchase();
   }
 
   purchase() {
-    Console.readLine('구입금액을 입력해 주세요.', (money) => {
+    Console.readLine(INPUT_TEXT.COST, (money) => {
       this.money = money;
       this.purchaseException();
     });
   }
 
   purchaseException() {
-    if (this.money % 1000 !== 0) {
-      throw new Error('[ERROR] 금액은 천원 단위로 입력해주세요.');
+    if (this.money % MONEY.MIN !== 0) {
+      throw new Error(ERROR_TEXT.MIN_PURCHASE);
     }
     this.makeLotto();
   }
 
   makeLotto() {
-    this.quantity = this.money / 1000;
+    this.quantity = this.money / MONEY.MIN;
     this.publish = new Publish(this.quantity);
     this.printLottoQuantity();
   }
@@ -41,7 +45,7 @@ class App {
   }
 
   enterWinningNumber() {
-    Console.readLine('당첨 번호를 입력해 주세요.', (winNumber) => {
+    Console.readLine(INPUT_TEXT.WINNING_NUMBER, (winNumber) => {
       this.numbertoArray(winNumber);
       this.lotto = new Lotto(this.winningArray);
       this.enterBonusNumber();
@@ -55,7 +59,7 @@ class App {
   }
 
   enterBonusNumber() {
-    Console.readLine('보너스 번호를 입력해 주세요.', (bonusNumber) => {
+    Console.readLine(INPUT_TEXT.BONUS_NUMBER, (bonusNumber) => {
       this.lotto.bonusExecption(bonusNumber);
       this.winningResult();
     });
@@ -67,13 +71,49 @@ class App {
   }
 
   printWinningResult() {
-    Console.print(`3개 일치 (5,000원) - ${this.lotto.fifthCount}개`);
-    Console.print(`4개 일치 (50,000원) - ${this.lotto.fourthCount}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${this.lotto.thirdCount}개`);
+    this.printFifth();
+    this.printFourth();
+    this.printThird();
+    this.printSecond();
+    this.printFrist();
+  }
+  printFifth() {
     Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.lotto.secondCount}개`
+      `${REQUIRE.FIFTH}개 일치 (${PRIZE.FIFTH.toLocaleString()}원) - ${
+        this.lotto.fifthCount
+      }개`
     );
-    Console.print(`6개 일치 (2,000,000,000원) - ${this.lotto.firstCount}개`);
+  }
+  printFourth() {
+    Console.print(
+      `${REQUIRE.FOURTH}개 일치 (${PRIZE.FOURTH.toLocaleString()}원) - ${
+        this.lotto.fourthCount
+      }개`
+    );
+  }
+  printThird() {
+    Console.print(
+      `${REQUIRE.THIRD}개 일치 (${PRIZE.THIRD.toLocaleString()}원) - ${
+        this.lotto.thirdCount
+      }개`
+    );
+  }
+  printSecond() {
+    Console.print(
+      `${
+        REQUIRE.SECOND
+      }개 일치, 보너스 볼 일치 (${PRIZE.SECOND.toLocaleString()}원) - ${
+        this.lotto.secondCount
+      }개`
+    );
+  }
+
+  printFrist() {
+    Console.print(
+      `${REQUIRE.FIRST}개 일치 (${PRIZE.FIRST.toLocaleString()}원) - ${
+        this.lotto.firstCount
+      }개`
+    );
     this.totalReturn();
   }
 
@@ -81,6 +121,7 @@ class App {
     Console.print(
       `총 수익률은 ${this.lotto.profitCalculator(this.money)}%입니다.`
     );
+    Console.close();
   }
 }
 
