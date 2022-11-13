@@ -1,7 +1,7 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 
 const print = content => {
-  MissionUtils.Console.print(content.trim());
+  MissionUtils.Console.print(content);
 };
 
 const readLine = (content, func) => {
