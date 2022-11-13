@@ -9,7 +9,7 @@ class App {
   constructor() {}
 
   play() {
-    Input.getValueWithType(keys.input.purchase_money, (money) => {
+    Input.getValueWithType(keys.inputType.purchase_money, (money) => {
       this.#purchaseMoney = Number(money);
       this.winningNumberPhase();
     });
@@ -17,7 +17,7 @@ class App {
 
   winningNumberPhase() {
     console.log("당첨번호 입력받는 페이즈");
-    Input.getValueWithType(keys.input.winning_number, (winningNumber) => {
+    Input.getValueWithType(keys.inputType.winning_number, (winningNumber) => {
       this.#winningNumber = winningNumber.split(",");
       this.bonusNumberPhase();
     });
@@ -25,7 +25,7 @@ class App {
   bonusNumberPhase() {
     console.log("보너스번호 입력받는 페이즈");
     Input.getValueWithType(
-      keys.input.bonus_number,
+      keys.inputType.bonus_number,
       (bonusNumber) => {
         this.#bonusNumber = Number(bonusNumber);
         this.statisticPhase();

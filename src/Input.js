@@ -22,18 +22,18 @@ class InputExceptionCheck extends ExceptionCheck {
   constructor() {
     super();
   }
-  purchaseMoney(str) {
-    const answer = Number(str);
+  purchaseMoney(checkTarget) {
+    const answer = Number(checkTarget);
 
     if (!Number(answer)) throw new CustomError(ErrorMessage.notNumber);
     if (answer < 0) throw new CustomError(ErrorMessage.notPositiveNumber);
     return true;
   }
-  winningNumber(str) {
+  winningNumber(checkTarget) {
     const numOrCommaReg = /,|[0-9]/g;
     const lottoNumReg = /(^[1-9]$)|(^[1-3]{1}[0-9]{1}$)|(^4{1}[0-5]{1}$)/;
-    const winningNumberArray = str.split(",");
-    if (!numOrCommaReg.test(str))
+    const winningNumberArray = checkTarget.split(",");
+    if (!numOrCommaReg.test(checkTarget))
       throw new CustomError(ErrorMessage.notWinningNumber);
     if (winningNumberArray.length != 6)
       throw new CustomError(ErrorMessage.notWinningNumber);
@@ -44,13 +44,13 @@ class InputExceptionCheck extends ExceptionCheck {
     return true;
   }
 
-  bonusNumber(str, param) {
+  bonusNumber(checkTarget, winningNumberArray) {
     const lottoNumReg = /(^[1-9]$)|(^[1-3]{1}[0-9]{1}$)|(^4{1}[0-5]{1}$)/;
-    if (!lottoNumReg.test(str))
+    if (!lottoNumReg.test(checkTarget))
       throw new CustomError(ErrorMessage.notLottoNumer);
-    if (!(typeof param === "object" && param.length))
-      throw new CustomError(ErrorMessage.paramNotNumberArray);
-    if (param.inclueds(Number(str)))
+    if (!(typeof winningNumberArray === "object" && winningNumberArray.length))
+      throw new CustomError(ErrorMessage.winningNumberArrayNotNumberArray);
+    if (winningNumberArray.includes(Number(checkTarget)))
       throw new CustomError(ErrorMessage.notBonusNumber);
     return true;
   }
