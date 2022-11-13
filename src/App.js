@@ -1,5 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 const LottoMachine = require("./domain/LottoMachine");
+const LottoStatistics = require("./domain/LottoStatistics");
 const Lotto = require("./Lotto");
 const Utils = require("./Utils");
 
@@ -19,6 +20,7 @@ class App {
     this.lottoMachine = new LottoMachine();
     this.buyingLottos = null;
     this.winningLotto = null;
+    this.lottoStatistics = null;
   }
 
   play() {
@@ -61,10 +63,26 @@ class App {
 
   pleaseBonusNumber(inputBonusNumber) {
     this.winningLotto.addBonusNumber(parseInt(inputBonusNumber, 10));
+    this.printStatistics();
   }
 
-  // TODO
-  // 당첨 통계 기능 구현
+  printStatistics() {
+    this.lottoStatistics = new LottoStatistics(this.winningLotto);
+    const rankCounter = this.lottoStatistics.createRankCounter(
+      this.buyingLottos,
+    );
+    const profit = this.lottoStatistics.calculateProfit(this.buyingLottos);
+    Console.print("\n당첨 통계\n---");
+    Console.print(`3개 일치 (5,000원) - ${rankCounter["5"] || 0}개`);
+    Console.print(`4개 일치 (50,000원) - ${rankCounter["4"] || 0}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${rankCounter["3"] || 0}개`);
+    Console.print(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankCounter["2"] || 0}개`,
+    );
+    Console.print(`6개 일치 (2,000,000,000원) - ${rankCounter["1"] || 0}개`);
+    Console.print(`총 수익률은 ${Utils.formatProfit(profit)}%입니다.`);
+    Console.close();
+  }
 }
 
 module.exports = App;
