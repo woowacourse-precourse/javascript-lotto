@@ -44,7 +44,7 @@ class Lotto {
   }
 
   validateBonusInclude(number) {
-    if (this.#numbers.includes(String(number))) {
+    if (this.#numbers.includes(number)) {
       throw new Error(
         "[ERROR] 보너스 번호는 당첨 번호에 속하지 않아야 합니다."
       );
