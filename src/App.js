@@ -80,20 +80,30 @@ class App {
   // 로또 번호 비교
   lottoCompareWinNumber() {
     this.lottoNumberList.map(lotto => {
-      lotto.map(index => {
-        if (this.winningNum.includes(String(index))) {
-          this.sameCnt += 1;
-        }
-      });
-      lotto.map(index => {
-        if (!this.winningNum.includes(this.bonusNum)) {
-          if (index === Number(this.bonusNum)) {
-            this.bonusCnt = 1;
-          }
-        }
-      });
+      this.compareNumbers(lotto);
+      this.compareBonusNumber(lotto);
       this.sameArr.push(this.sameCnt);
       this.sameCnt = 0;
+    });
+  }
+
+  // 당첨 번호 vs 로또 번호
+  compareNumbers(lotto) {
+    lotto.map(index => {
+      if (this.winningNum.includes(String(index))) {
+        this.sameCnt += 1;
+      }
+    });
+  }
+
+  // 보너스 번호 vs 로또 번호
+  compareBonusNumber(lotto) {
+    lotto.map(index => {
+      if (!this.winningNum.includes(this.bonusNum)) {
+        if (index === Number(this.bonusNum)) {
+          this.bonusCnt = 1;
+        }
+      }
     });
   }
 }
