@@ -96,6 +96,10 @@ class App {
     if (isOutOfRange([number])) {
       throw new Error(ERROR.OUT_OF_RANGE);
     }
+
+    if (this.winningNumbers.numbers.includes(Number(number))) {
+      throw new Error(ERROR.DUPLICATED_BONUS);
+    }
   }
 }
 
