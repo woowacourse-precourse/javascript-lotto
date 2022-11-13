@@ -47,8 +47,8 @@ class App {
     const rankCount = rankCalculator.getRankCount(this.playerLottos, this.winningLotto);
 
     const playerMoney = this.playerLottos.length * 1000;
-    const pirzeMoney = prizeCalculator.getPrizeMoney(rankCount);
-    const rateOfReturn = prizeCalculator.getRateOfReturn(playerMoney, pirzeMoney);
+    const prizeMoney = prizeCalculator.getPrizeMoney(rankCount);
+    const rateOfReturn = prizeCalculator.getRateOfReturn(playerMoney, prizeMoney);
 
     Utils.printWinningResult(rankCount, rateOfReturn);
     Utils.close();
