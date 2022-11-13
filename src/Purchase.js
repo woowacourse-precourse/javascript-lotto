@@ -1,4 +1,4 @@
-const error = require('./Constants/Messages');
+const PurchaseError = require('./Constants/Messages');
 
 class Purchase {
   constructor(number) {
@@ -7,13 +7,13 @@ class Purchase {
 
   validate(number) {
     if (isNaN(number)) {
-      throw new Error(error.NOT_NUMBER);
+      throw new Error(PurchaseError.NOT_NUMBER);
     }
     if (number < 0) {
-      throw new Error(error.MINUS);
+      throw new Error(PurchaseError.MINUS);
     }
     if (number % 1000 !== 0) {
-      throw new Error(error.NOT_DIVIDED_BY_THOUSAND);
+      throw new Error(PurchaseError.NOT_DIVIDED_BY_THOUSAND);
     }
   }
 }
