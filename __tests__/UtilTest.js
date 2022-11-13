@@ -5,6 +5,7 @@ const makeRandomLottoNumber = require('../src/utils/makeRandomLottoNumber');
 const returnMyRank = require('../src/utils/returnMyRank');
 const isValidLottery = require('../src/utils/isValidLottery');
 const calculateProfit = require('../src/utils/calculateProfit');
+const getProfitRate = require('../src/utils/getProfitRate');
 
 describe('유틸 함수 동작 테스트', () => {
   test('금액에 맞는 구매 로또의 개수를 리턴하는 함수', () => {
@@ -78,5 +79,13 @@ describe('유틸 함수 동작 테스트', () => {
     expect(calculateProfit({ 0: 29, 1: 0, 2: 0, 3: 1, 4: 0, 5: 1 })).toBe(
       1505000
     );
+  });
+
+  test('수익률 계산하는 함수 테스트', () => {
+    expect(getProfitRate(10000, 5000)).toBe('50%');
+    expect(getProfitRate(8000, 5000)).toBe('62.5%');
+    expect(getProfitRate(10000, 1500000)).toBe('15000%');
+    expect(getProfitRate(13000, 55000)).toBe('423.1%');
+    expect(getProfitRate(13000, 0)).toBe('0%');
   });
 });
