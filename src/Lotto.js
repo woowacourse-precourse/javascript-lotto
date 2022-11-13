@@ -3,7 +3,7 @@ class Lotto {
 
   constructor(numbers) {
     this.validate(numbers);
-    this.#numbers = numbers;
+    this.#numbers = numbers.map(Number);
   }
 
   validate(numbers) {
@@ -53,8 +53,8 @@ class Lotto {
   }
 
   setBonusNumber(bonusNumber) {
-    this.validateBonusNumber(bonusNumber);
-    this.#numbers.push(bonusNumber);
+    this.validateBonusNumber(Number(bonusNumber));
+    this.#numbers.push(Number(bonusNumber));
   }
 }
 
