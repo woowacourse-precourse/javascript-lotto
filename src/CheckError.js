@@ -23,6 +23,18 @@ class CheckError {
       // 로또에 숫자 이외의 문자가 있을 때.
       throw new Error(ERROR_MESSAGE.NOT_NUMBER_IN_LOTTO);
   }
+
+  static checkLottoSort(lottoArray) {
+    lottoArray.forEach((lotto) => {
+      if (!this.isAscendingArray(lotto))
+        throw new Error(ERROR_MESSAGE.NOT_ASCENDING_ARR);
+    });
+  }
+  isAscendingArray(arr) {
+    for (let i = 0; i < arr.length - 1; i++) {
+      if (arr[i] > arr[i + 1]) return false;
+    }
+  }
 }
 
 module.exports = CheckError;
