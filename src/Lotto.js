@@ -90,6 +90,23 @@ class Lotto {
   compareBonusNumber(ticket) {
     return ticket.includes(+this.bonusNumber);
   }
+
+  printProfit(ticketAmount) {
+    const ticketPrice = ticketAmount * 1000;
+    const totalSum = this.sumTotalPrize(this.resultMap);
+    const profit = ((totalSum / ticketPrice) * 100).toFixed(1);
+    Console.print(`총 수익률은 ${profit}%입니다.`);
+  }
+
+  sumTotalPrize(resultMap) {
+    return (
+      resultMap.get(3) * PRIZE.THREE_MATCH +
+      resultMap.get(4) * PRIZE.FOUR_MATCH +
+      resultMap.get(5) * PRIZE.FIVE_MATCH +
+      resultMap.get("5B") * PRIZE.FIVE_MATCH_WITH_BONUS +
+      resultMap.get(6) * PRIZE.SIX_MATCH
+    );
+  }
 }
 
 module.exports = Lotto;

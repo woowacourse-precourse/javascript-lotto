@@ -62,6 +62,7 @@ class App {
 
   printResult() {
     this.WinningNumbers.printRank(this.lotteryTickets);
+    this.WinningNumbers.printProfit(this.AmountNum);
   }
 }
 

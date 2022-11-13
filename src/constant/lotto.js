@@ -23,9 +23,18 @@ const RESULT = {
   UNIT: "개",
 };
 
+const PRIZE = {
+  THREE_MATCH: 5000,
+  FOUR_MATCH: 50000,
+  FIVE_MATCH: 1500000,
+  FIVE_MATCH_WITH_BONUS: 30000000,
+  SIX_MATCH: 2000000000,
+};
+
 module.exports = {
   LOTTO_LENGTH,
   ERROR,
   MESSEGE,
   RESULT,
+  PRIZE,
 };
