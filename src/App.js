@@ -31,6 +31,11 @@ class App {
       this.printLotto();
     });
   }
+  printLotto() {
+    Console.print(`\n${this.item / 1000}개를 구매했습니다.`);
+    this.lottos.forEach((lotto) => Console.print(lotto));
+  }
+
   play() {}
 }
 
