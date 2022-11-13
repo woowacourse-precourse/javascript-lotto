@@ -1,6 +1,6 @@
 const { REQUIREMENT, BONUSNUMERROR, PURCHASEAMOUNTERROR } = require('./constant/Constant');
 
-function validatePurchaseAmount(input) {
+const validatePurchaseAmount = function validatePurchaseAmountByNaNPriceRange(input) {
   if (Number.isNaN(Number(input))) {
     throw new Error(PURCHASEAMOUNTERROR.NaN);
   }
@@ -12,7 +12,7 @@ function validatePurchaseAmount(input) {
   }
 };
 
-function validateBonusNumber(input, winningNumber) {
+const validateBonusNumber = function validateBonusNumberComparisonWithWinningNumber (input, winningNumber) {
   if (Number.isNaN(Number(input))) {
     throw new Error(BONUSNUMERROR.NaN);
   }
