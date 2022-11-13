@@ -12,6 +12,12 @@ const WINNING_RANK = [
 ];
 
 class App {
+  lottoCnt;
+  lottoArray;
+  winningNum;
+  bonusNum;
+  rank;
+
   play() {}
 }
 
