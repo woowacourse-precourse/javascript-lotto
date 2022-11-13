@@ -43,9 +43,16 @@ class App {
 
   InputBonus(published_Lottos, array, how_many) {
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (answer) => {
+      this.isBonusDuplicated(answer, array);
       array.push(answer);
       this.getAllResults(published_Lottos, array, how_many);
     });
+  }
+
+  isBonusDuplicated(answer, array) {
+    if(array.includes(answer)){
+      throw INPUT_ERROR.DUPLICATED;
+    }
   }
 
   getAllResults(published_Lottos, winning, count) {
