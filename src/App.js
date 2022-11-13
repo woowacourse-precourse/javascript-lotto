@@ -6,10 +6,18 @@ class App {
     this.buy();
   }
   buy() {
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요. ", (input) => {
+    MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
       this.validatePurchase(input);
-      const lotto = this.issueLotto();
-      console.log(lotto);
+
+      const purchasedNumber = Number(input) / 1000;
+      MissionUtils.Console.print(`\n${purchasedNumber}개를 구매했습니다.`);
+      let issuedLottos = [];
+      for (let i = 0; i < purchasedNumber; i++) {
+        const issuedLotto = this.issueLotto();
+        MissionUtils.Console.print(`[${issuedLotto}]`);
+        issuedLottos.push(issuedLotto);
+      }
+      return issuedLottos;
     });
   }
   validatePurchase(input) {
