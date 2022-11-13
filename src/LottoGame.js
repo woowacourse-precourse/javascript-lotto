@@ -80,6 +80,9 @@ class LottoGame {
 
     return matchedLottoNumberCount;
   }
+  hasBonusNumber(lottoNumbers) {
+    return lottoNumbers.includes(this.bonusNumber);
+  }
 }
 
 module.exports = LottoGame;
