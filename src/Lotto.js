@@ -34,6 +34,10 @@ class Lotto {
     Console.print(`[${this.#numbers.join(', ')}]`);
   }
 
+  hasBonusNumber(bonusNumber) {
+    return this.#numbers.includes(bonusNumber);
+  }
+
   validateWinningNumbers(str) {
     const NUMBER_COMMA_REGEXP = /^[0-9,]+$/;
     const START_IS_COMMA_REGEXP = /^[,]/;
