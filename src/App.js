@@ -86,11 +86,12 @@ class App {
   getWinningNumber() {
     Console.readLine(ASK_WINNING_NUMBER_MESSAGE, (userInput) => {
       const arrayedUserInput = this.getArrayedUserInput(userInput);
-
       this.checkUesrInputHaveOnlyNumberAndComma(arrayedUserInput);
-      this.checkWinningNumberStartZero(userInput);
 
-      this.userLotto = this.getUserLotto(userInput);
+      const splitedInput = this.getSplitedUserInput(userInput);
+      this.checkWinningNumberStartZero(splitedInput);
+
+      this.userLotto = this.getUserLotto(splitedInput);
 
       new Lotto(this.userLotto);
 
@@ -114,10 +115,14 @@ class App {
     });
   }
 
-  checkWinningNumberStartZero(userInput) {
+  getSplitedUserInput(userInput) {
     const splitedInput = userInput.split(",");
 
-    splitedInput.forEach((item) => {
+    return splitedInput;
+  }
+
+  checkWinningNumberStartZero(userInput) {
+    userInput.forEach((item) => {
       if (item[0] === "0") {
         throw new Error(ERROR_DONT_START_ZERO);
       }
@@ -125,9 +130,7 @@ class App {
   }
 
   getUserLotto(userInput) {
-    const splitedInput = userInput.split(",");
-
-    const userLotto = splitedInput.map((item) => Number(item));
+    const userLotto = userInput.map((item) => Number(item));
 
     return userLotto;
   }
