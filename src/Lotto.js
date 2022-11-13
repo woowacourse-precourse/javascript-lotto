@@ -8,6 +8,7 @@ class Lotto {
     this.utils = new Utils();
     this.validate(numbers);
     this.#numbers = numbers;
+    this.bonusNumber;
   }
 
   validate(numbers) {
@@ -35,13 +36,17 @@ class Lotto {
       this.utils.throwError(ERROR.NOT_IN_VAILD_RANGE);
   }
 
-  get() {
+  getWinningNumbers() {
     return this.#numbers;
   }
 
-  setBonusNum(number) {
+  setBonusNumber(number) {
     this.isNotInVaildRange(number);
-    this.#numbers.push(number);
+    this.bonusNum = number;
+  }
+
+  getBonusNumber() {
+    return this.bonusNumber;
   }
 }
 

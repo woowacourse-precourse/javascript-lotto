@@ -11,10 +11,10 @@ class App {
   }
 
   play() {
-    this.getPurchaseAmount();
+    this.askPurchaseAmount();
   }
 
-  getPurchaseAmount() {
+  askPurchaseAmount() {
     Console.readLine(`${MESSEGE.INPUT_PURCHASE_AMOUNT}\n`, (input) => {
       if (this.isNotDividedByThousand(input))
         this.utils.throwError(ERROR.NOT_DIVIDED_BY_THOUSAND);
@@ -31,30 +31,29 @@ class App {
   issueLotteryTicket(amountNum) {
     Console.print(`${amountNum}${MESSEGE.TELL_PURCHASE_AMOUNT}`);
 
-    let lotteryTicket = [];
+    let lotteryTickets = [];
 
     while (amountNum) {
       const newTicket = Random.pickUniqueNumbersInRange(1, 45, 6).sort(
         (a, b) => a - b
       );
-      lotteryTicket.push(newTicket);
+      lotteryTickets.push(newTicket);
       amountNum -= 1;
       Console.print(newTicket);
     }
-
-    this.getWinningNumber();
+    this.askWinningNumbers();
   }
 
-  getWinningNumber() {
-    Console.readLine(`${MESSEGE.INPUT_WINNING_NUMBER}\n`, (input) => {
+  askWinningNumbers() {
+    Console.readLine(`${MESSEGE.INPUT_WINNING_NUMBERS}\n`, (input) => {
       this.WinningNumbers = new Lotto(input.split(","));
-      this.getBonusNumber();
+      this.askBonusNumber();
     });
   }
 
-  getBonusNumber() {
+  askBonusNumber() {
     Console.readLine(`${MESSEGE.INPUT_BONUS_NUMBER}\n`, (input) => {
-      this.WinningNumbers.setBonusNum(input);
+      this.WinningNumbers.setBonusNumber(input);
     });
   }
 }
