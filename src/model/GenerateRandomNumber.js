@@ -1,9 +1,15 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
-function generate() {
-  const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+class GenerateRandomNumber {
+  generate() {
+    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
 
-  return numbers.sort((a, b) => a - b);
+    return this.sort(numbers);
+  }
+
+  sort(numbers) {
+    return numbers.sort((a, b) => a - b);
+  }
 }
 
-module.exports = generate;
+module.exports = GenerateRandomNumber;
