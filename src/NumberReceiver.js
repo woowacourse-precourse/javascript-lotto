@@ -3,9 +3,11 @@ const Message = require("./Message.js");
 
 class NumberReceiver {
   #lottoNumber;
+  #bonusNumber;
 
   constructor() {
     this.inputLottoNumber();
+    this.inputBonusNumber();
   }
 
   inputLottoNumber() {
@@ -16,6 +18,16 @@ class NumberReceiver {
 
   getLottoNumber() {
     return this.#lottoNumber;
+  }
+
+  inputBonusNumber() {
+    MissionUtils.Console.readLine(Message.bonusNumberInput, (numbers) => {
+      this.#bonusNumber = Number(numbers);
+    });
+  }
+
+  getBonusNumber() {
+    return this.#bonusNumber;
   }
 }
 

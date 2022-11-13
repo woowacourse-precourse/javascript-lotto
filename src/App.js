@@ -12,6 +12,7 @@ class App {
   play() {
     const userNumber = this.lottoNumberGenerator.getUserNumber();
     const lottoNumber = this.numberReceiver.getLottoNumber();
+    const bonusNumber = this.numberReceiver.getBonusNumber();
   }
 }
 
