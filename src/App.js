@@ -1,9 +1,9 @@
-const { Console, Random } = require("@woowacourse/mission-utils");
-const Lotto = require("./Lotto");
+const { Console } = require("@woowacourse/mission-utils");
 const WinnerNumber = require("./WinnerNumber");
 const MatchingNumber = require("./MatchingNumber");
 const ProfitRate = require("./ProfitRate.");
 const { LOTTO_RANGE, ERROR_MESSAGE, INPUT_MESSAGE, OUTPUT_MESSAGE } = require("./constants");
+const Payment = require("./domain/Payment");
 
 class App {
   constructor() {
@@ -19,30 +19,14 @@ class App {
 
   inputMoney() {
     Console.readLine(INPUT_MESSAGE.paymentAmount, (money) => {
+      const lottoTickets = money / LOTTO_RANGE.pricePerLotto;
+
       this.payMoney = money;
-      this.validateInputMoney(this.payMoney);
-      this.getLottoNumber(this.payMoney / LOTTO_RANGE.pricePerLotto);
+      this.totalLottoNumber = new Payment(this.payMoney).getLottoNumber(lottoTickets);
+
+      Console.print(OUTPUT_MESSAGE.amountLotto(lottoTickets));
       this.inputWinnerNumber();
     });
-  }
-
-  validateInputMoney(payMoney) {
-    if (payMoney % LOTTO_RANGE.pricePerLotto !== 0 || payMoney === "0") {
-      throw new Error(ERROR_MESSAGE.inputPaymentAmountValidate);
-    }
-  }
-
-  getLottoNumber(lottoTickets) {
-    Console.print(OUTPUT_MESSAGE.amountLotto(lottoTickets));
-    for (let i = 0; i < lottoTickets; i++) {
-      const randomNumber = Random.pickUniqueNumbersInRange(
-        LOTTO_RANGE.minimunNumberRange,
-        LOTTO_RANGE.maximunNumberRange,
-        LOTTO_RANGE.lottoCount
-      );
-      const lotto = new Lotto(randomNumber);
-      this.totalLottoNumber.push(lotto.sortLotto(randomNumber));
-    }
   }
 
   inputWinnerNumber() {
