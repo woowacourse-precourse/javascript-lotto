@@ -1,13 +1,24 @@
 const Console = require("@woowacourse/mission-utils").Console;
 
 const NOTIFY_WINNING_STATE = "\n당첨 통계\n---";
+const FIRST_PRIZE = 2000000000;
+const SECOND_PRIZE = 30000000;
+const THIRD_PRIZE = 1500000;
+const FOURTH_PRIZE = 50000;
+const FIFTH_PRIZE = 5000;
+const EACH_PRIZE = [
+  FIRST_PRIZE,
+  SECOND_PRIZE,
+  THIRD_PRIZE,
+  FOURTH_PRIZE,
+  FIFTH_PRIZE,
+];
 
 class Result {
-  constructor(amount, bundleOfLotto, userLotto, bonusNumber) {
-    this.amount = Number(amount);
+  constructor(bundleOfLotto, userLotto, bonus) {
     this.bundleOfLotto = bundleOfLotto;
     this.userLotto = userLotto;
-    this.bonusNumber = bonusNumber;
+    this.bonusNumber = Number(bonus);
 
     this.rank = [0, 0, 0, 0, 0];
   }
@@ -101,12 +112,10 @@ class Result {
   }
 
   getPrize() {
-    const eachPrize = [2000000000, 30000000, 1500000, 50000, 5000];
-
     let finalPrize = 0;
 
     this.rank.forEach((item, index) => {
-      finalPrize += item * eachPrize[index];
+      finalPrize += item * EACH_PRIZE[index];
     });
 
     return finalPrize;
@@ -121,8 +130,9 @@ class Result {
 
   getEarningsRate() {
     const prize = this.getPrize();
+    const purchaseAmount = this.bundleOfLotto.length * 1000;
 
-    const earningsRate = ((prize / this.amount) * 100).toFixed(1);
+    const earningsRate = ((prize / purchaseAmount) * 100).toFixed(1);
 
     return earningsRate;
   }
