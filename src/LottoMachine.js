@@ -3,16 +3,16 @@ class LottoMachine {
   #bonusNumber;
 
   inputWinningNumber() {
-    Console.readLine("당첨 번호를 입력해 주세요.", (answer) => {
-      this.validate(answer.split(","));
-      this.#winningNumbers = answer.split(",");
+    Console.readLine("당첨 번호를 입력해 주세요.", (input) => {
+      this.validate(input.split(","));
+      this.#winningNumbers = input.split(",");
     });
     this.inputBonusNumber();
   }
   inputBonusNumber() {
-    Console.readLine("보너스 번호를 입력해 주세요.", (answer) => {
-      this.validate(answer);
-      this.#bonusNumber = answer;
+    Console.readLine("보너스 번호를 입력해 주세요.", (input) => {
+      this.validate(input);
+      this.#bonusNumber = input;
     });
   }
 

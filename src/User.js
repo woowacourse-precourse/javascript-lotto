@@ -8,6 +8,12 @@ class User {
     this.validate(amount);
     this.#amount = amount;
   }
+  inputAmount() {
+    Console.readLine("구입금액을 입력해 주세요.", (input) => {
+      this.validate(input);
+      this.#amount = input;
+    });
+  }
 
   addLotto(lotto) {
     this.#myLottos.push(lotto);
