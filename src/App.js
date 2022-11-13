@@ -13,6 +13,9 @@ class App {
       lottoView.getLottoNumbers().then((numbers) => {
         console.log(numbers);
         const lotto = new Lotto(numbers);
+        lottoView.getBonusNumber().then((number) => {
+          console.log(number);
+        });
       });
     });
   }
