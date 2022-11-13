@@ -8,7 +8,7 @@ class Validator {
 
   static checkLottoNumber(number) {
     this.checkNumber(number);
-    if (number < 1 || number > 45) throw new Error('[ERROR] 1~45 범위의 숫자를 입력해야 합니다.');
+    if (number < 1 || number > 45) throw new Error('[ERROR] 로또 범위의 숫자를 입력해야 합니다.');
   }
 
   static checkLottoNumbers(numbers) {
@@ -19,6 +19,12 @@ class Validator {
     numbers.forEach((number) => {
       this.checkLottoNumber(number);
     });
+  }
+
+  static checkBonusNumber(bonusNumber, winNumbers) {
+    this.checkLottoNumber(bonusNumber);
+    if (winNumbers.includes(bonusNumber))
+      throw new Error('[ERROR] 로또 번호는 중복이 없어야 합니다.');
   }
 
   static checkPay(pay) {
