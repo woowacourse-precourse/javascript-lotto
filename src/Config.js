@@ -54,7 +54,7 @@ const Message = {
     string.push(`${LottoConfig.PRIZE_5_CORRECT_COUNT}개 일치 (${LottoConfig.PRIZE_5_MONEY.toLocaleString()}원) - ${prize5Count}개`);
     string.push(`${LottoConfig.PRIZE_4_CORRECT_COUNT}개 일치 (${LottoConfig.PRIZE_4_MONEY.toLocaleString()}원) - ${prize4Count}개`);
     string.push(`${LottoConfig.PRIZE_2_3_CORRECT_COUNT}개 일치 (${LottoConfig.PRIZE_3_MONEY.toLocaleString()}원) - ${prize3Count}개`);
-    string.push(`${LottoConfig.PRIZE_2_3_CORRECT_COUNT}개 일치, 보너스 번호 일치 (${LottoConfig.PRIZE_2_MONEY.toLocaleString()}원) - ${prize2Count}개`);
+    string.push(`${LottoConfig.PRIZE_2_3_CORRECT_COUNT}개 일치, 보너스 볼 일치 (${LottoConfig.PRIZE_2_MONEY.toLocaleString()}원) - ${prize2Count}개`);
     string.push(`${LottoConfig.PRIZE_1_CORRECT_COUNT}개 일치 (${LottoConfig.PRIZE_1_MONEY.toLocaleString()}원) - ${prize1Count}개`);
     string.push(`총 수익률은 ${rate.toFixed(1)}%입니다.`);
     return string.join('\n');
