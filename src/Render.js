@@ -10,7 +10,7 @@ class Render {
     });
   }
 
-  static WinningStatistics(winningState, rateOfReturn) {
+  static WinningStatistics([winningState, rateOfReturn]) {
     Console.print(MESSAGE.STATISTICS_NOTIFICATION);
     Console.print(MESSAGE.DIVISION_LINE);
     Console.print(RENDER_MESSAGE.matchThree(winningState[RANK.FIVE]));

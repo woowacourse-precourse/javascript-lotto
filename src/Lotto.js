@@ -1,5 +1,4 @@
 const Validator = require('./Validator');
-const Render = require('./Render');
 const { RANK, LOTTO, PRIZE_MONEY } = require('./constants');
 
 class Lotto {
@@ -14,12 +13,12 @@ class Lotto {
     Validator.throwErrorIfInvalidWinningNumbers(numbers);
   }
 
-  renderGameResult(userLottos, bonusNumber) {
+  getGameResult(userLottos, bonusNumber) {
     const winningState = this.informWinningState(userLottos, bonusNumber);
     const totalPrize = this.calcTotalPrize(winningState, userLottos.length);
     const rateOfReturn = this.calcRateOfReturn(totalPrize, userLottos.length);
 
-    Render.WinningStatistics(winningState, rateOfReturn);
+    return [winningState, rateOfReturn];
   }
 
   informWinningState(userLottos, bonusNumber) {

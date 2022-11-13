@@ -7,8 +7,6 @@ const {
 } = require('./constants');
 
 class Validator {
-  winningNumbers;
-
   static throwError(message) {
     throw new Error(`${ERROR_MESSAGE.ERROR_FORM}${message}`);
   }
@@ -23,11 +21,11 @@ class Validator {
   static throwErrorIfInvalidWinningForm(inputValue) {
     this.throwErrorIfHasBlack(inputValue);
     this.throwErrorIfHasBlack(inputValue);
-    this.winningNumbers = inputValue.split(DELIMITER);
-    if (!REGEX.winningNumbers.test(this.winningNumbers)) {
+    const winningNumbers = inputValue.split(DELIMITER);
+    if (!REGEX.winningNumbers.test(winningNumbers)) {
       this.throwError(ERROR_MESSAGE.WINNING_NUM_FORM);
     }
-    this.winningNumbers.forEach((number) => {
+    winningNumbers.forEach((number) => {
       this.throwErrorIfStartsWithZero(number);
     });
   }
@@ -44,14 +42,14 @@ class Validator {
     }
   }
 
-  static throwErrorIfInvalidBonusNumber(bonusNumber) {
+  static throwErrorIfInvalidBonusNumber(winningNumbers, bonusNumber) {
     this.throwErrorIfHasBlack(bonusNumber);
     this.throwErrorIfStartsWithZero(bonusNumber);
     this.throwErrorIfOutOfRange(bonusNumber);
     if (!REGEX.bonusNumber.test(bonusNumber)) {
       this.throwError(ERROR_MESSAGE.INT_FORM);
     }
-    if (this.winningNumbers.includes(bonusNumber)) {
+    if (winningNumbers.includes(bonusNumber)) {
       this.throwError(ERROR_MESSAGE.WINNING_HAS);
     }
   }

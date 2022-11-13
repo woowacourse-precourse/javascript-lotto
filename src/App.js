@@ -1,10 +1,9 @@
 const { Console } = require('@woowacourse/mission-utils');
 
-const GameTools = require('./GameTools');
 const Lotto = require('./Lotto');
 const Render = require('./Render');
 const Validator = require('./Validator');
-const { LOTTO, MESSAGE } = require('./constants');
+const { LOTTO, MESSAGE, DELIMITER } = require('./constants');
 const LottoGenerator = require('./LottoGenerator');
 
 class App {
@@ -33,22 +32,27 @@ class App {
   askWinningNumbers() {
     Console.readLine(MESSAGE.ASK_WINNING_NUMBER, (inputValue) => {
       Validator.throwErrorIfInvalidWinningForm(inputValue);
-      const winningNumbers = GameTools.stringToSortedNumberArray(inputValue);
+      const winningNumbers = inputValue
+        .split(DELIMITER)
+        .map((num) => Number(num))
+        .sort((a, b) => a - b);
       this.lotto = new Lotto(winningNumbers);
 
-      this.askBonusNumber();
+      this.askBonusNumber(winningNumbers);
     });
   }
 
-  askBonusNumber() {
+  askBonusNumber(winningNumbers) {
     Console.readLine(MESSAGE.ASK_BONUS_NUMBER, (bonusNumber) => {
-      Validator.throwErrorIfInvalidBonusNumber(bonusNumber);
+      Validator.throwErrorIfInvalidBonusNumber(winningNumbers, bonusNumber);
       this.printWinningStatistics(bonusNumber);
     });
   }
 
   printWinningStatistics(bonusNumber) {
-    this.lotto.informStateOfWinning(this.userLottos, bonusNumber);
+    const gameResult = this.lotto.getGameResult(this.userLottos, bonusNumber);
+    Render.WinningStatistics(gameResult);
+
     this.exitGame();
   }
 
