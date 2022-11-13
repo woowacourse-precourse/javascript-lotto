@@ -82,6 +82,13 @@ class App {
       this.checkDuplication(this.winningNum);
     });
   }
+
+  //당첨번호 입력 유효성 검증
+  checkDuplication(numbers) {
+    let set = new Set(numbers);
+    if (numbers.length != [...set].length)
+      throw "[ERROR] 중복된 숫자가 있습니다.";
+  }
 }
 
 module.exports = App;
