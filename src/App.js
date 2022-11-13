@@ -11,8 +11,8 @@ class App {
   }
 
   purchaseLottos() {
-    Console.readLine(CONSOLE_MESSAGE.Enter, (price) => {
-      const lottoCnt = getCountByPay(+price);
+    Console.readLine(CONSOLE_MESSAGE.Enter, (payStr) => {
+      const lottoCnt = getCountByPay(+payStr);
 
       Console.print(lottoCnt + CONSOLE_MESSAGE.Purchase);
       for (let i = 0; i < lottoCnt; i++) {
@@ -21,6 +21,26 @@ class App {
         Console.print(randomNumbers);
         this.#lottos.push(new Lotto(randomNumbers));
       }
+
+      this.pickNumbers();
+    });
+  }
+
+  pickNumbers() {
+    let numbers = null;
+
+    Console.readLine(CONSOLE_MESSAGE.Numbers, (numbersStr) => {
+      numbers = numbersStr.split(",").map(Number);
+
+      this.getBonusNumber();
+    });
+  }
+
+  getBonusNumber() {
+    let bonusNumber = null;
+
+    Console.readLine(CONSOLE_MESSAGE.BonusNumber, (numberStr) => {
+      bonusNumber = +numberStr;
     });
   }
 }
