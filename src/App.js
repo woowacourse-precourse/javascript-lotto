@@ -1,10 +1,13 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const userInput = require('./Input');
-const Lotto = require('./Lotto');
-const Output = require('./Output');
+const BonusNumber = require('./models/BonusNumber');
+const userInput = require('./ui/Input');
+const Lotto = require('./models/Lotto');
+const Money = require('./models/Money');
+const Output = require('./ui/Output');
+const WinningNumbers = require('./models/WinningNumbers');
 
 class App {
-  lottoCount;
+  money;
   lottoArray = [];
   winningNumbers;
   bonusNumber;
@@ -18,21 +21,16 @@ class App {
   }
 
   getLottos(money) {
-    this.validMoney(money);
-    this.lottoCount = money / 1000;
-    this.print.printUserLottoCount(this.lottoCount);
+    this.money = new Money(money).money;
 
-    for (let i = 0; i < this.lottoCount; i++) {
+    const lottoCount = this.money / 1000;
+    this.print.printUserLottoCount(lottoCount);
+
+    for (let i = 0; i < lottoCount; i++) {
       const randomLottoNumber = this.getRandomLottoNumber();
       const lotto = new Lotto(randomLottoNumber)
       this.lottoArray.push(lotto);
       this.print.printUserLottoNumber(randomLottoNumber);
-    }
-  }
-
-  validMoney(money) {
-    if (money % 1000 !== 0) {
-      throw new Error('[ERROR] 구입 금액은 1,000원 단위 입니다.');
     }
   }
 
@@ -42,24 +40,11 @@ class App {
   }
 
   getWinningNumbers(numbers) {
-    this.validWinningNumbers(numbers);
-    this.winningNumbers = this.winningNumbersConverter(numbers);
-  }
-
-  winningNumbersConverter(numbers) {
-    const winningNumberArray = numbers.split(',').map((item) => parseInt(item));
-    return winningNumberArray;
-  }
-  
-  validWinningNumbers(numbers) {
-    const reg = /^([0-9]+,){5}([0-9]+){1}$/;
-    if (!reg.test(numbers)) {
-      throw new Error('[ERROR] 당첨 숫자 입력의 형식이 잘못되었습니다.');
-    }
+    this.winningNumbers = new WinningNumbers(numbers).winningNumbers;
   }
 
   getBonusNumber(bonusNumber) {
-    this.bonusNumber = parseInt(bonusNumber);
+    this.bonusNumber = new BonusNumber(bonusNumber).bonusNumber;
   }
 }
 

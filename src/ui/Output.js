@@ -2,7 +2,7 @@ const MissionUtils = require('@woowacourse/mission-utils');
 
 class Output {
   printUserLottoCount(lottoCount) {
-    MissionUtils.Console.print(`${lottoCount}개를 구매했습니다.`);
+    MissionUtils.Console.print(`\n${lottoCount}개를 구매했습니다.`);
   }
 
   printUserLottoNumber(randomLotto) {
