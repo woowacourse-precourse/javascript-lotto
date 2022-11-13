@@ -22,15 +22,11 @@ class Match {
     }
   }
 
-  matchBonusNumber(lotto) {
-    const fiveMatchLotto = lotto;
-    const bonusAndWinNumber = this.winningNumber.concat(this.bonusNumber);
-    let match = 0;
-    for (let i = 0; i < 7; i++) {
-      if (fiveMatchLotto.includes(bonusAndWinNumber[i])) match++;
+  matchBonusNumber(fiveMatchLotto) {
+    if (fiveMatchLotto.includes(this.bonusNumber[0])) {
+      return this.setRank(7);
     }
-    if (match === 5) this.setRank(5);
-    if (match === 6) this.setRank(7);
+    return this.setRank(5);
   }
 
   setRank(match) {
