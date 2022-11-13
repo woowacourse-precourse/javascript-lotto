@@ -6,6 +6,7 @@ class BonusNumber {
   validate(winLotto, inputNumber) {
     this.checkDuplicate(winLotto, inputNumber);
     this.checkNumber(inputNumber);
+    this.cehckNumberRange(inputNumber);
   }
   checkDuplicate(winLotto, inputNumber) {
     if (winLotto.lottoNumbers.includes(Number(inputNumber))) {
@@ -16,6 +17,12 @@ class BonusNumber {
     const NumberReg = /[0-9]/g;
     if (!NumberReg.test(inputNumber)) {
       throw new Error('[ERROR] 보너스 숫자는 숫자여야합니다.');
+    }
+  }
+
+  cehckNumberRange(inputNumber) {
+    if (!(inputNumber > 0 && inputNumber < 46)) {
+      throw new Error('[ERROR] 보너스 숫자는 로또 숫자 범위 내여야 합니다.');
     }
   }
 }
