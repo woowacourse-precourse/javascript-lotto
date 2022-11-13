@@ -5,7 +5,7 @@ const { ERROR, LOTTO, MONEY } = require('./utiles/Constant');
 class Lotto {
   #numbers;
 
-  constructor(numbers) {
+  setWinningNumbers(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
   }
@@ -78,11 +78,11 @@ class Lotto {
 
   getLottoResult(allLottoNumbers) {
     const lottoResult = this.#initLottoResultStorage();
-
     allLottoNumbers.forEach((oneLottoNumbers) => {
       const matchCount = this.getMatchCount(oneLottoNumbers);
-      if (this.#isBonus(oneLottoNumbers)) lottoResult['MATCH_5_BONUS']++;
-      else if (matchCount >= 3) lottoResult[`MATCH_${matchCount}`]++;
+      if (this.#isBonus(oneLottoNumbers))
+        lottoResult['5개 일치, 보너스 볼 일치']++;
+      else if (matchCount >= 3) lottoResult[`${matchCount}개 일치`]++;
     });
 
     return lottoResult;
