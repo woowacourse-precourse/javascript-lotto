@@ -1,6 +1,6 @@
 class CustomError {
   constructor(errorMessage) {
-    return Error(`[Error] : ${errorMessage}`);
+    return Error(`[ERROR] : ${errorMessage}`);
   }
 }
 module.exports = CustomError;
