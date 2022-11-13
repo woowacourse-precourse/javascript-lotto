@@ -19,12 +19,8 @@ class Statistic {
   }
 
   get revenue() {
-    const firstRevenue = this.#counts[RULE.FIRST.TYPE] * RULE.FIRST.PRIZE_MONEY;
-    const secondRevenue = this.#counts[RULE.SECOND.TYPE] * RULE.SECOND.PRIZE_MONEY;
-    const thirdRevenue = this.#counts[RULE.THIRD.TYPE] * RULE.THIRD.PRIZE_MONEY;
-    const fourthRevenue = this.#counts[RULE.FOURTH.TYPE] * RULE.FOURTH.PRIZE_MONEY;
-    const fifthRevenue = this.#counts[RULE.FIFTH.TYPE] * RULE.FIFTH.PRIZE_MONEY;
-    return firstRevenue + secondRevenue + thirdRevenue + fourthRevenue + fifthRevenue;
+    return Object.values(RULE)
+      .reduce((acc, ranking) => acc + this.#counts[ranking.TYPE] * ranking.PRIZE_MONEY, 0);
   }
 
   putInCounts(winningLotto, bonusNumber, publishedLotto) {
