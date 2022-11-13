@@ -16,7 +16,7 @@
 |:heavy_check_mark:|내부적으로 사용할 상수들을 지정한다.|금액, 에러 메시지 등|
 |:heavy_check_mark:|범위 내에서 6개의 임의의 숫자들을 뽑는 함수를 작성한다.||
 |:heavy_check_mark:|위의 숫자들을 오름차순으로 정리한다.||
-|:heavy_minus_sign:|로또 구입 금액을 입력받는다.||
+|:heavy_check_mark:|로또 구입 금액을 입력받는다.||
 |:heavy_minus_sign:|당첨 번호와 보너스 번호를 개별적으로 입력받아 구분해 저장한다.||
 |:heavy_minus_sign:|입력된 당첨 번호와 보너스 번호를 임의의 숫자들과 대조하는 함수를 작성한다.||
 |:heavy_minus_sign:|각 로또마다 대조한 뒤 결과를 저장한다.||
