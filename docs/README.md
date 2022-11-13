@@ -81,16 +81,11 @@
 
 - [ ] LottoCampany.setWinningLottoNumbers(winning lotto numbers);
 
-- [ ] Customer.winLottoStatistic( {winning numbers, winning bonus number, generate lottos} )
+- [ ] 4. Customer.winLottoStatistic( {winning numbers, winning bonus number, generate lottos} )
 
   - find winning numbers in generate lottos(lotto object)
-    - return statistics object;
   - print lotto statistic(statistics object)
-    - calculate correct 3 number()
-    - calculate correct 4 number()
-    - calculate correct 5 number()
-    - calculate correct 5 number with bonus number()
-    - calculate correct 6 number()
+  - calculate lotto yield
   - close console
 
 ### use callback
@@ -142,7 +137,7 @@
 - 기능 설계 고민
   - [ ] 콜백 사용
   - [v] 콜백 사용 X
-  - 단위 테스트에서나 다른 면에서 콜백을 사용하지 않는 것이 좋다고 판단했습니다. 다만, 테스트를 어떻게 통과할지는 고민을 조금 더 해야할 듯 싶습니다.
+    - 단위 테스트에서나 다른 면에서 콜백을 사용하지 않는 것이 좋다고 판단했습니다. 다만, 테스트를 어떻게 통과할지는 고민을 조금 더 해야할 듯 싶습니다.
 - isNaN 검증 관련 고민
   - 숫자 검증 시 어떤 값을 설정해야 할 지 고민했습니다.
     - NaN의 타입이 number라는 것을 알았습니다.
