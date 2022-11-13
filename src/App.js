@@ -57,7 +57,6 @@ class App {
     const lotto = new Lotto(this.#winningNumber);
     const { three, four, five, bonus, six } = lotto.comparisonNumbers(this.#publishedLottos, this.#bonusNumber); 
     this.#profitRate = Math.round((PRIZE.THREEMATCHES * three + PRIZE.FOURMATCHES * four + PRIZE.FIVEMATCHES * five + PRIZE.BONUSMATCHES * bonus + PRIZE.SIXMATCHES * six) / this.#purchaseAmount * 10000) / 100;
-    console.log(this.#profitRate);    
     printResult({ three, four, five, bonus, six }, this.#profitRate);
   }
 

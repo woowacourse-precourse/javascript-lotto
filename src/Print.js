@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { MESSAGES, getStatisticsMessage } = require('./constant/Constant');
+const { MESSAGES, getProfitMessage, getStatisticsMessage } = require('./constant/Constant');
 
 function printAmounts (amounts) {
   MissionUtils.Console.print(`${amounts}${MESSAGES.PURCHASED}`);
@@ -10,8 +10,9 @@ function printLotto (lotto) {
   MissionUtils.Console.print(str);
 };
 
-function printResult ({ three, four, five, bonus, six }) {
+function printResult ({ three, four, five, bonus, six }, profitRate) {
   MissionUtils.Console.print(getStatisticsMessage({ three, four, five, bonus, six }));
+  MissionUtils.Console.print(getProfitMessage(profitRate));
   MissionUtils.Console.close();
 };
 
