@@ -1,13 +1,14 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
+const TICKET = require('./CONSTANT');
 
 class App {
   #numbers;
-#bonusNumber;
+
+  #bonusNumber;
 
   play() {
     this.inputMoney();
-
   }
 
   inputMoney() {
@@ -30,14 +31,14 @@ class App {
     if (Number.isNaN(money)) {
       throw Error('[ERROR] 숫자여야 합니다.');
     }
-    if (money % 1000 !== 0) {
+    if (money % TICKET.price !== 0) {
       throw Error('[ERROR] 1,000원 단위로 입력하세요');
     }
     return true;
   }
 
   countTickets(answer) {
-    return answer / 1000;
+    return answer / TICKET.price;
   }
 
   generateRandomNumbers() {
@@ -46,7 +47,7 @@ class App {
 
   setLottoNumbers() {
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (answer) => {
-      this.#numbers = answer.split(',').map(i => Number(i));
+      this.#numbers = answer.split(',').map((i) => Number(i));
       // console.log(this.#numbers);
       this.setBonusNumber();
     });
@@ -57,7 +58,6 @@ class App {
       this.#bonusNumber = answer;
       // console.log(this.#bonusNumber);
     });
-    
   }
 }
 
