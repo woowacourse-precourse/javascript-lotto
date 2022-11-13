@@ -24,13 +24,7 @@ class App {
       const lottoCount = Console.calculateLottoCountWithPurchaseAmount(purchaseAmount);
       Console.print(`\n${lottoCount}${Console.LOTTO_COUNT}`);
 
-      Lotto.generateLottoWithLottoCount(lottoCount)
-        .map((lotto) => lotto.lottoNumbers)
-        .forEach((lotto) => {
-          this.lottos.push(lotto);
-          Console.print(lotto);
-        });
-
+      this.generateLottoWithLottoCount(lottoCount);
       this.askWinningNumber();
     });
   }
@@ -39,6 +33,18 @@ class App {
     Validation.isValidWinningNumber(winningNumbers);
 
     return lotto.filter((number) => winningNumbers.includes(number)).length;
+  }
+
+  generateLottoWithLottoCount(lottoCount) {
+    Array.from(
+      { length: lottoCount },
+      () => new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => (a > b ? 1 : -1)))
+    )
+      .map((lotto) => lotto.lottoNumbers)
+      .forEach((lotto) => {
+        this.lottos.push(lotto);
+        Console.print(lotto);
+      });
   }
 
   askWinningNumber() {
