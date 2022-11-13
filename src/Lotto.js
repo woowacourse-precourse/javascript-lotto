@@ -21,6 +21,10 @@ class Lotto {
     ) {
       throw new Error(ERROR_MESSAGE.Duplicate);
     }
+
+    if (numbers.some((num) => typeof num !== "number")) {
+      throw new Error(ERROR_MESSAGE.NaN);
+    }
   }
 
   calculateResult(userNumbers, userBonusNumber) {

@@ -17,6 +17,7 @@ const CONSOLE_MATCH_MESSAGE = [
 const ERROR_MESSAGE = {
   Enter: "[ERROR] 잘못된 금액입니다.",
   Duplicate: "[ERROR] 중복된 숫자입니다.",
+  NaN: "[ERROR] 숫자가 아닌 값입니다.",
 };
 
 module.exports = { ERROR_MESSAGE, CONSOLE_MATCH_MESSAGE, CONSOLE_MESSAGE };
