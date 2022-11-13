@@ -18,6 +18,14 @@ class LottoView {
 
     this.model.getLottoNumPrint(countLotto);
   }
+
+  numberPrint(input) {
+    MissionUtils.Console.print(this.model.lottoNumberError(input));
+  }
+
+  bonusNumberPrint(input) {
+    MissionUtils.Console.print(this.model.lottoBonusNumberError(input));
+  }
 }
 
 module.exports = LottoView;
