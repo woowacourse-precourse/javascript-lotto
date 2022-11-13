@@ -54,14 +54,14 @@
 
 ### not use callback
 
-- [x] Customer.buyLotto()
+- [x] 1. Customer.buyLotto()
 
   - get money : readLine() >> mock fn
   - transfer type : string -> int
   - price exception handling
   - return money;
 
-- [x] LottoStore.generateLotto(money)
+- [x] 2. LottoStore.generateLotto(money)
 
   - calculateLottoCount(money)
   - generateLottoNumber(lotto count) >> mock fn
@@ -72,7 +72,7 @@
 
 - [x] Customer.buyLotto(Lottos) : set lottoInstance
 
-- [x] LottoCompany.drawLottoNumber()
+- [x] 3. LottoCompany.drawLottoNumber()
 
   - get winning numbers : getWinningNumber() >> mock fn
   - transferIntArray(winningNumberString)

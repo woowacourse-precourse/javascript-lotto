@@ -26,7 +26,7 @@ describe("Feat 1. Customer.buyLotto", () => {
   });
 });
 
-describe("Feat 3. Customer set, get method", () => {
+describe("Customer set, get method", () => {
   const customer = new Customer();
   const lottos = [
     [8, 21, 23, 41, 42, 43],
