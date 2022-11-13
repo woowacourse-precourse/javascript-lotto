@@ -118,7 +118,7 @@ function showWin(MISSIONUTILS, answer, money, input){
     price = showFiveBallBonus(j,index, price, money, answer, MISSIONUTILS);
     index[0]++;
   }
-  showrate(MISSIONUTILS, price, input);
+  showRate(MISSIONUTILS, price, input);
 }
 
 function showFiveBallBonus(j,index, price, money, answer, MISSIONUTILS){
@@ -130,7 +130,7 @@ function showFiveBallBonus(j,index, price, money, answer, MISSIONUTILS){
   return price;
 }
 
-function showrate(MISSIONUTILS, price, input){
+function showRate(MISSIONUTILS, price, input){
   var rate = price/input*100;
   MISSIONUTILS.Console.print("총 수익률은 " + rate.toFixed(1) + "%입니다");
   MISSIONUTILS.Console.close();

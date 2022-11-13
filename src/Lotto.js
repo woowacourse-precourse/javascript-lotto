@@ -44,7 +44,7 @@ class Lotto {
     var number2 = win.#numbers;
 
     while(index[0] != number1.length && index[1] != number2.length){
-      checkwin(index, correct, number1, number2);
+      checkWin(index, correct, number1, number2);
     }
     
     for (var n of number1){
@@ -79,7 +79,7 @@ function checkBonus(correct, n, bonus){
     correct[1]++;
   }
 }
-function checkwin(index, correct, number1, number2){
+function checkWin(index, correct, number1, number2){
   if (number1[index[0]] == number2[index[1]]){
     correct[0]++;
     index[0]++;
