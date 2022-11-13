@@ -2,7 +2,11 @@ const User = require('./User');
 const Lotto = require('./Lotto');
 const { Console } = require('@woowacourse/mission-utils');
 const { checkMoneyValidation } = require('./utils/validations');
-const { getLotteryResult, printResult } = require('./utils/lotteryHandler');
+const {
+  getLotteryResult,
+  printResult,
+  printRevenue,
+} = require('./utils/lotteryHandler');
 
 class App {
   constructor() {
@@ -39,7 +43,7 @@ class App {
     const { numbers, bonusNumber } = this.lotto.numbers;
     const { tickets } = this.user;
     const totalResult = getLotteryResult(tickets, numbers, bonusNumber);
-    printResult(totalResult);
+    printResult(totalResult, this.user.money);
     Console.close();
   }
 }

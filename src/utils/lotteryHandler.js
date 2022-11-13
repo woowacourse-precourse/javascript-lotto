@@ -15,7 +15,7 @@ const createLotteryTicket = () => {
 const printMyLotteries = (lotteryTickets) => {
   Console.print(`${lotteryTickets.length}개를 구매했습니다.`);
   lotteryTickets.forEach((lottery) => {
-    Console.print(lottery);
+    Console.print(`[${lottery.join(', ')}]`);
   });
 };
 
@@ -89,9 +89,28 @@ const checkWinTickets = (totalResult) => {
   return winTickets;
 };
 
-const printResult = (totalResult) => {
-  const winTickets = checkWinTickets(totalResult);
+/* Print Revenue */
 
+const getTotalRevenue = (totalResult) => {
+  const winTickets = checkWinTickets(totalResult);
+  const totalRevenue = Object.entries(winTickets).reduce((acc, [_, ticket]) => {
+    const revenue = ticket.amount * ticket.price;
+    return revenue + acc;
+  }, 0);
+
+  return totalRevenue;
+};
+
+const getRevenueRate = (totalResult, cost) => {
+  const totalRevenue = getTotalRevenue(totalResult, cost);
+  const revenueRate = Math.round((totalRevenue * 1000) / cost) / 10;
+
+  return revenueRate;
+};
+
+const printResult = (totalResult, cost) => {
+  const winTickets = checkWinTickets(totalResult);
+  const revenueRate = getRevenueRate(totalResult, cost);
   Console.print('당첨 통계');
   Console.print('---');
   Console.print(`3개 일치 (5,000원) - ${winTickets.getThree.amount}개`);
@@ -101,7 +120,7 @@ const printResult = (totalResult) => {
     `5개 일치, 보너스 볼 일치 (30,000,000원) - ${winTickets.getFiveAndBonus.amount}개`,
   );
   Console.print(`6개 일치 (2,000,000,000원) - ${winTickets.getSix.amount}개`);
-  Console.print(`총 수익률은 ${0}입니다.`);
+  Console.print(`총 수익률은 ${revenueRate}%입니다.`);
 };
 
 module.exports = {
