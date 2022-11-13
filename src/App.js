@@ -13,6 +13,7 @@ class App {
 
   play() {
     this.requestPay();
+    this.requestNumber();
   }
 
   requestPay() {
@@ -34,6 +35,18 @@ class App {
       new Lotto(lotto);
       Console.print(lotto);
     });
+  }
+
+  requestNumber() {
+    Console.readLine(Message.SET_NUMBER, (lottoNumber) => {
+      lottoNumber = lottoNumber.split(",").map((number) => Number(number));
+      new Lotto(lottoNumber);
+      this.requestBonusNumber;
+    });
+  }
+
+  requestBonusNumber() {
+    Console.readLine(Message.SET_BONUSNUMBER, () => {});
   }
 }
 

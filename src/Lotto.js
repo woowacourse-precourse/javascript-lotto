@@ -14,6 +14,12 @@ class Lotto {
     if (numbers && [...new Set(numbers)].length !== 6) {
       throw new Error("[ERROR] 로또 번호에 중복이 있습니다.");
     }
+
+    if (numbers && numbers.every((number) => number < 1 || number > 45)) {
+      throw new Error(
+        "[ERROR] 로또 번호는 1 ~ 45 사이의 숫자만 입력이 가능합니다."
+      );
+    }
   }
 }
 
