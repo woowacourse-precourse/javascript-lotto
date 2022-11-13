@@ -10,10 +10,14 @@ class Lotto {
 
   validate(numbers) {
     if(numbers!==undefined){
-      if([...new Set(numbers)].join('').length!==6) throw "[ERROR]"
-      if (numbers.length !== 6) throw "[ERROR]"
+      console.log(new Set([...numbers].filter((i)=>i!==',')).size);
+      if(new Set([...numbers].filter((i)=>i!==',')).size<6) throw "[ERROR]"
+      if ([...numbers].filter((i)=>i!==',').length !== 6) throw "[ERROR]"
       if(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(numbers)) throw "[ERROR]"
       if(/[a-zA-Z]/g.test(numbers)) throw "[ERROR]"
+      ([...numbers].filter((i)=>i!==',').forEach((num)=>{
+        if(num>'45' || num < '1') throw "[ERROR]"
+      }))
     }
   }
 
@@ -27,14 +31,16 @@ class Lotto {
   getUserInputMoney() {
     MissionUtils.Console.readLine("구입금액을 입력해주세요.\n", (money) => {
       this.checkInputMoney(money)
-      this.createLottoNumArrays(money);
+      // this.createLottoNumArrays(money);
     });
   }
   checkInputMoney(money){
-    if(Number(money)<0) throw "[ERROR]"
+    let numberMoney=Number(money)
+    if(numberMoney<0) throw "[ERROR]"
     if(money[0]==='0') throw "[ERROR]"
-    if(Number(money)%1000!==0) throw "[ERROR]"
-    if(Number(money)===0) throw "[ERROR]"
+    if(numberMoney%1000!==0) throw "[ERROR]"
+    if(numberMoney===0) throw "[ERROR]"
+    this.createLottoNumArrays(numberMoney)
   }
 
   getUserLottoNumber(computerNumberArray,amountOfMoney) {
@@ -63,9 +69,9 @@ class Lotto {
     );
   }
   checkBonusNumber(bonusNumber){
-    if(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(bonusNumber)) throw "[ERROR]"
-    if(/[a-zA-Z]/g.test(bonusNumber)) throw "[ERROR]"
-    if(Number(bonusNumber)<1 || Number(bonusNumber)>45) throw "[ERROR]"
+    if(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(bonusNumber)) throw "한글 불가능"
+    if(/[a-zA-Z]/g.test(bonusNumber)) throw "영어 불가능"
+    if(Number(bonusNumber)<1 || Number(bonusNumber)>45) throw "1~45사이"
   }
   createLottoNumArrays(money) {
     let amountOfMoney = this.divideMoney(money);
