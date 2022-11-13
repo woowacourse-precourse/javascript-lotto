@@ -12,18 +12,17 @@ class App {
 
   play() {
     this.inputMoney();
-    Console.print("test");
-    // let lotto = new LottoTicket();
-    // Console.print(lotto.getNumbers());
   }
 
   inputMoney(){
     Console.readLine('구입금액을 입력해 주세요.\n', (input_money) => {
+      if(isNaN(input_money))
+        throw new Error("[Error] 숫자를 입력해주세요.");
       this.input_money = input_money;
     });
-  }
-
   
+  
+  }
 }
 
 const app = new App();

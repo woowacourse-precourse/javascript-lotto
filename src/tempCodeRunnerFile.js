@@ -1,2 +1,1 @@
-
-    Console.print("test");
+input_money
