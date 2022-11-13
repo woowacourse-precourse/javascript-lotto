@@ -1,6 +1,16 @@
 const { Console, Random } = require("@woowacourse/mission-utils/");
 const Lotto = require("../src/Lotto");
 class App {
+  winNumbers;
+  bonusNumber;
+  lottos;
+
+  constructor() {
+    this.bonusNumber = 0;
+    this.winNumbers = [];
+    this.lottos = [];
+  }
+
   play() {
     this.getInputMoney();
   }
@@ -11,8 +21,8 @@ class App {
         throw "[ERROR]";
       } else {
         Console.print(`${input / 1000}개를 구매했습니다.`);
-        let Lottos = this.publishLotto(input / 1000);
-        this.printLottosNumbers(Lottos);
+        this.lottos = this.publishLotto(input / 1000);
+        this.printLottosNumbers();
         this.getWinNumbers();
       }
     });
@@ -31,8 +41,8 @@ class App {
       .map((e) => new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6)));
   }
 
-  printLottosNumbers(Lottos) {
-    Lottos.forEach((e) => {
+  printLottosNumbers() {
+    this.lottos.forEach((e) => {
       Console.print(`[${e.getNumbers().join(", ")}]`);
     });
   }
@@ -47,10 +57,11 @@ class App {
 
   getWinNumbers() {
     Console.readLine("당첨 번호를 입력해 주세요.\n", (input) => {
-      let winNumbers = new Set(input.split(",").map(Number));
-      if (!this.isValidWinNumbers(winNumbers)) {
+      let wins = new Set(input.split(",").map(Number));
+      if (!this.isValidWinNumbers(wins)) {
         throw "[ERROR]";
       } else {
+        this.winNumbers = wins;
         this.getBonusNumber();
       }
     });
@@ -65,9 +76,13 @@ class App {
       if (!this.isValidBonusNumber(input)) {
         throw "[ERROR]";
       } else {
+        this.bonusNumber = input;
+        this.matchLottos(this.winNumbers, this.bonusNumber);
       }
     });
   }
+
+  matchLottos(lotto, winNumbers, bonusNumber) {}
 }
 
 module.exports = App;
