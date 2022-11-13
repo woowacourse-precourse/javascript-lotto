@@ -1,6 +1,14 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
+function printGuessNumbersTotal(numOfTickets, guessNumbersTotal) {
+  MissionUtils.Console.print(`\n${numOfTickets}개를 구매했습니다.`);
+  for (let i = 0; i < guessNumbersTotal.length; i += 1) {
+    MissionUtils.Console.print(guessNumbersTotal[i]);
+  }
+  getWinningNumbers();
+}
+
 function generateGuessNumbers(numOfTickets) {
   const guessNumbersTotal = [];
   for (let i = 0; i < numOfTickets; i += 1) {
