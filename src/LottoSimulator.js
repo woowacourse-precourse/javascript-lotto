@@ -1,4 +1,16 @@
 class LottoSimulator {
+  gradeCount;
+
+  constructor() {
+    this.gradeCount = new Map([
+      ['fifth', 0],
+      ['fourth', 0],
+      ['third', 0],
+      ['second', 0],
+      ['first', 0],
+    ]);
+  }
+  
   checkWinningResult(lottos, winningNumber, bonusNumber) {
     lottos.forEach(lotto => {
       this.setGrade(lotto.getRank(winningNumber, bonusNumber));
