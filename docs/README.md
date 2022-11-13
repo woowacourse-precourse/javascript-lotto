@@ -48,3 +48,7 @@
 ## 게임결과🎱 gif
 
 ![LottoGame결과](../img/LorroGameResult.gif)
+
+## 프리코스 소감 및 배운점 기록
+
+[개인 블로그](https://velog.io/@tkdgk1996).
