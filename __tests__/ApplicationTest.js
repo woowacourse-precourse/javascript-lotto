@@ -86,6 +86,24 @@ describe("로또 테스트", () => {
     });
   });
 
+  test("랜덤 넘버 생성 테스트", () => {
+    mockRandoms([
+      [3, 5, 11, 19, 22, 37],
+    ]);
+    mockQuestions(["1000"]);
+    const logs = [
+      "1개를 구매했습니다.",
+      "[3, 5, 11, 19, 22, 37]",
+    ];
+    const logSpy = getLogSpy();
+    const buy = new Buy();
+    buy.countCalculate();
+    buy.randomNumbers();
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
   test("당첨 번호 및 보너스 매칭 테스트", () => {
     mockQuestions(["1,2,3,4,5,6", "7"]); 
     const games = [
@@ -114,6 +132,16 @@ describe("로또 테스트", () => {
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
+  });
+
+  test("수익률 계산 테스트", () => {
+    const record = [0, 0, 1, 1];
+    const bonus = 1;
+    const count = 5;
+    const result = new Result();
+    result.rankingCalculate(record, bonus);
+    result.profitCalculate(count);
+    expect(result.profit).toBe(40600000);
   });
 
 });
