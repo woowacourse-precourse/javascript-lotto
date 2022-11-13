@@ -45,11 +45,21 @@ class App {
   calculateResults() {
     Console.print(CONSOLE_MESSAGE.Stats);
 
-    const totalPrize = this.#lottos.reduce(
-      (acc, lotto) =>
-        acc + lotto.calculateResult(this.#userNumbers, this.#userBonusNumber),
-      0
+    const totalResult = this.#lottos.reduce(
+      (acc, lotto) => {
+        const { prize: currentPrize, type: currentRank } =
+          lotto.calculateResult(this.#userNumbers, this.#userBonusNumber);
+
+        if (!currentRank) return acc;
+
+        acc.prize += currentPrize;
+        acc.ranksCnt[currentRank] += 1;
+        return acc;
+      },
+      { prize: 0, ranksCnt: [0, 0, 0, 0, 0] }
     );
+
+    this.printResult(totalResult);
   }
 }
 

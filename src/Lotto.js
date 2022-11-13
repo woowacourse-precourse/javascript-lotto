@@ -1,4 +1,4 @@
-const { getPrizeByResultCnt } = require("./util/calculate");
+const { getRankByResultCnt } = require("./util/calculate");
 
 class Lotto {
   #numbers;
@@ -24,7 +24,7 @@ class Lotto {
       return acc;
     }, 0);
 
-    return getPrizeByResultCnt(cnt, numberSet.has(userBonusNumber));
+    return getRankByResultCnt(cnt, numberSet.has(userBonusNumber));
   }
 }
 

@@ -1,16 +1,18 @@
-function getPrizeByResultCnt(numbersCnt, isBonusNmberMatched) {
+function getRankByResultCnt(numbersCnt, isBonusNmberMatched) {
   switch (numbersCnt) {
     case 3:
-      return 5000;
+      return { prize: 5000, type: 0 };
     case 4:
-      return 50000;
+      return { prize: 50000, type: 1 };
     case 5:
-      return isBonusNmberMatched ? 30000000 : 1500000;
+      return isBonusNmberMatched
+        ? { prize: 30000000, type: 2 }
+        : { prize: 1500000, type: 3 };
     case 6:
-      return 2000000000;
+      return { prize: 2000000000, type: 4 };
     default:
-      return 0;
+      return { prize: 0, type: null };
   }
 }
 
-module.exports = { getPrizeByResultCnt };
+module.exports = { getRankByResultCnt };
