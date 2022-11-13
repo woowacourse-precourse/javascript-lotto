@@ -6,7 +6,7 @@ class GamePrint {
   static sheets(sheets) {
     MissionUtils.Console.print(`${sheets}${MESSAGES.GAME.buySheets}`);
   }
-  static userLottos(lottos) {
+  static lottoList(lottos) {
     lottos.forEach(lotto => {
       lotto = lotto.join(', ');
       lotto = `[${lotto}]`;

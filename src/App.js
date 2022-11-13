@@ -7,65 +7,64 @@ const { MESSAGES, PRIZE } = require('./constants');
 
 class App {
   constructor() {
-    this.lotto = {
-      amount: null,
-      sheets: null,
-      user: null,
-      winning: null,
-    }
+    this.amount = null,
+    this.sheets = null,
+    this.userLottos = null,
+    this.winningLotto = null,
     this.prize = JSON.parse(JSON.stringify(PRIZE));
-    this.totalPrizeMoney = 0;
-    this.profitRate = 0;
+    this.revenue = 0;
+    this.revenueRate = 0;
   }
   play() {
     this.submitAmount();
   }
   submitAmount() {
     MissionUtils.Console.readLine(MESSAGES.GAME.requirePurchaseAmount, (amount) => {
-      this.lotto.amount = GameUtils.filterPurchaseAmount(amount);
-      this.lotto.amount = Validator.amountValidCheck(this.lotto.amount);
-      this.lotto.sheets = GameUtils.getSheets(this.lotto.amount);
-      GamePrint.sheets(this.lotto.sheets);
-      this.lotto.user = getUserLottos(this.lotto.sheets);
-      GamePrint.userLottos(this.lotto.user);
-      this.submitLotto();
+      this.amount = GameUtils.amountToNumber(amount);
+      this.amount = Validator.amountValidCheck(this.amount);
+      this.sheets = GameUtils.getSheets(this.amount);
+      GamePrint.sheets(this.sheets);
+      this.userLottos = getUserLottos(this.sheets);
+      GamePrint.lottoList(this.userLottos);
+      this.submitWinningLotto();
     });
   }
-  submitLotto() {    
+  submitWinningLotto() {    
     MissionUtils.Console.readLine(MESSAGES.GAME.requireLottoNumbers, (input) => {
-      input = GameUtils.toArray(input);
-      this.lotto.winning = new Lotto(input);
+      input = GameUtils.toNonCommaArray(input);
+      this.winningLotto = new Lotto(input);
       this.submitBonus();
     });
   }
   submitBonus() {    
     MissionUtils.Console.readLine(MESSAGES.GAME.requireBonusNumbers, (input) => {
-      input = GameUtils.toArray(input);
-      this.lotto.winning.getBonus(input);
+      input = GameUtils.toNonCommaArray(input);
+      this.winningLotto.setBonus(input);
       this.getResult();
-      GamePrint.result(this.prize, this.profitRate);
+      GamePrint.result(this.prize, this.revenueRate);
       MissionUtils.Console.close();
     });
   }
   getResult() {
-    this.lotto.user.forEach(lotto => {
-      const match = this.lotto.winning.compare(lotto);
-      this.setPrize(match);      
+    this.userLottos.forEach(lotto => {
+      const result = this.winningLotto.compare(lotto);
+      this.getRevenue(result);      
     });
-    this.profitRate = GameUtils.getProfitRate(this.lotto.amount, this.totalPrizeMoney);
+    this.revenueRate = GameUtils.getRevenueRate(this.amount, this.revenue);
   }
-  setPrize(match) {
-    if(match.lotto === '5' && match.bonus === false) {
-      this.totalPrizeMoney += this.prize[match.lotto].nonBonus.winningAmount;
-      return this.prize[match.lotto].nonBonus.ea += 1;
+  getRevenue(matched) {
+    const matchedNumber = this.prize[matched.lotto];
+    if(matched.lotto === '5' && matched.bonus === false) {
+      this.revenue += matchedNumber.nonBonus.winningAmount;
+      return matchedNumber.nonBonus.ea += 1;
     }
-    if(match.lotto === '5' && match.bonus === true) {
-      this.totalPrizeMoney += this.prize[match.lotto].hasBonus.winningAmount;
-      return this.prize[match.lotto].hasBonus.ea += 1;
+    if(matched.lotto === '5' && matched.bonus === true) {
+      this.revenue += matchedNumber.hasBonus.winningAmount;
+      return matchedNumber.hasBonus.ea += 1;
     }
-    if(Object.keys(this.prize).includes(match.lotto)) {
-      this.totalPrizeMoney += this.prize[match.lotto].winningAmount;
-      return this.prize[match.lotto].ea += 1;
+    if(Object.keys(this.prize).includes(matched.lotto)) {
+      this.revenue += matchedNumber.winningAmount;
+      return matchedNumber.ea += 1;
     }
   }
 }

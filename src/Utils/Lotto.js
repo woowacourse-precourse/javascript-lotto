@@ -11,7 +11,7 @@ class Lotto {
     numbers = Validator.lottoValidCheck(numbers);
     this.#numbers = numbers;
   }
-  getBonus(bonus) {
+  setBonus(bonus) {
     Validator.bonusValidCheck(bonus, this.#numbers);
     this.bonus = bonus;
   }
@@ -24,7 +24,6 @@ class Lotto {
         return matchCount.bonus = true;
       }
     });
-    // console.log(matchCount.lotto, UserLotto);
     matchCount.lotto = matchCount.lotto.toString();
     return matchCount;
   }

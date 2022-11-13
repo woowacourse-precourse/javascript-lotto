@@ -1,12 +1,12 @@
 const { PRICE_PER_SHEET, ROUNDING_DIGIT } = require('../constants');
 
 class GameUtils {
-  static toArray(input) {
+  static toNonCommaArray(input) {
     input = GameUtils.removeBlank(input).split(',');
     input = input.map(item => Number(item));
     return input;
   }
-  static filterPurchaseAmount(value) {
+  static amountToNumber(value) {
     const regex = /[,'원']/g;
     value = value.replace(regex, '');
     return value;
@@ -19,11 +19,11 @@ class GameUtils {
     const nonBlank = value.replace(regex, '');
     return nonBlank;
   }
-  static getProfitRate(amount, total) {
+  static getRevenueRate(amount, total) {
     if(total === 0) return 0;
     const decimalValue = (total / amount) * 100;
-    const profitRate = decimalValue.toFixed(ROUNDING_DIGIT);
-    return profitRate;
+    const revenueRate = decimalValue.toFixed(ROUNDING_DIGIT);
+    return revenueRate;
   }
   static addComma(value) {
     let addedComma = '';
