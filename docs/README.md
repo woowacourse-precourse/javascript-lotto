@@ -16,14 +16,16 @@
 - [x] 순수 Vanila JS로만 구현
 - [x] process.exit() 호출 금지
 - [x] indent depth 3미만
-- [ ] Jest를 활용한 테스트코드 작성
+- [x] Jest를 활용한 테스트코드 작성
 
 ## 추가된 요구 사항
 - [x] 각 함수의 길이가 15라인을 넘어가지 않도록 구현
 - [x] else를 지양하고 return을 활용
-- [ ] 도메인 로직에 단위테스트를 구현
+- [x] 도메인 로직에 단위테스트를 구현
 
 
 ## 참고자료
 * [map](https://7942yongdae.tistory.com/48)
 * [fast-foward merge](https://wikidocs.net/153693)
+* [Jest 오류 해결](https://stackoverflow.com/questions/53935108/jest-did-not-exit-one-second-after-the-test-run-has-completed-using-express)
+* [Jest mock](https://jestjs.io/docs/mock-functions)
