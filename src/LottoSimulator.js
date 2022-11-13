@@ -4,6 +4,11 @@ class LottoSimulator {
       this.setGrade(lotto.getRank(winningNumber, bonusNumber));
     });
   }
+
+  setGrade(grade) {
+    if (grade === 'none') return;
+    this.gradeCount.set(grade, this.gradeCount.get(grade) + 1);
+  }
 }
 
 module.exports = LottoSimulator;
