@@ -1,41 +1,14 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { GAME_MESSAGES, ERROR_MESSAGES, NUMBERS } = require("./constants");
-const { isInRange, isDuplicated } = require("../src/utils");
+const { isOutOfRange, isDuplicated } = require("../src/utils");
 
 class Lotto {
   #numbers;
 
   constructor(cost, numbers) {
-    /* Purchase class 에서 구현 */
-    // this.validate(numbers);
     this.#numbers = numbers;
     this.handleUserInput(cost);
   }
-
-  validateWinningNumber = (winningNumber) => {
-    if (winningNumber.length !== 6)
-      throw new Error(ERROR_MESSAGES.INVALID_LOTTO_LENGTH);
-    if (isDuplicated(winningNumber)) {
-      throw new Error(ERROR_MESSAGES.DUPLICATED_LOTTO_NUM);
-    }
-    if (!isInRange(winningNumber))
-      throw new Error(ERROR_MESSAGES.INVALID_LOTTO_RANGE);
-
-    return true;
-  };
-
-  validateBonusNumber = (bonusNumber, winningNumber) => {
-    if (isNaN(bonusNumber)) {
-      throw new Error(ERROR_MESSAGES.FORMAT_ERROR);
-    }
-    if (winningNumber.includes(Number(bonusNumber))) {
-      throw new Error(ERROR_MESSAGES.DUPLICATED_LOTTO_NUM);
-    }
-    if (!isInRange(bonusNumber))
-      throw new Error(ERROR_MESSAGES.INVALID_LOTTO_RANGE);
-
-    return true;
-  };
 
   handleUserInput = (cost) => {
     Console.readLine(GAME_MESSAGES.ASK_FOR_WINNING_NUMBERS, (winningNumber) => {
@@ -50,50 +23,89 @@ class Lotto {
         Console.close();
       });
     });
-
-    // const userInput = this.setUserInput(winningNumber, bonusNumber);
-    // const resultMessage = this.getResultMessage();
-
-    // Console.print(resultMessage);
   };
 
+  validateWinningNumber = (winningNumber) => {
+    if (winningNumber.length !== 6)
+      throw new Error(ERROR_MESSAGES.INVALID_LOTTO_LENGTH);
+    if (isDuplicated(winningNumber)) {
+      throw new Error(ERROR_MESSAGES.DUPLICATED_LOTTO_NUM);
+    }
+    if (isOutOfRange(winningNumber))
+      throw new Error(ERROR_MESSAGES.INVALID_LOTTO_RANGE);
+
+    return true;
+  };
+  validateBonusNumber = (bonusNumber, winningNumber) => {
+    if (isNaN(bonusNumber)) {
+      throw new Error(ERROR_MESSAGES.FORMAT_ERROR);
+    }
+    if (winningNumber.includes(Number(bonusNumber))) {
+      throw new Error(ERROR_MESSAGES.DUPLICATED_LOTTO_NUM);
+    }
+    if (isOutOfRange(bonusNumber))
+      throw new Error(ERROR_MESSAGES.INVALID_LOTTO_RANGE);
+
+    return true;
+  };
   getWinningNumber = (input) => {
     const winningNumber = [];
     for (let i = 0; i < input.length; i++) {
       winningNumber.push(Number(input[i]));
     }
-    // this.validateWinningNumber(winningNumber);
+    this.validateWinningNumber(winningNumber);
     Console.print(winningNumber);
     return winningNumber;
   };
-
   getBonusNumber = (bonusNumber, winningNumber) => {
     this.validateBonusNumber(bonusNumber, winningNumber);
     Console.print(bonusNumber);
-    return bonusNumber;
+    return Number(bonusNumber);
   };
 
   setUserInput = (winningNumber, bonusNumber) => {
     const userInput = {
-      winningNumber: winningNumber.split("").map((num) => Number(num)),
-      bonusNumber: Number(bonusNumber),
+      winningNumber,
+      bonusNumber,
     };
-
-    console.log("user input: ", userInput);
     return userInput;
   };
 
   calculateResult = (userInput) => {
-    const result = { first: 0, second: 0, third: 0, fourth: 0, fifth: 0 };
+    const result = { fifth: 0, fourth: 0, third: 0, second: 0, first: 0 };
 
-    const winningNumber = userInput.winningNumber; //
-    const bonusNumber = userInput.bonusNumber; //""
-    const lottoNumbers = this.#numbers; // [[],[],[],...]
+    const winningNumber = userInput.winningNumber;
+    const bonusNumber = userInput.bonusNumber;
+    const sevenNums = [...winningNumber, bonusNumber].map((x) => Number(x));
+    const lottoNumbers = this.#numbers;
 
-    lottoNumbers.forEach((oneLotto) => {
-      oneLotto.forEach;
-    });
+    let count = 0;
 
+    for (let i = 0; i < lottoNumbers.length; i++) {
+      lottoNumbers[i].forEach((eachNum) => {
+        if (sevenNums.includes(eachNum)) count++;
+      });
+      switch (count) {
+        case 3:
+          result["fifth"] += 1;
+          break;
+        case 4:
+          result["fourth"] += 1;
+          break;
+        case 5:
+          result["third"] += 1;
+          break;
+        case 6:
+          if (lottoNumbers[i].includes(Number(bonusNumber))) {
+            result["second"] += 1;
+          } else result["first"] += 1;
+          break;
+      }
+      count = 0;
+    }
+
+    console.log("lotto: ", lottoNumbers, "seven num: ", sevenNums);
+    console.log("result: ", result);
     return result;
   };
 

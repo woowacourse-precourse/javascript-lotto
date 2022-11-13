@@ -13,19 +13,22 @@ const isDuplicated = (arr) => {
   if (arr.length !== set.size) return true;
 };
 
-const isInRange = (numberOrNumbers) => {
+const isOutOfRange = (numberOrNumbers) => {
   if (typeof numberOrNumbers === "object") {
     const numbersArr = numberOrNumbers;
-    numbersArr.forEach((num) => {
-      if (num < 1 || num > 45) return false;
-    });
+    for (let i = 0; i < numbersArr.length; i++) {
+      if (numbersArr[i] < 1 || numbersArr[i] > 45) {
+        return true;
+      }
+    }
   }
 
   if (typeof numberOrNumbers === "string") {
     const number = numberOrNumbers;
-    if (Number(number) < 1 || Number(number) > 45) return false;
+    if (Number(number) < 1 || Number(number) > 45) return true;
   }
-  return true;
+
+  return false;
 };
 
-module.exports = { getRandomInt, isDuplicated, isInRange };
+module.exports = { getRandomInt, isDuplicated, isOutOfRange };
