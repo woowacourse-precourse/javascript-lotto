@@ -50,6 +50,10 @@ class View {
       this.controller.setBonusNumberFromUser(userInput);
     });
   }
+
+  printBonusNumberErrorMessage() {
+    throw new Error(messages.BONUS_NUMBER_ERROR_MESSAGE);
+  }
 }
 
 module.exports = View;
