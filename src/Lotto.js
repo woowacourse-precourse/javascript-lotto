@@ -32,7 +32,14 @@ class Lotto {
   }
 
   print_lotto() {
-    MissionUtils.Console.print(this.#numbers);
+    this.#numbers = this.#numbers.sort((a, b) => {
+      return Number(a) - Number(b);
+    });
+    MissionUtils.Console.print(
+      `[${this.#numbers[0]}, ${this.#numbers[1]}, ${this.#numbers[2]}, ${
+        this.#numbers[3]
+      }, ${this.#numbers[4]}, ${this.#numbers[5]}]`
+    );
   }
 
   matching_number(win, bonus) {

@@ -10,15 +10,18 @@ class App {
       e.print_lotto();
     });
     const [win_number, bonus_number] = this.get_win_number_and_bonus_number();
-    console.log(win_number, bonus_number);
     const matching_list = [];
     lotto_list.forEach((e) => {
       matching_list.push(e.matching_number(win_number, bonus_number));
     });
-    // console.log(matching_list);
     const number_match_list = this.match(matching_list); //차례대로 3,4,5, 5+보너스, 6
-    // console.log(number_match_list);
     this.print_number_match_list(number_match_list);
+    MissionUtils.Console.print(
+      `총 수익률은 ${this.calculate_percentage(
+        number_of_lottos,
+        number_match_list
+      )}%입니다.`
+    );
   }
 
   get_number_of_lottos() {
@@ -141,6 +144,19 @@ class App {
     MissionUtils.Console.print(
       `6개 일치 (2,000,000,000원) - ${number_match[4]}개`
     );
+  }
+
+  calculate_percentage(number_lotto, number_match) {
+    const price = number_lotto * 1000;
+    let earn =
+      number_match[0] * 5000 +
+      number_match[1] * 50000 +
+      number_match[2] * 1500000 +
+      number_match[3] * 30000000 +
+      number_match[4] * 2000000000;
+    let earn_rate = earn / price;
+    earn_rate = earn_rate * 100;
+    return Math.round(earn_rate * 10) / 10;
   }
 }
 
