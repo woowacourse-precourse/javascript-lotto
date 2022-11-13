@@ -24,6 +24,13 @@ const getLogSpy = () => {
 };
 
 describe("로또 테스트", () => {
+  test("숫자는 0으로 시작하면 안된다.", () => {
+    expect(() => {
+      const app = new App();
+      app.checkNumberStartZero("08000");
+    }).toThrow("[ERROR] 0으로 시작하는 숫자는 입력할 수 없습니다.");
+  });
+
   test("로또 구매를 1000원 단위로 하지 않았을 경우", () => {
     expect(() => {
       const app = new App();
