@@ -1,4 +1,5 @@
 const { ERROR, LOTTO } = require('./constants');
+const ScoreMachine = require('./ScoreMachine');
 
 class Lotto {
   #numbers;
@@ -6,6 +7,7 @@ class Lotto {
   constructor(numbers) {
     Lotto.validate(numbers);
     this.#numbers = numbers;
+    this.recordLottoNumber();
   }
 
   static validate(numbers) {
@@ -17,6 +19,10 @@ class Lotto {
       if (number < LOTTO.MIN_NUMBER || number > LOTTO.MAX_NUMBER)
         throw new Error(ERROR.LOTTO_NUMBER_RANGE);
     });
+  }
+
+  recordLottoNumber() {
+    ScoreMachine.lottoNumberList.push([...this.#numbers]);
   }
 }
 

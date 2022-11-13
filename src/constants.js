@@ -24,4 +24,12 @@ const LOTTO = {
   MIN_NUMBER: 1,
 };
 
-module.exports = { PHRASE, ERROR, LOTTO };
+const RANKING = {
+  FIRST: '1등',
+  SECOND: '2등',
+  THIRD: '3등',
+  FOURTH: '4등',
+  FIFTH: '5등',
+};
+
+module.exports = { PHRASE, ERROR, LOTTO, RANKING };
