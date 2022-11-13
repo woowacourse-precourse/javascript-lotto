@@ -6,6 +6,7 @@ class Game {
     this.showNumbers(this.price);
     this.getWinningNumberInput();
     this.getBonusNumberInput();
+    this.getResult();
   }
 
   constructor() {
@@ -67,6 +68,15 @@ class Game {
       this.countArr.push(6-difference.length);
     }
   }  
+
+  getResult(){
+    const result = this.countArr.reduce((accu, curr) => { 
+      accu[curr] = (accu[curr] || 0)+1; 
+      return accu;
+    }, {});
+        
+    return result;
+  }
 
 
 }
