@@ -2,7 +2,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 
 class LottoModel {
   inputValidCheck(input) {
-    if (/[\d]/g.test(input)) {
+    if (/[^\d]/g.test(input)) {
       MissionUtils.Console.close();
       throw new Error("[ERROR] 로또 번호에 문자가 포함 되있습니다.");
     }
