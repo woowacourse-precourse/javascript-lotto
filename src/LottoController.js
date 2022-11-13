@@ -21,6 +21,7 @@ class LottoController {
       const lotto = this.lottoStore.sellLotto();
       customer.purchaseLotto(lotto);
     }
+    customer.printLottoPurchaseResult();
   }
 }
 
