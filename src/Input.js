@@ -37,7 +37,10 @@ class InputExceptionCheck extends ExceptionCheck {
       throw new CustomError(ErrorMessage.notWinningNumber);
     if (winningNumberArray.length != 6)
       throw new CustomError(ErrorMessage.notWinningNumber);
+    const overLap = {};
     winningNumberArray.forEach((num) => {
+      overLap[num] ? (overLap[num] += 1) : (overLap[num] = 1);
+      if (overLap[num] > 1) throw new CustomError(ErrorMessage.overLapNumber);
       if (!lottoNumReg.test(num))
         throw new CustomError(ErrorMessage.notWinningNumber);
     });
