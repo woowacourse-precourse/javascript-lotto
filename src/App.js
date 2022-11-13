@@ -6,7 +6,7 @@ const {
 } = require("./utils/validator");
 
 const Lotto = require("./Lotto");
-const { MESSAGES } = require("./constraints");
+const { MESSAGES, REWORDS } = require("./constraints");
 class App {
   constructor() {
     this.purchaseAmount = 0; // 구입 금액
@@ -15,6 +15,7 @@ class App {
     this.results = []; // 각 로또의 결과
     this.winningNumbers = []; // 당첨 번호
     this.bonusNumber = 0; // 보너스 번호
+    this.rewards = 0;
   }
 
   play() {
@@ -43,7 +44,7 @@ class App {
 
   setBonusNumber() {
     Console.readLine("보너스 번호를 입력해주세요.", (number) => {
-      this.bonusNumber = validateBonusNumber(number);
+      this.bonusNumber = validateBonusNumber(number, this.winningNumbers);
       Console.close();
       this.getResult();
     });
@@ -69,7 +70,32 @@ class App {
         lotto.compareNumbers(this.winningNumbers, this.bonusNumber)
       )
     );
-    console.log(this.results);
+    this.getRewards();
+  }
+
+  getRewards() {
+    this.results.forEach((result) => {
+      console.log(result);
+      switch (result) {
+        case "FIFTH":
+          this.rewards += REWORDS.FIFTH;
+          break;
+        case "FOURTH":
+          this.rewards += REWORDS.FOURTH;
+          break;
+        case "THIRD":
+          this.rewards += REWORDS.THIRD;
+          break;
+        case "SECOND":
+          this.rewards += REWORDS.SECOND;
+          break;
+        case "FIRST":
+          this.rewards += REWORDS.FIRST;
+          break;
+        default:
+          break;
+      }
+    });
   }
 }
 
