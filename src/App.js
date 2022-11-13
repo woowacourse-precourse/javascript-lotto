@@ -92,8 +92,10 @@ class App {
 
   #updateStatistics(lotto, winningNumbers, bonusNumber) {
     const { prizeStatus, prizeMoney } = lotto.getPrize(winningNumbers, bonusNumber);
-    this.prizeStatistics[prizeStatus] += 1;
-    this.prizeStatistics.prizeMoney += prizeMoney;
+    if (prizeStatus !== LottoConfig.NO_PRIZE) {
+      this.prizeStatistics[prizeStatus] += 1;
+      this.prizeStatistics.prizeMoney += prizeMoney;
+    }
   }
 }
 
