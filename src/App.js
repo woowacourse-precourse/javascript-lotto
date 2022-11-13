@@ -1,9 +1,13 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const UserLottos = require("./UserLottos");
 
 class App {
   constructor() {
     this.purchaseAmout = 0;
     this.userLottoCount = 0;
+    this.userLottos = new UserLottos();
+    this.userLottoNumbers = [];
+    this.winningLotto = [];
   }
 
   play() {}
@@ -12,14 +16,13 @@ class App {
       "구입금액을 입력해 주세요.",
       (purchaseAmount) => {
         this.purchaseAmout = purchaseAmount;
-        this.userLottoCount = getUserLottoCount(this.purchaseAmout);
+        this.userLottoNumbers = this.userLottos.getNumbers(purchaseAmount);
       }
     );
   }
-
-  getUserLottoCount(purchaseAmount) {
-    return purchaseAmount / 1000;
-  }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
