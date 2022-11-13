@@ -3,12 +3,6 @@ const { LottoConfig, AppConfig, Message } = require('./Config');
 const Lotto = require('./Lotto');
 
 class App {
-  #money;
-
-  #lottoList;
-
-  #prizeStatistics;
-
   constructor() {
     this.reset();
   }
@@ -50,32 +44,32 @@ class App {
   }
 
   reset() {
-    this.#money = 0;
-    this.#lottoList = [];
-    this.#prizeStatistics = { prizeMoney: 0 };
-    this.#prizeStatistics[LottoConfig.PRIZE_1] = 0;
-    this.#prizeStatistics[LottoConfig.PRIZE_2] = 0;
-    this.#prizeStatistics[LottoConfig.PRIZE_3] = 0;
-    this.#prizeStatistics[LottoConfig.PRIZE_4] = 0;
-    this.#prizeStatistics[LottoConfig.PRIZE_5] = 0;
+    this.money = 0;
+    this.lottoList = [];
+    this.prizeStatistics = { prizeMoney: 0 };
+    this.prizeStatistics[LottoConfig.PRIZE_1] = 0;
+    this.prizeStatistics[LottoConfig.PRIZE_2] = 0;
+    this.prizeStatistics[LottoConfig.PRIZE_3] = 0;
+    this.prizeStatistics[LottoConfig.PRIZE_4] = 0;
+    this.prizeStatistics[LottoConfig.PRIZE_5] = 0;
   }
 
   play() {}
 
   buyLotto() {
-    for (let purchase = 0; purchase < this.#money; purchase += LottoConfig.PRICE) {
-      this.#lottoList.push(new Lotto());
+    for (let purchase = 0; purchase < this.money; purchase += LottoConfig.PRICE) {
+      this.lottoList.push(new Lotto());
     }
   }
 
   calculateStatistics(winningNumbers, bonusNumber) {
-    this.#lottoList.forEach(
+    this.lottoList.forEach(
       (lotto) => { this.#updateStatistics(lotto, winningNumbers, bonusNumber); },
     );
   }
 
   getRateOfReturn() {
-    return (this.#prizeStatistics.prizeMoney / this.#money) * 100;
+    return (this.prizeStatistics.prizeMoney / this.money) * 100;
   }
 
   setMoney() {
@@ -86,20 +80,20 @@ class App {
     );
 
     App.#validateMoney(money);
-    this.#money = money;
+    this.money = money;
   }
 
   printLottoList() {
-    MissionUtils.Console.print(Message.buy(this.#lottoList.length));
-    this.#lottoList.forEach((lotto) => {
+    MissionUtils.Console.print(Message.buy(this.lottoList.length));
+    this.lottoList.forEach((lotto) => {
       MissionUtils.Console.print(Message.lottoNumber(lotto));
     });
   }
 
   #updateStatistics(lotto, winningNumbers, bonusNumber) {
     const { prizeStatus, prizeMoney } = lotto.getPrize(winningNumbers, bonusNumber);
-    this.#prizeStatistics[prizeStatus] += 1;
-    this.#prizeStatistics.prizeMoney += prizeMoney;
+    this.prizeStatistics[prizeStatus] += 1;
+    this.prizeStatistics.prizeMoney += prizeMoney;
   }
 }
 
