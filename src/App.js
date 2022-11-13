@@ -68,6 +68,13 @@ class App {
       this.getBonusNumber();
     });
   }
+
+  // 보너스 번호 입력
+  getBonusNumber() {
+    Console.readLine(`\n${PLZ_INPUT_BONUS_NUMBER}\n`, bonus => {
+      this.bonusNum = bonus;
+    });
+  }
 }
 
 module.exports = App;
