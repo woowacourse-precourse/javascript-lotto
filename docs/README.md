@@ -18,7 +18,7 @@
 |:heavy_check_mark:|위의 숫자들을 오름차순으로 정리한다.||
 |:heavy_check_mark:|로또 구입 금액을 입력받는다.||
 |:heavy_check_mark:|로또 구입 금액에 따른 로또 개수를 계산한다.||
-|:heavy_minus_sign:|Lotto class에 로또 숫자를 넣으며 인스턴스를 만든다.||
+|:heavy_check_mark:|Lotto class에 로또 숫자를 넣으며 인스턴스를 만든다.||
 |:heavy_minus_sign:|로또 개수만큼 인스턴스를 만들어 구매 개수와 함께 출력한다.||
 |:heavy_minus_sign:|당첨 번호와 보너스 번호를 개별적으로 입력받아 구분해 저장한다.||
 |:heavy_minus_sign:|입력된 당첨 번호와 보너스 번호를 임의의 숫자들과 대조하는 함수를 작성한다.||

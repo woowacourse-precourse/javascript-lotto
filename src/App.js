@@ -1,6 +1,7 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
 // const { ERROR_MSG_THOUSAND_UNIT } = require("./constants/error-message");
 // const { WINNINGS } = require("./constants/winnings");
+const Lotto = require("./Lotto");
 
 class App {
   constructor() {
@@ -27,6 +28,12 @@ class App {
 
   calcLottoCount(budget) {
     return Number(budget) / 1000;
+  }
+
+  createLotto() {
+    const lottoNums = this.createLottoNums();
+    const lotto = new Lotto(lottoNums);
+    return lotto;
   }
 }
 
