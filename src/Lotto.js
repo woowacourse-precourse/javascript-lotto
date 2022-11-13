@@ -1,7 +1,9 @@
 const { getRankByResultCnt } = require("./util/calculate");
+const { ERROR_MESSAGE } = require("./util/message");
 
 class Lotto {
   #numbers;
+  #numbersSet;
 
   constructor(numbers) {
     this.validate(numbers);
@@ -11,6 +13,14 @@ class Lotto {
   validate(numbers) {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    }
+
+    if (
+      numbers.some((num, idx) => {
+        return numbers.indexOf(num) !== idx;
+      })
+    ) {
+      throw new Error(ERROR_MESSAGE.Duplicate);
     }
   }
 
