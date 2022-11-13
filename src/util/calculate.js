@@ -16,7 +16,7 @@ function getRankByResultCnt(numbersCnt, isBonusNmberMatched) {
 }
 
 function getRate(pay, result) {
-  return ((result / pay) * 100).toFixed(2);
+  return ((result / pay) * 100).toFixed(1);
 }
 
 module.exports = { getRankByResultCnt, getRate };
