@@ -1,3 +1,5 @@
+const Lotto = require("./Lotto");
+const { Random } = require("@woowacourse/mission-utils");
 const LOTTERY_PRICE = 1000;
 
 class LottoGame {
@@ -6,7 +8,7 @@ class LottoGame {
     this.lotteries = [];
   }
 
-  setPurchaseAmount(purchaseAmount){
+  setPurchaseAmount(purchaseAmount) {
     this.validate(purchaseAmount);
     this.purchaseAmount = purchaseAmount;
   }
@@ -23,6 +25,27 @@ class LottoGame {
     if (!Number.isInteger(purchaseAmount) || purchaseAmount % LOTTERY_PRICE) {
       throw new Error("[ERROR] 1,000원 단위로 입력해주세요.")
     }
+  }
+  
+  issueLottories() {
+    const lottoQuantity = this.getLottoQuantity();
+    while (this.lotteries.length < lottoQuantity) {
+      const lotto = this.getNewLotto();
+      this.lotteries.push(lotto);
+    }
+    
+    this.view.gameFinish();
+  }
+
+  getLottoQuantity() {
+    return this.purchaseAmount / LOTTERY_PRICE;
+  }
+
+  getNewLotto() {
+    const lottoNumber = Random.pickUniqueNumbersInRange(1, 45, 6);
+    lottoNumber.sort((a, b) => a - b);
+    const lotto = new Lotto(lottoNumber);
+    return lotto;
   }
 }
 

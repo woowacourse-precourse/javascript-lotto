@@ -8,13 +8,13 @@ class LottoGameView {
   }
   
   gameStart() {
-    this.receivePurchaseAmount(this.gameFinish);
+    this.receivePurchaseAmount();
   }
 
-  receivePurchaseAmount(callback) {
+  receivePurchaseAmount() {
     Console.readLine(MESSAGE.INPUT.PURCHASE_AMOUNT, (amount) => {
       this.game.setPurchaseAmount(Number(amount));
-      callback();
+      this.game.issueLottories();
     });
   }
 
