@@ -2,6 +2,7 @@ const { Console, Random } = require('@woowacourse/mission-utils');
 const { InputException, BonusException } = require('./Exception');
 const Lotto = require('./Lotto');
 const Output = require('./Output');
+const constant = require('./module/constant');
 
 class Input {
     money;
@@ -14,7 +15,7 @@ class Input {
     }
 
     inputMoney() {
-        Console.readLine('구입금액을 입력해주세요.\n', (money) => {
+        Console.readLine(constant.INPUT_MONEY, (money) => {
             const exception = new InputException();
             exception.checkInputException(money);
 
@@ -27,7 +28,7 @@ class Input {
     }
 
     inputLottoNumbers() {
-        Console.readLine('당첨 번호를 입력해 주세요.\n', (string) => {
+        Console.readLine(constant.INPUT_WINNIG, (string) => {
             let lotto = string.split(',').map((number) => number.trim());
 
             const exception = new Lotto(lotto);
@@ -39,7 +40,7 @@ class Input {
     }
 
     inputBonusNumber() {
-        Console.readLine('보너스 번호를 입력해 주세요.\n', (bonus) => {
+        Console.readLine(constant.INPUT_BONUS, (bonus) => {
             const exception = new BonusException();
             exception.checkBonusException(bonus);
 
