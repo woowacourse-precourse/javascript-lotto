@@ -1,4 +1,14 @@
-const { NUMBER } = require('./utils/constants');
+const {
+  FIRST_PLACE_NUMBER,
+  SECOND_PLACE_NUMBER,
+  THIRD_PLACE_NUMBER,
+  FOURTH_PLACE_NUMBER,
+  FIFTH_PLACE_NUMBER,
+  AMOUNT_OF_FIRST_PLACE,
+  AMOUNT_OF_SECOND_PLACE,
+  AMOUNT_OF_FOURTH_PLACE,
+  AMOUNT_OF_FIFTH_PLACE,
+} = require('./utils/constants');
 
 class WinningChecker {
   constructor(lottoNumbers, winningNumbers, bonusNumber) {
@@ -26,26 +36,20 @@ class WinningChecker {
   }
 
   findWinningRank() {
-    if (this.countOfSameNum === NUMBER.TO_WIN_FIRST_PLACE) {
-      return NUMBER.FIRST_PLACE;
+    if (this.countOfSameNum === AMOUNT_OF_FIRST_PLACE) {
+      return FIRST_PLACE_NUMBER;
     }
-    if (
-      this.countOfSameNum === NUMBER.TO_WIN_SECOND_PLACE &&
-      this.hasBonusNum
-    ) {
-      return NUMBER.SECOND_PLACE;
+    if (this.countOfSameNum === AMOUNT_OF_SECOND_PLACE && this.hasBonusNum) {
+      return SECOND_PLACE_NUMBER;
     }
-    if (
-      this.countOfSameNum === NUMBER.TO_WIN_SECOND_PLACE &&
-      !this.hasBonusNum
-    ) {
-      return NUMBER.THIRD_PLACE;
+    if (this.countOfSameNum === AMOUNT_OF_SECOND_PLACE && !this.hasBonusNum) {
+      return THIRD_PLACE_NUMBER;
     }
-    if (this.countOfSameNum === NUMBER.TO_WIN_FOURTH_PLACE) {
-      return NUMBER.FOURTH_PLACE;
+    if (this.countOfSameNum === AMOUNT_OF_FOURTH_PLACE) {
+      return FOURTH_PLACE_NUMBER;
     }
-    if (this.countOfSameNum === NUMBER.TO_WIN_FIFTH_PLACE) {
-      return NUMBER.FIFTH_PLACE;
+    if (this.countOfSameNum === AMOUNT_OF_FIFTH_PLACE) {
+      return FIFTH_PLACE_NUMBER;
     }
     return null;
   }

@@ -1,4 +1,9 @@
-const { ERROR, NUMBER } = require('./utils/constants.js');
+const {
+  ERROR,
+  COUNT_OF_PICKING,
+  MIN_LOTTO_NUMBER,
+  MAX_LOTTO_NUMBER,
+} = require('./utils/constants.js');
 
 class Lotto {
   #numbers;
@@ -9,21 +14,19 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== NUMBER.COUNT_OF_PICKING) {
+    if (numbers.length !== COUNT_OF_PICKING) {
       throw ERROR.MUST_HAVE_SIX_NUMBER;
     }
     if (numbers.includes(NaN)) {
       throw ERROR.MUST_INPUT_ONLY_NUMBER;
     }
     if (
-      numbers.some(
-        (num) => num < NUMBER.MIN_LOTTO_NUMBER || num > NUMBER.MAX_LOTTO_NUMBER
-      )
+      numbers.some((num) => num < MIN_LOTTO_NUMBER || num > MAX_LOTTO_NUMBER)
     ) {
       throw ERROR.MUST_BE_WITHIN_RANGE;
     }
     if (numbers.length !== new Set(numbers).size) {
-      throw ERROR.NOT_ALLOW_SAME_NUMBER;
+      throw ERROR.NOT_ALLOW_REPEATED_NUMBER;
     }
   }
 
