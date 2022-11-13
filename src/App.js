@@ -2,7 +2,7 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const { TICKET_PRICE, RANK } = require('./utils/CONSTANT');
 const { convertNumberToComma } = require('./utils/string');
-const { isSixNumbers, isNumbersUnique, isNumbersInRange } = require('./utils/validation');
+const { validateNumbers } = require('./utils/validation');
 
 class App {
   #paid;
@@ -63,15 +63,7 @@ class App {
   }
 
   validate(numbers) {
-    if (isSixNumbers(numbers)) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
-    }
-    if (isNumbersUnique(numbers)) {
-      throw new Error('[ERROR] 로또 번호에 중복된 숫자가 없어야 합니다.');
-    }
-    if (!isNumbersInRange(numbers)) {
-      throw new Error('[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.');
-    }
+    validateNumbers(numbers);
   }
 
   setBonusNumber() {
