@@ -43,7 +43,7 @@ function isNotDuplicateBonusNumber(bonusNumber, winningNumber) {
 
 const validation = {
   isUnitOf1000(amount) {
-    if (amount % 1000 !== 0) {
+    if (amount % 1000 !== 0 || !Number(amount)) {
       throw new Error(ERROR_MESSAGE.PURCHASE_AMOUNT_UNIT);
     }
   },
