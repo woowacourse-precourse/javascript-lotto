@@ -42,10 +42,9 @@ class LottoGameController {
 
   pickBonusNumber(lotto) {
     readLine(INPUT_MESSAGE.BONUS_NUMBER, (input) => {
-      input = Number(input);
-      BonusValidator.validate(lotto, input);
+      lotto.bonusValidate(input);
 
-      this.winningLotto = [...lotto, input];
+      this.winningLotto = [lotto, Number(input)];
     });
   }
 }
