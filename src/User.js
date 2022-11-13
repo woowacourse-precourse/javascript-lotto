@@ -1,4 +1,8 @@
-const { purchaseAmountRegex, errMsg, PRINT_SENTENSE } = require('./constants');
+const {
+  PURCHASE_AMOUT_REGEX,
+  ERR_MSG,
+  PRINT_SENTENSE
+} = require('./constants');
 const Io = require('./Io');
 const Lotto = require('./Lotto');
 
@@ -19,8 +23,8 @@ class User {
   }
 
   validate(purchaseMoney) {
-    if (!purchaseAmountRegex.test(purchaseMoney)) {
-      throw new Error(errMsg.invalidPurchaseMoney);
+    if (!PURCHASE_AMOUT_REGEX.test(purchaseMoney)) {
+      throw new Error(ERR_MSG.invalidPurchaseMoney);
     }
   }
 }

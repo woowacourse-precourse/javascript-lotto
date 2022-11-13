@@ -1,6 +1,6 @@
 const { Random } = require('@woowacourse/mission-utils');
 const {
-  errMsg,
+  ERR_MSG,
   MIN_LOTTO_NUMBER,
   MAX_LOTTO_NUMBER,
   LOTTO_LENGTH
@@ -31,7 +31,7 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error(errMsg.invalidLottoNumber);
+      throw new Error(ERR_MSG.invalidLottoNumber);
     }
   }
 
