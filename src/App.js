@@ -7,6 +7,7 @@ const MESSAGE = Object.freeze({
   PLEASE_MONEY: "구입금액을 입력해 주세요.\n",
   PLEASE_WINNING_NUMBERS: "\n당첨 번호를 입력해 주세요.\n",
   PLEASE_BONUS_NUMBER: "\n보너스 번호를 입력해 주세요.\n",
+  BUY: "개를 구매했습니다.",
 });
 
 const ERROR = Object.freeze({
@@ -16,7 +17,8 @@ const ERROR = Object.freeze({
 class App {
   constructor() {
     this.lottoMachine = new LottoMachine();
-    this.lotto = null;
+    this.buyingLottos = null;
+    this.winningLotto = null;
   }
 
   play() {
@@ -31,33 +33,34 @@ class App {
 
   pleaseMoney(money) {
     this.isValidMoney(money);
-    this.printPurchasedLottos(money);
+    this.printBuyingLottos(money);
     Console.readLine(
       MESSAGE.PLEASE_WINNING_NUMBERS,
-      this.pleaseWinningNumbers.bind(this)
+      this.pleaseWinningNumbers.bind(this),
     );
   }
 
-  printPurchasedLottos(money) {
-    const lottos = this.lottoMachine.buy(money);
-    const lottosAmount = lottos.length;
-    Console.print(`\n${lottosAmount}개를 구매했습니다.`);
-    lottos.forEach((lotto) => {
-      const purchasedLotto = Utils.transformArrayToString(lotto);
-      Console.print(purchasedLotto);
+  printBuyingLottos(money) {
+    this.buyingLottos = this.lottoMachine.buy(money);
+    const lottosAmount = this.buyingLottos.length;
+    Console.print(`\n${lottosAmount}${MESSAGE.BUY}`);
+    this.buyingLottos.forEach((buyingLotto) => {
+      Console.print(Utils.transformArrayToString(buyingLotto));
     });
   }
 
-  pleaseWinningNumbers(inputNumbers) {
-    this.lotto = new Lotto(Utils.transformStringToNumberArray(inputNumbers));
+  pleaseWinningNumbers(inputWinningNumbers) {
+    this.winningLotto = new Lotto(
+      Utils.transformStringToNumberArray(inputWinningNumbers),
+    );
     Console.readLine(
       MESSAGE.PLEASE_BONUS_NUMBER,
-      this.pleaseBonusNumber.bind(this)
+      this.pleaseBonusNumber.bind(this),
     );
   }
 
-  pleaseBonusNumber(inputNumber) {
-    this.lotto.addBonusNumber(parseInt(inputNumber, 10));
+  pleaseBonusNumber(inputBonusNumber) {
+    this.winningLotto.addBonusNumber(parseInt(inputBonusNumber, 10));
   }
 
   // TODO
