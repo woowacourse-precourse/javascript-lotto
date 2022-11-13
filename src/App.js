@@ -39,6 +39,8 @@ class App {
     Console.readLine(Messages.ENTER_BONUS_NUMBER, (bonus) => {
       bonus = Number(bonus);
       this.#validateBonusNumber(winning, bonus);
+
+      this.#printWinningStatics(lottos, winning, bonus);
     });
   }
 
@@ -47,11 +49,19 @@ class App {
     if (!(bonus >= 1 && bonus <= 45)) throw new Error(Messages.NUMBERS_IN_RANGE);
   }
 
-  printWinningStatics(lottos, winning, bonus) {
+  #printWinningStatics(lottos, winning, bonus) {
     Console.print(Messages.WINNING_STATICS);
-    this.lotto.lottosWinningBonus(lottos, winning, bonus);
+    const { winningArray, profit } = this.#lottoManager.lottosWinningBonus(lottos, winning, bonus);
 
-    Console.close();
+    this.#printWinningHistory(winningArray);
+  }
+
+  #printWinningHistory(winningArray) {
+    Console.print(`3개 일치 (5,000원) - ${winningArray[0]}개`);
+    Console.print(`4개 일치 (50,000원) - ${winningArray[1]}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${winningArray[2]}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningArray[3]}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${winningArray[4]}개`);
   }
 }
 
