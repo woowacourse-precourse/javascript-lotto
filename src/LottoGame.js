@@ -34,6 +34,8 @@ class LottoGame {
   #receiveBonusNumber() {
     UI.askBonusNumber((answer) => {
       this.setBonusNumber(parseInt(answer, 10));
+
+      const lottosRanking = this.calculateLottosRanking();
     });
   }
 
@@ -49,6 +51,12 @@ class LottoGame {
 
   setBonusNumber(number) {
     this.winningLotto.setBonusNumber(number);
+  }
+
+  calculateLottosRanking() {
+    return this.lottosOfUser.map((lotto) =>
+      this.winningLotto.calculateLottoRanking(lotto.getNumbers()),
+    );
   }
 }
 
