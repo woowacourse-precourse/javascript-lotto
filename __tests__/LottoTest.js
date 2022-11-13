@@ -17,9 +17,9 @@ describe('로또 클래스 테스트', () => {
     });
 
     test('길이가 6인 배열을 반환한다.', () => {
-      const LENGTH = 6;
+      const RECEIVED = 6;
 
-      expect(Lotto.createLotto()).toHaveLength(LENGTH);
+      expect(Lotto.createLotto()).toHaveLength(RECEIVED);
     });
   });
 
@@ -31,20 +31,31 @@ describe('로또 클래스 테스트', () => {
     });
 
     test('8000을 전달하면 배열 8개를 반환한다.', () => {
-      expect(Lotto.buyLotto('8000')).toHaveLength(8);
+      const RECEIVED = '8000';
+      const EXPECTED = 8;
+
+      expect(Lotto.buyLotto(RECEIVED)).toHaveLength(EXPECTED);
     });
 
     test('요소의 길이는 6이다.', () => {
-      expect(Lotto.buyLotto('8000')[0]).toHaveLength(6);
+      const ZERO = 0;
+      const RECEIVED = '8000';
+      const EXPECTED = 6;
+
+      expect(Lotto.buyLotto(RECEIVED)[ZERO]).toHaveLength(EXPECTED);
     });
 
     test('1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다.', () => {
       expect(() => {
-        Lotto.buyLotto('8800');
+        const EXPECTED = '8800';
+
+        Lotto.buyLotto(EXPECTED);
       }).toThrow(ERROR_TEXT);
 
       expect(() => {
-        Lotto.buyLotto('8000');
+        const EXPECTED = '8000';
+
+        Lotto.buyLotto(EXPECTED);
       }).not.toThrow(ERROR_TEXT);
     });
   });
@@ -68,10 +79,17 @@ describe('로또 클래스 테스트', () => {
       [1, 3, 5, 14, 22, 45]];
     const prize = [1, 2, 3, 4, 5, 6];
     const bonus = 7;
+    const ZERO = 0;
+    const ONE = 1;
+    const TWO = 2;
+    const THREE = 3;
+    const FOUR = 4;
 
     test('로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.', () => {
       expect(() => {
-        const lotto = new Lotto([[1, 2, 3, 4, 5, 6, 7]]);
+        const EXPECTED = [[1, 2, 3, 4, 5, 6, 7]];
+        const lotto = new Lotto(EXPECTED);
+
         lotto.getLottoResult();
       }).toThrow(ERROR_TEXT);
     });
@@ -79,13 +97,16 @@ describe('로또 클래스 테스트', () => {
     test('배열이 아니면 예외를 발생한다.', () => {
       expect(() => {
         const lotto = new Lotto(1, 2, 3, 4, 5, 6);
+
         lotto.getLottoResult();
       }).toThrow(ERROR_TEXT);
     });
 
     test('로또 번호에 중복된 숫자가 있으면 예외가 발생한다.', () => {
       expect(() => {
-        const lotto = new Lotto([[1, 2, 3, 4, 5, 5]]);
+        const EXPECTED = [[1, 2, 3, 4, 5, 5]];
+
+        const lotto = new Lotto(EXPECTED);
         lotto.getLottoResult();
       }).toThrow(ERROR_TEXT);
     });
@@ -100,116 +121,124 @@ describe('로또 클래스 테스트', () => {
     test('배열의 0번째 인덱스는 1 요소가 들어있다.', () => {
       const lotto = new Lotto(boughtLotto);
 
-      expect(lotto.getLottoResult(prize, bonus)[0]).toEqual(1);
+      expect(lotto.getLottoResult(prize, bonus)[ZERO]).toEqual(ONE);
     });
 
     test('배열의 1번째 인덱스는 2 요소가 들어있다.', () => {
       const lotto = new Lotto(boughtLotto);
 
-      expect(lotto.getLottoResult(prize, bonus)[1]).toEqual(2);
+      expect(lotto.getLottoResult(prize, bonus)[ONE]).toEqual(TWO);
     });
 
     test('배열의 2번째 인덱스는 1 요소가 들어있다.', () => {
       const lotto = new Lotto(boughtLotto);
 
-      expect(lotto.getLottoResult(prize, bonus)[2]).toEqual(1);
+      expect(lotto.getLottoResult(prize, bonus)[TWO]).toEqual(ONE);
     });
 
     test('배열의 3번째 인덱스는 2 요소가 들어있다.', () => {
       const lotto = new Lotto(boughtLotto);
 
-      expect(lotto.getLottoResult(prize, bonus)[3]).toEqual(2);
+      expect(lotto.getLottoResult(prize, bonus)[THREE]).toEqual(TWO);
     });
 
     test('배열의 4번째 인덱스는 2 요소가 들어있다.', () => {
       const lotto = new Lotto(boughtLotto);
 
-      expect(lotto.getLottoResult(prize, bonus)[4]).toEqual(2);
+      expect(lotto.getLottoResult(prize, bonus)[FOUR]).toEqual(TWO);
     });
 
     describe('3개 일치 파악 메소드', () => {
-      test('메소드 이름은 "isThreeMatche"로 정의된다.', () => {
-        const METHOD_NAME = 'isThreeMatche';
+      test('메소드 이름은 "checkThreeMatche"로 정의된다.', () => {
+        const METHOD_NAME = 'checkThreeMatche';
 
-        expect(Lotto.isThreeMatche.name).toEqual(METHOD_NAME);
+        expect(Lotto.checkThreeMatche.name).toEqual(METHOD_NAME);
       });
 
       test('주어진 값이 3과 일치하면 [1, 0, 0, 0, 0]를 반환한다.', () => {
-        const COUNT = 3;
+        const count = 3;
         const target = [0, 0, 0, 0, 0];
-        const expected = [1, 0, 0, 0, 0];
+        const EXPECTED = [count, target];
+        const RECEIVED = [1, 0, 0, 0, 0];
 
-        expect(Lotto.isThreeMatche(COUNT, target)).toStrictEqual(expected);
+        expect(Lotto.checkThreeMatche(...EXPECTED)).toStrictEqual(RECEIVED);
       });
     });
 
     describe('4개 일치 파악 메소드', () => {
-      test('메소드 이름은 "isFourMatche"로 정의된다.', () => {
-        const METHOD_NAME = 'isFourMatche';
+      test('메소드 이름은 "checkFourMatche"로 정의된다.', () => {
+        const METHOD_NAME = 'checkFourMatche';
 
-        expect(Lotto.isFourMatche.name).toEqual(METHOD_NAME);
+        expect(Lotto.checkFourMatche.name).toEqual(METHOD_NAME);
       });
 
       test('주어진 값이 4와 일치하면 [0, 1, 0, 0, 0, 0]를 반환한다.', () => {
-        const COUNT = 4;
+        const count = 4;
         const target = [0, 0, 0, 0, 0];
-        const expected = [0, 1, 0, 0, 0];
+        const EXPECTED = [count, target];
+        const RECEIVED = [0, 1, 0, 0, 0];
 
-        expect(Lotto.isFourMatche(COUNT, target)).toStrictEqual(expected);
+        expect(Lotto.checkFourMatche(...EXPECTED)).toStrictEqual(RECEIVED);
       });
     });
 
     describe('5개 일치 파악 메소드', () => {
-      test('메소드 이름은 "isFiveMatche"로 정의된다.', () => {
-        const METHOD_NAME = 'isFiveMatche';
+      test('메소드 이름은 "checkFiveMatche"로 정의된다.', () => {
+        const METHOD_NAME = 'checkFiveMatche';
 
-        expect(Lotto.isFiveMatche.name).toEqual(METHOD_NAME);
+        expect(Lotto.checkFiveMatche.name).toEqual(METHOD_NAME);
       });
 
       test('주어진 값이 5와 일치하면 [0, 0, 1, 0, 0]를 반환한다.', () => {
-        const COUNT = 5;
+        const count = 5;
         const target = [0, 0, 0, 0, 0];
-        const expected = [0, 0, 1, 0, 0];
+        const EXPECTED = [count, target];
+        const RECEIVED = [0, 0, 1, 0, 0];
 
-        expect(Lotto.isFiveMatche(COUNT, target)).toStrictEqual(expected);
+        expect(Lotto.checkFiveMatche(...EXPECTED)).toStrictEqual(RECEIVED);
       });
 
       test('주어진 값이 5와 보너스 값 둘 다 일치하면 [0, 0, 0, 1, 0]를 반환한다.', () => {
-        const COUNT = 5;
-        const target = [0, 0, 0, 0, 0];
-        const expected = [0, 0, 0, 1, 0];
+        const count = 5;
+        const amount = [0, 0, 0, 0, 0];
+        const target = [1, 3, 5, 14, 22, 45];
+        const bonusNumber = 3;
+        const EXPECTED = [count, amount, target, bonusNumber];
+        const RECEIVED = [0, 0, 0, 1, 0];
 
-        expect(Lotto.isFiveMatche(COUNT, target, [1, 3, 5, 14, 22, 45], 3)).toStrictEqual(expected);
+        expect(Lotto.checkFiveMatche(...EXPECTED)).toStrictEqual(RECEIVED);
       });
     });
 
     describe('보너스 볼 일치 파악 메소드', () => {
-      test('메소드 이름은 "isBonusMatche"로 정의된다.', () => {
-        const METHOD_NAME = 'isBonusMatche';
+      test('메소드 이름은 "checkBonusMatche"로 정의된다.', () => {
+        const METHOD_NAME = 'checkBonusMatche';
 
-        expect(Lotto.isBonusMatche.name).toEqual(METHOD_NAME);
+        expect(Lotto.checkBonusMatche.name).toEqual(METHOD_NAME);
       });
 
       test('주어진 값이 보너스 값과 일치하면 [0, 0, 0, 1, 0]를 반환한다.', () => {
-        const expected = [0, 0, 0, 1, 0];
+        const EXPECTED = [0, 0, 0, 0, 0];
+        const RECEIVED = [0, 0, 0, 1, 0];
 
-        expect(Lotto.isBonusMatche([0, 0, 0, 0, 0])).toStrictEqual(expected);
+        expect(Lotto.checkBonusMatche(EXPECTED)).toStrictEqual(RECEIVED);
       });
     });
 
     describe('6개 일치 파악 메소드', () => {
-      test('메소드 이름은 "isSixMatche"로 정의된다.', () => {
-        const METHOD_NAME = 'isSixMatche';
+      test('메소드 이름은 "checkSixMatche"로 정의된다.', () => {
+        const METHOD_NAME = 'checkSixMatche';
 
-        expect(Lotto.isSixMatche.name).toEqual(METHOD_NAME);
+        expect(Lotto.checkSixMatche.name).toEqual(METHOD_NAME);
       });
 
       test('주어진 값이 6과 일치하면 [0, 0, 0, 0, 1]를 반환한다.', () => {
-        const COUNT = 6;
+        const count = 6;
         const target = [0, 0, 0, 0, 0];
-        const expected = [0, 0, 0, 0, 1];
+        const EXPECTED = [count, target];
+        const RECEIVED = [0, 0, 0, 0, 1];
 
-        expect(Lotto.isSixMatche(COUNT, target)).toStrictEqual(expected);
+        expect(Lotto.checkSixMatche(...EXPECTED)).toStrictEqual(RECEIVED);
       });
     });
   });
@@ -222,10 +251,10 @@ describe('로또 클래스 테스트', () => {
     });
 
     test('주어진 배열의 값이 5개가 일치하면 5를 반환한다.', () => {
-      const target = [11, 12, 13, 14, 15, 19];
-      const expected = [11, 12, 13, 14, 15, 16];
+      const EXPECTED = [[11, 12, 13, 14, 15, 19], [11, 12, 13, 14, 15, 16]];
+      const RECEIVED = 5;
 
-      expect(Lotto.calculateCount(target, expected)).toEqual(5);
+      expect(Lotto.calculateCount(...EXPECTED)).toEqual(RECEIVED);
     });
   });
 
@@ -241,43 +270,54 @@ describe('로또 클래스 테스트', () => {
       const winningAmount = [0, 0, 0, 0, 0];
 
       test('3개가 일치한다면 [1, 0, 0, 0, 0]을 반환한다.', () => {
-        const expected = [1, 0, 0, 0, 0];
         const currentLotto = [11, 12, 13, 14, 15, 19];
         const BONUS = 7;
+        const THREE = 3;
+        const EXPECTED = [winningAmount, THREE, currentLotto, BONUS];
+        const RECEIVED = [1, 0, 0, 0, 0];
 
-        expect(analysisWinningAmount(winningAmount, 3, currentLotto, BONUS)).toEqual(expected);
+        expect(analysisWinningAmount(...EXPECTED)).toEqual(RECEIVED);
       });
 
       test('4개가 일치한다면 [0, 1, 0, 0, 0]을 반환한다.', () => {
-        const expected = [0, 1, 0, 0, 0];
         const currentLotto = [11, 12, 13, 14, 15, 19];
         const BONUS = 7;
+        const FOUR = 4;
+        const EXPECTED = [winningAmount, FOUR, currentLotto, BONUS];
+        const RECEIVED = [0, 1, 0, 0, 0];
 
-        expect(analysisWinningAmount(winningAmount, 4, currentLotto, BONUS)).toEqual(expected);
+        expect(analysisWinningAmount(...EXPECTED)).toEqual(RECEIVED);
       });
 
       test('5개가 일치한다면 [0, 0, 1, 0, 0]을 반환한다.', () => {
-        const expected = [0, 0, 1, 0, 0];
         const currentLotto = [11, 12, 13, 14, 15, 19];
         const BONUS = 7;
+        const FIVE = 5;
+        const EXPECTED = [winningAmount, FIVE, currentLotto, BONUS];
+        const RECEIVED = [0, 0, 1, 0, 0];
 
-        expect(analysisWinningAmount(winningAmount, 5, currentLotto, BONUS)).toEqual(expected);
+        expect(analysisWinningAmount(...EXPECTED)).toEqual(RECEIVED);
       });
 
       test('5개 일치, 보너스 볼 일치한다면 [0, 0, 0, 1, 0]을 반환한다.', () => {
-        const expected = [0, 0, 0, 1, 0];
         const currentLotto = [7, 12, 13, 14, 15, 19];
         const BONUS = 7;
+        const FIVE = 5;
 
-        expect(analysisWinningAmount(winningAmount, 5, currentLotto, BONUS)).toEqual(expected);
+        const EXPECTED = [winningAmount, FIVE, currentLotto, BONUS];
+        const RECEIVED = [0, 0, 0, 1, 0];
+
+        expect(analysisWinningAmount(...EXPECTED)).toEqual(RECEIVED);
       });
 
       test('6개가 일치한다면 [0, 0, 0, 0, 1]을 반환한다.', () => {
-        const expected = [0, 0, 0, 0, 1];
         const currentLotto = [11, 12, 13, 14, 15, 19];
         const BONUS = 7;
+        const SIX = 6;
+        const EXPECTED = [winningAmount, SIX, currentLotto, BONUS];
+        const RECEIVED = [0, 0, 0, 0, 1];
 
-        expect(analysisWinningAmount(winningAmount, 6, currentLotto, BONUS)).toEqual(expected);
+        expect(analysisWinningAmount(...EXPECTED)).toEqual(RECEIVED);
       });
     });
   });
@@ -291,50 +331,52 @@ describe('로또 클래스 테스트', () => {
 
     test('배열의 길이가 5가 아니면 예외를 발생한다.', () => {
       expect(() => {
-        Lotto.calculateTotalAmount([2, 0, 0, 0, 0, 0]);
+        const EXPECTED = [2, 0, 0, 0, 0, 0];
+
+        Lotto.calculateTotalAmount(EXPECTED);
       }).toThrow(ERROR_TEXT);
     });
 
     test('3개 일치가 2개 있으면 10,000원을 반환한다.', () => {
-      const winningAmount = [2, 0, 0, 0, 0];
-      const expected = 10000;
+      const EXPECTED = [2, 0, 0, 0, 0];
+      const RECEIVED = 10000;
 
-      expect(Lotto.calculateTotalAmount(winningAmount)).toEqual(expected);
+      expect(Lotto.calculateTotalAmount(EXPECTED)).toEqual(RECEIVED);
     });
 
     test('4개 일치가 2개 있으면 100,000원을 반환한다.', () => {
-      const winningAmount = [0, 2, 0, 0, 0];
-      const expected = 100000;
+      const EXPECTED = [0, 2, 0, 0, 0];
+      const RECEIVED = 100000;
 
-      expect(Lotto.calculateTotalAmount(winningAmount)).toEqual(expected);
+      expect(Lotto.calculateTotalAmount(EXPECTED)).toEqual(RECEIVED);
     });
 
     test('5개 일치가 1개 있으면 1,500,000원을 반환한다.', () => {
-      const winningAmount = [0, 0, 1, 0, 0];
-      const expected = 1500000;
+      const EXPECTED = [0, 0, 1, 0, 0];
+      const RECEIVED = 1500000;
 
-      expect(Lotto.calculateTotalAmount(winningAmount)).toEqual(expected);
+      expect(Lotto.calculateTotalAmount(EXPECTED)).toEqual(RECEIVED);
     });
 
     test('5개 일치, 보너스 볼 일치가 1개 있으면 30,000,000원을 반환한다.', () => {
-      const winningAmount = [0, 0, 0, 1, 0];
-      const expected = 30000000;
+      const EXPECTED = [0, 0, 0, 1, 0];
+      const RECEIVED = 30000000;
 
-      expect(Lotto.calculateTotalAmount(winningAmount)).toEqual(expected);
+      expect(Lotto.calculateTotalAmount(EXPECTED)).toEqual(RECEIVED);
     });
 
     test('6개 일치가 1개 있으면 2,000,000,000원을 반환한다.', () => {
-      const winningAmount = [0, 0, 0, 0, 1];
-      const expected = 2000000000;
+      const EXPECTED = [0, 0, 0, 0, 1];
+      const RECEIVED = 2000000000;
 
-      expect(Lotto.calculateTotalAmount(winningAmount)).toEqual(expected);
+      expect(Lotto.calculateTotalAmount(EXPECTED)).toEqual(RECEIVED);
     });
 
     test('2,031,555,000원을 반환한다.', () => {
-      const winningAmount = [1, 1, 1, 1, 1];
-      const expected = 2031555000;
+      const EXPECTED = [1, 1, 1, 1, 1];
+      const RECEIVED = 2031555000;
 
-      expect(Lotto.calculateTotalAmount(winningAmount)).toEqual(expected);
+      expect(Lotto.calculateTotalAmount(EXPECTED)).toEqual(RECEIVED);
     });
   });
 });

@@ -18,11 +18,15 @@ describe('숫자 예외 검사 함수 테스트', () => {
 
   test('전달받은 인수는 숫자로 변환이 불가능하면 예외를 발생시킨다.', () => {
     expect(() => {
-      Application.convertNumber(NaN);
+      const EXPECTED = NaN;
+
+      Application.convertNumber(EXPECTED);
     }).toThrow(NUMBER_EXCEPTION_TEXT);
 
     expect(() => {
-      Application.convertNumber(1000);
+      const EXPECTED = 1000;
+
+      Application.convertNumber(EXPECTED);
     }).not.toThrow(NUMBER_EXCEPTION_TEXT);
   });
 });
@@ -35,18 +39,17 @@ describe('숫자 변환 함수 테스트', () => {
   });
 
   test('전달받은 인수를 숫자로 변환시킨다.', () => {
-    expect(Application.convertNumber('111')).toEqual(111);
+    const EXPECTED = '111';
+    const RECEIVED = 111;
 
-    expect(Application.convertNumber('222')).toEqual(222);
+    expect(Application.convertNumber(EXPECTED)).toEqual(RECEIVED);
   });
 
   test('전달받은 인수는 숫자로 변환이 불가능하면 예외를 발생시킨다.', () => {
     expect(() => {
-      Application.convertNumber('a1a1');
-    }).toThrow(NUMBER_EXCEPTION_TEXT);
+      const EXPECTED = 'a1a1';
 
-    expect(() => {
-      Application.convertNumber('b1b1');
+      Application.convertNumber(EXPECTED);
     }).toThrow(NUMBER_EXCEPTION_TEXT);
   });
 });
@@ -59,22 +62,32 @@ describe('구매 개수 파악 함수 테스트', () => {
   });
 
   test('첫 번째 인수 24000, 두 번째 인수 1000을 전달하면 24를 반환한다.', () => {
-    expect(Application.purchaseCount(24000, 1000)).toEqual(24);
+    const EXPECTED = [24000, 1000];
+    const RECEIVED = 24;
+
+    expect(Application.purchaseCount(...EXPECTED)).toEqual(RECEIVED);
   });
 
   test('첫 번째 인수, 두 번째 인수 모두 숫자로 변환이 가능하다.', () => {
-    expect(Application.purchaseCount('24000', '1000')).toEqual(24);
+    const EXPECTED = ['24000', '1000'];
+    const RECEIVED = 24;
+
+    expect(Application.purchaseCount(...EXPECTED)).toEqual(RECEIVED);
   });
 
   test('전달받은 인수는 숫자로 변환이 불가능하면 예외를 발생시킨다.', () => {
+    const EXPECTED = ['1111', 's'];
+
     expect(() => {
-      Application.purchaseCount('1111', 's');
+      Application.purchaseCount(...EXPECTED);
     }).toThrow(NUMBER_EXCEPTION_TEXT);
   });
 
   test('나누어 떨어지지 않는 경우 예외 처리한다.', () => {
+    const EXPECTED = [1100, 1000];
+
     expect(() => {
-      Application.purchaseCount(1100, 1000);
+      Application.purchaseCount(...EXPECTED);
     }).toThrow();
   });
 });
@@ -87,20 +100,30 @@ describe('수익률 계산 함수 테스트', () => {
   });
 
   test('8,000원을 사용하고 5,000원을 얻는다면 수익률 62.5를 반환한다.', () => {
-    expect(Application.earningsRate(8000, 5000)).toEqual(62.5);
+    const EXPECTED = [8000, 5000];
+    const RECEIVED = 62.5;
+
+    expect(Application.earningsRate(...EXPECTED)).toEqual(RECEIVED);
   });
 
   test('5,000원을 사용하고 2,000,000,000원을 얻는다면 수익률 40000000를 반환한다.', () => {
-    expect(Application.earningsRate(5000, 2000000000)).toEqual(40000000);
+    const EXPECTED = [5000, 2000000000];
+    const RECEIVED = 40000000;
+
+    expect(Application.earningsRate(...EXPECTED)).toEqual(RECEIVED);
   });
 
   test('전달받은 인수는 숫자로 변환이 불가능하면 예외를 발생시킨다.', () => {
     expect(() => {
-      Application.earningsRate('a1a1', 's');
+      const EXPECTED = ['a1a1', 's'];
+
+      Application.earningsRate(...EXPECTED);
     }).toThrow(NUMBER_EXCEPTION_TEXT);
 
     expect(() => {
-      Application.earningsRate('8000', '5000');
+      const EXPECTED = ['8000', '5000'];
+
+      Application.earningsRate(...EXPECTED);
     }).not.toThrow(NUMBER_EXCEPTION_TEXT);
   });
 });
@@ -113,19 +136,23 @@ describe('오름차순 정렬 함수 테스트', () => {
   });
 
   test('[42, 21, 23, 43, 41, 8]는 [8, 21, 23, 41, 42, 43] 형태로 정렬한다.', () => {
-    const expected = [42, 21, 23, 43, 41, 8];
-    const received = [8, 21, 23, 41, 42, 43];
+    const EXPECTED = [42, 21, 23, 43, 41, 8];
+    const RECEIVED = [8, 21, 23, 41, 42, 43];
 
-    expect(Application.sortAscending(expected)).toStrictEqual(received);
+    expect(Application.sortAscending(EXPECTED)).toStrictEqual(RECEIVED);
   });
 
   test('전달된 인수는 배열이 아니면 예외를 발생시킨다.', () => {
     expect(() => {
-      Application.sortAscending(1234);
+      const EXPECTED = 1234;
+
+      Application.sortAscending(EXPECTED);
     }).toThrow(ARRAY_EXCEPTION_TEXT);
 
     expect(() => {
-      Application.sortAscending([1, 2, 3, 4]);
+      const EXPECTED = [1, 2, 3, 4];
+
+      Application.sortAscending(EXPECTED);
     }).not.toThrow(ARRAY_EXCEPTION_TEXT);
   });
 });
@@ -139,11 +166,15 @@ describe('배열 예외 검사 함수 테스트', () => {
 
   test('전달된 인수는 배열이 아니면 예외를 발생시킨다.', () => {
     expect(() => {
-      Application.validateArray(12312);
+      const EXPECTED = 12312;
+
+      Application.validateArray(EXPECTED);
     }).toThrow(ARRAY_EXCEPTION_TEXT);
 
     expect(() => {
-      Application.validateArray([12312]);
+      const EXPECTED = [12312];
+
+      Application.validateArray(EXPECTED);
     }).not.toThrow(ARRAY_EXCEPTION_TEXT);
   });
 });
@@ -157,21 +188,37 @@ describe('배열 길이 예외 검사 함수 테스트', () => {
 
   test('배열의 요소가 6개가 넘어가면 예외가 발생한다.', () => {
     expect(() => {
-      Application.validateArrayLength([1, 2, 3, 4, 5, 6, 7], 6);
+      const numbers = [1, 2, 3, 4, 5, 6, 7];
+      const criterion = 6;
+      const EXPECTED = [numbers, criterion];
+
+      Application.validateArrayLength(...EXPECTED);
     }).toThrow('[ERROR]');
 
     expect(() => {
-      Application.validateArrayLength([1, 2, 3, 4, 5, 6], 6);
+      const numbers = [1, 2, 3, 4, 5, 6];
+      const criterion = 6;
+      const EXPECTED = [numbers, criterion];
+
+      Application.validateArrayLength(...EXPECTED);
     }).not.toThrow('[ERROR]');
   });
 
   test('배열의 요소가 7개가 넘어가면 예외가 발생한다.', () => {
     expect(() => {
-      Application.validateArrayLength([1, 2, 3, 4, 5, 6], 7);
+      const numbers = [1, 2, 3, 4, 5, 6];
+      const criterion = 7;
+      const EXPECTED = [numbers, criterion];
+
+      Application.validateArrayLength(...EXPECTED);
     }).toThrow('[ERROR]');
 
     expect(() => {
-      Application.validateArrayLength([1, 2, 3, 4, 5, 6, 7], 7);
+      const numbers = [1, 2, 3, 4, 5, 6, 7];
+      const criterion = 7;
+      const EXPECTED = [numbers, criterion];
+
+      Application.validateArrayLength(...EXPECTED);
     }).not.toThrow('[ERROR]');
   });
 });
@@ -185,11 +232,15 @@ describe('배열 중복 검사 함수 테스트', () => {
 
   test('중복되는 요소를 발견하면 예외를 발생시킨다.', () => {
     expect(() => {
-      Application.checkArrayDuplicate([1, 2, 3, 4, 5, 5]);
+      const EXPECTED = [1, 2, 3, 4, 5, 5];
+
+      Application.checkArrayDuplicate(EXPECTED);
     }).toThrow('[ERROR]');
 
     expect(() => {
-      Application.checkArrayDuplicate([1, 2, 3, 4, 5, 6]);
+      const EXPECTED = [1, 2, 3, 4, 5, 6];
+
+      Application.checkArrayDuplicate(EXPECTED);
     }).not.toThrow('[ERROR]');
   });
 });
@@ -202,11 +253,13 @@ describe('랜덤 숫자 생성 함수 테스트', () => {
   });
 
   test('길이가 8인 배열을 반환한다.', () => {
-    const START = 1;
-    const END = 45;
-    const LENGTH = 8;
+    const start = 1;
+    const end = 45;
+    const length = 8;
+    const EXPECTED = [start, end, length];
+    const RECEIVED = 8;
 
-    expect(Application.createUniqueNumbers(START, END, LENGTH)).toHaveLength(LENGTH);
+    expect(Application.createUniqueNumbers(...EXPECTED)).toHaveLength(RECEIVED);
   });
 });
 
@@ -219,11 +272,15 @@ describe('정수 판단 함수 테스트', () => {
 
   test('나누어 떨어지지 않는 경우 예외 처리한다.', () => {
     expect(() => {
-      Application.validateInteger(11.5);
+      const EXPECTED = 11.5;
+
+      Application.validateInteger(EXPECTED);
     }).toThrow();
 
     expect(() => {
-      Application.validateInteger(11);
+      const EXPECTED = 11;
+
+      Application.validateInteger(EXPECTED);
     }).not.toThrow();
   });
 
@@ -235,15 +292,19 @@ describe('정수 판단 함수 테스트', () => {
     });
 
     test('주어진 값이 3과 일치하면 true를 반환한다.', () => {
-      const COUNT = 3;
+      const count = 3;
+      const datumPoint = 3;
+      const EXPECTED = [count, datumPoint];
 
-      expect(Application.isMatcheCount(COUNT, 3)).toBeTruthy();
+      expect(Application.isMatcheCount(...EXPECTED)).toBeTruthy();
     });
 
     test('주어진 값이 3과 일치하지 않으면 false를 반환한다.', () => {
-      const COUNT = 4;
+      const count = 4;
+      const datumPoint = 3;
+      const EXPECTED = [count, datumPoint];
 
-      expect(Application.isMatcheCount(COUNT, 3)).toBeFalsy();
+      expect(Application.isMatcheCount(...EXPECTED)).toBeFalsy();
     });
   });
 
@@ -269,12 +330,18 @@ describe('정수 판단 함수 테스트', () => {
     });
 
     test('1 + 1은 2를 반환한다.', () => {
-      expect(Application.add(1, 1)).toBe(2);
+      const ONE = 1;
+      const RECEIVED = 2;
+
+      expect(Application.add(ONE, ONE)).toBe(RECEIVED);
     });
 
     test('전달받은 인수는 숫자로 변환이 불가능하면 예외를 발생시킨다.', () => {
       expect(() => {
-        Application.add(1, 'z');
+        const ONE = 1;
+        const WRONG = 'z';
+
+        Application.add(ONE, WRONG);
       }).toThrow(NUMBER_EXCEPTION_TEXT);
     });
   });
@@ -287,12 +354,19 @@ describe('정수 판단 함수 테스트', () => {
     });
 
     test('20 * 30은 600를 반환한다.', () => {
-      expect(Application.multiplication(20, 30)).toBe(600);
+      const TWENRT = 20;
+      const THIRTY = 30;
+      const RECEIVED = 600;
+
+      expect(Application.multiplication(TWENRT, THIRTY)).toBe(RECEIVED);
     });
 
     test('전달받은 인수는 숫자로 변환이 불가능하면 예외를 발생시킨다.', () => {
       expect(() => {
-        Application.multiplication(1, 'z');
+        const ONE = 1;
+        const WRONG = 'z';
+
+        Application.multiplication(ONE, WRONG);
       }).toThrow(NUMBER_EXCEPTION_TEXT);
     });
   });
