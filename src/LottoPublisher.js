@@ -12,6 +12,12 @@ class LottoPublisher {
     return this.#bonusNumber;
   }
 
+  receiveUserInputWinningNumbers(input) {
+    const numbers = input.split(',').map(Number);
+    this.validateWinningNumbers(numbers);
+    this.#winningNumbers = numbers;
+  }
+
   validateWinningNumbers(numbers) {
     isValidLottoNumbers(numbers);
   }
