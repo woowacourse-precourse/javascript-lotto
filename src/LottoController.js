@@ -19,6 +19,13 @@ class LottoController {
       for (let i = 0; i < lottoCount; i++) {
         const lotto = this.lottoStore.sellLotto();
         customer.purchaseLotto(lotto);
+        customer.printLottoPurchaseResult();
+        MissionUtils.Console.readLine(
+          '\n당첨 번호를 입력해 주세요.\n',
+          (input) => {
+            this.lottoPublisher.receiveUserInputWinningNumbers(input);
+          }
+        );
       }
     });
   }
