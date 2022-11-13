@@ -31,6 +31,47 @@
 - [x] 당첨 내역을 계산하고 출력하는 코드 작성
 - [x] 총 수익률을 계산하는 코드 작성
 
+## 메서드 기능 정리
+
+### App
+
+    1. play : 모든 과정을 시작한다.
+
+### Input (UI)
+
+    UI, 입력을 담당하는 클래스
+
+    1. process : 입력 과정을 시작한다.
+    2. inputMoney : 로또를 구매할 만큼의 돈을 입력받고, 입력받은 값에 대한 검증을 진행한다.
+    3. inputLottoNumbers : 로또의 당첨 번호를 입력받고, 입력받은 값에 대한 검증을 진행한다.
+    4. inputBonusNumbers : 보너스 번호를 입력받고, 입력받은 값에 대한 검증을 진행한다.
+    5. makeRandomLotto : 1 ~ 45 사이에서 6개를 랜덤하게 뽑아 배열로 반환한다.
+    6. showLottoNumbers : 로또 번호를 순서대로 보여준다.
+    7. MakeRandomLotts : 입력받은 개수만큼 로또를 만들어 배열에 넣고 반환한다.
+
+### Lotto
+
+    1. validate : 로또의 당첨 번호를 검증한다.
+
+### Exception (예외사항)
+
+    예외사항을 체크하는 클래스, Input, Lotto, BonusNumber로 나뉜다.
+
+    1. InputException : 입력받은 돈이 알맞은 형식인지 확인한다.
+    2. LottoException : 입력받은 당첨 번호가 알맞은 형식인지 확인한다.
+    3. BonusException : 입력받은 보너스 숫자가 알맞은 형식인지 확인한다.
+
+### Output (기능)
+
+    결과 계산을 담당하는 클래스
+
+    1. process : 결과물을 내는 과정이다.
+    2. compare : 로또번호와 복권 번호를 비교하고 비교 결과를 배열에 담아 반환한다.
+    3. countCollectNumber : 로또 번호와 복권 번호를 비교하여 맞는 개수를 반환한다.
+    4. checkBonusNumber : 로또 번호와 복권 번호의 일치하는 개수가 5개일 때 보너스 번호를 비교한다.
+    5. calProfit : 수익을 계산하여 반환한다.
+    6. showResult : 당첨 통계를 보여준다.
+    7. calProfitRate : 수익률을 계산한다.
 
 ## 프로그래밍 요구 사항 확인
 

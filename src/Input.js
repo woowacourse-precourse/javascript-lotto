@@ -57,15 +57,6 @@ class Input {
         });
     }
 
-    makeRandomLottos(number) {
-        const lottos = [];
-        for (let index = 1; index <= number; index++) {
-            const currentNumbers = this.makeRandomLotto();
-            this.showLottoNumbers(currentNumbers);
-            lottos.push(currentNumbers);
-        }
-        return lottos;
-    }
     makeRandomLotto() {
         const lotto = Random.pickUniqueNumbersInRange(1, 45, 6);
         lotto.sort((a, b) => a - b);
@@ -75,6 +66,15 @@ class Input {
         Console.print(
             `[${lotto[0]}, ${lotto[1]}, ${lotto[2]}, ${lotto[3]}, ${lotto[4]}, ${lotto[5]}]`
         );
+    }
+    makeRandomLottos(number) {
+        const lottos = [];
+        for (let index = 1; index <= number; index++) {
+            const currentNumbers = this.makeRandomLotto();
+            this.showLottoNumbers(currentNumbers);
+            lottos.push(currentNumbers);
+        }
+        return lottos;
     }
 }
 
