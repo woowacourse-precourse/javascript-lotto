@@ -31,6 +31,11 @@ class Lotto {
 
     return rank;
   }
+
+  //보너스 번호 비교
+  isBonus(bonus) {
+    return this.#numbers.includes(bonus);
+  }
 }
 
 module.exports = Lotto;
