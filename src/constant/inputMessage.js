@@ -1,9 +1,9 @@
 const THOUSAND = 1000;
 
 const GAME_START_MESSAGE = "구입금액을 입력해 주세요.\n";
-const WIN_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.\n";
-const BONUS_NUMBERS_MESSAGE = "보너스 번호를 입력해 주세요.\n";
-const BUY_LOTTOS_MESSAGE = (count) => `${count}개를 구매했습니다.`;
+const WIN_NUMBERS_MESSAGE = "\n당첨 번호를 입력해 주세요.\n";
+const BONUS_NUMBERS_MESSAGE = "\n보너스 번호를 입력해 주세요.\n";
+const BUY_LOTTOS_MESSAGE = (count) => `\n${count}개를 구매했습니다.`;
 
 const RANGE = {
   START: 1,
