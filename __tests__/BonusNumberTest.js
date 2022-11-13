@@ -1,6 +1,12 @@
 const BonusNumber = require("../src/BonusNumber");
 
 describe("보너스 번호 클래스 테스트", () => {
+  test("0으로 시작하는 숫자는 입력 할 수 없습니다.", () => {
+    expect(() => {
+      new BonusNumber([1, 2, 3, 4, 5, 6], "07");
+    }).toThrow("[ERROR] 0으로 시작하는 숫자는 입력할 수 없습니다.");
+  });
+
   test("보너스 번호는 숫자만이 입력될 수 있다.", () => {
     expect(() => {
       new BonusNumber([1, 2, 3, 4, 5, 6], "7 8");
