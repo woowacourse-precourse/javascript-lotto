@@ -33,6 +33,25 @@ class Lotto {
     }
   }
 
+  validateBonusNumber(bonusNumber) {
+    if (
+      typeof bonusNumber !== 'number' ||
+      Number.isNaN(bonusNumber) ||
+      bonusNumber < 1 ||
+      bonusNumber > 45
+    ) {
+      throw new Error(
+        `[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 1 ~ 45 사이의 숫자 1개를 입력해야 합니다.`
+      );
+    }
+
+    if (this.#winnigNums.some((num) => num === bonusNumber)) {
+      throw new Error(
+        `[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 1 ~ 45 사이의 숫자 1개를 입력해야 합니다.`
+      );
+    }
+  }
+
   // TODO: 추가 기능 구현
 }
 
