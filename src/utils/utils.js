@@ -1,3 +1,5 @@
+const { Random } = require("@woowacourse/mission-utils");
+
 const {
   NUMBER_COUNT,
   AMOUNT_UNIT,
@@ -64,6 +66,15 @@ const countAvailableQuantity = (amount) => {
   return Number(amount) / AMOUNT_UNIT;
 };
 
+const generateRandomNumbers = () => {
+  const lotto = Random.Random.pickUniqueNumbersInRange(
+    MIN_NUMBER,
+    MAX_NUMBER,
+    NUMBER_COUNT
+  );
+  return ascendingSort(lotto);
+};
+
 module.exports = {
   hasChar,
   isDivisible,
@@ -74,4 +85,5 @@ module.exports = {
   isOutOfRange,
   hasDuplicate,
   countAvailableQuantity,
+  generateRandomNumbers,
 };

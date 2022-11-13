@@ -1,5 +1,9 @@
 const { ERROR } = require("../src/utils/constants");
-const { isOutOfRange, hasDuplicate } = require("../src/utils/utils");
+const {
+  isOutOfRange,
+  hasDuplicate,
+  generateRandomNumbers,
+} = require("../src/utils/utils");
 
 class Lotto {
   #numbers;
@@ -29,6 +33,10 @@ class Lotto {
 
   toString() {
     return `[${this.#numbers.join(", ")}]`;
+  }
+
+  static createAutoLotto() {
+    return new this(generateRandomNumbers());
   }
 }
 
