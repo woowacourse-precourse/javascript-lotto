@@ -1,5 +1,5 @@
-const Input = require('./Input');
-const BonusValidation = require('./Validation/BonusValidation');
+const Input = require('.');
+const BonusValidation = require('../Validation/BonusValidation');
 
 class Bonus extends Input {
   #bonusNumber = 0;

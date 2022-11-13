@@ -1,7 +1,7 @@
-const { PRICE_MEASURE } = require('./lib/Constants');
-const { print } = require('./lib/Utils');
-const Input = require('./Input');
-const PriceValidation = require('./Validation/PriceValidation');
+const { PRICE_MEASURE } = require('../lib/Constants');
+const { print } = require('../lib/Utils');
+const Input = require('.');
+const PriceValidation = require('../Validation/PriceValidation');
 
 class Price extends Input {
   #lottoPrice = 0;

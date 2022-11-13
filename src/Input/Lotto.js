@@ -1,6 +1,6 @@
-const { print } = require('./lib/Utils');
-const Input = require('./Input');
-const WinNumbersValidation = require('./Validation/WinNumbersValidation');
+const { print } = require('../lib/Utils');
+const Input = require('.');
+const WinNumbersValidation = require('../Validation/WinNumbersValidation');
 
 class Lotto extends Input {
   #numbers;
