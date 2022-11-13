@@ -15,6 +15,7 @@ const {
   hasCharExceptComma,
   makeSplit,
   makeNumberArray,
+  isOutOfRange,
 } = require("../src/utils/utils");
 
 class App {
@@ -93,6 +94,10 @@ class App {
 
     if (hasChar(trimmedNumber)) {
       throw new Error(ERROR.ONLY_NUMBER);
+    }
+
+    if (isOutOfRange([number])) {
+      throw new Error(ERROR.OUT_OF_RANGE);
     }
   }
 }
