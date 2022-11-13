@@ -1,29 +1,20 @@
 const { Console, Random } = require("@woowacourse/mission-utils/");
 const Lotto = require("../src/Lotto");
 class App {
-  async play() {
-    try {
-      let money, winNumbers, bonusNumber;
-      money = await this.getInputMoney();
-      let Lottos = this.publishLotto(money / 1000);
-      this.printLottos(money, Lottos);
-      winNumbers = await this.getWinNumbers();
-      bonusNumber = await this.getBonusNumber();
-      matchLotto(winNumbers, bonusNumber);
-    } catch (error) {
-      throw new Error(error);
-    }
+  play() {
+    this.getInputMoney();
   }
 
   getInputMoney() {
-    return new Promise((resolve, reject) => {
-      Console.readLine("구매금액을 입력해 주세요.\n", (input) => {
-        if (this.isValidMoney(input)) {
-          resolve(input);
-        } else {
-          reject("[ERROR]");
-        }
-      });
+    Console.readLine("구매금액을 입력해 주세요.\n", (input) => {
+      if (!this.isValidMoney(input)) {
+        throw "[ERROR]";
+      } else {
+        Console.print(`${input / 1000}개를 구매했습니다.`);
+        let Lottos = this.publishLotto(input / 1000);
+        this.printLottosNumbers(Lottos);
+        this.getWinNumbers();
+      }
     });
   }
 
@@ -40,12 +31,10 @@ class App {
       .map((e) => new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6)));
   }
 
-  printLottos(money, Lottos) {
-    Console.print(`\n${money / 1000}개를 구매했습니다.`);
+  printLottosNumbers(Lottos) {
     Lottos.forEach((e) => {
-      Console.print(e.getNumbers());
+      Console.print(`[${e.getNumbers().join(", ")}]`);
     });
-    Console.print("\n");
   }
 
   isValidWinNumbers(winNumbers) {
@@ -57,15 +46,13 @@ class App {
   }
 
   getWinNumbers() {
-    return new Promise((resolve, reject) => {
-      Console.readLine("당첨 번호를 입력해 주세요.\n", (input) => {
-        let winNumbers = new Set(input.split(",").map(Number));
-        if (this.isValidWinNumbers(winNumbers)) {
-          resolve(winNumbers);
-        } else {
-          reject("[ERROR]");
-        }
-      });
+    Console.readLine("당첨 번호를 입력해 주세요.\n", (input) => {
+      let winNumbers = new Set(input.split(",").map(Number));
+      if (!this.isValidWinNumbers(winNumbers)) {
+        throw "[ERROR]";
+      } else {
+        this.getBonusNumber();
+      }
     });
   }
 
@@ -74,14 +61,11 @@ class App {
   }
 
   getBonusNumber() {
-    return new Promise((resolve, reject) => {
-      Console.readLine("\n보너스 번호를 입력해 주세요.\n", (input) => {
-        if (this.isValidBonusNumber(input)) {
-          resolve(input);
-        } else {
-          reject("[ERROR]");
-        }
-      });
+    Console.readLine(" 번호를 입력해 주세요.\n", (input) => {
+      if (!this.isValidBonusNumber(input)) {
+        throw "[ERROR]";
+      } else {
+      }
     });
   }
 }
