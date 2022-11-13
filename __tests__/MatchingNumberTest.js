@@ -30,4 +30,38 @@ describe("로또 당첨 통계 부분 Test", () => {
       expect(result).toBeTruthy();
     });
   });
+
+  describe("일치하는 번호 테스트", () => {
+    test("6개 일치하는 번호 테스트", () => {
+      numbers = [1, 5, 6, 10, 11, 12];
+      const bonusNumber = "13";
+      const matchingNumber = new MatchingNumber(totalLottoNumber, winnerNumber, bonusNumber);
+      const result = matchingNumber.getMatchingNumber(numbers);
+      expect(result).toEqual([1, 5, 6, 10, 11, 12]);
+    });
+
+    test("5개 일치하는 번호 테스트", () => {
+      const bonusNumber = "13";
+      let numbers = [1, 5, 6, 10, 11, 13];
+      const matchingNumber = new MatchingNumber(totalLottoNumber, winnerNumber, bonusNumber);
+      const result = matchingNumber.getMatchingNumber(numbers);
+      expect(result).toEqual([1, 5, 6, 10, 11]);
+    });
+
+    test("4개 일치하는 번호 테스트", () => {
+      const bonusNumber = "13";
+      numbers = [1, 5, 6, 10, 15, 16];
+      const matchingNumber = new MatchingNumber(totalLottoNumber, winnerNumber, bonusNumber);
+      const result = matchingNumber.getMatchingNumber(numbers);
+      expect(result).toEqual([1, 5, 6, 10]);
+    });
+
+    test("3개 일치하는 번호 테스트", () => {
+      const bonusNumber = "13";
+      numbers = [1, 5, 6, 8, 15, 16];
+      const matchingNumber = new MatchingNumber(totalLottoNumber, winnerNumber, bonusNumber);
+      const result = matchingNumber.getMatchingNumber(numbers);
+      expect(result).toEqual([1, 5, 6]);
+    });
+  });
 });
