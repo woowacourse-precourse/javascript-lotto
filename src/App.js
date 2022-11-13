@@ -34,8 +34,6 @@ class App {
   }
 
   countSameNumberWithWinningNumber(lotto, winningNumbers) {
-    Validation.isValidWinningNumber(winningNumbers);
-
     return lotto.filter((number) => winningNumbers.includes(number)).length;
   }
 
@@ -52,6 +50,8 @@ class App {
 
   askWinningNumber() {
     Console.askAndGetUserInput("\n" + Console.ASK_WINNING_NUMBER, (winningNumbers) => {
+      Validation.isValidWinningNumber(winningNumbers);
+
       this.winningNumbers = winningNumbers
         .split(",")
         .map(Number)
