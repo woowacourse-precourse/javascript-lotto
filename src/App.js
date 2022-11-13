@@ -27,7 +27,8 @@ class App {
       );
 
       this.#issuedLottos = [...this.#issuedLottos, lotto];
-      Console.print(lotto);
+
+      Console.print(JSON.stringify(lotto).replaceAll(',', ', '));
     });
 
     this.getWinningNumber();
