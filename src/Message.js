@@ -47,6 +47,10 @@ class Message {
     6개 일치 (2,000,000,000원) - ${winningAmount[4]}개
     `;
   }
+
+  static grossReturn(percentage) {
+    return `총 수익률은 ${percentage}%입니다.`;
+  }
 }
 
 module.exports = Message;
