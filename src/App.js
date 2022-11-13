@@ -9,6 +9,7 @@ class App {
   bonusNumber;
 
   constructor() {
+    this.money = null;
     this.unit = 1000;
     this.lottos = [];
     this.winningNumbers = null;
@@ -46,8 +47,9 @@ class App {
   buyLottos() {
     Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
       const parsedMoney = parseInt(money, 10);
-      this.validateMoney(parsedMoney);
-      this.createLottos(parsedMoney);
+      this.money = parsedMoney;
+      this.validateMoney(this.money);
+      this.createLottos(this.money);
       this.askWinningNumbers();
     });
   }
@@ -137,7 +139,6 @@ class App {
     }
     return matched;
   }
-
   caculateWhenFiveMatches(lottoNumbers) {
     if (this.compareArr(lottoNumbers, [this.bonusNumber]) === 1) {
       this.ranks[2] += 1;
@@ -146,11 +147,16 @@ class App {
     this.ranks[3] += 1;
   }
   assignRanks(matched, lottoNumbers) {
+    if (matched === 6) {
+      this.ranks[1] += 1;
+      return;
+    }
     if (matched === 5) {
       this.caculateWhenFiveMatches(lottoNumbers);
       return;
     }
-    this.ranks[7 - matched] += 1;
+
+    this.ranks[8 - matched] += 1;
   }
   printRanks() {
     Console.print(`당첨 통계\n`);
@@ -163,6 +169,28 @@ class App {
     );
     Console.print(`6개 일치 (2,000,000,000원) - ${this.ranks[1]}개`);
   }
+  getSum(ranks) {
+    const reward = [0, 2000000000, 30000000, 1500000, 50000, 5000];
+    let sum = 0;
+    for (let idx = 0; idx < reward.length; idx++) {
+      console.log(ranks[idx]);
+      sum += ranks[idx] * reward[idx];
+    }
+    return sum;
+  }
+  getRateOfReturn(inputMoney, sum) {
+    const rounded = Math.round((sum / inputMoney) * 10);
+    const result = (rounded * 10).toFixed(1);
+    return result;
+  }
+  printRateOfReturn() {
+    Console.print(
+      `총 수익률은 ${this.getRateOfReturn(
+        this.money,
+        this.getSum(this.ranks)
+      )}%입니다.`
+    );
+  }
   drawLots() {
     this.lottos.forEach((lotto) => {
       const lottoNumbers = lotto.numbers;
@@ -170,6 +198,7 @@ class App {
       this.assignRanks(matched, lottoNumbers);
     });
     this.printRanks();
+    this.printRateOfReturn();
   }
 }
 
