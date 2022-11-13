@@ -92,15 +92,15 @@ Random 값은 **MissionUtils 라이브러리**의 `Random.pickUniqueNumbersInRan
 
 </br>
 
-## [&nbsp; ] 당첨 결과 분석 - `resultAnalysis`  
-### [✅] 로또 번호와 당첨 번호 비교하기 - resultAnalysis.compareNumber()
+## [&nbsp; ] 당첨 결과 분석 - `LottoCalculator`  
+### [✅] 로또 번호와 당첨 번호 비교하기 - LottoCalculator.compareNumber()
 로또 번호와 당첨 번호 중 몇 개가 일치하는지 확인한다.   
 5개 일치 시, 추가로 보너스 번호와 일치하는지 확인한다.
 
-### [&nbsp; ] 당첨 결과 통계 내기 - resultAnalysis.calculateResult()  
+### [&nbsp; ] 당첨 결과 통계 내기 - LottoCalculator.calculateResult()  
 비교 결과를 통해 1등 ~ 5등 결과 및 수익률을 통계 낸다.
 
-### [&nbsp; ] 당첨 결과 출력하기 - resultAnalysis.printResult()  
+### [&nbsp; ] 당첨 결과 출력하기 - LottoCalculator.printResult()  
 **MissionUtils 라이브러리**에서 제공하는 `Console.print()`를 활용하여 출력한다.
 
 </br>
