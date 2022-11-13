@@ -10,23 +10,31 @@ class App {
     let NEW_ERROR = '';
     if(errorCase == 'unitError') {
         NEW_ERROR = ERROR_MESSAGE +  '1000원 단위로 입력해 주세요.';
+    } else if(errorCase == 'bonusError'){
+        NEW_ERROR = ERROR_MESSAGE +  '당첨 번호들이 아닌 번호를 입력해 주세요.';
     }
     return NEW_ERROR;
   }
-/*
-  enterBonus(){
-    Console.readLine('보너스 번호를 입력해 주세요.\n',(bonus) =>{
 
+  //5. 보너스 번호 입력받기
+  enterBonus(winningNums){
+    Console.readLine('\n보너스 번호를 입력해 주세요.\n',(bonus) =>{
+      if(winningNums.includes(bonus)){
+        Console.print(this.getErrorMessage('bonusError'));
+      }
+      //console.log('보너스 번호는... ',bonus);
+      return;
     })  
-    return;
   }
-*/
+
+  //4. 당첨 번호 입력받기
   enterWinningNums(){
     Console.readLine('\n당첨 번호를 입력해 주세요.\n',(answer) =>{
       const answerList = answer.split(',');
-      console.log(answerList);
+      //console.log(answerList);
+      return this.enterBonus(answerList);
+
     })
-    return;
   }
 /*
   enterLottoAnswer(){
