@@ -40,22 +40,16 @@ class Lotto {
   }
 
   getRateOfReturn({ payment, resultLotto }) {
-    const REWARD = {
-      fifth: 5000,
-      fourth: 50000,
-      third: 1500000,
-      second: 30000000,
-      first: 2000000000,
-    };
     const prizes = Object.keys(resultLotto);
-    const sumReward = prizes.reduce((totalReward, prize) => {
-      const prizeReward = REWARD[prize];
+    const sumReward = prizes.reduce((prevSumReward, prize) => {
+      const prizeReward = PRIZE_REWARD[prize];
       const prizeCount = resultLotto[prize];
-      console.log(totalReward, prize, prizeReward, prizeCount);
-      return (totalReward += prizeReward * prizeCount);
+
+      return (prevSumReward += prizeReward * prizeCount);
     }, 0);
     const rate = (Math.round((sumReward - payment) / payment) * 100) / 100;
-    console.log(rate);
+
+    return rate;
   }
   printStatistics({ myLottos, bonusNumber }) {
     const resultLotto = this.getStatistics({ myLottos, bonusNumber });
