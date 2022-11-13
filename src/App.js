@@ -1,6 +1,15 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
+function generateGuessNumbers(numOfTickets) {
+  const guessNumbersTotal = [];
+  for (let i = 0; i < numOfTickets; i += 1) {
+    const guessNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
+    guessNumbersTotal[i] = guessNumbers;
+  }
+  printGuessNumbersTotal(numOfTickets, guessNumbersTotal);
+}
+
 function validatePayment(payment) {
   const paymentNum = Number(payment);
   if (!Number.isInteger(paymentNum)) {
