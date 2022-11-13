@@ -58,16 +58,16 @@ describe('issueLotteries 함수 테스트', () => {
   test('로또 발행 갯수 만큼 랜덤 배열 생성', () => {
     lotteryQuantity.forEach((testElement, idx) => {
       const app = new App();
-      const LotteryLength = app.issueLotteries(testElement).length;
+      const LotteryLength = app.pickRandomLotteries(testElement).length;
       expect(LotteryLength).toEqual(lotteryQuantity[idx]);
     });
   });
   test('발행된 로또 번호가 오름차순 정렬인지 확인', () => {
     lotteryQuantity.forEach((testElement) => {
       const app = new App();
-      const LotteryArray = app.issueLotteries(testElement);
+      const LotteryArray = app.pickRandomLotteries(testElement);
       LotteryArray.forEach((oneLottery) => {
-        const originLottery = oneLottery.getNumbers();
+        const originLottery = oneLottery;
         const copyArray = originLottery.slice();
         const sortedArray = copyArray.sort((a, b) => a - b);
         expect(originLottery).toEqual(sortedArray);
