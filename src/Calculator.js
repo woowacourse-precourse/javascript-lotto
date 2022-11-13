@@ -1,5 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { MESSAGE } = require("../constant/Message");
+const { MESSAGE, CONSTANTS } = require("../constant/Message");
 
 class Calculator {
   #myLottos;
@@ -17,7 +17,9 @@ class Calculator {
   checkMatchingNumbers() {
     const matchingCount = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, B: 0 };
     const count = this.#myLottos.map(
-      (lotto) => [...new Set([...lotto, ...this.#winningNumbers])].length - 6
+      (lotto) =>
+        [...new Set([...lotto, ...this.#winningNumbers])].length -
+        CONSTANTS.LOTTO_MAX_COUNT
     );
     count.map((item) => (matchingCount[item] += 1));
     Console.print(matchingCount);

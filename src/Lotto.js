@@ -1,4 +1,4 @@
-const { MESSAGE } = require("../constant/Message");
+const { MESSAGE, CONSTANTS } = require("../constant/Message");
 
 class Lotto {
   #numbers;
@@ -9,7 +9,7 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
+    if (numbers.length !== CONSTANTS.LOTTO_MAX_COUNT) {
       throw new Error(MESSAGE.ERROR_LENGTH);
     }
     this.validateRange(numbers);
@@ -17,15 +17,24 @@ class Lotto {
   }
 
   validateRange(numbers) {
-    for (let index = 0; index < 6; index++) {
-      if (!(1 <= numbers[index] && numbers[index] <= 45)) {
+    for (
+      let index = CONSTANTS.ZERO;
+      index < CONSTANTS.LOTTO_MAX_COUNT;
+      index++
+    ) {
+      if (
+        !(
+          CONSTANTS.MIN_LOTTO <= numbers[index] &&
+          numbers[index] <= CONSTANTS.MAX_LOTTO
+        )
+      ) {
         throw new Error(MESSAGE.ERROR_RANGE);
       }
     }
   }
 
   validateDuplicate(numbers) {
-    if (new Set(numbers).size !== 6) {
+    if (new Set(numbers).size !== CONSTANTS.LOTTO_MAX_COUNT) {
       throw new Error(MESSAGE.ERROR_DUPLICATE);
     }
   }
@@ -40,7 +49,7 @@ class Lotto {
   }
 
   validateBonusRange(number) {
-    if (!(1 <= number && number <= 45)) {
+    if (!(CONSTANTS.MIN_LOTTO <= number && number <= CONSTANTS.MAX_LOTTO)) {
       throw new Error(MESSAGE.ERROR_BONUS_RANGE);
     }
   }

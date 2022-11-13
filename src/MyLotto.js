@@ -1,5 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const { MESSAGE } = require("../constant/Message");
+const { MESSAGE, CONSTANTS } = require("../constant/Message");
 
 class MyLotto {
   #money;
@@ -8,21 +8,24 @@ class MyLotto {
   constructor(money) {
     this.validatePurchaseAmount(money);
     this.#money = money;
-    this.#purchaseAmount = money / 1000;
+    this.#purchaseAmount = money / CONSTANTS.ONE_THOUSAND;
     this.printPurchaseAmount(this.#purchaseAmount);
   }
 
   validatePurchaseAmount(money) {
-    if (money < 1000) throw new Error(MESSAGE.ERROR_AMOUNT);
-    if (money % 1000 !== 0) throw new Error(MESSAGE.ERROR_DIVIDE);
+    if (money < CONSTANTS.ONE_THOUSAND) throw new Error(MESSAGE.ERROR_AMOUNT);
+    if (money % CONSTANTS.ONE_THOUSAND !== CONSTANTS.ZERO)
+      throw new Error(MESSAGE.ERROR_DIVIDE);
   }
 
   getMyLottery() {
     const myLottos = new Array(this.#purchaseAmount);
-    for (let i = 0; i < this.#purchaseAmount; i++) {
-      myLottos[i] = Random.pickUniqueNumbersInRange(1, 45, 6).sort(
-        (a, b) => a - b
-      );
+    for (let index = CONSTANTS.ZERO; index < this.#purchaseAmount; index++) {
+      myLottos[index] = Random.pickUniqueNumbersInRange(
+        CONSTANTS.MIN_LOTTO,
+        CONSTANTS.MAX_LOTTO,
+        CONSTANTS.LOTTO_MAX_COUNT
+      ).sort((a, b) => a - b);
     }
     return myLottos;
   }
@@ -32,8 +35,8 @@ class MyLotto {
   }
 
   printMyLottery(myLottos) {
-    for (let i = 0; i < myLottos.length; i++) {
-      Console.print(myLottos[i]);
+    for (let index = CONSTANTS.MIN_LOTTO; index < myLottos.length; index++) {
+      Console.print(myLottos[index]);
     }
   }
 }
