@@ -34,18 +34,18 @@ class Message {
 
   static statistics(winningAmount) {
     const MAX_LENGTH = 5;
+    const [ZERO, ONE, TWO, THREE, FOUR] = [0, 1, 2, 3, 4];
 
     Application.validateArrayLength(winningAmount, MAX_LENGTH);
 
     return `
     당첨 통계
     ---
-    3개 일치 (5,000원) - ${winningAmount[0]}개
-    4개 일치 (50,000원) - ${winningAmount[1]}개
-    5개 일치 (1,500,000원) - ${winningAmount[2]}개
-    5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningAmount[3]}개
-    6개 일치 (2,000,000,000원) - ${winningAmount[4]}개
-    `;
+    3개 일치 (5,000원) - ${winningAmount[ZERO]}개
+    4개 일치 (50,000원) - ${winningAmount[ONE]}개
+    5개 일치 (1,500,000원) - ${winningAmount[TWO]}개
+    5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningAmount[THREE]}개
+    6개 일치 (2,000,000,000원) - ${winningAmount[FOUR]}개 `;
   }
 
   static grossReturn(percentage) {
