@@ -11,6 +11,7 @@ class PriceValidation extends Validation {
 
   validate() {
     this.checkEmpty();
+    this.checkZero();
     this.checkNumber();
     this.checkUnitNumber();
   }
@@ -20,6 +21,17 @@ class PriceValidation extends Validation {
       throw new PriceError(PRICE_ERROR_MESSAGE.not_valid_answer);
     }
     return true;
+  }
+
+  checkZero() {
+    if (this.isZero()) {
+      throw new PriceError(PRICE_ERROR_MESSAGE.not_valid_zero);
+    }
+    return true;
+  }
+
+  isZero() {
+    return this.answer === '0';
   }
 
   checkNumber() {
