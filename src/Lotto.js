@@ -12,6 +12,16 @@ class Lotto {
     }
   }
 
+  createLottoNumber(){
+    let lottoNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    lottoNumber=this.sortNumber(lottoNumber);
+  }
+
+  sortNumber(numberArray){
+    numberArray.sort((a, b) => a - b);
+    return numberArray;
+  }
+
   // TODO: 추가 기능 구현
 }
 
