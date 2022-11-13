@@ -8,6 +8,7 @@ class App {
   #publishedLottos = [];
   #winningNumber;
   #bonusNumber;
+  #profitRate;
 
   play() {
     this.getPurchaseAmount();
@@ -34,8 +35,8 @@ class App {
   getBonusNumber() {
     MissionUtils.Console.readLine(MESSAGES.INPUTBONUSNUMBER, (input) => {
       this.#bonusNumber = Number(input);
-      console.log(this.#bonusNumber);
-      MissionUtils.Console.close();
+      
+      this.calcResult();
     })
   }
 
@@ -52,6 +53,13 @@ class App {
     this.getWinningNumber();
   }
   
+  calcResult() {
+    const lotto = new Lotto(this.#winningNumber);
+    const { three, four, five, bonus, six } = lotto.comparisonNumbers(this.#publishedLottos, this.#bonusNumber);  
+    console.log({ three, four, five, bonus, six});
+    MissionUtils.Console.close();
+  }
+
 }
 
 const app = new App();
