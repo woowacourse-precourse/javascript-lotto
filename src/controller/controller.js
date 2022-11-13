@@ -45,7 +45,7 @@ class LottoGameHandler {
   getBonusNumber(winningNumbers) {
     MissionUtils.Console.readLine(GET_INPUT.BONUS_NUMBER, (userInput) => {
       this.inputCheck.isBonusNumberValid(winningNumbers, userInput);
-      LottoResultCheck.bonusNumber = userInput;
+      LottoResultCheck.bonusNumber = parseInt(userInput);
       this.checkWinningOfBoughtLottos();
     });
   }

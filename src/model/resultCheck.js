@@ -16,13 +16,13 @@ class LottoResultCheck {
       return this.countLottoRanking(GRADE.FIFTH);
     if (COUNT_OF_CORRECT_NUMBERS === VALUE_NUMBER.NUMBERS_OF_WIN_FOURTH_PRIZE)
       return this.countLottoRanking(GRADE.FOURTH);
-    if (COUNT_OF_CORRECT_NUMBERS === VALUE_NUMBER.NUMBERS_OF_WIN_THIRD_PRIZE)
-      return this.countLottoRanking(GRADE.THIRD);
     if (
       COUNT_OF_CORRECT_NUMBERS === VALUE_NUMBER.NUMBERS_OF_WIN_SECOND_PRIZE &&
       lottonumbers.includes(this.bonusNumber)
     )
       return this.countLottoRanking(GRADE.SECOND);
+    if (COUNT_OF_CORRECT_NUMBERS === VALUE_NUMBER.NUMBERS_OF_WIN_THIRD_PRIZE)
+      return this.countLottoRanking(GRADE.THIRD);
     if (COUNT_OF_CORRECT_NUMBERS === VALUE_NUMBER.NUMBERS_OF_WIN_FIRST_PRIZE)
       return this.countLottoRanking(GRADE.FIRST);
   }
