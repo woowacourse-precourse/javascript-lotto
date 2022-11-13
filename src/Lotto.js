@@ -18,8 +18,8 @@ class Lotto {
   }
 
   printOfResultFromCalc(lottos, answers, bonusNum, baseMoney){
-    const answerToNum = ans => ans.map(Number);
-    const winLotteryAfterCalc = (this.calculate.testAllLottos(lottos, answerToNum(answers), bonusNum));
+    const answerToNumArr = ans => ans.map(Number);
+    const winLotteryAfterCalc = (this.calculate.testAllLottos(lottos, answerToNumArr(answers), bonusNum));
     const rateOfprofit = this.yieldCalculation(winLotteryAfterCalc, baseMoney);
     printResult(winLotteryAfterCalc, rateOfprofit);
   }
