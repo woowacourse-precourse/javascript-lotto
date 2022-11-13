@@ -44,10 +44,7 @@ class LottoCalculate {
     return wining;
   }
 
-  gainCaculator() {}
-
   printWinResult(result) {
-    Console.print(PRINT.RESULT);
     const MENT = { ...WINNING.MENT };
     Object.keys(MENT).forEach((win) => {
       Console.print(MENT[win](result[win]));
@@ -65,7 +62,7 @@ class LottoCalculate {
       console.log(rank, price[rank], lottoResult[rank]);
       allPrice += price[rank] * lottoResult[rank];
     });
-    const gainPercent = ((allPrice / (count * 1000)) * 100).toFixed(2);
+    const gainPercent = ((allPrice / (count * LOTTO.PRICE)) * 100).toFixed(2);
     Console.print(PRINT.GAIN_PECENT(gainPercent));
     return;
   }
@@ -73,22 +70,17 @@ class LottoCalculate {
 
 const a = new LottoCalculate();
 
-// const result = a.resultCaculator(
-//   [
-//     [1, 2, 3, 4, 5, 6],
-//     [1, 32, 2, 4, 5, 6],
-//     [1, 2, 3, 4, 5, 6],
-//     [1, 32, 13, 24, 5, 6],
-//     [1, 22, 23, 44, 5, 6],
-//     [1, 12, 32, 24, 5, 6],
-//     [1, 22, 33, 4, 5, 6],
-//   ],
-//   [1, 2, 3, 4, 5, 6],
-//   7
-// );
+const result = a.resultCaculator(
+  [
+    new Lotto([1, 2, 3, 4, 5, 6]),
+    new Lotto([1, 32, 2, 4, 5, 6]),
+    new Lotto([1, 2, 3, 4, 5, 6]),
+  ],
+  { winLotto: new Lotto([1, 2, 3, 4, 5, 6]), bonus: 7 }
+);
 
-// a.printWinResult(result);
-// a.printGainPercent(result);
+a.printWinResult(result);
+a.printGainPercent(result);
 
 // console.log("1등", a.compareLotto([1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6], 8));
 
@@ -115,6 +107,6 @@ const a = new LottoCalculate();
 //     7
 //   )
 // );
-// a.printWinResult({ FIRST: 0, SECOND: 0, THIRD: 1, FOURTH: 2, FIFTH: 0 })
+// a.printWinResult({ FIRST: 0, SECOND: 0, THIRD: 1, FOURTH: 2, FIFTH: 0 });
 
 module.exports = LottoCalculate;
