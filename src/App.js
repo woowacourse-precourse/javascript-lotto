@@ -1,8 +1,11 @@
 const { Console } = require("@woowacourse/mission-utils");
 const NumberGenerator = require("./NumberGenerator");
+const Lotto = require("./Lotto");
+const LottoSimulator = require("./LottoSimulator");
 
 class App {
   lottos;
+  purchaseMoney;
   winningNumber;
 
   constructor() {
@@ -11,12 +14,19 @@ class App {
   }
 
   play() {
-    Console.readLine('구입금액을 입력해 주세요.\n', this.issueLotto.bind(this));
+    Console.readLine('구입금액을 입력해 주세요.\n', this.handleGameStart.bind(this));
+  }
+
+  handleGameStart(purchaseMoney) {
+    this.purchaseMoney = Number(purchaseMoney);
+    this.issueLotto();
+    this.printMyLottos();
+    this.getWinningNumber();
   }
 
   issueLotto() {
     const numberGenerator = new NumberGenerator();
-    for (let purchaseCount = 0; purchaseCount < purchaseMoney / 1000; purchaseCount++){
+    for (let purchaseCount = 0; purchaseCount < this.purchaseMoney / 1000; purchaseCount++){
       this.lottos.push(new Lotto(numberGenerator.createRandomNumber()));
     }
   }
