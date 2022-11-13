@@ -132,6 +132,11 @@ class App {
     Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.countRankList[3]}개`);
     Console.print(`6개 일치 (2,000,000,000원) - ${this.countRankList[4]}개`);
     Console.print(`총 수익률은 ${this.profitRates}%입니다.`);
+    this.endGame();
+  }
+
+  endGame() {
+    Console.close();
   }
 }
 let app = new App();

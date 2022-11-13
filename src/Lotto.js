@@ -14,24 +14,39 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== LOTTO_LENGTH) throw new Error(`[ERROR] 로또 번호는 ${LOTTO_LENGTH}개여야 합니다.`);
+    if (numbers.length !== LOTTO_LENGTH) {
+      Console.close();
+      throw new Error(`[ERROR] 로또 번호는 ${LOTTO_LENGTH}개여야 합니다.`);
+    }
     this.validateInputNumbers(numbers);
   }
 
   // TODO: 추가 기능 구현
   validateInputNumbers(numbers) {
     for(let index = 0; index < numbers.length; index++){
-      if(isNaN(numbers[index]) || numbers.join("").charCodeAt(numbers[index]) == 32) throw new Error ("[ERROR] 정확한 번호를 입력해주세요.");
+      if(isNaN(numbers[index]) || numbers.join("").charCodeAt(numbers[index]) == 32) {
+        Console.close();
+        throw new Error ("[ERROR] 정확한 번호를 입력해주세요.");
+      }
     }
     for(let index of numbers) {
       if(index == null) continue;
-      if(index > END_LOTTO_NUMBER || index < START_LOTTO_NUMBER) throw new Error(`[ERROR] 로또 번호는 ${START_LOTTO_NUMBER}부터 ${END_LOTTO_NUMBER}까지 입니다.`);
+      if(index > END_LOTTO_NUMBER || index < START_LOTTO_NUMBER) {
+        Console.close();
+        throw new Error(`[ERROR] 로또 번호는 ${START_LOTTO_NUMBER}부터 ${END_LOTTO_NUMBER}까지 입니다.`);
+      }
     }
-    if(new Set(numbers).size !== LOTTO_LENGTH && numbers[0] !== null) throw new Error("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+    if(new Set(numbers).size !== LOTTO_LENGTH && numbers[0] !== null) {
+      Console.close();
+      throw new Error("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+    }
   }
 
   validateOverlap(luckyNumbers, answer){
-  if(luckyNumbers.filter((v) => v == answer[5]).length > 0) throw new Error("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+    if(luckyNumbers.filter((v) => v == answer[5]).length > 0) {
+      Console.close();
+      throw new Error("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+    }
   }
 }
 
