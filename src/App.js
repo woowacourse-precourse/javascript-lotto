@@ -28,6 +28,11 @@ class App {
     }
   }
 
+  printBoughtLottos() {
+    Console.print(MESSAGE.QUANTITY_OF_PURCHASE(this.user.quantity));
+    this.user.lottos.forEach((lotto) => Console.print(lotto.toString()));
+  }
+
   getWinningNumbers() {
     Console.readLine(MESSAGE.ENTER_WINNING_NUMBERS, (numbers) => {
       const trimmedNumbers = numbers.trim();
