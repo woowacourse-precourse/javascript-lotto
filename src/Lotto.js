@@ -15,7 +15,6 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
   overlapCheck(numbers) {
     const set = new Set(numbers);
     if (numbers.length !== set.size) {
@@ -23,6 +22,7 @@ class Lotto {
     }
   }
 
+  // 입력값에 숫자가 아닌 것이 있는지 확인
   characterCheck(numbers) {
     for (let i = 0; i < numbers.length; i++) {
       if (typeof numbers[i] != "number") {
@@ -31,6 +31,7 @@ class Lotto {
     }
   }
 
+  // 입력값이 범위 내에 있는지 확인
   rangeCheck(numbers) {
     for (let i = 0; i < numbers.length; i++) {
       if (numbers[i] > 45 || numbers[i] < 1) {

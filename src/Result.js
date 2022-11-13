@@ -4,6 +4,7 @@ class Result {
   ranking = [0, 0, 0, 0, 0];
   profit = 0;
 
+  // 번호가 5개 일치하는 경우를 대비하여 bonus까지 고려해서 등수를 책정해야한다.
   rankingCalculate(record, bonus) {
     if (bonus) {
       record[2] -= bonus;
