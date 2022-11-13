@@ -26,6 +26,10 @@ class App {
     const number = this.lottoIssuance();
     console.log(`${number}개를 구매했습니다.`);
   }
+  makeRandomNumber() {
+    const randomNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    MissionUtils.Console.print(randomNumbers);
+  }
 
   play() {
     this.paymentInput();
