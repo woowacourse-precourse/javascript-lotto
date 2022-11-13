@@ -29,10 +29,9 @@ const checkRange = (number) => {
   if (Number(number) < 1 || Number(number) > 45) return true;
 };
 
-const checkWinningNumbers = (numbers) => {
-  const splitNumbers = numbers.split(",");
-  if (checkNumberCount(splitNumbers)) throw COUNT_ERROR;
-  for (const number of splitNumbers) {
+const checkLottoNumbers = (numbers) => {
+  if (checkNumberCount(numbers)) throw COUNT_ERROR;
+  for (const number of numbers) {
     if (checkRange(Number(number))) throw RANGE_ERROR;
     if (checkNaN(Number(number))) throw NAN_ERROR;
   }
@@ -45,6 +44,6 @@ const checkBonusNumber = (number) => {
 
 module.exports = {
   checkPurchaseAmount: checkPurchaseAmount,
-  checkWinningNumbers: checkWinningNumbers,
+  checkLottoNumbers: checkLottoNumbers,
   checkBonusNumber: checkBonusNumber,
 };

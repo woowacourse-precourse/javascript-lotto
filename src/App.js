@@ -9,7 +9,7 @@ class App {
     amount /= 1000;
     const lottos = lottoModel.createLottos(amount);
     lottoView.printLottos(amount, lottos);
-    const winningNumbers = await lottoView.getWinningNumbers();
+    let winningNumbers = await lottoView.getWinningNumbers();
     const bonusNumber = await lottoView.getBonusNumber();
     lottoModel.checkWinning(winningNumbers, bonusNumber);
   }
