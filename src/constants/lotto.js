@@ -36,11 +36,11 @@ const RANK_REWARDS = Object.freeze({
 });
 
 const RANK_MESSAGE = Object.freeze({
-  FIFTH: `3개 일치 (${RANK_REWARDS.FIFTH.toLocaleString()}원) - `,
-  FOURTH: `4개 일치 (${RANK_REWARDS.FOURTH.toLocaleString()}원) - `,
-  THIRD: `5개 일치 (${RANK_REWARDS.THIRD.toLocaleString()}원) - `,
-  SECOND: `5개 일치, 보너스 볼 일치 (${RANK_REWARDS.SECOND.toLocaleString()}원) - `,
-  FIRST: `6개 일치 (${RANK_REWARDS.FIRST.toLocaleString()}원) - `,
+  FIFTH: `3개 일치 (${RANK_REWARDS.FIFTH.toLocaleString()}원) -`,
+  FOURTH: `4개 일치 (${RANK_REWARDS.FOURTH.toLocaleString()}원) -`,
+  THIRD: `5개 일치 (${RANK_REWARDS.THIRD.toLocaleString()}원) -`,
+  SECOND: `5개 일치, 보너스 볼 일치 (${RANK_REWARDS.SECOND.toLocaleString()}원) -`,
+  FIRST: `6개 일치 (${RANK_REWARDS.FIRST.toLocaleString()}원) -`,
 });
 
 module.exports = { RULE, GAME_MESSAGE, RANK, RANK_LENGTH, RANK_REWARDS, RANK_MESSAGE };
