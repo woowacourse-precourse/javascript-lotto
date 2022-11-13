@@ -5,12 +5,14 @@ const { getCountByPay, getRandomNumbers } = require("./util/purchase");
 
 class App {
   #lottos = [];
+  #pay = null;
   #userNumbers = null;
   #userBonusNumber = null;
 
   play() {
     Console.readLine(CONSOLE_MESSAGE.Enter, (payStr) => {
-      const lottoCnt = getCountByPay(+payStr);
+      this.pay = +payStr;
+      const lottoCnt = getCountByPay(this.pay);
 
       Console.print(lottoCnt + CONSOLE_MESSAGE.Purchase);
       for (let i = 0; i < lottoCnt; i++) {
@@ -36,12 +38,18 @@ class App {
     Console.readLine(CONSOLE_MESSAGE.BonusNumber, (numberStr) => {
       this.#userBonusNumber = +numberStr;
 
-      this.calculateResult();
+      this.calculateResults();
     });
   }
 
   calculateResults() {
     Console.print(CONSOLE_MESSAGE.Stats);
+
+    const totalPrize = this.#lottos.reduce(
+      (acc, lotto) =>
+        acc + lotto.calculateResult(this.#userNumbers, this.#userBonusNumber),
+      0
+    );
   }
 }
 

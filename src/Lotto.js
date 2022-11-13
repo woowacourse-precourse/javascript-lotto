@@ -1,3 +1,5 @@
+const { getPrizeByResultCnt } = require("./util/calculate");
+
 class Lotto {
   #numbers;
 
@@ -21,10 +23,9 @@ class Lotto {
       }
       return acc;
     }, 0);
+
+    return getPrizeByResultCnt(cnt, numberSet.has(userBonusNumber));
   }
 }
 
 module.exports = Lotto;
-
-const lotto = new Lotto([1, 3, 5, 14, 22, 45]);
-lotto.calculateResult([1, 2, 3, 4, 5, 6], 7);
