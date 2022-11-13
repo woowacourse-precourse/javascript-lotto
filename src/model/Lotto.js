@@ -7,13 +7,34 @@ class Lotto {
     this.#numbers = numbers;
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+  isArraySplitByComma(numbersArray) {
+    if (numbersArray.length !== 6) {
+      this.controller.throwErrorWithMessage("winningNumberCommaNumberError");
+    }
+
+    for (const singleElement of numbersArray) {
+      if (isNaN(singleElement)) this.controller.throwErrorWithMessage("winningNumberCommaNumberError");
     }
   }
 
-  // TODO: 추가 기능 구현
+  isArrayInRange(numbersArray) {
+    for (const singleElement of numbersArray) {
+      if (1 > singleElement || singleElement > 45) this.controller.throwErrorWithMessage("WinningNumberRangeError");
+    }
+  }
+
+  isArrayUnique(numbersArray) {
+    const numbersSet = new Set(numbersArray);
+    if (numbersSet.size !== 6) this.controller.throwErrorWithMessage("WinningNumberUniqueError");
+  }
+
+  validate(numbers) {
+    if (typeof numbers !== "undefined") {
+      this.isArraySplitByComma(numbers);
+      this.isArrayInRange(numbers);
+      this.isArrayUnique(numbers);
+    }
+  }
 }
 
 module.exports = Lotto;
