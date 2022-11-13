@@ -2,7 +2,8 @@ const { ERROR_MESSAGE } = require('../constant');
 
 class NumberValidator {
   static isValidNumber(input) {
-    if (isNaN(input)) throw new Error(ERROR_MESSAGE.TYPE);
+    if ([...input].some((number) => isNaN(number)))
+      throw new Error(ERROR_MESSAGE.TYPE);
   }
 }
 
@@ -22,7 +23,9 @@ class MoneyValidator extends NumberValidator {
 }
 
 class LottoValidator extends NumberValidator {
-  constructor() {}
+  constructor() {
+    super();
+  }
 
   static validate(input) {
     this.isValidNumber(input);
