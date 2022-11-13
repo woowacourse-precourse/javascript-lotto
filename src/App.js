@@ -13,8 +13,12 @@ class App {
   purchaseLottos() {
     Console.readLine(CONSOLE_MESSAGE.Enter, (price) => {
       const lottoCnt = getCountByPay(+price);
+
+      Console.print(lottoCnt + CONSOLE_MESSAGE.Purchase);
       for (let i = 0; i < lottoCnt; i++) {
         const randomNumbers = getRandomNumbers();
+
+        Console.print(randomNumbers);
         this.#lottos.push(new Lotto(randomNumbers));
       }
     });
