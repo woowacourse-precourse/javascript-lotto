@@ -1,4 +1,4 @@
-const Lotto = require('../src/Lotto');
+const Lotto = require('../src/components/Lotto');
 
 describe('당첨 번호 예외 테스트', () => {
   test('당첨 번호로 숫자가 아닌 값을 입력하는 경우 예외가 발생한다.', () => {
