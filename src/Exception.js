@@ -19,6 +19,10 @@ class Exception {
     if (input.length === 1) {
       throw new Error(ERROR_MESSAGE.inValidSeperation);
     }
+
+    if (input.length !== 6) {
+      throw new Error(ERROR_MESSAGE.inValidInputCount);
+    }
   }
 
   checkIsDigit(number) {
