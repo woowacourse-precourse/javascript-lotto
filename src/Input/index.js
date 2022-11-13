@@ -1,4 +1,5 @@
 const { ABSTRACT_ERROR_MESSAGE } = require('../lib/Constants');
+const AbstractError = require('../Error/AbstractError');
 
 class Input {
   constructor(answer) {
@@ -8,7 +9,7 @@ class Input {
 
   checkAbstract() {
     if (this.isInputConstructor()) {
-      throw new Error(ABSTRACT_ERROR_MESSAGE.abstract_class);
+      throw new AbstractError(ABSTRACT_ERROR_MESSAGE.abstract_class);
     }
   }
 
@@ -17,11 +18,11 @@ class Input {
   }
 
   static validate() {
-    throw new Error(ABSTRACT_ERROR_MESSAGE.abstract_method);
+    throw new AbstractError(ABSTRACT_ERROR_MESSAGE.abstract_method);
   }
 
   static save() {
-    throw new Error(ABSTRACT_ERROR_MESSAGE.abstract_method);
+    throw new AbstractError(ABSTRACT_ERROR_MESSAGE.abstract_method);
   }
 }
 
