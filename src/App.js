@@ -5,6 +5,7 @@ class App {
   constructor() {
     this.player = new Player();
     this.winNumbers = [];
+    this.winBonus = null;
   }
 
   play() {
@@ -41,6 +42,17 @@ class App {
     Console.print('당첨번호를 입력해주세요.');
     Console.readLine('', (input) => {
       this.winNumbers = input.split(',').map(Number);
+
+      this.askWinBonus();
+    });
+  }
+
+  askWinBonus() {
+    Console.print('');
+    Console.print('보너스 번호를 입력해 주세요.');
+    Console.readLine('', (input) => {
+      const winBonus = Number(input);
+      this.winBonus = winBonus;
     });
   }
 }
