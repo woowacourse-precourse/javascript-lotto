@@ -23,7 +23,6 @@ class LottoCalculator {
       const rank = this.compareNumber(usersLotto);
       this.usersTotalRank.push(rank);
     });
-    console.log(this.usersTotalRank);
 
     this.calculateResult();
     this.printResult();
@@ -55,13 +54,11 @@ class LottoCalculator {
       this.rewardMoney += this.rankReward[rank];
       this.checkRank[rank] += 1;
     });    
-    console.log(this.rewardMoney, this.checkRank);
     this.yield = (this.rewardMoney / this.usersMoney).toFixed(1);
-    console.log(this.yield);
   }
 
   printResult() {
-    MissionUtils.Console.print("당첨 통계\n---")
+    MissionUtils.Console.print("\n당첨 통계\n---")
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.checkRank[5]}개`)
     MissionUtils.Console.print(`4개 일치 (50,000원) - ${this.checkRank[4]}개`)
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${this.checkRank[3]}개`)
