@@ -1,5 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
+const { getRate } = require("./util/calculate");
 const { CONSOLE_MESSAGE } = require("./util/message");
 const { getCountByPay, getRandomNumbers } = require("./util/purchase");
 
@@ -60,6 +61,14 @@ class App {
     );
 
     this.printResult(totalResult);
+  }
+
+  printResult(totalResult) {
+    const { prize, ranksCnt } = totalResult;
+
+    ranksCnt.reduce((acc, currentCnt, idx) => {});
+
+    Console.print(`총 수익률은 ${getRate(this.#pay, prize)}입니다.`);
   }
 }
 
