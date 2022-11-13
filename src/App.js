@@ -13,6 +13,7 @@ class App {
     Console.readLine(MESSAGE.PURCHASE_AMOUT, (amount) => {
       this.amount = amount;
       this.#lotteryPurchase(amount);
+      this.#lotteryWinnerNumber();
     });
   }
 
@@ -24,6 +25,12 @@ class App {
       const lotto = new Lotto(RandomNumbers.generate());
       this.lottoList.push(lotto);
     }
+  }
+
+  #lotteryWinnerNumber() {
+    Console.readLine(MESSAGE.WINNING_NUMBER, (numbers) => {
+      console.log(numbers);
+    });
   }
 
   print(message) {
