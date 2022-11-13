@@ -7,19 +7,21 @@ class LottoSeller {
 
   constructor() {
     this.#lottoPrice = 1000;
-    this.lotto = new Lotto();
-    this.lottoArray = [];
   }
 
-  printLottos(money) {
-    const NUMBER = money / 1000;
+  sellLotto(money) {
+    this.#validateInputMoney(money);
 
-    for (let count = 1; count <= NUMBER; count++) {
+    const lottos = [];
+    const lottoCount = money / this.#lottoPrice;
+
+    for (let i = 1; i <= lottoCount; i++) {
       let uniqueNumberInRange = Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
-      Console.print(`[${uniqueNumberInRange.join(', ')}]`);
-      this.lotto.validate(uniqueNumberInRange);
-      this.lottoArray.push(uniqueNumberInRange);
+      const lotto = new Lotto(uniqueNumberInRange);
+      lottos.push(lotto);
     }
+
+    return lottos;
   }
 
   #validateInputMoney(money) {
