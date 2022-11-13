@@ -23,3 +23,13 @@
 10. 수익률을 계산한다.
     - 수익률을 소수점 둘째 자리에서 반올림한다.
 11. 수익률을 출력한다.
+
+---
+필요 class 종류:
+1. Lotto - 복권 자체
+2. LottoMachine - 복권 발행기
+3. WinningLotto - 사용자가 입력하는 당첨 번호
+4. Matcher - 번호가 몇 개 일치하는지 계산
+5. Calculator - 수익률 계산
+6. Printer - 메시지 출력
+7. InputDevice - 입력 받기
