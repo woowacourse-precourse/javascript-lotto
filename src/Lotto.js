@@ -16,7 +16,7 @@ class Lotto {
 
   validateRange(numbers) {
     for (let index = 0; index < 6; index++) {
-      if (!(1 <= Number(numbers[index]) && Number(numbers[index]) <= 45)) {
+      if (!(1 <= numbers[index] && numbers[index] <= 45)) {
         throw new Error("[ERROR] 1 ~ 45 범위에 있어야 합니다.");
       }
     }

@@ -19,7 +19,7 @@ class App {
 
   getWinningNumbers(myLottos) {
     Console.readLine("당첨 번호를 입력해 주세요.\n", (numbers) => {
-      const winningNumbers = numbers.split(",");
+      const winningNumbers = numbers.split(",").map((item) => Number(item));
       const lotto = new Lotto(winningNumbers);
       this.getBonusNumber(lotto, myLottos, winningNumbers);
     });
