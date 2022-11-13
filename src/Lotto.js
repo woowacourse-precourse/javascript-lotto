@@ -6,6 +6,36 @@ class Lotto {
     this.#winnigNums = winnigNums.map((num) => +num);
   }
 
+  calculateStatics(issuedLottos, bonusNumber) {
+    const statics = {
+      3: 0,
+      4: 0,
+      5: 0,
+      6: 0,
+      '5andBonus': 0,
+    };
+
+    issuedLottos.forEach((lotto) => {
+      let sameCount = 0;
+
+      lotto.forEach((num, index) => {
+        this.#winnigNums.includes(num) && sameCount++;
+
+        if (index + 1 === lotto.length) {
+          if (sameCount === 5 && lotto.includes(bonusNumber)) {
+            statics['5andBonus'] += 1;
+          } else {
+            sameCount in statics && (statics[sameCount] += 1);
+          }
+        }
+      });
+    });
+
+    console.log(statics);
+
+    this.calculateEarningsRate(statics, issuedLottos.length);
+  }
+
   validateWinningNubmer(winnigNums) {
     if (winnigNums.length !== 6) {
       throw new Error(
