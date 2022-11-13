@@ -3,9 +3,17 @@ const { ABSTRACT_ERROR_MESSAGE } = require('../lib/Constants');
 class Input {
   constructor(answer) {
     this.answer = answer;
-    if (this.constructor === Input) {
+    this.checkAbstract();
+  }
+
+  checkAbstract() {
+    if (this.isInputConstructor()) {
       throw new Error(ABSTRACT_ERROR_MESSAGE.abstract_class);
     }
+  }
+
+  isInputConstructor() {
+    return this.constructor === Input;
   }
 
   static validate() {
