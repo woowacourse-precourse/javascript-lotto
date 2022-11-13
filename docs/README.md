@@ -34,12 +34,17 @@
 
 테스트 코드 작성하기
 
+`LottoGame`의 경우 ApplicationTest로 대체하였다.
+
 - [x] 유효성 검사 클래스 테스트
   - [x] 모든 메서드를 테스트 하였는가?
 - [x] 각 클래스에 대해 테스트
   - [x] `Payment`
   - [x] `Lotto`
   - [x] `LottoBonus`
+  - [ ] `LottoIssuer`
+  - [ ] `LottoResult`
+  - [x] `LottoValidation`
 
 리펙토링
 
