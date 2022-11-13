@@ -117,6 +117,11 @@ class App {
       Console.print(RANK_STATISTICS_MESSAGE[rank](myRankData));
     }
     Console.print(RANK_STATISTICS_MESSAGE.PROFIT_RATE(this.#profitRate));
+    return this.endGame();
+  }
+
+  endGame() {
+    return Console.close();
   }
 
   makeException(errorName) {
