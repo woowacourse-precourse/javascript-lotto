@@ -23,31 +23,46 @@ class App {
     Console.print(`\n${this.numberOfLotto}개를 구매했습니다.`);
     for(let i = 0; i < this.numberOfLotto; i++) {
       const lotto = new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6))
-      this.myLottos.push(lotto.getNumbers());
+      this.myLottos.push(lotto);
     }
     this.printLottos();
     this.draw();
+    return;
+    
   }
 
   printLottos() {
     this.myLottos.map(myLotto => {
-      Console.print(myLotto);
+      Console.print(myLotto.getNumbers());
     })
+    return;
   }
 
   draw() {
     Console.readLine('\n당첨 번호를 입력해 주세요.\n', (input) => {
       this.luckyNumbers = input.split(",").map(Number);
       this.setBonus();
-
     });
+    return;
   }
   setBonus() {
     Console.readLine('\n보너스 번호를 입력해 주세요.\n', (input) => {
       this.bonusNumber = Number(input)
-      console.log(this.luckyNumbers, this.bonusNumber)
+      this.w();
     });
+
+    return;
   }
+
+  w () {
+    this.myLottos.map(myLotto => {
+      myLotto.compare(this.luckyNumbers, this.bonusNumber);
+      Console.print(myLotto);
+    })
+    return;
+
+  }
+  
   
 }
 
