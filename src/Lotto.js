@@ -3,9 +3,10 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class Lotto {
   #numbers;
 
-  constructor(numbers) {
+  constructor(numbers, bonusNumber) {
     this.validate(numbers);
     this.#numbers = numbers;
+    this.bonusNumber = bonusNumber
   }
 
   validate(numbers) {
@@ -31,6 +32,11 @@ class Lotto {
     });
   }
 
+  setBonusNumber(numbers, bonusNumber){
+    this.validateBonus(numbers, bonusNumber)
+    this.bonusNumber = bonusNumber
+  }
+
   validateBonus(numbers, bonusNumber) {
     if (numbers.includes(bonusNumber)) {
       throw new Error("[ERROR] 이미 로또번호에 포함된 번호입니다.");
@@ -43,6 +49,11 @@ class Lotto {
     if (isNaN(bonusNumber)) {
       throw new Error("[ERROR] 보너스 번호는 숫자여야 합니다.");
     }
+    this.printLottoResult(numbers, bonusNumber)
+  }
+  
+  printLottoResult(){
+    console.log('printLottoResult')
   }
 }
 
