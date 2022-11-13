@@ -5,6 +5,8 @@ const Lotto = require('./Lotto');
 const USER_MONEY_INPUT_REQUEST = '구입금액을 입력해 주세요.';
 const USER_MONEY_INPUT_ERROR = '[ERROR] 구입금액이 올바르지 않습니다.';
 const LOTTO_QUANTITY_OUTPUT = '개를 구매했습니다.';
+const WINNING_LOTTO_REQUEST = '\n당첨 번호를 입력해 주세요.';
+const BONUS_NUMBER_REQUEST = '\n보너스 번호를 입력해 주세요.';
 class App {
   // eslint-disable-next-line no-useless-constructor
   lotteryQuantity = 0;
@@ -14,6 +16,10 @@ class App {
   winningNumber = [];
 
   userLottoArray = [];
+
+  bonusNumber = 0;
+
+  winningLotto;
 
   constructor() {
     MissionUtils.Console.print(USER_MONEY_INPUT_REQUEST);
@@ -33,7 +39,7 @@ class App {
       this.userLottoArray.forEach((oneLottery) => {
         MissionUtils.Console.print(oneLottery.getNumbers());
       });
-      const winningLotto = this.inputWinningLotto();
+      this.winningLotto = this.inputWinningLotto();
     });
   }
 
@@ -58,26 +64,45 @@ class App {
     for (let cnt = 1; cnt <= lotteryQuantity; cnt += 1) {
       const oneLottery = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       oneLottery.sort((a, b) => a - b);
-      const userLotto = new Lotto(oneLottery);
+      const userLotto = this.makeLottoInstance(oneLottery);
       this.userLottoArray.push(userLotto);
     }
     return this.userLottoArray;
   }
 
   inputWinningLotto() {
-    MissionUtils.Console.print('당첨 번호를 입력해 주세요.');
+    MissionUtils.Console.print(WINNING_LOTTO_REQUEST);
     MissionUtils.Console.readLine('', (winningNumber) => {
       const winningNumberArray = winningNumber
         .split(',')
         .map((number) => parseInt(number, 10));
-      const winningLotto = this.makeWinningLotto(winningNumberArray);
+      const winningLotto = this.makeLottoInstance(winningNumberArray);
+      this.bonusNumber = this.inputBonusNumber();
       return winningLotto;
     });
   }
 
-  makeWinningLotto(winningNumberArray) {
-    const winningLotto = new Lotto(winningNumberArray);
-    return winningLotto;
+  makeLottoInstance(numberArray) {
+    const lotto = new Lotto(numberArray);
+    return lotto;
+  }
+
+  inputBonusNumber() {
+    MissionUtils.Console.print(BONUS_NUMBER_REQUEST);
+    MissionUtils.Console.readLine('', (bonusNumber) => {
+      const inputBonusNumber = parseInt(bonusNumber, 10);
+      if (!this.isValidNumber(inputBonusNumber)) {
+        throw new Error('[ERROR] 유효한 번호가 아닙니다.');
+      }
+      return inputBonusNumber;
+    });
+  }
+
+  isValidNumber(bonusNumber) {
+    if (bonusNumber < 1 || bonusNumber > 45 || !Number(bonusNumber)) {
+      return false;
+    }
+    return true;
   }
 }
 
