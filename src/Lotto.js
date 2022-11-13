@@ -24,5 +24,9 @@ class Lotto {
     if (numbers.filter((number) => !Number.isInteger(number)).length > 0)
       throw new Error("[ERROR] 정수를 입력하세요.");
   }
+
+  get numbers() {
+    return this.#numbers;
+  }
 }
 module.exports = Lotto;
