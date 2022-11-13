@@ -94,7 +94,16 @@ class Lotto {
   }
 
   printEarningsRate(result) {
+    let earnings = 0;
+    earnings += 5000 * result[0];
+    earnings += 50000 * result[1];
+    earnings += 1500000 * result[2];
+    earnings += 30000000 * result[3];
+    earnings += 2000000000 * result[4];
 
+    const earningsRate = earnings / (this.#numbers*10);
+
+    return MissionUtils.Console.print(`총 수익률은 ${earningsRate.toFixed(1)}%입니다.`)
   }
 
 }
