@@ -92,6 +92,7 @@ class App {
       rewards += rank.money * count;
     });
     MissionUtils.Console.print(`총 수익률은 ${convertNumberToComma(this.profitRate(rewards, this.#paid))}%입니다.`);
+    MissionUtils.Console.close();
   }
 
   profitRate(rewards, paid) {
