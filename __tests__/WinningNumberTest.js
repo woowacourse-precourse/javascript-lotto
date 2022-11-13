@@ -51,4 +51,14 @@ describe("당첨 번호 입력 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
+  test("중복이 있는 경우 예외가 발생한다.", () => {
+    const input = ["1,2,3,3,4,5"];
+    mockQuestions(input)
+
+    expect(() => {
+      const manager = new LottoManager();
+      manager.inputWinningNumbers();
+    }).toThrow("[ERROR]");
+  });
+
 });
