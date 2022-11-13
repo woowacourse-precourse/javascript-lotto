@@ -1,4 +1,4 @@
-const LOTTO_RULE = {
+const LOTTO_RULE = Object.freeze({
   WINNING_NUMBERS_MIN_NUMBER: 1,
   WINNING_NUMBERS_MAX_NUMBER: 45,
   WINNING_NUMBERS_LENGTH: 6,
@@ -6,32 +6,32 @@ const LOTTO_RULE = {
   MONEY_UNIT: 1000,
   PROFIT_RATE_PERCENT: 100,
   PROFIT_RATE_TO_FIXED: 1,
-};
+});
 
-const PRIZE_MONEY = {
+const PRIZE_MONEY = Object.freeze({
   FIRST_PLACE: 2000000000,
   SECOND_PLACE: 30000000,
   THIRD_PLACE: 1500000,
   FOURTH_PLACE: 50000,
   FIFTH_PLACE: 5000,
-};
+});
 
-const MATCHING_NUMBERS_COUNT = {
+const MATCHING_NUMBERS_COUNT = Object.freeze({
   FIRST_PLACE: 6,
   SECOND_PLACE: 5,
   SECOND_PLACE_BONUS: 1,
   THIRD_PLACE: 5,
   FOURTH_PLACE: 4,
   FIFTH_PLACE: 3,
-};
+});
 
-const INPUT_MESSAGE = {
+const INPUT_MESSAGE = Object.freeze({
   PURCHASE_AMOUNT: '구입금액을 입력해 주세요.\n',
   WINNING_NUMBERS: '\n당첨 번호를 입력해 주세요.\n',
   BONUS_NUMBER: '\n보너스 번호를 입력해 주세요.\n',
-};
+});
 
-const OUTPUT_MESSAGE = {
+const OUTPUT_MESSAGE = Object.freeze({
   PURCHASE: '개를 구매했습니다.',
   STATISTICS: '\n당첨 통계\n---',
   FIRST_PLACE: `${MATCHING_NUMBERS_COUNT.FIRST_PLACE}개 일치 (${PRIZE_MONEY.FIRST_PLACE.toLocaleString()}원) -`,
@@ -44,15 +44,15 @@ const OUTPUT_MESSAGE = {
     START_SENTENCE: '총 수익률은',
     END_SENTENCE: '%입니다.',
   },
-};
+});
 
-const ERROR_MESSAGE_PURCHASE_AMOUNT = {
+const ERROR_MESSAGE_PURCHASE_AMOUNT = Object.freeze({
   NOT_VALID_BLANK: '[ERROR] 로또 구입 금액에 공백이 포함되어 있습니다.',
   NOT_VALID_TYPE: '[ERROR] 로또 구입 금액이 숫자가 아닙니다',
   NOT_VALID_UNIT: `[ERROR] 로또 구입 금액이 ${LOTTO_RULE.MONEY_UNIT}원 단위가 아닙니다.`,
-};
+});
 
-const ERROR_MESSAGE_WINNING_NUMBER = {
+const ERROR_MESSAGE_WINNING_NUMBER = Object.freeze({
   NOT_VALID_BLANK: '[ERROR] 로또 번호에 공백이 포함되어 있습니다.',
   NOT_VALID_RANGE: `[ERROR] 로또 번호는 ${LOTTO_RULE.WINNING_NUMBERS_MIN_NUMBER}부터 ${LOTTO_RULE.WINNING_NUMBERS_MAX_NUMBER} 사이의 숫자여야 합니다.`,
   NOT_VALID_DUPLICATE: '[ERROR] 로또 번호에 중복된 수가 존재하면 안됩니다.',
@@ -61,7 +61,7 @@ const ERROR_MESSAGE_WINNING_NUMBER = {
     START_SENTENCE: '[ERROR] 로또 번호는',
     END_SENTENCE: '개여야 합니다.',
   },
-};
+});
 
 module.exports = {
   LOTTO_RULE,
