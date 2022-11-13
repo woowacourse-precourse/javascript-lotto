@@ -3,10 +3,11 @@ const WINNERNUMBER_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
 
 const ERROR_MESSAGE_UNDIVIDED =
   "[ERROR] 구입 금액이 로또 가격으로 나누어 떨어지지 않습니다.";
-
 const ERROR_MESSAGE_NOTONLY_NUMBER = "[ERROR] 숫자만 입력하실 수 있습니다.";
 const ERROR_MESSAGE_NOTUNIQUE_NUMBER = "[ERROR] 중복된 숫자가 있습니다.";
 const ERROR_MESSAGE_SIZE_INVALID = "[ERROR] 로또의 크기는 6 이어야 합니다.";
+const ERROR_MESSAGE_NOTINRANGE =
+  "[ERROR] 로또 번호는 1이상 45이하의 숫자만 가능합니다.";
 
 const LOTTO_PRICE = 1000;
 const LOTTO_SIZE = 6;
@@ -19,6 +20,8 @@ const ERROR_MESSAGE = {
   ERROR_MESSAGE_UNDIVIDED,
   ERROR_MESSAGE_NOTONLY_NUMBER,
   ERROR_MESSAGE_NOTUNIQUE_NUMBER,
+  ERROR_MESSAGE_SIZE_INVALID,
+  ERROR_MESSAGE_NOTINRANGE,
 };
 
 module.exports = {
