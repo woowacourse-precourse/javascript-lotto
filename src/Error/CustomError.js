@@ -3,7 +3,6 @@ const { ABSTRACT_ERROR_MESSAGE } = require('../lib/Constants');
 class CustomError extends Error {
   constructor(message) {
     super(`[ERROR] ${message}`);
-    this.name = 'PriceError';
     this.checkAbstract();
   }
 
