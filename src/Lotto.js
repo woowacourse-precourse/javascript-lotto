@@ -1,5 +1,6 @@
 const { getRankByResultCnt } = require("./util/calculate");
 const { ERROR_MESSAGE } = require("./util/message");
+const { isDuplicate, isIncludeNaN } = require("./util/validate");
 
 class Lotto {
   #numbers;
@@ -14,15 +15,11 @@ class Lotto {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
 
-    if (
-      numbers.some((num, idx) => {
-        return numbers.indexOf(num) !== idx;
-      })
-    ) {
+    if (isDuplicate(numbers)) {
       throw new Error(ERROR_MESSAGE.Duplicate);
     }
 
-    if (numbers.some((num) => typeof num !== "number")) {
+    if (isIncludeNaN(numbers)) {
       throw new Error(ERROR_MESSAGE.NaN);
     }
   }
