@@ -15,12 +15,6 @@ class Validator {
     );
   }
 
-  static validateBonusNumber(bonusNumber, winningNumbers) {
-    if (winningNumbers.includes(bonusNumber)) {
-      throw new Error(ERROR.DUPLICATED);
-    }
-  }
-
   static validateNumbers(numbers) {
     if (numbers.length !== LOTTO.NUMBER_LENGTH) {
       throw new Error(ERROR.WRONG_LENGTH);
@@ -34,6 +28,15 @@ class Validator {
         throw new Error(ERROR.WRONG_RANGE);
       }
     });
+  }
+
+  static validateBonusNumber(bonusNumber, winningNumbers) {
+    if (!this.isInRange(Number(bonusNumber))) {
+      throw new Error(ERROR.WRONG_RANGE);
+    }
+    if (winningNumbers.includes(Number(bonusNumber))) {
+      throw new Error(ERROR.DUPLICATED);
+    }
   }
 
   static validateMoney(money) {

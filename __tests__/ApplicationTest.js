@@ -120,7 +120,7 @@ describe('로또 테스트', () => {
     }).toThrow('[ERROR]');
 
     mockRandoms([[8, 21, 23, 41, 42, 43]]);
-    mockQuestions(['1000', '1,2,3,4,5,6', '7']);
+    mockQuestions(['1000', '1,2,3,4,5,6', '']);
     expect(() => {
       const app = new App();
       app.play();
