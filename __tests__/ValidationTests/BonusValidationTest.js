@@ -1,4 +1,4 @@
-const BonusValidation = require('../src/Validation/BonusValidation');
+const BonusValidation = require('../../src/Validation/BonusValidation');
 
 describe('로또 보너스 번호 입력값 유효성 검사 테스트 ', () => {
   test('아무것도 입력하지 않으면 예외가 발생한다. (1)', () => {
