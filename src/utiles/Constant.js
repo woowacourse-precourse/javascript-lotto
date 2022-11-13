@@ -1,6 +1,6 @@
 const SENTENCE = Object.freeze({
   PURCHASE: '구입 금액을 입력해 주세요.',
-  PURCHASE_AMOUNT: '개를 구매했습니다.',
+  PURCHASE_COUNT: '개를 구매했습니다.',
   WINNING_NUMBERS: '당첨 번호를 입력해 주세요.',
   BONUS_NUMBERS: '보너스 번호를 입력해 주세요.',
   RESULT: '당첨 통계',
