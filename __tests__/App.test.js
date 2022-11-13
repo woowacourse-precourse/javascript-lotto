@@ -17,4 +17,10 @@ describe('App 클래스 테스트', () => {
       expect(App.buyLotto('8000')).toHaveLength(8);
     });
   });
+
+  describe('convertToNumberArray()', () => {
+    test('1,2,3,4,5,6을 입력하면 [1,2,3,4,5,6] 배열을 반환한다.', () => {
+      expect(App.convertToNumberArray('1,2,3,4,5,6')).toEqual([1, 2, 3, 4, 5, 6]);
+    });
+  });
 });
