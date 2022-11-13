@@ -61,4 +61,13 @@ describe("당첨 번호 입력 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
+  test("1부터 45사이의 값이 아닌 경우 예외가 발생한다.", () => {
+    const input = ["0,2,3,4,5,46"];
+    mockQuestions(input)
+
+    expect(() => {
+      const manager = new LottoManager();
+      manager.inputWinningNumbers();
+    }).toThrow("[ERROR]");
+  });
 });
