@@ -33,9 +33,6 @@
   - [x] 각 로또 번호들은 number 배열 형태이다.
 - [x] (readLine) 당첨 번호를 입력받는다. InputView#inputWinningLottoNumbers
   - '당첨 번호를 입력해 주세요.'
-  - [ ] 로또 번호 입력에 대한 예외처리를 한다. InputView#validateLottoNumbers
-    - [ ] (예외처리) 입력이 공백인 경우
-    - [ ] (예외처리) 입력이 숫자와 `,`가 아닌 다른 문자가 포함된 경우
 - [x] (readLine) 보너스 번호를 입력받는다. InputView#inputBonusNumber
   - '보너스 번호를 입력해 주세요.'
 - [x] (print) 당첨 통계를 출력한다. PrintView#printWinningStats
