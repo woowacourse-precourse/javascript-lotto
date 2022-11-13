@@ -14,7 +14,8 @@ class App {
     Console.print(MESSAGE.START_GAME);
     Console.readLine(MESSAGE.ENTER_PURCHASE_AMOUNT, (purchaseAmount) => {
       this.purchaseAmount = purchaseAmount;
-      return this.validatePerchaseAmount(purchaseAmount);
+      this.validatePerchaseAmount(purchaseAmount);
+      return this.countLottoQuantity(purchaseAmount);
     });
   }
 
@@ -31,7 +32,6 @@ class App {
     if (!Util.isDivisibleBy(purchaseAmount, LOTTO.PRICE)) {
       throw new Error(ERROR_MESSAGE.NON_DIVISIBLE_INPUT);
     }
-    return this.countLottoQuantity(purchaseAmount);
   }
 
   countLottoQuantity(purchaseAmount) {
