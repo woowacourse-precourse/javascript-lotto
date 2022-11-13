@@ -1,4 +1,9 @@
-const { ERROR_MESSAGES } = require('../utils/constants');
+const {
+  LOTTO_PRICE,
+  INITIAL_STATICS,
+  WINNIG_PRICES,
+  ERROR_MESSAGES,
+} = require('../utils/constants');
 const { Console } = require('@woowacourse/mission-utils');
 
 class Lotto {
@@ -10,13 +15,7 @@ class Lotto {
   }
 
   calculateStatics(issuedLottos, bonusNumber) {
-    const statics = {
-      3: 0,
-      4: 0,
-      5: 0,
-      6: 0,
-      '5andBonus': 0,
-    };
+    const statics = Object.assign({}, INITIAL_STATICS);
 
     issuedLottos.forEach((lotto) => {
       let sameCount = 0;
@@ -34,19 +33,11 @@ class Lotto {
       });
     });
 
-    // console.log(statics);
-
     this.calculateEarningsRate(statics, issuedLottos.length);
   }
 
   calculateEarningsRate(statics, purchase) {
-    const winningPrices = {
-      3: 5000,
-      4: 50000,
-      5: 1500000,
-      6: 2000000000,
-      '5andBonus': 30000000,
-    };
+    const winningPrices = WINNIG_PRICES;
     const matchedNums = Object.keys(statics);
     let total = 0;
 
@@ -56,7 +47,7 @@ class Lotto {
       }
     });
 
-    const earnings = (total / (purchase * 1000)) * 100;
+    const earnings = (total / (purchase * LOTTO_PRICE)) * 100;
     const earningsRate =
       (+(Math.round(earnings + 'e+1') + 'e-1'))
         .toFixed(1)
