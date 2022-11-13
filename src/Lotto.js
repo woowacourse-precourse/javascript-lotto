@@ -14,14 +14,14 @@ class Lotto {
     return resultMessage ? ThrowError(LOTTO_ERROR[resultMessage]) : true;
   }
 
-  validate(numbers) {
-    const numbersList = numbers.split(LOTTO_INFO.SPLITUNIT);
+  validate(numbersList) {
     return (
       this.isNumber(numbersList) ||
-      this.isSplit(numbers) ||
-      this.isNumberCorrect(numbersList) ||
+      this.isSplit(numbersList) ||
+      this.isNumberLength(numbersList) ||
       this.isNumberRepeated(numbersList) ||
-      this.isNumberRange(numbersList)
+      this.isNumberRange(numbersList) ||
+      this.isIncludeZero(numbersList)
     );
   }
 
@@ -29,11 +29,11 @@ class Lotto {
     return /^\d+$/.test(numbersList.join('')) ? false : 'NUMBER';
   }
 
-  isSplit(numbers) {
-    return numbers.includes(LOTTO_INFO.SPLITUNIT) ? false : 'SPLIT';
+  isSplit(numbersList) {
+    return numbersList.length === 1 ? 'SPLIT' : false;
   }
 
-  isNumberCorrect(numbersList) {
+  isNumberLength(numbersList) {
     return numbersList.length === LOTTO_INFO.PICK ? false : 'LEGNTH';
   }
 
@@ -48,6 +48,10 @@ class Lotto {
     ).length === LOTTO_INFO.PICK
       ? false
       : 'RANGE';
+  }
+
+  isIncludeZero(numberList) {
+    return numberList.filter((number) => number.startsWith('0')).length ? 'ZERO' : false;
   }
 }
 

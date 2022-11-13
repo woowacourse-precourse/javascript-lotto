@@ -34,7 +34,7 @@ class App {
 
   inputLottoNumbers() {
     Console.readLine(INPUT_MESSAGE.LOTTONUMBERS, (lottoNumbers) => {
-      new Lotto(lottoNumbers);
+      new Lotto(lottoNumbers.split(LOTTO_INFO.SPLITUNIT));
       this.inputBonusLottoNumbers(lottoNumbers);
     });
   }
