@@ -1,18 +1,18 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const generateLottoNum = require("./generateLottoNum");
-const isResult = require("./isResult");
+const GenerateLottoNum = require("./generateLottoNum");
+const IsResult = require("./isResult");
 const Lotto = require("../Lotto");
 
-class isLottoGame {
-  generateLottoNum = {};
-  isResult = [];
+class IsLottoGame {
+  GenerateLottoNum = {};
+  IsResult = [];
   winningNum = [];
   bonusNum = null;
   userLotto = [];
   userCost = 0;
 
   constructor() {
-    this.generateLottoNum = new generateLottoNum();
+    this.GenerateLottoNum = new GenerateLottoNum();
   }
   createStart() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (userCost) => {
@@ -26,7 +26,7 @@ class isLottoGame {
   }
 
   lottoBuy(lottoCost) {
-    const [lottoCount, lottoArr] = this.generateLottoNum.lottoDetail(lottoCost);
+    const [lottoCount, lottoArr] = this.GenerateLottoNum.lottoDetail(lottoCost);
     MissionUtils.Console.print("");
     MissionUtils.Console.print(`${lottoCount}개를 구매했습니다.`);
     lottoArr.map((lotto) => {
@@ -56,11 +56,11 @@ class isLottoGame {
         if (number < 1 || number > 45) throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         if (this.winningNum.includes(number)) throw new Error("[ERROR] 보너스 번호가 입력한 당첨 번호에 있습니다.");
         this.bonusNum = number;
-        this.isResult = new isResult(this.userLotto,this.winningNum,this.bonusNum,this.userCost);
-        this.isResult.resultProcess();
+        this.IsResult = new IsResult(this.userLotto,this.winningNum,this.bonusNum,this.userCost);
+        this.IsResult.resultProcess();
       }
     );
   }
 }
 
-module.exports = isLottoGame;
+module.exports = IsLottoGame;
