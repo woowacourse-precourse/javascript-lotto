@@ -44,6 +44,17 @@ class App {
     });
   }
 
+  getResult(numbers) {
+    this.answer = numbers.split(",").map((v) => +v);
+    this.lottos.forEach((lotto) => {
+      lotto.forEach((number) => {
+        if (this.answer.includes(number)) {
+          this.count += 1;
+        }
+      });
+    });
+  }
+
   play() {}
 }
 
