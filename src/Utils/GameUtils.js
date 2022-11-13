@@ -2,8 +2,8 @@ const { PRICE_PER_SHEET, ROUNDING_DIGIT } = require('../constants');
 
 class GameUtils {
   static removeMarkingStandardMoney(input) {
-    input = GameUtils.removeBlank(input).split(',');
-    input = input.map(item => Number(item));
+    input = GameUtils.removeBlank(input);
+    input = GameUtils.removeComma(input);
     return input;
   }
   static removeComma(value) {
