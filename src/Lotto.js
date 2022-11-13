@@ -16,6 +16,14 @@ class Lotto {
       throw Error.DUPLICATE_ERROR
     }
   }
+  validateBonusnumber(number){
+    if (Number.isInteger(Number(number)) == false){
+      throw Error.BONUSNUMBER_ERROR
+    }
+    else if (number > 45 || number < 1){
+      throw Error.RANGE_ERROR
+    }
+  }
   validateInputRange(max,min){
     if (max > 45 || min < 1){
       throw Error.RANGE_ERROR
