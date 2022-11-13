@@ -23,7 +23,14 @@ class App {
     print('\n당첨 번호를 입력해 주세요.');
     readLine('', (numbers) => {
       this.#lotto = new Lotto(numbers.split(','));
-      print(this.#lotto.getLotto());
+      this.getBonusNumber();
+    })
+  }
+
+  getBonusNumber() {
+    print('\n보너스 번호를 입력해 주세요.');
+    readLine('', (number) => {
+      this.#lotto.setBonusNumber(number);
     })
   }
 
@@ -38,5 +45,5 @@ class App {
     });
   }
 }
-
+new App().play();
 module.exports = App;

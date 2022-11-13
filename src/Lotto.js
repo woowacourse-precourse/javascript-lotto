@@ -34,8 +34,27 @@ class Lotto {
     }
   }
 
+  validateBonusNumber(bonusNumber) {
+    if (/[^0-9]/g.test(bonusNumber)) {
+      throw new Error("[ERROR] 보너스 번호는 숫자로만 이루어져야 합니다.");
+    }
+
+    if (1 > bonusNumber || bonusNumber > 45) {
+      throw new Error("[ERROR] 1~45 사이의 숫자로 이루어져야 합니다.");
+    }
+
+    if (this.#numbers.includes(bonusNumber)) {
+      throw new Error("[ERROR] 보너스 번호는 당첨 번호와 겹치지 않아야 합니다.")
+    }
+  }
+
   getLotto() {
     return this.#numbers;
+  }
+
+  setBonusNumber(bonusNumber) {
+    this.validateBonusNumber(bonusNumber);
+    this.#numbers.push(bonusNumber);
   }
 }
 
