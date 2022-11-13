@@ -50,13 +50,17 @@ class Validator {
     }
   }
 
-  checkBonusNumberValid(bonusNumber) {
+  checkBonusNumberValid(bonusNumber, number) {
     if (isNaN(bonusNumber) === true) {
       this.error(ERROR.NUMBER_TYPE);
     }
 
     if (bonusNumber < 1 || bonusNumber > 45) {
       this.error(ERROR.NUMBER_RANGE);
+    }
+
+    if (number.includes(bonusNumber)) {
+      this.error(ERROR.BONUS_NUMBER_INCLUDED);
     }
   }
 

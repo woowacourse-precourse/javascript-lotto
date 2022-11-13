@@ -13,6 +13,8 @@ const ERROR = Object.freeze({
   NUMBER_LENGTH: "[ERROR] 로또 번호는 6개여야 합니다.",
   NUMBER_RANGE: "[ERROR] 로또 번호의 숫자 범위는 1~45까지입니다.",
   NUMBER_DUPLICATED: "[ERROR] 로또 번호는 중복되지 않아야 합니다.",
+  BONUS_NUMBER_INCLUDED:
+    "[ERROR] 보너스 번호는 입력한 당첨 번호에 포함될 수 없습니다.",
 });
 
 module.exports = {

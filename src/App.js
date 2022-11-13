@@ -59,15 +59,15 @@ class App {
 
       this.lotto = new Lotto(number);
 
-      this.inputBonusNumber();
+      this.inputBonusNumber(number);
     });
   }
 
-  inputBonusNumber() {
+  inputBonusNumber(number) {
     Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
       bonusNumber = Number(bonusNumber);
 
-      this.validator.checkBonusNumberValid(bonusNumber);
+      this.validator.checkBonusNumberValid(bonusNumber, number);
 
       this.state.bonusNumber = bonusNumber;
     });
