@@ -23,19 +23,27 @@ class PriceValidation extends Validation {
   }
 
   checkNumber() {
-    const regExp = /^[0-9]+$/;
-    if (!regExp.test(this.answer)) {
+    if (this.isOnlyNumber()) {
       throw new PriceError(PRICE_ERROR_MESSAGE.not_valid_number);
     }
     return true;
   }
 
+  isOnlyNumber() {
+    const regExp = /^[0-9]+$/;
+    return !regExp.test(this.answer);
+  }
+
   checkUnitNumber() {
-    const price = Number(this.answer);
-    if (price % 1000 !== 0) {
+    if (this.isPriceUnitThousand()) {
       throw new PriceError(PRICE_ERROR_MESSAGE.not_valid_unit_number);
     }
     return true;
+  }
+
+  isPriceUnitThousand() {
+    const price = Number(this.answer);
+    return price % 1000 !== 0;
   }
 }
 

@@ -24,11 +24,15 @@ class WinNumbersValidation extends Validation {
   }
 
   checkValidDivision() {
-    const winNumberArray = this.answer.split(',');
-    if (winNumberArray.length !== 6) {
+    if (this.isWinNumberLengthSix()) {
       throw new WinNumberError(WIN_NUMBER_ERROR_MESSAGE.not_valid_division);
     }
     return true;
+  }
+
+  isWinNumberLengthSix() {
+    const winNumberArray = this.answer.split(',');
+    return winNumberArray.length !== 6;
   }
 
   checkRange() {
@@ -43,16 +47,16 @@ class WinNumbersValidation extends Validation {
   }
 
   checkOverlap() {
-    const winNumberArray = this.answer.split(',');
-    const winNumberSet = new Set(winNumberArray);
-
-    if (WinNumbersValidation.isSizeSame(winNumberArray, winNumberSet)) {
+    if (this.isSizeSame()) {
       throw new WinNumberError(WIN_NUMBER_ERROR_MESSAGE.not_valid_overlap_number);
     }
     return true;
   }
 
-  static isSizeSame(winNumberArray, winNumberSet) {
+  isSizeSame() {
+    const winNumberArray = this.answer.split(',');
+    const winNumberSet = new Set(winNumberArray);
+
     return winNumberArray.length !== winNumberSet.size;
   }
 }
