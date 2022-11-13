@@ -20,9 +20,13 @@ class App {
   inputMoney(){
     Console.readLine('구입금액을 입력해 주세요.\n', (input) => {
       this.input_money = new Money(input);
+      Console.print("");
 
       this.countLotto();
       this.publishLotto();
+      this.printLotto();
+      
+      this.inputWinNumber();
     });
   }
 
@@ -51,6 +55,15 @@ class App {
     this.lottotickets = new Array();
     for(let i=0; i < this.lottocount; i++)
       this.lottotickets.push(new LottoTicket());
+  }
+
+  printLotto(){
+    Console.print(this.lottocount + "개를 구매했습니다.");
+
+    for(let i=0; i < this.lottocount; i++){
+      let lottoticket = this.lottotickets[i];
+      Console.print(lottoticket.getNumbers());
+    }
   }
 }
 
