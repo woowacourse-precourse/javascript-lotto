@@ -2,12 +2,16 @@ const View = require("../view/View");
 const UserNumber = require("../model/UserNumber");
 
 class Controller {
-  constructor() {
+  constructor () {
     this.view = new View(this);
-    this.userNumber = new UserNumber();
+    this.userNumber = new UserNumber(this);
   }
 
-  init() {
+  setPurchasingAmount (userPurchasingAmount) {
+    this.userNumber.setPurchasingAmount(userPurchasingAmount);
+  }
+
+  init () {
     this.view.getPurchasingAmountFromUser();
   }
 }
