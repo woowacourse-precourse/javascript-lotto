@@ -44,6 +44,7 @@ class LottoMachine {
 
       this.compareNumbers();
       this.printWinningStats();
+      Console.close();
     });
   }
 
