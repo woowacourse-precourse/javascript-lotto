@@ -14,12 +14,6 @@ const mockRandoms = numbers => {
   }, MissionUtils.Random.pickUniqueNumbersInRange);
 };
 
-const getLogSpy = () => {
-  const logSpy = jest.spyOn(MissionUtils.Console, 'print');
-  logSpy.mockClear();
-  return logSpy;
-};
-
 describe('LottoDrawFactory 클래스 테스트', () => {
   test('(5등) 내가 산 로또들과 추첨한 로또 비교한 결과값 테스트', () => {
     mockRandoms([[1, 3, 5, 14, 22, 45]]);
@@ -33,7 +27,7 @@ describe('LottoDrawFactory 클래스 테스트', () => {
     );
 
     expect(lottoAdjustment.getLottoCountScore()).toEqual([1, 0, 0, 0, 0]);
-    expect(lottoAdjustment.getIncome()).toEqual('500.0%');
+    expect(lottoAdjustment.getIncome()).toEqual('500.0');
   });
 
   test('(2등) 내가 산 로또들과 추첨한 로또 비교한 결과값 테스트', () => {
@@ -49,7 +43,7 @@ describe('LottoDrawFactory 클래스 테스트', () => {
     );
 
     expect(lottoAdjustment.getLottoCountScore()).toEqual([0, 0, 0, 1, 0]);
-    expect(lottoAdjustment.getIncome()).toEqual('3000000.0%');
+    expect(lottoAdjustment.getIncome()).toEqual('3000000.0');
   });
 
   test('(1등) 내가 산 로또들과 추첨한 로또 비교한 결과값 테스트', () => {
@@ -64,6 +58,6 @@ describe('LottoDrawFactory 클래스 테스트', () => {
     );
 
     expect(lottoAdjustment.getLottoCountScore()).toEqual([0, 0, 0, 0, 1]);
-    expect(lottoAdjustment.getIncome()).toEqual('200000000.0%');
+    expect(lottoAdjustment.getIncome()).toEqual('200000000.0');
   });
 });
