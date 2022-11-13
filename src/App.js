@@ -10,18 +10,24 @@ class App {
   input_lotto;
   input_bonus;
 
-  play() {
-    this.inputMoney();
+  play(){
+    this.inputWinNumber();
   }
 
   inputMoney(){
-    Console.readLine('구입금액을 입력해 주세요.\n', (input_money) => {
-      if(isNaN(input_money))
+    Console.readLine('구입금액을 입력해 주세요.\n', (input) => {
+      if(isNaN(input))
         throw new Error("[Error] 숫자를 입력해주세요.");
-      this.input_money = input_money;
+      this.input_money = input;
     });
-  
-  
+  }
+
+  inputWinNumber(){
+    Console.readLine('당첨 번호를 입력해 주세요.\n', (input) => {
+      input = input.split(",");
+      const input_lotto = new Lotto(input);
+      this.input_lotto = input_lotto;
+    });  
   }
 }
 
