@@ -1,5 +1,5 @@
 const MESSAGE = require("./constant/message");
-const { PRICE } = require("./constant");
+const { MIN, MAX, NUMBERS_LENGTH, BONUS_LENGTH, PRICE } = require("./constant");
 
 class Validation {
   constructor() {}

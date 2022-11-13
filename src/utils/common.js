@@ -18,4 +18,5 @@ const commaizeNumber = (number) => {
 
 module.exports = {
   stringToNumber,
+  commaizeNumber,
 };
