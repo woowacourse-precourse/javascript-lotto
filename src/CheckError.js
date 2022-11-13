@@ -54,6 +54,10 @@ class CheckError {
     // 범위 안에 있다면 true를 리턴.
     return number >= 1 && number <= 45;
   }
+  static isUniqueNumber(bonusNumber, winningNumberArray) {
+    // 당첨 번호 배열에 보너스 번호가 없다면 true를 리턴.
+    return !winningNumberArray.includes(bonusNumber);
+  }
 }
 
 module.exports = CheckError;
