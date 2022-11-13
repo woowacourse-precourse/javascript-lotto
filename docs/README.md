@@ -11,7 +11,7 @@
 - [x] get user's payment amount
     - [x] check if the payment amount is valid (error when the amount invalid e.g. not a multiple of 1000 won)
 - [x] generate 6 random numbers per ticket (from 1-45 without duplicates in ascending order)
-- [ ] print the number of purchased tickets and 6 random numbers per ticket
+- [x] print the number of purchased tickets and 6 random numbers per ticket
 - [ ] get winning numbers and a bonus number
     - [ ] winning numbers: 6 numbers (from 1-45 without duplicates per ticket) separated with a comma
     - [ ] bonus number: 1 bonus number (from 1-45 without duplicates per ticket)
