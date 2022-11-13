@@ -62,7 +62,7 @@ describe('로또 테스트', () => {
     });
   });
 
-  test('예외 테스트', () => {
+  test('예외: 잘못된 금액', () => {
     mockQuestions(['1000j']);
     expect(() => {
       const app = new App();
@@ -97,38 +97,40 @@ describe('구입 금액 입력 및 검사', () => {
   });
 });
 
-describe('로또 구매', () => {
-  mockQuestions(['8000']);
-  mockRandoms([
-    [8, 21, 23, 41, 42, 43].reverse(),
-    [3, 5, 11, 16, 32, 38].reverse(),
-    [7, 11, 16, 35, 36, 44].reverse(),
-    [1, 8, 11, 31, 41, 42].reverse(),
-    [13, 14, 16, 38, 42, 45].reverse(),
-    [7, 11, 30, 40, 42, 43].reverse(),
-    [2, 13, 22, 32, 38, 45].reverse(),
-    [1, 3, 5, 14, 22, 45].reverse(),
-  ]);
-  const logs = [
-    '8개를 구매했습니다.',
-    '[8, 21, 23, 41, 42, 43]',
-    '[3, 5, 11, 16, 32, 38]',
-    '[7, 11, 16, 35, 36, 44]',
-    '[1, 8, 11, 31, 41, 42]',
-    '[13, 14, 16, 38, 42, 45]',
-    '[7, 11, 30, 40, 42, 43]',
-    '[2, 13, 22, 32, 38, 45]',
-    '[1, 3, 5, 14, 22, 45]',
-  ];
-  const logSpy = getLogSpy();
-  const app = new App();
+describe('로또 구매 및 출력', () => {
+  test('경우 1', () => {
+    mockQuestions(['8000']);
+    mockRandoms([
+      [8, 21, 23, 41, 42, 43].reverse(),
+      [3, 5, 11, 16, 32, 38].reverse(),
+      [7, 11, 16, 35, 36, 44].reverse(),
+      [1, 8, 11, 31, 41, 42].reverse(),
+      [13, 14, 16, 38, 42, 45].reverse(),
+      [7, 11, 30, 40, 42, 43].reverse(),
+      [2, 13, 22, 32, 38, 45].reverse(),
+      [1, 3, 5, 14, 22, 45].reverse(),
+    ]);
+    const logs = [
+      '8개를 구매했습니다.',
+      '[8, 21, 23, 41, 42, 43]',
+      '[3, 5, 11, 16, 32, 38]',
+      '[7, 11, 16, 35, 36, 44]',
+      '[1, 8, 11, 31, 41, 42]',
+      '[13, 14, 16, 38, 42, 45]',
+      '[7, 11, 30, 40, 42, 43]',
+      '[2, 13, 22, 32, 38, 45]',
+      '[1, 3, 5, 14, 22, 45]',
+    ];
+    const logSpy = getLogSpy();
+    const app = new App();
 
-  app.setMoney();
-  app.buyLotto();
-  app.printLottoList();
+    app.setMoney();
+    app.buyLotto();
+    app.printLottoList();
 
-  logs.forEach((log) => {
-    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
   });
 });
 
