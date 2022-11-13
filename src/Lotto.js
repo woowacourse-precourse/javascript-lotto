@@ -59,6 +59,14 @@ class Lotto {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
   }
+
+  duplicate(numbers) {
+    const setNumbers = new Set(numbers);
+    console.log(setNumbers);
+    if (setNumbers.length !== numbers.length) {
+      throw new Error("[ERROR] 로또 번호가 중복되어서는 안됩니다.");
+    }
+  }
 }
 const lotto = new Lotto();
 //lotto.inputAmount();
