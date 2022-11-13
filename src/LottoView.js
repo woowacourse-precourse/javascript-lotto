@@ -1,5 +1,4 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { PURCHASE_AMOUNT_ERROR } = require("./Constants");
 const {
   checkPurchaseAmount,
   checkLottoNumbers,

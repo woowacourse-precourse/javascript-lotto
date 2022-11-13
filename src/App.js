@@ -10,8 +10,9 @@ class App {
     const lottos = lottoModel.createLottos(amount);
     lottoView.printLottos(amount, lottos);
     let winningNumbers = await lottoView.getWinningNumbers();
+    winningNumbers = winningNumbers.map(Number);
     const bonusNumber = await lottoView.getBonusNumber();
-    lottoModel.checkWinning(winningNumbers, bonusNumber);
+    lottoModel.checkWinning(winningNumbers, Number(bonusNumber));
   }
 }
 

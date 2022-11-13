@@ -1,9 +1,4 @@
-const {
-  NAN_ERROR,
-  REMAINDER_ERROR,
-  COUNT_ERROR,
-  RANGE_ERROR,
-} = require("./Constants");
+const { INPUT_ERROR_MESSAGE } = require("./Constants");
 
 const checkNaN = (number) => {
   const check = /^[0-9]+$/;
@@ -15,8 +10,8 @@ const checkRemainder = (number) => {
 };
 
 const checkPurchaseAmount = (number) => {
-  if (checkNaN(number)) throw NAN_ERROR;
-  if (checkRemainder(number)) throw REMAINDER_ERROR;
+  if (checkNaN(number)) throw INPUT_ERROR_MESSAGE.NAN_ERROR;
+  if (checkRemainder(number)) throw INPUT_ERROR_MESSAGE.REMAINDER_ERROR;
 };
 
 const checkSeparator = (numbers) => {};
@@ -30,16 +25,16 @@ const checkRange = (number) => {
 };
 
 const checkLottoNumbers = (numbers) => {
-  if (checkNumberCount(numbers)) throw COUNT_ERROR;
+  if (checkNumberCount(numbers)) throw INPUT_ERROR_MESSAGE.COUNT_ERROR;
   for (const number of numbers) {
-    if (checkRange(Number(number))) throw RANGE_ERROR;
-    if (checkNaN(Number(number))) throw NAN_ERROR;
+    if (checkRange(Number(number))) throw INPUT_ERROR_MESSAGE.RANGE_ERROR;
+    if (checkNaN(Number(number))) throw INPUT_ERROR_MESSAGE.NAN_ERROR;
   }
 };
 
 const checkBonusNumber = (number) => {
-  if (checkNaN(number)) throw NAN_ERROR;
-  if (checkRange(number)) throw RANGE_ERROR;
+  if (checkNaN(number)) throw INPUT_ERROR_MESSAGE.NAN_ERROR;
+  if (checkRange(number)) throw INPUT_ERROR_MESSAGE.RANGE_ERROR;
 };
 
 module.exports = {
