@@ -53,13 +53,15 @@ class Lotto {
     this.computeLottoResult(numbers, bonusNumber, this.candidateNumbers);
   }
 
-  computeLottoResult(numbers, bonusNumber, candidateNumbers) {
-    console.log(numbers, bonusNumber, candidateNumbers);
-    candidateNumbers.forEach((candidateNumber) => {
-      let countWinningNumber = candidateNumber.filter(x => numbers.includes(x)).length
-      let countBonusNumber = candidateNumber.includes(bonusNumber) ? 1 : 0
-      console.log(countWinningNumber, countBonusNumber)
+  async computeLottoResult(numbers, bonusNumber, candidateNumbers) {
+    let results = []
+    const promises = candidateNumbers.map(candidateNumber => {
+      const countWinningNumber = candidateNumber.filter(x => numbers.includes(x)).length
+      const countBonusNumber = candidateNumber.includes(bonusNumber) ? 1 : 0
+      results.push([countWinningNumber, countBonusNumber])
     });
+    await Promise.all(promises)
+    console.log(results)
   }
   // printLottoResult(numbers, bonusNumber){
   //   console.log('printLottoResult',numbers,bonusNumber)
