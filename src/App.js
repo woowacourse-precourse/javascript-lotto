@@ -49,14 +49,16 @@ class App {
     return false;
   }
   isInRange(num) {
+    let parsedNum = num;
+    if (typeof num === "string") {
+      parsedNum = parseInt(num, 10);
+    }
     if (num < 1 || num > 45) return false;
     return true;
   }
   isValidLottoNumbers(numbers) {
     numbers.forEach((number) => {
       if (isNaN(number)) return false;
-
-      const parsedNum = parseInt(number, 10);
       if (this.isInRange(parsedNum)) return false;
     });
     return true;
@@ -89,9 +91,7 @@ class App {
     if (isNaN(bonusNumber)) {
       throw new Error(`[Error] 숫자를 입력해 주세요.`);
     }
-
-    const parsedNum = parseInt(bonusNumber, 10);
-    if (parsedNum < 1 || parsedNum > 45) {
+    if (this.isInRange(parsedNum)) {
       throw new Error(`[Error] 로또 번호는 1부터 45 사이의 숫자여야 합니다.`);
     }
     return parsedNum;
