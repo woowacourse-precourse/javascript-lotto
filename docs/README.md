@@ -24,27 +24,27 @@
   - 수익률은 소수점 둘째 자리에서 반올림한다.
   - 1000보다 큰 수익률은 세 자릿수마다 `,`콤마를 추가한다.
 ## UI 관련
-- [ ] (readLine) 로또 구입금액을 입력받는다. InputView#inputLottoAmount
+- [x] (readLine) 로또 구입금액을 입력받는다. InputView#inputLottoAmount
   - '구입금액을 입력해 주세요.'
-- [ ] (print) 로또 발행 수량를 출력한다. PrintView#printLottoCount
+- [x] (print) 로또 발행 수량를 출력한다. PrintView#printLottoCount
   - '`n`개를 구매했습니다'
-- [ ] (print) 임의 생성된 로또 번호들을 출력한다. PrintView#printLottoNumbers
-  - [ ] 로또 발행 수량만큼 출력한다.
-  - [ ] 각 로또 번호들은 number 배열 형태이다.
-- [ ] (readLine) 당첨 번호를 입력받는다. InputView#inputWinningLottoNumbers
+- [x] (print) 임의 생성된 로또 번호들을 출력한다. PrintView#printLottoNumbers
+  - [x] 로또 발행 수량만큼 출력한다.
+  - [x] 각 로또 번호들은 number 배열 형태이다.
+- [x] (readLine) 당첨 번호를 입력받는다. InputView#inputWinningLottoNumbers
   - '당첨 번호를 입력해 주세요.'
   - [ ] 로또 번호 입력에 대한 예외처리를 한다. InputView#validateLottoNumbers
     - [ ] (예외처리) 입력이 공백인 경우
     - [ ] (예외처리) 입력이 숫자와 `,`가 아닌 다른 문자가 포함된 경우
-- [ ] (readLine) 보너스 번호를 입력받는다. InputView#inputBonusNumber
+- [x] (readLine) 보너스 번호를 입력받는다. InputView#inputBonusNumber
   - '보너스 번호를 입력해 주세요.'
-- [ ] (print) 당첨 통계를 출력한다. PrintView#printWinningStats
+- [x] (print) 당첨 통계를 출력한다. PrintView#printWinningStats
   - '당첨 통계\n---\n'
   - '3개 일치 (5,000원) - `n`개'
   - '4개 일치 (50,000원) - `n`개'
   - '5개 일치 (1,500,000원) - `n`개'
   - '5개 일치, 보너스 볼 일치 (30,000,000원) - `n`개'
   - '6개 일치 (2,000,000,000원) - `n`개'
-- [ ] (print) 수익률을 출력한다. PrintView#printProfit
+- [x] (print) 수익률을 출력한다. PrintView#printProfit
   - '총 수익률은 `n`%입니다.'
 
