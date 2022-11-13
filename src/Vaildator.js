@@ -20,6 +20,10 @@ class Vaildator {
     return amount % util.AMOUNT_PER_GAME === 0;
   }
 
+  static isRightAmount(amount) {
+    return this.isDivisible(amount) && this.isPositiveNumber(amount);
+  }
+
   static isDuplicateNumberInArray(array, number) {
     return array.includes(number);
   }
