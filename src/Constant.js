@@ -3,6 +3,13 @@ const MESSAGE = {
   PRINTLOTTONUMBER: lottoNumber => `\n${lottoNumber}개를 구매했습니다.`,
   GETWINNINGNUMBER: '\n당첨 번호를 입력해 주세요.\n',
   GETBONUSNUMBER: '\n보너스 번호를 입력해 주세요.\n',
+  FIFTH: n => `3개 일치 (5,000원) - ${n}개`,
+  FORTH: n => `4개 일치 (50,000원) - ${n}개`,
+  THIRD: n => `5개 일치 (1,500,000원) - ${n}개`,
+  SECOND: n => `5개 일치, 보너스 볼 일치 (30,000,000원) - ${n}개`,
+  FIRST: n => `6개 일치, (2,000,000,000원) - ${n}개`,
+  RESULT: `\n당첨통계\n---`,
+  SUM: sum => `총 수익률은 ${sum}%입니다.`,
 };
 
 const ERROR_MESSAGE = {

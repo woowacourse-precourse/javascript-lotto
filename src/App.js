@@ -23,6 +23,7 @@ class App {
       5: 0,
       '5+': 0,
       6: 0,
+      sum: 0,
     };
   }
 
@@ -54,13 +55,50 @@ class App {
         this.bonusNumber = inputBonusNumber;
         this.setResult();
         this.printResult();
+        Console.close();
       });
     });
   }
 
-  setResult() {}
+  setResult() {
+    for (const lotto of this.lottos) {
+      const result = lotto.checkRank(this.winningNumbers, this.bonusNumber);
+      switch (result.lotto) {
+        case 3:
+          this.result.sum += 1;
+          this.result['3'] += 1;
+          break;
+        case 4:
+          this.result.sum += 1;
+          this.result['4'] += 1;
+          break;
+        case 5:
+          this.result.sum += 1;
+          if (result.bonus) {
+            this.result['5+'] += 1;
+            break;
+          }
+          this.result['5'] += 1;
+          break;
+        case 6:
+          this.result.sum += 1;
+          this.result['6'] += 1;
+          break;
+        default:
+      }
+    }
+  }
 
-  printResult() {}
+  printResult() {
+    Console.print(MESSAGE.RESULT);
+    Console.print(MESSAGE.FIFTH(this.result['3']));
+    Console.print(MESSAGE.FORTH(this.result['4']));
+    Console.print(MESSAGE.THIRD(this.result['5']));
+    Console.print(MESSAGE.SECOND(this.result['5+']));
+    Console.print(MESSAGE.FIRST(this.result['6']));
+    const sum = Math.round((this.result.sum / this.lottoNumber) * 10000) / 100;
+    Console.print(MESSAGE.SUM(sum));
+  }
 }
 
 const app = new App();
