@@ -1,4 +1,4 @@
-const { ERROR_MESSAGES } = require("./constants");
+const { ERROR_MESSAGES } = require("../utils/constants");
 
 class Bonus {
   #bonusNumber;
