@@ -66,13 +66,14 @@ class App {
 
   readWinningNumbers(lottos) {
     Console.readLine(MESSAGE.ENTER_WINNING_NUMBERS, (winningNumbersInput) => {
-      this.validateWinningNumbers(winningNumbersInput);
+      this.validateWinningNumbersInput(winningNumbersInput);
       const winningNumbers = this.winningNumbersToArray(winningNumbersInput);
+      this.validateWinningNumbers(winningNumbers);
       return this.readBonusNumber({ lottos, winningNumbers });
     });
   }
 
-  validateWinningNumbers(str) {
+  validateWinningNumbersInput(str) {
     const NUMBER_COMMA_REGEXP = /^[0-9,]+$/;
     const START_IS_COMMA_REGEXP = /^[,]/;
     const END_IS_COMMA_REGEXP = /[,]$/;
@@ -91,6 +92,18 @@ class App {
   winningNumbersToArray(winningNumbers) {
     const winningNumbersArr = winningNumbers.split(',');
     return winningNumbersArr.map((num) => parseInt(num));
+  }
+
+  validateWinningNumbers(numbers) {
+    if (!Util.hasNElements(numbers, LOTTO.LENGTH)) {
+      throw new Error(ERROR_MESSAGE.INVALID_LENGTH_LOTTO);
+    }
+    if (!Util.isBetween(numbers, LOTTO.START, LOTTO.END)) {
+      throw new Error(ERROR_MESSAGE.OUT_OF_RANGE_LOTTO);
+    }
+    if (Util.hasDuplicateElements(numbers)) {
+      throw new Error(ERROR_MESSAGE.HAS_DUPLICATE_NUMBERS);
+    }
   }
 
   readBonusNumber({ lottos, winningNumbers }) {
