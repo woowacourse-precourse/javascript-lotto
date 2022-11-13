@@ -1,5 +1,6 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const LottoGenerator = require('./IssueLotto');
+const LottoEarnings = require('./Calculator');
 const Lotto = require('./Lotto');
 const Match = require('./Matcher');
 
@@ -16,6 +17,7 @@ class App {
         throw new Error('[ERROR] 1000원 단위로 입력해주세요.');
       }
       LottoGenerator.getPurchaseLottoCount(Number(money));
+      LottoEarnings.money += Number(money);
       this.enterWinningNumber();
     });
   }
@@ -35,20 +37,6 @@ class App {
       const inputNumber = Number(input);
       Match.bonusNumber.push(inputNumber);
     });
-  }
-
-  findLottoProfit() {
-    const profit =
-      String(
-        ((this.winRank.threeMatch[0] * this.winRank.threeMatch[1] +
-          this.winRank.fourMatch[0] * this.winRank.fourMatch[1] +
-          this.winRank.fiveMatch[0] * this.winRank.fiveMatch[1] +
-          this.winRank.sixMatch[0] * this.winRank.sixMatch[1] +
-          this.winRank.fiveBonusMatch[0] * this.winRank.fiveBonusMatch[1]) /
-          this.money) *
-          100,
-      ) + '%';
-    this.winningStatistics(profit);
   }
 
   winningStatistics(profit) {
