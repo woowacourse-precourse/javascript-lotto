@@ -2,14 +2,24 @@ const { ERROR } = require("./constants/index");
 
 class Validator {
   checkMoneyValid(money) {
+    this.checkMoneyType(money);
+    this.checkMoneyZero(money);
+    this.checkMoneyUnit(money);
+  }
+
+  checkMoneyType(money) {
     if (isNaN(money) === true) {
       this.error(ERROR.MONEY_TYPE);
     }
+  }
 
+  checkMoneyZero(money) {
     if (money === 0) {
       this.error(ERROR.MONEY_ZERO);
     }
+  }
 
+  checkMoneyUnit(money) {
     if (money % 1000 !== 0) {
       this.error(ERROR.MONEY_UNIT);
     }
@@ -51,14 +61,24 @@ class Validator {
   }
 
   checkBonusNumberValid(bonusNumber, number) {
+    this.checkBonusNumberType(bonusNumber);
+    this.checkBonusNumberRange(bonusNumber);
+    this.checkBonusNumberIncluded(bonusNumber, number);
+  }
+
+  checkBonusNumberType(bonusNumber) {
     if (isNaN(bonusNumber) === true) {
       this.error(ERROR.NUMBER_TYPE);
     }
+  }
 
+  checkBonusNumberRange(bonusNumber) {
     if (bonusNumber < 1 || bonusNumber > 45) {
       this.error(ERROR.NUMBER_RANGE);
     }
+  }
 
+  checkBonusNumberIncluded(bonusNumber, number) {
     if (number.includes(bonusNumber)) {
       this.error(ERROR.BONUS_NUMBER_INCLUDED);
     }
