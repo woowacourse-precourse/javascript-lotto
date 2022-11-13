@@ -37,6 +37,15 @@ class CheckError {
     }
     return true;
   }
+
+  static checkWinnerNumber(winnerNumber) {
+    if (CheckError.checkCommaNumber(winnerNumber))
+      throw new Error(ERROR_MESSAGE.INVALID_FORMAT_WINNING_NUM);
+  }
+  static checkCommaNumber(winnerNumber) {
+    const winnerNumbertoString = String(winnerNumber);
+    return winnerNumbertoString.match(/[^0-9,]/g);
+  }
 }
 
 module.exports = CheckError;
