@@ -23,6 +23,10 @@ class Exception {
     if (input.length !== 6) {
       throw new Error(ERROR_MESSAGE.inValidInputCount);
     }
+
+    input.forEach((number) => {
+      this.checkIsDigit(number);
+    });
   }
 
   checkIsDigit(number) {
