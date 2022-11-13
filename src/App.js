@@ -49,6 +49,10 @@ class App {
 
     this.lottoArray = lottoArray;
   }
+
+  issueEachLotto() {
+    return Random.pickUniqueNumbersInRange(1, 45, 6);
+  }
 }
 
 module.exports = App;
