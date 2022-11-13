@@ -4,7 +4,7 @@
 
 ## 초기 세팅
 
-- [ ] 로또 게임 관련 상수 및 문구 config.js에 명시
+- [x] 로또 게임 관련 상수 및 문구 config.js에 명시
 
 ## 게임
 
@@ -14,12 +14,12 @@
 
 ## 게임 입출력
 
-- [ ] 로또 구입 금액 입력: getTicketBudget()
-    - [ ] 구입 입출력 검증: validateTicketBudget()
-- [ ] 당첨 번호 입력: getTargetNumber()
-    - [ ] 당첨 번호 입력 검증: validateTargetNumber()
-- [ ] 보너스 번호 입력: getBonusNumber()
-    - [ ] 보너스 번호 입력 검증: validateBonueNumber()
+- [x] 로또 구입 금액 입력: getTicketBudget()
+  - [ ] 구입 입출력 검증: validateTicketBudget()
+- [x] 당첨 번호 입력: getTargetNumber()
+  - [ ] 당첨 번호 입력 검증: validateTargetNumber()
+- [x] 보너스 번호 입력: getBonusNumber()
+  - [ ] 보너스 번호 입력 검증: validateBonueNumber()
 - [ ] 로또 티켓 출력: printTicket()
 - [ ] 통계 출력: printTicketStat()
 
@@ -31,6 +31,7 @@
 
 ## 테스트 구현
 
+- [ ] 로또 티켓 정상 생성 확인
 - [ ] 구입 입츨력 검증 테스트
 - [ ] 당첨 번호 입력 검증 테스트
 - [ ] 보너스 번호 입력 검증 테스트
