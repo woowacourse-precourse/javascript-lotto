@@ -13,7 +13,7 @@ class App {
     Console.readLine(MESSAGE.PURCHASE_AMOUT, (amount) => {
       this.amount = amount;
       this.#lotteryPurchase(amount);
-      this.#lotteryWinnerNumber();
+      this.#inputLotteryWinnerNumber();
     });
   }
 
@@ -27,17 +27,23 @@ class App {
     }
   }
 
-  #lotteryWinnerNumber() {
+  #inputLotteryWinnerNumber() {
     Console.readLine(MESSAGE.WINNING_NUMBER, (numbers) => {
       console.log(numbers);
-      this.#lotteryBonusNumber();
+      this.#parsingStringToArray(numbers);
+      this.#inputLotteryBonusNumber();
     });
   }
 
-  #lotteryBonusNumber() {
+  #inputLotteryBonusNumber() {
     Console.readLine(MESSAGE.BONUS_NUMBER, (bonusNumber) => {
       console.log(bonusNumber);
     });
+  }
+
+  #parsingStringToArray(numbers) {
+    this.lotteryWinnerNumber = numbers.split(',');
+    console.log(this.lotteryWinnerNumber);
   }
 
   print(message) {
