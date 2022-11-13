@@ -14,4 +14,12 @@ const ERROR_MESSAGE = {
   CURRENCY_UNIT: `${PREFIX} 1,000원 단위의 금액을 입력해 주세요.`,
 };
 
-module.exports = { INPUT_MESSAGE, ERROR_MESSAGE };
+const LOTTO_INFO = {
+  START: 1,
+  END: 45,
+  COUNT: 6,
+};
+
+const CURRENCY_UNIT = 1000;
+
+module.exports = { INPUT_MESSAGE, ERROR_MESSAGE, LOTTO_INFO, CURRENCY_UNIT };
