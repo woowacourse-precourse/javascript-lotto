@@ -3,9 +3,11 @@ const Lotto = require('./Lotto');
 const TICKET = require('./CONSTANT');
 
 class App {
-  #numbers;
+  #answerNumbers;
 
   #bonusNumber;
+
+  #tickets = [];
 
   play() {
     this.inputMoney();
@@ -14,13 +16,12 @@ class App {
   inputMoney() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (answer) => {
       if (this.validateMoney(answer)) {
-        const tickets = [];
         const ticketsCount = this.countTickets(answer);
         MissionUtils.Console.print(`\n${ticketsCount}개를 구매했습니다.`);
         for (let i = 0; i < ticketsCount; i += 1) {
-          tickets.push(new Lotto(this.generateRandomNumbers()));
+          this.#tickets.push(new Lotto(this.generateRandomNumbers()));
         }
-        tickets.map((ticket) => MissionUtils.Console.print(ticket.getTicketNumbers()));
+        this.#tickets.map((ticket) => MissionUtils.Console.print(ticket.getTicketNumbers()));
         this.setLottoNumbers();
       }
     });
@@ -46,18 +47,22 @@ class App {
   }
 
   setLottoNumbers() {
-    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (answer) => {
-      this.#numbers = answer.split(',').map((i) => Number(i));
-      // console.log(this.#numbers);
+    MissionUtils.Console.readLine('\n당첨 번호를 입력해 주세요.\n', (answer) => {
+      this.#answerNumbers = answer.split(',').map((i) => Number(i));
       this.setBonusNumber();
     });
   }
 
   setBonusNumber() {
-    MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.\n', (answer) => {
-      this.#bonusNumber = answer;
-      // console.log(this.#bonusNumber);
+    MissionUtils.Console.readLine('\n보너스 번호를 입력해 주세요.\n', (answer) => {
+      this.#bonusNumber = Number(answer);
+      this.calculateTickets();
     });
+  }
+
+  calculateTickets() {
+    MissionUtils.Console.print('\n당첨 통계\n---');
+    this.#tickets.map((ticket) => ticket.calculateNumbers(this.#answerNumbers, this.#bonusNumber));
   }
 }
 
