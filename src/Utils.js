@@ -5,6 +5,9 @@ class Utils {
   static error(msg) {
     throw new Error(`[ERROR] ${msg}`);
   }
+  static toFixedsecond(number) {
+    return Math.floor(number * 100) / 100;
+  }
 }
 
 module.exports = Utils;

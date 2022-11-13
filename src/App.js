@@ -88,7 +88,7 @@ class App {
   }
 
   printRate() {
-    const rate = ((this.profit / this.purchase) * 100).toFixed(2);
+    const rate = Utils.toFixedsecond((this.profit / this.purchase) * 100);
     Console.print(`${PRINT_MSG.RATE}${rate}%${PRINT_MSG.SUFFIX}`);
   }
 
