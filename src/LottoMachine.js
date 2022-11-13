@@ -31,6 +31,17 @@ class LottoMachine {
   printTicketsCount(ticketsCount) {
     Console.print(`${ticketsCount}개를 구매했습니다.`);
   }
+
+  solveNumbersInArray(ticket) {
+    return `[${ticket.join(', ')}]`;
+  }
+
+  printLottoNumberInTickets(userBuyedTickets) {
+    const NumbersInTickets = userBuyedTickets.map((ticket) => {
+      return this.solveNumbersInArray(ticket);
+    });
+    NumbersInTickets.forEach((ticket) => Console.print(ticket));
+  }
 }
 
 module.exports = LottoMachine;
