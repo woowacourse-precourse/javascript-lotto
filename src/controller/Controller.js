@@ -1,11 +1,15 @@
 const View = require("../view/View");
+const UserNumber = require("../model/UserNumber");
 
 class Controller {
   constructor() {
-    const view = new View(this);
+    this.view = new View(this);
+    this.userNumber = new UserNumber();
   }
 
-  init() {}
+  init() {
+    this.view.getPurchasingAmountFromUser();
+  }
 }
 
 module.exports = Controller;
