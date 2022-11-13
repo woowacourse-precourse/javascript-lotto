@@ -1,15 +1,23 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const userException = require("./utils/userException");
+const numberException = require('./utils/numberException');
 const Lotto = require('./Lotto');
 class App {
 
   // 로또 개수
   #lottoCount;
   #totalLotto = [];
+  #userWinningNumber;
 
   userEnterException(userEnterAmount) {
     userException.isInDivisible(userEnterAmount);
     userException.isNotNumber(userEnterAmount);
+  }
+
+  userNumberException(parsingUserNumber) {
+    numberException.isNotSix(parsingUserNumber);
+    numberException.includeNotNumber(parsingUserNumber);
+    numberException.isDuplicated(parsingUserNumber);
   }
 
   printLotto() {
@@ -26,6 +34,8 @@ class App {
       this.#lottoCount = parseInt(Number(userEnterAmount) / 1000);
       // 기능 2 : 구입 금액 만큼의 로또 발행
       this.generateLotto();
+      // 기능 3 : 사용자의 당첨 번호, 보너스 번호 입력
+      this.enterUserNumber();
     });
   }
 
@@ -36,7 +46,15 @@ class App {
       this.#totalLotto.push(lotto.getNumbers());
     }
     this.printLotto();
-    MissionUtils.Console.close();
+  }
+
+  enterUserNumber() {
+    MissionUtils.Console.readLine('\n당첨 번호를 입력해 주세요.\n', (userNumber) => {
+      const parsingUserNumber = String(userNumber).split(',').map(number => +number);
+      console.log(parsingUserNumber);
+      this.userNumberException(parsingUserNumber);
+      this.#userWinningNumber = userNumber;
+    });
   }
 
   play() {
