@@ -1,30 +1,30 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 
 class Utils {
-  pickUniqueNumbersInRange(startInclusive, endInclusive, count) {
-    Random.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
+  static getRandomeNumbers(startInclusive, endInclusive, count) {
+    return Random.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
   }
 
-  print(output) {
+  static print(output) {
     Console.print(output);
   }
 
-  readLine(message, callback) {
+  static readLine(message, callback) {
     Console.readLine(message, callback);
   }
 
-  #printLottoNumber(lotto) {
+  static #printLottoNumber(lotto) {
     const sortedNumbers = lotto.numbers.sort((a, b) => a - b);
     const output = "[" + sortedNumbers.join(", ") + "]";
     this.print(output);
   }
 
-  printPurchasedLotto(lottos) {
+  static printPurchasedLotto(lottos) {
     this.print(`\n${lottos.length}개를 구매했습니다.`);
     lottos.forEach((lotto) => this.#printLottoNumber(lotto));
   }
 
-  #printRank(rankCount) {
+  static #printRank(rankCount) {
     this.print(`3개 일치 (5,000원) - ${rankCount[4]}개`);
     this.print(`4개 일치 (50,000원) - ${rankCount[3]}개`);
     this.print(`5개 일치 (1,500,000원) - ${rankCount[2]}개`);
@@ -32,11 +32,11 @@ class Utils {
     this.print(`6개 일치 (2,000,000,000원) - ${rankCount[0]}개`);
   }
 
-  #printRateOfReturn(rateOfReturn) {
+  static #printRateOfReturn(rateOfReturn) {
     this.print(`총 수익률은 ${rateOfReturn}%입니다.`);
   }
 
-  printWinningResult(rankCount, rateOfReturn) {
+  static printWinningResult(rankCount, rateOfReturn) {
     this.print("\n당첨 통계\n---");
     this.#printRank(rankCount);
     this.#printRateOfReturn(rateOfReturn);
