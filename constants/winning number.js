@@ -1,11 +1,12 @@
 const MATCH = Object.freeze({
-  SIX: 6,
-  FIVE: 5,
-  FOUR: 4,
   THREE: 3,
+  FOUR: 4,
+  FIVE: 5,
+  SIX: 6,
 });
 
 const RANK = Object.freeze({
+  NONE: -1,
   FIRST: 0,
   SECOND: 1,
   THIRD: 2,
@@ -19,7 +20,7 @@ const PRIZE = Object.freeze({
   THIRD: '1,500,000',
   FOURTH: '50,000',
   FIFTH: '5,000',
-  ARRAY: [this.FIRST, this.SECOND, this.THIRD, this.FOURTH, this.FIFTH],
+  ARRAY: [2000000000, 30000000, 1500000, 50000, 5000],
 });
 
 module.exports = { MATCH, PRIZE, RANK };

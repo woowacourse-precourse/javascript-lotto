@@ -1,9 +1,9 @@
 const { Console } = require('@woowacourse/mission-utils');
-const Error = require('./Error');
-const Lotto = require('./Lotto');
+const ErrorCheck = require('./ErrorCheck');
+const Lotto = require('../src/Lotto');
 const INIT = require('../constants/basic number');
 const Functions = require('./Functions');
-const MESSAGE = require('../constants/message');
+const { SYSTME_MESSAGE } = require('../constants/game message');
 
 class Game {
   #lottos;
@@ -18,16 +18,15 @@ class Game {
 
   constructor() {
     this.#lottos = [];
-    this.#winningNumber = new Set();
+    this.#winningNumber = [];
     this.#purchaseAmount = INIT;
     this.#bonusNumber = INIT;
     this.#winningResult = [];
   }
 
   start() {
-    Console.readLine(MESSAGE.PURCHASE_INPUT, (money) => {
-      Error.purchase(money);
-
+    Console.readLine(SYSTME_MESSAGE.PURCHASE_INPUT, (money) => {
+      ErrorCheck.purchase(money);
       this.#purchaseAmount = +money;
       this.purchaseLotto();
     });
@@ -37,7 +36,7 @@ class Game {
     const lottoCount = Functions.getLottoCount(this.#purchaseAmount);
 
     this.#lottos = Functions.generateLottos(lottoCount);
-    Console.print(MESSAGE.PURCHASE_COUNT(lottoCount));
+    Console.print(SYSTME_MESSAGE.PURCHASE_COUNT(lottoCount));
     this.printLottos();
   }
 
@@ -49,16 +48,17 @@ class Game {
   }
 
   getWinningNumbers() {
-    Console.readLine(MESSAGE.WINNING_INPUT, (inputNumber) => {
+    Console.readLine(SYSTME_MESSAGE.WINNING_INPUT, (inputNumber) => {
       this.#winningNumber = Functions.digitize(inputNumber);
 
       const lottoClass = new Lotto(this.#winningNumber);
+
       this.getBonusNumber();
     });
   }
 
   getBonusNumber() {
-    Console.readLine(MESSAGE.BONUS_INPUT, (inputNumber) => {
+    Console.readLine(SYSTME_MESSAGE.BONUS_INPUT, (inputNumber) => {
       this.#bonusNumber = +inputNumber;
       this.checkWinningResult();
     });
@@ -70,7 +70,6 @@ class Game {
       this.#winningNumber,
       this.#bonusNumber
     );
-
     this.getLottoYield();
   }
 
@@ -84,6 +83,7 @@ class Game {
 
   printLottoResult(lottoYield) {
     Functions.printResult(this.#winningResult, lottoYield);
+    Console.close();
   }
 }
 

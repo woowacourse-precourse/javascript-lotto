@@ -1,13 +1,18 @@
 const { Random, Console } = require('@woowacourse/mission-utils');
-const { INIT, FIVE, ONE } = require('../constants/basic number');
 const { MATCH, RANK, PRIZE } = require('../constants/winning number');
-const { DIVIDER } = require('../constants/basic number');
 const { MIN, MAX, PICK } = require('../constants/lotto number');
-const MESSAGE = require('../constants/message');
+const { RESULT_MESSAGE } = require('../constants/game message');
+const {
+  INIT,
+  ONE,
+  THREE,
+  FIVE,
+  THOUSAND,
+} = require('../constants/basic number');
 
 class Functions {
   static getLottoCount(money) {
-    return money / DIVIDER;
+    return money / THOUSAND;
   }
 
   static generateLottos(count) {
@@ -24,7 +29,7 @@ class Functions {
 
   static getMatchCount(lottoNumber, winningNumber) {
     return lottoNumber.reduce(
-      (count, num) => (winningNumber.has(num) ? count + ONE : count),
+      (count, num) => (winningNumber.includes(num) ? count + ONE : count),
       INIT
     );
   }
@@ -39,7 +44,10 @@ class Functions {
     if (matchCount === MATCH.FIVE) {
       return RANK.THIRD;
     }
-    return matchCount === MATCH.FOURTH ? RANK.FOURTH : RANK.FIFTH;
+    if (matchCount === MATCH.FOURTH) {
+      return RANK.FOURTH;
+    }
+    return matchCount === MATCH.THREE ? RANK.FIFTH : RANK.NONE;
   }
 
   static getWinningResult(lottos, winningNumber, bonusNumber) {
@@ -49,7 +57,10 @@ class Functions {
       const matchCount = this.getMatchCount(lotto, winningNumber);
       const includesBonus = lotto.includes(bonusNumber);
       const rank = this.getRankIndex(matchCount, includesBonus);
-      winningResult[rank] += ONE;
+
+      if (rank !== RANK.NONE) {
+        winningResult[rank] += ONE;
+      }
     });
     return winningResult;
   }
@@ -59,27 +70,23 @@ class Functions {
       PRIZE.ARRAY.reduce(
         (acc, prize, index) => acc + prize * winningResult[index],
         INIT
-      ) / purchaseAmount.toFixed(FIRST_DIGIT)
-    );
+      ) / purchaseAmount
+    ).toFixed(THREE);
   }
 
-  static printLottoResult(winningResult, lottoYield) {
-    const [firstCount, secondCount, thirdCount, fourthCount, fifthCount] =
-      winningResult;
+  static printResult(winningResult, lottoYield) {
+    const [firstCnt, secondCnt, thirdCnt, fourthCnt, fifthCnt] = winningResult;
 
-    Console.print(MESSAGE.WINNING_STATISTICS);
-    Console.print(MESSAGE.HYPHENS);
-    Console.print(`${MATCH.THREE}개 일치 (${PRIZE.FIFTH}원) - ${fifthCount}개`);
+    Console.print(RESULT_MESSAGE.WINNING_STATISTICS);
+    Console.print(RESULT_MESSAGE.HYPHENS);
+    Console.print(`${MATCH.THREE}개 일치 (${PRIZE.FIFTH}원) - ${fifthCnt}개`);
+    Console.print(`${MATCH.FOUR}개 일치 (${PRIZE.FOURTH}원) - ${fourthCnt}개`);
+    Console.print(`${MATCH.FIVE}개 일치 (${PRIZE.THIRD}원) - ${thirdCnt}개`);
     Console.print(
-      `${MATCH.FOUR}개 일치 (${PRIZE.FOURTH}원) - ${fourthCount}개`
+      `${MATCH.FIVE}개 일치, 보너스 볼 일치 (${PRIZE.SECOND}원) - ${secondCnt}개`
     );
-    Console.print(`${MATCH.FIVE}개 일치 (${PRIZE.THIED}원) - ${thirdCount}개`);
-    Console.print(
-      `${MATCH.FIVE}개 일치, 보너스 볼 일치 (${PRIZE.SECOND}원) - ${secondCount}개`
-    );
-    Console.print(`${MATCH.SIX}개 일치 (${PRIZE.FIRST}원) - ${firstCount}개`);
-    Console.print(MESSAGE.YIELD(lottoYield));
-    Console.close();
+    Console.print(`${MATCH.SIX}개 일치 (${PRIZE.FIRST}원) - ${firstCnt}개`);
+    Console.print(RESULT_MESSAGE.YIELD(lottoYield));
   }
 }
 
