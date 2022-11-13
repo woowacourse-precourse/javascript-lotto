@@ -12,6 +12,8 @@ const ERROR_MESSAGE = Object.freeze({
   NOT_NUMBER_IN_LOTTO: `[ERROR] 로또 번호에는 숫자만 포함될 수 있습니다.`,
   NOT_ASCENDING_ARR: `[ERROR] 로또 번호는 오름차순으로 정렬되어 있어야 합니다.`,
   INVALID_FORMAT_WINNING_NUM: `[ERROR] 당첨 번호는 ,와 숫자로만 이루어져 있어야 합니다.`,
+  NOT_RANGE_LOTTO_NUMBER: `[ERROR] 번호는 1 ~ 45 사이의 숫자여야 합니다.`,
+  NOT_UNIQUE_BONUS_NUMBER: `[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.`,
 });
 const PRINT_MESSAGE = Object.freeze({
   PURCHASE_MESSAGE: (num) => `${num}개를 구매했습니다.`,
