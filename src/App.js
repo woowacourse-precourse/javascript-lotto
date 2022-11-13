@@ -13,6 +13,7 @@ class App {
   input_lotto;
   input_bonus;
   results;
+  revenue;
 
   play(){
     this.inputMoney();
@@ -48,6 +49,8 @@ class App {
 
       this.calResults();
       this.printWin();
+      this.calRevenue();
+      this.printRevenue();
     });
   }
 
@@ -122,6 +125,23 @@ class App {
         count++;
     }
     return count;
+  }
+
+  printRevenue(){
+    Console.print("총 수익률은 " + this.revenue + "%입니다.");
+  }
+
+  calRevenue(){
+    let reward = 0;
+    reward = reward + 5000 * this.results[0];
+    reward = reward + 50000 * this.results[1];
+    reward = reward + 1500000 * this.results[2];
+    reward = reward + 30000000 * this.results[3];
+    reward = reward + 2000000000 * this.results[4];
+    
+    this.revenue = reward / (this.lottocount * 1000) * 100;
+    this.revenue = Math.round(this.revenue * 10) / 10;
+    this.revenue = this.revenue.toFixed(1);
   }
 }
 

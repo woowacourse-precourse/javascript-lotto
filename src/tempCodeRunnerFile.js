@@ -1,2 +1,2 @@
 
-    if(count == 4)
+    this.lottotickets = new Array();
