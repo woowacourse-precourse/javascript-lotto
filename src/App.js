@@ -107,6 +107,21 @@ class App {
       if (win[index].length === 5 && bonus[index].length === 1) rank.rank2++;
       if (win[index].length === 6) rank.rank1++;
     }
+    this.printRank(rank, investment);
+  }
+
+  printRank(rank, investment) {
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${rank.rank5}개`);
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${rank.rank4}개`);
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${rank.rank3}개`);
+    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${rank.rank2}개`);
+    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${rank.rank1}개`);
+    const WIN_MONEY =
+      rank.rank5 * 5000 +
+      rank.rank4 * 50000 +
+      rank.rank3 * 1500000 +
+      rank.rank2 * 30000000 +
+      rank.rank1 * 2000000000;
   }
 }
 
