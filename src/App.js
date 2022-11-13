@@ -47,6 +47,7 @@ class App {
 
   setBonusNumber(number) {
     Validator.isInRange(number);
+    Validator.validateBonusNumber(Number(number), this.#winningNumbers);
     this.#bonusNumber = Number(number);
   }
 

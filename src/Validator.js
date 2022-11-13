@@ -15,6 +15,12 @@ class Validator {
     );
   }
 
+  static validateBonusNumber(bonusNumber, winningNumbers) {
+    if (winningNumbers.includes(bonusNumber)) {
+      throw new Error(ERROR.DUPLICATED);
+    }
+  }
+
   static validateNumbers(numbers) {
     if (numbers.length !== LOTTO.NUMBER_LENGTH) {
       throw new Error(ERROR.WRONG_LENGTH);
