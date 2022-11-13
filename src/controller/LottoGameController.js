@@ -1,4 +1,5 @@
 const { INPUT_MESSAGE } = require('../constant');
+const Lotto = require('../Lotto');
 const { readLine } = require('../utils/Utils');
 const { MoneyValidator, BonusValidator } = require('../utils/Validator');
 
@@ -32,7 +33,8 @@ class LottoGameController {
 
   pickWinningLotto() {
     readLine(INPUT_MESSAGE.LOTTO_NUMBER, (input) => {
-      let winningLotto = input.split(',').map(Number);
+      input = input.split(',').map(Number);
+      let winningLotto = new Lotto(input);
 
       this.pickBonusNumber(winningLotto);
     });
@@ -40,9 +42,10 @@ class LottoGameController {
 
   pickBonusNumber(lotto) {
     readLine(INPUT_MESSAGE.BONUS_NUMBER, (input) => {
+      input = Number(input);
       BonusValidator.validate(lotto, input);
 
-      this.winningLotto = [...lotto, Number(input)];
+      this.winningLotto = [...lotto, input];
     });
   }
 }
