@@ -9,6 +9,10 @@ class LottoController {
   start() {
     this.view.getPayInput();
   }
+
+  game() {
+
+  }
 }
 
 module.exports = LottoController;
