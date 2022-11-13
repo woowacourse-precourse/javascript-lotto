@@ -1,6 +1,8 @@
+const { Console } = require('@woowacourse/mission-utils');
 const LottoAmount = require('../domain/lotto/LottoAmount');
 const LottoTicket = require('../domain/lotto/LottoTicket');
 const WinningLotto = require('../domain/lotto/WinningLotto');
+const Result = require('../domain/result/Result');
 const InputView = require('../view/InputView');
 const PrintView = require('../view/PrintView');
 
@@ -10,6 +12,8 @@ class Controller {
   #lottoTicket;
 
   #winningLotto;
+
+  #result;
 
   static create() {
     return new Controller();
@@ -41,7 +45,22 @@ class Controller {
   answerBonusNumber(winningNumbers) {
     return (answer) => {
       this.#winningLotto = WinningLotto.of(winningNumbers, answer);
+      this.printResult();
     };
+  }
+
+  printResult() {
+    this.#result = Result.from(this.#lottoTicket, this.#winningLotto);
+    const profit = this.#result.getProfit(this.#lottoAmount.getValue());
+
+    PrintView.printWinningStats(this.#result);
+    PrintView.printProfit(profit);
+
+    Controller.exit();
+  }
+
+  static exit() {
+    Console.close();
   }
 }
 
