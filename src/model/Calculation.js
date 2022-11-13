@@ -1,6 +1,8 @@
+const {DEFAULTS} = require('../utils/Constants');
+
 class Calculate{
   constructor(){
-    this.getWinningCnt = new Array(5).fill(0); //1등(index 0) ~ 5등(index 4)
+    this.getWinningCnt = new Array(DEFAULTS.WINNER_CNT).fill(0); //1등(index 0) ~ 5등(index 4)
     this.bonusNum = 0;
     this.answers = [];
     this.testcase = [];

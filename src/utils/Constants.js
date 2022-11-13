@@ -3,6 +3,7 @@ const DEFAULTS = Object.freeze({
   END_RANGE_NUM : 45,
   CAN_CNT_RANGE : 6,
   PURCHASE_UNIT : 1000,
+  WINNER_CNT : 5,
 });
 
 const MONEY = Object.freeze({
