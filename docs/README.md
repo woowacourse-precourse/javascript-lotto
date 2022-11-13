@@ -28,8 +28,8 @@
 - [x] 당첨번호와 보너스 번호를 입력받는다.
   - [x] 당첨번호 입력 : `setWinningLottoNumbers`
   - [x] 보너스 번호 입력 : `setBonusLottoNumber`
-- [ ] 로또의 결과를 가져와 통계를 낸다. : `collectStatistics`
-  - [ ] 로또의 결과들을 저장한다. : `setLottosResult`
+- [x] 로또의 결과를 가져와 통계를 낸다. : `collectStatistics`
+  - [x] 로또의 결과들을 저장한다. : `setLottosResult`
     - `getLottoRanking` util 함수를 사용한다.
   - 수익률은 `calculateProfitRate` util 함수를 사용한다.
 - [x] 통계를 출력하고 로또 게임을 종료한다.
@@ -60,7 +60,7 @@
 - [x] 수익률을 계산한다. : `calculateProfitRate.js`
   - 수익률은 소수점 둘째 자리에서 반올림한다.
 
-- [ ] 로또 랭킹을 가져온다. :`getLottoRanking.js`
+- [x] 로또 랭킹을 가져온다. :`getLottoRanking.js`
 
 ## constants/
 
