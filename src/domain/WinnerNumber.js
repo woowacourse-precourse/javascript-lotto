@@ -1,4 +1,4 @@
-const { ERROR_MESSAGE } = require("./constants");
+const { ERROR_MESSAGE } = require("../constants");
 
 class WinnerNumber {
   constructor(number) {

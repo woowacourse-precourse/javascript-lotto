@@ -1,5 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
-const WinnerNumber = require("../src/WinnerNumber");
+const WinnerNumber = require("../src/domain/WinnerNumber");
 
 describe("당첨번호 예외 테스트", () => {
   afterEach(() => {

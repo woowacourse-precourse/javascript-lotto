@@ -1,5 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
-const WinnerNumber = require("./WinnerNumber");
+const WinnerNumber = require("./domain/WinnerNumber");
 const MatchingNumber = require("./MatchingNumber");
 const ProfitRate = require("./ProfitRate.");
 const { LOTTO_RANGE, ERROR_MESSAGE, INPUT_MESSAGE, OUTPUT_MESSAGE } = require("./constants");
