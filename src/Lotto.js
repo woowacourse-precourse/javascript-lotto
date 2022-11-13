@@ -28,6 +28,32 @@ class Lotto {
       this.checkLotto(winningCnt, arr, bonusNum);
     }
     this.printWinningStatistics(winningCnt, numbersArray, bonusNum);
+    this.printRateOfReturn(winningCnt, numbersArray.length);
+  }
+
+  printWinningStatistics(winningCnt) {
+    Console.print(`${RESULT_INFO.rank5} - ${winningCnt[0]}개`);
+    Console.print(`${RESULT_INFO.rank4} - ${winningCnt[1]}개`);
+    Console.print(`${RESULT_INFO.rank3} - ${winningCnt[2]}개`);
+    Console.print(`${RESULT_INFO.rank2} - ${winningCnt[3]}개`);
+    Console.print(`${RESULT_INFO.rank1} - ${winningCnt[4]}개`);
+  }
+
+  printRateOfReturn(winningCnt, length) {
+    const rateofReturn = this.calculateRate(winningCnt, length);
+    Console.print(`총 수익률은 ${rateofReturn.toFixed(1)}%입니다.`);
+  }
+
+  calculateRate(winningCnt, length) {
+    return (
+      ((winningCnt[0] * 5000 +
+        winningCnt[1] * 50000 +
+        winningCnt[2] * 1500000 +
+        winningCnt[3] * 30000000 +
+        winningCnt[4] * 2000000000) /
+        (length * 1000)) *
+      100
+    );
   }
 
   checkLotto(winningCnt, yourNum, bonusNum) {
@@ -39,14 +65,6 @@ class Lotto {
     }
     if (cnt < 3) return;
     this.plusCnt(winningCnt, cnt, yourNum, bonusNum);
-  }
-
-  printWinningStatistics(winningCnt) {
-    Console.print(`${RESULT_INFO.rank5} - ${winningCnt[0]}개`);
-    Console.print(`${RESULT_INFO.rank4} - ${winningCnt[1]}개`);
-    Console.print(`${RESULT_INFO.rank3} - ${winningCnt[2]}개`);
-    Console.print(`${RESULT_INFO.rank2} - ${winningCnt[3]}개`);
-    Console.print(`${RESULT_INFO.rank1} - ${winningCnt[4]}개`);
   }
 
   plusCnt(winningCnt, cnt, yourNum, bonusNum) {
