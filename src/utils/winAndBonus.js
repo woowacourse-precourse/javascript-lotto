@@ -2,7 +2,9 @@ const { Console } = require("@woowacourse/mission-utils");
 const {
   WIN_NUMBERS_MESSAGE,
   BONUS_NUMBERS_MESSAGE,
+  TOTAL_MEESAGE,
 } = require("../constant/inputMessage");
+const { Stats } = require("../statistics");
 const {
   validateWinNumbers,
   validateBonusNumber,
@@ -11,7 +13,7 @@ const {
 class Win {
   #winNumbers;
 
-  inputWinNumbers(lottos) {
+  inputWinNumbers(lottos, price) {
     Console.readLine(WIN_NUMBERS_MESSAGE, (userInput) => {
       if (!validateWinNumbers(userInput)) {
         Console.close();
@@ -19,7 +21,7 @@ class Win {
 
       this.#winNumbers = userInput.split(",").map(Number);
 
-      bonusNumbers.inputBonusNumber(lottos, this.#winNumbers);
+      bonusNumbers.inputBonusNumber(lottos, this.#winNumbers, price);
     });
   }
 
@@ -31,12 +33,17 @@ class Win {
 class Bonus {
   #bonusNumbers;
 
-  inputBonusNumber(lottos, winLottos) {
+  inputBonusNumber(lottos, winLottos, price) {
     Console.readLine(BONUS_NUMBERS_MESSAGE, (userInput) => {
       if (!validateBonusNumber(userInput, winLottos)) {
         Console.close();
       }
       this.#bonusNumbers = +userInput;
+      const status = new Stats(lottos, winLottos, this.#bonusNumbers, price);
+      const total = status.getResults();
+
+      Console.print(TOTAL_MEESAGE(total));
+      Console.close();
     });
   }
 }
