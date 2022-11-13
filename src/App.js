@@ -50,6 +50,7 @@ class App {
 
   getResult() {
     const result = new Result(this.lottoArray, this.winningNumbers, this.bonusNumber, this.money);
+    this.print.printResult(result.score, result.revenue);
   }
 }
 

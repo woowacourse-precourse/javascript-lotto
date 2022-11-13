@@ -8,7 +8,7 @@ class Result {
     fivePlusBonus: 0,
     six: 0,
   };
-  yield;
+  revenue;
 
   constructor(lottoArray, winningNumbers, bonusNumbers, money) {
     this.lottoArray = lottoArray;
@@ -16,31 +16,23 @@ class Result {
     this.bonusNumbers = bonusNumbers;
     this.money = money;
     this.getScore();
-    this.getYield();
+    this.getRevenue();
   }
 
   getScore() {
     this.lottoArray.forEach((item) => {
       const lottoNumber = item.lottoNumber;
-      const game = new LottoGame(
-        lottoNumber,
-        this.winningNumbers,
-        this.bonusNumbers
-      );
+      const game = new LottoGame(lottoNumber, this.winningNumbers, this.bonusNumbers);
 
       if (game.matchedWinningNumberCount === 3) this.score.three += 1;
       if (game.matchedWinningNumberCount === 4) this.score.four += 1;
-      if (game.matchedWinningNumberCount === 5 && !game.matchedBonusNumber) {
-        this.score.five += 1;
-      }
-      if (game.matchedWinningNumberCount === 5 && game.matchedBonusNumber) {
-        this.score.fivePlusBonus += 1;
-      }
+      if (game.matchedWinningNumberCount === 5 && !game.matchedBonusNumber) this.score.five += 1;
+      if (game.matchedWinningNumberCount === 5 && game.matchedBonusNumber) this.score.fivePlusBonus += 1;
       if (game.matchedWinningNumberCount === 6) this.score.six += 1;
     });
   }
 
-  getYield() {
+  getRevenue() {
     const total =
       this.score.three * 5000
       + this.score.four * 50000
@@ -48,7 +40,7 @@ class Result {
       + this.score.fivePlusBonus * 30000000
       + this.score.six * 2000000000;
 
-    this.yield = parseFloat((total / this.money) * 100).toFixed(1);
+    this.revenue = parseFloat((total / this.money) * 100).toFixed(1);
   }
 }
 
