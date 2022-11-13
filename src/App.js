@@ -6,7 +6,7 @@ const {
 } = require("./utils/validator");
 
 const Lotto = require("./Lotto");
-const { MESSAGES, REWORDS } = require("./constraints");
+const { MESSAGES, REWARDS } = require("./constraints");
 class App {
   constructor() {
     this.purchaseAmount = 0; // 구입 금액
@@ -75,27 +75,16 @@ class App {
 
   getRewards() {
     this.results.forEach((result) => {
-      console.log(result);
-      switch (result) {
-        case "FIFTH":
-          this.rewards += REWORDS.FIFTH;
-          break;
-        case "FOURTH":
-          this.rewards += REWORDS.FOURTH;
-          break;
-        case "THIRD":
-          this.rewards += REWORDS.THIRD;
-          break;
-        case "SECOND":
-          this.rewards += REWORDS.SECOND;
-          break;
-        case "FIRST":
-          this.rewards += REWORDS.FIRST;
-          break;
-        default:
-          break;
-      }
+      const rewards = result === undefined ? 0 : REWARDS[result];
+      this.rewards += rewards;
     });
+    this.getYield();
+  }
+
+  getYield() {
+    const total_yield = ((this.rewards / this.purchaseAmount) * 100).toFixed(1);
+    Console.print(this.results);
+    Console.print(`총 수익률은 ${total_yield}% 입니다.`);
   }
 }
 
