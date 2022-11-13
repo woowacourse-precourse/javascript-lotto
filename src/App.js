@@ -2,6 +2,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Console = MissionUtils.Console;
 const Random = MissionUtils.Random;
 let numOfLotto = 0;
+let winNum = [];
 
 class App {
   lottoMoney() {
@@ -12,7 +13,7 @@ class App {
     return numOfLotto;
   }
 
-  createNumber() {
+  createNum() {
     let lottoNumObj = {};
     for (let i = 1; i <= numOfLotto; i++) {
       lottoNumObj[`lotto${i}`] = Random.pickUniqueNumbersInRange(1, 45, 6).sort(function(a, b)  {
@@ -23,18 +24,26 @@ class App {
     return lottoNumObj;
   }
 
-  winNumber() {
-    let winNumber = [];
+  getWinNum() {
     Console.readLine('당첨 번호를 입력해 주세요.', (number) => {
-      winNumber = number.toString().split(',').map(Number);
+      winNum = number.toString().split(',').map(Number);
     });
-    return winNumber;
+    return winNum;
+  }
+
+  getBonusNum() {
+    let bonusNum = 0;
+    Console.readLine('보너스 번호를 입력해 주세요.', (bonus) => {
+      bonusNum = bonus;
+    })
+    return bonusNum;
   }
 
   play() {
     let numOfLotto = this.lottoMoney();
-    let lottoNumObj = this.createNumber();
-    let winNumber = this.winNumber();
+    let lottoNumObj = this.createNum();
+    let winNum = this.getWinNum();
+    let bonusNum = this.getBonusNum();
     Console.close();
   }
 }
