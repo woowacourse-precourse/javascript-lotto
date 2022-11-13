@@ -19,4 +19,10 @@ const ERROR = Object.freeze({
   BONUS_DUPLICATE: "[ERROR] 보너스 번호는 로또 번호와 중복되지 않는 숫자여야 합니다.",
 });
 
-module.exports = {INPUT, ERROR}
+const LOTTO = Object.freeze({
+  MIN_NUMBER: 1,
+  MAX_NUMBER: 45,
+  LENGTH: 6,
+});
+
+module.exports = { INPUT, ERROR, LOTTO };
