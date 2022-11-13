@@ -19,4 +19,5 @@ const makeLottoNumber = count => {
   return lottoNumbers;
 };
 
-module.exports = { print, readLine, makeLottoNumber };
+const closeReadLine = () => Console.close();
+module.exports = { print, readLine, makeLottoNumber, closeReadLine };
