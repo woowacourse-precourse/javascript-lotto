@@ -13,6 +13,16 @@ class Utils {
     }
     return new Set([...setA].filter((x) => setB.has(x)));
   }
+
+  static createCounter(array) {
+    return array.reduce((counter, item) => {
+      if (!counter[item]) {
+        counter[item] = 0;
+      }
+      counter[item] += 1;
+      return counter;
+    }, {});
+  }
 }
 
 module.exports = Utils;

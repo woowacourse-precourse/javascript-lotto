@@ -17,6 +17,12 @@ const RANK = Object({
   UN_RANK: -1,
 });
 
+const RANK_MAP = Object({
+  [MATCH_COUNT.SIX]: RANK.ONE,
+  [MATCH_COUNT.FOUR]: RANK.FOUR,
+  [MATCH_COUNT.THREE]: RANK.FIVE,
+});
+
 class LottoStatistics {
   constructor(winningLotto) {
     if (!winningLotto instanceof Lotto) {
@@ -29,21 +35,15 @@ class LottoStatistics {
     this.winningNumbers = winningLotto.numbers;
     this.bonusNumber = winningLotto.bonusNumber;
 
-    this.RANK_MAP = {
-      [MATCH_COUNT.SIX]: RANK.ONE,
-      [MATCH_COUNT.FOUR]: RANK.FOUR,
-      [MATCH_COUNT.THREE]: RANK.FIVE,
-    };
-
-    this.judgeRank = this.judgeRankBuilder(this.RANK_MAP);
+    this.judgeRank = this.judgeRankBuilder(RANK_MAP);
   }
 
-  judgeRankBuilder = (map) => (numbers) => {
+  judgeRankBuilder = (rankMap) => (numbers) => {
     const matchedCount = this.match(numbers);
     if (this.isNeedJudgement(matchedCount)) {
       return this.judgeSecondRank(numbers);
     }
-    return map[matchedCount] || RANK.UN_RANK;
+    return rankMap[matchedCount] || RANK.UN_RANK;
   };
 
   match(numbers) {
@@ -60,6 +60,14 @@ class LottoStatistics {
 
   isNeedJudgement(matchedCount) {
     return matchedCount === MATCH_COUNT.FIVE;
+  }
+
+  createRankCounter(buyingLottos) {
+    const filteredRanks = buyingLottos
+      .map((buyingLotto) => this.judgeRank(buyingLotto))
+      .filter((rank) => rank !== RANK.UN_RANK);
+
+    return Utils.createCounter(filteredRanks);
   }
 }
 
