@@ -22,7 +22,7 @@ class App {
 
   prizeSum = 0;
 
-  winResult = [];
+  winResult = [0, 0, 0, 0, 0];
 
   userLottoArray = [];
 
@@ -138,8 +138,6 @@ class App {
 
   checkLottoNumber() {
     const winningLotto = this.winningLotto.getNumbers();
-
-    this.winResult = [0, 0, 0, 0, 0];
     this.userLottoArray.forEach((oneLotto) => {
       let count = 0;
       oneLotto.forEach((number) => {
@@ -149,6 +147,7 @@ class App {
       });
       this.checkWinResult(oneLotto, count);
     });
+    this.printWinResult();
   }
 
   checkWinResult(oneLotto, count) {
@@ -169,6 +168,12 @@ class App {
         break;
       default:
     }
+  }
+
+  printWinResult() {
+    this.winResult.forEach((element, idx) => {
+      Console.print(`${PRINT_STRING[idx]}${element}개`);
+    });
   }
 }
 
