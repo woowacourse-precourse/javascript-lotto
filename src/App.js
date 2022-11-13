@@ -11,14 +11,15 @@ class App {
   }
 
   play() {
-    Console.readLine("구입금액을 입력해 주세요.", (money) => {
+    Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
       let lottoList = this.GetLotto.lottoNumberPackage(money);
+
+      this.getWinNumber(lottoList);
     });
   }
 
-  getWinNumber() {
-    Console.readLine("당첨 번호를 입력해 주세요.", (numbers) => {
-      this.lotto.validate(numbers);
+  getWinNumber(lottoList) {
+    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (numbers) => {
       this.GetNumber.toWin(numbers);
     });
   }
@@ -31,6 +32,6 @@ class App {
 }
 
 let a = new App();
-a.getWinNumber();
+a.play();
 
 module.exports = App;

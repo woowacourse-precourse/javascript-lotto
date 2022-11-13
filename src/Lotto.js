@@ -1,3 +1,5 @@
+const { Console } = require('@woowacourse/mission-utils');
+
 class Lotto {
   #numbers;
 
@@ -8,11 +10,18 @@ class Lotto {
 
   validate(numbers) {
     if (numbers !== undefined) {
-      this.isThatNumber(numbers);
-      this.numberNet(numbers);
-      this.isThatDuplicate(numbers);
-      this.itThatRightFormat(numbers);
-      this.isThatSix(numbers);
+      if (Lotto.isThatSix(numbers)) {
+        Console.close();
+        throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      }
+      if (!Lotto.itThatRightFormat(numbers)) {
+        Console.close();
+        throw new Error("[ERROR] 올바른 형식으로 입력해주세요.");
+      }
+      if (Lotto.numberNet(numbers)) {
+        Console.close();
+        throw new Error("[ERROR] 1과 45사이의 숫자를 입력해주세요.");
+      }
     }
   }
 
@@ -23,28 +32,26 @@ class Lotto {
   //   this.isThatNumber(number);
   // }
 
-  // isThatSix(numbers) {
-  //   if (numbers.length !== 6) throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-  // }
-
-  // isThatNumber(numbers) {
-  //   const RegExp = /^[1-9]+$/;
-  //   if (RegExp.test(numbers)) throw new Error('[ERROR] 숫자가 아닙니다.');
-  // }
+  static isThatSix(numbers) {
+    return numbers.length !== 6;
+  }
 
   // isThatDuplicate(numbers) {
   //   if (numbers.length !== new Set(numbers).size) throw new Error("[ERROR] 중복되는 숫자가 존재합니다.");
+  //   return ;
   // }
 
-  // itThatRightFormat(numbers) {
-  //   const RegExp = /^[0-9|,]+$/;
-  //   if (RegExp.test(numbers)) throw new Error("[ERROR] 올바른 형식으로 입력해주세요.");
-  // }
+  static itThatRightFormat(numbers) {
+    const RegExp = /^[0-9|,]+$/;
+    return RegExp.test(numbers);
+  }
 
-  // numberNet(numbers) {
-  //   const validNumber = numbers.filter(number => number > 0 && number < 46);
-  //   if (numbers !== validNumber) throw new Error("[ERROR] 1과 45사이의 숫자를 입력해주세요.");
-  // }
+  static numberNet(numbers) {
+    const validNumber = numbers.filter(number => number > 0 && number < 46);
+    console.log(validNumber.length);
+    console.log(numbers.length);
+    return numbers.length !== validNumber.length;
+  }
 
   // singleNumberNet(number) {
   //   if (number < 1 && number > 45) throw new Error("[ERROR] 1과 45사이의 숫자를 입력해주세요.");
