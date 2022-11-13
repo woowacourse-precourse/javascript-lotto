@@ -4,8 +4,7 @@ const Message = require('./Message');
 
 class App {
   play() {
-    ConsoleWork.print(Message.START_MESSAGE);
-    ConsoleWork.takeInput('', function (money) {
+    ConsoleWork.takeInput(Message.START_MESSAGE + '\n', function (money) {
       const lotto = new Lotto(money);
       lotto.startGame();
     });
