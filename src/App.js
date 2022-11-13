@@ -1,4 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+const Lotto = require('./Lotto');
 
 class App {
   #numbers;
@@ -16,9 +17,9 @@ class App {
         const ticketsCount = this.countTickets(answer);
         MissionUtils.Console.print(`\n${ticketsCount}개를 구매했습니다.`);
         for (let i = 0; i < ticketsCount; i += 1) {
-          tickets.push(this.generateRandomNumbers());
+          tickets.push(new Lotto(this.generateRandomNumbers()));
         }
-        tickets.map((ticket) => MissionUtils.Console.print(ticket));
+        tickets.map((ticket) => MissionUtils.Console.print(ticket.getTicketNumbers()));
         this.setLottoNumbers();
       }
     });
