@@ -9,6 +9,7 @@ class App {
     this.bonusnumber = 0;
     this.Winnumber = ''
     this.correctList =[0,0,0,0,0]
+    this.getMoney = [5000,50000,1500000,30000000,2000000000]
   }
   play() {
     MissionUtils.Console.readLine(Notice.INPUT_MONEY,(money) => {
@@ -88,6 +89,15 @@ class App {
     for (let i = 0; i<5; i++){
       MissionUtils.Console.print(Notice.RESULT_MESSAGE[i] + this.correctList[i] + "개")
     }
+  }
+  calculateReturn(){
+    let earn = 0
+    const buy = 1000*(this.Lottobuynumber.length)
+    for (let i = 0; i<5; i++){
+      earn += this.correctList[i] * this.getMoney[i]
+    }
+    const earningratio = (earn/buy).toFixed(2)
+    return earningratio
   }
 }
 
