@@ -15,16 +15,11 @@ class Lotto {
   }
 
   static makeLotto() {
-    const newLotto = [];
-    while (newLotto.length < LOTTO_LENGTH) {
-      const randomNum = Random.pickNumberInRange(
-        MIN_LOTTO_NUMBER,
-        MAX_LOTTO_NUMBER
-      );
-      if (!newLotto.includes(randomNum)) {
-        newLotto.push(randomNum);
-      }
-    }
+    const newLotto = Random.pickUniqueNumbersInRange(
+      MIN_LOTTO_NUMBER,
+      MAX_LOTTO_NUMBER,
+      LOTTO_LENGTH
+    );
     newLotto.sort((a, b) => a - b);
     return newLotto;
   }
