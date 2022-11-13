@@ -56,7 +56,7 @@ class App {
   }
 
   getAllResults(published_Lottos, winning, count) {
-    const all_results = [0, 0, 0, 0, 0];
+    let all_results = [0, 0, 0, 0, 0];
     for(let i = 0; i < count; i++){
       const result = this.getSingleResult(published_Lottos[i], winning);
       if(result >= 3){
@@ -66,7 +66,7 @@ class App {
   }
 
   getSingleResult(published_Lotto, winning) {
-    const result = 0;
+    let result = 0;
     for(let i = 0; i < 6; i++){
       if(published_Lotto.includes(winning[i])){
         result += 1;
