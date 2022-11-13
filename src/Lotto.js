@@ -163,6 +163,37 @@ class Lotto {
       this.prize.first++;
     }
   }
+
+  // 당첨 통계 출력
+  printWinningStats() {
+    View.output(Message.WINNING_STATS);
+    this.printFifthPrize();
+    this.printFourthPrize();
+    this.printThirdPrize();
+    this.printSecondPrize();
+    this.printFirstPrize();
+    this.printYield();
+  }
+
+  printFifthPrize() {
+    View.output(Message.returnFifthPrizeResult(this.prize.fifth));
+  }
+
+  printFourthPrize() {
+    View.output(Message.returnFourthPrizeResult(this.prize.fourth));
+  }
+
+  printThirdPrize() {
+    View.output(Message.returnThirdPrizeResult(this.prize.third));
+  }
+
+  printSecondPrize() {
+    View.output(Message.returnSecondPrizeResult(this.prize.second));
+  }
+
+  printFirstPrize() {
+    View.output(Message.returnFirstPrizeResult(this.prize.first));
+  }
 }
 
 module.exports = Lotto;
