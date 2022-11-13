@@ -69,6 +69,7 @@ class App {
     for (let i of this.lottoList) {
       this.checkLotto(this.winningLotto, i);
     }
+    this.printResult(this.winningRank);
   }
 
   checkLotto(winningLotto, myLotto) {
@@ -95,6 +96,16 @@ class App {
         this.winningRank.First++;
         break;
     }
+  }
+  printResult(winningRank) {
+    Console.print('\n당첨 통계');
+    Console.print('---');
+    Console.print(`3개 일치 (5,000원) - ${winningRank.Fifth}개`);
+    Console.print(`4개 일치 (50,000원) - ${winningRank.Fourth}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${winningRank.Third}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningRank.Second}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${winningRank.First}개`);
+    this.rateOfReturn(winningRank, this.cost);
   }
 }
 
