@@ -1,7 +1,7 @@
 const LottoGame = require('./LottoGame');
 
 class Result {
-  result = {
+  score = {
     three: 0,
     four: 0,
     five: 0,
@@ -16,7 +16,7 @@ class Result {
       this.getResult();
   }
 
-  getResult() {
+  getScore() {
     this.lottoArray.forEach((item) => {
       const lottoNumber = item.lottoNumber;
         const game = new LottoGame(lottoNumber, this.winningNumbers, this.bonusNumbers);
