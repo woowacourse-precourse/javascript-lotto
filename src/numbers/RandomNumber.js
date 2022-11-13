@@ -5,6 +5,7 @@ const COMPUTER_NUMBER = [];
 class RandomNumber {
   constructor(computernumbers) {
     this.computerNumbers = computernumbers;
+    this.lottoNumber = new LottoNumber();
   }
 
   randomComputerNumber(purchaseNumber) {
