@@ -15,7 +15,7 @@ class App {
 
   showLottoAmount(money) {
     const amount = parseInt(money)/1000;
-    MissionUtils.Console.print(`${amount}개를 구매했습니다.`);
+    MissionUtils.Console.print(`\n${amount}개를 구매했습니다.`);
     return amount;
   }
 
