@@ -15,16 +15,20 @@ class UserInterface {
   static printLottoNumber(lottoNumber) {
     Console.print(PRINT_MESSAGE.PURCHASE_MESSAGE(lottoNumber));
   }
-  winnerNumberRequest() {
+
+  static printLottoArray(lottoArray) {
+    lottoArray.forEach((lotto) => {
+      const printLottoNumber = lotto.join(", ");
+      Console.print(`[${printLottoNumber}]`);
+    });
+  }
+
+  static winnerNumberRequest() {
     // TODO: 당첨 번호 입력 기능
   }
 
-  bonusNumberRequest() {
+  static bonusNumberRequest() {
     // TODO: 보너스 번호 입력 기능
-  }
-
-  printLottoArray() {
-    // TODO: 구입한 로또 번호 출력 기능.
   }
 }
 
