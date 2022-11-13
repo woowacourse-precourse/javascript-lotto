@@ -15,16 +15,19 @@ class App {
       this.pay = +payStr;
       const lottoCnt = getCountByPay(this.pay);
 
-      Console.print(lottoCnt + CONSOLE_MESSAGE.Purchase);
-      for (let i = 0; i < lottoCnt; i++) {
-        const randomNumbers = getRandomNumbers();
-
-        Console.print(`[${randomNumbers.join(", ")}]`);
-        this.#lottos.push(new Lotto(randomNumbers));
-      }
-
+      this.createLottos(lottoCnt);
       this.pickNumbers();
     });
+  }
+
+  createLottos(lottoCnt) {
+    Console.print(lottoCnt + CONSOLE_MESSAGE.Purchase);
+    for (let i = 0; i < lottoCnt; i++) {
+      const randomNumbers = getRandomNumbers();
+
+      Console.print(`[${randomNumbers.join(", ")}]`);
+      this.#lottos.push(new Lotto(randomNumbers));
+    }
   }
 
   pickNumbers() {
