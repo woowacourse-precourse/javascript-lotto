@@ -2,7 +2,7 @@ class User {
   #money = 0;
   #lottoQuantity = 0;
   #lottos = [];
-  #matchLottos = {
+  #correctLottoCount = {
     three: 0,
     four: 0,
     five: 0,
@@ -34,12 +34,12 @@ class User {
     return this.#lottos;
   }
 
-  setMatchLottos(matchLottosKey) {
-    this.#matchLottos[matchLottosKey] += 1;
+  setCorrectLottoCount(count) {
+    this.#correctLottoCount[count] += 1;
   }
 
-  getMatchLottos() {
-    return this.#matchLottos;
+  getCorrectLottoCount() {
+    return this.#correctLottoCount;
   }
 }
 
