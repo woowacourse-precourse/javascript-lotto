@@ -9,17 +9,17 @@ const Lotto = require("./Lotto");
 const initialState = {
   money: 0,
   count: 0,
-  numbers: [],
+  allNumbers: [],
   bonusNumber: 0,
 };
 
 class App {
   constructor() {
-    this.state = initialState;
-
     this.validator = new Validator();
     this.generator = new Generator();
     this.lotto;
+
+    this.state = initialState;
   }
 
   play() {
@@ -42,32 +42,30 @@ class App {
   generate() {
     Console.print(`${this.state.count + MESSAGE.COUNT_LOTTO}`);
 
-    this.state.numbers = this.generator.getNumbers(this.state.count);
+    this.state.allNumbers = this.generator.getAllNumbers(this.state.count);
 
-    this.state.numbers.forEach((number) => {
-      Console.print(number);
+    this.state.allNumbers.forEach((numbers) => {
+      Console.print(numbers);
     });
 
     this.inputNumber();
   }
 
   inputNumber() {
-    Console.readLine(MESSAGE.INPUT_NUMBER, (number) => {
-      number = number.split(",").map(Number);
+    Console.readLine(MESSAGE.INPUT_NUMBER, (numbers) => {
+      numbers = numbers.split(",").map(Number);
 
-      this.validator.checkNumberValid(number);
+      this.lotto = new Lotto(numbers);
 
-      this.lotto = new Lotto(number);
-
-      this.inputBonusNumber(number);
+      this.inputBonusNumber(numbers);
     });
   }
 
-  inputBonusNumber(number) {
+  inputBonusNumber(numbers) {
     Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
       bonusNumber = Number(bonusNumber);
 
-      this.validator.checkBonusNumberValid(bonusNumber, number);
+      this.validator.checkBonusNumberValid(bonusNumber, numbers);
 
       this.state.bonusNumber = bonusNumber;
     });

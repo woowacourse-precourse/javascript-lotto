@@ -9,10 +9,10 @@ const ERROR = Object.freeze({
   MONEY_TYPE: "[ERROR] 구입금액은 숫자여야 합니다.",
   MONEY_ZERO: "[ERROR] 구입금액은 0원일 수 없습니다.",
   MONEY_UNIT: "[ERROR] 구입금액을 1,000원 단위로 입력해 주세요.",
-  NUMBER_TYPE: "[ERROR] 로또 번호는 숫자여야 합니다.",
-  NUMBER_LENGTH: "[ERROR] 로또 번호는 6개여야 합니다.",
-  NUMBER_RANGE: "[ERROR] 로또 번호의 숫자 범위는 1~45까지입니다.",
-  NUMBER_DUPLICATED: "[ERROR] 로또 번호는 중복되지 않아야 합니다.",
+  NUMBERS_TYPE: "[ERROR] 로또 번호는 숫자여야 합니다.",
+  NUMBERS_LENGTH: "[ERROR] 로또 번호는 6개여야 합니다.",
+  NUMBERS_RANGE: "[ERROR] 로또 번호의 숫자 범위는 1~45까지입니다.",
+  NUMBERS_DUPLICATED: "[ERROR] 로또 번호는 중복되지 않아야 합니다.",
   BONUS_NUMBER_INCLUDED:
     "[ERROR] 보너스 번호는 입력한 당첨 번호에 포함될 수 없습니다.",
 });

@@ -25,45 +25,45 @@ class Validator {
     }
   }
 
-  checkNumberValid(number) {
-    this.checkNumberType(number);
-    this.checkNumberLength(number);
-    this.checkNumberRange(number);
-    this.checkNumberDuplicated(number);
+  checkNumbersValid(numbers) {
+    this.checkNumbersType(numbers);
+    this.checkNumbersLength(numbers);
+    this.checkNumbersRange(numbers);
+    this.checkNumbersDuplicated(numbers);
   }
 
-  checkNumberType(number) {
-    number.forEach((item) => {
-      if (isNaN(item) === true) {
-        this.error(ERROR.NUMBER_TYPE);
+  checkNumbersType(numbers) {
+    numbers.forEach((number) => {
+      if (isNaN(number) === true) {
+        this.error(ERROR.NUMBERS_TYPE);
       }
     });
   }
 
-  checkNumberLength(number) {
-    if (number.length !== 6) {
-      this.error(ERROR.NUMBER_LENGTH);
+  checkNumbersLength(numbers) {
+    if (numbers.length !== 6) {
+      this.error(ERROR.NUMBERS_LENGTH);
     }
   }
 
-  checkNumberRange(number) {
-    number.forEach((item) => {
-      if (item < 1 || item > 45) {
-        this.error(ERROR.NUMBER_RANGE);
+  checkNumbersRange(numbers) {
+    numbers.forEach((number) => {
+      if (number < 1 || number > 45) {
+        this.error(ERROR.NUMBERS_RANGE);
       }
     });
   }
 
-  checkNumberDuplicated(number) {
-    if (number.length !== new Set(number).size) {
-      this.error(ERROR.NUMBER_DUPLICATED);
+  checkNumbersDuplicated(numbers) {
+    if (numbers.length !== new Set(numbers).size) {
+      this.error(ERROR.NUMBERS_DUPLICATED);
     }
   }
 
-  checkBonusNumberValid(bonusNumber, number) {
+  checkBonusNumberValid(bonusNumber, numbers) {
     this.checkBonusNumberType(bonusNumber);
     this.checkBonusNumberRange(bonusNumber);
-    this.checkBonusNumberIncluded(bonusNumber, number);
+    this.checkBonusNumberIncluded(bonusNumber, numbers);
   }
 
   checkBonusNumberType(bonusNumber) {
@@ -78,8 +78,8 @@ class Validator {
     }
   }
 
-  checkBonusNumberIncluded(bonusNumber, number) {
-    if (number.includes(bonusNumber)) {
+  checkBonusNumberIncluded(bonusNumber, numbers) {
+    if (numbers.includes(bonusNumber)) {
       this.error(ERROR.BONUS_NUMBER_INCLUDED);
     }
   }

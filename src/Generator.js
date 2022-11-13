@@ -1,21 +1,21 @@
 const { Random } = require("@woowacourse/mission-utils");
 
 class Generator {
-  getNumbers(count) {
-    const numbers = [];
+  getAllNumbers(count) {
+    const allNumbers = [];
 
     for (let i = 0; i < count; i++) {
-      const number = Random.pickUniqueNumbersInRange(1, 45, 6);
-      const sortedNumber = this.sortNumber(number);
+      const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+      const sortedNumbers = this.sortNumbers(numbers);
 
-      numbers.push(sortedNumber);
+      allNumbers.push(sortedNumbers);
     }
 
-    return numbers;
+    return allNumbers;
   }
 
-  sortNumber(number) {
-    return number.sort((a, b) => a - b);
+  sortNumbers(numbers) {
+    return numbers.sort((a, b) => a - b);
   }
 }
 
