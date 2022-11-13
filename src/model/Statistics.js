@@ -10,6 +10,18 @@ class Statistics {
     };
     this.rateOfReturn = 0;
   }
+
+  getRanks() {
+    return this.ranks;
+  }
+
+  setRanks(type, newState) {
+    if (type === "first") this.ranks.first = newState;
+    if (type === "second") this.ranks.second = newState;
+    if (type === "third") this.ranks.third = newState;
+    if (type === "fourth") this.ranks.fourth = newState;
+    if (type === "fifth") this.ranks.fifth = newState;
+  }
 }
 
 module.exports = Statistics;
