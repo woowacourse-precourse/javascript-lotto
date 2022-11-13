@@ -7,41 +7,48 @@ class Output {
             bonusNumber,
             randomLottoNumbers
         );
-        const finalResult = this.showResult(compareResult);
-        const profitRate = this.calProfitRate(finalResult, money);
+        const judgement = this.judge(compareResult);
+        const profitRate = this.calProfitRate(judgement, money);
         Console.print(`총 수익률은 ${profitRate}%입니다.`);
         Console.close();
     }
 
     compare(winningNumbers, bonusNumber, randomNumbers) {
-        let arr = [];
+        let compareArr = [];
 
         randomNumbers.forEach((lotto) => {
-            let count = 0;
-            let current = lotto;
+            let count = this.countCollectNumber(winningNumbers, lotto);
+            let result = this.checkBonusNumber(count, lotto, bonusNumber);
 
-            for (let number of lotto) {
-                winningNumbers.indexOf(number.toString()) > -1
-                    ? count++
-                    : (count += 0);
-            }
-
-            arr.push(count);
-
-            if (count === 5 && current.findIndex((e) => e === bonusNumber)) {
-                arr.pop();
-                arr.push(6);
-            }
-            if (count === 6) {
-                arr.pop();
-                arr.push(7);
-            }
+            compareArr.push(result);
         });
 
-        return arr;
+        return compareArr;
     }
 
-    showResult(compareResult) {
+    countCollectNumber(winningNumbers, randomLotto) {
+        let count = 0;
+        for (let number of randomLotto) {
+            winningNumbers.indexOf(number.toString()) > -1
+                ? count++
+                : (count += 0);
+        }
+        return count;
+    }
+
+    checkBonusNumber(count, randomLotto, bonusNumber) {
+        if (count === 5 && randomLotto.findIndex((e) => e === bonusNumber)) {
+            return 6;
+        }
+
+        if (count === 6) {
+            return 7;
+        }
+
+        return count;
+    }
+
+    judge(compareResult) {
         let sum = 0;
         const result = {
             '3': ['3개 일치 (5,000원) -', 0, 5000],
