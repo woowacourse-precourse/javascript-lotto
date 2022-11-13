@@ -90,7 +90,7 @@
 
 ### use callback
 
-<!-- - call App.play
+- call App.play
   - buyLotto()
     - readline(answer =>
       - exception
@@ -106,7 +106,7 @@
               - winning lotto statistic(answer1, answer2, numbers)
                 - find winning number in generated numbers(), return statistic
               - print lotto statistic(statistic)
-              - close -->
+              - close
 
 ## 객체 분리하기
 
