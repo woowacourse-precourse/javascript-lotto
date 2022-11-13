@@ -4,6 +4,7 @@ const Player = require('./Player');
 class App {
   constructor() {
     this.player = new Player();
+    this.winNumbers = [];
   }
 
   play() {
@@ -30,6 +31,16 @@ class App {
       const lottoMessage = `[${numbers.join(', ')}]`;
 
       Console.print(lottoMessage);
+    });
+
+    this.askWinNumbers();
+  }
+
+  askWinNumbers() {
+    Console.print('');
+    Console.print('당첨번호를 입력해주세요.');
+    Console.readLine('', (input) => {
+      this.winNumbers = input.split(',').map(Number);
     });
   }
 }
