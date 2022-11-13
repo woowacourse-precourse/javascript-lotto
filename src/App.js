@@ -13,11 +13,9 @@ class App {
       const ascending = randomNumber.sort((a, b) => a - b);
       return new Lotto(ascending);
     });
-    let data = [];
     lottoNumber.forEach((num) => {
-      data.push(num.getNumbers());
+      MissionUtils.Console.print(num.getNumbers());
     });
-    MissionUtils.Console.print(data);
   };
   lottoPurchase = () => {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (purchase) => {

@@ -1,10 +1,10 @@
 class Purchase {
   #purchase;
   constructor(purchase) {
-    this.purchaseInput(purchase);
+    this.validate(purchase);
     this.#purchase = purchase;
   }
-  purchaseInput(purchase) {
+  validate(purchase) {
     if (isNaN([...purchase])) {
       throw new Error("[ERROR] 문자열이 포함되었습니다.");
     }
