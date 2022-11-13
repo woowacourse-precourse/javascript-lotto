@@ -26,6 +26,7 @@ class LottoCalculator {
     console.log(this.usersTotalRank);
 
     this.calculateResult();
+    this.printResult();
   }
 
   compareNumber(usersLotto) {
@@ -57,6 +58,18 @@ class LottoCalculator {
     console.log(this.rewardMoney, this.checkRank);
     this.yield = (this.rewardMoney / this.usersMoney).toFixed(1);
     console.log(this.yield);
+  }
+
+  printResult() {
+    MissionUtils.Console.print("당첨 통계\n---")
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.checkRank[5]}개`)
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${this.checkRank[4]}개`)
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${this.checkRank[3]}개`)
+    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.checkRank[2]}개`)
+    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${this.checkRank[1]}개`)
+    MissionUtils.Console.print(`총 수익률은 ${this.yield}%입니다.`)
+
+    MissionUtils.Console.close();
   }
   
 }
