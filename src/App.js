@@ -1,12 +1,20 @@
 const Lotto = require("./Lotto");
 const Console = require("./Console");
 const Validation = require("./Validation");
+const { THREE, FOUR, FIVE, FIVE_WITH_BONUS, SIX } = require("./constants");
 
 class App {
   constructor() {
     this.lottos = [];
     this.winningNumbers = [];
     this.bonusNumber = null;
+    this.winningHistory = {
+      [THREE]: 0,
+      [FOUR]: 0,
+      [FIVE]: 0,
+      [FIVE_WITH_BONUS]: 0,
+      [SIX]: 0,
+    };
   }
 
   play() {
@@ -23,54 +31,61 @@ class App {
           Console.print(lotto);
         });
 
-      Console.askAndGetUserInput("\n" + Console.ASK_WINNING_NUMBER, (winningNumbers) => {
-        this.winningNumbers = winningNumbers
-          .split(",")
-          .map(Number)
-          .sort((a, b) => (a > b ? 1 : -1));
-
-        Console.askAndGetUserInput("\n" + Console.ASK_BONUS_NUMBER, (bonusNumber) => {
-          this.bonusNumber = Number(bonusNumber);
-
-          Console.print(Console.STATISTICS);
-
-          Object.entries(
-            this.lottos.reduce(
-              (acc, lotto) => {
-                const sameNumberCount = this.countSameNumberWithWinningNumber(lotto);
-
-                switch (sameNumberCount) {
-                  case 3:
-                    acc["3개 일치"] += 1;
-                    break;
-                  case 4:
-                    acc["4개 일치"] += 1;
-                    break;
-                  case 5:
-                    acc["5개 일치"] += 1;
-                    break;
-                  case 6:
-                    acc["6개 일치"] += 1;
-                    break;
-                }
-
-                if (this.bonusNumber === lotto.includes(this.bonusNumber) && sameNumberCount === 5) {
-                  acc["5개 일치"] -= 1;
-                  acc["5개 일치, 보너스 볼 일치"] += 1;
-                }
-
-                return acc;
-              },
-              { "3개 일치": 0, "4개 일치": 0, "5개 일치": 0, "5개 일치, 보너스 볼 일치": 0, "6개 일치": 0 }
-            )
-          ).forEach(([a, b]) => console.log(a, b));
-        });
-      });
+      this.askWinningNumber();
     });
   }
 
-  countSameNumberWithWinningNumber(lotto) {
-    return lotto.filter((number) => this.winningNumbers.includes(number)).length;
+  static countSameNumberWithWinningNumber(lotto, winningNumbers) {
+    Validation.isValidWinningNumber(winningNumbers);
+
+    return lotto.filter((number) => winningNumbers.includes(number)).length;
+  }
+
+  printLotto() {}
+
+  askWinningNumber() {
+    Console.askAndGetUserInput("\n" + Console.ASK_WINNING_NUMBER, (winningNumbers) => {
+      this.winningNumbers = winningNumbers
+        .split(",")
+        .map(Number)
+        .sort((a, b) => (a > b ? 1 : -1));
+
+      Console.askAndGetUserInput("\n" + Console.ASK_BONUS_NUMBER, (bonusNumber) => {
+        this.bonusNumber = Number(bonusNumber);
+
+        Console.print(Console.STATISTICS);
+
+        console.log(
+          this.lottos.reduce((acc, lotto) => {
+            const sameNumberCount = this.countSameNumberWithWinningNumber(lotto, this.winningNumbers);
+
+            switch (sameNumberCount) {
+              case 3:
+                acc[THREE] += 1;
+                break;
+              case 4:
+                acc[FOUR] += 1;
+                break;
+              case 5:
+                acc[FIVE] += 1;
+                break;
+              case 6:
+                acc[SIX] += 1;
+                break;
+              default:
+                break;
+            }
+
+            if (this.bonusNumber === lotto.includes(this.bonusNumber) && sameNumberCount === 5) {
+              acc[FIVE] -= 1;
+              acc[FIVE_WITH_BONUS] += 1;
+            }
+
+            return acc;
+          }, this.winningHistory)
+        );
+      });
+    });
   }
 }
 
