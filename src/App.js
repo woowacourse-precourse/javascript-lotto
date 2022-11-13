@@ -7,6 +7,7 @@ class App {
   #purchaseAmount;
   #publishedLottos = [];
   #winningNumber;
+  #bonusNumber;
 
   play() {
     this.getPurchaseAmount();
@@ -25,8 +26,16 @@ class App {
       const winningNumber = input.split(',');    
       this.#winningNumber = Array.from(winningNumber, x => Number(x));
       new Lotto(this.#winningNumber);
-      console.log(this.#winningNumber);
-      MissionUtils.Console.close(); 
+      
+      this.getBonusNumber();
+    })
+  }
+
+  getBonusNumber() {
+    MissionUtils.Console.readLine(MESSAGES.INPUTBONUSNUMBER, (input) => {
+      this.#bonusNumber = Number(input);
+      console.log(this.#bonusNumber);
+      MissionUtils.Console.close();
     })
   }
 
