@@ -22,7 +22,7 @@ describe("GameUtils 테스트", () => {
     ];
     input.forEach(subject => {      
       let result = true;
-      subject = GameUtils.filterPurchaseAmount(subject);
+      subject = GameUtils.removeMarkingStandardMoney(subject);
       if(subject.includes(',') || subject.includes('원')) result = false;
       expect(result).toBeTruthy();
     })
