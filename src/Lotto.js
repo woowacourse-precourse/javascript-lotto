@@ -20,6 +20,28 @@ class Lotto {
       throw new Error('[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.');
     }
   }
+
+  get numbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
+
+class WinningLotto {
+  constructor() {
+    this.lotto;
+    this.bonusNum;
+  }
+
+  setBonusNum(bonusNum) {
+    this.bonusNum = bonusNum;
+  }
+
+  setLotto(lotto) {
+    this.lotto = lotto;
+    const lottoClass = new Lotto(lotto);
+  }
+}
+
+module.exports = WinningLotto;
