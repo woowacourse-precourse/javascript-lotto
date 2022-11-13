@@ -90,6 +90,18 @@ class App {
     });
   }
 
+  printStatistics() {
+    const message = Message.statistics(
+      this.prizeStatistics[LottoConfig.PRIZE_1],
+      this.prizeStatistics[LottoConfig.PRIZE_2],
+      this.prizeStatistics[LottoConfig.PRIZE_3],
+      this.prizeStatistics[LottoConfig.PRIZE_4],
+      this.prizeStatistics[LottoConfig.PRIZE_5],
+      this.getRateOfReturn(),
+    );
+    MissionUtils.Console.print(message);
+  }
+
   #updateStatistics(lotto, winningNumbers, bonusNumber) {
     const { prizeStatus, prizeMoney } = lotto.getPrize(winningNumbers, bonusNumber);
     if (prizeStatus !== LottoConfig.NO_PRIZE) {
