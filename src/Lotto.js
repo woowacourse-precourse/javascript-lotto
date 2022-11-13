@@ -14,10 +14,10 @@ const ERROR_LOTTO_VALUE_MESSAGE = "[ERROR] 로또 번호는 1 ~ 45 사이의 숫
 class Lotto {
   #numbers;
 
-  constructor(numbers, userInputLotto, userInputLottoAmount) {
+  constructor(numbers, userInputLotto, userInputMoney) {
     this.bonusNumber = null;
     this.userLotto = userInputLotto;
-    this.lottoAmount = userInputLottoAmount;
+    this.money = userInputMoney;
     this.numOfPrize = 0;
     this.validate(numbers);
     this.#numbers = numbers;
@@ -57,10 +57,10 @@ class Lotto {
     }
     this.numOfPrize++;
     if(numOfLottoMatched === 5) {
-      isSecondPlace(lottoResultArr);
+      this.isSecondPlace(lottoResultArr);
       return;
     }
-    lottoResult[numOfLottoMatched - 3]++;
+    lottoResultArr[numOfLottoMatched - 3]++;
   }
 
   isSecondPlace(lottoResultArr) {
@@ -73,13 +73,17 @@ class Lotto {
 
   printLottoResult(lottoResultArr) {
     MissionUtils.Console.print("당첨 통계\n");
-    MissionUtils.Console.print("---\n");
+    MissionUtils.Console.print("---");
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${lottoResultArr[fifthPlace]}`);
     MissionUtils.Console.print(`4개 일치 (50,000원) - ${lottoResultArr[fourthPlace]}`);
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${lottoResultArr[thirdPlace]}`);
-    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${lottoResult[secondPlace]}`);
+    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${lottoResultArr[secondPlace]}`);
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${lottoResultArr[firstPlace]}`);
-    getProfit();
+    this.getProfit();
+  }
+
+  getProfit() {
+    
   }
 
   validate(numbers) {

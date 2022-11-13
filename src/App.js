@@ -59,7 +59,7 @@ class App {
     for(let i = 0; i < this.winLotto.length; i++) {
       this.winLotto[i] = Number(this.winLotto[i]);
     }
-    new LottoUtils(this.winLotto);
+    new LottoUtils(this.winLotto, this.userLotto, this.#money);
   }
 
   validateMoney(money) {
