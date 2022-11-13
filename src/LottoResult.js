@@ -1,56 +1,59 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { LOTTO_PRICE } = require('./Constants');
+const { LOTTO_MATCHES, LOTTO_PRIZE, EA, RESULT_MESSAGE } = require('./Constants');
+
 class LottoResult {
   constructor() {
-    this.result = {
-      0: 0,
-      1: 0,
-      2: 0,
-      3: 0,
-      4: 0,
-      5: 0,
-      6: 0,
-      bonus: 0,
-      rate: 0,
-      profit: 0,
+    this.profit = 0;
+    this.profitRate = 0;
+    this.lottoMatchCounter = {
+      three: 0,
+      four: 0,
+      five: 0,
+      fiveWithBonus: 0,
+      six: 0,
+      out: 0,
     };
   }
 
   print(winningNumber, lotteries, money) {
-    this.calculateMatching(winningNumber, lotteries);
-    this.calculateRate(money);
+    this.countMatching(winningNumber, lotteries);
+    this.calculateProfitRate(money);
     this.printResult();
   }
 
-  calculateMatching(winningNumber, lotteries) {
-    lotteries.forEach((lottoNumbers) => {
-      const matchingCount = LottoResult.countMatching(winningNumber, lottoNumbers);
-      this.result[matchingCount] += 1;
-      this.result.profit += LOTTO_PRICE[matchingCount];
+  countMatching(winningNumber, lotteries) {
+    lotteries.forEach((lottery) => {
+      const count = LottoResult.getMatchCount(winningNumber, lottery);
+      this.lottoMatchCounter[count] += 1;
+      this.profit += LOTTO_PRIZE[count];
     });
   }
 
-  static countMatching({ winning, bonus }, lottoNumbers) {
-    const lottoNumbersSet = new Set(lottoNumbers);
-    const count = winning.filter((number) => lottoNumbersSet.has(number)).length;
-    return count === 5 ? LottoResult.checkBonus(bonus, lottoNumbersSet) : count;
+  static getMatchCount({ winning, bonus }, lottery) {
+    const lotterySet = new Set(lottery);
+    const count = winning.filter((number) => lotterySet.has(number)).length;
+
+    if (count === 5 && lotterySet.has(bonus)) {
+      return LOTTO_MATCHES.fiveWithBonus;
+    }
+
+    return LOTTO_MATCHES[count];
   }
 
-  static checkBonus(bonus, lottoNumbers) {
-    return lottoNumbers.has(bonus) ? 'bonus' : 5;
-  }
-
-  calculateRate(money) {
-    this.result.rate = ((this.result.profit / money) * 100).toFixed(1);
+  calculateProfitRate(money) {
+    this.profitRate = ((this.profit / money) * 100).toFixed(1);
   }
 
   printResult() {
-    Console.print(`\n당첨 통계\n---\n3개 일치 (5,000원) - ${this.result[3]}개
-4개 일치 (50,000원) - ${this.result[4]}개
-5개 일치 (1,500,000원) - ${this.result[5]}개
-5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.result.bonus}개
-6개 일치 (2,000,000,000원) - ${this.result[6]}개
-총 수익률은 ${this.result.rate}%입니다.`);
+    const { three, four, five, fiveWithBonus, six } = this.lottoMatchCounter;
+
+    Console.print(RESULT_MESSAGE.beginning);
+    Console.print(`${RESULT_MESSAGE.three}${three}${EA}`);
+    Console.print(`${RESULT_MESSAGE.four}${four}${EA}`);
+    Console.print(`${RESULT_MESSAGE.five}${five}${EA}`);
+    Console.print(`${RESULT_MESSAGE.fiveWithBonus}${fiveWithBonus}${EA}`);
+    Console.print(`${RESULT_MESSAGE.six}${six}${EA}`);
+    Console.print(`총 수익률은 ${this.profitRate}%입니다.`);
     Console.close();
   }
 }
