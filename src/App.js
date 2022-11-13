@@ -30,14 +30,14 @@ class App {
     Console.readLine(Messages.ENTER_WINNER_NUMBER, (winning) => {
       winning = winning.split(',').map(Number);
       const winningLotto = new Lotto(winning);
+
+      this.#enterBonusNumber(lottos, winningLotto);
     });
   }
 
-  enterBonusNumber(lottos, winning) {
+  #enterBonusNumber(lottos, winning) {
     Console.readLine(Messages.ENTER_BONUS_NUMBER, (bonus) => {
-      this.winningAndBonusNumbers.numberNotDuplicate(bonus);
-
-      this.printWinningStatics(lottos, winning, bonus);
+      bonus = Number(bonus);
     });
   }
 
