@@ -43,7 +43,7 @@
 
 ## MVC 패턴 🧩
 
-![MVC 패턴](../img/LottoGame.MVC%ED%8C%A8%ED%84%B4.png)
+![MVC 패턴](../img/MvcPattern.png)
 
 ## 게임결과🎱 gif
 
