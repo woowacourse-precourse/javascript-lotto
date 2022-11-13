@@ -8,19 +8,19 @@ class PriceValidation extends Validation {
   }
 
   validate() {
-    this.checkIsEmpty();
-    this.checkIsNumber();
-    this.checkIsUnitNumber();
+    this.checkEmpty();
+    this.checkNumber();
+    this.checkUnitNumber();
   }
 
-  checkIsEmpty() {
+  checkEmpty() {
     if (super.isEmpty()) {
       throw new Error(PRICE_ERROR_MESSAGE.not_valid_answer);
     }
     return true;
   }
 
-  checkIsNumber() {
+  checkNumber() {
     const regExp = /^[0-9]+$/;
     if (!regExp.test(this.answer)) {
       throw new Error(PRICE_ERROR_MESSAGE.not_valid_number);
@@ -28,7 +28,7 @@ class PriceValidation extends Validation {
     return true;
   }
 
-  checkIsUnitNumber() {
+  checkUnitNumber() {
     const price = Number(this.answer);
     if (price % 1000 !== 0) {
       throw new Error(PRICE_ERROR_MESSAGE.not_valid_unit_number);

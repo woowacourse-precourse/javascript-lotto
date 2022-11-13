@@ -8,10 +8,10 @@ class WinNumbersValidation extends Validation {
   }
 
   validate() {
-    this.checkIsEmpty();
-    this.checkIsValidDivision();
-    this.checkIsRangeNumber();
-    this.checkIsOverlapNumber();
+    this.checkEmpty();
+    this.checkValidDivision();
+    this.checkRange();
+    this.checkOverlap();
   }
 
   checkIsEmpty() {
@@ -21,7 +21,7 @@ class WinNumbersValidation extends Validation {
     return true;
   }
 
-  checkIsValidDivision() {
+  checkValidDivision() {
     const winNumberArray = this.answer.split(',');
     if (winNumberArray.length !== 6) {
       throw new Error(WIN_NUMBER_ERROR_MESSAGE.not_valid_division);
@@ -29,7 +29,7 @@ class WinNumbersValidation extends Validation {
     return true;
   }
 
-  checkIsRangeNumber() {
+  checkRange() {
     const winNumberArray = this.answer.split(',');
 
     winNumberArray.forEach((number) => {
@@ -40,7 +40,7 @@ class WinNumbersValidation extends Validation {
     });
   }
 
-  checkIsOverlapNumber() {
+  checkOverlap() {
     const winNumberArray = this.answer.split(',');
     const winNumberSet = new Set(winNumberArray);
 

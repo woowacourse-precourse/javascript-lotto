@@ -10,26 +10,26 @@ class BonusValidation extends Validation {
   }
 
   validate() {
-    this.checkIsEmpty();
-    this.checkIsRangeNumber();
-    this.checkIsOverlapNumber();
+    this.checkEmpty();
+    this.checkRange();
+    this.checkOverlap();
   }
 
-  checkIsEmpty() {
+  checkEmpty() {
     if (super.isEmpty()) {
       throw new Error(BONUS_NUMBER_ERROR_MESSAGE.not_valid_answer);
     }
     return true;
   }
 
-  checkIsRangeNumber() {
+  checkRange() {
     if (Validation.isRangeNumber(this.answer)) {
       throw new Error(BONUS_NUMBER_ERROR_MESSAGE.not_valid_range_number);
     }
     return true;
   }
 
-  checkIsOverlapNumber() {
+  checkOverlap() {
     const answerNumber = Number(this.answer);
     if (this.winNumberList.includes(answerNumber)) {
       throw new Error(BONUS_NUMBER_ERROR_MESSAGE.not_valid_overlap_number);
