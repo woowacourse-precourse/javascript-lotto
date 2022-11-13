@@ -30,11 +30,15 @@ const validateWiningNumber = (numbers) => {
   return numbers;
 };
 
+/* validateBonusNumber(number:number):number
+당첨 번호를 유효성 검증하고, 통과 시 당첨 번호 배열을 반환 */
 const validateBonusNumber = (number) => {
   number = +number;
   if (number === NaN) throw new Error(MESSAGES.EXCEPTIONS.TYPE_EXCEPTION);
   if (number < 1 || number > 45)
     throw new Error(MESSAGES.EXCEPTIONS.RANGE_EXCEPTION);
+
+  return number;
 };
 
 module.exports = {
