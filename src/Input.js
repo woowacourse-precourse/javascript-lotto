@@ -18,11 +18,13 @@ class Input {
         Console.readLine(constant.INPUT_MONEY, (money) => {
             const exception = new InputException();
             exception.checkInputException(money);
-
             this.money = money;
+
+            Console.print(constant.BLANK);
             Console.print(`${+money / 1000}개를 구매했습니다.`);
             this.randomRottoNumber = this.makeRandomLottos(+money / 1000);
 
+            Console.print(constant.BLANK);
             this.inputLottoNumbers();
         });
     }
@@ -30,11 +32,10 @@ class Input {
     inputLottoNumbers() {
         Console.readLine(constant.INPUT_WINNIG, (string) => {
             let lotto = string.split(',').map((number) => number.trim());
-
             const exception = new Lotto(lotto);
-
             this.winningRottoNumber = lotto;
 
+            Console.print(constant.BLANK);
             this.inputBonusNumber();
         });
     }
@@ -43,9 +44,9 @@ class Input {
         Console.readLine(constant.INPUT_BONUS, (bonus) => {
             const exception = new BonusException();
             exception.checkBonusException(bonus);
-
             this.bonusNumber = bonus;
 
+            Console.print(constant.BLANK);
             const output = new Output();
             output.process(
                 this.money,

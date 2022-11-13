@@ -9,6 +9,7 @@ class Output {
         );
         const judgement = this.judge(compareResult);
         const profitRate = this.calProfitRate(judgement, money);
+
         Console.print(`총 수익률은 ${profitRate}%입니다.`);
         Console.close();
     }
@@ -57,11 +58,10 @@ class Output {
             '6': ['5개 일치, 보너스 볼 일치 (30,000,000원) -', 0, 30000000],
             '7': ['6개 일치 (2,000,000,000원) -', 0, 2000000000],
         };
-
         compareResult.forEach((number) => {
             if (number >= 3) result[number.toString()][1]++;
         });
-
+        Console.print(`당첨 통계\n---`);
         for (let key in result) {
             if (result[key][1] > 0) sum += result[key][1] * result[key][2];
             Console.print(`${result[key][0]} ${result[key][1]}개`);
