@@ -101,6 +101,68 @@ class Lotto {
     this.bonusNumber = parseInt(input);
     this.checkWins();
   }
+
+  // 당첨 확인
+  checkWins() {
+    this.autoLotto.randomLottoArray.forEach((array) => {
+      this.checkPrize(array);
+    });
+    this.printWinningStats();
+  }
+
+  checkPrize(game) {
+    game.forEach((number) => {
+      if (this.numbers.includes(number)) {
+        this.winningCount++;
+      }
+    });
+
+    this.checkPrizes(game);
+    this.initializeWinningCount();
+  }
+
+  checkPrizes(game) {
+    this.checkFifthPrize();
+    this.checkFourthPrize();
+    this.checkThirdPrize(game);
+    this.checkFirstPrize();
+  }
+
+  initializeWinningCount() {
+    this.winningCount = 0;
+  }
+
+  checkFifthPrize() {
+    if (this.winningCount === Constant.FIFTH) {
+      this.prize.fifth++;
+    }
+  }
+
+  checkFourthPrize() {
+    if (this.winningCount === Constant.FOURTH) {
+      this.prize.fourth++;
+    }
+  }
+
+  checkThirdPrize(game) {
+    if (this.winningCount === Constant.THIRD) {
+      this.prize.third++;
+      this.checkSecondPrize(game);
+    }
+  }
+
+  checkSecondPrize(game) {
+    if (game.includes(this.bonusNumber)) {
+      this.prize.second++;
+      this.prize.third--;
+    }
+  }
+
+  checkFirstPrize() {
+    if (this.winningCount === Constant.FIRST) {
+      this.prize.first++;
+    }
+  }
 }
 
 module.exports = Lotto;
