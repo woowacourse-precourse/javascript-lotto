@@ -8,7 +8,9 @@ class App {
   constructor(){
     this.Lotto = new Lotto()
     this.LottoSell = new LottoSell()
-    this.RaffleNumber = new RaffleNumber() 
+    this.Lottobuynumber = [];
+    this.bonusnumber = 0;
+    this.Winnumber = ''
     this.correctList =[0,0,0,0,0]
     this.getMoney = [5000,50000,1500000,30000000,2000000000]
     this.ratio = 0
