@@ -8,22 +8,8 @@ const mockRandoms = (numbers) => {
   }, MissionUtils.Random.pickUniqueNumbersInRange);
 };
 
-describe("로또 머신 클래스 테스트", () => {
-  test("금액이 숫자가 아닐 경우 예외가 발생한다.", () => {
-    expect(() => {
-      const lottoGenerator = new LottoGenerator();
-      lottoGenerator.getPurchaseCount("천원");
-    }).toThrow("[ERROR] 금액은 숫자만 입력해야 합니다.");
-  });
-
-  test("금액이 1,000원 단위로 입력되지 않을 경우 예외가 발생한다.", () => {
-    expect(() => {
-      const lottoGenerator = new LottoGenerator();
-      lottoGenerator.getPurchaseCount("1500");
-    }).toThrow("[ERROR] 금액은 1,000원 단위만 입력 가능합니다.");
-  });
-
-  test("로또 머신 클래스를 생성할 때 입력한 금액만큼 로또를 생성한다.", () => {
+describe("로또 생성기 클래스 테스트", () => {
+  test("로또 생성기 클래스를 생성할 때 입력한 금액만큼 로또를 생성한다.", () => {
     const mockArray = [
       [8, 21, 23, 41, 42, 43],
       [3, 5, 11, 16, 32, 38],
