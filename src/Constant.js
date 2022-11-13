@@ -23,6 +23,7 @@ class Constant {
     notNumber: '숫자여야 합니다.',
     only1000WonUnits: '구입금액은 1,000원 단위여야 합니다.',
     only6Numbers: '로또 번호는 6개여야 합니다.',
+    duplicateNumbers: '로또 번호는 중복되지 않아야 합니다.',
   });
 }
 
