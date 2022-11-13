@@ -1,5 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { GAME_MESSAGES, ERROR_MESSAGES, NUMBERS } = require("./constants");
+const { isInRange, isDuplicated } = require("../src/utils");
 
 class Lotto {
   #numbers;
@@ -12,13 +13,27 @@ class Lotto {
   }
 
   validateWinningNumber = (winningNumber) => {
-    //TODO: 1) 길이가 6자리인가? 2) 중복된 숫자는 없는가?
-    // if (winningNumber.length !== 6)
-    //   throw new Error(ERROR_MESSAGES.INVALID_LOTTO_LENGTH);
-    // if (winningNumber)
+    if (winningNumber.length !== 6)
+      throw new Error(ERROR_MESSAGES.INVALID_LOTTO_LENGTH);
+    if (isDuplicated(winningNumber)) {
+      throw new Error(ERROR_MESSAGES.DUPLICATED_LOTTO_NUM);
+    }
+    if (!isInRange(winningNumber))
+      throw new Error(ERROR_MESSAGES.INVALID_LOTTO_RANGE);
+
     return true;
   };
-  validateBonusNumber = (bonusNumber) => {
+
+  validateBonusNumber = (bonusNumber, winningNumber) => {
+    if (isNaN(bonusNumber)) {
+      throw new Error(ERROR_MESSAGES.FORMAT_ERROR);
+    }
+    if (winningNumber.includes(Number(bonusNumber))) {
+      throw new Error(ERROR_MESSAGES.DUPLICATED_LOTTO_NUM);
+    }
+    if (!isInRange(bonusNumber))
+      throw new Error(ERROR_MESSAGES.INVALID_LOTTO_RANGE);
+
     return true;
   };
 
@@ -26,7 +41,7 @@ class Lotto {
     Console.readLine(GAME_MESSAGES.ASK_FOR_WINNING_NUMBERS, (winningNumber) => {
       this.getWinningNumber(winningNumber);
       Console.readLine(GAME_MESSAGES.ASK_FOR_BONUS_NUMBER, (bonusNumber) => {
-        this.getBonusNumber(bonusNumber);
+        this.getBonusNumber(bonusNumber, winningNumber);
         const userInput = this.setUserInput(winningNumber, bonusNumber);
         const resultMessage = this.getResultMessage(userInput, cost);
 
@@ -42,14 +57,18 @@ class Lotto {
     // Console.print(resultMessage);
   };
 
-  getWinningNumber = (winningNumber) => {
-    this.validateWinningNumber(winningNumber);
+  getWinningNumber = (input) => {
+    const winningNumber = [];
+    for (let i = 0; i < input.length; i++) {
+      winningNumber.push(Number(input[i]));
+    }
+    // this.validateWinningNumber(winningNumber);
     Console.print(winningNumber);
     return winningNumber;
   };
 
-  getBonusNumber = (bonusNumber) => {
-    this.validateBonusNumber(bonusNumber);
+  getBonusNumber = (bonusNumber, winningNumber) => {
+    this.validateBonusNumber(bonusNumber, winningNumber);
     Console.print(bonusNumber);
     return bonusNumber;
   };
