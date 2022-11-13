@@ -17,17 +17,15 @@ class Controller {
   }
 
   purchase() {
-    const purchasedLottos = [];
-
-    Array.from({ length: this.deposit.quantity })
-      .forEach(() => {
+    this.purchasedLottos = Array.from({ length: this.deposit.quantity })
+      .map(() => {
         const numbers = pickUniqueNumbersInRange(
           NUMBER_RANGE.START,
           NUMBER_RANGE.END,
           RULE.FIRST.NUMBER_OF_SAME,
         );
-        const newLotto = new Lotto(numbers);
-        purchasedLottos.push(newLotto);
+
+        return new Lotto(numbers);
       });
 
     this.renderPurchasedLottos();
