@@ -31,6 +31,7 @@ const ERROR = {
     "[ERROR] 당첨 번호는 숫자와 쉼표만 입력할 수 있습니다.",
   MISUSE_COMMA: "[ERROR] 잘못된 쉼표 사용이 있습니다.",
   IS_NAN: "[ERROR] 잘못된 숫자 입력이 있습니다.",
+  DUPLICATED_BONUS: "[ERROR] 보너스 번호는 당첨 번호와 다른 숫자여야 합니다.",
 };
 
 Object.freeze(MESSAGE);
