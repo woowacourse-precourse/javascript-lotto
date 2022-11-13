@@ -18,7 +18,15 @@ class App {
   bonusNum;
   rank;
 
-  play() {}
+  play() {
+    let price = this.enterPrice();
+    this.issueTotalLotto(price);
+    this.printLottoAll();
+    this.enterNumbers();
+    this.calculateTotalRank();
+    this.printWinningStatics();
+    Console.close();
+  }
 
   //금액 입력
   enterPrice() {
