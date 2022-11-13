@@ -31,7 +31,6 @@ class LottoMachine {
   inputMoney() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
       this.#money = Number(money);
-      // console.log(this.#money);
       
       this.checkInputMoney();
       this.printLottoAmount();
@@ -40,8 +39,6 @@ class LottoMachine {
         this.makeLotto();
       }
       
-      // console.log(this.user);
-
       this.callLottoManager();
     });
   }
@@ -66,7 +63,6 @@ class LottoMachine {
     numbers.sort(function(a, b) {
       return a - b;
     });
-    // console.log(numbers);
   }
 
   printLottoNumber(numbers) {
@@ -77,11 +73,7 @@ class LottoMachine {
     const lotto = new Lotto(numbers);
     const lottoNumbers = lotto.getterLottoNumbers();
     this.user.usersLottos.push(lottoNumbers);
-    console.log(this.user);
   }
 }
-
-// const lottoMachine = new LottoMachine();
-// lottoMachine.start();
 
 module.exports = LottoMachine;
