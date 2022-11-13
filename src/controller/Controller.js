@@ -1,3 +1,4 @@
+const Lotto = require('../Lotto');
 const InputCheck = require('../model/InputCheck');
 const LottoRandomNum = require('../model/LottoRandomNum');
 const InputDisplay = require('../view/InputDisplay');
@@ -33,7 +34,11 @@ class Controller {
     );
   }
 
-  getWinningNum(winningNum) {}
+  getWinningNum(winningNum) {
+    const splitNum = winningNum.split(',');
+    const lottoNumValid = new Lotto(splitNum);
+    lottoNumValid.validate(splitNum);
+  }
 }
 
 module.exports = Controller;
