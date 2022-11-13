@@ -15,15 +15,16 @@ const {
 } = require('./Constant');
 class App {
   inputPrice; // 받은 금액
-  lottoCnt; // 로또 갯수
+  lottoCnt; // 로또 개수
   lottoNumberList = []; // 구매한 로또 리스트
   winningNum; // 당첨 번호
   bonusNum; // 보너스 번호
-  sameCnt = 0; // 각 로또 당 같은 번호 갯수
+  sameCnt = 0; // 각 로또 당 같은 번호 개수
   bonusCnt = 0; // 보너스 번호 같으면 1, 다르면 0
-  sameArr = []; // 로또 마다 같은 갯수 배열
-  numberOfWins = [0, 0, 0, 0, 0]; // 1,2,3,4,5등 당첨 갯수
+  sameArr = []; // 로또 마다 같은 개수 배열
+  numberOfWins = [0, 0, 0, 0, 0]; // 1,2,3,4,5등 당첨 개수
   revenueRate; // 수익률
+
   play() {
     this.getLottoPrice();
   }
@@ -55,6 +56,16 @@ class App {
     }
     this.lottoNumberList.map(lotto => {
       Console.print(lotto);
+    });
+    this.getWinningLottoNumber();
+  }
+
+  // 로또 당첨 번호 입력
+  getWinningLottoNumber() {
+    Console.readLine(`\n${PLZ_INPUT_WIN_NUMBER}\n`, numbers => {
+      this.winningNum = numbers.split(',');
+      new Lotto(this.winningNum);
+      this.getBonusNumber();
     });
   }
 }
