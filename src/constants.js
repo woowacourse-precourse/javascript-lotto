@@ -11,7 +11,7 @@ const LOTTO_RANGE = {
 
 const BONUS_LENGTH = 1;
 
-const PRIZE = {
+const PRIZE_TABLE = {
   3: { ea: 0, winningAmount: 5000 },
   4: { ea: 0, winningAmount: 50000 },
   5: { 
@@ -22,36 +22,39 @@ const PRIZE = {
 };
 
 const HEADER = {
-  error: '[ERROR]',
+  ERROR: '[ERROR]',
 }
 
 const MESSAGES = {
   GAME: {
-    requirePurchaseAmount: '구입금액을 입력해 주세요.',
-    requireLottoNumbers: '당첨 번호를 입력해 주세요.',
-    requireBonusNumbers: '보너스 번호를 입력해 주세요.',
+    REQUIRE_PURCHASE_AMOUNT: '구입금액을 입력해 주세요.',
+    REQUIRE_WINNING_LOTTO_NUMBER: '당첨 번호를 입력해 주세요.',
+    REQUIRE_BONUS: '보너스 번호를 입력해 주세요.',
 
-    buySheets: '개를 구매했습니다.',
+    BUY_SHEET: '개를 구매했습니다.',
     
-    resultHeader: '당첨 통계\n---',
+    RESULT_HEADER: '당첨 통계\n---',
   },
   ERROR: {
-    isBlank: `${HEADER.error} 공백이 아닌 값을 입력해주세요!`,
-    isNotNumber: `${HEADER.error} 숫자를 입력해주세요!`,
-    hasBlank: `${HEADER.error} 공백이 없는 숫자를 입력해주세요!`,
-    isNotKilo: `${HEADER.error} 1,000원 단위의 금액을 입력해주세요!`,
-    isDiffrentLottoLength: `${HEADER.error} ${LOTTO_LENGTH}개의 숫자를 입력해주세요!`,
-    isDiffrentBonusLength: `${HEADER.error} ${BONUS_LENGTH}개의 숫자를 입력해주세요!`,
-    isNotRange: `${HEADER.error} 1에서 45 사이의 값으로만 입력해주세요!`,
-    isDuplicated: `${HEADER.error} 중복되지 않은 값들로 입력해주세요!`,
-    isDuplicatedBonus: `${HEADER.error} 당첨 번호와 중복되지 않은 값으로 입력해주세요!`,
+    IS_BLANK: `${HEADER.ERROR} 공백이 아닌 값을 입력해주세요!`,
+    IS_NOT_NUMBER: `${HEADER.ERROR} 숫자를 입력해주세요!`,
+    HAS_BLANK: `${HEADER.ERROR} 공백이 없는 숫자를 입력해주세요!`,
+    IS_NOT_KILO: `${HEADER.ERROR} 1,000원 단위의 금액을 입력해주세요!`,
+    IS_DIFFRENT_LOTTO_LENGTH: `${HEADER.ERROR} ${LOTTO_LENGTH}개의 숫자를 입력해주세요!`,
+    IS_DIFFRENT_BONUS_LENGTH: `${HEADER.ERROR} ${BONUS_LENGTH}개의 숫자를 입력해주세요!`,
+    IS_NOT_RANGE: `${HEADER.ERROR} 1에서 45 사이의 값으로만 입력해주세요!`,
+    IS_DUPLICATED: `${HEADER.ERROR} 중복되지 않은 값들로 입력해주세요!`,
+    IS_INCLUDED_BONUS: `${HEADER.ERROR} 당첨 번호와 중복되지 않은 값으로 입력해주세요!`,
   },
 }
+
+Object.freeze(MESSAGES);
+Object.freeze(HEADER);
 
 exports.MESSAGES = MESSAGES;
 exports.PRICE_PER_SHEET = PRICE_PER_SHEET;
 exports.LOTTO_LENGTH = LOTTO_LENGTH;
 exports.BONUS_LENGTH = BONUS_LENGTH;
-exports.PRIZE = PRIZE;
+exports.PRIZE_TABLE = PRIZE_TABLE;
 exports.LOTTO_RANGE = LOTTO_RANGE;
 exports.ROUNDING_DIGIT = ROUNDING_DIGIT;

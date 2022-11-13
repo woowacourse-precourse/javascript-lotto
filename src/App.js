@@ -3,7 +3,7 @@ const GameUtils = require('../src/Utils/GameUtils');
 const GamePrint = require('./GamePrint');
 const Validator = require('../src/Utils/Validator');
 const { Lotto, getUserLottos } = require('../src/Utils/Lotto');
-const { MESSAGES, PRIZE } = require('./constants');
+const { MESSAGES, PRIZE_TABLE } = require('./constants');
 
 class App {
   constructor() {
@@ -11,7 +11,7 @@ class App {
     this.sheets = null,
     this.userLottos = null,
     this.winningLotto = null,
-    this.prize = JSON.parse(JSON.stringify(PRIZE));
+    this.prize = JSON.parse(JSON.stringify(PRIZE_TABLE));
     this.revenue = 0;
     this.revenueRate = 0;
   }
@@ -19,9 +19,8 @@ class App {
     this.submitAmount();
   }
   submitAmount() {
-    MissionUtils.Console.readLine(MESSAGES.GAME.requirePurchaseAmount, (amount) => {
+    MissionUtils.Console.readLine(MESSAGES.GAME.REQUIRE_PURCHASE_AMOUNT, (amount) => {
       this.amount = GameUtils.removeMarkingStandardMoney(amount);
-      console.log(this.amount);
       Validator.amountValidCheck(this.amount);
       this.amount = Number(this.amount);
       this.sheets = GameUtils.getSheets(this.amount);
@@ -32,14 +31,14 @@ class App {
     });
   }
   submitWinningLotto() {    
-    MissionUtils.Console.readLine(MESSAGES.GAME.requireLottoNumbers, (input) => {
+    MissionUtils.Console.readLine(MESSAGES.GAME.REQUIRE_WINNING_LOTTO_NUMBER, (input) => {
       input = GameUtils.toArray(input);
       this.winningLotto = new Lotto(input);
       this.submitBonus();
     });
   }
   submitBonus() {    
-    MissionUtils.Console.readLine(MESSAGES.GAME.requireBonusNumbers, (input) => {
+    MissionUtils.Console.readLine(MESSAGES.GAME.REQUIRE_BONUS, (input) => {
       input = GameUtils.toArray(input);
       this.winningLotto.setBonus(input);
       this.getResult();

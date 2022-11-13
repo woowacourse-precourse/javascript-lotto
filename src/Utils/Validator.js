@@ -23,7 +23,7 @@ class Validator {
     Validator.isDiffrentBonusLength(bonus);
     bonus.forEach(number => {      
       Validator.basicNumberCheck(number);
-      Validator.isDuplicatedBonus(number, winningLotto);
+      Validator.isIncludedBonus(number, winningLotto);
     });
   }
 
@@ -33,32 +33,32 @@ class Validator {
   }
 
   static isBlank(value) {
-    if(value === '') throw new Error(MESSAGES.ERROR.isBlank);
+    if(value === '') throw new Error(MESSAGES.ERROR.IS_BLANK);
   }
   static hasBlank(value) {
     const regex = /\s/g;    
-    if(value.match(regex)) throw new Error(MESSAGES.ERROR.hasBlank);
+    if(value.match(regex)) throw new Error(MESSAGES.ERROR.HAS_BLANK);
   }
   static isNotNumber(value) {
-    if(isNaN(value)) throw new Error(MESSAGES.ERROR.isNotNumber);
+    if(isNaN(value)) throw new Error(MESSAGES.ERROR.IS_NOT_NUMBER);
   }
   static isNotKilo(value) {
-    if(value % 1000 !== 0) throw new Error(MESSAGES.ERROR.isNotKilo);
+    if(value % 1000 !== 0) throw new Error(MESSAGES.ERROR.IS_NOT_KILO);
   }
   static isDiffrentLottoLength(value) {
-    if(value.length !== LOTTO_LENGTH) throw new Error(MESSAGES.ERROR.isDiffrentLottoLength);
+    if(value.length !== LOTTO_LENGTH) throw new Error(MESSAGES.ERROR.IS_DIFFRENT_LOTTO_LENGTH);
   }
   static isDiffrentBonusLength(value) {
-    if(value.length !== BONUS_LENGTH) throw new Error(MESSAGES.ERROR.isDiffrentBonusLength);
+    if(value.length !== BONUS_LENGTH) throw new Error(MESSAGES.ERROR.IS_DIFFRENT_BONUS_LENGTH);
   }
   static isNotRange(value) {
-    if(value < 1 || value > 45) throw new Error(MESSAGES.ERROR.isNotRange);
+    if(value < 1 || value > 45) throw new Error(MESSAGES.ERROR.IS_NOT_RANGE);
   }
   static isDuplicated(value, list) {
-    if(list.has(value)) throw new Error(MESSAGES.ERROR.isDuplicated);
+    if(list.has(value)) throw new Error(MESSAGES.ERROR.IS_DUPLICATED);
   }
-  static isDuplicatedBonus(bonus, winningLotto) {
-    if(winningLotto.includes(bonus)) throw new Error(MESSAGES.ERROR.isDuplicatedBonus);
+  static isIncludedBonus(bonus, winningLotto) {
+    if(winningLotto.includes(bonus)) throw new Error(MESSAGES.ERROR.IS_INCLUDED_BONUS);
   }
 }
 

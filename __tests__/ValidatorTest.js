@@ -9,7 +9,7 @@ describe("amountValidCheck 테스트", () => {
       const result = Validator.isBlank(subject);
       expect(result).toBeUndefined();
     });
-    expect(() => Validator.isBlank(blank)).toThrowError(MESSAGES.ERROR.isBlank);
+    expect(() => Validator.isBlank(blank)).toThrowError(MESSAGES.ERROR.IS_BLANK);
   });
   test("공백 유무 판별", () => {
     const normalNumbers = ['1341', '23134', '1243124141', '1'];
@@ -19,7 +19,7 @@ describe("amountValidCheck 테스트", () => {
       expect(result).toBeUndefined();
     });
     haveBlankNumbers.forEach(subject => {      
-      expect(() => Validator.hasBlank(subject)).toThrowError(MESSAGES.ERROR.hasBlank);
+      expect(() => Validator.hasBlank(subject)).toThrowError(MESSAGES.ERROR.HAS_BLANK);
     });
   });
   test("숫자 여부 판별", () => {
@@ -30,7 +30,7 @@ describe("amountValidCheck 테스트", () => {
       expect(result).toBeUndefined();
     });
     notNumbers.forEach(subject => {    
-      expect(() => Validator.isNotNumber(subject)).toThrowError(MESSAGES.ERROR.isNotNumber);
+      expect(() => Validator.isNotNumber(subject)).toThrowError(MESSAGES.ERROR.IS_NOT_NUMBER);
     });
   });
   test("천원 단위 판별", () => {
@@ -41,7 +41,7 @@ describe("amountValidCheck 테스트", () => {
       expect(result).toBeUndefined();
     });
     notKilos.forEach(subject => {      
-      expect(() => Validator.isNotKilo(subject)).toThrowError(MESSAGES.ERROR.isNotKilo);
+      expect(() => Validator.isNotKilo(subject)).toThrowError(MESSAGES.ERROR.IS_NOT_KILO);
     });
   });
 });
@@ -57,11 +57,11 @@ describe('bonusValidCheck 테스트', () => {
       [7, 4, 12, 41, 3, 6]
     ];
     lottos.forEach(lotto => {
-      const result = Validator.isDuplicatedBonus(input ,lotto);
+      const result = Validator.isIncludedBonus(input ,lotto);
       expect(result).toBeUndefined();
     });    
     lottos.forEach(lotto => {   
-      expect(() => Validator.isDuplicatedBonus(DuplicatedInput, lotto)).toThrowError(MESSAGES.ERROR.isDuplicatedBonus);
+      expect(() => Validator.isIncludedBonus(DuplicatedInput, lotto)).toThrowError(MESSAGES.ERROR.IS_INCLUDED_BONUS);
     });
   });
   
@@ -69,6 +69,6 @@ describe('bonusValidCheck 테스트', () => {
     const input = [1];
     const diffrentLengthInput = [1, 2];
     expect(Validator.isDiffrentBonusLength(input)).toBeUndefined();
-    expect(() => Validator.isDiffrentBonusLength(diffrentLengthInput)).toThrowError(MESSAGES.ERROR.isDiffrentBonusLength);
+    expect(() => Validator.isDiffrentBonusLength(diffrentLengthInput)).toThrowError(MESSAGES.ERROR.IS_DIFFRENT_BONUS_LENGTH);
   });
 });

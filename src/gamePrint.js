@@ -4,7 +4,7 @@ const GameUtils = require('./Utils/GameUtils');
 
 class GamePrint {
   static sheets(sheets) {
-    MissionUtils.Console.print(`${sheets}${MESSAGES.GAME.buySheets}`);
+    MissionUtils.Console.print(`${sheets}${MESSAGES.GAME.BUY_SHEET}`);
   }
   static lottoList(lottos) {
     lottos.forEach(lotto => {
@@ -14,7 +14,7 @@ class GamePrint {
     });    
   }
   static result(prize, profitRate) {
-    MissionUtils.Console.print(MESSAGES.GAME.resultHeader);
+    MissionUtils.Console.print(MESSAGES.GAME.RESULT_HEADER);
     for(let rank in prize) {
       if(rank === '5') {
         MissionUtils.Console.print(`${rank}개 일치 (${GameUtils.addComma(prize[rank].nonBonus.winningAmount)}원) - ${prize[rank].nonBonus.ea}개`);
