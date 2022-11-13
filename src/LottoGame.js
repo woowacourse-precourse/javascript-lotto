@@ -3,12 +3,12 @@ const LottoUser = require('./LottoUser');
 
 class LottoGame {
   #user;
+  #winningNumbers;
 
   constructor() {
     this.#user = undefined;
   }
 
-  //Call the appropriate method according to the lotto game scenario
   start() {
     this.inputAmount();
   }
@@ -17,7 +17,17 @@ class LottoGame {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (amount) => {
       this.#user = new LottoUser(parseInt(amount, 10));
       this.#user.printUserLottos();
+      this.inputWinningNumbers();
     });
+  }
+
+  inputWinningNumbers() {
+    MissionUtils.Console.readLine(
+      '\n당첨 번호를 입력해 주세요.\n',
+      (numbers) => {
+        this.#winningNumbers = numbers.split(',').map(Number);
+      },
+    );
   }
 }
 
