@@ -49,3 +49,4 @@
 - 배열 메소드 reduce
 - 생성자 함수
 - 테스트 코드
+- class member variable

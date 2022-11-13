@@ -3,7 +3,7 @@ const Lotto = require("./Lotto");
 const { getCountByPay, getRandomNumbers } = require("./util/purchase");
 
 class App {
-  lottos = [];
+  #lottos = [];
 
   play() {
     this.purchaseLottos();
@@ -14,7 +14,7 @@ class App {
       const lottoCnt = getCountByPay(+price);
 
       for (let i = 0; i < lottoCnt; i++) {
-        this.lottos.push(new Lotto(getRandomNumbers()));
+        this.#lottos.push(new Lotto(getRandomNumbers()));
       }
     });
   }
