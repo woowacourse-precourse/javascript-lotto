@@ -1,5 +1,5 @@
 const LottoCounter = require('./LottoCounter');
-const NumberGenerator = require('./NumberGenerator');
+const NumberCreater = require('./NumberCreater');
 const Lotto = require('./Lotto');
 const BonusNumber = require('./BonusNumber');
 const WinningChecker = require('./WinningChecker');
@@ -43,7 +43,7 @@ class App {
     let count = this.countOfLottos;
 
     while (count !== 0) {
-      let numbers = new NumberGenerator().createRandomSixNumbers();
+      let numbers = new NumberCreater().createRandomSixNumbers();
       this.purchasedLottos.push(new Lotto(numbers).getLottoNumbers());
       count -= 1;
     }
@@ -89,17 +89,17 @@ class App {
     let newBonusNumber = new BonusNumber(number, this.winningNumbers);
     this.bonusNumber = newBonusNumber.getBonusNumber();
 
-    this.checkWinning();
+    this.setWinningResult();
   }
 
-  checkWinning() {
+  setWinningResult() {
     this.purchasedLottos.forEach((lottoNumbers) => {
-      let checkWinner = new WinningChecker(
+      let winningChecker = new WinningChecker(
         lottoNumbers,
         this.winningNumbers,
         this.bonusNumber
       );
-      this.winningResult.push(checkWinner.getWinningRank());
+      this.winningResult.push(winningChecker.getWinningRank());
     });
 
     this.countWinningRank();
