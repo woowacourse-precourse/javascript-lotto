@@ -1,3 +1,10 @@
+const WIN_MONEY = {
+  THREE: 5000,
+  FOUR: 50000,
+  FIVE: 1500000,
+  FIVE_AND_BONUS: 30000000,
+  SIX: 200000000,
+};
 class Result {
   score = {
     three: 0,
@@ -39,11 +46,11 @@ class Result {
   getYeild() {
     return parseFloat(
       (
-        ((this.score.three * 5000 +
-          this.score.four * 50000 +
-          this.score.five * 1500000 +
-          this.score.fiveAndBonus * 30000000 +
-          this.score.six * 200000000) /
+        ((this.score.three * WIN_MONEY.THREE +
+          this.score.four * WIN_MONEY.FOUR +
+          this.score.five * WIN_MONEY.FIVE +
+          this.score.fiveAndBonus * WIN_MONEY.FIVE_AND_BONUS +
+          this.score.six * WIN_MONEY.SIX) /
           this.game.money) *
         100
       ).toFixed(2)
