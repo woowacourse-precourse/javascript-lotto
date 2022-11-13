@@ -11,10 +11,28 @@ class Lotto {
     this.#numbers = numbers;
   }
 
+  getBonusNumber() {
+    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.\n", (userInput) => {
+      this.validateBonusNumber(userInput);
+    });
+  }
+
   validate(numbers) {
     this.checkLottoSize(numbers);
     this.checkLottoOverlap(numbers);
     this.checkLottoValue(numbers);
+  }
+
+  validateBonusNumber(number) {
+    if(number.length < 1 || 2 < number.length) {
+      throw new Error("[ERROR]");
+    }
+    if(Number(number) < 1 || 45 < Number(number)) {
+      throw new Error("[ERROR");
+    }
+    if(this.#numbers.includes(number)) {
+      throw new Error("[ERROR]");
+    }
   }
 
   checkLottoSize(numbers) {

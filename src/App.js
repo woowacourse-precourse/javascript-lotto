@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const LottoUtils = require("src/Lotto.js");
+const LottoUtils = require("./Lotto");
 
 class App {
   #money;
@@ -45,35 +45,21 @@ class App {
       MissionUtils.Console.print(this.userLotto[i]);
     }
     MissionUtils.Console.print("\n");
+    this.getWinLotto();
   }
 
   getWinLotto() {
     MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.\n", (userInput) => {
-      validateWinLottoDecimal(userInput);
-      convertWinLottoStrToInt(userInput);
+      this.convertWinLottoStrToInt(userInput);
     });
   }
 
   convertWinLottoStrToInt(numbers) {
-    for(let i = 0; i < numbers.length; i++) {
-      this.winLotto.push(Number(numbers[i]));
+    this.winLotto = numbers.split(',');
+    for(let i = 0; i < this.winLotto.length; i++) {
+      this.winLotto[i] = Number(this.winLotto[i]);
     }
-    lotto = new LottoUtils(winLotto);
-    getBonusNumber();
-  }
-
-  getBonusNumber() {
-    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.\n", (userInput) => {
-      lotto.validateBonusNumber(userInput);
-    });
-  }
-
-  validateWinLottoDecimal(numbers) {
-    for(let i = 0; i < numbers.length; i++) {
-      if(Number(numbers)!== NaN && numbers[i].length !== 1) {
-        throw new error("숫자는 십진수여야 합니다.");
-      }
-    }
+    new LottoUtils(this.winLotto);
   }
 
   validateMoney(money) {
