@@ -1,5 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { MESSAGE, ERROR } = require("./constants/index");
+const { MESSAGE } = require("./constants/index");
 const { throwError } = require("./utils/index");
 
 const Validator = require("./Validator");
@@ -26,11 +26,7 @@ class App {
 
   inputMoney() {
     Console.readLine(MESSAGE.INPUT_MONEY, (money) => {
-      const isMoneyValid = this.validator.checkMoneyValid(money);
-
-      if (isMoneyValid === false) {
-        return this.error(ERROR.INPUT_MONEY);
-      }
+      this.validator.checkMoneyValid(money);
 
       this.state.money = money;
       this.state.count = money / 1000;
@@ -47,6 +43,12 @@ class App {
     this.state.numbers.forEach((number) => {
       Console.print(number);
     });
+
+    this.inputNumber();
+  }
+
+  inputNumber() {
+    Console.readLine(MESSAGE.INPUT_NUMBER, (number) => {});
   }
 
   error(message) {
