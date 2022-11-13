@@ -100,4 +100,31 @@ describe('로또 클래스 테스트', () => {
       expect(ILotto.calcRateOfReturn(money, countOfLottos[i])).toBe(answers[i]);
     });
   });
+
+  test('총 당첨 횟수를 등수별로 종합한 배열을 반환한다.', () => {
+    const userLottos = [
+      [1, 6, 22, 30, 43, 45],
+      [4, 13, 16, 30, 42, 45],
+      [10, 12, 23, 25, 26, 37],
+      [1, 2, 4, 5, 12, 33],
+      [1, 15, 26, 32, 34, 39],
+      [7, 13, 21, 22, 34, 39],
+      [3, 4, 5, 18, 19, 32],
+      [3, 16, 31, 35, 40, 45],
+      [5, 12, 14, 28, 33, 44],
+      [15, 20, 22, 23, 35, 39],
+      [1, 12, 24, 25, 30, 38],
+      [9, 15, 19, 30, 31, 36],
+      [5, 13, 31, 34, 40, 45],
+      [1, 2, 5, 15, 24, 42],
+      [1, 2, 21, 30, 33, 40],
+    ];
+    const winningNumbers = [1, 2, 5, 30, 33, 40];
+    const bonusNumber = 43;
+
+    const ILotto = new Lotto(winningNumbers);
+    expect(ILotto.informWinningState(userLottos, bonusNumber)).toEqual([
+      0, 0, 1, 1, 1,
+    ]);
+  });
 });
