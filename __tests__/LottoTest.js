@@ -89,4 +89,15 @@ describe('로또 클래스 테스트', () => {
       expect(ILotto.calcTotalPrize(state)).toBe(answers[i]);
     });
   });
+
+  test('수익률을 계산해 소수점 둘 째 자리에서 반올림한 값을 반환한다.', () => {
+    const totalPrizes = [150000, 5000, 30000, 30000000, 4000000000];
+    const countOfLottos = [3, 4, 5, 10, 20];
+    const answers = ['5000.0', '125.0', '600.0', '300000.0', '20000000.0'];
+
+    totalPrizes.forEach((money, i) => {
+      const ILotto = new Lotto([1, 2, 3, 4, 5, 6]);
+      expect(ILotto.calcRateOfReturn(money, countOfLottos[i])).toBe(answers[i]);
+    });
+  });
 });
