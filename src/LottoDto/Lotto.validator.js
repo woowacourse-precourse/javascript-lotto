@@ -20,7 +20,7 @@ class LottoValidator {
   }
 
   static AdditionalNumber(LottoAdditinalNumber) {
-    if(isNaN(+LottoAdditinalNumber)) {
+    if (isNaN(+LottoAdditinalNumber)) {
       throw new Error(ERROR.WRONG_ADDITINAL_NUMBER);
     }
     return +LottoAdditinalNumber;
