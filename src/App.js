@@ -73,6 +73,27 @@ class App {
   getBonusNumber() {
     Console.readLine(`\n${PLZ_INPUT_BONUS_NUMBER}\n`, bonus => {
       this.bonusNum = bonus;
+      this.lottoCompareWinNumber();
+    });
+  }
+
+  // 로또 번호 비교
+  lottoCompareWinNumber() {
+    this.lottoNumberList.map(lotto => {
+      lotto.map(index => {
+        if (this.winningNum.includes(String(index))) {
+          this.sameCnt += 1;
+        }
+      });
+      lotto.map(index => {
+        if (!this.winningNum.includes(this.bonusNum)) {
+          if (index === Number(this.bonusNum)) {
+            this.bonusCnt = 1;
+          }
+        }
+      });
+      this.sameArr.push(this.sameCnt);
+      this.sameCnt = 0;
     });
   }
 }
