@@ -1,3 +1,5 @@
+const { Console } = require('@woowacourse/mission-utils');
+
 const { REWARD, STATISTICS } = require('../src/utils/constants');
 
 class LottoGame {
@@ -9,6 +11,14 @@ class LottoGame {
     this.user = user;
     this.winningNumbers = winningNumbers;
     this.bonusNumber = bonusNumber;
+  }
+
+  start() {
+    const gameResult = this.getGameResult();
+    const reward = this.calcReward(gameResult);
+    const revenue = this.calcRevenue(reward);
+    this.printStatistics(gameResult, revenue);
+    Console.close();
   }
 
   getGameResult() {
