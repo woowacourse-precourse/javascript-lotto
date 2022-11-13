@@ -3,8 +3,9 @@ const { readLine } = require('../utils/Utils');
 const { MoneyValidator, BonusValidator } = require('../utils/Validator');
 
 class LottoGameController {
-  constructor(model) {
+  constructor(model, view) {
     this.lottoGameModel = model;
+    this.lottoGameView = view;
     this.winningLotto;
   }
 
@@ -17,8 +18,14 @@ class LottoGameController {
     readLine(INPUT_MESSAGE.MONEY, (input) => {
       MoneyValidator.validate(input);
 
-      this.lottoGameModel.buyLotto(input);
+      const lottos = this.lottoGameModel.buyLotto(input);
+
+      this.printLottos(lottos);
     });
+  }
+
+  printLottos(lottos) {
+    this.lottoGameView.printLottoNumbers(lottos);
   }
 
   pickWinningLotto() {

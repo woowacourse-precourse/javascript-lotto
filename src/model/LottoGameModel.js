@@ -1,44 +1,23 @@
 const Lotto = require('../Lotto');
 const { pickUniqueNumbersInRange } = require('../utils/Utils');
+const { LottoValidator, MoneyValidator } = require('../utils/Validator');
 const LottoGameView = require('../view/LottoGameView');
 
 class LottoGameModel {
-  constructor() {
-    this.money;
-    this.lottoCount;
-    this.lottos = [];
-  }
+  constructor() {}
 
   buyLotto(money) {
-    this.money = money;
+    const lottoCount = Number(money) / 1000;
+    const lottos = [];
 
-    this.payMoney();
-    this.printLottos(this.lottos);
-  }
+    for (let i = 0; i < lottoCount; i++) {
+      const lotto = pickUniqueNumbersInRange(1, 45, 6);
 
-  payMoney() {
-    this.lottoCount = this.money / 1000;
-
-    LottoGameView.printLottoCount(this.lottoCount);
-
-    this.lottos = this.generateLottos();
-  }
-
-  generateLottos() {
-    const result = [];
-
-    for (let i = 0; i < this.lottoCount; i++) {
-      const lottoArr = pickUniqueNumbersInRange(1, 45, 6);
-
-      new Lotto(lottoArr);
-      result.push(lottoArr);
+      LottoValidator.validate(lotto);
+      lottos.push(lotto);
     }
 
-    return result;
-  }
-
-  printLottos(lottos) {
-    LottoGameView.printLottoNumbers(lottos);
+    return lottos;
   }
 }
 
