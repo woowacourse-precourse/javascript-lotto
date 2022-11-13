@@ -26,7 +26,9 @@ class App {
     MissionUtils.Console.readLine(
       "당첨 번호를 입력해 주세요.",
       (winningNumber) => {
-        this.winningLottoNumber = winningNumber;
+        this.winningLottoNumber = winningNumber
+          .split(",")
+          .map((num) => Number(num));
       }
     );
   }
