@@ -1,11 +1,10 @@
-/* eslint-disable max-lines-per-function */
 const MissionUtils = require('@woowacourse/mission-utils');
+
+const Application = require('../src/Application');
 
 afterAll(() => {
   MissionUtils.Console.close();
 });
-
-const Application = require('../src/Application');
 
 const NUMBER_EXCEPTION_TEXT = '[ERROR] 전달된 인수는 숫자로 변환이 가능해야 합니다.';
 const ARRAY_EXCEPTION_TEXT = '[ERROR] 전달된 인수는 배열 타입만 가능 합니다.';
