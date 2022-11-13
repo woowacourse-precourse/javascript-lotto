@@ -7,7 +7,7 @@ class Lotto {
   constructor(numbers, ticket) {
     this.validate(numbers);
     this.#numbers = numbers;
-    this.generateLottoResult(numbers, ticket);
+    this.matchingResult = this.generateLottoResult(numbers, ticket);
   }
 
   validate(numbers) {
@@ -25,7 +25,7 @@ class Lotto {
 
   generateLottoResult(lottoNumber, ticke) {
     const generator = new Generator();
-    return generator.generateLottoResult(lottoNumber, ticke);
+    return generator.generateMatchingResult(lottoNumber, ticke);
   }
 }
 
