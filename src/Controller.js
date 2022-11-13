@@ -1,12 +1,11 @@
 
 const MissionUtils = require('@woowacourse/mission-utils');
 const {DEFAULTS, CONSOLELINE, RESULTLINE} = require('./utils/Constants');
-const ExceptionCheck = require('./utils/ExceptionCheck');
+const errorCheck = require('./utils/ExceptionCheck');
 const Lotto = require("./Lotto");
 const randomNum = require('./model/Random');
 const { printAutoLottos } = require('./utils/Print');
 
-const errorCheck = new ExceptionCheck();
 
 class Controller{
   constructor(){
@@ -23,13 +22,10 @@ class Controller{
     MissionUtils.Console.readLine(CONSOLELINE.PURCHASE_MONEY_INPUT+'\n', (input) => {
       errorCheck.purchaseMoneyErrorCheck(input);
       this.input = input;
-      this.printPurchaseNums(input/DEFAULTS.PURCHASE_UNIT);
+      const purchaseCnt = this.input/DEFAULTS.PURCHASE_UNIT;
+      MissionUtils.Console.print(RESULTLINE.PURCHASE_CHECK(purchaseCnt));
+      this.getAutoLottos(purchaseCnt);
     });
-  }
-
-  printPurchaseNums(purchaseCnt){
-    MissionUtils.Console.print(RESULTLINE.PURCHASE_CHECK(purchaseCnt));
-    this.getAutoLottos(purchaseCnt);
   }
 
   getAutoLottos(purchaseCnt){

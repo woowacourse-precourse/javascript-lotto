@@ -8,6 +8,13 @@ class Calculate{
     this.testcase = [];
   }
 
+  init(){
+    this.getWinningCnt = new Array(DEFAULTS.WINNER_CNT).fill(0); //1등(index 0) ~ 5등(index 4)
+    this.bonusNum = 0;
+    this.answers = [];
+    this.testcase = [];
+  }
+
   testAllLottos(lottos, answers, bonusNum){
     this.bonusNum = bonusNum;
     this.answers = answers;
@@ -46,4 +53,5 @@ class Calculate{
 
 }
 
-module.exports = Calculate;
+const calculate = new Calculate();
+module.exports = calculate;
