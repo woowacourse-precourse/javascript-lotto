@@ -4,6 +4,15 @@ const MESSAGE = require("./constants/message");
 const Lotto = require("./Lotto");
 
 class LottoMachine {
+  constructor() {
+    this.ranking = {
+      firstPlace: 0,
+      secondPlace: 0,
+      thirdPlace: 0,
+      forthPlace: 0,
+      fifthPlace: 0,
+    };
+  }
   #payment;
   #winningNumbers;
   #bonusNumber;
@@ -32,6 +41,47 @@ class LottoMachine {
       this.validateBonusNumber(number);
 
       this.#bonusNumber = number;
+
+      this.compareNumbers();
+    });
+  }
+
+  compareNumbers() {
+    const lottos = getRandomNumberLottos();
+
+    lottos.forEach((lotto) => {
+      let count = 0;
+
+      lotto.forEach((number) => {
+        if (this.#winningNumbers.includes(number)) {
+          count++;
+        }
+      });
+
+      if (count === 6) {
+        this.ranking.firstPlace++;
+        return;
+      }
+
+      if (count === 5 && lotto.includes(this.#bonusNumber)) {
+        this.ranking.secondPlace++;
+        return;
+      }
+
+      if (count === 5) {
+        this.ranking.thirdPlace++;
+        return;
+      }
+
+      if (count === 4) {
+        this.ranking.forthPlace++;
+        return;
+      }
+
+      if (count === 3) {
+        this.ranking.fifthPlace++;
+        return;
+      }
     });
   }
 
