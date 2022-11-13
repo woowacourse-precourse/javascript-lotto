@@ -12,6 +12,7 @@ class App {
   input_money;
   input_lotto;
   input_bonus;
+  results;
 
   play(){
     this.inputMoney();
@@ -48,6 +49,7 @@ class App {
     });
   }
 
+
   countLotto(){
     const money = this.input_money.getMoney();
     if(!(money % 1000 === 0))
@@ -71,7 +73,57 @@ class App {
     }
     Console.print("");
   }
+
+  // printWin(){
+  //   Console.print("");
+  //   Console.print("당첨 통계");
+  //   Console.print("---");
+
+  //   Console.print("3개 일치 (5,000원) - ");
+  //   Console.print("4개 일치 (50,000원) - ");
+  //   Console.print("5개 일치 (1,500,000원) - ");
+  //   Console.print("5개 일치, 보너스 볼 일치 (30,000,000원) - ");
+  //   Console.print("6개 일치 (2,000,000,000원) - ");
+  // }
+
+  calResults(){
+    this.results = [0,0,0,0,0];
+    
+    const bonusnumber = this.input_bonus.getNumber();
+    const numbers =this.input_lotto.getNumbers();
+
+    for(const ticket of this.lottotickets){
+      const mynumbers = ticket.getNumbers();
+      this.calResult_Each(mynumbers, numbers, bonusnumber);
+    }
+  }
+
+  calResult_Each(mynumbers, numbers, bonusnumber){
+    const count = this.countMatch(ticket, numbers);
+    if(count == 3)
+      this.results[0]++;
+    if(count == 4)
+      this.results[1]++;
+    if(count == 5)
+      if(!mynumbers.includes(bonusnumber))
+        this.results[2]++;
+      else
+        this.results[3]++;
+    if(count == 6)
+      this.results[4]++;
+  }
+
+  countMatch(mynumbers, numbers){
+    let count = 0;
+    for(const mynumber of mynumbers){
+      if(numbers.includes(mynumber))
+        count++;
+    }
+    return count;
+  }
 }
+
+
 
 const app = new App();
 app.play();

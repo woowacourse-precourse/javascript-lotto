@@ -29,7 +29,7 @@ class Lotto {
     if(!(number % 1 === 0))
       throw new Error("[ERROR] 정수를 입력해 주세요.");    
     if(number<1 || number>45)
-      throw new Error("[ERROR] 1부터 45까지 범위의 숫자를 입력해 주세요.");   
+      throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");   
   }
   
   getNumbers(){
