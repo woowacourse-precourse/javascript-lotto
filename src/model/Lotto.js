@@ -1,3 +1,5 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+
 class Lotto {
   #numbers;
 
@@ -8,7 +10,9 @@ class Lotto {
 
   validate(numbers) {}
 
-  printLotto() {}
+  printLotto() {
+    MissionUtils.Console.print(`[${this.#numbers.join(", ")}]`);
+  }
 }
 
 module.exports = Lotto;
