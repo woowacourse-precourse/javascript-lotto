@@ -1,9 +1,24 @@
+const Lotto = require("../../src/Lotto");
 const LottoStatistics = require("../../src/domain/LottoStatistics");
 
 describe("로또 통계 클래스 테스트", () => {
+  test("로또 통계 클래스는 로또 인스턴스를 매개변수로 받아야 한다.", () => {
+    expect(() => {
+      new LottoStatistics();
+    }).toThrow();
+  });
+
+  test("로또 통계 클래스는 보너스 번호가 설정된 로또 인스턴스를 매개변수로 받아야 한다.", () => {
+    expect(() => {
+      const winningLotto = new Lotto([1, 2, 3, 4, 5, 6]);
+      new LottoStatistics(winningLotto);
+    }).toThrow();
+  });
+
   test("번호를 몇 개 맞췄는지 알려준다.", () => {
-    const lottoStatistics = new LottoStatistics();
-    const winningNumbers = [1, 2, 3, 4, 5, 6];
+    const winningLotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    winningLotto.addBonusNumber(7);
+    const lottoStatistics = new LottoStatistics(winningLotto);
     const TEST_CASE = [
       {
         numbers: [1, 2, 3, 4, 5, 6],
@@ -20,8 +35,7 @@ describe("로또 통계 클래스 테스트", () => {
     ];
 
     TEST_CASE.forEach(({ numbers, result }) => {
-      const expectedResult = lottoStatistics.match(numbers, winningNumbers);
-      expect(expectedResult).toEqual(result);
+      expect(lottoStatistics.match(numbers)).toEqual(result);
     });
   });
 });
