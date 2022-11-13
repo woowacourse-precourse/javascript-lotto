@@ -32,6 +32,13 @@ class App {
       this.getBonusNumber();
     });
   }
+
+  getBonusNumber() {
+    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
+      this.bonusNumber = Number(bonusNumber);
+      this.endGame();
+    });
+  }
 }
 
 module.exports = App;
