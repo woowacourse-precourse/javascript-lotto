@@ -1,3 +1,4 @@
+const Lotto = require("./Lotto.js");
 const MissionUtils = require("@woowacourse/mission-utils");
 const { Console, Random } = MissionUtils;
 
@@ -14,8 +15,8 @@ class App {
 
     for (let idx = 0; idx < lottoNum; idx++) {
       const newLottoNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
-      const newLotto = newLotto(newLottoNumbers);
-      this.lottos(newLotto);
+      const newLotto = new Lotto(newLottoNumbers);
+      this.lottos = newLotto;
     }
   }
   validateMoney(money) {
