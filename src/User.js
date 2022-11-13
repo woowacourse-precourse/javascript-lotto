@@ -14,7 +14,7 @@ class User {
     this.#money = money;
     this.#lottoCnt = this.buyLotto(money);
     this.makeLotto(this.#lottoCnt);
-    Console.print(`${this.#lottoCnt}${CMM_BUY_LOTTO}`);
+    Console.print(`\n${this.#lottoCnt}${CMM_BUY_LOTTO}`);
   }
   makeLotto(lottoCnt) {
     for (let i = 0; i < lottoCnt; i++) {
@@ -22,11 +22,13 @@ class User {
       const lotto = new Lotto(randomNum);
       this.#lottos.push(lotto);
     }
-    this.#lottos.forEach((e) => e.toString());
   }
   buyLotto(money) {
     this.validateMoneyInput(money);
     return money / 1000;
+  }
+  printUsersLottos() {
+    this.#lottos.forEach((e) => e.toString());
   }
   validateMoneyInput(money) {
     const money_int = parseInt(money);

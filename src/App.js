@@ -1,12 +1,12 @@
-const { Console, Random } = require('@woowacourse/mission-utils');
+const { Console } = require('@woowacourse/mission-utils');
 const User = require('./User');
-const { CMM_INPUT_MONEY, CMM_BUY_LOTTO } = require('./Constants');
+const { CMM_INPUT_MONEY } = require('./Constants');
 
 class App {
   play() {
     Console.readLine(CMM_INPUT_MONEY, (input) => {
       const user = new User(input);
-      
+      user.printUsersLottos();
       Console.close();
     });
   }
