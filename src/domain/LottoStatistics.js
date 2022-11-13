@@ -23,6 +23,14 @@ const RANK_MAP = Object({
   [MATCH_COUNT.THREE]: RANK.FIVE,
 });
 
+const REWARD_MAP = Object({
+  [RANK.ONE]: 2000000000,
+  [RANK.TWO]: 30000000,
+  [RANK.THREE]: 1500000,
+  [RANK.FOUR]: 50000,
+  [RANK.FIVE]: 5000,
+});
+
 class LottoStatistics {
   constructor(winningLotto) {
     if (!winningLotto instanceof Lotto) {
@@ -36,6 +44,7 @@ class LottoStatistics {
     this.bonusNumber = winningLotto.bonusNumber;
 
     this.judgeRank = this.judgeRankBuilder(RANK_MAP);
+    this.calculateTotalReward = this.calculateTotalRewardBuilder(REWARD_MAP);
   }
 
   judgeRankBuilder = (rankMap) => (numbers) => {
@@ -44,6 +53,14 @@ class LottoStatistics {
       return this.judgeSecondRank(numbers);
     }
     return rankMap[matchedCount] || RANK.UN_RANK;
+  };
+
+  calculateTotalRewardBuilder = (rewardMap) => (buyingLottos) => {
+    const rankCounter = this.createRankCounter(buyingLottos);
+    return Object.entries(rankCounter).reduce((total, [rank, count]) => {
+      const reward = rewardMap[rank] * count;
+      return total + reward;
+    }, 0);
   };
 
   match(numbers) {
