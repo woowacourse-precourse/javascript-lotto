@@ -1,7 +1,8 @@
 class Lotto {
   #numbers;
 
-  constructor(numbers) {
+  constructor(controller, numbers) {
+    this.controller = controller;
     this.validate(numbers);
     this.#numbers = numbers;
   }

@@ -6,7 +6,7 @@ class Controller {
   constructor() {
     this.view = new View(this);
     this.userNumber = new UserNumber(this);
-    this.lotto = new Lotto();
+    this.lotto = new Lotto(this);
   }
 
   printReadOnlyMessage(type, data) {
