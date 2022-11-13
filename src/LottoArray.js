@@ -1,3 +1,5 @@
+const Lotto = require("./Lotto");
+
 class LottoArray {
   constructor(cash) {
     this.amount = this.countAmount(cash);
@@ -13,6 +15,12 @@ class LottoArray {
     const lottoArray = Array.from({ length: amount }, () => this.makeLotto());
     return lottoArray;
   }
+
+  makeLotto = () => {
+    const randomNumbers = getRandomNumbers();
+    const lotto = new Lotto(randomNumbers);
+    return lotto;
+  };
 }
 
 module.exports = LottoArray;
