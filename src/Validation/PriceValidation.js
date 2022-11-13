@@ -3,7 +3,7 @@ const { PRICE_ERROR_MESSAGE } = require('../lib/Constants');
 
 class PriceValidation extends Validation {
   constructor(answer) {
-    super();
+    super(answer);
     this.answer = answer;
   }
 
@@ -14,7 +14,7 @@ class PriceValidation extends Validation {
   }
 
   checkIsEmpty() {
-    if (this.answer === null || this.answer === undefined || this.answer === '') {
+    if (super.isEmpty()) {
       throw new Error(PRICE_ERROR_MESSAGE.not_valid_answer);
     }
     return true;

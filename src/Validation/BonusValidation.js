@@ -16,7 +16,7 @@ class BonusValidation extends Validation {
   }
 
   checkIsEmpty() {
-    if (this.answer === null || this.answer === undefined || this.answer === '') {
+    if (super.isEmpty()) {
       throw new Error(BONUS_NUMBER_ERROR_MESSAGE.not_valid_answer);
     }
     return true;

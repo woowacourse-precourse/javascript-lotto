@@ -3,7 +3,7 @@ const { WIN_NUMBER_ERROR_MESSAGE } = require('../lib/Constants');
 
 class WinNumbersValidation extends Validation {
   constructor(answer) {
-    super();
+    super(answer);
     this.answer = answer;
   }
 
@@ -15,7 +15,7 @@ class WinNumbersValidation extends Validation {
   }
 
   checkIsEmpty() {
-    if (this.answer === null || this.answer === undefined || this.answer === '') {
+    if (super.isEmpty()) {
       throw new Error(WIN_NUMBER_ERROR_MESSAGE.not_valid_answer);
     }
     return true;
