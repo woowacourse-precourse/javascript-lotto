@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const UserLottos = require("./model/UserLottos");
+const UserLottos = require("./model/Lottos");
 
 class App {
   constructor() {
