@@ -1,8 +1,6 @@
 class Lotto {
   #numbers;
 
-  #result;
-
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
@@ -19,19 +17,13 @@ class Lotto {
     return this.#numbers;
   }
 
-  getResult() {
-    return this.#result;
-  }
-
   calculateNumbers(answerNumbers, bonusNumber) {
     const hit = answerNumbers.filter((number) => this.#numbers.includes(number)).length;
     const bonus = this.#numbers.includes(bonusNumber);
-    // this.#result = this.figureLotteryRewards(hit, bonus);
-    return this.figureLotteryRewards(hit, bonus);
+    return this.figureLotteryRank(hit, bonus);
   }
 
-  figureLotteryRewards(hit, bonus) {
-    // MissionUtils.Console.print(`${hit} ${bonus}`);
+  figureLotteryRank(hit, bonus) {
     if (hit === 6) {
       return 'FIRST';
     }

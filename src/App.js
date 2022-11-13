@@ -74,7 +74,7 @@ class App {
     RANK.forEach((rank) => {
       const count = this.#totalResults.filter((result) => result === rank.rank).length;
       MissionUtils.Console.print(`${rank.description} - ${count}개`);
-      rewards += rank.money * count;
+      // rewards += rank.money * count;
     });
     // MissionUtils.Console.print(`총 수익률은 ${(rewards / this.#paid) * 100}%입니다.`);
   }
