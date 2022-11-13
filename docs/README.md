@@ -30,7 +30,7 @@
 
 ##프로그래밍 요구 사항
 
-    -[] JavaScript 컨벤션 체크
+    -[x] JavaScript 컨벤션 체크
     -[] 최종본에 .prettierignore 파일 삭제
     -[] indent depth 2 초과하는지 체크
     -[] 함수는 한가지 일만

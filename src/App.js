@@ -3,25 +3,21 @@ const MissionUtils = require('@woowacourse/mission-utils');
 
 class App {
   play() {
-    const number_of_lottos = this.get_number_of_lottos();
-    MissionUtils.Console.print(number_of_lottos + '개를 구매했습니다.');
-    const lotto_list = this.generate_lottos(number_of_lottos);
-    lotto_list.forEach((e) => {
+    const NUMBER_OF_LOTTOS = this.get_number_of_lottos();
+    MissionUtils.Console.print(NUMBER_OF_LOTTOS + '개를 구매했습니다.');
+    const LOTTO_LIST = this.generate_lottos(NUMBER_OF_LOTTOS);
+    LOTTO_LIST.forEach((e) => {
       e.print_lotto();
     });
-    const [win_number, bonus_number] = this.get_win_number_and_bonus_number();
-    const matching_list = [];
-    lotto_list.forEach((e) => {
-      matching_list.push(e.matching_number(win_number, bonus_number));
+    const [WIN_NUMBER, BONUS_NUMBER] = this.get_win_number_and_bonus_number();
+    const MATCHING_LIST = [];
+    LOTTO_LIST.forEach((e) => {
+      MATCHING_LIST.push(e.matching_number(WIN_NUMBER, BONUS_NUMBER));
     });
-    const number_match_list = this.match(matching_list); //차례대로 3,4,5, 5+보너스, 6
-    this.print_number_match_list(number_match_list);
-    MissionUtils.Console.print(
-      `총 수익률은 ${this.calculate_percentage(
-        number_of_lottos,
-        number_match_list
-      )}%입니다.`
-    );
+    const NUMBER_MATCH_LIST = this.match(MATCHING_LIST); //차례대로 3,4,5, 5+보너스, 6
+    this.print_number_match_list(NUMBER_MATCH_LIST);
+    MissionUtils.Console.print(`총 수익률은 ${this.calculate_percentage(NUMBER_OF_LOTTOS,NUMBER_MATCH_LIST)}%입니다.`);
+    MissionUtils.Console.close();
   }
 
   get_number_of_lottos() {
@@ -36,13 +32,13 @@ class App {
   }
 
   generate_lottos(number_of_lottos) {
-    const list = [];
+    const LIST = [];
     for (let i = 0; i < number_of_lottos; i++) {
-      list.push(
+      LIST.push(
         new Lotto(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6))
       );
     }
-    return list;
+    return LIST;
   }
 
   get_win_number_and_bonus_number() {
@@ -76,17 +72,17 @@ class App {
     });
   }
   match(list) {
-    const three_match = this.three(list);
-    const four_match = this.four(list);
-    const five_match = this.five(list);
-    const five_and_bonus_match = this.five_and_bonus(list);
-    const six_match = this.six(list);
+    const THREE_MATCH = this.three(list);
+    const FOUR_MATCH = this.four(list);
+    const FIVE_MATCH = this.five(list);
+    const FIVE_AND_BONUS_MATCH = this.five_and_bonus(list);
+    const SIX_MATCH= this.six(list);
     return [
-      three_match,
-      four_match,
-      five_match,
-      five_and_bonus_match,
-      six_match,
+      THREE_MATCH,
+      FOUR_MATCH,
+      FIVE_MATCH,
+      FIVE_AND_BONUS_MATCH,
+      SIX_MATCH,
     ];
   }
   three(list) {
@@ -147,14 +143,14 @@ class App {
   }
 
   calculate_percentage(number_lotto, number_match) {
-    const price = number_lotto * 1000;
+    const PRICE = number_lotto * 1000;
     let earn =
       number_match[0] * 5000 +
       number_match[1] * 50000 +
       number_match[2] * 1500000 +
       number_match[3] * 30000000 +
       number_match[4] * 2000000000;
-    let earn_rate = earn / price;
+    let earn_rate = earn / PRICE;
     earn_rate = earn_rate * 100;
     return Math.round(earn_rate * 10) / 10;
   }
