@@ -11,11 +11,6 @@ class LottoSeller {
     this.lottoArray = [];
   }
 
-  countBuying(money) {
-    const NUMBER = money / 1000;
-    Console.print(`\n${NUMBER}개를 구매했습니다.`);
-  }
-
   printLottos(money) {
     const NUMBER = money / 1000;
 
