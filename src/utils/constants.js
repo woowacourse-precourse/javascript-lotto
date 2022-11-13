@@ -3,6 +3,14 @@ const AMOUNT_UNIT = 1000;
 const MIN_NUMBER = 1;
 const MAX_NUMBER = 45;
 
+const REWARD = {
+  FIRST: 2000000000,
+  SECOND: 30000000,
+  THIRD: 1500000,
+  FOURTH: 50000,
+  FIFTH: 5000,
+};
+
 const MESSAGE = {
   ENTER_PURCHASE_AMOUNT: "구입금액을 입력해 주세요.\n",
   ENTER_WINNING_NUMBERS: "당첨 번호를 입력해 주세요.\n",
@@ -34,6 +42,7 @@ const ERROR = {
   DUPLICATED_BONUS: "[ERROR] 보너스 번호는 당첨 번호와 다른 숫자여야 합니다.",
 };
 
+Object.freeze(REWARD);
 Object.freeze(MESSAGE);
 Object.freeze(STATISTICS);
 Object.freeze(ERROR);
@@ -43,6 +52,7 @@ module.exports = {
   AMOUNT_UNIT,
   MIN_NUMBER,
   MAX_NUMBER,
+  REWARD,
   MESSAGE,
   STATISTICS,
   ERROR,
