@@ -25,6 +25,31 @@ const getLottoNumber = (count) => {
 }
 
 const MissionUtils = require("@woowacourse/mission-utils");
-getLottoNumber(3);
+MissionUtils.Console.readLine('구입 금액을 입력해 주세요.\n', (money) => {
+  const count = Math.floor(money / 1000);
+  let winNumbers = [];
+  let bonusNumber;
+  MissionUtils.Console.print(`${count}개를 구매했습니다.`);
+  const numbers = getLottoNumber(count);
+  numbers.forEach(lotto => {
+    MissionUtils.Console.print(lotto);
+  });
+
+  MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (numbers) => {
+    numbers = numbers.split(',');
+    // MissionUtils.Console.print(numbers);
+    let intNumber = numbers.map((x) => parseInt(x));
+    // MissionUtils.Console.print(intNumber);
+    winNumbers = intNumber;
+    // MissionUtils.Console.print('\n');
+    // MissionUtils.Console.close();
+  });
+  MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.\n', (bonus) => {
+    bonusNumber = bonus;
+    MissionUtils.Console.print('\n');
+  });
+
+});
+// getLottoNumber(3);
 // const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
 module.exports = Lotto;
