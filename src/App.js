@@ -15,8 +15,7 @@ class App {
       this.pay = +payStr;
       const lottoCnt = getCountByPay(this.pay);
 
-      this.createLottos(lottoCnt);
-      this.pickNumbers();
+      this.createLottos(lottoCnt).pickNumbers();
     });
   }
 
@@ -28,6 +27,8 @@ class App {
       Console.print(`[${randomNumbers.join(", ")}]`);
       this.#lottos.push(new Lotto(randomNumbers));
     }
+
+    return this;
   }
 
   pickNumbers() {
