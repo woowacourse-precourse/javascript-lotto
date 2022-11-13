@@ -4,8 +4,7 @@ const Lotto = require('./Lotto');
 const BonusNumber = require('./BonusNumber');
 const WinningChecker = require('./WinningChecker');
 const RateOfReturnCalculator = require('./RateOfReturnCalculator');
-const { print, close } = require('./utils/utils');
-const { Console } = require('@woowacourse/mission-utils');
+const { print, close, input, printCountOfLottos } = require('./utils/utils');
 const { MESSAGE } = require('./utils/constants');
 
 class App {
@@ -23,8 +22,8 @@ class App {
   }
 
   inputCash() {
-    Console.readLine(MESSAGE.INPUT_CASH, (inputtedCash) => {
-      this.findCountOfLottos(inputtedCash);
+    input(MESSAGE.INPUT_CASH, (cash) => {
+      this.findCountOfLottos(cash);
     });
   }
 
@@ -48,7 +47,7 @@ class App {
 
   printLottos() {
     print('');
-    print(this.countOfLottos + MESSAGE.COUNT_OF_PURCHASED_LOTTOS);
+    printCountOfLottos(this.countOfLottos);
     this.purchasedLottos.map((lotto) => {
       print(
         `[${lotto[0]}, ${lotto[1]}, ${lotto[2]}, ${lotto[3]}, ${lotto[4]}, ${lotto[5]}]`
@@ -60,9 +59,9 @@ class App {
   }
 
   inputWinningNumbers() {
-    Console.readLine(MESSAGE.INPUT_LOTTO_NUMBERS, (input) => {
-      input = input.split(',').map((num) => Number(num));
-      let newLotto = new Lotto(input);
+    input(MESSAGE.INPUT_LOTTO_NUMBERS, (numbers) => {
+      numbers = numbers.split(',').map((num) => Number(num));
+      let newLotto = new Lotto(numbers);
       this.winningNumbers = newLotto.getLottoNumbers();
 
       this.inputBonusNumber();
@@ -70,8 +69,8 @@ class App {
   }
 
   inputBonusNumber() {
-    Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (input) => {
-      let newBonusNumber = new BonusNumber(Number(input), this.winningNumbers);
+    input(MESSAGE.INPUT_BONUS_NUMBER, (number) => {
+      let newBonusNumber = new BonusNumber(Number(number), this.winningNumbers);
       this.bonusNumber = newBonusNumber.getBonusNumber();
 
       this.checkWinning();
