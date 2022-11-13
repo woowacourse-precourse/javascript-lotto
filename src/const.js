@@ -1,4 +1,4 @@
-const PRIZE_NAME = ['fail', 'first', 'second', 'third', 'forth', 'fifth'];
+const PRIZE_NAME = ['fail', 'fifth', 'forth', 'third', 'first'];
 
 const PRIZE_REWARD = Object.freeze({
   first: 2000000000,

@@ -1,4 +1,6 @@
+const { PRIZE_NAME, PRIZE_REWARD } = require('./const.js');
 const { print } = require('./util');
+
 class Lotto {
   #numbers;
 
@@ -17,11 +19,11 @@ class Lotto {
     const isCorrectNumbers = number => this.#numbers.indexOf(number) !== -1;
     const correctNumbersCount = lotto.filter(number => isCorrectNumbers(number)).length;
     const isCorrectBonusNumber = this.#numbers.indexOf(bonusNumber) !== -1;
-    const isFail = correctNumbersCount < 3;
+    const prizeIndex = Math.max(correctNumbersCount - 2, 0);
+    const isFail = prizeIndex === 0;
     const isSecond = correctNumbersCount === 5 && isCorrectBonusNumber;
-    const prize = { 3: 'fifth', 4: 'fourth', 5: 'thrid', 6: 'first' };
 
-    return isFail ? 'fail' : isSecond ? 'second' : prize[correctNumbersCount];
+    return isFail ? 'fail' : isSecond ? 'second' : PRIZE_NAME[prizeIndex];
   }
 
   getStatistics({ myLottos, bonusNumber }) {
@@ -35,21 +37,31 @@ class Lotto {
     return resultLotto;
   }
 
+  getRateOfReturn({ payment, resultLotto }) {
+    const REWARD = {
+      fifth: 5000,
+      fourth: 50000,
+      third: 1500000,
+      second: 30000000,
+      first: 2000000000,
+    };
+    const prizes = Object.keys(resultLotto);
+    const sumReward = prizes.reduce((totalReward, prize) => {
+      const prizeReward = REWARD[prize];
+      const prizeCount = resultLotto[prize];
+      console.log(totalReward, prize, prizeReward, prizeCount);
+      return (totalReward += prizeReward * prizeCount);
+    }, 0);
+    const rate = (Math.round((sumReward - payment) / payment) * 100) / 100;
+    console.log(rate);
+  }
   printStatistics({ myLottos, bonusNumber }) {
     const resultLotto = this.getStatistics({ myLottos, bonusNumber });
-
-    const PRIZE_PRINT_TEMPLETE = {
-      fifth: '3개 일치 (5,000원)',
-      fourth: '4개 일치 (50,000원)',
-      third: '5개 일치 (1,500,000원)',
-      second: '5개 일치, 보너스 볼 일치 (30,000,000원)',
-      first: '6개 일치 (2,000,000,000원)',
-    };
+    const payment = myLottos.length * 1000;
 
     print('당첨 통계\n---');
-    Object.keys(PRIZE_PRINT_TEMPLETE).forEach(prize =>
-      print(`${PRIZE_PRINT_TEMPLETE[prize]} - ${resultLotto[prize]}개`),
-    );
+    Object.keys(PRIZE).forEach(rank => print(templeteLotto(rank, resultLotto[rank])));
+    print(`총 수익률은 ${this.getRateOfReturn({ payment, resultLotto })}%입니다.`);
   }
 }
 

@@ -32,6 +32,7 @@ class App {
     await this.inputLottoNumber();
     await this.inputBonusNumber();
     this.#lotto.printStatistics({ myLottos: this.#myLottos, bonusNumber: this.#bonusNumber });
+
     closeReadLine();
   }
 }
