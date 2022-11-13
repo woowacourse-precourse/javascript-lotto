@@ -31,7 +31,7 @@ class App {
 
   inputBonusNumber(){
     Console.readLine('보너스 번호를 입력해 주세요.\n', (input) => {
-      this.input_lotto = new BonusNumber(input);
+      this.input_lotto = new BonusNumber(input, input_lotto);
       this.input_bonus = input;
     });
   }

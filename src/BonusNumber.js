@@ -1,9 +1,9 @@
 class BonusNumber{
     bonusnumber;
   
-    constructor(numbers, lotto) {
-      this.validate(numbers, lotto);
-      this.#numbers = numbers;
+    constructor(bonusnumber, lotto) {
+      this.validate(bonusnumber, lotto);
+      this.bonusnumber = bonusnumber;
     }
   
     validate(numbers, lotto) {
