@@ -31,7 +31,8 @@ const PRIZE_MONEY_CURRENCY = Object.freeze({
 });
 
 const ERROR_MESSAGE = Object.freeze({
-  inputPaymentAmountValidate: "[ERROR] 구입 금액은 1000원 단위로 숫자만 입력해주세요.",
+  unitOfThousand: "[ERROR] 구입 금액은 1000원 단위의 숫자만 입력해주세요.",
+  naturalNumber: "[ERROR] 구입 금액은 1000원 이상의 금액을 입력해주세요",
   lottoRange: "[ERROR] 1에서 45까지의 번호를 입력해주세요",
   lottoCountOnlySix: "[ERROR] 로또 번호는 6개여야 합니다.",
   numberWithoutDuplicate: "[ERROR] 중복없이 숫자를 입력해주세요.",

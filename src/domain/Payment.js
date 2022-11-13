@@ -4,13 +4,20 @@ const Lotto = require("./Lotto");
 
 class Payment {
   constructor(payMoney) {
+    this.validateUnitOfThousand(payMoney);
+    this.validateNaturalNumber(payMoney);
     this.payMoney = payMoney;
-    this.validateInputMoney(this.payMoney);
   }
 
-  validateInputMoney(payMoney) {
-    if (payMoney % LOTTO_RANGE.pricePerLotto !== 0 || payMoney === "0") {
-      throw new Error(ERROR_MESSAGE.inputPaymentAmountValidate);
+  validateUnitOfThousand(payMoney) {
+    if (payMoney % LOTTO_RANGE.pricePerLotto !== 0) {
+      throw new Error(ERROR_MESSAGE.unitOfThousand);
+    }
+  }
+
+  validateNaturalNumber(payMoney) {
+    if (!new RegExp("^[1-9][0-9]+$").test(payMoney)) {
+      throw new Error(ERROR_MESSAGE.naturalNumber);
     }
   }
 
