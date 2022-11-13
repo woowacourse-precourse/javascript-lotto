@@ -37,6 +37,11 @@ class UI {
       MissionUtils.Console.print(lottoNumbers);
     });
   }
+
+  static printPurchasedLottoStatus(purchased) {
+    UI.printPurchasedLottoAmount(purchased);
+    UI.printPurchasedLottoList(purchased);
+  }
 }
 
 module.exports = UI;
