@@ -19,6 +19,14 @@ class Lotto {
   toString() {
     return `[${this.#numbers.join(', ')}]`;
   }
+
+  countSameNumber(anotherLotto) {
+    return this.#numbers.filter((myNumber) => anotherLotto.hasNumber(myNumber)).length;
+  }
+
+  hasNumber(number) {
+    return this.#numbers.includes(number);
+  }
 }
 
 module.exports = Lotto;
