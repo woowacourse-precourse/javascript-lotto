@@ -231,9 +231,9 @@ class Lotto {
 ```javascript
 // 프로그램의 현재 상태와 당첨번호를 관리하는 클래스
 class App {
-  #purchaseMoney;
-  #winningNumber;
-  #bonusNumber;
+  #purchaseMoney; // 사용자가 입력한 로또 구입 금액
+  #winningNumber; // 로또 당첨 번호
+  #bonusNumber; // 보너스 번호
 
   play(){}
   winningNumberPhase(){}
@@ -244,11 +244,10 @@ class App {
 ```
 
 - 프로그램의 메인 로직을 따라서 실행합니다
-- 사용자가 값을 입력할 때를 기준으로 로직을 순차적으로 실행합니다
+- **사용자가 값을 입력할 때**를 기준으로 로직을 순차적으로 실행합니다
   시작 - 당첨번호값 입력 - 보너스번호값 입력 - 통계출력 - 게임종료 순
-- 각각의 phase에서는 getValueWithType() 실행합니다
-- 게임에 필요한 값들을 저장합니다.  
-  구입금액, 당첨번호, 보너스번호
+- 각각의 phase에서는 getValueWithType()로 게임에 필요한 값들을 저장합니다.  
+  #purchaseMoney (구입금액), winningNumber (당첨번호),#bonusNumber 보너스번호
 
 </br>
 
@@ -273,7 +272,9 @@ class Input {
 }
 ```
 
-- getValueWitheType() : 입력할 값의 type과, 입력값을 저장할 수 있는 callback함수를 받아서 입력된 값 저장
+- getValueWitheType(type,callback)
+  - type: 입력받을 값의 타입 구입금액, 당첨번호, 보너스번호를 utils/key.js에 미리 상수값으로 작성해두어 값을 가져와 사용
+  - callback : Console.readLine으로 입력된 값을 callback함수의 파라미터로 전달, callback 함수는 값을 저장할 수 있는 함수를 사용.
 
 </br>
 
@@ -294,10 +295,9 @@ class ExceptionrCheck {
 }
 ```
 
-- 예외 처리를 위해 필요한 부모클래스입니다.
-- 자식클래스에서 에러처리를 할 때는 에러처리할 메소드를 만들고 ExceptionrCheck를 super()로 상속받아 사용합니다.
-
-</br>
+- 예외 처리를 위해 구현된 부모클래스입니다.
+- 사용법은 아래 핵심 로직에 기록되어있습니다
+- </br>
 
 ### 2. 핵심 로직
 
@@ -321,25 +321,53 @@ class ExceptionrCheck {
 
 ### 에러 처리 클래스 생성 로직
 
+#### 1. 클래스 구조, 사용방법
+
 ```javascript
 
-    //클래스 정리
-    부모 클래스 == ExceptionCheck 클래스
-    자식 클래스 == 예외처리를 구현할 클래스
-
     //전처리 과정
-
-    자식 클래스) 프로토타입 메소드 작성
+    자식 클래스) 예외 체크 로직이 있는 프로토타입 메소드가 작성되어있어야함
                 ↓
     자식 클래스) super()로 ExceptionCheck 클래스 상속
                 ↓
     부모 클래스) Object.getProtoTypeOf(this)로 자식 클래스의 프로토타입 메소드 #exceptionCheckmethodList에 저장
-
-    //사용과정
-    자식 클래스) 인스턴스 생성 후 부모 클래스의 check() 메소드로 예외처리 메소드를 불러오기
                 ↓
-    부모 클래스) check 메소드는 #isMethodIn으로 메서드 존재 여부 확인 이후에 자식클래스에서 만든 예외처리 프로토타입 메소드 반환
+    부모 클래스) ExcetionCheck의 check() 메소드는  자식클래스에 예외 체크 메소드가 존재하면, 그 메소드를 실행시켜주는 역할을 함.
 
+
+```
+
+#### 2. 실제 예외 체크 클래스 생성 예시
+
+```javascript
+    //부모 클래스 -> ExceptionCheck 클래스
+    //자식 클래스 -> Input 클래스 예외처리를 구현할 클래스
+    class InputExceptionCheck() extends ExceptionCheck {
+
+      purchaseMoney(checkTarget){}
+      winningNumber(checkTarget){}
+      bonuseNumber(checkTarget, param)
+      /*
+      ...
+      추가하고 싶은 예외 사항이 있다면, 아래에 메소드를 추가하여 체크가 가능
+      */
+
+    }
+```
+
+```javascript
+// Input 클래스 내에서 예외 체크 하는 상황
+class Input {
+  static getValueWithType(type, callback, errorCheckparam) {
+    this.readLine(question[type], (string) => {
+      const trimmedString = string.trim();
+      new InputExceptionCheck().check(type, trimmedString, errorCheckparam);
+      // App.js에서 넘겨받은 type, readLine에서 전해주는 string 입력값, app.js에서 넘겨주는 파라미터값으로 예외 체크 메서드 실행
+      callback(trimmedString);
+    });
+  }
+  /*...*/
+}
 ```
 
 </details open>
@@ -361,7 +389,7 @@ class ExceptionrCheck {
 ### 📍 예외 처리 기능
 
 - [x] 예외 처리 기능에 사용되는 클래스 구현
-- [ ] 입력값 예외 처리 기능 구현
+- [x] 입력값 예외 처리 기능 구현
 - [ ] 랜덤값 예외 처리 기능 구현
 - [ ] 당첨값 예외 처리 기능 구현
 
@@ -385,17 +413,10 @@ class ExceptionrCheck {
     <summary>
         <h2 style="display:inline-block;"> 📜 테스트 목록  </h2>
         </br>
-        <description> 작성예정입니다. </description>
     </summary>
-
-</br>
 
 </br>
 
 </details open>
 
 ---
-
-```
-
-```
