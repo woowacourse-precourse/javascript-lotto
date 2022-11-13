@@ -76,6 +76,7 @@ class App {
       this.calcOverlapNum();
       this.getRankCountNum();
       this.calcProfit();
+      this.printRanking();
     })
   }
 
@@ -120,6 +121,17 @@ class App {
     let profit = this.countRankList[0] * 5000 + this.countRankList[1] * 50000 + this.countRankList[2] * 1500000 + this.countRankList[3] * 30000000 + this.countRankList[4] * 2000000000;
     let calProfitRates = ((profit  / this.purchaseAmount) * 100)
     return this.profitRates = calProfitRates.toFixed(1);
+  }
+
+  printRanking() {
+    Console.print('당첨통계');
+    Console.print('---');
+    Console.print(`3개 일치 (5,000원) - ${this.countRankList[0]}개`);
+    Console.print(`4개 일치 (50,000원) - ${this.countRankList[1]}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${this.countRankList[2]}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.countRankList[3]}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${this.countRankList[4]}개`);
+    Console.print(`총 수익률은 ${this.profitRates}%입니다.`);
   }
 }
 let app = new App();
