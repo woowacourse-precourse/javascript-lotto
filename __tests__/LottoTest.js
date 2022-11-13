@@ -1,6 +1,6 @@
 const Lotto = require('../src/Lotto');
 
-describe('로또 클래스 테스트', () => {
+describe('로또 클래스 예외 테스트', () => {
   test('로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.', () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 6, 7]);
@@ -31,5 +31,25 @@ describe('로또 클래스 테스트', () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5]);
     }).toThrow('[ERROR]');
+  });
+});
+
+describe('로또 클래스 수익률 계산 테스트', () => {
+  test('7장으로 4등과 5등에 당첨되면 수익률 785.7%이다.', () => {
+    const result = [1, 1, 0, 0, 0];
+    const money = 7000;
+    const profit = new Lotto([1, 2, 3, 4, 5, 6]).calculateProfitRate(result, money);
+
+    expect(profit).toBe('785.7');
+  });
+});
+
+describe('로또 클래스 수익률 계산 테스트', () => {
+  test('6장으로 5등에 당첨되면 수익률 83.3%이다.', () => {
+    const result = [1, 0, 0, 0, 0];
+    const money = 6000;
+    const profit = new Lotto([1, 2, 3, 4, 5, 6]).calculateProfitRate(result, money);
+
+    expect(profit).toBe('83.3');
   });
 });
