@@ -1,6 +1,10 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const { PURCHASE_AMOUNT_ERROR } = require("./Constants");
-const { checkPurchaseAmount } = require("./Validation");
+const {
+  checkPurchaseAmount,
+  checkLottoNumbers,
+  checkBonusNumber,
+} = require("./Validation");
 
 class LottoView {
   inputPurchaseAmount(resolve) {
@@ -12,12 +16,14 @@ class LottoView {
 
   inputLottoNumbers(resolve) {
     MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (answer) => {
+      checkLottoNumbers(answer);
       resolve(answer);
     });
   }
 
   inputBonusNumber(resolve) {
     MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (answer) => {
+      checkBonusNumber(answer);
       resolve(answer);
       MissionUtils.Console.close();
     });

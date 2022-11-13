@@ -39,7 +39,12 @@ const checkLottoNumbers = (numbers) => {
   }
 };
 
+const checkBonusNumber = (number) => {
+  if (checkNaN(number)) throw NAN_ERROR;
+};
+
 module.exports = {
   checkPurchaseAmount: checkPurchaseAmount,
   checkLottoNumbers: checkLottoNumbers,
+  checkBonusNumber: checkBonusNumber,
 };
