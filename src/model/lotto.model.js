@@ -18,6 +18,17 @@ class LottoModel {
   countLotto(input) {
     return input / 1000;
   }
+
+  getLottoNumPrint(countLotto) {
+    let stringSortNumber = `${countLotto}개를 구매했습니다\n`;
+
+    for (let i = 0; i < countLotto; i++) {
+      const sortNumbers = MissionUtils.Random.pickUniqueNumbersInRange( 1, 45, 6 ).sort((prevNum, nextNum) => prevNum - nextNum);
+      stringSortNumber += `[${sortNumbers.join(", ").trim()}]\n`;
+    }
+
+    return MissionUtils.Console.print(stringSortNumber);
+  }
 }
 
 module.exports = LottoModel;

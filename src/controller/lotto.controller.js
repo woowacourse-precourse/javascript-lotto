@@ -11,9 +11,10 @@ class LottoController {
   }
 
   getPayInput() {
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (input) => {
+    MissionUtils.Console.readLine('구입금액을 입력해 주세요.', (input) => {
       MissionUtils.Console.print(this.model.inputValidCheck(input));
       this.view.amountBuyLotto(input);
+
     });
   }
 }

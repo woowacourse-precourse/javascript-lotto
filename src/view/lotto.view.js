@@ -8,7 +8,8 @@ class LottoView {
 
   amountBuyLotto(input) {
     let countLotto = this.model.countLotto(input);
-    MissionUtils.Console.print(`${countLotto}개를 구매했습니다`);
+
+    this.model.getLottoNumPrint(countLotto);
   }
 }
 
