@@ -14,6 +14,12 @@ function isNumeric(str) {
   return !isNaN(str) && !isNaN(parseFloat(str));
 }
 
+function toLottoNumber(number){
+  if(!isNumeric) throw new Error("[ERROR] 로또 번호는 1부터 45까지 수 중 하나이어야 합니다.");
+  if(number > 45 && number < 1) throw new Error("[ERROR] 로또 번호는 1부터 45까지 수 중 하나이어야 합니다.");
+  return Number(number);
+}
+
 function moneyValidationCheck(money){
   if(!isNumeric(money)){
     throw new Error("[ERROR] 구입금액은 숫자이어야 합니다. : " + money);
@@ -27,13 +33,31 @@ function moneyValidationCheck(money){
   return Number(money);
 }
 
+function lottoValidationCheck(lottery){
+  lottery.sort(function(a, b) {
+    return a - b;
+  });
+  if(lottery.length != 6){
+    throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+  }
+  const lotteryToSet = new Set(lottery);
+  if(lotteryToSet.size < 6){
+    throw new Error("[ERROR] 로또 번호는 중복될 수 없습니다.");
+  }
+  lottery.forEach(number => toLottoNumber(number));
+  return lottery;
+}
+
 function issueLotto(count){
+  var purchasedLottoArray = [];
   MissionUtils.Console.print("" + count + "개를 구매했습니다.");
   for(var i = 0; i < count; i++){
     const lotto = new Lotto(generateRandomNumbers());
     const numberToString = "[" + lotto.getNumbers().join(", ") + "]";
     MissionUtils.Console.print(numberToString);
+    purchasedLottoArray.push(lotto);
   }
+  return purchasedLottoArray;
 }
 
 function generateRandomNumbers(){
@@ -44,11 +68,38 @@ function generateRandomNumbers(){
   return numberArray;
 }
 
+function getWinningNumber(){
+  var inputNumbers = [];
+  MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (input) => {
+    inputNumbers = lottoValidationCheck(input.split(',')).map(Number);
+  });
+  return inputNumbers;
+}
+
+function getBounusNumber(winningNumber){
+  var bonusNumber = 0;
+  MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (input) => {
+    bonusNumber = toLottoNumber(input);
+    if(winningNumber.includes(bonusNumber)){
+      throw new Error("[ERROR] 로또 번호는 중복될 수 없습니다.");
+    }
+  });
+  return bonusNumber;
+}
+
+function calculateProfit(lottoArray, winningNumber, bonusNumber){
+  for(var i = 0; i < lottoArray.size; i++){
+    
+  }
+}
+
 class App {
   constructor() {
     this.winningNumber = [];
+    this.bonusNumber = 0;
     this.lottoCount = 0;
     this.lottoArray = [];
+    this.profit = 0;
   }
   play() {
     this.playLotto();
@@ -56,6 +107,9 @@ class App {
   playLotto(){
     this.lottoCount = getLottoPurchaseAmount() / 1000;
     this.lottoArray = issueLotto(this.lottoCount);
+    this.winningNumber = getWinningNumber();
+    this.bonusNumber = getBounusNumber(this.winningNumber);
+    this.profit = calculateProfit();
   }
 }
 
