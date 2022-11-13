@@ -51,8 +51,8 @@ class IsResult {
       if(count === 6) result[1].count++
       count = 0;
 
-      for(let i=1; i<6; i++) totalWin += LOTTO_PRIZE[i] * result[i].count
     });
+    for(let i=1; i<6; i++) totalWin += LOTTO_PRIZE[i] * result[i].count
     this.resultPrint(result, totalWin);
   }
 }
