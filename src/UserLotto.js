@@ -23,6 +23,23 @@ class UserLotto {
   getUserLottoList() {
     return this.userLottoList;
   }
+
+  calculateMatchResult(countResult) {
+    const matchResult = {
+      3: 0,
+      4: 0,
+      5: 0,
+      6: 0,
+      containBonus: 0,
+    };
+    for (let index = 0; index < countResult.length; index++) {
+      if (countResult[index].length > 1) matchResult["containBonus"]++;
+      if (countResult[index] in matchResult) {
+        matchResult[`${countResult[index]}`]++;
+      }
+    }
+    return matchResult;
+  }
 }
 
 module.exports = UserLotto;
