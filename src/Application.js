@@ -44,7 +44,9 @@ class Application {
   static earningsRate(purchaseAmount, earnings) {
     const HUNDRED = 100;
 
-    return (this.convertNumber(earnings) / this.convertNumber(purchaseAmount)) * HUNDRED;
+    const result = (this.convertNumber(earnings) / this.convertNumber(purchaseAmount)) * HUNDRED;
+
+    return Math.round(result * HUNDRED) / HUNDRED;
   }
 
   static sortAscending(target) {
