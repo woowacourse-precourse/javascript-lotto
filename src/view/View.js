@@ -32,6 +32,18 @@ class View {
       this.controller.setWinningNumber(userInput);
     });
   }
+
+  printWinningNumberCommaNumberErrorMessage() {
+    throw new Error(messages.WINNING_NUMBER_ERROR_COMMA_NUMBER_MESSAGE);
+  }
+
+  printWinningNumberRangeErrorMessage() {
+    throw new Error(messages.WINNING_NUMBER_ERROR_RANGE_MESSAGE);
+  }
+
+  printWinningNumberUniqueErrorMessage() {
+    throw new Error(messages.WINNING_NUMBER_ERROR_UNIQUE_NUMBERS_MESSAGE);
+  }
 }
 
 module.exports = View;
