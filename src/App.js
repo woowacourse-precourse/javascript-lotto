@@ -28,18 +28,15 @@ class App {
   }
 
   // 구입 금액에 해당하는 만큼 로또 발행, 출력
-  bonusNumbers = [];
   lottosNumbers = [];
 
   creatLotto() {
     for (let i = 0; i < moneyChange; i++) {
-      const lottoNumber = Random.pickUniqueNumbersInRange(1, 45, 7);
-      const bonusNumber = lottoNumber.splice(6, 1);
-      this.bonusNumbers.push(bonusNumber);
+      const lottoNumber = Random.pickUniqueNumbersInRange(1, 45, 6);
       const lottoNumberSort = lottoNumber.sort(function (a, b) {
         return a - b;
       });
-      this.allLottosNumbers.push(lottoNumberSort);
+      this.lottosNumbers.push(lottoNumberSort);
     }
     console.print(lottosNumbers);
   }
