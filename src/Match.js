@@ -6,6 +6,7 @@ class Match {
   matchRecord = [0, 0, 0, 0];
   bonusFlag = 0;
 
+  // 자동 발행된 로또 번호들이 당첨 번호와 서로 일치하는 게 있는지 검사
   countMatchingNumbers(games) {
     let count = 0;
     const winNumbers = UI.winningNumbers();

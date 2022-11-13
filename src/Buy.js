@@ -6,6 +6,7 @@ class Buy {
   gameCount;
   gameNumbers;
 
+  // 구매 금액에 따른 로또 발행 횟수 계산
   countCalculate() {
     const moneyInput = UI.lottoBuy();
     const money = new Money(Number(moneyInput));
@@ -13,6 +14,7 @@ class Buy {
     UI.printBuying(this.gameCount);
   }
 
+  // 구매 후 로또 번호 랜덤으로 자동 발행
   randomNumbers() {
     let numbers = new Array(this.gameCount);
     for (let i = 0; i < this.gameCount; i++) {
