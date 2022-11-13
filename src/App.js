@@ -11,9 +11,9 @@ class App {
     '6개 일치 (2,000,000,000원)': 0,
   };
 
-  getCount() {
+  getLottoCount() {
     Console.readLine('구입금액을 입력해 주세요.\n', (input) => {
-      this.amount = input;
+      this.purchaseAmount = input;
       this.lottoCount = input / 1000;
     });
   }
@@ -68,8 +68,8 @@ class App {
   }
 
   getEarningRate() {
-    const { amount, earning } = this;
-    const earningRate = (earning / amount) * 100;
+    const { purchaseAmount, earning } = this;
+    const earningRate = (earning / purchaseAmount) * 100;
 
     this.earningRate = +(Math.round(earningRate + 'e+1') + 'e-1');
   }
