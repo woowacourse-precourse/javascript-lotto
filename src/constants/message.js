@@ -28,4 +28,5 @@ const ERROR_MESSAGE = {
 module.exports = {
   READ_MESSAGE,
   RESULT_MESSAGE,
+  ERROR_MESSAGE,
 };

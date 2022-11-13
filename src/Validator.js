@@ -1,20 +1,21 @@
+const { ERROR_MESSAGE } = require('./constants/message');
 const { LOTTO_PRICE } = require('./constants/price');
 
 class Validator {
   static checkNumber(number) {
-    if (isNaN(number)) throw new Error('[ERROR] 숫자를 입력해야 합니다.');
-    if (Number.isInteger(number) === false) throw new Error('[ERROR] 정수를 입력해야 합니다.');
+    if (isNaN(number)) throw new Error(ERROR_MESSAGE.number);
+    if (Number.isInteger(number) === false) throw new Error(ERROR_MESSAGE.integer);
   }
 
   static checkLottoNumber(number) {
     this.checkNumber(number);
-    if (number < 1 || number > 45) throw new Error('[ERROR] 로또 범위의 숫자를 입력해야 합니다.');
+    if (number < 1 || number > 45) throw new Error(ERROR_MESSAGE.lottoRange);
   }
 
   static checkLottoNumbers(numbers) {
-    if (numbers.length !== 6) throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+    if (numbers.length !== 6) throw new Error(ERROR_MESSAGE.lottoSize);
     const set = new Set(numbers);
-    if (set.size !== 6) throw new Error('[ERROR] 로또 번호는 중복이 없어야 합니다.');
+    if (set.size !== 6) throw new Error(ERROR_MESSAGE.unique);
 
     numbers.forEach((number) => {
       this.checkLottoNumber(number);
@@ -23,14 +24,13 @@ class Validator {
 
   static checkBonusNumber(bonusNumber, winNumbers) {
     this.checkLottoNumber(bonusNumber);
-    if (winNumbers.includes(bonusNumber))
-      throw new Error('[ERROR] 로또 번호는 중복이 없어야 합니다.');
+    if (winNumbers.includes(bonusNumber)) throw new Error(ERROR_MESSAGE.unique);
   }
 
   static checkPay(pay) {
     this.checkNumber(pay);
-    if (pay < LOTTO_PRICE) throw new Error('[ERROR] 로또 단가 이상 입력해야 합니다.');
-    if (pay % LOTTO_PRICE !== 0) throw new Error('[ERROR] 로또 단가에 나누어 떨어져야 합니다.');
+    if (pay < LOTTO_PRICE) throw new Error(ERROR_MESSAGE.payRange);
+    if (pay % LOTTO_PRICE !== 0) throw new Error(ERROR_MESSAGE.payDivide);
   }
 }
 
