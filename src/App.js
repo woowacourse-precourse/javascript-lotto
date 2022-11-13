@@ -1,6 +1,5 @@
 const LottoGameController = require('./controller/LottoGameController');
 const LottoGameModel = require('./model/LottoGameModel');
-const LottoGameView = require('./view/LottoGameView');
 
 class App {
   constructor() {
