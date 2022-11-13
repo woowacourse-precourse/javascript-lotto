@@ -126,6 +126,39 @@ class App {
       .map((item, idx) => item * WINNING_REWARDS[idx])
       .reduce((a, b) => a + b);
   }
+
+  //당첨통계 출력
+  printWinningStatics() {
+    const profit = this.calculateProfit();
+
+    Console.print(STATISTICS_MARK);
+    Console.print("---");
+    this.printWinningResult();
+    this.printProfit(profit);
+  }
+
+  printWinningResult() {
+    let resultStr;
+    let cnt = WINNING_RANK.length;
+
+    for (let i = 1; i <= cnt; i++) {
+      Console.print(this.resultStr(cnt - i));
+    }
+  }
+
+  resultStr(i) {
+    return `${WINNING_RANK[i]} (${this.priceToString(WINNING_REWARDS[i])}) - ${
+      this.rank[i]
+    }개`;
+  }
+
+  priceToString(price) {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원";
+  }
+
+  printProfit(profit) {
+    Console.print(`총 수익률은 ${profit}%입니다.`);
+  }
 }
 
 module.exports = App;
