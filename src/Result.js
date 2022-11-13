@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const { PRIZE, RANK } = require("./constant");
 class Result {
   constructor(myMoney) {
     this.myMoney = myMoney;
@@ -37,20 +38,20 @@ class Result {
 
   printResult(collectCount) {
     const LottoMoney =
-      collectCount[0] * 5000 +
-      collectCount[1] * 50_000 +
-      collectCount[2] * 1_500_000 +
-      collectCount[3] * 30_000_000 +
-      collectCount[4] * 2_000_000_000;
+      collectCount[0] * PRIZE.FIFTH +
+      collectCount[1] * PRIZE.FOURTH +
+      collectCount[2] * PRIZE.THIRD +
+      collectCount[3] * PRIZE.SECOND +
+      collectCount[4] * PRIZE.FIRST;
     const rate = ((LottoMoney / this.myMoney) * 100).toFixed(1);
     MissionUtils.Console.print(`
 당첨 통계
 ---
-3개 일치 (5,000원) - ${collectCount[0]}개
-4개 일치 (50,000원) - ${collectCount[1]}개
-5개 일치 (1,500,000원) - ${collectCount[2]}개
-5개 일치, 보너스 볼 일치 (30,000,000원) - ${collectCount[3]}개
-6개 일치 (2,000,000,000원) - ${collectCount[4]}개
+${RANK.FIFTH} - ${collectCount[0]}개
+${RANK.FOURTH} - ${collectCount[1]}개
+${RANK.THIRD} - ${collectCount[2]}개
+${RANK.SECOND} - ${collectCount[3]}개
+${RANK.FIRST} - ${collectCount[4]}개
 총 수익률은 ${rate}%입니다.
 `);
     this.close();

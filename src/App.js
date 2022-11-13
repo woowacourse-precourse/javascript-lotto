@@ -1,6 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const Result = require("./Result");
+const { MESSAGE } = require("./constant");
 class App {
   constructor() {
     this.myMoney = 0;
@@ -12,7 +13,7 @@ class App {
 
   inputAmount() {
     let piece = 0;
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요. ", (answer) => {
+    MissionUtils.Console.readLine(MESSAGE.INPUT_AMOUNT, (answer) => {
       if (+answer % 1000 > 0) {
         throw new Error("[ERROR] 천원 단위로만 구매 가능합니다.");
       }
@@ -50,7 +51,7 @@ class App {
 
   inputLottoNumber(bundle) {
     let numbers = [];
-    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (answer) => {
+    MissionUtils.Console.readLine(MESSAGE.INPUT_LOTTO, (answer) => {
       let answerArray = answer.split(",");
       if (new Lotto(answerArray)) {
         answerArray.forEach((x) => numbers.push(+x));
@@ -61,7 +62,7 @@ class App {
 
   inputBonusNumber(bundle, numbers) {
     let bonus = 0;
-    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (answer) => {
+    MissionUtils.Console.readLine(MESSAGE.INPUT_BONUS, (answer) => {
       if (numbers.includes(+answer)) {
         throw new Error(
           "[ERROR] 보너스 번호는 입력한 당첨 번호와 중복될 수 없습니다."
