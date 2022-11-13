@@ -5,6 +5,10 @@ class App {
   play() {
     inputPurchaseAmount();
   }
+
+  setCandidateNumbers(candidateNumbers) {
+    this.candidateNumbers = candidateNumbers;
+  }
 }
 
 function inputPurchaseAmount() {
@@ -30,6 +34,7 @@ function makeCandidateNumberSets(purchaseNumber) {
     candidateNumberSets.push(makeCandidateNumber());
   }
   printCandidateNumberSets(candidateNumberSets);
+  app.setCandidateNumbers(candidateNumberSets);
 }
 
 function makeCandidateNumber() {
@@ -63,7 +68,7 @@ function inputWinningNumbers() {
     "당첨 번호를 입력해 주세요.\n",
     (inputNumbers) => {
       const winningNumbers = inputNumbers.split(",").map((x) => parseInt(x));
-      const lotto = new Lotto(winningNumbers);
+      const lotto = new Lotto(winningNumbers, null, app.candidateNumbers);
       inputBonusNumber(winningNumbers, lotto);
     }
   );
@@ -77,7 +82,6 @@ function inputBonusNumber(winningNumbers, lotto) {
     }
   );
 }
-
 
 module.exports = App;
 

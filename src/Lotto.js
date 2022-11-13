@@ -3,10 +3,11 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class Lotto {
   #numbers;
 
-  constructor(numbers, bonusNumber) {
+  constructor(numbers, bonusNumber, candidateNumbers) {
     this.validate(numbers);
     this.#numbers = numbers;
-    this.bonusNumber = bonusNumber
+    this.bonusNumber = bonusNumber;
+    this.candidateNumbers = candidateNumbers;
   }
 
   validate(numbers) {
@@ -32,9 +33,9 @@ class Lotto {
     });
   }
 
-  setBonusNumber(numbers, bonusNumber){
-    this.validateBonus(numbers, bonusNumber)
-    this.bonusNumber = bonusNumber
+  setBonusNumber(numbers, bonusNumber) {
+    this.validateBonus(numbers, bonusNumber);
+    this.bonusNumber = bonusNumber;
   }
 
   validateBonus(numbers, bonusNumber) {
@@ -49,12 +50,25 @@ class Lotto {
     if (isNaN(bonusNumber)) {
       throw new Error("[ERROR] 보너스 번호는 숫자여야 합니다.");
     }
-    this.printLottoResult(numbers, bonusNumber)
+    this.computeLottoResult(numbers, bonusNumber, this.candidateNumbers);
   }
-  
-  printLottoResult(){
-    console.log('printLottoResult')
+
+  computeLottoResult(numbers, bonusNumber, candidateNumbers) {
+    console.log(numbers, bonusNumber, candidateNumbers);
+    candidateNumbers.forEach((candidateNumber) => {
+      let countWinningNumber = candidateNumber.filter(x => numbers.includes(x)).length
+      let countBonusNumber = candidateNumber.includes(bonusNumber) ? 1 : 0
+      console.log(countWinningNumber, countBonusNumber)
+    });
   }
+  // printLottoResult(numbers, bonusNumber){
+  //   console.log('printLottoResult',numbers,bonusNumber)
+  //   MissionUtils.Console.print('3개 일치 (5,000원) - ${}개')
+  //   MissionUtils.Console.print('4개 일치 (50,000원) - ${}개')
+  //   MissionUtils.Console.print('5개 일치 (1,500,000원) - ${}개')
+  //   MissionUtils.Console.print('5개 일치, 보너스 볼 일치 (30,000,000원) - ${}개')
+  //   MissionUtils.Console.print('6개 일치 (2,000,000,000원) - ${}개')
+  // }
 }
 
 module.exports = Lotto;
