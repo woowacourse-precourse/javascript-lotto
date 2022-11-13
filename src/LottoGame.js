@@ -8,6 +8,7 @@ class LottoGame {
     this.exception = new Exception();
     this.purchaseCount = 0;
     this.userLottoNumbers = [];
+    this.winningNumber = [];
   }
 
   start() {
@@ -30,7 +31,13 @@ class LottoGame {
       this.userLottoNumbers.push(LOTTO_NUMBER);
     }
 
-    return this.userLottoNumbers;
+    return this.getWinningNumber();
+  }
+
+  getWinningNumber() {
+    MissionUtils.Console.readLine(`${CONSOLE_MESSAGE.winningNumber}\n`, (input) => {
+      this.winningNumber = input.split(',').map(Number);
+    });
   }
 
   print(message) {
