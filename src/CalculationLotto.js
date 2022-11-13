@@ -1,34 +1,36 @@
-const { LOTTO_RESULT_MESSAGE, LOTTO_RESULT_PRICE, LOTTO_RESURL_STATISTICS_MESSAGE } = require('./lib/Constants');
+const {
+  LOTTO_RESULT_MESSAGE, LOTTO_RESULT_PRICE, LOTTO_RESURL_STATISTICS_MESSAGE, LOTTO_RESULT_TYPE,
+} = require('./lib/Constants');
 const { print } = require('./lib/Utils');
 
 class CalculationLotto {
   lottoRate = 0;
 
   lottoResult = {
-    three: {
+    [LOTTO_RESULT_TYPE.three]: {
       count: 0,
       text: LOTTO_RESULT_MESSAGE.result_three_match,
       price: LOTTO_RESULT_PRICE.result_three_number,
     },
-    four: {
+    [LOTTO_RESULT_TYPE.four]: {
       count: 0,
       text: LOTTO_RESULT_MESSAGE.result_four_match,
       price: LOTTO_RESULT_PRICE.result_four_number,
     },
-    five: {
+    [LOTTO_RESULT_TYPE.five]: {
       count: 0,
       text: LOTTO_RESULT_MESSAGE.result_five_match,
       price: LOTTO_RESULT_PRICE.result_five_number,
     },
-    bonus: {
-      count: 0,
-      text: LOTTO_RESULT_MESSAGE.result_five_bonus_match,
-      price: LOTTO_RESULT_PRICE.result_five_bonus_number,
-    },
-    six: {
+    [LOTTO_RESULT_TYPE.six]: {
       count: 0,
       text: LOTTO_RESULT_MESSAGE.result_six_match,
       price: LOTTO_RESULT_PRICE.result_six_number,
+    },
+    [LOTTO_RESULT_TYPE.bonus]: {
+      count: 0,
+      text: LOTTO_RESULT_MESSAGE.result_five_bonus_match,
+      price: LOTTO_RESULT_PRICE.result_five_bonus_number,
     },
   };
 
@@ -46,53 +48,39 @@ class CalculationLotto {
  * @param {Array<number>} winNumberList
  * @param {number} bonusNumber
  */
-  calculationLottoResult(lottoList, winNumberList, bonusNumber) {
+  calculationList(lottoList, winNumberList, bonusNumber) {
     this.winNumberList = winNumberList;
     this.bonusNumber = bonusNumber;
 
-    lottoList.forEach((lotto) => this.matchLottoNumber(lotto));
+    lottoList.forEach((lotto) => this.calculationMatchCount(lotto));
 
     return this;
   }
 
-  matchLottoNumber(lotto) {
-    this.isBonusMatch = !!lotto.filter((number) => number === this.bonusNumber).length;
+  calculationMatchCount(lotto) {
+    const myLottoSet = new Set(lotto);
+    const winNumberSet = new Set(this.winNumberList);
+    const lottoIntersecrt = new Set(lotto.filter((number) => winNumberSet.has(number)));
 
-    const matchLottoList = lotto.filter((number) => this.winNumberList.includes(number));
-    const { length } = matchLottoList;
-
-    this.matchCount = (this.isBonusMatch ? 1 : 0) + length;
+    this.isBonusMatch = myLottoSet.has(this.bonusNumber);
+    this.matchCount = (this.isBonusMatch ? 1 : 0) + lottoIntersecrt.size;
   }
 
   matchResult() {
-    if (this.isBonusMatch && this.matchCount === 5) {
-      this.lottoResult.bonus.count += 1;
-      this.lottoWinPrice += this.lottoResult.bonus.price;
+    if (this.isBonusFiveMatch()) {
+      this.lottoResult[LOTTO_RESULT_TYPE.bonus].count += 1;
+      this.lottoWinPrice += this.lottoResult[LOTTO_RESULT_TYPE.bonus].price;
       return this;
     }
 
-    switch (this.matchCount) {
-      case 3:
-        this.lottoResult.three.count += 1;
-        this.lottoWinPrice += this.lottoResult.three.price;
-        break;
-      case 4:
-        this.lottoResult.four.count += 1;
-        this.lottoWinPrice += this.lottoResult.four.price;
-        break;
-      case 5:
-        this.lottoResult.five.count += 1;
-        this.lottoWinPrice += this.lottoResult.five.price;
-        break;
-      case 6:
-        this.lottoResult.six.count += 1;
-        this.lottoWinPrice += this.lottoResult.six.price;
-        break;
-      default:
-        return this;
-    }
+    this.lottoResult[this.matchCount].count += 1;
+    this.lottoWinPrice += this.lottoResult[this.matchCount].price;
 
     return this;
+  }
+
+  isBonusFiveMatch() {
+    return this.isBonusMatch && this.matchCount === 5;
   }
 
   /**
