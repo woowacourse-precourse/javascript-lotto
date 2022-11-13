@@ -1,51 +1,55 @@
 const Validator = require('../src/domains/Validator');
 
-describe('Validator 클래스 Truthy 테스트', () => {
-  test('checkTruthy에 true 입력은 true다.', () => {
-    expect(Validator.checkTruthy(true)).toBeTruthy();
+describe('Validator 클래스 테스트', () => {
+  test("checkTruthy에 ''는 예외를 발생시킨다.", () => {
+    expect(() => Validator.checkTruthy('')).toThrow('[ERROR]');
   });
 
-  test("checkStringType에 'string' 입력은 true다.", () => {
-    expect(Validator.checkStringType('string')).toBeTruthy();
+  test('checkStringType에 123는 예외를 발생시킨다', () => {
+    expect(() => Validator.checkStringType(123)).toThrow('[ERROR]');
   });
 
-  test("checkOnlyNumbersInString에 '12345' 입력은 true다.", () => {
-    expect(Validator.checkOnlyNumbersInString('12345')).toBeTruthy();
+  test("checkOnlyNumbersInString에 '1134a'는 예외를 발생시킨다", () => {
+    expect(() => Validator.checkOnlyNumbersInString('1134a')).toThrow('[ERROR]');
   });
 
-  test('checkDividedBy1000에 5000 입력은 true다.', () => {
-    expect(Validator.checkDividedBy1000(5000)).toBeTruthy();
+  test('checkDividedBy1000에 5001은 예외를 발생시킨다', () => {
+    expect(() => Validator.checkDividedBy1000(5001)).toThrow('[ERROR]');
   });
 
-  test('checkNumberType에 5000 입력은 true다.', () => {
-    expect(Validator.checkNumberType(5000)).toBeTruthy();
+  test('checkNumberType에 []은 예외를 발생시킨다', () => {
+    expect(() => Validator.checkNumberType([])).toThrow('[ERROR]');
   });
 
-  test("checkFormatSixNumbers에 '1,2,3,4,5,6' 입력은 true다.", () => {
-    expect(Validator.checkFormatSixNumbers('1,2,3,4,5,6')).toBeTruthy();
+  test("checkFormatSixNumbers에 '1, 2, 3, 4, 5, 6' 예외를 발생시킨다", () => {
+    expect(() => Validator.checkFormatSixNumbers('1, 2, 3, 4, 5, 6')).toThrow('[ERROR]');
   });
 
-  test('checkArrayType에 [] 입력은 true다.', () => {
-    expect(Validator.checkArrayType([])).toBeTruthy();
+  test("checkFormatSixNumbers에 '1,2.3,4/5,6' 예외를 발생시킨다", () => {
+    expect(() => Validator.checkFormatSixNumbers('1,2.3,4/5,6')).toThrow('[ERROR]');
   });
 
-  test('checkNumberInArrayType에 [1, 2, 3, 4, 5, 6] 입력은 true다.', () => {
-    expect(Validator.checkNumberInArrayType([1, 2, 3, 4, 5, 6])).toBeTruthy();
+  test('checkArrayType에 {}는 예외를 발생시킨다', () => {
+    expect(() => Validator.checkArrayType({})).toThrow('[ERROR]');
   });
 
-  test('checkSixLength에 [1, 2, 3, 4, 5, 6] 입력은 true다.', () => {
-    expect(Validator.checkSixLength([1, 2, 3, 4, 5, 6])).toBeTruthy();
+  test("checkNumberInArrayType에 [1, 2, 3, 4, 5, '6']는 예외를 발생시킨다", () => {
+    expect(() => Validator.checkNumberInArrayType([1, 2, 3, 4, 5, '6'])).toThrow('[ERROR]');
   });
 
-  test('checkSixNumbersRange에 [1, 2, 3, 4, 5, 6] 입력은 true다.', () => {
-    expect(Validator.checkSixNumbersRange([1, 2, 3, 4, 5, 6])).toBeTruthy();
+  test('checkSixLength에 [1, 2, 3, 4, 5]는 예외를 발생시킨다', () => {
+    expect(() => Validator.checkSixLength([1, 2, 3, 4, 5])).toThrow('[ERROR]');
   });
 
-  test('checkRangeOfLottoNumber에 45 입력은 true다.', () => {
-    expect(Validator.checkRangeOfLottoNumber(45)).toBeTruthy();
+  test('checkSixNumbersRange에 [1, 2, 3, 4, 5, 46]은 예외를 발생시킨다', () => {
+    expect(() => Validator.checkSixNumbersRange([1, 2, 3, 4, 5, 46])).toThrow('[ERROR]');
   });
 
-  test('checkUniqueNumber에 [1, 2, 3, 4, 5, 6] 입력은 true다.', () => {
-    expect(Validator.checkUniqueNumber([1, 2, 3, 4, 5, 6])).toBeTruthy();
+  test('checkRangeOfLottoNumber에 0은 예외를 발생시킨다', () => {
+    expect(() => Validator.checkRangeOfLottoNumber(0)).toThrow('[ERROR]');
+  });
+
+  test('checkUniqueNumber에 [1, 2, 3, 4, 5, 1]은 예외를 발생시킨다', () => {
+    expect(() => Validator.checkUniqueNumber([1, 2, 3, 4, 5, 1])).toThrow('[ERROR]');
   });
 });

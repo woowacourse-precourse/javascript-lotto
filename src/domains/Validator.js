@@ -1,54 +1,100 @@
+const Console = require('./Console');
+
 class Validator {
+  static #errorMessage = {
+    head: '[ERROR]',
+    falsy: '잘못된 입력입니다.',
+    type: '잘못된 타입의 입력입니다.',
+    format: '잘못된 포맷의 입력입니다.',
+    unit: '잘못된 단위의 입력입니다.',
+    length: '잘못된 길이의 입력입니다.',
+    range: '잘못된 범위의 입력입니다.',
+    duplication: '중복된 입력입니다.',
+    sortByAscending: '오름차순 정렬이 되지 않았습니다.',
+  };
+
   static checkTruthy(truthy) {
-    return Boolean(truthy);
+    const checker = Boolean(truthy);
+
+    if (!checker) {
+      Console.close();
+      throw new Error(`${Validator.#errorMessage.head} ${Validator.#errorMessage.falsy}`);
+    }
   }
 
   static checkStringType(string) {
-    return typeof string === 'string';
+    if (typeof string !== 'string') {
+      Console.close();
+      throw new Error(`${Validator.#errorMessage.head} ${Validator.#errorMessage.type}`);
+    }
   }
 
   static checkOnlyNumbersInString(string) {
     const numberRegExp = /^[0-9]+$/;
 
-    return numberRegExp.test(string);
+    if (!numberRegExp.test(string)) {
+      Console.close();
+      throw new Error(`${Validator.#errorMessage.head} ${Validator.#errorMessage.format}`);
+    }
   }
 
   static checkDividedBy1000(number) {
-    return number % 1000 === 0;
+    if (number % 1000 !== 0) {
+      Console.close();
+      throw new Error(`${Validator.#errorMessage.head} ${Validator.#errorMessage.unit}`);
+    }
   }
 
   static checkNumberType(number) {
-    return typeof number === 'number';
+    if (typeof number !== 'number') {
+      Console.close();
+      throw new Error(`${Validator.#errorMessage.head} ${Validator.#errorMessage.type}`);
+    }
   }
 
   static checkFormatSixNumbers(format) {
     const sixNumbersRegExp = /^[0-9|,]+$/;
 
-    return sixNumbersRegExp.test(format);
+    if (!sixNumbersRegExp.test(format)) {
+      Console.close();
+      throw new Error(`${Validator.#errorMessage.head} ${Validator.#errorMessage.format}`);
+    }
   }
 
   static checkArrayType(array) {
-    return Array.isArray(array);
+    if (!Array.isArray(array)) {
+      Console.close();
+      throw new Error(`${Validator.#errorMessage.head} ${Validator.#errorMessage.type}`);
+    }
   }
 
   static checkNumberInArrayType(array) {
-    return array.every(number => Validator.checkNumberType(number));
+    array.forEach(number => Validator.checkNumberType(number));
   }
 
   static checkSixLength(sixNumbers) {
-    return sixNumbers.length === 6;
+    if (sixNumbers.length !== 6) {
+      Console.close();
+      throw new Error(`${Validator.#errorMessage.head} ${Validator.#errorMessage.length}`);
+    }
   }
 
   static checkSixNumbersRange(sixNumbers) {
-    return sixNumbers.every(number => Validator.checkRangeOfLottoNumber(number));
+    sixNumbers.forEach(number => Validator.checkRangeOfLottoNumber(number));
   }
 
   static checkRangeOfLottoNumber(lottoNumber) {
-    return lottoNumber >= 1 && lottoNumber <= 45;
+    if (lottoNumber < 1 || lottoNumber > 45) {
+      Console.close();
+      throw new Error(`${Validator.#errorMessage.head} ${Validator.#errorMessage.range}`);
+    }
   }
 
   static checkUniqueNumber(numbers) {
-    return numbers.every((number, i) => numbers.indexOf(number) === i);
+    if (!numbers.every((number, i) => numbers.indexOf(number) === i)) {
+      Console.close();
+      throw new Error(`${Validator.#errorMessage.head} ${Validator.#errorMessage.duplication}`);
+    }
   }
 }
 

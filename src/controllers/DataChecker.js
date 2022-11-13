@@ -1,139 +1,44 @@
 const Validator = require('../domains/Validator');
-const Console = require('../domains/Console');
 
 class DataChecker {
-  static #errorMessage = {
-    head: '[ERROR]',
-    falsy: '잘못된 입력입니다.',
-    type: '잘못된 타입의 입력입니다.',
-    format: '잘못된 포맷의 입력입니다.',
-    unit: '잘못된 단위의 입력입니다.',
-    length: '잘못된 길이의 입력입니다.',
-    range: '잘못된 범위의 입력입니다.',
-    duplication: '중복된 입력입니다.',
-    sortByAscending: '오름차순 정렬이 되지 않았습니다.',
-  };
-
   static isValidRowDataOfPurchaseAmount(rowData) {
-    if (!Validator.checkTruthy(rowData)) {
-      Console.close();
-      throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.falsy}`);
-    }
-
-    if (!Validator.checkStringType(rowData)) {
-      Console.close();
-      throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.type}`);
-    }
-
-    if (!Validator.checkOnlyNumbersInString(rowData)) {
-      Console.close();
-      throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.format}`);
-    }
+    Validator.checkTruthy(rowData);
+    Validator.checkStringType(rowData);
+    Validator.checkOnlyNumbersInString(rowData);
   }
 
   static isValidPurchaseAmount(purchaseAmount) {
-    if (!Validator.checkTruthy(purchaseAmount)) {
-      Console.close();
-      throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.falsy}`);
-    }
-
-    if (!Validator.checkNumberType(purchaseAmount)) {
-      Console.close();
-      throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.type}`);
-    }
-
-    if (!Validator.checkDividedBy1000(purchaseAmount)) {
-      Console.close();
-      throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.unit}`);
-    }
+    Validator.checkTruthy(purchaseAmount);
+    Validator.checkNumberType(purchaseAmount);
+    Validator.checkDividedBy1000(purchaseAmount);
   }
 
   static isValidRowDataOfSixNumbers(rowData) {
-    if (!Validator.checkTruthy(rowData)) {
-      Console.close();
-      throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.falsy}`);
-    }
-
-    if (!Validator.checkStringType(rowData)) {
-      Console.close();
-      throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.type}`);
-    }
-
-    if (!Validator.checkFormatSixNumbers(rowData)) {
-      Console.close();
-      throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.format}`);
-    }
+    Validator.checkTruthy(rowData);
+    Validator.checkStringType(rowData);
+    Validator.checkFormatSixNumbers(rowData);
   }
 
   static isValidSixNumbers(sixNumbers) {
-    if (!Validator.checkTruthy(sixNumbers)) {
-      Console.close();
-      throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.falsy}`);
-    }
-
-    if (!Validator.checkArrayType(sixNumbers)) {
-      Console.close();
-      throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.type}`);
-    }
-
-    if (!Validator.checkNumberInArrayType(sixNumbers)) {
-      Console.close();
-      throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.type}`);
-    }
-
-    if (!Validator.checkSixLength(sixNumbers)) {
-      Console.close();
-      throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.length}`);
-    }
-
-    if (!Validator.checkSixNumbersRange(sixNumbers)) {
-      Console.close();
-      throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.range}`);
-    }
-
-    if (!Validator.checkUniqueNumber(sixNumbers)) {
-      Console.close();
-      throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.duplication}`);
-    }
+    Validator.checkTruthy(sixNumbers);
+    Validator.checkArrayType(sixNumbers);
+    Validator.checkNumberInArrayType(sixNumbers);
+    Validator.checkSixLength(sixNumbers);
+    Validator.checkSixNumbersRange(sixNumbers);
+    Validator.checkUniqueNumber(sixNumbers);
   }
 
   static isValidRowDataOfBonus(rowData) {
-    if (!Validator.checkTruthy(rowData)) {
-      Console.close();
-      throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.falsy}`);
-    }
-
-    if (!Validator.checkStringType(rowData)) {
-      Console.close();
-      throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.type}`);
-    }
-
-    if (!Validator.checkOnlyNumbersInString(rowData)) {
-      Console.close();
-      throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.format}`);
-    }
+    Validator.checkTruthy(rowData);
+    Validator.checkStringType(rowData);
+    Validator.checkOnlyNumbersInString(rowData);
   }
 
   static isValidBonus(bonus, sixNumbers) {
-    if (!Validator.checkTruthy(bonus)) {
-      Console.close();
-      throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.falsy}`);
-    }
-
-    if (!Validator.checkNumberType(bonus)) {
-      Console.close();
-      throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.type}`);
-    }
-
-    if (!Validator.checkRangeOfLottoNumber(bonus)) {
-      Console.close();
-      throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.range}`);
-    }
-
-    if (!Validator.checkUniqueNumber([...sixNumbers, bonus])) {
-      Console.close();
-      throw new Error(`${DataChecker.#errorMessage.head} ${DataChecker.#errorMessage.duplication}`);
-    }
+    Validator.checkTruthy(bonus);
+    Validator.checkNumberType(bonus);
+    Validator.checkRangeOfLottoNumber(bonus);
+    Validator.checkUniqueNumber([...sixNumbers, bonus]);
   }
 }
 
