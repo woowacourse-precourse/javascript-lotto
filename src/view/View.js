@@ -8,7 +8,7 @@ class View {
 
   getPurchasingAmountFromUser() {
     Console.readLine(messages.PURCHASING_AMOUNT_MESSAGE, (userInput) => {
-      this.controller.lotto.setLottoNumbers(userInput);
+      this.controller.userNumber.setPurchasingAmount(userInput);
     });
   }
 }
