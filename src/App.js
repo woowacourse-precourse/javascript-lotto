@@ -21,12 +21,16 @@ class App {
     }
     return NEW_ERROR;
   }
-/*
-  showProfitRate(payment, profit) {
 
-    Console.print(`총 수익률은 ${profit}입니다.`);
+  calculateProfitRate(rankCntList) {
+    this.payment = this.payment;
+    //console.log(this.payment)
+    this.profit = rankCntList[0]*5000 + rankCntList[1]*50000 + rankCntList[2]*1500000 + rankCntList[3]*30000000 + rankCntList[4]*200000000;
+    this.profitRate = (this.profit / this.payment).toFixed(1);
+
+    Console.print('총 수익률은 '+ this.profitRate + '%입니다.');
   }
-*/
+
   showResultPhrase(rankList) {
     const rankFiveCnt = rankList.filter(element => 5 === element).length;
     const rankFourCnt = rankList.filter(element => 4 === element).length;
@@ -40,6 +44,7 @@ class App {
     Console.print(RESULT_MESSAGE.RANK_TWO + `${rankTwoCnt}개`);
     Console.print(RESULT_MESSAGE.YOU_WIN + `${rankOneCnt}개`);
     
+    return [rankFiveCnt, rankFourCnt, rankThreeCnt, rankTwoCnt, rankOneCnt];
   }
 
   calculateRank(answerCnt, bonusOrNot) {
@@ -66,7 +71,8 @@ class App {
       rankList.push(rank);
     }
     //console.log(rankList);
-    return this.showResultPhrase(rankList);
+    this.rankCntList = this.showResultPhrase(rankList);
+    return this.calculateProfitRate(this.rankCntList);
   }
   //6. 보너스 번호 입력받기
   enterBonus(allLines, winningNums){
