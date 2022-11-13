@@ -10,8 +10,8 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
-    this.#numbers = numbers;
+    this.validateWinningNumbers(numbers);
+    this.#numbers = { winning: numbers };
   }
 
   static makeLotto() {
@@ -24,9 +24,22 @@ class Lotto {
     return newLotto;
   }
 
-  validate(numbers) {
+  validateWinningNumbers(numbers) {
     if (numbers.length !== 6) {
-      throw new Error(ERR_MSG.invalidLottoNumber);
+      throw new Error(ERR_MSG.invalidLottoNumberLength);
+    }
+    numbers.forEach(number => {
+      if (
+        !+number ||
+        +number > MAX_LOTTO_NUMBER ||
+        +number < MIN_LOTTO_NUMBER
+      ) {
+        throw new Error(ERR_MSG.invalidLottoNumberRange);
+      }
+    });
+
+    if (numbers.length !== [...new Set(numbers)].length) {
+      throw new Error(ERR_MSG.duplicatedNumber);
     }
   }
 
