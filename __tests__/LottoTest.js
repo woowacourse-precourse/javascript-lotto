@@ -27,13 +27,13 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
-  test("당첨번호와 일치하는 번호 개수를 리턴한다.", () => {
+  test("당첨번호와 일치하는 번호 개수를 반환한다.", () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 7]);
     const winningNumbers = [1, 2, 3, 4, 5, 6];
     expect(lotto.getMatchCount(winningNumbers)).toEqual(5);
   });
 
-  test("보너스 번호를 가지고 있는지 여부를 리턴한다.", () => {
+  test("보너스 번호를 가지고 있는지 여부를 반환한다.", () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     expect(lotto.hasBonusNumber(6)).toEqual(true);
     expect(lotto.hasBonusNumber(7)).toEqual(false);
