@@ -27,6 +27,21 @@ class App {
     Console.print(`총 수익률은 ${profit}입니다.`);
   }
 */
+  showResultPhrase(rankList) {
+    const rankFiveCnt = rankList.filter(element => 5 === element).length;
+    const rankFourCnt = rankList.filter(element => 4 === element).length;
+    const rankThreeCnt = rankList.filter(element => 3 === element).length;
+    const rankTwoCnt = rankList.filter(element => 2 === element).length;
+    const rankOneCnt = rankList.filter(element => 1 === element).length;
+    
+    Console.print(RESULT_MESSAGE.RANK_FIVE + `${rankFiveCnt}개`);
+    Console.print(RESULT_MESSAGE.RANK_FOUR + `${rankFourCnt}개`);
+    Console.print(RESULT_MESSAGE.RANK_THREE + `${rankThreeCnt}개`);
+    Console.print(RESULT_MESSAGE.RANK_TWO + `${rankTwoCnt}개`);
+    Console.print(RESULT_MESSAGE.YOU_WIN + `${rankOneCnt}개`);
+    
+  }
+
   calculateRank(answerCnt, bonusOrNot) {
     if(answerCnt == 6) return 1;
     if(answerCnt == 5 && bonusOrNot) return 2;
@@ -35,8 +50,9 @@ class App {
     if(answerCnt == 3) return 5;
     return 0;
   }
+
   calculateGameResult(allLines, winningNums, bonusNum) {
-    Console.print('당첨 통계\n---\n');
+    Console.print('\n당첨 통계\n---');
     const rankList = [];
     this.bonusOrNot = false;
 
@@ -50,7 +66,7 @@ class App {
       rankList.push(rank);
     }
     //console.log(rankList);
-    return rankList;
+    return this.showResultPhrase(rankList);
   }
   //6. 보너스 번호 입력받기
   enterBonus(allLines, winningNums){

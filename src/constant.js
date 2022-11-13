@@ -8,10 +8,10 @@ const ERROR_MESSAGE = Object.freeze({
 })
 
 const RESULT_MESSAGE = Object.freeze({
-    THREE_ANSWER: "3개 일치 (5,000원) - ",
-    FOUR_ANSWER: "4개 일치 (50,000원) - ",
-    FIVE_ANSWER: "5개 일치 (1,500,000원) - ",
-    FIVE_ANSWER_BONUS: "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
+    RANK_FIVE: "3개 일치 (5,000원) - ",
+    RANK_FOUR: "4개 일치 (50,000원) - ",
+    RANK_THREE: "5개 일치 (1,500,000원) - ",
+    RANK_TWO: "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
     YOU_WIN: "6개 일치 (2,000,000,000원) - "
 })
 
