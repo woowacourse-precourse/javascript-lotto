@@ -1,7 +1,7 @@
 const { Console } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const Publish = require('./Publish');
-const { MONEY, REQUIRE, PRIZE, INPUT_TEXT, ERROR_TEXT } = require('./Constant');
+const { MONEY, WINNING_TEXT, INPUT_TEXT, ERROR_TEXT } = require('./Constant');
 
 class App {
   constructor() {}
@@ -78,42 +78,20 @@ class App {
     this.printFrist();
   }
   printFifth() {
-    Console.print(
-      `${REQUIRE.FIFTH}개 일치 (${PRIZE.FIFTH.toLocaleString()}원) - ${
-        this.lotto.fifthCount
-      }개`
-    );
+    Console.print(`${WINNING_TEXT.FIFTH} ${this.lotto.fifthCount}개`);
   }
   printFourth() {
-    Console.print(
-      `${REQUIRE.FOURTH}개 일치 (${PRIZE.FOURTH.toLocaleString()}원) - ${
-        this.lotto.fourthCount
-      }개`
-    );
+    Console.print(`${WINNING_TEXT.FOURTH} ${this.lotto.fourthCount}개`);
   }
   printThird() {
-    Console.print(
-      `${REQUIRE.THIRD}개 일치 (${PRIZE.THIRD.toLocaleString()}원) - ${
-        this.lotto.thirdCount
-      }개`
-    );
+    Console.print(`${WINNING_TEXT.THIRD} ${this.lotto.thirdCount}개`);
   }
   printSecond() {
-    Console.print(
-      `${
-        REQUIRE.SECOND
-      }개 일치, 보너스 볼 일치 (${PRIZE.SECOND.toLocaleString()}원) - ${
-        this.lotto.secondCount
-      }개`
-    );
+    Console.print(`${WINNING_TEXT.SECOND} ${this.lotto.secondCount}개`);
   }
 
   printFrist() {
-    Console.print(
-      `${REQUIRE.FIRST}개 일치 (${PRIZE.FIRST.toLocaleString()}원) - ${
-        this.lotto.firstCount
-      }개`
-    );
+    Console.print(`${WINNING_TEXT.FIRST} ${this.lotto.firstCount}개`);
     this.totalReturn();
   }
 

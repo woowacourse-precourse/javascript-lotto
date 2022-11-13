@@ -24,6 +24,16 @@ const PRIZE = {
   FIFTH: 5000,
 };
 
+const WINNING_TEXT = {
+  FIRST: `${REQUIRE.FIRST}개 일치 (${PRIZE.FIRST.toLocaleString()}원) -`,
+  SECOND: `${
+    REQUIRE.SECOND
+  }개 일치, 보너스 볼 일치 (${PRIZE.SECOND.toLocaleString()}원) -`,
+  THIRD: `${REQUIRE.THIRD}개 일치 (${PRIZE.THIRD.toLocaleString()}원) -`,
+  FOURTH: `${REQUIRE.FOURTH}개 일치 (${PRIZE.FOURTH.toLocaleString()}원) -`,
+  FIFTH: `${REQUIRE.FIFTH}개 일치 (${PRIZE.FIFTH.toLocaleString()}원) -`,
+};
+
 const INPUT_TEXT = {
   COST: '구입금액을 입력해 주세요.',
   WINNING_NUMBER: '당첨 번호를 입력해 주세요.',
@@ -38,4 +48,12 @@ const ERROR_TEXT = {
   DUPLICATE_WINNING: '[ERROR] 당첨 번호와 중복되지 않는 숫자를 입력해주세요.',
 };
 
-module.exports = { MONEY, PUBLISH, REQUIRE, PRIZE, INPUT_TEXT, ERROR_TEXT };
+module.exports = {
+  MONEY,
+  PUBLISH,
+  REQUIRE,
+  PRIZE,
+  WINNING_TEXT,
+  INPUT_TEXT,
+  ERROR_TEXT,
+};
