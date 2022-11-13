@@ -39,6 +39,12 @@ class ErrorCase {
 
     return false;
   }
+
+  static isDuplicatedBonusNumber(winningNumbers, bonusNumber) {
+    if (winningNumbers.includes(bonusNumber)) return true;
+
+    return false;
+  }
 }
 
 module.exports = ErrorCase;
