@@ -1,7 +1,7 @@
+const Utils = require("./Utils");
 const LottoGenerator = require("./LottoGenerator");
 const PrizeCalculator = require("./PrizeCalculator");
 const RankCalculator = require("./RankCalculator");
-const Utils = require("./Utils");
 const WinningLotto = require("./WinningLotto");
 
 class App {
@@ -12,8 +12,8 @@ class App {
   purchaseProcess() {
     Utils.readLine("구입금액을 입력해 주세요.\n", (money) => {
       const lottoGenerator = new LottoGenerator();
-      const purchaseCount = lottoGenerator.getPurchaseCount(money);
 
+      const purchaseCount = lottoGenerator.getPurchaseCount(money);
       this.playerLottos = lottoGenerator.getLottos(purchaseCount);
       Utils.printPurchasedLotto(this.playerLottos);
 
