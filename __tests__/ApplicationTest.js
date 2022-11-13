@@ -61,12 +61,14 @@ describe('로또 테스트', () => {
     });
   });
 
+  const ERROR_MESSAGE = '[ERROR]';
+
   test('예외 테스트', () => {
     mockQuestions(['1000j']);
     expect(() => {
       const app = new App();
       app.play();
-    }).toThrow('[ERROR]');
+    }).toThrow(ERROR_MESSAGE);
   });
 
   test('구입 금액 입력 예외 테스트1', () => {
@@ -74,7 +76,7 @@ describe('로또 테스트', () => {
     expect(() => {
       const app = new App();
       app.play();
-    }).toThrow('[ERROR]');
+    }).toThrow(ERROR_MESSAGE);
   });
 
   test('구입 금액 입력 예외 테스트2', () => {
@@ -82,7 +84,7 @@ describe('로또 테스트', () => {
     expect(() => {
       const app = new App();
       app.play();
-    }).toThrow('[ERROR]');
+    }).toThrow(ERROR_MESSAGE);
   });
 
   test('구입 금액 입력 예외 테스트3', () => {
@@ -90,7 +92,7 @@ describe('로또 테스트', () => {
     expect(() => {
       const app = new App();
       app.play();
-    }).toThrow('[ERROR]');
+    }).toThrow(ERROR_MESSAGE);
   });
 
   test('구입 금액 입력 예외 테스트4', () => {
@@ -98,6 +100,6 @@ describe('로또 테스트', () => {
     expect(() => {
       const app = new App();
       app.play();
-    }).toThrow('[ERROR]');
+    }).toThrow(ERROR_MESSAGE);
   });
 });
