@@ -39,10 +39,10 @@ class Lotto {
     }
   }
 
-  matchNumbers(gameNumbers) {
+  matchNumbers(numbers) {
     let count = 0;
-    for (const gameNumber of gameNumbers) {
-      if (this.#numbers.includes(gameNumber)) {
+    for (const number of numbers) {
+      if (this.#numbers.includes(number)) {
         count++;
       }
     }

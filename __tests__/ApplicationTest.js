@@ -103,4 +103,16 @@ describe("로또 테스트", () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
+
+  test("당첨 번호 및 보너스 매칭 테스트", () => {
+    mockQuestions(["1,2,3,4,5,6", "7"]); 
+    const games = [
+      [1, 2, 3, 4, 5, 6],
+      [2, 3, 4, 5, 6, 7],
+    ];
+    const match = new Match();
+    match.countMatchingNumbers(games);
+    expect(match.matchRecord).toEqual([0, 0, 1, 1]);
+    expect(match.bonusFlag).toBe(1);
+  });
 });
