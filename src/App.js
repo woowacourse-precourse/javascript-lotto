@@ -5,17 +5,25 @@ class App {
   play() {
     const number_of_lottos = this.get_number_of_lottos();
     MissionUtils.Console.print(number_of_lottos + '개를 구매했습니다.');
-    //
     const lotto_list = this.generate_lottos(number_of_lottos);
     lotto_list.forEach((e) => {
       e.print_lotto();
     });
     const [win_number, bonus_number] = this.get_win_number_and_bonus_number();
+    console.log(win_number, bonus_number);
+    const matching_list = [];
+    lotto_list.forEach((e) => {
+      matching_list.push(e.matching_number(win_number, bonus_number));
+    });
+    // console.log(matching_list);
+    const number_match_list = this.match(matching_list); //차례대로 3,4,5, 5+보너스, 6
+    // console.log(number_match_list);
+    this.print_number_match_list(number_match_list);
   }
 
   get_number_of_lottos() {
     let user_price;
-    MissionUtils.Console.readLine('구입 금액을 입력하세요.', (price) => {
+    MissionUtils.Console.readLine('구입금액을 입력해 주세요.', (price) => {
       user_price = Number(price);
     });
     if (user_price % 1000 !== 0) {
@@ -37,14 +45,15 @@ class App {
   get_win_number_and_bonus_number() {
     let win_number;
     let bonus_number;
-    MissionUtils.Console.readLine('당첨 번호를 입력하세요', (numbers) => {
+    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (numbers) => {
       win_number = numbers.split(',').map((e) => Number(e));
     });
 
-    MissionUtils.Console.readLine('보너스 번호를 입력하세요', (number) => {
+    MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (number) => {
       bonus_number = Number(number);
     });
     this.validate_win_bonus(win_number, bonus_number);
+
     return [win_number, bonus_number];
   }
 
@@ -52,7 +61,8 @@ class App {
     if (win.length !== 6) {
       throw new Error('[ERROR] 당첨 번호는 6개여야 합니다.');
     }
-    const check_list = win.push(bonus);
+    const check_list = win.slice();
+    check_list.push(bonus);
     if (check_list.length !== new Set(check_list).size) {
       throw new Error('[ERROR] 당첨 번호는 중복되면 안됩니다.');
     }
@@ -62,22 +72,76 @@ class App {
       }
     });
   }
-
-  // matching_number(input, win, bonus) {
-  //   let count = 0;
-  //   input.forEach((e) => {
-  //     if (win.includes(e)) {
-  //       count += 1;
-  //     }
-  //   });
-  //   if (count === 5) {
-  //     if (win.includes(bonus)) {
-  //       return 10; //5개 일치, 보너스 볼 일치 ->10
-  //     }
-  //     return count;
-  //   }
-  //   return count;
-  // }
+  match(list) {
+    const three_match = this.three(list);
+    const four_match = this.four(list);
+    const five_match = this.five(list);
+    const five_and_bonus_match = this.five_and_bonus(list);
+    const six_match = this.six(list);
+    return [
+      three_match,
+      four_match,
+      five_match,
+      five_and_bonus_match,
+      six_match,
+    ];
+  }
+  three(list) {
+    let count = 0;
+    list.forEach((e) => {
+      if (e === 3) {
+        count++;
+      }
+    });
+    return count;
+  }
+  four(list) {
+    let count = 0;
+    list.forEach((e) => {
+      if (e === 4) {
+        count++;
+      }
+    });
+    return count;
+  }
+  five(list) {
+    let count = 0;
+    list.forEach((e) => {
+      if (e === 5) {
+        count++;
+      }
+    });
+    return count;
+  }
+  five_and_bonus(list) {
+    let count = 0;
+    list.forEach((e) => {
+      if (e === 10) {
+        count++;
+      }
+    });
+    return count;
+  }
+  six(list) {
+    let count = 0;
+    list.forEach((e) => {
+      if (e === 6) {
+        count++;
+      }
+    });
+    return count;
+  }
+  print_number_match_list(number_match) {
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${number_match[0]}개`);
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${number_match[1]}개`);
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${number_match[2]}개`);
+    MissionUtils.Console.print(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${number_match[3]}개`
+    );
+    MissionUtils.Console.print(
+      `6개 일치 (2,000,000,000원) - ${number_match[4]}개`
+    );
+  }
 }
 
 module.exports = App;

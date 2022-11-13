@@ -34,6 +34,22 @@ class Lotto {
   print_lotto() {
     MissionUtils.Console.print(this.#numbers);
   }
+
+  matching_number(win, bonus) {
+    let count = 0;
+    this.#numbers.forEach((e) => {
+      if (win.includes(e)) {
+        count += 1;
+      }
+    });
+    if (count === 5) {
+      if (win.includes(bonus)) {
+        return 10; //5개 일치, 보너스 볼 일치 ->10
+      }
+      return count;
+    }
+    return count;
+  }
 }
 
 module.exports = Lotto;
