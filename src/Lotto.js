@@ -27,7 +27,8 @@ class Lotto {
 
   print(){
     const MISSIONUTILS = require("@woowacourse/mission-utils");
-    MISSIONUTILS.Console.print(this.#numbers);
+    var temp = this.#numbers.join(", ");
+    MISSIONUTILS.Console.print("[" + temp + "]");
   }
   
   checkBonus(bonus){
