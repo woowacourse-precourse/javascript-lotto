@@ -114,7 +114,7 @@ class Lotto {
     delete resultLottery.FIRST_OR_SECOND_LOTTERY;
     resultLottery = { ...resultLottery, ...FirstSecondLottery };
 
-    this.resultLottery = resultLottery;
+    return resultLottery;
   }
 
   filterMatchNum() {
@@ -170,23 +170,23 @@ class Lotto {
   }
 
   printResult() {
-    for (let rank in this.resultLottery) {
+    const resultLottery = this.calResult();
+    for (let rank in resultLottery) {
       MissionUtils.Console.print(
-        `${RESULT_MESSAGE[rank] + this.resultLottery[rank].length}개`
+        `${RESULT_MESSAGE[rank] + resultLottery[rank].length}개`
       );
     }
-    const rateOfReturn = this.calRateOfReturn();
+    const rateOfReturn = this.calRateOfReturn(resultLottery);
     MissionUtils.Console.print(
-      `${RESULT_MESSAGE.RATE_OF_RETURN + rateOfReturn}%입니다.`
+      `${RESULT_MESSAGE.RATE_OF_RETURN + rateOfReturn.toFixed(1)}%입니다.`
     );
   }
 
-  calRateOfReturn() {
+  calRateOfReturn(resultLottery) {
     const inputMoney = this.lottoNumArr.length * LOTTO_SETTING.LOTTO_PRICE;
     let outputMoney = 0;
-    for (let rank in this.resultLottery) {
-      outputMoney +=
-        LOTTERY_OUTPUT_MONEY[rank] * this.resultLottery[rank].length;
+    for (let rank in resultLottery) {
+      outputMoney += LOTTERY_OUTPUT_MONEY[rank] * resultLottery[rank].length;
     }
 
     const rateOfReturn = (outputMoney / inputMoney) * 100;
