@@ -1,8 +1,9 @@
 class BonusNum {
-  constructor(bonusNum) {
+  constructor(winNums, bonusNum) {
     this.isInRange(bonusNum);
     this.isInteger(bonusNum);
     this.isNum(bonusNum);
+    this.isInWinNums(winNums, bonusNum);
   }
 
   isInRange(bonusNum) {
@@ -21,7 +22,14 @@ class BonusNum {
     const splitBonusNum = bonusNum.split('');
     splitBonusNum.map((el) => {
       if (isNaN(el) || el === ' ') throw new Error('[ERROR] 숫자만 입력해주세요.');
-    })
+    });
+  }
+
+  isInWinNums(winNums, bonusNum) {
+    const winNumsArr = winNums.split(',');
+    winNumsArr.map((winNum) => {
+      if (winNum === bonusNum) throw new Error('[ERROR] 당첨번호와 중복되는 숫자입니다.')
+    });
   }
 }
 

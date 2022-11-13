@@ -43,7 +43,7 @@ class LottoGame {
   inputBonusNum(lottoArr, winNums) {
     Console.print('');
     Console.readLine('보너스 번호를 입력해 주세요.\n', (bonusNum) => {
-      new BonusNum(bonusNum);
+      new BonusNum(winNums, bonusNum);
     });
   }
 }

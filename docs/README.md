@@ -34,11 +34,11 @@
   - [x] 당첨 번호를 입력 받을 시, 번호 개수가 6개가 아니면 예외 처리. - WinNums#isNumsCountSix()
   - [x] 당첨 번호를 입력 받을 시, 공백이 있거나 온점이 있는 경우 예외 처리. - WinNums#isBlankOrSpot()
   - [x] 당첨 번호를 입력 받을 시, 정수가 아닌 경우 예외 처리. - WinNums#isInteger()
-- [ ] 보너스 번호 유효성 검사
+- [x] 보너스 번호 유효성 검사
   - [x] 보너스 번호가 1~45가 아닌 경우 예외 처리. - BonusNum#isInRange()
   - [x] 보너스 번호가 숫자가 아닌 경우 예외 처리. - BonusNum#isNum()
   - [x] 보너스 번호가 정수가 아닌 경우 예외 처리. - BonusNum#isInteger()
-  - [ ] 보너스 번호가 당첨번호와 겹치는 경우 예외 처리.
+  - [x] 보너스 번호가 당첨번호와 겹치는 경우 예외 처리. - BonusNum#isInWinNums
 
 ## 기능 요구 사항
 
