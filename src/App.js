@@ -3,7 +3,6 @@ const Notice = require("./NoticeMessage.js")
 const Error = require("./ErrorMessage.js")
 const LottoSell = require("./LottoSell.js")
 const Lotto = require("./Lotto.js")
-const RaffleNumber = require("./RaffleNumber.js")
 class App {
   constructor(){
     this.Lotto = new Lotto()
@@ -18,14 +17,40 @@ class App {
   play() {
     MissionUtils.Console.readLine(Notice.INPUT_MONEY,(money) => {
       this.LottoSell.Inputmoney(money)
-      this.RaffleNumber.inputLottoNumber()
+      this.inputLottoNumber()
+    });
+  }
+  inputLottoNumber(){
+    MissionUtils.Console.readLine(Notice.INPUT_LOTTO,(numbers) => {
+      this.setWinNumber(numbers)
+    });
+  }
+  inputBonusNumber(){
+    MissionUtils.Console.readLine(Notice.INPUT_BONUS,(numbers) => {
+      this.Lotto.validateBonusnumber(numbers)
+      this.bonusnumber = numbers
       this.checkNumber()
     });
   }
+  setWinNumber(numbers){
+    numbers = numbers.split(',')
+    this.getInputMaxMin(numbers)
+    this.Lotto.validate(numbers)
+    this.Winnumber = numbers
+    this.inputBonusNumber()
+  }
+  getInputMaxMin(numbers){
+    for (let i in numbers){
+      numbers[i] = parseInt(numbers[i])
+    }
+    const max = Math.max(...numbers)
+    const min = Math.min(...numbers)
+    this.Lotto.validateInputRange(max,min)
+  }
   checkNumber(){
     for (let i=0; i<this.LottoSell.Lottobuynumber.length; i++){
-      let correctNumber = this.LottoSell.Lottobuynumber[i].filter(x=> this.RaffleNumber.Winnumber.includes(x))
-      let bonusNumberStatus = this.LottoSell.Lottobuynumber[i].includes(Number(this.RaffleNumber.bonusnumber))
+      let correctNumber = this.LottoSell.Lottobuynumber[i].filter(x=> this.Winnumber.includes(x))
+      let bonusNumberStatus = this.LottoSell.Lottobuynumber[i].includes(Number(this.bonusnumber))
       this.makeCorrectList(correctNumber,bonusNumberStatus)
     }
     this.calculateReturn()
