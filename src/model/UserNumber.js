@@ -9,7 +9,7 @@ class UserNumber {
 
   validatePurchasingAmount(userPurchasingAmountInput) {
     if (userPurchasingAmountInput % 1000 !== 0) {
-      this.controller.view.printPurchasingAmountErrorMessage();
+      this.controller.printReadOnlyMessages("purchasingAmountError");
     }
   }
 

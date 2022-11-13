@@ -2,20 +2,21 @@ const View = require("../view/View");
 const UserNumber = require("../model/UserNumber");
 
 class Controller {
-  constructor () {
+  constructor() {
     this.view = new View(this);
     this.userNumber = new UserNumber(this);
   }
 
-  printReadOnlyMessages (type) {
+  printReadOnlyMessages(type) {
     if (type === "userLottoArray") this.view.printUserLottoArray();
+    if (type === "purchasingAmountError") this.view.printPurchasingAmountErrorMessage();
   }
 
-  setPurchasingAmount (userPurchasingAmount) {
+  setPurchasingAmount(userPurchasingAmount) {
     this.userNumber.setPurchasingAmount(userPurchasingAmount);
   }
 
-  init () {
+  init() {
     this.view.getPurchasingAmountFromUser();
   }
 }
