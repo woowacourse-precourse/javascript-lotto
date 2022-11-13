@@ -1,6 +1,9 @@
-const { Random } = require('@woowacourse/mission-utils');
+const { Random, Console } = require('@woowacourse/mission-utils');
+const { INIT, FIVE, ONE } = require('../constants/basic number');
+const { MATCH, RANK, PRIZE } = require('../constants/winning number');
 const { DIVIDER } = require('../constants/basic number');
 const { MIN, MAX, PICK } = require('../constants/lotto number');
+const MESSAGE = require('../constants/message');
 
 class Functions {
   static getLottoCount(money) {
@@ -13,6 +16,10 @@ class Functions {
         (numA, numB) => numA - numB
       )
     );
+  }
+
+  static digitize(inputNumber) {
+    return new Set(inputNumber.split(',').map((num) => +num));
   }
 }
 
