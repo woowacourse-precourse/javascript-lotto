@@ -55,6 +55,10 @@ class Controller {
     };
   }
 
+  getStatistics() {
+    this.statistics.getStatistics();
+  }
+
   init() {
     this.getPurchasingAmountFromUser();
   }
