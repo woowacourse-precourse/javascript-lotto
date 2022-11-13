@@ -14,4 +14,11 @@ describe("로또 생성기 클래스 테스트", () => {
       lottoSeller.getPurchaseCount("1500");
     }).toThrow("[ERROR] 금액은 1,000원 단위만 입력 가능합니다.");
   });
+
+  test("3000원을 입력할 경우 로또 구매 개수는 3개이다.", () => {
+    const lottoSeller = new LottoSeller();
+    const result = lottoSeller.getPurchaseCount("3000");
+
+    expect(result).toEqual(3);
+  });
 });
