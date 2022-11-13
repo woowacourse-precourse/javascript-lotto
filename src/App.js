@@ -35,7 +35,7 @@ class App {
 
   InputLottos(published_Lottos, how_many) {
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (answer) => {
-      const numbers = answer.split(',');
+      const numbers = answer.split(',').map(Number);
       new Lotto(numbers);
       this.InputBonus(published_Lottos, numbers, how_many);
     });
