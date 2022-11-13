@@ -19,7 +19,8 @@ class BonusLotto {
     return (
       this.isNumber(bonusNumber) ||
       this.isNumberRange(bonusNumber) ||
-      this.isIncludesNumber(mainNumber, bonusNumber)
+      this.isIncludesNumber(mainNumber, bonusNumber) ||
+      this.isIncludeZero(bonusNumber)
     );
   }
 
@@ -37,5 +38,10 @@ class BonusLotto {
   isIncludesNumber(mainNumber, bonusNumber) {
     return mainNumber.filter((main) => main === bonusNumber).length ? 'INCLUDES' : false;
   }
+
+  isIncludeZero(number) {
+    return number.startsWith('0') ? 'ZERO' : false;
+  }
 }
+
 module.exports = BonusLotto;
