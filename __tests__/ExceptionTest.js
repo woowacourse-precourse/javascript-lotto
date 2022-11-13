@@ -1,12 +1,19 @@
-const ExceptionCheck = require('../src/utils/ExceptionCheck');
+const errorCheck = require('../src/utils/ExceptionCheck');
 
-const errorCheck = new ExceptionCheck();
+//const errorCheck = new ExceptionCheck();
 const answer_example = [1,2,3,4,5,6];
 
 describe("예외 throw 테스트 (Lotto test와 ApplicationTest 속 예외 제외)", () => {
-  test("구매갯수가 1000원 단위가 아닌 경우 예외처리", () => {
+  test("구매금액이 1000원 단위가 아닌 경우 예외처리", () => {
     expect(() => {
       const input = 1500;
+      errorCheck.purchaseMoneyErrorCheck(input);
+    }).toThrow("[ERROR]");
+  });
+
+  test("구매금액이 0원인 경우 예외처리", () => {
+    expect(() => {
+      const input = 0;
       errorCheck.purchaseMoneyErrorCheck(input);
     }).toThrow("[ERROR]");
   });

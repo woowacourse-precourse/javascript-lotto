@@ -8,6 +8,9 @@ class ExceptionCheck{
     if (parseInt(input) % DEFAULTS.PURCHASE_UNIT !== 0){
       throw new Error(ERRORLINE.INPUT_UNIT_CHECK);
     }
+    if (parseInt(input) === 0){
+      throw new Error(ERRORLINE.INPUT_UNIT_CHECK);
+    }
   }
 
   noSeperatorErrorCheck(answerSplit){
@@ -44,5 +47,5 @@ class ExceptionCheck{
 
 }
 
-
-module.exports = ExceptionCheck;
+const errorCheck = new ExceptionCheck();
+module.exports = errorCheck;
