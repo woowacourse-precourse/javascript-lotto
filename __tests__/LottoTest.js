@@ -28,4 +28,15 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
+  test('구입한 로또와 당첨번호, 보너스번호를 비교하고 결과를 출력한다.', () => {
+    const lottoAndBonusNum = [['1','2','3','4','5','6'],['7']];
+    const makedLottos = [
+      [ 1, 2, 3, 4, 5, 7 ],
+      [ 1, 2, 3, 4, 5, 6 ],
+      [ 4, 5, 6, 14, 36, 39 ],
+      [ 4, 5, 26, 29, 39, 40 ]];
+    expect(lotto.checkCorrect(lottoAndBonusNum, makedLottos)
+    ).toEqual([[ 6, 3, 2 ],1]);
+  });
+  
 });
