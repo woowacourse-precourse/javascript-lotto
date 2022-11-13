@@ -28,7 +28,6 @@ class App {
       this.publishLotto();
       this.printLotto();
       
-      Console.print("");
       this.inputWinNumber();
     });
   }
@@ -51,32 +50,29 @@ class App {
       this.printWin();
       this.calRevenue();
       this.printRevenue();
+
+      Console.close();
     });
   }
 
-
-  countLotto(){
-    const money = this.input_money.getMoney();
-    if(!(money % 1000 === 0))
-      throw new Error("[ERROR] 1,000원 단위로 입력해 주세요.");
-    this.lottocount = money / 1000;
-  }
-
-  publishLotto(){
-    this.lottotickets = new Array();
-    for(let i=0; i < this.lottocount; i++)
-      this.lottotickets.push(new LottoTicket());
-  }
-
   printLotto(){
-    Console.print("");
     Console.print(this.lottocount + "개를 구매했습니다.");
 
     for(let i=0; i < this.lottocount; i++){
       let lottoticket = this.lottotickets[i];
-      Console.print(lottoticket.getNumbers());
+      const str = this.arrToStr(lottoticket.getNumbers());
+      Console.print(str);
     }
     Console.print("");
+  }
+
+  arrToStr(arr){
+    let str = "[" + arr[0];
+    for(let i =1; i<arr.length; i++){
+      str = str + ", " + arr[i];
+    }
+    str = str + "]"
+    return str;
   }
 
   printWin(){
@@ -89,6 +85,23 @@ class App {
     Console.print("5개 일치 (1,500,000원) - " + this.results[2] + "개");
     Console.print("5개 일치, 보너스 볼 일치 (30,000,000원) - " + this.results[3] + "개");
     Console.print("6개 일치 (2,000,000,000원) - " + this.results[4] + "개");
+  }
+
+  printRevenue(){
+    Console.print("총 수익률은 " + this.revenue + "%입니다.");
+  }
+
+  countLotto(){
+    const money = this.input_money.getMoney();
+    if(!(money % 1000 === 0))
+      throw new Error("[ERROR] 1,000원 단위로 입력해 주세요.");
+    this.lottocount = money / 1000;
+  }
+
+  publishLotto(){
+    this.lottotickets = new Array();
+    for(let i=0; i < this.lottocount; i++)
+      this.lottotickets.push(new LottoTicket());
   }
 
   calResults(){
@@ -125,10 +138,6 @@ class App {
         count++;
     }
     return count;
-  }
-
-  printRevenue(){
-    Console.print("총 수익률은 " + this.revenue + "%입니다.");
   }
 
   calRevenue(){

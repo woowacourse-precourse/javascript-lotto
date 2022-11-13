@@ -1,2 +1,1 @@
 
-    this.lottotickets = new Array();
