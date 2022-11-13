@@ -8,12 +8,6 @@ const ERROR_MESSAGE = {
 };
 
 class User {
-  getPurchaseAmount() {
-    Console.readLine('구입금액을 입력해 주세요.\n', (purchaseAmount) => {
-      this.handlePurchaseAmount(Number(purchaseAmount));
-    });
-  }
-
   handlePurchaseAmount(purchaseAmount) {
     this.checkPurchaseAmount(purchaseAmount);
     this.purchaseAmount = purchaseAmount;

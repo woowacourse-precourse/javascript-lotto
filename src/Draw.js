@@ -8,14 +8,6 @@ const ERROR_MESSAGE = {
 };
 
 class Draw {
-  getWinningNumber() {
-    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (winningNumber) => {
-      this.handleWinningNumber(
-        winningNumber.split(',').map((number) => Number(number)),
-      );
-    });
-  }
-
   handleWinningNumber(winningNumber) {
     this.checkWinningNumber(winningNumber);
     this.winningNumber = winningNumber;
@@ -32,12 +24,6 @@ class Draw {
     } else if (new Set(winningNumber).size !== 6) {
       throw new Error(ERROR_MESSAGE.DUPLICATED);
     }
-  }
-
-  getBonusNumber() {
-    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
-      this.handleBonusNumber(Number(bonusNumber));
-    });
   }
 
   handleBonusNumber(bonusNumber) {
