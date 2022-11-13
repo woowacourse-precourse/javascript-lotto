@@ -61,10 +61,15 @@ class LottoMachine {
   validateWinningNumbers(numbers) {
     if (this.isOutOfRange(numbers)) throw new Error(MESSAGE.ERROR.OUT_OF_RANGE_NUMBER);
     if (numbers.some(this.isNotANumber)) throw new Error(MESSAGE.ERROR.WINNING_NUMBER_MUST_BE_NUMBER);
+    if (this.isIncorrectCount(numbers)) throw new Error(MESSAGE.ERROR.WINNING_NUMBER_COUNT);
   }
 
   isOutOfRange(numbers) {
     return !numbers.every((number) => number >= LOTTO.MIN_NUMBER && number <= LOTTO.MAX_NUMBER);
+  }
+
+  isIncorrectCount(numbers) {
+    return numbers.length !== LOTTO.NUMBER_COUNT;
   }
 }
 
