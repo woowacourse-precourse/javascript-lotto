@@ -13,6 +13,9 @@ class App {
       this.#user = new User(purchaseMoney);
       Io.inputByUser(QUESTION.winningNumbers, winninNumbers => {
         this.#lotto = new Lotto(winninNumbers.split(','));
+        Io.inputByUser(QUESTION.bonusNumber, bonusNumber => {
+          this.#lotto.setBonusNumber(bonusNumber);
+        });
       });
     });
   }

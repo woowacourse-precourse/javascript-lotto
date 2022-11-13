@@ -24,18 +24,30 @@ class Lotto {
     return newLotto;
   }
 
+  setBonusNumber(bounsNumber) {
+    this.validateBonusNumber(bounsNumber);
+    this.#numbers = { ...this.#numbers, bounsNumber };
+  }
+
+  validateNumberAndRange(number) {
+    if (!+number || +number > MAX_LOTTO_NUMBER || +number < MIN_LOTTO_NUMBER) {
+      throw new Error(ERR_MSG.invalidLottoNumberRange);
+    }
+  }
+
+  validateBonusNumber(bounsNumber) {
+    this.validateNumberAndRange(bounsNumber);
+    if (this.#numbers.winning.includes(bounsNumber)) {
+      throw new Error(ERR_MSG.duplicatedNumber);
+    }
+  }
+
   validateWinningNumbers(numbers) {
     if (numbers.length !== 6) {
       throw new Error(ERR_MSG.invalidLottoNumberLength);
     }
     numbers.forEach(number => {
-      if (
-        !+number ||
-        +number > MAX_LOTTO_NUMBER ||
-        +number < MIN_LOTTO_NUMBER
-      ) {
-        throw new Error(ERR_MSG.invalidLottoNumberRange);
-      }
+      this.validateNumberAndRange(number);
     });
 
     if (numbers.length !== [...new Set(numbers)].length) {

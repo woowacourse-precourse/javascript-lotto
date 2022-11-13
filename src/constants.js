@@ -1,6 +1,7 @@
 const QUESTION = Object.freeze({
   purchaseAmout: '구입금액을 입력해 주세요.',
-  winningNumbers: '당첨 번호를 입력해 주세요.'
+  winningNumbers: '당첨 번호를 입력해 주세요.',
+  bonusNumber: '보너스 번호를 입력해 주세요.'
 });
 
 const ERR_MSG = Object.freeze({
