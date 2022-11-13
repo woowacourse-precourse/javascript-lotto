@@ -1,6 +1,11 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-
+const Lotto=require("./Lotto");
+const Bonus=require("./Bonus");
 class App {
+  constructor(){
+    //this.winingNumbers=Lotto.createWiningNumber();
+    //this.bonusNumber=Bonus.bonusNumber();
+  }
   play() {
     this.cost();
   }
@@ -23,10 +28,25 @@ class App {
     this.purchaseLottoNumbers(number);
   }
   purchaseLottoNumbers(number){
+    MissionUtils.Console.print(`${number}개를 구매했습니다.`)
     const numbersList=[];
     for(let i=0;i<number;i++){
-      const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);      
       numbersList.push(numbers);
+    }
+    this.printLottoNumber(numbersList);  
+  }
+  printLottoNumber(numbersList){
+    for(let i=0;i<numbersList.length;i++){
+      let print=sort(numbersList[i]);
+      MissionUtils.Console.print(`${print}`);
+    }
+    this.compare(numbersList);
+  }
+  compare(numbersList){
+    const winingNubers=Lotto.createWiningNumber();
+    for(let i=0;i<numbersList.length;i++){
+
     }
   }
 }
