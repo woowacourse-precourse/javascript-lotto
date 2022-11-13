@@ -29,8 +29,7 @@ class LottoView {
   }
 
   setWinningNumber() {
-    this.print(INPUT_TEXT.LINE_BREAK);
-    this.print(INPUT_TEXT.WINNING_NUMBER);
+    this.print(INPUT_TEXT.LINE_BREAK, INPUT_TEXT.WINNING_NUMBER);
     this.readLine('', (input) => {
       if (winningValidation(input)) {
         this.LottoBuilder.WinningNumber = input.split(',');
@@ -40,8 +39,7 @@ class LottoView {
   }
 
   setBonusNumber() {
-    this.print(INPUT_TEXT.LINE_BREAK);
-    this.print(INPUT_TEXT.BONUS_NUMBER);
+    this.print(INPUT_TEXT.LINE_BREAK, INPUT_TEXT.BONUS_NUMBER);
     this.readLine('', (input) => {
       if (bonusValidation(input, this.LottoBuilder.WinningNumber)) {
         this.LottoBuilder.bonusNumber = input;
@@ -60,27 +58,30 @@ class LottoView {
   }
 
   showOutputStats(lottoRanks, lottoYield) {
-    this.print(INPUT_TEXT.LINE_BREAK);
-    this.print(STATS_TEXT.WINNING_STATS);
-    this.print(STATS_TEXT.HORIZONTAL_LINE);
+    this.print(
+      INPUT_TEXT.LINE_BREAK,
+      STATS_TEXT.WINNING_STATS,
+      STATS_TEXT.HORIZONTAL_LINE
+    );
     this.showRankList(lottoRanks);
     this.showYield(lottoYield);
   }
 
   showLottoList(lists) {
-    this.print(INPUT_TEXT.LINE_BREAK);
-    this.print(`${lists.length}${INPUT_TEXT.BOUGHT}`);
+    this.print(INPUT_TEXT.LINE_BREAK, `${lists.length}${INPUT_TEXT.BOUGHT}`);
     lists.forEach((list) => {
       this.print(`[${list.join(', ')}]`);
     });
   }
 
   showRankList(lottoRanks) {
-    this.print(`${STATS_TEXT.MATCH_THREE}${lottoRanks[RANK.FIVE]}개`);
-    this.print(`${STATS_TEXT.MATCH_FOUR}${lottoRanks[RANK.FOUR]}개`);
-    this.print(`${STATS_TEXT.MATCH_FIVE}${lottoRanks[RANK.THREE]}개`);
-    this.print(`${STATS_TEXT.MATCH_FIVE_BONUS}${lottoRanks[RANK.TWO]}개`);
-    this.print(`${STATS_TEXT.MATCH_SIX}${lottoRanks[RANK.ONE]}개`);
+    this.print(
+      `${STATS_TEXT.MATCH_THREE}${lottoRanks[RANK.FIVE]}개`,
+      `${STATS_TEXT.MATCH_FOUR}${lottoRanks[RANK.FOUR]}개`,
+      `${STATS_TEXT.MATCH_FIVE}${lottoRanks[RANK.THREE]}개`,
+      `${STATS_TEXT.MATCH_FIVE_BONUS}${lottoRanks[RANK.TWO]}개`,
+      `${STATS_TEXT.MATCH_SIX}${lottoRanks[RANK.ONE]}개`
+    );
   }
 
   showYield(lottoYield) {
@@ -91,8 +92,8 @@ class LottoView {
     return MissionUtils.Console.readLine(message, callback);
   }
 
-  print(message) {
-    return MissionUtils.Console.print(message);
+  print(...messages) {
+    return messages.forEach((message) => MissionUtils.Console.print(message));
   }
 
   finish() {
