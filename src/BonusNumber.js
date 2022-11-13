@@ -15,15 +15,11 @@ class BonusNumber {
   }
 
   checkOnlyNumber(bonus) {
-    const bonusInputArray = bonus.split("");
+    const regex = /^\d+$/;
 
-    bonusInputArray.forEach((item) => {
-      const ASCII = item.charCodeAt();
-
-      if (ASCII < 48 || ASCII > 57) {
-        throw new Error(ERROR_NOT_ONLY_NUMBER);
-      }
-    });
+    if (!regex.test(bonus)) {
+      throw new Error(ERROR_NOT_ONLY_NUMBER);
+    }
   }
 
   checkNumberRanges(bonus) {
