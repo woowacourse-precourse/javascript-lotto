@@ -1,6 +1,7 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const LottoSet = require('./LottoSet');
 const Lotto = require('./Lotto');
+const CompareLotto = require('./CompareLotto');
 const Bonus = require('./Bonus');
 class App {
   #winning;
@@ -38,6 +39,15 @@ class App {
       MissionUtils.Console.print('');
       this.compareLotto();
     });
+  }
+
+  compareLotto() {
+    const compareLotto = new CompareLotto();
+    compareLotto.play(this.#lottoSet, this.#money, this.#winning, this.#bonus);
+  }
+
+  play() {
+    this.getMoney();
   }
 }
 
