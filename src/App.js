@@ -2,7 +2,7 @@ const Lotto = require('./Lotto');
 const { Console, Random } = require('@woowacourse/mission-utils');
 
 class App {
-  #issuedLottos;
+  #issuedLottos = [];
   #Lotto;
 
   play() {
@@ -45,11 +45,11 @@ class App {
 
   getBonusNumber() {
     Console.readLine(`\n보너스 번호를 입력해 주세요.\n`, (userInput) => {
-      this.#Lotto.validateBonusNumber(userInput);
+      this.#Lotto.validateBonusNumber(+userInput);
 
       const bonusNumber = +userInput;
 
-      this.#Lotto.printStatics(this.#issuedLottos, bonusNumber);
+      this.#Lotto.calculateStatics(this.#issuedLottos, bonusNumber);
     });
   }
 
