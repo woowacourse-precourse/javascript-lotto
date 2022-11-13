@@ -1,9 +1,12 @@
 const Console = require("@woowacourse/mission-utils").Console;
 const Random = require("@woowacourse/mission-utils").Random;
 const Lotto = require("./Lotto");
+const BonusNumber = require("./BonusNumber");
+const Result = require("./Result");
 
 const ASK_AMOUNTS_MESSAGE = "구입금액을 입력해 주세요.\n";
 const ASK_WINNING_NUMBER_MESSAGE = "\n당첨 번호를 입력해 주세요.\n";
+const ASK_BONUS_NUMBER = "\n보너스 번호를 입력해 주세요.\n";
 const ERROR_NOT_THOUSAND_UNIT = "[ERROR] 1,000원 단위로만 구매 가능합니다.";
 const ERROR_NOT_NUMBER_AND_COMMA =
   "[ERROR] 숫자와 ,(쉼표) 기호만을 입력해주세요.";
@@ -18,14 +21,11 @@ class App {
       this.checkPurchaseAmount(amount);
 
       const numberOfLotto = amount / 1000;
-
       this.showNumberOfPurchasedLotto(numberOfLotto);
-
       this.createRandomLotto(numberOfLotto);
-
       this.showEveryLotto();
 
-      this.getWinningNumber(amount);
+      this.getWinningNumber();
     });
   }
 
@@ -63,15 +63,17 @@ class App {
     });
   }
 
-  getWinningNumber(amount) {
+  getWinningNumber() {
     Console.readLine(ASK_WINNING_NUMBER_MESSAGE, (userInput) => {
       const arrayedUserInput = this.getArrayedUserInput(userInput);
 
       this.checkUesrInputHaveOnlyNumberAndComma(arrayedUserInput);
 
-      const userLotto = this.getUserLotto(userInput);
+      this.userLotto = this.getUserLotto(userInput);
 
-      new Lotto(amount, this.bundleOfLotto, userLotto);
+      new Lotto(this.userLotto);
+
+      this.getBonusNumber();
     });
   }
 
@@ -97,6 +99,16 @@ class App {
     const userLotto = splitedInput.map((item) => Number(item));
 
     return userLotto;
+  }
+
+  getBonusNumber() {
+    Console.readLine(ASK_BONUS_NUMBER, (bonus) => {
+      new BonusNumber(this.userLotto, bonus);
+
+      const result = new Result(this.bundleOfLotto, this.userLotto, bonus);
+
+      result.calculateEachLotto();
+    });
   }
 }
 
