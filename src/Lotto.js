@@ -44,17 +44,9 @@ class Lotto {
       this.utils.throwError(ERROR.NOT_IN_VAILD_RANGE);
   }
 
-  getWinningNumbers() {
-    return this.#numbers;
-  }
-
   setBonusNumber(number) {
     this.isInVaildRange(number);
     this.bonusNumber = number;
-  }
-
-  getBonusNumber() {
-    return this.bonusNumber;
   }
 
   printRank(lotteryTickets) {
