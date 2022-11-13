@@ -6,31 +6,28 @@ class MyLotto {
   #myLottoes;
 
   constructor(purchase){
-    console.log(purchase);
     this.validate(purchase);
     this.#purchase = purchase;
-    this.#count = this.countLotto();
-    this.#myLottoes = this.issueLotto();
+    this.#count = this.countLotto(purchase);
+    this.#myLottoes = this.issueLotto(this.countLotto(purchase));
   }
 
   validate(purchase) {
     // 구매금악 1,000단위로 나누어 떨어지는지 확인 
-    if (isNaN(purchase)) {
-      throw new Error("[ERROR] 구입 금액은 숫자로 입력해야 합니다.")
-    } else if(purchase % 1000 != 0) {
+    if(purchase % 1000 != 0) {
       throw new Error("[ERROR] 구입 금액은 1,000원으로 나누어 떨어져야 합니다.");
     }
   }
 
-  countLotto() {
+  countLotto(purchase) {
     // 구매금액을 1,000단위로 나누어 로또 수량 계산
-    return parseInt(this.#purchase / 1000);
+    return parseInt(purchase / 1000);
   }
 
-  issueLotto() {
+  issueLotto(count) {
     // 구매한 로또 수량에 맞게 로또 발행
     const lottoes = new Array();
-    for (let i=0; i<this.#count; i++){
+    for (let i=0; i<count; i++){
       const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       lottoes.push(this.sortNumbers(numbers));
     }
