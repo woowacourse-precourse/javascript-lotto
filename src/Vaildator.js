@@ -40,8 +40,7 @@ class Vaildator {
     );
   }
 
-  static isRightLottoNumbers(target) {
-    const lottoNumbers = target.split(',').map((e) => +e);
+  static isRightLottoNumbers(lottoNumbers) {
     if (!lottoNumbers.every(this.isRightLottoNumber.bind(this))) {
       return false;
     }
