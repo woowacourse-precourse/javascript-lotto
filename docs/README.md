@@ -8,9 +8,9 @@
 이후 당첨 번호 6개와 보너스 번호 1개를 입력하면, 이전 단계에서 랜덤으로 뽑았던 숫자들과 대조해 결과를 출력하고, 수익률을 계산해서 알려준다.
 
 ## 기능 목록
-- [ ] get user's payment amount
-    - [ ] check if the payment amount is valid (error when the amount is not a multiple of 1000 won)
-- [ ] generate 6 random numbers per ticket (from 1-45 without duplicates in ascending order)
+- [x] get user's payment amount
+    - [x] check if the payment amount is valid (error when the amount invalid e.g. not a multiple of 1000 won)
+- [x] generate 6 random numbers per ticket (from 1-45 without duplicates in ascending order)
 - [ ] print the number of purchased tickets and 6 random numbers per ticket
 - [ ] get winning numbers and a bonus number
     - [ ] winning numbers: 6 numbers (from 1-45 without duplicates per ticket) separated with a comma
