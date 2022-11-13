@@ -7,10 +7,12 @@ class App {
   lottos;
   purchaseMoney;
   winningNumber;
+  bonusNumber;
 
   constructor() {
     this.lottos = [];
     this.winningNumber = [];
+    this.lottoSimulator = new LottoSimulator();
   }
 
   play() {
@@ -46,8 +48,16 @@ class App {
   getBonusNumber() {
     Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
       this.bonusNumber = Number(bonusNumber);
-      this.endGame();
+      this.handleGameEnd();
     });
+  }
+
+  handleGameEnd() {
+    this.lottoSimulator.checkWinningResult(this.lottos, this.winningNumber, this.bonusNumber);
+    Console.print('\n당첨 통계\n---');
+    this.printWinningResult();
+    this.printReturnRate();
+    Console.close();
   }
 
   printWinningResult() {
