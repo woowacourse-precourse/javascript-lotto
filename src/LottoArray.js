@@ -9,7 +9,10 @@ class LottoArray {
     return amount;
   }
 
-  purchaseLotto(amount) {}
+  purchaseLotto(amount) {
+    const lottoArray = Array.from({ length: amount }, () => this.makeLotto());
+    return lottoArray;
+  }
 }
 
 module.exports = LottoArray;
