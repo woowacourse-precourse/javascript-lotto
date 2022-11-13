@@ -11,6 +11,7 @@ const getLottoQuantity = require('./utils/getLotteryQuantity');
 const getProfitRate = require('./utils/getProfitRate');
 const isValidLottery = require('./utils/isValidLottery');
 const makeRandomLottoNumber = require('./utils/makeRandomLottoNumber');
+const verifyNumberType = require('./utils/verifyNumberType');
 
 class App {
   #startMoney;
@@ -39,6 +40,8 @@ class App {
 
   buy() {
     Console.readLine(APP_MESSAGE.INSERT_PURCHASE_COST, (userInput) => {
+      if (!verifyNumberType(userInput))
+        this.makeException(EXCEPTION_REASON.INPUT_NOT_NUMBER);
       this.#startMoney = Number(userInput);
       this.#myLotteryQuantity = getLottoQuantity(this.#startMoney);
       this.#myLotteryList = Array(this.#myLotteryQuantity).fill({}); // 처음부터 Array(Object) 모양 고정시켜 V8 Map Space에 불필요한 hiddenClass 생성을 막기 위함 (push 사용 x)
@@ -113,7 +116,6 @@ class App {
       const myRankData = this.#myLotteryRankList[rank];
       Console.print(RANK_STATISTICS_MESSAGE[rank](myRankData));
     }
-
     Console.print(RANK_STATISTICS_MESSAGE.PROFIT_RATE(this.#profitRate));
   }
 
