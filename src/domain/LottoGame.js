@@ -1,11 +1,11 @@
-const { LOTTO_INFO, LOTTO_MATCH, PRIZE_MONEY } = require('./common/constants');
-const { lottoCount } = require('./utils/calculator');
-const { Random } = require('./utils/missionUtil');
-const { INPUT_MESSAGES } = require('./common/messages');
-const LottoView = require('./LottoView');
-const User = require('./User');
-const Lotto = require('./Lotto');
-const Validator = require('./Validator');
+const { LOTTO_INFO, LOTTO_MATCH, PRIZE_MONEY } = require('../common/constants');
+const { lottoCount } = require('../utils/calculator');
+const { Random } = require('../utils/missionUtil');
+const { INPUT_MESSAGES } = require('../common/messages');
+const LottoView = require('../view/LottoView');
+const User = require('../User');
+const Lotto = require('../Lotto');
+const Validator = require('../Validator');
 
 class LottoGame {
   #winNumbers;

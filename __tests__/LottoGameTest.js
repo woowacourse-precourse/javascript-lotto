@@ -1,4 +1,4 @@
-const LottoGame = require('../src/LottoGame');
+const LottoGame = require('../src/domain/LottoGame');
 
 describe('LottoGame 클래스 테스트', () => {
   test('✨ 중복되지 않는 6개의 숫자를 뽑는다.', () => {

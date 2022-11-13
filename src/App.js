@@ -1,4 +1,4 @@
-const LottoGame = require('./LottoGame');
+const LottoGame = require('./domain/LottoGame');
 
 class App {
   play() {
