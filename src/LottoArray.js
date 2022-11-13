@@ -1,5 +1,9 @@
 const Lotto = require("./Lotto");
 
+const getRandomNumbers = () => {
+  return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+};
+
 class LottoArray {
   constructor(cash) {
     this.amount = this.countAmount(cash);
