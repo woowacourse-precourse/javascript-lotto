@@ -71,7 +71,15 @@ class Game {
       this.#bonusNumber
     );
 
-    this.calLottoYield();
+    this.getLottoYield();
+  }
+
+  getLottoYield() {
+    const lottoYield = Functions.calLottoYield(
+      this.#purchaseAmount,
+      this.#winningResult
+    );
+    this.printLottoResult(lottoYield);
   }
 }
 

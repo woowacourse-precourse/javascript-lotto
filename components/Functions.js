@@ -19,7 +19,7 @@ class Functions {
   }
 
   static digitize(inputNumber) {
-    return new Set(inputNumber.split(',').map((num) => +num));
+    return inputNumber.split(',').map((num) => +num);
   }
 
   static getMatchCount(lottoNumber, winningNumber) {
@@ -53,8 +53,15 @@ class Functions {
     });
     return winningResult;
   }
+
+  static calLottoYield(purchaseAmount, lottoRank) {
+    return (
+      PRIZE.ARRAY.reduce(
+        (total, prize, index) => total + prize * lottoRank[index],
+        INIT
+      ) / purchaseAmount.toFixed(FIRST_DIGIT)
+    );
+  }
 }
 
 module.exports = Functions;
-
-// Update
