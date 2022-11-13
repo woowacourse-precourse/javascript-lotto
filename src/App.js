@@ -64,7 +64,7 @@ class App {
     if (typeof num === "string") {
       parsedNum = parseInt(num, 10);
     }
-    if (num < 1 || num > 45) return false;
+    if (parsedNum < 1 || parsedNum > 45) return false;
     return true;
   }
   isValidLottoNumbers(numbers) {
