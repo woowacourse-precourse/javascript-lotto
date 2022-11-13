@@ -6,6 +6,7 @@ class LottoGameController {
   constructor(model, view) {
     this.lottoGameModel = model;
     this.lottoGameView = view;
+    this.lottos;
     this.winningLotto;
   }
 
@@ -18,9 +19,9 @@ class LottoGameController {
     readLine(INPUT_MESSAGE.MONEY, (input) => {
       MoneyValidator.validate(input);
 
-      const lottos = this.lottoGameModel.buyLotto(input);
+      this.lottos = this.lottoGameModel.buyLotto(input);
 
-      this.printLottos(lottos);
+      this.printLottos(this.lottos);
     });
   }
 
