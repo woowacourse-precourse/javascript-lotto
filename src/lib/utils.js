@@ -1,4 +1,4 @@
-const { MESSAGE } = require('./constants');
+const { MESSAGE, REWARD_ARRAY } = require('./constants');
 const { Console } = require('@woowacourse/mission-utils');
 
 const convertAnswerIntoArray = (answer) => {
@@ -20,12 +20,12 @@ const printWinningResult = (winningArray, percentage) => {
 };
 
 const getRevenue = (winningArray) => {
-  const first = winningArray[0] * 5000;
-  const second = winningArray[1] * 50000;
-  const third = winningArray[2] * 1500000;
-  const fourth = winningArray[3] * 30000000;
-  const fifth = winningArray[4] * 2000000000;
-  return first + second + third + fourth + fifth;
+  return winningArray.reduce((acc, value, index) => {
+    if (value !== 0) {
+      return acc + value * REWARD_ARRAY[index];
+    }
+    return acc;
+  }, 0);
 };
 
 const getRateOfReturn = (revenue, purchaseMoney) => {
