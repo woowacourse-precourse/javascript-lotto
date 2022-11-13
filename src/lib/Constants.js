@@ -21,22 +21,22 @@ const LOTTO_RESULT_PRICE = {
 };
 
 const PRICE_ERROR_MESSAGE = {
-  not_valid_number: '[ERROR] 숫자를 입력해주세요.',
-  not_valid_unit_number: '[ERROR] 1000원 단위로 입력해주세요.',
-  not_valid_answer: '[ERROR] 입력값이 없습니다.',
+  not_valid_number: '숫자를 입력해주세요.',
+  not_valid_unit_number: '1000원 단위로 입력해주세요.',
+  not_valid_answer: '입력값이 없습니다.',
 };
 
 const WIN_NUMBER_ERROR_MESSAGE = {
-  not_valid_answer: '[ERROR] 입력값이 없습니다.',
-  not_valid_division: '[ERROR] 구분은 쉼표(,)를 사용해주세요.',
-  not_valid_range_number: '[ERROR] 1부터 45까지의 숫자를 입력해주세요.',
-  not_valid_overlap_number: '[ERROR] 중복되는 숫자는 입력할 수 없습니다.',
+  not_valid_answer: '입력값이 없습니다.',
+  not_valid_division: '구분은 쉼표(,)를 사용해주세요.',
+  not_valid_range_number: '1부터 45까지의 숫자를 입력해주세요.',
+  not_valid_overlap_number: '중복되는 숫자는 입력할 수 없습니다.',
 };
 
 const BONUS_NUMBER_ERROR_MESSAGE = {
-  not_valid_answer: '[ERROR] 입력값이 없습니다.',
-  not_valid_range_number: '[ERROR] 1부터 45까지의 숫자를 입력해주세요.',
-  not_valid_overlap_number: '[ERROR] 중복되는 숫자는 입력할 수 없습니다.',
+  not_valid_answer: '입력값이 없습니다.',
+  not_valid_range_number: '1부터 45까지의 숫자를 입력해주세요.',
+  not_valid_overlap_number: '중복되는 숫자는 입력할 수 없습니다.',
 };
 
 const PRICE_MEASURE = 1000;
