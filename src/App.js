@@ -36,6 +36,13 @@ class App {
     }
     Console.print(lottosNumbers);
   }
+
+  // 당첨번호 입력받기
+  getWinningNumber() {
+    Console.readLine("당첨 번호를 입력해 주세요.", (numbers) => {
+      return new Lotto(numbers);
+    });
+  }
 }
 
 module.exports = App;
