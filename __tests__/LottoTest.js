@@ -67,4 +67,16 @@ describe("로또 클래스 테스트", () => {
       if (lottoMachine.validateWinningNumbers([1, 2, 3, 4, 5, 6, 7])) throw new Error(MESSAGE.ERROR.WINNING_NUMBER_COUNT);
     }).toThrow("[ERROR]");
   });
+
+  test("사용자에게 보너스 번호를 입력받을 때 1~45사이가 아닌 숫자를 입력했을 경우 예외 처리한다.", () => {
+    expect(() => {
+      const lottoMachine = new LottoMachine();
+      if (lottoMachine.validateBonusNumber(0)) throw new Error(MESSAGE.ERROR.OUT_OF_RANGE_NUMBER);
+    }).toThrow("[ERROR]");
+
+    expect(() => {
+      const lottoMachine = new LottoMachine();
+      if (lottoMachine.validateBonusNumber(46)) throw new Error(MESSAGE.ERROR.OUT_OF_RANGE_NUMBER);
+    }).toThrow("[ERROR]");
+  });
 });
