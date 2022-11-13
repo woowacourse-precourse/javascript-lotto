@@ -2,6 +2,7 @@ const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const Validator = require('./Validator');
 const LOTTO = require('./constants/lotto');
+const MESSAGE = require('./constants/message');
 
 class App {
   #money;
@@ -93,9 +94,9 @@ class App {
   }
 
   readWinningNumbers() {
-    Console.readLine('\n당첨 번호를 입력해주세요\n', (input) => {
+    Console.readLine(MESSAGE.REQUEST_WINNING_NUMBERS, (input) => {
       this.setWinningNumbers(input.split(','));
-      Console.readLine('\n보너스 번호를 입력해주세요\n', (input) => {
+      Console.readLine(MESSAGE.REQUEST_BONUS_NUMBER, (input) => {
         this.setBonusNumber(input);
         this.printResult();
       });
@@ -103,7 +104,7 @@ class App {
   }
 
   play() {
-    Console.readLine('구입 금액을 입력해주세요.\n', (input) => {
+    Console.readLine(MESSAGE.REQUEST_MONEY, (input) => {
       this.buyLottos(input);
       this.printLottos();
       this.readWinningNumbers();
