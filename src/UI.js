@@ -10,6 +10,7 @@ const PURCHASE_AMOUNT_NOTICE_MESSAGE = "개를 구매했습니다.";
 const CASH_INPUT_ERROR_MESSAGE = "[ERROR] 잘못된 금액입니다. 금액은 숫자로 입력해주세요.";
 const WINNING_NUMBERS_ERROR_MESSAGE = "[ERROR] 1부터 45까지의 정수 중 중복되지 않는 수 6개를 쉼표로 분리해 입력해주세요.";
 const BONUS_NUMBER_ERROR_MESSAGE = "[ERROR] 1부터 45까지의 정수 중 하나를 입력해주세요.";
+const DUPLICATED_BONUS_NUMBER_MESSAGE = "[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.";
 
 const getUserInput = (message, errorHandler) => {
   return new Promise((resolve, reject) =>
@@ -97,7 +98,7 @@ class UI {
 
     const isDuplicated = ErrorCase.isDuplicatedBonusNumber(winningNumbers, bonusNumber);
 
-    if (isDuplicated) throw new Error();
+    if (isDuplicated) throw new Error(DUPLICATED_BONUS_NUMBER_MESSAGE);
 
     return { winningNumbers, bonusNumber };
   }
