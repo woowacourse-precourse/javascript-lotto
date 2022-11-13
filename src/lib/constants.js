@@ -35,4 +35,5 @@ const ERROR = {
   DUPLICATE_BONUS_ERROR: '[ERROR] 보너스 번호와 당첨 번호가 중복되었습니다.',
 };
 
-module.exports = { MESSAGE, ERROR, VALUE };
+const LOTTO_RANGE_REGEX = /^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$/;
+module.exports = { MESSAGE, ERROR, VALUE, LOTTO_RANGE_REGEX };
