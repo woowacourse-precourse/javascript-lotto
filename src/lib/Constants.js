@@ -20,6 +20,14 @@ const LOTTO_RESULT_PRICE = {
   result_six_number: 2000000000,
 };
 
+const LOTTO_RESULT_TYPE = {
+  three: 3,
+  four: 4,
+  five: 5,
+  six: 6,
+  bonus: 99,
+};
+
 const PRICE_ERROR_MESSAGE = {
   not_valid_number: '숫자를 입력해주세요.',
   not_valid_unit_number: '1000원 단위로 입력해주세요.',
@@ -51,6 +59,7 @@ module.exports = {
   GAME_MESSAGE,
   LOTTO_RESULT_MESSAGE,
   LOTTO_RESULT_PRICE,
+  LOTTO_RESULT_TYPE,
   PRICE_ERROR_MESSAGE,
   WIN_NUMBER_ERROR_MESSAGE,
   BONUS_NUMBER_ERROR_MESSAGE,
