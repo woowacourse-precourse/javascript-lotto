@@ -20,7 +20,7 @@ class App {
     this.winningNumbers;
     this.bonusNumber;
     this.winningResult = [];
-    this.countOfRanking = [null, 0, 0, 0, 0, 0];
+    this.countOfWinningLottos = [null, 0, 0, 0, 0, 0];
   }
 
   play() {
@@ -102,12 +102,12 @@ class App {
       this.winningResult.push(winningChecker.getWinningRank());
     });
 
-    this.countWinningRank();
+    this.countWinningLottos();
   }
 
-  countWinningRank() {
-    this.winningResult.forEach((result) => {
-      this.countOfRanking[result] += 1;
+  countWinningLottos() {
+    this.winningResult.forEach((rank) => {
+      this.countOfWinningLottos[rank] += 1;
     });
 
     this.printWinningResult();
@@ -115,11 +115,11 @@ class App {
 
   printWinningResult() {
     print(MESSAGE.WINNING_HISTORY);
-    print(MESSAGE.INFO_OF_FIFTH_PLACE + `${this.countOfRanking[5]}개`);
-    print(MESSAGE.INFO_OF_FOURTH_PLACE + `${this.countOfRanking[4]}개`);
-    print(MESSAGE.INFO_OF_THIRD_PLACE + `${this.countOfRanking[3]}개`);
-    print(MESSAGE.INFO_OF_SECOND_PLACE + `${this.countOfRanking[2]}개`);
-    print(MESSAGE.INFO_OF_FIRST_PLACE + `${this.countOfRanking[1]}개`);
+    print(MESSAGE.INFO_OF_FIFTH_PLACE + `${this.countOfWinningLottos[5]}개`);
+    print(MESSAGE.INFO_OF_FOURTH_PLACE + `${this.countOfWinningLottos[4]}개`);
+    print(MESSAGE.INFO_OF_THIRD_PLACE + `${this.countOfWinningLottos[3]}개`);
+    print(MESSAGE.INFO_OF_SECOND_PLACE + `${this.countOfWinningLottos[2]}개`);
+    print(MESSAGE.INFO_OF_FIRST_PLACE + `${this.countOfWinningLottos[1]}개`);
 
     this.printRateOfReturn();
   }
