@@ -167,11 +167,11 @@ class App {
 
   printLottoResult({ ranks, rateOfReturn }) {
     Console.print(MESSAGE.WINNING_STATISTICS);
-    Console.print(MESSAGE.FIFTH_PLACE + `${ranks[5]}` + MESSAGE.EA);
-    Console.print(MESSAGE.FOURTH_PLACE + `${ranks[4]}` + MESSAGE.EA);
-    Console.print(MESSAGE.THIRD_PLACE + `${ranks[3]}` + MESSAGE.EA);
-    Console.print(MESSAGE.SECOND_PLACE + `${ranks[2]}` + MESSAGE.EA);
-    Console.print(MESSAGE.FIRST_PLACE + `${ranks[1]}` + MESSAGE.EA);
+    Console.print(`${ MESSAGE.FIFTH_PLACE }${ ranks[LOTTO.FIFTH_PLACE] }${ MESSAGE.EA }`);
+    Console.print(`${ MESSAGE.FOURTH_PLACE }${ ranks[LOTTO.FOURTH_PLACE] }${ MESSAGE.EA }`);
+    Console.print(`${ MESSAGE.THIRD_PLACE }${ ranks[LOTTO.THIRD_PLACE] }${ MESSAGE.EA }`);
+    Console.print(`${ MESSAGE.SECOND_PLACE }${ ranks[LOTTO.SECOND_PLACE] }${ MESSAGE.EA }`);
+    Console.print(`${ MESSAGE.FIRST_PLACE }${ ranks[LOTTO.FIRST_PLACE] }${ MESSAGE.EA }`);
     Console.print(MESSAGE.TOTAL_RATE_OF_RETURN(rateOfReturn));
     return this.finish();
   }
