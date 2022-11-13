@@ -24,6 +24,13 @@ class LottoGame {
   getWinNumbers() {
     mConsole.readLine("\n당첨 번호를 입력해 주세요.\n", (inputNumbers) => {
       this.lottoController.setWinNumbers(inputNumbers);
+      this.getBonusNumber();
+    });
+  }
+
+  getBonusNumber() {
+    mConsole.readLine("\n보너스 번호를 입력해 주세요.\n", (inputBonus) => {
+      return inputBonus;
     });
   }
 }
