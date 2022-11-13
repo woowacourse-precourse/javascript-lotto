@@ -66,8 +66,9 @@ class Lotto {
     let rank = { 3: 0, 4: 0, 5: 0, 6: 0, alpha: 0 };
     matchArray.forEach((match) => {
       if (match.bonus === 1 && match.winning + match.bonus >= 3) {
-        if (match.winning === 4) rank["alpha"] += 1;
-        else rank[match.winning + 1] += 1;
+        match.winning === 4
+          ? (rank["alpha"] += 1)
+          : (rank[match.winning + 1] += 1);
       } else if (match.bonus === 0 && match.winning >= 3) {
         rank[match.winning] += 1;
       }
@@ -85,9 +86,8 @@ class Lotto {
   }
 
   showRateOfReturn(seedMoney, profit) {
-    const priceByCorrect = [5000, 50000, 1500000, 2000000000, 30000000];
     const totalProfit = profit.reduce(
-      (totalPrice, win, idx) => totalPrice + win * priceByCorrect[idx],
+      (totalPrice, win, idx) => totalPrice + win * LOTTO.PRIZE[idx],
       0,
     );
     const rateOfReturn = (totalProfit / seedMoney) * LOTTO.PERCENT;

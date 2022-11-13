@@ -36,7 +36,7 @@ class App {
     this.winningNumber.calculate(
       this.seed.seedMoney,
       this.lottoTicket.ticketLists,
-      this.bonusNumber.bonus
+      this.bonusNumber.bonus,
     );
   };
 }
