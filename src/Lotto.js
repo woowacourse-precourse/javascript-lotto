@@ -1,3 +1,5 @@
+const { MESSAGE } = require('./Constants');
+
 class Lotto {
   #numbers;
 
@@ -6,19 +8,20 @@ class Lotto {
     this.#numbers = numbers;
   }
 
+  /**
+   * 로또 번호 배열이 주어지면 에러를 체크합니다.
+   * @param {Array<number>} numbers - 로또 배열
+   */
   validate(numbers) {
-    if (numbers.length !== 6) throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
-
+    if (numbers.length !== 6) throw new Error(MESSAGE.ERROR_SIX_ELEMENT);
     const numSet = new Set(numbers);
-    if (numSet.size !== 6) throw new Error('[ERROR] 중복된 번호가 없어야 합니다.');
+    if (numSet.size !== 6) throw new Error(MESSAGE.ERROR_NO_DUPLICATE);
 
     numbers.forEach((num) => {
-      if (!Number.isInteger(num)) throw new Error('[ERROR] 정수를 입력해야 합니다.');
-      if (num < 1 || num > 45) throw new Error('[ERROR] 1~45 사이 숫자여야 합니다.');
+      if (!Number.isInteger(num)) throw new Error(MESSAGE.ERROR_NO_INTEGER);
+      if (num < 1 || num > 45) throw new Error(MESSAGE.ERROR_OUT_OF_RANGE);
     });
   }
-
-  // TODO: 추가 기능 구현
 }
 
 module.exports = Lotto;
