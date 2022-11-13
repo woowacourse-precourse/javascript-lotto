@@ -5,6 +5,7 @@ class Lotto {
     this.controller = controller;
     this.validate(numbers);
     this.#numbers = numbers;
+    this.bonusNumber = null;
   }
 
   isArraySplitByComma(numbersArray) {
