@@ -1,4 +1,4 @@
-const { ERROR } = require("./Constants");
+const { ERROR } = require("./data/Constants");
 
 function checkRange(arr) {
   if (/^[0-9]*$/g.test(arr.join("")) === false) {

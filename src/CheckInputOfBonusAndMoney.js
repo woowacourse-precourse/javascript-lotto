@@ -1,4 +1,4 @@
-const { ERROR } = require("./Constants");
+const { ERROR } = require("./data/Constants");
 
 const validateMoney = (money) => {
   if (money % 1000 !== 0) {

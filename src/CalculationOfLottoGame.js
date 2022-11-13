@@ -52,7 +52,9 @@ class CalculationOfLottoGame {
     winLotto.set("2등", 0);
     winLotto.set("1등", 0);
 
-    for (let i = 0; i < winningNum.length; i++) {
+    let i = 0;
+
+    for (; i < winningNum.length; i++) {
       switch (winningNum[i]) {
         case 3:
           winLotto.set("5등", winLotto.get("5등") + 1);

@@ -1,5 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const { ERROR, RESULT } = require("./Constants");
+const { ERROR, RESULT } = require("./data/Constants");
 class Render {
   showHowmanyboughtLotto(lotto) {
     Console.print(`${lotto}개를 구매했습니다.`);

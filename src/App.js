@@ -1,4 +1,4 @@
-const { Console, Random } = require("@woowacourse/mission-utils");
+const { Console } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const {
   HowManyCanBuyLotto,
@@ -7,7 +7,7 @@ const {
   resultOfLottoClass,
   makeWinningOfLottoArr,
   makeArrayOfArrayPlusNum,
-} = require("./CalculationMoney");
+} = require("./CalculationOfLottoGame");
 const {
   showHowmanyboughtLotto,
   showLottoMade,
@@ -15,11 +15,12 @@ const {
   showResultOfWinLotto,
   lineBreak,
 } = require("./Render");
-const { validateMoney, validateBonusNum } = require("./CheckBonusAndMoney");
+const {
+  validateMoney,
+  validateBonusNum,
+} = require("./CheckInputOfBonusAndMoney");
 
 class App {
-  // 생성자함수를 생성하면 바로 데이터 검사를 할 수 있게만들어야통과함
-
   play() {
     this.getUserMoney();
   }
