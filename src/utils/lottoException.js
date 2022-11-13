@@ -19,7 +19,6 @@ const includeNotNumber = (lottoNumbers) => {
 }
 
 const checkIsNumber = (lottoNumber) => {
-    console.log(typeof lottoNumber);
     if(typeof lottoNumber !== 'number' || /\s/g.test(lottoNumber)) {
       throw new Error("[ERROR] 생성된 로또에 숫자가 아닌 원소가 포함되어 있습니다.")
     }
