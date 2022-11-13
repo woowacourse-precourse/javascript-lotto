@@ -25,6 +25,7 @@ class VendingMachine {
     for (let i = 0; i < count; i++) {
       this.generateLottoNumber();
       new Lotto(this.#lottoNumber);
+      this.printLottoNumber();
     }
   }
 
@@ -39,6 +40,10 @@ class VendingMachine {
 
   printLottoCount(count) {
     Console.print(count + PHRASE.LOTTO_COUNT);
+  }
+
+  printLottoNumber() {
+    Console.print(this.#lottoNumber.sort((a, b) => a - b));
   }
 }
 
