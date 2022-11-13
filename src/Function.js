@@ -12,6 +12,14 @@ class Function {
     }
   }
 
+  static validateInputNumbers(inputNumbers) {
+    return inputNumbers;
+  }
+
+  static validateInputNumber(inputNumber) {
+    return inputNumber;
+  }
+
   static getLottoNumber(inputMoney) {
     const lottoNumber = Number(inputMoney) / INPUT_MONEY_UNIT;
     Console.print(MESSAGE.PRINTLOTTONUMBER(lottoNumber));
