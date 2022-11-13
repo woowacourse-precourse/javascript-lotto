@@ -6,7 +6,9 @@ const MESSAGE = Object.freeze({
 });
 
 const ERROR = Object.freeze({
-  INPUT_MONEY: "[ERROR] 구입금액을 1,000원 단위로 입력해 주세요.",
+  MONEY_TYPE: "[ERROR] 구입금액은 숫자여야 합니다.",
+  MONEY_ZERO: "[ERROR] 구입금액은 0원일 수 없습니다.",
+  MONEY_UNIT: "[ERROR] 구입금액을 1,000원 단위로 입력해 주세요.",
   NUMBER_TYPE: "[ERROR] 로또 번호는 숫자여야 합니다.",
   NUMBER_LENGTH: "[ERROR] 로또 번호는 6개여야 합니다.",
   NUMBER_RANGE: "[ERROR] 로또 번호의 숫자 범위는 1~45까지입니다.",

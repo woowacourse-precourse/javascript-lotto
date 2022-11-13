@@ -2,8 +2,16 @@ const { ERROR } = require("./constants/index");
 
 class Validator {
   checkMoneyValid(money) {
+    if (isNaN(money) === true) {
+      this.error(ERROR.MONEY_TYPE);
+    }
+
+    if (money === 0) {
+      this.error(ERROR.MONEY_ZERO);
+    }
+
     if (money % 1000 !== 0) {
-      this.error(ERROR.INPUT_MONEY);
+      this.error(ERROR.MONEY_UNIT);
     }
   }
 

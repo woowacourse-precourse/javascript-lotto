@@ -28,6 +28,8 @@ class App {
 
   inputMoney() {
     Console.readLine(MESSAGE.INPUT_MONEY, (money) => {
+      money = Number(money);
+
       this.validator.checkMoneyValid(money);
 
       this.state.money = money;
