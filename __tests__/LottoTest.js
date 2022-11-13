@@ -39,4 +39,14 @@ describe("로또 클래스 테스트", () => {
     ).toEqual([[ 6, 3, 2 ],1]);
   });
   
+  test('로또 결과 카운트 테스트', () => {
+    const correctNums = [3,4,6];
+    const correctBonus = 3;
+
+    expect(
+      lotto.checkResult(correctNums, correctBonus)
+    ).toEqual([[ { '3개': 1 }, { '4개': 1 }, { '5개': 0 }, { '6개': 1 } ], 3])
+  });
+  
+  
 });
