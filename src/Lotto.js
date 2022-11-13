@@ -1,5 +1,5 @@
-const { PRIZE_NAME, PRIZE_REWARD, DIGIT_NUMBER, LOTTO_PAYMENT } = require('./const.js');
-const { print } = require('./util');
+const { PRIZE_NAME, PRIZE_REWARD, LOTTO_PAYMENT, ORDER_OF_PRINT } = require('./const.js');
+const { print, templeteLotto } = require('./util.js');
 
 class Lotto {
   #numbers;
@@ -27,27 +27,24 @@ class Lotto {
   }
 
   getStatistics({ myLottos, bonusNumber }) {
-    const resultLotto = {};
+    const resultLotto = { first: 0, second: 0, third: 0, forth: 0, fifth: 0, fail: 0 };
 
     myLottos.forEach(lotto => {
       const myPrize = this.checkLotto({ lotto, bonusNumber });
-      const isUndefined = resultLotto[myPrize];
-
-      resultLotto[myPrize] = isUndefined ? 1 : resultLotto[myPrize] + 1;
+      resultLotto[myPrize] += 1;
     });
 
     return resultLotto;
   }
 
   getRateOfReturn({ payment, resultLotto }) {
-    const prizes = Object.keys(resultLotto);
-    const sumReward = prizes.reduce((prevSumReward, prize) => {
+    const sumReward = ORDER_OF_PRINT.reduce((prevSumReward, prize) => {
       const prizeReward = PRIZE_REWARD[prize];
       const prizeCount = resultLotto[prize];
 
       return (prevSumReward += prizeReward * prizeCount);
     }, 0);
-    const rate = (Math.round((sumReward - payment) / payment) * DIGIT_NUMBER) / DIGIT_NUMBER;
+    const rate = ((sumReward * 100) / payment).toFixed(1);
 
     return rate;
   }

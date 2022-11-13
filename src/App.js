@@ -1,6 +1,7 @@
 const { LOTTO_PAYMENT } = require('./const');
 const Lotto = require('./Lotto');
 const { print, readLine, makeLottoNumber, closeReadLine } = require('./util');
+
 class App {
   #lotto;
   #bonusNumber;
@@ -38,5 +39,4 @@ class App {
   }
 }
 
-new App().play();
 module.exports = App;

@@ -7,7 +7,19 @@ const PRIZE_REWARD = Object.freeze({
   forth: 50000,
   fifth: 5000,
 });
-const DIGIT_NUMBER = 10;
+const PRIZE_CORRECT_COUNT = Object.freeze({
+  first: 6,
+  second: 5,
+  third: 5,
+  forth: 4,
+  fifth: 3,
+});
 const LOTTO_PAYMENT = 1000;
 
-module.exports = { PRIZE_NAME, PRIZE_REWARD, DIGIT_NUMBER, LOTTO_PAYMENT, ORDER_OF_PRINT };
+module.exports = {
+  PRIZE_NAME,
+  PRIZE_REWARD,
+  LOTTO_PAYMENT,
+  ORDER_OF_PRINT,
+  PRIZE_CORRECT_COUNT,
+};
