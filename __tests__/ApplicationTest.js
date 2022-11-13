@@ -27,7 +27,7 @@ describe("로또 테스트", () => {
   test("숫자는 0으로 시작하면 안된다.", () => {
     expect(() => {
       const app = new App();
-      app.checkNumberStartZero("08000");
+      app.checkAmountStartZero("08000");
     }).toThrow("[ERROR] 0으로 시작하는 숫자는 입력할 수 없습니다.");
   });
 
@@ -96,6 +96,19 @@ describe("로또 테스트", () => {
         "6",
       ]);
     }).toThrow("[ERROR] 숫자와 ,(쉼표) 기호만을 입력해주세요.");
+  });
+
+  test("입력된 당첨 번호를 쉼표를 기준으로 나눈다.", () => {
+    const app = new App();
+
+    expect(app.getSplitedUserInput("1,2,3,4,5,6")).toStrictEqual([
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+    ]);
   });
 
   test("배열 원소가 number 타입으로 변환되어야한다.", () => {
