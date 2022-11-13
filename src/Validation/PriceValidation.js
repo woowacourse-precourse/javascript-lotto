@@ -1,5 +1,7 @@
-const Validation = require('./index');
 const { PRICE_ERROR_MESSAGE } = require('../lib/Constants');
+
+const PriceError = require('../Error/PriceError');
+const Validation = require('./index');
 
 class PriceValidation extends Validation {
   constructor(answer) {
@@ -15,7 +17,7 @@ class PriceValidation extends Validation {
 
   checkEmpty() {
     if (super.isEmpty()) {
-      throw new Error(PRICE_ERROR_MESSAGE.not_valid_answer);
+      throw new PriceError(PRICE_ERROR_MESSAGE.not_valid_answer);
     }
     return true;
   }
@@ -23,7 +25,7 @@ class PriceValidation extends Validation {
   checkNumber() {
     const regExp = /^[0-9]+$/;
     if (!regExp.test(this.answer)) {
-      throw new Error(PRICE_ERROR_MESSAGE.not_valid_number);
+      throw new PriceError(PRICE_ERROR_MESSAGE.not_valid_number);
     }
     return true;
   }
@@ -31,7 +33,7 @@ class PriceValidation extends Validation {
   checkUnitNumber() {
     const price = Number(this.answer);
     if (price % 1000 !== 0) {
-      throw new Error(PRICE_ERROR_MESSAGE.not_valid_unit_number);
+      throw new PriceError(PRICE_ERROR_MESSAGE.not_valid_unit_number);
     }
     return true;
   }

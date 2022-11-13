@@ -1,5 +1,7 @@
-const Validation = require('./index');
 const { BONUS_NUMBER_ERROR_MESSAGE } = require('../lib/Constants');
+
+const BonusNumberError = require('../Error/BonusNumberError');
+const Validation = require('./index');
 
 class BonusValidation extends Validation {
   winNumberList = [];
@@ -17,14 +19,14 @@ class BonusValidation extends Validation {
 
   checkEmpty() {
     if (super.isEmpty()) {
-      throw new Error(BONUS_NUMBER_ERROR_MESSAGE.not_valid_answer);
+      throw new BonusNumberError(BONUS_NUMBER_ERROR_MESSAGE.not_valid_answer);
     }
     return true;
   }
 
   checkRange() {
     if (Validation.isRangeNumber(this.answer)) {
-      throw new Error(BONUS_NUMBER_ERROR_MESSAGE.not_valid_range_number);
+      throw new BonusNumberError(BONUS_NUMBER_ERROR_MESSAGE.not_valid_range_number);
     }
     return true;
   }
@@ -32,7 +34,7 @@ class BonusValidation extends Validation {
   checkOverlap() {
     const answerNumber = Number(this.answer);
     if (this.winNumberList.includes(answerNumber)) {
-      throw new Error(BONUS_NUMBER_ERROR_MESSAGE.not_valid_overlap_number);
+      throw new BonusNumberError(BONUS_NUMBER_ERROR_MESSAGE.not_valid_overlap_number);
     }
     return true;
   }

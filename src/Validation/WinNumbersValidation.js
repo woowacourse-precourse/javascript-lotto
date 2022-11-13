@@ -1,5 +1,7 @@
-const Validation = require('./index');
 const { WIN_NUMBER_ERROR_MESSAGE } = require('../lib/Constants');
+
+const Validation = require('./index');
+const WinNumberError = require('../Error/WinNumberError');
 
 class WinNumbersValidation extends Validation {
   constructor(answer) {
@@ -14,9 +16,9 @@ class WinNumbersValidation extends Validation {
     this.checkOverlap();
   }
 
-  checkIsEmpty() {
+  checkEmpty() {
     if (super.isEmpty()) {
-      throw new Error(WIN_NUMBER_ERROR_MESSAGE.not_valid_answer);
+      throw new WinNumberError(WIN_NUMBER_ERROR_MESSAGE.not_valid_answer);
     }
     return true;
   }
@@ -24,7 +26,7 @@ class WinNumbersValidation extends Validation {
   checkValidDivision() {
     const winNumberArray = this.answer.split(',');
     if (winNumberArray.length !== 6) {
-      throw new Error(WIN_NUMBER_ERROR_MESSAGE.not_valid_division);
+      throw new WinNumberError(WIN_NUMBER_ERROR_MESSAGE.not_valid_division);
     }
     return true;
   }
@@ -34,7 +36,7 @@ class WinNumbersValidation extends Validation {
 
     winNumberArray.forEach((number) => {
       if (Validation.isRangeNumber(number)) {
-        throw new Error(WIN_NUMBER_ERROR_MESSAGE.not_valid_range_number);
+        throw new WinNumberError(WIN_NUMBER_ERROR_MESSAGE.not_valid_range_number);
       }
       return true;
     });
@@ -45,7 +47,7 @@ class WinNumbersValidation extends Validation {
     const winNumberSet = new Set(winNumberArray);
 
     if (winNumberArray.length !== winNumberSet.size) {
-      throw new Error(WIN_NUMBER_ERROR_MESSAGE.not_valid_overlap_number);
+      throw new WinNumberError(WIN_NUMBER_ERROR_MESSAGE.not_valid_overlap_number);
     }
     return true;
   }
