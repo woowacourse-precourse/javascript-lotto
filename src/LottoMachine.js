@@ -58,13 +58,14 @@ class LottoMachine {
   validateWinningNumbers(numbers) {
     if (numbers.some(this.isOutOfRange)) throw new Error(MESSAGE.ERROR.OUT_OF_RANGE_NUMBER);
     if (numbers.some(this.isNotANumber)) throw new Error(MESSAGE.ERROR.WINNING_NUMBER_MUST_BE_NUMBER);
-    if (this.isIncorrectCount(numbers)) throw new Error(MESSAGE.ERROR.WINNING_NUMBER_COUNT);
+    if (this.isIncorrectCount(numbers, LOTTO.WINNING_NUMBER_COUNT)) throw new Error(MESSAGE.ERROR.WINNING_NUMBER_COUNT);
     if (this.isDuplicateNumbers(numbers)) throw new Error(MESSAGE.ERROR.WINNING_NUMBER_MUST_NOT_BE_DUPLICATE);
   }
 
   validateBonusNumber(number) {
     if (this.isOutOfRange(number)) throw new Error(MESSAGE.ERROR.OUT_OF_RANGE_NUMBER);
     if (this.isNotANumber(number)) throw new Error(MESSAGE.ERROR.BONUS_NUMBER_MUST_BE_NUMBER);
+    if (this.isIncorrectCount(number, LOTTO.BONUS_NUMBER_COUNT)) throw new Error(MESSAGE.ERROR.BONUS_NUMBER_COUNT);
   }
 
   isNotANumber(number) {
@@ -79,8 +80,8 @@ class LottoMachine {
     return !(number >= LOTTO.MIN_NUMBER && number <= LOTTO.MAX_NUMBER);
   }
 
-  isIncorrectCount(numbers) {
-    return numbers.length !== LOTTO.NUMBER_COUNT;
+  isIncorrectCount(numbers, count) {
+    return numbers.length !== count;
   }
 
   isDuplicateNumbers(numbers) {
