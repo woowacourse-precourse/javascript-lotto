@@ -57,6 +57,14 @@ class LottoMachine {
   isChange(number) {
     return number % LOTTO.PRICE === 0;
   }
+
+  validateWinningNumbers(numbers) {
+    if (this.isOutOfRange(numbers)) throw new Error(MESSAGE.ERROR.OUT_OF_RANGE_NUMBER);
+  }
+
+  isOutOfRange(numbers) {
+    return !numbers.every((number) => number >= LOTTO.MIN_NUMBER && number <= LOTTO.MAX_NUMBER);
+  }
 }
 
 module.exports = LottoMachine;
