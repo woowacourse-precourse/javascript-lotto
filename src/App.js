@@ -7,6 +7,7 @@ class App {
     this.eachLotto = 0;
     this.lottoList = [];
     this.winningLotto = [];
+    this.bonusLottoNum = 0;
   }
 
   inputCost() {
@@ -44,6 +45,21 @@ class App {
         var tempWinLotto = winLotto.split(",");
         var winLottoArr = new Lotto(tempWinLotto);
         this.winningLotto.push(...winLottoArr);
+      }
+    );
+  }
+
+  inputBonusLotto() {
+    MissionUtils.Console.readLine(
+      "\n보너스 번호를 입력해 주세요.",
+      (bonusNum) => {
+        if (bonusNum < 1 || bonusNum > 45)
+          throw new Error(
+            "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."
+          );
+        if (bonusNum in this.winningLotto)
+          throw new Error("[ERROR] 로또 번호에 중복된 숫자가 있으면 안됩니다.");
+        this.bonusLottoNum = bonusNum;
       }
     );
   }
