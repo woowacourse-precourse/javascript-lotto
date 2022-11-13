@@ -33,6 +33,7 @@ class Lotto {
         result.push(number);
       }
     }
+    result.sort((a, b) => a - b);
     return result;
   }
 
