@@ -73,4 +73,20 @@ describe('로또 클래스 테스트', () => {
       );
     });
   });
+
+  test('총 당첨 금액의 합을 반환한다.', () => {
+    const winningStates = [
+      [0, 0, 0, 0, 1],
+      [0, 0, 0, 4, 6],
+      [0, 0, 3, 0, 3],
+      [0, 2, 9, 0, 2],
+      [2, 1, 5, 3, 2],
+    ];
+    const answers = [5000, 230000, 4515000, 73510000, 4037660000];
+
+    winningStates.forEach((state, i) => {
+      const ILotto = new Lotto([1, 2, 3, 4, 5, 6]);
+      expect(ILotto.calcTotalPrize(state)).toBe(answers[i]);
+    });
+  });
 });
