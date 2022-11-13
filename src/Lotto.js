@@ -29,6 +29,16 @@ class Lotto {
       .filter(number => winningNumber.includes(number))
       .length;
   }
+  
+  getRank(winningNumber, bonusNumber) {
+    const duplicateCount = this.countDuplicateNumber(winningNumber);
+    if (duplicateCount === 6) return 'first';
+    if (this.hasBonusNumber(bonusNumber) && duplicateCount === 5) return 'second';
+    if (duplicateCount === 5) return 'third';
+    if (duplicateCount === 4) return 'fourth';
+    if (duplicateCount === 3) return 'fifth';
+    return 'none';
+  }
 }
 
 module.exports = Lotto;
