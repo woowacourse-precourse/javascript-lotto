@@ -102,6 +102,7 @@ function calculateProfit(lottoArray, winningNumber, bonusNumber){
     matches[count]++;
   });
   printPrize(matches, bonusMatch);
+  return getProfit(matches, bonusMatch);
 }
 
 function countMatch(array1, array2){
@@ -112,6 +113,18 @@ function countMatch(array1, array2){
   return count;
 }
 
+function getProfit(matches, bonusMatch){
+  var profit = 0;
+  const prize = [0,0,0,5000,50000,1500000,2000000000];
+  const bonusPrize = 30000000;
+  for(var i = 0; i < prize.length; i++){
+    eachPrize = prize[i] * matches[i];
+    profit += eachPrize;
+  }
+  profit += bonusPrize * bonusMatch;
+  return profit;
+}
+
 function printPrize(matches, bonusMatch){
   const prize = [0,0,0,"5,000","50,000","1,500,000","2,000,000,000"];
   const bonusPrize = "30,000,000";
@@ -120,6 +133,12 @@ function printPrize(matches, bonusMatch){
   }
   MissionUtils.Console.print("5개 일치, 보너스 볼 일치 (" + bonusPrize + "원) - " + bonusMatch + "개");
   MissionUtils.Console.print("6개 일치 (" + prize[6] + "원) - " + matches[6] + "개");
+}
+
+function printProfit(spend, profit){
+  const yieldAmount = (profit/spend)*100;
+  const yieldRounded = yieldAmount.toFixed(1);
+  MissionUtils.Console.print("총 수익률은 " + yieldRounded +"%입니다.");
 }
 
 class App {
@@ -139,6 +158,7 @@ class App {
     this.winningNumber = getWinningNumber();
     this.bonusNumber = getBounusNumber(this.winningNumber);
     this.profit = calculateProfit(this.lottoArray, this.winningNumber, this.bonusNumber);
+    printProfit( this.lottoCount*1000, this.profit );
   }
 }
 
