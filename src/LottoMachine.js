@@ -5,12 +5,28 @@ const Lotto = require("./Lotto");
 
 class LottoMachine {
   #payment;
+  #winningNumbers;
+  #bonusNumber;
 
   getPayment() {
     Console.readLine(MESSAGE.REQUEST.PAYMENT, (payment) => {
       this.validatePayment(payment);
 
       this.#payment = payment;
+    });
+  }
+
+  getWinningNumbers() {
+    Console.readLine(MESSAGE.REQUEST.WINNING_NUMBERS, (numbers) => {
+      this.#winningNumbers = numbers.split(",");
+
+      this.getBonusNumber();
+    });
+  }
+
+  getBonusNumber() {
+    Console.readLine(MESSAGE.REQUEST.BONUS_NUMBER, (number) => {
+      this.#bonusNumber = number;
     });
   }
 
