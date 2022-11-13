@@ -14,7 +14,7 @@ class App {
 
   printLotto() {
     MissionUtils.Console.print(`${this.#lottoCount}개를 구매했습니다.`);
-    this.#totalLotto.forEach((lotto) => MissionUtils.Console.print([...lotto]));
+    this.#totalLotto.forEach((lotto) => MissionUtils.Console.print([...lotto].sort((a, b) => a - b)));
   }
 
   enterAmount() {
