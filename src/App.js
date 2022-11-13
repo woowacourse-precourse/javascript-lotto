@@ -29,6 +29,11 @@ class App {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (number) => {
       this.GetNumber.bonus(numbers, number);
     });
+    this.getCompareResult(lottoList, numbers, number);
+  }
+
+  getCompareResult(lottoList, numbers, number) {
+    
   }
 }
 
