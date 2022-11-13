@@ -75,7 +75,10 @@ class App {
     return true;
   }
   validateWinningNumbers(winningNumbers) {
-    const split = winningNumbers.split(",").map((number) => number.trim());
+    const split = winningNumbers
+      .split(",")
+      .map((number) => number.trim())
+      .filter((v) => v !== "");
 
     if (split.length !== 6) {
       throw new Error(`[ERROR] 당첨 로또 번호의 길이는 6개입니다.`);
