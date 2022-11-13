@@ -20,6 +20,9 @@
 ## 테스트
 [!] UI(Console.readLine,print)로직에 대한 테스트와 핵심 로직을 구현하는 테스트는 구분한다
 
+### 에러처리
+[]
+
 ## 구현할 기능
 
 ### 컴퓨터가 로또 번호를 랜덤으로 생성
@@ -78,3 +81,10 @@ bonusMoney는 Number로 바꿔준다
 - checkPrizeAmount
 
 ## 수익률 계산하기
+- rateofReturn
+## 수익률 계산 도와주는 함수
+- calculateRate
+## 수익률 반올림 함수
+- round
+## 수익률 출력 함수
+- showRate
