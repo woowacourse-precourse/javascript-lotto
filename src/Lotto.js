@@ -7,6 +7,10 @@ class Lotto {
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
+    this.result = {
+      lotto: 0,
+      bonus: false,
+    };
   }
 
   // eslint-disable-next-line
@@ -18,6 +22,16 @@ class Lotto {
 
   print() {
     Console.print(this.#numbers);
+  }
+
+  checkRank(winningNumbers, bonusNumber) {
+    for (const number of this.#numbers) {
+      if (winningNumbers.includes(number)) this.result.lotto += 1;
+    }
+
+    if (this.#numbers.includes(Number(bonusNumber))) this.result.bonus = true;
+
+    return this.result;
   }
 
   // TODO: 추가 기능 구현
