@@ -15,6 +15,21 @@ class App {
     Console.readLine('', (input) => {
       const money = Number(input);
       this.player.buyLottos(money);
+      this.printPlayerLottos();
+    });
+  }
+
+  printPlayerLottos() {
+    const lottoCount = this.player.spentMoney / 1000;
+
+    Console.print('');
+    Console.print(`${lottoCount}개를 구매했습니다.`);
+
+    this.player.lottos.forEach((lotto) => {
+      const numbers = lotto.getNumbers();
+      const lottoMessage = `[${numbers.join(', ')}]`;
+
+      Console.print(lottoMessage);
     });
   }
 }
