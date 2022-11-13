@@ -1,5 +1,7 @@
 const {Console} = require("@woowacourse/mission-utils");
 const {Random} = require("@woowacourse/mission-utils");
+const answerValidation = require("./answerValidation.js");
+const generalValidation = require("./generalValidation.js");
 
 const Lotto = require("./Lotto.js");
 
@@ -20,6 +22,8 @@ class App {
   //6. 보너스 번호 입력받기
   enterBonus(winningNums){
     Console.readLine('\n보너스 번호를 입력해 주세요.\n',(bonus) =>{
+
+      generalValidation(bonus);
       if(winningNums.includes(bonus)){
         Console.print(this.getErrorMessage('bonusError'));
       }
@@ -34,7 +38,7 @@ class App {
       const answerList = answer.split(',');
       //console.log(answerList);
       const lotto = new Lotto(answerList);
-      console.log(lotto)
+      //console.log(lotto)
       return this.enterBonus(answerList);
 
     })
@@ -73,6 +77,8 @@ class App {
       //console.log(`구입금액: ${total}`);
 
       //1-1. 구입 금액의 단위에 대한 예외 처리
+      generalValidation(total);
+
       if(parseInt(total) % 1000 != 0){      
         Console.print(this.getErrorMessage('unitError'));
         throw '1000원 단위로 입력되지 않음'; //1-2. 예외 출력
