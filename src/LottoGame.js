@@ -16,6 +16,10 @@ class LottoGame {
     }
     return count;
   }
+
+  matchBonusNumber() {
+    return this.lottoNumber.includes(this.bonusNumber);
+  }
 }
 
 module.exports = LottoGame;
