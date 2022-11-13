@@ -20,12 +20,13 @@ class App {
   inputMoney(){
     Console.readLine('구입금액을 입력해 주세요.\n', (input) => {
       this.input_money = new Money(input);
-      Console.print("");
 
+      Console.print("");
       this.countLotto();
       this.publishLotto();
       this.printLotto();
       
+      Console.print("");
       this.inputWinNumber();
     });
   }
@@ -34,12 +35,15 @@ class App {
     Console.readLine('당첨 번호를 입력해 주세요.\n', (input) => {
       input = input.split(",");
       this.input_lotto = new Lotto(input);
+      
+      Console.print("");
+      this.inputBonusNumber();
     });  
   }
 
   inputBonusNumber(){
     Console.readLine('보너스 번호를 입력해 주세요.\n', (input) => {
-      this.input_lotto = new BonusNumber(input, input_lotto);
+      this.input_lotto = new BonusNumber(input, this.input_lotto.getNumbers());
       this.input_bonus = input;
     });
   }
@@ -58,12 +62,14 @@ class App {
   }
 
   printLotto(){
+    Console.print("");
     Console.print(this.lottocount + "개를 구매했습니다.");
 
     for(let i=0; i < this.lottocount; i++){
       let lottoticket = this.lottotickets[i];
       Console.print(lottoticket.getNumbers());
     }
+    Console.print("");
   }
 }
 
