@@ -9,6 +9,11 @@ class LottoView {
     this.lottoController = lottoController;
   }
 
+  printStartInfo(amount, lottos) {
+    this.printAmount(amount);
+    this.printAllLottery(lottos);
+  }
+
   printAmount(amount) {
     MissionUtils.Console.print(amount + MESSAGE.BUY_AMOUNT);
   }

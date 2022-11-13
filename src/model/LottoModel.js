@@ -45,14 +45,14 @@ class LottoModel {
     return lottoArray;
   }
 
-  evaluateResult() {
-    const winNumberArray = Utils.stringToArray(this.#winNumber);
-    const matchedArray = [];
+  // evaluateResult() {
+  //   const winNumberArray = Utils.stringToArray(this.#winNumber);
+  //   const matchedArray = [];
 
-    this.#lottos.forEach((lotto, index) => {
-      const matchedResult = lotto.resultMatch(winNumberArray, this.#bonuse);
-      matchedArray.push(matchedResult.length); //
-    });
-  }
+  //   this.#lottos.forEach((lotto, index) => {
+  //     const matchedResult = lotto.resultMatch(winNumberArray, this.#bonuse);
+  //     matchedArray.push(matchedResult.length); //
+  //   });
+  // }
 }
 module.exports = LottoModel;
