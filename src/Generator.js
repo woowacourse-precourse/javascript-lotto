@@ -1,6 +1,10 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Print = require("./Print.js");
+
 class Generator {
-  constructor() {}
+  constructor() {
+    this.print = new Print();
+  }
 
   generateLottoNumbers(money) {
     const lottoTicketCount = money / 1000;
@@ -12,17 +16,20 @@ class Generator {
       lottoNumber.sort((a, b) => a - b);
       lottoTicket.push(lottoNumber);
     }
+
+    MissionUtils.Console.print(`${lottoTicketCount}개를 구매했습니다.`);
+    this.print.printLottoTicket(lottoTicket);
     return lottoTicket;
   }
 
-  generateLottoResult(lottoNumbers, lottoTicket) {
-    const atLeastWinNumber = 3;
+  generateMatchingResult(lottoNumbers, lottoTicket) {
+    const atLeastMatchNumber = 3;
     const needToCheckBonus = 5;
     const lottoResult = {
-      6: 0,
-      5: 0,
-      4: 0,
       3: 0,
+      4: 0,
+      5: 0,
+      6: 0,
     };
 
     lottoTicket.forEach((ticketNumber) => {
@@ -30,7 +37,7 @@ class Generator {
       if (needToCheckBonus === matchingNumber) {
         lottoResult[matchingNumber] = ticketNumber;
       }
-      if (atLeastWinNumber <= matchingNumber && needToCheckBonus !== matchingNumber) {
+      if (atLeastMatchNumber <= matchingNumber && needToCheckBonus !== matchingNumber) {
         lottoResult[matchingNumber] += 1;
       }
     });
