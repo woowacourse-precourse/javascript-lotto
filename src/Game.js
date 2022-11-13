@@ -10,8 +10,8 @@ class Game {
 
   constructor() {
     this.price = 0;
-    this.winningNumber = '';
-    this.bonusNumber = '';
+    this.numbersArr = [];
+    this.countArr = [];
   }
 
   getPriceInput() {
@@ -40,30 +40,33 @@ class Game {
     Console.print(`${count}개를 구매했습니다.`);
 
     while(count--){
-      Console.print(this.generateNumbers());
+      const numbers = this.generateNumbers();
+      this.numbersArr.push(numbers);
+      Console.print(numbers);
     }
   }
 
   getWinningNumberInput() {
     return Console.readLine('당첨 번호를 입력해 주세요.', (inputWinningNumber) => {
-      this.winningNumber = inputWinningNumber;
       console.log(inputWinningNumber);
+      this.addCount(inputWinningNumber);
       Console.close();
     });
   }
 
   getBonusNumberInput() {
     return Console.readLine('보너스 번호를 입력해 주세요.', (inputBonusNumber) => {
-      this.bonusNumber = inputBonusNumber;
       console.log(inputBonusNumber);
       Console.close();
     });
   }
 
-
-  
-
-
+  addCount(winningNumber) {
+    for(let i = 0 ; i<this.numbersArr.length ; i++){
+      let difference = this.numbersArr[i].filter(x => !winningNumber.includes(x));
+      this.countArr.push(6-difference.length);
+    }
+  }  
 
 
 }
