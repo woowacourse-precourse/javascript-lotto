@@ -24,8 +24,22 @@ const RESULT_MESSAGE = {
   underscore: "---",
 };
 
-const BLANK_SPACE ={
-  line: ""
-}
+const RESULT_PLACE = {
+  first: "6개 일치 (2,000,000,000원) - ",
+  second: "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
+  third: "5개 일치 (1,500,000원) - ",
+  fourth: "4개 일치 (50,000원) - ",
+  fifth: "3개 일치 (5,000원) - ",
+};
 
-module.exports = { PAYMENT_MESSAGE, SELECT_NUMBER_MESSAGE, RESULT_MESSAGE,BLANK_SPACE };
+const BLANK_SPACE = {
+  line: "",
+};
+
+module.exports = {
+  PAYMENT_MESSAGE,
+  SELECT_NUMBER_MESSAGE,
+  RESULT_MESSAGE,
+  BLANK_SPACE,
+  RESULT_PLACE,
+};
