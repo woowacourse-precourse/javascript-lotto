@@ -1,20 +1,27 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const generateRandomNumber = require("./GenerateRandomNumber");
+const GenerateLottoNumbers = require("./GenerateRandomNumbers");
 const Lotto = require("./Lotto");
 
 class Lottos {
   constructor(purchaseAmount) {
+    this.generateLottoNumbers = new GenerateLottoNumbers();
     this.count = purchaseAmount / 1000;
     this.lottos = [];
+    this.ranks = [];
+
     this.createLottos();
   }
 
   createLotto() {
-    return generateRandomNumber.generate();
+    const numbers = this.generateLottoNumbers.generate();
+
+    return new Lotto(numbers);
   }
 
   createLottos() {
-    this.lottos.push(new Lotto(this.createLotto));
+    for (let num = 0; num < this.count; num++) {
+      this.lottos.push(this.createLotto());
+    }
   }
 
   printCount() {
@@ -25,6 +32,17 @@ class Lottos {
     this.lottos.forEach((lotto) => {
       lotto.printLotto();
     });
+  }
+
+  createRanks(winningNumbers, bonusNum) {
+    this.lottos.forEach((lotto) => {
+      this.ranks.push(lotto.getRank(winningNumbers, bonusNum));
+    });
+  }
+
+  printResult(winningNumber, bonusNum) {
+    this.createRanks(winningNumber, bonusNum);
+    
   }
 }
 
