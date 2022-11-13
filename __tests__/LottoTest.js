@@ -54,4 +54,9 @@ describe("로또 클래스 테스트", () => {
       new Lotto([1, 2, 3, 4.55, 5, 6]);
     }).toThrow("[ERROR] 정수를 입력하세요.");
   });
+
+  test("private #numbers 클래스 외부에서 접근한다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    expect(lotto.numbers).toStrictEqual([1, 2, 3, 4, 5, 6]);
+  });
 });
