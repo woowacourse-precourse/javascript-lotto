@@ -1,4 +1,7 @@
 const Lotto = require("../src/Lotto");
+const LOTTERY_NUMBER_LENGTH = 6;
+const LOTTERY_MIN_NUMBER = 1;
+const LOTTERY_MAX_NUMBER = 45;
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
@@ -14,5 +17,43 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
-  // 아래에 추가 테스트 작성 가능
+  test("로또 번호의 개수가 6개 미만이면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([1, 2, 3]);
+    }).toThrow(`[ERROR] 로또 번호는 ${LOTTERY_NUMBER_LENGTH}개여야 합니다.`);
+  });
+
+  test("로또 번호에 숫자가 아닌 값이 있으면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, 'zhj']);
+    }).toThrow("[ERROR] 로또 번호는 숫자로만 이루어져야 합니다.");
+
+    expect(() => {
+      new Lotto(['@', 2, 3, 4, 5, 6]);
+    }).toThrow("[ERROR] 로또 번호는 숫자로만 이루어져야 합니다.");
+
+    expect(() => {
+      new Lotto(['a', 'b', 'c', 'd', 'e', 'f']);
+    }).toThrow("[ERROR] 로또 번호는 숫자로만 이루어져야 합니다.");
+  });
+
+  test("로또 번호에 정수가 아닌 값이 있으면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, 10.5]);
+    }).toThrow("[ERROR] 로또 번호는 정수로만 이루어져야 합니다.");
+  });
+
+  test("로또 번호에 숫자 범위가 1~45가 아닌 값이 있으면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, 46]);
+    }).toThrow(`[ERROR] 로또 번호는 ${LOTTERY_MIN_NUMBER}~${LOTTERY_MAX_NUMBER}까지의 숫자여야 합니다.`);
+
+    expect(() => {
+      new Lotto([0, 2, 3, 4, 5, 6]);
+    }).toThrow(`[ERROR] 로또 번호는 ${LOTTERY_MIN_NUMBER}~${LOTTERY_MAX_NUMBER}까지의 숫자여야 합니다.`);
+
+    expect(() => {
+      new Lotto([-1, 2, 3, 4, 5, 6]);
+    }).toThrow(`[ERROR] 로또 번호는 ${LOTTERY_MIN_NUMBER}~${LOTTERY_MAX_NUMBER}까지의 숫자여야 합니다.`);
+  });
 });
