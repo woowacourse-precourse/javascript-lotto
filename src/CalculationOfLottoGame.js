@@ -1,4 +1,11 @@
-const { Random } = require("@woowacourse/mission-utils");
+const { Console, Random } = require("@woowacourse/mission-utils");
+
+function checkOfBonusNumHave(usersLotto, bonusNum, { index }, winLotto) {
+  if (usersLotto[index].includes(parseInt(bonusNum)) === true) {
+    winLotto.set("2등", winLotto.get("2등") + 1);
+  }
+  winLotto.set("3등", winLotto.get("3등") + 1);
+}
 
 class CalculationOfLottoGame {
   HowManyCanBuyLotto(money) {
@@ -28,15 +35,7 @@ class CalculationOfLottoGame {
       winningNumArr.push(find.length);
     }
 
-    return winningNumArr; // 맞춘 로또 몇개인지 배열!
-  }
-  checkOfBonusNumHave(usersLotto, bonusNum, { index }) {
-    if (usersLotto[index].includes(parseInt(bonusNum)) === true) {
-      return true;
-    }
-    if (usersLotto[index].includes(bonusNum) === false) {
-      return false;
-    }
+    return winningNumArr;
   }
 
   makeArrayOfArrayPlusNum(array, num) {
@@ -65,21 +64,8 @@ class CalculationOfLottoGame {
           break;
 
         case 5:
-          if (
-            this.checkOfBonusNumHave(userHaveLotto, bonusNum, { index: i }) ===
-            false
-          ) {
-            winLotto.set("3등", winLotto.get("3등") + 1);
-            break;
-          }
-
-          if (
-            this.checkOfBonusNumHave(userHaveLotto, bonusNum, { index: i }) ===
-            true
-          ) {
-            winLotto.set("2등", winLotto.get("2등") + 1);
-            break;
-          }
+          checkOfBonusNumHave(userHaveLotto, bonusNum, { index: i }, winLotto);
+          break;
 
         case 6:
           winLotto.set("1등", winLotto.get("1등") + 1);
