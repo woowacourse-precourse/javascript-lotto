@@ -59,7 +59,7 @@ class App {
 
   printLottos(lottos) {
     Console.print(MESSAGE.PURCHASE_QUANTITY(lottos.length));
-    lottos.forEach((lotto) => Console.print(`[${lotto.getLottoNumbers().join(', ')}]`));
+    lottos.forEach((lotto) => lotto.printLottoNumbers());
     Console.print('\n');
     return this.readWinningNumbers(lottos);
   }

@@ -1,5 +1,6 @@
 const Util = require('./Util');
 const { LOTTO, ERROR_MESSAGE, } = require('./domain/constant');
+const { Console, } = require('@woowacourse/mission-utils');
 
 class Lotto {
   #numbers;
@@ -27,6 +28,10 @@ class Lotto {
 
   getLottoNumbers() {
     return this.#numbers ? this.#numbers : [];
+  }
+
+  printLottoNumbers() {
+    Console.print(`[${this.#numbers.join(', ')}]`);
   }
 
   validateWinningNumbers(str) {
