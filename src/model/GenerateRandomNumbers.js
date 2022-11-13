@@ -4,10 +4,10 @@ class GenerateRandomNumber {
   generate() {
     const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
 
-    return this.sort(numbers);
+    return this.sortNumbers(numbers);
   }
 
-  sort(numbers) {
+  sortNumbers(numbers) {
     return numbers.sort((a, b) => a - b);
   }
 }
