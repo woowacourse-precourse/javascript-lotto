@@ -36,6 +36,32 @@ class Lotto {
     this.calculateEarningsRate(statics, issuedLottos.length);
   }
 
+  calculateEarningsRate(statics, purchase) {
+    const winningPrices = {
+      3: 5000,
+      4: 50000,
+      5: 1500000,
+      6: 2000000000,
+      '5andBonus': 30000000,
+    };
+    const matchedNums = Object.keys(statics);
+    let total = 0;
+
+    matchedNums.forEach((matchedNum) => {
+      if (statics[matchedNum] !== 0) {
+        total += winningPrices[matchedNum] * statics[matchedNum];
+      }
+    });
+
+    const earnings = (total / (purchase * 1000)) * 100;
+    const earningsRate =
+      (+(Math.round(earnings + 'e+1') + 'e-1'))
+        .toFixed(1)
+        .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',') + '%';
+
+    this.printResults(statics, earningsRate);
+  }
+
   validateWinningNubmer(winnigNums) {
     if (winnigNums.length !== 6) {
       throw new Error(
