@@ -18,6 +18,12 @@ class LottoPublisher {
     this.#winningNumbers = numbers;
   }
 
+  receiveUserInputBonusNumber(input) {
+    const number = Number(input);
+    this.validateBonusNumber(number);
+    this.#bonusNumber = number;
+  }
+
   validateWinningNumbers(numbers) {
     isValidLottoNumbers(numbers);
   }
