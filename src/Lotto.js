@@ -1,4 +1,7 @@
+const MissionUtils = require('@woowacourse/mission-utils');
 const { MESSAGE } = require('./Constants');
+
+const { Console } = MissionUtils;
 
 class Lotto {
   #numbers;
@@ -29,6 +32,14 @@ class Lotto {
    */
   getNums() {
     return this.#numbers;
+  }
+
+  /**
+   * 로또 하나의 번호를 출력합니다.
+   */
+  printLotto() {
+    const str = this.#numbers.join(', ');
+    Console.print(`[${str}]`);
   }
 }
 
