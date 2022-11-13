@@ -14,6 +14,10 @@ class LottoModel {
 
     return input;
   }
+
+  countLotto(input) {
+    return input / 1000;
+  }
 }
 
 module.exports = LottoModel;
