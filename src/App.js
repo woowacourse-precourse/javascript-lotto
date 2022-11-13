@@ -65,39 +65,60 @@ class App {
   }
 
   readWinningNumbers(lottos) {
-    Console.readLine(MESSAGE.ENTER_WINNING_NUMBERS, (winningNumbers) => {
-      const winningLotto = new Lotto(winningNumbers);
-      return this.readBonusNumber({ lottos, winningLotto });
+    Console.readLine(MESSAGE.ENTER_WINNING_NUMBERS, (winningNumbersInput) => {
+      this.validateWinningNumbers(winningNumbersInput);
+      const winningNumbers = this.winningNumbersToArray(winningNumbersInput);
+      return this.readBonusNumber({ lottos, winningNumbers });
     });
   }
 
-  readBonusNumber({ lottos, winningLotto }) {
+  validateWinningNumbers(str) {
+    const NUMBER_COMMA_REGEXP = /^[0-9,]+$/;
+    const START_IS_COMMA_REGEXP = /^[,]/;
+    const END_IS_COMMA_REGEXP = /[,]$/;
+    const DUPLICATE_COMMA_REGEXP = /[,]{2,}/;
+
+    if (
+      !NUMBER_COMMA_REGEXP.test(str) ||
+      DUPLICATE_COMMA_REGEXP.test(str) ||
+      START_IS_COMMA_REGEXP.test(str) ||
+      END_IS_COMMA_REGEXP.test(str)
+    ) {
+      throw new Error(ERROR_MESSAGE.INVALID_WINNING_NUMBERS);
+    }
+  }
+
+  winningNumbersToArray(winningNumbers) {
+    const winningNumbersArr = winningNumbers.split(',');
+    return winningNumbersArr.map((num) => parseInt(num));
+  }
+
+  readBonusNumber({ lottos, winningNumbers }) {
     Console.readLine(MESSAGE.ENTER_BONUS_NUMBER, (bonusNumber) => {
-      this.validateBonusNumber({ bonusNumber, winningLotto });
+      this.validateBonusNumber({ bonusNumber, winningNumbers });
       bonusNumber = parseInt(bonusNumber);
-      return this.countLottoResult({ lottos, winningLotto, bonusNumber });
+      return this.countLottoResult({ lottos, winningNumbers, bonusNumber });
     });
   }
 
-  validateBonusNumber({ bonusNumber, winningLotto }) {
+  validateBonusNumber({ bonusNumber, winningNumbers }) {
     if (
       !Util.isNumericInput(bonusNumber) ||
       !Util.isBetween(bonusNumber, LOTTO.START, LOTTO.END)
     ) {
       throw new Error(ERROR_MESSAGE.OUT_OF_RANGE_LOTTO);
     }
-    if (winningLotto.hasBonusNumber(parseInt(bonusNumber))) {
+    if (winningNumbers.includes(parseInt(bonusNumber))) {
       throw new Error(ERROR_MESSAGE.INVALID_BONUS_NUMBER);
     }
   }
 
-  countLottoResult({ lottos, winningLotto, bonusNumber }) {
-    const winningLottoNumbers = winningLotto.getLottoNumbers();
+  countLottoResult({ lottos, winningNumbers, bonusNumber }) {
     const matchCounts = [];
     const hasBonusNumberArr = [];
 
     lottos.forEach((lotto) => {
-      matchCounts.push(lotto.getMatchCount(winningLottoNumbers));
+      matchCounts.push(lotto.getMatchCount(winningNumbers));
       if (lotto.hasBonusNumber(bonusNumber)) {
         hasBonusNumberArr.push(true);
       }
@@ -105,7 +126,6 @@ class App {
         hasBonusNumberArr.push(false);
       }
     });
-
     return this.countLottoRanks({ matchCounts, hasBonusNumberArr });
   }
 
