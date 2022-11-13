@@ -96,6 +96,18 @@ class App {
       this.bonusNum = answer;
     });
   }
+
+  //당첨계산
+  calculateTotalRank() {
+    let rank = new Array(5);
+    rank.fill(0);
+
+    for (let i = 0; i < this.lottoArray.length; i++) {
+      rank[this.calculateEachRank(i) - 1] += 1;
+    }
+
+    this.rank = rank;
+  }
 }
 
 module.exports = App;
