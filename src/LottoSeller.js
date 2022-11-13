@@ -28,8 +28,8 @@ class LottoSeller {
     if (money % this.#lottoPrice !== 0) throw new Error(Messages.ZERO_REST);
   }
 
-  getLottos() {
-    return this.lottoArray;
+  getLottoPrice() {
+    return this.#lottoPrice;
   }
 }
 
