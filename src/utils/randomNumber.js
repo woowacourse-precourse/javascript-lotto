@@ -6,6 +6,6 @@ const generateRandomNumbers = () =>
     LOTTO_VALUE.MIN,
     LOTTO_VALUE.MAX,
     LOTTO_VALUE.LENGTH
-  ).sort();
+  ).sort((a, b) => a - b);
 
 module.exports = { generateRandomNumbers };

@@ -1,14 +1,23 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { GAME_MESSAGE, ERROR_MESSAGE } = require("./constants/index");
-const { isNumberType, isThousandUnits } = require("./utils/index");
+const Lotto = require("./Lotto");
+const {
+  isNumberType,
+  isThousandUnits,
+  generateRandomNumbers,
+} = require("./utils/index");
 
 class LottoGame {
   #purchaseAmount;
+  #lottoList;
 
   enter() {
     Console.readLine(GAME_MESSAGE.INPUT_PURCHASE_AMOUNT, (inputAmount) => {
-      if (this.isPurchaseAmountValid(inputAmount))
+      if (this.isPurchaseAmountValid(inputAmount)) {
         this.#purchaseAmount = inputAmount;
+        this.generateLottoList();
+        console.log(this.#lottoList);
+      }
     });
   }
 
@@ -19,6 +28,17 @@ class LottoGame {
 
     if (!isThousandUnits(purchaseAmount)) {
       throw ERROR_MESSAGE.UNIT_ERROR;
+    }
+    return true;
+  }
+
+  generateLottoList() {
+    this.#lottoList = [];
+    let lottoCnt = Math.floor(this.#purchaseAmount / 1000);
+
+    for (let i = 0; i < lottoCnt; i++) {
+      let lotto = new Lotto(generateRandomNumbers());
+      this.#lottoList.push(lotto);
     }
   }
 }
