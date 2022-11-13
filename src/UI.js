@@ -76,6 +76,13 @@ class UI {
       throw new Error(BONUS_NUMBER_ERROR_MESSAGE);
     }
   }
+
+  static async getWinningNumbers() {
+    const winningNumbers = await UI.getBasicWinningNumbers();
+    const bonusNumber = await UI.getBonusWinningNumber();
+
+    return { winningNumbers, bonusNumber };
+  }
 }
 
 module.exports = UI;
