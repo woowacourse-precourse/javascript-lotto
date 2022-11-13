@@ -1,5 +1,6 @@
 const userException = require('../src/utils/userException');
 const lottoException = require('../src/utils/lottoException');
+const numberException = require('../src/utils/numberException');
 
 describe('1. 사용자의 구입 금액 입력 기능에 대한 예외 처리', () => {
     test('로또 구입 금액이 1,000원으로 나누어 떨어지지 않을 때 예외가 발생한다.', () => {
@@ -52,5 +53,28 @@ describe('2. 하나의 로또를 발행하는 기능에 대한 예외 처리', (
  
         expect(() => lottoException.isDuplicated(input))
         .toThrow("[ERROR] 생성된 로또에 중복된 수가 포함되어 있습니다.");
+    });
+})
+
+describe('3. 사용자의 당첨번호 입력에 대한 예외 처리', () => {
+    test('사용자의 당첨 번호 갯수가 6개가 아니면 예외가 발생한다.', () => {
+        const input = [1, 2, 3, 4, 5, 6, 7];
+
+        expect(() => numberException.isNotSix(input))
+        .toThrow("[ERROR] 당첨 번호는 6개 입니다.");
+    })
+
+    test('사용자의 당첨 번호가 모두 숫자가 아닌 경우 예외가 발생한다.', () => {
+        const input = [1, 2, ' ', 4, 5, 6];
+
+        expect(() => numberException.includeNotNumber(input))
+        .toThrow("[ERROR] 당첨 번호에 숫자가 아닌 원소가 포함되어 있습니다.");
+    })
+
+    test('사용자의 당첨 번호 중 중복된 것이 있을 때 예외가 발생한다.', () => {
+        const input = [1, 1, 3, 4, 5, 6];
+ 
+        expect(() => numberException.isDuplicated(input))
+        .toThrow("[ERROR] 당첨 번호에 중복된 수가 포함되어 있습니다.");
     });
 })
