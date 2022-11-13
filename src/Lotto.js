@@ -47,7 +47,7 @@ class Lotto {
       else correctNums.push(correctNum.length);
     }
     this.checkResult(correctNums, correctBonus);
-    return correctNums
+    return [correctNums, correctBonus]
   }
 
 
@@ -57,24 +57,23 @@ class Lotto {
 
 
   checkResult(correctNums, correctBonus) {
+    const correctCount = [{'3개':0},{'4개':0},{'5개':0},{'6개':0}];
+
+    correctNums.forEach(correctLength => {
+      if(correctLength === 3) correctCount[0]['3개'] += 1;
+      if(correctLength === 4) correctCount[1]['4개'] += 1;
+      if(correctLength === 5) correctCount[2]['5개'] += 1;
+      if(correctLength === 6) correctCount[3]['6개'] += 1;
+    });
+
+    this.printResult(correctCount, correctBonus)
+    return [correctCount, correctBonus]
+  }
+
+  printResult(correctCount, correctBonus) {
 
   }
 
-
-
-  printResult() {
-    
-  }
-
-  // TODO: 추가 기능 구현
 }
-
-
-
-
-//>>>>>>>>>>>>test<<<<<<<<<<<<<<
-// lotto.inputWinningNumber();
-// lotto.start()
-
 
 module.exports = Lotto;
