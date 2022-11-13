@@ -16,7 +16,13 @@ class App {
     MissionUtils.Console.readLine('구입금액을 입력해주세요.', (money) => {
       this.#Money = new Money(money);
       this.money = money;
+      this.checkQuantity(money);
     });
+  }
+
+  checkQuantity(money) {
+    const quantity = money / 1000;
+    MissionUtils.Console.print(`${quantity}개를 구매했습니다.`);
   }
 }
 
