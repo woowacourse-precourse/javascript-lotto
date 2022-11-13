@@ -6,12 +6,12 @@ const { MoneyValidator, BonusValidator } = require('../utils/Validator');
 class LottoGameController {
   constructor(model) {
     this.lottoGameModel = model;
+    this.winningLotto;
   }
 
   start() {
     this.setGame();
-    const winning = this.pickWinningLotto();
-    console.log(winning);
+    this.pickWinningLotto();
   }
 
   setGame() {
@@ -25,9 +25,8 @@ class LottoGameController {
   pickWinningLotto() {
     readLine(INPUT_MESSAGE.LOTTO_NUMBER, (input) => {
       let winningLotto = input.split(',').map(Number);
-      winningLotto = this.pickBonusNumber(winningLotto);
 
-      return winningLotto;
+      this.pickBonusNumber(winningLotto);
     });
   }
 
@@ -35,7 +34,7 @@ class LottoGameController {
     readLine(INPUT_MESSAGE.BONUS_NUMBER, (input) => {
       BonusValidator.validate(lotto, input);
 
-      return [...lotto, input];
+      this.winningLotto = [...lotto, Number(input)];
     });
   }
 }
