@@ -13,49 +13,49 @@ const Bonus = require('./Bonus');
 const Result = require('./Result');
 
 class Game {
-  #purchaseMoney;
-  #myLottosArray;
-  #purchaseAccount;
-  #winningNumbers;
-  #bonusNumber;
-  #winningCount;
+  #purchase;
+  #myLottos;
+  #winning;
+  #bonus;
+  #result;
 
   constructor() {
     this.getInputPurchaseMoney();
   }
 
   initPurchase(money) {
-    this.purchase = new Purchase(money);
-    this.#purchaseMoney = this.purchase.getNumberTypeMoney();
-    this.#purchaseAccount = this.purchase.getPurchaseAccount();
+    this.#purchase = new Purchase(money);
   }
 
   initMyLottos() {
-    this.myLottos = new MyLottos(this.#purchaseAccount);
-    this.#myLottosArray = this.myLottos.getMyLottos();
+    this.#myLottos = new MyLottos(this.#purchase.getPurchaseAccount());
   }
 
   initWinningLotto(array) {
-    this.winning = new Lotto(array);
-    this.#winningNumbers = this.winning.getWinningNumbers();
+    this.#winning = new Lotto(array);
   }
 
-  initBonusNumber(bonus, winningNumbers) {
-    this.bonus = new Bonus(bonus, winningNumbers);
-    this.#bonusNumber = this.bonus.getBonusNumber();
+  initBonusNumber(bonus) {
+    this.#bonus = new Bonus(bonus, this.#winning.getWinningNumbers());
   }
 
-  initResult(userLottos, winningNumber, bonusNumber) {
-    this.result = new Result(userLottos, winningNumber, bonusNumber);
-    this.#winningCount = this.result.getWinningResult();
+  initResult() {
+    this.#result = new Result(
+      this.#myLottos.getMyLottos(),
+      this.#winning.getWinningNumbers(),
+      this.#bonus.getBonusNumber()
+    );
   }
 
   getPercentage() {
-    return getRateOfReturn(getRevenue(this.#winningCount), this.#purchaseMoney);
+    return getRateOfReturn(
+      getRevenue(this.#result.getWinningResult()),
+      this.#purchase.getNumberTypeMoney()
+    );
   }
 
   printMyLottosArray() {
-    this.#myLottosArray.forEach((item) => {
+    this.#myLottos.getMyLottos().forEach((item) => {
       Console.print(`[${item.join(', ')}]`);
     });
   }
@@ -78,13 +78,9 @@ class Game {
 
   getInputBonusNumber() {
     Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (bonus) => {
-      this.initBonusNumber(bonus, this.#winningNumbers);
-      this.initResult(
-        this.#myLottosArray,
-        this.#winningNumbers,
-        this.#bonusNumber
-      );
-      printWinningResult(this.#winningCount, this.getPercentage());
+      this.initBonusNumber(bonus);
+      this.initResult();
+      printWinningResult(this.#result.getWinningResult(), this.getPercentage());
       Console.close();
     });
   }
