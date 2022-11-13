@@ -34,10 +34,9 @@ class App {
 
   InputLottos() {
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (answer) => {
-      const lottos = answer.split(',');
-      this.isDuplicated(lottos);
-      this.isLottoSix(lottos);
-      this.InputBonus(lottos);
+      const numbers = answer.split(',');
+      new Lotto(numbers);
+      this.InputBonus(numbers);
     });
   }
 
@@ -48,18 +47,6 @@ class App {
     });
   }
 
-  isDuplicated(array) {
-    const set = new Set(array);
-    if(array.length != set.size){
-      throw INPUT_ERROR.DUPLICATED;
-    }
-  }
-
-  isLottoSix(array){
-    if(array.length != 6){
-      throw INPUT_ERROR.LESS_THAN_EXPECTED;
-    }
-  }
 }
 
 const app = new App;
