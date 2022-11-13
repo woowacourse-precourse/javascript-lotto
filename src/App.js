@@ -39,7 +39,7 @@ class App {
   printLotto(cntLotto) {
     for (let i = 0; i < cntLotto; i++) {
       this.lottoList.push(Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b));
-      Console.print(this.lottoList[i]);
+      Console.print(`[${this.lottoList[i][0]}, ${this.lottoList[i][1]}, ${this.lottoList[i][2]}, ${this.lottoList[i][3]}, ${this.lottoList[i][4]}, ${this.lottoList[i][5]}]`);
     }
     this.inputLotto();
   }
@@ -109,7 +109,7 @@ class App {
   }
   rateOfReturn(winningRank, cost) {
     let reward = FIRST_REWARD * winningRank.First + SECOND_REWARD * winningRank.Second + TRHID_REWARD * winningRank.Third + FOURTH_REWARD * winningRank.Fourth + FIFTH_REWARD * winningRank.Fifth;
-    Console.print(`총 수익률은 ${((reward / cost) * 100).toFixed(1)}% 입니다.`);
+    Console.print(`총 수익률은 ${((reward / cost) * 100).toFixed(1)}%입니다.`);
   }
 }
 
