@@ -1,10 +1,5 @@
 const Util = require('./Util');
-const {
-  LOTTO_LENGTH,
-  LOTTO_START,
-  LOTTO_END,
-  ERROR_MESSAGE,
-} = require('./domain/constant');
+const { LOTTO, ERROR_MESSAGE, } = require('./domain/constant');
 
 class Lotto {
   #numbers;
@@ -19,10 +14,10 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (!Util.hasNElements(numbers, LOTTO_LENGTH)) {
+    if (!Util.hasNElements(numbers, LOTTO.LENGTH)) {
       throw new Error(ERROR_MESSAGE.INVALID_LENGTH_LOTTO);
     }
-    if (!Util.isBetween(numbers, LOTTO_START, LOTTO_END)) {
+    if (!Util.isBetween(numbers, LOTTO.START, LOTTO.END)) {
       throw new Error(ERROR_MESSAGE.OUT_OF_RANGE_LOTTO);
     }
     if (Util.hasDuplicateElements(numbers)) {

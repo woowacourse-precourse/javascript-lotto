@@ -1,9 +1,8 @@
-const PRICE_PER_LOTTO = 1000;
-const LOTTO_LENGTH = 6;
-const LOTTO_START = 1;
-const LOTTO_END = 45;
-
 const LOTTO = {
+  PRICE: 1000,
+  START: 1,
+  END: 45,
+  LENGTH: 6,
   SIX: 6,
   FIVE: 5,
   FOUR: 4,
@@ -53,10 +52,6 @@ const ERROR_MESSAGE = {
 };
 
 module.exports = {
-  PRICE_PER_LOTTO,
-  LOTTO_LENGTH,
-  LOTTO_START,
-  LOTTO_END,
   LOTTO,
   MESSAGE,
   ERROR_MESSAGE,

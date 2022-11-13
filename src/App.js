@@ -1,13 +1,5 @@
-const { Console, Random } = require('@woowacourse/mission-utils');
-const {
-  PRICE_PER_LOTTO,
-  LOTTO_LENGTH,
-  LOTTO_START,
-  LOTTO_END,
-  LOTTO,
-  MESSAGE,
-  ERROR_MESSAGE,
-} = require('./domain/constant');
+const { Console, Random, } = require('@woowacourse/mission-utils');
+const { LOTTO, MESSAGE, ERROR_MESSAGE, } = require('./domain/constant');
 const Util = require('./Util');
 const Lotto = require('./Lotto');
 
@@ -36,14 +28,14 @@ class App {
     if (Util.isZeroStartInput(purchaseAmount)) {
       throw new Error(ERROR_MESSAGE.ZERO_START_INPUT);
     }
-    if (!Util.isDivisibleBy(purchaseAmount, PRICE_PER_LOTTO)) {
+    if (!Util.isDivisibleBy(purchaseAmount, LOTTO.PRICE)) {
       throw new Error(ERROR_MESSAGE.NON_DIVISIBLE_INPUT);
     }
     return this.countLottoQuantity(purchaseAmount);
   }
 
   countLottoQuantity(purchaseAmount) {
-    const lottoQuantity = purchaseAmount / PRICE_PER_LOTTO;
+    const lottoQuantity = purchaseAmount / LOTTO.PRICE;
     return this.makeLottos(lottoQuantity);
   }
 
@@ -58,9 +50,9 @@ class App {
 
   getLottoNumbers() {
     const lottoNumbers = Random.pickUniqueNumbersInRange(
-      LOTTO_START,
-      LOTTO_END,
-      LOTTO_LENGTH
+      LOTTO.START,
+      LOTTO.END,
+      LOTTO.LENGTH
     );
     return lottoNumbers;
   }
@@ -90,7 +82,7 @@ class App {
   validateBonusNumber({ bonusNumber, winningLotto }) {
     if (
       !Util.isNumericInput(bonusNumber) ||
-      !Util.isBetween(bonusNumber, LOTTO_START, LOTTO_END)
+      !Util.isBetween(bonusNumber, LOTTO.START, LOTTO.END)
     ) {
       throw new Error(ERROR_MESSAGE.OUT_OF_RANGE_LOTTO);
     }
