@@ -37,4 +37,15 @@ describe("로또 클래스 테스트", () => {
       lottoMachine.getRandomNumberLottos().every((lotto) => lotto.every((number) => number >= 1 && number <= 45));
     }).toBeTruthy();
   });
+
+  test("사용자에게 당첨 번호를 입력받을 때 1~45사이가 아닌 숫자를 입력했을 경우 예외 처리한다.", () => {
+    expect(() => {
+      const lottoMachine = new LottoMachine();
+      if (lottoMachine.validateWinningNumbers([0, 1, 2, 3, 4, 5])) throw new Error(MESSAGE.ERROR.OUT_OF_RANGE_NUMBER);
+    }).toThrow("[ERROR]");
+    expect(() => {
+      const lottoMachine = new LottoMachine();
+      if (lottoMachine.validateWinningNumbers([46, 1, 2, 3, 4, 5])) throw new Error(MESSAGE.ERROR.OUT_OF_RANGE_NUMBER);
+    }).toThrow("[ERROR]");
+  });
 });
