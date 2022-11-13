@@ -79,9 +79,8 @@ class App {
     changeStringToArray(string) {
         if (string.includes(',')) {
             return string.split(',').map((array) => Number(array));
-        } else {
-            return string.split().map((array) => Number(array));
         }
+        return string.split().map((array) => Number(array));
     }
 }
 

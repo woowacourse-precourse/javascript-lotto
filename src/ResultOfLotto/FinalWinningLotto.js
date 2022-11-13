@@ -15,15 +15,13 @@ class FinalWinningLotto {
     compareWinningWithPurchasedLotto(buyLottos, winnnigLotto, bonus) {
         const lottoDictionary = { 3: 0, 4: 0, 5: 0, '5+1': 0, 6: 0 };
         for (let i = 0; i < buyLottos.length; i++) {
-            const a = buyLottos[i].filter((it) => winnnigLotto.includes(it));
-            if (a.length < 3) continue;
-            if (buyLottos[i].includes(Number(bonus)) === true && a.length === 5) {
+            const sameMatchingNumber = buyLottos[i].filter((it) => winnnigLotto.includes(it));
+            if (sameMatchingNumber.length < 3) continue;
+            if (buyLottos[i].includes(Number(bonus)) === true && sameMatchingNumber.length === 5) {
                 lottoDictionary['5+1'] += 1;
                 continue;
             }
-            if (lottoDictionary[`${a.length}`] === 0) {
-            }
-            lottoDictionary[`${a.length}`] += 1;
+            lottoDictionary[`${sameMatchingNumber.length}`] += 1;
         }
         return lottoDictionary;
     }
