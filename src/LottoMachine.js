@@ -72,7 +72,7 @@ class LottoMachine {
 
   publishLotto(numbers) {
     const lotto = new Lotto(numbers);
-    const lottoNumbers = lotto.getterLottoNumbers();
+    const lottoNumbers = lotto.getLottoNumbers();
     this.user.usersLottos.push(lottoNumbers);
   }
 }
