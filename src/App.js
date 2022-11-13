@@ -42,7 +42,6 @@ class App {
       MissionUtils.Console.print(this.userLotto[i]);
     }
     MissionUtils.Console.print("\n");
-    MissionUtils.Console.close();
   }
 
   validateMoney(money) {
