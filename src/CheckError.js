@@ -11,6 +11,7 @@ class CheckError {
   }
 
   static checkLottoNumbers(lottoNumbers) {
+    // TODO : 1 - 45 사이 숫자.
     const lottoNumberSet = new Set(lottoNumbers);
     const arrayToString = lottoNumbers.join("");
     if (lottoNumbers.length !== 6)
@@ -42,6 +43,16 @@ class CheckError {
     const winningNumberArray = winningNumber.split(",");
     CheckError.checkLottoNumbers(winningNumberArray);
     return winningNumberArray;
+  }
+
+  static checkBonusNumber(bonusNumber, winnerNumberArray) {
+    // TODO: 1- 45 사이 숫자인지 아닌지
+    // TODO: 당첨 번호 숫자들과 겹치는지 안 겹치는지.
+  }
+
+  static isRangeInLottoNumber(number) {
+    // 범위 안에 있다면 true를 리턴.
+    return number >= 1 && number <= 45;
   }
 }
 
