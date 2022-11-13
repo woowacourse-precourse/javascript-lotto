@@ -29,7 +29,7 @@ class App {
     MissionUtils.Console.print(LottoCount + Notice.BUY_LOTTO)
     for (let i = 0; i<LottoCount; i++){
       let RandomNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
-      MissionUtils.Console.print(`[${RandomNumber.join(',')}]`);
+      MissionUtils.Console.print(`[${RandomNumber.join(', ')}]`);
       this.Lotto.validate(RandomNumber);
       this.Lottobuynumber.push(RandomNumber)
     }
@@ -91,7 +91,7 @@ class App {
     for (let i = 0; i<5; i++){
       MissionUtils.Console.print(Notice.RESULT_MESSAGE[i] + this.correctList[i] + "개")
     }
-    MissionUtils.Console.print(`총 수익률은 ${this.ratio}% 입니다.`)
+    MissionUtils.Console.print(`총 수익률은 ${this.ratio}%입니다.`)
     MissionUtils.Console.close()
   }
   calculateReturn(){
@@ -100,7 +100,7 @@ class App {
     for (let i = 0; i<5; i++){
       earn += this.correctList[i] * this.getMoney[i]
     }
-    const earningratio = (earn/buy).toFixed(2)
+    const earningratio = ((earn/buy)*100).toFixed(1)
     this.ratio = earningratio
   }
 }
