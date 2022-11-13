@@ -37,9 +37,6 @@ class LottoGameHandler {
       new Lotto(WINNING_NUMBERS);
       LottoResultCheck.winningNumbers = WINNING_NUMBERS;
 
-      for (let idx = 0; idx < LottoResultCheck.lottoNumbersArray.length; idx++)
-        LottoResultCheck.winningCheck(LottoResultCheck.lottoNumbersArray[idx]);
-
       this.getBonusNumber(WINNING_NUMBERS);
     });
   }
@@ -48,8 +45,14 @@ class LottoGameHandler {
     MissionUtils.Console.readLine(GET_INPUT.BONUS_NUMBER, (userInput) => {
       this.INPUT_CHECK.isBonusNumberValid(winningNumbers, userInput);
       LottoResultCheck.bonusNumber = userInput;
-      this.getResult();
+      this.checkWinningOfBoughtLottos();
     });
+  }
+
+  checkWinningOfBoughtLottos() {
+    for (let idx = 0; idx < LottoResultCheck.lottoNumbersArray.length; idx++)
+      LottoResultCheck.winningCheck(LottoResultCheck.lottoNumbersArray[idx]);
+    this.getResult();
   }
 
   getResult() {
