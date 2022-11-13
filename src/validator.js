@@ -8,13 +8,12 @@ class Validator {
 
   validateNumber(money) {
     const check = /^[0-9]+$/;
-    if (!check.test(money))
-      throw Error(ERROR_MESSAGES.INPUT_TYPE_MUST_BE_NUBMER);
+    if (!check.test(money)) throw Error(ERROR_MESSAGES.type);
   }
 
   validateUnit(money) {
     if (parseInt(money, 10) % 1000 !== 0)
-      throw Error(ERROR_MESSAGES.MONEY_MUST_BE_DIVIDED_INTO_1000);
+      throw Error(ERROR_MESSAGES.divisionByThousand);
   }
 
   validateLotto(numbers) {
@@ -24,14 +23,13 @@ class Validator {
 
   validateLength(numbers) {
     if (numbers.length !== 6) {
-      throw new Error(ERROR_MESSAGES.NUMBERS_LENGTH_MUST_BE_SIX);
+      throw new Error(ERROR_MESSAGES.length);
     }
   }
 
   validateDoubled(numbers) {
     const set = Array.from(new Set(numbers));
-    if (numbers.length !== set.length)
-      throw new Error(ERROR_MESSAGES.NUMBERS_MUST_NOT_OVERLAP);
+    if (numbers.length !== set.length) throw new Error(ERROR_MESSAGES.overlap);
   }
 }
 

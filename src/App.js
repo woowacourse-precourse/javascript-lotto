@@ -3,6 +3,7 @@ const {
   MESSAGES,
   MATCHING_MESSAGES,
   PRIZE_MESSAGES,
+  INPUT_MESSAGES,
 } = require('./constant/messages');
 const Purchaser = require('./domain/Purchaser');
 const Validator = require('./validator');
@@ -23,7 +24,7 @@ class App {
   }
 
   inputMoney() {
-    Console.readLine(MESSAGES.INPUT, (money) => {
+    Console.readLine(INPUT_MESSAGES.money, (money) => {
       this.validator.validateInput(money);
       this.purchaser = new Purchaser(money);
       this.#lottos = this.purchaser.buyLotto(money / 1000);
@@ -33,14 +34,14 @@ class App {
   }
 
   showLottoNumber() {
-    Console.print(`${this.#lottos.length}${MESSAGES.BUY_LOTTO}`);
+    Console.print(`${this.#lottos.length}${MESSAGES.purchase}`);
     this.#lottos.forEach((lotto) =>
       Console.print(`[${lotto.getNumbers().join(', ')}]`)
     );
   }
 
   inputWinnerNumber() {
-    Console.readLine(MESSAGES.INPUT_WINNER_NUMBER, (winnerNumber) => {
+    Console.readLine(INPUT_MESSAGES.winnerNumber, (winnerNumber) => {
       this.#winnerNumber = winnerNumber
         .split(',')
         .map((number) => +number.trim());
@@ -49,7 +50,7 @@ class App {
   }
 
   inputBonusNumber() {
-    Console.readLine(MESSAGES.INPUT_BONUS_NUMBER, (bonusNumber) => {
+    Console.readLine(INPUT_MESSAGES.bonusNumber, (bonusNumber) => {
       this.#bonusNumber = +bonusNumber;
       this.showResult();
       Console.close();
@@ -57,6 +58,7 @@ class App {
   }
 
   showResult() {
+    Console.print(MESSAGES.result);
     const matchedCountList = this.purchaser.countMatchedNumber(
       this.#lottos,
       this.#winnerNumber,
