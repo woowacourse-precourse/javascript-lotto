@@ -122,6 +122,14 @@ class App {
       rank.rank3 * 1500000 +
       rank.rank2 * 30000000 +
       rank.rank1 * 2000000000;
+    this.returnOnInvestment(WIN_MONEY, investment);
+  }
+
+  returnOnInvestment(winMoney, investment) {
+    let YIELD = (winMoney / parseInt(investment)) * 100;
+    YIELD = Math.round(YIELD * 100) / 100;
+    MissionUtils.Console.print(`총 수익률은 ${YIELD}%입니다.`);
+    MissionUtils.Console.close();
   }
 }
 
