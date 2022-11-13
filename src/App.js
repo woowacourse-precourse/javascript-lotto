@@ -5,10 +5,14 @@ const { Console, Random } = MissionUtils;
 class App {
   unit;
   lottos;
+  winningNumber;
+  bonusNumber;
 
   constructor() {
     this.unit = 1000;
     this.lottos = [];
+    this.winningNumbers = null;
+    this.bonusNumber = null;
   }
   createLottos(money) {
     const lottoNum = money / this.unit;
@@ -35,7 +39,14 @@ class App {
     });
   }
   askWinningNumbers() {
-    Console.readLine("당첨 번호를 입력해 주세요.\n", (winningNumbers) => {});
+    Console.readLine("당첨 번호를 입력해 주세요.\n", (winningNumbers) => {
+      this.winningNumbers = winningNumbers;
+    });
+  }
+  askBonusNumber() {
+    Console.readLine("보너스 번호를 입력해 주세요.", (bonusNumber) => {
+      this.bonusNumber = bonusNumber;
+    });
   }
   play() {}
 }
