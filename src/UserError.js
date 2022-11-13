@@ -40,6 +40,12 @@ class UserError {
       }
     });
   }
+
+  validateBonusNumber(number) {
+    if (number.length !== 1) {
+      throw new Error("[ERROR] 보너스 번호는 1개만 입력해 주세요.");
+    }
+  }
 }
 
 module.exports = UserError;
