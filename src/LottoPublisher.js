@@ -15,6 +15,10 @@ class LottoPublisher {
   validateWinningNumbers(numbers) {
     isValidLottoNumbers(numbers);
   }
+
+  validateBonusNumber(number) {
+    isValidLottoBonusNumber(number, this.#winningNumbers);
+  }
 }
 
 module.exports = LottoPublisher;
