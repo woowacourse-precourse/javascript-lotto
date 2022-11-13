@@ -1,5 +1,6 @@
 const Lotto = require("./Lotto");
 const Buyer = require("./Buyer");
+const Statistic = require("./Statistic");
 const Io = require("./utils/Io");
 const Validator = require("./utils/Validator");
 const { LOTTO_AMOUNT, LOTTO_NUMBER } = require("./constants/index");
@@ -32,14 +33,19 @@ const Seller = ((_) => {
       this.#buyer.setBuyLottoNumber = amount;
       this.#buyer.setLottos = this.#giveLottos();
       this.#notifyBuyLotto();
+      this.requestLottoWinNumber();
     }
 
     #proceedLottoWinNumber(winNumber) {
       this.validateWinNumber(winNumber);
+      this[Private] = { winNumber };
+      this.requestLottoBonusNumber();
     }
 
     #proceedLottoBonusNumber(bonusNumber) {
       this.validateBonusNumber(bonusNumber);
+      Object.assign(this[Private], { bonusNumber: Number(bonusNumber) });
+      this.#announcementResult();
     }
 
     #giveLottos() {
@@ -59,6 +65,16 @@ const Seller = ((_) => {
     #notifyBuyLotto() {
       this.#io.print(`\n${this.#buyer.buyLottoNumber}개를 구매했습니다.`);
       this.#buyer.lottos.forEach(this.#io.print);
+    }
+
+    #announcementResult() {
+      const { winNumber, bonusNumber } = this[Private];
+      const lottos = this.#buyer.lottos;
+      new Statistic({
+        bonusNumber,
+        winNumber,
+        lottos,
+      });
     }
 
     validateAmount(amount) {
