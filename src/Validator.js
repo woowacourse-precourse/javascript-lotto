@@ -16,6 +16,21 @@ class Validator {
       throw new Error("[ERROR] 숫자를 쉼표로 구분하여 입력해주세요.");
     }
   }
+
+  checkBonusNumber(winningNumber, bonusNumber) {
+    const check = /^[0-9]+$/; 
+    if (!check.test(bonusNumber)) {
+      throw new Error("[ERROR] 로또 번호는 숫자만 입력 가능합니다.");
+    }
+
+    if (bonusNumber < 1 || bonusNumber > 45) {
+      throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+    if (winningNumber.includes(bonusNumber)) {
+      throw new Error("[ERROR] 보너스 번호는 당첨 번호에 존재하지 않는 값이어야 합니다.");
+    }
+  }
 }
 
 module.exports = Validator;
