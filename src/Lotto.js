@@ -16,6 +16,9 @@ class Lotto {
     if (numbers.filter((x) => +x < 1 || +x > 45).length > 0) {
       throw new Error("[ERROR] 1부터 45까지의 번호만 입력할 수 있습니다.");
     }
+    if (numbers.filter((x) => isNaN(x)).length > 0) {
+      throw new Error("[ERROR] 숫자만 입력 가능합니다.");
+    }
     return true;
   }
 }
