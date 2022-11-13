@@ -46,10 +46,14 @@ class WinNumbersValidation extends Validation {
     const winNumberArray = this.answer.split(',');
     const winNumberSet = new Set(winNumberArray);
 
-    if (winNumberArray.length !== winNumberSet.size) {
+    if (WinNumbersValidation.isSizeSame(winNumberArray, winNumberSet)) {
       throw new WinNumberError(WIN_NUMBER_ERROR_MESSAGE.not_valid_overlap_number);
     }
     return true;
+  }
+
+  static isSizeSame(winNumberArray, winNumberSet) {
+    return winNumberArray.length !== winNumberSet.size;
   }
 }
 
