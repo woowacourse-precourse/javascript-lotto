@@ -1,15 +1,11 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+const LottoGenerator = require('./IssueLotto');
 const Lotto = require('./Lotto');
 const Match = require('./Matcher');
 
 const Console = MissionUtils.Console;
-const Random = MissionUtils.Random;
 
 class App {
-  constructor() {
-    this.LOTTO_TICKET_PRICE = 1000;
-    this.lottoCount = 0;
-  }
   play() {
     this.injectMoney();
   }
@@ -19,28 +15,8 @@ class App {
       if (money % 1000 !== 0) {
         throw new Error('[ERROR] 1000원 단위로 입력해주세요.');
       }
-      this.lottoCount += Number(money) / this.LOTTO_TICKET_PRICE;
-      this.money += Number(money);
-      this.makeRandomLottoNumber();
+      LottoGenerator.getPurchaseLottoCount(Number(money));
     });
-  }
-
-  makeRandomLottoNumber() {
-    for (let i = 0; i < this.lottoCount; i++) {
-      const lottoNumber = Random.pickUniqueNumbersInRange(1, 45, 6);
-      const updateNumber = [...this.lottoNumber];
-      updateNumber.push(lottoNumber.sort((a, b) => a - b));
-      this.lottoNumber = updateNumber;
-    }
-    this.printLotto();
-  }
-
-  printLotto() {
-    const lottoList = this.lottoNumber
-      .map((x, index) => '[' + this.lottoNumber[index].join(', ') + ']')
-      .join('\n');
-    Console.print(`\n${this.lottoCount}개를 구매했습니다.\n${lottoList}`);
-    this.enterWinNumber();
   }
 
   enterWinNumber() {
@@ -57,7 +33,6 @@ class App {
     Console.readLine('\n보너스 번호를 입력해 주세요.\n', input => {
       const inputNumber = Number(input);
       Match.bonusNumber.push(inputNumber);
-      this.matchLottoNumber();
     });
   }
 
