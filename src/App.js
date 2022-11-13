@@ -1,5 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 const CheckValue = require("./CheckValue");
+const Lotto = require("./Lotto");
 const Message = require("./Message");
 const NumberGenerator = require("./NumberGenerator");
 
@@ -30,6 +31,7 @@ class App {
   printLotto() {
     const lottoArr = this.numberGenerator.drawLottery(this.lottoCount);
     lottoArr.map((lotto) => {
+      new Lotto(lotto);
       Console.print(lotto);
     });
   }
