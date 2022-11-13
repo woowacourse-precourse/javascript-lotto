@@ -6,3 +6,9 @@ const RANGE_OF_LOTTO_NUMBER = {
 };
 
 const TOTAL_COUNTS = 6;
+
+module.exports = {
+  LOTTO_PRICE,
+  RANGE_OF_LOTTO_NUMBER,
+  TOTAL_COUNTS,
+};
