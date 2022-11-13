@@ -4,10 +4,14 @@ class Game {
   gameStart() {
     this.getPriceInput();
     this.showNumbers(this.price);
+    this.getWinningNumberInput();
+    this.getBonusNumberInput();
   }
 
   constructor() {
     this.price = 0;
+    this.winningNumber = '';
+    this.bonusNumber = '';
   }
 
   getPriceInput() {
@@ -15,6 +19,7 @@ class Game {
       this.checkPriceInput(inputPrice);
       this.price = inputPrice;
       console.log(this.price);
+      Console.close();
     });
   }
 
@@ -31,12 +36,30 @@ class Game {
 
   showNumbers(price){
     let count = price / 1000;
-    
-    Console.print(`${count}개를 구매했습니다.`)
+  
+    Console.print(`${count}개를 구매했습니다.`);
+
     while(count--){
       Console.print(this.generateNumbers());
     }
   }
+
+  getWinningNumberInput() {
+    return Console.readLine('당첨 번호를 입력해 주세요.', (inputWinningNumber) => {
+      this.winningNumber = inputWinningNumber;
+      console.log(inputWinningNumber);
+      Console.close();
+    });
+  }
+
+  getBonusNumberInput() {
+    return Console.readLine('보너스 번호를 입력해 주세요.', (inputBonusNumber) => {
+      this.bonusNumber = inputBonusNumber;
+      console.log(inputBonusNumber);
+      Console.close();
+    });
+  }
+
 
   
 
