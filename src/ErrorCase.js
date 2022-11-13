@@ -29,6 +29,16 @@ class ErrorCase {
 
     return false;
   }
+
+  static isWrongBonusNumberInput(bonusNumberInput) {
+    if (isNaN(bonusNumberInput)) return true;
+
+    if (bonusNumberInput < 1 || bonusNumberInput > 45) return true;
+
+    if (bonusNumberInput !== Math.floor(bonusNumberInput)) return true;
+
+    return false;
+  }
 }
 
 module.exports = ErrorCase;
