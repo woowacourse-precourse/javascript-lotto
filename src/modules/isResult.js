@@ -16,9 +16,7 @@ class IsResult {
 
     for (let key in result) {
       MissionUtils.Console.print(
-        `${result[key].match} (${parseInt(
-          result[key].price
-        ).toLocaleString()}원) - ${result[key].count}개`
+        `${result[key].match} (${parseInt(result[key].price).toLocaleString()}원) - ${result[key].count}개`
       );
     }
 
