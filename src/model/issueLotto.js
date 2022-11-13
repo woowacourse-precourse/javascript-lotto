@@ -1,17 +1,18 @@
-const MessageViewer = require("../view/view");
-
 const MissionUtils = require("@woowacourse/mission-utils");
 const LottoResultCheck = require("../model/resultCheck");
 const { VALUE_NUMBER } = require("../utils/constants");
+
+const MessageViewer = require("../view/view");
 
 class LottoGenerator {
   constructor() {
     this.viewer = new MessageViewer();
   }
+
   makeLottoNumber() {
     const LOTTONUMBER = MissionUtils.Random.pickUniqueNumbersInRange(
-      VALUE_NUMBER.SMALLEST_LOTTO_NUMBER,
-      VALUE_NUMBER.BIGGEST_LOTTO_NUMBER,
+      VALUE_NUMBER.FIRST_LOTTO_NUMBER,
+      VALUE_NUMBER.LAST_LOTTO_NUMBER,
       VALUE_NUMBER.TOTAL_LOTTO_NUMBERS
     );
     return LOTTONUMBER.sort((x, y) => x - y);

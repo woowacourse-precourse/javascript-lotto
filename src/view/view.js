@@ -11,13 +11,13 @@ class MessageViewer {
   }
 
   resultMessage(resultArray, earningsRate) {
-    MissionUtils.Console.print(RESULT.RESULT_STATISTICS_MESSAGE);
+    MissionUtils.Console.print(RESULT.TITLE);
     MissionUtils.Console.print(RESULT.BORDER_LINE);
-    MissionUtils.Console.print(RESULT.RESULT_STATISTICS_5TH + " - " + resultArray[GRADE.FIFTH_GRADE - 1] + "개");
-    MissionUtils.Console.print(RESULT.RESULT_STATISTICS_4TH + " - " + resultArray[GRADE.FOURTH_GRADE - 1] + "개");
-    MissionUtils.Console.print(RESULT.RESULT_STATISTICS_3RD + " - " + resultArray[GRADE.THIRD_GRADE - 1] + "개");
-    MissionUtils.Console.print(RESULT.RESULT_STATISTICS_2ND + " - " + resultArray[GRADE.SECOND_GRADE - 1] + "개");
-    MissionUtils.Console.print(RESULT.RESULT_STATISTICS_1ST + " - " + resultArray[GRADE.FIRST_GRADE - 1] + "개");
+    MissionUtils.Console.print(RESULT.FIFTH + " - " + resultArray[GRADE.FIFTH - 1] + "개");
+    MissionUtils.Console.print(RESULT.FOURTH + " - " + resultArray[GRADE.FOURTH - 1] + "개");
+    MissionUtils.Console.print(RESULT.THIRD + " - " + resultArray[GRADE.THIRD - 1] + "개");
+    MissionUtils.Console.print(RESULT.SECOND + " - " + resultArray[GRADE.SECOND - 1] + "개");
+    MissionUtils.Console.print(RESULT.FIRST + " - " + resultArray[GRADE.FIRST - 1] + "개");
     MissionUtils.Console.print(`총 수익률은 ${earningsRate}%입니다.`);
   }
 }

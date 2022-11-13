@@ -9,29 +9,30 @@ class LottoResultCheck {
     this.bonusNumber = 0;
   }
 
-  winningCheck(lottonumbers) {
+  checkWinning(lottonumbers) {
     const COUNT_OF_CORRECT_NUMBERS = lottonumbers.filter((number) => this.winningNumbers.includes(number)).length;
+
     if (COUNT_OF_CORRECT_NUMBERS === VALUE_NUMBER.NUMBERS_OF_WIN_FIFTH_PRIZE)
-      return this.lottoRankingsCount(GRADE.FIFTH_GRADE);
+      return this.countLottoRanking(GRADE.FIFTH);
     if (COUNT_OF_CORRECT_NUMBERS === VALUE_NUMBER.NUMBERS_OF_WIN_FOURTH_PRIZE)
-      return this.lottoRankingsCount(GRADE.FOURTH_GRADE);
+      return this.countLottoRanking(GRADE.FOURTH);
     if (COUNT_OF_CORRECT_NUMBERS === VALUE_NUMBER.NUMBERS_OF_WIN_THIRD_PRIZE)
-      return this.lottoRankingsCount(GRADE.THIRD_GRADE);
+      return this.countLottoRanking(GRADE.THIRD);
     if (
       COUNT_OF_CORRECT_NUMBERS === VALUE_NUMBER.NUMBERS_OF_WIN_SECOND_PRIZE &&
       lottonumbers.includes(this.bonusNumber)
     )
-      return this.lottoRankingsCount(GRADE.SECOND_GRADE);
+      return this.countLottoRanking(GRADE.SECOND);
     if (COUNT_OF_CORRECT_NUMBERS === VALUE_NUMBER.NUMBERS_OF_WIN_FIRST_PRIZE)
-      return this.lottoRankingsCount(GRADE.FIRST_GRADE);
+      return this.countLottoRanking(GRADE.FIRST);
   }
 
-  lottoRankingsCount(ranking) {
-    if (ranking === GRADE.FIRST_GRADE) this.resultArray[GRADE.FIRST_GRADE - 1]++;
-    if (ranking === GRADE.SECOND_GRADE) this.resultArray[GRADE.SECOND_GRADE - 1]++;
-    if (ranking === GRADE.THIRD_GRADE) this.resultArray[GRADE.THIRD_GRADE - 1]++;
-    if (ranking === GRADE.FOURTH_GRADE) this.resultArray[GRADE.FOURTH_GRADE - 1]++;
-    if (ranking === GRADE.FIFTH_GRADE) this.resultArray[GRADE.FIFTH_GRADE - 1]++;
+  countLottoRanking(ranking) {
+    if (ranking === GRADE.FIRST) this.resultArray[GRADE.FIRST - 1]++;
+    if (ranking === GRADE.SECOND) this.resultArray[GRADE.SECOND - 1]++;
+    if (ranking === GRADE.THIRD) this.resultArray[GRADE.THIRD - 1]++;
+    if (ranking === GRADE.FOURTH) this.resultArray[GRADE.FOURTH - 1]++;
+    if (ranking === GRADE.FIFTH) this.resultArray[GRADE.FIFTH - 1]++;
   }
 
   getEarningsRate() {

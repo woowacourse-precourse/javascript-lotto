@@ -1,6 +1,6 @@
 const VALUE_NUMBER = {
-  SMALLEST_LOTTO_NUMBER: 1,
-  BIGGEST_LOTTO_NUMBER: 45,
+  FIRST_LOTTO_NUMBER: 1,
+  LAST_LOTTO_NUMBER: 45,
   TOTAL_LOTTO_NUMBERS: 6,
   MONEY_FOR_ONE_GAME: 1000,
 
@@ -18,11 +18,11 @@ const VALUE_NUMBER = {
 };
 
 const GRADE = {
-  FIRST_GRADE: 1,
-  SECOND_GRADE: 2,
-  THIRD_GRADE: 3,
-  FOURTH_GRADE: 4,
-  FIFTH_GRADE: 5,
+  FIRST: 1,
+  SECOND: 2,
+  THIRD: 3,
+  FOURTH: 4,
+  FIFTH: 5,
 };
 
 const ERROR_INPUT = {
@@ -48,12 +48,12 @@ const GET_INPUT = {
 
 const RESULT = {
   BORDER_LINE: "---",
-  RESULT_STATISTICS_MESSAGE: "\n당첨 통계",
-  RESULT_STATISTICS_5TH: "3개 일치 (5,000원)",
-  RESULT_STATISTICS_4TH: "4개 일치 (50,000원)",
-  RESULT_STATISTICS_3RD: "5개 일치 (1,500,000원)",
-  RESULT_STATISTICS_2ND: "5개 일치, 보너스 볼 일치 (30,000,000원)",
-  RESULT_STATISTICS_1ST: "6개 일치 (2,000,000,000원)",
+  TITLE: "\n당첨 통계",
+  FIFTH: "3개 일치 (5,000원)",
+  FOURTH: "4개 일치 (50,000원)",
+  THIRD: "5개 일치 (1,500,000원)",
+  SECOND: "5개 일치, 보너스 볼 일치 (30,000,000원)",
+  FIRST: "6개 일치 (2,000,000,000원)",
 };
 
 module.exports = { VALUE_NUMBER, GRADE, ERROR_INPUT, ERROR_LOTTO_NUMBER, GET_INPUT, RESULT };
