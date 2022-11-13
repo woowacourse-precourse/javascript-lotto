@@ -16,7 +16,7 @@ class App {
   orderAmount() {
     Console.readLine('', (amount) => {
       if(isNaN(amount) || amount % 1000 !== 0) {
-        throw new Error('입력값이 잘못되어, 게임을 종료합니다.');
+        throw new Error('[ERROR]입력값이 잘못되어, 게임을 종료합니다.');
       } 
       var lottoCount = amount / 1000
       this.creatLottos(lottoCount);
@@ -31,7 +31,17 @@ class App {
       var lotto = new Lotto(randomNumbers);
       lottoArr.push(lotto);
     }
+    console.log
+    this.creatLottosOutput(lottoCount,lottoArr);
   }
+
+  /** 4. 구입금액 대비 구매한 결과 출력 */
+  creatLottosOutput(lottoCount, lottoArr){
+    Console.print(`${lottoCount} 개를 구매했습니다.`);
+    Console.print(lottoArr.forEach(lotto => lotto.print()));
+  }
+
+
 
 }
 
