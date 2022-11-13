@@ -10,6 +10,7 @@ const ERROR_MESSAGE = Object.freeze({
   NOT_SIX_LENGTH: `[ERROR] 로또 번호는 6개여야 합니다.`,
   IS_OVERLAPPED: `[ERROR] 로또 번호는 중복될 수 없습니다.`,
   NOT_NUMBER_IN_LOTTO: `[ERROR] 로또 번호에는 숫자만 포함될 수 있습니다.`,
+  NOT_ASCENDING_ARR: `[ERROR] 로또 번호는 오름차순으로 정렬되어 있어야 합니다.`,
 });
 const PRINT_MESSAGE = Object.freeze({
   PURCHASE_MESSAGE: (num) => `${num}개를 구매했습니다.`,
