@@ -21,12 +21,13 @@ class App {
   getWinNumber(lottoList) {
     Console.readLine("\n당첨 번호를 입력해 주세요.\n", (numbers) => {
       this.GetNumber.toWin(numbers);
+      this.getBonusNumber(lottoList, numbers);
     });
   }
 
-  getBonusNumber() {
-    Console.readLine("보너스 번호를 입력해 주세요.", (number) => {
-      this.GetNumber.bonus(number);
+  getBonusNumber(lottoList, numbers) {
+    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (number) => {
+      this.GetNumber.bonus(numbers, number);
     });
   }
 }

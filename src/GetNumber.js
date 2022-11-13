@@ -1,18 +1,18 @@
-const Lotto = require('./Lotto');
+const Validation = require("./Validation");
 
 class GetNumber {
     constructor() {
-        this.lotto = new Lotto();
+        this.validation = new Validation();
     }
 
     toWin(numbers) {
         numbers = numbers.split(',');
-        this.lotto.validate(numbers);
+        this.validation.validate(numbers);
         console.log(numbers);
     }
 
-    bonus(number) {
-        this.Lotto.bonusValidate(number);
+    bonus(numbers, number) {
+        this.validation.bonusValidate(numbers, number);
         console.log(number);
     }
 }
