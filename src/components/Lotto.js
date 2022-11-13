@@ -1,17 +1,17 @@
 const {
   LOTTO_PRICE,
   INITIAL_STATICS,
-  WINNIG_PRICES,
+  WINNING_PRICES,
   ERROR_MESSAGES,
 } = require('../utils/constants');
 const { Console } = require('@woowacourse/mission-utils');
 
 class Lotto {
-  #winnigNums;
+  #winningNums;
 
-  constructor(winnigNums) {
-    this.validateWinningNubmer(winnigNums);
-    this.#winnigNums = winnigNums.map((num) => +num);
+  constructor(winningNums) {
+    this.validateWinningNubmer(winningNums);
+    this.#winningNums = winningNums.map((num) => +num);
   }
 
   calculateStatics(issuedLottos, bonusNumber) {
@@ -21,7 +21,7 @@ class Lotto {
       let sameCount = 0;
 
       lotto.forEach((num, index) => {
-        this.#winnigNums.includes(num) && sameCount++;
+        this.#winningNums.includes(num) && sameCount++;
 
         if (index + 1 === lotto.length) {
           if (sameCount === 5 && lotto.includes(bonusNumber)) {
@@ -37,23 +37,27 @@ class Lotto {
   }
 
   calculateEarningsRate(statics, purchase) {
-    const winningPrices = WINNIG_PRICES;
-    const matchedNums = Object.keys(statics);
+    const matchedCounts = Object.keys(statics);
     let total = 0;
 
-    matchedNums.forEach((matchedNum) => {
-      if (statics[matchedNum] !== 0) {
-        total += winningPrices[matchedNum] * statics[matchedNum];
-      }
-    });
+    const addWinningPrice = (matchedCount) =>
+      statics[matchedCount] !== 0 &&
+      (total += WINNING_PRICES[matchedCount] * statics[matchedCount]);
+
+    matchedCounts.forEach((matchedCount) => addWinningPrice(matchedCount));
 
     const earnings = (total / (purchase * LOTTO_PRICE)) * 100;
+
+    this.printResults(statics, this.convertRate(earnings));
+  }
+
+  convertRate(earnings) {
     const earningsRate =
       (+(Math.round(earnings + 'e+1') + 'e-1'))
         .toFixed(1)
         .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',') + '%';
 
-    this.printResults(statics, earningsRate);
+    return earningsRate;
   }
 
   printResults(statics, earningsRate) {
@@ -72,12 +76,12 @@ class Lotto {
     Console.close();
   }
 
-  validateWinningNubmer(winnigNums) {
+  validateWinningNubmer(winningNums) {
     const { WINNING_NUMS } = ERROR_MESSAGES;
 
-    if (winnigNums.length !== 6) throw new Error(WINNING_NUMS);
+    if (winningNums.length !== 6) throw new Error(WINNING_NUMS);
 
-    winnigNums.some((num) => {
+    winningNums.some((num) => {
       if (
         typeof +num !== 'number' ||
         Number.isNaN(+num) ||
@@ -87,7 +91,7 @@ class Lotto {
         throw new Error(WINNING_NUMS);
     });
 
-    if (winnigNums.length !== new Set(winnigNums).size)
+    if (winningNums.length !== new Set(winningNums).size)
       throw new Error(WINNING_NUMS);
   }
 
@@ -102,7 +106,7 @@ class Lotto {
     )
       throw new Error(BOUNS_NUM);
 
-    if (this.#winnigNums.some((num) => num === bonusNumber))
+    if (this.#winningNums.some((num) => num === bonusNumber))
       throw new Error(BOUNS_NUM);
   }
 }
