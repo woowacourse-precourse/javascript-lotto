@@ -21,6 +21,14 @@ class LottoGenerator {
   static sortLotto(a, b) {
     return a - b;
   }
+
+  static generatedByCount(count) {
+    const result = [];
+    for (let i = 0; i < count; i++) {
+      result.push(this.generate());
+    }
+    return result;
+  }
 }
 
 module.exports = LottoGenerator;
