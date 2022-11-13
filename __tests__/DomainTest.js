@@ -61,4 +61,18 @@ describe('기능 2번. 로또 구입 금액 만큼의 로또 번호 생성', () 
     user.getUserMoney();
     expect(user.lottoList.length).toEqual(8);
   });
+  test('로또 번호가 숫자 이외의 type인 경우', () => {
+    mockRandoms([[8, 21, 45, 41, 42, 'plz']]);
+    expect(() => new Lotto()).toThrow('[ERROR] 로또 번호는 숫자만 가능합니다.');
+  });
+  test('로또 번호가 1~45의 숫자 범위를 벗어난 경우', () => {
+    mockRandoms([[8, 21, 45, 41, 42, 51]]);
+    expect(() => new Lotto()).toThrow(
+      '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.',
+    );
+  });
+  test('로또 번호에 중복된 숫자가 있는 경우', () => {
+    mockRandoms([[8, 21, 45, 41, 41, 43]]);
+    expect(() => new Lotto()).toThrow('[ERROR] 중복된 숫자가 있습니다.');
+  });
 });
