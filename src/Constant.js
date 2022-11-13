@@ -1,0 +1,26 @@
+const MissionUtils = require('@woowacourse/mission-utils');
+const Console = MissionUtils.Console;
+const Random = MissionUtils.Random;
+const PLZ_INPUT_PRICE = '구입금액을 입력해 주세요.';
+const PURCHASE_LOTTO_COUNT = '개를 구매했습니다.';
+const PLZ_INPUT_WIN_NUMBER = '당첨 번호를 입력해 주세요.';
+const PLZ_INPUT_BONUS_NUMBER = '보너스 번호를 입력해 주세요.';
+const WINNING_STATISTICS = '당첨 통계';
+const THREE_SAME = '3개 일치 (5,000원) - ';
+const FOUR_SAME = '4개 일치 (50,000원) - ';
+const FIVE_SAME = '5개 일치 (1,500,000원) - ';
+const FIVE_SAME_BONUS_SAME = '5개 일치, 보너스 볼 일치 (30,000,000원) - ';
+const SIX_SAME = '6개 일치 (2,000,000,000원) - ';
+
+exports.Console = Console;
+exports.Random = Random;
+exports.PLZ_INPUT_PRICE = PLZ_INPUT_PRICE;
+exports.PURCHASE_LOTTO_COUNT = PURCHASE_LOTTO_COUNT;
+exports.PLZ_INPUT_WIN_NUMBER = PLZ_INPUT_WIN_NUMBER;
+exports.PLZ_INPUT_BONUS_NUMBER = PLZ_INPUT_BONUS_NUMBER;
+exports.WINNING_STATISTICS = WINNING_STATISTICS;
+exports.THREE_SAME = THREE_SAME;
+exports.FOUR_SAME = FOUR_SAME;
+exports.FIVE_SAME = FIVE_SAME;
+exports.FIVE_SAME_BONUS_SAME = FIVE_SAME_BONUS_SAME;
+exports.SIX_SAME = SIX_SAME;
