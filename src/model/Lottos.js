@@ -2,7 +2,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const generateRandomNumber = require("./GenerateRandomNumber");
 const Lotto = require("./Lotto");
 
-class UserLottos {
+class Lottos {
   constructor(purchaseAmount) {
     this.count = purchaseAmount / 1000;
     this.lottos = [];
