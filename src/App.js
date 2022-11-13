@@ -97,8 +97,7 @@ class App {
     const hasBonusNumberArr = [];
 
     lottos.forEach((lotto) => {
-      const lottoNumbers = lotto.getLottoNumbers();
-      matchCounts.push(this.getMatchCount(lottoNumbers, winningLottoNumbers));
+      matchCounts.push(lotto.getMatchCount(winningLottoNumbers));
       if (lotto.hasBonusNumber(bonusNumber)) {
         hasBonusNumberArr.push(true);
       }
@@ -108,16 +107,6 @@ class App {
     });
 
     return this.countLottoRanks({ matchCounts, hasBonusNumberArr });
-  }
-
-  getMatchCount(lottoNumbers, winningLottoNumbers) {
-    let matchCount = 0;
-    winningLottoNumbers.forEach((num) => {
-      if (lottoNumbers.includes(num)) {
-        matchCount += 1;
-      }
-    });
-    return matchCount;
   }
 
   countLottoRanks({ matchCounts, hasBonusNumberArr }) {

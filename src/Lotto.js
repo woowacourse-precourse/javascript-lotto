@@ -34,6 +34,14 @@ class Lotto {
     Console.print(`[${this.#numbers.join(', ')}]`);
   }
 
+  getMatchCount(winningLottoNumbers) {
+    let matchCount = 0;
+    winningLottoNumbers.forEach((num) => {
+      if (this.#numbers.includes(num)) matchCount += 1;
+    });
+    return matchCount;
+  }
+
   hasBonusNumber(bonusNumber) {
     return this.#numbers.includes(bonusNumber);
   }
