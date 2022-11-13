@@ -23,6 +23,9 @@ class App {
   prizeInput(user, userMoney) {
     MissionUtils.Console.readLine(`\n${Message.INPUT_MESSAGE.PRIZE}\n`, (prizeNumber) => {
       const przNum = prizeNumber.split(',');
+      if (przNum.length !== 6) {
+        throw new Error(`${Message.ERROR_MESSAGE.COMMA}`);
+      }
       new Lotto(przNum);
       this.bonusInput(user, przNum, userMoney);
     });
