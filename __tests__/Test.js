@@ -1,5 +1,6 @@
 const { makeString } = require('../src/Print');
 const { getProfitMessage, getStatisticsMessage } = require('../src/constant/Constant');
+const { validateBonusNumber } = require('../src/Validation');
 
 describe("기능 테스트", () => {
   test("발행 로또 출력 스트링을 만드는 함수 테스트", () => {
@@ -21,5 +22,41 @@ describe("기능 테스트", () => {
     const result = getProfitMessage(input);
 
     expect(result).toEqual('총 수익률은 62.5%입니다.\n');
+  });
+
+  test("보너스 번호에 중복된 숫자가 있으면 예외가 발생한다.", () => {
+    expect(() => {
+      const input = 5;
+      const winningNumber = [1, 2, 3, 4, 5, 6];
+      validateBonusNumber(input, winningNumber);
+
+    }).toThrow("[ERROR]");
+  });
+
+  test("보너스 번호가 문자면 예외가 발생한다.", () => {
+    expect(() => {
+      const input = 'a';
+      const winningNumber = [1, 2, 3, 4, 5, 6];
+      validateBonusNumber(input, winningNumber);
+
+    }).toThrow("[ERROR]");
+  });
+  
+  test("보너스 번호에 범위를 벗어난 숫자가 있으면 예외가 발생한다.", () => {
+    expect(() => {
+      const input = 0;
+      const winningNumber = [1, 2, 3, 4, 5, 6];
+      validateBonusNumber(input, winningNumber);
+
+    }).toThrow("[ERROR]");
+  });
+  
+  test("보너스 번호에 범위를 벗어난 숫자가 있으면 예외가 발생한다.", () => {
+    expect(() => {
+      const input = 46;
+      const winningNumber = [1, 2, 3, 4, 5, 6];
+      validateBonusNumber(input, winningNumber);
+
+    }).toThrow("[ERROR]");
   });
 });

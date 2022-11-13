@@ -13,8 +13,28 @@ describe("로또 클래스 테스트", () => {
       new Lotto([1, 2, 3, 4, 5, 5]);
     }).toThrow("[ERROR]");
   });
-
   // 아래에 추가 테스트 작성 가능
+  test("로또 번호에 문자가 있으면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto(['a', 2, 3, 4, 5, 5]);
+
+    }).toThrow("[ERROR]");
+  });
+  
+  test("로또 번호에 범위를 벗어난 숫자가 있으면 예외가 발생한다1.", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, 55]);
+
+    }).toThrow("[ERROR]");
+  });
+  
+  test("로또 번호에 범위를 벗어난 숫자가 있으면 예외가 발생한다2.", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, 0]);
+
+    }).toThrow("[ERROR]");
+  });
+  
   test("발행된 로또 한장과 당첨 번호 비교 함수 테스트", () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     const bonusNumber = 7;
