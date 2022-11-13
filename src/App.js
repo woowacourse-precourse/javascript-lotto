@@ -10,6 +10,7 @@ class App {
   play() {
     Console.readLine("구입금액을 입력해주세요.\n", (input) => {
       const budget = input.trim();
+      const lottoCount = this.calcLottoCount(budget);
       this.finish();
     });
   }
@@ -22,6 +23,10 @@ class App {
     const lottoNums = Random.pickUniqueNumbersInRange(1, 45, 6);
     lottoNums.sort((a, b) => a - b);
     return lottoNums;
+  }
+
+  calcLottoCount(budget) {
+    return Number(budget) / 1000;
   }
 }
 
