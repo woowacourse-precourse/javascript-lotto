@@ -26,7 +26,7 @@
 |:heavy_minus_sign:|대조하여 도출된 당첨 내역을 저장한다.||
 |:heavy_minus_sign:|당첨 내역을 출력한다.||
 |:heavy_minus_sign:|수익률을 계산하여 출력한다.||
-|:heavy_minus_sign:|게임을 종료한다.||
+|:heavy_check_mark:|게임을 종료한다.||
 
 <br>
 

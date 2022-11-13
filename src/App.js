@@ -10,10 +10,13 @@ class App {
   play() {
     Console.readLine("구입금액을 입력해주세요.\n", (input) => {
       const budget = input.trim();
+      this.finish();
     });
   }
 
-  inputBudget() {}
+  finish() {
+    Console.close();
+  }
 
   createLottoNums() {
     const lottoNums = Random.pickUniqueNumbersInRange(1, 45, 6);
