@@ -42,7 +42,7 @@ class App {
   }
 
   #parsingStringToArray(numbers) {
-    this.lotteryWinnerNumber = numbers.split(',');
+    this.lotteryWinnerNumber = numbers.split(',').map(Number);
     console.log(this.lotteryWinnerNumber);
   }
 
