@@ -1,4 +1,4 @@
-const { Console } = require('@woowacourse/mission-utils');
+const { Console, Random } = require('@woowacourse/mission-utils');
 const { isValidateNumber, isAmountUnitOf1000, isZeroNumber } = require('./utils/validation.js');
 
 class App {
@@ -9,6 +9,7 @@ class App {
   salesLotto() {
     Console.readLine('구입금액을 입력해 주세요.\n', (purchaseAmount) => {
       this.isValidatePurchaseAmount(purchaseAmount);
+      this.generateLottoNumber();
     });
   }
 
@@ -25,6 +26,12 @@ class App {
 
   sortAscendingOrderLottoNumber(lottoNumber) {
     return lottoNumber.sort((a, b) => a - b);
+  }
+
+  generateLottoNumber() {
+    const lottoNumber = this.createLottoNumber();
+    const sortedLottoNumber = this.sortAscendingOrderLottoNumber(lottoNumber);
+    return sortedLottoNumber;
   }
 }
 
