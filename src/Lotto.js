@@ -27,8 +27,17 @@ class Lotto {
 
   getUserInputMoney() {
     MissionUtils.Console.readLine("구입금액을 입력해주세요.\n", (money) => {
+      this.checkInputMoney(money)
       this.createLottoNumArrays(money);
     });
+  }
+  checkInputMoney(money){
+    if(Number(money)%1000!==0){
+      throw "1000원 단위로 나누어 떨어져야 합니다."
+    }
+    if(Number(money)===0){
+      throw "0은 입력할수 없습니다."
+    }
   }
 
   getUserLottoNumber(computerNumberArray,amountOfMoney) {
