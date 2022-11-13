@@ -1,15 +1,8 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 
 const User = require("../src/User");
-const {
-  NUMBER_COUNT,
-  AMOUNT_UNIT,
-  MIN_NUMBER,
-  MAX_NUMBER,
-  MESSAGE,
-  ERROR,
-  STATISTICS,
-} = require("../src/utils/constants");
+const Lotto = require("./Lotto");
+const { MESSAGE, ERROR } = require("../src/utils/constants");
 const {
   hasChar,
   hasCharExceptComma,
@@ -17,23 +10,15 @@ const {
   makeNumberArray,
   isOutOfRange,
 } = require("../src/utils/utils");
-const Lotto = require("./Lotto");
 
 class App {
-  user;
-
-  constructor() {
-    this.user = new User();
-  }
-
   play() {}
 
   getPurchaseAmount() {
     Console.readLine(MESSAGE.ENTER_PURCHASE_AMOUNT, (amount) => {
       const trimmedAmount = amount.trim();
-      if (this.validateInput(trimmedAmount)) {
-        this.user.setPurchaseAmount = trimmedAmount;
-      }
+      this.validateInput(trimmedAmount);
+      this.user = new User(trimmedAmount);
     });
   }
 
@@ -41,21 +26,6 @@ class App {
     if (hasChar(input)) {
       throw new Error(ERROR.ONLY_NUMBER);
     }
-    return true;
-  }
-
-  //구매 금액으로 로또 몇장 살 수 있는지 계산하기
-  countAvailableQuantity(amount) {
-    return Number(amount) / AMOUNT_UNIT;
-  }
-
-  //랜덤 번호 뽑아주기
-  generateLottoNumbers() {
-    return Random.pickUniqueNumbersInRange(
-      MIN_NUMBER,
-      MAX_NUMBER,
-      NUMBER_COUNT
-    );
   }
 
   getWinningNumbers() {
@@ -82,7 +52,9 @@ class App {
   //보너스 번호 입력 요청하기
   getBonusNumber() {
     Console.readLine(MESSAGE.ENTER_BONUS_NUMBER, (number) => {
-      console.log(number);
+      const trimmedNumber = number.trim();
+      this.validateBonusNumber(trimmedNumber);
+      this.bonusNumber = Number(trimmedNumber);
     });
   }
 
