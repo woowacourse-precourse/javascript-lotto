@@ -1,5 +1,6 @@
 const Lotto = require("../../src/Lotto");
 const LottoStatistics = require("../../src/domain/LottoStatistics");
+const Utils = require("../../src/Utils");
 
 describe("로또 통계 클래스 테스트", () => {
   test("로또 통계 클래스는 로또 인스턴스를 매개변수로 받아야 한다.", () => {
@@ -185,6 +186,57 @@ describe("로또 통계 클래스 테스트", () => {
       expect(lottoStatistics.calculateTotalReward(buyingLottos)).toEqual(
         result,
       );
+    });
+  });
+
+  test("구매한 로또들의 수익률을 포맷팅하여 반환한다.", () => {
+    const winningLotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    winningLotto.addBonusNumber(7);
+    const lottoStatistics = new LottoStatistics(winningLotto);
+
+    const TEST_CASE = [
+      {
+        buyingLottos: [
+          [1, 2, 3, 4, 5, 6],
+          [1, 3, 4, 5, 6, 7],
+          [1, 3, 4, 5, 6, 8],
+          [1, 3, 4, 5, 6, 8],
+          [1, 3, 4, 5, 6, 8],
+          [1, 2, 3, 15, 16, 18],
+          [1, 2, 13, 14, 15, 16],
+          [11, 12, 13, 14, 15, 16],
+        ],
+        result: "25,431,312.5",
+      },
+      {
+        buyingLottos: [
+          [8, 21, 23, 41, 42, 43],
+          [3, 5, 11, 16, 32, 38],
+          [7, 11, 16, 35, 36, 44],
+          [1, 8, 11, 31, 41, 42],
+          [13, 14, 16, 38, 42, 45],
+          [7, 11, 30, 40, 42, 43],
+          [2, 13, 22, 32, 38, 45],
+          [1, 3, 5, 14, 22, 45],
+        ],
+        result: "62.5",
+      },
+      {
+        buyingLottos: [
+          [1, 3, 4, 5, 6, 7],
+          [1, 3, 4, 5, 6, 8],
+          [1, 2, 3, 15, 16, 18],
+          [1, 2, 13, 14, 15, 16],
+          [11, 12, 13, 14, 15, 16],
+        ],
+        result: "630,100.0",
+      },
+    ];
+
+    TEST_CASE.forEach(({ buyingLottos, result }) => {
+      const profit = lottoStatistics.calculateProfit(buyingLottos);
+      const formattedProfit = Utils.formatProfit(profit);
+      expect(formattedProfit).toEqual(result);
     });
   });
 });
