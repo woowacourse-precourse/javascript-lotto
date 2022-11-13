@@ -34,9 +34,9 @@ class MatchingNumber {
     return numberOfWinnerNumber.filter((number) => number !== undefined);
   }
 
-  getNumberOfNumbersCompareWtihBonusNumber(numbers) {
-    if (numbers.includes(Number(this.bonusNumber))) return 5;
-    return 4;
+  isContainBonusNumber(numbers) {
+    if (numbers.includes(Number(this.bonusNumber))) return true;
+    return false;
   }
 
   printLottoResult(totalRanking) {
