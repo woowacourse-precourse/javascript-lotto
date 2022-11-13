@@ -56,7 +56,7 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
-  test("사용자에게 당첨 번호를 입력받을 때 6가지보다 적게 혹은 많이 입력했을 경우 예외 처리한다.", () => {
+  test("사용자에게 당첨 번호를 입력받을 때 6개보다 적게 혹은 많이 입력했을 경우 예외 처리한다.", () => {
     expect(() => {
       const lottoMachine = new LottoMachine();
       if (lottoMachine.validateWinningNumbers([1, 2, 3, 4, 5])) throw new Error(MESSAGE.ERROR.WINNING_NUMBER_COUNT);
@@ -87,7 +87,7 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
-  test("사용자에게 보너스 번호를 입력받을 때 1가지보다 적게 혹은 많이 입력했을 경우 예외 처리한다.", () => {
+  test("사용자에게 보너스 번호를 입력받을 때 1개보다 적게 혹은 많이 입력했을 경우 예외 처리한다.", () => {
     expect(() => {
       const lottoMachine = new LottoMachine();
       if (lottoMachine.validateBonusNumber([])) throw new Error(MESSAGE.ERROR.BONUS_NUMBER_COUNT);
