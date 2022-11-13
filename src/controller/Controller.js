@@ -32,7 +32,7 @@ class Controller {
     this.view.getWinningNumberFromUser();
   }
 
-  setWinningNumber(winningNumber) {
+  setWinningNumberFromUser(winningNumber) {
     this.lotto.setLottoNumbers(winningNumber);
   }
 
