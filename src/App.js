@@ -99,15 +99,7 @@ class App {
     return answer;
   }
 
-  isBonusInPrize(prize, bonus) {
-    if (prize.includes(bonus)) {
-      throw new Error(`${Message.ERROR_MESSAGE.OVERLAP}`);
-    }
-  }
-
-
   caculateResult(user, prize, bonus) {
-    // this.isBonusInPrize(prize, bonus);
     DetectError.prototype.isBonusInPrize(prize, bonus);
 
     user.forEach((element) => {
