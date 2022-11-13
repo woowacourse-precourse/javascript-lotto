@@ -1,5 +1,5 @@
-const Lotto = require('../src/Lotto');
-const { Random, Console } = require('@woowacourse/mission-utils');
+const Lotto = require("../src/Lotto");
+const { Random, Console } = require("@woowacourse/mission-utils");
 
 const FIRST_REWARD = 2000000000;
 const SECOND_REWARD = 30000000;
@@ -21,9 +21,9 @@ class App {
   }
 
   inputMoney() {
-    Console.readLine('구입금액을 입력해주세요.\n', (cost) => {
+    Console.readLine("구입금액을 입력해주세요.\n", (cost) => {
       if (cost % 1000 !== 0) {
-        throw new Error('[ERROR] 1,000원 단위 금액을 입력해주세요.');
+        throw new Error("[ERROR] 1,000원 단위 금액을 입력해주세요.");
       }
       this.cost = parseInt(cost);
       this.countLotto(cost);
@@ -45,15 +45,15 @@ class App {
   }
 
   inputLotto() {
-    Console.readLine('\n당첨 번호를 입력해주세요.\n', (input) => {
-      this.winningLotto = input.split(',').map(Number);
+    Console.readLine("\n당첨 번호를 입력해주세요.\n", (input) => {
+      this.winningLotto = input.split(",").map(Number);
       new Lotto(this.winningLotto);
       this.inputBonus();
     });
   }
 
   inputBonus() {
-    Console.readLine('\n보너스 번호를 입력해주세요.\n', (input) => {
+    Console.readLine("\n보너스 번호를 입력해주세요.\n", (input) => {
       this.bonusLotto = parseInt(input);
       this.validBonus(this.bonusLotto);
     });
@@ -61,10 +61,10 @@ class App {
 
   validBonus(bonusLotto) {
     if (bonusLotto < 1 && bonusLotto > 45) {
-      throw new Error('로또 번호는 1부터 45 사이의 숫자여야 합니다.');
+      throw new Error("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
     if (this.winningLotto.includes(bonusLotto)) {
-      throw new Error('당첨 번호와 중복되지 않은 숫자여야 합니다.');
+      throw new Error("당첨 번호와 중복되지 않은 숫자여야 합니다.");
     }
     for (let i of this.lottoList) {
       this.checkLotto(this.winningLotto, i);
@@ -100,8 +100,8 @@ class App {
   }
 
   printResult(winningRank) {
-    Console.print('\n당첨 통계');
-    Console.print('---');
+    Console.print("\n당첨 통계");
+    Console.print("---");
     Console.print(`3개 일치 (5,000원) - ${winningRank.Fifth}개`);
     Console.print(`4개 일치 (50,000원) - ${winningRank.Fourth}개`);
     Console.print(`5개 일치 (1,500,000원) - ${winningRank.Third}개`);
