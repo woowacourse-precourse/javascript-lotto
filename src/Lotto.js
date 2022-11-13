@@ -20,6 +20,18 @@ class Lotto {
       throw new Error('[ERROR] 로또 번호에 중복된 숫자가 있습니다.')
     }
   }
+
+  isRange(numbers) {
+    for (let number of numbers) {
+      if (number < 1 || number > 45) throw new Error('[ERROR] 로또 번호는 1 이상 45 이하의 정수여야 합니다.');
+    }
+  }
+
+  isBonusDuplicate(bonus) {
+    if (this.#numbers.includes(Number(bonus))) {
+      throw new Error('[ERROR] 보너스 점수와 당첨 번호가 같습니다.');
+    }
+  }
 }
 
 module.exports = Lotto;
