@@ -5,7 +5,7 @@ class Shop {
   #money;
   #count;
 
-  constructor(money) {
+  buyFor(money) {
     this.#validate(money);
     this.#money = money;
     this.#count = this.getLottoCount();
@@ -25,13 +25,17 @@ class Shop {
     return money % 1000;
   }
 
-  getLottoNumbers() {
+  getAllLottoNumbers() {
     const lottos = [];
 
     while (lottos.length !== this.#count) {
       lottos.push(this.#generateLottoNumbers());
     }
     return lottos;
+  }
+
+  getMoney() {
+    return this.#money;
   }
 
   #generateLottoNumbers() {
