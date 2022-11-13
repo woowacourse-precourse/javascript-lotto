@@ -97,7 +97,6 @@ class App {
       );
       this.#myLotteryRankList[result] += 1;
     });
-    Console.print(this.#myLotteryRankList);
     return this.calculateProfitRate();
   }
 
@@ -105,6 +104,17 @@ class App {
   calculateProfitRate() {
     this.#earnedMoney = calculateProfit(this.#myLotteryRankList);
     this.#profitRate = getProfitRate(this.#startMoney, this.#earnedMoney);
+    return this.printResult();
+  }
+
+  printResult() {
+    Console.print(APP_MESSAGE.GET_RANK_STATISTICS);
+    for (let rank = 5; rank >= 1; rank -= 1) {
+      const myRankData = this.#myLotteryRankList[rank];
+      Console.print(RANK_STATISTICS_MESSAGE[rank](myRankData));
+    }
+
+    Console.print(RANK_STATISTICS_MESSAGE.PROFIT_RATE(this.#profitRate));
   }
 
   makeException(errorName) {
