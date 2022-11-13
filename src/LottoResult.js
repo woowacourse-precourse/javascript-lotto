@@ -1,4 +1,4 @@
-const { COMMENT, RANK } = require("./constant");
+const { COMMENT, VALUE } = require("./constant");
 const MissionUtils = require("@woowacourse/mission-utils");
 
 class LottoResult {
@@ -33,14 +33,20 @@ class LottoResult {
   #checkLottos(lottos) {
     lottos.forEach((lotto) => {
       const sameNumbers = this.#getSameNumbers(lotto);
-      if (sameNumbers == 3) this.#numberOfRanks[RANK.FIFTH_INDEX]++;
-      if (sameNumbers == 4) this.#numberOfRanks[RANK.FOURTH_INDEX]++;
-      if (sameNumbers == 5) {
+      if (sameNumbers === VALUE.STANDARD_FIFTH)
+        this.#numberOfRanks[VALUE.FIFTH_INDEX]++;
+
+      if (sameNumbers === VALUE.STANDARD_FOURTH)
+        this.#numberOfRanks[VALUE.FOURTH_INDEX]++;
+
+      if (sameNumbers === VALUE.STANDARD_THIRD) {
         this.#checkBonus(lotto)
-          ? this.#numberOfRanks[RANK.SECOND_INDEX]++
-          : this.#numberOfRanks[RANK.THIRD_INDEX]++;
+          ? this.#numberOfRanks[VALUE.SECOND_INDEX]++
+          : this.#numberOfRanks[VALUE.THIRD_INDEX]++;
       }
-      if (sameNumbers == 6) this.#numberOfRanks[RANK.FIRST_INDEX]++;
+
+      if (sameNumbers === VALUE.STANDARD_FIRST)
+        this.#numberOfRanks[VALUE.FIRST_INDEX]++;
     });
   }
 
@@ -48,14 +54,15 @@ class LottoResult {
     let totalReward = 0;
 
     this.#numberOfRanks.forEach((numberOfRank, index) => {
-      totalReward += numberOfRank * RANK.MONEY_ARRAY[index];
+      totalReward += numberOfRank * VALUE.MONEY_ARRAY[index];
     });
+
     return totalReward;
   }
 
   #calculateYeild(money) {
     const reward = this.#getTotalReward();
-    this.#yield = (reward / money) * 100;
+    this.#yield = (reward / money) * VALUE.TO_PERCENT;
   }
 
   printLottoResult() {

@@ -1,4 +1,4 @@
-const { COMMENT, REGEX } = require("./constant");
+const { COMMENT, REGEX, VALUE } = require("./constant");
 const MissionUtils = require("@woowacourse/mission-utils");
 const LottoResult = require("./LottoResult");
 
@@ -40,13 +40,13 @@ class WinningNumber {
   }
 
   validateWinningNumbers(numbers) {
-    if (numbers.length !== 6) {
+    if (numbers.length !== VALUE.NUMBER_OF_LOTTO) {
       MissionUtils.Console.close();
       throw new Error("[ERROR] 당첨 번호는 6개여야 합니다.");
     }
 
     const uniqueNumbers = new Set(numbers);
-    if ([...uniqueNumbers].length !== 6) {
+    if ([...uniqueNumbers].length !== VALUE.NUMBER_OF_LOTTO) {
       MissionUtils.Console.close();
       throw new Error("[ERROR] 당첨 번호는 중복될 수 없습니다.");
     }

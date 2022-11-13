@@ -1,5 +1,5 @@
 const COMMENT = require("./comment");
 const REGEX = require("./regex");
-const RANK = require("./rank");
+const VALUE = require("./value");
 
-module.exports = { COMMENT, REGEX, RANK };
+module.exports = { COMMENT, REGEX, VALUE };
