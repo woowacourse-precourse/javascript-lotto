@@ -90,7 +90,4 @@ class LottoManager {
 
 }
 
-// const lottoManager = new LottoManager();
-// lottoManager.start();
-
 module.exports = LottoManager;
