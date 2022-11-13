@@ -64,7 +64,9 @@ class Result {
 
     this.getFourthRank();
 
-    this.getThirdRankOrSecondRank();
+    this.getThirdRank();
+
+    this.getSecondRank();
 
     this.getFirstRank();
   }
@@ -81,11 +83,13 @@ class Result {
     }
   }
 
-  getThirdRankOrSecondRank() {
+  getThirdRank() {
     if (this.score === 5 && !this.matchBonus) {
       this.rank[2] += 1;
     }
+  }
 
+  getSecondRank() {
     if (this.score === 5 && this.matchBonus) {
       this.rank[1] += 1;
     }
