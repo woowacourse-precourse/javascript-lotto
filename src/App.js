@@ -23,7 +23,7 @@ class App {
     let lottos = [];
 
     while (lottos.length < lottoCount) {
-      let numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+      const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
 
       lottos.push(numbers.sort((num1, num2) => num1 - num2));
     }
