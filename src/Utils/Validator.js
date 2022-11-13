@@ -7,7 +7,6 @@ class Validator {
     amount = Number(amount);
     Validator.isNotNumber(amount);
     Validator.isNotKilo(amount);
-    return amount;
   }
 
   static lottoValidCheck(lotto) {
@@ -18,7 +17,6 @@ class Validator {
       Validator.isDuplicated(number, validLotto);
       validLotto.add(number);
     });
-    return [...validLotto];
   }
 
   static bonusValidCheck(bonus, winningLotto) {
@@ -27,7 +25,6 @@ class Validator {
       Validator.basicNumberCheck(number);
       Validator.isDuplicatedBonus(number, winningLotto);
     });
-    return true;
   }
 
   static basicNumberCheck(value) {    
