@@ -19,6 +19,15 @@ class App {
   rank;
 
   play() {}
+
+  //금액 입력
+  enterPrice() {
+    let price = 0;
+    Console.readLine(ENTER_PRICE, (answer) => {
+      if (this.isRightPrice(answer)) price = answer;
+    });
+    return price;
+  }
 }
 
 module.exports = App;
