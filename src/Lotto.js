@@ -1,5 +1,11 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
+const firstPlace = 4;
+const secondPlace = 3;
+const thirdPlace = 2;
+const fourthPlace = 1;
+const fifthPlace = 0;
+
 const ERROR_LOTTO_SIZE_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";
 const ERROR_LOTTO_IS_INT_MESSAGE = "[ERROR] 정수가 아닌 숫자입니다.";
 const ERROR_LOTTO_OVERLAP_MESSAGE = "[ERROR] 로또 번호는 중복되는 숫자가 없어야 합니다.";
@@ -12,6 +18,7 @@ class Lotto {
     this.bonusNumber = null;
     this.userLotto = userInputLotto;
     this.lottoAmount = userInputLottoAmount;
+    this.numOfPrize = 0;
     this.validate(numbers);
     this.#numbers = numbers;
     this.getBonusNumber();
@@ -34,7 +41,7 @@ class Lotto {
       }
       this.getPrize(lottoResult, lottoMatched);
     }
-    this.printLottoResult();
+    this.printLottoResult(lottoResult);
   }
 
   countLottoMatch(lottoArr, winNumber){
@@ -48,6 +55,7 @@ class Lotto {
     if(numOfLottoMatched < 3) {
       return;
     }
+    this.numOfPrize++;
     if(numOfLottoMatched === 5) {
       isSecondPlace(lottoResultArr);
       return;
@@ -56,13 +64,22 @@ class Lotto {
   }
 
   isSecondPlace(lottoResultArr) {
-    const secondPlace = 3;
-    const thirdPlace = 2;
     if(lottoResultArr.includes(this.bonusNumber)) {
       lottoResultArr[secondPlace]++;
       return;
     }
     lottoResultArr[thirdPlace]++;
+  }
+
+  printLottoResult(lottoResultArr) {
+    MissionUtils.Console.print("당첨 통계\n");
+    MissionUtils.Console.print("---\n");
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${lottoResultArr[fifthPlace]}`);
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${lottoResultArr[fourthPlace]}`);
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${lottoResultArr[thirdPlace]}`);
+    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${lottoResult[secondPlace]}`);
+    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${lottoResultArr[firstPlace]}`);
+    getProfit();
   }
 
   validate(numbers) {
