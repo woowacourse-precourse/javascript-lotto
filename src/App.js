@@ -1,13 +1,17 @@
 const { Console } = require('@woowacourse/mission-utils');
 const Messages = require('./Messages');
 const LottoSeller = require('./LottoSeller');
+const LottoManager = require('./LottoManager');
+
 const Lotto = require('./Lotto');
 
 class App {
   #lottoSeller;
+  #lottoManager;
 
   constructor() {
     this.#lottoSeller = new LottoSeller();
+    this.#lottoManager = new LottoManager();
   }
 
   play() {
@@ -55,6 +59,8 @@ class App {
 
     this.#printWinningHistory(winningArray);
     this.#printRate(profit, lottos.length);
+
+    Console.close();
   }
 
   #printWinningHistory(winningArray) {
