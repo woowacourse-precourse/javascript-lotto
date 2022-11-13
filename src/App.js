@@ -2,7 +2,6 @@ const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const Message = require('./Message');
 const Money = require('./Money');
-const { isOutOfRange } = require('./isOutOfRange');
 
 class App {
   constructor() {
@@ -78,7 +77,12 @@ class App {
   }
 
   validateBonusNumber() {
-    if (isOutOfRange(this.bonusNumber)) {
+    if (
+      Number.isNaN(this.bonusNumber)
+      || !Number.isInteger(this.bonusNumber)
+      || this.bonusNumber < 1
+      || this.bonusNumber > 45
+    ) {
       throw new Error(Message.ERROR_BONUS_NUMBER_RANGE);
     }
     if (this.winningNumbers.includes(this.bonusNumber)) {
