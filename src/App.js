@@ -3,11 +3,12 @@ const {
   APP_MESSAGE,
   EXCEPTION_MESSAGE,
   EXCEPTION_REASON,
-  LOTTERY_PRIZE,
+  RANK_STATISTICS_MESSAGE,
 } = require('./constants/constants');
 const Lotto = require('./Lotto');
 const calculateProfit = require('./utils/calculateProfit');
 const getLottoQuantity = require('./utils/getLotteryQuantity');
+const getProfitRate = require('./utils/getProfitRate');
 const isValidLottery = require('./utils/isValidLottery');
 const makeRandomLottoNumber = require('./utils/makeRandomLottoNumber');
 
@@ -19,9 +20,9 @@ class App {
   #winNumber;
   #bonusNumber;
   #myLotteryRankList;
+  #profitRate;
 
   constructor() {
-    this.#earnedMoney = 0;
     this.#myLotteryRankList = {
       0: 0,
       1: 0,
@@ -103,6 +104,7 @@ class App {
   // 수익률 계산
   calculateProfitRate() {
     this.#earnedMoney = calculateProfit(this.#myLotteryRankList);
+    this.#profitRate = getProfitRate(this.#startMoney, this.#earnedMoney);
   }
 
   makeException(errorName) {
