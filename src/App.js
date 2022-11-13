@@ -12,6 +12,7 @@ class App {
     Console.readLine("구입금액을 입력해주세요.\n", (input) => {
       const budget = input.trim();
       const lottoCount = this.calcLottoCount(budget);
+      const lottos = this.createLottos(lottoCount);
       this.finish();
     });
   }
@@ -34,6 +35,15 @@ class App {
     const lottoNums = this.createLottoNums();
     const lotto = new Lotto(lottoNums);
     return lotto;
+  }
+
+  createLottos(lottoCount) {
+    const lottos = [];
+    for (let count = 0; count < lottoCount; count++) {
+      const lotto = this.createLotto();
+      lottos.push(lotto);
+    }
+    return lottos;
   }
 }
 
