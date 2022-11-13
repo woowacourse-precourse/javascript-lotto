@@ -1,4 +1,4 @@
-const TICKET_PRICE = 1000;
+const LOTTO_PRICE = 1000;
 
 const GAME_RANGE = {
     RANGE_MIN: 1,
@@ -13,23 +13,23 @@ const BONUS_RANGE = {
 };
 
 const PRIZES = {
-    FIRST: {
+    1: {
         VALUE: 2000000000,
         DISPLAY_NAME: '(2,000,000,000원)',
     },
-    SECOND: {
+    2: {
         VALUE: 30000000,
         DISPLAY_NAME: '(30,000,000원)',
     },
-    THIRD: {
+    3: {
         VALUE: 1500000,
         DISPLAY_NAME: '(1,500,000원)',
     },
-    FOURTH: {
+    4: {
         VALUE: 50000,
         DISPLAY_NAME: '(50,000원)',
     },
-    FIFTH: {
+    5: {
         VALUE: 5000,
         DISPLAY_NAME: '(5,000원)',
     },
@@ -42,23 +42,23 @@ const PRIZES = {
  * }
  */
 const PRIZE_CONFIG = {
-    FIRST: {
+    1: {
         COUNT: 6,
         BONUS: false,
     },
-    SECOND: {
+    2: {
         COUNT: 5,
         BONUS: true,
     },
-    THIRD: {
+    3: {
         COUNT: 5,
         BONUS: false,
     },
-    FOURTH: {
+    4: {
         COUNT: 4,
         BONUS: false,
     },
-    FIFTH: {
+    5: {
         COUNT: 3,
         BONUS: false,
     },
@@ -73,9 +73,9 @@ const USER_INPUT_PHRASE = {
 
 const USER_OUTPUT_PHRASE = {
     NOTICE_PURCHASE_SUCCESSFUL: '개를 구매했습니다.\n',
-    TICKET_START: '[',
-    TICKET_END: ']',
-    TICKET_DELIMITER: ', ',
+    LOTTO_START: '[',
+    LOTTO_END: ']',
+    LOTTO_DELIMITER: ', ',
 };
 
 const STAT_PHRASE = {
@@ -91,6 +91,7 @@ const STAT_PHRASE = {
 };
 
 const GAME_INPUT_ERRORS = {
+    INVALID_BUDGET_RANGE: ' 구입 금액은 1,000으로 나누어떨어지지 않습니다.\n',
     INVALID_TARGET_LENGTH: '[ERROR] 당첨 번호들의 갯수가 일치하지 않습니다.\n',
     INVALID_INPUT_TYPE: '[ERROR] 로또 번호는 숫자 형식이어야 합니다.\n',
     INVALID_INPUT_RANGE: '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.\n',
@@ -101,7 +102,7 @@ module.exports = {
     BONUS_RANGE,
     PRIZES,
     PRIZE_CONFIG,
-    TICKET_PRICE,
+    LOTTO_PRICE,
     USER_INPUT_PHRASE,
     STAT_PHRASE,
     GAME_INPUT_ERRORS,
