@@ -1,4 +1,4 @@
-## 기능 목록
+## 📝 Feature List
 
 - [ ] 예외 상황 시 에러 문구를 출력한다.
 
@@ -57,5 +57,19 @@
   - [ ] 5등: 3개 번호 일치 / 5,000원
 
 - [ ] 당첨 내역 및 수익률을 출력한다.
+
   - [ ] 당첨 내역은 낮은 등수부터 차례로 출력한다.
   - [ ] 수익률은 소수점 둘째 자리에서 반올림한다. (e.g. 100.0%, 51.5%, 1,000,000.0%)
+
+## 🗂 Directory
+
+- 📁src
+  - 📁constant
+    - 📜Error.js
+    - 📜Lotto.js
+  - 📁error
+    - 📜InvalidInputError.js
+  - 📜App.js
+  - 📜Game.js
+  - 📜Lotto.js
+  - 📜Validation.js
