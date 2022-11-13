@@ -10,12 +10,12 @@ class Lotto {
 
   validate(numbers) {
     if(numbers!==undefined){
+      console.log(numbers);
       let numArr=numbers.split(',')
-      if (numArr.length !== 6) {
-        throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-      }
+      if (numArr.length !== 6) throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      if(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(numbers)) throw new Error("한글은 불가능 합니다.")
+      if(/[a-zA-Z]/g.test(numbers)) throw new Error("영어는 불가능 합니다.")
     }
-
   }
 
   // TODO: 추가 기능 구현
@@ -55,6 +55,7 @@ class Lotto {
     MissionUtils.Console.readLine(
       "보너스 번호를 입력해 주세요.\n",
       (bonusNumber) => {
+        this.checkBonusNumber(bonusNumber)
         this.calculatePrizeLottery(
           computerNumberArray,
           userLottoNumber,
@@ -63,6 +64,11 @@ class Lotto {
         );
       }
     );
+  }
+  checkBonusNumber(bonusNumber){
+    if(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(bonusNumber)) throw new Error("한글은 불가능 합니다.")
+    if(/[a-zA-Z]/g.test(bonusNumber)) throw new Error("영어는 불가능 합니다.")
+    if(Number(bonusNumber)<1 || Number(bonusNumber)>45) throw new Error("1~45 사이의 정수만 입력하세요")
   }
   createLottoNumArrays(money) {
     let amountOfMoney = this.divideMoney(money);
