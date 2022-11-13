@@ -35,7 +35,31 @@ const isValidLottoNumbers = (numbers) => {
   }
 };
 
-module.exports = { isValidMoneyNumberAmount, isValidLottoNumbers };
+const isValidLottoBonusNumber = (number, winningNumbers) => {
+  if (isNaN(number) || number === undefined) {
+    throw new Error("[ERROR] 보너스 번호는 하나의 숫자만 허용됩니다.");
+  }
+  if (!Number.isInteger(number)) {
+    throw new Error(
+      "[ERROR] 보너스 번호 입력 시 소수점 이하는 허용되지 않습니다."
+    );
+  }
+  if (isNegativeNumber(number)) {
+    throw new Error("[ERROR] 보너스 번호 입력 시 음수는 허용되지 않습니다.");
+  }
+  if (isInvalidSize(number)) {
+    throw new Error("[ERROR] 보너스 번호는 1 이상 45 이하여야 합니다.");
+  }
+  if (winningNumbers.includes(number)) {
+    throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+  }
+};
+
+module.exports = {
+  isValidMoneyNumberAmount,
+  isValidLottoNumbers,
+  isValidLottoBonusNumber,
+};
 
 const hasNonNumber = (array) => {
   if (array.map(isNaN).includes(true)) {
