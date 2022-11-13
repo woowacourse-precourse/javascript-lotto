@@ -7,8 +7,8 @@ class NumberValidator {
 }
 
 class MoneyValidator extends NumberValidator {
-  constructor(args) {
-    super(...args);
+  constructor() {
+    super();
   }
 
   static validate(input) {
@@ -21,4 +21,32 @@ class MoneyValidator extends NumberValidator {
   }
 }
 
-module.exports = { NumberValidator, MoneyValidator };
+class LottoValidator extends NumberValidator {
+  constructor() {}
+
+  static validate(input) {
+    this.isValidNumber(input);
+    this.isValidRange(input);
+    this.isValidLength(input);
+    this.isNoneDuplication(input);
+  }
+
+  static isValidRange(input) {
+    const validity = input.every((number) => number >= 1 && number <= 45);
+
+    if (!validity) {
+      throw new Error(ERROR_MESSAGE.RANGE);
+    }
+  }
+
+  static isValidLength(input) {
+    if (input.length !== 6) throw new Error(ERROR_MESSAGE.LENGTH);
+  }
+
+  static isNoneDuplication(input) {
+    if ([...new Set(input)].length !== 6)
+      throw new Error(ERROR_MESSAGE.DUPLICATION);
+  }
+}
+
+module.exports = { NumberValidator, MoneyValidator, LottoValidator };
