@@ -10,7 +10,7 @@ class App {
   purchaseAmount() {
     Console.readLine("구매금액을 입력해 주세요.\n", (amount) => {
       const lotteryTicket = new MyLotto(amount);
-      let myLottos = lotteryTicket.getMyLottery(amount);
+      const myLottos = lotteryTicket.getMyLottery();
       lotteryTicket.printMyLottery(myLottos);
       this.getWinningNumbers();
     });
