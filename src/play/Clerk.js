@@ -3,6 +3,7 @@ const { GAME_MESSAGES } = require("../utils/Constants");
 const QuickPick = require("../input/QuickPick");
 const Lotto = require("../input/Lotto");
 const Bonus = require("../input/Bonus");
+const Result = require("../play/Result");
 
 class Clerk {
   #payment;
@@ -39,8 +40,22 @@ class Clerk {
     Mission.Console.readLine(GAME_MESSAGES.ASK_TO_BONUS_NUMBER, (bonusNumber) => {
       const bonus = new Bonus(bonusNumber, this.#winningNumbers);
       this.#bonusNumber = bonus.output();
+      this.makeResult();
     });
     return;
+  }
+
+  makeResult() {
+    const result = new Result(
+      this.#myLottoArray,
+      this.#winningNumbers,
+      this.#bonusNumber,
+      this.#lottoAmount,
+      this.#payment
+    );
+
+    Mission.Console.print(result.totalProfitRate());
+    Mission.Console.close();
   }
 }
 
