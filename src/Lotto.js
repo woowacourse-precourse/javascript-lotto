@@ -62,7 +62,7 @@ class Lotto {
 
   checkLottoValue(numbers) {
     for (let i = 0; i < numbers.length; i++) {
-      if((numbers[i] < 1) || (45 < numbers[i])) {
+      if((Number(numbers[i]) < 1) || (45 < Number(numbers[i]))) {
         throw new Error(ERROR_LOTTO_VALUE_MESSAGE);
       }
     }
