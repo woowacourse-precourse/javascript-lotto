@@ -29,4 +29,16 @@ describe('셀프 로또 테스트', () => {
       }).toThrow('[ERROR]');
     });
   });
+
+  test('로또 보너스 번호 예외 테스트', () => {
+    expect(() => {
+      const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+      lotto.setBonusNumber('aka');
+    }).toThrow(ERR_MSG.invalidLottoNumberRange);
+
+    expect(() => {
+      const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+      lotto.setBonusNumber(1);
+    }).toThrow(ERR_MSG.duplicatedNumber);
+  });
 });
