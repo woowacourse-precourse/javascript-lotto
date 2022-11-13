@@ -8,6 +8,7 @@ const ONE_LOTTO_PRICE = 1000;
 class App {
     constructor() {
         this.purchasedLotto = [];
+        this.purchasedPrice = '';
     }
 
     play() {
@@ -16,7 +17,10 @@ class App {
 
     // 로또 시작
     lottoStart() {
-        MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (price) => this.callBackOfPurchase(price));
+        MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (price) => {
+            this.purchasedPrice = Number(price);
+            this.callBackOfPurchase(price);
+        });
     }
 
     // 구입 금액 입력 받는 함수의 callback
@@ -67,7 +71,7 @@ class App {
         MissionUtils.Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNum) => {
             const newBonus = this.changeStringToArray(bonusNum);
             new Bonus(newBonus, lotto);
-            new WinningLotto(this.purchasedLotto, lotto, bonusNum);
+            new WinningLotto(this.purchasedLotto, lotto, bonusNum, this.purchasedPrice);
         });
     }
 
