@@ -30,15 +30,15 @@ class App {
     Array.from({ length: numOfLotto }).forEach(() => {
       const { MIN, MAX } = RANGE_OF_LOTTO_NUMBER;
 
-      const lotto = Random.pickUniqueNumbersInRange(
+      const newLotto = Random.pickUniqueNumbersInRange(
         MIN,
         MAX,
         TOTAL_COUNTS
       ).sort((a, b) => a - b);
 
-      this.#issuedLottos = [...this.#issuedLottos, lotto];
+      this.#issuedLottos = [...this.#issuedLottos, newLotto];
 
-      Console.print(JSON.stringify(lotto).replaceAll(',', ', '));
+      Console.print(JSON.stringify(newLotto).replaceAll(',', ', '));
     });
 
     this.getWinningNumber();
