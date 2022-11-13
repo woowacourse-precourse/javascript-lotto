@@ -15,4 +15,8 @@ describe('판단기 클래스 테스트', () => {
     expect(Judge.countCorrect(lotto4th, winningNumbers)).toEqual(4);
     expect(Judge.countCorrect(lotto5th, winningNumbers)).toEqual(3);
   });
+  test('보너스 번호가 일치하는지 확인한다.', () => {
+    expect(Judge.checkBonus(lotto2nd, bonusNumber)).toBeTruthy();
+    expect(Judge.checkBonus(lotto3rd, bonusNumber)).not.toBeTruthy();
+  });
 });
