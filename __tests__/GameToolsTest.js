@@ -1,9 +1,32 @@
-const { Console } = require('@woowacourse/mission-utils');
+const MissionUtils = require('@woowacourse/mission-utils');
 const GameTools = require('../src/GameTools');
 
-afterAll(() => Console.close());
+afterAll(() => MissionUtils.Console.close());
 
-describe('로또 발행 테스트', () => {});
+const mockRandoms = (numbers) => {
+  MissionUtils.Random.pickUniqueNumbersInRange = jest.fn();
+  numbers.reduce(
+    (acc, number) => acc.mockReturnValueOnce(number),
+    MissionUtils.Random.pickUniqueNumbersInRange
+  );
+};
+
+test('로또 발행 테스트', () => {
+  const count = 3;
+  const randoms = [
+    [6, 2, 3, 4, 5, 1],
+    [11, 31, 35, 40, 22, 13],
+    [41, 3, 5, 1, 17, 9],
+  ];
+
+  mockRandoms(randoms);
+
+  expect(GameTools.issueLottoAsManyAsCount(count)).toEqual([
+    [1, 2, 3, 4, 5, 6],
+    [11, 13, 22, 31, 35, 40],
+    [1, 3, 5, 9, 17, 41],
+  ]);
+});
 
 test('입력받은 당첨 번호를 ,로 구분된 숫자 배열로 반환', () => {
   const winningStrings = ['2,3,4,5,6,1', '31,1,24,45,3,4'];
