@@ -1,10 +1,11 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const BonusNumber = require('./models/BonusNumber');
 const userInput = require('./ui/Input');
-const Lotto = require('./models/Lotto');
+const Lotto = require('./Lotto');
 const Money = require('./models/Money');
 const Output = require('./ui/Output');
 const WinningNumbers = require('./models/WinningNumbers');
+const Result = require('./Result');
 
 class App {
   money;
@@ -17,7 +18,7 @@ class App {
   }
 
   play() {
-    userInput.call(this, this.getLottos, this.getWinningNumbers, this.getBonusNumber, () => { });
+    userInput.call(this, this.getLottos, this.getWinningNumbers, this.getBonusNumber, this.getResult);
   }
 
   getLottos(money) {
@@ -45,6 +46,10 @@ class App {
 
   getBonusNumber(bonusNumber) {
     this.bonusNumber = new BonusNumber(bonusNumber).bonusNumber;
+  }
+
+  getResult() {
+    const result = new Result(this.lottoArray, this.winningNumbers, this.bonusNumber);
   }
 }
 
