@@ -11,6 +11,7 @@ class LottoPlay {
     const lottoNumber = this.purchaseLotto(purchaseAmount);
     UserInterface.printLottoNumber(lottoNumber);
     const lottoArray = this.createLottoArray(lottoNumber);
+    UserInterface.printLottoArray(lottoArray);
   }
 
   purchaseLotto(purchaseAmount) {
