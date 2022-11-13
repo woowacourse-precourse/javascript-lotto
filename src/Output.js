@@ -1,9 +1,9 @@
 const { Console } = require('@woowacourse/mission-utils');
 
 class Output {
-    process(money, winninLottoNumeber, randomLottoNumbers, bonusNumber) {
+    process(money, winningLottoNumeber, randomLottoNumbers, bonusNumber) {
         const compareResult = this.compare(
-            winninLottoNumeber,
+            winningLottoNumeber,
             bonusNumber,
             randomLottoNumbers
         );

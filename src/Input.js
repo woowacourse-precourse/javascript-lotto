@@ -9,20 +9,20 @@ class Input {
     randomRottoNumber;
     bonusNumber;
 
-    start() {
+    process() {
         this.inputMoney();
     }
 
     inputMoney() {
         Console.readLine('구입금액을 입력해주세요.\n', (money) => {
             const exception = new InputException();
-            exception.checkInputException(money); // 검증
+            exception.checkInputException(money);
 
             this.money = money;
             Console.print(`${+money / 1000}개를 구매했습니다.`);
-            this.randomRottoNumber = this.makeRandomLottos(+money / 1000); // 저장
+            this.randomRottoNumber = this.makeRandomLottos(+money / 1000);
 
-            this.inputLottoNumbers(); // 다음 단계
+            this.inputLottoNumbers();
         });
     }
 
@@ -30,20 +30,20 @@ class Input {
         Console.readLine('당첨 번호를 입력해 주세요.\n', (string) => {
             let lotto = string.split(',').map((number) => number.trim());
 
-            const exception = new Lotto(lotto); // 검증
+            const exception = new Lotto(lotto);
 
-            this.winningRottoNumber = lotto; // 당첨 번호 저장
+            this.winningRottoNumber = lotto;
 
-            this.inputBonusNumber(); // 다음 단계
+            this.inputBonusNumber();
         });
     }
 
     inputBonusNumber() {
         Console.readLine('보너스 번호를 입력해 주세요.\n', (bonus) => {
             const exception = new BonusException();
-            exception.checkBonusException(bonus); // 검증
+            exception.checkBonusException(bonus);
 
-            this.bonusNumber = bonus; // 보너스 번호 저장
+            this.bonusNumber = bonus;
 
             const output = new Output();
             output.process(
@@ -51,7 +51,7 @@ class Input {
                 this.winningRottoNumber,
                 this.randomRottoNumber,
                 this.bonusNumber
-            ); // 다음단계
+            );
         });
     }
 

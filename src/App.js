@@ -3,7 +3,7 @@ const Input = require('./Input');
 class App {
     play() {
         const input = new Input();
-        input.start();
+        input.process();
     }
 }
 
