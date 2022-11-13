@@ -1,3 +1,6 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+const [Console, Random] = [MissionUtils.Console, MissionUtils.Random];
+
 class Lotto {
   #numbers;
 
