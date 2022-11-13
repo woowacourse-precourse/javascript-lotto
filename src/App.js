@@ -25,7 +25,15 @@ class App {
   numberOfWins = [0, 0, 0, 0, 0]; // 1,2,3,4,5등 당첨 갯수
   revenueRate; // 수익률
   play() {
-    new Lotto();
+    this.getLottoPrice();
+  }
+
+  // 로또 가격 입력
+  getLottoPrice() {
+    Console.print(`${PLZ_INPUT_PRICE}`);
+    Console.readLine('', price => {
+      this.inputPrice = price;
+    });
   }
 }
 
