@@ -41,7 +41,6 @@ class Purchaser {
     return matchedCountList;
   }
 
-  // 로또 번호와 당첨 번호 및 보너스 번호를 비교하여 몇개나 일치하는지 리턴하는 함수
   compare(lottoToken, winnerNumber, bonusNumber) {
     let count = 0;
     const bonus = lottoToken.includes(bonusNumber) ? 1 : 0;

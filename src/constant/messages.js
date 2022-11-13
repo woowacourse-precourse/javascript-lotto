@@ -5,11 +5,6 @@ const MESSAGES = {
   INPUT_BONUS_NUMBER: '보너스 번호를 입력해 주세요.',
 };
 
-const RESULT_MESSAGES = {
-  RETURN_RATE_IS: '총 수익률은',
-  THAT: '입니다.',
-};
-
 const ERROR_MESSAGES = {
   NUMBERS_LENGTH_MUST_BE_SIX: '[ERROR] 로또 번호는 6개여야 합니다',
   INPUT_TYPE_MUST_BE_NUBMER: '[ERROR] 입력 금액은 숫자여야 합니다',
@@ -35,7 +30,6 @@ const MATCHING_MESSAGES = {
 
 module.exports = {
   MESSAGES,
-  RESULT_MESSAGES,
   ERROR_MESSAGES,
   PRIZE_MESSAGES,
   MATCHING_MESSAGES,
