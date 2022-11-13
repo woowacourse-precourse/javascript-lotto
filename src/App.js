@@ -14,7 +14,7 @@ class App {
   }
 
   play() {
-    userInput.call(this, this.getLottos, this.getWinningNumbers, () => {}, () => {})
+    userInput.call(this, this.getLottos, this.getWinningNumbers, this.getBonusNumber, () => { });
   }
 
   getLottos(money) {
@@ -23,10 +23,10 @@ class App {
     this.print.printUserLottoCount(this.lottoCount);
 
     for (let i = 0; i < this.lottoCount; i++) {
-      const randomLotto = this.getRandomLottoNumber();
-      this.lottoArray.push(new Lotto(randomLotto));
-
-      this.print.printUserLottoNumber(randomLotto);
+      const randomLottoNumber = this.getRandomLottoNumber();
+      const lotto = new Lotto(randomLottoNumber)
+      this.lottoArray.push(lotto);
+      this.print.printUserLottoNumber(randomLottoNumber);
     }
   }
 
@@ -57,9 +57,13 @@ class App {
       throw new Error('[ERROR] 당첨 숫자 입력의 형식이 잘못되었습니다.');
     }
   }
+
+  getBonusNumber(bonusNumber) {
+    this.bonusNumber = parseInt(bonusNumber);
+  }
 }
 
 const app = new App();
-app.play()
+app.play();
 
 module.exports = App;
