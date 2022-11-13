@@ -29,7 +29,7 @@ class LottoMachine {
 
   getBonusNumber() {
     Console.readLine(MESSAGE.REQUEST.BONUS_NUMBER, (number) => {
-      this.validateBonusNumber();
+      this.validateBonusNumber(number);
 
       this.#bonusNumber = number;
     });
@@ -66,6 +66,7 @@ class LottoMachine {
     if (this.isOutOfRange(number)) throw new Error(MESSAGE.ERROR.OUT_OF_RANGE_NUMBER);
     if (this.isNotANumber(number)) throw new Error(MESSAGE.ERROR.BONUS_NUMBER_MUST_BE_NUMBER);
     if (this.isIncorrectCount(number, LOTTO.BONUS_NUMBER_COUNT)) throw new Error(MESSAGE.ERROR.BONUS_NUMBER_COUNT);
+    if (this.isIncludeWinningNumbers(number)) throw new Error(MESSAGE.ERROR.BONUS_NUMBER_MUST_NOT_BE_INCLUDE_WINNING_NUMBERS);
   }
 
   isNotANumber(number) {
@@ -86,6 +87,10 @@ class LottoMachine {
 
   isDuplicateNumbers(numbers) {
     return numbers.length !== new Set(numbers).size;
+  }
+
+  isIncludeWinningNumbers(number) {
+    return this.#winningNumbers.includes(number);
   }
 }
 
