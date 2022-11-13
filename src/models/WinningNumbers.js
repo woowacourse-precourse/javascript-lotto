@@ -1,9 +1,10 @@
+const Lotto = require("../Lotto");
+
 class WinningNumbers {
   #winningNumbers;
 
   constructor(input) {
     this.validWinningNumbers(input);
-    this.#winningNumbers = this.winningNumbersConverter(input);
   }
 
   get winningNumbers() {
@@ -16,10 +17,13 @@ class WinningNumbers {
   }
 
   validWinningNumbers(input) {
-    this.validWinningNumbersFormat(input);
+    this.validFormat(input);
+
+    const validLotto = new Lotto(this.winningNumbersConverter(input));
+    this.#winningNumbers = validLotto.lottoNumber;
   }
 
-  validWinningNumbersFormat(input) {
+  validFormat(input) {
     const reg = /^([0-9]+,){5}([0-9]+){1}$/;
     if (!reg.test(input)) {
       throw new Error('[ERROR] 당첨 숫자 입력의 형식이 잘못되었습니다.');
