@@ -10,7 +10,7 @@ class ProfitRate {
   }
 
   calculateProfitRate(totalPrizeMoney, payMoney) {
-    return ((Math.round((totalPrizeMoney / payMoney) * 1000) / 1000) * 100).toFixed(1);
+    return Number(((((totalPrizeMoney / payMoney) * 1000) / 1000) * 100).toFixed(1));
   }
 
   sumTotalPrizeMoney(lottoResult) {
