@@ -19,7 +19,6 @@ class Lotto {
     UserLotto.forEach(number => {
       if(this.#numbers.includes(number)) return matchCount.lotto += 1;
       if(this.bonus.includes(number)) {
-        matchCount.lotto += 1;
         return matchCount.bonus = true;
       }
     });
