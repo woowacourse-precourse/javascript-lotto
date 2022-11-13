@@ -1,6 +1,13 @@
 class UserNumber {
-  constructor() {
+  constructor(controller) {
+    this.controller = controller;
     this.purchasingAmount = null;
+  }
+
+  validatePurchasingAmount(userPurchasingAmountInput) {
+    if (userPurchasingAmountInput % 1000 !== 0) {
+      this.controller.view.printPurchasingAmountErrorMessage();
+    }
   }
 
   getPurchasingAmount() {
@@ -8,6 +15,7 @@ class UserNumber {
   }
 
   setPurchasingAmount(userPurchasingAmountInput) {
+    this.validatePurchasingAmount(userPurchasingAmountInput);
     this.purchasingAmount = userPurchasingAmountInput;
   }
 }
