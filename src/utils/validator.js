@@ -1,3 +1,5 @@
+const { MESSAGES } = require("../constraints");
+
 const validatePurchaseAmount = (money) => {
   // 구입 금액이 숫자인지 검사
   if (isNaN(+money)) throw new Error(MESSAGES.BUYING.TYPE_EXCEPTION);
@@ -8,4 +10,11 @@ const validatePurchaseAmount = (money) => {
   return true;
 };
 
-module.exports = { validatePurchaseAmount };
+const validateWiningNumber = (numbers) => {};
+const validateBonusNumber = (number) => {};
+
+module.exports = {
+  validatePurchaseAmount,
+  validateWiningNumber,
+  validateBonusNumber,
+};

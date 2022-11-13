@@ -1,5 +1,4 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { MESSAGES } = require("./constraints");
 const { validatePurchaseAmount } = require("./utils/validator");
 
 const Lotto = require("./Lotto");
