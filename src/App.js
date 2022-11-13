@@ -1,5 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
+const { CONSOLE_MESSAGE } = require("./util/message");
 const { getCountByPay, getRandomNumbers } = require("./util/purchase");
 
 class App {
@@ -10,11 +11,11 @@ class App {
   }
 
   purchaseLottos() {
-    Console.readLine("구입금액을 입력해 주세요.\n", (price) => {
+    Console.readLine(CONSOLE_MESSAGE.Enter, (price) => {
       const lottoCnt = getCountByPay(+price);
-
       for (let i = 0; i < lottoCnt; i++) {
-        this.#lottos.push(new Lotto(getRandomNumbers()));
+        const randomNumbers = getRandomNumbers();
+        this.#lottos.push(new Lotto(randomNumbers));
       }
     });
   }
