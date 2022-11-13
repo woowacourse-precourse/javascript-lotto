@@ -30,10 +30,28 @@ class ErrorCheck {
     }
   }
 
-  static checkWinningNumber(numbers) {
+  static winningNumber(numbers) {
     this.hasDuplication(numbers);
     this.isInvalidLength(numbers);
     this.isInvalidRange(numbers);
+  }
+
+  static isDividedBy1000(money) {
+    if (money % BASIC_NUMBER.THOUSAND) {
+      throw new Error(ERROR_MESSAGE.UNIT_ERROR);
+    }
+  }
+
+  static isInvalidMoneyType(money) {
+    const notNumberOnly = /[^0-9]/g;
+    if (notNumberOnly.test(money)) {
+      throw new Error(ERROR_MESSAGE.TYPE_ERROR);
+    }
+  }
+
+  static purchase(money) {
+    this.isInvalidMoneyType(money);
+    this.isDividedBy1000(money);
   }
 }
 

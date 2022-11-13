@@ -4,7 +4,7 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    ErrorCheck.checkWinningNumber(numbers);
+    ErrorCheck.winningNumber(numbers);
     this.#numbers = numbers;
   }
 

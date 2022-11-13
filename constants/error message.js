@@ -8,6 +8,7 @@ const ERROR_MESSAGE = Object.freeze({
   DUP_ERROR: '[ERROR] 중복 없는 숫자만 입력해야 합니다.',
   LENGTH_ERROR: `[ERROR] ${MATCH}개 숫자를 입력해야 합니다`,
   TYPE_ERROR: '[ERROR] 숫자만 입력해야 합니다.',
+  UNIT_ERROR: `[ERROR] ${BASIC_NUMBER.THOUSAND}원 단위로 입력해야 합니다.`,
 });
 
 module.exports = ERROR_MESSAGE;
