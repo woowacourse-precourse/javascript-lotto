@@ -24,7 +24,7 @@
 |:heavy_check_mark:|당첨 번호와 보너스 번호를 개별적으로 입력받아 구분해 저장한다.||
 |:heavy_check_mark:|입력된 당첨 번호와 보너스 번호를 임의의 숫자들과 대조하는 함수를 작성한다.||
 |:heavy_check_mark:|각 로또마다 대조한다.||
-|:heavy_minus_sign:|대조하여 도출된 당첨 내역을 저장한다.||
+|:heavy_check_mark:|대조하여 도출된 당첨 내역을 저장한다.||
 |:heavy_minus_sign:|당첨 내역을 출력한다.||
 |:heavy_minus_sign:|수익률을 계산하여 출력한다.||
 |:heavy_check_mark:|게임을 종료한다.||

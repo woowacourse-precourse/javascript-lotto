@@ -63,18 +63,30 @@ class App {
     Console.readLine("\n보너스 번호를 입력해주세요.\n", (input) => {
       const bonusNum = input;
       this.bonusNum = Number(bonusNum);
-      checkAllLottos();
+      this.checkAllLottos();
       Console.close();
     });
   }
 
   checkAllLottos() {
+    this.lottoResult = {
+      first: 0,
+      second: 0,
+      third: 0,
+      fourth: 0,
+      fifth: 0,
+      nothing: 0,
+    };
+
     this.lottos.forEach((lotto) => this.checkLotto(lotto));
   }
 
   checkLotto(lotto) {
-    const mainCount = checkMainNumMatch(lotto);
-    const bonusCount = checkBonusCount(lotto);
+    const lottoNums = lotto.getNumbers();
+    const mainCount = this.checkMainNumMatch(lottoNums);
+    const bonusCount = this.checkBonusNumMatch(lottoNums);
+    const resultLotto = this.getResultLotto(mainCount, bonusCount);
+    this.lottoResult[resultLotto]++;
   }
 
   checkMainNumMatch(lotto) {
@@ -89,6 +101,14 @@ class App {
 
   checkBonusNumMatch(lotto) {
     return lotto.includes(this.bonusNum) ? 1 : 0;
+  }
+
+  getResultLotto(mainCount, bonusCount) {
+    if (mainCount === 6) return "first";
+    if (mainCount === 5) return bonusCount ? "second" : "third";
+    if (mainCount === 4) return "fourth";
+    if (mainCount === 3) return "fifth";
+    return "nothing";
   }
 }
 
