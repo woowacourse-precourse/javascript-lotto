@@ -1,9 +1,11 @@
 const { Console } = require('@woowacourse/mission-utils');
 const UserBudget = require('./UserBudget');
+const LottoMachine = require('./LottoMachine');
 const INPUT_BUDGET = '구입금액을 입력해 주세요.\n';
 
 class App {
   budget;
+  lottoTickets;
 
   printSpaceLine() {
     Console.print('');
@@ -22,6 +24,7 @@ class App {
 
   validateUserBudget(budget) {
     this.budget = new UserBudget(Number(budget));
+    this.lottoTickets = new LottoMachine(budget);
   }
 }
 

@@ -2,14 +2,23 @@ const { Random } = require('@woowacourse/mission-utils');
 
 class LottoMachine {
   lottoTicketsCount;
-  lottoTickets;
+  userBuyedTickets;
+
   constructor(budget) {
-    this.lottoTicketsCount = budget;
-    this.lottoTickets = makeLottoTickets();
+    this.lottoTicketsCount = budget / 1000;
+    this.userBuyedTickets = this.makeLottoTickets(this.lottoTicketsCount);
   }
 
-  makeLottoTickets() {
-    return Random.pickUniqueNumbersInRange(1, 45, 6);
+  pushNumberInTickets(lottoTicket) {
+    const lottoNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+    lottoNumbers.sort((a, b) => a - b);
+
+    lottoTicket.push(lottoNumbers);
+    return lottoTicket;
+  }
+
+  makeLottoTickets(number) {
+    return [...Array(number)].reduce(this.pushNumberInTickets, []);
   }
 }
 
