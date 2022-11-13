@@ -12,7 +12,19 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
+  calculateResult(userNumbers, userBonusNumber) {
+    const numberSet = new Set(this.#numbers);
+
+    const cnt = userNumbers.reduce((acc, currentNumber) => {
+      if (numberSet.has(currentNumber)) {
+        return (acc += 1);
+      }
+      return acc;
+    }, 0);
+  }
 }
 
 module.exports = Lotto;
+
+const lotto = new Lotto([1, 3, 5, 14, 22, 45]);
+lotto.calculateResult([1, 2, 3, 4, 5, 6], 7);

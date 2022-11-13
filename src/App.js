@@ -40,7 +40,7 @@ class App {
     });
   }
 
-  calculateResult() {
+  calculateResults() {
     Console.print(CONSOLE_MESSAGE.Stats);
   }
 }
