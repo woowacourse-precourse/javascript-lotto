@@ -1,4 +1,3 @@
-const { createTestScheduler } = require('jest');
 const Lotto = require('../src/Lotto');
 const App = require('../src/App');
 
@@ -133,5 +132,15 @@ describe('App 클래스 테스트', () => {
     const app = new App();
     app.numbertoArray('1,2,3,4,5,6');
     expect(app.winningArray).toEqual([1, 2, 3, 4, 5, 6]);
+  });
+});
+
+describe('App 클래스 예외 사항 테스트', () => {
+  test('입력한 금액이 천원 단위가 아니라면 예외가 발생한다.', () => {
+    expect(() => {
+      const app = new App();
+      app.money = 33300;
+      app.purchaseException();
+    }).toThrow('[ERROR]');
   });
 });
