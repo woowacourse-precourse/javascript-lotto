@@ -20,7 +20,7 @@ class App {
     Console.readLine(Message.GAME_START, (pay) => {
       this.checkValue.isValidPay(pay);
       this.countLotto(pay);
-      this.printLotto(this.lottoCount);
+      this.printLotto();
     });
   }
 
@@ -46,7 +46,9 @@ class App {
   }
 
   requestBonusNumber() {
-    Console.readLine(Message.SET_BONUSNUMBER, () => {});
+    Console.readLine(Message.SET_BONUSNUMBER, (bonusNumber) => {
+      new Lotto(bonusNumber);
+    });
   }
 }
 
