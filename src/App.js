@@ -2,6 +2,7 @@ const { Console, Random } = require('@woowacourse/mission-utils');
 const { READ_MESSAGE, RESULT_MESSAGE } = require('./constants/message');
 const Calculator = require('./Calculator');
 const Lotto = require('./Lotto');
+const Validator = require('./Validator');
 
 class App {
   #calculator;
@@ -46,14 +47,18 @@ class App {
 
   recordWinNumbers() {
     Console.readLine(READ_MESSAGE.winNumbers, (input) => {
-      this.#winNumbers = input.split(',').map((number) => parseInt(number));
+      const winNumbers = input.split(',').map((number) => parseInt(number));
+      Validator.checkLottoNumbers(winNumbers);
+      this.#winNumbers = winNumbers;
       this.recordBonusNumber();
     });
   }
 
   recordBonusNumber() {
     Console.readLine(READ_MESSAGE.bonusNumber, (input) => {
-      this.#bonusNumber = parseInt(input);
+      const bonusNumber = parseInt(input);
+      Validator.checkBonusNumber(bonusNumber, this.#winNumbers);
+      this.#bonusNumber = bonusNumber;
       this.calculateResult();
     });
   }
