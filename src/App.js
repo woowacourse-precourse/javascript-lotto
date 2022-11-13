@@ -56,6 +56,7 @@ class App {
   askBonusNumber() {
     Console.readLine(`${MESSEGE.INPUT_BONUS_NUMBER}\n`, (input) => {
       this.WinningNumbers.setBonusNumber(input);
+      this.WinningNumbers.compareTickets(this.lotteryTickets);
     });
   }
 }

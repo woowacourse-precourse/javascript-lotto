@@ -1,3 +1,4 @@
+const { Console } = require("@woowacourse/mission-utils");
 const { LOTTO_LENGTH, ERROR } = require("./constant/lotto");
 const Utils = require("./utils/utils");
 
@@ -9,6 +10,7 @@ class Lotto {
     this.validate(numbers);
     this.#numbers = numbers;
     this.bonusNumber;
+    this.resultMap = new Map();
   }
 
   validate(numbers) {
@@ -42,11 +44,30 @@ class Lotto {
 
   setBonusNumber(number) {
     this.isNotInVaildRange(number);
-    this.bonusNum = number;
+    this.bonusNumber = number;
   }
 
   getBonusNumber() {
     return this.bonusNumber;
+  }
+
+  compareTickets(lotteryTickets) {
+    for (let ticket of lotteryTickets) {
+      let matchedNum = this.#numbers.filter((x) => ticket.includes(+x));
+
+      if (matchedNum.length == 5 && this.compareBonusNumber(ticket)) {
+        let value = this.resultMap.get("5B") || 0;
+        this.resultMap.set("5B", value + 1);
+      }
+      if (matchedNum.length >= 3) {
+        let value = this.resultMap.get(matchedNum.length) || 0;
+        this.resultMap.set(matchedNum.length, value + 1);
+      }
+    }
+  }
+
+  compareBonusNumber(ticket) {
+    return ticket.includes(+this.bonusNumber);
   }
 }
 
