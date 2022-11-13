@@ -1,3 +1,5 @@
+const { isSixNumbers, isNumbersUnique, isNumbersInRange } = require('./validation');
+
 class Lotto {
   #numbers;
 
@@ -7,11 +9,14 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
+    if (isSixNumbers(numbers)) {
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
     }
-    if (Array.from(new Set(numbers)).length !== 6) {
+    if (isNumbersUnique(numbers)) {
       throw new Error('[ERROR] 로또 번호에 중복된 숫자가 없어야 합니다.');
+    }
+    if (!isNumbersInRange(numbers)) {
+      throw new Error('[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.');
     }
   }
 
