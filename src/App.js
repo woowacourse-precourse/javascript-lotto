@@ -10,7 +10,7 @@ class App {
   }
 
   play() {
-    this.controller.start();
+    this.controller.lottoCourse();
   }
 }
 

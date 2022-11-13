@@ -6,7 +6,7 @@ class LottoController {
     this.model = model;
   }
 
-  start() {
+  lottoCourse() {
     this.getPayInput();
     this.winningNumber();
     this.bonusNumber();
