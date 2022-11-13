@@ -8,7 +8,7 @@ class GetLotto {
     lottoNumberPackage(money) {
         this.checkValue(money);
         const lottoCount = this.howManyLotto(money);
-        Console.print(`${lottoCount}개를 구매했습니다.`)
+        Console.print(`\n${lottoCount}개를 구매했습니다.`)
         for (let i = 0; i < lottoCount; i++) {
             let lottoNumber = this.sortLottoNumber(Random.pickUniqueNumbersInRange(1, 45, 6));
             Console.print(lottoNumber);
