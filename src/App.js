@@ -1,8 +1,10 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { MESSAGES } = require('./constant/Constant');
+const { MESSAGES, REQUIREMENT } = require('./constant/Constant');
+const { printAmounts, printLotto } = require('./Print');
 
 class App {
   #purchaseAmount;
+  #publishedLottos = [];
 
   play() {
     this.getPurchaseAmount();
@@ -10,10 +12,22 @@ class App {
 
   getPurchaseAmount() {
     MissionUtils.Console.readLine(MESSAGES.INPUTPURCHASEAMOUNT, (input) => {
-      this.#purchaseAmount = Number(input);
-      console.log(this.#purchaseAmount);
-      MissionUtils.Console.close(); 
+      this.#purchaseAmount = Number(input); 
+
+      return this.publishLottos();      
     })
+  }
+
+  publishLottos() {
+    const amounts = ~~(this.#purchaseAmount / REQUIREMENT.LOTTOPRICE);
+    printAmounts(amounts);
+
+    for (let i = 0 ; i < amounts ; i++) {
+      const publishLotto = MissionUtils.Random.pickUniqueNumbersInRange(REQUIREMENT.MIN, REQUIREMENT.MAX, REQUIREMENT.LENGTH).sort( (a, b) => a - b);
+      printLotto(publishLotto);
+      this.#publishedLottos.push(publishLotto);
+    }
+    MissionUtils.Console.close();
   }
 }
 
