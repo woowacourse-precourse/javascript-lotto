@@ -1,8 +1,12 @@
-const { Console, Random } = require('@woowacourse/mission-utils');
+const { Random } = require('@woowacourse/mission-utils');
+const Messages = require('./Messages');
 const Lotto = require('./Lotto');
 
 class LottoSeller {
+  #lottoPrice;
+
   constructor() {
+    this.#lottoPrice = 1000;
     this.lotto = new Lotto();
     this.lottoArray = [];
   }
@@ -21,6 +25,10 @@ class LottoSeller {
       this.lotto.validate(uniqueNumberInRange);
       this.lottoArray.push(uniqueNumberInRange);
     }
+  }
+
+  #validateInputMoney(money) {
+    if (money % this.#lottoPrice !== 0) throw new Error(Messages.ZERO_REST);
   }
 
   getLottos() {
