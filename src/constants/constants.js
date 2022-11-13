@@ -21,11 +21,11 @@ const EXCEPTION_REASON = {
 };
 
 const RANK_STATISTICS_MESSAGE = {
-  RANK_5: (count) => `3개 일치 (5,000원) - ${count}개`,
-  RANK_4: (count) => `4개 일치 (50,000원) - ${count}개`,
-  RANK_3: (count) => `5개 일치 (1,500,000원) - ${count}개`,
-  RANK_2: (count) => `5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`,
-  RANK_1: (count) => `6개 일치 (2,000,000,000원) - ${count}개`,
+  1: (count) => `6개 일치 (2,000,000,000원) - ${count}개`,
+  2: (count) => `5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`,
+  3: (count) => `5개 일치 (1,500,000원) - ${count}개`,
+  4: (count) => `4개 일치 (50,000원) - ${count}개`,
+  5: (count) => `3개 일치 (5,000원) - ${count}개`,
   PROFIT_RATE: (rate) => `총 수익률은 ${rate}%입니다.`,
 };
 
