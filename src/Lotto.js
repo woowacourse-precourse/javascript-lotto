@@ -10,7 +10,7 @@ class Lotto {
   }
 
   validate(numbers) {
-    this.exception.validateWinningNumber(number);
+    this.exception.validateWinningNumber(numbers);
   }
 
   // TODO: 추가 기능 구현
