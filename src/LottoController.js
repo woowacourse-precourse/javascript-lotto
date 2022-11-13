@@ -1,13 +1,16 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
+const Validation = require("./Validation");
 
 const mConsole = MissionUtils.Console;
 const mRandom = MissionUtils.Random;
 
 class LottoController {
   constructor() {
+    this.validation = new Validation();
     this.lottoAmount = null;
     this.boughtLotto = [];
+    this.winningNumber = null;
   }
 
   countLottoAmount(checkedMoney) {
@@ -30,6 +33,13 @@ class LottoController {
     this.boughtLotto.forEach((number) => {
       number.printNumbers();
     });
+  }
+
+  setWinNumbers(inputNumber) {
+    this.inputWinNumbers = inputNumber.split(",").map((item) => Number(item));
+    if (this.validation.isValidLottoNumber(this.inputWinNumbers))
+      this.winningNumber = this.inputWinNumbers;
+    return this.winningNumber;
   }
 }
 
