@@ -3,7 +3,7 @@ const { BONUS_CHECK, BONUS_COUNT } = require('./Constants');
 
 class WinningCount {
   constructor() {
-    this.numbers = lottoNumber.createLottoNumber();
+    this.lottoNumber = lottoNumber.createLottoNumber();
   }
 
   setMatchCount(winningNumber, bonusNumber) {
@@ -17,14 +17,14 @@ class WinningCount {
   }
 
   getWinningMatchCount(winningNumber) {
-    return this.numbers.reduce(
+    return this.lottoNumber.reduce(
       (acc, num) => acc + Number(winningNumber.includes(num)),
       0
     );
   }
 
   getBonusMatchCount(bonusNumber) {
-    return this.numbers.includes(bonusNumber) ? BONUS_COUNT : 0;
+    return this.lottoNumber.includes(bonusNumber) ? BONUS_COUNT : 0;
   }
 }
 
