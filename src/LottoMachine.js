@@ -13,12 +13,15 @@ class LottoMachine {
       this.validatePayment(payment);
 
       this.#payment = payment;
+
+      this.getWinningNumbers();
     });
   }
 
   getWinningNumbers() {
     Console.readLine(MESSAGE.REQUEST.WINNING_NUMBERS, (numbers) => {
       this.#winningNumbers = numbers.split(",");
+      this.validateWinningNumbers(this.#winningNumbers);
 
       this.getBonusNumber();
     });
