@@ -9,7 +9,8 @@ const ERROR_MSG = {
   NUMBER_VAL_COUNT: "[ERROR] 로또 번호는 6개여야 합니다.",
   NUMBER_VAL_DUPLICATE:
     "[ERROR] 로또 번호에서 중복된 숫자는 허용되지 않습니다.",
-  PAYMENT_VAL: "[ERROR] 구입 금액은 1000 원 단위의 숫자여야 합니다.",
+  PAYMENT_VAL_NUMBER: "[ERROR] 구입 금액은 숫자여야 합니다.",
+  PAYMENT_VAL_UNIT: "[ERROR] 구입 금액은 1000 원 단위여야 합니다.",
 };
 
 const paymentMsg = (ticket) => {
@@ -20,6 +21,7 @@ const LOTTO = {
   START: 1,
   END: 45,
   COUNT: 6,
+  PRICE: 1000,
 };
 
 const RANK = {
