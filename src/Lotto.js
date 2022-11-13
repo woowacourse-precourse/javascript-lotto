@@ -1,4 +1,4 @@
-const { LOTTO } = require("./constants");
+const { LOTTO_SPEC } = require("./constants");
 
 const ERRORS = Object.freeze({
   LENGTH: "[ERROR] 로또 번호는 6개여야 합니다.",
@@ -15,11 +15,11 @@ class Lotto {
   }
 
   get numbers() {
-    return this.#numbers.slice(0, LOTTO.LENGTH);
+    return this.#numbers.slice(0, LOTTO_SPEC.COUNT);
   }
 
   get bonusNumber() {
-    if (this.#numbers.length === LOTTO.LENGTH + 1) {
+    if (this.#numbers.length === LOTTO_SPEC.COUNT + 1) {
       return this.#numbers[this.#numbers.length - 1];
     }
     return null;
@@ -38,7 +38,7 @@ class Lotto {
   }
 
   checkLength(numbers) {
-    if (numbers.length !== LOTTO.LENGTH) {
+    if (numbers.length !== LOTTO_SPEC.COUNT) {
       throw new Error(ERRORS.LENGTH);
     }
   }
@@ -58,8 +58,8 @@ class Lotto {
     if (
       typeof number !== "number" ||
       Number.isNaN(Number(number)) ||
-      number < LOTTO.RANGE_MIN ||
-      number > LOTTO.RANGE_MAX
+      number < LOTTO_SPEC.MIN_NUMBER ||
+      number > LOTTO_SPEC.MAX_NUMBER
     ) {
       throw new Error(ERRORS.RANGE);
     }

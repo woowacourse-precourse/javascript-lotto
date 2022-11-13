@@ -1,7 +1,6 @@
 const Lotto = require("../Lotto");
 const Utils = require("../Utils");
-
-const MONEY_UNIT = 1000;
+const { LOTTO_SPEC } = require("../constants");
 
 const MATCH_COUNT = Object({
   SIX: 6,
@@ -63,7 +62,7 @@ class LottoStatistics {
   }
 
   calculateProfit(buyingLottos) {
-    const cost = buyingLottos.length * MONEY_UNIT;
+    const cost = buyingLottos.length * LOTTO_SPEC.MONEY_UNIT;
     return 100 * (this.calculateTotalReward(buyingLottos) / cost);
   }
 

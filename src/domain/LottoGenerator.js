@@ -1,12 +1,12 @@
 const { Random } = require("@woowacourse/mission-utils");
-const { LOTTO } = require("../constants");
+const { LOTTO_SPEC } = require("../constants");
 
 class LottoGenerator {
   static generate() {
     const randomNumbers = Random.pickUniqueNumbersInRange(
-      LOTTO.RANGE_MIN,
-      LOTTO.RANGE_MAX,
-      LOTTO.LENGTH
+      LOTTO_SPEC.MIN_NUMBER,
+      LOTTO_SPEC.MAX_NUMBER,
+      LOTTO_SPEC.COUNT,
     );
     return randomNumbers.sort((numA, numB) => numA - numB);
   }

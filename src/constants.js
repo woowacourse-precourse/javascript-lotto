@@ -1,9 +1,10 @@
-const LOTTO = Object.freeze({
-  RANGE_MIN: 1,
-  RANGE_MAX: 45,
-  LENGTH: 6,
+const LOTTO_SPEC = Object.freeze({
+  MIN_NUMBER: 1,
+  MAX_NUMBER: 45,
+  COUNT: 6,
+  MONEY_UNIT: 1000,
 });
 
 module.exports = {
-  LOTTO,
+  LOTTO_SPEC,
 };
