@@ -1,4 +1,4 @@
-const { REWARD } = require('../src/utils/constants');
+const { REWARD, STATISTICS } = require('../src/utils/constants');
 
 class LottoGame {
   user;
@@ -50,6 +50,19 @@ class LottoGame {
 
   static roundToTwo(number) {
     return +(Math.round(number + 'e+2') + 'e-2');
+  }
+
+  printStatistics({ fifth, fourth, third, second, first }, revenue) {
+    const statistics = [];
+    statistics.push(STATISTICS.TITLE);
+    statistics.push(STATISTICS.FIFTH_PRIZE(fifth));
+    statistics.push(STATISTICS.FOURTH_PRIZE(fourth));
+    statistics.push(STATISTICS.THIRD_PRIZE(third));
+    statistics.push(STATISTICS.SECOND_PRIZE(second));
+    statistics.push(STATISTICS.FIRST_PRIZE(first));
+    statistics.push(STATISTICS.REVENUE(revenue));
+
+    Console.print(statistics.join(''));
   }
 }
 
