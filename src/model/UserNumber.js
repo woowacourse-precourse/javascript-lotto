@@ -30,12 +30,14 @@ class UserNumber {
         45,
         6,
       );
-
       this.userLottoArray.push(
         singleLottoCombinationArray.sort((first, second) => first - second),
       );
     }
-    this.controller.printReadOnlyMessages("userLottoArray");
+    this.controller.printReadOnlyMessages(
+      "userLottoArray",
+      this.userLottoArray,
+    );
   }
 
   getUserLottoArray() {

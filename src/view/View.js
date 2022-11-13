@@ -16,12 +16,15 @@ class View {
     throw new Error(messages.PURCHASING_AMOUNT_ERROR_MESSAGE);
   }
 
-  printUserLottoArray() {
+  printUserLottoArray(userLottoArray) {
     Console.print(
       `\n${this.controller.userNumber.getUserLottoArray().length}${
         messages.USER_LOTTO_CONFIRMATION_MESSAGE
       }`,
     );
+    for (const singleLottoCombination of userLottoArray) {
+      Console.print(singleLottoCombination);
+    }
   }
 }
 

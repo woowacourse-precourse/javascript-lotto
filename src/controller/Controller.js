@@ -7,8 +7,8 @@ class Controller {
     this.userNumber = new UserNumber(this);
   }
 
-  printReadOnlyMessages(type) {
-    if (type === "userLottoArray") this.view.printUserLottoArray();
+  printReadOnlyMessages(type, data) {
+    if (type === "userLottoArray") this.view.printUserLottoArray(data);
     if (type === "purchasingAmountError") this.view.printPurchasingAmountErrorMessage();
   }
 
