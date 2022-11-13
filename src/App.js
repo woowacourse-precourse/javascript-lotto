@@ -1,12 +1,15 @@
 const {Console} = require("@woowacourse/mission-utils");
 const {Random} = require("@woowacourse/mission-utils");
-const answerValidation = require("./answerValidation.js");
 const generalValidation = require("./generalValidation.js");
+const {RESULT_MESSAGE} = require("./constant.js");
 
 const Lotto = require("./Lotto.js");
 
 class App {
-  constructor() {};
+  constructor() {
+    this.payment;
+    this.profit;
+  };
 
   getErrorMessage(errorCase){
     const ERROR_MESSAGE = '[ERROR] ';
@@ -18,36 +21,39 @@ class App {
     }
     return NEW_ERROR;
   }
+/*
+  showProfitRate(payment, profit) {
 
+    Console.print(`총 수익률은 ${profit}입니다.`);
+  }
+*/
+  
   //6. 보너스 번호 입력받기
-  enterBonus(winningNums){
+  enterBonus(allLines, winningNums){
     Console.readLine('\n보너스 번호를 입력해 주세요.\n',(bonus) =>{
-
+      const winningArr = Array.from(winningNums).map((i) => Number(i)); //문자열을 Number형 배열로 변환
       generalValidation(bonus);
-      if(winningNums.includes(bonus)){
-        Console.print(this.getErrorMessage('bonusError'));
+      //console.log(winningArr);
+      if(winningArr.includes(parseInt(bonus))){
+        throw new Error('보너스 번호가 당첨 번호와 중복됩니다.')
       }
       //console.log('보너스 번호는... ',bonus);
-      return;
+      return this.calculateGameResult(allLines, winningArr, bonus);
     })  
   }
 
   //5. 당첨 번호 입력받기
-  enterWinningNums(){
+  enterWinningNums(allLines){
     Console.readLine('\n당첨 번호를 입력해 주세요.\n',(answer) =>{
       const answerList = answer.split(',');
       //console.log(answerList);
       const lotto = new Lotto(answerList);
       //console.log(lotto)
-      return this.enterBonus(answerList);
+      return this.enterBonus(allLines,answerList);
 
     })
   }
-/*
-  enterLottoAnswer(){
-    
-  }
-*/
+
 //4. 로또 수량만큼 랜덤으로 로또 번호 생성
   makeLottoNums(amount){
     let allLines = []; //
@@ -57,7 +63,7 @@ class App {
       Console.print(oneLine);
     }
 
-    this.enterWinningNums();
+    this.enterWinningNums(allLines);
     //console.log(allLines);
   }
 
@@ -83,6 +89,7 @@ class App {
         Console.print(this.getErrorMessage('unitError'));
         throw '1000원 단위로 입력되지 않음'; //1-2. 예외 출력
       } 
+      this.payment = total;
       return this.showLottoAmount(total);
       //console.log('로또 수량은...',this.amount)
     });

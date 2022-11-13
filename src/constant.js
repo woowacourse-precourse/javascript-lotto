@@ -7,9 +7,17 @@ const ERROR_MESSAGE = Object.freeze({
     WRONG_INPUT: BASE_MESSAGE + "잘못된 값을 입력하여 게임을 종료합니다."
 })
 
+const RESULT_MESSAGE = Object.freeze({
+    THREE_ANSWER: "3개 일치 (5,000원) - ",
+    FOUR_ANSWER: "4개 일치 (50,000원) - ",
+    FIVE_ANSWER: "5개 일치 (1,500,000원) - ",
+    FIVE_ANSWER_BONUS: "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
+    YOU_WIN: "6개 일치 (2,000,000,000원) - "
+})
+
 /*
 const PROFIT_MESSAGE = Object.freeze({
     
 })
 */
-  module.exports = {ERROR_MESSAGE};
+  module.exports = {ERROR_MESSAGE, RESULT_MESSAGE};

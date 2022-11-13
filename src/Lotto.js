@@ -3,9 +3,10 @@ const answerValidation = require("./answerValidation.js");
 class Lotto {
   #numbers;
 
-  constructor(numbers) {
+  constructor(numbers, bonus) {
     this.validate(numbers);
     this.#numbers = numbers;
+    this.bonus = bonus
   }
   
    
