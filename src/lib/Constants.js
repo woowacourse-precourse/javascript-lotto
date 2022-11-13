@@ -32,6 +32,7 @@ const PRICE_ERROR_MESSAGE = {
   not_valid_number: '숫자를 입력해주세요.',
   not_valid_unit_number: '1000원 단위로 입력해주세요.',
   not_valid_answer: '입력값이 없습니다.',
+  not_valid_zero: '최소 1000원 이상 금액을 입력해주세요.',
 };
 
 const WIN_NUMBER_ERROR_MESSAGE = {
