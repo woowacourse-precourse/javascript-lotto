@@ -1,5 +1,5 @@
 class Validation {
-  static checkPurchaseAmount(amount) {
+  static isValidPurchaseAmount(amount) {
     if (amount < 0) {
       throw new Error("[ERROR] 구입 금액은 0보다 커야 합니다.");
     }
@@ -14,6 +14,9 @@ class Validation {
 
     return true;
   }
+
+  static isValidWinningNumber(winningNumbers) {}
+  static isValidLottoArray(lotto) {}
 }
 
 module.exports = Validation;
