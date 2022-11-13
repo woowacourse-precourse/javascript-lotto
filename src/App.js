@@ -12,6 +12,11 @@ class App {
     userException.isNotNumber(userEnterAmount);
   }
 
+  printLotto() {
+    MissionUtils.Console.print(`${this.#lottoCount}개를 구매했습니다.`);
+    this.#totalLotto.forEach((lotto) => MissionUtils.Console.print([...lotto]));
+  }
+
   enterAmount() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (userEnterAmount) => {
       this.userEnterException(userEnterAmount);
@@ -22,12 +27,12 @@ class App {
   }
 
   generateLotto() {
-    MissionUtils.Console.print("generateLotto");
     for(let count = 0; count < this.#lottoCount; count++) {
       const randomSixLottoNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       const lotto = new Lotto(randomSixLottoNumber);
       this.#totalLotto.push(lotto.getNumbers());
     }
+    this.printLotto();
   }
 
   play() {
