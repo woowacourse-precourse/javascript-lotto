@@ -6,6 +6,7 @@ const QUERY = Object.freeze({
 
 const MESSAGE = Object.freeze({
   BOUGHT_LOTTOS: "개를 구매했습니다.",
+  RESULT: "당첨 통계\n---",
 });
 
 const ERROR = "[ERROR]";
@@ -22,9 +23,33 @@ const INPUT_ERROR_MESSAGE = Object.freeze({
   ONLY_NUMBER: `${ERROR} 숫자만 입력이 가능합니다.`,
 });
 
+const FIRST = "FIRST";
+const SECOND = "SECOND";
+const THIRD = "THIRD";
+const FOURTH = "FOURTH";
+const FIFTH = "FIFTH";
+
+const RANKING = Object.freeze({
+  FIRST,
+  SECOND,
+  THIRD,
+  FOURTH,
+  FIFTH,
+});
+
+const PRIZE_MONEY = Object.freeze({
+  FIRST: 2_000_000_000,
+  SECOND: 30_000_000,
+  THIRD: 1_500_000,
+  FOURTH: 50_000,
+  FIFTH: 5_000,
+});
+
 module.exports = {
   QUERY,
   MESSAGE,
   LOTTO_ERROR_MESSAGE,
   INPUT_ERROR_MESSAGE,
+  RANKING,
+  PRIZE_MONEY,
 };

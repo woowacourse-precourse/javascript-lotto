@@ -1,4 +1,4 @@
-const { LOTTO_ERROR_MESSAGE } = require("./Constant");
+const { LOTTO_ERROR_MESSAGE, RANKING } = require("./Constant");
 const Lotto = require("./Lotto");
 const { existNumberOutOfRange, existDuplicateNumber } = require("./Validate");
 
@@ -27,14 +27,14 @@ class WinningLotto extends Lotto {
   calculateLottoRanking(targetNumbers) {
     const numberOfMatch = this.calculateNumberOfMatch(targetNumbers);
 
-    if (numberOfMatch === 6) return 1;
+    if (numberOfMatch === 6) return RANKING.FIRST;
     if (numberOfMatch === 5) {
-      if (targetNumbers.includes(this.#bonusNumber)) return 2;
-      return 3;
+      if (targetNumbers.includes(this.#bonusNumber)) return RANKING.SECOND;
+      return RANKING.THIRD;
     }
-    if (numberOfMatch === 4) return 4;
-    if (numberOfMatch === 3) return 5;
-    return 0;
+    if (numberOfMatch === 4) return RANKING.FOURTH;
+    if (numberOfMatch === 3) return RANKING.FIFTH;
+    return null;
   }
 
   calculateNumberOfMatch(targetNumbers) {

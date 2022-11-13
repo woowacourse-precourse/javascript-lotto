@@ -15,6 +15,16 @@ class UI {
     print("");
   }
 
+  static showResult({ FIRST, SECOND, THIRD, FOURTH, FIFTH }, totalProfitRate) {
+    print(MESSAGE.RESULT);
+    print(`3개 일치 (5,000)원 - ${FIFTH}개`);
+    print(`4개 일치 (50,000)원 - ${FOURTH}개`);
+    print(`5개 일치 (1,500,000)원 - ${THIRD}개`);
+    print(`5개 일치, 보너스 볼 일치 (30,000,000)원 - ${SECOND}개`);
+    print(`6개 일치 (2,000,000,000)원 - ${FIRST}개`);
+    print(`총 수익률은 ${totalProfitRate}%입니다.`);
+  }
+
   static askHowMuchBuy(callback) {
     readLine(QUERY.HOW_MUCH_BUY, (answer) => {
       this.#validateHowMuchBuyAnswer(answer);
