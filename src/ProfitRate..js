@@ -6,7 +6,7 @@ class ProfitRate {
 
   getProfitRate() {
     const totalPrizeMoney = this.sumTotalPrizeMoney(this.lottoResult);
-    return this.calculateProfitRate(totalPrizeMoney, this.payMoney);
+    return this.calculateProfitRate(totalPrizeMoney, this.payMoney).toLocaleString("ko-KR");
   }
 
   calculateProfitRate(totalPrizeMoney, payMoney) {
