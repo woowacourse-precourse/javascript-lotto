@@ -17,6 +17,13 @@ class LottoGame {
         this.lottoController.countLottoAmount(purchaseAmount);
       this.lottoController.printLottoAmount();
       this.lottoController.printLottoList();
+      this.getWinNumbers();
+    });
+  }
+
+  getWinNumbers() {
+    mConsole.readLine("\n당첨 번호를 입력해 주세요.\n", (winNumbers) => {
+      return winNumbers;
     });
   }
 }
