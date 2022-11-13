@@ -35,11 +35,6 @@ class LottoMachine {
   getLottos(purchaseCount) {
     return Array.from({ length: purchaseCount }, () => this.#generateLotto());
   }
-
-  print(lottos) {
-    MissionUtils.Console.print(`\n${lottos.length}개를 구매했습니다.`);
-    lottos.forEach((lotto) => lotto.print());
-  }
 }
 
 module.exports = LottoMachine;
