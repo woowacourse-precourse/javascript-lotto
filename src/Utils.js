@@ -13,6 +13,10 @@ class Utils {
     Console.readLine(message, callback);
   }
 
+  static close() {
+    Console.close();
+  }
+
   static #printLottoNumber(lotto) {
     const sortedNumbers = lotto.numbers.sort((a, b) => a - b);
     const output = "[" + sortedNumbers.join(", ") + "]";
