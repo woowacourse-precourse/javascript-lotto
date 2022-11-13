@@ -20,13 +20,13 @@ class Lotto {
 
   isArrayInRange(numbersArray) {
     for (const singleElement of numbersArray) {
-      if (1 > singleElement || singleElement > 45) this.controller.throwErrorWithMessage("WinningNumberRangeError");
+      if (1 > singleElement || singleElement > 45) this.controller.throwErrorWithMessage("winningNumberRangeError");
     }
   }
 
   isArrayUnique(numbersArray) {
     const numbersSet = new Set(numbersArray);
-    if (numbersSet.size !== 6) this.controller.throwErrorWithMessage("WinningNumberUniqueError");
+    if (numbersSet.size !== 6) this.controller.throwErrorWithMessage("winningNumberUniqueError");
   }
 
   validate(numbers) {

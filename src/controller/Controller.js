@@ -16,8 +16,8 @@ class Controller {
   throwErrorWithMessage(type) {
     if (type === "purchasingAmountError") this.view.printPurchasingAmountErrorMessage();
     if (type === "winningNumberCommaNumberError") this.view.printWinningNumberCommaNumberErrorMessage();
-    if (type === "WinningNumberRangeError") this.view.printWinningNumberRangeErrorMessage();
-    if (type === "WinningNumberUniqueError") this.view.printWinningNumberUniqueErrorMessage();
+    if (type === "winningNumberRangeError") this.view.printWinningNumberRangeErrorMessage();
+    if (type === "winningNumberUniqueError") this.view.printWinningNumberUniqueErrorMessage();
   }
 
   getPurchasingAmountFromUser() {
