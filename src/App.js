@@ -8,6 +8,7 @@ class App {
     this.lottoList = [];
     this.winningLotto = [];
     this.bonusLottoNum = 0;
+    this.countEachWinningCost = [0, 0, 0, 0, 0]; // 3개, 4개, 5개, 5개+보너스, 6개순
   }
 
   inputCost() {
@@ -61,6 +62,64 @@ class App {
           throw new Error("[ERROR] 로또 번호에 중복된 숫자가 있으면 안됩니다.");
         this.bonusLottoNum = bonusNum;
       }
+    );
+  }
+
+  matchWinningLotto() {
+    for (var lotto in this.lottoList) {
+      this.countWinningCost(
+        this.countMatchLotto(this.winningLotto, lotto),
+        lotto
+      );
+    }
+  }
+
+  countMatchLotto(winLotto, anyLotto) {
+    var combineLotto = anyLotto.concat(winLotto);
+    var lottoSet = set(combineLotto);
+    var countMatch = combineLotto.length - lottoSet.length;
+    return countMatch;
+  }
+
+  countWinningCost(match, anyLotto) {
+    switch (match) {
+      case 3:
+        this.countEachWinningCost[0]++;
+        break;
+      case 4:
+        this.countEachWinningCost[1]++;
+        break;
+      case 5:
+        if (this.bonusLottoNum in anyLotto) {
+          this.countEachWinningCost[3]++;
+          break;
+        }
+        this.countEachWinningCost[2]++;
+        break;
+      case 6:
+        this.countEachWinningCost[4]++;
+        break;
+      default:
+        break;
+    }
+  }
+
+  printLottoResult() {
+    MissionUtils.Console.print("\n당첨 통계\n---");
+    MissionUtils.Console.print(
+      `3개 일치 (5,000원) - ${this.countEachWinningCost[0]}개`
+    );
+    MissionUtils.Console.print(
+      `4개 일치 (50,000원) - ${this.countEachWinningCost[1]}개`
+    );
+    MissionUtils.Console.print(
+      `5개 일치 (1,500,000원) - ${this.countEachWinningCost[2]}개`
+    );
+    MissionUtils.Console.print(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.countEachWinningCost[3]}개`
+    );
+    MissionUtils.Console.print(
+      `6개 일치 (2,000,000,000원) - ${this.countEachWinningCost[4]}개`
     );
   }
 
