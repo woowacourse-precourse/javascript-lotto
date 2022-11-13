@@ -10,40 +10,49 @@ class Validate {
     }
   }
 
-  checkWinningNumber(number) {
-    const NUMBER_ARRAY = number
+  checkNumber(number) {
+    if (
+      isNaN(number) ||
+      number < LOTTO.NUMBER_START ||
+      number > LOTTO.NUMBER_END
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  getWinningNumberArray(number) {
+    const WINNING_NUMBER_ARRAY = number
       .replace(/ /gi, '')
       .split(',')
       .map((num) => Number(num));
-    const NUMBER_LENGTH = NUMBER_ARRAY.length;
-    for (let i = 0; i < NUMBER_LENGTH; i++) {
+    return WINNING_NUMBER_ARRAY;
+  }
+
+  checkWinningNumber(number) {
+    const NUMBER_ARRAY = this.getWinningNumberArray(number);
+    if (NUMBER_ARRAY.length !== LOTTO.NUMBER_SELECT) {
+      throw new Error(ERROR.SELECT);
+    }
+    for (let i = 0; i < NUMBER_ARRAY.length; i++) {
       const NUMBER = number[i];
-      if (
-        isNaN(NUMBER) ||
-        NUMBER < LOTTO.NUMBER_START ||
-        NUMBER > LOTTO.NUMBER_END
-      ) {
+      if (!this.checkNumber(NUMBER)) {
         throw new Error(ERROR.NUMBER);
-      } else if (NUMBER_LENGTH !== LOTTO.NUMBER_SELECT) {
-        throw new Error(ERROR.SELECT);
-      } else {
-        return NUMBER_ARRAY;
       }
+      return NUMBER_ARRAY;
     }
   }
 
   checkBonusNumber(number, winning) {
     const NUMBER = Number(number);
-    if (
-      isNaN(NUMBER) ||
-      NUMBER < LOTTO.NUMBER_START ||
-      NUMBER > LOTTO.NUMBER_END ||
-      winning.includes(NUMBER)
-    ) {
+    if (!this.checkNumber(NUMBER)) {
       throw new Error(ERROR.NUMBER);
-    } else {
-      return NUMBER;
     }
+    if (winning.includes(NUMBER)) {
+      throw new Error(ERROR.BONUS);
+    }
+    return NUMBER;
   }
 }
 

@@ -1,64 +1,50 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { LOTTO } = require('./Constants');
+const { LOTTO, PRIZE_MONEY } = require('./Constants');
 const Lotto = require('./Lotto');
 
 class Statistics {
-  ranking1 = 0;
-  ranking2 = 0;
-  ranking3 = 0;
-  ranking4 = 0;
-  ranking5 = 0;
+  ranking = [0, 0, 0, 0, 0];
+
+  getResult(numbers, winning, bonus) {
+    const lotto = new Lotto(numbers);
+    const result = lotto.checkLotto(numbers, winning, bonus);
+    return result;
+  }
 
   getRanking(lottoList, winning, bonus) {
     for (let i = 0; i < lottoList.length; i++) {
-      const lotto = new Lotto(lottoList[i]);
-      const numbers = lottoList[i];
-      const result = lotto.checkLotto(numbers, winning, bonus);
-      switch (result) {
-        case 'Ranking1':
-          this.ranking1 += 1;
-          break;
-        case 'Ranking2':
-          this.ranking2 += 1;
-          break;
-        case 'Ranking3':
-          this.ranking3 += 1;
-          break;
-        case 'Ranking4':
-          this.ranking4 += 1;
-          break;
-        case 'Ranking5':
-          this.ranking5 += 1;
-          break;
-      }
+      const result = this.getResult(lottoList[i], winning, bonus);
+      this.ranking[result] += 1;
     }
     this.printResult(lottoList.length);
   }
 
+  getTotalPrizeMoney() {
+    const ranking1 = this.ranking[0] * PRIZE_MONEY.RANKING1;
+    const ranking2 = this.ranking[1] * PRIZE_MONEY.RANKING2;
+    const ranking3 = this.ranking[2] * PRIZE_MONEY.RANKING3;
+    const ranking4 = this.ranking[3] * PRIZE_MONEY.RANKING4;
+    const ranking5 = this.ranking[4] * PRIZE_MONEY.RANKING5;
+    return ranking1 + ranking2 + ranking3 + ranking4 + ranking5;
+  }
+
+  getYield(totalPrizeMoney, amount) {
+    const PURCHASE_AMOUNT = amount * LOTTO.PRICE;
+    return (totalPrizeMoney / PURCHASE_AMOUNT) * 100;
+  }
+
   printResult(amount) {
-    const PRIZE_MONEY_1 = this.ranking1 * 2000000000;
-    const PRIZE_MONEY_2 = this.ranking2 * 30000000;
-    const PRIZE_MONEY_3 = this.ranking3 * 1500000;
-    const PRIZE_MONEY_4 = this.ranking4 * 50000;
-    const PRIZE_MONEY_5 = this.ranking5 * 5000;
-    const YIELD =
-      ((PRIZE_MONEY_1 +
-        PRIZE_MONEY_2 +
-        PRIZE_MONEY_3 +
-        PRIZE_MONEY_3 +
-        PRIZE_MONEY_4 +
-        PRIZE_MONEY_5) /
-        (amount * LOTTO.PRICE)) *
-      100;
+    const TOTAL_PRIZE_MONEY = this.getTotalPrizeMoney();
+    const YIELD = this.getYield(TOTAL_PRIZE_MONEY, amount);
     Console.print('당첨 통계');
     Console.print('---');
-    Console.print(`3개 일치 (5,000원) - ${this.ranking5}개`);
-    Console.print(`4개 일치 (50,000원) - ${this.ranking4}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${this.ranking3}개`);
+    Console.print(`3개 일치 (5,000원) - ${this.ranking[4]}개`);
+    Console.print(`4개 일치 (50,000원) - ${this.ranking[3]}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${this.ranking[2]}개`);
     Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.ranking2}개`
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.ranking[1]}개`
     );
-    Console.print(`6개 일치 (2,000,000,000원) - ${this.ranking1}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${this.ranking[0]}개`);
     Console.print(`총 수익률은 ${YIELD.toFixed(1)}%입니다.`);
     Console.close();
   }

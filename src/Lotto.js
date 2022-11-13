@@ -35,19 +35,19 @@ class Lotto {
 
   lottoResult(winning, bonus) {
     if (winning === 6) {
-      return 'Ranking1';
+      return 0;
     }
     if (winning === 5 && bonus === 1) {
-      return 'Ranking2';
+      return 1;
     }
     if (winning === 5 && bonus === 0) {
-      return 'Ranking3';
+      return 2;
     }
     if (winning === 4) {
-      return 'Ranking4';
+      return 3;
     }
     if (winning === 3) {
-      return 'Ranking5';
+      return 4;
     }
   }
 }
