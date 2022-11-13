@@ -1,7 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
 class WinningCalculator {
-  getMatchNumber(numbers, winningNumbers) {
+  #getMatchNumber(numbers, winningNumbers) {
     return numbers.filter((number) => winningNumbers.includes(number));
   }
 
@@ -9,7 +9,7 @@ class WinningCalculator {
     const rank = Array(5).fill(0);
 
     playerLottos.map((lotto) => {
-      const matchNumber = this.getMatchNumber(lotto.numbers, winningLotto.numbers);
+      const matchNumber = this.#getMatchNumber(lotto.numbers, winningLotto.numbers);
 
       if (matchNumber.length === 6) {
         rank[0]++;
@@ -31,11 +31,11 @@ class WinningCalculator {
     return rank;
   }
 
-  getPurchaseAmount(lottos) {
+  #getPurchaseAmount(lottos) {
     return lottos.length * 1000;
   }
 
-  getPrizeMoney(rank) {
+  #getPrizeMoney(rank) {
     const prize = [2000000000, 30000000, 1500000, 50000, 5000];
 
     return rank.reduce((acc, currentRank, idx) => {
@@ -44,8 +44,8 @@ class WinningCalculator {
   }
 
   getRateOfReturn(lottos, rank) {
-    const purchaseAmount = this.getPurchaseAmount(lottos);
-    const prizeMoney = this.getPrizeMoney(rank);
+    const purchaseAmount = this.#getPurchaseAmount(lottos);
+    const prizeMoney = this.#getPrizeMoney(rank);
 
     return Math.round((prizeMoney / purchaseAmount) * 1000) / 10;
   }
