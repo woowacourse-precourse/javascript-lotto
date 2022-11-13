@@ -49,4 +49,28 @@ describe('로또 클래스 테스트', () => {
       expect(ILotto.getMatchingNumCount(lotto)).toBe(answers[i]);
     });
   });
+
+  test('하나의 로또에 대한 당첨 등수를 반환한다.', () => {
+    const matchingCounts = [1, 2, 3, 3, 4, 4, 5, 5, 6, 6];
+    const matchesBonusNums = [
+      false,
+      true,
+      false,
+      true,
+      false,
+      true,
+      false,
+      true,
+      false,
+      true,
+    ];
+    const answers = [-1, -1, 4, 4, 3, 3, 2, 1, 0, 0];
+
+    matchingCounts.forEach((count, i) => {
+      const ILotto = new Lotto([1, 2, 3, 4, 5, 6]);
+      expect(ILotto.getWinningRanking(count, matchesBonusNums[i])).toBe(
+        answers[i]
+      );
+    });
+  });
 });
