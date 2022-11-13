@@ -47,6 +47,14 @@ class Controller {
     this.lotto.setBonusNumberFromUser();
   }
 
+  getOverallInformationForStatistics() {
+    return {
+      winningNumber: this.lotto.getLottoNumbers(),
+      bonusNumber: this.lotto.getBonusNumber(),
+      userLottoArray: this.userNumber.getUserLottoArray(),
+    };
+  }
+
   init() {
     this.getPurchasingAmountFromUser();
   }
