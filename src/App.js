@@ -108,6 +108,12 @@ class App {
 
     this.rank = rank;
   }
+
+  calculateEachRank(i) {
+    let lotto = new Lotto(this.lottoArray[i]);
+
+    return lotto.isWinning(this.winningNum, this.bonusNum);
+  }
 }
 
 module.exports = App;
