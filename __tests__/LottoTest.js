@@ -1,4 +1,5 @@
 const Lotto = require("../src/Lotto");
+const MissionUtils = require("@woowacourse/mission-utils");
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
@@ -65,7 +66,7 @@ describe("로또 클래스 테스트", () => {
     );
   });
 
-  test.only("로또 번호들중 당첨번호와 겹치는 번호들만을 반환한다", () => {
+  test("로또 번호들중 당첨번호와 겹치는 번호들만을 반환한다", () => {
     // input
     const winNums = [1, 2, 3, 4, 5, 6];
     const bonusNum = 7;
@@ -84,7 +85,7 @@ describe("로또 클래스 테스트", () => {
     ]);
   });
 
-  test.only("2등 번호를 제외한 번호들에게서 보너스번호를 삭제한다", () => {
+  test("2등 번호를 제외한 번호들에게서 보너스번호를 삭제한다", () => {
     // input
     const winNums = [1, 2, 3, 4, 5, 6];
     const bonusNum = 7;
@@ -113,7 +114,7 @@ describe("로또 클래스 테스트", () => {
     ]);
   });
 
-  test.only("정해진 길이의 로또 번호들만 출력", () => {
+  test("정해진 길이의 로또 번호들만 출력", () => {
     // input
     const winNums = [1, 2, 3, 4, 5, 6];
     const bonusNum = 7;
@@ -138,7 +139,7 @@ describe("로또 클래스 테스트", () => {
     expect(output).toEqual([[1, 2, 4, 5]]);
   });
 
-  test.only("6개 길이의 로또들에서 보너스 번호 포함 여부를 구분하여 객체로 출력", () => {
+  test("6개 길이의 로또들에서 보너스 번호 포함 여부를 구분하여 객체로 출력", () => {
     // input
     const winNums = [1, 2, 3, 4, 5, 6];
     const bonusNum = 7;
@@ -168,6 +169,25 @@ describe("로또 클래스 테스트", () => {
     expect(output).toEqual({
       SECOND_LOTTERY: [[1, 2, 3, 4, 5, 7]],
       FIRST_LOTTERY: [[1, 2, 3, 4, 5, 6]],
+    });
+  });
+
+  test.only("당첨 번호와 로또 번호를 비교한 최종 결과들을 출력", () => {
+    const logSpy = jest.spyOn(MissionUtils.Console, "print");
+
+    const logs = [
+      "3개 일치 (5,000원) - 1개",
+      "4개 일치 (50,000원) - 0개",
+      "5개 일치 (1,500,000원) - 0개",
+      "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+      "6개 일치 (2,000,000,000원) - 0개",
+      "총 수익률은 500.0%입니다.",
+    ];
+
+    // 로또 1개 구입, 5천원 1개 당첨, 수익률 500.0%
+    new Lotto([1, 2, 3, 4, 5, 6], 7, [[1, 2, 3, 7, 8, 9]]).printResult();
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(log);
     });
   });
 });
