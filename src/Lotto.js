@@ -16,8 +16,8 @@ class Lotto {
     if (
       numbers.find(
         (arrayElement) =>
-          parseInt(arrayElement) < VALUE_NUMBER.SMALLEST_LOTTO_NUMBER ||
-          parseInt(arrayElement) > VALUE_NUMBER.BIGGEST_LOTTO_NUMBER
+          parseInt(arrayElement) < VALUE_NUMBER.FIRST_LOTTO_NUMBER ||
+          parseInt(arrayElement) > VALUE_NUMBER.LAST_LOTTO_NUMBER
       )
     )
       throw new Error(ERROR_LOTTO_NUMBER.OUT_OF_RANGE);
