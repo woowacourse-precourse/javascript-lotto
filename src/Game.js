@@ -20,7 +20,9 @@ class Game {
   #bonusNumber;
   #winningCount;
 
-  constructor() {}
+  constructor() {
+    this.getInputPurchaseMoney();
+  }
 
   initPurchase(money) {
     this.purchase = new Purchase(money);
