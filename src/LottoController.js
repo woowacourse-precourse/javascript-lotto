@@ -1,0 +1,4 @@
+class LottoController {
+  constructor() {}
+  init() {}
+}
