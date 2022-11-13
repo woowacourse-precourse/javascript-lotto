@@ -21,7 +21,7 @@ class App {
   };
   lottoPurchase = () => {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (purchase) => {
-      // new Purchase(purchase);
+      new Purchase(purchase);
       this.lottoIssuance(parseInt(purchase, 10) / 1000);
     });
   };
