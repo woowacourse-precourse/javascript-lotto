@@ -1,8 +1,4 @@
 class PrizeCalculator {
-  #getPurchaseAmount(lottos) {
-    return lottos.length * 1000;
-  }
-
   #getPrizeMoney(rank) {
     const prize = [2000000000, 30000000, 1500000, 50000, 5000];
 
@@ -11,8 +7,7 @@ class PrizeCalculator {
     }, 0);
   }
 
-  getRateOfReturn(lottos, rank) {
-    const purchaseAmount = this.#getPurchaseAmount(lottos);
+  getRateOfReturn(purchaseAmount, rank) {
     const prizeMoney = this.#getPrizeMoney(rank);
 
     return Math.round((prizeMoney / purchaseAmount) * 1000) / 10;
