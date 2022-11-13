@@ -19,7 +19,8 @@ class App {
     OutputConsole.lottoNumbers(this.#lottoPurchaseDtos);
 
     const lottoNumbers = await InputConsole.getLotto();
-    this.#lottoInputDto = new LottoInputDto(lottoNumbers, 0);
+    const lottoAdditinalNumber = await InputConsole.getLottoAdditional();
+    this.#lottoInputDto = new LottoInputDto(lottoNumbers, lottoAdditinalNumber);
   }
 }
 

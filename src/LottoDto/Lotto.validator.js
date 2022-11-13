@@ -19,6 +19,13 @@ class LottoValidator {
     return lottoNumbers;
   }
 
+  static AdditionalNumber(LottoAdditinalNumber) {
+    if(isNaN(+LottoAdditinalNumber)) {
+      throw new Error(ERROR.WRONG_ADDITINAL_NUMBER);
+    }
+    return +LottoAdditinalNumber;
+  }
+
   static #checkLottoOverlap(numbers) {
     if (new Set(numbers).size !== LOTTO.LOTTO_SIZE) {
       throw new Error(ERROR.LOTTO_OVERLAP);

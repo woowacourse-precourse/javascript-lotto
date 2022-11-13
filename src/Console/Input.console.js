@@ -12,6 +12,12 @@ class InputConsole {
     const lottoNumbersString = await Console.input(INPUT.GET_LOTTO);
     return LottoValidator.splitLottoNumbers(lottoNumbersString);
   };
+  static getLottoAdditional = async () => {
+    const LottoAdditinalNumberString = await console.input(
+      INPUT.GET_LOTTO_ADDITINAL,
+    );
+    return LottoValidator.AdditionalNumber(LottoAdditinalNumberString);
+  };
 }
 
 module.exports = InputConsole;
