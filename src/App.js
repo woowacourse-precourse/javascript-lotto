@@ -47,7 +47,7 @@ class App {
   }
 
   getBonusNumber(bonusNumber) {
-    const inputBonusNumber = new BonusNumber(this.winningNumbers, bonusNumber);
+    const inputBonusNumber = new BonusNumber(this.winningNumbers, parseInt(bonusNumber));
     this.bonusNumber = inputBonusNumber.bonusNumber;
   }
 

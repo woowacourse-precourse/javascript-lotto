@@ -4,7 +4,7 @@ class BonusNumber {
   constructor(winningNumbers, number) {
     this.winningNumbers = winningNumbers;
     this.validBonusNumber(number);
-    this.#bonusNumber = parseInt(number);
+    this.#bonusNumber = number;
   }
 
   get bonusNumber() {
@@ -30,9 +30,9 @@ class BonusNumber {
       throw new Error('[ERROR] 숫자의 범위는 1부터 45까지 입니다.');
     }
   }
-  
+
   checkOverlap(number) {
-    if (this.winningNumbers.includes(parseInt(number))) {
+    if (this.winningNumbers.includes(number)) {
       throw new Error('[ERROR] 보너스 숫자는 당첨 번호와 중복될 수 없습니다.');
     }
   }
