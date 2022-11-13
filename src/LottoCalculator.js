@@ -54,7 +54,7 @@ class LottoCalculator {
       this.rewardMoney += this.rankReward[rank];
       this.checkRank[rank] += 1;
     });    
-    this.yield = (this.rewardMoney / this.usersMoney).toFixed(1);
+    this.yield = ((this.rewardMoney / this.usersMoney) * 100).toFixed(1);
   }
 
   printResult() {
