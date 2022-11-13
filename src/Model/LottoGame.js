@@ -1,4 +1,3 @@
-const MissionUtils = require('@woowacourse/mission-utils');
 const BonusNumber = require('./BonusNumber');
 const Money = require('./Money');
 
@@ -12,7 +11,6 @@ class LottoGame {
     return this.#money.money;
   }
   set money(input) {
-    MissionUtils.Console.print(input);
     this.#money = new Money(input);
   }
 
