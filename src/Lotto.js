@@ -37,6 +37,33 @@ class Lotto {
     return bonusArray;
   }
 
+  getMatchResult(lottoResults, bonusResultArray) {
+    const winningHistoryArray = new Array(5).fill(0);
+    lottoResults.forEach((lottoResult, index) => {
+      if (lottoResult >= 3) {
+        const plusIndex = this.searchPlusIndex({
+          lottoResult,
+          bonusResultArray,
+          index,
+        });
+        winningHistoryArray[plusIndex] += 1;
+      }
+    });
+    return winningHistoryArray;
+  }
+
+  searchPlusIndex({ lottoResult, bonusResultArray, index }) {
+    const FIVE_MATCH_INDEX = 3;
+    const MIN_MATCH_COUNT = 3;
+    if (lottoResult === 5) {
+      if (bonusResultArray[index]) {
+        return FIVE_MATCH_INDEX;
+      }
+      return lottoResult - MIN_MATCH_COUNT;
+    }
+    return lottoResult - MIN_MATCH_COUNT;
+  }
+
   validate(numbers) {
     const MAX_LENGTH = 6;
     if (numbers.length !== MAX_LENGTH) {
