@@ -47,7 +47,7 @@ class LottoMachine {
   }
 
   compareNumbers() {
-    const lottos = getRandomNumberLottos();
+    const lottos = this.getRandomNumberLottos();
 
     lottos.forEach((lotto) => {
       let count = 0;
@@ -115,7 +115,6 @@ class LottoMachine {
   validateBonusNumber(number) {
     if (this.isOutOfRange(number)) throw new Error(MESSAGE.ERROR.OUT_OF_RANGE_NUMBER);
     if (this.isNotANumber(number)) throw new Error(MESSAGE.ERROR.BONUS_NUMBER_MUST_BE_NUMBER);
-    if (this.isIncorrectCount(number, LOTTO.BONUS_NUMBER_COUNT)) throw new Error(MESSAGE.ERROR.BONUS_NUMBER_COUNT);
     if (this.isIncludeWinningNumbers(number)) throw new Error(MESSAGE.ERROR.BONUS_NUMBER_MUST_NOT_BE_INCLUDE_WINNING_NUMBERS);
   }
 

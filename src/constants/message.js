@@ -14,7 +14,6 @@ const MESSAGE = {
     WINNING_NUMBER_MUST_BE_NUMBER: "[ERROR] 당첨 번호를 입력할 때 숫자를 입력해주세요!",
     BONUS_NUMBER_MUST_BE_NUMBER: "[ERROR] 보너스 번호를 입력할 때 숫자를 입력해주세요!",
     WINNING_NUMBER_COUNT: `[ERROR] 당첨 번호를 입력할 때 숫자 ${LOTTO.WINNING_NUMBER_COUNT}개를 입력해주세요!`,
-    BONUS_NUMBER_COUNT: `[ERROR] 당첨 번호를 입력할 때 숫자 ${LOTTO.BONUS_NUMBER_COUNT}개를 입력해주세요!`,
     WINNING_NUMBER_MUST_NOT_BE_DUPLICATE: "[ERROR] 당첨 번호는 서로 다른 숫자여야 합니다!",
   },
 };
