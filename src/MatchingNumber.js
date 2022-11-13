@@ -1,4 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
+const { OUTPUT_MESSAGE } = require("./constants");
 
 class MatchingNumber {
   constructor(totalLottoNumber, winnerNumber, bonusNumber) {
@@ -40,11 +41,11 @@ class MatchingNumber {
   }
 
   printLottoResult() {
-    Console.print(`3개 일치 (5,000원) - ${this.lottoResult[0]}개`);
-    Console.print(`4개 일치 (50,000원) - ${this.lottoResult[1]}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${this.lottoResult[2]}개`);
-    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.lottoResult[3]}개`);
-    Console.print(`6개 일치 (2,000,000,000원) - ${this.lottoResult[4]}개`);
+    Console.print(OUTPUT_MESSAGE.fifthPrize(this.lottoResult[0]));
+    Console.print(OUTPUT_MESSAGE.fourthPrize(this.lottoResult[1]));
+    Console.print(OUTPUT_MESSAGE.thirdPrize(this.lottoResult[2]));
+    Console.print(OUTPUT_MESSAGE.secondPrize(this.lottoResult[3]));
+    Console.print(OUTPUT_MESSAGE.firstPrize(this.lottoResult[4]));
   }
 }
 

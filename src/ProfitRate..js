@@ -1,3 +1,5 @@
+const { PRIZE_MONEY_CURRENCY } = require("./constants");
+
 class ProfitRate {
   constructor(lottoResult, payMoney) {
     this.lottoResult = lottoResult;
@@ -20,7 +22,13 @@ class ProfitRate {
   }
 
   getPrizeMoney(lottoResult) {
-    const currency = [5000, 50000, 1500000, 30000000, 2000000000];
+    const currency = [
+      PRIZE_MONEY_CURRENCY.fifth,
+      PRIZE_MONEY_CURRENCY.foutrh,
+      PRIZE_MONEY_CURRENCY.third,
+      PRIZE_MONEY_CURRENCY.second,
+      PRIZE_MONEY_CURRENCY.first,
+    ];
     const prizeMoney = lottoResult.map((lotto, index) => {
       if (lotto !== 0) return lotto * currency[index];
     });

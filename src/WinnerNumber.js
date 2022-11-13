@@ -1,3 +1,5 @@
+const { ERROR_MESSAGE } = require("./constants");
+
 class WinnerNumber {
   constructor(number) {
     this.number = number;
@@ -18,20 +20,20 @@ class WinnerNumber {
   validateFromOneToFourtyFiveNumber() {
     this.numberWithoutSpace.map((number) => {
       if (number < 1 || number > 45 || !new RegExp("^[0-9]+$").test(number)) {
-        throw new Error("[ERROR] 쉼표(,)를 기준으로 1부터 45까지의 숫자만 입력 해주세요");
+        throw new Error(ERROR_MESSAGE.winnerNumberRange);
       }
     });
   }
 
   validateSixNumberByComma() {
     if (this.number.split(",").length !== 6) {
-      throw new Error("[ERROR] 쉼표(,)를 기준으로 6자리를 입력해주세요");
+      throw new Error(ERROR_MESSAGE.winnerNumberCountOnlySix);
     }
   }
 
   validateNumberWithoutDuplicate() {
     if (new Set(this.numberWithoutSpace).size !== 6) {
-      throw new Error("[ERROR] 중복없이 숫자를 입력해주세요.");
+      throw new Error(ERROR_MESSAGE.numberWithoutDuplicate);
     }
   }
 }

@@ -3,6 +3,7 @@ const Lotto = require("./Lotto");
 const WinnerNumber = require("./WinnerNumber");
 const MatchingNumber = require("./MatchingNumber");
 const ProfitRate = require("./ProfitRate.");
+const { LOTTO_RANGE, ERROR_MESSAGE, INPUT_MESSAGE, OUTPUT_MESSAGE } = require("./constants");
 
 class App {
   constructor() {
@@ -17,38 +18,42 @@ class App {
   }
 
   inputMoney() {
-    Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
+    Console.readLine(INPUT_MESSAGE.paymentAmount, (money) => {
       this.payMoney = money;
       this.validateInputMoney(this.payMoney);
-      this.getLottoNumber(this.payMoney / 1000);
+      this.getLottoNumber(this.payMoney / LOTTO_RANGE.pricePerLotto);
       this.inputWinnerNumber();
     });
   }
 
   validateInputMoney(payMoney) {
-    if (payMoney % 1000 !== 0 || payMoney === "0") {
-      throw new Error("[ERROR] 구입 금액은 1000원 단위 입니다.");
+    if (payMoney % LOTTO_RANGE.pricePerLotto !== 0 || payMoney === "0") {
+      throw new Error(ERROR_MESSAGE.inputPaymentAmountValidate);
     }
   }
 
   getLottoNumber(lottoTickets) {
-    Console.print(`\n${lottoTickets}개를 구매했습니다.`);
+    Console.print(OUTPUT_MESSAGE.amountLotto(lottoTickets));
     for (let i = 0; i < lottoTickets; i++) {
-      const randomNumber = Random.pickUniqueNumbersInRange(1, 45, 6);
+      const randomNumber = Random.pickUniqueNumbersInRange(
+        LOTTO_RANGE.minimunNumberRange,
+        LOTTO_RANGE.maximunNumberRange,
+        LOTTO_RANGE.lottoCount
+      );
       const lotto = new Lotto(randomNumber);
       this.totalLottoNumber.push(lotto.sortLotto(randomNumber));
     }
   }
 
   inputWinnerNumber() {
-    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (number) => {
+    Console.readLine(INPUT_MESSAGE.winnerNumber, (number) => {
       this.winnerNumber = new WinnerNumber(number).getNumberWithoutSpace();
       this.inputBonusNumber();
     });
   }
 
   inputBonusNumber() {
-    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (number) => {
+    Console.readLine(INPUT_MESSAGE.bonusNumber, (number) => {
       this.bonusNumber = number.replace(/\s/g, "").split(",");
       this.validateInputBonusNumber(this.bonusNumber);
       this.loadMatchingNumberAboutLotto();
@@ -57,12 +62,12 @@ class App {
 
   validateInputBonusNumber(number) {
     if (number < 1 || number > 45 || !new RegExp("^[0-9]+$").test(number)) {
-      throw new Error("[ERROR] 1에서 45까지의 번호를 입력해주세요");
+      throw new Error(ERROR_MESSAGE.lottoRange);
     }
   }
 
   loadMatchingNumberAboutLotto() {
-    Console.print("\n당첨 통계\n---");
+    Console.print(OUTPUT_MESSAGE.lottoResultAlarm);
     const matchingNumber = new MatchingNumber(
       this.totalLottoNumber,
       this.winnerNumber,
@@ -75,7 +80,7 @@ class App {
 
   loadLottoProfitRate(lottoResult) {
     const lottoProfitRate = new ProfitRate(lottoResult, this.payMoney).getProfitRate();
-    Console.print(`총 수익률은 ${lottoProfitRate}%입니다.`);
+    Console.print(OUTPUT_MESSAGE.profitRate(lottoProfitRate));
     Console.close();
   }
 }
