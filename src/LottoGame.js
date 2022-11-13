@@ -1,3 +1,5 @@
+const { REWARD } = require('../src/utils/constants');
+
 class LottoGame {
   user;
   winningNumbers;
@@ -28,6 +30,17 @@ class LottoGame {
     const bonusMatch = numbers.includes(bonusNumber);
 
     return [matchCount, bonusMatch];
+  }
+
+  calcReward({ fifth, fourth, third, second, first }) {
+    const reward =
+      fifth * REWARD.FIFTH +
+      fourth * REWARD.FOURTH +
+      third * REWARD.THIRD +
+      second * REWARD.SECOND +
+      first * REWARD.FIRST;
+
+    return reward ? reward : 0;
   }
 }
 
