@@ -73,7 +73,7 @@ class App {
     );
 
     this.printResult(count);
-    this.countBenefit(count);
+    this.countBenefit(count.totalReward, this.money);
   }
 
   printResult(count) {
@@ -89,8 +89,8 @@ class App {
     });
   }
 
-  countBenefit(count) {
-    const benefit = (count.totalReward / this.money) * 100;
+  countBenefit(totalReward, money) {
+    const benefit = (totalReward / money) * 100;
     const benefitRate = Math.round(benefit * 10) / 10;
     this.printBenefit(benefitRate);
   }
