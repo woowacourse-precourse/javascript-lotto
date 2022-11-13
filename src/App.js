@@ -15,7 +15,7 @@ class App {
 
   async inputLottoNumber() {
     const inputNumbers = await readLine('당첨 번호를 입력해 주세요.\n');
-    const lottoNumbers = inputNumbers.split(',');
+    const lottoNumbers = inputNumbers.split(',').map(Number);
 
     this.#lotto = new Lotto(lottoNumbers);
   }
@@ -31,6 +31,7 @@ class App {
     await this.buyLottos();
     await this.inputLottoNumber();
     await this.inputBonusNumber();
+    this.#lotto.getStatistics({ myLottos: this.#myLottos, bonusNumber: this.#bonusNumber });
   }
 }
 
