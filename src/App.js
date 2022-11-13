@@ -6,9 +6,9 @@ const { getCountByPay, getRandomNumbers } = require("./util/purchase");
 
 class App {
   #lottos = [];
-  #pay = null;
   #userNumbers = null;
   #userBonusNumber = null;
+  pay = null;
 
   play() {
     Console.readLine(CONSOLE_MESSAGE.Enter, (payStr) => {
@@ -66,15 +66,12 @@ class App {
   printResult(totalResult) {
     const { prize, ranksCnt } = totalResult;
 
-    console.log("ranksCnt", ranksCnt);
-
     ranksCnt.reduce((acc, currentCnt, idx) => {
       Console.print(`${CONSOLE_MATCH_MESSAGE[idx]}${currentCnt}개`);
     }, -1);
 
-    console.log(this);
-
-    Console.print(`총 수익률은 ${getRate(this.#pay, prize)}입니다.`);
+    Console.print(`총 수익률은 ${getRate(this.pay, prize)}%입니다.`);
+    Console.close();
   }
 }
 
