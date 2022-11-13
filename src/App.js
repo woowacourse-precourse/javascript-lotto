@@ -35,6 +35,16 @@ class App {
       LOTTO_NUMBER_ARRAY.push(LOTTO_NUMBER);
       MissionUtils.Console.print(`[${LOTTO_NUMBER.sort((a, b) => a - b).join(', ')}]`);
     }
+    this.winNumber(LOTTO_NUMBER_ARRAY, investment);
+  }
+
+  winNumber(lottoNumber, investment) {
+    MissionUtils.Console.print('\n당첨 번호를 입력해 주세요.');
+    MissionUtils.Console.readLine('', (userInput) => {
+      const WIN_NUMBER = userInput.split(',').map((item) => +item);
+      const LOTTO_ARRAY = lottoNumber;
+      new Lotto(WIN_NUMBER);
+    });
   }
 }
 
