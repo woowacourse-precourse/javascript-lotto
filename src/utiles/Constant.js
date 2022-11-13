@@ -29,6 +29,7 @@ const ERROR = Object.freeze({
   NUMBER_ONLY: '숫자만 입력해주세요.',
   COMMA: '쉼표로 구분해 입력해주세요.',
   DUPLICATION: '중복된 번호는 입력할 수 없습니다.',
+  DUPLICATION_BONUS: '입력한 보너스 번호는 당첨 번호에 이미 포함되어 있습니다.',
 });
 
 module.exports = { SENTENCE, LOTTO, MONEY, ERROR };
