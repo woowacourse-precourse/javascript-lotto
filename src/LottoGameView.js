@@ -18,6 +18,13 @@ class LottoGameView {
     });
   }
 
+  receiveWinningNumber() {
+    Console.readLine(MESSAGE.INPUT.WINNING_NUMBER, (number) => {
+      this.game.setWinningLotto(number);
+      this.gameFinish();
+    });
+  }
+
   gameFinish() {
     Console.close();
   }

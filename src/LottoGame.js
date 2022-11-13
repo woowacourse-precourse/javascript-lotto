@@ -2,19 +2,22 @@ const Lotto = require("./Lotto");
 const { Random, Console } = require("@woowacourse/mission-utils");
 const MESSAGE = require("./Message");
 const LOTTERY_PRICE = 1000;
+const LOTTERY_NUMBER_LENGTH = 6;
 
 class LottoGame {
   constructor(LottoGameView) {
     this.view = LottoGameView;
     this.lotteries = [];
+    this.purchaseAmount = null;
+    this.winningLotto = null;
   }
 
   setPurchaseAmount(purchaseAmount) {
-    this.validate(purchaseAmount);
+    this.validatePurchaseAmount(purchaseAmount);
     this.purchaseAmount = purchaseAmount;
   }
 
-  validate(purchaseAmount) {
+  validatePurchaseAmount(purchaseAmount) {
     if (Number.isNaN(purchaseAmount)) {
       throw new Error("[ERROR] 숫자만 입력해주세요.");
     }
@@ -57,7 +60,13 @@ class LottoGame {
       Console.print(`[${printNumber}]`);
     });
 
-    this.view.gameFinish();
+    this.view.receiveWinningNumber();
+  }
+
+  setWinningLotto(number) {
+    const winningNumber = number.split(',').map((num) => Number(num));
+    const winningLotto = new Lotto(winningNumber);
+    this.winningLotto = winningLotto;
   }
 }
 
