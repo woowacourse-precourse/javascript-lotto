@@ -28,6 +28,15 @@ class App {
     });
     return price;
   }
+
+  //금액 유효성 검증
+  isRightPrice(price) {
+    if (price % 1000 != 0) {
+      throw new Error(ERROR_MARK + "로또 가격의 단위는 1000이어야 합니다.");
+    } else {
+      return true;
+    }
+  }
 }
 
 module.exports = App;
