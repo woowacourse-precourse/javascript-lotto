@@ -19,7 +19,7 @@ class UserNumber {
 
   setPurchasingAmount(userPurchasingAmountInput) {
     this.validatePurchasingAmount(userPurchasingAmountInput);
-    this.purchasingAmount = userPurchasingAmountInput;
+    this.purchasingAmount = Number(userPurchasingAmountInput);
     this.setUserLottoArrayWithPurchasingAmount();
   }
 
