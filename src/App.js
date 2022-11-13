@@ -114,6 +114,18 @@ class App {
 
     return lotto.isWinning(this.winningNum, this.bonusNum);
   }
+
+  //수익률 계산
+  calculateProfit() {
+    let percent = (this.calculateWinnings() / (this.lottoCnt * 1000)) * 100;
+    return percent.toFixed(1);
+  }
+
+  calculateWinnings() {
+    return this.rank
+      .map((item, idx) => item * WINNING_REWARDS[idx])
+      .reduce((a, b) => a + b);
+  }
 }
 
 module.exports = App;
