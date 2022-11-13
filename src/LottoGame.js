@@ -15,7 +15,7 @@ class LottoGame {
   }
 
   getPurchaseAmount() {
-    MissionUtils.Console.readLine(`${CONSOLE_MESSAGE.purchaseAmount}`, (input) => {
+    MissionUtils.Console.readLine(`${CONSOLE_MESSAGE.purchaseAmount}\n`, (input) => {
       this.exception.validatePurchaseAmount(input);
       this.purchaseCount = input / PARAMETERS.purchaseAmountUnit;
       this.print(RESULT_MESSAGE.purchase(this.purchaseCount));
