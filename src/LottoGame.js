@@ -23,18 +23,16 @@ class LottoGame {
   }
 
   purchaseLottoPhase() {
-    this.LottoGameView.requestInput(REQUEST_MESSAGE.PURCHASE_AMOUNT, this.purchaseLotto.bind(this));
-  }
-  purchaseLotto(purchaseAmount) {
-    Validation.validatePurchaseAmount(purchaseAmount);
-    const lottoQuantity = this.getLottoQuantity(purchaseAmount);
-    this.createLottos(lottoQuantity);
-    this.LottoGameView.printLottoQuantity(lottoQuantity);
-    this.LottoGameView.printEachLottoNumbers(this.lottos);
+    this.LottoGameView.requestInput(REQUEST_MESSAGE.PURCHASE_AMOUNT, (purchaseAmount) => {
+      Validation.validatePurchaseAmount(purchaseAmount);
+      const lottoQuantity = this.getLottoQuantity(purchaseAmount);
+      this.createLottos(lottoQuantity);
+      this.LottoGameView.printLottoQuantity(lottoQuantity);
+      this.LottoGameView.printEachLottoNumbers(this.lottos);
 
-    this.saveWinningNumbersPhase();
+      this.saveWinningNumbersPhase();
+    });
   }
-
   getLottoQuantity(purchaseAmount) {
     return parseInt(purchaseAmount, 10) / LOTTO_PRICE;
   }
