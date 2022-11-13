@@ -1,5 +1,6 @@
 const INPUT_MONEY_MESSAGE = "구입 금액을 입력해 주세요. \n";
-const INPUT_MESSAGE = {
+
+const CONSOLE_MESSAGE = {
   INPUT_MONEY_MESSAGE,
 };
 
@@ -8,4 +9,4 @@ const ERROR_MESSAGE = {
   NOT_RIGHT_UNIT,
 };
 
-module.exports = { INPUT_MESSAGE, ERROR_MESSAGE };
+module.exports = { CONSOLE_MESSAGE, ERROR_MESSAGE };
