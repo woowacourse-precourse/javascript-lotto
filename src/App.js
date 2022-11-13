@@ -2,6 +2,7 @@ const { Console, Random } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const ENTER_PRICE = "구입 금액을 입력해주세요";
 const ERROR_MARK = "[ERROR]";
+const STATISTICS_MARK = "당첨 통계";
 const WINNING_REWARDS = [2000000000, 30000000, 1500000, 50000, 5000];
 const WINNING_RANK = [
   "6개 일치",
