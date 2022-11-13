@@ -12,17 +12,21 @@ class App {
   }
 
   play() {
-    this.renderBuyAmountView();
+    this.inputBuyAmountView();
   }
 
-  async renderBuyAmountView() {
+  inputBuyAmountView() {
     this.output.print(message.INPUT_AMOUNT);
-    let buyAmount = await this.input.inputLine();
-    if (!Vaildator.isRightAmount(buyAmount)) {
-      throw new Error('[ERROR] : 올바른 금액이 아닙니다.');
-      return;
+    this.input.inputLine(this.handleInputBuyAmount.bind(this));
+  }
+
+  handleInputBuyAmount(query) {
+    const amount = +query;
+    if (!Vaildator.isRightAmount(amount)) {
+      throw new Error('[ERROR] : 잘못된 금액을 입력했습니다.');
     }
-    this.user.amount = buyAmount;
+    this.user.amount = amount;
+    this.input.close();
   }
 }
 
