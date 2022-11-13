@@ -43,6 +43,19 @@ class App {
       return new Lotto(numbers);
     });
   }
+
+  // 보너스번호 입력받기
+  getBonusNumber() {
+    Console.readLine("보너스 번호를 입력해 주세요.", (number) => {
+      if (isNaN(number)) {
+        throw new Error("[ERROR] 보너스 번호는 숫자여야 합니다.");
+      }
+      if (number >= 1 && number <= 45) {
+        throw new Error("[ERROR] 보너스 번호는 1~45범위 내의 숫자여야 합니다.");
+      }
+      return number;
+    });
+  }
 }
 
 module.exports = App;
