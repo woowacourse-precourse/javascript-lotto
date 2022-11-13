@@ -10,4 +10,9 @@ const isInDivisible = (userEnterAmount) => {
   }
 }
 
-module.exports = {isNotNumber, isInDivisible};
+const userException = {
+  isNotNumber, 
+  isInDivisible
+};
+
+module.exports = userException;
