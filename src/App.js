@@ -14,29 +14,40 @@ class App {
     this.winningNumbers = null;
     this.bonusNumber = null;
   }
+  play() {
+    this.buyLottos();
+  }
+
+  validateMoney(money) {
+    let parsedMoney = money;
+    if (typeof money === "string") {
+      parsedMoney = parseInt(money, 10);
+    }
+    const remains = parsedMoney % this.unit;
+    if (remains !== 0) {
+      throw new Error(`[ERROR] 1000원 단위로 금액을 입력해주세요.`);
+    }
+  }
   createLottos(money) {
     const lottoNum = money / this.unit;
 
     for (let idx = 0; idx < lottoNum; idx++) {
       const newLottoNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
       const newLotto = new Lotto(newLottoNumbers);
-      this.lottos = newLotto;
+      this.lottos.push(newLotto);
     }
 
-    Console.print(`${lottoNum}개를 구매했습니다.\n`);
-    Console.print(`${this.lottos.join("\n")}`);
-  }
-
-  validateMoney(money) {
-    const remains = money % this.unit;
-    if (remains !== 0) {
-      throw new Error(`[ERROR] 1000원 단위로 금액을 입력해주세요.`);
-    }
+    Console.print(`\n${lottoNum}개를 구매했습니다`);
+    Console.print(
+      this.lottos.map((lotto) => `[${lotto.numbers.join(", ")}]`).join("\n")
+    );
   }
   buyLottos() {
     Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
-      this.validateMoney(money);
-      this.createLottos(money);
+      const parsedMoney = parseInt(money, 10);
+      this.validateMoney(parsedMoney);
+      this.createLottos(parsedMoney);
+      this.askWinningNumbers();
     });
   }
 
@@ -69,7 +80,7 @@ class App {
     if (split.length !== 6) {
       throw new Error(`[ERROR] 당첨 로또 번호의 길이는 6개입니다.`);
     }
-    if (!this.isValidLottoNumber(split)) {
+    if (!this.isValidLottoNumbers(split)) {
       throw new Error(`[Error] 로또 번호는 1부터 45 사이의 숫자여야 합니다.`);
     }
     if (this.isReapted(split)) {
@@ -81,6 +92,7 @@ class App {
     Console.readLine("당첨 번호를 입력해 주세요.\n", (winningNumbers) => {
       const validatedNumbers = this.validateWinningNumbers(winningNumbers);
       this.winningNumbers = validatedNumbers;
+      this.askBonusNumber();
     });
   }
 
@@ -91,19 +103,21 @@ class App {
     if (isNaN(bonusNumber)) {
       throw new Error(`[Error] 숫자를 입력해 주세요.`);
     }
-    if (this.isInRange(parsedNum)) {
+    if (this.isInRange(bonusNumber)) {
       throw new Error(`[Error] 로또 번호는 1부터 45 사이의 숫자여야 합니다.`);
     }
-    return parsedNum;
+    return parseInt(bonusNumber, 10);
   }
+
   askBonusNumber() {
     Console.readLine("보너스 번호를 입력해 주세요.", (bonusNumber) => {
       const validatedNum = this.validateBonusNumber(bonusNumber);
       this.bonusNumber = validatedNum;
     });
   }
-
-  play() {}
 }
 
 module.exports = App;
+
+const app = new App();
+app.play();
