@@ -3,23 +3,24 @@ const Calculate = require('./model/Calculation');
 const {MONEY} = require('./utils/Constants');
 const {printResult} = require('./utils/Print');
 
+const errorCheck = new ExceptionCheck();
+const calculate = new Calculate();
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.errorCheck = new ExceptionCheck();
-    this.calculate = new Calculate();
     this.validate(numbers);
     this.#numbers = numbers;
   }
 
   validate(numbers) {
-    this.errorCheck.answerNumCheck(numbers);
+    errorCheck.answerNumCheck(numbers);
   }
 
   printOfResultFromCalc(lottos, answers, bonusNum, baseMoney){
     const answerToNumArr = ans => ans.map(Number);
-    const winLotteryAfterCalc = (this.calculate.testAllLottos(lottos, answerToNumArr(answers), bonusNum));
+    const winLotteryAfterCalc = (calculate.testAllLottos(lottos, answerToNumArr(answers), bonusNum));
     const rateOfprofit = this.yieldCalculation(winLotteryAfterCalc, baseMoney);
     printResult(winLotteryAfterCalc, rateOfprofit);
   }

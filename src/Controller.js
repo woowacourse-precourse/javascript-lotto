@@ -6,9 +6,10 @@ const Lotto = require("./Lotto");
 const randomNum = require('./model/Random');
 const { printAutoLottos } = require('./utils/Print');
 
+const errorCheck = new ExceptionCheck();
+
 class Controller{
   constructor(){
-    this.errorCheck = new ExceptionCheck();
     this.lottos = [];
     this.lottoGame;
     this.input = 0;
@@ -20,7 +21,7 @@ class Controller{
 
   inputForMoney(){
     MissionUtils.Console.readLine(CONSOLELINE.PURCHASE_MONEY_INPUT+'\n', (input) => {
-      this.errorCheck.purchaseMoneyErrorCheck(input);
+      errorCheck.purchaseMoneyErrorCheck(input);
       this.input = input;
       this.printPurchaseNums(input/DEFAULTS.PURCHASE_UNIT);
     });
@@ -51,13 +52,13 @@ class Controller{
   }
 
   inputForAnswerNumCheck(answerSplit){
-    this.errorCheck.noSeperatorErrorCheck(answerSplit);
+    errorCheck.noSeperatorErrorCheck(answerSplit);
     this.lottoGame = new Lotto(answerSplit);
   }
 
   inputForBonusNum(answerSplit){
     MissionUtils.Console.readLine(CONSOLELINE.BONUSNUM_INPUT+'\n', (bonusNum) => {
-      this.errorCheck.bonusNumCheck(bonusNum, answerSplit);
+      errorCheck.bonusNumCheck(bonusNum, answerSplit);
       this.showResultStatistic(answerSplit, bonusNum);
     });
   }
