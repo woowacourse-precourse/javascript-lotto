@@ -41,7 +41,7 @@ class Draw {
 
   getGameResult() {
     const matchCount = this.user.lottos.map(lotto =>
-      this.getMatchCount(lotto.numbers, this.winningNumbers.numbers, this.bonusNumber)
+      this.getMatchCount(lotto.numbers, this.winningNumbers, this.bonusNumber)
     );
 
     const fifth = matchCount.filter(([count]) => count === 3).length;
