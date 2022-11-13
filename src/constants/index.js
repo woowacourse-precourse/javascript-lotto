@@ -7,9 +7,8 @@ const LOTTO = Object.freeze({
 });
 
 const REGEX = Object.freeze({
-  money: /^\d+$/,
+  number: /^\d+$/,
   winningNumbers: /^(\d+,)+\d+$/,
-  bonusNumber: /^\d+$/,
 });
 
 const RANK = Object.freeze({

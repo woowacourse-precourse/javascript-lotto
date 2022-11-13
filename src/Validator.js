@@ -14,7 +14,7 @@ class Validator {
   static throwErrorIfInvalidMoney(money) {
     this.throwErrorIfHasBlack(money);
     this.throwErrorIfStartsWithZero(money);
-    if (!REGEX.money.test(money)) this.throwError(ERROR_MESSAGE.INT_FORM);
+    if (!REGEX.number.test(money)) this.throwError(ERROR_MESSAGE.INT_FORM);
     if (money % LOTTO.PRICE) this.throwError(ERROR_MESSAGE.HAS_MOD);
   }
 
@@ -46,7 +46,7 @@ class Validator {
     this.throwErrorIfHasBlack(bonusNumber);
     this.throwErrorIfStartsWithZero(bonusNumber);
     this.throwErrorIfOutOfRange(bonusNumber);
-    if (!REGEX.bonusNumber.test(bonusNumber)) {
+    if (!REGEX.number.test(bonusNumber)) {
       this.throwError(ERROR_MESSAGE.INT_FORM);
     }
     if (winningNumbers.includes(bonusNumber)) {
