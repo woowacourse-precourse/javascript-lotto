@@ -4,10 +4,12 @@ const Lotto = require('./Lotto');
 const { Console } = MissionUtils;
 
 class User {
+  #lottoList;
+
   getUserMoney() {
     Console.readLine('구입금액을 입력해 주세요.', (userMoney) => {
       this.isValidUserMoney(userMoney.replace(/\s/g, ''));
-      console.log(this.genLottoAsMoney(userMoney.replace(/\s/g, '')));
+      this.#lottoList = this.genLottoAsMoney(userMoney.replace(/\s/g, ''));
       Console.print('유효한 입력입니다.');
     });
   }
@@ -54,6 +56,10 @@ class User {
       const lotto = new Lotto();
       return [...lotto.genLotto];
     });
+  }
+
+  get lottoList() {
+    return this.#lottoList;
   }
 }
 module.exports = User;
