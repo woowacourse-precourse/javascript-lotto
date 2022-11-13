@@ -16,10 +16,4 @@ const RANKING = {
   NOTHING: { name: '꽝', prizeMoney: PRIZE_MONEY.NOTHING },
 };
 
-Object.freeze(PRIZE_MONEY);
-Object.freeze(RANKING);
-
-module.exports = {
-  PRIZE_MONEY,
-  RANKING,
-};
+module.exports = Object.freeze(RANKING);
