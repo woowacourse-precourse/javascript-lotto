@@ -1,4 +1,4 @@
-const { ERROR, CONDITION } = require('./constant');
+const { ERROR, CONDITION } = require('./utils/constant');
 
 class Validator {
   #numbers;
@@ -11,7 +11,7 @@ class Validator {
     return this.#numbers.length === CONDITION.LOTTO_LENGTH;
   }
 
-  isValidateRange() {
+  isLottoValidateRange() {
     for (let number of this.#numbers) {
       if (!(CONDITION.MIN_NUMBER <= number && number <= CONDITION.MAX_NUMBER))
         return false;
@@ -20,7 +20,7 @@ class Validator {
     return true;
   }
 
-  isDuplicate() {
+  isLottoDuplicate() {
     return new Set(this.#numbers).size !== this.#numbers.length;
   }
 
@@ -32,19 +32,35 @@ class Validator {
     return this.#numbers % CONDITION.LOTTO_PRICE === 0;
   }
 
-  purchaseAmountValidate() {
-    console.log(this.#numbers);
+  isBonusValidateRange() {
+    return (
+      CONDITION.MIN_NUMBER <= this.#numbers &&
+      this.#numbers <= CONDITION.MAX_NUMBER
+    );
+  }
+
+  isBonusDuplicate(lottoNumbers) {
+    return lottoNumbers.includes(this.#numbers);
+  }
+
+  purchaseAmount() {
     if (!this.isPurchasable()) throw new Error(ERROR.PURCHASABLE);
 
     if (!this.isDivisible()) throw new Error(ERROR.DIVISIBLE);
   }
 
-  lottoNumberValidate() {
+  lottoNumber() {
     if (!this.isValidateLength()) throw new Error(ERROR.LENGTH);
 
-    if (!this.isValidateRange()) throw new Error(ERROR.RANGE);
+    if (!this.isLottoValidateRange()) throw new Error(ERROR.RANGE);
 
-    if (this.isDuplicate()) throw new Error(ERROR.DUPLICATE);
+    if (this.isLottoDuplicate()) throw new Error(ERROR.DUPLICATE);
+  }
+
+  bonusNumber(lottoNumbers) {
+    if (!this.isBonusValidateRange()) throw new Error(ERROR.RANGE);
+
+    if (this.isBonusDuplicate(lottoNumbers)) throw new Error(ERROR.DUPLICATE);
   }
 }
 
