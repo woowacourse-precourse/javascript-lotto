@@ -1,5 +1,5 @@
-const { Random } = require('@woowacourse/mission-utils');
-const { ERROR_MESSAGE, INPUT_MONEY_UNIT } = require('./Constant');
+const { Console, Random } = require('@woowacourse/mission-utils');
+const { ERROR_MESSAGE, INPUT_MONEY_UNIT, MESSAGE } = require('./Constant');
 
 const LOTTO_LENGTH = 6;
 const START_NUMBER = 1;
@@ -13,7 +13,9 @@ class Function {
   }
 
   static getLottoNumber(inputMoney) {
-    return Number(inputMoney) / INPUT_MONEY_UNIT;
+    const lottoNumber = Number(inputMoney) / INPUT_MONEY_UNIT;
+    Console.print(MESSAGE.PRINTLOTTONUMBER(lottoNumber));
+    return lottoNumber;
   }
 
   static setRandomNumbers() {

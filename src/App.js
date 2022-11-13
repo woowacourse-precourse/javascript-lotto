@@ -8,23 +8,23 @@ const Lotto = require('./Lotto');
 
 class App {
   constructor() {
+    this.lottoNumber = 0;
     this.lottos = [];
   }
 
   play() {
     Console.readLine(MESSAGE.SETINPUT, inputMoney => {
       validateInputMoney(inputMoney);
-      const lottoNumber = getLottoNumber(inputMoney);
-      this.issueLottos(lottoNumber);
-      console.log(this.lottos);
+      this.lottoNumber = getLottoNumber(inputMoney);
+      this.issueLottos(this.lottoNumber);
     });
   }
 
   issueLottos(lottoNumber) {
     for (let i = 0; i < lottoNumber; i += 1) {
       const numbers = Function.setRandomNumbers();
-      console.log(numbers);
       const lotto = new Lotto(numbers);
+      lotto.print();
       this.lottos.push(lotto);
     }
   }
