@@ -16,6 +16,10 @@ class WinningNumbers {
   }
 
   validWinningNumbers(input) {
+    this.validWinningNumbersFormat(input);
+  }
+
+  validWinningNumbersFormat(input) {
     const reg = /^([0-9]+,){5}([0-9]+){1}$/;
     if (!reg.test(input)) {
       throw new Error('[ERROR] 당첨 숫자 입력의 형식이 잘못되었습니다.');
