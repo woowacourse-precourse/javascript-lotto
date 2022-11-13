@@ -10,37 +10,45 @@ class LottoGame {
   }
 
   start() {
+    this.#receiveMoney();
+  }
+
+  #receiveMoney() {
     UI.askHowMuchBuy((answer) => {
-      this.createLottosOfUser(answer / 1000);
+      this.setLottosOfUser(answer / 1000);
 
       UI.showBoughtLottos(this.lottosOfUser);
 
-      this.askWinningLottoNumbers();
+      this.#receiveWinningLottoNumbers();
     });
   }
 
-  createLottosOfUser(amount) {
+  #receiveWinningLottoNumbers() {
+    UI.askWinningLottoNumbers((answer) => {
+      this.setWinningLotto(Array.from(answer.split(","), Number));
+
+      this.#receiveBonusNumber();
+    });
+  }
+
+  #receiveBonusNumber() {
+    UI.askBonusNumber((answer) => {
+      this.setBonusNumber(parseInt(answer, 10));
+    });
+  }
+
+  setLottosOfUser(amount) {
     for (let i = 0; i < amount; i += 1) {
       this.lottosOfUser.push(new Lotto(pickUniqueNumbersInRange(1, 45, 6)));
     }
   }
 
-  askWinningLottoNumbers() {
-    UI.askWinningLottoNumbers((answer) => {
-      this.createWinningLotto(Array.from(answer.split(","), Number));
-
-      this.askBonusNumber();
-    });
-  }
-
-  createWinningLotto(numbers) {
+  setWinningLotto(numbers) {
     this.winningLotto = new WinningLotto(numbers);
   }
 
-  askBonusNumber() {
-    UI.askBonusNumber((answer) => {
-      this.winningLotto.setBonusNumber(parseInt(answer, 10));
-    });
+  setBonusNumber(number) {
+    this.winningLotto.setBonusNumber(number);
   }
 }
 
