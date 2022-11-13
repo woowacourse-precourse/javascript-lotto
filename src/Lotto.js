@@ -31,7 +31,7 @@ class Lotto {
   }
 
   checkNaN(num) {
-    if (Number.isNaN(num)) {
+    if (Number.isNaN(Number(num))) {
       throw new Error("[ERROR] 로또 번호는 숫자로만 이루어져야 합니다.");
     }
   }
