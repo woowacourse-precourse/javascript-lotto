@@ -1,6 +1,6 @@
 const Lotto = require('../src/Lotto');
 
-describe('로또 클래스 테스트', () => {
+describe('당첨 번호 예외 테스트', () => {
   test('당첨 번호로 숫자가 아닌 값을 입력하는 경우 예외가 발생한다.', () => {
     expect(() => {
       new Lotto(['안녕하세요']);
@@ -42,34 +42,38 @@ describe('로또 클래스 테스트', () => {
       new Lotto([1, 2, 3, 4, 5, 5]);
     }).toThrow('[ERROR]');
   });
+});
+
+describe('보너스 번호 예외 테스트', () => {
+  const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
 
   test('보너스 번호로 숫자가 아닌 값을 입력하는 경우 예외가 발생한다.', () => {
     expect(() => {
-      new Lotto([1, 2, 3, 4, 5, 6]).validateBonusNumber('우테코');
+      lotto.validateBonusNumber('우테코');
     }).toThrow('[ERROR]');
   });
 
   test('보너스 번호로 숫자가 아닌 값을 입력하는 경우 예외가 발생한다.', () => {
     expect(() => {
-      new Lotto([1, 2, 3, 4, 5, 6]).validateBonusNumber('*^^*');
+      lotto.validateBonusNumber('*^^*');
     }).toThrow('[ERROR]');
   });
 
   test('보너스 번호의 숫자가 1보다 작으면 예외가 발생한다.', () => {
     expect(() => {
-      new Lotto([1, 2, 3, 4, 5, 6]).validateBonusNumber(0);
+      lotto.validateBonusNumber(0);
     }).toThrow('[ERROR]');
   });
 
   test('보너스 번호의 숫자가 45보다 크면 예외가 발생한다.', () => {
     expect(() => {
-      new Lotto([1, 2, 3, 4, 5, 6]).validateBonusNumber(50);
+      lotto.validateBonusNumber(50);
     }).toThrow('[ERROR]');
   });
 
   test('보너스 번호의 숫자가 당첨 번호와 중복되는 경우 예외가 발생한다.', () => {
     expect(() => {
-      new Lotto([1, 2, 3, 4, 5, 6]).validateBonusNumber(6);
+      lotto.validateBonusNumber(6);
     }).toThrow('[ERROR]');
   });
 });
