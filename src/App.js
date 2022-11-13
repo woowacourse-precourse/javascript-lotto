@@ -6,6 +6,7 @@ class App {
     this.lottoAmount; //로또 구입수량
     this.winArr = []; //당첨번호(배열에 넣음)
     this.BonusNum; //보너스번호
+    this.lottoRandomNum = []; //로또 랜덤번호(구입한 로또들)
   }
 
   play() { //게임시작
@@ -37,6 +38,11 @@ class App {
     });
   }
 
+  getRandomNumber(){ //로또 랜덤번호 뽑기
+    for(let i = 0; i < this.lottoAmount; i++){
+      this.lottoRandomNum[i] = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    }
+  }
 }
 
 module.exports = App;
