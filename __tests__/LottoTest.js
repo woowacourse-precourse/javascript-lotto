@@ -18,5 +18,16 @@ describe('로또 클래스 테스트', () => {
     }).toThrow('[ERROR]');
   });
 
-  // 아래에 추가 테스트 작성 가능
+  test('로또 번호에 1미만 45초과의 숫자가 있으면 예외가 발생한다.', () => {
+    const lottos = [
+      [0, 1, 2, 3, 4, 5],
+      [46, 1, 2, 3, 4, 5],
+    ];
+
+    lottos.forEach((lotto) => {
+      expect(() => {
+        new Lotto(lotto);
+      }).toThrow('[ERROR]');
+    });
+  });
 });
