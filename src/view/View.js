@@ -15,6 +15,14 @@ class View {
   printPurchasingAmountErrorMessage() {
     throw new Error(messages.PURCHASING_AMOUNT_ERROR_MESSAGE);
   }
+
+  printUserLottoArray() {
+    Console.print(
+      `\n${this.controller.userNumber.getUserLottoArray().length}${
+        messages.USER_LOTTO_CONFIRMATION_MESSAGE
+      }`,
+    );
+  }
 }
 
 module.exports = View;
