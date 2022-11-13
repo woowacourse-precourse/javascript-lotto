@@ -9,30 +9,27 @@ class Lotto {
   }
 
   validate(numbers) {
+    numbers = numbers.split(',');
+    const set = new Set(numbers);
+    if (set.size !== numbers.length)
+      throw new Error('[ERROR] 로또 번호는 중복되지 않는 6개여야 합니다.');
     if (numbers.length !== 6) {
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
     }
+    numbers.forEach((num) => {
+      if (num > 45 || num < 1)
+        throw new Error('[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.');
+    });
   }
 
-  ticketing(money) {
-    if (money % 1000 !== 0) {
-      throw new Error('[ERROR] 구입 금액은 1,000원 단위여야 합니다.');
-    }
-    const numberOfTickets = money / 1000;
-    const tickets = [];
-    for (let i = 0; i < numberOfTickets; i++) {
-      tickets.push(this.oneTicketNumbers());
-      MissionUtils.Console.print(tickets[i]);
-    }
+  validateBonus(number) {
+    numbers.forEach((num) => {
+      if (num > 45 || num < 1)
+        throw new Error('[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.');
+    });
   }
 
-  oneTicketNumbers() {
-    let oneTicket = [];
-    for (let i = 0; i < 6; i++) {
-      oneTicket.push(MissionUtils.Random.pickNumberInRange(1, 45));
-    }
-    return oneTicket;
-  }
+  getWinningNumbers() {}
 }
 
 module.exports = Lotto;
