@@ -4,6 +4,7 @@ const Payment = require('./Payment');
 const LottoIssuer = require('./LottoIssuer');
 const LottoResult = require('./LottoResult');
 const { MESSAGE } = require('./Constants');
+
 class LottoGame {
   #Payment;
 
@@ -24,7 +25,6 @@ class LottoGame {
 
   purchase(number) {
     this.#LottoIssuer = new LottoIssuer(number);
-    this.#LottoIssuer.issue();
     this.#LottoIssuer.print();
     this.drawWinningNumbers();
   }
