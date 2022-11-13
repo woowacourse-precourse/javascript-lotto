@@ -30,4 +30,23 @@ describe('로또 클래스 테스트', () => {
       }).toThrow('[ERROR]');
     });
   });
+
+  test('두 배열이 모두 가진 숫자 요소의 개수를 반환한다.', () => {
+    const lottoNumbers = [
+      [1, 2, 3, 4, 5, 6],
+      [1, 5, 8, 31, 24, 45],
+      [5, 6, 7, 8, 9, 10],
+    ];
+    const winningNumbers = [
+      [3, 4, 5, 6, 1, 2],
+      [8, 1, 44, 31, 9, 10],
+      [11, 12, 13, 14, 15, 16],
+    ];
+    const answers = [6, 3, 0];
+
+    lottoNumbers.forEach((lotto, i) => {
+      const ILotto = new Lotto(winningNumbers[i]);
+      expect(ILotto.getMatchingNumCount(lotto)).toBe(answers[i]);
+    });
+  });
 });
