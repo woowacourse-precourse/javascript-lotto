@@ -1,6 +1,9 @@
-const { Console, Random } = require('@woowacourse/mission-utils');
+const { Console } = require('@woowacourse/mission-utils');
+
 const { validateInputMoney, getLottoNumber } = require('./Function');
 const { MESSAGE } = require('./Constant');
+
+const Function = require('./Function');
 const Lotto = require('./Lotto');
 
 class App {
@@ -13,16 +16,14 @@ class App {
       validateInputMoney(inputMoney);
       const lottoNumber = getLottoNumber(inputMoney);
       this.issueLottos(lottoNumber);
+      console.log(this.lottos);
     });
   }
 
   issueLottos(lottoNumber) {
     for (let i = 0; i < lottoNumber; i += 1) {
-      const numbers = [];
-      while (numbers.length !== 6) {
-        const number = Random.pickNumberInRange(1, 45);
-        if (!numbers.includes(number)) numbers.push(number);
-      }
+      const numbers = Function.setRandomNumbers();
+      console.log(numbers);
       const lotto = new Lotto(numbers);
       this.lottos.push(lotto);
     }
