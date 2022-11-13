@@ -11,7 +11,9 @@ class App {
 
   purchaseAmount() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.', (answer) => {
-      this.isPurchaseAmountValid(answer);
+      const how_many = this.isPurchaseAmountValid(answer);
+      const published_Lottos = this.getLottos(how_many);
+      this.InputLottos(published_Lottos, how_many);
     });
   }
 
@@ -19,11 +21,10 @@ class App {
     if(Number(money) % 1000 != 0){
       throw INPUT_ERROR.NOT_DIVIDED;
     }
-    return money;
+    return Number(money) / 1000;
   }
 
-  getLottos(money) {
-    const how_many = money / 1000;
+  getLottos(how_many) {
     const published_Lottos = [];
     for(let i = 0; i < how_many; i++){
       const one_lotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
@@ -32,18 +33,18 @@ class App {
     return published_Lottos;
   }
 
-  InputLottos() {
+  InputLottos(published_Lottos, how_many) {
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (answer) => {
       const numbers = answer.split(',');
       new Lotto(numbers);
-      this.InputBonus(numbers);
+      this.InputBonus(published_Lottos, numbers, how_many);
     });
   }
 
-  InputBonus(array) {
+  InputBonus(published_Lottos, array, how_many) {
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (answer) => {
       array.push(answer);
-      Lotto.isDuplicated.call(array);
+      this.getAllResults(published_Lottos, array, how_many);
     });
   }
 
