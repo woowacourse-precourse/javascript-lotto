@@ -26,10 +26,7 @@ class Statistic {
       sumOfPayout += +winner * PAYOUT[idx];
     });
 
-    this.#profit = (
-      100 -
-      ((this.#quantity * 1000 - sumOfPayout) / (this.#quantity * 1000)) * 100
-    ).toFixed(1);
+    this.#profit = ((sumOfPayout / (this.#quantity * 1000)) * 100).toFixed(1);
   }
 
   printStatistic() {

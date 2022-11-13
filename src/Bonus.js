@@ -47,9 +47,19 @@ class Bonus {
   }
 
   calcMatchCount(matchCount, lottery) {
-    if (matchCount == 6) matchCount += 1;
-    if (matchCount == 5) this.checkBonus(lottery) ? (matchCount += 1) : "";
+    if (matchCount == 6) matchCount = this.winFirstPlace(matchCount);
+    if (matchCount == 5) matchCount = this.winSecondPlace(matchCount, lottery);
     if (matchCount > 2) this.makeWinResult(matchCount);
+  }
+
+  winFirstPlace(matchCount) {
+    return (matchCount += 1);
+  }
+
+  winSecondPlace(matchCount, lottery) {
+    return (matchCount = this.checkBonus(lottery)
+      ? (matchCount += 1)
+      : matchCount);
   }
 
   checkBonus(lottery) {

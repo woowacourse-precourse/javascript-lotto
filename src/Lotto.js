@@ -5,10 +5,9 @@ const Bonus = require("./Bonus");
 class Lotto {
   #numbers;
 
-  constructor(numbers, lotteries) {
+  constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
-    this.inputBonusNumber(lotteries);
   }
 
   validate(numbers) {

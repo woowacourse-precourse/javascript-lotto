@@ -48,7 +48,8 @@ class Lottery {
     let inputNumbers = [];
     Console.readLine("\n당첨 번호를 입력해 주세요.\n", (numbers) => {
       inputNumbers = numbers.split(",").map((v) => +v);
-      const lotto = new Lotto(inputNumbers, this.#lotteries);
+      const lotto = new Lotto(inputNumbers);
+      lotto.inputBonusNumber(this.#lotteries);
     });
   }
 }
