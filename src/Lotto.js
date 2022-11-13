@@ -5,6 +5,10 @@ const { ERROR, LOTTO, MONEY } = require('./utiles/Constant');
 class Lotto {
   #numbers;
 
+  constructor() {
+    this.#numbers;
+  }
+
   setWinningNumbers(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
@@ -41,11 +45,14 @@ class Lotto {
   }
 
   addBonusNumber(bonusNumber) {
-    this.#validateBonusNumber(bonusNumber);
-    this.#numbers.push(bonusNumber);
+    const numTypeBonusNumber = Number(bonusNumber);
+    this.#validateBonusNumber(numTypeBonusNumber);
+    this.#numbers.push(numTypeBonusNumber);
   }
 
   #validateBonusNumber(bonusNumber) {
+    if (this.#numbers.includes(bonusNumber))
+      throw new Error(`${ERROR.PREFIX} ${ERROR.DUPLICATION_BONUS}`);
     if (isNaN(bonusNumber))
       throw new Error(`${ERROR.PREFIX} ${ERROR.NUMBER_ONLY}`);
     if (!this.#inRange(bonusNumber))
