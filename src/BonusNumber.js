@@ -5,15 +5,13 @@ const ERROR_DUPLICATE_EXIST =
   "[ERROR] 6개의 당첨 번호로 입력한 숫자는 보너스 번호로 사용 할 수 없습니다.";
 
 class BonusNumber {
-  constructor(userLotto, bonus) {
-    this.userLotto = userLotto;
-    this.bonusForCheck = Number(bonus);
-
+  constructor(lotto, bonus) {
+    this.userLotto = lotto;
     this.checkOnlyNumber(bonus);
-    this.checkNumberRanges();
-    this.checkDuplicateWithWinningNumber();
 
-    this.userBonus = Number(bonus);
+    const bonusTypeofNumber = Number(bonus);
+    this.checkNumberRanges(bonusTypeofNumber);
+    this.checkDuplicateWithWinningNumber(bonusTypeofNumber);
   }
 
   checkOnlyNumber(bonus) {
@@ -28,14 +26,14 @@ class BonusNumber {
     });
   }
 
-  checkNumberRanges() {
-    if (this.bonusForCheck < 1 || this.bonusForCheck > 45) {
+  checkNumberRanges(bonus) {
+    if (bonus < 1 || bonus > 45) {
       throw new Error(ERROR_OUT_OF_RANGE);
     }
   }
 
-  checkDuplicateWithWinningNumber() {
-    if (this.userLotto.includes(this.bonusForCheck)) {
+  checkDuplicateWithWinningNumber(bonus) {
+    if (this.userLotto.includes(bonus)) {
       throw new Error(ERROR_DUPLICATE_EXIST);
     }
   }
