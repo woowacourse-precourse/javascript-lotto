@@ -18,6 +18,10 @@ class App {
     isZeroNumber(purchaseAmount);
     this.purchaseAmount = purchaseAmount;
   }
+
+  createLottoNumber() {
+    return Random.pickUniqueNumbersInRange(1, 45, 6);
+  }
 }
 
 const app = new App();
