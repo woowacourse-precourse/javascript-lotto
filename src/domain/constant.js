@@ -1,4 +1,4 @@
-const LOTTO = {
+const LOTTO = Object.freeze({
   PRICE: 1000,
   START: 1,
   END: 45,
@@ -17,9 +17,9 @@ const LOTTO = {
   THIRD_PLACE_WINNINGS: 1500000,
   FOURTH_PLACE_WINNINGS: 50000,
   FIFTH_PLACE_WINNINGS: 5000,
-};
+});
 
-const MESSAGE = {
+const MESSAGE = Object.freeze({
   START_GAME: '로또 게임을 시작합니다.',
   FINISH_GAME: '로또 게임을 종료합니다.',
   ENTER_PURCHASE_AMOUNT: '구입금액을 입력해 주세요.\n',
@@ -35,9 +35,9 @@ const MESSAGE = {
   PURCHASE_QUANTITY: (quantity) => `\n${quantity}개를 구매했습니다.`,
   TOTAL_RATE_OF_RETURN: (rateOfReturn) =>
     `총 수익률은 ${rateOfReturn}%입니다.\n`,
-};
+});
 
-const ERROR_MESSAGE = {
+const ERROR_MESSAGE = Object.freeze({
   NON_NUMERIC_INPUT: '[ERROR] 구입금액은 숫자로만 입력해야 합니다.',
   NON_POSITIVE_INPUT: '[ERROR] 구입금액은 0보다 커야 합니다.',
   ZERO_START_INPUT: '[ERROR] 구입금액은 0으로 시작할 수 없습니다.',
@@ -49,7 +49,7 @@ const ERROR_MESSAGE = {
     '[ERROR] 당첨 번호 입력은 "숫자,숫자,숫자,숫자,숫자,숫자"형식이어야 합니다.',
   INVALID_BONUS_NUMBER:
     '[ERROR] 보너스 번호는 당첨 번호와 다른 숫자여야 합니다.',
-};
+});
 
 module.exports = {
   LOTTO,
