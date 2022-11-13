@@ -38,7 +38,7 @@ test('두 배열이 모두 가진 숫자 요소의 개수를 반환', () => {
   });
 });
 
-test.only('총 상금을 계산해 반환', () => {
+test('총 상금을 계산해 반환', () => {
   const winningState = [
     [0, 0, 0, 0, 1],
     [0, 0, 0, 4, 6],
@@ -53,4 +53,14 @@ test.only('총 상금을 계산해 반환', () => {
   });
 });
 
-describe('수익율을 계산해 반환', () => {});
+test('수익율을 계산해 소수점 둘 째 자리에서 반올림한 값을 반환', () => {
+  const totalPrize = [150000, 5000, 30000, 30000000, 4000000000];
+  const countOfLottos = [3, 4, 5, 10, 20];
+  const answers = ['5000.0', '125.0', '600.0', '300000.0', '20000000.0'];
+
+  totalPrize.forEach((money, i) => {
+    expect(GameTools.calcRateOfReturn(money, countOfLottos[i])).toBe(
+      answers[i]
+    );
+  });
+});
