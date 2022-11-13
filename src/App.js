@@ -1,9 +1,8 @@
 const Exception = require("./error/exception");
 const PurchaseError = require("./error/purchase");
-const WinNumberError = require("./error/winNumber");
 const BonusNumber = require("./error/bonusNumber");
 const ChangeLotto = require("./ChangeLotto");
-const Lotto = require("./Lotto");
+const Lotto = require("./error/Lotto");
 const CompareLotto = require("./CompareLotto");
 const Profit = require("./Profit");
 
@@ -19,11 +18,12 @@ const {
 
 class App {
   #exception;
+  #changeLotto;
 
   constructor() {
     this.Lotto = new Lotto();
     this.#exception = new Exception();
-    this.changeLotto = new ChangeLotto();
+    this.#changeLotto = new ChangeLotto();
     this.compareLotto = new CompareLotto();
     this.input = UNIT.DEFAULT;
     this.bonusNumber = UNIT.DEFAULT;
@@ -39,8 +39,8 @@ class App {
 
   askWinNumber() {
     Console.readLine(`\n${COMMAND.WIN}\n`, (input) => {
-      this.#exception.isAllow(new WinNumberError(input));
       this.winNumber = input.split(",").map(Number);
+      this.#exception.isAllow(new Lotto(this.winNumber));
       this.askBonusNumber();
     });
   }
@@ -91,7 +91,7 @@ class App {
     Console.readLine(`${COMMAND.BUY}\n`, (input) => {
       this.#exception.isAllow(new PurchaseError(input));
       this.input = input;
-      this.userLotto = this.changeLotto.change(this.input);
+      this.userLotto = this.#changeLotto.change(this.input);
       this.askWinNumber();
     });
   }

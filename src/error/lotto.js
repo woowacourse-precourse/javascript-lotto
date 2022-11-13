@@ -1,28 +1,49 @@
-const { UNIT, ERROR } = require("../utils/constant");
 const Exception = require("./exception");
 
-class LottoNumbersError extends Exception {
-  #input;
+const { ERROR, UNIT } = require("../utils/constant");
 
-  constructor(input) {
+class Lotto extends Exception {
+  #numbers;
+
+  constructor(numbers) {
     super();
 
-    this.#input = input;
+    this.#numbers = numbers;
+    this.numbers = [];
   }
 
   duplicateCheck(allow) {
-    const numbersLength = [...new Set(this.#input)].length;
+    const numbersLength = [...new Set(this.#numbers)].length;
     if (numbersLength !== UNIT.LOTTO_LENGTH) {
       allow = allow && false;
     }
-    console.log(allow);
     return allow;
   }
 
+  checkCnt() {
+    if (this.#numbers.length !== UNIT.WIN_NUMBER_CNT) return UNIT.NOT_ALLOW;
+    return UNIT.ALLOW;
+  }
+
+  checkRange() {
+    let check = UNIT.ALLOW;
+    this.#numbers.forEach((num) => {
+      if (num < UNIT.MIN_NUMBER || num > UNIT.MAX_NUMBER) {
+        check = check || UNIT.NOT_ALLOW;
+      }
+    });
+    return check;
+  }
+
+  isAllowNumbers() {
+    if (this.checkCnt() || this.checkRange()) return UNIT.NOT_ALLOW;
+    return UNIT.ALLOW;
+  }
+
   checkInput() {
-    if (!this.duplicateCheck(true)) throw new Error(ERROR.DUPLICATE);
-    return true;
+    if (this.isAllowNumbers()) throw new Error(ERROR.WIN_NUMBER);
+    if (!this.duplicateCheck(true)) throw new Error(ERROR.WIN_NUMBER_DUPLICATE);
   }
 }
 
-module.exports = LottoNumbersError;
+module.exports = Lotto;
