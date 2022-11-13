@@ -1,5 +1,6 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const User = require('../src/User');
+const Lotto = require('../src/Lotto');
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();
@@ -8,6 +9,13 @@ const mockQuestions = (answers) => {
       callback(input);
     });
   }, MissionUtils.Console.readLine);
+};
+
+const mockRandoms = (numbers) => {
+  MissionUtils.Random.pickUniqueNumbersInRange = jest.fn();
+  numbers.reduce((acc, number) => {
+    return acc.mockReturnValueOnce(number);
+  }, MissionUtils.Random.pickUniqueNumbersInRange);
 };
 
 const getLogSpy = () => {
@@ -43,5 +51,14 @@ describe('기능 1번. 로또 구입 금액 입력 받기', () => {
     mockQuestions(['8 00 0']);
     user.getUserMoney();
     expect(logSpy).toHaveBeenCalledWith('유효한 입력입니다.');
+  });
+});
+
+describe('기능 2번. 로또 구입 금액 만큼의 로또 번호 생성', () => {
+  test('입력받은 금액 만큼의 로또 발행', () => {
+    const user = new User();
+    mockQuestions(['8000']);
+    user.getUserMoney();
+    expect(user.lottoList.length).toEqual(8);
   });
 });
