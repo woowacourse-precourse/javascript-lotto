@@ -9,9 +9,8 @@ const input = (message, callback) =>
   Console.readLine(message, callback.bind(this));
 
 const printLottoNumbers = (lotto) => {
-  print(
-    `[${lotto[0]}, ${lotto[1]}, ${lotto[2]}, ${lotto[3]}, ${lotto[4]}, ${lotto[5]}]`
-  );
+  const LOTTO_NUMBERS = `[${lotto[0]}, ${lotto[1]}, ${lotto[2]}, ${lotto[3]}, ${lotto[4]}, ${lotto[5]}]`;
+  print(LOTTO_NUMBERS);
 };
 
 module.exports = { print, close, input, printLottoNumbers };

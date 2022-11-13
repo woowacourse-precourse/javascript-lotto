@@ -118,25 +118,26 @@ class App {
     print(MESSAGE.WINNING_HISTORY);
 
     for (let rank = FIFTH_PLACE.NUMBER; rank >= FIRST_PLACE.NUMBER; rank -= 1) {
-      let winningResult = `${WINNING_RESULT[rank].LOTTO_COUNT}개 일치 (${WINNING_RESULT[rank].PRIZE}) - ${this.winningLottosQuantity[rank]}개`;
-
       if (rank === SECOND_PLACE.NUMBER) {
-        winningResult = `${WINNING_RESULT[rank].LOTTO_COUNT}개 일치, 보너스 볼 일치 (${WINNING_RESULT[rank].PRIZE}) - ${this.winningLottosQuantity[rank]}개`;
+        const RESULT = `${WINNING_RESULT[rank].LOTTO_COUNT}개 일치, 보너스 볼 일치 (${WINNING_RESULT[rank].PRIZE}) - ${this.winningLottosQuantity[rank]}개`;
+        print(RESULT);
+        continue;
       }
-
-      print(winningResult);
+      const RESULT = `${WINNING_RESULT[rank].LOTTO_COUNT}개 일치 (${WINNING_RESULT[rank].PRIZE}) - ${this.winningLottosQuantity[rank]}개`;
+      print(RESULT);
     }
 
     this.printRateOfReturn();
   }
 
   printRateOfReturn() {
-    let calculator = new RateOfReturnCalculator(
+    let rateOfReturn = new RateOfReturnCalculator(
       this.winningLottosQuantity,
       this.lottosQuantity
-    );
-    let rateOfReturn = calculator.getRateOfReturn();
-    print(`총 수익률은 ${rateOfReturn}%입니다.`);
+    ).getRateOfReturn();
+
+    const RATE_OF_RETURN = `총 수익률은 ${rateOfReturn}%입니다.`;
+    print(RATE_OF_RETURN);
 
     this.close();
   }
