@@ -6,47 +6,49 @@ const LottoResult = require('./LottoResult');
 const { INPUT_MESSAGE } = require('./Constants');
 
 class LottoGame {
-  #Payment;
+  #payment;
 
-  #LottoIssuer;
+  #lottoIssuer;
 
-  #Lotto;
+  #lotto;
 
-  #LottoResult;
+  #lottoResult = new LottoResult();
 
   run() {
     Console.readLine(INPUT_MESSAGE.purchase, (input) => this.inputMoney(input));
   }
 
   inputMoney(input) {
-    this.#Payment = new Payment(input);
-    this.purchase(this.#Payment.getMoney() / 1000);
-    Console.close();
+    this.#payment = new Payment(input);
+    this.purchase(this.#payment.getMoney() / 1000);
   }
 
   purchase(number) {
-    this.#LottoIssuer = new LottoIssuer(number);
-    this.#LottoIssuer.print();
+    this.#lottoIssuer = new LottoIssuer(number);
+    this.#lottoIssuer.print();
     this.drawWinningNumbers();
   }
 
   drawWinningNumbers() {
     Console.readLine(INPUT_MESSAGE.winning, (winningNumber) => {
-      this.#Lotto = new Lotto(winningNumber.split(','));
+      this.#lotto = new Lotto(winningNumber.split(','));
       this.drawBonusNumber();
     });
   }
 
   drawBonusNumber() {
     Console.readLine(INPUT_MESSAGE.bonuse, (bonusNumber) => {
-      this.#Lotto.setBonusNumber(bonusNumber);
-      this.#LottoResult = new LottoResult();
-      this.#LottoResult.print(
-        this.#Lotto.getNumbers(),
-        this.#LottoIssuer.getLotteries(),
-        this.#Payment.getMoney()
-      );
+      this.#lotto.setBonusNumber(bonusNumber);
+      this.printResult();
     });
+  }
+
+  printResult() {
+    this.#lottoResult.print(
+      this.#lotto.getNumbers(),
+      this.#lottoIssuer.getLotteries(),
+      this.#payment.getMoney()
+    );
   }
 }
 
