@@ -14,8 +14,16 @@ class Controller {
     if (type === "purchasingAmountError") this.view.printPurchasingAmountErrorMessage();
   }
 
+  getPurchasingAmountFromUser() {
+    this.view.getPurchasingAmountFromUser();
+  }
+
   setPurchasingAmount(userPurchasingAmount) {
     this.userNumber.setPurchasingAmount(userPurchasingAmount);
+  }
+
+  getWinningNumberFromUser() {
+    this.view.getWinningNumberFromUser();
   }
 
   setWinningNumber(winningNumber) {
@@ -23,7 +31,7 @@ class Controller {
   }
 
   init() {
-    this.view.getPurchasingAmountFromUser();
+    this.getPurchasingAmountFromUser();
   }
 }
 
