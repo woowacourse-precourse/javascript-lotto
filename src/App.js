@@ -7,10 +7,6 @@ class App {
   #lottos = [];
 
   play() {
-    this.purchaseLottos();
-  }
-
-  purchaseLottos() {
     Console.readLine(CONSOLE_MESSAGE.Enter, (payStr) => {
       const lottoCnt = getCountByPay(+payStr);
 
