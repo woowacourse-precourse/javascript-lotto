@@ -31,6 +31,22 @@ class Validator {
       throw new Error("[ERROR] 보너스 번호는 당첨 번호에 존재하지 않는 값이어야 합니다.");
     }
   }
+
+  checkLotto(lotto) {
+    if (lotto.length !== 6) {
+      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    }
+
+    lotto.forEach((num) => {
+      if (num < 1 || num > 45) {
+        throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+      }
+    });
+      
+    if (new Set(lotto).size !== lotto.length){
+      throw new Error("[ERROR] 로또 번호에 중복된 값이 포함되어있습니다.");
+    }    
+  }
 }
 
 module.exports = Validator;
