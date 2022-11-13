@@ -19,6 +19,10 @@ class Lotto {
   print() {
     Console.print('[' + this.numbers.join(', ') + ']');
   }
+
+  hasBonusNumber(bonusNumber) {
+    return this.numbers.includes(bonusNumber);
+  }
 }
 
 module.exports = Lotto;
