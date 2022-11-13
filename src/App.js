@@ -18,6 +18,11 @@ class App {
       this.lottos.push(new Lotto(numberGenerator.createRandomNumber()));
     }
   }
+
+  printMyLottos() {
+    Console.print(`\n${this.lottos.length}개를 구매했습니다.`);
+    this.lottos.forEach(lotto => lotto.print());
+  }
 }
 
 module.exports = App;
