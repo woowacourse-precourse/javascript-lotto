@@ -1,17 +1,25 @@
 const { Console } = require('@woowacourse/mission-utils');
+const utils = require('./utils/utils');
 const appUtils = require('./utils/appUtils');
 const APP = require('./constants/app');
 
 class App {
   #amount;
 
+  #lottos;
+
   constructor() {
-    this.handleInput = this.handleInput.bind(this);
+    this.handleAmount = this.handleAmount.bind(this);
   }
 
-  handleInput(input) {
+  handleAmount(input) {
     appUtils.validateAmount(input);
-    this.#amount = input;
+
+    this.#amount = input / APP.MINIMUM_AMOUNT;
+    this.#lottos = utils.createLottos(this.#amount);
+
+    Console.print(`\n${this.#amount}개를 구매했습니다.`);
+    appUtils.printArray(this.#lottos);
   }
 
   readLine(message, callback) {
@@ -19,7 +27,7 @@ class App {
   }
 
   play() {
-    this.readLine(APP.AMOUNT_MESSAGE, this.handleInput);
+    this.readLine(APP.AMOUNT_MESSAGE, this.handleAmount);
   }
 }
 

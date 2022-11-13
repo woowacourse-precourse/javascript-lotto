@@ -1,3 +1,4 @@
+const { Console } = require('@woowacourse/mission-utils');
 const APP = require('../constants/app');
 const ERROR_MESSAGE = require('../constants/errorMessages');
 
@@ -13,6 +14,11 @@ const validateAmount = (amount) => {
   if (!isDivisible(amount)) throw new Error(ERROR_MESSAGE.DIVISIBLE_ERROR);
 };
 
+const printArray = (items) => {
+  items.forEach((item) => Console.print(item));
+};
+
 module.exports = {
   validateAmount,
+  printArray,
 };
