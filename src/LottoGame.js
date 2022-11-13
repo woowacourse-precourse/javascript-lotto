@@ -31,13 +31,14 @@ class LottoGame {
 
   drawWinningNumbers() {
     Console.readLine('\n당첨 번호를 입력해 주세요.\n', (winningNumber) => {
-      this.drawBonusNumber(winningNumber.split(','));
+      this.#Lotto = new Lotto(winningNumber.split(','));
+      this.drawBonusNumber();
     });
   }
 
-  drawBonusNumber(winningNumber) {
+  drawBonusNumber() {
     Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
-      this.#Lotto = new Lotto(winningNumber, bonusNumber);
+      this.#Lotto.setBonusNumber(bonusNumber);
       this.#LottoResult = new LottoResult();
       this.#LottoResult.print(
         this.#Lotto.getNumbers(),
