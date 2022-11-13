@@ -8,7 +8,7 @@ class Lotto {
     this.#numbers = numbers;
   }
 
-  validate() {
+  validate(numbers) {
     lottoException.isNotSix(numbers);
     lottoException.isOutOfRange(numbers);
     lottoException.includeNotNumber(numbers);
@@ -16,7 +16,9 @@ class Lotto {
   }
 
   // TODO: 추가 기능 구현
-  
+  getNumbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
