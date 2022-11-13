@@ -1,7 +1,5 @@
 const userInput = require("./App.js");
 
-let DEVIDED_BY_1000 = userInput % 1000;
-
 const isValidUserNumberInput = (userInput) => {
     if(!hasOnlyNumber(userInput)) {
         return { isValid: false, errorType: "INVALID_INPUT_TYPE" };
@@ -11,18 +9,19 @@ const isValidUserNumberInput = (userInput) => {
     }
 
     return {isValid : true};
-}
+};
 
 const hasOnlyNumber = (userInput) => {
     return userInput
-        .toString()
         .split('')
         .map((eachLetter) => parseInt(eachLetter), 10)
         .every((number) => !isNaN(number));
-}
+};
 
 const dividedInUnitOf1000 = (userInput) => {
-    return DEVIDED_BY_1000 === 0;
-}
+    const DEVIDED_BY_1000 = parseInt(userInput) % 1000;
+    if(DEVIDED_BY_1000 === 0) return true;
+    return false;
+};
 
 module.exports = isValidUserNumberInput;

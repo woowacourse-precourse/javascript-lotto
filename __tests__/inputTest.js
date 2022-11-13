@@ -11,9 +11,16 @@ describe("구입 금액 입력 예외 처리 테스트", () => {
     });
 
     test(`천의 단위로 나뉘어 떨어지지 않음`, () => {
-        const input = 3999;
+        const input = "3999";
         const result = isValidUserNumberInput(input);
         const output = {isValid : false, errorType : "NOT_DIVISIBLE_BY_1000"};
+        expect(result).toEqual(output);
+    });
+
+    test(`정상적인 입력`, () => {
+        const input = "4000";
+        const result = isValidUserNumberInput(input);
+        const output = {isValid : true};
         expect(result).toEqual(output);
     });
 });
