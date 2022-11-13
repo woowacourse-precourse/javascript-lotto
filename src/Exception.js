@@ -26,6 +26,7 @@ class Exception {
 
     input.forEach((number) => {
       this.checkIsDigit(number);
+      this.checkIsNumberInRange(number);
     });
   }
 
