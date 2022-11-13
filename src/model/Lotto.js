@@ -1,14 +1,14 @@
 class Lotto {
   #numbers;
 
-  constructor(controller, numbers) {
+  constructor (controller, numbers) {
     this.controller = controller;
     this.validate(numbers);
     this.#numbers = numbers;
     this.bonusNumber = null;
   }
 
-  isArraySplitByComma(numbersArray) {
+  isArraySplitByComma (numbersArray) {
     if (numbersArray.length !== 6) {
       this.controller.throwErrorWithMessage("winningNumberCommaNumberError");
     }
@@ -18,18 +18,18 @@ class Lotto {
     }
   }
 
-  isArrayInRange(numbersArray) {
+  isArrayInRange (numbersArray) {
     for (const singleElement of numbersArray) {
       if (1 > singleElement || singleElement > 45) this.controller.throwErrorWithMessage("winningNumberRangeError");
     }
   }
 
-  isArrayUnique(numbersArray) {
+  isArrayUnique (numbersArray) {
     const numbersSet = new Set(numbersArray);
     if (numbersSet.size !== 6) this.controller.throwErrorWithMessage("winningNumberUniqueError");
   }
 
-  validate(numbers) {
+  validate (numbers) {
     if (typeof numbers !== "undefined") {
       this.isArraySplitByComma(numbers);
       this.isArrayInRange(numbers);
@@ -37,23 +37,28 @@ class Lotto {
     }
   }
 
-  getLottoNumbers() {
+  getLottoNumbers () {
     return this.#numbers;
   }
 
-  setLottoNumbers(winningNumber) {
-    const winningNumberArray = winningNumber.split(",").map(Number);
+  setLottoNumbers (winningNumber) {
+    const winningNumberArray = winningNumber.split(",")
+      .map(Number);
     this.validate(winningNumberArray);
     this.#numbers = winningNumberArray;
     this.controller.getBonusNumberFromUser();
   }
 
-  validateBonusNumber(bonusNumber) {
+  validateBonusNumber (bonusNumber) {
     if (isNaN(bonusNumber)) this.controller.throwErrorWithMessage("bonusNumberError");
     if (1 > bonusNumber || bonusNumber > 45) this.controller.throwErrorWithMessage("bonusNumberError");
   }
 
-  setBonusNumberFromUser(userInput) {
+  getBonusNumber () {
+    return this.bonusNumber;
+  }
+
+  setBonusNumberFromUser (userInput) {
     const bonusNumber = Number(userInput);
     this.validateBonusNumber(bonusNumber);
     this.bonusNumber = bonusNumber;
