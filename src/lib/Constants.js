@@ -55,6 +55,11 @@ const LOTTO_MIN_NUMBER = 1;
 const LOTTO_MAX_NUMBER = 45;
 const LOTTO_NUMBER = 6;
 
+const ABSTRACT_ERROR_MESSAGE = {
+  abstract_method: '추상 메서드입니다.',
+  abstract_class: '추상 클래스입니다.',
+};
+
 module.exports = {
   GAME_MESSAGE,
   LOTTO_RESULT_MESSAGE,
@@ -68,4 +73,5 @@ module.exports = {
   LOTTO_MIN_NUMBER,
   LOTTO_MAX_NUMBER,
   LOTTO_NUMBER,
+  ABSTRACT_ERROR_MESSAGE,
 };
