@@ -1,7 +1,7 @@
 const {
   validateWinNumbers,
   validateBonusNumber,
-} = require("../src/validateNumber");
+} = require("../src/validateInput");
 
 describe("당첨 번호 클래스 테스트", () => {
   test("당첨 번호의 개수가 6개인가?", () => {

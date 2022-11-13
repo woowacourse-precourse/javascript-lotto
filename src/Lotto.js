@@ -1,7 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { LOTTO_MESSAGE } = require("./constant/errorMessage");
-const { SHOW_LOTTOS } = require("./constant/inputMessage");
-const { removeDuplication } = require("./utils/removeDuplication");
+const { removeDuplication } = require("./utils/validateFn");
 
 class Lotto {
   #numbers;

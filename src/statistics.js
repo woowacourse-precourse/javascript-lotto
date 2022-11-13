@@ -35,7 +35,7 @@ class Stats {
       }
     });
 
-    this.rateOfReturn(price);
+    this.calculateRateOfReturn(price);
   }
 
   matchLottos(lotto, win, bonus) {
@@ -45,7 +45,7 @@ class Stats {
     return [winMatch, bonusMatch];
   }
 
-  rateOfReturn(price) {
+  calculateRateOfReturn(price) {
     const obj = {
       three: this.#unitedThird || 0,
       four: this.#unitedFourth || 0,

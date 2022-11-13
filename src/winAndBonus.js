@@ -3,12 +3,9 @@ const {
   WIN_NUMBERS_MESSAGE,
   BONUS_NUMBERS_MESSAGE,
   TOTAL_MEESAGE,
-} = require("../constant/inputMessage");
-const { Stats } = require("../statistics");
-const {
-  validateWinNumbers,
-  validateBonusNumber,
-} = require("../validateNumber");
+} = require("./constant/inputMessage");
+const { Stats } = require("./Statistics");
+const { validateWinNumbers, validateBonusNumber } = require("./validateInput");
 
 class Win {
   #winNumbers;

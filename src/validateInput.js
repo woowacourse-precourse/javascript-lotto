@@ -1,37 +1,17 @@
 const { PRICE_TYPE, LOTTO_TYPE } = require("./constant/errorMessage");
-const { RANGE } = require("./constant/inputMessage");
-const { THOUSAND } = require("./constant/inputMessage");
 const { UserInputValidationError } = require("./utils/errorHandling");
-const { removeDuplication } = require("./utils/removeDuplication");
-
-const insideNotNumber = (userInput) =>
-  [...userInput].every((v) => parseInt(v) || v === "0");
-
-const onlyInputInThousand = (userInput) => +userInput % THOUSAND !== 0;
-
-const checkBelowThousand = (userInput) => +userInput < THOUSAND;
-
-const isSixNumbers = (userInput) =>
-  userInput.split(",").filter((v) => v !== ",").length === RANGE.COUNT;
-
-const checkWinRange = (userInput) =>
-  userInput.split(",").every((v) => +v >= RANGE.START && +v <= RANGE.END);
-
-const checkDuplicationNumber = (userInput) => {
-  const arr = userInput.split(",").map(Number);
-
-  return removeDuplication(arr).length === arr.length;
-};
-
-const checkValidationInput = (userInput) => userInput.includes(".");
-
-const existNotNumberInInput = (userInput) => +userInput;
-
-const checkBonusRange = (userInput) =>
-  +userInput >= RANGE.START && +userInput <= RANGE.END;
-
-const checkDuplicationInWinNumbers = (userInput, winLottos) =>
-  winLottos.includes(+userInput);
+const {
+  insideNotNumber,
+  onlyInputInThousand,
+  checkBelowThousand,
+  isSixNumbers,
+  checkWinRange,
+  checkDuplicationNumber,
+  checkValidationInput,
+  existNotNumberInInput,
+  checkBonusRange,
+  checkDuplicationInWinNumbers,
+} = require("./utils/validateFn");
 
 function validatePurchaseCost(userInput) {
   if (!insideNotNumber(userInput)) {

@@ -6,8 +6,8 @@ const {
   RANGE,
 } = require("./constant/inputMessage");
 const Lotto = require("./Lotto");
-const { winNumbers } = require("./utils/winAndBonus");
-const { validatePurchaseCost } = require("./validateNumber");
+const { winNumbers } = require("./winAndBonus");
+const { validatePurchaseCost } = require("./validateInput");
 
 class UserLottos {
   #userPrice;
