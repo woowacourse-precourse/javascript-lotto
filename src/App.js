@@ -13,6 +13,7 @@ class App {
     this.lottos = [];
     this.winningNumbers = null;
     this.bonusNumber = null;
+    this.ranks = Array.from({ length: 8 }, (_) => 0);
   }
   play() {
     this.buyLottos();
@@ -91,7 +92,7 @@ class App {
     if (this.isReapted(split)) {
       throw new Error(`[Error] 동일한 숫자가 포함되어 있습니다.`);
     }
-    return split;
+    return split.map((v) => parseInt(v, 10));
   }
   askWinningNumbers() {
     Console.readLine("당첨 번호를 입력해 주세요.\n", (winningNumbers) => {
@@ -102,9 +103,6 @@ class App {
   }
 
   validateBonusNumber(bonusNumber) {
-    if (bonusNumber.length !== 1) {
-      throw new Error(`[Error] 보너스 번호는 한 개입니다.`);
-    }
     if (isNaN(bonusNumber)) {
       throw new Error(`[Error] 숫자를 입력해 주세요.`);
     }
@@ -118,16 +116,61 @@ class App {
     return parseInt(bonusNumber, 10);
   }
   askBonusNumber() {
-    Console.readLine("보너스 번호를 입력해 주세요.", (bonusNumber) => {
+    Console.readLine("보너스 번호를 입력해 주세요.\n", (bonusNumber) => {
       const validatedNum = this.validateBonusNumber(bonusNumber);
       this.bonusNumber = validatedNum;
-
-      this.calResult();
+      this.drawLots();
     });
   }
 
-  calResult() {}
-  printResult() {}
+  compareArr(arr1, arr2) {
+    let matched = 0;
+    for (let i = 0; i < arr1.length; i++) {
+      const elem1 = arr1[i];
+      for (let j = 0; j < arr2.length; j++) {
+        const elem2 = arr2[j];
+        if (elem1 === elem2) {
+          matched++;
+          break;
+        }
+      }
+    }
+    return matched;
+  }
+
+  caculateWhenFiveMatches(lottoNumbers) {
+    if (this.compareArr(lottoNumbers, [this.bonusNumber]) === 1) {
+      this.ranks[2] += 1;
+      return;
+    }
+    this.ranks[3] += 1;
+  }
+  assignRanks(matched, lottoNumbers) {
+    if (matched === 5) {
+      this.caculateWhenFiveMatches(lottoNumbers);
+      return;
+    }
+    this.ranks[7 - matched] += 1;
+  }
+  printRanks() {
+    Console.print(`당첨 통계\n`);
+    Console.print(`---\n`);
+    Console.print(`3개 일치 (5,000원) - ${this.ranks[5]}개`);
+    Console.print(`4개 일치 (50,000원) - ${this.ranks[4]}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${this.ranks[3]}개`);
+    Console.print(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.ranks[2]}개`
+    );
+    Console.print(`6개 일치 (2,000,000,000원) - ${this.ranks[1]}개`);
+  }
+  drawLots() {
+    this.lottos.forEach((lotto) => {
+      const lottoNumbers = lotto.numbers;
+      let matched = this.compareArr(lottoNumbers, this.winningNumbers);
+      this.assignRanks(matched, lottoNumbers);
+    });
+    this.printRanks();
+  }
 }
 
 module.exports = App;
