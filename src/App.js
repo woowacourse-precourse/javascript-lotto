@@ -1,14 +1,17 @@
 const Lotto = require("./Lotto");
 const MissionUtils = require("@woowacourse/mission-utils");
+const Message = require("./Message");
+const DetectError = require("./DetectError");
+
 
 class App {
   constructor() {
     this.lottoPrize = {
-      3: [0, 5000, "3개 일치 (5,000원) -"],
-      4: [0, 50000, "4개 일치 (50,000원) -"],
-      5: [0, 1500000, "5개 일치 (1,500,000원) -"],
-      6: [0, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원) -"],
-      7: [0, 2000000000, "6개 일치 (2,000,000,000원) -"],
+      3: [0, 5000],
+      4: [0, 50000],
+      5: [0, 1500000],
+      6: [0, 30000000],
+      7: [0, 2000000000],
     };
     this.purchaseMoney;
   }
@@ -18,8 +21,7 @@ class App {
   }
 
   userInput() {
-
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (userMoney) => {
+    MissionUtils.Console.readLine(`${Message.INPUT_MESSAGE.PURCHASE}\n`, (userMoney) => {
       this.purchaseMoney = userMoney;
       const user = this.lottoPurchase(userMoney);
       this.prizeInput(user);
@@ -27,7 +29,7 @@ class App {
   }
 
   prizeInput(user) {
-    MissionUtils.Console.readLine("\n당첨 번호를 입력해 주세요.\n", (prizeNumber) => {
+    MissionUtils.Console.readLine(`\n${Message.INPUT_MESSAGE.PRIZE}\n`, (prizeNumber) => {
       const przNum = prizeNumber.split(',');
       new Lotto(przNum);
       this.bonusInput(user, przNum);
@@ -35,10 +37,10 @@ class App {
   }
 
   bonusInput(user, przNum) {
-    MissionUtils.Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusNumber) => {
+    MissionUtils.Console.readLine(`\n${Message.INPUT_MESSAGE.BONUS}\n`, (bonusNumber) => {
       const bnsNum = parseInt(bonusNumber);
       if (bnsNum < 1 || bnsNum > 45) {
-        throw new Error("[ERROR] 보너스 번호는 1 ~ 45사이의 번호여야 합니다.")
+        throw new Error(`${Message.ERROR_MESSAGE.RANGE}`);
       }
       this.caculateResult(user, przNum, bonusNumber);
       this.showResult();
@@ -53,10 +55,10 @@ class App {
   numberOfAvailablePurchase(userMoney) {
     if (!(userMoney % 1000)) {
       let availablePurchaseNumber = parseInt(userMoney / 1000);
-      MissionUtils.Console.print(`\n${availablePurchaseNumber}개를 구매했습니다.`);
+      MissionUtils.Console.print(`\n${availablePurchaseNumber}${Message.SUB_MESSAGE.AMOUNT}`);
       return this.buyRandomLotto(availablePurchaseNumber);
     }
-    throw new Error(`[ERROR] 천원단위로 입력해주세요`);
+    throw new Error(`${Message.ERROR_MESSAGE.DIVIDED}`);
   }
 
   buyRandomLotto(availablePurchaseNumber) {
@@ -99,12 +101,14 @@ class App {
 
   isBonusInPrize(prize, bonus) {
     if (prize.includes(bonus)) {
-      throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+      throw new Error(`${Message.ERROR_MESSAGE.OVERLAP}`);
     }
   }
 
+
   caculateResult(user, prize, bonus) {
-    this.isBonusInPrize(prize, bonus);
+    // this.isBonusInPrize(prize, bonus);
+    DetectError.prototype.isBonusInPrize(prize, bonus);
 
     user.forEach((element) => {
       this.makeLottoPrize(element, prize, bonus);
@@ -128,12 +132,14 @@ class App {
   }
 
   showResult() {
-    MissionUtils.Console.print("\n당첨 통계");
-    MissionUtils.Console.print("---");
+    MissionUtils.Console.print(`\n${Message.SUB_MESSAGE.RESULT}`);
+    MissionUtils.Console.print(`${Message.SUB_MESSAGE.BLANK}`);
 
-    for (let i = 3; i <= 7; i++) {
-      MissionUtils.Console.print(`${this.lottoPrize[i][2]} ${this.lottoPrize[i][0]}개`);
-    }
+    let i = 3;
+    Message.WINNING_RESULT.forEach((msg) => {
+      MissionUtils.Console.print(`${msg} ${this.lottoPrize[i][0]}개`);
+      i++;
+    })
 
     let sum = this.totalRevenue();
     let revenue = (sum / this.purchaseMoney) * 100;
