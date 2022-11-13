@@ -94,7 +94,7 @@ function calculateProfit(lottoArray, winningNumber, bonusNumber){
   var bonusMatch = 0;  
   lottoArray.forEach(function(lottery){
     currentLotto = lottery.getNumbers();
-    const count = countMatch(currentLotto, winningNumber, bonusNumber);
+    const count = countMatch(currentLotto, winningNumber);
     if(count == 5 && currentLotto.includes(bonusNumber)){
       bonusMatch++;
       matches[count]--;
@@ -104,13 +104,10 @@ function calculateProfit(lottoArray, winningNumber, bonusNumber){
   printPrize(matches, bonusMatch);
 }
 
-function countMatch(array1, array2, bonus){
+function countMatch(array1, array2){
   var count = 0;
   for(var i = 0; i < array1.length; i++){
     if(array2.includes(array1[i])) count++;
-  }
-  if(count == 5 && array1.includes(bonus)){
-    return 7;
   }
   return count;
 }
@@ -142,7 +139,6 @@ class App {
     this.winningNumber = getWinningNumber();
     this.bonusNumber = getBounusNumber(this.winningNumber);
     this.profit = calculateProfit(this.lottoArray, this.winningNumber, this.bonusNumber);
-    printProfit( this.lottoCount*1000, this.profit );
   }
 }
 
