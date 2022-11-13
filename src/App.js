@@ -65,41 +65,28 @@ class App {
     });
   }
 
-  checkCorrectNumber(lotto) {
-    let winningNumberIndex = 0;
-    let lottoNumberIndex = 0;
-    let correctCount = 0;
-    while (winningNumberIndex < 6 && lottoNumberIndex < 6) {
-      if (this.winningNumber[winningNumberIndex] === lotto[lottoNumberIndex]) {
-        winningNumberIndex += 1;
-        lottoNumberIndex += 1;
-        correctCount += 1;
-      }
-      if (this.winningNumber[winningNumberIndex] < lotto[lottoNumberIndex]) {
-        winningNumberIndex += 1;
-      }
-      if (this.winningNumber[winningNumberIndex] > lotto[lottoNumberIndex]) {
-        lottoNumberIndex += 1;
-      }
-    }
-    if (correctCount < 3) return;
+  countCorrectNumber(lotto, correctCount) {
     if (correctCount === 3) {
-      this.countCorrect[0] += 1;
-      return;
+      return (this.countCorrect[0] += 1);
     }
     if (correctCount === 4) {
-      this.countCorrect[1] += 1;
-      return;
+      return (this.countCorrect[1] += 1);
     }
     if (correctCount === 6) {
-      this.countCorrect[4] += 1;
-      return;
+      return (this.countCorrect[4] += 1);
     }
     if (correctCount === 5 && lotto.includes(parseInt(this.bonusNumber, 10))) {
-      this.countCorrect[3] += 1;
-      return;
+      return (this.countCorrect[3] += 1);
     }
-    this.countCorrect[2] += 1;
+    return (this.countCorrect[2] += 1);
+  }
+
+  checkCorrectNumber(lotto) {
+    let correctCount = 0;
+    lotto.map((checkNumber) => {
+      if (this.winningNumber.includes(checkNumber)) correctCount += 1;
+    });
+    if (correctCount >= 3) this.countCorrectNumber(lotto, correctCount);
   }
 
   getResult() {
