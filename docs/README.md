@@ -150,3 +150,9 @@
 - 상위 모듈과 하위 모듈의 의존성을 해제하는 대신 두 모듈 사이 추상화 객체(팩토리 메서드 패턴)를 생성하여 의존성을 분리하였습니다.
 
 <img width = "500px" src = https://user-images.githubusercontent.com/78203399/201493466-1153021e-0f09-4fab-858a-4cf2551df215.jpeg />
+
+### 2. 객체 설계 3차 수정
+
+- 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 구분한다.
+
+<img width = "800px" src="https://user-images.githubusercontent.com/78203399/201528579-322ba733-062a-46bd-a428-fc44038027a4.jpeg" />
