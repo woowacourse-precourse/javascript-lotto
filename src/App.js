@@ -34,6 +34,9 @@ class App {
       this.createLottos(money);
     });
   }
+  askWinningNumbers() {
+    Console.readLine("당첨 번호를 입력해 주세요.\n", (winningNumbers) => {});
+  }
   play() {}
 }
 
