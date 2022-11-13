@@ -39,23 +39,15 @@ class MatchingNumber {
     return false;
   }
 
-  printLottoResult(totalRanking) {
+  printLottoResult() {
     const prizeMoney = ["5,000", "50,000", "1,500,000", "30,000,000", "2,000,000,000"];
     const ranking = [3, 4, 5, 5, 6];
-    return totalRanking.map((lotto, index) => {
-      if (index === 3) return this.printSecondPlaceLotto(ranking, index, prizeMoney, lotto);
-      return this.printLottoExceptSecondPlace(ranking, index, prizeMoney, lotto);
+    return this.lottoResult.map((lotto, index) => {
+      if (index === 3) {
+        return Console.print(`5개 일치, 보너스 볼 일치 (${prizeMoney[index]}원) - ${lotto}개`);
+      }
+      return Console.print(`${ranking[index]}개 일치 (${prizeMoney[index]}원) - ${lotto}개`);
     });
-  }
-
-  printSecondPlaceLotto(ranking, index, prizeMoney, lotto) {
-    return Console.print(
-      `${ranking[index]}개 일치, 보너스 볼 일치 (${prizeMoney[index]}원) - ${lotto}개`
-    );
-  }
-
-  printLottoExceptSecondPlace(ranking, index, prizeMoney, lotto) {
-    return Console.print(`${ranking[index]}개 일치 (${prizeMoney[index]}원) - ${lotto}개`);
   }
 }
 module.exports = MatchingNumber;
