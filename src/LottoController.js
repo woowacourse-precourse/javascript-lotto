@@ -61,7 +61,7 @@ class LottoController {
 
     const calculationLotto = new CalculationLotto();
     calculationLotto
-      .calculationLottoResult(lottoList, winNumberList, bonusNumber)
+      .calculationList(lottoList, winNumberList, bonusNumber)
       .matchResult()
       .calculationLottoRate(lottoPrice)
       .printResult();
