@@ -3,7 +3,7 @@ class Lotto {
 
   constructor(numbers) {
     this.validate(numbers);
-    this.#numbers = numbers;
+    this.#numbers = numbers.split(',');
   }
 
   validate(numbers) {
@@ -11,6 +11,7 @@ class Lotto {
     this.overlapCheck(numbers);
     this.lengthCheck(numbers);
     this.notNumberCheck(numbers);
+    this.limitedNumber(numbers);
   }
 
   notComma(numbers) {
@@ -37,6 +38,12 @@ class Lotto {
   notNumberCheck(numbers) {
     if (isNaN(numbers)) {
         throw new Error('[ERROR] 숫자만 입력해주세요.');
+    }
+  }
+
+  limitedNumber(numbers) {
+    if (numbers > 45 || numbers < 1) {
+      throw new Error('[ERROR] 숫자 1부터 45까지 입력해주세요.');
     }
   }
 }

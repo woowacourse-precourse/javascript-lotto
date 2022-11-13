@@ -1,29 +1,28 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { BUY_LOTTO, THOUSAND, BUY_MESSAGE } = require('../constant/constant');
-const errorBuyHandling = require('./error/userInputHandling');
+const { THOUSAND, BUY_MESSAGE } = require('../constant/constant');
 const sortedLottoNumbers = require('./random/lottoRandomNumber');
 
 class User {
-    #userBuy;
+    #userBuyMoney;
+    #lottoAmount;
     #lottoArray;
 
-    constructor() {
-        this.#userBuy = 0;
+    constructor(money) {
+        this.#userBuyMoney = money;
+        this.#lottoAmount = 0;
         this.#lottoArray = [];
     }
 
     lottoBuy() {
-        MissionUtils.Console.readLine(BUY_LOTTO, (input) => {
-            errorBuyHandling(input);
-            this.#userBuy = Number(input);
-            this.makeLotto();
-        });
+        this.amountOfBuying();
+        this.makeLotto(this.#lottoAmount);
     }
 
-    makeLotto() {
-        const buyAmount = parseInt(Number(this.#userBuy)) / THOUSAND;
-        MissionUtils.Console.print(BUY_MESSAGE(this.#lottoAmount));
-        
+    amountOfBuying() {
+        this.#lottoAmount = parseInt(Number(this.#userBuyMoney)) / THOUSAND;
+    }
+
+    makeLotto(buyAmount) {
         for (let i = 0; i < buyAmount; i++) {
             const randomLottoNumber = sortedLottoNumbers();
             saveLotto(randomLottoNumber);
@@ -37,6 +36,7 @@ class User {
     }
 
     printRandomNumber(randomNumbers) {
+        MissionUtils.Console.print(BUY_MESSAGE(randomNumbers.length));
         randomNumbers.forEach((numbers) => {
             MissionUtils.Console.print(numbers);
         })
