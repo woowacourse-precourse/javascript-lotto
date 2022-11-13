@@ -14,6 +14,9 @@ class App {
     this.outPut = [];
     this.userNum = [];
     this.bonus = '';
+    this.cnt = 0;
+    this.winnig = [0, 0, 0, 0, 0];
+    this.reward = 0;
   }
 
   play() {
@@ -128,6 +131,14 @@ class App {
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${this.winnig[2]}개`);
     MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.winnig[3]}개`);
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${this.winnig[4]}개`);
+
+    this.checkYield();
+  }
+
+  checkYield() {
+    const PERCENT = (this.reward / this.money) * 100;
+    MissionUtils.Console.print(`총 수익률은 ${PERCENT.toFixed(1)}%입니다.`);
+    MissionUtils.Console.close();
   }
 }
 
