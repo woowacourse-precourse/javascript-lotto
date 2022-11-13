@@ -5,8 +5,9 @@ class CheckError {
   static checkPurchaseAmount(purchaseAmount) {
     // 구입 금액 검증하는 함수
     if (!isNaN(purchaseAmount)) throw new Error(ERROR_MESSAGE.NOT_NUMBER);
-    if (purchaseAmount % LOTTO_PRICE !== 0)
+    else if (purchaseAmount % LOTTO_PRICE !== 0)
       throw new Error(ERROR_MESSAGE.CANT_DIVIDE);
+    else if (purchaseAmount < 1000) throw new Error(UNDER_BASIC_PRICE);
   }
 }
 
