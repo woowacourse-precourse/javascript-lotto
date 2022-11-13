@@ -1,5 +1,7 @@
-const { MESSAGE } = require('./Constants');
-const { PRIZE_MONEY } = require('./Constants');
+const MissionUtils = require('@woowacourse/mission-utils');
+const { MESSAGE, PRIZE_MONEY } = require('./Constants');
+
+const { Console } = MissionUtils;
 
 class Money {
   constructor(amount) {
@@ -35,6 +37,17 @@ class Money {
       earning += num * PRIZE_MONEY[idx];
     });
     return earning;
+  }
+
+  /**
+   * 로또 성적이 주어지면 수익률을 출력합니다.
+   * @param {Array<number>} matchedLotto - [3개 일치, 4개 일치, 5개 일치, 5개+보너스 일치, 6개 일치] 개수
+   */
+  printEarningRatio(matchedLotto) {
+    const earning = this.getEarning(matchedLotto);
+    Console.print(
+      `총 수익률은 ${((earning / this.amount) * 100).toFixed(1)}%입니다.`,
+    );
   }
 }
 module.exports = Money;
