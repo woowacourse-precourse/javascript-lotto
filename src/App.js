@@ -7,6 +7,7 @@ class App {
   constructor() {
     this.amountOfLotto = 0;
     this.userLotto = [];
+    this.Lotto;
   }
 
   play() {
@@ -46,8 +47,16 @@ class App {
 
   getWinLotto() {
     MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.\n", (userInput) => {
-      const Lotto = new LottoUtils(userInput);
+      validateWinLottoDecimal(userInput);
     });
+  }
+
+  validateWinLottoDecimal(numbers) {
+    for(let i = 0; i < numbers.length; i++) {
+      if(Number(numbers)!== NaN && numbers[i].length !== 1) {
+        throw new error("숫자는 십진수여야 합니다.");
+      }
+    }
   }
 
   validateMoney(money) {
