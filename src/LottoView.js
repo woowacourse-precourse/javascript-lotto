@@ -4,6 +4,7 @@ const {
   checkLottoNumbers,
   checkBonusNumber,
 } = require("./Validation");
+const { WINNINGS } = require("./Constants");
 
 class LottoView {
   inputPurchaseAmount(resolve) {
@@ -52,6 +53,33 @@ class LottoView {
     for (const lotto of lottos) {
       let lottoNumbers = lotto.getLottoNumbers().sort((a, b) => a - b);
       MissionUtils.Console.print(lottoNumbers);
+    }
+  }
+
+  makeWinningMessage(numberCount, bonus, amount, winningCount) {
+    amount = amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return `${numberCount}개 일치${
+      bonus ? ", 보너스 볼 일치" : ""
+    } (${amount}원) - ${winningCount}개`;
+  }
+
+  printWinnings(winningRank) {
+    const ranking = [
+      WINNINGS.FIFTH_WIN,
+      WINNINGS.FOURTH_WIN,
+      WINNINGS.THIRD_WIN,
+      WINNINGS.SECOND_WIN,
+      WINNINGS.FIRST_WIN,
+    ];
+    for (const rank of ranking) {
+      let bonus = false;
+      if (rank.RANK === 2) bonus = true;
+      const numberCount = rank.COUNT;
+      const winningCount = winningRank[rank.RANK - 1];
+      const amount = rank.AMOUNT;
+      MissionUtils.Console.print(
+        this.makeWinningMessage(numberCount, bonus, amount, winningCount)
+      );
     }
   }
 }

@@ -9,10 +9,31 @@ module.exports = {
 
   WINNINGS: {
     RANK_MAX: 5,
-    FIRST_WIN: 2000000000,
-    SECOND_WIN: 30000000,
-    THIRD_WIN: 1500000,
-    FOURTH_WIN: 50000,
-    FIFTH_WIN: 5000,
+
+    FIRST_WIN: {
+      RANK: 1,
+      COUNT: 6,
+      AMOUNT: 2000000000,
+    },
+    SECOND_WIN: {
+      RANK: 2,
+      COUNT: 5,
+      AMOUNT: 30000000,
+    },
+    THIRD_WIN: {
+      RANK: 3,
+      COUNT: 5,
+      AMOUNT: 1500000,
+    },
+    FOURTH_WIN: {
+      RANK: 4,
+      COUNT: 4,
+      AMOUNT: 50000,
+    },
+    FIFTH_WIN: {
+      RANK: 5,
+      COUNT: 3,
+      AMOUNT: 5000,
+    },
   },
 };

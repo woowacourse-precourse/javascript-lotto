@@ -4,13 +4,13 @@ const { WINNINGS } = require("./Constants");
 
 class LottoModel {
   #lottos;
-  #winningCount;
+  #winningRankCount;
 
   constructor() {
     this.#lottos = [];
-    this.#winningCount = [];
+    this.#winningRankCount = [];
     for (let i = 0; i < WINNINGS.RANK_MAX; i++) {
-      this.#winningCount.push(0);
+      this.#winningRankCount.push(0);
     }
   }
 
@@ -22,18 +22,55 @@ class LottoModel {
     return this.#lottos;
   }
 
-  countWinning(lotto, winningNumbers, bonusNumber) {
-    const lottoNumbers = lotto.getLottoNumbers();
-    const countWinningNumbers = winningNumbers.filter((number) =>
-      lottoNumbers.includes(number)
-    );
-    const checkBonusNumber = lottoNumbers.includes(bonusNumber);
+  compareWinningNumbers(winningNumbers, lottoNumbers) {
+    return winningNumbers.filter((number) => lottoNumbers.includes(number))
+      .length;
+  }
+
+  compareBonusNumber(bonusNumber, lottoNumbers) {
+    return lottoNumbers.includes(bonusNumber);
   }
 
   checkWinning(winningNumbers, bonusNumber) {
     for (const lotto of this.#lottos) {
-      this.countWinning(lotto, winningNumbers, bonusNumber);
+      const lottoNumbers = lotto.getLottoNumbers();
+      const countWinningNumbers = this.compareWinningNumbers(
+        winningNumbers,
+        lottoNumbers
+      );
+      const checkBonusNumber = this.compareBonusNumber(
+        bonusNumber,
+        lottoNumbers
+      );
+      this.countRank(countWinningNumbers, checkBonusNumber);
     }
+    return this.#winningRankCount;
+  }
+
+  countRank(countWinningNumbers, checkBonusNumber) {
+    if (checkBonusNumber && countWinningNumbers === 5) {
+      this.#winningRankCount[WINNINGS.SECOND_WIN.RANK - 1]++;
+      return;
+    }
+
+    switch (countWinningNumbers) {
+      case 3:
+        this.#winningRankCount[WINNINGS.FIFTH_WIN.RANK - 1]++;
+        break;
+      case 4:
+        this.#winningRankCount[WINNINGS.FOURTH_WIN.RANK - 1]++;
+        break;
+      case 5:
+        this.#winningRankCount[WINNINGS.THIRD_WIN.RANK - 1]++;
+        break;
+      case 6:
+        this.#winningRankCount[WINNINGS.FIRST_WIN.RANK - 1]++;
+        break;
+    }
+  }
+
+  calcWinningAmount() {
+    this.#winningRankCount;
   }
 }
 
