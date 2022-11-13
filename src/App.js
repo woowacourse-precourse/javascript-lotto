@@ -3,7 +3,7 @@ const {START_MASSAGE, ERROR_MASSAGE} = require("./message.js");
 const isValidUserNumberInput = require("./ValidationCheck.js");
 class App {
   constructor() {
-    this.winningNumber = this.generateWinningNumber();
+    this.winningNumber = this.inputWinningNumber();
   }
   play() {
     Console.readLine(START_MASSAGE, (userInput) => {
@@ -22,8 +22,8 @@ class App {
 
   }
 
-  generateWinningNumber() {
-
+  inputWinningNumber() {
+    C
   }
 
   handleInputError(errorType) {

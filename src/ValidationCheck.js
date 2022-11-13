@@ -2,10 +2,10 @@ const userInput = require("./App.js");
 
 const isValidUserNumberInput = (userInput) => {
     if(!hasOnlyNumber(userInput)) {
-        return { isValid: false, errorType: "INVALID_INPUT_TYPE" };
+        return { isValid: false, errorType: "[ERROR] INVALID_INPUT_TYPE" };
     }
     if(!dividedInUnitOf1000(userInput)) {
-        return { isValid: false, errorType: "NOT_DIVISIBLE_BY_1000" };
+        return { isValid: false, errorType: "[ERROR] NOT_DIVISIBLE_BY_1000" };
     }
 
     return {isValid : true};
