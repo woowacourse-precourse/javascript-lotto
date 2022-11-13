@@ -8,6 +8,7 @@ const ASK_AMOUNTS_MESSAGE = "구입금액을 입력해 주세요.\n";
 const ASK_WINNING_NUMBER_MESSAGE = "\n당첨 번호를 입력해 주세요.\n";
 const ASK_BONUS_NUMBER = "\n보너스 번호를 입력해 주세요.\n";
 const ERROR_NOT_THOUSAND_UNIT = "[ERROR] 1,000원 단위로만 구매 가능합니다.";
+const ERROR_NOT_INTEGER = "[ERROR] 소수점 단위는 입력할 수 없습니다.";
 const ERROR_NOT_NUMBER_AND_COMMA =
   "[ERROR] 숫자와 ,(쉼표) 기호만을 입력해주세요.";
 
@@ -18,6 +19,7 @@ class App {
 
   getPurchaseAmount() {
     Console.readLine(ASK_AMOUNTS_MESSAGE, (amount) => {
+      this.checkIsInteger(amount);
       this.checkPurchaseAmount(amount);
 
       const numberOfLotto = amount / 1000;
@@ -27,6 +29,12 @@ class App {
 
       this.getWinningNumber();
     });
+  }
+
+  checkIsInteger(amount) {
+    if (amount.includes(".")) {
+      throw new Error(ERROR_NOT_INTEGER);
+    }
   }
 
   checkPurchaseAmount(amount) {
