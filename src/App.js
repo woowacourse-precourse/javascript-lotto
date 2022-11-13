@@ -1,10 +1,10 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { LOTTO_RANGE, INPUT_MESSAGE, OUTPUT_MESSAGE } = require("./constants");
 const BonusNumber = require("./domain/BonusNumber");
-const MatchingNumber = require("./domain/Statistics");
 const ProfitRate = require("./domain/ProfitRate.");
 const Payment = require("./domain/Payment");
 const WinnerNumber = require("./domain/WinnerNumber");
+const Statistics = require("./domain/Statistics");
 
 class App {
   constructor() {
@@ -40,19 +40,15 @@ class App {
   inputBonusNumber() {
     Console.readLine(INPUT_MESSAGE.bonusNumber, (number) => {
       this.bonusNumber = new BonusNumber(number).getBonusNumberWithoutSpace(number);
-      this.loadMatchingNumberAboutLotto();
+      this.loadStatisticsAboutLotto();
     });
   }
 
-  loadMatchingNumberAboutLotto() {
+  loadStatisticsAboutLotto() {
     Console.print(OUTPUT_MESSAGE.lottoResultAlarm);
-    const matchingNumber = new MatchingNumber(
-      this.totalLottoNumber,
-      this.winnerNumber,
-      this.bonusNumber
-    );
-    const lottoResult = matchingNumber.getResultOfThreeToFiveMatchingNumbers();
-    matchingNumber.printLottoResult(lottoResult);
+    const statistics = new Statistics(this.totalLottoNumber, this.winnerNumber, this.bonusNumber);
+    const lottoResult = statistics.getResultOfThreeToFiveMatchingNumbers();
+    statistics.printLottoResult(lottoResult);
     this.loadLottoProfitRate(lottoResult);
   }
 
