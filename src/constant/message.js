@@ -8,7 +8,7 @@ const MESSAGE = Object.freeze({
     rank === "5"
       ? `${rank}개 일치, 보너스 볼 일치 (${total}) - ${count}개`
       : `${rank}개 일치 (${total}원) - ${count}개`,
-  YIELD: (yield) => `총 수익률은 ${yield}%입니다.`,
+  YIELD: (revenue) => `총 수익률은 ${revenue}%입니다.`,
 
   ERROR: {
     PURCHASE_INTEGER: "[ERROR] 구입 금액은 정수여야 합니다.",
