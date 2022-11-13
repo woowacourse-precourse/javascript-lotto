@@ -6,6 +6,7 @@ class App {
     this.buyCost = 0;
     this.eachLotto = 0;
     this.lottoList = [];
+    this.winningLotto = [];
   }
 
   inputCost() {
@@ -34,6 +35,17 @@ class App {
     for (var lotto in this.lottoList) {
       MissionUtils.Console.print(lotto);
     }
+  }
+
+  inputWinningLotto() {
+    MissionUtils.Console.readLine(
+      "\n당첨 번호를 입력해 주세요.",
+      (winLotto) => {
+        var tempWinLotto = winLotto.split(",");
+        var winLottoArr = new Lotto(tempWinLotto);
+        this.winningLotto.push(...winLottoArr);
+      }
+    );
   }
 
   play() {}
