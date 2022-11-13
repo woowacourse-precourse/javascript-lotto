@@ -21,7 +21,7 @@ class App {
 
   getPurchaseAmount() {
     Console.readLine(ASK_AMOUNTS_MESSAGE, (amount) => {
-      this.checkNumberStartZero(amount);
+      this.checkAmountStartZero(amount);
       this.checkOnlyNumber(amount);
       const amountTypeofNumber = Number(amount);
       this.checkPurchaseAmount(amountTypeofNumber);
@@ -35,7 +35,7 @@ class App {
     });
   }
 
-  checkNumberStartZero(amount) {
+  checkAmountStartZero(amount) {
     if (amount[0] === "0") {
       throw new Error(ERROR_DONT_START_ZERO);
     }
@@ -88,6 +88,7 @@ class App {
       const arrayedUserInput = this.getArrayedUserInput(userInput);
 
       this.checkUesrInputHaveOnlyNumberAndComma(arrayedUserInput);
+      this.checkWinningNumberStartZero(userInput);
 
       this.userLotto = this.getUserLotto(userInput);
 
@@ -109,6 +110,16 @@ class App {
 
       if ((ASCII !== 44 && ASCII < 48) || ASCII > 57) {
         throw new Error(ERROR_NOT_NUMBER_AND_COMMA);
+      }
+    });
+  }
+
+  checkWinningNumberStartZero(userInput) {
+    const splitedInput = userInput.split(",");
+
+    splitedInput.forEach((item) => {
+      if (item[0] === "0") {
+        throw new Error(ERROR_DONT_START_ZERO);
       }
     });
   }
