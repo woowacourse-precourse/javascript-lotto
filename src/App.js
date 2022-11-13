@@ -37,6 +37,18 @@ class App {
       return true;
     }
   }
+
+  //로또 발행
+  issueTotalLotto(price) {
+    this.lottoCnt = price / 1000;
+    let lottoArray = [];
+
+    for (let i = 0; i < this.lottoCnt; i++) {
+      lottoArray.push(this.issueEachLotto());
+    }
+
+    this.lottoArray = lottoArray;
+  }
 }
 
 module.exports = App;
