@@ -1,20 +1,18 @@
-const MissionUtils = require('@woowacourse/mission-utils');
+const { Console, Random } = require('@woowacourse/mission-utils');
 
 const print = content => {
-  MissionUtils.Console.print(content);
+  Console.print(content);
 };
 
-const readLine = (content, func) => {
-  MissionUtils.Console.readLine(content, func);
+const readLine = content => {
+  return new Promise(resolve => Console.readLine(content, input => resolve(input)));
 };
 
 const makeLottoNumber = count => {
   const lottoNumbers = [];
 
   for (let i = 0; i < count; i++) {
-    const lottoNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort(
-      (a, b) => a - b,
-    );
+    const lottoNumber = Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
 
     lottoNumbers.push(lottoNumber);
   }

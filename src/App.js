@@ -17,7 +17,7 @@ class App {
       const lottoNumbers = numbers.split(',');
 
       this.#lotto = new Lotto(lottoNumbers);
-      inputBonusNumber();
+      this.inputBonusNumber();
     });
   }
 
