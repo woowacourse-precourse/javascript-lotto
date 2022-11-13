@@ -11,6 +11,7 @@ class LottoController {
     this.lottoAmount = null;
     this.boughtLotto = [];
     this.winningNumber = null;
+    this.bonusNumber = null;
   }
 
   countLottoAmount(checkedMoney) {
@@ -40,6 +41,12 @@ class LottoController {
     if (this.validation.isValidLottoNumber(this.inputWinNumbers))
       this.winningNumber = this.inputWinNumbers;
     return this.winningNumber;
+  }
+
+  setBonusNumber(inputNumber) {
+    this.inputBonus = Number(inputNumber);
+    if (this.validation.checkBonusNumber(this.inputBonus, this.winningNumber))
+      return (this.bonusNumber = this.inputBonus);
   }
 }
 
