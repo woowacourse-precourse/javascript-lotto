@@ -15,8 +15,12 @@ class Console {
     MissionUtils.Console.print(message);
   }
 
-  static calculateLottoCountWithPurchaseAmount(purchaseAmount) {
-    return Math.floor(purchaseAmount / 1000);
+  static close() {
+    MissionUtils.Console.close();
+  }
+
+  static printLotto(lottos) {
+    lottos.forEach((lotto) => Console.print(lotto));
   }
 }
 

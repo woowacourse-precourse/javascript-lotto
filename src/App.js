@@ -1,3 +1,5 @@
+const { Random } = require("@woowacourse/mission-utils");
+
 const Lotto = require("./Lotto");
 const Console = require("./Console");
 const Validation = require("./Validation");
@@ -19,18 +21,19 @@ class App {
 
   play() {
     Console.askAndGetUserInput(Console.ASK_PURCHASE_AMOUNT_MESSAGE, (purchaseAmount) => {
-      Validation.checkPurchaseAmount(purchaseAmount);
+      Validation.isValidPurchaseAmount(purchaseAmount);
 
-      const lottoCount = Console.calculateLottoCountWithPurchaseAmount(purchaseAmount);
+      const lottoCount = Lotto.calculateLottoCountWithPurchaseAmount(purchaseAmount);
       Console.print(`\n${lottoCount}${Console.LOTTO_COUNT}`);
 
       this.generateLottoWithLottoCount(lottoCount);
-      this.printLotto(this.lottos);
+      Console.printLotto(this.lottos);
+
       this.askWinningNumber();
     });
   }
 
-  static countSameNumberWithWinningNumber(lotto, winningNumbers) {
+  countSameNumberWithWinningNumber(lotto, winningNumbers) {
     Validation.isValidWinningNumber(winningNumbers);
 
     return lotto.filter((number) => winningNumbers.includes(number)).length;
@@ -45,10 +48,6 @@ class App {
       .forEach((lotto) => {
         this.lottos.push(lotto);
       });
-  }
-
-  printLotto(lottos) {
-    lottos.forEach((lotto) => Console.print(lotto));
   }
 
   askWinningNumber() {
@@ -97,6 +96,8 @@ class App {
           return acc;
         }, this.winningHistory)
       );
+
+      Console.close();
     });
   }
 }
