@@ -9,7 +9,7 @@ class UserNumber {
 
   validatePurchasingAmount(userPurchasingAmountInput) {
     if (userPurchasingAmountInput % 1000 !== 0) {
-      this.controller.printReadOnlyMessages("purchasingAmountError");
+      this.controller.throwErrorWithMessage("purchasingAmountError");
     }
   }
 
@@ -34,10 +34,8 @@ class UserNumber {
         singleLottoCombinationArray.sort((first, second) => first - second),
       );
     }
-    this.controller.printReadOnlyMessages(
-      "userLottoArray",
-      this.userLottoArray,
-    );
+    this.controller.printReadOnlyMessage("userLottoArray", this.userLottoArray);
+    this.controller.getWinningNumberFromUser();
   }
 
   getUserLottoArray() {

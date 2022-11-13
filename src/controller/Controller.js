@@ -9,8 +9,11 @@ class Controller {
     this.lotto = new Lotto();
   }
 
-  printReadOnlyMessages(type, data) {
+  printReadOnlyMessage(type, data) {
     if (type === "userLottoArray") this.view.printUserLottoArray(data);
+  }
+
+  throwErrorWithMessage(type) {
     if (type === "purchasingAmountError") this.view.printPurchasingAmountErrorMessage();
   }
 
