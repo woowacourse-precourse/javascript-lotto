@@ -1,4 +1,4 @@
-const { print, readLine } = require('../utils/missionUtil');
+const { print, readLine, close } = require('../utils/missionUtil');
 const { OUTPUT_MESSAGES, WINNING_AMOUNT } = require('../common/messages');
 const { LOTTO_MATCH } = require('../common/constants');
 
@@ -32,6 +32,7 @@ class LottoView {
 
   static printRate(rate) {
     print(`${OUTPUT_MESSAGES.TOTAL_PROFIT(rate)}`);
+    close();
   }
 }
 
