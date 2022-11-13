@@ -31,7 +31,7 @@ class Lotto {
   }
 
   validateOverlap(luckyNumbers, answer){
-  if(luckyNumbers.split(",").filter((v) => v == answer[5]).length > 0) throw new Error("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+  if(luckyNumbers.filter((v) => v == answer[5]).length > 0) throw new Error("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
   }
 }
 

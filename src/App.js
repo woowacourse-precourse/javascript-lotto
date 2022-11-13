@@ -15,6 +15,8 @@ class App {
     this.luckyNumbers = 0;
     this.bonusNumber = 0;
     this.nullBonusArr = 0;
+    this.overlapList = 0;
+    this.countRankList = {};
   }
 
   play() {
@@ -55,7 +57,6 @@ class App {
   getLuckyNumbers() {
     Console.readLine('당첨번호를 입력해 주세요.\n', (answer)=>{
       this.validateLuckyNumbers(answer);
-      this.luckyNumbers = answer;
       this.getBonusNumber();
     })
   }
@@ -64,13 +65,15 @@ class App {
     let checkAnswer = answer.split(',');
     let lotto = new Lotto(checkAnswer);
     lotto.validate(checkAnswer);
-    return answer;
+    return this.luckyNumbers = checkAnswer;
   }
 
   getBonusNumber() {
     Console.readLine('보너스 번호를 입력해 주세요.\n', (answer)=>{
       this.validateBonusNum(answer);
       this.bonusNumber = answer;
+      this.calcOverlapNum();
+      this.getRankCountNum();
     })
   }
 
@@ -84,6 +87,32 @@ class App {
     return answer;
   }
 
+  calcOverlapNum() {
+    let count =  0;
+    let result = [];
+    for(let listIndex = 0; listIndex < this.lottoAmount; listIndex++){
+      for(let index = 0; index < 6; index++) {
+        if(this.lottoList[listIndex].some(element => element == this.luckyNumbers[index]) == true) count += 1;
+      } result.push(count);
+        count = 0;
+    }
+    this.overlapList = result;
+    return this.overlapList;
+  }
+
+  getRankCountNum(){
+    let countRankFive = this.overlapList.filter((value) => value === 3).length;
+    let countRankFour = this.overlapList.filter((value) => value === 4).length;
+    let countRankOne = this.overlapList.filter((value) => value === 6).length;
+    let countRankThree = 0, countRankTwo = 0;
+    for(let index= 0; index < this.overlapList.length; index++){
+      if(this.overlapList[index] === 5){
+        if(this.lottoList[index].some(element => element == this.bonusNumber) === true) countRankTwo += 1;
+        if(this.lottoList[index].some(element => element == this.bonusNumber) === false) countRankThree += 1;
+      }
+    }
+    return this.countRankList = [countRankFive, countRankFour, countRankThree, countRankTwo, countRankOne];
+  }
 }
 let app = new App();
 app.play();
