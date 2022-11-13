@@ -36,6 +36,14 @@ class Controller {
     this.lotto.setLottoNumbers(winningNumber);
   }
 
+  getBonusNumberFromUser() {
+    this.view.getBonusNumberFromUser();
+  }
+
+  setBonusNumberFromUser() {
+    this.lotto.setBonusNumberFromUser();
+  }
+
   init() {
     this.getPurchasingAmountFromUser();
   }
