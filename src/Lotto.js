@@ -22,7 +22,11 @@ class Lotto {
 
   // TODO: 추가 기능 구현
   printLotto() {
-    MissionUtils.Console.print(this.#numbers);
+    MissionUtils.Console.print(this.ascendingOrderNumbers(this.#numbers));
+  }
+
+  ascendingOrderNumbers(numbers) {
+    return numbers.sort((a, b) => a - b);
   }
 }
 
