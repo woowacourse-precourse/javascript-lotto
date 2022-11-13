@@ -89,6 +89,13 @@ class App {
     if (numbers.length != [...set].length)
       throw "[ERROR] 중복된 숫자가 있습니다.";
   }
+
+  //보너스번호 입력
+  enterBonusNum() {
+    Console.readLine("보너스 번호를 입력해주세요.", (answer) => {
+      this.bonusNum = answer;
+    });
+  }
 }
 
 module.exports = App;
