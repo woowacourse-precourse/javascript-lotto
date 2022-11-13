@@ -41,6 +41,15 @@ class App {
       this.lottos.push(new Lotto(numbers));
       count++;
     }
+
+    this.printLottoNumbers();
+  }
+
+  printLottoNumbers() {
+    Console.print(`${this.lottoCount}개를 구매했습니다.`);
+    this.lottos.forEach((lotto) => {
+      Console.print(`[${lotto.getLotto().join(", ")}]`);
+    });
   }
 }
 
