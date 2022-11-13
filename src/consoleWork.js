@@ -1,8 +1,8 @@
 const { Console } = require('@woowacourse/mission-utils');
 
-class consoleWork {
-  static takeInput(message) {
-    Console.readline(message, callback);
+class ConsoleWork {
+  static takeInput(message, callback) {
+    Console.readLine(message, callback);
   }
 
   static print(message) {
@@ -14,4 +14,4 @@ class consoleWork {
   }
 }
 
-module.exports = consoleWork;
+module.exports = ConsoleWork;

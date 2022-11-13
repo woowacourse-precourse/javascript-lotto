@@ -5,8 +5,8 @@ const Message = require('./Message');
 class App {
   play() {
     ConsoleWork.print(Message.START_MESSAGE);
-    ConsoleWork.takeInput('', function (message) {
-      const lotto = new Lotto(message);
+    ConsoleWork.takeInput('', function (money) {
+      const lotto = new Lotto(money);
       lotto.startGame();
     });
   }

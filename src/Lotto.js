@@ -1,5 +1,6 @@
-const onsoleWork = require('./ConsoleWork');
+const ConsoleWork = require('./ConsoleWork');
 const Message = require('./Message');
+const RandomWork = require('./RandomWork');
 
 class Lotto {
   #numbers;
@@ -10,7 +11,7 @@ class Lotto {
   }
 
   startGame() {
-    console.log(this.#numbers);
+    ConsoleWork.print(`${this.#numbers / 1000}${Message.PURCHASE_MESSAGE}`);
   }
 }
 
