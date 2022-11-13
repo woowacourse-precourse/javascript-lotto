@@ -1,4 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
+const { isValidateNumber, isAmountUnitOf1000, isZeroNumber } = require('./utils/validation.js');
 
 class App {
   play() {
@@ -12,11 +13,9 @@ class App {
   }
 
   isValidatePurchaseAmount(purchaseAmount) {
-    const numberRegex = /^[0-9]+$/g;
-
-    if (!purchaseAmount.match(numberRegex)) throw new Error('[ERROR] 숫자가 아닌 값은 입력할 수 없습니다.');
-    if (purchaseAmount % 1000 !== 0) throw new Error('[ERROR] 구입금액은 1000 단위 입니다.');
-    if (purchaseAmount === '0') throw new Error('[ERROR] 최소금액은 1000원입니다.');
+    isValidateNumber(purchaseAmount);
+    isAmountUnitOf1000(purchaseAmount);
+    isZeroNumber(purchaseAmount);
     this.purchaseAmount = purchaseAmount;
   }
 }
