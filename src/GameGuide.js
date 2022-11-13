@@ -12,6 +12,8 @@ const title = {
   [ENTER_BONUS_NUMBER]: '보너스 번호'
 };
 
+const winningAmounts = ['', '2,000,000,000', '30,000,000', '1,500,000', '50,000', '5,000'];
+
 // 출력을 담당
 class GameGuide {
   #makeInputGuideText(inputType) {
@@ -33,6 +35,22 @@ class GameGuide {
     }, '');
 
     Console.print(text);
+  }
+
+  createMatchText(rank, count) {
+    if (rank === 2) {
+      return `5개 일치, 보너스 볼 일치 (${winningAmounts[2]}원) - ${count}개`;
+    }
+
+    const match = 7 - rank === 6 ? 6 : 7 - rank + 1;
+    return `${match}개 일치 (${winningAmounts[rank]}원) - ${count}개`;
+  }
+
+  printWinningResult(result) {
+    console.log('당첨 통계\n- - -');
+    for (let i = 5; i >= 1; i--) {
+      Console.print(this.createMatchText(i, result[i]));
+    }
   }
 }
 

@@ -34,6 +34,7 @@ class App {
     Console.readLine('', (inputValue) => {
       const number = toNumberType(inputValue);
       lottoGame.drawBonus(number);
+      lottoGame.checkWinningResult();
     });
   }
 
@@ -57,6 +58,6 @@ class App {
 }
 
 const app = new App();
-app.enterWinningNumbers();
+app.play();
 
 module.exports = App;

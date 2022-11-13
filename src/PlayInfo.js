@@ -19,6 +19,10 @@ class PlayInfo {
     this.#amount = amount;
   }
 
+  getGeneratedLotto() {
+    return this.#generatedLotto;
+  }
+
   setGeneratedLotto(generatedLotto) {
     this.#generatedLotto = generatedLotto;
 
@@ -40,6 +44,14 @@ class PlayInfo {
 
   setBonusNumber(number) {
     this.#bonusNumber = number;
+  }
+
+  getLottoInfo() {
+    return {
+      generatedLotto: this.getGeneratedLotto(),
+      winningNumbers: this.getWinningNumbers(),
+      bonusNumber: this.getBonusNumber()
+    };
   }
 }
 

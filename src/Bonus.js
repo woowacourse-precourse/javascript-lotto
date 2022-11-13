@@ -17,6 +17,10 @@ class Bonus {
   isBelong(numbers) {
     inputException.handleBelongException(numbers, this.#number);
   }
+
+  getNumber() {
+    return this.#number;
+  }
 }
 
 module.exports = Bonus;
