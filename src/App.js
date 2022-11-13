@@ -46,7 +46,7 @@ class App {
     });
   }
 
-  validateBonusNumber(numbers) {
+  validateWinningNumbers(numbers) {
     if (hasCharExceptComma(numbers)) {
       throw new Error(ERROR.ONLY_NUMBER_AND_COMMA);
     }
