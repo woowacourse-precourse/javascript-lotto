@@ -15,27 +15,29 @@ const PRINT_STRING = [
   '6개 일치 (2,000,000,000원) - ',
 ];
 const PRIZE_MONEY = [5000, 50000, 1500000, 30000000, 2000000000];
-
+const ERROR_BONUS_NUMBER = '[ERROR] 유효한 번호가 아닙니다.';
+const PRIZE_RESULT_PRINT = '\n당첨 통계\n---';
 class App {
   // eslint-disable-next-line no-useless-constructor
   // lotteryQuantity = 0;
 
-  prizeSum = 0;
-
-  winResult = [0, 0, 0, 0, 0];
-
-  userLottoArray = [];
-
-  bonusNumber = 0;
-
-  winningLotto;
-
-  userCost = 0;
-
-  rateOfReturn = 0.0;
-
   // eslint-disable-next-line no-useless-constructor
-  constructor() {}
+  constructor() {
+    this.prizeSum = 0;
+
+    this.winResult = [0, 0, 0, 0, 0];
+
+    this.userLottoArray = [];
+
+    this.bonusNumber = 0;
+
+    // eslint-disable-next-line no-unused-expressions
+    this.winningLotto;
+
+    this.userCost = 0;
+
+    this.rateOfReturn = 0.0;
+  }
 
   play() {
     Console.print(USER_MONEY_INPUT_REQUEST);
@@ -117,7 +119,7 @@ class App {
     Console.readLine('', (bonusNumber) => {
       const inputBonusNumber = parseInt(bonusNumber, 10);
       if (!this.isValidNumber(inputBonusNumber)) {
-        throw new Error('[ERROR] 유효한 번호가 아닙니다.');
+        throw new Error(ERROR_BONUS_NUMBER);
       }
       this.bonusNumber = bonusNumber;
       this.lotteryDraw();
@@ -125,14 +127,19 @@ class App {
   }
 
   isValidNumber(bonusNumber) {
-    if (bonusNumber < 1 || bonusNumber > 45 || !Number(bonusNumber)) {
+    if (
+      bonusNumber < 1 ||
+      bonusNumber > 45 ||
+      !Number(bonusNumber) ||
+      this.winningLotto.getNumbers().includes(bonusNumber)
+    ) {
       return false;
     }
     return true;
   }
 
   lotteryDraw() {
-    Console.print('\n당첨 통계\n---');
+    Console.print(PRIZE_RESULT_PRINT);
     this.checkLottoNumber();
   }
 
