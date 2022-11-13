@@ -1,5 +1,3 @@
-const MissionUtils = require("@woowacourse/mission-utils");
-
 class AppUtils {
   static checkMatchLottoNum(myLottoNumbers, winNumbers) {
     // 로또 발행 번호와 당첨 번호 일치 조회 
@@ -36,21 +34,24 @@ class AppUtils {
     return reward == 0 ? 0 : Math.round(reward / purchase * 1000) / 10;
   }
 
-  static printCountLotto(myLotto) {
-    // 구매한 로또 개수 출력
-    MissionUtils.Console.print(myLotto.getCount() + '개를 구매했습니다.');
+  static toStringCountLotto(myLotto) {
+    // 구매한 로또 개수 문자열 반환
+    return myLotto.getCount() + '개를 구매했습니다.';
   }
 
-  static printMyLotto(myLotto) {
-    // 구매한 로또 내역 출력
+  static toStringMyLotto(myLotto) {
+    // 구매한 로또 내역 문자열 반환
+    const result = new Array();
     myLotto.getMyLottoes().forEach(numbers => {
       let numStr = '[' + numbers.toString().replace(/,/g, ', ') + ']';
-      MissionUtils.Console.print(numStr);
+      result.push(numStr);
     });
+    return result;
   }
 
-  static printWinHistories(histories) {
-    // 로또 당첨 내역 출력
+  static toStringHistories(histories) {
+    // 로또 당첨 내역 문자열 반환
+    const result = new Array();
     const labels = [
       '3개 일치 (5,000원) - ',
       '4개 일치 (50,000원) - ',
@@ -59,24 +60,27 @@ class AppUtils {
       '6개 일치 (2,000,000,000원) - '   
     ]
     histories.forEach((history, idx) => {
-      MissionUtils.Console.print(labels[idx] + history + '개');
+      result.push(labels[idx] + history + '개');
     })
+    return result;
   }
 
-  static printRate(rate) {
-    // 수익률 출력
-    MissionUtils.Console.print('총 수익률은 ' + rate + '%입니다.');
+  static toStringRate(rate) {
+    // 수익률 문자열 반환
+    return '총 수익률은 ' + rate + '%입니다.';
   }
 
-  static printWinStat(myLotto, winLotto) {
-    // 당첨 통계 출력
+  static toStringStat(myLotto, winLotto) {
+    // 당첨 통계 문자열 반환
     const histories = this.getHistories(myLotto.getMyLottoes(), winLotto.getNumbers(), winLotto.getBonus());
     const rate = this.calRate(myLotto.getPurchase(), this.calReward(histories));
-
-    MissionUtils.Console.print('당첨 통계');
-    MissionUtils.Console.print('---');
-    this.printWinHistories(histories);
-    this.printRate(rate);
+    const result = [
+      '당첨 통계',
+      '---',
+      ...this.toStringHistories(histories),
+      this.toStringRate(rate)
+    ];
+    return result;
   }
 }
 
