@@ -28,6 +28,10 @@ class LottoController {
               '\n보너스 번호를 입력해 주세요.\n',
               (input) => {
                 this.lottoPublisher.receiveUserInputBonusNumber(input);
+                const purchasedLottos = customer.list();
+                const matchedLottoNumbers = purchasedLottos.map((lotto) =>
+                  this.lottoPublisher.checkMatchedLottoNumbers(lotto.numbers)
+                );
               }
             );
           }
