@@ -24,7 +24,7 @@ const CORRECT = Object.freeze({
 });
 
 const ERROR = Object.freeze({
-  PURCHASE_AMOUNT: "[ERROR] 구매 금액은 1000원 단위로 입력하셔야 합니다.",
+  PURCHASE_AMOUNT: "[ERROR] 구입 금액은 1000원 단위로 입력하셔야 합니다.",
   WIN_NUMBER: "[ERROR] 올바른 당첨 번호를 입력해주세요.",
   NUMBER_RANGE: "[ERROR] 1~45 의 숫자만 입력할 수 있습니다.",
   BONUS_NUMBER: "[ERROR] 올바른 보너스 번호를 입력해주세요.",
@@ -42,9 +42,9 @@ const UNIT = Object.freeze({
   WIN_NUMBER_CNT: 6,
   BONUS_LENGTH: 1,
   DEFAULT: 0,
+  STORAGE_SPACE: [],
   ALLOW: false,
   NOT_ALLOW: true,
-  STORAGE_SPACE: [],
 });
 
 const RANK = Object.freeze({
