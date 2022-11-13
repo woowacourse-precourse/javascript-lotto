@@ -1,4 +1,4 @@
-const { ERROR } = require('./lib/constants');
+const { ERROR, LOTTO_RANGE_REGEX } = require('./lib/constants');
 
 class Lotto {
   #numbers;
@@ -18,7 +18,7 @@ class Lotto {
     }
 
     numbers.forEach((item) => {
-      if (!/^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$/.test(item)) {
+      if (!LOTTO_RANGE_REGEX.test(item)) {
         throw new Error(ERROR.INCORRECT_RANGE_ERROR);
       }
     });

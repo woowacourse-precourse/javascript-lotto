@@ -1,4 +1,4 @@
-const { ERROR } = require('./lib/constants');
+const { ERROR, LOTTO_RANGE_REGEX } = require('./lib/constants');
 
 class Bonus {
   #bonus;
@@ -13,7 +13,7 @@ class Bonus {
       throw new Error(ERROR.DUPLICATE_BONUS_ERROR);
     }
 
-    if (!/^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$/.test(bonus)) {
+    if (!LOTTO_RANGE_REGEX.test(bonus)) {
       throw new Error(ERROR.INCORRECT_RANGE_ERROR);
     }
   }
