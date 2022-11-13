@@ -7,8 +7,8 @@ class LottoView {
     readLine(query, callback);
   }
 
-  static printLottoCount(count) {
-    print(`\n${OUTPUT_MESSAGES.BUY(count)}`);
+  static printLottoQuantity(quantity) {
+    print(`\n${OUTPUT_MESSAGES.BUY(quantity)}`);
   }
 
   static printUserLottos(lottos) {

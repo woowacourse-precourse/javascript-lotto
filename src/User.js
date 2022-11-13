@@ -1,6 +1,6 @@
 class User {
   #money = 0;
-  #lottoCount = 0;
+  #lottoQuantity = 0;
   #lottos = [];
   #matchLottos = {
     three: 0,
@@ -18,12 +18,12 @@ class User {
     return this.#money;
   }
 
-  setLottoCount(count) {
-    this.#lottoCount = count;
+  setLottoQuantity(quantity) {
+    this.#lottoQuantity = quantity;
   }
 
-  getLottoCount() {
-    return this.#lottoCount;
+  getLottoQuantity() {
+    return this.#lottoQuantity;
   }
 
   setLottos(lottos) {
