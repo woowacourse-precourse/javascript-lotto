@@ -1,3 +1,5 @@
+const { ERROR, LOTTO } = require('./constants');
+
 class Lotto {
   #numbers;
 
@@ -7,12 +9,15 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    if (numbers.length !== LOTTO.NUMBERS_COUNT) throw new Error(ERROR.LOTTO_NUMBER_COUNT);
+    if ([...new Set(numbers)].length !== numbers.length) {
+      throw new Error(ERROR.LOTTO_NUMBER_OVERLAP);
     }
+    numbers.forEach((number) => {
+      if (number < LOTTO.MIN_NUMBER || number > LOTTO.MAX_NUMBER)
+        throw new Error(ERROR.LOTTO_NUMBER_RANGE);
+    });
   }
-
-  // TODO: 추가 기능 구현
 }
 
 module.exports = Lotto;
