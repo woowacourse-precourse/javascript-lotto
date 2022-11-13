@@ -17,6 +17,7 @@ class App {
 
   userEnterException(userEnterAmount) {
     this.isInDivisible(userEnterAmount);
+    this.isNotNumber(userEnterAmount);
   }
 
   enterAmount() {
@@ -33,6 +34,8 @@ class App {
   play() {
     // 기능 1 : 사용자의 구입 금액 입력
     this.enterAmount();
+    MissionUtils.Console.print("프로그램 종료");
+    MissionUtils.Console.close();
   }
 }
 
