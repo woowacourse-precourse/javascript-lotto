@@ -28,10 +28,15 @@ class Controller {
         );
         const newLotto = new Lotto(numbers);
         purchasedLottos.push(newLotto);
-        View.printArray(newLotto.numbers);
       });
 
-    this.purchasedLottos = purchasedLottos;
+    this.renderPurchasedLottos();
+  }
+
+  renderPurchasedLottos() {
+    this.purchasedLottos.forEach((purchasedLotto) => {
+      View.printArray(purchasedLotto.numbers);
+    });
     this.generateWinningLotto();
   }
 
