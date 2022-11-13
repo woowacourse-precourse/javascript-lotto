@@ -42,6 +42,16 @@ class Validator {
     }
   }
 
+  checkBonusNumberValid(bonusNumber) {
+    if (isNaN(bonusNumber) === true) {
+      this.error(ERROR.NUMBER_TYPE);
+    }
+
+    if (bonusNumber < 1 || bonusNumber > 45) {
+      this.error(ERROR.NUMBER_RANGE);
+    }
+  }
+
   error(message) {
     throw new Error(message);
   }

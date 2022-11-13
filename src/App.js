@@ -4,11 +4,13 @@ const { throwError } = require("./utils/index");
 
 const Validator = require("./Validator");
 const Generator = require("./Generator");
+const Lotto = require("./Lotto");
 
 const initialState = {
   money: 0,
   count: 0,
   numbers: [],
+  bonusNumber: 0,
 };
 
 class App {
@@ -52,6 +54,20 @@ class App {
       number = number.split(",").map(Number);
 
       this.validator.checkNumberValid(number);
+
+      this.lotto = new Lotto(number);
+
+      this.inputBonusNumber();
+    });
+  }
+
+  inputBonusNumber() {
+    Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
+      bonusNumber = Number(bonusNumber);
+
+      this.validator.checkBonusNumberValid(bonusNumber);
+
+      this.state.bonusNumber = bonusNumber;
     });
   }
 
