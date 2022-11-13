@@ -1,4 +1,7 @@
 class LottoGame {
+    matchedWinningNumberCount;
+    matchedBonusNumber;
+
   constructor(lottoNumber, winningNumber, bonusNumber) {
     this.lottoNumber = lottoNumber;
     this.winningNumber = winningNumber;
@@ -14,11 +17,11 @@ class LottoGame {
         count += 1;
       }
     }
-    return count;
+      this.matchedWinningNumberCount = count;
   }
 
   matchBonusNumber() {
-    return this.lottoNumber.includes(this.bonusNumber);
+    this.matchedBonusNumber = this.lottoNumber.includes(this.bonusNumber);
   }
 }
 
