@@ -78,6 +78,23 @@ class App {
         count++;
       }
     }
+    this.checkRank(count, this.bonusLotto, myLotto);
+  }
+  checkRank(count, bonusLotto, myLotto) {
+    switch (count) {
+      case 3:
+        this.winningRank.Fifth++;
+        break;
+      case 4:
+        this.winningRank.Fourth++;
+        break;
+      case 5:
+        myLotto.includes(bonusLotto) ? this.winningRank.Second++ : this.winningRank.Third++;
+        break;
+      case 6:
+        this.winningRank.First++;
+        break;
+    }
   }
 }
 
