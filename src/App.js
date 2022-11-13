@@ -33,10 +33,10 @@ class App {
   }
 
   getWinningNumber() {
-    Console.readLine(`\n당첨 번호를 입력해 주세요.`, (winningNums) => {
-      const winningNums = winningNums.split(',');
+    Console.readLine(`\n당첨 번호를 입력해 주세요.`, (userInput) => {
+      const winningNums = userInput.split(',');
 
-      this.findWinningNumberError();
+      new Lotto(winningNums);
     });
   }
 
@@ -51,8 +51,6 @@ class App {
       );
     }
   }
-
-  findWinningNumberError(winningNums) {}
 }
 
 const app = new App();
