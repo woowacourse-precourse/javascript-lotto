@@ -42,7 +42,7 @@
   - [x] `Payment`
   - [x] `Lotto`
   - [x] `LottoBonus`
-  - [ ] `LottoIssuer`
+  - [x] `LottoIssuer`
   - [ ] `LottoResult`
   - [x] `LottoValidation`
 
