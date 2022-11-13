@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { Lotto } = require('./Lotto.js');
+const Lotto = require('./Lotto.js');
 
 function getLottoPurchaseAmount(){
   var inputMoney = 0;
@@ -27,17 +27,35 @@ function moneyValidationCheck(money){
   return Number(money);
 }
 
+function issueLotto(count){
+  MissionUtils.Console.print("" + count + "개를 구매했습니다.");
+  for(var i = 0; i < count; i++){
+    const lotto = new Lotto(generateRandomNumbers());
+    const numberToString = "[" + lotto.getNumbers().join(", ") + "]";
+    MissionUtils.Console.print(numberToString);
+  }
+}
+
+function generateRandomNumbers(){
+  const numberArray = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+  numberArray.sort(function(a, b) {
+    return a - b;
+  });
+  return numberArray;
+}
+
 class App {
   constructor() {
     this.winningNumber = [];
     this.lottoCount = 0;
-    this.lottoarray = [];
+    this.lottoArray = [];
   }
   play() {
     this.playLotto();
   }
   playLotto(){
     this.lottoCount = getLottoPurchaseAmount() / 1000;
+    this.lottoArray = issueLotto(this.lottoCount);
   }
 }
 
