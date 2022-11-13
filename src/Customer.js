@@ -5,12 +5,12 @@ class Customer {
     this.setNewLotto(lotto);
   }
 
-  list() {
-    return this.#lottos;
-  }
-
   setNewLotto(lotto) {
     this.#lottos = this.#lottos.concat(lotto);
+  }
+
+  list() {
+    return this.#lottos;
   }
 
   printLottoPurchaseResult() {
