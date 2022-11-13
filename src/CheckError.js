@@ -46,8 +46,12 @@ class CheckError {
   }
 
   static checkBonusNumber(bonusNumber, winnerNumberArray) {
-    // TODO: 1- 45 사이 숫자인지 아닌지
-    // TODO: 당첨 번호 숫자들과 겹치는지 안 겹치는지.
+    if (!CheckError.isNumber(bonusNumber))
+      throw new Error(ERROR_MESSAGE.NOT_NUMBER);
+    else if (!CheckError.isRangeInLottoNumber(bonusNumber))
+      throw new Error(ERROR_MESSAGE.NOT_RANGE_LOTTO_NUMBER);
+    else if (!CheckError.isUniqueNumber(bonusNumber, winnerNumberArray))
+      throw new Error(ERROR_MESSAGE.NOT_UNIQUE_BONUS_NUMBER);
   }
 
   static isRangeInLottoNumber(number) {
@@ -57,6 +61,10 @@ class CheckError {
   static isUniqueNumber(bonusNumber, winningNumberArray) {
     // 당첨 번호 배열에 보너스 번호가 없다면 true를 리턴.
     return !winningNumberArray.includes(bonusNumber);
+  }
+  static isNumber(number) {
+    // 숫자면 true, 아니면 false를 반환.
+    return !isNaN(number);
   }
 }
 
