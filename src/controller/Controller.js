@@ -38,7 +38,17 @@ class Controller {
     const splitNum = winningNum.split(',');
     const lottoNumValid = new Lotto(splitNum);
     lottoNumValid.validate(splitNum);
+    this.inputBonusNum();
   }
+
+  inputBonusNum() {
+    this.InputDisplay.getInput(
+      '보너스 번호를 입력해 주세요.\n',
+      this.getBonusNum.bind(this)
+    );
+  }
+
+  getBonusNum(bonusNum) {}
 }
 
 module.exports = Controller;
