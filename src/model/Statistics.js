@@ -1,11 +1,13 @@
 class Statistics {
   constructor(controller) {
     this.controller = controller;
-    this.first = 0;
-    this.second = 0;
-    this.third = 0;
-    this.fourth = 0;
-    this.fifth = 0;
+    this.ranks = {
+      first: 0,
+      second: 0,
+      third: 0,
+      fourth: 0,
+      fifth: 0,
+    };
     this.rateOfReturn = 0;
   }
 }
