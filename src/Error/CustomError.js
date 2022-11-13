@@ -7,13 +7,13 @@ class CustomError extends Error {
   }
 
   checkAbstract() {
-    if (this.isInputConstructor()) {
+    if (this.isCustomErrorConstructor()) {
       throw new Error(ABSTRACT_ERROR_MESSAGE.abstract_class);
     }
   }
 
-  isInputConstructor() {
-    return this.constructor === Error;
+  isCustomErrorConstructor() {
+    return this.constructor === CustomError;
   }
 }
 
