@@ -21,6 +21,21 @@ class LottoSet {
   buyLottos(money) {
     const lottos = Math.floor(money / 1000);
     MissionUtils.Console.print(`${lottos}개를 구매했습니다.`);
+    this.randomLottoSet(lottos);
+  }
+
+  randomLottoSet(lottos) {
+    Array.from({ length: lottos }, () => {
+      const randomLotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      const newLotto = new Lotto(randomLotto);
+      this.printLottoSet(newLotto.getSortLotto());
+      this.#lottoSet.push(newLotto.getSortLotto());
+    });
+    MissionUtils.Console.print('');
+  }
+
+  printLottoSet(newLotto) {
+    MissionUtils.Console.print('[' + newLotto.join(', ') + ']');
   }
 }
 
