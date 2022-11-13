@@ -2,6 +2,7 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const { TICKET, RANK } = require('./CONSTANT');
 const { convertNumberToComma } = require('./string');
+const { isSixNumbers, isNumbersUnique, isNumbersInRange } = require('./validation');
 
 class App {
   #paid;
@@ -54,9 +55,23 @@ class App {
 
   setLottoNumbers() {
     MissionUtils.Console.readLine('\n당첨 번호를 입력해 주세요.\n', (answer) => {
-      this.#answerNumbers = answer.split(',').map((i) => Number(i));
+      const numbers = answer.split(',').map((i) => Number(i));
+      this.validate(numbers);
+      this.#answerNumbers = numbers;
       this.setBonusNumber();
     });
+  }
+
+  validate(numbers) {
+    if (isSixNumbers(numbers)) {
+      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+    }
+    if (isNumbersUnique(numbers)) {
+      throw new Error('[ERROR] 로또 번호에 중복된 숫자가 없어야 합니다.');
+    }
+    if (!isNumbersInRange(numbers)) {
+      throw new Error('[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.');
+    }
   }
 
   setBonusNumber() {
