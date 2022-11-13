@@ -9,8 +9,7 @@ class lottoStart {
   }
   createStart() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (userCost) => {
-      if (!/^\d+$/.test(userCost))
-        throw new Error("[ERROR] 문자가 입력되어 있습니다.");
+      if (isNaN(userCost)) throw new Error('[ERROR] 올바른 숫자를 입력해 주세요.')
       const money = parseInt(userCost);
       if (money % 1000 !== 0 || money === 0)
         throw new Error("[ERROR] 1,000원 단위로 구매해야 합니다.");
