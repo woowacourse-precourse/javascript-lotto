@@ -37,13 +37,25 @@ class App {
     });
   }
 
-  // 로또 갯수 출력
+  // 로또 개수 출력
   setLottoCount(price) {
     if (price % 1000 !== 0) {
       throw new Error('[ERROR] 로또 금액에 맞게 입력해주세요.');
     }
     this.lottoCnt = price / 1000;
     Console.print(`\n${this.lottoCnt}${PURCHASE_LOTTO_COUNT}`);
+    this.setRandomLottoNumber();
+  }
+
+  // 로또 개수만큼 로또 번호 list 출력
+  setRandomLottoNumber() {
+    while (this.lottoNumberList.length < this.lottoCnt) {
+      const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+      this.lottoNumberList.push(numbers);
+    }
+    this.lottoNumberList.map(lotto => {
+      Console.print(lotto);
+    });
   }
 }
 
