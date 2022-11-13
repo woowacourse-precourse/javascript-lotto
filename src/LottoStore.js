@@ -16,6 +16,11 @@ class LottoStore {
     isValidMoneyNumberAmount(money);
   }
 
+  sellLotto() {
+    const result = this.getNewLotto();
+    return result;
+  }
+
   getNewLotto() {
     return new Lotto(this.getRandomLottoNumbers());
   }
