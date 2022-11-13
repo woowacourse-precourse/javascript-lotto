@@ -105,17 +105,21 @@ class Lotto {
   // 당첨 확인
   checkWins() {
     this.autoLotto.randomLottoArray.forEach((array) => {
-      this.checkPrize(array);
+      this.checkPrize(array, this.numbers);
     });
     this.printWinningStats();
   }
 
-  checkPrize(game) {
+  calculateWinningCount(game, numbers) {
     game.forEach((number) => {
-      if (this.numbers.includes(number)) {
+      if (numbers.includes(number)) {
         this.winningCount++;
       }
     });
+  }
+
+  checkPrize(game, numbers) {
+    this.calculateWinningCount(game, numbers);
 
     this.checkPrizes(game);
     this.initializeWinningCount();
