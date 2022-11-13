@@ -1,5 +1,4 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const GameResult = require("./model/GameResult");
 const Lotto = require("./model/Lotto");
 const UserLottos = require("./model/Lottos");
 
@@ -46,7 +45,7 @@ class App {
     MissionUtils.Console.readLine(
       "보너스 번호를 입력해 주세요.",
       (bonusNum) => {
-        this.bonusNumber = bonusNum;
+        this.bonusNumber = Number(bonusNum);
 
         this.printResult();
       }
@@ -54,13 +53,7 @@ class App {
   }
 
   printResult() {
-    this.result = new GameResult(
-      this.userLottos,
-      this.winningNumbers,
-      this.bonusNumber
-    );
-
-    this.result.print();
+    this.userLottos.printResult(this.winningNumbers, this.bonusNumber);
   }
 }
 

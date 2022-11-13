@@ -21,11 +21,15 @@ class Lotto {
 
     if (intersection.length === 6) return 1;
 
-    if (intersection.length === 5 && this.#numbers.includes(bonusNum)) return 2;
+    if (
+      intersection.length === 5 &&
+      Array.from(this.#numbers).includes(bonusNum)
+    )
+      return 2;
 
-    if (intersection.length < 3) return null;
+    if (intersection.length < 3) return 0;
 
-    return 8 - winingNumbers.length;
+    return 8 - intersection.length;
   }
 }
 
