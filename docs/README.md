@@ -2,15 +2,16 @@
 
 ## 🚀 기능 목록
 
-- [x] 구입금액문구 출력 및 입력 `run` 및 `inputmoney`
-- [x] 구입 갯수 출력 `purchase`
+- [x] 구입금액문구 출력 및 입력 `run` 및 `purchase`
+- [x] 구입 갯수 출력 `purchase`의 `LottoIssuer` 클래스
   - [x] 구입 금액 1000원 당 로또 발행 1회이다.
 - [x] 구입한 로또 목록 출력
   - [x] 1~45까지의 중복되지 않는 6자리의 숫자를 발행 횟수만큼 뽑는다. `issue`
   - [x] 로또 발행 횟수 만큼 로또 번호 목록을 출력한다. `printLottoNumbers`
 - [x] 당첨번호 문구 출력 및 입력 `drawWinningNumbers`
 - [x] 보너스번호 문구 출력 및 입력 `drawBonusNumber`
-- [x] 당첨통계 출력
+  - `Lotto` 클래스에 번호 저장
+- [x] 당첨통계 출력 `LottoResult` 클래스
   - [x] 당첨번호와 뽑은 로또를 비교해 중복 횟수를 구한다. `calculateMatching`
   - [x] 구입금액과 당첨금액을 활용해 수익률을 구한다. `calculateProfitRate`
   - [x] 당첨 데이터를 바탕으로 당첨 통계를 출력한다. `printResult`
@@ -18,7 +19,7 @@
 
 예외 사항을 검사하는 클래스 만들기
 
-- [x] 로또 관련 예외사항을 담는 클래스 `LottoValidation`
+- [x] 로또 관련 예외사항을 담는 `LottoValidation` 클래스
 
 - [x] 구입금액 입력 `Payment`
   - [x] 입력값은 숫자다.
@@ -34,7 +35,7 @@
 
 테스트 코드 작성하기
 
-`LottoGame`의 경우 ApplicationTest로 대체하였다.
+`LottoGame` 테스트의 경우 ApplicationTest로 대체하였다.
 
 - [x] 유효성 검사 클래스 테스트
   - [x] 모든 메서드를 테스트 하였는가?
