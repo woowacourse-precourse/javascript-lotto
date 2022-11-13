@@ -1,16 +1,34 @@
 const { Console } = require('@woowacourse/mission-utils');
 
-const { REWARD, STATISTICS } = require('../src/utils/constants');
+const { REWARD, STATISTICS } = require('./utils/constants');
 
-class LottoGame {
-  user;
-  winningNumbers;
-  bonusNumber;
+class Draw {
+  #user;
+  #winningNumbers;
+  #bonusNumber;
 
-  constructor(user, winningNumbers, bonusNumber) {
-    this.user = user;
-    this.winningNumbers = winningNumbers;
-    this.bonusNumber = bonusNumber;
+  set user(user) {
+    this.#user = user;
+  }
+
+  set winningNumbers(winningNumbers) {
+    this.#winningNumbers = winningNumbers;
+  }
+
+  set bonusNumber(bonusNumber) {
+    this.#bonusNumber = bonusNumber;
+  }
+
+  get user() {
+    return this.#user;
+  }
+
+  get winningNumbers() {
+    return this.#winningNumbers;
+  }
+
+  get bonusNumber() {
+    return this.#bonusNumber;
   }
 
   start() {
@@ -55,7 +73,7 @@ class LottoGame {
 
   calcRevenue(reward) {
     const revenue = (reward / this.user.purchaseAmount) * 100;
-    return LottoGame.roundToTwo(revenue);
+    return Draw.roundToTwo(revenue);
   }
 
   static roundToTwo(number) {
@@ -76,4 +94,4 @@ class LottoGame {
   }
 }
 
-module.exports = LottoGame;
+module.exports = Draw;
