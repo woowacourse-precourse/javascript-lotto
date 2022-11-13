@@ -69,9 +69,16 @@ class LottoGame {
 
   drawLottoPhase() {
     const eachLottoNumbers = this.getEachLottoNumbers();
+    const eachCompareResult = eachLottoNumbers.map(this.getCompareResult.bind(this));
   }
   getEachLottoNumbers() {
     return this.lottos.map((lotto) => lotto.getNumbers());
+  }
+  getCompareResult(lottoNumbers) {
+    const matchedLottoNumberCount = this.getMatchedLottoNumberCount(lottoNumbers);
+    const hasBonusNumber = this.hasBonusNumber(lottoNumbers);
+
+    return { matchedLottoNumberCount, hasBonusNumber };
   }
   getMatchedLottoNumberCount(lottoNumbers) {
     const matchCheckLength = new Set([...lottoNumbers, ...this.winningNumbers]).size;
