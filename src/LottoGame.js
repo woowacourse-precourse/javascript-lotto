@@ -4,6 +4,7 @@ const LottoUser = require('./LottoUser');
 class LottoGame {
   #user;
   #winningNumbers;
+  #bonusNumber;
 
   constructor() {
     this.#user = undefined;
@@ -26,6 +27,16 @@ class LottoGame {
       '\n당첨 번호를 입력해 주세요.\n',
       (numbers) => {
         this.#winningNumbers = numbers.split(',').map(Number);
+        this.inputBonusNumber();
+      },
+    );
+  }
+
+  inputBonusNumber() {
+    MissionUtils.Console.readLine(
+      '\n보너스 번호를 입력해 주세요.\n',
+      (number) => {
+        this.#bonusNumber = parseInt(number);
       },
     );
   }
