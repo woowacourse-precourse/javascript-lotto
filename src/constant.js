@@ -21,6 +21,7 @@ const RESULT_MESSAGE = Object.freeze({
   THIRD_LOTTERY: "5개 일치 (1,500,000원) - ",
   SECOND_LOTTERY: "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
   FIRST_LOTTERY: "6개 일치 (2,000,000,000원) - ",
+  RATE_OF_RETURN: "총 수익률은 ",
 });
 
 const LOTTO_SETTING = Object.freeze({
@@ -43,9 +44,18 @@ const RESULT_MATCH_COUNT = Object.freeze({
   FIRST_OR_SECOND_LOTTERY: 6,
 });
 
+const LOTTERY_OUTPUT_MONEY = Object.freeze({
+  FIFTH_LOTTERY: 5000,
+  FOURTH_LOTTERY: 50000,
+  THIRD_LOTTERY: 1500000,
+  SECOND_LOTTERY: 30000000,
+  FIRST_LOTTERY: 200000000,
+});
+
 module.exports = {
   LOTTO_MESSAGE,
   LOTTO_SETTING,
   RESULT_MATCH_COUNT,
   RESULT_MESSAGE,
+  LOTTERY_OUTPUT_MONEY,
 };

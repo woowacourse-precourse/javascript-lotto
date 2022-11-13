@@ -4,6 +4,7 @@ const {
   LOTTO_SETTING,
   RESULT_MATCH_COUNT,
   RESULT_MESSAGE,
+  LOTTERY_OUTPUT_MONEY,
 } = require("./constant.js");
 
 class Lotto {
@@ -80,7 +81,7 @@ class Lotto {
   static printLottoNumArr(lottoNumArr) {
     lottoNumArr.forEach((lottoNum) => {
       const sortedLottoNum = lottoNum.sort((a, b) => a - b);
-      MissionUtils.Console.print(sortedLottoNum);
+      MissionUtils.Console.print(`[${sortedLottoNum.join(", ")}]`);
     });
   }
 
@@ -174,6 +175,23 @@ class Lotto {
         `${RESULT_MESSAGE[rank] + this.resultLottery[rank].length}개`
       );
     }
+    const rateOfReturn = this.calRateOfReturn();
+    MissionUtils.Console.print(
+      `${RESULT_MESSAGE.RATE_OF_RETURN + rateOfReturn}%입니다.`
+    );
+  }
+
+  calRateOfReturn() {
+    const inputMoney = this.lottoNumArr.length * LOTTO_SETTING.LOTTO_PRICE;
+    let outputMoney = 0;
+    for (let rank in this.resultLottery) {
+      outputMoney +=
+        LOTTERY_OUTPUT_MONEY[rank] * this.resultLottery[rank].length;
+    }
+
+    const rateOfReturn = (outputMoney / inputMoney) * 100;
+
+    return rateOfReturn;
   }
 }
 
