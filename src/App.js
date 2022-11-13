@@ -7,6 +7,14 @@ const USER_MONEY_INPUT_ERROR = '[ERROR] 구입금액이 올바르지 않습니�
 const LOTTO_QUANTITY_OUTPUT = '개를 구매했습니다.';
 const WINNING_LOTTO_REQUEST = '\n당첨 번호를 입력해 주세요.';
 const BONUS_NUMBER_REQUEST = '\n보너스 번호를 입력해 주세요.';
+const PRINT_STRING = [
+  '3개 일치 (5,000원) - ',
+  '4개 일치 (50,000원) - ',
+  '5개 일치 (1,500,000원) - ',
+  '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
+  '6개 일치 (2,000,000,000원) - ',
+];
+const PRIZE_MONEY = [5000, 50000, 1500000, 30000000, 2000000000];
 
 class App {
   // eslint-disable-next-line no-useless-constructor
@@ -121,6 +129,46 @@ class App {
       return false;
     }
     return true;
+  }
+
+  lotteryDraw() {
+    Console.print('\n당첨 통계\n---');
+    this.checkLottoNumber();
+  }
+
+  checkLottoNumber() {
+    const winningLotto = this.winningLotto.getNumbers();
+
+    this.winResult = [0, 0, 0, 0, 0];
+    this.userLottoArray.forEach((oneLotto) => {
+      let count = 0;
+      oneLotto.forEach((number) => {
+        if (winningLotto.includes(number)) {
+          count += 1;
+        }
+      });
+      this.checkWinResult(oneLotto, count);
+    });
+  }
+
+  checkWinResult(oneLotto, count) {
+    switch (count) {
+      case 3:
+        this.winResult[0] += 1;
+        break;
+      case 4:
+        this.winResult[1] += 1;
+        break;
+      case 5:
+        if (oneLotto.includes(this.bonusNumber)) {
+          this.winResult[3] += 1;
+        } else this.winResult[2] += 1;
+        break;
+      case 6:
+        this.winResult[4] += 1;
+        break;
+      default:
+    }
   }
 }
 
