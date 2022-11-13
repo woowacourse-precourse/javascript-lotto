@@ -44,8 +44,10 @@ class App {
 
   inputBonusNumber(){
     Console.readLine('보너스 번호를 입력해 주세요.\n', (input) => {
-      this.input_lotto = new BonusNumber(input, this.input_lotto.getNumbers());
-      this.input_bonus = input;
+      this.input_bonus = new BonusNumber(input, this.input_lotto.getNumbers());
+
+      this.calResults();
+      this.printWin();
     });
   }
 
@@ -74,32 +76,32 @@ class App {
     Console.print("");
   }
 
-  // printWin(){
-  //   Console.print("");
-  //   Console.print("당첨 통계");
-  //   Console.print("---");
-
-  //   Console.print("3개 일치 (5,000원) - ");
-  //   Console.print("4개 일치 (50,000원) - ");
-  //   Console.print("5개 일치 (1,500,000원) - ");
-  //   Console.print("5개 일치, 보너스 볼 일치 (30,000,000원) - ");
-  //   Console.print("6개 일치 (2,000,000,000원) - ");
-  // }
+  printWin(){
+    Console.print("");
+    Console.print("당첨 통계");
+    Console.print("---");
+    
+    Console.print("3개 일치 (5,000원) - " + this.results[0] + "개");
+    Console.print("4개 일치 (50,000원) - " + this.results[1] + "개");
+    Console.print("5개 일치 (1,500,000원) - " + this.results[2] + "개");
+    Console.print("5개 일치, 보너스 볼 일치 (30,000,000원) - " + this.results[3] + "개");
+    Console.print("6개 일치 (2,000,000,000원) - " + this.results[4] + "개");
+  }
 
   calResults(){
     this.results = [0,0,0,0,0];
-    
+
     const bonusnumber = this.input_bonus.getNumber();
-    const numbers =this.input_lotto.getNumbers();
+    const winnumbers =this.input_lotto.getNumbers();
 
     for(const ticket of this.lottotickets){
       const mynumbers = ticket.getNumbers();
-      this.calResult_Each(mynumbers, numbers, bonusnumber);
+      this.calResult_Each(mynumbers, winnumbers, bonusnumber);      
     }
   }
 
-  calResult_Each(mynumbers, numbers, bonusnumber){
-    const count = this.countMatch(ticket, numbers);
+  calResult_Each(mynumbers, winnumbers, bonusnumber){
+    const count = this.countMatch(mynumbers, winnumbers);
     if(count == 3)
       this.results[0]++;
     if(count == 4)
@@ -113,17 +115,15 @@ class App {
       this.results[4]++;
   }
 
-  countMatch(mynumbers, numbers){
+  countMatch(mynumbers, winnumbers){
     let count = 0;
     for(const mynumber of mynumbers){
-      if(numbers.includes(mynumber))
+      if(winnumbers.includes(mynumber))
         count++;
     }
     return count;
   }
 }
-
-
 
 const app = new App();
 app.play();

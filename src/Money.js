@@ -14,10 +14,10 @@ class Money{
         if(!(money % 1 === 0))
             throw new Error("[ERROR] 정수를 입력해 주세요.");    
     }
-    
-    countLotto(){
-        c 
-        
+
+    toNumber(number){
+        number = Number(number);
+        return number;
     }
 
     getMoney(){

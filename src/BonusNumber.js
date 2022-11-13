@@ -3,6 +3,7 @@ class BonusNumber{
   
     constructor(bonusnumber, numbers) {
       this.validate(bonusnumber, numbers);
+      bonusnumber = this.toNumber(bonusnumber);
       this.bonusnumber = bonusnumber;
     }
   
@@ -17,6 +18,11 @@ class BonusNumber{
             throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."); 
         if(numbers.includes(bonusnumber))
             throw new Error("[ERROR] 로또 번호와 보너스 숫자는 서로 중복되지 않아야 합니다.");
+    }
+
+    toNumber(number){
+        number = Number(number);
+        return number;
     }
     
     getNumber(){
