@@ -7,7 +7,7 @@ const CASH_INPUT_ERROR_MESSAGE = "[ERROR] 잘못된 금액입니다. 금액은 �
 const getCashInput = () => {
   return new Promise((resolve, reject) =>
     MissionUtils.Console.readLine(CASH_INPUT_MESSAGE, (cashInput) => {
-      const isWrongInput = ErrorCase.isWrongCash(cashInput);
+      const isWrongInput = ErrorCase.isWrongCashInput(cashInput);
       if (isWrongInput) reject();
 
       resolve(cashInput);

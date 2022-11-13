@@ -1,5 +1,5 @@
 class ErrorCase {
-  static isWrongCash(cashInput) {
+  static isWrongCashInput(cashInput) {
     if (isNaN(cashInput)) return true;
 
     return false;
