@@ -8,6 +8,10 @@ const {
 } = require('./Constants');
 
 class PurchaseLotto {
+  constructor() {
+    this.lottoNumbers = [];
+  }
+
   getPurchaseAmount() {
     Console.readLine(PURCHASE_MESSAGE, (purchaseMoney) => {
       this.purchaseMoney = Number(purchaseMoney);
@@ -20,10 +24,16 @@ class PurchaseLotto {
     Console.print(PURCHASE_COUNT_MESSAGE(this.purchaseCount));
   }
 
-  printLottoNumber() {
+  getLottoNumbers() {
     for (let i = 0; i < this.purchaseCount; i++) {
-      Console.print(lottoNumber.createLottoNumber());
+      const num = lottoNumber.createLottoNumber();
+      this.lottoNumbers.push(num);
     }
+    return this.lottoNumbers;
+  }
+
+  printLottoNumber() {
+    return [...this.getLottoNumbers()].forEach((num) => Console.print(num));
   }
 
   printPurchaseLotto() {
