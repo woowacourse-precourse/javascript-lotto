@@ -63,8 +63,13 @@ class App {
     Console.readLine("\n보너스 번호를 입력해주세요.\n", (input) => {
       const bonusNum = input;
       this.bonusNum = Number(bonusNum);
+      checkAllLottos();
       Console.close();
     });
+  }
+
+  checkAllLottos() {
+    this.lottos.forEach((lotto) => this.checkLotto(lotto));
   }
 
   checkLotto(lotto) {
