@@ -1,4 +1,8 @@
 class CheckValue {
+  constructor(pay) {
+    this.isValidPay(pay);
+  }
+
   isValidPay(pay) {
     if (isNaN(pay)) throw new Error("[ERROR] 숫자만 입력해 주세요.");
     if (pay < 1000)
