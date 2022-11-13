@@ -7,6 +7,7 @@ const {
   printWinningResult,
   getRevenue,
   getRateOfReturn,
+  printMyLottosArray,
 } = require('./lib/utils');
 const Lotto = require('./Lotto');
 const Bonus = require('./Bonus');
@@ -54,17 +55,11 @@ class Game {
     );
   }
 
-  printMyLottosArray() {
-    this.#myLottos.getMyLottos().forEach((item) => {
-      Console.print(`[${item.join(', ')}]`);
-    });
-  }
-
   getInputPurchaseMoney() {
     Console.readLine(MESSAGE.INPUT_PURCHASE_MONEY, (money) => {
       this.initPurchase(money);
       this.initMyLottos();
-      this.printMyLottosArray();
+      printMyLottosArray(this.#myLottos.getMyLottos());
       this.getInputWinningNumber();
     });
   }

@@ -10,6 +10,12 @@ const printWinningResult = (winningArray, percentage) => {
   Console.print(MESSAGE.RESULT(winningArray, percentage));
 };
 
+const printMyLottosArray = (myLottosArray) => {
+  myLottosArray.forEach((item) => {
+    Console.print(`[${item.join(', ')}]`);
+  });
+};
+
 const getRevenue = (winningArray) => {
   return winningArray.reduce((acc, value, index) => {
     if (value !== 0) {
@@ -28,4 +34,5 @@ module.exports = {
   printWinningResult,
   getRevenue,
   getRateOfReturn,
+  printMyLottosArray,
 };
