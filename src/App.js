@@ -60,7 +60,17 @@ class App {
       this.bonusNum = bonusNum;
     });
   }
+  Winner() {
+    Console.print("\n당첨통계\n");
+    this.match.forEach((prize) => {
+      const { collect, reward, Bonus } = prize;
+    });
+  }
+  isValidation() {}
+
   play() {}
 }
 
 module.exports = App;
+const app = new App();
+app.Winner();
