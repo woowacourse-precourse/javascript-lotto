@@ -27,8 +27,15 @@ describe("로또 테스트", () => {
   test("로또 구매를 1000원 단위로 하지 않았을 경우", () => {
     expect(() => {
       const app = new App();
-      app.checkPurchaseAmount(8500);
+      app.checkPurchaseAmount("8500");
     }).toThrow("[ERROR] 1,000원 단위로만 구매 가능합니다.");
+  });
+
+  test("로또 구매 금액은 정수만 입력 가능하다.", () => {
+    expect(() => {
+      const app = new App();
+      app.checkIsInteger("8000.0");
+    }).toThrow("[ERROR] 소수점 단위는 입력할 수 없습니다.");
   });
 
   test("금액에 따른 로또 생성 횟수 테스트", () => {
