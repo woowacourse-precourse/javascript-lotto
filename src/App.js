@@ -24,6 +24,12 @@ class App {
   }
   issueLotto() {
     const lottoNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    return this.ascendingSort(lottoNumbers);
+  }
+  ascendingSort(array) {
+    return array.sort(function (element1, element2) {
+      return element1 - element2;
+    });
   }
 }
 
