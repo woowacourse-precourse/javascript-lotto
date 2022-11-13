@@ -1,4 +1,4 @@
-const { ERROR_MSG, RANK, PRIZE } = require("./utils/string");
+const { ERROR_MSG, RANK } = require("./utils/string");
 const Validation = require("./utils/Validation");
 
 class Lotto {
@@ -45,14 +45,14 @@ class Lotto {
   getNumbers() {
     return this.#numbers;
   }
-  compareNums(matchingNums) {
-    let match = this.isWinning(matchingNums.winning.getNumbers());
+  compareNums(matchingLotto) {
+    let match = this.isWinning(matchingLotto.winning.getNumbers());
     if (match <= 2) {
       return { match, rank: null };
     }
     let rank = RANK[match];
     if (match === 5) {
-      rank = this.isBonus(matchingNums.bonus);
+      rank = this.isBonus(matchingLotto.bonus);
     }
     return { match, rank };
   }

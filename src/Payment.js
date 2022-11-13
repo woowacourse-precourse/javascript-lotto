@@ -21,10 +21,7 @@ class Payment {
     WConsole.print(paymentMsg(ticket));
     return ticket;
   }
-  //   issueLotto() {
-  //     let lotto = new LottoGenerator();
-  //     return lotto.createLottoNumbers();
-  //   }
+
   issueLottos() {
     let lottos = [];
     for (let i = 0; i < this.#lottoTicket; i++) {
