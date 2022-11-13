@@ -16,4 +16,10 @@ describe("기능 테스트", () => {
     expect(result).toEqual('3개 일치 (5,000원) - 1개\n4개 일치 (50,000원) - 0개\n5개 일치 (1,500,000원) - 0개\n5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n6개 일치 (2,000,000,000원) - 0개\n');
   });
 
+  test("수익률 출력 메시지", () => {
+    const input = 62.5;
+    const result = getProfitMessage(input);
+
+    expect(result).toEqual('총 수익률은 62.5%입니다.\n');
+  });
 });
