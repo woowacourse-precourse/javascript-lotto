@@ -28,7 +28,7 @@
 
    - controller.js
 
-   2. 상수화
+2. 상수화
 
    utils
 
