@@ -1,5 +1,6 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const App = require('../src/App');
+const Lotto = require('../src/Lotto');
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();
@@ -148,5 +149,74 @@ describe('당첨 번호 입력', () => {
     const answer = [1, 2, 3, 4, 5, 6];
     mockQuestions([answer.join(', ')]);
     expect(() => App.inputWinningNumbers()).toThrow('[ERROR]');
+  });
+});
+
+describe('당첨 통계 계산', () => {
+  test('수익률 계산 1', () => {
+    const manualLotto = [
+      [8, 21, 23, 41, 42, 43],
+      [3, 5, 11, 16, 32, 38],
+      [7, 11, 16, 35, 36, 44],
+      [1, 8, 11, 31, 41, 42],
+      [13, 14, 16, 38, 42, 45],
+      [7, 11, 30, 40, 42, 43],
+      [2, 13, 22, 32, 38, 45],
+      [1, 3, 5, 14, 22, 45],
+    ];
+    const money = manualLotto.length * 1000;
+    const winningNumbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+    const app = new App();
+
+    app.money = money;
+    manualLotto.forEach((numbers) => { app.lottoList.push(new Lotto(numbers)); });
+    app.calculateStatistics(winningNumbers, bonusNumber);
+    const rate = app.getRateOfReturn().toFixed(1);
+
+    expect(rate).toEqual('62.5');
+  });
+
+  test('수익률 계산 2', () => {
+    const manualLotto = [
+      [8, 21, 23, 41, 42, 43],
+      [3, 5, 11, 16, 32, 38],
+      [7, 11, 16, 35, 36, 44],
+      [1, 8, 11, 31, 41, 42],
+      [13, 14, 16, 38, 42, 45],
+      [7, 11, 30, 40, 42, 43],
+      [2, 13, 22, 32, 38, 45],
+      [1, 3, 5, 14, 22, 45],
+    ];
+    const money = manualLotto.length * 1000;
+    const winningNumbers = [12, 17, 15, 17, 25, 26];
+    const bonusNumber = 7;
+    const app = new App();
+
+    app.money = money;
+    manualLotto.forEach((numbers) => { app.lottoList.push(new Lotto(numbers)); });
+    app.calculateStatistics(winningNumbers, bonusNumber);
+    const rate = app.getRateOfReturn().toFixed(1);
+
+    expect(rate).toEqual('0.0');
+  });
+
+  test('수익률 계산 3', () => {
+    const manualLotto = [
+      [1, 2, 3, 4, 5, 6].reverse(),
+      [1, 2, 3, 4, 5, 7].reverse(),
+    ];
+    const money = manualLotto.length * 1000;
+    const winningNumbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+    const answer = ((2_000_000_000 + 30_000_000) / money) * 100;
+    const app = new App();
+
+    app.money = money;
+    manualLotto.forEach((numbers) => { app.lottoList.push(new Lotto(numbers)); });
+    app.calculateStatistics(winningNumbers, bonusNumber);
+    const rate = app.getRateOfReturn().toFixed(1);
+
+    expect(rate).toEqual(answer.toFixed(1));
   });
 });
