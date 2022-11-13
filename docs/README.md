@@ -10,7 +10,7 @@
 
 ## :file_folder: 파일 디렉토리 구조
 
-![Alt text](../images/3%EC%A3%BC%EC%B0%A8%20%EC%84%A4%EA%B3%84.png)
+![Alt text](../images/3%EC%A3%BC%EC%B0%A8%20%EB%94%94%EB%A0%89%ED%86%A0%EB%A6%AC%20%EC%84%A4%EA%B3%84.png)
 
 1. mvc 패턴화
 
