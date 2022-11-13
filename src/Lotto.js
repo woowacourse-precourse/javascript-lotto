@@ -1,3 +1,5 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+
 const ERROR_LOTTO_SIZE_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";
 const ERROR_LOTTO_IS_INT_MESSAGE = "[ERROR] 정수가 아닌 숫자입니다.";
 const ERROR_LOTTO_OVERLAP_MESSAGE = "[ERROR] 로또 번호는 중복되는 숫자가 없어야 합니다.";
@@ -6,15 +8,31 @@ const ERROR_LOTTO_VALUE_MESSAGE = "[ERROR] 로또 번호는 1 ~ 45 사이의 숫
 class Lotto {
   #numbers;
 
-  constructor(numbers) {
+  constructor(numbers, userInputLotto, userInputLottoAmount) {
+    this.bonusNumber = null;
+    this.userLotto = userInputLotto;
+    this.lottoAmount = userInputLottoAmount;
     this.validate(numbers);
     this.#numbers = numbers;
+    this.getBonusNumber();
   }
 
   getBonusNumber() {
     MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.\n", (userInput) => {
       this.validateBonusNumber(userInput);
+      this.bonusNumber = userInput;
+      this.getLottoResult();
     });
+  }
+
+  getLottoResult() {
+    let lottoResult = [0, 0, 0, 0, 0];
+    for(let i = 0; i < this.userLotto.length; i++) {
+      for(let j = 0; j < this.userLotto[i].length; j++) {
+        countLottoMatch();
+      }
+    }
+    this.printLottoResult();
   }
 
   validate(numbers) {
