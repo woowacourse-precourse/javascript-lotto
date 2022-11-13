@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-
+const LottoUtils = require("src/Lotto.js");
 
 class App {
   #money;
@@ -42,6 +42,12 @@ class App {
       MissionUtils.Console.print(this.userLotto[i]);
     }
     MissionUtils.Console.print("\n");
+  }
+
+  getWinLotto() {
+    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.\n", (userInput) => {
+      const Lotto = new LottoUtils(userInput);
+    });
   }
 
   validateMoney(money) {
