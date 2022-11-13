@@ -13,6 +13,7 @@ const Validation = require("./Validation.js");
 class LottoGame {
   lottos;
   winningNumbers;
+  bonusNumber;
 
   constructor() {
     this.LottoGameView = new LottoGameView();
