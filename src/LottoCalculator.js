@@ -58,7 +58,9 @@ class LottoCalculate {
     Object.keys(lottoResult).forEach((rank) => {
       allPrice += winPrice[rank] * lottoResult[rank];
     });
-    return (((allPrice - purchacePrice) / purchacePrice) * 100).toFixed(2);
+    return allPrice !== 0
+      ? (((allPrice - purchacePrice) / purchacePrice) * 100).toFixed(2)
+      : 0.0;
   }
 
   printGainPercent(result) {
