@@ -107,6 +107,10 @@ class App {
     Console.print(`6개 일치 (2,000,000,000원) - ${winningRank.First}개`);
     this.rateOfReturn(winningRank, this.cost);
   }
+  rateOfReturn(winningRank, cost) {
+    let reward = FIRST_REWARD * winningRank.First + SECOND_REWARD * winningRank.Second + TRHID_REWARD * winningRank.Third + FOURTH_REWARD * winningRank.Fourth + FIFTH_REWARD * winningRank.Fifth;
+    Console.print(`총 수익률은 ${((reward / cost) * 100).toFixed(1)}% 입니다.`);
+  }
 }
 
 const app = new App();
