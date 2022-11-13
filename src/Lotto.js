@@ -1,4 +1,4 @@
-const { PRIZE_NAME, PRIZE_REWARD } = require('./const.js');
+const { PRIZE_NAME, PRIZE_REWARD, DIGIT_NUMBER, LOTTO_PAYMENT } = require('./const.js');
 const { print } = require('./util');
 
 class Lotto {
@@ -47,13 +47,14 @@ class Lotto {
 
       return (prevSumReward += prizeReward * prizeCount);
     }, 0);
-    const rate = (Math.round((sumReward - payment) / payment) * 100) / 100;
+    const rate = (Math.round((sumReward - payment) / payment) * DIGIT_NUMBER) / DIGIT_NUMBER;
 
     return rate;
   }
+
   printStatistics({ myLottos, bonusNumber }) {
     const resultLotto = this.getStatistics({ myLottos, bonusNumber });
-    const payment = myLottos.length * 1000;
+    const payment = myLottos.length * LOTTO_PAYMENT;
 
     print('당첨 통계\n---');
     Object.keys(PRIZE).forEach(rank => print(templeteLotto(rank, resultLotto[rank])));

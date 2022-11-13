@@ -1,3 +1,4 @@
+const { LOTTO_PAYMENT } = require('./const');
 const Lotto = require('./Lotto');
 const { print, readLine, makeLottoNumber, closeReadLine } = require('./util');
 class App {
@@ -22,7 +23,7 @@ class App {
 
   async buyLottos() {
     const money = await readLine('구입금액을 입력해 주세요.\n');
-    const lottoCount = Math.floor(Number(money) / 1000);
+    const lottoCount = Math.floor(Number(money) / LOTTO_PAYMENT);
 
     this.#myLottos = makeLottoNumber(lottoCount);
     this.printBoughtLottos({ lottoCount });
