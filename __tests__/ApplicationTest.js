@@ -111,6 +111,13 @@ describe("로또 테스트", () => {
     ]);
   });
 
+  test("당첨 번호는 0으로 시작하면 안된다.", () => {
+    expect(() => {
+      const app = new App();
+      app.checkWinningNumberStartZero(["1", "2", "3", "04", "5", "6"]);
+    }).toThrow("[ERROR] 0으로 시작하는 숫자는 입력할 수 없습니다.");
+  });
+
   test("배열 원소가 number 타입으로 변환되어야한다.", () => {
     const app = new App();
 
