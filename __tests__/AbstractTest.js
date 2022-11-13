@@ -4,7 +4,7 @@ const Input = require('../src/Input/index');
 describe('Input 클래스 추상화 검사 테스트 ', () => {
   test('Input 클래스를 사용하여 객체를 생성하면 예외가 발생한다.', () => {
     expect(() => {
-      const input = new Input();
+      new Input();
     }).toThrow('[ERROR] 추상 클래스입니다.');
   });
   test('Input 클래스의 추상화 메소드를 호출하면 예외가 발생한다. (1)', () => {
@@ -22,7 +22,7 @@ describe('Input 클래스 추상화 검사 테스트 ', () => {
 describe('CustomError 클래스 추상화 검사 테스트 ', () => {
   test('customError 클래스를 사용하여 객체를 생성하면 예외가 발생한다.', () => {
     expect(() => {
-      const customError = new CustomError();
+      new CustomError();
     }).toThrow('추상 클래스입니다.');
   });
 });
