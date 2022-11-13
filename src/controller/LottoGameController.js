@@ -26,6 +26,7 @@ class LottoGameController {
   }
 
   printLottos(lottos) {
+    this.lottoGameView.printLottoCount(lottos.length);
     this.lottoGameView.printLottoNumbers(lottos);
   }
 
