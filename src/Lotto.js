@@ -32,6 +32,15 @@ class Lotto {
     }
   }
 
+  isValidAmount(amount) {
+    if (
+      this.isNumber(amount) !== Error &&
+      this.isUnitOfThousnds(amount) !== Error
+    ) {
+      return true;
+    }
+  }
+
   // TODO: 추가 기능 구현
 }
 
