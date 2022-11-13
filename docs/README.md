@@ -18,6 +18,8 @@
 - validInputMoney: 구입 가격 입력값 validation
 - getLottoNumber: 구입 가격에 따른 로또 개수 출력
 - issueLottos: 로또를 발행
+- setRandomNumbers: 로또 발행하기 위해 랜덤의 숫자 6개 발행
+- sortNumbers: 로또 발행하기 전 랜덤의 숫자 오름차순 정렬
 - setLottoWinningNumber: 로또 당첨번호 및 보너스 번호 받기
 - getResult: 결과 출력
 
