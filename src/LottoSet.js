@@ -37,6 +37,12 @@ class LottoSet {
   printLottoSet(newLotto) {
     MissionUtils.Console.print('[' + newLotto.join(', ') + ']');
   }
+
+  play() {
+    this.validate(this.#money);
+    this.buyLottos(this.#money);
+    return this.#lottoSet;
+  }
 }
 
 module.exports = LottoSet;
