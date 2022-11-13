@@ -17,31 +17,16 @@ class LottoMarket {
   }
 
   showLottoes(buyingLottoes) {
-    Console.print(`\n${buyingLottoes.length}개를 구매했습니다.`);
+    Console.print(`${buyingLottoes.length}개를 구매했습니다.`);
     let Lottoes = buyingLottoes.reduce((acc, cur) => {
       Console.print(cur.getNumbers());
     }, []);
   }
 
   drawLottery() {
-    let lottoNums = [];
-    while (lottoNums.length < 6) {
-      lottoNums.push(this.createNumber(lottoNums));
-    }
+    let lottoNums = Random.pickUniqueNumbersInRange(1, 45, 6);
     lottoNums.sort((a, b) => a - b);
     return lottoNums;
-  }
-
-  createNumber(winningNumbers) {
-    let newNumber = Random.pickNumberInRange(1, 45);
-
-    return this.validate(winningNumbers, newNumber)
-      ? this.createNumber(winningNumbers)
-      : parseInt(newNumber);
-  }
-
-  validate(winningNumbers, newNumber) {
-    return winningNumbers.includes(newNumber);
   }
 }
 
