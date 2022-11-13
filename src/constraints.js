@@ -1,5 +1,7 @@
+// 콘솔 메시지 목록
 const MESSAGES = {
   BUY: "개를 구매했습니다.",
+  WIN: "당첨 통계\n---",
   EXCEPTIONS: {
     PURCHASE: {
       UNIT_EXCEPTION: "[ERROR] 구입 금액을 1,000원 단위로 입력해주세요.",
@@ -12,7 +14,8 @@ const MESSAGES = {
   },
 };
 
-const REWORDS = {
+// 당첨 번호에 따른 등수와 금액
+const REWARDS = {
   FIFTH: 5000,
   FOURTH: 50000,
   THIRD: 1500000,
@@ -20,4 +23,4 @@ const REWORDS = {
   FIRST: 2000000000,
 };
 
-module.exports = { MESSAGES, REWORDS };
+module.exports = { MESSAGES, REWARDS };
