@@ -8,6 +8,7 @@ class App {
     this.userLottos = new UserLottos();
     this.userLottoNumbers = [];
     this.winningLottoNumber = [];
+    this.bonusNumber = 0;
   }
 
   play() {}
@@ -29,6 +30,16 @@ class App {
         this.winningLottoNumber = winningNumber
           .split(",")
           .map((num) => Number(num));
+        askBonusNumber();
+      }
+    );
+  }
+
+  askBonusNumber() {
+    MissionUtils.Console.readLine(
+      "보너스 번호를 입력해 주세요.",
+      (bonusNum) => {
+        this.bonusNumber = bonusNum;
       }
     );
   }
