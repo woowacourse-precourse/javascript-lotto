@@ -30,6 +30,13 @@ class App {
   #lotteryWinnerNumber() {
     Console.readLine(MESSAGE.WINNING_NUMBER, (numbers) => {
       console.log(numbers);
+      this.#lotteryBonusNumber();
+    });
+  }
+
+  #lotteryBonusNumber() {
+    Console.readLine(MESSAGE.BONUS_NUMBER, (bonusNumber) => {
+      console.log(bonusNumber);
     });
   }
 
