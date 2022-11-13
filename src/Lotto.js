@@ -1,5 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { LOTTO_LENGTH, ERROR, RESULT } = require("./constant/lotto");
+const { LOTTO_LENGTH, ERROR, RESULT, PRIZE } = require("./constant/lotto");
 const Utils = require("./utils/utils");
 
 class Lotto {
@@ -57,6 +57,20 @@ class Lotto {
     return this.bonusNumber;
   }
 
+  printRank(lotteryTickets) {
+    this.compareTickets(lotteryTickets);
+
+    Console.print(
+      `${RESULT.THREE_MATCH}${this.resultMap.get(3)}${RESULT.UNIT}`
+    );
+    Console.print(`${RESULT.FOUR_MATCH}${this.resultMap.get(4)}${RESULT.UNIT}`);
+    Console.print(`${RESULT.FIVE_MATCH}${this.resultMap.get(5)}${RESULT.UNIT}`);
+    Console.print(
+      `${RESULT.FIVE_MATCH_WITH_BONUS}${this.resultMap.get("5B")}${RESULT.UNIT}`
+    );
+    Console.print(`${RESULT.SIX_MATCH}${this.resultMap.get(6)}${RESULT.UNIT}`);
+  }
+
   compareTickets(lotteryTickets) {
     for (let ticket of lotteryTickets) {
       let matchedNum = this.#numbers.filter((x) => ticket.includes(+x));
@@ -71,21 +85,10 @@ class Lotto {
         this.resultMap.set(matchedNum.length, value + 1);
       }
     }
-    this.printResultMessage(this.resultMap);
   }
 
   compareBonusNumber(ticket) {
     return ticket.includes(+this.bonusNumber);
-  }
-
-  printResultMessage(resultMap) {
-    Console.print(`${RESULT.THREE_MATCH}${resultMap.get(3)}${RESULT.UNIT}`);
-    Console.print(`${RESULT.FOUR_MATCH}${resultMap.get(4)}${RESULT.UNIT}`);
-    Console.print(`${RESULT.FIVE_MATCH}${resultMap.get(5)}${RESULT.UNIT}`);
-    Console.print(
-      `${RESULT.FIVE_MATCH_WITH_BONUS}${resultMap.get("5B")}${RESULT.UNIT}`
-    );
-    Console.print(`${RESULT.SIX_MATCH}${resultMap.get(6)}${RESULT.UNIT}`);
   }
 }
 
