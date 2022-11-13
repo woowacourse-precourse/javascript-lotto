@@ -11,6 +11,7 @@ class App {
 
   createLottoNums() {
     const lottoNums = Random.pickUniqueNumbersInRange(1, 45, 6);
+    lottoNums.sort((a, b) => a - b);
     return lottoNums;
   }
 }
