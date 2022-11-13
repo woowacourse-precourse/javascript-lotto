@@ -10,13 +10,12 @@ const { MESSAGE } = require('./utils/constants');
 
 class App {
   constructor() {
-    this.countOfLotto;
+    this.countOfLottos;
     this.purchasedLottos = [];
     this.winningNumbers;
     this.bonusNumber;
     this.winningResult = [];
     this.countOfRanking = [null, 0, 0, 0, 0, 0];
-    this.numberGenerator = new NumberGenerator();
   }
 
   play() {
@@ -25,20 +24,22 @@ class App {
 
   inputCash() {
     Console.readLine(MESSAGE.INPUT_CASH, (inputtedCash) => {
-      let lottoCounter = new LottoCounter(inputtedCash);
-      this.countOfLotto = lottoCounter.getCountOfLotto();
-
-      this.makeLotto();
+      this.findCountOfLottos(inputtedCash);
     });
   }
 
-  makeLotto() {
-    let num = this.countOfLotto;
+  findCountOfLottos(cash) {
+    this.countOfLottos = new LottoCounter(cash).getCountOfLotto();
+
+    this.createLottos();
+  }
+
+  createLottos() {
+    let num = this.countOfLottos;
 
     while (num !== 0) {
-      let numbers = this.numberGenerator.createRandomSixNumbers();
-      let newLotto = new Lotto(numbers);
-      this.purchasedLottos.push(newLotto.getLottoNumbers());
+      let numbers = new NumberGenerator().createRandomSixNumbers();
+      this.purchasedLottos.push(new Lotto(numbers).getLottoNumbers());
       num -= 1;
     }
 
@@ -47,7 +48,7 @@ class App {
 
   printLottos() {
     print('');
-    print(this.countOfLotto + MESSAGE.COUNT_OF_PURCHASED_LOTTOS);
+    print(this.countOfLottos + MESSAGE.COUNT_OF_PURCHASED_LOTTOS);
     this.purchasedLottos.map((lotto) => {
       print(
         `[${lotto[0]}, ${lotto[1]}, ${lotto[2]}, ${lotto[3]}, ${lotto[4]}, ${lotto[5]}]`
@@ -112,7 +113,7 @@ class App {
   printRateOfReturn() {
     let calculator = new RateOfReturnCalculator(
       this.countOfRanking,
-      this.countOfLotto
+      this.countOfLottos
     );
 
     let rateOfReturn = calculator.getRateOfReturn();

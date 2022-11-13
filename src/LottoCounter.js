@@ -4,7 +4,7 @@ class LottoCounter {
   constructor(cash) {
     this.isValidCash(cash);
     this.inputtedCash = cash;
-    this.countOfLotto = this.inputtedCash / NUMBER.INPUT_UNITS;
+    this.countOfLottos = this.inputtedCash / NUMBER.INPUT_UNITS;
   }
 
   isValidCash(cash) {
@@ -22,7 +22,7 @@ class LottoCounter {
   }
 
   getCountOfLotto() {
-    return this.countOfLotto;
+    return this.countOfLottos;
   }
 }
 
