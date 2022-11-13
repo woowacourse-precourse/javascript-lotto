@@ -2,6 +2,7 @@ const PHRASE = {
   PURCHASE_AMOUNT: '구입금액을 입력해 주세요.',
   LOTTO_COUNT: '개를 구매했습니다.',
   WINNING_NUMBER: '당첨 번호를 입력해 주세요.',
+  BONUS_NUMBER: '보너스 번호를 입력해 주세요.',
 };
 
 const ERROR = {
@@ -13,6 +14,8 @@ const ERROR = {
   LOTTO_NUMBER_OVERLAP: '[ERROR] 로또 번호는 서로 중복되지 않는 숫자여야 합니다.',
 
   WINNING_NUMBER: '[ERROR] 당첨 번호는 숫자 6개를 쉼표(,)로 구분하여야 합니다.',
+
+  BONUS_NUMBER: '[ERROR] 보너스 번호는 숫자 1개여야 합니다.',
 };
 
 const LOTTO = {
