@@ -6,11 +6,17 @@ const {
   makeUsersLotto,
   resultOfLottoClass,
   makeWinningOfLottoArr,
+  makeArrayOfArrayPlusNum,
 } = require("./CalculationMoney");
-const Render = require("./Render");
+const {
+  showHowmanyboughtLotto,
+  showLottoMade,
+  showLottoRateOfReturn,
+  showResultOfWinLotto,
+  lineBreak,
+} = require("./Render");
 const { validateMoney, validateBonusNum } = require("./CheckBonusAndMoney");
 
-const render = new Render();
 class App {
   // 생성자함수를 생성하면 바로 데이터 검사를 할 수 있게만들어야통과함
 
@@ -18,15 +24,10 @@ class App {
     this.getUserMoney();
   }
 
-  lineBreak() {
-    Console.print(``);
-  }
-
   getUserMoney() {
-    Console.readLine(`구매금액을 입력해 주세요.\n`, (money) => {
-      this.userInputMoney = money;
-
-      validateMoney(money);
+    Console.readLine(`구매금액을 입력해 주세요.\n`, (userInputMoney) => {
+      this.userInputMoney = userInputMoney;
+      validateMoney(userInputMoney);
 
       this.showPurchasedLotto();
     });
@@ -34,20 +35,20 @@ class App {
 
   showPurchasedLotto() {
     const numOfLotto = HowManyCanBuyLotto(this.userInputMoney);
+    lineBreak();
 
-    render.showHowmanybought(numOfLotto);
+    showHowmanyboughtLotto(numOfLotto);
 
-    this.lineBreak();
+    lineBreak();
 
-    this.makeLotto(numOfLotto);
+    this.makeLottoandShow(numOfLotto);
   }
 
-  makeLotto(numOfLotto) {
+  makeLottoandShow(numOfLotto) {
     this.userHaveLotto = makeUsersLotto(numOfLotto);
+    showLottoMade(this.userHaveLotto);
 
-    render.showMadeLotto(this.userHaveLotto);
-
-    this.lineBreak();
+    lineBreak();
 
     this.getWinningNum();
   }
@@ -60,7 +61,7 @@ class App {
 
         const lotto = new Lotto(this.winningNum);
 
-        this.lineBreak();
+        lineBreak();
 
         this.getBonusNum();
       }
@@ -70,29 +71,31 @@ class App {
   getBonusNum() {
     Console.readLine("보너스 번호를 입력해 주세요.\n", (bonusNum) => {
       this.bonusNum = bonusNum;
-
       validateBonusNum(bonusNum, this.winningNum);
 
-      this.lineBreak();
+      lineBreak();
 
-      this.calculateOfLotto();
+      this.makeWinningOfLottoArr();
     });
   }
 
-  calculateOfLotto() {
-    this.totalWinningNum = [...this.winningNum, this.bonusNum];
+  makeWinningOfLottoArr() {
+    this.totalWinningNum = makeArrayOfArrayPlusNum(
+      this.winningNum,
+      this.bonusNum
+    );
 
-    const winningNumArr = makeWinningOfLottoArr(
+    const winningOfLottoArr = makeWinningOfLottoArr(
       this.userHaveLotto,
       this.totalWinningNum
     );
 
-    this.makeLottoResult(winningNumArr);
+    this.makeLottoGameResult(winningOfLottoArr);
   }
 
-  makeLottoResult(winningNumArr) {
+  makeLottoGameResult(winningOfLottoArr) {
     const result = resultOfLottoClass(
-      winningNumArr,
+      winningOfLottoArr,
       this.userHaveLotto,
       this.bonusNum
     );
@@ -101,15 +104,15 @@ class App {
   }
 
   renderOfResult(result) {
-    render.showResult([...result]);
+    showResultOfWinLotto([...result]);
 
-    this.makeWinningAmount([...result]);
+    this.makeWinningAmountAndShow([...result]);
   }
 
-  makeWinningAmount(result) {
+  makeWinningAmountAndShow(result) {
     const winningAmount = makeAmountOfWinningMoney(result);
 
-    render.showRateOfReturn(winningAmount, this.userInputMoney);
+    showLottoRateOfReturn(winningAmount, this.userInputMoney);
 
     Console.close();
   }
