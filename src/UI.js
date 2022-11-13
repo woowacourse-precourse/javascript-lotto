@@ -30,6 +30,13 @@ class UI {
   static printPurchasedLottoAmount(purchased) {
     MissionUtils.Console.print(purchased.amount + PURCHASE_AMOUNT_NOTICE_MESSAGE);
   }
+
+  static printPurchasedLottoList(purchased) {
+    purchased.lottoArray.forEach((lotto) => {
+      const lottoNumbers = lotto.showNumbers();
+      MissionUtils.Console.print(lottoNumbers);
+    });
+  }
 }
 
 module.exports = UI;
