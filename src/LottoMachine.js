@@ -66,7 +66,8 @@ class LottoMachine {
   }
 
   printLottoNumber(numbers) {
-    MissionUtils.Console.print(numbers);
+    const strNumbers = numbers.join(", ")
+    MissionUtils.Console.print(`[${strNumbers}]`);
   }
 
   publishLotto(numbers) {
