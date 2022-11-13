@@ -38,6 +38,10 @@ class UserInterface {
     });
     return bonusNumber;
   }
+
+  static printStartStatisics() {
+    Console.print(PRINT_MESSAGE.START_STATISTICS);
+  }
 }
 
 module.exports = UserInterface;

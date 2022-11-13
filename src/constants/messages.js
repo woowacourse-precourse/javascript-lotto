@@ -17,5 +17,6 @@ const ERROR_MESSAGE = Object.freeze({
 });
 const PRINT_MESSAGE = Object.freeze({
   PURCHASE_MESSAGE: (num) => `${num}개를 구매했습니다.`,
+  START_STATISTICS: `당첨 통계\n ---\n`,
 });
 module.exports = { INPUT_MESSAGE, ERROR_MESSAGE, PRINT_MESSAGE };
