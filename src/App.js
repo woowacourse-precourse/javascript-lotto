@@ -47,6 +47,28 @@ class App {
     });
   }
 
+  getAllResults(published_Lottos, winning, count) {
+    const all_results = [0, 0, 0, 0, 0];
+    for(let i = 0; i < count; i++){
+      const result = this.getSingleResult(published_Lottos[i], winning);
+      if(result >= 3){
+        all_results[result - 3] += 1
+      }
+    }
+  }
+
+  getSingleResult(published_Lotto, winning) {
+    const result = 0;
+    for(let i = 0; i < 6; i++){
+      if(published_Lotto.includes(winning[i])){
+        result += 1;
+      }
+      if(result == 5 && published_Lotto.includes(winning[-1])) {
+        result += 1;
+      }
+    }
+  }
+
 }
 
 const app = new App;
