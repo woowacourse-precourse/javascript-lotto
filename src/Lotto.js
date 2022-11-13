@@ -19,6 +19,28 @@ class Lotto {
   printNumbers() {
     Console.print(`[${this.#numbers.join(', ')}]`);
   }
+
+  getRank(winningNumber, bonusNumber) {
+    const winningCount = this.#numbers.filter((number) => winningNumber.includes(number)).length;
+    const matchBonus = this.#numbers.includes(bonusNumber);
+
+    if (winningCount === 6) {
+      return 1;
+    }
+    if (winningCount === 5 && matchBonus) {
+      return 2;
+    }
+    if (winningCount === 5) {
+      return 3;
+    }
+    if (winningCount === 4) {
+      return 4;
+    }
+    if (winningCount === 3) {
+      return 5;
+    }
+    return 6;
+  }
 }
 
 module.exports = Lotto;
