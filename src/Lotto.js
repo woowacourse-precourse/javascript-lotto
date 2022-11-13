@@ -19,6 +19,13 @@ class Lotto {
     }
   }
 
+  isUnique(numbers) {
+    const numbersArr = numbers.split(',');
+    if ([...new Set(numbersArr)].length !== 6) {
+      throw new Error('[ERROR] 중복된 숫자를 입력할 수 없습니다.');
+    }
+  }
+
   // TODO: 추가 기능 구현
 }
 
