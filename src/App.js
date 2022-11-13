@@ -12,6 +12,7 @@ class App {
     this.purchaseAmount = 0; // 구입 금액
     this.purchaseCount = 0; // 구매한 로또 개수
     this.lottoList = []; // 구매한 로또 목록
+    this.results = []; // 각 로또의 결과
     this.winningNumbers = []; // 당첨 번호
     this.bonusNumber = 0; // 보너스 번호
   }
@@ -28,15 +29,15 @@ class App {
         this.purchaseCount = +money / 1000;
         Console.print(this.purchaseAmount);
         this.setLottoNumbers().printLottoList();
+        this.setWinningNumbers();
       }
-      Console.close();
     });
   }
 
   setWinningNumbers() {
     Console.readLine("당첨 번호를 입력해주세요.", (numbers) => {
       this.winningNumbers = [...validateWiningNumber(numbers)];
-      Console.close();
+      this.setBonusNumber();
     });
   }
 
@@ -44,6 +45,7 @@ class App {
     Console.readLine("보너스 번호를 입력해주세요.", (number) => {
       this.bonusNumber = validateBonusNumber(number);
       Console.close();
+      this.getResult();
     });
   }
 
@@ -59,6 +61,15 @@ class App {
   printLottoList() {
     Console.print(this.purchaseCount + MESSAGES.BUY);
     this.lottoList.map((lotto) => console.log(lotto.getNumbers()));
+  }
+
+  getResult() {
+    this.lottoList.map((lotto) =>
+      this.results.push(
+        lotto.compareNumbers(this.winningNumbers, this.bonusNumber)
+      )
+    );
+    console.log(this.results);
   }
 }
 
