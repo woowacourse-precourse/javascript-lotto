@@ -36,4 +36,7 @@ const ERROR = {
 };
 
 const LOTTO_RANGE_REGEX = /^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$/;
-module.exports = { MESSAGE, ERROR, VALUE, LOTTO_RANGE_REGEX };
+
+const REWARD_ARRAY = [5000, 50000, 1500000, 30000000, 2000000000];
+
+module.exports = { MESSAGE, ERROR, VALUE, LOTTO_RANGE_REGEX, REWARD_ARRAY };
