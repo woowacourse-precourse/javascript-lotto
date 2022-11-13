@@ -29,4 +29,15 @@ describe("CheckError 클래스 테스트", () => {
       CheckError.checkLottoSort([[9, 8, 7, 6, 5, 4]]);
     }).toThrow("[ERROR]");
   });
+  test("isRangeInLottoNumber함수 Test", () => {
+    const number = 46;
+    const test = CheckError.isRangeInLottoNumber(number);
+    expect(test).toBeFalsy();
+  });
+  test("isUniqueNumber함수 Test", () => {
+    const bonusNumber = 1;
+    const winningNumberArray = [1, 2, 3, 4, 5, 6];
+    const test = CheckError.isUniqueNumber(bonusNumber, winningNumberArray);
+    expect(test).toBeFalsy();
+  });
 });
