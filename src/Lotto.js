@@ -33,12 +33,38 @@ class Lotto {
     });
   }
 
-  checkResult(lottoAndBonusNum, makedLottos){
+  checkCorrect(winningAndBonusNum, makedLottos){
+    const winningNum = winningAndBonusNum[0];
+    const bonusNum = winningAndBonusNum[1];
+    const correctNums = [];
+    let correctBonus = 0;
+
+    for (let i = 0; i < makedLottos.length; i++) {
+      const correctNum = makedLottos[i].filter(number => winningNum.includes(String(number)));
+      const matchBonus = this.checkBonus(makedLottos[i], ...bonusNum)
+
+      if (correctNum.length == 5 && matchBonus) correctBonus += 1;
+      else correctNums.push(correctNum.length);
+    }
+    this.checkResult(correctNums, correctBonus);
+    return correctNums
+  }
+
+
+  checkBonus(correctFiveNumLottos, bonusNum) {
+    return correctFiveNumLottos.includes(Number(bonusNum))
+  }
+
+
+  checkResult(correctNums, correctBonus) {
 
   }
 
 
 
+  printResult() {
+    
+  }
 
   // TODO: 추가 기능 구현
 }
