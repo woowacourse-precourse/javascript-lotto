@@ -61,6 +61,140 @@ describe('로또 테스트', () => {
         });
     });
 
+    test('1등 당첨 테스트', () => {
+        mockRandoms([[8, 21, 23, 41, 42, 43]]);
+        mockQuestions(['1000', '8,21,23,41,42,43', '7']);
+        const logs = [
+            '1개를 구매했습니다.',
+            '[8, 21, 23, 41, 42, 43]',
+            '3개 일치 (5,000원) - 0개',
+            '4개 일치 (50,000원) - 0개',
+            '5개 일치 (1,500,000원) - 0개',
+            '5개 일치, 보너스 볼 일치 (30,000,000원) - 0개',
+            '6개 일치 (2,000,000,000원) - 1개',
+            '총 수익률은 200000000%입니다.',
+        ];
+        const logSpy = getLogSpy();
+        const app = new App();
+        app.play();
+        logs.forEach((log) => {
+            expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+        });
+    });
+
+    test('2등 당첨 테스트', () => {
+        mockRandoms([[8, 21, 23, 41, 42, 43]]);
+        mockQuestions(['1000', '8,21,23,41,42,7', '43']);
+        const logs = [
+            '1개를 구매했습니다.',
+            '[8, 21, 23, 41, 42, 43]',
+            '3개 일치 (5,000원) - 0개',
+            '4개 일치 (50,000원) - 0개',
+            '5개 일치 (1,500,000원) - 0개',
+            '5개 일치, 보너스 볼 일치 (30,000,000원) - 1개',
+            '6개 일치 (2,000,000,000원) - 0개',
+            '총 수익률은 3000000%입니다.',
+        ];
+        const logSpy = getLogSpy();
+        const app = new App();
+        app.play();
+        logs.forEach((log) => {
+            expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+        });
+    });
+
+    test('3등 당첨 테스트', () => {
+        mockRandoms([[8, 21, 23, 41, 42, 43]]);
+        mockQuestions(['1000', '8,21,23,41,42,7', '45']);
+        const logs = [
+            '1개를 구매했습니다.',
+            '[8, 21, 23, 41, 42, 43]',
+            '3개 일치 (5,000원) - 0개',
+            '4개 일치 (50,000원) - 0개',
+            '5개 일치 (1,500,000원) - 1개',
+            '5개 일치, 보너스 볼 일치 (30,000,000원) - 0개',
+            '6개 일치 (2,000,000,000원) - 0개',
+            '총 수익률은 150000%입니다.',
+        ];
+        const logSpy = getLogSpy();
+        const app = new App();
+        app.play();
+        logs.forEach((log) => {
+            expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+        });
+    });
+
+    test('4등 당첨 테스트', () => {
+        mockRandoms([[8, 21, 23, 41, 42, 43]]);
+        mockQuestions(['1000', '8,21,23,41,2,7', '45']);
+        const logs = [
+            '1개를 구매했습니다.',
+            '[8, 21, 23, 41, 42, 43]',
+            '3개 일치 (5,000원) - 0개',
+            '4개 일치 (50,000원) - 1개',
+            '5개 일치 (1,500,000원) - 0개',
+            '5개 일치, 보너스 볼 일치 (30,000,000원) - 0개',
+            '6개 일치 (2,000,000,000원) - 0개',
+            '총 수익률은 5000%입니다.',
+        ];
+        const logSpy = getLogSpy();
+        const app = new App();
+        app.play();
+        logs.forEach((log) => {
+            expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+        });
+    });
+
+    test('5등 당첨 테스트', () => {
+        mockRandoms([[8, 21, 23, 41, 42, 43]]);
+        mockQuestions(['1000', '8,21,23,1,2,7', '45']);
+        const logs = [
+            '1개를 구매했습니다.',
+            '[8, 21, 23, 41, 42, 43]',
+            '3개 일치 (5,000원) - 1개',
+            '4개 일치 (50,000원) - 0개',
+            '5개 일치 (1,500,000원) - 0개',
+            '5개 일치, 보너스 볼 일치 (30,000,000원) - 0개',
+            '6개 일치 (2,000,000,000원) - 0개',
+            '총 수익률은 500%입니다.',
+        ];
+        const logSpy = getLogSpy();
+        const app = new App();
+        app.play();
+        logs.forEach((log) => {
+            expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+        });
+    });
+
+    test('1~5등 다 당첨', () => {
+        mockRandoms([
+            [1, 2, 3, 4, 5, 6],
+            [1, 2, 3, 4, 5, 45],
+            [1, 2, 3, 4, 5, 44],
+            [1, 2, 3, 4, 44, 45],
+            [1, 2, 3, 43, 44, 45],
+            [13, 14, 16, 38, 42, 45],
+            [13, 14, 16, 38, 42, 45],
+            [13, 14, 16, 38, 42, 45],
+        ]);
+        mockQuestions(['8000', '1,2,3,4,5,6', '45']);
+        const logs = [
+            '8개를 구매했습니다.',
+            '3개 일치 (5,000원) - 1개',
+            '4개 일치 (50,000원) - 1개',
+            '5개 일치 (1,500,000원) - 1개',
+            '5개 일치, 보너스 볼 일치 (30,000,000원) - 1개',
+            '6개 일치 (2,000,000,000원) - 1개',
+            '총 수익률은 25394437.5%입니다.',
+        ];
+        const logSpy = getLogSpy();
+        const app = new App();
+        app.play();
+        logs.forEach((log) => {
+            expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+        });
+    });
+
     test('예외 테스트', () => {
         mockQuestions(['1000j']);
         expect(() => {
@@ -69,14 +203,3 @@ describe('로또 테스트', () => {
         }).toThrow('[ERROR]');
     });
 });
-
-// 임시, 후에 삭제 예정.
-// describe.only('test', () => {
-//     test('split 메서드로 주어진 값을 구분', () => {
-//         const input = '1,2';
-//         const result = input.split(',');
-
-//         expect(result).toContain('2', '1');
-//         expect(result).toContainEqual('1', '2');
-//     });
-// });

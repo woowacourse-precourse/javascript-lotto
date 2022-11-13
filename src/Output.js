@@ -37,7 +37,7 @@ class Output {
     }
 
     checkBonusNumber(count, randomLotto, bonusNumber) {
-        if (count === 5 && randomLotto.findIndex((e) => e === bonusNumber)) {
+        if (count === 5 && randomLotto.indexOf(+bonusNumber) > -1) {
             return 6;
         }
 
@@ -55,7 +55,7 @@ class Output {
             '4': ['4개 일치 (50,000원) -', 0, 50000],
             '5': ['5개 일치 (1,500,000원) -', 0, 1500000],
             '6': ['5개 일치, 보너스 볼 일치 (30,000,000원) -', 0, 30000000],
-            '7': ['6개 일치 (2,000,000,000원) -', 0, 200000000],
+            '7': ['6개 일치 (2,000,000,000원) -', 0, 2000000000],
         };
 
         compareResult.forEach((number) => {
