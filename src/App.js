@@ -12,9 +12,22 @@ class App {
   #matching;
 
   constructor() {
-    this.#winningNumbers = [];
     this.#lottos = [];
     this.#matching = [0, 0, 0, 0, 0];
+  }
+
+  play() {
+    Console.readLine(MESSAGE.REQUEST_MONEY, (input) => {
+      this.buyLottos(input);
+      this.printLottos();
+      this.readWinningNumbers();
+    });
+  }
+
+  buyLottos(money) {
+    Validator.validateMoney(money);
+    this.#money = Number(money);
+    for (let i = 0; i < money / 1000; i += 1) this.issueLotto();
   }
 
   issueLotto() {
@@ -25,12 +38,6 @@ class App {
     );
     const lotto = new Lotto(numbers.sort((a, b) => a - b));
     this.#lottos.push(lotto);
-  }
-
-  buyLottos(money) {
-    Validator.validateMoney(money);
-    this.#money = Number(money);
-    for (let i = 0; i < money / 1000; i += 1) this.issueLotto();
   }
 
   printLottos() {
@@ -49,6 +56,17 @@ class App {
     Validator.isInRange(number);
     Validator.validateBonusNumber(Number(number), this.#winningNumbers);
     this.#bonusNumber = Number(number);
+  }
+
+  readWinningNumbers() {
+    Console.readLine(MESSAGE.REQUEST_WINNING_NUMBERS, (input) => {
+      this.setWinningNumbers(input.split(','));
+      Console.readLine(MESSAGE.REQUEST_BONUS_NUMBER, (input) => {
+        this.setBonusNumber(input);
+        this.#lottos.forEach((lotto) => this.calculateMatching(lotto));
+        this.printResult();
+      });
+    });
   }
 
   calculateMatching(lotto) {
@@ -78,7 +96,6 @@ class App {
   }
 
   printResult() {
-    this.#lottos.forEach((lotto) => this.calculateMatching(lotto));
     Console.print(`
 당첨 통계
 ---
@@ -92,24 +109,6 @@ class App {
 총 수익률은 ${this.getEarningRate().toFixed(1)}%입니다.`);
 
     Console.close();
-  }
-
-  readWinningNumbers() {
-    Console.readLine(MESSAGE.REQUEST_WINNING_NUMBERS, (input) => {
-      this.setWinningNumbers(input.split(','));
-      Console.readLine(MESSAGE.REQUEST_BONUS_NUMBER, (input) => {
-        this.setBonusNumber(input);
-        this.printResult();
-      });
-    });
-  }
-
-  play() {
-    Console.readLine(MESSAGE.REQUEST_MONEY, (input) => {
-      this.buyLottos(input);
-      this.printLottos();
-      this.readWinningNumbers();
-    });
   }
 }
 
