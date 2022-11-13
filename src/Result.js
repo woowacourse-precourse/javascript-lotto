@@ -131,9 +131,25 @@ class Result {
     const prize = this.getPrize();
     const purchaseAmount = this.bundleOfLotto.length * 1000;
 
-    const earningsRate = ((prize / purchaseAmount) * 100).toFixed(1);
+    this.earningsRate = ((prize / purchaseAmount) * 100).toFixed(1);
 
-    return earningsRate;
+    this.checkEarningsRateOverThousand();
+
+    return this.earningsRate;
+  }
+
+  checkEarningsRateOverThousand() {
+    if (Number(this.earningsRate) >= 1000) {
+      this.getEarningsRateMarkedByComma();
+    }
+  }
+
+  getEarningsRateMarkedByComma() {
+    const splitedEarningsRate = this.earningsRate.split(".");
+
+    splitedEarningsRate[0] = Number(splitedEarningsRate[0]).toLocaleString();
+
+    this.earningsRate = splitedEarningsRate.join(".");
   }
 }
 
