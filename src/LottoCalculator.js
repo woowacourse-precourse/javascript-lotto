@@ -51,18 +51,21 @@ class LottoCalculate {
     return this;
   }
 
+  gainPercent(lottoResult, count) {
+    let allPrice = 0;
+    const winPrice = WINNING.PRICE;
+    const purchacePrice = count * LOTTO.PRICE;
+    Object.keys(lottoResult).forEach((rank) => {
+      allPrice += winPrice[rank] * lottoResult[rank];
+    });
+    return (((allPrice - purchacePrice) / purchacePrice) * 100).toFixed(2);
+  }
+
   printGainPercent(result) {
     const count = result.count;
     const lottoResult = { ...result };
-    const price = WINNING.PRICE;
     delete lottoResult.count;
-    let allPrice = 0;
-    Object.keys(lottoResult).forEach((rank) => {
-      console.log(rank, price[rank], lottoResult[rank]);
-      allPrice += price[rank] * lottoResult[rank];
-    });
-    const gainPercent = ((allPrice / (count * LOTTO.PRICE)) * 100).toFixed(2);
-    Console.print(PRINT.GAIN_PECENT(gainPercent));
+    Console.print(PRINT.GAIN_PECENT(this.gainPercent(lottoResult, count)));
     return;
   }
 }

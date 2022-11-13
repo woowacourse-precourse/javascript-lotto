@@ -65,4 +65,12 @@ describe("로또 당첨 결과 테스트", () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
+
+  test("로또 수익률 출력 테스트", () => {
+    const logSpy = getLogSpy();
+    lottoCalculate.printGainPercent(result);
+    expect(logSpy).toHaveBeenCalledWith(
+      expect.stringContaining("총 수익률은 40631000.00%입니다.")
+    );
+  });
 });
