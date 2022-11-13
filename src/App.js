@@ -2,7 +2,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const { MESSAGES, REQUIREMENT, PRIZE } = require('./constant/Constant');
 const { printAmounts, printLotto, printResult } = require('./Print');
 const Lotto = require('./Lotto');
-const { validatePurchaseAmount } = require('./Validation');
+const { validatePurchaseAmount, validateBonusNumber} = require('./Validation');
 
 class App {
   #purchaseAmount;
@@ -36,6 +36,7 @@ class App {
 
   getBonusNumber() {
     MissionUtils.Console.readLine(MESSAGES.INPUTBONUSNUMBER, (input) => {
+      validateBonusNumber(input, this.#winningNumber);
       this.#bonusNumber = Number(input);
       
       this.calcResult();
