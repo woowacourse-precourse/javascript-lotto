@@ -102,6 +102,20 @@ class App {
     if (match === 5) this.winRank.fiveMatch[1] += 1;
     if (match === 6) this.winRank.sixMatch[1] += 1;
     if (match === 7) this.winRank.fiveBonusMatch[1] += 1;
+    this.findLottoProfit();
+  }
+
+  findLottoProfit() {
+    const profit =
+      String(
+        ((this.winRank.threeMatch[0] * this.winRank.threeMatch[1] +
+          this.winRank.fourMatch[0] * this.winRank.fourMatch[1] +
+          this.winRank.fiveMatch[0] * this.winRank.fiveMatch[1] +
+          this.winRank.sixMatch[0] * this.winRank.sixMatch[1] +
+          this.winRank.fiveBonusMatch[0] * this.winRank.fiveBonusMatch[1]) /
+          this.money) *
+          100,
+      ) + '%';
   }
 }
 
