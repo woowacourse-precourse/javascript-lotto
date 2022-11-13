@@ -7,6 +7,10 @@ class Controller {
     this.userNumber = new UserNumber(this);
   }
 
+  printReadOnlyMessages (type) {
+    if (type === "userLottoArray") this.view.printUserLottoArray();
+  }
+
   setPurchasingAmount (userPurchasingAmount) {
     this.userNumber.setPurchasingAmount(userPurchasingAmount);
   }
