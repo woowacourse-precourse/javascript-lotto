@@ -13,9 +13,27 @@ const ERROR_MESSAGES = {
   BOUNS_NUM: `[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 1 ~ 45 사이의 숫자 1개를 입력해야 합니다.`,
 };
 
+const INITIAL_STATICS = {
+  3: 0,
+  4: 0,
+  5: 0,
+  6: 0,
+  '5andBonus': 0,
+};
+
+const WINNIG_PRICES = {
+  3: 5000,
+  4: 50000,
+  5: 1500000,
+  6: 2000000000,
+  '5andBonus': 30000000,
+};
+
 module.exports = {
   LOTTO_PRICE,
   RANGE_OF_LOTTO_NUMBER,
   TOTAL_COUNTS,
   ERROR_MESSAGES,
+  INITIAL_STATICS,
+  WINNIG_PRICES,
 };
