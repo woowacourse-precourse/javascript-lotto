@@ -48,12 +48,16 @@ class App {
     });
     return false;
   }
-  isValidLottoNumber(numbers) {
+  isInRange(num) {
+    if (num < 1 || num > 45) return false;
+    return true;
+  }
+  isValidLottoNumbers(numbers) {
     numbers.forEach((number) => {
       if (isNaN(number)) return false;
 
       const parsedNum = parseInt(number, 10);
-      if (parsedNum < 1 || parsedNum > 45) return false;
+      if (this.isInRange(parsedNum)) return false;
     });
     return true;
   }
