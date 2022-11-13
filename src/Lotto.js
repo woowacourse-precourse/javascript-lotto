@@ -1,3 +1,5 @@
+const MissionUtils = require('@woowacourse/mission-utils');
+
 class Lotto {
   #numbers;
 
@@ -27,6 +29,10 @@ class Lotto {
         throw new Error('[ERROR] 로또 번호의 범위는 1~45까지입니다.');
       }
     });
+  }
+
+  print_lotto() {
+    MissionUtils.Console.print(this.#numbers);
   }
 }
 

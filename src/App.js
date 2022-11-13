@@ -1,10 +1,15 @@
-const LOTTO = require('./Lotto');
+const Lotto = require('./Lotto');
 const MissionUtils = require('@woowacourse/mission-utils');
 
 class App {
   play() {
     const number_of_lottos = this.get_number_of_lottos();
     MissionUtils.Console.print(number_of_lottos + '개를 구매했습니다.');
+    //
+    const lotto_list = this.generate_lottos(number_of_lottos);
+    lotto_list.forEach((e) => {
+      e.print_lotto();
+    });
     const [win_number, bonus_number] = this.get_win_number_and_bonus_number();
   }
 
@@ -18,6 +23,17 @@ class App {
     }
     return user_price / 1000;
   }
+
+  generate_lottos(number_of_lottos) {
+    const list = [];
+    for (let i = 0; i < number_of_lottos; i++) {
+      list.push(
+        new Lotto(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6))
+      );
+    }
+    return list;
+  }
+
   get_win_number_and_bonus_number() {
     let win_number;
     let bonus_number;
@@ -46,6 +62,22 @@ class App {
       }
     });
   }
+
+  // matching_number(input, win, bonus) {
+  //   let count = 0;
+  //   input.forEach((e) => {
+  //     if (win.includes(e)) {
+  //       count += 1;
+  //     }
+  //   });
+  //   if (count === 5) {
+  //     if (win.includes(bonus)) {
+  //       return 10; //5개 일치, 보너스 볼 일치 ->10
+  //     }
+  //     return count;
+  //   }
+  //   return count;
+  // }
 }
 
 module.exports = App;
