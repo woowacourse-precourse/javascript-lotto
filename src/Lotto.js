@@ -78,6 +78,34 @@ class Lotto {
     MissionUtils.Console.print(`총 수익률은 ${number.toFixed(1)}%입니다.`);
   }
 
+  printResult(resultArray) {
+    const RESULT_MESSAGE = [
+      Message.threeMatches,
+      Message.fourMatches,
+      Message.fiveMatches,
+      Message.fiveAndBonusMatches,
+      Message.sixMatches,
+    ];
+
+    MissionUtils.Console.print(Message.winningStatistics);
+    let answer = [];
+    for (let i = 0; i < resultArray.length; i++) {
+      answer.push(`${RESULT_MESSAGE[i]} ${resultArray[i]}개`);
+      MissionUtils.Console.print(`${RESULT_MESSAGE[i]} ${resultArray[i]}개`);
+    }
+
+    return answer;
+  }
+
+  result({ money, userNumber, bonusNumber }) {
+    const lottoMatch = this.getMatchCount(userNumber);
+    const bonusMatch = this.getMatchBonus(bonusNumber, userNumber);
+    const result = this.getMatchResult(lottoMatch, bonusMatch);
+    const profit = this.calculateProfit(result);
+    this.printResult(result);
+    this.calculateProfitRate(profit, money);
+  }
+
   validate(numbers) {
     const MAX_LENGTH = 6;
     if (numbers.length !== MAX_LENGTH) {

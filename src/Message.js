@@ -4,6 +4,7 @@ module.exports = Object.freeze({
   lottoCount: "개를 구매했습니다.",
   winningNumberInput: "당첨 번호를 입력해 주세요.",
   bonusNumberInput: "보너스 번호를 입력해 주세요.",
+  winningStatistics: "당첨 통계\n---",
   threeMatches: "3개 일치 (5,000원) -",
   fourMatches: "4개 일치 (50,000원) -",
   fiveMatches: "5개 일치 (1,500,000원) -",
