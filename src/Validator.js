@@ -4,17 +4,33 @@ const { LOTTO_INFO } = require('./common/constants');
 
 class Validator {
   static checkValidMoney(money) {
+    this.checkNotNumber(money);
+    this.checkNegativeMoney(money);
+    this.checkEmptyInput(money);
+    this.checkRestMoney(money);
+  }
+
+  static checkEmptyInput(input) {
+    if (!Number(input) || input === ' ') {
+      throw new Error(`${ERROR_MESSAGES.INVALID_EMPTY_INPUT}`);
+    }
+  }
+
+  static checkNegativeMoney(money) {
     if (money < 0) {
       throw new Error(`${ERROR_MESSAGES.INVALID_NEGATIVE_NUMBER}`);
     }
-    if (!Number(money) || money === ' ') {
-      throw new Error(`${ERROR_MESSAGES.INVALID_EMPTY_INPUT}`);
-    }
+  }
+
+  static checkRestMoney(money) {
     if (rest(money) > 0) {
       throw new Error(`${ERROR_MESSAGES.INVALID_REST_MONEY}`);
     }
+  }
+
+  static checkNotNumber(money) {
     if (money.includes('e') || Number.isNaN(Number(money))) {
-      throw new Error(`${ERROR_MESSAGES.INVALID_NOT_MONEY}`);
+      throw new Error(`${ERROR_MESSAGES.INVALID_NUMBER}`);
     }
   }
 
@@ -32,17 +48,12 @@ class Validator {
   }
 
   static checkWinNumbers(winNumbers) {
-    const checkList = [
-      this.#checkValidWinNumbers,
-      this.#checkWinNumbersLenght,
-      this.#checkWinNumbersRange,
-    ];
-    checkList.forEach((checkValid) => {
-      checkValid(winNumbers);
-    });
+    this.checkValidWinNumbers(winNumbers);
+    this.checkWinNumbersLenght(winNumbers);
+    this.checkWinNumbersRange(winNumbers);
   }
 
-  static #checkValidWinNumbers(winNumbers) {
+  static checkValidWinNumbers(winNumbers) {
     const removalSeparatorNumbers = winNumbers.split(',').join('');
     const isNotNumber = Number.isNaN(Number(removalSeparatorNumbers));
     if (isNotNumber) {
@@ -50,14 +61,14 @@ class Validator {
     }
   }
 
-  static #checkWinNumbersLenght(winNumbers) {
+  static checkWinNumbersLenght(winNumbers) {
     const splitNumberLength = winNumbers.split(',').length;
     if (String(splitNumberLength) !== `${LOTTO_INFO.COUNT}`) {
       throw new Error(`${ERROR_MESSAGES.INVALID_LOTTO_COUNT}`);
     }
   }
 
-  static #checkWinNumbersRange(winNumbers) {
+  static checkWinNumbersRange(winNumbers) {
     const splitNumber = winNumbers.split(',');
     splitNumber.forEach((number) => {
       if (number < LOTTO_INFO.BEGIN_NUMBER || number > LOTTO_INFO.END_NUMBER) {
@@ -67,14 +78,20 @@ class Validator {
   }
 
   static checkValidBonusNumber(bonusNumber) {
+    this.checkNotNumber(bonusNumber);
+    this.checkNegativeBonusNumber(bonusNumber);
+    this.checkEmptyInput(bonusNumber);
+  }
+
+  static checkNotNumber(bonusNumber) {
     if (bonusNumber.includes('e') || Number.isNaN(Number(bonusNumber))) {
-      throw new Error(`${ERROR_MESSAGES.INVALID_BONUS_NUMBER}`);
+      throw new Error(`${ERROR_MESSAGES.INVALID_NUMBER}`);
     }
+  }
+
+  static checkNegativeBonusNumber(bonusNumber) {
     if (bonusNumber < 0) {
       throw new Error(`${ERROR_MESSAGES.INVALID_NEGATIVE_NUMBER}`);
-    }
-    if (!Number(bonusNumber) || bonusNumber === ' ') {
-      throw new Error(`${ERROR_MESSAGES.INVALID_EMPTY_INPUT}`);
     }
   }
 
