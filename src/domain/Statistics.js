@@ -1,7 +1,7 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { OUTPUT_MESSAGE } = require("./constants");
+const { OUTPUT_MESSAGE } = require("../constants");
 
-class MatchingNumber {
+class Statistics {
   constructor(totalLottoNumber, winnerNumber, bonusNumber) {
     this.totalLottoNumber = totalLottoNumber;
     this.winnerNumber = winnerNumber;
@@ -49,4 +49,4 @@ class MatchingNumber {
   }
 }
 
-module.exports = MatchingNumber;
+module.exports = Statistics;

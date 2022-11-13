@@ -1,4 +1,4 @@
-const { PRIZE_MONEY_CURRENCY } = require("./constants");
+const { PRIZE_MONEY_CURRENCY } = require("../constants");
 
 class ProfitRate {
   constructor(lottoResult, payMoney) {
