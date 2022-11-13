@@ -21,7 +21,7 @@ class LottoMachine {
     Console.readLine(MESSAGE.REQUEST.PAYMENT, (payment) => {
       this.validatePayment(payment);
 
-      this.#payment = payment;
+      this.#payment = Number(payment);
 
       this.getWinningNumbers();
     });
@@ -29,7 +29,7 @@ class LottoMachine {
 
   getWinningNumbers() {
     Console.readLine(MESSAGE.REQUEST.WINNING_NUMBERS, (numbers) => {
-      this.#winningNumbers = numbers.split(",");
+      this.#winningNumbers = numbers.split(",").map(Number);
       this.validateWinningNumbers(this.#winningNumbers);
 
       this.getBonusNumber();
@@ -43,6 +43,7 @@ class LottoMachine {
       this.#bonusNumber = number;
 
       this.compareNumbers();
+      this.printWinningStats();
     });
   }
 
@@ -85,16 +86,39 @@ class LottoMachine {
     });
   }
 
+  calculateRateOfReturn() {
+    const winnings =
+      this.ranking.fifthPlace * LOTTO.WINNINGS.FIFTH_PLACE +
+      this.ranking.forthPlace * LOTTO.WINNINGS.FORTH_PLACE +
+      this.ranking.thirdPlace * LOTTO.WINNINGS.THIRD_PLACE +
+      this.ranking.secondPlace * LOTTO.WINNINGS.SECOND_PLACE +
+      this.ranking.firstPlace * LOTTO.WINNINGS.FIRST_PLACE;
+
+    return (winnings / this.#payment / 100).toFixed(1);
+  }
+
+  printWinningStats() {
+    Console.print(`당첨 통계
+---
+3개 일치 (5,000원) - ${this.ranking.fifthPlace}개
+4개 일치 (50,000원) - ${this.ranking.forthPlace}개
+5개 일치 (1,500,000원) - ${this.ranking.thirdPlace}개
+5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.ranking.secondPlace}개
+6개 일치 (2,000,000,000원) - ${this.ranking.firstPlace}개
+총 수익률은 ${this.calculateRateOfReturn()}%입니다.`);
+  }
+
   getRandomNumberLottos() {
     const lottos = [];
+    let payment = this.#payment;
 
-    while (this.#payment !== 0) {
-      const numbers = Random.pickUniqueNumbersInRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, LOTTO.NUMBER_COUNT);
+    while (payment !== 0) {
+      const numbers = Random.pickUniqueNumbersInRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, LOTTO.WINNING_NUMBER_COUNT);
       const lotto = new Lotto(numbers);
 
       lottos.push(lotto.getNumbers());
 
-      this.#payment -= LOTTO.PRICE;
+      payment -= LOTTO.PRICE;
     }
 
     return lottos;
