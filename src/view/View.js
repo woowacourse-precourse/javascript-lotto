@@ -29,7 +29,7 @@ class View {
 
   getWinningNumberFromUser() {
     Console.readLine(messages.WINNING_NUMBER_MESSAGE, (userInput) => {
-      this.controller.setWinningNumber(userInput);
+      this.controller.setWinningNumberFromUser(userInput);
     });
   }
 
