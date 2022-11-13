@@ -38,6 +38,7 @@ class LottoController {
                 lottoCount * 1000
               );
               this.lottoViewer.printLottoWinningStats(arranged);
+              MissionUtils.Console.close();
             }
           );
         }
