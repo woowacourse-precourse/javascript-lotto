@@ -33,18 +33,27 @@ class Statistics {
     return (totalPrizeMoney / PURCHASE_AMOUNT) * 100;
   }
 
+  getPrizeMoney(ranking) {
+    return `(${ranking.toLocaleString('ko-KR')}원)`;
+  }
+
+  getResultText(match, prizeMoney, rankingIdx, isBonus) {
+    const PRIZE_MONEY_TEXT = this.getPrizeMoney(prizeMoney);
+    const RANKING_NUMBER = this.ranking[rankingIdx];
+    const BONUS_TEXT = isBonus ? ', 보너스 볼 일치' : '';
+    return `${match}개 일치${BONUS_TEXT} ${PRIZE_MONEY_TEXT} - ${RANKING_NUMBER}개`;
+  }
+
   printResult(amount) {
     const TOTAL_PRIZE_MONEY = this.getTotalPrizeMoney();
     const YIELD = this.getYield(TOTAL_PRIZE_MONEY, amount);
     Console.print('당첨 통계');
     Console.print('---');
-    Console.print(`3개 일치 (5,000원) - ${this.ranking[4]}개`);
-    Console.print(`4개 일치 (50,000원) - ${this.ranking[3]}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${this.ranking[2]}개`);
-    Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.ranking[1]}개`
-    );
-    Console.print(`6개 일치 (2,000,000,000원) - ${this.ranking[0]}개`);
+    Console.print(this.getResultText(3, PRIZE_MONEY.RANKING5, 4, false));
+    Console.print(this.getResultText(4, PRIZE_MONEY.RANKING4, 3, false));
+    Console.print(this.getResultText(5, PRIZE_MONEY.RANKING3, 2, false));
+    Console.print(this.getResultText(5, PRIZE_MONEY.RANKING2, 1, true));
+    Console.print(this.getResultText(6, PRIZE_MONEY.RANKING1, 0, false));
     Console.print(`총 수익률은 ${YIELD.toFixed(1)}%입니다.`);
     Console.close();
   }
