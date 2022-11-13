@@ -14,4 +14,75 @@ const isValidMoneyNumberAmount = (input) => {
   }
 };
 
-module.exports = { isValidMoneyNumberAmount };
+const isValidLottoNumbers = (numbers) => {
+  if (numbers.length !== VALID_LOTTO_NUMBER_LENGTH) {
+    throw new Error("[ERROR] 로또 번호는 6자리 숫자로 구성되어야 합니다.");
+  }
+  if (hasNonNumber(numbers)) {
+    throw new Error("[ERROR] 로또 번호는 숫자로만 구성되어야 합니다.");
+  }
+  if (hasNonInteger(numbers)) {
+    throw new Error("[ERROR] 로또 번호에는 소수점 이하가 허용되지 않습니다.");
+  }
+  if (hasNegativeNumber(numbers)) {
+    throw new Error("[ERROR] 로또 번호에는 음수가 포함될 수 없습니다.");
+  }
+  if (hasInvalidSizeNumber(numbers)) {
+    throw new Error("[ERROR] 로또 번호는 1 이상 45 이하여야 합니다.");
+  }
+  if (hasDuplicateNumbers(numbers)) {
+    throw new Error("[ERROR] 로또 번호에 중복된 숫자가 포함되어 있습니다.");
+  }
+};
+
+module.exports = { isValidMoneyNumberAmount, isValidLottoNumbers };
+
+const hasNonNumber = (array) => {
+  if (array.map(isNaN).includes(true)) {
+    return true;
+  }
+  return false;
+};
+
+const hasNonInteger = (array) => {
+  if (array.map(Number.isInteger).includes(false)) {
+    return true;
+  }
+  return false;
+};
+
+const hasDuplicateNumbers = (array) => {
+  const uniqueSet = new Set(array);
+  if (uniqueSet.size < VALID_LOTTO_NUMBER_LENGTH) {
+    return true;
+  }
+  return false;
+};
+
+const hasNegativeNumber = (array) => {
+  if (array.map(isNegativeNumber).includes(true)) {
+    return true;
+  }
+  return false;
+};
+
+const hasInvalidSizeNumber = (array) => {
+  if (array.map(isInvalidSize).includes(true)) {
+    return true;
+  }
+  return false;
+};
+
+const isInvalidSize = (number) => {
+  if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+    return true;
+  }
+  return false;
+};
+
+const isNegativeNumber = (number) => {
+  if (number < 0) {
+    return true;
+  }
+  return false;
+};
