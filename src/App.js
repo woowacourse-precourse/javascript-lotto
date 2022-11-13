@@ -1,13 +1,17 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
-const TICKET = require('./CONSTANT');
+const { TICKET, RANK } = require('./CONSTANT');
 
 class App {
+  #paid;
+
   #answerNumbers;
 
   #bonusNumber;
 
   #tickets = [];
+
+  #totalResults;
 
   play() {
     this.inputMoney();
@@ -15,13 +19,14 @@ class App {
 
   inputMoney() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (answer) => {
+      this.#paid = Number(answer);
       if (this.validateMoney(answer)) {
         const ticketsCount = this.countTickets(answer);
         MissionUtils.Console.print(`\n${ticketsCount}개를 구매했습니다.`);
         for (let i = 0; i < ticketsCount; i += 1) {
           this.#tickets.push(new Lotto(this.generateRandomNumbers()));
         }
-        this.#tickets.map((ticket) => MissionUtils.Console.print(ticket.getTicketNumbers()));
+        this.#tickets.map((ticket) => MissionUtils.Console.print(`[${ticket.getTicketNumbers().join(', ')}]`));
         this.setLottoNumbers();
       }
     });
@@ -62,7 +67,16 @@ class App {
 
   calculateTickets() {
     MissionUtils.Console.print('\n당첨 통계\n---');
-    this.#tickets.map((ticket) => ticket.calculateNumbers(this.#answerNumbers, this.#bonusNumber));
+    this.#totalResults = this.#tickets
+      .map((ticket) => ticket.calculateNumbers(this.#answerNumbers, this.#bonusNumber));
+    // MissionUtils.Console.print(this.#totalResults);
+    // let rewards = 0;
+    RANK.forEach((rank) => {
+      const count = this.#totalResults.filter((result) => result === rank.rank).length;
+      MissionUtils.Console.print(`${rank.description} - ${count}개`);
+      rewards += rank.money * count;
+    });
+    // MissionUtils.Console.print(`총 수익률은 ${(rewards / this.#paid) * 100}%입니다.`);
   }
 }
 

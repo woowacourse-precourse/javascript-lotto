@@ -1,7 +1,7 @@
-const MissionUtils = require('@woowacourse/mission-utils');
-
 class Lotto {
   #numbers;
+
+  #result;
 
   constructor(numbers) {
     this.validate(numbers);
@@ -19,30 +19,35 @@ class Lotto {
     return this.#numbers;
   }
 
+  getResult() {
+    return this.#result;
+  }
+
   calculateNumbers(answerNumbers, bonusNumber) {
     const hit = answerNumbers.filter((number) => this.#numbers.includes(number)).length;
     const bonus = this.#numbers.includes(bonusNumber);
-    MissionUtils.Console.print(this.figureLotteryRewards(hit, bonus));
+    // this.#result = this.figureLotteryRewards(hit, bonus);
+    return this.figureLotteryRewards(hit, bonus);
   }
 
   figureLotteryRewards(hit, bonus) {
-    MissionUtils.Console.print(`${hit} ${bonus}`);
+    // MissionUtils.Console.print(`${hit} ${bonus}`);
     if (hit === 6) {
-      return 2000000000;
+      return 'FIRST';
     }
     if (hit === 5 && bonus === true) {
-      return 30000000;
+      return 'SECOND';
     }
     if (hit === 5) {
-      return 1500000;
+      return 'THIRD';
     }
     if (hit === 4) {
-      return 50000;
+      return 'FOURTH';
     }
     if (hit === 3) {
-      return 5000;
+      return 'FIFTH';
     }
-    return 0;
+    return null;
   }
 }
 
