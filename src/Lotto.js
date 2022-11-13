@@ -14,10 +14,9 @@ class Lotto {
     }
     if (new Set(numbers).size !== numbers.length) throw new Error(ERROR_LOTTO_NUMBER.DUPLICATE_NUMBER);
     if (
-      numbers.find(
+      numbers.some(
         (arrayElement) =>
-          parseInt(arrayElement) < VALUE_NUMBER.FIRST_LOTTO_NUMBER ||
-          parseInt(arrayElement) > VALUE_NUMBER.LAST_LOTTO_NUMBER
+          arrayElement < VALUE_NUMBER.FIRST_LOTTO_NUMBER || arrayElement > VALUE_NUMBER.LAST_LOTTO_NUMBER
       )
     )
       throw new Error(ERROR_LOTTO_NUMBER.OUT_OF_RANGE);

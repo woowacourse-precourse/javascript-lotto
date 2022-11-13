@@ -3,6 +3,7 @@ const { ERROR_INPUT, VALUE_NUMBER } = require("../utils/constants");
 class ValidationCheck {
   isMoneyValid(money) {
     if (isNaN(money)) throw new Error(ERROR_INPUT.NOT_NUMBER);
+    if (/[^0-9]/g.test(money)) throw new Error(ERROR_INPUT.NOT_NUMBER);
     if (!/[0-9]{4,}/.test(money)) throw new Error(ERROR_INPUT.UNDER_FOUR_LETTERS);
     if (parseInt(money) % VALUE_NUMBER.MONEY_FOR_ONE_GAME !== 0) throw new Error(ERROR_INPUT.NOT_THOUSAND_UNIT);
     return true;
