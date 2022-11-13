@@ -15,17 +15,17 @@ class WinningNumber {
     this.#bonusNumber = 0;
   }
 
-  getWinningNumbers() {
+  enterWinningNumbers() {
     MissionUtils.Console.readLine(COMMENT.WINNING, (numberString) => {
       const inputsArray = numberString.split(",");
       if (this.validateWinningNumbers(inputsArray)) {
         this.#winningNumbers = inputsArray.map((input) => Number(input));
-        this.#getBonusNumber();
+        this.#enterBonusNumber();
       }
     });
   }
 
-  #getBonusNumber() {
+  #enterBonusNumber() {
     MissionUtils.Console.readLine(COMMENT.BONUS, (number) => {
       if (this.validateBonusNumber(number)) {
         this.#bonusNumber = Number(number);
