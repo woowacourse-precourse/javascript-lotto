@@ -64,7 +64,7 @@
 
  <br />
 
- ## :clipboard: 각 파일의 기능
+ ## :sparkles: 각 파일의 기능
  ### App.js
  - 애플리케이션 실행(=시동)
  - LottoHandler의 getPrice()를 실행함으로 프로그램이 시작하게 함
@@ -84,3 +84,49 @@
  ### print
  - 결과 출력
  - 발행된 로또와 개수 출력, 랭킹 출력, 수익률 출력
+
+ <br />
+
+ ## :white_check_mark: 테스트 목록
+### ApplicationTest.js
+- 로또 기능 테스트
+- 종합적인 테스트
+
+### LottoTest.js
+- 로또 정답 입력값에 관한 테스트
+```
+- 로또 입력 번호의 개수가 6개가 아닐 때 throw
+- 로또 번호에 중복된 숫자 있으면 throw
+- 로또 번호 중 1~45의 범위를 벗어난 숫자가 있으면 throw
+- 숫자가 아닌 문자가 있으면 throw
+```
+
+### BonusTest.js
+- 보너스 번호 입력값에 관한 테스트
+```
+- 로또 번호에 중복된 숫자 있으면 throw
+- 1~45의 범위를 벗어난 숫자가 있으면 throw
+- 숫자가 아닌 문자가 있으면 throw
+```
+
+### PriceTest.js
+- 가격 입력값에 관한 테스트
+```
+- 1000단위가 아닐 경우 throw
+- 숫자가 아닌 문자 있으면 throw
+- 가격이 양수가 아닐 경우 throw
+```
+
+### MakeLottosTest.js
+- 로또 생성 로직 테스트
+```
+- 알맞은 개수만 로또 생성되는지 검사
+- 각 로또 리스트에 중복되는 값이 없는지 검사
+- 오름차순으로 정렬하는지 검사
+```
+
+### RankingCalculateTest.js
+- 로또 등수 계산 로직 테스트
+
+### PrizeCalculateTest.js
+- 수익률 계산 로직 테스트
