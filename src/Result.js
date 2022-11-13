@@ -19,7 +19,6 @@ class Result {
     this.bundleOfLotto = bundleOfLotto;
     this.userLotto = userLotto;
     this.bonusNumber = Number(bonus);
-
     this.rank = [0, 0, 0, 0, 0];
   }
 
