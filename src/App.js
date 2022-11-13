@@ -6,8 +6,8 @@ const Lotto = require("./Lotto");
 class App {
   constructor() {
     this.utils = new Utils();
-    this.AmountNum;
-    this.WinningNumbers;
+    this.ticketAmount;
+    this.winningNumbers;
     this.lotteryTickets;
   }
 
@@ -20,8 +20,8 @@ class App {
       if (this.isNotDividedByThousand(input))
         this.utils.throwError(ERROR.NOT_DIVIDED_BY_THOUSAND);
 
-      this.AmountNum = parseInt(input / 1000);
-      this.issueLotteryTicket(this.AmountNum);
+      this.ticketAmount = parseInt(input / 1000);
+      this.issueLotteryTicket(this.ticketAmount);
     });
   }
 
@@ -29,16 +29,16 @@ class App {
     return input % 1000 !== 0;
   }
 
-  issueLotteryTicket(amountNum) {
-    Console.print(`${amountNum}${MESSEGE.TELL_PURCHASE_AMOUNT}`);
+  issueLotteryTicket(ticketAmount) {
+    Console.print(`${ticketAmount}${MESSEGE.TELL_PURCHASE_AMOUNT}`);
 
     let lotteryTickets = [];
-    while (amountNum) {
+    while (ticketAmount) {
       const newTicket = Random.pickUniqueNumbersInRange(1, 45, 6).sort(
         (a, b) => a - b
       );
       lotteryTickets.push(newTicket);
-      amountNum -= 1;
+      ticketAmount -= 1;
       Console.print(newTicket);
     }
 
@@ -48,21 +48,21 @@ class App {
 
   askWinningNumbers() {
     Console.readLine(`${MESSEGE.INPUT_WINNING_NUMBERS}\n`, (input) => {
-      this.WinningNumbers = new Lotto(input.split(","));
+      this.winningNumbers = new Lotto(input.split(","));
       this.askBonusNumber();
     });
   }
 
   askBonusNumber() {
     Console.readLine(`${MESSEGE.INPUT_BONUS_NUMBER}\n`, (input) => {
-      this.WinningNumbers.setBonusNumber(input);
+      this.winningNumbers.setBonusNumber(input);
       this.printResult();
     });
   }
 
   printResult() {
-    this.WinningNumbers.printRank(this.lotteryTickets);
-    this.WinningNumbers.printProfit(this.AmountNum);
+    this.winningNumbers.printRank(this.lotteryTickets);
+    this.winningNumbers.printProfit(this.ticketAmount);
   }
 }
 
