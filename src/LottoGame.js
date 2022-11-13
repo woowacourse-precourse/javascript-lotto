@@ -3,7 +3,7 @@ const Lotto = require('./Lotto');
 const Payment = require('./Payment');
 const LottoIssuer = require('./LottoIssuer');
 const LottoResult = require('./LottoResult');
-
+const { MESSAGE } = require('./Constants');
 class LottoGame {
   #Payment;
 
@@ -14,7 +14,7 @@ class LottoGame {
   #LottoResult;
 
   run() {
-    Console.readLine('구입금액을 입력해 주세요.\n', (input) => this.inputMoney(input));
+    Console.readLine(MESSAGE.purchase, (input) => this.inputMoney(input));
   }
 
   inputMoney(input) {
@@ -30,14 +30,14 @@ class LottoGame {
   }
 
   drawWinningNumbers() {
-    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (winningNumber) => {
+    Console.readLine(MESSAGE.winning, (winningNumber) => {
       this.#Lotto = new Lotto(winningNumber.split(','));
       this.drawBonusNumber();
     });
   }
 
   drawBonusNumber() {
-    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
+    Console.readLine(MESSAGE.bonuse, (bonusNumber) => {
       this.#Lotto.setBonusNumber(bonusNumber);
       this.#LottoResult = new LottoResult();
       this.#LottoResult.print(
