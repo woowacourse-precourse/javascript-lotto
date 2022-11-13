@@ -1,4 +1,5 @@
-const { Console, Random } = require("@woowacourse/mission-utils");
+const { ERROR } = require("./Constants");
+
 function checkRange(arr) {
   if (/^[0-9]*$/g.test(arr.join("")) === false) {
     return false;
@@ -41,30 +42,29 @@ class Lotto {
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
-
-    //d
   }
 
   validate(numbers) {
     this.#numbers = numbers;
 
     if (checkRange(this.#numbers) === false) {
-      throw new Error(`[ERROR] 0은 입력이 불가능합니다.`);
+      throw new Error(ERROR.ERROR_WINNING_NUM_ZERO);
     }
 
     if (checkComma(this.#numbers) === false) {
-      throw new Error(`[ERROR] ,이 연속으로 입력되었습니다.`);
+      throw new Error(ERROR.ERROR_WINNING_NUM_COMMA);
     }
 
     if (checkNumLength(this.#numbers) === false) {
-      throw new Error(`[ERROR] 당첨 번호는 1~45 사이에 있습니다.`);
+      throw new Error(ERROR.ERROR_WINNING_NUM_RANGE);
     }
     if (checkCount(this.#numbers) === false) {
-      throw new Error(`[ERROR] 당첨 번호는 6개만 입력이 가능합니다.`);
+      throw new Error(ERROR.ERROR_WINNING_NUM_LENGTH);
     }
     if (checkDuplication(this.#numbers) === false) {
-      throw new Error(`[ERROR] 당첨 번호에 중복이 있을 수 없습니다.`);
+      throw new Error(ERROR.ERROR_WINNING_NUM_DUPLICATION);
     }
   }
 }
+
 module.exports = Lotto;

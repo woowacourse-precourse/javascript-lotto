@@ -1,4 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
+const { ERROR, RESULT } = require("./Constants");
 class Render {
   showHowmanyboughtLotto(lotto) {
     Console.print(`${lotto}개를 구매했습니다.`);
@@ -26,21 +27,19 @@ class Render {
         result[i][0] //
       ) {
         case "5등":
-          Console.print(`3개 일치 (5,000원) - ${result[i][1]}개`);
+          Console.print(`${RESULT.RESULT_LOTTO_5CLASS}${result[i][1]}개`);
           break;
         case "4등":
-          Console.print(`4개 일치 (50,000원) - ${result[i][1]}개`);
+          Console.print(`${RESULT.RESULT_LOTTO_4CLASS}${result[i][1]}개`);
           break;
         case "3등":
-          Console.print(`5개 일치 (1,500,000원) - ${result[i][1]}개`);
+          Console.print(`${RESULT.RESULT_LOTTO_3CLASS}${result[i][1]}개`);
           break;
         case "2등":
-          Console.print(
-            `5개 일치, 보너스 볼 일치 (30,000,000원) - ${result[i][1]}개`
-          );
+          Console.print(`${RESULT.RESULT_LOTTO_2CLASS}${result[i][1]}개`);
           break;
         case "1등":
-          Console.print(`6개 일치 (2,000,000,000원) - ${result[i][1]}개`);
+          Console.print(`${RESULT.RESULT_LOTTO_1CLASS}${result[i][1]}개`);
           break;
       }
     }
