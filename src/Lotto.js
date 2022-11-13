@@ -8,6 +8,10 @@ class Lotto {
     this.#numbers = numbers;
   }
 
+  get numbers() {
+    return this.#numbers;
+  }
+
   validate(numbers) {
     isValidLottoNumbers(numbers);
   }
