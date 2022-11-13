@@ -1,5 +1,10 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
-const { INPUT_MSG, ERROR_MSG, WINNING_MSG } = require("./constants/Message");
+const {
+  INPUT_MSG,
+  ERROR_MSG,
+  WINNING_MSG,
+  PRINT_MSG,
+} = require("./constants/Message");
 const Lotto = require("./Lotto");
 const Utils = require("./Utils");
 const Validator = require("./Validator");
@@ -15,7 +20,7 @@ class App {
     this.profit = 0;
   }
   printLotto(number) {
-    Console.print(`${number}개를 구매했습니다.`);
+    Console.print(`${number}${PRINT_MSG.BUY}`);
     for (let index = 0; index < number; index++) {
       Console.print(this.lottos[index].getLotto());
     }
@@ -73,16 +78,18 @@ class App {
 
   printWinning() {
     const price = [0, 2000000000, 30000000, 1500000, 50000, 5000];
-    Console.print("당첨통계\n---");
+    Console.print(PRINT_MSG.RESULT);
     for (let rank = 5; rank > 0; rank--) {
-      Console.print(`${WINNING_MSG[rank]}${this.winningLotto[rank]}`);
+      Console.print(
+        `${WINNING_MSG[rank]}${this.winningLotto[rank]}${PRINT_MSG.COUNT}`
+      );
       this.profit += this.winningLotto[rank] * price[rank];
     }
   }
 
   printRate() {
     const rate = ((this.profit / this.purchase) * 100).toFixed(2);
-    Console.print(`총 수익률은 ${rate.toLocaleString("ko-KR")}%입니다.`);
+    Console.print(`${PRINT_MSG.RATE}${rate}%${PRINT_MSG.SUFFIX}`);
   }
 
   play() {
