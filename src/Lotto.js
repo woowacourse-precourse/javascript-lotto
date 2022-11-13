@@ -3,6 +3,8 @@ class Lotto {
 
   constructor(numbers) {
     this.validate(numbers);
+    this.duplicate(numbers);
+    this.checkNumber(numbers);
     this.#numbers = numbers;
   }
 
@@ -12,21 +14,21 @@ class Lotto {
     }
   }
 
-  duplicate() {
-    const NOT_DUPLICATE = new Set(this.#numbers);
+  duplicate(numbers) {
+    const NOT_DUPLICATE = new Set(numbers);
     if (NOT_DUPLICATE.size !== 6) {
-      throw new Error('[ERROR] 중복되지 않는 숫자를 입력하여야 합니다.');
+      throw new Error('[ERROR] 로또 번호는 중복되지 않는 숫자를 입력하여야 합니다.');
     }
   }
 
-  checkNumber() {
-    const NUMBER = this.#numbers;
+  checkNumber(numbers) {
+    const NUMBER = numbers;
+    if (NUMBER.includes(NaN)) {
+      throw new Error('[ERROR] 로또 번호는 숫자만 입력 하셔야 합니다.');
+    }
     for (let index = 0; index < NUMBER.length; index++) {
-      if (Number.isNaN(NUMBER[index]) || NUMBER[index] === 0) {
-        throw new Error('[ERROR] 숫자가 아니거나 공백이 포함되어 있습니다.');
-      }
       if (NUMBER[index] < 1 || NUMBER[index] > 45) {
-        throw new Error('[ERROR] 1 ~ 45 사이의 숫자를 입력 하셔야 합니다.');
+        throw new Error('[ERROR] 로또 번호는 공백 없이 1 ~ 45 사이의 숫자를 입력 하셔야 합니다.');
       }
     }
   }
