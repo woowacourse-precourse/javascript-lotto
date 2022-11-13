@@ -5,8 +5,6 @@ const WIN_NUMBERS_MESSAGE = "\n당첨 번호를 입력해 주세요.\n";
 const BONUS_NUMBERS_MESSAGE = "\n보너스 번호를 입력해 주세요.\n";
 
 const BUY_LOTTOS_MESSAGE = (count) => `${count}개를 구매했습니다.`;
-const SHOW_LOTTOS = (lottos) =>
-  `[${lottos.sort((a, b) => a - b)}]`.replaceAll(",", ", ");
 const TOTAL_MEESAGE = (number) => `
 당첨 통계
 ---
@@ -27,7 +25,6 @@ const RANGE = {
 module.exports = {
   BUY_LOTTOS_MESSAGE,
   TOTAL_MEESAGE,
-  SHOW_LOTTOS,
   GAME_START_MESSAGE,
   WIN_NUMBERS_MESSAGE,
   BONUS_NUMBERS_MESSAGE,

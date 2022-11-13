@@ -24,8 +24,17 @@ class Lotto {
   // TODO: 추가 기능 구현
 
   get getLotto() {
-    Console.print(SHOW_LOTTOS(this.#numbers));
+    Console.print(this.replaceLotto());
     return this.#numbers;
+  }
+
+  replaceLotto() {
+    const sortLotto = this.#numbers.sort((a, b) => a - b);
+    const lottoText = [...`[${sortLotto}]`]
+      .map((v) => (v === "," ? (v = ", ") : v))
+      .join("");
+
+    return lottoText;
   }
 }
 
