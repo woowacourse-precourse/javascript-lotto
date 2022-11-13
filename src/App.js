@@ -2,7 +2,28 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 
 class App {
-  play() {}
+  play() {
+    MissionUtils.Console.print('구입금액을 입력해 주세요.');
+    this.buyLotto();
+  }
+
+  buyLotto() {
+    let amount;
+
+    MissionUtils.Console.readLine('', (userInput) => {
+      const PAID_MONEY = userInput.split('').map((item) => +item);
+      const LOTTO_PRICE = 1000;
+
+      if (PAID_MONEY.includes(NaN)) {
+        throw new Error('[ERROR] 구입하실 금액은 숫자로 입력하셔야 합니다.');
+      }
+      if (userInput % LOTTO_PRICE !== 0 || userInput <= 0) {
+        throw new Error('[ERROR] 로또는 1000원 단위로 구입하셔야 합니다.');
+      }
+
+      amount = userInput / LOTTO_PRICE;
+    });
+  }
 }
 
 const app = new App();
