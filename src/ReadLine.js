@@ -30,6 +30,10 @@ class ReadLine {
       callbackFunc(draft);
     });
   }
+
+  close() {
+    this.#console.close();
+  }
 }
 
 module.exports = ReadLine;
