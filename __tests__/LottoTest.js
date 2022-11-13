@@ -21,8 +21,9 @@ describe('로또 클래스 테스트', () => {
   });
 
   test('로또 번호를 가지고 오는 getNumbers 매서드가 정상적으로 동작한다.', () => {
-    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    const lotto = new Lotto(['1', '2', '3', '4', '5', '6']);
+    lotto.setBonusNumber('12');
     const result = lotto.getNumbers();
-    expect(() => result.toEqual([1, 2, 3, 4, 5, 6]));
+    expect(result).toEqual({ winning: [1, 2, 3, 4, 5, 6], bonus: 12 });
   });
 });
