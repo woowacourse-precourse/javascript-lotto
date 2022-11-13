@@ -1,4 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+const Lotto = require('./Lotto');
 
 const { Console } = MissionUtils;
 
@@ -6,6 +7,7 @@ class User {
   getUserMoney() {
     Console.readLine('구입금액을 입력해 주세요.', (userMoney) => {
       this.isValidUserMoney(userMoney.replace(/\s/g, ''));
+      console.log(this.genLottoAsMoney(userMoney.replace(/\s/g, '')));
       Console.print('유효한 입력입니다.');
     });
   }
@@ -40,6 +42,18 @@ class User {
 
   isValidToDivide(userMoney) {
     return Number(userMoney) % 1000 === 0;
+  }
+
+  genLottoAsMoney(userMoney) {
+    const lottoList = Array.from(
+      { length: Number(userMoney / 1000) },
+      () => [],
+    );
+
+    return lottoList.map(() => {
+      const lotto = new Lotto();
+      return [...lotto.genLotto];
+    });
   }
 }
 module.exports = User;
