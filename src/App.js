@@ -14,6 +14,7 @@ class App {
     this.lottoList = {};
     this.luckyNumbers = 0;
     this.bonusNumber = 0;
+    this.nullBonusArr = 0;
   }
 
   play() {
@@ -63,23 +64,26 @@ class App {
     let checkAnswer = answer.split(',');
     let lotto = new Lotto(checkAnswer);
     lotto.validate(checkAnswer);
+    return answer;
   }
 
   getBonusNumber() {
     Console.readLine('보너스 번호를 입력해 주세요.\n', (answer)=>{
-      let bonusArr = new Array(5).fill(null);
-      bonusArr.push(answer);
-      let lotto = new Lotto(bonusArr);
-      lotto.validate(bonusArr);
+      this.validateBonusNum(answer);
       this.bonusNumber = answer;
     })
   }
-/*
-  validateBonusNumbers(answer) {
-    if(isNaN(answer)) throw new Error ("[ERROR] 숫자만 입력해주세요.");
-    if(answer.length > 2) throw new Error ("[ERROR] 숫자 한개만 입력해주세요.");
+
+  validateBonusNum(answer) {
+    let bonusArr = new Array(5).fill(null);
+    bonusArr.push(answer);
+    this.nullBonusArr = bonusArr;
+    let lotto = new Lotto(bonusArr);
+    lotto.validate(bonusArr);
+    lotto.validateOverlap(this.luckyNumbers, bonusArr);
+    return answer;
   }
-  */
+
 }
 let app = new App();
 app.play();
