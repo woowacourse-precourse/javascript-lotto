@@ -50,7 +50,8 @@ class LottoView {
   printLottos(amount, lottos) {
     MissionUtils.Console.print(`${amount}개를 구매했습니다.`);
     for (const lotto of lottos) {
-      MissionUtils.Console.print(lotto.getLottoNumbers().sort());
+      let lottoNumbers = lotto.getLottoNumbers().sort((a, b) => a - b);
+      MissionUtils.Console.print(lottoNumbers);
     }
   }
 }
