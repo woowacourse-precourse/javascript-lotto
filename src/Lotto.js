@@ -44,8 +44,17 @@ class Lotto {
     });
     return array;
   }
+
+  winningNumber(number) {
+    MissionUtils.Console.readLine("당첨 번호를 입력해주세요.", (answer) => {
+      const number = answer.split(",");
+      console.log(number);
+      MissionUtils.Console.close();
+    });
+    return number;
+  }
 }
 const lotto = new Lotto();
 //lotto.inputAmount();
-console.log(lotto.printLotto(6));
+console.log(lotto.winningNumber());
 module.exports = Lotto;
