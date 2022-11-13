@@ -64,6 +64,20 @@ class Lotto {
     return lottoResult - MIN_MATCH_COUNT;
   }
 
+  calculateProfit(lottoCounts) {
+    let profit = 0;
+    const MONEY_ARRAY = [5000, 50000, 1500000, 30000000, 2000000000];
+    lottoCounts.forEach((lottoCount, index) => {
+      profit += MONEY_ARRAY[index] * lottoCount;
+    });
+    return profit;
+  }
+
+  calculateProfitRate(profit, investment) {
+    const number = (profit / investment) * 100;
+    MissionUtils.Console.print(`총 수익률은 ${number.toFixed(1)}%입니다.`);
+  }
+
   validate(numbers) {
     const MAX_LENGTH = 6;
     if (numbers.length !== MAX_LENGTH) {
