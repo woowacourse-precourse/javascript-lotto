@@ -3,7 +3,7 @@ const Lotto = require('./Lotto');
 const Payment = require('./Payment');
 const LottoIssuer = require('./LottoIssuer');
 const LottoResult = require('./LottoResult');
-const { INPUT_MESSAGE } = require('./Constants');
+const { INPUT_MESSAGE, LOTTO_PRICE } = require('./Constants');
 
 class LottoGame {
   #payment;
@@ -15,23 +15,19 @@ class LottoGame {
   #lottoResult = new LottoResult();
 
   run() {
-    Console.readLine(INPUT_MESSAGE.purchase, (input) => this.inputMoney(input));
+    Console.readLine(INPUT_MESSAGE.purchase, (input) => this.purchase(input));
   }
 
-  inputMoney(input) {
+  purchase(input) {
     this.#payment = new Payment(input);
-    this.purchase(this.#payment.getMoney() / 1000);
-  }
-
-  purchase(number) {
-    this.#lottoIssuer = new LottoIssuer(number);
+    this.#lottoIssuer = new LottoIssuer(this.#payment.getMoney() / LOTTO_PRICE);
     this.#lottoIssuer.print();
     this.drawWinningNumbers();
   }
 
   drawWinningNumbers() {
-    Console.readLine(INPUT_MESSAGE.winning, (winningNumber) => {
-      this.#lotto = new Lotto(winningNumber.split(','));
+    Console.readLine(INPUT_MESSAGE.winning, (winningNumbers) => {
+      this.#lotto = new Lotto(winningNumbers.split(','));
       this.drawBonusNumber();
     });
   }

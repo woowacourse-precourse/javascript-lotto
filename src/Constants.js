@@ -1,3 +1,5 @@
+const LOTTO_PRICE = 1000;
+
 const LOTTO_MATCHES = {
   0: 'out',
   1: 'out',
@@ -46,6 +48,7 @@ const ERROR_MESSAGE = {
 };
 
 module.exports = {
+  LOTTO_PRICE,
   LOTTO_MATCHES,
   LOTTO_PRIZE,
   EA,
