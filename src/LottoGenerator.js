@@ -1,7 +1,7 @@
 const Utils = require("./Utils");
 const Lotto = require("./Lotto");
 
-class LottoMachine {
+class LottoGenerator {
   #validateType(money) {
     if (!Number(money)) {
       throw new Error("[ERROR] 금액은 숫자만 입력해야 합니다.");
@@ -37,4 +37,4 @@ class LottoMachine {
   }
 }
 
-module.exports = LottoMachine;
+module.exports = LottoGenerator;
