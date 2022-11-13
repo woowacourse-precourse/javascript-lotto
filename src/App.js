@@ -13,7 +13,6 @@ class App {
       validateInputMoney(inputMoney);
       const lottoNumber = getLottoNumber(inputMoney);
       this.issueLottos(lottoNumber);
-      console.log(this.lottos);
     });
   }
 
@@ -21,7 +20,7 @@ class App {
     for (let i = 0; i < lottoNumber; i += 1) {
       const numbers = [];
       while (numbers.length !== 6) {
-        const number = Random.pickUniqueNumbersInRange(1, 45);
+        const number = Random.pickNumberInRange(1, 45);
         if (!numbers.includes(number)) numbers.push(number);
       }
       const lotto = new Lotto(numbers);
