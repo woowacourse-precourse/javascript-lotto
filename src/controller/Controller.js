@@ -1,6 +1,7 @@
 const Lotto = require('../Lotto');
 const InputCheck = require('../model/InputCheck');
 const LottoRandomNum = require('../model/LottoRandomNum');
+const LottoResult = require('../model/LottoResult');
 const InputDisplay = require('../view/InputDisplay');
 const ResultDisplay = require('../view/ResultDisplay');
 
@@ -10,6 +11,7 @@ class Controller {
     this.InputCheck = new InputCheck();
     this.ResultDisplay = new ResultDisplay();
     this.LottoRandomNum = new LottoRandomNum();
+    this.LottoResult = new LottoResult();
 
     this.lottoNum;
     this.winSplitNum;
@@ -65,7 +67,9 @@ class Controller {
     this.getLottoResult();
   }
 
-  getLottoResult() {}
+  getLottoResult() {
+    this.LottoResult.findSameNum(this.lottoNum, this.winSplitNum.map(Number));
+  }
 }
 
 module.exports = Controller;
