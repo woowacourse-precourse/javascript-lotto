@@ -68,13 +68,13 @@ class App {
       this.winnerNumber,
       this.bonusNumber
     );
-    const numberOfMathcingNumbers = matchingNumber.getResultOfThreeToFiveMatchingNumbers();
-    matchingNumber.printLottoResult(numberOfMathcingNumbers);
-    this.loadLottoProfitRate(numberOfMathcingNumbers);
+    const lottoResult = matchingNumber.getResultOfThreeToFiveMatchingNumbers();
+    matchingNumber.printLottoResult(lottoResult);
+    this.loadLottoProfitRate(lottoResult);
   }
 
-  loadLottoProfitRate(numberOfMathcingNumbers) {
-    const lottoProfitRate = new ProfitRate(numberOfMathcingNumbers, this.payMoney).getProfitRate();
+  loadLottoProfitRate(lottoResult) {
+    const lottoProfitRate = new ProfitRate(lottoResult, this.payMoney).getProfitRate();
     Console.print(`총 수익률은 ${lottoProfitRate}%입니다.`);
     Console.close();
   }
