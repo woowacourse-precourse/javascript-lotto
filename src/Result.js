@@ -1,4 +1,3 @@
-const Money = require("./Money");
 const UI = require("./UI");
 
 class Result {
