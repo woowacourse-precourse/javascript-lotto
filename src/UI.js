@@ -28,7 +28,7 @@ class UI {
   }
 
   static printPurchasedLottoAmount(purchased) {
-    MissionUtils.Console.print(purchaed.amount + PURCHASE_AMOUNT_NOTICE_MESSAGE);
+    MissionUtils.Console.print(purchased.amount + PURCHASE_AMOUNT_NOTICE_MESSAGE);
   }
 }
 
