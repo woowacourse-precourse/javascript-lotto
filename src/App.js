@@ -6,9 +6,9 @@ const NumberGenerator = require("./NumberGenerator");
 
 class App {
   constructor() {
-    this.checkValue = new CheckValue();
     this.numberGenerator = new NumberGenerator();
-    this.lottoCount = 0;
+    this.lottoCount = null;
+    this.lottoArr = [];
   }
 
   play() {
@@ -19,22 +19,21 @@ class App {
 
   requestPay() {
     Console.readLine(Message.GAME_START, (pay) => {
-      this.checkValue.isValidPay(pay);
-      this.countLotto(pay);
-      this.printLotto();
+      new CheckValue(pay);
+      this.setLotto(pay);
     });
   }
 
-  countLotto(pay) {
+  setLotto(pay) {
     this.lottoCount = pay / 1000;
-    Console.print(`${this.lottoCount}개를 구매했습니다.`);
+    this.lottoArr = this.numberGenerator.drawLottery(this.lottoCount);
+    this.printLotto();
   }
 
   printLotto() {
-    const lottoArr = this.numberGenerator.drawLottery(this.lottoCount);
-    lottoArr.map((lotto) => {
-      new Lotto(lotto);
-      Console.print(lotto);
+    Console.print(`${this.lottoCount}개를 구매했습니다.`);
+    this.lottoArr.forEach((lotto) => {
+      Console.print(`[${lotto.join(", ")}]`);
     });
   }
 
