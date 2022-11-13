@@ -19,31 +19,29 @@ class LottoController {
       for (let i = 0; i < lottoCount; i++) {
         const lotto = this.lottoStore.sellLotto();
         customer.purchaseLotto(lotto);
-        customer.printLottoPurchaseResult();
-        MissionUtils.Console.readLine(
-          '\n당첨 번호를 입력해 주세요.\n',
-          (input) => {
-            this.lottoPublisher.receiveUserInputWinningNumbers(input);
-            MissionUtils.Console.readLine(
-              '\n보너스 번호를 입력해 주세요.\n',
-              (input) => {
-                this.lottoPublisher.receiveUserInputBonusNumber(input);
-                const purchasedLottos = customer.list();
-                const matchedLottoNumbers = purchasedLottos.map((lotto) =>
-                  this.lottoPublisher.checkMatchedLottoNumbersRank(
-                    lotto.numbers
-                  )
-                );
-                const arranged = this.lottoViewer.arrangeLottoWinningResult(
-                  matchedLottoNumbers,
-                  lottoCount * 1000
-                );
-                this.lottoViewer.printLottoWinningStats(arranged);
-              }
-            );
-          }
-        );
       }
+      customer.printLottoPurchaseResult();
+      MissionUtils.Console.readLine(
+        '\n당첨 번호를 입력해 주세요.\n',
+        (input) => {
+          this.lottoPublisher.receiveUserInputWinningNumbers(input);
+          MissionUtils.Console.readLine(
+            '\n보너스 번호를 입력해 주세요.\n',
+            (input) => {
+              this.lottoPublisher.receiveUserInputBonusNumber(input);
+              const purchasedLottos = customer.list();
+              const matchedLottoNumbers = purchasedLottos.map((lotto) =>
+                this.lottoPublisher.checkMatchedLottoNumbersRank(lotto.numbers)
+              );
+              const arranged = this.lottoViewer.arrangeLottoWinningResult(
+                matchedLottoNumbers,
+                lottoCount * 1000
+              );
+              this.lottoViewer.printLottoWinningStats(arranged);
+            }
+          );
+        }
+      );
     });
   }
 }
