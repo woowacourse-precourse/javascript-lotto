@@ -5,6 +5,7 @@ class App {
     this.lottoMoney; //로또 구입금액
     this.lottoAmount; //로또 구입수량
     this.winArr = []; //당첨번호(배열에 넣음)
+    this.BonusNum; //보너스번호
   }
 
   play() { //게임시작
@@ -24,11 +25,18 @@ class App {
   }
 
   getWinNumber(){ //당첨번호 입력받기
-    MissionUtils.Console.readline('당첨 번호를 입력해 주세요.\n', (winNum) => {
-      const winStr = winNum.toString(); //숫자->문자열
+    MissionUtils.Console.readline('당첨 번호를 입력해 주세요.\n', (number) => {
+      const winStr = number.toString(); //숫자->문자열
       this.winArr = winStr.split(","); //문자열->배열
     });
   }
+
+  getBonusNumber(){ //보너스번호 입력받기
+    MissionUtils.Console.readline('보너스 번호를 입력해 주세요.\n', (number) => {
+      this.BonusNum = number;
+    });
+  }
+
 }
 
 module.exports = App;
