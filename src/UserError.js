@@ -5,6 +5,14 @@ class UserError {
     }
   }
 
+  numbersFormError(numbers) {
+    numbers.forEach((number) => {
+      if (Number.isNaN(number)) {
+        throw new Error("[ERROR] 쉼표로 구분해서 입력해 주세요.");
+      }
+    });
+  }
+
   validateMoney(money) {
     if (money % 1000 !== 0) {
       throw new Error("[ERROR] 1,000원 단위로 입력해 주세요.");
