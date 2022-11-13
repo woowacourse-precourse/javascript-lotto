@@ -4,17 +4,12 @@ const { Random, Console } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
 class App {
-  constructor() {
-    this.lottos = [];
-  }
-
   play() {
     Console.readLine("구입금액을 입력해주세요.\n", (input) => {
       const budget = input.trim();
       const lottoCount = this.calcLottoCount(budget);
       const lottos = this.createLottos(lottoCount);
       this.printLottos(lottoCount, lottos);
-      this.finish();
     });
   }
 
@@ -44,6 +39,7 @@ class App {
       const lotto = this.createLotto();
       lottos.push(lotto);
     }
+    this.lottos = lottos;
     return lottos;
   }
 
@@ -51,6 +47,23 @@ class App {
     Console.print(`\n${lottoCount}개를 구매했습니다.`);
     lottos.forEach((lotto) => {
       Console.print(lotto.getNumbers());
+    });
+    this.inputMainNums();
+  }
+
+  inputMainNums() {
+    Console.readLine("\n당첨 번호를 입력해주세요.\n", (input) => {
+      const mainNums = input.split(",");
+      this.mainNums = mainNums.map(Number);
+      this.inputBonusNum();
+    });
+  }
+
+  inputBonusNum() {
+    Console.readLine("\n보너스 번호를 입력해주세요.\n", (input) => {
+      const bonusNum = input;
+      this.bonusNum = Number(bonusNum);
+      Console.close();
     });
   }
 }
