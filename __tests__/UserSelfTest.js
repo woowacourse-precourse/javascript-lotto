@@ -1,7 +1,7 @@
 const User = require('../src/User');
 const { errMsg } = require('../src/constants');
 
-describe('셀프 테스트', () => {
+describe('셀프 유저 테스트', () => {
   test('로또 구입 금액 예외 테스트', () => {
     const purchaseAmout = [
       '100j',
