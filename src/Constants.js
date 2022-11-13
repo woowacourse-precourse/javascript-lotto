@@ -1,18 +1,36 @@
-const LOTTO_PRICE = {
-  purchase: 1000,
-  0: 0,
-  1: 0,
-  2: 0,
-  3: 5000,
-  4: 50000,
-  5: 1500000,
-  6: 2000000000,
-  bonuse: 30000000,
+const LOTTO_MATCHES = {
+  0: 'out',
+  1: 'out',
+  2: 'out',
+  3: 'three',
+  4: 'four',
+  5: 'five',
+  6: 'six',
+  fiveWithBonus: 'fiveWithBonus',
 };
 
-const MESSAGE = {
+const LOTTO_PRIZE = {
+  six: 2000000000,
+  fiveWithBonus: 30000000,
+  five: 1500000,
+  four: 50000,
+  three: 5000,
+  out: 0,
+};
+
+const EA = '개';
+
+const RESULT_MESSAGE = {
+  beginning: '\n당첨 통계\n---',
+  three: '3개 일치 (5,000원) - ',
+  four: '4개 일치 (50,000원) - ',
+  five: '5개 일치 (1,500,000원) - ',
+  fiveWithBonus: '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
+  six: '6개 일치 (2,000,000,000원) - ',
+};
+
+const INPUT_MESSAGE = {
   purchase: '구입금액을 입력해 주세요.\n',
-  numberOfPurchase: '개를 구매했습니다.',
   winning: '\n당첨 번호를 입력해 주세요.\n',
   bonuse: '\n보너스 번호를 입력해 주세요.\n',
 };
@@ -27,4 +45,11 @@ const ERROR_MESSAGE = {
   divisible: '[ERROR] 구입금액의 단위는 1000원입니다.',
 };
 
-module.exports = { LOTTO_PRICE, MESSAGE, ERROR_MESSAGE };
+module.exports = {
+  LOTTO_MATCHES,
+  LOTTO_PRIZE,
+  EA,
+  RESULT_MESSAGE,
+  INPUT_MESSAGE,
+  ERROR_MESSAGE,
+};

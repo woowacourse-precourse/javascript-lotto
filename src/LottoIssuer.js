@@ -21,7 +21,7 @@ class LottoIssuer {
   }
 
   print() {
-    Console.print(`\n${this.#number}${MESSAGE.numberOfPurchase}`);
+    Console.print(`\n${this.#number}개를 구매했습니다.`);
     this.#lotteries.forEach((lottoNumbers) => {
       Console.print(`[${lottoNumbers.join(', ')}]`);
     });

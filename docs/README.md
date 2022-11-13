@@ -53,6 +53,7 @@
 - [x] `Lotto`클래스에 `LottoBonus` 클래스 활용
 - [x] `LottoGame` 클래스 생성자 제거 후 프라이빗 필드 추가
   - [x] 이에 따른 `LottoGame`에 종속된 클래스 변경
+- [x] 상수 분리하기
 
 ---
 
