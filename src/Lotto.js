@@ -1,4 +1,10 @@
-const { errMsg } = require('./constants');
+const { Random } = require('@woowacourse/mission-utils');
+const {
+  errMsg,
+  MIN_LOTTO_NUMBER,
+  MAX_LOTTO_NUMBER,
+  LOTTO_LENGTH
+} = require('./constants');
 
 class Lotto {
   #numbers;
@@ -6,6 +12,21 @@ class Lotto {
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
+  }
+
+  static makeLotto() {
+    const newLotto = [];
+    while (newLotto.length < LOTTO_LENGTH) {
+      const randomNum = Random.pickNumberInRange(
+        MIN_LOTTO_NUMBER,
+        MAX_LOTTO_NUMBER
+      );
+      if (!newLotto.includes(randomNum)) {
+        newLotto.push(randomNum);
+      }
+    }
+    newLotto.sort((a, b) => a - b);
+    return newLotto;
   }
 
   validate(numbers) {
