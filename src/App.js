@@ -23,6 +23,23 @@ class App {
   checkQuantity(money) {
     const quantity = money / 1000;
     MissionUtils.Console.print(`${quantity}개를 구매했습니다.`);
+    this.createLotto(quantity);
+  }
+
+  createLotto(quantity) {
+    for (let i = 0; i < quantity; i += 1) {
+      const lottoNum = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      this.checkSort(lottoNum);
+    }
+  }
+
+  checkSort(lottoNum) {
+    const tempArr = [];
+    const sortedNum = lottoNum.sort((a, b) => a - b);
+    tempArr.push(sortedNum);
+    for (let i = 0; i < tempArr.length; i += 6) {
+      this.lottoArr.push(tempArr.slice(i, i + 6));
+    }
   }
 }
 
