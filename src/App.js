@@ -26,9 +26,10 @@ class App {
     this.payment = this.payment;
     //console.log(this.payment)
     this.profit = rankCntList[0]*5000 + rankCntList[1]*50000 + rankCntList[2]*1500000 + rankCntList[3]*30000000 + rankCntList[4]*200000000;
-    this.profitRate = (this.profit / this.payment).toFixed(1);
+    this.profitRate = ((this.profit / this.payment) * 100).toFixed(1);
 
-    Console.print('총 수익률은 '+ this.profitRate + '%입니다.');
+    Console.print('총 수익률은 '+ this.profitRate  + '%입니다.');
+    Console.close();
   }
 
   showResultPhrase(rankList) {
