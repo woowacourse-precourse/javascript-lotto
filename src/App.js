@@ -16,7 +16,7 @@ function isNumeric(str) {
 
 function toLottoNumber(number){
   if(!isNumeric) throw new Error("[ERROR] 로또 번호는 1부터 45까지 수 중 하나이어야 합니다.");
-  if(number > 45 && number < 1) throw new Error("[ERROR] 로또 번호는 1부터 45까지 수 중 하나이어야 합니다.");
+  if(number > 45 || number < 1) throw new Error("[ERROR] 로또 번호는 1부터 45까지 수 중 하나이어야 합니다.");
   return Number(number);
 }
 
@@ -88,9 +88,41 @@ function getBounusNumber(winningNumber){
 }
 
 function calculateProfit(lottoArray, winningNumber, bonusNumber){
-  for(var i = 0; i < lottoArray.size; i++){
-    
+  MissionUtils.Console.print("당첨 통계");
+  MissionUtils.Console.print("---");
+  var matches = [0,0,0,0,0,0,0]; // Array that stores the number of matches (index == matches).
+  var bonusMatch = 0;  
+  lottoArray.forEach(function(lottery){
+    currentLotto = lottery.getNumbers();
+    const count = countMatch(currentLotto, winningNumber, bonusNumber);
+    if(count == 5 && currentLotto.includes(bonusNumber)){
+      bonusMatch++;
+      matches[count]--;
+    }
+    matches[count]++;
+  });
+  printPrize(matches, bonusMatch);
+}
+
+function countMatch(array1, array2, bonus){
+  var count = 0;
+  for(var i = 0; i < array1.length; i++){
+    if(array2.includes(array1[i])) count++;
   }
+  if(count == 5 && array1.includes(bonus)){
+    return 7;
+  }
+  return count;
+}
+
+function printPrize(matches, bonusMatch){
+  const prize = [0,0,0,"5,000","50,000","1,500,000","2,000,000,000"];
+  const bonusPrize = "30,000,000";
+  for(var i = 3; i < 6; i++){
+    MissionUtils.Console.print("" + i + "개 일치 (" + prize[i] + "원) - " + matches[i] + "개");
+  }
+  MissionUtils.Console.print("5개 일치, 보너스 볼 일치 (" + bonusPrize + "원) - " + bonusMatch + "개");
+  MissionUtils.Console.print("6개 일치 (" + prize[6] + "원) - " + matches[6] + "개");
 }
 
 class App {
@@ -109,7 +141,8 @@ class App {
     this.lottoArray = issueLotto(this.lottoCount);
     this.winningNumber = getWinningNumber();
     this.bonusNumber = getBounusNumber(this.winningNumber);
-    this.profit = calculateProfit();
+    this.profit = calculateProfit(this.lottoArray, this.winningNumber, this.bonusNumber);
+    printProfit( this.lottoCount*1000, this.profit );
   }
 }
 
