@@ -1,34 +1,39 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
 class WinningCalculator {
-  #getMatchNumber(numbers, winningNumbers) {
-    return numbers.filter((number) => winningNumbers.includes(number));
+  #getMatchNumber(playerNumbers, winningNumbers) {
+    return playerNumbers.filter((number) => winningNumbers.includes(number));
   }
 
-  calculateRank(playerLottos, winningLotto) {
-    const rank = Array(5).fill(0);
+  #getRankIndex(playerNumbers, winningNumbers, bonusNumber) {
+    const matchNumber = this.#getMatchNumber(playerNumbers, winningNumbers);
 
-    playerLottos.map((lotto) => {
-      const matchNumber = this.#getMatchNumber(lotto.numbers, winningLotto.numbers);
+    if (matchNumber.length === 6) {
+      return 0;
+    }
+    if (matchNumber.length === 5 && playerNumbers.includes(bonusNumber)) {
+      return 1;
+    }
+    if (matchNumber.length === 5 && !playerNumbers.includes(bonusNumber)) {
+      return 2;
+    }
+    if (matchNumber.length === 4) {
+      return 3;
+    }
+    if (matchNumber.length === 3) {
+      return 4;
+    }
+  }
 
-      if (matchNumber.length === 6) {
-        rank[0]++;
-      }
-      if (matchNumber.length === 5 && lotto.numbers.includes(winningLotto.bonusNumber)) {
-        rank[1]++;
-      }
-      if (matchNumber.length === 5 && !lotto.numbers.includes(winningLotto.bonusNumber)) {
-        rank[2]++;
-      }
-      if (matchNumber.length === 4) {
-        rank[3]++;
-      }
-      if (matchNumber.length === 3) {
-        rank[4]++;
-      }
+  getRankCount(playerLottos, winningLotto) {
+    const rankCount = Array(5).fill(0);
+
+    playerLottos.forEach((lotto) => {
+      const rankIndex = this.#getRankIndex(lotto.numbers, winningLotto.numbers, winningLotto.bonusNumber);
+      rankCount[rankIndex]++;
     });
 
-    return rank;
+    return rankCount;
   }
 
   #getPurchaseAmount(lottos) {
@@ -54,7 +59,7 @@ class WinningCalculator {
     MissionUtils.Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
   }
 
-  printRank(rank) {
+  printRank(rankCountArray) {
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${rank[4]}개`);
     MissionUtils.Console.print(`4개 일치 (50,000원) - ${rank[3]}개`);
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${rank[2]}개`);
