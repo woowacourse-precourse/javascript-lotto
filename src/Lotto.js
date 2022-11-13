@@ -11,6 +11,12 @@ class Lotto {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
   }
+  set numbers(numbers) {
+    this.#numbers = numbers;
+  }
+  get numbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
