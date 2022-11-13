@@ -14,17 +14,25 @@ class Lotto {
     Validator.throwErrorIfInvalidWinningNumbers(numbers);
   }
 
-  informStateOfWinning(userLottos, bonusNumber) {
+  renderGameResult(userLottos, bonusNumber) {
+    const winningState = this.informWinningState(userLottos, bonusNumber);
+    const totalPrize = this.calcTotalPrize(winningState, userLottos.length);
+    const rateOfReturn = this.calcRateOfReturn(totalPrize, userLottos.length);
+
+    Render.WinningStatistics(winningState, rateOfReturn);
+  }
+
+  informWinningState(userLottos, bonusNumber) {
     const winningState = userLottos.reduce((state, lotto) => {
       const matchingCount = this.getMatchingNumCount(lotto);
       const matchesBonusNum = lotto.includes(Number(bonusNumber));
-      const rank = this.getWinningRanking(matchingCount, matchesBonusNum);
-      if (rank !== RANK.FAIL) state[rank] += 1;
+      const ranking = this.getWinningRanking(matchingCount, matchesBonusNum);
+      if (ranking !== RANK.FAIL) state[ranking] += 1;
 
       return state;
     }, Array(LOTTO.NUM_OF_PRIZE).fill(0));
 
-    this.calcTotalPrize(winningState, userLottos.length);
+    return winningState;
   }
 
   getMatchingNumCount(lottoNumbers) {
@@ -42,22 +50,17 @@ class Lotto {
     return RANK.FAIL;
   }
 
-  calcTotalPrize(winningState, countOfLottos) {
+  calcTotalPrize(winningState) {
     let totalPrize = 0;
     for (let i = 0; i < LOTTO.NUM_OF_PRIZE; i++) {
       totalPrize += winningState[i] * PRIZE_MONEY[i];
     }
 
-    this.calcRateOfReturn(winningState, totalPrize, countOfLottos);
+    return totalPrize;
   }
 
-  calcRateOfReturn(winningState, totalPrize, countOfLottos) {
-    const rateOfReturn = (totalPrize / (countOfLottos * LOTTO.PRICE)) * 100;
-    this.renderGameResult(winningState, rateOfReturn);
-  }
-
-  renderGameResult(winningState, rateOfReturn) {
-    Render.WinningStatistics(winningState, rateOfReturn);
+  calcRateOfReturn(totalPrize, countOfLottos) {
+    return (totalPrize / (countOfLottos * LOTTO.PRICE)) * 100;
   }
 }
 
