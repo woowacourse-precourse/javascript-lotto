@@ -81,11 +81,7 @@ class LottoGame {
     return { matchedLottoNumberCount, hasBonusNumber };
   }
   getMatchedLottoNumberCount(lottoNumbers) {
-    const matchCheckLength = new Set([...lottoNumbers, ...this.winningNumbers]).size;
-    const maxLength = LOTTO_DIGITS * 2;
-    const matchedLottoNumberCount = maxLength - matchCheckLength;
-
-    return matchedLottoNumberCount;
+    return lottoNumbers.filter((number) => this.winningNumbers.includes(number)).length;
   }
   hasBonusNumber(lottoNumbers) {
     return lottoNumbers.includes(this.bonusNumber);
