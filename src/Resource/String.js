@@ -15,8 +15,17 @@ const ERROR = {
   WRONG_ADDITINAL_NUMBER: `${this.ERROR} 보너스 번호가 1개의 숫자이어야 합니다.`,
 };
 
+const LOTTO = {
+  FIRST_PLACE: '6개 일치',
+  SECOND_PLACE: '5개 일치, 보너스 볼 일치',
+  THIRD_PLACE: '5개 일치',
+  FOURTH_PLACE: '4개 일치',
+  FIFTH_PLACE: '3개 일치',
+}
+
 Object.freeze(INPUT);
 Object.freeze(OUTPUT);
 Object.freeze(ERROR);
+Object.freeze(LOTTO);
 
-module.exports = { INPUT, OUTPUT, ERROR };
+module.exports = { INPUT, OUTPUT, ERROR, LOTTO };
