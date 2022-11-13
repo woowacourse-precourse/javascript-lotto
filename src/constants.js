@@ -40,6 +40,7 @@ const MESSAGES = {
     IS_NOT_NUMBER: `${HEADER.ERROR} 숫자를 입력해주세요!`,
     HAS_BLANK: `${HEADER.ERROR} 공백이 없는 숫자를 입력해주세요!`,
     IS_NOT_KILO: `${HEADER.ERROR} 1,000원 단위의 금액을 입력해주세요!`,
+    IS_DEMICAL: `${HEADER.ERROR} 소수가 아닌 정수를 입력해주세요!`,
     IS_DIFFRENT_LOTTO_LENGTH: `${HEADER.ERROR} ${LOTTO_LENGTH}개의 숫자를 입력해주세요!`,
     IS_DIFFRENT_BONUS_LENGTH: `${HEADER.ERROR} ${BONUS_LENGTH}개의 숫자를 입력해주세요!`,
     IS_NOT_RANGE: `${HEADER.ERROR} 1에서 45 사이의 값으로만 입력해주세요!`,

@@ -2,62 +2,66 @@ const { MESSAGES, LOTTO_LENGTH, BONUS_LENGTH } = require('../constants');
 
 class Validator {
   static amountValidCheck(amount) {
-    Validator.isBlank(amount);
-    Validator.hasBlank(amount);
+    Validator.#isBlank(amount);
+    Validator.#hasBlank(amount);
     amount = Number(amount);
-    Validator.isNotNumber(amount);
-    Validator.isNotKilo(amount);
+    Validator.#isNotNumber(amount);
+    Validator.#isNotKilo(amount);
   }
 
   static lottoValidCheck(lotto) {
-    Validator.isDiffrentLottoLength(lotto);
+    Validator.#isDiffrentLottoLength(lotto);
     const validLotto = new Set();
     lotto.forEach(number => {
-      Validator.basicNumberCheck(number);      
-      Validator.isDuplicated(number, validLotto);
+      Validator.#basicNumberCheck(number);      
+      Validator.#isDuplicated(number, validLotto);
       validLotto.add(number);
     });
   }
 
   static bonusValidCheck(bonus, winningLotto) {
-    Validator.isDiffrentBonusLength(bonus);
+    Validator.#isDiffrentBonusLength(bonus);
     bonus.forEach(number => {      
-      Validator.basicNumberCheck(number);
-      Validator.isIncludedBonus(number, winningLotto);
+      Validator.#basicNumberCheck(number);
+      Validator.#isIncludedBonus(number, winningLotto);
     });
   }
 
-  static basicNumberCheck(value) {    
-    Validator.isNotNumber(value);
-    Validator.isNotRange(value);
+  static #basicNumberCheck(value) {    
+    Validator.#isNotNumber(value);
+    Validator.#isNotRange(value);
+    Validator.#isDemical(value);
   }
 
-  static isBlank(value) {
+  static #isBlank(value) {
     if(value === '') throw new Error(MESSAGES.ERROR.IS_BLANK);
   }
-  static hasBlank(value) {
+  static #hasBlank(value) {
     const regex = /\s/g;    
     if(value.match(regex)) throw new Error(MESSAGES.ERROR.HAS_BLANK);
   }
-  static isNotNumber(value) {
-    if(isNaN(value)) throw new Error(MESSAGES.ERROR.IS_NOT_NUMBER);
+  static #isNotNumber(value) {
+    if(Number.isNaN(value)) throw new Error(MESSAGES.ERROR.IS_NOT_NUMBER);
   }
-  static isNotKilo(value) {
+  static #isDemical(value) {
+    if(value % 1 !== 0) throw new Error(MESSAGES.ERROR.IS_DEMICAL);
+  }
+  static #isNotKilo(value) {
     if(value % 1000 !== 0) throw new Error(MESSAGES.ERROR.IS_NOT_KILO);
   }
-  static isDiffrentLottoLength(value) {
+  static #isDiffrentLottoLength(value) {
     if(value.length !== LOTTO_LENGTH) throw new Error(MESSAGES.ERROR.IS_DIFFRENT_LOTTO_LENGTH);
   }
-  static isDiffrentBonusLength(value) {
+  static #isDiffrentBonusLength(value) {
     if(value.length !== BONUS_LENGTH) throw new Error(MESSAGES.ERROR.IS_DIFFRENT_BONUS_LENGTH);
   }
-  static isNotRange(value) {
+  static #isNotRange(value) {
     if(value < 1 || value > 45) throw new Error(MESSAGES.ERROR.IS_NOT_RANGE);
   }
-  static isDuplicated(value, list) {
+  static #isDuplicated(value, list) {
     if(list.has(value)) throw new Error(MESSAGES.ERROR.IS_DUPLICATED);
   }
-  static isIncludedBonus(bonus, winningLotto) {
+  static #isIncludedBonus(bonus, winningLotto) {
     if(winningLotto.includes(bonus)) throw new Error(MESSAGES.ERROR.IS_INCLUDED_BONUS);
   }
 }
