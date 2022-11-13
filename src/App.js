@@ -18,6 +18,15 @@ class App {
     return input.split(AppConfig.INPUT_SEPARATOR).map(Number);
   }
 
+  static inputBonusNumber() {
+    let input;
+    MissionUtils.Console.readLine(
+      Message.ENTER_BONUS_NUMBER_MESSAGE,
+      (answer) => { input = answer; },
+    );
+    return Number(input);
+  }
+
   static #validateMoney(money) {
     if (
       money < LottoConfig.PRICE
