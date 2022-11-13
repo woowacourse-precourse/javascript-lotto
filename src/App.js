@@ -6,6 +6,7 @@ const Validator = require("./Validator");
 
 const initialState = {
   money: 0,
+  count: 0,
 };
 
 class App {
@@ -29,7 +30,14 @@ class App {
       }
 
       this.state.money = money;
+      this.state.count = money / 1000;
+
+      this.generate();
     });
+  }
+
+  generate() {
+    Console.print(`${this.state.count + MESSAGE.COUNT_LOTTO}`);
   }
 
   error(message) {
