@@ -2,6 +2,7 @@ const { Console } = require("@woowacourse/mission-utils");
 
 const User = require("../src/User");
 const Lotto = require("./Lotto");
+const LottoGame = require("./LottoGame");
 const { MESSAGE, ERROR } = require("../src/utils/constants");
 const {
   hasChar,
@@ -59,12 +60,17 @@ class App {
     return numberArray;
   }
 
-  //보너스 번호 입력 요청하기
   getBonusNumber() {
     Console.readLine(MESSAGE.ENTER_BONUS_NUMBER, (number) => {
       const trimmedNumber = number.trim();
       this.validateBonusNumber(trimmedNumber);
       this.bonusNumber = Number(trimmedNumber);
+      this.lottoGame = new LottoGame(
+        this.user,
+        this.winningNumbers,
+        this.bonusNumber
+      );
+      this.lottoGame.start();
     });
   }
 
