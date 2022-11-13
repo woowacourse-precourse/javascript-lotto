@@ -27,7 +27,7 @@ class ErrorCase {
     const processed = processWinningNumbersInput(winningNumbersInput);
     if (processed.length !== 6) return true;
 
-    const isDuplicated = UI.duplicatedNumbers(processed);
+    const isDuplicated = ErrorCase.duplicatedNumbers(processed);
     if (isDuplicated) return true;
 
     return false;
