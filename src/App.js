@@ -14,6 +14,7 @@ class App {
   play() {
     this.requestPay();
     this.requestNumber();
+    this.printWinning();
   }
 
   requestPay() {
@@ -49,6 +50,10 @@ class App {
     Console.readLine(Message.SET_BONUSNUMBER, (bonusNumber) => {
       new Lotto(bonusNumber);
     });
+  }
+
+  printWinning() {
+    Console.print(Message.WINNING);
   }
 }
 
