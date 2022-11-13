@@ -30,7 +30,7 @@ describe("로또 클래스 테스트", () => {
     expect([...testSet].length).toBe(6);
   });
 
-  test("당첨 번호의 배열에 포함된 번호가 있는지 확인한다.", () => {
+  test("당첨 번호의 배열에 포함된 번호가 몇개 있는지 확인한다.", () => {
     const lotto = new Lotto();
     const game = [1, 2, 3, 4, 5, 6];
     const numbers = [1, 2, 3, 4, 5, 6];
