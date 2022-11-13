@@ -1,6 +1,7 @@
-const Lotto = require('./Lotto');
 const { Console, Random } = require('@woowacourse/mission-utils');
-const { UNIT, Messages, winnings, getPurchaseMessage, getResultMessage } = require('./constants');
+const Lotto = require('./Lotto');
+const Message = require('./Message');
+const Money = require('./Money');
 const { isOutOfRange } = require('./isOutOfRange');
 
 class App {
@@ -24,54 +25,41 @@ class App {
   }
 
   requestMoneyInput() {
-    Console.readLine(Messages.REQUEST_MONEY_INPUT, (input) => {
+    Console.readLine(Message.REQUEST_PURCHASE_MONEY_INPUT, (input) => {
       const money = Number(input);
       this.purchaseMoney = money;
-      this.purchaseCount = money / UNIT;
+      this.purchaseCount = money / Money.UNIT;
       this.validatePurchaseMoney();
-      this.printPurchaseMessage();
+      Message.printPurchase(this.purchaseCount);
       this.createLotto();
-      this.printLottos();
+      Message.printLottos(this.myLottos);
       this.requestWinningNumbersInput();
     });
   }
 
   validatePurchaseMoney() {
-    if (this.purchaseMoney < UNIT) {
-      throw new Error(Messages.ERROR_MINIMUM_MONEY_INPUT);
+    if (this.purchaseMoney < Money.UNIT) {
+      throw new Error(Message.ERROR_MINIMUM_MONEY_INPUT);
     }
     if (Number.isNaN(this.purchaseMoney)) {
-      throw new Error(Messages.ERROR_NUMBER_ONLY);
+      throw new Error(Message.ERROR_NUMBER_ONLY);
     }
     if (!Number.isInteger(this.purchaseCount)) {
-      throw new Error(Messages.ERROR_1000_UNITS_ONLY);
+      throw new Error(Message.ERROR_1000_UNIT_ONLY);
     }
   }
 
-  printPurchaseMessage() {
-    const purchaseMessage = getPurchaseMessage(this.purchaseCount);
-    Console.print(purchaseMessage);
-}
-
   createLotto() {
     while (this.myLottos.length < this.purchaseCount) {
-      const uniqueRandomNumbers = Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
-      const lotto = new Lotto(uniqueRandomNumbers);
+      const numbers = Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
+      const lotto = new Lotto(numbers);
       const lottoNumbers = lotto.getNumbers();
       this.myLottos.push(lottoNumbers);
     }
   }
 
-  printLottos() {
-    this.myLottos.forEach((lotto) => {
-      const lottoNumbers = lotto.join(', ');
-      const lottoNumbersWithBrackets = `[${lottoNumbers}]`;
-      Console.print(lottoNumbersWithBrackets);
-    });
-  }
-
   requestWinningNumbersInput() {
-    Console.readLine(Messages.REQUEST_WINNING_NUMBERS_INPUT, (input) => {
+    Console.readLine(Message.REQUEST_WINNING_NUMBERS_INPUT, (input) => {
       const numbers = input.split(',').map((digit) => Number(digit));
       const winningLotto = new Lotto(numbers);
       this.winningNumbers = winningLotto.getNumbers();
@@ -80,21 +68,21 @@ class App {
   }
 
   requestBonusNumberInput() {
-    Console.readLine(Messages.REQUEST_BONUS_NUMBER_INPUT, (input) => {
+    Console.readLine(Message.REQUEST_BONUS_NUMBER_INPUT, (input) => {
       this.bonusNumber = Number(input);
       this.validateBonusNumber();
       this.getResult();
-      this.printResult();
+      Message.printResult(this.purchaseMoney, this.result);
       Console.close();
     });
   }
 
   validateBonusNumber() {
     if (isOutOfRange(this.bonusNumber)) {
-      throw new Error(Messages.ERROR_BONUS_NUMBER_RANGE);
+      throw new Error(Message.ERROR_BONUS_NUMBER_RANGE);
     }
     if (this.winningNumbers.includes(this.bonusNumber)) {
-      throw new Error(Messages.ERROR_BONUS_NUMBER_DUPLICATE);
+      throw new Error(Message.ERROR_BONUS_NUMBER_DUPLICATE);
     }
   }
 
@@ -119,20 +107,6 @@ class App {
     } else if (matchCount === 3) {
       this.result.fifth += 1;
     }
-  }
-
-  printResult() {
-    const { first, second, third, fourth, fifth } = this.result;
-    const totalWinnings = (
-      first * winnings.FIRST
-      + second * winnings.SECOND
-      + third * winnings.THIRD
-      + fourth * winnings.FOURTH
-      + fifth * winnings.FIFTH
-    );
-    const rateOfReturn = (totalWinnings / this.purchaseMoney * 100).toFixed(1);
-    const resultMessage = getResultMessage(first, second, third, fourth, fifth, rateOfReturn);
-    Console.print(resultMessage);
   }
 }
 

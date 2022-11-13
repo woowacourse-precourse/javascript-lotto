@@ -1,4 +1,4 @@
-const { Messages } = require('./constants');
+const Message = require('./Message');
 const { isOutOfRange } = require('./isOutOfRange');
 
 class Lotto {
@@ -11,15 +11,15 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error(Messages.ERROR_LOTTO_NUMBERS_LENGTH);
+      throw new Error(Message.ERROR_LOTTO_NUMBERS_LENGTH);
     }
     const outOfRange = numbers.some(isOutOfRange);
     if (outOfRange) {
-      throw new Error(Messages.ERROR_LOTTO_NUMBER_RANGE);
+      throw new Error(Message.ERROR_LOTTO_NUMBER_RANGE);
     }
     const numberSet = new Set(numbers);
     if (numbers.length !== numberSet.size) {
-      throw new Error(Messages.ERROR_LOTTO_NUMBER_DUPLICATE);
+      throw new Error(Message.ERROR_LOTTO_NUMBER_DUPLICATE);
     }
   }
 
