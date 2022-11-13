@@ -9,13 +9,13 @@ class Lotto {
     this.showValidateResult(this.#numbers);
   }
 
-  showValidateResult(lottoNumber) {
-    const resultMessage = this.validate(lottoNumber);
+  showValidateResult(lottoNumbers) {
+    const resultMessage = this.validate(lottoNumbers);
     return resultMessage ? ThrowError(LOTTO_ERROR[resultMessage]) : true;
   }
 
   validate(numbers) {
-    const numbersList = numbers.split(',');
+    const numbersList = numbers.split(LOTTO_INFO.SPLITUNIT);
     return (
       this.isNumber(numbersList) ||
       this.isSplit(numbers) ||
@@ -26,28 +26,28 @@ class Lotto {
   }
 
   isNumber(numbersList) {
-    return /^\d+$/.test(numbersList.join('')) === false ? 'NUMBER' : false;
+    return /^\d+$/.test(numbersList.join('')) ? false : 'NUMBER';
   }
 
   isSplit(numbers) {
-    return !numbers.includes(LOTTO_INFO.SPLITUNIT) ? 'SPLIT' : false;
+    return numbers.includes(LOTTO_INFO.SPLITUNIT) ? false : 'SPLIT';
   }
 
   isNumberCorrect(numbersList) {
-    return numbersList.length !== LOTTO_INFO.PICK ? 'LEGNTH' : false;
+    return numbersList.length === LOTTO_INFO.PICK ? false : 'LEGNTH';
   }
 
   isNumberRepeated(numbersList) {
-    return new Set(numbersList).size !== LOTTO_INFO.PICK ? 'REPEAT' : false;
+    return new Set(numbersList).size === LOTTO_INFO.PICK ? false : 'REPEAT';
   }
 
   isNumberRange(numbersList) {
     return numbersList.filter(
-      (eachNumber) =>
-        Number(eachNumber) >= LOTTO_INFO.START_RANGE && Number(eachNumber) <= LOTTO_INFO.LAST_RANGE
-    ).length !== LOTTO_INFO.PICK
-      ? 'RANGE'
-      : false;
+      (number) =>
+        Number(number) >= LOTTO_INFO.START_RANGE && Number(number) <= LOTTO_INFO.LAST_RANGE
+    ).length === LOTTO_INFO.PICK
+      ? false
+      : 'RANGE';
   }
 }
 

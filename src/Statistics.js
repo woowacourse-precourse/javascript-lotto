@@ -1,36 +1,34 @@
 const { BONUS_NUMBER, RANKING } = require('./constant');
 
 class Statistics {
-  constructor(lottoNumber, buyLottery) {
-    [this.lottoNumber, this.bonusLottoNumber] = lottoNumber;
-    this.buyLottery = buyLottery;
+  constructor(fullLottoNumbers, lotteryTickets) {
+    [this.lottoNumbers, this.bonusNumber] = fullLottoNumbers;
+    this.lotteryTickets = lotteryTickets;
   }
 
-  showResult() {
-    const result = this.matchInfo();
+  showMatchResult() {
+    const matchInfoList = this.matchInfo();
     return Object.keys(RANKING).map((rank) => {
-      const matchNumberInfo = RANKING[rank];
-      const matchNumber = RANKING[rank]['MATCH'];
+      const rankInfo = RANKING[rank];
+      const rankMatch = RANKING[rank]['MATCH'];
       const matchCount =
-        result[matchNumber] && result[matchNumber]['bonus'] === matchNumberInfo['BONUS']
-          ? result[matchNumber]['count']
+        matchInfoList[rankMatch] && matchInfoList[rankMatch]['bonus'] === rankInfo['BONUS']
+          ? matchInfoList[rankMatch]['count']
           : 0;
-      return { matchCount, matchMoney: matchNumberInfo['JACKPOT'], matchNumberInfo };
+      return { matchCount, matchMoney: rankInfo['JACKPOT'], rankMessage: rankInfo['MESSAGE'] };
     });
   }
 
   matchInfo() {
-    const matchList = this.buyLottery.map((lottery) => {
-      const countNumber = this.compareNumbers(this.lottoNumber, lottery);
+    const matchList = this.lotteryTickets.map((lottery) => {
+      const matchNumber = this.compareNumbers(this.lottoNumbers, lottery);
       const bonusMatch =
-        countNumber === BONUS_NUMBER
-          ? this.compareBonusNumber(this.bonusLottoNumber, lottery)
-          : false;
-      return [countNumber, bonusMatch];
+        matchNumber === BONUS_NUMBER ? this.compareBonusNumber(this.bonusNumber, lottery) : false;
+      return [matchNumber, bonusMatch];
     });
-    return matchList.reduce((matchAcc, [match, bonus]) => {
-      matchAcc[match] = { bonus, count: (matchAcc[match] ? matchAcc[match]['count'] : 0) + 1 };
-      return matchAcc;
+    return matchList.reduce((matchSum, [match, bonus]) => {
+      matchSum[match] = { bonus, count: (matchSum[match] ? matchSum[match]['count'] : 0) + 1 };
+      return matchSum;
     }, {});
   }
 

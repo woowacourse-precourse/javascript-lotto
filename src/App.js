@@ -8,41 +8,41 @@ const Statistics = require('./Statistics');
 
 class App {
   constructor() {
-    this.money;
-    this.purChaseLottoNumber;
-    this.fullLottoNumber;
+    this.amount;
+    this.lotteryTickets;
+    this.fullLottoNumbers;
   }
 
   play() {
-    this.purChaseLotto();
+    this.inputLottoAmount();
   }
 
-  purChaseLotto() {
+  inputLottoAmount() {
     Console.readLine(INPUT_MESSAGE.BUY, (amount) => {
-      const lotteryTickets = new PurChase(amount).showLottoTickets(amount);
-      this.money = amount;
-      this.purChaseLottoNumber = lotteryTickets;
-      this.printLotto(lotteryTickets);
+      const generateTickets = new PurChase(amount).showLotteryTickets();
+      this.amount = amount;
+      this.lotteryTickets = generateTickets;
+      this.printLotteryTickets(this.lotteryTickets);
     });
   }
 
-  printLotto(lotteryTickets) {
+  printLotteryTickets(lotteryTickets) {
     Console.print(PRINT_MESSAGE.PURCHASENUMBER(lotteryTickets.length));
     lotteryTickets.forEach((lottery) => Console.print(PRINT_MESSAGE.LOTTERY(lottery)));
-    this.inputLottoNumber();
+    this.inputLottoNumbers();
   }
 
-  inputLottoNumber() {
-    Console.readLine(INPUT_MESSAGE.LOTTONUMBERS, (lottoInput) => {
-      new Lotto(lottoInput);
-      this.inputBonusLottoNumber(lottoInput);
+  inputLottoNumbers() {
+    Console.readLine(INPUT_MESSAGE.LOTTONUMBERS, (lottoNumbers) => {
+      new Lotto(lottoNumbers);
+      this.inputBonusLottoNumbers(lottoNumbers);
     });
   }
 
-  inputBonusLottoNumber(lottoInput) {
-    Console.readLine(INPUT_MESSAGE.BONUSNUMBERS, (bonusInput) => {
-      const fullNumber = [lottoInput.split(LOTTO_INFO.SPLITUNIT), bonusInput];
-      this.fullLottoNumber = new BonusLotto(fullNumber) ? fullNumber : '';
+  inputBonusLottoNumbers(lottoNumber) {
+    Console.readLine(INPUT_MESSAGE.BONUSNUMBERS, (bonusNumber) => {
+      const fullNumbers = [lottoNumber.split(LOTTO_INFO.SPLITUNIT), bonusNumber];
+      this.fullLottoNumbers = new BonusLotto(fullNumbers) ? fullNumbers : '';
       this.printStats();
     });
   }
@@ -50,13 +50,13 @@ class App {
   printStats() {
     Console.print(PRINT_MESSAGE.WINNING);
     Console.print(PRINT_MESSAGE.DIVIDE);
-    const result = new Statistics(this.fullLottoNumber, this.purChaseLottoNumber).showResult();
-    result.forEach((x) => Console.print(x.matchNumberInfo.MESSAGE(x.matchCount)));
-    this.printProFit(result);
+    const stats = new Statistics(this.fullLottoNumbers, this.lotteryTickets).showMatchResult();
+    stats.forEach((result) => Console.print(result.rankMessage(result.matchCount)));
+    this.printProFit(stats);
   }
 
   printProFit(profitList) {
-    const profitFigure = new Profit([this.money, profitList]).calculateProfit();
+    const profitFigure = new Profit([this.amount, profitList]).calculateProfit();
     Console.print(PRINT_MESSAGE.PROFIT(profitFigure));
     this.gameEnd();
   }

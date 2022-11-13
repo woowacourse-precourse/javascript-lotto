@@ -9,21 +9,12 @@ class PurChase {
     this.#money = money;
   }
 
-  showLottoTickets() {
-    const ticketsCount = this.validateResult(this.#money);
-    const ticketsLsit = Array.from({ length: ticketsCount }, () => this.generatLottoTickets());
-    return ticketsLsit;
+  showLotteryTickets() {
+    const ticketsCount = this.showValidationResult(this.#money);
+    return Array.from({ length: ticketsCount }, () => this.generatLotteryTicket());
   }
 
-  generatLottoTickets() {
-    return Random.pickUniqueNumbersInRange(
-      LOTTO_INFO.START_RANGE,
-      LOTTO_INFO.LAST_RANGE,
-      LOTTO_INFO.PICK
-    ).sort((a, b) => a - b);
-  }
-
-  validateResult(purchaseAmount) {
+  showValidationResult(purchaseAmount) {
     const resultMessage = this.validate(purchaseAmount);
     return resultMessage
       ? ThrowError(AMOUNt_ERROR[resultMessage])
@@ -31,15 +22,23 @@ class PurChase {
   }
 
   validate(purchaseAmount) {
-    return this.moneyValidation(purchaseAmount) || this.unitValidation(purchaseAmount);
+    return this.validateMoney(purchaseAmount) || this.validateUnit(purchaseAmount);
   }
 
-  moneyValidation(purchaseAmount) {
+  validateMoney(purchaseAmount) {
     return /^\d+$/.test(purchaseAmount) === false ? 'AMOUNT' : false;
   }
 
-  unitValidation(purchaseAmount) {
+  validateUnit(purchaseAmount) {
     return Number(purchaseAmount) % LOTTO_INFO.PRICE ? 'UNIT' : false;
+  }
+
+  generatLotteryTicket() {
+    return Random.pickUniqueNumbersInRange(
+      LOTTO_INFO.START_RANGE,
+      LOTTO_INFO.LAST_RANGE,
+      LOTTO_INFO.PICK
+    ).sort((a, b) => a - b);
   }
 }
 
