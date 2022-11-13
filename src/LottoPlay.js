@@ -10,6 +10,7 @@ class LottoPlay {
     CheckError.checkPurchaseAmount(purchaseAmount); //
     const lottoNumber = this.purchaseLotto(purchaseAmount);
     UserInterface.printLottoNumber(lottoNumber);
+    const lottoArray = this.createLottoArray(lottoNumber);
   }
 
   purchaseLotto(purchaseAmount) {
@@ -19,6 +20,22 @@ class LottoPlay {
   createOneLotto() {
     // 한 개의 로또 번호를 생성하는 함수.
     return Random.pickUniqueNumbersInRange(1, 45, 6);
+  }
+
+  createLottoArray(lottoNumber) {
+    let lottoArray = [];
+    let tempLotto;
+    for (let i = 0; i < lottoNumber; i++) {
+      tempLotto = this.createOneLotto();
+      tempLotto = new Lotto(tempLotto).getLotto(); // 유효성 검사.
+      lottoArray.push(this.sortNumberArray(tempLotto));
+    }
+    return lottoArray;
+  }
+
+  sortNumberArray(arr) {
+    arr.sort((a, b) => a - b);
+    return arr;
   }
 }
 

@@ -14,7 +14,9 @@ class Lotto {
     CheckError.checkLottoNumbers(numbers);
   }
 
-  // TODO: 추가 기능 구현
+  getLotto() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
