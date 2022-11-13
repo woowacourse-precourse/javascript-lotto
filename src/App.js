@@ -54,6 +54,8 @@ class App {
     MissionUtils.Console.print(BLANK_SPACE.line); 
     this.selectWinNumbers()
   }
+
+
   selectWinNumbers() {
     MissionUtils.Console.print(SELECT_NUMBER_MESSAGE.winNumber);
     this.inputWinNumbers();
@@ -98,14 +100,12 @@ class App {
   compareNumbers() {
     for (let i = 0; i < this.randomNumbersArr.length; i++) {
       let matchedNumber = this.selectedWinNumber.filter((matched) =>
-        this.randomNumbersArr[i].includes(matched)
-      ).length;
+        this.randomNumbersArr[i].includes(matched)).length;
       this.countMatchedNumber.push(matchedNumber);
     } 
     for (let i = 0; i < this.randomNumbersArr.length; i++) {
       let matchedBonusNumber = this.selectedBonusNumber.filter((matched) =>
-        this.randomNumbersArr[i].includes(matched)
-      ).length;
+        this.randomNumbersArr[i].includes(matched)).length;
       this.countMatchedBonusNumber.push(matchedBonusNumber);
     }  
     this.getWinners() 
@@ -113,27 +113,36 @@ class App {
 
   getWinners() {
     const firstPlace = this.countMatchedNumber.filter(element =>MATCH.six === element).length
-    let secondPlace = 0;
-    let thirdPlace = 0; 
     const fourthPlace = this.countMatchedNumber.filter(element => MATCH.four === element).length
     const fifthPlace = this.countMatchedNumber.filter(element => MATCH.three === element).length
+
+    this.isWinnerIncludesBonusNumber(firstPlace,fourthPlace,fifthPlace);
+  }
+  
+  isWinnerIncludesBonusNumber (firstPlace,fourthPlace,fifthPlace){
+    let secondPlace = 0;
+    let thirdPlace = 0; 
     for (let i = 0; i <  this.countMatchedNumber.length; i++) {
       if(this.countMatchedNumber[i] === MATCH.five && this.countMatchedBonusNumber[i] === MATCH.bonus) secondPlace++;
     }
     for (let i = 0; i <  this.countMatchedNumber.length; i++) {
-      if(this.countMatchedNumber.includes(MATCH.five) && !this.countMatchedNumber[i] === MATCH.five && this.countMatchedBonusNumber[i] === MATCH.bonus) thirdPlace++;
+      if(this.countMatchedNumber.includes(MATCH.five) 
+      && this.countMatchedNumber[i] === MATCH.five && this.countMatchedBonusNumber[i] !== MATCH.bonus) thirdPlace++;
     }
     this.calculateYieldRatio(firstPlace,secondPlace,thirdPlace,fourthPlace,fifthPlace);
+
   }
 
   calculateYieldRatio(firstPlace,secondPlace,thirdPlace,fourthPlace,fifthPlace){
-    const addReward = (REWARD.first * firstPlace) + (REWARD.second * secondPlace) + (REWARD.third * thirdPlace) +(REWARD.fourth * fourthPlace) +(REWARD.fifth * fifthPlace) 
+    const addReward = (REWARD.first * firstPlace) 
+    + (REWARD.second * secondPlace) 
+    + (REWARD.third * thirdPlace) 
+    + (REWARD.fourth * fourthPlace) 
+    + (REWARD.fifth * fifthPlace) 
 
     const positiveTotalCalculate = ((this.myPayment - addReward) / this.myPayment) * 100
     const negativeTotalCalculate = 100 - positiveTotalCalculate
 
-    // console.log(positiveTotalCalculate + "a")
-    // console.log(negativeTotalCalculate + "a")
     this.seeResult(firstPlace,secondPlace,thirdPlace,fourthPlace,fifthPlace,positiveTotalCalculate,negativeTotalCalculate);
   }
 
@@ -152,6 +161,11 @@ class App {
     const totalRatio = new TotalRatio(negativeTotalCalculate,positiveTotalCalculate);
     totalRatio.roundDecimalPoint(negativeTotalCalculate,positiveTotalCalculate); 
   }
+
+
+
+
+
 }
 
 const app = new App();
