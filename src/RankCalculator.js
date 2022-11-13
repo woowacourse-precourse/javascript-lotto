@@ -1,4 +1,4 @@
-class WinningCalculator {
+class RankCalculator {
   #getMatchNumber(playerNumbers, winningNumbers) {
     return playerNumbers.filter((number) => winningNumbers.includes(number));
   }
@@ -25,4 +25,4 @@ class WinningCalculator {
   }
 }
 
-module.exports = WinningCalculator;
+module.exports = RankCalculator;
