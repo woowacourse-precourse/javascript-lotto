@@ -7,8 +7,9 @@ class Output {
             bonusNumber,
             randomLottoNumbers
         );
-        const judgement = this.judge(compareResult);
-        const profitRate = this.calProfitRate(judgement, money);
+
+        const profit = this.calProfit(compareResult);
+        const profitRate = this.calProfitRate(profit, money);
 
         Console.print(`총 수익률은 ${profitRate}%입니다.`);
         Console.close();
@@ -49,8 +50,7 @@ class Output {
         return count;
     }
 
-    judge(compareResult) {
-        let sum = 0;
+    calProfit(compareResult) {
         const result = {
             '3': ['3개 일치 (5,000원) -', 0, 5000],
             '4': ['4개 일치 (50,000원) -', 0, 50000],
@@ -61,10 +61,21 @@ class Output {
         compareResult.forEach((number) => {
             if (number >= 3) result[number.toString()][1]++;
         });
+
+        let sum = this.showResult(result);
+        return sum;
+    }
+
+    showResult(result) {
+        let sum = 0;
         Console.print(`당첨 통계\n---`);
         for (let key in result) {
-            if (result[key][1] > 0) sum += result[key][1] * result[key][2];
-            Console.print(`${result[key][0]} ${result[key][1]}개`);
+            let comment = result[key][0];
+            let number = result[key][1];
+            let payout = result[key][2];
+
+            if (number) sum += number * payout;
+            Console.print(`${comment} ${number}개`);
         }
         return sum;
     }
