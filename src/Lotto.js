@@ -23,23 +23,23 @@ class Lotto {
     return this.#numbers;
   }
 
-  compare(luckyNumbers, bonusNumber) {
+  setNumberOfMatches(luckyNumbers) {
     this.#numbers.filter(number => {
       if(luckyNumbers.includes(number)) {
         this.numberOfMatches += 1;
       }
     })
+    return this;
+  }
 
+  setIsBonus(bonusNumber) {
     if (this.#numbers.includes(bonusNumber)) {
       this.isBonus = true;
     }
-
     return this;
   }
 
-  printResult () {
-    return this;
-  }
+  
 }
 
 module.exports = Lotto;
