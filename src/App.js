@@ -3,9 +3,11 @@ const NumberGenerator = require("./NumberGenerator");
 
 class App {
   lottos;
+  winningNumber;
 
   constructor() {
     this.lottos = [];
+    this.winningNumber = [];
   }
 
   play() {
@@ -22,6 +24,13 @@ class App {
   printMyLottos() {
     Console.print(`\n${this.lottos.length}개를 구매했습니다.`);
     this.lottos.forEach(lotto => lotto.print());
+  }
+
+  getWinningNumber() {
+    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (winningNumber) => {
+      this.winningNumber = winningNumber.split(',').map(num => Number(num));
+      this.getBonusNumber();
+    });
   }
 }
 
