@@ -64,6 +64,7 @@ class App {
       let correctNumber = this.Lottobuynumber[i].filter(x=> this.Winnumber.includes(x))
       this.makeCorrectList(correctNumber)
     }
+    this.printResult()
   }
   makeCorrectList(list){
     if (list.length ==3){
@@ -81,6 +82,11 @@ class App {
     else if (list.length == 6){
       this.correctList[4] += 1;
     } 
+  }
+  printResult(){
+    for (let i = 0; i<5; i++){
+      MissionUtils.Console.print(Notice.RESULT_MESSAGE[i] + this.correctList[i] + "개")
+    }
   }
 }
 
