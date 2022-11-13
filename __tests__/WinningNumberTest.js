@@ -70,4 +70,5 @@ describe("당첨 번호 입력 테스트", () => {
       manager.inputWinningNumbers();
     }).toThrow("[ERROR]");
   });
+  MissionUtils.Console.close();
 });

@@ -20,4 +20,5 @@ describe("구입 금액 입력 테스트", () => {
       machine.inputMoney();
     }).toThrow("[ERROR]");
   });
+  MissionUtils.Console.close();
 });
