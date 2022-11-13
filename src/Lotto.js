@@ -3,7 +3,6 @@ const { ERROR_MESSAGE } = require("./util/message");
 
 class Lotto {
   #numbers;
-  #numbersSet;
 
   constructor(numbers) {
     this.validate(numbers);

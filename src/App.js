@@ -6,8 +6,8 @@ const { getCountByPay, getRandomNumbers } = require("./util/purchase");
 
 class App {
   #lottos = [];
-  #userNumbers = null;
-  #userBonusNumber = null;
+  userNumbers = null;
+  userBonusNumber = null;
   pay = null;
 
   play() {
@@ -17,7 +17,7 @@ class App {
 
       Console.print(lottoCnt + CONSOLE_MESSAGE.Purchase);
       for (let i = 0; i < lottoCnt; i++) {
-        const randomNumbers = getRandomNumbers();
+        const randomNumbers = getRandomNumbers(i);
 
         Console.print(randomNumbers);
         this.#lottos.push(new Lotto(randomNumbers));
@@ -29,7 +29,7 @@ class App {
 
   pickNumbers() {
     Console.readLine(CONSOLE_MESSAGE.Numbers, (numbersStr) => {
-      this.#userNumbers = numbersStr.split(",").map(Number);
+      this.userNumbers = numbersStr.split(",").map(Number);
 
       this.getBonusNumber();
     });
@@ -37,7 +37,7 @@ class App {
 
   getBonusNumber() {
     Console.readLine(CONSOLE_MESSAGE.BonusNumber, (numberStr) => {
-      this.#userBonusNumber = +numberStr;
+      this.userBonusNumber = +numberStr;
 
       this.calculateResults();
     });
@@ -49,9 +49,9 @@ class App {
     const totalResult = this.#lottos.reduce(
       (acc, lotto) => {
         const { prize: currentPrize, type: currentRank } =
-          lotto.calculateResult(this.#userNumbers, this.#userBonusNumber);
+          lotto.calculateResult(this.userNumbers, this.userBonusNumber);
 
-        if (!currentRank) return acc;
+        if (currentRank === null) return acc;
 
         acc.prize += currentPrize;
         acc.ranksCnt[currentRank] += 1;
@@ -68,7 +68,7 @@ class App {
 
     ranksCnt.reduce((acc, currentCnt, idx) => {
       Console.print(`${CONSOLE_MATCH_MESSAGE[idx]}${currentCnt}개`);
-    }, -1);
+    }, 0);
 
     Console.print(`총 수익률은 ${getRate(this.pay, prize)}%입니다.`);
     Console.close();
