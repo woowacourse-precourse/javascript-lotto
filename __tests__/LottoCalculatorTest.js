@@ -27,17 +27,19 @@ describe("로또 당첨 집계 테스트", () => {
       Rank++;
     });
   });
+});
 
-  test("로또 당청 결과 확인 테스트 ", () => {
-    const lottoArr = myLotto.map((lotto) => {
-      return new Lotto(lotto);
-    });
+describe("로또 당첨 결과 테스트", () => {
+  const lottoArr = myLotto.map((lotto) => {
+    return new Lotto(lotto);
+  });
 
-    const result = lottoCalculate.resultCaculator(lottoArr, {
-      winLotto: new Lotto(winLotto),
-      bonus: bonusNum,
-    });
+  const result = lottoCalculate.resultCaculator(lottoArr, {
+    winLotto: new Lotto(winLotto),
+    bonus: bonusNum,
+  });
 
+  test("로또 당첨 결과 확인 테스트 ", () => {
     expect(result).toEqual({
       FIRST: 1,
       SECOND: 1,
@@ -45,6 +47,22 @@ describe("로또 당첨 집계 테스트", () => {
       FOURTH: 1,
       FIFTH: 1,
       count: 5,
+    });
+  });
+
+  test("로또 당첨 결과 출력 테스트", () => {
+    const logs = [
+      "3개 일치 (5,000원) - 1개",
+      "4개 일치 (50,000원) - 1개",
+      "5개 일치 (1,500,000원) - 1개",
+      "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
+      "6개 일치 (2,000,000,000원) - 1개",
+    ];
+
+    const logSpy = getLogSpy();
+    lottoCalculate.printWinResult(result);
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
 });
