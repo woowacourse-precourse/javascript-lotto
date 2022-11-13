@@ -2,8 +2,8 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const GameUtils = require('../src/Utils/GameUtils');
 const GamePrint = require('./GamePrint');
 const Validator = require('../src/Utils/Validator');
-const { Lotto, getUserLottos } = require('../src/Utils/Lotto');
-const { MESSAGES, PRIZE_TABLE } = require('./constants');
+const Lotto = require('./Lotto');
+const { MESSAGES, PRIZE_TABLE, LOTTO_LENGTH, LOTTO_RANGE } = require('./constants');
 
 class App {
   constructor() {
@@ -25,7 +25,7 @@ class App {
       this.amount = Number(this.amount);
       this.sheets = GameUtils.getSheets(this.amount);
       GamePrint.sheets(this.sheets);
-      this.userLottos = getUserLottos(this.sheets);
+      this.userLottos = this.getUserLottos(this.sheets);
       GamePrint.lottoList(this.userLottos);
       this.submitWinningLotto();
     });
@@ -67,6 +67,15 @@ class App {
       this.revenue += matchedNumber.winningAmount;
       return matchedNumber.ea += 1;
     }
+  }
+  getUserLottos(sheets) {
+    const lottos = [];
+    while(lottos.length < sheets) {
+      const lotto = MissionUtils.Random.pickUniqueNumbersInRange(LOTTO_RANGE.start, LOTTO_RANGE.end, LOTTO_LENGTH);
+      lotto.sort((a,b) => a - b);
+      lottos.push(lotto);
+    }
+    return lottos;
   }
 }
 
