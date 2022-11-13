@@ -7,6 +7,15 @@ const stringToNumber = (string) => {
   return Number(string);
 };
 
+/**
+ * 3자리마다 콤마를 찍어주는 함수
+ * @param {number} number
+ * @returns {string} 콤마로 구분된 문자열
+ */
+const commaizeNumber = (number) => {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
+
 module.exports = {
   stringToNumber,
 };
