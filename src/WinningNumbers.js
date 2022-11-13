@@ -22,6 +22,7 @@ class WinningNumbers {
       MissionUtils.Console.readLine(`\n보너스 번호를 입력해 주세요.\n`, (userInput) => {
       const bonusNumber = userInput.split(',')
       lotto.validate(bonusNumber,1);
+      lotto.validateBonus(winningNumber,bonusNumber)
       MissionUtils.Console.close();
 
       return this.deliverLottos([winningNumber, bonusNumber])
@@ -29,7 +30,7 @@ class WinningNumbers {
     }
 
     deliverLottos(winningAndBonusNum) {
-      lotto.checkResult(winningAndBonusNum,this.makedLottos)
+      lotto.checkCorrect(winningAndBonusNum,this.makedLottos)
     }
     
 }

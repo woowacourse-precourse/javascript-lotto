@@ -23,13 +23,13 @@ class LottoGenerator{
       const boughtLottoNumbers = this.checkHowManyLottos(payment);
       this.makePaidLottoNumbers(boughtLottoNumbers);
       this.printLottos();
-      
+
       return winningNumbers.makedLottos = this.makedLottos
     }
   
     checkHowManyLottos(payment) {
       const boughtLottos = payment/1000;
-      MissionUtils.Console.print(`\n${boughtLottos}개를 구매했습니다.`)
+      MissionUtils.Console.print(`\n${boughtLottos}개를 구매했습니다.`) 
       return boughtLottos
     }
   
@@ -39,13 +39,14 @@ class LottoGenerator{
         makedLottoNumbers.sort(function (a, b) {return a - b;});
         this.makedLottos.push(makedLottoNumbers);
       }
-      return 
+      return this.makedLottos
     }
   
     printLottos() {
       this.makedLottos.forEach(lotto => {
-        MissionUtils.Console.print(lotto);
+        MissionUtils.Console.print(`[${lotto.join(", ")}]`);
       });
+      return
    }
 }
 
