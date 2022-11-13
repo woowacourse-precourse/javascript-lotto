@@ -1,6 +1,8 @@
 const Lotto = require("../Lotto");
 const Utils = require("../Utils");
 
+const MONEY_UNIT = 1000;
+
 const MATCH_COUNT = Object({
   SIX: 6,
   FIVE: 5,
@@ -58,6 +60,11 @@ class LottoStatistics {
       const reward = REWARD_MAP[rank] * count;
       return total + reward;
     }, 0);
+  }
+
+  calculateProfit(buyingLottos) {
+    const cost = buyingLottos.length * MONEY_UNIT;
+    return 100 * (this.calculateTotalReward(buyingLottos) / cost);
   }
 
   match(numbers) {

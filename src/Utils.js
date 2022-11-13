@@ -23,6 +23,15 @@ class Utils {
       return counter;
     }, {});
   }
+
+  static formatProfit(profit) {
+    const formattedProfit = profit.toLocaleString("ko-KR", {
+      maximumFractionDigits: 1,
+    });
+    return !formattedProfit.includes(".")
+      ? `${formattedProfit}.0`
+      : formattedProfit;
+  }
 }
 
 module.exports = Utils;
