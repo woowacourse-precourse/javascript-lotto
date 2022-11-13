@@ -7,6 +7,7 @@ class App {
     this.Lotto = new Lotto()
     this.Lottobuynumber = [];
     this.Winnumber = ''
+    this.correctList =[0,0,0,0,0]
   }
   play() {
     MissionUtils.Console.readLine(Notice.INPUT_MONEY,(money) => {
@@ -54,8 +55,23 @@ class App {
     console.log(this.Lottobuynumber)
     for (let i=0; i<this.Lottobuynumber.length; i++){
       let correctNumber = this.Lottobuynumber[i].filter(x=> this.Winnumber.includes(x))
-      console.log(correctNumber)
+      this.makeCorrectList(correctNumber)
     }
+  }
+  makeCorrectList(list){
+    if (list.length ==3){
+      this.correctList[0] += 1;
+    }
+    else if (list.length == 4){
+      this.correctList[1] += 1;
+    }
+    else if (list.length == 5){
+      this.correctList[2] += 1;
+    }
+    else if (list.length == 6){
+      this.correctList[4] += 1;
+    } 
+
   }
 }
 
