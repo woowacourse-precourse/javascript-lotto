@@ -31,6 +31,8 @@ class App {
       bonusNumberCheck(bonusNumber);
     });
   }
+
+  
 }
 
 module.exports = App;
