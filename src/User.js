@@ -1,4 +1,5 @@
-const { Console } = require('@woowacourse/mission-utils');
+const { Console, Random } = require('@woowacourse/mission-utils');
+const Lotto = require('./Lotto');
 
 const ERROR_MESSAGE = {
   NOT_A_NUMBER: '[ERROR] 구매 금액은 숫자여야 합니다.',
@@ -17,6 +18,7 @@ class User {
     this.checkPurchaseAmount(purchaseAmount);
     this.purchaseAmount = purchaseAmount;
     this.purchaseQuantity = purchaseAmount / 1000;
+    this.purchaseLottos();
   }
 
   checkPurchaseAmount(purchaseAmount) {
@@ -27,6 +29,13 @@ class User {
     } else if (purchaseAmount % 1000 !== 0) {
       throw new Error(ERROR_MESSAGE.NOT_MULTIPLE_OF_1000);
     }
+  }
+
+  purchaseLottos() {
+    Console.print(`\n${this.purchaseQuantity}개를 구매했습니다.`);
+    this.purchasedLottos = [...Array(this.purchaseQuantity)].map(
+      () => new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6)),
+    );
   }
 }
 
