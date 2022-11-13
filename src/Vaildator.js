@@ -16,7 +16,7 @@ class Vaildator {
     return Number.isInteger(+target) && +target > 0;
   }
 
-  static isRightAmount(amount) {
+  static isDivisible(amount) {
     return amount % util.AMOUNT_PER_GAME === 0;
   }
 
