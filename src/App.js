@@ -1,23 +1,17 @@
 const LottoView = require("./LottoView");
 const LottoModel = require("./LottoModel");
-const Lotto = require("./Lotto");
 const lottoView = new LottoView();
 const lottoModel = new LottoModel();
 
 class App {
-  play() {
-    lottoView.getPurchaseAmount().then((amount) => {
-      amount = amount / 1000;
-      const lottos = lottoModel.createLottos(amount);
-      lottoView.printLottos(amount, lottos);
-      lottoView.getLottoNumbers().then((numbers) => {
-        console.log(numbers);
-        const lotto = new Lotto(numbers);
-        lottoView.getBonusNumber().then((number) => {
-          console.log(number);
-        });
-      });
-    });
+  async play() {
+    let amount = await lottoView.getPurchaseAmount();
+    amount /= 1000;
+    const lottos = lottoModel.createLottos(amount);
+    lottoView.printLottos(amount, lottos);
+    const winningNumbers = await lottoView.getWinningNumbers();
+    const bonusNumber = await lottoView.getBonusNumber();
+    lottoModel.checkWinning(winningNumbers, bonusNumber);
   }
 }
 
