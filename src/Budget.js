@@ -1,7 +1,7 @@
 const ErrorBoundary = require('./error/ErrorBoundary');
 const { TICKET_ERROR_MESSAGE, TICKET_PRICE } = require('./constants/lotto');
 
-const Ticket = class extends ErrorBoundary {
+const Budget = class extends ErrorBoundary {
   #budget;
 
   constructor(budget) {
@@ -33,4 +33,4 @@ const Ticket = class extends ErrorBoundary {
   }
 };
 
-module.exports = Ticket;
+module.exports = Budget;
