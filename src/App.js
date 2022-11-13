@@ -1,7 +1,8 @@
-const MissionUtils = require("@woowacourse/mission-utils");
-const Lotto = require('./Lotto.js');
+const MissionUtils = require('@woowacourse/mission-utils');
+const Lotto = require('./lotto/Lotto.js');
+const CONSTANT = require('./constant/constants.js');
 
-const { Console,  Random } = MissionUtils;
+const { Console, Random } = MissionUtils;
 
 class App {
   #lottos;
@@ -17,40 +18,43 @@ class App {
     this.#winner = [];
     this.#amount = 0;
     this.#prize = 0;
-    this.constants = [
-      { match: 3, prize: '5,000' },
-      { match: 4, prize: '50,000' },
-      { match: 5, prize: '1,500,000' },
-      { match: 5, prize: '30,000,000', isBonus: true },
-      { match: 6, prize: '2,000,000,000' }
-    ];
   }
 
   getAmount() {
-    Console.readLine('구입금액을 입력해 주세요.\n', answer => {
+    const { MSG, UNIT } = CONSTANT;
+    Console.readLine(`${MSG.PURCHASE}\n`, answer => {
       this.validateAmount(answer);
       this.#amount = +answer;
-      this.generateLotto(this.#amount / 1000);
+      this.generateLotto(this.#amount / UNIT);
       this.printLottos();
       this.getWinner();
     });
   }
 
   validateAmount(amount) {
-    if (!/^\d+$/.test(amount) || +amount % 1000 !== 0) throw new Error("[ERROR] 올바른 금액을 입력하세요");
+    const { CHECK, ERROR_MSG } = CONSTANT;
+    if (!CHECK.ISNUMBER(amount) || CHECK.ISUNIT(amount))
+      throw new Error(`${ERROR_MSG.WRONG_AMOUNT}`);
   }
 
   generateLotto(num) {
-    this.#lottos = Array.from({ length: num }, () => new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6)));
+    this.#lottos = Array.from(
+      { length: num },
+      () => new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6)),
+    );
   }
 
   printLottos() {
-    Console.print(`\n${this.#amount / 1000}개를 구매했습니다.`);
-    this.#lottos.forEach(lotto => Console.print(lotto.numbers));
+    const { PURCHASED } = CONSTANT.MSG;
+    Console.print(`\n${PURCHASED(this.#amount)}`);
+    this.#lottos.forEach(lotto =>
+      Console.print(`[${lotto.numbers.toString().split(',').join(', ')}]`),
+    );
   }
 
   getWinner() {
-    Console.readLine('\n당첨 번호를 입력해 주세요.\n', answer => {
+    const { WINNER } = CONSTANT.MSG;
+    Console.readLine(`\n${WINNER}\n`, answer => {
       this.getResults(answer);
       this.getBonus();
     });
@@ -65,37 +69,43 @@ class App {
     this.#lottos.forEach(lotto =>
       lotto.numbers.forEach(num => {
         if (this.#winner.includes(num)) lotto.increaseCount();
-      }));
+      }),
+    );
   }
 
   getBonus() {
-    Console.readLine('\n보너스 번호를 입력해 주세요.\n', answer => {
+    const { BONUS } = CONSTANT.MSG;
+    Console.readLine(`\n${BONUS}\n`, answer => {
       this.checkBonus(answer);
       this.printWinner();
-    })
+      Console.close();
+    });
   }
 
   checkBonus(bonus) {
+    const { SECOND_RANK } = CONSTANT;
     this.#lottos
-     .filter(lotto => lotto.count === 5 && lotto.numbers.includes(bonus))
-     .forEach(lotto => lotto.setIsBonus());
+      .filter(lotto => lotto.count === SECOND_RANK && lotto.numbers.includes(bonus))
+      .forEach(lotto => lotto.setIsBonus());
   }
 
   printWinner() {
     Console.print('\n당첨 통계\n---');
-    this.constants.forEach(constant => {
-      const { match, isBonus, prize } = constant;
-      const getNumOfWinner = this.#lottos.filter(lotto => lotto.count === match).length;
+    const { RESULT } = CONSTANT.MSG;
+    CONSTANT.PRIZE.forEach(constant => {
+      const { MATCH, ISBONUS, PRIZE } = constant;
+      const getNumOfWinner = this.#lottos.filter(lotto => lotto.count === MATCH).length;
 
-      Console.print(`${match}개 일치${isBonus ? ', 보너스 볼 일치' : ''} (${prize}원) - ${getNumOfWinner}개`);
-      this.#prize += getNumOfWinner * +prize.replace(/\D/g, '');
+      Console.print(`${RESULT(MATCH, ISBONUS, PRIZE, getNumOfWinner)}`);
+      this.#prize += getNumOfWinner * +PRIZE.replace(/\D/g, '');
     });
     this.printEarningsRate();
   }
 
   printEarningsRate() {
-    const earningsRate = (this.#prize / this.#amount * 100).toFixed(1);
-    Console.print(`총 수익률은 ${earningsRate}%입니다.`);
+    const { MSG, GET_RATE } = CONSTANT;
+    const earningsRate = GET_RATE(this.#prize, this.#amount);
+    Console.print(`${MSG.TOTAL_RATE(earningsRate)}`);
   }
 
   play() {

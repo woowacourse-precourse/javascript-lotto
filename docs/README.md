@@ -26,9 +26,19 @@
 
 ## Find Winner
 - [x] get input from user that has 6 random numbers and one bonus number
-  - [ ] throw error when user inputs wrong value
-   - [ ] duplicates
-   - [ ] NaN && Non-Positive-Integer
+  - [x] throw error when user inputs wrong value
+   - [x] duplicates
+   - [x] NaN && Non-Positive-Integer
    - [ ] numbers has to be in range of between 1 to 45
 - [x] compare user input to lottery number and print outcome
   - [x] print revenue(%) and result of win or loose
+
+## Refactor
+- [ ] divide UI logic and main logic in different class
+- [x] divide constants from main and UI logics
+- [ ] check indent depth and length of functions
+- [ ] check variable and function names
+- [ ] extract functions from logic
+
+## Test
+- [ ] write test cases of each feature except UI logics in jest

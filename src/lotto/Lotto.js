@@ -1,3 +1,5 @@
+const CONSTANT = require('../constant/constants.js');
+
 class Lotto {
   #numbers;
 
@@ -15,8 +17,10 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (!/\d/g.test(numbers.join(''))) throw new Error('[ERROR] 로또 번호는 숫자여야 합니다.');
-    if (numbers.length !== 6) throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+    const { ERROR_MSG, CHECK } = CONSTANT;
+    if (!CHECK.ISNUMBER(numbers.join(''))) throw new Error(`${ERROR_MSG.NAN}`);
+    if (CHECK.ISLENGTH(numbers)) throw new Error(`${ERROR_MSG.WRONG_LENGTH}`);
+    if (CHECK.ISDUPLICATE(numbers)) throw new Error(`${ERROR_MSG.DUPLICATE}`);
   }
 
   sort() {
