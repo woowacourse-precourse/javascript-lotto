@@ -1,4 +1,5 @@
 const Money = require('../src/Money');
+const { CONSTANT, PRIZE_MONEY } = require('../src/Constants');
 
 describe('Money 클래스 테스트', () => {
   test('천원단위의 입력이 아니면 예외가 발생한다.', () => {
@@ -11,5 +12,37 @@ describe('Money 클래스 테스트', () => {
     expect(() => {
       new Money('a1000');
     }).toThrow('[ERROR] ');
+  });
+
+  test('수익 계산 테스트1.', () => {
+    const money = new Money(1000);
+    const prize = [1, 0, 0, 0, 0];
+    expect(money.getEarning(prize)).toBe(PRIZE_MONEY[CONSTANT.THREE_MATCHED]);
+  });
+  test('수익 계산 테스트2.', () => {
+    const money = new Money(1000);
+    const prize = [0, 1, 0, 0, 0];
+    expect(money.getEarning(prize)).toBe(PRIZE_MONEY[CONSTANT.FOUR_MATCHED]);
+  });
+  test('수익 계산 테스트3.', () => {
+    const money = new Money(1000);
+    const prize = [0, 0, 1, 0, 0];
+    expect(money.getEarning(prize)).toBe(PRIZE_MONEY[CONSTANT.FIVE_MATCHED]);
+  });
+  test('수익 계산 테스트4.', () => {
+    const money = new Money(1000);
+    const prize = [0, 0, 0, 1, 0];
+    expect(money.getEarning(prize)).toBe(PRIZE_MONEY[CONSTANT.FIVE_BONUS_MATCHED]);
+  });
+  test('수익 계산 테스트5.', () => {
+    const money = new Money(1000);
+    const prize = [0, 0, 0, 0, 1];
+    expect(money.getEarning(prize)).toBe(PRIZE_MONEY[CONSTANT.SIX_MATCHED]);
+  });
+  test('수익 계산 테스트6.', () => {
+    const money = new Money(1000);
+    const prize = [1, 1, 1, 1, 1];
+    const result = PRIZE_MONEY.reduce((acc, cur) => acc += cur, 0);
+    expect(money.getEarning(prize)).toBe(result);
   });
 });
