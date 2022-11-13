@@ -43,3 +43,27 @@ describe("Customer set, get method", () => {
     expect(customer.showLotto).toEqual(lottos);
   });
 });
+
+describe("Feat 4. Customer.winLottoStatistic", () => {
+  const customer = new Customer();
+  test("당첨 번호와 생성된 로또 번호를 비교해 분석 결과를 반환한다.", () => {
+    const winningNumbers = [1, 2, 3, 4, 5, 6, 7];
+    const generateNumbers = [
+      [8, 21, 23, 41, 42, 43],
+      [3, 5, 11, 16, 32, 38],
+      [7, 11, 16, 35, 36, 44],
+      [1, 8, 11, 31, 41, 42],
+      [13, 14, 16, 38, 42, 45],
+      [7, 11, 30, 40, 42, 43],
+      [2, 13, 22, 32, 38, 45],
+      [1, 3, 5, 14, 22, 45],
+    ];
+    const lottoStatisticArray = [1, 0, 0, 0, 0];
+    expect(customer.getLottoStatistic(winningNumbers, generateNumbers)).toEqual(
+      lottoStatisticArray
+    );
+  });
+  test("분석 결과를 받아 수익률을 반환한다.", () => {
+    expect(customer.calculateLottoYield(lottoStatisticArray)).toBe(62.5);
+  });
+});
