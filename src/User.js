@@ -19,7 +19,7 @@ class User {
     for (let i = 0; i < this.#purchaseAmout; i += 1) {
       this.#lottoList.push(Lotto.makeLotto());
     }
-    this.#lottoList.forEach(lotto => Io.printConsole(lotto));
+    this.#lottoList.forEach(lotto => Io.printConsole(`[${lotto.join(', ')}]`));
   }
 
   validate(purchaseMoney) {
