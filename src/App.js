@@ -1,6 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const { MESSAGES, REQUIREMENT } = require('./constant/Constant');
-const { printAmounts, printLotto } = require('./Print');
+const { printAmounts, printLotto, printResult } = require('./Print');
 const Lotto = require('./Lotto');
 
 class App {
@@ -56,8 +56,7 @@ class App {
   calcResult() {
     const lotto = new Lotto(this.#winningNumber);
     const { three, four, five, bonus, six } = lotto.comparisonNumbers(this.#publishedLottos, this.#bonusNumber);  
-    console.log({ three, four, five, bonus, six});
-    MissionUtils.Console.close();
+    printResult({ three, four, five, bonus, six });
   }
 
 }

@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { MESSAGES } = require('./constant/Constant');
+const { MESSAGES, getStatisticsMessage } = require('./constant/Constant');
 
 function printAmounts (amounts) {
   MissionUtils.Console.print(`${amounts}${MESSAGES.PURCHASED}`);
@@ -10,6 +10,10 @@ function printLotto (lotto) {
   MissionUtils.Console.print(str);
 };
 
+function printResult ({ three, four, five, bonus, six }) {
+  MissionUtils.Console.print(getStatisticsMessage({ three, four, five, bonus, six }));
+  MissionUtils.Console.close();
+};
 
 function makeString (lotto) {
   let str = '[';
@@ -23,4 +27,4 @@ function makeString (lotto) {
   return str;
 };
 
-module.exports = { printAmounts, printLotto, makeString };
+module.exports = { printAmounts, printLotto, printResult, makeString };
