@@ -6,7 +6,6 @@ const DetectError = require("./DetectError");
 
 class App {
   constructor() {
-    this.purchaseMoney;
   }
 
   play() {
@@ -15,27 +14,27 @@ class App {
 
   userInput() {
     MissionUtils.Console.readLine(`${Message.INPUT_MESSAGE.PURCHASE}\n`, (userMoney) => {
-      this.purchaseMoney = userMoney;
       const user = this.lottoPurchase(userMoney);
-      this.prizeInput(user);
+      userMoney = parseInt(userMoney);
+      this.prizeInput(user, userMoney);
     });
   }
 
-  prizeInput(user) {
+  prizeInput(user, userMoney) {
     MissionUtils.Console.readLine(`\n${Message.INPUT_MESSAGE.PRIZE}\n`, (prizeNumber) => {
       const przNum = prizeNumber.split(',');
       new Lotto(przNum);
-      this.bonusInput(user, przNum);
+      this.bonusInput(user, przNum, userMoney);
     });
   }
 
-  bonusInput(user, przNum) {
+  bonusInput(user, przNum, userMoney) {
     MissionUtils.Console.readLine(`\n${Message.INPUT_MESSAGE.BONUS}\n`, (bonusNumber) => {
       const bnsNum = parseInt(bonusNumber);
       if (bnsNum < 1 || bnsNum > 45) {
         throw new Error(`${Message.ERROR_MESSAGE.RANGE}`);
       }
-      this.caculateResult(user, przNum, bonusNumber);
+      this.caculateResult(user, przNum, bonusNumber, userMoney);
       MissionUtils.Console.close();
     });
   }
@@ -91,7 +90,7 @@ class App {
     return answer;
   }
 
-  caculateResult(user, prize, bonus) {
+  caculateResult(user, prize, bonus, userMoney) {
     DetectError.prototype.isBonusInPrize(prize, bonus);
 
     let lottoPrize = {
@@ -105,7 +104,7 @@ class App {
     user.forEach((element) => {
       lottoPrize = this.makeLottoPrize(element, prize, bonus, lottoPrize);
     });
-    this.showResult(lottoPrize);
+    this.showResult(lottoPrize, userMoney);
   }
 
   makeLottoPrize(element, prize, bonus, lottoPrize) {
@@ -117,15 +116,19 @@ class App {
       }
     }
 
-    if (element.includes(bonus) || cnt >= 5) {
+    if (cnt === 6) {
+      lottoPrize[cnt+1][0] += 1;
+    }
+    else if (element.includes(parseInt(bonus)) && cnt === 5) {
       lottoPrize[cnt + 1][0] += 1;
-    }else if (cnt >= 3) {
+    } 
+    else if (cnt >= 3) {
       lottoPrize[cnt][0] += 1;
     }
     return lottoPrize;
   }
 
-  showResult(lottoPrize) {
+  showResult(lottoPrize, userMoney) {
     MissionUtils.Console.print(`\n${Message.SUB_MESSAGE.RESULT}`);
     MissionUtils.Console.print(`${Message.SUB_MESSAGE.BLANK}`);
 
@@ -135,19 +138,18 @@ class App {
       i++;
     })
 
-    let sum = this.totalRevenue(lottoPrize);
-    let revenue = (sum / this.purchaseMoney) * 100;
-    let total = parseFloat(revenue.toFixed(2));
-
-    MissionUtils.Console.print(`총 수익률은 ${total}%입니다.`);
+    this.totalRevenue(lottoPrize, userMoney);
   }
 
-  totalRevenue(lottoPrize) {
+  totalRevenue(lottoPrize, userMoney) {
     let sum = 0;
     for (let i = 3; i <= 7; i++) {
       sum += lottoPrize[i][0] * lottoPrize[i][1];
     }
-    return sum;
+    let revenue = (sum / userMoney) * 100;
+    let result = parseFloat(revenue.toFixed(2));
+
+    MissionUtils.Console.print(`총 수익률은 ${result}%입니다.`);
   }
 }
 
