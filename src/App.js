@@ -43,22 +43,18 @@ class App {
   isReapted(arr) {
     const lottoVisited = Array.from({ length: 46 }, (_) => false);
     arr.forEach((num) => {
-      if (lottoVisited[num]) {
-        return true;
-      }
+      if (lottoVisited[num]) return true;
       lottoVisited[num] = true;
     });
     return false;
   }
   isValidLottoNumber(numbers) {
     numbers.forEach((number) => {
-      if (isNaN(number)) {
-        return false;
-      }
+      if (isNaN(number)) return false;
+
       const parsedNum = parseInt(number, 10);
-      if (parsedNum < 1 || parsedNum > 45) {
-        return false;
-      }
+      if (parsedNum < 1 || parsedNum > 45) return false;
+
       return true;
     });
   }
