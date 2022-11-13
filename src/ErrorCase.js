@@ -38,7 +38,7 @@ class ErrorCase {
 
     if (bonusNumberInput < 1 || bonusNumberInput > 45) return true;
 
-    if (bonusNumberInput !== Math.floor(bonusNumberInput)) return true;
+    if (Number(bonusNumberInput) !== Math.floor(bonusNumberInput)) return true;
 
     return false;
   }
