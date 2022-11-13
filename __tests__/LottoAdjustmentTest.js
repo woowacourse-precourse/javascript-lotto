@@ -32,22 +32,8 @@ describe('LottoDrawFactory 클래스 테스트', () => {
       new LottoDrawFactory({ lotto, bonus, lottoStore })
     );
 
-    const logSpy = getLogSpy();
-
-    const logs = [
-      '3개 일치 (5,000원) - 1개',
-      '4개 일치 (50,000원) - 0개',
-      '5개 일치 (1,500,000원) - 0개',
-      '5개 일치, 보너스 볼 일치 (30,000,000원) - 0개',
-      '6개 일치 (2,000,000,000원) - 0개',
-      '총 수익률은 500.0%입니다.',
-    ];
-
-    lottoAdjustment.print();
-
-    logs.forEach(log => {
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-    });
+    expect(lottoAdjustment.getLottoCountScore()).toEqual([1, 0, 0, 0, 0]);
+    expect(lottoAdjustment.getIncome()).toEqual('500.0%');
   });
 
   test('(2등) 내가 산 로또들과 추첨한 로또 비교한 결과값 테스트', () => {
@@ -62,22 +48,8 @@ describe('LottoDrawFactory 클래스 테스트', () => {
       new LottoDrawFactory({ lotto, bonus, lottoStore })
     );
 
-    const logSpy = getLogSpy();
-
-    const logs = [
-      '3개 일치 (5,000원) - 0개',
-      '4개 일치 (50,000원) - 0개',
-      '5개 일치 (1,500,000원) - 0개',
-      '5개 일치, 보너스 볼 일치 (30,000,000원) - 1개',
-      '6개 일치 (2,000,000,000원) - 0개',
-      '총 수익률은 3000000.0%입니다.',
-    ];
-
-    lottoAdjustment.print();
-
-    logs.forEach(log => {
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-    });
+    expect(lottoAdjustment.getLottoCountScore()).toEqual([0, 0, 0, 1, 0]);
+    expect(lottoAdjustment.getIncome()).toEqual('3000000.0%');
   });
 
   test('(1등) 내가 산 로또들과 추첨한 로또 비교한 결과값 테스트', () => {
@@ -91,21 +63,7 @@ describe('LottoDrawFactory 클래스 테스트', () => {
       new LottoDrawFactory({ lotto, bonus, lottoStore })
     );
 
-    const logSpy = getLogSpy();
-
-    const logs = [
-      '3개 일치 (5,000원) - 0개',
-      '4개 일치 (50,000원) - 0개',
-      '5개 일치 (1,500,000원) - 0개',
-      '5개 일치, 보너스 볼 일치 (30,000,000원) - 0개',
-      '6개 일치 (2,000,000,000원) - 1개',
-      '총 수익률은 200000000.0%입니다.',
-    ];
-
-    lottoAdjustment.print();
-
-    logs.forEach(log => {
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-    });
+    expect(lottoAdjustment.getLottoCountScore()).toEqual([0, 0, 0, 0, 1]);
+    expect(lottoAdjustment.getIncome()).toEqual('200000000.0%');
   });
 });
