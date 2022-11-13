@@ -25,6 +25,7 @@ class App {
       Console.print(`\n${lottoCount}${Console.LOTTO_COUNT}`);
 
       this.generateLottoWithLottoCount(lottoCount);
+      this.printLotto(this.lottos);
       this.askWinningNumber();
     });
   }
@@ -43,8 +44,11 @@ class App {
       .map((lotto) => lotto.lottoNumbers)
       .forEach((lotto) => {
         this.lottos.push(lotto);
-        Console.print(lotto);
       });
+  }
+
+  printLotto(lottos) {
+    lottos.forEach((lotto) => Console.print(lotto));
   }
 
   askWinningNumber() {
