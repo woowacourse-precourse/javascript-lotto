@@ -25,5 +25,6 @@ class LottoSell{
           this.Lotto.validate(RandomNumber);
           this.Lottobuynumber.push(RandomNumber)
         }
-      }
+    }
 }
+module.exports = LottoSell;

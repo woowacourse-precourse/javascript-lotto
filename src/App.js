@@ -1,10 +1,12 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Notice = require("./NoticeMessage.js")
 const Error = require("./ErrorMessage.js")
+const LottoSell = require("./LottoSell.js")
 const Lotto = require("./Lotto.js")
 class App {
   constructor(){
     this.Lotto = new Lotto()
+    this.LottoSell = new LottoSell()
     this.Lottobuynumber = [];
     this.bonusnumber = 0;
     this.Winnumber = ''
@@ -14,25 +16,9 @@ class App {
   }
   play() {
     MissionUtils.Console.readLine(Notice.INPUT_MONEY,(money) => {
-      this.inputMoneyValidate(money)
-      this.makeRandomnumber(money)
+      this.LottoSell.Inputmoney(money)
       this.inputLottoNumber()
     });
-  }
-  inputMoneyValidate(money){
-    if (money % 1000 != 0) {
-      throw Error.UNIT_ERROR;
-    }
-  }
-  makeRandomnumber(money){
-    const LottoCount = money / 1000;
-    MissionUtils.Console.print(LottoCount + Notice.BUY_LOTTO)
-    for (let i = 0; i<LottoCount; i++){
-      let RandomNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
-      MissionUtils.Console.print(`[${RandomNumber.join(', ')}]`);
-      this.Lotto.validate(RandomNumber);
-      this.Lottobuynumber.push(RandomNumber)
-    }
   }
   inputLottoNumber(){
     MissionUtils.Console.readLine(Notice.INPUT_LOTTO,(numbers) => {
@@ -62,9 +48,9 @@ class App {
     this.Lotto.validateInputRange(max,min)
   }
   checkNumber(){
-    for (let i=0; i<this.Lottobuynumber.length; i++){
-      let correctNumber = this.Lottobuynumber[i].filter(x=> this.Winnumber.includes(x))
-      let bonusNumberStatus = this.Lottobuynumber[i].includes(Number(this.bonusnumber))
+    for (let i=0; i<this.LottoSell.Lottobuynumber.length; i++){
+      let correctNumber = this.LottoSell.Lottobuynumber[i].filter(x=> this.Winnumber.includes(x))
+      let bonusNumberStatus = this.LottoSell.Lottobuynumber[i].includes(Number(this.bonusnumber))
       this.makeCorrectList(correctNumber,bonusNumberStatus)
     }
     this.calculateReturn()
@@ -96,7 +82,7 @@ class App {
   }
   calculateReturn(){
     let earn = 0
-    const buy = 1000*(this.Lottobuynumber.length)
+    const buy = 1000*(this.LottoSell.Lottobuynumber.length)
     for (let i = 0; i<5; i++){
       earn += this.correctList[i] * this.getMoney[i]
     }
