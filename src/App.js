@@ -4,21 +4,18 @@ const BuyLotto = require("./BuyLotto");
 const Lotto = require("./Lotto");
 const InputMoney = require("./InputMoney");
 const GetStat = require("./GetStat");
-const { INPUT_MESSAGES } = require("./Constant");
+const { INPUT_MESSAGES, LOTTO_INFO_VALUES, INITIALIZE_VALUES } = require("./Constant");
 
 class App {
-  #regExp
-
   constructor() {
     this.utils = new Utils();
-    this.#regExp = / /g;
     this.lottoInfo = {
-      rank5: 0,
-      rank4: 0,
-      rank3: 0,
-      rank2: 0,
-      rank1: 0,
-      numberOfCorrectNumbers: 0,
+      rank5: INITIALIZE_VALUES.ZERO,
+      rank4: INITIALIZE_VALUES.ZERO,
+      rank3: INITIALIZE_VALUES.ZERO,
+      rank2: INITIALIZE_VALUES.ZERO,
+      rank1: INITIALIZE_VALUES.ZERO,
+      numberOfCorrectNumbers: INITIALIZE_VALUES.ZERO,
       isIncludeBonusNumber: false
     };
   }
@@ -31,14 +28,16 @@ class App {
   }
 
   buyLottos(inputMoney) {
-    this.lottoInfo.numbersOfLotto = inputMoney / 1000;
+    this.lottoInfo.numbersOfLotto = inputMoney / LOTTO_INFO_VALUES.LOTTO_COST;
     this.lottoInfo.buyLotto = new BuyLotto(this.lottoInfo.numbersOfLotto);
     this.inputWinningNumbers();
   }
 
   inputWinningNumbers() {
     Console.readLine(INPUT_MESSAGES.WINNING_NUMBERS, (inputWinningNumbers) => {
-      this.lottoInfo.winningNumbers = inputWinningNumbers.replace(this.#regExp, '').split(',');
+      this.lottoInfo.winningNumbers = inputWinningNumbers
+        .replace(INITIALIZE_VALUES.REPLACE_BEFORE, INITIALIZE_VALUES.REPLACE_AFTER)
+        .split(INITIALIZE_VALUES.SPLIT_CHAR);
       this.lottoInfo.lotto = new Lotto(this.lottoInfo.winningNumbers);
       this.inputBonusNumber();
     });

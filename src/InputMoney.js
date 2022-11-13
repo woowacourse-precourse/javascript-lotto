@@ -1,4 +1,5 @@
 const Utils = require("./Utils");
+const { ERROR_MESSAGES } = require("./Constant");
 
 class InputMoney {
   constructor(money) {
@@ -8,7 +9,7 @@ class InputMoney {
 
   validate(money) {
     if (this.validateMoney(money) === false) {
-      this.utils.throwError("[ERROR] 유효하지 않은 값을 입력하셨습니다. 다시 확인하세요.");
+      this.utils.throwError(ERROR_MESSAGES.ERROR_MONEY);
     }
   }
 

@@ -19,7 +19,6 @@ class BuyLotto {
       Console.print(`[${oneTicketLotto.join(', ')}]`);
       this.lottoArray.push(oneTicketLotto);
     }
-    Console.print("");
   }
 
   getLottoArray() {

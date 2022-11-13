@@ -1,4 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
+const { OUTPUT_MESSAGES, PRIZE_REWARD, LOTTO_INFO_VALUES, INITIALIZE_VALUES } = require("./Constant");
 
 class GetStat {
   constructor(lottoInfo) {
@@ -8,22 +9,21 @@ class GetStat {
   }
 
   putLottoArrayIntoLottoInfo(lottoInfo) {
-    Console.print("\n당첨 통계\n---")
+    Console.print(OUTPUT_MESSAGES.WINNING_STAT);
     lottoInfo.lottoArray = lottoInfo.buyLotto.getLottoArray();
   }
 
   lottosWinningBonus(lottoInfo) {
     for (let i = 0; i < lottoInfo['numbersOfLotto']; i++) {
-      this.initializeValue(lottoInfo);
+      this.initializeLottoInfoProperty(lottoInfo);
       this.countCorrectNumbers(lottoInfo, i);
       this.isSecondPrizeWin(lottoInfo, i);
       this.countWinning(lottoInfo);
     }
   }
 
-  initializeValue(lottoInfo) {
-    lottoInfo.numberOfCorrectNumbers = 0;
-    lottoInfo.isIncludeBonusNumber = false;
+  initializeLottoInfoProperty(lottoInfo) {
+    lottoInfo.numberOfCorrectNumbers = INITIALIZE_VALUES.ZERO;
   }
 
   countCorrectNumbers(lottoInfo, i) {
@@ -36,46 +36,40 @@ class GetStat {
 
   isSecondPrizeWin(lottoInfo, i) {
     if (lottoInfo.numberOfCorrectNumbers === 5 && lottoInfo['lottoArray'][i].includes(lottoInfo.bonusNumber)) {
-      lottoInfo.isIncludeBonusNumber = true;
+      lottoInfo.numberOfCorrectNumbers += 2;
     }
   }
 
   countWinning(lottoInfo) {
-    if (lottoInfo.numberOfCorrectNumbers === 3) {
-      lottoInfo['rank5'] += 1;
+    const correctNumberCheck = {
+      3: 'rank5',
+      4: 'rank4',
+      5: 'rank3',
+      6: 'rank1',
+      7: 'rank2',
     }
-    else if (lottoInfo.numberOfCorrectNumbers === 4) {
-      lottoInfo['rank4'] += 1;
-    }
-    else if (lottoInfo.numberOfCorrectNumbers === 5 && lottoInfo.isIncludeBonusNumber === true) {
-      lottoInfo['rank2'] += 1;
-    }
-    else if (lottoInfo.numberOfCorrectNumbers === 5) {
-      lottoInfo['rank3'] += 1;
-    }
-    else if (lottoInfo.numberOfCorrectNumbers === 6) {
-      lottoInfo['rank1'] += 1;
-    }
+    lottoInfo[correctNumberCheck[lottoInfo.numberOfCorrectNumbers]] += 1;
   }
 
   printWinningHistory(lottoInfo) {
-    Console.print(`3개 일치 (5,000원) - ${lottoInfo['rank5']}개`);
-    Console.print(`4개 일치 (50,000원) - ${lottoInfo['rank4']}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${lottoInfo['rank3']}개`);
-    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${lottoInfo['rank2']}개`);
-    Console.print(`6개 일치 (2,000,000,000원) - ${lottoInfo['rank1']}개`);
+    Console.print(`${OUTPUT_MESSAGES.PRIZE_5} - ${lottoInfo['rank5']}개`);
+    Console.print(`${OUTPUT_MESSAGES.PRIZE_4} - ${lottoInfo['rank4']}개`);
+    Console.print(`${OUTPUT_MESSAGES.PRIZE_3} - ${lottoInfo['rank3']}개`);
+    Console.print(`${OUTPUT_MESSAGES.PRIZE_2} - ${lottoInfo['rank2']}개`);
+    Console.print(`${OUTPUT_MESSAGES.PRIZE_1} - ${lottoInfo['rank1']}개`);
 
     this.printRate(lottoInfo);
   }
 
   printRate(lottoInfo) {
     const profit =
-      lottoInfo['rank5'] * 5000 +
-      lottoInfo['rank4'] * 50000 +
-      lottoInfo['rank3'] * 1500000 +
-      lottoInfo['rank2'] * 30000000 +
-      lottoInfo['rank1'] * 2000000000;
-    const rate = (lottoInfo.numbersOfLotto === 0) ? 0 : ((profit / (lottoInfo.numbersOfLotto * 1000)) * 100).toFixed(1);
+      lottoInfo['rank5'] * PRIZE_REWARD.REWARD_PRIZE_5 +
+      lottoInfo['rank4'] * PRIZE_REWARD.REWARD_PRIZE_4 +
+      lottoInfo['rank3'] * PRIZE_REWARD.REWARD_PRIZE_3 +
+      lottoInfo['rank2'] * PRIZE_REWARD.REWARD_PRIZE_2 +
+      lottoInfo['rank1'] * PRIZE_REWARD.REWARD_PRIZE_1;
+    const rate = (lottoInfo.numbersOfLotto === 0) ?
+      0 : ((profit / (lottoInfo.numbersOfLotto * LOTTO_INFO_VALUES.LOTTO_COST)) * 100).toFixed(1);
     Console.print(`총 수익률은 ${rate}%입니다.`);
   }
 }
