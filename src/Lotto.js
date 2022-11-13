@@ -1,3 +1,4 @@
+const { figureLotteryRank } = require('./utils/lottery');
 const { isSixNumbers, isNumbersUnique, isNumbersInRange } = require('./utils/validation');
 
 class Lotto {
@@ -28,26 +29,7 @@ class Lotto {
   calculateNumbers(answerNumbers, bonusNumber) {
     const hit = answerNumbers.filter((number) => this.#numbers.includes(number)).length;
     const bonus = this.#numbers.includes(bonusNumber);
-    return this.figureLotteryRank(hit, bonus);
-  }
-
-  figureLotteryRank(hit, bonus) {
-    if (hit === 6) {
-      return 'FIRST';
-    }
-    if (hit === 5 && bonus === true) {
-      return 'SECOND';
-    }
-    if (hit === 5) {
-      return 'THIRD';
-    }
-    if (hit === 4) {
-      return 'FOURTH';
-    }
-    if (hit === 3) {
-      return 'FIFTH';
-    }
-    return null;
+    return figureLotteryRank(hit, bonus);
   }
 }
 
