@@ -18,6 +18,9 @@ class App {
       const newLotto = new Lotto(newLottoNumbers);
       this.lottos = newLotto;
     }
+
+    Console.print(`${lottoNum}개를 구매했습니다.\n`);
+    Console.print(`${this.lottos.join("\n")}`);
   }
   validateMoney(money) {
     const remains = money % this.unit;
@@ -26,7 +29,7 @@ class App {
     }
   }
   buyLottos() {
-    Console.readLine("구입금액을 입력해 주세요.", (money) => {
+    Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
       this.validateMoney(money);
       this.createLottos(money);
     });
