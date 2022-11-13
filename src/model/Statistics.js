@@ -1,5 +1,6 @@
 class Statistics {
-  constructor() {
+  constructor(controller) {
+    this.controller = controller;
     this.first = 0;
     this.second = 0;
     this.third = 0;

@@ -8,7 +8,7 @@ class Controller {
     this.view = new View(this);
     this.userNumber = new UserNumber(this);
     this.lotto = new Lotto(this);
-    this.statistics = new Statistics();
+    this.statistics = new Statistics(this);
   }
 
   printReadOnlyMessage(type, data) {
