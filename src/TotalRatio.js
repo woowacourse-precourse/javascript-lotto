@@ -5,30 +5,31 @@ class TotalRatio {
     // this.resultRatio(negativeTotalCalculate, positiveTotalCalculate);
   }
   roundDecimalPoint(positiveTotalCalculate, negativeTotalCalculate) {
-    // return +(Math.round(positiveTotalCalculate + "e+1")  + "e-1")
     const roundedPositive = Math.round(positiveTotalCalculate * 10) / 10;
     const roundedNegative = Math.round(negativeTotalCalculate * 10) / 10;
-    this.resultRatio(roundedPositive, roundedNegative);
+    const fixPositiveDecimalPoint = roundedPositive.toFixed(1)
+    const fixNegativeDecimalPoint = roundedNegative.toFixed(1)
+    this.resultRatio(fixPositiveDecimalPoint, fixNegativeDecimalPoint);
   }
-  resultRatio(roundedNegative, roundedPositive) {
-    if (roundedPositive < 100) {
+  resultRatio(fixNegativeDecimalPoint, fixPositiveDecimalPoint) {
+    if (fixPositiveDecimalPoint < 100) {
       return MissionUtils.Console.print(
-        `총 수익률은 ${roundedNegative}%입니다.`
+        `총 수익률은 ${fixNegativeDecimalPoint}%입니다.`
       );
     }
-    if (roundedPositive > 100) {
+    if (fixPositiveDecimalPoint > 100) {
       return MissionUtils.Console.print(
-        `총 수익률은 ${roundedPositive}%입니다.`
+        `총 수익률은 ${fixPositiveDecimalPoint}%입니다.`
       );
     }
-    if (roundedPositive === 100 && roundedNegative !== 0) {
+    if (fixPositiveDecimalPoint === 100 && fixNegativeDecimalPoint !== 0) {
       return MissionUtils.Console.print(
-        `총 수익률은 ${roundedPositive}%입니다.`
+        `총 수익률은 ${fixPositiveDecimalPoint}%입니다.`
       );
     }
-    if (roundedNegative === 0) {
+    if (fixNegativeDecimalPoint === 0) {
       return MissionUtils.Console.print(
-        `총 수익률은 ${roundedNegative}%입니다.`
+        `총 수익률은 ${fixNegativeDecimalPoint}%입니다.`
       );
     }
   }

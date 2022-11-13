@@ -1,10 +1,11 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const {PAYMENT_MESSAGE,SELECT_NUMBER_MESSAGE,RESULT_MESSAGE,BLANK_SPACE, RESULT_PLACE} =require("./stringConst");
+const {REWARD,MATCH } =require("./numberConst");
 const Lotto = require("./Lotto");
 const BonusNumberError = require("./BonusNumberError");
 const TotalRatio =  require("./TotalRatio");
 const PayError = require("./PayError");
-const {PAYMENT_MESSAGE,SELECT_NUMBER_MESSAGE,RESULT_MESSAGE,BLANK_SPACE, RESULT_PLACE} =require("./stringConst");
-const {REWARD,MATCH } =require("./numberConst");
+
 
 
 class App {
@@ -30,7 +31,9 @@ class App {
     });
   }
 
-  // 랜덤번호 배열 뽑기
+
+
+
   generateRandomNumbers() {
     const Rannumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
     const sortedRandomNumbers = Rannumbers.sort((a, b) => a - b);
@@ -39,7 +42,7 @@ class App {
     const sortedRandomNumbersForPrint = sortedRandomNumbers.join(", ");
     this.randomNumbersArrForPrint.push(sortedRandomNumbersForPrint);
   }
-  repeatGenerateRandomNumbers(countedSheets){ // 이름 바꾸기 랜덤번호 뽑기를 반복시켜주는 함수
+  repeatGenerateRandomNumbers(countedSheets){ 
     for (let i = 0; i < countedSheets; i++) {
       this.generateRandomNumbers();
     }
@@ -56,22 +59,21 @@ class App {
   }
 
 
+
+
   selectWinNumbers() {
     MissionUtils.Console.print(SELECT_NUMBER_MESSAGE.winNumber);
     this.inputWinNumbers();
   }
   inputWinNumbers() {
     MissionUtils.Console.readLine("", (numbers) => {
-
       const splitedWinNumber = numbers.split(",").map(Number);
       const lotto = new Lotto(splitedWinNumber);
       lotto.validate(splitedWinNumber); 
-
-      console.log(splitedWinNumber)
       for (let i = 0; i < 6; i++) {
         this.selectedWinNumber.push(splitedWinNumber[i]);
       }
-      MissionUtils.Console.print(BLANK_SPACE.line); // 공백
+      MissionUtils.Console.print(BLANK_SPACE.line); 
       this.selectBonusNumber();
     });
   }
@@ -81,13 +83,10 @@ class App {
   }
   inputBonusNumber() {
     MissionUtils.Console.readLine("", (bonusNumber) => {
-      
       const bonusNumberError = new BonusNumberError(bonusNumber);
       bonusNumberError.validateBonusNumber(bonusNumber); 
-
       this.selectedBonusNumber.push(Number(bonusNumber));
-    
-      MissionUtils.Console.print(BLANK_SPACE.line); // 공백
+      MissionUtils.Console.print(BLANK_SPACE.line); 
       this.isDuplicatedNumber(bonusNumber);
       this.compareNumbers();
     });
@@ -123,15 +122,19 @@ class App {
     let secondPlace = 0;
     let thirdPlace = 0; 
     for (let i = 0; i <  this.countMatchedNumber.length; i++) {
-      if(this.countMatchedNumber[i] === MATCH.five && this.countMatchedBonusNumber[i] === MATCH.bonus) secondPlace++;
+      if(this.countMatchedNumber[i] === MATCH.five && this.countMatchedBonusNumber[i] === MATCH.bonus) 
+      secondPlace++;
     }
     for (let i = 0; i <  this.countMatchedNumber.length; i++) {
       if(this.countMatchedNumber.includes(MATCH.five) 
-      && this.countMatchedNumber[i] === MATCH.five && this.countMatchedBonusNumber[i] !== MATCH.bonus) thirdPlace++;
+      && this.countMatchedNumber[i] === MATCH.five && this.countMatchedBonusNumber[i] !== MATCH.bonus) 
+      thirdPlace++;
     }
     this.calculateYieldRatio(firstPlace,secondPlace,thirdPlace,fourthPlace,fifthPlace);
-
   }
+
+
+
 
   calculateYieldRatio(firstPlace,secondPlace,thirdPlace,fourthPlace,fifthPlace){
     const addReward = (REWARD.first * firstPlace) 
@@ -146,20 +149,17 @@ class App {
     this.seeResult(firstPlace,secondPlace,thirdPlace,fourthPlace,fifthPlace,positiveTotalCalculate,negativeTotalCalculate);
   }
 
-  // 결과 출력
   seeResult(firstPlace,secondPlace,thirdPlace,fourthPlace,fifthPlace,positiveTotalCalculate,negativeTotalCalculate) {
     MissionUtils.Console.print(RESULT_MESSAGE.statistics);
     MissionUtils.Console.print(RESULT_MESSAGE.underscore);
-    //  등수 개수 출력
     MissionUtils.Console.print(`${RESULT_PLACE.fifth}${fifthPlace}개`);
     MissionUtils.Console.print(`${RESULT_PLACE.fourth}${fourthPlace}개`);
     MissionUtils.Console.print(`${RESULT_PLACE.third}${thirdPlace}개`);
     MissionUtils.Console.print(`${RESULT_PLACE.second}${secondPlace}개`);
     MissionUtils.Console.print(`${RESULT_PLACE.first}${firstPlace}개`);
-    MissionUtils.Console.close();
-
     const totalRatio = new TotalRatio(negativeTotalCalculate,positiveTotalCalculate);
     totalRatio.roundDecimalPoint(negativeTotalCalculate,positiveTotalCalculate); 
+    MissionUtils.Console.close();
   }
 
 
