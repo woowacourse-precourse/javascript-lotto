@@ -7,16 +7,7 @@ const convertAnswerIntoArray = (answer) => {
 
 const printWinningResult = (winningArray, percentage) => {
   Console.print(MESSAGE.OUTPUT_WINNING_STATISTICS);
-  Console.print(
-    MESSAGE.RESULT(
-      winningArray[0],
-      winningArray[1],
-      winningArray[2],
-      winningArray[3],
-      winningArray[4],
-      percentage
-    )
-  );
+  Console.print(MESSAGE.RESULT(winningArray, percentage));
 };
 
 const getRevenue = (winningArray) => {
