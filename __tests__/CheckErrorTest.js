@@ -40,4 +40,9 @@ describe("CheckError 클래스 테스트", () => {
     const test = CheckError.isUniqueNumber(bonusNumber, winningNumberArray);
     expect(test).toBeFalsy();
   });
+  test("isNumber함수 Test", () => {
+    const string = "aa";
+    const test = CheckError.isNumber(string);
+    expect(test).toBeFalsy();
+  });
 });
