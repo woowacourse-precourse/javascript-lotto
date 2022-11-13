@@ -93,4 +93,16 @@ describe("기능 테스트", () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
+
+  test("수익률 출력", () => {
+    const logSpy = getLogSpy();
+    const totalReward = 5000;
+    const money = 50000;
+    const log = "총 수익률은 10%입니다.";
+
+    const app = new App();
+    app.countBenefit(totalReward, money);
+
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+  });
 });
