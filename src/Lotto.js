@@ -21,6 +21,10 @@ class Lotto {
     }
   }
 
+  toString() {
+    return `[${this.#numbers.join(', ')}]`;
+  }
+
   lottosWinningBonus(lottos, winning, bonus) {
     winning = winning.split(',');
 

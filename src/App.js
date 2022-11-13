@@ -15,16 +15,13 @@ class App {
       money = Number(money);
       const lottos = this.#lottoSeller.sellLotto(money);
 
-      this.printCountAndLottos(money);
+      this.#printLottos(lottos);
     });
   }
 
-  printCountAndLottos(money) {
-    this.lottoSeller.countBuying(money);
-    this.lottoSeller.printLottos(money);
-
-    let lottos = this.lottoSeller.getLottos();
-    this.enterWinningNumber(lottos);
+  #printLottos(lottos) {
+    Console.print(`\n${lottos.length}개를 구매했습니다.`);
+    lottos.forEach((lotto) => Console.print(lotto.toString()));
   }
 
   enterWinningNumber(lottos) {
