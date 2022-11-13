@@ -11,7 +11,8 @@ function getCountByPay(pay) {
 }
 
 function getRandomNumbers() {
-  return Random.pickUniqueNumbersInRange(1, 10, 6);
+  const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+  return numbers.sort((a, b) => a - b);
 }
 
 module.exports = { getCountByPay, getRandomNumbers };
