@@ -53,6 +53,22 @@ class App {
   issueEachLotto() {
     return Random.pickUniqueNumbersInRange(1, 45, 6);
   }
+
+  //로또 출력
+  printLottoAll() {
+    this.printLottoNumber();
+    this.printLotto();
+  }
+
+  printLottoNumber() {
+    Console.print(`${this.lottoCnt}개를 구매했습니다.`);
+  }
+
+  printLotto() {
+    for (let i = 0; i < this.lottoArray.length; i++) {
+      Console.print(`[${this.lottoArray[i].join(", ")}]`);
+    }
+  }
 }
 
 module.exports = App;
