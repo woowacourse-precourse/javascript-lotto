@@ -18,13 +18,13 @@ class Validate {
       throw new Error(ERROR.SELECT);
     }
     for (let i = 0; i < NUMBER_ARRAY.length; i++) {
-      const NUMBER = number[i];
+      const NUMBER = NUMBER_ARRAY[i];
       // 1~45 사이의 숫자인가?
       if (!this.checkNumber(NUMBER)) {
         throw new Error(ERROR.NUMBER);
       }
-      return NUMBER_ARRAY;
     }
+    return NUMBER_ARRAY;
   }
 
   getWinningNumberArray(number) {

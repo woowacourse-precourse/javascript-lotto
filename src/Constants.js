@@ -22,7 +22,7 @@ const MESSAGE = {
 const ERROR = {
   AMOUNT: `[ERROR] ${LOTTO.PRICE}원 단위로만 구매할 수 있습니다.`,
   SELECT: `[ERROR] 로또 번호는 ${LOTTO.NUMBER_SELECT}개여야 합니다.`,
-  NUMBER: `[ERROR] 로또 번호는 ${LOTTO.NUMBER_START}부터 ${LOTTO.NUMBER_END} 사이의 중복되지 않는 숫자여야 합니다.`,
+  NUMBER: `[ERROR] 로또 번호는 ${LOTTO.NUMBER_START}부터 ${LOTTO.NUMBER_END} 사이의 중복되지 않은 숫자여야 합니다.`,
   BONUS: '[ERROR] 당첨 번호에 있는 숫자는 보너스 번호로 입력할 수 없습니다.',
 };
 
