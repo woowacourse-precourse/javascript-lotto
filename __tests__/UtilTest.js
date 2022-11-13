@@ -82,10 +82,10 @@ describe('유틸 함수 동작 테스트', () => {
   });
 
   test('수익률 계산하는 함수 테스트', () => {
-    expect(getProfitRate(10000, 5000)).toBe('50%');
-    expect(getProfitRate(8000, 5000)).toBe('62.5%');
-    expect(getProfitRate(10000, 1500000)).toBe('15000%');
-    expect(getProfitRate(13000, 55000)).toBe('423.1%');
-    expect(getProfitRate(13000, 0)).toBe('0%');
+    expect(getProfitRate(10000, 5000)).toBe(50);
+    expect(getProfitRate(8000, 5000)).toBe(62.5);
+    expect(getProfitRate(10000, 1500000)).toBe(15000);
+    expect(getProfitRate(13000, 55000)).toBe(423.1);
+    expect(getProfitRate(13000, 0)).toBe(0);
   });
 });
