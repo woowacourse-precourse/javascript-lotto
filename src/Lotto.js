@@ -3,6 +3,7 @@ class Lotto {
 
   constructor(numbers) {
     this.validate(numbers);
+    this.sortData(numbers);
     this.#numbers = numbers;
   }
 
@@ -16,7 +17,11 @@ class Lotto {
     console.log(this.#numbers);
   }
 
-  // TODO: 추가 기능 구현
+  sortData(numbers) {
+  numbers.sort(function(a, b) { 
+    return a - b;
+  });
+ }
 }
 
 module.exports = Lotto;

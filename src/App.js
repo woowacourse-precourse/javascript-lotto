@@ -31,7 +31,6 @@ class App {
       var lotto = new Lotto(randomNumbers);
       lottoArr.push(lotto);
     }
-    console.log
     this.creatLottosOutput(lottoCount,lottoArr);
   }
 
@@ -40,7 +39,6 @@ class App {
     Console.print(`${lottoCount} 개를 구매했습니다.`);
     Console.print(lottoArr.forEach(lotto => lotto.print()));
   }
-
 
 
 }
