@@ -31,6 +31,20 @@ class LottoPublisher {
   validateBonusNumber(number) {
     isValidLottoBonusNumber(number, this.#winningNumbers);
   }
+
+  checkMatchedLottoNumbersRank(numbers) {
+    const match = numbers.filter((x) =>
+      this.#winningNumbers.includes(x)
+    ).length;
+    const rank = 8 - match;
+    if (match === 6) {
+      return rank - 1;
+    }
+    if (match === 5 && numbers.includes(this.#bonusNumber)) {
+      return rank - 1;
+    }
+    return rank;
+  }
 }
 
 module.exports = LottoPublisher;
