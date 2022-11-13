@@ -1,6 +1,9 @@
-const { isValidMoneyNumberAmount } = require("../../backup/src/new/util/utils");
-const constants = require("./constants/numbers.js");
-const MissionUtils = require("@woowacourse/mission-utils");
+const Lotto = require('./Lotto.js');
+const {
+  isValidMoneyNumberAmount
+} = require('../../backup/src/new/util/utils.js');
+const constants = require('./constants/numbers.js');
+const MissionUtils = require('@woowacourse/mission-utils');
 
 class LottoStore {
   askBuyLottoCount(money) {
@@ -11,6 +14,10 @@ class LottoStore {
   validateMoney(input) {
     const money = Number(input);
     isValidMoneyNumberAmount(money);
+  }
+
+  getNewLotto() {
+    return new Lotto(this.getRandomLottoNumbers());
   }
 
   getRandomLottoNumbers() {
