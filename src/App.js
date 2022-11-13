@@ -34,15 +34,20 @@ class App {
   makeTicket() {
     let tickets = [];
     const number = this.lottoIssuance();
+    const randomNumber = this.makeRandomLottoNumber();
+    randomNumber.sort((a, b) => {
+      return a - b;
+    });
     for (let i = 0; i < number; i++) {
-      tickets.push(this.makeRandomLottoNumber());
+      tickets.push(randomNumber);
     }
     // return tickets;
     return MissionUtils.Console.print(tickets);
   }
-  showLottoTicketNumber() {
-    const ticketPage = this.lottoIssuance();
-    for (let i = 0; i < ticketPage; i++) {}
+
+  // 오름차순
+  sortFunction() {
+    sort;
   }
   play() {
     this.paymentInput();
