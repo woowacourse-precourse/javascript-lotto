@@ -32,6 +32,11 @@ class LottoController {
                 const matchedLottoNumbers = purchasedLottos.map((lotto) =>
                   this.lottoPublisher.checkMatchedLottoNumbers(lotto.numbers)
                 );
+                const arranged = this.lottoViewer.arrangeLottoResult(
+                  matchedLottoNumbers,
+                  lottoCount * 1000
+                );
+                this.lottoViewer.printLottoStats(arranged);
               }
             );
           }
