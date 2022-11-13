@@ -165,6 +165,18 @@ describe('DataChecker 클래스 테스트', () => {
     }).toThrow('[ERROR]');
   });
 
+  test('1,2,a,4,5,6 과 같은 입력은 예외를 발생시킨다.', () => {
+    expect(() => {
+      DataChecker.isValidRowDataOfSixNumbers('1,2,a,4,5,6');
+    }).toThrow('[ERROR]');
+  });
+
+  test('1,2,3,4.5,6 과 같은 입력은 예외를 발생시킨다.', () => {
+    expect(() => {
+      DataChecker.isValidRowDataOfSixNumbers('1,2,3,4.5,6');
+    }).toThrow('[ERROR]');
+  });
+
   test('[1, 2, 3, 4, 5, 6] 과 같은 입력은 예외를 발생시킨다.', () => {
     expect(() => {
       DataChecker.isValidRowDataOfSixNumbers([1, 2, 3, 4, 5, 6]);

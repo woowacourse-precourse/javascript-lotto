@@ -1,9 +1,10 @@
-const GameInput = require('../domains/GameInput');
+const GameInput = require('../views/GameInput');
 const GameOutput = require('../views/GameOutput');
 const Player = require('./Player');
 const WinningNumber = require('./WinningNumber');
-const Lotto = require('./Lotto');
+const Lotto = require('../domains/Lotto');
 const Console = require('../domains/Console');
+const DataProcessor = require('../domains/DataProcessor');
 
 class Game {
   #instance = {};
@@ -15,7 +16,10 @@ class Game {
   #buyLotto(purchaseAmount) {
     this.#instance.player = new Player();
     this.#instance.player.purchaseLotto(purchaseAmount);
-    this.#instance.player.printLotto();
+
+    const lottos = DataProcessor.convertLottosToPrintableLottos(this.#instance.player.getLottos());
+    const quantityOfLotto = this.#instance.player.getQuantityOfLotto();
+    GameOutput.printPlayersLottos(quantityOfLotto, lottos);
 
     GameInput.enter(GameOutput.message.sixNumbers, this.#registerSixNumbers.bind(this));
   }
@@ -35,8 +39,13 @@ class Game {
 
   #calculateLottoResult() {
     this.#instance.lotto = new Lotto(this.#instance.winningNumber.getSixNumbers());
-    this.#instance.lotto.calculateResult();
-    this.#instance.lotto.printResult();
+
+    const result = this.#instance.lotto.calculateResult(
+      this.#instance.player.getLottos(),
+      this.#instance.winningNumber.getBonus()
+    );
+    const profit = this.#instance.player.calculateProfit(result);
+    GameOutput.printResult(result, profit);
 
     this.#endGame();
   }

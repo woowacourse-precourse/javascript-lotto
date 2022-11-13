@@ -1,21 +1,27 @@
 const DataProcessor = require('../domains/DataProcessor');
 const Tickets = require('../domains/Tickets');
-const GameOutput = require('../views/GameOutput');
 
 class Player {
-  #lotto = {};
+  #data = {};
 
   purchaseLotto(purchaseAmount) {
-    this.#lotto.quantity = DataProcessor.getQuantityOfLotto(
+    this.#data.quantity = DataProcessor.getQuantityOfLotto(
       DataProcessor.processRowDataOfPurchaseAmount(purchaseAmount)
     );
-    this.#lotto.tickets = Tickets.publish(this.#lotto.quantity);
+    this.#data.lottos = Tickets.publish(this.#data.quantity);
   }
 
-  printLotto() {
-    GameOutput.printNewLine();
-    GameOutput.printQuantityOfLotto(this.#lotto.quantity);
-    GameOutput.printLottos(DataProcessor.convertLottosToPrintableLottos(this.#lotto.tickets));
+  getLottos() {
+    return this.#data.lottos;
+  }
+
+  getQuantityOfLotto() {
+    return this.#data.quantity;
+  }
+
+  calculateProfit(result) {
+    // 로또 당첨 금액 총합 * 수익률의 역 = purchaseAmount
+    // 로또 당첨 금액 총합 / purchaseAmount = 수익률
   }
 }
 
