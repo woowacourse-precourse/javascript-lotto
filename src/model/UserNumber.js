@@ -35,6 +35,7 @@ class UserNumber {
         singleLottoCombinationArray.sort((first, second) => first - second),
       );
     }
+    this.controller.view.printUserLottoArray();
   }
 
   getUserLottoArray() {
