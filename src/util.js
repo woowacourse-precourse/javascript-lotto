@@ -1,4 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
+const { PRIZE } = require('./const.js');
 
 const print = content => {
   Console.print(content);
@@ -20,4 +21,14 @@ const makeLottoNumber = count => {
 };
 
 const closeReadLine = () => Console.close();
+
+const templeteLotto = (rank, count) => {
+  const { correctCount, reward } = PRIZE[rank];
+  const rewardLocalString = reward.toLocaleString();
+
+  if (rank === PRIZE.second)
+    return `${correctCount}개 일치, 보너스 볼 일치 (${rewardLocalString}원) - ${count}개`;
+  return `${correctCount}개 일치 (${rewardLocalString}원) - ${count}개`;
+};
+
 module.exports = { print, readLine, makeLottoNumber, closeReadLine };
