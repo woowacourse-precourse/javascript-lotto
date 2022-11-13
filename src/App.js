@@ -4,8 +4,6 @@ const Publish = require('./Publish');
 const { MONEY, WINNING_TEXT, INPUT_TEXT, ERROR_TEXT } = require('./Constant');
 
 class App {
-  constructor() {}
-
   play() {
     //todo. 숫자 하드코딩 없애기
     this.purchase();
@@ -71,26 +69,10 @@ class App {
   }
 
   printWinningResult() {
-    this.printFifth();
-    this.printFourth();
-    this.printThird();
-    this.printSecond();
-    this.printFrist();
-  }
-  printFifth() {
     Console.print(`${WINNING_TEXT.FIFTH} ${this.lotto.fifthCount}개`);
-  }
-  printFourth() {
     Console.print(`${WINNING_TEXT.FOURTH} ${this.lotto.fourthCount}개`);
-  }
-  printThird() {
     Console.print(`${WINNING_TEXT.THIRD} ${this.lotto.thirdCount}개`);
-  }
-  printSecond() {
     Console.print(`${WINNING_TEXT.SECOND} ${this.lotto.secondCount}개`);
-  }
-
-  printFrist() {
     Console.print(`${WINNING_TEXT.FIRST} ${this.lotto.firstCount}개`);
     this.totalReturn();
   }
@@ -103,6 +85,4 @@ class App {
   }
 }
 
-const app = new App();
-app.play();
 module.exports = App;
