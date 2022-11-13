@@ -10,6 +10,9 @@ const messages = {
     "[ERROR] 당첨번호는 1~45 사이의 숫자로 이루어져야 합니다.",
   WINNING_NUMBER_ERROR_UNIQUE_NUMBERS_MESSAGE:
     "[ERROR] 당첨번호는 겹치지 않는 6개의 숫자로 이루어져야 합니다.",
+  BONUS_NUMBER_MESSAGE: "\n보너스 번호를 입력해 주세요.\n",
+  BONUS_NUMBER_ERROR_MESSAGE:
+    "[ERROR] 보너스 번호는 1~45 사이의 숫자이어야 합니다.",
 };
 
 module.exports = messages;
