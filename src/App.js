@@ -8,6 +8,8 @@ class App {
   buy() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요. ", (input) => {
       this.validatePurchase(input);
+      const lotto = this.issueLotto();
+      console.log(lotto);
     });
   }
   validatePurchase(input) {
@@ -19,6 +21,9 @@ class App {
       throw new Error("[ERROR] 구매 금액을 1000원 단위로 입력해주세요.");
       MissionUtils.Console.close();
     }
+  }
+  issueLotto() {
+    const lottoNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
   }
 }
 
