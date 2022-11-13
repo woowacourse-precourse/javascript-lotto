@@ -39,6 +39,22 @@ class App {
       this.endGame();
     });
   }
+
+  printWinningResult() {
+    String.prototype.format = function() {
+      return [...arguments].reduce((pattern,value) => pattern.replace(/%s/,value), this);
+    };
+    this.lottoSimulator.gradeCount.forEach((count, rank) => {
+      const rankUpperCase = rank.toUpperCase();
+      Console.print('%s개 일치%s (%s원) - %s개'.format(
+        GRADE[rankUpperCase].DUPLICATE_COUNT,
+        GRADE[rankUpperCase].EXTRA_TEXT,
+        GRADE[rankUpperCase].PRIZE_MONEY,
+        count,
+        )
+      );
+    });
+  }
 }
 
 module.exports = App;
