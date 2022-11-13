@@ -1,34 +1,55 @@
-const MissionUtils = require("@woowacourse/mission-utils");
-const LottoMachine = require("./LottoMachine");
-const WinningCalculator = require("./WinningCalculator");
+const LottoGenerator = require("./LottoGenerator");
+const PrizeCalculator = require("./PrizeCalculator");
+const RankCalculator = require("./RankCalculator");
+const Utils = require("./Utils");
 const WinningLotto = require("./WinningLotto");
 
 class App {
   play() {
-    this.getMoneyInput();
+    this.purchaseProcess();
   }
 
-  getMoneyInput() {
-    MissionUtils.Console.readLine("구입 금액을 입력해 주세요.\n", (input) => {
-      this.lottoMachine = new LottoMachine(input);
-      this.lottoMachine.print();
+  purchaseProcess() {
+    Utils.readLine("구입금액을 입력해 주세요.\n", (money) => {
+      const lottoGenerator = new LottoGenerator();
+      const purchaseCount = lottoGenerator.getPurchaseCount(money);
 
-      this.getWinningNumberInput();
+      this.playerLottos = lottoGenerator.getLottos(purchaseCount);
+      Utils.printPurchasedLotto(this.playerLottos);
+
+      this.winningNumberProcess();
     });
   }
 
-  getWinningNumberInput() {
-    MissionUtils.Console.readLine("\n당첨 번호를 입력해 주세요.\n", (winningNumberInput) => {
-      MissionUtils.Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusNumberInput) => {
-        const winningNumbers = winningNumberInput.split(",").map((number) => Number(number));
-        const bonusNumber = Number(bonusNumberInput);
-        this.winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+  winningNumberProcess() {
+    Utils.readLine("\n당첨 번호를 입력해 주세요.\n", (winningNumberInput) => {
+      const winningNumber = winningNumberInput.split(",").map((number) => Number(number));
 
-        const winningCalculator = new WinningCalculator(this.lottoMachine.lottos, this.winningLotto);
-        winningCalculator.print();
-        MissionUtils.Console.close();
-      });
+      this.bonusNumberProcess(winningNumber);
     });
+  }
+
+  bonusNumberProcess(winningNumber) {
+    Utils.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusNumberInput) => {
+      const bonusNumber = Number(bonusNumberInput);
+      this.winningLotto = new WinningLotto(winningNumber, bonusNumber);
+
+      this.resultProcess();
+    });
+  }
+
+  resultProcess() {
+    const rankCalculator = new RankCalculator();
+    const prizeCalculator = new PrizeCalculator();
+
+    const rankCount = rankCalculator.getRankCount(this.playerLottos, this.winningLotto);
+
+    const playerMoney = this.playerLottos.length * 1000;
+    const pirzeMoney = prizeCalculator.getPrizeMoney(rankCount);
+    const rateOfReturn = prizeCalculator.getRateOfReturn(playerMoney, pirzeMoney);
+
+    Utils.printWinningResult(rankCount, rateOfReturn);
+    Utils.close();
   }
 }
 
