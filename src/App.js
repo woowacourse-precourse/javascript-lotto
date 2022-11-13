@@ -38,7 +38,13 @@ class App {
   #enterBonusNumber(lottos, winning) {
     Console.readLine(Messages.ENTER_BONUS_NUMBER, (bonus) => {
       bonus = Number(bonus);
+      this.#validateBonusNumber(winning, bonus);
     });
+  }
+
+  #validateBonusNumber(winning, bonus) {
+    if (winning.hasNumber(bonus)) throw new Error(Messages.NOT_DUPLICATE);
+    if (!(bonus >= 1 && bonus <= 45)) throw new Error(Messages.NUMBERS_IN_RANGE);
   }
 
   printWinningStatics(lottos, winning, bonus) {
