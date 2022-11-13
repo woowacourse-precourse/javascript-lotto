@@ -1,5 +1,4 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const { MESSAGE } = require('./Constants');
 
 class LottoIssuer {
   #lotteries;
@@ -12,12 +11,7 @@ class LottoIssuer {
   }
 
   static issue(number) {
-    const lotteries = [];
-    while (lotteries.length < number) {
-      const lottoNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
-      lotteries.push(lottoNumbers);
-    }
-    return lotteries;
+    return [...new Array(number)].map(() => Random.pickUniqueNumbersInRange(1, 45, 6));
   }
 
   print() {
