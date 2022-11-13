@@ -39,21 +39,27 @@ class CalculationOfLottoGame {
     }
   }
 
-  resultOfLottoClass(winningNumArr, userHaveLotto, bonusNum) {
-    let classOfLotto = new Map();
-    classOfLotto.set("5등", 0);
-    classOfLotto.set("4등", 0);
-    classOfLotto.set("3등", 0);
-    classOfLotto.set("2등", 0);
-    classOfLotto.set("1등", 0);
-    for (let i = 0; i < winningNumArr.length; i++) {
-      switch (winningNumArr[i]) {
+  makeArrayOfArrayPlusNum(array, num) {
+    return [...array, num];
+  }
+
+  resultOfLottoClass(winningNum, userHaveLotto, bonusNum) {
+    let winLotto = new Map();
+
+    winLotto.set("5등", 0);
+    winLotto.set("4등", 0);
+    winLotto.set("3등", 0);
+    winLotto.set("2등", 0);
+    winLotto.set("1등", 0);
+
+    for (let i = 0; i < winningNum.length; i++) {
+      switch (winningNum[i]) {
         case 3:
-          classOfLotto.set("5등", classOfLotto.get("5등") + 1);
+          winLotto.set("5등", winLotto.get("5등") + 1);
           break;
 
         case 4:
-          classOfLotto.set("4등", classOfLotto.get("4등") + 1);
+          winLotto.set("4등", winLotto.get("4등") + 1);
           break;
 
         case 5:
@@ -61,7 +67,7 @@ class CalculationOfLottoGame {
             this.checkOfBonusNumHave(userHaveLotto, bonusNum, { index: i }) ===
             false
           ) {
-            classOfLotto.set("3등", classOfLotto.get("3등") + 1);
+            winLotto.set("3등", winLotto.get("3등") + 1);
             break;
           }
 
@@ -69,16 +75,16 @@ class CalculationOfLottoGame {
             this.checkOfBonusNumHave(userHaveLotto, bonusNum, { index: i }) ===
             true
           ) {
-            classOfLotto.set("2등", classOfLotto.get("2등") + 1);
+            winLotto.set("2등", winLotto.get("2등") + 1);
             break;
           }
 
         case 6:
-          classOfLotto.set("1등", classOfLotto.get("1등") + 1);
+          winLotto.set("1등", winLotto.get("1등") + 1);
           break;
       }
     }
-    return classOfLotto;
+    return winLotto;
   }
 
   makeAmountOfWinningMoney(result) {

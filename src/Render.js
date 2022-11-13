@@ -1,10 +1,10 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 class Render {
-  showHowmanybought(lotto) {
+  showHowmanyboughtLotto(lotto) {
     Console.print(`${lotto}개를 구매했습니다.`);
   }
 
-  showMadeLotto(madeLotto) {
+  showLottoMade(madeLotto) {
     let i = 0;
 
     for (; i < madeLotto.length; i++) {
@@ -15,13 +15,13 @@ class Render {
     Console.print(``);
   }
 
-  showResult(result) {
-    this.lineBreak();
-
+  showResultOfWinLotto(result) {
     Console.print(`당첨 통계`);
     Console.print(`---`);
 
-    for (let i = 0; i < 5; i++) {
+    let i = 0;
+
+    for (; i < 5; i++) {
       switch (
         result[i][0] //
       ) {
@@ -46,9 +46,11 @@ class Render {
     }
   }
 
-  showRateOfReturn(winningAmount, userInputMoney) {
+  showLottoRateOfReturn(winningAmount, userInputMoney) {
     let rateOfReturn = (winningAmount / userInputMoney) * 100;
     Console.print(`총 수익률은 ${rateOfReturn.toFixed(1)}%입니다.`);
   }
 }
-module.exports = Render;
+const render = new Render();
+
+module.exports = render;
