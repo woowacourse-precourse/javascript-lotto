@@ -5,7 +5,7 @@ const { Console, Random } = MissionUtils;
 class App {
   unit;
   lottos;
-  winningNumber;
+  winningNumbers;
   bonusNumber;
 
   constructor() {
@@ -26,6 +26,7 @@ class App {
     Console.print(`${lottoNum}개를 구매했습니다.\n`);
     Console.print(`${this.lottos.join("\n")}`);
   }
+
   validateMoney(money) {
     const remains = money % this.unit;
     if (remains !== 0) {
@@ -38,25 +39,62 @@ class App {
       this.createLottos(money);
     });
   }
-  askWinningNumbers() {
-    Console.readLine("당첨 번호를 입력해 주세요.\n", (winningNumbers) => {
-      const splitWinningNumbers = winningNumbers
-        .split(",")
-        .map((number) => parseInt(number.trim(), 10));
-      this.winningNumbers = splitWinningNumbers;
+
+  isReapted(arr) {
+    const lottoVisited = Array.from({ length: 46 }, (_) => false);
+    arr.forEach((num) => {
+      if (lottoVisited[num]) return true;
+      lottoVisited[num] = true;
     });
-  }
-  askBonusNumber() {
-    Console.readLine("보너스 번호를 입력해 주세요.", (bonusNumber) => {
-      this.bonusNumber = bonusNumber;
-    });
+    return false;
   }
   validateWinningNumbers(winningNumbers) {
     if (winningNumbers.length !== 6) {
-      throw new Error("[ERROR] 당첨 로또 번호의 길이가 6개 이상입니다.");
+      throw new Error(`[ERROR] 당첨 로또 번호의 길이는 6개입니다.`);
     }
+    winningNumbers.forEach((number) => {
+      const parsedNum = parseInt(number, 10);
+      if (isNaN(number)) {
+        throw new Error(`[Error] 숫자가 아닌 문자를 입력하였습니다.`);
+      }
+      if (parsedNum < 1 || parsedNum > 45) {
+        throw new Error(`[Error] 로또 번호는 1부터 45 사이의 숫자여야 합니다.`);
+      }
+    });
+    const split = winningNumbers.split(",").map((number) => number.trim());
+    if (this.isReapted(split)) {
+      throw new Error(`[Error] 동일한 숫자가 포함되어 있습니다.`);
+    }
+    return split;
   }
-  validateBonusNumber(bonusNumber) {}
+  askWinningNumbers() {
+    Console.readLine("당첨 번호를 입력해 주세요.\n", (winningNumbers) => {
+      const validatedNumbers = this.validateWinningNumbers(winningNumbers);
+      this.winningNumbers = validatedNumbers;
+    });
+  }
+
+  validateBonusNumber(bonusNumber) {
+    if (bonusNumber.length !== 1) {
+      throw new Error(`[Error] 보너스 번호는 한 개입니다.`);
+    }
+    if (isNaN(bonusNumber)) {
+      throw new Error(`[Error] 숫자를 입력해 주세요.`);
+    }
+
+    const parsedNum = parseInt(bonusNumber, 10);
+    if (parsedNum < 1 || parsedNum > 45) {
+      throw new Error(`[Error] 로또 번호는 1부터 45 사이의 숫자여야 합니다.`);
+    }
+    return parsedNum;
+  }
+  askBonusNumber() {
+    Console.readLine("보너스 번호를 입력해 주세요.", (bonusNumber) => {
+      const validatedNum = this.validateBonusNumber(bonusNumber);
+      this.bonusNumber = validatedNum;
+    });
+  }
+
   play() {}
 }
 
