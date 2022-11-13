@@ -11,7 +11,6 @@ class Draw {
   handleWinningNumber(winningNumber) {
     this.checkWinningNumber(winningNumber);
     this.winningNumber = winningNumber;
-    this.getBonusNumber();
   }
 
   checkWinningNumber(winningNumber) {
