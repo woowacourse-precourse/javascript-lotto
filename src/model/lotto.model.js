@@ -23,7 +23,7 @@ class LottoModel {
     for (let i = 0; i < countLotto; i++) {
       const sortNumbers = MissionUtils.Random.pickUniqueNumbersInRange( 1, 45, 6 ).sort((prevNum, nextNum) => prevNum - nextNum);
       let stringSortNumber = `[${sortNumbers.join(", ").trim()}]`;
-      MissionUtils.Console.print(stringSortNumber)
+      MissionUtils.Console.print(stringSortNumber);
     }
   }
 }

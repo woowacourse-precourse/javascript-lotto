@@ -11,6 +11,11 @@ class LottoView {
     let buyText = `${countLotto}개를 구매했습니다.`;
 
     MissionUtils.Console.print(buyText);
+  }
+
+  createLottoNumber(input) {
+    let countLotto = this.model.countLotto(input);
+
     this.model.getLottoNumPrint(countLotto);
   }
 }
