@@ -46,8 +46,8 @@ class Lotto {
   }
 
   winningNumber(numbers) {
-    MissionUtils.Console.readLine("당첨 번호를 입력해주세요.", (answer) => {
-      const numbers = answer.split(",");
+    MissionUtils.Console.readLine("당첨 번호를 입력해주세요. ", (answer) => {
+      numbers = answer.split(",");
       this.validate(numbers);
       console.log(numbers);
       this.duplicate(numbers);
@@ -77,8 +77,14 @@ class Lotto {
       }
     }
   }
+
+  bonusNumber(number) {
+    MissionUtils.Console.readLine("보너스 번호를 입력해주세요. ", (answer) => {
+      console.log(`입력한 숫자 : ${answer}`);
+    });
+  }
 }
 const lotto = new Lotto();
 //lotto.inputAmount();
-console.log(lotto.winningNumber());
+console.log(lotto.bonusNumber());
 module.exports = Lotto;
