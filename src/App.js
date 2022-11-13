@@ -4,7 +4,13 @@ const Lotto = require('./Lotto');
 const BonusNumber = require('./BonusNumber');
 const WinningChecker = require('./WinningChecker');
 const RateOfReturnCalculator = require('./RateOfReturnCalculator');
-const { print, close, input, printCountOfLottos } = require('./utils/utils');
+const {
+  print,
+  close,
+  input,
+  printCountOfLottos,
+  printLottoNumbers,
+} = require('./utils/utils');
 const { MESSAGE } = require('./utils/constants');
 
 class App {
@@ -34,24 +40,26 @@ class App {
   }
 
   createLottos() {
-    let num = this.countOfLottos;
+    let count = this.countOfLottos;
 
-    while (num !== 0) {
+    while (count !== 0) {
       let numbers = new NumberGenerator().createRandomSixNumbers();
       this.purchasedLottos.push(new Lotto(numbers).getLottoNumbers());
-      num -= 1;
+      count -= 1;
     }
+
+    this.printCountOfLottos();
+  }
+
+  printCountOfLottos() {
+    printCountOfLottos(this.countOfLottos);
 
     this.printLottos();
   }
 
   printLottos() {
-    print('');
-    printCountOfLottos(this.countOfLottos);
     this.purchasedLottos.map((lotto) => {
-      print(
-        `[${lotto[0]}, ${lotto[1]}, ${lotto[2]}, ${lotto[3]}, ${lotto[4]}, ${lotto[5]}]`
-      );
+      printLottoNumbers(lotto);
     });
     print('');
 
