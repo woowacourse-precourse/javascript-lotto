@@ -15,6 +15,10 @@ class Lotto {
   get numbers() {
     return this.#numbers;
   }
+
+  print() {
+    Console.print('[' + this.numbers.join(', ') + ']');
+  }
 }
 
 module.exports = Lotto;
