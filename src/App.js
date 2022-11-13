@@ -3,10 +3,12 @@ const { MESSAGE, ERROR } = require("./constants/index");
 const { throwError } = require("./utils/index");
 
 const Validator = require("./Validator");
+const Generator = require("./Generator");
 
 const initialState = {
   money: 0,
   count: 0,
+  numbers: [],
 };
 
 class App {
@@ -14,6 +16,7 @@ class App {
     this.state = initialState;
 
     this.validator = new Validator();
+    this.generator = new Generator();
     this.lotto;
   }
 
@@ -38,6 +41,12 @@ class App {
 
   generate() {
     Console.print(`${this.state.count + MESSAGE.COUNT_LOTTO}`);
+
+    this.state.numbers = this.generator.getNumbers(this.state.count);
+
+    this.state.numbers.forEach((number) => {
+      Console.print(number);
+    });
   }
 
   error(message) {
