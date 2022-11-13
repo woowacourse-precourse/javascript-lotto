@@ -136,4 +136,55 @@ describe("로또 통계 클래스 테스트", () => {
       expect(lottoStatistics.createRankCounter(buyingLottos)).toEqual(result);
     });
   });
+
+  test("구매한 로또들의 총 상금을 반환한다.", () => {
+    const winningLotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    winningLotto.addBonusNumber(7);
+    const lottoStatistics = new LottoStatistics(winningLotto);
+
+    const TEST_CASE = [
+      {
+        buyingLottos: [
+          [1, 2, 3, 4, 5, 6],
+          [1, 3, 4, 5, 6, 7],
+          [1, 3, 4, 5, 6, 8],
+          [1, 3, 4, 5, 6, 8],
+          [1, 3, 4, 5, 6, 8],
+          [1, 2, 3, 15, 16, 18],
+          [1, 2, 13, 14, 15, 16],
+          [11, 12, 13, 14, 15, 16],
+        ],
+        result: 2034505000,
+      },
+      {
+        buyingLottos: [
+          [8, 21, 23, 41, 42, 43],
+          [3, 5, 11, 16, 32, 38],
+          [7, 11, 16, 35, 36, 44],
+          [1, 8, 11, 31, 41, 42],
+          [13, 14, 16, 38, 42, 45],
+          [7, 11, 30, 40, 42, 43],
+          [2, 13, 22, 32, 38, 45],
+          [1, 3, 5, 14, 22, 45],
+        ],
+        result: 5000,
+      },
+      {
+        buyingLottos: [
+          [1, 3, 4, 5, 6, 7],
+          [1, 3, 4, 5, 6, 8],
+          [1, 2, 3, 15, 16, 18],
+          [1, 2, 13, 14, 15, 16],
+          [11, 12, 13, 14, 15, 16],
+        ],
+        result: 31505000,
+      },
+    ];
+
+    TEST_CASE.forEach(({ buyingLottos, result }) => {
+      expect(lottoStatistics.calculateTotalReward(buyingLottos)).toEqual(
+        result,
+      );
+    });
+  });
 });
