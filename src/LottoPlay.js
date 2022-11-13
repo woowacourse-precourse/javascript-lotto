@@ -13,6 +13,8 @@ class LottoPlay {
     const lottoArray = this.createLottoArray(lottoNumber);
     CheckError.checkLottoSort(lottoArray);
     UserInterface.printLottoArray(lottoArray);
+    const winnerNumber = UserInterface.winnerNumberRequest();
+    CheckError.checkWinnerNumber(winnerNumber);
   }
 
   purchaseLotto(purchaseAmount) {

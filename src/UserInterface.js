@@ -24,7 +24,11 @@ class UserInterface {
   }
 
   static winnerNumberRequest() {
-    // TODO: 당첨 번호 입력 기능
+    let winnerNumber;
+    Console.readLine(INPUT_MESSAGE.WINNER_INPUT, (number) => {
+      winnerNumber = number;
+    });
+    return winnerNumber;
   }
 
   static bonusNumberRequest() {

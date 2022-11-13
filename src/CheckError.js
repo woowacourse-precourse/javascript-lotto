@@ -30,6 +30,7 @@ class CheckError {
         throw new Error(ERROR_MESSAGE.NOT_ASCENDING_ARR);
     });
   }
+
   static isAscendingArray(arr) {
     for (let i = 0; i < arr.length - 1; i++) {
       if (arr[i] > arr[i + 1]) return false;
