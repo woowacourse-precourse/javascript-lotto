@@ -20,4 +20,10 @@ describe("로또 클래스 테스트", () => {
       new Lotto("1,2,3,4,5,6");
     }).toThrow(TypeError);
   });
+
+  test("구매 금액에 따라 몇개의 로또를 구매할 수 있는지 알 수 있다.", () => {
+    expect(Lotto.calculateLottoCountWithPurchaseAmount(1000)).toBe(1);
+    expect(Lotto.calculateLottoCountWithPurchaseAmount(5000)).toBe(5);
+    expect(Lotto.calculateLottoCountWithPurchaseAmount(10000)).toBe(10);
+  });
 });
