@@ -17,6 +17,7 @@ class App {
     this.nullBonusArr = 0;
     this.overlapList = 0;
     this.countRankList = {};
+    this.profitRates = 0;
   }
 
   play() {
@@ -74,6 +75,7 @@ class App {
       this.bonusNumber = answer;
       this.calcOverlapNum();
       this.getRankCountNum();
+      this.calcProfit();
     })
   }
 
@@ -112,6 +114,12 @@ class App {
       }
     }
     return this.countRankList = [countRankFive, countRankFour, countRankThree, countRankTwo, countRankOne];
+  }
+
+  calcProfit(){
+    let profit = this.countRankList[0] * 5000 + this.countRankList[1] * 50000 + this.countRankList[2] * 1500000 + this.countRankList[3] * 30000000 + this.countRankList[4] * 2000000000;
+    let calProfitRates = ((profit  / this.purchaseAmount) * 100)
+    return this.profitRates = calProfitRates.toFixed(1);
   }
 }
 let app = new App();
