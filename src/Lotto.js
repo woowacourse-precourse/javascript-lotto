@@ -12,7 +12,9 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
+  publish() {
+    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6)
+  }
 }
 
 module.exports = Lotto;

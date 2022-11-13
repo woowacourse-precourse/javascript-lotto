@@ -1,5 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const INPUT_ERROR = require('./Constants');
+const Lotto = require("./Lotto");
 
 class App {
   #bonus = 0;
@@ -19,6 +20,15 @@ class App {
       throw INPUT_ERROR.NOT_DIVIDED;
     }
     return money;
+  }
+
+  getLottos(money) {
+    const how_many = money / 1000;
+    const published_Lottos = [];
+    const Lotto = new Lotto;
+    for(let i = 0; i < how_many; i++){
+      published_Lottos.push(Lotto.pulish());
+    }
   }
 
   InputLottos() {
