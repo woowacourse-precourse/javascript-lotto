@@ -1,4 +1,4 @@
-const { Console } = require("@woowacourse/mission-utils");
+const { Random, Console } = require("@woowacourse/mission-utils");
 const {
   validatePurchaseAmount,
   validateWiningNumber,
@@ -6,10 +6,12 @@ const {
 } = require("./utils/validator");
 
 const Lotto = require("./Lotto");
+const { MESSAGES } = require("./constraints");
 class App {
   constructor() {
     this.purchaseAmount = 0; // 구입 금액
-    this.purchasesCount = 0; // 구매한 로또 개수
+    this.purchaseCount = 0; // 구매한 로또 개수
+    this.lottoList = []; // 구매한 로또 목록
     this.winningNumbers = []; // 당첨 번호
     this.bonusNumber = 0; // 보너스 번호
   }
@@ -23,8 +25,9 @@ class App {
       if (validatePurchaseAmount(money)) {
         // 구입 금액 유효성 검증을 통과한다면, 구입 금액 저장 후 출력
         this.purchaseAmount = +money;
-        this.purchasesCount = +money / 1000;
+        this.purchaseCount = +money / 1000;
         Console.print(this.purchaseAmount);
+        this.setLottoNumbers().printLottoList();
       }
       Console.close();
     });
@@ -42,6 +45,20 @@ class App {
       this.bonusNumber = validateBonusNumber(number);
       Console.close();
     });
+  }
+
+  setLottoNumbers() {
+    for (let i = 0; i < this.purchaseCount; i++) {
+      const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+      const lotto = new Lotto(numbers);
+      this.lottoList.push(lotto);
+    }
+    return this;
+  }
+
+  printLottoList() {
+    Console.print(this.purchaseCount + MESSAGES.BUY);
+    this.lottoList.map((lotto) => console.log(lotto.getNumbers()));
   }
 }
 
