@@ -123,7 +123,34 @@ class App {
     );
   }
 
-  play() {}
+  calculateRevenue() {
+    var totalRevenue =
+      this.countEachWinningCost[0] * 5000 +
+      this.countEachWinningCost[1] * 50000 +
+      this.countEachWinningCost[2] * 1500000 +
+      this.countEachWinningCost[3] * 30000000 +
+      this.countEachWinningCost[4] * 2000000000;
+
+    return ((totalRevenue / this.buyCost) * 100).toFixed(1);
+  }
+
+  printRevenue() {
+    var revenue = this.calculateRevenue();
+    MissionUtils.Console.print(`총 수익률은 ${revenue}% 입니다.`);
+    MissionUtils.Console.close();
+  }
+
+  play() {
+    this.inputCost();
+    this.calculateEachLotto();
+    this.makeLottoList();
+    this.printLottoInfo();
+    this.inputWinningLotto();
+    this.inputBonusLotto();
+    this.matchWinningLotto();
+    this.printLottoResult();
+    this.printRevenue();
+  }
 }
 
 module.exports = App;
