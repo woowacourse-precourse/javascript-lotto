@@ -1,4 +1,5 @@
 const { REQUIRE, PRIZE, ERROR_TEXT } = require('./Constant');
+const Exception = require('./Exception');
 
 class Lotto {
   #numbers;
@@ -14,33 +15,18 @@ class Lotto {
   }
 
   validate(numbers) {
-    const LOTTO_LENGTH = 6;
-    if (numbers.length !== LOTTO_LENGTH) {
-      throw new Error(ERROR_TEXT.MIN_COUNT);
-    }
+    const exception = new Exception();
+    exception.length(numbers);
     numbers.forEach((number) => {
-      this.numberException(number);
+      exception.range(number);
     });
-    this.deduplicationException(numbers);
-  }
-
-  numberException(number) {
-    const ONLY_NUMBER = /^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$/;
-    if (!ONLY_NUMBER.test(number)) throw new Error(ERROR_TEXT.VALUE_BETWEEN);
-  }
-
-  deduplicationException(numbers) {
-    const set = new Set(numbers);
-
-    if (numbers.length !== set.size) {
-      throw new Error(ERROR_TEXT.DUPLICATE_VALUE);
-    }
+    exception.deduplication(numbers);
   }
 
   bonusExecption(number) {
     if (this.#numbers.includes(number))
       throw new Error(ERROR_TEXT.DUPLICATE_WINNING);
-    this.numberException(number);
+    new Exception().range(number);
     this.bonusNumber = parseInt(number);
   }
 

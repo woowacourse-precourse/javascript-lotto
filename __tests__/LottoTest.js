@@ -1,5 +1,6 @@
 const Lotto = require('../src/Lotto');
 const App = require('../src/App');
+const Exception = require('../src/Exception');
 
 describe('로또 클래스 예외 테스트', () => {
   test('로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.', () => {
@@ -140,7 +141,8 @@ describe('App 클래스 예외 사항 테스트', () => {
     expect(() => {
       const app = new App();
       app.money = 33300;
-      app.purchaseException();
+      const exception = new Exception();
+      exception.purchase(app.money);
     }).toThrow('[ERROR]');
   });
 });

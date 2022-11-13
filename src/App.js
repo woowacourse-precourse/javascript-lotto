@@ -1,7 +1,8 @@
 const { Console } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const Publish = require('./Publish');
-const { MONEY, WINNING_TEXT, INPUT_TEXT, ERROR_TEXT } = require('./Constant');
+const Exception = require('./Exception');
+const { MONEY, WINNING_TEXT, INPUT_TEXT } = require('./Constant');
 
 class App {
   play() {
@@ -12,15 +13,9 @@ class App {
   purchase() {
     Console.readLine(INPUT_TEXT.COST, (money) => {
       this.money = money;
-      this.purchaseException();
+      new Exception().purchase(this.money);
+      this.makeLotto();
     });
-  }
-
-  purchaseException() {
-    if (this.money % MONEY.MIN !== 0) {
-      throw new Error(ERROR_TEXT.MIN_PURCHASE);
-    }
-    this.makeLotto();
   }
 
   makeLotto() {
