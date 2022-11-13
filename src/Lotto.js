@@ -24,11 +24,20 @@ class Lotto {
       }
     });
   }
+  // TODO: 추가 기능 구현
 
   getNumbers() {
     return this.#numbers;
   }
-  // TODO: 추가 기능 구현
+
+  countWinningNumber(userLottoList, bonusNumber) {
+    const privateNumbers = this.getNumbers();
+    const countArr = [];
+    for (let lottoIndex = 0; lottoIndex < userLottoList.length; lottoIndex++) {
+      countArr.push(this.compareNumbers());
+    }
+    return countArr;
+  }
 }
 
 module.exports = Lotto;
