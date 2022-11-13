@@ -7,7 +7,8 @@ const BonusNumber = require("./BonusNumber.js");
 const Money = require("./Money.js");
 
 class App {
-  lottoticket;
+  lottocount;
+  lottotickets;
   input_money;
   input_lotto;
   input_bonus;
@@ -19,6 +20,8 @@ class App {
   inputMoney(){
     Console.readLine('구입금액을 입력해 주세요.\n', (input) => {
       this.input_money = new Money(input);
+
+      this.countLotto();
     });
   }
 
@@ -35,6 +38,14 @@ class App {
       this.input_bonus = input;
     });
   }
+
+  countLotto(){
+    const money = this.input_money.getMoney();
+    if(!(money % 1000 === 0))
+      throw new Error("[ERROR] 1,000원 단위로 입력해 주세요.");
+    this.lottocount = money / 1000;
+  }
+
 }
 
 const app = new App();

@@ -15,7 +15,12 @@ class Money{
             throw new Error("[ERROR] 정수를 입력해 주세요.");    
     }
     
-    getNumbers(){
+    countLotto(){
+        c 
+        
+    }
+
+    getMoney(){
       return this.money;
     }
   }
