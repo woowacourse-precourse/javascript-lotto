@@ -16,6 +16,7 @@ class LottoGame {
   inputAmount() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (amount) => {
       this.#user = new LottoUser(parseInt(amount, 10));
+      this.#user.printUserLottos();
     });
   }
 }

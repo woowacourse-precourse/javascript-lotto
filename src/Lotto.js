@@ -1,3 +1,4 @@
+const MissionUtils = require('@woowacourse/mission-utils');
 class Lotto {
   #numbers;
 
@@ -20,6 +21,9 @@ class Lotto {
   }
 
   // TODO: 추가 기능 구현
+  printLotto() {
+    MissionUtils.Console.print(this.#numbers);
+  }
 }
 
 module.exports = Lotto;

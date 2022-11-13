@@ -37,6 +37,12 @@ class LottoUser {
   makeRandomSixNumbers() {
     return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
   }
+
+  printUserLottos() {
+    MissionUtils.Console.print('\n');
+    MissionUtils.Console.print(`${this.#lottoCount}개를 구매했습니다.`);
+    this.#lottos.forEach((lotto) => lotto.printLotto());
+  }
 }
 
 module.exports = LottoUser;
