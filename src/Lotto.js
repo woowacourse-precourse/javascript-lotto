@@ -194,6 +194,27 @@ class Lotto {
   printFirstPrize() {
     View.output(Message.returnFirstPrizeResult(this.prize.first));
   }
+
+  // 수익률
+  printYield() {
+    this.sumTotal();
+    this.calculateYield(this.prize.total, this.budget.budget);
+    View.output(Message.returnYield(this.prize.rateOfReturn));
+    View.close();
+  }
+
+  sumTotal() {
+    this.prize.total +=
+      this.prize.fifth * Constant.FIFTH_PRIZE +
+      this.prize.fourth * Constant.FOURTH_PRIZE +
+      this.prize.third * Constant.THIRD_PRIZE +
+      this.prize.second * Constant.SECOND_PRIZE +
+      this.prize.first * Constant.FIRST_PRIZE;
+  }
+
+  calculateYield(total, budget) {
+    this.prize.rateOfReturn = ((total / budget) * 100).toFixed(1);
+  }
 }
 
 module.exports = Lotto;
