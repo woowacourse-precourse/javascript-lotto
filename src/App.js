@@ -68,6 +68,16 @@ class App {
     }
   }
 
+  calculateStatistics(winningNumbers, bonusNumber) {
+    this.#lottoList.forEach(
+      (lotto) => { this.#updateStatistics(lotto, winningNumbers, bonusNumber); },
+    );
+  }
+
+  getRateOfReturn() {
+    return (this.#prizeStatistics.prizeMoney / this.#money) * 100;
+  }
+
   setMoney() {
     let money;
     MissionUtils.Console.readLine(
@@ -84,6 +94,12 @@ class App {
     this.#lottoList.forEach((lotto) => {
       MissionUtils.Console.print(Message.lottoNumber(lotto));
     });
+  }
+
+  #updateStatistics(lotto, winningNumbers, bonusNumber) {
+    const { prizeStatus, prizeMoney } = lotto.getPrize(winningNumbers, bonusNumber);
+    this.#prizeStatistics[prizeStatus] += 1;
+    this.#prizeStatistics.prizeMoney += prizeMoney;
   }
 }
 
