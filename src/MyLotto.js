@@ -1,4 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
+const { MESSAGE } = require("../constant/Message");
 
 class MyLotto {
   #money;
@@ -12,10 +13,8 @@ class MyLotto {
   }
 
   validatePurchaseAmount(money) {
-    if (money < 1000)
-      throw new Error("[ERROR] 구매금액은 1000원 이상이어야 합니다.");
-    if (money % 1000 !== 0)
-      throw new Error("[ERROR] 1000원으로 나누어 떨어져야 합니다.");
+    if (money < 1000) throw new Error(MESSAGE.ERROR_AMOUNT);
+    if (money % 1000 !== 0) throw new Error(MESSAGE.ERROR_DIVIDE);
   }
 
   getMyLottery() {
@@ -29,7 +28,7 @@ class MyLotto {
   }
 
   printPurchaseAmount(amount) {
-    Console.print(`${amount}개를 구매했습니다.`);
+    Console.print(`${amount}${MESSAGE.PRINT_AMOUNT}`);
   }
 
   printMyLottery(myLottos) {
