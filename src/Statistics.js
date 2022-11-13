@@ -6,6 +6,7 @@ class Statistics {
   ranking = [0, 0, 0, 0, 0];
 
   getRanking(lottoList, winning, bonus) {
+    // 모든 로또 당첨 확인 후 기록
     for (let i = 0; i < lottoList.length; i++) {
       const result = this.getResult(lottoList[i], winning, bonus);
       this.ranking[result] += 1;
@@ -14,6 +15,7 @@ class Statistics {
   }
 
   getResult(numbers, winning, bonus) {
+    // 로또 당첨 확인
     const lotto = new Lotto(numbers);
     const result = lotto.checkLotto(numbers, winning, bonus);
     return result;
@@ -24,6 +26,7 @@ class Statistics {
     const YIELD = this.getYield(TOTAL_PRIZE_MONEY, amount);
     Console.print('당첨 통계');
     Console.print('---');
+    // 일치하는 번호 개수, 등수별 당첨 금액, 등수별 당첨된 로또 개수, 보너스 번호 당첨 여부 전달
     Console.print(this.getResultText(3, PRIZE_MONEY.RANKING5, 4, false));
     Console.print(this.getResultText(4, PRIZE_MONEY.RANKING4, 3, false));
     Console.print(this.getResultText(5, PRIZE_MONEY.RANKING3, 2, false));
