@@ -53,7 +53,7 @@ class LottoGame {
     this.LottoGameView.requestInput(REQUEST_MESSAGE.WINNING_NUMBERS, (winningNumbers) => {
       const winningNumbersArr = winningNumbers.split(",");
       Validation.validateLottoNumber(winningNumbersArr);
-      this.winningNumbers = winningNumbersArr;
+      this.winningNumbers = winningNumbersArr.map(Number);
 
       this.saveBonusNumberPhase();
     });
@@ -61,7 +61,7 @@ class LottoGame {
   saveBonusNumberPhase() {
     this.LottoGameView.requestInput(REQUEST_MESSAGE.BONUS_NUMBER, (bonusNumber) => {
       Validation.validateBonusNumber(bonusNumber, this.winningNumbers);
-      this.bonusNumber = bonusNumber;
+      this.bonusNumber = Number(bonusNumber);
     });
   }
 }
