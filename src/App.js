@@ -12,22 +12,22 @@ class App {
       const lotteryTicket = new MyLotto(amount);
       const myLottos = lotteryTicket.getMyLottery();
       lotteryTicket.printMyLottery(myLottos);
-      this.getWinningNumbers();
+      this.getWinningNumbers(myLottos);
     });
   }
 
-  getWinningNumbers() {
+  getWinningNumbers(myLottos) {
     Console.readLine("당첨 번호를 입력해 주세요.\n", (numbers) => {
       const winningNumbers = numbers.split(",");
       const lotto = new Lotto(winningNumbers);
-      this.getBonusNumber(lotto);
-      // Console.print(winningNumbers);
+      this.getBonusNumber(lotto, myLottos, winningNumbers);
     });
   }
 
-  getBonusNumber(lotto, winningNumbers) {
+  getBonusNumber(lotto, myLottos, winningNumbers) {
     Console.readLine("보너스 번호를 입력해 주세요.\n", (number) => {
       const bonus = lotto.validateBonus(Number(number));
+      console.log(myLottos, winningNumbers, bonus);
       Console.close();
     });
   }

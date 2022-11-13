@@ -34,6 +34,7 @@ class Lotto {
     }
     this.validateBonusRange(number);
     this.validateBonusInclude(number);
+    return number;
   }
 
   validateBonusRange(number) {
