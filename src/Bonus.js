@@ -5,7 +5,7 @@ class Bonus {
 
   constructor(answer, winNumberList) {
     Bonus.validate(answer, winNumberList);
-    this.saveBonusNumber(answer);
+    this.save(answer);
   }
 
   static validate(answer, winNumberList) {
@@ -13,7 +13,7 @@ class Bonus {
     return bonusValidation.validate();
   }
 
-  saveBonusNumber(answer) {
+  save(answer) {
     this.#bonusNumber = Number(answer);
   }
 

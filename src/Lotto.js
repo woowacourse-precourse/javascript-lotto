@@ -6,16 +6,16 @@ class Lotto {
 
   constructor(answer) {
     const stringAnswer = typeof answer === 'string' ? answer : JSON.stringify(answer);
-    Lotto.winNumberValidate(stringAnswer);
-    this.saveWinNumbers(stringAnswer);
+    Lotto.validate(stringAnswer);
+    this.save(stringAnswer);
   }
 
-  static winNumberValidate(answer) {
+  static validate(answer) {
     const winNumberValidate = new WinNumbersValidation(answer);
     return winNumberValidate.validate();
   }
 
-  saveWinNumbers(answer) {
+  save(answer) {
     const winNumberArray = answer.split(',');
     this.#numbers = winNumberArray.map((number) => Number(number));
 

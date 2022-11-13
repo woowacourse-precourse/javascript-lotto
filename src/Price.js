@@ -9,7 +9,7 @@ class Price {
 
   constructor(answer) {
     Price.validate(answer);
-    this.saveLottoPriceAndCount(answer);
+    this.save(answer);
   }
 
   static validate(answer) {
@@ -17,7 +17,7 @@ class Price {
     return priceValidation.validate();
   }
 
-  saveLottoPriceAndCount(answer) {
+  save(answer) {
     this.#lottoPrice = Number(answer);
     this.#lottoCount = this.#lottoPrice / PRICE_MEASURE;
 
