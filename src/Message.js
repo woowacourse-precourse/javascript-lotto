@@ -17,6 +17,10 @@ class Message {
   static enterPurchaseAmount() {
     return '구입금액을 입력해 주세요. \n';
   }
+
+  static buy(amount) {
+    return `${amount}개를 구매했습니다.`;
+  }
 }
 
 module.exports = Message;
