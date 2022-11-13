@@ -7,7 +7,8 @@ class App {
   // 로또 개수
   #lottoCount;
   #totalLotto = [];
-  #userWinningNumber;
+  userWinningNumber;
+  userBonusNumber;
 
   userEnterException(userEnterAmount) {
     userException.isInDivisible(userEnterAmount);
@@ -51,9 +52,18 @@ class App {
   enterUserNumber() {
     MissionUtils.Console.readLine('\n당첨 번호를 입력해 주세요.\n', (userNumber) => {
       const parsingUserNumber = String(userNumber).split(',').map(number => +number);
-      console.log(parsingUserNumber);
       this.userNumberException(parsingUserNumber);
-      this.#userWinningNumber = userNumber;
+      this.userWinningNumber = userNumber;
+      this.enterBonusNumber();
+    });
+  }
+
+  enterBonusNumber() {
+    MissionUtils.Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
+      if(isNaN(Number(bonusNumber)) || bonusNumber.length > 1) {
+        throw new Error('[ERROR] 보너스 번호는 한자리 숫자입니다.');
+      }
+      this.userBonusNumber = bonusNumber;
     });
   }
 
