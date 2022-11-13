@@ -10,26 +10,6 @@ class Validate {
     }
   }
 
-  checkNumber(number) {
-    if (
-      isNaN(number) ||
-      number < LOTTO.NUMBER_START ||
-      number > LOTTO.NUMBER_END
-    ) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  getWinningNumberArray(number) {
-    const WINNING_NUMBER_ARRAY = number
-      .replace(/ /gi, '')
-      .split(',')
-      .map((num) => Number(num));
-    return WINNING_NUMBER_ARRAY;
-  }
-
   checkWinningNumber(number) {
     const NUMBER_ARRAY = this.getWinningNumberArray(number);
     if (NUMBER_ARRAY.length !== LOTTO.NUMBER_SELECT) {
@@ -44,6 +24,14 @@ class Validate {
     }
   }
 
+  getWinningNumberArray(number) {
+    const WINNING_NUMBER_ARRAY = number
+      .replace(/ /gi, '')
+      .split(',')
+      .map((num) => Number(num));
+    return WINNING_NUMBER_ARRAY;
+  }
+
   checkBonusNumber(number, winning) {
     const NUMBER = Number(number);
     if (!this.checkNumber(NUMBER)) {
@@ -53,6 +41,18 @@ class Validate {
       throw new Error(ERROR.BONUS);
     }
     return NUMBER;
+  }
+
+  checkNumber(number) {
+    if (
+      isNaN(number) ||
+      number < LOTTO.NUMBER_START ||
+      number > LOTTO.NUMBER_END
+    ) {
+      return false;
+    } else {
+      return true;
+    }
   }
 }
 

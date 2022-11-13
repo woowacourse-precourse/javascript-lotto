@@ -5,18 +5,32 @@ const Lotto = require('./Lotto');
 class Statistics {
   ranking = [0, 0, 0, 0, 0];
 
-  getResult(numbers, winning, bonus) {
-    const lotto = new Lotto(numbers);
-    const result = lotto.checkLotto(numbers, winning, bonus);
-    return result;
-  }
-
   getRanking(lottoList, winning, bonus) {
     for (let i = 0; i < lottoList.length; i++) {
       const result = this.getResult(lottoList[i], winning, bonus);
       this.ranking[result] += 1;
     }
     this.printResult(lottoList.length);
+  }
+
+  getResult(numbers, winning, bonus) {
+    const lotto = new Lotto(numbers);
+    const result = lotto.checkLotto(numbers, winning, bonus);
+    return result;
+  }
+
+  printResult(amount) {
+    const TOTAL_PRIZE_MONEY = this.getTotalPrizeMoney();
+    const YIELD = this.getYield(TOTAL_PRIZE_MONEY, amount);
+    Console.print('당첨 통계');
+    Console.print('---');
+    Console.print(this.getResultText(3, PRIZE_MONEY.RANKING5, 4, false));
+    Console.print(this.getResultText(4, PRIZE_MONEY.RANKING4, 3, false));
+    Console.print(this.getResultText(5, PRIZE_MONEY.RANKING3, 2, false));
+    Console.print(this.getResultText(5, PRIZE_MONEY.RANKING2, 1, true));
+    Console.print(this.getResultText(6, PRIZE_MONEY.RANKING1, 0, false));
+    Console.print(`총 수익률은 ${YIELD.toFixed(1)}%입니다.`);
+    Console.close();
   }
 
   getTotalPrizeMoney() {
@@ -33,10 +47,6 @@ class Statistics {
     return (totalPrizeMoney / PURCHASE_AMOUNT) * 100;
   }
 
-  getPrizeMoney(ranking) {
-    return `(${ranking.toLocaleString('ko-KR')}원)`;
-  }
-
   getResultText(match, prizeMoney, rankingIdx, isBonus) {
     const PRIZE_MONEY_TEXT = this.getPrizeMoney(prizeMoney);
     const RANKING_NUMBER = this.ranking[rankingIdx];
@@ -44,18 +54,8 @@ class Statistics {
     return `${match}개 일치${BONUS_TEXT} ${PRIZE_MONEY_TEXT} - ${RANKING_NUMBER}개`;
   }
 
-  printResult(amount) {
-    const TOTAL_PRIZE_MONEY = this.getTotalPrizeMoney();
-    const YIELD = this.getYield(TOTAL_PRIZE_MONEY, amount);
-    Console.print('당첨 통계');
-    Console.print('---');
-    Console.print(this.getResultText(3, PRIZE_MONEY.RANKING5, 4, false));
-    Console.print(this.getResultText(4, PRIZE_MONEY.RANKING4, 3, false));
-    Console.print(this.getResultText(5, PRIZE_MONEY.RANKING3, 2, false));
-    Console.print(this.getResultText(5, PRIZE_MONEY.RANKING2, 1, true));
-    Console.print(this.getResultText(6, PRIZE_MONEY.RANKING1, 0, false));
-    Console.print(`총 수익률은 ${YIELD.toFixed(1)}%입니다.`);
-    Console.close();
+  getPrizeMoney(ranking) {
+    return `(${ranking.toLocaleString('ko-KR')}원)`;
   }
 }
 

@@ -21,6 +21,14 @@ class App {
     });
   }
 
+  getLottoList(amount) {
+    for (let i = 0; i < amount; i++) {
+      const lotto = this.getLotto();
+      this.lottoList.push(lotto);
+    }
+    this.printLottoList(this.lottoList);
+  }
+
   getLotto() {
     const lotto = Random.pickUniqueNumbersInRange(
       LOTTO.NUMBER_START,
@@ -29,14 +37,6 @@ class App {
     );
     lotto.sort((x, y) => x - y);
     return lotto;
-  }
-
-  getLottoList(amount) {
-    for (let i = 0; i < amount; i++) {
-      const lotto = this.getLotto();
-      this.lottoList.push(lotto);
-    }
-    this.printLottoList(this.lottoList);
   }
 
   printLottoList(lottoList) {
