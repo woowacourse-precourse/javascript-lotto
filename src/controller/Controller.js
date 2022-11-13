@@ -68,7 +68,11 @@ class Controller {
   }
 
   getLottoResult() {
-    this.LottoResult.findSameNum(this.lottoNum, this.winSplitNum.map(Number));
+    const winStatus = this.LottoResult.findSameNum(
+      this.lottoNum,
+      this.winSplitNum.map(Number),
+      Number(this.bonusNum)
+    );
   }
 }
 
