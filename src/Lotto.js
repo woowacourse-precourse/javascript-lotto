@@ -35,7 +35,7 @@ class Lotto {
       case 6:
         return 1;
       case 7:
-        if (winningLotto.includes(bonusNumber)) return 2;
+        if (this.#numbers.includes(bonusNumber)) return 2;
         return 3;
       case 8:
         return 4;
