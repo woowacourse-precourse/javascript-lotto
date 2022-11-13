@@ -1,6 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Validator = require('./Validator');
-const GamePrint = require('../GamePrint');
 const { LOTTO_LENGTH, LOTTO_RANGE } = require('../constants');
 
 class Lotto {
