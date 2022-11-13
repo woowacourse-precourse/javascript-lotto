@@ -22,6 +22,7 @@ class App {
       this.input_money = new Money(input);
 
       this.countLotto();
+      this.publishLotto();
     });
   }
 
@@ -46,6 +47,11 @@ class App {
     this.lottocount = money / 1000;
   }
 
+  publishLotto(){
+    this.lottotickets = new Array();
+    for(let i=0; i < this.lottocount; i++)
+      this.lottotickets.push(new LottoTicket());
+  }
 }
 
 const app = new App();
