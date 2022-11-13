@@ -24,6 +24,14 @@ class UserError {
       throw new Error("[ERROR] 중복되는 번호가 있습니다.");
     }
   }
+
+  validateNumberRange(numbers) {
+    numbers.forEach((number) => {
+      if (number < 1 || number > 45) {
+        throw new Error("[ERROR] 1~45 사이의 번호를 입력해 주세요.");
+      }
+    });
+  }
 }
 
 module.exports = UserError;
