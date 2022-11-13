@@ -54,9 +54,8 @@ class App {
 
       const parsedNum = parseInt(number, 10);
       if (parsedNum < 1 || parsedNum > 45) return false;
-
-      return true;
     });
+    return true;
   }
   validateWinningNumbers(winningNumbers) {
     const split = winningNumbers.split(",").map((number) => number.trim());
