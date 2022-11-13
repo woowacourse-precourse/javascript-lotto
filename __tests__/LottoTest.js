@@ -21,18 +21,15 @@ describe('로또 클래스 테스트', () => {
 describe('예외 사항 테스트', () => {
     test('입력 금액이 천원 단위인지 확인', () => {
         expect(() => {
-            const exception = new InputException();
-            exception.checkInputException('13200');
+            new InputException('13200');
         }).toThrow('[ERROR]');
 
         expect(() => {
-            const exception = new InputException();
-            exception.checkInputException('13010');
+            new InputException('13010');
         }).toThrow('[ERROR]');
 
         expect(() => {
-            const exception = new InputException();
-            exception.checkInputException('130100');
+            new InputException('130100');
         }).toThrow('[ERROR]');
     });
 
@@ -74,27 +71,23 @@ describe('예외 사항 테스트', () => {
 
     test('보너스 번호가 숫자인지 확인', () => {
         expect(() => {
-            const exception = new BonusException();
-            exception.checkBonusException('a3');
+            new BonusException('a3');
         }).toThrow('[ERROR]');
     });
 
     test('보너스 번호가 당첨번호에 포함되는지 확인', () => {
         expect(() => {
-            const exception = new BonusException();
-            exception.checkBonusException('3', ['1', '2', '3', '4', '5', '6']);
+            new BonusException('3', ['1', '2', '3', '4', '5', '6']);
         }).toThrow('[ERROR]');
     });
 
     test('보너스 번호가 범위 내의 숫자인지 확인', () => {
         expect(() => {
-            const exception = new BonusException();
-            exception.checkBonusException('100');
+            new BonusException('100');
         }).toThrow('[ERROR]');
 
         expect(() => {
-            const exception = new BonusException();
-            exception.checkBonusException('-3');
+            new BonusException('-3');
         }).toThrow('[ERROR]');
     });
 });

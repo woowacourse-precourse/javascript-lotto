@@ -1,4 +1,8 @@
 class InputException {
+    constructor(input) {
+        this.checkInputException(input);
+    }
+
     checkInputException(input) {
         this.isNumber(input);
         this.isThousand(input);
@@ -17,7 +21,11 @@ class InputException {
 }
 
 class BonusException {
-    checkBonusException(number, lotto = []) {
+    constructor(bonusNumber, winnngNumber = []) {
+        this.checkBonusException(bonusNumber, winnngNumber);
+    }
+
+    checkBonusException(number, lotto) {
         this.isNumber(number);
         this.isRange(number);
         this.isDuplication(number, lotto);

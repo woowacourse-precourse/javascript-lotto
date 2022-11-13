@@ -16,8 +16,7 @@ class Input {
 
     inputMoney() {
         Console.readLine(constant.INPUT_MONEY, (money) => {
-            const exception = new InputException();
-            exception.checkInputException(money);
+            new InputException(money);
             this.money = money;
 
             Console.print(constant.BLANK);
@@ -42,8 +41,7 @@ class Input {
 
     inputBonusNumber() {
         Console.readLine(constant.INPUT_BONUS, (bonus) => {
-            const exception = new BonusException();
-            exception.checkBonusException(bonus, this.winningRottoNumber);
+            new BonusException(bonus, this.winningRottoNumber);
             this.bonusNumber = bonus;
 
             Console.print(constant.BLANK);
