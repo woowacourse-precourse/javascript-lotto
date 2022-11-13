@@ -30,5 +30,25 @@ describe("당첨 번호 입력 테스트", () => {
       manager.inputWinningNumbers();
     }).toThrow("[ERROR]");
   });
-  
+
+  test("6개를 입력하지 않으면 예외가 발생한다. - 6개 미만", () => {
+    const input = ["1,2,3,4"];
+    mockQuestions(input)
+
+    expect(() => {
+      const manager = new LottoManager();
+      manager.inputWinningNumbers();
+    }).toThrow("[ERROR]");
+  });
+
+  test("6개를 입력하지 않으면 예외가 발생한다. - 6개 초과", () => {
+    const input = ["1,2,3,4,5,6,7"];
+    mockQuestions(input)
+
+    expect(() => {
+      const manager = new LottoManager();
+      manager.inputWinningNumbers();
+    }).toThrow("[ERROR]");
+  });
+
 });
