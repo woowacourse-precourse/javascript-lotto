@@ -1,5 +1,3 @@
-const LottoMarket = require("./LottoMarket");
-
 class User {
   constructor() {
     this.money = null;

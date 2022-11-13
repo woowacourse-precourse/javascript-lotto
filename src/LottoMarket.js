@@ -1,7 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const { Console, Random } = MissionUtils;
-const constants = require("./Constants");
 const { UNIT } = require("./Constants");
 
 class LottoMarket {
