@@ -68,7 +68,7 @@ describe("[기능2] 금액 입력 예외 처리", () => {
   });
 });
 
-describe("[4] 랜덤 번호 뽑기 테스트", () => {
+describe("[기능4] 랜덤 번호 뽑기 테스트", () => {
   test("", () => {
     const logSpyRandom = jest.spyOn(
       MissionUtils.Random,
