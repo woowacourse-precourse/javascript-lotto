@@ -33,7 +33,7 @@ class Lotto {
     return Array.from({ length: lottoCount }, this.createLotto);
   }
 
-  static isThreeMatche(count, array) {
+  static checkThreeMatche(count, array) {
     const [DATUM_POINT, POINT, INCREASE] = [3, 0, 1];
     const newArray = Application.copyArray(array);
 
@@ -44,7 +44,7 @@ class Lotto {
     return newArray;
   }
 
-  static isFourMatche(count, array) {
+  static checkFourMatche(count, array) {
     const [DATUM_POINT, POINT, INCREASE] = [4, 1, 1];
     const newArray = Application.copyArray(array);
 
@@ -55,13 +55,13 @@ class Lotto {
     return newArray;
   }
 
-  static isFiveMatche(count, array, target = [], bonus = 0) {
+  static checkFiveMatche(count, array, target = [], bonus = 0) {
     const [DATUM_POINT, POINT, INCREASE] = [5, 2, 1];
     const newArray = Application.copyArray(array);
     const isFive = Application.isMatcheCount(count, DATUM_POINT);
 
     if (isFive && target.includes(bonus)) {
-      return Lotto.isBonusMatche(newArray);
+      return Lotto.checkBonusMatche(newArray);
     }
 
     if (isFive) {
@@ -71,7 +71,7 @@ class Lotto {
     return newArray;
   }
 
-  static isBonusMatche(array) {
+  static checkBonusMatche(array) {
     const [POINT, INCREASE] = [3, 1];
     const newArray = Application.copyArray(array);
 
@@ -80,7 +80,7 @@ class Lotto {
     return newArray;
   }
 
-  static isSixMatche(count, array) {
+  static checkSixMatche(count, array) {
     const [DATUM_POINT, POINT, INCREASE] = [6, 4, 1];
     const newArray = Application.copyArray(array);
 
@@ -106,10 +106,10 @@ class Lotto {
   static analysisWinningAmount(winningAmount, count, lottoArray, bonus) {
     let copiedWinningAmount = Application.copyArray(winningAmount);
 
-    copiedWinningAmount = Lotto.isThreeMatche(count, copiedWinningAmount);
-    copiedWinningAmount = Lotto.isFourMatche(count, copiedWinningAmount);
-    copiedWinningAmount = Lotto.isFiveMatche(count, copiedWinningAmount, lottoArray, bonus);
-    copiedWinningAmount = Lotto.isSixMatche(count, copiedWinningAmount);
+    copiedWinningAmount = Lotto.checkThreeMatche(count, copiedWinningAmount);
+    copiedWinningAmount = Lotto.checkFourMatche(count, copiedWinningAmount);
+    copiedWinningAmount = Lotto.checkFiveMatche(count, copiedWinningAmount, lottoArray, bonus);
+    copiedWinningAmount = Lotto.checkSixMatche(count, copiedWinningAmount);
 
     return copiedWinningAmount;
   }
