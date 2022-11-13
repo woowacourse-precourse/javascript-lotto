@@ -65,11 +65,35 @@ describe("로또 테스트", () => {
     });
   });
 
-  test("예외 테스트", () => {
+  test("구입 금액 예외 테스트", () => {
     mockQuestions(["1000j"]);
     expect(() => {
       const app = new App();
       app.play();
     }).toThrow("[ERROR]");
+    mockQuestions([""]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+
+  test("0원이 입력되었을 경우 기능 테스트", () => {
+    mockQuestions(["0", "1,2,3,4,5,6", "7"]);
+    const logs = [
+      "0개를 구매했습니다.",
+      "3개 일치 (5,000원) - 0개",
+      "4개 일치 (50,000원) - 0개",
+      "5개 일치 (1,500,000원) - 0개",
+      "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+      "6개 일치 (2,000,000,000원) - 0개",
+      "총 수익률은 0%입니다.",
+    ];
+    const logSpy = getLogSpy();
+    const app = new App();
+    app.play();
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
   });
 });
