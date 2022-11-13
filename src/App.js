@@ -1,5 +1,6 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
+const Match = require('./Matcher');
 
 const Console = MissionUtils.Console;
 const Random = MissionUtils.Random;
@@ -7,18 +8,7 @@ const Random = MissionUtils.Random;
 class App {
   constructor() {
     this.LOTTO_TICKET_PRICE = 1000;
-    this.money = 0;
     this.lottoCount = 0;
-    this.lottoNumber = [];
-    this.winNumber = [];
-    this.bonusNumber = [];
-    this.winRank = {
-      threeMatch: [5000, 0],
-      fourMatch: [50000, 0],
-      fiveMatch: [1500000, 0],
-      fiveBonusMatch: [300000000, 0],
-      sixMatch: [2000000000, 0],
-    };
   }
   play() {
     this.injectMoney();
@@ -58,7 +48,7 @@ class App {
       const inputNumber = input.split(',').map(num => Number(num));
       const lotto = new Lotto(inputNumber);
       lotto.validate(inputNumber);
-      this.winNumber = inputNumber;
+      Match.winningNumber = inputNumber;
       this.enterBonusNumber();
     });
   }
@@ -66,43 +56,9 @@ class App {
   enterBonusNumber() {
     Console.readLine('\n보너스 번호를 입력해 주세요.\n', input => {
       const inputNumber = Number(input);
-      this.bonusNumber.push(inputNumber);
+      Match.bonusNumber.push(inputNumber);
       this.matchLottoNumber();
     });
-  }
-
-  matchLottoNumber() {
-    for (let i = 0; i < this.lottoNumber.length; i++) {
-      let match = 0;
-      if (this.lottoNumber[i].includes(this.winNumber[0])) match++;
-      if (this.lottoNumber[i].includes(this.winNumber[1])) match++;
-      if (this.lottoNumber[i].includes(this.winNumber[2])) match++;
-      if (this.lottoNumber[i].includes(this.winNumber[3])) match++;
-      if (this.lottoNumber[i].includes(this.winNumber[4])) match++;
-      if (this.lottoNumber[i].includes(this.winNumber[5])) match++;
-      if (match > 2 && match !== 5) this.setRank(match);
-      if (match === 5) this.matchBonusNumber(this.lottoNumber[i]);
-    }
-  }
-
-  matchBonusNumber(lotto) {
-    const fiveMatchLotto = lotto;
-    const bonusAndWinNumber = this.winNumber.concat(this.bonusNumber);
-    let match = 0;
-    for (let i = 0; i < 7; i++) {
-      if (fiveMatchLotto.includes(bonusAndWinNumber[i])) match++;
-    }
-    if (match === 5) this.setRank(5);
-    if (match === 6) this.setRank(7);
-  }
-
-  setRank(match) {
-    if (match === 3) this.winRank.threeMatch[1] += 1;
-    if (match === 4) this.winRank.fourMatch[1] += 1;
-    if (match === 5) this.winRank.fiveMatch[1] += 1;
-    if (match === 6) this.winRank.sixMatch[1] += 1;
-    if (match === 7) this.winRank.fiveBonusMatch[1] += 1;
-    this.findLottoProfit();
   }
 
   findLottoProfit() {
