@@ -1,5 +1,10 @@
 class Purchase {
-  static purchaseInput(purchase) {
+  #purchase;
+  constructor(purchase) {
+    this.purchaseInput(purchase);
+    this.#purchase = purchase;
+  }
+  purchaseInput(purchase) {
     if (isNaN([...purchase]))
       throw new Error("[ERROR] 문자열이 포함되었습니다.");
     const result = parseInt(purchase, 10) % 1000;
