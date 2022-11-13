@@ -14,11 +14,14 @@ class Game {
 
   #bonusNumber;
 
+  #winningResult;
+
   constructor() {
     this.#lottos = [];
     this.#winningNumber = new Set();
     this.#purchaseAmount = INIT;
     this.#bonusNumber = INIT;
+    this.#winningResult = [];
   }
 
   start() {
@@ -57,8 +60,18 @@ class Game {
   getBonusNumber() {
     Console.readLine(MESSAGE.BONUS_INPUT, (inputNumber) => {
       this.#bonusNumber = +inputNumber;
-      this.rankWinningResult();
+      this.checkWinningResult();
     });
+  }
+
+  checkWinningResult() {
+    this.#winningResult = Functions.getWinningResult(
+      this.#lottos,
+      this.#winningNumber,
+      this.#bonusNumber
+    );
+
+    this.calLottoYield();
   }
 }
 

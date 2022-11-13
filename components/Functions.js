@@ -21,6 +21,40 @@ class Functions {
   static digitize(inputNumber) {
     return new Set(inputNumber.split(',').map((num) => +num));
   }
+
+  static getMatchCount(lottoNumber, winningNumber) {
+    return lottoNumber.reduce(
+      (count, num) => (winningNumber.has(num) ? count + ONE : count),
+      INIT
+    );
+  }
+
+  static getRankIndex(matchCount, includesBonus) {
+    if (matchCount === MATCH.SIX) {
+      return RANK.FIRST;
+    }
+    if (matchCount === MATCH.FIVE && includesBonus) {
+      return RANK.SECOND;
+    }
+    if (matchCount === MATCH.FIVE) {
+      return RANK.THIRD;
+    }
+    return matchCount === MATCH.FOURTH ? RANK.FOURTH : RANK.FIFTH;
+  }
+
+  static getWinningResult(lottos, winningNumber, bonusNumber) {
+    const winningResult = Array.from({ length: FIVE }).fill(INIT);
+
+    lottos.forEach((lotto) => {
+      const matchCount = this.getMatchCount(lotto, winningNumber);
+      const includesBonus = lotto.includes(bonusNumber);
+      const rank = this.getRankIndex(matchCount, includesBonus);
+      winningResult[rank] += ONE;
+    });
+    return winningResult;
+  }
 }
 
 module.exports = Functions;
+
+// Update
