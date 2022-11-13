@@ -6,8 +6,9 @@ class Render {
 
   showMadeLotto(madeLotto) {
     let i = 0;
+
     for (; i < madeLotto.length; i++) {
-      Console.print(String(madeLotto[i]));
+      Console.print(`[${madeLotto[i].join(", ")}]`);
     }
   }
   lineBreak() {

@@ -11,6 +11,7 @@ class CalculationMoney {
 
     for (; i < parchaedLottoNum; i++) {
       let randomNum = Random.pickUniqueNumbersInRange(1, 45, 6);
+
       lottoNum.push(randomNum.sort((a, b) => a - b));
     }
     return lottoNum;
