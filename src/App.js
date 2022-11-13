@@ -3,16 +3,16 @@ const Lotto = require("../src/Lotto");
 class App {
   async play() {
     try {
-      let money = await this.getInputMoney();
-      Console.print("\n");
-      Console.print(`${money / 1000}개를 구매했습니다.`);
+      let money, winNumbers, bonusNumber;
+      money = await this.getInputMoney();
       let Lottos = this.publishLotto(money / 1000);
-      this.printLottosNumbers(Lottos);
-      Console.print("\n");
-      let winNumbers = await this.getWinNumbers();
-      Console.print("\n");
-      let bonusNumber = await this.getBonusNumber();
-    } catch (e) {}
+      this.printLottos(money, Lottos);
+      winNumbers = await this.getWinNumbers();
+      bonusNumber = await this.getBonusNumber();
+      matchLotto(winNumbers, bonusNumber);
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
   getInputMoney() {
@@ -21,9 +21,7 @@ class App {
         if (this.isValidMoney(input)) {
           resolve(input);
         } else {
-          reject(() => {
-            throw new Error("[ERROR]유효하지 않은값");
-          });
+          reject("[ERROR]");
         }
       });
     });
@@ -42,10 +40,12 @@ class App {
       .map((e) => new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6)));
   }
 
-  printLottosNumbers(Lottos) {
+  printLottos(money, Lottos) {
+    Console.print(`\n${money / 1000}개를 구매했습니다.`);
     Lottos.forEach((e) => {
       Console.print(e.getNumbers());
     });
+    Console.print("\n");
   }
 
   isValidWinNumbers(winNumbers) {
@@ -63,9 +63,7 @@ class App {
         if (this.isValidWinNumbers(winNumbers)) {
           resolve(winNumbers);
         } else {
-          reject(() => {
-            throw new Error("[ERROR]유효하지 않은값");
-          });
+          reject("[ERROR]");
         }
       });
     });
@@ -77,13 +75,11 @@ class App {
 
   getBonusNumber() {
     return new Promise((resolve, reject) => {
-      Console.readLine(" 번호를 입력해 주세요.\n", (input) => {
+      Console.readLine("\n보너스 번호를 입력해 주세요.\n", (input) => {
         if (this.isValidBonusNumber(input)) {
           resolve(input);
         } else {
-          reject(() => {
-            throw new Error("[ERROR] 유효하지 않은값");
-          });
+          reject("[ERROR]");
         }
       });
     });
