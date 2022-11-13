@@ -6,6 +6,7 @@ class Statistics {
     this.third = 0;
     this.fourth = 0;
     this.fifth = 0;
+    this.rateOfReturn = 0;
   }
 }
 
