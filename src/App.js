@@ -5,6 +5,7 @@ const Lotto = require('./Lotto');
 const Render = require('./Render');
 const Validator = require('./Validator');
 const { LOTTO, MESSAGE } = require('./constants');
+const LottoGenerator = require('./LottoGenerator');
 
 class App {
   lotto;
@@ -17,9 +18,10 @@ class App {
   askBuget() {
     Console.readLine(MESSAGE.ASK_BUDGET, (money) => {
       Validator.throwErrorIfInvalidMoney(money);
-      this.userLottos = GameTools.issueLottoAsManyAsCount(money / LOTTO.PRICE);
+      const countOfLottos = money / LOTTO.PRICE;
+      this.userLottos = LottoGenerator.issueLottoAsManyAsCount(countOfLottos);
 
-      this.renderIssuedLottoList(money / LOTTO.PRICE);
+      this.renderIssuedLottoList(countOfLottos);
     });
   }
 
