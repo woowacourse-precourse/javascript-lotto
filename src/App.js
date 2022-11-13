@@ -5,6 +5,7 @@ class App {
   constructor() {
     this.lottoList = [];
     this.winningLotto = [];
+    this.bonusLotto = 0;
   }
   play() {
     this.inputMoney();
@@ -33,7 +34,22 @@ class App {
     Console.readLine('\n당첨 번호를 입력해주세요.\n', (input) => {
       this.winningLotto = input.split(',').map(Number);
       new Lotto(this.winningLotto);
+      this.inputBonus();
     });
+  }
+  inputBonus() {
+    Console.readLine('\n보너스 번호를 입력해주세요.\n', (input) => {
+      this.bonusLotto = parseInt(input);
+      this.validBonus(this.bonusLotto);
+    });
+  }
+  validBonus(bonusLotto) {
+    if (bonusLotto < 1 && bonusLotto > 45) {
+      throw new Error('로또 번호는 1부터 45 사이의 숫자여야 합니다.');
+    }
+    if (this.winningLotto.includes(bonusLotto)) {
+      throw new Error('당첨 번호와 중복되지 않은 숫자여야 합니다.');
+    }
   }
 }
 
