@@ -5,18 +5,24 @@ const { Console } = MissionUtils;
 class User {
   getUserMoney() {
     Console.readLine('구입금액을 입력해 주세요.', (userMoney) => {
-      if (!this.isValidUserMoney(userMoney)) {
-        throw new Error('유효하지 않은 입력입니다.');
-      }
+      this.isValidUserMoney(userMoney.replace(/\s/g, ''));
+      Console.print('유효한 입력입니다.');
     });
   }
 
   isValidUserMoney(userMoney) {
-    return (
-      this.isValidType(userMoney) &&
-      this.isValidRange(userMoney) &&
-      this.isValidToDivide(userMoney)
-    );
+    if (!this.isValidType(userMoney)) {
+      throw new Error('[ERROR] 숫자 이외의 값은 입력할 수 없습니다.');
+    }
+    if (!this.isValidMinRange(userMoney)) {
+      throw new Error('[ERROR] 1000원 이상의 금액을 입력해주세요.');
+    }
+    if (!this.isValidMaxRange(userMoney)) {
+      throw new Error('[ERROR] 금액이 너무 큽니다.');
+    }
+    if (!this.isValidToDivide(userMoney)) {
+      throw new Error('[ERROR] 금액은 1000원으로 나누어 떨어져야 합니다.');
+    }
   }
 
   isValidType(userMoney) {
@@ -24,8 +30,12 @@ class User {
     return typeRegex.test(userMoney);
   }
 
-  isValidRange(userMoney) {
-    return userMoney >= 1000 && userMoney < Number.MAX_SAFE_INTEGER;
+  isValidMinRange(userMoney) {
+    return Number(userMoney) >= 1000;
+  }
+
+  isValidMaxRange(userMoney) {
+    return Number(userMoney) < Number.MAX_SAFE_INTEGER;
   }
 
   isValidToDivide(userMoney) {
