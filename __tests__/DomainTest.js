@@ -66,7 +66,7 @@ describe("로또 어플리케이션 테스트케이스", () => {
   });
 
   test("정답의 길이가 잘못되면 예외가 발생합니다.", () => {
-    const test = ["1000", "1,2,3,4,5,5,7"];
+    const test = ["1000", "1,2,3,4,5,6,7"];
     setTestEnv(test);
 
     expect(() => {
@@ -81,5 +81,15 @@ describe("로또 어플리케이션 테스트케이스", () => {
       lottoController.start();
       lottoController.selectWinNumber();
     }).toThrow("[ERROR]");
+  });
+
+  test("로또당첨번호에 맞는 배열의 길이를 리턴합니다", () => {
+    const result = lottoController.lottoModel.lottos[0].getResult(
+      "1,2,3,4,5,6",
+      "7"
+    );
+    expect(typeof result).toBe("number");
+    expect(result).toBeLessThanOrEqual(6);
+    expect(result).toBeGreaterThanOrEqual(-1);
   });
 });
