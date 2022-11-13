@@ -85,6 +85,8 @@ class App {
       this.sameArr.push(this.sameCnt);
       this.sameCnt = 0;
     });
+    this.getNumberOfWins();
+    this.setTextResult();
   }
 
   // 당첨 번호 vs 로또 번호
@@ -105,6 +107,46 @@ class App {
         }
       }
     });
+  }
+
+  getNumberOfWins() {
+    this.sameArr.map(sameCount => {
+      if (sameCount === 3) {
+        this.numberOfWins[0] += 1;
+      } else if (sameCount === 4) {
+        this.numberOfWins[1] += 1;
+      } else if (sameCount === 5 && this.bonusCnt !== 1) {
+        this.numberOfWins[2] += 1;
+      } else if (sameCount === 5 && this.bonusCnt === 1) {
+        this.numberOfWins[3] += 1;
+      } else if (sameCount === 6) {
+        this.numberOfWins[4] += 1;
+      }
+    });
+  }
+
+  getRevenueRate() {
+    this.revenueRate =
+      ((this.numberOfWins[0] * 5000 +
+        this.numberOfWins[1] * 50000 +
+        this.numberOfWins[2] * 1500000 +
+        this.numberOfWins[3] * 30000000 +
+        this.numberOfWins[4] * 2000000000) /
+        this.inputPrice) *
+      100;
+  }
+
+  // 로또 결과 출력
+  setTextResult() {
+    Console.print(`\n${WINNING_STATISTICS}`);
+    Console.print('---');
+    Console.print(`${THREE_SAME}${this.numberOfWins[0]}개`);
+    Console.print(`${FOUR_SAME}${this.numberOfWins[1]}개`);
+    Console.print(`${FIVE_SAME}${this.numberOfWins[2]}개`);
+    Console.print(`${FIVE_SAME_BONUS_SAME}${this.numberOfWins[3]}개`);
+    Console.print(`${SIX_SAME}${this.numberOfWins[4]}개`);
+    this.getRevenueRate();
+    Console.print(`총 수익률은 ${this.revenueRate.toFixed(1)}%입니다.`);
   }
 }
 
