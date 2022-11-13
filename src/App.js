@@ -45,7 +45,6 @@ function winCheck(MISSIONUTILS, LOTTO, arr, answer, money, input) {
     win = input1.split(",").map(Number);
     win = new LOTTO(win);
     win.sort();
-    win.print();
 
     bonusCheck(MISSIONUTILS, win, arr, answer, money, input);
   });
@@ -77,7 +76,6 @@ function validateBonus(bonus, win) {
 function matchWin(MISSIONUTILS, win, bonus, arr, answer){
   for (var a of arr){
     correct = a.match(win, bonus);
-    MISSIONUTILS.Console.print(correct);
     matchCorrect(correct, answer)
   }
 }
@@ -112,9 +110,12 @@ function plusCorrect(correct, answer){
 function showWin(MISSIONUTILS, answer, money, input){
   var index = [0];
   var price = 0;
+  MISSIONUTILS.Console.print("");
+  MISSIONUTILS.Console.print("당첨통계");
+  MISSIONUTILS.Console.print("---");
   for (var j = 3; j<=6; j++){
     price += money[index[0]] * answer[index[0]];
-    MISSIONUTILS.Console.print(j + "개 일치 (" + money[index[0]].toLocaleString() + ") - " + answer[index[0]] + "개"); 
+    MISSIONUTILS.Console.print(j + "개 일치 (" + money[index[0]].toLocaleString() + "원) - " + answer[index[0]] + "개"); 
     price = showFiveBallBonus(j,index, price, money, answer, MISSIONUTILS);
     index[0]++;
   }
@@ -125,7 +126,7 @@ function showFiveBallBonus(j,index, price, money, answer, MISSIONUTILS){
   if (j==5){
     index[0]++;
     price += money[index[0]] * answer[index[0]];
-    MISSIONUTILS.Console.print(j + "개 일치, 보너스 볼 일치 (" + money[index[0]].toLocaleString() + ") - " + answer[index[0]] + "개");
+    MISSIONUTILS.Console.print(j + "개 일치, 보너스 볼 일치 (" + money[index[0]].toLocaleString() + "원) - " + answer[index[0]] + "개");
   }
   return price;
 }
