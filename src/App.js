@@ -41,8 +41,6 @@ class App {
     return lotto.filter((number) => winningNumbers.includes(number)).length;
   }
 
-  printLotto() {}
-
   askWinningNumber() {
     Console.askAndGetUserInput("\n" + Console.ASK_WINNING_NUMBER, (winningNumbers) => {
       this.winningNumbers = winningNumbers
@@ -50,41 +48,45 @@ class App {
         .map(Number)
         .sort((a, b) => (a > b ? 1 : -1));
 
-      Console.askAndGetUserInput("\n" + Console.ASK_BONUS_NUMBER, (bonusNumber) => {
-        this.bonusNumber = Number(bonusNumber);
+      this.askBonusNumber();
+    });
+  }
 
-        Console.print(Console.STATISTICS);
+  askBonusNumber() {
+    Console.askAndGetUserInput("\n" + Console.ASK_BONUS_NUMBER, (bonusNumber) => {
+      this.bonusNumber = Number(bonusNumber);
 
-        console.log(
-          this.lottos.reduce((acc, lotto) => {
-            const sameNumberCount = this.countSameNumberWithWinningNumber(lotto, this.winningNumbers);
+      Console.print(Console.STATISTICS);
 
-            switch (sameNumberCount) {
-              case 3:
-                acc[THREE] += 1;
-                break;
-              case 4:
-                acc[FOUR] += 1;
-                break;
-              case 5:
-                acc[FIVE] += 1;
-                break;
-              case 6:
-                acc[SIX] += 1;
-                break;
-              default:
-                break;
-            }
+      console.log(
+        this.lottos.reduce((acc, lotto) => {
+          const sameNumberCount = this.countSameNumberWithWinningNumber(lotto, this.winningNumbers);
 
-            if (this.bonusNumber === lotto.includes(this.bonusNumber) && sameNumberCount === 5) {
-              acc[FIVE] -= 1;
-              acc[FIVE_WITH_BONUS] += 1;
-            }
+          switch (sameNumberCount) {
+            case 3:
+              acc[THREE] += 1;
+              break;
+            case 4:
+              acc[FOUR] += 1;
+              break;
+            case 5:
+              acc[FIVE] += 1;
+              break;
+            case 6:
+              acc[SIX] += 1;
+              break;
+            default:
+              break;
+          }
 
-            return acc;
-          }, this.winningHistory)
-        );
-      });
+          if (this.bonusNumber === lotto.includes(this.bonusNumber) && sameNumberCount === 5) {
+            acc[FIVE] -= 1;
+            acc[FIVE_WITH_BONUS] += 1;
+          }
+
+          return acc;
+        }, this.winningHistory)
+      );
     });
   }
 }
