@@ -14,8 +14,18 @@ const MESSEGE = {
   INPUT_BONUS_NUMBER: "보너스 번호를 입력해 주세요.",
 };
 
+const RESULT = {
+  THREE_MATCH: "3개 일치 (5,000원) - ",
+  FOUR_MATCH: "4개 일치 (50,000원) - ",
+  FIVE_MATCH: "5개 일치 (1,500,000원) - ",
+  FIVE_MATCH_WITH_BONUS: "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
+  SIX_MATCH: "6개 일치 (2,000,000,000원) - ",
+  UNIT: "개",
+};
+
 module.exports = {
   LOTTO_LENGTH,
   ERROR,
   MESSEGE,
+  RESULT,
 };
