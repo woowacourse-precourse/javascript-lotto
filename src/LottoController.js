@@ -16,12 +16,11 @@ class LottoController {
     const customer = new Customer();
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (input) => {
       const lottoCount = this.lottoStore.askBuyLottoCount(input);
+      for (let i = 0; i < lottoCount; i++) {
+        const lotto = this.lottoStore.sellLotto();
+        customer.purchaseLotto(lotto);
+      }
     });
-    for (let i = 0; i < lottoCount; i++) {
-      const lotto = this.lottoStore.sellLotto();
-      customer.purchaseLotto(lotto);
-    }
-    customer.printLottoPurchaseResult();
   }
 }
 
