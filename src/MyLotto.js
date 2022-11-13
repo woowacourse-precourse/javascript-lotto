@@ -20,8 +20,8 @@ class MyLotto {
   }
 
   countLotto(purchase) {
-    // 구매금액을 1,000단위로 나누어 로또 수량 계산
-    return parseInt(purchase / 1000);
+    // 구매금액을 1,000단위로 나누어 로또 수량 계산 (0원일 경우 0 반환)
+    return purchase == 0 ? 0 : parseInt(purchase / 1000);
   }
 
   issueLotto(count) {
