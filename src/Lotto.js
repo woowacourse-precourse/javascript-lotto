@@ -1,5 +1,14 @@
-const MissionUtils = require('@woowacourse/mission-utils');
-const { THOUSAND } = require('./MESSAGE');
+const { Console, Random } = require('@woowacourse/mission-utils');
+const {
+  THOUSAND,
+  LOTTO_LENGTH,
+  LOTTO_SIZE_ERROR,
+  LOTTO_SAME_NUMBER_ERROR,
+  FIRST_RANGE,
+  LOTTO_WIN,
+  LOTTO_WIN_SEPERATOR,
+  LOTTO_BONUS,
+} = require('./MESSAGE');
 const MESSAGE = require('./MESSAGE');
 
 class Lotto {
@@ -12,9 +21,8 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== MESSAGE.LOTTO_LENGTH) {
-      console.log(numbers, numbers.length);
-      throw new Error(MESSAGE.LOTTO_SIZE_ERROR);
+    if (numbers.length !== LOTTO_LENGTH) {
+      throw new Error(LOTTO_SIZE_ERROR);
     }
     return true;
   }
@@ -24,8 +32,8 @@ class Lotto {
     winLottoArr.forEach((eachLottoNum) => {
       setWinLotto.add(eachLottoNum);
     });
-    if (setWinLotto.size !== MESSAGE.LOTTO_LENGTH) {
-      throw new Error(MESSAGE.LOTTO_SAME_NUMBER_ERROR);
+    if (setWinLotto.size !== LOTTO_LENGTH) {
+      throw new Error(LOTTO_SAME_NUMBER_ERROR);
     }
     return true;
   }
@@ -35,11 +43,7 @@ class Lotto {
     const randomArr = [];
     for (let count = 0; count < lottocount; count += 1) {
       randomArr.push(
-        MissionUtils.Random.pickUniqueNumbersInRange(
-          MESSAGE.FIRST_RANGE,
-          MESSAGE.LAST_RANGE,
-          MESSAGE.LOTTO_LENGTH
-        )
+        Random.pickUniqueNumbersInRange(FIRST_RANGE, LOTTO_LENGTH, LOTTO_LENGTH)
       );
     }
     return randomArr.sort((a, b) => {
@@ -49,10 +53,11 @@ class Lotto {
 
   getWinLotto() {
     let winLotto;
-    MissionUtils.Console.readLine(MESSAGE.LOTTO_WIN, (winNumber) => {
+    Console.readLine(LOTTO_WIN, (winNumber) => {
       winLotto = winNumber;
     });
-    winLotto = winLotto.replace(MESSAGE.LOTTO_WIN_SEPERATOR, '');
+    Console.print(winLotto);
+    winLotto = winLotto.replace(LOTTO_WIN_SEPERATOR, '');
     this.validate(winLotto);
     this.validate_indepence(winLotto);
     return winLotto;
@@ -60,7 +65,7 @@ class Lotto {
 
   getBounsLotto() {
     let bounsLotto;
-    MissionUtils.Console.readLine(MESSAGE.LOTTO_BONUS, (bonusNumber) => {
+    Console.readLine(LOTTO_BONUS, (bonusNumber) => {
       bounsLotto = bonusNumber;
     });
     return bounsLotto;
