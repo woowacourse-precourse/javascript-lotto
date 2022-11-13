@@ -1,6 +1,6 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 
-const { Random } = MissionUtils;
+const { Console, Random } = MissionUtils;
 const Lotto = require('./Lotto');
 
 class RandomLottos {
@@ -16,6 +16,16 @@ class RandomLottos {
       this.lottoArray.push(new Lotto(newLotto));
     }
   }
-}
 
+  /**
+   * 구입한 로또를 출력합니다.
+   */
+  printRandomLottos() {
+    Console.print(`${this.numOfLotto}개를 구매했습니다.`);
+    this.lottoArray.forEach((lotto) => {
+      lotto.printLotto();
+    });
+    Console.print('');
+  }
+}
 module.exports = RandomLottos;
