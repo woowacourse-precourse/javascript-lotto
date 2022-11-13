@@ -31,11 +31,11 @@ describe("로또 테스트", () => {
     }).toThrow("[ERROR] 1,000원 단위로만 구매 가능합니다.");
   });
 
-  test("로또 구매 금액은 정수만 입력 가능하다.", () => {
+  test("로또 구매 금액은 숫자 문자만 입력 가능하다.", () => {
     expect(() => {
       const app = new App();
-      app.checkIsInteger("8000.0");
-    }).toThrow("[ERROR] 소수점 단위는 입력할 수 없습니다.");
+      app.checkOnlyNumber("8000.0");
+    }).toThrow("[ERROR] 숫자만 입력 가능합니다.");
   });
 
   test("금액에 따른 로또 생성 횟수 테스트", () => {
