@@ -70,7 +70,7 @@ class App {
   isValidLottoNumbers(numbers) {
     numbers.forEach((number) => {
       if (isNaN(number)) return false;
-      if (this.isInRange(parsedNum)) return false;
+      if (this.isInRange(number)) return false;
     });
     return true;
   }
