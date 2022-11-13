@@ -36,6 +36,14 @@ class App {
     this.lottos.forEach((lotto) => Console.print(lotto));
   }
 
+  getAnswer() {
+    Console.readLine("\n당첨 번호를 입력해 주세요.", (answer) => {
+      this.getResult(answer);
+      this.getBonusNumber();
+      this.Winner();
+    });
+  }
+
   play() {}
 }
 
