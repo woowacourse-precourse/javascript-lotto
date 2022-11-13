@@ -14,13 +14,19 @@ class Lotto {
     }
   }
 
-  userInput(amount) {
-
-    return amount
+  userInput = (amount) => {
+    this.isValidAmount(amount);
   }
 
+  isValidAmount(amount) {
+    if(parseInt(amount) % 1000 !== 0) {
+      throw new Error("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다."); 
+    }
+  }
+  
   buyLotto() {
-    Console.readLine("구입금액을 입력해주세요.\n", this.userInput)
+    Console.readLine("구입금액을 입력해주세요.\n", this.userInput);
+    
   }
 
 }
