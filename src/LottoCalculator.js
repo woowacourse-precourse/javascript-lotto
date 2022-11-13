@@ -1,34 +1,29 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { WINNING, PRINT, RESULT } = require("./lib/library");
+const { WINNING, PRINT, LOTTO_RESULT, LOTTO } = require("./lib/library");
 const Lotto = require("./Lotto");
 
 class LottoCalculate {
-  #winLotto;
-  #boughtLottos;
-  #bonusNum;
-
-  constructor(lottos, win) {
-    this.#boughtLottos = lottos;
-    this.#winLotto = win.lotto;
-    this.#bonusNum = win.bonus;
-  }
-
-  resultCaculator(lottos, win, bonus) {
+  resultCaculator(lottos, { winLotto, bonus }) {
+    console.log(winLotto, bonus);
     const resultArr = [];
     lottos.map((lotto) => {
-      const result = this.compareLotto(lotto, win, bonus);
+      const result = this.compareLotto(
+        lotto.getLottoArr(),
+        winLotto.getLottoArr(),
+        bonus
+      );
       if (result !== undefined) resultArr.push(result);
     });
-    return this.calculatorWiningResult(resultArr);
+    return this.calculatorWiningResult([resultArr, lottos.length]);
   }
 
-  compareLotto(my, win, bonus) {
-    const result = my.filter((num) => win.includes(num));
+  compareLotto(lotto, win, bonus) {
+    const result = lotto.filter((num) => win.includes(num));
     switch (result.length) {
       case 6:
         return 1;
       case 5:
-        if (my.includes(bonus)) return 2;
+        if (lotto.includes(bonus)) return 2;
         return 3;
       case 4:
         return 4;
@@ -38,8 +33,8 @@ class LottoCalculate {
   }
 
   calculatorWiningResult(result) {
-    const wining = { ...RESULT };
-    result.map((num) => {
+    const wining = { ...LOTTO_RESULT, count: result[1] };
+    result[0].map((num) => {
       if (num === 1) wining.FIRST++;
       if (num === 2) wining.SECOND++;
       if (num === 3) wining.THIRD++;
@@ -49,50 +44,77 @@ class LottoCalculate {
     return wining;
   }
 
+  gainCaculator() {}
+
   printWinResult(result) {
     Console.print(PRINT.RESULT);
+    const MENT = { ...WINNING.MENT };
+    Object.keys(MENT).forEach((win) => {
+      Console.print(MENT[win](result[win]));
+    });
+    return this;
   }
-  printGainPercent() {}
+
+  printGainPercent(result) {
+    const count = result.count;
+    const lottoResult = { ...result };
+    const price = WINNING.PRICE;
+    delete lottoResult.count;
+    let allPrice = 0;
+    Object.keys(lottoResult).forEach((rank) => {
+      console.log(rank, price[rank], lottoResult[rank]);
+      allPrice += price[rank] * lottoResult[rank];
+    });
+    const gainPercent = ((allPrice / (count * 1000)) * 100).toFixed(2);
+    Console.print(PRINT.GAIN_PECENT(gainPercent));
+    return;
+  }
 }
 
-const a = new LottoCalculate(
-  [
-    [8, 21, 23, 41, 42, 43],
-    [3, 5, 11, 16, 32, 38],
-    [7, 11, 16, 35, 36, 44],
-    [1, 8, 11, 31, 41, 42],
-    [13, 14, 16, 38, 42, 45],
-    [7, 11, 30, 40, 42, 43],
-    [2, 13, 22, 32, 38, 45],
-    [1, 3, 5, 14, 22, 45],
-  ],
-  { lotto: [1, 2, 3, 4, 5, 6], bonus: 7 }
-);
+const a = new LottoCalculate();
 
-console.log("1등", a.compareLotto([1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6], 8));
+// const result = a.resultCaculator(
+//   [
+//     [1, 2, 3, 4, 5, 6],
+//     [1, 32, 2, 4, 5, 6],
+//     [1, 2, 3, 4, 5, 6],
+//     [1, 32, 13, 24, 5, 6],
+//     [1, 22, 23, 44, 5, 6],
+//     [1, 12, 32, 24, 5, 6],
+//     [1, 22, 33, 4, 5, 6],
+//   ],
+//   [1, 2, 3, 4, 5, 6],
+//   7
+// );
 
-console.log("2등", a.compareLotto([1, 2, 3, 4, 5, 8], [1, 2, 3, 4, 5, 6], 8));
+// a.printWinResult(result);
+// a.printGainPercent(result);
 
-console.log("3등", a.compareLotto([1, 2, 3, 4, 5, 7], [1, 2, 3, 4, 5, 6], 8));
+// console.log("1등", a.compareLotto([1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6], 8));
 
-console.log("4등", a.compareLotto([1, 2, 3, 4, 9, 10], [1, 2, 3, 4, 5, 6], 8));
+// console.log("2등", a.compareLotto([1, 2, 3, 4, 5, 8], [1, 2, 3, 4, 5, 6], 8));
 
-console.log("5등", a.compareLotto([1, 2, 3, 9, 10, 12], [1, 2, 3, 4, 5, 6], 8));
+// console.log("3등", a.compareLotto([1, 2, 3, 4, 5, 7], [1, 2, 3, 4, 5, 6], 8));
 
-console.log(
-  a.resultCaculator(
-    [
-      [1, 2, 3, 4, 5, 6],
-      [1, 32, 2, 4, 5, 6],
-      [1, 2, 3, 4, 5, 6],
-      [1, 32, 13, 24, 5, 6],
-      [1, 22, 23, 44, 5, 6],
-      [1, 12, 32, 24, 5, 6],
-      [1, 22, 33, 4, 5, 6],
-    ],
-    [1, 2, 3, 4, 5, 6],
-    7
-  )
-);
+// console.log("4등", a.compareLotto([1, 2, 3, 4, 9, 10], [1, 2, 3, 4, 5, 6], 8));
+
+// console.log("5등", a.compareLotto([1, 2, 3, 9, 10, 12], [1, 2, 3, 4, 5, 6], 8));
+
+// console.log(
+//   a.resultCaculator(
+//     [
+//       [1, 2, 3, 4, 5, 6],
+//       [1, 32, 2, 4, 5, 6],
+//       [1, 2, 3, 4, 5, 6],
+//       [1, 32, 13, 24, 5, 6],
+//       [1, 22, 23, 44, 5, 6],
+//       [1, 12, 32, 24, 5, 6],
+//       [1, 22, 33, 4, 5, 6],
+//     ],
+//     [1, 2, 3, 4, 5, 6],
+//     7
+//   )
+// );
+// a.printWinResult({ FIRST: 0, SECOND: 0, THIRD: 1, FOURTH: 2, FIFTH: 0 })
 
 module.exports = LottoCalculate;

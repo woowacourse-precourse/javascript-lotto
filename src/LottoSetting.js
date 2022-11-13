@@ -47,7 +47,7 @@ class LottoSetting {
   }
 
   getWinInfo() {
-    return { lotto: this.#winLotto, num: this.#bonusNum };
+    return { winLotto: this.#winLotto, bonus: this.#bonusNum };
   }
 }
 
