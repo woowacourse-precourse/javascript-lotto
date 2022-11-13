@@ -28,11 +28,41 @@ class Lotto {
   getLottoResult() {
     let lottoResult = [0, 0, 0, 0, 0];
     for(let i = 0; i < this.userLotto.length; i++) {
-      for(let j = 0; j < this.userLotto[i].length; j++) {
-        countLottoMatch();
+      let lottoMatched = 0;
+      for(let j = 0; j < this.#numbers.length; j++) {
+        lottoMatched += this.countLottoMatch(this.userLotto[i], this.#numbers[j]);
       }
+      this.getPrize(lottoResult, lottoMatched);
     }
     this.printLottoResult();
+  }
+
+  countLottoMatch(lottoArr, winNumber){
+    if(lottoArr.includes(winNumber)) {
+      return 1;
+    }
+    return 0;
+  }
+
+  getPrize(lottoResultArr, numOfLottoMatched) {
+    if(numOfLottoMatched < 3) {
+      return;
+    }
+    if(numOfLottoMatched === 5) {
+      isSecondPlace(lottoResultArr);
+      return;
+    }
+    lottoResult[numOfLottoMatched - 3]++;
+  }
+
+  isSecondPlace(lottoResultArr) {
+    const secondPlace = 3;
+    const thirdPlace = 2;
+    if(lottoResultArr.includes(this.bonusNumber)) {
+      lottoResultArr[secondPlace]++;
+      return;
+    }
+    lottoResultArr[thirdPlace]++;
   }
 
   validate(numbers) {
