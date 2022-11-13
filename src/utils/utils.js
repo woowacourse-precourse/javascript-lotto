@@ -19,4 +19,4 @@ const printLottoNumbers = (lotto) => {
   );
 };
 
-module.exports = { print, close, input, printCountOfLottos };
+module.exports = { print, close, input, printCountOfLottos, printLottoNumbers };

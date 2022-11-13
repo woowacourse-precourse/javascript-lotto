@@ -29,17 +29,17 @@ class App {
 
   inputCash() {
     input(MESSAGE.INPUT_CASH, (cash) => {
-      this.findCountOfLottos(cash);
+      this.setCountOfLottos(cash);
     });
   }
 
-  findCountOfLottos(cash) {
+  setCountOfLottos(cash) {
     this.countOfLottos = new LottoCounter(cash).getCountOfLotto();
 
-    this.createLottos();
+    this.setPurchasedLottos();
   }
 
-  createLottos() {
+  setPurchasedLottos() {
     let count = this.countOfLottos;
 
     while (count !== 0) {
@@ -68,21 +68,28 @@ class App {
 
   inputWinningNumbers() {
     input(MESSAGE.INPUT_LOTTO_NUMBERS, (numbers) => {
-      numbers = numbers.split(',').map((num) => Number(num));
-      let newLotto = new Lotto(numbers);
-      this.winningNumbers = newLotto.getLottoNumbers();
-
-      this.inputBonusNumber();
+      this.setWinningNumbers(numbers);
     });
+  }
+
+  setWinningNumbers(numbers) {
+    numbers = Array.from(numbers.split(','), (num) => Number(num));
+    this.winningNumbers = new Lotto(numbers).getLottoNumbers();
+
+    this.inputBonusNumber();
   }
 
   inputBonusNumber() {
     input(MESSAGE.INPUT_BONUS_NUMBER, (number) => {
-      let newBonusNumber = new BonusNumber(Number(number), this.winningNumbers);
-      this.bonusNumber = newBonusNumber.getBonusNumber();
-
-      this.checkWinning();
+      this.setBonusNumber(Number(number));
     });
+  }
+
+  setBonusNumber(number) {
+    let newBonusNumber = new BonusNumber(number, this.winningNumbers);
+    this.bonusNumber = newBonusNumber.getBonusNumber();
+
+    this.checkWinning();
   }
 
   checkWinning() {
