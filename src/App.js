@@ -25,10 +25,11 @@ class App {
   getLottos(money) {
     const how_many = money / 1000;
     const published_Lottos = [];
-    const Lotto = new Lotto;
     for(let i = 0; i < how_many; i++){
-      published_Lottos.push(Lotto.pulish());
+      const one_lotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      published_Lottos.push(one_lotto);
     }
+    return published_Lottos;
   }
 
   InputLottos() {
