@@ -3,8 +3,8 @@ const { ERROR, INPUT_UNITS } = require('./utils/constants.js');
 class LottoCounter {
   constructor(cash) {
     this.isValidCash(cash);
-    this.inputtedCash = cash;
-    this.countOfLottos = this.inputtedCash / INPUT_UNITS;
+    // this.inputtedCash = cash;
+    this.lottosQuantity = cash / INPUT_UNITS;
   }
 
   isValidCash(cash) {
@@ -21,8 +21,8 @@ class LottoCounter {
     return true;
   }
 
-  getCountOfLotto() {
-    return this.countOfLottos;
+  getLottosQuantity() {
+    return this.lottosQuantity;
   }
 }
 

@@ -4,13 +4,7 @@ const Lotto = require('./Lotto');
 const BonusNumber = require('./BonusNumber');
 const WinningChecker = require('./WinningChecker');
 const RateOfReturnCalculator = require('./RateOfReturnCalculator');
-const {
-  print,
-  close,
-  input,
-  printCountOfLottos,
-  printLottoNumbers,
-} = require('./utils/utils');
+const { print, close, input, printLottoNumbers } = require('./utils/utils');
 const {
   MESSAGE,
   WINNING_RESULT,
@@ -21,12 +15,12 @@ const {
 
 class App {
   constructor() {
-    this.countOfLottos;
+    this.lottosQuantity;
     this.purchasedLottos = [];
     this.winningNumbers;
     this.bonusNumber;
     this.winningResult = [];
-    this.countOfWinningLottos = [null, 0, 0, 0, 0, 0];
+    this.winningLottosQuantity = [null, 0, 0, 0, 0, 0];
   }
 
   play() {
@@ -35,18 +29,18 @@ class App {
 
   inputCash() {
     input(MESSAGE.INPUT_CASH, (cash) => {
-      this.setCountOfLottos(cash);
+      this.setLottosQuantity(cash);
     });
   }
 
-  setCountOfLottos(cash) {
-    this.countOfLottos = new LottoCounter(cash).getCountOfLotto();
+  setLottosQuantity(cash) {
+    this.lottosQuantity = new LottoCounter(cash).getLottosQuantity();
 
     this.setPurchasedLottos();
   }
 
   setPurchasedLottos() {
-    let count = this.countOfLottos;
+    let count = this.lottosQuantity;
 
     while (count !== 0) {
       let numbers = new NumberCreater().createRandomSixNumbers();
@@ -54,11 +48,12 @@ class App {
       count -= 1;
     }
 
-    this.printCountOfLottos();
+    this.printLottosQuantity();
   }
 
-  printCountOfLottos() {
-    printCountOfLottos(this.countOfLottos);
+  printLottosQuantity() {
+    print('');
+    print(this.lottosQuantity + MESSAGE.COUNT_OF_PURCHASED_LOTTOS);
 
     this.printLottos();
   }
@@ -113,7 +108,7 @@ class App {
 
   countWinningLottos() {
     this.winningResult.forEach((rank) => {
-      this.countOfWinningLottos[rank] += 1;
+      this.winningLottosQuantity[rank] += 1;
     });
 
     this.printWinningResult();
@@ -123,10 +118,10 @@ class App {
     print(MESSAGE.WINNING_HISTORY);
 
     for (let rank = FIFTH_PLACE.NUMBER; rank >= FIRST_PLACE.NUMBER; rank -= 1) {
-      let winningResult = `${WINNING_RESULT[rank].LOTTO_COUNT}개 일치 (${WINNING_RESULT[rank].PRIZE}) - ${this.countOfWinningLottos[rank]}개`;
+      let winningResult = `${WINNING_RESULT[rank].LOTTO_COUNT}개 일치 (${WINNING_RESULT[rank].PRIZE}) - ${this.winningLottosQuantity[rank]}개`;
 
       if (rank === SECOND_PLACE.NUMBER) {
-        winningResult = `${WINNING_RESULT[rank].LOTTO_COUNT}개 일치, 보너스 볼 일치 (${WINNING_RESULT[rank].PRIZE}) - ${this.countOfWinningLottos[rank]}개`;
+        winningResult = `${WINNING_RESULT[rank].LOTTO_COUNT}개 일치, 보너스 볼 일치 (${WINNING_RESULT[rank].PRIZE}) - ${this.winningLottosQuantity[rank]}개`;
       }
 
       print(winningResult);
@@ -137,10 +132,9 @@ class App {
 
   printRateOfReturn() {
     let calculator = new RateOfReturnCalculator(
-      this.countOfWinningLottos,
-      this.countOfLottos
+      this.winningLottosQuantity,
+      this.lottosQuantity
     );
-
     let rateOfReturn = calculator.getRateOfReturn();
     print(`총 수익률은 ${rateOfReturn}%입니다.`);
 
