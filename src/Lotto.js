@@ -88,7 +88,7 @@ class Lotto {
         this.fifthCount * PRIZE.FIFTH) /
         payment) *
       100;
-    return Math.round(PROFIT * 100) / 100;
+    return parseFloat(PROFIT.toFixed(2));
   }
 }
 
