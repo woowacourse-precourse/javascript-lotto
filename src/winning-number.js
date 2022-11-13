@@ -42,10 +42,6 @@ class WinningNumber {
       throw new Error(DUPLICATE_NUMBER_MESSAGE);
     }
 
-    if (input.length > 2) {
-      throw new Error(POSSIBLE_LOTTO_NUMBER_MESSAGE);
-    }
-
     if (!(Number(input) >= MIN_NUMBER && Number(input) <= MAX_NUMBER)) {
       throw new Error(POSSIBLE_LOTTO_NUMBER_MESSAGE);
     }
