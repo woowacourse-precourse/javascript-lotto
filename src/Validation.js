@@ -18,6 +18,28 @@ class Validation {
       throw new Error(MESSAGE.ERROR.PURCHASE_UNIT);
     }
   }
+
+  static validateNumbers(numbers) {
+    if (numbers.some((number) => isNaN(number))) {
+      throw new Error(MESSAGE.ERROR.NUMBER_INTEGER);
+    }
+
+    numbers.forEach((number) => {
+      if (number < MIN || number > MAX) {
+        throw new Error(MESSAGE.ERROR.NUMBER_RANGE);
+      }
+    });
+
+    if (new Set(numbers).size !== numbers.length) {
+      throw new Error(MESSAGE.ERROR.NUMBER_DUPLICATE);
+    }
+  }
+
+  static validateWinningNumbers(numbers) {
+    if (numbers.length !== NUMBERS_LENGTH) {
+      throw new Error(MESSAGE.ERROR.WINNING_NUMBER_LENGTH);
+    }
+  }
 }
 
 module.exports = Validation;

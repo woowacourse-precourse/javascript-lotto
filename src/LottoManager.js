@@ -25,6 +25,8 @@ class LottoManager {
         const winningNumbers = winningNumberString
           .split(",")
           .map((number) => stringToNumber(number));
+        Validation.validateNumbers(winningNumbers);
+        Validation.validateWinningNumbers(winningNumbers);
       });
     });
   }
