@@ -7,6 +7,9 @@ const ERROR_MESSAGE = Object.freeze({
   CANT_DIVIDE: `[ERROR] 구입 금액이 1000원으로 나누어 떨어지지 않습니다.`,
   NOT_NUMBER: `[ERROR] 입력값이 숫자여야 합니다.`,
   UNDER_BASIC_PRICE: `[ERROR] 구입 금액이 1000 이상이어야 합니다.`,
+  NOT_SIX_LENGTH: `[ERROR] 로또 번호는 6개여야 합니다.`,
+  IS_OVERLAPPED: `[ERROR] 로또 번호는 중복될 수 없습니다.`,
+  NOT_NUMBER_IN_LOTTO: `[ERROR] 로또 번호에는 숫자만 포함될 수 있습니다.`,
 });
 const PRINT_MESSAGE = Object.freeze({
   PURCHASE_MESSAGE: (num) => `${num}개를 구매했습니다.`,
