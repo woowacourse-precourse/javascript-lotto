@@ -7,7 +7,7 @@ class App {
   randomNum() {
     let randomNum = [];
     while (randomNum.length != 7) {
-      let pickNm = MissionUtils.Random.pickNumberInRange(1, 45);
+      let pickNum = MissionUtils.Random.pickNumberInRange(1, 45);
       if (!randomNum.includes(pickNum)) {
         randomNum.push(pickNum);
       }
