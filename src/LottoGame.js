@@ -2,7 +2,9 @@ const Lotto = require("./Lotto");
 const { Random, Console } = require("@woowacourse/mission-utils");
 const MESSAGE = require("./Message");
 const LOTTERY_PRICE = 1000;
-const LOTTERY_NUMBER_LENGTH = 6;
+const LOTTERY_MIN_NUMBER = 1;
+const LOTTERY_MAX_NUMBER = 45;
+
 
 class LottoGame {
   constructor(LottoGameView) {
@@ -10,6 +12,7 @@ class LottoGame {
     this.lotteries = [];
     this.purchaseAmount = null;
     this.winningLotto = null;
+    this.bonusNumber = null;
   }
 
   setPurchaseAmount(purchaseAmount) {
@@ -67,6 +70,34 @@ class LottoGame {
     const winningNumber = number.split(',').map((num) => Number(num));
     const winningLotto = new Lotto(winningNumber);
     this.winningLotto = winningLotto;
+  }
+
+  setBonusNumber(bonus) {
+    this.validateBonusNumber(bonus);
+    this.bonusNumber = Number(bonus);
+  }
+
+  validateBonusNumber(bonus) {
+    if (Number.isNaN(Number(bonus))) {
+      throw new Error("[ERROR] 숫자를 입력해주세요.");
+    }
+
+    if (!Number.isInteger(Number(bonus))) {
+      throw new Error("[ERROR] 정수를 입력해주세요.")
+    }
+
+    if (Number(bonus) < LOTTERY_MIN_NUMBER || Number(bonus) > LOTTERY_MAX_NUMBER) {
+      throw new Error(`[ERROR] 보너스 번호는 ${LOTTERY_MIN_NUMBER}~${LOTTERY_MAX_NUMBER}까지의 숫자여야 합니다.`);
+    }
+
+    this.checkDuplicationBonusNumber(Number(bonus));
+  }
+
+  checkDuplicationBonusNumber(bonus) {
+    const winningNumber = this.winningLotto.getNumber();
+    if (winningNumber.includes(bonus)) {
+      throw new Error("[ERROR] 당첨 번호와 중복되지 않는 번호를 입력해주세요.")
+    }
   }
 }
 

@@ -21,6 +21,13 @@ class LottoGameView {
   receiveWinningNumber() {
     Console.readLine(MESSAGE.INPUT.WINNING_NUMBER, (number) => {
       this.game.setWinningLotto(number);
+      this.receiveBonusNumber();
+    });
+  }
+
+  receiveBonusNumber() {
+    Console.readLine(MESSAGE.INPUT.BONUS_NUMBER, (bonus) => {
+      this.game.setBonusNumber(bonus);
       this.gameFinish();
     });
   }
