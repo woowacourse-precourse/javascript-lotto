@@ -79,6 +79,21 @@ class App {
       this.#Bonus = new Bonus(bonus);
       this.bonus = bonus;
     });
+    this.comparePoint();
+  }
+
+  comparePoint() {
+    for (let num of this.lottoArr.flat()) {
+      const sameCnt = this.sameCheck(num);
+    }
+  }
+
+  sameCheck(num) {
+    let sameCnt = 0;
+    num.map((number) => {
+      if (this.userNum.includes(number)) sameCnt += 1;
+    });
+    return sameCnt;
   }
 }
 
