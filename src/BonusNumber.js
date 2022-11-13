@@ -15,5 +15,5 @@ class BonusNumber{
     }
   }
   
-  module.exports = Lotto;
+  module.exports = BonusNumber;
   

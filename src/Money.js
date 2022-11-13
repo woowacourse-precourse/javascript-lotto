@@ -15,5 +15,5 @@ class Money{
     }
   }
   
-  module.exports = Lotto;
+  module.exports = Money;
   
