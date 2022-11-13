@@ -7,7 +7,9 @@ class App {
   constructor() {
     this.amountOfLotto = 0;
     this.userLotto = [];
-    this.Lotto;
+    this.winLotto = [];
+    this.lotto;
+    this.bonusNumber = 0;
   }
 
   play() {
@@ -48,6 +50,21 @@ class App {
   getWinLotto() {
     MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.\n", (userInput) => {
       validateWinLottoDecimal(userInput);
+      convertWinLottoStrToInt(userInput);
+    });
+  }
+
+  convertWinLottoStrToInt(numbers) {
+    for(let i = 0; i < numbers.length; i++) {
+      this.winLotto.push(Number(numbers[i]));
+    }
+    lotto = new LottoUtils(winLotto);
+    getBonusNumber();
+  }
+
+  getBonusNumber() {
+    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.\n", (userInput) => {
+      lotto.validateBonusNumber(userInput);
     });
   }
 
