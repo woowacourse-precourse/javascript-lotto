@@ -7,10 +7,10 @@ class App {
   }
 
   play() {
-    this.start();
+    this.inputAmount();
   }
 
-  start() {
+  inputAmount() {
     let piece = 0;
     MissionUtils.Console.readLine("구입금액을 입력해 주세요. ", (answer) => {
       if (+answer % 1000 > 0) {
