@@ -13,7 +13,7 @@ class Lotto {
     let matchCounts = [];
     userNums.forEach((userNum) => {
       matchCounts.push(this.matchLotto(userNum));
-    })
+    });
     return matchCounts;
   }
 
@@ -23,8 +23,18 @@ class Lotto {
       if (userNum.includes(lottoNumber)) {
         matchNum += 1;
       }
-    })
+    });
     return matchNum;
+  }
+
+  getMatchBonus(bonus, userNums) {
+    const bonusArray = new Array(userNums.length).fill(false);
+    userNums.forEach((userNum, index) => {
+      if (userNum.includes(bonus)) {
+        bonusArray[index] = true;
+      }
+    });
+    return bonusArray;
   }
 
   validate(numbers) {
