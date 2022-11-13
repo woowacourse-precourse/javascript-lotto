@@ -20,7 +20,6 @@ class Lotto {
     const START = 1;
     const END = 45;
     const LENGTH = 6;
-
     const randomNumbers = Application.createUniqueNumbers(START, END, LENGTH);
     const sortedArray = Application.sortAscending(randomNumbers);
 

@@ -26,7 +26,8 @@ class Application {
   }
 
   static convertNumber(target) {
-    const result = parseInt(target, 10);
+    const DECIMAL_NUMBER = 10;
+    const result = parseInt(target, DECIMAL_NUMBER);
 
     this.validateNumber(result);
 
@@ -43,7 +44,6 @@ class Application {
 
   static earningsRate(purchaseAmount, earnings) {
     const HUNDRED = 100;
-
     const result = (this.convertNumber(earnings) / this.convertNumber(purchaseAmount)) * HUNDRED;
 
     return Math.round(result * HUNDRED) / HUNDRED;

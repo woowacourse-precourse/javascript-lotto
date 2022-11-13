@@ -26,7 +26,6 @@ class ReadLine {
   inputOriginal(message, callbackFunc) {
     this.#readLine(message, (draft) => {
       ReadLine.validate(draft);
-
       callbackFunc(draft);
     });
   }
