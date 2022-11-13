@@ -19,7 +19,6 @@ class LottoManager {
       const lottoCount = this.calculateLottoCount(purchaseCost);
       const lottoTickets = LottoUtils.createLottos(lottoCount);
 
-      LottoUtils.printLottoCount(lottoCount);
       LottoUtils.printLotto(lottoTickets);
 
       Console.readLine(MESSAGE.WINNING, (winningNumberString) => {
