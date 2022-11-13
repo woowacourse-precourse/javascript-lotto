@@ -1,4 +1,3 @@
-const Lotto = require("../Lotto");
 const { UNIT, ERROR } = require("../utils/constant");
 const Exception = require("./exception");
 

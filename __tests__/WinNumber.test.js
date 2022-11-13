@@ -1,4 +1,3 @@
-const BonusNumber = require("../src/error/bonusNumber");
 const Exception = require("../src/error/exception");
 const WinNumberError = require("../src/error/winNumber");
 const { ERROR } = require("../src/utils/constant");

@@ -1,9 +1,9 @@
 const Exception = require("./error/exception");
 const PurchaseError = require("./error/purchase");
 const WinNumberError = require("./error/winNumber");
+const BonusNumber = require("./error/bonusNumber");
 const ChangeLotto = require("./ChangeLotto");
 const Lotto = require("./Lotto");
-const BonusNumber = require("./error/bonusNumber");
 const CompareLotto = require("./CompareLotto");
 const Profit = require("./Profit");
 
@@ -24,6 +24,7 @@ class App {
     this.Lotto = new Lotto();
     this.#exception = new Exception();
     this.changeLotto = new ChangeLotto();
+    this.compareLotto = new CompareLotto();
     this.input = UNIT.DEFAULT;
     this.bonusNumber = UNIT.DEFAULT;
     this.profit = UNIT.DEFAULT;
@@ -74,6 +75,7 @@ class App {
   printResult() {
     Console.print(`\n${GUIDE.TITLE}\n${GUIDE.LINE}`);
     Object.keys(RANK)
+      .slice(0, 5)
       .reverse()
       .forEach((nowRank) => {
         Console.print(

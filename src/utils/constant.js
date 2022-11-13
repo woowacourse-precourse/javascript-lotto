@@ -39,6 +39,7 @@ const UNIT = Object.freeze({
   MAX_NUMBER: 45,
   MIN_LENGTH: 11,
   MAX_LENGTH: 17,
+  MIN_CNT: 2,
   LOTTO_LENGTH: 6,
   WIN_NUMBER_CNT: 6,
   BONUS_LENGTH: 1,
@@ -54,6 +55,11 @@ const RANK = Object.freeze({
   3: "THIRD",
   4: "FOURTH",
   5: "FIFTH",
+  FIRST: 1,
+  SECOND: 2,
+  THIRD: 3,
+  FOURTH: 4,
+  FIFTH: 5,
 });
 
 const PRIZE_MONEY = Object.freeze({
@@ -64,4 +70,12 @@ const PRIZE_MONEY = Object.freeze({
   FIFTH: 5000,
 });
 
-module.exports = { COMMAND, GUIDE, CORRECT, ERROR, UNIT, RANK, PRIZE_MONEY };
+module.exports = {
+  COMMAND,
+  GUIDE,
+  CORRECT,
+  ERROR,
+  UNIT,
+  RANK,
+  PRIZE_MONEY,
+};
