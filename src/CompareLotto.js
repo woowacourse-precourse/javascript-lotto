@@ -37,6 +37,22 @@ class compareLotto {
       grade['count'] = this.#count[index];
     });
   }
+
+  totalProfit(money) {
+    let total = 0;
+    this.#grade.forEach((grade) => {
+      const { prize, count } = grade;
+      total += prize.replace(/\D/g, '') * count;
+    });
+    const profit = ((total / money) * 100).toFixed(1);
+    MissionUtils.Console.print(`총 수익률은 ${profit}%입니다.`);
+  }
+
+  play(lottoSet, money, winning, bonus) {
+    this.matchWinning(lottoSet, winning, bonus);
+    this.matchResult();
+    this.totalProfit(money);
+  }
 }
 
 module.exports = compareLotto;
