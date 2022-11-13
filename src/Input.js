@@ -32,7 +32,7 @@ class Input {
     inputLottoNumbers() {
         Console.readLine(constant.INPUT_WINNIG, (string) => {
             let lotto = string.split(',').map((number) => number.trim());
-            const exception = new Lotto(lotto);
+            new Lotto(lotto);
             this.winningRottoNumber = lotto;
 
             Console.print(constant.BLANK);
@@ -43,7 +43,7 @@ class Input {
     inputBonusNumber() {
         Console.readLine(constant.INPUT_BONUS, (bonus) => {
             const exception = new BonusException();
-            exception.checkBonusException(bonus);
+            exception.checkBonusException(bonus, this.winningRottoNumber);
             this.bonusNumber = bonus;
 
             Console.print(constant.BLANK);

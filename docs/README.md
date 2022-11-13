@@ -51,15 +51,24 @@
 
 ### Lotto
 
-    1. validate : 로또의 당첨 번호를 검증한다.
+    당첨 로또 번호를 저장하고 검증하는 클래스
+
+    필드
+        1. #numbers : 검증된 당첨 번호를 저장한다.
+
+    메서드
+        1. validate : 당첨 번호를 검증한다.
+        2. isNumber : 당첨 번호가 숫자로 이뤄져있는지 확인한다.
+        3. isSix : 당첨 번호가 6개인지 확인한다.
+        4. isDuplication : 당첨 번호가 서로 다른 숫자로 이뤄져있는지 확인한다.
+        5. isRange : 당첨 번호가 1 ~ 45 범위 내의 숫자로 이뤄져있는지 확인한다.
 
 ### Exception (예외사항)
 
-    예외사항을 체크하는 클래스, Input, Lotto, BonusNumber로 나뉜다.
+    예외사항을 체크하는 클래스, Input, BonusNumber로 나뉜다.
 
     1. InputException : 입력받은 돈이 알맞은 형식인지 확인한다.
-    2. LottoException : 입력받은 당첨 번호가 알맞은 형식인지 확인한다.
-    3. BonusException : 입력받은 보너스 숫자가 알맞은 형식인지 확인한다.
+    2. BonusException : 입력받은 보너스 숫자가 알맞은 형식인지 확인한다.
 
 ### Output (기능)
 
