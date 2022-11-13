@@ -1,8 +1,3 @@
-const Console = require("@woowacourse/mission-utils").Console;
-const BonusNumber = require("./BonusNumber");
-const Result = require("./Result");
-
-const ASK_BONUS_NUMBER = "\n보너스 번호를 입력해 주세요.\n";
 const ERROR_NOT_LENGTH_SIX = "[ERROR] 로또 번호는 6개여야 합니다.";
 const ERROR_OUT_OF_RANGE =
   "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
@@ -12,16 +7,11 @@ const ERROR_SAME_NUMBER_EXIST =
 class Lotto {
   #numbers;
 
-  constructor(amount, bundleOfLotto, numbers) {
-    this.amount = amount;
-    this.bundleOfLotto = bundleOfLotto;
-
+  constructor(numbers) {
     this.checkLottoLength(numbers);
     this.checkNumberRanges(numbers);
     this.checkNoSameNumber(numbers);
     this.#numbers = numbers;
-
-    this.getBonusNumber();
   }
 
   checkLottoLength(numbers) {
@@ -44,21 +34,6 @@ class Lotto {
     if (arrayRemovedDuplicate.size !== 6) {
       throw new Error(ERROR_SAME_NUMBER_EXIST);
     }
-  }
-
-  getBonusNumber() {
-    Console.readLine(ASK_BONUS_NUMBER, (bonus) => {
-      const bonusNumber = new BonusNumber(this.#numbers, bonus);
-
-      const result = new Result(
-        this.amount,
-        this.bundleOfLotto,
-        this.#numbers,
-        bonusNumber.userBonus
-      );
-
-      result.calculateEachLotto();
-    });
   }
 }
 
