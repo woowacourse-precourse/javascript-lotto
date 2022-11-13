@@ -38,4 +38,28 @@ describe("로또 클래스 테스트", () => {
 
     expect(errorTest).toThrow(ERROR.WIN_NUMBER);
   });
+
+  test("당첨 번호 문자 포함 예외처리", () => {
+    const input = "2,4,8,16,32,a";
+    const exception = new Exception();
+    const errorTest = () => exception.isAllow(new Lotto(input));
+
+    expect(errorTest).toThrow(ERROR.WIN_NUMBER);
+  });
+
+  test("당첨 번호 0 포함 예외처리", () => {
+    const input = "2,4,8,0,32,64";
+    const exception = new Exception();
+    const errorTest = () => exception.isAllow(new Lotto(input));
+
+    expect(errorTest).toThrow(ERROR.WIN_NUMBER);
+  });
+
+  test("당첨 번호 공백 포함 예외처리", () => {
+    const input = "2,4,8,1 6,32,64";
+    const exception = new Exception();
+    const errorTest = () => exception.isAllow(new Lotto(input));
+
+    expect(errorTest).toThrow(ERROR.WIN_NUMBER);
+  });
 });

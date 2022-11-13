@@ -15,7 +15,7 @@ const GUIDE = Object.freeze({
   BAR: "-",
 });
 
-CORRECT = Object.freeze({
+const CORRECT = Object.freeze({
   1: "6개 일치",
   2: "5개 일치, 보너스 볼 일치",
   3: "5개 일치",
