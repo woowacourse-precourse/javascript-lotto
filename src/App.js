@@ -1,14 +1,21 @@
 const { Console } = require('@woowacourse/mission-utils');
+const LottoIssuer = require('./LottoIssuer');
 
 class App {
   play() {
-    const money = this.receiveMoney();
+    this.receiveMoney();
   }
 
   receiveMoney() {
-    Console.readLine('구입금액을 입력해 주세요.', (money) => {
+    Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
       this.checkMoneyValidity(money);
+      this.issueLottoes(money);
     });
+  }
+
+  issueLottoes(money) {
+    const lottoIssuer = new LottoIssuer();
+    const issuedLottoes = lottoIssuer.issue(money);
   }
 
   checkMoneyValidity(money) {
