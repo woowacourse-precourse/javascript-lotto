@@ -10,7 +10,7 @@ class Messages {
   static NOT_DUPLICATE = '[ERROR] 중복되지 않는 숫자를 입력해주세요.';
   static NUMBERS_IN_RANGE = '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.';
 
-  static ONLY_ONE_NUMBER = '[ERROR] 1개의 숫자만 입력해주세요.';
+  static ONE_NUMBER_IN_RANGE = '[ERROR] 1부터 45 사이의 1개의 숫자만 입력해주세요.';
   static NOT_DUPLICATE = '[ERROR] 당첨 번호와 중복되지 않는 1개의 숫자만 입력해주세요.';
 }
 
