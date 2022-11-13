@@ -10,7 +10,7 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
-    if(this.duplicationValidate(numbers)){
+    if (this.duplicationValidate(numbers)) {
       throw new Error("[ERROR] 당첨 번호에 중복이 있습니다.");
     }
     numbers.map((number) => {
@@ -35,10 +35,10 @@ class Lotto {
     }
   }
 
-  duplicationValidate(numbers){
+  duplicationValidate(numbers) {
     return numbers.some((number) => {
       return numbers.indexOf(number) !== numbers.lastIndexOf(number);
-    })
+    });
   }
 }
 

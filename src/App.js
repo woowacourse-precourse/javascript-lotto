@@ -23,7 +23,4 @@ class App {
   }
 }
 
-const ap = new App();
-ap.play();
-
 module.exports = App;
