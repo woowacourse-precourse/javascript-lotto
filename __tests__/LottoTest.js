@@ -30,4 +30,10 @@ describe("로또 클래스 테스트", () => {
     const result = lotto.sortArray(input);
     expect(result).toEqual([1, 9, 11, 25, 30, 41]);
   });
+
+  test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
+    expect(() => {
+      lotto.validate([1, 2, 3, 4, 5, 6, 7]);
+    }).toThrow("[ERROR]");
+  });
 });
