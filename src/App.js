@@ -54,7 +54,21 @@ class App {
     this.prizeStatistics[LottoConfig.PRIZE_5] = 0;
   }
 
-  play() {}
+  play() {
+    this.reset();
+
+    this.setMoney();
+    this.buyLotto();
+    this.printLottoList();
+
+    const winningNumbers = App.inputWinningNumbers();
+    Lotto.validateNumbers(winningNumbers);
+    const bonusNumber = App.inputBonusNumber();
+    Lotto.validateBonusNumber(bonusNumber, winningNumbers);
+
+    this.calculateStatistics(winningNumbers, bonusNumber);
+    this.printStatistics();
+  }
 
   buyLotto() {
     for (let purchase = 0; purchase < this.money; purchase += LottoConfig.PRICE) {
