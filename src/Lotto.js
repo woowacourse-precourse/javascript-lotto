@@ -22,6 +22,14 @@ class Lotto {
       if (num < 1 || num > 45) throw new Error(MESSAGE.ERROR_OUT_OF_RANGE);
     });
   }
+
+  /**
+   * 로또 하나의 번호를 반환합니다.
+   * @return {Array<number>} numbers - 로또 배열
+   */
+  getNums() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
