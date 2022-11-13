@@ -41,9 +41,9 @@ class LottoResult {
     });
   }
 
-  static countMatching({ main, bonus }, lottoNumbers) {
+  static countMatching({ winning, bonus }, lottoNumbers) {
     const lottoNumbersSet = new Set(lottoNumbers);
-    const count = main.filter((number) => lottoNumbersSet.has(number)).length;
+    const count = winning.filter((number) => lottoNumbersSet.has(number)).length;
     return count === 5 ? LottoResult.checkBonus(bonus, lottoNumbersSet) : count;
   }
 
@@ -56,8 +56,7 @@ class LottoResult {
   }
 
   printResult() {
-    Console.print('\n당첨 통계\n---');
-    Console.print(`3개 일치 (5,000원) - ${this.result[3]}개
+    Console.print(`\n당첨 통계\n---\n3개 일치 (5,000원) - ${this.result[3]}개
 4개 일치 (50,000원) - ${this.result[4]}개
 5개 일치 (1,500,000원) - ${this.result[5]}개
 5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.result.bonus}개
