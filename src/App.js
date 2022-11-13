@@ -42,13 +42,13 @@ class App {
   makeLottos(lottoQuantity) {
     const lottos = [];
     while (lottos.length < lottoQuantity) {
-      const lottoNumbers = Util.getSortedArrayInAsc(this.getLottoNumbers());
+      const lottoNumbers = Util.getSortedArrayInAsc(this.pickLottoNumbers());
       lottos.push(new Lotto(lottoNumbers));
     }
     return this.printLottos(lottos);
   }
 
-  getLottoNumbers() {
+  pickLottoNumbers() {
     const lottoNumbers = Random.pickUniqueNumbersInRange(
       LOTTO.START,
       LOTTO.END,
