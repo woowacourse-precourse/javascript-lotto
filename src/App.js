@@ -16,10 +16,11 @@ class App {
         throw new Error('[ERROR] 1000원 단위로 입력해주세요.');
       }
       LottoGenerator.getPurchaseLottoCount(Number(money));
+      this.enterWinningNumber();
     });
   }
 
-  enterWinNumber() {
+  enterWinningNumber() {
     Console.readLine('\n당첨 번호를 입력해 주세요.\n', input => {
       const inputNumber = input.split(',').map(num => Number(num));
       const lotto = new Lotto(inputNumber);
