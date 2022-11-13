@@ -64,7 +64,49 @@ class App {
       const LOTTO_NUMBER_ARRAY = lottoNumber;
       const WIN_NUMBER_ARRAY = winNumber;
       const BONUS_NUMBER_ARRAY = [BONUS_NUMBER];
+
+      this.result(LOTTO_NUMBER_ARRAY, WIN_NUMBER_ARRAY, BONUS_NUMBER_ARRAY, investment);
     });
+  }
+
+  result(lottoNumber, winNumber, bonusNumber, investment) {
+    MissionUtils.Console.print('\n당첨 통계');
+    MissionUtils.Console.print('---');
+    let lottoWinNumber = [];
+    let lottoBonusNumber = [];
+
+    for (let index = 0; index < lottoNumber.length; index++) {
+      lottoWinNumber.push(
+        lottoNumber[index].filter((sameNumber) => winNumber.includes(sameNumber))
+      );
+
+      lottoBonusNumber.push(
+        lottoNumber[index].filter((sameNumber) => bonusNumber.includes(sameNumber))
+      );
+    }
+    for (let index = 0; index < lottoWinNumber.length; index++) {
+      if (lottoWinNumber[index].length !== 5) {
+        lottoBonusNumber[index].pop();
+      }
+    }
+    this.calculateRank(lottoWinNumber, lottoBonusNumber, investment);
+  }
+
+  calculateRank(win, bonus, investment) {
+    let rank = {
+      rank5: 0,
+      rank4: 0,
+      rank3: 0,
+      rank2: 0,
+      rank1: 0,
+    };
+    for (let index = 0; index < win.length; index++) {
+      if (win[index].length === 3) rank.rank5++;
+      if (win[index].length === 4) rank.rank4++;
+      if (win[index].length === 5 && bonus[index].length === 0) rank.rank3++;
+      if (win[index].length === 5 && bonus[index].length === 1) rank.rank2++;
+      if (win[index].length === 6) rank.rank1++;
+    }
   }
 }
 
