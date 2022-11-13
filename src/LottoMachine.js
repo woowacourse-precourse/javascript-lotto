@@ -1,4 +1,4 @@
-const { pickUniqueNumbersInRange } = require("./Utils");
+const Utils = require("./Utils");
 const Lotto = require("./Lotto");
 
 class LottoMachine {
@@ -20,7 +20,7 @@ class LottoMachine {
   }
 
   #generateSixNumber() {
-    return pickUniqueNumbersInRange(1, 45, 6);
+    return Utils.getRandomeNumbers(1, 45, 6);
   }
 
   #generateLotto() {
