@@ -30,6 +30,44 @@ class Validation {
     this.checkNotThousandUnit(purchaseAmount);
     return true;
   };
+
+  isNumberType = (numbers) => {
+    return numbers.every((number) => !isNaN(number));
+  };
+
+  isLottoRange = (numbers) => {
+    return numbers.every((number) => number >= 1 && number <= 45);
+  };
+
+  checkLottoLength(numbers) {
+    if (numbers.length !== 6)
+      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+  }
+
+  checkLottoType(numbers) {
+    if (!this.isNumberType(numbers))
+      throw new Error("[ERROR] 로또 번호는 숫자이어야 합니다.");
+  }
+
+  checkLottoRange(numbers) {
+    if (!this.isLottoRange(numbers))
+      throw new Error("[ERROR] 로또 번호의 범위는 1~45여야 합니다.");
+  }
+
+  checkDuplicatedNumber(numbers) {
+    if ([...new Set(numbers)].length !== 6)
+      throw new Error(
+        "[ERROR] 로또 번호는 중복되지 않은 숫자로 이루어져야 합니다."
+      );
+  }
+
+  isValidLottoNumber = (numbers) => {
+    this.checkLottoLength(numbers);
+    this.checkLottoType(numbers);
+    this.checkLottoRange(numbers);
+    this.checkDuplicatedNumber(numbers);
+    return true;
+  };
 }
 
 module.exports = Validation;
