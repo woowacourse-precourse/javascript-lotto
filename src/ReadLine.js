@@ -1,5 +1,7 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 
+const Application = require('./Application');
+
 class ReadLine {
   #console = MissionUtils.Console;
 
@@ -9,6 +11,16 @@ class ReadLine {
     if (!message) {
       throw new Error('입력이 없으면 안됩니다.');
     }
+  }
+
+  inputNumber(message, callbackFunc) {
+    this.#readLine(message, (userInput) => {
+      ReadLine.validate(userInput);
+
+      const userNumberArray = Application.convertNumber(userInput);
+
+      callbackFunc(userNumberArray);
+    });
   }
 }
 
