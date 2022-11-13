@@ -1,6 +1,4 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const readline = require("readline");
-
 class App {
   constructor() {
     this.paymentCostStr = "";
@@ -10,6 +8,8 @@ class App {
     MissionUtils.Console.readLine("구입금액을 입력해주세요.", (answer) => {
       this.isCorrectRange(answer);
       this.lottoTicketPages();
+      // MissionUtils.Console.print(this.makeTicket());
+      this.makeTicket();
     });
   }
   isCorrectRange(number) {
@@ -26,11 +26,24 @@ class App {
     const number = this.lottoIssuance();
     console.log(`${number}개를 구매했습니다.`);
   }
-  makeRandomNumber() {
-    const randomNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-    MissionUtils.Console.print(randomNumbers);
-  }
 
+  makeRandomLottoNumber() {
+    const randomNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    return randomNumbers;
+  }
+  makeTicket() {
+    let tickets = [];
+    const number = this.lottoIssuance();
+    for (let i = 0; i < number; i++) {
+      tickets.push(this.makeRandomLottoNumber());
+    }
+    // return tickets;
+    return MissionUtils.Console.print(tickets);
+  }
+  showLottoTicketNumber() {
+    const ticketPage = this.lottoIssuance();
+    for (let i = 0; i < ticketPage; i++) {}
+  }
   play() {
     this.paymentInput();
   }
