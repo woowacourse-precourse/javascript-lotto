@@ -1,6 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const LottoModel = require("../model/LottoModel");
 const MESSAGE = require("../assets/Message");
+const Utils = require("../assets/Utils");
 
 class LottoView {
   lottoController;
@@ -20,6 +20,15 @@ class LottoView {
 
   printAllLottery(lottos) {
     lottos.forEach((lotto) => MissionUtils.Console.print(lotto.numbers));
+  }
+
+  printLastResult() {
+    MissionUtils.Console.print(MESSAGE.RESULT.PREFIX);
+  }
+
+  printWinResult(prize) {
+    const resultText = Utils.translateResultToText(prize);
+    MissionUtils.Console.print(resultText);
   }
 }
 

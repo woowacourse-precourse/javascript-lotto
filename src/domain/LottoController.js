@@ -45,6 +45,10 @@ class LottoController {
   evaluateLotto() {
     const result = this.lottoModel.result;
     this.prize.appliResult(result);
+
+    this.lottoView.printLastResult();
+    this.lottoView.printWinResult(this.prize);
+    //print earn
   }
 }
 
