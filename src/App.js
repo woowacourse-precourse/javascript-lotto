@@ -3,6 +3,7 @@ const { GRADE } = require("./constant");
 const NumberGenerator = require("./NumberGenerator");
 const Lotto = require("./Lotto");
 const LottoSimulator = require("./LottoSimulator");
+const { changePrintFormat } = require("./utils");
 
 class App {
   lottos;
@@ -56,15 +57,13 @@ class App {
   handleGameEnd() {
     this.lottoSimulator.checkWinningResult(this.lottos, this.winningNumber, this.bonusNumber);
     Console.print('\n당첨 통계\n---');
+    changePrintFormat();
     this.printWinningResult();
     this.printReturnRate();
     Console.close();
   }
 
   printWinningResult() {
-    String.prototype.format = function() {
-      return [...arguments].reduce((pattern,value) => pattern.replace(/%s/,value), this);
-    };
     this.lottoSimulator.gradeCount.forEach((count, rank) => {
       const rankUpperCase = rank.toUpperCase();
       Console.print('%s개 일치%s (%s원) - %s개'.format(
