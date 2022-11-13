@@ -3,8 +3,9 @@ class Lotto {
 
   constructor(numbers) {
     this.validate(numbers);
-    this.#numbers = numbers;
     this.isDuplicate(numbers);
+    this.isRange(numbers);
+    this.#numbers = numbers;
   }
 
   validate(numbers) {
@@ -17,7 +18,7 @@ class Lotto {
   isDuplicate(numbers) {
     const setArr = new Set(numbers);
     if (setArr.size < numbers.length) {
-      throw new Error('[ERROR] 로또 번호에 중복된 숫자가 있습니다.')
+      throw new Error('[ERROR] 로또 번호에 중복된 숫자가 있습니다.');
     }
   }
 
@@ -33,5 +34,4 @@ class Lotto {
     }
   }
 }
-
 module.exports = Lotto;
