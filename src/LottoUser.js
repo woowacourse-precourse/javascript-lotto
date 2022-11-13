@@ -1,11 +1,15 @@
+const Lotto = require('./Lotto');
+
 class LottoUser {
   #amount;
   #lottoCount;
+  #lottos;
 
   constructor(amount) {
     this.validate(amount);
     this.#amount = amount;
     this.#lottoCount = this.calcLottoCount(amount);
+    this.#lottos = this.makeLottos(this.#lottoCount);
   }
 
   validate(amount) {
@@ -19,6 +23,14 @@ class LottoUser {
 
   calcLottoCount(amount) {
     return amount / 1000;
+  }
+
+  makeLottos(count) {
+    const lottos = [];
+    for (let i = 0; i < count; i++) {
+      lottos.push(new Lotto(this.makeRandomSixNumbers()));
+    }
+    return lottos;
   }
 }
 
