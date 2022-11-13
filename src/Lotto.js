@@ -4,12 +4,12 @@
 class Lotto {
   #numbers;
 
-  constructor(splitedWinNumber,numbers) {
-    this.validate(splitedWinNumber,numbers);
+  constructor(splitedWinNumber) {
+    this.validate(splitedWinNumber);
     this.#numbers = splitedWinNumber;
   }
 
-  validate(splitedWinNumber,numbers) {
+  validate(splitedWinNumber) {
     if (splitedWinNumber.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
@@ -24,10 +24,6 @@ class Lotto {
     if(splitedWinNumber.filter((element) => element < 1 || element > 45).length !== 0){
       throw new Error("[ERROR] 1부터 45까지의 숫자만 입력해 주세요.");
     }
-    if(splitedWinNumber.filter((element) =>!regExp.test(element)).length === 0 && !numbers.includes(",")){
-      throw new Error("[ERROR] 숫자 사이를 쉼표로 구분해 주세요.");
-    }
-
 
   }
 }

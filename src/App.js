@@ -16,7 +16,6 @@ class App {
     this.countMatchedNumber = [];
     this.countMatchedBonusNumber = [];
     this.myPayment = "";
-    this.myCountedSheets = "";
     this.myRandomNumberArr= "";
   }
   play() {
@@ -24,14 +23,10 @@ class App {
   }
   pay() {
     MissionUtils.Console.readLine(`${PAYMENT_MESSAGE.request}\n`, (payment) => {
-      this.myPayment = payment
-      const countedSheets = payment / 1000;
-      this.myCountedSheets = countedSheets
-      
-      const payError = new PayError();
+      const payError = new PayError(payment);
       payError.validatePay(payment); 
 
-      this.printLotto();
+      this.printLotto(payment);
     });
   }
 
@@ -44,15 +39,18 @@ class App {
     const sortedRandomNumbersForPrint = sortedRandomNumbers.join(", ");
     this.randomNumbersArrForPrint.push(sortedRandomNumbersForPrint);
   }
-  repeatGenerateRandomNumbers(){ // 이름 바꾸기 랜덤번호 뽑기를 반복시켜주는 함수
-    for (let i = 0; i < this.myCountedSheets; i++) {
+  repeatGenerateRandomNumbers(countedSheets){ // 이름 바꾸기 랜덤번호 뽑기를 반복시켜주는 함수
+    for (let i = 0; i < countedSheets; i++) {
       this.generateRandomNumbers();
     }
     const joined = this.randomNumbersArrForPrint.join(`]\n[`)
     return `[${joined}]`;
   }
-  printLotto() { 
-    MissionUtils.Console.print(`\n${this.myCountedSheets}개를 구매했습니다.\n${this.repeatGenerateRandomNumbers()}`);
+  printLotto(payment) { 
+    this.myPayment = payment
+    const countedSheets = payment / 1000;
+
+    MissionUtils.Console.print(`\n${countedSheets}개를 구매했습니다.\n${this.repeatGenerateRandomNumbers(countedSheets)}`);
     MissionUtils.Console.print(BLANK_SPACE.line); 
     this.selectWinNumbers()
   }
@@ -64,8 +62,9 @@ class App {
     MissionUtils.Console.readLine("", (numbers) => {
 
       const splitedWinNumber = numbers.split(",").map(Number);
-      const lotto = new Lotto(splitedWinNumber,numbers);
-      lotto.validate(splitedWinNumber,numbers); 
+      const lotto = new Lotto(splitedWinNumber);
+      lotto.validate(splitedWinNumber); 
+
       console.log(splitedWinNumber)
       for (let i = 0; i < 6; i++) {
         this.selectedWinNumber.push(splitedWinNumber[i]);
