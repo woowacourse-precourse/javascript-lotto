@@ -23,14 +23,13 @@ class App {
 
   winningNumberProcess() {
     Utils.readLine("\n당첨 번호를 입력해 주세요.\n", (winningNumberInput) => {
-      const winningNumber = winningNumberInput.split(",").map((number) => Number(number));
-
-      this.bonusNumberProcess(winningNumber);
+      this.bonusNumberProcess(winningNumberInput);
     });
   }
 
-  bonusNumberProcess(winningNumber) {
+  bonusNumberProcess(winningNumberInput) {
     Utils.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusNumberInput) => {
+      const winningNumber = Utils.separateByComma(winningNumberInput);
       const bonusNumber = Number(bonusNumberInput);
       this.winningLotto = new WinningLotto(winningNumber, bonusNumber);
 

@@ -1,6 +1,10 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 
 class Utils {
+  static separateByComma(numbers) {
+    return numbers.split(",").map((number) => Number(number));
+  }
+
   static getRandomeNumbers(startInclusive, endInclusive, count) {
     return Random.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
   }
