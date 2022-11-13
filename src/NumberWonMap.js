@@ -1,13 +1,13 @@
 const MESSAGE = require('./MESSAGE');
 
-const [Three, Four, Five, FiveBonus, Six] = MESSAGE;
+const { Three, Four, Five, FiveBonus, Six } = MESSAGE;
 
 const winWon = new Map([
-  [Three, 5000],
-  [Four, 50000],
-  [Five, 1500000],
-  [FiveBonus, 30000000],
-  [Six, 200000000],
+  [Three, '5,000'],
+  [Four, '50,000'],
+  [Five, '1,500,000'],
+  [FiveBonus, '30,000,000'],
+  [Six, '2,000,000,000'],
 ]);
 
 module.exports = winWon;
