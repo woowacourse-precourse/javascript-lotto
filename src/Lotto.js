@@ -4,11 +4,11 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    Lotto.validate(numbers);
     this.#numbers = numbers;
   }
 
-  validate(numbers) {
+  static validate(numbers) {
     if (numbers.length !== LOTTO.NUMBERS_COUNT) throw new Error(ERROR.LOTTO_NUMBER_COUNT);
     if ([...new Set(numbers)].length !== numbers.length) {
       throw new Error(ERROR.LOTTO_NUMBER_OVERLAP);
