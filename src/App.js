@@ -20,9 +20,11 @@ class App {
   getPurchaseAmount() {
     Console.readLine(ASK_AMOUNTS_MESSAGE, (amount) => {
       this.checkIsInteger(amount);
-      this.checkPurchaseAmount(amount);
 
-      const numberOfLotto = amount / 1000;
+      const amountTypeofNumber = Number(amount);
+      this.checkPurchaseAmount(amountTypeofNumber);
+
+      const numberOfLotto = amountTypeofNumber / 1000;
       this.showNumberOfPurchasedLotto(numberOfLotto);
       this.createRandomLotto(numberOfLotto);
       this.showEveryLotto();
