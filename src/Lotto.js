@@ -1,3 +1,6 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+const Message = require("./Message.js");
+
 class Lotto {
   #numbers;
 
@@ -6,13 +9,30 @@ class Lotto {
     this.#numbers = numbers;
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+  getMatchCount(userNums) {
+    let matchCounts = [];
+    userNums.forEach((userNum) => {
+      matchCounts.push(this.matchLotto(userNum));
+    })
+    return matchCounts;
   }
 
-  // TODO: 추가 기능 구현
+  matchLotto(userNum) {
+    let matchNum = 0;
+    this.#numbers.forEach((lottoNumber) => {
+      if (userNum.includes(lottoNumber)) {
+        matchNum += 1;
+      }
+    })
+    return matchNum;
+  }
+
+  validate(numbers) {
+    const MAX_LENGTH = 6;
+    if (numbers.length !== MAX_LENGTH) {
+      throw new Error(Message.lottoNumberValidWarning);
+    }
+  }
 }
 
 module.exports = Lotto;

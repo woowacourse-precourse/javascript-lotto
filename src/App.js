@@ -1,6 +1,7 @@
 const Clerk = require('./Clerk.js');
 const NumberGenerator = require('./NumberGenerator.js');
 const NumberReceiver = require('./NumberReceiver.js');
+const Lotto = require('./Lotto.js');
 
 class App {
   constructor() {
@@ -13,6 +14,7 @@ class App {
     const userNumber = this.lottoNumberGenerator.getUserNumber();
     const lottoNumber = this.numberReceiver.getLottoNumber();
     const bonusNumber = this.numberReceiver.getBonusNumber();
+    const lotto = new Lotto(lottoNumber);
   }
 }
 
