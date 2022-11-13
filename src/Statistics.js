@@ -8,17 +8,17 @@ class Statistics {
   getRanking(lottoList, winning, bonus) {
     // 모든 로또 당첨 확인 후 기록
     for (let i = 0; i < lottoList.length; i++) {
-      const result = this.getResult(lottoList[i], winning, bonus);
-      this.ranking[result] += 1;
+      const RESULT = this.getResult(lottoList[i], winning, bonus);
+      this.ranking[RESULT] += 1;
     }
     this.printResult(lottoList.length);
   }
 
   getResult(numbers, winning, bonus) {
     // 로또 당첨 확인
-    const lotto = new Lotto(numbers);
-    const result = lotto.checkLotto(numbers, winning, bonus);
-    return result;
+    const LOTTO_CLASS = new Lotto(numbers);
+    const RESULT = LOTTO_CLASS.checkLotto(numbers, winning, bonus);
+    return RESULT;
   }
 
   printResult(amount) {
@@ -37,12 +37,12 @@ class Statistics {
   }
 
   getTotalPrizeMoney() {
-    const ranking1 = this.ranking[0] * PRIZE_MONEY.RANKING1;
-    const ranking2 = this.ranking[1] * PRIZE_MONEY.RANKING2;
-    const ranking3 = this.ranking[2] * PRIZE_MONEY.RANKING3;
-    const ranking4 = this.ranking[3] * PRIZE_MONEY.RANKING4;
-    const ranking5 = this.ranking[4] * PRIZE_MONEY.RANKING5;
-    return ranking1 + ranking2 + ranking3 + ranking4 + ranking5;
+    const RANKING1 = this.ranking[0] * PRIZE_MONEY.RANKING1;
+    const RANKING2 = this.ranking[1] * PRIZE_MONEY.RANKING2;
+    const RANKING3 = this.ranking[2] * PRIZE_MONEY.RANKING3;
+    const RANKING4 = this.ranking[3] * PRIZE_MONEY.RANKING4;
+    const RANKING5 = this.ranking[4] * PRIZE_MONEY.RANKING5;
+    return RANKING1 + RANKING2 + RANKING3 + RANKING4 + RANKING5;
   }
 
   getYield(totalPrizeMoney, amount) {

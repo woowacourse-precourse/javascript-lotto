@@ -23,20 +23,20 @@ class App {
 
   getLottoList(amount) {
     for (let i = 0; i < amount; i++) {
-      const lotto = this.getLotto();
-      this.lottoList.push(lotto);
+      const LOTTO_ARRAY = this.getLotto();
+      this.lottoList.push(LOTTO_ARRAY);
     }
     this.printLottoList(this.lottoList);
   }
 
   getLotto() {
-    const lotto = Random.pickUniqueNumbersInRange(
+    const LOTTO_ARRAY = Random.pickUniqueNumbersInRange(
       LOTTO.NUMBER_START,
       LOTTO.NUMBER_END,
       LOTTO.NUMBER_SELECT
     );
-    lotto.sort((x, y) => x - y);
-    return lotto;
+    LOTTO_ARRAY.sort((x, y) => x - y);
+    return LOTTO_ARRAY;
   }
 
   printLottoList(lottoList) {
@@ -63,10 +63,10 @@ class App {
   }
 
   getLottoResult() {
-    const lottoList = this.lottoList;
-    const winning = this.winning;
-    const bonus = this.bonus;
-    this.statistics.getRanking(lottoList, winning, bonus);
+    const LOTTO_LIST = this.lottoList;
+    const WINNING = this.winning;
+    const BONUS = this.bonus;
+    this.statistics.getRanking(LOTTO_LIST, WINNING, BONUS);
   }
 
   play() {

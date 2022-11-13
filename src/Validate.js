@@ -6,9 +6,9 @@ class Validate {
     // 로또 금액으로 나누어 떨어지는가?
     if (AMOUNT % LOTTO.PRICE === 0) {
       return AMOUNT / LOTTO.PRICE;
-    } else {
-      throw new Error(ERROR.AMOUNT);
     }
+
+    throw new Error(ERROR.AMOUNT);
   }
 
   checkWinningNumber(number) {
@@ -28,11 +28,10 @@ class Validate {
   }
 
   getWinningNumberArray(number) {
-    const WINNING_NUMBER_ARRAY = number
+    return number
       .replace(/ /gi, '')
       .split(',')
       .map((num) => Number(num));
-    return WINNING_NUMBER_ARRAY;
   }
 
   checkBonusNumber(number, winning) {
@@ -55,9 +54,9 @@ class Validate {
       number > LOTTO.NUMBER_END
     ) {
       return false;
-    } else {
-      return true;
     }
+
+    return true;
   }
 }
 
