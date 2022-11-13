@@ -55,4 +55,16 @@ describe("로또 클래스 테스트", () => {
       if (lottoMachine.validateWinningNumbers(["당첨번호!!", 1, 2, 3, 4, 5])) throw new Error(MESSAGE.ERROR.WINNING_NUMBER_MUST_BE_NUMBER);
     }).toThrow("[ERROR]");
   });
+
+  test("사용자에게 당첨 번호를 입력받을 때 6가지보다 적게 혹은 많이 입력했을 경우 예외 처리한다.", () => {
+    expect(() => {
+      const lottoMachine = new LottoMachine();
+      if (lottoMachine.validateWinningNumbers([1, 2, 3, 4, 5])) throw new Error(MESSAGE.ERROR.WINNING_NUMBER_COUNT);
+    }).toThrow("[ERROR]");
+
+    expect(() => {
+      const lottoMachine = new LottoMachine();
+      if (lottoMachine.validateWinningNumbers([1, 2, 3, 4, 5, 6, 7])) throw new Error(MESSAGE.ERROR.WINNING_NUMBER_COUNT);
+    }).toThrow("[ERROR]");
+  });
 });
