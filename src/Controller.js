@@ -29,13 +29,13 @@ class Controller{
   }
 
   getAutoLottos(purchaseCnt){
-    const duplicateCaseCheck = new Set();
-    while (duplicateCaseCheck.size < purchaseCnt){
+    const nonDuplicateLottery = new Set();
+    while (nonDuplicateLottery.size < purchaseCnt){
       const baselotto = randomNum();
-      duplicateCaseCheck.add(baselotto);
+      nonDuplicateLottery.add(baselotto);
       printAutoLottos(baselotto);
     }
-    this.lottos = [...duplicateCaseCheck];
+    this.lottos = [...nonDuplicateLottery];
     this.inputForAnswerNum();
   }
 
