@@ -19,6 +19,10 @@ class User {
   set lottoCount(lottoCount) {
     this.#lottoCount = lottoCount;
   }
+
+  calculateLottoCount() {
+    this.lottoCount = this.amount * util.AMOUNT_PER_GAME;
+  }
 }
 
 module.exports = User;
