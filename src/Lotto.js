@@ -26,23 +26,24 @@ class Lotto {
     });
   }
 
-  getUserLottoNumber(computerNumberArray) {
+  getUserLottoNumber(computerNumberArray,amountOfMoney) {
     MissionUtils.Console.readLine(
       "당첨 번호를 입력해 주세요.\n",
       (userLottoNumber) => {
-        this.getUserBonusNumber(computerNumberArray, userLottoNumber);
+        this.getUserBonusNumber(computerNumberArray, userLottoNumber,amountOfMoney);
       }
     );
   }
 
-  getUserBonusNumber(computerNumberArray, userLottoNumber) {
+  getUserBonusNumber(computerNumberArray, userLottoNumber,amountOfMoney) {
     MissionUtils.Console.readLine(
       "보너스 번호를 입력해 주세요.\n",
-      (bonusMoney) => {
+      (bonusNumber) => {
         this.calculatePrizeLottery(
           computerNumberArray,
           userLottoNumber,
-          Number(bonusMoney)
+          Number(bonusNumber),
+          amountOfMoney
         );
       }
     );
@@ -54,7 +55,7 @@ class Lotto {
       computerNumberArray.push(this.setComputerRandomNumber());
     }
     this.showAmountOfMoney(amountOfMoney);
-    this.showLottoArrays(computerNumberArray);
+    this.showLottoArrays(computerNumberArray,amountOfMoney);
   }
 
   showAmountOfMoney(amount) {
@@ -68,24 +69,24 @@ class Lotto {
     return quotient;
   }
 
-  showLottoArrays(computerNumberArray) {
+  showLottoArrays(computerNumberArray,amountOfMoney) {
     computerNumberArray.forEach((e) => {
       MissionUtils.Console.print(e);
     });
-    this.getUserLottoNumber(computerNumberArray);
+    this.getUserLottoNumber(computerNumberArray,amountOfMoney);
   }
 
-  calculatePrizeLottery(computerNumberArray, userLottoNumber, bonusMoney) {
+  calculatePrizeLottery(computerNumberArray, userLottoNumber, bonusNumber,amountOfMoney) {
     let userLottoArray = userLottoNumber.split(",").map((e) => Number(e));
     let countArray = [];
     let counted = 0;
     computerNumberArray.forEach((eachNumberArray) => {
-      counted = this.checkLottery(eachNumberArray, userLottoArray, bonusMoney);
+      counted = this.checkLottery(eachNumberArray, userLottoArray, bonusNumber);
       countArray.push(counted);
     });
-    this.checkPrizeAmount(countArray);
+    this.checkPrizeAmount(countArray,amountOfMoney);
   }
-  checkLottery(eachNumberArray, userLottoArray, bonusMoney) {
+  checkLottery(eachNumberArray, userLottoArray, bonusNumber) {
     let count = 0;
     let checkBonus = 0;
     eachNumberArray.forEach((comNumber) => {
@@ -94,23 +95,24 @@ class Lotto {
       }
     });
     if (count === 5) {
-      let bonus = this.checkLotteryHelper(eachNumberArray, bonusMoney);
+      let bonus = this.checkLotteryHelper(eachNumberArray, bonusNumber);
       checkBonus = bonus;
     }
     return count + checkBonus;
   }
 
-  checkLotteryHelper(eachNumberArray, bonusMoney) {
-    if (eachNumberArray.includes(bonusMoney)) {
+  checkLotteryHelper(eachNumberArray, bonusNumber) {
+    if (eachNumberArray.includes(bonusNumber)) {
       return 2;
     }
   }
-  checkPrizeAmount(countArray){
+  checkPrizeAmount(countArray,amountOfMoney){
     let prizeObj={}
     for(const val of countArray){
       prizeObj[val]=(prizeObj[val]||0)+1
     }
     this.showPrizeLottery(prizeObj)
+    this.rateofReturn(prizeObj,amountOfMoney)
   }
   showPrizeLottery(prizeObj) {
     MissionUtils.Console.print(`3개 일치 (5000원) - ${prizeObj['3'] ? prizeObj['3'] : 0}개`);
@@ -119,6 +121,38 @@ class Lotto {
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${prizeObj['6'] ? prizeObj['6'] : 0}개`);
     MissionUtils.Console.print(`5개 일치,보너스 볼 일치 (3,000,000원) - ${prizeObj['7'] ? prizeObj['7'] : 0}개`);
     MissionUtils.Console.close()
+  }
+  rateofReturn(prizeObj,amountOfMoney){
+    let fifthPrize=5000
+    let forthPrize=50000
+    let thirdPrize=1500000
+    let secondPrize=3000000
+    let firstPrize=2000000000
+    let totalMoney=0
+    for(const num in prizeObj){
+      if(num==='3') totalMoney+=(prizeObj[num]*fifthPrize)
+      if(num==='4') totalMoney+=(prizeObj[num]*forthPrize)
+      if(num==='5') totalMoney+=(prizeObj[num]*thirdPrize)
+      if(num==='7') totalMoney+=(prizeObj[num]*secondPrize)
+      if(num==='6') totalMoney+=(prizeObj[num]*firstPrize)
+    }
+    this.calculateRate(totalMoney,amountOfMoney)
+  }
+
+  calculateRate(totalMoney,amountOfMoney){
+    let inputMoney=amountOfMoney*1000
+    let total=totalMoney-inputMoney
+    let percentOfMoney=total/inputMoney
+    let sortedMoney=this.round(percentOfMoney)
+    this.showRate(sortedMoney)
+  }
+  round(num) {
+    if(num<0) return -100
+    let m = Number((Math.abs(num) * 100).toPrecision(15));
+    return Math.round(m) / 10 * Math.sign(num);
+}
+  showRate(money){
+    MissionUtils.Console.print(`총 수익률은 ${money.toFixed(1)}% 입니다.`)
   }
 }
 
