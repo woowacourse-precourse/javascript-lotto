@@ -2,14 +2,18 @@ const { Console } = require("@woowacourse/mission-utils");
 const messages = require("../constants/messages");
 
 class View {
-  constructor(controller) {
+  constructor (controller) {
     this.controller = controller;
   }
 
-  getPurchasingAmountFromUser() {
+  getPurchasingAmountFromUser () {
     Console.readLine(messages.PURCHASING_AMOUNT_MESSAGE, (userInput) => {
       this.controller.userNumber.setPurchasingAmount(userInput);
     });
+  }
+
+  printPurchasingAmountErrorMessage () {
+    Console.print(messages.PURCHASING_AMOUNT_ERROR_MESSAGE);
   }
 }
 
