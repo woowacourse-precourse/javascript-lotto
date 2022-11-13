@@ -1,4 +1,4 @@
-const { Console, Random } = require("@woowacourse/mission-utils");
+const { Console } = require("@woowacourse/mission-utils");
 
 const User = require("../src/User");
 const Lotto = require("./Lotto");
@@ -12,13 +12,17 @@ const {
 } = require("../src/utils/utils");
 
 class App {
-  play() {}
+  play() {
+    this.getPurchaseAmount();
+  }
 
   getPurchaseAmount() {
     Console.readLine(MESSAGE.ENTER_PURCHASE_AMOUNT, (amount) => {
       const trimmedAmount = amount.trim();
       this.validateInput(trimmedAmount);
       this.user = new User(trimmedAmount);
+      this.printBoughtLottos();
+      this.getWinningNumbers();
     });
   }
 
@@ -38,6 +42,7 @@ class App {
       const trimmedNumbers = numbers.trim();
       this.validateWinningNumbers(trimmedNumbers);
       this.winningNumbers = new Lotto(this.parseNumbers(trimmedNumbers));
+      this.getBonusNumber();
     });
   }
 
