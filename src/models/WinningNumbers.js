@@ -1,9 +1,13 @@
 class WinningNumbers {
-  winningNumbers;
+  #winningNumbers;
 
   constructor(input) {
     this.validWinningNumbers(input);
-    this.winningNumbers = this.winningNumbersConverter(input);
+    this.#winningNumbers = this.winningNumbersConverter(input);
+  }
+
+  get winningNumbers() {
+    return this.#winningNumbers;
   }
 
   winningNumbersConverter(numbers) {

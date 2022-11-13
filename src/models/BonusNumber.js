@@ -1,9 +1,13 @@
 class BonusNumber {
-  bonusNumber;
+  #bonusNumber;
 
   constructor(input) {
     this.validBonusNumber(input);
-    this.bonusNumber = parseInt(input);
+    this.#bonusNumber = parseInt(input);
+  }
+
+  get bonusNumber() {
+    return this.#bonusNumber;
   }
 
   validBonusNumber(input) {

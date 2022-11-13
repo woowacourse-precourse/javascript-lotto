@@ -1,29 +1,34 @@
 class LottoGame {
-  matchedWinningNumberCount;
-  matchedBonusNumber;
+  #matchedWinningNumberCount;
+  #matchedBonusNumber;
 
   constructor(lottoNumber, winningNumber, bonusNumber) {
-    this.lottoNumber = lottoNumber;
-    this.winningNumber = winningNumber;
-    this.bonusNumber = bonusNumber;
-    this.matchedWinningNumberCount = this.matchWinningNumber();
-    this.matchedBonusNumber = this.matchBonusNumber();
+    this.#matchedWinningNumberCount = this.matchWinningNumber(lottoNumber, winningNumber);
+    this.#matchedBonusNumber = this.matchBonusNumber(lottoNumber, bonusNumber);
   }
 
-  matchWinningNumber() {
-    const winningNumberSet = new Set(this.winningNumber);
+  get matchedWinningNumberCount() {
+    return this.#matchedWinningNumberCount;
+  }
+
+  get matchedBonusNumber() {
+    return this.#matchedBonusNumber;
+  }
+
+  matchWinningNumber(lottoNumber, winningNumber) {
+    const winningNumberSet = new Set(winningNumber);
     let count = 0;
 
-    for (let i = 0; i < this.lottoNumber.length; i++) {
-      if (winningNumberSet.has(this.lottoNumber[i])) {
+    for (let i = 0; i < lottoNumber.length; i++) {
+      if (winningNumberSet.has(lottoNumber[i])) {
         count += 1;
       }
     }
     return count;
   }
 
-  matchBonusNumber() {
-    return this.lottoNumber.includes(this.bonusNumber);
+  matchBonusNumber(lottoNumber, bonusNumber) {
+    return lottoNumber.includes(bonusNumber);
   }
 }
 

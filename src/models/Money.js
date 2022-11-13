@@ -1,9 +1,13 @@
 class Money {
-  money;
+  #money;
 
   constructor(money) {
     this.validMoney(money);
-    this.money = parseInt(money);
+    this.#money = parseInt(money);
+  }
+
+  get money() {
+    return this.#money;
   }
 
   validMoney(money) {
