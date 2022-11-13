@@ -30,7 +30,9 @@ class LottoController {
                 this.lottoPublisher.receiveUserInputBonusNumber(input);
                 const purchasedLottos = customer.list();
                 const matchedLottoNumbers = purchasedLottos.map((lotto) =>
-                  this.lottoPublisher.checkMatchedLottoNumbers(lotto.numbers)
+                  this.lottoPublisher.checkMatchedLottoNumbersRank(
+                    lotto.numbers
+                  )
                 );
                 const arranged = this.lottoViewer.arrangeLottoResult(
                   matchedLottoNumbers,
