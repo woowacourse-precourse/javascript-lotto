@@ -45,7 +45,9 @@ class LottoView {
     this.readLine('', (input) => {
       if (bonusValidation(input, this.LottoBuilder.WinningNumber)) {
         this.LottoBuilder.bonusNumber = input;
-        this.setLotto();
+
+        const lotto = this.setLotto();
+        this.showOutputStats(lotto.stats, lotto.yield);
         this.finish();
       }
     });
@@ -54,10 +56,10 @@ class LottoView {
   setLotto() {
     const lotto = this.LottoBuilder.build();
     lotto.progress();
-    this.setOutputStats(lotto.stats, lotto.yield);
+    return lotto;
   }
 
-  setOutputStats(lottoRanks, lottoYield) {
+  showOutputStats(lottoRanks, lottoYield) {
     this.print(INPUT_TEXT.LINE_BREAK);
     this.print(STATS_TEXT.WINNING_STATS);
     this.print(STATS_TEXT.HORIZONTAL_LINE);
