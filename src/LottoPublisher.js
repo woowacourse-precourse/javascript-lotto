@@ -1,4 +1,7 @@
-const { isValidLottoNumbers } = require('../../backup/src/new/util/utils');
+const {
+  isValidLottoNumbers,
+  isValidLottoBonusNumber
+} = require('../../backup/src/new/util/utils');
 
 class LottoPublisher {
   #winningNumbers = [];
