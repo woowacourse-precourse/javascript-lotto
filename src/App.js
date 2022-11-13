@@ -55,6 +55,11 @@ class App {
     });
   }
 
+  getBonusNumber() {
+    Console.readLine("\n보너스 번호를 입력해 주세요.", (bonusNum) => {
+      this.bonusNum = bonusNum;
+    });
+  }
   play() {}
 }
 
