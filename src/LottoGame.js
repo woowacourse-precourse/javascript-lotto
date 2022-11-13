@@ -9,6 +9,7 @@ class LottoGame {
     this.purchaseCount = 0;
     this.userLottoNumbers = [];
     this.winningNumber = [];
+    this.bonusNumber = 0;
   }
 
   start() {
@@ -37,6 +38,12 @@ class LottoGame {
   getWinningNumber() {
     MissionUtils.Console.readLine(`${CONSOLE_MESSAGE.winningNumber}\n`, (input) => {
       this.winningNumber = input.split(',').map(Number);
+    });
+  }
+
+  getBonusNumber() {
+    MissionUtils.Console.readLine(`${CONSOLE_MESSAGE.bonusNumber}\n`, (input) => {
+      this.bonusNumber = Number(input);
     });
   }
 
