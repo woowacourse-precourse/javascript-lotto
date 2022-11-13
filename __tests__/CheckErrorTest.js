@@ -18,4 +18,10 @@ describe("CheckError 클래스 테스트", () => {
       CheckError.checkPurchaseAmount("");
     }).toThrow("[ERROR]");
   });
+
+  test("구입 금액이 1000원 이하일 경우 예외 처리 - 0", () => {
+    expect(() => {
+      CheckError.checkPurchaseAmount(0);
+    }).toThrow("[ERROR]");
+  });
 });
