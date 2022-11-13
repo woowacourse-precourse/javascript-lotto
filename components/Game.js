@@ -81,6 +81,10 @@ class Game {
     );
     this.printLottoResult(lottoYield);
   }
+
+  printLottoResult(lottoYield) {
+    Functions.printResult(this.#winningResult, lottoYield);
+  }
 }
 
 module.exports = Game;

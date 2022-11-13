@@ -54,13 +54,32 @@ class Functions {
     return winningResult;
   }
 
-  static calLottoYield(purchaseAmount, lottoRank) {
+  static calLottoYield(purchaseAmount, winningResult) {
     return (
       PRIZE.ARRAY.reduce(
-        (total, prize, index) => total + prize * lottoRank[index],
+        (acc, prize, index) => acc + prize * winningResult[index],
         INIT
       ) / purchaseAmount.toFixed(FIRST_DIGIT)
     );
+  }
+
+  static printLottoResult(winningResult, lottoYield) {
+    const [firstCount, secondCount, thirdCount, fourthCount, fifthCount] =
+      winningResult;
+
+    Console.print(MESSAGE.WINNING_STATISTICS);
+    Console.print(MESSAGE.HYPHENS);
+    Console.print(`${MATCH.THREE}개 일치 (${PRIZE.FIFTH}원) - ${fifthCount}개`);
+    Console.print(
+      `${MATCH.FOUR}개 일치 (${PRIZE.FOURTH}원) - ${fourthCount}개`
+    );
+    Console.print(`${MATCH.FIVE}개 일치 (${PRIZE.THIED}원) - ${thirdCount}개`);
+    Console.print(
+      `${MATCH.FIVE}개 일치, 보너스 볼 일치 (${PRIZE.SECOND}원) - ${secondCount}개`
+    );
+    Console.print(`${MATCH.SIX}개 일치 (${PRIZE.FIRST}원) - ${firstCount}개`);
+    Console.print(MESSAGE.YIELD(lottoYield));
+    Console.close();
   }
 }
 
