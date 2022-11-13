@@ -85,6 +85,7 @@ class App {
   comparePoint() {
     for (let num of this.lottoArr.flat()) {
       const sameCnt = this.sameCheck(num);
+      if(sameCnt > 2) this.checkReward(sameCnt);
     }
   }
 
@@ -94,6 +95,29 @@ class App {
       if (this.userNum.includes(number)) sameCnt += 1;
     });
     return sameCnt;
+  }
+
+  checkReward(cnt) {
+    if (cnt === 3) {
+      this.winnig[0] += 1;
+      this.reward += 5000;
+    }
+    if (cnt === 4) {
+      this.winnig[1] += 1;
+      this.reward += 50000;
+    }
+    if (cnt === 5) {
+      if (this.lottoArr.includes(this.bonus)) {
+        this.winnig[3] += 1;
+        this.reward += 30000000;
+      }
+      this.winnig[2] += 1;
+      this.reward += 1500000;
+    }
+    if (cnt === 6) {
+      this.winnig[4] += 1;
+      this.reward += 2000000000;
+    }
   }
 }
 
