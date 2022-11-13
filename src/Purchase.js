@@ -1,4 +1,4 @@
-class Validation {
+class Purchase {
   static purchaseInput(purchase) {
     if (isNaN([...purchase]))
       throw new Error("[ERROR] 문자열이 포함되었습니다.");
@@ -7,4 +7,4 @@ class Validation {
   }
 }
 
-module.exports = Validation;
+module.exports = Purchase;
