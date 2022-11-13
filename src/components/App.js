@@ -19,22 +19,17 @@ class App {
     Console.readLine('구입 금액을 입력해주세요.\n', (price) => {
       this.validatePrice(price);
 
-      this.issueLotto(price);
+      this.buyLotto(price);
     });
   }
 
-  issueLotto(price) {
+  buyLotto(price) {
     const numOfLotto = price / LOTTO_PRICE;
 
     Console.print(`\n${numOfLotto}개를 구매했습니다.`);
-    Array.from({ length: numOfLotto }).forEach(() => {
-      const { MIN, MAX } = RANGE_OF_LOTTO_NUMBER;
 
-      const newLotto = Random.pickUniqueNumbersInRange(
-        MIN,
-        MAX,
-        TOTAL_COUNTS
-      ).sort((a, b) => a - b);
+    Array.from({ length: numOfLotto }).forEach(() => {
+      const newLotto = this.issueLotto();
 
       this.#issuedLottos = [...this.#issuedLottos, newLotto];
 
@@ -42,6 +37,14 @@ class App {
     });
 
     this.getWinningNumber();
+  }
+
+  issueLotto() {
+    const { MIN, MAX } = RANGE_OF_LOTTO_NUMBER;
+
+    return Random.pickUniqueNumbersInRange(MIN, MAX, TOTAL_COUNTS).sort(
+      (a, b) => a - b
+    );
   }
 
   getWinningNumber() {
