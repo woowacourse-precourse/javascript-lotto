@@ -31,7 +31,7 @@ class LottoGame {
     ).sort((a, b) => a - b);
   }
 
-  craeteLottos(lottoCount) {
+  makeLottos(lottoCount) {
     const lottos = [];
     for (let i = 0; i < lottoCount; i++) {
       const lotto = new Lotto(LottoGame.generateLottoNumbers());
@@ -42,7 +42,7 @@ class LottoGame {
 
   countLottos(money) {
     this.user.setLottoCount(lottoCount(money));
-    this.user.setLottos(this.craeteLottos(this.user.getLottoCount()));
+    this.user.setLottos(this.makeLottos(this.user.getLottoCount()));
     LottoView.printLottoCount(this.user.getLottoCount());
     LottoView.printUserLottos(this.user.getLottos());
     this.createWinLottoNumbers();
@@ -118,9 +118,9 @@ class LottoGame {
     Object.entries(matchLottos).forEach(([matchingNumbers, count]) => {
       if (count) {
         totalRate += ((PRIZE_MONEY[matchingNumbers] * count) / amountPaid) * 100;
-        totalRate = totalRate.toFixed(1);
       }
     });
+    totalRate = Number(totalRate).toFixed(1);
     LottoView.printRate(totalRate);
   }
 }
