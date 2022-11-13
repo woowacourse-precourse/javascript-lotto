@@ -22,7 +22,19 @@ class App {
       }
 
       amount = userInput / LOTTO_PRICE;
+      this.printLottoNumber(amount, userInput);
     });
+  }
+
+  printLottoNumber(amount, investment) {
+    MissionUtils.Console.print(`${amount}개를 구매했습니다.`);
+    const LOTTO_NUMBER_ARRAY = [];
+
+    for (let number = 0; number < amount; number++) {
+      const LOTTO_NUMBER = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      LOTTO_NUMBER_ARRAY.push(LOTTO_NUMBER);
+      MissionUtils.Console.print(`[${LOTTO_NUMBER.sort((a, b) => a - b).join(', ')}]`);
+    }
   }
 }
 
