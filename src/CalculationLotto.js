@@ -4,8 +4,6 @@ const {
 const { print } = require('./lib/Utils');
 
 class CalculationLotto {
-  lottoRate = 0;
-
   lottoResult = {
     [LOTTO_RESULT_TYPE.three]: {
       count: 0,
@@ -37,6 +35,8 @@ class CalculationLotto {
   matchCount = 0;
 
   isBonusMatch = false;
+
+  lottoRate = 0;
 
   lottoPrice = 0;
 
@@ -95,7 +95,7 @@ class CalculationLotto {
     return this;
   }
 
-  printResult() {
+  printWinResult() {
     print(LOTTO_RESURL_STATISTICS_MESSAGE);
 
     Object.keys(this.lottoResult).forEach((key) => {
@@ -103,8 +103,12 @@ class CalculationLotto {
       return print(`${value.text}${value.count}개`);
     });
 
+    return this;
+  }
+
+  printRate() {
     print(`총 수익률은 ${this.lottoRate || 0}%입니다.`);
-    return true;
+    return this;
   }
 }
 
