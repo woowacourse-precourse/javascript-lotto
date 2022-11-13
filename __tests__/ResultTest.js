@@ -49,14 +49,16 @@ describe("결과 테스트", () => {
 
     result.getFifthRank = jest.fn();
     result.getFourthRank = jest.fn();
-    result.getThirdRankOrSecondRank = jest.fn();
+    result.getThirdRank = jest.fn();
+    result.getSecondRank = jest.fn();
     result.getFirstRank = jest.fn();
 
     result.getRanking();
 
     expect(result.getFifthRank).toHaveBeenCalled();
     expect(result.getFourthRank).toHaveBeenCalled();
-    expect(result.getThirdRankOrSecondRank).toHaveBeenCalled();
+    expect(result.getThirdRank).toHaveBeenCalled();
+    expect(result.getSecondRank).toHaveBeenCalled();
     expect(result.getFirstRank).toHaveBeenCalled();
   });
 
@@ -94,7 +96,8 @@ describe("결과 테스트", () => {
     );
 
     result.score = 5;
-    result.getThirdRankOrSecondRank();
+    result.matchBonus = false;
+    result.getThirdRank();
 
     expect(result.rank).toStrictEqual([0, 0, 1, 0, 0]);
   });
@@ -108,7 +111,7 @@ describe("결과 테스트", () => {
 
     result.score = 5;
     result.matchBonus = true;
-    result.getThirdRankOrSecondRank();
+    result.getSecondRank();
 
     expect(result.rank).toStrictEqual([0, 1, 0, 0, 0]);
   });
