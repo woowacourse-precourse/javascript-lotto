@@ -7,37 +7,36 @@ const Lotto = class extends ErrorBoundary {
   constructor(numbers) {
     super();
     this.#numbers = numbers;
-    this.setup();
-  }
-
-  setup() {
-    const validateLottoCallback = () => this.validate(this.#numbers);
-    this.errorLogger.onCallback(validateLottoCallback);
+    this.setup(this.#numbers);
   }
 
   validate(numbers) {
     const isNumberLengthValid = numbers.length === 6;
-    const isNumberRangeDuplicated = numbers.length === [...new Set(numbers)].length;
+    const isNumberNotDuplicated = numbers.length === [...new Set(numbers)].length;
     const isNumberRangeValid = numbers.every(number => number >= 1 && number <= 45);
 
-    const isLottoIsValid = isNumberLengthValid && isNumberRangeDuplicated && isNumberLengthValid;
-    if (isLottoIsValid === true) {
+    const isLottoValid = isNumberLengthValid && isNumberNotDuplicated && isNumberRangeValid;
+    if (isLottoValid === true) {
       return { status: true };
     }
 
-    const lottoErrorMessage = this.getLottoErrorMessage({
+    const lottoErrorMessage = this.getErrorMessage({
       isNumberLengthValid,
-      isNumberRangeDuplicated,
+      isNumberNotDuplicated,
       isNumberRangeValid,
     });
 
     return { status: false, message: lottoErrorMessage };
   }
 
-  getLottoErrorMessage({ isNumberLengthValid, isNumberRangeDuplicated, isNumberRangeValid }) {
-    if (isNumberLengthValid === false) return LOTTO_ERROR_MESSAGE.LENGTH;
-    if (isNumberRangeDuplicated === false) return LOTTO_ERROR_MESSAGE.DUPLICATED;
-    if (isNumberRangeValid === false) return LOTTO_ERROR_MESSAGE.RANGE;
+  static getErrorMessage({ isNumberLengthValid, isNumberNotDuplicated, isNumberRangeValid }) {
+    const { LENGTH, DUPLICATED, RANGE, DEFAULT } = LOTTO_ERROR_MESSAGE;
+
+    if (isNumberLengthValid === false) return LENGTH;
+    if (isNumberNotDuplicated === false) return DUPLICATED;
+    if (isNumberRangeValid === false) return RANGE;
+
+    return DEFAULT;
   }
 };
 
