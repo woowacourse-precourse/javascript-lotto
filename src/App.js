@@ -49,7 +49,7 @@ class App {
   }
 
   getResult() {
-    const result = new Result(this.lottoArray, this.winningNumbers, this.bonusNumber);
+    const result = new Result(this.lottoArray, this.winningNumbers, this.bonusNumber, this.money);
   }
 }
 
