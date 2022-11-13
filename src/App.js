@@ -6,8 +6,14 @@ class App {
 
   paymentInput() {
     MissionUtils.Console.readLine("구입금액을 입력해주세요.", (answer) => {
-      console.log(`구입금액: ${answer}`);
+      this.isCorrectRange(answer);
     });
+  }
+  isCorrectRange(number) {
+    if (number % 1000 !== 0) {
+      return MissionUtils.Console.print("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+    console.log(`구입금액: ${number}`);
   }
   play() {
     this.paymentInput();
