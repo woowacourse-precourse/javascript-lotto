@@ -10,6 +10,8 @@
 
 ## :file_folder: 파일 디렉토리 구조
 
+![Alt text](../images/3%EC%A3%BC%EC%B0%A8%20%EC%84%A4%EA%B3%84.png)
+
 1. mvc 패턴화
 
    model
@@ -65,21 +67,21 @@
 
 ### 단위 테스트
 
-1. :heavy_exclamation_mark: 구입 금액
+:heavy_exclamation_mark: 구입 금액
 
 - 입력이 1,000으로 나누어 떨어지는 자연수가 아닐 경우
 
   - 숫자 이외의 문자가 들어 있는 경우
   - 자연수이지만 1,000으로 나누어 떨어지지 않을 경우
 
-2. :heavy_exclamation_mark: 당첨 번호
+:heavy_exclamation_mark: 당첨 번호
 
 - 1~45 사이의 숫자/',' 이외의 다른 문자가 들어 있는 경우
 - 총 숫자 개수가 6개가 아닌 경우
 - 숫자들이 ','를 기준으로 구분되지 않은 경우
 - 중복되는 숫자가 있는 경우
 
-3. :heavy_exclamation_mark: 보너스 번호
+:heavy_exclamation_mark: 보너스 번호
 
 - 입력이 1~45 사이의 자연수가 아닌 경우
 
