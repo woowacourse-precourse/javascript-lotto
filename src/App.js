@@ -12,6 +12,7 @@ class App {
   play() {
     this.getMoney();
     this.getAmountOfLotto();
+    this.buyLotto();
   }
 
   getMoney() {
@@ -23,6 +24,12 @@ class App {
 
   getAmountOfLotto(){
     this.amountOfLotto = this.#money / 1000;
+  }
+
+  buyLotto(){
+    for(let i = 0; i < this.amountOfLotto; i++){
+      this.userLotto.push(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
+    }
   }
 
   validateMoney(money) {
