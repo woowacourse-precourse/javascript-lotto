@@ -34,11 +34,11 @@ class App {
   makeTicket() {
     let tickets = [];
     const number = this.lottoIssuance();
-    const randomNumber = this.makeRandomLottoNumber();
-    randomNumber.sort((a, b) => {
-      return a - b;
-    });
     for (let i = 0; i < number; i++) {
+      const randomNumber = this.makeRandomLottoNumber();
+      randomNumber.sort((a, b) => {
+        return a - b;
+      });
       tickets.push(randomNumber);
     }
     // return tickets;
