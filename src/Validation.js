@@ -68,6 +68,18 @@ class Validation {
     this.checkDuplicatedNumber(numbers);
     return true;
   };
+
+  checkBonusNumber(number, winNumbers) {
+    if (number < 1 || number > 45)
+      throw new Error("[ERROR] 보너스 번호의 범위는 1~45여야 합니다.");
+
+    if (isNaN(number))
+      throw new Error("[ERROR] 보너스 번호는 숫자이어야 합니다.");
+
+    if (winNumbers.includes(number))
+      throw new Error("[ERROR] 보너스 번호가 당첨 번호에 포함되어 있습니다.");
+    return true;
+  }
 }
 
 module.exports = Validation;
