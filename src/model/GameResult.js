@@ -8,14 +8,10 @@ class GameResult {
     this.createResult();
   }
 
-  getRanks() {
-    return this.userLottos.forEach((lotto) => {
-      lotto.getRank(this.winningNumbers, this.bonusNumber);
+  createRanks() {
+    this.userLottos.forEach((lotto) => {
+      this.ranks.push(lotto.getRank(this.winningNumbers, this.bonusNumber));
     });
-  }
-
-  createResult() {
-    this.ranks = this.getRanks();
   }
 }
 
