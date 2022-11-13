@@ -21,7 +21,7 @@ const INITIAL_STATICS = {
   '5andBonus': 0,
 };
 
-const WINNIG_PRICES = {
+const WINNING_PRICES = {
   3: 5000,
   4: 50000,
   5: 1500000,
@@ -35,5 +35,5 @@ module.exports = {
   TOTAL_COUNTS,
   ERROR_MESSAGES,
   INITIAL_STATICS,
-  WINNIG_PRICES,
+  WINNING_PRICES,
 };
