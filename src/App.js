@@ -175,6 +175,7 @@ class App {
       Console.print(`${PRINT_STRING[idx]}${element}개`);
     });
     this.getRateOfReturn();
+    this.exitLottoGame();
   }
 
   getRateOfReturn() {
@@ -186,6 +187,10 @@ class App {
       .toString()
       .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
     Console.print(`총 수익률은 ${rateOfReturnString}%입니다.`);
+  }
+
+  exitLottoGame() {
+    Console.close();
   }
 }
 
