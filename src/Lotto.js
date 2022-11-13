@@ -13,7 +13,7 @@ class Lotto {
   startGame() {
     ConsoleWork.print(`${this.#numbers / 1000}${Message.PURCHASE_MESSAGE}`);
     const lottoList = this.makeLottoList(this.#numbers / 1000);
-    ConsoleWork.print(lottoList);
+    this.printLotttoList(lottoList);
   }
 
   makeLottoList(numberOfLotto) {
@@ -34,6 +34,12 @@ class Lotto {
       }
     }
     return result;
+  }
+
+  printLotttoList(lottoList) {
+    for (let i = 0; i < lottoList.length; i++) {
+      ConsoleWork.print(lottoList[i]);
+    }
   }
 }
 
