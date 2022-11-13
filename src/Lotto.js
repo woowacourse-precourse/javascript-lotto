@@ -11,33 +11,28 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (this.isNotVaildLength(numbers)) {
-      this.utils.throwError(ERROR.NOT_SIX_NUMBERS);
-    }
-    if (this.isNotDiffNumbers(numbers)) {
-      this.utils.throwError(ERROR.DUPLICATE_NUMBERS);
-    }
+    this.isNotVaildLength(numbers);
+    this.isNotDiffNumbers(numbers);
 
     const orderedNumbers = numbers.sort((a, b) => a - b);
-    if (
-      this.isNotInVaildRange(orderedNumbers[0]) ||
-      this.isNotInVaildRange(orderedNumbers[5])
-    ) {
-      this.utils.throwError(ERROR.NOT_IN_VAILD_RANGE);
-    }
+    this.isNotInVaildRange(orderedNumbers[0]);
+    this.isNotInVaildRange(orderedNumbers[5]);
   }
 
   isNotVaildLength(numbers) {
-    return numbers.length !== LOTTO_LENGTH;
+    if (numbers.length !== LOTTO_LENGTH)
+      this.utils.throwError(ERROR.NOT_SIX_NUMBERS);
   }
 
   isNotDiffNumbers(numbers) {
     const numberSet = new Set(numbers);
-    return numberSet.size !== LOTTO_LENGTH;
+    if (numberSet.size !== LOTTO_LENGTH)
+      this.utils.throwError(ERROR.DUPLICATE_NUMBERS);
   }
 
   isNotInVaildRange(number) {
-    return !(+number > 0 && +number <= 45);
+    if (!(+number > 0 && +number <= 45))
+      this.utils.throwError(ERROR.NOT_IN_VAILD_RANGE);
   }
 
   get() {
@@ -45,9 +40,7 @@ class Lotto {
   }
 
   setBonusNum(number) {
-    if (this.isNotInVaildRange(number)) {
-      this.utils.throwError(ERROR.NOT_IN_VAILD_RANGE);
-    }
+    this.isNotInVaildRange(number);
     this.#numbers.push(number);
   }
 }
