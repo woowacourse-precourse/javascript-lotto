@@ -20,7 +20,7 @@ class Console {
   }
 
   static printLotto(lottos) {
-    lottos.forEach((lotto) => Console.print(lotto));
+    lottos.forEach((lotto) => Console.print(`[${lotto.join(", ")}]`));
   }
 }
 
