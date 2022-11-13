@@ -39,8 +39,9 @@ class App {
   }
   printLottoNumber(numbersList,number){
     for(let i=0;i<numbersList.length;i++){
-      let print=sort(numbersList[i]);
-      MissionUtils.Console.print(`${print}`);
+      let print=numbersList[i].split(',');
+      print.sort((a,b)=>a-b);
+      MissionUtils.Console.print(`[${print}]`);
     }
     this.compare(numbersList,number);
   }
