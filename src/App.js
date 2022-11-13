@@ -69,14 +69,17 @@ class App {
     MissionUtils.Console.print('\n당첨 통계\n---');
     this.#totalResults = this.#tickets
       .map((ticket) => ticket.calculateNumbers(this.#answerNumbers, this.#bonusNumber));
-    // MissionUtils.Console.print(this.#totalResults);
-    // let rewards = 0;
+    let rewards = 0;
     RANK.forEach((rank) => {
       const count = this.#totalResults.filter((result) => result === rank.rank).length;
       MissionUtils.Console.print(`${rank.description} - ${count}개`);
-      // rewards += rank.money * count;
+      rewards += rank.money * count;
     });
-    // MissionUtils.Console.print(`총 수익률은 ${(rewards / this.#paid) * 100}%입니다.`);
+    MissionUtils.Console.print(`총 수익률은 ${this.profitRate(rewards, this.#paid)}%입니다.`);
+  }
+
+  profitRate(rewards, paid) {
+    return ((rewards / paid) * 100).toFixed(1);
   }
 }
 
