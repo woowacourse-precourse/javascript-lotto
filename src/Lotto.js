@@ -3,6 +3,8 @@ const Message = require("./Message");
 const AutoLotto = require("./AutoLotto");
 const Budget = require("./Budget");
 const Constant = require("./constant/Constant");
+const ExceptionHandler = require("./ExceptionHandler");
+const Prize = require("./Prize");
 
 class Lotto {
   #numbers;
@@ -10,6 +12,9 @@ class Lotto {
   constructor(numbers) {
     this.#numbers = numbers;
     this.bonusNumber = 0;
+
+    this.winningCount = 0;
+    this.prize = new Prize();
 
     this.budget = new Budget();
     this.autoLotto = new AutoLotto();
@@ -34,6 +39,10 @@ class Lotto {
   }
 
   saveBudget(input) {
+    ExceptionHandler.isNotaNumber(input);
+    ExceptionHandler.budgetUnit(input);
+
+    this.budget.budget = parseInt(input);
     this.budget.divideBudget(input);
   }
 
@@ -50,9 +59,14 @@ class Lotto {
     this.autoLotto.makeRandomLottoArray(count);
   }
 
+  autoLottoArraytoString(array) {
+    let stringRandomLottoArray = "[";
+    return stringRandomLottoArray + array.join(", ") + "]";
+  }
+
   printAutoLotto() {
     this.autoLotto.randomLottoArray.forEach((array) => {
-      View.output(array);
+      View.output(this.autoLottoArraytoString(array));
     });
   }
 
@@ -66,7 +80,13 @@ class Lotto {
   }
 
   saveWinningNumbers(input) {
+    input.split(Constant.COMMA).forEach((char) => {
+      ExceptionHandler.isNotaNumber(char);
+    });
+    ExceptionHandler.winningNumberLength(input);
+
     this.numbers = input.split(Constant.COMMA).map((number) => parseInt(number));
+
     this.inputBonusNumber();
   }
 
@@ -75,7 +95,11 @@ class Lotto {
   }
 
   saveBonusNumber(input) {
+    ExceptionHandler.isNotaNumber(input);
+    ExceptionHandler.bonusNumberCannotBeWinningNumber(this.numbers, parseInt(input));
+
     this.bonusNumber = parseInt(input);
+    this.checkWins();
   }
 }
 
