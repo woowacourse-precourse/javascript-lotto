@@ -11,7 +11,13 @@ const {
   printCountOfLottos,
   printLottoNumbers,
 } = require('./utils/utils');
-const { MESSAGE } = require('./utils/constants');
+const {
+  MESSAGE,
+  WINNING_RESULT,
+  FIRST_PLACE,
+  SECOND_PLACE,
+  FIFTH_PLACE,
+} = require('./utils/constants');
 
 class App {
   constructor() {
@@ -115,18 +121,23 @@ class App {
 
   printWinningResult() {
     print(MESSAGE.WINNING_HISTORY);
-    print(MESSAGE.INFO_OF_FIFTH_PLACE + `${this.countOfWinningLottos[5]}개`);
-    print(MESSAGE.INFO_OF_FOURTH_PLACE + `${this.countOfWinningLottos[4]}개`);
-    print(MESSAGE.INFO_OF_THIRD_PLACE + `${this.countOfWinningLottos[3]}개`);
-    print(MESSAGE.INFO_OF_SECOND_PLACE + `${this.countOfWinningLottos[2]}개`);
-    print(MESSAGE.INFO_OF_FIRST_PLACE + `${this.countOfWinningLottos[1]}개`);
+
+    for (let rank = FIFTH_PLACE.NUMBER; rank >= FIRST_PLACE.NUMBER; rank -= 1) {
+      let winningResult = `${WINNING_RESULT[rank].LOTTO_COUNT}개 일치 (${WINNING_RESULT[rank].PRIZE}) - ${this.countOfWinningLottos[rank]}개`;
+
+      if (rank === SECOND_PLACE.NUMBER) {
+        winningResult = `${WINNING_RESULT[rank].LOTTO_COUNT}개 일치, 보너스 볼 일치 (${WINNING_RESULT[rank].PRIZE}) - ${this.countOfWinningLottos[rank]}개`;
+      }
+
+      print(winningResult);
+    }
 
     this.printRateOfReturn();
   }
 
   printRateOfReturn() {
     let calculator = new RateOfReturnCalculator(
-      this.countOfRanking,
+      this.countOfWinningLottos,
       this.countOfLottos
     );
 

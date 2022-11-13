@@ -1,6 +1,6 @@
 class RateOfReturnCalculator {
-  constructor(countOfRanking, countOfLotto) {
-    this.countOfRanking = countOfRanking;
+  constructor(countOfWinningLottos, countOfLotto) {
+    this.countOfWinningLottos = countOfWinningLottos;
     this.countOfLotto = countOfLotto;
     this.rateOfReturn = this.calculateRateOfReturn();
   }
@@ -10,7 +10,7 @@ class RateOfReturnCalculator {
 
     let totalProfit = 0;
     returns.forEach((profit, index) => {
-      totalProfit += profit * this.countOfRanking[index];
+      totalProfit += profit * this.countOfWinningLottos[index];
     });
 
     let rateOfReturn = (totalProfit / (this.countOfLotto * 1000)) * 100;
