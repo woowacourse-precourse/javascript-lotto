@@ -8,12 +8,13 @@ class LottoGame {
   money;
   gameCnt;
   userPickLotto;
-  userEarn;
+  userPrizeValue;
   prizeList;
+
   constructor() {
     this.money = 0;
     this.gameCnt = 0;
-    this.userEarn = 0;
+    this.userPrizeValue = 0;
     this.prizeList = [0, 0, 0, 0, 0, 0, 0, 0];
   }
 
@@ -37,7 +38,13 @@ class LottoGame {
   createUserLotto = () => {
     return [...Array(this.money / 1000).keys()].map(() => {
       const randLotto = new UserLotto().number;
-      MissionUtils.Console.print(randLotto);
+      let str = "[";
+      //   MissionUtils.Console.print(randLotto.toString());
+      [...randLotto].map((e) => {
+        str = str + e + ", ";
+      });
+      str = str.substring(0, str.length - 2) + "]";
+      MissionUtils.Console.print(str);
       return randLotto;
     });
   };
@@ -52,27 +59,50 @@ class LottoGame {
   inputBonusNum = (lotto) => {
     MissionUtils.Console.readLine(STATIC.MESSAGE.BONUS, (number) => {
       const bonusNumber = new BonusNum(number, lotto).bonusNum;
-      startCheckResult(lotto, this.userPickLotto, bonusNumber, this.prizeList);
+      startCheckResult(
+        lotto,
+        this.userPickLotto,
+        bonusNumber,
+        this.prizeList,
+        this.userPrizeValue,
+        this.money
+      );
     });
   };
 }
 
-const startCheckResult = (lotto, userPickLottos, bonusNumber, prizeList) => {
+const startCheckResult = (
+  lotto,
+  userPickLottos,
+  bonusNumber,
+  prizeList,
+  userPrizeValue,
+  money
+) => {
   userPickLottos.map((e) => {
     resultExceptBonus = checkResult(lotto, e, prizeList);
     prizeList.splice(resultExceptBonus, 1, prizeList[resultExceptBonus] + 1);
     checkBonusNum(e, bonusNumber, prizeList, resultExceptBonus);
   });
-
-  announceResult(prizeList);
+  announceResult(prizeList, userPrizeValue);
+  userPrizeValue = calculateResult(prizeList);
+  announceYield(money, userPrizeValue);
+  MissionUtils.Console.close();
 };
 
-const checkResult = (lotto, userPickLottoNum, prizeList) => {
+const checkResult = (lotto, userPickLottoNum) => {
   let correctCnt = 0;
   lotto.map((number) => {
     correctCnt += correctLottoNum(userPickLottoNum, number);
   });
   return correctCnt;
+};
+
+const correctLottoNum = (userPickLotto, number) => {
+  if (userPickLotto.includes(parseInt(number))) {
+    return 1;
+  }
+  return 0;
 };
 
 const checkBonusNum = (
@@ -93,19 +123,44 @@ const isInBonousNum = (userPickLotto, bonusNumber, prizeList) => {
   }
 };
 
-const correctLottoNum = (userPickLotto, number) => {
-  if (userPickLotto.includes(parseInt(number))) {
-    return 1;
-  }
-  return 0;
-};
-
 const announceResult = (prizeList) => {
   MissionUtils.Console.print(STATIC.MESSAGE.STATISTIC + "\n" + "---");
-  console.log(prizeList);
+  MissionUtils.Console.print(
+    `3${STATIC.MESSAGE.CORRECT} (${STATIC.LOTTERY_AMOUNT.THREE}) - ${prizeList[3]}개`
+  );
+  MissionUtils.Console.print(
+    `4${STATIC.MESSAGE.CORRECT} (${STATIC.LOTTERY_AMOUNT.FOUR}) - ${prizeList[4]}개`
+  );
+  MissionUtils.Console.print(
+    `5${STATIC.MESSAGE.CORRECT} (${STATIC.LOTTERY_AMOUNT.FIVE}) - ${prizeList[5]}개`
+  );
+  MissionUtils.Console.print(
+    `5${STATIC.MESSAGE.CORRECT_BONUS}(${STATIC.LOTTERY_AMOUNT.FIVE_BONUS}) - ${prizeList[7]}개`
+  );
+  MissionUtils.Console.print(
+    `6${STATIC.MESSAGE.CORRECT} (${STATIC.LOTTERY_AMOUNT.SIX}) - ${prizeList[6]}개`
+  );
+};
+
+const calculateResult = (prizeList) => {
+  return (
+    calculatePrize(STATIC.LOTTERY_PRIZE.THREE, prizeList[3]) +
+    calculatePrize(STATIC.LOTTERY_PRIZE.FOUR, prizeList[4]) +
+    calculatePrize(STATIC.LOTTERY_PRIZE.FIVE, prizeList[5]) +
+    calculatePrize(STATIC.LOTTERY_PRIZE.FIVE_BONUS, prizeList[7]) +
+    calculatePrize(STATIC.LOTTERY_PRIZE.SIX, prizeList[6])
+  );
+};
+
+const calculatePrize = (value, cnt) => {
+  return value * cnt;
+};
+
+const announceYield = (money, userPrizeValue) => {
+  console.log(money, userPrizeValue);
+  MissionUtils.Console.print(
+    `${STATIC.MESSAGE.YIELD}${(userPrizeValue / money) * 100}%입니다.`
+  );
 };
 
 module.exports = LottoGame;
-
-// 리스트에서 5인걸 봐
-// 보너스가 맞으면 그거 빼고 보너스에 넣자
