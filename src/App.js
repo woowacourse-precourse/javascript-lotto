@@ -4,7 +4,7 @@ const User = require('./User');
 const Lotto = require('./Lotto');
 const Draw = require('./Draw');
 const { MESSAGE, ERROR } = require('../src/utils/constants');
-const { hasChar, hasCharExceptComma, isOutOfRange, parseNumbers } = require('../src/utils/utils');
+const { hasChar, hasCharExceptComma, hasDuplicate, isOutOfRange, parseNumbers } = require('../src/utils/utils');
 
 class App {
   constructor() {
@@ -63,9 +63,7 @@ class App {
   }
 
   validateBonusNumber(number) {
-    const trimmedNumber = number.trim();
-
-    if (hasChar(trimmedNumber)) {
+    if (hasChar(number)) {
       throw new Error(ERROR.ONLY_NUMBER);
     }
 
