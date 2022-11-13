@@ -8,8 +8,8 @@ class App {
     
     MISSIONUTILS.Console.readLine("구입금액을 입력해 주세요.\n", function(input) {
       var temp = input/1000;
+      
       purchaseCheck(temp);
-
       purchaseShow(MISSIONUTILS, temp);
 
       var arr = new Array(temp);
@@ -110,20 +110,24 @@ function plusCorrect(correct, answer){
 }
 
 function showWin(MISSIONUTILS, answer, money, input){
-  var index = 0;
+  var index = [0];
   var price = 0;
   for (var j = 3; j<=6; j++){
-    price += money[index] * answer[index];
-    MISSIONUTILS.Console.print(j + "개 일치 (" + money[index].toLocaleString() + ") - " + answer[index] + "개"); 
-    if (j==5){
-      index++;
-      price += money[index] * answer[index];
-      MISSIONUTILS.Console.print(j + "개 일치, 보너스 볼 일치 (" + money[index].toLocaleString() + ") - " + answer[index] + "개");
-    }
-    index++;
+    price += money[index[0]] * answer[index[0]];
+    MISSIONUTILS.Console.print(j + "개 일치 (" + money[index[0]].toLocaleString() + ") - " + answer[index[0]] + "개"); 
+    price = showFiveBallBonus(j,index, price, money, answer, MISSIONUTILS);
+    index[0]++;
   }
-
   showrate(MISSIONUTILS, price, input);
+}
+
+function showFiveBallBonus(j,index, price, money, answer, MISSIONUTILS){
+  if (j==5){
+    index[0]++;
+    price += money[index[0]] * answer[index[0]];
+    MISSIONUTILS.Console.print(j + "개 일치, 보너스 볼 일치 (" + money[index[0]].toLocaleString() + ") - " + answer[index[0]] + "개");
+  }
+  return price;
 }
 
 function showrate(MISSIONUTILS, price, input){

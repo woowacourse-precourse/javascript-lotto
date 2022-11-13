@@ -37,33 +37,18 @@ class Lotto {
   }
   
   match(win , bonus){
-    var index1 = 0;
-    var index2 = 0;
+    var index = [0,0];
     var correct = [0,0];
 
     var number1 = this.#numbers;
     var number2 = win.#numbers;
 
-    while(true){
-      if (index1 == number1.length || index2 == number2.length){
-        break;
-      }
-    
-      if (number1[index1] == number2[index2]){
-        correct[0]++;
-        index1++;
-        index2++;
-      }
-      else if (number1[index1]>number2[index2]){
-        index2++;
-      }
-      else{
-        index1++;
-      }
+    while(index[0] != number1.length && index[1] != number2.length){
+      checkwin(index, correct, number1, number2);
     }
     
     for (var n of number1){
-      checkBonus(correct, n);
+      checkBonus(correct, n, bonus);
     }
 
     return correct;
@@ -89,9 +74,22 @@ function checkArr(checkArray,n){
   checkArray.push(n);
 }
 
-function checkBonus(correct, n){
+function checkBonus(correct, n, bonus){
   if (n==bonus){
     correct[1]++;
+  }
+}
+function checkwin(index, correct, number1, number2){
+  if (number1[index[0]] == number2[index[1]]){
+    correct[0]++;
+    index[0]++;
+    index[1]++;
+  }
+  else if (number1[index[0]]>number2[index[1]]){
+    index[1]++;
+  }
+  else{
+    index[0]++;
   }
 }
 
