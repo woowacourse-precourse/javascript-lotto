@@ -1,4 +1,4 @@
-const DataChecker = require('../controllers/DataChecker');
+const DataChecker = require('./DataChecker');
 const GRADE = require('./grade');
 
 class Lotto {
@@ -27,14 +27,28 @@ class Lotto {
   }
 
   #calculateGrade(ticket, bonus) {
-    let grade = GRADE.total - ticket.filter(number => this.#numbers.includes(number)).length;
+    let grade = this.#calculateIncorrectNumber(ticket);
+    grade = this.#shiftGrade(grade);
+    grade = this.#applyBonus({ grade, ticket, bonus });
 
-    if (grade >= 1) {
-      grade += 1;
+    return grade;
+  }
+
+  #calculateIncorrectNumber(ticket) {
+    return GRADE.total - ticket.filter(number => this.#numbers.includes(number)).length;
+  }
+
+  #shiftGrade(grade) {
+    if (grade >= GRADE.second) {
+      return grade + 1;
     }
 
+    return grade;
+  }
+
+  #applyBonus({ grade, ticket, bonus }) {
     if (grade === GRADE.third && ticket.includes(bonus)) {
-      grade = GRADE.second;
+      return GRADE.second;
     }
 
     return grade;

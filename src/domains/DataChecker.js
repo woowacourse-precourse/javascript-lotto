@@ -1,4 +1,4 @@
-const Validator = require('../domains/Validator');
+const Validator = require('./Validator');
 
 class DataChecker {
   static isValidRowDataOfPurchaseAmount(rowData) {

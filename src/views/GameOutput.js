@@ -8,10 +8,10 @@ class GameOutput {
     bonus: '\n보너스 번호를 입력해 주세요.\n',
   };
 
-  static printPlayersLottos(quantity, lotto) {
+  static printLottos({ quantity, lottos }) {
     Console.print('');
     Console.print(`${quantity}개를 구매했습니다.`);
-    Console.print(lotto);
+    Console.print(lottos);
   }
 
   static printResult(result, profit) {

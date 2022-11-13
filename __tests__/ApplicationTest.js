@@ -166,4 +166,12 @@ describe('로또 테스트', () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
+
+  test('예외 테스트', () => {
+    mockQuestions(['1000j']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
 });

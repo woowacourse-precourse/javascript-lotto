@@ -1,5 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const DataChecker = require('../src/controllers/DataChecker');
+const DataChecker = require('../src/domains/DataChecker');
 
 const mockQuestions = answers => {
   MissionUtils.Console.readLine = jest.fn();

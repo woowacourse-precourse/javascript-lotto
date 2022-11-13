@@ -1,15 +1,32 @@
-const DataProcessor = require('../domains/DataProcessor');
-const Tickets = require('../domains/Tickets');
+const DataProcessor = require('./DataProcessor');
+const DataChecker = require('./DataChecker');
+const Tickets = require('./Tickets');
 
 class Player {
   #data = {};
 
-  purchaseLotto(purchaseAmount) {
-    this.#data.purchaseAmount = purchaseAmount;
-    this.#data.quantity = DataProcessor.getQuantityOfLotto(
-      DataProcessor.processRowDataOfPurchaseAmount(purchaseAmount)
-    );
+  constructor(purchaseAmount) {
+    this.#purchaseLotto(purchaseAmount);
+  }
+
+  #purchaseLotto(purchaseAmount) {
+    DataChecker.isValidRowDataOfPurchaseAmount(purchaseAmount);
+    this.#data.purchaseAmount = DataProcessor.convertStringToNumber(purchaseAmount);
+    DataChecker.isValidPurchaseAmount(this.#data.purchaseAmount);
+
+    this.#getQuantityOfLotto(this.#data.purchaseAmount);
     this.#data.lottos = Tickets.publish(this.#data.quantity);
+  }
+
+  #getQuantityOfLotto() {
+    this.#data.quantity = this.#data.purchaseAmount / 1000;
+  }
+
+  getPurchaseResult() {
+    return {
+      quantity: this.#data.quantity,
+      lottos: DataProcessor.convertLottosToPrintableLottos(this.#data.lottos),
+    };
   }
 
   getLottos() {
