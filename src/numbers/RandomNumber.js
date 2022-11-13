@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const LottoNumber = require("./LottoNumber");
 const COMPUTER_NUMBER = [];
 
 class RandomNumber {
@@ -19,6 +20,7 @@ class RandomNumber {
     this.computerNumbers.forEach(function (purchaseNumber) {
       console.log(purchaseNumber);
     });
+    this.lottoNumber.lottoNumbers();
   }
 }
 
