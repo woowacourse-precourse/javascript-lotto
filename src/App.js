@@ -33,7 +33,17 @@ class App {
     Console.print(`${PLZ_INPUT_PRICE}`);
     Console.readLine('', price => {
       this.inputPrice = price;
+      this.setLottoCount(price);
     });
+  }
+
+  // 로또 갯수 출력
+  setLottoCount(price) {
+    if (price % 1000 !== 0) {
+      throw new Error('[ERROR] 로또 금액에 맞게 입력해주세요.');
+    }
+    this.lottoCnt = price / 1000;
+    Console.print(`\n${this.lottoCnt}${PURCHASE_LOTTO_COUNT}`);
   }
 }
 
