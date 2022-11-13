@@ -8,11 +8,10 @@ class GamePrint {
   }
   static userLottos(lottos) {
     lottos.forEach(lotto => {
+      lotto = lotto.join(', ');
+      lotto = `[${lotto}]`;
       MissionUtils.Console.print(lotto);
     });    
-  }
-  static lottoNumber(numbers) {
-    MissionUtils.Console.print(numbers);
   }
   static result(prize, profitRate) {
     MissionUtils.Console.print(MESSAGES.GAME.resultHeader);
