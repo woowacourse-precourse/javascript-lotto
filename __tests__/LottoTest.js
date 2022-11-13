@@ -29,4 +29,10 @@ describe("로또 클래스 테스트", () => {
     const testSet = new Set(autoLotto.randomLottoArray[0]);
     expect([...testSet].length).toBe(6);
   });
+
+  test("당첨 금액 합계를 구매 금액으로 나눠서 수익률을 구한다.", () => {
+    const lotto = new Lotto();
+    lotto.calculateYield(5000, 8000);
+    expect(lotto.prize.rateOfReturn).toBe("62.5");
+  });
 });
