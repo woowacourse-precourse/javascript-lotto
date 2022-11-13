@@ -19,10 +19,10 @@ const ERROR_MESSAGE = {
   number: '[ERROR] 숫자를 입력해야 합니다.',
   integer: '[ERROR] 정수를 입력해야 합니다.',
   lottoRange: '[ERROR] 로또 범위의 숫자를 입력해야 합니다.',
-  size: '[ERROR] 로또 번호는 6개여야 합니다.',
+  lottoSize: '[ERROR] 로또 번호는 6개여야 합니다.',
   unique: '[ERROR] 로또 번호는 중복이 없어야 합니다.',
   payRange: '[ERROR] 로또 단가 이상 입력해야 합니다.',
-  divide: '[ERROR] 로또 단가에 나누어 떨어져야 합니다.',
+  payDivide: '[ERROR] 로또 단가에 나누어 떨어져야 합니다.',
 };
 
 module.exports = {
