@@ -66,6 +66,25 @@ class App {
       Console.close();
     });
   }
+
+  checkLotto(lotto) {
+    const mainCount = checkMainNumMatch(lotto);
+    const bonusCount = checkBonusCount(lotto);
+  }
+
+  checkMainNumMatch(lotto) {
+    let mainMatch = 0;
+    lotto.forEach((num) => {
+      if (this.mainNums.includes(num)) {
+        mainMatch++;
+      }
+    });
+    return mainMatch;
+  }
+
+  checkBonusNumMatch(lotto) {
+    return lotto.includes(this.bonusNum) ? 1 : 0;
+  }
 }
 
 // module.exports = App;
