@@ -11,7 +11,7 @@ class LottoPlay {
 
   play() {
     Console.readLine(CONSOLE_MESSAGE.INPUT_MONEY_MESSAGE, (amount) => {
-      this.validateAmountUnit(amount);
+      this.validateAmount(amount);
       this.lottoes = this.countLotto(amount);
       this.printCountedLottoes();
       this.printRandomLottoes();
@@ -24,9 +24,15 @@ class LottoPlay {
   printCountedLottoes() {
     Console.print(`\n${this.lottoes}개를 구매했습니다.`);
   }
-  validateAmountUnit(amount) {
+  validateAmount(amount) {
     if (amount % 1000 !== 0) {
       throw new Error(ERROR_MESSAGE.NOT_RIGHT_UNIT);
+    }
+    if (amount === "") {
+      throw new Error(ERROR_MESSAGE.REQUIRE_INPUT);
+    }
+    if (amount.includes(" ")) {
+      throw new Error(ERROR_MESSAGE.INCLUDED_SPACE);
     }
   }
 
