@@ -6,6 +6,7 @@ class UserLottos {
   constructor(purchaseAmount) {
     this.count = purchaseAmount / 1000;
     this.lottos = [];
+    this.createLottos();
   }
 
   createLotto() {
