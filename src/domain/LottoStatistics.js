@@ -42,26 +42,23 @@ class LottoStatistics {
 
     this.winningNumbers = winningLotto.numbers;
     this.bonusNumber = winningLotto.bonusNumber;
-
-    this.judgeRank = this.judgeRankBuilder(RANK_MAP);
-    this.calculateTotalReward = this.calculateTotalRewardBuilder(REWARD_MAP);
   }
 
-  judgeRankBuilder = (rankMap) => (numbers) => {
+  judgeRank(numbers) {
     const matchedCount = this.match(numbers);
     if (this.isNeedJudgement(matchedCount)) {
       return this.judgeSecondRank(numbers);
     }
-    return rankMap[matchedCount] || RANK.UN_RANK;
-  };
+    return RANK_MAP[matchedCount] || RANK.UN_RANK;
+  }
 
-  calculateTotalRewardBuilder = (rewardMap) => (buyingLottos) => {
+  calculateTotalReward(buyingLottos) {
     const rankCounter = this.createRankCounter(buyingLottos);
     return Object.entries(rankCounter).reduce((total, [rank, count]) => {
-      const reward = rewardMap[rank] * count;
+      const reward = REWARD_MAP[rank] * count;
       return total + reward;
     }, 0);
-  };
+  }
 
   match(numbers) {
     const numbersSet = new Set(numbers);
@@ -83,7 +80,6 @@ class LottoStatistics {
     const filteredRanks = buyingLottos
       .map((buyingLotto) => this.judgeRank(buyingLotto))
       .filter((rank) => rank !== RANK.UN_RANK);
-
     return Utils.createCounter(filteredRanks);
   }
 }
