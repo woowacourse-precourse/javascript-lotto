@@ -43,25 +43,34 @@ class App {
   isReapted(arr) {
     const lottoVisited = Array.from({ length: 46 }, (_) => false);
     arr.forEach((num) => {
-      if (lottoVisited[num]) return true;
+      if (lottoVisited[num]) {
+        return true;
+      }
       lottoVisited[num] = true;
     });
     return false;
   }
+  isValidLottoNumber(numbers) {
+    numbers.forEach((number) => {
+      if (isNaN(number)) {
+        return false;
+      }
+      const parsedNum = parseInt(number, 10);
+      if (parsedNum < 1 || parsedNum > 45) {
+        return false;
+      }
+      return true;
+    });
+  }
   validateWinningNumbers(winningNumbers) {
-    if (winningNumbers.length !== 6) {
+    const split = winningNumbers.split(",").map((number) => number.trim());
+
+    if (split.length !== 6) {
       throw new Error(`[ERROR] 당첨 로또 번호의 길이는 6개입니다.`);
     }
-    winningNumbers.forEach((number) => {
-      const parsedNum = parseInt(number, 10);
-      if (isNaN(number)) {
-        throw new Error(`[Error] 숫자가 아닌 문자를 입력하였습니다.`);
-      }
-      if (parsedNum < 1 || parsedNum > 45) {
-        throw new Error(`[Error] 로또 번호는 1부터 45 사이의 숫자여야 합니다.`);
-      }
-    });
-    const split = winningNumbers.split(",").map((number) => number.trim());
+    if (!this.isValidLottoNumber(split)) {
+      throw new Error(`[Error] 로또 번호는 1부터 45 사이의 숫자여야 합니다.`);
+    }
     if (this.isReapted(split)) {
       throw new Error(`[Error] 동일한 숫자가 포함되어 있습니다.`);
     }
