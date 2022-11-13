@@ -3,6 +3,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class App {
   constructor() {
     this.purchaseAmout = 0;
+    this.userLottoCount = 0;
   }
 
   play() {}
@@ -11,8 +12,13 @@ class App {
       "구입금액을 입력해 주세요.",
       (purchaseAmount) => {
         this.purchaseAmout = purchaseAmount;
+        this.userLottoCount = getUserLottoCount(this.purchaseAmout);
       }
     );
+  }
+
+  getUserLottoCount(purchaseAmount) {
+    return purchaseAmount / 1000;
   }
 }
 
