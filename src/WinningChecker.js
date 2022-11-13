@@ -35,10 +35,8 @@ class WinningChecker {
     if (this.countOfSameNum === FIRST_PLACE.LOTTO_COUNT) {
       return FIRST_PLACE.NUMBER;
     }
-    if (this.countOfSameNum === SECOND_PLACE.LOTTO_COUNT && this.hasBonusNum) {
-      return SECOND_PLACE.NUMBER;
-    }
-    if (this.countOfSameNum === SECOND_PLACE.LOTTO_COUNT && !this.hasBonusNum) {
+    if (this.countOfSameNum === SECOND_PLACE.LOTTO_COUNT) {
+      if (this.hasBonusNum) return SECOND_PLACE.NUMBER;
       return THIRD_PLACE.NUMBER;
     }
     if (this.countOfSameNum === FOURTH_PLACE.LOTTO_COUNT) {

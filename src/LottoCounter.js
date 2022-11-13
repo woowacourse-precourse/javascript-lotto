@@ -3,7 +3,6 @@ const { ERROR, INPUT_UNITS } = require('./utils/constants.js');
 class LottoCounter {
   constructor(cash) {
     this.isValidCash(cash);
-    // this.inputtedCash = cash;
     this.lottosQuantity = cash / INPUT_UNITS;
   }
 
