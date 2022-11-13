@@ -57,7 +57,7 @@ class Lotto {
     const payment = myLottos.length * LOTTO_PAYMENT;
 
     print('당첨 통계\n---');
-    Object.keys(PRIZE).forEach(rank => print(templeteLotto(rank, resultLotto[rank])));
+    ORDER_OF_PRINT.forEach(prize => print(templeteLotto(prize, resultLotto[prize])));
     print(`총 수익률은 ${this.getRateOfReturn({ payment, resultLotto })}%입니다.`);
   }
 }

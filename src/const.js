@@ -1,5 +1,5 @@
 const PRIZE_NAME = ['fail', 'fifth', 'forth', 'third', 'first'];
-
+const ORDER_OF_PRINT = ['fifth', 'forth', 'third', 'second', 'first'];
 const PRIZE_REWARD = Object.freeze({
   first: 2000000000,
   second: 30000000,
@@ -7,7 +7,7 @@ const PRIZE_REWARD = Object.freeze({
   forth: 50000,
   fifth: 5000,
 });
-
 const DIGIT_NUMBER = 10;
 const LOTTO_PAYMENT = 1000;
-module.exports = { PRIZE_NAME, PRIZE_REWARD, DIGIT_NUMBER, LOTTO_PAYMENT };
+
+module.exports = { PRIZE_NAME, PRIZE_REWARD, DIGIT_NUMBER, LOTTO_PAYMENT, ORDER_OF_PRINT };

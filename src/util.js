@@ -22,13 +22,13 @@ const makeLottoNumber = count => {
 
 const closeReadLine = () => Console.close();
 
-const templeteLotto = (rank, count) => {
-  const { correctCount, reward } = PRIZE[rank];
+const templeteLotto = (prize, count) => {
+  const { correctCount, reward } = PRIZE[prize];
   const rewardLocalString = reward.toLocaleString();
 
-  if (rank === PRIZE.second)
+  if (prize === 'second')
     return `${correctCount}개 일치, 보너스 볼 일치 (${rewardLocalString}원) - ${count}개`;
   return `${correctCount}개 일치 (${rewardLocalString}원) - ${count}개`;
 };
 
-module.exports = { print, readLine, makeLottoNumber, closeReadLine };
+module.exports = { print, readLine, makeLottoNumber, closeReadLine, templeteLotto };
