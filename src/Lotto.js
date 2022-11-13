@@ -25,7 +25,7 @@ class Lotto {
   }
 
   printMyLottery() {
-    Console.print(this.#numbers);
+    Console.print(`[${String(this.#numbers).split(',').join(', ')}]`);
   }
 
   returnMyLotteryRank(answer, bonusNumber) {
