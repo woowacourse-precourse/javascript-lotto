@@ -42,6 +42,15 @@ class LottoGame {
 
     return reward ? reward : 0;
   }
+
+  calcRevenue(reward) {
+    const revenue = (reward / this.user.purchaseAmount) * 100;
+    return LottoGame.roundToTwo(revenue);
+  }
+
+  static roundToTwo(number) {
+    return +(Math.round(number + 'e+2') + 'e-2');
+  }
 }
 
 module.exports = LottoGame;
