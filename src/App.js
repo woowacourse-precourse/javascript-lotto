@@ -51,14 +51,6 @@ class App {
     });
   }
 
-  isReapted(arr) {
-    const lottoVisited = Array.from({ length: 46 }, (_) => false);
-    arr.forEach((num) => {
-      if (lottoVisited[num]) return true;
-      lottoVisited[num] = true;
-    });
-    return false;
-  }
   isInRange(num) {
     let parsedNum = num;
     if (typeof num === "string") {
@@ -73,6 +65,16 @@ class App {
       if (this.isInRange(number)) return false;
     });
     return true;
+  }
+  isReapted(arr) {
+    const lottoVisited = Array.from({ length: 46 }, (_) => false);
+
+    for (let idx = 0; idx < arr.length; idx++) {
+      const elem = arr[idx];
+      if (lottoVisited[elem]) return true;
+      lottoVisited[elem] = true;
+    }
+    return false;
   }
   validateWinningNumbers(winningNumbers) {
     const split = winningNumbers
