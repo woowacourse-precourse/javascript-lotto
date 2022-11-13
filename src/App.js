@@ -1,6 +1,7 @@
 const { Console } = require("@woowacourse/mission-utils");
 const MyLotto = require("./MyLotto");
 const Lotto = require("./Lotto");
+const Calculator = require("./Calculator");
 
 class App {
   play() {
@@ -27,7 +28,7 @@ class App {
   getBonusNumber(lotto, myLottos, winningNumbers) {
     Console.readLine("보너스 번호를 입력해 주세요.\n", (number) => {
       const bonus = lotto.validateBonus(Number(number));
-      console.log(myLottos, winningNumbers, bonus);
+      const calculator = new Calculator(myLottos, winningNumbers, bonus);
       Console.close();
     });
   }
