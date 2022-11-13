@@ -11,4 +11,10 @@ describe('App 클래스 테스트', () => {
       expect(App.purchaseCount('8000')).toBe(8);
     });
   });
+
+  describe('buyLotto()', () => {
+    test('8000을 전달하면 길이가 8인 배열을 반환한다.', () => {
+      expect(App.buyLotto('8000')).toHaveLength(8);
+    });
+  });
 });
