@@ -73,6 +73,13 @@ class LottoGame {
   getEachLottoNumbers() {
     return this.lottos.map((lotto) => lotto.getNumbers());
   }
+  getMatchedLottoNumberCount(lottoNumbers) {
+    const matchCheckLength = new Set([...lottoNumbers, ...this.winningNumbers]).size;
+    const maxLength = LOTTO_DIGITS * 2;
+    const matchedLottoNumberCount = maxLength - matchCheckLength;
+
+    return matchedLottoNumberCount;
+  }
 }
 
 module.exports = LottoGame;
