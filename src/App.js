@@ -1,8 +1,10 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 
 class App {
+  #numbers;
   play() {
     this.inputMoney();
+
   }
 
   inputMoney() {
@@ -15,6 +17,7 @@ class App {
           tickets.push(this.generateRandomNumbers());
         }
         tickets.map((ticket) => MissionUtils.Console.print(ticket));
+        this.setLottoNumbers();
       }
     });
   }
@@ -36,6 +39,13 @@ class App {
 
   generateRandomNumbers() {
     return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6); // [1, 10, 7, 8, 5, 3]
+  }
+
+  setLottoNumbers() {
+    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (answer) => {
+      this.#numbers = answer.split(',').map(i => Number(i));
+      console.log(this.#numbers);
+    });
   }
 }
 
