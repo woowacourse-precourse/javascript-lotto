@@ -9,19 +9,21 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers !== undefined) {
-      if (Lotto.isThatSix(numbers)) {
-        Console.close();
-        throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-      }
-      if (!Lotto.itThatRightFormat(numbers)) {
-        Console.close();
-        throw new Error("[ERROR] 올바른 형식으로 입력해주세요.");
-      }
-      if (Lotto.numberNet(numbers)) {
-        Console.close();
-        throw new Error("[ERROR] 1과 45사이의 숫자를 입력해주세요.");
-      }
+    if (Lotto.isThatNull) {
+      Console.close();
+      throw new Error("[ERROR] 값을 입력해 주세요.");
+    }
+    if (Lotto.isThatSix(numbers)) {
+      Console.close();
+      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    }
+    if (!Lotto.itThatRightFormat(numbers)) {
+      Console.close();
+      throw new Error("[ERROR] 올바른 형식으로 입력해주세요.");
+    }
+    if (Lotto.numberNet(numbers)) {
+      Console.close();
+      throw new Error("[ERROR] 1과 45사이의 숫자를 입력해주세요.");
     }
   }
 
@@ -31,6 +33,10 @@ class Lotto {
   //   this.isThatOne(number);
   //   this.isThatNumber(number);
   // }
+
+  static isThatNull(numbers) {
+    return numbers !== undefined;
+  }
 
   static isThatSix(numbers) {
     return numbers.length !== 6;
