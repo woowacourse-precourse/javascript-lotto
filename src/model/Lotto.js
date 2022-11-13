@@ -52,6 +52,13 @@ class Lotto {
     if (isNaN(bonusNumber)) this.controller.throwErrorWithMessage("bonusNumberError");
     if (1 > bonusNumber || bonusNumber > 45) this.controller.throwErrorWithMessage("bonusNumberError");
   }
+
+  setBonusNumberFromUser(userInput) {
+    const bonusNumber = Number(userInput);
+    this.validateBonusNumber(bonusNumber);
+    this.bonusNumber = bonusNumber;
+    this.controller.getStatistics();
+  }
 }
 
 module.exports = Lotto;
