@@ -1,6 +1,13 @@
 const { Random } = require('@woowacourse/mission-utils');
 
 class LottoIssuer {
+  issue(money) {
+    const numberOfLottoes = this.calculateNumberOfLottoes(money);
+    const lottoes = this.generateLottoes(numberOfLottoes);
+
+    return lottoes;
+  }
+
   calculateNumberOfLottoes(money) {
     return money / 1000;
   }
