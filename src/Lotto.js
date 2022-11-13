@@ -132,11 +132,11 @@ class Lotto {
 
     Lotto.validate(winningNumbers);
 
-    this.#numbers.forEach((value) => {
-      Lotto.validate(value);
+    this.#numbers.forEach((lotto) => {
+      Lotto.validate(lotto);
 
-      const count = Lotto.calculateCount(winningNumbers, value);
-      winningAmount = Lotto.analysisWinningAmount(winningAmount, count, value, bonus);
+      const count = Lotto.calculateCount(winningNumbers, lotto);
+      winningAmount = Lotto.analysisWinningAmount(winningAmount, count, lotto, bonus);
     });
 
     return winningAmount;
