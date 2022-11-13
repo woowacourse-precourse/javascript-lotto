@@ -30,6 +30,15 @@ class Exception {
     });
   }
 
+  validateBonusNumber(input, winningNumber) {
+    this.checkIsDigit(input);
+    this.checkIsNumberInRange(input);
+
+    if (winningNumber.includes(input)) {
+      throw new Error(ERROR_MESSAGE.duplicateBonusNumber);
+    }
+  }
+
   checkIsDigit(number) {
     if (!/^\d+$/.test(number)) {
       throw new Error(ERROR_MESSAGE.nonDigitInput);
