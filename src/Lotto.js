@@ -1,5 +1,6 @@
+const { Console } = require('@woowacourse/mission-utils');
 class Lotto {
-  #numbers;
+  #numbers = [1, 2, 3, 4, 5, 6];
 
   constructor(numbers) {
     this.validate(numbers);
@@ -13,6 +14,9 @@ class Lotto {
   }
 
   // TODO: 추가 기능 구현
+  static getParchaseAmount(message) {
+    return Console.print(message);
+  }
 }
 
 module.exports = Lotto;
