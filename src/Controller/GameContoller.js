@@ -20,8 +20,7 @@ class GameController {
   }
 
   getLottosByMoney(money) {
-    this.game.checkMoney(money);
-    this.game.money = money;
+    this.game.money = Number(money);
     const lottoNums = money / 1000;
     for (let x = 0; x < lottoNums; x++) {
       const lottoNumbers = this.getRandomNumber();
@@ -36,7 +35,6 @@ class GameController {
   }
 
   setBonusNumber(inputNumber) {
-    this.game.checkBonusNumber(inputNumber);
     this.game.bonusNumber = Number(inputNumber);
   }
 

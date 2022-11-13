@@ -1,19 +1,27 @@
+const MissionUtils = require('@woowacourse/mission-utils');
+const BonusNumber = require('./BonusNumber');
+const Money = require('./Money');
+
 class LottoGame {
   lottos = [];
-  money;
   winLotto;
-  bonusNumber;
+  #bonusNumber;
+  #money;
 
-  checkMoney(money) {
-    if (money % 1000 != 0) {
-      throw new Error('[ERROR] 돈은 1000원단위여야 합니다!');
-    }
+  get money() {
+    return this.#money.money;
+  }
+  set money(input) {
+    MissionUtils.Console.print(input);
+    this.#money = new Money(input);
   }
 
-  checkBonusNumber(inputNumber) {
-    if (this.winLotto.lottoNumbers.includes(Number(inputNumber))) {
-      throw new Error('[ERROR] 보너스 숫자와 정답 로또 숫자가 중복되었습니다.');
-    }
+  get bonusNumber() {
+    return this.#bonusNumber.number;
+  }
+
+  set bonusNumber(input) {
+    this.#bonusNumber = new BonusNumber(this.winLotto, input);
   }
 }
 module.exports = LottoGame;
