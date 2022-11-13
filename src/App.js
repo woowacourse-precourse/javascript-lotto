@@ -22,6 +22,15 @@ class App {
       Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b)
     );
   }
+
+  inputCost() {
+    Console.readLine("구입금액을 입력해 주세요.\n", (cost) => {
+      this.isValidation(cost);
+      this.item = +cost;
+      this.getLottoNumber(this.item / 1000);
+      this.printLotto();
+    });
+  }
   play() {}
 }
 
