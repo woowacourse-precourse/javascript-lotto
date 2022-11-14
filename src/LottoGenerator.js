@@ -12,7 +12,12 @@ const makeLottoArray = (lottoCount) => {
   return lottoArray;
 };
 
+const calculateProfit = (profit, inputMoney) => {
+  return ((profit / inputMoney) * 100).toFixed(1);
+};
+
 module.exports = {
   getLottoNumber,
   makeLottoArray,
+  calculateProfit,
 };
