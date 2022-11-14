@@ -6,7 +6,10 @@ class App {
   play() {
 
     const ask = new Ask();
+    const lotto = new Lotto();
+
     ask.money();
+    ask.buyLotto();
 
     MissionUtils.Console.close();
   }
