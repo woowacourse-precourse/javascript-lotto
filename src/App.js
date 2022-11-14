@@ -17,6 +17,22 @@ class App {
     Console.readLine("", (money) => {
       this.validateMoney(money);
     });
+
+    this.userNumbersArray = this.getRandomNumbers(numberOfLottery);
+    this.printRandomNumbers(this.userNumbersArray);
+  }
+  getRandomNumbers(num) {
+    const userNumbersArray = [];
+
+    for (let i = 0; i < num; i++) {
+      userNumbersArray.push(
+        Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b)
+      );
+    }
+  printRandomNumbers(userNumbersArray) {
+    for (let arr of userNumbersArray) {
+      Console.print("[" + arr.join(", ") + "]");
+    }
   }
   validateMoney(money) {
     if (isNaN(money)) {
