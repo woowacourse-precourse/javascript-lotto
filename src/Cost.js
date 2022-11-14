@@ -1,19 +1,15 @@
-const { COST, INPUT_MESSAGE, ERROR_MESSAGE } = require('./constant/constant');
-const utils = require('./utils');
+const { COST, ERROR_MESSAGE } = require('./constant/constant');
 
 class Cost {
   #cost;
 
   constructor(cost) {
-    this.getCost();
-    this.validate(this.#cost);
+    this.validate(cost);
     this.#cost = cost;
   }
 
-  getCost() {
-    utils.getInput(INPUT_MESSAGE.COST, (input) => {
-      this.#cost = +input;
-    });
+  getValue() {
+    return this.#cost;
   }
 
   validate(cost) {

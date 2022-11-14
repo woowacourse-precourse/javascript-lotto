@@ -1,19 +1,15 @@
-const { LOTTO, INPUT_MESSAGE, ERROR_MESSAGE } = require('./constant/constant');
-const utils = require('./utils');
+const { LOTTO, ERROR_MESSAGE } = require('./constant/constant');
 
 class Bonus {
   #bonus;
 
   constructor(bonus) {
-    this.getBonusNumber();
     this.validate(bonus);
     this.#bonus = bonus;
   }
 
-  getBonusNumber() {
-    utils.getInput(INPUT_MESSAGE.LOTTO_NUMBERS, (input) => {
-      this.bonus = +input;
-    });
+  getValue() {
+    return this.#bonus;
   }
 
   validate(bonus) {
