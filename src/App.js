@@ -7,6 +7,14 @@ class App {
 
   constructor() {}
 
+  getLotteryNumbers = () => {
+    const lotteryNumbers = [];
+    for (let i = 0; i < this.#numberOfLottery; i++) {
+      lottery.push(Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b));
+    }
+    return lotteryNumbers;
+  };
+
   buyLottery = () => {
     this.#myLottery = this.getLotteryNumbers();
     this.printMyLottery();
