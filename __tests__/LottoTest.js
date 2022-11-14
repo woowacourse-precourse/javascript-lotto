@@ -39,42 +39,50 @@ describe("로또 당첨 테스트 :: calcWinning", () => {
   test("로또 1개 당첨", () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     lotto.calcWinning(["1","9","10","12","13","14"]);
-    console.log(lotto.WinningNumber);
     expect(lotto.WinningNumber).toEqual(1);
   });
 
   test("로또 2개 당첨", () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     lotto.calcWinning(["1","2","10","12","13","14"]);
-    console.log(lotto.WinningNumber);
     expect(lotto.WinningNumber).toEqual(2);
   });
 
   test("로또 3개 당첨", () => {
     const lotto = new Lotto([1, 2, 3, 5, 6, 7]);
     lotto.calcWinning(["1","2","4","6","13","14"]);
-    console.log(lotto.WinningNumber);
     expect(lotto.WinningNumber).toEqual(3);
   });
 
   test("로또 4개 당첨", () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     lotto.calcWinning(["1","2","4","6","13","14"]);
-    console.log(lotto.WinningNumber);
     expect(lotto.WinningNumber).toEqual(4);
   });
 
   test("로또 5개 당첨", () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     lotto.calcWinning(["1","2","3","4","5","14"]);
-    console.log(lotto.WinningNumber);
     expect(lotto.WinningNumber).toEqual(5);
   });
 
   test("로또 6개 당첨", () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     lotto.calcWinning(["1","2","3","4","5","6"]);
-    console.log(lotto.WinningNumber);
     expect(lotto.WinningNumber).toEqual(6);
+  });
+});
+
+describe("로또 보너스 당첨 테스트 :: matchBonus", () => {
+  test("보너스 당첨", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    lotto.matchBonus(1);
+    expect(lotto.bonus).toEqual(true);
+  });
+
+  test("보너스 당첨 X", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    lotto.matchBonus(45);
+    expect(lotto.bonus).toEqual(false);
   });
 });
