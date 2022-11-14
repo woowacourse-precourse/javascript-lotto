@@ -1,40 +1,37 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const { RESET_ADD_BLANK } = require('./Constants');
 
-const utils = {
-  print(message) {
-    return Console.print(message);
-  },
+const print = (message) => Console.print(message);
 
-  readLine(query, callback) {
-    return Console.readLine(query, callback);
-  },
+const readLine = (query, callback) => Console.readLine(query, callback);
 
-  close() {
-    return Console.close();
-  },
+const close = () => Console.close();
 
-  pickUniqueNumbersInRange(startInclusive, endInclusive, count) {
-    return Random.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
-  },
+function pickUniqueNumbersInRange(start, end, count) {
+  return Random.pickUniqueNumbersInRange(start, end, count);
+}
 
-  getArrayToCustomMessage(myArray = []) {
-    const message = JSON.stringify(myArray);
-    return message.replace(/,/gi, RESET_ADD_BLANK);
-  },
-
-  isLessThanNumber(count, number) {
-    if (count < number) return true;
-    return false;
-  },
-
-  getRate(prize, price) {
-    return (prize / price) * 100;
-  },
-
-  getRoundSecondDecimalPlace(number) {
-    return Math.round(number * 100) / 100;
-  },
+const getArrayToCustomMessage = (myArray = []) => {
+  const message = JSON.stringify(myArray);
+  return message.replace(/,/gi, RESET_ADD_BLANK);
 };
 
-module.exports = utils;
+const isLessThanNumber = (count, number) => {
+  if (count < number) return true;
+  return false;
+};
+
+const getRoundSecondDecimalPlace = (number) => Math.round(number * 100) / 100;
+
+const getRate = (prize, price) => getRoundSecondDecimalPlace((prize / price) * 100);
+
+module.exports = {
+  print,
+  readLine,
+  close,
+  pickUniqueNumbersInRange,
+  getArrayToCustomMessage,
+  isLessThanNumber,
+  getRoundSecondDecimalPlace,
+  getRate,
+};
