@@ -75,8 +75,15 @@ class App {
     );
   }
 
+  validateBonus(bonusNumber) {
+    if (!(1 <= bonusNumber && bonusNumber <= 45)) {
+      throw new Error("로또 번호는 1부터 45사이의 숫자여야 합니다.");
     }
-    return [...userLottoNumbers];
+    if (this.lottoNumber.includes(bonusNumber)) {
+      throw new Error("당첨 번호와 중복되지 않은 숫자여야 합니다.");
+    }
+    this.checkNumberCount(this.userLottoNumbers, this.lottoNumber);
+  }
   }
 
 }
