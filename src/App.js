@@ -1,4 +1,6 @@
 const { getLottoBudget, getTargetNumber, getBonusNumber } = require('./inputUtils');
+const Game = require('./Game');
+const { LOTTO_PRICE } = require('./config');
 class App {
   play() {
     this.getLottoBudget();
@@ -21,7 +23,13 @@ class App {
   getBonusNumber() {
     getBonusNumber((bonus) => {
       this.bonus = bonus;
+      this.startGame();
     });
+  }
+
+  startGame() {
+    this.game = new Game(this.budget / LOTTO_PRICE, this.target, this.bonus);
+    this.game.generateLottoStat(this.budget);
   }
 }
 

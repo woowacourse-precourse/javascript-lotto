@@ -51,7 +51,8 @@ class Game {
    * @param {number[]} ranks
    * @returns {number} profitRate
    */
-  generateLottoStat(budget, ranks) {
+  generateLottoStat(budget) {
+    const ranks = this.generateLottoRanks();
     const totalValue = ranks
       .filter((rank) => rank !== Infinity)
       .reduce((acc, rank) => acc + PRIZES[rank].VALUE, 0);
