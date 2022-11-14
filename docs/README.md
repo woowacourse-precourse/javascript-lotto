@@ -23,7 +23,7 @@
   - [x] 발행한 로또 수량을 출력한다 ('n개를 구매했습니다.') MessageOutput # printMessage()
   - [x] 로또 번호를 출력한다 MessageOutput # printMessage()
     - [x] 중복되지 않는 6개의 숫자를 뽑는다 LottoNumberGenerator # createRandomNumbers()
-    - [] 로또 번호는 오름차순으로 정렬하여 보여준다 LottoNumberGenerator # sortingNumbers()
+    - [x] 로또 번호는 오름차순으로 정렬하여 보여준다 LottoNumberGenerator # sortingNumbers()
   - [x] 발행한 로또 수량만큼 출력한다
 
   - 당첨 번호 입력

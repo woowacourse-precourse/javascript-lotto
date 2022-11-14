@@ -5,7 +5,11 @@ class LottoNumberGenerator {
 
   createRandomNumbers() {
     const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-    return numbers;
+    return this.sortingNumbers(numbers);
+  }
+
+  sortingNumbers(numbers) {
+    return numbers.sort((a, b) => a - b);
   }
 }
 
