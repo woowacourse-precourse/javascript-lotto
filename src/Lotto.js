@@ -1,5 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { ERROR_LOTTO } = require("./constants/messages");
+const { RANKING } = require("./constants/rule");
 
 class Lotto {
   #numbers;
@@ -41,11 +42,12 @@ class Lotto {
       if (winningNumberList.includes(number)) compareCount++;
     });
 
-    if (compareCount === 6) return 1;
-    if (compareCount === 5 && this.#numbers.includes(bonusNumber)) return 2;
-    if (compareCount === 5) return 3;
-    if (compareCount === 4) return 4;
-    if (compareCount === 3) return 5;
+    if (compareCount === 6) return RANKING.FIRST;
+    if (compareCount === 5 && this.#numbers.includes(bonusNumber))
+      return RANKING.SECOND;
+    if (compareCount === 5) return RANKING.THIRD;
+    if (compareCount === 4) return RANKING.FOURTH;
+    if (compareCount === 3) return RANKING.FIFTH;
     if (compareCount < 3) return null;
   }
 }

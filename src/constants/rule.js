@@ -24,8 +24,17 @@ const REWARD = {
   FIFTH: 5000,
 };
 
+const RANKING = {
+  FIRST: 1,
+  SECOND: 2,
+  THIRD: 3,
+  FOURTH: 4,
+  FIFTH: 5,
+};
+
 module.exports = {
   RULE,
   RANK,
   REWARD,
+  RANKING,
 };
