@@ -35,10 +35,6 @@ class LottoNumbers{
           throw new Error("[ERROR] 중복된 숫자를 입력할 수 없습니다.");
         }
     
-        if (lottoSet.size !== 6) {
-          throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
-    
         for (let item of lottoSet.values()) {
           if (item < 1 | item > 45) {
             throw new Error("[ERROR] 1 ~ 45까지의 숫자만 입력할 수 있습니다.")
