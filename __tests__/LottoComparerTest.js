@@ -37,4 +37,25 @@ describe('로또 비교 클래스 테스트', () => {
 
     expect(comparer.ranking).toStrictEqual(ranking);
   });
+
+  test('당첨 금액과 구매 금액을 비교해 수익률을 구한다.', () => {
+    const randoms = [
+      [8, 22, 23, 42, 43, 45],
+      [1, 2, 3, 4, 5, 6],
+      [8, 22, 23, 42, 43, 44],
+      [8, 22, 23, 40, 41, 42],
+      [8, 21, 23, 40, 41, 42],
+    ];
+    const bonusNumber = 44;
+
+    mockRandoms(randoms);
+
+    const comparer = new LottoComparer(new LottoBuyer(5000), new Lotto([1, 2, 3, 4, 5, 31]));
+    comparer.buyer.buyLotto();
+    comparer.lotto.setBonusNumber(bonusNumber);
+    comparer.setBuyerLottoRanking();
+    comparer.setYield();
+
+    expect(comparer.yield).toEqual('30000.0');
+  });
 });
