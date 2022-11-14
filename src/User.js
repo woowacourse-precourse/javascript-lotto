@@ -51,6 +51,7 @@ class User {
     for (let rank = 5; rank >= 1; rank--) {
       printRank(rank, this.#winStats.get(rank));
     }
+    Console.print(`총 수익률은 ${this.getRateOfProfit()}%입니다.`);
   }
 
   printRank(rank, count) {
