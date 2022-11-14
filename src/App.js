@@ -107,7 +107,7 @@ class App {
 
   #printLottosOwnedByUser() {
     this.#lottosOwnedByUser.forEach((lotto) => {
-      Console.print(lotto)
+      Console.print(`[${lotto.join(', ')}]`)
     })
   }
 
@@ -200,7 +200,7 @@ class App {
    * @param {number} returnRate
    */
   #printReturnRate(returnRate) {
-    Console.print(`총 수익률은 ${returnRate}입니다.`)
+    Console.print(`총 수익률은 ${returnRate}%입니다.`)
   }
 
   #close() {
