@@ -59,6 +59,15 @@ class Lotto {
     }
     return bonusMatch;
   }
+
+  countWinLotto(isMatch, bonusMatch) {
+    let matchNums = new Array(4);
+    for (let win = 3; win < 7; ++win) {
+      matchNums[win - 3] = isMatch.reduce((cnt, element) => cnt + (win === element), 0);
+    }
+    if (bonusMatch) matchNums[2]--;
+    return matchNums;
+  }
 }
 
 module.exports = Lotto;
