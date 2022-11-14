@@ -34,4 +34,12 @@ describe("로또 클래스 테스트", () => {
 
     expect(lotto.result.bonus).toBe(true);
   })
+
+  test("2등에 보너스 숫자를 맞춘 것을 정확하게 확인하는지 테스트", ()=>{
+    const lotto= new Lotto([1,2,3,4,5,6])
+
+    lotto.checkRank([1,2,3,4,5,7],6)
+
+    expect(lotto.result).toStrictEqual({lotto:5, bonus:true});
+  })
 });
