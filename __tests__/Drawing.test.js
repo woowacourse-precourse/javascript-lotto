@@ -60,19 +60,19 @@ describe('수익률을 올바르게 계산하는지 테스트한다.', () => {
     drawing.user = new User(100000);
     expect(drawing.calcRevenue(5000)).toEqual(5);
   });
-  test('100000000원으로 5000원을 획득한 경우 0.01을 반환한다.', () => {
+  test('100000000원으로 5000원을 획득한 경우 0을 반환한다.', () => {
     const drawing = new Drawing();
     drawing.user = new User(100000000);
-    expect(drawing.calcRevenue(5000)).toEqual(0.01);
+    expect(drawing.calcRevenue(5000)).toEqual(0);
   });
   test('10000000000원으로 5000원을 획득한 경우 0을 반환한다.', () => {
     const drawing = new Drawing();
     drawing.user = new User(10000000000);
     expect(drawing.calcRevenue(5000)).toEqual(0);
   });
-  test('3000원으로 20000000000원을 획득한 경우 666666666.67을 반환한다.', () => {
+  test('3000원으로 20000000000원을 획득한 경우 666666666.7을 반환한다.', () => {
     const drawing = new Drawing();
     drawing.user = new User(3000);
-    expect(drawing.calcRevenue(20000000000)).toEqual(666666666.67);
+    expect(drawing.calcRevenue(20000000000)).toEqual(666666666.7);
   });
 });

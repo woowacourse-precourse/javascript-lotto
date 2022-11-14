@@ -210,3 +210,17 @@ describe('숫자를 오름차순 정렬하는 기능이 제대로 작동하는�
     expect(utils.ascendingSort([0, 1, 11, 21, 12, 3, 222])).toEqual([0, 1, 3, 11, 12, 21, 222]);
   });
 });
+
+describe('소수점 둘째자리에서 반올림 동작을 테스트한다.', () => {
+  expect(utils.roundToTwo(0.0015)).toEqual(0);
+  expect(utils.roundToTwo(0.06115)).toEqual(0.1);
+  expect(utils.roundToTwo(12453425.324)).toEqual(12453425.3);
+  expect(utils.roundToTwo(1.05)).toEqual(1.1);
+  expect(utils.roundToTwo(1.003)).toEqual(1);
+  expect(utils.roundToTwo(62.987)).toEqual(63);
+  expect(utils.roundToTwo(58.9)).toEqual(58.9);
+  expect(utils.roundToTwo(67.0)).toEqual(67);
+  expect(utils.roundToTwo(100.05)).toEqual(100.1);
+  expect(utils.roundToTwo(0.000005)).toEqual(0);
+  expect(utils.roundToTwo(1234.11)).toEqual(1234.1);
+});
