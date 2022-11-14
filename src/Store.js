@@ -29,15 +29,19 @@ class Store {
 
   issue() {
     for (let i = 0; i < this.issuedQuantity; ++i) {
-      this.lottos.push(
-        Random.pickUniqueNumbersInRange(
-          LOTTO.NUMBER_MIN,
-          LOTTO.NUMBER_MAX,
-          LOTTO.NUMBER_OF_NUMBERS
-        ).sort((num1, num2) => num1 - num2)
-      );
+      this.pickNumbers();
     }
     this.print();
+  }
+
+  pickNumbers() {
+    this.lottos.push(
+      Random.pickUniqueNumbersInRange(
+        LOTTO.NUMBER_MIN,
+        LOTTO.NUMBER_MAX,
+        LOTTO.NUMBER_OF_NUMBERS
+      ).sort((num1, num2) => num1 - num2)
+    );
   }
 
   print() {
