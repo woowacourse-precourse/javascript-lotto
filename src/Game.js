@@ -9,8 +9,15 @@ const {
 const IO = require('./IO');
 const Lotto = require('./Lotto');
 const NumberGenerator = require('./NumberGenerator');
+const Person = require('./Person');
 const Referee = require('./Referee');
 
+const {
+  bought,
+  pleaseEnterBonusNumber,
+  pleaseEnterMoney,
+  pleaseEnterWinningNumbers,
+} = GAME_MSG;
 const {
   ea,
   hrLine,
@@ -25,12 +32,8 @@ const {
 } = RESULT_MSG;
 
 class Game {
-  constructor() {
-    this.lottos = null;
-    this.cost = 0;
-    this.winningNumbers = null;
-    this.bonusNumber = 0;
-  }
+  static winningNumbers;
+  static bonusNumber;
 
   static validate(money) {
     if (money % 1000 > 0)
@@ -42,9 +45,9 @@ class Game {
   }
 
   static enterMoney() {
-    IO.readLine(GAME_MSG.pleaseEnterMoney + NEW_LINE, (input) => {
+    IO.readLine(pleaseEnterMoney + NEW_LINE, (input) => {
       const money = +input;
-      this.cost = money;
+      Person.cost = money;
       Game.validate(money);
       Game.printMoneyInfo(money);
     });
@@ -52,54 +55,47 @@ class Game {
 
   static printMoneyInfo(money) {
     const n = Calculator.calcQuotient(money);
-    IO.print(NEW_LINE + n + GAME_MSG.bought);
+    IO.print(NEW_LINE + n + bought);
     Game.buyLottos(n);
   }
 
   static buyLottos(n) {
-    this.lottos = [...Array(n)].map(
+    Person.lottos = [...Array(n)].map(
       () => new Lotto(NumberGenerator.generateRandomNumbers())
     );
     Game.enterWinningNumbers();
   }
 
   static enterWinningNumbers() {
-    IO.readLine(
-      NEW_LINE + GAME_MSG.pleaseEnterWinningNumbers + NEW_LINE,
-      (input) => {
-        this.winningNumbers = input.trim().split(',').map(Number);
-        Game.enterBonusNumber();
-      }
-    );
+    IO.readLine(NEW_LINE + pleaseEnterWinningNumbers + NEW_LINE, (input) => {
+      Game.winningNumbers = input.trim().split(',').map(Number);
+      Game.enterBonusNumber();
+    });
   }
 
   static enterBonusNumber() {
-    IO.readLine(
-      NEW_LINE + GAME_MSG.pleaseEnterBonusNumber + NEW_LINE,
-      (input) => {
-        this.bonusNumber = +input;
-        Game.calcResult();
-      }
-    );
+    IO.readLine(NEW_LINE + pleaseEnterBonusNumber + NEW_LINE, (input) => {
+      Game.bonusNumber = +input;
+      Game.calcResult();
+    });
+  }
+
+  static calcEachLotto(result, lotto) {
+    const { numbers } = lotto;
+    const { winningNumbers, bonusNumber } = Game;
+    const place = Referee.compare(numbers, winningNumbers, bonusNumber);
+    place > 0 && result[place - 1]++;
+    return result;
   }
 
   static calcResult() {
-    const compareEachLotto = (result, lotto) => {
-      const place = Referee.compare(
-        lotto.numbers,
-        this.winningNumbers,
-        this.bonusNumber
-      );
-      place > 0 && result[place - 1]++;
-      return result;
-    };
-    const result = this.lottos.reduce(compareEachLotto, [0, 0, 0, 0, 0]);
+    const result = Person.lottos.reduce(Game.calcEachLotto, [0, 0, 0, 0, 0]);
     Game.convertGameResult(result);
   }
 
   static convertGameResult(result) {
     const income = INCOMES.reduce((tot, val, i) => tot + val * result[i], 0);
-    const profit = Calculator.calcProfit(this.cost, income);
+    const profit = Calculator.calcProfit(Person.cost, income);
     Game.printGameResult(result, profit);
   }
 
