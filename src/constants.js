@@ -4,6 +4,12 @@ const LOTTO = {
   MAX: 45,
 };
 
+const QUERY = {
+  BUY: "구입금액을 입력해 주세요.\n",
+  WINNING: "\n당첨 번호를 입력해 주세요.\n",
+  BONUS: "\n보너스 번호를 입력해 주세요.\n",
+}
+
 const ERROR_MESSAGE = {
   NAN: "[ERROR] 숫자만 입력해 주세요.",
   MIN_PRICE: "[ERROR] 로또 가격은 개당 1000원 입니다. ",
