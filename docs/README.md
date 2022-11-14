@@ -28,12 +28,11 @@
 - [x] 당첨번호와 보너스 번호를 입력받는다.
   - [x] 당첨번호 입력 : `setWinningLottoNumbers`
   - [x] 보너스 번호 입력 : `setBonusLottoNumber`
-- [x] 로또의 결과를 가져와 통계를 낸다. : `collectStatistics`
-  - [x] 로또의 결과들을 저장한다. : `setLottosResult`
-    - `getLottoRanking` util 함수를 사용한다.
-    - 수익률은 `calculateProfitRate` util 함수를 사용한다.
+- [x] 로또 결과 통계를 저장한다.. : `setLottoStatistics`
+- [x] 로또의 결과들을 return한다. : `getLottosResult`
+  - `getLottoRanking` util 함수를 사용한다.
 - [x] 통계를 출력하고 로또 게임을 종료한다.
-  - [x] 당첨 통계 및 수익률 통계 출력 : `printStatistics`
+  - [x] 당첨 통계 및 수익률 통계 출력 : `printLottoStatistics`
   - [x] 로또 게임 종료 : `endLottoGame`
 
 ## 로또 게임을 이용하는 사람인 `User` 클래스를 생성한다.
