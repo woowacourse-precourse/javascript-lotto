@@ -37,7 +37,7 @@ class User {
   static isValidPurchase(amount) {
     // 로또 구입 금액에 대한 유효성 검사
     amount = Number(amount);
-    return Validation.isDivisible(amount) && Validation.isAvailablePurchase(amount) && Validation.isPositiveInteger(amount);
+    return Validation.isDivisible(amount) && Validation.isMaxPurchase(amount) && Validation.isPositiveInteger(amount);
   }
 }
 
