@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { QUESTION } = require("./constants/constants");
+const { QUESTION, ERR_MSG } = require("./constants/constants");
 
 class LotteryMachine {
   #winningNum;
@@ -21,15 +21,23 @@ class LotteryMachine {
 
   setBonusNum() {
     MissionUtils.Console.readLine(QUESTION.setBonusNum, (input) => {
+      isNumber(input);
       this.#bonusNum = parseInt(input);
     });
     MissionUtils.Console.close();
+  }
+
+  isNumber(value) {
+    if (isNaN(+value)) {
+      throw new Error(ERR_MSG.notNumber);
+    }
   }
 
   changeNumArray(string) {
     const array = string.split(",");
     const numberArray = [];
     array.map((number) => {
+      isNumber(number);
       numberArray.push(parseInt(number));
     });
     return numberArray;
