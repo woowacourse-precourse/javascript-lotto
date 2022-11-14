@@ -20,6 +20,7 @@ class Validation {
     this.lengthSix(array);
     this.duplication(array);
     this.formatArray(array);
+    return array;
   }
 
   type(numbers) {
@@ -47,7 +48,7 @@ class Validation {
   }
 
   duplication(numbers) {
-    if (new Set(numbers) !== 6) {
+    if (new Set(numbers).size !== 6) {
       throw new Error(ERROR_INPUT_MESSAGE.DUPLICATION);
     }
   }

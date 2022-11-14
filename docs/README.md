@@ -16,13 +16,13 @@
 
 ###
 
-- [ ] 로또 발행 : 유효성 체크 - Lotto#validate
-  - [ ] 각 요소가 숫자 타입인가 - Input#type
-  - [ ] 요소가 범위 내에서 생성되는가 (1~45) - Input#range 
-  - [ ] 요소가 6개 인가 - Input#lengthSix
-  - [ ] 요소가 중복되지 않는가 - Input#duplication
-  - [ ] 발행 결과가 [,] 형태로 만들어지는가 - Input#format#issue
-    - [ ] 각각의 경우 에러 발생시 - IssueError # LAST_KEYWORD
+- [x] 로또 발행 : 유효성 체크 - Lotto#validate
+  - [x] 각 요소가 숫자 타입인가 - Input#type
+  - [x] 요소가 범위 내에서 생성되는가 (1~45) - Input#range 
+  - [x] 요소가 6개 인가 - Input#lengthSix
+  - [x] 요소가 중복되지 않는가 - Input#duplication
+  - [x] 발행 결과가 [,] 형태로 만들어지는가 - Input#format#issue
+    - [x] 각각의 경우 에러 발생시 - IssueError # LAST_KEYWORD
 
 ###
 
