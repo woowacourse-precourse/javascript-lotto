@@ -1,4 +1,6 @@
 const Lotto = require("./Lotto.js");
+const PurchaseLotto = require("./controller/PurchaseLotto.js");
+const PurchaseValudate = require("./validate/purchaseValidate.js");
 const { Console, Random } = require("@woowacourse/mission-utils");
 class App {
   constructor() {
@@ -14,27 +16,14 @@ class App {
       4: 0,
       5: 0,
     };
+    8000;
   }
 
   play() {
     Console.readLine("구입금액을 입력해주세요.\n", (input) => {
       this.input = Number(input);
-      if (isNaN(this.input)) throw new Error("[ERROR] 숫자를 입력해주세요.");
-      if (this.input % 1000 !== 0)
-        throw new Error("[ERROR] 금액은 1000원 단위로 입력해야 합니다.");
-
-      const lottoCount = this.input / 1000;
-      Console.print(`${lottoCount}개를 구매했습니다.`);
-
-      this.randomLottoNums = Array(lottoCount)
-        .fill([])
-        .map(() => {
-          const lottoNum = Random.pickUniqueNumbersInRange(1, 45, 6).sort(
-            (a, b) => a - b,
-          );
-          Console.print(lottoNum);
-          return lottoNum;
-        });
+      new PurchaseValudate(this.input);
+      this.randomLottoNums = new PurchaseLotto(this.input).start();
 
       this.getCorrectLottoNums();
     });
