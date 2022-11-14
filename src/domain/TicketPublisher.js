@@ -1,6 +1,7 @@
 const Lotto = require('../Lotto');
 const { LOTTO } = require('../constants');
 const { Random } = require('@woowacourse/mission-utils');
+const Io = require('../infrastructure/io');
 
 class TicketPublisher {
   static publishTickets(quantity) {
