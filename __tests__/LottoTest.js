@@ -31,4 +31,10 @@ describe('로또 클래스 테스트', () => {
       new Lotto([0, 2, 3, 4, 5, 45]);
     }).toThrow('[ERROR]');
   });
+
+  test('로또 번호에 공백이 있으면 예외 발생.', () => {
+    expect(() => {
+      new Lotto([ , ' ', 3, 4, 5, 6 ]);
+    }).toThrow('[ERROR]');
+  });
 });
