@@ -6,6 +6,7 @@ const GenerateUserLottoNumber = require("./GenerateUserLottoNumber.js");
 const EnterPrizeNumber = require("./EnterPrizeNumber.js");
 const EnterBonusNumber = require("./EnterBonusNumber.js");
 const CompareLotto = require("./CompareLotto.js");
+const CalcRateOfReturn = require("./CalcRateOfReturn.js");
 class App {
   play() {
     const insertMoney = new InsertMoney();
@@ -18,10 +19,9 @@ class App {
     const enterBonusNumber = new EnterBonusNumber();
     const bonus = new Bonus(lotto.getNumbers(), enterBonusNumber.getEnterBonusNumber());
     const compareLotto = new CompareLotto(generateUserLottoNumber.getUserLottoNumberLists(), lotto.getNumbers(), bonus.getNumbers());
-    const earnMoney = this.calcEarnMoney(compareLotto.getUserWinningStatics());
-    const RateOfReturn = this.calcRateOfReturn(insertMoney.getInsertMoney(), earnMoney);
+    const calcRateOfReturn = new CalcRateOfReturn(insertMoney.getInsertMoney(), compareLotto.getUserWinningStatics());
     this.printUserWinningStatics(compareLotto.getUserWinningStatics());
-    this.printRateOfRetrun(RateOfReturn);
+    this.printRateOfRetrun(calcRateOfReturn.getRateOfReturn());
   }
   printLottoCount(LottoCount){
     MissionUtils.Console.print(`${LottoCount}개를 구매했습니다.`);
@@ -47,17 +47,6 @@ class App {
     MissionUtils.Console.print("5개 일치 (1,500,000원) - "+winningStatic[2]+"개");
     MissionUtils.Console.print("5개 일치, 보너스 볼 일치 (30,000,000원) - "+winningStatic[1]+"개");
     MissionUtils.Console.print("6개 일치 (2,000,000,000원) - "+winningStatic[0]+"개");
-  }
-  calcEarnMoney(winningStatic){
-    let winningMoney = winningStatic[4]*5000 +  winningStatic[3]*50000 +  winningStatic[2]*1500000 +  winningStatic[1]*30000000 +  winningStatic[0]*2000000000;
-    return winningMoney;
-  }
-  calcRateOfReturn(inputMoney, earnMoney){
-    const RateOfReturn = (earnMoney/inputMoney)*100;
-    return this.calcDecimalPointTwo(RateOfReturn);
-  }
-  calcDecimalPointTwo(RateOfReturn){
-    return Math.round(RateOfReturn*100)/100;
   }
   printRateOfRetrun(RateOfReturn){
     MissionUtils.Console.print("총 수익률은 "+RateOfReturn+"%입니다.");
