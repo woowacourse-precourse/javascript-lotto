@@ -1,5 +1,9 @@
+
+
 class App {
-  play() {}
+
+  play() {
+  }
 }
 
 module.exports = App;
