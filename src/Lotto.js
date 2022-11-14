@@ -3,9 +3,12 @@ const { Random } = require("@woowacourse/mission-utils");
 class Lotto {
   #numbers;
 
-  constructor(numbers) {
-    this.validate(numbers);
-    this.#numbers = numbers;
+  constructor(userInputWinNumbers) {
+    this.validate(userInputWinNumbers);
+    this.#numbers = userInputWinNumbers;
+    this.bonusNumber;
+    this.lottoBundle;
+
   }
 
   validate(numbers) {
@@ -21,6 +24,12 @@ class Lotto {
     return Random.pickUniqueNumbersInRange(1, 45, 6);
   }
 
+  bundleCreate(lottoCount) {
+    this.lottoBundle = Array.from({ length: lottoCount }, () => {
+      this.makeSixNumbers();
+    });
+    return this.lottoBundle;
+  }
 }
 
 module.exports = Lotto;
