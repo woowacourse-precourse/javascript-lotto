@@ -30,22 +30,19 @@ class Lotto {
 
   rank(winNumber, bonusNumber) {
     const winCount = this.winningCount(winNumber);
+
     switch (winCount) {
       case 3:
         return 5;
-        break;
+
       case 4:
         return 4;
-        break;
+
       case 5:
         return this.#numbers.includes(bonusNumber) ? 2 : 3;
-        break;
+
       case 6:
         return 1;
-        break;
-      default:
-        0;
-        break;
     }
   }
 }
