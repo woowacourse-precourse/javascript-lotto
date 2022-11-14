@@ -3,6 +3,7 @@ const {
   ERROR_MSG_NUMS_NAN,
   ERROR_MSG_NUMS_INTEGER,
   ERROR_MSG_NUM_RANGE,
+  ERROR_MSG_NUMS_DUPLICATED,
 } = require("./constants/error-message");
 
 class Checker {
@@ -14,6 +15,7 @@ class Checker {
     const mainNums = mainNumStrs.map(Number);
     this.checkAllIsInteger(mainNums);
     this.checkAllRange(mainNums);
+    this.checkDuplicate(mainNums);
   }
 
   checkSix(mainNumStrs) {
@@ -46,6 +48,12 @@ class Checker {
   checkRange(num) {
     if (1 <= num && num <= 45) return;
     throw new Error(ERROR_MSG_NUM_RANGE);
+  }
+
+  checkDuplicate(mainNums) {
+    const mainNumSet = new Set([...mainNums]);
+    if (mainNumSet.size === 6) return;
+    throw new Error(ERROR_MSG_NUMS_DUPLICATED);
   }
 }
 
