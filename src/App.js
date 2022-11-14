@@ -95,6 +95,10 @@ class App {
       this.exit();
     });
   }
+
+  play() {
+    this.firstInput();
+  }
 }
 
 module.exports = App;
