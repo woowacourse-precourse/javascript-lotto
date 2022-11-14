@@ -5,66 +5,39 @@ const {
 } = require("../constants/messages");
 
 class Validation {
-  checkType = (purchaseAmount) => {
-    if (isNaN(purchaseAmount)) throw new Error(ERROR_MONEY.TYPE_NUMBER);
-  };
-
-  checkNotZero = (purchaseAmount) => {
-    if (purchaseAmount === "0") throw new Error(ERROR_MONEY.ZERO);
-  };
-
-  checkEmpty = (purchaseAmount) => {
-    if (purchaseAmount.length === 0) throw new Error(ERROR_MONEY.EMPTY);
-  };
-
-  checkNotThousandUnit = (purchaseAmount) => {
-    if (purchaseAmount % 1000 !== 0)
-      throw new Error(ERROR_MONEY.NOT_THOUSAND_UNIT);
-  };
-
-  checkNegativeInput = (purchaseAmount) => {
-    if (purchaseAmount < 0) throw new Error(ERROR_MONEY.NEGATIVE_INPUT);
-  };
-
-  isNumberType = (numbers) => {
+  checkNumberType = (numbers) => {
     return numbers.every((number) => !isNaN(number));
   };
 
-  isLottoRange = (numbers) => {
+  checkLottoRange = (numbers) => {
     return numbers.every((number) => number >= 1 && number <= 45);
   };
 
-  checkLottoLength(numbers) {
-    if (numbers.length !== 6) throw new Error(ERROR_LOTTO.LENGTH);
-  }
-
-  checkLottoType(numbers) {
-    if (!this.isNumberType(numbers)) throw new Error(ERROR_LOTTO.TYPE);
-  }
-
-  checkLottoRange(numbers) {
-    if (!this.isLottoRange(numbers)) throw new Error(ERROR_LOTTO.RANGE);
-  }
-
-  checkDuplicatedNumber(numbers) {
-    if ([...new Set(numbers)].length !== 6)
-      throw new Error(ERROR_LOTTO.DUPLICATED);
-  }
-
   isValidMoney = (purchaseAmount) => {
-    this.checkNotZero(purchaseAmount);
-    this.checkType(purchaseAmount);
-    this.checkEmpty(purchaseAmount);
-    this.checkNegativeInput(purchaseAmount);
-    this.checkNotThousandUnit(purchaseAmount);
+    if (purchaseAmount === "0") throw new Error(ERROR_MONEY.ZERO);
+
+    if (isNaN(purchaseAmount)) throw new Error(ERROR_MONEY.TYPE_NUMBER);
+
+    if (purchaseAmount.length === 0) throw new Error(ERROR_MONEY.EMPTY);
+
+    if (purchaseAmount < 0) throw new Error(ERROR_MONEY.NEGATIVE_INPUT);
+
+    if (purchaseAmount % 1000 !== 0)
+      throw new Error(ERROR_MONEY.NOT_THOUSAND_UNIT);
+
     return true;
   };
 
   isValidLottoNumber = (numbers) => {
-    this.checkLottoLength(numbers);
-    this.checkLottoType(numbers);
-    this.checkLottoRange(numbers);
-    this.checkDuplicatedNumber(numbers);
+    if (numbers.length !== 6) throw new Error(ERROR_LOTTO.LENGTH);
+
+    if (!this.checkNumberType(numbers)) throw new Error(ERROR_LOTTO.TYPE);
+
+    if (!this.checkLottoRange(numbers)) throw new Error(ERROR_LOTTO.RANGE);
+
+    if ([...new Set(numbers)].length !== 6)
+      throw new Error(ERROR_LOTTO.DUPLICATED);
+
     return true;
   };
 
