@@ -34,56 +34,50 @@ class Lotto {
   }
 
   static unitIncrease(array, count, datumPoint, point, increase) {
-    const newArray = Application.copyArray(array);
-
     if (Application.isMatcheCount(count, datumPoint)) {
-      newArray[point] += increase;
+      return Application.increase(array, point, increase);
     }
 
-    return newArray;
+    return array;
   }
 
-  static checkThreeMatche(count, array) {
+  static checkThreeMatche(count, winningAmount) {
     const [DATUM_POINT, POINT, INCREASE] = [3, 0, 1];
 
-    return this.unitIncrease(array, count, DATUM_POINT, POINT, INCREASE);
+    return this.unitIncrease(winningAmount, count, DATUM_POINT, POINT, INCREASE);
   }
 
-  static checkFourMatche(count, array) {
+  static checkFourMatche(count, winningAmount) {
     const [DATUM_POINT, POINT, INCREASE] = [4, 1, 1];
 
-    return this.unitIncrease(array, count, DATUM_POINT, POINT, INCREASE);
+    return this.unitIncrease(winningAmount, count, DATUM_POINT, POINT, INCREASE);
   }
 
-  static checkFiveMatche(count, array, target = [], bonus = 0) {
+  static checkFiveMatche(count, winningAmount, target = [], bonus = 0) {
     const [DATUM_POINT, POINT, INCREASE] = [5, 2, 1];
-    const newArray = Application.copyArray(array);
     const isFive = Application.isMatcheCount(count, DATUM_POINT);
 
     if (isFive && target.includes(bonus)) {
-      return Lotto.checkBonusMatche(newArray);
+      return Lotto.checkBonusMatche(winningAmount);
     }
 
     if (isFive) {
-      newArray[POINT] += INCREASE;
+      return Application.increase(winningAmount, POINT, INCREASE);
     }
 
-    return newArray;
+    return winningAmount;
   }
 
-  static checkBonusMatche(array) {
+  static checkBonusMatche(winningAmount) {
     const [POINT, INCREASE] = [3, 1];
-    const newArray = Application.copyArray(array);
 
-    newArray[POINT] += INCREASE;
-
-    return newArray;
+    return Application.increase(winningAmount, POINT, INCREASE);
   }
 
-  static checkSixMatche(count, array) {
+  static checkSixMatche(count, winningAmount) {
     const [DATUM_POINT, POINT, INCREASE] = [6, 4, 1];
 
-    return this.unitIncrease(array, count, DATUM_POINT, POINT, INCREASE);
+    return this.unitIncrease(winningAmount, count, DATUM_POINT, POINT, INCREASE);
   }
 
   static calculateCount(winningNumbers, value) {
