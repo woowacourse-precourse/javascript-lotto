@@ -5,10 +5,10 @@ class App {
   constructor() {
     this.ticket = {};
   }
+
   inputBudgetCallback(input) {
     const inputBudget = parseInt(input, 10);
     this.ticket = new TicketBox(inputBudget);
-    console.log(this.ticket.budget);
     MissionUtils.Console.close();
   }
 
