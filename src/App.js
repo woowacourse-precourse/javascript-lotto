@@ -3,6 +3,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class App {
   makeUserLottoNumber() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요. \n", (money) => {
+      if (isNaN(money)) throw new Error("[ERROR] 숫자만 입력해주세요.");
       const lottoSheets = money / 1000;
       const userLottos = [];
       MissionUtils.Console.print(`\n${lottoSheets}개를 구매했습니다.`);
@@ -17,10 +18,10 @@ class App {
         MissionUtils.Console.print(userLotto);
         userLottos.push(userLotto);
       }
-      this.winningAndBonusNumber(userLottos);
+      this.winningAndBonusNumber(money, userLottos);
     });
   }
-  winningAndBonusNumber(userLottos) {
+  winningAndBonusNumber(money, userLottos) {
     MissionUtils.Console.readLine(
       "\n당첨 번호를 입력해 주세요. \n",
       (winningNum) => {
@@ -32,13 +33,13 @@ class App {
           "\n보너스 번호를 입력해 주세요. \n",
           (bonusNum) => {
             const NumBonusLotto = Number(bonusNum);
-            this.compareLotto(userLottos, winningNumber, NumBonusLotto);
+            this.compareLotto(money, userLottos, winningNumber, NumBonusLotto);
           }
         );
       }
     );
   }
-  compareLotto(userLottos, winningNum, bonusNum) {
+  compareLotto(money, userLottos, winningNum, bonusNum) {
     let winObj = {
       three: 0,
       four: 0,
@@ -60,11 +61,30 @@ class App {
         else winObj.five++;
       } else if (count === 6) winObj.six++;
     }
-    this.giveStatistics(winObj);
+    this.giveStatistics(money, winObj);
   }
 
-  giveStatistics(winObj) {
-    console.log(winObj);
+  giveStatistics(money, winObj) {
+    let allPrice = 0;
+    for (const key in winObj) {
+      switch (key) {
+        case "three":
+          allPrice += winObj.three * 5000;
+        case "four":
+          allPrice += winObj.four * 50000;
+        case "five":
+          allPrice += winObj.five * 1500000;
+        case "five_bonus":
+          allPrice += winObj.five_bonus * 30000000;
+        case "six":
+          allPrice += winObj.six * 200000000;
+      }
+    }
+    let statistics = ((allPrice / money) * 100).toFixed(1);
+    MissionUtils.Console
+      .print(`\n당첨 통계\n---\n3개 일치 (5,000원) - ${winObj.three}개\n4개 일치 (50,000원) - ${winObj.four}개\n5개 일치 (1,500,000원) - ${winObj.five}개\n5개 일치, 보너스 볼 일치 (30,000,000원) - ${winObj.five_bonus}개\n6개 일치 (2,000,000,000원) - ${winObj.six}개\n총 수익률은 ${statistics}%입니다.
+    `);
+    MissionUtils.Console.close();
   }
   play() {
     this.makeUserLottoNumber();
