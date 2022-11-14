@@ -52,7 +52,7 @@ class App {
     }
 
     makeLottoNumber() {
-        for (let i = 0; i < this.lottoCount; i++) {
+        for (let luckyNumber = 0; luckyNumber < this.lottoCount; luckyNumber++) {
             const numbers = new Lotto(
                 MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6)
             )
@@ -86,21 +86,21 @@ class App {
     }
 
     putWinNumToArray() {
-        for (let i = 0; i < this.userLottoNumbers.length; i++) {
+        for (let win = 0; win < this.userLottoNumbers.length; win++) {
             if (
-                this.winningCount(i) === 5 &&
+                this.winningCount(win) === 5 &&
                 this.userLottoNumbers.includes(this.bonusNumber)
             )
                 this.rank[4] += 1
-            if (this.winningCount(i) > 2)
-                this.rank[6 - this.winningCount(i)] += 1
+            if (this.winningCount(win) > 2)
+                this.rank[6 - this.winningCount(win)] += 1
         }
         this.calculationOfEarnings()
     }
 
     calculationOfEarnings() {
-        for (let i = 0; i < this.rank.length; i++) {
-            this.rateOfReturn += this.rank[i] * this.prizeMoney[i]
+        for (let calculNumber = 0; calculNumber < this.rank.length; calculNumber++) {
+            this.rateOfReturn += this.rank[calculNumber] * this.prizeMoney[calculNumber]
         }
         this.rateOfReturn = (this.rateOfReturn / this.money) * 100
         this.view.winningStatistics(this.rank, this.rateOfReturn)
