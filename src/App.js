@@ -1,6 +1,10 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
-const { amountValidate, winNumberValidate } = require('./Validates');
+const {
+  amountValidate,
+  winNumberValidate,
+  bonusNumberValidate,
+} = require('./Validates');
 
 class App {
   #amount;
@@ -46,6 +50,16 @@ class App {
       '\n당첨 번호를 입력해주세요.\n',
       (numbers) => {
         this.setWinNumbers(numbers.split(','));
+        this.inputBonusNumbers();
+      }
+    );
+  }
+
+  inputBonusNumbers() {
+    MissionUtils.Console.readLine(
+      '\n보너스 번호를 입력해주세요.\n',
+      (number) => {
+        this.setBonusNumber(number);
       }
     );
   }
@@ -77,6 +91,7 @@ class App {
   }
 
   setBonusNumber(number) {
+    bonusNumberValidate(number, this.getWinNumbers());
     this.#bonusNumber = number;
   }
 

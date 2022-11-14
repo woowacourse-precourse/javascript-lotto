@@ -24,4 +24,16 @@ module.exports = {
       }
     });
   },
+
+  bonusNumberValidate(number, winNumbers) {
+    if (number < 1 || number > 45) {
+      throw new Error('[ERROR] 1~45 범위의 보너스 번호를 입력해야 합니다.');
+    }
+    if (!Number(number)) {
+      throw new Error('[ERROR] 보너스 번호는 숫자만 입력할 수 있습니다.');
+    }
+    if (winNumbers.includes(number)) {
+      throw new Error('[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.');
+    }
+  },
 };
