@@ -10,6 +10,7 @@ class LottoBuyer {
     this.money = money;
     this.lottoAmount = money / 1000;
   }
+
   buyLotto() {
     MissionUtils.Console.print(`${this.lottoAmount}개를 구매했습니다.`);
     for (
@@ -23,6 +24,10 @@ class LottoBuyer {
       this.lottoArray.push(boughtLotto);
       boughtLotto.printLottoNumbers();
     }
+  }
+
+  getLottoArray() {
+    return this.lottoArray;
   }
 }
 module.exports = LottoBuyer;
