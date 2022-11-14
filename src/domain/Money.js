@@ -1,17 +1,17 @@
-const { LOTTO_PRICE, LOTTO_INPUT } = require("../utils/Constant");
+const { LOTTO_PRICE, LOTTO_INPUT } = require("../constants/gameCondition");
+const MoneyValidator = require("../validator/MoneyValidator");
 
 class Money {
   #money;
 
   constructor(money) {
     this.validate(money);
-    this.#money = money;
+    this.#money = Number(money);
   }
 
   validate(money) {
-    if (typeof money === "number") {
-      throw new Error("Money must be a number");
-    }
+    const validator = new MoneyValidator();
+    validator.validate(money);
   }
 
   getAmount() {
