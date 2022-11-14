@@ -6,12 +6,8 @@ class Lotto {
   constructor(numbers, BONUS_NUMBER, MONEY) {
     this.validate(numbers);
     this.errorHandler(numbers, BONUS_NUMBER, MONEY);
-    // this.makeRandomValue(MONEY);
-    // this.winnigPrize() = winnigPrize();
 
     this.#numbers = numbers;
-    // this.numbersArray = this.sliceNumber(numbers)
-    // this.makeRandomValue() = makeRandomValue();
     this.BONUS_NUMBER = BONUS_NUMBER;
     this.MONEY = MONEY;
   }
@@ -78,6 +74,33 @@ class Lotto {
       MissionUtils.Console.print(temp);
     });
   }
+
+  matchLotto(lotteryTicket) {
+    let prize = [];
+    lotteryTicket.forEach((ticket) => {
+      prize.push(this.judgeNumber(ticket));
+    })
+  }
+
+  judgeNumber(ticket) {
+    let count = [0, 0];
+    let numberArray = this.#numbers.split(',').map((e) => {
+      return parseInt(e);
+    })
+    ticket.forEach((item) => {
+      if (numberArray.includes(item)) {
+        count[0] += 1;
+      }
+      else if (item == this.BONUS_NUMBER) {
+        count[1] += 1;
+      }
+    });
+
+    return count;
+  }
 }
+
+const lotto = new Lotto("8, 11, 44, 27, 36, 15", "10", "8000");
+lotto.matchLotto(lotto.makeRandomValue(8000));
 
 module.exports = Lotto;
