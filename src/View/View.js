@@ -14,7 +14,7 @@ class View {
 
   showGenLottos(lottoLists) {
     Console.print(`${lottoLists.length}개를 구매했습니다.`);
-    lottoLists.forEach((lotto) => Console.print(`[${lotto}]`));
+    lottoLists.forEach((lotto) => Console.print(`[${lotto.join(', ')}]`));
   }
 
   showUserLottosNumber(userLottoNumber) {
@@ -34,7 +34,7 @@ class View {
       '6개 일치 (2,000,000,000원) - ',
     ];
     Object.values(lottoResults).forEach((count, idx) => {
-      Console.print(`${resultMessages[idx]} ${count}개`);
+      Console.print(`${resultMessages[idx]}${count}개`);
     });
   }
 }

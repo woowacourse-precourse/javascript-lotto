@@ -23,14 +23,10 @@ class Controller {
   }
 
   genLottoAsMoney(userMoney) {
-    const lottoList = Array.from(
-      { length: Number(userMoney / 1000) },
-      () => [],
-    );
-
+    const lottoList = Array.from({ length: Number(userMoney / 1000) });
     return lottoList.map(() => {
       const lotto = new Lotto();
-      return [...lotto.genLotto];
+      return lotto.genLotto;
     });
   }
 
