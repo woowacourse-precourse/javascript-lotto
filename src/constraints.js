@@ -39,6 +39,7 @@ const REWARDS_TABLE = [
   ["FIRST", 0],
 ];
 
+// 당첨 개수에 따른 등수
 const RANK_TABLE = {
   3: "FIFTH",
   4: "FOURTH",
