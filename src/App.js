@@ -37,7 +37,7 @@ class App {
     Console.readLine(INPUT_MESSAGE.ENTER_BONUS_NUMBER, input => {
       const inputNumber = Number(input);
       InputCheck.bonusValidate(inputNumber);
-      Match.bonusNumber.push(inputNumber);
+      Match.bonusNumber += inputNumber;
       this.winningStatistics();
     });
   }

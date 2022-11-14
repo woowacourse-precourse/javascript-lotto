@@ -5,7 +5,7 @@ class Match {
     this.money = 0;
     this.lottoNumbers = [];
     this.winningNumber = [];
-    this.bonusNumber = [];
+    this.bonusNumber = 0;
     this.lottoWinnerNumber = [0, 0, 0, 0, 0];
   }
 
@@ -25,7 +25,7 @@ class Match {
   }
 
   matchBonusNumber(fiveMatchLotto) {
-    if (fiveMatchLotto.includes(this.bonusNumber[0])) {
+    if (fiveMatchLotto.includes(this.bonusNumber)) {
       return this.setPrize(MATCH_NUM.IS_FIVE_BONUS);
     }
     return this.setPrize(MATCH_NUM.IS_FIVE);
