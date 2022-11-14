@@ -27,7 +27,7 @@ class PurchaseLotto {
     Console.print(`${this.lottoCount}개를 구매했습니다.`);
     this.randomLottoNums = this.getRandomLottoNums(this.lottoCount);
     this.randomLottoNums.forEach((lottoNums) =>
-      Console.print(`[${lottoNums}]`),
+      Console.print(`[${lottoNums.join(", ")}]`),
     );
     return this.randomLottoNums;
   }
