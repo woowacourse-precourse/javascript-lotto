@@ -61,11 +61,57 @@ describe("로또 테스트", () => {
     });
   });
 
-  test("예외 테스트", () => {
+  test("구매 금액이 숫자가 아닐 경우 예외가 발생한다.", () => {
     mockQuestions(["1000j"]);
     expect(() => {
       const app = new App();
       app.play();
+    }).toThrow("[ERROR]");
+  });
+
+  test("구매 금액이 1,000원 단위가 아닐 경우 예외가 발생한다.", () => {
+    mockQuestions(["1111"]);
+
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+
+  test("구매 금액이 10,000원일 경우 발행되는 로또 개수는 10개이다.", () => {
+    const app = new App();
+    app.money = 10000;
+    app.getLottoCount();
+
+    expect(app.lottoCount).toEqual(10);
+  });
+
+  test("보너스 번호가 숫자가 아닌 경우 예외가 발생한다.", () => {
+    expect(() => {
+      const app = new App();
+      app.validateBonusNumber("a");
+    }).toThrow("[ERROR]");
+  });
+
+  test("보너스 번호가 1보다 작은 경우 예외가 발생한다.", () => {
+    expect(() => {
+      const app = new App();
+      app.validateBonusNumber(0);
+    }).toThrow("[ERROR]");
+  });
+
+  test("보너스 번호가 45보다 큰 경우 예외가 발생한다.", () => {
+    expect(() => {
+      const app = new App();
+      app.validateBonusNumber(50);
+    }).toThrow("[ERROR]");
+  });
+
+  test("보너스 번호가 당첨 번호와 중복된 경우 예외가 발생한다.", () => {
+    expect(() => {
+      const app = new App();
+      app.winningNumber = [1, 2, 3, 4, 5, 6];
+      app.validateBonusNumber(6);
     }).toThrow("[ERROR]");
   });
 });
