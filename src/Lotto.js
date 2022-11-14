@@ -16,7 +16,10 @@ class Lotto {
     if (new Set(numbers).size !== 6) {
       throw new Error(ERROR_MESSAGE.INVALID_LOTTO_DUPLICATE);
     }
-    if (numbers.map(Number).includes(NaN) || numbers.find(number => number < 1 || number > 45)) {
+    if (numbers.map(Number).includes(NaN)) {
+      throw new Error(ERROR_MESSAGE.INVALID_INPUT_NOT_NUM);
+    }
+    if (numbers.find(number => number < 1 || number > 45)) {
       throw new Error(ERROR_MESSAGE.INVALID_LOTTO_RANGE);
     }
   }

@@ -10,6 +10,12 @@ const validateMoney = money => {
 };
 
 const validateBonusNumber = (number, winningNumbers) => {
+  if (Number.isNaN(+number)) {
+    throw new Error(ERROR_MESSAGE.INVALID_INPUT_NOT_NUM);
+  }
+  if (+number < 1 || +number > 45) {
+    throw new Error(ERROR_MESSAGE.INVALID_LOTTO_RANGE);
+  }
   if (winningNumbers.getNumbers().includes(+number)) {
     throw new Error(ERROR_MESSAGE.BONUS_NUMBER_DUPLICATE);
   }
