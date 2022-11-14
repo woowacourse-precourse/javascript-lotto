@@ -45,6 +45,6 @@ describe('Lotto2ndWinning 클래스 테스트', () => {
       new LottoResult(new LottoNumberCount(5), new LottoNumberCount(1)),
     ]).getTotalWinningMoney();
 
-    expect(totalWinningMoney).toBe(60_000_000);
+    expect(totalWinningMoney.getMoney()).toBe(60_000_000);
   });
 });

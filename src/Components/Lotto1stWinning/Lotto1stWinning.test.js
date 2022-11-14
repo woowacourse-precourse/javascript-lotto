@@ -43,6 +43,6 @@ describe('Lotto1stWinning 클래스 테스트', () => {
       new LottoResult(new LottoNumberCount(6), new LottoNumberCount(1)),
     ]).getTotalWinningMoney();
 
-    expect(totalWinningMoney).toBe(4_000_000_000);
+    expect(totalWinningMoney.getMoney()).toBe(4_000_000_000);
   });
 });
