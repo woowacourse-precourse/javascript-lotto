@@ -1,7 +1,7 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const { RANK } = require('./utils/CONSTANT');
-const { countTickets } = require('./utils/lottery');
+const { countTickets, generateRandomNumbers } = require('./utils/lottery');
 const { convertNumberToComma } = require('./utils/string');
 const { validateNumbers } = require('./utils/validation');
 
@@ -31,29 +31,21 @@ class App {
   generateTickets() {
     const money = this.#paid;
     const ticketsCount = countTickets(money);
-    MissionUtils.Console.print(`\n${ticketsCount}개를 구매했습니다.`);
     for (let i = 0; i < ticketsCount; i += 1) {
-      this.#tickets.push(new Lotto(this.generateRandomNumbers()));
+      this.#tickets.push(new Lotto(generateRandomNumbers()));
     }
+    MissionUtils.Console.print(`\n${this.#tickets.length}개를 구매했습니다.`);
     this.#tickets.map((ticket) => MissionUtils.Console.print(`[${ticket.getTicketNumbers().join(', ')}]`));
     this.setLottoNumbers();
-  }
-
-  generateRandomNumbers() {
-    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6); // [1, 10, 7, 8, 5, 3]
   }
 
   setLottoNumbers() {
     MissionUtils.Console.readLine('\n당첨 번호를 입력해 주세요.\n', (answer) => {
       const numbers = answer.split(',').map((i) => Number(i));
-      this.validate(numbers);
+      validateNumbers(numbers);
       this.#answerNumbers = numbers;
       this.setBonusNumber();
     });
-  }
-
-  validate(numbers) {
-    validateNumbers(numbers);
   }
 
   setBonusNumber() {

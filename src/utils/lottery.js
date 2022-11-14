@@ -1,3 +1,4 @@
+const MissionUtils = require('@woowacourse/mission-utils');
 const { TICKET_PRICE } = require('./CONSTANT');
 const { convertNumberToComma } = require('./string');
 
@@ -33,4 +34,9 @@ const countTickets = (money) => {
   validateMoney(money);
   return money / TICKET_PRICE;
 };
-module.exports = { figureLotteryRank, countTickets, validateMoney };
+
+const generateRandomNumbers = () => MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+
+module.exports = {
+  figureLotteryRank, countTickets, validateMoney, generateRandomNumbers,
+};
