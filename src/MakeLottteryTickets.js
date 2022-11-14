@@ -17,8 +17,7 @@ class MakeLotteryTickets {
   }
 
   makeTickets() {
-    let numberOfRepetition = this.numberOfTickets + 1;
-    while ((numberOfRepetition -= 1)) {
+    while (this.numberOfTickets--) {
       const randomNumbers = RANDOM_UTIL.pickUniqueNumbersInRange(1, 45, 6);
       this.lotteryTickets.push(randomNumbers);
       this.sortLotteryNumbers(randomNumbers);
