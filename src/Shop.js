@@ -1,4 +1,4 @@
-const { ERROR, LOTTO } = require('./utiles/Constant');
+const { ERROR, LOTTO, UNIT_MONEY } = require('./utiles/Constant');
 const { Random } = require('@woowacourse/mission-utils');
 
 class Shop {
@@ -18,11 +18,11 @@ class Shop {
   }
 
   getLottoCount() {
-    return this.#money / 1000;
+    return this.#money / UNIT_MONEY;
   }
 
   #invalidMonetaryUnit(money) {
-    return money % 1000;
+    return money % UNIT_MONEY;
   }
 
   getAllLottoNumbers() {
