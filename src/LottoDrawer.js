@@ -20,10 +20,27 @@ class LottoDrawer {
   // 모두 숫자
   // 총 갯수가 numbersCount
   // 숫자 범위가 1 ~ 45
+  // 중복이 없어야 함
+  // 보너스번호와도 중복이 없어야 함
+
+  setLottoWinner(input) {
+    const winnerNumbers = input.split(',').map(Number);
+
+    this.result = winnerNumbers;
+  }
+
+  setBonusNumer() {
+    Console.readLine('보너스 번호를 입력해 주세요.\n', (input) => {
+      const bonusNumber = Number(input);
+      this.result = [...this.result, bonusNumber];
+      Console.print(this.result);
+    });
+  }
 
   drawLotto() {
     Console.readLine('당첨 번호를 입력해 주세요.\n', (numbers) => {
-      Console.print(numbers.split(',').map(Number));
+      this.setLottoWinner(numbers);
+      this.setBonusNumer();
     });
   }
 }

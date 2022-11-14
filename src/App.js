@@ -5,6 +5,7 @@ const LottoSeller = require('./LottoSeller');
 class App {
   lottos;
 
+  // 각 명령 다음 한 줄 비우기 \n
   play() {
     Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
       this.lottos = new LottoSeller().purchase(money);
