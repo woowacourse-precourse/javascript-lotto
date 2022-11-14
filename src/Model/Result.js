@@ -19,13 +19,13 @@ class Result {
     this.game = LottoGame;
     this.game.lottos.forEach((lotto) => {
       const currentScore = this.getScore(lotto);
-      if (currentScore == 3) this.score.three++;
-      if (currentScore == 4) this.score.four++;
-      if (currentScore == 5) {
+      if (currentScore === 3) this.score.three++;
+      if (currentScore ===4) this.score.four++;
+      if (currentScore === 5) {
         if (this.getIsBonus(lotto)) this.score.fiveAndBonus++;
         if (!this.getIsBonus(lotto)) this.score.five++;
       }
-      if (currentScore == 6) this.score.six++;
+      if (currentScore === 6) this.score.six++;
     });
   }
 

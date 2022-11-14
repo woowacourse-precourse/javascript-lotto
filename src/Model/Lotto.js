@@ -37,13 +37,13 @@ class Lotto {
   checkIsNumber(numbers) {
     const checker = /^[0-9]+$/;
     const checkedArray = numbers.filter((n) => checker.test(n));
-    if (checkedArray.length != 6)
+    if (checkedArray.length !== 6)
       throw new Error('[ERROR] 로또 번호는 숫자여야 합니다.');
   }
 
   checkNumberRange(numbers) {
     const checkedArray = numbers.filter((n) => n > 0 && n < 46);
-    if (checkedArray.length != 6) {
+    if (checkedArray.length !== 6) {
       throw new Error('[ERROR] 로또 번호의 범위를 벗어났습니다.');
     }
   }
