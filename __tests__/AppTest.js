@@ -43,4 +43,13 @@ describe('App 클래스 테스트', () => {
       expect(app.winningNumbers.length).toBe(6);
     });
   });
+
+  test('setBonusNumber에서 app.bonusNumber에 값이 제대로 할당 되었는지 테스트', () => {
+    const app = new App();
+
+    const number = MissionUtils.Random.pickNumberInRange(1, 45);
+
+    app.setBonusNumber(number);
+    expect(app.bonusNumber).toBe(number);
+  });
 });
