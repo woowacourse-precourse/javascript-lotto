@@ -61,7 +61,7 @@ class App {
     const rankCounter = this.lottoStatistics.createRankCounter(
       this.buyingLottos,
     );
-    const profit = this.lottoStatistics.calculateProfit(this.buyingLottos);
+    const profit = this.lottoStatistics.getProfit(this.buyingLottos);
     Console.print("\n당첨 통계\n---");
     Console.print(`3개 일치 (5,000원) - ${rankCounter["5"] || 0}개`);
     Console.print(`4개 일치 (50,000원) - ${rankCounter["4"] || 0}개`);

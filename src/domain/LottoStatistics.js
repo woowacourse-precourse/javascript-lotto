@@ -45,15 +45,30 @@ class LottoStatistics {
     this.bonusNumber = winningLotto.bonusNumber;
   }
 
-  judgeRank(numbers) {
-    const matchedCount = this.match(numbers);
-    if (this.isNeedJudgement(matchedCount)) {
-      return this.judgeSecondRank(numbers);
+  matchCount(numbers) {
+    const numbersSet = new Set(numbers);
+    const winningNumbersSet = new Set(this.winningNumbers);
+    const matchedNumbersSet = Utils.intersect(numbersSet, winningNumbersSet);
+    return [...matchedNumbersSet].length;
+  }
+
+  getRank(numbers) {
+    const matchedCount = this.matchCount(numbers);
+    if (matchedCount === MATCH_COUNT.FIVE) {
+      const isMatchBonusNumber = numbers.includes(this.bonusNumber);
+      return isMatchBonusNumber ? RANK.TWO : RANK.THREE;
     }
     return RANK_MAP[matchedCount] || RANK.UN_RANK;
   }
 
-  calculateTotalReward(buyingLottos) {
+  createRankCounter(buyingLottos) {
+    const filteredRanks = buyingLottos
+      .map((buyingLotto) => this.getRank(buyingLotto))
+      .filter((rank) => rank !== RANK.UN_RANK);
+    return Utils.createCounter(filteredRanks);
+  }
+
+  getTotalReward(buyingLottos) {
     const rankCounter = this.createRankCounter(buyingLottos);
     return Object.entries(rankCounter).reduce((total, [rank, count]) => {
       const reward = REWARD_MAP[rank] * count;
@@ -61,32 +76,10 @@ class LottoStatistics {
     }, 0);
   }
 
-  calculateProfit(buyingLottos) {
+  getProfit(buyingLottos) {
+    const totalReward = this.getTotalReward(buyingLottos);
     const cost = buyingLottos.length * LOTTO_SPEC.MONEY_UNIT;
-    return 100 * (this.calculateTotalReward(buyingLottos) / cost);
-  }
-
-  match(numbers) {
-    const numbersSet = new Set(numbers);
-    const winningNumbersSet = new Set(this.winningNumbers);
-    const matchedNumbersSet = Utils.intersect(numbersSet, winningNumbersSet);
-    return [...matchedNumbersSet].length;
-  }
-
-  judgeSecondRank(numbers) {
-    const isMatchBonusNumber = numbers.includes(this.bonusNumber);
-    return isMatchBonusNumber ? RANK.TWO : RANK.THREE;
-  }
-
-  isNeedJudgement(matchedCount) {
-    return matchedCount === MATCH_COUNT.FIVE;
-  }
-
-  createRankCounter(buyingLottos) {
-    const filteredRanks = buyingLottos
-      .map((buyingLotto) => this.judgeRank(buyingLotto))
-      .filter((rank) => rank !== RANK.UN_RANK);
-    return Utils.createCounter(filteredRanks);
+    return (totalReward / cost) * 100;
   }
 }
 

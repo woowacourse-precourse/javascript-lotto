@@ -36,7 +36,7 @@ describe("로또 통계 클래스 테스트", () => {
     ];
 
     TEST_CASE.forEach(({ numbers, result }) => {
-      expect(lottoStatistics.match(numbers)).toEqual(result);
+      expect(lottoStatistics.matchCount(numbers)).toEqual(result);
     });
   });
 
@@ -72,7 +72,7 @@ describe("로또 통계 클래스 테스트", () => {
     ];
 
     TEST_CASE.forEach(({ numbers, result }) => {
-      expect(lottoStatistics.judgeRank(numbers)).toEqual(result);
+      expect(lottoStatistics.getRank(numbers)).toEqual(result);
     });
   });
 
@@ -183,9 +183,7 @@ describe("로또 통계 클래스 테스트", () => {
     ];
 
     TEST_CASE.forEach(({ buyingLottos, result }) => {
-      expect(lottoStatistics.calculateTotalReward(buyingLottos)).toEqual(
-        result,
-      );
+      expect(lottoStatistics.getTotalReward(buyingLottos)).toEqual(result);
     });
   });
 
@@ -234,7 +232,7 @@ describe("로또 통계 클래스 테스트", () => {
     ];
 
     TEST_CASE.forEach(({ buyingLottos, result }) => {
-      const profit = lottoStatistics.calculateProfit(buyingLottos);
+      const profit = lottoStatistics.getProfit(buyingLottos);
       const formattedProfit = Utils.formatProfit(profit);
       expect(formattedProfit).toEqual(result);
     });
