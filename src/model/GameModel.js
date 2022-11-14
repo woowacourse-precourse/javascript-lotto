@@ -1,13 +1,5 @@
-import IGameModel from './IGameModel';
+const IGameModel = require('./IGameModel');
 
-const GameModel = class extends IGameModel {
-  validateInput(value, callback) {
-    return callback(value);
-  }
+const GameModel = class extends IGameModel {};
 
-  quitWithError(message) {
-    throw Error(`[ERROR] ${message}`);
-  }
-};
-
-export default GameModel;
+module.exports = GameModel;
