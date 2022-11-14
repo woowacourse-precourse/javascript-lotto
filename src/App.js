@@ -1,4 +1,4 @@
-const Lotto = require("./Lotto.js");
+const Lotto = require("./validate/Lotto.js");
 const PurchaseLotto = require("./controller/PurchaseLotto.js");
 const PurchaseValudate = require("./validate/purchaseValidate.js");
 const { Console, Random } = require("@woowacourse/mission-utils");
@@ -24,7 +24,6 @@ class App {
       this.input = Number(input);
       new PurchaseValudate(this.input);
       this.randomLottoNums = new PurchaseLotto(this.input).start();
-
       this.getCorrectLottoNums();
     });
   }
@@ -35,8 +34,7 @@ class App {
         .split(",")
         .map(Number)
         .sort((a, b) => a - b);
-      if (this.correctLottoNums.length !== 6)
-        throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      new Lotto(this.correctLottoNums);
 
       this.getBonusLottoNums();
     }); // ,로 구분
@@ -45,6 +43,7 @@ class App {
   getBonusLottoNums() {
     Console.readLine("보너스 번호를 입력해 주세요.", (input) => {
       this.bonusNumber = Number(input);
+
       this.getEarningRate();
     });
   }
