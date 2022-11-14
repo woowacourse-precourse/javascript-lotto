@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const INPUT_ERROR = require('./Constants');
+const {INPUT_ERROR, RESULT} = require('./Constants');
 const Lotto = require("./Lotto");
 
 class App {
@@ -63,6 +63,7 @@ class App {
         all_results[result - 3] += 1
       }
     }
+    this.printResults(all_results);
   }
 
   getSingleResult(published_Lotto, winning) {
@@ -75,6 +76,13 @@ class App {
         result += 1;
       }
     }
+  }
+
+  printResults(all_results) {
+    let i = 0;
+    RESULT.forEach(element => {
+      MissionUtils.Console.print(`${element} - ${all_results[i]}개`);
+    });
   }
 
 }
