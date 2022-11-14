@@ -9,10 +9,12 @@ const {
   isNumberType,
   isThousandUnits,
   generateRandomNumbers,
+  printMessage,
 } = require("./utils/index");
 
 class LottoGame {
   #purchaseAmount;
+  #lottoCnt;
   #lottoList;
 
   enter() {
@@ -20,7 +22,7 @@ class LottoGame {
       if (this.isPurchaseAmountValid(inputAmount)) {
         this.#purchaseAmount = inputAmount;
         this.generateLottoList();
-        console.log(this.#lottoList);
+        this.printLottoList();
       }
     });
   }
@@ -37,12 +39,19 @@ class LottoGame {
   }
 
   generateLottoList() {
+    this.#lottoCnt = Math.floor(this.#purchaseAmount / LOTTO_VALUE.UNIT);
     this.#lottoList = [];
-    let lottoCnt = Math.floor(this.#purchaseAmount / LOTTO_VALUE.UNIT);
 
-    for (let i = 0; i < lottoCnt; i++) {
+    for (let i = 0; i < this.#lottoCnt; i++) {
       this.#lottoList.push(new Lotto(generateRandomNumbers()));
     }
+  }
+
+  printLottoList() {
+    printMessage(`${this.#lottoCnt}${GAME_MESSAGE.LOTTO_CNT}`);
+    this.#lottoList.forEach((lotto) => {
+      printMessage(lotto.getLottoNumbers());
+    });
   }
 }
 
