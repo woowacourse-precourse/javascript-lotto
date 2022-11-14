@@ -12,7 +12,7 @@ class LottoMain {
 function printResult(lottoList, prize, bonus) {
   ConsoleWork.print('당첨 통계\n---\n');
   const staticLotto = lottoLoop(lottoList, prize, Number(bonus));
-  ConsoleWork.print(staticLotto);
+  printResultMessages(staticLotto);
 }
 
 function lottoLoop(lottoList, prize, bonus) {
@@ -68,4 +68,11 @@ function prizeResult(prizeCount, bonusCount) {
   return 'NOTHING';
 }
 
+function printResultMessages(staticLotto) {
+  ConsoleWork.print(`${Message.CORRECT3_MESSAGE}${staticLotto[0]}개`);
+  ConsoleWork.print(`${Message.CORRECT4_MESSAGE}${staticLotto[1]}개`);
+  ConsoleWork.print(`${Message.CORRECT5_MESSAGE}${staticLotto[2]}개`);
+  ConsoleWork.print(`${Message.CORRECT5_BONUS_MESSAGE}${staticLotto[3]}개`);
+  ConsoleWork.print(`${Message.CORRECT6_MESSAGE}${staticLotto[4]}개`);
+}
 module.exports = LottoMain;
