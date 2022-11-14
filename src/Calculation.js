@@ -54,10 +54,10 @@ class Calculation {
    * @returns
    */
   calcMatchCount(lotto) {
-    const lottoIntersecrt = new Set(lotto.filter((number) => new Set(this.winList).has(number)));
+    const { length: intersecrtCount } = lotto.filter((number) => new Set(this.winList).has(number));
 
     this.isBonusMatch = new Set(lotto).has(this.bonus);
-    this.matchCount = this.isBonusMatch + lottoIntersecrt.size;
+    this.matchCount = this.isBonusMatch + intersecrtCount;
 
     return this.matchResult();
   }
