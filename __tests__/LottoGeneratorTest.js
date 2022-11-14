@@ -28,5 +28,7 @@ describe("로또 생성기 클래스 테스트", () => {
     lottos.forEach((lotto, idx) => {
       expect(lotto.numbers).toEqual(mockArray[idx]);
     });
+
+    MissionUtils.Console.close();
   });
 });
