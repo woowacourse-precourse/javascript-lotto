@@ -30,7 +30,7 @@ class App {
   }
 
   issueLotteryTicket(ticketAmount) {
-    Console.print(`${ticketAmount}${MESSEGE.TELL_PURCHASE_AMOUNT}`);
+    Console.print(MESSEGE.PRINT_PURCHASE_AMOUNT(ticketAmount));
 
     const lotteryTickets = [];
     while (ticketAmount) {

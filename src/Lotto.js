@@ -65,15 +65,11 @@ class Lotto {
   printRank(lotteryTickets) {
     this.compareTickets(lotteryTickets);
 
-    Console.print(
-      `${RESULT.THREE_MATCH}${this.resultMap.get(3)}${RESULT.UNIT}`
-    );
-    Console.print(`${RESULT.FOUR_MATCH}${this.resultMap.get(4)}${RESULT.UNIT}`);
-    Console.print(`${RESULT.FIVE_MATCH}${this.resultMap.get(5)}${RESULT.UNIT}`);
-    Console.print(
-      `${RESULT.FIVE_MATCH_WITH_BONUS}${this.resultMap.get("5B")}${RESULT.UNIT}`
-    );
-    Console.print(`${RESULT.SIX_MATCH}${this.resultMap.get(6)}${RESULT.UNIT}`);
+    Console.print(RESULT.THREE_MATCH(this.resultMap.get(3)));
+    Console.print(RESULT.FOUR_MATCH(this.resultMap.get(4)));
+    Console.print(RESULT.FIVE_MATCH(this.resultMap.get(5)));
+    Console.print(RESULT.FIVE_MATCH_WITH_BONUS(this.resultMap.get("5B")));
+    Console.print(RESULT.SIX_MATCH(this.resultMap.get(6)));
   }
 
   compareTickets(lotteryTickets) {
@@ -100,7 +96,7 @@ class Lotto {
     const ticketPrice = ticketAmount * LOTTO_COST;
     const totalSum = this.sumTotalPrize(this.resultMap);
     const profit = ((totalSum / ticketPrice) * 100).toFixed(1);
-    Console.print(`총 수익률은 ${profit}%입니다.`);
+    Console.print(RESULT.PROFIT(profit));
   }
 
   sumTotalPrize(resultMap) {
