@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const { ERROR_MESSAGE } = require("./message");
 const { Random } = MissionUtils;
 
 class LottoGenerator {
@@ -22,11 +23,11 @@ class LottoGenerator {
   validatePayment(input) {
     const payment = parseInt(input);
     if (isNaN(input)) {
-      throw new Error("[ERROR] 숫자를 입력해 주세요.");
+      throw new Error(ERROR_MESSAGE.NOT_NUMBER);
     } else if (payment < 1000) {
-      throw new Error("[ERROR] 돈이 부족합니다.");
+      throw new Error(ERROR_MESSAGE.LESS_MONEY);
     } else if (payment % this.#PRICE !== 0) {
-      throw new Error("[ERROR] 1000으로 나누어 떨어지지 않습니다.");
+      throw new Error(ERROR_MESSAGE.NOT_DIVIDED);
     }
   }
 }
