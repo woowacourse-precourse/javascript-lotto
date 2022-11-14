@@ -1,7 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const { GAME_MESSAGES } = require("./constants/messages");
 const LottoController = require("./LottoController");
-const Validation = require("./Validation");
+const Validation = require("./validator/Validation");
 
 const mConsole = MissionUtils.Console;
 
@@ -37,8 +37,7 @@ class LottoGame {
 
   printLottoResult() {
     mConsole.print(GAME_MESSAGES.RESULT);
-    this.lottoController.printRank();
-    this.lottoController.printProfitRate();
+    this.lottoController.printCalculatedResult();
     mConsole.close();
   }
 }
