@@ -7,10 +7,13 @@ class App {
   statistics = new Array(this.ranks.length + 1).fill(0);
   earning = 0;
 
-  getLottoCount() {
+  interaction() {
     Console.readLine(MESSAGE.INPUT_PURCHASE_AMOUNT, (input) => {
       this.purchaseAmount = input;
       this.lottoCount = input / 1000;
+      this.generateLottos();
+      this.printLottos();
+      this.winningResult();
     });
   }
 
@@ -35,19 +38,22 @@ class App {
     });
   }
 
-  readWinnigNumbers() {
+  winningResult() {
     Console.readLine(MESSAGE.INPUT_WINNING_NUMBERS, (input) => {
       this.winningNumbers = new Set(input.split(',').map(Number));
+      this.winningStatistics();
     });
   }
 
-  readBonusNumber() {
+  winningStatistics() {
     Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (input) => {
       this.bonusNumber = Number(input);
+      this.setStatistics();
+      this.printStatistics();
     });
   }
 
-  getStatistics() {
+  setStatistics() {
     const { lottos, winningNumbers, bonusNumber } = this;
 
     lottos.forEach((lottoNumbers) => {
@@ -58,10 +64,10 @@ class App {
       this.earning += PRIZE[lotto.rank];
       this.statistics[lotto.rank] += 1;
     });
-    this.getEarningRate(this.earning);
+    this.setEarningRate();
   }
 
-  getEarningRate() {
+  setEarningRate() {
     const { purchaseAmount, earning } = this;
     const earningRate = (earning / purchaseAmount) * 100;
 
@@ -82,7 +88,9 @@ class App {
     Console.print(`총 수익률은 ${earningRate}%입니다.`);
   }
 
-  play() {}
+  play() {
+    this.interaction();
+  }
 }
 
 module.exports = App;
