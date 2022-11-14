@@ -13,7 +13,8 @@ const getStatistics = (counts) => {
   counts.forEach((count) => count - 3 >= 0 && result[count - 3]++);
   return result;
 };
-const getRateOfReturn = () => {};
+
+const getRateOfReturn = (cost, revenue) => ((revenue / cost) * 100).toFixed(1);
 
 exports.buyLottos = buyLottos;
 exports.getStatistics = getStatistics;

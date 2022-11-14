@@ -34,6 +34,6 @@ describe("getRateOfReturn", () => {
     // when
     const expectResult = getRateOfReturn(cost, revenue);
     // then
-    expect(expectResult).toBe(687.5);
+    expect(expectResult).toBe("687.5");
   });
 });
