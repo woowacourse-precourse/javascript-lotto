@@ -8,6 +8,10 @@ class Lotto {
     this.#numbers = numbers;
   }
 
+  getValue() {
+    return this.#numbers;
+  }
+
   validate(numbers) {
     if (numbers.length !== LOTTO.INPUT_COUNT) {
       throw new Error(ERROR_MESSAGE.LOTTO.NUMBER_COUNT);
@@ -17,7 +21,7 @@ class Lotto {
     }
     if (
       numbers.length !==
-      numbers.filter((number) => number >= LOTTO.MIN_NUMBER && numbers <= LOTTO.MAX_NUMBER)
+      numbers.filter((number) => number >= LOTTO.MIN_NUMBER && number <= LOTTO.MAX_NUMBER).length
     ) {
       throw new Error(ERROR_MESSAGE.LOTTO.NUMBER_RANGE);
     }
