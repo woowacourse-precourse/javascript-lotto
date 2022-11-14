@@ -31,12 +31,10 @@ class App {
     this.#winningNum = winningNum;
   }
 
-  readBonusNum() {
-    let bonusNum = 0;
+  setBonusNum() {
     MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (input) => {
-      bonusNum = parseInt(input);
+      this.#bonusNum = parseInt(input);
     });
-    return bonusNum;
   }
 
   changeNumArray(string) {
@@ -81,10 +79,6 @@ class App {
       `총 수익률은 ${(winningAmount / purchaseAmoint) * 100}%입니다.`
     );
   }
-
-  // test() {
-  //   this.printRate(8000, 5000);
-  // }
 }
 
 module.exports = App;
