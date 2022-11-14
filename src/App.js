@@ -7,18 +7,14 @@ class App {
 
   play() {
     Console.readLine("구입금액을 입력해주세요.", (value) => {
-      this.runLotto(value);
+      if (!this.isValidate(value)) {
+        this.play();
+        return;
+      }
+      const amountOfPaid = this.makePayment(value);
+      const lottos = this.issueLotto(amountOfPaid / 1000);
+      this.getWinner(lottos, amountOfPaid);
     });
-  }
-
-  runLotto(value) {
-    if (!this.isValidate(value)) {
-      this.play();
-      return;
-    }
-    const amountOfPaid = this.makePayment(value);
-    const lottos = this.issueLotto(amountOfPaid / 1000);
-    this.getWinner(lottos, amountOfPaid);
   }
 
   isValidate(value) {
