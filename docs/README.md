@@ -18,7 +18,10 @@
 - [x] 당첨 번호 입력: getTargetNumber()
 - [x] 보너스 번호 입력: getBonusNumber()
 - [x] 로또 티켓 getter: get numbers()
-- [ ] 통계 출력: printLottoStat()
+
+- [x] 통계 출력: printLottoStat()
+- [ ] 구매 로또 출력: printLottos()
+- [ ] 수익률 출력: printProfit()
 
 ## 입출력 검증
 
@@ -32,9 +35,8 @@
 - [x] Game 클래스가 Lotto 클래스 사용하게 변경
 - [x] Rank 클래스가 Lotto 클래스 사용하게 변경
 - [x] Rank 클래스 Game 내 삽입: generateLottoRanks()
-- [ ] App 클래스에 Input 사용
-- [ ] App 클래스에 Game 사용
-- [ ] Input과 Game 연동
+- [x] App 클래스에 Input 적용
+- [x] App 클래스에 Game 적용
 
 ## 예외 처리
 
