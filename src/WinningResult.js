@@ -54,7 +54,9 @@ class WinningResult {
 
   setYield(cash) {
     this.#sum = this.calculateSum();
-    return Math.round((this.#sum * YIELD.PERCENT * YIELD.ROUND) / cash) / YIELD.ROUND;
+    return parseFloat(
+      Math.round((this.#sum * YIELD.PERCENT * YIELD.ROUND) / cash) / YIELD.ROUND,
+    ).toFixed(1);
   }
 }
 
