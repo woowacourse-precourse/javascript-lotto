@@ -25,7 +25,12 @@ class App {
   requestBonus() {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusNumber) => {
       this.lottos.setBonusNumber(bonusNumber);
+
+      this.printWinningStat();
     });
+  }
+  printWinningStat() {
+    Console.print("\n당첨 통계\n---");
   }
 }
 
