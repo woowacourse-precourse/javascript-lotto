@@ -116,13 +116,10 @@ class App {
       const userNumbersList = this.#user.getNumbersList();
       const bonusNumber = this.#lottoManager.getBonusNumber();
 
-      const statistics = this.#lottoManager.getStatistics(
-        userNumbersList,
-        bonusNumber
-      );
-      const revenue = this.#lottoManager.calculateRevenue(statistics, amount);
+      const prizes = this.#lottoManager.getPrizes(userNumbersList, bonusNumber);
+      const revenue = this.#lottoManager.calculateRevenue(prizes, amount);
 
-      this.#printStatistics(statistics, revenue);
+      this.#printStatistics(prizes, revenue);
 
       Utils.close();
     });

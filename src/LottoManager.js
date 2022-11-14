@@ -102,7 +102,7 @@ class LottoManager {
    * @param {number} bonusNumber
    * @returns {{first: number, second: number, third:number, fourth:number, fifth:number}}
    */
-  getStatistics(userNumbersList, bonusNumber) {
+  getPrizes(userNumbersList, bonusNumber) {
     const statistics = { first: 0, second: 0, third: 0, fourth: 0, fifth: 0 };
 
     userNumbersList.forEach((userNumbers) => {
