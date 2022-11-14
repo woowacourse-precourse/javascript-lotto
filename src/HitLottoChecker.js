@@ -52,5 +52,15 @@ class HitLottoChecker {
       this.fillMatchLottoNumbersTable(matchNumbersAmount, lotto);
     }
   }
+  fillMatchLottoNumbersTable(matchNumbersAmount, lotto) {
+    if (
+      matchNumbersAmount === 5 &&
+      lotto.getLottoNumbers().includes(this.bonusNumber)
+    ) {
+      this.matchLottoNumbersTable["5B"] += 1;
+    } else if ([3, 4, 5, 6].includes(matchNumbersAmount)) {
+      this.matchLottoNumbersTable[matchNumbersAmount] += 1;
+    }
+  }
 }
 module.exports = HitLottoChecker;
