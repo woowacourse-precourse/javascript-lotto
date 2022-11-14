@@ -32,7 +32,20 @@ const {
 } = require('./Constants.js');
 
 class App {
-  inputWinningNumbers(lottos) {}
+  inputBonusNumber(winningNumbers, lottos) {}
+
+  validateWinningNumbers(winningNumbers) {}
+
+  inputWinningNumbers(lottos) {
+    Console.readLine(INPUT_WINNING_MSG, (input) => {
+      const winningNumbers = input
+        .split(WINNING_SPLIT)
+        .map((number) => Number(number));
+
+      this.validateWinningNumbers(winningNumbers);
+      this.inputBonusNumber(winningNumbers, lottos);
+    });
+  }
 
   printLottos(lottos) {
     Console.print(`${lottos.length}${BUY_MSG}`);
