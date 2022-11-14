@@ -1,10 +1,9 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Console = MissionUtils.Console;
+const Random = MissionUtils.Random;
 const Lotto = require('./Lotto');
 
 class App {
-  #amount;
-
   play() {
     this.Lotto = new Lotto();
     this.getAmount();
@@ -12,8 +11,9 @@ class App {
 
   getAmount() {
     Console.readLine('구입금액을 입력해 주세요.', answer => {
-      if (Lotto.isValidAmount(answer)) {
-        this.#amount = answer;
+      if (this.Lotto.isValidAmount(answer)) {
+        const quantity = parseInt(+answer / 1000);
+        this.issueLotto(quantity);
       }
     });
   }
