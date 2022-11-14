@@ -3,7 +3,6 @@ const Constants = require('./Constants');
 const Lotto = require("./Lotto");
 
 class App {
-  #bonus = 0;
 
   play() {
     this.purchaseAmount();
@@ -76,7 +75,6 @@ class App {
   }
 
   getAllResults(published_Lottos, winning, count) {
-    MissionUtils.Console.print(published_Lottos[0][0]);
     let all_results = [0, 0, 0, 0, 0];
     for(let i = 0; i < count; i++){
       const result = this.getSingleResult(published_Lottos[i], winning);
