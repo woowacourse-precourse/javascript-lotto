@@ -12,4 +12,9 @@ describe("Purchase 클래스 테스트", () => {
       new Purchase('apple');
     }).toThrow("[ERROR]");
   });
+
+  test("구입액에 따라 발행된 로또 갯수를 반환한다.", () => {
+    const nums = new Purchase(5000).getPublishCount();
+    expect(nums).toEqual(5);
+  });
 });
