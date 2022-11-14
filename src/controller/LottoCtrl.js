@@ -4,6 +4,7 @@ const {
   WINNING_NUMBER_MESSAGE,
   TICKET_NUMBER,
   BONUS_MESSAGE,
+  LOTTO_RANK,
 } = require('../constants/lotto');
 const GameCtrl = require('./GameCtrl');
 const LottoView = require('../view/LottoView');
@@ -63,7 +64,7 @@ const LottoCtrl = class extends GameCtrl {
 
   inputLottoWinningNumbers() {
     const onGetLottoWinningNumbers = winningNumbers => {
-      winningNumbers = winningNumbers.split(',');
+      winningNumbers = winningNumbers.split(',').map(number => Number(number));
       this.model.setLottoWinningNumbers(winningNumbers);
 
       this.inputLottoBonus();
@@ -74,6 +75,8 @@ const LottoCtrl = class extends GameCtrl {
 
   inputLottoBonus() {
     const onGetLottoBonus = bonus => {
+      bonus = Number(bonus);
+
       this.model.setBonusNumber(bonus);
       this.end();
     };
@@ -81,10 +84,47 @@ const LottoCtrl = class extends GameCtrl {
     this.view.input(BONUS_MESSAGE, onGetLottoBonus);
   }
 
-  // end method
-  // 1. 당첨 내역을 출력한다.
+  end() {
+    this.getLottoWinningHistory();
+
+    this.view.close();
+  }
+
+  getLottoWinningHistory() {
+    const { lottoTickets, winningNumbers, bonus } = this.model;
+
+    const winningHistory = lottoTickets.reduce((winningHistory, currTicket) => {
+      const intersectionSize = currTicket.filter(number => winningNumbers.includes(number)).length;
+
+      switch (intersectionSize) {
+        case 6:
+          winningHistory[1] += 1;
+          return winningHistory;
+
+        case 5:
+          const isBonus = currTicket.includes(bonus);
+          const rank = isBonus === true ? 2 : 3;
+          winningHistory[rank] += 1;
+          return winningHistory;
+
+        case 4:
+          winningHistory[4] += 1;
+          return winningHistory;
+
+        case 3:
+          winningHistory[5] += 1;
+          return winningHistory;
+
+        default:
+          return winningHistory;
+      }
+    }, [...new Array(6)].fill(0));
+
+    this.model.winningHistory = winningHistory;
+  }
+
   // 2. 총 수익률을 출력한다.
-  end() {}
+  getLottoYield() {}
 };
 
 module.exports = LottoCtrl;
