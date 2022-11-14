@@ -15,4 +15,9 @@ describe("로또 클래스 테스트", () => {
   });
 
   // 아래에 추가 테스트 작성 가능
+  test("로또 get 접근자 프로퍼티 확인", () => {
+    const lottoNumberArray = [1, 2, 3, 4, 5, 6]
+    const lotto = new Lotto(lottoNumberArray);
+    expect(lotto.numbers).toEqual(lottoNumberArray);
+  })
 });
