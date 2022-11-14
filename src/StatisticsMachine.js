@@ -64,7 +64,7 @@ class StatisticsMachine {
         prizeStatistics.thirdPlace
       }개`,
       `${
-        LOTTO_PRIZE_MATCH_COUNT.thirdPlace
+        LOTTO_PRIZE_MATCH_COUNT.secondPlace
       }개 일치, 보너스 볼 일치 (${LOTTO_PRIZE_MONEY.secondPlace.toLocaleString()}원) - ${
         prizeStatistics.secondPlace
       }개`,

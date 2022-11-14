@@ -30,7 +30,7 @@ class LottoDrawMachine {
     const { matchedLottoNumberCount, hasBonusNumber } = compareResult;
 
     if (matchedLottoNumberCount === LOTTO_PRIZE_MATCH_COUNT.firstPlace) return "firstPlace";
-    if (matchedLottoNumberCount === LOTTO_PRIZE_MATCH_COUNT.thirdPlace && hasBonusNumber) {
+    if (matchedLottoNumberCount === LOTTO_PRIZE_MATCH_COUNT.secondPlace && hasBonusNumber) {
       return "secondPlace";
     }
     if (matchedLottoNumberCount === LOTTO_PRIZE_MATCH_COUNT.thirdPlace) return "thirdPlace";
