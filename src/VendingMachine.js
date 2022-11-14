@@ -85,6 +85,7 @@ class VendingMachine {
 
       this.#rankBoard = this.getRanksByScores();
       const [winMessages, rateOfProfit] = this.calculateStatistics();
+      this.printStatistics(winMessages, rateOfProfit);
     };
 
     Console.readLine('\n보너스 번호를 입력해주세요.\n', answerCbFn);
@@ -109,6 +110,12 @@ class VendingMachine {
     const rateOfProfit = getRateStrOfProfit(profit, this.#purchaseAmount);
 
     return [winMessages, rateOfProfit];
+  }
+
+  printStatistics(winMessages, rateOfProfit) {
+    Console.print('당첨 통계\n---\n');
+    winMessages.forEach(Console.print);
+    Console.print(`총 수익률은 ${rateOfProfit}입니다.`);
   }
 }
 
