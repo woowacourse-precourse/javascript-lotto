@@ -70,11 +70,11 @@ const SYSTEM = Object.freeze({
 
     printResult(lottos, winningLotto, bonusNumber, cash) {
         let results = this.makeResults(lottos, winningLotto, bonusNumber);
-
         this.printWinningHistory(results);
 
         let rate = this.calulateRate(cash, results);
-        SYSTEM.print(`총 수익률은 ${rate}%입니다.`);
+        this.printRate(rate);
+
         this.exit();
     },
 
@@ -85,6 +85,7 @@ const SYSTEM = Object.freeze({
             let rankIndex = this.compare(lotto.getNumber(), new Set(winningLotto), bonusNumber);
             results[rankIndex]++;
         }
+
         return results;
     },
 
@@ -108,7 +109,10 @@ const SYSTEM = Object.freeze({
         let winnings = WINNING_LOTTO;
         let revenue = winnings.reduce((sum, money, rank) => sum + (result[rank] * money), 0);
         return Math.round(revenue / cash * 100 * 10) / 10;
+    },
 
+    printRate(rate) {
+        SYSTEM.print(`총 수익률은 ${rate}%입니다.`);
     },
 
     exit() {
