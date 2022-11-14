@@ -90,3 +90,12 @@ describe("생성한 로또와 입력된 당첨번호, 보너스 번호를 비교
     expect(status.getResult()[4]).toEqual(1);
   });
 });
+
+describe("지불한 금액과 당첨금을 비교하여 수익률을 계산할수 있다.", () => {
+  test("임의의 결과와 지불 금액을 입력하여 수익률 계산", () => {
+    const status = new Status();
+    status.setResult([1, 1, 0, 0, 0]);
+    status.countYield(50000);
+    expect(status.getYield()).toEqual(110);
+  });
+});
