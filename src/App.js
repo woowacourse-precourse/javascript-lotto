@@ -52,7 +52,6 @@ class App {
     }
   }
 
-  //FIXME: 형변환 통일
   getBonusNumber() {
     Console.readLine(MESSAGE.ENTER_BONUS_NUMBER, number => {
       const trimmedNumber = number.trim();
@@ -67,7 +66,7 @@ class App {
       throw new Error(ERROR.ONLY_NUMBER);
     }
 
-    if (isOutOfRange([Number(number)])) {
+    if (isOutOfRange(number)) {
       throw new Error(ERROR.OUT_OF_RANGE);
     }
 

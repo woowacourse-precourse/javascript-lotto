@@ -22,7 +22,7 @@ class Lotto {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
 
-    if (isOutOfRange(numbers)) {
+    if (numbers.some(isOutOfRange)) {
       throw new Error(ERROR.OUT_OF_RANGE);
     }
 
