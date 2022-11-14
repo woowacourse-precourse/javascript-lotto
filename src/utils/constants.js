@@ -5,6 +5,8 @@ const PARAMETERS = {
   lottoNumberRange: [1, 45],
 };
 
+const PRIZE_MONEY = [2000000000, 30000000, 1500000, 50000, 5000];
+
 const CONSOLE_MESSAGE = {
   purchaseAmount: '구입금액을 입력해 주세요.',
   winningNumber: '당첨 번호를 입력해 주세요.',
@@ -38,6 +40,7 @@ const ERROR_MESSAGE = {
 
 module.exports = {
   PARAMETERS,
+  PRIZE_MONEY,
   CONSOLE_MESSAGE,
   RESULT_MESSAGE,
   ERROR_MESSAGE,
