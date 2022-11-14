@@ -56,3 +56,10 @@ describe("Lotto 클래스의 bundleCreate() 기능 테스트", () => {
     expect(lottoBundle).toEqual(purchaseLottoCount);
   });
 });
+
+describe("Lotto 클래스의 sameNumberCount() 기능 테스트", () => {
+  const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+  const userLottos = [[1, 2, 3, 4, 5, 9], [5, 6, 7, 8, 9, 10]];
+  const result = [5, 2];
+  expect(lotto.sameNumberCount([1, 2, 3, 4, 5, 6], userLottos)).toStrictEqual(result);
+});
