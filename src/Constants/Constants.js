@@ -14,6 +14,7 @@ const ERROR_MESSAGES = {
 const LOTTO = {
   PRICE: 1000,
   NUMBER: 6,
+  BONUS: 1,
   MAX_RANGE: 45,
   MIN_RANGE: 1,
 };
