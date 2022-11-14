@@ -2,9 +2,9 @@
 
 ## 기능 목록
 
-- [ ] 로또 구입 금액을 입력 받는다. #receivePurchaseAmount
-  - [ ] 구입 금액은 1,000원 단위로 입력 받는다.
-  - [ ] (예외) 1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다.
+- [x] 로또 구입 금액을 입력 받는다. #receivePurchaseAmount
+  - [x] 구입 금액은 1,000원 단위로 입력 받는다. #checkPurchaseAmount
+  - [x] (예외) 1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다.
 - [ ] 발행한 로또 수량을 알 수 있다. | Calculator#calculateAmountOfLotto()
   - [ ] 발행한 로또 수량을 출력한다. | #printAmountOfLotto()
 - [ ] 로또 1개당 1부터 45까지의 중복되지 않는 6개의 숫자를 생성한다. | NumberGenerator#createNumbersOfLotto()
