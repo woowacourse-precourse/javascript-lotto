@@ -5,7 +5,7 @@ class App {
   play() {
     const ticket = this.inputMoeny();
     const lottoArr = this.buyingLotto(ticket);
-    const winningNumber = new Lotto(this.consoleInput("당첨 번호를 입력해 주세요.\n"));
+    const winningNumber = new Lotto([this.consoleInput("당첨 번호를 입력해 주세요.\n")]);
     const bonusNumber = new Lotto(this.consoleInput("보너스 번호를 입력해 주세요.\n"));
   }
 
