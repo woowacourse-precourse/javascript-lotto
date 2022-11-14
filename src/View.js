@@ -18,7 +18,7 @@ class View extends Setting {
   handoverLotto() {
     this.lottoBox.map((oneLine) => {
       oneLine = this.sortList(oneLine);
-      Console.print(oneLine);
+      Console.print(`[${oneLine.join(", ")}]`);
     });
   }
   buyLotto() {
@@ -55,19 +55,23 @@ class View extends Setting {
       Object.keys(this.score).map((ranking, index) => {
         if (index === 4) {
           return Console.print(
-            `${index + 1}개 일치, 보너스 볼 일치 (${ranking}원) - ${
-              this.score[ranking]
-            }개`
+            `${index + 1}개 일치, 보너스 볼 일치 (${Number(
+              ranking
+            ).toLocaleString()}원) - ${this.score[ranking]}개`
           );
         }
         if (index === 5) {
           return Console.print(
-            `${index + 1}개 일치 (${ranking}원) - ${this.score[ranking]}개`
+            `${index + 1}개 일치 (${Number(ranking).toLocaleString()}원) - ${
+              this.score[ranking]
+            }개`
           );
         }
         if (index !== 0) {
           return Console.print(
-            `${index + 2}개 일치(${ranking}원) - ${this.score[ranking]}개`
+            `${index + 2}개 일치 (${Number(ranking).toLocaleString()}원) - ${
+              this.score[ranking]
+            }개`
           );
         }
       });
