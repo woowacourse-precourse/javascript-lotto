@@ -38,9 +38,16 @@ const GENERATE_LOTTO_ERROR = {
   NUM_IN_RANGE_ALLOWED: `${ERROR} 로또 번호는 1부터 45 사이의 숫자여야 합니다.`,
 };
 
+const MIN_LOTTO_NUM = 1;
+const MAX_LOTTO_NUM = 45;
+const NUM_OF_LOTTO = 6;
+
 module.exports = {
   RESULT,
   WINNING_MONEY,
   INPUT_MONEY_ERROR,
   GENERATE_LOTTO_ERROR,
+  MIN_LOTTO_NUM,
+  MAX_LOTTO_NUM,
+  NUM_OF_LOTTO,
 };

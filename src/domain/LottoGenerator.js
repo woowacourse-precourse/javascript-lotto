@@ -1,28 +1,18 @@
 const { Random } = require('@woowacourse/mission-utils');
-const INPUT_MONEY_ERROR = require('../constants/constants');
-
-const MIN_LOTTO_NUM = 1;
-const MAX_LOTTO_NUM = 45;
-const NUM_OF_LOTTO = 6;
+const { validateInputMoney } = require('../utils/validations');
+const {
+  NUM_OF_LOTTO,
+  MIN_LOTTO_NUM,
+  MAX_LOTTO_NUM,
+} = require('../constants/constants');
 
 class LottoGenerator {
   constructor() {
     this.lottos;
   }
 
-  isInputMoneyValid(money) {
-    if (!money) {
-      throw new Error(INPUT_MONEY_ERROR.NOT_NULL_ALLOWED);
-    }
-    if (!Number.isInteger(money)) {
-      throw new Error(INPUT_MONEY_ERROR.ONLY_NUM_ALLOWED);
-    }
-    if (money < 0) {
-      throw new Error(INPUT_MONEY_ERROR.NUM_OVER_ZERO_ALLOWED);
-    }
-    if (money % 1000 !== 0) {
-      throw new Error(INPUT_MONEY_ERROR.THOUSAND_UNIT_ALLOWED);
-    }
+  validateInputMoney(money) {
+    return validateInputMoney(parseInt(money));
   }
 
   getNumOfLottos(money) {
