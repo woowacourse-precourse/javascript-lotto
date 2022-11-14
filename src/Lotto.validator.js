@@ -14,7 +14,7 @@ class LottoValidator {
   }
 
   static getLottoPuchaseNumber(money) {
-    this.#canDevideCost(money);
+    this.#checkDevideCost(money);
     return +money / LOTTO.LOTTO_COST;
   }
 
@@ -26,8 +26,8 @@ class LottoValidator {
     return lottoNumbers;
   }
 
-  static AdditionalNumber(lottoAdditinalNumber, lottoInputDto) {
-    if (lottoInputDto.numbers.includes(lottoAdditinalNumber)) {
+  static AdditionalNumber(lottoAdditinalNumber, lottoNumbers) {
+    if (lottoNumbers.includes(lottoAdditinalNumber)) {
       throw new Error(ERROR.CONFLICT_ADDITIONIONL_NUMBER);
     }
     if (isNaN(+lottoAdditinalNumber)) {
@@ -48,7 +48,7 @@ class LottoValidator {
     lottoPrizeDto.prizeCountUp(lottoMatchCount, isLottoMatchAdditionalNumber);
   }
 
-  static #canDevideCost(number) {
+  static #checkDevideCost(number) {
     if (number % LOTTO.LOTTO_COST !== 0) {
       throw new Error(ERROR.MONEY_UNIT);
     }

@@ -15,16 +15,16 @@ class App {
   async play() {
     const money = await InputConsole.getMoney();
     const purchaseNumber = LottoValidator.getLottoPuchaseNumber(money);
+    OutputConsole.lottoPurchaseNumber(purchaseNumber);
 
     this.#lottoPurchaseDtos = Array.from(
-      {purchaseNumber},
+      { length: purchaseNumber },
       () => new LottoPurchaseDto(),
     );
-    OutputConsole.lottoPurchaseNumber(money / LOTTO.LOTTO_COST);
     OutputConsole.lottoNumbers(this.#lottoPurchaseDtos);
 
     const lottoNumbers = await InputConsole.getLotto();
-    const lottoAdditinalNumber = await InputConsole.getLottoAdditional();
+    const lottoAdditinalNumber = await InputConsole.getLottoAdditional(lottoNumbers);
     this.#lottoInputDto = new LottoInputDto(lottoNumbers, lottoAdditinalNumber);
 
     this.#lottoPrizeDto = new LottoPrizeDto();
