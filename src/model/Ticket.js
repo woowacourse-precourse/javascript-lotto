@@ -1,13 +1,14 @@
+const Random = require("@woowacourse/mission-utils").Random;
+
 class Ticket {
+	static #price = 1000;
 	#numbers;
-	#price;
-	constructor(numbers) {
-		this.#numbers = numbers;
-		this.#price = 1000;
+	constructor(builder) {
+		this.#numbers = builder.getNumbers();
 	}
 
-	price() {
-		return this.#price;
+	static price() {
+		return Ticket.#price;
 	}
 
 	hasNumber(number) {
@@ -18,6 +19,16 @@ class Ticket {
 		return numbers.reduce((acc, cur) => 
 			acc + (this.hasNumber(cur) ? 1 : 0), 0);
 	}
+
+	static Builder = class {
+		getNumbers() {
+			console.log("hello");
+			return Random.pickUniqueNumbersInRange(1, 45, 6);
+		}
+    build() {
+      return new Ticket(this);
+    }
+  }
 }
 
 module.exports = Ticket;
