@@ -17,17 +17,7 @@ class App {
     const bonus = new Bonus(lotto.getNumbers(), enterBonusNumber.getEnterBonusNumber());
     const compareLotto = new CompareLotto(generateUserLottoNumber.getUserLottoNumberLists(), lotto.getNumbers(), bonus.getNumbers());
     const calcRateOfReturn = new CalcRateOfReturn(insertMoney.getInsertMoney(), compareLotto.getUserWinningStatics());
-    this.printUserWinningStatics(compareLotto.getUserWinningStatics());
     this.printRateOfRetrun(calcRateOfReturn.getRateOfReturn());
-  }
-  printUserWinningStatics(winningStatic){
-    MissionUtils.Console.print("당첨 통계");
-    MissionUtils.Console.print("---");
-    MissionUtils.Console.print("3개 일치 (5,000원) - "+winningStatic[4]+"개");
-    MissionUtils.Console.print("4개 일치 (50,000원) - "+winningStatic[3]+"개");
-    MissionUtils.Console.print("5개 일치 (1,500,000원) - "+winningStatic[2]+"개");
-    MissionUtils.Console.print("5개 일치, 보너스 볼 일치 (30,000,000원) - "+winningStatic[1]+"개");
-    MissionUtils.Console.print("6개 일치 (2,000,000,000원) - "+winningStatic[0]+"개");
   }
   printRateOfRetrun(RateOfReturn){
     MissionUtils.Console.print("총 수익률은 "+RateOfReturn+"%입니다.");
