@@ -1,5 +1,4 @@
 const { Console } = require('@woowacourse/mission-utils');
-const GetLotto = require('./GetLotto');
 const GetNumber = require('./GetNumber');
 const Lotto = require("./Lotto");
 const CompareLotto = require("./CompareLotto");
@@ -9,7 +8,7 @@ class App {
   #winningAmount;
 
   constructor() {
-    this.GetLotto = new GetLotto();
+    this.Lotto = new Lotto();
     this.GetNumber = new GetNumber();
     this.lotto = new Lotto();
     this.CompareLotto = new CompareLotto();
@@ -17,7 +16,7 @@ class App {
 
   play() {
     Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
-      let lottoList = this.GetLotto.lottoNumberPackage(money);
+      let lottoList = this.Lotto.NumberPackage(money);
       this.#purchaseAmount = money;
       this.getWinNumber(lottoList);
     });
