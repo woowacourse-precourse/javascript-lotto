@@ -1,25 +1,26 @@
 const { Console } = require('@woowacourse/mission-utils');
+const { ERROR } = require('./constant');
 
 const isValidNumber = (input) => {
   const numberRegex = /^\d+$/g;
   if (input.match(numberRegex)) return;
 
   Console.close();
-  throw new Error('[ERROR] 숫자가 아닌 값은 입력할 수 없습니다.');
+  throw new Error(ERROR.INVALID_TYPE);
 };
 
 const isNotZero = (input) => {
   if (input !== '0') return;
 
   Console.close();
-  throw new Error('[ERROR] 복권을 한 장 이상 구매하셔야 합니다.');
+  throw new Error(ERROR.INVALID_AMOUNT);
 };
 
 const isValidUnit = (input) => {
   if (!(input % 1000)) return;
 
   Console.close();
-  throw new Error('[ERROR] 입력할 수 있는 최소 단위금액은 1000원입니다.');
+  throw new Error(ERROR.INVALID_UNIT);
 };
 
 const checkMoneyValidation = (input) => {
@@ -33,7 +34,7 @@ const checkIncludeComma = (numbers) => {
   if (numbers.includes(',')) return;
 
   Console.close();
-  throw new Error('[ERROR] 당첨 번호는 쉼표로 구분해야 합니다.');
+  throw new Error(ERROR.INVALID_DIVIDE);
 };
 
 const checkValidLength = (inputNumbers) => {
@@ -41,14 +42,14 @@ const checkValidLength = (inputNumbers) => {
   if (numbersArray.length === 6) return;
 
   Console.close();
-  throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+  throw new Error(ERROR.INVALID_LENGTH);
 };
 
 const isValidRange = (number) => {
   if (number >= 1 || number <= 45) return;
 
   Console.close();
-  throw new Error('[ERROR] 입력할 수 있는 범위는 1에서 45 사이입니다.');
+  throw new Error(ERROR.INVALID_LENGTH);
 };
 
 const checkLottoNumbersValidation = (inputNumbers) => {
@@ -67,7 +68,7 @@ const checkBonusIsDuplicated = (bonusNumber, numbers) => {
   if (!numbers.includes(Number(bonusNumber))) return;
 
   Console.close();
-  throw new Error('[ERROR] 당첨 번호와 중복된 번호는 선택할 수 없습니다.');
+  throw new Error(ERROR.DUPLICATE);
 };
 
 const checkBonusNumberValidation = (bonusNumber, numbers) => {

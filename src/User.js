@@ -1,7 +1,4 @@
-const {
-  createLotteryTicket,
-  printMyLotteries,
-} = require('./utils/lotteryHandler');
+const { createLotteryTicket, printMyLotteries } = require('./utils/lotteryHandler');
 
 class User {
   constructor() {

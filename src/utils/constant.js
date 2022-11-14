@@ -28,4 +28,14 @@ const LOTTO_PRICE_DATA = Object.freeze({
   getSix: { amount: 0, price: 2000000000 },
 });
 
-module.exports = { LOTTO_PRICE_DATA, MESSAGE, PRINT };
+const ERROR = Object.freeze({
+  INVALID_TYPE: '[ERROR] 숫자가 아닌 값은 입력할 수 없습니다.',
+  INVALID_AMOUNT: '[ERROR] 복권을 한 장 이상 구매하셔야 합니다.',
+  INVALID_UNIT: '[ERROR] 입력할 수 있는 최소 단위금액은 1000원입니다.',
+  INVALID_DIVIDE: '[ERROR] 당첨 번호는 쉼표로 구분해야 합니다.',
+  INVALID_LENGTH: '[ERROR] 로또 번호는 6개여야 합니다.',
+  INVALID_RANGE: '[ERROR] 입력할 수 있는 범위는 1에서 45 사이입니다.',
+  DUPLICATE: '[ERROR] 당첨 번호와 중복된 번호는 선택할 수 없습니다.',
+});
+
+module.exports = { LOTTO_PRICE_DATA, MESSAGE, PRINT, ERROR };
