@@ -34,7 +34,7 @@ class App {
 
     Console.print(`${lottoCount}${UNIT.LOTTO}를 구매했습니다.`);
     lottos.forEach((lottoNumbers) => {
-      Console.print(lottoNumbers);
+      Console.print(`[${lottoNumbers.join(', ')}]`);
     });
   }
 
@@ -50,6 +50,7 @@ class App {
       this.bonusNumber = Number(input);
       this.setStatistics();
       this.printStatistics();
+      Console.close();
     });
   }
 
@@ -82,7 +83,7 @@ class App {
       const formatPrize = PRIZE[rank].toLocaleString(FORMAT.LOCALE);
 
       Console.print(
-        `${MATCH[rank]} (${formatPrize}) - ${statistics[rank]}${UNIT.LOTTO}`
+        `${MATCH[rank]} (${formatPrize}${UNIT.MONEY}) - ${statistics[rank]}${UNIT.LOTTO}`
       );
     });
     Console.print(`총 수익률은 ${earningRate}%입니다.`);
