@@ -15,6 +15,12 @@ describe('로또 클래스 테스트', () => {
   });
 
   describe('당첨 번호 유효성 검사', () => {
+    test('사용자가 입력하지 않을 경우', () => {
+      expect(() => {
+        new Lotto([]);
+      }).toThrow('[ERROR]');
+    });
+
     test('사용자가 로또 번호를 6개 초과 입력할 경우', () => {
       expect(() => {
         new Lotto([1, 2, 3, 4, 5, 6, 7]);
@@ -41,6 +47,12 @@ describe('로또 클래스 테스트', () => {
   });
 
   describe('보너스 번호 유효성 검사', () => {
+    test('사용자가 입력하지 않을 경우', () => {
+      expect(() => {
+        new Lotto([1, 2, 3, 4, 5, 6]).setBonus();
+      }).toThrow('[ERROR]');
+    });
+
     test('1 ~ 45의 숫자가 아닌 다른 숫자를 입력할 경우', () => {
       expect(() => {
         new Lotto([1, 2, 3, 4, 5, 6]).setBonus(46);
