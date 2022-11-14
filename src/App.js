@@ -47,7 +47,7 @@ class App {
     Console.readLine(INPUT_MESSAGES.BONUS_NUMBER, (bonusNumber) => {
       this.lottoInfo.bonusNumber = bonusNumber;
       this.lottoInfo.lotto.validateBonusNumber(this.lottoInfo.bonusNumber);
-      new GetStat(this.lottoInfo);
+      new GetStat(this.lottoInfo).calculate();
       Console.close();
     });
   }
