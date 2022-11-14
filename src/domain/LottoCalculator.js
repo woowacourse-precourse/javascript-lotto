@@ -1,3 +1,5 @@
+const { WINNING_MONEY } = require('../constants/constants');
+
 class LottoCalculator {
   constructor(lottos, winningLotto, bonusNum) {
     this.paidMoney = lottos.length * 1000;
@@ -17,13 +19,13 @@ class LottoCalculator {
   }
 
   calculateWinningMoney() {
-    const WINNING_MONEY =
-      this.score['3'] * 5000 +
-      this.score['4'] * 50000 +
-      this.score['5'] * 1500000 +
-      this.score['bonus'] * 30000000 +
-      this.score['6'] * 2000000000;
-    return WINNING_MONEY;
+    const TOTAL_WINNING_MONEY =
+      this.score['3'] * WINNING_MONEY.FIFTH_RANK +
+      this.score['4'] * WINNING_MONEY.FOURTH_RANK +
+      this.score['5'] * WINNING_MONEY.THIRD_RANK +
+      this.score['bonus'] * WINNING_MONEY.SECOND_RANK +
+      this.score['6'] * WINNING_MONEY.FIRST_RANK;
+    return TOTAL_WINNING_MONEY;
   }
 
   isLottoIncludesBonusNum(lotto, bonusNum) {

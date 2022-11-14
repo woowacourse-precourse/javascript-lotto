@@ -1,4 +1,5 @@
 const { Random } = require('@woowacourse/mission-utils');
+const INPUT_MONEY_ERROR = require('../constants/constants');
 
 const MIN_LOTTO_NUM = 1;
 const MAX_LOTTO_NUM = 45;
@@ -11,16 +12,16 @@ class LottoGenerator {
 
   isInputMoneyValid(money) {
     if (!money) {
-      throw new Error('[ERROR] 구입 금액을 입력해야 합니다.');
+      throw new Error(INPUT_MONEY_ERROR.NOT_NULL_ALLOWED);
     }
     if (!Number.isInteger(money)) {
-      throw new Error('[ERROR] 숫자만 입력할 수 있습니다.');
+      throw new Error(INPUT_MONEY_ERROR.ONLY_NUM_ALLOWED);
     }
     if (money < 0) {
-      throw new Error('[ERROR] 금액은 0보다 커야 합니다.');
+      throw new Error(INPUT_MONEY_ERROR.NUM_OVER_ZERO_ALLOWED);
     }
     if (money % 1000 !== 0) {
-      throw new Error('[ERROR] 천 원 단위로 입력해야 합니다.');
+      throw new Error(INPUT_MONEY_ERROR.THOUSAND_UNIT_ALLOWED);
     }
   }
 
