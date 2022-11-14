@@ -61,10 +61,27 @@ const getWinMessage = (rank, cnt) => {
 
 const getWinAmount = (rank, cnt) => {
   const amountStr = AMOUNT_BY_RANK[rank];
-  const winAmount = Nubmer(splitStrByComma(amountStr).join(''));
+  const winAmount = Number(splitStrByComma(amountStr).join(''));
 
   return winAmount * cnt;
 };
+
+const getRateStrOfProfit = (profit, spend) => {
+  const rate = (profit / spend) * 100;
+  const rateStr = getRoundRateStr(1)(rate);
+  const [quotientStr, remainderStr] = rateStr.split('.');
+  const quotientCommaStr = getCommaStr(quotientStr);
+
+  return `${quotientCommaStr}.${remainderStr}%`;
+};
+
+const getRoundRateStr = (digit) => (rate) => {
+  const roundUnit = 10 ** digit;
+  const rountRate = Math.round((rate + Number.EPSILON) * roundUnit) / roundUnit;
+
+  return rountRate.toFixed(digit);
+};
+const getCommaStr = (str) => Number(str).toLocaleString();
 
 module.exports = {
   isMultipleOf1000,
@@ -77,4 +94,5 @@ module.exports = {
   getRank,
   getWinMessage,
   getWinAmount,
+  getRateStrOfProfit,
 };

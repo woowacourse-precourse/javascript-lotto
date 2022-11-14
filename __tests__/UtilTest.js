@@ -1,4 +1,11 @@
-const { isMultipleOf1000, isDuplicated, divide1000, splitStrByComma, getRandomNumbers } = require('../src/lib/utilFns');
+const {
+  isMultipleOf1000,
+  isDuplicated,
+  divide1000,
+  splitStrByComma,
+  getRandomNumbers,
+  getRateStrOfProfit,
+} = require('../src/lib/utilFns');
 const MissionUtils = require('@woowacourse/mission-utils');
 
 const mockRandoms = (numbers) => {
@@ -109,6 +116,44 @@ describe('유틸 함수 테스트', () => {
       const result = isDuplicated(arr);
 
       expect(result).toBe(false);
+    });
+  });
+
+  describe('getRateStrOfProfit 함수 테스트', () => {
+    it('수익이 0이면 0.0%를 반환한다.', () => {
+      const profit = 0;
+      const spend = 15151515;
+      const answer = '0.0%';
+
+      const result = getRateStrOfProfit(profit, spend);
+      expect(result).toEqual(answer);
+    });
+
+    it('수익이 1000, 지출이 4면 25,000.0%를 반환한다.', () => {
+      const profit = 1000;
+      const spend = 4;
+      const answer = '25,000.0%';
+
+      const result = getRateStrOfProfit(profit, spend);
+      expect(result).toEqual(answer);
+    });
+
+    it('수익이 15, 지출이 10000이면 0.2%를 반환한다.', () => {
+      const profit = 15;
+      const spend = 10000;
+      const answer = '0.2%';
+
+      const result = getRateStrOfProfit(profit, spend);
+      expect(result).toEqual(answer);
+    });
+
+    it('수익이 987654321, 지출이 10000이면 9,876,543.2%를 반환한다.', () => {
+      const profit = 987654321;
+      const spend = 10000;
+      const answer = '9,876,543.2%';
+
+      const result = getRateStrOfProfit(profit, spend);
+      expect(result).toEqual(answer);
     });
   });
 });
