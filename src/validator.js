@@ -8,12 +8,12 @@ class Validator {
 
   validateNumber(money) {
     const check = /^[0-9]+$/;
-    if (!check.test(money)) throw Error(ERROR_MESSAGES.type);
+    if (!check.test(money)) throw new Error(ERROR_MESSAGES.type);
   }
 
   validateUnit(money) {
     if (parseInt(money, 10) % 1000 !== 0)
-      throw Error(ERROR_MESSAGES.divisionByThousand);
+      throw new Error(ERROR_MESSAGES.divisionByThousand);
   }
 
   validateLotto(numbers) {
