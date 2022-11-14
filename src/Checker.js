@@ -13,11 +13,19 @@ const {
 class Checker {
   validateBudget(input) {
     this.checkBudgetIsNumber(input);
+
+    const budget = Number(input);
+    this.checkBudgetIsNaturalNumber(budget);
   }
 
   checkBudgetIsNumber(input) {
     if (!isNaN(input)) return;
     throw new Error(ERROR_MSG_BUDGET_NAN);
+  }
+
+  checkBudgetIsNaturalNumber(budget) {
+    if (0 <= budget) return;
+    throw new Error(ERROR_MSG_BUDGET_NATURAL_NUM);
   }
 
   validateMainNums(input) {
