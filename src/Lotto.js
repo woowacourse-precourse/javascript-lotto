@@ -22,6 +22,9 @@ class Lotto {
   }
 
   validateBonus(bonus){
+
+    if(typeof Number(bonus) !== "number")
+      throw new Error("[ERROR] 보너스 번호는 숫자여야 합니다");
     if(1 > Number(bonus) || Number(bonus)>45){
       throw new Error("[ERROR] 보너스 번호는 1 ~ 45 범위에 있어야 합니다.")
     }
