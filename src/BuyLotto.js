@@ -49,7 +49,6 @@ class BuyLotto {
       const userBonusNum = this.userInputBonusNumber();
       this.validate = new validate();
       this.validate.check(userInputNum);
-      this.prize();
     });
   }
 
@@ -59,18 +58,22 @@ class BuyLotto {
 
   userInputBonusNumber() {
     Console.readLine(MESSAGE.INPUT_BONUS, (input) => {
+      let makeArray = [];
+      makeArray.push(input);
+      this.validate.bonusCheck(makeArray);
       return input;
     });
   }
 
-  prize() {
+  prize(userInputNum, userBonusNum) {
     Console.print(MESSAGE.PRIZE_RESULT);
-    Console.print("---");
+    Console.print(userInputNum);
+    Console.print(userBonusNum);
+
+    this.getResult();
   }
 
-  getResult() {
-    Console.log(this.howMany);
-  }
+  getResult() {}
 }
 
 module.exports = BuyLotto;
