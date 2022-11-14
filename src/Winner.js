@@ -98,13 +98,21 @@ class Winner {
     this.calcEarningRate();
   }
 
+  stringifyResult() {
+    const resultList = Object.entries(this.prizeResult.winner);
+    const { prize, bonus } = this.winnerRule;
+
+    const prizes = resultList.map(([count, lottos]) => `${count}개 일치 (${Number(prize[count]).toLocaleString()}원) - ${lottos.length}개`);
+    const bonusResult = `${bonus.count}개 일치, ${bonus.message} (${Number(bonus.prizeMoney).toLocaleString()}원) - ${this.prizeResult.bonus.length}개`;
+
+    return [...prizes, bonusResult].sort().join('\n');
+  }
+
   announce(winnerNumber) {
     this.getResult(winnerNumber);
 
     Console.print('\n당첨 통계\n---');
-    Console.print(`${[...Object.entries(this.prizeResult.winner)
-      .map(([count, list]) => `${count}개 일치 (${Number(this.winnerRule.prize[count]).toLocaleString()}원) - ${list.length}개`),
-    `${this.winnerRule.bonus.count}개 일치, ${this.winnerRule.bonus.message} (${Number(this.winnerRule.bonus.prizeMoney).toLocaleString()}원) - ${this.prizeResult.bonus.length}개`].sort().join('\n')}`);
+    Console.print(this.stringifyResult());
     Console.print(`총 수익률은 ${this.earningRate}%입니다.`);
     Console.close();
   }
