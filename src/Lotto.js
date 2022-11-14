@@ -8,7 +8,7 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    Lotto.validate(numbers);
+    Lotto.validate(numbers, isNotDuplicated(numbers));
     this.#numbers = numbers;
   }
 
@@ -23,6 +23,9 @@ class Lotto {
   };
 
   // TODO: 추가 기능 구현
+  static LottoGenerator = () => {
+    return new Lotto(randomNums);
+  };
 }
 
 const lotto = new Lotto(randomNums);
