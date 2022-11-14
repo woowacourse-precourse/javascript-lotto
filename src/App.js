@@ -30,6 +30,9 @@ class App {
   }
 
   checkMoneyValidity(money) {
+    if (!money) {
+      throw new Error(MONEY_ERROR_MESSAGE.number);
+    }
     if (money % LOTTO_PRICE !== 0) {
       throw new Error(MONEY_ERROR_MESSAGE.unit);
     }
