@@ -10,9 +10,6 @@ class User {
   /** @type {number[][]} */
   #numbersList;
 
-  /** @type {number} */
-  #bonusNumber;
-
   /**
    *
    * @param {string} amount
@@ -76,35 +73,6 @@ class User {
    */
   getNumbersList() {
     return this.#numbersList;
-  }
-
-  /**
-   *
-   * @param {number} bonusNumber
-   * @param {number[]} lottoNumbers
-   */
-  validateBonusNumber(bonusNumber, lottoNumbers) {
-    if (lottoNumbers.includes(bonusNumber)) {
-      throw new Error('[ERROR] 로또 번호에 중복이 있을 수 없습니다.');
-    }
-  }
-
-  /**
-   *
-   * @param {number} bonusNumber
-   * @param {number[]} lottoNumbers
-   */
-  setBonusNumber(bonusNumber, lottoNumbers) {
-    this.validateBonusNumber(bonusNumber, lottoNumbers);
-    this.#bonusNumber = Number(bonusNumber);
-  }
-
-  /**
-   *
-   * @returns {number}
-   */
-  getBonusNumber() {
-    return this.#bonusNumber;
   }
 }
 

@@ -2,6 +2,7 @@
 
 const User = require('./User.js');
 const Lotto = require('./Lotto.js');
+const LottoManager = require('./LottoManager.js');
 const Utils = require('./Utils.js');
 const {
   INPUT_AMOUNT_MESSAGE,
@@ -20,11 +21,12 @@ class App {
   /** @type {User} */
   #user;
 
-  /** @type {number[]} */
-  #lottoNumbers;
+  /** @type {LottoManager} */
+  #lottoManager;
 
   constructor() {
     this.#user = new User();
+    this.#lottoManager = new LottoManager();
   }
 
   play() {
@@ -54,31 +56,34 @@ class App {
   }
 
   #askLottoNumbers() {
-    Utils.readLine(`\n${INPUT_LOTTO_NUMBERS}\n`, (inputLottoNumbers) => {
-      this.#setLottoNumbers(inputLottoNumbers);
+    Utils.readLine(`\n${INPUT_LOTTO_NUMBERS}\n`, (inputWinningNumbers) => {
+      this.#setWinningNumbers(inputWinningNumbers);
       this.#askBonusNumber();
     });
   }
 
   /**
    *
-   * @param {string} inputLottoNumbers
+   * @param {string} inputWinningNumbers
    */
-  #setLottoNumbers(inputLottoNumbers) {
-    const lottoNumbers = Utils.separateNumbers(inputLottoNumbers, ',');
-    this.#lottoNumbers = lottoNumbers;
+  #setWinningNumbers(inputWinningNumbers) {
+    const lottoNumbers = Utils.separateNumbers(inputWinningNumbers, ',');
+    this.#lottoManager.setWinningNumbers(lottoNumbers);
   }
 
   #askBonusNumber() {
     Utils.readLine(`\n${INPUT_BONUS_NUMBER}\n`, (inputBonus) => {
-      this.#user.setBonusNumber(inputBonus, this.#lottoNumbers);
+      this.#lottoManager.setBonusNumber(inputBonus);
+
       const amount = this.#user.getAmount();
       const userNumbersList = this.#user.getNumbersList();
-      const bonusNumber = this.#user.getBonusNumber();
+      const bonusNumber = this.#lottoManager.getBonusNumber();
 
-      const lotto = new Lotto(this.#lottoNumbers);
-      const statistics = lotto.getStatistics(userNumbersList, bonusNumber);
-      const revenue = lotto.calculateRevenue(statistics, amount);
+      const statistics = this.#lottoManager.getStatistics(
+        userNumbersList,
+        bonusNumber
+      );
+      const revenue = this.#lottoManager.calculateRevenue(statistics, amount);
 
       this.#printStatistics(statistics, revenue);
 
