@@ -35,13 +35,13 @@ class App {
   }
 
   compareResult(lottoList, numbers, number) {
-    this.CompareLotto.result(lottoList, numbers, number);
-    // this.printResult(result);
+    const result = this.CompareLotto.result(lottoList, numbers, number);
+    this.printResult(result);
   }
 
-  // printResult(result) {
-  //   Console.print(``)
-  // }
+  printResult(result) {
+    this.CompareLotto.printResult(result);
+  }
 }
 
 let a = new App();

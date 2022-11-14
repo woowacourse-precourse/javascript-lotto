@@ -1,3 +1,4 @@
+const { Console } = require('@woowacourse/mission-utils');
 const LOTTO_WIN = [5000, 50000, 1500000, 30000000, 2000000000];
 
 class CompareLotto {
@@ -22,9 +23,8 @@ class CompareLotto {
             count.push({ correctNumber, correctBonus });
         });
         const howManyWin = this.number(count);
-        console.log(howManyWin);
-        const totalAmount = this.money(howManyWin);
-        console.log(totalAmount);
+
+        return howManyWin;
     }
 
     number(count) {
@@ -43,7 +43,7 @@ class CompareLotto {
         return howManyWin;
     }
 
-    money(howManyWin) {
+    totalMoney(howManyWin) {
         let total = [];
         for(let i = 0; i < howManyWin.length; i++) {
             console.log(howManyWin[i]);
@@ -56,7 +56,13 @@ class CompareLotto {
     
     // 수익률 내려면 howManyWin, 로또 구입비
 
-    
+    printResult(howManyWin) {
+        Console.print(`3개 일치 (5,000원) - ${howManyWin[0]}개`);
+        Console.print(`4개 일치 (50,000원) - ${howManyWin[1]}개`);
+        Console.print(`5개 일치 (1,500,000원) - ${howManyWin[2]}개`);
+        Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${howManyWin[3]}개`);
+        Console.print(`6개 일치 (2,000,000,000원) - ${howManyWin[4]}개`);
+    }
 }
 
 module.exports = CompareLotto;
