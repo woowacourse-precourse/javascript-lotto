@@ -60,7 +60,7 @@ class App {
 
   askBonusNumber() {
     Console.askAndGetUserInput("\n" + Console.ASK_BONUS_NUMBER, (bonusNumber) => {
-      Validation.isValidBonusNumber(bonusNumber);
+      Validation.isValidBonusNumber(Number(bonusNumber));
       this.bonusNumber = Number(bonusNumber);
 
       Console.print("\n" + Console.STATISTICS);
@@ -76,22 +76,15 @@ class App {
   }
 
   calculateWinningHistory(lottos, winningNumbers, bonusNumber, winningHistory) {
-    return lottos.reduce((acc, lotto) => {
+    lottos.forEach((lotto) => {
       const sameNumberCount = this.countSameNumberWithWinningNumber(lotto, winningNumbers);
 
-      if (sameNumberCount === 3) acc[THREE] += 1;
-      if (sameNumberCount === 4) acc[FOUR] += 1;
-      if (sameNumberCount === 5 && !lotto.includes(bonusNumber)) acc[FIVE] += 1;
-      if (sameNumberCount === 5) acc[FIVE_WITH_BONUS] += 1;
-      if (sameNumberCount === 6) acc[SIX] += 1;
-
-      if (this.bonusNumber === lotto.includes(bonusNumber) && sameNumberCount === 5) {
-        acc[FIVE] -= 1;
-        acc[FIVE_WITH_BONUS] += 1;
-      }
-
-      return acc;
-    }, winningHistory);
+      if (sameNumberCount === 3) winningHistory[THREE] += 1;
+      if (sameNumberCount === 4) winningHistory[FOUR] += 1;
+      if (sameNumberCount === 5 && !lotto.includes(bonusNumber)) winningHistory[FIVE] += 1;
+      if (sameNumberCount === 5) winningHistory[FIVE_WITH_BONUS] += 1;
+      if (sameNumberCount === 6) winningHistory[SIX] += 1;
+    });
   }
 
   printWinningHistory(winningHistory) {
