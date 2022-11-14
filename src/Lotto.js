@@ -1,5 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const { MESSAGE } = require("./constant/constant.js");
+const { MESSAGE, SENTANCE } = require("./constant/constant.js");
 
 class Lotto {
   #numbers;
@@ -16,7 +16,7 @@ class Lotto {
     Console.readLine(`${MESSAGE.START}\n`,(cost) => {
       this.cost = Number(cost);
       this.lottoCount = parseInt(this.cost / 1000);
-      this.makeLottoNumber(this.lottoCount);
+      this.printMylotto(this.lottoCount);
       this.enterWinningNumber();
     })
   }
@@ -28,6 +28,14 @@ class Lotto {
       if (a < b) return -1 ;
     });
     return lotto;
+  }
+
+  printMylotto(lottoCount){
+    Console.print(`${lottoCount}${SENTANCE.BUY}`);
+    this.makeLottoNumber(lottoCount);
+    this.mylotto.forEach((mylottoArray) => {
+      Console.print(mylottoArray);
+    });
   }
 
   makeLottoNumber(lottoCount){
@@ -60,7 +68,6 @@ class Lotto {
 
   calcWinningResult(){
     this.mylotto.forEach((mylottoArray) => {
-      console.log(mylottoArray);
       this.compareNumbers(mylottoArray);
     })
   }
