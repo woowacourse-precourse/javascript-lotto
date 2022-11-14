@@ -1,7 +1,6 @@
 const { LOTTO_RANGE_REGEX } = require('../constants');
 
 const checkWinningIncludeBonus = (winningNumbers, bonus) => {
-  console.log(winningNumbers.includes(bonus));
   if (winningNumbers.includes(bonus)) {
     return true;
   }
