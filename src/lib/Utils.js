@@ -27,6 +27,11 @@ const utils = {
     if (count < number) return true;
     return false;
   },
+
+  getRate(prize, price) {
+    return (prize / price) * 100;
+  },
+
   getRoundSecondDecimalPlace(number) {
     return Math.round(number * 100) / 100;
   },
