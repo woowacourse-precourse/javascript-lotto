@@ -33,7 +33,7 @@ describe("구매자 클래스 테스트", () => {
 
     expect(testPurchaseLottos.length).toBe(4);
 
-    for(let purchaseLotto of testPurchaseLottos){
+    for (let purchaseLotto of testPurchaseLottos) {
       expect(purchaseLotto.length).toBe(6);
     }
   });

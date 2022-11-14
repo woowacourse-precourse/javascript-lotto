@@ -71,7 +71,7 @@ class App {
 
   showYield(reward) {
     const investmentAmount = this.#Buyer.getMoney();
-    const YIELD = ( reward / investmentAmount ) * 100;
+    const YIELD = (reward / investmentAmount) * 100;
 
     Console.print(`총 수익률은 ${YIELD.toFixed(1)}%입니다.`);
     Console.close();

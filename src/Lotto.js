@@ -18,14 +18,14 @@ class Lotto {
     let tempNumbers = new Set(numbers);
     tempNumbers = [...tempNumbers];
 
-    if(tempNumbers.length < 6){
+    if (tempNumbers.length < 6) {
       throw new Error("[ERROR] 로또 번호는 중복되면 안됩니다.");
     }
   }
 
   numberRangeCheck(numbers) {
-    for(let number of numbers){
-      if(number < 1 || number > 45) throw new Error("[ERROR] 로또 번호는 1 이상 45 이하의 정수여야 합니다.");
+    for (let number of numbers) {
+      if (number < 1 || number > 45) throw new Error("[ERROR] 로또 번호는 1 이상 45 이하의 정수여야 합니다.");
     }
   }
 
@@ -36,22 +36,22 @@ class Lotto {
   }
 
   bonusRangeCheck(bonus) {
-    if(bonus < 1 || bonus > 45) {
+    if (bonus < 1 || bonus > 45) {
       throw new Error("[ERROR] 보너스 점수는 1 이상 45 이하의 정수여야 합니다.");
     }
   }
 
   bonusDuplicateCheck(bonus) {
-    if(this.#numbers.includes(Number(bonus))) {
+    if (this.#numbers.includes(Number(bonus))) {
       throw new Error("[ERROR] 보너스 점수는 당첨 번호와 중복되면 안됩니다.");
     }
   }
 
   winningCalculation(purchaseLottos, bonus) {
     let resultTable = { reward: 0, first: 0, second: 0, third: 0, fourth: 0, fifth: 0 };
-    for(let purchaseLotto of purchaseLottos) {
+    for (let purchaseLotto of purchaseLottos) {
       const sameCount = this.sameCheck(purchaseLotto);
-      if(sameCount < 3) continue;
+      if (sameCount < 3) continue;
 
       const [reward, rank] = this.rewardCheck(purchaseLotto, sameCount, bonus);
       resultTable = {
@@ -66,21 +66,21 @@ class Lotto {
   sameCheck(purchaseLotto) {
     let sameCount = 0;
     purchaseLotto.forEach((number) => {
-      if(this.#numbers.includes(number)) sameCount += 1;
+      if (this.#numbers.includes(number)) sameCount += 1;
     });
     return sameCount;
   }
 
   rewardCheck(purchaseLotto, sameCount, bonus) {
-    switch(sameCount) {
+    switch (sameCount) {
       case 3: {
         return [5000, 'fifth'];
-      } 
+      }
       case 4: {
         return [50000, 'fourth']
       }
       case 5: {
-        if(purchaseLotto.includes(Number(bonus))) return [30000000, 'second'];
+        if (purchaseLotto.includes(Number(bonus))) return [30000000, 'second'];
         return [1500000, 'third'];
       }
       case 6: {

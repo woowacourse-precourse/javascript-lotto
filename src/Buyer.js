@@ -52,7 +52,7 @@ class Buyer {
     // 로또 개수에 맞게 번호가 담긴 리스트를 생성하고 출력하는 메서드
     createLottos() {
         const tempLottos = [];
-        for(let i = 0; i < this.#lottoNumbers; i++){
+        for (let i = 0; i < this.#lottoNumbers; i++) {
             let purchaseNumbers = this.createRandomNumbers();
             purchaseNumbers = this.AscendingNumber(purchaseNumbers);
             tempLottos.push(purchaseNumbers);
@@ -72,7 +72,7 @@ class Buyer {
         })
         return tempNumbers;
     }
-    
+
     printPurchaseLottos() {
         this.#purchaseLottos.forEach((purchaseLotto) => {
             Console.print(this.createOutputPurchaseLotto(JSON.stringify(purchaseLotto)));
@@ -81,9 +81,9 @@ class Buyer {
 
     createOutputPurchaseLotto(purchaseLotto) {
         let outputPurchaseLotto = '';
-        for(let i = 0; i < purchaseLotto.length; i++){
+        for (let i = 0; i < purchaseLotto.length; i++) {
             outputPurchaseLotto += purchaseLotto[i];
-            if(purchaseLotto[i] === ',') outputPurchaseLotto += ' ';
+            if (purchaseLotto[i] === ',') outputPurchaseLotto += ' ';
         }
         return outputPurchaseLotto;
     }
