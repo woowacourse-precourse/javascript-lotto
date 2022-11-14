@@ -1,15 +1,24 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const { PURCHACE_MESSAGE } = require("../constants/constant");
+const MessageOutput = require("./MessageOutput");
 
 class UserInput {
   #message;
 
+  messageOutput = new MessageOutput();
+
   constructor(message) {
-    this.moneyInput(message);
+    this.message = message;
   }
 
   moneyInput(message) {
     MissionUtils.Console.readLine(message, (userInput) => {
-      this.checkExceptCaseInMoney(userInput);
+      if (this.checkExceptCaseInMoney(userInput)) {
+        this.messageOutput.printMesage(
+          `${userInput / 1000}${PURCHACE_MESSAGE}`
+        );
+      }
+      return;
     });
   }
 

@@ -4,7 +4,6 @@ class MessageOutput {
   #message;
 
   constructor(message) {
-    this.printMesage(message);
     this.#message = message;
   }
 
