@@ -3,7 +3,7 @@ const Buyer = require("../src/Buyer");
 describe("구매자 클래스 테스트", () => {
   test("금액 입력을 확인한다.", () => {
     const buyer = new Buyer(5000);
-    expect(buyer.getMoney()).toBe(5000);
+    expect(buyer.money).toBe(5000);
   });
 
   test("입력된 금액이 정수가 아닐경우 예외처리한다.", () => {
@@ -22,14 +22,14 @@ describe("구매자 클래스 테스트", () => {
     const buyer = new Buyer(4000);
     buyer.countLotto();
 
-    expect(buyer.getLottoNumbers()).toBe(4);
+    expect(buyer.lottoNumbers).toBe(4);
   });
 
   test("로또 개수에 맞게 6개의 난수를 담은 리스트를 생성한다.", () => {
     const buyer = new Buyer(4000);
     buyer.countLotto();
     buyer.createLottos();
-    const testPurchaseLottos = buyer.getPurchaseLottos();
+    const testPurchaseLottos = buyer.purchaseLottos;
 
     expect(testPurchaseLottos.length).toBe(4);
 

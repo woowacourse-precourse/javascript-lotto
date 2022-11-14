@@ -14,15 +14,15 @@ class Buyer {
     }
 
     // 필드를 반환하는 메서드
-    getMoney() {
+    get money() {
         return this.#money;
     }
 
-    getLottoNumbers() {
+    get lottoNumbers() {
         return this.#lottoNumbers;
     }
 
-    getPurchaseLottos() {
+    get purchaseLottos() {
         return this.#purchaseLottos;
     }
 

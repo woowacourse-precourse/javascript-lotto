@@ -52,7 +52,7 @@ class App {
   }
 
   winningCalculation() {
-    const purchaseLottos = this.#Buyer.getPurchaseLottos()
+    const purchaseLottos = this.#Buyer.purchaseLottos
     const resultTable = this.#Lotto.winningCalculation(purchaseLottos, this.#bonus);
 
     this.showResultTable(resultTable);
@@ -70,7 +70,7 @@ class App {
   }
 
   showYield(reward) {
-    const investmentAmount = this.#Buyer.getMoney();
+    const investmentAmount = this.#Buyer.money;
     const YIELD = (reward / investmentAmount) * 100;
 
     Console.print(`총 수익률은 ${YIELD.toFixed(1)}%입니다.`);
