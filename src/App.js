@@ -1,7 +1,14 @@
 const Console = require("./Console");
 const Lotto = require("./Lotto");
 const Validator = require("./validator/Validator");
-const { THREE, FOUR, FIVE, FIVE_AND_BONUS, SIX } = require("./constants");
+const {
+  THREE,
+  FOUR,
+  FIVE,
+  FIVE_AND_BONUS,
+  SIX,
+  price,
+} = require("./constants");
 const LottoAdmin = require("./LottoAdmin");
 
 class App {
@@ -53,6 +60,9 @@ class App {
         [this.winNumbers, this.bonusNumber]
       );
       LottoAdmin.printWinStatistics(this.winStatistics);
+      const margin = this.getMargin(price, [this.lottos, this.winStatistics]);
+      Console.print(`총 수익률은 ${margin}입니다.`);
+      Console.close();
     });
   }
 
@@ -68,6 +78,18 @@ class App {
       if (sameCount === 6) return { ...acc, [SIX]: acc[SIX] + 1 };
       return acc;
     }, initialState);
+  }
+
+  getMargin(price, [lottos, winStatistics]) {
+    const margin =
+      winStatistics[THREE] * price[0] +
+      winStatistics[FOUR] * price[1] +
+      winStatistics[FIVE] * price[2] +
+      winStatistics[FIVE_AND_BONUS] * price[3] +
+      winStatistics[SIX] * price[4];
+    const totalLottoPrice = lottos.length * 1000;
+    const middle = (margin / totalLottoPrice) * 100;
+    return Math.round(middle * 100) / 100 + "%";
   }
 }
 
