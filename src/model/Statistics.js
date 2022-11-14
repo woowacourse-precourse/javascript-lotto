@@ -85,6 +85,13 @@ class Statistics {
       ((totalMoneyEarned / userPurchasingAmount) * 100).toFixed(1),
     );
   }
+
+  getStatistics() {
+    const information = this.controller.getOverallInformationForStatistics();
+    this.updateRanks(information);
+    this.updateRateOfReturn(information.purchasingAmount);
+    this.controller.printStatistics(this.getRanks(), this.getRateOfReturn());
+  }
 }
 
 module.exports = Statistics;
