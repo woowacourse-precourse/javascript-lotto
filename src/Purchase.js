@@ -14,17 +14,15 @@ class Purchase {
   }
 
   validate(money) {
-    const numberMoney = Number(money);
-
-    if (checkMoneyIsNan(numberMoney)) {
+    if (checkMoneyIsNan(money)) {
       throw new Error(ERROR.PURCHASE_MONEY_NAN);
     }
 
-    if (checkMoneyDivision(numberMoney)) {
+    if (checkMoneyDivision(money)) {
       throw new Error(ERROR.PURCHASE_MONEY_NOT_DIVISIBLE);
     }
 
-    if (checkMoneyLessStandard(numberMoney)) {
+    if (checkMoneyLessStandard(money)) {
       throw new Error(ERROR.PURCHASE_MONEY_LESS_STANDARD);
     }
   }
