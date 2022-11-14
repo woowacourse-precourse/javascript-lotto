@@ -84,6 +84,13 @@ class App {
         }
       })
     });
+    count = checkBonusNumber(bonusNumber, userNumbers, count);
+  }
+  checkBonusNumber(bonusNumber, userNumbers, count){
+    if(userNumbers.includes(...bonusNumber)){
+      count += 1;
+    }
+    return count;
   }
 }
 
