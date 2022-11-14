@@ -103,6 +103,10 @@ class App {
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${prize[5]}개`);
     MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${prize[6]}개`);
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${prize[7]}개`);
+    MissionUtils.Console.print(`총 수익률은 ${this.lottoyield(LOTTO_PRIZE, prize)}%입니다.`);
+  }
+
+  lottoyield(LOTTO_PRIZE, prize) { // 로또의 수익률을 계산하는 메서드
     let lottoyield = 0;
     for (let i = 0; i < 5; i++) {
       lottoyield += LOTTO_PRIZE[i] * prize[i + 3];
@@ -110,7 +114,7 @@ class App {
     if (lottoyield !== 0) {
       lottoyield = ((lottoyield / this.price) * 100).toFixed(1);
     }
-    MissionUtils.Console.print(`총 수익률은 ${lottoyield}%입니다.`);
+    return lottoyield;
   }
 
   compareLotto(num) { // 각 로또에 대해 당첨번호와 몇개가 일치하는지 확인하는 메서드
