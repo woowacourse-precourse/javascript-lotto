@@ -13,19 +13,19 @@ class Lotto {
   }
 
   validate(numbers) {
-    this.checkSixNum(numbers);
-    this.checkIsNum(numbers);
+    Lotto.checkIsNum(numbers);
     this.checkNumRange(numbers);
-    this.checkDuplicatedNum(numbers);
+    Lotto.checkSixNum(numbers);
+    Lotto.checkDuplicatedNum(numbers);
   }
 
-  checkSixNum(numbers) {
+  static checkSixNum(numbers) {
     if (numbers.length !== 6) {
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
     }
   }
 
-  checkIsNum(numbers) {
+  static checkIsNum(numbers) {
     numbers.forEach((num) => {
       if (REGEX_NUM.test(num) === false)
         throw new Error('[ERROR] 로또 번호는 숫자만 입력해야 합니다.');
@@ -39,13 +39,16 @@ class Lotto {
     });
   }
 
-  checkDuplicatedNum(numbers) {
+  static checkDuplicatedNum(numbers) {
     numbers.forEach((num, index) => {
       if (numbers.indexOf(num) !== index)
         throw new Error('[ERROR] 로또 번호는 중복되지 않아야 합니다.');
     });
   }
-  // TODO: 추가 기능 구현
+
+  getNumbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
