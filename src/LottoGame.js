@@ -27,6 +27,15 @@ class LottoGame {
       this.#LottoList = this.operator.createLottoNumbers(lottoQuantity);
     });
   }
+
+  makeWinningNumbers() {
+    Console.readLine(MESSAGES.INPUT_WINNING_NUMBERS, (input) => {
+      const winningNumbersArray = input.split(",");
+      Validation.validateWinningNumbers(winningNumbers);
+
+      this.#winningNumbers = winningNumbersArray.map(Number);
+    });
+  }
 }
 
 module.exports = LottoGame;
