@@ -2,12 +2,20 @@ const {
   validationError,
   WINNING_NUMBER_COUNT,
   range,
+  prize,
 } = require('./constants/lotto.js')
+const { getIntersection } = require('./lib/utils.js')
 
 /**
  * @typedef {Object} lotto
  * @property {number[]} wins - 당첨 번호
  * @property {number} bonus - 보너스 번호
+ */
+
+/**
+ * @typedef {Object} lottoResult
+ * @property {number} matchCount - 당첨 번호와 일치하는 개수
+ * @property {boolean} bonusContained - 보너스 수를 포함하는지 여부
  */
 
 class Lotto {
@@ -106,6 +114,43 @@ class Lotto {
     }
 
     return false
+  }
+
+  /**
+   * @param {number[]} lottoOwnedByUser
+   * @returns {string}
+   */
+  checkRank(lottoOwnedByUser) {
+    const { matchCount, bonusContained } = this.#calculateRank(lottoOwnedByUser)
+
+    if (matchCount === WINNING_NUMBER_COUNT) return prize.FIRST
+
+    if (matchCount === WINNING_NUMBER_COUNT - 1 && bonusContained)
+      return prize.SECOND
+
+    if (matchCount === WINNING_NUMBER_COUNT - 1) return prize.THIRD
+
+    if (matchCount === WINNING_NUMBER_COUNT - 2) return prize.FOURTH
+
+    if (matchCount === WINNING_NUMBER_COUNT - 3) return prize.FIFTH
+
+    return prize.NONE
+  }
+
+  /**
+   * @param {number[]} lottoOwnedByUser
+   * @returns {lottoResult}
+   */
+  #calculateRank(lottoOwnedByUser) {
+    const intersection = getIntersection(
+      new Set(this.#numbers.wins),
+      new Set(lottoOwnedByUser)
+    )
+
+    return {
+      matchCount: intersection.size,
+      bonusContained: lottoOwnedByUser.includes(this.#numbers.bonus),
+    }
   }
 }
 
