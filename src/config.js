@@ -75,6 +75,9 @@ const STAT_PHRASE = (match) => `
 5개 일치, 보너스 볼 일치 (30,000,000원) - ${match[2] || 0}개
 6개 일치 (2,000,000,000원) - ${match['1'] || 0}개`;
 
+const PROFIT_PHRASE = (profitRate) => `
+총 수익률은 ${profitRate}%입니다.`;
+
 const GAME_INPUT_ERRORS = {
   INVALID_INPUT_TYPE: '[ERROR] 로또 구입 금액은 숫자여야 합니다.\n',
   INVALID_BUDGET_RANGE: '[ERROR] 로또 구입 금액은 0보다 커야 합니다.\n',
@@ -98,6 +101,7 @@ module.exports = {
   PRIZE_CONFIG,
   LOTTO_PRICE,
   USER_INPUT_PHRASE,
+  PROFIT_PHRASE,
   STAT_PHRASE,
   GAME_INPUT_ERRORS,
 };
