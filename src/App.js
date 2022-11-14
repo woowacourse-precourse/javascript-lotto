@@ -144,6 +144,10 @@ class App {
   printCountOfFourMatch() {
     Console.print(`4개 일치 (50,000원) - ${this.countFourMatch}개`);
   }
+
+  printCountOfFiveMatch() {
+    Console.print(`5개 일치 (1,500,000원) - ${this.countFiveMatch}개`);
+  }
 }
 
 const app = new App();
