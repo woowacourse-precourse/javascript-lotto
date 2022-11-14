@@ -2,10 +2,22 @@ const MONEY_UNIT = 1000;
 const LOTTO_START = 1;
 const LOTTO_END = 45;
 const LOTTO_NUM = 6;
+const ANSWER_NUM_FIVE = 5;
+const FIFTH_PRIZE = 5000;
+const FOURTH_PRIZE = 50000;
+const THIRD_PRIZE = 1500000;
+const SECOND_PRIZE = 30000000;
+const FIRST_PRIZE = 200000000;
 
 module.exports = {
     MONEY_UNIT,
     LOTTO_START,
     LOTTO_END,
-    LOTTO_NUM
+    LOTTO_NUM,
+    ANSWER_NUM_FIVE,
+    FIFTH_PRIZE,
+    FOURTH_PRIZE,
+    THIRD_PRIZE,
+    SECOND_PRIZE,
+    FIRST_PRIZE 
 };

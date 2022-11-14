@@ -1,10 +1,13 @@
-const {Console} = require("@woowacourse/mission-utils");
-const {Random} = require("@woowacourse/mission-utils");
-const payValidate = require("./payValidate");
-const { GAME_START_MESSAGE,PRINT_MESSAGE, RESULT_MESSAGE, ANSWER_INPUT_MESSAGE, BONUS_INPUT_MESSAGE } = require("./message.js");
-const {MONEY_UNIT, LOTTO_START, LOTTO_END, LOTTO_NUM} = require("./constants.js");
+const { Console } = require("@woowacourse/mission-utils");
+const { Random } = require("@woowacourse/mission-utils");
+
+const { GAME_START_MESSAGE, ANSWER_INPUT_MESSAGE, BONUS_INPUT_MESSAGE } = require("./message");
+const { MONEY_UNIT, LOTTO_START, LOTTO_END, LOTTO_NUM, ANSWER_NUM_FIVE, FIFTH_PRIZE, FOURTH_PRIZE, THIRD_PRIZE, SECOND_PRIZE, FIRST_PRIZE } = require("./constants");
+const { LOTTO_STATISTICS, PRINT_MESSAGE, showGameRank } = require("./ConsolePrint");
 
 const Lotto = require("./Lotto");
+const payValidate = require("./payValidate");
+const bonusValidate = require("./bonusValidate");
 
 class App {
   constructor() {
@@ -12,62 +15,59 @@ class App {
     this.ticketNums; //발행한 로또 수량
     this.allLines;
     this.winningNums; //로또 당첨 번호
+    this.bonusOrNot = false;
     this.profit;
   };
-
+  //10. 당첨 통계 - 수익률 계산 후 출력
   calculateProfitRate(rankCntList) {
-    //console.log(this.payment)
-    this.profit = rankCntList[0]*5000 + rankCntList[1]*50000 + rankCntList[2]*1500000 + rankCntList[3]*30000000 + rankCntList[4]*200000000;
+
+    this.profit = rankCntList[0]* FIFTH_PRIZE + rankCntList[1]* FOURTH_PRIZE + rankCntList[2]* THIRD_PRIZE + rankCntList[3]* SECOND_PRIZE+ rankCntList[4]* FIRST_PRIZE;
     this.profitRate = ((this.profit / this.payment) * 100).toFixed(1);
 
     Console.print('총 수익률은 '+ this.profitRate  + '%입니다.');
-    Console.close();
+    Console.close(); //로도 게임 종료
   }
 
-  showResultPhrase(rankList) {
-    const rankFiveCnt = rankList.filter(element => 5 === element).length;
+  countRank(rankList) {
+    const rankFiveCnt = rankList.filter(element => 5 === element).length; //5등(3개 일치)인 줄 수 세기
     const rankFourCnt = rankList.filter(element => 4 === element).length;
     const rankThreeCnt = rankList.filter(element => 3 === element).length;
     const rankTwoCnt = rankList.filter(element => 2 === element).length;
     const rankOneCnt = rankList.filter(element => 1 === element).length;
     
-    Console.print(RESULT_MESSAGE.RANK_FIVE + `${rankFiveCnt}개`);
-    Console.print(RESULT_MESSAGE.RANK_FOUR + `${rankFourCnt}개`);
-    Console.print(RESULT_MESSAGE.RANK_THREE + `${rankThreeCnt}개`);
-    Console.print(RESULT_MESSAGE.RANK_TWO + `${rankTwoCnt}개`);
-    Console.print(RESULT_MESSAGE.YOU_WIN + `${rankOneCnt}개`);
-    
-    return [rankFiveCnt, rankFourCnt, rankThreeCnt, rankTwoCnt, rankOneCnt];
-  }
+    const rankCntList = [rankFiveCnt, rankFourCnt, rankThreeCnt, rankTwoCnt, rankOneCnt];
 
-  calculateRank(answerCnt, bonusOrNot) {
-    if(answerCnt == 6) return 1;
-    if(answerCnt == 5 && bonusOrNot) return 2;
-    if(answerCnt == 5) return 3;
+    showGameRank(rankCntList); //9. 당첨 통계 - 당첨 내역 문구 출력
+
+    return rankCntList;
+  }  
+
+  calculateRank(answerCnt) {
+    if(answerCnt == 6) return 1; //6개 일치 -> 1등 당첨
+    if(answerCnt == 5 && this.bonusOrNot) return 2; //5개 일치 + 보너스 번호도 일치 -> 2등 당첨
+    if(answerCnt == 5) return 3; //6개 일치 -> 3등 당첨
     if(answerCnt == 4) return 4;
     if(answerCnt == 3) return 5;
     return 0;
   }
 
+  checkBonusOrNot(oneLine, bonusNum) {
+    if(oneLine.includes(bonusNum)) return true;
+  }
+  //8. 당첨 통계 - 당첨 내역 계산
   calculateGameResult(bonusNum) {
-    Console.print('\n당첨 통계\n---');
+    Console.print(LOTTO_STATISTICS);
     const rankList = [];
-    let bonusOrNot = false;
     
-    console.log(this.allLines);
-    console.log(this.winningNums);
-
     for(var i=0;i<this.allLines.length;i++){
       const oneLine = this.allLines[i];
       const answerCnt = oneLine.filter(x => this.winningNums.includes(x)).length;
-      if(answerCnt == 5) {
-        if(oneLine.includes(bonusNum)) bonusOrNot = true;
-      }
-      const rank = this.calculateRank(answerCnt, bonusOrNot);
+      if(answerCnt == ANSWER_NUM_FIVE) this.bonusOrNot = this.checkBonusOrNot(oneLine, bonusNum)
+
+      const rank = this.calculateRank(answerCnt);
       rankList.push(rank);
     }
-    //console.log(rankList);
-    const rankCntList = this.showResultPhrase(rankList);
+    const rankCntList = this.countRank(rankList);
   
     return this.calculateProfitRate(rankCntList);
   }
@@ -75,11 +75,7 @@ class App {
   //6. 보너스 번호 입력받기
   enterBonus(){
     Console.readLine(BONUS_INPUT_MESSAGE,(bonus) =>{
-      //payValidation(bonus);
-      if(this.winningNums.includes(parseInt(bonus))){
-        throw new Error('보너스 번호가 당첨 번호와 중복됩니다.')
-      }
-      //console.log('보너스 번호는... ',bonus);
+      bonusValidate(bonus, this.winningNums);
       return this.calculateGameResult(bonus);
     })  
   }
@@ -96,7 +92,7 @@ class App {
     })
   }
 
-//4. 로또 수량만큼 랜덤으로 로또 번호 생성
+//4. 로또 수량만큼 랜덤으로 로또 번호 생성하고 출력하기
   makeLottoNums(ticketNums){
     const allLines = []; 
     for(var i=0; i<ticketNums; i++){
@@ -112,8 +108,8 @@ class App {
     return this.enterWinningNums(); 
   }
 
-
-  showTicketNums(money) { //3. 로또 수량 계산하고 출력하기
+  //3. 로또 수량 계산하고 출력하기
+  showTicketNums(money) { 
     const ticketNums = parseInt(money) / MONEY_UNIT;
     this.ticketNums = ticketNums;
     Console.print('\n'+ this.ticketNums + PRINT_MESSAGE);
@@ -131,8 +127,7 @@ class App {
   }
 
   play() {
-    this.ticketNums = this.payLottoMoney(); 
-
+    this.payLottoMoney(); 
   }
 }
 
