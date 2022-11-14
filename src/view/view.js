@@ -1,16 +1,27 @@
 const { print } = require("../utils/Missionutils");
+const { RANKING } = require("../constants/value");
+const {
+  MESSAGE_ACCORDING_CORRECT_COUNT,
+  MESSAGE_ACCORDING_PRIZE_MONEY,
+  MESSAGE_ACCORDING_ACTION
+} = require("../constants/message");
+
 class view {
   #winngingResult;
 
   rankingResult(winngingResult) {
     this.#winngingResult = winngingResult;
-    print(`\n당첨 통계`);
-    print("---");
-    print(`3개 일치 (5,000원) - ${this.#winngingResult[5]}개`);
-    print(`4개 일치 (50,000원) - ${this.#winngingResult[4]}개`);
-    print(`5개 일치 (1,500,000원) - ${this.#winngingResult[3]}개`);
-    print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.#winngingResult[2]}개`);
-    print(`6개 일치 (2,000,000,000원) - ${this.#winngingResult[1]}개`);
+    print(MESSAGE_ACCORDING_ACTION.NOTIFY_WINNING);
+    [...Array(5).keys()]
+      .map((key) => key + 1)
+      .reverse()
+      .forEach((place) => {
+        print(
+          `${MESSAGE_ACCORDING_CORRECT_COUNT[place]} ${MESSAGE_ACCORDING_PRIZE_MONEY[place]} - ${
+            this.#winngingResult[place]
+          }개`
+        );
+      });
   }
 
   eariningRate(percentage) {

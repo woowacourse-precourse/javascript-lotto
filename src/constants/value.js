@@ -17,4 +17,13 @@ const NUMBER_TYPE = Object.freeze({
   WINNING_NUMBER: "winningNumber",
   BONUS_NUMBER: "bonusNumber"
 });
-module.exports = { RANKING_FROM_MATCH_COUNT, RANK_ACCORDING_REWARD, NUMBER_TYPE };
+
+const RANKING = Object.freeze({
+  FIFTH_PLACE: 5,
+  FOURTH_PLACE: 4,
+  THIRD_PLACE: 3,
+  SECOND_PLACE: 2,
+  FIRST_PLACE: 1
+});
+
+module.exports = { RANKING_FROM_MATCH_COUNT, RANK_ACCORDING_REWARD, NUMBER_TYPE, RANKING };

@@ -1,4 +1,5 @@
 const { pickUniqueNumbersInRange } = require("../utils/Missionutils");
+const { MESSAGE_ACCORDING_ERROR } = require("../constants/message");
 
 class MyNumberGenerator {
   #countOfLottos;
@@ -33,10 +34,10 @@ class MyNumberGenerator {
   }
 
   isInputNumbersValid(numbers) {
-    if (this.#isInputless(numbers)) throw Error("[ERROR] 입력이 없습니다.");
-    if (this.#isNegativeNumber(numbers)) throw Error("[ERROR] 양수만 입력해주세요.");
-    if (this.#isNotConsistOnlyNumber(numbers)) throw Error("[ERROR] 숫자만 입력 가능합니다.");
-    if (this.#isNotDividedThousand(numbers)) throw Error("[ERROR] 천원 단위 입력을 해주세요.");
+    if (this.#isInputless(numbers)) throw Error(MESSAGE_ACCORDING_ERROR.NOT_INPUTTED);
+    if (this.#isNegativeNumber(numbers)) throw Error(MESSAGE_ACCORDING_ERROR.NOT_POSITIVE_NUMBER);
+    if (this.#isNotConsistOnlyNumber(numbers)) throw Error(MESSAGE_ACCORDING_ERROR.TYPE);
+    if (this.#isNotDividedThousand(numbers)) throw Error(MESSAGE_ACCORDING_ERROR.NOT_THOUSAND_UNIT);
   }
 
   isLottoSetValid(lottoList) {

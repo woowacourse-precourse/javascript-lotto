@@ -1,5 +1,5 @@
 const Calculator = require("../model/Calculator");
-const ASK_MESSAGE = require("../constants/message");
+const { MESSAGE_ACCORDING_ASK } = require("../constants/message");
 const MyNumberGenerator = require("../model/Generator");
 const Lotto = require("../model/Lotto");
 const { readLine, close } = require("../utils/Missionutils");
@@ -19,7 +19,7 @@ class LottoGameController {
   }
 
   inputMoneyFromUser() {
-    readLine(ASK_MESSAGE.INPUT_MONEY, (moneyInput) => {
+    readLine(MESSAGE_ACCORDING_ASK.INPUT_MONEY, (moneyInput) => {
       this.#moneyInput = moneyInput;
       this.generateMyNumbers();
     });
@@ -45,13 +45,13 @@ class LottoGameController {
   }
 
   getWinningNumbersFromUser(myLottoNumbers) {
-    readLine(ASK_MESSAGE.INPUT_WINNING_NUMBER, (winningNumber) => {
+    readLine(MESSAGE_ACCORDING_ASK.INPUT_WINNING_NUMBER, (winningNumber) => {
       this.getBonusNumberFromUser(myLottoNumbers, winningNumber);
     });
   }
 
   getBonusNumberFromUser(myLottoNumbers, winningNumber) {
-    readLine(ASK_MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
+    readLine(MESSAGE_ACCORDING_ASK.INPUT_BONUS_NUMBER, (bonusNumber) => {
       const lottoModel = new Lotto({ winningNumber, bonusNumber: +bonusNumber });
       this.#winningNumbers = lottoModel.getConvertedLottoNumber();
       this.calculateWinningCount(myLottoNumbers);

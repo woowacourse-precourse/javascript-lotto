@@ -1,7 +1,8 @@
 const {
   RANKING_FROM_MATCH_COUNT,
   RANK_ACCORDING_REWARD,
-  NUMBER_TYPE
+  NUMBER_TYPE,
+  RANKING
 } = require("../constants/value");
 
 class Calculator {
@@ -16,16 +17,19 @@ class Calculator {
   };
   #earningMoney = 0;
 
-  applyWinnerSelectionRule(myLotto) {
-    const matchCount = myLotto.filter((number) =>
-      this.#winningNumber[NUMBER_TYPE.WINNING_NUMBER].includes(number)
-    ).length;
-
-    if (this.isSecondPlace(matchCount, myLotto)) {
-      this.#prizeStatus[2] += 1;
+  getRankAccordingMatchCount(myLottoNumber) {
+    const matchCount = this.getMatchCount(myLottoNumber);
+    if (this.isSecondPlace(matchCount, myLottoNumber)) {
+      this.#prizeStatus[RANKING.SECOND_PLACE] += 1;
       return;
     }
     return matchCount;
+  }
+
+  getMatchCount(myLotto) {
+    return myLotto.filter((number) =>
+      this.#winningNumber[NUMBER_TYPE.WINNING_NUMBER].includes(number)
+    ).length;
   }
 
   isSecondPlace(matchCount, myLotto) {
@@ -41,7 +45,7 @@ class Calculator {
   compareWinningNumberToMine() {
     let matchCountFromEachLotto;
     Array.from(this.#myNumbers).forEach((myNumber) => {
-      matchCountFromEachLotto = this.applyWinnerSelectionRule(myNumber);
+      matchCountFromEachLotto = this.getRankAccordingMatchCount(myNumber);
       if (this.isRanked(matchCountFromEachLotto)) {
         this.#prizeStatus[RANKING_FROM_MATCH_COUNT[matchCountFromEachLotto]] += 1;
       }
