@@ -9,16 +9,15 @@ class App {
   lottoTickets;
   lottoWinNumbers;
 
+  play() {
+    this.getUserBudget();
+  }
+
   printSpaceLine() {
     Console.print('');
   }
 
-  play() {
-    this.getUserBudget(INPUT_BUDGET);
-    this.getWinLottoNumbers();
-  }
-
-  getUserBudget(INPUT_BUDGET) {
+  getUserBudget() {
     Console.readLine(INPUT_BUDGET, (input) => {
       this.validateUserBudget(input);
       this.printSpaceLine();
@@ -28,16 +27,16 @@ class App {
   validateUserBudget(budget) {
     this.budget = new UserBudget(Number(budget));
     this.lottoTickets = new LottoMachine(budget);
+    this.getWinLottoNumbers();
   }
 
   getWinLottoNumbers() {
-    Console.readLine('당첨 번호를 입력해 주세요.\n', (input) => {
-      this.checkLottoNumbers(input);
+    Console.readLine('당첨 번호를 입력해 주세요.', (input) => {
+      const winNumber = input.split(',');
+      this.lottoWinNumbers = new Lotto(winNumber);
+      Console.print(this.lottoWinNumbers.join(''));
+      Console.close();
     });
-  }
-
-  checkLottoNumbers(number) {
-    this.lottoWinNumbers = new Lotto(number);
   }
 }
 
