@@ -18,14 +18,14 @@ const MESSAGE = {
 };
 
 const ERROR_MESSAGE = {
-  ONLY_INPUT_NUMBER: '[ERROR] 최소 구입 금액은 숫자만 입력 가능합니다.',
+  ONLY_INPUT_NUMBER: '[ERROR] 구입 금액은 숫자만 입력 가능합니다.',
   MIN_PRICE: '[ERROR] 최소 구입 금액은 1000원 입니다.',
   START_NUMBER_ZERO: '[ERROR] 0으로 시작된 값을 입력할 수 없습니다.',
   INVALID_UNIT: '[ERROR] 구입 금액은 1000원 단위로 입력해야 합니다.',
   ONLY_INPUT_INTEGER: '[ERROR] 로또 번호는 정수만 입력 가능합니다.',
   NUMBER_INVALID_RANGE: '[ERROR] 로또 번호는 1부터 45 사이의 정수여야 합니다.',
-  SIX_NUMBERS_NOT_DUPLICATE:
-    '[ERROR] 로또 번호는 중복되지 않은 6개의 숫자입니다.',
+  SIX_NUMBERS_NOT_DUPLICATE: '[ERROR] 로또 번호는 중복되지 않은 6개의 숫자입니다.',
+  SAME_LOTTO_NUMBER: '[ERROR] 보너스 번호는 당첨 번호와 같을 수 없습니다.',
 };
 
 module.exports = { REGEXP, MESSAGE, ERROR_MESSAGE };
