@@ -3,6 +3,7 @@ const { LOTTO_MESSAGE } = require("./util/Constant");
 const buyLotto = require("./BuyLotto");
 
 const Budget = require("./Budget");
+const Lotto = require("./Lotto");
 
 class App {
   play() {
@@ -26,6 +27,14 @@ class App {
     Console.print(LOTTO_MESSAGE.BUYING(this.userBudget.lottoToBuy));
     this.boughtLotto.forEach((lotto) => {
       Console.print(lotto);
+    });
+    this.setWinningNum();
+  }
+  setWinningNum() {
+    Console.readLine(LOTTO_MESSAGE.WIN_NUM, (input) => {
+      const numbers = input.split(",").map(Number);
+      new Lotto(numbers);
+      this.winningLotto = numbers;
     });
   }
 }
