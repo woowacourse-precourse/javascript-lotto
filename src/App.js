@@ -4,10 +4,13 @@ const Validation = require("./validation");
 
 class App {
   winnerNumber;
+  bonusNumber;
   play() {
     this.inputPurchaseAmount();
     this.inputWinnerNumber();
     this.inputBonusNumber();
+    console.log(this.winnerNumber);
+    console.log(this.bonusNumber);
   }
   inputPurchaseAmount() {
     MissionUtils.Console.readLine(
@@ -28,19 +31,20 @@ class App {
   inputWinnerNumber() {
     MissionUtils.Console.readLine(
       GUIDE_MESSAGE.WINNERNUMBER_INPUT,
-      (winnerNumber) => {
-        const winnerNumberArr = winnerNumber.split(",");
+      (winnerNumberElement) => {
+        const winnerNumberArr = winnerNumberElement.split(",");
         Validation.checkInputWinnerNumber(winnerNumberArr);
-        this.winnerNumber = winnerNumberArr;
+        this.winnerNumber = winnerNumberElement;
       }
     );
   }
   inputBonusNumber() {
     MissionUtils.Console.readLine(
       GUIDE_MESSAGE.BONUSNUMBER_INPUT,
-      (bonusNumber) => {
-        const bonusNumberArr = bonusNumber.split("");
+      (bonusNumberElement) => {
+        const bonusNumberArr = bonusNumberElement.split("");
         Validation.checkBonusNumber(bonusNumberArr, this.winnerNumber);
+        this.bonusNumber = bonusNumberElement;
       }
     );
   }
