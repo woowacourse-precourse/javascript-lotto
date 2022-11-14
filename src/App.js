@@ -7,6 +7,7 @@ class App {
   scores;
   profit;
   payMoney;
+  reward;
 
   constructor() {
     this.bonusNumber = 0;
@@ -25,6 +26,8 @@ class App {
     this.profit = 0;
 
     this.payMoney = 0;
+
+    this.reward = [5_000, 50_000, 1_500_000, 30_000_000, 2_000_000_000];
   }
 
   play() {
@@ -94,19 +97,13 @@ class App {
         throw "[ERROR]";
       } else {
         this.bonusNumber = input;
-        this.scores = this.matchLottos(
-          this.lottos,
-          this.winNumbers,
-          this.bonusNumber
-        );
+        this.matchLottos(this.lottos, this.winNumbers, this.bonusNumber);
       }
     });
   }
 
   matchLottos(lottos, winNumbers, bonusNumber) {
-    const scores = this.scores;
-
-    return lottos
+    lottos
       .filter((lotto) => lotto.matchNumbers(winNumbers, bonusNumber) >= 3)
       .map((e) =>
         e.matchNumbers(winNumbers, bonusNumber) === 5.5
@@ -114,7 +111,7 @@ class App {
           : String(`${e.matchNumbers(winNumbers, bonusNumber)}개 일치`)
       )
       .forEach((e) => {
-        scores.set(String(`${e}`), scores.get(String(`${e}`)) + 1);
+        this.scores.set(String(`${e}`), this.scores.get(String(`${e}`)) + 1);
       });
   }
 
