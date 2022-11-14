@@ -17,14 +17,8 @@ const {
 } = require("./utils/constant");
 
 class App {
-  #exception;
-  #changeLotto;
-
   constructor() {
-    this.Lotto = new Lotto();
-    this.#exception = new Exception();
-    this.#changeLotto = new ChangeLotto();
-    this.compareLotto = new CompareLotto();
+    this.exception = new Exception();
     this.input = UNIT.DEFAULT;
     this.bonusNumber = UNIT.DEFAULT;
     this.profit = UNIT.DEFAULT;
@@ -33,21 +27,17 @@ class App {
     this.rank = {};
   }
 
-  divideThousandUnit(number) {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
-
   askWinNumber() {
     Console.readLine(`\n${COMMAND.WIN}\n`, (input) => {
       this.winNumber = input.split(",").map(Number);
-      this.#exception.isAllow(new Lotto(this.winNumber));
+      this.exception.isAllow(new Lotto(this.winNumber));
       this.askBonusNumber();
     });
   }
 
   askBonusNumber() {
     Console.readLine(`\n${COMMAND.BONUS}\n`, (input) => {
-      this.#exception.isAllow(new BonusNumber(input), this.winNumber);
+      this.exception.isAllow(new BonusNumber(input), this.winNumber);
       this.bonusNumber = input;
       this.compareNumber();
     });
@@ -72,6 +62,10 @@ class App {
     Console.close();
   }
 
+  divideThousandUnit(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   printResult() {
     Console.print(`\n${GUIDE.TITLE}\n${GUIDE.LINE}`);
     Object.keys(RANK)
@@ -89,9 +83,9 @@ class App {
 
   play() {
     Console.readLine(`${COMMAND.BUY}\n`, (input) => {
-      this.#exception.isAllow(new PurchaseError(input));
+      this.exception.isAllow(new PurchaseError(input));
       this.input = input;
-      this.userLotto = this.#changeLotto.change(this.input);
+      this.userLotto = new ChangeLotto(this.input).change();
       this.askWinNumber();
     });
   }
