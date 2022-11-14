@@ -33,10 +33,19 @@ class App {
   getWinLottoNumbers() {
     Console.readLine('당첨 번호를 입력해 주세요.', (input) => {
       const winNumber = input.split(',');
+      this.validateIsNotNumber(winNumber);
       this.lottoWinNumbers = new Lotto(winNumber);
       Console.print(this.lottoWinNumbers.join(''));
       Console.close();
     });
+  }
+
+  validateIsNotNumber(winNumber) {
+    for (let i = 0; i < winNumber.length; i++) {
+      if (isNaN(...winNumber[i])) {
+        throw new Error('[ERROR] 당첨 번호는 숫자만 입력해야 합니다.');
+      }
+    }
   }
 }
 
