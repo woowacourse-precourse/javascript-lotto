@@ -35,6 +35,7 @@ class App {
       const number = toNumberType(inputValue);
       lottoGame.drawBonus(number);
       lottoGame.fetchGameResult();
+      this.quit();
     });
   }
 
@@ -50,6 +51,10 @@ class App {
     if (inputType === ENTER_BONUS_NUMBER) {
       this.enterBonusNumber();
     }
+  }
+
+  quit() {
+    Console.close();
   }
 
   play() {
