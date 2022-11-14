@@ -13,7 +13,6 @@ const ERROR = Object.freeze({
   LOTTO_RANGE: "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.",
   LOTTO_DUPLICATE: "[ERROR] 로또 번호는 중복되지 않는 숫자여야 합니다.",
 
-  BONUS_COUNT: "[ERROR] 보너스 번호는 하나입니다.",
   BONUS_TYPE: "[ERROR] 보너스 번호는 숫자여야 합니다.",
   BONUS_RANGE: "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.",
   BONUS_DUPLICATE: "[ERROR] 보너스 번호는 로또 번호와 중복되지 않는 숫자여야 합니다.",
@@ -25,4 +24,28 @@ const LOTTO = Object.freeze({
   LENGTH: 6,
 });
 
-module.exports = { INPUT, ERROR, LOTTO };
+const RANKING = Object.freeze({
+  MATCHEDCOUNT_FIRST: 6,
+  MATCHEDCOUNT_SECOND: 5,
+  MATCHEDCOUNT_THRID: 5,
+  MATCHEDCOUNT_FOURTH: 4,
+  MATCHEDCOUNT_FIFTH: 3,
+  REWARD_FIRST: 2000000000,
+  REWARD_SECOND: 30000000,
+  REWARD_THIRD: 1500000,
+  REWARD_FOURTH: 50000,
+  REWARD_FIFTH: 5000,
+  OUTPUT_ORDER: ["FIFTH", "FOURTH", "THIRD", "SECOND", "FIRST"],
+  SECOND_RESULT: (value) =>
+    `${
+      value.mathcedCount
+    }개 일치, 보너스 볼 일치 (${value.reward.toLocaleString()}원) - ${
+      value.amount
+    }개`,
+  OTHER_RESULT: (value) =>
+    `${value.mathcedCount}개 일치 (${value.reward.toLocaleString()}원) - ${
+      value.amount
+    }개`,
+});
+
+module.exports = { INPUT, ERROR, LOTTO, RANKING };
