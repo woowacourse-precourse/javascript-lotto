@@ -40,14 +40,10 @@ class Store {
     const correctPoints = [0, 0, 0, 0, 0];
     const { winningNumbers, bonus } = this.#winningLotto.getLotto();
 
-    console.log(winningNumbers);
-
     this.#randomLottos.forEach((randomLotto) => {
       let correctCount = randomLotto.filter((number) =>
         winningNumbers.includes(number)
       ).length;
-
-      console.log(correctCount);
 
       if (correctCount === 5 && randomLotto.includes(bonus)) {
         correctCount++;
@@ -56,8 +52,6 @@ class Store {
       }
 
       if (correctCount >= MIN_WINNING_COUNT) {
-        console.log(randomLotto);
-        console.log(correctCount);
         correctPoints[correctCount - MIN_WINNING_COUNT]++;
       }
     });
