@@ -30,7 +30,7 @@ class App {
 
   printQuantity(money) {
     this.quantity = money / MONEY.UNIT;
-    Console.print(`${OUTPUT.LINE}${this.quantity}${OUTPUT.BUY}`);
+    Console.print(`${OUTPUT.LINE}${OUTPUT.BUY(this.quantity)}`);
 
     this.publishLotto(this.quantity);
   }
