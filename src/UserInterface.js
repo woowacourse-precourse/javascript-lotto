@@ -50,6 +50,10 @@ class UserInterface {
     Console.print(PRINT_MESSAGE.SECOND_RANKING_MESSAGE(resultArray[2]));
     Console.print(PRINT_MESSAGE.FIRST_RANKING_MESSAGE(resultArray[1]));
   }
+  static printPercentYield(percent) {
+    Console.print(PRINT_MESSAGE.PRINT_YIELD_MESSAGE(percent));
+    Console.close();
+  }
 }
 
 module.exports = UserInterface;
