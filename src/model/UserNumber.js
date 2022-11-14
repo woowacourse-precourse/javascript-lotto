@@ -14,7 +14,7 @@ class UserNumber {
   }
 
   getPurchasingAmount() {
-    return this.getPurchasingAmount;
+    return this.purchasingAmount;
   }
 
   setPurchasingAmount(userPurchasingAmountInput) {
