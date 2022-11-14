@@ -16,4 +16,12 @@ describe("로또 클래스 테스트", () => {
   });
 
   // 아래에 추가 테스트 작성 가능
+  test("구입한 금액에 맞춰 몇장을 샀는지 체크해야한다.", () => {
+    //given
+    const purchaseAmount = 8000;
+    //when
+    let result = Lotto.countLotto(purchaseAmount);
+    //then
+    expect(result).toBe(8);
+  });
 });
