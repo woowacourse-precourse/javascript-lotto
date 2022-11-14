@@ -62,7 +62,16 @@ class App {
     this.getBonusNumber();
   }
   // 보너스 금액 입력
-  getBonusNumber() {}
+  getBonusNumber() {
+    Console.readLine(INPUT_MESSAGE.BONUS_NUMBER, (numberString) => {
+      if (isPurchasePriceToNumber(numberString))
+        throw new Error(ERROR_MESSAGE.BONUS_NUMBER);
+      this.bonusNumber = +numberString;
+    });
+    if (this.winNumberList.length != 0) {
+      this.getWinStatistic();
+    }
+  }
   getWinStatistic() {}
   printWinStatistic(winStatistic) {}
 }
