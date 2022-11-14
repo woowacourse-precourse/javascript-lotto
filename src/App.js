@@ -2,6 +2,7 @@ const { INPUT_MESSAGE } = require('./constant');
 const MissionUtils = require('@woowacourse/mission-utils');
 const LottoGenerator = require('./IssueLotto');
 const LottoEarnings = require('./Calculator');
+const InputCheck = require('./InputCheck');
 const Lotto = require('./Lotto');
 const Match = require('./Matcher');
 const Result = require('./Result');
@@ -15,9 +16,7 @@ class App {
 
   injectMoney() {
     Console.readLine(INPUT_MESSAGE.ENTER_MONEY, money => {
-      if (money % 1000 !== 0) {
-        throw new Error('[ERROR] 1000원 단위로 입력해주세요.');
-      }
+      InputCheck.moneyValidate(Number(money));
       LottoGenerator.getPurchaseLottoCount(Number(money));
       LottoEarnings.money += Number(money);
       this.enterWinningNumber();
