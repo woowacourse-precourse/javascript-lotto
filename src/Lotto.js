@@ -1,18 +1,23 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+const Console = MissionUtils.Console;
+const Random = MissionUtils.Random;
+const InputCheck = require('./InputCheck');
+const { generateRandom } = require('../utils/Source.js');
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    this.inputCheck = new InputCheck();
+    this.inputCheck.validate(numbers);
     this.#numbers = numbers;
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+  buyLotto(){
+    Console.readLine('구입금액을 입력해 주세요.', (price) => {
+      this.inputCheck.priceCheck(price);
+      this.amount = price/1000;
+      Console.print(`${this.amount}개를 구매했습니다.`);
+    });
   }
-
-  // TODO: 추가 기능 구현
 }
-
 module.exports = Lotto;
