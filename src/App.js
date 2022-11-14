@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const Lotto = require("../src/Lotto")
+const Lotto = require("../src/Lotto");
 
 class App {
   price;
@@ -40,7 +40,7 @@ class App {
   autoLotto(price) { // 입력한 금액의 개수만큼 로또 번호를 출력하는 메서드
     const LOTTO_AUTO = [];
     const GAME_NUMBER = parseInt(price / 1000);
-    MissionUtils.Console.print(`\n${GAME_NUMBER}개를 구매했습니다.`)
+    MissionUtils.Console.print(`\n${GAME_NUMBER}개를 구매했습니다.`);
     for (let i = 0; i < GAME_NUMBER; i++) {
       LOTTO_AUTO.push(this.lottoGame());
       MissionUtils.Console.print(LOTTO_AUTO[i]);
@@ -53,23 +53,26 @@ class App {
       const NUMBERS = manual.split(',');
       const NEW_LOTTO = new Lotto(NUMBERS);
       this.manual = NEW_LOTTO.manual();
-      this.bonusNumber(NEW_LOTTO.manual());
+      this.bonusNumber();
     })
   }
 
-  bonusNumber(manual) { // 보너스 번호를 입력받는 메서드
+  bonusNumber() { // 보너스 번호를 입력받는 메서드
     MissionUtils.Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonus) => {
-      if (this.checkBonus(manual, bonus)) {
+      if (this.checkBonus(bonus)) {
         this.bonus = parseInt(bonus);
+        this.lottoResult();
         MissionUtils.Console.close();
       }
     })
   }
 
-  checkBonus(manual, number) { // 보너스 번호의 유효성을 판단하는 메서드
+  checkBonus(number) { // 보너스 번호의 유효성을 판단하는 메서드
     if ((isNaN(number)) || (!Number.isInteger(Number(number)))) {
       throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
-    } else if (manual.includes(number)) {
+    } else if ((parseInt(number)<1) || (45<parseInt(number))) {
+      throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+    } else if (this.manual.includes(parseInt(number))) {
       throw new Error("[ERROR] 보너스 번호는 당첨 번호와 다른 숫자여야 합니다.");
     }
     return true;
