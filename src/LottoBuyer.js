@@ -10,6 +10,10 @@ class LottoBuyer {
     this.#money = money;
   }
 
+  get money() {
+    return this.#money;
+  }
+
   get lotto() {
     return this.#lotto;
   }

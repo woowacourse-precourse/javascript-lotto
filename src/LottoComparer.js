@@ -1,4 +1,4 @@
-const { RANK, RANK_LENGTH } = require('./constants/lotto');
+const { RANK, RANK_LENGTH, RANK_REWARDS } = require('./constants/lotto');
 
 class LottoComparer {
   constructor(buyer, lotto) {
@@ -57,6 +57,25 @@ class LottoComparer {
 
   #isIncludeLotto(number) {
     return this.lotto.numbers.includes(number);
+  }
+
+  setYield() {
+    const totalReward = this.#getTotalReward();
+    const buyerYield = (totalReward / this.buyer.money) * 100;
+
+    this.yield = buyerYield.toFixed(1);
+  }
+
+  #getTotalReward() {
+    const totalReward = Object.keys(RANK).reduce((acc, cur) => {
+      const rank = RANK[cur];
+      const count = this.ranking[rank];
+      const reward = RANK_REWARDS[cur];
+
+      return acc + count * reward;
+    }, 0);
+
+    return totalReward;
   }
 }
 
