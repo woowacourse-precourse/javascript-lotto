@@ -10,6 +10,8 @@ class App {
   #inputMoneyExceptionCheck(money) {
     if (this.#stringHasNaN(money))
       throw new Error('[ERROR] 금액은 숫자로 입력해 주세요');
+    if (money % 1000 !== 0)
+      throw new Error('[ERROR] 금액은 1000원 단위로 입력해 주세요');
   }
 
   #stringHasNaN(money) {
