@@ -14,4 +14,20 @@ describe('유효성 검사 테스트', () => {
       expect(output).toBe(expectedOutput[index]);
     });
   });
+
+  test('주어진 배열이 해당 범위 안의 숫자들로 이루어졌는지 확인', () => {
+    const min = 1;
+    const max = 45;
+    const inputs = [
+      [1, 2],
+      [1, 45],
+      [1, 47]
+    ];
+    const expectedOutput = [true, true, false];
+
+    inputs.forEach((input, index) => {
+      const output = Validation.isInRange(input, min, max);
+      expect(output).toBe(expectedOutput[index]);
+    });
+  });
 });
