@@ -19,9 +19,23 @@ class App {
     });
     this.winningLottoNumber();
   }
-  validatePurchase(money){
-    
+  validatePurchase(money){}
+  winningLottoNumber(){
+    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.\n", (winning) => {
+      this.winningNumber = this.validateWinning(winning);
+    });
+    this.bonusLottoNumber();
   }
+  validateWinning(win){}
+  bonusLottoNumber(){
+    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.\n", (bonus) => {
+      this.bonusNumber = this.validateBonus(bonus);
+    });
+    this.randomPurchaseLotto();
+  }
+  validateBonus(num){}
+
+
 }
 
 module.exports = App;
