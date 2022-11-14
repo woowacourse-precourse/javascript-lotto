@@ -9,13 +9,18 @@ class LottoAdjustment {
 
   #scoreBoard;
 
+  #income;
+
   constructor(inputs) {
     this.#lotto = inputs.getInstance(VARIABLE_FACTORY.lotto);
     this.#bonus = inputs.getInstance(VARIABLE_FACTORY.bonus);
     this.#payment = inputs.getInstance(VARIABLE_FACTORY.lottoStore);
 
     this.#scoreBoard = [0, 0, 0, 0, 0];
+    this.#income = '';
+
     this.#compareLotto();
+    this.#calculateIncome();
   }
 
   getLottoCountScore() {
@@ -23,17 +28,36 @@ class LottoAdjustment {
   }
 
   getIncome() {
-    const result = String(
-      Math.round(
-        (LOTTO_AMOUNT.reduce((acc, moneyUnit, index) => {
-          return acc + moneyUnit * this.#scoreBoard[index];
-        }, 0) /
-          this.#payment.getMoney()) *
-          1000,
-      ),
-    ).split('');
-    result.splice(result.length - 1, 0, '.');
-    return result.join('');
+    return this.#income;
+  }
+
+  #roundUpFor() {
+    this.#income = Math.round(
+      (LOTTO_AMOUNT.reduce((acc, moneyUnit, index) => {
+        return acc + moneyUnit * this.#scoreBoard[index];
+      }, 0) /
+        this.#payment.getMoney()) *
+        1000,
+    );
+
+    return this;
+  }
+
+  #makeDecimalFirst() {
+    if (this.#income === 0) {
+      this.#income = '0.0';
+      return this;
+    }
+
+    this.#income = String(this.#income).split('');
+    this.#income.splice(this.#income.length - 1, 0, '.');
+    this.#income = this.#income.join('');
+
+    return this;
+  }
+
+  #calculateIncome() {
+    this.#roundUpFor().#makeDecimalFirst();
   }
 
   #matchLottoFor(lottoToBuy) {
