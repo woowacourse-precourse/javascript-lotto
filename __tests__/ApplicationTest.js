@@ -76,6 +76,14 @@ describe("로또 테스트", () => {
   // 테스트 추가
 
   // 로또 자동 작성 테스트
+  test("기능 테스트: 로또 자동 오름차순 정렬", () => {
+    mockRandoms([
+      [3, 5, 4, 2, 1, 6],
+    ])
+    const lotto = SYSTEM.makeLotto();
+    expect(lotto.getNumber()).toStrictEqual([1, 2, 3, 4, 5, 6]);
+  });
+
   test("기능 테스트: 금액에 맞는 개수 만큼 로또 생성", () => {
     const logs = [
       "3개를 구매했습니다.",
@@ -184,6 +192,5 @@ describe("로또 테스트", () => {
       SYSTEM.isCorrectBonusNumber(bonusNumber, winningLotto.getNumber());
     }).toThrow(ERROR.NOT_NUMBER);
   });
-
 
 });
