@@ -15,23 +15,18 @@ const BONUS_RANGE = {
 const PRIZES = {
   1: {
     VALUE: 2000000000,
-    DISPLAY_NAME: '(2,000,000,000원)',
   },
   2: {
     VALUE: 30000000,
-    DISPLAY_NAME: '(30,000,000원)',
   },
   3: {
     VALUE: 1500000,
-    DISPLAY_NAME: '(1,500,000원)',
   },
   4: {
     VALUE: 50000,
-    DISPLAY_NAME: '(50,000원)',
   },
   5: {
     VALUE: 5000,
-    DISPLAY_NAME: '(5,000원)',
   },
 };
 
@@ -71,16 +66,14 @@ const USER_INPUT_PHRASE = {
   REQUEST_BONUS_NUMBER: '보너스 번호를 입력해 주세요.\n',
 };
 
-const STAT_PHRASE = {
-  TOTAL_NUM: '개를 구매했습니다.\n',
-  STAT: '당첨 통계\n---\n',
-  MATCH: '개 일치',
-  BONUS: ', 보너스 볼 일치 ',
-  DIVDER: ' - ',
-  UNIT: '개\n',
-  YIELD: '총 수익률은 ',
-  PERCENT: '%입니다.\n',
-};
+const STAT_PHRASE = (match) => `
+당첨 통계
+---
+3개 일치 (5,000원) - ${match['5'] || 0}개
+4개 일치 (50,000원) - ${match['4'] || 0}개
+5개 일치 (1,500,000원) - ${match['3'] || 0}개
+5개 일치, 보너스 볼 일치 (30,000,000원) - ${match[2] || 0}개
+6개 일치 (2,000,000,000원) - ${match['1'] || 0}개`;
 
 const GAME_INPUT_ERRORS = {
   INVALID_INPUT_TYPE: '[ERROR] 로또 구입 금액은 숫자여야 합니다.\n',
