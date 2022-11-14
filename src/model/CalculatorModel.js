@@ -7,10 +7,6 @@ const initRank = {
 };
 
 class CalculatorModel {
-  constructor() {
-    this.rank = initRank;
-  }
-
   draw(lottos, winning) {
     const [winningLotto, bonus] = winning;
     const winningList = [];
@@ -31,28 +27,30 @@ class CalculatorModel {
   }
 
   getRank(winningList) {
+    const rank = initRank;
+
     winningList.forEach((list) => {
       const [count, isBonusCorrected] = list;
 
       switch (count) {
         case 3:
-          this.rank.FIFTH += 1;
+          rank.FIFTH += 1;
           break;
         case 4:
-          this.rank.FOURTH += 1;
+          rank.FOURTH += 1;
           break;
         case 5:
-          isBonusCorrected ? (this.rank.THIRD += 1) : (this.rank.SECOND += 1);
+          isBonusCorrected ? (rank.THIRD += 1) : (rank.SECOND += 1);
           break;
         case 6:
-          this.rank.FIRST += 1;
+          rank.FIRST += 1;
       }
     });
 
-    return this.getProfit(this.rank);
+    return this.getReward(rank);
   }
 
-  getProfit(rank) {
+  getReward(rank) {
     const rewardList = [5000, 50000, 1500000, 30000000, 2000000000];
 
     const reward = Object.values(rank).reduce((acc, cur, idx) => {
