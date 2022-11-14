@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable class-methods-use-this */
 const MissionUtils = require('@woowacourse/mission-utils');
 
 class TicketBox {
