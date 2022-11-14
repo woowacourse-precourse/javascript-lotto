@@ -8,6 +8,10 @@ const COMMAND = Object.freeze({
 const ERROR = Object.freeze({
   MONEY_DIVISIBLE: '[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.',
   MONEY_DIGIT: '[ERROR] 구입 금액은 정수로 입력해야 합니다.',
+  WINNING_DIGIT: '[ERROR] 각 당첨 번호는 정수여야 합니다.',
+  WINNING_LENGTH: '[ERROR] 당첨 번호는 6개여야 합니다.',
+  WINNING_RANGE: '[ERROR] 각 당첨 번호의 숫자 범위는 1 - 45까지 입니다.',
+  WINNING_DUPLICATED: '[ERROR] 당첨 번호는 중복될 수 없습니다.',
 });
 
 module.exports = { COMMAND, ERROR };

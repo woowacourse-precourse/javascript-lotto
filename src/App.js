@@ -1,7 +1,7 @@
 const { COMMAND } = require('../util/Message');
 const { Console } = require('@woowacourse/mission-utils');
 const CreateLotto = require('./CreateLotto');
-const { MoneyExceptions } = require('./Exceptions');
+const { MoneyExceptions, WinningExceptions } = require('./Exceptions');
 
 class App {
   constructor() {
@@ -24,6 +24,7 @@ class App {
 
   getWinning() {
     Console.readLine(COMMAND.WINNING, (winning) => {
+      new WinningExceptions(winning.split(',')).check();
       this.winningArr = winning.split(',').map((num) => parseInt(num));
       this.getBonus();
     });
