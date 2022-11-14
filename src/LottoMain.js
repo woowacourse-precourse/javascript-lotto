@@ -11,7 +11,7 @@ class LottoMain {
 
 function printResult(lottoList, prize, bonus) {
   ConsoleWork.print('당첨 통계\n---\n');
-  lottoLoop(lottoList, prize, bonus);
+  lottoLoop(lottoList, prize, Number(bonus));
 }
 
 function lottoLoop(lottoList, prize, bonus) {
