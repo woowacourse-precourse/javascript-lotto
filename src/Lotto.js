@@ -3,14 +3,23 @@ const lottoValidation = require('./validation/lottoValidation');
 const { RANK, MATCH, MONEY, NUMBER } = require('./constant/constant');
 
 class LottoBuilder {
-  constructor() {
-    this.lottoList = [];
-    this.WinningNumber = [];
-    this.bonusNumber = null;
+  lottoList(lists) {
+    this.lottoList = lists;
+    return this;
+  }
+
+  winningNumber(winning) {
+    this.winningNumber = winning;
+    return this;
+  }
+
+  bonusNumber(bonus) {
+    this.bonusNumber = bonus;
+    return this;
   }
 
   build() {
-    return new Lotto(this.WinningNumber, this.lottoList, this.bonusNumber);
+    return new Lotto(this.winningNumber, this.lottoList, this.bonusNumber);
   }
 }
 
