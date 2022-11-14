@@ -28,6 +28,7 @@ class App {
   buyLotto() {
     return new Promise((resolve) => {
       Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
+        this.lottoGenerator.validateInputMoney(money);
         const generatedLottos = this.lottoGenerator.generateLottos(money);
         resolve(printGeneratedLottos(generatedLottos));
       });
