@@ -133,33 +133,33 @@
   - getWinningNumbers
     - 유효성 검사가 끝난 #numbers를 반환합니다.
 
-  - GetStat
-    - constructor
-      - 클래스의 내부 메서드를 호출합니다.
+- GetStat
+  - constructor
+    - 클래스의 내부 메서드를 호출합니다.
 
-    - calculate
-      - '당첨 통계' 메세지를 출력하고, buyLotto클래스의 getLottoArray메서드를 통해 로또 배열을 반환받습니다.
-    
-    - calculateLottoArray
-      - 로또 배열에 담긴 로또 번호를 하나씩 계산하면서 당첨 여부를 확인합니다.
+  - calculate
+    - '당첨 통계' 메세지를 출력하고, buyLotto클래스의 getLottoArray메서드를 통해 로또 배열을 반환받습니다.
+  
+  - calculateLottoArray
+    - 로또 배열에 담긴 로또 번호를 하나씩 계산하면서 당첨 여부를 확인합니다.
 
-    - initalizeLottoInfoProperty
-      - 로또 당첨 번호 당 당첨 수를 체크하는 numberOfCorrectNumbers 인자를 0으로 초기화합니다.
+  - initalizeLottoInfoProperty
+    - 로또 당첨 번호 당 당첨 수를 체크하는 numberOfCorrectNumbers 인자를 0으로 초기화합니다.
 
-    - countCorrectNumbers
-      - 구매한 로또가 당첨 번호에 포함되어있는지 확인하고, numberOfCorrectNumbers 인자를 번호가 포함된 수 만큼 더해줍니다.
+  - countCorrectNumbers
+    - 구매한 로또가 당첨 번호에 포함되어있는지 확인하고, numberOfCorrectNumbers 인자를 번호가 포함된 수 만큼 더해줍니다.
 
-    - isSecondPrizeWin
-      - 만약 당첨번호가 5개가 포함되어있고, 보너스 번호가 포함된다면, numbersOfCorrectNumbers인자를 2 더해줍니다.
+  - isSecondPrizeWin
+    - 만약 당첨번호가 5개가 포함되어있고, 보너스 번호가 포함된다면, numbersOfCorrectNumbers인자를 2 더해줍니다.
 
-    - countWinning
-      - numberOfCorrectNumbers 인자의 값에 따른 당첨 등수를 구분해줍니다.
+  - countWinning
+    - numberOfCorrectNumbers 인자의 값에 따른 당첨 등수를 구분해줍니다.
 
-    - printStat
-      - 당첨 수를 출력합니다.
-    
-    - printRate
-      - 수익률을 출력합니다.
+  - printStat
+    - 당첨 수를 출력합니다.
+  
+  - printRate
+    - 수익률을 출력합니다.
 
 ## 기능 단위 테스트
 
