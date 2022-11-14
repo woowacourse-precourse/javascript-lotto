@@ -3,8 +3,14 @@ const { MESSAGE, LOTTERY_PRICE } = require("./Constant");
 class App {
   #money;
   #numberOfLottery;
+  #myLottery;
 
   constructor() {}
+
+  buyLottery = () => {
+    this.#myLottery = this.getLotteryNumbers();
+    this.printMyLottery();
+  };
 
   getNumberOfLottery = () => {
     this.#numberOfLottery = Math.trunc(this.#money / LOTTERY_PRICE);
