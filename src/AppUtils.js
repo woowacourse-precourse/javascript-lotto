@@ -67,7 +67,7 @@ class AppUtils {
 
   static toStringRate(rate) {
     // 수익률 문자열 반환
-    return '총 수익률은 ' + rate + '%입니다.';
+    return '총 수익률은 ' + rate.toLocaleString('ko-KR') + '%입니다.';
   }
 
   static toStringStat(myLotto, winLotto) {
