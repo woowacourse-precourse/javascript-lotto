@@ -28,8 +28,25 @@ class Lotto {
     return money;
   }
 
+  readWinningNum() {
+    let winningNum = [];
+    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (input) => {
+      winningNum = this.changeNumArray(input);
+    });
+    return winningNum;
+  }
+
+  changeNumArray(string) {
+    const array = string.split(",");
+    const numberArray = [];
+    array.map((number) => {
+      numberArray.push(parseInt(number));
+    });
+    return numberArray;
+  }
+
   // test() {
-  //   MissionUtils.Console.print(this.buy());
+  //   MissionUtils.Console.print(this.readWinningNum());
   // }
 }
 
