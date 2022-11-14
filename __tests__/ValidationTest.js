@@ -20,4 +20,18 @@ describe('예외 상황 테스트', () => {
       }).toThrow('[ERROR]');
     });
   });
+
+  describe('당첨 번호 유효성 검사', () => {
+    test('사용자가 로또 번호 구분자를 ","로 하지 않았을 경우', () => {
+      expect(() => {
+        new Store().setLottos('4.2.1.6.3.8');
+      }).toThrow('[ERROR]');
+    });
+
+    test('사용자가 이상한 문자와 함께 로또 번호를 입력할 경우', () => {
+      expect(() => {
+        new Store().setLottos(['3', 'test']);
+      }).toThrow('[ERROR]');
+    });
+  });
 });
