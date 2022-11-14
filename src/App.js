@@ -18,7 +18,7 @@ class App {
         Utils.print(userLotto);
       }
       Utils.readLine('당첨 번호를 입력해 주세요.\n', (input) => {
-        const winningLotto = this.createLottoArray(input);
+        this.winningLotto = new Lotto(this.createLottoArray(input));
         Utils.readLine('보너스 번호를 입력해 주세요.\n', (input) => {
             this.winningBonusLottoNumber = input;
         });
