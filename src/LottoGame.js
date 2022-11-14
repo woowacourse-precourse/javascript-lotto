@@ -89,7 +89,8 @@ class LottoGame {
     
     onInputBonusNumber(input) {
         this.bonusNumber = Number(input);
-        this.lottoContainer.validate(this.bonusNumber);
+        const targetNumbers = this.lottoContainer.getTargetNumbers();
+        Validation.validate(this.bonusNumber, targetNumbers);
         this.showStaticstic();
         Utils.close();
     }

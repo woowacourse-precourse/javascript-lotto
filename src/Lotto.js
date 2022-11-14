@@ -9,20 +9,20 @@ class Lotto {
   }
 
   validate(input) {
-  
-    if(!Array.isArray(input)) return Validation.validate(input, this.#numbers);
     Validation.validate(input);
-    
   }
 
   // TODO: 추가 기능 구현
+  getTargetNumbers() {
+    return this.#numbers;
+  }
+
   getResult(input, bonus) {
     let hitCount = this.countHit(input);
     let prize = 0;
 
     if(hitCount == 6) prize = 1;
     else if(hitCount == 5 && this.isHitBonus(input, bonus)) {
-      // 5개를 맞추고 보너스를 맞췄을 때 -> 2등
       prize = 2;
     }
     else if(hitCount == 5) prize = 3;
