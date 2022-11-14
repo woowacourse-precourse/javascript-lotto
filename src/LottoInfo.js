@@ -2,8 +2,12 @@ const MissionUtils = require("@woowacourse/mission-utils");
 
 class PrizeInformation {
     constructor() {
+        // 당첨 금액 정보
+        const FIRST_PRIZE = 2000000000, SECOND_PRIZE = 30000000,
+            THIRD_PRIZE = 1500000, FOURTH_PRIZE = 50000, FIFTH_PRIZE = 5000;
+
         this.message = ["", "6개 일치", "5개 일치, 보너스 볼 일치", "5개 일치", "4개 일치", "3개 일치"];
-        this.prize = [0, 2000000000, 30000000, 1500000, 50000, 5000];
+        this.prize = [0, FIRST_PRIZE, SECOND_PRIZE, THIRD_PRIZE, FOURTH_PRIZE, FIFTH_PRIZE];
         this.quantity = [0, 0, 0, 0, 0, 0];
     }
 
