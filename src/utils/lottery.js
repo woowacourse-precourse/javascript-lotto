@@ -1,4 +1,5 @@
 const { TICKET_PRICE } = require('./CONSTANT');
+const { convertNumberToComma } = require('./string');
 
 const figureLotteryRank = (hit, bonus) => {
   if (hit === 6) {
@@ -32,4 +33,4 @@ const countTickets = (money) => {
   validateMoney(money);
   return money / TICKET_PRICE;
 };
-module.exports = { figureLotteryRank, countTickets };
+module.exports = { figureLotteryRank, countTickets, validateMoney };
