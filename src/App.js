@@ -1,12 +1,14 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const { MESSAGES, PAY_ERROR, BONUS_ERROR, RANK, WINNING_STATISTICS } = require("./constants/Constants.js");
 const Lotto = require('./Lotto');
+const WINNING_AMOUNT = [5000, 50000, 1500000, 30000000, 2000000000];
 const UNIT = 1000;
 
 class App {
   #count = 0;
   #lottos = [];
   #win_lotto = [];
+  #payment = 0;
 
   play() {
     this.start();
@@ -14,6 +16,7 @@ class App {
 
   start() {
     Console.readLine(MESSAGES.PAY_COST, (input) => {
+      this.#payment = Number(input);
       this.checkProcess(input);
     });
   }
@@ -87,7 +90,7 @@ class App {
     if (this.#win_lotto.includes(bonus) === true) throw new Error(BONUS_ERROR.DUPLICATE);
   }
 
-  checkResult(lists,answer, bonus) {
+  checkResult(lists, answer, bonus) {
     lists.map((list) => {
       let cnt = list.filter(num => answer.includes(num)).length;
       if(cnt === 3) RANK['three']++;
@@ -110,9 +113,14 @@ class App {
     Console.print(WINNING_STATISTICS.FIVE(RANK['five']));
     Console.print(WINNING_STATISTICS.FIVE_BONUS(RANK['bfive']));
     Console.print(WINNING_STATISTICS.SIX(RANK['six']));
+    this.calcYield();
   }
 
-
+  calcYield() {
+    let winning_cost = WINNING_AMOUNT[0] * RANK['three'] + WINNING_AMOUNT[1] * RANK['four'] + WINNING_AMOUNT[2] * RANK['five'] + WINNING_AMOUNT[3] * RANK['bfive'] + WINNING_AMOUNT[4] * RANK['six'];
+    winning_cost = (winning_cost / this.#payment) * 100;
+    Console.print(WINNING_STATISTICS.YIELD(winning_cost.toFixed(1)));
+  }
 }
 
 const app = new App();
