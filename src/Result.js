@@ -19,19 +19,19 @@ class Result {
     });
 
     if (originalResult === 3) {
-      return '5,000원';
+      return 5;
     }
     if (originalResult === 4) {
-      return '50,000원';
+      return 4;
     }
     if (originalResult === 5 && bonusResult === true) {
-      return '30,000,000원';
+      return 2;
     }
     if (originalResult === 5) {
-      return '1,500,000원';
+      return 3;
     }
     if (originalResult === 6) {
-      return '2,000,000,000원';
+      return 1;
     }
   }
 }
