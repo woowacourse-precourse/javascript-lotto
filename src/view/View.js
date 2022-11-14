@@ -15,12 +15,12 @@ class View {
     Console.print(`[${array.join(', ')}]`);
   }
 
-  static printWinningLotto() {
+  static printWinningLottoNotice() {
     Console.print('');
     Console.print('당첨 번호를 입력해 주세요.');
   }
 
-  static printBonusNumber() {
+  static printBonusNumberNotice() {
     Console.print('');
     Console.print('보너스 번호를 입력해 주세요.');
   }

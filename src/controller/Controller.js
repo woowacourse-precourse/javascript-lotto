@@ -26,7 +26,7 @@ class Controller {
   }
 
   renderWinningLotto() {
-    View.printWinningLotto();
+    View.printWinningLottoNotice();
     View.readLine((numbers) => {
       this.#lottoManager.generateWinningLotto(numbers);
       this.renderBonusNumber();
@@ -34,7 +34,7 @@ class Controller {
   }
 
   renderBonusNumber() {
-    View.printBonusNumber();
+    View.printBonusNumberNotice();
     View.readLine((number) => {
       this.#lottoManager.generateBonusNumber(number);
       this.renderStatistic();
