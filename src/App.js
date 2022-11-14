@@ -6,6 +6,7 @@ class App {
   #Lotto;
 
   constructor() {
+    this.money = 0;
     this.myLotto = [];
     this.winningLotto = [];
     this.bonus = 0;
@@ -16,13 +17,7 @@ class App {
       fourth: 0,
       fifth: 0,
     }];
-    this.reward = [{
-      first: 2000000000,
-      second: 30000000,
-      third: 1500000,
-      fourth: 50000,
-      fifth: 5000,
-    }]
+    this.reward = 0;
   }
 
   checkMoney(money) {
@@ -36,6 +31,7 @@ class App {
 
   purchaseLotto() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
+      this.money = money;
       this.checkMoney(money);
       this.countLotto = Math.floor(money / 1000);
     });
@@ -86,18 +82,24 @@ class App {
   divideWinner(count, bonus) {
     switch (count) {
       case 3:
-        this.rank['fifth']++;
+        this.rank['fifth']++; this.reward += 5000;
         break;
       case 4:
-        this.rank['fourth']++;
+        this.rank['fourth']++; this.reward += 50000;
         break;
       case 5:
-        if (bonus == 0) this.rank['third']++;
-        if (bonus == 1) this.rank['second']++;
+        if (bonus == 0) this.rank['third']++; this.reward += 1500000;
+        if (bonus == 1) this.rank['second']++; this.reward += 30000000;
         break;
       case 6:
-        this.rank['first']++;
+        this.rank['first']++; this.reward += 2000000000;
     }
+  }
+
+  calYield() {
+    const yield = (this.reward / this.money) * 100;
+    MissionUtils.Console.print(`총 수익률은 ${yield}%입니다.\n`);
+    MissionUtils.Console.close();
   }
 
   result() {
@@ -108,7 +110,7 @@ class App {
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${this.rank['third']}개\n`);
     MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.rank['second']}개\n`);
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${this.rank['first']}개\n`);
-    MissionUtils.Console.print(`총 수익률은 ${}%입니다.\n`);
+    this.calYield();
   }
 
   play() {
