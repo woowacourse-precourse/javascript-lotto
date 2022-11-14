@@ -4,6 +4,7 @@ const Lotto = require("./Lotto.js");
 const { LOTTO_LENGTH, WINNING_PRICE } = require("./constants/gameCondition.js");
 const { Random } = require("@woowacourse/mission-utils");
 class LottoPlay {
+  #resultArray;
   // Lotto 게임 기능 구현하는 클래스.
   constructor() {}
   play() {
@@ -18,12 +19,13 @@ class LottoPlay {
     const winnerNumberArray = CheckError.checkWinnerNumber(winnerNumber);
     const bonusNumber = UserInterface.bonusNumberRequest();
     CheckError.checkBonusNumber(bonusNumber, winnerNumberArray);
-    const resultArray = this.compareWholeLotto(
+    this.#resultArray = this.compareWholeLotto(
       lottoArray,
       winnerNumberArray,
       bonusNumber
     );
-    UserInterface.printBodyStatistics(resultArray);
+    UserInterface.printBodyStatistics(this.#resultArray);
+    UserInterface.printPercentYield(this.calculateYield(purchaseAmount));
   }
 
   purchaseLotto(purchaseAmount) {
@@ -61,7 +63,11 @@ class LottoPlay {
   compareWholeLotto(lottoArray, winnerNumberArray, bonusNumber) {
     let resultArray = [0, 0, 0, 0, 0, 0];
     lottoArray.forEach((lotto) => {
-      const tempRank = findWinningResult(lotto, winnerNumberArray, bonusNumber);
+      const tempRank = this.findWinningResult(
+        lotto,
+        winnerNumberArray,
+        bonusNumber
+      );
       resultArray[tempRank] += 1;
     });
     return resultArray;
@@ -94,13 +100,15 @@ class LottoPlay {
   }
   /**
    *
-   * @param {array} lotto 로또 배열
-   * @param {array} winnerNumberArray 당첨 번호 배열
+   * @param {array} lotto 로또 배열 -> 숫자로 이루어져 있음.
+   * @param {array} winnerNumberArray 당첨 번호 배열 -> '1'로 되어있음.
    * @returns {number} 로또 배열과 당첨 번호 배열의 일치하는 숫자 개수를 리턴
    */
   compareLotteryAndWinning(lotto, winnerNumberArray) {
     let matchNumberArray;
-    matchNumberArray = lotto.filter((item) => winnerNumberArray.includes(item));
+    matchNumberArray = lotto.filter((item) =>
+      winnerNumberArray.includes(String(item))
+    );
     return matchNumberArray.length;
   }
   /**
@@ -114,15 +122,19 @@ class LottoPlay {
     return 3;
   }
 
-  calculateTotalWinningMoney(resultArray) {
+  calculateTotalWinningMoney() {
     let totalWinningMoney = 0;
-    for (let i = LOTTO_LENGTH - 1; i > 0; i--) {
-      totalWinningMoney += resultArray[i] * WINNING_PRICE[i];
+    for (let i = 0; i < LOTTO_LENGTH; i++) {
+      const tempCount = this.#resultArray[i];
+      totalWinningMoney += tempCount * WINNING_PRICE[i];
+      console.log(totalWinningMoney);
     }
     return totalWinningMoney;
   }
-  calculateYield(purchaseAmount, resultArray) {
-    const totalWinningMoney = this.calculateTotalWinningMoney(resultArray);
+
+  calculateYield(purchaseAmount) {
+    const totalWinningMoney = this.calculateTotalWinningMoney();
+    console.log(totalWinningMoney);
     return ((totalWinningMoney / purchaseAmount) * 100).toFixed(1);
   }
 }
