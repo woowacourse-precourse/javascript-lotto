@@ -3,7 +3,6 @@ const Purchase = require('./Purchase');
 const Lotto = require('./Lotto');
 const WinningResult = require('./WinningResult');
 const changeStrToArr = require('./utils/changeStrToArr');
-const { validateBonus } = require('./utils/validator');
 const { MESSAGE, WINNING_PRIZE } = require('./constants');
 
 class App {
@@ -13,6 +12,7 @@ class App {
     this.purchaseLottoSet = new Set();
     this.winningNumberArr = [];
     this.bonusNumber = 0;
+    this.Lotto = undefined;
   }
 
   printPurchaseInputMessage() {
@@ -62,7 +62,7 @@ class App {
   submitWinningNumber() {
     Console.readLine('', input => {
       const inputArr = changeStrToArr(input);
-      const lotto = new Lotto(inputArr);
+      this.Lotto = new Lotto(inputArr);
       this.winningNumberArr = inputArr;
       return this.printBonusNumberInputMessage();
     });
@@ -80,7 +80,7 @@ class App {
 
   submitBonusNumber() {
     Console.readLine('', input => {
-      validateBonus(this.winningNumberArr, input);
+      this.Lotto.validateBonusNumber(input);
       this.bonusNumber = Number(input);
       return this.printWinningResult();
     });

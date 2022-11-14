@@ -1,6 +1,5 @@
 const { Random } = require('@woowacourse/mission-utils');
-const { validateCashInput } = require('./utils/validator');
-const { MONEY_UNIT, LOTTO_NUMBER } = require('./constants');
+const { MONEY_UNIT, LOTTO_NUMBER, ERROR_MESSAGE } = require('./constants');
 
 class Purchase {
   #cash;
@@ -10,7 +9,7 @@ class Purchase {
   #lottoSet;
 
   constructor(cash) {
-    validateCashInput(cash);
+    this.validateCashInput(cash);
     this.#lottoCount = 0;
     this.#cash = Number(cash);
     this.#lottoSet = new Set();
@@ -50,6 +49,20 @@ class Purchase {
     }
 
     return this.#lottoSet;
+  }
+
+  validateCashInput(value) {
+    if (value % MONEY_UNIT !== 0) {
+      throw new Error(ERROR_MESSAGE.NOT_DIVIDE_BY_THOUSAND_ERROR);
+    }
+    if (value <= 0) {
+      throw new Error(ERROR_MESSAGE.NOT_POSITIVE_NUMBER_ERROR);
+    }
+    const regExp = /[0-9]/g;
+    const matchArr = value.match(regExp);
+    if (matchArr.length !== value.length) {
+      throw new Error(ERROR_MESSAGE.NOT_NUMBER_ERROR);
+    }
   }
 }
 
