@@ -13,11 +13,12 @@ function printResult(lottoList, prize, bonus) {
   ConsoleWork.print('당첨 통계\n---\n');
   const staticLotto = lottoLoop(lottoList, prize, Number(bonus));
   printResultMessages(staticLotto);
+  printProfitRate(staticLotto);
 }
 
 function lottoLoop(lottoList, prize, bonus) {
   const prizeArray = stringToArray(prize);
-  resultArray = [0, 0, 0, 0, 0];
+  resultArray = [0, 0, 0, 0, 0, 0];
   for (let i = 0; i < lottoList.length; i++) {
     const countArray = countCorrectNumber(lottoList[i], prizeArray, bonus);
     const prizeCount = countArray[0];
@@ -65,7 +66,7 @@ function prizeResult(prizeCount, bonusCount) {
   if (prizeCount == 6) {
     return 4;
   }
-  return 'NOTHING';
+  return 5;
 }
 
 function printResultMessages(staticLotto) {
@@ -74,5 +75,17 @@ function printResultMessages(staticLotto) {
   ConsoleWork.print(`${Message.CORRECT5_MESSAGE}${staticLotto[2]}개`);
   ConsoleWork.print(`${Message.CORRECT5_BONUS_MESSAGE}${staticLotto[3]}개`);
   ConsoleWork.print(`${Message.CORRECT6_MESSAGE}${staticLotto[4]}개`);
+}
+
+function printProfitRate(staticLotto) {
+  const money = staticLotto.reduce((a, b) => a + b) * 1000;
+  const profit =
+    staticLotto[0] * 5000 +
+    staticLotto[1] * 50000 +
+    staticLotto[2] * 1500000 +
+    staticLotto[3] * 30000000 +
+    staticLotto[4] * 2000000000;
+  const profitRate = ((profit / money) * 100).toFixed(1);
+  ConsoleWork.print(`총 수익률은 ${profitRate}%입니다.`);
 }
 module.exports = LottoMain;
