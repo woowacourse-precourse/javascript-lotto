@@ -6,7 +6,7 @@ class App {
     this.prizeNumber = 0;
     this.bonusNumber = 0;
     this.result = {};
-    this.money = 0;
+    this.lottoMoney = 0;
   }
 
   play() {
@@ -16,8 +16,8 @@ class App {
   inputMoney() {
     MissionUtils.Console.readLine(`구입금액을 입력해 주세요.\n`, (money) => {
       this.thousandValidate(money);
+      this.lottoMoney = money;
       this.countLotto(money);
-      this.money = money;
     });
   }
 
@@ -27,32 +27,37 @@ class App {
     }
   }
 
+  countLotto(money) {
+    const lottoQuantity = money / 1000;
+    MissionUtils.Console.print(`${lottoQuantity}개를 구매했습니다.`);
+    this.createLotto(lottoQuantity);
+  }
+
   createLotto(qunatity) {
     for (let i = 0; i < qunatity; i++) {
       const lottoNumbers = MissionUtils.Random.pickUniqueNumbersInRange(
         1,
         45,
         6
-      ).sort((a, b) => a - b);
-      MissionUtils.Console.print(lottoNumbers);
+      );
+      MissionUtils.Console.print(
+        `[${lottoNumbers[0]}, ${lottoNumbers[1]}, ${lottoNumbers[2]}, ${lottoNumbers[3]}, ${lottoNumbers[4]}, ${lottoNumbers[5]}]`
+      );
       this.lottoArray.push(lottoNumbers);
     }
     this.inputLottoNumber();
   }
 
-  countLotto(money) {
-    const lottoQuantity = money / 1000;
-    MissionUtils.Console.print(`\n${lottoQuantity}개를 구매했습니다.`);
-    this.createLotto(lottoQuantity);
-  }
-
   inputLottoNumber() {
-    MissionUtils.Console.readLine(`당첨 번호를 입력해 주세요.\n`, (number) => {
-      this.prizeNumber = number.split(",");
-      new Lotto(this.prizeNumber);
-      this.prizeNumber = this.prizeNumber.map((number) => parseInt(number));
-      this.inputBonusNumber();
-    });
+    MissionUtils.Console.readLine(
+      `\n당첨 번호를 입력해 주세요.\n`,
+      (number) => {
+        this.prizeNumber = number.split(",");
+        new Lotto(this.prizeNumber);
+        this.prizeNumber = this.prizeNumber.map((number) => parseInt(number));
+        this.inputBonusNumber();
+      }
+    );
   }
 
   inputBonusNumber() {
@@ -137,7 +142,7 @@ class App {
       deposit += parseInt(key) * this.result[key];
     }
     MissionUtils.Console.print(
-      `총 수익률은 ${((deposit / this.money) * 100).toFixed(1)}%입니다.`
+      `총 수익률은 ${((deposit / this.lottoMoney) * 100).toFixed(1)}%입니다.`
     );
     MissionUtils.Console.close();
   }
