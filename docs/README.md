@@ -8,20 +8,26 @@
 
 ## 게임
 
-- [ ] 로또 티켓 생성 : generateTicket()
-- [ ] 로또 당첨 내역 확인: checkWinningTicket()
-- [ ] 로또 수익률 통계 생성: generateTicketStat()
+- [x] 로또 티켓 생성 : generateLotto()
+- [x] 로또 당첨 내역 확인: checkWinningLottoRank()
+- [x] 로또 수익률 통계 생성: generateLottoStat()
 
 ## 게임 입출력
 
-- [x] 로또 구입 금액 입력: getTicketBudget()
-  - [ ] 구입 입출력 검증: validateTicketBudget()
+- [x] 로또 구입 금액 입력: getLottoBudget()
+  - [x] 구입 입출력 검증: validateLottoBudget()
 - [x] 당첨 번호 입력: getTargetNumber()
   - [ ] 당첨 번호 입력 검증: validateTargetNumber()
 - [x] 보너스 번호 입력: getBonusNumber()
   - [ ] 보너스 번호 입력 검증: validateBonueNumber()
-- [ ] 로또 티켓 출력: printTicket()
-- [ ] 통계 출력: printTicketStat()
+- [x] 로또 티켓 getter: get numbers()
+- [ ] 통계 출력: printLottoStat()
+
+## 연동
+
+- [ ] Game 클래스가 Lotto 클래스 사용하게 변경
+- [ ] Rank 클래스가 Lotto 클래스 사용하게 변경
+- [ ] Game, Lotto, Rank 클래스 연동
 
 ## 예외 처리
 
