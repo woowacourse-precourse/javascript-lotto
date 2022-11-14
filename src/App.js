@@ -52,12 +52,21 @@ class App {
 
     return userNumbersArray;
   }
+  getBonusNumber() {
+    Console.print(INPUT_MESSAGE.bonus);
+    Console.readLine("", (bonusNum) => {
+      this.validateBonusNumbers(bonusNum);
+      this.bonusNum = Number(bonusNum);
 
+      Console.close();
+    });
+  }
   MakeLotto() {
     Console.print(INPUT_MESSAGE.winning);
     Console.readLine("", (prizeNums) => {
       this.prizeNumbersArray = prizeNums.split(",");
       this.lotto = new Lotto(this.prizeNumbersArray);
+      this.getBonusNumber();
     });
   }
 
