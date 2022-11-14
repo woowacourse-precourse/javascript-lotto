@@ -1,5 +1,13 @@
+const VendingMachine = require('./VendingMachine');
+
 class App {
-  play() {}
+  constructor() {
+    this.vendingMachine = new VendingMachine();
+  }
+
+  play() {
+    this.vendingMachine.askPurchaseAmount();
+  }
 }
 
 module.exports = App;
