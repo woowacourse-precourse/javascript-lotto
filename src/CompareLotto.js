@@ -1,5 +1,3 @@
-const { LOTTO_WIN } = require("./constant");
-
 class CompareLotto {
     // 길이리턴
     count(lottoList, winNumber) {
@@ -21,9 +19,9 @@ class CompareLotto {
 
             count.push({ correctNumber, correctBonus });
         });
-        // const howManyWin = this.number(count);
+        const howManyWin = this.number(count);
         console.log(howManyWin);
-        // const totalAmount = this.money(howManyWin);
+        const totalAmount = this.money(howManyWin);
         console.log(totalAmount);
     }
 
@@ -42,6 +40,15 @@ class CompareLotto {
 
         return howManyWin;
     }
+
+    money(howManyWin) {
+        const total = 0;
+        for(let i = 0; i < howManyWin.length; i++) {
+            total = howManyWin[i] * LOTTO_WIN[i];
+        }
+        
+        return total;
+      }
     
     // 수익률 내려면 howManyWin, 로또 구입비
 

@@ -32,7 +32,6 @@ class App {
       this.GetNumber.bonus(numbers, number);
       this.compareResult(lottoList, numbers, number);
     });
-    
   }
 
   compareResult(lottoList, numbers, number) {
