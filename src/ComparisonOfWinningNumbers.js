@@ -14,6 +14,14 @@ class ComparisonOfWinningNumbers {
     return numberComparison.length;
   }
 
+  countAndSave(numberComparison) {
+    let number = [];
+
+    if (numberComparison >= 3) {
+      number.push(numberComparison);
+    } 
+    return number;
+  }
 
 
 }
