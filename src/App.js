@@ -23,6 +23,7 @@ class App {
       Validator.checkInput(input);
       const pay = Number(input);
       this.#calculator = new Calculator(pay);
+
       this.buyLottos();
     });
   }
@@ -52,6 +53,7 @@ class App {
       const winNumbers = input.split(',').map((number) => Number(number));
       Validator.checkLottoNumbers(winNumbers);
       this.#winNumbers = winNumbers;
+
       this.recordBonusNumber();
     });
   }
@@ -62,6 +64,7 @@ class App {
       const bonusNumber = Number(input);
       Validator.checkBonusNumber(bonusNumber, this.#winNumbers);
       this.#bonusNumber = bonusNumber;
+
       this.calculateResult();
     });
   }
