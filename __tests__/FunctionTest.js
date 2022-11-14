@@ -10,4 +10,10 @@ describe('App 클래스 테스트', () => {
       Function.validateTypeNumber(Number('1000j'));
     }).toThrow('[ERROR]');
   });
+
+  test('1000보다 작은 자리수를 가지고 있는지 validation이 가능한가', () => {
+    expect(() => {
+      Function.validateUnitRemainder(1030);
+    }).toThrow('[ERROR');
+  });
 });
