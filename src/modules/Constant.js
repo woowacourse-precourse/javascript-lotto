@@ -36,6 +36,9 @@ const PRIZE_BOARD = {
 
 const ERROR = {
   COMMON: '[ERROR]',
+  NOT_NUMBER: '구입금액은 쉼표를 제외한 숫자로 입력해야 합니다.',
+  NOT_MULTIPLE_OF_THOUSAND: '구입금액은 1000단위로 입력하세요.',
+  CANT_ZERO: '0개는 구매할 수 없습니다.',
 };
 
 module.exports = { GAME, MESSAGE, RULE, PRIZE_BOARD, ERROR };
