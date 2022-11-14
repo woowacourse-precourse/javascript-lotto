@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-new */
 const TicketBox = require('../src/TicketBox');
 
 describe('TicketBox 클래스 테스트', () => {
