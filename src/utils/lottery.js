@@ -1,5 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const { TICKET_PRICE } = require('./CONSTANT');
+const { TICKET_PRICE, ERROR_MESSAGE } = require('./CONSTANT');
 const { convertNumberToComma } = require('./string');
 
 const figureLotteryRank = (hit, bonus) => {
@@ -23,10 +23,10 @@ const figureLotteryRank = (hit, bonus) => {
 
 const validateMoney = (money) => {
   if (Number.isNaN(money)) {
-    throw Error('[ERROR] 숫자여야 합니다.');
+    throw Error(`[ERROR] ${ERROR_MESSAGE.isNumber}`);
   }
   if (money % TICKET_PRICE !== 0) {
-    throw Error(`[ERROR] ${convertNumberToComma(1000)}원 단위로 입력하세요`);
+    throw Error(`[ERROR] ${convertNumberToComma(1000)}${ERROR_MESSAGE.isThousands}`);
   }
 };
 

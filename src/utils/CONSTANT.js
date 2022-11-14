@@ -11,6 +11,13 @@ const MESSAGE = {
   profitPrefix: '총 수익률은 ',
   profitPostfix: '%입니다.',
 };
+const ERROR_MESSAGE = {
+  isSixNumbers: '로또 번호는 6개여야 합니다.',
+  isNumbersUnique: '로또 번호에 중복된 숫자가 없어야 합니다.',
+  isNumbersInRange: '로또 번호는 1부터 45 사이의 숫자여야 합니다.',
+  isNumber: '숫자여야 합니다.',
+  isThousands: '원 단위로 입력하세요',
+};
 const RANK = [
   {
     rank: 'FIFTH',
@@ -44,4 +51,6 @@ const RANK = [
   },
 
 ];
-module.exports = { TICKET_PRICE, RANK, MESSAGE };
+module.exports = {
+  TICKET_PRICE, RANK, MESSAGE, ERROR_MESSAGE,
+};
