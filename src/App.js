@@ -5,6 +5,7 @@ const CreateLotto = require('./CreateLotto');
 class App {
   constructor() {
     this.lottoArr = [];
+    this.winningArr = [];
   }
 
   play() {
@@ -21,7 +22,7 @@ class App {
 
   getWinning() {
     Console.readLine(COMMAND.WINNING, (winning) => {
-      const winningArr = winning.split(',').map((num) => parseInt(num));
+      this.winningArr = winning.split(',').map((num) => parseInt(num));
     });
   }
 }
