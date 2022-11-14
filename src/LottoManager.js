@@ -59,10 +59,7 @@ class LottoManager {
 
   receiveWinningNumbers() {
     Console.readLine(MESSAGE.WINNING, (winningNumberString) => {
-      this.winningNumbers = winningNumberString
-        .split(",")
-        .map((number) => stringToNumber(number));
-
+      this.winningNumbers = LottoUtils.splitComma(winningNumberString);
       Validation.validateNumbers(this.winningNumbers);
       Validation.validateWinningNumbers(this.winningNumbers);
 
@@ -77,7 +74,6 @@ class LottoManager {
       const purchaseCost = stringToNumber(purchaseString);
       const lottoCount = LottoUtils.calculateLottoCount(purchaseCost);
       this.lottoTickets = LottoUtils.createLottos(lottoCount);
-
       LottoUtils.printLotto(this.lottoTickets);
 
       this.receiveWinningNumbers();
