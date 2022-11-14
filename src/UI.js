@@ -37,6 +37,18 @@ const formatBonusNumber = (bonusNumber) => {
   return parseInt(bonusNumber);
 };
 
+const makeStatsBoard = (data, performance) => {
+  return `당첨 통계
+---
+3개 일치 (5,000원) - ${data.three}개
+4개 일치 (50,000원) - ${data.four}개
+5개 일치 (1,500,000원) - ${data.five}개
+5개 일치, 보너스 볼 일치 (30,000,000원) - ${data.fivePlusBonus}개
+6개 일치 (2,000,000,000원) - ${data.six}개
+총 수익률은 ${performance}%입니다.
+  `;
+};
+
 class UI {
   static makeSpaceAfterSection() {
     MissionUtils.Console.print("");
@@ -101,6 +113,12 @@ class UI {
     if (isDuplicated) throw new Error(DUPLICATED_BONUS_NUMBER_MESSAGE);
 
     return { winningNumbers, bonusNumber };
+  }
+
+  static printTotalStats(totalStats) {
+    const { data, performance } = totalStats;
+    const statsBoard = makeStatsBoard(data, performance);
+    MissionUtils.Console.print(statsBoard);
   }
 }
 
