@@ -39,4 +39,18 @@ describe('로또 클래스 테스트', () => {
       }).toThrow('[ERROR]');
     });
   });
+
+  describe('보너스 번호 유효성 검사', () => {
+    test('1 ~ 45의 숫자가 아닌 다른 숫자를 입력할 경우', () => {
+      expect(() => {
+        new Lotto([1, 2, 3, 4, 5, 6]).setBonus(46);
+      }).toThrow('[ERROR]');
+    });
+
+    test('로또 당첨 번호와 중복되는 보너스 번호를 입력할 경우', () => {
+      expect(() => {
+        new Lotto([1, 2, 3, 4, 5, 6]).setBonus(6);
+      }).toThrow('[ERROR]');
+    });
+  });
 });
