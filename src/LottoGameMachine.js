@@ -3,7 +3,7 @@ const Lotto = require('./Lotto');
 const User = require('./User');
 const MESSAGE = require('./constants/message');
 const { UNIT_OF_AMOUNT, RANKING_ARRAY } = require('./constants/gameSetting');
-const generateLottoNumbers = require('./utils/generateRandomLottoNumbers');
+const generateRandomLottoNumbers = require('./utils/generateRandomLottoNumbers');
 const getLottoRanking = require('./utils/getLottoRanking');
 const collectLottoStatistics = require('./utils/collectLottoStatistics');
 
@@ -59,7 +59,7 @@ class LottoGameMachine {
     let count = 0;
     while (count < totalLottosCount) {
       count += 1;
-      this.Lottos.set(`로또${count}`, new Lotto(generateLottoNumbers()));
+      this.Lottos.set(`로또${count}`, new Lotto(generateRandomLottoNumbers()));
     }
 
     this.printLottoNumbers();

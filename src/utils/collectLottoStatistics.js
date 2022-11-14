@@ -1,10 +1,10 @@
-const { RANKING, UNIT_OF_AMOUNT } = require('../constants/gameSetting');
+const { UNIT_OF_AMOUNT, RANKING_ARRAY, NOTHING } = require('../constants/gameSetting');
 const calculateProfitRate = require('./calculateProfitRate');
 
 function collectLottoStatistics(lottosResult) {
   let totalPrizeMoney = 0;
   const totalPurchaseAmount = lottosResult.length * UNIT_OF_AMOUNT;
-  const lottoStatistics = Object.values(RANKING).reduce(
+  const lottoStatistics = [...RANKING_ARRAY, NOTHING].reduce(
     (acc, { NAME }) => ({ ...acc, [NAME]: 0 }),
     {}
   );

@@ -1,6 +1,6 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('../src/Lotto');
-const { RANKING } = require('../src/constants/gameSetting');
+const { FIFTH, FOURTH, THIRD, SECOND, FIRST, NOTHING } = require('../src/constants/gameSetting');
 const calculateProfitRate = require('../src/utils/calculateProfitRate');
 const generateRandomLottoNumbers = require('../src/utils/generateRandomLottoNumbers');
 const getLottoRanking = require('../src/utils/getLottoRanking');
@@ -71,14 +71,7 @@ describe('util 테스트', () => {
         ['보너스 번호', 3],
       ]),
     ];
-    const result = [
-      RANKING.FIFTH,
-      RANKING.FOURTH,
-      RANKING.THIRD,
-      RANKING.SECOND,
-      RANKING.FIRST,
-      RANKING.NOTHING,
-    ];
+    const result = [FIFTH, FOURTH, THIRD, SECOND, FIRST, NOTHING];
     winningLottos.forEach((winningLotto, index) =>
       expect(getLottoRanking(lotto, winningLotto)).toBe(result[index])
     );
