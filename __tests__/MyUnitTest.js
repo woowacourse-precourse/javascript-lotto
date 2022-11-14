@@ -94,4 +94,25 @@ describe('My Unit test', () => {
 
     expect(winResult).toEqual([1, 2, 1, 3, 1]);
   });
+
+  test('수익률 구하는 기능', () => {
+    const app = new App();
+    const amounts = [1000, 12000, 5000, 4000, 230000];
+    const revenues = [30000000, 0, 2000005000, 10000, 5000];
+    const expectedRevenueRates = [
+      '3000000.0',
+      '0.0',
+      '40000100.0',
+      '250.0',
+      '2.2',
+    ];
+
+    amounts.forEach((amount, index) => {
+      app.setAmount(amount);
+      app.setRevenue(revenues[index]);
+      const revenueRate = app.getRevenueRate();
+
+      expect(revenueRate).toEqual(expectedRevenueRates[index]);
+    });
+  });
 });

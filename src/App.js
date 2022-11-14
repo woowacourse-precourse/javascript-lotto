@@ -7,11 +7,14 @@ class App {
 
   #bonusNumber;
 
+  #revenue;
+
   constructor() {
     this.#amount = 0;
     this.#lottos = [];
     this.#winNumbers = [];
     this.#bonusNumber = 0;
+    this.#revenue = 0;
   }
 
   play() {}
@@ -50,6 +53,23 @@ class App {
 
   getBonusNumber() {
     return this.#bonusNumber;
+  }
+
+  setRevenue(revenue) {
+    this.#revenue = revenue;
+  }
+
+  getRevenue() {
+    return this.#revenue;
+  }
+
+  getRevenueRate() {
+    const revenue = this.getRevenue();
+    const amount = this.getAmount();
+    if (revenue === 0) return (0).toFixed(1);
+
+    const revenueRate = (revenue / amount) * 100;
+    return revenueRate.toFixed(1);
   }
 }
 
