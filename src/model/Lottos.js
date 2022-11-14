@@ -1,12 +1,13 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const GenerateLottoNumbers = require("./GenerateRandomNumbers");
 const Lotto = require("./Lotto");
-const { ERROR, UNIT, WINNING_MONEY } = require("../utils/constants");
+const { ERROR, UNIT, WINNING_MONEY, RANK } = require("../utils/constants");
 
 class Lottos {
   constructor(purchaseAmount) {
     this.validate(purchaseAmount);
 
+    this.purchaseAmount = purchaseAmount;
     this.generateLottoNumbers = new GenerateLottoNumbers();
     this.count = purchaseAmount / UNIT.DIVIDE;
     this.lottos = [];
@@ -74,10 +75,17 @@ class Lottos {
       "3개 일치 (5,000원) - ",
     ];
 
-    for (let rank = 5; rank >= 1; rank--) {
-      MissionUtils.Console.print(
-        `${statisticsMsg[rank - 1]} ${map.has(rank) ? map.get(rank) : 0}개`
-      );
+    const winningMoney = [2000000000, 30000000, 1500000, 50000, 5000];
+
+    let userWinningMoney = 0;
+
+    for (let rank = RANK.FIFTH; rank >= RANKE.FIRST; rank--) {
+      let cnt = 0;
+
+      if (map.has(rank)) {
+        cnt = map.get(rank);
+        userWinningMoney += winningMoney[rank - 1] * map.get(rank);
+      }
     }
   }
 }
