@@ -6,7 +6,7 @@ const {
     INPUT_WINNING_NUMBER,
     INPUT_BONUS_NUMBER,
   } = require("./constants");
-  const {
+const {
     validateBonus,
     validateMoney,
     validateWinningNumber

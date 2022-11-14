@@ -1,6 +1,11 @@
 const App = require("../src/App");
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("../src/Lotto");
+const {
+  validateBonus,
+  validateMoney,
+  validateWinningNumber
+} = require('../src/functionValidation')
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();
@@ -104,6 +109,7 @@ describe("로또 테스트", () => {
   //   });
   // });
 
+  // 로또 번호 예외 처리 테스트 코드
   test("로또 번호가 1~45 사이의 숫자가 아니면 예외가 발생한다.", () => {
     expect(() => {
       new Lotto([3, 6, 9, 93, 5, 7]);
@@ -113,6 +119,43 @@ describe("로또 테스트", () => {
   test("로또 번호 중 숫자가 아닌 값이 있으면 예외가 발생한다.", () => {
     expect(() => {
       new Lotto([3, 6, 9, "j", 5, 7]);
+    }).toThrow("[ERROR]");
+  });
+
+  // 돈 입력 예외 처리 테스트 코드
+  test("돈이 1000원 단위가 아니면 예외가 발생한다.", () => {
+    expect(() => {
+      validateMoney(1250);
+    }).toThrow("[ERROR]");
+  });
+
+  test("돈의 입력이 숫자가 아니면 예외가 발생한다.(1)", () => {
+    expect(() => {
+      validateMoney("124");
+    }).toThrow("[ERROR]");
+  });
+
+  test("돈의 입력이 숫자가 아니면 예외가 발생한다.(2)", () => {
+    expect(() => {
+      validateMoney("asdifha");
+    }).toThrow("[ERROR]");
+  });
+
+  test("돈의 입력이 1000원보다 적으면 예외가 발생한다.(1)", () => {
+    expect(() => {
+      validateMoney(0);
+    }).toThrow("[ERROR]");
+  });
+
+  test("돈의 입력이 1000원보다 적으면 예외가 발생한다.(2)", () => {
+    expect(() => {
+      validateMoney(-300);
+    }).toThrow("[ERROR]");
+  });
+
+  test("돈의 입력이 1000원보다 적으면 예외가 발생한다.(2)", () => {
+    expect(() => {
+      validateMoney(900);
     }).toThrow("[ERROR]");
   });
 });
