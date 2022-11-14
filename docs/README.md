@@ -59,3 +59,9 @@
 
   1. this.#numbers = numbers 이후 numbers를 pop하더라도 #numbers도 pop이 되어 있는 상태
   2. this.numbers를 class 밖에서 호출하면 불러와지지만 this.#numbers는 불가능
+
+# 이모저모
+
+- class 어떻게 사용하는지 몰랐던 어려움 -> java private 개념과 python class 문법을 보며 며칠 동안 공부
+- Lotto는 입력하는 숫자가 들어가는지 랜덤넘버가 들어가는지 -> 테스트 코드에 유효성 검사가 있으니 입력하는 숫자로 판단
+- callback 지옥 최선인가..
