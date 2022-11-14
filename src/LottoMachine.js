@@ -5,7 +5,7 @@ class LottoMachine {
   #purchaseAmount;
 
   constructor(purchaseAmount) {
-    this.validate(purchaseAmount);
+    this.validate(Number(purchaseAmount));
     this.#purchaseAmount = purchaseAmount;
     this.lottoMachineOutput;
   }

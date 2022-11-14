@@ -95,5 +95,4 @@ class WinningStastics {
     return parseFloat(100 * (this.#winningAmount / this.#purchaseAmount));
   }
 }
-
 module.exports = WinningStastics;

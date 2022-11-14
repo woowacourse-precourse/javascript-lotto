@@ -2,7 +2,7 @@ const { ERROR_MESSAGE } = require("./constant/Constant");
 
 class Bonus {
   constructor(BonusNumber, lottoNumbers) {
-    this.validate(BonusNumber, lottoNumbers);
+    this.validate(Number(BonusNumber), lottoNumbers);
   }
 
   validate(bonusNumber, lottoNumbers) {
