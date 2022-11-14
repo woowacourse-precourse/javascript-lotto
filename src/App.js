@@ -19,6 +19,10 @@ class App {
     this.printPurchaseInputMessage();
   }
 
+  close() {
+    Console.close();
+  }
+
   printPurchaseInputMessage() {
     Console.print(MESSAGE.INPUT_CASH);
     this.submitPurchaseAmount();
@@ -60,7 +64,7 @@ class App {
     Console.print(MESSAGE.SECOND_PLACE_RESULT(result[WINNING_PRIZE.SECOND]));
     Console.print(MESSAGE.FIRST_PLACE_RESULT(result[WINNING_PRIZE.FIRST]));
     Console.print(MESSAGE.TOTAL_YIELD_RESULT(winningResult.setYield(this.cash)));
-    Console.close();
+    this.close();
   }
 
   submitWinningNumber() {
