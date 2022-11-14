@@ -16,7 +16,10 @@ class UserInput {
 
   handleLottoNumber(winningNumber) {
     this.winningNumber = new Lotto(winningNumber);
+    readLine(INPUT_QUERY.BONUS_NUMBER, this.handleBonusNumber.bind(this));
   }
+
+  handleBonusNumber(bonusNumber) {}
 }
 
 module.exports = UserInput;
