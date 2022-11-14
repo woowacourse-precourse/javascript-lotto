@@ -1,19 +1,29 @@
 class Bonus {
-  constructor(bonusNumber, lottoNumbers) {
-    this.validate(bonusNumber, lottoNumbers);
+  constructor(bonusNumber, winNumber) {
+    this.validate(bonusNumber, winNumber);
   }
 
-  validate(bonusNumber, lottoNumbers) {
-    if (isNaN(bonusNumber) === true) {
-      throw '숫자를 입력해주세요.';
-    }
+  validate(bonusNumber, winNumber) {
+    this.checkIsNumber(bonusNumber);
+    this.checkRange(bonusNumber);
+    this.checkDuplicate(bonusNumber, winNumber);
+  }
 
-    if (bonusNumber < 1 || bonusNumber > 45) {
-      throw '1 ~ 45 범위의 숫자를 입력해주세요.';
+  checkIsNumber(number) {
+    if (isNaN(number) === true) {
+      throw new Error('[ERROR] 보너스 번호는 한자리 숫자여야 합니다.');
     }
+  }
 
-    if (lottoNumbers.includes(bonusNumber) === true) {
-      throw '당첨 번호와 중복되지 않는 번호를 입력해주세요.';
+  checkRange(number) {
+    if (number > 45 || number < 1) {
+      throw new Error('[ERROR] 보너스 번호는 1 ~ 45 사이여야 합니다.')
+    }
+  }
+
+  checkDuplicate(number, winNumber) {
+    if (winNumber.includes(number)) {
+      throw new Error('[ERROR] 보너스 번호는 당첨 번호와 중복되면 안 됩니다.');
     }
   }
 }
