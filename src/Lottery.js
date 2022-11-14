@@ -4,6 +4,7 @@ const Lotto = require('./Lotto');
 
 class Lottery {
   #lotto;
+  #purchaseAmount;
 
   progress() {
     this.inputWinningNumber();
@@ -14,6 +15,12 @@ class Lottery {
     */
   }
   
+  inputPurchaseAmount() {
+    Console.readLine(INPUT.PURCHASE_AMOUNT, (amount) => {
+      this.#purchaseAmount = new Lotto(amount);
+    });
+  }
+
   inputWinningNumber() {
     Console.readLine(INPUT.LOTTO_NUMBER, (numbers) => {
       this.#lotto = new Lotto(numbers.split(','));
@@ -26,6 +33,7 @@ class Lottery {
       this.#lotto.setBonusNumber(number);
     });
   }
+
 
 }
 
