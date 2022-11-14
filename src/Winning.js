@@ -1,63 +1,58 @@
 class Winning {
-  constructor() {
-    this.computer = [
-      [8, 21, 23, 41, 42, 43],
-      [3, 5, 11, 16, 32, 38],
-      [7, 11, 16, 35, 36, 44],
-      [1, 2, 3, 4, 5, 7],
-      [1, 2, 3, 4, 5, 11]
-    ];
-    this.user = [1,2,3,4,5,11];
-    this.bonus = 7;
-    this.checkOverlap();
-    this.bonusCount = 0;
-  }
-
-  checkOverlap() {
-    let overlap = [];
-    this.computer.forEach(lotto => {
-      console.log(lotto);
-      overlap.push(this.countOverlap(lotto));
-    });
-    console.log('overlap', overlap);
-    this.countWinning(overlap, this.bonusCount);
-  }
-
-  countOverlap(lotto) {
-    let overlap = [];
-    this.bonusCount = 0;
-    lotto.forEach(number => {
-      if (this.user.includes(number)) {
-        overlap.push(number);
-      }
-      if (number === this.bonus) {
-        this.bonusCount += 1;
-      }
-    });
-    if (overlap.length === 5 && this.bonusCount === 1) {
-      return overlap.length = 7; // 5개일치 + 보너스번호 일치할 경우
+  #lottoNumbers;
+  #userNumbers;
+  #bonusNumber;
+  constructor(lottoNumbers, userNumber, bonusNumber) {
+    this.rank = {
+      '1st': 0,
+      '2nd': 0,
+      '3rd': 0,
+      '4th': 0,
+      '5th': 0,
     }
-    return overlap.length;
+    this.reward = {
+      '1st': 2000000000,
+      '2nd': 30000000,
+      '3rd': 1500000,
+      '4th': 50000,
+      '5th': 5000,
+    }
+    this.result = this.aroundAllLotto(lottoNumbers, userNumber);
+    this.#lottoNumbers = lottoNumbers;
+    this.#userNumbers = userNumber;
+    this.#bonusNumber = bonusNumber;
   }
 
-  countWinning(overlap) {
-    let result = [0, 0, 0, 0, 0];
-    overlap.forEach((count) => {
-      if (count === 6) {
-        result[4] += 1;
-      } else if (count === 7) {
-        result[3] += 1;
-      } else if (count === 5) {
-        result[2] += 1;
-      } else if (count === 4) {
-        result[1] += 1;
-      } else if (count === 3) {
-        result[0] += 1;
-      }
+  aroundAllLotto(lottoNumbers, userNumber, bonusNumber) {
+    lottoNumbers.forEach((lotto) => {
+      this.setWinningStats(lotto, userNumber, bonusNumber);
     });
-    return result;
+    return this.rank;
   }
 
+  setWinningStats(lotto, userNumber, bonusNumber) {
+    let count = lotto.filter(number => userNumber.includes(number)).length;
+    if (count === 3) {
+      this.rank['5th'] += 1;
+    } else if (count === 4) {
+      this.rank['4th'] += 1;
+    } else if (count === 5) {
+      this.rank['3rd'] += 1;
+    } else if (count === 5 && lotto.includes(bonusNumber)) {
+      this.rank['2nd'] += 1;
+    } else if (count === 6) {
+      this.rank['1st'] += 1;
+    }
+    return this.rank;
+  }
+
+  getTotalReward(winning) {
+    return winning['1st'] * this.reward['1st'] +
+      winning['2nd'] * this.reward['2nd'] +
+      winning['3rd'] * this.reward['3rd'] +
+      winning['4th'] * this.reward['4th'] +
+      winning['5th'] * this.reward['5th'];
+  }
 }
 
 module.exports = Winning;
