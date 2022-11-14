@@ -6,7 +6,7 @@ class App {
   purchasePrice() { // 구입 금액을 입력받는 메서드
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (price) => {
       if (this.checkPrice(price)) {
-        this.autoLotto(price);
+        const AUTO_LOTTO = this.autoLotto(price);
       }
     })
   }
@@ -23,15 +23,21 @@ class App {
     return true;
   }
 
+  lottoGame() { // 1부터 45까지의 숫자 중 6개를 자동으로 고르고 오름차순으로 정렬하는 메서드
+    const LOTTO_RESULT = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    LOTTO_RESULT.sort((a, b) => {
+      return a - b;
+    });
+    return LOTTO_RESULT;
+  }
+
   autoLotto(price) { // 입력한 금액의 개수만큼 로또 번호를 출력하는 메서드
     const LOTTO_AUTO = [];
     const GAME_NUMBER = parseInt(price / 1000);
     MissionUtils.Console.print(`\n${GAME_NUMBER}개를 구매했습니다.`)
     for (let i = 0; i < GAME_NUMBER; i++) {
-      const NEW_LOTTO = new Lotto();
-      MissionUtils.Console.print(NEW_LOTTO.lottoGame());
-      LOTTO_AUTO.push(NEW_LOTTO.lottoGame());
-      MissionUtils.Console.close();
+      LOTTO_AUTO.push(this.lottoGame());
+      MissionUtils.Console.print(LOTTO_AUTO[i]);
     }
     return LOTTO_AUTO;
   }
@@ -42,6 +48,3 @@ class App {
 }
 
 module.exports = App;
-
-// const app = new App();
-// app.play();
