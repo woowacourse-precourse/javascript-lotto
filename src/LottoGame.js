@@ -75,7 +75,7 @@ class LottoGame {
     });
     this.announceResult();
     this.userPrizeValue = this.calculateResult();
-    this.announceYield();
+    this.announceYield(this.money, this.userPrizeValue);
     MissionUtils.Console.close();
   };
 
@@ -140,12 +140,11 @@ class LottoGame {
     return value * cnt;
   };
 
-  announceYield = () => {
+  announceYield = (money, userPrizeValue) => {
     MissionUtils.Console.print(
-      `${STATIC.MESSAGE.YIELD}${(
-        (this.userPrizeValue / this.money) *
-        100
-      ).toFixed(1)}%입니다.`
+      `${STATIC.MESSAGE.YIELD}${((userPrizeValue / money) * 100).toFixed(
+        1
+      )}%입니다.`
     );
   };
 }
