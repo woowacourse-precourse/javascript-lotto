@@ -3,6 +3,8 @@ const { ERROR, MESSAGE } = require('./Contants.js');
 
 class Lotto {
   #countLotto;
+  #winningLottoNumber;
+  #bonusNumber;
 
   inputMoney() {
     Console.readLine(MESSAGE.INPUT_MONEY, inputMoney => {
@@ -61,11 +63,14 @@ class Lotto {
 
 
   inputWinningLottoNumber() {
-    Console.readLine(MESSAGE.INPUT_WINNING_NUMBER+'\n', number => {this.isValidWinningLottoNumber(number);});
+    Console.readLine(MESSAGE.INPUT_WINNING_NUMBER+'\n', number => {
+      const inputValue = number.split(",").map(Number);
+      this.isValidWinningLottoNumber(inputValue);
+      this.#winningLottoNumber = inputValue;
+    });
   }
 
-  isValidWinningLottoNumber(number) {
-    const inputValue = number.split(",")
+  isValidWinningLottoNumber(inputValue) {
     this.checkEachVaule(inputValue);
     this.checkOverlap(inputValue);
   }
@@ -89,14 +94,40 @@ class Lotto {
   }
 
   inputBonusNumber() {
-    Console.readline(MESSAGE.INPUT_BONUS_NUMBER, (input) => {
+    Console.readline(MESSAGE.INPUT_BONUS_NUMBER, (number) => {
+      this.isValidBonusNumber(number);
+      this.#bonusNumber = Number(number);
     });
   }
 
+  isValidBonusNumber(number) {
+    this.checkBonusIsNumber(number);
+    this.checkBonusLength(number);
+    this.checkBonusNumberOverlap(number);
+  }
+
+  checkBonusIsNumber(number) {
+    if(isNaN(number)) {
+      throw new Error(ERROR.CHECK_BONUS_IS_NUMBER);
+    }
+  }
+
+  checkBonusLength(number){
+    if(number.length() !== 1) {
+      throw new Error(ERROR.CHECK_BONUS_ONE);
+    }
+  }
+
+  checkBonusOverlap(number){
+    if (this.#winningLottoNumber.includes(+number)) {
+      throw new Error(ERROR.CHECK_BONUS_OVERLAP);
+    }
+  }
 
   play() {
     // this.inputMoney();
-    this.inputWinningLottoNumber();
+    // this.inputWinningLottoNumber();
+    // this.inputBonusNumber();
   }
 
 }
