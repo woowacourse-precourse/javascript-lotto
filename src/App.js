@@ -33,12 +33,10 @@ class App {
 
     MissionUtils.Console.print(PRETTY_MSG.winningResult);
     this.calculMatches();
-
     this.#validMatchesList.map((number) =>
       this.printWinningResult(number, this.#matchesObj[number])
     );
-
-    this.printRate(amount);
+    MissionUtils.Console.print(`총 수익률은 ${this.getRate(amount)}%입니다.`);
   }
 
   inputPurchaseAmount() {
@@ -77,14 +75,12 @@ class App {
     MissionUtils.Console.print(MATCH_MSG[match] + ` - ${count}개`);
   }
 
-  printRate(purchaseAmount) {
+  getRate(purchaseAmount) {
     let winningAmount = 0;
     this.#validMatchesList.map((matches) => {
       winningAmount += this.#matchesObj[matches] * WINNING_AMOUNT[matches];
     });
-    MissionUtils.Console.print(
-      `총 수익률은 ${(winningAmount / purchaseAmount) * 100}%입니다.`
-    );
+    return (winningAmount / purchaseAmount) * 100;
   }
 }
 
