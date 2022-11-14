@@ -22,7 +22,14 @@ const getRevenue = (statistics) =>
     return cur ? acc + MONEY_INFO[i].price : acc;
   }, 0);
 
+const getStatisticsTemplate = (statistics) =>
+  statistics
+    .map((statistic, i) => `${MONEY_INFO[i].name}${statistic}개`)
+    .sort()
+    .join("\n");
+
 exports.buyLottos = buyLottos;
 exports.getStatistics = getStatistics;
 exports.getRateOfReturn = getRateOfReturn;
 exports.getRevenue = getRevenue;
+exports.getStatisticsTemplate = getStatisticsTemplate;

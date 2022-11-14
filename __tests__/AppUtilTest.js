@@ -3,6 +3,7 @@ const {
   getStatistics,
   getRateOfReturn,
   getRevenue,
+  getStatisticsTemplate,
 } = require("../src/Core/App.util");
 
 describe("buyLottos", () => {
@@ -47,5 +48,20 @@ describe("getRevenue", () => {
     const expectResult = getRevenue(input);
     // then
     expect(expectResult).toBe(2001505000);
+  });
+});
+
+describe("getStatisticsTemplate", () => {
+  test("is calculate Revenue", () => {
+    // given
+    const input = [1, 0, 1, 1, 0];
+    // when
+    const expectResult = getStatisticsTemplate(input);
+    // then
+    expect(expectResult).toBe(`3개 일치 (5,000원) - 1개
+4개 일치 (50,000원) - 0개
+5개 일치 (1,500,000원) - 1개
+5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
+6개 일치 (2,000,000,000원) - 1개`);
   });
 });
