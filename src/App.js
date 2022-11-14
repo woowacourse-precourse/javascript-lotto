@@ -1,5 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const { MESSAGES, PAY_ERROR, BONUS_ERROR } = require("./constants/Constants.js");
+const { MESSAGES, PAY_ERROR, BONUS_ERROR, RANK, WINNING_STATISTICS } = require("./constants/Constants.js");
 const Lotto = require('./Lotto');
 const UNIT = 1000;
 
@@ -78,6 +78,7 @@ class App {
   bonusProcess(bonus) {
     this.checkBonusLotto(Number(bonus));
     this.#win_lotto.push(Number(bonus));
+    this.checkResult(this.#lottos, this.#win_lotto, bonus);
   }
 
   checkBonusLotto(bonus) {
@@ -85,6 +86,32 @@ class App {
     if (bonus < 1 || bonus > 45) throw new Error(BONUS_ERROR.RANGE);   
     if (this.#win_lotto.includes(bonus) === true) throw new Error(BONUS_ERROR.DUPLICATE);
   }
+
+  checkResult(lists,answer, bonus) {
+    lists.map((list) => {
+      let cnt = list.filter(num => answer.includes(num)).length;
+      if(cnt === 3) RANK['three']++;
+      if(cnt === 4) RANK['four']++;
+      if(cnt === 5) this.isBonusResult(list, bonus);
+      if(cnt === 6) RANK['six']++;
+    })
+    this.printResult();
+  }
+
+  isBonusResult(list, bonus) {
+    if(list.slice(-1).join('') === bonus) return RANK['bfive']++;
+    else return RANK['five']++;
+  }
+
+  printResult() {
+    Console.print('\n당첨 통계\n---');
+    Console.print(WINNING_STATISTICS.THREE(RANK['three']));
+    Console.print(WINNING_STATISTICS.FOUR(RANK['four']));
+    Console.print(WINNING_STATISTICS.FIVE(RANK['five']));
+    Console.print(WINNING_STATISTICS.FIVE_BONUS(RANK['bfive']));
+    Console.print(WINNING_STATISTICS.SIX(RANK['six']));
+  }
+
 
 }
 
