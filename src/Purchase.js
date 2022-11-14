@@ -22,7 +22,11 @@ class PurChase {
   }
 
   validate(purchaseAmount) {
-    return this.validateMoney(purchaseAmount) || this.validateUnit(purchaseAmount);
+    return (
+      this.validateMoney(purchaseAmount) ||
+      this.validateUnit(purchaseAmount) ||
+      this.validateMinimumAmount(purchaseAmount)
+    );
   }
 
   validateMoney(purchaseAmount) {
@@ -31,6 +35,10 @@ class PurChase {
 
   validateUnit(purchaseAmount) {
     return Number(purchaseAmount) % LOTTO_INFO.PRICE ? 'UNIT' : false;
+  }
+
+  validateMinimumAmount(purchaseAmount) {
+    return Number(purchaseAmount) <= LOTTO_INFO.MINIMUM_AMOUNT ? 'MINIMUM' : false;
   }
 
   generatLotteryTicket() {

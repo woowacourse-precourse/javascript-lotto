@@ -6,6 +6,7 @@ const LOTTO_INFO = Object.freeze({
   LAST_RANGE: 45,
   PRICE: 1000,
   PICK: 6,
+  MINIMUM_AMOUNT: 1000,
 });
 
 const BONUSLOTTO_INFO = Object.freeze({
@@ -33,6 +34,7 @@ const BONUSLOTTO_ERROR = Object.freeze({
 const AMOUNt_ERROR = Object.freeze({
   AMOUNT: '[ERROR] 로또는 돈으로 구입 가능합니다.',
   UNIT: '[ERROR] 로또 구입은 1000원 단위로 가능합니다.',
+  MINIMUM: '[ERROR] 로또 구입의 최소 금액은 1000원입니다.',
 });
 
 const BONUS_NUMBER = 5;
