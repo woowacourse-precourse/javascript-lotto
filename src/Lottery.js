@@ -24,14 +24,18 @@ class Lottery {
   }
 
   printList() {
-    this.#lottoList.forEach((lotto) => {
+    this.#lottoList.forEach((lotto, index) => {
       const message = getArrayToCustomMessage(lotto);
-      print(message);
+      const endChar = this.isSameIndex(index) ? '\n' : '';
+      print(message + endChar);
     });
 
-    print('\n');
-
     return this;
+  }
+
+  isSameIndex(index) {
+    const { length } = this.#lottoList;
+    return length - 1 === index;
   }
 
   getLottoList() {
