@@ -19,8 +19,15 @@ class LottoGenerator {
   }
   getBonusNumber() {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (userInput) => {
-      //   this.bonusNumber = Number(userInput);
+      this.checkBonusValidation(userInput);
+      this.bonusNumber = Number(userInput);
     });
+  }
+  checkBonusValidation(numberString) {
+    const number = Number(numberString);
+    LottoValidation.isBonusNotNumber(number);
+    LottoValidation.checkBonusRange(number);
+    LottoValidation.isBonusInteger(number);
   }
 }
 
