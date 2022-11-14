@@ -1,4 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
+const { RESULT_MESSAGE } = require('./Constants');
 
 class LottoIssuer {
   #lotteries;
@@ -15,7 +16,7 @@ class LottoIssuer {
   }
 
   print() {
-    Console.print(`\n${this.#number}개를 구매했습니다.`);
+    Console.print(RESULT_MESSAGE.purchase(this.#number));
     this.#lotteries.forEach((lottoNumbers) => {
       Console.print(`[${lottoNumbers.join(', ')}]`);
     });

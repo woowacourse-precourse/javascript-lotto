@@ -1,12 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const {
-  EA,
-  FIVE,
-  LOTTO_MATCHES,
-  LOTTO_PRIZE,
-  RESULT_MESSAGE,
-  LOTTO_PRICE,
-} = require('./Constants');
+const { FIVE, LOTTO_MATCHES, LOTTO_PRIZE, LOTTO_PRICE, RESULT_MESSAGE } = require('./Constants');
 
 class LottoResult {
   constructor() {
@@ -57,12 +50,12 @@ class LottoResult {
     const { three, four, five, fiveWithBonus, six } = this.lottoMatchCounter;
 
     Console.print(RESULT_MESSAGE.beginning);
-    Console.print(`${RESULT_MESSAGE.three}${three}${EA}`);
-    Console.print(`${RESULT_MESSAGE.four}${four}${EA}`);
-    Console.print(`${RESULT_MESSAGE.five}${five}${EA}`);
-    Console.print(`${RESULT_MESSAGE.fiveWithBonus}${fiveWithBonus}${EA}`);
-    Console.print(`${RESULT_MESSAGE.six}${six}${EA}`);
-    Console.print(`총 수익률은 ${this.profitRate}%입니다.`);
+    Console.print(RESULT_MESSAGE.three(three));
+    Console.print(RESULT_MESSAGE.four(four));
+    Console.print(RESULT_MESSAGE.five(five));
+    Console.print(RESULT_MESSAGE.fiveWithBonus(fiveWithBonus));
+    Console.print(RESULT_MESSAGE.six(six));
+    Console.print(RESULT_MESSAGE.profitRate(this.profitRate));
   }
 }
 
