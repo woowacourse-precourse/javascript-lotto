@@ -1,24 +1,13 @@
-const MissionUtils = require('@woowacourse/mission-utils');
-const { Console } = MissionUtils;
-const { WINNING_NUMBER_MESSAGE, BONUS_NUMBER_MESSAGE } = require('./Constants');
-
 class WinningNumber {
-  getLottoNumber() {
-    Console.readLine(WINNING_NUMBER_MESSAGE, (winningNumber) => {
-      this.winningNumber = winningNumber
-        .split(',')
-        .map((split) => Number(split));
-      return this.getBonusNumber();
-    });
+  setWinningNumber(winningNumber) {
+    return (this.winningNumber = winningNumber
+      .split(',')
+      .map((split) => Number(split)));
   }
 
-  getBonusNumber() {
-    Console.readLine(BONUS_NUMBER_MESSAGE, (bonusNumber) => {
-      this.bonusNumber = Number(bonusNumber);
-      return this.bonusNumber;
-    });
+  setBonusNumber(bonusNumber) {
+    return (this.bonusNumber = Number(bonusNumber));
   }
 }
 
-const winningNumber = new WinningNumber();
-exports.winningNumber = winningNumber;
+module.exports = WinningNumber;
