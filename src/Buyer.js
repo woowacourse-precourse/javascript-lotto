@@ -1,26 +1,14 @@
-const { LOTTO_AMOUNT } = require("./constants/index");
+const Io = require("./utils/Io");
 
-const Buyer = ((_) => {
-  const Private = Symbol();
-  return class {
-    get buyLottoNumber() {
-      const { buyLottoNumber } = this[Private];
-      return buyLottoNumber;
-    }
-
-    get lottos() {
-      const { lottos } = this[Private];
-      return lottos;
-    }
-
-    set setBuyLottoNumber(amount) {
-      this[Private] = { buyLottoNumber: Number(amount) / LOTTO_AMOUNT.VALID_UNIT };
-    }
-
-    set setLottos(lottos) {
-      Object.assign(this[Private], { lottos });
-    }
-  };
-})();
+const Buyer = class {
+  #io;
+  constructor() {
+    this.#io = Io;
+  }
+  outputView({ buyLottoNumber, lottos }) {
+    this.#io.print(`\n${buyLottoNumber}개를 구매했습니다.`);
+    lottos.forEach((lotto) => this.#io.print(`[${lotto.join(", ")}]`));
+  }
+};
 
 module.exports = Buyer;

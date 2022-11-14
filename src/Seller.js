@@ -11,9 +11,11 @@ const Seller = ((_) => {
   return class {
     #io;
     #buyer;
+    #statistic;
     constructor() {
       this.#io = Io;
       this.#buyer = new Buyer();
+      this.#statistic = new Statistic();
     }
 
     requestLottoBuy() {
@@ -30,15 +32,16 @@ const Seller = ((_) => {
 
     #proceedLottoSale(amount) {
       if (!this.validateAmount(amount)) this.#io.close();
-      this.#buyer.setBuyLottoNumber = amount;
-      this.#buyer.setLottos = this.#giveLottos();
-      this.#notifyBuyLotto();
+      this[Private] = { buyLottoNumber: Number(amount) / LOTTO_AMOUNT.VALID_UNIT };
+      Object.assign(this[Private], { lottos: this.#generateLottos() });
+      const { buyLottoNumber, lottos } = this[Private];
+      this.#buyer.outputView({ buyLottoNumber, lottos });
       this.requestLottoWinNumber();
     }
 
     #proceedLottoWinNumber(winNumber) {
       this.validateWinNumber(winNumber);
-      this[Private] = { winNumber };
+      Object.assign(this[Private], { winNumber });
       this.requestLottoBonusNumber();
     }
 
@@ -48,8 +51,9 @@ const Seller = ((_) => {
       this.#announcementResult();
     }
 
-    #giveLottos() {
-      return Array(this.#buyer.buyLottoNumber).fill(0).map(this.#generateLotto);
+    #generateLottos() {
+      const { buyLottoNumber } = this[Private];
+      return Array(buyLottoNumber).fill(0).map(this.#generateLotto);
     }
 
     #generateLotto() {
@@ -62,19 +66,9 @@ const Seller = ((_) => {
       ).getSortedLotto();
     }
 
-    #notifyBuyLotto() {
-      this.#io.print(`\n${this.#buyer.buyLottoNumber}개를 구매했습니다.`);
-      this.#buyer.lottos.forEach((lotto) => this.#io.print(`[${lotto.join(", ")}]`));
-    }
-
     #announcementResult() {
-      const { winNumber, bonusNumber } = this[Private];
-      const lottos = this.#buyer.lottos;
-      new Statistic({
-        bonusNumber,
-        winNumber,
-        lottos,
-      }).announceLottoResult();
+      const { winNumber, bonusNumber, lottos } = this[Private];
+      this.#statistic.outputView({ lottos, winNumber, bonusNumber });
       this.#io.close();
     }
 
@@ -98,5 +92,7 @@ const Seller = ((_) => {
     }
   };
 })();
+
+new Seller().requestLottoBuy();
 
 module.exports = Seller;
