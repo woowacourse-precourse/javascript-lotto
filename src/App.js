@@ -3,6 +3,7 @@ const { Console } = require('@woowacourse/mission-utils');
 const LottoManager = require('./LottoManager');
 const WinningNumbers = require('./WinningNumbers');
 const WinningHistory = require('./WinningHistory');
+
 const { LOTTO_PRIZE_LIST } = require('./lib/constants/lotto');
 
 class App {
@@ -70,11 +71,7 @@ class App {
     Console.print('당첨 통계');
     Console.print('---');
     this.printWinningList(winningList);
-    Console.print(
-      `총 수익률은 ${Number(profitRate.toFixed(1)).toLocaleString(
-        'ko-KR',
-      )}%입니다.`,
-    );
+    Console.print(`총 수익률은 ${this.formatProfitRate(profitRate)}%입니다.`);
     Console.close();
   }
 
@@ -88,6 +85,14 @@ class App {
         )}원) - ${winningLottoCount}개`,
       );
     });
+  }
+
+  formatProfitRate(profitRate) {
+    const baseNumber = Number(profitRate.toFixed(1));
+    const integerPart = Math.floor(baseNumber);
+    const floatPart = (baseNumber * 10) % 10;
+
+    return `${integerPart.toLocaleString('ko-KR')}.${floatPart}`;
   }
 
   exitGameByError(errorMessage) {
