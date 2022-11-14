@@ -93,9 +93,9 @@ class LottoModel {
       save += collectList[i] * moneyArray[i];
     }
 
-    const persentage = ((save / this.lottoPay) * 100).toFixed(1);
+    const percentage = ((save / this.lottoPay) * 100).toFixed(1);
 
-    return persentage;
+    return percentage;
   }
 
   resultMessage() {
