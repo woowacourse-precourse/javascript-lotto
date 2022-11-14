@@ -1,5 +1,6 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const { MESSAGE, VALUE } = require('./lib/constants');
+const { sortRandomLotto } = require('./lib/utils/myLottosUtils');
 
 class MyLottos {
   #myLottos = [];
@@ -21,16 +22,9 @@ class MyLottos {
     );
   }
 
-  sortRandomLotto(lottoArray) {
-    lottoArray.sort(function (a, b) {
-      return a - b;
-    });
-    return lottoArray;
-  }
-
   makeMyLottos(purchaseAccount) {
     while (purchaseAccount--) {
-      this.#myLottos.push(this.sortRandomLotto(this.makeRandomLotto()));
+      this.#myLottos.push(sortRandomLotto(this.makeRandomLotto()));
     }
   }
 
