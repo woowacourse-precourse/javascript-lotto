@@ -68,3 +68,45 @@ describe('로또 클래스 테스트', () => {
     }).toThrow('[ERROR]');
   });
 });
+
+describe('보너스 번호 테스트', () => {
+  test('보너스 번호는 당첨 번호와 중복된 번호를 입력하면 예외가 발생한다.', () => {
+    mockQuestions(['1,2,3,4,5,6', '1']);
+    expect(() => {
+      const app = new App();
+      app.enterWinningNumber();
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호는 숫자 이외의 값이면 예외가 발생한다.', () => {
+    mockQuestions(['abc']);
+    expect(() => {
+      const app = new App();
+      app.enterBonusNumber();
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호는 1~45 이외의 숫자를 입력하면 예외가 발생한다.', () => {
+    mockQuestions(['46']);
+    expect(() => {
+      const app = new App();
+      app.enterBonusNumber();
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호의 개수가 1개를 넘어가면 예외가 발생한다', () => {
+    mockQuestions(['1,2']);
+    expect(() => {
+      const app = new App();
+      app.enterBonusNumber();
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호는 정수가 아니면 예외가 발생한다.', () => {
+    mockQuestions(['1.1']);
+    expect(() => {
+      const app = new App();
+      app.enterBonusNumber();
+    }).toThrow('[ERROR]');
+  });
+});
