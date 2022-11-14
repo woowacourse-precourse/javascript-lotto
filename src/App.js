@@ -7,6 +7,14 @@ class App {
     this.publishedLottos = [];
     this.amount = 0;
     this.winNumbers = [];
+    this.bonusNumber = 0;
+    this.scoreBoard = {
+      fifth: 0,
+      fourth: 0,
+      third: 0,
+      second: 0,
+      first: 0,
+    };
   }
 
   play() {
@@ -67,8 +75,11 @@ class App {
       this.bonusNumber = Number(bonus);
       console.log(this.bonusNumber);
       this.publishedLottos.forEach((publishedLotto) => {
-        console.log(publishedLotto.calculateResult(this.winNumbers, this.bonusNumber));
+        const result = publishedLotto.calculateResult(this.winNumbers, this.bonusNumber);
+        if (result === undefined) return;
+        this.scoreBoard[result]++;
       });
+      console.log(this.scoreBoard);
     });
   }
 }
