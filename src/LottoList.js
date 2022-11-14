@@ -81,7 +81,8 @@ class LottoList {
       return acc + cur * winningCount;
     }, 0);
 
-    const lottoRate = (finalPrize / (this.lottoCount * 1000)).tpFixed(1);
+    const purchaseMoney = this.lottoCount * 1000;
+    const lottoRate = ((finalPrize / purchaseMoney) * 100).tpFixed(1);
     Console.print(`총 수익률은${lottoRate}%입니다.`);
   }
   getWinningCount(idx) {
