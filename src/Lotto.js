@@ -1,4 +1,3 @@
-const MissionUtils = require('@woowacourse/mission-utils');
 const lottoValidation = require('./validation/lottoValidation');
 const { RANK, MATCH, MONEY, NUMBER } = require('./constant/constant');
 
