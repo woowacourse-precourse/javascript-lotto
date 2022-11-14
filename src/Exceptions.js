@@ -9,14 +9,17 @@ class Exceptions {
     throw new Error(errorMessage);
   }
 
-  isNotDigit() {
-    return isNaN(this.input);
+  isNotDigit(numStr) {
+    for (let letter of [...numStr]) {
+      if (isNaN(parseInt(letter))) return true;
+    }
+    return false;
   }
 }
 
 class MoneyExceptions extends Exceptions {
   check() {
-    if (super.isNotDigit()) super.occurError(ERROR.MONEY_DIGIT);
+    if (super.isNotDigit(this.input)) super.occurError(ERROR.MONEY_DIGIT);
     if (this.isNotDivisible()) super.occurError(ERROR.MONEY_DIVISIBLE);
   }
 
