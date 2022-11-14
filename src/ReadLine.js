@@ -17,9 +17,9 @@ class ReadLine {
     this.#readLine(message, (userInput) => {
       ReadLine.validate(userInput);
 
-      const userNumberArray = Application.convertNumber(userInput);
+      const userInputNumber = Application.convertNumber(userInput);
 
-      callbackFunc(userNumberArray);
+      callbackFunc(userInputNumber);
     });
   }
 
