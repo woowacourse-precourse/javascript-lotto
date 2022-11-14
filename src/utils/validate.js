@@ -6,7 +6,7 @@ const isValidRange = (value) =>
   value >= LOTTO_VALUE.MIN && value <= LOTTO_VALUE.MAX;
 
 const isValidUnique = (values, value) => {
-  return !values.split(",").includes(value);
+  return !values.includes(value);
 };
 
 const isThousandUnits = (value) => value % LOTTO_VALUE.UNIT === 0;

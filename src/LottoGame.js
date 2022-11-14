@@ -83,16 +83,17 @@ class LottoGame {
 
   inputBonusNumber() {
     inputUserValue(GAME_MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
-      if (this.isBonusNumberValid(bonusNumber)) {
+      if (this.isBonusNumberValid(this.#winningNumbers, bonusNumber)) {
         this.#bonusNumber = bonusNumber;
         this.printResult();
       }
     });
   }
 
-  isBonusNumberValid(bonusNumber) {
+  isBonusNumberValid(winningNumbers, bonusNumber) {
     if (!isNumberType(bonusNumber)) throw ERROR_MESSAGE.TYPE_ERROR;
-    if (!isValidUnique(this.#winningNumbers, bonusNumber))
+    console.log(winningNumbers);
+    if (!isValidUnique(winningNumbers, bonusNumber))
       throw ERROR_MESSAGE.BONUS_UNIQUE_ERROR;
     if (!isValidRange(bonusNumber)) throw ERROR_MESSAGE.RANGE_ERROR;
 
