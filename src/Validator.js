@@ -1,47 +1,49 @@
+const { ERROR } = require("./constant/constant");
+
 class Validator {
   checkPurchaseMoney(purchaseMoney) {
     if (this.isNotNumber(purchaseMoney)) {
-      throw new Error("[ERROR] 로또 번호는 숫자만 입력 가능합니다.");
+      throw new Error(ERROR.NOT_NUMBER);
     }
 
     if (this.isNotUnitOfLottoPrice(purchaseMoney)) {
-      throw new Error("[ERROR] 구입 금액은 1000원 단위로만 입력 가능합니다.");
+      throw new Error(ERROR.NOT_UNIT_OF_LOTTO_PRICE);
     }
   }
 
   checkWinningNumber(winningNumber) {
     if (this.isNotWinningNumberInputFormat(winningNumber)) {
-      throw new Error("[ERROR] 숫자를 쉼표로 구분하여 입력해주세요.");
+      throw new Error(ERROR.NOT_WINNING_NUMBER_INPUT_FORMAT);
     }
   }
 
   checkBonusNumber(winningNumber, bonusNumber) {
     if (this.isNotNumber(bonusNumber)) {
-      throw new Error("[ERROR] 로또 번호는 숫자만 입력 가능합니다.");
+      throw new Error(ERROR.NOT_NUMBER);
     }
 
     if (this.isNotRangeOfLottoNumber(bonusNumber)) {
-      throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+      throw new Error(ERROR.NOT_RANGE_OF_LOTTO_NUMBER);
     }
 
-    if (this.isDuplicateWithWinningNumber(winningNumber, bonusNumber)) {
-      throw new Error("[ERROR] 보너스 번호는 당첨 번호에 존재하지 않는 값이어야 합니다.");
+    if (this.existInWinningNumber(winningNumber, bonusNumber)) {
+      throw new Error(ERROR.EXIST_IN_WINNING_NUMBER);
     }
   }
 
   checkLotto(lotto) {
     if (this.isNotValidLottoNumberCount(lotto)) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error(ERROR.NOT_VALID_LOTTO_NUMBER_COUNT);
     }
 
     lotto.forEach((num) => {
       if (this.isNotRangeOfLottoNumber(num)) {
-        throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        throw new Error(ERROR.NOT_RANGE_OF_LOTTO_NUMBER);
       }
     });
       
     if (this.hasDuplicateNumber(lotto)){
-      throw new Error("[ERROR] 로또 번호에 중복된 값이 포함되어있습니다.");
+      throw new Error(ERROR.DUPLICATE_NUMBER);
     }    
   }
 
@@ -63,7 +65,7 @@ class Validator {
     return num < 1 || num > 45;
   }
 
-  isDuplicateWithWinningNumber(winningNumber, bonusNumber) {
+  existInWinningNumber(winningNumber, bonusNumber) {
     return winningNumber.includes(bonusNumber);
   }
 
