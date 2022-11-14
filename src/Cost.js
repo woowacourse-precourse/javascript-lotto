@@ -1,5 +1,5 @@
-const MissionUtils = require('@woowacourse/mission-utils');
 const { INPUT_MESSAGE, ERROR_MESSAGE } = require('./constant/constant');
+const utils = require('./utils');
 
 class Cost {
   #cost;
@@ -11,10 +11,9 @@ class Cost {
   }
 
   getCost() {
-    MissionUtils.Console.readLine(INPUT_MESSAGE.COST, (x) => {
-      this.#cost = x;
+    utils.getInput(INPUT_MESSAGE.COST, (input) => {
+      this.#cost = input;
     });
-    MissionUtils.Console.close();
   }
 
   validate(cost) {
