@@ -1,9 +1,9 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { GRADE } = require("./constant");
+const { GRADE, MESSAGE } = require("./constant/constant");
 const NumberGenerator = require("./NumberGenerator");
 const Lotto = require("./Lotto");
 const LottoSimulator = require("./LottoSimulator");
-const { changePrintFormat } = require("./utils");
+const { changePrintFormat } = require("./utils/utils");
 
 class App {
   lottos;

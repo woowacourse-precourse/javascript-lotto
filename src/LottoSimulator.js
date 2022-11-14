@@ -1,4 +1,4 @@
-const { round } = require("./utils");
+const { round } = require("./utils/utils");
 
 class LottoSimulator {
   gradeCount;
