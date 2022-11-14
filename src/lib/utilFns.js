@@ -37,6 +37,21 @@ const getRandomNumbers = (start, end, size) => {
 const splitStr = (sep) => (str) => str.trim().split(sep);
 const splitStrByComma = splitStr(',');
 
+const getRank = (score, bonusScore) => {
+  switch (score) {
+    case 6:
+      return 1;
+    case 5:
+      return bonusScore === 1 ? 2 : 3;
+    case 4:
+      return 4;
+    case 3:
+      return 5;
+    default:
+      return 0;
+  }
+};
+
 module.exports = {
   isMultipleOf1000,
   isLottoNumbers,
@@ -45,4 +60,5 @@ module.exports = {
   divide1000,
   getRandomNumbers,
   splitStrByComma,
+  getRank,
 };

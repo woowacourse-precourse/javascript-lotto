@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { isMultipleOf1000, divide1000, splitStrByComma, getRandomNumbers } = require('./lib/utilFns.js');
+const { isMultipleOf1000, divide1000, splitStrByComma, getRandomNumbers, getRank } = require('./lib/utilFns.js');
 const Lotto = require('./Lotto');
 
 class VendingMachine {
@@ -8,6 +8,7 @@ class VendingMachine {
   #randomNumbers;
   #lottoMachine;
   #scores = [];
+  #rankBoard;
 
   askPurchaseAmount() {
     const answerCbFn = (answer) => {
@@ -72,9 +73,22 @@ class VendingMachine {
         const { score, bonusScore } = this.#lottoMachine.getScore(numbers);
         this.#scores.push([score, bonusScore]);
       });
+
+      this.#rankBoard = this.getRanksByScores();
     };
 
     Console.readLine('\n보너스 번호를 입력해주세요.\n', answerCbFn);
+  }
+
+  getRanksByScores() {
+    const rankBoard = new Array(6).fill(0);
+
+    this.#scores.forEach(([score, bonusScore]) => {
+      const rank = getRank(score, bonusScore);
+      rankBoard[rank] += 1;
+    });
+
+    return rankBoard;
   }
 }
 
