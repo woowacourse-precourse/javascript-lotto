@@ -33,6 +33,7 @@ class User {
   }
 
   addWinStats(winStats) {
+    this.#profit = winStats.get("profit");
     this.#winStats = winStats;
   }
 
