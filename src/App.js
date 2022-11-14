@@ -33,10 +33,12 @@ class App {
 
   inputWinningNumbers() {
     Console.readLine(INPUT_MESSAGES.WINNING_NUMBERS, (inputWinningNumbers) => {
-      this.lottoInfo.winningNumbers = inputWinningNumbers
+      const splitWinningNumbers = inputWinningNumbers
         .replace(INITIALIZE_VALUES.REPLACE_BEFORE, INITIALIZE_VALUES.REPLACE_AFTER)
         .split(INITIALIZE_VALUES.SPLIT_CHAR);
-      this.lottoInfo.lotto = new Lotto(this.lottoInfo.winningNumbers);
+      this.lottoInfo.lotto = new Lotto(splitWinningNumbers);
+      this.lottoInfo.lotto.validate();
+      this.lottoInfo.winningNumbers = this.lottoInfo.lotto.getWinningNumbers();
       this.inputBonusNumber();
     });
   }
@@ -44,7 +46,7 @@ class App {
   inputBonusNumber() {
     Console.readLine(INPUT_MESSAGES.BONUS_NUMBER, (bonusNumber) => {
       this.lottoInfo.bonusNumber = bonusNumber;
-      this.lottoInfo.lotto.validateBonusNumber(this.lottoInfo.winningNumbers, this.lottoInfo.bonusNumber);
+      this.lottoInfo.lotto.validateBonusNumber(this.lottoInfo.bonusNumber);
       new GetStat(this.lottoInfo);
       Console.close();
     });
