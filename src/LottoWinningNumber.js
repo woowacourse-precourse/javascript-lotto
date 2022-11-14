@@ -4,7 +4,7 @@ class LottoWinningNumber{
 
   lottoWinningNumber() {
     let winningNumber = "";
-    MissionUtils.Console.readLine("당첨 번호를 입력해주세요", (winning) => {
+    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요", (winning) => {
       winningNumber = winning.split(",");
     });
     return winningNumber;
