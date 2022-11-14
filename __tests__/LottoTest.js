@@ -38,4 +38,22 @@ describe('로또 클래스 테스트', () => {
       new Lotto([1, 2, 3, 'i', 5, 6]);
     }).toThrow('[ERROR]');
   });
+
+  test('로또 번호에 공백이 존재할 경우 예외가 발생한다.', () => {
+    expect(() => {
+      new Lotto([1, 2, 3, '', 5, 6]);
+    }).toThrow('[ERROR]');
+  });
+
+  test('로또 번호에 null이 존재할 경우 예외가 발생한다.', () => {
+    expect(() => {
+      new Lotto([1, 2, 3, null, 5, 6]);
+    }).toThrow('[ERROR]');
+  });
+
+  test('로또 번호에 undefined이 존재할 경우 예외가 발생한다.', () => {
+    expect(() => {
+      new Lotto([1, 2, 3, undefined, 5, 6]);
+    }).toThrow('[ERROR]');
+  });
 });

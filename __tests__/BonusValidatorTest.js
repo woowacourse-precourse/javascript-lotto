@@ -24,4 +24,28 @@ describe('보너스 번호 유효성 검사기 클래스 테스트', () => {
       BonusValidator.validate(winning, bonus);
     }).toThrow('[ERROR]');
   });
+
+  test('보너스 번호가 공백일 경우 예외가 발생한다.', () => {
+    expect(() => {
+      const winning = [1, 2, 3, 4, 5, 6];
+      const bonus = '';
+      BonusValidator.validate(winning, bonus);
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호가 null일 경우 예외가 발생한다.', () => {
+    expect(() => {
+      const winning = [1, 2, 3, 4, 5, 6];
+      const bonus = null;
+      BonusValidator.validate(winning, bonus);
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호가 undefined일 경우 예외가 발생한다.', () => {
+    expect(() => {
+      const winning = [1, 2, 3, 4, 5, 6];
+      const bonus = undefined;
+      BonusValidator.validate(winning, bonus);
+    }).toThrow('[ERROR]');
+  });
 });
