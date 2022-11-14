@@ -1,19 +1,21 @@
-const { LOTTO_SPEC, ERROR_MESSAGES } = require("./constants");
+const LottoSystem = require("../src/domain/LottoSystem");
+const { ERROR_MESSAGES } = require("./constants");
 
-class Lotto {
+class Lotto extends LottoSystem {
   #numbers;
 
   constructor(numbers) {
+    super();
     this.validate(numbers);
     this.#numbers = numbers;
   }
 
   get numbers() {
-    return this.#numbers.slice(0, LOTTO_SPEC.LENGTH);
+    return this.#numbers.slice(0, this.lottoLength);
   }
 
   get bonusNumber() {
-    if (this.#numbers.length === LOTTO_SPEC.LENGTH + 1) {
+    if (this.#numbers.length === this.lottoLength + 1) {
       return this.#numbers[this.#numbers.length - 1];
     }
     return null;
@@ -32,7 +34,7 @@ class Lotto {
   }
 
   checkLength(numbers) {
-    if (numbers.length !== LOTTO_SPEC.LENGTH) {
+    if (numbers.length !== this.lottoLength) {
       throw new Error(ERROR_MESSAGES.LOTTO_LENGTH);
     }
   }
@@ -45,15 +47,15 @@ class Lotto {
   }
 
   checkRangeNumbers(numbers) {
-    numbers.forEach(this.checkRange);
+    numbers.forEach(this.checkRange.bind(this));
   }
 
   checkRange(number) {
     if (
       typeof number !== "number" ||
       Number.isNaN(Number(number)) ||
-      number < LOTTO_SPEC.MIN_NUMBER ||
-      number > LOTTO_SPEC.MAX_NUMBER
+      number < this.minNumber ||
+      number > this.maxNumber
     ) {
       throw new Error(ERROR_MESSAGES.LOTTO_LENGTH);
     }

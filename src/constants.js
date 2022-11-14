@@ -1,10 +1,3 @@
-const LOTTO_SPEC = Object.freeze({
-  MIN_NUMBER: 1,
-  MAX_NUMBER: 45,
-  LENGTH: 6,
-  MONEY_UNIT: 1000,
-});
-
 const RANK = Object({
   ONE: 1,
   TWO: 2,
@@ -38,7 +31,6 @@ const ERROR_MESSAGES = Object.freeze({
 });
 
 module.exports = {
-  LOTTO_SPEC,
   UI_MESSAGES,
   ERROR_MESSAGES,
   RANK,

@@ -1,18 +1,23 @@
 const { Random } = require("@woowacourse/mission-utils");
-const { LOTTO_SPEC, ERROR_MESSAGES } = require("../constants");
+const LottoSystem = require("./LottoSystem");
+const { ERROR_MESSAGES } = require("../constants");
 
-class LottoMachine {
+class LottoMachine extends LottoSystem {
+  constructor() {
+    super();
+  }
+
   buy(money) {
     this.validate(money);
-    const amount = Math.floor(money / LOTTO_SPEC.MONEY_UNIT);
-    return Array.from({ length: amount }, this.generate);
+    const amount = Math.floor(money / this.moneyUnit);
+    return Array.from({ length: amount }, this.generate.bind(this));
   }
 
   generate() {
     const randomNumbers = Random.pickUniqueNumbersInRange(
-      LOTTO_SPEC.MIN_NUMBER,
-      LOTTO_SPEC.MAX_NUMBER,
-      LOTTO_SPEC.LENGTH,
+      this.minNumber,
+      this.maxNumber,
+      this.lottoLength,
     );
     return randomNumbers.sort((numA, numB) => numA - numB);
   }
@@ -23,13 +28,13 @@ class LottoMachine {
   }
 
   isValidRange(money) {
-    if (money < LOTTO_SPEC.MONEY_UNIT) {
+    if (money < this.moneyUnit) {
       throw new Error(ERROR_MESSAGES.MONEY_RANGE);
     }
   }
 
   isValidUnit(money) {
-    const remainder = money % LOTTO_SPEC.MONEY_UNIT;
+    const remainder = money % this.moneyUnit;
     if (remainder !== 0) {
       throw new Error(ERROR_MESSAGES.MONEY_UNIT);
     }

@@ -1,6 +1,7 @@
+const LottoSystem = require("./LottoSystem");
 const Lotto = require("../Lotto");
 const Utils = require("../Utils");
-const { LOTTO_SPEC, RANK } = require("../constants");
+const { RANK } = require("../constants");
 
 const MATCH_COUNT = Object({
   SIX: 6,
@@ -23,8 +24,9 @@ const REWARD_MAP = Object({
   [RANK.FIVE]: 5000,
 });
 
-class LottoStatistics {
+class LottoStatistics extends LottoSystem {
   constructor(winningLotto) {
+    super();
     if (!winningLotto instanceof Lotto) {
       throw new ReferenceError("[ERROR] param's instance must be Lotto.");
     }
@@ -68,7 +70,7 @@ class LottoStatistics {
 
   getProfit(buyingLottos) {
     const totalReward = this.getTotalReward(buyingLottos);
-    const cost = buyingLottos.length * LOTTO_SPEC.MONEY_UNIT;
+    const cost = buyingLottos.length * this.moneyUnit;
     return (totalReward / cost) * 100;
   }
 }
