@@ -1,10 +1,13 @@
-const UI = require("./UI");
-const { BUY_LOTTO } = require("./constant/constant");
+const UI = require("./utils/UI");
+const { BUY_LOTTO, LOTTO } = require("./constant/constant");
 const BuyLotto = require("./BuyLotto");
+const Lotto = require("./Lotto");
 const { Console } = require("@woowacourse/mission-utils");
 
 class App {
   userLottoArr;
+  winningNumber;
+  bonusNumber;
 
   play() {
     this.buyLotto();
@@ -12,18 +15,23 @@ class App {
 
   buyLotto() {
     Console.readLine(BUY_LOTTO.ANNOUNCEMENT, (userMoney) => {
-      if (userMoney) {
-        const buyLotto = new BuyLotto(Number(userMoney));
-        this.userLottoArr = buyLotto.userLottoArr;
-        this.printLotto();
-      }
+      const buyLotto = new BuyLotto(Number(userMoney));
+      this.userLottoArr = buyLotto.userLottoArr;
+      this.printUserLottoList();
+      this.playLotto();
     });
   }
 
-  printLotto() {
+  printUserLottoList() {
     UI.print(`${this.userLottoArr.length}${BUY_LOTTO.PURCHASE}`);
     this.userLottoArr.forEach((currentLotto) => {
       UI.print(currentLotto);
+    });
+  }
+
+  playLotto() {
+    Console.readLine(LOTTO.ANNOUNCEMENT, (userAnswer) => {
+      const lotto = new Lotto(userAnswer);
     });
   }
 }
