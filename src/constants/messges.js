@@ -21,6 +21,7 @@ const ERROR = {
   LOTTO_RANGE: "[ERROR] 로또 번호는 1과 45 사이의 숫자여야 합니다",
   LOTTO_DUPLICATE: "[ERROR] 당첨 번호는 중복되지 않아야 합니다.",
   MONEY_NUMBER: "[ERROR] 구매 금액은 숫자여야 합니다.",
+  MONEY_RANGE: "[ERROR] 구매 금액은 0원보다 커야 합니다.",
   MONEY_UNIT: "[ERROR] 구매 금액은 천원 단위여야 합니다.",
 };
 

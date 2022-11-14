@@ -11,12 +11,19 @@ class Money {
 
   validate(money) {
     this.checkNumber(money);
+    this.checkRange(money);
     this.checkUnit(money);
   }
 
   checkNumber(money) {
     if (isNaN(money)) {
       throw new Error(ERROR.MONEY_NUMBER);
+    }
+  }
+
+  checkRange(money) {
+    if (money < MONEY.MINIMUM_MONEY) {
+      throw new Error(ERROR.MONEY_RANGE);
     }
   }
 

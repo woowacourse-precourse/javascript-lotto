@@ -6,6 +6,7 @@ const LOTTO = {
 
 const MONEY = {
   UNIT: 1000,
+  MINIMUM_MONEY: 1,
 };
 
 const REWARD = {
