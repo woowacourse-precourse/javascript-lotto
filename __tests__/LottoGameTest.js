@@ -9,7 +9,6 @@ describe('LottoGame 클래스 테스트', () => {
   test('✨ 뽑은 숫자는 1부터 45로 이루어져있다.', () => {
     const lottos = [...new Set(LottoGame.generateLottoNumbers())];
     const lotto = lottos.filter((number) => number > 0 && number < 46);
-
     expect(lotto.length).toBe(6);
   });
 
@@ -17,5 +16,12 @@ describe('LottoGame 클래스 테스트', () => {
     const lottoGame = new LottoGame();
     const money = 8000;
     expect(lottoGame.countLottos(money)).toBe(8);
+  });
+
+  test('✨ 로또 개수만큼 로또 번호를 뽑은 배열을 반환한다. ', () => {
+    const lottoQuantity = 8;
+    expect(LottoGame.makeLottos(lottoQuantity).length).toBe(8);
+    const typeCheck = typeof LottoGame.makeLottos(lottoQuantity);
+    expect(typeCheck).toBe('object');
   });
 });
