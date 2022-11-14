@@ -17,7 +17,11 @@ class Lotto {
     return true;
   }
 
-  setBonus(bonusNumber) {}
+  setBonus(bonusNumber) {
+    const allNumbers = [...this.#numbers, bonusNumber];
+    this.validateAllNumbers(allNumbers);
+    this.#bonus = bonusNumber;
+  }
 
   validateAllNumbers(allNumbers) {
     if (isDuplicated(allNumbers)) {
