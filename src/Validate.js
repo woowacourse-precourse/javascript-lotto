@@ -1,4 +1,4 @@
-validatePurchase(input) {
+function validatePurchase(input) {
   if (isNaN(input)) {
     throw new Error("[ERROR] 구매 금액을 숫자로 입력해주세요.");
   }
@@ -11,7 +11,7 @@ validatePurchase(input) {
   }
   MissionUtils.Console.close();
 }
-validateBonusNumber(bonusNumber) {
+function validateBonusNumber(bonusNumber) {
   if (isNaN(bonusNumber)) {
     throw new Error("[ERROR] 보너스 번호를 숫자로 입력해주세요.");
   }
@@ -24,4 +24,4 @@ validateBonusNumber(bonusNumber) {
   }
   MissionUtils.Console.close();
 }
-module.exports = {validateBonusNumber, validatePurchase}
+module.exports = { validateBonusNumber, validatePurchase };
