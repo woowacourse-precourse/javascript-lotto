@@ -1,9 +1,11 @@
 const Purchase = require("./Purchase");
+const WinningNumber = require("./Generator");
 const { Console } = require("@woowacourse/mission-utils");
 
 class App {
   play() {
     this.purchaseLotto();
+    this.generateWinningNumber();
   }
 
   purchaseLotto() {
@@ -11,6 +13,10 @@ class App {
       this.purchase = new Purchase(input);
       this.purchase.quantityOfPurchase();
     });
+  }
+
+  generateWinningNumber() {
+    this.winningNumber = new WinningNumber();
   }
 }
 
