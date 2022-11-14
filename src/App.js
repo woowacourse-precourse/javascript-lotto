@@ -12,6 +12,7 @@ class App {
   getBonusNumber = () => {
     Console.readLine(MESSAGE.GET_BONUS_NUMBER, (bonusNumber) => {
       this.#bonusNumber = Number(bonusNumber);
+      // TODO: bonusNumber Validate Test
       this.printResult();
     });
   };
@@ -19,7 +20,7 @@ class App {
   getWinningNumber = () => {
     Console.readLine(MESSAGE.GET_WINNING_NUMBERS, (winningNumbers) => {
       this.#winningNumbers = winningNumbers.split(",").map(Number);
-      // TODO: validate test
+      // TODO: winningNumbers Validate Test
       this.getBonusNumber();
     });
   };
@@ -50,7 +51,7 @@ class App {
 
   getMoney = () => {
     Console.readLine(MESSAGE.GET_MONEY, (money) => {
-      // TODO: 입력된 값 유효성 체크
+      // TODO: money Validate Test
       this.#money = Number(money);
       this.getNumberOfLottery();
     });
