@@ -6,7 +6,7 @@ class Messages {
 
   static ZERO_REST = '[ERROR] 1,000원으로 나누어 떨어지는 금액을 입력해주세요.';
 
-  static SIX_NUMBERS = '[ERROR] 로또 번호는 6개여야 합니다.';
+  static SIX_NUMBERS = '[ERROR] 쉼표로 구분된 6개의 로또 번호를 입력해주세요.';
   static NOT_DUPLICATE = '[ERROR] 중복되지 않는 숫자를 입력해주세요.';
   static NUMBERS_IN_RANGE = '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.';
 
