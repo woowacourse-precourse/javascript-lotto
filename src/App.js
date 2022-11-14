@@ -9,6 +9,7 @@ class App {
 
   print(message) {
     MissionUtils.Console.print(message);
+    MissionUtils.Console.close();
   }
 
   play() {
@@ -26,6 +27,8 @@ class App {
     this.printLottoResult(lottoResult);
     this.printRevenueRate(lottoResult);
     MissionUtils.Console.close();
+
+    return;
   }
 
   getMoney() {
@@ -81,6 +84,8 @@ class App {
         MissionUtils.Console.close();
       }
     });
+
+    return;
   }
 
   checkValidWinningNumber(number) {
@@ -101,6 +106,8 @@ class App {
     MissionUtils.Console.readLine("보너스 번호를 입력해 주세요", (bonus) => {
       this.lottoBonusNumber = bonus;
     });
+
+    return;
   }
 
   printLottoResult(result) {
@@ -111,11 +118,16 @@ class App {
     this.print(`5개 일치 (1,500,000원) - ${result[2]}개\n`);
     this.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${result[1]}개\n`);
     this.print(`6개 일치 (2,000,000,000원) - ${result[0]}개\n`);
+
+    return;
   }
 
   printRevenueRate(result) {
     const totalRevenue = this.calcRevenue(result);
-    MissionUtils.Console.print(`총 수익률은 ${totalRevenue}%입니다.`);
+    const revenueRate = ((totalRevenue / this.lottoPrice) * 100).toFixed(1);
+    MissionUtils.Console.print(`총 수익률은 ${revenueRate}%입니다.`);
+
+    return;
   }
 
   calcRevenue(result) {
