@@ -1,4 +1,4 @@
-const Lotto = require("./Lotto");
+const Lotto = require('./Lotto');
 
 class App {
   constructor() {
@@ -8,9 +8,7 @@ class App {
   play() {
     this.lotto.play();
   }
-
 }
-
 
 const app = new App();
 app.play();
