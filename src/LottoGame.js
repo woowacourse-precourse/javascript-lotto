@@ -70,31 +70,31 @@ class LottoGame {
     );
   }
 
-  printProfitRate(money, result) {
+  printProfitRate(payment, result) {
     const profit =
       (result[3] || 0) * 5000 +
       (result[4] || 0) * 50000 +
       (result[5] || 0) * 1500000 +
       (result["5+1"] || 0) * 30000000 +
       (result[6] || 0) * 2000000000;
-    const profitRate = (profit * 100) / money;
+    const profitRate = (profit * 100) / payment;
 
     MissionUtils.Console.print(`총 수익률은 ${profitRate}%입니다.`);
   }
 
-  printResult(lottos, money) {
+  printResult(lottos, payment) {
     const result = {};
     lottos.matchingNumber.forEach((x) => {
       result[x] = (result[x] || 0) + 1;
     });
 
     this.printWinningResult(result);
-    this.printProfitRate(money, result);
+    this.printProfitRate(payment, result);
 
     MissionUtils.Console.close();
   }
 
-  receiveLottoNumbers(lottos, money) {
+  receiveLottoNumbers(lottos, payment) {
     MissionUtils.Console.readLine("당첨번호를 입력해 주세요.\n", (numbers) => {
       numbers.split(",").forEach((number) => this.validateLottoNumber(number));
 
@@ -107,16 +107,12 @@ class LottoGame {
             numbers.split(",").map(Number),
             bonusNumber
           );
-          const winningLottoNumbers = winningLotto.getNumbers();
-          const winningLottoBonusNumber = winningLotto.getBonusNumber();
+          const winningNumbers = winningLotto.getNumbers();
+          const winningBonusNumber = winningLotto.getBonusNumber();
 
-          this.compareNumber(
-            lottos,
-            winningLottoNumbers,
-            winningLottoBonusNumber
-          );
+          this.compareNumber(lottos, winningNumbers, winningBonusNumber);
 
-          this.printResult(lottos, money);
+          this.printResult(lottos, payment);
         }
       );
     });
@@ -125,14 +121,14 @@ class LottoGame {
   game() {
     const lottos = new UserLottos();
 
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
-      this.validatePurchaseLotto(money);
+    MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (payment) => {
+      this.validatePurchaseLotto(payment);
 
-      this.printTheNumberOfLotto(lottos, money);
+      this.printTheNumberOfLotto(lottos, payment);
 
       this.createLotto(lottos);
 
-      this.receiveLottoNumbers(lottos, money);
+      this.receiveLottoNumbers(lottos, payment);
     });
   }
 }
