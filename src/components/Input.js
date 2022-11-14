@@ -31,8 +31,11 @@ class Input {
 
   inputBonusNumber () {
     let bonusNumber;
+    const check = new Check();
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', number => {
-      bonusNumber = number;
+      if (check.checkBonusVaildation(number)) {
+        bonusNumber = number;
+      }
     })
     MissionUtils.Console.close();
     return bonusNumber;
