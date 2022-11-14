@@ -2,6 +2,8 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
 const REWARD_MONEY = [2000000000, 30000000, 1500000, 50000, 5000];
+const LOTTO_LEN = 6;
+const RANK_COUNT = 5;
 
 class App {
   constructor() {
@@ -55,7 +57,7 @@ class App {
     let count = 0;
     let bonusMatch = false;
 
-    for (let i=0; i<6; i++) {
+    for (let i=0; i<LOTTO_LEN; i++) {
       if (lotto.indexOf(winning[i]) !== -1) count++; 
     }
 
@@ -72,7 +74,7 @@ class App {
   calculateResults() {
     for (let i=0; i<this.count; i++) {
       const rank = this.getRank(this.winning.getNumbers(), this.lottoList[i].getNumbers());
-      if (rank > 5) continue;
+      if (rank > RANK_COUNT) continue;
       this.results[rank-1]++; 
     }
   }
@@ -80,7 +82,7 @@ class App {
   calculateRevenueRatio() {
     let revenue = 0;
 
-    for (let i=0; i<5; i++) {
+    for (let i=0; i<RANK_COUNT; i++) {
       revenue += this.results[i] * REWARD_MONEY[i];
     }
 
