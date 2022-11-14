@@ -1,6 +1,8 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
+const REWARD_MONEY = [2000000000, 30000000, 1500000, 50000, 5000];
+
 class App {
   constructor() {
     this.money = 0;
@@ -9,6 +11,7 @@ class App {
     this.winning = null;
     this.bonus = 0;
     this.results = [0, 0, 0, 0, 0];
+    this.revenueRatio = 0;
   }
 
   setMoney(input) {
@@ -42,7 +45,7 @@ class App {
 
   setBonus(bonus) {
     this.bonus = Number(bonus);
-    
+
     if (this.winning.getNumbers().indexOf(this.bonus) !== -1) {
       throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
     }
@@ -74,6 +77,16 @@ class App {
     }
   }
 
+  calculateRevenueRatio() {
+    let revenue = 0;
+
+    for (let i=0; i<5; i++) {
+      revenue += this.results[i] * REWARD_MONEY[i];
+    }
+
+    this.revenueRatio = Math.round(this.money / revenue * 100 * 100) / 100;
+  }
+
   play() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
       this.setMoney(input);
@@ -87,6 +100,7 @@ class App {
         MissionUtils.Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusInput) => {
           this.setBonus(bonusInput);
           this.calculateResults();
+          this.calculateRevenueRatio();
         });
       });
     });
