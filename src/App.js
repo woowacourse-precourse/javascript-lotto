@@ -23,12 +23,32 @@ class App {
     Console.readLine(INPUT_MESSAGE.BUY_MONEY, (answer) => {
       let lottoNum;
       this.#buyMoney = answer;
+      this.validate(answer);
       lottoNum = this.divideMoneyByThousand();
       this.lottoArr = Lotto.createTotalLottoArr(lottoNum);
 
       Output.printLottos(this.lottoArr);
       this.getWinningNum(this.lottoArr);
     });
+  }
+
+  validate(inputBuyMoney) {
+    this.validateIsNumber(inputBuyMoney);
+    this.validateIsOverThousand(inputBuyMoney);
+    this.validateIsDividedByThounsand(inputBuyMoney);
+  }
+
+  validateIsNumber(inputBuyMoney) {
+    if (isNaN(inputBuyMoney)) throw "[ERROR]숫자를 입력해주세요";
+  }
+
+  validateIsOverThousand(inputBuyMoney) {
+    if (inputBuyMoney < 1000) throw "[ERROR]1000원 이상의 금액을 입력해주세요.";
+  }
+
+  validateIsDividedByThounsand(inputBuyMoney) {
+    if (inputBuyMoney % 1000 !== 0)
+      throw "[ERROR]1000원 단위의 숫자를 입력해주세요.";
   }
 
   divideMoneyByThousand() {
