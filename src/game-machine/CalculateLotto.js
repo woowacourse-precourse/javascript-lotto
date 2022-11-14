@@ -8,13 +8,13 @@ class CalculateLotto{
 
   getPurchaseAmount(purchase_amount){
     this.purchase_amount = purchase_amount;
-    this.calculateLottoQuantity();
+    this.calculateLottoQuantity(purchase_amount);
     this.sendLottoNumbers();
   }
 
-  calculateLottoQuantity(){
+  calculateLottoQuantity(purchase_amount){
     let lotto_quantity;
-    lotto_quantity=this.purchase_amount/1000;
+    lotto_quantity=purchase_amount/1000;
     this.lotto_quantity=lotto_quantity;
     return lotto_quantity;
   }
