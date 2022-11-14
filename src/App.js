@@ -1,5 +1,6 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
+const LOTTO_ERROR_MENTION = require("./constant/ErrorMention");
 
 class App {
   constructor(){
@@ -115,7 +116,8 @@ class App {
 
   isInputValidate(money) {
     if (money % 1000 !== 0) {
-      throw new Error("[ERROR] 1000원 단위의 수를 입력해야합니다!");
+      Console.close();
+      throw new Error(LOTTO_ERROR_MENTION.money_size_thousand);
     }
   }
 
