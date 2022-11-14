@@ -5,6 +5,10 @@ const LottoManager = require('../src/LottoManager');
 const { ERROR } = require('../src/lib/constants/error');
 const { LOTTO } = require('../src/lib/constants/lotto');
 
+afterAll(() => {
+  MissionUtils.Console.close();
+});
+
 const mockRandoms = numbers => {
   MissionUtils.Random.pickUniqueNumbersInRange = jest.fn();
   numbers.reduce((acc, number) => {
