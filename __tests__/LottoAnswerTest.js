@@ -1,7 +1,10 @@
 const LottoAnswer = require("../src/LottoAnswer");
 
 describe("LottoAnswer 클래스 테스트", () => {
-  const lottoAnswer = new LottoAnswer([1, 2, 3, 4, 5, 6]);
+  let lottoAnswer;
+  beforeEach(() => {
+    lottoAnswer = new LottoAnswer([1, 2, 3, 4, 5, 6]);
+  });
 
   test("6자리 당첨 숫자 예외가 발생하지 않으면 저장된다.", () => {
     expect(lottoAnswer.numbers).toStrictEqual([1, 2, 3, 4, 5, 6]);
@@ -50,5 +53,11 @@ describe("LottoAnswer 클래스 테스트", () => {
     expect(() => {
       lottoAnswer.bonus = 6;
     }).toThrow("[ERROR]");
+  });
+
+  test("private 보너스 번호 접근", () => {
+    expect(lottoAnswer.bonus).toBe(undefined);
+    lottoAnswer.bonus = 7;
+    expect(lottoAnswer.bonus).toBe(7);
   });
 });
