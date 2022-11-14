@@ -55,11 +55,11 @@ class App {
     Console.print(INPUT_MESSAGE.winning);
     Console.readLine("", (prizeNums) => {
       this.lotto = new Lotto(prizeNums.split(","));
-      this.getBonusNumber();
+      this.getBonusNumberAndPrintResult();
     });
   }
 
-  getBonusNumber() {
+  getBonusNumberAndPrintResult() {
     Console.print(INPUT_MESSAGE.bonus);
     Console.readLine("", (bonusNum) => {
       this.validateBonusNumbers(bonusNum);
