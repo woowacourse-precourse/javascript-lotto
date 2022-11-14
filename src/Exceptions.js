@@ -8,16 +8,16 @@ class Exceptions {
   occurError(errorMessage) {
     throw new Error(errorMessage);
   }
+
+  isNotDigit() {
+    return isNaN(this.input);
+  }
 }
 
 class MoneyExceptions extends Exceptions {
   check() {
-    if (this.isNotDigit()) super.occurError(ERROR.MONEY_DIGIT);
+    if (super.isNotDigit()) super.occurError(ERROR.MONEY_DIGIT);
     if (this.isNotDivisible()) super.occurError(ERROR.MONEY_DIVISIBLE);
-  }
-
-  isNotDigit() {
-    return isNaN(this.input);
   }
 
   isNotDivisible() {
