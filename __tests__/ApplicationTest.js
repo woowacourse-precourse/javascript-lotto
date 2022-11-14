@@ -1,5 +1,7 @@
-const App = require("../src/App");
 const MissionUtils = require("@woowacourse/mission-utils");
+
+const App = require("../src/App");
+const { FIVE_WITH_BONUS, SIX } = require("../src/constants");
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();
@@ -89,5 +91,22 @@ describe("로또 테스트", () => {
     const count = app.countSameNumberWithWinningNumber(lotto, winningNumber);
 
     expect(count).toBe(5);
+  });
+
+  test("calculateWinningHistory 메소드는 로또번호와 당첨번호를 비교하여 당첨 횟수를 반환한다.", () => {
+    const app = new App();
+    const winningNumbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+    const lottos = [
+      [1, 2, 3, 4, 5, 7],
+      [1, 2, 3, 4, 5, 6],
+      [1, 2, 3, 4, 5, 6],
+    ];
+    const winningHistory = app.winningHistory;
+
+    app.calculateWinningHistory(lottos, winningNumbers, bonusNumber, winningHistory);
+
+    expect(app.winningHistory[FIVE_WITH_BONUS]).toBe(1);
+    expect(app.winningHistory[SIX]).toBe(2);
   });
 });
