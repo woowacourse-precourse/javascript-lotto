@@ -38,13 +38,9 @@ class LottoGame {
   }
 
   isPurchaseAmountValid(purchaseAmount) {
-    if (!isNumberType(purchaseAmount)) {
-      throw ERROR_MESSAGE.TYPE_ERROR;
-    }
+    if (!isNumberType(purchaseAmount)) throw ERROR_MESSAGE.TYPE_ERROR;
+    if (!isThousandUnits(purchaseAmount)) throw ERROR_MESSAGE.UNIT_ERROR;
 
-    if (!isThousandUnits(purchaseAmount)) {
-      throw ERROR_MESSAGE.UNIT_ERROR;
-    }
     return true;
   }
 
@@ -76,17 +72,12 @@ class LottoGame {
   }
 
   isWinningNumbersValid(winningNumbersList) {
-    if (!isValuesValidLength(winningNumbersList)) {
+    if (!isValuesValidLength(winningNumbersList))
       throw ERROR_MESSAGE.LENGTH_ERROR;
-    }
-
-    if (!isValuesNumberType(winningNumbersList)) {
-      throw ERROR_MESSAGE.TYPE_ERROR;
-    }
-
-    if (!isValuesValidRange(winningNumbersList)) {
+    if (!isValuesNumberType(winningNumbersList)) throw ERROR_MESSAGE.TYPE_ERROR;
+    if (!isValuesValidRange(winningNumbersList))
       throw ERROR_MESSAGE.RANGE_ERROR;
-    }
+
     return true;
   }
 
@@ -100,17 +91,11 @@ class LottoGame {
   }
 
   isBonusNumberValid(bonusNumber) {
-    if (!isNumberType(bonusNumber)) {
-      throw ERROR_MESSAGE.TYPE_ERROR;
-    }
-
-    if (!isValidUnique(this.#winningNumbers, bonusNumber)) {
+    if (!isNumberType(bonusNumber)) throw ERROR_MESSAGE.TYPE_ERROR;
+    if (!isValidUnique(this.#winningNumbers, bonusNumber))
       throw ERROR_MESSAGE.BONUS_UNIQUE_ERROR;
-    }
+    if (!isValidRange(bonusNumber)) throw ERROR_MESSAGE.RANGE_ERROR;
 
-    if (!isValidRange(bonusNumber)) {
-      throw ERROR_MESSAGE.RANGE_ERROR;
-    }
     return true;
   }
 
