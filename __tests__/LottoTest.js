@@ -4,7 +4,7 @@ describe("로또 클래스 테스트", () => {
   test("validate(), 로또 번호의 개수가 6개가 아니면 예외가 발생한다.", () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 6, 7]);
-    }).toThrowError("[ERROR] 로또 번호는 6개여야 합니다.");
+    }).toThrow("[ERROR] 로또 번호는 6개여야 합니다.");
   });
 
   test("validate(), 로또 번호가 아무것도 들어오지 않으면 예외가 발생한다.", () => {
@@ -49,7 +49,7 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   })
 
-  test("calRank(), 일치하는 번호를 세고 등수를 출력한다.", () => {
+  test("getRankFromLotto(), 일치하는 번호를 세고 등수를 출력한다.", () => {
     const winningLottos = [
       [1, 2, 3, 7, 8, 9, 10],
       [1, 2, 3, 4, 7, 8, 9],
@@ -61,11 +61,11 @@ describe("로또 클래스 테스트", () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
 
     winningLottos.forEach((numbers, index) => {
-      expect(lotto.calRank(numbers)).toEqual(expectRank[index]);
+      expect(lotto.getRankFromLotto(numbers)).toEqual(expectRank[index]);
     })
   })
 
-  test("standardOfRank(), 카운트 개수와 플래그로 등수를 반환한다.",() => {
+  test("decideRank(), 카운트 개수와 플래그로 등수를 반환한다.",() => {
     const countAndFlag = [
       [3, false],
       [4, false],
@@ -79,7 +79,7 @@ describe("로또 클래스 테스트", () => {
     countAndFlag.forEach((element, index) => {
       const count = element[0];
       const flag = element[1];
-      expect(lotto.standardOfRank(count, flag)).toEqual(expectRank[index]);
+      expect(lotto.decideRank(count, flag)).toEqual(expectRank[index]);
     });
   })
 });
