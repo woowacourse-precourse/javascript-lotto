@@ -4,9 +4,9 @@ const {
   PRIZE_MESSAGES,
   INPUT_MESSAGES,
   ACTION_MESSAGES,
-} = require('./constant/messages');
-const Purchaser = require('./domain/Purchaser');
-const Validator = require('./Validator');
+} = require('../constant/messages');
+const Purchaser = require('../domain/Purchaser');
+const Validator = require('../utils/Validator');
 
 class UserInterface {
   #winnerNumber;

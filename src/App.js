@@ -1,4 +1,4 @@
-const UserInterface = require('./UserInterface');
+const UserInterface = require('./UI/UserInterface');
 
 class App {
   play() {

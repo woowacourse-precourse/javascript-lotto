@@ -1,6 +1,6 @@
 const { PRIZE } = require('../constant/prize');
-const Lotto = require('../Lotto');
-const NumberGenerator = require('../NumberGenerator');
+const Lotto = require('../Lotto/Lotto');
+const NumberGenerator = require('../utils/NumberGenerator');
 
 class Purchaser {
   #money;
