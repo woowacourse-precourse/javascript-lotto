@@ -1,9 +1,10 @@
-const { Console } = require("@woowacourse/mission-utils");
+const { Console, Random } = require("@woowacourse/mission-utils");
 const { MESSAGES, PAY_ERROR } = require("./constants/Constants.js");
 const UNIT = 1000;
 
 class App {
   #count = 0;
+  #lottos = [];
 
   play() {
     this.start();
@@ -13,6 +14,7 @@ class App {
     Console.readLine(MESSAGES.PAY_COST, (input) => {
       this.checkPayValidation(input);
       this.#count = this.checkPayAmount(input);
+      this.#lottos = this.getAllLottoList(this.#count);
     });
   }
 
@@ -28,6 +30,18 @@ class App {
     return purchase;
   }
 
+  getlottoList() {
+    const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+    return numbers.sort((a, b) => a - b);
+  }
+  
+  getAllLottoList(count) {
+    let list = [];
+    for(let i = 0 ; i < count ; i++) {
+      list.push(this.getlottoList());
+    }
+    return list;
+  }
 
 }
 
