@@ -9,6 +9,10 @@ class App {
 
   #validMatchesList;
 
+  constructor(numbers) {
+    this.#purchaseNumList = [];
+    this.#validMatchesList = [3, 4, 5, 5.5, 6];
+  }
   play() {}
 
   generateLotto() {
