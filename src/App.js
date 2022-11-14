@@ -2,7 +2,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Bonus = require("./bonus");
 const Lotto = require("./Lotto");
 const LottoGenerator = require("./LottoGenerator");
-const { INPUT_MESSAGE } = require("./message");
+const { INPUT_MESSAGE, OUTPUT_MESSAGE } = require("./message");
 const { Console } = MissionUtils;
 
 class App {
@@ -24,8 +24,7 @@ class App {
     });
   }
   printMyLotto(myLotto) {
-    const PURCHASE_MESSAGE = `\n${myLotto.length}개를 구매했습니다.`;
-    Console.print(PURCHASE_MESSAGE);
+    Console.print(OUTPUT_MESSAGE.PURCHASE(myLotto.length));
     myLotto.forEach((lotto) => {
       lotto.sort((a, b) => a - b);
       Console.print(lotto);
@@ -42,8 +41,10 @@ class App {
   inputBonus() {
     Console.readLine(INPUT_MESSAGE.BONUS, (bonus) => {
       this.bonusLotto = new Bonus(bonus, this.winningLotto).returnBonus();
+      this.printResult();
     });
   }
+  printResult() {}
 }
 const app = new App();
 app.play();

@@ -12,4 +12,14 @@ const ERROR_MESSAGE = {
   NOT_RANGE: "[ERROR] 로또 번호는 1 이상 45 이하 입니다.",
   SPLIT_COMMA: "[ERROR] 입력은 숫자와 ','로 구분해 입력해주세요.",
 };
-module.exports = { INPUT_MESSAGE, ERROR_MESSAGE };
+const OUTPUT_MESSAGE = {
+  PURCHASE: (count) => `\n${count}개를 구매했습니다.`,
+  WINNING_NOTICE: "당첨 통계\n---",
+  FIFTH: (count) => `3개 일치 (5,000원) - ${count}개`,
+  FOURTH: (count) => `4개 일치 (50,000원) - ${count}개`,
+  THIRD: (count) => `5개 일치 (1,500,000원) - ${count}개`,
+  SECOND: (count) => `5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`,
+  FIRST: (count) => `6개 일치 (2,000,000,000원) - ${count}개`,
+  RESULT: (benefit) => `총 수익률은 ${benefit}%입니다.`,
+};
+module.exports = { INPUT_MESSAGE, ERROR_MESSAGE, OUTPUT_MESSAGE };
