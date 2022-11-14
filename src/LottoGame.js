@@ -1,13 +1,17 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const LottoUser = require('./LottoUser');
+const Lotto = require('./Lotto.js');
 
 class LottoGame {
   #user;
-  #winningNumbers;
-  #bonusNumber;
+  #raffle;
 
   constructor() {
     this.#user = undefined;
+    this.#raffle = {
+      winning: undefined,
+      bonus: undefined,
+    };
   }
 
   start() {
@@ -26,7 +30,7 @@ class LottoGame {
     MissionUtils.Console.readLine(
       '\n당첨 번호를 입력해 주세요.\n',
       (numbers) => {
-        this.#winningNumbers = numbers.split(',').map(Number);
+        this.#raffle.winning = new Lotto(numbers.split(',').map(Number));
         this.inputBonusNumber();
       },
     );
@@ -36,7 +40,9 @@ class LottoGame {
     MissionUtils.Console.readLine(
       '\n보너스 번호를 입력해 주세요.\n',
       (number) => {
-        this.#bonusNumber = parseInt(number);
+        const numberToInt = parseInt(number);
+        Lotto.validateLottoNumber(parseInt(numberToInt));
+        this.#raffle.bonus = parseInt(numberToInt);
       },
     );
   }
