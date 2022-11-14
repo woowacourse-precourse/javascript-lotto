@@ -34,7 +34,19 @@ const {
 class App {
   inputBonusNumber(winningNumbers, lottos) {}
 
-  validateWinningNumbers(winningNumbers) {}
+  validateWinningNumbers(winningNumbers) {
+    if (winningNumbers.length !== PICK_NUM) {
+      throw new Error(LOTTO_LENGTH_NOT_SIX_ERROR);
+    }
+    winningNumbers.forEach((number) => {
+      if (isNaN(number)) {
+        throw new Error(LOTTO_NAN_ERROR);
+      }
+      if (number < MIN_NUM || number > MAX_NUM) {
+        throw new Error(LOTTO_OUT_OF_RANGE_ERROR);
+      }
+    });
+  }
 
   inputWinningNumbers(lottos) {
     Console.readLine(INPUT_WINNING_MSG, (input) => {
