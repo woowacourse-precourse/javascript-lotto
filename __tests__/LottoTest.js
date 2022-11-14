@@ -15,6 +15,4 @@ describe("로또 클래스 테스트", () => {
       new Lotto([1, 2, 3, 4, 5, 5]);
     }).toThrow(Constant.LOTTO_NUMBERS_SHOULD_BE_UNIQUE);
   });
-
-  // 아래에 추가 테스트 작성 가능
 });
