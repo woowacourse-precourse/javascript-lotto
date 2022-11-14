@@ -6,47 +6,47 @@ const Lotto = require("../src/Lotto");
 const calculationOfLottoGame = require("../src/CalculationOfLottoGame");
 
 describe("로또게임 입력값 타당성검사 에러작동 테스트", () => {
-  test("금액을 입력했을 때_1000원 단위가 아닐 때", () => {
+  test("금액을 입력했을 때_1000원 단위가 아닐 때 에러발생", () => {
     expect(() => validateMoney(1100)).toThrow();
   });
-  test("금액을 입력했을 때_0원 미만일 때", () => {
+  test("금액을 입력했을 때_0원 미만일 때 에러발생", () => {
     expect(() => validateMoney(0)).toThrow();
   });
 
-  test("당첨 번호를 입력했을 때_숫자가 아닌 다른걸 입력 했을 때", () => {
+  test("당첨 번호를 입력했을 때_숫자가 아닌 다른걸 입력 했을 때 에러발생", () => {
     expect(() => new Lotto([1, 2, 3, 4, 5, "a"])).toThrow();
   });
 
-  test("당첨 번호를 입력했을 때_콤마(,)가 연속으로 입력됐을 때", () => {
+  test("당첨 번호를 입력했을 때_콤마(,)가 연속으로 입력됐을 때 에러발생", () => {
     expect(() => new Lotto([1, 2, ",", 3, 4, 5])).toThrow();
   });
-  test("당첨 번호를 입력했을 때_입력값이 1미만 45초과 일때", () => {
+  test("당첨 번호를 입력했을 때_입력값이 1미만 45초과 일때 에러발생", () => {
     expect(() => new Lotto([1, 2, 3, 4, 5, 56])).toThrow();
   });
 
-  test("당첨 번호를 입력했을 때_6개가 입력되지 않았을 때", () => {
+  test("당첨 번호를 입력했을 때_6개가 입력되지 않았을 때 에러발생", () => {
     expect(() => new Lotto([1, 2, 3, 4, 5, 6, 7])).toThrow();
   });
 
-  test("당첨 번호를 입력했을 때_중복되는 값이 있을 때", () => {
+  test("당첨 번호를 입력했을 때_중복되는 값이 있을 때 에러발생", () => {
     expect(() => new Lotto([1, 2, 3, 4, 5, 5])).toThrow();
   });
 
-  test("보너스 번호를 입력했을 때_1미만 45초과 일때", () => {
+  test("보너스 번호를 입력했을 때_1미만 45초과 일때 에러발생", () => {
     const bonusNum = 46;
     const winningNum = [1, 2, 3, 4, 5, 6];
 
     expect(() => validateBonusNum(bonusNum, winningNum)).toThrow();
   });
 
-  test("보너스 번호를 입력했을 때_숫자가 아닌 다른걸 입력 했을 때", () => {
+  test("보너스 번호를 입력했을 때_숫자가 아닌 다른걸 입력 했을 때 에러발생", () => {
     const bonusNum = 0;
     const winningNum = [1, 2, 3, 4, 5, 6];
 
     expect(() => validateBonusNum(bonusNum, winningNum)).toThrow();
   });
 
-  test("보너스 번호를 입력했을 때_당첨 번호와 중복되는 보너스 번호를 입력 했을 때", () => {
+  test("보너스 번호를 입력했을 때_당첨 번호와 중복되는 보너스 번호를 입력 했을 때 에러발생", () => {
     const bonusNum = 1;
     const winningNum = [1, 2, 3, 4, 5, 6];
 
@@ -55,7 +55,7 @@ describe("로또게임 입력값 타당성검사 에러작동 테스트", () => 
 });
 
 describe("로또 게임 계산 테스트", () => {
-  test("1000으로 나눈 몫을 반환하는 함수", () => {
+  test("1000으로 나눈 몫을 반환", () => {
     expect(calculationOfLottoGame.HowManyCanBuyLotto(11000)).toBe(11);
   });
 
@@ -95,6 +95,7 @@ describe("로또 게임 계산 테스트", () => {
       calculationOfLottoGame.makeWinningOfLottoArr(usersLotto, winLotto)
     ).toEqual([0, 1, 1]);
   });
+
   test("배열과 숫자를 배열로 합쳐주는 함수 테스트", () => {
     const arr = [1, 2, 3];
     const num = 4;
@@ -104,7 +105,7 @@ describe("로또 게임 계산 테스트", () => {
     ]);
   });
 
-  test("유저의 로또 중 보너스 당첨 번호가 있는지 확인 함수 테스트", () => {
+  test("유저의 로또번호 중 보너스 당첨 번호가 있는지 확인 함수 테스트", () => {
     const userLotto = [
       [1, 2, 3, 4],
       [11, 22, 33, 44],
@@ -121,7 +122,6 @@ describe("로또 게임 계산 테스트", () => {
       }
       return winLotto.set("없음", winLotto.get("없음") + 1);
     }
-
     checkOfBonusNumHave(userLotto, bonusNum, { index: index }, winLotto);
 
     expect(winLotto.get("있음")).toBe(1);
