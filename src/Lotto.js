@@ -38,6 +38,22 @@ class Lotto {
     this.bonusNumber = number;
   }
 
+  checkPrize(IssuedLotto) {
+    const matchingCount = this.countMatchingNumber(IssuedLotto);
+    if (matchingCount === 6) {
+      return '1등';
+    }
+    if (matchingCount === 5) {
+      return this.checkBonusNumber(IssuedLotto) ? '2등' : '3등';
+    }
+    if (matchingCount === 4) {
+      return '4등';
+    }
+    if (matchingCount === 3) {
+      return '5등';
+    }
+  }
+
   countMatchingNumber(IssuedLotto) {
     let matchingCount = 0;
     IssuedLotto.forEach((number) => {
