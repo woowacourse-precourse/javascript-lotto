@@ -41,6 +41,7 @@ class App {
     Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
       this.draw.handleBonusNumber(Number(bonusNumber));
       this.calculateResult();
+      this.printResult();
     });
   }
 
