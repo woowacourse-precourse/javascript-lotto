@@ -87,8 +87,6 @@ class App {
           case correctCount === 6:
             this.lottoResult[4]++;
             break;
-          default:
-            break;
         }
       });
       this.printLottoJackpotResult();
