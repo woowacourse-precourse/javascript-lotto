@@ -18,6 +18,13 @@ class LottoResult {
     });
     return equalCnt;
   }
+
+  checkBonus(lotto) {
+    if(lotto.includes(this.#bonus)){
+        return true
+    }
+    return false;
+  }
 }
 
 module.exports = LottoResult;
