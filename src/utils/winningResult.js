@@ -3,7 +3,7 @@ const { formatWithComma } = require('./formatNumber');
 const WINNINGS = [5_000, 50_000, 1_500_000, 30_000_000, 2_000_000_000];
 
 const winningResult = (
-  [correct3, correct4, correct5, correct6, correct5Bonus],
+  [correct3, correct4, correct5, correct5Bonus, correct6],
   rate
 ) => {
   let message = `당첨 통계\n`;
