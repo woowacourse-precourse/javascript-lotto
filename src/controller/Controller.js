@@ -62,7 +62,7 @@ class Controller {
   }
 
   getBonusNum(bonusNum) {
-    if (!this.InputCheck.checkBonusInput(bonusNum)) {
+    if (!this.InputCheck.checkBonusInput(bonusNum, this.winSplitNum)) {
       throw new Error('[ERROR] 입력한 보너스 번호가 올바르지 않습니다.');
     }
     this.bonusNum = bonusNum;

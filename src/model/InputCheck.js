@@ -13,10 +13,10 @@ class InputCheck {
     return false;
   }
 
-  checkBonusInput(input) {
+  checkBonusInput(input, winSplitNum) {
     const IS_NUM_AND_RANGE = /[0-9]$/.test(input) && input <= 45 && input > 0;
 
-    return IS_NUM_AND_RANGE;
+    return IS_NUM_AND_RANGE && !winSplitNum.includes(input);
   }
 
   checkIsNum(input) {
