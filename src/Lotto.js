@@ -48,8 +48,6 @@ class Lotto {
     }
     return false;
   }
-
-
   
 }
 
