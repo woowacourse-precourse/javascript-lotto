@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { QUESTION, ERR_MSG } = require("./constants/constants");
+const { ERR_MSG, LOTTO_PRICE } = require("./constants/constants");
 const Lotto = require("./Lotto");
 
 class Vender {
@@ -21,7 +21,7 @@ class Vender {
     if (isNaN(+amount)) {
       throw new Error(ERR_MSG.notNumber);
     }
-    if (!(amount % 1000 === 0 && amount / 1000 !== 0)) {
+    if (!(amount % LOTTO_PRICE === 0 && amount / LOTTO_PRICE !== 0)) {
       throw new Error(ERR_MSG.notThousand);
     }
     return amount;
@@ -29,12 +29,12 @@ class Vender {
 
   printPurchaseHistory() {
     MissionUtils.Console.print(
-      `${this.#purchaseAmount / 1000}개를 구매했습니다.`
+      `${this.#purchaseAmount / LOTTO_PRICE}개를 구매했습니다.`
     );
   }
 
   buy() {
-    for (let i = 0; i < this.#purchaseAmount / 1000; i++) {
+    for (let i = 0; i < this.#purchaseAmount / LOTTO_PRICE; i++) {
       this.generateLotto();
     }
   }

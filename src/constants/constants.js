@@ -8,9 +8,11 @@ const PRETTY_MSG = Object.freeze({
   winningResult: "당첨 통계\n---",
 });
 
+const LOTTO_PRICE = 1000;
+
 const ERR_MSG = Object.freeze({
   notNumber: "[ERROR] 숫자만 입력해주세요.",
-  notThousand: "[ERROR] 1,000원 단위로 입력해주세요.",
+  notThousand: `[ERROR] ${LOTTO_PRICE.toLocaleString()}원 단위로 입력해주세요.`,
   notSixCount: "[ERROR] 로또 번호는 6개여야 합니다.",
   notUniqueNumber: "[ERROR] 중복된 번호가 있습니다.",
   notLottoNumber: "[ERROR] 로또 번호는 숫자여야 합니다.",
@@ -39,4 +41,5 @@ module.exports = {
   MATCH_MSG,
   WINNING_AMOUNT,
   PRETTY_MSG,
+  LOTTO_PRICE,
 };
