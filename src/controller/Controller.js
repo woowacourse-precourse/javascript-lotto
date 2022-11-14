@@ -12,7 +12,7 @@ class Controller {
   }
 
   printIssuedLotto(issuedLotto) {
-    this.view.printUserLottoArray(issuedLotto);
+    this.view.printUserIssuedLotto(issuedLotto);
   }
 
   getPurchasingAmountFromUser() {
@@ -48,7 +48,7 @@ class Controller {
     return {
       winningNumber: this.userNumber.getLottoToUse(),
       bonusNumber: this.userNumber.getBonusNumber(),
-      userLottoArray: this.userNumber.getUserLottoArray(),
+      userIssuedLotto: this.userNumber.getUserIssuedLotto(),
       purchasingAmount: this.userNumber.getPurchasingAmount(),
     };
   }

@@ -49,8 +49,8 @@ class Statistics {
     return null;
   }
 
-  updateRanks({ winningNumber, bonusNumber, userLottoArray }) {
-    for (const singleLotto of userLottoArray) {
+  updateRanks({ winningNumber, bonusNumber, userIssuedLotto }) {
+    for (const singleLotto of userIssuedLotto) {
       const correctCount = this.getCorrectNumberFromSingleLotto(
         winningNumber,
         singleLotto,

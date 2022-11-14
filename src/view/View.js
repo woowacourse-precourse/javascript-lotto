@@ -12,13 +12,13 @@ class View {
     });
   }
 
-  printUserLottoArray(userLottoArray) {
+  printUserIssuedLotto(userIssuedLotto) {
     Console.print(
-      `\n${this.controller.userNumber.getUserLottoArray().length}${
+      `\n${this.controller.userNumber.getUserIssuedLotto().length}${
         messages.USER_LOTTO_CONFIRMATION_MESSAGE
       }`,
     );
-    for (const singleLottoCombination of userLottoArray) {
+    for (const singleLottoCombination of userIssuedLotto) {
       Console.print(singleLottoCombination);
     }
   }

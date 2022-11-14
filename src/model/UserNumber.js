@@ -6,7 +6,7 @@ class UserNumber {
     this.controller = controller;
     this.purchasingAmount = null;
     this.lottoToUse = null;
-    this.userLottoArray = [];
+    this.userIssuedLotto = [];
     this.bonusNumber = null;
   }
 
@@ -23,26 +23,22 @@ class UserNumber {
   setPurchasingAmount(userPurchasingAmountInput) {
     this.validatePurchasingAmount(userPurchasingAmountInput);
     this.purchasingAmount = Number(userPurchasingAmountInput);
-    this.setUserLottoArrayWithPurchasingAmount();
+    this.setUserIssuedLottoWithPurchasingAmount();
   }
 
-  setUserLottoArrayWithPurchasingAmount() {
+  getUserIssuedLotto() {
+    return this.userIssuedLotto;
+  }
+
+  setUserIssuedLottoWithPurchasingAmount() {
     for (let idx = 0; idx < this.purchasingAmount / 1000; idx++) {
-      const singleLottoCombinationArray = Random.pickUniqueNumbersInRange(
-        1,
-        45,
-        6,
-      );
-      this.userLottoArray.push(
-        singleLottoCombinationArray.sort((first, second) => first - second),
+      const singleLottoCombination = Random.pickUniqueNumbersInRange(1, 45, 6);
+      this.userIssuedLotto.push(
+        singleLottoCombination.sort((first, second) => first - second),
       );
     }
-    this.controller.printIssuedLotto(this.userLottoArray);
+    this.controller.printIssuedLotto(this.userIssuedLotto);
     this.controller.getWinningNumberFromUser();
-  }
-
-  getUserLottoArray() {
-    return this.userLottoArray;
   }
 
   getLottoToUse() {

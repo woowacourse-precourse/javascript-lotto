@@ -9,28 +9,28 @@ class Lotto {
     this.#numbers = numbers;
   }
 
-  isArraySplitByComma(numbersArray) {
-    if (numbersArray.length !== 6) {
+  isInputSplitByComma(lotto) {
+    if (lotto.length !== 6) {
       throw new Error(messages.WINNING_NUMBER_ERROR_COMMA_NUMBER_MESSAGE);
     }
 
-    for (const singleElement of numbersArray) {
+    for (const singleElement of lotto) {
       if (isNaN(singleElement)) {
         throw new Error(messages.WINNING_NUMBER_ERROR_COMMA_NUMBER_MESSAGE);
       }
     }
   }
 
-  isArrayInRange(numbersArray) {
-    for (const singleElement of numbersArray) {
+  isSingleLottoElementInRange(lotto) {
+    for (const singleElement of lotto) {
       if (1 > singleElement || singleElement > 45) {
         throw new Error(messages.WINNING_NUMBER_ERROR_RANGE_MESSAGE);
       }
     }
   }
 
-  isArrayUnique(numbersArray) {
-    const numbersSet = new Set(numbersArray);
+  isLottoUnique(lotto) {
+    const numbersSet = new Set(lotto);
     if (numbersSet.size !== 6) {
       throw new Error(messages.WINNING_NUMBER_ERROR_UNIQUE_NUMBERS_MESSAGE);
     }
@@ -38,9 +38,9 @@ class Lotto {
 
   validate(userInput) {
     const winningSplitNumber = userInput.split(",").map(Number);
-    this.isArraySplitByComma(winningSplitNumber);
-    this.isArrayInRange(winningSplitNumber);
-    this.isArrayUnique(winningSplitNumber);
+    this.isInputSplitByComma(winningSplitNumber);
+    this.isSingleLottoElementInRange(winningSplitNumber);
+    this.isLottoUnique(winningSplitNumber);
   }
 
   getLottoNumbers() {
