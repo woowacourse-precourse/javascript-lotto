@@ -99,3 +99,46 @@ describe('입력된 당첨 번호에 대한 유효성 검사 테스트', () => {
     });
   });
 });
+
+describe('숫자 배열 당첨 번호에 대한 유효성 검사 테스트', () => {
+  test('배열의 길이가 6이 아닌 경우 예외 발생', () => {
+    const winningNumbers = [
+      [1, 2, 3, 4, 5],
+      [1, 2, 3, 4, 5, 6, 7],
+    ];
+
+    winningNumbers.forEach((numbers) => {
+      expect(() =>
+        Validator.throwErrorIfInvalidWinningNumbers(numbers)
+      ).toThrow('[ERROR]');
+    });
+  });
+
+  test('각 요소가 1에서 45까지의 수가 아닌 경우 예외 발생', () => {
+    const winningNumbers = [
+      [1, 2, 3, 4, 5, 50],
+      [-2, 5, 6, 7, 25, 31],
+      [0, 5, 13, 21, 25, 45],
+    ];
+
+    winningNumbers.forEach((numbers) => {
+      expect(() =>
+        Validator.throwErrorIfInvalidWinningNumbers(numbers)
+      ).toThrow('[ERROR]');
+    });
+  });
+
+  test('중복된 숫자가 존재하는 경우 예외 발생', () => {
+    const winningNumbers = [
+      [1, 1, 3, 4, 5, 50],
+      [2, 5, 7, 7, 25, 31],
+      [4, 5, 13, 21, 25, 25],
+    ];
+
+    winningNumbers.forEach((numbers) => {
+      expect(() =>
+        Validator.throwErrorIfInvalidWinningNumbers(numbers)
+      ).toThrow('[ERROR]');
+    });
+  });
+});
