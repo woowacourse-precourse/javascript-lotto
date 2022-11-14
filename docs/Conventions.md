@@ -104,7 +104,7 @@
 
         - iterators (for-of루프) 대신에 map, reduce와 같은 JS 고급함수를 사용하라
         immutable해서. side effect 신경쓰기보다 순수 함수를 다루는 게 간단하기 때문
-        - gererators 사용 금지
+        - generators 사용 금지
 
 10. 프로퍼티
 
@@ -140,14 +140,13 @@
          : obj(+arr) 값, 수치값, 문자열 -> true
          : undefined, null, 수치값 +0, -0, NaN, '' -> false
          : boolean -> boolean에 따라
-        - 단축형 사용
+        - 단축형 문법 사용
 
 14. 블록
 
         - 복수행의 블록에서 {} 사용, 1줄행일 때는 {} 생략
         if (test) return false;
         - 복수행 블록의 else는 if 블록 끝 {}와 같은 행에 위치시키기
-        -
 
 15. Comments (주석)
 
@@ -278,7 +277,7 @@
 - 함수 : 15라인 이하
 - else if / else / switch 보다는 if-return이 선호되지만, 상황에 맞게 쓴다.
 
-* 공백 필수 : tab 대신 space 쓰기
+* 공백 필수
 * 한 메서드에 한 단계의 indent (최대 2개)
 * 모든 원시값과 문자열 포장?
 * 인자 수는 최대 3개 까지 + 최대한 줄이기

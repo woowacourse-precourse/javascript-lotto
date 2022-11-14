@@ -1,5 +1,7 @@
 class App {
-  play() {}
+  play() {
+    console.log("Implement test");
+  }
 }
 
 module.exports = App;

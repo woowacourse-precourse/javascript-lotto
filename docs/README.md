@@ -10,41 +10,52 @@
 ### feat () : init , game , error
 
 - [ ] user: 로또 구입 금액 입력 - Player#buyTickets
-    - [ ] 숫자 타입인가 - Input#numberType -> static
-    - [ ] 1,000원 단위로 떨어지는가 - Input#moneyUnit
-      - [ ] 각각의 경우 에러 발생시 - InputError # numberType, moneyUnit
+  - [ ] 숫자 타입인가 - Input#numberType -> static
+  - [ ] 1,000원 단위로 떨어지는가 - Input#moneyUnit
+    - [ ] 각각의 경우 에러 발생시 - InputError # numberType, moneyUnit
+
 ###
+
 - [ ] 로또 발행 : 유효성 체크 - Lotto#validate
-    - [ ] 각 요소가 숫자 타입인가 - Input#numberType -> static
-    - [ ] 요소가 범위 내에서 생성되는가 (1~45) - Input#range -> static
-    - [ ] 요소가 6개 인가 - Input#lengthSix -> static
-    - [ ] 요소가 중복되지 않는가 - Input#duplication -> static
-    - [ ] 발행 결과가 [,] 형태로 만들어지는가 - Input#format#issue
-        - [ ] 각각의 경우 에러 발생시 - IssueError # LAST_KEYWORD
+  - [ ] 각 요소가 숫자 타입인가 - Input#numberType -> static
+  - [ ] 요소가 범위 내에서 생성되는가 (1~45) - Input#range -> static
+  - [ ] 요소가 6개 인가 - Input#lengthSix -> static
+  - [ ] 요소가 중복되지 않는가 - Input#duplication -> static
+  - [ ] 발행 결과가 [,] 형태로 만들어지는가 - Input#format#issue
+    - [ ] 각각의 경우 에러 발생시 - IssueError # LAST_KEYWORD
+
 ###
+
 - [ ] 로또 발행 : 발행 - Lotto#issue
-    - [ ] 구입 금액만큼 발행 - Issue
-        - [ ] 각각의 경우 에러 발생시 - IssueError # LAST_KEYWORD
+  - [ ] 구입 금액만큼 발행 - Issue
+    - [ ] 각각의 경우 에러 발생시 - IssueError # LAST_KEYWORD
+
 ###
+
 - [ ] user: 당첨 번호 입력 - Player#winningNumbers
-    - [ ] 요소가 숫자 타입인가 - Input#numberType -> static
-    - [ ] 요소가 범위 내에 있는가 - Input#range -> static
-    - [ ] 요소가 6개 인가 - Input#lengthSix -> static
-    - [ ] 요소가 중복되지 않는가 - Input#duplication -> static
-    - [ ] 발생 결과가 ',' 형태로 만들어지는가 - Input#format#input
-        - [ ] 각각의 경우 에러 발생시 - InputError # LAST_KEYWORD
+  - [ ] 요소가 숫자 타입인가 - Input#numberType -> static
+  - [ ] 요소가 범위 내에 있는가 - Input#range -> static
+  - [ ] 요소가 6개 인가 - Input#lengthSix -> static
+  - [ ] 요소가 중복되지 않는가 - Input#duplication -> static
+  - [ ] 발생 결과가 ',' 형태로 만들어지는가 - Input#format#input
+    - [ ] 각각의 경우 에러 발생시 - InputError # LAST_KEYWORD
+
 ###
+
 - [ ] user: 보너스 번호 입력 - Player#winningBonusNumber
-    - [ ] 요소가 숫자 타입인가 - Input#numberType -> static
-    - [ ] 요소가 범위 내에 있는가 - Input#range -> static
-    - [ ] 요소가 1개 인가 - Input#lengthOne -> static
-        - [ ] 각각의 경우 에러 발생시 - InputError # LAST_KEYWORD
+  - [ ] 요소가 숫자 타입인가 - Input#numberType -> static
+  - [ ] 요소가 범위 내에 있는가 - Input#range -> static
+  - [ ] 요소가 1개 인가 - Input#lengthOne -> static
+    - [ ] 각각의 경우 에러 발생시 - InputError # LAST_KEYWORD
+
 ###
+
 - [ ] 당첨 결과 - Result
-    - [ ] 내역 - Result#winning
-    - [ ] 수익률 (소수점 둘째자리에서 반올림) - Result#profit
-           - [ ] 각각의 경우 에러 발생시 - ResultError # LAST_KEYWORD
+  - [ ] 내역 - Result#winning
+  - [ ] 수익률 (소수점 둘째자리에서 반올림) - Result#profit - [ ] 각각의 경우 에러 발생시 - ResultError # LAST_KEYWORD
+
 ###
+
 <br/>
 
 ## 🚀 미션 - 로또
