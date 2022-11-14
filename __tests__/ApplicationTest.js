@@ -1,7 +1,8 @@
 const App = require("../src/App");
 const MissionUtils = require("@woowacourse/mission-utils");
 const Person = require("../src/Person");
-const { ERROR } = require('../src/Constants')
+const { ERROR } = require('../src/Constants');
+const { SYSTEM } = require("../src/System");
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();
@@ -98,4 +99,28 @@ describe("로또 테스트", () => {
       person.isCorrectCash("-1");
     }).toThrow(ERROR.CASH_IS_NOT_NATURAL_NUMBER);
   });
+
+  test("기능 테스트: 금액에 맞는 개수 만큼 로또 생성", () => {
+    const logs = [
+      "3개를 구매했습니다.",
+      "[1, 2, 3, 5, 42, 43]",
+      "[2, 4, 8, 16, 38, 44]",
+      "[5, 7, 8, 10, 11, 12]",
+    ];
+    mockRandoms([
+      [1, 2, 3, 5, 42, 43],
+      [2, 4, 8, 16, 38, 44],
+      [5, 7, 8, 10, 11, 12],
+    ]);
+    const logSpy = getLogSpy();
+
+    const cash = '3000';
+    SYSTEM.publishLotto(cash);
+
+    logs.forEach((log) => {
+
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
 });
