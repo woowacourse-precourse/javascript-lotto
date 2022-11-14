@@ -2,6 +2,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Constant = require("./components/Constant");
 const MoneyValidator = require("./components/MoneyValidator");
 const Lotto = require("./Lotto");
+const BonusNumber = require("./BonusNumber");
 
 class Purchase {
   static inputMoney() {
@@ -65,6 +66,15 @@ class Purchase {
       Constant.BONUS_NUMBER_MESSAGE,
       Purchase.validateBonusNumber
     );
+  }
+
+  static validateBonusNumber(number) {
+    MissionUtils.Console.print(number);
+    Purchase.createBonusLotto(number);
+  }
+
+  static createBonusLotto(number) {
+    const bonusNumber = new BonusNumber(number);
   }
 }
 
