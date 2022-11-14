@@ -9,8 +9,9 @@ class App {
     const bonusNumber = new Lotto(this.consoleInput("보너스 번호를 입력해 주세요.\n"));
     const winningArr = [0,0,0,0,0];
     lottoArr.forEach(outterArr =>{
-      winningArr[this.lottoMatch(outterArr,[winningNumber],bonusNumber)]+=1
+      winningArr[this.lottoMatch(outterArr,winningNumber,bonusNumber)]+=1
     })
+    this.winningState(winningArr,ticket);
   }
 
   createLotto(numbers) {
@@ -55,12 +56,29 @@ class App {
       if(userLotto.includes(element)) ballCount+=1
     })
     if(userLotto.includes(bonusNumber) && ballCount === 5) bonusBallCount+=1
-
     if(ballCount === 6) return 0
-    if(ballCount === 5 && bonusBallCount === 1) return 1
-    if(ballCount === 5 && bonusBallCount !== 1) return 2
-    if(ballCount === 4) return 3
-    if(ballCount === 3) return 4
+    else if(ballCount === 5 && bonusBallCount === 1) return 1
+    else if(ballCount === 5 && bonusBallCount !== 1) return 2
+    else if(ballCount === 4) return 3
+    else if(ballCount === 3) return 4
+  }
+
+  winningState(winningArr,ticket){
+    let result = 0;
+    this.consolePrint(`당첨 통계`)
+    this.consolePrint(`---`)
+    this.consolePrint(`3개 일치 (5,000원) - ${winningArr[4]}개`)
+    result += winningArr[4]*5000
+    this.consolePrint(`4개 일치 (50,000원) - ${winningArr[3]}개`)
+    result += winningArr[3]*50000
+    this.consolePrint(`5개 일치 (1,500,000원) - ${winningArr[2]}개`)
+    result += winningArr[2]*1500000
+    this.consolePrint(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningArr[1]}개`)
+    result += winningArr[1]*30000000
+    this.consolePrint(`6개 일치 (2,000,000,000원) - ${winningArr[0]}개`)
+    result += winningArr[0]*2000000000
+    result = result/(ticket*1000)*100
+    this.consolePrint(`총 수익률은 ${result.toFixed(1)}%입니다.`)
   }
 
 }
