@@ -15,23 +15,42 @@ class Lotto {
   constructor(numbers) {
     const coin = new Coin();
     this.setWinningNumber();
+    this.setBonusNumber();
      this.validate(numbers);
     this.#numbers = numbers;
-    
+    this.getUserNumber();
+    this.resultPrint();
+    this.Matching();
+    this.getReward();
   }
-
+  setWinningNumber(){
+    MissionUtils.Console.readLine("당첨번호를 입력하세요",(answer)=>{
+        this.numbers = answer.split(",");
+        MissionUtils.Console.print(this.numbers)
+    })// user 입력 값
+}
   validate(numbers) {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
+    else if(numbers.some((i)=>{
+      if(i<1 || i>45){
+        return true;
+      }
+    })){
+      throw new Error("[ERROR] 로또 번호는 1과 45사이의 숫자입니다.")
+    }
+    else if(numbers.some((i)=>{
+      if(typeof i !== Number){
+        return true;
+      }
+    })){
+      throw new Error("[ERROR] 숫자만 입력 가능합니다.")
+    }
   }
+  
   // TODO: 추가 기능 구현
-  setWinningNumber(){
-    MissionUtils.Console.readLine("당첨번호를 입력하세요",(answer)=>{
-        this.#numbers = answer.split(",");
-        MissionUtils.Console.print(this.#numbers)
-    })// user 입력 값
-}
+
   setBonusNumber(){
     MissionUtils.Console.readLine("보너스 번호를 입력하세요",(answer)=>{
       this.bonus = answer;
