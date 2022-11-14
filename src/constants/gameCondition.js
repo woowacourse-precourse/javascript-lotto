@@ -1,5 +1,9 @@
 const LOTTO_PRICE = 1000;
 const LOTTO_LENGTH = 6;
+const LOTTO_RANGE = {
+  LOTTO_MIN: 1,
+  LOTTO_MAX: 45,
+};
 const WINNING_PRICE = {
   0: 0,
   1: 2000000000,
@@ -8,4 +12,4 @@ const WINNING_PRICE = {
   4: 50000,
   5: 5000,
 };
-module.exports = { LOTTO_PRICE, LOTTO_LENGTH, WINNING_PRICE };
+module.exports = { LOTTO_RANGE, LOTTO_PRICE, LOTTO_LENGTH, WINNING_PRICE };
