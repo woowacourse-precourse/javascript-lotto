@@ -15,6 +15,7 @@ const MESSAGE = Object.freeze({
 const ERROR = Object.freeze({
     INVAID_CASH: "[ERROR] 구입 금액은 1000원 단위여야합니다.",
     CASH_IS_NOT_NUMBER: "[ERROR] 입력값은 숫자여야 합니다.",
+    CASH_IS_ZERO: "[ERROR] 입력값은 0보다 큰 숫자여야 합니다.",
     NOT_SIX_NUMBER: "[ERROR] 로또 번호는 총 6개여야 합니다.",
     NOT_UNIQUE: "[ERROR] 중복된 숫자가 포함되어있습니다.",
     NOT_NUMBER: "[ERROR] 숫자가 아닌 값이 포함되어있습니다.",
