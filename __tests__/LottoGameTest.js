@@ -53,3 +53,14 @@ describe("LottoGame 클래스 isBonusNumberValid 함수 테스트", () => {
     }).toThrow("[ERROR] 1~45 범위의 값만 입력해주세요.");
   });
 });
+
+describe("LottoGame 클래스 countMatchedNumbers 함수 테스트", () => {
+  test("값이 문자면 예외가 발생한다.", () => {
+    expect(
+      new LottoGame().countMatchedNumbers(
+        [1, 2, 3, 4, 5, 6],
+        [1, 2, 3, 4, 5, 7]
+      )
+    ).toEqual(5);
+  });
+});
