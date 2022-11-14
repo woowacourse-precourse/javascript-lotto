@@ -25,12 +25,15 @@ class App {
 
       const lottoNum = Lotto.caculateLottoNumPerUnit(Number(price));
       Console.print("\n" + lottoNum + Console.PURCHASED_LOTTO_COUNT_MSG);
-
-      const lottos = LottoAdmin.generateLottoAnswer(lottoNum);
-      lottos.forEach((lotto) => this.lottos.push([...lotto]));
+      this.generateLottos(lottoNum);
       Lotto.printLottos(this.lottos);
       this.requestLottoNumbers();
     });
+  }
+
+  generateLottos(lottoNum) {
+    const lottos = LottoAdmin.generateLottoAnswer(lottoNum);
+    lottos.forEach((lotto) => this.lottos.push([...lotto]));
   }
 
   getInputNumbers(numbers) {
@@ -50,7 +53,7 @@ class App {
 
   requestBonusNumber() {
     Console.getUserInput("\n" + Console.REQUEST_BONUS_NUMBER, (number) => {
-      Validator.isValidBonus(number);
+      if (!Validator.isValidBonus(number)) return;
       this.bonusNumber = Number(number);
       Console.print("\n" + Console.WIN_STATISTICS);
       this.winStatistics = this.getWinStatistics(
