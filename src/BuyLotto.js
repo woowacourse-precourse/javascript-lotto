@@ -50,6 +50,18 @@ class BuyLotto {
             return lottoNumbers;
         }); 
     }
+
+    inputBonusNumber() {
+        MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (bonusInput) => {
+            MissionUtils.Console.print('보너스 번호를 입력해주세요.')
+            
+            const bonusNumber = bonusInput;
+
+            MissionUtils.Console.print(bonusNumber);
+            
+            return bonusNumber;
+        }); 
+    }
 }
 
 const isValidAmount = (amount) => {
