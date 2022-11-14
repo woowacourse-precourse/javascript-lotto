@@ -31,7 +31,7 @@ class User {
   }
   static randomSortedNumbers() {
     const lottoNumber = Random.pickUniqueNumbersInRange(1, 45, 6);
-    lottoNumber.sort();
+    lottoNumber.sort((a, b) => a - b);
     return lottoNumber;
   }
   static isValidPurchase(amount) {
