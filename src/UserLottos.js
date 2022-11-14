@@ -19,6 +19,7 @@ class UserLottos {
 
   makeLotto() {
     let numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    numbers.sort((a, b) => a - b);
     return numbers;
   }
 
