@@ -1,4 +1,4 @@
-const App = require("../src/App");
+const App = require('../src/App');
 const Validation = require('../src/Validation');
 const game = require('../src/LottoGame');
 

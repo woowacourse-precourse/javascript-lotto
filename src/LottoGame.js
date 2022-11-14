@@ -1,6 +1,6 @@
-const Utils = require("./Utils");
+const Utils = require('./Utils');
 const ResultPrinter = require('./ResultPrinter')
-const Lotto = require("./Lotto");
+const Lotto = require('./Lotto');
 const Validation = require('./Validation');
 
 
@@ -43,7 +43,6 @@ class LottoGame {
         gameSetting.maxNumber = this.maxNumber;
         gameSetting.minPrice = this.minPrice;
 
-        
         this.lottoContainer = undefined;
         this.rp = undefined;
         
@@ -142,23 +141,23 @@ class LottoGame {
         return hitCount == this.lottoLength ? this.rankArray[hitCount] : this.rankArray[hitCount - 1];
     }
     
-      countHit(input) {
+    countHit(input) {
+
+    let hit = 0;
+
+    input.map((digit, index) => {
+        //let idx = [1,2,3,4,5,6].indexOf(digit); for test code
+        let idx = this.targetNumbers.indexOf(digit);
+
+        if(idx !== -1) hit++;
+    })
+
+    return hit;
+    }
     
-        let hit = 0;
-    
-        input.map((digit, index) => {
-          //let idx = [1,2,3,4,5,6].indexOf(digit); for test code
-          let idx = this.targetNumbers.indexOf(digit);
-    
-          if(idx !== -1) hit++;
-        })
-    
-        return hit;
-      }
-      
-      isHitBonus(input, bonus) {
-        return input.includes(bonus);
-      }
+    isHitBonus(input, bonus) {
+    return input.includes(bonus);
+    }
 }
 
 exports.gameSetting = gameSetting;
