@@ -78,6 +78,16 @@ describe("로또 테스트", () => {
 
     const app = new App();
     const lottos = app.generateLottoWithLottoCount(3);
+
     expect(lottos.length).toBe(3);
+  });
+
+  test("countSameNumberWithWinningNumber 메소드는 당첨번호와 로또번호를 비교하여 일치하는 숫자의 개수를 반환한다.", () => {
+    const app = new App();
+    const winningNumber = [1, 2, 3, 4, 5, 6];
+    const lotto = [1, 2, 3, 4, 5, 7];
+    const count = app.countSameNumberWithWinningNumber(lotto, winningNumber);
+
+    expect(count).toBe(5);
   });
 });
