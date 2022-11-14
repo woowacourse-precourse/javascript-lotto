@@ -13,18 +13,18 @@ class App {
   #lottoPrizeDto;
 
   async play() {
-    const money = await InputConsole.getMoney();
+    const money = await InputConsole.GetMoney();
     const purchaseNumber = LottoValidator.getLottoPuchaseNumber(money);
-    OutputConsole.lottoPurchaseNumber(purchaseNumber);
+    OutputConsole.LottoPurchaseNumber(purchaseNumber);
 
     this.#lottoPurchaseDtos = Array.from(
       { length: purchaseNumber },
       () => new LottoPurchaseDto(),
     );
-    OutputConsole.lottoNumbers(this.#lottoPurchaseDtos);
+    OutputConsole.LottoNumbers(this.#lottoPurchaseDtos);
 
-    const lottoNumbers = await InputConsole.getLotto();
-    const lottoAdditinalNumber = await InputConsole.getLottoAdditional(lottoNumbers);
+    const lottoNumbers = await InputConsole.GetLotto();
+    const lottoAdditinalNumber = await InputConsole.GetLottoAdditional(lottoNumbers);
     this.#lottoInputDto = new LottoInputDto(lottoNumbers, lottoAdditinalNumber);
 
     this.#lottoPrizeDto = new LottoPrizeDto();
@@ -35,8 +35,8 @@ class App {
         this.#lottoPrizeDto,
       );
     });
-    OutputConsole.result(this.#lottoPrizeDto);
-    OutputConsole.sumMoney(this.#lottoPrizeDto, money);
+    OutputConsole.Result(this.#lottoPrizeDto);
+    OutputConsole.SumMoney(this.#lottoPrizeDto, money);
   }
 }
 

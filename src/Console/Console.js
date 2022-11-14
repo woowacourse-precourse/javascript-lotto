@@ -1,7 +1,7 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 
 class Console {
-  static input(message) {
+  static Input(message) {
     return new Promise((resolve, reject) => {
       MissionUtils.Console.readLine(message, resolve);
     });
