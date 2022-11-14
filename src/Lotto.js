@@ -12,12 +12,12 @@ class Lotto {
     }
 
     const setNum = new Set(numbers);
-    if (setNum.length !== 6) {
+    if (setNum.size !== 6) {
       throw new Error("[ERROR] 중복된 숫자가 있습니다.");
     }
 
     numbers.map((number) => {
-      if (!(parseInt(number) >= 1 && parseInt(number) >= 45)) {
+      if (!(parseInt(number) >= 1 && parseInt(number) <= 45)) {
         throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
       }
     });
