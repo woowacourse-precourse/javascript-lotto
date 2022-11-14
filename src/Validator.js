@@ -3,7 +3,7 @@ const { ERROR_MESSAGES } = require('./common/messages');
 const { LOTTO_INFO } = require('./common/constants');
 
 class Validator {
-  static checkValidMoney(money) {
+  static checkValidMoneyBundle(money) {
     this.checkNotNumber(money);
     this.checkNegativeMoney(money);
     this.checkEmptyInput(money);
@@ -47,7 +47,7 @@ class Validator {
     }
   }
 
-  static checkWinNumbers(winNumbers) {
+  static checkWinNumbersBundle(winNumbers) {
     this.checkValidWinNumbers(winNumbers);
     this.checkWinNumbersLenght(winNumbers);
     this.checkWinNumbersRange(winNumbers);
@@ -77,7 +77,7 @@ class Validator {
     });
   }
 
-  static checkValidBonusNumber(bonusNumber) {
+  static checkValidBonusNumberBundle(bonusNumber) {
     this.checkNotNumber(bonusNumber);
     this.checkNegativeBonusNumber(bonusNumber);
     this.checkEmptyInput(bonusNumber);

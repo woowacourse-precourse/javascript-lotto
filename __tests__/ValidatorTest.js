@@ -6,7 +6,7 @@ describe('✅ Validator 클래스 : 구입 금액 테스트', () => {
     const invalidMoney = '1234';
 
     expect(() => {
-      Validator.checkValidMoney(invalidMoney);
+      Validator.checkValidMoneyBundle(invalidMoney);
     }).toThrowError(`${ERROR_MESSAGES.INVALID_REST_MONEY}`);
   });
 
@@ -14,7 +14,7 @@ describe('✅ Validator 클래스 : 구입 금액 테스트', () => {
     const invalidMoney = '-1';
 
     expect(() => {
-      Validator.checkValidMoney(invalidMoney);
+      Validator.checkValidMoneyBundle(invalidMoney);
     }).toThrowError(`${ERROR_MESSAGES.INVALID_NEGATIVE_NUMBER}`);
   });
 
@@ -23,7 +23,7 @@ describe('✅ Validator 클래스 : 구입 금액 테스트', () => {
 
     expect(() => {
       invalidMoney.forEach((money) => {
-        Validator.checkValidMoney(money);
+        Validator.checkValidMoneyBundle(money);
       });
     }).toThrowError(`${ERROR_MESSAGES.INVALID_EMPTY_INPUT}`);
   });
@@ -33,7 +33,7 @@ describe('✅ Validator 클래스 : 구입 금액 테스트', () => {
 
     expect(() => {
       invalidMoney.forEach((money) => {
-        Validator.checkValidMoney(money);
+        Validator.checkValidMoneyBundle(money);
       });
     }).toThrowError(`${ERROR_MESSAGES.INVALID_NUMBER}`);
   });
@@ -45,7 +45,7 @@ describe('✅ Validator 클래스 : 당첨 번호 테스트', () => {
 
     expect(() => {
       invalidInputs.forEach((input) => {
-        Validator.checkWinNumbers(input);
+        Validator.checkWinNumbersBundle(input);
       });
     }).toThrowError(`${ERROR_MESSAGES.INVALID_INPUT}`);
   });
@@ -55,7 +55,7 @@ describe('✅ Validator 클래스 : 당첨 번호 테스트', () => {
 
     expect(() => {
       invalidInputs.forEach((input) => {
-        Validator.checkWinNumbers(input);
+        Validator.checkWinNumbersBundle(input);
       });
     }).toThrowError(`${ERROR_MESSAGES.INVALID_LOTTO_COUNT}`);
   });
@@ -65,7 +65,7 @@ describe('✅ Validator 클래스 : 당첨 번호 테스트', () => {
 
     expect(() => {
       invalidInputs.forEach((input) => {
-        Validator.checkWinNumbers(input);
+        Validator.checkWinNumbersBundle(input);
       });
     }).toThrowError(`${ERROR_MESSAGES.INVALID_LOTTO_NUMBER_RANGE}`);
   });

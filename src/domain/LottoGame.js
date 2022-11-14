@@ -17,7 +17,7 @@ class LottoGame {
 
   start() {
     LottoView.getUserInput(`${INPUT_MESSAGES.AMOUNT}\n`, (money) => {
-      Validator.checkValidMoney(money);
+      Validator.checkValidMoneyBundle(money);
       this.user.setMoney(money);
       this.exchangeLottos(money);
       this.drawWinLottoNumbers();
@@ -70,7 +70,7 @@ class LottoGame {
 
   drawWinLottoNumbers() {
     LottoView.getUserInput(`\n${INPUT_MESSAGES.WINNER_NUMBER}\n`, (winNumbers) => {
-      Validator.checkWinNumbers(winNumbers);
+      Validator.checkWinNumbersBundle(winNumbers);
       this.setupWinLottoNumberInfo(winNumbers);
       this.drawBonusNumber();
     });
@@ -79,7 +79,7 @@ class LottoGame {
   drawBonusNumber() {
     LottoView.getUserInput(`\n${INPUT_MESSAGES.BONUS_NUMBER}\n`, (bonusNumber) => {
       this.setupBonusNumberInfo(bonusNumber);
-      Validator.checkValidBonusNumber(bonusNumber);
+      Validator.checkValidBonusNumberBundle(bonusNumber);
       Validator.checkDuplicateBonusNumber(this.#winNumbers, bonusNumber);
       this.showStats();
     });
