@@ -1,9 +1,11 @@
-const { Console } = require("@woowacourse/mission-utils");
+const { Console, Random } = require("@woowacourse/mission-utils");
 const InputMoney = require("./InputMoney");
 
 class App {
   constructor() {
     this.money = 0;
+    this.lottoQuantity = 0;
+    this.lottoNumbers = [];
   }
 
   play() {
@@ -12,16 +14,32 @@ class App {
 
   inputMoney() {
     Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
-      this.money = new InputMoney(money).validate();
+      this.money = new InputMoney(money);
 
-      this.printLotto(money);
+      this.printLottoQuantity(money);
     });
   }
-  
-  printLotto(money) {
-    Console.print(`${money / 1000}개를 구매했습니다.`);
+
+  printLottoQuantity(money) {
+    const lottoQuantity = money / 1000;
+    Console.print(`${lottoQuantity}개를 구매했습니다.`);
   }
 
+  printLotto(lottoQuantity) {
+    //랜덤 로또번호 생성 기능(오름차순 정렬)
+    for (let num = 0; num < lottoQuantity; num++) {
+      const MINIMUN_NUMBER = 1;
+      const MAXIMUN_NUMBER = 45;
+      const NUMBER_LENGTH = 6;
+      const randomNumbers = Random.pickUniqueNumbersInRange(
+        MINIMUN_NUMBER,
+        MAXIMUN_NUMBER,
+        NUMBER_LENGTH
+      );
+      this.lottoNumbers.push(randomNumbers);
+      Console.print(JSON.stringify(randomNumbers).replace(/,/g, ", "));
+    }
+  }
 }
 
 module.exports = App;
