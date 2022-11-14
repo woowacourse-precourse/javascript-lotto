@@ -7,9 +7,9 @@
 
 <br/>
 
-- [] **게임 시작**
+- [x] **게임 시작**
 
-  - [] 게임 시작 문구를 출력한다 ('구입금액을 입력해 주세요.') MessageOutput # printMessage()
+  - [x] 게임 시작 문구를 출력한다 ('구입금액을 입력해 주세요.') MessageOutput # printMessage()
 
 <br/>
 
