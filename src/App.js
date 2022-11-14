@@ -4,11 +4,13 @@ class App {
   #numberOfLottos;
   #issuedLottosList= new Array();
   #lottoWinningNumbers;
+  #lottoBonusNumber;
   play() {
     this.inputMoneyToBuyLottos();
     this.printNumberOfLottos();
     this.createIssuedLottoList();
     this.inputLottoWinningNumber();
+    this.inputLottoBonusNumber();
   }
   inputMoneyToBuyLottos() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (moneyToBuyLottos) => {
@@ -42,6 +44,11 @@ class App {
       if(new Set(this.#lottoWinningNumbers).size != 6)
         throw new Error("[ERROR] 로또 번호는 서로 다른 6개의 숫자여야 합니다.");
     });
+  }
+  inputLottoBonusNumber(){
+    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (inputNumber)=>{
+      this.#lottoBonusNumber = Number(inputNumber);
+    })
   }
 }
 
