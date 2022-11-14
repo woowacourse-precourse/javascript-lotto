@@ -1,6 +1,7 @@
 const UserInterface = require("./UserInterface.js");
 const CheckError = require("./CheckError.js");
 const Lotto = require("./Lotto.js");
+const { LOTTO_LENGTH, WINNING_PRICE } = require("./constants/gameCondition.js");
 const { Random } = require("@woowacourse/mission-utils");
 class LottoPlay {
   // Lotto 게임 기능 구현하는 클래스.
@@ -22,6 +23,7 @@ class LottoPlay {
       winnerNumberArray,
       bonusNumber
     );
+    UserInterface.printBodyStatistics(resultArray);
   }
 
   purchaseLotto(purchaseAmount) {
@@ -110,6 +112,18 @@ class LottoPlay {
   findSecondOrThirdWinning(lotto, bonusNumber) {
     if (lotto.includes(bonusNumber)) return 2;
     return 3;
+  }
+
+  calculateTotalWinningMoney(resultArray) {
+    let totalWinningMoney = 0;
+    for (let i = LOTTO_LENGTH - 1; i > 0; i--) {
+      totalWinningMoney += resultArray[i] * WINNING_PRICE[i];
+    }
+    return totalWinningMoney;
+  }
+  calculateYield(purchaseAmount, resultArray) {
+    const totalWinningMoney = this.calculateTotalWinningMoney(resultArray);
+    let percentYield = ((totalWinningMoney / purchaseAmount) * 100).toFixed(1);
   }
 }
 

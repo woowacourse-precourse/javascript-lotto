@@ -42,6 +42,7 @@ class UserInterface {
   static printStartStatistics() {
     Console.print(PRINT_MESSAGE.START_STATISTICS);
   }
+
   static printBodyStatistics(resultArray) {
     Console.print(PRINT_MESSAGE.FIFTH_RANKING_MESSAGE(resultArray[5]));
     Console.print(PRINT_MESSAGE.FOURTH_RANKING_MESSAGE(resultArray[4]));
