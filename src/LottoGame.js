@@ -134,7 +134,12 @@ class LottoGame {
 
     const lottoResult = this.getLottoResult();
     this.printLottoResult(lottoResult);
-    this.printEarning(this.getEarningRate(this.calculateEarning(lottoResult)));
+    this.printEarning(
+      this.getEarningRate(
+        this.calculateEarning(lottoResult),
+        this.#purchaseAmount
+      )
+    );
   }
 
   printLottoResult(lottoResult) {
@@ -179,8 +184,8 @@ class LottoGame {
     return earning;
   }
 
-  getEarningRate(earning) {
-    return ((earning / this.#purchaseAmount) * 100).toFixed(1);
+  getEarningRate(earning, purchaseAmount) {
+    return Number(((earning / purchaseAmount) * 100).toFixed(1));
   }
 
   printEarning(earningRate) {
