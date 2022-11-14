@@ -3,6 +3,10 @@ const { Console } = require('@woowacourse/mission-utils');
 const Component = require('../core/Component');
 
 class LottoWinCountUI extends Component {
+  #LOTTOSTATIC = '당첨 통계';
+
+  #SLASH = '---';
+
   constructor({ winScore }) {
     super();
 
@@ -24,8 +28,8 @@ class LottoWinCountUI extends Component {
   }
 
   print() {
-    Console.print('당첨 통계');
-    Console.print('---');
+    Console.print(this.#LOTTOSTATIC);
+    Console.print(this.#SLASH);
     this.#template().forEach(setence => Console.print(setence));
   }
 }
