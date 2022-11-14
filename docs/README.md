@@ -39,7 +39,7 @@
 - [x] 로또 구입 금액/1000개를 구매했다는 메시지를 띄운다. -
       Service#printLottoCount()
 
-- [ ] 중복되지 않은 6개의 숫자를 로또 구매 개수만큼 출력한다. -
+- [x] 중복되지 않은 6개의 숫자를 로또 구매 개수만큼 출력한다. -
       Service#printLottoNumbers()
 
 - [ ] 당첨 통계를 출력한다. - Service#printResult()
