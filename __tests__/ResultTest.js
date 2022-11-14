@@ -148,9 +148,9 @@ describe("결과 테스트", () => {
     const result = new Result(lottoArray, [1, 2, 3, 4, 5, 6], 7);
 
     result.rank = [1, 0, 0, 0, 0];
-    const earningsRate = result.getEarningsRate();
+    result.getEarningsRate();
 
-    expect(earningsRate).toBe("62.5");
+    expect(result.earningsRate).toBe("62.5");
   });
 
   test("수익률이 1000 이상인지 판별한다.", () => {
