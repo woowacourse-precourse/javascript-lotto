@@ -1,4 +1,9 @@
 const { ERROR, VALUE } = require('./lib/constants');
+const {
+  checkMoneyIsNan,
+  checkMoneyDivision,
+  checkMoneyLessStandard,
+} = require('./lib/utils/purchaseUtils');
 
 class Purchase {
   #money;
@@ -11,15 +16,15 @@ class Purchase {
   validate(money) {
     const numberMoney = Number(money);
 
-    if (isNaN(numberMoney)) {
+    if (checkMoneyIsNan(numberMoney)) {
       throw new Error(ERROR.PURCHASE_MONEY_NAN);
     }
 
-    if (numberMoney % VALUE.LOTTO_PRICE !== 0) {
+    if (checkMoneyDivision(numberMoney)) {
       throw new Error(ERROR.PURCHASE_MONEY_NOT_DIVISIBLE);
     }
 
-    if (numberMoney < VALUE.LOTTO_PRICE) {
+    if (checkMoneyLessStandard(numberMoney)) {
       throw new Error(ERROR.PURCHASE_MONEY_LESS_STANDARD);
     }
   }
