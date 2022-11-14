@@ -1,7 +1,7 @@
 const TITLE_MESSAGE = '당첨 통계\n---\n';
 const UNIT = { BALL: '개', MONEY: '원' };
-const RESULT_MAP = new Map();
 const LOTTO_KEYWORDS = ['30', '40', '50', '51', '60'];
+const RESULT_MAP = new Map();
 RESULT_MAP.set('30', { count: 3, money: 5000, word: `${UNIT.BALL} 일치` })
   .set('40', {
     count: 4,
