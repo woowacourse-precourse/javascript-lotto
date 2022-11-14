@@ -1,8 +1,8 @@
-const { print } = require("./Missionutils");
+const { print } = require("../utils/Missionutils");
 class view {
   #winngingResult;
 
-  printRankingResult(winngingResult) {
+  rankingResult(winngingResult) {
     this.#winngingResult = winngingResult;
     print(`\n당첨 통계`);
     print("---");
@@ -13,15 +13,15 @@ class view {
     print(`6개 일치 (2,000,000,000원) - ${this.#winngingResult[1]}개`);
   }
 
-  printEariningRate(percentage) {
+  eariningRate(percentage) {
     print(`총 수익률은 ${percentage}%입니다.`);
   }
 
-  printPurchasedSize(purchaseNumbers) {
-    print(`${purchaseNumbers.size}개를 구매했습니다.`);
+  purchasedSize(purchaseNumbers) {
+    print(`\n${purchaseNumbers.size}개를 구매했습니다.`);
   }
 
-  printPurchasedList(purchaseNumbers) {
+  purchasedList(purchaseNumbers) {
     // `[${lotto.getNumbers().join(", ")}]`;
     Array.from(purchaseNumbers).forEach((lotto) => print(`[${lotto.join(", ")}]`));
   }

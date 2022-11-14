@@ -1,4 +1,9 @@
-const { RANKING_FROM_MATCH_COUNT, RANK_ACCORDING_REWARD } = require("./constants/constants");
+const {
+  RANKING_FROM_MATCH_COUNT,
+  RANK_ACCORDING_REWARD,
+  NUMBER_TYPE
+} = require("../constants/value");
+
 class Calculator {
   #myNumbers;
   #winningNumber;
@@ -13,7 +18,7 @@ class Calculator {
 
   applyWinnerSelectionRule(myLotto) {
     const matchCount = myLotto.filter((number) =>
-      this.#winningNumber["winningNumber"].includes(number)
+      this.#winningNumber[NUMBER_TYPE.WINNING_NUMBER].includes(number)
     ).length;
 
     if (this.isSecondPlace(matchCount, myLotto)) {
@@ -24,7 +29,7 @@ class Calculator {
   }
 
   isSecondPlace(matchCount, myLotto) {
-    return matchCount === 5 && myLotto.includes(this.#winningNumber["bonus"]);
+    return matchCount === 5 && myLotto.includes(this.#winningNumber[NUMBER_TYPE.BONUS_NUMBER]);
   }
 
   getWinningResult(myNumbers, winningNumber) {

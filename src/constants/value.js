@@ -13,4 +13,8 @@ const RANK_ACCORDING_REWARD = Object.freeze({
   5: 5000
 });
 
-module.exports = { RANKING_FROM_MATCH_COUNT, RANK_ACCORDING_REWARD };
+const NUMBER_TYPE = Object.freeze({
+  WINNING_NUMBER: "winningNumber",
+  BONUS_NUMBER: "bonusNumber"
+});
+module.exports = { RANKING_FROM_MATCH_COUNT, RANK_ACCORDING_REWARD, NUMBER_TYPE };

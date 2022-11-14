@@ -1,4 +1,4 @@
-const { pickUniqueNumbersInRange } = require("./Missionutils");
+const { pickUniqueNumbersInRange } = require("../utils/Missionutils");
 
 class MyNumberGenerator {
   #countOfLottos;

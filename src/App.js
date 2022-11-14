@@ -1,4 +1,4 @@
-const LottoGameController = require("./LottoGameController");
+const LottoGameController = require("./controller/LottoGameController");
 class App {
   play() {
     new LottoGameController().start();
