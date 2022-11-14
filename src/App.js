@@ -5,6 +5,9 @@ const Lotto = require("./Lotto");
 const CompareLotto = require("./CompareLotto");
 
 class App {
+  #purchaseAmount;
+  #winningAmount;
+
   constructor() {
     this.GetLotto = new GetLotto();
     this.GetNumber = new GetNumber();
@@ -15,7 +18,7 @@ class App {
   play() {
     Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
       let lottoList = this.GetLotto.lottoNumberPackage(money);
-
+      this.#purchaseAmount = money;
       this.getWinNumber(lottoList);
     });
   }
@@ -36,11 +39,18 @@ class App {
 
   compareResult(lottoList, numbers, number) {
     const result = this.CompareLotto.result(lottoList, numbers, number);
+    this.#winningAmount = this.CompareLotto.totalMoney(result);
     this.printResult(result);
   }
 
   printResult(result) {
     this.CompareLotto.printResult(result);
+    this.printRate();
+  }
+
+  printRate() {
+    const rate = ((this.#winningAmount / this.#purchaseAmount) *100).toFixed(1);
+    Console.print(`총 수익률은 ${rate}%입니다.`);
   }
 }
 

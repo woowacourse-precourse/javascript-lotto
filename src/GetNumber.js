@@ -8,12 +8,10 @@ class GetNumber {
     toWin(numbers) {
         numbers = numbers.split(',');
         this.validation.validate(numbers);
-        console.log(numbers);
     }
 
     bonus(numbers, number) {
         this.validation.bonusValidate(numbers, number);
-        console.log(number);
     }
 }
 
