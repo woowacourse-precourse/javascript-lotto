@@ -1,5 +1,5 @@
 const inputMessage = {
-  INPUT__MONEY: '구입 금액을 입력해 주세요.\n',
+  INPUT_MONEY: '구입 금액을 입력해 주세요.\n',
   RAFFLE_NUMBERS: '\n당첨 번호를 입력해 주세요.\n',
   BONUS_NUMBER: '\n보너스 번호를 입력해 주세요.\n',
   STATS_MESSAGE: {
