@@ -21,8 +21,9 @@ describe("Feat 1. Customer.buyLotto", () => {
   });
 
   test("입력된 금액이 천원으로 나누어 떨어지지 않으면 예외가 발생한다.", () => {
-    mockQuestions("8001");
-    expect(customer.payMoney).toThrow("[ERROR]");
+    expect(() => {
+      customer.isMoneyValidate(8001);
+    }).toThrow("[ERROR]");
   });
 });
 
@@ -64,8 +65,6 @@ describe("Feat 4. Customer.winLottoStatistic", () => {
     ).toEqual(lottoStatisticArray);
   });
   test("분석 결과를 받아 수익률을 반환한다.", () => {
-    expect(customer.calculateLottoYield(lottoStatisticArray, "8000")).toBe(
-      62.5
-    );
+    expect(customer.calculateLottoYield(lottoStatisticArray, 8000)).toBe(62.5);
   });
 });
