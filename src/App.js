@@ -34,7 +34,9 @@ class App {
         const winningNumberArr = this.splitWinningNumbers(winningNumber);
         this.Validate.checkLottoInput(winningNumberArr);
         this.winningNumbers = winningNumberArr;
-        
+
+        MissionUtils.Console.print("\n");
+
         this.askBonusNumber();
       }
     );
@@ -48,6 +50,9 @@ class App {
     MissionUtils.Console.readLine(INPUT_MESSEGE.BONUS_NUMBER, (bonusNum) => {
       this.Validate.checkBonusNumInput(this.winningNumbers, bonusNum);
       this.bonusNumber = Number(bonusNum);
+      
+      MissionUtils.Console.print("\n");
+
       this.userLottos.printResult(this.winningNumbers, this.bonusNumber);
 
       this.end();
