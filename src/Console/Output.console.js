@@ -26,8 +26,8 @@ class OutputConsole {
     });
   };
   static sumMoney = (lottoPrizeDto, money) => {
-    const returnRate = lottoPrizeDto.sumMoney / money;
-    Console.Output(`총 수익률은 ${returnRate.toLocaleString('', {maximumFractionDigits: 2})}%입니다.`)
+    const returnRate = (lottoPrizeDto.sumMoney / money) * 100;
+    Console.Output(`총 수익률은 ${returnRate.toLocaleString('ko-KR', {maximumFractionDigits: 2})}%입니다.`)
   }
 }
 
