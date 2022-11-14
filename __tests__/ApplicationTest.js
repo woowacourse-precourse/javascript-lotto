@@ -53,23 +53,27 @@ describe('App 클래스 메서드 테스트', () => {
   })
 
   test(`구입한 로또의 모든 숫자는 겹치지 않아야 한다.`, () => {
-    const lottos = app.buyLotto(3).map((lotto) => Array.from(new Set(lotto)))
+    const lottosOwnedByUser = app
+      .buyLotto(3)
+      .map((lotto) => Array.from(new Set(lotto)))
 
-    expect(lottos[0]).toHaveLength(WINNING_NUMBER_COUNT)
-    expect(lottos[1]).toHaveLength(WINNING_NUMBER_COUNT)
-    expect(lottos[2]).toHaveLength(WINNING_NUMBER_COUNT)
+    expect(lottosOwnedByUser[0]).toHaveLength(WINNING_NUMBER_COUNT)
+    expect(lottosOwnedByUser[1]).toHaveLength(WINNING_NUMBER_COUNT)
+    expect(lottosOwnedByUser[2]).toHaveLength(WINNING_NUMBER_COUNT)
   })
 
   test(`구입한 로또 번호는 오름차순이어야 한다.`, () => {
-    const lotto = app.buyLotto(1).flat()
-    const isIncreasing = lotto.every(
-      (number, index) => index === 0 || number > lotto[index - 1]
+    const lottoOwnedByUser = app.buyLotto(1).flat()
+    const isIncreasing = lottoOwnedByUser.every(
+      (number, index) => index === 0 || number > lottoOwnedByUser[index - 1]
     )
 
     expect(isIncreasing).toBe(true)
   })
 
-  test('당첨 통계', () => {})
+  test('당첨 통계', () => {
+    //
+  })
 })
 
 describe('', () => {
