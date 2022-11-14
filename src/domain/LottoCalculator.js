@@ -1,4 +1,8 @@
-const { VARIABLE_FACTORY } = require('../../utils/constants');
+const {
+  VARIABLE_FACTORY,
+  VARIABLE_LOTTO,
+  LOTTO_ERROR_MESSAGE,
+} = require('../../utils/constants');
 
 class LottoCalculator {
   #lotto;
@@ -16,7 +20,7 @@ class LottoCalculator {
 
     this.#scoreBoard = [0, 0, 0, 0, 0];
 
-    this.#compareLotto();
+    this.#validate().#compareLotto();
   }
 
   getResult() {
@@ -25,6 +29,21 @@ class LottoCalculator {
 
   getLottoCountScore() {
     return this.#scoreBoard;
+  }
+
+  #validate() {
+    if (this.#validateOverlap()) {
+      throw new Error(LOTTO_ERROR_MESSAGE.overlap);
+    }
+
+    return this;
+  }
+
+  #validateOverlap() {
+    return (
+      new Set([...this.#lotto.getNumber(), this.#bonus.getNumber()]).size ===
+      VARIABLE_LOTTO.len
+    );
   }
 
   #matchLottoFor(lottoToBuy) {
