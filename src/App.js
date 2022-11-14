@@ -20,7 +20,7 @@ class App {
     return false;
   }
   checkType(money) {
-    if (Number.isInteger(money)) return true;
+    if (Number.isInteger(Number(money))) return true;
     return false;
   }
   checkRange(money) {
@@ -32,6 +32,7 @@ class App {
     if (!this.checkUnit(money)) throw new Error(Message.ERROR_COST_UNIT);
     if (!this.checkType(money)) throw new Error(Message.ERROR_COST_TYPE);
   }
+
   play() {
     this.getMoney();
   }
