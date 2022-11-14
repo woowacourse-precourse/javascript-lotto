@@ -1,5 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const { MESSAGE, RANDOM_NUMBER, REGEX, ERROR } = require('./constants');
+const { MESSAGE, LOTTO, REGEX, ERROR } = require('./constants');
 
 class Store {
   issuedQuantity;
@@ -20,7 +20,7 @@ class Store {
   }
 
   validate(inputStr) {
-    if (!REGEX.PURCHASE_AMOUNT_REGEX.test(inputStr)) {
+    if (!REGEX.PURCHASE_AMOUNT.test(inputStr)) {
       throw new Error(ERROR.ENTER_VALID_PURCHASE_AMOUNT);
     }
 
@@ -31,9 +31,9 @@ class Store {
     for (let i = 0; i < this.issuedQuantity; ++i) {
       this.lottos.push(
         Random.pickUniqueNumbersInRange(
-          RANDOM_NUMBER.MIN,
-          RANDOM_NUMBER.MAX,
-          RANDOM_NUMBER.COUNT
+          LOTTO.NUMBER_MIN,
+          LOTTO.NUMBER_MAX,
+          LOTTO.NUMBER_OF_NUMBERS
         ).sort((num1, num2) => num1 - num2)
       );
     }

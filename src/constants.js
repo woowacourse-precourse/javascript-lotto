@@ -14,16 +14,16 @@ const MESSAGE = Object.freeze({
   RETURN_PERCENT: '%입니다.',
 });
 
-const RANDOM_NUMBER = Object.freeze({
-  MIN: 1,
-  MAX: 45,
-  COUNT: 6,
+const LOTTO = Object.freeze({
+  NUMBER_MIN: 1,
+  NUMBER_MAX: 45,
+  NUMBER_OF_NUMBERS: 6,
 });
 
 const REGEX = Object.freeze({
-  PURCHASE_AMOUNT_REGEX: /^[1-9]{1}[0-9]*0{3}$/,
-  WINNING_NUMBER_REGEX: /^([1-45],){5}[1-45]{1}$/,
-  BONUS_NUMBER_REGEX: /^[1-45]{1}$/,
+  PURCHASE_AMOUNT: /^[1-9]{1}[0-9]*0{3}$/,
+  WINNING_NUMBER: /^([1-45],){5}[1-45]{1}$/,
+  BONUS_NUMBER: /^[1-45]{1}$/,
 });
 
 const ERROR = Object.freeze({
@@ -35,4 +35,4 @@ const ERROR = Object.freeze({
   ENTER_WITHOUT_REPETITION: '[ERROR] 중복되지 않는 숫자를 입력해 주세요.',
 });
 
-module.exports = { MESSAGE, RANDOM_NUMBER, REGEX, ERROR };
+module.exports = { MESSAGE, LOTTO, REGEX, ERROR };
