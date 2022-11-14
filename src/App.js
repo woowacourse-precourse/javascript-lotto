@@ -51,21 +51,21 @@ class App {
       Console.print(lottoNumbers);
     });
 
-    this.getUserLottoNumbers(lottoList);
+    this.inputWinningNumber(lottoList);
   }
 
   inputWinningNumber(lottoList) {
     Console.readLine('당첨 번호를 입력해 주세요. \n', (numbers) => {
       const  winningNumber = numbers.split(',');
       new Lotto(winningNumber);
-      this.getUserBonusNumber(winningNumber, lottoList);
+      this.inputBonus(winningNumber, lottoList);
     });
   }
 
   inputBonus(winningNumber, lottoList) {
     Console.readLine('보너스 번호를 입력해 주세요. \n', (bonus) => {
       new Bonus(bonus, winningNumber);
-      this.getCountOfMatchingNumber(lottoList, userLottoNumbers, bonus);
+      this.getCountOfMatchingNumber(lottoList, winningNumber, bonus);
     });
   }
 
