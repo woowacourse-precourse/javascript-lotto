@@ -62,7 +62,10 @@ class App {
       winningNumbers: this.winningNumbers.winningNumbers,
       bonusNumber: this.winningNumbers.bonusNumber,
     });
-    this.winningHistory.calcProfitRate(this.lottoManager.purchaseAmount);
+    this.winningHistory.calcProfitRate(
+      this.lottoManager.purchaseAmount,
+      this.winningHistory.calcTotalProfit(),
+    );
   }
 
   printWinningHistory(winningList, profitRate) {

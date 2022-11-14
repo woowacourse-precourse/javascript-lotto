@@ -58,13 +58,15 @@ class WinningHistory {
     }
   }
 
-  calcProfitRate(purchaseAmount) {
-    const totalProfit = this.#winningList.reduce(
+  calcTotalProfit() {
+    return this.#winningList.reduce(
       (prevProfit, winningLottoCount, idx) =>
         prevProfit + LOTTO_PRIZE_LIST[idx].PRIZE_MONEY * winningLottoCount,
       0,
     );
+  }
 
+  calcProfitRate(purchaseAmount, totalProfit) {
     this.#profitRate = (totalProfit / purchaseAmount) * 100;
   }
 
