@@ -1,3 +1,5 @@
+const Error = require("./ErrorMessage.js")
+
 class Lotto {
   #numbers;
 
@@ -7,8 +9,24 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    if (numbers !== undefined && numbers.length !== 6) {
+      throw Error.LENGTH_ERROR;
+    }
+    else if(numbers !== undefined && new Set(numbers).size!=6){
+      throw Error.DUPLICATE_ERROR
+    }
+  }
+  validateBonusnumber(number){
+    if (Number.isInteger(Number(number)) == false){
+      throw Error.BONUSNUMBER_ERROR
+    }
+    else if (number > 45 || number < 1){
+      throw Error.RANGE_ERROR
+    }
+  }
+  validateInputRange(max,min){
+    if (max > 45 || min < 1){
+      throw Error.RANGE_ERROR
     }
   }
 
