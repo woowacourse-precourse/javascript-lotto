@@ -66,11 +66,8 @@ class LottoGame {
   statisticsPhase(eachLottoPrize) {
     this.statistics.makeStatisticsData(eachLottoPrize, this.purchaseAmount);
 
-    const prizeStatisticsTemplates = this.statistics.prizeStatisticsTemplates;
-    const yieldRatio = this.statistics.yieldRatio;
-
-    this.LottoGameView.printPrizeStatistics(prizeStatisticsTemplates);
-    this.LottoGameView.printYieldRatio(yieldRatio);
+    this.LottoGameView.printPrizeStatistics(this.statistics.getPrizeStatisticsTemplates());
+    this.LottoGameView.printYieldRatio(this.statistics.getYieldRatio());
 
     Console.close();
   }

@@ -64,6 +64,14 @@ class Statistics {
 
     return templates;
   }
+
+  getPrizeStatisticsTemplate() {
+    return this.prizeStatisticsTemplates;
+  }
+
+  getYieldRatio() {
+    return this.yieldRatio;
+  }
 }
 
 module.exports = Statistics;
