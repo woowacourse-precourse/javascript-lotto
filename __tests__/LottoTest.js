@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const { PRICE_OF_ONE_LOTTO } = require("../src/constants");
 const Lotto = require("../src/Lotto");
 
 const getLogSpy = () => {
@@ -24,15 +25,14 @@ describe("로또 클래스 테스트", () => {
   // 아래에 추가 테스트 작성 가능
   test('매개변수로 n을 받고 콘솔에 "n개를 구매했습니다." 출력한다.', () => {
     const logSpy = getLogSpy();
-    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     const N = 5;
     const ALERT_MESSAGE = `${N}개를 구매했습니다.`;
-    lotto.alertHowManyBought(N);
+    Lotto.alertHowManyBought(N);
 
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(ALERT_MESSAGE));
   });
 
-  test("구입한 로또 번호의 일치하는 숫자를 반환한다", () => {
+  test("구입한 번호 중 당첨 번호의 갯수와 보너스 숫자의 일치 여부를 반환", () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
 
     const purchasedNumbers = [
@@ -56,8 +56,8 @@ describe("로또 클래스 테스트", () => {
     );
   });
 
-  test("구입한 로또 번호들의 일치하는 숫자를 반환한다", () => {
-    const purchasedAmount = 100000;
+  test("구입한 번호 중 당첨 번호의 갯수를 반환", () => {
+    const BONUS_NUMBER = 7;
 
     const purchasedNumbers = [
       [1, 2, 3, 4, 5, 6],
@@ -65,11 +65,7 @@ describe("로또 클래스 테스트", () => {
       [6, 5, 4, 3, 10, 11],
     ];
 
-    const lotto = new Lotto(
-      [1, 2, 3, 4, 5, 6],
-      purchasedAmount,
-      purchasedNumbers
-    );
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6], purchasedNumbers, BONUS_NUMBER);
 
     const statistics = {
       match3: 1,
@@ -86,10 +82,10 @@ describe("로또 클래스 테스트", () => {
 
   test("복권 구매", () => {
     const MONEY = 5000;
-    const PRICE_OF_ONE_LOTTO = 1000;
     const BOUGHT_COUNT = MONEY / PRICE_OF_ONE_LOTTO;
-    const boutghtLotto = Lotto.buy(MONEY);
-    console.log(">>>", boutghtLotto);
-    expect(boutghtLotto.length).toEqual(BOUGHT_COUNT);
+
+    const boughtLotto = Lotto.buy(MONEY);
+
+    expect(boughtLotto.length).toEqual(BOUGHT_COUNT);
   });
 });
