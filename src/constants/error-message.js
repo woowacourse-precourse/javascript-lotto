@@ -3,6 +3,8 @@ const ERROR_MSG_MAIN_NUMS_COUNT =
   ERROR_MSG_PREFIX + "로또 번호의 개수는 6개여야 합니다.";
 const ERROR_MSG_NUMS_NAN =
   ERROR_MSG_PREFIX + "로또 번호는 숫자형이어야 합니다.";
+const ERROR_MSG_NUMS_INTEGER =
+  ERROR_MSG_PREFIX + "로또 번호는 정수형이어야 합니다.";
 const ERROR_MSG_NUM_RANGE =
   ERROR_MSG_PREFIX + "로또 번호는 1 이상 45 이하의 숫자여야 합니다.";
 const ERROR_MSG_NUMS_DUPLICATED =
@@ -15,6 +17,7 @@ const ERROR_MSG_THOUSAND_UNIT =
 module.exports = {
   ERROR_MSG_MAIN_NUMS_COUNT,
   ERROR_MSG_NUMS_NAN,
+  ERROR_MSG_NUMS_INTEGER,
   ERROR_MSG_NUM_RANGE,
   ERROR_MSG_NUMS_DUPLICATED,
   ERROR_MSG_BONUS_NUM_COUNT,

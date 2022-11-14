@@ -1,10 +1,17 @@
-const { ERROR_MSG_MAIN_NUMS_COUNT } = require("./constants/error-message");
+const {
+  ERROR_MSG_MAIN_NUMS_COUNT,
+  ERROR_MSG_NUMS_NAN,
+  ERROR_MSG_NUMS_INTEGER,
+} = require("./constants/error-message");
 
 class Checker {
   validateMainNums(input) {
     const mainNumStrs = input.split(",");
     this.checkSix(mainNumStrs);
     this.checkAllIsNumber(mainNumStrs);
+
+    const mainNums = mainNumStrs.map(Number);
+    this.checkAllIsInteger(mainNums);
   }
 
   checkSix(mainNumStrs) {
@@ -18,7 +25,16 @@ class Checker {
 
   checkIsNumber(str) {
     if (!isNaN(str)) return;
-    throw new Error(ERROR_MSG_MAIN_NUMS_COUNT);
+    throw new Error(ERROR_MSG_NUMS_NAN);
+  }
+
+  checkAllIsInteger(mainNums) {
+    mainNums.forEach((num) => this.checkAllIsInteger(num));
+  }
+
+  checkIsInteger(num) {
+    if (Number.isInteger(num)) return;
+    throw new Error(ERROR_MSG_NUMS_INTEGER);
   }
 }
 
