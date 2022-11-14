@@ -42,7 +42,7 @@ class WinningNumber {
   validateWinningNumbers(numbers) {
     if (numbers.length !== VALUE.NUMBER_OF_LOTTO) {
       MissionUtils.Console.close();
-      throw new Error("[ERROR] 당첨 번호는 6개여야 합니다.");
+      throw new Error("[ERROR] 당첨 번호의 개수는 6개입니다.");
     }
 
     const uniqueNumbers = new Set(numbers);

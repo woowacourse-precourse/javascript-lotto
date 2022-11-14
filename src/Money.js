@@ -7,7 +7,7 @@ class Money {
     MissionUtils.Console.readLine(COMMENT.PURCHASE, (money) => {
       if (this.validateMoney(money)) {
         const numberOfLottos = money / VALUE.MONEY_UNIT;
-        const lottos = this.#createLottos(numberOfLottos);
+        const lottos = this.createLottos(numberOfLottos);
         new WinningNumber(lottos, money).enterWinningNumbers();
       }
     });
@@ -29,7 +29,7 @@ class Money {
     return true;
   }
 
-  #createLottos(number) {
+  createLottos(number) {
     const lottosArray = [];
     MissionUtils.Console.print("\n" + number + "개를 구매했습니다.");
 
