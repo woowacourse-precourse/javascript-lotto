@@ -1,5 +1,8 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const { isLengthError, isDuplicate } = require("./utils");
+const {MESSAGE, ERROR_MESSAGE} = require('./constants')
+
+
 class Lotto {
   #numbers;
 
@@ -10,11 +13,11 @@ class Lotto {
 
   validate(numbers) {
     if (isLengthError(numbers)) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error(ERROR_MESSAGE.LENGTH_OF_LOTTO);
     }
 
     if (isDuplicate(numbers)) {
-      throw new Error("[ERROR] 로또 번호는 중복이 없어야 합니다.");
+      throw new Error(ERROR_MESSAGE.DUPLICATE_OF_LOTTO);
     }
   }
 
@@ -23,7 +26,7 @@ class Lotto {
     return this.#numbers;
   }
 
-  getNumberOfMatches(luckyNumbers) {
+  countNumberOfMatches(luckyNumbers) {
     let count = 0
     this.#numbers.filter((number) => {
       if (luckyNumbers.includes(number)) {
