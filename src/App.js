@@ -85,14 +85,25 @@ class App {
 
   compare() {
     this.lottoList.forEach((lotto) => {
-      const matchingNumber = this.winNumber.filter((ele) => lotto.includes(ele));
+      const matchingNumbers = this.winNumber.filter((ele) => lotto.includes(ele));
 
-      if (matchingNumber.length > 2) {
-        this.getRank(matchingNumber, lotto);
+      if (matchingNumbers.length > 2) {
+        this.getRank(matchingNumbers, lotto);
       }
     });
+    console.log(this.rank);
+  }
+
+  getRank(matchingNumbers, lotto) {
+    const matchCount = matchingNumbers.length;
+    if (matchCount === 3) this.rank.fifth++;
+    if (matchCount === 4) this.rank.fourth++;
+    if (matchCount === 5 && !lotto.includes(this.bonusNumber)) this.rank.third++;
+    if (matchCount === 5 && lotto.includes(this.bonusNumber)) this.rank.second++;
+    if (matchCount === 6) this.rank.first++;
   }
 }
+
 
 const app = new App();
 app.play();
