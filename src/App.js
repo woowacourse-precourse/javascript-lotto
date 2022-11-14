@@ -53,7 +53,7 @@ class App {
         const bonusNumberArr = bonusNumberElement.split("");
         Validation.checkBonusNumber(bonusNumberArr, this.winnerNumber);
         this.bonusNumber = bonusNumberElement;
-        this.getCompareResult();
+        this.getResult();
       }
     );
   }
@@ -81,6 +81,11 @@ class App {
     const singleLotto = this.lotto.map((lottoNumber) =>
       lottoNumber.getLottoNumber()
     );
+    const eachResult = singleLotto.map(this.compareNumber(singleLotto));
+  }
+  compareNumber(eachLotto) {
+    return eachLotto.filter((number) => this.winnerNumber.includes(number))
+      .length;
   }
 }
 
