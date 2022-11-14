@@ -11,8 +11,8 @@ class App {
   #lottoInputDto;
   #lottoPrizeDto;
 
-  async play() {
-    const money = await InputConsole.getMoney();
+   play() {
+    const money =  InputConsole.getMoney();
     const purchaseNumber = LottoValidator.getLottoPuchaseNumber(money);
     OutputConsole.lottoPurchaseNumber(purchaseNumber);
 
@@ -22,8 +22,8 @@ class App {
     );
     OutputConsole.lottoNumbers(this.#lottoPurchaseDtos);
 
-    const lottoNumbers = await InputConsole.getLotto();
-    const lottoAdditinalNumber = await InputConsole.getLottoAdditional(lottoNumbers);
+    const lottoNumbers =  InputConsole.getLotto();
+    const lottoAdditinalNumber =  InputConsole.getLottoAdditional(lottoNumbers);
     this.#lottoInputDto = new LottoInputDto(lottoNumbers, lottoAdditinalNumber);
 
     this.#lottoPrizeDto = new LottoPrizeDto();
