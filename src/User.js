@@ -17,9 +17,9 @@ class User {
 	}
 
 	validate(money) {
-		this.isNum(money)
-		this.isMoneyEnough(money);
-		this.isThousands(money);
+		User.isNum(money);
+		User.isMoneyEnough(money);
+		User.isThousands(money);
 	}
 
 	static isNum(money) {
@@ -48,9 +48,6 @@ class User {
 			let newLotto = new Lotto(randomNumbers);
 			this.lottoBundle.push(newLotto.getLotto());
     }
-		
-		let print = new Print();
-		print.printLottoBundle(this.lottoBundle);
 	}
 }	
 

@@ -1,5 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const Print = require('./Prize');
+const Prize = require('./Prize');
 
 class Print {
 	static printLottoBundle(lottoBundle) {
@@ -31,11 +31,11 @@ class Print {
 		}
 	}
 
-	winningResult(winningCount) {
+	static winningResult(winningCount) {
 		MissionUtils.Console.print('당첨 통계');
 		MissionUtils.Console.print('---');
 		for (let correct = 3; correct < 8; correct++) {
-			this.printWinningResult(winningCount, correct);
+			Print.printWinningResult(winningCount, correct);
 		}
 	}
 
@@ -45,8 +45,8 @@ class Print {
 	}
 
 	result(user, winningCount) {
-		this.winningResult(winningCount);
-		this.earningsRates(user.getSeedMoney(), user.earnings);
+		Print.winningResult(winningCount);
+		Print.earningsRates(user.getSeedMoney(), user.earnings);
 	}
 }
 

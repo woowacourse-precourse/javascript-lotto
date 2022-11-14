@@ -7,10 +7,10 @@ class Lotto {
   }
   
     validate(numbers) {
-      this.isNum(numbers);
-      this.isSixNumbers(numbers);
-      this.isNumbersInRange(numbers);
-      this.isDuplicated(numbers);
+      Lotto.isNum(numbers);
+      Lotto.isSixNumbers(numbers);
+      Lotto.isNumbersInRange(numbers);
+      Lotto.isDuplicated(numbers);
     }
   
   static isNum(numbers) {
