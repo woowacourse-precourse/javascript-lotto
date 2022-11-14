@@ -28,10 +28,7 @@ class Lotto {
   }
 
   createLottoNum() {
-    while (this.#numbers.length < 6) {
-      const number = Random.pickNumberInRange(1, 45);
-      if (!this.#numbers.includes(number)) this.#numbers.push(number);
-    }
+    this.#numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
     this.#numbers.sort((a, b) => a - b);
   }
 

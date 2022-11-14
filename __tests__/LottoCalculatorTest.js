@@ -70,7 +70,7 @@ describe("로또 당첨 결과 테스트", () => {
     const logSpy = getLogSpy();
     lottoCalculate.printGainPercent(result);
     expect(logSpy).toHaveBeenCalledWith(
-      expect.stringContaining("총 수익률은 40631000.00%입니다.")
+      expect.stringContaining("총 수익률은 40631100.00%입니다.")
     );
   });
 });
