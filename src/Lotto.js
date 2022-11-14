@@ -16,11 +16,19 @@ class Lotto {
   }
 
   getLotto(){
-    return this.#numbers;
+    return [...this.#numbers];
   }
 
   printLotto(){
     Console.print(this.#numbers);
+  }
+  
+  filter(array){
+    return this.getLotto().filter(num => array.includes(num));
+  }
+
+  includes(num){
+    return this.getLotto().includes(num);
   }
 
 }
