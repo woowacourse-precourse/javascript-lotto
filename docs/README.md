@@ -9,27 +9,27 @@
 
 ### 📗 메인 로직
 ###
-< 초기 설정 >
-* [ ] 로또 번호의 숫자 범위 지정
-* [ ] 로또 발행 : 중복되지 않는 6개의 숫자 발행
-* [ ] 당첨 번호 추첨 : 중복되지 않는 숫자 6개 + 보너스 번호 1개
-* [ ] 당첨 기준과 금액 지정
+feat (init)
+* [ ] 로또 번호의 '숫자' '범위' 지정 - LottoMachine#validation
+* [ ] 로또 발행 : '중복'되지 않는 '6'개의 숫자 발행 - LottoMachine#validation
+* [ ] 당첨 번호 추첨 : 중복되지 않는 숫자 6개 + 보너스 번호 1개 - Winning#inputNumbers
+* [ ] 당첨 기준과 금액 지정  
 ###
-< 게임 진행 >
-* [ ] user: 로또 구입 금액 입력
-* [ ] 구입 금액에 해당하는 만큼 로또 발행
-* [ ] user : 당첨 번호 입력
-* [ ] user : 보너스 번호 입력
-* [ ] 당첨 내역 출력
-* [ ] 수익률 출력 (소수점 둘째자리에서 반올림)
+feat (game)
+* [ ] user: 로또 구입 금액 입력 - Player#buyTickets
+* [ ] 구입 금액에 해당하는 만큼 로또 발행 - LottoMachine#issue
+* [ ] user : 당첨 번호 입력 - Winning#numbers
+* [ ] user : 보너스 번호 입력 - Winning#bonusNumber
+* [ ] 당첨 내역 출력 - Result#winning
+* [ ] 수익률 출력 (소수점 둘째자리에서 반올림) - Result#profit
 <br/>
 
 ### 📕 에러 로직 : throw "[ERROR]에러 메시지"
-
-* [ ] 로또 구입 금액 : number type이 아닌 경우, 1,000원으로 나눠 떨어지지 않는 경우
-* [ ] 당첨 번호 : 입력값이 쉼표로 구분되지 않은 경우, 숫자가 아닐 경우, 범위 안의 숫자가 아닐 경우, 숫자의 갯수가 맞지 않은 경우
-* [ ] 보너스 번호 : 숫자가 아닐경우, 범위 안의 숫자가 아닐 경우
-* [ ] 로또 발행 : number type이 아닌 경우, 숫자의 갯수가 맞지 않는 경우, 범위 안의 숫자가 아닐 경우  
+feat (error)
+* [ ] 로또 구입 금액 : number type이 아닌 경우, 1,000원으로 나눠 떨어지지 않는 경우 - InputError#buyTickets
+* [ ] 당첨 번호 : 입력값이 쉼표로 구분되지 않은 경우, 숫자가 아닐 경우, 범위 안의 숫자가 아닐 경우, 숫자의 갯수가 맞지 않은 경우 - InputError#winningNumbers
+* [ ] 보너스 번호 : 숫자가 아닐경우, 범위 안의 숫자가 아닐 경우 - InputError#bonusNumber
+* [ ] 로또 발행 : number type이 아닌 경우, 숫자의 갯수가 맞지 않는 경우, 범위 안의 숫자가 아닐 경우 - Error#issue
 
 <br/>
 
