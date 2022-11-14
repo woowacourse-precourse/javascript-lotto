@@ -5,15 +5,16 @@ const Lotto = require("./Lotto");
 class App {
 
   play() {
-    this.purchaseAmount();
+    this.inputPurchase();
   }
 
-  purchaseAmount() {
+  inputPurchase() {
     MissionUtils.Console.readLine(`${Constants.GAME_MESSAGES.PURCHASE}\n`, (answer) => {
-      MissionUtils.Console.print(answer)
-      const how_many = this.isPurchaseAmountValid(answer);
+      MissionUtils.Console.print(answer);
+      this.isPurchaseAmountValid(answer);
+      const how_many = Number(answer) / 1000;
       const published_Lottos = this.getLottos(how_many);
-      this.InputLottos(published_Lottos, how_many);
+      this.inputWinnings(published_Lottos, how_many);
     });
   }
 
@@ -21,8 +22,6 @@ class App {
     if(Number(money) % 1000 != 0){
       throw Constants.INPUT_ERROR.NOT_DIVIDED;
     }
-    const how_many = Number(money) / 1000;
-    return how_many;
   }
 
   getLottos(how_many) {
@@ -50,16 +49,16 @@ class App {
     return string
   }
 
-  InputLottos(published_Lottos, how_many) {
+  inputWinnings(published_Lottos, how_many) {
     MissionUtils.Console.readLine(`${Constants.GAME_MESSAGES.INPUT_NUMBER}\n`, (answer) => {
       MissionUtils.Console.print(answer);
       const winning = answer.split(',').map(Number);
       new Lotto(winning);
-      this.InputBonus(published_Lottos, winning, how_many);
+      this.inputBonus(published_Lottos, winning, how_many);
     });
   }
 
-  InputBonus(published_Lottos, winning, how_many) {
+  inputBonus(published_Lottos, winning, how_many) {
     MissionUtils.Console.readLine(`${Constants.GAME_MESSAGES.BONUS_NUMBER}\n`, (answer) => {
       MissionUtils.Console.print(answer);
       this.isBonusDuplicated(answer, winning);
