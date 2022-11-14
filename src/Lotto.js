@@ -54,6 +54,20 @@ class Lotto {
     return false;
   }
 
+  calTotal(winningArray){
+    let winnings = 0;
+    winnings += winningArray[3]*5000;
+    winnings += winningArray[4]*50000;
+    winnings += winningArray[5]*1500000;
+    winnings += winningArray[6]*2000000000;
+    winnings += winningArray[7]*30000000;
+    return winnings;
+  }
+
+  calRevenue(winngarray){
+    let total = this.calTotal(winngarray);
+  }
+
   printResult(winningArray){
     MissionUtils.Console.print("당첨 통계");
     MissionUtils.Console.print("---");
@@ -62,6 +76,7 @@ class Lotto {
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${winningArray[5]}개`);
     MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningArray[7]}개`);
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${winningArray[6]}개`);
+    this.calRevenue(winningArray);
   }
 
   winningConfirm(lottoList, bonus){
