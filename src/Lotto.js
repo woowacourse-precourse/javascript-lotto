@@ -45,7 +45,6 @@ class Lotto {
     if (duplicateCount === GRADE.THIRD.DUPLICATE_COUNT) return GRADE.THIRD.NAME;
     if (duplicateCount === GRADE.FOURTH.DUPLICATE_COUNT) return GRADE.FOURTH.NAME;
     if (duplicateCount === GRADE.FIFTH.DUPLICATE_COUNT) return GRADE.FIFTH.NAME;
-    return 'none';
   }
 }
 

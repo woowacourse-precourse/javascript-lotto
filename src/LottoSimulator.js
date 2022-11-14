@@ -21,7 +21,7 @@ class LottoSimulator {
   }
 
   setGrade(grade) {
-    if (grade === 'none') return;
+    if (grade === undefined) return;
     this.gradeCount.set(grade, this.gradeCount.get(grade) + 1);
   }
 
