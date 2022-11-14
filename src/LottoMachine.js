@@ -33,7 +33,6 @@ class LottoMachine {
   inputMoney() {
     MissionUtils.Console.readLine(INPUT_MESSAGE.INPUT_MONEY, (money) => {
       this.#money = Number(money);
-      
       this.checkInputMoney();
       this.printLottoAmount();
       
