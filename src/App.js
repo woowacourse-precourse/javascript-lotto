@@ -1,4 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
+const InputMoney = require("./InputMoney");
 
 class App {
   constructor() {
@@ -11,11 +12,9 @@ class App {
 
   inputMoney() {
     Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
-      this.inputMoney = money;
+      this.money = new InputMoney(money);
     });
   }
 }
 
-const app = new App();
-app.play();
-// module.exports = App;
+module.exports = App;
