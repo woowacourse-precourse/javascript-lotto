@@ -1,7 +1,16 @@
-const { LOTTO_PRICE } = require("../utils/constants");
+const Utils = require("../utils/Utils");
+const Lotto = require("../Lotto");
+const { LOTTO_PRICE, MAX_NUMBER, MIN_NUMBER, LOTTO_LENGTH } = require("../utils/constants");
 const { ERROR } = require("../utils/messages");
 
 class LottoSeller {
+  #money;
+
+  constructor(money) {
+    this.#validate(money);
+    this.#money = Number(money);
+  }
+
   #validateType(money) {
     if (!Number(money)) {
       throw new Error(ERROR.AMOUNT_TYPE);
@@ -19,9 +28,21 @@ class LottoSeller {
     this.#validateDivideThousand(money);
   }
 
-  getPurchaseCount(money) {
-    this.#validate(money);
-    return Number(money) / LOTTO_PRICE;
+  #getPurchaseCount() {
+    return this.#money / LOTTO_PRICE;
+  }
+
+  #generateSixNumber() {
+    return Utils.getRandomeNumbers(MIN_NUMBER, MAX_NUMBER, LOTTO_LENGTH);
+  }
+
+  #generateLotto() {
+    return new Lotto(this.#generateSixNumber());
+  }
+
+  getLottos() {
+    const purchaseCount = this.#getPurchaseCount();
+    return Array.from({ length: purchaseCount }, () => this.#generateLotto());
   }
 }
 
