@@ -20,15 +20,18 @@ class App {
     } 
   }
 
-  inputWinningNum(){
-    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (winning_num) => {
-      console.log(winning_num);
+  inputWinningNum(winning_arr){
+    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (winning_str) => {
+      const winning_num = [ ...winning_str.split(',')];
+      for(let i=0; i<winning_num.length; i++){
+        winning_arr.push(parseInt(winning_num[i]));
+      }
     });
   }
 
-  inputBonusNum(){
+  inputBonusNum(winning_arr){
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (bonus_num) => {
-      console.log(bonus_num);
+      winning_arr.push(parseInt(bonus_num));
     });
   }
 
@@ -36,10 +39,14 @@ class App {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.', async(money) => {
       if(await this.checkInput(money)){
         const lotto_cnt = Math.floor(money/1000);
+        const lotto_arr = [];
+        const winning_arr = [];
+
         this.print_lotto_cnt(lotto_cnt);
         this.draw_lotto(lotto_cnt);
-        this.inputWinningNum();
-        this.inputBonusNum();
+        this.inputWinningNum(winning_arr);
+        this.inputBonusNum(winning_arr);
+        console.log(winning_arr);
       }
       await MissionUtils.Console.close();
 
