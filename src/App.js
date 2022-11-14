@@ -3,16 +3,18 @@ const { MESSAGES, ERROR_MESSAGES } = require('./constants/index');
 
 const LOTTO_PRICE = 1000;
 class App {
+  #money = 0;
   #buyLotto = [];
   #winningLotto = [];
   #bonusNumber;
 
   play() {
-    Console.readLine(MESSAGES.INPUT_MONEY, (number) => {
-      if (number % LOTTO_PRICE !== 0)
+    Console.readLine(MESSAGES.INPUT_MONEY, (money) => {
+      this.#money = money;
+      if (money % LOTTO_PRICE !== 0)
         throw new Error(ERROR_MESSAGES.INVALID_MONEY_UNIT);
 
-      this.buy(Number(number / LOTTO_PRICE));
+      this.buy(Number(money / LOTTO_PRICE));
     });
   }
 
@@ -86,7 +88,23 @@ class App {
 
       if (correctCount >= 3) correctPoints[Number(correctCount) - 3]++;
     });
-    console.log(correctPoints);
+    const resultMoney = this.getWinningMoney(correctPoints);
+    const rate = (resultMoney * 100) / this.#money;
+
+    Console.print(
+      MESSAGES.WINNING_STATS(correctPoints, Math.round(rate * 10) / 10)
+    );
+  }
+
+  getWinningMoney(correctPoints = []) {
+    const WINNING_MONEY = [5_000, 50_000, 1_500_000, 30_000_000, 2_000_000_000];
+
+    const money = correctPoints.reduce(
+      (acc, point, index) => (acc += WINNING_MONEY[index] * point),
+      0
+    );
+
+    return money;
   }
 }
 

@@ -18,15 +18,14 @@ const MESSAGES = Object.freeze({
   WINNING_STATS: (
     [correct3, correct4, correct5, correct5Bonus, correct6],
     rate
-  ) => `
-    당첨 통계
-    ---
-    3개 일치 (5,000원) - ${correct3}개
-    4개 일치 (50,000원) - ${correct4}개
-    5개 일치 (1,500,000원) - ${correct5}개
-    5개 일치, 보너스 볼 일치 (30,000,000원) - ${correct5Bonus}개
-    6개 일치 (2,000,000,000원) - ${correct6}개
-    총 수익률은 ${rate}%입니다.
+  ) => `\n당첨 통계
+---
+3개 일치 (5,000원) - ${correct3}개
+4개 일치 (50,000원) - ${correct4}개
+5개 일치 (1,500,000원) - ${correct5}개
+5개 일치, 보너스 볼 일치 (30,000,000원) - ${correct5Bonus}개
+6개 일치 (2,000,000,000원) - ${correct6}개
+총 수익률은 ${rate}%입니다.
   `,
 });
 
