@@ -1,12 +1,35 @@
 const { Random, Console } = require('@woowacourse/mission-utils')
 const Lotto = require('./Lotto.js')
-const { LOTTO_PRICE, query, validationError } = require('./constants/app.js')
+const {
+  LOTTO_PRICE,
+  query,
+  validationError,
+  prize,
+} = require('./constants/app.js')
 const { range, WINNING_NUMBER_COUNT } = require('./constants/common.js')
 const { sortIncreasingOrder } = require('./lib/utils.js')
+
+/**
+ * @typedef {import('./Lotto.js').lotto} lotto
+ */
 
 class App {
   #lottosOwnedByUser
   #perchaseAmount
+
+  /**
+   * @param {number[][]} lottosOwnedByUser
+   */
+  set lottosOwnedByUser(lottosOwnedByUser) {
+    this.#lottosOwnedByUser = lottosOwnedByUser
+  }
+
+  /**
+   * @param {number} perchaseAmount
+   */
+  set perchaseAmount(perchaseAmount) {
+    this.#perchaseAmount = perchaseAmount
+  }
 
   play() {
     this.#lottosOwnedByUser = []
@@ -85,7 +108,7 @@ class App {
   }
 
   #selectWinningNumbers() {
-    Console.readLine(`${query.WINNING_NUMBERS}\n`, (numbersInString) => {
+    Console.readLine(`\n${query.WINNING_NUMBERS}\n`, (numbersInString) => {
       const winningNumbers = numbersInString.split(',').map(Number)
 
       this.#selectBonusNumber(winningNumbers)
@@ -96,11 +119,36 @@ class App {
    * @param {*[]} winningNumbers
    */
   #selectBonusNumber(winningNumbers) {
-    Console.readLine(`${query.BONUS_NUMBER}\n`, (numberInString) => {
+    Console.readLine(`\n${query.BONUS_NUMBER}\n`, (numberInString) => {
       const bonusNumber = Number(numberInString)
 
-      const lotto = new Lotto({ wins: winningNumbers, bonus: bonusNumber })
+      const lottoResult = this.getLottoResult({
+        wins: winningNumbers,
+        bonus: bonusNumber,
+      })
     })
+  }
+
+  /**
+   * @param {lotto} lotto
+   * @returns {Object.<number, number>} - key: 등수, value: 개수
+   */
+  getLottoResult({ wins, bonus }) {
+    const lotto = new Lotto({ wins, bonus })
+    const lottoResult = Object.keys(prize).reduce((result, rank) => {
+      result[rank] = 0
+
+      return result
+    }, {})
+
+    this.#lottosOwnedByUser.forEach((lottoOwnedByUser) => {
+      const rank = lotto.checkRank(lottoOwnedByUser)
+      if (rank in lottoResult) {
+        lottoResult[rank]++
+      }
+    })
+
+    return lottoResult
   }
 
   #close() {
