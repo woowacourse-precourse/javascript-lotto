@@ -8,10 +8,10 @@ const Lotto = require('./Lotto');
 const WinningLotto = require('./WinningLotto');
 const Calculate = require('./Calculate');
 const Statistics = require('./Statistics');
+const Purchase = require('./Purchase');
 
 class App {
   purchase;
-  numberOfPurchases;
   purchaseLottos;
   winningLotto;
   calculates;
@@ -19,7 +19,6 @@ class App {
 
   play() {
     this.setPurchase();
-    this.setNumberOfPurchases();
     this.setLottos();
     this.printPurchaseResult();
     this.setWinningLotto();
@@ -29,63 +28,13 @@ class App {
   }
 
   setPurchase() {
-    this.purchase = this.inputPurchase();
-  }
-
-  inputPurchase() {
-    let purchase;
-
-    Console.readLine(MESSAGE.INPUT.PURCHASE, (input) => {
-      const inputNumber = Number(input);
-
-      this.handlePurchaseException(inputNumber);
-      purchase = inputNumber;
-
-      Console.close();
-    });
-
-    return purchase;
-  }
-
-  handlePurchaseException(inputNumber) {
-    const {
-      ERROR: {
-        PURCHASE: { INTEGER, UNIT },
-      },
-    } = MESSAGE;
-
-    switch (false) {
-      case this.isInteger(inputNumber):
-        throw Exception.error(INTEGER);
-      case this.isInUnit(inputNumber):
-        throw Exception.error(UNIT);
-    }
-  }
-
-  isInteger(inputNumber) {
-    return Number.isInteger(inputNumber);
-  }
-
-  isInUnit(inputNumber) {
-    if (inputNumber % LOTTO.PRICE === 0) {
-      return true;
-    }
-
-    return false;
-  }
-
-  setNumberOfPurchases() {
-    this.numberOfPurchases = this.calcNumberOfPurchases();
-  }
-
-  calcNumberOfPurchases() {
-    return this.purchase / LOTTO.PRICE;
+    this.purchase = new Purchase();
   }
 
   setLottos() {
     let purchaseLottos = [];
 
-    for (let i = 0; i < this.numberOfPurchases; i++) {
+    for (let i = 0; i < this.purchase.getNumberOfPurchases(); i++) {
       const numbers = this.getLottoNumbers();
       purchaseLottos.push(new Lotto(numbers));
     }
@@ -104,7 +53,9 @@ class App {
   }
 
   printPurchaseResult() {
-    Console.print(MESSAGE.NOTICE.PURCHASE_SUCCESS(this.numberOfPurchases));
+    Console.print(
+      MESSAGE.NOTICE.PURCHASE_SUCCESS(this.purchase.getNumberOfPurchases())
+    );
 
     for (const lotto of this.purchaseLottos) {
       Console.print(this.getBracketsString(lotto.getNumbers()));
@@ -183,7 +134,10 @@ class App {
   }
 
   setStatistics() {
-    this.statistics = new Statistics(this.calculates, this.purchase);
+    this.statistics = new Statistics(
+      this.calculates,
+      this.purchase.getPurchase()
+    );
   }
 }
 
