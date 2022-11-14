@@ -39,12 +39,12 @@ class Lotto {
     });
 
     return matchedList.length === 5
-      ? this.isMatchedWithBonus(this.#numbers, bonus)
+      ? this.isMatchedWithBonus(this.#numbers, bonus, matchedList)
       : matchedList.length; //배열길이반환 =>정답갯수로 이용
   }
 
-  isMatchedWithBonus(numbers, bonus) {
-    return numbers.includes(+bonus) ? CONSTANT.BONUS_MATCH : numbers.length;
+  isMatchedWithBonus(numbers, bonus, matchedList) {
+    return numbers.includes(+bonus) ? CONSTANT.BONUS_MATCH : matchedList.length;
     //5개와 보너스가맞은 경우 -1을 리턴하여 보너스번호가 맞았음을 판단한다. 아닐경우 원래 길이 리턴.
   }
 }
