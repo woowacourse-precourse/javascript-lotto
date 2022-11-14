@@ -25,7 +25,15 @@ class Calculator {
       this.#winningNumber["winningNumber"].includes(number)
     ).length;
 
+    if (this.isSecondPlace(matchCount, myLotto)) {
+      this.#prizeStatus[2] += 1;
+      return;
+    }
     return matchCount;
+  }
+
+  isSecondPlace(matchCount, myLotto) {
+    return matchCount === 5 && myLotto.includes(this.#winningNumber["bonus"]);
   }
 
   getWinningResult() {
