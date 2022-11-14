@@ -19,6 +19,13 @@ describe('계산기 클래스 테스트', () => {
     });
   });
 
+  describe('로또 구매 개수 계산 테스트', () => {
+    test('8000원이면 구매 개수는 8개이다.', () => {
+      const calculator = new Calculator(8000);
+      expect(calculator.calcBuyCount()).toEqual(8);
+    });
+  });
+
   describe('수익률 계산 테스트', () => {
     test('8000원에 5등 1개면 수익률은 62.5%이다.', () => {
       const calculator = new Calculator(8000);
@@ -31,7 +38,5 @@ describe('계산기 클래스 테스트', () => {
       calculator.addPrize(1);
       expect(calculator.calcProfitRate()).toEqual('200,000,000.0');
     });
-
-    test;
   });
 });
