@@ -21,6 +21,9 @@ class Lotto {
       if (parseInt(numbers[i]) < 1 || parseInt(numbers[i] > 45)) {
         throw new Error("[ERROR] 로또 번호는 1에서 45사이의 정수여야 합니다.");
       }
+      if (!Number.isInteger(numbers[i])) {
+        throw new Error("[ERROR] 로또 번호는 1에서 45사이의 정수여야 합니다.");
+      }
     }
   }
 
