@@ -17,7 +17,7 @@ class Result {
 
   checkMatchNumber() {
     this.myLottoArray.forEach((item, index) => this.countMatchNumber(item, index));
-    this.printScore();
+    this.announceScore();
   }
 
   countMatchNumber(item, index) {
@@ -55,21 +55,23 @@ class Result {
     }
   }
 
-  printScore() {
+  announceScore() {
     Mission.Console.print(RESULT_MESSAGES.WINNING_STATISTICS);
-    Mission.Console.print(
-      RESULT_MESSAGES.PRINT_RESULT(
-        [3, 4, 5, 5, 6],
-        [
-          this.#scoreArray[0],
-          this.#scoreArray[1],
-          this.#scoreArray[2],
-          this.#scoreArray[3],
-          this.#scoreArray[4],
-        ]
-      )
-    );
+    Mission.Console.print(this.printScore());
     this.calculateProfit();
+  }
+
+  printScore() {
+    return RESULT_MESSAGES.PRINT_RESULT(
+      [3, 4, 5, 5, 6],
+      [
+        this.#scoreArray[0],
+        this.#scoreArray[1],
+        this.#scoreArray[2],
+        this.#scoreArray[3],
+        this.#scoreArray[4],
+      ]
+    );
   }
 
   calculateProfit() {
