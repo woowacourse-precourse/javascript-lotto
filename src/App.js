@@ -13,10 +13,11 @@ class App {
 
   static lottoPublisher(purchaseCount) {
     const purchaseLottoNumbers = [];
-
-    purchaseLottoNumbers.push(Random.pickUniqueNumbersInRange(1, 45, 6));
-
+    for (let lottoCount = 0; lottoCount < purchaseCount; lottoCount += 1) {
+      purchaseLottoNumbers.push(Random.pickUniqueNumbersInRange(1, 45, 6));
+    }
     Console.print(purchaseLottoNumbers);
+    return purchaseLottoNumbers;
   }
 
   play() {
