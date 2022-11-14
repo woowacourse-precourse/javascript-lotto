@@ -25,7 +25,9 @@
         * [x] 5개가 일차하는 경우  
             * [x] 5개가 일치함과 동시에 보너스 볼이 일치하는 경우  
         * [x] 6개가 일치하는 경우  
+---
 * [x] 결과 출력하기
+---
 * [x] 총 수익률 계산하기  
     * [x] 수익률 계산하기(소수점 둘째 자리에서 반올림 예시) 총 수익률은 62.5%입니다.)  
 ---
@@ -44,6 +46,29 @@
         * [x] 1 ~ 45 사이의 수를 입력 했는지 검사
         * [x] 값이 한개인지 검사
         * [x] 값이 숫자인지 검사
+
+## 기능 테스트 목록
+* [ ] LottoTest.js
+    * [ ] howManyLotto 로또를 몇장 살수있는지 검사
+    * [ ] sortLottoNumber 정렬 기능 검사
+    * [ ] isItNumber 돈이 들어왔는지 검사
+    * [ ] rightAmount 천원단위로 들어왔는지 검사
+---
+* [ ] ValidationTest.js
+    * [ ] itThatRightFormat 올바른 형식인지 검사
+    * [ ] isThatSix 로또 번호 갯수 검사
+    * [ ] numberNet 1과 45 사이인지 검사(배열일때)
+    * [ ] isThatDuplicate 중복되는지 검사
+    * [ ] itThatNumber 숫자인지 검사
+    * [ ] singleNumberNet 1과 45 사이인지 검사(1개의 숫자일때)
+    * [ ] isThatInclude 당첨번호와 값이 중복되는지 검사
+---
+* [ ] CompareLottoTest.js
+    * [ ] count 당첨 번호와 로또 대조 결과 검사
+    * [ ] countBonus 로또와 보너스 대조 결과 검사
+    * [ ] result 몇등에 몇번 당첨됐는지 확인 검사
+    * [ ] number 몇개 당첨됐고 보너스 점수는 맞았는지 확인 검사
+    * [ ] totalMoney 총 당첨 상금 계산 검사
 
 ## 마무리
 * [ ] 함수 세분화하기 
