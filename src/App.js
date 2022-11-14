@@ -12,38 +12,36 @@ class App {
   play() {
     Console.readLine(MESSAGE.PURCHASE_AMOUT, (amount) => {
       this.amount = amount;
-      this.#lotteryPurchase(amount);
-      this.#inputLotteryWinnerNumber();
+      this.#lottoPurchase(amount);
+      this.#inputlottoWinnerNumber();
     });
   }
 
-  #lotteryPurchase() {
-    const lotteryNumber = parseInt(this.amount / 1000);
+  #lottoPurchase() {
+    const lottoNumber = parseInt(this.amount / 1000);
 
-    this.print(`${lotteryNumber}개를 구매했습니다.`);
-    for (let i = 0; i < lotteryNumber; i++) {
+    this.print(`${lottoNumber}개를 구매했습니다.`);
+    for (let i = 0; i < lottoNumber; i++) {
       const lotto = new Lotto(RandomNumbers.generate());
       this.lottoList.push(lotto);
     }
   }
 
-  #inputLotteryWinnerNumber() {
+  #inputlottoWinnerNumber() {
     Console.readLine(MESSAGE.WINNING_NUMBER, (numbers) => {
-      console.log(numbers);
       this.#parsingStringToArray(numbers);
-      this.#inputLotteryBonusNumber();
+      this.#inputlottoBonusNumber();
     });
   }
 
-  #inputLotteryBonusNumber() {
+  #inputlottoBonusNumber() {
     Console.readLine(MESSAGE.BONUS_NUMBER, (bonusNumber) => {
       console.log(bonusNumber);
     });
   }
 
   #parsingStringToArray(numbers) {
-    this.lotteryWinnerNumber = numbers.split(',').map(Number);
-    console.log(this.lotteryWinnerNumber);
+    this.lottoWinnerNumber = numbers.split(',').map(Number);
   }
 
   print(message) {
