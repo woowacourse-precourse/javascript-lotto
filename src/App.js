@@ -19,6 +19,7 @@ class App {
 
   makeBonusNumber() {
     const bonusNumber = Random.pickUniqueNumbersInRange(1, 45, 1);
+    this.validation.bonusNumberValidate(bonusNumber);
     this.lotteryArray = [...this.lotteryArray, ...bonusNumber];
     return bonusNumber;
   }
