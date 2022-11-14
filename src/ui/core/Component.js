@@ -1,15 +1,5 @@
 class Component {
-  #ERRORMESSAGE = '[ERROR] YOU SHOULD DECLARE OVERIDING';
-
-  #componentInstance;
-
-  constructor(componentInstance) {
-    this.#componentInstance = componentInstance;
-  }
-
-  render() {
-    this.#componentInstance.print();
-  }
+  #ERRORMESSAGE = "[ERROR] YOU SHOULD DECLARE OVERIDING";
 
   print() {
     throw new Error(this.#ERRORMESSAGE);
