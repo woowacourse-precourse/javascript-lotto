@@ -1,63 +1,30 @@
-const { LOTTO_AMOUNT, VARIABLE_FACTORY } = require('../../utils/constants');
+const { VARIABLE_FACTORY } = require('../../utils/constants');
 
 class LottoCalculator {
   #lotto;
 
   #bonus;
 
-  #payment;
-
   #scoreBoard;
 
-  #income;
+  #ERROR_MESSAGE = 'OVERIDING_ERROR';
 
   constructor(inputs) {
     this.#lotto = inputs.getInstance(VARIABLE_FACTORY.lotto);
     this.#bonus = inputs.getInstance(VARIABLE_FACTORY.bonus);
-    this.#payment = inputs.getInstance(VARIABLE_FACTORY.lottoStore);
+    this.payment = inputs.getInstance(VARIABLE_FACTORY.lottoStore);
 
     this.#scoreBoard = [0, 0, 0, 0, 0];
-    this.#income = '';
 
     this.#compareLotto();
-    this.#calculateIncome();
+  }
+
+  getResult() {
+    throw new Error(this.#ERROR_MESSAGE);
   }
 
   getLottoCountScore() {
     return this.#scoreBoard;
-  }
-
-  getIncome() {
-    return this.#income;
-  }
-
-  #roundUpFor() {
-    this.#income = Math.round(
-      (LOTTO_AMOUNT.reduce((acc, moneyUnit, index) => {
-        return acc + moneyUnit * this.#scoreBoard[index];
-      }, 0) /
-        this.#payment.getMoney()) *
-        1000,
-    );
-
-    return this;
-  }
-
-  #makeDecimalFirst() {
-    if (this.#income === 0) {
-      this.#income = '0.0';
-      return this;
-    }
-
-    this.#income = String(this.#income).split('');
-    this.#income.splice(this.#income.length - 1, 0, '.');
-    this.#income = this.#income.join('');
-
-    return this;
-  }
-
-  #calculateIncome() {
-    this.#roundUpFor().#makeDecimalFirst();
   }
 
   #matchLottoFor(lottoToBuy) {
@@ -87,7 +54,7 @@ class LottoCalculator {
   }
 
   #compareLotto() {
-    [...this.#payment.getLottos()]
+    [...this.payment.getLottos()]
       .map(lottoToBuy => [
         this.#matchLottoFor(lottoToBuy),
         this.#matchBonusFor(lottoToBuy),
