@@ -70,7 +70,7 @@ class Status {
   }
 
   setResult(result) {
-    return (this.#result = result);
+    this.#result = result;
   }
 
   getYield() {
