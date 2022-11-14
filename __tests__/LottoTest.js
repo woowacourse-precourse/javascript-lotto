@@ -67,4 +67,19 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
+  test("보너스 번호가 음수면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([1, 2, 46, 4, 5, 3]).validateBonus("-7");
+    }).toThrow("[ERROR]");
+  });
+  test("보너스 번호가 0이면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([1, 2, 46, 4, 5, 3]).validateBonus("0");
+    }).toThrow("[ERROR]");
+  });
+  test("보너스 번호가 45를 넘어가면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([1, 2, 46, 4, 5, 3]).validateBonus("47");
+    }).toThrow("[ERROR]");
+  });
 });
