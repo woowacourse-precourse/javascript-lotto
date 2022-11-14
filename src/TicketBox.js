@@ -11,7 +11,7 @@ class TicketBox {
 
   constructor(budget) {
     this.validate(budget);
-    this.#budget = budget;
+    this.#budget = parseInt(budget, 10);
   }
 
   validate(budget) {
