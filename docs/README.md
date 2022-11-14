@@ -13,7 +13,7 @@
 - [x] 구매한 로또를 보여준다. - LottoGame#viewLottos()
 - [x] 당첨 번호를 입력 받는다. - LottoGame#inputWinNums()
 - [x] 보너스 번호를 입력 받는다. - LottoGame#inputBonusNum()
-- [ ] 당첨통계를 보여준다. - LottoGame#viewWinStatistics()
+- [x] 당첨통계를 보여준다. - LottoGame#viewWinStatistics()
 
 ## 예외 처리
 

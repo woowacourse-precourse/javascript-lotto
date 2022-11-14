@@ -10,11 +10,11 @@ const BONUS_NUM_INPUT_MESSAGE = '\n보너스 번호를 입력해 주세요.\n';
 const WIN_STATISTICS_MESSAGE = (resultObject, rateOfReturn) => `
 당첨통계
 ---
-3개 일치 (5,000원) - ${resultObject[fifth]}개
-4개 일치 (50,000원) - ${resultObject[fourth]}개
-5개 일치 (1,500,000원) - ${resultObject[third]}개
-5개 일치, 보너스 볼 일치 (30,000,000원) - ${resultObject[second]}개
-6개 일치 (2,000,000,000원) - ${resultObject[first]}개
+3개 일치 (5,000원) - ${resultObject['5th']}개
+4개 일치 (50,000원) - ${resultObject['4th']}개
+5개 일치 (1,500,000원) - ${resultObject['3rd']}개
+5개 일치, 보너스 볼 일치 (30,000,000원) - ${resultObject['2nd']}개
+6개 일치 (2,000,000,000원) - ${resultObject['1st']}개
 총 수익률은 ${rateOfReturn}%입니다.`;
 
 module.exports = {

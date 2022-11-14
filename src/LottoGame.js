@@ -17,7 +17,7 @@ class LottoGame {
       const [lottoCount, lottoArr] = this.lottoGenerator.publishLotto(lottoCost);
       this.validateLottoNums(lottoArr);
       this.viewLottos(lottoCount, lottoArr);
-      this.inputWinNums(lottoArr);
+      this.inputWinNums(lottoArr, lottoCost);
     });
   }
 
@@ -34,10 +34,10 @@ class LottoGame {
     });
   }
 
-  inputWinNums(lottoArr) {
+  inputWinNums(lottoArr, lottoCost) {
     Console.readLine(GAME_MESSAGE.WIN_NUM_INPUT_MESSAGE, (winNums) => {
       new WinNums(winNums);
-      this.inputBonusNum(lottoArr, winNums);
+      this.inputBonusNum(lottoArr, winNums, lottoCost);
     });
   }
   
@@ -46,7 +46,13 @@ class LottoGame {
       new BonusNum(winNums, bonusNum);
       const lottoResultObj = this.lottoMatching.getResultObj(lottoArr, winNums, bonusNum);
       const rateOfReturn = this.lottoMatching.getRateOfReturn(lottoResultObj, lottoCost);
+      this.viewWinStatistics(lottoResultObj, rateOfReturn);
     });
+  }
+
+  viewWinStatistics(lottoResultObj, rateOfReturn) {
+    Console.print(GAME_MESSAGE.WIN_STATISTICS_MESSAGE(lottoResultObj, rateOfReturn));
+    Console.close();
   }
 }
 
