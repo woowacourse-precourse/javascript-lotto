@@ -22,7 +22,7 @@ class Lottos {
   }
 
   showLottosNumber() {
-    Console.print(this.values);
+    this.values.forEach((lotto) => Console.print(lotto));
   }
 }
 
