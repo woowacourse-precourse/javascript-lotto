@@ -131,6 +131,16 @@ class App {
       this.result[PRIZE_REWARDS.SIX] += 1;
     }
   }
+
+  // 당첨 통계를 출력해주는 함수 구현
+  resultPrint() {
+    MissionUtils.Console.print(STATISTIC.WINNING_STATISTIC);
+    MissionUtils.Console.print(PRIZE_RESULTS.THREE(this.result[PRIZE_REWARDS.THREE]));
+    MissionUtils.Console.print(PRIZE_RESULTS.FOUR(this.result[PRIZE_REWARDS.FOUR]));
+    MissionUtils.Console.print(PRIZE_RESULTS.FIVE(this.result[PRIZE_REWARDS.FIVE]));
+    MissionUtils.Console.print(PRIZE_RESULTS.FIVE_BONUS(this.result[PRIZE_REWARDS.FIVE_BONUS]));
+    MissionUtils.Console.print(PRIZE_RESULTS.SIX(this.result[PRIZE_REWARDS.SIX]));
+  }
 }
 
 const app = new App();
