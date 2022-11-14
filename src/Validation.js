@@ -12,6 +12,13 @@ class Validation {
     if (!this.isUnique(numbers))
       this.throwException(InvalidInputError, ERROR_MESSAGE.NOT_UNIQUE_NUMBER);
   }
+  static validateBonusNumber(bonus, winningNumber) {
+    if (!this.isNumber([bonus])) this.throwException(InvalidInputError, ERROR_MESSAGE.NOT_A_NUMBER);
+    if (!this.isInRange([bonus], LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER))
+      this.throwException(InvalidInputError, ERROR_MESSAGE.OUT_OF_RANGE);
+    if (winningNumber.includes(bonus))
+      this.throwException(InvalidInputError, ERROR_MESSAGE.NOT_UNIQUE_BONUS_NUMBER);
+  }
   static throwException(error, message) {
     throw new error(message);
   }
