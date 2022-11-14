@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { USER_INPUT_PHRASE, LOTTO_PRICE, GAME_INPUT_ERRORS } = require('./config');
+const { USER_INPUT_PHRASE, LOTTO_PRICE, GAME_INPUT_ERRORS, GAME_RANGE } = require('./config');
 
 const getLottoBudget = (budgetAction) => {
   Console.readLine(USER_INPUT_PHRASE.REQUEST_PURCHASE_AMOUNT, (budget) => {
@@ -17,6 +17,17 @@ const getBonusNumber = (bonusAction) => {
   Console.readLine(USER_INPUT_PHRASE.REQUEST_BONUS_NUMBER, (bonusInput) => {
     bonusAction(bonusInput);
   });
+};
+
+const validateTargetNumber = (target) => {
+  const isNumber = target.every((num) => !isNaN(num));
+  const isInRange = target.every((num) => GAME_RANGE.MIN <= num && num <= GAME_RANGE.MAX);
+  const isUnique = new Set(target).size === target.length;
+  const isValidLength = target.length === GAME_RANGE.NUM_LENGTH;
+
+  if (isNumber === false || isInRange === false || isUnique === false || isValidLength === false) {
+    throw Error(GAME_INPUT_ERRORS.INVALID_INPUT_TYPE);
+  }
 };
 
 const validateLottoBudget = (budget) => {
