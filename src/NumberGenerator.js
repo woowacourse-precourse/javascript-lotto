@@ -13,7 +13,7 @@ class NumberGenerator {
     Console.print(`${this.count}${Message.INFORMATION.lottoCount}`);
     const lottoArray = [];
     while (lottoArray.length < this.count) {
-      const lotto = Random.pickUniqueNumbersInRange(1, 45, 6);
+      const lotto = Random.pickUniqueNumbersInRange(1, 45, 6).sort((a,b) => a-b);
       lottoArray.push(lotto);
       Console.print(`[${lotto.join(", ")}]`);
     }
