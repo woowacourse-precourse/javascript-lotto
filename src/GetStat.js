@@ -30,7 +30,8 @@ class GetStat {
   countCorrectNumbers(i) {
     this.lottoInfo['winningNumbers'].forEach((number) => {
       if (this.lottoInfo['lottoArray'][i].includes(number)) {
-        this.lottoInfo.numberOfCorrectNumbers += 1;
+        this.lottoInfo.numberOfCorrectNumbers
+          += LOTTO_INFO_VALUES.ADD_CORRECT_NUMBER;
       }
     });
   }
@@ -38,7 +39,7 @@ class GetStat {
   isSecondPrizeWin(i) {
     if (this.lottoInfo.numberOfCorrectNumbers === 5 &&
       this.lottoInfo['lottoArray'][i].includes(this.lottoInfo.bonusNumber)) {
-      this.lottoInfo.numberOfCorrectNumbers += 2;
+      this.lottoInfo.numberOfCorrectNumbers += LOTTO_INFO_VALUES.GET_PRIZE_2;
     }
   }
 
@@ -50,7 +51,8 @@ class GetStat {
       6: 'rank1',
       7: 'rank2',
     }
-    this.lottoInfo[rankCheck[this.lottoInfo.numberOfCorrectNumbers]] += 1;
+    this.lottoInfo[rankCheck[this.lottoInfo.numberOfCorrectNumbers]]
+      += LOTTO_INFO_VALUES.COUNT_WINNING;
   }
 
   printStat() {
