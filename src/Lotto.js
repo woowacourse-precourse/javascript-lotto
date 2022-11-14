@@ -1,5 +1,5 @@
 const { PRIZE_NAME, PRIZE_REWARD, LOTTO_PAYMENT, ORDER_OF_PRINT } = require('./const.js');
-const { print, templeteLotto } = require('./util.js');
+const { print, templeteLotto, closeReadLine } = require('./util.js');
 
 class Lotto {
   #numbers;
@@ -13,7 +13,7 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
     }
-    if (new Set(numbers).length !== 6) {
+    if (new Set(numbers).size !== 6) {
       throw new Error('[ERROR] 로또 번호에 중복이 없어야 합니다.');
     }
   }
@@ -59,6 +59,7 @@ class Lotto {
     print('당첨 통계\n---');
     ORDER_OF_PRINT.forEach(prize => print(templeteLotto(prize, resultLotto[prize])));
     print(`총 수익률은 ${this.getRateOfReturn({ payment, resultLotto })}%입니다.`);
+    closeReadLine();
   }
 }
 

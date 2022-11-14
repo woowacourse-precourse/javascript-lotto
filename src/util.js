@@ -5,8 +5,8 @@ const print = content => {
   Console.print(content);
 };
 
-const readLine = content => {
-  return new Promise(resolve => Console.readLine(content, input => resolve(input)));
+const readLine = (content, func) => {
+  Console.readLine(content, func);
 };
 
 const makeLottoNumber = count => {
