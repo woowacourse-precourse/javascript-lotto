@@ -48,7 +48,7 @@ class Validator {
   }
 
   isNotUnitOfLottoPrice(money) {
-    return money % LOTTO.PRICE || money === 0;
+    return Boolean(money % LOTTO.PRICE) || money === 0;
   }
 
   isNotWinningNumberInputFormat(winningNumber) {
