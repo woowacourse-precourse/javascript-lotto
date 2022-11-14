@@ -49,11 +49,10 @@ class Result {
   checkIncludeBonus(index) {
     if (this.myLottoArray[index].includes(this.bonusNumber)) {
       this.#scoreArray[3] += 1;
+      return;
     }
-
-    if (!this.myLottoArray[index].includes(this.bonusNumber)) {
-      this.#scoreArray[2] += 1;
-    }
+    this.#scoreArray[2] += 1;
+    return;
   }
 
   announceScore() {
