@@ -1,6 +1,5 @@
 class Lotto {
   #numbers;
-  #bonus;
 
   constructor(numbers) {
     this.validate(numbers);
@@ -21,7 +20,7 @@ class Lotto {
   setBonusNum(bonus) {
     // 보너스 번호 설정
     this.bonusValidate(bonus);
-    this.#bonus = bonus;
+    this.#numbers.push(bonus);
   }
 
   bonusValidate(bonus) {
@@ -35,12 +34,11 @@ class Lotto {
 
   getNumbers() {
     // 당첨 번호 반환
-    return this.#numbers;
+    return this.#numbers.slice(0, -1);
   }
 
   getBonus() {
-    // 당첨 번호 반환
-    return this.#bonus;
+    return this.#numbers[this.#numbers.length];
   }
 }
 
