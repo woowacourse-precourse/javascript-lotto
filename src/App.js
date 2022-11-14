@@ -38,7 +38,9 @@ class App {
 
   printProfitRate(total, money) {
     Console.print(
-      `${MESSAGE.REWARD_HEAD}${(total / money) * 100}%${MESSAGE.REWARD_TAIL}`
+      `${MESSAGE.REWARD_HEAD}${((total / money) * 100).toFixed(1)}%${
+        MESSAGE.REWARD_TAIL
+      }`
     );
     this.exit();
   }
