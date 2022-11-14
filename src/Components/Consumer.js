@@ -1,5 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const { checkAppropriateUnit, checkAppropriateMoney } = require('./Validation');
+const { checkAppropriateUnit, checkAppropriateMoney } = require('../Utils/Validation');
 
 class Consumer {
   #money;

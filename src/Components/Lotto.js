@@ -5,8 +5,8 @@ const {
   checkRange,
   checkMainNumberOverlap,
   checkBonusNumberOverlap,
-} = require('./Validation');
-const { PICK_INDEX } = require('./Constants/PICK');
+} = require('../Utils/Validation');
+const { PICK_INDEX } = require('../Constants/PICK');
 
 class Lotto {
   #numbers;
