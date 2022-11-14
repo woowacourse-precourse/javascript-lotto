@@ -1,24 +1,31 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const messages = require('./constants/constants.js');
+const { GUIDE, ERROR } = require('./constants/constants.js');
 class App {
   constructor() {
     this.purchaseAmount = 0;
+    this.numberOfGeneratedLottos = 0;
     this.generatedLottos = [];
   }
   play() {
-    this.getPurchaseAmount();
+    this.playLottoGame();
   }
-  getPurchaseAmount() {
-    Console.readLine(messages.GUIDE.ENTER_LOTTO_PURCHASE_AMOUNT, (purchaseAmountInput) => {
-      if (this.isValidPurchaseAmount(purchaseAmountInput))
-        this.purchaseAmount = Number(purchaseAmountInput);
+
+  playLottoGame() {
+    Console.readLine(GUIDE.ENTER_LOTTO_PURCHASE_AMOUNT, (input) => {
+      this.getPurchaseAmount(input);
       this.buyLottos();
+      this.printNumberofLottos();
+      this.printLottoNumbers();
     });
+  }
+  getPurchaseAmount(input) {
+    if (this.isValidPurchaseAmount(input)) this.purchaseAmount = Number(input);
   }
 
   buyLottos() {
     this.numberOfGeneratedLottos = this.calculateNumberOfGeneratedLottos();
     this.generateLottos();
+    // Console.print(this.generatedLottos);
   }
 
   generateLottoNumbers() {
@@ -39,17 +46,17 @@ class App {
     );
     if (purchaseAmountInput.split('').every((digit) => possibleNumbers.includes(digit)))
       return true;
-    throw new Error(messages.ERROR.INCLUDE_NOT_NUMBER_ERROR);
+    throw new Error(ERROR.INCLUDE_NOT_NUMBER_ERROR);
   }
 
   isFirstDigitNotZero(purchaseAmountInput) {
     if (purchaseAmountInput[0] !== '0') return true;
-    throw new Error(messages.ERROR.START_WITH_ZERO_ERROR);
+    throw new Error(ERROR.START_WITH_ZERO_ERROR);
   }
 
   isDivisibleByThousand(purchaseAmountInput) {
     if (Number(purchaseAmountInput) % 1000 === 0) return true;
-    throw new Error(messages.ERROR.NOT_DIVISIBLE_BY_THOUSAND_ERROR);
+    throw new Error(ERROR.NOT_DIVISIBLE_BY_THOUSAND_ERROR);
   }
 
   calculateNumberOfGeneratedLottos() {
@@ -60,6 +67,17 @@ class App {
     for (let i = 0; i < this.numberOfGeneratedLottos; i++) {
       this.generatedLottos.push(this.generateLottoNumbers());
     }
+  }
+
+  printNumberofLottos() {
+    Console.print(`${this.numberOfGeneratedLottos}${GUIDE.SHOW_NUMBER_OF_LOTTOS}`);
+  }
+
+  printLottoNumbers() {
+    this.generatedLottos.forEach((generatedLotto) =>
+      Console.print(`[${generatedLotto.join(', ')}]`)
+    );
+    Console.print('');
   }
 }
 
