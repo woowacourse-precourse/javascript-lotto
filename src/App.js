@@ -8,11 +8,10 @@ class App {
   }
 
   buyLotto() {
-    let amount;
-
     MissionUtils.Console.readLine('', (userInput) => {
       const PAID_MONEY = userInput.split('').map((item) => +item);
       const LOTTO_PRICE = 1000;
+      let amount;
 
       if (PAID_MONEY.includes(NaN)) {
         throw new Error('[ERROR] 구입하실 금액은 숫자로 입력하셔야 합니다.');
