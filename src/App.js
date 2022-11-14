@@ -59,6 +59,8 @@ class App {
       App.LENGTH_OF_LOTTO_NUMBER
     );
 
+    if (numbers[0] < numbers[1]) return numbers;
+
     return numbers.sort();
   }
 
@@ -84,15 +86,19 @@ class App {
     }
 
     this.readLine("보너스 번호를 입력해주세요.", (value) => {
-      const bonusNumber = value;
-      const winningDetails = this.getWinningDetails(
-        lottos,
-        winnerNumber,
-        bonusNumber,
-        amountOfPaid
-      );
-      this.showFinalResult(winningDetails, amountOfPaid);
+      this.getBonusNumber(value, winnerNumber, lottos, amountOfPaid);
     });
+  }
+
+  getBonusNumber(bonusNumber, winnerNumber, lottos, amountOfPaid) {
+    const winningDetails = this.getWinningDetails(
+      lottos,
+      winnerNumber,
+      bonusNumber,
+      amountOfPaid
+    );
+    this.showFinalResult(winningDetails, amountOfPaid);
+    Console.close();
   }
 
   getWinningDetails(lottos, winnerNumber, bonusNumber) {
@@ -125,7 +131,6 @@ class App {
   showFinalResult(winningDetails, amountOfPaid) {
     this.showWinningDetails(winningDetails);
     this.showEarningsRate(winningDetails, amountOfPaid);
-    Console.close();
   }
 
   showWinningDetails({
