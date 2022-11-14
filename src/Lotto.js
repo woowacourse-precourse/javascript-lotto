@@ -45,24 +45,15 @@ class Lotto {
   }
 
   compareDivision(publish) {
-    if (this.winningCount === REQUIRE.FIRST) {
-      return (this.firstCount += 1);
-    }
+    if (this.winningCount === REQUIRE.FIRST) return (this.firstCount += 1);
     if (
       this.winningCount === REQUIRE.SECOND &&
       publish.includes(this.bonusNumber)
-    ) {
+    )
       return (this.secondCount += 1);
-    }
-    if (this.winningCount === REQUIRE.THIRD) {
-      return (this.thirdCount += 1);
-    }
-    if (this.winningCount === REQUIRE.FOURTH) {
-      return (this.fourthCount += 1);
-    }
-    if (this.winningCount === REQUIRE.FIFTH) {
-      return (this.fifthCount += 1);
-    }
+    if (this.winningCount === REQUIRE.THIRD) return (this.thirdCount += 1);
+    if (this.winningCount === REQUIRE.FOURTH) return (this.fourthCount += 1);
+    if (this.winningCount === REQUIRE.FIFTH) return (this.fifthCount += 1);
   }
 
   profitCalculator(payment) {

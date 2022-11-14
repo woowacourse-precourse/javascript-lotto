@@ -2,7 +2,7 @@ const { Console } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const Publish = require('./Publish');
 const Exception = require('./Exception');
-const { MONEY, WINNING_TEXT, INPUT_TEXT } = require('./Constant');
+const { WINNING_TEXT, INPUT_TEXT } = require('./Constant');
 
 class App {
   play() {
@@ -19,13 +19,12 @@ class App {
   }
 
   makeLotto() {
-    this.quantity = this.money / MONEY.MIN;
-    this.publish = new Publish(this.quantity);
+    this.publish = new Publish(this.money);
     this.printLottoQuantity();
   }
 
   printLottoQuantity() {
-    Console.print(`${this.quantity}개를 구매했습니다.`);
+    Console.print(`${this.publish.countQuantity()}개를 구매했습니다.`);
     this.printAllLotto();
   }
 
@@ -38,8 +37,8 @@ class App {
   }
 
   enterWinningNumber() {
-    Console.readLine(INPUT_TEXT.WINNING_NUMBER, (winNumber) => {
-      this.numbertoArray(winNumber);
+    Console.readLine(INPUT_TEXT.WINNING_NUMBER, (winningNumber) => {
+      this.numbertoArray(winningNumber);
       this.lotto = new Lotto(this.winningArray);
       this.enterBonusNumber();
     });
@@ -79,5 +78,6 @@ class App {
     Console.close();
   }
 }
-
+const app = new App();
+app.play();
 module.exports = App;

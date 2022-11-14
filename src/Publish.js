@@ -1,9 +1,14 @@
 const { Random } = require('@woowacourse/mission-utils');
-const { PUBLISH } = require('./Constant');
+const { MONEY, PUBLISH } = require('./Constant');
 class Publish {
-  constructor(lottoQuantity) {
-    this.lottoQuantity = lottoQuantity;
-    this.create(this.lottoQuantity);
+  constructor(money) {
+    this.money = money;
+    this.Quantity = this.countQuantity();
+    this.create(this.Quantity);
+  }
+
+  countQuantity() {
+    return this.money / MONEY.MIN;
   }
 
   create(lottoQuantity) {
