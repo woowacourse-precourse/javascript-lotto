@@ -99,7 +99,7 @@ class App {
   }
 
   getYield() {
-    const total_yield = (this.rewards / this.purchaseAmount) * 100; // 25000625;
+    const total_yield = (this.rewards / this.purchaseAmount) * 100;
     const formatted_total_yield = this.formatYieldForPrint(total_yield);
     Console.print(`총 수익률은 ${formatted_total_yield}%입니다.`);
   }
@@ -112,8 +112,5 @@ class App {
     return integerPart + fractionalPart;
   }
 }
-
-// const app = new App();
-// app.play();
 
 module.exports = App;
