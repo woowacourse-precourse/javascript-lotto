@@ -1,6 +1,7 @@
 const App = require('../src/App')
 const MissionUtils = require('@woowacourse/mission-utils')
 const { LOTTO_PRICE, validationError } = require('../src/constants/app.js')
+const { prize } = require('../src/constants/lotto.js')
 const { WINNING_NUMBER_COUNT } = require('../src/constants/common.js')
 
 const mockQuestions = (answers) => {
@@ -71,8 +72,47 @@ describe('App 클래스 메서드 테스트', () => {
     expect(isIncreasing).toBe(true)
   })
 
-  test('당첨 통계', () => {
-    //
+  test(`당첨 통계는 ${Object.keys(
+    prize
+  )}를 key, number를 value로 가지는 객체이다.`, () => {
+    app.lottosOwnedByUser = [[1, 2, 3, 4, 5, 6]]
+    const lottoResult = app.getLottoResult({
+      wins: [1, 2, 3, 4, 5, 6],
+      bonus: 7,
+    })
+
+    expect(lottoResult).toHaveProperty(`${prize.FIRST}`)
+    expect(lottoResult).toHaveProperty(`${prize.SECOND}`)
+    expect(lottoResult).toHaveProperty(`${prize.THIRD}`)
+    expect(lottoResult).toHaveProperty(`${prize.FOURTH}`)
+    expect(lottoResult).toHaveProperty(`${prize.FIFTH}`)
+
+    expect(typeof lottoResult[prize.FIRST]).toBe('number')
+    expect(typeof lottoResult[prize.SECOND]).toBe('number')
+    expect(typeof lottoResult[prize.THIRD]).toBe('number')
+    expect(typeof lottoResult[prize.FOURTH]).toBe('number')
+    expect(typeof lottoResult[prize.FIFTH]).toBe('number')
+  })
+
+  test('1등 2개, 2등 2개, 4등 1개를 반환해야 한다.', () => {
+    app.lottosOwnedByUser = [
+      [1, 2, 3, 4, 5, 6],
+      [1, 2, 3, 4, 5, 6],
+      [1, 2, 3, 4, 5, 7],
+      [1, 2, 3, 4, 5, 7],
+      [1, 2, 3, 4, 10, 11],
+      [10, 11, 12, 13, 14, 15],
+    ]
+    const lottoResult = app.getLottoResult({
+      wins: [1, 2, 3, 4, 5, 6],
+      bonus: 7,
+    })
+
+    expect(lottoResult).toHaveProperty(`${prize.FIRST}`, 2)
+    expect(lottoResult).toHaveProperty(`${prize.SECOND}`, 2)
+    expect(lottoResult).toHaveProperty(`${prize.THIRD}`, 0)
+    expect(lottoResult).toHaveProperty(`${prize.FOURTH}`, 1)
+    expect(lottoResult).toHaveProperty(`${prize.FIFTH}`, 0)
   })
 })
 
