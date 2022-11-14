@@ -19,6 +19,7 @@ class BuyLotto {
 
     printNumberOfLotto(numberOfLotto) {
         MissionUtils.Console.print(`${numberOfLotto}개를 구매했습니다.`);
+        this.createRandomLotto(numberOfLotto);
     }
 
     createRandomLotto(numberOfLotto) {
@@ -29,10 +30,14 @@ class BuyLotto {
 
             randomLottos.push(randomLotto.sort((a, b) => a - b));
         }
-        return randomLottos;
+        this.printRandomLotto(randomLottos);
     }
 
-
+    printRandomLotto(randomLottos) {
+        for(let i = 0; i < randomLottos.length; i++) {
+            MissionUtils.Console.print(randomLottos[i]);
+        }
+    }
 
 }
 
