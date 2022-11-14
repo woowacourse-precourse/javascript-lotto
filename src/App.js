@@ -57,6 +57,7 @@ class App {
     lists.forEach((list) => {
       Console.print(`[${list.join(", ")}]`);
     });
+    Console.print('\n');
     this.inputWinLotto();
   }
 
@@ -70,16 +71,21 @@ class App {
 
   inputBonusLotto() {
     Console.readLine(MESSAGES.INPUT_BONUS_ANSWER, (input) => {
-      this.checkBonusLotto(Number(input));
-      this.#win_lotto.push(Number(input));
+      this.bonusProcess(input);
     });
   }
   
+  bonusProcess(bonus) {
+    this.checkBonusLotto(Number(bonus));
+    this.#win_lotto.push(Number(bonus));
+  }
+
   checkBonusLotto(bonus) {
     if (isNaN(bonus)) throw new Error(BONUS_ERROR.ONLY_NUMBER);
     if (bonus < 1 || bonus > 45) throw new Error(BONUS_ERROR.RANGE);   
     if (this.#win_lotto.includes(bonus) === true) throw new Error(BONUS_ERROR.DUPLICATE);
   }
+
 }
 
 const app = new App();
