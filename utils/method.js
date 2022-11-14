@@ -1,16 +1,15 @@
-const LottoPaymentUI = require("../src/ui/component/LottoPayment");
-const LottoWinCountUI = require("../src/ui/component/LottoWinCount");
-const LottoIncomeUI = require("../src/ui/component/LottoIncome");
-const Component = require("../src/ui/core/Component");
+const LottoPaymentUI = require('../src/ui/component/LottoPayment');
+const LottoWinCountUI = require('../src/ui/component/LottoWinCount');
+const LottoIncomeUI = require('../src/ui/component/LottoIncome');
 
-const LottoDrawFactory = require("../src/domain/LottoDrawFactory");
+const LottoDrawFactory = require('../src/domain/LottoDrawFactory');
 
-const LottoIncome = require("../src/domain/LottoIncome");
-const LottoWinCount = require("../src/domain/LottoWinCount");
+const LottoIncome = require('../src/domain/LottoIncome');
+const LottoWinCount = require('../src/domain/LottoWinCount');
 
-const { VARIABLE_LOTTO, LOTTO_ERROR_MESSAGE } = require("./constants");
+const { VARIABLE_LOTTO, LOTTO_ERROR_MESSAGE } = require('./constants');
 
-const validateLottoRange = (number) => {
+const validateLottoRange = number => {
   if (!VARIABLE_LOTTO.regex.test(number)) {
     throw new Error(LOTTO_ERROR_MESSAGE.range);
   }

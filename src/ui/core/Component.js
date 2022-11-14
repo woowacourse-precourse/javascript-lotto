@@ -1,5 +1,5 @@
 class Component {
-  #ERRORMESSAGE = "[ERROR] YOU SHOULD DECLARE OVERIDING";
+  #ERRORMESSAGE = '[ERROR] YOU SHOULD DECLARE OVERIDING';
 
   print() {
     throw new Error(this.#ERRORMESSAGE);
