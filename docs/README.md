@@ -12,9 +12,9 @@
 
 - [x] 중복하지 않는 랜덤 숫자 6개를 생성하는 함수 생성(오름차순 정렬) 
 
-- [ ] MissionUtils.Console 관련 함수 생성(readLine / print / close)
+- [x] MissionUtils.Console 관련 함수 생성(readLine / print / close)
 
-- [ ] 에러 발생 함수 생성
+- [x] 에러 발생 함수 생성
 
 ### 2. 사용자 입력 관련 클래스(UserInput)
 
