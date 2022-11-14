@@ -27,8 +27,17 @@ class App {
   requestWinNumbers() {
     Console.readLine('당첨번호를 입력해주세요.\n', userInput => {
       this.winNumbers = this.utils.transeStringToNumber(userInput);
+      this.requestBonusnumber();
     });
   }
+
+  requestBonusnumber() {
+    Console.readLine('보너스 숫자를 입력해주세요\n', bonusNumber => {
+      this.bonusNumber = this.utils.transeStringToNumber(bonusNumber);
+    });
+  }
+
+
 }
 
 const app = new App();
