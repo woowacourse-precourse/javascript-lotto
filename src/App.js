@@ -1,9 +1,15 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Calculator = require("./Calculator");
 
 class App {
   play() {
     MissionUtils.Console.print("구입금액을 입력해 주세요.");
-    this.receivePurchaseAmount();
+
+    const calculator = new Calculator();
+    const purchaseAmount = this.receivePurchaseAmount();
+    const amountOfLotto = calculator.calculateAmountOfLotto(purchaseAmount);
+
+    MissionUtils.Console.print(`${amountOfLotto}개를 구매했습니다.`);
   }
 
   receivePurchaseAmount() {
