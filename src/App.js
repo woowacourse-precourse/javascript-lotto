@@ -23,12 +23,12 @@ class App {
     return money;
   }
 
-  readWinningNum() {
+  setWinningNum() {
     let winningNum = [];
     MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (input) => {
       winningNum = this.changeNumArray(input);
     });
-    return winningNum;
+    this.#winningNum = winningNum;
   }
 
   readBonusNum() {
