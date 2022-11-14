@@ -58,9 +58,9 @@ class Game {
         winningLotto,
         bonusNum
       );
-      const YIELD = lottoCalculator.calculateYield();
+      const PROFIT = lottoCalculator.calculateProfit();
       const SCORE = lottoCalculator.score;
-      resolve(printLottoResult(SCORE, YIELD), Console.close());
+      resolve(printLottoResult(SCORE, PROFIT), Console.close());
     });
   }
 }

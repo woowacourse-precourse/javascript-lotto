@@ -37,7 +37,7 @@ class LottoCalculator {
     return SAME_NUM.length;
   }
 
-  calculateYield() {
+  calculateProfit() {
     return ((this.calculateWinningMoney() / this.paidMoney) * 100).toFixed(1);
   }
 }
