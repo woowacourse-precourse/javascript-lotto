@@ -3,19 +3,10 @@ const Lotto = require("./Lotto");
 
 class App {
   constructor() {
-    this.LottoCount = 8;
-    this.Lotto = [
-      [8, 21, 23, 41, 42, 43],
-      [3, 5, 11, 16, 32, 38],
-      [7, 11, 16, 35, 36, 44],
-      [1, 8, 11, 31, 41, 42],
-      [13, 14, 16, 38, 42, 45],
-      [7, 11, 30, 40, 42, 43],
-      [2, 13, 22, 32, 38, 45],
-      [1, 3, 5, 2, 4, 6],
-    ];
+    this.LottoCount = null;
+    this.Lotto = [];
     this.winNum = [1, 2, 3, 4, 5, 6];
-    this.bonusNum = 7;
+    this.bonusNum = null;
     this.score = {};
   }
 
@@ -27,9 +18,9 @@ class App {
     // 당첨 번호 입력
     // this.getWinNum();
     // 보너스 번호 입력
-    // this.getBonusNum();
+    this.getBonusNum();
     // 당첨 결과 출력
-    this.compareWinToLotto();
+    // this.compareWinToLotto();
   }
 
   getLottoCount() {
@@ -85,6 +76,8 @@ class App {
       throw new RangeError(
         "[ERROR] 보너스 번호는 1~45 사이의 숫자를 입력하세요"
       );
+    if (this.winNum.includes(answers))
+      throw new Error("[ERROR] 당첨번호와 중복된 숫자는 입력할 수 없습니다.");
   }
 
   compareWinToLotto() {
@@ -107,7 +100,4 @@ class App {
   }
 }
 
-const app = new App();
-app.play();
-
-// module.exports = App;
+module.exports = App;
