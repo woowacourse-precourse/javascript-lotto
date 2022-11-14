@@ -7,13 +7,14 @@ const {
 
 class Validator {
   static common(input) {
+    const spaceReg = /\s/g;
     if (typeof +input !== 'number' || Number.isNaN(input)) {
       throw new Error(COMMON_INVALID_ERROR_MESSAGES.ONLY_NUMBER);
     }
     if (Math.sign(+input) === -1 || !Number.isInteger(+input)) {
       throw new Error(COMMON_INVALID_ERROR_MESSAGES.NOT_DECIMAL_AND_MINUS);
     }
-    if (input === '' || input.includes('')) {
+    if (input === '' || input.match(spaceReg)) {
       throw new Error(COMMON_INVALID_ERROR_MESSAGES.NOT_EMPTY);
     }
 
@@ -46,6 +47,6 @@ class Validator {
 
 module.exports = Validator;
 
-const a = '     ';
+const a = '1000';
 
 console.log(a.includes(''));
