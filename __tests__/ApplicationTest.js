@@ -136,23 +136,45 @@ describe("로또 테스트", () => {
   // 로또 번호 예외 테스트 
   test("예외 테스트: 1~45 사이가 아닌 숫자가 로또 번호에 포함된 경우 1", () => {
     mockRandoms([
-      [0, 2, 3, 4, 5, 6],
+      [1, 2, 3, 4, 5, 6],
     ]);
 
+    mockQuestions(["1000", "0,2,3,4,5,6"]);
+
     expect(() => {
-      SYSTEM.makeLotto();
+      const app = new App();
+      app.play();
     }).toThrow(ERROR.INVAID_NUMBER);
   });
 
-  test("예외 테스트: 1~45 사이가 아닌 숫자가 로또 번호에 포함된 경우 2", () => {
+  test("예외 테스트: 1~45 사이가 아닌 숫자가 당첨 로또 번호에 포함된 경우 2", () => {
     mockRandoms([
-      [1, 2, 3, 4, 5, 46],
+      [1, 2, 3, 4, 5, 6],
     ]);
 
+    mockQuestions(["1000", "1,2,3,4,5,46"]);
+
     expect(() => {
-      SYSTEM.makeLotto();
+      const app = new App();
+      app.play();
     }).toThrow(ERROR.INVAID_NUMBER);
   });
+
+  test("예외 테스트: 중복된 숫자가 당첨 로또 번호에 포함된 경우", () => {
+    mockRandoms([
+      [1, 2, 3, 4, 5, 6],
+    ]);
+
+    mockQuestions(["1000", "1,1,2,3,4,5"]);
+
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow(ERROR.NOT_UNIQUE);
+
+  });
+
+
 
   // 보너스 숫자 입력 기능 테스트
   test("기능 테스트: 보너스 숫자 입력", () => {
