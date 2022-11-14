@@ -1,6 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
-const Print = require("./Print");
 
 class User {
 	#seedMoney

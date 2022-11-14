@@ -1,10 +1,10 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Prize = require('./Prize');
 
-class Print {
+class Printer {
 	static printLottoBundle(lottoBundle) {
-		MissionUtils.Console.print(`${lottoBundle.length()}개를 구매했습니다.`);
-		for (let i = 0; i < lottoBundle.length(); i++) {
+		MissionUtils.Console.print(`${lottoBundle.length}개를 구매했습니다.`);
+		for (let i = 0; i < lottoBundle.length; i++) {
 			MissionUtils.Console.print(lottoBundle[i]);
 		}
 	}
@@ -35,7 +35,7 @@ class Print {
 		MissionUtils.Console.print('당첨 통계');
 		MissionUtils.Console.print('---');
 		for (let correct = 3; correct < 8; correct++) {
-			Print.printWinningResult(winningCount, correct);
+			Printer.printWinningResult(winningCount, correct);
 		}
 	}
 
@@ -45,9 +45,9 @@ class Print {
 	}
 
 	result(user, winningCount) {
-		Print.winningResult(winningCount);
-		Print.earningsRates(user.getSeedMoney(), user.earnings);
+		Printer.winningResult(winningCount);
+		Printer.earningsRate(user.getSeedMoney(), user.earnings);
 	}
 }
 
-module.exports = Print;
+module.exports = Printer;

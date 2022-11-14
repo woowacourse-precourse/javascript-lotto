@@ -1,6 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const Lotto = require("./Lotto");
-const Print = require("./Print");
+const Printer = require("./Printer");
 
 const FIRST_PLACE = 7;
 const SECOND_PLACE = 6;
@@ -20,10 +19,10 @@ class Prize {
 		let numsForValidCheck = nums.split(',');
 		numsForValidCheck.push(bonusNum);
 
-		this.isNum(numsForValidCheck);
-		this.isSevenNumbers(numsForValidCheck);
-		this.isNumsInRange(numsForValidCheck);
-		this.isDuplicated(numsForValidCheck);
+		Prize.isNum(numsForValidCheck);
+		Prize.isSevenNumbers(numsForValidCheck);
+		Prize.isNumsInRange(numsForValidCheck);
+		Prize.isDuplicated(numsForValidCheck);
 
 		this.winningNums = nums.split(',');
 		this.winningBonusNum = bonusNum;
@@ -81,7 +80,7 @@ class Prize {
 				count += 1;
 			}
 		}
-		if (isFirstPlace(count) || isSecondPlace(count)) {
+		if (Prize.isFirstPlace(count) || Prize.isSecondPlace(count)) {
 			count += 1;
 		}
 		return count;
@@ -89,7 +88,7 @@ class Prize {
 
 	countingPrize(lottoBundle) {
 		let winningCount = 0;
-		for (let i = 0; i < lottoBundle.length(); i++) {
+		for (let i = 0; i < lottoBundle.length; i++) {
 			winningCount = this.howManyCorrect(lottoBundle[i]);
 			this.winningCount[winningCount] += 1;
 		}
@@ -104,15 +103,15 @@ class Prize {
 	}
 
 	winningCheck(user) {
-		Console.readLine('당첨 번호를 입력해 주세요.\n', (nums) => {
-			Console.readLine('보너스 번호를 입력해 주세요.\n', (bonusNum) => {
+		MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (nums) => {
+			MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.\n', (bonusNum) => {
 				this.validate(nums, bonusNum);
 				this.countingPrize(user.lottoBundle);
 				this.calculateEarnings(user);
 
-				const print = new Print();
-				print.result(user, this.winningCount);
-				Console.close();
+				const printer = new Printer();
+				printer.result(user, this.winningCount);
+				MissionUtils.Console.close();
 			})
 		})
 	}
