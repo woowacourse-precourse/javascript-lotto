@@ -1,9 +1,12 @@
+const Message = require("./Message");
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
     this.validate(numbers);
     this.overlay(numbers);
+    this.rangeValidation(numbers);
     this.#numbers = numbers;
   }
 
@@ -18,8 +21,17 @@ class Lotto {
     numbers = [...set];
     
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 중복이 포함되서는 안됩니다.");
+      throw new Error(`${Message.ERROR_MESSAGE.OVERLAP}`);
     }
+  }
+
+  rangeValidation(numbers) {
+    numbers.forEach(element => {
+      const num = parseInt(element);
+      if ( num < 1 || num > 45) {
+        throw new Error(`${Message.ERROR_MESSAGE.RANGE}`);
+      }
+    });
   }
 
   
