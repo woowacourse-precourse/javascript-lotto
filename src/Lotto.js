@@ -11,7 +11,6 @@ class Lotto {
       this.isSixNumbers(numbers);
       this.isNumbersInRange(numbers);
       this.isDuplicated(numbers);
-      throw ("is Valid");
     }
   
   isNum(numbers) {
@@ -42,6 +41,10 @@ class Lotto {
     if (duplicateCheck.size !== 6) {
       throw new Error("[ERROR] 로또 번호 6개는 중복되지 않아야 합니다.");
     }
+  }
+  
+  getLotto() {
+    return this.#numbers;
   }
 }
 
