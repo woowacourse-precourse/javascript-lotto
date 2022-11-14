@@ -15,16 +15,9 @@ class Lotto {
     }
   }
 
-  print() {
-    Console.print(
-      `${USER_OUTPUT_PHRASE.LOTTO_START}${this.#numbers.join(USER_OUTPUT_PHRASE.LOTTO_DELIMITER)}${
-        USER_OUTPUT_PHRASE.LOTTO_END
-      }`,
-    );
+  get numbers() {
+    return this.#numbers;
   }
 }
-
-const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
-lotto.print();
 
 module.exports = Lotto;
