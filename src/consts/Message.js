@@ -1,4 +1,4 @@
-const { LOTTO } = require('./LottoSyst');
+const { LOTTO } = require('./LottoSystem');
 
 const INPUT = {
   PURCHASE: '구입금액을 입력해 주세요.',
