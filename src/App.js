@@ -1,7 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 const {
   APP_MESSAGE,
-  EXCEPTION_MESSAGE,
   EXCEPTION_REASON,
   RANK_STATISTICS_MESSAGE,
 } = require('./constants/constants');
@@ -13,6 +12,7 @@ const verifyValidLottery = require('./utils/verify/verifyValidLottery');
 const processRandomLottoNumber = require('./utils/process/processRandomLottoNumber');
 const verifyNumberType = require('./utils/verify/verifyNumberType');
 const verifyStartMoneyUnit = require('./utils/verify/verifyStartMoneyUnit');
+const makeException = require('./utils/exception/makeException');
 
 class App {
   #startMoney;
@@ -43,9 +43,9 @@ class App {
   buy() {
     Console.readLine(APP_MESSAGE.INSERT_PURCHASE_COST, (userInput) => {
       if (!verifyNumberType(userInput))
-        this.makeException(EXCEPTION_REASON.INPUT_NOT_NUMBER);
+        makeException(EXCEPTION_REASON.INPUT_NOT_NUMBER);
       if (!verifyStartMoneyUnit(Number(userInput)))
-        this.makeException(EXCEPTION_REASON.MONEY_UNIT_INCORRECT);
+        makeException(EXCEPTION_REASON.MONEY_UNIT_INCORRECT);
       this.#startMoney = Number(userInput);
       this.#myLotteryQuantity = countPurchasedLotteries(this.#startMoney);
       this.#myLotteryList = Array(this.#myLotteryQuantity).fill(0); // 처음부터 Array(Object) 모양 고정시켜 V8 Map Space에 불필요한 hiddenClass 생성을 막기 위함 (push 사용 x)
@@ -80,7 +80,7 @@ class App {
       });
 
       const validCheck = verifyValidLottery(answerLottery);
-      if (validCheck !== true) return this.makeException(validCheck);
+      if (validCheck !== true) return makeException(validCheck);
 
       this.#winNumber = answerLottery;
       return this.makeBonusNumber();
@@ -91,7 +91,7 @@ class App {
     Console.readLine(APP_MESSAGE.INSERT_BONUS_NUMBER, (userInput) => {
       const inputBonusNumber = Number(userInput);
       if (this.#winNumber.includes(inputBonusNumber))
-        return this.makeException(EXCEPTION_REASON.INPUT_OVERLAPPED);
+        return makeException(EXCEPTION_REASON.INPUT_OVERLAPPED);
 
       this.#bonusNumber = inputBonusNumber;
       return this.calculateResult();
@@ -127,10 +127,6 @@ class App {
 
   endGame() {
     return Console.close();
-  }
-
-  makeException(errorName) {
-    throw new Error(EXCEPTION_MESSAGE[errorName]);
   }
 }
 
