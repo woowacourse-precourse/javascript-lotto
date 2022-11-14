@@ -31,7 +31,6 @@ class LottoGame {
         this.generateLottoList();
         this.printLottoList();
         this.inputWinningNumbers();
-        this.inputBonusNumber();
       }
     });
   }
@@ -141,12 +140,13 @@ class LottoGame {
     return lottoResult;
   }
 
-  isBonusMatched() {}
-
   printResult() {
     printMessage(GAME_MESSAGE.LOTTO_RESULT);
     printMessage("---");
-    this.printLottoResult(this.getLottoResult());
+
+    const lottoResult = this.getLottoResult();
+    this.printLottoResult(lottoResult);
+    console.log(this.getEarningRate(this.calculateEarning(lottoResult)));
   }
 
   printLottoResult(lottoResult) {
@@ -173,6 +173,26 @@ class LottoGame {
             break;
         }
       });
+  }
+
+  calculateEarning(lottoResult) {
+    const priceValues = [
+      LOTTO_VALUE.FOUR_PRICE,
+      LOTTO_VALUE.THREE_PRICE,
+      LOTTO_VALUE.TWO_PRICE,
+      LOTTO_VALUE.ONE_PRICE,
+      LOTTO_VALUE.TWO_BONUS_PRICE,
+    ];
+    let earning = 0;
+
+    Object.keys(lottoResult).forEach((result, idx) => {
+      earning += priceValues[idx] * lottoResult[result];
+    });
+    return earning;
+  }
+
+  getEarningRate(earning) {
+    return ((earning / this.#purchaseAmount) * 100).toFixed(2);
   }
 }
 
