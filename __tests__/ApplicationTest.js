@@ -104,5 +104,15 @@ describe("로또 테스트", () => {
       app.winningLottoBonusValidate(50);
     }).toThrow("[ERROR]");
   });
-  
+
+  test("수익률 계산을 위한 수익 계산테스트_1", () => {
+    const app = new App();
+    expect(app.yieldCal([0, 0, 0, 0, 1])).toEqual(2000000000);
+  });
+
+  test("수익률 계산을 위한 수익 계산테스트_2", () => {
+    const app = new App();
+    expect(app.yieldCal([0, 1, 1, 0, 0])).toEqual(1550000)
+  });
+
 });
