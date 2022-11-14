@@ -1,6 +1,6 @@
-const LottoPayment = require('../src/ui/component/LottoPayment');
-const LottoWinCount = require('../src/ui/component/LottoWinCount');
-const LottoIncome = require('../src/ui/component/LottoIncome');
+const LottoPaymentUI = require('../src/ui/component/LottoPayment');
+const LottoWinCountUI = require('../src/ui/component/LottoWinCount');
+const LottoIncomeUI = require('../src/ui/component/LottoIncome');
 const Component = require('../src/ui/core/Component');
 
 const LottoDrawFactory = require('../src/domain/LottoDrawFactory');
@@ -20,17 +20,17 @@ const validateLottoRange = number => {
 
 const print = {
   lottoPaymentUI: ({ count, lottos }) => {
-    const ui = new Component(new LottoPayment({ count, lottos }));
+    const ui = new Component(new LottoPaymentUI({ count, lottos }));
     ui.render();
   },
 
   lottoWinCountUI: ({ winScore }) => {
-    const ui = new Component(new LottoWinCount({ winScore }));
+    const ui = new Component(new LottoWinCountUI({ winScore }));
     ui.render();
   },
 
   lottoIncomeUI: ({ income }) => {
-    const ui = new Component(new LottoIncome({ income }));
+    const ui = new Component(new LottoIncomeUI({ income }));
     ui.render();
   },
 
