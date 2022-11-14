@@ -18,7 +18,9 @@ class App {
   }
 
   printProfit(profit) {
-    const totalProfit = (profit / (this.lotteryAmount * 1000)) * 100;
+    const totalProfit = ((profit / (this.lotteryAmount * 1000)) * 100).toFixed(
+      1
+    );
     Console.print(`총 수익률은 ${totalProfit}%입니다.`);
     Console.close();
   }
