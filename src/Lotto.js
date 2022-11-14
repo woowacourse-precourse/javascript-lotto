@@ -21,6 +21,12 @@ class Lotto {
     let numSet = [...new Set(numbers)];
     if (numbers.length != numSet.length) throw new Error("[ERROR] 중복된 숫자가 존재합니다.");
   }
+
+  bonusNumberException(bonus) {
+    if (isNaN(bonus)) throw new Error("[ERROR] 문자를 입력하실 수 없습니다.");
+    if (this.#numbers.indexOf(bonus) >= 0)
+      throw new Error("[ERROR] 보너스 번호는 로또 번호와 중복될 수 없습니다.");
+  }
 }
 
 module.exports = Lotto;
