@@ -78,6 +78,7 @@ class App {
     MissionUtils.Console.readLine(QUESTION.buy, (input) => {
       money = input;
     });
+    MissionUtils.Console.close();
     return money;
   }
 
@@ -92,6 +93,7 @@ class App {
     MissionUtils.Console.readLine(QUESTION.setWinningNum, (input) => {
       winningNum = this.changeNumArray(input);
     });
+    MissionUtils.Console.close();
     this.#winningNum = winningNum;
   }
 
@@ -99,6 +101,7 @@ class App {
     MissionUtils.Console.readLine(QUESTION.setBonusNum, (input) => {
       this.#bonusNum = parseInt(input);
     });
+    MissionUtils.Console.close();
   }
 
   changeNumArray(string) {
