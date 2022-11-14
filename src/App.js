@@ -1,5 +1,6 @@
 const Lotto = require("./Lotto.js");
 const MissionUtils = require("@woowacourse/mission-utils");
+const { validateBonusNumber, validatePurchase } = require("./Validate.js");
 
 class App {
   constructor() {
@@ -12,7 +13,7 @@ class App {
   }
   buy() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
-      this.validatePurchase(input);
+      validatePurchase(input);
 
       const purchasedNumber = Number(input) / 1000;
       MissionUtils.Console.print(`\n${purchasedNumber}개를 구매했습니다.`);
@@ -24,19 +25,6 @@ class App {
       this.getWinningNumber();
     });
   }
-  validatePurchase(input) {
-    if (isNaN(input)) {
-      throw new Error("[ERROR] 구매 금액을 숫자로 입력해주세요.");
-    }
-    input = Number(input);
-    if (input % 1000 !== 0 || !Number.isInteger(input)) {
-      throw new Error("[ERROR] 구매 금액을 1000원 단위로 입력해주세요.");
-    }
-    if (input <= 0) {
-      throw new Error("[ERROR] 유효한 구매 금액을 입력해주세요.");
-    }
-    MissionUtils.Console.close();
-  }
   issueLotto() {
     const lottoNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
     return this.ascendingSort(lottoNumbers);
@@ -47,7 +35,7 @@ class App {
     });
   }
   getWinningNumber() {
-    MissionUtils.Console.readLine("\n당첨 번호를 입력해 주세요.\n", (input) => {
+    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (input) => {
       this.lotto = new Lotto(input.split(","));
       this.getBonusNumber();
     });
@@ -56,24 +44,11 @@ class App {
     MissionUtils.Console.readLine(
       "\n보너스 번호를 입력해 주세요.\n",
       (input) => {
-        this.validateBonusNumber(input);
+        validateBonusNumber(input);
         this.lotto.bonusNumber = Number(input);
         this.checkWin(this.lotto, this.issuedLottos);
       }
     );
-  }
-  validateBonusNumber(bonusNumber) {
-    if (isNaN(bonusNumber)) {
-      throw new Error("[ERROR] 보너스 번호를 숫자로 입력해주세요.");
-    }
-    bonusNumber = Number(bonusNumber);
-    if (this.lotto.numbers.indcludes(bonusNumber)) {
-      throw new Error("[ERROR] 당첨 번호를 제외한 숫자를 입력해주세요.");
-    }
-    if (bonusNumber > 45 || bonusNumber < 1) {
-      throw new Error("[ERROR] 1~45 범위의 숫자를 입력해주세요.");
-    }
-    MissionUtils.Console.close();
   }
   checkWin(lotto, issuedLottos) {
     let result = { "1등": 0, "2등": 0, "3등": 0, "4등": 0, "5등": 0 };
