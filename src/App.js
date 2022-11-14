@@ -26,6 +26,17 @@ class App {
     }
     return true;
   }
+
+  generateRandomLotto() {
+    const lotto = [];
+    while (lotto.length < 6) {
+      const num = MissionUtils.Random.pickNumberInRange(1, 45);
+      if (!lotto.includes(num)) {
+        lotto.push(num);
+      }
+    }
+    return lotto.sort();
+  }
 }
 
 module.exports = App;
