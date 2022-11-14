@@ -17,6 +17,10 @@ class App {
   }
 
   play() {
+    this.getMoney();
+  }
+
+  getMoney() {
     Console.readLine(`${INPUT.BUY}${OUTPUT.LINE}`, (money) => {
       new Money(money);
       this.money = money;
