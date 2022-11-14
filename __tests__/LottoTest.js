@@ -102,11 +102,4 @@ describe('로또 클래스 테스트', () => {
       validateNumber(input);
     }).toThrow('[ERROR]');
   });
-
-  test('보너스 번호 유효 검증 : 문자', () => {
-    expect(() => {
-      const input = 'ㅇㅇ';
-      validateNumber(input);
-    }).toThrow('[ERROR]');
-  });
 });
