@@ -14,7 +14,9 @@ class Lotto {
     Console.print(`\n${this.#numbers}개를 구매했습니다.`);
 
     for (let i = 0; i < this.#numbers; i += 1) {
-      const lottoNumber = this.sortLottoNumber(Random.pickUniqueNumbersInRange(1, 45, 6));
+      const lottoNumber = this.sortLottoNumber(
+        Random.pickUniqueNumbersInRange(1, 45, 6)
+      );
       Console.print(lottoNumber);
       this.lottoList.push(lottoNumber);
     }

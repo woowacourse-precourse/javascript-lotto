@@ -49,7 +49,9 @@ class App {
   }
 
   printRate() {
-    const rate = ((this.#winningAmount / this.#purchaseAmount) * 100).toFixed(1);
+    const rate = ((this.#winningAmount / this.#purchaseAmount) * 100).toFixed(
+      1
+    );
     Console.print(`총 수익률은 ${rate}%입니다.`);
   }
 }
