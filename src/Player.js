@@ -4,6 +4,7 @@ const { ERROR } = require("./Error");
 class Player {
   #lottos;
   constructor(money) {
+    this.validateMoney(money);
     this.#lottos = this.makeLottoNumbers(money);
   }
   getLottos = () => {
@@ -11,7 +12,6 @@ class Player {
   };
   makeLottoNumbers = (quantity) => {
     let lottos = [];
-    this.validateMoney(quantity);
     for (let line = 0; line < Number(quantity) / 1000; line++) {
       lottos.push(Random.pickUniqueNumbersInRange(1, 45, 6));
     }
