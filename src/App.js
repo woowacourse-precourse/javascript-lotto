@@ -17,6 +17,14 @@ class App {
 		return Random.pickUniqueNumbersInRange(1, 45, 6);
 	}
 
+	sortLottoNumberInAscendignOrder(lottoNum) {
+		return lottoNum.sort((a, b) => a - b);
+	}
+
+	sortedLottoNum(lottoNum) {
+		return lottoNum.sort((a, b) => a - b);
+	}
+
 	play() {
 		Console.print("구입금액을 입력해 주세요.");
 	}
