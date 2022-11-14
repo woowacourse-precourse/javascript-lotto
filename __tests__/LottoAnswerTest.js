@@ -42,4 +42,13 @@ describe("LottoAnswer 클래스 테스트", () => {
       lottoAnswer.validateBonus(1.4);
     }).toThrow("[ERROR] 정수를 입력하세요.");
   });
+
+  test("보너스 번호 예외가 발생하지 않으면 저장된다.", () => {
+    expect(() => {
+      lottoAnswer.bonus = 7;
+    }).not.toThrow("[ERROR]");
+    expect(() => {
+      lottoAnswer.bonus = 6;
+    }).toThrow("[ERROR]");
+  });
 });
