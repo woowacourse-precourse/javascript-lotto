@@ -7,7 +7,7 @@ const Lotto = require('./Lotto');
 
 class LottoManager {
   #purchaseAmount;
-  #lottos = [];
+  #lottos;
 
   initLottos(purchaseAmountInput) {
     this.validatePurchaseAmount(purchaseAmountInput);
