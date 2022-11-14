@@ -72,4 +72,42 @@ describe('셀프 로또 테스트', () => {
       expect(lotto.getResult([[1, 2, 3, 41, 42, 43]])[RANKS.FIFTH]).toEqual(1);
     });
   });
+
+  test('수익률 테스트', () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    expect(
+      lotto.getYield(
+        { FIFTH: 1, FOURTH: 0, THIRD: 0, SECOND: 0, FIRST: 0 },
+        5000
+      )
+    ).toEqual('100.0');
+
+    expect(
+      lotto.getYield(
+        { FIFTH: 1, FOURTH: 1, THIRD: 0, SECOND: 0, FIRST: 0 },
+        45000
+      )
+    ).toEqual('122.2');
+
+    expect(
+      lotto.getYield(
+        { FIFTH: 1, FOURTH: 1, THIRD: 1, SECOND: 0, FIRST: 0 },
+        4000
+      )
+    ).toEqual('38875.0');
+
+    expect(
+      lotto.getYield(
+        { FIFTH: 1, FOURTH: 0, THIRD: 1, SECOND: 1, FIRST: 0 },
+        300000
+      )
+    ).toEqual('10501.7');
+
+    expect(
+      lotto.getYield(
+        { FIFTH: 0, FOURTH: 0, THIRD: 0, SECOND: 0, FIRST: 1 },
+        1000
+      )
+    ).toEqual('200000000.0');
+  });
 });
