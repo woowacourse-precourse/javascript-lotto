@@ -2,7 +2,7 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const Money = require('./Money');
 const RandomLottos = require('./RandomLottos');
 const WinningLotto = require('./WinningLotto');
-const { MESSAGE } = require('./Constants');
+const { MESSAGE, PRIZE_MONEY } = require('./Constants');
 
 const { Console } = MissionUtils;
 
@@ -39,6 +39,11 @@ class App {
       });
     });
   }
-}
 
+  PrizeMatchedStr(numOfMatchIdx) {
+    const prizeMoney = PRIZE_MONEY[numOfMatchIdx].toLocaleString();
+    const numOfLotto = this.matchedLotto[numOfMatchIdx];
+    return `(${prizeMoney}원) - ${numOfLotto}개`;
+  }
+}
 module.exports = App;
