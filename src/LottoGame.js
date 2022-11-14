@@ -79,6 +79,8 @@ class LottoGame {
     const totalPrizeMoney = this.getTotalPrizeMoney(prizeStatistics);
     const yieldRatio = this.getYieldRatio(totalPrizeMoney);
     const prizeStatisticsTemplate = this.getPrizeStatisticsTemplate(prizeStatistics);
+
+    this.LottoGameView.printPrizeStatistics(prizeStatisticsTemplate);
   }
   getEachLottoNumbers() {
     return this.lottos.map((lotto) => lotto.getNumbers());

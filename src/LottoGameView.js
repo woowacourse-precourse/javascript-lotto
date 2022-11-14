@@ -14,6 +14,11 @@ class LottoGameView {
       Console.print(`[${lottoNumbers}]`);
     });
   }
+  printPrizeStatistics(prizeStatisticsTemplate) {
+    prizeStatisticsTemplate.forEach((template) => {
+      Console.print(template);
+    });
+  }
 }
 
 module.exports = LottoGameView;
