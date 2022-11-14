@@ -1,6 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { ERROR_LOTTO } = require("./constants/messages");
 const { RANKING } = require("./constants/rule");
+const Validation = require("./validator/Validation");
 
 class Lotto {
   #numbers;
@@ -11,22 +11,8 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (!this.isNumbersRange(numbers)) throw new Error(ERROR_LOTTO.RANGE);
-
-    if (numbers.length !== 6) throw new Error(ERROR_LOTTO.LENGTH);
-
-    if ([...new Set(numbers)].length !== 6)
-      throw new Error(ERROR_LOTTO.DUPLICATED);
-
-    if (!this.isNumbersType(numbers)) throw new Error(ERROR_LOTTO.TYPE);
-  }
-
-  isNumbersRange(numbers) {
-    return numbers.every((number) => number >= 1 && number <= 45);
-  }
-
-  isNumbersType(numbers) {
-    return numbers.every((number) => !isNaN(number));
+    const validation = new Validation();
+    validation.isValidLottoNumber(numbers);
   }
 
   printNumbers() {
