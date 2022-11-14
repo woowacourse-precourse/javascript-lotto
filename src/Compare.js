@@ -6,6 +6,13 @@ class Compare {
     this.#lottoList = lottoList;
     this.#winningNumbers = winningNumbers;
     this.#bonusNumber = bonusNumber;
+    this.winningStatistics = {
+      three: 0,
+      four: 0,
+      five: 0,
+      fiveWithBonus: 0,
+      six: 0,
+    };
     this.compare();
   }
 
@@ -15,6 +22,7 @@ class Compare {
       line.forEach((number) => {
         this.count(number, countList);
       });
+      this.getWinningStatus(countList);
     });
   }
 
@@ -32,6 +40,26 @@ class Compare {
   countBonusNumber(number, countList) {
     if (number === parseInt(this.#bonusNumber)) {
       countList.bonusNumber = 1;
+    }
+  }
+
+  getWinningStatus(countList) {
+    if (countList.winningNumbers === 6) {
+      this.winningStatistics.six += 1;
+    }
+
+    if (countList.winningNumbers === 5 && countList.bonusNumber === 1) {
+      this.winningStatistics.fiveWithBonus += 1;
+    } else if (countList.winningNumbers === 5) {
+      this.winningStatistics.five += 1;
+    }
+
+    if (countList.winningNumbers === 4) {
+      this.winningStatistics.four += 1;
+    }
+
+    if (countList.winningNumbers === 3) {
+      this.winningStatistics.three += 1;
     }
   }
 }
