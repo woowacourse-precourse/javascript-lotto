@@ -2,7 +2,7 @@ const { Console } = require('@woowacourse/mission-utils');
 
 const Component = require('../core/Component');
 
-class LottoWinCount extends Component {
+class LottoWinCountUI extends Component {
   constructor({ winScore }) {
     super();
 
@@ -30,4 +30,4 @@ class LottoWinCount extends Component {
   }
 }
 
-module.exports = LottoWinCount;
+module.exports = LottoWinCountUI;
