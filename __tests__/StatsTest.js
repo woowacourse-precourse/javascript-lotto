@@ -67,8 +67,8 @@ describe("통계 기능 검증", () => {
         new Lotto([6, 4, 3, 2, 5, 1]),
       ],
     };
-    const expense = 8000;
-    const stats = new Stats({ winningNumbers, bonusNumber, purchased, expense });
+    const cash = 8000;
+    const stats = new Stats({ winningNumbers, bonusNumber, purchased, cash });
 
     expect(stats.performance).toBe(2539.44);
   });
