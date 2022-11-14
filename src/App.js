@@ -25,6 +25,7 @@ class App {
   };
 
   printMyLottery = () => {
+    Console.print(`\n${this.#numberOfLottery}${MESSAGE.BOUGHT_LOTTERY}`);
     this.#myLottery.forEach((lottery) => Console.print(lottery));
     this.getWinningNumber();
   };
