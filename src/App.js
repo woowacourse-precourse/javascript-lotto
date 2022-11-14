@@ -14,4 +14,6 @@ const userWindow = (window, callback) => {
   });
 };
 
+new App().play();
+
 module.exports = App;
