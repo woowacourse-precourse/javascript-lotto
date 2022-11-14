@@ -41,6 +41,16 @@ const validatePrizeNumbers = (input) => {
   });
 };
 
+const validateBonusNumber = (input, prizeNumbers) => {
+  const bonusNumber = Number(input);
+
+  if (Number.isNaN(bonusNumber)) throw new Error(ERROR_MESSAGE.NOT_A_NUMBER);
+
+  if (!isNumberInRange(bonusNumber)) throw new Error(ERROR_MESSAGE.RANGE_ERROR);
+
+  if (prizeNumbers.includes(bonusNumber)) throw new Error(ERROR_MESSAGE.DUPLICATE_ERROR);
+};
+
 const printArray = (items) => {
   items.forEach((item) => Console.print(item));
 };
@@ -58,6 +68,7 @@ const synchronousReadLine = (message, callback) =>
 module.exports = {
   validateAmount,
   validatePrizeNumbers,
+  validateBonusNumber,
   printArray,
   synchronousReadLine,
 };

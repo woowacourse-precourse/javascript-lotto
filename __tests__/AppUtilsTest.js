@@ -67,3 +67,34 @@ describe('당첨 번호 입력 테스트', () => {
     expect(appUtils.validatePrizeNumbers(input)).toBeUndefined();
   });
 });
+
+describe('보너스 번호 입력 테스트', () => {
+  const prizeNumbers = [1, 2, 3, 4, 5, 6];
+
+  test('숫자가 아닌 문자인 경우', () => {
+    const input = 'a';
+    const notANumberError = new Error(ERROR_MESSAGE.NOT_A_NUMBER);
+
+    expect(() => appUtils.validateBonusNumber(input, prizeNumbers)).toThrowError(notANumberError);
+  });
+
+  test(`${LOTTO.FIRST_NUMBER} ~ ${LOTTO.LAST_NUMBER}사이의 숫자가 아닌 경우`, () => {
+    const input = '100';
+    const rangeError = new Error(ERROR_MESSAGE.RANGE_ERROR);
+
+    expect(() => appUtils.validateBonusNumber(input, prizeNumbers)).toThrowError(rangeError);
+  });
+
+  test('중복된 숫자가 있는 경우', () => {
+    const input = '1';
+    const duplicateError = new Error(ERROR_MESSAGE.DUPLICATE_ERROR);
+
+    expect(() => appUtils.validateBonusNumber(input, prizeNumbers)).toThrowError(duplicateError);
+  });
+
+  test('정상 입력', () => {
+    const input = '7';
+
+    expect(appUtils.validateBonusNumber(input, prizeNumbers)).toBeUndefined();
+  });
+});
