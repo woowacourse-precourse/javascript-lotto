@@ -21,6 +21,10 @@ class Lotto {
       throw new Error("[ERROR] 로또 번호는 중복될 수 없습니다");
     }
   }
+
+  getNumbers() {
+    return this.#numbers
+  }
 }
 
 module.exports = Lotto;

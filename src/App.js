@@ -14,25 +14,34 @@ const randomNumberList = []
 function getBudget() {
   Console.readLine('', (answer) => {
     const gameBudget = new Budget(Number(answer));
-    inputObjects['budget'] = gameBudget;
+    inputObjects['budget'] = gameBudget.getBudget();
     getLottoNumbers()
   })
 }
 
-function getLottoNumbers(inputObjects) {
+function inputValueToArray(inputValue) {
+  const inputArray = inputValue.split(',')
+  inputArray.forEach((element, index) => {
+    inputArray[index] = Number(element.trim())
+  })
+  return inputArray;
+}
+
+function getLottoNumbers() {
   Console.readLine('', (answer) => {
-    const numbers = new Lotto(answer);
-    numbers.forEach((element) => {
+    const inputArray = inputValueToArray(answer)
+    const lotto = new Lotto(inputArray);
+    lotto.getNumbers().forEach((element) => {
       inputObjects['numbers'].push(element);
     })
     getBonusNumber()
   })
 }
 
-function getBonusNumber(inputObjects) {
+function getBonusNumber() {
   Console.readLine('', (answer) => {
     const bonusNum = new Bonus(inputObjects['numbers'], answer);
-    inputObjects['bonus'] = bonusNum;
+    inputObjects['bonus'] = bonusNum.getBonus();
     startLotto()
   })
 }
