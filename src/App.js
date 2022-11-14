@@ -92,7 +92,18 @@ class App {
       '6개 일치 (2,000,000,000원) - ' + this.first + '개'
     )
   }
-  
+
+  getRateOfReturn(){ //수익률 계산하기
+    let fifthPrize = 5000;
+    let fourthPrize = 50000;
+    let thirdPrize = 1500000;
+    let secondPrize = 30000000;
+    let firstPrize = 2000000000;
+
+    let prize = this.fifth*fifthPrize + this.fourth*fourthPrize + this.third*thirdPrize + this.second*secondPrize + this.first*firstPrize; //수익률
+
+  }
+
 }
 
 module.exports = App;
