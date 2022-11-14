@@ -1,26 +1,74 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const Validation = require("./InputValidate");
-const { LOTTERY_AMOUNT } = require("./constant");
+const {
+  LOTTERY_AMOUNT,
+  FINAL_RESULT_MESSAGE,
+  WINNING_AMOUNT,
+} = require("./constant");
 
 class App {
   constructor() {
     this.validation = new Validation();
     this.userNumberArray = [];
+    this.lotteryAmount = 0;
     this.lotteryArray = [];
+    this.bonus = 0;
+    this.resultArray = Array.from({ length: 5 }, () => 0);
   }
 
-  // printResult() {
-  //   Console.print("당첨 통계");
-  //   Console.print("---");
-  //   Console.print(this.userNumberArray);
-  //   Console.print(this.lotteryArray);
-  // }
+  printProfit(profit) {
+    const totalProfit = (profit / (this.lotteryAmount * 1000)) * 100;
+    Console.print(`총 수익률은 ${totalProfit}%입니다.`);
+    Console.close();
+  }
+
+  printFinalResult() {
+    let profit = 0;
+    for (let result = 0; result < 5; result += 1) {
+      Console.print(
+        `${FINAL_RESULT_MESSAGE[result]} - ${this.resultArray[result]}개`
+      );
+      profit += WINNING_AMOUNT[result] * this.resultArray[result];
+    }
+    this.printProfit(profit);
+  }
+
+  calcLotteryResult(correctNumber) {
+    const arrayLength = correctNumber.length;
+    if (arrayLength === 3) this.resultArray[0] += 1;
+    if (arrayLength === 4) this.resultArray[1] += 1;
+    if (arrayLength === 5) this.resultArray[2] += 1;
+    if (arrayLength === 6) {
+      if (correctNumber.includes(this.bonus)) {
+        this.resultArray[3] += 1;
+      } else {
+        this.resultArray[4] += 1;
+      }
+    }
+  }
+
+  checkLotteryResult() {
+    this.userNumberArray.forEach((number) => {
+      const correctNumber = number.filter((element) =>
+        this.lotteryArray.includes(element)
+      );
+      this.calcLotteryResult(correctNumber);
+    });
+    this.printFinalResult();
+  }
+
+  printResultInfo() {
+    Console.print("당첨 통계");
+    Console.print("---");
+    this.checkLotteryResult();
+  }
 
   makeBonusNumber() {
     const bonusNumber = Random.pickUniqueNumbersInRange(1, 45, 1);
     this.validation.bonusNumberValidate(bonusNumber);
     this.lotteryArray = [...this.lotteryArray, ...bonusNumber];
+    this.bonus = String(bonusNumber);
     return bonusNumber;
   }
 
@@ -28,7 +76,7 @@ class App {
     Console.print("보너스 번호를 입력해주세요.");
     const bonusNumber = this.makeBonusNumber();
     Console.print(String(bonusNumber));
-    this.printResult();
+    this.printResultInfo();
   }
 
   makeLottoNumber() {
@@ -54,18 +102,18 @@ class App {
     return userNumber;
   }
 
-  printUserNumber(lottoAmount) {
-    for (let time = 0; time < lottoAmount; time += 1) {
-      const userNumber = this.makeUserNumber(lottoAmount);
+  printUserNumber() {
+    for (let time = 0; time < this.lotteryAmount; time += 1) {
+      const userNumber = this.makeUserNumber();
       Console.print(userNumber);
     }
     this.printLottoNumber();
   }
 
   setLottoAmount(money) {
-    const lottoAmount = Number(money / LOTTERY_AMOUNT);
-    Console.print(`${lottoAmount}개를 구매했습니다.`);
-    this.printUserNumber(lottoAmount);
+    this.lotteryAmount = Number(money / LOTTERY_AMOUNT);
+    Console.print(`${this.lotteryAmount}개를 구매했습니다.`);
+    this.printUserNumber();
   }
 
   inputMoney() {

@@ -31,7 +31,7 @@ class InputValidation {
     if (typeof number !== "number")
       throw new Error("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
     if (number < 1 || number > 45)
-      throw new Error("[ERROR] 로또 번호는 1~45 사이의 정수 입니다.");
+      throw new Error("[ERROR] 보너스 번호는 1~45 사이의 정수 입니다.");
   }
 }
 
