@@ -32,6 +32,24 @@ const {
 } = require('./Constants.js');
 
 class App {
+  calculateProfitRate(rankCount, amount) {
+    const profit = Object.keys(rankCount).reduce(
+      (totalPrize, rank) => totalPrize + rankCount[rank] * PRIZE[rank],
+      0
+    );
+    const rawRate = (profit / (amount * PRICE)) * 100;
+    const rate = Math.round(rawRate * 100) / 100;
+
+    return rate;
+  }
+
+  printProfitRate(rankCount, amount) {
+    const profit = this.calculateProfitRate(rankCount, amount);
+
+    Console.print(`총 수익률은 ${profit}%입니다.`);
+    Console.close();
+  }
+
   resultMessage(rank, count) {
     const prize = PRIZE[rank].toLocaleString('ko-KR');
 
