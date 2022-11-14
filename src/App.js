@@ -31,6 +31,12 @@ class App {
     this.getLottoAmount();
   }
 
+  ExceptionOfGetMoney(money){ //구매금액 입력받기 예외처리
+    if(money % 1000 != 0){
+      throw new Error("[ERROR] 1000원 단위가 아닙니다.");
+    }
+  } 
+
   getLottoAmount(){ //로또수량 계산하기 
     this.lottoAmount = parseInt(this.lottoMoney/1000);
     MissionUtils.Console.print(this.lottoAmount + '개를 구매했습니다.');
