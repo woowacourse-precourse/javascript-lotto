@@ -11,16 +11,9 @@ const Margin = require("./modules/Margin");
 class App {
   play() {
     //로또 구입 금액을 입력하면 해당하는 로또를 발행한다.
-    let nTime = 0;
-    let nTenWon = 0;
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (price) => {
-      nTenWon = price;
-      const BUYLOTTO = new BuyLotto(price);
-      nTime = BUYLOTTO.nTimes();
-      MissionUtils.Console.print(`${nTime}개를 구매했습니다.`);
-    });
-    // 종료
-    MissionUtils.Console.close();
+    const BUYLOTTO = new BuyLotto();
+    const nTime = BUYLOTTO.nTimes();
+    const price = BUYLOTTO.havePrice();
 
     //로또 번호 1~45까지의 서로 다른 임의의 수 6자리를 뽑는다.
     const USERLOTTO = new UserLotto();
@@ -47,7 +40,7 @@ class App {
 
     //수익률 계산
     const MARGIN = new Margin();
-    MARGIN.haveMargin(nTenWon, PROFIT);
+    MARGIN.haveMargin(price, PROFIT);
 
     //종료
     return MissionUtils.Console.close();
