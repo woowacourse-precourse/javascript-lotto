@@ -52,7 +52,15 @@ class App {
     this.getWinNumber();
   }
   // 당첨 번호 입력하기
-  getWinNumber() {}
+  getWinNumber() {
+    Console.readLine(INPUT_MESSAGE.WIN_NUMBER, (numberString) => {
+      this.winNumberList = numberString
+        .split(",")
+        .map((numStr) => Number(numStr));
+      const lotto = new Lotto(this.winNumberList);
+    });
+    this.getBonusNumber();
+  }
   // 보너스 금액 입력
   getBonusNumber() {}
   getWinStatistic() {}
