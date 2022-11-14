@@ -10,13 +10,13 @@ class App {
   }
 
   play() {
-    Utils.readLine('구입금액을 입력해 주세요.\n' , (input) => {
+    Utils.readLine('구입금액을 입력해 주세요.' , (input) => {
       const amount = this.validateAmount(Number(input));
       const quantity = this.countLottoQuantity(amount);
-      Utils.print(`\n${quantity}개를 구매했습니다.`);
+      Utils.print(`${quantity}개를 구매했습니다.`);
       this.userLottos = this.createLotto(quantity);
       for(const userLotto of this.userLottos) { 
-        Utils.print(userLotto);
+        this.printLotto(userLotto);
       }
       Utils.readLine('당첨 번호를 입력해 주세요.\n', (input) => {
         this.winningLotto = this.createLottoArray(input);
@@ -54,6 +54,23 @@ class App {
       lottos.push(Utils.pickNumberInLotto());
     }
     return lottos;
+  }
+
+  printLotto(userLotto){
+    let result = `[`;
+    for(let index = 0; index < userLotto.length; index++){
+      const number = userLotto[index];
+      if(index == userLotto.length - 1){
+        result += `${number}`;
+      }
+      else{
+        result += `${number}, `;
+      }
+    }
+
+    result += `]`;
+
+    Utils.print(result);
   }
 
   createLottoArray(input){
