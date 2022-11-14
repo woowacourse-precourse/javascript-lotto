@@ -2,6 +2,7 @@ const {
   UNIT_INVALID_ERROR_MESSAGES,
   LOTTO_NUMBER_RANGE,
   COMMON_INVALID_ERROR_MESSAGES,
+  LOTTO_ERROR_MESSAGES,
 } = require('./Constant');
 
 class Validator {
@@ -19,12 +20,22 @@ class Validator {
     return true;
   }
 
-  static Unit(input) {
+  static lotto(numbersArray) {
+    if (numbersArray.length !== LOTTO_NUMBER_RANGE.LENGTH) {
+      throw new Error(LOTTO_ERROR_MESSAGES.LENGTH_ONLY_SIX);
+    }
+    if (new Set([...numbersArray]).size !== LOTTO_NUMBER_RANGE.LENGTH) {
+      throw new Error(LOTTO_ERROR_MESSAGES.UNIQUE);
+    }
+    return true;
+  }
+
+  static unit(input) {
     if (input % LOTTO_NUMBER_RANGE.UNIT !== 0) throw new Error(UNIT_INVALID_ERROR_MESSAGES);
     return true;
   }
 }
 
-console.log(Validator.validateCommon(''));
+console.log(Validator.lotto(''));
 
 module.exports = Validator;
