@@ -68,6 +68,19 @@ class Lotto {
     if (bonusMatch) matchNums[2]--;
     return matchNums;
   }
+
+  priceEarningsRatio(isMatch) {
+    let buyPrice = 1000 * isMatch.length;
+    let earnPrice = 0;
+    for (let i = 0; i < isMatch.length; ++i) {
+      if (isMatch[i] == 3) earnPrice += 5000;
+      if (isMatch[i] == 4) earnPrice += 50000;
+      if (isMatch[i] == 5) earnPrice += 1500000;
+      if (isMatch[i] == 6) earnPrice += 2000000000;
+    }
+    let earningRatio = (100 * (earnPrice / buyPrice)).toFixed(1);
+    return earningRatio;
+  }
 }
 
 module.exports = Lotto;
