@@ -30,6 +30,14 @@ class App {
     );
   }
 
+  userBuyLottoCheck(buyLotto) {
+    if (this.buyLotto % 1000 !== 0) {
+      throw new Error("알맞는 금액을 입력해 주세요.");
+    }
+    this.buyLotto = parseInt(buyLotto);
+    this.userLottoNumber(this.buyLotto / 1000);
+  }
+
   userLottoNumber(buyCount) {
     MissionUtils.Console.print(`\n ${buyCount}개를 구매했습니다.`);
     let userLottoNumbers = [];
