@@ -1,5 +1,16 @@
+const App = require("../src/App");
 const Lotto = require("../src/Lotto");
+const MissionUtils = require("@woowacourse/mission-utils");
 const generateRandom = require('../utils/Source.js');
+
+const mockQuestions = (answers) => {
+  MissionUtils.Console.readLine = jest.fn();
+  answers.reduce((acc, input) => {
+    return acc.mockImplementationOnce((question, callback) => {
+      callback(input);
+    });
+  }, MissionUtils.Console.readLine);
+};
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
@@ -22,5 +33,12 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
+  test("[기능 1] 구입 금액을 1000원 단위로 입력받는다.", () => {
+    mockQuestions(["1001"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  })
 });
 
