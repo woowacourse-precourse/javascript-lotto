@@ -22,11 +22,7 @@ class GameController {
 
   getLottosByMoney(money) {
     this.game.money = Number(money);
-    const lottoNums = money / LOTTO.PRICE;
-    for (let x = 0; x < lottoNums; x++) {
-      const lottoNumbers = this.getRandomNumber();
-      this.game.lottos.push(new Lotto(lottoNumbers));
-    }
+    this.game.getLottos();
     printMessage.printLottos(this.game.lottos);
   }
 
@@ -39,13 +35,6 @@ class GameController {
     this.game.bonusNumber = Number(inputNumber);
   }
 
-  getRandomNumber() {
-    return MissionUtils.Random.pickUniqueNumbersInRange(
-      LOTTO.RANGE.START,
-      LOTTO.RANGE.END,
-      LOTTO.LENGTH
-    ).sort((a, b) => a - b);
-  }
   getResult() {
     const result = new Result(this.game);
     printMessage.printResult(result.score);
