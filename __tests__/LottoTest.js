@@ -52,28 +52,6 @@ describe("로또 클래스 테스트", () => {
     expect(lotto.getNumber()).toStrictEqual([1, 2, 3, 4, 5, 6]);
   });
 
-  test("기능 테스트: 금액에 맞는 개수 만큼 로또 생성", () => {
-    const logs = [
-      "3개를 구매했습니다.",
-      "[1, 2, 3, 5, 42, 43]",
-      "[2, 4, 8, 16, 38, 44]",
-      "[5, 7, 8, 10, 11, 12]",
-    ];
-    mockRandoms([
-      [1, 2, 3, 5, 42, 43],
-      [2, 4, 8, 16, 38, 44],
-      [5, 7, 8, 10, 11, 12],
-    ]);
-    const logSpy = getLogSpy();
-
-    const cash = '3000';
-    SYSTEM.publishLotto(cash);
-
-    logs.forEach((log) => {
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-    });
-  });
-
   test("예외 테스트: 현금이 1,000원으로 나누어 떨어지지 않는 경우 1", () => {
     expect(() => {
       const person = new Person();
@@ -104,68 +82,33 @@ describe("로또 클래스 테스트", () => {
 
   // 로또 번호 예외 테스트 
   test("예외 테스트: 1~45 사이가 아닌 숫자가 로또 번호에 포함된 경우 1", () => {
-    mockRandoms([
-      [1, 2, 3, 4, 5, 6],
-    ]);
-
-    mockQuestions(["1000", "0,2,3,4,5,6"]);
-
     expect(() => {
-      const app = new App();
-      app.play();
+      new Lotto("0, 2, 3, 4, 5, 6".split(",").map(Number))
     }).toThrow(ERROR.INVAID_NUMBER);
   });
 
   test("예외 테스트: 1~45 사이가 아닌 숫자가 당첨 로또 번호에 포함된 경우 2", () => {
-    mockRandoms([
-      [1, 2, 3, 4, 5, 6],
-    ]);
-
-    mockQuestions(["1000", "1,2,3,4,5,46"]);
-
     expect(() => {
-      const app = new App();
-      app.play();
+      new Lotto('1, 2, 3, 4, 5, 46'.split(",").map(Number))
     }).toThrow(ERROR.INVAID_NUMBER);
   });
 
   test("예외 테스트: 중복된 숫자가 당첨 로또 번호에 포함된 경우", () => {
-    mockRandoms([
-      [1, 2, 3, 4, 5, 6],
-    ]);
-
-    mockQuestions(["1000", "1,1,2,3,4,5"]);
-
     expect(() => {
-      const app = new App();
-      app.play();
+      new Lotto('1, 1, 2, 3, 4, 5'.split(",").map(Number))
     }).toThrow(ERROR.NOT_UNIQUE);
 
   });
 
   test("예외 테스트: 당첨 로또 번호에 숫자가 아닌 값이 포함된 경우", () => {
-    mockRandoms([
-      [1, 2, 3, 4, 5, 6],
-    ]);
-
-    mockQuestions(["1000", "1,two,3,4,5,six"]);
-
     expect(() => {
-      const app = new App();
-      app.play();
+      new Lotto("1, two, 3, 4, 5, six".split(",").map(Number))
     }).toThrow(ERROR.NOT_NUMBER);
   });
 
   test("예외 테스트: 당첨 로또 번호에 특수 문자가 포함된 경우", () => {
-    mockRandoms([
-      [1, 2, 3, 4, 5, 6],
-    ]);
-
-    mockQuestions(["1000", "1,_,3,4,5,6"]);
-
     expect(() => {
-      const app = new App();
-      app.play();
+      new Lotto("1, _, 3, 4, 5, 6".split(",").map(Number))
     }).toThrow(ERROR.NOT_NUMBER);
   });
 
@@ -286,26 +229,26 @@ describe("로또 클래스 테스트", () => {
     expect(SYSTEM.compare(lotto.getNumber(), new Set(winningLotto), bonusNumber)).toBe(7);
   });
 
-  test("기능테스트: 당첨 통계 출력", () => {
-    const results = [1, 2, 3, 4, 5];
-    const logs = [
-      "3개 일치 (5,000원) - 5개",
-      "4개 일치 (50,000원) - 4개",
-      "5개 일치 (1,500,000원) - 3개",
-      "5개 일치, 보너스 볼 일치 (30,000,000원) - 2개",
-      "6개 일치 (2,000,000,000원) - 1개",
-    ];
-    const logSpy = getLogSpy();
+  test("기능테스트: 수익률 계산 1", () => {
+    const results = [0, 0, 0, 0, 1];
+    const cash = "5000";
 
-    SYSTEM.printWinningHistory(results);
-    logs.forEach((log) => {
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-    });
+    expect(SYSTEM.calulateRate(cash, results)).toBe(100);
   });
 
+  test("기능테스트: 수익률 계산 2", () => {
+    const results = [0, 0, 0, 0, 1];
+    const cash = "3000";
 
+    expect(SYSTEM.calulateRate(cash, results)).toBe(166.7);
+  });
 
+  test("기능테스트: 수익률 계산 3", () => {
+    const results = [1, 1, 1, 1, 1];
+    const cash = "5000";
 
+    expect(SYSTEM.calulateRate(cash, results)).toBe(40631100);
+  });
 
 
 });
