@@ -15,6 +15,11 @@ class LottoAnswer extends Lotto {
       throw new Error("[ERROR] 1부터 45까지 숫자 중 입력하세요.");
     if (!Number.isInteger(bonus)) throw new Error("[ERROR] 정수를 입력하세요.");
   }
+
+  set bonus(bonus) {
+    this.validateBonus(bonus);
+    this.#bonus = bonus;
+  }
 }
 
 module.exports = LottoAnswer;
