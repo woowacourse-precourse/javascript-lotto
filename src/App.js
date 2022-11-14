@@ -17,6 +17,11 @@ class App {
   purchaseableCount(money) {
     return parseInt(money / terms.PERMISSIBLE_UNITS);
   }
+
+  purchaseLotto() {
+    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    this.lotto = new Lotto(numbers);
+  }
 }
 
 a = new App();
