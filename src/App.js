@@ -1,4 +1,4 @@
-const isThousand = requ;
+const isThousand = require("../src/utils/isThousand.js");
 const { Console, Random } = MissionUtils;
 class App {
   #money;
