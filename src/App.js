@@ -44,11 +44,13 @@ class App {
   }
 
   printBoughtLottos({ quantity, lottos }) {
+    Console.print('');
     Console.print(MESSAGE.QUANTITY_OF_PURCHASE(quantity));
     lottos.forEach(lotto => Console.print(lotto.toString()));
   }
 
   getWinningNumbers() {
+    Console.print('');
     Console.readLine(MESSAGE.ENTER_WINNING_NUMBERS, numbers => {
       const trimmedNumbers = numbers.trim();
       this.validateWinningNumbers(trimmedNumbers);
@@ -64,6 +66,7 @@ class App {
   }
 
   getBonusNumber() {
+    Console.print('');
     Console.readLine(MESSAGE.ENTER_BONUS_NUMBER, number => {
       const trimmedNumber = number.trim();
       this.validateBonusNumber(trimmedNumber);
@@ -94,5 +97,4 @@ class App {
   }
 }
 
-new App().play();
 module.exports = App;
