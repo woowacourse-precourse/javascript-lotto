@@ -62,7 +62,7 @@ class Raffle {
         (1500000 * this.#result[5]) +
         (30000000 * this.#result.bonus) +
         (2000000000 * this.#result[6]);
-        return (SUM/this.#money)*100;
+        return Math.round(SUM/this.#money*10000)/100;
     }
 }
 
