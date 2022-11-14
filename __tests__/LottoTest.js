@@ -379,4 +379,12 @@ describe('로또 클래스 테스트', () => {
       expect(Lotto.calculateTotalAmount(EXPECTED)).toEqual(RECEIVED);
     });
   });
+
+  describe('값 증가 메소드 테스트', () => {
+    test('메소드 이름은 "unitIncrease"로 정의된다.', () => {
+      const METHOD_NAME = 'unitIncrease';
+
+      expect(Lotto.unitIncrease.name).toEqual(METHOD_NAME);
+    });
+  });
 });
