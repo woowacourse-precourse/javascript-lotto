@@ -158,4 +158,42 @@ describe("로또 테스트", () => {
       validateMoney(900);
     }).toThrow("[ERROR]");
   });
+
+  // 당첨 번호와 보너스 번호 예외 처리 테스트 코드
+
+  test("당첨 번호 범위가 1~45 사이의 숫자가 아닐 경우 예외가 발생한다.", () => {
+    expect(() => {
+      validateWinningNumber("1,2,3,93,5,6");
+    }).toThrow("[ERROR]");
+  });
+
+  test("당첨 번호 중 중복 되는 값 있을 경우 예외가 발생한다.", () => {
+    expect(() => {
+      validateWinningNumber("3,6,9,5,9,2");
+    }).toThrow("[ERROR]");
+  });
+
+  test("당첨 번호 중 숫자가 아닌 값이 있을 경우 예외가 발생한다.", () => {
+    expect(() => {
+      validateWinningNumber("3,6,i,5,9,2");
+    }).toThrow("[ERROR]");
+  });
+
+  test("당첨 번호의 길이가 6개와 다르면 예외가 발생한다.", () => {
+    expect(() => {
+      validateWinningNumber("3,6,5,9,2");
+    }).toThrow("[ERROR]");
+  });
+
+  test("당첨 번호의 길이가 6개와 다르면 예외가 발생한다.", () => {
+    expect(() => {
+      validateWinningNumber("3,6,5.4,9,2");
+    }).toThrow("[ERROR]");
+  });
+
+  test("보너스 번호가 발행된 번호들과 중복될 경우 예외가 발생한다.", () => {
+    expect(() => {
+      validateBonus([3,6,9,2,4,5], 3);
+    }).toThrow("[ERROR]");
+  });
 });
