@@ -1,8 +1,8 @@
 const MESSAGE = {
-  SETINPUT: '구입금액을 입력해 주세요. \n',
-  PRINTLOTTONUMBER: lottoNumber => `\n${lottoNumber}개를 구매했습니다.`,
-  GETWINNINGNUMBER: '\n당첨 번호를 입력해 주세요.\n',
-  GETBONUSNUMBER: '\n보너스 번호를 입력해 주세요.\n',
+  SET_INPUT: '구입금액을 입력해 주세요. \n',
+  PRINT_LOTTO_NUMBER: lottoCnt => `\n${lottoCnt}개를 구매했습니다.`,
+  GET_WINNING_NUMBER: '\n당첨 번호를 입력해 주세요.\n',
+  GET_BONUS_NUMBER: '\n보너스 번호를 입력해 주세요.\n',
   3: n => `3개 일치 (5,000원) - ${n}개`,
   4: n => `4개 일치 (50,000원) - ${n}개`,
   5: n => `5개 일치 (1,500,000원) - ${n}개`,
@@ -29,4 +29,5 @@ const ERROR_MESSAGE = {
 };
 
 const INPUT_MONEY_UNIT = 1000;
+
 module.exports = { MESSAGE, ERROR_MESSAGE, INPUT_MONEY_UNIT, REWARD };

@@ -23,7 +23,7 @@ class App {
   }
 
   play() {
-    Console.readLine(MESSAGE.SETINPUT, inputMoney => {
+    Console.readLine(MESSAGE.SET_INPUT, inputMoney => {
       Function.validateInputMoney(inputMoney);
       this.getLottoCount(inputMoney);
       this.issueLottos();
@@ -33,7 +33,7 @@ class App {
 
   getLottoCount(inputMoney) {
     this.lottoCount = Number(inputMoney) / INPUT_MONEY_UNIT;
-    Console.print(MESSAGE.PRINTLOTTONUMBER(this.lottoCount));
+    Console.print(MESSAGE.PRINT_LOTTO_NUMBER(this.lottoCount));
   }
 
   issueLottos() {
@@ -42,9 +42,9 @@ class App {
   }
 
   getResult() {
-    Console.readLine(MESSAGE.GETWINNINGNUMBER, inputNumbers => {
+    Console.readLine(MESSAGE.GET_WINNING_NUMBER, inputNumbers => {
       this.setWinningNumbers(inputNumbers);
-      Console.readLine(MESSAGE.GETBONUSNUMBER, inputBonusNumber => {
+      Console.readLine(MESSAGE.GET_BONUS_NUMBER, inputBonusNumber => {
         this.setBonusNumber(inputBonusNumber);
         this.setResult();
         this.printResult();
