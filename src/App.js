@@ -8,7 +8,6 @@ const { MESSAGE, RANK } = require('./constants');
 
 class App {
   constructor() {
-    this.cash = 0;
     this.purchaseLottoAmount = 0;
     this.purchaseLottoSet = new Set();
     this.winningNumberArr = [];
@@ -64,7 +63,7 @@ class App {
     for (let rank = RANK.FIFTH; rank >= RANK.FIRST; rank--) {
       Console.print(winningResult.getResultMessage(rank));
     }
-    Console.print(MESSAGE.TOTAL_YIELD_RESULT(winningResult.setYield(this.cash)));
+    Console.print(MESSAGE.TOTAL_YIELD_RESULT(winningResult.setYield()));
     this.close();
   }
 
@@ -80,7 +79,6 @@ class App {
   submitPurchaseAmount() {
     Console.readLine('', input => {
       let purchase = new Purchase(input);
-      this.cash = purchase.Cash;
       this.purchaseLottoAmount = purchase.LottoCount;
       this.purchaseLottoSet = makeLottoSet(this.purchaseLottoAmount);
       return this.printPurchaseOutputMessage();

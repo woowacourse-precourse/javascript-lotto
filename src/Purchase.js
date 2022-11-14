@@ -16,10 +16,6 @@ class Purchase {
     this.#lottoCount = this.#cash / MONEY_UNIT;
   }
 
-  get Cash() {
-    return this.#cash;
-  }
-
   get LottoCount() {
     return this.#lottoCount;
   }

@@ -52,8 +52,9 @@ class WinningResult {
     return Object.entries(this.#result).reduce((acc, [key, value]) => acc + key * value, 0);
   }
 
-  setYield(cash) {
+  setYield() {
     this.#sum = this.calculateSum();
+    const cash = this.#lottoArr.length * 1000;
     return parseFloat(
       Math.round((this.#sum * YIELD.PERCENT * YIELD.ROUND) / cash) / YIELD.ROUND,
     ).toFixed(1);
