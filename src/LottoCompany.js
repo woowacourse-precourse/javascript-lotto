@@ -52,14 +52,7 @@ class LottoCompany {
   // eslint-disable-next-line class-methods-use-this
   validateWinningNumbers(input) {
     const numbers = input.split(",").map((elem) => Number(elem));
-    if (
-      !numbers.every((elem) => Number.isInteger(elem) && elem > 0 && elem < 46)
-    ) {
-      throw new Error("[ERROR] 1이상 45이하 정수만을 입력해야합니다.");
-    }
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 정수인 숫자를 6개 입력해야합니다.");
-    }
+    Lotto.validate(numbers);
   }
 
   makeBonusNumberAsync(next) {
