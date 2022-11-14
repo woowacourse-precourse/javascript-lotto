@@ -26,6 +26,10 @@ class App {
   makePayment(value) {
     const money = value;
 
+    if (money.match(/\D+/)) {
+      throw new TypeError("[ERROR] 올바른 숫자값을 입력해주세요.");
+    }
+
     if (money % 1000 !== 0) {
       this.print("1000원 단위로 입력해주세요.");
       this.makePayment();
