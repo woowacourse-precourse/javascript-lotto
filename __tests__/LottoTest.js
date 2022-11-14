@@ -1,5 +1,10 @@
 const Lotto = require("../src/Lotto");
 const { IS_ENOUGH } = require("../src/const/ErrorMessages");
+const { Console } = require("@woowacourse/mission-utils");
+
+afterAll(() => {
+  Console.close();
+});
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
