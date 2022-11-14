@@ -1,3 +1,6 @@
+const LottoResultCheck = require("../src/model/resultCheck");
+const { GRADE } = require("../src/utils/constants");
+
 const Lotto = require("../src/Lotto");
 const ValidationCheck = require("../src/model/inputCheck");
 
@@ -101,5 +104,24 @@ describe("보너스 번호 예외 테스트", () => {
     expect(() => {
       inputCheck.isBonusNumberValid([1, 2, 3, 4, 5, 6], "1");
     }).toThrow("[ERROR]");
+  });
+});
+
+describe("결과 산출 테스트", () => {
+  test("소수점 조건 체크: 로또 13개로 5등에 한 번 당첨될 경우", () => {
+    LottoResultCheck.userMoney = 13000;
+    LottoResultCheck.winningNumbers = [1, 2, 3, 4, 5, 6];
+    LottoResultCheck.bonusNumber = 7;
+    LottoResultCheck.checkWinning([1, 2, 3, 8, 9, 10]);
+    expect(LottoResultCheck.getEarningsRate()).toEqual("38.5");
+  });
+
+  test("수익률 계산: 로또 1개로 2등에 당첨될 경우", () => {
+    LottoResultCheck.resultArray = new Array(Object.keys(GRADE).length).fill(0);
+    LottoResultCheck.userMoney = 1000;
+    LottoResultCheck.winningNumbers = [1, 2, 3, 4, 5, 6];
+    LottoResultCheck.bonusNumber = 7;
+    LottoResultCheck.checkWinning([1, 2, 3, 4, 5, 7]);
+    expect(LottoResultCheck.getEarningsRate()).toEqual("3000000.0");
   });
 });
