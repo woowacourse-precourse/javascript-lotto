@@ -11,10 +11,17 @@ class UserInputNumber {
     userLottoPaymentAmount(){
         Console.readLine( INPUT_MONEY_MESSAGE , (input) => {
             let issuedLotto = input/1000;
+            this.checkNum(input);
             Console.print(`${issuedLotto}개를 구매했습니다.`);
             this.issuedRandomNum = this.createRandomLotto.issuedRandomNumber(issuedLotto);
         })
         return this.issuedRandomNum;
+    }
+
+    checkNum(value){
+        if(value % 1000 !==  0){
+            throw new Error("[ERROR] 구입 금액은 1000원 단위입니다.") 
+        }
     }
 }
 
