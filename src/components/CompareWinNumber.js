@@ -11,7 +11,7 @@ class compareWinNumber {
     let winCount = 0;
     let isBonus = false;
     winNumber.forEach((number) => {
-      if (lotteries.includes(number)) winCount += 1;
+      if (lotteries.getNumbers().includes(number)) winCount += 1;
     });
     if (winCount === 5) {
       isBonus = this.checkBonus(lotteries, bonusNumber);
@@ -21,7 +21,7 @@ class compareWinNumber {
 
   checkBonus(lotteries, bonusNumber) {
     let isBonus = false;
-    lotteries.forEach((number) => {
+    lotteries.getNumbers().forEach((number) => {
       if (number === bonusNumber) isBonus = true;
     });
     return isBonus;
