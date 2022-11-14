@@ -2,7 +2,7 @@ const VendingMachine = require('./VendingMachine');
 
 class App {
   play() {
-    new VendingMachine().askPurchaseAmount();
+    new VendingMachine().init();
   }
 }
 

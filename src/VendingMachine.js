@@ -19,6 +19,10 @@ class VendingMachine {
   #scores = [];
   #rankBoard;
 
+  init() {
+    this.askPurchaseAmount();
+  }
+
   askPurchaseAmount() {
     const answerCbFn = (answer) => {
       this.validate(answer);
