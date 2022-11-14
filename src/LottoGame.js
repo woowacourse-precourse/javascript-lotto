@@ -1,5 +1,6 @@
 const Lotto = require("./Lotto");
 const { Random } = require("@woowacourse/mission-utils");
+const MESSAGE = require("./Message");
 const LOTTERY_PRICE = 1000;
 const LOTTERY_MIN_NUMBER = 1;
 const LOTTERY_MAX_NUMBER = 45;
@@ -42,15 +43,15 @@ class LottoGame {
 
   validatePurchaseAmount(purchaseAmount) {
     if (Number.isNaN(purchaseAmount)) {
-      throw new Error("[ERROR] 숫자만 입력해주세요.");
+      throw new Error(MESSAGE.ERROR_LOTTO_GAME.NOT_NUMBER_AMOUNT);
     }
 
     if ((purchaseAmount < LOTTERY_PRICE)) {
-      throw new Error(`[ERROR] 최소 입력 금액은 ${LOTTERY_PRICE}원입니다.`);
+      throw new Error(MESSAGE.ERROR_LOTTO_GAME.MINIMUM_AMOUNT);
     }
 
     if (!Number.isInteger(purchaseAmount) || purchaseAmount % LOTTERY_PRICE) {
-      throw new Error("[ERROR] 1,000원 단위로 입력해주세요.")
+      throw new Error(MESSAGE.ERROR_LOTTO_GAME.UNIT_OF_AMOUNT);
     }
   }
   
@@ -88,15 +89,15 @@ class LottoGame {
 
   validateBonusNumber(bonus) {
     if (Number.isNaN(Number(bonus))) {
-      throw new Error("[ERROR] 숫자를 입력해주세요.");
+      throw new Error(MESSAGE.ERROR_LOTTO_GAME.NOT_NUMBER_BONUS);
     }
 
     if (!Number.isInteger(Number(bonus))) {
-      throw new Error("[ERROR] 정수를 입력해주세요.")
+      throw new Error(MESSAGE.ERROR_LOTTO_GAME.NOT_INTEGER_BONUS);
     }
 
     if (Number(bonus) < LOTTERY_MIN_NUMBER || Number(bonus) > LOTTERY_MAX_NUMBER) {
-      throw new Error(`[ERROR] 보너스 번호는 ${LOTTERY_MIN_NUMBER}~${LOTTERY_MAX_NUMBER}까지의 숫자여야 합니다.`);
+      throw new Error(MESSAGE.ERROR_LOTTO_GAME.OUT_OF_RANGE_BONUS);
     }
 
     this.checkDuplicationBonusNumber(Number(bonus));
@@ -105,7 +106,7 @@ class LottoGame {
   checkDuplicationBonusNumber(bonus) {
     const winningNumber = this.winningLotto.getNumber();
     if (winningNumber.includes(bonus)) {
-      throw new Error("[ERROR] 당첨 번호와 중복되지 않는 번호를 입력해주세요.")
+      throw new Error(MESSAGE.ERROR_LOTTO_GAME.DUPLICATION_BONUS);
     }
   }
 
