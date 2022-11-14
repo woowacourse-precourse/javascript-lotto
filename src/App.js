@@ -1,5 +1,7 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto')
+const { isLengthError, isDuplicate } = require("./utils");
+
 
 class App {
   inputMoney = 0
@@ -48,9 +50,20 @@ class App {
     return;
   }
 
+  validate(numbers) {
+    if (isLengthError(numbers)) {
+      throw new Error("[ERROR] 당첨 번호는 6개여야 합니다.");
+    }
+
+    if (isDuplicate(numbers)) {
+      throw new Error("[ERROR] 당첨 번호는 중복이 없어야 합니다.");
+    }
+  }
+
   draw() {
     Console.readLine('\n당첨 번호를 입력해 주세요.\n', (input) => {
       this.luckyNumbers = input.split(",").map(Number);
+      this.validate(this.luckyNumbers)
       this.setBonus();
     });
     return;

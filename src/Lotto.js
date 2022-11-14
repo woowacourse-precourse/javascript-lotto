@@ -1,5 +1,5 @@
-const { Console, Random } = require('@woowacourse/mission-utils');
-
+const { Console, Random } = require("@woowacourse/mission-utils");
+const { isLengthError, isDuplicate } = require("./utils");
 class Lotto {
   #numbers;
   numberOfMatches = 0;
@@ -7,14 +7,16 @@ class Lotto {
 
   constructor(numbers) {
     this.validate(numbers);
-    this.#numbers = numbers.sort((comp1, comp2) => {
-      return comp1 - comp2
-    });
+    this.#numbers = numbers.sort((comp1, comp2) => comp1 - comp2);
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
+    if (isLengthError(numbers)) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    }
+
+    if (isDuplicate(numbers)) {
+      throw new Error("[ERROR] 로또 번호는 중복이 없어야 합니다.");
     }
   }
 
@@ -24,11 +26,11 @@ class Lotto {
   }
 
   setNumberOfMatches(luckyNumbers) {
-    this.#numbers.filter(number => {
-      if(luckyNumbers.includes(number)) {
+    this.#numbers.filter((number) => {
+      if (luckyNumbers.includes(number)) {
         this.numberOfMatches += 1;
       }
-    })
+    });
     return this;
   }
 
@@ -38,8 +40,6 @@ class Lotto {
     }
     return this;
   }
-
-  
 }
 
 module.exports = Lotto;
