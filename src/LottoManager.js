@@ -63,7 +63,6 @@ class LottoManager {
     MissionUtils.Console.readLine(INPUT_MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
       this.#bonusNumber = Number(bonusNumber);
       this.checkInputBonusNumber();
-
       this.sendToCalculator();
     });
   }
@@ -89,7 +88,6 @@ class LottoManager {
   getBonusNumber() {
     return this.#bonusNumber;
   }
-
 }
 
 module.exports = LottoManager;
