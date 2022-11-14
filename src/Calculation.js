@@ -38,8 +38,6 @@ class Calculation {
 
   isBonusMatch = false;
 
-  prizeMoney = 0;
-
   /**
  *
  * @param {Array<number>} lottoList
@@ -70,11 +68,10 @@ class Calculation {
     const count = this.isBonusFiveMatch() ? LOTTO_RESULT_TYPE.bonus : this.matchCount;
 
     if (isLessThanNumber(count, 3)) {
-      return this;
+      return;
     }
 
     this.#winResult[count].count += 1;
-    return this;
   }
 
   isBonusFiveMatch() {
