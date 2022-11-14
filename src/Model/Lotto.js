@@ -44,7 +44,9 @@ class Lotto {
   }
 
   checkNumberRange(numbers) {
-    const checkedArray = numbers.filter((n) => n > 0 && n < 46);
+    const checkedArray = numbers.filter(
+      (n) => n >= LOTTO.RANGE.START && n <= LOTTO.RANGE.END
+    );
     if (checkedArray.length !== LOTTO.LENGTH) {
       throw new Error('[ERROR] 로또 번호의 범위를 벗어났습니다.');
     }
