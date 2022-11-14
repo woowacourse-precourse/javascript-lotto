@@ -8,7 +8,6 @@ class App {
     MissionUtils.Console.readLine("구입금액을 입력해주세요.", (answer) => {
       this.isCorrectRange(answer);
       this.lottoTicketPages();
-      // MissionUtils.Console.print(this.makeTicket());
       this.makeTicket();
     });
   }
@@ -41,16 +40,22 @@ class App {
       });
       tickets.push(randomNumber);
     }
-    // return tickets;
-    return MissionUtils.Console.print(tickets);
+    return MissionUtils.Console.print(`[${tickets.join(", ")}]`);
   }
 
-  // 오름차순
-  sortFunction() {
-    sort;
+  getWinningNumber() {
+    let WINNTING_NUMBER = 0;
+    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (number) => {
+      MissionUtils.Console.print(`당첨 번호를 입력해 주세요.`);
+      MissionUtils.Console.print(number);
+      WINNTING_NUMBER = number.split(",");
+    });
+    return WINNTING_NUMBER;
   }
   play() {
     this.paymentInput();
+    this.getWinningNumber();
+    this.getWinningNumber();
   }
 }
 const app = new App();
