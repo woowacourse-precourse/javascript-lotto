@@ -19,6 +19,6 @@
     - [x] bonus number: 1 number (from 1-45 without duplicates per ticket) (throw error when invalid)
     - [x] check bonus number only for tickets with 5 guessed number matches and return true/false
           return null for tickets with less than 5 guessed number matches
-- [ ] calculate win stats 
+- [x] calculate win stats 
 - [ ] calculate earning rate by dividing prize money by payment amount and rounding to one decimal place
 - [ ] print win stats and earning rate
