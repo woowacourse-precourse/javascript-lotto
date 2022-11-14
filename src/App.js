@@ -12,10 +12,7 @@ class App {
   }
 
   inputMoeny() {
-    let userInput = 0;
-    MissionUtils.Console.readLine('구입 금액을 입력해 주세요.\n', (answer) => { 
-      userInput = Number(answer);
-    });
+    let userInput = Number(this.consoleInput('구입 금액을 입력해 주세요.\n'));
     if(userInput%1000 === 0 && userInput > 0) return userInput/1000;
     throw new Error("[ERROR] 1,000원 단위로 구매할 수 있습니다.");
   }
@@ -34,6 +31,14 @@ class App {
 
   consolePrint(printStr) {
     MissionUtils.Console.print(printStr);
+  }
+
+  consoleInput(inputStr) {
+    let str = ""
+    MissionUtils.Console.readLine(inputStr, (answer) => {
+      str = answer
+    });
+    return str
   }
 
 }
