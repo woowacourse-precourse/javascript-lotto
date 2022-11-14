@@ -1,5 +1,5 @@
-const App = require("../src/App");
 const MissionUtils = require("@woowacourse/mission-utils");
+const App = require("../src/App");
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();
@@ -68,4 +68,6 @@ describe("로또 테스트", () => {
       app.play();
     }).toThrow("[ERROR]");
   });
+
+  MissionUtils.Console.close();
 });
