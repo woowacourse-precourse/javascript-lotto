@@ -1,5 +1,13 @@
+
+const { Console } = require('@woowacourse/mission-utils');
+
 class App {
-  play() {}
+  play() {
+  }
+
+  end() {
+    Console.close();
+  }
 }
 
 module.exports = App;
