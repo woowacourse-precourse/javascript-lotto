@@ -3,12 +3,11 @@ const { MESSAGE } = require('./Constants');
 
 class WinningLotto extends Lotto {
   /**
-   * @param {Array<number>} numbers - 구입한 로또 개수
-   * @param {number} bonus - 구입한 로또 개수
+   * 보너스 번호의 유효성을 검증하고 저장합니다.
+   * @param {number} bonus - bonus 번호
    */
-  constructor(numbers, bonus) {
-    super(numbers);
-    this.validateBonus(numbers, bonus);
+  setBonus(bonus) {
+    this.validateBonus(this.getNums(), bonus);
     this.bonus = bonus;
   }
 

@@ -16,7 +16,8 @@ describe('로또 성적 테스트', () => {
       [2, 3, 4, 5, 6, 7],
     ]);
     const randomLottos = new RandomLottos(2);
-    const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 45);
+    const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6]);
+    winningLotto.setBonus(45);
     const result = [0, 0, 1, 0, 1];
     expect(randomLottos.getPrizeResult(winningLotto))
       .toEqual(result);
@@ -28,7 +29,8 @@ describe('로또 성적 테스트', () => {
       [2, 3, 4, 5, 6, 45],
     ]);
     const randomLottos = new RandomLottos(3);
-    const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 45);
+    const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6]);
+    winningLotto.setBonus(45);
     const result = [1, 1, 0, 1, 0];
     expect(randomLottos.getPrizeResult(winningLotto)).toEqual(result);
   });
@@ -41,7 +43,8 @@ describe('로또 성적 테스트', () => {
       [4, 5, 6, 7, 8, 9],
     ]);
     const randomLottos = new RandomLottos(5);
-    const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
+    const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6]);
+    winningLotto.setBonus(7);
     const result = [1, 1, 1, 1, 1];
     expect(randomLottos.getPrizeResult(winningLotto)).toEqual(result);
   });

@@ -32,10 +32,11 @@ class App {
   enterWinningNumberMode() {
     Console.readLine(MESSAGE.ASK_WINNING_NUMBERS, (winNums) => {
       Console.print('');
+      const correct = winNums.split(',').map((e) => +e);
+      this.winningLotto = new WinningLotto(correct);
       Console.readLine(MESSAGE.ASK_BONUS_NUMBER, (bonus) => {
         Console.print('');
-        const correct = winNums.split(',').map((e) => +e);
-        this.winningLotto = new WinningLotto(correct, +bonus);
+        this.winningLotto.setBonus(+bonus);
         this.printToTalPrizeResult();
       });
     });
