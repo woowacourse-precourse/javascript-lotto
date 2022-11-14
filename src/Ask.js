@@ -11,9 +11,10 @@ class Ask{
 
     validateMoney(money){
         if(typeof money !== "number"){
-        throw new Error("[ERROR] 숫자를 입력해야합니다.")}
+            throw new Error("[ERROR] 숫자를 입력해야합니다.");
+        }
         if(money%1000 != 0){
-        throw new Error("[ERROR] 구입금액은 1000원 단위로 입력해야합니다.")
+            throw new Error("[ERROR] 구입금액은 1000원 단위로 입력해야합니다.");
         }
         this.money = money;
     }
@@ -46,7 +47,7 @@ class Ask{
         let numbers;
         MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (answer) => {
             numbers = answer.split(",");
-          });
+        });
         return numbers;
     }
 
