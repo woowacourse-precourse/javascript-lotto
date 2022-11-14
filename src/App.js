@@ -1,5 +1,16 @@
+const Lotto = require("../src/Lotto");
+const MissionUtils = require("@woowacourse/mission-utils");
 class App {
-  play() {}
+  play() {
+    try {
+      this.getMoney();
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
 
-module.exports = App;
+tmp = new App();
+tmp.play();
+
+// module.exports = App;
