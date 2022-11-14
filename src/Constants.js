@@ -26,6 +26,12 @@ const REVENUE = {
   },
 };
 
+const INPUT = {
+  WINNING_NUMBER: '당첨 번호를 입력해 주세요.',
+  BONUS_NUMBER: '보너스 번호를 입력해 주세요.',
+  MONEY: '구입금액을 입력해 주세요.',
+};
+
 module.exports = {
   LOTTO_PRICE,
   LOTTO_END,
@@ -33,4 +39,5 @@ module.exports = {
   LOTTO_NUMBER_COUNT,
   REVENUE,
   MINIMUM_MATCH_COUNT,
+  INPUT,
 };

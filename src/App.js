@@ -9,6 +9,7 @@ const {
   REVENUE,
   LOTTO_NUMBER_COUNT,
   MINIMUM_MATCH_COUNT,
+  INPUT,
 } = require('./Constants');
 const Money = require('./Money');
 
@@ -126,7 +127,7 @@ class App {
   }
 
   #getBonusNumber() {
-    ui.input('보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
+    ui.input(`${INPUT.BONUS_NUMBER}\n`, (bonusNumber) => {
       this.#bonusNumber = Number(bonusNumber);
 
       if (this.#validateBonusNumber(bonusNumber)) {
@@ -139,7 +140,7 @@ class App {
   }
 
   #getWinningNumber() {
-    ui.input('당첨 번호를 입력해 주세요.\n', (winningNumber) => {
+    ui.input(`${INPUT.WINNING_NUMBER}\n`, (winningNumber) => {
       this.#winningNumber = winningNumber.split(',').map(Number);
       if (this.#validateWinningNumbers()) this.#getBonusNumber();
     });
@@ -155,7 +156,7 @@ class App {
   }
 
   #getMoney() {
-    ui.input('구입금액을 입력해 주세요.\n', (money) => {
+    ui.input(`${INPUT.MONEY}\n`, (money) => {
       this.#money = new Money(money);
       this.#lottoCount = this.#money.getMoneyDivideByPrice(LOTTO_PRICE);
       this.#startLotto();
