@@ -41,6 +41,7 @@ class HitLottoChecker {
       (bonusNumber) => {
         this.bonusNumber = parseInt(bonusNumber);
         this.findHitLotto();
+        this.printHitLottoStatistics();
       }
     );
   }
