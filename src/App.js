@@ -4,7 +4,7 @@ const Lotto = require("Lotto");
 
 class App {
   constructor() {  
-    this.LottoStore = new LottoStore();
+    this.store = new LottoStore();
     this.purchasedLottos = [];
 
   }
@@ -16,7 +16,7 @@ class App {
   buyLotto() {
     MissionUtils.Console.readLine('구입 금액을 입력해 주세요.', (answer) => {
         const money = Number(answer);
-        this.purchasedLottos = [... LottoStore.buy(money)];
+        this.purchasedLottos = [... store.buy(money)];
     })
   }
 }
