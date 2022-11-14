@@ -9,6 +9,14 @@ const INPUT = {
 const NOTICE = {
   PURCHASE_SUCCESS: (numberOfPurchases) =>
     `${numberOfPurchases}개를 구매했습니다.`,
+  STATISTICS: {
+    TITLE: '당첨 통계\n---',
+    SAME: (same) => `${same}개 일치`,
+    BONUS: ', 보너스 볼 일치',
+    MONEY: (money) => ` (${money.toLocaleString('ko-KR')}원)`,
+    COUNT: (count) => ` - ${count}개`,
+    PROFIT_RATE: (profitRate) => `총 수익률은 ${profitRate}%입니다.`,
+  },
 };
 
 const ERROR = {

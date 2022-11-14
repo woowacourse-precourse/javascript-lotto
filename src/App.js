@@ -5,18 +5,27 @@ const Console = require('./Console');
 const Exception = require('./Exception');
 const Random = require('./Random');
 const Lotto = require('./Lotto');
+const WinningLotto = require('./WinningLotto');
+const Calculate = require('./Calculate');
+const Statistics = require('./Statistics');
 
 class App {
   purchase;
   numberOfPurchases;
   purchaseLottos;
   winningLotto;
+  calculates;
+  statistics;
 
   play() {
     this.setPurchase();
     this.setNumberOfPurchases();
     this.setLottos();
     this.printPurchaseResult();
+    this.setWinningLotto();
+    this.setCalculates();
+    this.setStatistics();
+    this.statistics.print();
   }
 
   setPurchase() {
@@ -66,10 +75,10 @@ class App {
   }
 
   setNumberOfPurchases() {
-    this.numberOfPurchases = this.calculateNumberOfPurchases();
+    this.numberOfPurchases = this.calcNumberOfPurchases();
   }
 
-  calculateNumberOfPurchases() {
+  calcNumberOfPurchases() {
     return this.purchase / LOTTO.PRICE;
   }
 
@@ -162,6 +171,19 @@ class App {
     });
 
     return bonusNumber;
+  }
+
+  setCalculates() {
+    let calculates = [];
+    for (const purchaseLotto of this.purchaseLottos) {
+      calculates.push(new Calculate(purchaseLotto, this.winningLotto));
+    }
+
+    this.calculates = calculates;
+  }
+
+  setStatistics() {
+    this.statistics = new Statistics(this.calculates, this.purchase);
   }
 }
 

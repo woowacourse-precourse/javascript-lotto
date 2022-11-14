@@ -12,6 +12,14 @@ class WinningLotto {
     this.bonus = bonus;
   }
 
+  getNumbers() {
+    return this.lotto.getNumbers();
+  }
+
+  getBonusNumber() {
+    return this.bonus;
+  }
+
   handleBonusException(bonus) {
     const {
       BONUS: { INTEGER, UNIQUE, RANGE },
