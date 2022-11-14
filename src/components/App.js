@@ -38,7 +38,7 @@ class App {
       Console.print(JSON.stringify(newLotto).replaceAll(",", ", "));
     });
 
-    this.getWinningNumber();
+    this.getWinningNums();
   }
 
   issueLotto() {
@@ -49,19 +49,19 @@ class App {
     );
   }
 
-  getWinningNumber() {
+  getWinningNums() {
     Console.readLine(GUIDE_MESSAGES.WINNING_NUMS, (userInput) => {
       const winningNums = userInput.split(",");
 
       this.#Lotto = new Lotto(winningNums);
 
-      this.getBonusNumber();
+      this.getBonusNum();
     });
   }
 
-  getBonusNumber() {
+  getBonusNum() {
     Console.readLine(GUIDE_MESSAGES.BONUS_NUM, (userInput) => {
-      this.#Lotto.validateBonusNumber(+userInput);
+      this.#Lotto.validateBonusNum(+userInput);
 
       const bonusNumber = +userInput;
 
