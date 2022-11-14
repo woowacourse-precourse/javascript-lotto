@@ -1,33 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { validateWinNums, } = require("./util");
+const { validateWinNums, validateBounus, validatePrice } = require("./util");
 const Lotto = require("./Lotto.js");
 const [Console, Random] = [MissionUtils.Console, MissionUtils.Random];
-
-function validateBounus(bonusNum, winNums) {
-
-  if (isNaN(bonusNum)) {
-    return [false, new Error("[ERROR] 보너스번호는 숫자여야 합니다.")];
-  }
-
-  if (winNums.includes(bonusNum)) {
-    return [false, new Error("[ERROR] 보너스 번호가 당첨번호에 포함되어 있습니다.")];
-  }
-
-  return [true, bonusNum];
-}
-
-function validatePrice(price) {
-  const priceNum = parseInt(money);
-
-  if (isNaN(priceNum)) {
-    return [false, new Error("[ERROR] price는 숫자여야 합니다.")];
-  }
-  if (priceNum % 1000 !== 0) {
-    return [false, new Error("[ERROR] price가 1000으로 나누어 떨어지지 않습니다.")];
-  }
-
-  return [true, priceNum];
-}
 
 class App {
   #totalMoney;
@@ -76,10 +50,10 @@ class App {
         }
         resolve(this.setMoney(validation[1]));
       })
-          
-      })
+
     })
   }
+
 
   buyLotto() {
     const lottoCount = this.getMoney() / 1000;
@@ -116,7 +90,6 @@ class App {
         resolve(this.setBonus(validation[1]));
       })
     })
-
   }
 
   async play() {
@@ -132,9 +105,9 @@ class App {
       Console.print("프로그램을 종료합니다.");
       Console.close();
     }
-
   }
 }
+
 
 const app = new App();
 app.play();
