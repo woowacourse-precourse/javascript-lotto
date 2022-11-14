@@ -50,8 +50,16 @@ class App {
     const statistics = new Statistics(this.totalLottoNumber, this.winnerNumber, this.bonusNumber);
     const lottoResult = statistics.getResultOfThreeToFiveMatchingNumbers();
 
-    statistics.printLottoResult(lottoResult);
+    this.printLottoResult(lottoResult);
     this.loadLottoProfitRate(lottoResult);
+  }
+
+  printLottoResult(lottoResult) {
+    Console.print(OUTPUT_MESSAGE.fifthPrize(lottoResult[0]));
+    Console.print(OUTPUT_MESSAGE.fourthPrize(lottoResult[1]));
+    Console.print(OUTPUT_MESSAGE.thirdPrize(lottoResult[2]));
+    Console.print(OUTPUT_MESSAGE.secondPrize(lottoResult[3]));
+    Console.print(OUTPUT_MESSAGE.firstPrize(lottoResult[4]));
   }
 
   loadLottoProfitRate(lottoResult) {

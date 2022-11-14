@@ -1,6 +1,3 @@
-const { Console } = require("@woowacourse/mission-utils");
-const { OUTPUT_MESSAGE } = require("../constants");
-
 class Statistics {
   constructor(totalLottoNumber, winnerNumber, bonusNumber) {
     this.totalLottoNumber = totalLottoNumber;
@@ -38,14 +35,6 @@ class Statistics {
   isContainBonusNumber(numbers) {
     if (numbers.includes(Number(this.bonusNumber))) return true;
     return false;
-  }
-
-  printLottoResult() {
-    Console.print(OUTPUT_MESSAGE.fifthPrize(this.lottoResult[0]));
-    Console.print(OUTPUT_MESSAGE.fourthPrize(this.lottoResult[1]));
-    Console.print(OUTPUT_MESSAGE.thirdPrize(this.lottoResult[2]));
-    Console.print(OUTPUT_MESSAGE.secondPrize(this.lottoResult[3]));
-    Console.print(OUTPUT_MESSAGE.firstPrize(this.lottoResult[4]));
   }
 }
 
