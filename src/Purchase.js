@@ -21,6 +21,24 @@ class Purchase {
   static calculateQuantity(money) {
     return Number(money) / 1000;
   }
+
+  static issue(quantity) {
+    MissionUtils.Console.print(`${quantity}${Constant.QUANTITY_MESSAGE}`);
+    while (quantity > 0) {
+      const lottoNumber = MissionUtils.Random.pickUniqueNumbersInRange(
+        1,
+        45,
+        6
+      );
+      Purchase.printLotto(lottoNumber);
+      quantity -= 1;
+    }
+  }
+
+  static printLotto(lottoNumber) {
+    const issuedLotto = `[${lottoNumber.join(", ")}]`;
+    MissionUtils.Console.print(issuedLotto);
+  }
 }
 
 module.exports = Purchase;
