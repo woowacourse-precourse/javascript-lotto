@@ -11,6 +11,10 @@ class App {
     });
   }
 
+  generateLottoNumbers() {
+    return Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
+  }
+
   isValidPurchaseAmount(purchaseAmountInput) {
     return (
       this.isAllDigits(purchaseAmountInput) &&
