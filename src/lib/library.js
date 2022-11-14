@@ -9,18 +9,19 @@ const INPUT = {
 };
 
 const PRINT = {
-  BUY: (count) => `${count}개를 구매했습니다.`,
-  RESULT: "당첨 통계\n ---",
+  BUY: (count) => `\n${count}개를 구매했습니다.`,
+  RESULT: "\n당첨 통계\n ---",
   GAIN_PECENT: (percent) => `총 수익률은 ${percent}%입니다.`,
 };
 
 const WINNING = {
-  MENT: {
-    FIFTH: (count) => `3개 일치 (5,000원) - ${count}개`,
-    FOURTH: (count) => `4개 일치 (50,000원) - ${count}개`,
-    THIRD: (count) => `5개 일치 (1,500,000원) - ${count}개`,
-    SECOND: (count) => `5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`,
-    FIRST: (count) => `6개 일치 (2,000,000,000원) - ${count}개`,
+  MENT: ({ FIRST, SECOND, THIRD, FOURTH, FIFTH, count }) => {
+    const ment = `3개 일치 (5,000원) - ${FIFTH}개,
+      4개 일치 (50,000원) - ${FOURTH}개,
+      5개 일치 (1,500,000원) - ${THIRD}개,
+      5개 일치, 보너스 볼 일치 (30,000,000원) - ${SECOND}개,
+      6개 일치 (2,000,000,000원) - ${FIRST}개`;
+    return ment;
   },
 
   PRICE: {

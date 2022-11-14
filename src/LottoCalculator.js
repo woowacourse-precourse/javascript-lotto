@@ -3,6 +3,7 @@ const { WINNING, PRINT, LOTTO_RESULT, LOTTO } = require("./lib/library");
 
 class LottoCalculate {
   resultCaculator(lottos, { winLotto, bonus }) {
+    Console.print(PRINT.RESULT);
     const resultArr = [];
     lottos.map((lotto) => {
       const result = this.compareLotto(
@@ -43,10 +44,7 @@ class LottoCalculate {
   }
 
   printWinResult(result) {
-    const MENT = { ...WINNING.MENT };
-    Object.keys(MENT).forEach((win) => {
-      Console.print(MENT[win](result[win]));
-    });
+    Console.print(WINNING.MENT(result));
     return this;
   }
 
@@ -57,7 +55,7 @@ class LottoCalculate {
     Object.keys(lottoResult).forEach((rank) => {
       allPrice += winPrice[rank] * lottoResult[rank];
     });
-    return allPrice !== 0 ? ((allPrice / purchacePrice) * 100).toFixed(2) : 0.0;
+    return allPrice !== 0 ? ((allPrice / purchacePrice) * 100).toFixed(1) : 0.0;
   }
 
   printGainPercent(result) {

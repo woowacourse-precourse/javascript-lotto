@@ -5,15 +5,11 @@ const Lotto = require("./Lotto");
 class LottoBuy {
   #lottos = [];
 
-  main() {
-    Console.readLine(INPUT.BUY, this.inputPurchasePrice.bind(this));
-    return this.#lottos;
-  }
-
   inputPurchasePrice(price) {
     this.validate(price);
     this.createMyLottos(price / LOTTO.PRICE);
-    this.printLottos();
+    Console.print(PRINT.BUY(price / LOTTO.PRICE));
+    this.printLottos(this.#lottos);
     return;
   }
 
@@ -32,9 +28,8 @@ class LottoBuy {
     return;
   }
 
-  printLottos() {
-    Console.print(PRINT.BUY(this.#lottos.length));
-    this.#lottos.forEach((lotto) => {
+  printLottos(lottos) {
+    lottos.forEach((lotto) => {
       lotto.printNumbers();
     });
     return;

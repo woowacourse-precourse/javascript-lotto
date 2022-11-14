@@ -9,7 +9,6 @@ class App {
 
   play() {
     this.lottoBuyPrint();
-    return;
   }
 
   lottoBuyPrint() {
@@ -39,5 +38,4 @@ class App {
     Console.close();
   }
 }
-
 module.exports = App;
