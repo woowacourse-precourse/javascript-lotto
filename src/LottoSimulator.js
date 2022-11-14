@@ -1,15 +1,7 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto.js');
 const { validateMoney, validateBonusNumber, getLottoRanking } = require('./Utils.js');
-
-const LOTTO_PRICE = 1000;
-const LOTTO_PRIZE = {
-  FIRST: 2000000000,
-  SECOND: 30000000,
-  THIRD: 1500000,
-  FOURTH: 50000,
-  FIFTH: 5000,
-};
+const { LOTTO_PRICE, LOTTO_PRIZE } = require('./Constants.js');
 
 class LottoSimulator {
   #money = 0;
@@ -46,7 +38,7 @@ class LottoSimulator {
   setWinningNumbers() {
     Console.readLine('당첨 번호를 입력해 주세요.', input => {
       const numbers = input.split(',').map(Number);
-      this.#winningNumbers = new Lotto(numbers);
+      this.#winningNumbers = new Lotto(numbers).getNumbers();
     });
 
     this.setBonusNumber();

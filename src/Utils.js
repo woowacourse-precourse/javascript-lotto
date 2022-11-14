@@ -16,14 +16,14 @@ const validateBonusNumber = (number, winningNumbers) => {
   if (+number < 1 || +number > 45) {
     throw new Error(ERROR_MESSAGE.INVALID_LOTTO_RANGE);
   }
-  if (winningNumbers.getNumbers().includes(+number)) {
+  if (winningNumbers.includes(+number)) {
     throw new Error(ERROR_MESSAGE.BONUS_NUMBER_DUPLICATE);
   }
 };
 
 const getLottoRanking = (lotto, winningNumbers, bonusNumber) => {
   let cnt = 0;
-  winningNumbers.getNumbers().forEach(num => {
+  winningNumbers.forEach(num => {
     if (lotto.includes(num)) {
       cnt += 1;
     }
