@@ -33,6 +33,10 @@ class WinningNumbers {
     );
   }
 
+  isNotLottoLength(winningNumbers) {
+    return winningNumbers.length !== LOTTO.NUMBER_COUNT;
+  }
+
   hasOutOfBoundNumber(winningNumbers) {
     return winningNumbers.some(
       winningNumber =>
@@ -43,10 +47,6 @@ class WinningNumbers {
 
   hasDuplicate(winningNumbers) {
     return winningNumbers.length !== new Set(winningNumbers).size;
-  }
-
-  isNotLottoLength(winningNumbers) {
-    return winningNumbers.length !== LOTTO.NUMBER_COUNT;
   }
 
   initBonusNumber(bonusNumberInput) {
