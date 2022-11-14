@@ -45,8 +45,6 @@ class LottoGame {
   }
 
   compareNumber(lottos, lottoNumbers, bonusNumber) {
-    lottos.setMatchingNumber();
-
     lottoNumbers.forEach((number) => {
       lottos.getLottos().forEach((lotto, index) => {
         lotto.getNumbers().includes(number) && lottos.matchingNumber[index]++;
@@ -100,6 +98,8 @@ class LottoGame {
     const winningLotto = new Lotto(numbers.split(",").map(Number), bonusNumber);
     const winningNumbers = winningLotto.getNumbers();
     const winningBonusNumber = winningLotto.getBonusNumber();
+
+    lottos.setMatchingNumber();
 
     this.compareNumber(lottos, winningNumbers, winningBonusNumber);
   }
