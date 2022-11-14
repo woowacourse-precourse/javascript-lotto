@@ -436,7 +436,6 @@ class Input {
 - [ ] 6자리 로또 번호 출력
 - [ ] 당첨 통계 출력
 - [ ] 수익률 출력
-- [ ] 에러 출력
 
 </details open>
 
@@ -506,6 +505,18 @@ Input 클래스 테스트
 
 ## Print 클래스
 
-1.  </details open>
+1. 유효성 테스트
+
+   - lotteryNumber 배열을 파라미터로 받지 않았을 경우 예외 발생.
+   - 당첨 확인 객체를 파라미터로 받지 않았을 경우 예외 발생
+
+  </br>
+2. 출력 테스트
+   - lotteryNumber 출력값 확인
+   - winningResult 출력값 확인,
+   - profitRate 출력값 확인
+  </br>
+
+ </details open>
 
 ---
