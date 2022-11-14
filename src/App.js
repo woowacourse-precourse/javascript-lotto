@@ -70,6 +70,10 @@ class App {
       throw new Error("[ERROR] 당첨 번호는 숫자만 입력해주세요.");
     }
 
+    if (WINNINGNUMBERS[i] < 1 || WINNINGNUMBERS[i] > 45) {
+      throw new Error("[ERROR] 당첨 번호는 1 ~ 45 사이의 숫자를 입력해주세요.");
+    }
+
     for(let i=0; i<WINNINGNUMBERS.length; i++) {
       if(WINNINGNUMBERS[i] === WINNINGNUMBERS[i+1]) {
         throw new Error("[ERROR] 중복되지 않는 값을 입력해주세요.");
