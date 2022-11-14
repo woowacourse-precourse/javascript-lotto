@@ -6,6 +6,7 @@ class App {
   constructor() {
     this.publishedLottos = [];
     this.amount = 0;
+    this.winNumbers = [];
   }
 
   play() {
@@ -30,13 +31,29 @@ class App {
 
       Console.print(`${MESSAGE.CONFIRM_BUY(countOfLotto)}`);
 
-      // TODO: 당첨번호 입력받기
+      this.getWinNumber();
     });
   }
 
   makeLottoAuto() {
     const lotto = Random.pickUniqueNumbersInRange(GAME.START, GAME.END, GAME.COUNT);
     return lotto.sort((prev, next) => prev - next);
+  }
+
+  getWinNumber() {
+    Console.readLine(MESSAGE.CONFIRM_WIN, (win) => {
+      // TODO: validate win
+      // 쉼표로 구분안하는 경우
+      // 길이가 6이 아닌 경우
+      // 문자를 가지고 있는 경우
+      // 쉼표로 끝나는 경우
+      // 숫자의 범위가 맞지 않는 경우
+      // 중복 숫자를 가지고 있는 경우
+
+      this.winNumbers = win.split(',').map((el) => Number(el));
+      console.log(this.winNumbers);
+      // TODO: 보너스 번호 받기
+    });
   }
 }
 
