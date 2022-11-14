@@ -101,6 +101,15 @@ class App {
           : "";
       }
       this.winningResult.push(count);
+      if (count === 5) {
+        this.checkBonus(index);
+      }
+    }
+  }
+
+  checkBonus(index) {
+    if (!this.issuedLottoNum[index].includes(parseInt(this.#bonusNum))) {
+      this.winningResult[index] = 0;
     }
   }
 }
