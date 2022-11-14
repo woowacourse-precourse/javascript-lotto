@@ -89,7 +89,7 @@ class App {
   }
 
   getBonusNumber() {
-    Console.readLine(" 번호를 입력해 주세요.\n", (input) => {
+    Console.readLine("번호를 입력해 주세요.\n", (input) => {
       if (!this.isValidBonusNumber(input)) {
         throw "[ERROR]";
       } else {
