@@ -31,7 +31,7 @@ class App {
 
   playLotto() {
     Console.readLine(LOTTO.ANNOUNCEMENT, (userAnswer) => {
-      const lotto = new Lotto(userAnswer);
+      const lotto = new Lotto(userAnswer, this.userLottoArr);
     });
   }
 }
