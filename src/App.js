@@ -8,8 +8,13 @@ class App {
     this.winningNumber = [];
     this.bonusNumber = 0;
   }
-  
-  play() {}
+
+  play() {
+    this.inputPurchaseMoney();
+  }
+  inputPurchaseMoney(){
+    
+  }
 }
 
 module.exports = App;
