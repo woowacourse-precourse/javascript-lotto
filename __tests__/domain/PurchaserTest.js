@@ -1,6 +1,4 @@
-const App = require('../../src/App');
 const Purchaser = require('../../src/domain/Purchaser');
-const Lotto = require('../../src/Lotto');
 
 describe('로또 클래스 테스트', () => {
   test('buyLotto 함수가 리턴하는 배열 길이가 로또 구매 갯수와 일치하는지 검사', () => {
