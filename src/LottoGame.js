@@ -19,9 +19,9 @@ class LottoGame {
 
   #receiveMoney() {
     UI.askHowMuchBuy((answer) => {
-      this.boughtAmount = parseInt(answer, 10);
+      this.setBoughtAmount(answer);
 
-      this.setLottosOfUser(answer / 1000);
+      this.createLottosOfUser(answer / 1000);
 
       UI.showBoughtLottos(this.lottosOfUser);
 
@@ -49,7 +49,11 @@ class LottoGame {
     });
   }
 
-  setLottosOfUser(amount) {
+  setBoughtAmount(amount) {
+    this.boughtAmount = parseInt(amount, 10);
+  }
+
+  createLottosOfUser(amount) {
     for (let i = 0; i < amount; i += 1)
       this.lottosOfUser.push(new Lotto(pickUniqueNumbersInRange(1, 45, 6)));
   }
@@ -78,16 +82,16 @@ class LottoGame {
     });
   }
 
-  calculateRankingOfEachLotto() {
-    return this.lottosOfUser.map((lotto) =>
-      this.winningLotto.calculateLottoRanking(lotto.getNumbers()),
-    );
-  }
-
   calculateTotalProfitRate() {
     const totalProfit = this.calculateTotalProfit();
 
     this.totalProfitRate = ((totalProfit / this.boughtAmount) * 100).toFixed(1);
+  }
+
+  calculateRankingOfEachLotto() {
+    return this.lottosOfUser.map((lotto) =>
+      this.winningLotto.calculateLottoRanking(lotto.getNumbers()),
+    );
   }
 
   calculateTotalProfit() {

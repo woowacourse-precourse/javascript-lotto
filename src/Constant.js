@@ -7,6 +7,29 @@ const QUERY = Object.freeze({
 const MESSAGE = Object.freeze({
   BOUGHT_LOTTOS: "개를 구매했습니다.",
   RESULT: "당첨 통계\n---",
+  FIRST: "6개 일치 (2,000,000,000원)",
+  SECOND: "5개 일치, 보너스 볼 일치 (30,000,000원)",
+  THIRD: "5개 일치 (1,500,000원)",
+  FOURTH: "4개 일치 (50,000원)",
+  FIFTH: "3개 일치 (5,000원)",
+  TOTAL_PROFIT_RATE: "총 수익률은",
+  PERCENT: "%입니다.",
+});
+
+const RANKING = Object.freeze({
+  FIRST: "FIRST",
+  SECOND: "SECOND",
+  THIRD: "THIRD",
+  FOURTH: "FOURTH",
+  FIFTH: "FIFTH",
+});
+
+const PRIZE_MONEY = Object.freeze({
+  FIRST: 2_000_000_000,
+  SECOND: 30_000_000,
+  THIRD: 1_500_000,
+  FOURTH: 50_000,
+  FIFTH: 5_000,
 });
 
 const ERROR = "[ERROR]";
@@ -23,33 +46,11 @@ const INPUT_ERROR_MESSAGE = Object.freeze({
   ONLY_NUMBER: `${ERROR} 숫자만 입력이 가능합니다.`,
 });
 
-const FIRST = "FIRST";
-const SECOND = "SECOND";
-const THIRD = "THIRD";
-const FOURTH = "FOURTH";
-const FIFTH = "FIFTH";
-
-const RANKING = Object.freeze({
-  FIRST,
-  SECOND,
-  THIRD,
-  FOURTH,
-  FIFTH,
-});
-
-const PRIZE_MONEY = Object.freeze({
-  FIRST: 2_000_000_000,
-  SECOND: 30_000_000,
-  THIRD: 1_500_000,
-  FOURTH: 50_000,
-  FIFTH: 5_000,
-});
-
 module.exports = {
   QUERY,
   MESSAGE,
-  LOTTO_ERROR_MESSAGE,
-  INPUT_ERROR_MESSAGE,
   RANKING,
   PRIZE_MONEY,
+  LOTTO_ERROR_MESSAGE,
+  INPUT_ERROR_MESSAGE,
 };
