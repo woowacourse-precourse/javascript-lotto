@@ -1,6 +1,7 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { LOTTO_RESULT, BONUS_RESULT } = require("./constants/core");
 const { LOTTO, PRINT_MESSAGE } = require("./constants/constants");
+
 class Result {
   #bonusCnt;
 
@@ -9,8 +10,10 @@ class Result {
     this.#bonusCnt = 0;
     for (let i = 0; i < scores.length; i++) {
       const score = scores[i];
+      const lottoNubers = lottoArr[i].getLottoNumber();
       if (score < 3) continue;
-      if (this.isFiveScoreAndContainBonusNumber(score, lottoArr[i], bonusNum)) {
+
+      if (this.isFiveScoreAndContainBonusNumber(score, lottoNubers, bonusNum)) {
         this.#bonusCnt += 1;
         continue;
       }

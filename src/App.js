@@ -4,16 +4,15 @@ const { INPUT_MESSAGE, PRINT_MESSAGE } = require("./constants/constants");
 const Lotto = require("./Lotto");
 const Output = require("./Output");
 const Result = require("./Result");
-const Score = require("./Score");
 
 class App {
-  #winningNum;
+  #winningLotto;
   #buyMoney;
 
   constructor() {
     this.result = new Result();
-    this.score = new Score();
-    this.lotto = new Lotto();
+    // this.lotto = new Lotto();
+    this.lottoArr = [];
   }
 
   play() {
@@ -25,9 +24,10 @@ class App {
       let lottoNum;
       this.#buyMoney = answer;
       lottoNum = this.divideMoneyByThousand();
-      const lottoArr = this.lotto.createTotalLottoArr(lottoNum);
-      Output.printLottos(lottoArr);
-      this.getWinningNum(lottoArr);
+      this.lottoArr = Lotto.createTotalLottoArr(lottoNum);
+
+      Output.printLottos(this.lottoArr);
+      this.getWinningNum(this.lottoArr);
     });
   }
 
@@ -39,7 +39,8 @@ class App {
 
   getWinningNum(lottoArr) {
     Console.readLine(INPUT_MESSAGE.WINNING_NUM, (answer) => {
-      this.#winningNum = answer.split(",").map((item) => Number(item));
+      const winNumbers = answer.split(",").map((item) => Number(item));
+      this.#winningLotto = new Lotto(winNumbers);
       this.getBonusNum(lottoArr);
     });
   }
@@ -47,7 +48,7 @@ class App {
   getBonusNum(lottoArr) {
     Console.readLine(INPUT_MESSAGE.BONUS_NUM, (answer) => {
       const bonusNum = Number(answer);
-      const scores = this.score.getLottoScores(lottoArr, this.#winningNum);
+      const scores = this.getLottoScores(lottoArr, this.#winningLotto);
       const lottoResult = this.result.createLottoResult(
         scores,
         bonusNum,
@@ -62,6 +63,15 @@ class App {
       );
       this.result.printLottoResult(lottoResult, bonusResult, totalYield);
     });
+  }
+
+  getLottoScores(lottos, winningLotto) {
+    const scores = [];
+    for (let i = 0; i < lottos.length; i++) {
+      const eachScore = lottos[i].calculateScore(winningLotto);
+      scores.push(eachScore);
+    }
+    return scores;
   }
 }
 const app = new App();

@@ -19,7 +19,7 @@ class Output {
 
   static printLottos(lottoArr) {
     for (let i = 0; i < lottoArr.length; i++) {
-      const result = Output.createLottoString(lottoArr[i]);
+      const result = Output.createLottoString(lottoArr[i].getLottoNumber());
       Console.print(result);
     }
   }
