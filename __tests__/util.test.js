@@ -62,6 +62,7 @@ describe('입력받은 당첨 번호(Winning Number)가 유효한 입력인지 �
     expect(utils.hasCharExceptComma('1,2,#,4,5,6')).toEqual(true);
     expect(utils.hasCharExceptComma("1,2,',4,5,6")).toEqual(true);
     expect(utils.hasCharExceptComma('1,2,3,",5,6')).toEqual(true);
+    expect(utils.hasCharExceptComma('1.2.3.4.5.6')).toEqual(true);
   });
 
   test('문자열에 쉼표가 연속적으로 존재한다면 예외가 발생한다.', () => {
@@ -79,6 +80,15 @@ describe('입력받은 당첨 번호(Winning Number)가 유효한 입력인지 �
     }).toThrow(new InvalidWinningNumbersInputError());
     expect(() => {
       utils.makeSplit('1,2,3,4,5,');
+    }).toThrow(new InvalidWinningNumbersInputError());
+    expect(() => {
+      utils.makeSplit('1,2,3,,,4,5,');
+    }).toThrow(new InvalidWinningNumbersInputError());
+    expect(() => {
+      utils.makeSplit('1,,,2,3,4,5,');
+    }).toThrow(new InvalidWinningNumbersInputError());
+    expect(() => {
+      utils.makeSplit('1,,2,,3,,4,5,,');
     }).toThrow(new InvalidWinningNumbersInputError());
   });
 
@@ -171,6 +181,22 @@ describe('입력받은 보너스 번호가 유효한 입력인지 검사한다.'
     }).toThrow(new InvalidBonusNumberInputError());
     expect(() => {
       app.validateBonusNumber('bcd 123');
+    }).toThrow(new InvalidBonusNumberInputError());
+    expect(() => {
+      app.validateBonusNumber(' 13 0');
+    }).toThrow(new InvalidBonusNumberInputError());
+  });
+
+  test('입력이 빈 또는 공백 문자열이라면 에러가 발생한다.', () => {
+    const app = new App();
+    expect(() => {
+      app.validateBonusNumber('  ');
+    }).toThrow(new InvalidBonusNumberInputError());
+    expect(() => {
+      app.validateBonusNumber('    ');
+    }).toThrow(new InvalidBonusNumberInputError());
+    expect(() => {
+      app.validateBonusNumber('');
     }).toThrow(new InvalidBonusNumberInputError());
   });
 });
