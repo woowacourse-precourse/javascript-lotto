@@ -52,7 +52,20 @@ class App {
 
       this.winNumbers = win.split(',').map((el) => Number(el));
       console.log(this.winNumbers);
-      // TODO: 보너스 번호 받기
+
+      this.getBonusNumber();
+    });
+  }
+
+  getBonusNumber() {
+    Console.readLine(MESSAGE.CONFIRM_BONUS, (bonus) => {
+      // TODO: validate bonus
+      // 숫자여야한다
+      // 1 ~ 45 사이여야 한다
+      // 중복이면 안된다
+
+      this.bonusNumber = Number(bonus);
+      console.log(this.bonusNumber);
     });
   }
 }
