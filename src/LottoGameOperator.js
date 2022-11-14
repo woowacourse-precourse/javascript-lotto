@@ -27,7 +27,6 @@ class LottoGameOperator {
 
   showLottoNumbers(lottoArray) {
     lottoArray.forEach((lotto) => {
-      console.log("lotto", lotto);
       const lottoNumbers = lotto.getLottoNumbers().join(", ");
 
       Console.print(`[${lottoNumbers}]`);

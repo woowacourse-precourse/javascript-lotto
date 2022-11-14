@@ -19,7 +19,6 @@ class LottoGame {
     Console.readLine(MESSAGES.ENTER_PURCHASE_AMOUNT, (input) => {
       this.#purchaseAmount = Number(input);
       Validation.validatePurchaseAmount(this.#purchaseAmount);
-      console.log("happy", typeof this.#purchaseAmount);
       const lottoQuantity = this.operator.countLottoTickets(
         this.#purchaseAmount
       );
