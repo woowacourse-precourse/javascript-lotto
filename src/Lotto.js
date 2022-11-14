@@ -1,4 +1,5 @@
 const Console = require("./utils/Console");
+const Constant = require("./Constant");
 
 class Lotto {
   #numbers;
@@ -14,7 +15,7 @@ class Lotto {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
     if (numbers.length !== uniqueNumbersLength) {
-      throw new Error("[ERROR] 로또 번호는 중복될 수 없습니다.");
+      throw new Error(Constant.lottoNumbersShouldBeUnique);
     }
   }
 
@@ -30,13 +31,13 @@ class Lotto {
   }
   #validateCoin(lottoPurchaseAmount) {
     if (isNaN(lottoPurchaseAmount)) {
-      throw new Error("[ERROR] 숫자만 입력하세요.");
+      throw new Error(Constant.INPUT_ONLY_NUMBER);
     }
-    if (lottoPurchaseAmount < 1000) {
-      throw new Error("1000원 이상 입력하세요.");
+    if (lottoPurchaseAmount < Constant.MINIMUM_AMOUNT) {
+      throw new Error(Constant.INPUT_OVER_1000);
     }
-    if (lottoPurchaseAmount % 1000 !== 0) {
-      throw new Error("1000원 단위로 입력하세요.");
+    if (lottoPurchaseAmount % Constant.MINIMUM_AMOUNT !== 0) {
+      throw new Error(Constant.LOTTO_NUMBERS_SHOULD_BE_UNIQUE);
     }
     return true;
   }
