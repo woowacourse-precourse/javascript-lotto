@@ -21,6 +21,7 @@ class App {
     this.print_publish_result(amount, lotto_list);
 
     winning_number = this.input("당첨 번호를 입력해 주세요.");
+    winning_number = this.input_arrangement(winning_number);
   }
 
   input(text) {
@@ -77,6 +78,13 @@ class App {
       str += `]`;
       MissionUtils.Console.print(str);
     })
+  }
+
+  input_arrangement(winning_number) {
+    let result = winning_number.split(",").map(function(value) {
+      return parseInt(value, 10);
+    })
+    return result;
   }
 }
 
