@@ -19,6 +19,9 @@ class LottoGame {
   }
 
   validatePurchaseLotto(number) {
+    if (!this.isNumber(number)) {
+      throw new Error(ERROR.NOT_NUMBER);
+    }
     if (!this.isThousandUnit(number)) {
       throw new Error(ERROR.THOUSAND_UNIT);
     }
@@ -27,6 +30,9 @@ class LottoGame {
   validateLottoNumber(number) {
     if (!this.isNumber(number)) {
       throw new Error(ERROR.NOT_NUMBER);
+    }
+    if (!(number >= 1 && number <= 45)) {
+      throw new Error(ERROR.BETWEEN_NUMBER);
     }
   }
 

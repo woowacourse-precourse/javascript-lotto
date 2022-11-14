@@ -1,6 +1,7 @@
 const ERROR = {
   THOUSAND_UNIT: "[ERROR] 구입금액은 1,000원 단위여야 합니다.",
-  NOT_NUMBER: "[ERROR] 로또 번호는 숫자여야 합니다.",
+  NOT_NUMBER: "[ERROR] 구입금액과 로또번호는 숫자여야 합니다.",
+  BETWEEN_NUMBER: "[ERROR] 로또 번호는 1~45까지의 정수 숫자여야 합니다.",
 };
 
 const TEXT = {
