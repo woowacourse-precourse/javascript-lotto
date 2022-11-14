@@ -14,6 +14,7 @@ class App {
     this.inputLottoWinningNumber();
     this.inputLottoBonusNumber();
     this.printLottoWinningResult();
+    this.printRateOfReturn();
   }
   inputMoneyToBuyLottos() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (moneyToBuyLottos) => {
@@ -71,6 +72,10 @@ class App {
     MissionUtils.Console.print(`6개 일치 (${PRIZE_MONEY[1].toLocaleString("ko-KR")}원) - ${countOfLottoWinning[1]}개`);
     for(let i=1; i<6; i++)
       this.#totalLottosPrizeMoney += PRIZE_MONEY[i]*countOfLottoWinning[i];
+  }
+  printRateOfReturn(){
+    const rateOfReturn = Math.round(this.#totalLottosPrizeMoney/this.#numberOfLottos)/10;
+    MissionUtils.Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
   }
   getPrize(numbers){
     const countOfMatchNumber = numbers.getCountOfMatchNumber(this.#lottoWinningNumbers);
