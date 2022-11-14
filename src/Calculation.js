@@ -89,18 +89,13 @@ class Calculation {
    * @returns
    */
   calcLottoRate(lottoPrice) {
-    const prizeMoney = this.getPrizeMoney(lottoPrice);
+    const prizeMoney = this.getPrizeMoney();
     const rate = (prizeMoney / lottoPrice) * 100;
     this.#rate = getRoundSecondDecimalPlace(rate);
 
     return this;
   }
 
-  /**
-   *
-   * @param {number} lottoPrice
-   * @returns
-   */
   getPrizeMoney() {
     const initialValue = 0;
     const winResult = Object.values(this.#winResult).filter((resultType) => !!resultType.count);
