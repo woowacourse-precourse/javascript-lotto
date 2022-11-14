@@ -5,6 +5,7 @@ const {
   LOTTO_NUM_MIN_RANGE,
   LOTTO_NUM_MAX_RANGE,
   LOTTO_DIGITS,
+  LOTTO_PRIZE_MATCH_COUNT,
 } = require("./constants/condition.js");
 const LottoGameView = require("./LottoGameView.js");
 const Lotto = require("./Lotto.js");
@@ -70,6 +71,7 @@ class LottoGame {
   drawLottoPhase() {
     const eachLottoNumbers = this.getEachLottoNumbers();
     const eachCompareResult = eachLottoNumbers.map(this.getCompareResult.bind(this));
+    const eachCalculatedLottoPrize = eachCompareResult.map(this.getCalculatedLottoPrize);
   }
   getEachLottoNumbers() {
     return this.lottos.map((lotto) => lotto.getNumbers());
@@ -85,6 +87,19 @@ class LottoGame {
   }
   hasBonusNumber(lottoNumbers) {
     return lottoNumbers.includes(this.bonusNumber);
+  }
+  getCalculatedLottoPrize(compareResult) {
+    const { matchedLottoNumberCount, hasBonusNumber } = compareResult;
+
+    if (matchedLottoNumberCount === LOTTO_PRIZE_MATCH_COUNT.firstPlace) return "firstPlace";
+    if (matchedLottoNumberCount === LOTTO_PRIZE_MATCH_COUNT.thirdPlace && hasBonusNumber) {
+      return "secondPlace";
+    }
+    if (matchedLottoNumberCount === LOTTO_PRIZE_MATCH_COUNT.thirdPlace) return "thirdPlace";
+    if (matchedLottoNumberCount === LOTTO_PRIZE_MATCH_COUNT.fourthPlace) return "fourthPlace";
+    if (matchedLottoNumberCount === LOTTO_PRIZE_MATCH_COUNT.fifthPlace) return "fifthPlace";
+
+    return "fail";
   }
 }
 
