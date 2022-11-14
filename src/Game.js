@@ -1,6 +1,7 @@
 const Calculator = require('./Calculator');
 const { ERROR_MSG, GAME_MSG, NEW_LINE } = require('./Constant');
 const IO = require('./IO');
+const NumberGenerator = require('./NumberGenerator');
 
 class Game {
   constructor() {
@@ -24,6 +25,12 @@ class Game {
   static printMoneyInfo(money) {
     const n = Calculator.calcQuotient(money);
     IO.print(NEW_LINE + n + GAME_MSG.bought);
+  }
+
+  static buyLottos(n) {
+    this.lottos = [...Array(n)].map(
+      () => new Lotto(NumberGenerator.generateRandomNumbers())
+    );
   }
 }
 
