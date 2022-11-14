@@ -107,10 +107,12 @@ class App {
     const totalPurchaseAmount = lottos.length * 1000;
 
     if (totalPurchaseAmount === 0) return 0 + "%";
-    return Math.round((totalPrize / totalPurchaseAmount) * 1000) / 10 + "%";
+
+    const yeild = totalPrize / totalPurchaseAmount;
+
+    if (yeild > 1) return Math.round(yeild * 100) / 100 + "%";
+    return yeild * 100 + "%";
   }
 }
-
-new App().play();
 
 module.exports = App;
