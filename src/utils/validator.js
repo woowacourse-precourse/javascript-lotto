@@ -16,7 +16,8 @@ const validatePurchaseAmount = (money) => {
 당첨 번호를 유효성 검증하고, 통과 시 당첨 번호 배열을 반환 */
 const validateWiningNumber = (numbers) => {
   const isArray = Array.isArray;
-  numbers = isArray(numbers) ? numbers : numbers.split(",").map((el) => +el);
+  numbers = isArray(numbers) ? numbers : numbers.split(",");
+  numbers = numbers.map((el) => +el);
 
   if (numbers.includes(NaN))
     throw new Error(MESSAGES.EXCEPTIONS.TYPE_EXCEPTION);
