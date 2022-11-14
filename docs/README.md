@@ -55,22 +55,26 @@
 
 ## 검증
 
-### 1. 숫자인지 검증
+### 1. 허용된 입력값인지 검증
+
+- Validator.checkInput
+
+### 2. 숫자인지 검증
 
 - Validator.checkNumber
 
-### 2. 로또 범위 검증
+### 3. 로또 범위 검증
 
 - Validator.checkLottoNumber
 
-### 3. 로또 숫자 배열 검증
+### 4. 로또 숫자 배열 검증
 
 - Validator.checkLottoNumbers
 
-### 4. 보너스 번호 검증
+### 5. 보너스 번호 검증
 
 - Validator.checkBonusNumber
 
-### 5. 구입 금액 검증
+### 6. 구입 금액 검증
 
 - Validator.checkPay
