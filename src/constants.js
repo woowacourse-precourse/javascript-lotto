@@ -6,9 +6,15 @@ const LOTTO = {
 };
 
 const CASHER = {
-  ASK_MONEY: '구입금액을 입력해 주세요.',
+  ASK_MONEY: '구입금액을 입력해 주세요.\n',
   NOTICE_PURCHASE_QUANTITY: '개를 구매했습니다.',
+  ERROR_MESSAGE: {
+    MONEY_IS_NOT_ENOUGH: '[ERROR] 구입금액이 부족합니다.',
+    MONEY_IS_NOT_NUMBER: '[ERROR] 구입금액은 숫자여야 합니다.',
+    MONEY_HAS_CHAGE_LEFT: '[ERROR] 구입금액에 남은 잔돈이 있습니다.',
+  },
 };
+
 const LOTTO_PICKER = {
   ASK_WINNING_NUMBER: '당첨 번호를 입력해 주세요.\n',
   ASK_BONUS_NUMBER: '보너스 볼을 입력해 주세요.\n',

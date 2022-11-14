@@ -3,11 +3,13 @@ const Io = require('../infrastructure/io/io');
 const InputValidator = require('../utils/InputValidator');
 
 class Casher {
+  static #purchaseMoney = 0;
+
   static getMoney(message, afterGetMoney) {
     return Io.input(message, (money) => {
-      InputValidator.validateMoney(money);
-      const validMoney = Number(money);
-      afterGetMoney(validMoney);
+      validateMoney(money);
+      Casher.#purchaseMoney = Number(money);
+      afterGetMoney(Casher.#purchaseMoney);
     });
   }
 
