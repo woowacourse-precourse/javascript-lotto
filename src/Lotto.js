@@ -1,4 +1,3 @@
-const MissionUtils = require("@woowacourse/mission-utils");
 
 class Lotto {
   #numbers;
@@ -11,6 +10,7 @@ class Lotto {
     this.numberLimit(numbers);
     this.#numbers = numbers;
     this.bonusDuplicate(bonusNumber);
+    this.bonusLimit(bonusNumber);
     this.bonusNumber = bonusNumber;
   }
 
@@ -30,14 +30,20 @@ class Lotto {
   numberLimit(numbers) {
     numbers.forEach((number) => {
       if (number > this.lottoNumberMax || number < this.lottoNumberMin) {
-        throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
+        throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
       }
     })
   }
 
   bonusDuplicate(bonuseNumber) {
     if (this.#numbers.includes(bonuseNumber)) {
-      throw new Error("[ERROR] 보너스 번호는 로또 번호와 같을 수 없습니다.")
+      throw new Error("[ERROR] 보너스 번호는 로또 번호와 같을 수 없습니다.");
+    }
+  }
+
+  bonusLimit(bonusNumber) {
+    if (bonusNumber > this.lottoNumberMax || bonusNumber < this.lottoNumberMin) {
+      throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
   }
 }
