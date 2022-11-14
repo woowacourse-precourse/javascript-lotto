@@ -1,18 +1,31 @@
-const Lotto = require("../src/Lotto");
+const { ERROR_MESSAGE } = require('../src/constants');
+const Lotto = require('../src/domain/Lotto');
 
-describe("로또 클래스 테스트", () => {
-  test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
+describe('로또 클래스 테스트', () => {
+  test('로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.', () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 6, 7]);
-    }).toThrow("[ERROR]");
+    }).toThrow('[ERROR]');
   });
 
   // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
-  test("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.", () => {
+  test('로또 번호에 중복된 숫자가 있으면 예외가 발생한다.', () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 5]);
-    }).toThrow("[ERROR]");
+    }).toThrow(ERROR_MESSAGE.numberWithoutDuplicate);
+  });
+
+  test('로또 번호는 1이상 45이하의 번호가 아니면 예외가 발생한다.', () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, 47]);
+    }).toThrow(ERROR_MESSAGE.lottoRange);
   });
 
   // 아래에 추가 테스트 작성 가능
+  test('로또 번호는 정렬 되어야 한다', () => {
+    const randomNumber = [1, 3, 2, 6, 7, 5];
+    const lotto = new Lotto(randomNumber);
+
+    expect(lotto.sortLotto(randomNumber)).toEqual([1, 2, 3, 5, 6, 7]);
+  });
 });
