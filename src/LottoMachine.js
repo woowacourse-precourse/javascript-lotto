@@ -17,7 +17,7 @@ class LottoMachine {
     if (purchaseAmount % 1000) {
       throw new Error(ERROR_MESSAGE.INVALID_PURCHASE_AMOUMT.INVALID_UNIT);
     }
-    if (purchaseAmount < 1000) {
+    if (purchaseAmount == 0) {
       throw new Error(ERROR_MESSAGE.INVALID_PURCHASE_AMOUMT.INVALID_NUMBER);
     }
 

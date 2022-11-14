@@ -6,19 +6,20 @@ class WinningStastics {
   #purchaseAmount;
   #lottoMachineOutput;
   #winningAmount;
-  #coincide = {
-    threeMatches: 0,
-    fourMatches: 0,
-    fiveMatches: 0,
-    fiveAndBonusMatches: 0,
-    allMatches: 0,
-  };
+  #coincide;
 
   constructor(lottoNumbers, bonusNumber, purchaseAmount, lottoMachineOutput) {
     this.#lottoNumbers = lottoNumbers;
     this.#bonusNumber = bonusNumber;
     this.#purchaseAmount = purchaseAmount;
     this.#lottoMachineOutput = lottoMachineOutput;
+    this.#coincide = {
+      threeMatches: 0,
+      fourMatches: 0,
+      fiveMatches: 0,
+      fiveAndBonusMatches: 0,
+      allMatches: 0,
+    };
   }
 
   print() {
