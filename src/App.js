@@ -5,16 +5,20 @@ class App {
     this.money = 0;
   }
 
-  setMoney() {
+  setMoney(input) {
+    const money = Number(input);
+    if (money % 1000 !== 0) throw new Error("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+    this.money = money;
+  }
+
+  buyLotto() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
-      const money = Number(input);
-      if (money % 1000 !== 0) throw new Error("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
-      this.money = money;
-    }); 
+      this.setMoney(input);
+    });
   }
 
   play() {
-    this.setMoney();
+    this.buyLotto();
   }
 }
 
