@@ -61,8 +61,24 @@ describe("로또 테스트", () => {
     });
   });
 
-  test("예외 테스트", () => {
+  test("예외 테스트 (숫자가 아닐 경우)", () => {
     mockQuestions(["1000j"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 (1000원 단위가 아닐 경우)", () => {
+    mockQuestions(["1100"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 (음수일 경우)", () => {
+    mockQuestions([-1000]);
     expect(() => {
       const app = new App();
       app.play();
