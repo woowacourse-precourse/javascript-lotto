@@ -24,7 +24,7 @@ describe("결과 테스트", () => {
 
     expect(result.score).toBe(3);
     expect(result.matchBonus).toBe(true);
-    expect(result.rank).toStrictEqual([0, 0, 0, 0, 1]);
+    expect(result.rank).toStrictEqual([1, 0, 0, 0, 0]);
   });
 
   test("로또와 당첨 번호가 하나 일치하면 점수가 1 오른다.", () => {
@@ -72,7 +72,7 @@ describe("결과 테스트", () => {
     result.score = 3;
     result.getFifthRank();
 
-    expect(result.rank).toStrictEqual([0, 0, 0, 0, 1]);
+    expect(result.rank).toStrictEqual([1, 0, 0, 0, 0]);
   });
 
   test("4개를 맞췄을 경우 테스트", () => {
@@ -85,7 +85,7 @@ describe("결과 테스트", () => {
     result.score = 4;
     result.getFourthRank();
 
-    expect(result.rank).toStrictEqual([0, 0, 0, 1, 0]);
+    expect(result.rank).toStrictEqual([0, 1, 0, 0, 0]);
   });
 
   test("5개를 맞췄을 경우 테스트", () => {
@@ -113,7 +113,7 @@ describe("결과 테스트", () => {
     result.matchBonus = true;
     result.getSecondRank();
 
-    expect(result.rank).toStrictEqual([0, 1, 0, 0, 0]);
+    expect(result.rank).toStrictEqual([0, 0, 0, 1, 0]);
   });
 
   test("6개를 맞췄을 경우 테스트", () => {
@@ -126,13 +126,13 @@ describe("결과 테스트", () => {
     result.score = 6;
     result.getFirstRank();
 
-    expect(result.rank).toStrictEqual([1, 0, 0, 0, 0]);
+    expect(result.rank).toStrictEqual([0, 0, 0, 0, 1]);
   });
 
   test("총 상금 산출", () => {
     const result = new Result([[1, 2, 3, 4, 5, 7]], [1, 2, 3, 4, 5, 6], 7);
 
-    result.rank = [0, 1, 0, 0, 0];
+    result.rank = [0, 0, 0, 1, 0];
 
     const finalPrize = result.getPrize();
 
@@ -153,7 +153,7 @@ describe("결과 테스트", () => {
 
     const result = new Result(lottoArray, [1, 2, 3, 4, 5, 6], 7);
 
-    result.rank = [0, 0, 0, 0, 1];
+    result.rank = [1, 0, 0, 0, 0];
     const earningsRate = result.getEarningsRate();
 
     expect(earningsRate).toBe("62.5");
