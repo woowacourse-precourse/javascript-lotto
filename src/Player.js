@@ -1,4 +1,4 @@
-const { Random } = require("@woowacourse/mission-utils");
+const { Random, Console } = require("@woowacourse/mission-utils");
 const { REG_EXP } = require("./RegEx");
 const { ERROR } = require("./Error");
 class Player {
@@ -25,6 +25,12 @@ class Player {
       throw new Error(ERROR.cannotDivide);
     }
     return true;
+  };
+  showLottoNumbers = () => {
+    Console.print(`${this.#lottos.length}개를 구매했습니다.`);
+    for (let lotto of this.#lottos) {
+      Console.print(lotto);
+    }
   };
 }
 
