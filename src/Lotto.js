@@ -1,4 +1,4 @@
-const { LOTTO_ERROR_MESSAGES, LOTTO_NUMBER_RANGE } = require('./Constant');
+const { LOTTO_NUMBER_RANGE } = require('./Constant');
 const Utils = require('./Utils');
 
 class Lotto {
