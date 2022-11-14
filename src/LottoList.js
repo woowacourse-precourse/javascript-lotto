@@ -1,18 +1,12 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const checkValidation = require("./errors/checkValidation");
 const Lotto = require("./Lotto");
 
 class LottoList {
-  constructor() {
-    this.lottoCount = null;
-    this.lottoList = [];
-    this.lottoResultList = [];
-  }
-  setLottoCount(money) {
+  constructor(money) {
     this.validateMoney(money);
-    this.lottoCount = money / 1000;
-    this.setLotto(this.lottoCount);
-    this.bonusNumber = null;
+    this.count = money / 1000;
+    this.list = [];
+    this.publish();
   }
   throwError(money) {
     if (money < 1000) {
@@ -25,29 +19,33 @@ class LottoList {
       throw new Error("[ERROR] 숫자만 입력할 수 있습니다.");
     }
   }
-
-  printLottoCount() {
-    Console.print(`\n${this.lottoCount}개를 구매했습니다.`);
+  setLottoCount(money) {
+    this.validateMoney(money);
+    this.lottoCount = money / 1000;
+    this.publishLotto(this.lottoCount);
   }
-  setLotto(lottoCount) {
-    for (let num = 0; num < lottoCount; num++) {
+  publish() {
+    for (let num = 0; num < this.count; num++) {
       const newLotto = new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6));
-      this.lottoList.push(newLotto);
+      this.list.push(newLotto);
     }
   }
-  printLottoList() {
-    this.lottoList.forEach((lotto) => {
+  printCount() {
+    Console.print(`\n${this.count}개를 구매했습니다.`);
+  }
+  printList() {
+    this.list.forEach((lotto) => {
       lotto.printNumbers();
     });
   }
-  setWinningNumbers(numbers) {
-    numbers = numbers.split(",").map((item) => Number(item));
-    this.checkWinningNumbers(numbers);
+  getResult(winningNUmbers, bonusNumber) {
+    const lottoResultList = [];
 
-    this.winningNumberList = numbers;
-  }
-  checkWinningNumbers(numbers) {
-    checkValidation.checkLottoList(numbers);
+    this.list.forEach((lotto) => {
+      lottoResultList.push(lotto.getResult(winningNUmbers, bonusNumber));
+    });
+
+    return lottoResultList.filter((result) => result);
   }
   printWinningList() {
     this.getLottoResult();
@@ -59,34 +57,24 @@ class LottoList {
       "6개 일치 (2,000,000,000원)",
     ];
     winningList.forEach((winningList, idx) => {
-      const winningCount = this.getWinningCount(idx);
+      const winningCount = this.getWinningCount(lottoResultArray, idx);
       Console.print(`${winningList} - ${winningCount}개`);
     });
   }
-  printLottoRate() {
-    const lottePrize = [5000, 50000, 1500000, 30000000, 2000000000];
-    const finalPrize = lottePrize.reduce((acc, cur, idx) => {
-      const winningCount = this.getWinningCount(idx);
+  printLottoRate(lottoResultArray) {
+    const lottoPrize = [5000, 50000, 1500000, 30000000, 2000000000];
+    const finalPrize = lottoPrize.reduce((acc, cur, idx) => {
+      const winningCount = this.getWinningCount(lottoResultArray, idx);
 
       return acc + cur * winningCount;
     }, 0);
 
-    const purchaseMoney = this.lottoCount * 1000;
+    const purchaseMoney = this.count * 1000;
     const lottoRate = ((finalPrize / purchaseMoney) * 100).tpFixed(1);
     Console.print(`총 수익률은${lottoRate}%입니다.`);
   }
   getWinningCount(idx) {
-    return this.lottoResultList.filter((result) => result === 5 - idx).length;
-  }
-  getLottoResult() {
-    const lottoResultList = [];
-
-    this.lottoList.forEach((lotto) => {
-      lottoResultList.push(
-        lotto.getReult(this.winningNumberList, this.bonusNumber)
-      );
-    });
-    this.lottoResultList = lottoResultList.filter((result) => result);
+    return lottoResultList.filter((result) => result === 5 - idx).length;
   }
 }
 

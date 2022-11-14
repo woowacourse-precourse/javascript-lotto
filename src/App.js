@@ -3,7 +3,7 @@ const LottoList = require("./LottoList");
 const BonusNumber = require("./BonusNumber");
 class App {
   constructor() {
-    this.lottos = new LottoList();
+    this.lottos = null;
     this.winningNumbers = null;
     this.bonusNumber = null;
   }
@@ -17,7 +17,6 @@ class App {
       this.lottos.printLottoCount();
       this.lottos.printLottoList();
       this.setWinningNumbers();
-      this.requestBonus();
     });
   }
   setWinningNumbers() {
@@ -36,8 +35,15 @@ class App {
   }
   printWinningStat() {
     Console.print("\n당첨 통계\n---");
-    this.lottos.printWinningList();
+
+    const lottoResultSet = this.lottos.getResult(
+      this.winningNumbers.value,
+      this.bonusNumber.value
+    );
+    this.lottos.printWinning(lottoResultSet);
     this.lottos.printLottoRate();
+
+    this.end();
   }
 }
 
