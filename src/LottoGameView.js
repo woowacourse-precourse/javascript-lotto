@@ -39,6 +39,7 @@ class LottoGameView {
   receiveBonusNumber() {
     Console.readLine(MESSAGE.INPUT.BONUS_NUMBER, (bonus) => {
       this.game.setBonusNumber(bonus);
+      this.game.compareWinningLotto();
       this.gameFinish();
     });
   }

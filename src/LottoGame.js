@@ -4,7 +4,6 @@ const LOTTERY_PRICE = 1000;
 const LOTTERY_MIN_NUMBER = 1;
 const LOTTERY_MAX_NUMBER = 45;
 
-
 class LottoGame {
   constructor(LottoGameView) {
     this.view = LottoGameView;
@@ -87,6 +86,24 @@ class LottoGame {
     if (winningNumber.includes(bonus)) {
       throw new Error("[ERROR] 당첨 번호와 중복되지 않는 번호를 입력해주세요.")
     }
+  }
+
+  compareWinningLotto() {
+    const winningNumber = this.winningLotto.getNumber();
+    this.lotteries.forEach((lotto) => {
+      const lottoNumber = lotto.getNumber();
+      const count = this.getMatchCount(winningNumber, lottoNumber);
+    });
+  }
+
+  getMatchCount(winningNumber, lottoNumber) {
+    let count = 0;
+    winningNumber.forEach((winning) => {
+      if (lottoNumber.includes(winning)) {
+        count += 1;
+      }
+    })
+    return count;
   }
 }
 
