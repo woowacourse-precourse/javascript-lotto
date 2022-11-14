@@ -1,11 +1,11 @@
-### functions
-* purchase.js
-    - purchase_money() 로또 구매 금액관련 함수
-    - purchase() 로또 구매
-    - purchase_money_error() 입력받은 값이 올바른지 확인
-* Lotto.js
-    - createLottofor_User() 당첨번호 입력
-    - createLottofor_Winning() 로또 당첨번호 생성 및 중복검사
-    - createBonus() 보너스 번호 생성
-    - Winning() 당첨 여부 확인 및 프린트
-    - Totla_profit() 총 수익 계산하기
+### 기능구현 목록
+* 구입금액 입력
+    - 1000으로 나누어지지 않는다면 throw error
+* 로또 구입갯수/ 출력
+* 로또 발행 / 출력
+    - 중복된 숫자 X
+    - 로또 번호 숫자 범위 1~45
+* 번호 입력
+    - 입력갯수는 6개이어야함
+* 당첨여부 확인/ 결과 출력
+
