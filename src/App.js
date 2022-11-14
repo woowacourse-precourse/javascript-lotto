@@ -10,10 +10,15 @@ const MONEY_ERROR = {
   number: "[ERROR] 숫자를 입력해 주세요",
   amount: "[ERROR] 1000원 단위로 입력해 주세요",
 };
+const BONUS_ERROR = {
+  number: "[ERROR] 보너스 번호는 숫자여야 합니다",
+  range: "[ERROR] 로또 번호는 1~45 사이여야 합니다",
+};
 
 class App {
   prizeNumbersArray;
   userNumbersArray;
+  bonusNum;
   lotto;
 
   play() {
@@ -21,9 +26,11 @@ class App {
     Console.readLine("", (money) => {
       this.validateMoney(money);
 
+      const numberOfLottery = Number(money) / 1000;
+      Console.print(`${numberOfLottery}개를 구매했습니다.`);
       this.userNumbersArray = this.getRandomNumbers(numberOfLottery);
-      this.printRandomNumbers(this.userNumbersArray);
 
+      this.printRandomNumbers(this.userNumbersArray);
       this.MakeLotto(this.userNumbersArray);
     });
   }
@@ -60,6 +67,14 @@ class App {
     }
     if (Number(money) % 1000 !== 0) {
       throw new Error(MONEY_ERROR.amount);
+    }
+  }
+  validateBonusNumbers(bonusNumber) {
+    if (isNaN(bonusNumber)) {
+      throw new Error(BONUS_ERROR.number);
+    }
+    if (bonusNumber > 45 && bonusNumber < 1) {
+      throw new Error(BONUS_ERROR.range);
     }
   }
 }
