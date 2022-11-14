@@ -3,11 +3,6 @@ const { Console, Random } = require('@woowacourse/mission-utils');
 class Lotto {
   #countLotto;
 
-  constructor(numbers) {
-    // this.validate(numbers);
-    this.#countLotto = 0;
-  }
-
   thorwError(message) {
     throw new Error(message);
   }
@@ -30,7 +25,7 @@ class Lotto {
   }
 
   isNumber(input) {
-    return !isNaN(input);
+    return !input.isNaN; //
   }
 
   isThousandUnit(input) {
@@ -41,9 +36,36 @@ class Lotto {
     Console.readLine('구입금액을 입력해 주세요.\n', (inputMoney) => {
       this.validate(inputMoney);
       this.#countLotto = Number(inputMoney) / 1000;
+      this.printCountLotto(this.#countLotto);
+      this.buyLotto();
       Console.close();
     });
   }
+
+  printCountLotto(inputCount) {
+    Console.print(`\n${inputCount}개를 구매했습니다.`);
+  }
+
+  buyLotto() {
+    for(let i = 0; i < this.#countLotto; i++) {
+      let lottoNumber = this.ascendingLottoArray(this.makeRandomLottoNumber());
+      this.printRandomLottoNumber(lottoNumber);
+    }
+  }
+
+  makeRandomLottoNumber() {
+    return Random.pickUniqueNumbersInRange(1, 45, 6);
+  }
+
+  ascendingLottoArray(lottoNumber) {
+    return lottoNumber.sort((a, b) => a - b);
+  }
+  
+  printRandomLottoNumber(lottoNumber) {
+    return Console.print(`[${lottoNumber.join(', ')}]`)
+  }
+
+  
 
   play() {
     this.inputMoney();
