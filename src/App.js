@@ -17,6 +17,16 @@ class App {
 
     return target.split(SPLITTER).map(Application.convertNumber.bind(Application));
   }
+
+  static createLottoResult(lottos, winningNumbers, bonus) {
+    const lotto = new Lotto(lottos);
+    const winningAmount = lotto.getLottoResult(winningNumbers, bonus);
+    const total = Lotto.calculateTotalAmount(winningAmount);
+
+    return {
+      winningAmount, total,
+    };
+  }
 }
 
 module.exports = App;
