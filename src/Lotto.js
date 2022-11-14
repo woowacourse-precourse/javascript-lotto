@@ -78,10 +78,10 @@ class Lotto {
   #initLottoResultStorage() {
     const storage = {};
     for (let i = LOTTO.MATCH_START_COUNT; i <= LOTTO.COUNT; i++) {
-      storage[`${i}${SENTENCE.MATCH}`] = 0;
+      storage[`${SENTENCE.MATCH_COUNT(i)}`] = 0;
       if (i === LOTTO.COUNT - 1) {
         // 보너스 볼인 경우
-        storage[`${i}${SENTENCE.MATCH}, ${SENTENCE.MATCH_BONUS}`] = 0;
+        storage[`${SENTENCE.MATCH_COUNT(i)}, ${SENTENCE.MATCH_BONUS}`] = 0;
       }
     }
     return storage;
@@ -94,10 +94,10 @@ class Lotto {
       const matchCount = this.getMatchCount(oneLottoNumbers);
       if (this.#isBonus(oneLottoNumbers))
         lottoResult[
-          `${matchCount}${SENTENCE.MATCH}, ${SENTENCE.MATCH_BONUS}`
+          `${SENTENCE.MATCH_COUNT(matchCount)}, ${SENTENCE.MATCH_BONUS}`
         ]++;
       else if (matchCount >= LOTTO.MATCH_START_COUNT)
-        lottoResult[`${matchCount}${SENTENCE.MATCH}`]++;
+        lottoResult[`${SENTENCE.MATCH_COUNT(matchCount)}`]++;
     });
 
     return lottoResult;
