@@ -30,6 +30,8 @@ class App {
   // 구입 금액 입력
   getPurchasePrice() {
     Console.readLine(INPUT_MESSAGE.PURCHASE_PRICE, (price) => {
+      if (isPurchasePriceToNumber(price))
+        throw new Error(ERROR_MESSAGE.PRICE_NUMBER);
       this.price = Number(price);
       this.getLottoList(this.price / LOTTO_PURCHASE_PRICE);
     });
