@@ -38,6 +38,14 @@ class LottoGame {
     MissionUtils.Console.readLine("당첨번호를 입력해 주세요.\n", (number) => {
       const winningLotto = new Lotto(number.split(",").map(Number));
       const wonLotto = winningLotto.getNumbers();
+
+      MissionUtils.Console.readLine(
+        "보너스 번호를 입력해 주세요.\n",
+        (number) => {
+          winningLotto.setBonusNumber(number);
+          const bonusNumber = winningLotto.getBonusNumber();
+        }
+      );
     });
   }
 
