@@ -46,7 +46,7 @@ describe('로또 구매 테스트', () => {
 describe('로또 당첨 테스트', () => {
   test('로또 당첨번호 일치개수 판별 테스트', () => {
     const { winningDiscriminator } = App;
-    const winningNumber = [1, 2, 3, 4, 5, 6];
+    const winningNumber = '1,2,3,4,5,6';
     const lottoNumbers = [
       [1, 2, 3, 4, 5, 6],
       [1, 2, 3, 4, 5, 7],
