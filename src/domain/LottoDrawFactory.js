@@ -1,8 +1,4 @@
-const {
-  VARIABLE_FACTORY,
-  LOTTO_ERROR_MESSAGE,
-  VARIABLE_LOTTO,
-} = require('../../utils/constants');
+const { VARIABLE_FACTORY } = require('../../utils/constants');
 
 class LottoDrawFactory {
   #lotto;
@@ -15,8 +11,6 @@ class LottoDrawFactory {
     this.#lotto = lotto;
     this.#bonus = bonus;
     this.#lottoStore = lottoStore;
-
-    this.#validate();
   }
 
   getInstance(type) {
@@ -30,21 +24,6 @@ class LottoDrawFactory {
       default:
         throw new Error(VARIABLE_FACTORY.factoryTypeError);
     }
-  }
-
-  #validate() {
-    if (this.#validateOverlap()) {
-      throw new Error(LOTTO_ERROR_MESSAGE.overlap);
-    }
-
-    return this;
-  }
-
-  #validateOverlap() {
-    return (
-      new Set([...this.#lotto.getNumber(), this.#bonus.getNumber()]).size ===
-      VARIABLE_LOTTO.len
-    );
   }
 }
 
