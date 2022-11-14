@@ -7,6 +7,8 @@ class App {
   #purchaseNumList;
   #purchaseAmount;
 
+  #validMatchesList;
+
   play() {}
 
   generateLotto() {
@@ -71,9 +73,20 @@ class App {
     MissionUtils.Console.print(matchMessages[match] + ` - ${count}개`);
   }
 
-  printRate(purchaseAmount, winningAmount) {
+  printRate(matchesObj) {
+    const winningAmountObj = {
+      3: 5000,
+      4: 50000,
+      5: 1500000,
+      5.5: 30000000,
+      6: 2000000000,
+    };
+    let winningAmount = 0;
+    this.#validMatchesList.map((matches) => {
+      winningAmount += matchesObj[matches] * winningAmountObj[matches];
+    });
     MissionUtils.Console.print(
-      `총 수익률은 ${(winningAmount / purchaseAmoint) * 100}%입니다.`
+      `총 수익률은 ${(winningAmount / this.#purchaseAmount) * 100}%입니다.`
     );
   }
 }
