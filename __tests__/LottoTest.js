@@ -14,7 +14,7 @@ describe('로또 클래스 테스트', () => {
     }).toThrow('[ERROR]');
   });
 
-  describe('순위 테스트', () => {
+  describe('순위 계산 테스트', () => {
     const winNumbers = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 7;
 
