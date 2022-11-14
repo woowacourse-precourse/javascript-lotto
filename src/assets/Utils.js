@@ -24,11 +24,12 @@ class Utils {
   }
 
   static translateResultToText(prize) {
-    return `${MESSAGE.RESULT.THREEWIN}${prize.threeWin}${MESSAGE.RESULT.EA}
-${MESSAGE.RESULT.FOURWIN}${prize.fourWin}${MESSAGE.RESULT.EA}
-${MESSAGE.RESULT.FIVEWIN}${prize.fiveWin}${MESSAGE.RESULT.EA}
-${MESSAGE.RESULT.BONUSEWIN}${prize.bonusWin}${MESSAGE.RESULT.EA}
-${MESSAGE.RESULT.ALLWIN}${prize.allWin}${MESSAGE.RESULT.EA}
+    const { threeWin, fourWin, fiveWin, bonusWin, allWin } = prize;
+    return `${MESSAGE.RESULT.THREEWIN}${threeWin}${MESSAGE.RESULT.EA}
+${MESSAGE.RESULT.FOURWIN}${fourWin}${MESSAGE.RESULT.EA}
+${MESSAGE.RESULT.FIVEWIN}${fiveWin}${MESSAGE.RESULT.EA}
+${MESSAGE.RESULT.BONUSEWIN}${bonusWin}${MESSAGE.RESULT.EA}
+${MESSAGE.RESULT.ALLWIN}${allWin}${MESSAGE.RESULT.EA}
 `;
   }
 }
