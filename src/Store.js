@@ -1,16 +1,20 @@
-const { Console } = require('@woowacourse/mission-utils');
+const { Console, Random } = require('@woowacourse/mission-utils');
 const { REGEX, ERROR } = require('./constants');
 
 class Store {
-  purchaseAmount;
+  issuedQuantity;
+  lottos;
 
-  constuctor() {
-    this.purchaseAmount;
+  constructor() {
+    this.issuedQuantity;
+    this.lottos = [];
   }
 
   pay() {
     Console.readLine('구입금액을 입력해 주세요.\n', (inputStr) => {
-      this.purchaseAmount = this.validate(inputStr);
+      const purchaseAmount = this.validate(inputStr);
+      this.issuedQuantity = purchaseAmount / 1000;
+      this.issue(this.issuedQuantity);
     });
   }
 
@@ -20,6 +24,12 @@ class Store {
     }
 
     return parseInt(inputStr);
+  }
+
+  issue(issuedQuantity) {
+    for (let i = 0; i < issuedQuantity; ++i) {
+      this.lottos.push(Random.pickUniqueNumbersInRange(1, 45, 6));
+    }
   }
 }
 
