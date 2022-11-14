@@ -43,4 +43,13 @@ const PRIZE_MONEY = {
 
 const RATE_OF_RETURN = '수익률';
 
-module.exports = { PHRASE, ERROR, LOTTO, RANKING, PRIZE_MONEY, RATE_OF_RETURN };
+const RESULT = {
+  FIFTH: (count) => `3개 일치 (5,000원) - ${count}개`,
+  FOURTH: (count) => `4개 일치 (50,000원) - ${count}개`,
+  THIRD: (count) => `5개 일치 (1,500,000원) - ${count}개`,
+  SECOND: (count) => `5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`,
+  FIRST: (count) => `6개 일치 (2,000,000,000원) - ${count}개`,
+  RATE_OF_RETURN: (rate) => `총 수익률은 ${rate}%입니다.`,
+};
+
+module.exports = { PHRASE, ERROR, LOTTO, RANKING, PRIZE_MONEY, RATE_OF_RETURN, RESULT };

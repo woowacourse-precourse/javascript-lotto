@@ -1,4 +1,6 @@
-const { RANKING, PRIZE_MONEY, RATE_OF_RETURN, LOTTO } = require('./constants');
+const { Console } = require('@woowacourse/mission-utils');
+
+const { RANKING, PRIZE_MONEY, RATE_OF_RETURN, LOTTO, RESULT } = require('./constants');
 
 class ScoreMachine {
   static lottoNumberList = [];
@@ -22,6 +24,7 @@ class ScoreMachine {
     });
 
     this.calculateRateOfReturn();
+    this.printResult();
   }
 
   compareWinningNumber(lottoNumber) {
@@ -51,6 +54,14 @@ class ScoreMachine {
       0
     );
     this.#result[RATE_OF_RETURN] = (totalPrizeMoney / purchaseAmount) * 100;
+  }
+
+  printResult() {
+    Object.keys(RANKING).forEach((ranking) => {
+      Console.print(RESULT[ranking](this.#result[RANKING[ranking]]));
+    });
+
+    Console.print(RESULT.RATE_OF_RETURN(this.#result[RATE_OF_RETURN]));
   }
 }
 
