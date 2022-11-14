@@ -1,3 +1,4 @@
+const Console = require("./Console");
 const Validator = require("./validator/Validator");
 
 class Lotto {
@@ -17,6 +18,10 @@ class Lotto {
 
   static caculateLottoNumPerUnit(price, unit = 1000) {
     return Math.floor(price / unit);
+  }
+
+  static printLottos(lottos) {
+    lottos.forEach((lotto) => Console.print("[" + lotto.join(", ") + "]"));
   }
 }
 

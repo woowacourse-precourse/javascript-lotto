@@ -25,6 +25,8 @@ class App {
       Console.print("\n" + lottoNum + Console.PURCHASED_LOTTO_COUNT_MSG);
 
       const lottos = LottoAdmin.generateLottoAnswer(lottoNum);
+      lottos.forEach((lotto) => this.lottos.push([...lotto]));
+      Lotto.printLottos(this.lottos);
     });
   }
 }
