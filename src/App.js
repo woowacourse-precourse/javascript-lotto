@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Lotto = require("./Lotto");
 const Console = MissionUtils.Console;
 const Random = MissionUtils.Random;
 let numOfLotto = 0;
@@ -90,6 +91,11 @@ class App {
     winNum.push(bonusNum);
     this.showResult();
     this.returnRate();
+    winNum.pop();
+    const lotto = new Lotto();
+    lotto.validate(winNum);
+    winNum.push(bonusNum);
+    lotto.validateBonus(winNum);
     Console.close();
   }
 }

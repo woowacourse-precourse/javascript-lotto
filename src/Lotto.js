@@ -24,6 +24,22 @@ class Lotto {
     }
   }
 
+  validateBonus(numbers) {
+    if (typeof numbers[6] != 'number') {
+      throw new Error("[ERROR] 보너스 번호는 숫자여야 합니다.");
+    }
+    if (numbers[6].includes(' ') || numbers.includes(',')) {
+      throw new Error("[ERROR] 보너스 번호는 1개여야 합니다.");
+    }
+    if (numbers[6] < 1 || numbers[6] > 45) {
+      throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자만 가능합니다.");
+    }
+    for (let i = 0; i < 6; i++) {
+      if (numbers[6] == numbers[i]) {
+        throw new Error("[ERROR] 보너스 번호와 당첨 번호가 중복됩니다.");
+      }
+    }
+  }
   // TODO: 추가 기능 구현
 }
 
