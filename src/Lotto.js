@@ -10,7 +10,7 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== NUMBER.LOTTO) {
-      throw new Error(ERROR.LOTTO_NUMBER);
+      throw new Error(ERROR.LOTTO_COUNT);
     }
 
     if (new Set(numbers).size !== NUMBER.LOTTO){
@@ -28,12 +28,12 @@ class Lotto {
     });
   }
 
-  setBonusNumber(number){
-    this.validateBonusNumber(number);
+  setBonus(number){
+    this.validateBonus(number);
     this.#numbers.push(number);
   }
 
-  validateBonusNumber(number) {
+  validateBonus(number) {
     if (/[^0-9]/g.test(number)){
       throw new Error(ERROR.BONUS_NUMBER);
     }
