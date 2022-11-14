@@ -18,4 +18,16 @@ describe('게임 관련 함수(메소드) 테스트', () => {
       new App().validateAmount('0');
     }).toThrow('[ERROR]');
   });
+
+  test('당첨번호가 쉼표로 구분이 안되면 예외가 발생한다.', () => {
+    expect(() => {
+      new App().validateWinNumbers('123456');
+    }).toThrow('[ERROR]');
+  });
+
+  test('당첨번호를 쉼표로 구분했을 때, 길이가 6이 아니면 예외가 발생한다.', () => {
+    expect(() => {
+      new App().validateWinNumbers('1,2,3,45,6');
+    }).toThrow('[ERROR]');
+  });
 });
