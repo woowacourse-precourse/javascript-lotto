@@ -21,6 +21,9 @@ class App {
 		return lottoNum.sort((a, b) => a - b);
 	}
 
+	printLottoNum(lottoNum) {
+		return Console.print(`[${lottoNum.join(", ")}]`);
+	}
 	play() {
 		Console.print("구입금액을 입력해 주세요.");
 	}
