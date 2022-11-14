@@ -41,7 +41,7 @@ describe('수익률 수치 테스트', () => {
 describe('구입 금액 입력 테스트', () => {
   test('구입 금액은 1,000원 단위여야 한다.', () => {
     expect(() => {
-			new User(1100);    
+			new User(1100);
     }).toThrow('[ERROR]');
   });
 
