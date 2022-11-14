@@ -32,19 +32,18 @@ class LottoGameController {
   }
 
   pickWinningLotto() {
-    readLine(INPUT_MESSAGE.LOTTO_NUMBER, (input) => {
-      input = input.split(',').map(Number);
-      let winningLotto = new Lotto(input);
+    readLine(INPUT_MESSAGE.LOTTO_NUMBER, (winning) => {
+      winning = winning.split(',').map(Number);
 
-      this.pickBonusNumber(winningLotto);
+      this.pickBonusNumber(winning);
     });
   }
 
-  pickBonusNumber(lotto) {
-    readLine(INPUT_MESSAGE.BONUS_NUMBER, (input) => {
-      lotto.bonusValidate(input);
+  pickBonusNumber(winning) {
+    readLine(INPUT_MESSAGE.BONUS_NUMBER, (bonus) => {
+      BonusValidator.validate(winning, bonus);
 
-      this.winningLotto = [lotto, Number(input)];
+      this.winningLotto = [winning, Number(bonus)];
     });
   }
 }

@@ -62,9 +62,14 @@ class BonusValidator extends RangeMixin(NumberValidator) {
     super();
   }
 
-  static validate(input) {
+  static validate(winning, input) {
     this.isValidNumber(input);
     this.isValidRange(input);
+    this.isValidBonusNumber(winning, input);
+  }
+
+  static isValidBonusNumber(winning, bonus) {
+    if (winning.includes(bonus)) throw new Error(ERROR_MESSAGE.DUPLICATION);
   }
 }
 
