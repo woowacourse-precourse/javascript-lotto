@@ -4,19 +4,27 @@ const PurchaseLotto = require("./PurchaseLotto.js");
 
 class App {
   constructor() {
-    this.wonLotto = null;
-    this.userLotto = null;
+    this.wonLotto = [];
+    this.userLotto = [];
+    this.totalLotto = 0;
   }
   play() {
     this.userPurchase();
+    this.createUserLotto(this.totalLotto);
   }
 
   userPurchase() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (payment) => {
       this.isNumber(payment);
       this.purchaseLotto = new PurchaseLotto(parseInt(payment));
+      this.totalLotto = this.purchaseLotto.getTotalLotto();
     });
   }
+
+  createUserLotto(totalLotto) {
+    for (let number = 0; number < totalLotto; number++) {}
+  }
+
   isNumber(payment) {
     if (payment.match(/^[0-9]+$/) === false) {
       throw new Error("[ERROR] 로또 구입 금액은 숫자만 입력해주세요.");
