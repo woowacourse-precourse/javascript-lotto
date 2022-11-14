@@ -1,4 +1,4 @@
-const COMMAND = require('../util/Message');
+const { COMMAND } = require('../util/Message');
 const { Console } = require('@woowacourse/mission-utils');
 const CreateLotto = require('./CreateLotto');
 
@@ -8,13 +8,20 @@ class App {
   }
 
   play() {
-    this.getUserMoney(COMMAND.MONEY);
+    this.getUserMoney();
   }
 
-  getUserMoney(message) {
-    Console.readLine(message, (money) => {
+  getUserMoney() {
+    Console.readLine(COMMAND.MONEY, (money) => {
       const createLotto = new CreateLotto(money);
       this.lottos = createLotto.make();
+      this.getWinning();
+    });
+  }
+
+  getWinning() {
+    Console.readLine(COMMAND.WINNING, (winning) => {
+      const winningArr = winning.split(',').map((num) => parseInt(num));
     });
   }
 }

@@ -1,5 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const COMMAND = require('../util/Message');
+const { COMMAND } = require('../util/Message');
 
 class CreateLotto {
   constructor(money) {
