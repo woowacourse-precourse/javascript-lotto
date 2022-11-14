@@ -27,6 +27,9 @@ const ERROR_MESSAGE = {
     NUMBER_RANGE: `${ERROR}로또 번호는 1부터 45 사이의 숫자여야 합니다.`,
     NUMBER_COUNT: `${ERROR}로또 번호는 6개여야 합니다.`,
   },
+  BONUS: {
+    NUMBER_DUPLICATED: `${ERROR}로또 번호에 보너스 숫자와 중복된 숫자가 있습니다.`,
+  },
 };
 
 module.exports = {

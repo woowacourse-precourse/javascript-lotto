@@ -1,7 +1,7 @@
 const Cost = require('./Cost');
 const Lotto = require('./Lotto');
 const Bonus = require('./Bonus');
-const { INPUT_MESSAGE } = require('./constant/constant');
+const { INPUT_MESSAGE, ERROR_MESSAGE } = require('./constant/constant');
 const { getInput } = require('./utils');
 
 class App {
@@ -35,7 +35,11 @@ class App {
     this.getBonusNumber();
   }
 
-  lottoBonusCheck() {}
+  lottoBonusCheck() {
+    if (this.lotto.getValue().filter((number) => number === this.bonus.getValue()).length === 1) {
+      throw new Error(ERROR_MESSAGE.BONUS.NUMBER_DUPLICATED);
+    }
+  }
 
   play() {
     this.getCostLottoBonusInput();
