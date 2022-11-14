@@ -1,5 +1,6 @@
 const COMMAND = require('../util/Message');
 const { Console } = require('@woowacourse/mission-utils');
+const CreateLotto = require('./CreateLotto');
 
 class App {
   play() {
@@ -8,7 +9,7 @@ class App {
 
   getUserInput(message) {
     Console.readLine(message, (answer) => {
-      console.log(answer);
+      CreateLotto.print(parseInt(answer));
     });
   }
 }
