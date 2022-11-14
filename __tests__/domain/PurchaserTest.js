@@ -3,19 +3,6 @@ const Purchaser = require('../../src/domain/Purchaser');
 const Lotto = require('../../src/Lotto');
 
 describe('로또 클래스 테스트', () => {
-  /**
-   * buyLotto()
-   * 정수값을 받으면 해당 수만큼의 Lotto 객체를 배열로 반환하는 함수
-   */
-  test('buyLotto 함수가 리턴하는 배열 요소가 Lotto 타입인지 검사', () => {
-    const input = 3;
-    const purchaser = new Purchaser();
-
-    purchaser
-      .buyLotto(input)
-      .forEach((lotto) => expect(lotto).toBeInstanceOf(Lotto));
-  });
-
   test('buyLotto 함수가 리턴하는 배열 길이가 로또 구매 갯수와 일치하는지 검사', () => {
     const input = 3;
     const purchaser = new Purchaser();
