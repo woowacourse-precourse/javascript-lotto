@@ -67,14 +67,10 @@ class CalculationLotto {
   }
 
   matchResult() {
-    if (this.isBonusFiveMatch()) {
-      this.lottoResult[LOTTO_RESULT_TYPE.bonus].count += 1;
-      this.lottoWinPrice += this.lottoResult[LOTTO_RESULT_TYPE.bonus].price;
-      return this;
-    }
+    const count = this.isBonusFiveMatch() ? LOTTO_RESULT_TYPE.bonus : this.matchCount;
 
-    this.lottoResult[this.matchCount].count += 1;
-    this.lottoWinPrice += this.lottoResult[this.matchCount].price;
+    this.lottoResult[count].count += 1;
+    this.lottoWinPrice += this.lottoResult[count].price;
 
     return this;
   }
