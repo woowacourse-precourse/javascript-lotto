@@ -1,7 +1,11 @@
 const MissionUtils = require('@woowacourse/mission-utils')
 const Lotto = require('./Lotto')
 const View = require('./views/view.js')
-
+const {
+    INPUT_MONEY,
+    INPUT_WINNING_NUMBER,
+    INPUT_BONUS_NUMBER,
+  } = require("./constants");
 class App {
     money
     lottoCount
@@ -20,7 +24,7 @@ class App {
         this.rank = [0, 0, 0, 0, 0]
         this.prizeMoney = [2000000000, 1500000, 50000, 5000, 30000000]
         this.rateOfReturn = 0
-        this.view=new View();
+        this.view = new View()
     }
 
     play() {
@@ -28,7 +32,7 @@ class App {
     }
 
     insertMoney() {
-        MissionUtils.Console.readLine('구입금액을 입력해 주세요.', (answer) => {
+        MissionUtils.Console.readLine(INPUT_MONEY, (answer) => {
             this.money = answer
             this.lottoCount = this.lottoPurchaseCount(this.money)
             this.view.lottoCountPrint(this.lottoCount)
@@ -42,7 +46,9 @@ class App {
 
     makeLottoNumber() {
         for (let i = 0; i < this.lottoCount; i++) {
-            const numbers = new Lotto(MissionUtils.Random.pickUniqueNumbersInRange(1,45,6));
+            const numbers = new Lotto(
+                MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6)
+            )
             this.view.lottoNumberPrint(numbers.getNumbers())
             this.userLottoNumbers.push(numbers.getNumbers())
         }
@@ -50,23 +56,17 @@ class App {
     }
 
     winningNumberInput() {
-        MissionUtils.Console.readLine(
-            '당첨 번호를 입력해 주세요.',
-            (answer) => {
-                this.winningNumbers = answer.split(',')
-                this.BonusNumberInput()
-            }
-        )
+        MissionUtils.Console.readLine(INPUT_WINNING_NUMBER, (answer) => {
+            this.winningNumbers = answer.split(',')
+            this.BonusNumberInput()
+        })
     }
 
     BonusNumberInput() {
-        MissionUtils.Console.readLine(
-            '보너스 번호를 입력해 주세요.',
-            (answer) => {
-                this.bonusNumber = Number(answer)
-                this.putWinNumToArray()
-            }
-        )
+        MissionUtils.Console.readLine(INPUT_BONUS_NUMBER, (answer) => {
+            this.bonusNumber = Number(answer)
+            this.putWinNumToArray()
+        })
     }
 
     winningCount(order) {
@@ -93,7 +93,7 @@ class App {
             this.rateOfReturn += this.rank[i] * this.prizeMoney[i]
         }
         this.rateOfReturn = (this.rateOfReturn / this.money) * 100
-        this.view.winningStatistics(this.rank, this.rateOfReturn);
+        this.view.winningStatistics(this.rank, this.rateOfReturn)
     }
 }
 
