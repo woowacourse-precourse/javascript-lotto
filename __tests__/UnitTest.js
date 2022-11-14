@@ -2,6 +2,7 @@ const Lotto = require("../src/Lotto");
 const LottoFactory = require("../src/LottoFactory");
 const Lottos = require("../src/Lottos");
 const Management = require("../src/Management");
+const Payment = require("../src/Payment");
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
@@ -161,5 +162,21 @@ describe("관리 클래스 테스트", () => {
       realnum: 6,
       bonusnum: 0,
     });
+  });
+});
+
+describe("지불 클래스 테스트", () => {
+  test("숫자가 아닌 값을 입력하는 경우", () => {
+    const payment = new Payment();
+    expect(() => {
+      payment.vaildation("abc");
+    }).toThrow("[ERROR] 숫자만 입력가능합니다");
+  });
+
+  test("1000의 배수가 아닌 숫자를 입력하는 경우", () => {
+    const payment = new Payment();
+    expect(() => {
+      payment.vaildation(1234);
+    }).toThrow("[ERROR] 1000원 단위로 입력해야 합니다");
   });
 });
