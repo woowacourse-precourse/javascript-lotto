@@ -1,4 +1,4 @@
-const { INPUT_MESSAGE, ERROR_MESSAGE } = require('./constant/constant');
+const { COST, INPUT_MESSAGE, ERROR_MESSAGE } = require('./constant/constant');
 const utils = require('./utils');
 
 class Cost {
@@ -17,7 +17,7 @@ class Cost {
   }
 
   validate(cost) {
-    if (cost % 1_000 !== 0) {
+    if (cost % COST.DIVIDE !== 0) {
       throw new Error(ERROR_MESSAGE.COST);
     }
   }

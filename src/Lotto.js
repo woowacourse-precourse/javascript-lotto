@@ -1,4 +1,4 @@
-const { ERROR_MESSAGE } = require('./constant/constant');
+const { LOTTO, ERROR_MESSAGE } = require('./constant/constant');
 
 class Lotto {
   #numbers;
@@ -9,13 +9,16 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
+    if (numbers.length !== LOTTO.INPUT_COUNT) {
       throw new Error(ERROR_MESSAGE.LOTTO.NUMBER_COUNT);
     }
     if (numbers.some((number, index, array) => array.indexOf(number) !== index)) {
       throw new Error(ERROR_MESSAGE.LOTTO.NUMBER_DUPLICATED);
     }
-    if (numbers.length !== numbers.filter((number) => number >= 1 && numbers <= 45)) {
+    if (
+      numbers.length !==
+      numbers.filter((number) => number >= LOTTO.MIN_NUMBER && numbers <= LOTTO.MAX_NUMBER)
+    ) {
       throw new Error(ERROR_MESSAGE.LOTTO.NUMBER_RANGE);
     }
   }
