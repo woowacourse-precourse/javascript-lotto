@@ -49,6 +49,10 @@ class App {
     Console.readLine('보너스 번호를 입력해주세요.\n', bonusNumberInput => {
       this.winningNumbers.initBonusNumber(bonusNumberInput);
       this.initWinningHistory();
+      this.printWinningHistory(
+        this.winningHistory.winningList,
+        this.winningHistory.profitRate,
+      );
     });
   }
 
@@ -59,11 +63,6 @@ class App {
       bonusNumber: this.winningNumbers.bonusNumber,
     });
     this.winningHistory.calcProfitRate(this.lottoManager.purchaseAmount);
-
-    this.printWinningHistory(
-      this.winningHistory.winningList,
-      this.winningHistory.profitRate,
-    );
   }
 
   printWinningHistory(winningList, profitRate) {
