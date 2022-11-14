@@ -5,11 +5,16 @@ const { LottoValidator, MoneyValidator } = require('../utils/Validator');
 const LottoGameView = require('../view/LottoGameView');
 
 class LottoGameModel {
-  buyLotto(money) {
+  payMoney(money) {
     const lottoCount = Number(money) / CURRENCY_UNIT;
+
+    return this.createLotto(lottoCount);
+  }
+
+  createLotto(count) {
     const lottos = [];
 
-    for (let i = 0; i < lottoCount; i++) {
+    for (let i = 0; i < count; i++) {
       const lotto = pickUniqueNumbersInRange(
         LOTTO_INFO.START,
         LOTTO_INFO.END,

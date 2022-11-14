@@ -20,7 +20,7 @@ class LottoGameController {
     readLine(INPUT_MESSAGE.MONEY, (input) => {
       MoneyValidator.validate(input);
 
-      this.lottos = this.lottoGameModel.buyLotto(input);
+      this.lottos = this.lottoGameModel.payMoney(input);
 
       this.printLottos(this.lottos);
     });
