@@ -9,16 +9,17 @@ class LottoMachine {
 
   makeLotto(number) {
     for (let i = 0; i < number; i++) {
-      const lotto = new Lotto(
-        MissionUtils.Random.pickUniqueNumbersInRange(
-          RANGE.MIN,
-          RANGE.MAX,
-          RANGE.PICK_COUNT
-        )
-      );
+      const lotto = new Lotto(this.makeRandomArr());
       this.lottoArr.push(lotto);
     }
     return this.lottoArr;
+  }
+  makeRandomArr() {
+    return MissionUtils.Random.pickUniqueNumbersInRange(
+      RANGE.MIN,
+      RANGE.MAX,
+      RANGE.PICK_COUNT
+    );
   }
 }
 
