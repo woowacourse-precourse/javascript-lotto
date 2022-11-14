@@ -1,23 +1,26 @@
 class Lotto {
   #numbers;
-
+  
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
   }
-
-  validate(numbers) {
-    isNum(numbers);
-    isSixNumbers(numbers);
-    isNumbersInRange(numbers);
-    isDuplicated(numbers);
-  }
-
+  
+    validate(numbers) {
+      this.isNum(numbers);
+      this.isSixNumbers(numbers);
+      this.isNumbersInRange(numbers);
+      this.isDuplicated(numbers);
+      throw ("is Valid");
+    }
+  
   isNum(numbers) {
     const validNums = /[^0-9]/;
-    if (validNums.test(numbers)) {
-      throw new Error("[ERROR] 로또 번호는 숫자여야 합니다.");
-    }
+    numbers.forEach((num) => {
+      if (validNums.test(num)) {
+        throw new Error("[ERROR] 로또 번호는 숫자여야 합니다.");
+      }
+    })
   }
 
   isSixNumbers(numbers) {
@@ -27,8 +30,8 @@ class Lotto {
   }
 
   isNumbersInRange(numbers) {
-    numbers.foreach((num) => {
-      if (num < 1 || num > 45) {
+    numbers.forEach((num) => {
+      if (parseInt(num) < 1 || parseInt(num) > 45) {
         throw new Error("[ERROR] 로또 번호 6개는 (1 ~ 45) 범위 내의 숫자여야 합니다.");
       }
     })
