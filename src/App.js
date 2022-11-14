@@ -16,9 +16,10 @@ class App {
         throw new Error("[ERROR] 1000원 단위로 입력해주세요.");
       }
       let purchaseNum = parseInt(money/1000);
+      MU.Console.print(`${purchaseNum}개를 구매했습니다.`);
       let lottos = this.makeLottoNum(purchaseNum);
-      this.getWinNum(lottos);
       
+      this.getWinNum(lottos);
     });
   }
   getWinNum(lottos) {
@@ -92,13 +93,12 @@ class App {
     return lottos;
   }
   printBuyLotto(lottos) {
-    MU.Console.print(`\n${lottos.length}개를 구매했습니다.`);
     for(let i = 0; i < lottos.length; i++){
-      MU.Console.print(lottos[i]);
+      MU.Console.print(`[${lottos[i].join(", ")}]`);
     }
   }
   
 }
-const app = new App(); // 테스트코드
-app.play(); // 테스트코드
+// const app = new App();
+// app.play();
 module.exports = App;
