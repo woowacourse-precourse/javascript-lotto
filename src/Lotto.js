@@ -1,3 +1,5 @@
+const { Console } = require('@woowacourse/mission-utils');
+
 class Lotto {
   #numbers;
   constructor(totalNumbers, issueList) {
@@ -32,6 +34,7 @@ class Lotto {
       }
     });
     this.yieldCalculation();
+    this.print();
   }
 
   yieldCalculation() {
@@ -41,6 +44,13 @@ class Lotto {
     });
     const calculation = profit / this.purchaseAmount * 100;
     this.yield = calculation.toFixed(1);
+  }
+
+  print() {
+    for (let index = 0; index < 6; index++) {
+      Console.print(`${this.winningContentArr[index]} (${this.winningAmountArr[index]}원) - ${this.winningCounterArr[index]}개`);
+    }
+    Console.print(`총 수익률은 ${this.yield}%입니다.`);
   }
 }
 
