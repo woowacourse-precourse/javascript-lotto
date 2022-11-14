@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Constant = require("./Constant");
 
 /**
  * @param message:출력하고자 하는 문자열
@@ -19,4 +20,32 @@ function scan(message){
     return result;
 }
 
-module.exports = {print, scan};
+// 오름차순 정렬 함수
+function ascSort(a,b) {
+    return a-b;
+}
+
+function validateLength(numbers) {
+    if (numbers.length !== Constant.LOTTO_LENGTH) {
+        throw new Error("[ERROR] 로또 번호는 "+Constant.LOTTO_LENGTH+"개여야 합니다.");
+    }
+}
+
+function validateOverlap(numbers){
+    const set = new Set(numbers);
+    if(set.size !== Constant.LOTTO_LENGTH) throw new Error("[ERROR] 로또 번호가 중복되었습니다.");
+}
+
+function validateNumber(numbers) {
+    for(let i = 0 ; i < Constant.LOTTO_LENGTH ; i++){
+        if(numbers[i] <= 0 || numbers[i] >= 46) throw new Error("[ERROR] 로또 번호는 1~45사이어야 합니다.");
+    }
+}
+
+function validateLotto(numbers){
+    validateLength(numbers);
+    validateNumber(numbers);
+    validateOverlap(numbers);
+}
+
+module.exports = {print, scan, ascSort, validateLotto};
