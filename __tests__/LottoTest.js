@@ -82,11 +82,14 @@ describe("[기능4] 랜덤 번호 뽑기 테스트", () => {
 });
 
 describe("[기능6] 당첨 번호 입력 예외 처리", () => {
-  test("[6-1 6자리가 아니면 예외가 발생한다.", () => {
-    mockQuestions(["1,2,3,4"]);
+  test("[6-1] 6자리가 아니면 예외가 발생한다.", () => {
     expect(() => {
-      const app = new App();
-      app.inputWinNumber();
+      new Lotto([1, 2, 3, 4]);
+    }).toThrow("[ERROR]");
+  });
+  test("[6-2] 숫자 외 문자가 있으면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, "a"]);
     }).toThrow("[ERROR]");
   });
 });
