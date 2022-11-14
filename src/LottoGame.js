@@ -26,6 +26,13 @@ class LottoGame {
     );
   }
 
+  createLotto(lottos) {
+    lottos.setLottos();
+    lottos.getLottos().forEach((lotto) => {
+      MissionUtils.Console.print(`[${lotto.getNumbers().join(", ")}]`);
+    });
+  }
+
   game() {
     const lottos = new UserLottos();
 
@@ -33,6 +40,8 @@ class LottoGame {
       this.validatePurchaseLotto(money);
 
       this.printTheNumberOfLotto(lottos, money);
+
+      this.createLotto(lottos);
     });
   }
 }
