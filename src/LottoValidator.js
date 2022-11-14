@@ -52,7 +52,6 @@ class LottoValidator extends Validator {
   isValidMoney(input) {
     this.isValidInput(input);
     this.isValidNumber(input);
-    super.isValidMoney(input);
     this.isPurchasableMoney(input);
   }
 }

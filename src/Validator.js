@@ -12,6 +12,8 @@ class Validator {
   }
 
   isValidInput = (input) => {
+    console.log('input:', input);
+
     if (!input.length) {
       throw new Error(`${this.ERROR_MESSAGE_HEADER} 아무것도 입력하지 않았습니다.`);
     }
@@ -28,12 +30,8 @@ class Validator {
       throw new Error(`${this.ERROR_MESSAGE_HEADER} 숫자(양수)만 입력할 수 있습니다.`);
     }
 
-    return true;
-  };
-
-  isValidMoney = (input) => {
     if (!Validator.#isInteger(input)) {
-      throw new Error(`${this.ERROR_MESSAGE_HEADER} 올바른 금액을 입력하세요.`);
+      throw new Error(`${this.ERROR_MESSAGE_HEADER} 올바른 숫자(정수)를 입력하세요.`);
     }
 
     return true;

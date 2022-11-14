@@ -26,8 +26,8 @@ class LottoSeller {
     }
   }
 
-  isValidMoney(input) {
-    new LottoValidator(this.lottoPrice).isValidMoney(input);
+  isValidMoney(money) {
+    new LottoValidator(this.lottoPrice).isValidMoney(money);
   }
 
   countLottoTicket(money) {
