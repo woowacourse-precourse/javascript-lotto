@@ -22,13 +22,18 @@ const LottoModel = class extends GameModel {
 
   pickLottoTickets({ start, end, count }) {
     const ticket = Random.pickUniqueNumbersInRange(start, end, count);
-    this.validateLottoTicket(ticket);
+    this.validateLottoNumbers(ticket);
 
     return ticket;
   }
 
-  validateLottoTicket(ticket) {
-    new Lotto(ticket);
+  setLottoWinningNumbers(winningNumbers) {
+    this.winningNumbers = winningNumbers;
+    this.validateLottoNumbers(winningNumbers);
+  }
+
+  validateLottoNumbers(winningNumbers) {
+    new Lotto(winningNumbers);
   }
 
   getBonusNumber() {}

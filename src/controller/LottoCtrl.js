@@ -57,7 +57,9 @@ const LottoCtrl = class extends GameCtrl {
   inputLottoWinningNumbers() {
     const onGetLottoWinningNumbers = winningNumbers => {
       winningNumbers = winningNumbers.split(',');
-      this.model.winningNumbers = winningNumbers;
+      this.model.setLottoWinningNumbers(winningNumbers);
+
+      this.inputLottoBonus();
     };
 
     this.view.input(WINNING_NUMBER_MESSAGE, onGetLottoWinningNumbers);
