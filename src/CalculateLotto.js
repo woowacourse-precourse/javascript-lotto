@@ -12,6 +12,10 @@ class CalculateLotto {
   getCommonNumberCount(userLottoNumber) {
     return userLottoNumber.filter((number) => this.winningNumber.includes(number)).length;
   }
+
+  checkBonusNumber(userLottoNumber) {
+    return userLottoNumber.includes(this.bonusNumber);
+  }
 }
 
 module.exports = CalculateLotto;
