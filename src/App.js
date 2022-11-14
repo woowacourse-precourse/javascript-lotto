@@ -50,6 +50,7 @@ class App {
 
   printLottos(lottoCount, lottos) {
     Console.print(`\n${lottoCount}개를 구매했습니다.`);
+    if (!lottoCount) return this.finish();
     lottos.forEach((lotto) => {
       Console.print(lotto.getNumbers());
     });
