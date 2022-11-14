@@ -1,6 +1,8 @@
 const { Console } = require("@woowacourse/mission-utils");
 const LottoList = require("./LottoList");
 const BonusNumber = require("./BonusNumber");
+const printError = require("./errors/existError.js");
+const checkValidation = require("./errors/checkValidation");
 class App {
   constructor() {
     this.lottos = null;
@@ -12,7 +14,9 @@ class App {
   }
   requestMoney() {
     Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
-      this.lottos.setLottoCount(money);
+      const { errorMessage } = checkValidation.checkMoney(money);
+      if (errorMessage) existError(errorMessage);
+      this.lottos = new LottoList(money);
 
       this.lottos.printLottoCount();
       this.lottos.printLottoList();
@@ -21,15 +25,29 @@ class App {
   }
   setWinningNumbers() {
     Console.readLine("\n당첨 번호를 입력해 주세요.\n", (winningNumbers) => {
-      this.lottos.setWinningNumbers(winningNumbers);
+      winningNumbers = winningNumbers.split(",").map((item) => Number(item));
+
+      checkValidation.checkNumberList(winningNumbers);
+      const { errorMessage } = checkValidation.checkNumberList(winningNumbers);
+      if (errorMessage) exitWithError(errorMessage);
+
+      this.winningNumbers = new WinningNumbers(winningNumbers);
+
+      this.requestBonus();
     });
   }
   requestBonus() {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusNumber) => {
-      this.bonusNumber = new BonusNumber(
-        Number(bonusNumber),
+      bonusNumber = Number(bonusNumber);
+
+      checkValidation.checkBonusNumber(bonusNumber, this.winningNumbers.value);
+      const { errorMessage } = checkValidation.checkBonusNumber(
+        bonusNumber,
         this.winningNumbers.value
       );
+      if (errorMessage) exitWithError(errorMessage);
+      this.bonusNumber = new BonusNumber(bonusNumber);
+
       this.printWinningStat();
     });
   }
@@ -44,6 +62,9 @@ class App {
     this.lottos.printLottoRate();
 
     this.end();
+  }
+  end() {
+    Console.close();
   }
 }
 

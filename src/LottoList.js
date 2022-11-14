@@ -17,7 +17,9 @@ class LottoList {
   }
   createNewLotto() {
     const newNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
-    validation.checkNumberList(newNumbers);
+    checkValidation.checkNumberList(newNumbers);
+    const { errorMessage } = checkValidation.checkNumberList(newNumbers);
+    if (errorMessage) exitWithError(errorMessage);
 
     return new Lotto(newNumbers);
   }
