@@ -54,9 +54,12 @@ class App {
 
       this.#lotto.setBonusNumber(+number);
       this.#comparer = new LottoComparer(this.#buyer, this.#lotto);
-      this.#comparer.setBuyerLottoRanking();
 
+      this.#comparer.setBuyerLottoRanking();
       this.#printLottoRank();
+
+      this.#comparer.setYield();
+      Console.print(`총 수익률은 ${this.#comparer.yield}%입니다.`);
 
       Console.close();
     });
