@@ -36,4 +36,10 @@ describe("로또 비용 클래스 테스트", () => {
       new LottoCost('');
     }).toThrow('[ERROR] 숫자를 입력해 주세요.');
   });
+
+  test('입력한 구입 금액에 온점이 있다면 예외 처리한다.', () => {
+    expect(() => {
+      new LottoCost('4000.');
+    }).toThrow('[ERROR] 온점을 제외하고 입력해주세요.');
+  });
 });
