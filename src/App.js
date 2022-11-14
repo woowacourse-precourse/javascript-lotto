@@ -94,14 +94,19 @@ class App {
         throw "[ERROR]";
       } else {
         this.bonusNumber = input;
-        this.matchLottos(this.lottos, this.winNumbers, this.bonusNumber);
+        this.scores = this.matchLottos(
+          this.lottos,
+          this.winNumbers,
+          this.bonusNumber
+        );
       }
     });
   }
 
   matchLottos(lottos, winNumbers, bonusNumber) {
     const scores = this.scores;
-    lottos
+
+    return lottos
       .filter((lotto) => lotto.matchNumbers(winNumbers, bonusNumber) >= 3)
       .map((e) =>
         e.matchNumbers(winNumbers, bonusNumber) === 5.5
@@ -111,8 +116,6 @@ class App {
       .forEach((e) => {
         scores.set(String(`${e}`), scores.get(String(`${e}`)) + 1);
       });
-    this.scores = scores;
-    return this.scores;
   }
 
   calculateProfit(scores) {
