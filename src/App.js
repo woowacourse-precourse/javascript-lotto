@@ -13,7 +13,9 @@ class App {
       result,
       this.#user.purchaseAmout * 1000
     );
-    Io.printConsole(`총 수익률은 ${lottoYield}%입니다.`);
+    Io.printConsole(
+      `총 수익률은 ${(+lottoYield).toLocaleString('ko-KR')}%입니다.`
+    );
   };
 
   showResult = () => {
