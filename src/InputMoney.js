@@ -3,6 +3,7 @@ const {
   THOUSAND,
   ERROR_MESSAGES,
   INPUT_MONEY_MESSAGE,
+  NUMBER_OF_TICKETS_MESSAGE,
 } = require("./Constants");
 
 const { NOT_MULTIPLES_OF_THOUSAND } = ERROR_MESSAGES;
@@ -10,6 +11,7 @@ const { NOT_MULTIPLES_OF_THOUSAND } = ERROR_MESSAGES;
 class InputMoney {
   constructor() {
     this.userMoney = 0;
+    this.numberOfTickets = 0;
   }
 
   buyLotteryTickets() {
@@ -23,6 +25,12 @@ class InputMoney {
       throw new Error(NOT_MULTIPLES_OF_THOUSAND);
     }
     this.userMoney = userMoney;
+    this.printNumberOfTickets(userMoney);
+  }
+
+  printNumberOfTickets(userMoney) {
+    this.numberOfTickets = userMoney / THOUSAND;
+    CONSOLE_UTIL.print(`\n${this.numberOfTickets}${NUMBER_OF_TICKETS_MESSAGE}`);
   }
 }
 
