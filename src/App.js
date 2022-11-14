@@ -2,8 +2,9 @@ const { Console, Random } = require('@woowacourse/mission-utils');
 
 class App {
   static lottoPurchaser() {
-    Console.readLine('구입금액을 입력해 주세요.\n', (answer) => {
-      Console.print(answer);
+    Console.readLine('구입금액을 입력해 주세요.\n', (purchaseAmount) => {
+      const purchaseLottoCount = this.lottoCountGetter(purchaseAmount);
+      Console.print(`\n${purchaseLottoCount}개를 구매했습니다.`);
     });
   }
 
@@ -19,7 +20,11 @@ class App {
     return purchaseLottoNumbers;
   }
 
-  play() {}
+  play() {
+    App.lottoPurchaser();
+  }
 }
+const app = new App();
+app.play();
 
 module.exports = App;
