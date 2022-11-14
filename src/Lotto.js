@@ -1,4 +1,4 @@
-const { ERROR, LOTTO, MONEY } = require('./utiles/Constant');
+const { ERROR, LOTTO, MONEY, SENTENCE } = require('./utiles/Constant');
 
 // 로또회사
 
@@ -77,19 +77,27 @@ class Lotto {
 
   #initLottoResultStorage() {
     const storage = {};
-    for (let key in MONEY) {
-      storage[key] = 0;
+    for (let i = LOTTO.MATCH_START_COUNT; i <= LOTTO.COUNT; i++) {
+      storage[`${i}${SENTENCE.MATCH}`] = 0;
+      if (i === LOTTO.COUNT - 1) {
+        // 보너스 볼인 경우
+        storage[`${i}${SENTENCE.MATCH}, ${SENTENCE.MATCH_BONUS}`] = 0;
+      }
     }
     return storage;
   }
 
   getLottoResult(allLottoNumbers) {
     const lottoResult = this.#initLottoResultStorage();
+
     allLottoNumbers.forEach((oneLottoNumbers) => {
       const matchCount = this.getMatchCount(oneLottoNumbers);
       if (this.#isBonus(oneLottoNumbers))
-        lottoResult['5개 일치, 보너스 볼 일치']++;
-      else if (matchCount >= 3) lottoResult[`${matchCount}개 일치`]++;
+        lottoResult[
+          `${matchCount}${SENTENCE.MATCH}, ${SENTENCE.MATCH_BONUS}`
+        ]++;
+      else if (matchCount >= LOTTO.MATCH_START_COUNT)
+        lottoResult[`${matchCount}${SENTENCE.MATCH}`]++;
     });
 
     return lottoResult;
