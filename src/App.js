@@ -16,14 +16,14 @@ class App {
   }
 
   getLottoNum(buyCount) {
-    //let lottoNumArr = []
-    while (lottoNumArr.length < Number(buyCount)) {
+    let count = 0
+    while (count < Number(buyCount)) {
       //pickUniqueNumbersInRange의 인자를 자세히 보면 인자 하나가 6자리 배열이다
-      //lottoNumArr.push(Random.pickUniqueNumbersInRange(1, 45))
-      //console.log(lottoNumArr)
+      //즉, 한번에 6자리 로또번호가 들어옴
 
       //하나씩 넣는걸 의도한 것 같다
       let tmp = new Lotto(Random.pickUniqueNumbersInRange(1, 45))
+      count++
     }
   }
 }
