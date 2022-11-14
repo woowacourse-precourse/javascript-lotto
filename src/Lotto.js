@@ -8,6 +8,7 @@ class Lotto {
     // this.validate(numbers);
     this.#numbers = numbers;
     this.mylotto = [];
+    this.bonusNumber = 0;
   }
   
   askLottoCost(){
@@ -15,6 +16,7 @@ class Lotto {
       this.cost = Number(cost);
       this.lottoCount = parseInt(this.cost / 1000);
       this.makeLottoNumber(this.lottoCount);
+      this.enterWinningNumber();
     })
   }
 
@@ -33,9 +35,18 @@ class Lotto {
       lotto = this.sortMylotto(lotto);
       this.mylotto.push(lotto);
     }
-    console.log(this.mylotto)
   }
 
+  enterWinningNumber(){
+    Console.readLine(`${MESSAGE.WINNING}\n`,(winningNumber) => {
+      this.#numbers = winningNumber.split(",").map(Number)
+    })
+  }
+
+
+
+    
+  }
   // validate(numbers) {
   //   if (numbers.length !== 6) {
   //     throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
