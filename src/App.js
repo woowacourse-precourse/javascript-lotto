@@ -3,6 +3,7 @@ const { Console, Random } = require("@woowacourse/mission-utils");
 
 class App {
 	lottoCnt;
+	winLottoNums;
 
 	userInputLotto(price) {
 		let userInput = new UserInput(price);
@@ -32,6 +33,13 @@ class App {
 		}
 	}
 
+	useWinLottoNum() {
+		Console.print("당첨 번호를 입력해 주세요.");
+		Console.readline(
+			"",
+			num => (this.winLottoNums = num.split(",").map(Number))
+		);
+	}
 	play() {
 		Console.print("구입금액을 입력해 주세요.");
 	}
