@@ -3,10 +3,12 @@ const LottoGenerator = require('./LottoGenerator');
 const Lotto = require('./Lotto');
 const WinNums = require('./WinNums');
 const BonusNum = require('./BonusNum');
+const LottoMatching = require('./LottoMatching');
 
 class LottoGame {
   constructor() {
     this.lottoGenerator = new LottoGenerator();
+    this.lottoMatching = new LottoMatching(); 
   }
 
   buyLotto() {
