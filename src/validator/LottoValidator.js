@@ -1,8 +1,7 @@
 const { ERROR_MESSAGE } = require('../constant');
 const NumberValidator = require('./NumberValidator');
-const RangeMixin = require('./RangeMixin');
 
-class LottoValidator extends RangeMixin(NumberValidator) {
+class LottoValidator extends NumberValidator {
   static validate(input) {
     this.isValidNumber(input);
     this.isValidRange(input);
