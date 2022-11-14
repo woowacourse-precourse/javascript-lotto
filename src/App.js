@@ -12,7 +12,7 @@ class App {
   }
 
   inputAmount() {
-    Console.readLine("구입금액을 입력해 주세요.", (purchaseAmount) => {
+    Console.readLine("구입금액을 입력해 주세요. \n", (purchaseAmount) => {
       this.isValidInput(purchaseAmount);
       this.#purchaseAmount = purchaseAmount;
     });
