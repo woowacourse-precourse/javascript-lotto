@@ -1,30 +1,56 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const ERROR_MESSAGES = require("../src/const/ErrorMessages");
+const Lotto = require("./Lotto");
 const { Console, Random } = MissionUtils;
 const { IS_NUMBER, IS_OVER_MIN_COST, IS_NO_CHARGE } = ERROR_MESSAGES;
 
 class App {
-  #userPurchaseAmount;
+  #amount;
+  #userLottos;
 
   constructor() {
-    this.#userPurchaseAmount = 0;
+    this.#amount = 0;
+    this.#userLottos = [];
   }
 
-  getUserLottoAmount() {
-    return this.#userPurchaseAmount;
+  getAmount() {
+    return this.#amount;
   }
 
-  setUserPurchaseAmount(amount) {
-    this.#userPurchaseAmount = amount;
+  setAmount(amount) {
+    this.#amount = amount;
   }
 
-  setUserPurchaseAmount() {
-    Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
-      this.validateMoney(money);
+  getUserLottos() {
+    return this.#userLottos;
+  }
 
-      this.setUserPurchaseAmount(parseInt(money / 1000));
-      Console.print(`\n${this.getUserLottoAmount()}개를 구매했습니다.`);
-    });
+  addUserLottos(newLotto) {
+    this.#userLottos.push(newLotto);
+  }
+
+  setUserLottoAmount() {
+    return new Promise((resolve) =>
+      Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
+        this.validateMoney(money);
+
+        const AMOUNT = parseInt(money / 1000);
+        this.setAmount(AMOUNT);
+        Console.print(`\n${AMOUNT}개를 구매했습니다.`);
+        return resolve(AMOUNT);
+      }),
+    );
+  }
+
+  setLottos(amount) {
+    for (let i = 0; i < amount; i++) {
+      const newLottoNums = Random.pickUniqueNumbersInRange(1, 45, 6);
+      newLottoNums.sort((a, b) => a - b);
+
+      const newLotto = new Lotto([...newLottoNums]);
+      this.addUserLottos(newLotto);
+      newLotto.print();
+    }
   }
 
   validateMoney(money) {
@@ -35,11 +61,13 @@ class App {
   }
 
   play() {
-    this.setUserPurchaseAmount();
+    this.setUserLottoAmount().then((amount) => {
+      this.setLottos(amount);
+    });
   }
 }
 
-// const app = new App();
-// app.play();
+const app = new App();
+app.play();
 
 module.exports = App;
