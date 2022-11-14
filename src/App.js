@@ -1,8 +1,8 @@
 const Player = require('./Player');
 const Lotto = require('./Lotto');
 const Machine = require('./Machine');
-const { Console, Statistics } = require('./util');
-const { MESSAGES, RESULTS } = require('./constants');
+const { Console, Stat } = require('./util');
+const { MESSAGES, CONSTANTS } = require('./constants');
 
 class App {
   play() {
@@ -32,23 +32,29 @@ class App {
   #askBonusNum() {
     Console.readLine(`\n${MESSAGES.ASK_BONUS}\n`, (number) => {
       this.lotto.winningNums = number;
-      this.#showResult(this.player.pocket, this.lotto.winningNums);
+      this.#getStatsResult(this.player.tickets, this.lotto.winningNums);
     });
   }
-
-  #showResult(tickets, luckyNum) {
-    const count = Statistics.countWinning(tickets, luckyNum);
-    const { PRIZE, TEXT } = RESULTS
-    let profit = 0;
+  
+  #getStatsResult(tickets, luckyNum) {
+    const count = Stat.countWinning(tickets, luckyNum);
+    this.player.sumAllProfit(count);
+    const rateOfReturn = Stat.getROR(this.player.profit, this.machine.insertedMoney);
+    this.#printResults(count, rateOfReturn);
+  }
+  
+  #printResults(count, rateOfReturn) {
+    const { ZERO, FINISH, STATTEXT } = CONSTANTS
     Console.print('\n당첨 통계\n---');
-    for (let i = 0; i < count.length; i++) {
-      Console.print(TEXT[i] + count[i] + '개');
-      profit += PRIZE[i] * count[i];
+
+    for (let index = ZERO; index < FINISH; index++) {
+      Console.print(STATTEXT[index]+count[index]+'개');
     }
-    const ROR = Statistics.rateOfReturn(profit, this.machine.insertedMoney);
-    Console.print(`총 수익률은 ${ROR}%입니다.`);
+
+    Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
     Console.close();
   }
+
 }
 
 const lottery = new App();

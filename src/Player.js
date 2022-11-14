@@ -1,13 +1,32 @@
+const { CONSTANTS } = require('./constants');
+
 class Player {
-  #pocket;
-
+  #tickets;
+  #profit;
   constructor(tickets) {
-    this.#pocket = tickets;
+    this.#tickets = tickets;
+    this.#profit = 0
   }
 
-  get pocket() {
-    return this.#pocket;
+  get tickets() {
+    return this.#tickets;
   }
+
+  get profit() {
+    return this.#profit 
+  }  
+
+  set profit(money) {
+    return this.#profit += money;
+  }  
+
+  sumAllProfit(matchedCount) {
+    const { ZERO, FINISH, PRIZE } = CONSTANTS;
+    for ( let index = ZERO; index < FINISH; index++ ) {
+      this.profit = PRIZE[index] * matchedCount[index];
+    }
+  }
+
 }
 
 module.exports = Player;
