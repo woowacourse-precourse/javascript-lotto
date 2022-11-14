@@ -2,6 +2,11 @@ const InValidInputError = require("../error/InValidInputError");
 const { BASIC, INVALID_INPUT } = require("./validator.constants");
 
 class Validator {
+  static isValidLottoNum(stringArr) {
+    if (stringArr.length === 6) return true;
+    throw new InValidInputError(BASIC + INVALID_INPUT.LOTTO_NUM_ERROR);
+  }
+
   static isValidLottoType(string) {
     if (/^[0-9]+$/.test(string)) return true;
     throw new InValidInputError(BASIC + INVALID_INPUT.LOTTO_NOT_NUMBER);
@@ -17,16 +22,10 @@ class Validator {
     throw new InValidInputError(BASIC + INVALID_INPUT.BOUNUS_RANGE_ERROR);
   }
 
-  static isDuplicatedLotto(string) {
-    if (!(new Set(string).size === string.length))
+  static isDuplicatedLotto(numberArr) {
+    if (!(new Set(numberArr).size === numberArr.length))
       throw new InValidInputError(BASIC + INVALID_INPUT.LOTTO_DUPLICATED);
     return false;
-  }
-
-  static isValidLotto(string) {
-    this.isValidLottoType(string) &&
-      this.isValidLottoRange(string) &&
-      this.isDuplicatedLotto(string);
   }
 
   static isValidPriceType(string) {

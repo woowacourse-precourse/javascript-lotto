@@ -1,6 +1,7 @@
 module.exports = {
   BASIC: "[ERROR] ",
   INVALID_INPUT: {
+    LOTTO_NUM_ERROR: "로또 번호는 6개여야 합니다.",
     LOTTO_RANGE_ERROR: "로또 번호는 1부터 45 사이의 숫자여야 합니다.",
     BOUNUS_RANGE_ERROR: "보너스 번호는 1부터 45 사이의 숫자여야 합니다.",
     LOTTO_DUPLICATED: "로또 번호는 중복되지 않는 6개의 숫자여야 합니다.",
