@@ -4,9 +4,8 @@ const Bonus = require("./Bonus.js");
 const InsertMoney = require("./InsertMoney.js");
 const GenerateUserLottoNumber = require("./GenerateUserLottoNumber.js");
 const EnterPrizeNumber = require("./EnterPrizeNumber.js");
+const EnterBonusNumber = require("./EnterBonusNumber.js");
 class App {
-  bonusNumber;
-  prizeNumbers = [];
   userWinningStatics = [0,0,0,0,0];
 
   play() {
@@ -17,8 +16,8 @@ class App {
     this.printGenerateUserLottoNumber(generateUserLottoNumber.getUserLottoNumberLists());
     const enterPrizeNumber = new EnterPrizeNumber();
     const lotto = new Lotto(enterPrizeNumber.getEnterPrizeNumber());
-    this.enterBonusNumber();
-    const bonus = new Bonus(lotto.getNumbers(), this.bonusNumber);
+    const enterBonusNumber = new EnterBonusNumber();
+    const bonus = new Bonus(lotto.getNumbers(), enterBonusNumber.getEnterBonusNumber());
     generateUserLottoNumber.getUserLottoNumberLists().forEach((OneUserNumber)=>{
       this.comparePrizeNumberAndUserNumber(lotto.getNumbers(), bonus.getNumbers(),OneUserNumber);
     });
@@ -41,11 +40,6 @@ class App {
       userLotto = userLotto.slice(0,userLotto.length-2);
       userLotto+=']';
       MissionUtils.Console.print(userLotto);
-    });
-  }
-  enterBonusNumber(){
-    MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (inputBonusNumber) => {
-      this.bonusNumber = [Number(inputBonusNumber)];
     });
   }
   comparePrizeNumberAndUserNumber(lottoNumbers, bonusNumber, userNumbers){
