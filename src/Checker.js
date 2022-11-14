@@ -65,6 +65,7 @@ class Checker {
     this.checkIsInteger(bonusNum);
     this.checkRange(bonusNum);
     this.checkIsBonusNumInMainNums(bonusNum, mainNums);
+    return bonusNum;
   }
 
   checkIsBonusNumInMainNums(bonusNum, mainNums) {
