@@ -8,10 +8,10 @@ class App {
   constructor() {}
 
   play() {
-    this.start()
+    this.getLottoInfo()
   }
 
-  start() {
+  getLottoInfo() {
     let buyCount = PurchasePrice.getPurchasePrice()
     this.getLottoNum(buyCount)
     this.getWinningNum()
