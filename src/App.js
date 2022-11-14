@@ -1,7 +1,7 @@
 const { Console } = require("@woowacourse/mission-utils");
-const Budget = require('./Budget')
-const Lotto = require('./Lotto')
-const Bonus = require('./Bonus')
+const Budget = require('./input/Budget')
+const Lotto = require('./input/Lotto')
+const Bonus = require('./input/Bonus')
 
 const inputObjects = {
   'budget': '',
@@ -48,7 +48,8 @@ class App {
   }
 
   play() {
-    const inputObjects = getInputs()
+    getInputs().
+      then()
   }
 }
 
