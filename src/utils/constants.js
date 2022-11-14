@@ -31,3 +31,11 @@ const PRIZE_RESULTS = {
     FIVE_BONUS: (n) => `5개 일치, 보너스 볼 일치 (30,000,000원) - ${n}개`,
     SIX: (n) => `6개 일치 (2,000,000,000원) - ${n}개`,
 };
+
+module.exports = {
+    INPUT_MESSAGES,
+    ERROR_MESSAGES,
+    PRIZE_REWARDS,
+    STATISTIC,
+    PRIZE_RESULTS,
+};

@@ -27,7 +27,7 @@
 ### utils
 
 - 필요한 상수 파일 구현
-  - NESSAGES []
+  - MESSAGES [O]
 
 ### 비즈니스 로직
 
