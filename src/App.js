@@ -1,11 +1,11 @@
-const { Console, Random } = require('@woowacourse/mission-utils');
-const Lotto = require('./Lotto')
+const { Console, Random } = require("@woowacourse/mission-utils");
+const Lotto = require("./Lotto");
 const { validator } = require("./utils");
 
-const {FORMULA,UNITS, MESSAGE, ERROR_MESSAGE} = require('./constants')
+const { FORMULA, UNITS, MESSAGE, ERROR_MESSAGE } = require("./constants");
 
 class App {
-  inputMoney = 0
+  inputMoney = 0;
   numberOfLotto = 0;
   myLottos = [];
   luckyNumbers = [];
@@ -15,23 +15,23 @@ class App {
   winningMap = {
     firstPlace: {
       count: 0,
-      WINNING_AMOUNT: 2000000000
+      WINNING_AMOUNT: 2000000000,
     },
     secondPlace: {
       count: 0,
-      WINNING_AMOUNT: 30000000
+      WINNING_AMOUNT: 30000000,
     },
     thirdPlace: {
       count: 0,
-      WINNING_AMOUNT: 1500000
+      WINNING_AMOUNT: 1500000,
     },
     fourthPlace: {
       count: 0,
-      WINNING_AMOUNT: 50000
+      WINNING_AMOUNT: 50000,
     },
     fifthPlace: {
       count: 0,
-      WINNING_AMOUNT: 5000
+      WINNING_AMOUNT: 5000,
     },
   };
 
@@ -55,12 +55,10 @@ class App {
 
   publish() {
     Console.print(MESSAGE.GUIDE_NUMBER_OF_LOTTO(this.numberOfLotto));
-    for(let i = 0; i < this.numberOfLotto; i++) {
-      const lotto = new Lotto(Random.pickUniqueNumbersInRange(
-        UNITS.MIN, 
-        UNITS.MAX, 
-        UNITS.LIMIT_LOTTO
-      ));
+    for (let i = 0; i < this.numberOfLotto; i++) {
+      const lotto = new Lotto(
+        Random.pickUniqueNumbersInRange(UNITS.MIN, UNITS.MAX, UNITS.LIMIT_LOTTO)
+      );
       this.myLottos.push(lotto);
     }
     this.printLottos();
@@ -69,9 +67,9 @@ class App {
   }
 
   printLottos() {
-    this.myLottos.map(myLotto => {
+    this.myLottos.map((myLotto) => {
       Console.print(myLotto.getNumbers());
-    })
+    });
     return;
   }
 
@@ -87,6 +85,9 @@ class App {
     }
     if (validator.isDigitError(luckyNumbers)) {
       throw new Error(ERROR_MESSAGE.DIGIT_OF_LOTTO);
+    }
+    if (validator.isNotIntegers(luckyNumbers)) {
+      throw new Error(ERROR_MESSAGE.INTEGER_OF_LOTTO);
     }
     if (validator.isDigitError([bonusNumber])) {
       throw new Error(ERROR_MESSAGE.DIGIT_OF_LOTTO);
@@ -104,16 +105,16 @@ class App {
 
   setBonusNumber() {
     Console.readLine(MESSAGE.REQUEST_BONUS_NUMBER, (input) => {
-      this.bonusNumber = Number(input)
-      this.validate(this.luckyNumbers, this.bonusNumber)
+      this.bonusNumber = Number(input);
+      this.validate(this.luckyNumbers, this.bonusNumber);
       this.winning();
     });
 
     return;
   }
 
-  winning () {
-    this.myLottos.map(myLotto => {
+  winning() {
+    this.myLottos.map((myLotto) => {
       let numberOfMatch = myLotto.countNumberOfMatches(this.luckyNumbers);
       let isBonus = myLotto.isBonus(this.bonusNumber);
       if (numberOfMatch === 3) {
@@ -127,27 +128,26 @@ class App {
       } else if (numberOfMatch === 6) {
         this.winningMap.firstPlace.count += 1;
       }
-    })
+    });
 
     this.calculateRevenue();
     this.calculateProfit();
     this.printResult();
     return;
-
   }
 
   calculateRevenue() {
     for (let [rank, pair] of Object.entries(this.winningMap)) {
-      this.revenue += (pair.count * pair.WINNING_AMOUNT)
+      this.revenue += pair.count * pair.WINNING_AMOUNT;
     }
   }
 
   calculateProfit() {
-    this.profit = FORMULA.PROFIT(this.revenue, this.inputMoney)
+    this.profit = FORMULA.PROFIT(this.revenue, this.inputMoney);
   }
 
-  printResult () {
-    Console.print(MESSAGE.WINNING_STATS(this.winningMap, this.profit))
+  printResult() {
+    Console.print(MESSAGE.WINNING_STATS(this.winningMap, this.profit));
     Console.close();
   }
 }

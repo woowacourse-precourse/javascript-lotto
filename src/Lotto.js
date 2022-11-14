@@ -15,12 +15,14 @@ class Lotto {
     if (validator.isLengthError(numbers)) {
       throw new Error(ERROR_MESSAGE.LENGTH_OF_LOTTO);
     }
-
     if (validator.isDuplicate(numbers)) {
       throw new Error(ERROR_MESSAGE.DUPLICATE_OF_LOTTO);
     }
     if (validator.isDigitError(numbers)) {
       throw new Error(ERROR_MESSAGE.DIGIT_OF_LOTTO);
+    }
+    if (validator.isNotIntegers(numbers)) {
+      throw new Error(ERROR_MESSAGE.INTEGER_OF_LOTTO);
     }
   }
 
