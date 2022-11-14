@@ -84,6 +84,7 @@ class Validator {
     this.checkNotNumber(bonusNumber);
     this.checkNegativeBonusNumber(bonusNumber);
     this.checkEmptyInput(bonusNumber);
+    this.checkBonusNumberRange(bonusNumber);
   }
 
   static checkNotNumber(bonusNumber) {
