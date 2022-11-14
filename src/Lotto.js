@@ -30,7 +30,6 @@ class Lotto {
 
   getYield(result, purchaseMoney) {
     let prizeMoney = 0;
-    console.log(result);
     for (const money in PRIZE_MONEY) {
       prizeMoney += result[money] * PRIZE_MONEY[money];
     }
