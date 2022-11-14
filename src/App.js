@@ -1,4 +1,4 @@
-const Utils = require("./Utils");
+const Utils = require("./utils/Utils");
 const LottoSeller = require("./domain/LottoSeller");
 const LottoGenerator = require("./domain/LottoGenerator");
 const PrizeCalculator = require("./domain/PrizeCalculator");

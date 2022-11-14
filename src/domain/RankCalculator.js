@@ -1,4 +1,4 @@
-const { MATCH_COUNT, INDEX, NUMBER_OF_RANKS } = require("../constatnts");
+const { MATCH_COUNT, INDEX, NUMBER_OF_RANKS } = require("../utils/constants");
 
 class RankCalculator {
   #getMatchNumber(playerNumbers, winningNumbers) {

@@ -1,5 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const { INDEX } = require("./constatnts");
+const { INDEX } = require("./constants");
 
 class Utils {
   static separateByComma(numbers) {

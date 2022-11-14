@@ -1,6 +1,6 @@
-const Utils = require("../Utils");
+const Utils = require("../utils/Utils");
 const Lotto = require("../Lotto");
-const { MAX_NUMBER, MIN_NUMBER, LOTTO_LENGTH } = require("../constatnts");
+const { MAX_NUMBER, MIN_NUMBER, LOTTO_LENGTH } = require("../utils/constants");
 
 class LottoGenerator {
   #generateSixNumber() {

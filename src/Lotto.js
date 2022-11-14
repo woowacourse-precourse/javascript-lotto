@@ -1,4 +1,4 @@
-const { LOTTO_LENGTH, MIN_NUMBER, MAX_NUMBER } = require("./constatnts");
+const { LOTTO_LENGTH, MIN_NUMBER, MAX_NUMBER } = require("./utils/constants");
 
 class Lotto {
   #numbers;

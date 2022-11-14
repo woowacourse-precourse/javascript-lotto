@@ -1,4 +1,4 @@
-const { PRIZE_AMOUNT } = require("../constatnts");
+const { PRIZE_AMOUNT } = require("../utils/constants");
 
 class PrizeCalculator {
   getPrizeMoney(rank) {

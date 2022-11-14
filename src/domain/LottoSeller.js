@@ -1,4 +1,4 @@
-const { LOTTO_PRICE } = require("../constatnts");
+const { LOTTO_PRICE } = require("../utils/constants");
 
 class LottoSeller {
   #validateType(money) {
