@@ -54,6 +54,19 @@ class View {
   printBonusNumberErrorMessage() {
     throw new Error(messages.BONUS_NUMBER_ERROR_MESSAGE);
   }
+
+  printStatistics(ranks, rateOfReturn) {
+    Console.print(messages.STATISTICS_OPENING_MESSAGE);
+    const statisticsMessage = `${messages.STATISTICS_FIFTH_MESSAGE}${ranks.fifth}개
+${messages.STATISTICS_FOURTH_MESSAGE}${ranks.fourth}개
+${messages.STATISTICS_THIRD_MESSAGE}${ranks.third}개
+${messages.STATISTICS_SECOND_MESSAGE}${ranks.second}개
+${messages.STATISTICS_FIRST_MESSAGE}${ranks.first}개
+총 수익률은 ${rateOfReturn}%입니다.`;
+
+    Console.print(statisticsMessage);
+    this.controller.finishGame();
+  }
 }
 
 module.exports = View;
