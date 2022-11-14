@@ -23,6 +23,10 @@ class QuickPick {
       throw new Error(ERROR_MESSAGES.INVALID_COST_MIN);
     }
   }
+
+  countAmount(payment) {
+    this.#amount = payment / LOTTO_INFO.LOTTO_PRICE;
+  }
 }
 
 module.exports = QuickPick;
