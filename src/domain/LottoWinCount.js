@@ -1,6 +1,6 @@
 const LottoCalculator = require('./LottoCalculator');
 
-class LottoWinCountDomain extends LottoCalculator {
+class LottoWinCount extends LottoCalculator {
   #rank;
 
   constructor(inputs) {
@@ -30,4 +30,4 @@ class LottoWinCountDomain extends LottoCalculator {
   }
 }
 
-module.exports = LottoWinCountDomain;
+module.exports = LottoWinCount;

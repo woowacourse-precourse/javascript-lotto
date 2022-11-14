@@ -2,7 +2,7 @@ const LottoCalculator = require('./LottoCalculator');
 
 const { LOTTO_AMOUNT } = require('../../utils/constants');
 
-class LottoIncomeDomain extends LottoCalculator {
+class LottoIncome extends LottoCalculator {
   #income;
 
   constructor(inputs) {
@@ -46,4 +46,4 @@ class LottoIncomeDomain extends LottoCalculator {
   }
 }
 
-module.exports = LottoIncomeDomain;
+module.exports = LottoIncome;
