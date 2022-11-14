@@ -3,8 +3,7 @@ const messages = require("../constants/messages");
 class Lotto {
   #numbers;
 
-  constructor(numbers, controller) {
-    this.controller = controller;
+  constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
   }
