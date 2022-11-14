@@ -25,6 +25,9 @@ class Bonus extends Lotto{
       throw new Error("[ERROR] 보너스 번호가 당첨번호와 중복됩니다.");
     }    
   }
+  getNumbers(){
+    return this.#bonusNumber;
+  }
 }
 
 module.exports = Bonus;
