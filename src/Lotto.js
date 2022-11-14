@@ -25,7 +25,7 @@ class Lotto {
       LOTTO_NUMBER_RANGE.MIN_RANGE,
       LOTTO_NUMBER_RANGE.MAX_RANGE,
       LOTTO_NUMBER_RANGE.LENGTH,
-    );
+    ).sort((a, b) => a - b);
   }
 
   static generateLottoArrays(generateNumber) {
