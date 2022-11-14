@@ -33,7 +33,7 @@ class Service {
   }
 
   printGetBonusNumber() {
-    Console.readLine('보너스 번호를 입력해 주세요.', (bonusNumber) => {
+    Console.readLine(ServiceMessage.BONUS_INPUT, (bonusNumber) => {
       new Bonus(bonusNumber);
       this.bonusNumber = bonusNumber;
     });
