@@ -14,11 +14,11 @@ class App {
     Console.readLine(INPUT_TEXT.COST, (money) => {
       this.money = money;
       new Exception().purchase(this.money);
-      this.makeLotto();
+      this.publishLotto();
     });
   }
 
-  makeLotto() {
+  publishLotto() {
     this.publish = new Publish(this.money);
     this.printLottoQuantity();
   }

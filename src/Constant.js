@@ -16,6 +16,8 @@ const PRIZE = {
   FIFTH: [3, 5000],
 };
 
+const DIVISION = ',';
+
 const WINNING_TEXT = {
   FIRST: `${PRIZE.FIRST[0]}개 일치 (${PRIZE.FIRST[1].toLocaleString()}원) -`,
   SECOND: `${
@@ -34,7 +36,7 @@ const INPUT_TEXT = {
 
 const ERROR_TEXT = {
   MIN_PURCHASE: `[ERROR] 금액은 ${MONEY.MIN}원 단위로 입력해주세요.`,
-  MIN_COUNT: `[ERROR] 로또 번호는 ${PUBLISH.AMOUNT}개여야 합니다.`,
+  MIN_COUNT: `[ERROR] 로또 번호는 '${DIVISION}' 로 구분된 ${PUBLISH.AMOUNT}개의 숫자입니다.`,
   VALUE_BETWEEN: `[ERROR] ${PUBLISH.MIN_RANGE}부터 ${PUBLISH.MAX_RANGE} 사이의 숫자를 입력해주세요.`,
   DUPLICATE_VALUE: '[ERROR] 중복되지 않은 번호를 입력해주세요.',
   DUPLICATE_WINNING: '[ERROR] 당첨 번호와 중복되지 않는 숫자를 입력해주세요.',
