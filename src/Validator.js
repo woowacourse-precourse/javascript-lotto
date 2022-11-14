@@ -1,5 +1,5 @@
-const LOTTO = require('./constants/lotto');
-const ERROR = require('./constants/error');
+const LOTTO = require('./constants/Lotto');
+const ERROR = require('./constants/Error');
 
 class Validator {
   static isDistinct(numbers) {

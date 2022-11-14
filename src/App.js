@@ -1,8 +1,8 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const Validator = require('./Validator');
-const LOTTO = require('./constants/lotto');
-const MESSAGE = require('./constants/message');
+const LOTTO = require('./constants/Lotto');
+const MESSAGE = require('./constants/Message');
 
 class App {
   #money;
