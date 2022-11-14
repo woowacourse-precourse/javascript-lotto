@@ -93,6 +93,9 @@ class App {
     if(this.winningLotto.includes(number)){
       throw new Error("[ERROR] 보너스 번호가 다른 번호와 중복되지 않게 해주세요.");
     }
+    if(1 > number || 45 < number){
+      throw new Error("[ERROR] 보너스 번호는 1부터 45사이의 숫자여야 합니다.");
+    }
   }
 
   compareLottoNumber(userLotto){
