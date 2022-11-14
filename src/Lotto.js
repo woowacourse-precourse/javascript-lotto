@@ -12,10 +12,10 @@ class Lotto {
   validate(numbers) {
     let uniqueNumbersLength = [...new Set(numbers)].length;
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error(Constant.LOTTO_NUMBERS_LENGTH_SHOULD_BE6);
     }
     if (numbers.length !== uniqueNumbersLength) {
-      throw new Error(Constant.lottoNumbersShouldBeUnique);
+      throw new Error(Constant.LOTTO_NUMBERS_SHOULD_BE_UNIQUE);
     }
   }
 
@@ -41,6 +41,8 @@ class Lotto {
     }
     return true;
   }
+
+  static countLotto() {}
 }
 
 module.exports = Lotto;
