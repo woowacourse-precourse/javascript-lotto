@@ -80,9 +80,9 @@ class Lotto {
     return stats.reduce((money, value, index) => {
       if (value > 0) {
         return (money += moneyArray[index] * value);
-      } else {
-        return money;
       }
+
+      return money;
     }, 0);
   }
 
@@ -94,9 +94,9 @@ class Lotto {
     return lotto.reduce((count, value) => {
       if (numbers.includes(value.toString())) {
         return count + 1;
-      } else {
-        return count;
       }
+
+      return count;
     }, 0);
   }
 
