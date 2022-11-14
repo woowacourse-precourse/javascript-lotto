@@ -26,7 +26,7 @@ class Statistics {
     const YIELD = this.getYield(TOTAL_PRIZE_MONEY, amount);
     Console.print('당첨 통계');
     Console.print('---');
-    // 일치하는 번호 개수, 등수별 당첨 금액, 등수별 당첨된 로또 개수, 보너스 번호 당첨 여부 전달
+    // 일치하는 번호 개수, 등수별 당첨 금액, 등수별 당첨된 로또 개수 인덱스, 보너스 번호 당첨 여부 전달
     Console.print(this.getResultText(3, PRIZE_MONEY.RANKING5, 4, false));
     Console.print(this.getResultText(4, PRIZE_MONEY.RANKING4, 3, false));
     Console.print(this.getResultText(5, PRIZE_MONEY.RANKING3, 2, false));
