@@ -40,6 +40,23 @@ class App {
 			num => (this.winLottoNums = num.split(",").map(Number))
 		);
 	}
+
+	isWinValidation(input) {
+		const inputNum = input.split(",");
+
+		if ([...new Set(inputNum)].length !== 6) {
+			throw new Error("[ERROR] 로또 번호는 중복되지 않는 숫자여야 합니다.");
+		}
+
+		inputNum.forEach(num => {
+			if (isNaN(num)) {
+				throw new Error("[ERROR] 로또 번호는 숫자여야 합니다.");
+			}
+			if (Number(num) > 1 && Number(num) < 45) {
+				throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+			}
+		});
+	}
 	play() {
 		Console.print("구입금액을 입력해 주세요.");
 	}
