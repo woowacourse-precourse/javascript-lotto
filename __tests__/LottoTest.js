@@ -26,4 +26,10 @@ describe("로또 클래스 테스트", () => {
       new Lotto([1, 2, 3, 4, 5, "a"]);
     }).toThrow("[ERROR]");
   });
+
+  test("로또 번호를 반환한다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    const result = lotto.getLotto();
+    expect(result).toEqual([1, 2, 3, 4, 5, 6]);
+  });
 });
