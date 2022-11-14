@@ -1,7 +1,12 @@
 class CheckError {
   static check(numbers) {
+    const setNumbers = new Set(numbers);
+
     if (numbers.length !== 6)
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+
+    if (setNumbers.size !== 6)
+      throw new Error('[ERROR] 로또 번호는 중복되면 안됩니다.');
 
     numbers.map((number) => {
       if (isNaN(number))
