@@ -16,6 +16,7 @@ class App {
 			result: [],
 			percent: 0,
 		};
+
 		this.static = [
 			{
 				sameNum: 3,
@@ -46,6 +47,7 @@ class App {
 		this.lotto = new Lotto(this.state.winLotto);
 		this.inputBonus();
 		this.match(this.state.publishLotto, this.state.bonus);
+		this.print();
 	}
 
 	inputMoney() {
@@ -66,6 +68,38 @@ class App {
 			this.state.bonus = number;
 		});
 	}
+	match(publishLotto, bonus) {
+		this.state.result = this.lotto.compare(publishLotto, bonus);
+		let add = 0;
+		this.state.result.forEach((count, index) => {
+			add += this.static[index].money * count;
+		});
+		this.state.percent = ((add / this.state.money) * 100).toFixed(1);
+	}
+	print() {
+		Console.print(MESSAGE.PRINT_TOTAL);
+		Console.print("---");
+
+		this.state.result.forEach((result, index) => {
+			if (index !== 3) {
+				Console.print(
+					`${this.static[index].sameNum}개 일치 (${this.static[
+						index
+					].money.toLocaleString()}원) - ${result}개`
+				);
+			} else {
+				Console.print(
+					`${this.static[index].sameNum}개 일치, 보너스 볼 일치 (${this.static[
+						index
+					].money.toLocaleString()}원) - ${result}개`
+				);
+			}
+		});
+		Console.print(
+			`${MESSAGE.PRINT_PROFIT_FRONT}${this.state.percent}${MESSAGE.PRINT_PROFIT_BACK}`
+		);
+	}
+
 	publishLotto() {
 		Console.print(`${this.state.buyLotto + MESSAGE.PRINT_BUY}`);
 		this.state.publishLotto = this.makeLotto(this.state.buyLotto);
@@ -74,6 +108,7 @@ class App {
 			Console.print(`[${String(ele).replaceAll(",", ", ")}]`);
 		});
 	}
+
 	makeLotto(num) {
 		let publishLottoArr = [];
 		for (let i = 0; i < num; i++) {
@@ -82,14 +117,6 @@ class App {
 			publishLottoArr.push(numbers);
 		}
 		return publishLottoArr;
-	}
-	match(publishLotto, bonus) {
-		this.state.result = this.lotto.compare(publishLotto, bonus);
-		let add = 0;
-		this.state.result.forEach((count, index) => {
-			add += this.static[index].money * count;
-		});
-		this.state.percent = ((add / this.state.money) * 100).toFixed(1);
 	}
 }
 
