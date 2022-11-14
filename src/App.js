@@ -1,5 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { MESSAGE, PRIZE } = require("./constants/index");
+const { MESSAGE } = require("./constants/index");
 
 const Validator = require("./Validator");
 const Generator = require("./Generator");
@@ -96,45 +96,11 @@ class App {
     const { threeCount, fourCount, fiveCount, fiveBonusCount, sixCount } =
       this.state.allCount;
 
-    Console.print(
-      MESSAGE.MATCH_THREE +
-        PRIZE.THREE.toLocaleString() +
-        MESSAGE.MATCH_PRIZE +
-        String(threeCount) +
-        MESSAGE.MATCH_COUNT
-    );
-
-    Console.print(
-      MESSAGE.MATCH_FOUR +
-        PRIZE.FOUR.toLocaleString() +
-        MESSAGE.MATCH_PRIZE +
-        String(fourCount) +
-        MESSAGE.MATCH_COUNT
-    );
-
-    Console.print(
-      MESSAGE.MATCH_FIVE +
-        PRIZE.FIVE.toLocaleString() +
-        MESSAGE.MATCH_PRIZE +
-        String(fiveCount) +
-        MESSAGE.MATCH_COUNT
-    );
-
-    Console.print(
-      MESSAGE.MATCH_FIVE_BONUS +
-        PRIZE.FIVE_BONUS.toLocaleString() +
-        MESSAGE.MATCH_PRIZE +
-        String(fiveBonusCount) +
-        MESSAGE.MATCH_COUNT
-    );
-
-    Console.print(
-      MESSAGE.MATCH_SIX +
-        PRIZE.SIX.toLocaleString() +
-        MESSAGE.MATCH_PRIZE +
-        String(sixCount) +
-        MESSAGE.MATCH_COUNT
-    );
+    Console.print(this.generator.getThreeCountMessage(threeCount));
+    Console.print(this.generator.getFourCountMessage(fourCount));
+    Console.print(this.generator.getFiveCountMessage(fiveCount));
+    Console.print(this.generator.getFiveBonusCountMessage(fiveBonusCount));
+    Console.print(this.generator.getSixCountMessage(sixCount));
 
     this.calculate();
   }
@@ -143,7 +109,7 @@ class App {
     const revenue = this.lotto.getRevenue(this.state.allCount);
     const rate = ((revenue / this.state.money) * 100).toFixed(1);
 
-    Console.print(MESSAGE.CALCULATE_RATE + rate + MESSAGE.CALCULATE_PERCENT);
+    Console.print(this.generator.getRateMessage(rate));
 
     this.exit();
   }

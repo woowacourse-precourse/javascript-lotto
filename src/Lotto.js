@@ -28,13 +28,10 @@ class Lotto {
           fourCount += 1;
           break;
         case 5:
-          if (numbers.includes(bonusNumber)) {
-            fiveBonusCount += 1;
-            break;
-          }
-          fiveCount += 1;
+          numbers.includes(bonusNumber)
+            ? (fiveBonusCount += 1)
+            : (fiveCount += 1);
           break;
-
         case 6:
           sixCount += 1;
           break;
