@@ -1,5 +1,10 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { LOTTO_MESSAGE } = require("./util/Constant");
+const {
+  LOTTO_MESSAGE,
+  LOTTO_MIN,
+  LOTTO_MAX,
+  LOTTO_ERROR,
+} = require("./util/Constant");
 const buyLotto = require("./BuyLotto");
 
 const Budget = require("./Budget");
@@ -35,7 +40,26 @@ class App {
       const numbers = input.split(",").map(Number);
       new Lotto(numbers);
       this.winningLotto = numbers;
+      this.setBonusNum();
     });
+  }
+  setBonusNum() {
+    Console.readLine(LOTTO_MESSAGE.BONUS_NUM, (input) => {
+      const number = Number(input);
+      this.checkBonusNum(number);
+      this.bonusLotto = number;
+    });
+  }
+  checkBonusNum(number) {
+    if (isNaN(number)) {
+      throw new Error(LOTTO_ERROR.NUM);
+    }
+    if (!(number <= LOTTO_MAX && number >= LOTTO_MIN)) {
+      throw new Error(LOTTO_ERROR.RANGE);
+    }
+    if (this.winningLotto.indexOf(number) != -1) {
+      throw new Error(LOTTO_ERROR.REPEAT);
+    }
   }
 }
 const app = new App();
