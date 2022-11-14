@@ -36,7 +36,17 @@ class App {
 
   drawLotto(lottos, winningNumbers, bonus) {}
 
-  validateBonusNumber(winningNumbers, bonus) {}
+  validateBonusNumber(winningNumbers, bonus) {
+    if (isNaN(bonus)) {
+      throw new Error(LOTTO_NAN_ERROR);
+    }
+    if (winningNumbers.includes(bonus)) {
+      throw new Error(BONUS_DUPLICATE_ERROR);
+    }
+    if (bonus < MIN_NUM || bonus > MAX_NUM) {
+      throw new Error(LOTTO_OUT_OF_RANGE_ERROR);
+    }
+  }
 
   inputWinningNumbersCallback(lottos, winningNumbers, bonus) {
     this.validateBonusNumber(winningNumbers, bonus);
