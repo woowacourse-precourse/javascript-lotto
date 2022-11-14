@@ -45,6 +45,31 @@ class App {
     });
   }
 
+  static totalWinningCounter(purchaseLottoList, winningNumber, bonusNumber) {
+    let winningList = {
+      threeMatches: 0,
+      fourMatches: 0,
+      fiveMatches: 0,
+      fiveAndBonusMatches: 0,
+      sixMatches: 0,
+    };
+    purchaseLottoList.map(lottoNumber => {
+      const matchCount = App.winningDiscriminator(lottoNumber, winningNumber);
+      const bonusCount = App.bonusDiscriminator(lottoNumber, bonusNumber);
+      App.winningListModifier(winningList, matchCount, bonusCount);
+    });
+    return winningList;
+  }
+
+  static winningListModifier(winningList, matchCount, bonusCount) {
+    const copyList = winningList;
+    if (matchCount === 3) copyList.threeMatches += 1;
+    if (matchCount === 4) copyList.fourMatches += 1;
+    if (matchCount === 5 && !bonusCount) copyList.fiveMatches += 1;
+    if (matchCount === 5 && bonusCount) copyList.fiveAndBonusMatches += 1;
+    if (matchCount === 6) copyList.sixMatches += 1;
+  }
+
   static winningDiscriminator(lottoNumber, winningNumber) {
     return lottoNumber.reduce(
       (acc, myNumber) => (winningNumber.includes(myNumber) ? acc + 1 : acc),
@@ -63,7 +88,20 @@ class App {
     App.lottoPurchaser();
   }
 }
-const app = new App();
-app.play();
+console.log(
+  App.totalWinningCounter(
+    [
+      [1, 2, 3, 4, 5, 6],
+      [1, 2, 3, 4, 5, 7],
+      [1, 8, 3, 4, 5, 7],
+      [1, 9, 24, 4, 5, 7],
+      [1, 45, 34, 3, 5, 7],
+      [21, 22, 23, 24, 25, 27],
+      [1, 23, 43, 24, 25, 27],
+    ],
+    '1,2,3,4,5,6',
+    7,
+  ),
+);
 
 module.exports = App;
