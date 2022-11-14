@@ -9,30 +9,30 @@ const LOTTO = {
   UNIT_PRICE: 1000,
 };
 
-const LOTTO_PRIZE = {
-  FIRST: {
+const LOTTO_PRIZE_LIST = [
+  {
     CONDITION: `6개 일치`,
     PRIZE_MONEY: ONE_BILLION * 2,
   },
-  SECOND: {
+  {
     CONDITION: `5개 일치, 보너스 볼 일치`,
     PRIZE_MONEY: ONE_MILLION * 30,
   },
-  THIRD: {
+  {
     CONDITION: `5개 일치`,
     PRIZE_MONEY: ONE_MILLION * 1.5,
   },
-  FOURTH: {
+  {
     CONDITION: `4개 일치`,
     PRIZE_MONEY: ONE_THOUSAND * 50,
   },
-  FIFTH: {
+  {
     CONDITION: `3개 일치`,
     PRIZE_MONEY: ONE_THOUSAND * 5,
   },
-};
+];
 
 module.exports = {
   LOTTO,
-  LOTTO_PRIZE,
+  LOTTO_PRIZE_LIST,
 };
