@@ -30,6 +30,20 @@ class Lotto {
     this.printLottos(numberOfLotto);
   }
 
+  printLottos(numberOfLotto) {
+    const lottoArrays = [];
+    for (let i = 0; i < numberOfLotto; i++) {
+      this.#numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+      console.log(this.#numbers);
+      this.validate(this.#numbers);
+      console.log(this.#numbers);
+      lottoArrays.push(this.#numbers);
+    }
+    lottoArrays.forEach((numbers) => {
+      return Console.print(numbers);
+      } 
+    )
+  }
 }
 
 module.exports = Lotto;
