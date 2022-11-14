@@ -1,27 +1,29 @@
 const ErrorCheck = require('../components/ErrorCheck');
-const Functions = require('../components/Functions');
+const Lotto = require('../src/Lotto');
 
 describe('로또 클래스 테스트', () => {
   test('콤마로 구분된 숫자 문자열을 숫자 배열로 반환한다', () => {
-    expect(Functions.digitize('1,2,3,4,5,6')).toEqual([1, 2, 3, 4, 5, 6]);
+    expect(Lotto.digitize('1,2,3,4,5,6')).toEqual([1, 2, 3, 4, 5, 6]);
   });
 
   test('로또 1개의 당첨 개수 확인', () => {
-    const winningNumber = [1, 2, 3, 4, 5, 6];
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     const lottoNumber = [4, 5, 6, 10, 11, 12];
-    expect(Functions.getMatchCount(winningNumber, lottoNumber)).toEqual(3);
+
+    expect(lotto.getMatchCount(lottoNumber)).toEqual(3);
   });
 
   test('당첨 개수에 의한 순위 출력', () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     const matchCounts = [1, 2, 3, 4, 5, 5, 6];
     const result = [-1, -1, 4, 3, 2, 2, 0];
     const includesBonus = false;
 
     matchCounts.forEach((count, index) => {
-      expect(Functions.getRank(count, includesBonus)).toEqual(result[index]);
+      expect(lotto.getRank(count, includesBonus)).toEqual(result[index]);
     });
 
-    expect(Functions.getRank(5, true)).toEqual(1);
+    expect(lotto.getRank(5, true)).toEqual(1);
   });
 
   test('구매 금액 입력 오류', () => {
@@ -49,8 +51,6 @@ describe('로또 클래스 테스트', () => {
     const winningResult = [0, 1, 0, 0, 0];
     const lottoYield = (30000000 / 50000).toFixed(3);
 
-    expect(Functions.calLottoYield(purchaseAmount, winningResult)).toEqual(
-      lottoYield
-    );
+    expect(Lotto.calYield(purchaseAmount, winningResult)).toEqual(lottoYield);
   });
 });
