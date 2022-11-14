@@ -103,4 +103,8 @@ class App {
     }
   }
 
+  printLottoCount(lottoCount) {
+    Console.print(`${lottoCount}개를 구매했습니다.`)
+  }
+
 module.exports = App;
