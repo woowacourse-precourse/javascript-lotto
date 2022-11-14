@@ -1,6 +1,6 @@
-const { getLottoBudget, getTargetNumber, getBonusNumber } = require('./inputUtils');
+const { getLottoBudget, getTargetNumber, getBonusNumber } = require('./utils/inputUtils');
 const Game = require('./Game');
-const { LOTTO_PRICE } = require('./config');
+const { LOTTO_PRICE } = require('./utils/config');
 const { Console } = require('@woowacourse/mission-utils');
 class App {
   play() {

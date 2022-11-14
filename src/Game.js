@@ -6,10 +6,10 @@ const {
   PROFIT_PHRASE,
   STAT_PHRASE,
   PURCHASE_PHRASE,
-} = require('./config');
+} = require('./utils/config');
 const Lotto = require('./Lotto.js');
 const Rank = require('./Rank.js');
-const { validateBonusNumberNotInLottoNumber } = require('./validate.js');
+const { validateBonusNumberNotInLottoNumber } = require('./utils/validate.js');
 
 class Game {
   #lottos = [];

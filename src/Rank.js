@@ -1,4 +1,4 @@
-const { PRIZES } = require('./config');
+const { PRIZES } = require('./utils/config');
 const Lotto = require('./Lotto.js');
 
 class Rank {
