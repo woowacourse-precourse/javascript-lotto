@@ -1,3 +1,6 @@
+const MissionUtils = require('@woowacourse/mission-utils');
+const { amountValidate } = require('./Validates');
+
 class App {
   #amount;
 
@@ -17,13 +20,20 @@ class App {
     this.#revenue = 0;
   }
 
-  play() {}
+  play() {
+    this.inputAmount();
+  }
 
-  inputAmount() {}
+  inputAmount() {
+    MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (amount) => {
+      this.setAmount(amount);
+    });
+  }
 
   issueLottos() {}
 
   setAmount(amount) {
+    amountValidate(amount);
     this.#amount = amount;
   }
 
@@ -72,5 +82,8 @@ class App {
     return revenueRate.toFixed(1);
   }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
