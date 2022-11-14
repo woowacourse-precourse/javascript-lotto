@@ -26,7 +26,7 @@ const Budget = class extends ErrorBoundary {
     return DEFAULT;
   }
 
-  buyTicket() {
+  countTicket() {
     return this.#budget / TICKET_PRICE;
   }
 };
