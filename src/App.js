@@ -4,6 +4,7 @@ class App {
   constructor() {
     this.LottoGame = new LottoGame();
   }
+
   play() {
     this.LottoGame.play();
   }
