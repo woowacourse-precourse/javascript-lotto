@@ -23,6 +23,9 @@ const CONSTANTS = Object.freeze({
   MIN_LOTTO: 1,
   MAX_LOTTO: 45,
   LOTTO_MAX_COUNT: 6,
+  TWELVE: 12,
 });
+
+// const a = [a, a, s, d, f];
 
 module.exports = { MESSAGE, CONSTANTS };
