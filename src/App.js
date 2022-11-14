@@ -1,22 +1,12 @@
 /* eslint-disable no-empty-function */
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
+const PrintInfo = require('./PrintInfo');
+const { PRIZE_MONEY } = require('./constants');
 
-const USER_MONEY_INPUT_REQUEST = '구입금액을 입력해 주세요.';
 const USER_MONEY_INPUT_ERROR = '[ERROR] 구입금액이 올바르지 않습니다.';
-const LOTTO_QUANTITY_OUTPUT = '개를 구매했습니다.';
-const WINNING_LOTTO_REQUEST = '\n당첨 번호를 입력해 주세요.';
-const BONUS_NUMBER_REQUEST = '\n보너스 번호를 입력해 주세요.';
-const PRINT_STRING = [
-  '3개 일치 (5,000원) - ',
-  '4개 일치 (50,000원) - ',
-  '5개 일치 (1,500,000원) - ',
-  '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
-  '6개 일치 (2,000,000,000원) - ',
-];
-const PRIZE_MONEY = [5000, 50000, 1500000, 30000000, 2000000000];
 const ERROR_BONUS_NUMBER = '[ERROR] 유효한 번호가 아닙니다.';
-const PRIZE_RESULT_PRINT = '\n당첨 통계\n---';
+const printInfo = new PrintInfo();
 class App {
   // eslint-disable-next-line no-useless-constructor
   // lotteryQuantity = 0;
@@ -40,7 +30,7 @@ class App {
   }
 
   play() {
-    Console.print(USER_MONEY_INPUT_REQUEST);
+    printInfo.requestUserMoneyInput();
     this.startLotto();
   }
 
@@ -58,7 +48,7 @@ class App {
     }
     this.userCost = userMoneyInput;
     const lotteryQuantity = this.countLotteries(this.userCost);
-    Console.print(`\n${lotteryQuantity}${LOTTO_QUANTITY_OUTPUT}`);
+    printInfo.printLotteryQuantity(lotteryQuantity);
     this.issueLotteries(lotteryQuantity);
   }
 
@@ -83,7 +73,7 @@ class App {
     this.userLottoArray = this.pickRandomLotteries(lotteryQuantity);
     this.userLottoArray.forEach((oneLottery) => {
       const lottoNumbers = oneLottery.join(', ');
-      Console.print(`[${lottoNumbers}]`);
+      printInfo.printLottoNumbers(lottoNumbers);
     });
   }
 
@@ -99,7 +89,7 @@ class App {
   }
 
   inputWinningLotto() {
-    Console.print(WINNING_LOTTO_REQUEST);
+    printInfo.requestWinningLotto();
     Console.readLine('', (winningNumber) => {
       const winningNumberArray = winningNumber
         .split(',')
@@ -115,7 +105,7 @@ class App {
   }
 
   inputBonusNumber() {
-    Console.print(BONUS_NUMBER_REQUEST);
+    printInfo.requestBonusNumber();
     Console.readLine('', (bonusNumber) => {
       const inputBonusNumber = parseInt(bonusNumber, 10);
       if (!this.isValidNumber(inputBonusNumber)) {
@@ -139,7 +129,7 @@ class App {
   }
 
   lotteryDraw() {
-    Console.print(PRIZE_RESULT_PRINT);
+    printInfo.printPrizeResult();
     this.checkLottoNumber();
   }
 
@@ -179,7 +169,7 @@ class App {
 
   printWinResult() {
     this.winResult.forEach((element, idx) => {
-      Console.print(`${PRINT_STRING[idx]}${element}개`);
+      printInfo.printWinResult(idx, element);
     });
     this.getRateOfReturn();
     this.exitLottoGame();
@@ -193,7 +183,7 @@ class App {
     const rateOfReturnString = this.rateOfReturn
       .toString()
       .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
-    Console.print(`총 수익률은 ${rateOfReturnString}%입니다.`);
+    printInfo.printRateOfReturn(rateOfReturnString);
   }
 
   exitLottoGame() {
