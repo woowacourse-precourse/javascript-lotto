@@ -146,6 +146,6 @@ describe("로또 테스트", () => {
     expect(() => {
       const app = new App();
       app.play();
-    }).toThrow("[ERROR]");
+    }).toThrow(ERROR_MESSAGE);
   });
 });
