@@ -21,6 +21,10 @@ class User {
         .map(() => Lotto.fromRandom()),
     );
   }
+
+  getLottos() {
+    return this.#lottos;
+  }
 }
 
 module.exports = User;
