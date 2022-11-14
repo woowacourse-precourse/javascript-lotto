@@ -18,6 +18,21 @@ class Lottos {
     this.createLottos();
   }
 
+  printCount() {
+    MissionUtils.Console.print("\n");
+    MissionUtils.Console.print(`${this.count}개를 구매했습니다.`);
+  }
+
+  printLottos() {
+    this.printCount();
+
+    this.lottos.forEach((lotto) => {
+      lotto.printLotto();
+    });
+
+    MissionUtils.Console.print("\n");
+  }
+
   createLottos() {
     let numbers = [];
 
@@ -26,18 +41,6 @@ class Lottos {
 
       this.lottos.push(new Lotto(numbers));
     }
-  }
-
-  printCount() {
-    MissionUtils.Console.print(`${this.count}개를 구매했습니다.`);
-  }
-
-  printLottos() {
-    this.printCount();
-    
-    this.lottos.forEach((lotto) => {
-      lotto.printLotto();
-    });
   }
 
   createRanks(winningNumbers, bonusNum) {
@@ -51,7 +54,7 @@ class Lottos {
   printResult(winningNumber, bonusNum) {
     this.createRanks(winningNumber, bonusNum);
 
-    const map = this.ranks.reduce((accu, curr) => {
+    const result = this.ranks.reduce((accu, curr) => {
       accu.set(curr, (accu.get(curr) || 0) + 1);
       return accu;
     }, new Map());
@@ -66,14 +69,15 @@ class Lottos {
 
     const winningMoney = [2000000000, 30000000, 1500000, 50000, 5000];
 
+    MissionUtils.Console.print("당첨 통계\n---");
     let userWinningMoney = 0;
 
     for (let rank = RANK.FIFTH; rank >= RANK.FIRST; rank--) {
       let cnt = 0;
 
-      if (map.has(rank)) {
-        cnt = map.get(rank);
-        userWinningMoney += winningMoney[rank - 1] * map.get(rank);
+      if (result.has(rank)) {
+        cnt = result.get(rank);
+        userWinningMoney += winningMoney[rank - 1] * result.get(rank);
       }
 
       MissionUtils.Console.print(`${statisticsMsg[rank - 1]}${cnt}개`);
@@ -89,7 +93,9 @@ class Lottos {
   printRevenueRate(userWinningMoney) {
     let revenueRate = this.calculateRevenueRate(userWinningMoney);
 
-    MissionUtils.Console.print(`총 수익률은 ${revenueRate}%입니다.`);
+    MissionUtils.Console.print(
+      `총 수익률은 ${revenueRate.toFixed(1)}%입니다.\n`
+    );
   }
 }
 
