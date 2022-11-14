@@ -18,15 +18,19 @@ const Seller = ((_) => {
       this.#statistic = new Statistic();
     }
 
-    requestLottoSale() {
+    saleLotto() {
+      this.#requestLottoSale();
+    }
+
+    #requestLottoSale() {
       this.#io.readline("구입금액을 입력해주세요.\n", this.#handleLottoSale.bind(this));
     }
 
-    requestLottoWinNumber() {
+    #requestLottoWinNumber() {
       this.#io.readline("\n당첨 번호를 입력해 주세요.\n", this.#handleLottoWinNumber.bind(this));
     }
 
-    requestLottoBonusNumber() {
+    #requestLottoBonusNumber() {
       this.#io.readline("\n보너스 번호를 입력해 주세요.\n", this.#handleLottoBonusNumber.bind(this));
     }
 
@@ -36,19 +40,23 @@ const Seller = ((_) => {
       Object.assign(this[Private], { lottos: this.#generateLottos() });
       const { buyLottoNumber, lottos } = this[Private];
       this.#buyer.outputView({ buyLottoNumber, lottos });
-      this.requestLottoWinNumber();
+      this.#requestLottoWinNumber();
     }
 
     #handleLottoWinNumber(winNumber) {
       this.validateWinNumber(winNumber);
       Object.assign(this[Private], { winNumber });
-      this.requestLottoBonusNumber();
+      this.#requestLottoBonusNumber();
     }
 
     #handleLottoBonusNumber(bonusNumber) {
       this.validateBonusNumber(bonusNumber);
       Object.assign(this[Private], { bonusNumber: Number(bonusNumber) });
-      const { winNumber, bonusNumber, lottos } = this[Private];
+      this.#lottoResult();
+    }
+
+    #lottoResult() {
+      const { winNumber, lottos, bonusNumber } = this[Private];
       this.#statistic.outputView({ lottos, winNumber, bonusNumber });
       this.#io.close();
     }
@@ -88,7 +96,5 @@ const Seller = ((_) => {
     }
   };
 })();
-
-new Seller().requestLottoBuy();
 
 module.exports = Seller;
