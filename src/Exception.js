@@ -24,7 +24,7 @@ function checkRangeOfNumber(number) {
 
 function validateDuplicateNumbers(numbers) {
   const list = [];
-  number.forEach(function (number) {
+  numbers.forEach(function (number) {
     checkExistNumber(list, number);
     list.push(number);
   });
