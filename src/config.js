@@ -6,56 +6,31 @@ const GAME_RANGE = {
   NUM_LENGTH: 6,
 };
 
-const BONUS_RANGE = {
-  BONUS_MIN: 1,
-  BONUS_MAX: 45,
-  BONUS_LENGTH: 1,
-};
-
 const PRIZES = {
-  1: {
-    VALUE: 2000000000,
-  },
-  2: {
-    VALUE: 30000000,
-  },
-  3: {
-    VALUE: 1500000,
-  },
-  4: {
-    VALUE: 50000,
-  },
-  5: {
-    VALUE: 5000,
-  },
-};
-
-/**
- * RANK: {
- *  COUNT: count of matching numbers,
- *  BONUS: whether bonus number is included or not,
- * }
- */
-const PRIZE_CONFIG = {
   1: {
     COUNT: 6,
     BONUS: false,
+    VALUE: 2000000000,
   },
   2: {
     COUNT: 5,
     BONUS: true,
+    VALUE: 30000000,
   },
   3: {
     COUNT: 5,
     BONUS: false,
+    VALUE: 1500000,
   },
   4: {
     COUNT: 4,
     BONUS: false,
+    VALUE: 50000,
   },
   5: {
     COUNT: 3,
     BONUS: false,
+    VALUE: 5000,
   },
 };
 
@@ -96,9 +71,7 @@ const GAME_INPUT_ERRORS = {
 
 module.exports = {
   GAME_RANGE,
-  BONUS_RANGE,
   PRIZES,
-  PRIZE_CONFIG,
   LOTTO_PRICE,
   USER_INPUT_PHRASE,
   PROFIT_PHRASE,

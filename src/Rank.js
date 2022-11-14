@@ -1,4 +1,4 @@
-const { PRIZE_CONFIG } = require('./config');
+const { PRIZES } = require('./config');
 const Lotto = require('./Lotto.js');
 
 class Rank {
@@ -29,7 +29,7 @@ class Rank {
     const { lottoMatchCount, isBonusMatch } = this.matchLotto(lotto);
     const matchingRanks = [];
 
-    Object.entries(PRIZE_CONFIG).forEach(([prizeRank, prize]) => {
+    Object.entries(PRIZES).forEach(([prizeRank, prize]) => {
       if (lottoMatchCount === prize.COUNT && prize.BONUS === true && isBonusMatch === true) {
         matchingRanks.push(prizeRank);
       } else if (lottoMatchCount === prize.COUNT && prize.BONUS === false) {
