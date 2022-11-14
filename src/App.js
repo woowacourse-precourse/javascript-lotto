@@ -5,8 +5,16 @@ class App {
   #numberOfLottery;
   #myLottery;
   #winningNumbers;
+  #bonusNumber;
 
   constructor() {}
+
+  getBonusNumber = () => {
+    Console.readLine(MESSAGE.GET_BONUS_NUMBER, (bonusNumber) => {
+      this.#bonusNumber = Number(bonusNumber);
+      this.printResult();
+    });
+  };
 
   getWinningNumber = () => {
     Console.readLine(MESSAGE.GET_WINNING_NUMBERS, (winningNumbers) => {
@@ -43,7 +51,7 @@ class App {
   getMoney = () => {
     Console.readLine(MESSAGE.GET_MONEY, (money) => {
       // TODO: 입력된 값 유효성 체크
-      this.#money = money;
+      this.#money = Number(money);
       this.getNumberOfLottery();
     });
   };
