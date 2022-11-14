@@ -45,7 +45,7 @@ class App {
     const lottos = [];
     for (let i = 0; i < numberOfLotto; i++) {
       const lottoNumbers = this.generateLottoNumber();
-
+      console.log(lottoNumbers);
       lottos.push(new Lotto(lottoNumbers));
     }
 
@@ -61,9 +61,13 @@ class App {
       App.LENGTH_OF_LOTTO_NUMBER
     );
 
-    if (numbers[0] < numbers[1]) return numbers;
+    const isAscending = numbers.every(
+      (value, index, array) => !index || array[index - 1] <= value
+    );
 
-    return numbers.sort();
+    if (isAscending) return numbers;
+
+    return numbers.sort((a, b) => a - b);
   }
 
   printLottos(lottos) {

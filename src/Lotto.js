@@ -16,6 +16,14 @@ class Lotto {
     if (new Set(numbers).size !== 6) {
       throw new Error("[ERROR] 로또 번호 숫자는 중복되지 않아야 합니다.");
     }
+
+    const isAscending = numbers.every(
+      (value, index, array) => !index || array[index - 1] <= value
+    );
+
+    if (!isAscending) {
+      throw new Error("[ERROR] 로또 번호 숫자는 오름차순이어야 합니다.");
+    }
   }
 
   // TODO: 추가 기능 구현
