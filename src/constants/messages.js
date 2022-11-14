@@ -24,5 +24,6 @@ const PRINT_MESSAGE = Object.freeze({
   SECOND_RANKING_MESSAGE: (num) =>
     `5개 일치, 보너스 볼 일치 (30,000,000원) - ${num}개`,
   FIRST_RANKING_MESSAGE: (num) => `6개 일치 (2,000,000,000원) - ${num}개`,
+  PRINT_YIELD_MESSAGE: (percent) => `총 수익률은 ${percent}입니다.`,
 });
 module.exports = { INPUT_MESSAGE, ERROR_MESSAGE, PRINT_MESSAGE };
