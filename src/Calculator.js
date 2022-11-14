@@ -11,8 +11,8 @@ class Calculator {
     if (winningCount === 5) return 3;
     if (winningCount === 4) return 4;
     if (winningCount === 3) return 5;
-    if (winningCount < 3) return null;
-    return null;
+    if (winningCount < 3) return 0;
+    return 0;
   }
 
   static totalWinningAmount(winningArray) {
