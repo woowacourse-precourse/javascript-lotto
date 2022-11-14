@@ -7,8 +7,8 @@ function getLottoRanking(lotto, winningLotto) {
     return lotto.hasBonusNumber(winningLottoBonusNumber) ? RANKING.SECOND : RANKING.THIRD;
   }
 
-  const ranking = RANKING_ARRAY.find((RANK) => matchCount === RANK.MATCH_COUNT);
-  return ranking || RANKING.NOTHING;
+  const lottoRanking = RANKING_ARRAY.find((RANK) => matchCount === RANK.MATCH_COUNT);
+  return lottoRanking || RANKING.NOTHING;
 }
 
 module.exports = getLottoRanking;
