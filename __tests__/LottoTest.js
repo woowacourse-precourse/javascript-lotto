@@ -1,4 +1,5 @@
 const Lotto = require("../src/Lotto");
+const MissionUtils = require("@woowacourse/mission-utils");
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
@@ -15,4 +16,26 @@ describe("로또 클래스 테스트", () => {
   });
 
   // 아래에 추가 테스트 작성 가능
+  test("로또 번호가 1부터 45사이의 숫자가 아니면 예외가 발생한다", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, 100]);
+    }).toThrow("[ERROR]");
+  });
+
+  test("금액만큼 무작위 숫자의 로또를 생성한다.", () => {
+    Lotto.generateNumbers = jest.fn();
+    Lotto.generateNumbers.mockImplementation(() => {
+      const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+
+      return numbers;
+    });
+
+    const amount = 8000;
+    const count = amount / 1000;
+    const logSpy = jest.spyOn(Lotto, "generateNumbers");
+    const lottoList = Lotto.purchase(amount);
+
+    expect(lottoList.length).toBe(count);
+    expect(logSpy).toHaveReturnedTimes(count);
+  });
 });

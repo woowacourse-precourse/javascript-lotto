@@ -14,6 +14,20 @@ class Validator {
       callback(amount);
     };
   }
+
+  static lottoNumbers(lottoNumbers) {
+    if (lottoNumbers.length !== 6) {
+      throw new CustomError(ERROR_CODE.WRONG_COUNT);
+    }
+
+    if (lottoNumbers.some((number) => number < 1 || number > 45)) {
+      throw new CustomError(ERROR_CODE.OUT_OF_RANGE);
+    }
+
+    if (lottoNumbers.length !== new Set(lottoNumbers).size) {
+      throw new CustomError(ERROR_CODE.DUPLICATED);
+    }
+  }
 }
 
 module.exports = Validator;
