@@ -19,6 +19,16 @@ class LottoAdmin {
         .join("\n")
     );
   }
+
+  static getMargin(price, [lottos, winStatistics]) {
+    const margin = Object.keys(winStatistics).reduce(
+      (acc, key, idx) => acc + winStatistics[key] * price[idx],
+      0
+    );
+    const totalLottoPrice = lottos.length * 1000;
+    const middle = (margin / totalLottoPrice) * 100;
+    return Math.round(middle * 100) / 100;
+  }
 }
 
 module.exports = LottoAdmin;
