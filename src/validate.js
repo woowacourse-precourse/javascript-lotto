@@ -34,9 +34,8 @@ const validateBonusNumber = (bonus) => {
   const isNumber = _isNumber(bonus);
   const isInRange = _isInRange(bonus);
 
-  if (isNumber === false || isInRange === false) {
-    throw Error(GAME_INPUT_ERRORS.INVALID_INPUT_RANGE);
-  }
+  if (isNumber === false) throw Error(GAME_INPUT_ERRORS.INVALID_BONUS_TYPE);
+  if (isInRange === false) throw Error(GAME_INPUT_ERRORS.INVALID_BONUS_RANGE);
 };
 
 const validateBonusNumberNotInLottoNumber = (bonusNumber, targetNumbers) => {
