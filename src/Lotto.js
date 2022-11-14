@@ -1,3 +1,6 @@
+const LottoPurchase = require("../src/LottoPurchase");
+
+const lottoPurchase = new LottoPurchase(2000);
 
 class Lotto {
   #numbers;
@@ -5,6 +8,7 @@ class Lotto {
   constructor(numbers, bonusNumber) {
     this.lottoNumberMax = 45;
     this.lottoNumberMin = 1;
+    this.winningNumber = new Array(5);
     this.validate(numbers);
     this.duplicate(numbers);
     this.numberLimit(numbers);
@@ -45,6 +49,15 @@ class Lotto {
     if (bonusNumber > this.lottoNumberMax || bonusNumber < this.lottoNumberMin) {
       throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
+  }
+
+  lottoCompare(lottoNumbers) {
+    let sameNumber = lottoNumbers.filter(num => this.#numbers.includes(num));
+    
+    if (sameNumber.length === 5) {
+      return this.bonusCompare(sameNumber, lottoNumbers);
+    }
+    return this.lottoWinning(sameNumber);
   }
 }
 
