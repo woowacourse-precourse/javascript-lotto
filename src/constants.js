@@ -9,6 +9,11 @@ const ERROR = {
   NOT_NUMBER: "[ERROR] 입력값에 숫자 이외의 문자가 있습니다.",
   NOT_DIVISIBLE: "[ERROR] 구입 금액이 1000원 단위로 나누어 떨어지지 않습니다",
   IS_ZERO_WON: "[ERROR] 구입 금액이 0원입니다.",
+  NOT_SIX_NUMBER: "[ERROR] 당첨 번호가 6자리가 아닙니다.",
+  DUPLICATE_NUMBER: "[ERROR] 당첨 번호에 중복 숫자가 있습니다.",
+  IS_OVER_NUMBER_IN_RANGE: "[ERROR] 당첨 번호 중에서 45초과의 숫자가 있습니다.",
+  IS_UNDER_NUMBER_IN_RANGE: "[ERROR] 당첨 번호 중에서 1미만의 숫자가 있습니다.",
+  CONTAINS_BLANKS: "[ERROR] 당첨 번호에 공백문자가 포함되어있습니다.",
 };
 
 const RULE = {

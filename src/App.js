@@ -2,11 +2,13 @@ const { Console } = require("@woowacourse/mission-utils");
 const { MESSAGE } = require("./constants.js");
 const buyingAmountValidator = require("./buyingAmountValidator.js");
 const LottoTicket = require("./LottoTicket.js");
+const Lotto = require("./Lotto.js");
 
 class App {
   constructor() {
     this.buyingLottoNumber;
     this.lottoTicketList;
+    this.winningNumberList;
   }
 
   play() {
@@ -32,8 +34,13 @@ class App {
 
   InputWinningNumber() {
     Console.readLine(MESSAGE.INPUT_WINNING_NUMBER, (winningNumber) => {
-      console.log(winningNumber);
+      this.getWinningNumberList(winningNumber);
     });
+  }
+
+  getWinningNumberList(winningNumber) {
+    this.winningNumberList = winningNumber.split(",");
+    new Lotto(this.winningNumberList);
   }
 }
 
