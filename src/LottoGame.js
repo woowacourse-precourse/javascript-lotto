@@ -40,11 +40,8 @@ class LottoGame {
   }
 
   printResult() {
-    this.#lottoResult.print(
-      this.#lotto.getNumbers(),
-      this.#lottoIssuer.getLotteries(),
-      this.#payment.getMoney()
-    );
+    this.#lottoResult.print(this.#lotto.getNumbers(), this.#lottoIssuer.getLotteries());
+    Console.close();
   }
 }
 

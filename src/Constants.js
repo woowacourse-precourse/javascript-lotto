@@ -1,3 +1,5 @@
+const EA = '개';
+const FIVE = 5;
 const LOTTO_PRICE = 1000;
 
 const LOTTO_MATCHES = {
@@ -19,8 +21,6 @@ const LOTTO_PRIZE = {
   three: 5000,
   out: 0,
 };
-
-const EA = '개';
 
 const RESULT_MESSAGE = {
   beginning: '\n당첨 통계\n---',
@@ -48,10 +48,11 @@ const ERROR_MESSAGE = {
 };
 
 module.exports = {
+  EA,
+  FIVE,
   LOTTO_PRICE,
   LOTTO_MATCHES,
   LOTTO_PRIZE,
-  EA,
   RESULT_MESSAGE,
   INPUT_MESSAGE,
   ERROR_MESSAGE,

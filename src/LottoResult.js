@@ -1,5 +1,12 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { LOTTO_MATCHES, LOTTO_PRIZE, EA, RESULT_MESSAGE } = require('./Constants');
+const {
+  EA,
+  FIVE,
+  LOTTO_MATCHES,
+  LOTTO_PRIZE,
+  RESULT_MESSAGE,
+  LOTTO_PRICE,
+} = require('./Constants');
 
 class LottoResult {
   constructor() {
@@ -15,9 +22,9 @@ class LottoResult {
     };
   }
 
-  print(winningNumbers, lotteries, money) {
+  print(winningNumbers, lotteries) {
     this.countMatching(winningNumbers, lotteries);
-    this.calculateProfitRate(money);
+    this.calculateProfitRate(lotteries.length * LOTTO_PRICE);
     this.printResult();
   }
 
@@ -25,20 +32,26 @@ class LottoResult {
     lotteries.forEach((lottery) => {
       const count = LottoResult.getMatchCount(winningNumbers, new Set(lottery));
       this.lottoMatchCounter[count] += 1;
-      this.profit += LOTTO_PRIZE[count];
     });
   }
 
   static getMatchCount({ winning, bonus }, lottery) {
     const count = winning.filter((number) => lottery.has(number)).length;
-    if (count === 5 && lottery.has(bonus)) {
+    if (count === FIVE && lottery.has(bonus)) {
       return LOTTO_MATCHES.fiveWithBonus;
     }
     return LOTTO_MATCHES[count];
   }
 
+  calculateProfit() {
+    return Object.entries(this.lottoMatchCounter).reduce((profit, [matching, count]) => {
+      const cumulativeProfit = profit + LOTTO_PRIZE[matching] * count;
+      return cumulativeProfit;
+    }, 0);
+  }
+
   calculateProfitRate(money) {
-    this.profitRate = ((this.profit / money) * 100).toFixed(1);
+    this.profitRate = ((this.calculateProfit() / money) * 100).toFixed(1);
   }
 
   printResult() {
@@ -51,7 +64,6 @@ class LottoResult {
     Console.print(`${RESULT_MESSAGE.fiveWithBonus}${fiveWithBonus}${EA}`);
     Console.print(`${RESULT_MESSAGE.six}${six}${EA}`);
     Console.print(`총 수익률은 ${this.profitRate}%입니다.`);
-    Console.close();
   }
 }
 
