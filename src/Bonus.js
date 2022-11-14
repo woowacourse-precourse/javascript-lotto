@@ -1,4 +1,8 @@
-const { ERROR, LOTTO_RANGE_REGEX } = require('./lib/constants');
+const { ERROR } = require('./lib/constants');
+const {
+  checkWinningIncludeBonus,
+  checkBonusRange,
+} = require('./lib/utils/bonusUtils');
 
 class Bonus {
   #bonus;
@@ -9,11 +13,11 @@ class Bonus {
   }
 
   validate(bonus, winningNumbers) {
-    if (winningNumbers.includes(bonus)) {
+    if (checkWinningIncludeBonus(winningNumbers, bonus)) {
       throw new Error(ERROR.DUPLICATE_BONUS_ERROR);
     }
 
-    if (!LOTTO_RANGE_REGEX.test(bonus)) {
+    if (checkBonusRange(bonus)) {
       throw new Error(ERROR.INCORRECT_RANGE_ERROR);
     }
   }
