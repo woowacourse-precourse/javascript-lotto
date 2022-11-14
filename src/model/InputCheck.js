@@ -1,16 +1,12 @@
 class InputCheck {
   checkAmountInput(input) {
     const INPUT_NUM = Number(input);
-    const [CHECKED_IS_NUM, CHECKED_THOUSAND, CHECKED_UNIT] = [
-      this.checkIsNum(INPUT_NUM),
-      this.checkThousand(INPUT_NUM),
-      this.checkUnit(INPUT_NUM),
-    ];
 
-    if (CHECKED_IS_NUM && CHECKED_THOUSAND && CHECKED_UNIT) {
-      return true;
-    }
-    return false;
+    return (
+      this.checkIsNum(INPUT_NUM) &&
+      this.checkThousand(INPUT_NUM) &&
+      this.checkUnit(INPUT_NUM)
+    );
   }
 
   checkBonusInput(input, winSplitNum) {
