@@ -6,6 +6,7 @@ class App {
   lottoNumArr;
   winNums;
   bonusNum;
+  // player가 입력할 횟수의 초깃값
   order = 0;
 
   play() {

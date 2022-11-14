@@ -131,10 +131,11 @@ describe("로또 클래스 테스트", () => {
     const matchCount = "FOURTH_LOTTERY";
 
     //output
-    const output = new Lotto(winNums, bonusNum, lottoNumaArr).classifyLottery(
-      onlyMatchNum,
-      matchCount
-    );
+    const output = new Lotto(
+      winNums,
+      bonusNum,
+      lottoNumaArr
+    ).filterOnlyWinLottery(onlyMatchNum, matchCount);
 
     expect(output).toEqual([[1, 2, 4, 5]]);
   });
@@ -172,7 +173,7 @@ describe("로또 클래스 테스트", () => {
     });
   });
 
-  test.only("당첨 번호와 로또 번호를 비교한 최종 결과들을 출력", () => {
+  test("당첨 번호와 로또 번호를 비교한 최종 결과들을 출력", () => {
     const logSpy = jest.spyOn(MissionUtils.Console, "print");
 
     const logs = [

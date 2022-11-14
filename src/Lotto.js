@@ -104,11 +104,14 @@ class Lotto {
     const onlyMatchNum =
       this.deleteBonusNumExceptSecondLottery(bonusAndWinMatchNum);
 
-    const resultLottery = this.classifyLottery(onlyMatchNum);
+    // 각 당첨등수를 분류
+    let resultLottery = this.classifyLottery(onlyMatchNum);
 
-    const FirstSecondLottery = this.splitFirstandSecondLottery(resultLottery);
+    // 1,2등의 당첨 번호들에서 보너스번호 포함여부로 1,2등을 분류
+    const FirstAndSecondLottery =
+      this.splitFirstandSecondLottery(resultLottery);
     delete resultLottery.FIRST_OR_SECOND_LOTTERY;
-    resultLottery = { ...resultLottery, ...FirstSecondLottery };
+    resultLottery = { ...resultLottery, ...FirstAndSecondLottery };
 
     return resultLottery;
   }
@@ -145,6 +148,8 @@ class Lotto {
     );
   }
 
+  // 해당 길이 로또 번호들만 필터링
+  // 여기서 길이는 당첨이 되는 5등부터 3,4,5,6 이다
   filterOnlyWinLottery(onlyMatchNum, matchCount) {
     return onlyMatchNum.filter(
       (result) => result.length === RESULT_MATCH_COUNT[matchCount]
@@ -178,11 +183,13 @@ class Lotto {
 
   printResult() {
     const resultLottery = this.calResult();
+
     for (let rank in resultLottery) {
       MissionUtils.Console.print(
         `${RESULT_MESSAGE[rank] + resultLottery[rank].length}개`
       );
     }
+
     const rateOfReturn = this.calRateOfReturn(resultLottery);
     MissionUtils.Console.print(
       `${RESULT_MESSAGE.RATE_OF_RETURN + rateOfReturn.toFixed(1)}%입니다.`
@@ -195,7 +202,6 @@ class Lotto {
     for (let rank in resultLottery) {
       outputMoney += LOTTERY_OUTPUT_MONEY[rank] * resultLottery[rank].length;
     }
-
     const rateOfReturn = (outputMoney / inputMoney) * 100;
 
     return rateOfReturn;
