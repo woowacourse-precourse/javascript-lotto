@@ -16,11 +16,20 @@ class Lotto {
 
   // TODO: 추가 기능 구현
   setWinningNumbers() {
-    const numbers = answer.split(",");
     MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.\n", (answer) => {
+      const numbers = answer.split(",");
       this.validate(numbers)
       this.#numbers = numbers;
     })
+  }
+
+  setBonusNumber() {
+    let bonusNumber = 0;
+    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.\n", (answer) => {
+      bonusNumber = Number(answer);
+    })
+
+    return bonusNumber;
   }
 }
 
