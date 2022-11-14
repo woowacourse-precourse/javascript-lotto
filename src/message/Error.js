@@ -1,4 +1,6 @@
 class ErrorMsg {
+  constructor() {}
+
   static INVALID_LOTTO_COUNT = "[ERROR] 로또 번호는 6개여야 합니다.";
   static INVALID_LOTTO_DUPLICATE =
     "[ERROR] 로또 번호는 중복을 포함할 수 없습니다.";

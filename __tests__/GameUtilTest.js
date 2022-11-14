@@ -57,4 +57,28 @@ describe("게임 유틸 클래스 테스트", () => {
       expect(GameUtils.getYield(rank, pay)).toEqual(answer[i]);
     });
   });
+
+  test("getTotalRankArray는 로또들의 순위별 개수를 내림차순으로 배열에 담아 반환한다.", () => {
+    const lottos = [];
+    const lottoNumbers = [
+      [8, 21, 23, 41, 42, 43],
+      [3, 5, 11, 16, 32, 38],
+      [7, 11, 16, 35, 36, 44],
+      [1, 8, 11, 31, 41, 42],
+      [13, 14, 16, 38, 42, 45],
+      [7, 11, 30, 40, 42, 43],
+      [2, 13, 22, 32, 38, 45],
+      [1, 3, 5, 14, 22, 45],
+    ];
+    const winningNumber = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+
+    lottoNumbers.forEach((number) => {
+      lottos.push(new Lotto(number));
+    });
+
+    expect(
+      GameUtils.getTotalRankArray(lottos, winningNumber, bonusNumber)
+    ).toEqual([1, 0, 0, 0, 0]);
+  });
 });

@@ -1,4 +1,6 @@
 class Result {
+  constructor() {}
+
   static RESULT_STRING = [
     "3개 일치 (5,000원) - ",
     "4개 일치 (50,000원) - ",

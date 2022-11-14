@@ -29,6 +29,7 @@ class GameUtils {
 
   static getTotalRankArray(lottos, winningNumber, bonusNumber) {
     let rankArray = [0, 0, 0, 0, 0];
+    winningNumber = winningNumber.map((v) => String(v));
 
     lottos.forEach((lotto) => {
       const rank = this.getRank(lotto.getNumbers(), winningNumber, bonusNumber);
@@ -68,7 +69,7 @@ class GameUtils {
   }
 
   static getIsHaveBonusNumber(lottoNumber, bonusNumber) {
-    if (lottoNumber.includes(bonusNumber)) return true;
+    if (lottoNumber.includes(Number(bonusNumber))) return true;
     return false;
   }
 
