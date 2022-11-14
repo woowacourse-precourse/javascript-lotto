@@ -2,7 +2,8 @@ const {
   buyLottos,
   getStatistics,
   getRateOfReturn,
-} = require("../src/Util/App.util");
+  getRevenue,
+} = require("../src/Core/App.util");
 
 describe("buyLottos", () => {
   test("is make Lotto Object that length is input length", () => {
@@ -41,7 +42,7 @@ describe("getRateOfReturn", () => {
 describe("getRevenue", () => {
   test("is calculate Revenue", () => {
     // given
-    const input = [3, 0, 5, 6, 0];
+    const input = [1, 0, 1, 1, 0];
     // when
     const expectResult = getRevenue(input);
     // then

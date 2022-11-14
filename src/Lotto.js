@@ -2,7 +2,7 @@ const {
   checkDuplicatedLotto,
   checkAscendingLotto,
   checkLottoResult,
-} = require("./Util/Lotto.util");
+} = require("./Core/Lotto.util");
 
 class Lotto {
   #numbers;

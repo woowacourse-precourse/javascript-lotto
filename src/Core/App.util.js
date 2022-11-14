@@ -1,5 +1,6 @@
 const { Random } = require("@woowacourse/mission-utils");
 const Lotto = require("../Lotto");
+const { MONEY_INFO } = require("./App.const");
 
 const buyLottos = (lottoLength) =>
   Array.from({ length: lottoLength }, (x) => {
@@ -16,7 +17,10 @@ const getStatistics = (counts) => {
 
 const getRateOfReturn = (cost, revenue) => ((revenue / cost) * 100).toFixed(1);
 
-const getRevenue = () => {};
+const getRevenue = (statistics) =>
+  statistics.reduce((acc, cur, i) => {
+    return cur ? acc + MONEY_INFO[i].price : acc;
+  }, 0);
 
 exports.buyLottos = buyLottos;
 exports.getStatistics = getStatistics;

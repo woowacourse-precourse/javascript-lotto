@@ -2,7 +2,7 @@ const {
   checkDuplicatedLotto,
   checkAscendingLotto,
   checkLottoResult,
-} = require("../src/Util/Lotto.util");
+} = require("../src/Core/Lotto.util");
 
 describe("checkDuplicatedLotto", () => {
   test("is check duplicated number return true", () => {
