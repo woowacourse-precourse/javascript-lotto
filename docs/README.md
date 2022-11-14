@@ -44,7 +44,7 @@
   - [x] `Lotto`
   - [x] `LottoBonus`
   - [x] `LottoIssuer`
-  - [ ] `LottoResult`
+  - [x] `LottoResult`
   - [x] `LottoValidation`
 
 리펙토링
