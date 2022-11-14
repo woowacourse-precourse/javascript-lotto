@@ -80,7 +80,7 @@ class Stats {
   }
 
   formatPercentage(performance) {
-    const percentage = performance / 100;
+    const percentage = performance * 100;
     const fixedPointTwo = percentage.toFixed(2);
     const removedZeroEndings = parseFloat(fixedPointTwo);
     return removedZeroEndings;
