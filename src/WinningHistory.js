@@ -1,3 +1,5 @@
+const { LOTTO_PRIZE_LIST } = require('../src/lib/constants/lotto');
+
 class WinningHistory {
   #winningList;
   #profitRate;
@@ -57,9 +59,13 @@ class WinningHistory {
   }
 
   calcProfitRate(purchaseAmount) {
-    /**
-     * TODO: 소수점 둘째 자리에서 반올림
-     */
+    const totalProfit = this.#winningList.reduce(
+      (prevProfit, winningLottoCount, idx) =>
+        prevProfit + LOTTO_PRIZE_LIST[idx].PRIZE_MONEY * winningLottoCount,
+      0,
+    );
+
+    this.#profitRate = (totalProfit / purchaseAmount) * 100;
   }
 
   get winningList() {
