@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Lotto = require("./Lotto.js");
 class App {
   constructor() {
     this.paymentCostStr = "";
@@ -9,6 +10,7 @@ class App {
       this.isCorrectRange(answer);
       this.lottoTicketPages();
       this.makeTicket();
+      this.getWinningNumber();
     });
   }
   isCorrectRange(number) {
@@ -46,16 +48,17 @@ class App {
   getWinningNumber() {
     let WINNTING_NUMBER = 0;
     MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (number) => {
-      MissionUtils.Console.print(`당첨 번호를 입력해 주세요.`);
       MissionUtils.Console.print(number);
       WINNTING_NUMBER = number.split(",");
+
+      const lotto = new Lotto(WINNTING_NUMBER);
+      lotto.validate(WINNTING_NUMBER);
     });
     return WINNTING_NUMBER;
   }
+
   play() {
     this.paymentInput();
-    this.getWinningNumber();
-    this.getWinningNumber();
   }
 }
 const app = new App();
