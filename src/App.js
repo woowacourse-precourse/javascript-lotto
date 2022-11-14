@@ -111,6 +111,9 @@ class App {
       30_000_000 * this.lottoResultMap['5개+보너스'] +
       2_000_000_000 * this.lottoResultMap['6개'];
   }
+
+  calculateYield() {
+    return ((this.totalPrizeMoney / this.purchaseAmount) * 100).toFixed(1);
   }
 }
 
