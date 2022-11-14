@@ -53,7 +53,19 @@ class App {
   getBonusNumber() {
     Console.readLine(INPUT_MESSAGE.bonus, (stringNumber) => {
       this.lotto.validateBonusNumber(Number(stringNumber));
+      this.printResult();
     });
+  }
+
+  printResult() {
+    Console.print(RESULT_MESSAGE.title);
+
+    const prizeRecord = this.lotto.getResult(this.issuedLottoes);
+    Object.entries(prizeRecord)
+      .reverse()
+      .forEach(([prize, number]) => {
+        Console.print(`${RESULT_MESSAGE[prize]}${number}개`);
+      });
   }
 }
 
