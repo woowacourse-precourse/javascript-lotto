@@ -23,6 +23,10 @@ describe("로또 클래스 테스트", () => {
 
   test("복권을 1~45까지의 중복되지 않는 숫자 6개를 발행한다", () => {
     const lotto = new Lotto();
+    const outOfRange = (num) => {
+      if (num > 45 || num < 1) return true;
+    };
     expect(lotto.getRandomNumbers()).toHaveLength(6);
+    expect(lotto.getRandomNumbers().some(outOfRange)).toBeFalsy();
   });
 });
