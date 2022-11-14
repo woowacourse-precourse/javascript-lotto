@@ -14,7 +14,7 @@ class Rank {
     return { targetMatchCount, isBonusMatch };
   }
 
-  checkWinningLotto(target) {
+  checkWinningLottoRank(target) {
     const { targetMatchCount, isBonusMatch } = this.matchLotto(target);
     const matchingRanks = [];
 
