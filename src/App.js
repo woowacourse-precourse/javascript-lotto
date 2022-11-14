@@ -8,7 +8,7 @@ const prizeInfo = {
   3: 1500000,
   4: 50000,
   5: 5000
-}
+};
 
 class App {
   play() {
