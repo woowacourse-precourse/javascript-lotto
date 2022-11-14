@@ -29,6 +29,22 @@ describe('로또 클래스 예외 테스트', () => {
     }).toThrow('[ERROR]');
   });
 
+  test("로또 번호가 ',' 로 구분되어 있지 않다면 예외가 발생한다.", () => {
+    expect(() => {
+      const app = new App();
+      app.numbertoArray('1/2!3,4>?5$???6');
+      new Lotto(app.winningArray);
+    }).toThrow('[ERROR]');
+  });
+
+  test("로또 번호에 ',' 만 있다면 예외가 발생한다.", () => {
+    expect(() => {
+      const app = new App();
+      app.numbertoArray(' , , , , , ');
+      new Lotto(app.winningArray);
+    }).toThrow('[ERROR]');
+  });
+
   test('보너스 번호가 로또 번호에 중복되면 예외가 발생한다.', () => {
     expect(() => {
       const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
