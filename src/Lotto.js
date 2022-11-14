@@ -53,8 +53,25 @@ class Lotto {
     return numberArray;
   }
 
+  compare(userNum) {
+    let winningNum = this.#numbers.slice(0, 6);
+    let bonusNum = this.#numbers.slice(6, 7);
+    let count = 0;
+
+    for (let i = 0; i < 6; i++) {
+      if (winningNum.includes(userNum[i])) {
+        console.log(userNum[i], winningNum);
+        count += 1;
+      }
+    }
+    if (count === 5 && userNum.includes(bonusNum)) {
+      count += 0.5;
+    }
+    return count;
+  }
+
   // test() {
-  //   MissionUtils.Console.print(this.readWinningNum());
+  //   MissionUtils.Console.print(this.compare([1, 2, 3, 4, 5, 6]));
   // }
 }
 
