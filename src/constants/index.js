@@ -12,9 +12,9 @@ const ERROR_MESSAGES = Object.freeze({
 
 const MESSAGES = Object.freeze({
   INPUT_MONEY: '구입금액을 입력해 주세요.\n',
-  BUY_COUNT: (count) => `${count}개를 구매했습니다.\n`,
-  INPUT_LOTTO_NUMBERS: '당첨 번호를 입력해 주세요.\n',
-  INPUT_BONUS_NUMBER: '보너스 번호를 입력해 주세요.\n',
+  BUY_COUNT: (count) => `\n${count}개를 구매했습니다.`,
+  INPUT_LOTTO_NUMBERS: '\n당첨 번호를 입력해 주세요.\n',
+  INPUT_BONUS_NUMBER: '\n보너스 번호를 입력해 주세요.\n',
   WINNING_STATS: (
     [correct3, correct4, correct5, correct5Bonus, correct6],
     rate
