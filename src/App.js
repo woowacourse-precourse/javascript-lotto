@@ -1,5 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const { GAME, MESSAGE } = require('./modules/Constant');
+const { GAME, MESSAGE, PRIZE_BOARD } = require('./modules/Constant');
 const Lotto = require('./Lotto');
 
 class App {
@@ -15,6 +15,7 @@ class App {
       second: 0,
       first: 0,
     };
+    this.prize = 0;
   }
 
   play() {
@@ -80,7 +81,18 @@ class App {
         this.scoreBoard[result]++;
       });
       console.log(this.scoreBoard);
+      this.calculateProfit();
     });
+  }
+
+  calculateProfit() {
+    for (const [result, count] of Object.entries(this.scoreBoard)) {
+      this.prize += PRIZE_BOARD[result] * count;
+    }
+    let percentage = (this.prize / this.amount) * 100;
+    percentage = percentage.toFixed(1);
+    console.log(percentage);
+    return percentage;
   }
 }
 
