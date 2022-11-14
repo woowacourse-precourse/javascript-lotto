@@ -7,6 +7,7 @@ class App {
   constructor() {
     this.money = 0;
     this.lottoQuantity = 0;
+    this.lottoLists = [];
     this.winningNumbers = [];
     this.bonusNumber = 0;
   }
@@ -41,9 +42,9 @@ class App {
         NUMBER_LENGTH
       );
       const lottoNumbers = [...randomNumbers].sort((a, b) => a - b);
+      this.lottoLists.push(lottoNumbers);
       Console.print(JSON.stringify(lottoNumbers).replace(/,/g, ", "));
     }
-
     this.inputWinningNumbers();
   }
 
