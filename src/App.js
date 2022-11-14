@@ -3,15 +3,15 @@ const { Console } = require('@woowacourse/mission-utils');
 const User = require('./User');
 const Lotto = require('./Lotto');
 const Drawing = require('./Drawing');
-const { MESSAGE, ERROR } = require('../src/utils/constants');
+const { MESSAGE, AMOUNT_UNIT } = require('../src/utils/constants');
+const { hasChar, hasCharExceptComma, isDivisible, hasDuplicate, isOutOfRange, parseNumbers } = require('./utils/utils');
 const {
-  hasChar,
-  hasCharExceptComma,
-  isDivisible,
-  hasDuplicate,
-  isOutOfRange,
-  parseNumbers,
-} = require('../src/utils/utils');
+  InvalidInputError,
+  InvalidLottoNumberRangeError,
+  IndivisibleError,
+  InvalidBonusNumberError,
+  InvalidWinningNumberFormatError,
+} = require('./lib/errors');
 
 class App {
   constructor() {
@@ -35,11 +35,11 @@ class App {
 
   validateAmount(amount) {
     if (hasChar(amount)) {
-      throw new Error(ERROR.ONLY_NUMBER);
+      throw new InvalidInputError();
     }
 
-    if (!isDivisible(amount)) {
-      throw new Error(ERROR.INDIVISIBLE);
+    if (!isDivisible(amount, AMOUNT_UNIT)) {
+      throw new IndivisibleError();
     }
   }
 
@@ -61,7 +61,7 @@ class App {
 
   validateWinningNumbers(numbers) {
     if (hasCharExceptComma(numbers)) {
-      throw new Error(ERROR.ONLY_NUMBER_AND_COMMA);
+      throw new InvalidWinningNumberFormatError();
     }
   }
 
@@ -77,15 +77,15 @@ class App {
 
   validateBonusNumber(number) {
     if (hasChar(number)) {
-      throw new Error(ERROR.ONLY_NUMBER);
+      throw new InvalidInputError();
     }
 
     if (isOutOfRange(number)) {
-      throw new Error(ERROR.OUT_OF_RANGE);
+      throw new InvalidLottoNumberRangeError();
     }
 
     if (hasDuplicate([...this.drawing.winningNumbers, Number(number)])) {
-      throw new Error(ERROR.DUPLICATED_BONUS);
+      throw new InvalidBonusNumberError();
     }
   }
 
@@ -97,4 +97,5 @@ class App {
   }
 }
 
+new App().play();
 module.exports = App;
