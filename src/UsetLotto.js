@@ -2,26 +2,28 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const MESSAGE = require('./MESSAGE');
 const Lotto = require('./Lotto');
 
-const lotto = new Lotto('123456');
+const lotto = new Lotto(MESSAGE.LOTTO_INIT_STR);
 class UserLotto {
   #numbers;
   constructor(numbers) {
     this.#numbers = numbers;
-    this.lottoArr = [];
   }
 
   getUserLottos(numbers) {
-    this.lottoArr = lotto.pubishLotto(numbers);
+    return lotto.pubishLotto(numbers);
   }
 
-  printLottos() {
-    this.lottoArr.forEach((eachArr, index) => {
+  printLottos(Lottos) {
+    Lottos.forEach((eachLotto, index) => {
       const parseArr = String(
-        '[' + eachArr.join(MESSAGE.USER_LOTTO_SEPERATOR) + ']'
+        '[' + eachLotto.join(MESSAGE.USER_LOTTO_SEPERATOR) + ']'
       );
       MissionUtils.Console.print(parseArr);
     });
   }
+  /*
+  array,string compare
+  */
   compareLotto(myLotto, winLotto) {
     let numberCounter = 0;
     const winLottoArr = [...winLotto];
