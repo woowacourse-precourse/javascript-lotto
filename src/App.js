@@ -5,13 +5,14 @@ const { validator } = require("./utils");
 const { FORMULA, UNITS, MESSAGE, ERROR_MESSAGE } = require("./constants");
 
 class App {
-  inputMoney = 0;
+  payAmount = 0;
   numberOfLotto = 0;
   myLottos = [];
   luckyNumbers = [];
-  bonusNumber;
+  bonusNumber = 0;
   revenue = 0;
   profit = 0;
+  
   winningMap = {
     firstPlace: {
       count: 0,
@@ -42,13 +43,13 @@ class App {
 
   pay() {
     Console.readLine(MESSAGE.GUIDE_INPUT, (input) => {
-      this.inputMoney = Number(input);
+      this.payAmount = Number(input);
 
-      if (validator.isNotRightPay(this.inputMoney)) {
+      if (validator.isNotRightPay(this.payAmount)) {
         throw new Error(ERROR_MESSAGE.PAY_AMOUNT);
       }
 
-      this.numberOfLotto = this.inputMoney / UNITS.LOTTO_PRICE;
+      this.numberOfLotto = this.payAmount / UNITS.LOTTO_PRICE;
       this.publish();
     });
   }
@@ -92,6 +93,9 @@ class App {
     if (validator.isDigitError([bonusNumber])) {
       throw new Error(ERROR_MESSAGE.DIGIT_OF_LOTTO);
     }
+    if (validator.isNotIntegers([bonusNumber])) {
+      throw new Error(ERROR_MESSAGE.INTEGER_OF_LOTTO);
+    }
   }
 
   setLuckyNumbers() {
@@ -107,13 +111,18 @@ class App {
     Console.readLine(MESSAGE.REQUEST_BONUS_NUMBER, (input) => {
       this.bonusNumber = Number(input);
       this.validate(this.luckyNumbers, this.bonusNumber);
-      this.winning();
+      this.winning()
     });
-
-    return;
   }
 
   winning() {
+    this.match()
+      .calculateRevenue()
+      .calculateProfit()
+      .printResult();
+  }
+
+  match() {
     this.myLottos.map((myLotto) => {
       let numberOfMatch = myLotto.countNumberOfMatches(this.luckyNumbers);
       let isBonus = myLotto.isBonus(this.bonusNumber);
@@ -129,21 +138,19 @@ class App {
         this.winningMap.firstPlace.count += 1;
       }
     });
-
-    this.calculateRevenue();
-    this.calculateProfit();
-    this.printResult();
-    return;
+    return this;
   }
 
   calculateRevenue() {
     for (let [rank, pair] of Object.entries(this.winningMap)) {
       this.revenue += pair.count * pair.WINNING_AMOUNT;
     }
+    return this;
   }
 
   calculateProfit() {
-    this.profit = FORMULA.PROFIT(this.revenue, this.inputMoney);
+    this.profit = FORMULA.PROFIT(this.revenue, this.payAmount);
+    return this;
   }
 
   printResult() {

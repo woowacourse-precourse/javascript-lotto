@@ -15,7 +15,9 @@ const MESSAGE = {
   GUIDE_NUMBER_OF_LOTTO: (count) => `\n${count}개를 구매했습니다.`,
   REQUEST_LUCKY_NUMBERS: "\n당첨 번호를 입력해 주세요.\n",
   REQUEST_BONUS_NUMBER: "\n보너스 번호를 입력해 주세요.\n",
-  WINNING_STATS: (result, profit) => `\n당첨통계
+  WINNING_STATS: (result, profit) => 
+`
+당첨통계
 ---
 3개 일치 (5,000원) - ${result.fifthPlace.count}개
 4개 일치 (50,000원) - ${result.fourthPlace.count}개
