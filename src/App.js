@@ -1,27 +1,37 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
+const MissionUtils = require("@woowacourse/mission-utils");
+
 const PURCHASE_MONEY = '구입금액을 입력해 주세요.';
-const LOTTO_PRICE = 1000;
+const PRICE_LOTTO = 1000;
 
 class App {
+  constructor() {
+    this.moneyInput = 0;
+    this.lottoAmount = 0;
+  }
+
   play() {
-    userWindow(PURCHASE_MONEY, lottoCount);
+    this.userInput(PURCHASE_MONEY);
+  }
+
+  userWindow(window) {
+    MissionUtils.Console.readLine(`${window}\n`, (input) => {
+      this.moneyInput = input;
+      this.lottocount(this.moneyInput);
+    });
+  }
+
+  printSentence(output) {
+    MissionUtils.Console.print(output);
+  }
+
+  countLotto(money) {
+    const lottoAmount = money / PRICE_LOTTO;
+    this.lottoAmount = lottoAmount;
+    this.printSentence(`\n${this.lottoAmount}개를 구매했습니다.`);
   }
 }
-
-const userWindow = (window, callback) => {
-  MissionUtils.Console.readLine(`${window}\n`, (input) => {
-    callback(input);
-  });
-};
-
-const printOutput = (output) => {
-  MissionUtils.Console.print(`${output}\n`);
-};
-
-const lottoCount = (money) => {
-  const lottoAmount = money / LOTTO_PRICE;
-};
 
 new App().play();
 
