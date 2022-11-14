@@ -36,8 +36,16 @@ class App {
     rankingMap = Object.fromEntries(
       this.checkRanking(rankingMap, winningArray)
     );
+    Console.printMessage("\n당첨통계" + "\n---");
+    Console.printMessage(`3개 일치 (5,000원) - ${rankingMap[5]}개`);
+    Console.printMessage(`4개 일치 (50,000원) - ${rankingMap[4]}개`);
+    Console.printMessage(`5개 일치 (1,500,000원) - ${rankingMap[3]}개`);
+    Console.printMessage(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankingMap[2]}개`
+    );
+    Console.printMessage(`6개 일치 (2,000,000,000원) - ${rankingMap[1]}개`);
 
-    //이제 받아온 랭킹 맵으로 결과 값 출력만 하면 됨
+    console.log("끝");
   }
 
   setBonusNumber() {
