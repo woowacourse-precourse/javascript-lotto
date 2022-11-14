@@ -99,7 +99,6 @@ module.exports = class ErrorList {
     this.lottoArrayIncludesBonusNumberCheck(LottoArray, BonusArray);
     this.numberCheckInteger(BonusArray);
     this.checkPrimeNumber(BonusArray);
-
     return true;
   }
 };
