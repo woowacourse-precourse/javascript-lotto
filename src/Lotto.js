@@ -11,10 +11,13 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error(lottoNumberError.NOT_SIX);
     }
-    if (numbers === [...new Set(numbers)]) {
+    if (numbers.length !== [...new Set(numbers)].length) {
       throw new Error(lottoNumberError.NUMBER_DUPLICATION);
     }
-    if (numbers !== numbers.filter((number) => number >= 1 && number <= 45)) {
+    if (
+      numbers.length !==
+      numbers.filter((number) => number >= 1 && number <= 45).length
+    ) {
       throw new Error(lottoNumberError.NOT_VALID_NUMBER_SCOPE);
     }
   }
