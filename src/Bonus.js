@@ -13,9 +13,9 @@ class Bonus {
   }
 
   validate(bonus) {
-    // if (numbers.some((number, index, array) => array.indexOf(number) !== index)) {
-    //   throw new Error(ERROR_MESSAGE.LOTTO.NUMBER_DUPLICATED);
-    // }
+    if (bonus !== +bonus) {
+      throw new Error(ERROR_MESSAGE.NOT_NUMBER);
+    }
     if (bonus < LOTTO.MIN_NUMBER || bonus > LOTTO.MAX_NUMBER) {
       throw new Error(ERROR_MESSAGE.LOTTO.NUMBER_RANGE);
     }
