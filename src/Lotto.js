@@ -81,8 +81,14 @@ class Lotto {
     MissionUtils.Console.print(matchMessages[match] + ` - ${count}개`);
   }
 
+  printRate(purchaseAmoint, winningAmount) {
+    MissionUtils.Console.print(
+      `총 수익률은 ${(winningAmount / purchaseAmoint) * 100}%입니다.`
+    );
+  }
+
   // test() {
-  //   this.printWinningResult(3, 2);
+  //   this.printRate(8000, 5000);
   // }
 }
 
