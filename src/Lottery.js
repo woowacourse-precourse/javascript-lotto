@@ -5,10 +5,10 @@ const Lotto = require('./Lotto');
 
 class Lottery {
   #lotto;
-  #purchaseAmount;
+  #lottoStore;
 
   progress() {
-    this.inputPurchaseAmount();
+    this.getPrice();
 
     /*
     const LOTTO = this.#lotto.getLotto();
@@ -16,24 +16,24 @@ class Lottery {
     */
   }
   
-  inputPurchaseAmount() {
-    Console.readLine(INPUT.PURCHASE_AMOUNT, (amount) => {
-      this.#purchaseAmount = new LottoStore(amount);
-      this.printLottoAmount();
+  getPrice() {
+    readLine(INPUT.PRICE, (price) => {
+      this.#lottoStore = new LottoStore(price);
+      this.printAutoLotto();
     });
   }
 
-  printLottoAmount() {
-    Console.print(OUTPUT.NEW_LINE + this.#purchaseAmount.getLottoAmount() + OUTPUT.PURCHASE_COUNT);
-    Console.print(this.#purchaseAmount.getLottoNumber());
+  printAutoLotto() {
+    print(OUTPUT.NEW_LINE + this.#lottoStore.getCount() + OUTPUT.COUNT);
+    this.#lottoStore.getAutoLotto().map((numbers) => {
+      print(numbers);
+    });
   }
-
-
 
   getLottoNumber() {
     readLine(INPUT.LOTTO_NUMBER, (numbers) => {
       this.#lotto = new Lotto(numbers.split(','));
-      this.inputBonusNumber();
+      this.getBonusNumber();
     });
   }
 
