@@ -25,7 +25,9 @@ class Lottery {
 
   printLottoAmount() {
     Console.print(OUTPUT.NEW_LINE + this.#purchaseAmount.getLottoAmount() + OUTPUT.PURCHASE_COUNT);
+    Console.print(this.#purchaseAmount.getLottoNumber());
   }
+
 
 
   inputWinningNumber() {

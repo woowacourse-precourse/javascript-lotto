@@ -1,7 +1,11 @@
+const { pickUniqueNumbersInRange } = require('@woowacourse/mission-utils').Random;
 const { NUMBER } = require('./Constants');
+
 
 class LottoStore {
   #amount;
+  #number;
+  #lottoNumber = [];
 
   constructor(amount) {
     this.validate(amount);
@@ -19,7 +23,16 @@ class LottoStore {
   }
 
   getLottoAmount() {
-    return this.#amount / 1000;
+    this.#number = this.#amount / 1000;
+    return this.#number
+  }
+
+  getLottoNumber() {
+    for(let index = 0; index < this.#number; index++){
+      let numbers = pickUniqueNumbersInRange(1, 45, 6).sort();
+      this.#lottoNumber.push(numbers);
+    }    
+    return this.#lottoNumber;
   }
 
 
