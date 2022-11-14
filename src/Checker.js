@@ -59,6 +59,9 @@ class Checker {
 
   validateBonusNum(input) {
     this.checkIsNumber(input);
+
+    const bonusNum = Number(input);
+    this.checkIsInteger(bonusNum);
   }
 }
 
