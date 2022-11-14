@@ -15,9 +15,9 @@ class Clerk {
   inputLottoAmount() {
     Mission.Console.readLine(GAME_MESSAGES.ASK_TO_PAY, (payment) => {
       const quickPick = new QuickPick(payment);
-      this.#payment = payment;
       this.#myLottoArray = quickPick.arrayOutput();
       this.#lottoAmount = quickPick.amountOutput();
+      this.#payment = quickPick.paymentOutput();
       this.inputWinningNumbers();
     });
   }
