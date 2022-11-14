@@ -67,4 +67,17 @@ describe('로또 클래스 테스트', () => {
 
     expect(lotto.getMatchCount([1, 2, 3, 4, 8, 10])).toEqual(4);
   });
+
+  test('올바른 매치 개수를 반환하는지 확인', () => {
+    const lotto = new Lotto();
+
+    const numbers = [1, 2, 3, 4, 5, 6];
+    const bonus = 7;
+    lotto.setWinningNumbers(numbers);
+    lotto.addBonusNumber(bonus);
+
+    const purchaseLotto = [1, 2, 3, 4, 5, 10];
+
+    expect(lotto.getMatchCount(purchaseLotto)).toEqual(5);
+  });
 });
