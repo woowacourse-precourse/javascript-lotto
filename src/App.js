@@ -8,7 +8,7 @@ class App {
     this.winningNumber = [];
     this.bonusNumber = 0;
   }
-
+  
   play() {
     this.inputPurchaseMoney();
   }
@@ -64,38 +64,36 @@ class App {
     return num;
   }
   randomPurchaseLotto(){
-    let moneyCount = this.purchase;
-    moneyCount = parseInt(moneyCount/1000);
-    MissionUtils.Console.print(`${moneyCount}개를 구매했습니다.`);
-    for(let lotto = 0; lotto < moneyCount; lotto++){
-      const randomLotto = this.setRandomNumberLotto();
-      this.lottoNumber.push(new Lotto(randomLotto));
-    }
+    let num = this.purchase / 1000;
+    this.setRandomNumberLotto(num);
+    MissionUtils.Console.print(num + "개를 구매했습니다.");
     this.printLottoNumber();
-    this.calculateLotto();
   }
-  setRandomNumberLotto(){
-    let lottoNum = new Set();
-    while (lottoNum.size < 6) {
-      lottoNum.add(MissionUtils.Random.pickNumberInRange(1, 45));
+  setRandomNumberLotto(num){
+    while (num > 0) {
+      num -= 1;
+      const numbers = MissionUtils.Random
+        .pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b); //여기 오류!
+      this.lottoNumber.push(new Lotto(numbers));
     }
-    const result = Array.from(lottoNum).sort((a, b) => a - b);
-    return result;
   }
   printLottoNumber(){
     this.lottoNumber.forEach((lotto) => {
       MissionUtils.Console.print(lotto.printRandom());
     });
+    this.calculateLotto();
   }
   calculateLotto(){
     let ranking = {};
-    for (let i = 0; i < 6; i++) {
+    let i = 0;
+    while(i < 6){
       ranking[i] = 0;
+      i++;
     }
-    const winArr = this.lottoNumber.map((lotte) =>
-      lotte.calculate(this.winningNumber, this.bonusNumber)
+    const arr = this.lottoNumber.map((lotto) =>
+      lotto.calculate(this.winningNumber, this.bonusNumber)
     );
-    winArr.forEach((num) => {
+    arr.forEach((num) => {
       ranking[num]++;
     });
     this.resultLotto(ranking);
@@ -108,6 +106,8 @@ class App {
     MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${rank[2]}개`);
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${rank[1]}개`);
     MissionUtils.Console.print(`총 수익률은 ${this.resultRate(rank)}%입니다.`);
+
+    MissionUtils.Console.close();
   }
   resultRate(rank){
     let sum = 0;
@@ -124,3 +124,6 @@ class App {
 }
 
 module.exports = App;
+
+// const app = new App();
+// app.play();
