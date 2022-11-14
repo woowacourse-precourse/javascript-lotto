@@ -16,28 +16,6 @@ const calculateMatch = (lottos, totalNumber, bonusNumber) => {
   MissionUtils.Console.close();
 };
 
-const calculateRank = (lottos, totalNumber, bonusNumber) => {
-  const rank = {
-    '1등': 0,
-    '2등': 0,
-    '3등': 0,
-    '4등': 0,
-    '5등': 0,
-  };
-
-  for (const lotto of lottos) {
-    let count = 0;
-    for (const num of totalNumber) {
-      if (lotto.includes(num)) {
-        count += 1;
-      }
-    }
-    rank[checkRank(count, bonusNumber)] += 1;
-  }
-
-  return rank;
-};
-
 const checkRank = (count, bonusNumber) => {
   if (count === 3) {
     return '5등';
@@ -54,6 +32,29 @@ const checkRank = (count, bonusNumber) => {
   if (count === 6 && lotto.includes(bonusNumber) !== -1) {
     return '1등';
   }
+  return undefined;
+};
+
+const calculateRank = (lottos, totalNumber, bonusNumber) => {
+  const rank = {
+    '1등': 0,
+    '2등': 0,
+    '3등': 0,
+    '4등': 0,
+    '5등': 0,
+  };
+
+  for (let i = 0; i < lottos.length; i++) {
+    let count = 0;
+    for (let j = 0; j < totalNumber.length; j++) {
+      if (lottos[i].includes(totalNumber[j])) {
+        count += 1;
+      }
+    }
+    rank[checkRank(count, bonusNumber)] += 1;
+  }
+
+  return rank;
 };
 
 const printLottoResult = (rank) => {
@@ -61,7 +62,7 @@ const printLottoResult = (rank) => {
   MissionUtils.Console.print(`4개 일치 (50,000원) - ${rank['4등']}개`);
   MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${rank['3등']}개`);
   MissionUtils.Console.print(
-    `5개 일치, 보너스 볼 일치 (30,000,000원) - ${rank['2등']}개`,
+    `5개 일치, 보너스 볼 일치 (30,000,000원) - ${rank['2등']}개`
   );
   MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${rank['1등']}개`);
 };
@@ -76,9 +77,9 @@ const calculateProfit = (account, rank) => {
           rank['2등'] * 30000000 +
           rank['1등'] * 30000000) /
           account) *
-          1000,
+          1000
       ) / 10
-    }%입니다.`,
+    }%입니다.`
   );
 };
 
