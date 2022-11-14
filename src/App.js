@@ -21,25 +21,34 @@ class App {
   }
 
   play() {
-  return Console.readLine('구입금액을 입력해 주세요.\n', (answer) => {
+    Console.readLine('구입금액을 입력해 주세요.\n', (answer) => {
       this.validatePrice(answer);
       this.purchaseAmount = answer;
-      this.countBuyLotto();
+      
+      this.printLottoAmount();
     })
   }
 
   validatePrice(answer) {
-    if(answer % LOTTO_PRICE !== 0) throw new Error(`[ERROR] ${LOTTO_PRICE}원으로 나누어 떨어져야 합니다.`);
+    if(answer % LOTTO_PRICE !== 0) {
+      Console.close();
+      throw new Error(`[ERROR] ${LOTTO_PRICE}원으로 나누어 떨어져야 합니다.`);
+    }
   }
 
-  countBuyLotto() {
+  printLottoAmount() {
     this.lottoAmount = this.purchaseAmount / LOTTO_PRICE;
     Console.print(`${this.lottoAmount}개를 구매했습니다.`);
-    this.getLottoNumberes();
-    this.printOutBuyLotto();
+
+    this.nextStepOne();
   }
 
-  getLottoNumberes() {
+  nextStepOne() {
+    this.initLottoListNumbers();
+    this.printLottoList();
+  }
+
+  initLottoListNumbers() {
     let lottoList = [];
     for(let idex = 0; idex < this.lottoAmount; idex++){
       let makeLotto = Random.pickUniqueNumbersInRange(START_LOTTO_NUMBER, END_LOTTO_NUMBER, LOTTO_LENGTH);
@@ -48,17 +57,18 @@ class App {
     return this.lottoList = lottoList;
   }
 
-  printOutBuyLotto() {
+  printLottoList() {
     for(let idex = 0; idex < this.lottoAmount; idex++){
       Console.print(`[${this.lottoList[idex].join(", ")}]`);
     }
-    this.getLuckyNumbers();
+    this.initLuckyNumbers();
   }
 
-  getLuckyNumbers() {
+  initLuckyNumbers() {
     Console.readLine('당첨번호를 입력해 주세요.\n', (answer)=>{
       this.validateLuckyNumbers(answer);
-      this.getBonusNumber();
+      
+      this.initBonusNumber();
     })
   }
 
@@ -69,18 +79,23 @@ class App {
     return this.luckyNumbers = checkAnswer;
   }
 
-  getBonusNumber() {
+  initBonusNumber() {
     Console.readLine('보너스 번호를 입력해 주세요.\n', (answer)=>{
-      this.validateBonusNum(answer);
+      this.validateBonusNumber(answer);
       this.bonusNumber = answer;
-      this.calcOverlapNum();
-      this.getRankCountNum();
-      this.calcProfit();
-      this.printRanking();
+
+      this.nextStepTwo();
     })
   }
 
-  validateBonusNum(answer) {
+  nextStepTwo() {
+    this.calcOverlapNum();
+    this.calcRankCountNumbers();
+    this.calcProfit();
+    this.printRanking();
+  }
+
+  validateBonusNumber(answer) {
     let bonusArr = new Array(5).fill(null);
     bonusArr.push(answer);
     this.nullBonusArr = bonusArr;
@@ -103,7 +118,7 @@ class App {
     return this.overlapList;
   }
 
-  getRankCountNum(){
+  calcRankCountNumbers(){
     let countRankFive = this.overlapList.filter((value) => value === 3).length;
     let countRankFour = this.overlapList.filter((value) => value === 4).length;
     let countRankOne = this.overlapList.filter((value) => value === 6).length;
