@@ -4,7 +4,7 @@ const NumberGenerator = require("./NumberGenerator");
 const Lotto = require("./Lotto");
 const LottoSimulator = require("./LottoSimulator");
 const Validator = require("./Validator");
-const { changePrintFormat } = require("./utils/utils");
+const { changePrintFormat, toLocaleMoney } = require("./utils/utils");
 
 class App {
   lottos;
@@ -24,7 +24,7 @@ class App {
   }
 
   handleGameStart(purchaseMoney) {
-    validator.checkPurchaseMoney(purchaseMoney);
+    this.validator.checkPurchaseMoney(purchaseMoney);
     this.purchaseMoney = Number(purchaseMoney);
     this.issueLotto();
     changePrintFormat();
@@ -46,7 +46,7 @@ class App {
 
   getWinningNumber() {
     Console.readLine(MESSAGE.INPUT_WINNING_NUMBER, (winningNumber) => {
-      validator.checkWinningNumber(winningNumber);
+      this.validator.checkWinningNumber(winningNumber);
       this.winningNumber = winningNumber.split(',').map(num => Number(num));
       this.getBonusNumber();
     });
@@ -54,7 +54,7 @@ class App {
 
   getBonusNumber() {
     Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
-      validator.checkBonusNumber(bonusNumber);
+      this.validator.checkBonusNumber(bonusNumber);
       this.bonusNumber = Number(bonusNumber);
       this.handleGameEnd();
     });
@@ -74,7 +74,7 @@ class App {
       Console.print(MESSAGE.PRINT_WINNING_RESULT.format(
         GRADE[rankUpperCase].DUPLICATE_COUNT,
         GRADE[rankUpperCase].EXTRA_TEXT,
-        GRADE[rankUpperCase].PRIZE_MONEY,
+        toLocaleMoney(GRADE[rankUpperCase].PRIZE_MONEY),
         count,
         )
       );

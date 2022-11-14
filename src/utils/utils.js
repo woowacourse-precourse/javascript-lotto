@@ -14,4 +14,4 @@ const toLocaleMoney = (money) => {
   return money.toLocaleString(FORMAT.LOCALE_MONEY);
 }
 
-module.exports = { round, changePrintFormat };
+module.exports = { round, changePrintFormat, toLocaleMoney };
