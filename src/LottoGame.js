@@ -3,6 +3,7 @@ const ResultPrinter = require('./ResultPrinter')
 const Lotto = require("./Lotto");
 const Validation = require('./Validation');
 
+
 const gameSetting = {
     length: 0,
     maxNumber: 0,
@@ -32,6 +33,7 @@ class GameBuilder {
 }
 
 class LottoGame {
+
     constructor(lottoLength, maxNumber, minPrice) {
         this.lottoLength = lottoLength;
         this.maxNumber = maxNumber;
@@ -48,9 +50,18 @@ class LottoGame {
         this.bonusNumber = 0;
         this.cost = 0;
 
+        this.rankArray = new Array(this.lottoLength + 1).fill(0);
+    }
+
+    initRankArray() {
+        let rank = 1;
+        for(let i = this.lottoLength; i >= 0; i--) {
+            if(rank <= 5) this.rankArray[i] = rank++;
+        }
     }
 
     play() {
+        this.initRankArray();
         this.onInput('구입금액을 입력해주세요.\n', this.onGame);
     }
 
@@ -123,18 +134,13 @@ class LottoGame {
 
     drawLottery(input, bonus) {
         let hitCount = this.countHit(input);
-        let prize = 0;
-    
-        if(hitCount == 6) prize = 1;
-        else if(hitCount == 5 && this.isHitBonus(input, bonus)) {
-          prize = 2;
-        }
-        else if(hitCount == 5) prize = 3;
-        else if(hitCount == 4) prize = 4;
-        else if(hitCount == 3) prize = 5;
-    
-        return prize;
-      }
+        
+        if(hitCount == 0) return 0;
+
+        if( (hitCount == this.lottoLength - 1) && this.isHitBonus(input, bonus)) return prize = this.rankArray[this.lottoLength - 1];
+        
+        return hitCount == this.lottoLength ? this.rankArray[hitCount] : this.rankArray[hitCount - 1];
+    }
     
       countHit(input) {
     

@@ -12,7 +12,6 @@ class Lotto {
     Validation.validate(input);
   }
 
-  // TODO: 추가 기능 구현
   getTargetNumbers() {
     return [...this.#numbers];
   }
