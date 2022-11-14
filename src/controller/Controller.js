@@ -1,5 +1,5 @@
 const View = require('../view/View');
-const LottoManager = require('../LottoManager');
+const LottoManager = require('./LottoManager');
 
 class Controller {
   #lottoManager;
