@@ -6,7 +6,6 @@ class App {
   play() {
 
     const ask = new Ask();
-
     ask.money();
     ask.buyLotto();
     ask.showLottoList();
