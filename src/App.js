@@ -12,6 +12,7 @@ class App {
   constructor() {
     this.issuedLottoNum = [];
     this.winningResult = [];
+    this.winningCountResult = [];
   }
 
   play() {
@@ -105,12 +106,37 @@ class App {
         this.checkBonus(index);
       }
     }
+    this.countWinningResult();
   }
 
   checkBonus(index) {
-    if (!this.issuedLottoNum[index].includes(parseInt(this.#bonusNum))) {
-      this.winningResult[index] = 0;
+    if (this.issuedLottoNum[index].includes(parseInt(this.#bonusNum))) {
+      this.winningResult[index] = bonus;
     }
+  }
+
+  countWinningResult() {
+    this.winningCountResult = [0, 0, 0, 0, 0];
+    this.winningResult.forEach((element) => {
+      switch (element) {
+        case 3:
+          this.winningCountResult[0]++;
+          break;
+        case 4:
+          this.winningCountResult[1]++;
+          break;
+        case 5:
+          this.winningCountResult[2]++;
+          break;
+        case "bonus":
+          this.winningCountResult[3]++;
+          break;
+        case 6:
+          this.winningCountResult[4]++;
+        default:
+          break;
+      }
+    });
   }
 }
 
