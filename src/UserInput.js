@@ -1,7 +1,8 @@
 const { readLine } = require("./util.js");
 const { INPUT_QUERY } = require("./constants.js");
 const LottoGenerator = require("./LottoGenerator");
-const Lotto = require("./Lotto")
+const Lotto = require("./Lotto");
+const Bonus = require("./Bonus.js");
 
 class UserInput {
 
@@ -19,7 +20,10 @@ class UserInput {
     readLine(INPUT_QUERY.BONUS_NUMBER, this.handleBonusNumber.bind(this));
   }
 
-  handleBonusNumber(bonusNumber) {}
+  handleBonusNumber(bonusNumber) {
+    const winningNumber = this.winningNumber.getWinningNumber()
+    this.bonusNumber = new Bonus(bonusNumber, winningNumber);
+  }
 }
 
 module.exports = UserInput;

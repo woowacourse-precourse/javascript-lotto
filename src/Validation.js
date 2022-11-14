@@ -47,4 +47,13 @@ const checkWinningNumber = (input) => {
   }
 };
 
-module.exports = { checkLottoAmount, checkWinningNumber };
+const checkBonusLottoNumber = (input) => {
+  if (isNotNumber(input)) {
+    error(ERROR.NOT_NUMBER);
+  }
+  if (isOutOfRange(input)) {
+    error(ERROR.OUT_OF_RANGE);
+  }
+};
+
+module.exports = { checkLottoAmount, checkWinningNumber, checkBonusLottoNumber };
