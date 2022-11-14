@@ -3,14 +3,7 @@ const { isValidateNumber, isAmountUnitOf1000, isZeroNumber } = require('./utils/
 
 class App {
   play() {
-    this.salesLotto();
-  }
-
-  salesLotto() {
-    Console.readLine('구입금액을 입력해 주세요.\n', (purchaseAmount) => {
-      this.isValidatePurchaseAmount(purchaseAmount);
-      this.generateLottoNumber();
-    });
+    this.buyLotto();
   }
 
   isValidatePurchaseAmount(purchaseAmount) {
@@ -20,12 +13,15 @@ class App {
     this.purchaseAmount = purchaseAmount;
   }
 
-  createLottoNumber() {
-    return Random.pickUniqueNumbersInRange(1, 45, 6);
+  buyLotto() {
+    Console.readLine('구입금액을 입력해 주세요.\n', (purchaseAmount) => {
+      this.isValidatePurchaseAmount(purchaseAmount);
+      this.calculatesUserBuyHowManyLotto(this.purchaseAmount);
+    });
   }
 
-  sortAscendingOrderLottoNumber(lottoNumber) {
-    return lottoNumber.sort((a, b) => a - b);
+  calculatesUserBuyHowManyLotto(purchaseAmount) {
+    this.userBuyHowManyLotto = purchaseAmount / 1000;
   }
 
   generateLottoNumber() {
