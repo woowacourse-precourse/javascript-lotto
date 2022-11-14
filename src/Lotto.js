@@ -7,7 +7,7 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    // this.validate(numbers);
+    this.validateMoney(numbers);
     this.#numbers = numbers;
   }
 
@@ -49,6 +49,12 @@ class Lotto {
     ConsoleWork.takeInput(Message.PRIZENUMBER_MESSAGE + '\n', function (prize) {
       LottoMain.takeBonus(lottoList, prize);
     });
+  }
+
+  validateMoney(money) {
+    if (money % 1000 !== 0) {
+      throw new Error(Message.ERROR_MONEY);
+    }
   }
 }
 
