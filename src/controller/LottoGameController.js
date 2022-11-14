@@ -18,6 +18,7 @@ class LottoGameController {
   start() {
     this.setGame();
     this.pickWinningLotto();
+
     const result = this.calculatorModel.draw(this.lottos, this.winningLotto);
     this.lottoGameView.printResult(result, this.money);
   }

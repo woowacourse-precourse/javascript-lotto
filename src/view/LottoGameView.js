@@ -1,4 +1,5 @@
-const { print } = require('../utils/Utils');
+const { RANK_MESSAGE } = require('../constant');
+const { print, close } = require('../utils/Utils');
 
 class LottoGameView {
   printLottoCount(count) {
@@ -14,7 +15,19 @@ class LottoGameView {
   printResult(result, money) {
     const { rank, reward } = result;
 
+    this.printRank(rank);
     this.printRawardRates(reward, money);
+    close();
+  }
+
+  printRank(rank) {
+    const rankArray = Object.entries(rank);
+
+    rankArray.forEach((list) => {
+      const [rank, count] = list;
+
+      print(RANK_MESSAGE[rank](count));
+    });
   }
 
   printRawardRates(reward, money) {
