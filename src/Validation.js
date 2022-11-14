@@ -39,6 +39,14 @@ class Validation {
   static isNumberInRange(winnerNumber) {
     return winnerNumber.every((number) => number >= 1 && number <= 45);
   }
+  static checkBonusNumber(bonusNumber) {
+    if (!this.isOnlyNumber(bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.NOT_ONLY_NUMBER);
+    }
+    if (!this.isNumberInRange(bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.NOT_IN_RANGE);
+    }
+  }
 }
 
 module.exports = Validation;
