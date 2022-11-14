@@ -13,13 +13,13 @@ class App {
 
   isValidPurchaseAmount(purchaseAmountInput) {
     return (
-      this.isDigit(purchaseAmountInput) &&
+      this.isAllDigits(purchaseAmountInput) &&
       this.isFirstDigitNotZero(purchaseAmountInput) &&
       this.isDivisibleByThousand(purchaseAmountInput)
     );
   }
 
-  isDigit(purchaseAmountInput) {
+  isAllDigits(purchaseAmountInput) {
     const possibleNumbers = Random.pickUniqueNumbersInRange(0, 9, 10).map((number) =>
       String(number)
     );
