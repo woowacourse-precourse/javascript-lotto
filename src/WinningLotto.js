@@ -15,6 +15,13 @@ class WinningLotto {
     }
     return { result: true };
   }
+
+  checkLottoLength(lotto) {
+    if (lotto.length !== terms.NUMBERS_LENGTH) {
+      return false;
+    }
+    return true;
+  }
 }
 
 module.exports = WinningLotto;
