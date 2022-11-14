@@ -11,7 +11,6 @@ function validatePurchase(input) {
   if (input <= 0) {
     throw new Error("[ERROR] 유효한 구매 금액을 입력해주세요.");
   }
-  MissionUtils.Console.close();
 }
 function validateBonusNumber(numbers, bonusNumber) {
   if (isNaN(bonusNumber)) {
@@ -24,6 +23,5 @@ function validateBonusNumber(numbers, bonusNumber) {
   if (bonusNumber > 45 || bonusNumber < 1) {
     throw new Error("[ERROR] 1~45 범위의 숫자를 입력해주세요.");
   }
-  MissionUtils.Console.close();
 }
 module.exports = { validateBonusNumber, validatePurchase };
