@@ -16,6 +16,9 @@ class View extends Setting {
   }
   handoverLotto() {
     this.lottoBox.map((oneLine) => {
+      oneLine.sort(function (a, b) {
+        return a - b;
+      });
       Console.print(oneLine);
     });
   }

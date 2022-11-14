@@ -3,7 +3,7 @@ class Execution {
   play() {
     const lotto = new View();
     lotto.payMoney();
-    lotto.buyLotto();
+    // lotto.buyLotto();
   }
 }
 
