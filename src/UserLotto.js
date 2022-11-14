@@ -40,6 +40,22 @@ class UserLotto {
     }
     return matchResult;
   }
+  calculateBenefit(matchResult) {
+    const winningAmount = {
+      3: 5000,
+      4: 50000,
+      5: 1500000,
+      6: 2000000000,
+      containBonus: 30000000,
+    };
+    const matchArray = Object.entries(matchResult);
+    let totalAmount = 0;
+    for (let i = 0; i < matchArray.length; i++) {
+      totalAmount += winningAmount[`${matchArray[i][0]}`] * matchArray[i][1];
+    }
+    let result = (totalAmount / (this.lottoCount * 1000)) * 100;
+    return Math.round(result * 10) / 10;
+  }
 }
 
 module.exports = UserLotto;
