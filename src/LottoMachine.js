@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Lotto = require("./Lotto");
 
 class LottoMachine {
   #lottoList;
@@ -23,7 +24,7 @@ class LottoMachine {
 
   purchaseLotto(inputMoney) {
     const purchasedLottoNumber = parseInt(inputMoney / 1000);
-    this.#lottoList = Array.from(Array(purchasedLottoNumber),() => this.makeLotto());
+    this.#lottoList = Array.from(Array(purchasedLottoNumber),() => new Lotto(this.makeLotto()));
   }
 }
 
