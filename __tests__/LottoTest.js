@@ -1,3 +1,4 @@
+const Bonus = require("../src/bonus");
 const Lotto = require("../src/Lotto");
 const { ERROR_MESSAGE } = require("../src/message");
 
@@ -23,6 +24,24 @@ describe("로또 클래스 테스트", () => {
   test("로또 번호가 1 미만 45 초과면 예외가 발생한다.", () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 55]);
+    }).toThrow(ERROR_MESSAGE.NOT_RANGE);
+  });
+});
+
+describe("보너스 클래스 테스트", () => {
+  test("보너스 번호가 숫자가 아닌 경우 예외가 발생한다.", () => {
+    expect(() => {
+      new Bonus("5W", ["1", "2", "3", "4", "5", "6"]);
+    }).toThrow(ERROR_MESSAGE.NOT_NUMBER);
+  });
+  test("당첨 번호와 중복되는 경우 예외가 발생한다.", () => {
+    expect(() => {
+      new Bonus("1", ["1", "2", "3", "4", "5", "6"]);
+    }).toThrow(ERROR_MESSAGE.OVERLAP);
+  });
+  test("보너스 번호가 1 미만 45 초과면 예외가 발생한다.", () => {
+    expect(() => {
+      new Bonus("58", ["1", "2", "3", "4", "5", "6"]);
     }).toThrow(ERROR_MESSAGE.NOT_RANGE);
   });
 });
