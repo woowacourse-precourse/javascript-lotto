@@ -31,6 +31,23 @@ class App {
   printLottoNum(lotto) {
     MissionUtils.Console.print(JSON.stringify(lotto.getNumbers()).replace(/,/g, ', '));
   }
+
+  input_winningNum() {
+    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (answer) => {
+      const numbers = answer.split(',').map(Number);
+
+      this.store.setWinningNum(numbers);
+
+      input_bonusNum();
+     });
+  }
+  input_bonusNum() {
+    MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (answer) => {
+      const number = Number(answer);
+
+      this.store.setBonusNum(number);
+    });
+  }
 }
 
 module.exports = App;

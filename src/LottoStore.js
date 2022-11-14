@@ -29,6 +29,13 @@ class LottoStore {
   generateLotto() {
     return new Lotto(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
   }
+
+  setWinningNum(nums){
+    this.winningNum = nums;
+  }
+  setBonusNum(num) {
+    this.bonusNum = num;
+  }
 }
 
 module.exports = LottoStore;
