@@ -9,7 +9,7 @@ class InputAcceptor {
         });
         if (!parseInt(answer)) throw new Error('[ERROR] 숫자만 입력해주세요.');
         if (!Number.isInteger(answer / PURCHASE_UNIT)) throw new Error('[ERROR] 구입 금액은 1000원 단위로 입력해주세요.');
-        return answer;
+        return answer / PURCHASE_UNIT;
     }
 
     static askPurchaseAmount() {
