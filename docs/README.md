@@ -36,6 +36,36 @@
 - 예외 상황에서는 에러 문구를 출력해야 함
 - 에러 문구는 “[ERROR]”로 시작해야 함
 
+### 폴더 구조 🗂
+
+```
+📦 src
+ ┣ 📂 Error // 오류 관련 클래스
+ ┃ ┣ 📜 AbstractError.js
+ ┃ ┣ 📜 BonusNumberError.js
+ ┃ ┣ 📜 CustomError.js
+ ┃ ┣ 📜 PriceError.js
+ ┃ ┗ 📜 WinNumberError.js
+ ┣ 📂 Input // 입력 받는 당첨 번호, 보너스 번호, 구매 금액을 관리하는 클래스
+ ┃ ┣ 📜 Bonus.js
+ ┃ ┣ 📜 Lotto.js
+ ┃ ┣ 📜 Price.js
+ ┃ ┗ 📜 index.js
+ ┣ 📂 Validation // 위의 입력값들의 유효성을 검사하는 클래스
+ ┃ ┣ 📜 BonusValidation.js
+ ┃ ┣ 📜 PriceValidation.js
+ ┃ ┣ 📜 WinNumbersValidation.js
+ ┃ ┗ 📜 index.js
+ ┣ 📂 lib // 재사용성, 공공성 있는 상수 및 함수 정의
+ ┃ ┣ 📜 Constants.js
+ ┃ ┗ 📜 Utils.js
+ ┣ 📜 App.js
+ ┣ 📜 Calculation.js // 로또 번호 결과 계산 클래스
+ ┣ 📜 Lottery.js // 로또 발행 클래스
+ ┣ 📜 LottoProgram.js // 로또 프로그램의 전체적인 흐름 관리 클래스
+ ┗ 📜 LottoResult.js // 로또 결과 출력 클래스
+```
+
 ## 클래스 구조 🏡
 
 ### Error 클래스 구조
