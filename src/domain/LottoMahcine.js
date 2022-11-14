@@ -3,7 +3,7 @@ const Lotto = require("../Lotto");
 const { LOTTO_PRICE, MAX_NUMBER, MIN_NUMBER, LOTTO_LENGTH } = require("../utils/constants");
 const { ERROR } = require("../utils/messages");
 
-class LottoSeller {
+class LottoMachine {
   #money;
 
   constructor(money) {
@@ -46,4 +46,4 @@ class LottoSeller {
   }
 }
 
-module.exports = LottoSeller;
+module.exports = LottoMachine;
