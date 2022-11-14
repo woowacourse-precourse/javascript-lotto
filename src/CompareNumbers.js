@@ -47,8 +47,9 @@ class CompareWithLotto {
     return this.isSameBonusNumber(userBonus);
   }
 
-  isSameBonusNumber() {
+  isSameBonusNumber(userBonus) {
     const lottoBonus = RANDOM_UTIL.pickNumberInRange(1, 45);
+    let isSameBonus = userBonus === lottoBonus;
   }
 }
 
