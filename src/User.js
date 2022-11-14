@@ -18,12 +18,17 @@ class User {
   generateLottoNumbers(numberOfPurchase) {
     for (let i = 0; i < numberOfPurchase; i++) {
       const lottoNumber = User.randomSortedNumbers();
-      console.log("lotto: ", lottoNumber);
       this.lottoNumbers.push(lottoNumber);
     }
-    console.log("ALL: ", this.lottoNumbers);
+    this.showLottoNumbers();
   }
-
+  showLottoNumbers() {
+    const count = this.lottoNumbers.length;
+    Console.print(`\n${count}개를 구매했습니다.`);
+    for (let lottoNumber of this.lottoNumbers) {
+      Console.print(lottoNumber);
+    }
+  }
   static randomSortedNumbers() {
     const lottoNumber = Random.pickUniqueNumbersInRange(1, 45, 6);
     lottoNumber.sort();
