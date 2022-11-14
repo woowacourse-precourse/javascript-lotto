@@ -11,6 +11,7 @@ class App {
     let lotto_list;
     let winning_number;
     let bonus_number;
+    let result;
 
     this.purchase = this.input('구입금액을 입력해 주세요.\n');
     if (this.purchase === undefined)
@@ -25,6 +26,8 @@ class App {
     winning_number = this.input_arrangement(winning_number);
     bonus_number = this.input("보너스 번호를 입력해 주세요.");
     const lotto = new Lotto(winning_number);
+
+    result = lotto.compare_result(bonus_number, lotto_list);
   }
 
   input(text) {
