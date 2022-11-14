@@ -21,12 +21,13 @@ class App {
 
   play() {
     Console.askAndGetUserInput(Console.ASK_PURCHASE_AMOUNT_MESSAGE, (purchaseAmount) => {
-      Validation.isValidPurchaseAmount(purchaseAmount);
+      Validation.isValidPurchaseAmount(Number(purchaseAmount));
 
-      const lottoCount = Lotto.calculateLottoCountWithPurchaseAmount(purchaseAmount);
+      const lottoCount = Lotto.calculateLottoCountWithPurchaseAmount(Number(purchaseAmount));
       Console.print(`\n${lottoCount}${Console.LOTTO_COUNT}`);
 
-      this.generateLottoWithLottoCount(lottoCount);
+      const lottos = this.generateLottoWithLottoCount(lottoCount);
+      lottos.forEach((lotto) => this.lottos.push(lotto));
       Console.printLotto(this.lottos);
 
       this.askWinningNumber();
@@ -38,14 +39,10 @@ class App {
   }
 
   generateLottoWithLottoCount(lottoCount) {
-    Array.from(
+    return Array.from(
       { length: lottoCount },
       () => new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => (a > b ? 1 : -1)))
-    )
-      .map((lotto) => lotto.lottoNumbers)
-      .forEach((lotto) => {
-        this.lottos.push(lotto);
-      });
+    ).map((lotto) => lotto.lottoNumbers);
   }
 
   askWinningNumber() {
@@ -116,6 +113,7 @@ class App {
       winningHistory[SIX] * 2000000000;
     const totalPurchaseAmount = lottos.length * 1000;
 
+    if (totalPurchaseAmount === 0) return 0 + "%";
     return Math.round((totalPrize / totalPurchaseAmount) * 1000) / 10 + "%";
   }
 }
