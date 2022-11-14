@@ -1,8 +1,25 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const {
+  POOL,
   PRICE,
+  PICK_NUM,
+  MAX_NUM,
+  MIN_NUM,
+  PRIZE,
+  PRIZE_MSG,
+  FIRST_RANK,
+  SECOND_RANK,
+  THIRD_RANK,
+  FOURTH_RANK,
+  FIFTH_RANK,
+  NOTHING_RANK,
+  WINNING_SPLIT,
   INPUT_PRICE_MSG,
+  LOTTO_LENGTH_NOT_SIX_ERROR,
+  LOTTO_DUPLICATE_ERROR,
+  LOTTO_OUT_OF_RANGE_ERROR,
+  LOTTO_NAN_ERROR,
   PRICE_NAN_ERROR,
   PRICE_TOO_LOW_ERROR,
   PRICE_NOT_MULTIPLE_ERROR,
@@ -13,7 +30,12 @@ class App {
 
   printLottos(lottos) {}
 
-  generateLotto() {}
+  generateLotto() {
+    const numbers = Random.pickUniqueNumbersInRange(MIN_NUM, MAX_NUM, PICK_NUM);
+
+    numbers.sort((a, b) => a - b);
+    return new Lotto(numbers);
+  }
 
   buyLotto(price) {
     const amount = price / PRICE;
