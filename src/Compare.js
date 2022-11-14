@@ -20,11 +20,18 @@ class Compare {
 
   count(number, countList) {
     this.countWinningNumbers(number, countList);
+    this.countBonusNumber(number, countList);
   }
 
   countWinningNumbers(number, countList) {
     if (this.#winningNumbers.includes(String(number))) {
       countList.winningNumbers += 1;
+    }
+  }
+
+  countBonusNumber(number, countList) {
+    if (number === parseInt(this.#bonusNumber)) {
+      countList.bonusNumber = 1;
     }
   }
 }
