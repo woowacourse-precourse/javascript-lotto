@@ -9,7 +9,13 @@ class Check {
 
   checkBonusNumber (number) {
     if (!(number >= 1 && number <= 45)) {
-      throw new Error('[ERROR] 로또 번호가 잘못 입력되었습니다.');
+      throw new Error('[ERROR] 보너스 로또 번호가 잘못 입력되었습니다.');
+    }
+  }
+
+  checkBonusUnique (number) {
+    if (number.length > 1) {
+      throw new Error('[ERROR] 보너스 로또 번호가 잘못 입력되었습니다.');
     }
   }
 
