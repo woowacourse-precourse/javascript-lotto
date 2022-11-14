@@ -13,4 +13,9 @@ describe('lotteryHandlerTest', () => {
     const sortedArray = sortLotteryNumbers(array);
     expect(sortedArray).toStrictEqual([1, 2, 3, 4, 5, 6]);
   });
+
+  test('새로 생성한 로또 티켓의 길이는 여섯자리이다.', () => {
+    const newTicket = createLotteryTicket();
+    expect(newTicket.length).toBe(6);
+  });
 });
