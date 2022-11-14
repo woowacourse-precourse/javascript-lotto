@@ -1,9 +1,12 @@
 const Application = require('./Application');
 const Lotto = require('./Lotto');
 const Message = require('./Message');
+const ReadLine = require('./ReadLine');
 
 class App {
   #mesage = new Message();
+
+  #readLine = new ReadLine();
 
   static purchaseCount(userInputNumber) {
     const UNIT_AMOUNT = 1000;
@@ -60,6 +63,10 @@ class App {
   printResult(winningAmount, purchaseAmountUnit, total) {
     this.printEarningsRate(winningAmount);
     this.printGrossReturn(App.getEarningsRate(purchaseAmountUnit, total));
+  }
+
+  exit() {
+    this.#readLine.close();
   }
 }
 
