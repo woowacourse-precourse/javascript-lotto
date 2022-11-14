@@ -4,9 +4,9 @@ const { LOTTO_NUMBER } = require("../constants/gameCondition");
 class LottoNumber {
   static generate() {
     const randomNumbers = Random.pickUniqueNumbersInRange(
-      LOTTO_NUMBER.START,
-      LOTTO_NUMBER.END,
-      LOTTO_NUMBER.COUNT
+      LOTTO_NUMBER.START_NUMBER,
+      LOTTO_NUMBER.END_NUMBER,
+      LOTTO_NUMBER.COUNT_NUMBER
     );
 
     return LottoNumber.sort(randomNumbers);
