@@ -1,6 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const Validation = require("./Validation");
+const { RULE } = require("./constants/rule");
 
 const mConsole = MissionUtils.Console;
 const mRandom = MissionUtils.Random;
@@ -8,14 +9,14 @@ const mRandom = MissionUtils.Random;
 class LottoController {
   constructor() {
     this.validation = new Validation();
-    this.lottoAmount = null;
+    this.lottoAmount;
     this.boughtLotto = [];
-    this.winningNumber = null;
-    this.bonusNumber = null;
+    this.winningNumber;
+    this.bonusNumber;
   }
 
   countLottoAmount(checkedMoney) {
-    this.lottoAmount = checkedMoney / 1000;
+    this.lottoAmount = checkedMoney / RULE.LOTTO_PRICE;
     this.generateLottoNumbers(this.lottoAmount);
   }
 
@@ -25,7 +26,13 @@ class LottoController {
 
   generateLottoNumbers(lottoAmount) {
     for (let count = 0; count < lottoAmount; count++) {
-      const lotto = new Lotto(mRandom.pickUniqueNumbersInRange(1, 45, 6));
+      const lotto = new Lotto(
+        mRandom.pickUniqueNumbersInRange(
+          RULE.MIN_LOTTO_NUMBER,
+          RULE.MAX_LOTTO_NUMBER,
+          RULE.LOTTO_NUMS
+        )
+      );
       this.boughtLotto.push(lotto);
     }
   }
@@ -46,7 +53,7 @@ class LottoController {
   setBonusNumber(inputNumber) {
     this.inputBonus = Number(inputNumber);
     if (this.validation.checkBonusNumber(this.inputBonus, this.winningNumber))
-      return (this.bonusNumber = this.inputBonus);
+      return this.inputBonus;
   }
 
   getLottoResult() {
@@ -75,7 +82,7 @@ class LottoController {
 
   calculateProfitRate() {
     const totalProfit = this.calcualtePrizeMoney();
-    const purchaseMoney = this.lottoAmount * 1000;
+    const purchaseMoney = this.lottoAmount * RULE.LOTTO_PRICE;
     return ((totalProfit / purchaseMoney) * 100).toFixed(1);
   }
 

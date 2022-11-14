@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const { RULE } = require("./constants/rule");
 
 const mConsole = MissionUtils.Console;
 
@@ -14,10 +15,10 @@ class Lotto {
     if (!this.isNumbersRange(numbers))
       throw new Error("[ERROR] 로또 번호의 범위는 1~45이어야 합니다.");
 
-    if (numbers.length !== 6)
+    if (numbers.length !== RULE.LOTTO_NUMS)
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
 
-    if ([...new Set(numbers)].length !== 6)
+    if ([...new Set(numbers)].length !== RULE.LOTTO_NUMS)
       throw new Error(
         "[ERROR] 로또 번호는 중복되지 않은 숫자로 이루어져야 합니다."
       );
@@ -27,7 +28,10 @@ class Lotto {
   }
 
   isNumbersRange(numbers) {
-    return numbers.every((number) => number >= 1 && number <= 45);
+    return numbers.every(
+      (number) =>
+        number >= RULE.MIN_LOTTO_NUMBER && number <= RULE.MAX_LOTTO_NUMBER
+    );
   }
 
   isNumbersType(numbers) {

@@ -1,4 +1,5 @@
 const { ERROR_MONEY } = require("./constants/messages");
+const { RULE } = require("./constants/rule");
 
 class Validation {
   checkType = (purchaseAmount) => {
@@ -36,11 +37,14 @@ class Validation {
   };
 
   isLottoRange = (numbers) => {
-    return numbers.every((number) => number >= 1 && number <= 45);
+    return numbers.every(
+      (number) =>
+        number >= RULE.MIN_LOTTO_NUMBER && number <= RULE.MAX_LOTTO_NUMBER
+    );
   };
 
   checkLottoLength(numbers) {
-    if (numbers.length !== 6)
+    if (numbers.length !== RULE.LOTTO_NUMS)
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
   }
 
@@ -55,7 +59,7 @@ class Validation {
   }
 
   checkDuplicatedNumber(numbers) {
-    if ([...new Set(numbers)].length !== 6)
+    if ([...new Set(numbers)].length !== RULE.LOTTO_NUMS)
       throw new Error(
         "[ERROR] 로또 번호는 중복되지 않은 숫자로 이루어져야 합니다."
       );
@@ -70,7 +74,7 @@ class Validation {
   };
 
   checkBonusNumber(number, winNumbers) {
-    if (number < 1 || number > 45)
+    if (number < RULE.MIN_LOTTO_NUMBER || number > RULE.MAX_LOTTO_NUMBER)
       throw new Error("[ERROR] 보너스 번호의 범위는 1~45여야 합니다.");
 
     if (isNaN(number))
