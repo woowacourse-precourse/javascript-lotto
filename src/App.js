@@ -23,7 +23,7 @@ class App {
     this.#matchesObj = { 3: 0, 4: 0, 5: 0, 5.5: 0, 6: 0 };
   }
   play() {
-    const amount = this.inputPurchaseAmount();
+    const amount = this.inputAmount();
     this.#purchaseLottoList = new Vender(amount).getPurchaseLotto();
 
     const lotteryMachine = new LotteryMachine();
@@ -31,21 +31,27 @@ class App {
     this.#winningNum = lotteryMachine.getWinningNum();
     this.#bonusNum = lotteryMachine.getBonusNum();
 
-    MissionUtils.Console.print(PRETTY_MSG.winningResult);
     this.calculMatches();
-    this.#validMatchesList.map((number) =>
-      this.printWinningResult(number, this.#matchesObj[number])
-    );
-    MissionUtils.Console.print(`총 수익률은 ${this.getRate(amount)}%입니다.`);
+    this.printLotteryResult(amount);
   }
 
-  inputPurchaseAmount() {
+  inputAmount() {
     let money = 0;
     MissionUtils.Console.readLine(QUESTION.buy, (input) => {
       money = input;
     });
     MissionUtils.Console.close();
     return money;
+  }
+
+  printLotteryResult(amount) {
+    MissionUtils.Console.print(PRETTY_MSG.winningResult);
+    this.#validMatchesList.map((number) =>
+      MissionUtils.Console.print(
+        MATCH_MSG[number] + ` - ${this.#matchesObj[number]}개`
+      )
+    );
+    MissionUtils.Console.print(`총 수익률은 ${this.getRate(amount)}%입니다.`);
   }
 
   calculMatches() {
@@ -69,10 +75,6 @@ class App {
       matches += 0.5;
     }
     return matches;
-  }
-
-  printWinningResult(match, count) {
-    MissionUtils.Console.print(MATCH_MSG[match] + ` - ${count}개`);
   }
 
   getRate(purchaseAmount) {
