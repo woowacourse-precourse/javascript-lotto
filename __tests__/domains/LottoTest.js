@@ -1,6 +1,15 @@
 /* eslint-disable no-new */
 /* eslint-disable max-lines-per-function */
+const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('../../src/Lotto');
+
+const mockRandoms = (numbers) => {
+  MissionUtils.Random.pickUniqueNumbersInRange = jest.fn();
+  numbers.reduce(
+    (acc, number) => acc.mockReturnValueOnce(number),
+    MissionUtils.Random.pickUniqueNumbersInRange,
+  );
+};
 
 describe('로또 도메인 테스트', () => {
   test(`로또 번호의 개수가 ${Lotto.NUMBER_COUNT}개가 넘어가면 예외가 발생한다.`, () => {
@@ -62,5 +71,16 @@ describe('로또 도메인 테스트', () => {
       .map((_, index) => Lotto.NUMBER_MIN + index);
 
     expect(new Lotto(numbers.reverse()).getNumbers()).toEqual(numbers);
+  });
+
+  test('로또가 랜덤으로 생성이 되어야 한다.', () => {
+    const numbers = Array(Lotto.NUMBER_COUNT)
+      .fill()
+      .map((_, index) => Lotto.NUMBER_MIN + index)
+      .reverse();
+
+    mockRandoms([numbers]);
+
+    expect(Lotto.fromRandom().getNumbers()).toEqual(numbers);
   });
 });
