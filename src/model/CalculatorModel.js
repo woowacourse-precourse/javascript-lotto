@@ -7,6 +7,12 @@ const initRank = {
 };
 
 class CalculatorModel {
+  #rewardList;
+
+  constructor() {
+    this.#rewardList = [5000, 50000, 1500000, 30000000, 2000000000];
+  }
+
   draw(lottos, winning) {
     const [winningLotto, bonus] = winning;
     const winningList = [];
@@ -51,10 +57,8 @@ class CalculatorModel {
   }
 
   getReward(rank) {
-    const rewardList = [5000, 50000, 1500000, 30000000, 2000000000];
-
     const reward = Object.values(rank).reduce((acc, cur, idx) => {
-      return acc + cur * rewardList[idx];
+      return acc + cur * this.#rewardList[idx];
     }, 0);
 
     return { rank, reward };
