@@ -105,7 +105,7 @@ class LottoGame {
     }
 
     if (!isValidUnique(this.#winningNumbers, bonusNumber)) {
-      throw ERROR_MESSAGE.UNIQUE_ERROR;
+      throw ERROR_MESSAGE.BONUS_UNIQUE_ERROR;
     }
 
     if (!isValidRange(bonusNumber)) {

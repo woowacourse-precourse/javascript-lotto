@@ -29,8 +29,10 @@ const ERROR_MESSAGE = {
   TYPE_ERROR: "[ERROR] 숫자를 입력해주세요.",
   UNIT_ERROR: "[ERROR] 1,000으로 나누어 떨어지는 금액을 입력해주세요.",
   RANGE_ERROR: "[ERROR] 1~45 범위의 값만 입력해주세요.",
-  LENGTH_ERROR: `[ERROR] 값을 6개만 입력해주세요.`,
-  UNIQUE_ERROR: "[ERROR] 보너스 번호가 당첨 번호와 중복되지 않게 입력해주세요.",
+  LENGTH_ERROR: "[ERROR] 값을 6개만 입력해주세요.",
+  LOTTO_UNIQUE_ERROR: "[ERROR] 로또 번호가 중복됩니다.",
+  BONUS_UNIQUE_ERROR:
+    "[ERROR] 보너스 번호가 당첨 번호와 중복되지 않게 입력해주세요.",
 };
 
 module.exports = { GAME_MESSAGE, ERROR_MESSAGE, LOTTO_VALUE };

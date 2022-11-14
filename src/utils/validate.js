@@ -16,6 +16,10 @@ const isValuesNumberType = (values) => values.every((value) => !isNaN(value));
 const isValuesValidRange = (values) =>
   values.every((value) => value >= LOTTO_VALUE.MIN && value <= LOTTO_VALUE.MAX);
 
+const isValuesValidUnique = (values) => {
+  return values.length === new Set(values).size;
+};
+
 const isValuesValidLength = (values) => values.length === LOTTO_VALUE.LENGTH;
 
 module.exports = {
@@ -25,5 +29,6 @@ module.exports = {
   isThousandUnits,
   isValuesNumberType,
   isValuesValidRange,
+  isValuesValidUnique,
   isValuesValidLength,
 };

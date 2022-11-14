@@ -5,6 +5,7 @@ const {
   isThousandUnits,
   isValuesNumberType,
   isValuesValidRange,
+  isValuesValidUnique,
   isValuesValidLength,
 } = require("./validate");
 const {
@@ -22,6 +23,7 @@ module.exports = {
   isThousandUnits,
   isValuesNumberType,
   isValuesValidRange,
+  isValuesValidUnique,
   isValuesValidLength,
   inputUserValue,
   printMessage,
