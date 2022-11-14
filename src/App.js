@@ -24,7 +24,29 @@ class App {
   bonusNumber;
 
   constructor() {}
-  play() {}
+  play() {
+    this.getPurchasePrice();
+  }
+  // 구입 금액 입력
+  getPurchasePrice() {
+    Console.readLine(INPUT_MESSAGE.PURCHASE_PRICE, (price) => {
+      if (isPurchasePriceToNumber(price))
+        throw new Error(ERROR_MESSAGE.PRICE_NUMBER);
+      this.price = Number(price);
+      this.getLottoList(this.price / LOTTO_PURCHASE_PRICE);
+    });
+  }
+
+  // 로또 리스트 가져오기
+  getLottoList(count) {}
+  // 로또 출력하기
+  printLottoList() {}
+  // 당첨 번호 입력하기
+  getWinNumber() {}
+  // 보너스 금액 입력
+  getBonusNumber() {}
+  getWinStatistic() {}
+  printWinStatistic(winStatistic) {}
 }
 
 const game = new App();
