@@ -4,7 +4,7 @@
     [:deciduous_tree:] 발행할 로또 개수를 계산한다.
     [:deciduous_tree:] [Error] 숫자가 아니면 에러
     [:deciduous_tree:] [Error] 1000원 단위로 떨어지지 않으면 에러
-3. 발행할 로또 수량을 출력한다.
+[:deciduous_tree:] 발행할 로또 수량을 출력한다.
 [:deciduous_tree:] 로또를 필요한 수량만큼 발행한다.
     [:deciduous_tree:] 로또 하나당 6개 수를 갖도록 발행한다.
     [:deciduous_tree:] 오름차순으로 정렬한다.
