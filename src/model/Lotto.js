@@ -9,48 +9,45 @@ class Lotto {
     this.#numbers = numbers;
   }
 
-  isInputSplitByComma(lotto) {
-    if (lotto.length !== 6) {
+  isInputSplitByComma(userSplitInput) {
+    if (userSplitInput.length !== 6) {
       throw new Error(messages.WINNING_NUMBER_ERROR_COMMA_NUMBER_MESSAGE);
     }
 
-    for (const singleElement of lotto) {
+    for (const singleElement of userSplitInput) {
       if (isNaN(singleElement)) {
         throw new Error(messages.WINNING_NUMBER_ERROR_COMMA_NUMBER_MESSAGE);
       }
     }
   }
 
-  isSingleLottoElementInRange(lotto) {
-    for (const singleElement of lotto) {
+  isSingleLottoElementInRange(userSplitInput) {
+    for (const singleElement of userSplitInput) {
       if (1 > singleElement || singleElement > 45) {
         throw new Error(messages.WINNING_NUMBER_ERROR_RANGE_MESSAGE);
       }
     }
   }
 
-  isLottoUnique(lotto) {
-    const numbersSet = new Set(lotto);
+  isLottoUnique(userSplitInput) {
+    const numbersSet = new Set(userSplitInput);
     if (numbersSet.size !== 6) {
       throw new Error(messages.WINNING_NUMBER_ERROR_UNIQUE_NUMBERS_MESSAGE);
     }
   }
 
-  validate(userInput) {
-    const winningSplitNumber = userInput.split(",").map(Number);
-    this.isInputSplitByComma(winningSplitNumber);
-    this.isSingleLottoElementInRange(winningSplitNumber);
-    this.isLottoUnique(winningSplitNumber);
+  validate(userSplitInput) {
+    this.isInputSplitByComma(userSplitInput);
+    this.isSingleLottoElementInRange(userSplitInput);
+    this.isLottoUnique(userSplitInput);
   }
 
   getLottoNumbers() {
     return this.#numbers;
   }
 
-  setLottoNumbers() {
-    const winningSplitNumber = this.getLottoNumbers().split(",")
-      .map(Number);
-    this.controller.setLottoToUse(winningSplitNumber);
+  setLottoNumbersToUse() {
+    this.controller.setLottoToUse(this.getLottoNumbers());
     this.controller.getBonusNumberFromUser();
   }
 }

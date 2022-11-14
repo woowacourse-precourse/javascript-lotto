@@ -27,9 +27,10 @@ class Controller {
     this.view.getWinningNumberFromUser();
   }
 
-  setWinningNumberFromUser(winningNumber) {
-    const lotto = new Lotto(winningNumber, this);
-    lotto.setLottoNumbers();
+  setWinningNumberFromUser(userInput) {
+    const userSplitInput = userInput.split(",").map(Number);
+    const lotto = new Lotto(userSplitInput, this);
+    lotto.setLottoNumbersToUse();
   }
 
   setLottoToUse(lotto) {
