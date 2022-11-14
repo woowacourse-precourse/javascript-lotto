@@ -1,11 +1,12 @@
 const Lotto = require("./validate/Lotto.js");
 const PurchaseLotto = require("./controller/PurchaseLotto.js");
-const PurchaseValudate = require("./validate/purchaseValidate.js");
+const PurchaseValudate = require("./validate/PurchaseValidate.js");
 const { Console, Random } = require("@woowacourse/mission-utils");
+const Bonus = require("./validate/Bonus.js");
 class App {
   constructor() {
     this.randomLottoNums = [];
-    this.correctLottoNums = [];
+    this.luckyNumber = [];
     this.bonusNumber = 0;
     this.earningRate = 0;
     this.input = 0;
@@ -24,17 +25,17 @@ class App {
       this.input = Number(input);
       new PurchaseValudate(this.input);
       this.randomLottoNums = new PurchaseLotto(this.input).start();
-      this.getCorrectLottoNums();
+      this.getLuckyNumbers();
     });
   }
 
-  getCorrectLottoNums() {
+  getLuckyNumbers() {
     Console.readLine("당첨 번호를 입력해 주세요.", (input) => {
-      this.correctLottoNums = input
+      this.luckyNumber = input
         .split(",")
         .map(Number)
         .sort((a, b) => a - b);
-      new Lotto(this.correctLottoNums);
+      new Lotto(this.luckyNumber);
 
       this.getBonusLottoNums();
     }); // ,로 구분
@@ -43,7 +44,7 @@ class App {
   getBonusLottoNums() {
     Console.readLine("보너스 번호를 입력해 주세요.", (input) => {
       this.bonusNumber = Number(input);
-
+      new Bonus(this.bonusNumber, this.luckyNumber);
       this.getEarningRate();
     });
   }
@@ -51,15 +52,14 @@ class App {
   getEarningRate() {
     Console.print("당첨 통계");
     Console.print("---");
-    console.log(this.randomLottoNums, "randomLottoNums");
 
     for (const numbers of this.randomLottoNums) {
       let correctCount = 0;
 
       for (let i = 0; i < 5; i++) {
-        if (numbers[i] === this.correctLottoNums[i]) correctCount++;
+        if (numbers[i] === this.luckyNumber[i]) correctCount++;
       }
-      console.log(numbers, this.correctLottoNums, correctCount, "!@!@");
+      console.log(numbers, this.luckyNumber, correctCount, "!@!@");
       if (correctCount > 2) {
         this.rank[
           `${this.getRank(correctCount, numbers.includes(this.bonusNumber))}`
@@ -93,7 +93,7 @@ class App {
 
     this.earningRate = (totalEarning / this.input).toFixed(1);
     console.log(
-      this.correctLottoNums,
+      this.luckyNumber,
       this.bonusNumber,
       this.rank,
       this.earningRate,
@@ -124,4 +124,4 @@ class App {
 const app = new App();
 app.play();
 
-// module.exports = App;
+module.exports = App;

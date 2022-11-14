@@ -2,10 +2,10 @@ const { DEFAULT, ERROR } = require("../utils/constant.js");
 
 class Bonus {
   #number;
-  #correctNumbers;
-  constructor(number, correctNumbers) {
+  #luckyNumbers;
+  constructor(number, luckyNumbers) {
     this.#number = Number(number);
-    this.#correctNumbers = correctNumbers;
+    this.#luckyNumbers = luckyNumbers;
     this.check();
   }
 
@@ -24,7 +24,7 @@ class Bonus {
   check() {
     if (this.checkNumber(this.#number)) throw new Error(ERROR.BONUS_NUM_ERROR);
     if (!this.checkRange(this.#number)) throw new Error(ERROR.RANGE_ERROR);
-    if (this.checkDuplicate(this.#number, this.#correctNumbers))
+    if (this.checkDuplicate(this.#number, this.#luckyNumbers))
       throw new Error(ERROR.DUPLICATE_ERROR);
   }
 }
