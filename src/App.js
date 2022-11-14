@@ -1,5 +1,11 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { GUIDE_MESSAGE, LOTTO_PRICE } = require("./Constants");
+const {
+  GUIDE_MESSAGE,
+  LOTTO_PRICE,
+  LOTTO_SIZE,
+  LOTTO_MIN_NUMBER,
+  LOTTO_MAX_NUMBER,
+} = require("./Constants");
 const Validation = require("./validation");
 
 class App {
@@ -46,6 +52,13 @@ class App {
         Validation.checkBonusNumber(bonusNumberArr, this.winnerNumber);
         this.bonusNumber = bonusNumberElement;
       }
+    );
+  }
+  randomLottoNumberPick() {
+    return MissionUtils.Random.pickUniqueNumbersInRange(
+      LOTTO_MIN_NUMBER,
+      LOTTO_MAX_NUMBER,
+      LOTTO_SIZE
     );
   }
 }
