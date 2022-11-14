@@ -3,6 +3,13 @@ const { ERROR_MESSAGE } = require('./constant/Error');
 const InvalidInputError = require('./error/InvalidInputError');
 
 class Validation {
+  static validateMoney(money) {
+    if (!this.isNumber([money])) this.throwException(InvalidInputError, ERROR_MESSAGE.NOT_A_NUMBER);
+    money = Number(money);
+    if (money < LOTTO.PRICE) this.throwException(InvalidInputError, ERROR_MESSAGE.NOT_ENOUGH_MONEY);
+    if (money % LOTTO.PRICE !== 0)
+      this.throwException(InvalidInputError, ERROR_MESSAGE.NOT_DIVIDED_BY_THOUSNAD);
+  }
   static validateLottoNumber(numbers) {
     if (!this.isNumber(numbers)) this.throwException(InvalidInputError, ERROR_MESSAGE.NOT_A_NUMBER);
     if (numbers.length !== LOTTO.LENGTH)
