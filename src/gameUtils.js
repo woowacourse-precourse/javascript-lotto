@@ -1,5 +1,5 @@
 const { Random } = require('@woowacourse/mission-utils');
-const { GAME_RANGE } = require('./config');
+const { GAME_RANGE, PRIZES } = require('./config');
 
 const generateLotto = () =>
   Random.pickUniqueNumbersInRange(
@@ -8,4 +8,11 @@ const generateLotto = () =>
     GAME_RANGE.NUM_LENGTH,
   ).sort((a, b) => a - b);
 
-module.exports = { generateLotto };
+const generateLottoStat = (budget, ranks) => {
+  const totalValue = ranks.reduce((acc, rank) => acc + PRIZES[rank].VALUE, 0);
+  const profitRate = ((totalValue / budget) * 100).toFixed(2);
+
+  return profitRate;
+};
+
+module.exports = { generateLotto, generateLottoStat };
