@@ -15,7 +15,6 @@ class App {
     let buyCount = PurchasePrice.getPurchasePrice()
     this.getLottoNum(buyCount)
     this.getWinningNum()
-    
   }
 
   getLottoNum(buyCount) {
@@ -38,12 +37,12 @@ class App {
   getWinningNum() {
     Console.readLine('당첨 번호를 입력해 주세요', (inputs) => {
       console.log(inputs.split('"').join().split(',').map(Number))
-      let winner=new WinningNum(inputs.split('"').join().split(',').map(Number))
-
+      let winner = new WinningNum(
+        inputs.split('"').join().split(',').map(Number),
+      )
+      //당첨번호  출력
+      winner.resultPrint()
     })
-
-
-
   }
 }
 

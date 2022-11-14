@@ -51,6 +51,12 @@ class WinningNum {
       })
     }
 
+
+  resultPrint(){
+    Console.print(`${this.#inputs}`)
+  }
+
+
 }
 
 module.exports = WinningNum
