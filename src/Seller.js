@@ -64,7 +64,7 @@ const Seller = ((_) => {
 
     #notifyBuyLotto() {
       this.#io.print(`\n${this.#buyer.buyLottoNumber}개를 구매했습니다.`);
-      this.#buyer.lottos.forEach(this.#io.print);
+      this.#buyer.lottos.forEach((lotto) => this.#io.print(`[${lotto.join(", ")}]`));
     }
 
     #announcementResult() {
@@ -74,7 +74,8 @@ const Seller = ((_) => {
         bonusNumber,
         winNumber,
         lottos,
-      });
+      }).announceLottoResult();
+      this.#io.close();
     }
 
     validateAmount(amount) {
