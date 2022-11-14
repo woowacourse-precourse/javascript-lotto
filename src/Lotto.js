@@ -98,17 +98,13 @@ class Lotto {
   }
 
   calResult() {
+    // 보너스번호, 당첨번호와 일치하는 숫자들만 필터링
     const bonusAndWinMatchNum = this.filterMatchNum();
+    // 2등을 제외한 보너스번호들을 삭제
     const onlyMatchNum =
       this.deleteBonusNumExceptSecondLottery(bonusAndWinMatchNum);
 
-    let resultLottery = {};
-    for (let matchCount in RESULT_MATCH_COUNT) {
-      resultLottery[matchCount] = this.classifyLottery(
-        onlyMatchNum,
-        matchCount
-      );
-    }
+    const resultLottery = this.classifyLottery(onlyMatchNum);
 
     const FirstSecondLottery = this.splitFirstandSecondLottery(resultLottery);
     delete resultLottery.FIRST_OR_SECOND_LOTTERY;
@@ -149,10 +145,21 @@ class Lotto {
     );
   }
 
-  classifyLottery(onlyMatchNum, matchCount) {
+  filterOnlyWinLottery(onlyMatchNum, matchCount) {
     return onlyMatchNum.filter(
       (result) => result.length === RESULT_MATCH_COUNT[matchCount]
     );
+  }
+
+  classifyLottery(onlyMatchNum) {
+    let resultLottery = {};
+    for (let matchCount in RESULT_MATCH_COUNT) {
+      resultLottery[matchCount] = this.filterOnlyWinLottery(
+        onlyMatchNum,
+        matchCount
+      );
+    }
+    return resultLottery;
   }
 
   splitFirstandSecondLottery(resultLottery) {
