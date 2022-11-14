@@ -30,6 +30,23 @@ class LottoGameStart {
       this.makeWinLottoNumber();
     });
   }
+
+  makeWinLottoNumber() {
+    Console.readLine("당첨 번호를 입력해 주세요.\n", (inputWinNumber) => {
+      let lottoWinNumber = inputWinNumber.split(",").map(Number);
+      Console.readLine("보너스 번호를 입력해 주세요.\n", (inputBonusNumber) => {
+        this.#winLottoNum = lottoWinNumber;
+        this.#BonusNum = Number(inputBonusNumber);
+        const lottoJudgement = new LottoJudgement(
+          this.#userLottoArray,
+          this.#winLottoNum,
+          this.#BonusNum
+        );
+        lottoJudgement.judgeStart();
+        this.printResultStatic(lottoJudgement.getScoreBoard());
+      });
+    });
+  }
 }
 
 module.exports = LottoGameStart;
