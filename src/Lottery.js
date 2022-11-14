@@ -10,7 +10,7 @@ class Lottery {
     this.lottoCount = lottoCount;
   }
 
-  publishLottoList() {
+  pick() {
     const lottos = [];
 
     for (let index = 0; index < this.lottoCount; index += 1) {
@@ -23,9 +23,9 @@ class Lottery {
     return this;
   }
 
-  printLottoList() {
+  printList() {
     this.#lottoList.forEach((lotto) => {
-      const lottoMessage = Lottery.getLottoPrintMessage(lotto);
+      const lottoMessage = Lottery.getMessage(lotto);
       print(lottoMessage);
     });
 
@@ -34,7 +34,7 @@ class Lottery {
     return this;
   }
 
-  static getLottoPrintMessage(lotto = []) {
+  static getMessage(lotto = []) {
     const stringLotto = JSON.stringify(lotto);
     return stringLotto.replace(/,/gi, ', ');
   }

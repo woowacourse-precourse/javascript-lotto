@@ -34,7 +34,7 @@ class LottoProgram {
 
   publishLotto() {
     const lottoCount = this.price.getLottoCount();
-    this.lottery = new Lottery(lottoCount).publishLottoList().printLottoList();
+    this.lottery = new Lottery(lottoCount).pick().printList();
 
     return this.inputLotto();
   }
