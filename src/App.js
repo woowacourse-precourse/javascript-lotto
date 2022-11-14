@@ -5,6 +5,7 @@ const WinningLotto = require('./Lotto');
 const {
   printLottoResult,
   printGeneratedLottos,
+  printNumOfLottos,
 } = require('./utils/manageConsole');
 
 class App {
@@ -20,8 +21,8 @@ class App {
   buyLotto() {
     Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
       this.lottoGenerator.validateInputMoney(money);
-      const GENERATED_LOTTOS = this.lottoGenerator.generateLottos(money);
-      printGeneratedLottos(GENERATED_LOTTOS);
+      printNumOfLottos(this.lottoGenerator.getNumOfLottos(money));
+      printGeneratedLottos(this.lottoGenerator.generateLottos(money));
       return this.generateLuckyLotto();
     });
   }

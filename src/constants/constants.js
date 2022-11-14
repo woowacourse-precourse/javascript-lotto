@@ -11,7 +11,7 @@ const RESULT = {
       `5개 일치, 보너스 볼 일치 (30,000,000원) - ${score}개`,
     FIRST_RANK: (score) => `6개 일치 (2,000,000,000원) - ${score}개`,
   },
-  PROFIT: (profit) => `총 수익률은 ${profit} 입니다.`,
+  PROFIT: (profit) => `총 수익률은 ${profit}%입니다.`,
 };
 
 const WINNING_MONEY = {

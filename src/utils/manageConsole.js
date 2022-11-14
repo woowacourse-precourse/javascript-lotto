@@ -2,7 +2,11 @@ const { Console } = require('@woowacourse/mission-utils');
 const { RESULT } = require('../constants/constants');
 
 const printGeneratedLottos = (generatedLottos) => {
-  generatedLottos.forEach((lotto) => Console.print(lotto));
+  generatedLottos.map((lotto) => Console.print(`[${lotto.join(', ')}]`));
+};
+
+const printNumOfLottos = (numOflottos) => {
+  Console.print(`\n${numOflottos}개를 구매했습니다.`);
 };
 
 const printLottoResult = (score, profit) => {
@@ -15,4 +19,4 @@ const printLottoResult = (score, profit) => {
   Console.print(RESULT.PROFIT(profit));
 };
 
-module.exports = { printLottoResult, printGeneratedLottos };
+module.exports = { printLottoResult, printGeneratedLottos, printNumOfLottos };
