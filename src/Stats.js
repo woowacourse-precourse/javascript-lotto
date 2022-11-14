@@ -1,7 +1,7 @@
 const underThree = (bonus) => "underThree";
 const three = (bonus) => "three";
 const four = (bonus) => "four";
-const five = (bonus) => (bonus ? "five" : "fivePlusBonus");
+const five = (bonus) => (bonus ? "fivePlusBonus" : "five");
 const six = (bonus) => "six";
 
 const scoreMap = {
