@@ -1,5 +1,12 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
+const {
+  QUESTION,
+  ERR_MSG,
+  MATCH_MSG,
+  WINNING_AMOUNT,
+  PRETTY_MSG,
+} = require("./constants/constants");
 class App {
   #winningNum;
   #bonusNum;
@@ -36,7 +43,7 @@ class App {
     this.setBonusNum();
 
     // 4. 당첨 통계 계산
-    MissionUtils.Console.print("당첨 통계\n---");
+    MissionUtils.Console.print(PRETTY_MSG.winningResult);
     for (let i = 0; i < purchaseCount; i++) {
       matches = this.compare(this.#purchaseNumList[i].getNumber());
       if (matches > 2) {
@@ -51,10 +58,10 @@ class App {
 
   validAmount(amount) {
     if (isNaN(+amount)) {
-      throw new Error("[ERROR] 숫자만 입력해주세요.");
+      throw new Error(ERR_MSG.notNumber);
     }
     if (!(amount % 1000 === 0 && amount / 1000 !== 0)) {
-      throw new Error("[ERROR] 1,000원 단위로 입력해주세요.");
+      throw new Error(ERR_MSG.notThousand);
     }
     return amount;
   }
@@ -67,7 +74,7 @@ class App {
 
   buy() {
     let money = 0;
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (input) => {
+    MissionUtils.Console.readLine(QUESTION.buy, (input) => {
       money = input;
     });
     return money;
@@ -75,14 +82,14 @@ class App {
 
   setWinningNum() {
     let winningNum = [];
-    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (input) => {
+    MissionUtils.Console.readLine(QUESTION.setWinningNum, (input) => {
       winningNum = this.changeNumArray(input);
     });
     this.#winningNum = winningNum;
   }
 
   setBonusNum() {
-    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (input) => {
+    MissionUtils.Console.readLine(QUESTION.setBonusNum, (input) => {
       this.#bonusNum = parseInt(input);
     });
   }
@@ -111,27 +118,13 @@ class App {
   }
 
   printWinningResult(match, count) {
-    const matchMessages = {
-      3: "3개 일치 (5,000원)",
-      4: "4개 일치 (50,000원)",
-      5: "5개 일치 (1,500,000원)",
-      5.5: "5개 일치, 보너스 볼 일치 (30,000,000원)",
-      6: "6개 일치 (2,000,000,000원)",
-    };
-    MissionUtils.Console.print(matchMessages[match] + ` - ${count}개`);
+    MissionUtils.Console.print(MATCH_MSG[match] + ` - ${count}개`);
   }
 
   printRate(matchesObj) {
-    const winningAmountObj = {
-      3: 5000,
-      4: 50000,
-      5: 1500000,
-      5.5: 30000000,
-      6: 2000000000,
-    };
     let winningAmount = 0;
     this.#validMatchesList.map((matches) => {
-      winningAmount += matchesObj[matches] * winningAmountObj[matches];
+      winningAmount += matchesObj[matches] * WINNING_AMOUNT[matches];
     });
     MissionUtils.Console.print(
       `총 수익률은 ${(winningAmount / this.#purchaseAmount) * 100}%입니다.`
