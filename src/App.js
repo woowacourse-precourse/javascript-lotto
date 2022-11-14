@@ -58,6 +58,8 @@ class App {
       income += lotto[index].amount * result[index];
       Console.print(`${lotto[index].message}${result[index]}개`);
     }
+    const percent = (income / this.money) * 100;
+    Console.print(`${COMMAND.YIELD}${percent.toFixed(1)}%입니다.`);
   }
 }
 
