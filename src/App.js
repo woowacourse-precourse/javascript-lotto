@@ -11,6 +11,7 @@ class App {
   play() {
     this.userPurchase();
     this.createUserLotto(this.totalLotto);
+    console.log(this.userLotto);
   }
 
   userPurchase() {
@@ -22,14 +23,22 @@ class App {
   }
 
   createUserLotto(totalLotto) {
-    for (let number = 0; number < totalLotto; number++) {}
+    for (let number = 0; number < totalLotto; number++) {
+      const RANDOM = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      if (RANDOM) {
+        const NEW_LOTTO = RANDOM.sort((a, b) => a - b);
+        this.userLotto.push(NEW_LOTTO);
+      }
+    }
   }
 
   isNumber(payment) {
-    if (payment.match(/^[0-9]+$/) === false) {
+    if (isNaN(payment)) {
       throw new Error("[ERROR] 로또 구입 금액은 숫자만 입력해주세요.");
     }
   }
+
+  sortLotto(newLotto) {}
 }
 
 module.exports = App;
