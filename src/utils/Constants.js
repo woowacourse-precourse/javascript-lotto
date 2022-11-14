@@ -38,7 +38,7 @@ const NUMBERS = Object.freeze({
 });
 
 const RESULT_MESSAGES = Object.freeze({
-  WINNING_STATISTICS: "\n당첨통계\n---",
+  WINNING_STATISTICS: "\n당첨 통계\n---",
   TOTAL_PROFIT_RATE: (profit, payment) =>
     `총 수익률은 ${((profit / payment) * 100).toFixed(1)}%입니다.`,
   PRINT_RESULT: (count, match) =>
