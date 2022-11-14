@@ -16,18 +16,18 @@ class Lotto {
    * @param {number[]} numbers
    */
   constructor(numbers) {
-    this.validate(numbers);
-    this.#numbers = this.sortLottoNumbers(numbers);
+    this.#validate(numbers);
+    this.#numbers = this.#sortLottoNumbers(numbers);
   }
 
   /**
    *
    * @param {number[]} numbers
    */
-  validate(numbers) {
-    this.validateNumbersLength(numbers);
-    this.validateLottoNumbersBound(numbers);
-    this.validateDuplication(numbers);
+  #validate(numbers) {
+    this.#validateNumbersLength(numbers);
+    this.#validateLottoNumbersBound(numbers);
+    this.#validateDuplication(numbers);
   }
 
   /**
@@ -35,7 +35,7 @@ class Lotto {
    * @param {number[]} numbers
    * @returns {number[]}
    */
-  sortLottoNumbers(numbers) {
+  #sortLottoNumbers(numbers) {
     return numbers.sort((a, b) => a - b);
   }
 
@@ -43,7 +43,7 @@ class Lotto {
    *
    * @param {number[]} numbers
    */
-  validateNumbersLength(numbers) {
+  #validateNumbersLength(numbers) {
     if (numbers.length !== 6) {
       throw new Error(LOTTO_LENGTH_ERROR_MESSAGE);
     }
@@ -53,7 +53,7 @@ class Lotto {
    *
    * @param {number[]} numbers
    */
-  validateLottoNumbersBound(numbers) {
+  #validateLottoNumbersBound(numbers) {
     numbers.forEach((number) => {
       if (
         !Number.isInteger(number) ||
@@ -69,7 +69,7 @@ class Lotto {
    *
    * @param {number[]} numbers
    */
-  validateDuplication(numbers) {
+  #validateDuplication(numbers) {
     const numberSet = new Set(numbers);
 
     if (numberSet.size !== numbers.length) {
