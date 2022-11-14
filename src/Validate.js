@@ -1,11 +1,11 @@
 const { Console } = require("@woowacourse/mission-utils");
-const lotto = require("@woowacourse/mission-utils");
+const Lotto = require("./Lotto");
 
 class validate {
   check(number) {
     this.checkNumber(number);
-    this.checkDuplication(number);
     this.checkLength(number);
+    this.checkDuplication(number);
     this.checkRange(number);
   }
 
@@ -19,7 +19,9 @@ class validate {
     }
   }
   // 숫자 범위 체크
-  checkLength(number) {}
+  checkLength(number) {
+    this.lotto = new Lotto(number);
+  }
 
   checkDuplication(number) {
     const set = new Set(number);
