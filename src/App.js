@@ -49,7 +49,7 @@ class App {
       this.#startMoney = Number(userInput);
       this.#myLotteryQuantity = countPurchasedLotteries(this.#startMoney);
       this.#myLotteryList = Array(this.#myLotteryQuantity).fill(0); // 처음부터 Array(Object) 모양 고정시켜 V8 Map Space에 불필요한 hiddenClass 생성을 막기 위함 (push 사용 x)
-      this.#myLotteryPrintList = Array(this.#myLotteryQuantity).fill(0);
+      this.#myLotteryPrintList = Array(this.#myLotteryQuantity).fill(0); // 위와 동일한 이유로 생성
       return this.makeLotteries();
     });
   }
@@ -57,7 +57,7 @@ class App {
   makeLotteries() {
     this.#myLotteryList = this.#myLotteryList.map((blankObject) => {
       const myLottery = processRandomLottoNumber();
-      blankObject = new Lotto(myLottery);
+      blankObject = new Lotto(myLottery); // 내 로또 리스트에 로또 객체들 생성 후 할당.
       return blankObject;
     });
     return this.myLotteryResult();
@@ -68,7 +68,7 @@ class App {
     this.#myLotteryList.forEach((lottery, i) => {
       this.#myLotteryPrintList[i] = lottery.returnMyLottery(); // 매번 Console.print()를 하게되면 속도가 매우 느려질 수 있기에, 배열에 로또 번호들을 저장해두고 한번에 Print()
     });
-    Console.print(this.#myLotteryPrintList.join('\n'));
+    Console.print(this.#myLotteryPrintList.join('\n')); // 내 로또 리스트 출력
     return this.makeWinNumber();
   }
 
