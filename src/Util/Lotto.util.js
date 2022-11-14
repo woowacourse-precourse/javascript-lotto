@@ -7,7 +7,15 @@ const checkDuplicatedLotto = (input) => {
   return false;
 };
 
-const checkAscendingLotto = (input) => {};
+const checkAscendingLotto = (input) => {
+  input = input[Symbol.iterator]();
+  let start = input.next().value;
+  for (const next of input) {
+    if (start >= next) return false;
+    start = next;
+  }
+  return true;
+};
 
 const checkLottoResult = (input, compareInput, bonus) => {};
 
