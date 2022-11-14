@@ -23,7 +23,7 @@ class App {
 
   printLottos(lottos) {
     lottos.forEach(function (lotto) {
-      /* 개별 로또 번호 출력 */
+      lotto.printNumbers();
     });
   }
 
