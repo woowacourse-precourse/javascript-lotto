@@ -13,6 +13,17 @@ class InputUI extends UI {
       });
     });
   }
+
+  handleInput(predicate, errorMessage, message = '') {
+    return new Promise((resolve, reject) => {
+      MissionUtils.Console.readLine(message, (answer) => {
+        if (predicate(answer)) {
+          resolve(answer);
+        }
+        reject(errorMessage);
+      });
+    });
+  }
 }
 
 module.exports = InputUI;
