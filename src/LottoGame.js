@@ -5,6 +5,7 @@ const LottoGameView = require("./LottoGameView.js");
 const Validation = require("./Validation.js");
 const LottoPerchaseMachine = require("./LottoPurchaseMachine.js");
 const WinningLotto = require("./WinningLotto.js");
+const LottoDrawMachine = require("./LottoDrawMachine.js");
 
 class LottoGame {
   lottos;
@@ -15,6 +16,7 @@ class LottoGame {
     this.LottoGameView = new LottoGameView();
     this.lottoPerchaseMachine = new LottoPerchaseMachine();
     this.winningLotto = new WinningLotto();
+    this.lottoDrawMachine = new LottoDrawMachine();
   }
 
   play() {
@@ -53,9 +55,13 @@ class LottoGame {
 
   drawLottoPhase() {
     const eachLottoNumbers = this.getEachLottoNumbers();
-    const eachCompareResult = eachLottoNumbers.map(this.getCompareResult.bind(this));
-    const eachCalculatedLottoPrize = eachCompareResult.map(this.getCalculatedLottoPrize);
-    const prizeStatistics = this.getPrizeStatistics(eachCalculatedLottoPrize);
+    const eachLottoPrize = this.lottoDrawMachine.drawLotto(
+      eachLottoNumbers,
+      this.winningNumbers,
+      this.bonusNumber
+    );
+
+    const prizeStatistics = this.getPrizeStatistics(eachLottoPrize);
     const totalPrizeMoney = this.getTotalPrizeMoney(prizeStatistics);
     const yieldRatio = this.getYieldRatio(totalPrizeMoney);
     const prizeStatisticsTemplates = this.getPrizeStatisticsTemplates(prizeStatistics);
@@ -67,31 +73,7 @@ class LottoGame {
   getEachLottoNumbers() {
     return this.lottos.map((lotto) => lotto.getNumbers());
   }
-  getCompareResult(lottoNumbers) {
-    const matchedLottoNumberCount = this.getMatchedLottoNumberCount(lottoNumbers);
-    const hasBonusNumber = this.hasBonusNumber(lottoNumbers);
 
-    return { matchedLottoNumberCount, hasBonusNumber };
-  }
-  getMatchedLottoNumberCount(lottoNumbers) {
-    return lottoNumbers.filter((number) => this.winningNumbers.includes(number)).length;
-  }
-  hasBonusNumber(lottoNumbers) {
-    return lottoNumbers.includes(this.bonusNumber);
-  }
-  getCalculatedLottoPrize(compareResult) {
-    const { matchedLottoNumberCount, hasBonusNumber } = compareResult;
-
-    if (matchedLottoNumberCount === LOTTO_PRIZE_MATCH_COUNT.firstPlace) return "firstPlace";
-    if (matchedLottoNumberCount === LOTTO_PRIZE_MATCH_COUNT.thirdPlace && hasBonusNumber) {
-      return "secondPlace";
-    }
-    if (matchedLottoNumberCount === LOTTO_PRIZE_MATCH_COUNT.thirdPlace) return "thirdPlace";
-    if (matchedLottoNumberCount === LOTTO_PRIZE_MATCH_COUNT.fourthPlace) return "fourthPlace";
-    if (matchedLottoNumberCount === LOTTO_PRIZE_MATCH_COUNT.fifthPlace) return "fifthPlace";
-
-    return "fail";
-  }
   getPrizeStatistics(eachCalculatedLottoPrize) {
     const prizeStatistics = {
       fifthPlace: 0,
