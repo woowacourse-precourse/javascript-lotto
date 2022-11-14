@@ -64,13 +64,12 @@ class App {
 
       const bonusNumber = +userInput;
 
-      const results = this.#Lotto.calculateStatics(
-        this.#issuedLottos,
-        bonusNumber
-      );
-
-      this.printResults(results);
+      this.printResults(this.getResults(bonusNumber));
     });
+  }
+
+  getResults(bonusNumber) {
+    return this.#Lotto.calculateStatics(this.#issuedLottos, bonusNumber);
   }
 
   printResults(results) {
@@ -87,6 +86,10 @@ class App {
 총 수익률은 ${earningsRate}입니다.
 `;
 
+    this.endGame(resultMessage);
+  }
+
+  endGame(resultMessage) {
     Console.print(resultMessage);
     Console.close();
   }
