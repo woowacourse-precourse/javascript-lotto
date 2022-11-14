@@ -3,16 +3,7 @@ const Random = require("@woowacourse/mission-utils").Random;
 const Lotto = require("./Lotto");
 const BonusNumber = require("./BonusNumber");
 const Result = require("./Result");
-
-const ASK_AMOUNTS_MESSAGE = "구입금액을 입력해 주세요.\n";
-const ASK_WINNING_NUMBER_MESSAGE = "\n당첨 번호를 입력해 주세요.\n";
-const ASK_BONUS_NUMBER = "\n보너스 번호를 입력해 주세요.\n";
-const ERROR_DONT_START_ZERO =
-  "[ERROR] 0으로 시작하는 숫자는 입력할 수 없습니다.";
-const ERROR_NOT_THOUSAND_UNIT = "[ERROR] 1,000원 단위로만 구매 가능합니다.";
-const ERROR_NOT_ONLY_NUMBER = "[ERROR] 숫자만 입력 가능합니다.";
-const ERROR_NOT_NUMBER_AND_COMMA =
-  "[ERROR] 숫자와 ,(쉼표) 기호만을 입력해주세요.";
+const AppConst = require("./constant/AppConst");
 
 class App {
   play() {
@@ -20,7 +11,7 @@ class App {
   }
 
   getPurchaseAmount() {
-    Console.readLine(ASK_AMOUNTS_MESSAGE, (amount) => {
+    Console.readLine(AppConst.ASK_AMOUNTS_MESSAGE, (amount) => {
       this.checkAmountStartZero(amount);
       this.checkOnlyNumber(amount);
       const amountTypeofNumber = Number(amount);
@@ -37,7 +28,7 @@ class App {
 
   checkAmountStartZero(amount) {
     if (amount[0] === "0") {
-      throw new Error(ERROR_DONT_START_ZERO);
+      throw new Error(AppConst.ERROR_DONT_START_ZERO);
     }
   }
 
@@ -45,13 +36,13 @@ class App {
     const regex = /^\d+$/;
 
     if (!regex.test(amount)) {
-      throw new Error(ERROR_NOT_ONLY_NUMBER);
+      throw new Error(AppConst.ERROR_NOT_ONLY_NUMBER);
     }
   }
 
   checkPurchaseAmount(amount) {
     if (amount % 1000 !== 0) {
-      throw new Error(ERROR_NOT_THOUSAND_UNIT);
+      throw new Error(AppConst.ERROR_NOT_THOUSAND_UNIT);
     }
   }
 
@@ -84,7 +75,7 @@ class App {
   }
 
   getWinningNumber() {
-    Console.readLine(ASK_WINNING_NUMBER_MESSAGE, (userInput) => {
+    Console.readLine(AppConst.ASK_WINNING_NUMBER_MESSAGE, (userInput) => {
       const arrayedUserInput = this.getArrayedUserInput(userInput);
       this.checkUesrInputHaveOnlyNumberAndComma(arrayedUserInput);
 
@@ -110,7 +101,7 @@ class App {
       const ASCII = item.charCodeAt();
 
       if ((ASCII !== 44 && ASCII < 48) || ASCII > 57) {
-        throw new Error(ERROR_NOT_NUMBER_AND_COMMA);
+        throw new Error(AppConst.ERROR_NOT_NUMBER_AND_COMMA);
       }
     });
   }
@@ -124,7 +115,7 @@ class App {
   checkWinningNumberStartZero(userInput) {
     userInput.forEach((item) => {
       if (item[0] === "0") {
-        throw new Error(ERROR_DONT_START_ZERO);
+        throw new Error(AppConst.ERROR_DONT_START_ZERO);
       }
     });
   }
@@ -136,7 +127,7 @@ class App {
   }
 
   getBonusNumber() {
-    Console.readLine(ASK_BONUS_NUMBER, (bonus) => {
+    Console.readLine(AppConst.ASK_BONUS_NUMBER, (bonus) => {
       new BonusNumber(this.userLotto, bonus);
 
       const result = new Result(this.bundleOfLotto, this.userLotto, bonus);
