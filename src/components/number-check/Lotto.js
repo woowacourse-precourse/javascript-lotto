@@ -1,5 +1,5 @@
-const { LottoNumberData } = require('../lotto_data/LottoNumberData');
-const { RESTRICTIONS } = require('../lotto_data/constant');
+const { LottoNumberData } = require('../lotto-data/LottoNumberData');
+const { RESTRICTIONS } = require('../lotto-data/Constant');
 
 class Lotto {
   #numbers;
@@ -28,6 +28,14 @@ class Lotto {
     this.checkOnlyNumber();
     this.checkNumberRangesFrom1To45();
     this.checkOverlapsWithWinningNumber();
+    return this.#numbers;
+  }
+
+  checkIssuedNumberFromComputer() {
+    this.checkSixWinningNumbers();
+    this.checkOnlyNumbers();
+    this.checkNumberRangesFrom1To45ForArray();
+    this.checkDuplicates();
     return this.#numbers;
   }
 
