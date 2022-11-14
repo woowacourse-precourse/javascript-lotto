@@ -1,3 +1,4 @@
+const { ERROR_MESSAGE } = require("../src/constants");
 const Lotto = require("../src/domain/Lotto");
 
 describe("로또 클래스 테스트", () => {
@@ -11,13 +12,13 @@ describe("로또 클래스 테스트", () => {
   test("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.", () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 5]);
-    }).toThrow("[ERROR] 중복없이 숫자를 입력해주세요.");
+    }).toThrow(ERROR_MESSAGE.numberWithoutDuplicate);
   });
 
   test("로또 번호는 1이상 45이하의 번호가 아니면 예외가 발생한다.", () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 47]);
-    }).toThrow("[ERROR] 1에서 45까지의 번호를 입력해주세요");
+    }).toThrow(ERROR_MESSAGE.lottoRange);
   });
 
   // 아래에 추가 테스트 작성 가능
