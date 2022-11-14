@@ -1,6 +1,7 @@
 const ConsoleWork = require('./ConsoleWork');
 const Message = require('./Message');
 const RandomWork = require('./RandomWork');
+const LottoMain = require('./LottoMain');
 
 class Lotto {
   #numbers;
@@ -14,6 +15,7 @@ class Lotto {
     ConsoleWork.print(`${this.#numbers / 1000}${Message.PURCHASE_MESSAGE}`);
     const lottoList = this.makeLottoList(this.#numbers / 1000);
     this.printLotttoList(lottoList);
+    this.takePrizeNumber(lottoList);
   }
 
   makeLottoList(numberOfLotto) {
@@ -41,6 +43,12 @@ class Lotto {
     for (let i = 0; i < lottoList.length; i++) {
       ConsoleWork.print(lottoList[i]);
     }
+  }
+
+  takePrizeNumber(lottoList) {
+    ConsoleWork.takeInput(Message.PRIZENUMBER_MESSAGE + '\n', function (prize) {
+      LottoMain.takeBonus(lottoList, prize);
+    });
   }
 }
 
