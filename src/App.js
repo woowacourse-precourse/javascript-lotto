@@ -36,9 +36,8 @@ class App {
       );
     });
     OutputConsole.result(this.#lottoPrizeDto);
+    OutputConsole.sumMoney(this.#lottoPrizeDto, money);
   }
 }
 
 module.exports = App;
-
-new App().play();
