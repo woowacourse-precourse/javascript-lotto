@@ -11,6 +11,7 @@ class App {
     this.createIssuedLottoList();
     this.inputLottoWinningNumber();
     this.inputLottoBonusNumber();
+    this.printLottoWinningResult();
   }
   inputMoneyToBuyLottos() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (moneyToBuyLottos) => {
@@ -53,6 +54,14 @@ class App {
       if(this.#lottoWinningNumbers.includes(this.#lottoBonusNumber))
         throw new Error("[ERROR] 보너스 번호는 당첨 번호와 다른 숫자여야 합니다.");
     })
+  }
+  printLottoWinningResult(){
+    let countOfLottoWinning = [0,0,0,0,0,0];
+    for(let i=0; i<this.#numberOfLottos; i++){
+      const prize = this.getPrize(this.#issuedLottosList[i]);
+      if(prize<=5)
+        countOfLottoWinning[prize]++;
+    }
   }
   getPrize(numbers){
     const countOfMatchNumber = numbers.getCountOfMatchNumber(this.#lottoWinningNumbers);
