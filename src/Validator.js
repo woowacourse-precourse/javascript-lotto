@@ -54,6 +54,9 @@ class Validator {
   }
 
   static checkValidWinNumbers(winNumbers) {
+    if (winNumbers.includes('.')) {
+      throw new Error(`${ERROR_MESSAGES.INVALID_INPUT}`);
+    }
     const removalSeparatorNumbers = winNumbers.split(',').join('');
     const isNotNumber = Number.isNaN(Number(removalSeparatorNumbers));
     if (isNotNumber) {
