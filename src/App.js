@@ -9,6 +9,7 @@ class App {
   play() {
     let amount;
     let lotto_list;
+    let winning_number;
 
     this.purchase = this.input('구입금액을 입력해 주세요.\n');
     if (this.purchase === undefined)
@@ -18,6 +19,8 @@ class App {
     amount = this.get_quantity();
     lotto_list = this.publish_lotto(amount);
     this.print_publish_result(amount, lotto_list);
+
+    winning_number = this.input("당첨 번호를 입력해 주세요.");
   }
 
   input(text) {
