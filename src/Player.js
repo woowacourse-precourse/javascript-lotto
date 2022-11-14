@@ -6,7 +6,7 @@ class Player {
 
   buyTickets(amount) {
     const validation = new Validation();
-    if (!validation.amountType(amount)) {
+    if (isNaN(amount)) {
       throw new Error(ERROR_INPUT_MESSAGE.TYPE);
     }
     if (!validation.amountUnit(amount)) {
