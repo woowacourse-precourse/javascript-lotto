@@ -8,6 +8,7 @@ class Game {
     this.lottos = null;
     this.cost = 0;
     this.winningNumbers = null;
+    this.bonusNumber = 0;
   }
 
   static validate(money) {
@@ -37,6 +38,12 @@ class Game {
   static enterWinningNumbers() {
     IO.readLine(GAME_MSG.pleaseEnterWinningNumbers, (input) => {
       this.winningNumbers = input.trim().split(',').map(Number);
+    });
+  }
+
+  static enterBonusNumber() {
+    IO.readLine(GAME_MSG.pleaseEnterBonusNumber, (input) => {
+      this.bonusNumber = +input;
     });
   }
 }
