@@ -14,6 +14,7 @@ const LOTTO_PRIZE_MONEY = {
   thirdPlace: 1500000,
   fourthPlace: 50000,
   fifthPlace: 5000,
+  fail: 0,
 };
 
 module.exports = {
