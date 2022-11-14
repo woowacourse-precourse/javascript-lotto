@@ -111,4 +111,18 @@ describe('로또 당첨 테스트', () => {
       totalWinningCounter(purchaseLottoList, winningNumber, bonusNumber),
     ).toEqual(winningList);
   });
+
+  test('총 당첨 금액 구하기 테스트', () => {
+    const { proceedsGetter } = App;
+    const winningList = {
+      threeMatches: 2,
+      fourMatches: 1,
+      fiveMatches: 0,
+      fiveAndBonusMatches: 1,
+      sixMatches: 1,
+    };
+    const procdeeds = 2030060000;
+
+    expect(proceedsGetter(winningList)).toEqual(procdeeds);
+  });
 });
