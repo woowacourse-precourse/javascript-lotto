@@ -54,14 +54,13 @@ class LottoPlay {
    * @param {array} lottoArray 모든 로또 배열이 들어있는 배열
    * @param {array} winnerNumberArray  당첨 번호 배열
    * @param {number} bonusNumber 2등 3등을 판별할 보너스 번호
-   * @returns {array} 당첨 등수가 들어있는 배열을 결과로 리턴.
+   * @returns {array} 당첨 등수에 해당되는 인덱스에 몇 개의 로또가 일치하는지에 대한 정보가 들어있는 배열
    */
   compareWholeLotto(lottoArray, winnerNumberArray, bonusNumber) {
-    let resultArray = [];
+    let resultArray = [0, 0, 0, 0, 0, 0];
     lottoArray.forEach((lotto) => {
-      resultArray.push(
-        this.findWinningResult(lotto, winnerNumberArray, bonusNumber)
-      );
+      const tempRank = findWinningResult(lotto, winnerNumberArray, bonusNumber);
+      resultArray[tempRank] += 1;
     });
     return resultArray;
   }
@@ -88,7 +87,7 @@ class LottoPlay {
       case 6:
         return 1;
       default:
-        return 6;
+        return 0;
     }
   }
   /**
