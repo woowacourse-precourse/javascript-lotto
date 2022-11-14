@@ -2,12 +2,11 @@ const { ERROR } = require("./message");
 
 class Lotto {
   #numbers;
-  #bonusNumber;
 
   constructor(numbers, bonusNumber) {
     this.validate(numbers, bonusNumber);
     this.#numbers = numbers;
-    this.#bonusNumber = bonusNumber;
+    this.bonusNumber = bonusNumber;
   }
 
   validate(numbers, bonusNumber) {
@@ -27,7 +26,7 @@ class Lotto {
   }
 
   getBonusNumber() {
-    return this.#bonusNumber;
+    return this.bonusNumber;
   }
 }
 
