@@ -1,4 +1,3 @@
-const { Console } = require('@woowacourse/mission-utils');
 const { REGEX, ERROR } = require('./constants');
 
 class Lotto {
@@ -20,6 +19,10 @@ class Lotto {
     }
 
     return inputArr;
+  }
+
+  isBonusValid(number) {
+    return !this.#numbers.includes(number);
   }
 
   // TODO: 추가 기능 구현
