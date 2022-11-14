@@ -114,6 +114,19 @@ describe('App 클래스 메서드 테스트', () => {
     expect(lottoResult).toHaveProperty(`${prize.FOURTH}`, 1)
     expect(lottoResult).toHaveProperty(`${prize.FIFTH}`, 0)
   })
+
+  test('수익률은 소수점 둘째 자리에서 반올림해야 한다.', () => {
+    app.purchaseAmount = 9000000
+    const returnRate = app.calculateReturnRate({
+      [prize.FIRST]: 0,
+      [prize.SECOND]: 0,
+      [prize.THIRD]: 0,
+      [prize.FOURTH]: 1,
+      [prize.FIFTH]: 0,
+    })
+
+    expect(returnRate).toBe(0.6)
+  })
 })
 
 describe('', () => {
