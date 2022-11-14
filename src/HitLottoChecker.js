@@ -16,6 +16,7 @@ class HitLottoChecker {
   constructor(lottoPurchaseFee, lottoArray) {
     this.lottoPurchaseFee = lottoPurchaseFee;
     this.boughtLottoArray = lottoArray;
+    this.setHitLotto();
   }
 
   setHitLotto() {
