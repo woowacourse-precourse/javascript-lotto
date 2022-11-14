@@ -3,6 +3,7 @@
 /* eslint no-new: "off" */
 const MissionUtils = require('@woowacourse/mission-utils');
 const App = require('../src/App');
+const Lotto = require('../src/Lotto');
 
 describe('App 클래스 테스트', () => {
   test('LottoCount를 정확하게 계산하는가에대한 테스트', () => {
@@ -51,5 +52,21 @@ describe('App 클래스 테스트', () => {
 
     app.setBonusNumber(number);
     expect(app.bonusNumber).toBe(number);
+  });
+
+  test('setResult를 통해 결과값에 app.result에 제대로 입력 되는 지 테스트', () => {
+    const app = new App();
+
+    app.winningNumbers = [1, 2, 3, 4, 5, 6];
+    app.bonusNumber = 7;
+
+    for (let i = 0; i < 3; i += 1) {
+      const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+      app.lottos.push(lotto);
+    }
+
+    app.setResult();
+
+    expect(app.result).toStrictEqual({ 3: 0, 4: 0, 5: 0, '5+': 0, 6: 3 });
   });
 });
