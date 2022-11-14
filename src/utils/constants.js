@@ -1,33 +1,33 @@
 const RULE = Object.freeze({
-  FIRST: {
+  FIRST: Object.freeze({
     TYPE: 'FIRST',
     NUMBER_OF_SAME: 6,
     PRIZE_MONEY: 2000000000,
-  },
-  SECOND: {
+  }),
+  SECOND: Object.freeze({
     TYPE: 'SECOND',
     NUMBER_OF_SAME: 5,
     PRIZE_MONEY: 30000000,
-  },
-  THIRD: {
+  }),
+  THIRD: Object.freeze({
     TYPE: 'THIRD',
     NUMBER_OF_SAME: 5,
     PRIZE_MONEY: 1500000,
-  },
-  FOURTH: {
+  }),
+  FOURTH: Object.freeze({
     TYPE: 'FOURTH',
     NUMBER_OF_SAME: 4,
     PRIZE_MONEY: 50000,
-  },
-  FIFTH: {
+  }),
+  FIFTH: Object.freeze({
     TYPE: 'FIFTH',
     NUMBER_OF_SAME: 3,
     PRIZE_MONEY: 5000,
-  },
-  NOPRIZE: {
+  }),
+  NOPRIZE: Object.freeze({
     TYPE: 'NOPRIZE',
     PRIZE_MONEY: 0,
-  },
+  }),
 });
 
 const STATISTIC_PRINT = Object.freeze({
