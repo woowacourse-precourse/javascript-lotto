@@ -23,15 +23,13 @@ class Lotto {
   // TODO: 추가 기능 구현
 
   get getLotto() {
-    Console.print(this.replaceLotto());
+    Console.print(this.sortLottos());
     return this.#numbers;
   }
 
-  replaceLotto() {
+  sortLottos() {
     const sortLotto = this.#numbers.sort((a, b) => a - b);
-    const lottoText = [...`[${sortLotto}]`]
-      .map((v) => (v === "," ? (v = ", ") : v))
-      .join("");
+    const lottoText = `[${sortLotto.join(", ")}]`;
 
     return lottoText;
   }
