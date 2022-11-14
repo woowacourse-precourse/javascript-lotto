@@ -19,6 +19,7 @@ class InputWinningNumber{
     bonusNumber(){
         Console.readLine(INPUT_BONUS_NUMBER, (num) => {
             num = num.split(',').map(Number);
+            this.bonusNumExceptions(num);
             this.bonusNum = num;
         })
     }
@@ -26,6 +27,15 @@ class InputWinningNumber{
     validateNum(winningNum){
         new Lotto(winningNum);
         this.winningNum = winningNum;
+    }
+
+    bonusNumExceptions(num){
+        if(num.length !== 1){
+            throw new Error("[ERROR] 로또 번호는 1개여야 합니다.");
+        }
+        if(num < 1 || num > 45){
+            throw new Error("[ERROR] 로또 번호는 1이상 45이하여야 합니다.")
+        }
     }
 }
 

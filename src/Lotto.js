@@ -20,12 +20,6 @@ class Lotto {
     }
   }
 
-  checkBonusNumLength(numbers){
-    if(numbers.length !== 1){
-      throw new Error("[ERROR] 로또 번호는 1개여야 합니다.");
-    }
-  }
-
   checkLottoNumber(numbers){
     for(let i = 0; i < numbers.length; i++){
       if(numbers.length[i] < 1 || numbers.length[i] > 45){

@@ -44,7 +44,7 @@ class WinningHistory{
         lottoRanking[1] * 50000 +
         lottoRanking[2] * 1500000 +
         lottoRanking[3] * 30000000 +
-        lottoRanking[4] * 2000000000 ;
+        lottoRanking[4] * 2000000000;
 
         let revenueTotal = revenue/(issudLotto * 1000) * 100 ;
         this.lottoRevenueRound(revenueTotal);
