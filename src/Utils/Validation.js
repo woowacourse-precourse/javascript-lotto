@@ -1,4 +1,4 @@
-const { ERROR_MESSAGE } = require('./Constants/MESSAGE');
+const { ERROR_MESSAGE } = require('../Constants/MESSAGE');
 
 function checkAppropriateUnit(money) {
   if (money % 1000 !== 0) throw new Error(`${ERROR_MESSAGE.appropriateUnit}`);
