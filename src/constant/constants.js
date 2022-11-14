@@ -4,9 +4,9 @@ const CONSTANT = {
     WINNER: '당첨 번호를 입력해 주세요.',
     PURCHASED: amount => `${amount / CONSTANT.UNIT}개를 구매했습니다.}`,
     BONUS: '보너스 번호를 입력해 주세요.',
-    RESULT: (MATCH, ISBONUS, PRIZE, getNumOfWinner) => 
-    `${MATCH}개 일치${ISBONUS ? ', 보너스 볼 일치' : ''} (${PRIZE}원) - ${getNumOfWinner}개`,
-    TOTAL_RATE: rate => `총 수익률은 ${rate}%입니다.`
+    RESULT: (MATCH, ISBONUS, PRIZE, getNumOfWinner) =>
+      `${MATCH}개 일치${ISBONUS ? ', 보너스 볼 일치' : ''} (${PRIZE}원) - ${getNumOfWinner}개`,
+    TOTAL_RATE: rate => `총 수익률은 ${rate}%입니다.`,
   },
 
   ERROR_MSG: {
@@ -15,7 +15,7 @@ const CONSTANT = {
     WRONG_LENGTH: '[ERROR] 로또 번호는 6개여야 합니다.',
     DUPLICATE: '[ERROR] 로또 번호는 중복이 없어야 합니다.',
     OUT_OF_RANGE: '[ERROR] 로또 번호는 1 ~ 45 사이의 숫자여야 합니다.',
-    DUPLICATE_BONUS: '[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.'
+    DUPLICATE_BONUS: '[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.',
   },
 
   CHECK: {
@@ -25,6 +25,10 @@ const CONSTANT = {
     IS_DUPLICATE: numbers => numbers.length !== new Set(numbers).size,
     IS_IN_RANGE: numbers => numbers.every(num => num > 0 && num < 46),
     IS_IN_WINNER: (number, winner) => winner.includes(number),
+    IS_BONUS: (lotto, bonus) =>
+      lotto.count === CONSTANT.SECOND_RANK && lotto.numbers.includes(bonus),
+    IS_WINNER: (ISBONUS, MATCH, lotto) =>
+      ISBONUS ? lotto.count === MATCH && lotto.isBonus : !lotto.isBonus && lotto.count === MATCH,
   },
 
   PRIZE_DETAILS: [
@@ -32,14 +36,14 @@ const CONSTANT = {
     { MATCH: 4, PRIZE: '50,000' },
     { MATCH: 5, PRIZE: '1,500,000' },
     { MATCH: 5, PRIZE: '30,000,000', ISBONUS: true },
-    { MATCH: 6, PRIZE: '2,000,000,000' }
+    { MATCH: 6, PRIZE: '2,000,000,000' },
   ],
 
   SECOND_RANK: 5,
-  
+
   UNIT: 1000,
 
-  RATE: (prize, amount) => (prize / amount * 100).toFixed(1),
-}
+  RATE: (prize, amount) => ((prize / amount) * 100).toFixed(1),
+};
 
 module.exports = CONSTANT;

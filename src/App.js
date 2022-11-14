@@ -31,8 +31,8 @@ class App {
 
   validateAmount(amount) {
     const { CHECK, ERROR_MSG } = CONSTANT;
-    if (!CHECK.IS_NUMBER(amount) || CHECK.IS_UNIT(amount))
-      throw new Error(`${ERROR_MSG.WRONG_AMOUNT}`);
+    if (!CHECK.IS_NUMBER(amount)) throw new Error(`${ERROR_MSG.NAN}`);
+    if (CHECK.IS_UNIT(amount)) throw new Error(`${ERROR_MSG.WRONG_AMOUNT}`);
   }
 
   generateLotto(num) {
@@ -67,17 +67,15 @@ class App {
   }
 
   checkBonus(bonus) {
-    const { SECOND_RANK, CHECK, ERROR_MSG } = CONSTANT;
+    const { CHECK, ERROR_MSG } = CONSTANT;
+
     if (!CHECK.IS_NUMBER(bonus)) throw new Error(`${ERROR_MSG.NAN}`);
     if (!CHECK.IS_IN_RANGE([...bonus])) throw new Error(`${ERROR_MSG.OUT_OF_RANGE}`);
     if (CHECK.IS_IN_WINNER(+bonus, this.#winner)) throw new Error(`${ERROR_MSG.DUPLICATE_BONUS}`);
+
     this.#lottos
-      .filter(lotto => lotto.count === SECOND_RANK && lotto.numbers.includes(+bonus))
-      .forEach(lotto => {
-        console.log(lotto.numbers, lotto.isBonus)
-        lotto.setIsBonus()
-        console.log(lotto.isBonus)
-        });
+      .filter(lotto => CHECK.IS_BONUS(lotto, +bonus))
+      .forEach(lotto => lotto.setIsBonus());
   }
 
   sumPrize(getNumOfWinner, PRIZE) {
