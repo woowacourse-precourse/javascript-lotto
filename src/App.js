@@ -13,6 +13,10 @@ class App {
     }
     return true;
   }
+
+  purchaseableCount(money) {
+    return parseInt(money / terms.PERMISSIBLE_UNITS);
+  }
 }
 
 a = new App();
