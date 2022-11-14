@@ -9,10 +9,10 @@
 
 ### feat () : init , game , error
 
-- [ ] user: 로또 구입 금액 입력 - Player#buyTickets
-  - [ ] 숫자 타입인가 - Input#type 
-  - [ ] 1,000원 단위로 떨어지는가 - Input#unit
-    - [ ] 각각의 경우 에러 발생시 - InputError # type, unit
+- [x] user: 로또 구입 금액 입력 
+  - [x] 숫자 타입인가 
+  - [x] 1,000원 단위로 떨어지는가 
+    - [x] 각각의 경우 에러 발생시
 
 ###
 

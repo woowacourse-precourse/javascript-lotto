@@ -1,6 +1,9 @@
+const Player = require("./Player");
+
 class App {
   play() {
-    console.log("Implement test");
+    const player = new Player();
+    player.buyTickets("a");
   }
 }
 
