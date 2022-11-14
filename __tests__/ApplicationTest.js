@@ -174,7 +174,19 @@ describe("로또 테스트", () => {
 
   });
 
+  test("예외 테스트: 당첨 로또 번호에 숫자가 아닌 값이 포함된 경우", () => {
+    mockRandoms([
+      [1, 2, 3, 4, 5, 6],
+    ]);
 
+    mockQuestions(["1000", "1,two,3,4,5,six"]);
+
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow(ERROR.NOT_NUMBER);
+
+  });
 
   // 보너스 숫자 입력 기능 테스트
   test("기능 테스트: 보너스 숫자 입력", () => {
