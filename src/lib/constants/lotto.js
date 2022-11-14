@@ -11,23 +11,23 @@ const LOTTO = {
 
 const LOTTO_PRIZE_LIST = [
   {
-    CONDITION: `6개 일치`,
+    CONDITION: '6개 일치',
     PRIZE_MONEY: ONE_BILLION * 2,
   },
   {
-    CONDITION: `5개 일치, 보너스 볼 일치`,
+    CONDITION: '5개 일치, 보너스 볼 일치',
     PRIZE_MONEY: ONE_MILLION * 30,
   },
   {
-    CONDITION: `5개 일치`,
+    CONDITION: '5개 일치',
     PRIZE_MONEY: ONE_MILLION * 1.5,
   },
   {
-    CONDITION: `4개 일치`,
+    CONDITION: '4개 일치',
     PRIZE_MONEY: ONE_THOUSAND * 50,
   },
   {
-    CONDITION: `3개 일치`,
+    CONDITION: '3개 일치',
     PRIZE_MONEY: ONE_THOUSAND * 5,
   },
 ];
