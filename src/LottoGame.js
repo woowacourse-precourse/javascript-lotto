@@ -82,6 +82,7 @@ class LottoGame {
 
     this.LottoGameView.printPrizeStatistics(prizeStatisticsTemplates);
     this.LottoGameView.printYieldRatio(yieldRatio);
+    Console.close();
   }
   getEachLottoNumbers() {
     return this.lottos.map((lotto) => lotto.getNumbers());
