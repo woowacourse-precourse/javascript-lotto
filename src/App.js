@@ -25,6 +25,49 @@ class App {
         })
       );
     });
+    let hitsNumber = {
+      three: 0,
+      four: 0,
+      five: 0,
+      six: 0,
+      bonus: 0,
+    };
+    lottoMatch.map((lotto) => {
+      if (lotto.length === 3) {
+        hitsNumber.three++;
+        return;
+      }
+      if (lotto.length === 4) {
+        hitsNumber.four++;
+        return;
+      }
+      if (lotto.length === 5) {
+        hitsNumber.five++;
+        return;
+      }
+      if (
+        lotto.length === 5 &&
+        lotto.includes(parseInt(this.BonusData.getBonus(), 10))
+      ) {
+        hitsNumber.five++;
+        hitsNumber.bonus++;
+        return;
+      }
+      if (lotto.length === 6) {
+        hitsNumber.six++;
+      }
+    });
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${hitsNumber.three}개`);
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${hitsNumber.four}개`);
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${hitsNumber.five}개`);
+    MissionUtils.Console.print(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${
+        hitsNumber.five + hitsNumber.bonus
+      }개`
+    );
+    MissionUtils.Console.print(
+      `6개 일치 (2,000,000,000원) - ${hitsNumber.six}개`
+    );
   };
   bonusNumber = () => {
     MissionUtils.Console.readLine(
