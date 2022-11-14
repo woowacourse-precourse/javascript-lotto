@@ -1,6 +1,7 @@
 const {
   LOTTO_RESULT_MESSAGE, LOTTO_RESULT_PRICE, LOTTO_RESULT_TYPE,
 } = require('./lib/Constants');
+const { isLessThanNumber } = require('./lib/Utils');
 
 class Calculation {
   #winResult = {
@@ -66,7 +67,7 @@ class Calculation {
   matchResult() {
     const count = this.isBonusFiveMatch() ? LOTTO_RESULT_TYPE.bonus : this.matchCount;
 
-    if (Calculation.isNotMatch(count)) {
+    if (isLessThanNumber(count, 3)) {
       return this;
     }
 

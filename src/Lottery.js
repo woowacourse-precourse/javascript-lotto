@@ -1,4 +1,4 @@
-const { pickUniqueNumbersInRange, print } = require('./lib/Utils');
+const { getArrayToCustomMessage, pickUniqueNumbersInRange, print } = require('./lib/Utils');
 const { LOTTO_MAX_NUMBER, LOTTO_MIN_NUMBER, LOTTO_NUMBER } = require('./lib/Constants');
 
 class Lottery {
@@ -25,7 +25,7 @@ class Lottery {
 
   printList() {
     this.#lottoList.forEach((lotto) => {
-      const message = Lottery.getMessage(lotto);
+      const message = getArrayToCustomMessage(lotto);
       print(message);
     });
 
