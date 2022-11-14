@@ -12,8 +12,6 @@ class LottoCalculator {
   usersWinningRecord = [];
   winningReward = [REWARD_MONEY.BANG, REWARD_MONEY.FIRST, REWARD_MONEY.SECOND, REWARD_MONEY.THIRD, REWARD_MONEY.FOURTH, REWARD_MONEY.FIFTH];
   countWinningRecord = Array.from({length: LOTTO.SIX_NUMBERS}, () => 0);
-  
-  
 
   constructor(usersLottos) {
     this.usersLottos = usersLottos;
@@ -31,15 +29,15 @@ class LottoCalculator {
   }
 
   compareNumber(usersLotto) {
-    let count = 0;
+    let matchingNumbers = 0;
     
     usersLotto.forEach((number) => {
       if (this.winningNumbers.includes(number)) {
-        count += 1;
+        matchingNumbers += 1;
       }
     });
     
-    switch(count) {
+    switch(matchingNumbers) {
       case LOTTO.SIX_MATCHES: return RANK.FIRST_PLACE;
       case LOTTO.FIVE_MATCHES:
         if (usersLotto.includes(this.bonusNumber)) {
