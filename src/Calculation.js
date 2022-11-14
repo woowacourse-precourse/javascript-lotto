@@ -74,8 +74,6 @@ class Calculation {
     }
 
     this.#winResult[count].count += 1;
-    this.prizeMoney += this.#winResult[count].price;
-
     return this;
   }
 
@@ -89,7 +87,11 @@ class Calculation {
    * @returns
    */
   calcLottoRate(lottoPrice) {
-    this.#rate = (this.prizeMoney / lottoPrice) * 100;
+    const initialValue = 0;
+    const winResult = Object.values(this.#winResult).filter((resultType) => !!resultType.count);
+    const prizeMoney = winResult.reduce((acc, cur) => acc + cur.price, initialValue);
+
+    this.#rate = (prizeMoney / lottoPrice) * 100;
 
     return this;
   }
