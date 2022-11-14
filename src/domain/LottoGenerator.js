@@ -1,3 +1,4 @@
+const { LOTTO } = require('../constants');
 const { RandomAdapter } = require('../adapters');
 const Lotto = require('./Lotto');
 
@@ -16,7 +17,11 @@ class LottoGenerator {
 
   #createLottoNumbers() {
     const random = new RandomAdapter();
-    const numbers = random.pickUniqueNumbersInRange(1, 45, 6);
+    const numbers = random.pickUniqueNumbersInRange(
+      LOTTO.MIN_NUMBER,
+      LOTTO.MAX_NUMBER,
+      LOTTO.NUMBER_COUNT,
+    );
 
     return this.#sortAscending(numbers);
   }

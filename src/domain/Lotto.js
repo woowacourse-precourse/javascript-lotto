@@ -1,4 +1,4 @@
-const { ERROR_MESSAGE } = require('../constants');
+const { ERROR_MESSAGE, LOTTO } = require('../constants');
 const { ValidationError } = require('../errors');
 
 class Lotto {
@@ -29,11 +29,11 @@ class Lotto {
   }
 
   #hasValidLength(numbers) {
-    return numbers.length === 6;
+    return numbers.length === LOTTO.NUMBER_COUNT;
   }
 
   #hasUniqueValues(numbers) {
-    return new Set(numbers).size === 6;
+    return new Set(numbers).size === LOTTO.NUMBER_COUNT;
   }
 
   #hasNumberValuesOnly(numbers) {
@@ -49,7 +49,7 @@ class Lotto {
   }
 
   #isInRange(number) {
-    return number >= 1 && number <= 45;
+    return number >= LOTTO.MIN_NUMBER && number <= LOTTO.MAX_NUMBER;
   }
 }
 
