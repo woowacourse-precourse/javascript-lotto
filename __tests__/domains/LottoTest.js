@@ -55,4 +55,12 @@ describe('로또 도메인 테스트', () => {
       new Lotto(numbers);
     }).toThrow('[ERROR]');
   });
+
+  test('로또 번호가 오름차순으로 정렬이 되어야 한다.', () => {
+    const numbers = Array(Lotto.NUMBER_COUNT)
+      .fill()
+      .map((_, index) => Lotto.NUMBER_MIN + index);
+
+    expect(new Lotto(numbers.reverse()).getNumbers()).toEqual(numbers);
+  });
 });
