@@ -1,7 +1,7 @@
 const { LOTTO_PRIZE_MATCH_COUNT } = require("./constants/condition.js");
 
-class LottoDrawMachine {
-  drawLotto(eachLottoNumbers, winningNumbers, bonusNumber) {
+class PrizeCalculator {
+  calculatePrize(eachLottoNumbers, winningNumbers, bonusNumber) {
     const eachCompareResult = eachLottoNumbers.map((lottoNumbers) => {
       return this.getCompareResult(lottoNumbers, winningNumbers, bonusNumber);
     });
@@ -40,4 +40,4 @@ class LottoDrawMachine {
     return "fail";
   }
 }
-module.exports = LottoDrawMachine;
+module.exports = PrizeCalculator;
