@@ -68,9 +68,19 @@ class App {
 
     const COST_IN_NUMBER = parseInt(cost);
 
-    if (COST_IN_NUMBER % 1000 !== 0) {
+    if (this.cannotPurchaseWith(COST_IN_NUMBER)) {
       throw new Error("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.");
     }
+  }
+
+  /**
+   * 입력된 비용이 로또 하나의 비용으로 나뉘어 떨어지지 않는지를 반환하는 함수
+   * @param {number} cost 입력된 로또 구매 비용
+   * @returns 거스름돈 없이 로또를 살 수 없는지에 대한 boolean 값
+   */
+  cannotPurchaseWith(cost) {
+    const EACH_LOTTO_COST = 1000;
+    return (cost % EACH_LOTTO_COST !== 0);
   }
 
   /**
