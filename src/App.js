@@ -63,4 +63,35 @@ class App {
     })
   }
 
+  inputJackpotNumber() {
+    Console.readLine("당첨 번호를 입력해 주세요\n",(jackpotNumber) => {
+      const lottoNumber = jackpotNumber.split(',');
+      this.inputBonusNumber();
+      this.lottoInfo.forEach((lotto) => {
+        let correctCount = this.compareLottoNumber(String(lotto).split(','), lottoNumber);
+        switch(true){
+          case correctCount === 3:
+            this.lottoResult[0]++;
+            break;
+          case correctCount === 4:
+            this.lottoResult[1]++;
+            break;
+          case correctCount === 5:
+            if (lotto.includes(this.BonusNumber)) {
+              this.lottoResult[3]++;
+              break;
+            }
+            this.lottoResult[2]++;
+            break;
+          case correctCount === 6:
+            this.lottoResult[4]++;
+            break;
+          default:
+            break;
+        }
+      });
+      this.printLottoJackpotResult();
+    })
+  }
+
 module.exports = App;
