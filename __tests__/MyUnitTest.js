@@ -1,4 +1,5 @@
 const App = require('../src/App');
+const Lotto = require('../src/Lotto');
 
 describe('My Unit test', () => {
   test('1000원 단위가 아닌 로또 구입 금액 입력시 오류가 난다.', () => {
@@ -70,5 +71,27 @@ describe('My Unit test', () => {
       app.setWinNumbers(winNumbers);
       app.setBonusNumber(bonusNumber);
     }).toThrow('[ERROR]');
+  });
+
+  test('당첨 내역을 구하는 기능', () => {
+    const app = new App();
+    const winNumbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+    const lottos = [
+      new Lotto([1, 2, 3, 4, 5, 6]), // 6개 일치
+      new Lotto([1, 2, 4, 5, 6, 7]), // 5개 일치 + 보너스
+      new Lotto([1, 3, 4, 5, 6, 7]), // 5개 일치 + 보너스
+      new Lotto([1, 3, 4, 5, 6, 10]), // 5개 일치
+      new Lotto([1, 3, 4, 6, 8, 10]), // 4개 일치
+      new Lotto([2, 3, 4, 6, 8, 10]), // 4개 일치
+      new Lotto([2, 41, 42, 43, 44, 45]), // 1개 일치
+      new Lotto([1, 3, 4, 43, 44, 45]), // 3개 일치
+      new Lotto([1, 3, 4, 5, 44, 45]), // 4개 일치
+    ]; // [1, 2, 1, 3, 1]
+    app.setWinNumbers(winNumbers);
+    app.setBonusNumber(bonusNumber);
+    const winResult = app.getWinResult(lottos);
+
+    expect(winResult).toEqual([1, 2, 1, 3, 1]);
   });
 });
