@@ -1,20 +1,22 @@
-const CaculateRate = require("../process/CaculateRate");
+const CaculateRate = require("./CaculateRate");
 const CORRECT = [];
-const GRADE = [];
+const CORRECT_BONUS = [];
+let GRADE = [0, 0, 0, 0, 0];
 let count = 0;
+let bonusCount = 0;
 
 class CompareNumber {
-  constructor(correct, grade, purchaseAmout) {
+  constructor(computerNumbers, correct, correctBonus) {
+    this.computerNumbers = computerNumbers;
     this.correct = correct;
-    this.grade = grade;
-    this.purchaseAmout = purchaseAmout;
+    this.correctBonus = correctBonus;
     this.caculateRate = new CaculateRate();
   }
 
-  checkNumber(purchaseAmout, computerNumbers, inputLottoNumbers) {
+  checkNumber(computerNumbers, inputLotto, inputBonus) {
     computerNumbers.forEach(function (firstnumber) {
       firstnumber.forEach(function (secondnumber) {
-        const COMPARE = inputLottoNumbers.indexOf(secondnumber);
+        const COMPARE = inputLotto.indexOf(secondnumber);
         if (COMPARE > -1) {
           count += 1;
         }
@@ -23,7 +25,22 @@ class CompareNumber {
       count = 0;
     });
     this.correct = CORRECT;
-    this.purchaseAmout = purchaseAmout;
+    this.computerNumbers = computerNumbers;
+    this.checkBonus(inputBonus);
+  }
+
+  checkBonus(inputBonus) {
+    this.computerNumbers.forEach(function (firstnumber) {
+      firstnumber.forEach(function (secondnumber) {
+        const COMPARE_BONUS = inputBonus.indexOf(secondnumber);
+        if (COMPARE_BONUS > -1) {
+          bonusCount += 1;
+        }
+      });
+      CORRECT_BONUS.push(bonusCount);
+      bonusCount = 0;
+    });
+    this.correctBonus = CORRECT_BONUS;
     this.correctNumbers();
   }
 

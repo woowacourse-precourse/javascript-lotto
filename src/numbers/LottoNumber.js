@@ -33,9 +33,9 @@ class LottoNumber {
       (inputBonusNumber) => {
         this.inputBonusNumbers = inputBonusNumber;
         this.compareNumber.checkNumber(
-          this.purchaseAmout,
           this.computerNumbers,
-          this.inputLottoNumbers
+          this.inputLottoNumbers,
+          this.inputBonusNumbers
         );
       }
     );
