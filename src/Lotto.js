@@ -5,7 +5,6 @@ class Lotto {
 
   constructor(numbers) {
     const validator = new Validator();
-
     validator.validateLotto(numbers);
     this.#numbers = numbers;
   }
