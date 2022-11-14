@@ -1,3 +1,5 @@
+const RANKS = ["first", "second", "third", "fourth", "fifth"];
+
 const WINNINGS_NUM = {
   first: 2000000000,
   second: 30000000,
@@ -14,4 +16,4 @@ const WINNINGS_STR = {
   fifth: "5,000",
 };
 
-module.exports = { WINNINGS_NUM, WINNINGS_STR };
+module.exports = { RANKS, WINNINGS_NUM, WINNINGS_STR };

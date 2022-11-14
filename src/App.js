@@ -1,20 +1,21 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
 // const { ERROR_MSG_THOUSAND_UNIT } = require("./constants/error-message");
-const { WINNINGS_NUM, WINNINGS_STR } = require("./constants/winnings.js");
+const {
+  RANKS,
+  WINNINGS_NUM,
+  WINNINGS_STR,
+} = require("./constants/winnings.js");
 const Lotto = require("./Lotto");
 
 class App {
   play() {
     Console.readLine("구입금액을 입력해주세요.\n", (input) => {
       const budget = input.trim();
+      this.budget = +budget;
       const lottoCount = this.calcLottoCount(budget);
       const lottos = this.createLottos(lottoCount);
       this.printLottos(lottoCount, lottos);
     });
-  }
-
-  finish() {
-    Console.close();
   }
 
   createLottoNums() {
@@ -131,6 +132,19 @@ class App {
     Console.print(
       `6개 일치 (${WINNINGS_STR.first}원) - ${this.lottoResult.first}개`
     );
+    this.getYieldResult();
+  }
+
+  getYieldResult() {
+    const earnings = RANKS.reduce((sumValue, rank) => {
+      return sumValue + this.lottoResult[rank] * WINNINGS_NUM[rank];
+    }, 0);
+    const yieldResult = ((earnings * 100) / this.budget).toFixed(1);
+    Console.print(`총 수익률은 ${yieldResult}%입니다.`);
+  }
+
+  finish() {
+    Console.close();
   }
 }
 
