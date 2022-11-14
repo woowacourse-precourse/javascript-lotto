@@ -86,7 +86,7 @@ class App {
     total += countWinning[3] * 30000000;
     total += countWinning[4] * 2000000000;
 
-    const rateOfReturn = ((total / this.#purchaseAmount) * 100).toFixed(1);
+    const rateOfReturn = Number(((total / this.#purchaseAmount) * 100).toFixed(1)).toLocaleString();
     Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
   }
 
