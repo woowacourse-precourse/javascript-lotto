@@ -43,4 +43,47 @@ describe('로또스토어 클래스 테스트', () => {
       lottoPublisher.validateWinningNumbers('1,2,3,0,5,6');
     }).toThrow('[ERROR]');
   });
+
+  test('보너스 번호에 숫자가 아닌 값을 입력하면 예외가 발생한다.', () => {
+    expect(() => {
+      lottoPublisher.validateBonusNumber('보너스');
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호에 ,로 구분된 여러 개의 숫자를 입력하면 예외가 발생한다.', () => {
+    expect(() => {
+      lottoPublisher.validateBonusNumber('1,2');
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호에 소수점 이하를 포함한 숫자를 입력하면 예외가 발생한다.', () => {
+    expect(() => {
+      lottoPublisher.validateBonusNumber('3.14');
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호에 음수를 입력하면 예외가 발생한다.', () => {
+    expect(() => {
+      lottoPublisher.validateBonusNumber('-1');
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호에 45보다 큰 숫자를 입력하면 예외가 발생한다.', () => {
+    expect(() => {
+      lottoPublisher.validateBonusNumber('46');
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호에 1보다 작은 숫자를 입력하면 예외가 발생한다.', () => {
+    expect(() => {
+      lottoPublisher.validateBonusNumber('0');
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호에 이미 당첨 번호로 설정된 숫자를 입력하면 예외가 발생한다.', () => {
+    lottoPublisher.receiveUserInputWinningNumbers('1,2,3,4,5,6');
+    expect(() => {
+      lottoPublisher.validateBonusNumber('6');
+    }).toThrow('[ERROR]');
+  });
 });
