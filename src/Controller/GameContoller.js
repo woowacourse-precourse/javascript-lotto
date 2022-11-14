@@ -38,7 +38,7 @@ class GameController {
   getResult() {
     const result = new Result(this.game);
     printMessage.printResult(result.score);
-    printMessage.printYeild(result.getYeild());
+    printMessage.printYield(result.getYield());
   }
 }
 

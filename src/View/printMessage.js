@@ -39,9 +39,9 @@ const printMessage = {
       `${MESSAGE.FIRST_RANKING_MESSAGE}${resultObject.six}개`
     );
   },
-  printYeild(yeild) {
+  printYield(yieldPer) {
     MissionUtils.Console.print(
-      `${MESSAGE.YIELD_MESSAGE.FIRST}${yeild}${MESSAGE.YIELD_MESSAGE.END}`
+      `${MESSAGE.YIELD_MESSAGE.FIRST}${yieldPer}${MESSAGE.YIELD_MESSAGE.END}`
     );
   },
 };

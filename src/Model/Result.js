@@ -47,7 +47,7 @@ class Result {
     }
   }
 
-  getYeild() {
+  getYield() {
     return parseFloat(
       (
         ((this.#score.three * WIN_MONEY.THREE +
