@@ -6,10 +6,25 @@ const INPUT_MESSAGE = {
   winning: "당첨 번호를 입력해 주세요.",
 };
 
+const MONEY_ERROR = {
+  number: "[ERROR] 숫자를 입력해 주세요",
+  amount: "[ERROR] 1000원 단위로 입력해 주세요",
+};
+
 class App {
   play() {
     Console.print(INPUT_MESSAGE.money);
-    Console.readLine("", (money) => {});
+    Console.readLine("", (money) => {
+      this.validateMoney(money);
+    });
+  }
+  validateMoney(money) {
+    if (isNaN(money)) {
+      throw new Error(MONEY_ERROR.number);
+    }
+    if (Number(money) % 1000 !== 0) {
+      throw new Error(MONEY_ERROR.amount);
+    }
   }
 }
 
