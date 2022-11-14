@@ -1,7 +1,6 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
-const LOTTO_PRINT_MENTION = require("./constant/PrintMention");
-const LOTTO_ERROR_MENTION = require("./constant/ErrorMention");
+const { LOTTO_ERROR_MENTION, LOTTO_PRINT_MENTION, LOTTO_REWARD } = require("./constant");
 
 class App {
   constructor(){
