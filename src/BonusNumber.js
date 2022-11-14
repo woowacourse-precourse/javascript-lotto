@@ -1,4 +1,4 @@
-const BonusNumberConst = require("./constant/BonusNumberConst");
+const bonusNumberConst = require("./constant/BonusNumberConst");
 
 class BonusNumber {
   constructor(lotto, bonus) {
@@ -13,7 +13,7 @@ class BonusNumber {
 
   checkBonusNumberStartZero(bonus) {
     if (bonus[0] === "0") {
-      throw new Error(BonusNumberConst.ERROR_DONT_START_ZERO);
+      throw new Error(bonusNumberConst.ERROR_DONT_START_ZERO);
     }
   }
 
@@ -21,19 +21,19 @@ class BonusNumber {
     const regex = /^\d+$/;
 
     if (!regex.test(bonus)) {
-      throw new Error(BonusNumberConst.ERROR_NOT_ONLY_NUMBER);
+      throw new Error(bonusNumberConst.ERROR_NOT_ONLY_NUMBER);
     }
   }
 
   checkNumberRanges(bonus) {
     if (bonus < 1 || bonus > 45) {
-      throw new Error(BonusNumberConst.ERROR_OUT_OF_RANGE);
+      throw new Error(bonusNumberConst.ERROR_OUT_OF_RANGE);
     }
   }
 
   checkDuplicateWithWinningNumber(bonus) {
     if (this.userLotto.includes(bonus)) {
-      throw new Error(BonusNumberConst.ERROR_DUPLICATE_EXIST);
+      throw new Error(bonusNumberConst.ERROR_DUPLICATE_EXIST);
     }
   }
 }
