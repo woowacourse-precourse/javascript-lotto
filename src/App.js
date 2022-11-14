@@ -2,13 +2,22 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const userException = require("./utils/userException");
 const numberException = require('./utils/numberException');
 const Lotto = require('./Lotto');
+
 class App {
 
   // 로또 개수
   #lottoCount;
   #totalLotto = [];
-  userWinningNumber;
-  userBonusNumber;
+  #userWinningNumber;
+  #userBonusNumber;
+  #totalScore = {
+    'three': 0,
+    'four': 0,
+    'five': 0,
+    'five_ball': 0,
+    'six': 0
+  };
+  #yield = 0;
 
   userEnterException(userEnterAmount) {
     userException.isInDivisible(userEnterAmount);
@@ -25,7 +34,7 @@ class App {
     MissionUtils.Console.print(`\n${this.#lottoCount}개를 구매했습니다.`);
     for(let i = 0; i<this.#totalLotto.length; i++) {
       this.#totalLotto[i].sort((a, b) => a - b)
-      MissionUtils.Console.print(this.#totalLotto[i]);
+      MissionUtils.Console.print(JSON.stringify(this.#totalLotto[i]).replace(/,/gi, ", "));
     }
   }
 
@@ -51,20 +60,50 @@ class App {
 
   enterUserNumber() {
     MissionUtils.Console.readLine('\n당첨 번호를 입력해 주세요.\n', (userNumber) => {
-      const parsingUserNumber = String(userNumber).split(',').map(number => +number);
+      const parsingUserNumber = String(userNumber).trim().split(',').map(number => +number);
       this.userNumberException(parsingUserNumber);
-      this.userWinningNumber = userNumber;
+      this.#userWinningNumber = userNumber;
       this.enterBonusNumber();
     });
   }
 
   enterBonusNumber() {
     MissionUtils.Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
-      if(isNaN(Number(bonusNumber)) || bonusNumber.length > 1) {
-        throw new Error('[ERROR] 보너스 번호는 한자리 숫자입니다.');
+      if(isNaN(Number(bonusNumber)) || Number(bonusNumber) > 45 || Number(bonusNumber) < 1) {
+        throw new Error('[ERROR] 보너스 번호는 1~45사이의 숫자입니다.');
       }
-      this.userBonusNumber = bonusNumber;
+      this.#userBonusNumber = bonusNumber;
+      // 기능 4 : 당첨 내역 계산
+      this.calculateRank();
     });
+  }
+
+  calculateRank() {
+    const totalScore = [];
+    this.#totalLotto.map((lotto) => {
+      let count = 0;
+      lotto.forEach(lottoNumber => {
+        if(this.#userWinningNumber.includes(lottoNumber)) count++
+      });
+      totalScore.push(count);
+    })
+    this.extractScore(totalScore);
+  }
+
+  extractScore(totalScore) {
+    totalScore.map((score, index) => {
+      if(score === 3) {
+        this.#totalScore.three += 1;
+      } else if (score === 4) {
+        this.#totalScore.four += 1;
+      } else if (score === 5) {
+        if(this.#totalLotto[index].includes(Number(this.#userBonusNumber))) {
+          this.#totalScore.five_ball += 1;
+        } else this.#totalScore.five += 1;
+      } else if (score === 6) {
+        this.#totalScore.six += 1;
+      }
+    })
   }
 
   play() {
