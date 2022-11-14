@@ -1,3 +1,9 @@
+const {
+  VALID_LOTTO_NUMBER_LENGTH,
+  MIN_LOTTO_NUMBER,
+  MAX_LOTTO_NUMBER
+} = require('./constants/numbers');
+
 const isValidMoneyNumberAmount = (money) => {
   if (isNaN(money) || money === undefined) {
     throw new Error('[ERROR] 금액 입력 시 숫자 이외에는 입력할 수 없습니다.');
