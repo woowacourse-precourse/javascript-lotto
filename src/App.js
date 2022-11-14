@@ -16,9 +16,7 @@ const BONUS_ERROR = {
 };
 
 class App {
-  prizeNumbersArray;
   userNumbersArray;
-  bonusNum;
   lotto;
 
   play() {
@@ -30,13 +28,13 @@ class App {
       Console.print(`${numberOfLottery}개를 구매했습니다.`);
       this.userNumbersArray = this.getRandomNumbers(numberOfLottery);
 
-      this.printRandomNumbers(this.userNumbersArray);
-      this.MakeLotto(this.userNumbersArray);
+      this.printRandomNumbers();
+      this.MakeLotto();
     });
   }
 
-  printRandomNumbers(userNumbersArray) {
-    for (let arr of userNumbersArray) {
+  printRandomNumbers() {
+    for (let arr of this.userNumbersArray) {
       Console.print("[" + arr.join(", ") + "]");
     }
   }
@@ -52,22 +50,22 @@ class App {
 
     return userNumbersArray;
   }
+
+  MakeLotto() {
+    Console.print(INPUT_MESSAGE.winning);
+    Console.readLine("", (prizeNums) => {
+      this.lotto = new Lotto(prizeNums.split(","));
+      this.getBonusNumber();
+    });
+  }
+
   getBonusNumber() {
     Console.print(INPUT_MESSAGE.bonus);
     Console.readLine("", (bonusNum) => {
       this.validateBonusNumbers(bonusNum);
-      this.bonusNum = Number(bonusNum);
       this.lotto.printResult(this.userNumbersArray, Number(bonusNum));
 
       Console.close();
-    });
-  }
-  MakeLotto() {
-    Console.print(INPUT_MESSAGE.winning);
-    Console.readLine("", (prizeNums) => {
-      this.prizeNumbersArray = prizeNums.split(",");
-      this.lotto = new Lotto(this.prizeNumbersArray);
-      this.getBonusNumber();
     });
   }
 

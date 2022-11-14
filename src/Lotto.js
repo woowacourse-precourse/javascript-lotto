@@ -15,7 +15,7 @@ const RESULT_INFO = {
 };
 
 class Lotto {
-  #numbers; // 당첨번호
+  #numbers;
 
   constructor(numbers) {
     this.validateNumbers(numbers);
@@ -74,11 +74,8 @@ class Lotto {
         winningCnt[cnt - 3] += 1;
         break;
       case 5:
-        if (yourNum.includes(bonusNum)) {
-          winningCnt[3] += 1;
-        } else {
-          winningCnt[2] += 1;
-        }
+        if (yourNum.includes(bonusNum)) winningCnt[3] += 1;
+        else winningCnt[2] += 1;
         break;
       case 6:
         winningCnt[4] += 1;
