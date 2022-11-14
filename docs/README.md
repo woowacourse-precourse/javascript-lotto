@@ -7,6 +7,7 @@
 - getStatistics: Lotto 객체와 비교하여 당첨 통계를 생성한다.
 - getRateOfReturn : 수익률을 계산한다.
 - getRevenue : 수익을 계산한다.
+- getStatisticsTemplate : 당첨 통계내용을 문자열로 반환한다.
 
 # Lotto
 
