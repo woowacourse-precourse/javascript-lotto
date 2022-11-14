@@ -7,6 +7,7 @@ class Lotto {
     this.validate(numbers);
     this.isSorted(numbers);
     this.isInRange(numbers);
+    this.isInteger(numbers);
     this.#numbers = numbers;
   }
 
@@ -32,6 +33,14 @@ class Lotto {
     numbers.map((number) => {
       if (number < 1 || number > 45) {
         throw new Error(LOTTO_ERROR.CHECK_RANGE);
+      }
+    });
+  }
+
+  isInteger(numbers) {
+    numbers.map((number) => {
+      if (number % 1 !== 0) {
+        throw new Error(LOTTO_ERROR.CHECK_ISINTEGER);
       }
     });
   }
