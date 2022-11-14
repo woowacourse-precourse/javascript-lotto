@@ -42,4 +42,9 @@ describe("로또 클래스 테스트", () => {
       new Lotto([1, 2, 3, 4, 5, 46])
     }).toThrow("[ERROR]")
   });
+
+  test("로또 발행", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    expect(lotto.getLottoNums()).toEqual([1, 2, 3, 4, 5, 6])
+  });
 });
