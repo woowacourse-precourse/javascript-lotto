@@ -53,7 +53,7 @@ class App {
       `${OUTPUT.LINE}${INPUT.WINNNG}${OUTPUT.LINE}`,
       (numbers) => {
         const lotto = new Lotto(numbers);
-        this.winningNumbers = lotto.lottoList;
+        this.winningNumbers = lotto.changeIntoNumber();
         this.inputBonus();
       }
     );
@@ -103,4 +103,5 @@ class App {
   }
 }
 
-module.exports = App;
+// module.exports = App;
+new App().play();
