@@ -61,14 +61,6 @@ describe("로또 테스트", () => {
     });
   });
 
-  test("예외 테스트", () => {
-    mockQuestions(["1000j"]);
-    expect(() => {
-      const app = new App();
-      app.play();
-    }).toThrow("[ERROR]");
-  });
-
   test("기능 테스트 4등", () => {
     mockRandoms([
       [8, 21, 23, 41, 42, 43],
@@ -184,7 +176,7 @@ describe("로또 테스트", () => {
     });
   });
 
-  test("기능 테스트 2등", () => {
+  test("기능 테스트 1등", () => {
     mockRandoms([
       [2, 7, 9, 18, 19, 32],
       [2, 17, 23, 26, 39, 44],
@@ -207,5 +199,21 @@ describe("로또 테스트", () => {
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
+  });
+
+  test("구매금액 입력 예외", () => {
+    mockQuestions(["1000j"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+
+  test("1000으로 나누어 떨어지지 않는 수", () => {
+    mockQuestions(["100"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
   });
 });
