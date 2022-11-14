@@ -1,16 +1,17 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto.js");
 const Bonus = require("./Bonus.js");
+const InsertMoney = require("./InsertMoney.js");
 class App {
-  insertedMoney;
   bonusNumber;
   prizeNumbers = [];
   userLottoNumberLists = [];
   userWinningStatics = [0,0,0,0,0];
 
   play() {
-    this.insertMoney();
-    const LOTTO_COUNT = this.insertedMoney / 1000;
+    const insertMoney = new InsertMoney();
+
+    const LOTTO_COUNT = insertMoney.getInsertMoney() / 1000;
     for(let count = 0; count <LOTTO_COUNT; count++){
       this.userLottoNumberLists.push(this.generateUserLottoNumber());
     }
@@ -23,36 +24,9 @@ class App {
       this.comparePrizeNumberAndUserNumber(lotto.getNumbers(), bonus.getNumbers(),OneUserNumber);
     });
     const earnMoney = this.calcEarnMoney(this.userWinningStatics);
-    const RateOfReturn = this.calcRateOfReturn(this.insertedMoney, earnMoney);
+    const RateOfReturn = this.calcRateOfReturn(insertMoney.getInsertMoney(), earnMoney);
     this.printUserWinningStatics(this.userWinningStatics);
     this.printRateOfRetrun(RateOfReturn);
-  }
-  insertMoney(){
-    MissionUtils.Console.readLine('구입금액을 입력해주세요 (1000원 단위)', (insertMoney) => {
-      this.insertMoneyValidCheck(insertMoney);
-      this.insertedMoney = insertMoney;
-    });
-  }
-  insertMoneyValidCheck(insertMoney) {
-    this.isUnit1000(insertMoney);
-    this.isNegativeNumber(insertMoney);
-    this.isNumber(insertMoney);
-  }
-  isUnit1000(insertMoney){
-    if (insertMoney % 1000 !== 0) {
-      throw new Error("[ERROR] 1000원 단위로 금액을 투입해주세요.");
-    }
-  }
-  isNegativeNumber(insertMoney){
-    if (insertMoney <= 0) {
-      throw new Error("[ERROR] 음수 또는 0원은 투입할 수 없습니다.");
-    }
-  }
-  isNumber(inputNumber){
-    const IS_NOT_NUMBER = /\D/g;
-    if(IS_NOT_NUMBER.test(inputNumber)){
-      throw new Error("[ERROR] 숫자만 입력해주세요.");
-    }
   }
   printLottoCount(LottoCount){
     MissionUtils.Console.print(`${LottoCount}개를 구매했습니다.`);
