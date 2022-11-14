@@ -5,12 +5,10 @@ describe("결과 테스트", () => {
     const result = new Result([[7, 13, 19, 22, 31, 45]], [1, 2, 3, 4, 5, 6], 7);
 
     result.calculateOneLotto = jest.fn();
-    result.getPrize = jest.fn();
 
     result.calculateEachLotto();
 
     expect(result.calculateOneLotto).toHaveBeenCalled();
-    expect(result.getPrize).toHaveBeenCalled();
   });
 
   test("하나의 로또에 대한 점수 산정", () => {
