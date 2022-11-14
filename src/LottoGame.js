@@ -42,11 +42,12 @@ class LottoGame {
     });
   }
   
-  inputBonusNum(lottoArr, winNums) {
+  inputBonusNum(lottoArr, winNums, lottoCost) {
     Console.print('');
     Console.readLine('보너스 번호를 입력해 주세요.\n', (bonusNum) => {
       new BonusNum(winNums, bonusNum);
       const lottoResultObj = this.lottoMatching.getResultObj(lottoArr, winNums, bonusNum);
+      const rateOfReturn = this.lottoMatching.getRateOfReturn(lottoResultObj, lottoCost);
     });
   }
 }

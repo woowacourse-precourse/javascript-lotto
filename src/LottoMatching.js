@@ -44,6 +44,29 @@ class LottoMatching {
     })
     return lottoResult;
   }
+
+  getRateOfReturn(lottoResultObj, lottoCost) {
+    let winSum = 0;
+    for (let key in lottoResultObj) {
+      if (key === '1st') {
+        winSum += 2000000000 * lottoResultObj[key];
+      }
+      if (key === '2nd') {
+        winSum += 30000000 * lottoResultObj[key];
+      }
+      if (key === '3rd') {
+        winSum += 1500000 * lottoResultObj[key];
+      }
+      if (key === '4th') {
+        winSum += 50000 * lottoResultObj[key];
+      }
+      if (key === '5th') {
+        winSum += 5000 * lottoResultObj[key];
+      }
+    }
+    const rateOfReturn = winSum / lottoCost * 100;
+    return Math.round(rateOfReturn * 100) / 100;
+  }
 }
 
 module.exports = LottoMatching;

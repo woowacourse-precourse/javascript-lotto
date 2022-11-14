@@ -6,7 +6,7 @@
 - [x] 구입금액 만큼 로또를 발행한다. - LottoGenerator#publishLotto()
 - [x] 로또번호와 당첨번호 및 보너스 번호를 비교해서 각 로또별 당첨번호와 일치하는 개수를 배열로 반환한다. - LottoMatching#getMatchResult()
 - [x] 반환받은 배열로 결과를 객체화 한다. - LottoMatching#getResultObj
-- [ ] 수익률을 구한다. - LottoMatching#getRateOfReturn()
+- [x] 수익률을 구한다. - LottoMatching#getRateOfReturn()
 
 ## UI 로직
 
