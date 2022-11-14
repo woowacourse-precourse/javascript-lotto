@@ -18,4 +18,13 @@ describe("로또 클래스 테스트", () => {
   });
 
   // 아래에 추가 테스트 작성 가능
+
+  test("1등 당첨 Case에 대한 LottoResult 세팅 테스트",()=>{
+    const lotto=new Lotto([1,2,3,4,5,6]);
+
+    lotto.setLottoResult([1,2,3,4,5,6])
+
+    expect(lotto.result.lotto).toBe(6);
+
+  })
 });
