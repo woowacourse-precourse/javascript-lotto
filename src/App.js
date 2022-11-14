@@ -77,14 +77,19 @@ class App {
   compareLottoResult() {
     for(let i = 0; i < this.#numOfLotto; i++) {
       let numOfMatch = 0;
-      for(let j = 0; j < this.#winLotto.length; j++) {
-        if(this.#userLotto[i].includes(this.#winLotto[j])){
-          numOfMatch++;
-        }
-      }
+      numOfMatch = this.compareLotto(numOfMatch, i);
       this.lottoCmpResult.push(numOfMatch);
     }
     this.getLottoResult();
+  }
+
+  compareLotto(numOfMatch, i) {
+    for(let j = 0; j < this.#winLotto.length; j++) {
+      if(this.#userLotto[i].includes(this.#winLotto[j])){
+        numOfMatch++;
+      }
+    }
+    return numOfMatch;
   }
 
   getLottoResult() {
