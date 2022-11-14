@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { GAME_MESSAGE, RANK_MESSAGE, RANK } = require('./constants/lotto');
+const { GAME_MESSAGE, RANK_MESSAGE, RANK, ERROR_MESSAGE } = require('./constants/lotto');
 
 const Lotto = require('./Lotto');
 const LottoBuyer = require('./LottoBuyer');
@@ -33,7 +33,7 @@ class App {
   #printBuyerLotto() {
     const buyerLotto = this.#buyer.lotto;
 
-    Console.print(`${buyerLotto.length}${GAME_MESSAGE.BUY_COUNT}`);
+    Console.print(`${GAME_MESSAGE.BUY_COUNT(buyerLotto.length)}`);
 
     buyerLotto.forEach((lotto) => {
       Console.print(`[${lotto.join(', ')}]`);
@@ -81,23 +81,23 @@ class App {
 
     Object.keys(RANK_MESSAGE).forEach((rankKey) => {
       const rank = RANK[rankKey];
-      Console.print(`${RANK_MESSAGE[rankKey]} ${this.#comparer.ranking[rank]}개`);
+      Console.print(`${RANK_MESSAGE[rankKey]} ${GAME_MESSAGE.COUNT(this.#comparer.ranking[rank])}`);
     });
 
-    Console.print(`총 수익률은 ${this.#comparer.yield}%입니다.`);
+    Console.print(GAME_MESSAGE.PROFIT_RATE(this.#comparer.yield));
   }
 
   static #validateNumberInput(input) {
     if (input === '') {
-      throw new Error('[ERROR] 빈 값을 입력하였습니다.');
+      throw new Error(ERROR_MESSAGE.EMPTY);
     }
 
     if (input.includes(' ')) {
-      throw new Error('[ERROR] 공백을 포함해 입력하였습니다.');
+      throw new Error(ERROR_MESSAGE.SPACE);
     }
 
     if (isNaN(input)) {
-      throw new Error('[ERROR] 입력 값은 숫자여야 합니다.');
+      throw new Error(ERROR_MESSAGE.NOT_NUMBER);
     }
   }
 }

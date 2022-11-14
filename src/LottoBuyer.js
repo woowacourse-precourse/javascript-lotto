@@ -1,3 +1,4 @@
+const { ERROR_MESSAGE, RULE } = require('./constants/lotto');
 const LottoSales = require('./LottoSales');
 
 class LottoBuyer {
@@ -24,8 +25,8 @@ class LottoBuyer {
   }
 
   static #validateMoney(money) {
-    if (money % 1000 !== 0) {
-      throw new Error('[ERROR] 구입금액은 1,000의 배수여야 합니다.');
+    if (money % RULE.MONEY_UNIT !== 0) {
+      throw new Error(ERROR_MESSAGE.RULE_MONEY);
     }
   }
 }
