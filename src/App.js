@@ -26,18 +26,27 @@ class App {
     }
   }
 
+  printLottoList() {
+    MissionUtils.Console.print(this.count+"개를 구매했습니다.");
+    for (let i=0; i<this.count; i++) {
+      MissionUtils.Console.print(this.lottoList[i].getNumbers());
+    }
+    MissionUtils.Console.print("\n");
+  }
+
   buyLotto() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
       this.setMoney(input);
       this.setCount();
-      this.publishLotto();
+      this.publishLottoList();
+      this.printLottoList();
     });
   }
 
   play() {
     this.buyLotto();
   }
-}
+} 
 
 /* 나중에 지울 코드 */
 const app = new App();
