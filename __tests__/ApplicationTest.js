@@ -71,9 +71,18 @@ describe("로또 테스트", () => {
 
   test("구매 금액이 1,000원 단위가 아닐 경우 예외를 발생시킨다.", () => {
     mockQuestions(["1111"]);
+
     expect(() => {
       const app = new App();
       app.play();
     }).toThrow("[ERROR]");
+  });
+
+  test("구매 금액이 10,000원일 경우 발행되는 로또 개수는 10개이다.", () => {
+    const app = new App();
+    app.money = 10000;
+    app.getLottoCount();
+
+    expect(app.lottoCount).toEqual(10);
   });
 });
