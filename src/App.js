@@ -91,6 +91,10 @@ class App {
     const rankingTotal = this.getRankingTotal(eachLottoRanking);
     const winningMoney = this.getWinningMoney(rankingTotal);
     const earningRatio = this.getEarningRatio(winningMoney);
+    const result = this.resultSynthesis(rankingTotal);
+    Object.entries(result).forEach(([ranking, count]) =>
+      MissionUtils.Console.print(result[ranking])
+    );
   }
   compareNumber(eachLotto) {
     const compareResult = eachLotto.filter((number) =>
@@ -141,6 +145,26 @@ class App {
   }
   getEarningRatio(winningMoney) {
     return ((winningMoney / this.purchaseAmount) * 100).toFixed(1);
+  }
+  resultSynthesis(rankingTotal) {
+    const resultTable = {
+      "5등": `${LOTTO_RANKING_CONDITION.FIFTH_RANK}개 일치 (${
+        LOTTO_MONEY[LOTTO_RANKING.FIFTH]
+      })원 - ${rankingTotal[LOTTO_RANKING.FIFTH]}개`,
+      "4등": `${LOTTO_RANKING_CONDITION.FOURTH_RANK}개 일치 (${
+        LOTTO_MONEY[LOTTO_RANKING.FOURTH]
+      })원 - ${rankingTotal[LOTTO_RANKING.FOURTH]}개`,
+      "3등": `${LOTTO_RANKING_CONDITION.THIRD_RANK}개 일치 (${
+        LOTTO_MONEY[LOTTO_RANKING.THIRD]
+      })원 - ${rankingTotal[LOTTO_RANKING.THIRD]}개`,
+      "2등": `${LOTTO_RANKING_CONDITION.THIRD_RANK}개 일치, 보너스 볼 일치 (${
+        LOTTO_MONEY[LOTTO_RANKING.SECOND]
+      })원 - ${rankingTotal[LOTTO_RANKING.SECOND]}개`,
+      "1등": `${LOTTO_RANKING_CONDITION.FIRST_RANK}개 일치 (${
+        LOTTO_MONEY[LOTTO_RANKING.FIRST]
+      })원 - ${rankingTotal[LOTTO_RANKING.FIRST]}개`,
+    };
+    return resultTable;
   }
 }
 
