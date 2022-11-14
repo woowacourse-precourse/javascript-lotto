@@ -83,7 +83,7 @@ class LottoGame {
       (result[6] || 0) * 2000000000;
     const profitRate = (profit * 100) / payment;
 
-    MissionUtils.Console.print(`총 수익률은 ${profitRate}%입니다.`);
+    MissionUtils.Console.print(`총 수익률은 ${profitRate.toFixed(1)}%입니다.`);
   }
 
   printResult(lottos, payment) {
