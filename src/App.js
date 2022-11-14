@@ -22,7 +22,7 @@ class App {
   }
 
   getLottos(money) {
-    const inputMoney = new Money(money);
+    const inputMoney = new Money(Number(money));
     this.money = inputMoney.money;
 
     const lottoCount = this.money / 1000;
