@@ -32,7 +32,22 @@ const {
 } = require('./Constants.js');
 
 class App {
-  countLottoRank(drawResult) {}
+  countLottoRank(drawResult) {
+    const rankCount = {
+      [FIRST_RANK]: 0,
+      [SECOND_RANK]: 0,
+      [THIRD_RANK]: 0,
+      [FOURTH_RANK]: 0,
+      [FIFTH_RANK]: 0,
+      [NOTHING_RANK]: 0,
+    };
+
+    drawResult.forEach((rank) => {
+      rankCount[rank] += 1;
+    });
+
+    return rankCount;
+  }
 
   printLottoResult(rankCount, amount) {}
 
