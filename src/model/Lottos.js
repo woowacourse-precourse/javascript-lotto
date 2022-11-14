@@ -6,6 +6,7 @@ const { ERROR, UNIT } = require("../utils/constants");
 class Lottos {
   constructor(purchaseAmount) {
     this.validate(purchaseAmount);
+
     this.generateLottoNumbers = new GenerateLottoNumbers();
     this.count = purchaseAmount / UNIT.DIVIDE;
     this.lottos = [];
@@ -24,15 +25,19 @@ class Lottos {
     }
   }
 
-  createLotto() {
+  getLotto() {
     const numbers = this.generateLottoNumbers.generate();
 
     return new Lotto(numbers);
   }
 
   createLottos() {
+    let numbers = [];
+
     for (let num = 0; num < this.count; num++) {
-      this.lottos.push(this.createLotto());
+      numbers = this.generateLottoNumbers.generate();
+
+      this.lottos.push(new Lotto(numbers));
     }
   }
 
