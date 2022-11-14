@@ -2,6 +2,8 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const User = require("./User");
 const LottoManager = require("./LottoManager");
+const { MESSAGE, INPUT_MESSAGE, ERROR_MESSAGE } = require("./constants/MessageConstants");
+
 
 class LottoMachine {
   #money;
@@ -29,7 +31,7 @@ class LottoMachine {
   }
 
   inputMoney() {
-    MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
+    MissionUtils.Console.readLine(INPUT_MESSAGE.INPUT_MONEY, (money) => {
       this.#money = Number(money);
       
       this.checkInputMoney();
@@ -45,13 +47,13 @@ class LottoMachine {
 
   checkInputMoney() {
     if (this.#money % 1000 !== 0) {
-      throw Error("[ERROR] 1,000원 단위의 금액을 투입해주세요.");
+      throw Error(ERROR_MESSAGE.INPUT_MONEY_BE_IN_THOUSANDS);
     }
   }
 
   printLottoAmount() {
     this.#count = this.#money / 1000;
-    MissionUtils.Console.print(`\n${this.#count}개를 구매했습니다.`);
+    MissionUtils.Console.print(`\n${this.#count}` + MESSAGE.BUY_COUNT);
   }
 
   makeLottoNumber() {

@@ -1,6 +1,8 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const User = require("./User");
 const LottoMachine = require("./LottoMachine");
+const { RESULT_MESSAGE } = require("./constants/MessageConstants");
+
 
 class LottoCalculator {
   winningNumbers;
@@ -58,13 +60,13 @@ class LottoCalculator {
   }
 
   printResult() {
-    MissionUtils.Console.print("\n당첨 통계\n---")
-    MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.checkRank[5]}개`)
-    MissionUtils.Console.print(`4개 일치 (50,000원) - ${this.checkRank[4]}개`)
-    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${this.checkRank[3]}개`)
-    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.checkRank[2]}개`)
-    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${this.checkRank[1]}개`)
-    MissionUtils.Console.print(`총 수익률은 ${this.yield}%입니다.`)
+    MissionUtils.Console.print(RESULT_MESSAGE.OPENING_MESSAGE);
+    MissionUtils.Console.print(RESULT_MESSAGE.FIFTH_PLACE + `${this.checkRank[5]}` + RESULT_MESSAGE.UNIT);
+    MissionUtils.Console.print(RESULT_MESSAGE.FOURTH_PLACE + `${this.checkRank[4]}` + RESULT_MESSAGE.UNIT);
+    MissionUtils.Console.print(RESULT_MESSAGE.THIRD_PLACE + `${this.checkRank[3]}` + RESULT_MESSAGE.UNIT);
+    MissionUtils.Console.print(RESULT_MESSAGE.SECOND_PLACE + `${this.checkRank[2]}` + RESULT_MESSAGE.UNIT);
+    MissionUtils.Console.print(RESULT_MESSAGE.FIRST_PLACE + `${this.checkRank[1]}` + RESULT_MESSAGE.UNIT);
+    MissionUtils.Console.print(RESULT_MESSAGE.YIELD_FRONT_MESSAGEL + `${this.yield}` + RESULT_MESSAGE.YIELD_BACK_MESSAGEL);
 
     MissionUtils.Console.close();
   }

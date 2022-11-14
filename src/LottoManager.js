@@ -1,5 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const LottoCalculator = require("./LottoCalculator");
+const { ERROR_MESSAGE, INPUT_MESSAGE } = require("./constants/MessageConstants");
 
 class LottoManager {
   #winningNumbers;
@@ -23,7 +24,7 @@ class LottoManager {
   }
 
   inputWinningNumbers() {
-    MissionUtils.Console.readLine('\n당첨 번호를 입력해 주세요.\n', (winningNumbers) => {
+    MissionUtils.Console.readLine(INPUT_MESSAGE.INPUT_WINNING_NUMBERS, (winningNumbers) => {
       winningNumbers = winningNumbers.split(',');
       this.#winningNumbers = winningNumbers.map((idx) => Number(idx));
       this.checkInputWinningNumbers();
@@ -37,19 +38,19 @@ class LottoManager {
     const filteredWinningNumbers = this.filterRange(this.#winningNumbers, 1, 45)
   
     if (this.#winningNumbers.includes(NaN) === true) {
-      throw Error("[ERROR] 숫자를 입력해주세요.");
+      throw Error(ERROR_MESSAGE.IS_NOT_A_NUMBER);
     }
 
     if (this.#winningNumbers.length !== 6) {
-      throw Error("[ERROR] 6개의 당첨 번호를 입력해주세요.");
+      throw Error(ERROR_MESSAGE.IS_NOT_A_SIX_LENGTH);
     }
 
     if (winningNumbers.size !== 6) {
-      throw Error("[ERROR] 당첨 번호를 중복 없이 입력해주세요.");
+      throw Error(ERROR_MESSAGE.WINNING_NUMBERS_DO_NOT_OVERLAP);
     }
 
     if (filteredWinningNumbers.length !== 6) {
-      throw Error("[ERROR] 1부터 45사이의 숫자를 입력해주세요.");
+      throw Error(ERROR_MESSAGE.RANGE_IS_WRONG);
     }
   }
 
@@ -58,7 +59,7 @@ class LottoManager {
   }
 
   inputBonusNumber() {
-    MissionUtils.Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
+    MissionUtils.Console.readLine(INPUT_MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
       this.#bonusNumber = Number(bonusNumber);
       this.checkInputBonusNumber();
 
@@ -68,15 +69,15 @@ class LottoManager {
 
   checkInputBonusNumber() { 
     if (Number.isNaN(this.#bonusNumber) === true) {
-      throw Error("[ERROR] 숫자를 입력해주세요.");
+      throw Error(ERROR_MESSAGE.IS_NOT_A_NUMBER);
     }
 
     if ((this.#bonusNumber < 1) || (45 < this.#bonusNumber)) {
-      throw Error("[ERROR] 1부터 45사이의 숫자를 입력해주세요.");
+      throw Error(ERROR_MESSAGE.RANGE_IS_WRONG);
     }
 
     if (this.#winningNumbers.includes(this.#bonusNumber)) {
-      throw Error("[ERROR] 당첨 번호와 중복되지 않게 입력해주세요.");
+      throw Error(ERROR_MESSAGE.BONUS_NUMBER_DO_NOT_OVERLAP);
     }
   }
 
