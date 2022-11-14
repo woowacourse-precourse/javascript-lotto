@@ -51,7 +51,7 @@ class Drawing {
   }
 
   getMatchCount(numbers, winningNumbers, bonusNumber) {
-    const matchCount = numbers.filter(number => winningNumbers.includes(number) || number === bonusNumber).length;
+    const matchCount = numbers.filter(number => winningNumbers.includes(number)).length;
     const bonusMatch = numbers.includes(bonusNumber);
 
     return [matchCount, bonusMatch];
