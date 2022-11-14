@@ -21,8 +21,7 @@ class LottoGameModel {
         LOTTO_INFO.COUNT
       );
 
-      LottoValidator.validate(lotto);
-      lottos.push(lotto);
+      lottos.push(new Lotto(lotto));
     }
 
     return lottos;

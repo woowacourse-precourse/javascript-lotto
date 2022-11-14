@@ -7,12 +7,8 @@ class LottoGameView {
 
   printLottoNumbers(lottos) {
     lottos.forEach((lotto) => {
-      print(this.toString(lotto));
+      print(lotto.toString());
     });
-  }
-
-  toString(arr) {
-    return `[${arr.join(', ')}]`;
   }
 }
 

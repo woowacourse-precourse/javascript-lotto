@@ -13,11 +13,8 @@ class Lotto {
     LottoValidator.validate(numbers);
   }
 
-  bonusValidate(bonus) {
-    if (this.#numbers.includes(bonus))
-      throw new Error(ERROR_MESSAGE.DUPLICATION);
-
-    BonusValidator.validate(bonus);
+  toString() {
+    return `[${this.#numbers.join(', ')}]`;
   }
 
   // TODO: 추가 기능 구현
