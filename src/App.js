@@ -119,7 +119,7 @@ class App {
     this.showPrizeResult(winningInfo, totalPrize, principal);
   }
 
-  showProfitResult(winningInfo, totalPrize, principal) {
+  showPrizeResult(winningInfo, totalPrize, principal) {
     const profit = totalPrize / principal;
 
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${winningInfo[5]}개`);

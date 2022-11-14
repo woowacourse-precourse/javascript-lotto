@@ -185,7 +185,7 @@ describe("로또 테스트", () => {
       4: 1,
       5: 1
     }
-    const profit = 1555000;
+    const prize = 1555000;
     const principal = 600000;
     const messages = [
       "3개 일치 (5,000원) - 1개",
@@ -197,7 +197,7 @@ describe("로또 테스트", () => {
     ]
     const logSpy = getLogSpy();
     const app = new App;
-    app.showProfitResult(winningInfo, profit, principal);
+    app.showPrizeResult(winningInfo, prize, principal);
 
     messages.forEach((output) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(output));
