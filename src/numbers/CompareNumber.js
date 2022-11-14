@@ -20,10 +20,10 @@ class CompareNumber {
       count = 0;
     });
     this.correct = CORRECT;
-    this.checkGrade();
+    this.correctNumbers();
   }
 
-  checkGrade() {
+  correctNumbers() {
     this.correct.forEach(function (number) {
       if (number === 3) {
         this.fiveGrade();
