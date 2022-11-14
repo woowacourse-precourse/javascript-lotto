@@ -35,10 +35,12 @@ class App {
 
 	useWinLottoNum() {
 		Console.print("당첨 번호를 입력해 주세요.");
-		Console.readline(
-			"",
-			num => (this.winLottoNums = num.split(",").map(Number))
-		);
+		Console.readline("", input => {
+			const inputNum = input.split(",").map(Number);
+
+			this.isWinValidation(inputNum);
+			this.winLottoNums = inputNum;
+		});
 	}
 
 	isWinValidation(input) {
