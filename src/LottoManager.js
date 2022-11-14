@@ -6,10 +6,12 @@ const { LOTTO } = require('../src/lib/constants/lotto');
 const Lotto = require('./Lotto');
 
 class LottoManager {
+  #purchaseAmount;
   #lottos = [];
 
   initLottos(purchaseAmountInput) {
     this.validatePurchaseAmount(purchaseAmountInput);
+    this.#purchaseAmount = parseInt(purchaseAmountInput, 10);
     this.#lottos = this.issueLottos(parseInt(purchaseAmountInput, 10));
   }
 
@@ -66,6 +68,10 @@ class LottoManager {
     }
 
     return [...lottoNumbers].sort((a, b) => a - b);
+  }
+
+  get purchaseAmount() {
+    return this.#purchaseAmount;
   }
 
   get lottos() {
