@@ -1,8 +1,8 @@
 const Cost = require('./Cost');
 const Lotto = require('./Lotto');
 const Bonus = require('./Bonus');
-const { INPUT_MESSAGE, ERROR_MESSAGE, LOTTO, COST } = require('./constant/constant');
-const { getInput } = require('./utils');
+const { COST, INPUT_MESSAGE, ERROR_MESSAGE } = require('./constant/constant');
+const { getInput, print } = require('./utils');
 const BuyLotto = require('./BuyLotto');
 
 class App {
@@ -22,6 +22,9 @@ class App {
   buyLottoCountTimes() {
     this.buyLotto = new BuyLotto(this.cost.getValue() / COST.DIVIDE);
     this.buyLotto.printBuyCount();
+    this.buyLotto.getValue().forEach((buy) => {
+      print(buy);
+    });
   }
 
   getLottoNumber() {
