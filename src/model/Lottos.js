@@ -33,6 +33,8 @@ class Lottos {
   }
 
   printLottos() {
+    this.printCount();
+    
     this.lottos.forEach((lotto) => {
       lotto.printLotto();
     });

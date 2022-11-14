@@ -8,7 +8,7 @@ class Validate {
   }
 
   checkRange(number) {
-    if (num < LOTTO_NUMBER.MIN_RANGE || num > LOTTO_NUMBER.MAX_RANGE) {
+    if (number < LOTTO_NUMBER.MIN_RANGE || number > LOTTO_NUMBER.MAX_RANGE) {
       throw new Error(ERROR.RANGE);
     }
   }

@@ -20,15 +20,14 @@ class App {
       INPUT_MESSEGE.PURCHASE_AMOUNT,
       (purchaseAmount) => {
         this.userLottos = new Lottos(purchaseAmount);
-        this.userLottos.printCount();
         this.userLottos.printLottos();
 
-        this.askWinningLottoNumber();
+        this.askWinningNumber();
       }
     );
   }
 
-  askWinningLottoNumber() {
+  askWinningNumber() {
     MissionUtils.Console.readLine(
       INPUT_MESSEGE.WINNING_NUMBER,
       (winningNumber) => {
@@ -48,7 +47,13 @@ class App {
       this.Validate.checkBonusNumInput(this.winningNumbers, bonusNum);
       this.bonusNumber = Number(bonusNum);
       this.userLottos.printResult(this.winningNumbers, this.bonusNumber);
+
+      this.end();
     });
+  }
+
+  end() {
+    MissionUtils.Console.close();
   }
 }
 
