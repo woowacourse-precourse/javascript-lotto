@@ -3,6 +3,10 @@ const RANGE_INPUT_LOTTO_NUMBER_ERROR ="[ERROR] 로또 번호의 범위는 1~45�
 const REPEATED_LOTTO_NUMBER_ERROR ="[ERROR] 로또 번호에 중복된 값이 없어야 합니다."
 const STRING_LOTTO_NUMBER_ERROR ="[ERROR] 로또 번호 중 숫자가 아닌 값이 있으면 안됩니다."
 
+const RANGE_MONEY_ERROR ="[ERROR] 로또 번호 중 숫자가 아닌 값이 있으면 안됩니다."
+const NOT_NUMBER_MONEY_ERROR ="[ERROR] 로또 번호 중 숫자가 아닌 값이 있으면 안됩니다."
+const SMALLER_MONEY_ERROR ="[ERROR] 로또 번호 중 숫자가 아닌 값이 있으면 안됩니다."
+
 const INPUT_MONEY = '구입금액을 입력해 주세요.';
 const INPUT_WINNING_NUMBER = '당첨 번호를 입력해 주세요.';
 const INPUT_BONUS_NUMBER = '보너스 번호를 입력해 주세요.';
@@ -22,6 +26,9 @@ module.exports = {
   RANGE_INPUT_LOTTO_NUMBER_ERROR,
   STRING_LOTTO_NUMBER_ERROR,
   REPEATED_LOTTO_NUMBER_ERROR,
+  RANGE_MONEY_ERROR,
+  NOT_NUMBER_MONEY_ERROR,
+  SMALLER_MONEY_ERROR,
   INPUT_MONEY,
   INPUT_BONUS_NUMBER,
   INPUT_WINNING_NUMBER,
