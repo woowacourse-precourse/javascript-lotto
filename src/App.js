@@ -17,25 +17,31 @@ class App {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
       this.#money = Number(money);
       MissionUtils.Console.print('');
-      const lottoSet = new LottoSet(this.#money);
-      this.#lottoSet = lottoSet.play();
-      this.getWinnings();
+      this.buyLotto(money);
     });
+  }
+
+  buyLotto(money) {
+    const lottoSet = new LottoSet(money);
+    this.#lottoSet = lottoSet.play();
+    this.getWinnings();
   }
 
   getWinnings() {
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (winning) => {
       this.#winning = winning.split(',').map(Number);
       new Lotto(this.#winning);
+
       MissionUtils.Console.print('');
-      this.getBonus();
+      this.getBonus(winning);
     });
   }
 
-  getBonus() {
+  getBonus(winning) {
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.\n', (bonus) => {
       this.#bonus = Number(bonus);
-      new Bonus(this.#winning, this.#bonus);
+      new Bonus(winning, bonus);
+
       MissionUtils.Console.print('');
       this.compareLotto();
     });
