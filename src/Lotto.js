@@ -1,4 +1,4 @@
-const { isLottoNumbers, isDuplicated } = require('./lib/utilFns');
+const { isLottoNumbers, isDuplicated, isInclude } = require('./lib/utilFns');
 
 class Lotto {
   #numbers;
@@ -29,6 +29,14 @@ class Lotto {
     }
 
     return true;
+  }
+
+  getScore(pickedNumbers) {
+    const isIncludeNum = isInclude(pickedNumbers);
+    const score = this.#numbers.filter(isIncludeNum).length;
+    const bonusScore = isIncludeNum(this.#bonus) ? 1 : 0;
+
+    return { score, bonusScore };
   }
 
   // TODO: 추가 기능 구현

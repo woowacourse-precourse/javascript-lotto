@@ -16,6 +16,8 @@ const isDuplicated = (arr) => {
   return set.size !== arr.length;
 };
 
+const isInclude = (arr) => (elem) => arr.includes(elem);
+
 const divide = (divider) => (share) => Number(share) / divider;
 const divide1000 = divide(1000);
 
@@ -35,4 +37,12 @@ const getRandomNumbers = (start, end, size) => {
 const splitStr = (sep) => (str) => str.trim().split(sep);
 const splitStrByComma = splitStr(',');
 
-module.exports = { isMultipleOf1000, isLottoNumbers, isDuplicated, divide1000, getRandomNumbers, splitStrByComma };
+module.exports = {
+  isMultipleOf1000,
+  isLottoNumbers,
+  isDuplicated,
+  isInclude,
+  divide1000,
+  getRandomNumbers,
+  splitStrByComma,
+};
