@@ -4,13 +4,8 @@ const Lotto = require('./Lotto.js');
 const Winning = require('./Winning.js');
 
 class App {
-  generateLotto;
-  lottoNumbers;
-  validateNumber;
-  userPay;
   play() {
-    Console.print('구입금액을 입력해 주세요.');
-    Console.readLine('', (money) => {
+    Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
       this.userPay = money;
       this.generateLotto = new GenerateLotto(money);
       this.printPurchaseCount();
@@ -18,7 +13,7 @@ class App {
   }
 
   printPurchaseCount() {
-    const purchaseCount = this.generateLotto.purchaseCount();
+    const purchaseCount = this.generateLotto.purchaseCount(this.userPay);
     Console.print(`\n${purchaseCount}개를 구매했습니다.`);
     this.printLottoNumber();
   }
@@ -26,14 +21,13 @@ class App {
   printLottoNumber() {
     this.lottoNumbers = this.generateLotto.setLottoNumber();
     this.lottoNumbers.forEach((lottoNumber) => {
-      Console.print(lottoNumber);
+      Console.print(`[${lottoNumber.join(', ')}]`);
     });
     this.userInputNumber();
   }
 
   userInputNumber() {
-    Console.print('\n당첨 번호를 입력해 주세요.');
-    Console.readLine('', (numbers) => {
+    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (numbers) => {
       this.userNumbers = numbers.split(',').map((number) => Number(number));
       this.validateNumber = new Lotto(this.userNumbers);
       this.userInputBonusNumber();
@@ -41,8 +35,7 @@ class App {
   }
 
   userInputBonusNumber() {
-    Console.print('\n보너스 번호를 입력해 주세요.');
-    Console.readLine('', (bonusNumber) => {
+    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
       this.bonusNumber = Number(bonusNumber);
       this.validateNumber.validateBonus(bonusNumber);
       this.getWinningStats();
