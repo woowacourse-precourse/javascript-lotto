@@ -53,3 +53,16 @@
 - Winning → 당첨 번호, 보너스 번호
 - Ranks → 순위
 - Profit → 수익률
+
+## 구조
+
+- 각 도메인 별 Controller
+- Model
+- View
+1. **현재 도메인에서** 다음 도메인으로 완성된 data 넘겨주기
+    
+    Domain : `constructor(data){ model(data), view }`
+    
+2. **View 에서** Controller 내부 함수 호출
+    
+    View : `constructor(controller)`
