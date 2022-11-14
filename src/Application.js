@@ -84,6 +84,14 @@ class Application {
   static multiplication(targetA, targetB) {
     return this.convertNumber(targetA) * this.convertNumber(targetB);
   }
+
+  static increase(array, point, increase) {
+    const newArray = Application.copyArray(array);
+
+    newArray[point] += increase;
+
+    return newArray;
+  }
 }
 
 module.exports = Application;
