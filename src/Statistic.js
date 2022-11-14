@@ -15,6 +15,21 @@ const Statistic = class {
     this.#io = Io;
   }
 
+  announceLottoResult() {
+    const rank = this.getRankResult();
+    const messages = this.generateMessage(rank, this.getYield(rank));
+    this.#io.print("\n당첨 통계");
+    this.#io.print("---");
+    messages.forEach((message) => this.#io.print(message));
+  }
+
+  generateMessage(rank, totalYield) {
+    return Object.entries(LOTTO_RANK.MESSAGE)
+      .reverse()
+      .map(([key, value]) => `${value}${rank.get(key)}개`)
+      .concat(`총 수익률은 ${totalYield}%입니다.`);
+  }
+
   calculateRank(matchCount, lotto) {
     switch (matchCount) {
       case LOTTO_RANK.CASE.RANK_ONE:
