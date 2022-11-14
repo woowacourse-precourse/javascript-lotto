@@ -1,7 +1,6 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const {
-  POOL,
   PRICE,
   PICK_NUM,
   MAX_NUM,
@@ -22,7 +21,6 @@ const {
   INPUT_BONUS_MSG,
   RESULT_INTRO_MSG,
   LOTTO_LENGTH_NOT_SIX_ERROR,
-  LOTTO_DUPLICATE_ERROR,
   LOTTO_OUT_OF_RANGE_ERROR,
   LOTTO_NAN_ERROR,
   PRICE_NAN_ERROR,
