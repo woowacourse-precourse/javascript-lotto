@@ -63,16 +63,25 @@ class CalculationLotto {
     const lottoIntersecrt = new Set(lotto.filter((number) => winNumberSet.has(number)));
 
     this.isBonusMatch = myLottoSet.has(this.bonusNumber);
-    this.matchCount = (this.isBonusMatch ? 1 : 0) + lottoIntersecrt.size;
+    this.matchCount = this.isBonusMatch + lottoIntersecrt.size;
   }
 
   matchResult() {
     const count = this.isBonusFiveMatch() ? LOTTO_RESULT_TYPE.bonus : this.matchCount;
 
+    if (CalculationLotto.isNotMatch(count)) {
+      return this;
+    }
+
     this.lottoResult[count].count += 1;
     this.lottoWinPrice += this.lottoResult[count].price;
 
     return this;
+  }
+
+  static isNotMatch(count) {
+    if (count < 3) return true;
+    return false;
   }
 
   isBonusFiveMatch() {
