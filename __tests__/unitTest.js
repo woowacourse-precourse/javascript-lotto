@@ -1,7 +1,7 @@
 const {
   validateBonusNum,
   validateMoney,
-} = require("../src/CheckInputOfBonusAndMoney");
+} = require("../src/CheckValidationOfBonusAndMoney");
 const Lotto = require("../src/Lotto");
 const calculationOfLottoGame = require("../src/CalculationOfLottoGame");
 const { ERROR, RESULT } = require("../src/data/Constants");

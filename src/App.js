@@ -18,7 +18,7 @@ const {
 const {
   validateMoney,
   validateBonusNum,
-} = require("./CheckInputOfBonusAndMoney");
+} = require("./CheckValidationOfBonusAndMoney");
 
 class App {
   play() {
