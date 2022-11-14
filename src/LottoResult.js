@@ -10,7 +10,6 @@ const {
 
 class LottoResult {
   constructor() {
-    this.profit = 0;
     this.profitRate = 0;
     this.lottoMatchCounter = {
       three: 0,
@@ -43,15 +42,15 @@ class LottoResult {
     return LOTTO_MATCHES[count];
   }
 
+  calculateProfitRate(money) {
+    this.profitRate = ((this.calculateProfit() / money) * 100).toFixed(1);
+  }
+
   calculateProfit() {
     return Object.entries(this.lottoMatchCounter).reduce((profit, [matching, count]) => {
       const cumulativeProfit = profit + LOTTO_PRIZE[matching] * count;
       return cumulativeProfit;
     }, 0);
-  }
-
-  calculateProfitRate(money) {
-    this.profitRate = ((this.calculateProfit() / money) * 100).toFixed(1);
   }
 
   printResult() {
