@@ -1,23 +1,27 @@
 const { Console } = require('@woowacourse/mission-utils');
 const LottoNumberIssuedFromComputer = require('../components/util/LottoNumberIssuedFromComputer');
-const { LottoNumberData } = require('../components/lotto_data/LottoNumberData');
+const { LottoNumberData } = require('../components/lotto-data/LottoNumberData');
+const { WHILE_END } = require('../components/lotto-data/Constant');
 
-function printLottoNumbers(numberOfLotto) {
+function printLottoNumberIssued(numberOfLotto) {
   Console.print(`${numberOfLotto}개를 구매했습니다.`);
   print(numberOfLotto);
 }
 
 function print(numberOfLotto) {
-  const WHILE_END = 0;
   let numberOfLottoForFn = numberOfLotto;
-  while (numberOfLottoForFn > WHILE_END) {
-    const lottoNumberIssued = new LottoNumberIssuedFromComputer();
-    const lottoNumber = lottoNumberIssued.return();
-    Console.print(`[${lottoNumber.join(', ')}]`);
+  const lottoNumberIssued = new LottoNumberIssuedFromComputer();
 
-    saveLottoNumberIssued(lottoNumber);
+  while (numberOfLottoForFn > WHILE_END) {
+    const lottoNumber = lottoNumberIssued.return();
+    Console.print(`[${useJoin(lottoNumber)}]`);
     numberOfLottoForFn = subtractMinusOne(numberOfLottoForFn);
   }
+}
+
+function useJoin(lottoNumber) {
+  saveLottoNumberIssued(lottoNumber);
+  return lottoNumber.join(', ');
 }
 
 function saveLottoNumberIssued(lottoNumber) {
@@ -28,4 +32,4 @@ function subtractMinusOne(number) {
   return number - 1;
 }
 
-module.exports = printLottoNumbers;
+module.exports = printLottoNumberIssued;
