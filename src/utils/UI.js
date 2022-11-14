@@ -57,7 +57,14 @@ class UI {
     Console.print(`\n${this.#countLotto}개를 구매했습니다.`);
   }
 
-  showLottoNumber() {}
+  showLottoNumber() {
+    const lottoMachine = new makeLotto(this.#countLotto);
+    lottoMachine.makeLotto();
+    lottoMachine.lottoNumbers.forEach((numbers) => {
+      Console.print(numbers);
+    });
+    Console.close();
+  }
 }
 
 module.exports = UI;

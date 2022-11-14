@@ -1,17 +1,21 @@
 const Random = require("./Random");
 class makeLotto {
   #countLotto;
-  #lottoNumbers = [];
+  _lottoNumbers = [];
 
   constructor(countLotto) {
     this.#countLotto = countLotto;
+  }
+
+  get lottoNumbers() {
+    return this._lottoNumbers;
   }
 
   makeLotto() {
     let count = 0;
     while (count < this.#countLotto) {
       let lotto = this.makeLottoNumbers();
-      this.#lottoNumbers.push(lotto);
+      this._lottoNumbers.push(lotto);
       count++;
     }
   }
