@@ -1,6 +1,7 @@
 const { Console } = require('@woowacourse/mission-utils');
 
 class LottoDrawer {
+  // {numbers, bonus}
   #result;
 
   constructor(numbersCount) {
@@ -36,10 +37,11 @@ class LottoDrawer {
     });
   }
 
-  drawLotto() {
+  drawLotto(winner) {
     Console.readLine('당첨 번호를 입력해 주세요.\n', (numbers) => {
       this.setLottoWinner(numbers);
       this.setBonusNumer();
+      winner.annouce();
     });
   }
 }
