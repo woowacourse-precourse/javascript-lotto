@@ -22,4 +22,14 @@ describe("로또 클래스 테스트", () => {
       new Lotto([0, 30, 32, 40, 48, 55]);
     }).toThrow(ERROR.RANGE);
   });
+
+  test("등수를 구하는 경우", () => {
+    const lotto = new Lotto([8, 13, 17, 22, 26, 41]);
+    const winningNumber = [2, 8, 13, 22, 41, 45];
+    const bonusNum = 10;
+
+    const rank = lotto.getRank(winningNumber, bonusNum);
+
+    expect(rank).toEqual(4);
+  });
 });
