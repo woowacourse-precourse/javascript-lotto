@@ -49,6 +49,11 @@ class App {
         );
         const bonusResult = this.result.createBonusResult();
         console.log(bonusResult);
+        const totalYield = this.result.getTotalYield(
+          this.buyMoney,
+          lottoResult,
+          bonusResult
+        );
       }
     );
   }

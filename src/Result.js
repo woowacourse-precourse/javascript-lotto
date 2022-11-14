@@ -60,5 +60,20 @@ class Result {
   isContainBonusNumber(lotto, bonusNum) {
     return lotto.includes(bonusNum);
   }
+
+  getTotalYield(buyMoney, lottoResult, bonusResult) {
+    let totalProfit = 0;
+    for (const score in lottoResult) {
+      if (lottoResult[score]["count"] > 0) {
+        totalProfit += lottoResult[score]["money"];
+      }
+    }
+    if (bonusResult["count"] > 0) {
+      totalProfit += bonusResult["money"];
+    }
+    if (totalProfit === 0) return 0;
+
+    return Number(((totalProfit / buyMoney) * 100).toFixed(1));
+  }
 }
 module.exports = Result;
