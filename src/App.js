@@ -16,6 +16,7 @@ class App {
   winnerNumber;
   bonusNumber;
   lotto;
+  purchaseAmount;
   play() {
     this.inputPurchaseAmount();
     this.inputWinnerNumber();
@@ -24,10 +25,11 @@ class App {
   inputPurchaseAmount() {
     MissionUtils.Console.readLine(
       GUIDE_MESSAGE.PURCHASEAMOUNT_INPUT,
-      (purchaseAmount) => {
-        Validation.checkPurchaseAmount(purchaseAmount);
-        this.lottoBuying(purchaseAmount);
+      (inputPurchaseAmount) => {
+        Validation.checkPurchaseAmount(inputPurchaseAmount);
+        this.lottoBuying(inputPurchaseAmount);
         this.printLottoNumber(this.lotto);
+        this.purchaseAmount = inputPurchaseAmount;
       }
     );
   }
@@ -88,7 +90,7 @@ class App {
     const eachLottoRanking = eachResult.map(this.getLottoRaking.bind(this));
     const rankingTotal = this.getRankingTotal(eachLottoRanking);
     const winningMoney = this.getWinningMoney(rankingTotal);
-    console.log(winningMoney);
+    const earningRatio = this.getEarningRatio(winningMoney);
   }
   compareNumber(eachLotto) {
     const compareResult = eachLotto.filter((number) =>
@@ -136,6 +138,9 @@ class App {
       ([ranking, count]) => (sumMoney += LOTTO_MONEY[ranking] * count)
     );
     return sumMoney;
+  }
+  getEarningRatio(winningMoney) {
+    return ((winningMoney / this.purchaseAmount) * 100).toFixed(1);
   }
 }
 
