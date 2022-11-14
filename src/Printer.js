@@ -15,7 +15,7 @@ let Printer = class {
   }
 
   static lottos(arrays) {
-    arrays.forEach((array) => Uitls.printMessage(`[${array.join(',')}]`));
+    arrays.forEach((array) => Uitls.printMessage(`[${array.join(', ')}]`));
   }
 
   static result(obj, statistics) {
