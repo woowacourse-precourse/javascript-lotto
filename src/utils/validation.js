@@ -32,15 +32,16 @@ const validateNumbers = (numbers) => {
   }
 };
 
-const validateNumber = (number) => {
-  if (!isNumberInRange(number)) {
-    throw new Error(`[ERROR] ${ERROR_MESSAGE.isNumbersInRange}`);
+const isNaN = (number) => {
+  if (Number.isNaN(number)) {
+    throw Error(`[ERROR] ${ERROR_MESSAGE.isNumber}`);
   }
 };
 
-const isNaN = (money) => {
-  if (Number.isNaN(money)) {
-    throw Error(`[ERROR] ${ERROR_MESSAGE.isNumber}`);
+const validateNumber = (number) => {
+  isNaN(number);
+  if (!isNumberInRange(number)) {
+    throw new Error(`[ERROR] ${ERROR_MESSAGE.isNumbersInRange}`);
   }
 };
 
