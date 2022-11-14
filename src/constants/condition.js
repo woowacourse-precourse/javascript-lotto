@@ -3,18 +3,18 @@ const LOTTO_NUM_MIN_RANGE = 1;
 const LOTTO_NUM_MAX_RANGE = 45;
 const LOTTO_DIGITS = 6;
 const PRIZE_MATCH_NUMBER_COUNT = {
-  firstPlace: 6,
-  secondPlace: 5,
-  thirdPlace: 5,
-  fourthPlace: 4,
-  fifthPlace: 3,
+  firstPrize: 6,
+  secondPrize: 5,
+  thirdPrize: 5,
+  fourthPrize: 4,
+  fifthPrize: 3,
 };
 const LOTTO_PRIZE_MONEY = {
-  firstPlace: 2000000000,
-  secondPlace: 30000000,
-  thirdPlace: 1500000,
-  fourthPlace: 50000,
-  fifthPlace: 5000,
+  firstPrize: 2000000000,
+  secondPrize: 30000000,
+  thirdPrize: 1500000,
+  fourthPrize: 50000,
+  fifthPrize: 5000,
   fail: 0,
 };
 

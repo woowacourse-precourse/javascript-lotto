@@ -29,13 +29,13 @@ class PrizeCalculator {
   getLottoPrize(compareResult) {
     const { matchedLottoNumberCount, hasBonusNumber } = compareResult;
 
-    if (matchedLottoNumberCount === PRIZE_MATCH_NUMBER_COUNT.firstPlace) return "firstPlace";
-    if (matchedLottoNumberCount === PRIZE_MATCH_NUMBER_COUNT.secondPlace && hasBonusNumber) {
-      return "secondPlace";
+    if (matchedLottoNumberCount === PRIZE_MATCH_NUMBER_COUNT.firstPrize) return "firstPrize";
+    if (matchedLottoNumberCount === PRIZE_MATCH_NUMBER_COUNT.secondPrize && hasBonusNumber) {
+      return "secondPrize";
     }
-    if (matchedLottoNumberCount === PRIZE_MATCH_NUMBER_COUNT.thirdPlace) return "thirdPlace";
-    if (matchedLottoNumberCount === PRIZE_MATCH_NUMBER_COUNT.fourthPlace) return "fourthPlace";
-    if (matchedLottoNumberCount === PRIZE_MATCH_NUMBER_COUNT.fifthPlace) return "fifthPlace";
+    if (matchedLottoNumberCount === PRIZE_MATCH_NUMBER_COUNT.thirdPrize) return "thirdPrize";
+    if (matchedLottoNumberCount === PRIZE_MATCH_NUMBER_COUNT.fourthPrize) return "fourthPrize";
+    if (matchedLottoNumberCount === PRIZE_MATCH_NUMBER_COUNT.fifthPrize) return "fifthPrize";
 
     return "fail";
   }

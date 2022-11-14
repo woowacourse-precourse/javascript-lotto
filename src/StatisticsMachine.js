@@ -15,11 +15,11 @@ class StatisticsMachine {
 
   getPrizeStatistics(eachCalculatedLottoPrize) {
     const prizeStatistics = {
-      fifthPlace: 0,
-      fourthPlace: 0,
-      thirdPlace: 0,
-      secondPlace: 0,
-      firstPlace: 0,
+      fifthPrize: 0,
+      fourthPrize: 0,
+      thirdPrize: 0,
+      secondPrize: 0,
+      firstPrize: 0,
       fail: 0,
     };
 
@@ -48,10 +48,10 @@ class StatisticsMachine {
   }
 
   getPrizeStatisticsTemplates(prizeStatistics) {
-    const ranks = ["fifthPlace", "fourthPlace", "thirdPlace", "secondPlace", "firstPlace"];
+    const ranks = ["fifthPrize", "fourthPrize", "thirdPrize", "secondPrize", "firstPrize"];
 
     const templates = ranks.map((rank) => {
-      if (rank === "secondPlace") {
+      if (rank === "secondPrize") {
         return `${PRIZE_MATCH_NUMBER_COUNT[rank]}개 일치, 보너스 볼 일치 (${LOTTO_PRIZE_MONEY[
           rank
         ].toLocaleString()}원) - ${prizeStatistics[rank]}개`;
