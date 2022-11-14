@@ -8,9 +8,8 @@ class InputMoney {
   }
 
   validate(money) {
-    if (this.validateMoney(money) === false) {
-      this.utils.throwError(ERROR_MESSAGES.ERROR_MONEY);
-    }
+    (this.validateMoney(money) === false &&
+      this.utils.throwError(ERROR_MESSAGES.ERROR_MONEY));
   }
 
   validateMoney(inputMoney) {

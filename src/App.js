@@ -1,5 +1,4 @@
 const { Console } = require("@woowacourse/mission-utils");
-const Utils = require("./Utils");
 const BuyLotto = require("./BuyLotto");
 const Lotto = require("./Lotto");
 const InputMoney = require("./InputMoney");
@@ -8,7 +7,6 @@ const { INPUT_MESSAGES, LOTTO_INFO_VALUES, INITIALIZE_VALUES } = require("./Cons
 
 class App {
   constructor() {
-    this.utils = new Utils();
     this.lottoInfo = {
       rank5: INITIALIZE_VALUES.ZERO,
       rank4: INITIALIZE_VALUES.ZERO,

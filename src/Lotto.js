@@ -19,31 +19,26 @@ class Lotto {
   }
 
   validateNumbersLength(numbers) {
-    if (numbers.length !== LOTTO_INFO_VALUES.NUMBER_OF_WINNING_NUMBER) {
-      this.utils.throwError(ERROR_MESSAGES.ERROR_WINNING_NUMBER);
-    }
+    (numbers.length !== LOTTO_INFO_VALUES.NUMBER_OF_WINNING_NUMBER &&
+      this.utils.throwError(ERROR_MESSAGES.ERROR_WINNING_NUMBER));
   }
 
   isOverlapNumbers(numbers) {
-    if (new Set(numbers).size !== LOTTO_INFO_VALUES.NUMBER_OF_WINNING_NUMBER) {
-      this.utils.throwError(ERROR_MESSAGES.ERROR_OVERLAP);
-    }
+    (new Set(numbers).size !== LOTTO_INFO_VALUES.NUMBER_OF_WINNING_NUMBER &&
+      this.utils.throwError(ERROR_MESSAGES.ERROR_OVERLAP));
   }
 
   validateEachLottoNumber = (numbers) => {
-    if ([...numbers].every(this.utils.isValidLottoNumber) === false) {
-      this.utils.throwError(ERROR_MESSAGES.ERROR_NOT_RANGE);
-    }
+    ([...numbers].every(this.utils.isValidLottoNumber) === false &&
+      this.utils.throwError(ERROR_MESSAGES.ERROR_NOT_RANGE));
   }
 
   validateBonusNumber(winningNumbers, bonusNumber) {
-    if (this.utils.isValidLottoNumber(bonusNumber) === false) {
-      this.utils.throwError(ERROR_MESSAGES.ERROR_BONUS_NUMBER);
-    }
+    (this.utils.isValidLottoNumber(bonusNumber) === false &&
+      this.utils.throwError(ERROR_MESSAGES.ERROR_BONUS_NUMBER));
 
-    if (winningNumbers.includes(bonusNumber) === true) {
-      this.utils.throwError(ERROR_MESSAGES.ERROR_INCLUDE_WINNING_NUMBER);
-    };
+    (winningNumbers.includes(bonusNumber) === true &&
+      this.utils.throwError(ERROR_MESSAGES.ERROR_INCLUDE_WINNING_NUMBER));
   }
 }
 
