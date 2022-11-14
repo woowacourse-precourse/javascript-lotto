@@ -2,7 +2,6 @@ class PurchaseLotto {
   #payment;
 
   constructor(payment) {
-    console.log(typeof payment);
     this.isNumber(payment);
   }
 
