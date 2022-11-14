@@ -1,6 +1,3 @@
-const { USER_OUTPUT_PHRASE } = require('../src/config.js');
-const { Console } = require('@woowacourse/mission-utils');
-
 class Lotto {
   #numbers;
 
