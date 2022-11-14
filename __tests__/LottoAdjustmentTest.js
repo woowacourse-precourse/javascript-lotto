@@ -7,6 +7,9 @@ const LottoStore = require('../src/domain/LottoStore');
 const LottoCalculator = require('../src/domain/LottoCalculator');
 const LottoDrawFactory = require('../src/domain/LottoDrawFactory');
 
+const LottoIncomeDomain = require('../src/domain/LottoIncome');
+const LottoWinCountDomain = require('../src/domain/LottoWinCount');
+
 const mockRandoms = numbers => {
   MissionUtils.Random.pickUniqueNumbersInRange = jest.fn();
   numbers.reduce((acc, number) => {
@@ -22,12 +25,20 @@ describe('LottoDrawFactory 클래스 테스트', () => {
     const bonus = new Bonus('7');
     const lottoStore = new LottoStore('1000')
 
-    const lottoCalculator = new LottoCalculator(
-      new LottoDrawFactory({ lotto, bonus, lottoStore })
-    );
+    const inputInstances = new LottoDrawFactory({ lotto, bonus, lottoStore });
 
-    expect(lottoCalculator.getLottoCountScore()).toEqual([1, 0, 0, 0, 0]);
-    expect(lottoCalculator.getIncome()).toEqual('500.0');
+    const winCount = new LottoWinCountDomain(inputInstances);
+    const income = new LottoIncomeDomain(inputInstances);
+
+    expect(winCount.getResult()).toEqual({
+      fifth: 1,
+      fourth: 0,
+      third: 0,
+      second: 0,
+      first: 0,
+    });
+
+    expect(income.getResult()).toEqual('500.0');
   });
 
   test('(2등) 내가 산 로또들과 추첨한 로또 비교한 결과값 테스트', () => {
@@ -38,12 +49,20 @@ describe('LottoDrawFactory 클래스 테스트', () => {
 
     const lottoStore = new LottoStore('1000')
 
-    const lottoCalculator = new LottoCalculator(
-      new LottoDrawFactory({ lotto, bonus, lottoStore })
-    );
+    const inputInstances = new LottoDrawFactory({ lotto, bonus, lottoStore });
 
-    expect(lottoCalculator.getLottoCountScore()).toEqual([0, 0, 0, 1, 0]);
-    expect(lottoCalculator.getIncome()).toEqual('3000000.0');
+    const winCount = new LottoWinCountDomain(inputInstances);
+    const income = new LottoIncomeDomain(inputInstances);
+
+    expect(winCount.getResult()).toEqual({
+      fifth: 0,
+      fourth: 0,
+      third: 0,
+      second: 1,
+      first: 0,
+    });
+
+    expect(income.getResult()).toEqual('3000000.0');
   });
 
   test('(1등) 내가 산 로또들과 추첨한 로또 비교한 결과값 테스트', () => {
@@ -53,12 +72,20 @@ describe('LottoDrawFactory 클래스 테스트', () => {
     const bonus = new Bonus('7');
     const lottoStore = new LottoStore('1000')
 
-    const lottoCalculator = new LottoCalculator(
-      new LottoDrawFactory({ lotto, bonus, lottoStore })
-    );
+    const inputInstances = new LottoDrawFactory({ lotto, bonus, lottoStore });
 
-    expect(lottoCalculator.getLottoCountScore()).toEqual([0, 0, 0, 0, 1]);
-    expect(lottoCalculator.getIncome()).toEqual('200000000.0');
+    const winCount = new LottoWinCountDomain(inputInstances);
+    const income = new LottoIncomeDomain(inputInstances);
+
+    expect(winCount.getResult()).toEqual({
+      fifth: 0,
+      fourth: 0,
+      third: 0,
+      second: 0,
+      first: 1,
+    });
+
+    expect(income.getResult()).toEqual('200000000.0');
   });
 
   test('(당첨x) 내가 산 로또들과 추첨한 로또 비교한 결과값 테스트', () => {
@@ -68,11 +95,17 @@ describe('LottoDrawFactory 클래스 테스트', () => {
     const bonus = new Bonus('13');
     const lottoStore = new LottoStore('1000')
 
-    const lottoCalculator = new LottoCalculator(
-      new LottoDrawFactory({ lotto, bonus, lottoStore })
-    );
+    const inputInstances = new LottoDrawFactory({ lotto, bonus, lottoStore });
 
-    expect(lottoCalculator.getLottoCountScore()).toEqual([0, 0, 0, 0, 0]);
-    expect(lottoCalculator.getIncome()).toEqual('0.0');
+    const winCount = new LottoWinCountDomain(inputInstances);
+    const income = new LottoIncomeDomain(inputInstances);
+
+    expect(winCount.getResult()).toEqual({
+      fifth: 0,
+      fourth: 0,
+      third: 0,
+      second: 0,
+      first: 0,
+    });
   });
 });
