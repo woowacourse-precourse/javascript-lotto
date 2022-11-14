@@ -1,4 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
+const { RESET_ADD_BLANK } = require('./Constants');
 
 const utils = {
   print(message) {
@@ -19,7 +20,7 @@ const utils = {
 
   getArrayToCustomMessage(myArray = []) {
     const message = JSON.stringify(myArray);
-    return message.replace(/,/gi, ', ');
+    return message.replace(/,/gi, RESET_ADD_BLANK);
   },
 
   isLessThanNumber(count, number) {
