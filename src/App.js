@@ -9,6 +9,7 @@ class App {
   inputPurchasingPrice() {
     Console.readLine('구입금액을 입력해 주세요.\n', (price) => {
       this.validate(price);
+      this.showLottosAmount(price);
     });
   }
 
@@ -28,6 +29,10 @@ class App {
     if (parseInt(price, 10) % 1000 !== 0) {
       throw new Error(ERROR_MESSAGE.INVALID_UNIT);
     }
+  }
+
+  showLottosAmount(price) {
+    Console.print(`\n${price / 1000}${MESSAGE.NUMBER_OF_LOTTOS_AMOUNT}`);
   }
 }
 
