@@ -108,7 +108,7 @@ class Winner {
     return [...prizes, bonusResult].sort().join('\n');
   }
 
-  announce(winnerNumber) {
+  inform(winnerNumber) {
     this.getResult(winnerNumber);
 
     Console.print('\n당첨 통계\n---');

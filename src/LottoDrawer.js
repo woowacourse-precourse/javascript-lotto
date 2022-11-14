@@ -36,7 +36,7 @@ class LottoDrawer {
       Lotto.isValidBonusNumber(bonus, this.result.numbers);
       this.result = { ...this.result, bonus };
       // TODO: 호출위치 변경
-      winner.announce(this.result);
+      winner.inform(this.result);
     });
   }
 
