@@ -14,7 +14,6 @@ class Result {
       this.calculateOneLotto(lotto);
     });
 
-    this.getPrize();
     this.earningsRate = this.getEarningsRate();
   }
 
