@@ -32,12 +32,12 @@ class Lotto {
   }
 
   static digitize(inputNumber) {
-    return inputNumber.split(',').map((num) => +num);
+    return inputNumber.split(SYSTME_MESSAGE.COMMA).map((num) => +num);
   }
 
   static printToString(lottos) {
     lottos.forEach((lotto) => {
-      Console.print(`[${lotto.join(SYSTME_MESSAGE.COMMA)}]`);
+      Console.print(`[${lotto.join(SYSTME_MESSAGE.COMMA_WITH_SPACE)}]`);
     });
   }
 

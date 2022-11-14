@@ -25,6 +25,7 @@ class Game {
     this.#winningNumber = [];
     this.#bonusNumber = INIT;
     this.#winningResult = [];
+    this.#lotto = INIT;
     this.#lottoYield = [];
   }
 
