@@ -1,4 +1,7 @@
 const COMMENT = {
+  LOTTO_MIN_NUM : 1,
+  LOTTO_MAX_NUM : 45,
+  LOTTO_NUM_COUNT : 6,
   CMM_INPUT_MONEY: '구입금액을 입력해 주세요.\n',
   CMM_INPUT_WINNING : '당첨 번호를 입력해 주세요.\n',
   CMM_INPUT_BONUS : '보너스 번호를 입력해 주세요.\n',
