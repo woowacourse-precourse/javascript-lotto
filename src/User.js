@@ -2,7 +2,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 
 class User {
     isValidMoney(money){
-        if(money<0 || money%1000!==0){
+        if(money<=0 || money%1000!==0){
             throw new Error("[ERROR] 구입금액은 1,000원 단위로만 입력해야 합니다.");
         }
     }
