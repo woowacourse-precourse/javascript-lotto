@@ -7,6 +7,7 @@ class App {
     this.winArr = []; //당첨번호(배열에 넣음)
     this.BonusNum; //보너스번호
     this.lottoRandomNum = []; //로또 랜덤번호(구입한 로또들)
+    this.count = 0; 
     this.fifth = 0; //5등
     this.fourth = 0; //4등
     this.third = 0; //3등
@@ -86,15 +87,19 @@ class App {
 
   getWinResult(){ //당첨내역 계산하기
     for(let i = 0; i < this.lottoRandomNum.length; i++){
-      let count = 0;
-      for(let j = 0; j < this.lottoRandomNum[i].length; j++){
-        if(this.lottoRandomNum[i].includes(parseInt(this.winArr[j]))){
-          count++;
-        }
-      }
-      this.getPriceResult(count);
+      this.count = 0;
+      this.getResultOfIncludeWinArr(i);
+      this.getPriceResult(this.count);
     }
     this.printWinResult();
+  }
+
+  getResultOfIncludeWinArr(i){ //당첨번호 포함 여부 계산하기
+    for(let j = 0; j < this.lottoRandomNum[i].length; j++){
+      if(this.lottoRandomNum[i].includes(parseInt(this.winArr[j]))){
+        this.count++;
+      }
+    }
   }
 
   getPriceResult(count){ //등수 계산하기
