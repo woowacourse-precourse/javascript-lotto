@@ -1,8 +1,8 @@
 const MESSAGES = {
   PAY_COST: '구입금액을 입력해 주세요.\n',
   PURCHASED_MESSAGE: (num) => `${num}개를 구매했습니다.`,
-  INPUT_LOTTO_ANSWER: '당첨 번호를 입력해 주세요.',
-  INPUT_BONUS_ANSWER: '보너스 번호를 입력해 주세요.',
+  INPUT_LOTTO_ANSWER: '당첨 번호를 입력해 주세요.\n',
+  INPUT_BONUS_ANSWER: '보너스 번호를 입력해 주세요.\n',
 };
 
 const LOTTO_ERROR = {
@@ -10,7 +10,6 @@ const LOTTO_ERROR = {
   NUMBER: '[ERROR] 숫자 외의 값을 입력하셨습니다.',
   RANGE: '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.',
   DUPLICATE: '[ERROR] 중복되지 않게 로또 번호를 입력해 주세요.',
-  ADD_COMMA: '[ERROR] 쉼표를 사용해 로또 번호를 구분해 주세요.'
 };
 
 const BONUS_ERROR = {
