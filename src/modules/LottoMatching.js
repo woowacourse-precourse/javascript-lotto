@@ -1,7 +1,8 @@
 class LottoMatching {
   static match(lotto, winNums, bonusNum) {
-    const winNumMatchCount = lotto.filter((num) => winNums.includes(num)).length;
-    const isBonusMatch = lotto.includes(bonusNum);
+    const splitWinNums = winNums.split(',').map(num => +num);
+    const winNumMatchCount = lotto.filter((num) => splitWinNums.includes(num)).length;
+    const isBonusMatch = lotto.includes(+bonusNum);
     return [winNumMatchCount, isBonusMatch];
   }
 
