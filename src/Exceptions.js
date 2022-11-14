@@ -2,7 +2,7 @@ const { ERROR } = require('../util/Message');
 
 class Exceptions {
   constructor(input) {
-    this.input = parseInt(input);
+    this.input = input;
   }
 
   occurError(errorMessage) {
@@ -12,16 +12,16 @@ class Exceptions {
 
 class MoneyExceptions extends Exceptions {
   check() {
-    if (this.isDigit() | this.isNotDivisible())
-      super.occurError(ERROR.MONEY_DIVISIBLE);
+    if (this.isNotDigit()) super.occurError(ERROR.MONEY_DIGIT);
+    if (this.isNotDivisible()) super.occurError(ERROR.MONEY_DIVISIBLE);
+  }
+
+  isNotDigit() {
+    return isNaN(this.input);
   }
 
   isNotDivisible() {
-    return this.input % 1000 !== 0;
-  }
-
-  isDigit() {
-    return this.input % 1 !== 0;
+    return parseInt(this.input) % 1000 !== 0;
   }
 }
 
