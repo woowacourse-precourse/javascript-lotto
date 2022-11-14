@@ -103,7 +103,15 @@ class App {
     this.result["2000000000"] = 0;
   }
 
-  compareNumberUnit() {}
+  compareNumberUnit(count, bonus) {
+    if (count === 3) this.result["5000"] += 1;
+    if (count === 4) this.result["50000"] += 1;
+    if (count === 5) {
+      if (bonus === true) this.result["30000000"] += 1;
+      if (bonus === false) this.result["1500000"] += 1;
+    }
+    if (count === 6) this.result["2000000000"] += 1;
+  }
 
   print() {}
 }
