@@ -1,10 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const {
-  LOTTO_NUMBER,
-  ERROR,
-  RANK,
-  WINNING_COUNT,
-} = require("../utils/constants");
+const checkLottoInput = require("../checkInput");
+const { RANK, WINNING_COUNT } = require("../utils/constants");
 
 class Lotto {
   #numbers;
@@ -15,23 +11,7 @@ class Lotto {
   }
 
   validate(numbers) {
-    // 갯수
-    if (numbers.length !== LOTTO_NUMBER.COUNT) {
-      throw new Error(ERROR.COUNT);
-    }
-
-    // 중복 존재
-    const set = new Set(numbers);
-    if (set.size !== numbers.length) {
-      throw new Error(ERROR.DUPLICATED);
-    }
-
-    // 범위
-    numbers.forEach((num) => {
-      if (num < LOTTO_NUMBER.MIN_RANGE || num > LOTTO_NUMBER.MAX_RANGE) {
-        throw new Error(ERROR.RANGE);
-      }
-    });
+    checkLottoInput(numbers);
   }
 
   printLotto() {

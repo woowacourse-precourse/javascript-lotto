@@ -1,7 +1,8 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./model/Lotto");
 const Lottos = require("./model/Lottos");
-const { INPUT_MESSEGE } = require("./utils/constants");
+const checkLottoInput = require("./checkInput");
+const { INPUT_MESSEGE, LOTTO_NUMBER, ERROR } = require("./utils/constants");
 
 class App {
   constructor() {
@@ -31,10 +32,12 @@ class App {
     MissionUtils.Console.readLine(
       INPUT_MESSEGE.WINNING_NUMBER,
       (winningNumber) => {
-        this.winningNumbers = winningNumber
+        const winningNumberArr = winningNumber
           .split(",")
           .map((num) => Number(num));
+        checkLottoInput(winningNumberArr);
 
+        this.winningNumbers = winningNumberArr;
         this.askBonusNumber();
       }
     );

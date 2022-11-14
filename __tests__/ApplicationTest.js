@@ -62,11 +62,27 @@ describe("로또 테스트", () => {
     });
   });
 
-  test("예외 테스트", () => {
+  test("[예외 테스트]", () => {
     mockQuestions(["1000j"]);
     expect(() => {
       const app = new App();
       app.play();
+    }).toThrow(ERROR.ISNAN);
+  });
+
+  test("[입력] 당첨 번호가 6개가 아닌 경우]", () => {
+    mockQuestions(["1,3,4,5"]);
+    expect(() => {
+      const app = new App();
+      app.askWinningLottoNumber();
+    }).toThrow(ERROR.COUNT);
+  });
+
+  test("[입력] 당첨 번호에 문자를 입력한 경우]", () => {
+    mockQuestions(["1,3,4,5,40,+"]);
+    expect(() => {
+      const app = new App();
+      app.askWinningLottoNumber();
     }).toThrow(ERROR.ISNAN);
   });
 });
