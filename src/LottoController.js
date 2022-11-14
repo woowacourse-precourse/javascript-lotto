@@ -64,6 +64,20 @@ class LottoController {
       (result) => result === RULE.RANK_LENGTH - idx
     ).length;
   }
+
+  calcualtePrizeMoney() {
+    const prize = [5000, 50000, 1500000, 30000000, 2000000000];
+    return prize.reduce((acc, currentRank, idx) => {
+      const rankCount = this.getRankCount(idx);
+      return acc + currentRank * rankCount;
+    }, 0);
+  }
+
+  calculateProfitRate() {
+    const totalProfit = this.calcualtePrizeMoney();
+    const purchaseMoney = this.lottoAmount * 1000;
+    return ((totalProfit / purchaseMoney) * 100).toFixed(1);
+  }
 }
 
 module.exports = LottoController;
