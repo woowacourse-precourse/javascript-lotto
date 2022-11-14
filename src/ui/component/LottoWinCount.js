@@ -9,8 +9,6 @@ class LottoWinCount extends Component {
     this.state = {
       winScore,
     };
-
-    this.print();
   }
 
   #template() {

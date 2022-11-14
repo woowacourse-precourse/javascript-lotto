@@ -9,8 +9,6 @@ class LottoIncome extends Component {
     this.state = {
       income,
     };
-
-    this.print();
   }
 
   #template() {

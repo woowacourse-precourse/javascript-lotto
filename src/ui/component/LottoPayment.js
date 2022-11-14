@@ -10,8 +10,6 @@ class LottoPayment extends Component {
       count,
       lottos,
     };
-
-    this.print();
   }
 
   print() {
