@@ -13,7 +13,7 @@ class Store {
   pay() {
     Console.readLine(`${MESSAGE.ENTER_PURCHASE_AMOUNT}\n`, (inputStr) => {
       const purchaseAmount = this.validate(inputStr);
-      this.issuedQuantity = purchaseAmount / 1000;
+      this.issuedQuantity = purchaseAmount / LOTTO.PRICE;
       this.issue();
       this.print();
     });

@@ -15,6 +15,7 @@ const MESSAGE = Object.freeze({
 });
 
 const LOTTO = Object.freeze({
+  PRICE: 1000,
   NUMBER_MIN: 1,
   NUMBER_MAX: 45,
   NUMBER_OF_NUMBERS: 6,
