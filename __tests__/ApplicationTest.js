@@ -92,4 +92,39 @@ describe("로또 테스트", () => {
       app.play();
     }).toThrow("[ERROR]");
   });
+  test("예외 테스트 1-(1) 1000단위로 떨어지지 않는 경우", () => {
+    mockQuestions(["15400"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+  test("예외 테스트 1-(2) 음수인 경우", () => {
+    mockQuestions(["-15000"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+  test("예외 테스트 1-(3) 입력한 값이 숫자가 아닌 경우", () => {
+    mockQuestions(["만원"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+  test("예외 테스트 1-(3) 입력한 값이 숫자가 아닌 경우", () => {
+    mockQuestions(["!5000"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+  test("예외 테스트 1-(3) 입력한 값이 숫자가 아닌 경우", () => {
+    mockQuestions([" "]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
 });
