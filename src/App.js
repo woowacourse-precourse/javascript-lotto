@@ -47,14 +47,14 @@ class App {
   getWinningNumber() {
     Console.readLine(MESSAGE.INPUT_WINNING_NUMBER, (winningNumber) => {
       this.validator.checkWinningNumber(winningNumber);
-      this.winningNumber = winningNumber.split(',').map(num => Number(num));
+      this.winningNumber = new Lotto(winningNumber.split(',').map(num => Number(num)));
       this.getBonusNumber();
     });
   }
 
   getBonusNumber() {
     Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
-      this.validator.checkBonusNumber(bonusNumber);
+      this.validator.checkBonusNumber(this.winningNumber.numbers, bonusNumber);
       this.bonusNumber = Number(bonusNumber);
       this.handleGameEnd();
     });
