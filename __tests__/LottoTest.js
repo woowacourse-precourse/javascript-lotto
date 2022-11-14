@@ -50,4 +50,16 @@ describe("로또 클래스 테스트", () => {
     const result = lotto.getMatchCount([1, 2, 3, 10, 11, 12]);
     expect(result).toEqual(3);
   });
+
+  test("로또 번호에 보너스 번호가 포함된 경우 true를 반환한다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    const result = lotto.hasBonusNumber(5);
+    expect(result).toEqual(true);
+  });
+
+  test("로또 번호에 보너스 번호가 포함되지 않은 경우 false를 반환한다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    const result = lotto.hasBonusNumber(45);
+    expect(result).toEqual(false);
+  });
 });
