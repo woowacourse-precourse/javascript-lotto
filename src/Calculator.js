@@ -1,6 +1,7 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { MESSAGE, CONSTANTS, RANK, REWARD } = require("../constant/Message");
 
+let total = 0;
 class Calculator {
   #myLottos;
   #winningNumbers;
@@ -30,7 +31,6 @@ class Calculator {
 
   printWinningStats(matchingCount) {
     Console.print("당첨 통계\n---");
-    let total = 0;
     for (let index = 3; index <= 6; index++) {
       Console.print(`${RANK[index]} ${matchingCount[index]}개`);
       if (index === 5) {
@@ -38,7 +38,10 @@ class Calculator {
       }
       total += REWARD[index] * matchingCount[index];
     }
-    console.log(total);
+  }
+
+  returnTotal() {
+    return total;
   }
 
   checkBonusReward(index, matchingCount) {

@@ -3,6 +3,8 @@ const MESSAGE = Object.freeze({
   INPUT_WINNINGNUMBERS: "당첨 번호를 입력해 주세요.\n",
   INPUT_BONUSNUMBER: "보너스 번호를 입력해 주세요.\n",
   PRINT_AMOUNT: "개를 구매했습니다.",
+  REWARD_HEAD: "총 수익률은 ",
+  REWARD_TAIL: "입니다.",
 
   ERROR_AMOUNT: "[ERROR] 구매금액은 1000원 이상이어야 합니다.",
   ERROR_DIVIDE: "[ERROR] 1000원으로 나누어 떨어져야 합니다.",
