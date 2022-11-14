@@ -25,6 +25,10 @@ class Money {
       throw new Error(ERROR.MONEY_UNIT);
     }
   }
+
+  changeIntoNumber() {
+    return parseInt(this.#money, CALCULATION.DECIMAL_NUMBER);
+  }
 }
 
 module.exports = Money;

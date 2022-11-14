@@ -22,14 +22,14 @@ class App {
 
   getMoney() {
     Console.readLine(`${INPUT.BUY}${OUTPUT.LINE}`, (money) => {
-      new Money(money);
-      this.money = money;
+      this.money = new Money(money).changeIntoNumber();
+
       this.printQuantity(this.money);
     });
   }
 
   printQuantity(money) {
-    this.quantity = parseInt(money, CALCULATION.DECIMAL_NUMBER) / MONEY.UNIT;
+    this.quantity = money / MONEY.UNIT;
     Console.print(`${OUTPUT.LINE}${this.quantity}${OUTPUT.BUY}`);
     this.publishLotto(this.quantity);
   }
