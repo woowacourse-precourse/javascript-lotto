@@ -10,6 +10,7 @@ module.exports = class ErrorList {
   constructor() {
     this.errorState = false;
   }
+
   throwError(sentence) {
     throw new CustomError(sentence);
   }
