@@ -1,6 +1,5 @@
 class Lotto {
   #numbers;
-  bonusNumber;
 
   constructor(numbers) {
     this.validate(numbers);
