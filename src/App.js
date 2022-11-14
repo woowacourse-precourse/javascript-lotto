@@ -4,6 +4,7 @@ class App {
   play() {
     this.priceInput();
     this.userRandomNumber();
+    this.userBonusNumber();
   };
   
   priceInput() {
@@ -37,6 +38,12 @@ class App {
       console.log(`당첨번호을 입력해 주세요.\n${number}`);
     }
     );
+  };
+
+  userBonusNumber() {
+    MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (bonusNumber) => {
+      console.log(`보너스 번호를 입력해 주세요.\n${bonusNumber}`);
+    });
   };
 }
 
