@@ -1,13 +1,13 @@
 class Yield {
   static calculateYield(winPlace, purchaseAmount) {
-    const yield =
-      ((winPlace.firstPlace * 2000000000 +
-        winPlace.secondPlace * 30000000 +
-        winPlace.thirdPlace * 1500000 +
-        winPlace.fourthPlace * 50000 +
-        winPlace.fifthPlace * 5000) /
-        purchaseAmount) *
-      100;
+    const prizes = [2000000000, 30000000, 1500000, 50000, 5000];
+    let index = 0;
+    let yield = 0;
+    for (let key in winPlace) {
+      yield += winPlace[key] * prizes[index];
+      index += 1;
+    }
+    yield = (yield / purchaseAmount) * 100;
     return yield;
   }
 }
