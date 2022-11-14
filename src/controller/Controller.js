@@ -13,6 +13,7 @@ class Controller {
     this.LottoRandomNum = new LottoRandomNum();
     this.LottoResult = new LottoResult();
 
+    this.amount;
     this.lottoNum;
     this.winSplitNum;
     this.bonusNum;
@@ -29,6 +30,7 @@ class Controller {
     if (!this.InputCheck.checkAmountInput(amount))
       throw new Error('[ERROR] 입력한 구입 금액이 올바르지 않습니다.');
 
+    this.amount = amount;
     const result = this.LottoRandomNum.getLottoNum(amount);
     this.lottoNum = result.lottoNums;
 
@@ -73,6 +75,7 @@ class Controller {
       this.winSplitNum.map(Number),
       Number(this.bonusNum)
     );
+    this.ResultDisplay.printLottoResult(winStatus, this.amount);
   }
 }
 
