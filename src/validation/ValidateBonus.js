@@ -1,4 +1,4 @@
-const { MAX_NUMBER, MIN_NUMBER } = require("./constants");
+const { MAX_NUMBER, MIN_NUMBER, ERROR_MSG } = require("../constants");
 
 const ValidateBonus = (numbers, bonusNumber) => {
   checkBonusNotANumber(bonusNumber);
@@ -8,21 +8,19 @@ const ValidateBonus = (numbers, bonusNumber) => {
 
 const checkBonusNotANumber = (bonusNumber) => {
   if (isNaN(bonusNumber)) {
-    throw new Error("[ERROR] 보너스 번호는 숫자여야 합니다.");
+    throw new Error(ERROR_MSG.BONUS_NOT_A_NUMBER);
   }
 };
 
 const checkBonusDuplicated = (numbers, bonusNumber) => {
   if (numbers.includes(+bonusNumber)) {
-    throw new Error(
-      "[ERROR] 보너스 번호는 당첨 번호와 중복되어서는 안 됩니다."
-    );
+    throw new Error(ERROR_MSG.BONUS_DUPLICATED);
   }
 };
 
 const checkBonusRange = (bonusNumber) => {
   if (+bonusNumber < MIN_NUMBER || +bonusNumber > MAX_NUMBER) {
-    throw new Error("[ERROR] 1 ~ 45 사이의 숫자를 입력해주세요.");
+    throw new Error(ERROR_MSG.OUT_OF_RANGE);
   }
 };
 

@@ -1,5 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
-const Lottery = require("./Lottery");
+const Lottery = require("./components/Lottery");
 
 class App {
   play() {

@@ -1,5 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { MATCH_MSG, PAYOUT, MIN_MATCH, MAX_MATCH } = require("./constants");
+const { MATCH_MSG, PAYOUT, MIN_MATCH, MAX_MATCH } = require("../constants");
 
 class Statistic {
   #result;

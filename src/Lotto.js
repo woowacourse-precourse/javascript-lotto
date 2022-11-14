@@ -1,6 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
-const ValidateLotto = require("./ValidateLotto");
-const Bonus = require("./Bonus");
+const ValidateLotto = require("./validation/ValidateLotto");
+const Bonus = require("./components/Bonus");
 
 class Lotto {
   #numbers;

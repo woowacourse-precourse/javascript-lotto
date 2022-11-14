@@ -1,4 +1,4 @@
-const { MIN_NUMBER, MAX_NUMBER } = require("./constants");
+const { MIN_NUMBER, MAX_NUMBER, ERROR_MSG } = require("../constants");
 
 const ValidateLotto = (numbers) => {
   checkLength(numbers);
@@ -9,7 +9,7 @@ const ValidateLotto = (numbers) => {
 
 const checkLength = (numbers) => {
   if (numbers.length !== 6) {
-    throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    throw new Error(ERROR_MSG.NOT_SIX_NUMBERS);
   }
 };
 
@@ -17,7 +17,7 @@ checkDuplicated = (numbers) => {
   let idx = 0;
   while (idx < 5) {
     if (numbers.indexOf(numbers[idx]) != numbers.lastIndexOf(numbers[idx])) {
-      throw new Error("[ERROR] 로또 번호는 중복되어서는 안 됩니다.");
+      throw new Error(ERROR_MSG.LOTTO_DUPLICATED);
     }
     idx += 1;
   }
@@ -26,7 +26,7 @@ checkDuplicated = (numbers) => {
 checkRange = (numbers) => {
   numbers.forEach((number) => {
     if (+number < MIN_NUMBER || +number > MAX_NUMBER) {
-      throw new Error("[ERROR] 1 ~ 45 사이의 숫자를 입력해주세요.");
+      throw new Error(ERROR_MSG.OUT_OF_RANGE);
     }
   });
 };
@@ -34,7 +34,7 @@ checkRange = (numbers) => {
 checkNotANumber = (numbers) => {
   numbers.forEach((number) => {
     if (isNaN(number)) {
-      throw new Error("[ERROR] 보너스 번호는 숫자여야 합니다.");
+      throw new Error(ERROR_MSG.LOTTO_NOT_A_NUMBER);
     }
   });
 };

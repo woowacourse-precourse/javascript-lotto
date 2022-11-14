@@ -1,6 +1,6 @@
 const Statistic = require("./Statistic");
-const ValidateBonus = require("./ValidateBonus");
-const { MIN_MATCH, MAX_MATCH } = require("./constants");
+const ValidateBonus = require("../validation/ValidateBonus");
+const { MIN_MATCH, MAX_MATCH } = require("../constants");
 
 class Bonus {
   #numbers;
