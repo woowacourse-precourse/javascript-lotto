@@ -7,6 +7,10 @@ class View {
     this.serialize = this.serialize.bind(this);
   }
 
+  readLine(query, callback) {
+    Console.readLine(query, callback);
+  }
+
   printLottoCount(lottoCount) {
     Console.print(`\n${lottoCount}개를 구매했습니다.`);
   }
