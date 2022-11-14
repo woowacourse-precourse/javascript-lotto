@@ -2,7 +2,7 @@ const LOTTO_PRICE = 1000;
 const LOTTO_NUM_MIN_RANGE = 1;
 const LOTTO_NUM_MAX_RANGE = 45;
 const LOTTO_DIGITS = 6;
-const LOTTO_PRIZE_MATCH_COUNT = {
+const PRIZE_MATCH_NUMBER_COUNT = {
   firstPlace: 6,
   secondPlace: 5,
   thirdPlace: 5,
@@ -23,6 +23,6 @@ module.exports = {
   LOTTO_NUM_MIN_RANGE,
   LOTTO_NUM_MAX_RANGE,
   LOTTO_DIGITS,
-  LOTTO_PRIZE_MATCH_COUNT,
+  PRIZE_MATCH_NUMBER_COUNT,
   LOTTO_PRIZE_MONEY,
 };

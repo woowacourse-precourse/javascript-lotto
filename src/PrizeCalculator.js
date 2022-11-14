@@ -1,4 +1,4 @@
-const { LOTTO_PRIZE_MATCH_COUNT } = require("./constants/condition.js");
+const { PRIZE_MATCH_NUMBER_COUNT } = require("./constants/condition.js");
 
 class PrizeCalculator {
   calculatePrize(eachLottoNumbers, winningNumbers, bonusNumber) {
@@ -29,13 +29,13 @@ class PrizeCalculator {
   getLottoPrize(compareResult) {
     const { matchedLottoNumberCount, hasBonusNumber } = compareResult;
 
-    if (matchedLottoNumberCount === LOTTO_PRIZE_MATCH_COUNT.firstPlace) return "firstPlace";
-    if (matchedLottoNumberCount === LOTTO_PRIZE_MATCH_COUNT.secondPlace && hasBonusNumber) {
+    if (matchedLottoNumberCount === PRIZE_MATCH_NUMBER_COUNT.firstPlace) return "firstPlace";
+    if (matchedLottoNumberCount === PRIZE_MATCH_NUMBER_COUNT.secondPlace && hasBonusNumber) {
       return "secondPlace";
     }
-    if (matchedLottoNumberCount === LOTTO_PRIZE_MATCH_COUNT.thirdPlace) return "thirdPlace";
-    if (matchedLottoNumberCount === LOTTO_PRIZE_MATCH_COUNT.fourthPlace) return "fourthPlace";
-    if (matchedLottoNumberCount === LOTTO_PRIZE_MATCH_COUNT.fifthPlace) return "fifthPlace";
+    if (matchedLottoNumberCount === PRIZE_MATCH_NUMBER_COUNT.thirdPlace) return "thirdPlace";
+    if (matchedLottoNumberCount === PRIZE_MATCH_NUMBER_COUNT.fourthPlace) return "fourthPlace";
+    if (matchedLottoNumberCount === PRIZE_MATCH_NUMBER_COUNT.fifthPlace) return "fifthPlace";
 
     return "fail";
   }

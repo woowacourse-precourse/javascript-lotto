@@ -1,4 +1,4 @@
-const { LOTTO_PRIZE_MATCH_COUNT, LOTTO_PRIZE_MONEY } = require("./constants/condition.js");
+const { PRIZE_MATCH_NUMBER_COUNT, LOTTO_PRIZE_MONEY } = require("./constants/condition.js");
 
 class StatisticsMachine {
   totalPrizeMoney;
@@ -52,12 +52,12 @@ class StatisticsMachine {
 
     const templates = ranks.map((rank) => {
       if (rank === "secondPlace") {
-        return `${LOTTO_PRIZE_MATCH_COUNT[rank]}개 일치, 보너스 볼 일치 (${LOTTO_PRIZE_MONEY[
+        return `${PRIZE_MATCH_NUMBER_COUNT[rank]}개 일치, 보너스 볼 일치 (${LOTTO_PRIZE_MONEY[
           rank
         ].toLocaleString()}원) - ${prizeStatistics[rank]}개`;
       }
 
-      return `${LOTTO_PRIZE_MATCH_COUNT[rank]}개 일치 (${LOTTO_PRIZE_MONEY[
+      return `${PRIZE_MATCH_NUMBER_COUNT[rank]}개 일치 (${LOTTO_PRIZE_MONEY[
         rank
       ].toLocaleString()}원) - ${prizeStatistics[rank]}개`;
     });
