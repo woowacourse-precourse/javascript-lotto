@@ -33,11 +33,6 @@ const Validator = class {
     if (target < unit) throw new Error("[ERROR] 1,000원 이상으로 입력해주세요.");
     return this;
   };
-
-  static isEvery({ target, callback, message }) {
-    if (!target.every(callback)) throw new Error(message);
-    return this;
-  }
 };
 
 module.exports = Validator;
