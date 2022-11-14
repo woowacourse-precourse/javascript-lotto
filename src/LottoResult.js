@@ -21,7 +21,7 @@ class LottoResult {
   }
 
   printRate() {
-    print(`총 수익률은 ${this.rate || 0}%입니다.`);
+    print(`총 수익률은 ${this.rate}%입니다.`);
     return this;
   }
 }
