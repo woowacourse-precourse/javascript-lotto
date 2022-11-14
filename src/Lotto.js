@@ -67,7 +67,7 @@ class Lotto {
     if (count == 4) tmp[1] += 1;
     if (count == 5) tmp[2] += 1;
     if (count == 6 && bonusCount == 1) tmp[3] += 1;
-    if (count == 6) tmp[4] += 1;
+    if (count == 6 && bonusCount == 0) tmp[4] += 1;
 
     return tmp;
   }
