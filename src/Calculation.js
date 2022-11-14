@@ -1,10 +1,9 @@
 const {
-  LOTTO_RESULT_MESSAGE, LOTTO_RESULT_PRICE, LOTTO_RESURL_STATISTICS_MESSAGE, LOTTO_RESULT_TYPE,
+  LOTTO_RESULT_MESSAGE, LOTTO_RESULT_PRICE, LOTTO_RESULT_TYPE,
 } = require('./lib/Constants');
-const { print } = require('./lib/Utils');
 
-class CalculationLotto {
-  lottoResult = {
+class Calculation {
+  #winResult = {
     [LOTTO_RESULT_TYPE.three]: {
       count: 0,
       text: LOTTO_RESULT_MESSAGE.three,
@@ -32,15 +31,13 @@ class CalculationLotto {
     },
   };
 
+  #rate = 0;
+
   matchCount = 0;
 
   isBonusMatch = false;
 
-  lottoRate = 0;
-
-  lottoPrice = 0;
-
-  lottoWinPrice = 0;
+  prizeMoney = 0;
 
   /**
  *
@@ -48,16 +45,16 @@ class CalculationLotto {
  * @param {Array<number>} winNumberList
  * @param {number} bonusNumber
  */
-  calculationList(lottoList, winNumberList, bonusNumber) {
+  calcList(lottoList, winNumberList, bonusNumber) {
     this.winNumberList = winNumberList;
     this.bonusNumber = bonusNumber;
 
-    lottoList.forEach((lotto) => this.calculationMatchCount(lotto));
+    lottoList.forEach((lotto) => this.calcuMatchCount(lotto));
 
     return this;
   }
 
-  calculationMatchCount(lotto) {
+  calcMatchCount(lotto) {
     const myLottoSet = new Set(lotto);
     const winNumberSet = new Set(this.winNumberList);
     const lottoIntersecrt = new Set(lotto.filter((number) => winNumberSet.has(number)));
@@ -69,12 +66,12 @@ class CalculationLotto {
   matchResult() {
     const count = this.isBonusFiveMatch() ? LOTTO_RESULT_TYPE.bonus : this.matchCount;
 
-    if (CalculationLotto.isNotMatch(count)) {
+    if (Calculation.isNotMatch(count)) {
       return this;
     }
 
-    this.lottoResult[count].count += 1;
-    this.lottoWinPrice += this.lottoResult[count].price;
+    this.#winResult[count].count += 1;
+    this.prizeMoney += this.#winResult[count].price;
 
     return this;
   }
@@ -93,28 +90,19 @@ class CalculationLotto {
    * @param {number} lottoPrice
    * @returns
    */
-  calculationLottoRate(lottoPrice) {
-    const rate = (this.lottoWinPrice / lottoPrice) * 100;
-    this.lottoRate = rate;
+  calcLottoRate(lottoPrice) {
+    this.#rate = (this.prizeMoney / lottoPrice) * 100;
 
     return this;
   }
 
-  printWinResult() {
-    print(LOTTO_RESURL_STATISTICS_MESSAGE);
-
-    Object.keys(this.lottoResult).forEach((key) => {
-      const value = this.lottoResult[key];
-      return print(`${value.text}${value.count}개`);
-    });
-
-    return this;
+  getWinResult() {
+    return this.#winResult;
   }
 
-  printRate() {
-    print(`총 수익률은 ${this.lottoRate || 0}%입니다.`);
-    return this;
+  getRate() {
+    return this.#rate;
   }
 }
 
-module.exports = CalculationLotto;
+module.exports = Calculation;

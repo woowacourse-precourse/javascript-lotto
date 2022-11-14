@@ -1,10 +1,10 @@
-const LottoController = require('./LottoController');
+const LottoProgram = require('./LottoProgram');
 
 class App {
-  lottoController = new LottoController();
+  lottoProgram = new LottoProgram();
 
   play() {
-    this.lottoController.start();
+    this.lottoProgram.start();
   }
 }
 
