@@ -1,8 +1,8 @@
-const Execution = require("./Execution");
-const lotto = new Execution();
+const View = require("./View");
+const lotto = new View();
 class App {
   play() {
-    lotto.play();
+    lotto.lottoStart();
   }
 }
 const app = new App();
