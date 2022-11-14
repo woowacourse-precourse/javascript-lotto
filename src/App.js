@@ -10,7 +10,6 @@ class App {
     this.lottos = [];
     this.win = [];
     this.bonus = null;
-    this.statistics = [0, 0, 0, 0, 0];
   }
 
   play() {
@@ -50,15 +49,10 @@ class App {
       if (!Validator.isValidBonus(number)) return;
       this.bonus = Number(number);
       Console.print("\n" + Console.WIN_STATISTICS);
-      this.statistics = Ranker.getPriceRank(this.lottos, [
-        this.win,
-        this.bonus,
-      ]);
-      LottoAdmin.printWinStatistics(this.statistics);
-      const margin = LottoAdmin.getMargin(price, [
-        this.lottos,
-        this.statistics,
-      ]);
+      const { win, bonus, lottos } = this;
+      const statistics = Ranker.getPriceRank(lottos, [win, bonus]);
+      LottoAdmin.printWinStatistics(statistics);
+      const margin = LottoAdmin.getMargin(price, [lottos, statistics]);
       Console.print(`총 수익률은 ${margin}%입니다.`);
       Console.close();
     });
