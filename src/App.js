@@ -7,10 +7,10 @@ class App {
   }
 
   play() {
-    this.purchaseLotto();
+    this.inputPurchaseAmount();
   }
 
-  purchaseLotto() {
+  inputPurchaseAmount() {
     Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
       this.game.setGame(input);
       this.game.quantityOfPurchase();
@@ -20,7 +20,9 @@ class App {
   }
 
   inputLottoNumber() {
-    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (input) => {});
+    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (input) => {
+      this.game.setWinningNumber(input);
+    });
   }
 }
 

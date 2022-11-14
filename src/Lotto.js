@@ -10,7 +10,7 @@ class Lotto {
   }
 
   validate(numbers) {
-    validate.numbersOutput(numbers);
+    validate.winningNumbers(numbers);
   }
 
   sortWinningNumber() {

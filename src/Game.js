@@ -6,15 +6,16 @@ class Game {
   constructor() {
     this.quantity = null;
     this.list = [];
+    this.inputLottoList = null;
   }
 
   setGame(input) {
-    this.validate(input);
+    this.validateMoney(input);
     this.quantity = input / 1000;
     this.generateWinningNumberList(this.quantity);
   }
 
-  validate(input) {
+  validateMoney(input) {
     validate.moneyInput(input);
   }
 
@@ -35,6 +36,16 @@ class Game {
     this.list.forEach((el) => {
       el.printWinningNumber();
     });
+  }
+
+  validateWinningNumber(input) {
+    validate.winningNumbers(input);
+  }
+
+  setWinningNumber(input) {
+    input = input.split(",");
+    this.validateWinningNumber(input);
+    this.inputLottoList = input;
   }
 }
 
