@@ -1,8 +1,9 @@
-const MissionUtils = require('@woowacourse/mission-utils');
-const Lotto = require('./lotto/Lotto.js');
+const { Random } = require('@woowacourse/mission-utils');
 const CONSTANT = require('./constant/constants.js');
+const Lotto = require('./lotto/Lotto.js');
+const Log = require('./views/Log.js');
 
-const { Console, Random } = MissionUtils;
+const log = new Log();
 
 class App {
   #lottos;
@@ -20,15 +21,12 @@ class App {
     this.#prize = 0;
   }
 
-  getAmount() {
-    const { MSG, UNIT } = CONSTANT;
-    Console.readLine(`${MSG.PURCHASE}\n`, answer => {
-      this.validateAmount(answer);
-      this.#amount = +answer;
-      this.generateLotto(this.#amount / UNIT);
-      this.printLottos();
-      this.getWinner();
-    });
+  start(answer) {
+    this.validateAmount(answer);
+    this.#amount = +answer;
+    this.generateLotto(this.#amount / CONSTANT.UNIT);
+    log.printLottos(this.#amount, this.#lottos);
+    log.getWinner(this.resultAndBonusHandler.bind(this));
   }
 
   validateAmount(amount) {
@@ -38,29 +36,15 @@ class App {
   }
 
   generateLotto(num) {
-    this.#lottos = Array.from(
-      { length: num },
-      () => new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6)),
-    );
+    this.#lottos = Array.from({ length: num }, () => new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6)));
   }
 
-  printLottos() {
-    const { PURCHASED } = CONSTANT.MSG;
-    Console.print(`\n${PURCHASED(this.#amount)}`);
-    this.#lottos.forEach(lotto =>
-      Console.print(`[${lotto.numbers.toString().split(',').join(', ')}]`),
-    );
+  resultAndBonusHandler(answer) {
+    this.compareResults(answer);
+    log.getBonus(this.end.bind(this));
   }
 
-  getWinner() {
-    const { WINNER } = CONSTANT.MSG;
-    Console.readLine(`\n${WINNER}\n`, answer => {
-      this.getResults(answer);
-      this.getBonus();
-    });
-  }
-
-  getResults(numbers) {
+  compareResults(numbers) {
     this.#winner = numbers.split(',').map(num => +num);
     this.compare();
   }
@@ -73,13 +57,10 @@ class App {
     );
   }
 
-  getBonus() {
-    const { BONUS } = CONSTANT.MSG;
-    Console.readLine(`\n${BONUS}\n`, answer => {
-      this.checkBonus(answer);
-      this.printWinner();
-      Console.close();
-    });
+  end(answer) {
+    this.checkBonus(answer);
+    log.printWinner(this.#lottos, this.sumPrize.bind(this));
+    log.printEarningsRate(this.#prize, this.#amount);
   }
 
   checkBonus(bonus) {
@@ -89,27 +70,12 @@ class App {
       .forEach(lotto => lotto.setIsBonus());
   }
 
-  printWinner() {
-    Console.print('\n당첨 통계\n---');
-    const { RESULT } = CONSTANT.MSG;
-    CONSTANT.PRIZE.forEach(constant => {
-      const { MATCH, ISBONUS, PRIZE } = constant;
-      const getNumOfWinner = this.#lottos.filter(lotto => lotto.count === MATCH).length;
-
-      Console.print(`${RESULT(MATCH, ISBONUS, PRIZE, getNumOfWinner)}`);
-      this.#prize += getNumOfWinner * +PRIZE.replace(/\D/g, '');
-    });
-    this.printEarningsRate();
-  }
-
-  printEarningsRate() {
-    const { MSG, GET_RATE } = CONSTANT;
-    const earningsRate = GET_RATE(this.#prize, this.#amount);
-    Console.print(`${MSG.TOTAL_RATE(earningsRate)}`);
+  sumPrize(getNumOfWinner, PRIZE) {
+    this.#prize += getNumOfWinner * +PRIZE.replace(/\D/g, '');
   }
 
   play() {
-    this.getAmount();
+    log.getAmount(this.start.bind(this));
   }
 }
 

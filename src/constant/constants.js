@@ -2,7 +2,7 @@ const CONSTANT = {
   MSG: {
     PURCHASE: '구입금액을 입력해 주세요.',
     WINNER: '당첨 번호를 입력해 주세요.',
-    PURCHASED: amount => `${amount / UNIT}개를 구매했습니다.}`,
+    PURCHASED: amount => `${amount / CONSTANT.UNIT}개를 구매했습니다.}`,
     BONUS: '보너스 번호를 입력해 주세요.',
     RESULT: (MATCH, ISBONUS, PRIZE, getNumOfWinner) => 
     `${MATCH}개 일치${ISBONUS ? ', 보너스 볼 일치' : ''} (${PRIZE}원) - ${getNumOfWinner}개`,
@@ -23,7 +23,7 @@ const CONSTANT = {
     ISDUPLICATE: numbers => numbers.length !== new Set(numbers).size
   },
 
-  PRIZE: [
+  PRIZE_DETAILS: [
     { MATCH: 3, PRIZE: '5,000' },
     { MATCH: 4, PRIZE: '50,000' },
     { MATCH: 5, PRIZE: '1,500,000' },
@@ -38,4 +38,4 @@ const CONSTANT = {
   RATE: (prize, amount) => (prize / amount * 100).toFixed(1),
 }
 
-export default CONSTANT;
+module.exports = CONSTANT;
