@@ -92,6 +92,8 @@ class App {
     );
     this.mappingResult(lottoResultData);
     this.calculateTotalPrizeMoney();
+    this.printLottoGameResult();
+  }
 
   mappingResult(lottoResultData) {
     lottoResultData.forEach((data) => {
@@ -110,6 +112,18 @@ class App {
       1_500_000 * this.lottoResultMap['5개'] +
       30_000_000 * this.lottoResultMap['5개+보너스'] +
       2_000_000_000 * this.lottoResultMap['6개'];
+  }
+
+  printLottoGameResult() {
+    Console.print(`당첨 통계`);
+    Console.print(`---`);
+    Console.print(`3개 일치 (5,000원) - ${this.lottoResultMap['3개']}개`);
+    Console.print(`4개 일치 (50,000원) - ${this.lottoResultMap['4개']}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${this.lottoResultMap['5개']}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.lottoResultMap['5개+보너스']}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${this.lottoResultMap['6개']}개`);
+    Console.print(`총 수익률은 ${this.calculateYield()}%입니다.`);
+    Console.close();
   }
 
   calculateYield() {
