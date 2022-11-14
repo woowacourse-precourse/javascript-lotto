@@ -3,12 +3,15 @@ const { MESSAGE } = require('./lib/constants');
 const MyLottos = require('./MyLottos');
 const Purchase = require('./Purchase');
 const {
-  convertAnswerIntoArray,
-  printWinningResult,
-  getRevenue,
   getRateOfReturn,
+  getRevenue,
+  convertAnswerIntoArray,
+} = require('./lib/utils/returnUtils');
+const {
+  printWinningResult,
   printMyLottosArray,
-} = require('./lib/utils');
+} = require('./lib/utils/printUtils');
+
 const Lotto = require('./Lotto');
 const Bonus = require('./Bonus');
 const Result = require('./Result');
