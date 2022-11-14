@@ -14,16 +14,16 @@ class QuickPick {
   }
 
   validate(payment) {
-    if (payment < LOTTO_INFO.LOTTO_PRICE) {
+    if (Number(payment) < LOTTO_INFO.LOTTO_PRICE) {
       throw new Error(ERROR_MESSAGES.INVALID_COST_MIN);
     }
 
-    if (payment % LOTTO_INFO.LOTTO_PRICE !== 0) {
-      throw new Error(ERROR_MESSAGES.INVALID_COST_UNIT);
+    if (Number.isNaN(+payment)) {
+      throw new Error(ERROR_MESSAGES.INVALID_COST_TYPE);
     }
 
-    if (!Number(payment)) {
-      throw new Error(ERROR_MESSAGES.INVALID_COST_TYPE);
+    if (Number(payment) % LOTTO_INFO.LOTTO_PRICE !== 0) {
+      throw new Error(ERROR_MESSAGES.INVALID_COST_UNIT);
     }
   }
 
