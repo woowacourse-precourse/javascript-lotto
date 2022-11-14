@@ -43,10 +43,15 @@ const LottoCtrl = class extends GameCtrl {
     }, []);
 
     this.model.lottoTickets = lottoTickets;
-    // TODO: 티켓 하나씩 렌더링하게끔 수정
-    this.view.output(lottoTickets);
+    this.renderLottoTickets(lottoTickets);
 
     this.inputLottoWinningNumbers();
+  }
+
+  renderLottoTickets(lottoTickets) {
+    lottoTickets.forEach(ticket => {
+      this.view.output(ticket);
+    });
   }
 
   getLottoCount() {
