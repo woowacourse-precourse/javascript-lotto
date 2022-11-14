@@ -20,6 +20,12 @@ class LottoGame {
     }
   }
 
+  validateLottoNumber(number) {
+    if (!this.isNumber(number)) {
+      throw new Error("[ERROR] 로또 번호는 숫자여야 합니다.");
+    }
+  }
+
   printTheNumberOfLotto(lottos, number) {
     lottos.setTheNumberOfLotto(number / 1000);
     MissionUtils.Console.print(
@@ -90,9 +96,13 @@ class LottoGame {
 
   receiveLottoNumbers(lottos, money) {
     MissionUtils.Console.readLine("당첨번호를 입력해 주세요.\n", (number) => {
+      this.validateLottoNumber(number);
       MissionUtils.Console.readLine(
         "보너스 번호를 입력해 주세요.\n",
+
         (bonusNumber) => {
+          this.validateLottoNumber(bonusNumber);
+
           const winningLotto = new Lotto(
             number.split(",").map(Number),
             bonusNumber
