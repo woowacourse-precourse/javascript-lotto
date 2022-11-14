@@ -1,27 +1,27 @@
 const { PRIZE_CONFIG } = require('./config');
 
 class Rank {
-  constructor(lotto, bonusNumber) {
-    this.lottoSet = new Set(lotto);
-    this.lotto = lotto;
+  constructor(winningNumbers, bonusNumber) {
+    this.winningNumberSet = new Set(winningNumbers);
+    this.winningNumbers = winningNumbers;
     this.bonusNumber = bonusNumber;
   }
 
-  matchLotto(target) {
-    const targetMatchCount = target.filter((num) => this.lottoSet.has(num)).length;
-    const isBonusMatch = target.includes(this.bonusNumber);
+  matchLotto(lotto) {
+    const lottoMatchCount = lotto.filter((num) => this.winningNumberSet.has(num)).length;
+    const isBonusMatch = lotto.includes(this.bonusNumber);
 
-    return { targetMatchCount, isBonusMatch };
+    return { lottoMatchCount, isBonusMatch };
   }
 
-  checkWinningLottoRank(target) {
-    const { targetMatchCount, isBonusMatch } = this.matchLotto(target);
+  checkWinningLottoRank(lotto) {
+    const { lottoMatchCount, isBonusMatch } = this.matchLotto(lotto);
     const matchingRanks = [];
 
     Object.entries(PRIZE_CONFIG).forEach(([prizeRank, prize]) => {
-      if (targetMatchCount === prize.COUNT && prize.BONUS === true && isBonusMatch === true) {
+      if (lottoMatchCount === prize.COUNT && prize.BONUS === true && isBonusMatch === true) {
         matchingRanks.push(prizeRank);
-      } else if (targetMatchCount === prize.COUNT && prize.BONUS === false) {
+      } else if (lottoMatchCount === prize.COUNT && prize.BONUS === false) {
         matchingRanks.push(prizeRank);
       } else {
         matchingRanks.push(Infinity);
