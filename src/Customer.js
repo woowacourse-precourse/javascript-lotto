@@ -46,17 +46,47 @@ class Customer {
   }
 
   analyzeLottoStatistic(winningNumbers, generateNumbers) {
-    const lottoStatisticArray = [];
+    let lottoStatisticArray = [0, 0, 0, 0, 0, 0, 0];
+    let correct5NumberWithBonus = 0;
+    const FIVE_NUMBERS_WITH_BONUS = 7;
 
     generateNumbers.forEach((array) => {
-      let correctNumberCount = 0;
-      winningNumbers.forEach((element) => {
-        if (array.includes(element) !== -1) correctNumberCount++;
-      });
-      lottoStatisticArray[correctNumberCount]++;
+      const result = this.findWinningNumbers(winningNumbers, array);
+      if (result !== FIVE_NUMBERS_WITH_BONUS) lottoStatisticArray[result]++;
+      if (result === FIVE_NUMBERS_WITH_BONUS) correct5NumberWithBonus++;
     });
 
-    return lottoStatisticArray.slice(3);
+    const lottoResult = this.makeLottoStatisticArray(
+      lottoStatisticArray,
+      correct5NumberWithBonus
+    );
+
+    return lottoResult;
+  }
+
+  makeLottoStatisticArray(lottoStatisticArray, correct5NumberWithBonus) {
+    const lottoResult = lottoStatisticArray.slice(3, 6);
+    lottoResult.push(
+      correct5NumberWithBonus,
+      lottoStatisticArray[lottoStatisticArray.length - 1]
+    );
+
+    return lottoResult;
+  }
+
+  findWinningNumbers(winningNumbers, array) {
+    let bonusNumber = winningNumbers[winningNumbers.length - 1];
+    let correctNumberCount = 0;
+    let correctBonus = false;
+
+    winningNumbers.forEach((element, index) => {
+      if (array.includes(element)) correctNumberCount++;
+    });
+
+    if (array.includes(bonusNumber)) correctBonus = true;
+
+    if (correctBonus && correctNumberCount === 5) return 7;
+    return correctNumberCount;
   }
 
   printLottoStatistic(lottoStatisticArray) {
@@ -70,11 +100,12 @@ class Customer {
 
   calculateLottoYield(lottoStatisticArray, payMoney) {
     const winningLottoPrices = [5000, 50000, 1500000, 30000000, 2000000000];
-    const allLottoPrices = lottoStatisticArray.reduce((element, index) => {
-      return element * winningLottoPrices[index];
-    }, 1);
+    const allLottoPrices = lottoStatisticArray.reduce((pre, cur, index) => {
+      return pre + cur * winningLottoPrices[index];
+    }, 0);
     const lottoYield = (allLottoPrices / payMoney) * 100;
     this.printLottoYield(lottoYield);
+    return lottoYield;
   }
 
   printLottoYield(lottoYield) {
