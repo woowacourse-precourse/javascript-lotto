@@ -67,6 +67,7 @@ class Lotto {
       const inputValue = number.split(",").map(Number);
       this.isValidWinningLottoNumber(inputValue);
       this.#winningLottoNumber = inputValue;
+      this.inputBonusNumber();
     });
   }
 
@@ -94,7 +95,7 @@ class Lotto {
   }
 
   inputBonusNumber() {
-    Console.readline(MESSAGE.INPUT_BONUS_NUMBER, (number) => {
+    Console.readLine(MESSAGE.INPUT_BONUS_NUMBER+('\n'), (number) => {
       this.isValidBonusNumber(number);
       this.#bonusNumber = Number(number);
     });
@@ -102,8 +103,8 @@ class Lotto {
 
   isValidBonusNumber(number) {
     this.checkBonusIsNumber(number);
-    this.checkBonusLength(number);
-    this.checkBonusNumberOverlap(number);
+    this.checkBonusRange(number);
+    this.checkBonusOverlap(number);
   }
 
   checkBonusIsNumber(number) {
@@ -112,9 +113,9 @@ class Lotto {
     }
   }
 
-  checkBonusLength(number){
-    if(number.length() !== 1) {
-      throw new Error(ERROR.CHECK_BONUS_ONE);
+  checkBonusRange(number){
+    if(number < 1 || number > 45) {
+      throw new Error(ERROR.CHECK_BONUS_IS_NUMBER);
     }
   }
 
@@ -126,7 +127,7 @@ class Lotto {
 
   play() {
     // this.inputMoney();
-    // this.inputWinningLottoNumber();
+    this.inputWinningLottoNumber();
     // this.inputBonusNumber();
   }
 
