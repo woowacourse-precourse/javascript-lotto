@@ -19,7 +19,7 @@ class LottoMachine {
     while(lotto.size < 6){
       lotto.add(MissionUtils.Random.pickNumberInRange(1, 45));
     }
-    return [...lotto]
+    return [...lotto];
   }
 
   purchaseLotto(inputMoney) {
