@@ -11,7 +11,7 @@ class LottoCalculator {
   usersRewardMoney = MONEY.ZERO;
   usersWinningRecord = [];
   winningReward = [REWARD_MONEY.BANG, REWARD_MONEY.FIRST, REWARD_MONEY.SECOND, REWARD_MONEY.THIRD, REWARD_MONEY.FOURTH, REWARD_MONEY.FIFTH];
-  countWinningRecord = new Array(LOTTO.SIX_NUMBERS).fill(0);
+  countWinningRecord = Array.from({length: LOTTO.SIX_NUMBERS}, () => 0);
   
   
 
