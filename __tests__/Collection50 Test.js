@@ -43,4 +43,14 @@ describe('로또 클래스 테스트', () => {
       ErrorCheck.bonusNumber(winningNumber, 6);
     }).toThrow();
   });
+
+  test('수익률 계산하는 함수', () => {
+    const purchaseAmount = 50000;
+    const winningResult = [0, 1, 0, 0, 0];
+    const lottoYield = (30000000 / 50000).toFixed(3);
+
+    expect(Functions.calLottoYield(purchaseAmount, winningResult)).toEqual(
+      lottoYield
+    );
+  });
 });

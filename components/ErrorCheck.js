@@ -48,17 +48,20 @@ class ErrorCheck {
   static purchase(money) {
     this.isInvalidNumberType(money);
     this.isDividedBy1000(money);
+    return true;
   }
 
   static winningNumber(numbers) {
     this.isInvalidLength(numbers);
     this.hasDuplication(numbers);
     this.isInvalidRange(numbers);
+    return true;
   }
 
   static bonusNumber(winningNumber, bonusNumber) {
     this.bonusNumberDuplication(winningNumber, bonusNumber);
     this.isInvalidRange([bonusNumber]);
+    return true;
   }
 }
 
