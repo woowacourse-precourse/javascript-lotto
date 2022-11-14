@@ -1,8 +1,6 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto.js');
-const {
-  isValidMoneyNumberAmount
-} = require('../../backup/src/new/util/utils.js');
+const { isValidMoneyNumberAmount } = require('./util/utils');
 const constants = require('./constants/numbers.js');
 
 class LottoStore {
