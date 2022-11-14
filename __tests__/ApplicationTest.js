@@ -74,7 +74,6 @@ describe("로또 테스트", () => {
   });
 
   // 테스트 추가
-
   // 로또 자동 작성 테스트
   test("기능 테스트: 로또 자동 오름차순 정렬", () => {
     mockRandoms([
@@ -134,6 +133,26 @@ describe("로또 테스트", () => {
     }).toThrow(ERROR.CASH_IS_NOT_NATURAL_NUMBER);
   });
 
+  // 로또 번호 예외 테스트 
+  test("예외 테스트: 1~45 사이가 아닌 숫자가 로또 번호에 포함된 경우 1", () => {
+    mockRandoms([
+      [0, 2, 3, 4, 5, 6],
+    ]);
+
+    expect(() => {
+      SYSTEM.makeLotto();
+    }).toThrow(ERROR.INVAID_NUMBER);
+  });
+
+  test("예외 테스트: 1~45 사이가 아닌 숫자가 로또 번호에 포함된 경우 2", () => {
+    mockRandoms([
+      [1, 2, 3, 4, 5, 46],
+    ]);
+
+    expect(() => {
+      SYSTEM.makeLotto();
+    }).toThrow(ERROR.INVAID_NUMBER);
+  });
 
   // 보너스 숫자 입력 기능 테스트
   test("기능 테스트: 보너스 숫자 입력", () => {
