@@ -23,6 +23,12 @@ describe('로또 클래스 예외 테스트', () => {
     }).toThrow('[ERROR]');
   });
 
+  test('로또 번호가 숫자가 아니라면 예외가 발생한다. 2', () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, '!', 6]);
+    }).toThrow('[ERROR]');
+  });
+
   test('보너스 번호가 로또 번호에 중복되면 예외가 발생한다.', () => {
     expect(() => {
       const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
@@ -38,44 +44,44 @@ describe('로또 클래스 예외 테스트', () => {
   });
 });
 
-describe('로또 클래스 로또 추첨 테스트', () => {
-  test('몇개 맞췄는지 테스트 => winningCount = 6 ', () => {
+describe('로또 클래스 당첨 테스트', () => {
+  test('6개 일치 테스트 => winningCount = 6 ', () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     lotto.compare({ 0: [1, 2, 3, 4, 5, 6] });
     expect(lotto.winningCount).toEqual(6);
   });
 
-  test('몇개 맞췄는지 테스트 => winningCount = 5 ', () => {
+  test('5개 일치 테스트 => winningCount = 5 ', () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     lotto.compare({ 0: [1, 2, 3, 4, 5, 7] });
     expect(lotto.winningCount).toEqual(5);
   });
 
-  test('몇개 맞췄는지 테스트 => winningCount = 4 ', () => {
+  test('4개 일치 테스트 => winningCount = 4 ', () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     lotto.compare({ 0: [1, 2, 3, 4, 7, 12] });
     expect(lotto.winningCount).toEqual(4);
   });
 
-  test('몇개 맞췄는지 테스트 => winningCount = 3 ', () => {
+  test('3개 일치 테스트 => winningCount = 3 ', () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     lotto.compare({ 0: [1, 2, 3, 7, 12, 33] });
     expect(lotto.winningCount).toEqual(3);
   });
 
-  test('몇개 맞췄는지 테스트 => winningCount = 2 ', () => {
+  test('2개 일치 테스트 => winningCount = 2 ', () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     lotto.compare({ 0: [1, 2, 7, 9, 12, 33] });
     expect(lotto.winningCount).toEqual(2);
   });
 
-  test('몇개 맞췄는지 테스트 => winningCount = 1 ', () => {
+  test('1개 일치 테스트 => winningCount = 1 ', () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     lotto.compare({ 0: [1, 7, 9, 12, 28, 33] });
     expect(lotto.winningCount).toEqual(1);
   });
 
-  test('몇개 맞췄는지 테스트 => winningCount = 0 ', () => {
+  test('0개 일치 테스트 => winningCount = 0 ', () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     lotto.compare({ 0: [7, 9, 12, 28, 33, 42] });
     expect(lotto.winningCount).toEqual(0);
