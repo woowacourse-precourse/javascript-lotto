@@ -24,8 +24,8 @@ class App {
 
       this.payMoney = money;
       this.totalLottoNumber = new Payment(money).getLottoNumber(lottoTickets);
-      this.printLotto(this.totalLottoNumber);
       Console.print(OUTPUT_MESSAGE.amountLotto(lottoTickets));
+      this.printLotto(this.totalLottoNumber);
 
       this.inputWinnerNumber();
     });
