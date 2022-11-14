@@ -7,7 +7,11 @@ const {
   isLottoRange,
   isDuplicate,
 } = require('./utils/validation.js');
-const { generateLottoNumber, separateStringBySpecificCharacter } = require('./utils/lottoGameHandler.js');
+const {
+  generateLottoNumber,
+  separateStringBySpecificCharacter,
+  checkHowManyCorrect,
+} = require('./utils/lottoGameHandler.js');
 
 class App {
   constructor() {
@@ -48,7 +52,7 @@ class App {
   printInformationPurchasedLotto() {
     Console.print(`${this.userBuyHowManyLotto}개를 구매했습니다.`);
     this.LottoNumberArray.forEach((lotto) => {
-      Console.print(lotto.getLottoNumber());
+      Console.print(`[${lotto.getLottoNumber().join(', ')}]`);
     });
   }
 
@@ -78,7 +82,15 @@ class App {
   inputBonusNumberFromUser() {
     Console.readLine('보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
       this.isValidateBonusNumber(bonusNumber);
+      this.judgePrize();
     });
+  }
+
+  judgePrize() {
+    const lottoResultData = this.LottoNumberArray.map((lotto) =>
+      checkHowManyCorrect(lotto, this.winningNumber, this.bonusNumber),
+    );
+  }
   }
 }
 
