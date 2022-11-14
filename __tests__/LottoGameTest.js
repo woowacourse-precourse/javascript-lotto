@@ -40,4 +40,20 @@ describe('로또 번호 비교', () => {
 
     expect(result).toEqual(0);
   });
+
+  test('수익률 계산하는 테스트1', () => {
+    const input = new Input();
+    input.purchaseAmount = 8000;
+    const result = input.calcRateOfReturn(5000);
+
+    expect(result).toEqual('62.5');
+  });
+
+  test('수익률 계산하는 테스트2', () => {
+    const input = new Input();
+    input.purchaseAmount = 3000;
+    const result = input.calcRateOfReturn(55000);
+
+    expect(result).toEqual('1833.3');
+  });
 });
