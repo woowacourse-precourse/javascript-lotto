@@ -7,7 +7,7 @@ class Statistics {
   }
 
   showMatchResult() {
-    const matchInfoList = this.matchInfo();
+    const matchInfoList = this.matchInfoCount();
     return Object.keys(RANKING).map((rank) => {
       const rankInfo = RANKING[rank];
       const name = `match${rankInfo['MATCH']}${rankInfo['BONUS']}`;
@@ -16,18 +16,21 @@ class Statistics {
     });
   }
 
+  matchInfoCount() {
+    return this.matchInfo().reduce((matchSum, [match, bonus]) => {
+      const name = `match${match}${bonus}`;
+      matchSum[name] = { bonus, count: (matchSum[name] ? matchSum[name]['count'] : 0) + 1 };
+      return matchSum;
+    }, {});
+  }
+
   matchInfo() {
-    const matchList = this.lotteryTickets.map((lottery) => {
+    return this.lotteryTickets.map((lottery) => {
       const matchNumber = this.compareNumbers(this.lottoNumbers, lottery);
       const bonusMatch =
         matchNumber === BONUS_NUMBER ? this.compareBonusNumber(this.bonusNumber, lottery) : false;
       return [matchNumber, bonusMatch];
     });
-    return matchList.reduce((matchSum, [match, bonus]) => {
-      const name = `match${match}${bonus}`;
-      matchSum[name] = { bonus, count: (matchSum[name] ? matchSum[name]['count'] : 0) + 1 };
-      return matchSum;
-    }, {});
   }
 
   compareNumbers(answer, quest) {
