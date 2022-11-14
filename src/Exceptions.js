@@ -16,6 +16,10 @@ class Exceptions {
     }
     return false;
   }
+
+  isNotInRange(num) {
+    return 0 < parseInt(num) && parseInt(num) < 46;
+  }
 }
 
 class MoneyExceptions extends Exceptions {
@@ -45,10 +49,8 @@ class WinningExceptions extends Exceptions {
     return !this.input.every((winningNum) => !super.isNotDigit(winningNum));
   }
 
-  isNotInRange() {
-    return !this.input.every(
-      (winningNum) => 0 < parseInt(winningNum) && parseInt(winningNum) < 46
-    );
+  isNotInRangeArr() {
+    return !this.input.every((winningNum) => isNotInRange(winningNum));
   }
 
   isDuplicated() {
