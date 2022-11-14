@@ -3,7 +3,7 @@ const { RULE } = require('./constants/lotto');
 
 class LottoSales {
   static issueLotto(money) {
-    const count = money / 1_000;
+    const count = money / RULE.MONEY_UNIT;
     const lotto = new Array(count).fill(0).map(() => LottoSales.pickNumbers());
 
     return lotto;
