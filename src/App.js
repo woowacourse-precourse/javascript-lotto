@@ -6,13 +6,16 @@ const APP = require('./constants/app');
 class App {
   #amount;
 
+  #prizeNumber;
+
   #lottos;
 
   constructor() {
-    this.handleAmount = this.handleAmount.bind(this);
+    this.getAmount = this.getAmount.bind(this);
+    this.getPrizeNumber = this.getPrizeNumber.bind(this);
   }
 
-  handleAmount(input) {
+  getAmount(input) {
     appUtils.validateAmount(input);
 
     this.#amount = input / APP.MINIMUM_AMOUNT;
@@ -22,12 +25,15 @@ class App {
     appUtils.printArray(this.#lottos);
   }
 
-  readLine(message, callback) {
-    Console.readLine(message, (input) => callback(input));
+  getPrizeNumber(input) {
+    appUtils.validatePrizeNumbers(input);
+    this.#prizeNumber = input.split(',').map((item) => Number(item));
   }
 
-  play() {
-    this.readLine(APP.AMOUNT_MESSAGE, this.handleAmount);
+  async play() {
+    await appUtils.synchronousReadLine(APP.AMOUNT_MESSAGE, this.getAmount);
+    await appUtils.synchronousReadLine('\n당첨 번호를 입력해 주세요.\n', this.getPrizeNumber);
+    Console.close();
   }
 }
 
