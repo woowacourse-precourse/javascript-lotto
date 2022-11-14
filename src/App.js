@@ -131,17 +131,20 @@ class App {
     });
   }
 
-  compareArr(arr1, arr2) {
-    let matched = 0;
-    for (let i = 0; i < arr1.length; i++) {
-      const elem1 = arr1[i];
-      for (let j = 0; j < arr2.length; j++) {
-        const elem2 = arr2[j];
-        if (elem1 === elem2) {
-          matched++;
-          break;
-        }
+  compareElem(pivot, arr) {
+    for (let idx = 0; idx < arr.length; idx++) {
+      const cur = arr[idx];
+      if (pivot === cur) {
+        return 1;
       }
+    }
+    return 0;
+  }
+  compareArr(pivotArr, couterArr) {
+    let matched = 0;
+    for (let idx = 0; idx < pivotArr.length; idx++) {
+      const pivot = pivotArr[idx];
+      matched += this.compareElem(pivot, couterArr);
     }
     return matched;
   }
@@ -165,14 +168,14 @@ class App {
     this.ranks[8 - matched] += 1;
   }
   printRanks() {
-    // Console.print(`당첨 통계\n`);
-    // Console.print(`---\n`);
     const ranksString = `
-      3개 일치 (5,000원) - ${this.ranks[5]}개
-      4개 일치 (50,000원) - ${this.ranks[4]}개
-      5개 일치 (1,500,000원) - ${this.ranks[3]}개
-      5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.ranks[2]}개
-      6개 일치 (2,000,000,000원) - ${this.ranks[1]}개
+    당첨 통계
+    ---
+    3개 일치 (5,000원) - ${this.ranks[5]}개
+    4개 일치 (50,000원) - ${this.ranks[4]}개
+    5개 일치 (1,500,000원) - ${this.ranks[3]}개
+    5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.ranks[2]}개
+    6개 일치 (2,000,000,000원) - ${this.ranks[1]}개
     `.trim();
     Console.print(ranksString);
   }
