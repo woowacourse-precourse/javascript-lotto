@@ -27,6 +27,26 @@ class App {
       const lottos = LottoAdmin.generateLottoAnswer(lottoNum);
       lottos.forEach((lotto) => this.lottos.push([...lotto]));
       Lotto.printLottos(this.lottos);
+      this.requestLottoNumbers();
+    });
+  }
+
+  requestLottoNumbers() {
+    Console.getUserInput("\n" + Console.REQUEST_LOTTO_NUMBER, (numbers) => {
+      const inputNumbers = numbers
+        .split(",")
+        .map(Number)
+        .sort((a, b) => (a > b ? 1 : -1));
+      this.winNumbers = new Lotto(inputNumbers).getNumbers;
+      this.requestBonusNumber();
+    });
+  }
+
+  requestBonusNumber() {
+    Console.getUserInput("\n" + Console.REQUEST_BONUS_NUMBER, (number) => {
+      Validator.isValidBonus(number);
+      this.bonusNumber = Number(number);
+      Console.print("\n" + Console.WIN_STATISTICS);
     });
   }
 }
