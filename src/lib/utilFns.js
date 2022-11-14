@@ -77,6 +77,8 @@ const getRoundRateStr = (digit) => (rate) => {
 };
 const getCommaStr = (str) => Number(str).toLocaleString();
 
+const lottoArrToString = (arr) => JSON.stringify(arr).split(',').join(', ');
+
 module.exports = {
   isMultipleOf1000,
   isLottoNumbers,
@@ -89,4 +91,5 @@ module.exports = {
   getWinMessage,
   getWinAmount,
   getRateStrOfProfit,
+  lottoArrToString,
 };

@@ -8,6 +8,7 @@ const {
   getWinMessage,
   getWinAmount,
   getRateStrOfProfit,
+  lottoArrToString,
 } = require('./lib/utilFns.js');
 const Lotto = require('./Lotto');
 
@@ -62,9 +63,10 @@ class VendingMachine {
   }
 
   printPickedNumbers() {
-    Console.print(`\n${this.#numberOfLottos}개를 구매했습니다.`);
+    const pickedNumbers = this.#randomNumbers.map(lottoArrToString).join('\n');
 
-    this.#randomNumbers.forEach(Console.print);
+    Console.print(`\n${this.#numberOfLottos}개를 구매했습니다.`);
+    Console.print(pickedNumbers);
   }
 
   askLottoNumbers() {
