@@ -13,7 +13,31 @@ class App {
 			publishLotto: [],
 			bonus: 0,
 			winLotto: [],
+			result: [],
+			percent: 0,
 		};
+		this.static = [
+			{
+				sameNum: 3,
+				money: 5000,
+			},
+			{
+				sameNum: 4,
+				money: 50000,
+			},
+			{
+				sameNum: 5,
+				money: 1500000,
+			},
+			{
+				sameNum: 5,
+				money: 30000000,
+			},
+			{
+				sameNum: 6,
+				money: 2000000000,
+			},
+		];
 	}
 	play() {
 		this.inputMoney();
@@ -21,6 +45,7 @@ class App {
 		this.inputLotto();
 		this.lotto = new Lotto(this.state.winLotto);
 		this.inputBonus();
+		this.match(this.state.publishLotto, this.state.bonus);
 	}
 
 	inputMoney() {
@@ -57,6 +82,14 @@ class App {
 			publishLottoArr.push(numbers);
 		}
 		return publishLottoArr;
+	}
+	match(publishLotto, bonus) {
+		this.state.result = this.lotto.compare(publishLotto, bonus);
+		let add = 0;
+		this.state.result.forEach((count, index) => {
+			add += this.static[index].money * count;
+		});
+		this.state.percent = ((add / this.state.money) * 100).toFixed(1);
 	}
 }
 
