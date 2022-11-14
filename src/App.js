@@ -1,8 +1,9 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const { validateMoney } = require("./Money");
 
 class App {
   #money;
-  #tickets;
+  #numOfLotto;
   #userLotto;
   #winLotto;
   #bonusNumber;
@@ -12,11 +13,16 @@ class App {
   }
 
   getMoney() {
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (userInput) => {
-      validateMoney(userInput);
-      this.#money = userInput;
-      this.getNumOfTickets();
+    MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
+      validateMoney(money);
+      this.#money = money;
+      this.getNumOfLotto();
     });
+  }
+  
+  getNumOfLotto() {
+    this.#numOfLotto = this.#money / 1000;
+    buyLotto();
   }
 }
 
