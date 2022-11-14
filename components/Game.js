@@ -41,16 +41,13 @@ class Game {
   }
 
   printLottos() {
-    this.#lottos.forEach((lotto) => {
-      Console.print(lotto);
-    });
+    Functions.printLottoString(this.#lottos);
     this.getWinningNumbers();
   }
 
   getWinningNumbers() {
     Console.readLine(SYSTME_MESSAGE.WINNING_INPUT, (inputNumber) => {
       this.#winningNumber = Functions.digitize(inputNumber);
-
       const lottoClass = new Lotto(this.#winningNumber);
       this.getBonusNumber();
     });

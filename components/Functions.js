@@ -27,6 +27,12 @@ class Functions {
     return inputNumber.split(',').map((num) => +num);
   }
 
+  static printLottoString(lottos) {
+    lottos.forEach((lotto) => {
+      Console.print(`[${lotto.join(SYSTME_MESSAGE.COMMA)}]`);
+    });
+  }
+
   static getMatchCount(lottoNumber, winningNumber) {
     return lottoNumber.reduce(
       (count, num) => (winningNumber.includes(num) ? count + ONE : count),
@@ -34,7 +40,7 @@ class Functions {
     );
   }
 
-  static getRankIndex(matchCount, includesBonus) {
+  static getRank(matchCount, includesBonus) {
     if (matchCount === MATCH.SIX) {
       return RANK.FIRST;
     }
@@ -44,7 +50,7 @@ class Functions {
     if (matchCount === MATCH.FIVE) {
       return RANK.THIRD;
     }
-    if (matchCount === MATCH.FOURTH) {
+    if (matchCount === MATCH.FOUR) {
       return RANK.FOURTH;
     }
     return matchCount === MATCH.THREE ? RANK.FIFTH : RANK.NONE;
@@ -56,7 +62,7 @@ class Functions {
     lottos.forEach((lotto) => {
       const matchCount = this.getMatchCount(lotto, winningNumber);
       const includesBonus = lotto.includes(bonusNumber);
-      const rank = this.getRankIndex(matchCount, includesBonus);
+      const rank = this.getRank(matchCount, includesBonus);
 
       if (rank !== RANK.NONE) {
         winningResult[rank] += ONE;
