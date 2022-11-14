@@ -1,22 +1,20 @@
-const Lotto = require("./Lotto")
-const {makeLottoNumber,sortLottoNumberInAscendignOrder} = require("..utils")
+const {makeLottoNumber,sortLottoNumberInAscendignOrder} = require("../utils")
 
 class LottoIsuued {
   lottoIssued=[];
 
   constructor(lottoCount) {
-    this.lottoCount = lottoCount;
+    this.setLottoIssued(lottoCount);
   }
 
   setLottoIssued(lottoCount) {
     for (let i = 0; i < lottoCount; i++) {
-      let lottoNumber = sortLottoNumberInAscendignOrder(
+      const lottoNumber = sortLottoNumberInAscendignOrder(
         makeLottoNumber()
       );
-      this.lottoIssued.push(new Lotto(lottoNumber));
+      this.lottoIssued.push(lottoNumber);
     }
   }
-
 }
 
 module.exports = LottoIsuued;

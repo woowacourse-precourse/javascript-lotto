@@ -1,12 +1,13 @@
-const { ERROR } = require("./Constants");
+const {ERROR} = require("../Constants")
 
 class LottoPayment {
   lottoPayment;
   lottoCount;
 
   constructor(payment) {
-    this.getLottoPayment(payment);
-    this.lottoCount = this.getLottoCount();
+    this.validate(payment);
+    this.setLottoPayment(payment);
+    this.setLottoCount();
   }
 
   validate(payment) {
@@ -16,13 +17,12 @@ class LottoPayment {
     if (isNaN(payment)) throw new Error(ERROR.PAYMENT_TYPE);
   }
 
-  getLottoPayment(input) {
-    this.validate(input);
+  setLottoPayment(input) {
     this.lottoPayment = input;
   }
 
-  getLottoCount() {
-    return this.lottoPayment / 1000;
+  setLottoCount() {
+    this.lottoCount = this.lottoPayment / 1000;
   }
 }
 
