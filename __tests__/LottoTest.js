@@ -43,4 +43,46 @@ describe("로또 클래스 테스트", () => {
       lotto.bonusNumberException("1");
     }).toThrow("[ERROR]");
   });
+
+  test("isMatching Method Test", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    expect(lotto.isMatching(2, [1, 2, 3, 4, 5, 6])).toEqual(1);
+  });
+
+  test("compareLottoNums Method Test", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    expect(
+      lotto.compareLottoNums(
+        [
+          [3, 4, 5, 6, 12, 15],
+          [12, 13, 15, 16, 19, 20],
+        ],
+        [11, 12, 13, 14, 15, 16, 17]
+      )
+    ).toEqual([2, 4]);
+  });
+
+  test("compareBonus Method Test", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    expect(
+      lotto.compareBonus(
+        [
+          [3, 4, 5, 6, 12, 15],
+          [12, 13, 15, 16, 19, 20],
+        ],
+        "12",
+        [3, 5]
+      )
+    ).toEqual(1);
+  });
+
+  test("countWinLotto Method Test", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    expect(lotto.countWinLotto([1, 3, 4, 4, 5, 6], 1)).toEqual([1, 2, 0, 1]);
+  });
+
+  test("priceEarningsRatio Method Test", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    expect(lotto.priceEarningsRatio([3, 1, 1, 3, 0], [2, 0, 0, 0], 1)).toEqual("600200.0");
+  });
 });
