@@ -55,8 +55,19 @@ class App {
     let winNums = [];
     Console.readLine("\n당첨 번호를 입력해 주세요.\n", (inputNums) => {
       winNums = inputNums.split(",");
+      this.inputBonusNums(winNums, myNumbers);
     });
     return 1;
+  }
+
+  inputBonusNums(winNums, myNumbers) {
+    const lotto = new Lotto(winNums);
+    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (inputBonus) => {
+      winNums.push(inputBonus);
+
+      Console.close();
+    });
+    return;
   }
 }
 
