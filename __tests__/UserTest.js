@@ -12,4 +12,10 @@ describe('유저 클래스 테스트', () => {
     user.setLottoQuantity(8);
     expect(user.getLottoQuantity()).toBe(8);
   });
+
+  test('✨ 사용자가 구매한 로또 번호를 반환한다.', () => {
+    const user = new User();
+    user.setLottos([1, 2, 3, 4, 5, 6]);
+    expect(user.getLottos()).toStrictEqual([1, 2, 3, 4, 5, 6]);
+  });
 });
