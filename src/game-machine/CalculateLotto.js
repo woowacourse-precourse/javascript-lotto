@@ -2,12 +2,14 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 class CalculateLotto{
   constructor(){
-    this.purchase_amount;
     this.lotto_quantity;  
+    this.purchase_amount;
   }
 
   getPurchaseAmount(purchase_amount){
     this.purchase_amount = purchase_amount;
+    this.calculateLottoQuantity();
+    this.sendLottoNumbers();
   }
 
   calculateLottoQuantity(){
@@ -22,9 +24,9 @@ class CalculateLotto{
     random_lotto_numbers=MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6); 
     return random_lotto_numbers;
   }
-
-  sendLottoQuantity(){
-    const lotto = new Lotto();
+  sendLottoInfo(){
+    let lotto_numbers = this.calculateLottoNumbers();
+    const lotto = new Lotto(lotto_numbers);
     lotto.getLottoQuantity(this.lotto_quantity);
   }
 
