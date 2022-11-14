@@ -5,6 +5,7 @@ class App {
   play() {}
   #purchaseAmount;
   #lottoNum;
+  #winningNum;
 
   constructor() {
     this.issuedLottoNum = [];
@@ -43,9 +44,12 @@ class App {
     for (var count = 0; count < this.#lottoNum; count++) {
       Console.print(this.issuedLottoNum[count]);
     }
+    this.inputWinningNum();
+  }
+
+  inputWinningNum() {
+    Console.readLine("당첨 번호를 입력해 주세요. \n", (winningNum) => {});
   }
 }
-const app = new App();
-app.play();
 
 module.exports = App;
