@@ -1,5 +1,13 @@
+const Clerk = require("./play/Clerk");
+
 class App {
-  play() {}
+  play() {
+    const clerk = new Clerk();
+    clerk.inputLottoAmount();
+  }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
