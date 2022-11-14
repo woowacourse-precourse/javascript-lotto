@@ -1,4 +1,3 @@
-const MissionUtils = require("@woowacourse/mission-utils");
 const Validation = require("./Validation.js");
 
 class Bonus{
