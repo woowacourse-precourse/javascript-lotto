@@ -17,6 +17,20 @@ class Lotto {
     return `[${this.#numbers.join(', ')}]`;
   }
 
+  compare(winning) {
+    let count = 0;
+
+    this.#numbers.forEach((number) => {
+      if (winning.includes(number)) count++;
+    });
+
+    return count;
+  }
+
+  isContain(bonus) {
+    return this.#numbers.includes(bonus);
+  }
+
   // TODO: 추가 기능 구현
 }
 

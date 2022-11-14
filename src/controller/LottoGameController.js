@@ -5,9 +5,10 @@ const BonusValidator = require('../validator/BonusValidator');
 const MoneyValidator = require('../validator/MoneyValidator');
 
 class LottoGameController {
-  constructor(model, view) {
+  constructor(model, view, calculator) {
     this.lottoGameModel = model;
     this.lottoGameView = view;
+    this.calculatorModel = calculator;
     this.lottos;
     this.winningLotto;
   }
@@ -15,6 +16,8 @@ class LottoGameController {
   start() {
     this.setGame();
     this.pickWinningLotto();
+    const result = this.calculatorModel.draw(this.lottos, this.winningLotto);
+    console.log(result);
   }
 
   setGame() {
