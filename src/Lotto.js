@@ -16,18 +16,18 @@ class Lotto {
       throw new Error(ERROR.DUPLICATE_NUMBER);
     }
     if (this.isOverNumberInRange(numbers)) {
-      throw new Error(ERROR.IS_OVER_NUMBER_IN_RANGE);
+      throw new Error(ERROR.OVER_NUMBER_IN_RANGE);
     }
     if (this.isUnderNumberInRange(numbers)) {
-      throw new Error(ERROR.IS_UNDER_NUMBER_IN_RANGE);
+      throw new Error(ERROR.UNDER_NUMBER_IN_RANGE);
     }
 
     if (this.containsBlanks(numbers)) {
-      throw new Error(ERROR.IS_UNDER_NUMBER_IN_RANGE);
+      throw new Error(ERROR.CONTAINS_BLANKS);
     }
 
     if (this.containsCharacter(numbers)) {
-      throw new Error(ERROR.IS_UNDER_NUMBER_IN_RANGE);
+      throw new Error(ERROR.HAS_CHARACTER);
     }
   }
 
