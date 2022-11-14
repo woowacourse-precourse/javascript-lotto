@@ -17,7 +17,18 @@ const checkAscendingLotto = (input) => {
   return true;
 };
 
-const checkLottoResult = (input, compareInput, bonus) => {};
+const makeCountObj = (input) => {
+  const res = {};
+  for (const num of input) res[num] = 1;
+  return res;
+};
+
+const checkLottoResult = (input, compareInput, bonus) => {
+  const res = makeCountObj(input);
+  let count = compareInput.reduce((acc, cur) => (res[cur] ? acc + 1 : acc), 0);
+  if (count === 5 && res[bonus]) count += 2;
+  return count;
+};
 
 exports.checkDuplicatedLotto = checkDuplicatedLotto;
 exports.checkAscendingLotto = checkAscendingLotto;
