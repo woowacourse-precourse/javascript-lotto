@@ -1,4 +1,41 @@
-const Lotto = require("../src/Lotto");
+const App = require('../src/App');
+const MissionUtils = require('@woowacourse/mission-utils');
+const Lotto = require('../src/Lotto');
+
+const mockQuestions = answers => {
+  MissionUtils.Console.readLine = jest.fn();
+  answers.reduce((acc, input) => {
+    return acc.mockImplementationOnce((question, callback) => {
+      callback(input);
+    });
+  }, MissionUtils.Console.readLine);
+};
+
+describe('투입 금액 테스트', () => {
+  test('투입 금액이 1000원 단위가 아니면 예외가 발생한다.', () => {
+    mockQuestions(['1500']);
+    expect(() => {
+      const app = new App();
+      app.injectMoney();
+    }).toThrow('[ERROR]');
+  });
+
+  test('투입 금액이 없으면 예외가 발생한다.', () => {
+    mockQuestions(['']);
+    expect(() => {
+      const app = new App();
+      app.injectMoney();
+    }).toThrow('[ERROR]');
+  });
+
+  test('투입 금액이 숫자 이외의 값이면 예외가 발생한다.', () => {
+    mockQuestions(['abc']);
+    expect(() => {
+      const app = new App();
+      app.injectMoney();
+    }).toThrow('[ERROR]');
+  });
+});
 
 describe('로또 클래스 테스트', () => {
   test('로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.', () => {
