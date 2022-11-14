@@ -11,11 +11,14 @@ class App {
 			money: 0,
 			buyLotto: 0,
 			publishLotto: [],
+
+			winLotto: [],
 		};
 	}
 	play() {
 		this.inputMoney();
 		this.publishLotto();
+		this.inputLotto();
 	}
 
 	inputMoney() {
@@ -24,6 +27,11 @@ class App {
 
 			this.valid.inputMoney(this.state.money);
 			this.state.buyLotto = this.state.money / 1000;
+		});
+	}
+	inputLotto() {
+		Console.readLine(MESSAGE.PRINT_INPUT_WIN, (number) => {
+			this.state.winLotto = number.split(",").map(Number);
 		});
 	}
 	publishLotto() {
