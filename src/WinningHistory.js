@@ -1,19 +1,21 @@
 const { Console } = require("@woowacourse/mission-utils");
 const NumberCompare = require("./NumberCompare");
+const UserInputNumber = require("./UserInputNumber");
 
 
 class WinningHistory{
     constructor(){
         this.numberCompare = new NumberCompare();
+        this.userInputNumber = new UserInputNumber();
     }
     
-    printLottoStats(lottoRanking){
+    printLottoStats(lottoRanking, issudLotto){
         this.fifthPlace(lottoRanking);
         this.fourthPlace(lottoRanking);
         this.thirdPlace(lottoRanking);
         this.secondPlace(lottoRanking);
         this.firstPlace(lottoRanking);
-        this.lottoRevenue(lottoRanking);
+        this.lottoRevenue(lottoRanking, issudLotto);
     }
 
     fifthPlace(lottoRanking){
@@ -36,7 +38,7 @@ class WinningHistory{
         Console.print(`6개 일치 (2,000,000,000원) - ${lottoRanking[4]}개`);
     }
 
-    lottoRevenue(lottoRanking){
+    lottoRevenue(lottoRanking, issudLotto){
         let revenue = 
         lottoRanking[0] * 5000 +
         lottoRanking[1] * 50000 +
@@ -44,7 +46,7 @@ class WinningHistory{
         lottoRanking[3] * 30000000 +
         lottoRanking[4] * 2000000000 ;
 
-        let revenueTotal = revenue/(8 * 1000) * 100 ;
+        let revenueTotal = revenue/(issudLotto * 1000) * 100 ;
         this.lottoRevenueRound(revenueTotal);
     }
 

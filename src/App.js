@@ -18,7 +18,7 @@ class App {
     this.inputWinnigNum.winningNumber();
     this.inputWinnigNum.bonusNumber();
     this.numbercompare.lottoResults(this.issuedRandomNum,this.inputWinnigNum.winningNum,this.inputWinnigNum.bonusNum);
-    this.winningHistory.printLottoStats(this.numbercompare.lottoRanking);
+    this.winningHistory.printLottoStats(this.numbercompare.lottoRanking, this.userInputNumber.issudLotto);
   }
 }
 

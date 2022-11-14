@@ -12,11 +12,9 @@ class Lotto {
     this.checkLottoLength(numbers);
     this.checkLottoNumber(numbers);
     this.checkDuplicateNumber(numbers);
-    Console.print(numbers)
   }
 
   checkLottoLength(numbers){
-    Console.print(numbers)
     if(numbers.length !== 6){
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
