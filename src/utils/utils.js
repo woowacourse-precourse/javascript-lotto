@@ -67,6 +67,10 @@ const generateRandomNumbers = () => {
   return ascendingSort(lotto);
 };
 
+const roundToTwo = number => {
+  return +(Math.round(number + 'e+1') + 'e-1');
+};
+
 module.exports = {
   hasChar,
   isDivisible,
@@ -78,4 +82,5 @@ module.exports = {
   hasDuplicate,
   parseNumbers,
   generateRandomNumbers,
+  roundToTwo,
 };

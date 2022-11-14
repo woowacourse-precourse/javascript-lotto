@@ -1,3 +1,4 @@
+const { roundToTwo } = require('./utils/utils');
 const { REWARD, STATISTICS } = require('./utils/constants');
 
 class Drawing {
@@ -70,11 +71,7 @@ class Drawing {
 
   calcRevenue(reward) {
     const revenue = (reward / this.user.purchaseAmount) * 100;
-    return Drawing.roundToTwo(revenue);
-  }
-
-  static roundToTwo(number) {
-    return +(Math.round(number + 'e+2') + 'e-2');
+    return roundToTwo(revenue);
   }
 
   getStatistics({ fifth, fourth, third, second, first }, revenue) {
