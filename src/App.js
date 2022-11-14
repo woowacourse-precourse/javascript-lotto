@@ -1,7 +1,10 @@
-const { Console } = require("@woowacourse/mission-utils");
+const { Random,Console } = require("@woowacourse/mission-utils");
 
 class App {
-  play() {}
+  play() {
+    
+
+  }
 }
 
 module.exports = App;
