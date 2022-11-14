@@ -1,8 +1,13 @@
 const { RANK, RANK_LENGTH } = require('./constants/lotto');
 
 class LottoComparer {
-  static getBuyerLottoRank(buyerLottos, lotto, bonusNumber) {
-    const result = {
+  constructor(buyer, lotto) {
+    this.buyer = buyer;
+    this.lotto = lotto;
+  }
+
+  setBuyerLottoRanking() {
+    const ranking = {
       [RANK.FIRST]: 0,
       [RANK.SECOND]: 0,
       [RANK.THIRD]: 0,
@@ -10,23 +15,23 @@ class LottoComparer {
       [RANK.FIFTH]: 0,
     };
 
-    buyerLottos.forEach((buyerLotto) => {
-      const rank = LottoComparer.#getLottoRank(buyerLotto, lotto, bonusNumber);
+    this.buyer.lotto.forEach((buyerLotto) => {
+      const rank = this.#getLottoRank(buyerLotto);
 
       if (!rank) {
         return;
       }
 
-      result[rank] += 1;
+      ranking[rank] += 1;
     });
 
-    return result;
+    this.ranking = ranking;
   }
 
-  static #getLottoRank(buyerLotto, lotto, bonusNumber) {
-    const matchingLength = LottoComparer.#compareLotto(buyerLotto, lotto);
+  #getLottoRank(buyerLotto) {
+    const matchingLength = this.#compareLotto(buyerLotto, this.lotto.numbers);
 
-    if (matchingLength === RANK_LENGTH.THIRD && buyerLotto.includes(bonusNumber)) {
+    if (this.#isSecondRank(matchingLength, buyerLotto)) {
       return RANK.SECOND;
     }
 
@@ -41,9 +46,17 @@ class LottoComparer {
     return rank;
   }
 
-  static #compareLotto(buyerLotto, lotto) {
-    const matchingNumbers = buyerLotto.filter((number) => lotto.includes(number));
+  #isSecondRank(matchingLength, buyerLotto) {
+    return matchingLength === RANK_LENGTH.THIRD && buyerLotto.includes(this.lotto.bonusNumber);
+  }
+
+  #compareLotto(buyerLotto) {
+    const matchingNumbers = buyerLotto.filter((number) => this.#isIncludeLotto(number));
     return matchingNumbers.length;
+  }
+
+  #isIncludeLotto(number) {
+    return this.lotto.numbers.includes(number);
   }
 }
 

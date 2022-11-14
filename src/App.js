@@ -1,7 +1,7 @@
 const { Console } = require('@woowacourse/mission-utils');
 const { GAME_MESSAGE, RANK_MESSAGE, RANK } = require('./constants/lotto');
-const Lotto = require('./Lotto');
 
+const Lotto = require('./Lotto');
 const LottoBuyer = require('./LottoBuyer');
 const LottoComparer = require('./LottoComparer');
 
@@ -10,9 +10,10 @@ class App {
 
   #lotto;
 
+  #comparer;
+
   play() {
     this.#readMoney();
-    this.#readLottoNumber();
   }
 
   #readMoney() {
@@ -52,6 +53,8 @@ class App {
       App.#validateNumberInput(number);
 
       this.#lotto.setBonusNumber(+number);
+      this.#comparer = new LottoComparer(this.#buyer, this.#lotto);
+      this.#comparer.setBuyerLottoRanking();
 
       this.#printLottoRank();
 
@@ -60,17 +63,11 @@ class App {
   }
 
   #printLottoRank() {
-    const result = LottoComparer.getBuyerLottoRank(
-      this.#buyer.lotto,
-      this.#lotto.numbers,
-      this.#lotto.bonusNumber,
-    );
-
     Console.print(GAME_MESSAGE.RESULT_TITLE);
 
     Object.keys(RANK_MESSAGE).forEach((rankKey) => {
       const rank = RANK[rankKey];
-      Console.print(`${RANK_MESSAGE[rankKey]} ${result[rank]}`);
+      Console.print(`${RANK_MESSAGE[rankKey]} ${this.#comparer.ranking[rank]}`);
     });
   }
 
