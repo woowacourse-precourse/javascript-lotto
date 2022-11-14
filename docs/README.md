@@ -29,16 +29,16 @@
   - [x] throw error when user inputs wrong value
    - [x] duplicates
    - [x] NaN && Non-Positive-Integer
-   - [ ] numbers has to be in range of between 1 to 45
+   - [x] numbers has to be in range of between 1 to 45
 - [x] compare user input to lottery number and print outcome
   - [x] print revenue(%) and result of win or loose
 
 ## Refactor
-- [ ] divide UI logic and main logic in different class
+- [x] divide UI logic and main logic in different class
 - [x] divide constants from main and UI logics
-- [ ] check indent depth and length of functions
-- [ ] check variable and function names
-- [ ] extract functions from logic
+- [x] check indent depth and length of functions
+- [x] check variable and function names
+- [x] extract functions from logic
 
 ## Test
 - [ ] write test cases of each feature except UI logics in jest

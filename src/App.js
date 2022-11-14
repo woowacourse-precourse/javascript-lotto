@@ -1,6 +1,6 @@
 const { Random } = require('@woowacourse/mission-utils');
 const CONSTANT = require('./constant/constants.js');
-const Lotto = require('./lotto/Lotto.js');
+const Lotto = require('./Lotto.js');
 const Log = require('./views/Log.js');
 
 const log = new Log();
@@ -31,12 +31,15 @@ class App {
 
   validateAmount(amount) {
     const { CHECK, ERROR_MSG } = CONSTANT;
-    if (!CHECK.ISNUMBER(amount) || CHECK.ISUNIT(amount))
+    if (!CHECK.IS_NUMBER(amount) || CHECK.IS_UNIT(amount))
       throw new Error(`${ERROR_MSG.WRONG_AMOUNT}`);
   }
 
   generateLotto(num) {
-    this.#lottos = Array.from({ length: num }, () => new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6)));
+    this.#lottos = Array.from(
+      { length: num },
+      () => new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6)),
+    );
   }
 
   resultAndBonusHandler(answer) {
@@ -45,7 +48,7 @@ class App {
   }
 
   compareResults(numbers) {
-    this.#winner = numbers.split(',').map(num => +num);
+    this.#winner = new Lotto(numbers.split(',').map(num => +num)).numbers;
     this.compare();
   }
 

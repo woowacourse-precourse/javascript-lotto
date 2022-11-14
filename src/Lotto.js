@@ -1,4 +1,4 @@
-const CONSTANT = require('../constant/constants.js');
+const CONSTANT = require('./constant/constants.js');
 
 class Lotto {
   #numbers;
@@ -18,9 +18,10 @@ class Lotto {
 
   validate(numbers) {
     const { ERROR_MSG, CHECK } = CONSTANT;
-    if (!CHECK.ISNUMBER(numbers.join(''))) throw new Error(`${ERROR_MSG.NAN}`);
-    if (CHECK.ISLENGTH(numbers)) throw new Error(`${ERROR_MSG.WRONG_LENGTH}`);
-    if (CHECK.ISDUPLICATE(numbers)) throw new Error(`${ERROR_MSG.DUPLICATE}`);
+    if (!CHECK.IS_NUMBER(numbers.join(''))) throw new Error(`${ERROR_MSG.NAN}`);
+    if (CHECK.IS_LENGTH(numbers)) throw new Error(`${ERROR_MSG.WRONG_LENGTH}`);
+    if (CHECK.IS_DUPLICATE(numbers)) throw new Error(`${ERROR_MSG.DUPLICATE}`);
+    if (!CHECK.IS_IN_RANGE(numbers)) throw new Error(`${ERROR_MSG.OUT_OF_RANGE}`);
   }
 
   sort() {

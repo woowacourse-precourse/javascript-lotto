@@ -13,14 +13,16 @@ const CONSTANT = {
     WRONG_AMOUNT: '[ERROR] 올바른 금액을 입력하세요',
     NAN: '[ERROR] 로또 번호는 숫자여야 합니다.',
     WRONG_LENGTH: '[ERROR] 로또 번호는 6개여야 합니다.',
-    DUPLICATE: '[ERROR] 로또 번호는 중복이 없어야 합니다.'
+    DUPLICATE: '[ERROR] 로또 번호는 중복이 없어야 합니다.',
+    OUT_OF_RANGE: '[ERROR] 로또 번호는 1 ~ 45 사이의 숫자여야 합니다.'
   },
 
   CHECK: {
-    ISNUMBER: amount => /^\d+$/.test(amount),
-    ISUNIT: amount => +amount % 1000 !== 0,
-    ISLENGTH: numbers => numbers.length !== 6,
-    ISDUPLICATE: numbers => numbers.length !== new Set(numbers).size
+    IS_NUMBER: amount => /^\d+$/.test(amount),
+    IS_UNIT: amount => +amount % 1000 !== 0,
+    IS_LENGTH: numbers => numbers.length !== 6,
+    IS_DUPLICATE: numbers => numbers.length !== new Set(numbers).size,
+    IS_IN_RANGE: numbers => numbers.every(num => num > 0 && num < 46)
   },
 
   PRIZE_DETAILS: [
