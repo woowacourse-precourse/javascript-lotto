@@ -41,8 +41,7 @@ class LottoGame {
     let lottoCnt = Math.floor(this.#purchaseAmount / LOTTO_VALUE.UNIT);
 
     for (let i = 0; i < lottoCnt; i++) {
-      let lotto = new Lotto(generateRandomNumbers());
-      this.#lottoList.push(lotto);
+      this.#lottoList.push(new Lotto(generateRandomNumbers()));
     }
   }
 }
