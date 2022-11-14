@@ -1,8 +1,8 @@
-const { BASIC_NUMBER } = require('./basic number');
+const BASIC_NUMBER = require('./basic number');
 const { PRIZE, MATCH } = require('./winning number');
 
 const SYSTME_MESSAGE = Object.freeze({
-  PURCHASE_INPUT: '구입 금액을 입력해 주세요.\n',
+  PURCHASE_INPUT: '구입금액을 입력해 주세요.\n',
   PURCHASE_COUNT: (num) => `\n${num}개를 구매했습니다.`,
   WINNING_INPUT: '\n당첨 번호를 입력해 주세요.\n',
   BONUS_INPUT: '\n보너스 번호를 입력해 주세요.\n',
