@@ -1,3 +1,5 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+
 class Lotto {
   #numbers;
 
@@ -20,7 +22,6 @@ class Lotto {
         throw new Error("[ERROR] 1부터 45 사이의 숫자여야 합니다.");
     }
   }
-
 
 }
 
