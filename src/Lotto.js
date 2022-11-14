@@ -12,8 +12,8 @@ class Lotto {
   validate(numbers) {
     if (!Validator.isValidLottoNum(numbers)) return;
     if (!numbers.every((num) => Validator.isValidLottoType(num))) return;
-    if (!Validator.isValidLottoRange(numbers)) return;
-    if (Validator.isDuplicatedLotto(string)) return;
+    if (!Validator.isValidLottoRange(numbers, [1, 45])) return;
+    if (Validator.isDuplicatedLotto(numbers)) return;
   }
 
   static caculateLottoNumPerUnit(price, unit = 1000) {
@@ -22,6 +22,10 @@ class Lotto {
 
   static printLottos(lottos) {
     lottos.forEach((lotto) => Console.print("[" + lotto.join(", ") + "]"));
+  }
+
+  get getNumbers() {
+    return this.#numbers;
   }
 }
 
