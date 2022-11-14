@@ -1,4 +1,4 @@
-const LOTTO = require('./consts/Lotto');
+const { LOTTO } = require('./consts/LottoSystem');
 const { ERROR } = require('./consts/Message');
 const Exception = require('./Exception');
 
@@ -16,12 +16,14 @@ class Lotto {
 
   handleLottoException(numbers) {
     const {
-      LOTTO_NUMBER: { DIGITS, RANGE, UNIQUE },
+      LOTTO_NUMBER: { DIGITS, INTEGER, RANGE, UNIQUE },
     } = ERROR;
 
     switch (false) {
       case this.isCorrectNumberOfDigits(numbers):
         throw Exception.error(DIGITS);
+      case this.isAllInteger(numbers):
+        throw Exception.error(INTEGER);
       case this.isCorrectRange(numbers):
         throw Exception.error(RANGE);
       case this.isUnique(numbers):
@@ -35,6 +37,16 @@ class Lotto {
     }
 
     return false;
+  }
+
+  isAllInteger(numbers) {
+    for (const number of numbers) {
+      if (!Number.isInteger(number)) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
   isCorrectRange(numbers) {

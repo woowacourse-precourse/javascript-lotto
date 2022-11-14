@@ -1,4 +1,4 @@
-const LOTTO = require('./Lotto');
+const { LOTTO } = require('./LottoSystem');
 
 const INPUT = {
   PURCHASE: '구입금액을 입력해 주세요.',
@@ -18,8 +18,13 @@ const ERROR = {
   },
   LOTTO_NUMBER: {
     DIGITS: `로또 번호는 ${LOTTO.NUMBER_OF_DIGITS}개여야 합니다.`,
+    INTEGER: `로또 번호는 정수여야 합니다.`,
     RANGE: `로또 번호는 ${LOTTO.START_NUMBER}과 ${LOTTO.END_NUMBER} 사이의 숫자여야 합니다.`,
     UNIQUE: '로또 번호는 중복되지 않아야 합니다.',
+  },
+  WINNING: {
+    FORM: '당첨 숫자 입력이 형식에 맞지 않습니다.',
+    INTEGER: '당첨 숫자 입력 중 숫자가 아닌 것이 있습니다.',
   },
 };
 
