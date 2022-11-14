@@ -1,12 +1,14 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 class App {
   lottoPrice;
+  lottos;
 
   play() {
-    this.buyLotto();
+    this.getMoney();
+    this.lottos = this.buyLotto(this.lottoPrice / 1000);
   }
 
-  buyLotto() {
+  getMoney() {
     MissionUtils.Console.readLine("구입 금액을 입력해주세요 :", (price) => {
       const isValidInput = this.checkValidPrice(price);
       if (isValidInput == true) {
@@ -27,6 +29,18 @@ class App {
     return true;
   }
 
+  buyLotto(number) {
+    const lottos = [];
+
+    for (let i = 0; i < number; i++) {
+      const lotto = this.generateRandomLotto();
+      MissionUtils.Console.print(lotto);
+      lottos.concat(lotto);
+    }
+
+    return lottos;
+  }
+
   generateRandomLotto() {
     const lotto = [];
     while (lotto.length < 6) {
@@ -35,7 +49,12 @@ class App {
         lotto.push(num);
       }
     }
-    return lotto.sort();
+    lotto.sort(function (a, b) {
+      if (a > b) return 1;
+      if (a === b) return 0;
+      if (a < b) return -1;
+    });
+    return lotto;
   }
 }
 
