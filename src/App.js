@@ -12,9 +12,9 @@ class App {
     Io.inputByUser(QUESTION.purchaseAmout, purchaseMoney => {
       this.#user = new User(purchaseMoney);
       Io.inputByUser(QUESTION.winningNumbers, winninNumbers => {
-        this.#lotto = new Lotto(winninNumbers.split(','));
+        this.#lotto = new Lotto(winninNumbers.split(',').map(Number));
         Io.inputByUser(QUESTION.bonusNumber, bonusNumber => {
-          this.#lotto.setBonusNumber(bonusNumber);
+          this.#lotto.setBonusNumber(+bonusNumber);
         });
       });
     });
