@@ -1,5 +1,6 @@
 const Lotto = require("../src/Lotto");
 const LottoFactory = require("../src/LottoFactory");
+const Lottos = require("../src/Lottos");
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
@@ -46,5 +47,17 @@ describe("로또 팩토리 클래스 테스트", () => {
     const numbers = [6, 5, 4, 3, 2, 1];
     lottoFactory.sortNumber(numbers);
     expect(numbers).toEqual([1, 2, 3, 4, 5, 6]);
+  });
+});
+
+describe("로또들 클래스 테스트", () => {
+  test("로또객체를 정확하게 추가한다.", () => {
+    const lottos = new Lottos();
+    lottos.add(new Lotto([1, 2, 3, 4, 5, 6]));
+    lottos.add(new Lotto([1, 2, 3, 4, 5, 6]));
+
+    expect(
+      lottos.get().filter((lotto) => lotto instanceof Lotto).length
+    ).toEqual(2);
   });
 });
