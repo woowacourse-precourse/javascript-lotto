@@ -26,4 +26,25 @@ describe("로또 클래스 테스트", () => {
       new Lotto([1, 2, 3, 4, 5, 5.5]);
     }).toThrow("[ERROR]");
   });
+
+  test("보너스 번호가 맞는 경우 true를 반환한다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 7]);
+    expect(lotto.isBonus(7)).toEqual(true);
+  });
+
+  test("보너스 번호가 해당 없으면 false를 반환한다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 7]);
+    expect(lotto.isBonus(8)).toEqual(false);
+  });
+
+  test("당첨 번호와 겹치는 만큼의 수를 반환한다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 7]);
+    const luckyNumbers = [1, 2, 3, 4, 9, 10]
+    expect(lotto.countNumberOfMatches(luckyNumbers)).toEqual(4);
+  });
+
+  test("문자열을 반환한다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 7]);
+    expect(lotto.getNumbers()).toEqual("[1, 2, 3, 4, 5, 7]");
+  });
 });

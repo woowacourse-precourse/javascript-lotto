@@ -107,7 +107,6 @@ class App {
       this.luckyNumbers = input.split(',').map(Number);
       this.setBonusNumber();
     });
-
     return;
   }
 
@@ -120,13 +119,17 @@ class App {
   }
 
   winning() {
-    this.match().calculateRevenue().calculateProfit().printResult();
+    this.match()
+      .calculateRevenue()
+      .calculateProfit()
+      .printResult();
   }
 
   match() {
     this.myLottos.map((myLotto) => {
       let numberOfMatch = myLotto.countNumberOfMatches(this.luckyNumbers);
       let isBonus = myLotto.isBonus(this.bonusNumber);
+      
       if (numberOfMatch === 3) {
         this.winningMap.fifthPlace.count += 1;
       } else if (numberOfMatch === 4) {
