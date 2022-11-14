@@ -11,14 +11,15 @@ class Lotto {
   validate(numbers) {
     if(numbers!==undefined){
       console.log(numbers);
-      // 오류 발생 1,3,5,7,9,11 일때 11이 두개로 나눠짐
       if(Number(numbers)>45) throw "[ERROR] 콤마로 구분해주세요"
       if (numbers.length!==6) throw "[ERROR] 6개의 숫자가 아닙니다"
       if(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(numbers)) throw "[ERROR] 한글은 불가능 합니다"
       if(/[a-zA-Z]/g.test(numbers)) throw "[ERROR] 영어는 불가능 합니다"
-      ([...numbers].filter((i)=>i!==',').forEach((num)=>{
-        if(num>'45' || num < '1') throw "[ERROR] 1~45사이의 숫자만 가능합니다."
-      }))
+      numbers.forEach((num)=>{
+        if(Number(num)>45) throw "[ERROR] 45보다 큰 숫자는 불가능합니다"
+      })
+      let len=numbers.filter((v,i)=>numbers.indexOf(v)===i)
+      if(len.length!==6) throw "[ERROR] 중복은 불가능합니다"
     }
   }
 
@@ -36,10 +37,13 @@ class Lotto {
     });
   }
   checkInputMoney(money){
-    let numberMoney=Number(money)
-    if(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(numberMoney)) throw "[ERROR] 한글 불가능"
-    if(/[a-zA-Z]/g.test(numberMoney)) throw "[ERROR] 영어 불가능"
-    this.createLottoNumArrays(numberMoney)
+    console.log(money);
+    console.log(money[0]);
+    if(money[0]==='0') throw "[ERROR] 앞자리 0 불가능"
+    if(Number(money)%1000!==0) throw "[ERROR] 1000원 단위로 입력해주세요"
+    // if(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(money)) throw "[ERROR] 한글 불가능"
+    // if(/[a-zA-Z]/g.test(money)) throw "[ERROR] 영어 불가능"
+    this.createLottoNumArrays(money)
   }
 
   getUserLottoNumber(computerNumberArray,amountOfMoney) {
