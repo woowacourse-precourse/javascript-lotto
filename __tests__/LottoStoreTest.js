@@ -1,11 +1,10 @@
-const { isValidLottoNumbers } = require('../../backup/src/new/util/utils');
+const LottoStore = require('../src/LottoStore');
+const Lotto = require('../src/Lotto');
 const {
   MIN_LOTTO_NUMBER,
   MAX_LOTTO_NUMBER,
   VALID_LOTTO_NUMBER_LENGTH
 } = require('../src/constants/numbers');
-const LottoStore = require('../src/LottoStore');
-const Lotto = require('../src/Lotto');
 
 describe('로또스토어 클래스 테스트', () => {
   const lottoStore = new LottoStore();
@@ -56,7 +55,7 @@ describe('로또스토어 클래스 테스트', () => {
   });
 
   test('로또 생성 시 새로운 Lotto 객체의 인스턴스가 생성된다', () => {
-    const lotto = getNewLotto();
+    const lotto = lottoStore.getNewLotto();
     expect(lotto instanceof Lotto).toBeTruthy();
   });
 });
