@@ -1,4 +1,9 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const FIFTH_PRIZE = 5000;
+const FOURTH_PRIZE = 50000;
+const THIRD_PRIZE = 1500000;
+const SECOND_PRIZE = 30000000;
+const FIRST_PRIZE = 2000000000;
 
 class App {
   constructor(){ //변수선언
@@ -130,15 +135,8 @@ class App {
   }
 
   getRateOfReturn(){ //수익률 계산하기
-    let fifthPrize = 5000;
-    let fourthPrize = 50000;
-    let thirdPrize = 1500000;
-    let secondPrize = 30000000;
-    let firstPrize = 2000000000;
-
-    this.RateOfReturn = (this.fifth*fifthPrize + this.fourth*fourthPrize + this.third*thirdPrize + this.second*secondPrize + this.first*firstPrize) / this.lottoMoney * 100; //수익률
+    this.RateOfReturn = (this.fifth*FIFTH_PRIZE + this.fourth*FOURTH_PRIZE + this.third*THIRD_PRIZE + this.second*SECOND_PRIZE + this.first*FIRST_PRIZE) / this.lottoMoney * 100; //수익률
     this.roundOffRateOfReturn();
-    
   }
 
   roundOffRateOfReturn(){ //수익률 반올림하기
