@@ -25,9 +25,6 @@ class App {
     MissionUtils.Console.readLine(`\n${Message.INPUT_MESSAGE.PRIZE}\n`, (prizeNumber) => {
       const przNum = prizeNumber.split(',');
       DetectError.prototype.checkPrizNumber(przNum);
-      // if (przNum.length !== 6) {
-      //   throw new Error(`${Message.ERROR_MESSAGE.COMMA}`);
-      // }
       new Lotto(przNum);
       this.bonusInput(user, przNum, userMoney);
     });
@@ -162,8 +159,5 @@ class App {
     MissionUtils.Console.print(`총 수익률은 ${result}%입니다.`);
   }
 }
-
-const game = new App();
-game.play();
 
 module.exports = App;
