@@ -48,4 +48,8 @@ function validateLotto(numbers){
     validateOverlap(numbers);
 }
 
-module.exports = {print, scan, ascSort, validateLotto};
+function onlyNumber(x){
+    if(isNaN(Number(x))) throw new Error("[ERROR] 숫자가 아닙니다.");
+}
+
+module.exports = {print, scan, ascSort, validateLotto, onlyNumber};

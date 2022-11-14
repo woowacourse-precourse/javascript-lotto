@@ -5,12 +5,14 @@ class Lotto {
   #numbers;
   #same;
   #bonus;
+  rank;
 
   constructor(numbers) {
     utils.validateLotto(numbers);
     this.#numbers = numbers;
     this.#same = 0;
     this.#bonus = false;
+    this.rank = 0;
   }
 
   // 당첨된 번호 갯수 반환하는 함수
@@ -39,7 +41,23 @@ class Lotto {
     }
   }
 
-  // 수익금
+  // 순위
+  calcRanking(winnings, bonus) {
+    this.calcWinning(winnings);
+    this.matchBonus(bonus);
+
+    if (this.#same !== 5) {
+      this.rank = Constant.WINNER[this.#same];
+    }
+    else if(this.#same === 5 && this.#bonus){
+      this.rank = Constant.WINNER["5"].bonus;
+    }else if(this.#same === 5 && !this.#bonus){
+      this.rank = Constant.WINNER["5"].notBonus;
+    }
+    else{
+      this.rank = { rank : 0, winnings : 0 };
+    }
+  }
 }
 
 module.exports = Lotto;
