@@ -19,7 +19,7 @@ class LottoManager {
   printLottosStatus() {
     Console.print(`${this.#lottos.length}개를 구매했습니다.`);
     this.#lottos.forEach((lotto) => {
-      Console.print(lotto.getNumbers());
+      Console.print(`[${lotto.getNumbers().join(", ")}]`);
     });
   }
 
