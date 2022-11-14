@@ -1,10 +1,10 @@
 class JudgeLotto {
   static compareLotto({ lottos, wins, bonus }) {
-    const winAndBonus = [];
+    const results = [];
     lottos.forEach((lotto) => {
-      winAndBonus.push(JudgeLotto.#checkWin({ lotto, wins, bonus }));
+      results.push(JudgeLotto.#checkWin({ lotto, wins, bonus }));
     });
-    return winAndBonus;
+    return results;
   }
 
   static #checkWin({ lotto, wins, bonus }) {
