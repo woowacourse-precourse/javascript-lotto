@@ -12,6 +12,7 @@ class LottoList {
     this.validateMoney(money);
     this.lottoCount = money / 1000;
     this.setLotto(this.lottoCount);
+    this.bonusNumber = null;
   }
   throwError(money) {
     if (money < 1000) {
@@ -47,6 +48,15 @@ class LottoList {
   }
   checkWinningNumbers(numbers) {
     checkValidation.checkLottoList(numbers);
+  }
+  setBonusNumber(number) {
+    number = Number(number);
+    this.checkBonusNumber(number);
+
+    this.bonusNumber = number;
+  }
+  checkBonusNumber(number) {
+    checkValidation.checkBonusNumber(number, this.winningNumberList);
   }
 }
 

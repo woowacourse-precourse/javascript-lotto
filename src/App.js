@@ -14,11 +14,17 @@ class App {
       this.lottos.printLottoCount();
       this.lottos.printLottoList();
       this.setWinningNumbers();
+      this.requestBonus();
     });
   }
   setWinningNumbers() {
     Console.readLine("\n당첨 번호를 입력해 주세요.\n", (winningNumbers) => {
       this.lottos.setWinningNumbers(winningNumbers);
+    });
+  }
+  requestBonus() {
+    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusNumber) => {
+      this.lottos.setBonusNumber(bonusNumber);
     });
   }
 }
