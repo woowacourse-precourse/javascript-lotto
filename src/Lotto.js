@@ -1,3 +1,8 @@
+const errorCheck = require('./utils/ExceptionCheck');
+const calculate = require('./model/Calculation');
+const {MONEY} = require('./utils/Constants');
+const {printResult} = require('./utils/Print');
+
 class Lotto {
   #numbers;
 
@@ -7,12 +12,24 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+    errorCheck.answerNumCheck(numbers);
   }
 
-  // TODO: 추가 기능 구현
+  printOfResultFromCalc(lottos, answers, bonusNum, baseMoney){
+    const answerToNumArr = ans => ans.map(Number);
+    const winLotteryAfterCalc = (calculate.testAllLottos(lottos, answerToNumArr(answers), bonusNum));
+    const rateOfprofit = this.yieldCalculation(winLotteryAfterCalc, baseMoney);
+    printResult(winLotteryAfterCalc, rateOfprofit);
+  }
+  
+  yieldCalculation(winLottery, baseMoney){
+    const moneyEachSuccess = winLottery.map((value,idx) => {
+      return value * MONEY.MONEY_SUCCESS[idx];
+    })
+    const sumOftotal = moneyEachSuccess.reduce((a,b) => (a+b));
+    return (sumOftotal*100/baseMoney).toFixed(1);
+  }
+
 }
 
 module.exports = Lotto;
