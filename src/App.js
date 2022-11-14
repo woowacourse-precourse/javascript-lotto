@@ -4,7 +4,7 @@ class App {
   play() {
     this.inputBuyPrice((price) => {
       if (price % 1000 !== 0) {
-        throw new Error("[ERROR] 복권 구매 금액 맞지 않음");
+        throw new Error("[ERROR] 복권 구매 금액 오류");
       }
       const lottoLength = price / 1000;
       const lottos = buyLottos(lottoLength);
