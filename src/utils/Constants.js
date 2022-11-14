@@ -38,9 +38,13 @@ const NUMBERS = Object.freeze({
 });
 
 const RESULT_MESSAGES = Object.freeze({
-  WINNING_STATISTICS: "\n당첨 통계\n---",
-  TOTAL_PROFIT_RATE: (profit, payment) =>
-    `총 수익률은 ${((profit / payment) * 100).toFixed(1)}%입니다.`,
+  WINNING_STATISTICS: "\n당첨통계\n---",
+  TOTAL_PROFIT_RATE: (profit, payment) => {
+    if (profit === 0) {
+      return "총 수익률은 0.0%입니다.";
+    }
+    return `총 수익률은 ${((profit / payment) * 100).toFixed(1)}%입니다.`;
+  },
   PRINT_RESULT: (count, match) =>
     `${count[0]}개 일치 (5,000원) - ${match[0]}개
 ${count[1]}개 일치 (50,000원) - ${match[1]}개
