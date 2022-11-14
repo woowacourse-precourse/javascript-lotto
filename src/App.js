@@ -94,4 +94,13 @@ class App {
     })
   }
 
+  setRandomLottoNumber() {
+    let randomLotto;
+
+    for(let i = 0; i<this.lottoCount; i++) {
+      randomLotto = Random.pickUniqueNumbersInRange(1, 45, 6);
+      this.lottoInfo.push(randomLotto);
+    }
+  }
+
 module.exports = App;
