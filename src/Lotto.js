@@ -3,9 +3,9 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class Lotto {
   #numbers;
 
-  constructor(numbers, BONUS_NUMBER, MONEY) {
+  constructor(MONEY, numbers, BONUS_NUMBER) {
     this.validate(numbers);
-    this.errorHandler(numbers, BONUS_NUMBER, MONEY);
+    this.errorHandler(MONEY, numbers, BONUS_NUMBER);
 
     this.#numbers = numbers;
     this.BONUS_NUMBER = BONUS_NUMBER;
@@ -36,7 +36,7 @@ class Lotto {
     }
   }
   
-  errorHandler(numbers, BONUS_NUMBER, MONEY) {
+  errorHandler(MONEY, numbers, BONUS_NUMBER) {
     if (BONUS_NUMBER < 1 | BONUS_NUMBER > 45) {
       throw new Error("[ERROR] 1 ~ 45까지의 숫자만 입력할 수 있습니다.");
     }
