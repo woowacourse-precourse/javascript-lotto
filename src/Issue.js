@@ -4,7 +4,7 @@ const Validation = require('./Validation');
 class Issue {
   purchase() {
     Console.readLine('구입금액을 입력해 주세요.', (inputValue) => {
-      new Validation().purchaseValue(inputValue);
+      new Validation().purchaseInputValue(inputValue);
       this.purchaseCount = Math.floor(Number(inputValue) / 1000);
       Console.close();
       this.list();
