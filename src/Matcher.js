@@ -1,3 +1,5 @@
+const { MATCH_NUM } = require('./constant');
+
 class Match {
   constructor() {
     this.money = 0;
@@ -24,17 +26,17 @@ class Match {
 
   matchBonusNumber(fiveMatchLotto) {
     if (fiveMatchLotto.includes(this.bonusNumber[0])) {
-      return this.setPrize(7);
+      return this.setPrize(MATCH_NUM.IS_FIVE_BONUS);
     }
-    return this.setPrize(5);
+    return this.setPrize(MATCH_NUM.IS_FIVE);
   }
 
   setPrize(match) {
-    if (match === 6) this.lottoWinnerNumber[0] += 1;
-    if (match === 7) this.lottoWinnerNumber[1] += 1;
-    if (match === 5) this.lottoWinnerNumber[2] += 1;
-    if (match === 4) this.lottoWinnerNumber[3] += 1;
-    if (match === 3) this.lottoWinnerNumber[4] += 1;
+    if (match === MATCH_NUM.IS_SIX) this.lottoWinnerNumber[0] += 1;
+    if (match === MATCH_NUM.IS_FIVE_BONUS) this.lottoWinnerNumber[1] += 1;
+    if (match === MATCH_NUM.IS_FIVE) this.lottoWinnerNumber[2] += 1;
+    if (match === MATCH_NUM.IS_FIVE) this.lottoWinnerNumber[3] += 1;
+    if (match === MATCH_NUM.IS_THREE) this.lottoWinnerNumber[4] += 1;
     return this.lottoWinnerNumber;
   }
 }
