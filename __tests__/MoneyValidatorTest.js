@@ -1,4 +1,4 @@
-const { MoneyValidator } = require('../src/utils/Validator');
+const MoneyValidator = require('../src/validator/MoneyValidator');
 
 describe('로또 클래스 테스트', () => {
   test('로또 구입 금액이 숫자가 아닐 경우 예외가 발생한다.', () => {

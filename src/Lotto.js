@@ -1,5 +1,5 @@
 const { ERROR_MESSAGE } = require('./constant');
-const { LottoValidator, BonusValidator } = require('./utils/Validator');
+const LottoValidator = require('./validator/LottoValidator');
 
 class Lotto {
   #numbers;
