@@ -144,7 +144,31 @@
 
 <br>
 
-# 🔧 도메인 클래스별 메소드 설명
+# 🔧 도메인 클래스별 생성자, 메소드 설명
+
+### 🎱 Lotto Class
+
+로또 번호를 저장하는 로또 클래스
+
+`constructor(numbers)`
+
+- 생성자로 번호들을 담은 배열을 입력받고 필드로 저장한다.
+- 번호 배열의 길이가 6이 아니라면 예외 처리한다.
+- 번호의 값이 서로 중복되면 예외 처리한다.
+- 각 번호가 1~45 사이의 값이 아니라면 예외 처리한다.
+- parameter type: `Array<number>`
+
+### 🏆 WinningLotto Class
+
+당첨 번호와 보너스 번호를 저장하는 당첨 로또 클래스  
+Lotto 클래스를 상속받는다.
+
+`constructor(numbers, bonusNumber)`
+
+- 생성자로 번호들을 담은 배열과 보너스 번호를 입력받고 필드로 저장한다.
+- 번호 배열은 super 생성자로 저장한다.
+- 보너스 번호가 1~45 사이의 값이 아니라면 예외 처리한다.
+- parameter type: `Array<number>, number`
 
 ### 🎰 LottoMachine Class
 
