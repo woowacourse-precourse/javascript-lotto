@@ -12,4 +12,10 @@ describe('LottoGame 클래스 테스트', () => {
 
     expect(lotto.length).toBe(6);
   });
+
+  test('✨ 유저가 투입한 금액에 해당하는 로또 개수를 반환한다. ', () => {
+    const lottoGame = new LottoGame();
+    const money = 8000;
+    expect(lottoGame.countLottos(money)).toBe(8);
+  });
 });
