@@ -1,8 +1,9 @@
-const OutputUI = require('./OutputUI');
-const InputUI = require('./InputUI');
+const OutputUI = require('./ui/OutputUI');
+const InputUI = require('./ui/InputUI');
 const message = require('./util/message');
 const User = require('./User');
 const Vaildator = require('./Vaildator');
+const LottoGenerator = require('./LottoGenerator');
 
 class App {
   constructor() {
@@ -11,22 +12,18 @@ class App {
     this.user = new User();
   }
 
-  play() {
-    this.inputBuyAmountView();
+  async play() {
+    await this.inputBuyAmountView();
+    this.printUserLottos();
   }
 
-  inputBuyAmountView() {
+  async inputBuyAmountView() {
     this.output.print(message.INPUT_AMOUNT);
-    this.input.inputLine(this.handleInputBuyAmount.bind(this));
-  }
-
-  handleInputBuyAmount(query) {
-    const amount = +query;
-    if (!Vaildator.isRightAmount(amount)) {
-      throw new Error('[ERROR] : 잘못된 금액을 입력했습니다.');
-    }
+    let amount = await this.input
+      .amount()
+      .then((resolve) => resolve)
+      .catch((e) => {});
     this.user.amount = amount;
-    this.input.close();
   }
 }
 
