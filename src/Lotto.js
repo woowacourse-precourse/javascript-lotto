@@ -17,6 +17,7 @@ class Lotto {
     }
   }
 
+
   //중복되지 않는 숫자
   duplicatecheck(numbers){
     for(var i=0 ;i<5;i++){
@@ -37,6 +38,22 @@ class Lotto {
 
   getnumber(){
     return this.#numbers;
+  }
+
+  calculate_match(winning_numbers, k){
+    var numbers = this.#numbers;
+    //k만큼 일치하는지 확인해야함
+    var count = 0;
+    for (var i =0;i<6;i++){
+      if (numbers.includes(parseInt(winning_numbers.#numbers[i]))) count++;
+    }
+
+    if (count == k) return true;
+  }
+
+  bonus_match(bonus_number){
+    var numbers = this.#numbers;
+    if(numbers.includes(bonus_number)) return true;
   }
   
   print_numbers(){
