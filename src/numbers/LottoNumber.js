@@ -1,5 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const CompareNumber = require("../process/CompareNumber");
+const Lotto = require("../Lotto");
 
 class LottoNumber {
   constructor(inputLottoNumbers, inputBonusNumbers, computerNumbers) {
@@ -7,6 +8,7 @@ class LottoNumber {
     this.inputBonusNumbers = inputBonusNumbers;
     this.computerNumbers = computerNumbers;
     this.compareNumber = new CompareNumber();
+    this.Lotto = new Lotto();
   }
 
   lottoNumbers(computerNumbers) {
@@ -15,9 +17,14 @@ class LottoNumber {
       (inputNumbers) => {
         this.inputLottoNumbers = inputNumbers.split(",").map(Number);
         this.computerNumbers = computerNumbers;
+        this.lottoNumbersError();
         this.bonusNumber();
       }
     );
+  }
+
+  lottoNumbersError() {
+    this.Lotto.validate(this.inputLottoNumbers);
   }
 
   bonusNumber() {
