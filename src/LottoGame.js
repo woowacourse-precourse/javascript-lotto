@@ -42,6 +42,14 @@ class LottoGame {
         lotto.getNumbers().includes(number) && lottos.matchingNumber[index]++;
       });
     });
+
+    lottos.matchingNumber.forEach((number, index) => {
+      if (number === 5) {
+        if (lottos.lottos[index].numbers.includes(Number(bonusNumber))) {
+          lottos.matchingNumber[index] = "5+1";
+        }
+      }
+    });
   }
 
   receiveLottoNumbers(lottos, money) {
