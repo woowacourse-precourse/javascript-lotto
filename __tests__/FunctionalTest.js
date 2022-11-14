@@ -31,18 +31,6 @@ describe("1 ~ 45사이의 임의의 숫자 6개를 생성후 오름차순으로 
   });
 });
 
-describe("입력값 % 1000 개 만큼의 로또를 만들수 있다", () => {
-  test("입력값에 따른 로또 객체 생성", () => {
-    const app = new App();
-    app.makeLottos(5);
-    MissionUtils.Console.close();
-    expect(app.lottos.get().length).toEqual(5);
-    expect(
-      app.lottos.get().filter((lotto) => lotto instanceof Lotto).length
-    ).toEqual(5);
-  });
-});
-
 describe("생성한 로또와 입력된 당첨번호, 보너스 번호를 비교하여 등수를 계산할수 있다.", () => {
   test("5등 당첨번호 3개 일치한 경우", () => {
     const lotto = new Lotto([1, 2, 3, 14, 15, 16]);
