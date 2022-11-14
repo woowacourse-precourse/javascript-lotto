@@ -38,6 +38,17 @@ class Lotto {
     this.bonusNumber = number;
   }
 
+  getResult(IssuedLottoes) {
+    let prizeRecord = { '1등': 0, '2등': 0, '3등': 0, '4등': 0, '5등': 0 };
+    IssuedLottoes.forEach((IssuedLotto) => {
+      const prize = this.checkPrize(IssuedLotto);
+      if (prize) {
+        prizeRecord[prize] += 1;
+      }
+    });
+    return prizeRecord;
+  }
+
   checkPrize(IssuedLotto) {
     const matchingCount = this.countMatchingNumber(IssuedLotto);
     if (matchingCount === 6) {
