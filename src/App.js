@@ -21,9 +21,26 @@ class App {
 
   inputLotto() {
     Console.readLine(MESSAGES.INPUT_LOTTO_NUMBERS, (numbers) => {
-      const splittedNumbers = numbers.split(',');
+      const splittedNumbers = numbers.split(',').map(Number);
       this.store.setLottos(splittedNumbers);
+
+      this.inputBonus();
     });
+  }
+
+  inputBonus() {
+    Console.readLine(MESSAGES.INPUT_BONUS_NUMBER, (number) => {
+      this.store.setBonus(Number(number));
+      this.showResult();
+    });
+  }
+
+  showResult() {
+    const correctPoints = this.store.getCorrectCount();
+    const winningRate = this.store.getWinningRate(correctPoints);
+
+    Console.print(MESSAGES.WINNING_STATS(correctPoints, winningRate));
+    Console.close();
   }
 }
 

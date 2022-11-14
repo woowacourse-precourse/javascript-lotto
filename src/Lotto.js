@@ -11,8 +11,20 @@ class Lotto {
   #bonus = 1;
 
   constructor(numbers) {
-    this.#numbers = numbers;
     this.#validate(numbers);
+    this.#numbers = numbers;
+  }
+
+  setBonus(number) {
+    this.#validateBonus(number);
+    this.#bonus = number;
+  }
+
+  getLotto() {
+    return {
+      winningNumbers: this.#numbers,
+      bonus: this.#bonus,
+    };
   }
 
   #validate(numbers = []) {
