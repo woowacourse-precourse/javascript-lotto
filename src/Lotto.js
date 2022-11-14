@@ -49,10 +49,7 @@ class Lotto {
     return true;
   };
   getWinningNumber = (input) => {
-    const winningNumber = [];
-    for (let i = 0; i < input.length; i++) {
-      winningNumber.push(Number(input[i]));
-    }
+    const winningNumber = input.split(",").map((x) => Number(x));
     this.validateWinningNumber(winningNumber);
     Console.print(winningNumber);
     return winningNumber;
@@ -112,17 +109,17 @@ class Lotto {
   calculateRateOfReturn = (result, cost) => {
     let rate = 0;
 
-    const returned = 4000;
-    // NUMBERS.FIFTH_PRIZE * result.fifth +
-    // NUMBERS.FOURTH_PRIZE * result.fourth +
-    // NUMBERS.THIRD_PRIZE * result.third +
-    // NUMBERS.SECOND_PRIZE * result.second +
-    // NUMBERS.FIRST_PRIZE * result.first;
+    const returned =
+      NUMBERS.FIFTH_PRIZE * result.fifth +
+        NUMBERS.FOURTH_PRIZE * result.fourth +
+        NUMBERS.THIRD_PRIZE * result.third +
+        NUMBERS.SECOND_PRIZE * result.second +
+        NUMBERS.FIRST_PRIZE * result.first || 0;
     const purchased = Number(cost);
 
-    rate = (purchased / returned) * 100;
+    rate = (returned / purchased) * 100;
 
-    return rate;
+    return Number(rate.toFixed(1));
   };
 
   getResultMessage = (userInput, cost) => {

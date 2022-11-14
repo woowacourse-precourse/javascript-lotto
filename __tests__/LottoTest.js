@@ -67,8 +67,20 @@ describe("로또 클래스 테스트", () => {
       })
     );
   });
-  // // 아래에 추가 테스트 작성 가능
-  // test("각 로또 번호는 1~45 사이의 숫자이다", () => {});
-  // test("로또번호는 오름차순(작은수부터 정렬)으로 생성된다.", () => {});
-  // test("로또 구입 금액을 입력하면 구입 금액에 해당하는 만큼 발행한 로또 수량 및 번호를 출력한다.", () => {});
+  test("로또 구입 금액과 당첨액을 비교하여 수익률을 계산한다.(단, 수익률은 소숫점 둘째 자리에서 반올림한다.)", () => {
+    const tempCost = 30000;
+    const result = [
+      { fifth: 1, fourth: 0, third: 0, second: 0, first: 0 },
+      { fifth: 0, fourth: 0, third: 1, second: 0, first: 0 },
+      { fifth: 0, fourth: 0, third: 0, second: 0, first: 1 },
+      { fifth: 0, fourth: 1, third: 0, second: 1, first: 0 },
+    ];
+    const expected = [16.7, 5000, 6666666.7, 100166.7];
+
+    for (let i = 0; i < result.length; i++) {
+      expect(
+        new Lotto(tempCost, [[]]).calculateRateOfReturn(result[i], tempCost)
+      ).toBe(expected[i]);
+    }
+  });
 });
