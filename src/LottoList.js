@@ -11,9 +11,15 @@ class LottoList {
   }
   publish() {
     for (let num = 0; num < this.count; num++) {
-      const newLotto = new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6));
+      const newLotto = this.createNewLotto();
       this.list.push(newLotto);
     }
+  }
+  createNewLotto() {
+    const newNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+    validation.checkNumberList(newNumbers);
+
+    return new Lotto(newNumbers);
   }
   printCount() {
     Console.print(`\n${this.count}개를 구매했습니다.`);
