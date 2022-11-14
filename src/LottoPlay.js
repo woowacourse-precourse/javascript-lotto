@@ -8,17 +8,44 @@ class LottoPlay {
   // Lotto 게임 기능 구현하는 클래스.
   constructor() {}
   play() {
-    const purchaseAmount = UserInterface.purchaseRequest(); // 구입 금액 입력.
-    CheckError.checkPurchaseAmount(purchaseAmount); //
+    const purchaseAmount = this.purchaseStep();
+    const lottoArray = this.createLottoStep(purchaseAmount);
+    const [winnerNumberArray, bonusNumber] = this.winnerNumberRequestStep();
+    this.statisticStep(
+      purchaseAmount,
+      lottoArray,
+      winnerNumberArray,
+      bonusNumber
+    );
+  }
+
+  purchaseStep() {
+    // 가격을 입력하고 구입할 로또 수량을 리턴하는 함수.
+    const purchaseAmount = UserInterface.purchaseRequest();
+    CheckError.checkPurchaseAmount(purchaseAmount);
+    return purchaseAmount;
+  }
+
+  createLottoStep(purchaseAmount) {
+    // 구입한 로또 수량 만큼의 로또 번호들을 만드는 함수.
     const lottoNumber = this.purchaseLotto(purchaseAmount);
     UserInterface.printLottoNumber(lottoNumber);
     const lottoArray = this.createLottoArray(lottoNumber);
     CheckError.checkLottoSort(lottoArray);
     UserInterface.printLottoArray(lottoArray);
+    return lottoArray;
+  }
+
+  winnerNumberRequestStep() {
+    // 당첨 번호와 보너스 번호를 입력받는 함수.
     const winnerNumber = UserInterface.winnerNumberRequest();
     const winnerNumberArray = CheckError.checkWinnerNumber(winnerNumber);
     const bonusNumber = UserInterface.bonusNumberRequest();
     CheckError.checkBonusNumber(bonusNumber, winnerNumberArray);
+    return [winnerNumberArray, bonusNumber];
+  }
+
+  statisticStep(purchaseAmount, lottoArray, winnerNumberArray, bonusNumber) {
     this.#resultArray = this.compareWholeLotto(
       lottoArray,
       winnerNumberArray,
