@@ -1,4 +1,5 @@
 const { ERROR } = require('./lib/constants/error');
+const { LOTTO } = require('../src/lib/constants/lotto');
 
 class WinningNumbers {
   #winningNumbers;
@@ -35,7 +36,8 @@ class WinningNumbers {
   hasOutOfBoundNumber(winningNumbers) {
     return winningNumbers.some(
       winningNumber =>
-        parseInt(winningNumber, 10) < 1 || parseInt(winningNumber, 10) > 45,
+        parseInt(winningNumber, 10) < LOTTO.MIN_NUMBER_LIMIT ||
+        parseInt(winningNumber, 10) > LOTTO.MAX_NUMBER_LIMIT,
     );
   }
 
@@ -44,7 +46,7 @@ class WinningNumbers {
   }
 
   isNotLottoLength(winningNumbers) {
-    return winningNumbers.length !== 6;
+    return winningNumbers.length !== LOTTO.NUMBER_COUNT;
   }
 
   initBonusNumber(bonusNumberInput) {
@@ -68,7 +70,7 @@ class WinningNumbers {
   }
 
   isOutOfBound(number) {
-    return number < 1 || number > 45;
+    return number < LOTTO.MIN_NUMBER_LIMIT || number > LOTTO.MAX_NUMBER_LIMIT;
   }
 
   isDuplicateWinningNumber(number) {
