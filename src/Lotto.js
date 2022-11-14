@@ -11,17 +11,30 @@ class Lotto {
     this.#numbers = numbers;
     this.money;
     this.lottos = [];
-    this.userNumbers;
+    this.userNumbers = [];
     this.bonusNum;
   }
 
   validate(numbers) {
+    const outOfRange = (num) => {
+      if (num > 45 || num < 1) return true;
+    };
     if (Array.isArray(numbers)) {
       if (numbers.length !== 6) {
         throw new Error(Constant.ERROR_MESSAGE.numberLength);
       }
       if (new Set(numbers).size !== 6) {
         throw new Error(Constant.ERROR_MESSAGE.uniqueNumber);
+      }
+      if (numbers.some(outOfRange)) {
+        throw new Error(Constant.ERROR_MESSAGE.outOfRange);
+      }
+    } else {
+      if (this.userNumbers?.includes(this.bonusNum)) {
+        throw new Error(Constant.ERROR_MESSAGE.uniqueNumber);
+      }
+      if (this.bonusNum > 45 || this.bonusNum < 1) {
+        throw new Error(Constant.ERROR_MESSAGE.outOfRange);
       }
     }
   }
@@ -59,27 +72,23 @@ class Lotto {
   }
 
   getUserNumbers() {
-    Console.readLine(`${Constant.INPUT_MESSAGE.userNumbers}\n`, (answer) => {
+    Console.readLine(`\n${Constant.INPUT_MESSAGE.userNumbers}\n`, (answer) => {
+      this.validate(answer);
       this.userNumbers = answer.split(",");
-      if (this.userNumbers.length !== 6) {
-        throw new Error(Constant.ERROR_MESSAGE.numberLength);
-      }
-      if (new Set(this.userNumbers).size !== 6) {
-        throw new Error(Constant.ERROR_MESSAGE.uniqueNumber);
-      }
+      Console.print(this.userNumbers);
 
       this.getUserBonusNumber();
     });
   }
 
   getUserBonusNumber() {
-    Console.readLine(`${Constant.INPUT_MESSAGE.bonusNumber}\n`, (answer) => {
+    Console.readLine(`\n${Constant.INPUT_MESSAGE.bonusNumber}\n`, (answer) => {
       this.bonusNum = answer;
-      if (this.userNumbers.includes(this.bonusNum)) {
-        throw new Error(Constant.ERROR_MESSAGE.uniqueNumber);
-      }
+      this.validate(this.bonusNum);
     });
   }
+
+  winLottoCount() {}
 }
 
 module.exports = Lotto;

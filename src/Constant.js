@@ -8,6 +8,7 @@ const ERROR_MESSAGE = {
   moneyUnit: "[ERROR] 1,000원 단위로 입력해 주세요.",
   uniqueNumber: "[ERROR] 중복된 번호가 있습니다.",
   numberLength: "[ERROR] 로또 번호는 6개여야 합니다.",
+  outOfRange: "[ERROR] 번호는 1부터 45사이의 숫자여야 합니다.",
 };
 
 const OUTPUT_MESSAGE = {
