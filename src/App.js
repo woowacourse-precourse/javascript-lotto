@@ -13,16 +13,16 @@ class App {
     buy.printRandomLotto(randomLottos);
 
     // 당첨 번호 및 보너스 번호 입력
-    const winningNumber = buy.inputLottoNumbers();
+    const winningNumbers = buy.inputLottoNumbers();
     const bonusNumber = buy.inputBonusNumber();
-    new Lotto(winningNumber, bonusNumber); // 유효성 검사
+    new Lotto(winningNumbers, bonusNumber); // 유효성 검사
     
-    MissionUtils.Console.print(`randomLottos`);
-    MissionUtils.Console.print(`winningNumber`);
-    MissionUtils.Console.print(`bonusNumber`);
+    MissionUtils.Console.print(randomLottos);
+    MissionUtils.Console.print(winningNumbers);
+    MissionUtils.Console.print(bonusNumber);
 
     // 당첨 결과
-    // new Winning();
+    new Winning(randomLottos, winningNumbers, bonusNumber);
   }
 }
 

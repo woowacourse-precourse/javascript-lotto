@@ -4,7 +4,6 @@ class Winning {
     constructor(randomLottos, winningNumbers, bonusNumber) {
         this.printWinningAnnouncement();
         this.calculateGradeCount(randomLottos, winningNumbers, bonusNumber);
-        
     }
 
     printWinningAnnouncement() {
@@ -35,11 +34,12 @@ class Winning {
         let gradeCounts = new Array(5).fill(0); // [5등, 4등, 3등, 2등, 1등]
 
         for(let i = 0; i < randomLottos.length; i++) {
-            const correctCount = calculateCorrectCount(randomLottos[i], winningNumbers, bonusNumber);
+            const correctCount = this.calculateCorrectCount(randomLottos[i], winningNumbers, bonusNumber);
 
-            gradeCounts[correctCount - 3]++;
+            if(correctCount >= 3)
+                gradeCounts[correctCount - 3]++;
         }
-        printWinningHistory(gradeCounts);
+        this.printWinningHistory(gradeCounts);
     }
 
     printWinningHistory(gradeCounts) {
@@ -51,7 +51,7 @@ class Winning {
             '6개 일치 (2,000,000,000원) - '
         ];
 
-        for(let i = 0; gradeCounts.length; i++) {
+        for(let i = 0; i < gradeCounts.length; i++) {
             MissionUtils.Console.print(`${WinningAnouncement[i]}${gradeCounts}개`);
         }
     }
