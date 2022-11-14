@@ -1,6 +1,16 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
+
+
+function getWinningNumbers(guessNumbersTotal, numOfTickets) { 
+  MissionUtils.Console.readLine("\n당첨 번호를 입력해 주세요.\n", (userInput) => {
+    const winningNumArray = userInput.split(",").map((number) => Number(number));
+    (() => new Lotto(winningNumArray))()
+    compareGuessAndWinning(guessNumbersTotal, winningNumArray, numOfTickets);
+  });
+}
+
 function numArraytoStringArray (numArray) {
   const stringArray = [];
   for (let i = 0; i < numArray.length; i += 1) {
