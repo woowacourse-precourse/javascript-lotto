@@ -1,9 +1,5 @@
-const { ERROR } = require("../src/utils/constants");
-const {
-  isOutOfRange,
-  hasDuplicate,
-  generateRandomNumbers,
-} = require("../src/utils/utils");
+const { ERROR } = require('../src/utils/constants');
+const { isOutOfRange, hasDuplicate, generateRandomNumbers } = require('../src/utils/utils');
 
 class Lotto {
   #numbers;
@@ -19,7 +15,7 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
     }
 
     if (numbers.some(isOutOfRange)) {
@@ -32,7 +28,7 @@ class Lotto {
   }
 
   toString() {
-    return `[${this.#numbers.join(", ")}]`;
+    return `[${this.#numbers.join(', ')}]`;
   }
 
   static createAutoLotto() {
