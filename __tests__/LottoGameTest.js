@@ -72,3 +72,9 @@ describe("LottoGame 클래스 calculateEarning 함수 테스트", () => {
     ).toEqual(1505000);
   });
 });
+
+describe("LottoGame 클래스 getEarningRate 함수 테스트", () => {
+  test("수익에 따른 수익률을 계산한다.", () => {
+    expect(new LottoGame().getEarningRate(5000, 8000)).toEqual(62.5);
+  });
+});
