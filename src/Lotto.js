@@ -9,11 +9,11 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== NUMBER.LOTTO) {
+    if (numbers.length !== NUMBER.LOTTO_NUMBER) {
       throw new Error(ERROR.LOTTO_COUNT);
     }
 
-    if (new Set(numbers).size !== NUMBER.LOTTO){
+    if (new Set(numbers).size !== NUMBER.LOTTO_NUMBER){
       throw new Error(ERROR.LOTTO_OVERLAP);
     }
     

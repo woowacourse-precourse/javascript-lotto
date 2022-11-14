@@ -28,6 +28,7 @@ class Lottery {
     this.#lottoStore.getAutoLotto().map((numbers) => {
       print(numbers);
     });
+    this.getLottoNumber();
   }
 
   getLottoNumber() {
