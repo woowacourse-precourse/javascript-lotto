@@ -1,6 +1,18 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
+function compareGuessandBounus(guessNumbersTotal, matchCountTotal, bonusNumber, numOfTickets) {
+  const bonusMatchTotal = matchCountTotal.map(
+    (matchCount, index) => {
+      if (matchCount !== 5) {
+        return null;
+      }
+      return guessNumbersTotal[index].includes(bonusNumber);
+    }
+  );
+  getWinStats(matchCountTotal, bonusMatchTotal, numOfTickets);
+}
+
 function getBonusNumber(guessNumbersTotal, matchCountTotal, numOfTickets) {
   MissionUtils.Console.readLine("\n보너스 번호를 입력해 주세요.\n", (userInput) => {
     const bonusNumber = Number(userInput);
