@@ -1,6 +1,7 @@
 const {
   LOTTO_PRICE,
   INITIAL_STATICS,
+  FIVE_AND_BONUS,
   WINNING_PRICES,
   ERROR_MESSAGES,
   ADD_COMMA_EXP,
@@ -20,13 +21,13 @@ class Lotto {
 
   calculateStatics(issuedLottos, bonusNum) {
     issuedLottos.forEach((lotto) => {
-      let sameCount = 0;
+      let mathcedCounts = 0;
 
       lotto.forEach((num, index) => {
-        this.#winningNums.includes(num) && (sameCount += 1);
+        this.#winningNums.includes(num) && (mathcedCounts += 1);
 
         index + 1 === lotto.length &&
-          this.updateStatics(sameCount, lotto.includes(bonusNum));
+          this.updateStatics(mathcedCounts, lotto.includes(bonusNum));
       });
     });
 
@@ -35,11 +36,11 @@ class Lotto {
     return { statics: this.statics, earningsRate };
   }
 
-  updateStatics(sameCount, isMatchWithBonusNum) {
-    if (sameCount === 5 && isMatchWithBonusNum) {
-      this.statics["5andBonus"] += 1;
-    } else if (sameCount in this.statics) {
-      this.statics[sameCount] += 1;
+  updateStatics(mathcedCounts, isMatchWithBonusNum) {
+    if (mathcedCounts === 5 && isMatchWithBonusNum) {
+      this.statics[FIVE_AND_BONUS] += 1;
+    } else if (mathcedCounts in this.statics) {
+      this.statics[mathcedCounts] += 1;
     }
   }
 
