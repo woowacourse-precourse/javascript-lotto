@@ -3,10 +3,20 @@ const Lotto = require("./Lotto");
 
 class App {
   constructor() {
-    this.LottoCount = 0;
-    this.Lotto = [];
-    this.winNum = [];
-    this.bonusNum = null;
+    this.LottoCount = 8;
+    this.Lotto = [
+      [8, 21, 23, 41, 42, 43],
+      [3, 5, 11, 16, 32, 38],
+      [7, 11, 16, 35, 36, 44],
+      [1, 8, 11, 31, 41, 42],
+      [13, 14, 16, 38, 42, 45],
+      [7, 11, 30, 40, 42, 43],
+      [2, 13, 22, 32, 38, 45],
+      [1, 3, 5, 2, 4, 6],
+    ];
+    this.winNum = [1, 2, 3, 4, 5, 6];
+    this.bonusNum = 7;
+    this.score = {};
   }
 
   play() {
@@ -17,8 +27,9 @@ class App {
     // 당첨 번호 입력
     // this.getWinNum();
     // 보너스 번호 입력
-    this.getBonusNum();
+    // this.getBonusNum();
     // 당첨 결과 출력
+    this.compareWinToLotto();
   }
 
   getLottoCount() {
@@ -75,6 +86,28 @@ class App {
         "[ERROR] 보너스 번호는 1~45 사이의 숫자를 입력하세요"
       );
   }
+
+  compareWinToLotto() {
+    const winNumWithBonus = [...this.winNum, this.bonusNum];
+    for (let i = 0; i < this.LottoCount; i++) {
+      let count = 0;
+      for (let j = 0; j < winNumWithBonus.length; j++) {
+        if (this.Lotto[i].includes(winNumWithBonus[j])) {
+          count += 1;
+        }
+      }
+      if (count < 3) continue;
+      if (count === 6) {
+        if (this.Lotto[i].includes(this.bonusNum)) {
+          count = "bonus";
+        }
+      }
+      this.score[count] = this.score[count] ?? 0 + 1;
+    }
+  }
 }
 
-module.exports = App;
+const app = new App();
+app.play();
+
+// module.exports = App;
