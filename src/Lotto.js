@@ -3,16 +3,11 @@ const { REGEX, ERROR } = require('./constants');
 class Lotto {
   #numbers;
 
-  constructor(inputStr) {
-    this.#numbers = this.validate(inputStr);
+  constructor(inputArr) {
+    this.#numbers = this.validate(inputArr);
   }
 
-  validate(inputStr) {
-    if (!REGEX.WINNING_NUMBER.test(inputStr)) {
-      throw new Error(ERROR.ENTER_VALID_WINNING_NUMBER);
-    }
-
-    const inputArr = inputStr.split(',').map(Number);
+  validate(inputArr) {
     const inputSet = new Set(inputArr);
     if (inputSet.size !== 6) {
       throw new Error(ERROR.ENTER_WITHOUT_REPETITION);

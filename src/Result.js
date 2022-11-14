@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { MESSAGE, PRIZE } = require('./constants');
+const { MESSAGE, PRIZE, REGEX } = require('./constants');
 const Lotto = require('./Lotto');
 const Bonus = require('./Bonus');
 
@@ -34,7 +34,12 @@ class Result {
 
   drawWinningNumber() {
     Console.readLine(`\n${MESSAGE.ENTER_WINNING_NUMBER}\n`, (inputStr) => {
-      const winningNumber = new Lotto(inputStr);
+      if (!REGEX.WINNING_NUMBER.test(inputStr)) {
+        throw new Error(ERROR.ENTER_VALID_WINNING_NUMBER);
+      }
+
+      const inputArr = inputStr.split(',').map(Number);
+      const winningNumber = new Lotto(inputArr);
       this.drawBonusNumber(winningNumber);
     });
   }
