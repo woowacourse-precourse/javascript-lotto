@@ -27,18 +27,18 @@ class App {
   }
 
   enterWinningNum() {
-    let winningNum;
-    let bunusNum;
+    let winningNum = [];
 
-    Console.readLine('당첨 번호를 입력해 주세요.', (winningNum) => {
-      winningNum = winningNum;
+    Console.readLine('당첨 번호를 입력해 주세요.', (nums) => {
+      nums.split(',').map((num) => {
+        winningNum.push(parseInt(num));
+      })
     })
 
     Console.readLine('보너스 번호를 입력해 주세요.', (bonusNum) => {
-      bonusNum = bonusNum
+      this.#winningLotto = new WinningLotto(winningNum, parseInt(bonusNum));
     })
 
-    this.#winningLotto = new WinningLotto(winningNum, bunusNum);
   }
 }
 
