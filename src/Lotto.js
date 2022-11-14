@@ -6,15 +6,10 @@ class Lotto {
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
-    this.#printLottoNumbers();
   }
 
   validate(numbers) {
     CheckError.check(numbers);
-  }
-
-  #printLottoNumbers() {
-    console.log(this.#numbers);
   }
 
   matchLottoNumber(lottoWinnerNumber, lottoBonusNumber) {

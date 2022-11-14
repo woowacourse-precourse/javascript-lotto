@@ -29,9 +29,11 @@ class App {
   #lottoPurchase() {
     const lottoNumber = parseInt(this.amount / 1000);
 
-    this.print(`\n${lottoNumber}개를 구매했습니다.`);
+    this.print(`${lottoNumber}개를 구매했습니다.`);
     for (let i = 0; i < lottoNumber; i++) {
-      const lotto = new Lotto(RandomNumbers.generate());
+      const randomNumber = RandomNumbers.generate();
+      const lotto = new Lotto(randomNumber);
+      this.print(randomNumber);
       this.lottoList.push(lotto);
     }
   }
@@ -45,6 +47,7 @@ class App {
 
   #inputlottoBonusNumber() {
     Console.readLine(MESSAGE.BONUS_NUMBER, (bonusNumber) => {
+      CheckError.bonusNumberCheck(Number(bonusNumber), this.lottoWinnerNumber);
       this.lottoBonusNumber = bonusNumber;
       this.#checkLottoResult();
     });
