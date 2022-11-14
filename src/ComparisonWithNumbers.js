@@ -15,7 +15,7 @@ class ComparisonWithNumbers {
   constructor() {
     this.userMoney;
     this.userNumbers;
-    this.tickets;
+    this.numberOfMatchingBalls;
     this.index = Object.keys(PRIZE_MONEY).length;
   }
 
@@ -30,7 +30,13 @@ class ComparisonWithNumbers {
       );
     }
 
-    this.tickets = LotteryTickets.map((ticket) => (ticket = ticket.length));
+    this.findNumberOfMatchingBalls(LotteryTickets);
+  }
+
+  findNumberOfMatchingBalls(LotteryTickets) {
+    this.numberOfMatchingBalls = LotteryTickets.map(
+      (ticket) => (ticket = ticket.length)
+    );
 
     this.acceptBonusNumber();
   }
@@ -57,46 +63,48 @@ class ComparisonWithNumbers {
   }
 
   findNumberOfWinningTickets(isSameBonus) {
-    let numberOfWinningTickets = {};
-    this.tickets = this.tickets.filter((num) => num > 2);
+    let places = {};
+    this.numberOfMatchingBalls = this.numberOfMatchingBalls.filter(
+      (num) => num > 2
+    );
 
-    numberOfWinningTickets[5] = this.tickets.filter((num) => num === 3).length;
-    numberOfWinningTickets[4] = this.tickets.filter((num) => num === 4).length;
-    numberOfWinningTickets[3] = numberOfWinningTickets[2] = 0;
-    this.compareWithBonus(numberOfWinningTickets, isSameBonus);
-    numberOfWinningTickets[1] = this.tickets.filter((num) => num === 6).length;
+    places[5] = this.numberOfMatchingBalls.filter((num) => num === 3).length;
+    places[4] = this.numberOfMatchingBalls.filter((num) => num === 4).length;
+    places[3] = places[2] = 0;
+    this.compareWithBonus(places, isSameBonus);
+    places[1] = this.numberOfMatchingBalls.filter((num) => num === 6).length;
 
-    this.printResult(numberOfWinningTickets);
+    this.printResult(places);
   }
 
-  compareWithBonus(numberOfWinningTickets, isSameBonus) {
-    let SecondOrThird = this.tickets.filter((num) => num === 5).length;
+  compareWithBonus(places, isSameBonus) {
+    let SecondOrThird = this.numberOfMatchingBalls.filter(
+      (num) => num === 5
+    ).length;
     if (SecondOrThird) {
-      isSameBonus
-        ? (numberOfWinningTickets[2] = SecondOrThird)
-        : (numberOfWinningTickets[3] = SecondOrThird);
+      isSameBonus ? (places[2] = SecondOrThird) : (places[3] = SecondOrThird);
     }
   }
 
-  printResult(matchingTicket) {
+  printResult(numberOfWinningTickets) {
     CONSOLE_UTIL.print(RESULT_MESSAGE);
 
     let index = this.index;
     for (index; index > 0; index--) {
       CONSOLE_UTIL.print(
-        `${PRIZE_MESSAGES[index]} - ${matchingTicket[index]}개`
+        `${PRIZE_MESSAGES[index]} - ${numberOfWinningTickets[index]}개`
       );
     }
 
-    this.calculateRateOfReturn(matchingTicket);
+    this.calculateRateOfReturn(numberOfWinningTickets);
     this.endGame();
   }
 
-  calculateRateOfReturn(matchingTicket) {
+  calculateRateOfReturn(numberOfWinningTickets) {
     let index = this.index;
     let totalPrize = 0;
     for (index; index > 0; index--) {
-      totalPrize += matchingTicket[index] * PRIZE_MONEY[index];
+      totalPrize += numberOfWinningTickets[index] * PRIZE_MONEY[index];
     }
 
     this.printRateOfReturn(totalPrize);
