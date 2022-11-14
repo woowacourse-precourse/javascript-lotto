@@ -2,10 +2,12 @@ const { PRIZE_CONFIG } = require('./config');
 const Lotto = require('./Lotto.js');
 
 class Rank {
+  #bonusNumber;
+  #winningNumberSet;
+
   constructor(winningNumbers, bonusNumber) {
-    this.winningNumberSet = new Set(winningNumbers);
-    this.winningNumbers = winningNumbers;
-    this.bonusNumber = bonusNumber;
+    this.#winningNumberSet = new Set(winningNumbers);
+    this.#bonusNumber = bonusNumber;
   }
 
   /**
@@ -13,8 +15,8 @@ class Rank {
    * @returns {object} lottoMatchCount, isBonusMatch
    */
   matchLotto(lotto) {
-    const lottoMatchCount = lotto.numbers.filter((num) => this.winningNumberSet.has(num)).length;
-    const isBonusMatch = lotto.numbers.includes(this.bonusNumber);
+    const lottoMatchCount = lotto.numbers.filter((num) => this.#winningNumberSet.has(num)).length;
+    const isBonusMatch = lotto.numbers.includes(this.#bonusNumber);
 
     return { lottoMatchCount, isBonusMatch };
   }

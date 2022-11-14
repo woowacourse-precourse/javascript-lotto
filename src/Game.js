@@ -1,18 +1,29 @@
 const { Random } = require('@woowacourse/mission-utils');
 const { GAME_RANGE, PRIZES } = require('./config');
-const Lotto = require('./Lotto');
+const Lotto = require('./Lotto.js');
+const Rank = require('./Rank.js');
 
 class Game {
   #lottos = [];
   #winningNumbers = [];
   #bonusNUmber = 0;
 
+  /**
+   *
+   * @param {number[]} lottoNum
+   * @param {number[]} winningNumbers
+   * @param {number} bonusNumber
+   */
   constructor(lottoNum, winningNumbers, bonusNumber) {
     this.#lottos = Array.from({ length: lottoNum }, () => this.generateOneLotto());
     this.#winningNumbers = winningNumbers;
     this.#bonusNUmber = bonusNumber;
   }
 
+  /**
+   *
+   * @returns {Lotto} lotto
+   */
   generateOneLotto() {
     return new Lotto(
       Random.pickUniqueNumbersInRange(
@@ -23,6 +34,23 @@ class Game {
     );
   }
 
+  /**
+   *
+   * @returns {number[]} ranks
+   */
+  generateLottoRanks() {
+    const rank = new Rank(this.#winningNumbers, this.#bonusNUmber);
+    const ranks = this.#lottos.map((lotto) => rank.checkWinningLottoRank(lotto));
+
+    return ranks;
+  }
+
+  /**
+   *
+   * @param {number} budget
+   * @param {number[]} ranks
+   * @returns {number} profitRate
+   */
   generateLottoStat(budget, ranks) {
     const totalValue = ranks
       .filter((rank) => rank !== Infinity)
