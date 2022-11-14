@@ -1,3 +1,5 @@
+const { Console, Random } = require('@woowacourse/mission-utils');
+
 const ErrorBoundary = require('./error/ErrorBoundary');
 const { BUDGET_ERROR_MESSAGE, TICKET_PRICE } = require('./constants/lotto');
 
@@ -6,8 +8,9 @@ const Budget = class extends ErrorBoundary {
 
   constructor(budget) {
     super();
+
     this.#budget = budget;
-    this.setup(this.#budget);
+    this.validateInput(this.#budget);
   }
 
   validate(budget) {
@@ -27,7 +30,8 @@ const Budget = class extends ErrorBoundary {
   }
 
   countTicket() {
-    return this.#budget / TICKET_PRICE;
+    this.ticketCount = this.#budget / TICKET_PRICE;
+    return this.ticketCount;
   }
 };
 

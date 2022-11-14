@@ -7,7 +7,7 @@ const Lotto = class extends ErrorBoundary {
   constructor(numbers) {
     super();
     this.#numbers = numbers;
-    this.setup(this.#numbers);
+    this.validateInput(this.#numbers);
   }
 
   validate(numbers) {

@@ -9,7 +9,7 @@ const Bonus = class extends ErrorBoundary {
     super();
     this.#numbers = numbers;
     this.#bonus = bonus;
-    this.setup(this.#numbers, this.#bonus);
+    this.validateInput(this.#numbers, this.#bonus);
   }
 
   validate(numbers, bonus) {

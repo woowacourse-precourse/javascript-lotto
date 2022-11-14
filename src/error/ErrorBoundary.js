@@ -5,14 +5,14 @@ const ErrorBoundary = class {
     this.errorLogger = new ErrorLogger();
   }
 
-  setup(value) {
+  validateInput(value) {
     const validateValueCallback = () => this.validate(value);
     this.errorLogger.onCallback(validateValueCallback);
   }
 
   validate(value) {}
 
-  static getErrorMessage() {}
+  getErrorMessage() {}
 };
 
 module.exports = ErrorBoundary;
