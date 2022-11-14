@@ -15,6 +15,7 @@ class App {
         this.#lotto = new Lotto(winninNumbers.split(',').map(Number));
         Io.inputByUser(QUESTION.bonusNumber, bonusNumber => {
           this.#lotto.setBonusNumber(+bonusNumber);
+          this.#lotto.getResult(this.#user.lottoList);
         });
       });
     });

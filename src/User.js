@@ -22,6 +22,10 @@ class User {
     this.#lottoList.forEach(lotto => Io.printConsole(`[${lotto.join(', ')}]`));
   }
 
+  get lottoList() {
+    return this.#lottoList;
+  }
+
   validate(purchaseMoney) {
     if (!PURCHASE_AMOUT_REGEX.test(purchaseMoney)) {
       throw new Error(ERR_MSG.invalidPurchaseMoney);

@@ -3,7 +3,8 @@ const {
   ERR_MSG,
   MIN_LOTTO_NUMBER,
   MAX_LOTTO_NUMBER,
-  LOTTO_LENGTH
+  LOTTO_LENGTH,
+  RANKS
 } = require('./constants');
 
 class Lotto {
@@ -24,9 +25,44 @@ class Lotto {
     return newLotto;
   }
 
+  getResult(lottos) {
+    const result = {};
+
+    for (const rank in RANKS) {
+      result[rank] = 0;
+    }
+
+    lottos.forEach(lotto => {
+      const resultType = this.getResultType(lotto);
+      if (Object.prototype.hasOwnProperty.call(result, resultType)) {
+        result[resultType] += 1;
+      }
+    });
+
+    return result;
+  }
+
+  getResultType(lotto) {
+    let winning = 0;
+    let bonus = 0;
+    lotto.forEach(number => {
+      if (this.#numbers.winning.includes(number)) {
+        winning += 1;
+      }
+      if (this.#numbers.bonus === number) {
+        bonus += 1;
+      }
+    });
+    if (winning === 6) return RANKS.FIRST;
+    if (winning === 5 && bonus === 1) return RANKS.SECOND;
+    if (winning === 5) return RANKS.THIRD;
+    if (winning === 4) return RANKS.FOURTH;
+    if (winning === 3) return RANKS.FIFTH;
+  }
+
   setBonusNumber(bounsNumber) {
     this.validateBonusNumber(bounsNumber);
-    this.#numbers = { ...this.#numbers, bounsNumber };
+    this.#numbers = { ...this.#numbers, bonus: bounsNumber };
   }
 
   validateNumberAndRange(number) {
