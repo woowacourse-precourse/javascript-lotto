@@ -370,4 +370,12 @@ describe('정수 판단 함수 테스트', () => {
       }).toThrow(NUMBER_EXCEPTION_TEXT);
     });
   });
+
+  describe('배열 요소 카운팅 함수 테스트', () => {
+    test('메소드 이름은 "increase"로 정의된다.', () => {
+      const METHOD_NAME = 'increase';
+
+      expect(Application.increase.name).toEqual(METHOD_NAME);
+    });
+  });
 });
