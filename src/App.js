@@ -49,10 +49,11 @@ class App {
   }
 
   inputWinningNum() {
-    Console.readLine("당첨 번호를 입력해 주세요. \n", (winningNum) => {
+    Console.readLine("\n당첨 번호를 입력해 주세요. \n", (winningNum) => {
       const winningNumArr = winningNum.split(",");
       this.isValidWinningNum(winningNumArr);
       this.#winningNum = winningNumArr;
+      this.inputBonusNum();
     });
   }
 
@@ -72,7 +73,18 @@ class App {
   }
 
   inputBonusNum() {
-    Console.readLine("\n보너스 번호를 입력해 주세요. \n", (bonusNum) => {});
+    Console.readLine("\n보너스 번호를 입력해 주세요. \n", (bonusNum) => {
+      this.isValidBonusNum(bonusNum);
+      this.#bonusNum = bonusNum;
+    });
+  }
+
+  isValidBonusNum(bonusNum) {
+    if (isNaN(bonusNum)) {
+      throw "[EROR] 로또 구입금액은 숫자여야 합니다.";
+    } else if (bonusNum < 1 || bonusNum > 45) {
+      throw "[EROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
+    }
   }
 }
 
