@@ -22,7 +22,7 @@ class App {
       //즉, 한번에 6자리 로또번호가 들어옴
 
       //하나씩 넣는걸 의도한 것 같다
-      let tmp = new Lotto(Random.pickUniqueNumbersInRange(1, 45))
+      new Lotto(Random.pickUniqueNumbersInRange(1, 45))
       count++
     }
   }
