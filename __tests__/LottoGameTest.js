@@ -1,4 +1,4 @@
-const LottoGame = require("../src/LottoGame");
+const LottoGame = require("../src/controllers/LottoGame");
 
 describe('로또 게임 클래스 테스트', () => {
   const lottoGame = new LottoGame([1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7], 8);

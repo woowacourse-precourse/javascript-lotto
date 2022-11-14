@@ -3,8 +3,8 @@ const userInput = require('./IO/Input');
 const Money = require('./models/Money');
 const Output = require('./IO/Output');
 const WinningNumbers = require('./models/WinningNumbers');
-const Result = require('./Result');
-const RandomLotto = require('./RandomLotto');
+const Result = require('./controllers/Result');
+const RandomLotto = require('./models/RandomLotto');
 
 class App {
   money;
