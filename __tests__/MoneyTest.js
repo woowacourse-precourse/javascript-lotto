@@ -39,14 +39,12 @@ describe('구입 금액 입력 테스트', () => {
   });
 
   test('유효한 큰 숫자 테스트', () => {
-    expect(() => {
-      new User(1000000000);
-    }).toThrow('is Valid');
+    let user = new User(1000000000);
+    expect(user.getSeedMoney().toString()).toBe('1000000000');
   });
 
   test('유효한 큰 숫자 테스트2', () => {
-    expect(() => {
-      new User(999999999000);
-    }).toThrow('is Valid');
+    let user = new User(99999999000);
+    expect(user.getSeedMoney().toString()).toBe('99999999000');
   });
 });
