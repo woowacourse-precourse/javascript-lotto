@@ -22,6 +22,13 @@ class WinningLotto {
     }
     return true;
   }
+
+  checkLottoIsNumber(lotto) {
+    if (lotto.every((number) => isNaN(number))) {
+      return false;
+    }
+    return true;
+  }
 }
 
 module.exports = WinningLotto;
