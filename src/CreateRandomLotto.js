@@ -24,6 +24,7 @@ class CreateRandomLotto {
         while( i < number){
             this.pickRandomLotto();
             this.saveRandomLotto.push(this.randomLotto);
+            Console.print(`[${this.saveRandomLotto[this.saveRandomLotto.length -1].join(', ')}]`)
             i++;
         }
         this.randomNumberSort();
