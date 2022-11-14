@@ -25,13 +25,23 @@ class App {
     this.buyLottoNum.push(jackpot); 
     Console.print(buyLottoNum);
   }
-  //당첨 번호 사용자로부터 입력 받기
+  //당첨 번호 사용자로부터 입력 받기 + 보너스 번호 
   insertLottoNum () {
     Console.readLine('당첨 번호를 입력해 주세요/n', (answer)=> {
       Console.print(answer);
       return new Lotto(numbers);
     });
   }
+  insertBonusNum() {
+    Console.readLine('보너스 번호를 입력해 주세요/n', (number) => {
+      if(this.insertLottoNum.numbers.indexOf(number)!=-1){
+        return number;
+        Console.print(number);
+      } else if(this.insertLottoNum.numbers.indexOf(number)!=0) {
+        throw Error('중복 된 숫자 입니다.'); 
+      }
+    });
+  };
 }
 
 
