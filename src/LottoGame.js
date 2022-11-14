@@ -8,6 +8,7 @@ const Lotto = require("./Lotto");
 const {
   isNumberType,
   isThousandUnits,
+  isValuesNumberType,
   inputUserValue,
   printMessage,
   generateRandomNumbers,
@@ -59,9 +60,19 @@ class LottoGame {
 
   inputWinningNumbers() {
     inputUserValue(GAME_MESSAGE.INPUT_WINNING_NUMBERS, (winningNumbers) => {
-      this.#winningNumbers = winningNumbers;
-      console.log(this.#winningNumbers);
+      let winningNumbersList = winningNumbers.split(",");
+
+      if (this.isWinningNumbersValid(winningNumbersList)) {
+        this.#winningNumbers = winningNumbers;
+        console.log(this.#winningNumbers);
+      }
     });
+  }
+
+  isWinningNumbersValid(winningNumbersList) {
+    if (!isValuesNumberType(winningNumbersList)) {
+      throw ERROR_MESSAGE.TYPE_ERROR;
+    }
   }
 }
 

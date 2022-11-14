@@ -1,4 +1,8 @@
-const { isNumberType, isThousandUnits } = require("./validate");
+const {
+  isNumberType,
+  isThousandUnits,
+  isValuesNumberType,
+} = require("./validate");
 const {
   inputUserValue,
   printMessage,
@@ -8,6 +12,7 @@ const {
 module.exports = {
   isNumberType,
   isThousandUnits,
+  isValuesNumberType,
   inputUserValue,
   printMessage,
   generateRandomNumbers,
