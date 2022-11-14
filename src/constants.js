@@ -21,5 +21,6 @@ const ERROR_MESSAGE = {
 
 module.exports = {
   LOTTO,
+  QUERY,
   ERROR_MESSAGE,
 }
