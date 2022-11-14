@@ -8,6 +8,8 @@ class MoneyValidator {
     if (this.isNumber(input)) Exception.throwError(ERROR_MESSAGE.NOT_NUMBER);
     if (!this.isDivideByPrice(input))
       Exception.throwError(ERROR_MESSAGE.CANT_DIVIDE);
+    if (this.isOverLimitMoney(input))
+      Exception.throwError(ERROR_MESSAGE.MAX_MONEY);
   }
 
   isEmpty(input) {
@@ -19,7 +21,11 @@ class MoneyValidator {
   }
 
   isDivideByPrice(input) {
-    return LOTTO_INPUT.REGEX.test(input);
+    return LOTTO_INPUT.PRICE_REGEX.test(input);
+  }
+
+  isOverLimitMoney(input) {
+    return input > LOTTO_INPUT.MAX_MONEY;
   }
 }
 

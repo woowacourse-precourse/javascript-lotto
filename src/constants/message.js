@@ -7,10 +7,11 @@ const OUTPUT_MESSAGE = Object.freeze({
 });
 
 const ERROR_MESSAGE = Object.freeze({
-  NOT_NUMBER: "[ERROR] 입력값이 숫자여야 합니다.",
-  IS_EMPTY: "[ERROR] 입력값을 입력해주세요.",
-  CANT_DIVIDE: "[ERROR] 입력값을 1000단위로 입력해주세요.",
+  NOT_NUMBER: "[ERROR] 로또 구입금액은 숫자여야 합니다.",
+  IS_EMPTY: "[ERROR] 로또 구입금액을 입력해주세요.",
+  CANT_DIVIDE: "[ERROR] 로또 구입금액을 1000단위로 입력해주세요.",
   OVER_LENGTH: "[ERROR] 로또 번호는 6개여야 합니다.",
+  MAX_MONEY: "[ERROR] 로또 구입금액이 너무 큽니다.",
 });
 
 module.exports = { INPUT_MESSAGE, OUTPUT_MESSAGE, ERROR_MESSAGE };
