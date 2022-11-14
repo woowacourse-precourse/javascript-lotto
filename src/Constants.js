@@ -6,7 +6,8 @@ module.exports = {
     COUNT_ERROR: "[ERROR] 6개의 숫자를 입력해주세요.",
     RANGE_ERROR: "[ERROR] 1부터 45 사이의 숫자를 입력해주세요.",
 
-    OVERLAP_ERROR: "[ERROR] 당첨 번호에 없는 숫자를 입력해주세요.",
+    OVERLAP_ERROR: "[ERROR] 중복되지 않는 숫자 6개를 입력해주세요.",
+    BONUS_OVERLAP_ERROR: "[ERROR] 당첨 번호에 없는 숫자를 입력해주세요.",
   },
 
   WINNINGS: {
