@@ -93,6 +93,11 @@ class LottoController {
       mConsole.print(`${rank} - ${rankCount}개`);
     });
   }
+
+  printProfitRate() {
+    const profitRate = this.calculateProfitRate();
+    mConsole.print(`총 수익률은 ${profitRate}%입니다.`);
+  }
 }
 
 module.exports = LottoController;
