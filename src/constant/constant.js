@@ -10,31 +10,31 @@ const GRADE = {
     NAME: 'first',
     DUPLICATE_COUNT: 6,
     EXTRA_TEXT: '',
-    PRIZE_MONEY: '2,000,000,000',
+    PRIZE_MONEY: 2000000000,
   },
   SECOND: {
     NAME: 'second',
     DUPLICATE_COUNT: 5,
     EXTRA_TEXT: ', 보너스 볼 일치',
-    PRIZE_MONEY: '30,000,000',
+    PRIZE_MONEY: 30000000,
   },
   THIRD: {
     NAME: 'third',
     DUPLICATE_COUNT: 5,
     EXTRA_TEXT: '',
-    PRIZE_MONEY: '1,500,000',
+    PRIZE_MONEY: 1500000,
   },
   FOURTH: {
     NAME: 'fourth',
     DUPLICATE_COUNT: 4,
     EXTRA_TEXT: '',
-    PRIZE_MONEY: '50,000',
+    PRIZE_MONEY: 50000,
   },
   FIFTH: {
     NAME: 'fifth',
     DUPLICATE_COUNT: 3,
     EXTRA_TEXT: '',
-    PRIZE_MONEY: '5,000',
+    PRIZE_MONEY: 5000,
   },
 };
 
@@ -50,6 +50,7 @@ const MESSAGE = {
 
 const FORMAT = {
   RESULT_ROUND: 1,
+  LOCALE_MONEY: 'ko-KR',
   LOTTO_PRINT: {
     FIRST: '[',
     SEPARATOR: ', ',
