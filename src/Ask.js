@@ -51,11 +51,10 @@ class Ask{
     }
 
     bonus(){
-        let bonus;
         MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (answer) => {
-            bonus = answer;
+            this.bonus = answer;
           });
-        return bonus;
+        return this.bonus;
     }
 }
 
