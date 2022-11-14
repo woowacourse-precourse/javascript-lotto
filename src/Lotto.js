@@ -1,3 +1,5 @@
+const { ERROR_MESSAGE, LOTTO_NUMBER } = require('./constant');
+
 class Lotto {
   #numbers;
 
@@ -7,12 +9,20 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    for (let number of numbers) {
+      const checkNum =
+        /\d/.test(number) === false || typeof number !== 'number';
+      const checkInteger = Number.isInteger(number);
+      const checkRange =
+        number < LOTTO_NUMBER.MIN_RANGE || number > LOTTO_NUMBER.MAX_RANGE;
+      if (checkNum || checkRange || !checkInteger) {
+        throw new Error(ERROR_MESSAGE.INPUT_WINNING_NUMBER);
+      }
+    }
+    if (numbers.length !== 6 || [...new Set(numbers)].length !== 6) {
+      throw new Error(ERROR_MESSAGE.INPUT_NOT_DUPLICATE_SIX_NUMBER);
     }
   }
-
-  // TODO: 추가 기능 구현
 }
 
 module.exports = Lotto;
