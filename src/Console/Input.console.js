@@ -1,6 +1,6 @@
 const Console = require('./Console');
 const { INPUT } = require('../Resource/String');
-const { LottoValidator } = require('../LottoDto');
+const LottoValidator = require('../Lotto.validator');
 
 class InputConsole {
   static getMoney = async () => {
@@ -13,7 +13,7 @@ class InputConsole {
     return LottoValidator.splitLottoNumbers(lottoNumbersString);
   };
   static getLottoAdditional = async () => {
-    const LottoAdditinalNumberString = await console.input(
+    const LottoAdditinalNumberString = await Console.input(
       INPUT.GET_LOTTO_ADDITINAL,
     );
     return LottoValidator.AdditionalNumber(LottoAdditinalNumberString);

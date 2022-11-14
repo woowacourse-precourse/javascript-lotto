@@ -1,4 +1,4 @@
-const { INPUT, OUTPUT, ERROR, LOTTO } = require('./String');
-const { LOTTO } = require('./Value');
+const { INPUT, OUTPUT, ERROR, LOTTO_STRING } = require('./String');
+const { LOTTO, LOTTO_PRIZE } = require('./Value');
 
-module.exports = { INPUT, OUTPUT, LOTTO, ERROR, LOTTO };
+module.exports = { INPUT, OUTPUT, LOTTO, ERROR, LOTTO_STRING, LOTTO_PRIZE };

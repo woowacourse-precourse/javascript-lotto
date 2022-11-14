@@ -1,7 +1,7 @@
-const LottoValidator = require('./LottoDto/Lotto.validator');
+const LottoValidator = require('./Lotto.validator');
 
 class Lotto {
-  #numbers = [];
+  #numbers;
 
   constructor(numbers) {
     LottoValidator.checkLotto(numbers);
