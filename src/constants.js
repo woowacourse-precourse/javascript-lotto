@@ -5,10 +5,12 @@ const FIVE_AND_BONUS = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
 const SIX = "6개 일치 (2,000,000,000원) - ";
 
 module.exports = {
-  THREE,
-  FOUR,
-  FIVE,
-  FIVE_AND_BONUS,
-  SIX,
+  LOTTO_RESULT: {
+    THREE,
+    FOUR,
+    FIVE,
+    FIVE_AND_BONUS,
+    SIX,
+  },
   price: [5000, 50000, 1500000, 30000000, 2000000000],
 };

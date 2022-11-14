@@ -1,15 +1,9 @@
 const Console = require("./Console");
 const Lotto = require("./Lotto");
 const Validator = require("./validator/Validator");
-const {
-  THREE,
-  FOUR,
-  FIVE,
-  FIVE_AND_BONUS,
-  SIX,
-  price,
-} = require("./constants");
+const { LOTTO_RESULT, price } = require("./constants");
 const LottoAdmin = require("./LottoAdmin");
+const { THREE, FOUR, FIVE, FIVE_AND_BONUS, SIX } = LOTTO_RESULT;
 
 class App {
   constructor() {
