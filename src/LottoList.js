@@ -1,7 +1,7 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
-class CountLotto {
+class LottoList {
   constructor() {
     this.lottoCount = null;
     this.lottoList = [];
@@ -23,7 +23,7 @@ class CountLotto {
     }
   }
 
-  printLotteCount() {
+  printLottoCount() {
     Console.print(`\n${this.lottoCount}개를 구매했습니다.`);
   }
   setLotto(lottoCount) {
@@ -39,4 +39,4 @@ class CountLotto {
   }
 }
 
-module.exports = CountLotto;
+module.exports = LottoList;
