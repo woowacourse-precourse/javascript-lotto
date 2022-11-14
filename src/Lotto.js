@@ -22,7 +22,7 @@ class Lotto {
     for(var i=0 ;i<5;i++){
       for(var j=i+1 ;j<6;j++){
         if (numbers[i] == numbers[j])
-         throw '[ERROR]duplicate numberes'
+         throw new Error('[ERROR]duplicate numberes');
       }
     }
   }
@@ -31,7 +31,7 @@ class Lotto {
   rangecheck(numbers){
     for(var i =0;i<6;i++){
       if (numbers[i]<1 || numbers[i]>45)
-        throw '[ERROR]range error'
+        throw new Error('[ERROR]range error');
     }
   }
 
