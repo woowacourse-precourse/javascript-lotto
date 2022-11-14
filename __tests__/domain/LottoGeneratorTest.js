@@ -1,5 +1,5 @@
-const { LottoGenerator, Lotto } = require("../src/domain");
-const { ConsoleAdapter } = require("../src/adapters");
+const { LottoGenerator, Lotto } = require("../../src/domain");
+const { ConsoleAdapter } = require("../../src/adapters");
 
 const isSorted = (numbers) => {
   return numbers.every((number, index) => {
