@@ -2,7 +2,7 @@ const { Console } = require('@woowacourse/mission-utils');
 
 const User = require('./User');
 const Lotto = require('./Lotto');
-const Draw = require('./Draw');
+const Drawing = require('./Drawing');
 const { MESSAGE, ERROR } = require('../src/utils/constants');
 const {
   hasChar,
@@ -15,7 +15,7 @@ const {
 
 class App {
   constructor() {
-    this.draw = new Draw();
+    this.drawing = new Drawing();
   }
 
   play() {
@@ -26,9 +26,9 @@ class App {
     Console.readLine(MESSAGE.ENTER_PURCHASE_AMOUNT, amount => {
       const trimmedAmount = amount.trim();
       this.validateAmount(trimmedAmount);
-      this.draw.user = new User(trimmedAmount);
+      this.drawing.user = new User(trimmedAmount);
 
-      this.printBoughtLottos(this.draw.user.buyLotto());
+      this.printBoughtLottos(this.drawing.user.buyLotto());
       this.getWinningNumbers();
     });
   }
@@ -52,7 +52,7 @@ class App {
     Console.readLine(MESSAGE.ENTER_WINNING_NUMBERS, numbers => {
       const trimmedNumbers = numbers.trim();
       this.validateWinningNumbers(trimmedNumbers);
-      this.draw.winningNumbers = new Lotto(parseNumbers(trimmedNumbers)).numbers;
+      this.drawing.winningNumbers = new Lotto(parseNumbers(trimmedNumbers)).numbers;
       this.getBonusNumber();
     });
   }
@@ -67,8 +67,8 @@ class App {
     Console.readLine(MESSAGE.ENTER_BONUS_NUMBER, number => {
       const trimmedNumber = number.trim();
       this.validateBonusNumber(trimmedNumber);
-      this.draw.bonusNumber = Number(trimmedNumber);
-      this.draw.start();
+      this.drawing.bonusNumber = Number(trimmedNumber);
+      this.drawing.start();
     });
   }
 
@@ -81,7 +81,7 @@ class App {
       throw new Error(ERROR.OUT_OF_RANGE);
     }
 
-    if (hasDuplicate([...this.draw.winningNumbers, Number(number)])) {
+    if (hasDuplicate([...this.drawing.winningNumbers, Number(number)])) {
       throw new Error(ERROR.DUPLICATED_BONUS);
     }
   }

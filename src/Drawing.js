@@ -2,7 +2,7 @@ const { Console } = require('@woowacourse/mission-utils');
 
 const { REWARD, STATISTICS } = require('./utils/constants');
 
-class Draw {
+class Drawing {
   #user;
   #winningNumbers;
   #bonusNumber;
@@ -73,7 +73,7 @@ class Draw {
 
   calcRevenue(reward) {
     const revenue = (reward / this.user.purchaseAmount) * 100;
-    return Draw.roundToTwo(revenue);
+    return Drawing.roundToTwo(revenue);
   }
 
   static roundToTwo(number) {
@@ -94,4 +94,4 @@ class Draw {
   }
 }
 
-module.exports = Draw;
+module.exports = Drawing;
