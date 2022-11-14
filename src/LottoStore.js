@@ -1,3 +1,5 @@
+const { NUMBER } = require('./Constants');
+
 class LottoStore {
   #amount;
 
@@ -7,7 +9,7 @@ class LottoStore {
   }
 
   validate(amount) {
-    if (/[^0-9]/g.test(number)) {
+    if (/[^0-9]/g.test(amount)) {
         throw new Error("[ERROR] 구입금액은 숫자로만 이루어져야 합니다.")
     }
 
@@ -15,6 +17,12 @@ class LottoStore {
       throw new Error("[ERROR] 구입금액은 1,000 단위여야 합니다.");
     }
   }
+
+  getLottoAmount() {
+    return this.#amount / 1000;
+  }
+
+
 
   
 

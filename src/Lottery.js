@@ -1,5 +1,6 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const { INPUT } = require('./Constants');
+const { INPUT, OUTPUT } = require('./Constants');
+const LottoStore = require('./LottoStore');
 const Lotto = require('./Lotto');
 
 class Lottery {
@@ -7,7 +8,7 @@ class Lottery {
   #purchaseAmount;
 
   progress() {
-    this.inputWinningNumber();
+    this.inputPurchaseAmount();
 
     /*
     const LOTTO = this.#lotto.getLotto();
@@ -17,9 +18,15 @@ class Lottery {
   
   inputPurchaseAmount() {
     Console.readLine(INPUT.PURCHASE_AMOUNT, (amount) => {
-      this.#purchaseAmount = new Lotto(amount);
+      this.#purchaseAmount = new LottoStore(amount);
+      this.printLottoAmount();
     });
   }
+
+  printLottoAmount() {
+    Console.print(OUTPUT.NEW_LINE + this.#purchaseAmount.getLottoAmount() + OUTPUT.PURCHASE_COUNT);
+  }
+
 
   inputWinningNumber() {
     Console.readLine(INPUT.LOTTO_NUMBER, (numbers) => {

@@ -7,6 +7,7 @@ const INPUT = {
 const OUTPUT = {
   PURCHASE_COUNT: '개를 구매했습니다.',
   LOTTO_STATISTICS: '당첨 통계\n---',
+  NEW_LINE: '\n',
 };
 
 const LOTTO = {
@@ -22,7 +23,8 @@ const LOTTO = {
 }
 
 const NUMBER = {
-  LOTTO : 6,
+  LOTTO: 6,
+  LOTTO_AMOUNT: 1000,
 }
 
 const ERROR = {
