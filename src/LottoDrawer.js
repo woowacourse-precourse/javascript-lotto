@@ -30,18 +30,19 @@ class LottoDrawer {
     this.result = { numbers: winnerNumbers };
   }
 
-  setBonusNumer() {
+  setBonusNumber(winner) {
     Console.readLine('보너스 번호를 입력해 주세요.\n', (input) => {
       const bonus = Number(input);
       this.result = { ...this.result, bonus };
+      // TODO: 호출위치 변경
+      winner.announce(this.result);
     });
   }
 
   drawLotto(winner) {
     Console.readLine('당첨 번호를 입력해 주세요.\n', (numbers) => {
       this.setLottoWinner(numbers);
-      this.setBonusNumer();
-      winner.announce(this.result);
+      this.setBonusNumber(winner);
     });
   }
 }
