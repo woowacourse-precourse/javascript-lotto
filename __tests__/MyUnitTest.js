@@ -17,12 +17,25 @@ describe('My Unit test', () => {
     }).toThrow('[ERROR]');
   });
 
-  test('로또 구입 금액만큼의 로또가 발행되지 않으면 오류가 난다.', () => {
+  test('로또 구입 금액만큼의 로또가 발행되어야 한다.', () => {
     const app = new App();
     const amount = 5000;
     app.setAmount(amount);
     app.issueLottos();
     const lottos = app.getLottos();
     expect(lottos).toHaveLength(amount / 1000);
+  });
+
+  test('발행한 로또는 오름차순으로 정렬되어야 한다.', () => {
+    const app = new App();
+    const amount = 5000;
+    app.setAmount(amount);
+    app.issueLottos();
+    const lottos = app.getLottos();
+    lottos.forEach((lotto) => {
+      const sortedLotto = [...lotto];
+      sortedLotto.sort();
+      expect(lotto).toEqual(sortedLotto);
+    });
   });
 });
