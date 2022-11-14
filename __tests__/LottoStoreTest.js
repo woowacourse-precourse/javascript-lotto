@@ -1,3 +1,9 @@
+const { isValidLottoNumbers } = require('../../backup/src/new/util/utils');
+const {
+  MIN_LOTTO_NUMBER,
+  MAX_LOTTO_NUMBER,
+  VALID_LOTTO_NUMBER_LENGTH
+} = require('../src/constants/numbers');
 const LottoStore = require('../src/LottoStore');
 
 describe('로또스토어 클래스 테스트', () => {
@@ -31,5 +37,15 @@ describe('로또스토어 클래스 테스트', () => {
     expect(() => {
       lottoStore.validateMoney(1500);
     }).toThrow('[ERROR]');
+  });
+
+  test('로또 번호 생성 시 로또 번호 조건에 맞는 배열이 생성된다.', () => {
+    const test = lottoStore.getRandomLottoNumbers();
+    for (const element of test) {
+      expect(
+        element >= MIN_LOTTO_NUMBER && MAX_LOTTO_NUMBER >= element
+      ).toBeTruthy();
+      expect(test.length === VALID_LOTTO_NUMBER_LENGTH).toBeTruthy();
+    }
   });
 });
