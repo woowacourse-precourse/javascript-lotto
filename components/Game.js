@@ -34,14 +34,14 @@ class Game {
 
   purchaseLotto() {
     const lottoCount = Functions.getLottoCount(this.#purchaseAmount);
-    Console.print(SYSTME_MESSAGE.PURCHASE_COUNT(lottoCount));
 
+    Console.print(SYSTME_MESSAGE.PURCHASE_COUNT(lottoCount));
     this.#lottos = Functions.generateLottos(lottoCount);
     this.printLottos();
   }
 
   printLottos() {
-    Functions.printLottoString(this.#lottos);
+    Functions.printLottoToString(this.#lottos);
     this.getWinningNumbers();
   }
 
@@ -49,6 +49,7 @@ class Game {
     Console.readLine(SYSTME_MESSAGE.WINNING_INPUT, (inputNumber) => {
       this.#winningNumber = Functions.digitize(inputNumber);
       const lottoClass = new Lotto(this.#winningNumber);
+
       this.getBonusNumber();
     });
   }
@@ -75,6 +76,7 @@ class Game {
       this.#purchaseAmount,
       this.#winningResult
     );
+
     this.printLottoResult(lottoYield);
   }
 

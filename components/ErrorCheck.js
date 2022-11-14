@@ -17,11 +17,7 @@ class ErrorCheck {
   }
 
   static checkValidRange(numbers) {
-    const numRange = Array.from(
-      { length: LOTTO_NUMBER.MAX },
-      (_, index) => index + BASIC_NUMBER.ONE
-    );
-    return numbers.some((number) => !numRange.includes(number));
+    return numbers.some((number) => !LOTTO_NUMBER.RANGE.includes(number));
   }
 
   static isInvalidRange(numbers) {
@@ -49,20 +45,19 @@ class ErrorCheck {
     }
   }
 
-  static winningNumber(numbers) {
-    this.hasDuplication(numbers);
-    this.isInvalidLength(numbers);
-    this.isInvalidRange(numbers);
-  }
-
   static purchase(money) {
     this.isInvalidNumberType(money);
     this.isDividedBy1000(money);
   }
 
+  static winningNumber(numbers) {
+    this.isInvalidLength(numbers);
+    this.hasDuplication(numbers);
+    this.isInvalidRange(numbers);
+  }
+
   static bonusNumber(winningNumber, bonusNumber) {
     this.bonusNumberDuplication(winningNumber, bonusNumber);
-    this.isInvalidNumberType(bonusNumber);
     this.isInvalidRange([bonusNumber]);
   }
 }

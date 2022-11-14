@@ -27,7 +27,7 @@ class Functions {
     return inputNumber.split(',').map((num) => +num);
   }
 
-  static printLottoString(lottos) {
+  static printLottoToString(lottos) {
     lottos.forEach((lotto) => {
       Console.print(`[${lotto.join(SYSTME_MESSAGE.COMMA)}]`);
     });
