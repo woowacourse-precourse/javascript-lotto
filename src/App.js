@@ -1,6 +1,7 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { MESSAGE } = require("./constants.js");
 const buyingAmountValidator = require("./buyingAmountValidator.js");
+const bonusNumberValidator = require("./bonusNumberValidator.js");
 const LottoTicket = require("./LottoTicket.js");
 const Lotto = require("./Lotto.js");
 
@@ -9,6 +10,7 @@ class App {
     this.buyingLottoNumber;
     this.lottoTicketList;
     this.winningNumberList;
+    this.bonusNumber;
   }
 
   play() {
@@ -46,7 +48,8 @@ class App {
 
   inputBonusNumber() {
     Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
-      console.log(bonusNumber);
+      bonusNumberValidator(this.winningNumberList, bonusNumber);
+      this.bonusNumber = bonusNumber;
     });
   }
 }

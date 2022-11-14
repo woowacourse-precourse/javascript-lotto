@@ -16,6 +16,8 @@ const ERROR = {
   UNDER_NUMBER_IN_RANGE: "[ERROR] 입력 번호 중에서 1미만의 숫자가 있습니다.",
   CONTAINS_BLANKS: "[ERROR] 입력 번호에 공백문자가 포함되어 있습니다.",
   HAS_CHARACTER: "[ERROR] 입력 번호에 문자가 포함되어 있습니다.",
+  CONTAINS_WINNING_NUMBER:
+    "[ERROR] 보너스 번호가 당첨 번호에 포함되어 있습니다.",
 };
 
 const RULE = {
