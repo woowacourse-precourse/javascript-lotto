@@ -50,4 +50,20 @@ describe("로또 클래스 테스트", () => {
       drawer.validateWinningNumbers("[1,2,3,4,5,10]");
     }).toThrow("[ERROR]");
   });
+
+  test("보너스 번호 중복 테스트", () => {
+    expect(() => {
+      const drawer = new Drawer();
+      drawer.winningNumber = [1, 2, 3, 4, 5, 6];
+      drawer.validateBonusNumber(6);
+    }).toThrow("[ERROR]");
+  });
+
+  test("보너스 번호 유효성 테스트", () => {
+    expect(() => {
+      const drawer = new Drawer();
+      drawer.winningNumber = [1, 2, 3, 4, 5, 6];
+      drawer.validateBonusNumber(0);
+    }).toThrow("[ERROR]");
+  });
 });
