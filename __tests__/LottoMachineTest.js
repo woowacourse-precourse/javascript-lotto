@@ -9,4 +9,11 @@ describe("로또 기계 클래스 테스트", () => {
         const unsortedNumbers = [45, 35, 26, 10, 33, 2]
         expect(LottoMachine.sortNumbersAscending(unsortedNumbers)).toEqual([2, 10, 26, 33, 35, 45]);
     });
+
+    test("전달된 개수만큼 로또를 생성한다.", () => {
+        const amounts = [1, 2, 3, 4, 5];
+        amounts.map((amount) => {
+            expect(LottoMachine.createLottos(amount).length).toEqual(amount);
+        })
+    });
 })
