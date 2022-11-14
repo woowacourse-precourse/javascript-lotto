@@ -152,6 +152,10 @@ class App {
   printCountOfFiveAndBounsMatch() {
     Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.countFiveAndBounsMatch}개`);
   }
+
+  printCountOfSixMatch() {
+    Console.print(`6개 일치 (2,000,000,000원) - ${this.countSixMatch}개`);
+  }
 }
 
 const app = new App();
