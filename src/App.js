@@ -1,8 +1,8 @@
-const { Console, Random, } = require('@woowacourse/mission-utils');
-const { LOTTO, MESSAGE, } = require('./domain/constant');
+const { Console, Random } = require('@woowacourse/mission-utils');
+const { LOTTO, MESSAGE } = require('./domain/constant');
 const Util = require('./Util');
 const Lotto = require('./Lotto');
-const Validation = require('./domain/Validation')
+const Validation = require('./domain/Validation');
 
 class App {
   purchaseAmount = 0;
@@ -35,11 +35,7 @@ class App {
   }
 
   pickLottoNumbers() {
-    const lottoNumbers = Random.pickUniqueNumbersInRange(
-      LOTTO.START,
-      LOTTO.END,
-      LOTTO.LENGTH
-    );
+    const lottoNumbers = Random.pickUniqueNumbersInRange(LOTTO.START, LOTTO.END, LOTTO.LENGTH);
     return lottoNumbers;
   }
 
@@ -123,11 +119,11 @@ class App {
 
   printLottoResult({ ranks, rateOfReturn }) {
     Console.print(MESSAGE.WINNING_STATISTICS);
-    Console.print(`${ MESSAGE.FIFTH_PLACE }${ ranks[LOTTO.FIFTH_PLACE] }${ MESSAGE.EA }`);
-    Console.print(`${ MESSAGE.FOURTH_PLACE }${ ranks[LOTTO.FOURTH_PLACE] }${ MESSAGE.EA }`);
-    Console.print(`${ MESSAGE.THIRD_PLACE }${ ranks[LOTTO.THIRD_PLACE] }${ MESSAGE.EA }`);
-    Console.print(`${ MESSAGE.SECOND_PLACE }${ ranks[LOTTO.SECOND_PLACE] }${ MESSAGE.EA }`);
-    Console.print(`${ MESSAGE.FIRST_PLACE }${ ranks[LOTTO.FIRST_PLACE] }${ MESSAGE.EA }`);
+    Console.print(`${MESSAGE.FIFTH_PLACE}${ranks[LOTTO.FIFTH_PLACE]}${MESSAGE.EA}`);
+    Console.print(`${MESSAGE.FOURTH_PLACE}${ranks[LOTTO.FOURTH_PLACE]}${MESSAGE.EA}`);
+    Console.print(`${MESSAGE.THIRD_PLACE}${ranks[LOTTO.THIRD_PLACE]}${MESSAGE.EA}`);
+    Console.print(`${MESSAGE.SECOND_PLACE}${ranks[LOTTO.SECOND_PLACE]}${MESSAGE.EA}`);
+    Console.print(`${MESSAGE.FIRST_PLACE}${ranks[LOTTO.FIRST_PLACE]}${MESSAGE.EA}`);
     Console.print(MESSAGE.TOTAL_RATE_OF_RETURN(rateOfReturn));
     return this.finish();
   }

@@ -1,6 +1,6 @@
 const Util = require('./Util');
-const { LOTTO, ERROR_MESSAGE, } = require('./domain/constant');
-const { Console, } = require('@woowacourse/mission-utils');
+const { LOTTO, ERROR_MESSAGE } = require('./domain/constant');
+const { Console } = require('@woowacourse/mission-utils');
 
 class Lotto {
   #numbers;

@@ -74,7 +74,7 @@ describe('로또 테스트', () => {
     const app = new App();
     const winningNumbersInput = '1,2,3,4,5,6';
     const winningNumbers = app.winningNumbersToArray(winningNumbersInput);
-    expect(winningNumbers).toEqual([1,2,3,4,5,6]);
+    expect(winningNumbers).toEqual([1, 2, 3, 4, 5, 6]);
   });
 
   test('1등부터 5등까지 1개씩 나오는 경우', () => {
@@ -110,9 +110,7 @@ describe('로또 테스트', () => {
 
   test('당첨번호 입력 시 형식에 맞지 않으면 예외가 발생한다.', () => {
     mockQuestions(['1000', '1,2,3,,4,5,6']);
-    mockRandoms([
-      [11, 12, 13, 14, 15, 16],
-    ]);
+    mockRandoms([[11, 12, 13, 14, 15, 16]]);
     expect(() => {
       const app = new App();
       app.play();
@@ -121,9 +119,7 @@ describe('로또 테스트', () => {
 
   test('보너스번호 입력 시 당첨번호와 중복되면 예외가 발생한다.', () => {
     mockQuestions(['1000', '1,2,3,4,5,6', '6']);
-    mockRandoms([
-      [10, 20, 30, 40, 42, 45],
-    ]);
+    mockRandoms([[10, 20, 30, 40, 42, 45]]);
     expect(() => {
       const app = new App();
       app.play();
@@ -132,12 +128,10 @@ describe('로또 테스트', () => {
 
   test('보너스번호 입력 시 1~45범위의 숫자가 아니라면 예외가 발생한다.', () => {
     mockQuestions(['1000', '1,2,3,4,5,6', '46']);
-    mockRandoms([
-      [10, 20, 30, 40, 42, 7],
-    ]);
+    mockRandoms([[10, 20, 30, 40, 42, 7]]);
     expect(() => {
       const app = new App();
       app.play();
     }).toThrow('[ERROR]');
-  });  
+  });
 });

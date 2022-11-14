@@ -1,4 +1,4 @@
-const { LOTTO, ERROR_MESSAGE, } = require('./constant');
+const { LOTTO, ERROR_MESSAGE } = require('./constant');
 const Util = require('../Util');
 
 class Validation {
@@ -46,16 +46,13 @@ class Validation {
   }
 
   static validateBonusNumber({ bonusNumber, winningNumbers }) {
-    if (
-      !Util.isNumericInput(bonusNumber) ||
-      !Util.isBetween(bonusNumber, LOTTO.START, LOTTO.END)
-    ) {
+    if (!Util.isNumericInput(bonusNumber) || !Util.isBetween(bonusNumber, LOTTO.START, LOTTO.END)) {
       throw new Error(ERROR_MESSAGE.OUT_OF_RANGE_LOTTO);
     }
     if (winningNumbers.includes(parseInt(bonusNumber))) {
       throw new Error(ERROR_MESSAGE.INVALID_BONUS_NUMBER);
     }
-  }  
+  }
 }
 
 module.exports = Validation;

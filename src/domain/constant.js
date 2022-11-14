@@ -33,8 +33,7 @@ const MESSAGE = Object.freeze({
   FIFTH_PLACE: '3개 일치 (5,000원) - ',
   EA: '개',
   PURCHASE_QUANTITY: (quantity) => `\n${quantity}개를 구매했습니다.`,
-  TOTAL_RATE_OF_RETURN: (rateOfReturn) =>
-    `총 수익률은 ${rateOfReturn}%입니다.\n`,
+  TOTAL_RATE_OF_RETURN: (rateOfReturn) => `총 수익률은 ${rateOfReturn}%입니다.\n`,
 });
 
 const ERROR_MESSAGE = Object.freeze({
@@ -47,8 +46,7 @@ const ERROR_MESSAGE = Object.freeze({
   HAS_DUPLICATE_NUMBERS: '[ERROR] 로또 번호 6개는 서로 달라야 합니다.',
   INVALID_WINNING_NUMBERS:
     '[ERROR] 당첨 번호 입력은 "숫자,숫자,숫자,숫자,숫자,숫자"형식이어야 합니다.',
-  INVALID_BONUS_NUMBER:
-    '[ERROR] 보너스 번호는 당첨 번호와 다른 숫자여야 합니다.',
+  INVALID_BONUS_NUMBER: '[ERROR] 보너스 번호는 당첨 번호와 다른 숫자여야 합니다.',
 });
 
 module.exports = {
