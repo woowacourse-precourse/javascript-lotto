@@ -20,6 +20,8 @@
 - 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 및 수익률을 출력하고 로또 게임을 종료한다.
 - 사용자가 잘못된 값을 입력할 경우 `throw`문을 사용해 예외를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 종료한다.
 
+---
+
 ## 입출력 요구사항
 <details>
 <summary> 입력</summary>
@@ -83,6 +85,8 @@
 ```
 </details>
 
+---
+
 ## 과제 진행 요구 사항
 - Node.js 14 버전에서 실행 가능해야 한다.
 - 아래와 같이 프로그램을 실행시킬 수 있어야 한다.
@@ -107,6 +111,31 @@ app.play();
   - Random 값 추출은 [MissionUtils 라이브러리](https://github.com/woowacourse-projects/javascript-mission-utils#mission-utils)의 `Random.pickUniqueNumbersInRange()`를 활용한다.
   - 사용자의 값을 입력 받고 출력하기 위해서는 [MissionUtils 라이브러리](https://github.com/woowacourse-projects/javascript-mission-utils#mission-utils)에서 제공하는 `Console.readLine`, `Console.print`를 활용한다.
 
+### 기타 요구사항
+- 제공된 `Lotto` 클래스를 활용해 구현해야 한다.
+- `numbers`의 `#` prefix를 변경할 수 없다.
+- `Lotto`에 필드를 추가할 수 없다.
+
+```javascript
+class Lotto {
+  #numbers;
+
+  constructor(numbers) {
+    this.validate(numbers);
+    this.#numbers = numbers;
+  }
+
+  validate(numbers) {
+    if (numbers.length !== 6) {
+      throw new Error();
+    }
+  }
+
+  // TODO: 추가 기능 구현
+}
+```
+
+---
 
 ## 기능 구현 목록
 - [ ] 구입 금액을 입력 받는다.
