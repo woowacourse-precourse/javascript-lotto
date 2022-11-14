@@ -1,5 +1,11 @@
-const Lotto = require("../src/Lotto");
-const Buyer = require("../src/Buyer");
+const Lotto = require("../src/models/Lotto");
+const LottoPayment = require("../src/models/LottoPayment");
+const LottoIsuued = require("../src/models/LottoIssued");
+const LottoWinning = require("../src/models/LottoWinning");
+const {
+  getMatchedinWinningNumberCount,
+  getEarningsRate,
+} = require("../src/utils/utils");
 const App = require("../src/App")
 const {Console, Random} = require("@woowacourse/mission-utils");
 
@@ -51,182 +57,139 @@ describe("로또 클래스 테스트", () => {
   });
 });
 
-describe("로또 클래스 테스트", () => {
-  test("금액은 숫자만 입력이 가능하다.", () => {
-    const payment = "testPayment";
-    const buyer = new Buyer();
+describe("구매 금액 테스트", () => {
+  test("구매 금액은 1000단위만 입력 가능하다.", () => {
+    const input = 1500;
     expect(() => {
-      buyer.isValidpayment(payment);
+      new LottoPayment(input);
     }).toThrow();
   });
 
-  test("조건에 맞는 로또 금액을 입력 받는다.", () => {
-    const payment = ["8000"];
-    const outputPayment = 8000;
-    const buyer = new Buyer();
-    mockQuestions(payment);
-    buyer.getLottoPayment(payment);
-    expect(buyer.payment).toEqual(outputPayment);
+  test("구매 금액은 숫자만 입력 가능하다.", () => {
+    const input = "testPayment";
+    expect(() => {
+      new LottoPayment(input);
+    }).toThrow();
   });
 
   test("로또금액에 따른 구매가능한 로또 개수를 계산한다.", () => {
-    const payment = ["8000"];
-    const outputCount = 8;
-    const buyer = new Buyer();
-    mockQuestions(payment);
-    buyer.getLottoPayment(payment);
-    buyer.setLottoCount(buyer.payment);
-    expect(buyer.lottoCount).toEqual(outputCount);
+    const input = 8000;
+    const output = 8;
+
+    const buyer = new LottoPayment(input);
+
+    expect(buyer.lottoCount).toEqual(output);
   });
+});
 
-  test("로또 구매 개수가 출력", () => {
-    const lottoCount = 8;
-    const ouput = `\n8개를 구매했습니다`;
+describe("당첨 로또 테스트", () => {
+  test("당첨 번호는 숫자만 입력 가능합니다.", () => {
+    const input = "1,2,3,4,5,k";
 
-    const app = new App();
-    const logSpy = getLogSpy();
-    app.printLottoCount(lottoCount);
+    const winnigLotto = new LottoWinning();
 
-    expect(logSpy).toHaveBeenCalledWith(ouput);
-  });
-
-  test("로또 번호 출력", () => {
-    const number = [1, 2, 3, 4, 5, 6];
-    const output = "[1, 2, 3, 4, 5, 6]";
-
-    const app = new App();
-    const logSpy = getLogSpy();
-    app.printLottoNumber(number);
-
-    expect(logSpy).toHaveBeenCalledWith(output);
-  });
-
-  test("여러개의 로또 번호 출력", () => {
-    const issuedLotto = [
-      [8, 21, 23, 41, 42, 43],
-      [3, 5, 11, 16, 32, 38],
-      [7, 11, 16, 35, 36, 44],
-    ];
-    const output = "[8, 21, 23, 41, 42, 43]";
-    ("[3, 5, 11, 16, 32, 38]");
-    ("[7, 11, 16, 35, 36, 44]");
-    const app = new App();
-    const logSpy = getLogSpy();
-    app.printIssuendLotto(issuedLotto);
-
-    expect(logSpy).toHaveBeenCalledWith(output);
-  });
-
-  test("로또 번호는 중복되지 않는 숫자여야 합니다.", () => {
-    const input = "1,2,3,4,4,5";
-    const app = new App();
     expect(() => {
-      app.isValidLottoNumber(input);
+      winnigLotto.setWinningLotto(input);
     }).toThrow();
   });
 
-  test("로또 번호는 숫자여야 합니다.", () => {
-    const input = "1,2,3,4,4,k";
-    const app = new App();
+  test("당첨 번호에 중복된 숫자는 입력할 수 없습니다.", () => {
+    const input = "1,2,3,4,5,5";
+
+    const winnigLotto = new LottoWinning();
+
     expect(() => {
-      app.isValidLottoNumber(input);
+      winnigLotto.setWinningLotto(input);
     }).toThrow();
   });
 
-  test("로또 번호는 숫자여야 합니다.", () => {
-    const input = "1,2,3,4,0,56";
-    const app = new App();
+  test("당첨 번호에 범위 외 숫자는 입력할 수 없습니다.", () => {
+    const input = "1,2,3,4,5,50";
+
+    const winnigLotto = new LottoWinning();
+
     expect(() => {
-      app.isValidLottoNumber(input);
+      winnigLotto.setWinningLotto(input);
     }).toThrow();
   });
 
   test("보너스 번호는 숫자여야 합니다.", () => {
     const input = "k";
-    const app = new App();
+
+    const winnigLotto = new LottoWinning();
+
     expect(() => {
-      app.isValidBonusNumber(input);
+      winnigLotto.setBonusNumber(input);
     }).toThrow();
   });
 
-  test("보너스 번호는 하나여야 합니다.", () => {
-    const input = "12";
-    const app = new App();
+  test("보너스 번호는 당첨 번호와 중복되지 않습니다.", () => {
+    const winningInput = "1,2,3,4,5,6"
+    const input = "3";
+
+    const winnigLotto = new LottoWinning();
+    winnigLotto.setWinningLotto(winningInput);
+
     expect(() => {
-      app.isValidBonusNumber(input);
+      winnigLotto.setBonusNumber(input);
     }).toThrow();
   });
+});
 
-  test("겹치는 번호의 개수를 계산합니다.", () => {
-    const lotto = [1,2,3,4,5,6]
-    const winniglotto = [1,2,3,6,7,8]
-    const ouput = 4;
+describe("기능 테스트", () => {
 
-    const app = new App();
-    const count = app.calculateOverlappintNumberCount(lotto, winniglotto);
-    
-    expect(count).toEqual(ouput);
-  });
+  test("당첨로또와 겹치는 개수 계산한다.", () => {
+    const lotto = [2, 3, 5, 6, 8, 9];
+    const winnigLotto = [1, 2, 3, 4, 5, 6];
+    const output = 4;
 
-  test("보너스번호 확인", () => {
-    const lotto = [1,2,3,4,5,6]
-    const bonuslotto = 5
-    const output = true;
+    const count = getMatchedinWinningNumberCount(lotto, winnigLotto);
 
-    const app = new App();
-    const count = app.hasBounsNumber(lotto, bonuslotto);
-    
     expect(count).toEqual(output);
   });
 
-  test("순위별 당첨자 수 구하기", ()=>{
-    const issuedLotto = [
-      [10, 11, 22, 27, 34, 35],
-      [7, 25, 26, 31, 32, 38],
-      [2, 4, 5, 15, 22, 35],
-      [15, 23, 27, 30, 33, 41],
-      [3, 4, 6, 20, 24, 39],
-      [5, 11, 19, 32, 37, 40],
-      [7, 15, 21, 34, 38, 45],
-      [3, 4, 5, 13, 31, 38],
+  test("당첨함수의 수익률을 계산한다.", () => {
+    const payment = 8000;
+    const input = [
+      {
+        ranking: "FIFTH",
+        reward: 5000,
+        mathcedCount: 3,
+        hasBounsNumber: false,
+        amount: 1,
+      },
+      {
+        ranking: "FOURTH",
+        reward: 50000,
+        mathcedCount: 4,
+        hasBounsNumber: false,
+        amount: 0,
+      },
+      {
+        ranking: "THIRD",
+        reward: 1500000,
+        mathcedCount: 5,
+        hasBounsNumber: false,
+        amount: 0,
+      },
+      {
+        ranking: "SECOND",
+        reward: 30000000,
+        mathcedCount: 5,
+        hasBounsNumber: true,
+        amount: 0,
+      },
+      {
+        ranking: "FIRST",
+        reward: 2000000000,
+        mathcedCount: 6,
+        hasBounsNumber: false,
+        amount: 0,
+      },
     ];
-    const winningLotto = [1, 2, 3, 4, 5, 6];
-    const bonusLotto = 7
-    const output = [
-      { rank: 1, matchCount: 6, reword: 2000000000, count: 0 },
-      { rank: 2, matchCount: 5, reword: 30000000, count: 0 },
-      { rank: 3, matchCount: 5, reword: 1500000, count: 0 },
-      { rank: 4, matchCount: 4, reword: 50000, count: 3 },
-      { rank: 5, matchCount: 3, reword: 5000, count: 0 },
-    ];
 
-    const app = new App();
-    app.makeRankingResult(issuedLotto,winningLotto,bonusLotto)
-    
-    expect(app.rankingResult).toEqual(output);
-  })
-
-  test("수익률 계산",()=>{
-    const issuedLotto = [
-      [10, 11, 22, 27, 34, 35],
-      [7, 25, 26, 31, 32, 38],
-      [2, 4, 5, 15, 22, 35],
-      [15, 23, 27, 30, 33, 41],
-      [3, 4, 6, 20, 24, 39],
-      [5, 11, 19, 32, 37, 40],
-      [7, 15, 21, 34, 38, 45],
-      [3, 4, 5, 13, 31, 38],
-    ];
-    const winningLotto = [1, 2, 3, 4, 5, 6];
-    const bonusLotto = 7
-    const lottoPayment = 230000;
-    const output = 65.2
-
-    const app = new App();
-    app.makeRankingResult(issuedLotto,winningLotto,bonusLotto)
-    const received = app.caclulateEarningsRate(app.rankingResult,lottoPayment)
-
-    expect(received).toEqual(output);
-  })
-
+    const output = "62.5"
+  
+    expect(getEarningsRate(input,payment)).toEqual(output);
+  });
 });
