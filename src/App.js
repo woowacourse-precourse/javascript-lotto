@@ -13,8 +13,14 @@ class App {
 
   userPurchase() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (payment) => {
-      this.purchaseLotto = new PurchaseLotto(payment);
+      this.isNumber(payment);
+      this.purchaseLotto = new PurchaseLotto(parseInt(payment));
     });
+  }
+  isNumber(payment) {
+    if (payment.match(/^[0-9]+$/) === false) {
+      throw new Error("[ERROR] 로또 구입 금액은 숫자만 입력해주세요.");
+    }
   }
 }
 
