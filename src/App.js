@@ -5,7 +5,7 @@ class App {
     Console.readLine('구입금액을 입력해 주세요.\n', purchaseAmount => {
       const purchaseLottoCount = this.lottoCountGetter(purchaseAmount);
       const purchaseLottoList = this.lottoPublisher(purchaseLottoCount);
-      this.printer(`\n${purchaseLottoCount}개를 구매했습니다.`);
+      this.printer(`${purchaseLottoCount}개를 구매했습니다.`);
       this.purchaseLottoListPrinter(purchaseLottoList);
       this.winningNumberDecider(purchaseLottoList, purchaseAmount);
     });
@@ -33,7 +33,10 @@ class App {
       lottoNumber < purchaseLottoList.length;
       lottoNumber += 1
     ) {
-      Console.print(purchaseLottoList[lottoNumber].sort((a, b) => a - b));
+      const purchaseLottoString = `[${purchaseLottoList[lottoNumber].sort(
+        (a, b) => a - b,
+      )}]`.replace(/,/g, ', ');
+      Console.print(purchaseLottoString);
     }
   }
 
@@ -45,8 +48,10 @@ class App {
           winningNumber,
           bonusNumber,
         );
-        this.printer(winningList);
         this.winningHistoryPrinter(winningList);
+        const procdeeds = this.proceedsGetter(winningList);
+        const returnRate = this.returnRateGetter(procdeeds, purchaseAmount);
+        this.returnRatePrinter(returnRate);
       });
     });
   }
@@ -111,11 +116,13 @@ class App {
     return returnRate.toFixed(1);
   }
 
+  static returnRatePrinter(returnRate) {
+    this.printer(`총 수익률은 ${returnRate}%입니다.`);
+  }
+
   play() {
     App.lottoPurchaser();
   }
 }
-
-console.log(typeof App.returnRateGetter(5, 8));
 
 module.exports = App;
