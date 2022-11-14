@@ -114,4 +114,10 @@ class App {
     })
   }
 
+  isInputValidate(money) {
+    if (money % 1000 !== 0) {
+      throw new Error("[ERROR] 1000원 단위의 수를 입력해야합니다!");
+    }
+  }
+
 module.exports = App;
