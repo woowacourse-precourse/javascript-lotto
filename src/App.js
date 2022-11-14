@@ -6,7 +6,7 @@ class App {
   }
 
   play() {
-    this.game.inputPurchaseAmount();
+    this.game.start();
   }
 }
 

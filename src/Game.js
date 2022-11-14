@@ -12,10 +12,6 @@ class Game {
     this.bonusNumber = 0;
   }
 
-  play() {
-    this.inputPurchaseAmount();
-  }
-
   inputPurchaseAmount() {
     readLine(INPUT_MESSAGE.PURCHASE_AMOUNT, (purchaseAmount) => {
       validation.isUnitOf1000(purchaseAmount);
@@ -110,6 +106,10 @@ class Game {
     );
     const profitRate = (totalProfit / (this.userLottoCount * 1000)) * 100;
     return profitRate.toFixed(1);
+  }
+
+  start() {
+    this.inputPurchaseAmount();
   }
 }
 
