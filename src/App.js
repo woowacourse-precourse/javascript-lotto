@@ -77,6 +77,11 @@ class App {
     6개 일치 (2,000,000,000원) - ${correct6}개`);
   }
 
+  returnRate() {
+    let rate = (correct3 * 5000 + correct4 * 50000 + correct5 * 1500000 + correct5B * 30000000 + correct6 * 2000000000) / (numOfLotto * 1000);
+    Console.print(`총 수익률은 ${rate.toFixed(2)}%입니다.`);
+  }
+
   play() {
     numOfLotto = this.lottoMoney();
     lottoNumObj = this.createNum();
@@ -84,6 +89,7 @@ class App {
     bonusNum = this.getBonusNum();
     winNum.push(bonusNum);
     this.showResult();
+    this.returnRate();
     Console.close();
   }
 }
