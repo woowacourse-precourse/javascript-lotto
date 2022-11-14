@@ -22,33 +22,28 @@ class Lotto {
         throw new Error("[ERROR] 숫자만 입력해야 합니다.");
       }
       
-      if (!Number.isInteger(number)) {
-        throw new Error("[ERROR] 1부터 45 사이의 정수여야 합니다.");
-      }
-      
       if (!isInRange(number)) {
         throw new Error("[ERROR] 1부터 45 사이의 숫자여야 합니다.");
       }
     }
-
   }
+ 
+}
 
-  isDuplicated(numbers) {
-    const set = new Set(numbers);
-    
-    if(set.size !== 6) {
-      return true;
-    }
-    return false;
-  }
-
-  isInRange(number) {
-    if(number >=1 && number <= 45) {
-        return true;
-    }
-    return false;
-  }
+const isDuplicated = (numbers) => {
+  const set = new Set(numbers);
   
+  if(set.size !== 6) {
+    return true;
+  }
+  return false;
+}
+
+const isInRange = (number) => {
+  if(number >=1 && number <= 45) {
+      return true;
+  }
+  return false;
 }
 
 module.exports = Lotto;
