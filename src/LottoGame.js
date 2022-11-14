@@ -17,6 +17,7 @@ class LottoGame {
   #purchaseAmount;
   #lottoCnt;
   #lottoList;
+  #winningNumbers;
 
   playLottoGame() {
     inputUserValue(GAME_MESSAGE.INPUT_PURCHASE_AMOUNT, (inputAmount) => {
@@ -24,6 +25,7 @@ class LottoGame {
         this.#purchaseAmount = inputAmount;
         this.generateLottoList();
         this.printLottoList();
+        this.inputWinningNumbers();
       }
     });
   }
@@ -52,6 +54,13 @@ class LottoGame {
     printMessage(`${this.#lottoCnt}${GAME_MESSAGE.LOTTO_CNT}`);
     this.#lottoList.forEach((lotto) => {
       printMessage(lotto.getLottoNumbers());
+    });
+  }
+
+  inputWinningNumbers() {
+    inputUserValue(GAME_MESSAGE.INPUT_WINNING_NUMBERS, (winningNumbers) => {
+      this.#winningNumbers = winningNumbers;
+      console.log(this.#winningNumbers);
     });
   }
 }
