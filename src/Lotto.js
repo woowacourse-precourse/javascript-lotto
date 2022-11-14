@@ -1,9 +1,11 @@
+Lotto
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
     this.validate(numbers);
-    this.#numbers = numbers;
+    this.#numbers = this.lottoNumberSort(numbers);
   }
 
   validate(numbers) {
@@ -11,6 +13,14 @@ class Lotto {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
   }
+
+  lottoNumberSort(numbers) {
+    function compareNumbers(a, b) {
+        return a - b
+    }
+
+    return numbers.sort(compareNumbers)
+}
   // TODO: 추가 기능 구현
 }
 

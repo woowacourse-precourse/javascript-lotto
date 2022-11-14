@@ -29,10 +29,6 @@ class App {
         return money / 1000
     }
 
-    lottoCountPrint(number) {
-        MissionUtils.Console.print(number + '개를 구매했습니다.')
-    }
-
     makeLottoNumber() {
         for (let i = 0; i < this.lottoCount; i++) {
             const numbers = this.lottoNumberSort(
