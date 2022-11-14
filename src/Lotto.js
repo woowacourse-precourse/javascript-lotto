@@ -24,8 +24,7 @@ class Lotto {
     Console.readLine("구입금액을 입력해 주세요.\n", (userInput) => {
       let numberUserInput = Number(userInput) ?? NaN;
       if (this.#validateCoin(numberUserInput)) {
-        this.LottoPurchaseAmount = userInput;
-        console.log(`Lotto.LottoPurchaseAmount: ${this.LottoPurchaseAmount}`);
+        this.lottoPurchaseAmount = userInput;
       }
     });
   }
@@ -42,8 +41,9 @@ class Lotto {
     return true;
   }
 
-  static countLotto() {
-    return 8;
+  static countLotto(lottoAmount) {
+    let countOfLotto = lottoAmount / Constant.MINIMUM_AMOUNT;
+    return countOfLotto;
   }
 }
 
