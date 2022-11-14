@@ -1,4 +1,4 @@
-const { PARAMETERS } = require('./utils/constants');
+const { PARAMETERS, PRIZE_MONEY } = require('./utils/constants');
 
 class CalculateLotto {
   constructor(winningNumber, bonusNumber, userLottoNumbers, purchaseCount) {
@@ -17,6 +17,14 @@ class CalculateLotto {
     });
 
     return this.winningCount;
+  }
+
+  calculateProfitRate() {
+    const TOTAL_USER_PROFIT = this.winningCount.reduce(
+      (acc, curr, index) => acc + curr * PRIZE_MONEY[index]
+    );
+
+    return ((TOTAL_USER_PROFIT / this.purchaseAmount) * 100).toFixed(1);
   }
 
   getCommonNumberCount(userLottoNumber) {
