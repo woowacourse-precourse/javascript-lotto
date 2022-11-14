@@ -1,6 +1,7 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
-const { TICKET_PRICE, RANK } = require('./utils/CONSTANT');
+const { RANK } = require('./utils/CONSTANT');
+const { countTickets } = require('./utils/lottery');
 const { convertNumberToComma } = require('./utils/string');
 const { validateNumbers } = require('./utils/validation');
 
@@ -21,32 +22,16 @@ class App {
 
   inputMoney() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (answer) => {
-      this.#paid = Number(answer);
-      if (this.validateMoney(answer)) {
-        const ticketsCount = this.countTickets(answer);
-        MissionUtils.Console.print(`\n${ticketsCount}개를 구매했습니다.`);
-        for (let i = 0; i < ticketsCount; i += 1) {
-          this.#tickets.push(new Lotto(this.generateRandomNumbers()));
-        }
-        this.#tickets.map((ticket) => MissionUtils.Console.print(`[${ticket.getTicketNumbers().join(', ')}]`));
-        this.setLottoNumbers();
+      const money = Number(answer);
+      this.#paid = money;
+      const ticketsCount = countTickets(money);
+      MissionUtils.Console.print(`\n${ticketsCount}개를 구매했습니다.`);
+      for (let i = 0; i < ticketsCount; i += 1) {
+        this.#tickets.push(new Lotto(this.generateRandomNumbers()));
       }
+      this.#tickets.map((ticket) => MissionUtils.Console.print(`[${ticket.getTicketNumbers().join(', ')}]`));
+      this.setLottoNumbers();
     });
-  }
-
-  validateMoney(answer) {
-    const money = Number(answer);
-    if (Number.isNaN(money)) {
-      throw Error('[ERROR] 숫자여야 합니다.');
-    }
-    if (money % TICKET_PRICE !== 0) {
-      throw Error(`[ERROR] ${convertNumberToComma(1000)}원 단위로 입력하세요`);
-    }
-    return true;
-  }
-
-  countTickets(answer) {
-    return answer / TICKET_PRICE;
   }
 
   generateRandomNumbers() {

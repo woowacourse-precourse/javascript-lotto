@@ -1,3 +1,5 @@
+const { TICKET_PRICE } = require('./CONSTANT');
+
 const figureLotteryRank = (hit, bonus) => {
   if (hit === 6) {
     return 'FIRST';
@@ -16,4 +18,18 @@ const figureLotteryRank = (hit, bonus) => {
   }
   return null;
 };
-module.exports = { figureLotteryRank };
+
+const validateMoney = (money) => {
+  if (Number.isNaN(money)) {
+    throw Error('[ERROR] 숫자여야 합니다.');
+  }
+  if (money % TICKET_PRICE !== 0) {
+    throw Error(`[ERROR] ${convertNumberToComma(1000)}원 단위로 입력하세요`);
+  }
+};
+
+const countTickets = (money) => {
+  validateMoney(money);
+  return money / TICKET_PRICE;
+};
+module.exports = { figureLotteryRank, countTickets };
