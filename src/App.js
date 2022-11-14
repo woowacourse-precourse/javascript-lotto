@@ -5,7 +5,7 @@ class App {
     Console.readLine('구입금액을 입력해 주세요.\n', (purchaseAmount) => {
       const purchaseLottoCount = this.lottoCountGetter(purchaseAmount);
       const purchaseLottoList = this.lottoPublisher(purchaseLottoCount);
-      Console.print(`\n${purchaseLottoCount}개를 구매했습니다.`);
+      this.printer(`\n${purchaseLottoCount}개를 구매했습니다.`);
       this.purchaseLottoListPrinter(purchaseLottoList);
     });
   }
@@ -20,6 +20,10 @@ class App {
       purchaseLottoNumbers.push(Random.pickUniqueNumbersInRange(1, 45, 6));
     }
     return purchaseLottoNumbers;
+  }
+
+  static printer(inputText) {
+    Console.print(inputText);
   }
 
   static purchaseLottoListPrinter(purchaseLottoList) {
