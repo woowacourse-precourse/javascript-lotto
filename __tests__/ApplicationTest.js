@@ -62,8 +62,8 @@ describe("로또 테스트", () => {
     });
   });
 
-  test("isValidMoney(), 입력 받은 금액이 숫자인지 확인한다.", () => {
-    const moneys = ["1000j", 988, 1000001];
+  test("isValidMoney(), 입력받은 금액이 유효한지 확인한다", () => {
+    const moneys = [12345, "1000j", 988, 1000001];
     mockQuestions(moneys);
 
     moneys.forEach((money) => {
@@ -203,4 +203,5 @@ describe("로또 테스트", () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(output));
     })
   })
+
 });

@@ -36,7 +36,7 @@ class App {
 
   isValidMoney(money) {
     if (money % 1000 !== 0 ) {
-      throw (`[ERROR] 천원 단위로 금액을 지불해주세요.`); // TODO: 금액에 대한 테스트 케이스 추가
+      throw (`[ERROR] 천원 단위로 금액을 지불해주세요.`);
     }
     if (Number.isNaN(money)) {
       throw (`[ERROR] 입력 금액이 숫자형태가 아닙니다.`);
