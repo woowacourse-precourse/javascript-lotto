@@ -57,6 +57,14 @@ class Purchase {
   static createWinnigLotto(number) {
     const winningNumber = number.split(",");
     const winnigLotto = new Lotto(winningNumber);
+    Purchase.inputBonusNumber();
+  }
+
+  static inputBonusNumber() {
+    MissionUtils.Console.readLine(
+      Constant.BONUS_NUMBER_MESSAGE,
+      Purchase.validateBonusNumber
+    );
   }
 }
 
