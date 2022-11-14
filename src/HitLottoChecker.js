@@ -17,5 +17,15 @@ class HitLottoChecker {
     this.lottoPurchaseFee = lottoPurchaseFee;
     this.boughtLottoArray = lottoArray;
   }
+
+  setHitLotto() {
+    MissionUtils.Console.readLine(
+      "당첨 번호를 입력해 주세요.",
+      (hitLottoNumbers) => {
+        this.hitLotto = this.hitLottoToInt(hitLottoNumbers);
+        this.setBonusNumber();
+      }
+    );
+  }
 }
 module.exports = HitLottoChecker;
