@@ -5,6 +5,7 @@ class LottoGame {
     this.lottoCount = 0;
     this.purchasePrice = 0;
     this.lottos = [];
+    this.winningNumbers = [];
   }
 
   start() {
@@ -26,6 +27,19 @@ class LottoGame {
       MissionUtils.Console.print(Lotto);
     }
     MissionUtils.Console.print(this.lottos);
+
+    this.inputWinninNumbers();
+  }
+
+  inputWinninNumbers() {
+    MissionUtils.Console.readLine(
+      "당첨번호를 입력해 주세요.\n",
+      (winningNumbers) => {
+        this.winningNumbers = winningNumbers
+          .split(",")
+          .map((number) => Number(number));
+      }
+    );
   }
 }
 
