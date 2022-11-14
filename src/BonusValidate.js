@@ -1,0 +1,24 @@
+class BonusValidate {
+  constructor(winningNumber, bonusNumber) {
+    this.repeatBonusValidate(winningNumber, bonusNumber);
+    this.limitBonusValidate(bonusNumber);
+  }
+
+  // 보너스 번호 중복 확인
+  repeatBonusValidate(winningNumber, bonusNumber) {
+    if (winningNumber.includes(String(bonusNumber))) {
+      throw new Error('[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.');
+    }
+    return;
+  }
+
+  // 보너스 번호 범위 확인
+  limitBonusValidate(bonusNumber) {
+    if (bonusNumber < 1 || bonusNumber > 45) {
+      throw new Error('[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.');
+    }
+    return;
+  }
+}
+
+module.exports = BonusValidate;

@@ -13,6 +13,8 @@ const {
   FIVE_SAME_BONUS_SAME,
   SIX_SAME,
 } = require('./Constant');
+const LottoValidate = require('./LottoValidate');
+const BonusValidate = require('./BonusValidate');
 class App {
   inputPrice; // 받은 금액
   lottoCnt; // 로또 개수
@@ -64,7 +66,7 @@ class App {
   getWinningLottoNumber() {
     Console.readLine(`\n${PLZ_INPUT_WIN_NUMBER}\n`, numbers => {
       this.winningNum = numbers.split(',');
-      new Lotto(this.winningNum);
+      new LottoValidate(this.winningNum);
       this.getBonusNumber();
     });
   }
@@ -73,6 +75,7 @@ class App {
   getBonusNumber() {
     Console.readLine(`\n${PLZ_INPUT_BONUS_NUMBER}\n`, bonus => {
       this.bonusNum = bonus;
+      new BonusValidate(this.winningNum, this.bonusNum);
       this.lottoCompareWinNumber();
     });
   }
