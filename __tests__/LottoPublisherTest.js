@@ -86,4 +86,9 @@ describe('로또스토어 클래스 테스트', () => {
       lottoPublisher.validateBonusNumber('6');
     }).toThrow('[ERROR]');
   });
+
+  test('당첨 번호를 입력하면 해당 값이 당첨 번호로 저장되고, getter로 이를 불러올 수 있다.', () => {
+    lottoPublisher.receiveUserInputWinningNumbers('1,2,3,4,5,6');
+    expect(lottoPublisher.winningNumbers).toEqual([1, 2, 3, 4, 5, 6]);
+  });
 });
