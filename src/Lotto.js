@@ -21,7 +21,7 @@ class Lotto {
   }
 
   countSameNumber(winning) {
-    return this.#numbers.filter((lottos) => winning.hasNumber(lottos)).length;
+    return this.#numbers.filter((lotto) => winning.hasNumber(lotto)).length;
   }
 
   hasNumber(number) {
