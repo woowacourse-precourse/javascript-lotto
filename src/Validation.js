@@ -1,5 +1,8 @@
-const { ERROR_MONEY } = require("./constants/messages");
-const { RULE } = require("./constants/rule");
+const {
+  ERROR_MONEY,
+  ERROR_LOTTO,
+  ERROR_BONUS,
+} = require("./constants/messages");
 
 class Validation {
   checkType = (purchaseAmount) => {
@@ -37,32 +40,24 @@ class Validation {
   };
 
   isLottoRange = (numbers) => {
-    return numbers.every(
-      (number) =>
-        number >= RULE.MIN_LOTTO_NUMBER && number <= RULE.MAX_LOTTO_NUMBER
-    );
+    return numbers.every((number) => number >= 1 && number <= 45);
   };
 
   checkLottoLength(numbers) {
-    if (numbers.length !== RULE.LOTTO_NUMS)
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    if (numbers.length !== 6) throw new Error(ERROR_LOTTO.LENGTH);
   }
 
   checkLottoType(numbers) {
-    if (!this.isNumberType(numbers))
-      throw new Error("[ERROR] 로또 번호는 숫자이어야 합니다.");
+    if (!this.isNumberType(numbers)) throw new Error(ERROR_LOTTO.TYPE);
   }
 
   checkLottoRange(numbers) {
-    if (!this.isLottoRange(numbers))
-      throw new Error("[ERROR] 로또 번호의 범위는 1~45여야 합니다.");
+    if (!this.isLottoRange(numbers)) throw new Error(ERROR_LOTTO.RANGE);
   }
 
   checkDuplicatedNumber(numbers) {
-    if ([...new Set(numbers)].length !== RULE.LOTTO_NUMS)
-      throw new Error(
-        "[ERROR] 로또 번호는 중복되지 않은 숫자로 이루어져야 합니다."
-      );
+    if ([...new Set(numbers)].length !== 6)
+      throw new Error(ERROR_LOTTO.DUPLICATED);
   }
 
   isValidLottoNumber = (numbers) => {
@@ -74,14 +69,11 @@ class Validation {
   };
 
   checkBonusNumber(number, winNumbers) {
-    if (number < RULE.MIN_LOTTO_NUMBER || number > RULE.MAX_LOTTO_NUMBER)
-      throw new Error("[ERROR] 보너스 번호의 범위는 1~45여야 합니다.");
+    if (number < 1 || number > 45) throw new Error(ERROR_BONUS.RANGE);
 
-    if (isNaN(number))
-      throw new Error("[ERROR] 보너스 번호는 숫자이어야 합니다.");
+    if (isNaN(number)) throw new Error(ERROR_BONUS.TYPE);
 
-    if (winNumbers.includes(number))
-      throw new Error("[ERROR] 보너스 번호가 당첨 번호에 포함되어 있습니다.");
+    if (winNumbers.includes(number)) throw new Error(ERROR_BONUS.DUPLICATED);
     return true;
   }
 }
