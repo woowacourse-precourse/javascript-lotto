@@ -8,6 +8,7 @@ const OUTPUT = {
   BUY: "개를 구매했습니다.",
   RESULT_TITLE: "당첨 통계\n---",
   LINE: "\n",
+  BENEFIT: (rate) => `총 수익률은 ${rate}%입니다.`,
 };
 
 const ERROR = {

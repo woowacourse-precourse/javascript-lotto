@@ -100,7 +100,7 @@ class App {
   }
 
   printBenefit(rate) {
-    Console.print(`총 수익률은 ${rate}%입니다.`);
+    Console.print(OUTPUT.BENEFIT(rate));
     Console.close();
   }
 }
