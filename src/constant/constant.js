@@ -1,23 +1,35 @@
 const INPUT_TEXT = {
   PURCHASE_AMOUNT: '구입금액을 입력해 주세요.',
-  BOUGHT: '개를 구매했습니다.',
   WINNING_NUMBER: '당첨 번호를 입력해 주세요.',
   BONUS_NUMBER: '보너스 번호를 입력해 주세요.',
   LINE_BREAK: '',
   EMPTY: '',
+  BOUGHT(number) {
+    return `${number}개를 구매했습니다.`;
+  },
 };
 
 const STATS_TEXT = {
   WINNING_STATS: '당첨 통계',
-  MATCH_THREE: '3개 일치 (5,000원) - ',
-  MATCH_FOUR: '4개 일치 (50,000원) - ',
-  MATCH_FIVE: '5개 일치 (1,500,000원) - ',
-  MATCH_FIVE_BONUS: '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
-  MATCH_SIX: '6개 일치 (2,000,000,000원) - ',
-  EACH: '개',
-  YIELD: '총 수익률은 ',
-  YIELD_ENDING: '%입니다.',
   HORIZONTAL_LINE: '---',
+  MATCH_THREE(number) {
+    return `3개 일치 (5,000원) - ${number}개`;
+  },
+  MATCH_FOUR(number) {
+    return `4개 일치 (50,000원) - ${number}개`;
+  },
+  MATCH_FIVE(number) {
+    return `5개 일치 (1,500,000원) - ${number}개`;
+  },
+  MATCH_FIVE_BONUS(number) {
+    return `5개 일치, 보너스 볼 일치 (30,000,000원) - ${number}개`;
+  },
+  MATCH_SIX(number) {
+    return `6개 일치 (2,000,000,000원) - ${number}개`;
+  },
+  YIELD(number) {
+    return `총 수익률은 ${number}%입니다.`;
+  },
 };
 
 const ERROR = {

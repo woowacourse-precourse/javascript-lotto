@@ -70,7 +70,7 @@ class LottoView {
   }
 
   showLottoList(lists) {
-    this.print(INPUT_TEXT.LINE_BREAK, `${lists.length}${INPUT_TEXT.BOUGHT}`);
+    this.print(INPUT_TEXT.LINE_BREAK, INPUT_TEXT.BOUGHT(lists.length));
     lists.forEach((list) => {
       this.print(`[${list.join(', ')}]`);
     });
@@ -78,16 +78,16 @@ class LottoView {
 
   showRankList(lottoRanks) {
     this.print(
-      `${STATS_TEXT.MATCH_THREE}${lottoRanks[RANK.FIVE]}${STATS_TEXT.EACH}`,
-      `${STATS_TEXT.MATCH_FOUR}${lottoRanks[RANK.FOUR]}${STATS_TEXT.EACH}`,
-      `${STATS_TEXT.MATCH_FIVE}${lottoRanks[RANK.THREE]}${STATS_TEXT.EACH}`,
-      `${STATS_TEXT.MATCH_FIVE_BONUS}${lottoRanks[RANK.TWO]}${STATS_TEXT.EACH}`,
-      `${STATS_TEXT.MATCH_SIX}${lottoRanks[RANK.ONE]}${STATS_TEXT.EACH}`
+      STATS_TEXT.MATCH_THREE(lottoRanks[RANK.FIVE]),
+      STATS_TEXT.MATCH_FOUR(lottoRanks[RANK.FOUR]),
+      STATS_TEXT.MATCH_FIVE(lottoRanks[RANK.THREE]),
+      STATS_TEXT.MATCH_FIVE_BONUS(lottoRanks[RANK.TWO]),
+      STATS_TEXT.MATCH_SIX(lottoRanks[RANK.ONE])
     );
   }
 
   showYield(lottoYield) {
-    this.print(`${STATS_TEXT.YIELD}${lottoYield}${STATS_TEXT.YIELD_ENDING}`);
+    this.print(STATS_TEXT.YIELD(lottoYield));
   }
 
   readLine(message, callback) {
