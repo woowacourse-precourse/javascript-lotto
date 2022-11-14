@@ -4,7 +4,6 @@ class User {
 	constructor(money) {
 		this.validate(money);
 		this.#seedMoney = money;
-		throw ('is Valid');
 	}
 
 	validate(money) {
@@ -30,6 +29,10 @@ class User {
 		if ((money % 1000) !== 0) {
 			throw new Error('[ERROR] 구입 금액은 1,000원 단위여야 합니다.');
 		}
+	}
+
+	getSeedMoney(money) {
+		return this.#seedMoney;
 	}
 }
 
