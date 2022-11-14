@@ -15,10 +15,10 @@ class GetStat {
   }
 
   calculateLottoArray() {
-    for (let i = 0; i < this.lottoInfo['numbersOfLotto']; i++) {
+    for (let index = 0; index < this.lottoInfo['numbersOfLotto']; index++) {
       this.initializeLottoInfoProperty();
-      this.countCorrectNumbers(i);
-      this.isSecondPrizeWin(i);
+      this.countCorrectNumbers(index);
+      this.isSecondPrizeWin(index);
       this.countWinning();
     }
   }
@@ -27,18 +27,18 @@ class GetStat {
     this.lottoInfo.numberOfCorrectNumbers = INITIALIZE_VALUES.ZERO;
   }
 
-  countCorrectNumbers(i) {
+  countCorrectNumbers(index) {
     this.lottoInfo['winningNumbers'].forEach((number) => {
-      if (this.lottoInfo['lottoArray'][i].includes(number)) {
+      if (this.lottoInfo['lottoArray'][index].includes(number)) {
         this.lottoInfo.numberOfCorrectNumbers
           += LOTTO_INFO_VALUES.ADD_CORRECT_NUMBER;
       }
     });
   }
 
-  isSecondPrizeWin(i) {
+  isSecondPrizeWin(index) {
     if (this.lottoInfo.numberOfCorrectNumbers === 5 &&
-      this.lottoInfo['lottoArray'][i].includes(this.lottoInfo.bonusNumber)) {
+      this.lottoInfo['lottoArray'][index].includes(this.lottoInfo.bonusNumber)) {
       this.lottoInfo.numberOfCorrectNumbers += LOTTO_INFO_VALUES.GET_PRIZE_2;
     }
   }

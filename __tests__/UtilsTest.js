@@ -63,14 +63,14 @@ describe('isNaturalNumber(input) - 입력값이 자연수인지 확인합니다.
 
 describe("randomSelectWithoutOverlap() - 길이가 6인 오름차순 정렬한 무작위로 선택된 요소의 배열을 반환합니다.", () => {
   test("randomSelectWithoutOverlap() 메서드의 반환값의 길이가 6인지 확인합니다.", () => {
-    for (let i = 0; i < 1000; i++) {
+    for (let count = 0; count < 1000; count++) {
       const lottoArray = utils.randomSelectWithoutOverlap();
       expect(lottoArray.length === 6).toBeTruthy();
     }
   });
 
   test("randomSelectWithoutOverlap() 메서드의 반환값에 중복되는 요소가있는지 확인합니다.", () => {
-    for (let i = 0; i < 1000; i++) {
+    for (let count = 0; count < 1000; count++) {
       const lottoArray = utils.randomSelectWithoutOverlap();
       expect([...new Set(lottoArray)].every((value, idx) => value === lottoArray[idx])).toBeTruthy();
     }
