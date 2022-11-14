@@ -22,6 +22,7 @@ class App {
       this.lottos,
       this.lottoBonusNumber
     );
+
     this.printLottoResult(lottoResult);
     this.printRevenueRate(lottoResult);
     MissionUtils.Console.close();
@@ -54,7 +55,7 @@ class App {
     for (let i = 0; i < number; i++) {
       const lotto = this.generateRandomLotto();
       MissionUtils.Console.print(`[${lotto.join(", ")}]\n`);
-      lottos.concat(lotto);
+      lottos.push(lotto);
     }
 
     return lottos;

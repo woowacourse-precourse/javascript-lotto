@@ -1,3 +1,5 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+
 class Lotto {
   #numbers;
 
@@ -38,9 +40,9 @@ class Lotto {
     let match = 0;
     let isBonusMatched = false;
 
-    for (let i = 0; i < 6; i++) {
-      if (this.#numbers.includes(lotto[i])) {
-        match += 1;
+    for (let i = 0; i < this.#numbers.length; i++) {
+      if (this.#numbers.includes(lotto[i].toString())) {
+        match++;
       } else if (bonus === lotto[i]) {
         isBonusMatched = true;
       }
@@ -58,7 +60,7 @@ class Lotto {
       return 3;
     } else if (matchCount === 4) {
       return 4;
-    } else if (matchCount === 5) {
+    } else if (matchCount === 3) {
       return 5;
     } else {
       return -1;
