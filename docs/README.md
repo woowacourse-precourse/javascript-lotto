@@ -38,4 +38,4 @@
 
 9. 수익률 계산하기 (calculateProfit)
 
-10. 게임 종료
+10. 게임 종료 (gameOver)
