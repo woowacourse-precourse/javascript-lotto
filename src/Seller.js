@@ -84,14 +84,22 @@ const Seller = ((_) => {
     }
 
     validateWinNumber(winNumber) {
-      const numbers = winNumber.split(",").map(Number);
+      const winNumbers = winNumber.split(",");
       const comma = winNumber.split(/\d/).join("");
-      Validator.isLength(numbers, 6).isLength(comma, 5).isLength(winNumber, 11);
+      Validator.isLength(winNumbers, LOTTO_NUMBER.VALID_NUMBER_LENGTH).isLength(comma, LOTTO_NUMBER.VALID_COMMA_LENGTH);
+      winNumbers.every(Validator.isNumber);
+      winNumbers.every((number) =>
+        Validator.isRange({ target: number, start: LOTTO_NUMBER.MIN_NUMBER, end: LOTTO_NUMBER.MAX_NUMBER })
+      );
       return true;
     }
 
     validateBonusNumber(bonusNumber) {
-      Validator.isLength(bonusNumber, 1).isNumber(Number(bonusNumber));
+      Validator.isNumber(Number(bonusNumber)).isRange({
+        target: bonusNumber,
+        start: LOTTO_NUMBER.MIN_NUMBER,
+        end: LOTTO_NUMBER.MAX_NUMBER,
+      });
       return true;
     }
   };
