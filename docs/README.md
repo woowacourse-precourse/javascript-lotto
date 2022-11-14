@@ -148,9 +148,11 @@ src/
         toString()
     WinningLotto.js
       class WinningLotto
+        REWARDS = []
         #lotto
         #bonusNumber
         constructor(lotto, bonusNumber)
+        getRewardFor(lotto)
     LottoReward.js
       class LottoReward
         #title
@@ -160,12 +162,6 @@ src/
         isEligible(lotto)
         getMoney()
         toString()
-    LottoRound.js
-      class LottoRound
-        REWARDS = []
-        #winningLotto
-        constructor(winningLotto, rewards = REWARDS)
-        getReward(lotto)
   views/
     InteractivePrompt.js
       class InteractivePrompt
