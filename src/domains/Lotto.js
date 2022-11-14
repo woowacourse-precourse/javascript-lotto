@@ -26,7 +26,7 @@ class Lotto {
     if (numbers.length !== Lotto.NUMBER_COUNT) {
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
     }
-    if (numbers.every((number) => Lotto.NUMBER_MIN <= number && number <= Lotto.NUMBER_MAX)) {
+    if (!numbers.every((number) => Lotto.NUMBER_MIN <= number && number <= Lotto.NUMBER_MAX)) {
       throw new Error('[ERROR] 로또 번호는 1에서 45 사이여야 합니다.');
     }
     if (new Set(numbers).size() !== numbers.length) {
