@@ -25,6 +25,10 @@ class Lotto {
         throw new Error("[ERROR] 로또 번호는 1에서 45사이의 정수여야 합니다.");
       }
     }
+    const setNumber = new Set(numbers);
+    if (setNumber.size != numbers.length) {
+      throw new Error("[ERROR] 번호가 중복됩니다!");
+    }
   }
 
   // TODO: 추가 기능 구현

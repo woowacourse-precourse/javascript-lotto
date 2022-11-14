@@ -4,7 +4,12 @@ class App {
   Money = 0;
   LottoNum = 0;
   TotalLotto = [];
-  winnumber = [];
+  WinLotto = [];
+  Bonus = 0;
+  Result = [0, 0, 0, 0, 0, 0, 0];
+  isBonus = 0;
+  WinPrice = ["5,000", "50,000", "1,500,000", "30,000,000", "2,000,000,000"];
+  IntPrice = [5000, 50000, 1500000, 2000000000];
   checkMoney(Money) {
     if (parseInt(Money % 1000) != 0) {
       throw "[ERROR] 1000으로 나누어 떨어지지 않음";
@@ -35,8 +40,9 @@ class App {
       MissionUtils.Console.readLine(
         "당첨 번호를 입력해 주세요.:\n",
         (userInput) => {
-          this.winnumber = new Lotto(userInput.split(","));
-          console.log(this.winnumber.getLotto());
+          let tmpWin = this.InputToLotto(userInput.split(","));
+          this.WinLotto = new Lotto(tmpWin);
+          // console.log(this.WinLotto.getLotto());
           this.setBonusNumber();
         }
       );
@@ -47,12 +53,22 @@ class App {
     return;
   }
 
+  InputToLotto(arr) {
+    let tmpArr = [];
+    for (let i = 0; i < arr.length; i++) {
+      tmpArr.push(parseInt(arr[i]));
+    }
+    return tmpArr;
+  }
+
   setBonusNumber() {
     MissionUtils.Console.readLine(
       "보너스 번호를 입력해 주세요\n",
       (userInput) => {
         try {
           this.checkBounsNumber(userInput);
+          this.forEachLotto();
+          this.printResult();
         } catch (e) {
           MissionUtils.Console.print(e);
         }
@@ -67,8 +83,52 @@ class App {
     if (parseInt(Num) < 1 || parseInt(Num) > 45) {
       throw "[ERROR] 1에서 45사이의 정수를 입력해주세요";
     }
-    if (!Number.isInteger(Num)) {
+    if (!Number.isInteger(parseInt(Num))) {
       throw "[ERROR] 1에서 45사이의 정수를 입력해주세요";
+    }
+    const WINNUMBER = this.WinLotto.getLotto();
+    if (WINNUMBER.includes(parseInt(Num))) {
+      throw "[ERROR] 보너스 번호는 당첨번호와 겹치면 안됩니다.";
+    }
+    this.Bonus = parseInt(Num);
+  }
+
+  forEachLotto() {
+    for (let i = 0; i < this.LottoNum; i++) {
+      this.forLotto(this.TotalLotto[i]);
+    }
+    // console.log(this.Result);
+  }
+
+  forLotto(arr) {
+    let cnt = 0;
+    const WINNUM = this.WinLotto.getLotto();
+    for (let j = 0; j < 6; j++) {
+      if (arr.includes(WINNUM[j])) {
+        cnt++;
+      }
+    }
+
+    if (cnt == 5 && arr.includes(this.Bonus)) {
+      // console.log(this.isBonus, this.Bonus, arr);
+      this.isBonus += 1;
+      return;
+    }
+    this.Result[cnt] += 1;
+  }
+
+  printResult() {
+    MissionUtils.Console.print("당첨 통계\n---");
+    for (let i = 3; i < 7; i++) {
+      MissionUtils.Console.print(
+        `${i}개 일치, (${this.WinPrice[i - 3]}원) - ${this.Result[i]}개`
+      );
+      if (i == 5) {
+        // console.log(this.isBonus);
+        MissionUtils.Console.print(
+          `${i}개 일치, 보너스 볼 일치 (30,000,000원) - ${this.isBonus}개`
+        );
+      }
     }
   }
 
@@ -78,10 +138,9 @@ class App {
       (userInput) => {
         try {
           this.LottoNum = this.checkMoney(userInput);
-          console.log(this.LottoNum);
+          this.Money = parseInt(userInput);
           this.setLottoNumber(this.LottoNum);
           this.setWinningNumber();
-          this.setBonusNumber();
         } catch (e) {
           MissionUtils.Console.print(e);
           throw new Error();
@@ -94,4 +153,4 @@ class App {
 tmp = new App();
 tmp.play();
 
-// module.exports = App;
+module.exports = App;
