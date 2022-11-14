@@ -36,9 +36,9 @@ class App {
   }
 
   printLottoList() {
-    MissionUtils.Console.print("\n"+this.count+"개를 구매했습니다.");
+    MissionUtils.Console.print(this.count+"개를 구매했습니다.");
     for (let i=0; i<this.count; i++) {
-      MissionUtils.Console.print(this.lottoList[i].getNumbers());
+      MissionUtils.Console.print('['+this.lottoList[i].getNumbers().join(', ')+']');
     }
   }
 
@@ -91,7 +91,7 @@ class App {
   }
 
   printStatistics() {
-    MissionUtils.Console.print("\n당첨 통계");
+    MissionUtils.Console.print("당첨 통계");
     MissionUtils.Console.print("---");
     for (let i=RANK_COUNT-1; i>=0; i--) {
       MissionUtils.Console.print(MATCH_STRING[i]+" - "+this.results[i]+"개");
@@ -100,16 +100,16 @@ class App {
   }
 
   play() {
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
+    MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (input) => {
       this.setMoney(input);
       this.setCount();
       this.publishLottoList();
       this.printLottoList();
       
-      MissionUtils.Console.readLine("\n당첨 번호를 입력해 주세요.\n", (winningInput) => {
+      MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (winningInput) => {
         this.setWinning(winningInput);
 
-        MissionUtils.Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusInput) => {
+        MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (bonusInput) => {
           this.setBonus(bonusInput);
           this.calculateResults();
           this.calculateRevenueRatio();
@@ -119,10 +119,5 @@ class App {
     });
   }
 } 
-
-/* 나중에 지울 코드 */
-const app = new App();
-app.play();
-/*******************/
 
 module.exports = App;
