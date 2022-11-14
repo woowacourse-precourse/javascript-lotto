@@ -135,7 +135,7 @@ src/
         getLottos()
     Lotto.js
       class Lotto
-        NUMBER_COUNT = 6
+        NUMBER_SIZE = 6
         NUMBER_MIN = 1
         NUMBER_MAX = 45
         PRICE = 1000
@@ -144,6 +144,7 @@ src/
         validate(numbers)
         static parseLotto(text)
         static fromRandom()
+        getNumber()
         hasNumber()
         toString()
     WinningLotto.js
@@ -178,7 +179,11 @@ src/
 
 ## 🥽테스트 작성 목록
 
-* 작성 예정
+* `Lotto`
+  - 로또가 가질 수 있는 숫자 갯수 테스트
+  - 로또가 가질 수 있는 숫자의 최소값, 최대값 테스트
+  - 로또 번호가 중복이 될 수 없는지 테스트
+  - 로또 번호가 오름차순으로 정렬되는지 테스트
 
 ## 🎨코드 스타일
 
