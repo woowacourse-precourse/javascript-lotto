@@ -6,7 +6,9 @@ class App {
   #purchaseAmount;
   #lottoNum;
 
-  constructor() {}
+  constructor() {
+    this.issuedLottoNum = [];
+  }
 
   play() {
     this.inputAmount();
@@ -30,6 +32,9 @@ class App {
 
   issueLotto() {
     this.#lottoNum = this.#purchaseAmount / LOTTOPRICE;
+    for (var count = 0; count < this.#lottoNum; count++) {
+      this.issuedLottoNum.push(Random.pickUniqueNumbersInRange(1, 45, 6));
+    }
   }
 
   printIssuedLotto() {
