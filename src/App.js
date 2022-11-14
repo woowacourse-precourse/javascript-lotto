@@ -20,6 +20,8 @@ class App {
     const winningNumber = this.getWinningNumber();
     // 보너스번호 입력받기
     const bonusNumber = this.getBonusNumber();
+    // 반환된 일치 갯수로 당첨내역에 넣기
+    this.creatWinningChart();
   }
 
   // 금액 입력
@@ -70,6 +72,41 @@ class App {
       }
       return number;
     });
+  }
+
+  // 반환된 일치 갯수로 당첨내역에 넣기
+  creatWinningChart() {
+    let fifth = { count: 0, prizeMoney: 0 };
+    let fourth = { count: 0, prizeMoney: 0 };
+    let third = { count: 0, prizeMoney: 0 };
+    let second = { count: 0, prizeMoney: 0 };
+    let first = { count: 0, prizeMoney: 0 };
+
+    const [matchLotteCount, bonusCount] = Lotto.matchLotte();
+    for (let i = 0; i < matchLotteCount.length; i++) {
+      if (matchLotteCount[i] === 3) {
+        fifth.count += 1;
+        fifth.prizeMoney += FIFTH_MONEY;
+      }
+      if (matchLotteCount[i] === 4) {
+        fourth.count += 1;
+        fourth.prizeMoney += FOURTH_MONEY;
+      }
+      if (matchLotteCount[i] === 5) {
+        third.count += 1;
+        third.prizeMoney += THIRD_MONEY;
+      }
+
+      if (matchLotteCount[i] === 6) {
+        first.count += 1;
+        first.prizeMoney += FIRST_MONEY;
+      }
+    }
+
+    if (bonusCount > 0) {
+      second.count = bonusCount.length;
+      second.prizeMoney = SECOND_MONEY * bonusCount.length;
+    }
   }
 }
 
