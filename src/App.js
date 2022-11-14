@@ -8,7 +8,7 @@ class App {
   
   const winning_numbers = this.get_winning_numbers(); //당첨 번호 입력받기
 
-  const bonus_number = this.get_bonus_number();   //보너스 번호 입력받기
+  const bonus_number = this.get_bonus_number(winning_numbers);   //보너스 번호 입력받기
 
   this.print_winning_history(amount, lotteries, winning_numbers, bonus_number); //당첨내역 계산 및 출력
   }
@@ -182,12 +182,12 @@ class App {
     }
   }
 
-  get_bonus_number(){
+  get_bonus_number(winning_numbers){
     const MissionUtils = require("@woowacourse/mission-utils");
     var number;
     MissionUtils.Console.print('보너스 번호를 입력해 주세요.');
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (answer) => {
-    
+    this.duplicatecheck(winning_numbers, answer);
     this.check_number_errors(answer);
     this.rangecheck(answer);
     number = answer;
@@ -196,7 +196,12 @@ class App {
   MissionUtils.Console.print(number);
   return number;
   }
-  
+
+  duplicatecheck(winning_numbers, answer){
+    for (var i=0;i<winning_numbers.length;i++)
+    if (winning_numbers[i]==answer) throw new Error('[ERROR]bonus number already in winning numbers')
+  }
+
   rangecheck(number){
     if (number<1 || number>45)
         throw new Error('[ERROR]range error');
