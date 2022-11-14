@@ -69,20 +69,27 @@ describe('로또 클래스 테스트', () => {
   });
 
   test('큰 값 로또 번호 테스트', () => {
-    expect(() => {
-      new Lotto([40, 41, 42, 43, 44, 45]);
-    }).toThrow('is Valid');
+    let lotto = new Lotto([40, 41, 42, 43, 44, 45]);
+    expect(lotto.getLotto()).toEqual([40, 41, 42, 43, 44, 45]);
   });
 
-  test('정상적 로또 번호 테스트', () => {
-    expect(() => {
-      new Lotto([10, 11, 12, 13, 14, 25]);
-    }).toThrow('is Valid');
-  })
+  test('큰 값 로또 번호 테스트', () => {
+    let lotto = new Lotto([40, 41, 42, 43, 44, 45]);
+    expect(lotto.getLotto()).toEqual([40, 41, 42, 43, 44, 45]);
+  });
 
-  test('정상적 로또 번호 테스트2', () => {
-    expect(() => {
-      new Lotto([14, 9, 11, 43, 31, 13]);
-    }).toThrow('is Valid');
-  })
+  test('큰 값 로또 번호 테스트2', () => {
+    let lotto = new Lotto([10, 11, 12, 13, 14, 25]);
+    expect(lotto.getLotto()).toEqual([10, 11, 12, 13, 14, 25]);
+  });
+
+  test('유효한 로또 번호 테스트', () => {
+    let lotto = new Lotto([43, 3, 8, 11, 22, 1]);
+    expect(lotto.getLotto()).toEqual([43, 3, 8, 11, 22, 1]);
+  });
+
+  test('유효한 로또 번호 테스트2', () => {
+    let lotto = new Lotto([45, 44, 43, 42, 41, 40]);
+    expect(lotto.getLotto()).toEqual([45, 44, 43, 42, 41, 40]);
+  });
 });
