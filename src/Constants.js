@@ -30,6 +30,11 @@ const WINNING_PRIZE = {
   PLACE_2ND: 30000000,
   PLACE_1ST: 2000000000,
 };
+const ERROR_NOT_NUMBER = '[ERROR] 숫자가 아닙니다.';
+const ERROR_NOT_BELONG = '[ERROR] 1에서 45 사이의 수가 아닙니다.';
+const ERROR_NOT_DIFFERENT = '[ERROR] 중복된 숫자가 있습니다.';
+const ERROR_NOT_LENGTH_6 = '[ERROR] 로또 번호는 6개여야 합니다.';
+const ERROR_NOT_LENGTH_1 = '[ERROR] 보너스 번호는 1개여야 합니다.';
 
 module.exports = {
   DEFAULT_PRICE,
@@ -48,4 +53,9 @@ module.exports = {
   LINE,
   WINNING_PRIZE,
   SPACE,
+  ERROR_NOT_NUMBER,
+  ERROR_NOT_BELONG,
+  ERROR_NOT_DIFFERENT,
+  ERROR_NOT_LENGTH_6,
+  ERROR_NOT_LENGTH_1,
 };

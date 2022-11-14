@@ -1,3 +1,10 @@
+const {
+  ERROR_NOT_NUMBER,
+  ERROR_NOT_BELONG,
+  ERROR_NOT_DIFFERENT,
+  ERROR_NOT_LENGTH_6,
+} = require('./Constants');
+
 class Lotto {
   #numbers;
 
@@ -7,12 +14,23 @@ class Lotto {
   }
 
   validate(numbers) {
+    numbers.map((number) => {
+      if (isNaN(number)) {
+        throw new Error(ERROR_NOT_NUMBER);
+      }
+      if (number < 1 || number > 45) {
+        throw new Error(ERROR_NOT_BELONG);
+      }
+    });
+
+    if (new Set(numbers).size !== 6) {
+      throw new Error(ERROR_NOT_DIFFERENT);
+    }
+
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error(ERROR_NOT_LENGTH_6);
     }
   }
-
-  // TODO: 추가 기능 구현
 }
 
 module.exports = Lotto;
