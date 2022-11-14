@@ -46,11 +46,10 @@ class Controller {
   }
 
   getWinningNum(winningNum) {
-    const splitNum = winningNum.split(',');
-    this.winSplitNum = splitNum;
+    this.winSplitNum = winningNum.split(',');
 
-    const lottoNumValid = new Lotto(splitNum);
-    lottoNumValid.validate(splitNum);
+    const lottoNumValid = new Lotto(this.winSplitNum);
+    lottoNumValid.validate(this.winSplitNum);
     this.inputBonusNum();
   }
 
@@ -75,6 +74,7 @@ class Controller {
       this.winSplitNum.map(Number),
       Number(this.bonusNum)
     );
+
     this.ResultDisplay.printLottoResult(winStatus, this.amount);
   }
 }

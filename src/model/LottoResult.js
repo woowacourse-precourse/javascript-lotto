@@ -10,6 +10,7 @@ class LottoResult {
       this.filteredArr.push(nums.filter((x) => winSplitNum.includes(x)));
       if (nums.includes(bonusNum)) this.sameBonusNum = true;
     });
+
     return this.getWinStatus();
   }
 
@@ -22,6 +23,7 @@ class LottoResult {
       if (arrLength === 5 && !this.sameBonusNum) this.statusChange(3, 30000000);
       if (arrLength === 6) this.statusChange(4, 2000000000);
     });
+
     return this.totalWinStatus;
   }
 
