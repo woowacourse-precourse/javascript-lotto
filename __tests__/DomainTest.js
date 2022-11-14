@@ -145,7 +145,7 @@ describe('기능 3-2번. 보너스 번호 : 숫자 1개', () => {
 });
 
 describe('기능 4. 당첨 번호 추첨', () => {
-  test('되냐', () => {
+  test('번호가 n개 일치하는 경우 나열해서 발표', () => {
     const model = new Model();
     const controller = new Controller(model);
     mockRandoms([
@@ -176,7 +176,47 @@ describe('기능 4. 당첨 번호 추첨', () => {
       '6개 일치 (2,000,000,000원) - 0개',
     ];
     const logSpy = getLogSpy();
-    controller.getTest();
+    controller.start();
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+});
+
+describe('기능 5. 당첨 결과 발표', () => {
+  test('수익률 출력까지 구현한 최종 테스트', () => {
+    mockRandoms([
+      [8, 21, 23, 41, 42, 43],
+      [3, 5, 11, 16, 32, 38],
+      [7, 11, 16, 35, 36, 44],
+      [1, 8, 11, 31, 41, 42],
+      [13, 14, 16, 38, 42, 45],
+      [7, 11, 30, 40, 42, 43],
+      [2, 13, 22, 32, 38, 45],
+      [1, 3, 5, 14, 22, 45],
+    ]);
+    mockQuestions(['8000', '1,2,3,4,5,6', '7']);
+    const logs = [
+      '8개를 구매했습니다.',
+      '[8, 21, 23, 41, 42, 43]',
+      '[3, 5, 11, 16, 32, 38]',
+      '[7, 11, 16, 35, 36, 44]',
+      '[1, 8, 11, 31, 41, 42]',
+      '[13, 14, 16, 38, 42, 45]',
+      '[7, 11, 30, 40, 42, 43]',
+      '[2, 13, 22, 32, 38, 45]',
+      '[1, 3, 5, 14, 22, 45]',
+      '3개 일치 (5,000원) - 1개',
+      '4개 일치 (50,000원) - 0개',
+      '5개 일치 (1,500,000원) - 0개',
+      '5개 일치, 보너스 볼 일치 (30,000,000원) - 0개',
+      '6개 일치 (2,000,000,000원) - 0개',
+      '총 수익률은 62.5%입니다.',
+    ];
+    const logSpy = getLogSpy();
+    const model = new Model();
+    const controller = new Controller(model);
+    controller.start();
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
