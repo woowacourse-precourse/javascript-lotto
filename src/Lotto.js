@@ -10,6 +10,8 @@ class Lotto {
     this.mylotto = [];
     this.bonusNumber = 0;
     this.lottoCount = [];
+    this.rankCount = 0;
+    this.rankCountArray = [];
     this.result = {
       [CORRECT_MONEY.FIRST] : 0,
       [CORRECT_MONEY.SECOND] : 0,
@@ -75,20 +77,31 @@ class Lotto {
     this.mylotto.forEach((mylottoArray) => {
       this.compareNumbers(mylottoArray);
     })
+    this.matchRank(this.rankCountArray);
+  }
+
+  compareBonusNumber(mylottoArray){
+    mylottoArray.forEach((number) => {
+      if(number.includes(this.bonusNumber)) return 7;
+    })
+    return 5;
   }
 
   compareNumbers(mylottoArray){
-    let count = 0;
+    this.rankCount = 0;
     mylottoArray.forEach((number) => {
       if(this.#numbers.includes(number)){
-        count += 1;
+        this.rankCount += 1;
       }
     }) 
-    this.matchRank(count,mylottoArray);
+    if(this.rankCount === 5){
+      this.rankCount = this.compareBonusNumber(mylottoArray,count);
+    }
+    this.rankCountArray.push(this.rankCount);
   }
 
-  matchRank(count,mylottoArray){
-    switch
+  matchRank(rankCountArray){
+    console.log(rankCountArray);
   }
   // validate(numbers) {
   //   if (numbers.length !== 6) {
