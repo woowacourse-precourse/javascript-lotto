@@ -1,5 +1,4 @@
 const { Console } = require("@woowacourse/mission-utils");
-const DrawingMachine = require("./DrawingMachine");
 const {
   validateMoney,
   validateNumbersRange,
