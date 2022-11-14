@@ -7,7 +7,6 @@ class Bonus {
     this.validate(bonus);
   }
   validate(bonus) {
-    console.log(this.bonus, this.winningLotto);
     this.validateType(bonus);
     this.validateRange(bonus);
     this.validateOverlapWithWinning(bonus, this.winningLotto);
@@ -28,6 +27,9 @@ class Bonus {
     if (winningLotto.includes(bonus)) {
       throw new Error(ERROR_MESSAGE.OVERLAP);
     }
+  }
+  returnBonus() {
+    return this.bonus;
   }
 }
 module.exports = Bonus;

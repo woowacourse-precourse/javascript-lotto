@@ -41,7 +41,7 @@ class App {
   }
   inputBonus() {
     Console.readLine(INPUT_MESSAGE.BONUS, (bonus) => {
-      this.bonusLotto = new Bonus(bonus, this.winningLotto);
+      this.bonusLotto = new Bonus(bonus, this.winningLotto).returnBonus();
     });
   }
 }
