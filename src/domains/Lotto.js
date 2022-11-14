@@ -33,6 +33,10 @@ class Lotto {
       throw new Error('[ERROR] 로또 번호는 모두 중복되어선 안됩니다.');
     }
   }
+
+  getNumbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
