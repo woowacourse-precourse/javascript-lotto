@@ -1,5 +1,5 @@
 const MESSAGE = {
-  GET_MONEY: '구입금액을 입력해 주세요.',
+  GET_MONEY: '구입금액을 입력해 주세요.\n',
   SHOW_AMOUNT: '개를 구매했습니다.',
   GET_NUMBERS: '당첨 번호를 입력해 주세요.',
   GET_BONUS_NUMBER: '보너스 번호를 입력해 주세요.',
@@ -12,6 +12,10 @@ const MESSAGE = {
   COUNT: '개',
   RETURN_RATE: '총 수익률은 ',
   RETURN_RATE_ENDING_WORD: '%입니다.',
+  ERROR: {
+    NOT_A_NUMBER: '[ERROR]숫자를 입력해주세요.',
+    NOT_VALID_MONEY: '[ERROR]1000원 단위의 수를 입력해주세요.',
+  },
 };
 
 module.exports = MESSAGE;
