@@ -76,6 +76,16 @@ class Lotto {
     }
   }
 
+  countOfFiveAndBounsMatch() {
+    let countFiveAndBounsMatch = 0;
+    for(let i=0; i<6; i++) {
+      this.matchNumberArr.push(this.winningNumberArr.includes(this.randomSixNumberArr[i]));
+      if((this.matchNumberArr.length === 5) && (this.randomSixNumberArr.includes(winningNumberArr[6]))) {
+        countFiveAndBounsMatch++;
+      }
+    }
+  }
+
 }
 
 module.exports = Lotto;
