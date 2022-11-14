@@ -4,7 +4,7 @@ const CreateLotto = require('./CreateLotto');
 
 class App {
   constructor() {
-    this.lottos = [];
+    this.lottoArr = [];
   }
 
   play() {
@@ -14,7 +14,7 @@ class App {
   getUserMoney() {
     Console.readLine(COMMAND.MONEY, (money) => {
       const createLotto = new CreateLotto(money);
-      this.lottos = createLotto.make();
+      this.lottoArr = createLotto.make();
       this.getWinning();
     });
   }
