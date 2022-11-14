@@ -65,7 +65,7 @@ class LottoGame {
       money,
       lottoResult
     );
-    Console.print(`총 수익률은 ${profitRate}%입니다.`);
+    Console.print(SENTENCE.PROFIT_RATE(profitRate));
     this.end();
   }
 
