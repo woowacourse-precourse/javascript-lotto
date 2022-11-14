@@ -17,6 +17,7 @@ class App {
   play() {
     Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
       let lottoList = this.Lotto.NumberPackage(money);
+      
       this.#purchaseAmount = money;
       this.getWinNumber(lottoList);
     });
