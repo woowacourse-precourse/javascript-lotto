@@ -53,6 +53,14 @@ class Validation {
   static isUniqueBonusNumber(bonusNumber, winnerNumber) {
     return winnerNumber.includes(bonusNumber);
   }
+  static checkLottoNumber(lottoNumber) {
+    if (lottoNumber.length != LOTTO_SIZE) {
+      throw new Error(ERROR_MESSAGE.SIZE_INVALID);
+    }
+    if (new Set(lottoNumber).size != LOTTO_SIZE) {
+      throw new Error(ERROR_MESSAGE.NOT_UNIQUE_NUMBER);
+    }
+  }
 }
 
 module.exports = Validation;
