@@ -11,7 +11,7 @@ class App {
 			money: 0,
 			buyLotto: 0,
 			publishLotto: [],
-
+			bonus: 0,
 			winLotto: [],
 		};
 	}
@@ -19,6 +19,8 @@ class App {
 		this.inputMoney();
 		this.publishLotto();
 		this.inputLotto();
+
+		this.inputBonus();
 	}
 
 	inputMoney() {
@@ -32,6 +34,11 @@ class App {
 	inputLotto() {
 		Console.readLine(MESSAGE.PRINT_INPUT_WIN, (number) => {
 			this.state.winLotto = number.split(",").map(Number);
+		});
+	}
+	inputBonus() {
+		Console.readLine(MESSAGE.PRINT_BONUS, (number) => {
+			this.state.bonus = number;
 		});
 	}
 	publishLotto() {
