@@ -40,6 +40,12 @@ class Lotto {
       }
     }
   }
+
+  moneyValidate(numbers) {
+    if (numbers % 1000 != 0) {
+      throw new Error("[ERROR] 1000원 단위 금액만 입력이 가능합니다.");
+    }
+  }
   // TODO: 추가 기능 구현
 }
 

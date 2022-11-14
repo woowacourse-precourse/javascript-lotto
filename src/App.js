@@ -2,6 +2,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const Console = MissionUtils.Console;
 const Random = MissionUtils.Random;
+let money = 0;
 let numOfLotto = 0;
 let lottoNumObj = {};
 let winNum = [];
@@ -15,6 +16,7 @@ let correct6 = 0;
 class App {
   lottoMoney() {
     Console.readLine('구입금액을 입력해 주세요.', (money) => {
+      money = money;
       numOfLotto = money/1000;
       Console.print(`${numOfLotto}개를 구매했습니다.`);
     });
@@ -85,17 +87,16 @@ class App {
 
   play() {
     numOfLotto = this.lottoMoney();
+    const lotto = new Lotto();
+    lotto.moneyValidate(money);
     lottoNumObj = this.createNum();
     winNum = this.getWinNum();
+    lotto.validate(winNum);
     bonusNum = this.getBonusNum();
     winNum.push(bonusNum);
+    lotto.validateBonus(winNum);
     this.showResult();
     this.returnRate();
-    winNum.pop();
-    const lotto = new Lotto();
-    lotto.validate(winNum);
-    winNum.push(bonusNum);
-    lotto.validateBonus(winNum);
     Console.close();
   }
 }
