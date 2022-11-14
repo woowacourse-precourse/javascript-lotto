@@ -12,6 +12,8 @@ class Lotto {
     if (winNumberArr.length != 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
+    if (new Set(winNumberArr).size != 6)
+      throw new Error("[ERROR] 중복 숫자가 없어야합니다.");
     winNumberArr.forEach((number) => {
       if (!isNaN(number)) throw new Error("[ERROR] 숫자만 입력하세요.");
       if (number > 45 || number < 1)
