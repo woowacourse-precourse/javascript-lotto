@@ -7,8 +7,7 @@ const PRICE_LOTTO = 1000;
 
 class App {
   constructor() {
-    this.moneyInput = 0;
-    this.lottoAmount = 0;
+    
   }
 
   play() {
@@ -16,20 +15,12 @@ class App {
   }
 
   userWindow(window) {
-    MissionUtils.Console.readLine(`${window}\n`, (input) => {
-      this.moneyInput = input;
-      this.lottocount(this.moneyInput);
+    
     });
   }
 
-  printSentence(output) {
-    MissionUtils.Console.print(output);
-  }
-
   countLotto(money) {
-    const lottoAmount = money / PRICE_LOTTO;
-    this.lottoAmount = lottoAmount;
-    this.printSentence(`\n${this.lottoAmount}개를 구매했습니다.`);
+    
   }
 }
 
