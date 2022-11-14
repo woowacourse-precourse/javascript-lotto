@@ -88,6 +88,14 @@ class App {
     });
   }
 
+  convertArraytoObj() {
+    this.#winningCountArray.forEach((winningCount) => {
+      this.#winningCountObj[winningCount] += 1;
+    });
+
+    console.log(this.#winningCountObj);
+  }
+
   getResult() {
     this.#totalAmount = Calculator.totalWinningAmount(this.#winningCountArray);
     console.log('이거토탈', this.#totalAmount);
