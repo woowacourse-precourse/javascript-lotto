@@ -3,7 +3,9 @@ class Lotto {
   #numbers;
   constructor(numbers) {
     this.validate(numbers);
-
+    numbers.sort(function (previousNumber, currentNumber) {
+      return previousNumber - currentNumber;
+    });
     this.#numbers = numbers;
   }
 
