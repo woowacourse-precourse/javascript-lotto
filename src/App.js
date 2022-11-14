@@ -23,8 +23,9 @@ class App {
       this.comparePrizeNumberAndUserNumber(lotto.getNumbers(), bonus.getNumbers(),OneUserNumber);
     });
     const earnMoney = this.calcEarnMoney(this.userWinningStatics);
-    this.calcRateOfReturn(this.insertedMoney, earnMoney);
+    const RateOfReturn = this.calcRateOfReturn(this.insertedMoney, earnMoney);
     this.printUserWinningStatics(this.userWinningStatics);
+    this.printRateOfRetrun(RateOfReturn);
   }
   insertMoney(){
     MissionUtils.Console.readLine('구입금액을 입력해주세요 (1000원 단위)', (insertMoney) => {
@@ -129,16 +130,20 @@ class App {
     MissionUtils.Console.print("5개 일치, 보너스 볼 일치 (30,000,000원) - "+winningStatic[1]+"개");
     MissionUtils.Console.print("6개 일치 (2,000,000,000원) - "+winningStatic[0]+"개");
   }
-  calcRateOfReturn(inputMoney, earnMoney){
-    const RateOfReturn = (earnMoney/inputMoney)*100;
-    this.calcDecimalPointTwo(RateOfReturn);
-  }
-  calcDecimalPointTwo(RateOfReturn){
-    Math.round(RateOfReturn*100)/100;
-  }
   calcEarnMoney(winningStatic){
     let winningMoney = winningStatic[4]*5000 +  winningStatic[3]*50000 +  winningStatic[2]*1500000 +  winningStatic[1]*30000000 +  winningStatic[0]*2000000000;
     return winningMoney;
+  }
+  calcRateOfReturn(inputMoney, earnMoney){
+    const RateOfReturn = (earnMoney/inputMoney)*100;
+    return this.calcDecimalPointTwo(RateOfReturn);
+  }
+  calcDecimalPointTwo(RateOfReturn){
+    return Math.round(RateOfReturn*100)/100;
+  }
+  printRateOfRetrun(RateOfReturn){
+    MissionUtils.Console.print("총 수익률은 "+RateOfReturn+"%입니다.");
+    MissionUtils.Console.close();
   }
 }
 
