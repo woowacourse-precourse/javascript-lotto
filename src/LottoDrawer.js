@@ -36,7 +36,12 @@ class LottoDrawer {
 
   setBonusNumber(winner) {
     Console.readLine('\n보너스 번호를 입력해 주세요.\n', (input) => {
+      Validator.isValidInput(input);
+      Validator.isValidNumber(input);
+
       const bonus = Number(input);
+
+      Lotto.isValidBonusNumber(bonus, this.result.numbers);
       this.result = { ...this.result, bonus };
       // TODO: 호출위치 변경
       winner.announce(this.result);

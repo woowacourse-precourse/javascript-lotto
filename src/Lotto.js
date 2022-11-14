@@ -7,13 +7,19 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    Lotto.validate(numbers);
     this.#numbers = numbers;
   }
 
   // TODO: 이 numbers는 어떨때 사용?
   get numbers() {
     return this.#numbers;
+  }
+
+  static isValidBonusNumber(bonusNumber, lottoNumbers) {
+    if (lottoNumbers.includes(bonusNumber)) {
+      throw new Error('[ERROR] 로또 번호와 보너스 번호는 서로 달라야 합니다.');
+    }
   }
 
   static isValidLottoNumber(number) {
@@ -34,10 +40,10 @@ class Lotto {
     }
   }
 
-  validate(numbers, numbersCount = 6) {
+  static validate(numbers, numbersCount = 6) {
     Lotto.isValidLottoNumbers(numbers, numbersCount);
 
-    if (!numbers.every(this.isValidLottoNumber)) {
+    if (!numbers.every(Lotto.isValidLottoNumber)) {
       throw new Error(`[ERROR] 로또 번호는 ${1}부터 ${45}까지 입니다.`);
     }
   }
