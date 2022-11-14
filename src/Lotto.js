@@ -2,7 +2,10 @@ const LottoBonus = require('./LottoBonus');
 const { checkLottoRange, checkDuplicate, checkLength } = require('./LottoValidation');
 
 class Lotto {
-  #numbers;
+  #numbers = {
+    winning: [],
+    bonus: null,
+  };
 
   constructor(winningNumbers) {
     const winning = winningNumbers.map((number) => Number(number));
