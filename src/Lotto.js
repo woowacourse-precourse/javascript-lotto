@@ -40,10 +40,15 @@ class Lotto {
   enterWinningNumber(){
     Console.readLine(`${MESSAGE.WINNING}\n`,(winningNumber) => {
       this.#numbers = winningNumber.split(",").map(Number)
+      this.enterBonusNumber();
     })
   }
 
-
+  enterBonusNumber(){
+    Console.readLine(`${MESSAGE.BONUS}\n`,(bonusNumber) => {
+      this.bonusNumber = parseInt(bonusNumber);
+      this.#numbers.push(this.bonusNumber);
+    })
 
     
   }
