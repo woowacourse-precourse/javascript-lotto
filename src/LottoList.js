@@ -7,7 +7,6 @@ class LottoList {
     this.lottoCount = null;
     this.lottoList = [];
     this.lottoResultList = [];
-    this.winningNumberList = null;
   }
   setLottoCount(money) {
     this.validateMoney(money);
@@ -49,15 +48,6 @@ class LottoList {
   }
   checkWinningNumbers(numbers) {
     checkValidation.checkLottoList(numbers);
-  }
-  setBonusNumber(number) {
-    number = Number(number);
-    this.checkBonusNumber(number);
-
-    this.bonusNumber = number;
-  }
-  checkBonusNumber(number) {
-    checkValidation.checkBonusNumber(number, this.winningNumberList);
   }
   printWinningList() {
     this.getLottoResult();

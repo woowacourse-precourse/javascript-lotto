@@ -1,8 +1,11 @@
 const { Console } = require("@woowacourse/mission-utils");
 const LottoList = require("./LottoList");
+const BonusNumber = require("./BonusNumber");
 class App {
   constructor() {
     this.lottos = new LottoList();
+    this.winningNumbers = null;
+    this.bonusNumber = null;
   }
   play() {
     this.requestMoney();
@@ -24,8 +27,10 @@ class App {
   }
   requestBonus() {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusNumber) => {
-      this.lottos.setBonusNumber(bonusNumber);
-
+      this.bonusNumber = new BonusNumber(
+        Number(bonusNumber),
+        this.winningNumbers.value
+      );
       this.printWinningStat();
     });
   }
