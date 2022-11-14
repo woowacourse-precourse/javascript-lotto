@@ -39,6 +39,7 @@ class App {
       const amount = this.#user.getAmount();
 
       const numbersList = this.generateNumbersList(amount);
+
       this.#user.setNumbersList(numbersList);
       const userNumbersList = this.#user.getNumbersList();
 

@@ -120,7 +120,7 @@ class LottoManager {
    *
    * @param {{first: number, second: number, third:number, fourth:number, fifth:number}} statistics
    * @param {number} amount
-   * @returns
+   * @returns {string}
    */
   calculateRevenue(statistics, amount) {
     let sum = 0;
