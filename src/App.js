@@ -31,7 +31,7 @@ class App {
     // 당첨 번호 입력
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (input) => {
       MissionUtils.Console.print('');
-      this.winlotto = new Lotto(input.split(',').map(number => {
+      this.winlotto = new Lotto(input.replaceAll(' ', '').split(',').map(number => {
         this.validate(number);
         return parseInt(number);
       }));
@@ -72,5 +72,8 @@ class App {
     }
   }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
