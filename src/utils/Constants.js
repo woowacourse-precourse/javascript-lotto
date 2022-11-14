@@ -16,9 +16,9 @@ const GAME_MESSAGES = Object.freeze({
 });
 
 const ERROR_MESSAGES = Object.freeze({
-  INVALID_COST_UNIT: "[ERROR] 지불 금액은 1,000원 단위만 가능합니다.",
+  INVALID_COST_UNIT: "[ERROR] 구입 금액은 1,000원 단위만 가능합니다.",
   INVALID_COST_MIN: "[ERROR] 최소 구입금액은 1,000원 입니다.",
-  INVALID_COST_TYPE: "[ERROR] 지불 금액은 숫자만 입력 가능합니다.",
+  INVALID_COST_TYPE: "[ERROR] 구입 금액은 숫자만 입력 가능합니다.",
   INVALID_LOTTO_RANGE: "[ERROR] 각 로또 번호는 1~45 사이의 숫자여야 합니다.",
   INVALID_LOTTO_LENGTH: "[ERROR] 로또 번호는 6개여야 합니다.",
   INVALID_LOTTO_TYPE: "[ERROR] 로또 번호는 숫자로만 이루어져야 합니다.",
