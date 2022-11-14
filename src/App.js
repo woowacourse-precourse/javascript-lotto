@@ -24,14 +24,14 @@ class App {
   getPurchaseAmount() {
     Console.readLine('구입금액을 입력해 주세요.\n', (purchaseAmount) => {
       this.user.handlePurchaseAmount(Number(purchaseAmount));
-      this.getWinningNumber();
+      this.getWinningNumbers();
     });
   }
 
-  getWinningNumber() {
-    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (winningNumber) => {
-      this.draw.handleWinningNumber(
-        winningNumber.split(',').map((number) => Number(number)),
+  getWinningNumbers() {
+    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (winningNumbers) => {
+      this.draw.handleWinningNumbers(
+        winningNumbers.split(',').map((number) => Number(number)),
       );
       this.getBonusNumber();
     });
@@ -46,10 +46,10 @@ class App {
   }
 
   calculateResult() {
-    const { winningNumber, bonusNumber } = this.draw;
+    const { winningNumbers, bonusNumber } = this.draw;
     this.result = {};
     this.user.purchasedLottos.forEach((lotto) => {
-      const rank = lotto.getRank(winningNumber, bonusNumber);
+      const rank = lotto.getRank(winningNumbers, bonusNumber);
       this.result[rank] = this.result[rank] ? this.result[rank] + 1 : 1;
     });
   }

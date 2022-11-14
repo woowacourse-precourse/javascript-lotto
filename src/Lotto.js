@@ -20,8 +20,8 @@ class Lotto {
     Console.print(`[${this.#numbers.join(', ')}]`);
   }
 
-  getRank(winningNumber, bonusNumber) {
-    const winningCount = this.#numbers.filter((number) => winningNumber.includes(number)).length;
+  getRank(winningNumbers, bonusNumber) {
+    const winningCount = this.#numbers.filter((number) => winningNumbers.includes(number)).length;
     const matchBonus = this.#numbers.includes(bonusNumber);
 
     if (winningCount === 6) {

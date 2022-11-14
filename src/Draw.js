@@ -8,19 +8,19 @@ const ERROR_MESSAGE = {
 };
 
 class Draw {
-  handleWinningNumber(winningNumber) {
-    this.checkWinningNumber(winningNumber);
-    this.winningNumber = winningNumber;
+  handleWinningNumbers(winningNumbers) {
+    this.checkWinningNumbers(winningNumbers);
+    this.winningNumbers = winningNumbers;
   }
 
-  checkWinningNumber(winningNumber) {
-    if (winningNumber.length !== 6) {
+  checkWinningNumbers(winningNumbers) {
+    if (winningNumbers.length !== 6) {
       throw new Error(ERROR_MESSAGE.NOT_6_NUMBERS);
-    } else if (winningNumber.some((number) => Number.isNaN(number))) {
+    } else if (winningNumbers.some((number) => Number.isNaN(number))) {
       throw new Error(ERROR_MESSAGE.NOT_A_NUMBER);
-    } else if (winningNumber.some((number) => number < 1 || number > 45)) {
+    } else if (winningNumbers.some((number) => number < 1 || number > 45)) {
       throw new Error(ERROR_MESSAGE.OUT_OF_RANGE);
-    } else if (new Set(winningNumber).size !== 6) {
+    } else if (new Set(winningNumbers).size !== 6) {
       throw new Error(ERROR_MESSAGE.DUPLICATED);
     }
   }
@@ -35,7 +35,7 @@ class Draw {
       throw new Error(ERROR_MESSAGE.NOT_A_NUMBER);
     } else if (bonusNumber < 1 || bonusNumber > 45) {
       throw new Error(ERROR_MESSAGE.OUT_OF_RANGE);
-    } else if (this.winningNumber.includes(bonusNumber)) {
+    } else if (this.winningNumbers.includes(bonusNumber)) {
       throw new Error(ERROR_MESSAGE.DUPLICATED);
     }
   }
