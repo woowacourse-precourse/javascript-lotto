@@ -1,19 +1,20 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+const Lotto = require('./Lotto');
 const { Message } = require('./Message');
 
 class App {
   inputMoney;
-  numLotto;
+  userLottoList;
 
   constructor() {
-    this.numLotto = 0;
+    this.userLottoList = [];
   }
   getMoney() {
     let money;
     MissionUtils.Console.readLine(`${Message.COST_MESSAGE}`, input => {
       money = input;
       this.validate(money);
-      this.numLotto = this.buyLotto(this.inputMoney);
+      this.buyLottos(inputMoney / 1000);
     });
   }
   checkUnit(money) {
@@ -34,8 +35,11 @@ class App {
     if (!this.checkType(money)) throw new Error(Message.ERROR_COST_TYPE);
     this.inputMoney = Number(money);
   }
-  buyLotto(money) {
-    return money / 1000;
+
+  buyLottos(numLotto) {
+    for (let i = 0; i < numLotto; i += 1) {
+      this.userLottoList.push(new Lotto(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6)));
+    }
   }
   play() {
     this.getMoney();
