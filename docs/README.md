@@ -4,16 +4,16 @@
 
 - [x] 1부터 45까지의 중복되지 않는 숫자 6개 로또 번호를 오름차순으로 생성한다. - LottoGenerator#createLottoNums()
 - [x] 구입금액 만큼 로또를 발행한다. - LottoGenerator#publishLotto()
-- [ ] 로또번호와 당첨번호를 비교한다. - LottoGame#compareLottoNums()
-  - [ ] 몇개가 일치하는지 확인한다. - LottoGame#countCorrectNums() 
-  - [ ] 보너스 번호가 일치하는지 확인한다. - LottoGame#isEqualBonusNum()
-- [ ] 수익률을 구한다. - LottoGame#getIncomeRate()
+- [ ] 로또번호와 당첨번호 및 보너스 번호를 비교해서 각 로또별 당첨번호와 일치하는 개수를 배열로 반환한다. - LottoMatching#getMatchResult()
+- [ ] 반환받은 배열로 결과를 객체화 한다. - LottoMatching#getResultObj
+- [ ] 수익률을 구한다. - LottoMatching#getRateOfReturn()
 
 ## UI 로직
 
 - [x] 구매한 로또를 보여준다. - LottoGame#viewLottos()
 - [x] 당첨 번호를 입력 받는다. - LottoGame#inputWinNums()
 - [x] 보너스 번호를 입력 받는다. - LottoGame#inputBonusNum()
+- [ ] 당첨통계를 보여준다. - LottoGame#viewWinStatistics()
 
 ## 예외 처리
 
@@ -39,7 +39,7 @@
   - [x] 보너스 번호가 1~45가 아닌 경우 예외 처리. - BonusNum#isInRange()
   - [x] 보너스 번호가 숫자가 아닌 경우 예외 처리. - BonusNum#isNum()
   - [x] 보너스 번호가 정수가 아닌 경우 예외 처리. - BonusNum#isInteger()
-  - [x] 보너스 번호가 당첨번호와 겹치는 경우 예외 처리. - BonusNum#isInWinNums
+  - [x] 보너스 번호가 당첨번호와 겹치는 경우 예외 처리. - BonusNum#isInWinNums()
 
 ## 기능 요구 사항
 
