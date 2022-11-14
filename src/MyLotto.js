@@ -20,7 +20,7 @@ class MyLotto {
 
   getMyLottery() {
     const myLottos = new Array(this.#purchaseAmount);
-    for (let index = CONSTANTS.ZERO; index < this.#purchaseAmount; index++) {
+    for (let index = CONSTANTS.ZERO; index <= this.#purchaseAmount; index++) {
       myLottos[index] = Random.pickUniqueNumbersInRange(
         CONSTANTS.MIN_LOTTO,
         CONSTANTS.MAX_LOTTO,
