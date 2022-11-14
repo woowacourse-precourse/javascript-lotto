@@ -34,8 +34,8 @@
    - 동일한 숫자 체크 (matchLottos)
    - 수익 누적 (calculateProfit)
 
-8. 수익률 계산하기
+8. 로또 결과 (등수, 갯수, 수익률) 출력하기 (printScore)
 
-9. 로또 결과 (등수, 갯수, 수익률) 출력하기
+9. 수익률 계산하기 (calculateProfit)
 
 10. 게임 종료
