@@ -1,5 +1,7 @@
 const Lotto = require('../src/Lotto');
-const { figureLotteryRank, validateMoney, countTickets } = require('../src/utils/lottery');
+const {
+  figureLotteryRank, validateMoney, countTickets, profitRate,
+} = require('../src/utils/lottery');
 const { validateNumber } = require('../src/utils/validation');
 
 describe('로또 클래스 테스트', () => {
@@ -101,5 +103,19 @@ describe('로또 클래스 테스트', () => {
       const input = 46;
       validateNumber(input);
     }).toThrow('[ERROR]');
+  });
+
+  test('수익률 계산 : 140.0', () => {
+    const rewards = 14000;
+    const paid = 10000;
+    const result = profitRate(rewards, paid);
+    expect(result).toEqual('140.0');
+  });
+
+  test('수익률 계산 : 35.7', () => {
+    const rewards = 5000;
+    const paid = 14000;
+    const result = profitRate(rewards, paid);
+    expect(result).toEqual('35.7');
   });
 });
