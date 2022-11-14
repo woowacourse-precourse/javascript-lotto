@@ -17,11 +17,11 @@ class PurchaseValudate {
   }
 
   checkPositivNumber() {
-    return this.#input > 0;
+    return this.#input < DEFAULT.MONEY_UNIT;
   }
 
   check() {
-    if (this.checkNumber() || !this.checkPositivNumber())
+    if (this.checkNumber() || this.checkPositivNumber())
       throw new Error(ERROR.PURCHASE_ERROR);
     if (!this.checkUnit()) throw new Error(ERROR.PURCHASE_CHARGE);
   }
