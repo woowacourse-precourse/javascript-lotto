@@ -1,4 +1,4 @@
-const LottoAnswer = require("../src/LottoAnswer");
+const { LottoAnswer, MATCHES } = require("../src/LottoAnswer");
 
 describe("LottoAnswer 클래스 테스트", () => {
   let lottoAnswer;
@@ -59,5 +59,12 @@ describe("LottoAnswer 클래스 테스트", () => {
     expect(lottoAnswer.bonus).toBe(undefined);
     lottoAnswer.bonus = 7;
     expect(lottoAnswer.bonus).toBe(7);
+  });
+
+  test("로또 정답 비교", () => {
+    lottoAnswer.bonus = 10;
+    expect(lottoAnswer.compare([1, 11, 12, 13, 14, 15])).toBe(undefined);
+    expect(lottoAnswer.compare([1, 2, 3, 4, 5, 7])).toBe(MATCHES[5]);
+    expect(lottoAnswer.compare([10, 1, 2, 3, 4, 5])).toBe(MATCHES["5+"]);
   });
 });
