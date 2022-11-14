@@ -17,6 +17,7 @@ class App {
       [SIX]: 0,
     };
   }
+
   play() {
     Console.getUserInput(Console.REQUEST_LOTTO_PRICE, (price) => {
       if (!Validator.isValidPrice(price)) return;
@@ -47,12 +48,26 @@ class App {
       Validator.isValidBonus(number);
       this.bonusNumber = Number(number);
       Console.print("\n" + Console.WIN_STATISTICS);
-      this.winStatistics = LottoAdmin.getWinStatistics(this.lottos, [
-        this.winNumbers,
-        this.bonusNumber,
-      ]);
+      this.winStatistics = this.getWinStatistics(
+        [this.lottos, this.winStatistics],
+        [this.winNumbers, this.bonusNumber]
+      );
       LottoAdmin.printWinStatistics(this.winStatistics);
     });
+  }
+
+  getWinStatistics([lottos, initialState], [winNumbers, bonusNumber]) {
+    return lottos.reduce((acc, lotto) => {
+      const sameCount = LottoAdmin.getSameNumWithInputLotto(lotto, winNumbers);
+      if (sameCount === 3) return { ...acc, [THREE]: acc[THREE] + 1 };
+      if (sameCount === 4) return { ...acc, [FOUR]: acc[FOUR] + 1 };
+      if (sameCount === 5 && !lotto.includes(bonusNumber))
+        return { ...acc, [FIVE]: acc[FIVE] + 1 };
+      if (sameCount === 5)
+        return { ...acc, [FIVE_AND_BONUS]: acc[FIVE_AND_BONUS] + 1 };
+      if (sameCount === 6) return { ...acc, [SIX]: acc[SIX] + 1 };
+      return acc;
+    }, initialState);
   }
 }
 
