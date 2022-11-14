@@ -17,7 +17,7 @@ class Lotto {
       throw new Error(ERROR_MESSAGE.WINNING_NUMBER_NOT_DIFFERENT_NUMBER_ERROR);
     }
     let isNumberInRange = numbers.every(number => {
-      return number && number >= LOTTO_NUMBER.START && number <= LOTTO_NUMBER.END;
+      return Number.isInteger(number) && number >= LOTTO_NUMBER.START && number <= LOTTO_NUMBER.END;
     });
     if (!isNumberInRange) {
       throw new Error(ERROR_MESSAGE.NUM_IN_RANGE_ERROR);
