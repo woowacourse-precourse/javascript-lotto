@@ -117,6 +117,8 @@ classDiagram
 
     class Validation{
         String answer
+        checkAbstract()
+        isInputConstructor()
         validate()
         isEmpty()
         isRangeNumber()
@@ -128,7 +130,7 @@ classDiagram
         checkEmpty()
         checkRange()
         checkOverlap()
-        isNumberIncludesWinNumberList()
+        isNumberHasWinNumberList()
     }
 
     class PriceValidation{
@@ -143,7 +145,7 @@ classDiagram
     }
 
     class WinNumbersValidation{
-        abstract validate()
+        validate()
         checkEmpty()
         checkValidDivision()
         isWinNumberLengthSix()
