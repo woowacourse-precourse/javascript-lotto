@@ -24,21 +24,27 @@ class Lotto {
     }
   }
 
+  // TODO: 추가 기능 구현
+
   print() {
     Console.print(`[${this.#numbers.join(', ')}]`);
   }
 
   checkRank(winningNumbers, bonusNumber) {
-    for (const number of this.#numbers) {
-      if (winningNumbers.includes(number)) this.result.lotto += 1;
-    }
-
-    if (this.#numbers.includes(Number(bonusNumber))) this.result.bonus = true;
-
+    this.setLottoResult(winningNumbers);
+    this.setBonusResult(bonusNumber);
     return this.result;
   }
 
-  // TODO: 추가 기능 구현
+  setLottoResult(winningNumbers) {
+    for (const number of this.#numbers) {
+      if (winningNumbers.includes(number)) this.result.lotto += 1;
+    }
+  }
+
+  setBonusResult(bonusNumber) {
+    if (this.#numbers.includes(Number(bonusNumber))) this.result.bonus = true;
+  }
 }
 
 module.exports = Lotto;
