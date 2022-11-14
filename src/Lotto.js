@@ -40,8 +40,6 @@ class Lotto {
   checkInputMoney(money) {
     if (money[0] === "0") throw "[ERROR] 앞자리 0 불가능";
     if (Number(money) % 1000 !== 0) throw "[ERROR] 1000원 단위로 입력해주세요";
-    // if(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(money)) throw "[ERROR] 한글 불가능"
-    // if(/[a-zA-Z]/g.test(money)) throw "[ERROR] 영어 불가능"
     this.createLottoNumArrays(money);
   }
 
@@ -90,7 +88,6 @@ class Lotto {
 
   showLottoArrays(amount, computerNumberArray, amountOfMoney) {
     MissionUtils.Console.print(`${amount}개를 구매했습니다.`);
-    // 이 부분이 문제 -> 테스트에서는 문자열형 배열로 받음 -> 배열을 문자로 바꿔줘야함
     computerNumberArray.forEach((computerNumbers) => {
       MissionUtils.Console.print("["+computerNumbers+"]");
     });
@@ -98,53 +95,53 @@ class Lotto {
     this.getUserLottoNumber(computerNumberArray, amountOfMoney);
   }
 
-  calculatePrizeLottery(
-    computerNumberArray,
-    userLottoNumber,
-    bonusNumber,
-    amountOfMoney
-  ) {
+  calculatePrizeLottery(computerNumberArray,userLottoNumber,bonusNumber,amountOfMoney) {
     let userLottoArray = userLottoNumber.split(",").map((e) => Number(e));
     let [getCountedArray, getBonusArray] = this.checkLottery(
       computerNumberArray,
       userLottoArray,
       bonusNumber
     );
-
     this.checkPrizeAmount(getCountedArray, getBonusArray, amountOfMoney);
   }
-  checkLottery(computerNumberArray, userLottoArray, bonusNumber) {
-    let checkBonus = [];
-    let countArray = [];
 
+  checkLottery(computerNumberArray, userLottoArray, bonusNumber) {
+    let countArray = [];
     computerNumberArray.forEach((nums) => {
       countArray.push(nums.filter((x) => userLottoArray.includes(x)).length);
     });
-    // count가 5면 보너스 숫자에 따라서 2등과 3등을 결정
-    // 5가 2명일때 -> 둘다 검사해야함 -> 구현 X 나중에
-    // console.log(countArray.includes(5));
-    if (countArray.includes(5)) {
-      let bonus = this.checkLotteryHelper(computerNumberArray, bonusNumber);
-      console.log(bonus);
-      checkBonus.push(bonus);
-    }
-    return [countArray, checkBonus];
+    let [countedArr,calcBonus]=this.calculateBonus(computerNumberArray,countArray,bonusNumber)
+    return [countedArr,calcBonus];
   }
 
-  checkLotteryHelper(computerNumberArray, bonusNumber) {
-    computerNumberArray.forEach((nums, idx) => {
-      if (nums.includes(bonusNumber)) return idx;
-    });
+  calculateBonus(computerNumberArray,countArray,bonusNumber){
+    let checkBonus=[]
+    let bonusArr=[]
+    if (countArray.includes(5)) {
+      let idx=countArray.indexOf(5)
+      while(idx!==-1){
+        bonusArr.push(idx)
+        idx=countArray.indexOf(5,idx+1)
+      }
+      bonusArr.forEach((nums)=>{
+        if(computerNumberArray[nums].includes(bonusNumber)){
+          checkBonus.push(nums)
+        }
+      })
+    }
+    return [countArray,checkBonus]
   }
+
   checkPrizeAmount(getCountedArray, getBonusArrays, amountOfMoney) {
     let prizeObj = {};
-    for (const val of getCountedArray) {
+    for (let val of getCountedArray) {
       prizeObj[val] = (prizeObj[val] || 0) + 1;
     }
     this.rateofReturn(prizeObj, amountOfMoney);
   }
 
   rateofReturn(prizeObj, amountOfMoney) {
+    console.log(prizeObj);
     let fifthPrize = 5000;
     let forthPrize = 50000;
     let thirdPrize = 1500000;
