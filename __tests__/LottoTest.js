@@ -21,9 +21,14 @@ describe("로또 클래스 테스트", () => {
     }).toThrow(TypeError);
   });
 
-  test("구매 금액에 따라 몇개의 로또를 구매할 수 있는지 알 수 있다.", () => {
+  test("로또 구매 금액에 따라 몇개의 로또를 구매할 수 있는지 알 수 있다.", () => {
     expect(Lotto.calculateLottoCountWithPurchaseAmount(1000)).toBe(1);
     expect(Lotto.calculateLottoCountWithPurchaseAmount(5000)).toBe(5);
     expect(Lotto.calculateLottoCountWithPurchaseAmount(10000)).toBe(10);
+  });
+
+  test("로또 생성자를 통해 만들어진 로또의 getter를 통해 로또 번호를 가져올 수 있다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    expect(lotto.lottoNumbers).toEqual([1, 2, 3, 4, 5, 6]);
   });
 });
