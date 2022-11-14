@@ -21,6 +21,15 @@ class App {
         computer = [];
         quantity -= 1;
       }
+      Console.readLine(`${'\n'}당첨 번호를 입력해 주세요.${'\n'}`, (number) =>
+        Console.readLine(
+          `${'\n'}보너스 번호를 입력해 주세요.${'\n'}`,
+          (bonus) => {
+            Console.print(`number: ${number} bonus: ${bonus}`);
+            Console.close();
+          }
+        )
+      );
     });
   }
 }
