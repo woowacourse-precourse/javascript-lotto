@@ -49,7 +49,7 @@ class Calculation {
     this.winNumberList = winNumberList;
     this.bonusNumber = bonusNumber;
 
-    lottoList.forEach((lotto) => this.calcuMatchCount(lotto));
+    lottoList.forEach((lotto) => this.calcMatchCount(lotto));
 
     return this;
   }
