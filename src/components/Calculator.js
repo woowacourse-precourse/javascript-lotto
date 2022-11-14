@@ -42,7 +42,7 @@ class Calculator {
   calYield (arr, count) {
     const earnMoney = arr[3] * 5000 + arr[4] * 50000 + arr[5] * 1500000 + arr[7] * 30000000 + arr[6] * 2000000000;
     const lottoYield = ((earnMoney / (count * 1000) * 100));
-    return lottoYield;
+    return lottoYield.toFixed(1);
   }
 }
 module.exports = Calculator;
