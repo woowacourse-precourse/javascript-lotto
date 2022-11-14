@@ -6,7 +6,7 @@ class App {
     this.money = 0;
     this.count = 0;
     this.lottoList = [];
-    this.winning = [];
+    this.winning = null;
     this.bonus = 0;
   }
 
@@ -36,12 +36,15 @@ class App {
   }
 
   setWinning(winning) {
-    this.winning = winning.split(',').map((v) => Number(v));
-    console.log(this.winning);
+    this.winning = new Lotto(winning.split(',').map((v) => Number(v)));
   }
 
   setBonus(bonus) {
-    this.bonus = bonus;
+    this.bonus = Number(bonus);
+    
+    if (this.winning.getNumbers().indexOf(this.bonus) !== -1) {
+      throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    }
   }
 
   play() {
