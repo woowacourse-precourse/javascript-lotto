@@ -8,6 +8,7 @@ class User {
 		this.validate(money);
 		this.profit = 0;
 		this.#seedMoney = money;
+		this.lottoBundle = [];
 	}
 	
 	getSeedMoney(money) {
@@ -45,13 +46,11 @@ class User {
 	}
 
 	buyLottos(count) {
-		let lottoBundle = [];
     for (let i = 0; i < count; i++) {
 			let randomNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
 			let newLotto = new Lotto(randomNumbers);
-			lottoBundle.push(newLotto.getLotto());
+			this.lottoBundle.push(newLotto.getLotto());
     }
-		return lottoBundle;
 	}
 }	
 
