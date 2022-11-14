@@ -2,7 +2,7 @@ const { Console } = require('@woowacourse/mission-utils');
 
 const Component = require('../core/Component');
 
-class LottoIncomeComponent extends Component {
+class LottoIncome extends Component {
   constructor({ income }) {
     super();
 
@@ -24,4 +24,4 @@ class LottoIncomeComponent extends Component {
   }
 }
 
-module.exports = LottoIncomeComponent;
+module.exports = LottoIncome;

@@ -2,7 +2,7 @@ const { Console } = require('@woowacourse/mission-utils');
 
 const Component = require('../core/Component');
 
-class LottoPaymentComponent extends Component {
+class LottoPayment extends Component {
   constructor({ count, lottos }) {
     super();
 
@@ -28,4 +28,4 @@ class LottoPaymentComponent extends Component {
   }
 }
 
-module.exports = LottoPaymentComponent;
+module.exports = LottoPayment;
