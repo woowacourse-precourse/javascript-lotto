@@ -56,6 +56,14 @@ class UserLotto {
     let result = (totalAmount / (this.lottoCount * 1000)) * 100;
     return Math.round(result * 10) / 10;
   }
+
+  printWinningResult(countResult) {
+    const matchResult = this.calculateMatchResult(countResult);
+    const benefit = this.calculateBenefit(matchResult);
+    MissionUtils.Console
+      .print(`\n당첨 통계\n---\n3개 일치 (5,000원) - ${matchResult["3"]}개\n4개 일치 (50,000원) - ${matchResult["4"]}개\n5개 일치 (1,500,000원) - ${matchResult["5"]}개\n5개 일치, 보너스 볼 일치 (30,000,000원) - ${matchResult["containBonus"]}개\n6개 일치 (2,000,000,000원) - ${matchResult["6"]}개\n총 수익률은 ${benefit}%입니다.
+      `);
+  }
 }
 
 module.exports = UserLotto;
