@@ -24,7 +24,7 @@ class Lotto {
   informWinningState(userLottos, bonusNumber) {
     const winningState = userLottos.reduce((state, lotto) => {
       const matchingCount = this.getMatchingNumCount(lotto);
-      const matchesBonusNum = lotto.includes(bonusNumber);
+      const matchesBonusNum = this.doesLottoIncludeBonusNum(lotto, bonusNumber);
       const ranking = this.getWinningRanking(matchingCount, matchesBonusNum);
       if (ranking !== RANK.FAIL) state[ranking] += 1;
 
@@ -37,6 +37,10 @@ class Lotto {
   getMatchingNumCount(lottoNumbers) {
     return lottoNumbers.filter((number) => this.#numbers.includes(number))
       .length;
+  }
+
+  doesLottoIncludeBonusNum(lotto, bonusNumber) {
+    return lotto.includes(bonusNumber);
   }
 
   getWinningRanking(matchingCount, matchesBonusNum) {
