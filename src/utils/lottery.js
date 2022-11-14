@@ -37,6 +37,8 @@ const countTickets = (money) => {
 
 const generateRandomNumbers = () => MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
 
+const profitRate = (rewards, paid) => ((rewards / paid) * 100).toFixed(1);
+
 module.exports = {
-  figureLotteryRank, countTickets, validateMoney, generateRandomNumbers,
+  figureLotteryRank, countTickets, validateMoney, generateRandomNumbers, profitRate,
 };

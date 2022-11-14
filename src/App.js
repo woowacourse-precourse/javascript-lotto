@@ -1,7 +1,7 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const { RANK } = require('./utils/CONSTANT');
-const { countTickets, generateRandomNumbers } = require('./utils/lottery');
+const { countTickets, generateRandomNumbers, profitRate } = require('./utils/lottery');
 const { convertNumberToComma } = require('./utils/string');
 const { validateNumbers } = require('./utils/validation');
 
@@ -65,12 +65,12 @@ class App {
       MissionUtils.Console.print(`${rank.hit}개 일치${rank.bonus ? ', 보너스 볼 일치' : ''} (${convertNumberToComma(rank.money)}원) - ${count}개`);
       rewards += rank.money * count;
     });
-    MissionUtils.Console.print(`총 수익률은 ${convertNumberToComma(this.profitRate(rewards, this.#paid))}%입니다.`);
-    MissionUtils.Console.close();
+    this.calculateProfits(rewards);
   }
 
-  profitRate(rewards, paid) {
-    return ((rewards / paid) * 100).toFixed(1);
+  calculateProfits(rewards) {
+    MissionUtils.Console.print(`총 수익률은 ${convertNumberToComma(profitRate(rewards, this.#paid))}%입니다.`);
+    MissionUtils.Console.close();
   }
 }
 
