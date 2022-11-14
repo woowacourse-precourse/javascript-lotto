@@ -6,6 +6,7 @@ class App {
   #issuedLottosList= new Array();
   #lottoWinningNumbers;
   #lottoBonusNumber;
+  #totalLottosPrizeMoney =0;
   play() {
     this.inputMoneyToBuyLottos();
     this.printNumberOfLottos();
@@ -68,6 +69,8 @@ class App {
     MissionUtils.Console.print(`5개 일치 (${PRIZE_MONEY[3].toLocaleString("ko-KR")}원) - ${countOfLottoWinning[3]}개`);
     MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (${PRIZE_MONEY[2].toLocaleString("ko-KR")}원) - ${countOfLottoWinning[2]}개`);
     MissionUtils.Console.print(`6개 일치 (${PRIZE_MONEY[1].toLocaleString("ko-KR")}원) - ${countOfLottoWinning[1]}개`);
+    for(let i=1; i<6; i++)
+      this.#totalLottosPrizeMoney += PRIZE_MONEY[i]*countOfLottoWinning[i];
   }
   getPrize(numbers){
     const countOfMatchNumber = numbers.getCountOfMatchNumber(this.#lottoWinningNumbers);
