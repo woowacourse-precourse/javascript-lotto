@@ -36,6 +36,10 @@ class Lotto {
     return this.#count;
   }
 
+  get isBonus() {
+    return this.#isBonus;
+  }
+
   increaseCount() {
     this.#count += 1;
   }

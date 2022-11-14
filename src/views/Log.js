@@ -33,7 +33,7 @@ class Log {
     const { PRIZE_DETAILS, MSG } = CONSTANT;
     PRIZE_DETAILS.forEach(detail => {
       const { MATCH, ISBONUS, PRIZE } = detail;
-      const getNumOfWinner = lottos.filter(lotto => lotto.count === MATCH).length;
+      const getNumOfWinner = lottos.filter(lotto => ISBONUS ? lotto.count === MATCH && lotto.isBonus : !lotto.isBonus && lotto.count === MATCH).length;
 
       Console.print(`${MSG.RESULT(MATCH, ISBONUS, PRIZE, getNumOfWinner)}`);
       sumPrize(getNumOfWinner, PRIZE);

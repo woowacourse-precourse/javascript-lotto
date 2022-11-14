@@ -67,10 +67,17 @@ class App {
   }
 
   checkBonus(bonus) {
-    const { SECOND_RANK } = CONSTANT;
+    const { SECOND_RANK, CHECK, ERROR_MSG } = CONSTANT;
+    if (!CHECK.IS_NUMBER(bonus)) throw new Error(`${ERROR_MSG.NAN}`);
+    if (!CHECK.IS_IN_RANGE([...bonus])) throw new Error(`${ERROR_MSG.OUT_OF_RANGE}`);
+    if (CHECK.IS_IN_WINNER(+bonus, this.#winner)) throw new Error(`${ERROR_MSG.DUPLICATE_BONUS}`);
     this.#lottos
-      .filter(lotto => lotto.count === SECOND_RANK && lotto.numbers.includes(bonus))
-      .forEach(lotto => lotto.setIsBonus());
+      .filter(lotto => lotto.count === SECOND_RANK && lotto.numbers.includes(+bonus))
+      .forEach(lotto => {
+        console.log(lotto.numbers, lotto.isBonus)
+        lotto.setIsBonus()
+        console.log(lotto.isBonus)
+        });
   }
 
   sumPrize(getNumOfWinner, PRIZE) {

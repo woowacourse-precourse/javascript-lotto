@@ -41,4 +41,4 @@
 - [x] extract functions from logic
 
 ## Test
-- [ ] write test cases of each feature except UI logics in jest
+- [ ] write test cases of each feature of domain logic
