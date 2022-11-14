@@ -2,12 +2,12 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const { Console } = require("@woowacourse/mission-utils");
 
 const { getLottoNumber, makeLottoArray } = require("./LottoGenerator");
-const { makeWinLottoNumber } = require("./Judgement");
+const { makeWinLottoNumber } = require("./UiInputLogic");
 
 class App {
   constructor() {
     this.lottoArray = [];
-    this.lottoWinNumber;
+    this.lottoWinNumber = makeWinLottoNumber();
   }
 
   play() {
@@ -16,9 +16,8 @@ class App {
     //   this.lottoArray = makeLottoArray(getLottoNumber(userInputPrice));
     //   console.log(this.lottoArray, "play");
     // });
-
-    // 로또 당첨번호 배열 생성
-    makeWinLottoNumber();
+    // // 로또 당첨번호 배열 생성
+    // console.log(this.lottoWinNumber, "test");
   }
 }
 const app = new App();
