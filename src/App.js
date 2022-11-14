@@ -1,4 +1,3 @@
-const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto.js");
 const Bonus = require("./Bonus.js");
 const InsertMoney = require("./InsertMoney.js");
@@ -17,11 +16,6 @@ class App {
     const bonus = new Bonus(lotto.getNumbers(), enterBonusNumber.getEnterBonusNumber());
     const compareLotto = new CompareLotto(generateUserLottoNumber.getUserLottoNumberLists(), lotto.getNumbers(), bonus.getNumbers());
     const calcRateOfReturn = new CalcRateOfReturn(insertMoney.getInsertMoney(), compareLotto.getUserWinningStatics());
-    this.printRateOfRetrun(calcRateOfReturn.getRateOfReturn());
-  }
-  printRateOfRetrun(RateOfReturn){
-    MissionUtils.Console.print("총 수익률은 "+RateOfReturn+"%입니다.");
-    MissionUtils.Console.close();
   }
 }
 
