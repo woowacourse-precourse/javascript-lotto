@@ -71,20 +71,6 @@ describe("로또 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
-  test("입력값이 0일때 ", () => {
-    mockQuestions(["0"]);
-    expect(() => {
-      app.inputMoney(0);
-    }).toThrow("[ERROR] 구입 금액은 1000원 단위로 숫자만 입력해주세요.");
-  });
-
-  test("입력값이 1000단위로 나눠지지 않을때 ", () => {
-    mockQuestions(["1100"]);
-    expect(() => {
-      app.inputMoney(0);
-    }).toThrow("[ERROR] 구입 금액은 1000원 단위로 숫자만 입력해주세요.");
-  });
-
   describe("당첨번호 Test", () => {
     test("쉼표(,)를 기준으로 6자리가 아닌경우 예외처리", () => {
       mockQuestions(["1000", "8, 21, 23, 41, 42,43, 45"]);
