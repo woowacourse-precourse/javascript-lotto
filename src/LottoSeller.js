@@ -1,6 +1,5 @@
 const Lotto = require('./Lotto');
-const Validator = require('./Validator');
-
+const LottoValidator = require('./LottoValidator');
 // 사용자가 방문해서 사는 곳
 class LottoSeller {
   #lottos;
@@ -19,15 +18,14 @@ class LottoSeller {
     return this.#LOTTO_PRICE;
   }
 
-  isValidMoney(input) {
-    // 빈입력인지
-    // 공백이있는지
-    Validator.isValidInput(input);
+  isPurchasableMoney(money) {
+    if (Number(money) < this.lottoPrice) {
+      throw new Error(`[ERROR] 구입 금액은 ${this.lottoPrice}원 이상이여야 합니다.`);
+    }
+  }
 
-    // integer인지 확인 - 특수문자도 걸러짐
-    // 양수인지 확인
-    // 1000으로 나누어떨어지는지 확인
-    // --> NumberTools 같은애 만들어서 확인 NumberUtil
+  isValidMoney(input) {
+    new LottoValidator(this.lottoPrice).isValidMoney(input);
   }
 
   countLottoTicket(money) {
@@ -53,6 +51,7 @@ class LottoSeller {
     //  검증()
     // 하나씩 배열에 추가
     this.issueLotto(this.countLottoTicket(money));
+    return this.lottos;
   };
 }
 
