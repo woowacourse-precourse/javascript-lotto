@@ -34,5 +34,13 @@ class HitLottoChecker {
       })
     );
   }
+  setBonusNumber() {
+    MissionUtils.Console.readLine(
+      "보너스 번호를 입력해 주세요.",
+      (bonusNumber) => {
+        this.bonusNumber = parseInt(bonusNumber);
+      }
+    );
+  }
 }
 module.exports = HitLottoChecker;
