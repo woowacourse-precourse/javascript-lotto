@@ -10,7 +10,8 @@ const inputObjects = {
 }
 
 async function getInputs() {
-  getBudget()
+  getBudget(inputObjects)
+    .then(console.log('here'))
     .then(getLottoNumbers())
     .then(getBonusNumber())
 }
@@ -24,7 +25,6 @@ async function getBudget(inputObjects) {
 }
 
 async function getLottoNumbers(inputObjects) {
-  // console.log('budget을 받음')
   Console.readLine('', (answer) => {
     const numbers = new Lotto(answer);
     numbers.forEach((element) => {
