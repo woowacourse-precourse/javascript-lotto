@@ -64,13 +64,17 @@ class App {
     Console.readLine(MESSAGE.GETWINNINGNUMBER, inputNumbers => {
       this.setWinningNumbers(inputNumbers);
       Console.readLine(MESSAGE.GETBONUSNUMBER, inputBonusNumber => {
-        validateInputNumber(inputBonusNumber);
-        this.bonusNumber = inputBonusNumber;
+        this.setBonusNumber(inputBonusNumber);
         this.setResult();
         this.printResult();
         Console.close();
       });
     });
+  }
+
+  setBonusNumber(inputBonusNumber) {
+    validateInputNumber(inputBonusNumber);
+    this.bonusNumber = inputBonusNumber;
   }
 
   setWinningNumbers(inputNumbers) {
