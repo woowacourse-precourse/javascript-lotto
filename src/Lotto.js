@@ -45,7 +45,6 @@ class Lotto {
   calcRanking(winnings, bonus) {
     this.calcWinning(winnings);
     this.matchBonus(bonus);
-
     if (this.#same !== 5) {
       this.rank = Constant.WINNER[this.#same];
     }

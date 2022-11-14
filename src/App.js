@@ -27,36 +27,24 @@ class App {
     this.#price = utils.scan(Constant.MESSAGE.GAME_START_MSG);
     utils.onlyNumber(this.#price);
     this.#lottoNumber = this.#getLottoNumber();
-    if(this.#lottoNumber === -1){
-      throw Error();
-    }
-
     utils.print(this.#lottoNumber+"개를 구매했습니다.");
-    // 로또 발급
     this.#Lotto = this.#issueLotto();
-
-    // statistics 초기화
-    for(let i = 0 ; i < Constant.LOTTO_LENGTH ; i++){
-      this.#statistics[i] = 0;
-    }
-
-    // 당첨 번호 입력 받는 로직
-    this.#winnerNumber = utils.scan(Constant.MESSAGE.LOTTO_NUMBER_INPUT).split(',');
+    this.#initStatistics();
+    this.#winnerNumber = utils.scan(Constant.MESSAGE.LOTTO_NUMBER_INPUT).split(','); // 당첨 번호 입력 받는 로직
     utils.validateLotto(this.#winnerNumber);
-
-    // 보너스 번호 입력
-    this.#bonus = utils.scan(Constant.MESSAGE.BONUS_NUMBER_INPUT);
+    this.#bonus = utils.scan(Constant.MESSAGE.BONUS_NUMBER_INPUT); // 보너스 번호 입력
     this.#validateBonus();
-
+    this.#calcLotto();
+    this.#statisticsWinnings();
+    utils.print("총 수익률은 "+this.#calcYield()+"%입니다.");
+  }
+  // 구입한 lotto 들의 당첨 rank/winnigs 구하는 함수
+  #calcLotto(){
     for(let i = 0 ; i < this.#lottoNumber ; i++){
       this.#Lotto[i].calcRanking(this.#winnerNumber, this.#bonus);
       if(this.#Lotto[i].rank.rank !== 0) this.#statistics[(this.#Lotto[i].rank.rank)-1] ++;
       this.#winnings += this.#Lotto[i].rank.winnings;
     }
-
-    this.#statisticsWinnings();
-    const ror = this.#calcYield();
-    utils.print("총 수익률은 "+ror+"%입니다.");
   }
 
   // 수익률 계산
@@ -71,6 +59,12 @@ class App {
      for(let i = Constant.RANK - 1 ; i >= 0 ; i--){
        utils.print(Constant.RANKING[i]+this.#statistics[i]+"개");
      }
+  }
+
+  #initStatistics(){
+    for(let i = 0 ; i < Constant.LOTTO_LENGTH ; i++){
+      this.#statistics[i] = 0;
+    }
   }
 
   /***
