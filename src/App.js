@@ -18,7 +18,7 @@ class App {
   constructor() {
     this.#amount = 0;
     this.#userLottos = [];
-    this.#winnerNumbers = null;
+    this.#winnerNumbers = [];
     this.#bonusNumber = 0;
   }
 
@@ -59,7 +59,7 @@ class App {
     Console.readLine("당첨 번호를 입력해 주세요.\n", (numbers) => {
       this.validateWinnerNumbers(numbers);
 
-      const NUMBER_LIST = [...new Set(numbers.split(","))];
+      const NUMBER_LIST = [...new Set(numbers.split(","))].map((num) => +num);
       this.#winnerNumbers = NUMBER_LIST;
 
       this.inputBonusNumbers();
@@ -69,8 +69,42 @@ class App {
   inputBonusNumbers() {
     Console.readLine("보너스 번호를 입력해 주세요.\n", (number) => {
       this.validateBonusNumbers(number);
-      this.#bonusNumber = number;
+      this.#bonusNumber = +number;
+
+      this.printResult();
     });
+  }
+
+  printResult() {
+    Console.print("당첨 통계");
+    Console.print("---");
+    const RESULT_LIST = this.calculateResult();
+    this.showResult(RESULT_LIST);
+  }
+
+  calculateResult() {
+    const WINNER_NUMBERS = this.#winnerNumbers;
+    const BONUS_NUMBER = +this.#bonusNumber;
+
+    const RESULT_LIST = {};
+    this.#userLottos.forEach((lotto) => {
+      const RESULT = lotto.win(WINNER_NUMBERS, BONUS_NUMBER);
+
+      if (!RESULT_LIST[`WIN_${RESULT}`]) RESULT_LIST[`WIN_${RESULT}`] = 0;
+      RESULT_LIST[`WIN_${RESULT}`] += 1;
+    });
+
+    return RESULT_LIST;
+  }
+
+  showResult(resultList) {
+    Console.print(`3개 일치 (5,000원) - ${resultList.WIN_5 || 0}개`);
+    Console.print(`4개 일치 (50,000원) - ${resultList.WIN_4 || 0}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${resultList.WIN_3 || 0}개`);
+    Console.print(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${resultList.WIN_2 || 0}개`,
+    );
+    Console.print(`6개 일치 (2,000,000,000원) - ${resultList.WIN_1 || 0}개`);
   }
 
   validateMoney(money) {
@@ -95,7 +129,8 @@ class App {
     if (!/^\d+$/.test(number)) throw Error(IS_NUMBER);
     if (!Number.isInteger(+number) || number < 1 || number >= 46)
       throw Error(IS_RANGE);
-    if (this.#winnerNumbers.includes(number))
+    console.log(this.#winnerNumbers);
+    if (this.#winnerNumbers.includes(+number))
       throw Error(IS_NOT_IN_WINNER_NUMBER);
   }
 
@@ -104,7 +139,7 @@ class App {
   }
 }
 
-const app = new App();
-app.play();
+// const app = new App();
+// app.play();
 
 module.exports = App;
