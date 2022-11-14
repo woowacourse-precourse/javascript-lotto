@@ -14,8 +14,11 @@ class App {
   }
   issueLotto(count){
     let myLotto = new Array();
+    let newLotto = new Array();
     for(let i=0;i<count;i++){
-      myLotto.push(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
+      newLotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      new Lotto(newLotto);
+      myLotto.push(newLotto);
     }
     this.showIssuedLotto(myLotto);
   }
