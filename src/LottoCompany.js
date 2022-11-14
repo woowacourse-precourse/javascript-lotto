@@ -40,8 +40,7 @@ class LottoCompany {
   }
 
   makeWinningNumbers() {
-    Console.print("당첨 번호를 입력해 주세요");
-    Console.readLine("", (input) => {
+    Console.readLine("당첨 번호를 입력해 주세요\n", (input) => {
       this.validateWinningNumbers(input);
       this.#winningNumbers = input.split(",").map((elem) => Number(elem));
     });
@@ -61,8 +60,7 @@ class LottoCompany {
   }
 
   makeBonusNumber() {
-    Console.print("보너스 번호를 입력해 주세요");
-    Console.readLine("", (input) => {
+    Console.readLine("보너스 번호를 입력해 주세요\n", (input) => {
       this.validateBonusNumber(input);
       this.#bonusNumber = Number(input);
     });
