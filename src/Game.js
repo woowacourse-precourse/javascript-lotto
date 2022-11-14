@@ -1,6 +1,7 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { QUESTION_MESSAGE, ERROR_MESSAGE } = require('./libs/const');
+const { QUESTION_MESSAGE } = require('./libs/const');
 const Purchase = require('./libs/Purchase');
+const Validations = require('./libs/Validations');
 const Lotto = require('./Lotto');
 
 class Game {
@@ -22,7 +23,7 @@ class Game {
 
   init() {
     Console.readLine(QUESTION_MESSAGE.buy, money => {
-      if (money % 1000 !== 0) throw new Error(ERROR_MESSAGE.purchase);
+      Validations.isThousand(money);
       this.purchaseAmount = money;
       this.totalLotto = Purchase.lottoes(this.purchaseAmount);
       this.setPrizeNumber();
@@ -31,8 +32,7 @@ class Game {
 
   setPrizeNumber() {
     Console.readLine(QUESTION_MESSAGE.prize, userInput => {
-      if (userInput.includes(',') === false)
-        throw new Error(ERROR_MESSAGE.comma);
+      Validations.isNotCommaPrize(userInput);
       const prizeStringArray = userInput.split(',').map(item => item.trim());
       const prizeNumberArray = prizeStringArray.map(item => Number(item));
       this.lottoNumber = new Lotto(prizeNumberArray);

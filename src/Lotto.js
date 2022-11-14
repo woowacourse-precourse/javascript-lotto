@@ -1,11 +1,7 @@
 const { Console } = require('@woowacourse/mission-utils');
-const {
-  ERROR_MESSAGE,
-  WINNING_AMOUNT,
-  WIN_MESSAGE,
-  YIELD_MESSAGE,
-} = require('./libs/const');
+const { WINNING_AMOUNT, WIN_MESSAGE, YIELD_MESSAGE } = require('./libs/const');
 const Utils = require('./libs/Utils');
+const Validations = require('./libs/Validations');
 
 class Lotto {
   #numbers;
@@ -25,33 +21,21 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) throw new Error(ERROR_MESSAGE.manyInputPrize);
-    const lottoSet = new Set();
-    numbers.forEach(number => {
-      if (Utils.isRange(number) === false) {
-        throw new Error(ERROR_MESSAGE.range);
-      }
-      lottoSet.add(number);
-    });
-    const isOverlap = lottoSet.size !== numbers.length;
-
-    if (isOverlap) throw new Error(ERROR_MESSAGE.overlapPrize);
+    Validations.isSixLength(numbers);
+    Validations.isRangePrize(numbers);
+    Validations.isOverlapPrize(numbers);
   }
 
   // TODO: 추가 기능 구현
 
   bonusValidate(number) {
-    if (this.#numbers.includes(number) === true)
-      throw new Error(ERROR_MESSAGE.overlapBonus);
-    if (Utils.isRange(number) === false) {
-      throw new Error(ERROR_MESSAGE.range);
-    }
+    Validations.isOverlapBonus(this.#numbers, number);
+    Validations.isRange(number);
   }
 
   setBonusNum(userInput) {
     const number = Number(userInput);
-    if (userInput.includes(',') === true)
-      throw new Error(ERROR_MESSAGE.manyInputBonus);
+    Validations.isCommaBonus(userInput);
     this.bonusValidate(number);
     this.bonusNumber = number;
     return number;

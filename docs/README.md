@@ -76,6 +76,8 @@
 
 - [x] refactor: App.js에 있던 함수를 기능별 Class로 분리
   - Utils,Purchase,Game,Lotto Class로 분리
+- [x] refactor: 기존의 예외 조건 함수들을 Class로 분리
+  - Validations 파일 추가
 
 ### 체크리스트
 
