@@ -3,6 +3,7 @@ const {
   TICKET_MESSAGE,
   WINNING_NUMBER_MESSAGE,
   TICKET_NUMBER,
+  BONUS_MESSAGE,
 } = require('../constants/lotto');
 const GameCtrl = require('./GameCtrl');
 const LottoView = require('../view/LottoView');
@@ -42,6 +43,7 @@ const LottoCtrl = class extends GameCtrl {
     }, []);
 
     this.model.lottoTickets = lottoTickets;
+    // TODO: 티켓 하나씩 렌더링하게끔 수정
     this.view.output(lottoTickets);
 
     this.inputLottoWinningNumbers();
@@ -65,7 +67,14 @@ const LottoCtrl = class extends GameCtrl {
     this.view.input(WINNING_NUMBER_MESSAGE, onGetLottoWinningNumbers);
   }
 
-  // 4. 유저로부터 보너스 번호를 입력받는다.
+  inputLottoBonus() {
+    const onGetLottoBonus = bonus => {
+      this.model.setBonusNumber(bonus);
+      this.end();
+    };
+
+    this.view.input(BONUS_MESSAGE, onGetLottoBonus);
+  }
 
   // end method
   // 1. 당첨 내역을 출력한다.

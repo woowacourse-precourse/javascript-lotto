@@ -20,6 +20,16 @@ const LottoModel = class extends GameModel {
     return this.ticketCount;
   }
 
+  setLottoWinningNumbers(winningNumbers) {
+    this.winningNumbers = winningNumbers;
+    this.validateLottoNumbers(winningNumbers);
+  }
+
+  setBonusNumber(bonus) {
+    this.bonus = bonus;
+    this.Bonus = new Bonus({ winningNumbers: this.winningNumbers, bonus });
+  }
+
   pickLottoTickets({ start, end, count }) {
     const ticket = Random.pickUniqueNumbersInRange(start, end, count);
     this.validateLottoNumbers(ticket);
@@ -27,16 +37,9 @@ const LottoModel = class extends GameModel {
     return ticket;
   }
 
-  setLottoWinningNumbers(winningNumbers) {
-    this.winningNumbers = winningNumbers;
-    this.validateLottoNumbers(winningNumbers);
-  }
-
   validateLottoNumbers(winningNumbers) {
     new Lotto(winningNumbers);
   }
-
-  getBonusNumber() {}
 };
 
 module.exports = LottoModel;
