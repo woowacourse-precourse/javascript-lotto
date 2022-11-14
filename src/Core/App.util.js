@@ -4,9 +4,9 @@ const { MONEY_INFO } = require("./App.const");
 
 const buyLottos = (lottoLength) =>
   Array.from({ length: lottoLength }, (x) => {
-    const input = Random.pickUniqueNumbersInRange(1, 45, 6);
-    input.sort((a, b) => a - b);
-    return new Lotto(input);
+    const lottoNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+    lottoNumbers.sort((a, b) => a - b);
+    return new Lotto(lottoNumbers);
   });
 
 const getStatistics = (counts) => {
