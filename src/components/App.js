@@ -64,8 +64,31 @@ class App {
 
       const bonusNumber = +userInput;
 
-      this.#Lotto.calculateStatics(this.#issuedLottos, bonusNumber);
+      const results = this.#Lotto.calculateStatics(
+        this.#issuedLottos,
+        bonusNumber
+      );
+
+      this.printResults(results);
     });
+  }
+
+  printResults(results) {
+    const { statics, earningsRate } = results;
+
+    const resultMessage = `
+당첨 통계
+---
+3개 일치 (5,000원) - ${statics[3]}개
+4개 일치 (50,000원) - ${statics[4]}개
+5개 일치 (1,500,000원) - ${statics[5]}개
+5개 일치, 보너스 볼 일치 (30,000,000원) - ${statics["5andBonus"]}개
+6개 일치 (2,000,000,000원) - ${statics[6]}개
+총 수익률은 ${earningsRate}입니다.
+`;
+
+    Console.print(resultMessage);
+    Console.close();
   }
 
   validatePrice(price) {
