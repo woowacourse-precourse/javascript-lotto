@@ -1,8 +1,8 @@
 const { Console } = require('@woowacourse/mission-utils');
+const { INPUT_MONEY_UNIT } = require('./Constant');
 
 const {
   validateInputMoney,
-  getLottoNumber,
   validateInputNumbers,
   validateInputNumber,
 } = require('./Function');
@@ -13,7 +13,7 @@ const Lotto = require('./Lotto');
 
 class App {
   constructor() {
-    this.lottoNumber = 0;
+    this.lottoCount = 0;
     this.lottos = [];
     this.winningNumbers = [];
     this.bonusNumber = 0;
@@ -30,14 +30,19 @@ class App {
   play() {
     Console.readLine(MESSAGE.SETINPUT, inputMoney => {
       validateInputMoney(inputMoney);
-      this.lottoNumber = getLottoNumber(inputMoney);
-      this.issueLottos(this.lottoNumber);
+      this.getLottoCount(inputMoney);
+      this.issueLottos();
       this.getResult();
     });
   }
 
-  issueLottos(lottoNumber) {
-    for (let i = 0; i < lottoNumber; i += 1) {
+  getLottoCount(inputMoney) {
+    this.lottoCount = Number(inputMoney) / INPUT_MONEY_UNIT;
+    Console.print(MESSAGE.PRINTLOTTONUMBER(this.lottoCount));
+  }
+
+  issueLottos() {
+    for (let i = 0; i < this.lottoCount; i += 1) {
       const numbers = Function.setRandomNumbers();
       const lotto = new Lotto(numbers);
       lotto.print();
@@ -98,7 +103,7 @@ class App {
     Console.print(MESSAGE.SECOND(this.result['5+']));
     Console.print(MESSAGE.FIRST(this.result['6']));
     const sum =
-      Math.round((this.result.sum / (this.lottoNumber * 1000)) * 10000) / 100;
+      Math.round((this.result.sum / (this.lottoCount * 1000)) * 10000) / 100;
     Console.print(MESSAGE.SUM(sum));
   }
 }
