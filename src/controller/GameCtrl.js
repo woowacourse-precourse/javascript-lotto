@@ -12,10 +12,6 @@ const GameCtrl = class extends IGameCtrl {
   gameProcess() {}
 
   end() {}
-
-  renderGameResult(message) {
-    this.view.output(message);
-  }
 };
 
 module.exports = GameCtrl;

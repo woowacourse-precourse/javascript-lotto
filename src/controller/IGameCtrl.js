@@ -10,10 +10,6 @@ const IGameCtrl = class {
   end() {
     throw Error('메서드구현필요');
   }
-
-  renderGameResult() {
-    throw Error('메서드구현필요');
-  }
 };
 
 module.exports = IGameCtrl;
