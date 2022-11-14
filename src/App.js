@@ -1,10 +1,18 @@
+const { MissionUtils } = require("@woowacourse/mission-utils");
+
 class App {
+  #winningNum;
+  #bonusNum;
+
+  #purchaseNumList;
+  #purchaseAmount;
+
   play() {}
 
   generateLotto() {
-    const lotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-    lotto.sort((a, b) => a - b);
-    return lotto;
+    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    const newLotto = new Lotto(numbers);
+    this.#purchaseNumList.push(newLotto);
   }
 
   buy() {
@@ -68,7 +76,7 @@ class App {
     MissionUtils.Console.print(matchMessages[match] + ` - ${count}개`);
   }
 
-  printRate(purchaseAmoint, winningAmount) {
+  printRate(purchaseAmount, winningAmount) {
     MissionUtils.Console.print(
       `총 수익률은 ${(winningAmount / purchaseAmoint) * 100}%입니다.`
     );
