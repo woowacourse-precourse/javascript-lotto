@@ -1,5 +1,7 @@
 const { LottoNumberData } = require('../lotto-data/LottoNumberData');
-const { RESTRICTIONS } = require('../lotto-data/Constant');
+const { RESTRICTIONS, ERROR_MESSAGE } = require('../lotto-data/Constant');
+
+// error는 상수화 하지 않는 것이 가독성이 더 좋아 보여 하지 않았습니다.
 
 class Lotto {
   #numbers;
@@ -41,13 +43,13 @@ class Lotto {
 
   checkOnlyNumber() {
     if (/\D/.test(this.#numbers)) {
-      throw '[ERROR] 숫자이외의 문자가 존재합니다.';
+      throw `${ERROR_MESSAGE.hasString}`;
     }
   }
 
   checkCanBuy() {
     if (this.#numbers % RESTRICTIONS.thousand) {
-      throw '[ERROR] 로또 구입 금액이 올바르지 않습니다';
+      throw `${ERROR_MESSAGE.notCorrect}`;
     }
   }
 
@@ -59,26 +61,26 @@ class Lotto {
     try {
       this.#numbers = this.#numbers.split(',');
     } catch (error) {
-      throw '[ERROR] 당첨번호가 올바르지 않습니다.';
+      throw `${ERROR_MESSAGE.notCorrect}`;
     }
   }
 
   checkDistinguishedByCommas() {
     if (this.#numbers.length === RESTRICTIONS.noComma) {
-      throw '[ERROR] 당첨번호 사이를 쉼표로 구분해주세요';
+      throw `${ERROR_MESSAGE.notComma}`;
     }
   }
 
   checkSixWinningNumbers() {
     if (this.#numbers.length !== RESTRICTIONS.lottoNumberCount_Six) {
-      throw '[ERROR] 당첨번호가 6개가 아닙니다.';
+      throw `${ERROR_MESSAGE.notSix}`;
     }
   }
 
   checkOnlyNumbers() {
     const result = this.#numbers.map((value) => +value);
     if (result.includes(NaN)) {
-      throw '[ERROR] 당첨번호가 올바르지 않습니다.';
+      throw `${hasString}`;
     }
   }
 
@@ -88,7 +90,7 @@ class Lotto {
         number < RESTRICTIONS.lottoNumberStart_One ||
         number > RESTRICTIONS.lottoNumberEnd_FortyFive
       ) {
-        throw '[ERROR] 당첨번호가 올바르지 않습니다.';
+        throw `${ERROR_MESSAGE.outOfRange}`;
       }
     });
   }
@@ -96,7 +98,7 @@ class Lotto {
   checkDuplicates() {
     const numberSet = new Set(this.#numbers);
     if (numberSet.size !== this.#numbers.length) {
-      throw '[ERROR] 중복되는 숫자가 존재합니다.';
+      throw `${ERROR_MESSAGE.hasDuplication}`;
     }
   }
 
@@ -105,13 +107,13 @@ class Lotto {
       this.#numbers < RESTRICTIONS.lottoNumberStart_One ||
       this.#numbers > RESTRICTIONS.lottoNumberEnd_FortyFive
     ) {
-      throw '[ERROR] 보너스 번호가 올바르지 않습니다.';
+      throw `${ERROR_MESSAGE.outOfRange}`;
     }
   }
 
   checkOverlapsWithWinningNumber() {
     if (LottoNumberData.Winning.includes(this.#numbers)) {
-      throw '[ERROR] 당첨번호와 중복되는 숫자가 존재합니다.';
+      throw `${ERROR_MESSAGE.hasDuplicationWithWinning}`;
     }
   }
 }
