@@ -70,7 +70,7 @@ class LottoPlay {
    * @param {array} lotto 등수를 구할 로또 번호 배열
    * @param {array} winnerNumberArray 당첨 번호 배열
    * @param {number} bonusNumber 2등 3등을 판별할 보너스 번호
-   * @returns {number} 등수를 리턴 1등 ~ 6등 6등은 꽝
+   * @returns {number} 등수를 리턴 1등 ~ 5등 0등은 꽝
    */
   findWinningResult(lotto, winnerNumberArray, bonusNumber) {
     const overlapNumber = this.compareLotteryAndWinning(
