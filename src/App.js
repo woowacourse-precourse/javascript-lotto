@@ -52,6 +52,13 @@ class App {
     );
   }
 
+  static bonusDiscriminator(lottoNumber, bonusNumber) {
+    return lottoNumber.reduce(
+      (acc, myNumber) => (myNumber === Number(bonusNumber) ? acc + 1 : acc),
+      0,
+    );
+  }
+
   play() {
     App.lottoPurchaser();
   }
