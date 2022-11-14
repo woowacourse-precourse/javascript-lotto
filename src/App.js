@@ -1,7 +1,10 @@
 const Application = require('./Application');
 const Lotto = require('./Lotto');
+const Message = require('./Message');
 
 class App {
+  #mesage = new Message();
+
   static purchaseCount(userInputNumber) {
     const UNIT_AMOUNT = 1000;
 
@@ -30,6 +33,10 @@ class App {
 
   static getEarningsRate(principal, earning) {
     return Application.earningsRate(principal, earning);
+  }
+
+  printBuy(amount) {
+    this.#mesage.print(Message.buy(amount));
   }
 }
 
