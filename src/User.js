@@ -1,3 +1,4 @@
+const lottoRank = require('./util/lottoRank');
 const rank = require('./util/rank');
 const util = require('./util/util');
 
@@ -56,8 +57,15 @@ class User {
     return rank.LOST;
   }
 
-  calculateStat() {
-    this.calculateLottoCount();
+  calculateStat(hitLotto, bonusNumber) {
+    this.calculateHitLottoCount(hitLotto, bonusNumber);
+    this.calculateTotalPrize();
+  }
+
+  calculateTotalPrize() {
+    this.hitRanks.forEach((count, index) => {
+      this.prize += lottoRank[index].prize * count;
+    });
   }
 }
 
