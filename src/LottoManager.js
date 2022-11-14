@@ -7,11 +7,12 @@ class LottoManager {
 
   #money;
 
-  buyLottos(lottoCompany) {
+  buyLottos(lottoCompany, next) {
     Console.print("구매금액을 입력해 주세요");
     Console.readLine("", (money) => {
       this.#money = Number(money);
       this.#lottos = lottoCompany.publishLottos(money);
+      if (next) next();
     });
   }
 
