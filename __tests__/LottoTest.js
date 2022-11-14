@@ -1,4 +1,5 @@
 const Lotto = require('../src/Lotto');
+const User = require('../src/User');
 const Vaildator = require('../src/Vaildator');
 
 describe('로또 클래스 테스트', () => {
@@ -62,11 +63,23 @@ describe('Validator 클래스 테스트', () => {
   });
 
   test('isRightLottoNumber: 로또 번호 문자열을 만들 수 있는지 확인하는 기능 테스트', () => {
-    expect(Vaildator.isRightLottoNumbers('1,2,3,4,5,6,7')).toEqual(false);
-    expect(Vaildator.isRightLottoNumbers('1,2,3,4,5,5')).toEqual(false);
-    expect(Vaildator.isRightLottoNumbers('1,2,3,4,5,55')).toEqual(false);
-    expect(Vaildator.isRightLottoNumbers('1,2,3,4,5.4,5')).toEqual(false);
-    expect(Vaildator.isRightLottoNumbers('1,2,sdf,4,sdf,5')).toEqual(false);
-    expect(Vaildator.isRightLottoNumbers('1, 2, 3, 4, 5, 6,')).toEqual(false);
+    expect(Vaildator.isRightLottoNumbers([1, 2, 3, 4, 5, 6, 7])).toEqual(false);
+    expect(Vaildator.isRightLottoNumbers([1, 2, 3, 4, 5, 5])).toEqual(false);
+    expect(Vaildator.isRightLottoNumbers([1, 2, 3, 4, 5, 55])).toEqual(false);
+    expect(Vaildator.isRightLottoNumbers([1, 2, 3, 4, 5.4, 5])).toEqual(false);
+    expect(Vaildator.isRightLottoNumbers([1, 2, 'sdf', 4, 'sdf', 5])).toEqual(
+      false
+    );
+    expect(Vaildator.isRightLottoNumbers([1, 2, 3, 4, 5, 6])).toEqual(true);
+  });
+
+  test('로또 순위를 계산하는 기능:', () => {
+    const user = new User();
+    expect(user.dicideRank(6, false)).toEqual(1);
+    expect(user.dicideRank(5, true)).toEqual(2);
+    expect(user.dicideRank(5, false)).toEqual(3);
+    expect(user.dicideRank(4, false)).toEqual(4);
+    expect(user.dicideRank(3, false)).toEqual(5);
+    expect(user.dicideRank(2, false)).toEqual(0);
   });
 });
