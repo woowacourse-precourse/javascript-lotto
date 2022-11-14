@@ -58,14 +58,14 @@ class App {
   }
 
   printLottoNumbers() {
-    Console.print(`${this.lottoCount}개를 구매했습니다.`);
+    Console.print(`\n${this.lottoCount}개를 구매했습니다.`);
     this.lottos.forEach((lotto) => {
       Console.print(`[${lotto.getLotto().join(", ")}]`);
     });
   }
 
   setWinningNumber() {
-    Console.readLine("당첨 번호를 입력해 주세요.\n", (answer) => {
+    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (answer) => {
       const numbers = answer.split(",");
       this.winningNumber = new Lotto(numbers).getLotto().map(Number);
       this.setBonusNumber();
@@ -73,7 +73,7 @@ class App {
   }
 
   setBonusNumber() {
-    Console.readLine("보너스 번호를 입력해 주세요.\n", (answer) => {
+    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (answer) => {
       const value = parseInt(answer);
       this.validateBonusNumber(value);
       this.bonusNumber = value;
