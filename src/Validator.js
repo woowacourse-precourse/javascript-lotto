@@ -5,7 +5,6 @@ class Validator {
     if (this.isNotNumber(purchaseMoney)) {
       throw new Error(ERROR.NOT_NUMBER);
     }
-
     if (this.isNotUnitOfLottoPrice(purchaseMoney)) {
       throw new Error(ERROR.NOT_UNIT_OF_LOTTO_PRICE);
     }
@@ -21,7 +20,6 @@ class Validator {
     if (this.isNotNumber(bonusNumber)) {
       throw new Error(ERROR.NOT_NUMBER);
     }
-
     if (this.isNotRangeOfLottoNumber(bonusNumber)) {
       throw new Error(ERROR.NOT_RANGE_OF_LOTTO_NUMBER);
     }
@@ -34,13 +32,11 @@ class Validator {
     if (this.isNotValidLottoNumberCount(lotto)) {
       throw new Error(ERROR.NOT_VALID_LOTTO_NUMBER_COUNT);
     }
-
     lotto.forEach((num) => {
       if (this.isNotRangeOfLottoNumber(num)) {
         throw new Error(ERROR.NOT_RANGE_OF_LOTTO_NUMBER);
       }
     });
-      
     if (this.hasDuplicateNumber(lotto)){
       throw new Error(ERROR.DUPLICATE_NUMBER);
     }    
