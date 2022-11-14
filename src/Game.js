@@ -80,16 +80,15 @@ class Game {
     });
   }
 
-  static calcEachLotto(result, lotto) {
-    const { numbers } = lotto;
-    const { winningNumbers, bonusNumber } = Game;
-    const place = Referee.compare(numbers, winningNumbers, bonusNumber);
-    place > 0 && result[place - 1]++;
-    return result;
-  }
-
   static calcResult() {
-    const result = Person.lottos.reduce(Game.calcEachLotto, [0, 0, 0, 0, 0]);
+    const calcEachLotto = (result, lotto) => {
+      const { numbers } = lotto;
+      const { winningNumbers, bonusNumber } = Game;
+      const place = Referee.compare(numbers, winningNumbers, bonusNumber);
+      place > 0 && result[place - 1]++;
+      return result;
+    };
+    const result = Person.lottos.reduce(calcEachLotto, [0, 0, 0, 0, 0]);
     Game.convertGameResult(result);
   }
 
