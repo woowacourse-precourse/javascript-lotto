@@ -20,20 +20,32 @@ class LottoGame {
       this.inputWinNums(lottoArr, lottoCost);
     });
   }
-
-  viewLottos(lottoCount, lottoArr) {
-    Console.print(GAME_MESSAGE.HOW_MANY_BUY_LOTTO_MESSAGE(lottoCount));
-    lottoArr.map((lotto) => {
-      Console.print(lotto);
-    });
-  }
-
+  
   validateLottoNums(lottoArr) {
     lottoArr.map((lotto) => {
       new Lotto(lotto);
     });
   }
 
+  viewLottos(lottoCount, lottoArr) {
+    Console.print(GAME_MESSAGE.HOW_MANY_BUY_LOTTO_MESSAGE(lottoCount));
+    lottoArr.map((lotto) => {
+      const lottoString = this.changeLottoToString(lotto); 
+      Console.print(GAME_MESSAGE.LOTTO_PRINT(lottoString));
+    });
+  }
+
+  changeLottoToString(lotto) {
+    return lotto
+      .toString()
+      .split('')
+      .map(el => {
+        if (el === ',') return ', ' ;
+        return el;
+      })
+      .join('');
+  }
+  
   inputWinNums(lottoArr, lottoCost) {
     Console.readLine(GAME_MESSAGE.WIN_NUM_INPUT_MESSAGE, (winNums) => {
       new WinNums(winNums);
