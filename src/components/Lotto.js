@@ -11,22 +11,22 @@ class Lotto {
   #winningNums;
 
   constructor(winningNums) {
-    this.validateWinningNubmer(winningNums);
+    this.validateWinningNums(winningNums);
 
     this.#winningNums = winningNums.map((num) => +num);
     this.statics = Object.assign({}, INITIAL_STATICS);
     this.totalPrice = 0;
   }
 
-  calculateStatics(issuedLottos, bonusNumber) {
+  calculateStatics(issuedLottos, bonusNum) {
     issuedLottos.forEach((lotto) => {
       let sameCount = 0;
 
       lotto.forEach((num, index) => {
         this.#winningNums.includes(num) && (sameCount += 1);
 
-        if (index + 1 === lotto.length)
-          this.updateStatics(sameCount, lotto.includes(bonusNumber));
+        index + 1 === lotto.length &&
+          this.updateStatics(sameCount, lotto.includes(bonusNum));
       });
     });
 
@@ -35,8 +35,8 @@ class Lotto {
     return { statics: this.statics, earningsRate };
   }
 
-  updateStatics(sameCount, isMatchBonusNum) {
-    if (sameCount === 5 && isMatchBonusNum) {
+  updateStatics(sameCount, isMatchWithBonusNum) {
+    if (sameCount === 5 && isMatchWithBonusNum) {
       this.statics["5andBonus"] += 1;
     } else if (sameCount in this.statics) {
       this.statics[sameCount] += 1;
@@ -68,7 +68,7 @@ class Lotto {
     return earningsRate;
   }
 
-  validateWinningNubmer(winningNums) {
+  validateWinningNums(winningNums) {
     const { WINNING_NUMS } = ERROR_MESSAGES;
 
     winningNums.forEach((num) => validateType(num, WINNING_NUMS));
@@ -80,12 +80,12 @@ class Lotto {
       throw new Error(WINNING_NUMS);
   }
 
-  validateBonusNumber(bonusNumber) {
+  validateBonusNum(bonusNum) {
     const { BOUNS_NUM } = ERROR_MESSAGES;
 
-    validateType(bonusNumber, BOUNS_NUM);
+    validateType(bonusNum, BOUNS_NUM);
 
-    if (this.#winningNums.includes(bonusNumber)) throw new Error(BOUNS_NUM);
+    if (this.#winningNums.includes(bonusNum)) throw new Error(BOUNS_NUM);
   }
 }
 
