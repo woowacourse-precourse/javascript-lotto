@@ -48,7 +48,7 @@ class BuyLotto {
       const userInputNum = this.splitUserInput(input);
       const userBonusNum = this.userInputBonusNumber();
       this.validate = new validate();
-      this.validate.checkInclude(userInputNum);
+      this.validate.check(userInputNum);
       this.prize();
     });
   }
