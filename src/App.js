@@ -13,9 +13,7 @@ class App {
         throw new Error("[ERROR] 복권 구매 금액 오류");
       }
       const lottos = this.sellLottos(price);
-      this.inputAnswerLottoNumber((winningNumbers, bonusNumber) =>
-        this.compareLottos(price, lottos, winningNumbers, bonusNumber)
-      );
+      this.inputAnswerLottoNumber(price, lottos);
     });
   }
 
@@ -30,6 +28,14 @@ class App {
     return lottos;
   }
 
+  inputAnswerLottoNumber(price, lottos) {
+    Console.readLine("\n당첨 번호를 입력해 주세요. \n ", (winningNumbers) => {
+      Console.readLine("\n보너스 번호를 입력해 주세요. \n", (bonusNumber) =>
+        this.compareLottos(price, lottos, winningNumbers, bonusNumber)
+      );
+    });
+  }
+
   compareLottos(price, lottos, winningNumbers, bonusNumber) {
     const counts = lottos.map((lotto) =>
       lotto.checkLottoResult(winningNumbers, bonusNumber)
@@ -37,14 +43,6 @@ class App {
     const statistics = getStatistics(counts);
     this.getStatistics(statistics);
     this.getRateOfReturn(price, statistics);
-  }
-
-  inputAnswerLottoNumber(cb) {
-    Console.readLine("\n당첨 번호를 입력해 주세요. \n ", (winningNumbers) => {
-      Console.readLine("\n보너스 번호를 입력해 주세요. \n", (bonusNumber) =>
-        cb(winningNumbers, bonusNumber)
-      );
-    });
   }
 
   getStatistics(statistics) {
