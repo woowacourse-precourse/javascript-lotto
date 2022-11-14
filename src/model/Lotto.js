@@ -8,7 +8,25 @@ class Lotto {
     this.#numbers = numbers;
   }
 
-  validate(numbers) {}
+  validate(numbers) {
+    // 갯수
+    if (numbers.length !== 6) {
+      throw new Error("[ERROR]");
+    }
+
+    // 중복 존재
+    const set = new Set(numbers);
+    if (set.size !== numbers.length) {
+      throw new Error("[ERROR]");
+    }
+
+    // 범위
+    numbers.forEach((num) => {
+      if (num < 1 || num > 45) {
+        throw new Error("[ERROR]");
+      }
+    });
+  }
 
   printLotto() {
     MissionUtils.Console.print(`[${this.#numbers.join(", ")}]`);
