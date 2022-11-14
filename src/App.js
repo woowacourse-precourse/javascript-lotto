@@ -5,6 +5,8 @@ const {
   LOTTO_SIZE,
   LOTTO_MIN_NUMBER,
   LOTTO_MAX_NUMBER,
+  LOTTO_RANKING_CONDITION,
+  LOTTO_RANKING,
 } = require("./Constants");
 const Lotto = require("./Lotto");
 const Validation = require("./validation");
@@ -100,12 +102,20 @@ class App {
   }
   getLottoRaking(eachResult) {
     const { compareResult, bonusNumberStatus } = eachResult;
-    if (compareResult === 6) return "1등";
-    if (compareResult === 5 && bonusNumberStatus) return "2등";
-    if (compareResult === 5) return "3등";
-    if (compareResult === 4) return "4등";
-    if (compareResult === 3) return "5등";
-    return "낙첨";
+    if (compareResult === LOTTO_RANKING_CONDITION.FIRST_RANK)
+      return LOTTO_RANKING.FIRST;
+    if (
+      compareResult === LOTTO_RANKING_CONDITION.THIRD_RANK &&
+      bonusNumberStatus
+    )
+      return LOTTO_RANKING.SECOND;
+    if (compareResult === LOTTO_RANKING_CONDITION.THIRD_RANK)
+      return LOTTO_RANKING.THIRD;
+    if (compareResult === LOTTO_RANKING_CONDITION.FOURTH_RANK)
+      return LOTTO_RANKING.FOURTH;
+    if (compareResult === LOTTO_RANKING_CONDITION.FIFTH_RANK)
+      return LOTTO_RANKING.FIFTH;
+    return LOTTO_RANKING.FAIL;
   }
   getRankingTotal(eachLottoRanking) {
     const rankingOverall = {

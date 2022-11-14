@@ -14,6 +14,18 @@ const LOTTO_SIZE = 6;
 const LOTTO_MIN_NUMBER = 1;
 const LOTTO_MAX_NUMBER = 45;
 
+const FIRST_RANK = 6;
+const THIRD_RANK = 5;
+const FOURTH_RANK = 4;
+const FIFTH_RANK = 3;
+
+const FIRST = "1등";
+const SECOND = "2등";
+const THIRD = "3등";
+const FOURTH = "4등";
+const FIFTH = "5등";
+const FAIL = "낙첨";
+
 const GUIDE_MESSAGE = {
   PURCHASEAMOUNT_INPUT,
   WINNERNUMBER_INPUT,
@@ -27,6 +39,22 @@ const ERROR_MESSAGE = {
   NOT_IN_RANGE,
 };
 
+const LOTTO_RANKING_CONDITION = {
+  FIRST_RANK,
+  THIRD_RANK,
+  FOURTH_RANK,
+  FIFTH_RANK,
+};
+
+const LOTTO_RANKING = {
+  FIRST,
+  SECOND,
+  THIRD,
+  FOURTH,
+  FIFTH,
+  FAIL,
+};
+
 module.exports = {
   GUIDE_MESSAGE,
   ERROR_MESSAGE,
@@ -34,4 +62,6 @@ module.exports = {
   LOTTO_SIZE,
   LOTTO_MIN_NUMBER,
   LOTTO_MAX_NUMBER,
+  LOTTO_RANKING_CONDITION,
+  LOTTO_RANKING,
 };
