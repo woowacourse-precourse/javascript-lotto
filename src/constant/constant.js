@@ -28,6 +28,7 @@ const ERROR_MESSAGE = {
   BONUS: {
     NUMBER_DUPLICATED: `${ERROR}로또 번호에 보너스 숫자와 중복된 숫자가 있습니다.`,
   },
+  NOT_NUMBER: `${ERROR}숫자를 입력해야 합니다.`,
 };
 
 module.exports = {
