@@ -9,6 +9,10 @@ class App {
   }
 
   play() {
+    this.inputMoney();
+  }
+
+  inputMoney() {
     Console.readLine(MESSAGES.INPUT_MONEY, (money) => {
       this.store.setMoney(money);
       const count = this.store.getBuyLottoCount(money);
