@@ -52,6 +52,7 @@ class Controller {
       winningNumber: this.lotto.getLottoNumbers(),
       bonusNumber: this.lotto.getBonusNumber(),
       userLottoArray: this.userNumber.getUserLottoArray(),
+      purchasingAmount: this.userNumber.getPurchasingAmount(),
     };
   }
 
