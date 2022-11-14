@@ -14,6 +14,16 @@ const CONSOLE_MESSAGE = {
 
 const RESULT_MESSAGE = {
   purchase: (input) => `${input}개를 구매했습니다.`,
+  lottoResult(userLottoResult) {
+    return [
+      `6개 일치 (2,000,000,000원) - ${userLottoResult[0]}개`,
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${userLottoResult[1]}개`,
+      `5개 일치 (1,500,000원) - ${userLottoResult[2]}개`,
+      `4개 일치 (50,000원) - ${userLottoResult[3]}개`,
+      `3개 일치 (5,000원) - ${userLottoResult[4]}개`,
+    ];
+  },
+  profitRate: (percentage) => `총 수익률은 ${percentage}%입니다.`,
 }
 
 const ERROR_MESSAGE = {
