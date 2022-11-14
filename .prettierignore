@@ -1,2 +1,3 @@
 node_modules/
-__tests__/
+__tests__/ApplicationTest.js
+__tests__/LottoTest.js
