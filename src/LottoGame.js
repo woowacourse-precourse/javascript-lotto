@@ -1,15 +1,7 @@
 const Utils = require("./Utils");
+const ResultPrinter = require('./ResultPrinter')
 const Lotto = require("./Lotto");
 const Validation = require('./Validation');
-
-const prizeMoneyObject = [
-    [0, 0],
-    [2000000000, 0],
-    [30000000, 0],
-    [1500000, 0],
-    [50000, 0],
-    [5000, 0],
-];
 
 const gameSetting = {
     length: 0,
@@ -51,7 +43,8 @@ class LottoGame {
 
         
         this.lottoContainer = undefined;
-        this.issuedLottos = [];
+        this.rp = undefined;
+        
         this.bonusNumber = 0;
         this.cost = 0;
 
@@ -71,26 +64,27 @@ class LottoGame {
         
         const nLottos = this.countLottos(this.cost);
         
-        this.issuedLottos = this.issueLottery(nLottos)
+        this.rp = new ResultPrinter(nLottos, this.issueLottery(nLottos));
         
-        Utils.print(`${nLottos}개를 구매했습니다.`);
-
-        this.showIssuedLottos();
+        this.rp.showBoughtLottos();
+        this.rp.showIssuedLottos();
         
         this.onInput('\n당첨 번호를 입력해 주세요.\n', this.onInputTargetNumbers);
     }
     
     onInputTargetNumbers(input) {
-        this.lottoContainer = new Lotto(this.setTargetNumbers(input));
+        this.lottoContainer = new Lotto(this.validateInputTargetNumbers(input));
+        this.targetNumbers = this.lottoContainer.getTargetNumbers();
+        this.rp.setLottoContainer(this);
 
         this.onInput('\n보너스 번호를 입력해 주세요.\n', this.onInputBonusNumber);
     }
     
     onInputBonusNumber(input) {
         this.bonusNumber = Number(input);
-        const targetNumbers = this.lottoContainer.getTargetNumbers();
-        Validation.validate(this.bonusNumber, targetNumbers);
-        this.showStaticstic();
+        
+        Validation.validate(this.bonusNumber, this.targetNumbers);
+        this.rp.showStaticstic(this.lottoContainer);
         Utils.close();
     }
     
@@ -111,75 +105,54 @@ class LottoGame {
         return array;
     }
     
-    showIssuedLottos() {
-        for(let lotto of this.issuedLottos) Utils.print(this.buildText(lotto));
-    }
-
-    buildText(lotto) {
-        let msg = '[';
-
-        for(let i = 0; i < lotto.length; i++) {
-            if(i == lotto.length - 1) {
-            msg += lotto[i] + ']';
-            break;
-            }
-            
-            msg += lotto[i] + ', ';
-        }
-
-        return msg;
-    }
-
-    setTargetNumbers(input) {
+    validateInputTargetNumbers(input) {
         if(!input.includes(',')) throw new Error('[ERROR] 당첨 번호는 콤마(,)를 사용해서 구분해주세요.');
 
         let countComma = input.match(/,/g).length ? input.match(/,/g).length : 0;
 
-        if(countComma !== (gameSetting.length - 1)) throw new Error(`[ERROR] 당첨 번호는 콤마(,)를 사용해서 구분해주세요.(${gameSetting.length - 1}개)`);
+        if(countComma !== (this.lottoLength - 1)) throw new Error(`[ERROR] 당첨 번호는 콤마(,)를 사용해서 구분해주세요.(${this.length - 1}개)`);
         
         let array = input.split(',').map(num => Number(num));
 
         let max = Math.max(...array);
         
-        if(max > gameSetting.maxNumber || array.includes(0)) throw new Error(`[ERROR] 번호는 1~${gameSetting.maxNumber} 사이의 수 ${gameSetting.length}자리를 입력해주세요.`);
+        if(max > this.maxNumber || array.includes(0)) throw new Error(`[ERROR] 번호는 1~${this.maxNumber} 사이의 수 ${this.length}자리를 입력해주세요.`);
 
         return array.sort();
     }
 
-
-    getBenefitRate() {
-        let prize;
-        let earnMoney = 0;
-
-        for(let lotto of this.issuedLottos) {
-            prize = this.lottoContainer.getResult(lotto, this.bonusNumber)
-            prizeMoneyObject[prize][1]++;
-            earnMoney += prizeMoneyObject[prize][0];
-        } 
-
-        return ((earnMoney / this.cost)* 100).toFixed(1);
+    drawLottery(input, bonus) {
+        let hitCount = this.countHit(input);
+        let prize = 0;
+    
+        if(hitCount == 6) prize = 1;
+        else if(hitCount == 5 && this.isHitBonus(input, bonus)) {
+          prize = 2;
         }
-
-    showStaticstic() {
-        const benefitRate = this.getBenefitRate();
-
-        const msg = `
-당첨 통계
----
-3개 일치 (${this.commaDelimeter(prizeMoneyObject[5][0])}원) - ${prizeMoneyObject[5][1]}개
-4개 일치 (${this.commaDelimeter(prizeMoneyObject[4][0])}원) - ${prizeMoneyObject[4][1]}개
-5개 일치 (${this.commaDelimeter(prizeMoneyObject[3][0])}원) - ${prizeMoneyObject[3][1]}개
-5개 일치, 보너스 볼 일치 (${this.commaDelimeter(prizeMoneyObject[2][0])}원) - ${prizeMoneyObject[2][1]}개
-6개 일치 (${this.commaDelimeter(prizeMoneyObject[1][0])}원) - ${prizeMoneyObject[1][1]}개
-총 수익률은 ${benefitRate}%입니다.
-    `
-
-        Utils.print(msg);
-    }
-
-    commaDelimeter(num) {
-        return num.toLocaleString('ko-KR');
-    }
+        else if(hitCount == 5) prize = 3;
+        else if(hitCount == 4) prize = 4;
+        else if(hitCount == 3) prize = 5;
+    
+        return prize;
+      }
+    
+      countHit(input) {
+    
+        let hit = 0;
+    
+        input.map((digit, index) => {
+          //let idx = [1,2,3,4,5,6].indexOf(digit); for test code
+          let idx = this.targetNumbers.indexOf(digit);
+    
+          if(idx !== -1) hit++;
+        })
+    
+        return hit;
+      }
+      
+      isHitBonus(input, bonus) {
+        return input.includes(bonus);
+      }
 }
 
 exports.gameSetting = gameSetting;

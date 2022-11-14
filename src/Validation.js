@@ -11,9 +11,6 @@ class Validation {
     }
 
     #validateLottoNumbers(numbers) {
-
-        console.log(setting.gameSetting);
-  
         if (numbers.length !== setting.gameSetting.length) {
           throw new Error(`[ERROR] 로또 번호는 1~${setting.gameSetting.maxNumber}사이의 ${setting.gameSetting.length}자리 숫자여야 합니다.`);
         } 
@@ -36,7 +33,6 @@ class Validation {
     }
 
     #validateBonusNumber(number, targetNumbers) {
-        
         if(Number.isNaN(number) || number > setting.gameSetting.maxNumber || number < 1) throw new Error(`[ERROR] 보너스 번호는 1~${setting.gameSetting.maxNumber}사이의 숫자이여야 합니다.`);
 
         if(targetNumbers.includes(number)) throw new Error('[ERROR] 보너스 번호는 당첨 번호와 중복이 되어서는 안됩니다.');
