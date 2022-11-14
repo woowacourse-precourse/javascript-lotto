@@ -25,7 +25,6 @@ class Lotto {
     })
   }
 
-
   validateBonus(bonus){
     if(typeof Number(bonus) !== "number"){
       throw new Error("[ERROR] 보너스 번호는 숫자여야 합니다");
@@ -37,6 +36,37 @@ class Lotto {
       throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복되면 안됩니다.")
     }
   }
+
+  checkLotto(lotto){
+    let cnt =0;
+    this.#numbers.map((number)=>{
+      if(lotto.includes(number)){
+        cnt++;
+      }
+    })
+    return cnt;
+  }
+
+  includeBonus(lotto, bonus){
+    if(lotto.includs(bonus)){
+      return true;
+    }
+    return false;
+  }
+
+  winningConfirm(lottoList, bonus){
+    let winning =[0,0,0,0,0,0,0,0];
+    MissionUtils.Console.print(this.#numbers);
+    lottoList.map((lotto)=>{
+      let collect = this.checkLotto(lotto);
+      if(collect==3 && this.includeBonus(lotto, bonus)){
+        collect+=2;
+      }
+      winning[collect]++;
+    })
+  }
+
+
 }
 
 module.exports = Lotto;

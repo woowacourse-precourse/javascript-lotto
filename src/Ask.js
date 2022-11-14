@@ -2,7 +2,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 
 class Ask{
     static money;
-    static bonus;
+    static bonusNum;
     lottoCnt;
     lottoList=[];
 
@@ -52,9 +52,9 @@ class Ask{
 
     bonus(){
         MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (answer) => {
-            this.bonus = answer;
+            this.bonusNumber = answer;
           });
-        return this.bonus;
+        return this.bonusNumber;
     }
 }
 
