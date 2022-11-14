@@ -11,7 +11,8 @@ const ERROR = {
   LOTTO_LENGTH: `[ERROR] 숫자가 6개 이어야 합니다.`,
   LOTTO_RANGE: `[ERROR] 숫자의 범위는 1~45이어야 합니다.`,
   LOTTO_OVERLAP: `[ERROR] 6개의 번호가 모두 겹치면 안됩니다.`,
-  WRONG_ADDITINAL_NUMBER: `[ERROR] 보너스 번호가 1개의 숫자이어야 합니다.`,
+  OVER_ADDITINAL_NUMBER: `[ERROR] 보너스 번호가 1개의 숫자이어야 합니다.`,
+  CONFLICT_ADDITIONIONL_NUMBER: `[ERROR] 보너스 번호는 6개의 번호와 겹치면 안됩니다.`,
 };
 
 const LOTTO_STRING = {

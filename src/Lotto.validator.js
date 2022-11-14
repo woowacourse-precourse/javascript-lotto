@@ -26,9 +26,12 @@ class LottoValidator {
     return lottoNumbers;
   }
 
-  static AdditionalNumber(lottoAdditinalNumber) {
+  static AdditionalNumber(lottoAdditinalNumber, lottoInputDto) {
+    if (lottoInputDto.numbers.includes(lottoAdditinalNumber)) {
+      throw new Error(ERROR.CONFLICT_ADDITIONIONL_NUMBER);
+    }
     if (isNaN(+lottoAdditinalNumber)) {
-      throw new Error(ERROR.WRONG_ADDITINAL_NUMBER);
+      throw new Error(ERROR.OVER_ADDITINAL_NUMBER);
     }
     return +lottoAdditinalNumber;
   }
