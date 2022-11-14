@@ -34,15 +34,7 @@
 - 로또 번호는 `오름차순으로 정렬` `SYSTEM.sortLotto(numbers)`
 
 [✅] ✏️ 발행한 로또 수량 및 번호를 출력한다. `SYSTEM.printLottos(lottos, maxCount)`
-> 8개를 구매했습니다.  
-> [8, 21, 23, 41, 42, 43]  
-> [3, 5, 11, 16, 32, 38]  
-> [7, 11, 16, 35, 36, 44]  
-> [1, 8, 11, 31, 41, 42]  
-> [13, 14, 16, 38, 42, 45]  
-> [7, 11, 30, 40, 42, 43]  
-> [2, 13, 22, 32, 38, 45]  
-> [1, 3, 5, 14, 22, 45]    
+
     
 [✅] ✏️ 당첨 번호를 입력 받는다. `SYSTEMS.makeWinningLotto(lottos, cash)` 
 - 번호는 쉼표(,)를 기준으로 구분  
@@ -64,16 +56,11 @@
   - `[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.`
 
 [✅] ✏️당첨 내역을 출력한다. `SYSTEM.printResult(lottos, winningLotto, bonusNumber, cash)`  
-&nbsp;&nbsp;&nbsp;&nbsp; [✅] ✏️ 당첨 결과 데이터를 저장하는 배열을 생성한다. `SYSTEM.makeResults(lottos, winningLotto, bonusNumber)`  
+ &nbsp;&nbsp;&nbsp;&nbsp; [✅] ✏️ 당첨 통계를 출력한다. `SYSTEM.printWinningHistory(results)`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [✅] ✏️  개별 로또의 등수를 값을 생성하여 반환한다. `SYSTEM.compare(lotto, winningLotto, bonusNumber)`  
- &nbsp;&nbsp;&nbsp;&nbsp; [✅] ✏️ 당첨 통계를 출력한다. `SYSTEM.printWinningHistory(results)`
-> 당첨 통계  
-> &#45;&#45;&#45;   
-> 3개 일치 (5,000원) - 1개  
-> 4개 일치 (50,000원) - 0개  
-> 5개 일치 (1,500,000원) - 0개  
-> 5개 일치, 보너스 볼 일치 (30,000,000원) - 0개  
-> 6개 일치 (2,000,000,000원) - 0개
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [✅] ✏️ 당첨 결과 데이터를 저장하는 배열을 생성한다. `SYSTEM.makeResults(lottos, winningLotto, bonusNumber)`  
+
+
 
  &nbsp;&nbsp;&nbsp;&nbsp; [✅] ✏️ 수익율을 출력한다. `SYSTEM.printResult(lottos, winningLotto, bonusNumber, cash)`
 - 수익률이 `4자리 이상일 경우 단위별로 쉼표를 추가`
