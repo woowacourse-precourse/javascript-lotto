@@ -7,18 +7,19 @@ class Lotto {
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
-    this.lotto_quantity;
   }
 
   validate(numbers) {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
-    
+    this.createLottoNumbersList(numbers);
   }
 
-  getLottoQuantity(lotto_quantity){
-    this.lotto_quantity = lotto_quantity;
+  createLottoNumbersList(numbers_arr){
+    let lotto_numbers_list = [];
+    lotto_numbers_list += numbers_arr;
   }
 }
+
 module.exports = Lotto;
