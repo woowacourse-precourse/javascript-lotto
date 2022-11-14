@@ -13,6 +13,7 @@ const {
   generateRandomNumbers,
   close,
 } = require("./missionUtils");
+const { getTestLottoForm } = require("./testLottoForm");
 
 module.exports = {
   isNumberType,
@@ -26,4 +27,5 @@ module.exports = {
   printMessage,
   generateRandomNumbers,
   close,
+  getTestLottoForm,
 };

@@ -16,6 +16,7 @@ const {
   printMessage,
   generateRandomNumbers,
   close,
+  getTestLottoForm,
 } = require("./utils/index");
 
 class LottoGame {
@@ -59,7 +60,7 @@ class LottoGame {
   printLottoList() {
     printMessage(`${this.#lottoCnt}${GAME_MESSAGE.LOTTO_CNT}`);
     this.#lottoList.forEach((lotto) => {
-      printMessage(`[${lotto.getLottoNumbers()}]`.split(",").join(", "));
+      printMessage(getTestLottoForm(lotto));
     });
   }
 
