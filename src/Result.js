@@ -16,6 +16,7 @@ class Result {
   print() {
     const reward = this.#reward.toLocaleString();
     Console.print(`${this.#number} (${reward}원) - ${this.#quantity}개`);
+
     this.countTotalReward();
   }
 

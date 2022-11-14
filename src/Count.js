@@ -23,6 +23,7 @@ class Calculate {
         this.countWinning(number, count);
         this.countBonus(number, count);
       });
+
       this.countTotal(count);
     });
   }

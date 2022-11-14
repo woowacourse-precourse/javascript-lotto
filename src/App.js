@@ -31,6 +31,7 @@ class App {
   printQuantity(money) {
     this.quantity = money / MONEY.UNIT;
     Console.print(`${OUTPUT.LINE}${this.quantity}${OUTPUT.BUY}`);
+
     this.publishLotto(this.quantity);
   }
 
@@ -54,6 +55,7 @@ class App {
       (numbers) => {
         const lotto = new Lotto(numbers);
         this.winningNumbers = lotto.changeIntoNumber();
+
         this.inputBonus();
       }
     );
@@ -65,6 +67,7 @@ class App {
         number,
         this.winningNumbers
       );
+
       this.getReward();
     });
   }
@@ -96,6 +99,7 @@ class App {
   countBenefit(totalReward, money) {
     const benefit = (totalReward / money) * CALCULATION.PERCENTILE;
     const benefitRate = Math.round(benefit * 10) / 10;
+
     this.printBenefit(benefitRate);
   }
 
