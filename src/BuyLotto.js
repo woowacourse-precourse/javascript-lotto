@@ -1,19 +1,24 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
 const { MESSAGE, CONDITION } = require("./constant/constant");
-const lotto = require("./Lotto");
+const Lotto = require("./Lotto");
 
 class BuyLotto {
-  start() {
-    this.howMuch();
+  constructor(howMany, makeNumbers) {
+    this.howMany = howMany;
+    this.makeNumbers = makeNumbers;
+    // this.userNumber = userNumber;
   }
-  howMuch() {
+  start() {
+    this.amount();
+  }
+  amount() {
     Console.readLine(MESSAGE.BUYING_AMOUNT, (inputValue) => {
       if (inputValue % CONDITION.BASE_PRICE !== 0) {
         throw new Error("[ERROR] 1000원 단위로 입력이 되어야합니다.");
       }
+      this.howMany = inputValue / CONDITION.BASE_PRICE;
       this.getAutoNumber(inputValue);
     });
-    return;
   }
 
   getAutoNumber(buyAmount) {
@@ -24,7 +29,10 @@ class BuyLotto {
       const sortNumber = this.getSortNumber(numbers);
       makeNumbers.push(sortNumber);
     }
+    this.makeNumbers = makeNumbers;
+    Console.print(amount + "개를 구매하셨습니다.");
     Console.print(makeNumbers);
+    this.userInputNumber();
   }
 
   getSortNumber(numbers) {
@@ -33,15 +41,23 @@ class BuyLotto {
     });
     return sortNumber;
   }
-  // userInputNumber() {
-  //   Console.readLine("숫자를 입력해주세요 : ", (input) => {
-  //     this.numbers = Array.from(input);
-  //     for (let i = 0; i < this.numbers.length; i++) {
-  //       this.numbers[i] = parseInt(this.numbers[i]);
-  //     }
-  //   });
-  //   return this.#numbers;
-  // }
+
+  userInputNumber() {
+    Console.readLine(MESSAGE.INPUT_PRIZE, (input) => {
+      const userInputNum = this.splitUserInput(input);
+      const userBonusNum = this.userInputBonusNumber();
+    });
+  }
+
+  splitUserInput(userInput) {
+    return userInput.split(",");
+  }
+
+  userInputBonusNumber() {
+    Console.readLine(MESSAGE.INPUT_BONUS, (input) => {
+      return input;
+    });
+  }
 }
 
 module.exports = BuyLotto;
