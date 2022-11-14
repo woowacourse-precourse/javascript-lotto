@@ -2,31 +2,33 @@ const Mission = require("@woowacourse/mission-utils");
 const { LOTTO_INFO, GAME_MESSAGES, NUMBERS, ERROR_MESSAGES } = require("../utils/Constants");
 
 class QuickPick {
+  #payment;
   #amount;
   #myLottoArray;
 
   constructor(payment) {
     this.validate(payment);
-    this.countAmount(payment);
+    this.#payment = Number(payment);
+    this.countAmount();
     this.pickRandomNumbers();
   }
 
   validate(payment) {
-    if (!Number(payment)) {
-      throw new Error(ERROR_MESSAGES.INVALID_COST_TYPE);
+    if (payment < 1000) {
+      throw new Error(ERROR_MESSAGES.INVALID_COST_MIN);
     }
 
     if (payment % 1000 !== 0) {
       throw new Error(ERROR_MESSAGES.INVALID_COST_UNIT);
     }
 
-    if (payment < 1000) {
-      throw new Error(ERROR_MESSAGES.INVALID_COST_MIN);
+    if (!Number(payment)) {
+      throw new Error(ERROR_MESSAGES.INVALID_COST_TYPE);
     }
   }
 
-  countAmount(payment) {
-    this.#amount = payment / LOTTO_INFO.LOTTO_PRICE;
+  countAmount() {
+    this.#amount = this.#payment / LOTTO_INFO.LOTTO_PRICE;
   }
 
   pickRandomNumbers() {
@@ -56,6 +58,9 @@ class QuickPick {
 
   amountOutput() {
     return this.#amount;
+  }
+  paymentOutput() {
+    return this.#payment;
   }
 }
 
