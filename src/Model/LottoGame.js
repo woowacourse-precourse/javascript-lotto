@@ -1,11 +1,10 @@
-const MissionUtils = require('@woowacourse/mission-utils');
 const LOTTO = require('../constant/constant');
 const BonusNumber = require('./BonusNumber');
-const Lotto = require('./Lotto');
+const Lottos = require('./Lottos');
 const Money = require('./Money');
 
 class LottoGame {
-  #lottos = [];
+  #lottos;
   #winLotto;
   #bonusNumber;
   #money;
@@ -32,23 +31,12 @@ class LottoGame {
   }
 
   get lottos() {
-    return this.#lottos;
+    return this.#lottos.lottoArray;
   }
 
   getLottos() {
     const lottoNums = this.#money.money / LOTTO.PRICE;
-    for (let x = 0; x < lottoNums; x++) {
-      const lottoNumbers = this.getRandomNumber();
-      this.#lottos.push(new Lotto(lottoNumbers));
-    }
-  }
-
-  getRandomNumber() {
-    return MissionUtils.Random.pickUniqueNumbersInRange(
-      LOTTO.RANGE.START,
-      LOTTO.RANGE.END,
-      LOTTO.LENGTH
-    ).sort((a, b) => a - b);
+    this.#lottos = new Lottos(lottoNums);
   }
 }
 module.exports = LottoGame;
