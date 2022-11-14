@@ -82,7 +82,7 @@ class App {
     return winningNums;
   }
 
-  validWinningNumber(winningNums) {
+  validWinningNums(winningNums) {
     const frontWinningNums = winningNums.slice(0, 6);
     const bonusNum = winningNums[6];
 
@@ -113,7 +113,9 @@ class App {
     myLottos.forEach((lotto) => {
       const rank = lotto.getRankFromLotto([...winningNums]);
       winningInfo[rank] += 1;
-      totalPrize += prizeInfo[rank];
+      if (prizeInfo[rank] !== undefined) {
+        totalPrize += prizeInfo[rank];
+      }
     });
 
     this.showPrizeResult(winningInfo, totalPrize, principal);
