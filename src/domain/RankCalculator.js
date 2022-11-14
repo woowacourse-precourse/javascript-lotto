@@ -1,6 +1,14 @@
 const { MATCH_COUNT, INDEX, NUMBER_OF_RANKS } = require("../utils/constants");
 
 class RankCalculator {
+  #playerLottos;
+  #winningLotto;
+
+  constructor(playerLottos, winningLotto) {
+    this.#playerLottos = playerLottos;
+    this.#winningLotto = winningLotto;
+  }
+
   #getMatchNumber(playerNumbers, winningNumbers) {
     return playerNumbers.filter((number) => winningNumbers.includes(number));
   }
@@ -15,15 +23,17 @@ class RankCalculator {
     if (matchNumber.length === MATCH_COUNT.FIFTH_RANK) return INDEX.FIFTH_RANK;
   }
 
-  getRankCount(playerLottos, winningLotto) {
-    const rankCount = Array(NUMBER_OF_RANKS).fill(0);
+  getRankCountArray() {
+    const rankCountArray = Array(NUMBER_OF_RANKS).fill(0);
 
-    playerLottos.forEach((lotto) => {
-      const rankIndex = this.#getRankIndex(lotto.numbers, winningLotto.numbers, winningLotto.bonusNumber);
-      rankCount[rankIndex]++;
+    const winningNumbers = this.#winningLotto.numbers;
+    const bonusNumber = this.#winningLotto.bonusNumber;
+    this.#playerLottos.forEach((lotto) => {
+      const rankIndex = this.#getRankIndex(lotto.numbers, winningNumbers, bonusNumber);
+      rankCountArray[rankIndex]++;
     });
 
-    return rankCount;
+    return rankCountArray;
   }
 }
 
