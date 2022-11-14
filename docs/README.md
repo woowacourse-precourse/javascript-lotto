@@ -39,10 +39,9 @@
 핵심 로직 함수
 
 1. 로또 갯수 계산 함수 [o] - LottoGenerator#getLottoNumber
-   1.1 로또 랜덤 수 생성 함수 [o] - LottoGenerator#makeLottoArray
 
-2. 당첨 번호 비교 함수
-   2.1 당첨 번호 배열 생성 함수  
+2. 당첨 번호 비교 함수 - Judgement
+   2.1 당첨 번호 배열 생성 함수 - [o] Judgement#makeWinLottoNumber
    2.2 당첨 내역 관리 함수(몇 등이 몇 개인지)
    2.3 얻은 금액 계산 함수
    2.4 수익률 계산 함수
@@ -52,6 +51,8 @@
 
 UI 로직 함수
 
-1. 로또 번호 출력 함수
-2. 당첨 내역 출력 함수
+UiInputLogic
+
+1. 로또 번호 출력 함수 [o] - UiInputLogic#makeWinLottoNumber
+2. 당첨 내역 출력 함수 [o] - UiInputLogic#changePriceToCount
 3. 수익률 출력 함수
