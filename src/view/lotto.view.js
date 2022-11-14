@@ -1,9 +1,8 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const Model = require("../model/lotto.model");
 
 class LottoView {
-  constructor() {
-    this.model = new Model();
+  constructor(model) {
+    this.model = model;
   }
 
   amountBuyLotto(input) {

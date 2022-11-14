@@ -4,8 +4,8 @@ const Controller = require("./controller/lotto.controller");
 
 class App {
   constructor() {
-    this.model = new Model();
-    this.view = new View();
+    this.model = new Model(this.controller);
+    this.view = new View(this.model);
     this.controller = new Controller(this.view, this.model);
   }
 

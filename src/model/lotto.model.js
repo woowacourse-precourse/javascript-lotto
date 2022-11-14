@@ -1,10 +1,9 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const Controller = require("../controller/lotto.controller");
 const Lotto = require("../Lotto");
 
 class LottoModel {
-  constructor() {
-    this.controller = new Controller();
+  constructor(controller) {
+    this.controller = controller;
     this.numberArr, this.bonusNumberArr, this.lottoNumberArr;
     this.lottoPay;
   }
