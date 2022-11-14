@@ -1,6 +1,7 @@
 const Console = require('./Console');
 const Exception = require('./Exception');
 const LOTTO = require('./consts/Lotto');
+const MESSAGE = require('./consts/Message');
 
 class App {
   purchase;
@@ -12,7 +13,7 @@ class App {
   }
 
   setPurchase() {
-    Console.readLine(Console.INPUT.PURCHASE, (input) => {
+    Console.readLine(MESSAGE.INPUT.PURCHASE, (input) => {
       const inputNumber = Number(input);
 
       this.handlePurchaseException(inputNumber);
@@ -23,11 +24,15 @@ class App {
   }
 
   handlePurchaseException(inputNumber) {
+    const {
+      ERROR: { INTEGER, UNIT },
+    } = MESSAGE;
+
     switch (false) {
       case this.isInteger(inputNumber):
-        throw new Error(Exception.error(Exception.INTEGER));
+        throw Exception.error(INTEGER);
       case this.isInUnit(inputNumber):
-        throw new Error(Exception.error(Exception.UNIT));
+        throw Exception.error(UNIT);
     }
   }
 
@@ -41,14 +46,6 @@ class App {
     }
 
     return false;
-  }
-
-  setNumberOfPurchases() {
-    this.numberOfPurchases = this.calculatenumberOfPurchases();
-  }
-
-  calculateNumberOfPurchases() {
-    return this.purchase / LOTTO.PRICE;
   }
 }
 
