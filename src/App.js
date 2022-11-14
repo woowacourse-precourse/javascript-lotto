@@ -10,13 +10,13 @@ class App {
     this.myLotto = [];
     this.winningLotto = [];
     this.bonus = 0;
-    this.rank = [{
+    this.rank = {
       first: 0,
       second: 0,
       third: 0,
       fourth: 0,
       fifth: 0,
-    }];
+    };
     this.reward = 0;
   }
 
@@ -31,7 +31,7 @@ class App {
 
   purchaseLotto() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
-      this.money = money;
+      this.money = parseInt(money);
       this.checkMoney(money);
       this.countLotto = Math.floor(money / 1000);
     });
@@ -46,8 +46,18 @@ class App {
         const lotto = numbers.sort((a, b) => a - b);
         this.myLotto.push(lotto);
       }
-      MissionUtils.Console.print(this.myLotto[i]);
+      MissionUtils.Console.print(this.printLotto(this.myLotto[i]));
     }
+  }
+
+  printLotto(myLotto) {
+    let lotto = '[';
+    myLotto.map((e, i) => {
+      if (i < 5) lotto += `${e}, `;
+      if (i === 5) lotto += e;
+    });
+    lotto += ']';
+    return lotto;
   }
 
   winningNum() {
@@ -59,15 +69,15 @@ class App {
 
   bonusNum() {
     MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.\n", (bonus) => {
-      this.bonus = bonus;
+      this.bonus = parseInt(bonus);
     });
   }
 
   checkWinner() {
-    let count = 0;
-    let bonus = 0;
     for (let i = 0; i < this.countLotto; i++) {
-      this.myLotto.map(n => {
+      let count = 0;
+      let bonus = 0;
+      this.myLotto[i].map((n) => {
         if (this.winningLotto.includes(n)) {
           count++;
         }
@@ -82,7 +92,7 @@ class App {
   divideWinner(count, bonus) {
     switch (count) {
       case 3:
-        this.rank['fifth']++; this.reward += 5000;
+        this.rank['fifth'] += 1; this.reward += 5000;
         break;
       case 4:
         this.rank['fourth']++; this.reward += 50000;
@@ -96,15 +106,8 @@ class App {
     }
   }
 
-  calYield() {
-    const yield = (this.reward / this.money) * 100;
-    MissionUtils.Console.print(`총 수익률은 ${yield}%입니다.\n`);
-    MissionUtils.Console.close();
-  }
-
   result() {
-    MissionUtils.Console.print("당첨 통계\n");
-    MissionUtils.Console.print("---\n");
+    MissionUtils.Console.print("당첨 통계\n---");
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.rank['fifth']}개\n`);
     MissionUtils.Console.print(`4개 일치 (50,000원) - ${this.rank['fourth']}개\n`);
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${this.rank['third']}개\n`);
@@ -113,10 +116,17 @@ class App {
     this.calYield();
   }
 
+  calYield() {
+    const yielRate = (this.reward / this.money) * 100;
+    MissionUtils.Console.print(`총 수익률은 ${yielRate}%입니다.\n`);
+    MissionUtils.Console.close();
+  }
+
   play() {
     this.purchaseLotto();
     this.makeLotto(this.countLotto);
     this.winningNum();
+    this.bonusNum();
     this.checkWinner();
     this.result();
   }
