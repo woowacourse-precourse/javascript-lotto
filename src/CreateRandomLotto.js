@@ -14,24 +14,19 @@ class CreateRandomLotto {
     }
 
     randomNumberSort(){
-        this.randomLotto.sort((a,b) => {
+        this.saveRandomLotto.sort((a,b) => {
             return a - b;
         })
     }
 
     issuedRandomNumber(number){
-        let i =0 ;
+        let i = 0 ;
         while( i < number){
             this.pickRandomLotto();
-            this.randomNumberSort();
-            this.lotto.validate();
-            Console.print(this.randomLotto);
             this.saveRandomLotto.push(this.randomLotto);
-            this.randomLotto.length = 0;
             i++;
         }
-    }
-    getLottoRandom(){
+        this.randomNumberSort();
         return this.saveRandomLotto;
     }
 }

@@ -13,26 +13,18 @@ class InputWinningNumber{
 
     winningNumber(){
         Console.readLine(INPUT_WINNING_NUMBER, (num) => {
-            this.lotto.validate(num);
-            return this.winningNum.push(num);
+            num = num.split(',').map(Number);
+            this.winningNum.push(num);
+            this.winningNum = this.winningNum.reduce((acc,cur) => { return acc.concat(cur)});
         })
     }
 
     bonusNumber(){
         Console.readLine(INPUT_BONUS_NUMBER, (num) => {
-            this.lotto.checkBonusNumLength(num);
-            this.lotto.checkLottoNumber(num);
-            this.lotto.isNotLottoNumber(num);
-            return this.bonusNum.push(num);
+            num = num.split(',').map(Number);
+            this.bonusNum.push(num);
+            this.bonusNum = this.bonusNum.reduce((acc,cur) => { return acc.concat(cur)});
         })
-    }
-
-    getWinningNum(){
-        return this.winningNum;
-    }
-
-    getBonusNum(){
-        return this.bonusNum;
     }
 }
 

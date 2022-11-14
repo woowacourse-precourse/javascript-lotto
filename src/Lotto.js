@@ -7,10 +7,8 @@ class Lotto {
   }
 
   validate(numbers) {
-    this.checkLottoLength(numbers);
-    this.checkLottoNumber(numbers);
-    this.checkDuplicateNumber(numbers);
-    this.isNotLottoNumber(numbers);
+
+   
   }
 
   checkLottoLength(numbers){

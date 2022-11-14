@@ -1,60 +1,59 @@
-const InputWinningNumber = require("./InputWinninNumber");
+const InputWinningNum = require("./InputWinningNum");
 const CreateRandomLotto = require("./CreateRandomLotto");
+const { Console } = require("@woowacourse/mission-utils");
 
 class NumberCompare{
     constructor(){
-        this.inputWinningNumber = new InputWinningNumber();
+        this.inputWinningNum = new InputWinningNum();
         this.createRandomLotto = new CreateRandomLotto();
         this.lottoRanking = [0, 0, 0, 0, 0];
     }
 
-    lottoResults(){
-        this.matchThreeNumbers(createNum,winningNum);
-        this.matchFourNumbers(createNum, winningNum);
-        this.matchFiveNumbers(createNum, winningNum);
-        this.matchFiveAndBonusNumbers(createNum, winningNum, bonusNum);
-        this.matchSixNumbers(createNum, winningNum);
-        this.lottoRanking;
+    lottoResults(createNum, winningNum, bonusNum){
+        this.matchNumbers(createNum,winningNum,bonusNum)
     }
 
-    matchThreeNumbers(createNum, winningNum){
-        let duplicateNum = createNum.filter((el) => winningNum.includes(el));
+    matchNumbers(createNum, winningNum, bonusNum){
+        for(let i = 0; i < createNum.length; i++){
+            let duplicateNum = createNum[i].filter((el) => winningNum.includes(el));
+            let duplicateBonusNum = createNum[i].filter((el) => bonusNum.includes(el));
+            this.matchThreeNumbers(duplicateNum)
+            this.matchFourNumbers(duplicateNum)
+            this.matchFiveNumbers(duplicateNum)
+            this.matchFiveAndBonusNumbers(duplicateNum, duplicateBonusNum)
+            this.matchSixNumbers(duplicateNum);
+        }
+        return this.lottoRanking;
+    }
+
+    matchThreeNumbers(duplicateNum){
         if(duplicateNum.length == 3){
             this.lottoRanking[0] += 1;
         }
     }
 
-    matchFourNumbers(createNum, winningNum){
-        let duplicateNum = createNum.filter((el) => winningNum.includes(el));
+    matchFourNumbers(duplicateNum){
         if(duplicateNum.length == 4){
             this.lottoRanking[1] += 1;
         }
     }
 
-    matchFiveNumbers(createNum, winningNum){
-        let duplicateNum = createNum.filter((el) => winningNum.includes(el));
+    matchFiveNumbers(duplicateNum){
         if(duplicateNum.length == 5){
             this.lottoRanking[2] += 1;
         }
     }
 
-    matchFiveAndBonusNumbers(createNum, winningNum, bonusNum){
-        let duplicateNum = createNum.filter((el) => winningNum.includes(el));
-        let duplicateBonusNum = createNum.filter((el) => bonusNum.includes(el));
+    matchFiveAndBonusNumbers(duplicateNum, duplicateBonusNum){
         if(duplicateNum.length == 5 && duplicateBonusNum.length == 1){
             this.lottoRanking[3] += 1;
         }
     }
 
-    matchSixNumbers(createNum, winningNum){
-        let duplicateNum = createNum.filter((el) => winningNum.includes(el));
+    matchSixNumbers(duplicateNum){
         if(duplicateNum.length == 6){
             this.lottoRanking[4] += 1;
         }
-    }
-
-    getLottoRanking(){
-        return this.lottoRanking;
     }
 }
 
