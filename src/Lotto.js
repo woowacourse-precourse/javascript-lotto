@@ -4,13 +4,13 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.checkWinNumber(numbers);
+    this.checkWinNumber(numbers, 6);
     this.#numbers = numbers;
     this.inputBonusNumber();
   }
 
-  checkWinNumber(winNumberArr) {
-    if (new Set(winNumberArr).size != 6)
+  checkWinNumber(winNumberArr, arrSize) {
+    if (new Set(winNumberArr).size != arrSize)
       throw new Error("[ERROR]로또 번호 입력 오류");
     winNumberArr.forEach((number) => {
       if (!Number(number)) throw new Error("[ERROR]로또 번호 입력 오류");
@@ -23,7 +23,7 @@ class Lotto {
     MissionUtils.Console.readLine(
       "\n보너스 번호를 입력해 주세요.\n",
       (bonusNumber) => {
-        MissionUtils.Console.print(bonusNumber);
+        this.checkWinNumber(bonusNumber.split(), 1);
       }
     );
   }
