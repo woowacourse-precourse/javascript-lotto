@@ -8,8 +8,9 @@ const Lotto = require("./Lotto");
 const {
   isNumberType,
   isThousandUnits,
-  generateRandomNumbers,
+  inputUserValue,
   printMessage,
+  generateRandomNumbers,
 } = require("./utils/index");
 
 class LottoGame {
@@ -17,8 +18,8 @@ class LottoGame {
   #lottoCnt;
   #lottoList;
 
-  enter() {
-    Console.readLine(GAME_MESSAGE.INPUT_PURCHASE_AMOUNT, (inputAmount) => {
+  playLottoGame() {
+    inputUserValue(GAME_MESSAGE.INPUT_PURCHASE_AMOUNT, (inputAmount) => {
       if (this.isPurchaseAmountValid(inputAmount)) {
         this.#purchaseAmount = inputAmount;
         this.generateLottoList();

@@ -9,7 +9,7 @@ class App {
   }
 
   play() {
-    this.#lottoGame.enter();
+    this.#lottoGame.playLottoGame();
   }
 }
 

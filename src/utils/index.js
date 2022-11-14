@@ -1,10 +1,14 @@
 const { isNumberType, isThousandUnits } = require("./validate");
-const { generateRandomNumbers } = require("./randomNumber");
-const { printMessage } = require("./printMessage");
+const {
+  inputUserValue,
+  printMessage,
+  generateRandomNumbers,
+} = require("./missionUtils");
 
 module.exports = {
   isNumberType,
   isThousandUnits,
-  generateRandomNumbers,
+  inputUserValue,
   printMessage,
+  generateRandomNumbers,
 };
