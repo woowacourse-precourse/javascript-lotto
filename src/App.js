@@ -34,7 +34,6 @@ class App {
 
   ExceptionOfGetMoney(money){ //구매금액 입력받기 예외처리
     if(money % 1000 != 0){
-      console.log(money);
       throw new Error("[ERROR] 구매금액은 1000원 단위여야 합니다.");
     }
   } 
@@ -86,10 +85,11 @@ class App {
   }
 
   getWinResult(){ //당첨내역 계산하기
-    for(let i = 0; i < this.lottoRandomNum; i++){
+    for(let i = 0; i < this.lottoRandomNum.length; i++){
+      //console.log(this.lottoRandomNum.length);
       let count = 0;
-      for(let j = 0; j < this.lottoRandomNum; j++){
-        if(this.lottoRandomNum[i].includes(winArr[j])){
+      for(let j = 0; j < this.lottoRandomNum[i].length; j++){
+        if(this.lottoRandomNum[i].includes(parseInt(this.winArr[j]))){
           count++;
         }
       }
@@ -113,10 +113,10 @@ class App {
   printWinResult(){ //당첨내역 출력하기
     MissionUtils.Console.print('당첨 통계\n---');
     MissionUtils.Console.print(
-      '3개 일치 (5,000원) - ' + this.fifth + '개\n',
-      '4개 일치 (50,000원) - ' + this.fourth + '개\n',
-      '5개 일치 (1,500,000원) - ' + this.third + '개\n',
-      '5개 일치, 보너스 볼 일치 (30,000,000원) - ' + this.second + '개\n',
+      '3개 일치 (5,000원) - ' + this.fifth + '개\n' +
+      '4개 일치 (50,000원) - ' + this.fourth + '개\n' +
+      '5개 일치 (1,500,000원) - ' + this.third + '개\n' +
+      '5개 일치, 보너스 볼 일치 (30,000,000원) - ' + this.second + '개\n' +
       '6개 일치 (2,000,000,000원) - ' + this.first + '개'
     )
   }
@@ -128,7 +128,7 @@ class App {
     let secondPrize = 30000000;
     let firstPrize = 2000000000;
 
-    this.RateOfReturn = this.fifth*fifthPrize + this.fourth*fourthPrize + this.third*thirdPrize + this.second*secondPrize + this.first*firstPrize; //수익률
+    this.RateOfReturn = parseInt((this.fifth*fifthPrize + this.fourth*fourthPrize + this.third*thirdPrize + this.second*secondPrize + this.first*firstPrize) / this.lottoMoney); //수익률
     this.roundOffRateOfReturn();
     
   }
