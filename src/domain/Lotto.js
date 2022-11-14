@@ -13,21 +13,18 @@ class Lotto {
   }
 
   #validate(numbers) {
-    if (!this.#hasValidLength(numbers)) {
-      throw new Error(ERRORS.LOTTO.LENGTH);
-    }
+    const validations = {
+      LENGTH: this.#hasValidLength.bind(this),
+      UNIQUE: this.#hasUniqueValues.bind(this),
+      VALUE: this.#hasNumberValuesOnly.bind(this),
+      RANGE: this.#hasValidRangeValues.bind(this),
+    };
 
-    if (!this.#hasUniqueValues(numbers)) {
-      throw new Error(ERRORS.LOTTO.UNIQUE);
-    }
-
-    if (!this.#hasNumberValuesOnly(numbers)) {
-      throw new Error(ERRORS.LOTTO.VALUE);
-    }
-
-    if (!this.#hasValidRangeValues(numbers)) {
-      throw new Error(ERRORS.LOTTO.RANGE);
-    }
+    Object.entries(validations).forEach(([key, validateLotto]) => {
+      if (!validateLotto(numbers)) {
+        throw new Error(ERRORS.LOTTO[key]);
+      }
+    });
   }
 
   #hasValidLength(numbers) {
