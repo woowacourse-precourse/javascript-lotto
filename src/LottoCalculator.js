@@ -1,6 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { WINNING, PRINT, LOTTO_RESULT, LOTTO } = require("./lib/library");
-const Lotto = require("./Lotto");
 
 class LottoCalculate {
   resultCaculator(lottos, { winLotto, bonus }) {
@@ -68,15 +67,8 @@ class LottoCalculate {
     const lottoResult = { ...result };
     delete lottoResult.count;
     Console.print(PRINT.GAIN_PECENT(this.gainPercent(lottoResult, count)));
-    return;
+    return this;
   }
 }
-
-// const a = new LottoCalculate();
-
-// a.printWinResult(result);
-// a.printGainPercent(result);
-
-// a.printWinResult({ FIRST: 0, SECOND: 0, THIRD: 1, FOURTH: 2, FIFTH: 0 });
 
 module.exports = LottoCalculate;
