@@ -1,10 +1,10 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { Console } = require("@woowacourse/mission-utils");
 
 class Result {
-  constructor(lottoResult, bonusCnt) {
-    this.lottoResult = lottoResult;
-    this.bonusCnt = bonusCnt;
-  }
+  lottoResult;
+  bonusCnt;
+
+  constructor() {}
 
   createLottoResult(scores, bonusNum, lottoArr) {
     this.lottoResult = {
@@ -80,29 +80,23 @@ class Result {
 
   printLottoResult(lottoResult, bonusResult, totalYield) {
     // for (const score in lottoResult) {
-    //   MissionUtils.Console.print(
+    //   Console.print(
     //     `${score}개 일치 (${lottoResult[score][
     //       "money"
     //     ].toLocaleString()}원) - ${lottoResult[score]["count"]}개`
     //   );
     // }
     console.log(bonusResult["count"]);
-    MissionUtils.Console.print(
-      `3개 일치 (5,000원) - ${lottoResult["3"]["count"]}개`
-    );
-    MissionUtils.Console.print(
-      `4개 일치 (50,000원) - ${lottoResult["4"]["count"]}개`
-    );
-    MissionUtils.Console.print(
-      `5개 일치 (1,500,000원) - ${lottoResult["5"]["count"]}개`
-    );
-    MissionUtils.Console.print(
+    Console.print(`3개 일치 (5,000원) - ${lottoResult["3"]["count"]}개`);
+    Console.print(`4개 일치 (50,000원) - ${lottoResult["4"]["count"]}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${lottoResult["5"]["count"]}개`);
+    Console.print(
       `5개 일치, 보너스 볼 일치 (30,000,000원) - ${bonusResult["count"]}개`
     );
-    MissionUtils.Console.print(
+    Console.print(
       `6개 일치 (2,000,000,000원) - ${lottoResult["6"]["count"]}개`
     );
-    MissionUtils.Console.print(`총 수익률은 ${totalYield}%입니다.`);
+    Console.print(`총 수익률은 ${totalYield}%입니다.`);
   }
 }
 module.exports = Result;

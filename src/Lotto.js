@@ -1,4 +1,4 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { Console, Random } = require("@woowacourse/mission-utils");
 
 class Lotto {
   #numbers;
@@ -17,8 +17,8 @@ class Lotto {
   // TODO: 추가 기능 구현
 
   creatRandomLotto() {
-    this.#numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-    // MissionUtils.Console.print(this.#numbers);
+    this.#numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+    // Console.print(this.#numbers);
     let tempStr = "";
     for (let i = 0; i < this.#numbers.length; i++) {
       if (i === 0) {
@@ -35,7 +35,7 @@ class Lotto {
       tempStr += this.#numbers[i];
       tempStr += ", ";
     }
-    MissionUtils.Console.print(tempStr);
+    Console.print(tempStr);
     return this.#numbers;
   }
 
