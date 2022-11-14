@@ -36,7 +36,9 @@ class Lotto {
   }
 
   printLotto() {
-    MissionUtils.Console.print(this.ascendingOrderNumbers(this.#numbers));
+    MissionUtils.Console.print(
+      `[${this.ascendingOrderNumbers(this.#numbers).join(', ')}]`,
+    );
   }
 
   ascendingOrderNumbers(numbers) {
