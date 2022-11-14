@@ -17,6 +17,7 @@ class App {
 
     amount = this.get_quantity();
     lotto_list = this.publish_lotto(amount);
+    this.print_publish_result(amount, lotto_list);
   }
 
   input(text) {
@@ -55,6 +56,24 @@ class App {
       lotto_list.push(this.random_lotto_number());
     }
     return lotto_list;
+  }
+
+  print_publish_result(amount, lotto_list) {
+    MissionUtils.Console.print(`${amount}개를 구매했습니다.\n`);
+    this.lotto_print_formating(lotto_list);
+  }
+
+  lotto_print_formating(lotto_list) {
+    lotto_list.forEach( (element) => {
+      let str = `[`;
+      element.forEach((val) => {
+        str += val;
+        str += `, `;
+      });
+      str = str.slice(0,str.length-2);
+      str += `]`;
+      MissionUtils.Console.print(str);
+    })
   }
 }
 
