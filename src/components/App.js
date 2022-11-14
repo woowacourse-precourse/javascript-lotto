@@ -1,4 +1,5 @@
 const {
+  GUIDE_MESSAGES,
   LOTTO_PRICE,
   RANGE_OF_LOTTO_NUMBER,
   TOTAL_COUNTS,
@@ -17,7 +18,7 @@ class App {
   }
 
   startGame() {
-    Console.readLine("구입 금액을 입력해주세요.\n", (price) => {
+    Console.readLine(GUIDE_MESSAGES.PURCHASE, (price) => {
       this.validatePrice(price);
 
       this.buyLotto(price);
@@ -49,7 +50,7 @@ class App {
   }
 
   getWinningNumber() {
-    Console.readLine(`\n당첨 번호를 입력해 주세요.\n`, (userInput) => {
+    Console.readLine(GUIDE_MESSAGES.WINNING_NUMS, (userInput) => {
       const winningNums = userInput.split(",");
 
       this.#Lotto = new Lotto(winningNums);
@@ -59,7 +60,7 @@ class App {
   }
 
   getBonusNumber() {
-    Console.readLine(`\n보너스 번호를 입력해 주세요.\n`, (userInput) => {
+    Console.readLine(GUIDE_MESSAGES.BONUS_NUM, (userInput) => {
       this.#Lotto.validateBonusNumber(+userInput);
 
       const bonusNumber = +userInput;
@@ -96,8 +97,8 @@ class App {
 
   validatePrice(price) {
     if (
-      Number.isNaN(+price) ||
       typeof +price !== "number" ||
+      Number.isNaN(+price) ||
       price % LOTTO_PRICE !== 0
     ) {
       throw new Error(ERROR_MESSAGES.PRICE);
