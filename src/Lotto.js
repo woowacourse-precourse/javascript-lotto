@@ -32,7 +32,10 @@ class Lotto {
       throw new Error(ERROR_MESSAGES.INVALID_LOTTO_LENGTH);
     }
 
-    if (numbers.find((number) => number < RANGE.START || number > RANGE.END)) {
+    if (
+      numbers.find((number) => number < RANGE.START || number > RANGE.END) !==
+      undefined
+    ) {
       throw new Error(ERROR_MESSAGES.INVALID_LOTTO_RANGE);
     }
 
