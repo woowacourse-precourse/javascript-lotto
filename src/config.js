@@ -67,7 +67,7 @@ const PRIZE_CONFIG = {
 const USER_INPUT_PHRASE = {
   REQUEST_PURCHASE_AMOUNT: '구입금액을 입력해 주세요.\n',
   REQUEST_TARGET_NUMBER: '당첨 번호를 입력해 주세요.\n',
-  REQUEST_TARGET_DELIMITER: ',',
+  DELIMITER: ',',
   REQUEST_BONUS_NUMBER: '보너스 번호를 입력해 주세요.\n',
 };
 

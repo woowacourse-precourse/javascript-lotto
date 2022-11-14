@@ -5,7 +5,7 @@ function _isNumber(...args) {
 }
 
 function _isInRange(...args) {
-  return args.every((arg) => GAME_RANGE.MIN <= arg && arg <= GAME_RANGE.MAX);
+  return args.every((arg) => GAME_RANGE.RANGE_MIN <= arg && arg <= GAME_RANGE.RANGE_MAX);
 }
 
 const validateLottoBudget = (budget) => {
