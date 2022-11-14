@@ -225,7 +225,7 @@ class Lotto {
 
 - [x] 로또 번호의 길이가 6이 아니라면 예외 처리하기 - `Lotto#validate`
 - [x] 로또 번호에 중복되는 수가 있다면 예외 처리하기 - `Lotto#validate`
-- [ ] 로또 번호에 숫자가 아닌 값이 있다면 예외 처리하기 - `Lotto#validate`
+- [x] 로또 번호에 숫자가 아닌 값이 있다면 예외 처리하기 - `Lotto#validate`
 - [ ] 로또 번호가 1~45 사이의 수가 아니라면 예외 처리하기 - `Lotto#validate`
 
 ### 에러 처리

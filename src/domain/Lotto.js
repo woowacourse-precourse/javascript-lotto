@@ -18,6 +18,10 @@ class Lotto {
     if (!this.#hasUniqueValues(numbers)) {
       throw new Error('[ERROR] 로또 번호는 중복되지 않아야 합니다.');
     }
+
+    if (!this.#hasNumberValuesOnly(numbers)) {
+      throw new Error('[ERROR] 로또 번호는 숫자여야 합니다.');
+    }
   }
 
   #hasValidLength(numbers) {
@@ -26,6 +30,14 @@ class Lotto {
 
   #hasUniqueValues(numbers) {
     return new Set(numbers).size === 6;
+  }
+
+  #hasNumberValuesOnly(numbers) {
+    return numbers.every((number) => this.#isNumber(number));
+  }
+
+  #isNumber(value) {
+    return typeof value === 'number';
   }
 }
 
