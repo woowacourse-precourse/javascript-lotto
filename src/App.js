@@ -129,6 +129,7 @@ class App {
   check_number_errors(amount){
     if (this.not_positive(amount)) {throw new Error('[ERROR]not a positive number')};
     if (this.not_natural(amount)) throw new Error('[ERROR]not a natural number');
+    if (this.not_number(amount)) throw new Error('[ERROR]not a number')
   }
 
   //1000단위가 아닐 경우 예외처리
@@ -144,6 +145,9 @@ class App {
     if (number%1 != 0) return true; 
   }
 
+  not_number(number){
+    if (isNaN(number)) return true;
+  }
 
 
   print_numbers(numbers){
@@ -185,8 +189,8 @@ class App {
     var number;
     MissionUtils.Console.print('보너스 번호를 입력해 주세요.');
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (answer) => {
-    this.duplicatecheck(winning_numbers, answer);
     this.check_number_errors(answer); 
+    this.duplicatecheck(winning_numbers, answer);
     this.rangecheck(answer);
     number = answer;
   })
