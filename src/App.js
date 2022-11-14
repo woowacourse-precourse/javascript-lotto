@@ -43,9 +43,22 @@ class App {
     MissionUtils.Console.print(`\n${GAME_NUMBER}개를 구매했습니다.`);
     for (let i = 0; i < GAME_NUMBER; i++) {
       LOTTO_AUTO.push(this.lottoGame());
-      MissionUtils.Console.print(LOTTO_AUTO[i]);
+      MissionUtils.Console.print(this.printFormat(LOTTO_AUTO[i]));
     }
     this.auto = LOTTO_AUTO;
+  }
+
+  printFormat(lotto) { // 발행한 로또를 형식에 맞게 출력하는 메서드
+    let result = '['
+    for (let i = 0; i < 6; i++) {
+      if (i === 5) {
+        result += `${lotto[i]}`
+      } else {
+        result += `${lotto[i]}, `
+      }
+    }
+    result += ']'
+    return result;
   }
 
   manualLotto() { // 당첨 번호를 입력 받고 유효성을 확인하는 메서드
@@ -70,7 +83,7 @@ class App {
   checkBonus(number) { // 보너스 번호의 유효성을 판단하는 메서드
     if ((isNaN(number)) || (!Number.isInteger(Number(number)))) {
       throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
-    } else if ((parseInt(number)<1) || (45<parseInt(number))) {
+    } else if ((parseInt(number) < 1) || (45 < parseInt(number))) {
       throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
     } else if (this.manual.includes(parseInt(number))) {
       throw new Error("[ERROR] 보너스 번호는 당첨 번호와 다른 숫자여야 합니다.");
