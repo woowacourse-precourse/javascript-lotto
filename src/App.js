@@ -3,7 +3,6 @@ const { MESSAGE } = require("./constants/index");
 
 const Validator = require("./Validator");
 const Generator = require("./Generator");
-
 const Lotto = require("./Lotto");
 
 const initialState = {
@@ -89,10 +88,10 @@ class App {
       this.state.bonusNumber
     );
 
-    this.result();
+    this.printCount();
   }
 
-  result() {
+  printCount() {
     const { threeCount, fourCount, fiveCount, fiveBonusCount, sixCount } =
       this.state.allCount;
 
@@ -102,10 +101,10 @@ class App {
     Console.print(this.generator.getFiveBonusCountMessage(fiveBonusCount));
     Console.print(this.generator.getSixCountMessage(sixCount));
 
-    this.calculate();
+    this.printRate();
   }
 
-  calculate() {
+  printRate() {
     const revenue = this.lotto.getRevenue(this.state.allCount);
     const rate = ((revenue / this.state.money) * 100).toFixed(1);
 
