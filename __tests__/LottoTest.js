@@ -27,6 +27,18 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
+  test("로또 번호가 1보다 작은 경우 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([0, 1, 2, 3, 4, 5]);
+    }).toThrow("[ERROR]");
+  });
+
+  test("로또 번호가 45보다 큰 경우 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, 100]);
+    }).toThrow("[ERROR]");
+  });
+
   test("로또 번호를 반환한다.", () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     const result = lotto.getLotto();
