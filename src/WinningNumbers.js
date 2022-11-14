@@ -74,6 +74,14 @@ class WinningNumbers {
   isDuplicateWinningNumber(number) {
     return this.#winningNumbers.includes(number);
   }
+
+  get winningNumbers() {
+    return this.#winningNumbers;
+  }
+
+  get bonusNumber() {
+    return this.#bonusNumber;
+  }
 }
 
 module.exports = WinningNumbers;
