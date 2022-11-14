@@ -1,7 +1,6 @@
 const Utils = require("./utils/Utils");
-const LottoSeller = require("./domain/LottoSeller");
-const LottoGenerator = require("./domain/LottoGenerator");
-const PrizeCalculator = require("./domain/PrizeCalculator");
+const LottoSeller = require("./domain/LottoMahcine");
+const YieldCalculator = require("./domain/YieldCalculator");
 const RankCalculator = require("./domain/RankCalculator");
 const WinningLotto = require("./WinningLotto");
 const { MESSAGE } = require("./utils/messages");
@@ -16,12 +15,9 @@ class App {
 
   purchaseProcess() {
     Utils.readLine(`${MESSAGE.ENTER_PURCHASE_AMOUNT}\n`, (moneyInput) => {
-      const lottoSeller = new LottoSeller();
-      const lottoGenerator = new LottoGenerator();
+      const lottoSeller = new LottoSeller(moneyInput);
 
-      const purchaseCount = lottoSeller.getPurchaseCount(moneyInput);
-      this.#playerLottos = lottoGenerator.getLottos(purchaseCount);
-
+      this.#playerLottos = lottoSeller.getLottos();
       Utils.printPurchasedLotto(this.#playerLottos);
 
       this.winningNumberProcess();
@@ -45,18 +41,19 @@ class App {
   }
 
   resultProcess() {
-    const rankCalculator = new RankCalculator();
-    const prizeCalculator = new PrizeCalculator();
+    const rankCalculator = new RankCalculator(this.#playerLottos, this.#winningLotto);
+    const rankCountArray = rankCalculator.getRankCountArray();
 
-    const rankCount = rankCalculator.getRankCount(this.#playerLottos, this.#winningLotto);
+    const purchaseAmount = this.#playerLottos.length * 1000;
+    const yieldCalculator = new YieldCalculator(purchaseAmount, rankCountArray);
+    const prizeYield = yieldCalculator.getPrizeYield();
 
-    const playerMoney = this.#playerLottos.length * 1000;
-    const prizeMoney = prizeCalculator.getPrizeMoney(rankCount);
-    const rateOfReturn = prizeCalculator.getRateOfReturn(playerMoney, prizeMoney);
-
-    Utils.printWinningResult(rankCount, rateOfReturn);
+    Utils.printWinningResult(rankCountArray, prizeYield);
     Utils.close();
   }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
