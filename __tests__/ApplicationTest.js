@@ -1,7 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
 const App = require("../src/App");
-const { FIVE_WITH_BONUS, SIX } = require("../src/constants");
+const { FIVE_WITH_BONUS, SIX, THREE } = require("../src/constants");
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();
@@ -108,5 +108,36 @@ describe("로또 테스트", () => {
 
     expect(app.winningHistory[FIVE_WITH_BONUS]).toBe(1);
     expect(app.winningHistory[SIX]).toBe(2);
+  });
+
+  test("calculateYeild 메소드는 수익률을 계산하여 반환한다. 수익률이 100% 이상일 경우", () => {
+    const app = new App();
+    app.lottos = [
+      [1, 2, 3, 4, 5, 7],
+      [1, 2, 3, 4, 5, 6],
+      [1, 2, 3, 4, 5, 6],
+    ];
+    const winningHistory = app.winningHistory;
+    winningHistory[FIVE_WITH_BONUS] = 1;
+    winningHistory[SIX] = 2;
+
+    const yeild = app.calculateYeild(app.lottos, winningHistory);
+
+    expect(yeild).toBe("1343333.33%");
+  });
+
+  test("calculateYeild 메소드는 수익률을 계산하여 반환한다. 수익률이 100% 미만일 경우", () => {
+    const app = new App();
+    app.lottos = [
+      [1, 2, 3, 4, 5, 7],
+      [1, 2, 3, 4, 5, 6],
+      [1, 2, 3, 4, 5, 6],
+    ];
+    const winningHistory = app.winningHistory;
+    winningHistory[THREE] = 2;
+
+    const yeild = app.calculateYeild(app.lottos, winningHistory);
+
+    expect(yeild).toBe("3.33%");
   });
 });
