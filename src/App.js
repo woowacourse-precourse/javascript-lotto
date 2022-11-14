@@ -1,9 +1,10 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { MESSAGE } = require("./constants/index");
+const { MESSAGE, PRIZE } = require("./constants/index");
 const { throwError } = require("./utils/index");
 
 const Validator = require("./Validator");
 const Generator = require("./Generator");
+
 const Lotto = require("./Lotto");
 
 const initialState = {
@@ -68,7 +69,61 @@ class App {
       this.validator.checkBonusNumberValid(bonusNumber, numbers);
 
       this.state.bonusNumber = bonusNumber;
+
+      this.match();
     });
+  }
+
+  match() {
+    Console.print(MESSAGE.MATCH_TITLE);
+    Console.print(MESSAGE.MATCH_DIVIDER);
+
+    const [threeCount, fourCount, fiveCount, fiveBonusCount, sixCount] =
+      this.lotto.getAllCount(this.state.allNumbers, this.state.bonusNumber);
+
+    this.result({ threeCount, fourCount, fiveCount, fiveBonusCount, sixCount });
+  }
+
+  result({ threeCount, fourCount, fiveCount, fiveBonusCount, sixCount }) {
+    Console.print(
+      MESSAGE.MATCH_THREE +
+        PRIZE.THREE.toLocaleString() +
+        MESSAGE.MATCH_PRIZE +
+        String(threeCount) +
+        MESSAGE.MATCH_COUNT
+    );
+
+    Console.print(
+      MESSAGE.MATCH_FOUR +
+        PRIZE.FOUR.toLocaleString() +
+        MESSAGE.MATCH_PRIZE +
+        String(fourCount) +
+        MESSAGE.MATCH_COUNT
+    );
+
+    Console.print(
+      MESSAGE.MATCH_FIVE +
+        PRIZE.FIVE.toLocaleString() +
+        MESSAGE.MATCH_PRIZE +
+        String(fiveCount) +
+        MESSAGE.MATCH_COUNT
+    );
+
+    Console.print(
+      MESSAGE.MATCH_FIVE_BONUS +
+        PRIZE.FIVE_BONUS.toLocaleString() +
+        MESSAGE.MATCH_PRIZE +
+        String(fiveBonusCount) +
+        MESSAGE.MATCH_COUNT
+    );
+
+    Console.print(
+      MESSAGE.MATCH_SIX +
+        PRIZE.SIX.toLocaleString() +
+        MESSAGE.MATCH_PRIZE +
+        String(sixCount) +
+        MESSAGE.MATCH_COUNT
+    );
   }
 
   error(message) {

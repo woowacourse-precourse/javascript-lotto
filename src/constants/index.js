@@ -3,6 +3,23 @@ const MESSAGE = Object.freeze({
   COUNT_LOTTO: "개를 구매했습니다.",
   INPUT_NUMBER: "당첨 번호를 입력해 주세요.",
   INPUT_BONUS_NUMBER: "보너스 번호를 입력해 주세요.",
+  MATCH_TITLE: "당첨 통계",
+  MATCH_DIVIDER: "---",
+  MATCH_THREE: "3개 일치 (",
+  MATCH_FOUR: "4개 일치 (",
+  MATCH_FIVE: "5개 일치 (",
+  MATCH_FIVE_BONUS: "5개 일치, 보너스 볼 일치 (",
+  MATCH_SIX: "6개 일치 (",
+  MATCH_PRIZE: "원) - ",
+  MATCH_COUNT: "개",
+});
+
+const PRIZE = Object.freeze({
+  THREE: 5000,
+  FOUR: 50000,
+  FIVE: 1500000,
+  FIVE_BONUS: 30000000,
+  SIX: 2000000000,
 });
 
 const ERROR = Object.freeze({
@@ -19,5 +36,6 @@ const ERROR = Object.freeze({
 
 module.exports = {
   MESSAGE,
+  PRIZE,
   ERROR,
 };
