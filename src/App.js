@@ -1,7 +1,11 @@
 const { COMMAND } = require('../util/Message');
 const { Console } = require('@woowacourse/mission-utils');
 const CreateLotto = require('./CreateLotto');
-const { MoneyExceptions, WinningExceptions } = require('./Exceptions');
+const {
+  MoneyExceptions,
+  WinningExceptions,
+  BonusExceptions,
+} = require('./Exceptions');
 
 class App {
   constructor() {
@@ -32,6 +36,7 @@ class App {
 
   getBonus() {
     Console.readLine(COMMAND.BONUS, (bonus) => {
+      new BonusExceptions(bonus).check();
       this.bonus = bonus;
     });
   }

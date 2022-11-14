@@ -12,6 +12,7 @@ const ERROR = Object.freeze({
   WINNING_LENGTH: '[ERROR] 당첨 번호는 6개여야 합니다.',
   WINNING_RANGE: '[ERROR] 각 당첨 번호의 숫자 범위는 1 - 45까지 입니다.',
   WINNING_DUPLICATED: '[ERROR] 당첨 번호는 중복될 수 없습니다.',
+  BONUS_DIGIT: '[ERROR] 보너스 번호는 정수여야 합니다.',
 });
 
 module.exports = { COMMAND, ERROR };

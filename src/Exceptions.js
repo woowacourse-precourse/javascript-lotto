@@ -60,4 +60,10 @@ class WinningExceptions extends Exceptions {
   }
 }
 
-module.exports = { MoneyExceptions, WinningExceptions };
+class BonusExceptions extends Exceptions {
+  check() {
+    if (super.isNotDigit(this.input)) super.occurError(ERROR.BONUS_DIGIT);
+  }
+}
+
+module.exports = { MoneyExceptions, WinningExceptions, BonusExceptions };
