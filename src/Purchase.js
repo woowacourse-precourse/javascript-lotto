@@ -1,6 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Constant = require("./components/Constant");
 const MoneyValidator = require("./components/MoneyValidator");
+const Lotto = require("./Lotto");
 
 class Purchase {
   static inputMoney() {
@@ -33,11 +34,19 @@ class Purchase {
       Purchase.printLotto(lottoNumber);
       quantity -= 1;
     }
+    Purchase.inputWinningNumber();
   }
 
   static printLotto(lottoNumber) {
     const issuedLotto = `[${lottoNumber.join(", ")}]`;
     MissionUtils.Console.print(issuedLotto);
+  }
+
+  static inputWinningNumber() {
+    MissionUtils.Console.readLine(
+      Constant.WINNING_NUMBER_MESSAGE,
+      Purchase.validateLotto
+    );
   }
 }
 
