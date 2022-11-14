@@ -1,11 +1,3 @@
-const initRank = {
-  FIFTH: 0,
-  FOURTH: 0,
-  THIRD: 0,
-  SECOND: 0,
-  FIRST: 0,
-};
-
 class CalculatorModel {
   #rewardList;
 
@@ -33,7 +25,13 @@ class CalculatorModel {
   }
 
   getRank(winningList) {
-    const rank = initRank;
+    const rank = {
+      FIFTH: 0,
+      FOURTH: 0,
+      THIRD: 0,
+      SECOND: 0,
+      FIRST: 0,
+    };
 
     winningList.forEach((list) => {
       const [count, isBonusCorrected] = list;
@@ -46,10 +44,11 @@ class CalculatorModel {
           rank.FOURTH += 1;
           break;
         case 5:
-          isBonusCorrected ? (rank.THIRD += 1) : (rank.SECOND += 1);
+          !isBonusCorrected ? (rank.THIRD += 1) : (rank.SECOND += 1);
           break;
         case 6:
           rank.FIRST += 1;
+          break;
       }
     });
 
