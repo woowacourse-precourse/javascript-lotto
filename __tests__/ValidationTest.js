@@ -30,4 +30,18 @@ describe('유효성 검사 테스트', () => {
       expect(output).toBe(expectedOutput[index]);
     });
   });
+
+  test('주어진 배열에 중복된 원소가 없는지 확인', () => {
+    const inputs = [
+      [1, 2, 3],
+      [1, 11, 111],
+      [1, 1, 2]
+    ];
+    const expectedOutput = [true, true, false];
+
+    inputs.forEach((input, index) => {
+      const output = Validation.isUnique(input);
+      expect(output).toBe(expectedOutput[index]);
+    });
+  });
 });
