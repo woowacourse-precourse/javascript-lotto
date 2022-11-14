@@ -16,4 +16,24 @@ describe('App 클래스 테스트', () => {
       Function.validateUnitRemainder(1030);
     }).toThrow('[ERROR');
   });
+
+  test('array의 길이에 따른 validation이 가능한가', () => {
+    const example = [1, 2, 3, 4, 5, 6, 7];
+    expect(() => {
+      Function.validateLength(example);
+    }).toThrow('[ERROR]');
+  });
+
+  test('array에 곂치는 수가 들어있는지 validation이 가능한가', () => {
+    const example = [1, 2, 3, 4, 5, 5];
+    expect(() => {
+      Function.validateOverlapNumbers(example);
+    }).toThrow('[ERROR]');
+  });
+
+  test('입력값이 제한 범위에 알맞게 입력되었는지 validation할 수 있는가', () => {
+    expect(() => {
+      Function.validateRange(48);
+    }).toThrow('[ERROR]');
+  });
 });
