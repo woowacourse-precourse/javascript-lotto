@@ -17,6 +17,10 @@ class Lotto {
     if (numbers.reduce((isOut, no) => isOut || no < 1 || 45 < no, false))
       throw new Error(prefix + outOfRange);
   }
+
+  get numbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
