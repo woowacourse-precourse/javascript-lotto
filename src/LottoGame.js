@@ -7,7 +7,7 @@ const PrizeCalculator = require("./PrizeCalculator.js");
 const StatisticsMachine = require("./StatisticsMachine.js");
 
 class LottoGame {
-  lottos;
+  playerLottos;
   purchaseAmount;
 
   constructor() {
@@ -27,10 +27,9 @@ class LottoGame {
       this.purchaseAmount = purchaseAmount;
 
       this.lottoPerchaseMachine.insertMoney(this.purchaseAmount);
-      this.lottos = this.lottoPerchaseMachine.purchaseLottos();
+      this.playerLottos = this.lottoPerchaseMachine.purchaseLottos();
 
-      this.LottoGameView.printLottoQuantity(this.lottos.length);
-
+      this.LottoGameView.printLottoQuantity(this.playerLottos.length);
       this.LottoGameView.printEachLottoNumbers(this.getEachLottoNumbers());
 
       this.setWinningNumbersPhase();
@@ -77,7 +76,7 @@ class LottoGame {
   }
 
   getEachLottoNumbers() {
-    return this.lottos.map((lotto) => lotto.getNumbers());
+    return this.playerLottos.map((lotto) => lotto.getNumbers());
   }
 }
 
