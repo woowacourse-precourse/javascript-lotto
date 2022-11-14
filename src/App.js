@@ -54,18 +54,18 @@ class App {
     this.getUserLottoNumbers(lottoList);
   }
 
-  getUserLottoNumbers(lottoList) {
-    Console.readLine('당첨 번호를 입력해 주세요. \n', (lottoNumbers) => {
-      const userLottoNumbers = lottoNumbers.split(',');
-      new Lotto(userLottoNumbers);
-      this.getUserBonusNumbers(userLottoNumbers, lottoList);
+  inputWinningNumber(lottoList) {
+    Console.readLine('당첨 번호를 입력해 주세요. \n', (numbers) => {
+      const  winningNumber = numbers.split(',');
+      new Lotto(winningNumber);
+      this.getUserBonusNumber(winningNumber, lottoList);
     });
   }
 
-  getUserBonusNumbers(userLottoNumbers, lottoList) {
-    Console.readLine('보너스 번호를 입력해 주세요. \n', (bonusNumber) => {
-      new Bonus(bonusNumber, userLottoNumbers);
-      this.getCountOfMatchingNumber(lottoList, userLottoNumbers, bonusNumber);
+  inputBonus(winningNumber, lottoList) {
+    Console.readLine('보너스 번호를 입력해 주세요. \n', (bonus) => {
+      new Bonus(bonus, winningNumber);
+      this.getCountOfMatchingNumber(lottoList, userLottoNumbers, bonus);
     });
   }
 
