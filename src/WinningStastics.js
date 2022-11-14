@@ -1,26 +1,28 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { OUTPUT_PHRASE } = require("./constant/Constant");
 
 class WinningStastics {
+  #lottoNumbers;
+  #bonusNumber;
+  #purchaseAmount;
+  #lottoMachineOutput;
+  #winningAmount;
+  #coincide = {
+    threeMatches: 0,
+    fourMatches: 0,
+    fiveMatches: 0,
+    fiveAndBonusMatches: 0,
+    allMatches: 0,
+  };
+
   constructor(lottoNumbers, bonusNumber, purchaseAmount, lottoMachineOutput) {
-    this.lottoNumbers = lottoNumbers;
-    this.bonusNumber = bonusNumber;
-    this.purchaseAmount = purchaseAmount;
-    this.lottoMachineOutput = lottoMachineOutput;
-    this.winningAmount;
-    this.coincide = {
-      threeMatches: 0,
-      fourMatches: 0,
-      fiveMatches: 0,
-      fiveAndBonusMatches: 0,
-      allMatches: 0,
-    };
+    this.#lottoNumbers = lottoNumbers;
+    this.#bonusNumber = bonusNumber;
+    this.#purchaseAmount = purchaseAmount;
+    this.#lottoMachineOutput = lottoMachineOutput;
   }
 
-  printWinningStastics() {
-    MissionUtils.Console.print(
-      OUTPUT_PHRASE.LINE_UP + OUTPUT_PHRASE.WINNING_STATISTICS.INTRO
-    );
+  print() {
+    MissionUtils.Console.print("\n" + "당첨 통계\n" + "---");
 
     this.matchCounter();
     this.printMatchCount();
@@ -30,19 +32,19 @@ class WinningStastics {
   }
 
   matchCounter() {
-    this.lottoMachineOutput.forEach((item) => {
-      let matchCount = this.getMatchCount(item, this.lottoNumbers);
-      let bonusMatch = this.getBonusMatch(item, this.bonusNumber);
+    this.#lottoMachineOutput.forEach((item) => {
+      let matchCount = this.getMatchCount(item, this.#lottoNumbers);
+      let bonusMatch = this.getBonusMatch(item, this.#bonusNumber);
       if (matchCount == 3) {
-        this.coincide.threeMatches += 1;
+        this.#coincide.threeMatches += 1;
       } else if (matchCount == 4) {
-        this.coincide.fourMatches += 1;
+        this.#coincide.fourMatches += 1;
       } else if (matchCount == 5 && bonusMatch == true) {
-        this.coincide.fiveAndBonusMatches += 1;
+        this.#coincide.fiveAndBonusMatches += 1;
       } else if (matchCount == 5) {
-        this.coincide.fiveMatches += 1;
+        this.#coincide.fiveMatches += 1;
       } else if (matchCount == 6) {
-        this.coincide.allMatches += 1;
+        this.#coincide.allMatches += 1;
       }
     });
   }
@@ -58,41 +60,38 @@ class WinningStastics {
 
   printMatchCount() {
     MissionUtils.Console.print(
-      OUTPUT_PHRASE.WINNING_STATISTICS.THREE_MATCHES +
-        `${this.coincide.threeMatches}개`
+      `3개 일치 (5,000원) - ${this.#coincide.threeMatches}개`
     );
     MissionUtils.Console.print(
-      OUTPUT_PHRASE.WINNING_STATISTICS.FOUR_MATCHES +
-        `${this.coincide.fourMatches}개`
+      `4개 일치 (50,000원) - ${this.#coincide.fourMatches}개`
     );
     MissionUtils.Console.print(
-      OUTPUT_PHRASE.WINNING_STATISTICS.FIVE_MATCHES +
-        `${this.coincide.fiveMatches}개`
+      `5개 일치 (1,500,000원) - ${this.#coincide.fiveMatches}개`
     );
     MissionUtils.Console.print(
-      OUTPUT_PHRASE.WINNING_STATISTICS.FIVE_AND_BONUS_MATCHES +
-        `${this.coincide.fiveAndBonusMatches}개`
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${
+        this.#coincide.fiveAndBonusMatches
+      }개`
     );
     MissionUtils.Console.print(
-      OUTPUT_PHRASE.WINNING_STATISTICS.ALL_MATCHES +
-        `${this.coincide.allMatches}개`
+      `6개 일치 (2,000,000,000원) - ${this.#coincide.allMatches}개`
     );
   }
 
   printWinningAmount() {
-    this.winningAmount =
-      5000 * this.coincide.threeMatches +
-      50000 * this.coincide.fourMatches +
-      1500000 * this.coincide.fiveMatches +
-      30000000 * this.coincide.fiveAndBonusMatches +
-      2000000000 * this.coincide.allMatches;
+    this.#winningAmount =
+      5000 * this.#coincide.threeMatches +
+      50000 * this.#coincide.fourMatches +
+      1500000 * this.#coincide.fiveMatches +
+      30000000 * this.#coincide.fiveAndBonusMatches +
+      2000000000 * this.#coincide.allMatches;
 
     let myyield = this.getYield().toFixed(1);
 
     MissionUtils.Console.print(`총 수익률은 ${myyield}%입니다.`);
   }
   getYield() {
-    return parseFloat(100 * (this.winningAmount / this.purchaseAmount));
+    return parseFloat(100 * (this.#winningAmount / this.#purchaseAmount));
   }
 }
 

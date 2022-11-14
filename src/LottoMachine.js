@@ -1,15 +1,13 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const {
-  ERROR_MESSAGE,
-  OUTPUT_PHRASE,
-  LOTTO_RANGE,
-} = require("./constant/Constant");
+const { ERROR_MESSAGE, LOTTO_RANGE } = require("./constant/Constant");
 
 class LottoMachine {
+  #purchaseAmount;
+
   constructor(purchaseAmount) {
-    this.purchaseAmount = purchaseAmount;
-    this.lottoMachineOutput;
     this.validate(purchaseAmount);
+    this.#purchaseAmount = purchaseAmount;
+    this.lottoMachineOutput;
   }
 
   validate(purchaseAmount) {
@@ -23,28 +21,24 @@ class LottoMachine {
       throw new Error(ERROR_MESSAGE.INVALID_PURCHASE_AMOUMT.INVALID_NUMBER);
     }
 
-    this.printPurchaseQuantity();
-    this.printMachineOutput();
+    this.printPurchaseQuantity(purchaseAmount);
   }
-  printPurchaseQuantity() {
+  printPurchaseQuantity(purchaseAmount) {
+    let quantity = this.getPurchaseQuantity(purchaseAmount);
+
     MissionUtils.Console.print("");
-    MissionUtils.Console.print(
-      this.getPurchaseQuantity(this.purchaseAmount) +
-        OUTPUT_PHRASE.PURCHASE_QUANTITY
-    );
+    MissionUtils.Console.print(`${quantity}개를 구매했습니다.`);
+
+    this.printMachineOutput(quantity);
   }
-  getPurchaseQuantity() {
-    return parseInt(this.purchaseAmount / 1000);
+  getPurchaseQuantity(money) {
+    return parseInt(money / 1000);
   }
 
-  printMachineOutput() {
+  printMachineOutput(quantity) {
     let lottoMachineOutput = [];
 
-    for (
-      let sequence = 1;
-      sequence <= this.getPurchaseQuantity(this.purchaseAmount);
-      sequence++
-    ) {
+    for (let sequence = 1; sequence <= quantity; sequence++) {
       let autoNumber = this.getAutoNumber();
 
       let stringAutoNumber = autoNumber.join(", ");
