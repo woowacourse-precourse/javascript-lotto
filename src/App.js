@@ -66,6 +66,17 @@ class App {
       .forEach(([prize, number]) => {
         Console.print(`${RESULT_MESSAGE[prize]}${number}개`);
       });
+
+    const earningRate = this.calculateEarningRate(prizeRecord);
+    Console.print(`총 수익률은 ${earningRate.toFixed(1)}%입니다.`);
+  }
+
+  calculateEarningRate(prizeRecord) {
+    const totalPrizeMoney = Object.keys(prizeRecord).reduce(
+      (sum, prize) => sum + PRIZE_MONEY[prize] * prizeRecord[prize],
+      0
+    );
+    return (totalPrizeMoney / this.money) * 100;
   }
 }
 
