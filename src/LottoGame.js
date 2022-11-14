@@ -55,6 +55,16 @@ class LottoGame {
       }
     );
   }
+
+  compareWinningLotto() {
+    for (let i = 0; i < this.lottos.length; i++) {
+      this.countWinningCost(
+        this.countMatchLotto(this.winningNumbers, this.lottos[i]),
+        this.lottos[i]
+      );
+    }
+  }
+
   countMatchLotto(winningNumbers, lottoNumbers) {
     const addedArrSize = [...winningNumbers, ...lottoNumbers].length;
     const delteDuplicateArrSize = new Set([...winningNumbers, ...lottoNumbers])
