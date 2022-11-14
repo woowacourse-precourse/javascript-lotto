@@ -30,8 +30,8 @@ class LottoGame {
     }
   }
 
-  printTheNumberOfLotto(lottos, number) {
-    lottos.setTheNumberOfLotto(number / 1000);
+  printTheNumberOfLotto(lottos, payment) {
+    lottos.setTheNumberOfLotto(payment / 1000);
     MissionUtils.Console.print(
       `${lottos.getTheNumberOfLotto()}개를 구매했습니다.`
     );
@@ -44,10 +44,10 @@ class LottoGame {
     });
   }
 
-  compareNumber(lottos, wonLotto, bonusNumber) {
+  compareNumber(lottos, lottoNumbers, bonusNumber) {
     lottos.setMatchingNumber();
 
-    wonLotto.forEach((number) => {
+    lottoNumbers.forEach((number) => {
       lottos.getLottos().forEach((lotto, index) => {
         lotto.getNumbers().includes(number) && lottos.matchingNumber[index]++;
       });
@@ -98,13 +98,20 @@ class LottoGame {
     MissionUtils.Console.close();
   }
 
-  winLotto(lottos, winningLotto, payment) {
+  winLotto(lottos, numbers, bonusNumber) {
+    const winningLotto = new Lotto(numbers.split(",").map(Number), bonusNumber);
     const winningNumbers = winningLotto.getNumbers();
     const winningBonusNumber = winningLotto.getBonusNumber();
 
     this.compareNumber(lottos, winningNumbers, winningBonusNumber);
+  }
 
-    this.printResult(lottos, payment);
+  purchaseLotto(lottos, payment) {
+    this.validatePurchaseLotto(payment);
+
+    this.printTheNumberOfLotto(lottos, payment);
+
+    this.createLotto(lottos);
   }
 
   startGame(lottos, payment) {
@@ -116,23 +123,12 @@ class LottoGame {
         (bonusNumber) => {
           this.validateLottoNumber(bonusNumber);
 
-          const winningLotto = new Lotto(
-            numbers.split(",").map(Number),
-            bonusNumber
-          );
+          this.winLotto(lottos, numbers, bonusNumber);
 
-          this.winLotto(lottos, winningLotto, payment);
+          this.printResult(lottos, payment);
         }
       );
     });
-  }
-
-  purchaseLotto(lottos, payment) {
-    this.validatePurchaseLotto(payment);
-
-    this.printTheNumberOfLotto(lottos, payment);
-
-    this.createLotto(lottos);
   }
 
   game() {
