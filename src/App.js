@@ -3,23 +3,26 @@ const Lotto = require("./Lotto.js");
 const Bonus = require("./Bonus.js");
 class App {
   insertedMoney;
+  bonusNumber;
+  prizeNumbers = [];
   userLottoNumberLists = [];
   userWinningStatics = [0,0,0,0,0];
+
   async play() {
     await this.insertMoney();
     const LOTTO_COUNT = this.insertedMoney / 1000;
-    this.printLottoCount(LOTTO_COUNT);
     for(let count = 0; count <LOTTO_COUNT; count++){
       this.userLottoNumberLists.push(this.generateUserLottoNumber());
     }
-    this.printGenerateUserLottoNumber(this.userLottoNumberLists);
-    const prizeNumber = await this.enterPrizeNumber();
-    const lotto = new Lotto(prizeNumber);
-    const bonusNumber = await this.enterBonusNumber();
-    const bonus = new Bonus(lotto.getNumbers(), bonusNumber);
+    this.printLottoCount(LOTTO_COUNT);
+    await this.enterPrizeNumber();
+    const lotto = new Lotto(this.prizeNumbers);
+    await this.enterBonusNumber();
+    const bonus = new Bonus(lotto.getNumbers(), this.bonusNumber);
     this.userLottoNumberLists.forEach((OneUserNumber)=>{
-      comparePrizeNumberAndUserNumber(lotto.getNumbers(), bonus.getNumbers(),OneUserNumber);
+      this.comparePrizeNumberAndUserNumber(lotto.getNumbers(), bonus.getNumbers(),OneUserNumber);
     });
+    this.printUserWinningStatics(this.userLottoNumberLists);
   }
   insertMoney(){
     MissionUtils.Console.readLine('구입금액을 입력해주세요 (1000원 단위)', (insertMoney) => {
@@ -50,6 +53,7 @@ class App {
   }
   printLottoCount(LottoCount){
     MissionUtils.Console.print(`${LottoCount}개를 구매했습니다.`);
+    this.printGenerateUserLottoNumber(this.userLottoNumberLists);
   }
   generateUserLottoNumber(){
     const generatedNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
@@ -66,16 +70,16 @@ class App {
   enterPrizeNumber(){
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (inputPrizeNumberWithComma) => {
     const prizeNumberList = this.splitWordsToComma(inputPrizeNumberWithComma);
-    return prizeNumberList;
+    this.prizeNumbers = prizeNumberList;
     });
   }
   splitWordsToComma(words){
-    const wordsList = words.split(",");
+    const wordsList = words.split(",").map(Number);
     return wordsList;
   }
   enterBonusNumber(){
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (inputBonusNumber) => {
-      return [inputBonusNumber];
+      this.bonusNumber = [Number(inputBonusNumber)];
     });
   }
   comparePrizeNumberAndUserNumber(lottoNumbers, bonusNumber, userNumbers){
@@ -87,10 +91,10 @@ class App {
         }
       })
     });
-    state = checkBonusNumber(bonusNumber, userNumbers);
+    const state = this.checkBonusNumber(bonusNumber, userNumbers);
     count += state[0];
     const isBonus = state[1];
-    addWinningStatics(count,isBonus);
+    this.addWinningStatics(count,isBonus);
   }
   checkBonusNumber(bonusNumber, userNumbers){
     if(userNumbers.includes(...bonusNumber)){
