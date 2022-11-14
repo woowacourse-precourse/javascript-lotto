@@ -68,6 +68,16 @@ class App {
   exit() {
     this.#readLine.close();
   }
+
+  firstInput() {
+    this.#readLine.inputNumber(Message.enterPurchaseAmount(), (purchaseAmountUnit) => {
+      const lottos = App.buyLotto(purchaseAmountUnit);
+
+      this.printBuy(App.purchaseCount(purchaseAmountUnit));
+      this.printLottoList(lottos);
+      this.secondInput(lottos, purchaseAmountUnit);
+    });
+  }
 }
 
 module.exports = App;
