@@ -65,15 +65,9 @@ class Lotto {
     const MATCHED_COUNT = [0, 0, 0, 0, 0];
     purchasedLottoNumbers.forEach((purchased) => {
       const [HIT_COUNT, BONUS_HIT] = this.countHitNumbers(purchased);
-      const NORMAL_MATCHED = () => {
-        MATCHED_COUNT[HIT_COUNT - 3] += 1;
-      };
-      const BONUS_MATCHED = () => {
-        MATCHED_COUNT[HIT_COUNT - 1] += 1;
-      };
-      const COUNT_MATCHING = BONUS_HIT
-        ? () => BONUS_MATCHED()
-        : () => NORMAL_MATCHED();
+      const NORMAL_MATCHED = () => { MATCHED_COUNT[HIT_COUNT - 3] += 1; };
+      const BONUS_MATCHED = () => { MATCHED_COUNT[HIT_COUNT - 1] += 1; };
+      const COUNT_MATCHING = BONUS_HIT ? () => BONUS_MATCHED() : () => NORMAL_MATCHED();
       COUNT_MATCHING();
     });
     // 3 4 5 5(bonus) 6
