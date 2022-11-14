@@ -13,21 +13,19 @@ class Lotto {
     this.#numbers = this.howManyLotto(money);
     Console.print(`\n${this.#numbers}개를 구매했습니다.`);
 
-    for (let i = 0; i < this.#numbers; i++) {
-      let lottoNumber = this.sortLottoNumber(
-        Random.pickUniqueNumbersInRange(1, 45, 6)
-      );
+    for (let i = 0; i < this.#numbers; i += 1) {
+      const lottoNumber = this.sortLottoNumber(Random.pickUniqueNumbersInRange(1, 45, 6));
       Console.print(lottoNumber);
       this.lottoList.push(lottoNumber);
     }
     return this.lottoList;
   }
 
-  howManyLotto(money) {
+  static howManyLotto(money) {
     return money / 1000;
   }
 
-  sortLottoNumber(Array) {
+  static sortLottoNumber(Array) {
     return Array.sort((a, b) => a - b);
   }
 
@@ -37,13 +35,12 @@ class Lotto {
     return true;
   }
 
-  isItNumber(money) {
-    if (isNaN(money)) throw new Error('[ERROR] 돈이 아닙니다.');
+  static isItNumber(money) {
+    if (!Number.isNaN(money)) throw new Error('[ERROR] 돈이 아닙니다.');
   }
 
-  rightAmount(money) {
-    if (money % 1000 !== 0)
-      throw new Error('[ERROR] 천원 단위로 입력해주세요.');
+  static rightAmount(money) {
+    if (money % 1000 !== 0) throw new Error('[ERROR] 천원 단위로 입력해주세요.');
   }
 }
 
