@@ -13,7 +13,7 @@ class BonusValidate {
 
   // 보너스 번호 중복 확인
   repeatBonusValidate(winningNumber, bonusNumber) {
-    if (winningNumber.includes(String(bonusNumber))) {
+    if (winningNumber.includes(bonusNumber)) {
       throw new Error('[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.');
     }
     return;
