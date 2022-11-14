@@ -13,17 +13,32 @@ class CompareLotto{
     }
     comparePrizeNumberAndUserNumber(lottoNumbers, bonusNumber, userNumbers){
         let count = 0;
-        userNumbers.forEach((userNumber)=>{
-          lottoNumbers.forEach((lottoNumber)=>{
-            if(userNumber === lottoNumber){
-              count+=1;
-            }
-          })
-        });
+        count += this.selectUserNumber(lottoNumbers, userNumbers);
         const state = this.checkBonusNumber(bonusNumber, userNumbers);
         count += state[0];
         const isBonus = state[1];
         this.addWinningStatics(count,isBonus);
+    }
+    selectUserNumber(lottoNumbers, userNumbers){
+      let count = 0;
+      userNumbers.forEach((userNumber)=>{
+        count += this.selectLottoNumber(lottoNumbers,userNumber);
+      });
+      return count;
+    }
+    selectLottoNumber(lottoNumbers,userNumber){
+      let count = 0;
+      lottoNumbers.forEach((lottoNumber)=>{
+        count += this.isSameNumber(lottoNumber,userNumber);
+      });
+      return count;
+    }
+    isSameNumber(lottoNumber,userNumber){
+      if(userNumber === lottoNumber){
+        return 1;
+      }else{
+        return 0;
+      }
     }
     checkBonusNumber(bonusNumber, userNumbers){
       if(userNumbers.includes(...bonusNumber)){
