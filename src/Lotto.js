@@ -1,6 +1,6 @@
 const LottoPurchase = require("../src/LottoPurchase");
 
-const lottoPurchase = new LottoPurchase(2000);
+const lottoPurchase = new LottoPurchase(1000);
 
 class Lotto {
   #numbers;
@@ -8,7 +8,7 @@ class Lotto {
   constructor(numbers, bonusNumber) {
     this.lottoNumberMax = 45;
     this.lottoNumberMin = 1;
-    this.winningNumber = new Array(5);
+    this.winningNumber = [0, 0, 0, 0, 0];
     this.validate(numbers);
     this.duplicate(numbers);
     this.numberLimit(numbers);
@@ -53,25 +53,28 @@ class Lotto {
 
   lottoCompare(lottoNumbers) {
     let sameNumber = lottoNumbers.filter(num => this.#numbers.includes(num));
-    
-    if (sameNumber.length === 5) {
-      return this.bonusCompare(sameNumber, lottoNumbers);
+    let matchNumber = sameNumber.length
+
+    if (matchNumber === 5) {
+      return this.bonusCompare(matchNumber, lottoNumbers);
     }
-    return this.lottoWinning(sameNumber);
+    return this.lottoWinning(matchNumber);
   }
 
-  bonusCompare(sameNumber, lottoNumbers) {
+  bonusCompare(matchNumber, lottoNumbers) {
     if (lottoNumbers.includes(this.bonusNumber)) {
       this.winningNumber[4] += 1;
     } else {
-      this.winningNumber[sameNumber.length - 3] += 1;
+      this.winningNumber[matchNumber - 3] += 1;
     }
+    return this.winningNumber;
   }
 
-  lottoWinning(sameNumber) {
-    if (sameNumber.length >= 3) {
-      this.winningNumber[sameNumber.length - 3] += 1;
+  lottoWinning(matchNumber) {
+    if (matchNumber >= 3) {
+      this.winningNumber[matchNumber - 3] += 1;
     }
+    return this.winningNumber;
   }
 }
 
