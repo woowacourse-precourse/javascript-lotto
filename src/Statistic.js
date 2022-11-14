@@ -40,15 +40,15 @@ const Statistic = class {
   calculateYield(rank, count) {
     switch (rank) {
       case LOTTO_RANK.NAME.RANK_ONE:
-        return 2000000000 * count;
+        return LOTTO_RANK.AMOUNT.RANK_ONE * count;
       case LOTTO_RANK.NAME.RANK_TWO:
-        return 30000000 * count;
+        return LOTTO_RANK.AMOUNT.RANK_TWO * count;
       case LOTTO_RANK.NAME.RANK_TREE:
-        return 1500000 * count;
+        return LOTTO_RANK.AMOUNT.RANK_TREE * count;
       case LOTTO_RANK.NAME.RANK_FOUR:
-        return 50000 * count;
+        return LOTTO_RANK.AMOUNT.RANK_FOUR * count;
       case LOTTO_RANK.NAME.RANK_FIVE:
-        return 5000 * count;
+        return LOTTO_RANK.AMOUNT.RANK_FIVE * count;
     }
   }
 

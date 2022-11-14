@@ -24,6 +24,13 @@ const LOTTO_RANK = Object.freeze({
     RANK_FOUR: 4,
     RANK_FIVE: 3,
   },
+  AMOUNT: {
+    RANK_ONE: 2000000000,
+    RANK_TWO: 30000000,
+    RANK_TREE: 1500000,
+    RANK_FOUR: 50000,
+    RANK_FIVE: 5000,
+  },
   MESSAGE: {
     RANK_ONE: "6개 일치 (2,000,000,000원) - ",
     RANK_TWO: "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
