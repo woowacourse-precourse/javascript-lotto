@@ -6,7 +6,7 @@ const PRICE_MESSAGE = {
 
 const LOTTO_MESSAGE = {
   NOT_SIX_NUMBERS: `[ERROR] 로또 번호는 6개여야 합니다.`,
-  CHECK_RANGE: `[ERROR] 당첨 번호는 1 ~ 45 사이의 숫자만 입력해야 합니다.`,
+  CHECK_RANGE: `[ERROR] 로또 번호는 1 ~ 45 사이의 숫자만 입력해야 합니다.`,
   CHECK_DUPLICATION: `[ERROR] 중복된 번호가 존재합니다.`,
   CHECK_VALIDATION_INPUT: `[ERROR] 숫자 이외의 값을 입력하셨습니다.`,
   CHECK_BONUS_IN_WIN: `[ERROR] 당첨 번호와 보너스 번호가 중복됩니다.`,

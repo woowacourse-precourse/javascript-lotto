@@ -8,6 +8,10 @@ const removeDuplication = (userInput) => {
   return removeArr;
 };
 
+// 로또 번호 범위 확인
+const checkLottoRange = (numbers) =>
+  numbers.every((v) => +v >= RANGE.START && +v <= RANGE.END);
+
 // 숫자가 아닌 것을 입력했을 경우
 const insideNotNumber = (userInput) =>
   [...userInput].every((v) => +v || v === "0");
@@ -59,4 +63,5 @@ module.exports = {
   checkBonusRange,
   checkDuplicationInWinNumbers,
   removeDuplication,
+  checkLottoRange,
 };

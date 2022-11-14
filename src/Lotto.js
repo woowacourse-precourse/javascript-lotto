@@ -1,6 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { LOTTO_MESSAGE } = require("./constant/errorMessage");
-const { removeDuplication } = require("./utils/validateFn");
+const { removeDuplication, checkLottoRange } = require("./utils/validateFn");
 
 class Lotto {
   #numbers;
@@ -17,6 +17,10 @@ class Lotto {
 
     if (removeDuplication(numbers).length !== numbers.length) {
       throw new Error(LOTTO_MESSAGE.CHECK_DUPLICATION);
+    }
+
+    if (!checkLottoRange(numbers)) {
+      throw new Error(LOTTO_MESSAGE.CHECK_RANGE);
     }
   }
 
