@@ -1,5 +1,11 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
+
+const FIRST_REWARD = "2000000000";
+const SECOND_REWARD = "30000000";
+const TRHID_REWARD = "1500000";
+const FOURTH_REWARD = "50000";
+const FIFTH_REWARD = "5000";
 class App {
   constructor() {
     this.lottoArray = [];
@@ -96,33 +102,33 @@ class App {
   }
 
   initResult() {
-    this.result["5000"] = 0;
-    this.result["50000"] = 0;
-    this.result["1500000"] = 0;
-    this.result["30000000"] = 0;
-    this.result["2000000000"] = 0;
+    this.result[FIFTH_REWARD] = 0;
+    this.result[FOURTH_REWARD] = 0;
+    this.result[TRHID_REWARD] = 0;
+    this.result[SECOND_REWARD] = 0;
+    this.result[FIRST_REWARD] = 0;
   }
 
   compareNumberUnit(count, bonus) {
-    if (count === 3) this.result["5000"] += 1;
-    if (count === 4) this.result["50000"] += 1;
+    if (count === 3) this.result[FIFTH_REWARD] += 1;
+    if (count === 4) this.result[FOURTH_REWARD] += 1;
     if (count === 5) {
-      if (bonus === true) this.result["30000000"] += 1;
-      if (bonus === false) this.result["1500000"] += 1;
+      if (bonus === true) this.result[SECOND_REWARD] += 1;
+      if (bonus === false) this.result[TRHID_REWARD] += 1;
     }
-    if (count === 6) this.result["2000000000"] += 1;
+    if (count === 6) this.result[FIRST_REWARD] += 1;
   }
 
   print() {
     Console.print(`\n당첨 통계\n---`);
-    Console.print(`3개 일치 (5,000원) - ${this.result["5000"]}개`);
-    Console.print(`4개 일치 (50,000원) - ${this.result["50000"]}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${this.result["1500000"]}개`);
+    Console.print(`3개 일치 (5,000원) - ${this.result[FIFTH_REWARD]}개`);
+    Console.print(`4개 일치 (50,000원) - ${this.result[FOURTH_REWARD]}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${this.result[TRHID_REWARD]}개`);
     Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.result["30000000"]}개`
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.result[SECOND_REWARD]}개`
     );
     Console.print(
-      `6개 일치 (2,000,000,000원) - ${this.result["2000000000"]}개`
+      `6개 일치 (2,000,000,000원) - ${this.result[FIRST_REWARD]}개`
     );
     this.calculateYield();
   }
