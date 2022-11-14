@@ -16,9 +16,6 @@ class Store {
       const purchaseAmount = this.validate(inputStr);
       this.issuedQuantity = purchaseAmount / LOTTO.PRICE;
       this.issue();
-      this.print();
-      const result = new Result(this.lottos);
-      result.drawWinningNumber();
     });
   }
 
@@ -40,6 +37,7 @@ class Store {
         ).sort((num1, num2) => num1 - num2)
       );
     }
+    this.print();
   }
 
   print() {
@@ -47,6 +45,8 @@ class Store {
     this.lottos.forEach(([num1, num2, num3, num4, num5, num6]) => {
       Console.print(`[${num1}, ${num2}, ${num3}, ${num4}, ${num5}, ${num6}]`);
     });
+    const result = new Result(this.lottos);
+    result.drawWinningNumber();
   }
 }
 

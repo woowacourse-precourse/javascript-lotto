@@ -1,4 +1,4 @@
-const { REGEX, ERROR } = require('./constants');
+const { ERROR } = require('./constants');
 
 class Lotto {
   #numbers;

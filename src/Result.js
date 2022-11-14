@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { MESSAGE, PRIZE, REGEX } = require('./constants');
+const { MESSAGE, PRIZE, REGEX, ERROR } = require('./constants');
 const Lotto = require('./Lotto');
 const Bonus = require('./Bonus');
 
@@ -75,25 +75,16 @@ class Result {
       case 6:
         this.history.firstPlace.count += 1;
         break;
-      default:
     }
   }
 
-  findReturn() {
-    const winningAmount =
-      this.history.fifthPlace.prize * this.history.fifthPlace.count +
-      this.history.fourthPlace.prize * this.history.fourthPlace.count +
-      this.history.thirdPlace.prize * this.history.thirdPlace.count +
-      this.history.secondPlace.prize * this.history.secondPlace.count +
-      this.history.firstPlace.prize * this.history.firstPlace.count;
-    const purchaseAmount = this.lottos.length * 1000;
-
-    return (winningAmount * 100) / purchaseAmount;
+  printStatistics() {
+    Console.print(`\nMESSAGE.STATISTICS`);
+    this.printHistory();
+    this.printReturn();
   }
 
-  printStatistics() {
-    const totalReturn = this.findReturn().toFixed(1);
-    Console.print(`\nMESSAGE.STATISTICS`);
+  printHistory() {
     Console.print(
       `${MESSAGE.HISTORY_FIFTH_PLACE}${this.history.fifthPlace.count}${MESSAGE.HISTORY_COUNT}`
     );
@@ -109,9 +100,25 @@ class Result {
     Console.print(
       `${MESSAGE.HISTORY_FIRST_PLACE}${this.history.firstPlace.count}${MESSAGE.HISTORY_COUNT}`
     );
+  }
+
+  printReturn() {
+    const totalReturn = this.findReturn().toFixed(1);
     Console.print(
       `${MESSAGE.RETURN_TOTAL}${totalReturn}${MESSAGE.RETURN_PERCENT}`
     );
+  }
+
+  findReturn() {
+    const winningAmount =
+      this.history.fifthPlace.prize * this.history.fifthPlace.count +
+      this.history.fourthPlace.prize * this.history.fourthPlace.count +
+      this.history.thirdPlace.prize * this.history.thirdPlace.count +
+      this.history.secondPlace.prize * this.history.secondPlace.count +
+      this.history.firstPlace.prize * this.history.firstPlace.count;
+    const purchaseAmount = this.lottos.length * 1000;
+
+    return (winningAmount * 100) / purchaseAmount;
   }
 }
 
