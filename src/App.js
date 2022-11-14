@@ -1,5 +1,9 @@
+const Service = require('./Service');
 class App {
-  play() {}
+  play() {
+    const service = new Service();
+    service.printLottoCount();
+  }
 }
 
 module.exports = App;
