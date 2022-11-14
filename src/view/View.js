@@ -4,6 +4,7 @@ class View {
   constructor() {
     this.printLottoCount = this.printLottoCount.bind(this);
     this.printQuickPick = this.printQuickPick.bind(this);
+    this.serialize = this.serialize.bind(this);
   }
 
   printLottoCount(lottoCount) {
@@ -12,6 +13,13 @@ class View {
 
   printQuickPick(quickPick) {
     Console.print(this.serialize(quickPick));
+  }
+
+  serialize(quickPick) {
+    return quickPick.reduce(
+      (str, list) => (str += `${JSON.stringify(list)}\n`),
+      ""
+    );
   }
 }
 
