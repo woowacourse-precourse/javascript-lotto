@@ -5,26 +5,34 @@ const Lotto = require("./Lotto");
 const BonusNumber = require("./BonusNumber");
 
 class Purchase {
-  static inputMoney() {
-    MissionUtils.Console.readLine(Constant.ORDER_MESSAGE, Purchase.validate);
+  constructor() {
+    this.lotteries = [];
+    this.winningNumber = [];
+    this.inputMoney();
   }
 
-  static validate(money) {
+  inputMoney() {
+    MissionUtils.Console.readLine(Constant.ORDER_MESSAGE, (money) =>
+      this.validate(money)
+    );
+  }
+
+  validate(money) {
     const moneyValidation = new MoneyValidator(money);
     MissionUtils.Console.print(moneyValidation.money);
-    Purchase.order(moneyValidation.money);
+    this.order(moneyValidation.money);
   }
 
-  static order(money) {
+  order(money) {
     const lottoQuantity = Purchase.calculateQuantity(money);
-    Purchase.issue(lottoQuantity);
+    this.issue(lottoQuantity);
   }
 
   static calculateQuantity(money) {
     return Number(money) / 1000;
   }
 
-  static issue(quantity) {
+  issue(quantity) {
     MissionUtils.Console.print(`${quantity}${Constant.QUANTITY_MESSAGE}`);
     while (quantity > 0) {
       const lottoNumber = MissionUtils.Random.pickUniqueNumbersInRange(
@@ -32,54 +40,53 @@ class Purchase {
         45,
         6
       );
-      Purchase.printLotto(lottoNumber);
+      this.printLotto(lottoNumber);
       quantity -= 1;
     }
-    Purchase.inputWinningNumber();
+    this.inputWinningNumber();
   }
 
-  static printLotto(lottoNumber) {
-    const issuedLotto = Purchase.sortNumbers(lottoNumber);
+  printLotto(lottoNumber) {
+    const issuedLotto = this.sortNumbers(lottoNumber);
     MissionUtils.Console.print(issuedLotto);
   }
 
-  static sortNumbers(lottoNumber) {
+  sortNumbers(lottoNumber) {
     let sortedNumbers = lottoNumber.sort((a, b) => a - b);
+    this.lotteries.push(sortedNumbers);
     sortedNumbers = `[${sortedNumbers.join(", ")}]`;
     return sortedNumbers;
   }
 
-  static inputWinningNumber() {
-    MissionUtils.Console.readLine(
-      Constant.WINNING_NUMBER_MESSAGE,
-      Purchase.validateLotto
+  inputWinningNumber() {
+    MissionUtils.Console.readLine(Constant.WINNING_NUMBER_MESSAGE, (number) =>
+      this.validateLotto(number)
     );
   }
 
-  static validateLotto(number) {
+  validateLotto(number) {
     MissionUtils.Console.print(number);
-    Purchase.createWinnigLotto(number);
+    this.createWinnigLotto(number);
   }
 
-  static createWinnigLotto(number) {
-    const winningNumber = number.split(",");
-    const winnigLotto = new Lotto(winningNumber);
-    Purchase.inputBonusNumber();
+  createWinnigLotto(number) {
+    this.winningNumber = number.split(",");
+    const winnigLotto = new Lotto(this.winningNumber);
+    this.inputBonusNumber();
   }
 
-  static inputBonusNumber() {
-    MissionUtils.Console.readLine(
-      Constant.BONUS_NUMBER_MESSAGE,
-      Purchase.validateBonusNumber
+  inputBonusNumber() {
+    MissionUtils.Console.readLine(Constant.BONUS_NUMBER_MESSAGE, (number) =>
+      this.validateBonusNumber(number)
     );
   }
 
-  static validateBonusNumber(number) {
+  validateBonusNumber(number) {
     MissionUtils.Console.print(number);
-    Purchase.createBonusLotto(number);
+    this.createBonusLotto(number);
   }
 
-  static createBonusLotto(number) {
+  createBonusLotto(number) {
     const bonusNumber = new BonusNumber(number);
   }
 }
