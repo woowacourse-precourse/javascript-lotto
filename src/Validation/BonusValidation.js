@@ -32,15 +32,15 @@ class BonusValidation extends Validation {
   }
 
   checkOverlap() {
-    if (this.isNumberIncludesWinNumberList()) {
+    if (this.isNumberHasWinNumberList()) {
       throw new BonusNumberError(BONUS_NUMBER_ERROR_MESSAGE.not_valid_overlap_number);
     }
     return true;
   }
 
-  isNumberIncludesWinNumberList() {
+  isNumberHasWinNumberList() {
     const answerNumber = Number(this.answer);
-    return this.winNumberList.includes(answerNumber);
+    return new Set(this.winNumberList).has(answerNumber);
   }
 }
 
