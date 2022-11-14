@@ -2,10 +2,10 @@
 
 메인기능#app
 
-- [ ] 메인 기능 시작점 #play
-- [ ] 로또 가격을 입력하고 발행된 로또를 출력하는 기능#lottoBuyPrint
-- [ ] 당첨 번호와 보너스 번호를 입력하고 출력하는 기능#lottoWinSetting
-- [ ] 로또 당첨 결과와 수익률을 집계하고 출력하는 기능#lottoResultCalculator
+- [x] 메인 기능 시작점 #play
+- [x] 로또 가격을 입력하고 발행된 로또를 출력하는 기능#lottoBuyPrint
+- [x] 당첨 번호와 보너스 번호를 입력하고 출력하는 기능#lottoWinSetting
+- [x] 로또 당첨 결과와 수익률을 집계하고 출력하는 기능#lottoResultCalculator
 
 로또#Lotto
 

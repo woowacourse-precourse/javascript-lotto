@@ -9,8 +9,8 @@ const INPUT = {
 };
 
 const PRINT = {
-  BUY: (count) => `\n${count}개를 구매했습니다.`,
-  RESULT: "\n당첨 통계\n ---",
+  BUY: (count) => `${count}개를 구매했습니다.`,
+  RESULT: "당첨 통계\n ---",
   GAIN_PECENT: (percent) => `총 수익률은 ${percent}%입니다.\n`,
 };
 

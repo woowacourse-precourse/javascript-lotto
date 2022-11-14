@@ -6,11 +6,15 @@ class LottoSetting {
   #winLotto;
   #bonusNum;
 
-  inputWinLottoNum() {
-    Console.readLine(INPUT.WIN_NUMBER, (string) => {
-      this.winNumToLottoClass(string);
-      this.inputBonusNum();
-    });
+  // inputWinLottoNum() {
+  //   Console.readLine(INPUT.WIN_NUMBER, (string) => {
+  //     this.winNumToLottoClass(string);
+  //     this.inputBonusNum();
+  //   });
+  // }
+
+  inputWinLottoNum(string) {
+    this.winNumToLottoClass(string);
   }
 
   winNumToLottoClass(string) {
@@ -31,11 +35,16 @@ class LottoSetting {
     return lotto;
   }
 
-  inputBonusNum() {
-    Console.readLine(INPUT.BONUS, (number) => {
-      this.#bonusNum = this.isBonusNum(number);
-      Console.print(this.#bonusNum);
-    });
+  // inputBonusNum() {
+  //   Console.readLine(INPUT.BONUS, (bonus) => {
+  //     this.#bonusNum = this.isBonusNum(bonus);
+  //     Console.print(this.#bonusNum);
+  //   });
+  // }
+
+  inputBonusNum(bonus) {
+    this.#bonusNum = this.isBonusNum(bonus);
+    Console.print(this.#bonusNum);
   }
 
   isBonusNum(number) {
