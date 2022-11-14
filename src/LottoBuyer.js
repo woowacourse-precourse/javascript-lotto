@@ -5,6 +5,10 @@ class LottoBuyer {
   lottoAmount;
   lottoArray = new Array();
   constructor(money) {
+    let numberChecker = /^[0-9]+$/;
+    if (!numberChecker.test(money)) {
+      throw new Error("[ERROR] 금액은 숫자만으로 이루어져야 합니다.");
+    }
     money = parseInt(money);
     if (money % 1000 !== 0) {
       throw new Error(
