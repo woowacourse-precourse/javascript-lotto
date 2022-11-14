@@ -18,4 +18,17 @@ describe('유저 클래스 테스트', () => {
     user.setLottos([1, 2, 3, 4, 5, 6]);
     expect(user.getLottos()).toStrictEqual([1, 2, 3, 4, 5, 6]);
   });
+
+  test('✨ 사용자가 구매한 로또 번호와 당첨 번호가 3개 일치하면 three를 1증가시킨다.', () => {
+    const user = new User();
+    user.setCorrectLottoCount('three');
+    const result = {
+      three: 1,
+      four: 0,
+      five: 0,
+      six: 0,
+      bonus: 0,
+    };
+    expect(user.getCorrectLottoCount()).toStrictEqual(result);
+  });
 });
