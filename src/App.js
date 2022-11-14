@@ -25,10 +25,14 @@ class App {
     if (typeof money === "string") {
       parsedMoney = parseInt(money, 10);
     }
+    for (let i = 0; i < money.length; i++) {
+      if (isNaN(money[i])) throw new Error("[ERROR] 숫자가 아닙니다.");
+    }
     const remains = parsedMoney % this.unit;
     if (remains !== 0) {
       throw new Error(`[ERROR] 1000원 단위로 금액을 입력해주세요.`);
     }
+    return parsedMoney;
   }
   createLottos(money) {
     const lottoNum = money / this.unit;
@@ -39,16 +43,18 @@ class App {
       this.lottos.push(newLotto);
     }
 
-    Console.print(`\n${lottoNum}개를 구매했습니다`);
-    Console.print(
-      this.lottos.map((lotto) => `[${lotto.numbers.join(", ")}]`).join("\n")
-    );
+    const lottosPrint = this.lottos
+      .map((lotto) => `[${lotto.numbers.join(", ")}]`)
+      .join("\n");
+
+    Console.print(`
+    ${lottoNum}개를 구매했습니다.
+    ${lottosPrint}`);
   }
   buyLottos() {
     Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
-      const parsedMoney = parseInt(money, 10);
-      this.money = parsedMoney;
-      this.validateMoney(this.money);
+      const validatedMoney = this.validateMoney(money);
+      this.money = validatedMoney;
       this.createLottos(this.money);
       this.askWinningNumbers();
     });
@@ -159,15 +165,16 @@ class App {
     this.ranks[8 - matched] += 1;
   }
   printRanks() {
-    Console.print(`당첨 통계\n`);
-    Console.print(`---\n`);
-    Console.print(`3개 일치 (5,000원) - ${this.ranks[5]}개`);
-    Console.print(`4개 일치 (50,000원) - ${this.ranks[4]}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${this.ranks[3]}개`);
-    Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.ranks[2]}개`
-    );
-    Console.print(`6개 일치 (2,000,000,000원) - ${this.ranks[1]}개`);
+    // Console.print(`당첨 통계\n`);
+    // Console.print(`---\n`);
+    const ranksString = `
+      3개 일치 (5,000원) - ${this.ranks[5]}개
+      4개 일치 (50,000원) - ${this.ranks[4]}개
+      5개 일치 (1,500,000원) - ${this.ranks[3]}개
+      5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.ranks[2]}개
+      6개 일치 (2,000,000,000원) - ${this.ranks[1]}개
+    `.trim();
+    Console.print(ranksString);
   }
   getSum(ranks) {
     const reward = [0, 2000000000, 30000000, 1500000, 50000, 5000];
@@ -178,8 +185,8 @@ class App {
     return sum;
   }
   getRateOfReturn(inputMoney, sum) {
-    const rounded = Math.round((sum / inputMoney) * 10);
-    const result = (rounded * 10).toFixed(1);
+    const rounded = Math.round((sum / inputMoney) * 1000);
+    const result = (rounded / 10).toFixed(1);
     return result;
   }
   printRateOfReturn() {
