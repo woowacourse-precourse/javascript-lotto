@@ -12,11 +12,14 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
-    if([...new Set(numbers.split(""))].length !==6){
+    if([...new Set(numbers)].length !== LOTTO.LENGTH){
       throw new Error(ERROR.LOTTO_DUPLICATE)
     }
-    numbers.forEach((number) => {
-      if (number < LOTTO.MIN_NUMBER || number > LOTTO.MAX_NUMBER) {
+    numbers.forEach((value) => {
+      if (isNaN(value)) {
+        throw new Error(ERROR.LOTTO_TYPE);
+      }
+      if (value < LOTTO.MIN_NUMBER || value > LOTTO.MAX_NUMBER) {
         throw new Error(ERROR.LOTTO_RANGE);
       }
     });
