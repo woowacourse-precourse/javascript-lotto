@@ -4,7 +4,8 @@ const Lotto = require('./Lotto');
 
 class Lottos {
   #lottoArray = [];
-  constructor(lottoNums) {
+  constructor(money) {
+    const lottoNums = money / LOTTO.PRICE;
     for (let x = 0; x < lottoNums; x++) {
       const lottoNumbers = this.getRandomNumber();
       this.#lottoArray.push(new Lotto(lottoNumbers));

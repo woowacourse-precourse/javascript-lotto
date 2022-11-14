@@ -1,6 +1,4 @@
-const LOTTO = require('../constant/constant');
 const BonusNumber = require('./BonusNumber');
-const Lottos = require('./Lottos');
 const Money = require('./Money');
 
 class LottoGame {
@@ -33,10 +31,8 @@ class LottoGame {
   get lottos() {
     return this.#lottos.lottoArray;
   }
-
-  getLottos() {
-    const lottoNums = this.#money.money / LOTTO.PRICE;
-    this.#lottos = new Lottos(lottoNums);
+  set lottos(lottosArray) {
+    this.#lottos = lottosArray;
   }
 }
 module.exports = LottoGame;

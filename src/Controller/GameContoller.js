@@ -1,7 +1,6 @@
-const MissionUtils = require('@woowacourse/mission-utils');
-const LOTTO = require('../constant/constant.js');
 const Lotto = require('../Model/Lotto.js');
 const LottoGame = require('../Model/LottoGame.js');
+const Lottos = require('../Model/Lottos.js');
 const Result = require('../Model/Result.js');
 const input = require('../View/Input.js');
 const printMessage = require('../View/printMessage');
@@ -22,7 +21,7 @@ class GameController {
 
   getLottosByMoney(money) {
     this.game.money = Number(money);
-    this.game.getLottos();
+    this.game.lottos = new Lottos(money);
     printMessage.printLottos(this.game.lottos);
   }
 
