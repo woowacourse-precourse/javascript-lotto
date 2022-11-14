@@ -1,4 +1,5 @@
 /* eslint-disable */
+
 const MissionUtils = require("@woowacourse/mission-utils");
 const LottoGame = require("../src/LottoGame");
 
@@ -22,7 +23,7 @@ describe("로또 게임 테스트", () => {
     mockRandoms(expectedLottos);
 
     const lottoGame = new LottoGame();
-    lottoGame.setLottosOfUser(5);
+    lottoGame.createLottosOfUser(5);
 
     const lottos = lottoGame.lottosOfUser;
 
@@ -47,5 +48,48 @@ describe("로또 게임 테스트", () => {
       expect.arrayContaining(expectedWinningNumbers),
     );
     expect(winningLotto.getBonusNumber()).toEqual(expectedBonusNumber);
+  });
+
+  test("calculate 결과", () => {
+    const lottosOfUser = [
+      [1, 2, 3, 4, 5, 6], // 1등
+      [1, 2, 3, 4, 5, 7], // 2등
+      [1, 2, 3, 4, 5, 8], // 3등
+      [1, 2, 3, 4, 7, 8], // 4등
+      [1, 2, 3, 7, 8, 9], // 5등
+      [2, 3, 4, 7, 8, 9], // 5등
+      [1, 2, 7, 8, 10, 11], // 당첨 X
+    ];
+    const boughtAmount = lottosOfUser.length * 1000;
+    const winningNumbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+
+    const expectedNumberOfEachRanking = {
+      FIRST: 1,
+      SECOND: 1,
+      THIRD: 1,
+      FOURTH: 1,
+      FIFTH: 2,
+    };
+    const expectedTotalProfit = 2_031_560_000;
+    const expectedTotalProfitRate = (
+      (expectedTotalProfit / boughtAmount) *
+      100
+    ).toFixed(1);
+
+    mockRandoms(lottosOfUser);
+
+    const lottoGame = new LottoGame();
+    lottoGame.boughtAmount = boughtAmount;
+    lottoGame.createLottosOfUser(lottosOfUser.length);
+    lottoGame.setWinningLotto(winningNumbers);
+    lottoGame.setBonusNumber(bonusNumber);
+    lottoGame.calculateResult();
+
+    expect(lottoGame.numberOfEachRanking).toEqual(
+      expect.objectContaining(expectedNumberOfEachRanking),
+    );
+    expect(lottoGame.calculateTotalProfit()).toEqual(expectedTotalProfit);
+    expect(lottoGame.totalProfitRate).toEqual(expectedTotalProfitRate);
   });
 });
