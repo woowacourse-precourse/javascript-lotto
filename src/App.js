@@ -69,7 +69,6 @@ class App {
       this.printWinningHistory(this.winningHistory);
 
       const yeild = this.calculateYeild(this.lottos, this.winningHistory);
-
       Console.print(`총 수익률은 ${yeild}입니다.`);
       Console.close();
     });
@@ -109,7 +108,6 @@ class App {
     if (totalPurchaseAmount === 0) return 0 + "%";
 
     const yeild = totalPrize / totalPurchaseAmount;
-
     if (yeild > 1) return Math.round(yeild * 100) / 100 + "%";
     return yeild * 100 + "%";
   }
