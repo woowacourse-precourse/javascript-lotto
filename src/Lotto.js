@@ -103,33 +103,45 @@ class Lotto {
 
   calculatePrizeLottery(computerNumberArray, userLottoNumber, bonusNumber,amountOfMoney) {
     let userLottoArray = userLottoNumber.split(",").map((e) => Number(e));
-    let countArray = [];
-    let counted = 0;
-    computerNumberArray.forEach((eachNumberArray) => {
-      counted = this.checkLottery(eachNumberArray, userLottoArray, bonusNumber);
-      countArray.push(counted);
-    });
+    // let countArray = [];
+    // let counted = 0;
+    // computerNumberArray.forEach((eachNumberArray) => {
+      //   counted = this.checkLottery(eachNumberArray, userLottoArray, bonusNumber);
+      //   countArray.push(counted);
+      // });
+    this.checkLottery(computerNumberArray,userLottoArray,bonusNumber)
+    // 여기 고쳐야함
     this.checkPrizeAmount(countArray,amountOfMoney);
   }
-  checkLottery(eachNumberArray, userLottoArray, bonusNumber) {
+  checkLottery(computerNumberArray, userLottoArray, bonusNumber) {
     let count = 0;
-    let checkBonus = 0;
-    eachNumberArray.forEach((comNumber) => {
-      if (userLottoArray.includes(comNumber)) {
-        count++;
-      }
-    });
-    if (count === 5) {
-      let bonus = this.checkLotteryHelper(eachNumberArray, bonusNumber);
-      checkBonus = bonus;
+    let checkBonus = [];
+    let countArray=[]
+    // 각각의 컴퓨터가 생성한 숫자와 사용자가 생성한 숫자를 비교해서 count를 올려야함
+    computerNumberArray.forEach((nums)=>{
+      countArray.push(nums.filter(x=>userLottoArray.includes(x)).length)
+    })
+    // count가 5면 보너스 숫자에 따라서 2등과 3등을 결정
+    // 5가 2명일때 -> 둘다 검사해야함 -> 구현ok
+    console.log(countArray.includes(5));
+    if(countArray.includes(5)){
+      let bonus = this.checkLotteryHelper(computerNumberArray, bonusNumber);
+      checkBonus.push(bonus)
     }
-    return count + checkBonus;
+    // if (count === 5) {
+    //   let bonus = this.checkLotteryHelper(computerNumberArray, bonusNumber);
+    //   checkBonus = bonus;
+    // }
+    return [count,checkBonus]
   }
 
-  checkLotteryHelper(eachNumberArray, bonusNumber) {
-    if (eachNumberArray.includes(bonusNumber)) {
-      return 2;
-    }
+  checkLotteryHelper(computerNumberArray, bonusNumber) {
+    computerNumberArray.forEach((nums)=>{
+      if(nums.includes(bonusNumber)) return 2;
+    })
+    // if (computerNumberArray.includes(bonusNumber)) {
+    //   return 2;
+    // }
   }
   checkPrizeAmount(countArray,amountOfMoney){
     let prizeObj={}
@@ -177,7 +189,6 @@ class Lotto {
     MissionUtils.Console.print(`총 수익률은 ${money.toFixed(1)}% 입니다.`)
     MissionUtils.Console.close()
   }
-  // showPrizeLottery(prizeObj) {}
 }
 
 module.exports = Lotto;
