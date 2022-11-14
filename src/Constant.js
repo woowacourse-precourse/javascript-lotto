@@ -8,30 +8,22 @@ const PUBLISH = {
   AMOUNT: 6,
 };
 
-const REQUIRE = {
-  FIRST: 6,
-  SECOND: 5,
-  THIRD: 5,
-  FOURTH: 4,
-  FIFTH: 3,
-};
-
 const PRIZE = {
-  FIRST: 2000000000,
-  SECOND: 30000000,
-  THIRD: 1500000,
-  FOURTH: 50000,
-  FIFTH: 5000,
+  FIRST: [6, 2000000000],
+  SECOND: [5, 30000000],
+  THIRD: [5, 1500000],
+  FOURTH: [4, 50000],
+  FIFTH: [3, 5000],
 };
 
 const WINNING_TEXT = {
-  FIRST: `${REQUIRE.FIRST}개 일치 (${PRIZE.FIRST.toLocaleString()}원) -`,
+  FIRST: `${PRIZE.FIRST[0]}개 일치 (${PRIZE.FIRST[1].toLocaleString()}원) -`,
   SECOND: `${
-    REQUIRE.SECOND
-  }개 일치, 보너스 볼 일치 (${PRIZE.SECOND.toLocaleString()}원) -`,
-  THIRD: `${REQUIRE.THIRD}개 일치 (${PRIZE.THIRD.toLocaleString()}원) -`,
-  FOURTH: `${REQUIRE.FOURTH}개 일치 (${PRIZE.FOURTH.toLocaleString()}원) -`,
-  FIFTH: `${REQUIRE.FIFTH}개 일치 (${PRIZE.FIFTH.toLocaleString()}원) -`,
+    PRIZE.SECOND[0]
+  }개 일치, 보너스 볼 일치 (${PRIZE.SECOND[1].toLocaleString()}원) -`,
+  THIRD: `${PRIZE.THIRD[0]}개 일치 (${PRIZE.THIRD[1].toLocaleString()}원) -`,
+  FOURTH: `${PRIZE.FOURTH[0]}개 일치 (${PRIZE.FOURTH[1].toLocaleString()}원) -`,
+  FIFTH: `${PRIZE.FIFTH[0]}개 일치 (${PRIZE.FIFTH[1].toLocaleString()}원) -`,
 };
 
 const INPUT_TEXT = {
@@ -51,7 +43,6 @@ const ERROR_TEXT = {
 module.exports = {
   MONEY,
   PUBLISH,
-  REQUIRE,
   PRIZE,
   WINNING_TEXT,
   INPUT_TEXT,

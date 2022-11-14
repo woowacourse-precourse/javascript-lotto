@@ -1,4 +1,4 @@
-const { REQUIRE, PRIZE, ERROR_TEXT } = require('./Constant');
+const { PRIZE, ERROR_TEXT } = require('./Constant');
 const Exception = require('./Exception');
 
 class Lotto {
@@ -45,24 +45,24 @@ class Lotto {
   }
 
   compareDivision(publish) {
-    if (this.winningCount === REQUIRE.FIRST) return (this.firstCount += 1);
+    if (this.winningCount === PRIZE.FIRST[0]) return (this.firstCount += 1);
     if (
-      this.winningCount === REQUIRE.SECOND &&
+      this.winningCount === PRIZE.SECOND[0] &&
       publish.includes(this.bonusNumber)
     )
       return (this.secondCount += 1);
-    if (this.winningCount === REQUIRE.THIRD) return (this.thirdCount += 1);
-    if (this.winningCount === REQUIRE.FOURTH) return (this.fourthCount += 1);
-    if (this.winningCount === REQUIRE.FIFTH) return (this.fifthCount += 1);
+    if (this.winningCount === PRIZE.THIRD[0]) return (this.thirdCount += 1);
+    if (this.winningCount === PRIZE.FOURTH[0]) return (this.fourthCount += 1);
+    if (this.winningCount === PRIZE.FIFTH[0]) return (this.fifthCount += 1);
   }
 
   profitCalculator(payment) {
     const PROFIT =
-      ((this.firstCount * PRIZE.FIRST +
-        this.secondCount * PRIZE.SECOND +
-        this.thirdCount * PRIZE.THIRD +
-        this.fourthCount * PRIZE.FOURTH +
-        this.fifthCount * PRIZE.FIFTH) /
+      ((this.firstCount * PRIZE.FIRST[1] +
+        this.secondCount * PRIZE.SECOND[1] +
+        this.thirdCount * PRIZE.THIRD[1] +
+        this.fourthCount * PRIZE.FOURTH[1] +
+        this.fifthCount * PRIZE.FIFTH[1]) /
         payment) *
       100;
     return parseFloat(PROFIT.toFixed(2));
