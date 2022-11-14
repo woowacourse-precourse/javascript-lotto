@@ -31,6 +31,29 @@ class LottoJudgement {
       this.scoreCount(count);
     }
   }
+
+  scoreCount(count) {
+    switch (count) {
+      case 3:
+        this.#scoreBoard[4] += 1; // 3개 5등
+        break;
+      case 4:
+        this.#scoreBoard[3] += 1; // 4개 4등
+        break;
+      case 5:
+        this.#scoreBoard[2] += 1; // 5개 3등
+        break;
+      case 6:
+        this.#scoreBoard[0] += 1; // 6개 1등
+        break;
+      case 10:
+        this.#scoreBoard[1] += 1; // 5개+1 2등
+    }
+  }
+
+  getScoreBoard() {
+    return this.#scoreBoard;
+  }
 }
 
 module.exports = LottoJudgement;
