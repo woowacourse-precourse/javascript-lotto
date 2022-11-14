@@ -14,7 +14,9 @@ class App {
     MissionUtils.Console.readLine(`${Message.COST_MESSAGE}`, input => {
       money = input;
       this.validate(money);
-      this.buyLottos(inputMoney / 1000);
+      this.buyLottos(this.inputMoney / 1000);
+      MissionUtils.Console.print(`${this.userLottoList.length}개를 구매했습니다.`);
+      this.userLottoList.forEach(lotto => MissionUtils.Console.print(`[${lotto.getNumbers().join(', ')}]`));
     });
   }
   checkUnit(money) {
