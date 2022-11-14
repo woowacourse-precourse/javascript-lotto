@@ -26,6 +26,14 @@ class LottoView {
   bonusNumberPrint(input) {
     MissionUtils.Console.print(this.model.lottoBonusNumberError(input));
   }
+
+  successStartContext() {
+    MissionUtils.Console.print(`당첨 통계\n---`);
+  }
+
+  successContext() {
+    this.model.resultMessage();
+  }
 }
 
 module.exports = LottoView;

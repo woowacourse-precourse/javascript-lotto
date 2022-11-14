@@ -10,6 +10,7 @@ class LottoController {
     this.getPayInput();
     this.winningNumber();
     this.bonusNumber();
+    this.successStatistic();
   }
 
   getPayInput() {
@@ -30,6 +31,11 @@ class LottoController {
     MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (input) => {
       this.view.bonusNumberPrint(input);
     });
+  }
+
+  successStatistic() {
+    this.view.successStartContext();
+    this.view.successContext();
   }
 }
 
