@@ -3,6 +3,7 @@ const LottoPublisher = require('./LottoPublisher.js');
 const LottoStore = require('./LottoStore.js');
 const LottoViewer = require('./LottoViewer.js');
 const Customer = require('./Customer.js');
+const { VALUE } = require('./constants/numbers');
 
 class LottoController {
   constructor() {
@@ -35,7 +36,7 @@ class LottoController {
               );
               const arranged = this.lottoViewer.arrangeLottoWinningResult(
                 matchedLottoNumbers,
-                lottoCount * 1000
+                lottoCount * VALUE.LOTTO_PRICE
               );
               this.lottoViewer.printLottoWinningStats(arranged);
               MissionUtils.Console.close();
