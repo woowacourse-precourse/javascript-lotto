@@ -227,4 +227,67 @@ describe("로또 클래스 테스트", () => {
     }).toThrow(ERROR.NOT_NUMBER);
   });
 
+  // 개별 로또의 등수를 생성하여 반환 기능 테스트
+  test("기능테스트: 로또 1등 인덱스 반환 테스트", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    const winningLotto = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+    expect(SYSTEM.compare(lotto.getNumber(), new Set(winningLotto), bonusNumber)).toBe(0);
+  });
+
+  test("기능테스트: 로또 2등 인덱스 반환  테스트", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 7]);
+    const winningLotto = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+    expect(SYSTEM.compare(lotto.getNumber(), new Set(winningLotto), bonusNumber)).toBe(1);
+  });
+
+  test("기능테스트: 로또 3등 인덱스 반환 테스트", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 8]);
+    const winningLotto = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+    expect(SYSTEM.compare(lotto.getNumber(), new Set(winningLotto), bonusNumber)).toBe(2);
+  });
+
+
+  test("기능테스트: 로또 4등 인덱스 반환 테스트", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 8, 9]);
+    const winningLotto = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+    expect(SYSTEM.compare(lotto.getNumber(), new Set(winningLotto), bonusNumber)).toBe(3);
+  });
+
+
+  test("기능테스트: 로또 5등 인덱스 반환 테스트", () => {
+    const lotto = new Lotto([1, 2, 3, 8, 9, 10]);
+    const winningLotto = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+    expect(SYSTEM.compare(lotto.getNumber(), new Set(winningLotto), bonusNumber)).toBe(4);
+  });
+
+  test("기능테스트: 로또 6등 인덱스 반환 테스트", () => {
+    const lotto = new Lotto([1, 2, 8, 9, 10, 11]);
+    const winningLotto = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+    expect(SYSTEM.compare(lotto.getNumber(), new Set(winningLotto), bonusNumber)).toBe(5);
+  });
+
+  test("기능테스트: 로또 7등 인덱스 반환 테스트", () => {
+    const lotto = new Lotto([1, 8, 9, 10, 11, 12]);
+    const winningLotto = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+    expect(SYSTEM.compare(lotto.getNumber(), new Set(winningLotto), bonusNumber)).toBe(6);
+  });
+
+  test("기능테스트: 로또 8등 인덱스 반환 테스트", () => {
+    const lotto = new Lotto([8, 9, 10, 11, 12, 13]);
+    const winningLotto = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+    expect(SYSTEM.compare(lotto.getNumber(), new Set(winningLotto), bonusNumber)).toBe(7);
+  });
+
+
+
+
+
 });
