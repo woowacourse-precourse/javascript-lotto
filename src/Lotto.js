@@ -1,3 +1,6 @@
+const STATIC = require("./static.json");
+const PRIZES = STATIC.prizes;
+
 class Lotto {
   #numbers;
 
@@ -48,7 +51,7 @@ class Lotto {
   }
 
   winningCalculation(purchaseLottos, bonus) {
-    let resultTable = { reward: 0, first: 0, second: 0, third: 0, fourth: 0, fifth: 0 };
+    let resultTable = { reward: 0, '1': 0, "2": 0, "3": 0, "4": 0, "5": 0 };
     for (let purchaseLotto of purchaseLottos) {
       const sameCount = this.sameCheck(purchaseLotto);
       if (sameCount < 3) continue;
@@ -73,19 +76,15 @@ class Lotto {
 
   rewardCheck(purchaseLotto, sameCount, bonus) {
     switch (sameCount) {
-      case 3: {
-        return [5000, 'fifth'];
-      }
-      case 4: {
-        return [50000, 'fourth']
-      }
-      case 5: {
-        if (purchaseLotto.includes(Number(bonus))) return [30000000, 'second'];
-        return [1500000, 'third'];
-      }
-      case 6: {
-        return [2000000000, 'first'];
-      }
+      case 3:
+        return PRIZES.fifthPrize;
+      case 4:
+        return PRIZES.fourthPrize;
+      case 5:
+        if (!purchaseLotto.includes(Number(bonus))) return PRIZES.thirdPrize;
+        return PRIZES.secondPrize;
+      case 6:
+        return PRIZES.firstPrize;
     }
   }
 }

@@ -1,8 +1,10 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Console = MissionUtils.Console;
 
-const Buyer = require("../src/Buyer");
-const Lotto = require("../src/Lotto");
+const Buyer = require("./Buyer");
+const Lotto = require("./Lotto");
+const STATIC = require("./static.json");
+const PHRASES = STATIC.phrases;
 
 class App {
   #Buyer;
@@ -74,22 +76,26 @@ class App {
 
   showResultTable(resultTable) {
     Console.print('\n당첨 통계\n---');
-    Console.print(`3개 일치 (5,000원) - ${resultTable.fifth}개`);
-    Console.print(`4개 일치 (50,000원) - ${resultTable.fourth}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${resultTable.third}개`);
-    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${resultTable.second}개`);
-    Console.print(`6개 일치 (2,000,000,000원) - ${resultTable.first}개`);
+    for(let i = 5; i > 0; i--){
+      const statisticalOutput = PHRASES[i] + resultTable[i] + '개';
+      Console.print(statisticalOutput);
+    }
 
-    this.showYield(resultTable.reward);
+    this.yieldCalculation(resultTable.reward);
   }
 
-  showYield(reward) {
+  yieldCalculation(reward) {
     const investmentAmount = this.#Buyer.money;
     const YIELD = (reward / investmentAmount) * 100;
+    const fixedYield = YIELD.toFixed(1);
 
-    Console.print(`총 수익률은 ${YIELD.toFixed(1)}%입니다.`);
+    this.printYield(fixedYield);
+  }
+
+  printYield(fixedYield) {
+    Console.print(`총 수익률은 ${fixedYield}%입니다.`);
     Console.close();
   }
 }
-
+const app = new App; app.play();
 module.exports = App;
