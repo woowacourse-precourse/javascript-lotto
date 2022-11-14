@@ -31,7 +31,7 @@ describe("로또 보너스 번호 입력 유효성 테스트", () => {
   it("보너스 번호가 당첨번호와 중복될 경우 예외처리", () => {
     const number = 6;
     const winNumbers = [1, 2, 3, 4, 5, 6];
-    const result = () => validation.checkBonusNumber(number, winNumbers);
+    const result = () => validation.isBonusNumber(number, winNumbers);
 
     expect(result).toThrow(ERROR_BONUS.DUPLICATED);
   });
