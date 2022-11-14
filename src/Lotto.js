@@ -2,6 +2,7 @@ const { isLottoNumbers } = require('./lib/utilFns');
 
 class Lotto {
   #numbers;
+  #bonus;
 
   constructor(numbers) {
     this.validate(numbers);
@@ -15,6 +16,8 @@ class Lotto {
 
     return true;
   }
+
+  setBonus(bonusNumber) {}
 
   // TODO: 추가 기능 구현
 }

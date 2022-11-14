@@ -6,6 +6,7 @@ class VendingMachine {
   #purchaseAmount;
   #numberOfLottos;
   #randomNumbers;
+  #lottoMachine;
 
   askPurchaseAmount() {
     const answerCbFn = (answer) => {
@@ -56,10 +57,19 @@ class VendingMachine {
       const lottoNumbers = splitStrByComma(answer);
       lottoNumbers.sort((a, b) => a - b);
 
-      new Lotto(lottoNumbers);
+      this.#lottoMachine = new Lotto(lottoNumbers);
+      this.askBonusNumber();
     };
 
     Console.readLine('\n당첨 번호를 입력해 주세요.\n', answerCbFn);
+  }
+
+  askBonusNumber() {
+    const answerCbFn = (answer) => {
+      this.#lottoMachine.setBonus(answer);
+    };
+
+    Console.readLine('\n보너스 번호를 입력해주세요.\n', answerCbFn);
   }
 }
 
