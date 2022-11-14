@@ -46,8 +46,14 @@ class App {
     for(let i=0; i<COUNT_LOTTO; i++) {
       randomNumber = Random.pickUniqueNumbersInRange(1, 45, 6)
       this.randomSixNumberArr.push(randomNumber);
+      this.printRandomSixNumber();
     }
   }
+
+  printRandomSixNumber() {
+    Console.print(this.randomSixNumberArr);
+  }
+  
 }
 
 const app = new App();
