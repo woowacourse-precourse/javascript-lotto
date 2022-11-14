@@ -1,5 +1,6 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
 const { validateMoney } = require("./Money");
+const Lotto = require("./Lotto");
 
 class App {
   #money;
@@ -43,6 +44,15 @@ class App {
     Console.print(`\n${this.#numOfLotto}개를 구매했습니다.`);
     this.#userLotto.forEach((lotto) => Console.print(`[${lotto.join(", ")}]`));
     getWinLotto();
+  }
+
+  getWinLotto() {
+    Console.readLine("당첨 번호를 입력해 주세요.\n", (winLotto) => {
+      let tmp = winLotto.split(',');
+      new Lotto(tmp);
+      this.#winLotto = tmp;
+    });
+    getBonusNumber();
   }
 }
 
