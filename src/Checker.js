@@ -62,6 +62,7 @@ class Checker {
 
     const bonusNum = Number(input);
     this.checkIsInteger(bonusNum);
+    this.checkRange(bonusNum);
   }
 }
 
