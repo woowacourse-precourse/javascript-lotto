@@ -21,16 +21,16 @@ class App {
       function (money) {
         money = Number(money);
         validateMoney(money);
-        const lottos = this.lottoMachine.buyLottos(money);
-        this.printLottos(lottos);
+        this.lottos = this.lottoMachine.buyLottos(money);
+        this.printLottos(this.lottos);
         this.getWinningNumbers();
-        /* 당첨 통계 출력 */
       }.bind(this)
     );
   }
 
-  printLottos(lottos) {
-    lottos.forEach(function (lotto) {
+  printLottos() {
+    Console.print(`\n${this.lottos.length}개를 구매했습니다.`);
+    this.lottos.forEach(function (lotto) {
       lotto.printNumbers();
     });
   }
@@ -41,7 +41,7 @@ class App {
 
   getWinningNumbers() {
     Console.readLine(
-      "당첨 번호를 입력해 주세요.\n",
+      "\n당첨 번호를 입력해 주세요.\n",
       function (numbers) {
         const winningNumbers = this.parseNumbers(numbers);
         this.validateWinningNumbers(winningNumbers);
@@ -53,10 +53,11 @@ class App {
 
   getBonusNumber() {
     Console.readLine(
-      "보너스 번호를 입력해 주세요.\n",
+      "\n보너스 번호를 입력해 주세요.\n",
       function (number) {
         this.validateBonusNumber(number);
         this.bonusNumbers = number;
+        this.printStatistics();
       }.bind(this)
     );
   }
