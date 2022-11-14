@@ -14,7 +14,6 @@ class CheckError {
     // TODO : 1 - 45 사이 숫자.
     const lottoNumberSet = new Set(lottoNumbers);
     const arrayToString = lottoNumbers.join("");
-    console.log(CheckError.checkEachNumberInRange(lottoNumbers), lottoNumbers);
     if (lottoNumbers.length !== 6)
       // 로또 길이가 6이 아닐 때
       throw new Error(ERROR_MESSAGE.NOT_SIX_LENGTH);
