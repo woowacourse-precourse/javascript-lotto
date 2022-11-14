@@ -11,15 +11,16 @@ class App {
 
   setPurchase() {
     Console.readLine(Console.INPUT.PURCHASE, (input) => {
-      this.handlePurchaseException(input);
-      this.purchase = Number(input);
+      const inputNumber = Number(input);
+
+      this.handlePurchaseException(inputNumber);
+      this.purchase = inputNumber;
+
       Console.close();
     });
   }
 
-  handlePurchaseException(input) {
-    inputNumber = input;
-
+  handlePurchaseException(inputNumber) {
     switch (false) {
       case this.isInteger(inputNumber):
         throw new Error(Exception.error(Exception.INTEGER));
