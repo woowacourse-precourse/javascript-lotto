@@ -1,5 +1,11 @@
-const makeErrorMsg = require('./utils');
-const { ERROR_MSG, NUM } = require('./constants');
+const {
+  makeErrorMsg,
+  invalidNumber,
+  invalidInputNum,
+  invalidDuplication,
+  invalidRange,
+} = require('./utils');
+const { ERROR_MESSAGE, COUNT } = require('./constants');
 
 class Lotto {
   #numbers;
@@ -10,16 +16,22 @@ class Lotto {
   }
 
   static #validate(numbers) {
-    if (numbers.filter((number) => Number.isNaN(number)).length > 0) {
-      throw new Error(makeErrorMsg(ERROR_MSG.LOTTO.NUMBER));
+    if (invalidNumber(numbers)) {
+      throw new Error(makeErrorMsg(ERROR_MESSAGE.NUMBER));
     }
 
-    if (numbers.length !== NUM.LOTTO) {
-      throw new Error(makeErrorMsg(ERROR_MSG.LOTTO.LENGTH));
+    if (invalidInputNum(numbers, COUNT.LOTTO_NUMBER)) {
+      throw new Error(makeErrorMsg(ERROR_MESSAGE.LOTTO_LENGTH));
     }
 
-    if (new Set(numbers).size !== NUM.LOTTO) {
-      throw new Error(makeErrorMsg(ERROR_MSG.LOTTO.DUPLICATION));
+    if (invalidDuplication(numbers, COUNT.LOTTO_NUMBER)) {
+      throw new Error(makeErrorMsg(ERROR_MESSAGE.DUPLICATION));
+    }
+
+    if (
+      invalidRange(numbers, [COUNT.MIN_LOTTO_NUMBER, COUNT.MAX_LOTTO_NUMBER])
+    ) {
+      throw new Error(makeErrorMsg(ERROR_MESSAGE.RANGE));
     }
   }
 

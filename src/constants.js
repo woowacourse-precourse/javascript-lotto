@@ -7,24 +7,26 @@ const MESSAGE = {
 
 const ERROR_PREFIX = '[ERROR]';
 
-const ERROR_MESSAGE = {
-  LOTTO: {
-    NUMBER: '로또 번호는 숫자여야 합니다.',
-    LENGTH: '로또 번호는 6개여야 합니다.',
-    DUPLICATION: '로또 번호는 고유해야 합니다.',
-    RANGE: '로또 번호는 1부터 45 사이의 숫자여야 합니다.',
-  },
+const COUNT = {
+  LOTTO_NUMBER: 6,
+  WINNER_NUMBER: 6,
+  BONUS_NUMBER: 1,
+  MIN_LOTTO_NUMBER: 1,
+  MAX_LOTTO_NUMBER: 45,
 };
 
-const NUM = {
-  LOTTO: 6,
-  WINNER: 6,
-  BONUS: 1,
+const ERROR_MESSAGE = {
+  NUMBER: '로또 번호는 숫자여야 합니다.',
+  LOTTO_LENGTH: `로또 번호는 ${COUNT.LOTTO_NUMBER}개여야 합니다.`,
+  WINNER_NUMBER_LENTH: `당첨 번호는 ${COUNT.WINNER_NUMBER}개여야 합니다.`,
+  BONUS_NUMBER_LENTH: `보너스 번호는 ${COUNT.BONUS_NUMBER}개여야 합니다.`,
+  DUPLICATION: '로또 번호는 고유해야 합니다.',
+  RANGE: `로또 번호는 ${COUNT.MIN_LOTTO_NUMBER}부터 ${COUNT.MAX_LOTTO_NUMBER} 사이의 숫자여야 합니다.`,
 };
 
 module.exports = {
   MESSAGE,
   ERROR_MESSAGE,
   ERROR_PREFIX,
-  NUM,
+  COUNT,
 };

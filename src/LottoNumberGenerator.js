@@ -1,9 +1,16 @@
 const { Console } = require('@woowacourse/mission-utils');
-const makeErrorMsg = require('./utils');
-const { MESSAGE, ERROR_MESSAGE, NUM } = require('./constants');
+const {
+  makeErrorMsg,
+  invalidNumber,
+  invalidInputNum,
+  invalidDuplication,
+  invalidRange,
+} = require('./utils');
+const { MESSAGE, ERROR_MESSAGE, COUNT } = require('./constants');
 
 class LottoNumberGenerator {
   #winnerNumbers = [];
+
   #bonusNumber;
 
   drawLottery() {
@@ -11,7 +18,7 @@ class LottoNumberGenerator {
       MESSAGE.LOTTO_NUMBER_GENERATOR.INPUT_WINNER_NUMBER,
       (numbers) => {
         const winnerNumbers = numbers.split(',').map((n) => +n);
-        LottoNumberGenerator.#validate(winnerNumbers, 'WINNER');
+        LottoNumberGenerator.#validate(winnerNumbers, 'WINNER_NUMBER');
         this.#winnerNumbers = winnerNumbers;
       },
     );
@@ -20,27 +27,28 @@ class LottoNumberGenerator {
       MESSAGE.LOTTO_NUMBER_GENERATOR.INPUT_BONUS_NUMBER,
       (number) => {
         const bonusNumber = number.split(',').map((n) => +n);
-        LottoNumberGenerator.#validate(bonusNumber, 'BONUS');
+        LottoNumberGenerator.#validate(bonusNumber, 'BONUS_NUMBER');
         this.#bonusNumber = bonusNumber;
       },
     );
   }
 
   static #validate(numbers, type) {
-    if (numbers.filter((number) => Number.isNaN(number)).length > 0) {
-      throw new Error(makeErrorMsg(ERROR_MESSAGE.LOTTO.NUMBER));
+    if (invalidNumber(numbers)) {
+      throw new Error(makeErrorMsg(ERROR_MESSAGE.NUMBER));
+    }
+    if (invalidInputNum(numbers, COUNT[type])) {
+      throw new Error(makeErrorMsg(ERROR_MESSAGE[`${type}_LENTH`]));
     }
 
-    if (numbers.length !== NUM[type]) {
-      throw new Error(makeErrorMsg(ERROR_MESSAGE.LOTTO.LENGTH));
+    if (invalidDuplication(numbers, COUNT[type])) {
+      throw new Error(makeErrorMsg(ERROR_MESSAGE.DUPLICATION));
     }
 
-    if (new Set(numbers).size !== NUM[type]) {
-      throw new Error(makeErrorMsg(ERROR_MESSAGE.LOTTO.DUPLICATION));
-    }
-
-    if (numbers.filter((number) => !(number >= 1 && number <= 45)).length > 0) {
-      throw new Error(makeErrorMsg(ERROR_MESSAGE.LOTTO.RANGE));
+    if (
+      invalidRange(numbers, [COUNT.MIN_LOTTO_NUMBER, COUNT.MAX_LOTTO_NUMBER])
+    ) {
+      throw new Error(makeErrorMsg(ERROR_MESSAGE.RANGE));
     }
   }
 
