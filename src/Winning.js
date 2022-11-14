@@ -1,9 +1,11 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
 class Winning {
-    constructor(randomLottos, winningNumbers, bonusNumber) {
+    constructor(amount, randomLottos, winningNumbers, bonusNumber) {
         this.printWinningAnnouncement();
-        this.calculateGradeCount(randomLottos, winningNumbers, bonusNumber);
+        const gradeCounts = this.calculateGradeCount(randomLottos, winningNumbers, bonusNumber);
+        this.printWinningHistory(gradeCounts);
+        this.printYield(amount, gradeCounts)
     }
 
     printWinningAnnouncement() {
@@ -39,7 +41,8 @@ class Winning {
             if(correctCount >= 3)
                 gradeCounts[correctCount - 3]++;
         }
-        this.printWinningHistory(gradeCounts);
+        // this.printWinningHistory(gradeCounts);
+        return gradeCounts;
     }
 
     printWinningHistory(gradeCounts) {
@@ -72,7 +75,7 @@ class Winning {
     }
 
     printYield(amount, gradeCounts) {
-        const yeild = calculateYield(amount, gradeCounts);
+        const yeild = this.calculateYield(amount, gradeCounts);
 
         MissionUtils.Console.print(`총 수익률은 ${yeild}%입니다.`);
     }

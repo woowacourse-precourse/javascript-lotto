@@ -23,7 +23,7 @@ class App {
     MissionUtils.Console.print(bonusNumber);
 
     // 당첨 결과
-    new Winning(randomLottos, winningNumbers, bonusNumber);
+    new Winning(amount, randomLottos, winningNumbers, bonusNumber);
   }
 }
 
