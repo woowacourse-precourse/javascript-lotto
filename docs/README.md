@@ -15,9 +15,9 @@
 - [x] get winning numbers and compare with the guessed numbers
     - [x] winning numbers: 6 numbers (from 1-45 without duplicates per ticket) separated with a comma (throw error when invalid)
     - [x] count the number of matched numbers per ticket after comparison
-- [ ] get bonus number and compare with the guessed numbers
-    - [ ] bonus number: 1 number (from 1-45 without duplicates per ticket) (throw error when invalid)
-    - [ ] check bonus number only for tickets with 5 guessed number matches and return true/false
+- [x] get bonus number and compare with the guessed numbers
+    - [x] bonus number: 1 number (from 1-45 without duplicates per ticket) (throw error when invalid)
+    - [x] check bonus number only for tickets with 5 guessed number matches and return true/false
           return null for tickets with less than 5 guessed number matches
 - [ ] calculate prize money by comparing random numbers and winning+bonus numbers
 - [ ] calculate earning rate by dividing prize money by payment amount and rounding to one decimal place
