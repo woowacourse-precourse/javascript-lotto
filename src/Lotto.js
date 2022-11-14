@@ -1,5 +1,11 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const { PRICE_OF_ONE_LOTTO, LOTTO_NUMBER_RANGE } = require("./constants");
+const {
+  PRICE_OF_ONE_LOTTO,
+  LOTTO_NUMBER_RANGE,
+  STATISTICS_MESSAGE,
+  WINNING_PRICE,
+  ERROR,
+} = require("./constants");
 const { isIncludeRange } = require("./utils");
 
 class Lotto {
@@ -11,13 +17,11 @@ class Lotto {
   }
 
   static validateMoney(moneyOfString) {
-    if (!moneyOfString.endsWith("000"))
-      throw new Error("[ERROR] 잔돈이 없습니다.");
+    if (!moneyOfString.endsWith("000")) throw ERROR.noSmallChange;
   }
 
   static buy(money) {
     const boughtLotto = [];
-    const PRICE_OF_ONE_LOTTO = 1000;
     const numberOfLottoTicketsBought = money / PRICE_OF_ONE_LOTTO;
 
     for (let i = 0; i < numberOfLottoTicketsBought; i++) {
@@ -27,10 +31,9 @@ class Lotto {
   }
 
   static generateNumbers() {
-    const MINIMUM = 1;
-    const MAXIMUM = 45;
+    const { max, min } = LOTTO_NUMBER_RANGE;
     const LENGTH = 6;
-    return Random.pickUniqueNumbersInRange(MINIMUM, MAXIMUM, LENGTH);
+    return Random.pickUniqueNumbersInRange(min, max, LENGTH);
   }
 
   static alertPurchaseResult(pickedNumbers) {
@@ -51,16 +54,16 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw ERROR.lengthIsSix;
     }
 
     if (numbers.length !== new Set(numbers).size) {
-      throw new Error("[ERROR] 중복된 번호는 입력할 수 없습니다.");
+      throw ERROR.noOverlappingNumber;
     }
 
     const existNaN = numbers.filter((number) => isNaN(number)).length >= 1;
     if (existNaN) {
-      throw new Error("[ERROR] 숫자만 입력해주세요.");
+      throw ERROR.onlyNumber;
     }
 
     const isNotRange = numbers.find(
@@ -68,17 +71,17 @@ class Lotto {
         !isIncludeRange(LOTTO_NUMBER_RANGE.min, LOTTO_NUMBER_RANGE.max, number)
     );
     if (isNotRange) {
-      throw new Error("[ERROR] 로또 번호의 범위는 1~45입니다.");
+      throw ERROR.wrongNumberRange;
     }
   }
 
   validateBonusNumber(bonusNumber) {
     if (isNaN(bonusNumber)) {
-      throw new Error("[ERROR] 숫자만 입력해주세요.");
+      throw ERROR.onlyNumber;
     }
 
     if (this.#numbers.includes(bonusNumber)) {
-      throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+      throw ERROR.noOverlappingNumberAndBonus;
     }
 
     if (
@@ -88,7 +91,7 @@ class Lotto {
         bonusNumber
       )
     ) {
-      throw new Error("[ERROR] 로또 번호의 범위는 1~45입니다.");
+      throw ERROR.wrongNumberRange;
     }
   }
 
@@ -117,6 +120,7 @@ class Lotto {
 
     return statistics;
   }
+
   getMatchedCount(userNumbers, bonusNumber) {
     const match = [];
     this.#numbers.forEach((number) => {
@@ -134,28 +138,10 @@ class Lotto {
   }
 
   getMessageFromStatistics(statistics, purchasedAmount) {
-    const messageGenerators = {
-      match3(count) {
-        return `3개 일치 (5,000원) - ${count}개`;
-      },
-      match4(count) {
-        return `4개 일치 (50,000원) - ${count}개`;
-      },
-      match5(count) {
-        return `5개 일치 (1,500,000원) - ${count}개`;
-      },
-      match5andBonus(count) {
-        return `5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`;
-      },
-      match6(count) {
-        return `6개 일치 (2,000,000,000원) - ${count}개`;
-      },
-    };
-
     const TITLE = "당첨 통계";
     const SEPARATOR = "---";
     const totalStatistics = Object.entries(statistics).map(([key, count]) =>
-      messageGenerators[key](count)
+      STATISTICS_MESSAGE[key](count)
     );
     const totalEarning = `총 수익률은 ${this.#getEarningRate(
       statistics,
@@ -167,15 +153,8 @@ class Lotto {
   }
 
   #getEarningRate(statistics, purchasedAmount) {
-    const priceList = {
-      match3: 5000,
-      match4: 50000,
-      match5: 1500000,
-      match5andBonus: 30000000,
-      match6: 2000000000,
-    };
     const earning = Object.entries(statistics).reduce(
-      (prev, [key, count]) => prev + count * priceList[key],
+      (prev, [key, count]) => prev + count * WINNING_PRICE[key],
       0
     );
 
