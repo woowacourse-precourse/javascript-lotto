@@ -20,12 +20,12 @@ class Lotto {
     }
   }
 
-  getLottoResult(lottos, bonus) {
+  getLottoResult(lottos) {
     const lottoTotalResult = new Array(5).fill(0);
     const lottoNumbers = lottos.length;
 
     for (let i = 0; i < lottoNumbers; i++) {
-      const lottoResult = this.countLottoResult(lottos[i], bonus);
+      const lottoResult = this.countLottoResult(lottos[i]);
 
       if (lottoResult === -1) {
         continue;
