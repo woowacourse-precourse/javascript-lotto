@@ -4,10 +4,14 @@ const { INPUT_MESSAGE } = require('../constant');
 const { readLine } = require('../utils/Utils');
 
 class LottoGameController {
+  #lottoGameModel;
+  #lottoGameView;
+  #calculatorModel;
+
   constructor(model, view, calculator) {
-    this.lottoGameModel = model;
-    this.lottoGameView = view;
-    this.calculatorModel = calculator;
+    this.#lottoGameModel = model;
+    this.#lottoGameView = view;
+    this.#calculatorModel = calculator;
 
     this.money;
     this.lottos;
@@ -18,8 +22,8 @@ class LottoGameController {
     this.setGame();
     this.pickWinningLotto();
 
-    const result = this.calculatorModel.draw(this.lottos, this.winningLotto);
-    this.lottoGameView.printResult(result, this.money);
+    const result = this.#calculatorModel.draw(this.lottos, this.winningLotto);
+    this.#lottoGameView.printResult(result, this.money);
   }
 
   setGame() {
@@ -27,15 +31,15 @@ class LottoGameController {
       MoneyValidator.validate(input);
 
       this.money = input;
-      this.lottos = this.lottoGameModel.payMoney(input);
+      this.lottos = this.#lottoGameModel.payMoney(input);
 
       this.printLottos(this.lottos);
     });
   }
 
   printLottos(lottos) {
-    this.lottoGameView.printLottoCount(lottos.length);
-    this.lottoGameView.printLottoNumbers(lottos);
+    this.#lottoGameView.printLottoCount(lottos.length);
+    this.#lottoGameView.printLottoNumbers(lottos);
   }
 
   pickWinningLotto() {
