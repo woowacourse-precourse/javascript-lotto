@@ -33,19 +33,25 @@ class Validation {
   static isLottoSize(winnerNumber) {
     return winnerNumber.length === LOTTO_SIZE;
   }
-  static isUniqueNumber(winnerNumber) {
+  static isUniqueWinnerNumber(winnerNumber) {
     return new Set(winnerNumber).size === LOTTO_SIZE;
   }
   static isNumberInRange(winnerNumber) {
     return winnerNumber.every((number) => number >= 1 && number <= 45);
   }
-  static checkBonusNumber(bonusNumber) {
-    if (!this.isOnlyNumber(bonusNumber)) {
+  static checkBonusNumber(bonusNumber, winnerNumber) {
+    if (this.isOnlyNumber(bonusNumber)) {
       throw new Error(ERROR_MESSAGE.NOT_ONLY_NUMBER);
     }
     if (!this.isNumberInRange(bonusNumber)) {
       throw new Error(ERROR_MESSAGE.NOT_IN_RANGE);
     }
+    if (this.isUniqueBonusNumber(bonusNumber, winnerNumber)) {
+      throw new Error(ERROR_MESSAGE.NOT_UNIQUE_NUMBER);
+    }
+  }
+  static isUniqueBonusNumber(bonusNumber, winnerNumber) {
+    return winnerNumber.includes(bonusNumber);
   }
 }
 

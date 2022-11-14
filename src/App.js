@@ -40,7 +40,7 @@ class App {
       GUIDE_MESSAGE.BONUSNUMBER_INPUT,
       (bonusNumber) => {
         const bonusNumberArr = bonusNumber.split("");
-        Validation.checkBonusNumber(bonusNumberArr);
+        Validation.checkBonusNumber(bonusNumberArr, this.winnerNumber);
       }
     );
   }
