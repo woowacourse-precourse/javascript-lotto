@@ -5,7 +5,6 @@ class App {
   bonusNumber;
   lottos;
   scores;
-  profit;
   payMoney;
   reward;
 
@@ -23,8 +22,6 @@ class App {
       [5.5, 30_000_000, 0],
       [6, 2_000_000_000, 0],
     ];
-
-    this.profit = 0;
 
     this.payMoney = 0;
   }
@@ -130,16 +127,17 @@ class App {
             }개`
           );
     });
+    Console.print(`총 수익률은 ${this.calculateProfit()}%입니다.`);
   }
 
-  calculateProfit(scores) {
-    return scores.reduce((total, arg) => {
-      if (arg === 3) return (total += this.reward[0]);
-      if (arg === 4) return (total += this.reward[1]);
-      if (arg === 5) return (total += this.reward[2]);
-      if (arg === 5.5) return (total += this.reward[3]);
-      if (arg === 6) return (total += this.reward[4]);
+  calculateProfit() {
+    const sum = this.rewards.reduce((total, arg) => {
+      if (arg[2] != 0) {
+        return (total += arg[1] * arg[2]);
+      }
+      return total;
     }, 0);
+    return Math.round((sum / this.payMoney) * 10000) / 100;
   }
 }
 
