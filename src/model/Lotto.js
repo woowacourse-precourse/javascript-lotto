@@ -45,11 +45,6 @@ class Lotto {
   getLottoNumbers() {
     return this.#numbers;
   }
-
-  setLottoNumbersToUse() {
-    this.controller.setLottoToUse(this.getLottoNumbers());
-    this.controller.getBonusNumberFromUser();
-  }
 }
 
 module.exports = Lotto;
