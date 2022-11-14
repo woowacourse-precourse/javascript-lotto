@@ -1,6 +1,4 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const User = require("./User");
-const LottoMachine = require("./LottoMachine");
 const { RESULT_MESSAGE } = require("./constants/MessageConstants");
 const { MONEY, REWARD_MONEY, RANK, LOTTO, CALCULATE } = require("./constants/NumberConstants");
 
