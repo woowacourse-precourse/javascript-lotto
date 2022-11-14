@@ -136,6 +136,14 @@ class App {
       }
     }
   }
+
+  printCountOfThreeMatch() {
+    Console.print(`3개 일치 (5,000원) - ${this.countThreeMatch}개`);
+  }
+
+  printCountOfFourMatch() {
+    Console.print(`4개 일치 (50,000원) - ${this.countFourMatch}개`);
+  }
 }
 
 const app = new App();
