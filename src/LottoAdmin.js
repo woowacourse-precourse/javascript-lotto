@@ -1,5 +1,6 @@
 const { Random } = require("@woowacourse/mission-utils");
 const Console = require("./Console");
+const { LOTTO_RESULT } = require("./constants");
 
 class LottoAdmin {
   static generateLottoAnswer(lottoNum) {
@@ -16,20 +17,17 @@ class LottoAdmin {
     return lotto.filter((num) => winNumbers.includes(num)).length;
   }
 
-  static getStatisticsStrArr(entries) {
-    return entries.map(([key, value]) => key + value + "개").join("\n");
+  static getStatisticsStrArr(statistics) {
+    const ment = Object.values(LOTTO_RESULT);
+    return statistics.map((value, idx) => ment[idx] + value + "개").join("\n");
   }
 
   static printWinStatistics(statistics) {
-    const entries = Object.entries(statistics);
-    Console.print(this.getStatisticsStrArr(entries));
+    Console.print(this.getStatisticsStrArr(statistics));
   }
 
   static getStatisticsPriceSum(price, statistics) {
-    return Object.entries(statistics).reduce(
-      (acc, [_, value], idx) => acc + value * price[idx],
-      0
-    );
+    return statistics.reduce((acc, value, idx) => acc + value * price[idx], 0);
   }
 
   static getMargin(price, [lottos, statistics]) {
