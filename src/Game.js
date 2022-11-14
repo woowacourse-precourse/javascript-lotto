@@ -1,50 +1,21 @@
 const WConsole = require("./utils/WConsole");
-const { INPUT_MSG, prizeMsg, PRIZE, yieldMsg } = require("./utils/string");
+const { INPUT_MSG, yieldMsg, MATCHING_LOTTO } = require("./utils/string");
 const Payment = require("./Payment");
 const Lotto = require("./Lotto");
-const LottoMatcher = require("./LottoMatcher");
+const LottoPrize = require("./LottoPrize");
 
 class Game {
   init() {
     const money = WConsole.readLine(INPUT_MSG.START_GAME);
     const lottos = this.buyLottos(money);
     const matchingLotto = this.getMatchingLotto();
-    const lottoMatcher = new LottoMatcher();
+    const lottoMatcher = new LottoPrize();
     const prize = lottoMatcher.getLottoPrize(lottos, matchingLotto);
-    // const prize = this.getLottoPrize(lottos, matchingLotto);
     this.printYield(money, prize);
     WConsole.close();
   }
-  getLottoPrize(lottos, matchingLotto) {
-    let lottoResults = { FIFTH: 0, FOURTH: 0, THIRD: 0, SECOND: 0, FIRST: 0 };
-    let result;
-    for (const lotto of lottos) {
-      result = lotto.compareNums(matchingLotto);
-      lottoResults = this.isInRank(result, lottoResults);
-    }
-    this.printLottoResults(lottoResults);
-    return this.calculatePrize(lottoResults);
-  }
-  calculatePrize(lottoResults) {
-    let prize = 0;
-    for (const [rank, count] of Object.entries(lottoResults)) {
-      prize += PRIZE[rank] * count;
-    }
-    return prize;
-  }
   printYield(money, prize) {
     WConsole.print(yieldMsg(money, prize));
-  }
-  printLottoResults(lottoResults) {
-    for (const [rank, count] of Object.entries(lottoResults)) {
-      WConsole.print(prizeMsg(rank, count));
-    }
-  }
-  isInRank(result, lottoResults) {
-    if (result.rank) {
-      lottoResults[result.rank]++;
-    }
-    return lottoResults;
   }
   buyLottos(money) {
     const payment = new Payment(money);
@@ -52,8 +23,10 @@ class Game {
   }
   getMatchingLotto() {
     const matchingLotto = {};
-    matchingLotto["winning"] = new Lotto(this.getWinningNums());
-    matchingLotto["bonus"] = parseInt(WConsole.readLine(INPUT_MSG.BONUS_NUMS));
+    matchingLotto[MATCHING_LOTTO.WINNING] = new Lotto(this.getWinningNums());
+    matchingLotto[MATCHING_LOTTO.BONUS] = parseInt(
+      WConsole.readLine(INPUT_MSG.BONUS_NUMS)
+    );
     return matchingLotto;
   }
   getWinningNums() {

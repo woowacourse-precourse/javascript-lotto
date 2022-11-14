@@ -23,26 +23,36 @@ const LOTTO = {
   COUNT: 6,
   PRICE: 1000,
 };
-
+const RANK_NAME = {
+  FIFTH: "FIFTH",
+  FOURTH: "FOURTH",
+  THIRD: "THIRD",
+  SECOND: "SECOND",
+  FIRST: "FIRST",
+};
 const RANK = {
-  3: "FIFTH",
-  4: "FOURTH",
+  3: RANK_NAME.FIFTH,
+  4: RANK_NAME.FOURTH,
   // 5: "THIRD" | "SECOND",
-  6: "FIRST",
+  6: RANK_NAME.FIRST,
 };
 const PRIZE = {
-  FIFTH: 5000,
-  FOURTH: 50000,
-  THIRD: 1500000,
-  SECOND: 30000000,
-  FIRST: 2000000000,
+  [RANK_NAME.FIFTH]: 5000,
+  [RANK_NAME.FOURTH]: 50000,
+  [RANK_NAME.THIRD]: 1500000,
+  [RANK_NAME.SECOND]: 30000000,
+  [RANK_NAME.FIRST]: 2000000000,
 };
 const MATCH = {
-  FIFTH: 3,
-  FOURTH: 4,
-  THIRD: 5,
-  SECOND: 5,
-  FIRST: 6,
+  [RANK_NAME.FIFTH]: 3,
+  [RANK_NAME.FOURTH]: 4,
+  [RANK_NAME.THIRD]: 5,
+  [RANK_NAME.SECOND]: 5,
+  [RANK_NAME.FIRST]: 6,
+};
+const MATCHING_LOTTO = {
+  WINNING: "winning",
+  BONUS: "bonus",
 };
 
 const toCurrencyFormat = (num) => {
@@ -66,6 +76,9 @@ exports.paymentMsg = paymentMsg;
 exports.prizeMsg = prizeMsg;
 exports.yieldMsg = yieldMsg;
 exports.toCurrencyFormat = toCurrencyFormat;
+exports.RANK_NAME = RANK_NAME;
 exports.LOTTO = LOTTO;
+exports.MATCH = MATCH;
 exports.RANK = RANK;
 exports.PRIZE = PRIZE;
+exports.MATCHING_LOTTO = MATCHING_LOTTO;

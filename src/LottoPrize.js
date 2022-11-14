@@ -1,11 +1,17 @@
-const { PRIZE, prizeMsg } = require("./utils/string");
+const { PRIZE, prizeMsg, RANK_NAME } = require("./utils/string");
 const WConsole = require("./utils/WConsole");
 
-class LottoMatcher {
+class LottoPrize {
   #rankResult;
 
   constructor() {
-    this.#rankResult = { FIFTH: 0, FOURTH: 0, THIRD: 0, SECOND: 0, FIRST: 0 };
+    this.#rankResult = {
+      [RANK_NAME.FIFTH]: 0,
+      [RANK_NAME.FOURTH]: 0,
+      [RANK_NAME.THIRD]: 0,
+      [RANK_NAME.SECOND]: 0,
+      [RANK_NAME.FIRST]: 0,
+    };
   }
   getLottoPrize(lottos, matchingLotto) {
     let lottoResults = this.#rankResult;
@@ -37,4 +43,4 @@ class LottoMatcher {
   }
 }
 
-module.exports = LottoMatcher;
+module.exports = LottoPrize;

@@ -1,4 +1,4 @@
-const { ERROR_MSG, RANK } = require("./utils/string");
+const { ERROR_MSG, RANK, MATCH, RANK_NAME } = require("./utils/string");
 const Validation = require("./utils/Validation");
 
 class Lotto {
@@ -47,19 +47,18 @@ class Lotto {
   }
   compareNums(matchingLotto) {
     let match = this.isWinning(matchingLotto.winning.getNumbers());
-    if (match <= 2) {
+    if (match < MATCH[RANK_NAME.FIFTH]) {
       return { match, rank: null };
     }
     let rank = RANK[match];
-    if (match === 5) {
+    if (match === MATCH[RANK_NAME.THIRD]) {
       rank = this.isBonus(matchingLotto.bonus);
     }
     return { match, rank };
   }
   isWinning(winningArr) {
     let win = 0;
-    const lottoArr = this.#numbers;
-    for (const num of lottoArr) {
+    for (const num of this.#numbers) {
       if (winningArr.includes(num)) {
         win++;
       }
@@ -67,7 +66,9 @@ class Lotto {
     return win;
   }
   isBonus(bonusNum) {
-    const rank = this.#numbers.includes(bonusNum) ? "SECOND" : "THIRD";
+    const rank = this.#numbers.includes(bonusNum)
+      ? RANK_NAME.SECOND
+      : RANK_NAME.THIRD;
     return rank;
   }
 }
