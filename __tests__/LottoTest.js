@@ -82,4 +82,17 @@ describe("로또 클래스 테스트", () => {
       new Lotto([1, 2, 46, 4, 5, 3]).validateBonus("47");
     }).toThrow("[ERROR]");
   });
+
+  test("당첨번호에 숫자가 아닌것이 있으면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([1, "이", 46, 4, 5, 3]);
+    }).toThrow("[ERROR]");
+  });
+
+  test("보너스 번호 숫자가 아니면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([1, 2, 46, 4, 5, 3]).validateBonus("삼");
+    }).toThrow("[ERROR]");
+  });
+
 });
