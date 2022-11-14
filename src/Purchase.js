@@ -14,10 +14,10 @@ class Purchase {
     this.#lottoCount = 0;
     this.#cash = Number(cash);
     this.#lottoSet = new Set();
-    this.setLottoCount();
+    this.#setLottoCount();
   }
 
-  setLottoCount() {
+  #setLottoCount() {
     this.#lottoCount = this.#cash / MONEY_UNIT;
   }
 
@@ -29,7 +29,7 @@ class Purchase {
     return this.#lottoCount;
   }
 
-  makeRandomNumberArr() {
+  #makeRandomNumberArr() {
     return Random.pickUniqueNumbersInRange(
       LOTTO_NUMBER.START,
       LOTTO_NUMBER.END,
@@ -39,7 +39,7 @@ class Purchase {
 
   makeLottoSet(count) {
     for (let i = 0; i < count; i++) {
-      const numbers = this.makeRandomNumberArr();
+      const numbers = this.#makeRandomNumberArr();
       this.#lottoSet.add(JSON.stringify(numbers));
     }
 
