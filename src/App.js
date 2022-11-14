@@ -16,6 +16,7 @@ class App {
       first: 0,
     };
     this.prize = 0;
+    this.profit = 0;
   }
 
   play() {
@@ -92,7 +93,17 @@ class App {
     let percentage = (this.prize / this.amount) * 100;
     percentage = percentage.toFixed(1);
     console.log(percentage);
+    this.profit = percentage;
+    this.printResult();
     return percentage;
+  }
+
+  printResult() {
+    for (const [result, count] of Object.entries(this.scoreBoard)) {
+      Console.print(MESSAGE[result](count));
+    }
+    Console.print(MESSAGE.profit(this.profit));
+    Console.close();
   }
 }
 
