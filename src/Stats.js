@@ -4,11 +4,11 @@ const FIVE_HUNDRED_THOUSAND_WON = 1500000;
 const THIRTY_MILLION_WON = 30000000;
 const TWO_BILLION_WON = 2000000000;
 
-const underThree = (bonus) => "underThree";
-const three = (bonus) => "three";
-const four = (bonus) => "four";
+const underThree = (_) => "underThree";
+const three = (_) => "three";
+const four = (_) => "four";
 const five = (bonus) => (bonus ? "fivePlusBonus" : "five");
-const six = (bonus) => "six";
+const six = (_) => "six";
 
 const scoreMap = {
   0: underThree,
