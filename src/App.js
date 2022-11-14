@@ -33,12 +33,16 @@ class App {
     });
   }
 
+  getInputNumbers(numbers) {
+    return numbers
+      .split(",")
+      .map(Number)
+      .sort((a, b) => (a > b ? 1 : -1));
+  }
+
   requestLottoNumbers() {
     Console.getUserInput("\n" + Console.REQUEST_LOTTO_NUMBER, (numbers) => {
-      const inputNumbers = numbers
-        .split(",")
-        .map(Number)
-        .sort((a, b) => (a > b ? 1 : -1));
+      const inputNumbers = this.getInputNumbers(numbers);
       this.winNumbers = new Lotto(inputNumbers).getNumbers;
       this.requestBonusNumber();
     });
