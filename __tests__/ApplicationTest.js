@@ -89,5 +89,20 @@ describe("로또 테스트", () => {
       app.winningLottoValidate([1, 2, 3, 4, 5, 6, 46]);
     }).toThrow("[ERROR]")
   });
+
+  test("보너스 번호 예외처리 테스트_1", () => {
+    expect(() => {
+      const app = new App();
+      app.winningLottoArr = [[1, 2, 3, 4, 5, 6]] //당첨번호와 중복 확인하기 위해 설정
+      app.winningLottoBonusValidate(6);
+    }).toThrow("[ERROR]");
+  });
+
+  test("보너스 번호 예외처리 테스트_2", () => {
+    expect(() => {
+      const app = new App();
+      app.winningLottoBonusValidate(50);
+    }).toThrow("[ERROR]");
+  });
   
 });
