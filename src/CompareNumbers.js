@@ -99,6 +99,18 @@ class CompareWithLotto {
     for (index; index > 0; index--) {
       totalPrize += matchingTicket[index] * PRIZE_MONEY[index];
     }
+
+    this.printRateOfReturn(totalPrize);
+  }
+
+  printRateOfReturn(totalPrize) {
+    const rate = ((totalPrize / this.userMoney) * 100).toFixed(1);
+    const addCommasToNumbers = String(rate).replace(
+      /\B(?=(\d{3})+(?!\d))/g,
+      ","
+    );
+
+    CONSOLE_UTIL.print(`총 수익률은 ${addCommasToNumbers}%입니다.`);
   }
 }
 
