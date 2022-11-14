@@ -1,5 +1,5 @@
 const Utils = require("../utils/Utils");
-const Lotto = require("../Lotto");
+const Lotto = require("./Lotto");
 const { LOTTO_PRICE, MAX_NUMBER, MIN_NUMBER, LOTTO_LENGTH } = require("../utils/constants");
 const { ERROR } = require("../utils/messages");
 

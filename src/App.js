@@ -2,7 +2,7 @@ const Utils = require("./utils/Utils");
 const LottoSeller = require("./domain/LottoMahcine");
 const YieldCalculator = require("./domain/YieldCalculator");
 const RankCalculator = require("./domain/RankCalculator");
-const WinningLotto = require("./WinningLotto");
+const WinningLotto = require("./domain/WinningLotto");
 const { MESSAGE } = require("./utils/messages");
 
 class App {

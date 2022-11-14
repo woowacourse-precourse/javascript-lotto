@@ -1,6 +1,6 @@
 const RankCalculator = require("../src/domain/RankCalculator");
-const Lotto = require("../src/Lotto");
-const WinningLotto = require("../src/WinningLotto");
+const Lotto = require("../src/domain/Lotto");
+const WinningLotto = require("../src/domain/WinningLotto");
 
 describe("등수 계산기 클래스 테스트", () => {
   test("플레이어의 첫 번째 로또 1등 당첨", () => {

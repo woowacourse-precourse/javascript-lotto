@@ -1,6 +1,6 @@
-const { MIN_NUMBER, MAX_NUMBER } = require("./utils/constants");
+const { MIN_NUMBER, MAX_NUMBER } = require("../utils/constants");
 const Lotto = require("./Lotto");
-const { ERROR } = require("./utils/messages");
+const { ERROR } = require("../utils/messages");
 
 class WinningLotto extends Lotto {
   #bonusNumber;

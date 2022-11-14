@@ -1,5 +1,5 @@
-const { LOTTO_LENGTH, MIN_NUMBER, MAX_NUMBER } = require("./utils/constants");
-const { ERROR } = require("./utils/messages");
+const { LOTTO_LENGTH, MIN_NUMBER, MAX_NUMBER } = require("../utils/constants");
+const { ERROR } = require("../utils/messages");
 
 class Lotto {
   #numbers;
