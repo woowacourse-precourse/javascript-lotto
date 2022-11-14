@@ -33,10 +33,7 @@ describe("Lotto 클래스의 makeSixNumbers() 기능 테스트", () => {
   });
 });
 
-
-
-describe("Lotto 클래스의 NumbersPurchaseByUser() 기능 테스트", () => {
-
+describe("Lotto 클래스의 makeSixNumbers() 기능 테스트", () => {
   test("유저가 구매한 로또 번호에 중복이 없는지 확인", () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     const lottoNumbers = lotto.makeSixNumbers();
@@ -48,5 +45,14 @@ describe("Lotto 클래스의 NumbersPurchaseByUser() 기능 테스트", () => {
     const lottoNumbers = lotto.makeSixNumbers();
     const correctRangeCheck = lottoNumbers.every((number) => (number >= 1) && (number <= 45));
     expect(correctRangeCheck).toBeTruthy();
+  });
+});
+
+describe("Lotto 클래스의 bundleCreate() 기능 테스트", () => {
+  test("구매한 로또 개수만큼의 번호들이 생성된지 확인", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    const purchaseLottoCount = 3;
+    const lottoBundle = lotto.bundleCreate(purchaseLottoCount).length;
+    expect(lottoBundle).toEqual(purchaseLottoCount);
   });
 });
