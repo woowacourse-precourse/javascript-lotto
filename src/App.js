@@ -26,10 +26,12 @@ class App {
 
   printRandomNumbers(randomNumbers) {
     randomNumbers.forEach((numbers) => {
-      Console.print(`[${numbers.sort((a, b) => {
-        return a - b;
-      }).join(', ')}]`);
+      Console.print(`[${this.sortAscRandomNumbers(numbers).join(', ')}]`);
     })
+  }
+
+  sortAscRandomNumbers(numbers) {
+    return numbers.sort((a, b) => a - b)
   }
 
   getLottoNumber() {
@@ -43,12 +45,20 @@ class App {
     Console.readLine('\n보너스 번호를 입력해 주세요.\n', (number) => {
       Console.close();
       this.#lotto.setBonusNumber(number);
-      this.getWinningStats();
+      this.printWinningStatsAndRateOfReturn();
     })
+  }
+
+  printWinningStatsAndRateOfReturn() {
+    const countWinning = this.getWinningStats();
+
+    this.printWinningStats(countWinning);
+    this.printRateOfReturn(countWinning);
   }
 
   getWinningStats() {
     const countWinning = [0, 0, 0, 0, 0];
+
     this.Generator.getRandomNumbers().forEach((randomNumbers) => {
       const { count, bonus } = this.getCountWinning(randomNumbers);
       if (count === 3) countWinning[0] += 1;
@@ -57,37 +67,22 @@ class App {
       if (count === 5 && bonus) countWinning[3] += 1;
       if (count === 6) countWinning[4] += 1;
     });
-    this.printWinningStats(countWinning);
-    this.printRateOfReturn(countWinning);
+
+    return countWinning;
   }
 
   getCountWinning(randomNumbers) {
+    const lottoNumber = this.#lotto.getLotto();
+    const bonusNumber = lottoNumber[lottoNumber.length - 1];
     let count = 0;
     let bonus = false;
-    let lottoNumber = this.#lotto.getLotto();
-    randomNumbers.forEach((number) => {
-      if (lottoNumber.includes(number)) {
-        count += 1;
-      }
 
-      if (lottoNumber[lottoNumber.length - 1] === number) {
-        bonus = true;
-      }
+    randomNumbers.forEach((number) => {
+      if (lottoNumber.includes(number)) count += 1;
+      if (bonusNumber === number) bonus = true;
     })
 
     return { count, bonus };
-  }
-
-  printRateOfReturn(countWinning) {
-    let total = 0;
-    total += countWinning[0] * 5000;
-    total += countWinning[1] * 50000;
-    total += countWinning[2] * 1500000;
-    total += countWinning[3] * 30000000;
-    total += countWinning[4] * 2000000000;
-
-    const rateOfReturn = Number(((total / this.#purchaseAmount) * 100).toFixed(1)).toLocaleString();
-    Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
   }
 
   printWinningStats(countWinning) {
@@ -98,6 +93,21 @@ class App {
     Console.print(`5개 일치 (1,500,000원) - ${countWinning[2]}개`);
     Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${countWinning[3]}개`);
     Console.print(`6개 일치 (2,000,000,000원) - ${countWinning[4]}개`);
+  }
+
+  printRateOfReturn(countWinning) {
+    Console.print(`총 수익률은 ${this.calcRateOfReturn(countWinning)}%입니다.`);
+  }
+
+  calcRateOfReturn(countWinning) {
+    let total = 0;
+    total += countWinning[0] * 5000;
+    total += countWinning[1] * 50000;
+    total += countWinning[2] * 1500000;
+    total += countWinning[3] * 30000000;
+    total += countWinning[4] * 2000000000;
+
+    return Number(((total / this.#purchaseAmount) * 100).toFixed(1)).toLocaleString();
   }
 
   play() {
