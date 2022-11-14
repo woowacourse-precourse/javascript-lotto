@@ -53,9 +53,8 @@ class LottoGame {
   }
 
   prizeCalculatePhase() {
-    const eachLottoNumbers = this.getEachLottoNumbers();
     const eachLottoPrize = this.prizeCalculator.calculatePrize(
-      eachLottoNumbers,
+      this.getEachLottoNumbers(),
       this.winningLotto.getWinningNumbers(),
       this.winningLotto.getBonusNumber()
     );
