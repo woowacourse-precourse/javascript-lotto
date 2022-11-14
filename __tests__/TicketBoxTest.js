@@ -6,4 +6,9 @@ describe('TicketBox 클래스 테스트', () => {
       new TicketBox('나는김재민');
     }).toThrow('[ERROR] 문자가 아닌 숫자가 들어와야 합니다.');
   });
+  test('1000으로 나누어 떨어지지 않으면 예외가 발생한다.', () => {
+    expect(() => {
+      new TicketBox(1001);
+    }).toThrow('[ERROR] 1000 단위로 입력하여 주십시오.');
+  });
 });
