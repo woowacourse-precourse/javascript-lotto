@@ -36,4 +36,22 @@ describe('로또 클래스 테스트', () => {
       checkAccountValidation('100100');
     }).toThrow('[ERROR]');
   });
+
+  test('보너스 번호가 숫자가 아닌 경우 예외가 발생한다.', () => {
+    expect(() => {
+      checkBonusValidation('ab', [1, 2, 3, 4, 5, 6]);
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호가 로또 번호와 중복되는 경우 예외가 발생한다.', () => {
+    expect(() => {
+      checkBonusValidation('1', [1, 2, 3, 4, 5, 6]);
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호가 1부터 45사이가 아닌 경우 예외가 발생한다.', () => {
+    expect(() => {
+      checkBonusValidation('46', [1, 2, 3, 4, 5, 6]);
+    }).toThrow('[ERROR]');
+  });
 });
