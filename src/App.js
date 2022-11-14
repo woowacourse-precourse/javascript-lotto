@@ -11,12 +11,20 @@ class App {
     return inputPrice / 1000;
   }
 
+  static lottoPublisher(purchaseCount) {
+    const purchaseLottoNumbers = [];
+
+    purchaseLottoNumbers.push(Random.pickUniqueNumbersInRange(1, 45, 6));
+
+    Console.print(purchaseLottoNumbers);
+  }
+
   play() {
-    App.priceInput();
+    App.lottoPublisher(6);
   }
 }
 
-// const app = new App();
-// app.play();
+const app = new App();
+app.play();
 
 module.exports = App;
