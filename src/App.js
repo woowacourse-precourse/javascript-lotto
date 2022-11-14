@@ -45,6 +45,15 @@ class App {
       }
     });
   }
+
+  printResult(bonusNumber) {
+    const countResult = this.lotto.countWinningNumber(
+      this.userLotto.getUserLottoList(),
+      bonusNumber
+    );
+    this.userLotto.printWinningResult(countResult);
+    MissionUtils.Console.close();
+  }
 }
 
 const app = new App();
