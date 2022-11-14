@@ -68,4 +68,26 @@ describe("로또 테스트", () => {
       app.play();
     }).toThrow("[ERROR]");
   });
+
+  test("당첨번호(보너스번호 제외) 예외처리 테스트_1", () => {
+    expect(() => {
+      const app = new App();
+      app.winningLottoValidate([1, 2, 3, 4, 5, 6, 7]);
+    }).toThrow("[ERROR]");
+  });
+
+  test("당첨번호(보너스번호 제외) 예외처리 테스트_2", () => {
+    expect(() => {
+      const app = new App();
+      app.winningLottoValidate([1, 2, 3, 4, 5, 5]);
+    }).toThrow("[ERROR]");
+  });
+
+  test("당첨번호(보너스번호 제외) 예외처리 테스트_3", () => {
+    expect(() => {
+      const app = new App();
+      app.winningLottoValidate([1, 2, 3, 4, 5, 6, 46]);
+    }).toThrow("[ERROR]")
+  });
+  
 });
