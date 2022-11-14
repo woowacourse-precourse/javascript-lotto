@@ -34,4 +34,12 @@ describe("로또 클래스 테스트", () => {
   }).toThrow("[ERROR]");
   });
 
+  test("구입 금액이 1000원으로 나누어 떨어지지 않으면 예외가 발생한다.", ()=>{
+    mockQuestions(["1800"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+  }).toThrow("[ERROR]");
+  });
+
 });
