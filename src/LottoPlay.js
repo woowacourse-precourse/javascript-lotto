@@ -127,14 +127,12 @@ class LottoPlay {
     for (let i = 0; i < LOTTO_LENGTH; i++) {
       const tempCount = this.#resultArray[i];
       totalWinningMoney += tempCount * WINNING_PRICE[i];
-      console.log(totalWinningMoney);
     }
     return totalWinningMoney;
   }
 
   calculateYield(purchaseAmount) {
     const totalWinningMoney = this.calculateTotalWinningMoney();
-    console.log(totalWinningMoney);
     return ((totalWinningMoney / purchaseAmount) * 100).toFixed(1);
   }
 }
