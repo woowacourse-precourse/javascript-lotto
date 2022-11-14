@@ -26,8 +26,8 @@ class App {
             for(const userLotto of this.userLottos) { 
               const matchCount = this.compareLottoNumber(userLotto);
               this.matchRank(matchCount);
-              Utils.print(this.setMatchResult());
             }
+            Utils.print(this.setMatchResult());
             Utils.close();
         });
       });
@@ -75,9 +75,14 @@ class App {
   }
   matchRank(matchCount){
   if(matchCount == 5 && userLotto.includes(this.winningBonusNumber)){
-    this.winningResult[4] += 1;
+    this.winningResult[3] += 1;
+    return
   }
-  else if(2 < matchCount && matchCount < 7) {
+  if(matchCount == 6){
+    this.winningResult[4] += 1
+    return
+  }
+  if(2 < matchCount && matchCount < 6) {
     this.winningResult[matchCount-3] += 1;
   }
 }
