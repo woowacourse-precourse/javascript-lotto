@@ -11,16 +11,19 @@ class Lotto {
   NumberPackage(money) {
     this.validate(money);
     this.#numbers = this.howManyLotto(money);
-    Console.print(`\n${this.#numbers}개를 구매했습니다.`);
+    
+    this.printHowManyLotto();
 
     for (let i = 0; i < this.#numbers; i += 1) {
-      const lottoNumber = this.sortLottoNumber(
-        Random.pickUniqueNumbersInRange(1, 45, 6)
-      );
-      Console.print(lottoNumber);
+      const lottoNumber = this.sortLottoNumber(Random.pickUniqueNumbersInRange(1, 45, 6));
+      Console.print(`[${lottoNumber.join(', ')}]`);
       this.lottoList.push(lottoNumber);
     }
     return this.lottoList;
+  }
+
+  printHowManyLotto() {
+    Console.print(`\n${this.#numbers}개를 구매했습니다.`);
   }
 
   howManyLotto(money) {
