@@ -1,6 +1,6 @@
 const Casher = require('../src/domain/Casher');
 const { CASHER } = require('../src/constants');
-const Io = require('../src/infrastructure/io/Io');
+const Io = require('../src/infrastructure/io');
 
 describe('캐셔 테스트', () => {
   test('캐셔는 돈을 받는다.', () => {
@@ -24,7 +24,7 @@ describe('캐셔 테스트', () => {
   test('캐셔는 발행한 티켓의 수량을 알려준다.', () => {
     const quantity = 10;
     Io.output = jest.fn();
-    Casher.noticePurchaseQuantity(quantity);
+    Casher.noticePurchasedQuantity(quantity);
     expect(Io.output).toBeCalledWith(`${quantity}${CASHER.NOTICE_PURCHASE_QUANTITY}`);
   });
 });

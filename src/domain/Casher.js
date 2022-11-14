@@ -18,7 +18,7 @@ class Casher {
     return quantity;
   }
 
-  static noticePurchaseQuantity(quantity) {
+  static noticePurchasedQuantity(quantity) {
     return Io.output(`${quantity}${CASHER.NOTICE_PURCHASE_QUANTITY}`);
   }
 }
