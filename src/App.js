@@ -72,7 +72,7 @@ class App {
       this.#calculator.addPrize(ranking);
     });
 
-    this.#profitRate = this.#calculator.calcProfitRate().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    this.#profitRate = this.#calculator.calcProfitRate();
     this.printResult();
   }
 

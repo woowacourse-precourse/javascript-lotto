@@ -20,7 +20,8 @@ class Calculator {
   }
 
   calcProfitRate() {
-    return ((this.#totalPrize / this.#pay) * 100).toFixed(1);
+    const profit = this.#totalPrize / this.#pay;
+    return (profit * 100).toFixed(1).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 }
 
