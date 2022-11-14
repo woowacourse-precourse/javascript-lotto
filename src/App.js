@@ -15,6 +15,8 @@ class App {
 
   #bonusNumber;
 
+  #winHistory;
+
   #revenue;
 
   constructor() {
@@ -22,6 +24,7 @@ class App {
     this.#lottos = [];
     this.#winNumbers = [];
     this.#bonusNumber = 0;
+    this.#winHistory = [];
     this.#revenue = 0;
   }
 
@@ -49,7 +52,9 @@ class App {
     MissionUtils.Console.readLine(
       '\n당첨 번호를 입력해주세요.\n',
       (numbers) => {
-        this.setWinNumbers(numbers.split(','));
+        this.setWinNumbers(
+          numbers.split(',').map((number) => parseInt(number, 10))
+        );
         this.inputBonusNumbers();
       }
     );
@@ -60,8 +65,22 @@ class App {
       '\n보너스 번호를 입력해주세요.\n',
       (number) => {
         this.setBonusNumber(number);
+        const lottosResult = this.makeLottosResult();
+        this.setWinHistory(lottosResult);
       }
     );
+  }
+
+  makeLottosResult(lottos = this.getLottos()) {
+    const result = [0, 0, 0, 0, 0];
+    const winNumbers = this.getWinNumbers();
+    const bonusNumber = this.getBonusNumber();
+    lottos.forEach((lotto) => {
+      const rank = lotto.rankLotto(winNumbers, bonusNumber);
+      if (rank === -1) return;
+      result[rank - 1] += 1;
+    });
+    return result;
   }
 
   setAmount(amount) {
@@ -97,6 +116,14 @@ class App {
 
   getBonusNumber() {
     return this.#bonusNumber;
+  }
+
+  setWinHistory(winHistory) {
+    this.#winHistory = winHistory;
+  }
+
+  getWinHistory() {
+    return this.#winHistory;
   }
 
   setRevenue(revenue) {

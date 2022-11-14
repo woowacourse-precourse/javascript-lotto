@@ -130,7 +130,7 @@ describe('My Unit test', () => {
     ]; // [1, 2, 1, 3, 1]
     app.setWinNumbers(winNumbers);
     app.setBonusNumber(bonusNumber);
-    const winResult = app.getWinResult(lottos);
+    const winResult = app.makeLottosResult(lottos);
 
     expect(winResult).toEqual([1, 2, 1, 3, 1]);
   });
