@@ -83,6 +83,8 @@ class App {
 
     this.printResult();
     this.printProfitRate();
+
+    this.endGame();
   }
 
   printResult() {
@@ -98,6 +100,10 @@ class App {
     const profitRateMessage = Message.getProfitRateMessage(profitRate);
 
     Console.print(profitRateMessage);
+  }
+
+  endGame() {
+    Console.close();
   }
 }
 
