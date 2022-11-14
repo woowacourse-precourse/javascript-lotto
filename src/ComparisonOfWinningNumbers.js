@@ -6,12 +6,12 @@ class ComparisonOfWinningNumbers {
   }
 
   Comparison() {
-    let winner = this.lottoNumber.filter(number => this.winningNumber.includes(number));
-    return winner;
+    let numberComparison = this.lottoNumber.filter(number => this.winningNumber.includes(number));
+    return numberComparison;
   }
 
-  WinningCriteriaAndAmount(winner) {
-    return winner.length;
+  WinningCriteriaAndAmount(numberComparison) {
+    return numberComparison.length;
   }
 }
 
