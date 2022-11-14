@@ -86,7 +86,7 @@ class App {
           break;
       }
     });
-    return result;
+    this.calculateReturnRate(issuedLottos.length, result);
   }
   checkSecond(issuedLotto, lotto, bonusNumber) {
     const NumbersExceptMatch = issuedLotto.filter(
@@ -94,6 +94,16 @@ class App {
     );
     if (NumbersExceptMatch.includes(bonusNumber)) return true;
     return false;
+  }
+  calculateReturnRate(purchasedNumber, result) {
+    const returnRate =
+      (result["5등"] * 5e3 +
+        result["4등"] * 5e4 +
+        result["3등"] * 15e5 +
+        result["2등"] * 3e7 +
+        result["1등"] * 2e9) /
+      (purchasedNumber * 1000);
+    return +(Math.round(returnRate + "e+2") + "e-2");
   }
 }
 
