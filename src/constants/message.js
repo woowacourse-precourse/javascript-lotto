@@ -6,12 +6,12 @@ const MESSAGE = {
   },
   OUTPUT: {
     WINNING_HISTORY: '\n당첨 통계\n---\n',
-    TOTAL_PURCHASE_AMOUNT: (amount) => `${amount}개를 구매했습니다.`,
-    MATCH: ({ matchCount, hasBonusNumber, prizeMoney }, number) =>
-      `${matchCount}개 일치${
-        hasBonusNumber ? ', 보너스 볼 일치' : ''
-      } (${prizeMoney.toLocaleString()}원) - ${number}개`,
-    PROFIT_RATE: (profitRate) => `총 수익률은 ${profitRate}%입니다.`,
+    totalPurchaseAmount: (amount) => `${amount}개를 구매했습니다.`,
+    match: ({ MATCH_COUNT, HAS_BONUS_NUMBER, PRIZE_MONEY }, number) =>
+      `${MATCH_COUNT}개 일치${
+        HAS_BONUS_NUMBER ? ', 보너스 볼 일치' : ''
+      } (${PRIZE_MONEY.toLocaleString()}원) - ${number}개`,
+    profitRate: (profitRate) => `총 수익률은 ${profitRate}%입니다.`,
   },
 };
 

@@ -2,7 +2,7 @@ const { Console } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const Validator = require('./Validator');
 const MESSAGE = require('./constants/message');
-const RANKING = require('./constants/gameSetting');
+const { RANKING, UNIT_OF_AMOUNT, RANKING_ARRAY } = require('./constants/gameSetting');
 const generateLottoNumbers = require('./utils/generateRandomLottoNumbers');
 const calculateProfitRate = require('./utils/calculateProfitRate');
 const getLottoRanking = require('./utils/getLottoRanking');
@@ -10,7 +10,6 @@ const getLottoRanking = require('./utils/getLottoRanking');
 class LottoGameMachine {
   constructor() {
     this.totalPurchaseAmount = 0;
-    this.totalLottosCount = 0;
     this.lottosResult = [];
     this.statistics = {};
     this.Lottos = new Map();
@@ -26,29 +25,19 @@ class LottoGameMachine {
   }
 
   printLottoNumbers() {
-    Console.print(MESSAGE.OUTPUT.TOTAL_PURCHASE_AMOUNT(this.totalLottosCount));
-    for (const lotto of this.Lottos.values()) {
-      Console.print(`[${lotto.getLottoNumbers().join(', ')}]`);
-    }
+    Console.print(MESSAGE.OUTPUT.totalPurchaseAmount(this.Lottos.size));
+    this.Lottos.forEach((lotto) => Console.print(`[${lotto.getLottoNumbers().join(', ')}]`));
 
     return this;
   }
 
   printStatistics() {
-    const rankingArray = [
-      RANKING.FIFTH,
-      RANKING.FOURTH,
-      RANKING.THIRD,
-      RANKING.SECOND,
-      RANKING.FIRST,
-    ];
-
     Console.print(MESSAGE.OUTPUT.WINNING_HISTORY);
-    rankingArray.forEach((ranking) =>
-      Console.print(MESSAGE.OUTPUT.MATCH(ranking, this.statistics[ranking.name]))
+    RANKING_ARRAY.forEach((RANK) =>
+      Console.print(MESSAGE.OUTPUT.match(RANK, this.statistics[RANK.NAME]))
     );
 
-    Console.print(MESSAGE.OUTPUT.PROFIT_RATE(this.statistics.profitRate));
+    Console.print(MESSAGE.OUTPUT.profitRate(this.statistics.profitRate));
     return this;
   }
 
@@ -57,18 +46,15 @@ class LottoGameMachine {
       const totalPurchaseAmount = Number(answer);
       Validator.validateTotalPurchaseAmount(totalPurchaseAmount);
       this.totalPurchaseAmount = totalPurchaseAmount;
-      return this.setTotalLottosCount().setLottos().printLottoNumbers().setWinningLottoNumbers();
+      return this.setLottos().printLottoNumbers().setWinningLottoNumbers();
     });
   }
 
-  setTotalLottosCount() {
-    this.totalLottosCount = this.totalPurchaseAmount / 1000;
-    return this;
-  }
-
   setLottos() {
+    const totalLottosCount = this.totalPurchaseAmount / UNIT_OF_AMOUNT;
     let count = 0;
-    while (count < this.totalLottosCount) {
+
+    while (count < totalLottosCount) {
       count += 1;
       this.Lottos.set(`로또${count}`, new Lotto(generateLottoNumbers()));
     }
@@ -104,10 +90,10 @@ class LottoGameMachine {
 
   collectStatistics() {
     let totalPrizeMoney = 0;
-    this.statistics = Object.values(RANKING).reduce((acc, { name }) => ({ ...acc, [name]: 0 }), {});
-    this.lottosResult.forEach(({ prizeMoney, name }) => {
-      totalPrizeMoney += prizeMoney;
-      this.statistics[name] += 1;
+    this.statistics = Object.values(RANKING).reduce((acc, { NAME }) => ({ ...acc, [NAME]: 0 }), {});
+    this.lottosResult.forEach(({ PRIZE_MONEY, NAME }) => {
+      totalPrizeMoney += PRIZE_MONEY;
+      this.statistics[NAME] += 1;
     });
 
     this.statistics.profitRate = calculateProfitRate(totalPrizeMoney, this.totalPurchaseAmount);

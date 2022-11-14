@@ -1,19 +1,51 @@
-const PRIZE_MONEY = {
-  FIRST: 2000000000,
-  SECOND: 30000000,
-  THIRD: 1500000,
-  FOURTH: 50000,
-  FIFTH: 5000,
-  NOTHING: 0,
-};
-
 const RANKING = {
-  FIRST: { name: '1등', matchCount: 6, prizeMoney: PRIZE_MONEY.FIRST },
-  SECOND: { name: '2등', matchCount: 5, hasBonusNumber: true, prizeMoney: PRIZE_MONEY.SECOND },
-  THIRD: { name: '3등', matchCount: 5, prizeMoney: PRIZE_MONEY.THIRD },
-  FOURTH: { name: '4등', matchCount: 4, prizeMoney: PRIZE_MONEY.FOURTH },
-  FIFTH: { name: '5등', matchCount: 3, prizeMoney: PRIZE_MONEY.FIFTH },
-  NOTHING: { name: '꽝', prizeMoney: PRIZE_MONEY.NOTHING },
+  FIRST: {
+    NAME: '1등',
+    MATCH_COUNT: 6,
+    PRIZE_MONEY: 2000000000,
+  },
+  SECOND: {
+    NAME: '2등',
+    MATCH_COUNT: 5,
+    HAS_BONUS_NUMBER: true,
+    PRIZE_MONEY: 30000000,
+  },
+  THIRD: {
+    NAME: '3등',
+    MATCH_COUNT: 5,
+    PRIZE_MONEY: 1500000,
+  },
+  FOURTH: {
+    NAME: '4등',
+    MATCH_COUNT: 4,
+    PRIZE_MONEY: 50000,
+  },
+  FIFTH: {
+    NAME: '5등',
+    MATCH_COUNT: 3,
+    PRIZE_MONEY: 5000,
+  },
+  NOTHING: {
+    NAME: '꽝',
+    PRIZE_MONEY: 0,
+  },
 };
 
-module.exports = Object.freeze(RANKING);
+const RANKING_ARRAY = [RANKING.FIFTH, RANKING.FOURTH, RANKING.THIRD, RANKING.SECOND, RANKING.FIRST];
+const MIN_LOTTO_NUMBER = 1;
+const MAX_LOTTO_NUMBER = 45;
+const COUNT_OF_LOTTO_NUMBERS = 6;
+const UNIT_OF_AMOUNT = 1000;
+const DECIMAL_PLACE_OF_PROFIT_RATE = 1;
+
+Object.freeze(RANKING);
+
+module.exports = {
+  RANKING,
+  RANKING_ARRAY,
+  UNIT_OF_AMOUNT,
+  DECIMAL_PLACE_OF_PROFIT_RATE,
+  COUNT_OF_LOTTO_NUMBERS,
+  MAX_LOTTO_NUMBER,
+  MIN_LOTTO_NUMBER,
+};
