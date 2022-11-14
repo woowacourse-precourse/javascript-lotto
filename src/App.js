@@ -49,15 +49,15 @@ class App {
   }
 
   printFormat(lotto) { // 발행한 로또를 형식에 맞게 출력하는 메서드
-    let result = '['
+    let result = '[';
     for (let i = 0; i < 6; i++) {
       if (i === 5) {
-        result += `${lotto[i]}`
+        result += `${lotto[i]}`;
       } else {
-        result += `${lotto[i]}, `
+        result += `${lotto[i]}, `;
       }
     }
-    result += ']'
+    result += ']';
     return result;
   }
 
@@ -91,17 +91,26 @@ class App {
     return true;
   }
 
-  lottoResult() { // 당첨 내역을 확인하고 출력하는 메서드
+  lottoResult() { // 당첨 내역을 확인하고 수익률을 출력하는 메서드
     let prize = new Array(8).fill(0);
+    const LOTTO_PRIZE = [5000, 50000, 1500000, 30000000, 2000000000];
     for (let i = 0; i < this.auto.length; i++) {
       prize[this.compareLotto(i)] += 1;
     }
     MissionUtils.Console.print('\n당첨 통계\n---');
-    MissionUtils.Console.print(`3개 일치 (5,000원) - ${prize[3]}개`)
-    MissionUtils.Console.print(`4개 일치 (50,000원) - ${prize[4]}개`)
-    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${prize[5]}개`)
-    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${prize[6]}개`)
-    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${prize[7]}개`)
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${prize[3]}개`);
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${prize[4]}개`);
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${prize[5]}개`);
+    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${prize[6]}개`);
+    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${prize[7]}개`);
+    let lottoyield = 0;
+    for (let i = 0; i < 5; i++) {
+      lottoyield += LOTTO_PRIZE[i] * prize[i + 3];
+    }
+    if (lottoyield !== 0) {
+      lottoyield = ((lottoyield / this.price) * 100).toFixed(1);
+    }
+    MissionUtils.Console.print(`총 수익률은 ${lottoyield}%입니다.`);
   }
 
   compareLotto(num) { // 각 로또에 대해 당첨번호와 몇개가 일치하는지 확인하는 메서드
