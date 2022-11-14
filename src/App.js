@@ -69,6 +69,7 @@ class App {
           this.checkBounsNumber(userInput);
           this.forEachLotto();
           this.printResult();
+          this.HowMuchWon();
         } catch (e) {
           MissionUtils.Console.print(e);
         }
@@ -115,6 +116,24 @@ class App {
       return;
     }
     this.Result[cnt] += 1;
+  }
+  calculateYield(Num) {
+    console.log(this.Money);
+    return (Num / this.Money).toFixed(2);
+  }
+
+  HowMuchWon() {
+    let wonPrice = 0;
+    for (let i = 3; i < 7; i++) {
+      wonPrice += this.IntPrice[i - 3] * this.Result[i];
+    }
+    wonPrice += 30000000 * this.isBonus;
+
+    console.log(wonPrice);
+    MissionUtils.Console.print(
+      `총 수익률은 ${this.calculateYield(wonPrice)}%입니다.`
+    );
+    MissionUtils.Console.close();
   }
 
   printResult() {
