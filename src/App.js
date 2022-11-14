@@ -3,16 +3,23 @@ const { validateMoney } = require("./Money");
 const { validateBonusNumber } = require("./BonusNumber");
 const Lotto = require("./Lotto");
 
+const lottoPrizePrice = [5000, 50000, 1500000, 30000000, 2000000000];
+const firstPrize = 4, secondPrize = 3, thirdPrize = 2, fourthPrize = 1, fifthPrize = 0;
+
 class App {
   #money;
   #numOfLotto;
   #userLotto;
   #winLotto;
   #bonusNumber;
+  #totalProfitMoney;
+  #percent;
 
   constructor() {
     this.#userLotto = [];
     this.#winLotto = [];
+    this.lottoPrizeResult = [0, 0, 0, 0, 0];
+    this.lottoCmpResult = [];
   }
 
   play() {
@@ -55,17 +62,29 @@ class App {
       }
       new Lotto(tmp);
       this.#winLotto = tmp;
-      //Console.print(this.#winLotto);
       getBonusNumber();
     });
   }
 
   getBonusNumber() {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusNumber) => {
-      validateBonusNumber(bonusNumber);
+      validateBonusNumber(bonusNumber, this.#winLotto);
       this.#bonusNumber = bonusNumber;
-      this.getLottoResult();
+      this.compareLottoResult();
     });
+  }
+
+  compareLottoResult() {
+    for(let i = 0; i < this.#userLotto.length; i++) {
+      let numOfMatch = 0;
+      for( let j = 0; j < this.#winLotto; j++) {
+        if(this.#userLotto[i].includes(this.#winLotto[j])){
+          numOfMatch++;
+        }
+      }
+      this.lottoCmpResult[i].push(numOfMatch);
+    }
+    this.getLottoResult();
   }
 }
 
