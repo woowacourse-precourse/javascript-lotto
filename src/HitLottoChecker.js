@@ -75,5 +75,27 @@ class HitLottoChecker {
     );
     return earningRate;
   }
+  printHitLottoStatistics() {
+    MissionUtils.Console.print(
+      `3개 일치 (5,000원) - ${this.matchLottoNumbersTable[3]}개`
+    );
+    MissionUtils.Console.print(
+      `4개 일치 (50,000원) - ${this.matchLottoNumbersTable[4]}개`
+    );
+    MissionUtils.Console.print(
+      `5개 일치 (1,500,000원) - ${this.matchLottoNumbersTable[5]}개`
+    );
+    MissionUtils.Console.print(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.matchLottoNumbersTable["5B"]}개`
+    );
+    MissionUtils.Console.print(
+      `6개 일치 (2,000,000,000원) - ${this.matchLottoNumbersTable[6]}개`
+    );
+    MissionUtils.Console.print(
+      `총 수익률은 ${this.carculateEarningRate()}%입니다.`
+    );
+    MissionUtils.Console.close();
+    return;
+  }
 }
 module.exports = HitLottoChecker;
