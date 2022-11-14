@@ -24,6 +24,27 @@ class Lotto {
       throw new Error("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
     }
   }
+
+  // 일치 갯수 반환
+  matchLotto(lottosNumbers, winningNumber, bonusNumber) {
+    let matchingCountArr = [];
+    let bonusMatch = [];
+    for (let i = 0; i < lottosNumbers.length; i++) {
+      const lottoPiece = lottosNumbers[i];
+      const matchingNumber = winningNumber.filter((num) =>
+        lottoPiece.includes(num)
+      );
+      if (
+        matchingNumber.length === 5 &&
+        lottosNumbers[i].includes(bonusNumber)
+      ) {
+        bonusMatch.push(bonusNumber);
+      } else {
+        matchingCountArr.push(matchingNumber.length);
+      }
+    }
+    return [matchingCountArr, bonusMatch];
+  }
 }
 
 module.exports = Lotto;
