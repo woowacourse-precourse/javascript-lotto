@@ -129,7 +129,7 @@ class LottoGame {
   getTotalPrizeMoney(prizeStatistics) {
     let totalPrizeMoney = 0;
 
-    for (let [prize, count] of Object.entries(prizeStatistics)) {
+    for (const [prize, count] of Object.entries(prizeStatistics)) {
       const prizeMoney = LOTTO_PRIZE_MONEY[prize] * count;
       totalPrizeMoney += prizeMoney;
     }
