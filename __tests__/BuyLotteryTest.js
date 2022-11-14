@@ -10,30 +10,30 @@ describe("로또 구입 테스트", () => {
   test("로또 구입", () => {
     const buyLottery = new BuyLottery();
     mockRandoms([
-      [18, 41, 9, 22, 26, 39],
-      [7, 32, 8, 3, 9, 40],
-      [43, 23, 42, 13, 33, 7],
-      [36, 3, 38, 41, 30, 35],
-      [12, 22, 23, 45, 18, 19],
+      [9, 18, 22, 26, 39, 41],
+      [3, 7, 8, 9, 32, 40],
+      [7, 13, 23, 33, 42, 43],
+      [3, 30, 35, 36, 38, 41],
+      [12, 18, 19, 22, 23, 45],
     ]);
 
     expect(buyLottery.buy(5000)).toEqual({
       quentity: 5,
       lottos: [
-        [18, 41, 9, 22, 26, 39],
-        [7, 32, 8, 3, 9, 40],
-        [43, 23, 42, 13, 33, 7],
-        [36, 3, 38, 41, 30, 35],
-        [12, 22, 23, 45, 18, 19],
+        [9, 18, 22, 26, 39, 41],
+        [3, 7, 8, 9, 32, 40],
+        [7, 13, 23, 33, 42, 43],
+        [3, 30, 35, 36, 38, 41],
+        [12, 18, 19, 22, 23, 45],
       ],
     });
   });
-  test("예외 - 1000단이로 나누어 떨어질때", () => {
+  test("예외 - 1000단위로 나누어 떨어질때", () => {
     const buyLottery = new BuyLottery();
 
     expect(() => buyLottery.checkAmout(1000)).not.toThrow("[ERROR]");
   });
-  test("예외 - 1000단이로 나누어 떨어지지 않을때", () => {
+  test("예외 - 1000단위로 나누어 떨어지지 않을때", () => {
     const buyLottery = new BuyLottery();
 
     expect(() => buyLottery.checkAmout(1001)).toThrow("[ERROR]");
@@ -42,10 +42,5 @@ describe("로또 구입 테스트", () => {
     const buyLottery = new BuyLottery();
 
     expect(buyLottery.numberOfpurchases(1000)).toBe(1);
-  });
-  test("금액에 맞는 로또발행", () => {
-    const buyLottery = new BuyLottery();
-    const lottoNumber = buyLottery.createRendomLotto(5).length;
-    expect(lottoNumber).toBe(5);
   });
 });
