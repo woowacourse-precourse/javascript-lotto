@@ -1,5 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { CONSOLE } = require("./constants");
+const ValidationCheck = require("./util/validation");
 
 class Controller {
   startGame() {
@@ -7,7 +8,9 @@ class Controller {
   }
 
   inputMoney() {
-    Console.readLine(CONSOLE.PURCHASE_MONEY_INPUT + "\n", (input) => {});
+    Console.readLine(CONSOLE.PURCHASE_MONEY_INPUT + "\n", (input) => {
+      ValidationCheck.purchaseMoney(input);
+    });
   }
 }
 
