@@ -1,32 +1,22 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-
-const FIRST_PLACE = 7;
-const SECOND_PLACE = 6;
-const THIRD_PLACE = 5;
-const FOURTH_PLACE = 4;
-const FIFTH_PLACE = 3;
-
+const Print = require("./Prize");
 
 class Print {
-	constructor() {
-
-	}
-
 	printResult(winningCount, place) {
 		switch(place) {
-			case FIFTH_PLACE:
+			case Prize.FIFTH_PLACE:
 				MissionUtils.Console.print(`3개 일치 (5,000원) - ${winningCount[place]}개`);
 				break;
-			case FOURTH_PLACE:
+			case Prize.FOURTH_PLACE:
 				MissionUtils.Console.print(`4개 일치 (50,000원) - ${winningCount[place]}개`);
 				break;
-			case THIRD_PLACE:
+			case Prize.THIRD_PLACE:
 				MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${winningCount[place]}개`);
 				break;
-			case SECOND_PLACE:
+			case Prize.SECOND_PLACE:
 				MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningCount[place]}개`);
 				break;
-			case FIRST_PLACE:
+			case Prize.FIRST_PLACE:
 				MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${winningCount[place]}개`);
 				break;
 			default:
@@ -41,4 +31,16 @@ class Print {
 			this.printResult(winningCount, correct);
 		}
 	}
+
+	earningsRate(seedMoney, earnings) {
+		let earningsRate = ((earnings / seedMoney) * 100).toFixed(1);
+		MissionUtils.Console.print(`총 수익률은 ${earningsRate}%입니다.`);
+	}
+
+	result(user, winningCount) {
+		this.winningResult(winningCount);
+		this.earningsRates(user.getSeedMoney(), user.earnings);
+	}
 }
+
+module.exports = Print;
