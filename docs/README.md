@@ -12,9 +12,9 @@
     - [x] check if the payment amount is valid (throw error when invalid e.g. not a multiple of 1000 won)
 - [x] generate 6 random guessed numbers per ticket (from 1-45 without duplicates in ascending order)
 - [x] print the number of purchased tickets and 6 random numbers per ticket
-- [ ] get winning numbers and compare with the guessed numbers
-    - [ ] winning numbers: 6 numbers (from 1-45 without duplicates per ticket) separated with a comma (throw error when invalid)
-    - [ ] count the number of matched numbers per ticket after comparison
+- [x] get winning numbers and compare with the guessed numbers
+    - [x] winning numbers: 6 numbers (from 1-45 without duplicates per ticket) separated with a comma (throw error when invalid)
+    - [x] count the number of matched numbers per ticket after comparison
 - [ ] get bonus number and compare with the guessed numbers
     - [ ] bonus number: 1 number (from 1-45 without duplicates per ticket) (throw error when invalid)
     - [ ] check bonus number only for tickets with 5 guessed number matches and return true/false
