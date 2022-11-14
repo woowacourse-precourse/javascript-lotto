@@ -5,9 +5,21 @@ const {
   ERROR_MSG_NUM_RANGE,
   ERROR_MSG_NUMS_DUPLICATED,
   ERROR_MSG_BONUS_NUM_IN_MAIN_NUMS,
+  ERROR_MSG_BUDGET_NAN,
+  ERROR_MSG_BUDGET_NATURAL_NUM,
+  ERROR_MSG_THOUSAND_UNIT,
 } = require("./constants/error-message");
 
 class Checker {
+  validateBudget(input) {
+    this.checkBudgetIsNumber(input);
+  }
+
+  checkBudgetIsNumber(input) {
+    if (!isNaN(input)) return;
+    throw new Error(ERROR_MSG_BUDGET_NAN);
+  }
+
   validateMainNums(input) {
     const mainNumStrs = input.split(",");
     this.checkSix(mainNumStrs);

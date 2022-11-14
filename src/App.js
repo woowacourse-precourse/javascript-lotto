@@ -14,8 +14,8 @@ class App {
 
   play() {
     Console.readLine("구입금액을 입력해주세요.\n", (input) => {
-      const budget = input.trim();
-      this.budget = +budget;
+      const budget = this.checker.validateBudget(input);
+      this.budget = budget;
       const lottoCount = this.calcLottoCount(budget);
       const lottos = this.createLottos(lottoCount);
       this.printLottos(lottoCount, lottos);
