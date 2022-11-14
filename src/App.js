@@ -9,9 +9,10 @@ class App {
     const bonusNumber = new Lotto(this.consoleInput("보너스 번호를 입력해 주세요.\n"));
     const winningArr = [0,0,0,0,0];
     lottoArr.forEach(outterArr =>{
-      winningArr[this.lottoMatch(outterArr,winningNumber,bonusNumber)]+=1
+      winningArr[this.lottoMatch(outterArr,winningNumber,bonusNumber)]+=1;
     })
     this.winningState(winningArr,ticket);
+    MissionUtils.Console.close();
   }
 
   createLotto(numbers) {
