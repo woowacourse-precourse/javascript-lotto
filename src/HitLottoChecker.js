@@ -39,6 +39,7 @@ class HitLottoChecker {
       "보너스 번호를 입력해 주세요.",
       (bonusNumber) => {
         this.bonusNumber = parseInt(bonusNumber);
+        this.findHitLotto();
       }
     );
   }
