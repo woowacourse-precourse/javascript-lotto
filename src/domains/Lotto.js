@@ -6,7 +6,7 @@ class Lotto {
   #numbers;
 
   /**
-   * @param {numbers[]} numbers
+   * @param {number[]} numbers
    */
   constructor(numbers) {
     this.validate(numbers);
