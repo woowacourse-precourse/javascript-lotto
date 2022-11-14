@@ -19,6 +19,9 @@ class LottoGameView {
       Console.print(template);
     });
   }
+  printYieldRatio(yieldRatio) {
+    Console.print(`총 수익률은 ${yieldRatio}%입니다.`);
+  }
 }
 
 module.exports = LottoGameView;
