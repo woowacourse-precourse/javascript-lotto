@@ -18,7 +18,8 @@ class MessageViewer {
     MissionUtils.Console.print(RESULT.THIRD + " - " + resultArray[GRADE.THIRD - 1] + "개");
     MissionUtils.Console.print(RESULT.SECOND + " - " + resultArray[GRADE.SECOND - 1] + "개");
     MissionUtils.Console.print(RESULT.FIRST + " - " + resultArray[GRADE.FIRST - 1] + "개");
-    MissionUtils.Console.print(`총 수익률은 ${earningsRate}%입니다.`);
+    //정규표현식 출처: https://codechacha.com/ko/javascript-number-format-comma/
+    MissionUtils.Console.print("총 수익률은 " + earningsRate.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "%입니다.");
   }
 }
 
