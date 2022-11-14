@@ -103,6 +103,34 @@ class App {
     });
     this.resultPrint();
   }
+
+  initResult() {
+    this.result[PRIZE_REWARDS.THREE];
+    this.result[PRIZE_REWARDS.FOUR];
+    this.result[PRIZE_REWARDS.FIVE];
+    this.result[PRIZE_REWARDS.FIVE_BONUS];
+    this.result[PRIZE_REWARDS.SIX];
+  }
+
+  // 당첨 번호가 있는지 검증하는 함수 구현
+  compareNumbers(count, bonus) {
+    if (count === 3) {
+      this.result[PRIZE_REWARDS.THREE] += 1;
+    }
+    if (count === 4) {
+      this.result[PRIZE_REWARDS.FOUR] += 1;
+    }
+    if (count === 5) {
+      if (bonus === true) {
+        this.result[PRIZE_REWARDS.FIVE_BONUS] += 1;
+      } else {
+        this.result[PRIZE_REWARDS.FIVE] += 1;
+      }
+    }
+    if (count === 6) {
+      this.result[PRIZE_REWARDS.SIX] += 1;
+    }
+  }
 }
 
 const app = new App();
