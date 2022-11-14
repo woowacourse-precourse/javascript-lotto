@@ -16,7 +16,7 @@ class JudgeLotto {
     if (winCount === 5) {
       isBonus = JudgeLotto.#checkBonus({ lotto, bonus, isBonus });
     }
-    return [winCount, isBonus];
+    return { win: winCount, bonus: isBonus };
   }
 
   static #checkBonus({ lotto, bonus, isBonus }) {
