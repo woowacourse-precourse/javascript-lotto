@@ -4,6 +4,10 @@ const UserLottos = require("./UserLottos");
 const Lotto = require("./Lotto");
 
 class LottoGame {
+  constructor(lottos) {
+    this.lottos = lottos;
+  }
+
   isNumber(number) {
     return !isNaN(number);
   }
@@ -94,7 +98,16 @@ class LottoGame {
     MissionUtils.Console.close();
   }
 
-  receiveLottoNumbers(lottos, payment) {
+  winLotto(lottos, winningLotto, payment) {
+    const winningNumbers = winningLotto.getNumbers();
+    const winningBonusNumber = winningLotto.getBonusNumber();
+
+    this.compareNumber(lottos, winningNumbers, winningBonusNumber);
+
+    this.printResult(lottos, payment);
+  }
+
+  startGame(lottos, payment) {
     MissionUtils.Console.readLine("당첨번호를 입력해 주세요.\n", (numbers) => {
       numbers.split(",").forEach((number) => this.validateLottoNumber(number));
 
@@ -107,28 +120,27 @@ class LottoGame {
             numbers.split(",").map(Number),
             bonusNumber
           );
-          const winningNumbers = winningLotto.getNumbers();
-          const winningBonusNumber = winningLotto.getBonusNumber();
 
-          this.compareNumber(lottos, winningNumbers, winningBonusNumber);
-
-          this.printResult(lottos, payment);
+          this.winLotto(lottos, winningLotto, payment);
         }
       );
     });
   }
 
+  purchaseLotto(lottos, payment) {
+    this.validatePurchaseLotto(payment);
+
+    this.printTheNumberOfLotto(lottos, payment);
+
+    this.createLotto(lottos);
+  }
+
   game() {
-    const lottos = new UserLottos();
+    const lottos = this.lottos;
 
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (payment) => {
-      this.validatePurchaseLotto(payment);
-
-      this.printTheNumberOfLotto(lottos, payment);
-
-      this.createLotto(lottos);
-
-      this.receiveLottoNumbers(lottos, payment);
+      this.purchaseLotto(lottos, payment);
+      this.startGame(lottos, payment);
     });
   }
 }
