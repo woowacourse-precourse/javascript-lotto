@@ -95,13 +95,23 @@ class App {
   caculateResult(user, prize, bonus, userMoney) {
     DetectError.prototype.isBonusInPrize(prize, bonus);
 
-    let lottoPrize = {
-      3: [0, 5000],
-      4: [0, 50000],
-      5: [0, 1500000],
-      6: [0, 30000000],
-      7: [0, 2000000000],
-    };
+    // let lottoPrize = {
+    //   3: [0, 5000],
+    //   4: [0, 50000],
+    //   5: [0, 1500000],
+    //   6: [0, 30000000],
+    //   7: [0, 2000000000],
+    // };
+    let lottoPrize = [
+      [0],
+      [0],
+      [0],
+      [0, 5000],
+      [0, 50000],
+      [0, 1500000],
+      [0, 30000000],
+      [0, 2000000000],
+    ];
 
     user.forEach((userNum) => {
       lottoPrize = this.makeLottoPrize(userNum, prize, bonus, lottoPrize);
@@ -159,6 +169,5 @@ class App {
     MissionUtils.Console.print(`총 수익률은 ${result}%입니다.`);
   }
 }
-
 
 module.exports = App;
