@@ -43,12 +43,12 @@ class Calculation {
   /**
  *
  * @param {Array<number>} lottoList
- * @param {Array<number>} winNumberList
+ * @param {Array<number>} winList
  * @param {number} bonusNumber
  */
-  calcList(lottoList, winNumberList, bonusNumber) {
-    this.winNumberList = winNumberList;
-    this.bonusNumber = bonusNumber;
+  calcList(lottoList, winList, bonus) {
+    this.winList = winList;
+    this.bonus = bonus;
 
     lottoList.forEach((lotto) => this.calcMatchCount(lotto));
 
@@ -57,10 +57,10 @@ class Calculation {
 
   calcMatchCount(lotto) {
     const myLottoSet = new Set(lotto);
-    const winNumberSet = new Set(this.winNumberList);
-    const lottoIntersecrt = new Set(lotto.filter((number) => winNumberSet.has(number)));
+    const winListSet = new Set(this.winList);
+    const lottoIntersecrt = new Set(lotto.filter((number) => winListSet.has(number)));
 
-    this.isBonusMatch = myLottoSet.has(this.bonusNumber);
+    this.isBonusMatch = myLottoSet.has(this.bonus);
     this.matchCount = this.isBonusMatch + lottoIntersecrt.size;
   }
 
