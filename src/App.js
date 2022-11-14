@@ -14,8 +14,9 @@ class App {
 
   userInput() {
     MissionUtils.Console.readLine(`${Message.INPUT_MESSAGE.PURCHASE}\n`, (userMoney) => {
-      const user = this.lottoPurchase(userMoney);
       userMoney = parseInt(userMoney);
+      DetectError.prototype.checkUserInput(userMoney);
+      const user = this.lottoPurchase(userMoney);
       this.prizeInput(user, userMoney);
     });
   }
@@ -23,9 +24,10 @@ class App {
   prizeInput(user, userMoney) {
     MissionUtils.Console.readLine(`\n${Message.INPUT_MESSAGE.PRIZE}\n`, (prizeNumber) => {
       const przNum = prizeNumber.split(',');
-      if (przNum.length !== 6) {
-        throw new Error(`${Message.ERROR_MESSAGE.COMMA}`);
-      }
+      DetectError.prototype.checkPrizNumber(przNum);
+      // if (przNum.length !== 6) {
+      //   throw new Error(`${Message.ERROR_MESSAGE.COMMA}`);
+      // }
       new Lotto(przNum);
       this.bonusInput(user, przNum, userMoney);
     });
@@ -119,6 +121,11 @@ class App {
       }
     }
 
+    return this.addCountInLottoPrize(cnt, lottoPrize, bonus, userNum);
+      
+  }
+
+  addCountInLottoPrize(cnt, lottoPrize, bonus, userNum) {
     if (cnt === 6) {
       lottoPrize[cnt+1][0] += 1;
     }
