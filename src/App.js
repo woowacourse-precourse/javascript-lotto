@@ -30,6 +30,7 @@ class App {
 
     result = lotto.compare_result(bonus_number, lotto_list);
     yield_amount = this.calc_yield(result);
+    this.final_lotto_result(result, yield_amount);
   }
 
   input(text) {
@@ -100,6 +101,17 @@ class App {
     yield_amount = yield_amount / this.purchase * 100;
     yield_amount.toFixed(1);
     return yield_amount;
+  }
+
+  final_lotto_result(result, yield_amount) {
+    MissionUtils.Console.print(`당첨 통계`);
+    MissionUtils.Console.print(`---`);
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${result[0]}개`);
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${result[1]}개`);
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${result[2]}개`);
+    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${result[3]}개`);
+    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${result[4]}개`);
+    MissionUtils.Console.print(`총 수익률은 ${yield_amount}%입니다.`);
   }
 }
 
