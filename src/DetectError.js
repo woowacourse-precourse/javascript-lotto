@@ -30,6 +30,7 @@ class DetectError {
             if (!(element >= '0' && element <= '9')) {
                 throw new Error(`${Message.ERROR_MESSAGE.NUMBER}`);
             }
+            idx++;
         });
     }
 
