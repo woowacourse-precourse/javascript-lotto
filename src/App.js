@@ -10,7 +10,8 @@ class App {
   }
 
   purchaseAmount() {
-    MissionUtils.Console.readLine('구입금액을 입력해 주세요.', (answer) => {
+    MissionUtils.Console.readLine(`${Constants.GAME_MESSAGES.PURCHASE}\n`, (answer) => {
+      MissionUtils.Console.print(answer)
       const how_many = this.isPurchaseAmountValid(answer);
       const published_Lottos = this.getLottos(how_many);
       this.InputLottos(published_Lottos, how_many);
@@ -21,20 +22,23 @@ class App {
     if(Number(money) % 1000 != 0){
       throw Constants.INPUT_ERROR.NOT_DIVIDED;
     }
-    return Number(money) / 1000;
+    const how_many = Number(money) / 1000;
+    return how_many;
   }
 
   getLottos(how_many) {
+    MissionUtils.Console.print(`${how_many}${Constants.GAME_MESSAGES.PURCHASE_RESULT}\n`)
     const published_Lottos = [];
     for(let i = 0; i < how_many; i++){
       const one_lotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      MissionUtils.Console.print(one_lotto);
       published_Lottos.push(one_lotto);
     }
     return published_Lottos;
   }
 
   InputLottos(published_Lottos, how_many) {
-    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (answer) => {
+    MissionUtils.Console.readLine(`${Constants.GAME_MESSAGES.INPUT_NUMBER}\n`, (answer) => {
       const numbers = answer.split(',').map(Number);
       new Lotto(numbers);
       this.InputBonus(published_Lottos, numbers, how_many);
@@ -42,7 +46,7 @@ class App {
   }
 
   InputBonus(published_Lottos, array, how_many) {
-    MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (answer) => {
+    MissionUtils.Console.readLine(`${Constants.GAME_MESSAGES.BONUS_NUMBER}\n`, (answer) => {
       this.isBonusDuplicated(answer, array);
       array.push(answer);
       this.getAllResults(published_Lottos, array, how_many);
@@ -79,9 +83,11 @@ class App {
   }
 
   printResults(all_results) {
+    MissionUtils.Console.print(Constants.GAME_MESSAGES.PURCHASE_RESULT);
     let i = 0;
     Constants.RESULT.forEach(element => {
       MissionUtils.Console.print(`${element} - ${all_results[i]}개`);
+      i++;
     });
   }
 
