@@ -1,12 +1,14 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const MESSAGES = require('./Constants');
+const Lotto = require("./Lotto");
 
 class App {
   play() {
     Console.readLine(MESSAGES.PAYMENT, (payment) => {
       this.checkPayment(payment);
-      Console.print(`${payment / 1000}개를 구매했습니다.`)
-      const lottoNumbers = this.getLottoNumbers(payment / 1000)
+      Console.print(`${payment / 1000}개를 구매했습니다.`);
+      const lottoNumbers = this.getLottoNumbers(payment / 1000);
+      this.setLottoNumber();
     });
   }
   checkPayment = (payment) => {
@@ -22,6 +24,11 @@ class App {
       Console.print(numbers);
     } 
     return lottoNumbers;
+  }
+  setLottoNumber = () => {
+    Console.readLine(MESSAGES.SET_LOTTO, (answer) => {
+      Console.print(answer);
+    })
   }
 }
 
