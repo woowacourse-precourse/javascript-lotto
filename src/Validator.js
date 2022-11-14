@@ -1,4 +1,4 @@
-const { ERROR } = require("./constants/index");
+const { LOTTO_PRICE, ERROR } = require("./constants/index");
 
 class Validator {
   checkMoneyValid(money) {
@@ -20,7 +20,7 @@ class Validator {
   }
 
   checkMoneyUnit(money) {
-    if (money % 1000 !== 0) {
+    if (money % LOTTO_PRICE !== 0) {
       this.error(ERROR.MONEY_UNIT);
     }
   }

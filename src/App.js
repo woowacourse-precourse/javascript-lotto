@@ -1,5 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { MESSAGE } = require("./constants/index");
+const { LOTTO_PRICE, MESSAGE } = require("./constants/index");
 const { formatArray } = require("./utils/index");
 
 const Validator = require("./Validator");
@@ -40,7 +40,7 @@ class App {
       this.validator.checkMoneyValid(money);
 
       this.state.money = money;
-      this.state.count = money / 1000;
+      this.state.count = money / LOTTO_PRICE;
 
       this.generate();
     });
