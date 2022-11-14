@@ -25,7 +25,14 @@ class Lotto {
     return !this.#numbers.includes(number);
   }
 
-  // TODO: 추가 기능 구현
+  compare(lotto) {
+    let count = 0;
+    lotto.forEach((number) => {
+      if (this.#numbers.includes(number)) count += 1;
+    });
+
+    return count;
+  }
 }
 
 module.exports = Lotto;

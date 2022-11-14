@@ -2,8 +2,6 @@ const { Console, Random } = require('@woowacourse/mission-utils');
 const { MESSAGE, LOTTO, REGEX, ERROR } = require('./constants');
 const Result = require('./Result');
 
-const result = new Result();
-
 class Store {
   issuedQuantity;
   lottos;
@@ -19,6 +17,7 @@ class Store {
       this.issuedQuantity = purchaseAmount / LOTTO.PRICE;
       this.issue();
       this.print();
+      const result = new Result(this.lottos);
       result.drawWinningNumber();
     });
   }

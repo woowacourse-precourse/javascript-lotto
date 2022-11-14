@@ -45,4 +45,4 @@ const ERROR = Object.freeze({
   ENTER_WITHOUT_REPETITION: '[ERROR] 중복되지 않는 숫자를 입력해 주세요.',
 });
 
-module.exports = { MESSAGE, LOTTO, REGEX, ERROR };
+module.exports = { MESSAGE, LOTTO, PRIZE, REGEX, ERROR };

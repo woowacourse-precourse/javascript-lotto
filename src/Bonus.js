@@ -19,6 +19,10 @@ class Bonus {
 
     return inputNum;
   }
+
+  compare(lotto) {
+    return lotto.includes(this.#number);
+  }
 }
 
 module.exports = Bonus;
