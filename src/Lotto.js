@@ -105,19 +105,19 @@ class Lotto {
 
   rank(correct) {
     if (correct === MATCH.THREE) {
-      return this.stats[RANK.FIVE]++;
+      return (this.stats[RANK.FIVE] += NUMBER.ONE);
     }
     if (correct === MATCH.FOUR) {
-      return this.stats[RANK.FOUR]++;
+      return (this.stats[RANK.FOUR] += NUMBER.ONE);
     }
     if (correct === MATCH.FIVE) {
-      return this.stats[RANK.THREE]++;
+      return (this.stats[RANK.THREE] += NUMBER.ONE);
     }
     if (correct === MATCH.FIVE_BONUS) {
-      return this.stats[RANK.TWO]++;
+      return (this.stats[RANK.TWO] += NUMBER.ONE);
     }
     if (correct === MATCH.SIX) {
-      return this.stats[RANK.ONE]++;
+      return (this.stats[RANK.ONE] += NUMBER.ONE);
     }
   }
 }
