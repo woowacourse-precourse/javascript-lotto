@@ -21,9 +21,14 @@ const LOTTO = {
   PREDICATIVE_PARTICLE: '입니다.',
 }
 
+const NUMBER = {
+  LOTTO : 6,
+}
+
 module.exports = {
   INPUT,
   OUTPUT,
   LOTTO,
+  NUMBER,
 };
   
