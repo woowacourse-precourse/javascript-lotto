@@ -97,7 +97,6 @@ const SYSTEM = Object.freeze({
     },
 
     printWinningHistory(results) {
-        console.log('results:', results);
         for (let rank = 5; rank >= 1; rank--) {
             let rankIndex = rank - 1;
             SYSTEM.print(`${MESSAGE.RANK_TEXT[rankIndex]} - ${results[rankIndex]}개`)
