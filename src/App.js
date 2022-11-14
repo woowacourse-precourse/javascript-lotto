@@ -1,8 +1,15 @@
-const game = require("./game/game");
+const Purchase = require("./Purchase");
+const { Console } = require("@woowacourse/mission-utils");
 
 class App {
   play() {
-    game.Start();
+    this.purchaseLotto();
+  }
+
+  purchaseLotto() {
+    Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
+      this.purchase = new Purchase(input);
+    });
   }
 }
 
