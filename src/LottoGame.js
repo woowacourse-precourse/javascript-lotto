@@ -34,6 +34,16 @@ class LottoGame {
     });
   }
 
+  compareNumber(lottos, wonLotto, bonusNumber) {
+    lottos.setMatchingNumber();
+
+    wonLotto.forEach((number) => {
+      lottos.getLottos().forEach((lotto, index) => {
+        lotto.getNumbers().includes(number) && lottos.matchingNumber[index]++;
+      });
+    });
+  }
+
   receiveLottoNumbers(lottos, money) {
     MissionUtils.Console.readLine("당첨번호를 입력해 주세요.\n", (number) => {
       const winningLotto = new Lotto(number.split(",").map(Number));
@@ -44,6 +54,8 @@ class LottoGame {
         (number) => {
           winningLotto.setBonusNumber(number);
           const bonusNumber = winningLotto.getBonusNumber();
+
+          this.compareNumber(lottos, wonLotto, bonusNumber);
         }
       );
     });

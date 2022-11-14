@@ -14,6 +14,7 @@ class UserLottos {
   constructor() {
     this.theNumberOfLotto;
     this.lottos = [];
+    this.matchingNumber = [];
   }
 
   makeLotto() {
@@ -37,6 +38,12 @@ class UserLottos {
 
   getLottos() {
     return this.lottos;
+  }
+
+  setMatchingNumber() {
+    for (let i = 0; i < this.theNumberOfLotto; i++) {
+      this.matchingNumber[i] = 0;
+    }
   }
 }
 
