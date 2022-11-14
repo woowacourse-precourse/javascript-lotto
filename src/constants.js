@@ -9,7 +9,7 @@ const MESSAGE = Object.freeze({
   HISTORY_THIRD_PLACE: '5개 일치 (1,500,000원) - ',
   HISTORY_SECOND_PLACE: '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
   HISTORY_FIRST_PLACE: '6개 일치 (2,000,000,000원) - ',
-  HISTORY_NUMBER: '개',
+  HISTORY_COUNT: '개',
   RETURN_TOTAL: '총 수익률은 ',
   RETURN_PERCENT: '%입니다.',
 });
