@@ -59,6 +59,14 @@ class Lotto {
     }
     return this.lottoWinning(sameNumber);
   }
+
+  bonusCompare(sameNumber, lottoNumbers) {
+    if (lottoNumbers.includes(this.bonusNumber)) {
+      this.winningNumber[4] += 1;
+    } else {
+      this.winningNumber[sameNumber.length - 3] += 1;
+    }
+  }
 }
 
 module.exports = Lotto;
