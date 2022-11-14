@@ -13,6 +13,7 @@ const Lotto = require("./Lotto.js");
 const Validation = require("./Validation.js");
 
 class LottoGame {
+  purchaseAmount;
   lottos;
   winningNumbers;
   bonusNumber;
@@ -28,6 +29,7 @@ class LottoGame {
   purchaseLottoPhase() {
     this.LottoGameView.requestInput(REQUEST_MESSAGE.PURCHASE_AMOUNT, (purchaseAmount) => {
       Validation.validatePurchaseAmount(purchaseAmount);
+      this.purchaseAmount = Number(purchaseAmount);
       const lottoQuantity = this.getLottoQuantity(purchaseAmount);
       this.createLottos(lottoQuantity);
       this.LottoGameView.printLottoQuantity(lottoQuantity);
