@@ -37,6 +37,16 @@ class Lotto {
     }
     this.bonusNumber = number;
   }
+
+  countMatchingNumber(IssuedLotto) {
+    let matchingCount = 0;
+    IssuedLotto.forEach((number) => {
+      if (this.#numbers.includes(number)) {
+        matchingCount += 1;
+      }
+    });
+    return matchingCount;
+  }
 }
 
 module.exports = Lotto;
