@@ -1,6 +1,7 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const {
+  PRICE,
   INPUT_PRICE_MSG,
   PRICE_NAN_ERROR,
   PRICE_TOO_LOW_ERROR,
@@ -12,7 +13,13 @@ class App {
 
   printLottos(lottos) {}
 
-  buyLotto(price) {}
+  generateLotto() {}
+
+  buyLotto(price) {
+    const amount = price / PRICE;
+
+    return Array.from({ length: amount }, this.generateLotto);
+  }
 
   validateBuyPrice(price) {
     if (Number.isNaN(price)) {
