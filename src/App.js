@@ -9,7 +9,7 @@ class App {
     this.lottos = [];
     this.winNumbers = [];
     this.bonusNumber = null;
-    this.winStatics = {
+    this.winStatistics = {
       [THREE]: 0,
       [FOUR]: 0,
       [FIVE]: 0,
@@ -47,6 +47,11 @@ class App {
       Validator.isValidBonus(number);
       this.bonusNumber = Number(number);
       Console.print("\n" + Console.WIN_STATISTICS);
+      this.winStatistics = LottoAdmin.getWinStatistics(this.lottos, [
+        this.winNumbers,
+        this.bonusNumber,
+      ]);
+      LottoAdmin.printWinStatistics(this.winStatistics);
     });
   }
 }
