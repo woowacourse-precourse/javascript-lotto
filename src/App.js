@@ -38,6 +38,13 @@ class App {
     Console.readLine('\n당첨 번호를 입력해 주세요.\n', (stringNumbers) => {
       const numbers = [...stringNumbers.split(',')].map(Number);
       this.lotto = new Lotto(numbers);
+      this.getBonusNumber();
+    });
+  }
+
+  getBonusNumber() {
+    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (stringNumber) => {
+      this.lotto.validateBonusNumber(Number(stringNumber));
     });
   }
 }
