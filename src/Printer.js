@@ -14,6 +14,10 @@ let Printer = class {
     Uitls.printMessage(Constant.GAME_PROGRESS_MESSAGES.ENTER_BONUS_NUMBER);
   }
 
+  static lottos(arrays) {
+    arrays.forEach((array) => Uitls.printMessage(`[${array.join(',')}]`));
+  }
+
   static result(obj, statistics) {
     Uitls.printMessage(`
     3개 일치 (5,000원) - ${obj[5]}개
