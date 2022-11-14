@@ -1,8 +1,8 @@
-const { Console } = require("@woowacourse/mission-utils");
-const Lotto = require("./Lotto");
+const Execution = require("./Execution");
+const lotto = new Execution();
 class App {
   play() {
-    new Lotto();
+    lotto.play();
   }
 }
 const app = new App();
