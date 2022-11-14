@@ -31,6 +31,16 @@ class App {
   getBonusNumber() {
     Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
       this.draw.handleBonusNumber(Number(bonusNumber));
+      this.calculateResult();
+    });
+  }
+
+  calculateResult() {
+    const { winningNumber, bonusNumber } = this.draw;
+    this.result = {};
+    this.user.purchasedLottos.forEach((lotto) => {
+      const rank = lotto.getRank(winningNumber, bonusNumber);
+      this.result[rank] = this.result[rank] ? this.result[rank] + 1 : 1;
     });
   }
 }
