@@ -7,7 +7,6 @@ class View extends Setting {
       this.money = money / 1000;
       this.buyLotto();
       this.getWinNumber();
-      this.getBonusNumber();
     });
   }
   printLotto() {
@@ -31,12 +30,14 @@ class View extends Setting {
       winNumber = winNumber.split(",");
       this.winNumber = this.sortList(winNumber);
       console.log(this.winNumber);
-      s;
+      this.getBonusNumber();
     });
   }
   getBonusNumber() {
     Console.readLine("보너스 번호를 입력해 주세요.\n", (bonusNumber) => {
       this.bonusNumber = Number(bonusNumber);
+      console.log(this.bonusNumber);
+      this.lottoClose();
     });
   }
   sortList(list) {
