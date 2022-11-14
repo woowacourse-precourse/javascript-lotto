@@ -1,11 +1,13 @@
 class Constant {
   static NEW_LINE = '\n';
+
   static GAME_MSG = Object.freeze({
     pleaseEnterMoney: '구입금액을 입력해주세요.',
     bought: '개를 구매했습니다.',
     pleaseEnterWinningNumbers: '당첨 번호를 입력해 주세요.',
     pleaseEnterBonusNumber: '보너스 번호를 입력해 주세요.',
   });
+
   static RESULT_MSG = Object.freeze({
     stats: '당첨 통계',
     hrLine: '---',
@@ -18,6 +20,7 @@ class Constant {
     totalProfit: '총 수익률은 ',
     isNPercent: '%입니다.',
   });
+
   static ERROR_MSG = Object.freeze({
     prefix: '[ERROR] ',
     outOfRange: '로또 번호는 1부터 45 사이의 숫자여야 합니다.',
@@ -26,6 +29,7 @@ class Constant {
     only6Numbers: '로또 번호는 6개여야 합니다.',
     duplicateNumbers: '로또 번호는 중복되지 않아야 합니다.',
   });
+
   static INCOMES = Object.freeze([2000000000, 30000000, 1500000, 50000, 5000]);
 }
 

@@ -60,9 +60,8 @@ class Game {
   }
 
   static buyLottos(n) {
-    Person.lottos = [...Array(n)].map(
-      () => new Lotto(NumberGenerator.generateRandomNumbers())
-    );
+    const { generateRandomNumbers } = NumberGenerator;
+    Person.lottos = [...Array(n)].map(() => new Lotto(generateRandomNumbers()));
     Game.enterWinningNumbers();
   }
 

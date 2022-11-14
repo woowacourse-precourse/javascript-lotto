@@ -1,4 +1,4 @@
-const Game = require('../src/Game');
+const { validate } = require('../src/Game');
 const { ERROR_MSG } = require('../src/Constant');
 
 describe('게임 클래스 테스트', () => {
@@ -6,10 +6,10 @@ describe('게임 클래스 테스트', () => {
     const validMoney = 5000;
     const invalidMoney = 5555;
     expect(() => {
-      Game.validate(invalidMoney);
+      validate(invalidMoney);
     }).toThrow(ERROR_MSG.only1000WonUnits);
     expect(() => {
-      Game.validate(validMoney);
+      validate(validMoney);
     }).not.toThrow(ERROR_MSG.only1000WonUnits);
   });
 });
