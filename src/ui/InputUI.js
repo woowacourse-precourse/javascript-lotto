@@ -1,4 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+const TypeConverter = require('../util/TypeConverter');
 const Vaildator = require('../Vaildator');
 const UI = require('./UI');
 
@@ -14,13 +15,15 @@ class InputUI extends UI {
     });
   }
 
-  handleInput(predicate, errorMessage, message = '') {
+  hitNumber(message = '') {
     return new Promise((resolve, reject) => {
       MissionUtils.Console.readLine(message, (answer) => {
-        if (predicate(answer)) {
+        answer = TypeConverter.stringToArray(answer, ',');
+        console.log(answer);
+        if (Vaildator.isRightLottoNumbers(answer)) {
           resolve(answer);
         }
-        reject(errorMessage);
+        reject('error');
       });
     });
   }

@@ -2,19 +2,23 @@ const OutputUI = require('./ui/OutputUI');
 const InputUI = require('./ui/InputUI');
 const message = require('./util/message');
 const User = require('./User');
-const Vaildator = require('./Vaildator');
 const LottoGenerator = require('./LottoGenerator');
+const Vaildator = require('./Vaildator');
+const Lotto = require('./Lotto');
+const TypeConverter = require('./util/TypeConverter');
 
 class App {
   constructor() {
     this.input = new InputUI();
     this.output = new OutputUI();
     this.user = new User();
+    this.hitLotto;
   }
 
   async play() {
     await this.inputBuyAmountView();
     this.printUserLottos();
+    await this.inputHitNumberView();
   }
 
   async inputBuyAmountView() {
@@ -24,6 +28,15 @@ class App {
       .then((resolve) => resolve)
       .catch((e) => {});
     this.user.amount = amount;
+  }
+
+  async inputHitNumberView() {
+    this.output.print(message.HIT_NUMBER);
+    const numbers = await this.input
+      .hitNumber()
+      .then((resolve) => resolve)
+      .catch((e) => {});
+    this.hitLotto = new Lotto(numbers);
   }
 
   printUserLottos() {
