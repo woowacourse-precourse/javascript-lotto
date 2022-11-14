@@ -36,7 +36,7 @@ class App {
       LOTTO.RANGE_END,
       LOTTO.NUMBER_LENGTH
     );
-    const lotto = new Lotto(numbers.sort((a, b) => a - b));
+    const lotto = new Lotto(numbers);
     this.#lottos.push(lotto);
   }
 
@@ -61,13 +61,13 @@ class App {
       this.setWinningNumbers(input.split(','));
       Console.readLine(MESSAGE.REQUEST_BONUS_NUMBER, (input) => {
         this.setBonusNumber(input);
-        this.#lottos.forEach((lotto) => this.calculateMatching(lotto));
+        this.#lottos.forEach((lotto) => this.calculateMatch(lotto));
         this.printResult();
       });
     });
   }
 
-  calculateMatching(lotto) {
+  calculateMatch(lotto) {
     const correct = lotto.getNumberOfMatch(this.#winningNumbers);
     if (correct === 3) this.#matching[LOTTO.CORRECT_THREE] += 1;
     if (correct === 4) this.#matching[LOTTO.CORRECT_FOUR] += 1;
@@ -82,11 +82,9 @@ class App {
   }
 
   getEarningRate() {
-    let prize = 0;
-    this.#matching.forEach(
-      (matchedNumber, index) => (prize += matchedNumber * LOTTO.PRIZE[index])
+    const prize = this.#matching.reduce(
+      (acc, matchedNumber, index) => acc + matchedNumber * LOTTO.PRIZE[index]
     );
-
     return (prize / this.#money) * 100;
   }
 
