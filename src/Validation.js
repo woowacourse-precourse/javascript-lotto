@@ -23,7 +23,7 @@ class Validation {
     if (!this.isOnlyNumber(winnerNumber)) {
       throw new Error(ERROR_MESSAGE.NOT_ONLY_NUMBER);
     }
-    if (!this.isUniqueNumber(winnerNumber)) {
+    if (!this.isUniqueWinnerNumber(winnerNumber)) {
       throw new Error(ERROR_MESSAGE.NOT_UNIQUE_NUMBER);
     }
     if (!this.isNumberInRange(winnerNumber)) {
