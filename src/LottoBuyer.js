@@ -21,6 +21,7 @@ class LottoBuyer {
         MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6)
       );
       this.lottoArray.push(boughtLotto);
+      boughtLotto.printLottoNumbers();
     }
   }
 }
