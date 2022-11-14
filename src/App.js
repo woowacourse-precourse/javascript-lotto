@@ -7,6 +7,7 @@ class App {
       const purchaseLottoList = this.lottoPublisher(purchaseLottoCount);
       this.printer(`\n${purchaseLottoCount}개를 구매했습니다.`);
       this.purchaseLottoListPrinter(purchaseLottoList);
+      this.winningNumberDecider(purchaseLottoList);
     });
   }
 
@@ -34,6 +35,14 @@ class App {
     ) {
       Console.print(purchaseLottoList[lottoNumber].sort((a, b) => a - b));
     }
+  }
+
+  static winningNumberDecider(purchaseLottoList) {
+    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (winningNumber) => {
+      Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
+        this.printer('당첨통계 나온다 이제');
+      });
+    });
   }
 
   play() {
