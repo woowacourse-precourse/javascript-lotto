@@ -7,6 +7,7 @@ class LottoGame {
   #user;
   #raffle;
   #statistic;
+  #rateOfReturn;
 
   constructor() {
     this.#user = undefined;
@@ -18,6 +19,7 @@ class LottoGame {
       prev[currentKey] = 0;
       return prev;
     }, {});
+    this.#rateOfReturn = 0;
   }
 
   start() {
@@ -64,6 +66,7 @@ class LottoGame {
     STATISTIC_KEY.forEach((key) => {
       this.printRanking(key);
     });
+    this.printRateOfReturn();
   }
 
   printRanking(key) {
@@ -106,6 +109,22 @@ class LottoGame {
 
   hasBonusNumber(lotto, bonus) {
     return lotto.includes(bonus);
+  }
+
+  printRateOfReturn() {
+    let totalPrize = 0;
+    STATISTIC_KEY.forEach((key) => {
+      totalPrize += this.#statistic[key] * PRIZE[key];
+    });
+    const rateOfReturn = this.calcRateOfReturn(
+      this.#user.getAmount(),
+      totalPrize,
+    );
+    MissionUtils.Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
+  }
+
+  calcRateOfReturn(amount, totalPrize) {
+    return ((totalPrize / amount) * 100).toFixed(1);
   }
 }
 

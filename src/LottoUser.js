@@ -22,6 +22,10 @@ class LottoUser {
     }
   }
 
+  getAmount() {
+    return this.#amount;
+  }
+
   getLottos() {
     return this.#lottos;
   }
