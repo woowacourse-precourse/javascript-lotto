@@ -107,7 +107,7 @@ class App {
       rank[0] * WINNING_PRIZE.PLACE_1ST;
 
     const totalPurchaseCount = this.purchaseMoney;
-    const earnings = ((totalWinning / totalPurchaseCount) * 100).toFixed(2);
+    const earnings = ((totalWinning / totalPurchaseCount) * 100).toFixed(1);
     return earnings;
   }
 

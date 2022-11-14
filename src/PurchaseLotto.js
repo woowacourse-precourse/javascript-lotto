@@ -25,7 +25,9 @@ class PurchaseLotto {
   }
 
   printLottoNumber() {
-    return this.getLottoTickets().forEach((num) => Console.print(num));
+    return this.getLottoTickets().forEach((num) =>
+      Console.print(`[${num.join(', ')}]`)
+    );
   }
 }
 
