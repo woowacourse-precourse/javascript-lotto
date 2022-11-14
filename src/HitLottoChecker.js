@@ -42,5 +42,15 @@ class HitLottoChecker {
       }
     );
   }
+  findHitLotto() {
+    for (let lotto of this.boughtLottoArray) {
+      let matchNumbersAmount = lotto
+        .getLottoNumbers()
+        .filter((lottoNumber) =>
+          this.hitLotto.getLottoNumbers().includes(lottoNumber)
+        ).length;
+      this.fillMatchLottoNumbersTable(matchNumbersAmount, lotto);
+    }
+  }
 }
 module.exports = HitLottoChecker;
