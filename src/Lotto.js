@@ -23,11 +23,19 @@ class Lotto {
     }
   }
   
+  bonusNumber(price,lottos){
+    Console.readLine('보너스 번호를 입력해 주세요.', (bonus) =>{
+      this.inputCheck.bonusCheck(bonus);
+      this.winningHistory(price,lottos,bonus);
+    });
+  }
+
   winningNumber(price,lottos){
     Console.readLine('당첨 번호를 입력해 주세요.', (input) => {
       let numbers = input.split(',');
       this.inputCheck.validate(numbers);
       this.#numbers = numbers;
+      this.bonusNumber(price,lottos);
     });
   }
 
