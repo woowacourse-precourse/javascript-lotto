@@ -29,6 +29,22 @@ class Lotto {
     }
   }
 
+  validationInputBounusNumber(bonusNumber) {
+    for(let i=0; i<this.#numbers.length; i++) {
+      if (isNaN(bonusNumber)) {
+        throw new Error("[ERROR] 보너스 번호는 숫자를 입력해 주세요.");
+      }
+  
+      if (bonusNumber < 1 || bonusNumber > 45) {
+        throw new Error("[ERROR] 보너스 번호는 1 ~ 45 사이의 숫자를 입력해주세요.");
+      }
+  
+      if (this.#numbers[i] === bonusNumber) {
+        throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+      }
+    }    
+  }
+
 }
 
 module.exports = Lotto;

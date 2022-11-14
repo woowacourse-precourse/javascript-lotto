@@ -66,6 +66,7 @@ class App {
     Console.readLine("보너스 번호를 입력해 주세요.", (bonusNumber) => {
       bonusNumber = parseInt(bonusNumber);
     })
+    this.validationInputBounusNumber(bonusNumber);
   }
 }
 
