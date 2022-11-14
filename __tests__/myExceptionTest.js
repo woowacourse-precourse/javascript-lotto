@@ -1,5 +1,6 @@
 const App = require("../src/App");
 const MissionUtils = require("@woowacourse/mission-utils");
+const Lotto = require("../src/Lotto");
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();
@@ -102,4 +103,16 @@ describe("로또 테스트", () => {
   //     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
   //   });
   // });
+
+  test("로또 번호가 1~45 사이의 숫자가 아니면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([3, 6, 9, 93, 5, 7]);
+    }).toThrow("[ERROR]");
+  });
+
+  test("로또 번호 중 숫자가 아닌 값이 있으면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([3, 6, 9, "j", 5, 7]);
+    }).toThrow("[ERROR]");
+  });
 });
