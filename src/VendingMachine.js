@@ -11,7 +11,7 @@ const {
   getRateStrOfProfit,
   lottoArrToString,
 } = require('./lib/utilFns.js');
-const { CONSOLE_MSG, ERROR_MSG } = require('./lib/constant');
+const { LOTTOS, CONSOLE_MSG, ERROR_MSG } = require('./lib/constant');
 
 class VendingMachine {
   #purchaseAmount;
@@ -54,10 +54,11 @@ class VendingMachine {
   }
 
   pickRandomNumbers(cnt = this.#numberOfLottos) {
+    const { start, end, size } = LOTTOS;
     const randomNumbers = [];
 
     for (let i = 0; i < cnt; i++) {
-      randomNumbers.push(getRandomNumbers(1, 45, 6));
+      randomNumbers.push(getRandomNumbers(start, end, size));
     }
 
     return randomNumbers;
@@ -99,7 +100,7 @@ class VendingMachine {
   }
 
   getRanksByScores() {
-    const rankBoard = new Array(6).fill(0);
+    const rankBoard = new Array(LOTTOS.size).fill(0);
 
     this.#scores.forEach(([score, bonusScore]) => {
       const rank = getRank(score, bonusScore);

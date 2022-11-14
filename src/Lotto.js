@@ -1,5 +1,5 @@
 const { isLottoNumbers, isDuplicated, isInclude } = require('./lib/utilFns');
-const { ERROR_MSG } = require('./lib/constant');
+const { ERROR_MSG, LOTTOS } = require('./lib/constant');
 
 class Lotto {
   #numbers;
@@ -11,7 +11,9 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (!isLottoNumbers(numbers, 1, 45, 6) || isDuplicated(numbers)) {
+    const { start, end, size } = LOTTOS;
+
+    if (!isLottoNumbers(numbers, start, end, size) || isDuplicated(numbers)) {
       throw new Error(ERROR_MSG.invalidLottos);
     }
 
@@ -39,8 +41,6 @@ class Lotto {
 
     return { score, bonusScore };
   }
-
-  // TODO: 추가 기능 구현
 }
 
 module.exports = Lotto;

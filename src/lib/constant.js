@@ -16,6 +16,12 @@ const SCORE_MSG_BY_RANK = {
   5: '3개 일치',
 };
 
+const LOTTOS = {
+  start: 1,
+  end: 45,
+  size: 6,
+};
+
 const CONSOLE_MSG = {
   enterPerchaseAmount: '구입금액을 입력해 주세요.\n',
   enterLottoNumbers: '\n당첨 번호를 입력해 주세요.\n',
@@ -33,4 +39,4 @@ const ERROR_MSG = {
   duplicatedLottosAndBonus: '[ERROR] 로또 번호와 보너스 번호는 중복되지 않아야 합니다.',
 };
 
-module.exports = { amountRegExp, AMOUNT_BY_RANK, SCORE_MSG_BY_RANK, CONSOLE_MSG, ERROR_MSG };
+module.exports = { amountRegExp, LOTTOS, AMOUNT_BY_RANK, SCORE_MSG_BY_RANK, CONSOLE_MSG, ERROR_MSG };
