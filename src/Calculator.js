@@ -32,7 +32,7 @@ class Calculator {
   printWinningStats(matchingCount) {
     Console.print("당첨 통계\n---");
     for (let index = 3; index <= 6; index++) {
-      Console.print(`${RANK[index]} ${matchingCount[index]}개`);
+      Console.print(`${RANK[index]}${matchingCount[index]}개`);
       if (index === 5) {
         total += this.checkBonusReward(7, matchingCount);
       }
@@ -45,7 +45,7 @@ class Calculator {
   }
 
   checkBonusReward(index, matchingCount) {
-    Console.print(`${RANK[index]} ${matchingCount[index]}개`);
+    Console.print(`${RANK[index]}${matchingCount[index]}개`);
     return REWARD[index] * matchingCount[index];
   }
 }
