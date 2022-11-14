@@ -67,3 +67,35 @@ describe('입력된 돈에 대한 유효성 검사 테스트', () => {
     });
   });
 });
+
+describe('입력된 당첨 번호에 대한 유효성 검사 테스트', () => {
+  test('공백을 포함한 경우 예외 발생', () => {
+    const inputValues = ['q, e', ' 123,', '1,23 ', ' '];
+
+    inputValues.forEach((value) => {
+      expect(() => Validator.throwErrorIfInvalidWinningForm(value)).toThrow(
+        '[ERROR]'
+      );
+    });
+  });
+
+  test(',를 기준으로 구분했을 때 숫자가 아닌 경우 예외 발생', () => {
+    const inputValues = ['12,qw', '#,45', '1,2,3,4,a', ',1,2', '1,2,'];
+
+    inputValues.forEach((value) => {
+      expect(() => Validator.throwErrorIfInvalidWinningForm(value)).toThrow(
+        '[ERROR]'
+      );
+    });
+  });
+
+  test(',를 기준으로 구분했을 때 0으로 시작하는 숫자가 존재하는 경우 예외 발생', () => {
+    const inputValues = ['1,2,3,03', '00,123,34', '4,05,6,7,8'];
+
+    inputValues.forEach((value) => {
+      expect(() => Validator.throwErrorIfInvalidWinningForm(value)).toThrow(
+        '[ERROR]'
+      );
+    });
+  });
+});
