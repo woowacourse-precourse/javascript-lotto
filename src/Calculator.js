@@ -2,6 +2,7 @@ const { Console } = require("@woowacourse/mission-utils");
 const { MESSAGE, CONSTANTS, RANK, REWARD } = require("../constant/Message");
 
 let total = 0;
+
 class Calculator {
   #myLottos;
   #winningNumbers;
@@ -21,7 +22,7 @@ class Calculator {
         CONSTANTS.TWELVE -
         [...new Set([...lotto, ...this.#winningNumbers])].length;
       if (rank === 5 && lotto.includes(this.#bonus)) {
-        return 7;
+        return CONSTANTS.BONUS_INDEX;
       }
       return rank;
     });
@@ -30,11 +31,15 @@ class Calculator {
   }
 
   printWinningStats(matchingCount) {
-    Console.print("당첨 통계\n---");
-    for (let index = 3; index <= 6; index++) {
+    Console.print(MESSAGE.STATS);
+    for (
+      let index = CONSTANTS.START_REWARD_COUNT;
+      index <= CONSTANTS.LOTTO_MAX_COUNT;
+      index++
+    ) {
       Console.print(`${RANK[index]}${matchingCount[index]}개`);
       if (index === 5) {
-        total += this.checkBonusReward(7, matchingCount);
+        total += this.checkBonusReward(CONSTANTS.BONUS_INDEX, matchingCount);
       }
       total += REWARD[index] * matchingCount[index];
     }

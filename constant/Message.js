@@ -3,6 +3,7 @@ const MESSAGE = Object.freeze({
   INPUT_WINNINGNUMBERS: "당첨 번호를 입력해 주세요.\n",
   INPUT_BONUSNUMBER: "보너스 번호를 입력해 주세요.\n",
   PRINT_AMOUNT: "개를 구매했습니다.",
+  STATS: "당첨 통계\n---",
   REWARD_HEAD: "총 수익률은 ",
   REWARD_TAIL: "입니다.",
 
@@ -24,7 +25,9 @@ const CONSTANTS = Object.freeze({
   ZERO: 0,
   MIN_LOTTO: 1,
   MAX_LOTTO: 45,
+  START_REWARD_COUNT: 3,
   LOTTO_MAX_COUNT: 6,
+  BONUS_INDEX: 7,
   TWELVE: 12,
 });
 
