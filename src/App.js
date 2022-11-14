@@ -24,8 +24,8 @@ class App {
   prizeInput(user, userMoney) {
     MissionUtils.Console.readLine(`${Message.INPUT_MESSAGE.PRIZE}\n`, (prizeNumber) => {
       const przNum = prizeNumber.split(',');
-      DetectError.prototype.checkPrizNumber(przNum);
       new Lotto(przNum);
+      DetectError.prototype.checkPrizNumber(przNum);     
       this.bonusInput(user, przNum, userMoney);
     });
   }
