@@ -27,6 +27,11 @@ class Lotto {
   makeLotto(quantity){
     let uniqueNumbersList = [];
     for (let i=0; i<quantity; i++) uniqueNumbersList.push(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
+    this.printLotto(uniqueNumbersList);
+  }
+
+  printLotto = (uniqueNumbersList) => {
+    uniqueNumbersList.map(numbers => MissionUtils.Console.print(numbers));
   }
 }
 
