@@ -69,16 +69,17 @@ describe("로또 클래스 테스트", () => {
     ];
     const winNumbers = new Set([1, 2, 3, 4, 5, 6]);
     const bonusNumber = 7;
-    const result = new Map();
-    result.set("3개 일치", 2);
-    result.set("4개 일치", 0);
-    result.set("5개 일치", 0);
-    result.set("5개 일치, 보너스 볼 일치", 1);
-    result.set("6개 일치", 0);
+    const result = [
+      [3, 5_000, 2],
+      [4, 50_000, 0],
+      [5, 1_500_000, 0],
+      [5.5, 30_000_000, 1],
+      [6, 2_000_000_000, 0],
+    ];
     const app = new App();
     app.matchLottos(lottos, winNumbers, bonusNumber);
 
-    expect(app.scores).toEqual(result);
+    expect(app.rewards).toEqual(result);
   });
 
   test("수익률 구하기", () => {
