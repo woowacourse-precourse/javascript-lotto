@@ -49,7 +49,7 @@ class App {
 
     for (let i = 0; i < number; i++) {
       const lotto = this.generateRandomLotto();
-      MissionUtils.Console.print(lotto);
+      MissionUtils.Console.print(`[${lotto.join(", ")}]`);
       lottos.concat(lotto);
     }
 
