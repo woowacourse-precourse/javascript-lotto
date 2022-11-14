@@ -153,11 +153,14 @@ class App {
     for (let i = 3; i <= 7; i++) {
       sum += lottoPrize[i][0] * lottoPrize[i][1];
     }
-    let revenue = (sum / userMoney) * 100;
-    let result = parseFloat(revenue.toFixed(2));
+    let revenue = ((sum / userMoney) * 100).toFixed(1);
+    let result = revenue.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 
     MissionUtils.Console.print(`총 수익률은 ${result}%입니다.`);
   }
 }
+
+const game = new App();
+game.play();
 
 module.exports = App;
