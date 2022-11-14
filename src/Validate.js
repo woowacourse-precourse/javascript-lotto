@@ -1,3 +1,5 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+
 function validatePurchase(input) {
   if (isNaN(input)) {
     throw new Error("[ERROR] 구매 금액을 숫자로 입력해주세요.");
