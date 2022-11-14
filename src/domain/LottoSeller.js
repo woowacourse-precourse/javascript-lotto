@@ -1,3 +1,5 @@
+const { LOTTO_PRICE } = require("../constatnts");
+
 class LottoSeller {
   #validateType(money) {
     if (!Number(money)) {
@@ -6,7 +8,7 @@ class LottoSeller {
   }
 
   #validateDivideThousand(money) {
-    if (Number(money) % 1000 !== 0) {
+    if (Number(money) % LOTTO_PRICE !== 0) {
       throw new Error("[ERROR] 금액은 1,000원 단위만 입력 가능합니다.");
     }
   }
@@ -18,7 +20,7 @@ class LottoSeller {
 
   getPurchaseCount(money) {
     this.#validate(money);
-    return Number(money) / 1000;
+    return Number(money) / LOTTO_PRICE;
   }
 }
 

@@ -1,4 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
+const { INDEX } = require("./constatnts");
 
 class Utils {
   static separateByComma(numbers) {
@@ -33,15 +34,15 @@ class Utils {
   }
 
   static #printRank(rankCount) {
-    this.print(`3개 일치 (5,000원) - ${rankCount[4]}개`);
-    this.print(`4개 일치 (50,000원) - ${rankCount[3]}개`);
-    this.print(`5개 일치 (1,500,000원) - ${rankCount[2]}개`);
-    this.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankCount[1]}개`);
-    this.print(`6개 일치 (2,000,000,000원) - ${rankCount[0]}개`);
+    this.print(`3개 일치 (5,000원) - ${rankCount[INDEX.FIFTH_RANK]}개`);
+    this.print(`4개 일치 (50,000원) - ${rankCount[INDEX.FORTH_RANK]}개`);
+    this.print(`5개 일치 (1,500,000원) - ${rankCount[INDEX.THIRD_RANK]}개`);
+    this.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankCount[INDEX.SECOND_RANK]}개`);
+    this.print(`6개 일치 (2,000,000,000원) - ${rankCount[INDEX.FIRST_RANK]}개`);
   }
 
   static #printRateOfReturn(rateOfReturn) {
-    this.print(`총 수익률은 ${rateOfReturn}%입니다.`);
+    this.print(`총 수익률은 ${rateOfReturn.toLocaleString()}%입니다.`);
   }
 
   static printWinningResult(rankCount, rateOfReturn) {

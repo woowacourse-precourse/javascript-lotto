@@ -1,6 +1,14 @@
+const { PRIZE_AMOUNT } = require("../constatnts");
+
 class PrizeCalculator {
   getPrizeMoney(rank) {
-    const prize = [2000000000, 30000000, 1500000, 50000, 5000];
+    const prize = [
+      PRIZE_AMOUNT.FIRST_RANK,
+      PRIZE_AMOUNT.SECOND_RANK,
+      PRIZE_AMOUNT.THIRD_RANK,
+      PRIZE_AMOUNT.FORTH_RANK,
+      PRIZE_AMOUNT.FIFTH_RANK,
+    ];
 
     return rank.reduce((acc, currentRank, idx) => {
       return acc + currentRank * prize[idx];

@@ -1,9 +1,10 @@
 const Utils = require("../Utils");
 const Lotto = require("../Lotto");
+const { MAX_NUMBER, MIN_NUMBER, LOTTO_LENGTH } = require("../constatnts");
 
 class LottoGenerator {
   #generateSixNumber() {
-    return Utils.getRandomeNumbers(1, 45, 6);
+    return Utils.getRandomeNumbers(MIN_NUMBER, MAX_NUMBER, LOTTO_LENGTH);
   }
 
   #generateLotto() {
