@@ -54,7 +54,8 @@ class LottoCalculator {
   }
 
   #compareLotto() {
-    [...this.payment.getLottos()]
+    this.payment
+      .getLottos()
       .map(lottoToBuy => [
         this.#matchLottoFor(lottoToBuy),
         this.#matchBonusFor(lottoToBuy),
