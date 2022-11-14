@@ -10,7 +10,7 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (!isLottoNumbers(numbers, 1, 45, 6)) {
+    if (!isLottoNumbers(numbers, 1, 45, 6) || isDuplicated(numbers)) {
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
     }
 
