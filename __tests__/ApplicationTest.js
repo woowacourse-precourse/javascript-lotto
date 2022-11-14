@@ -60,9 +60,68 @@ describe("로또 테스트", () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
+  
+  test("기능 테스트", () => {
+    mockRandoms([
+      [1, 2, 3, 4, 5, 6],
+      [2, 3, 4, 5, 6, 7],
+    ]);
+    mockQuestions(["2000", "3,4,5,6,7,8", "37"]);
+    const logs = [
+      "2개를 구매했습니다.",
+      "[1, 2, 3, 4, 5, 6]",
+      "[2, 3, 4, 5, 6, 7]",
+      "3개 일치 (5,000원) - 0개",
+      "4개 일치 (50,000원) - 1개",
+      "5개 일치 (1,500,000원) - 1개",
+      "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+      "6개 일치 (2,000,000,000원) - 0개",
+    ];
+    const logSpy = getLogSpy();
+    const app = new App();
+    app.play();
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
 
   test("예외 테스트", () => {
     mockQuestions(["1000j"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+  test("예외 테스트 1-(1) 1000단위로 떨어지지 않는 경우", () => {
+    mockQuestions(["15400"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+  test("예외 테스트 1-(2) 음수인 경우", () => {
+    mockQuestions(["-15000"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+  test("예외 테스트 1-(3) 입력한 값이 숫자가 아닌 경우", () => {
+    mockQuestions(["만원"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+  test("예외 테스트 1-(3) 입력한 값이 숫자가 아닌 경우", () => {
+    mockQuestions(["!5000"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+  test("예외 테스트 1-(3) 입력한 값이 숫자가 아닌 경우", () => {
+    mockQuestions([" "]);
     expect(() => {
       const app = new App();
       app.play();

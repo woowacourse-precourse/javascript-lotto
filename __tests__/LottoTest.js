@@ -14,5 +14,34 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
-  // 아래에 추가 테스트 작성 가능
+  test("당첨 번호가 범위(1~45)를 벗어나는 경우", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 46, 5, 6]);
+    }).toThrow("[ERROR]");
+  });
+
+  test("당첨 번호가 6개 보다 적은 경우", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5]);
+    }).toThrow("[ERROR]");
+  });
+
+  test("당첨 번호가 6개 보다 적은 경우", () => {
+    expect(() => {
+      new Lotto([ ]);
+    }).toThrow("[ERROR]");
+  });
+
+  test("당첨번호가 숫자가 아닌 경우", () => {
+    expect(() => {
+      new Lotto(['일','이','삼','사','오','육']);
+    }).toThrow("[ERROR]");
+  });
+
+  test("당첨번호가 숫자가 아닌 경우", () => {
+    expect(() => {
+      new Lotto(["?","!","#","$","%","@"]);
+    }).toThrow("[ERROR]");
+  });
+
 });
