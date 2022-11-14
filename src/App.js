@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Lotto = require("./Lotto");
 const { Console, Random } = MissionUtils;
 const lotto = require("./Lotto");
 
@@ -8,9 +9,13 @@ class App {
   matchNumberArr = [];
   countMatchNumberArr = [];
   prizeMoneyArr = [5000, 50000, 1500000, 30000000, 2000000000];
+  amountMoneyInputArr = [];
 
   play() {
     this.inputOfLottoPurchaseAmount();
+    this.inputOfWinningNumber();
+    this.inputOfBonusNumber();
+    this.conditionOfWinning();
     this.printResult();
   }
 
@@ -19,10 +24,10 @@ class App {
     Console.readLine("구입금액을 입력해 주세요.",(amountInput) => {
       amountInput = parseInt(amountInput);
       this.validationInputLottoPurchaseAmount(amountInput);
+      this.amountMoneyInputArr.push(amountInput);
       countLotto = amountInput % 1000;
       this.printPurchaseCountMessage(countLotto);
       this.createRandomSixNumber(countLotto);
-      this.findingTheReturn(amountInput);
     });
   }
 
@@ -66,16 +71,17 @@ class App {
     Console.readLine("당첨 번호를 입력해 주세요.", (winNumber) => {
       winningNumbers = winNumber.split(",").map(Number).sort((idx1,idx2) => idx1-idx2 );
     });
-    lotto = new Lotto(winningNumbers);
+    // lotto = new Lotto(winningNumbers);
     this.winningNumberArr.push(winningNumbers);
   }
 
   inputOfBonusNumber() {
     Console.readLine("보너스 번호를 입력해 주세요.", (bonusNumber) => {
       bonusNumber = parseInt(bonusNumber);
-    })
-    lotto.validationInputBounusNumber(bonusNumber);
-    this.winningNumberArr.push([bonusNumber]);
+      let lottos = new Lotto(bonusNumber);
+      lottos.validationInputBounusNumber(bonusNumber);
+      this.winningNumberArr.push([bonusNumber]);
+    });
   }
 
   conditionOfWinning() {
@@ -154,32 +160,34 @@ class App {
   }
 
   printCountOfThreeMatch() {
-    Console.print(`3개 일치 (5,000원) - ${this.countThreeMatch}개`);
+    Console.print(`3개 일치 (5,000원) - ${this.countMatchNumberArr[0]}개`);
   }
 
   printCountOfFourMatch() {
-    Console.print(`4개 일치 (50,000원) - ${this.countFourMatch}개`);
+    Console.print(`4개 일치 (50,000원) - ${this.countMatchNumberArr[1]}개`);
   }
 
   printCountOfFiveMatch() {
-    Console.print(`5개 일치 (1,500,000원) - ${this.countFiveMatch}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${this.countMatchNumberArr[2]}개`);
   }
 
   printCountOfFiveAndBounsMatch() {
-    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.countFiveAndBounsMatch}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.countMatchNumberArr[3]}개`);
   }
 
   printCountOfSixMatch() {
-    Console.print(`6개 일치 (2,000,000,000원) - ${this.countSixMatch}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${this.countMatchNumberArr[4]}개`);
   }
 
-  findingTheReturn(amountInput) {
+  findingTheReturn() {
     let winningAmount = 0;
+    let rateOfReturn;
     for(let i=0; i<this.prizeMoneyArr.length; i++) {
-      winnigAmount += this.prizeMoneyArr[i] * this.countMatchNumberArr[i]; 
+      winningAmount += parseInt(this.prizeMoneyArr[i] * this.countMatchNumberArr[i]); 
     }
-    const grossRateOfReturn = winningAmount / amountInput * 100;
-    Console.print(`총 수익율은 ${grossRateOfReturn}%입니다.`);
+    rateOfReturn = (winningAmount / this.amountMoneyInputArr[0] ) * 100;
+    rateOfReturn = rateOfReturn.toFixed(1);
+    Console.print(`총 수익율은 ${rateOfReturn}%입니다.`);
   }
 
   printResult() {

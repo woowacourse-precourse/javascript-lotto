@@ -46,64 +46,6 @@ class Lotto {
     }    
   }
 
-  countProcess() {
-    this.countOfThreeMatch;
-    this.countOfFourMatch;
-    this.countOfFiveMatch;
-    this.countOfFiveAndBounsMatch;
-    this.countOfSixMatch;
-  }
-
-  countOfThreeMatch() {
-    let countThreeMatch = 0;
-    for(let i=0; i<6; i++) {
-      this.matchNumberArr.push(this.winningNumberArr.includes(this.randomSixNumberArr[i]));
-      if(this.matchNumberArr.length === 3) {
-        countThreeMatch++;
-      }
-    }
-  }
-
-  countOfFourMatch() {
-    let countFourMatch = 0;
-    for(let i=0; i<6; i++) {
-      this.matchNumberArr.push(this.winningNumberArr.includes(this.randomSixNumberArr[i]));
-      if(this.matchNumberArr.length === 4) {
-        countFourMatch++;
-      }
-    }
-  }
-
-  countOfFiveMatch() {
-    let countFiveMatch = 0;
-    for(let i=0; i<6; i++) {
-      this.matchNumberArr.push(this.winningNumberArr.includes(this.randomSixNumberArr[i]));
-      if(this.matchNumberArr.length === 5) {
-        countFiveMatch++;
-      }
-    }
-  }
-
-  countOfFiveAndBounsMatch() {
-    let countFiveAndBounsMatch = 0;
-    for(let i=0; i<6; i++) {
-      this.matchNumberArr.push(this.winningNumberArr.includes(this.randomSixNumberArr[i]));
-      if((this.matchNumberArr.length === 5) && (this.randomSixNumberArr.includes(winningNumberArr[6]))) {
-        countFiveAndBounsMatch++;
-      }
-    }
-  }
-
-  countOfSixMatch() {
-    let countSixMatch = 0;
-    for(let i=0; i<6; i++) {
-      this.matchNumberArr.push(this.winningNumberArr.includes(this.randomSixNumberArr[i]));
-      if(this.matchNumberArr.length === 6) {
-        countSixMatch++;
-      }
-    }
-  }
-
 }
 
 module.exports = Lotto;
