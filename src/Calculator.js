@@ -1,6 +1,20 @@
 const { WINNING_AMOUNT_UNITS, LOTTO_NUMBER_RANGE } = require('./Constant');
 
 class Calculator {
+  static calWinningCount(userLottoArrays, winningArray, bonusNumber) {
+    let winningCount = 0;
+    winningArray.forEach((number) => {
+      if (userLottoArrays.includes(number)) winningCount += 1;
+    });
+    if (winningCount === 6) return 1;
+    if (winningCount === 5 && winningArray.includes(bonusNumber)) return 2;
+    if (winningCount === 5) return 3;
+    if (winningCount === 4) return 4;
+    if (winningCount === 3) return 5;
+    if (winningCount < 3) return null;
+    return null;
+  }
+
   static totalWinningAmount(winningArray) {
     let totalAmount = 0;
     winningArray.forEach((winning) => {

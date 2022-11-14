@@ -12,8 +12,8 @@ class Lotto {
 
   // TODO: 추가 기능 구현
   ascendingSortLottoArray() {
-    this.#numbers.sort((a, b) => a - b);
-    console.log(this.#numbers);
+    return this.#numbers.sort((a, b) => a - b);
+    // console.log(this.#numbers);
   }
 
   static covertStringToNumberArray(strings) {
@@ -36,20 +36,6 @@ class Lotto {
       lottoNumbers.push(Lotto.generateLottoArray());
     }
     return lottoNumbers;
-  }
-
-  matchLotto(userLottoArrays, bonusNumber) {
-    let winningCount = 0;
-    this.#numbers.forEach((number) => {
-      if (userLottoArrays.includes(number)) winningCount += 1;
-    });
-    if (winningCount === 6) return 1;
-    if (winningCount === 5 && this.#numbers.includes(bonusNumber)) return 2;
-    if (winningCount === 5) return 3;
-    if (winningCount === 4) return 4;
-    if (winningCount === 3) return 5;
-    if (winningCount < 3) return null;
-    return null;
   }
 }
 
