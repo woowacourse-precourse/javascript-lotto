@@ -1,4 +1,4 @@
-const { ERR_MONEY_MIN, ERR_ONLY_NUM, CMM_BUY_LOTTO } = require('./Constants');
+const { ERR_MONEY_MIN, ERR_ONLY_NUM, ERR_MONEY_UNIT, CMM_BUY_LOTTO } = require('./Constants');
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 
@@ -32,11 +32,14 @@ class User {
   }
   validateMoneyInput(money) {
     const money_int = parseInt(money);
-    if (!money_int) {
+    if (!money_int || !Number.isInteger(money_int)) {
       throw new Error(ERR_ONLY_NUM);
     }
     if (money_int < 1000) {
       throw new Error(ERR_MONEY_MIN);
+    }
+    if (money_int % 1000 !== 0) {
+      throw new Error(ERR_MONEY_UNIT);
     }
   }
 }

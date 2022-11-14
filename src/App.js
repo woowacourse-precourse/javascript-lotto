@@ -12,20 +12,20 @@ const {
 
 class App {
   #user;
-  #winningNum;
+  #winningNumList;
   #bonusNum;
 
   askBonusNum() {
     Console.readLine(CMM_INPUT_BONUS, (input) => {
       this.#bonusNum = this.validateBonusInput(input);
-      console.log(this.#winningNum,this.#bonusNum);
+      console.log(this.#winningNumList,this.#bonusNum);
       Console.close();
     });
   }
 
   askWinningNumbers() {
     Console.readLine(CMM_INPUT_WINNING, (input) => {
-      this.#winningNum = this.validateWinningInput(input);
+      this.#winningNumList = this.validateWinningInput(input);
       this.askBonusNum();
     });
   }
@@ -60,7 +60,7 @@ class App {
     if (bonusInput < 1 || bonusInput > 45) {
       throw new Error(ERR_NOT_NUM);
     }
-    if (this.#winningNum.includes(parseInt(bonusInput))) {
+    if (this.#winningNumList.includes(parseInt(bonusInput))) {
       throw new Error(ERR_BONIUS_DUP);
     }
     return bonusInput;
