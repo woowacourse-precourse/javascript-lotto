@@ -7,6 +7,7 @@ class VendingMachine {
   #numberOfLottos;
   #randomNumbers;
   #lottoMachine;
+  #scores = [];
 
   askPurchaseAmount() {
     const answerCbFn = (answer) => {
@@ -67,6 +68,10 @@ class VendingMachine {
   askBonusNumber() {
     const answerCbFn = (answer) => {
       this.#lottoMachine.setBonus(answer);
+      this.#randomNumbers.forEach((numbers) => {
+        const { score, bonusScore } = this.#lottoMachine.getScore(numbers);
+        this.#scores.push([score, bonusScore]);
+      });
     };
 
     Console.readLine('\n보너스 번호를 입력해주세요.\n', answerCbFn);
