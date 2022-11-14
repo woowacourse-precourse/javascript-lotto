@@ -115,6 +115,15 @@ class App {
       });
   }
 
+  printScore() {
+    let idx = 0;
+    console.log(this.scores);
+    this.scores.forEach((value, key) => {
+      Console.print(`${key} (${this.reward[idx]}원) - ${value}개`);
+      idx += 1;
+    });
+  }
+
   calculateProfit(scores) {
     return scores.reduce((total, arg) => {
       if (arg === 3) return (total += 5_000);
