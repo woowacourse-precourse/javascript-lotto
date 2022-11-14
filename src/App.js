@@ -55,6 +55,14 @@ class App {
   }
 
   // 당첨 번호를 입력하는 함수 구현
+  inputWinNumber() {
+    MissionUtils.Console.readLine(INPUT_MESSAGES.WINNING_NUMBER, (number) => {
+      this.winNumber = number.split(",");
+      new Lotto(this.winNumber);
+      this.winNumber = this.winNumber.map((number) => parseInt(number));
+      this.inputBonusNumber();
+    });
+  }
 }
 
 const app = new App();
