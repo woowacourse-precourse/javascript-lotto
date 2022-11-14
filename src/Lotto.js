@@ -89,7 +89,6 @@ class Lotto {
         collect+=2;
       }
       winning[collect]++;
-      MissionUtils.Console.print(winning);
     })
     this.printResult(winning, money);
   }

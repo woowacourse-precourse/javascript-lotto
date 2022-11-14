@@ -33,7 +33,7 @@ class Ask{
 
     makeLotto(){
         for(let count = 0; count < this.lottoCnt; count++){
-            this.lottoList.push(String(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6)).split(",").join(", "));
+            this.lottoList.push(String(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6)).split(",").sort((a,b)=>a-b).join(", "));
         }
     }
 
