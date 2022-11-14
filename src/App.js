@@ -37,4 +37,7 @@ class App {
   }
 }
 
+const p = new App();
+p.play();
+
 module.exports = App;
