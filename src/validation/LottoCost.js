@@ -3,6 +3,7 @@ const { LOTTO_COST_ERROR } = require('../constant/errorMessage');
 class LottoCost {
   constructor(lottoCost) {
     this.validate(lottoCost);
+    this.hasDot(lottoCost);
   } 
   
   validate(lottoCost) {
@@ -21,6 +22,14 @@ class LottoCost {
         throw new Error(LOTTO_COST_ERROR.CHECK_BLANK);
       }
     });
+  }
+
+  hasDot(lottoCost) {
+    lottoCost.split('').map((el) => {
+      if (el === '.') {
+        throw new Error(LOTTO_COST_ERROR.CHECK_DOT);
+      }
+    })
   }
 }
 
