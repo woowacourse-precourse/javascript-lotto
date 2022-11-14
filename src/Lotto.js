@@ -18,24 +18,25 @@ class Lotto {
 
   creatRandomLotto() {
     this.#numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+
     // Console.print(this.#numbers);
-    let tempStr = "";
-    for (let i = 0; i < this.#numbers.length; i++) {
-      if (i === 0) {
-        tempStr += "[";
-        tempStr += this.#numbers[i];
-        tempStr += ", ";
-        continue;
-      }
-      if (i === this.#numbers.length - 1) {
-        tempStr += this.#numbers[i];
-        tempStr += "]";
-        continue;
-      }
-      tempStr += this.#numbers[i];
-      tempStr += ", ";
-    }
-    Console.print(tempStr);
+    // let tempStr = "";
+    // for (let i = 0; i < this.#numbers.length; i++) {
+    //   if (i === 0) {
+    //     tempStr += "[";
+    //     tempStr += this.#numbers[i];
+    //     tempStr += ", ";
+    //     continue;
+    //   }
+    //   if (i === this.#numbers.length - 1) {
+    //     tempStr += this.#numbers[i];
+    //     tempStr += "]";
+    //     continue;
+    //   }
+    //   tempStr += this.#numbers[i];
+    //   tempStr += ", ";
+    // }
+    // Console.print(tempStr);
     return this.#numbers;
   }
 

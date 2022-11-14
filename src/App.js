@@ -1,5 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
+const Output = require("./Output");
 const Result = require("./Result");
 const Score = require("./Score");
 
@@ -20,6 +21,7 @@ class App {
       this.buyMoney = answer;
       lottoNum = this.divideMoneyByThousand();
       const lottoArr = this.lotto.createTotalLottoArr(lottoNum);
+      Output.printLottos(lottoArr);
       this.getWinningNum(lottoArr);
     });
   }
@@ -57,5 +59,6 @@ class App {
     });
   }
 }
-
+const app = new App();
+app.play();
 module.exports = App;
