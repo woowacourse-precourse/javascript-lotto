@@ -1,11 +1,16 @@
 const LOTTO = require('../constant/constant');
 
 class Money {
-  money;
+  #money;
   constructor(inputMoney) {
     this.validate(inputMoney);
-    this.money = inputMoney;
+    this.#money = inputMoney;
   }
+
+  get money() {
+    return this.#money;
+  }
+
   validate(money) {
     this.checkNumber(money);
     this.checkMoneyDivide(money);

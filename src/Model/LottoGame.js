@@ -5,8 +5,8 @@ const Lotto = require('./Lotto');
 const Money = require('./Money');
 
 class LottoGame {
-  lottos = [];
-  winLotto;
+  #lottos = [];
+  #winLotto;
   #bonusNumber;
   #money;
 
@@ -20,16 +20,26 @@ class LottoGame {
   get bonusNumber() {
     return this.#bonusNumber.number;
   }
-
   set bonusNumber(input) {
-    this.#bonusNumber = new BonusNumber(this.winLotto, input);
+    this.#bonusNumber = new BonusNumber(this.#winLotto, input);
+  }
+
+  get winLotto() {
+    return this.#winLotto;
+  }
+  set winLotto(lotto) {
+    this.#winLotto = lotto;
+  }
+
+  get lottos() {
+    return this.#lottos;
   }
 
   getLottos() {
     const lottoNums = this.#money.money / LOTTO.PRICE;
     for (let x = 0; x < lottoNums; x++) {
       const lottoNumbers = this.getRandomNumber();
-      this.lottos.push(new Lotto(lottoNumbers));
+      this.#lottos.push(new Lotto(lottoNumbers));
     }
   }
 

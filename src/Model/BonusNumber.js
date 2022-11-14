@@ -1,10 +1,16 @@
 const LOTTO = require('../constant/constant');
 
 class BonusNumber {
+  #number;
   constructor(winLotto, inputNumber) {
     this.validate(winLotto, inputNumber);
-    this.number = inputNumber;
+    this.#number = inputNumber;
   }
+
+  get number() {
+    return this.#number;
+  }
+
   validate(winLotto, inputNumber) {
     this.checkDuplicate(winLotto, inputNumber);
     this.checkNumber(inputNumber);
