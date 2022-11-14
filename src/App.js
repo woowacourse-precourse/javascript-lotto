@@ -43,6 +43,25 @@ class App {
       this.result[rank] = this.result[rank] ? this.result[rank] + 1 : 1;
     });
   }
+
+  getProfitRate() {
+    const totalPrize = Object.keys(this.result).reduce(
+      (acc, rank) => acc + WINNING_PRIZE[rank] * this.result[rank],
+      0,
+    );
+    return (totalPrize / this.user.purchaseAmount) * 100;
+  }
+
+  printResult() {
+    Console.print('\n당첨 통계\n---');
+    Console.print(`3개 일치 (5,000원) - ${this.result[5] || 0}개`);
+    Console.print(`4개 일치 (50,000원) - ${this.result[4] || 0}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${this.result[3] || 0}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.result[2] || 0}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${this.result[1] || 0}개`);
+    Console.print(`총 수익률은 ${this.getProfitRate()}%입니다.`);
+    Console.close();
+  }
 }
 
 module.exports = App;
