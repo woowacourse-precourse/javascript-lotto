@@ -53,7 +53,12 @@ class CompareNumber {
         this.fourGrade();
       }
       if (number === 5) {
-        this.threeGrade();
+        this.correctBonus.forEach(function (bonus) {
+          if (bonus === 1) {
+            GRADE[1] += 1;
+          }
+        });
+        GRADE[2] += 1;
       }
       if (number === 6) {
         this.firstGrade();
