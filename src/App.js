@@ -1,5 +1,5 @@
-const { MissionUtils } = require("@woowacourse/mission-utils");
-
+const MissionUtils = require("@woowacourse/mission-utils");
+const Lotto = require("./Lotto");
 class App {
   #winningNum;
   #bonusNum;
@@ -9,11 +9,27 @@ class App {
 
   #validMatchesList;
 
-  constructor(numbers) {
+  constructor() {
     this.#purchaseNumList = [];
     this.#validMatchesList = [3, 4, 5, 5.5, 6];
   }
-  play() {}
+  play() {
+    let matches = 0;
+    let matchesObj = { 3: 0, 4: 0, 5: 0, 5.5: 0, 6: 0 };
+    // 1. 구입금액 입력
+    const amount = this.buy();
+    this.#purchaseAmount = this.validAmount(amount);
+  }
+
+  validAmount(amount) {
+    if (isNaN(+amount)) {
+      throw new Error("[ERROR] 숫자만 입력해주세요.");
+    }
+    if (!(amount % 1000 === 0 && amount / 1000 !== 0)) {
+      throw new Error("[ERROR] 1,000원 단위로 입력해주세요.");
+    }
+    return amount;
+  }
 
   generateLotto() {
     const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
@@ -24,7 +40,7 @@ class App {
   buy() {
     let money = 0;
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (input) => {
-      money = parseInt(input);
+      money = input;
     });
     return money;
   }
