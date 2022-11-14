@@ -1,16 +1,15 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
-const Purchase = require("./Purchase");
+const Validation = require("./Validation.js");
 const Winning = require("./Winning");
+const Bonus = require("./Bonus");
 class App {
-  lottoDraw = () => {
-    // 로또 추첨
-  };
+  lottoDraw = () => {};
   bonusNumber = () => {
     MissionUtils.Console.readLine(
       "보너스 번호를 입력해 주세요.",
       (BonusInput) => {
-        new Winning.BonusNumber(BonusInput);
+        new Bonus(BonusInput);
         MissionUtils.Console.print(BonusInput);
       }
     );
@@ -44,7 +43,7 @@ class App {
   };
   lottoPurchase = () => {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (purchase) => {
-      new Purchase(purchase);
+      Validation.validPurchase(purchase);
       this.lottoIssuance(parseInt(purchase, 10) / 1000);
     });
   };
