@@ -50,7 +50,6 @@ class Validation {
 
     return true;
   }
-  static isValidLottoArray(lotto) {}
 }
 
 module.exports = Validation;
