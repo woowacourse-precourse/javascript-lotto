@@ -58,7 +58,7 @@ class App {
     Console.readLine(BONUS_NUMBER_MESSAGE, (bonusNumber) => {
       this.bonusNumber = this.winningNumber.setBonusNumber(bonusNumber);
       const validate = new Validate();
-      validate.validateBonusNumber(this.bonusNumber);
+      validate.validateBonusNumber(this.bonusNumber, this.winningList);
       this.printStatisticsMessage();
     });
   }

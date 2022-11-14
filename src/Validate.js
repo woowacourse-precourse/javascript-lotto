@@ -3,23 +3,27 @@ const {
   ERROR_NOT_BELONG,
   ERROR_LOWER_1000,
   ERROR_NOT_DIVIDE_1000,
+  ERROR_INCLUDE,
 } = require('./Constants');
 
 class Validate {
-  validateBonusNumber(number) {
-    if (isNaN(number)) {
+  validateBonusNumber(bonusNumber, winningList) {
+    if (isNaN(bonusNumber)) {
       throw new Error(ERROR_NOT_NUMBER);
     }
-    if (number < 1 || number > 45) {
+    if (bonusNumber < 1 || bonusNumber > 45) {
       throw new Error(ERROR_NOT_BELONG);
+    }
+    if (winningList.includes(bonusNumber)) {
+      throw new Error(ERROR_INCLUDE);
     }
   }
 
-  validateMoney(number) {
-    if (number < 1000) {
+  validateMoney(money) {
+    if (money < 1000) {
       throw new Error(ERROR_LOWER_1000);
     }
-    if (number % 1000 !== 0) {
+    if (money % 1000 !== 0) {
       throw new Error(ERROR_NOT_DIVIDE_1000);
     }
   }

@@ -36,6 +36,7 @@ const ERROR_NOT_DIFFERENT = '[ERROR] 중복된 숫자가 있습니다.';
 const ERROR_NOT_LENGTH_6 = '[ERROR] 로또 번호는 6개여야 합니다.';
 const ERROR_LOWER_1000 = '[ERROR] 1000원 이상 구매해야 합니다.';
 const ERROR_NOT_DIVIDE_1000 = '[ERROR] 1000원으로 나누어떨어지지 않습니다.';
+const ERROR_INCLUDE = '[ERROR] 당첨 번호와 보너스 번호는 같을 수 없습니다.';
 
 module.exports = {
   DEFAULT_PRICE,
@@ -60,4 +61,5 @@ module.exports = {
   ERROR_NOT_LENGTH_6,
   ERROR_LOWER_1000,
   ERROR_NOT_DIVIDE_1000,
+  ERROR_INCLUDE,
 };
