@@ -1,10 +1,12 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const UserValidation = require("./Validation/UserValidation");
+const LottoGenerator = require("../src/LottoGenerator");
 
 class User {
   lottoNumbers;
   constructor() {
     this.lottoNumbers = []; //로또 발행 번호 목록
+    this.lottoGenerator = new LottoGenerator(); //로또 당첨 번호 생성기
   }
   buyLotto() {
     // 로또를 구입한다.
@@ -13,6 +15,7 @@ class User {
       User.isValidPurchase(userInput);
       numberOfPurchase = Number(userInput) / 1000;
       this.generateLottoNumbers(numberOfPurchase);
+      this.lottoGenerator.getWinningNumbers();
     });
   }
   generateLottoNumbers(numberOfPurchase) {
