@@ -1,4 +1,5 @@
 const { LOTTO } = require('./constants');
+const { isUnique, isInRange, isNumber } = require('./utils/validators/numbers');
 
 class Lotto {
   #numbers;
@@ -28,7 +29,9 @@ class Lotto {
     return `[${this.#numbers.join(', ')}]`;
   }
 
-  // TODO: 추가 기능 구현
+  getRank(rankDeterminator) {
+    return rankDeterminator.getRank(this.#numbers);
+  }
 }
 
 module.exports = Lotto;

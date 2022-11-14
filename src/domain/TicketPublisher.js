@@ -19,6 +19,12 @@ class TicketPublisher {
       LOTTO.NUMBER_COUNT,
     );
   }
+
+  static showTickets(tickets) {
+    tickets.forEach((ticket) => {
+      Io.output(ticket.toString());
+    });
+  }
 }
 
 module.exports = TicketPublisher;
