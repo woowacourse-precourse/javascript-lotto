@@ -1,89 +1,115 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 
-const PURCHASE_MONEY = '구입금액을 입력해 주세요.';
-const LOTTO_WINDOW = '당첨 번호를 입력해 주세요.'
-const BONUS_WINDOW = '보너스 번호를 입력해 주세요.'
-const ANSWER_STATS = '\n당첨 통계\n---';
-const SAME_THREE = '3개 일치 (5,000원)';
-const SAME_FOUR = '4개 일치 (50,000원)';
-const SAME_FIVE = '5개 일치 (1,500,000원)';
-const SAME_FIVE_BONUS = '5개 일치, 보너스 볼 일치 (30,000,000원)';
-const SAME_SIX = '6개 일치 (2,000,000,000원)';
-const PRICE_LOTTO = 1000;
+const PROMPT_MONEY = '구입금액을 입력해 주세요.';
+const PROMPT_LOTTO = '당첨 번호를 입력해 주세요.';
+const PROMPT_BONUS = '보너스 번호를 입력해 주세요.';
+const RESULT_STATISTICS = '\n당첨 통계\n---';
+const THREE_SAME_MONEY = '5000';
+const FOUR_SAME_MONEY = '50000';
+const FIVE_SAME_MONEY = '1500000';
+const FIVE_BONUS_SAME_MONEY = '30000000';
+const SIX_SAME_MONEY = '2000000000';
+const LOTTO_PRICE = 1000;
 
 class App {
   constructor() {
-    this.lottoArray = [];
-    this.winningNumber = 0;
-    this.bonusNumber = 0;
-    this.answer = {
-      SAME_THREE: 0,
-      SAME_FOUR: 0,
-      SAME_FIVE: 0,
-      SAME_FIVE_BONUS: 0,
-      SAME_SIX: 0
-    };
+    this.money = 0;
+    this.arrayLotto = [];
+    this.arrayWinLotto = 0;
+    this.numberBonus = 0;
+    this.result = {};
   }
 
   play() {
-    this.moneyWindow(PURCHASE_MONEY);
+    this.moneyInput(PROMPT_MONEY);
   }
 
-  moneyWindow(window) {
-   Console.readLine(`${window}\n`, (input) => {
-    this.lottoCount(input);
-   });
+  moneyInput(prompt) {
+    Console.readLine(`${prompt}\n`, (input) => {
+      this.money = input;
+      this.countLotto(input);
+    });
   }
 
-  lottoCount(money) {
-    const lottoAmount = money / PRICE_LOTTO;
-    Console.print(`\n${lottoAmount}개를 구매했습니다.`);
-    this.lottoCreate(lottoAmount);
+  countLotto(money) {
+    const amountLotto = money / LOTTO_PRICE;
+    Console.print(`\n${amountLotto}개를 구매했습니다.`);
+    this.createLotto(amountLotto);
   }
 
-  lottoCreate(amount) {
+  createLotto(amount) {
     for (let i = 0; i < amount; i++) {
       const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
-      Console.print(numbers);
-      this.lottoArray.push(numbers);
+      Console.print(`[${numbers[0]}, ${numbers[1]}, ${numbers[2]}, ${numbers[3]}, ${numbers[4]}, ${numbers[5]}]`);
+      this.arrayLotto.push(numbers);
     }
-    this.inputLotto(LOTTO_WINDOW);
+    this.lottoInput(PROMPT_LOTTO);
   }
 
-  inputLotto(window) {
+  lottoInput(prompt) {
     Console.readLine(`\n${prompt}\n`, (input) => {
+      this.arrayWinLotto = input.split(",");
+      this.arrayWinLotto = this.arrayWinLotto.map(number => parseInt(number));
+      this.bonusInput(PROMPT_BONUS);
+    });
+  }
 
-      this.winningNumber = input.split(',');
-      this.winningNumber = this.winningNumber.map(number => parseInt(number));
-      console.log(this.winningNumber);
-      this.bonusWindow(BONUS_WINDOW);
+  bonusInput(prompt) {
+    Console.readLine(`\n${prompt}\n`, (input) => {
+      this.numberBonus = parseInt(input);
+      this.compareLottoNumbers();
     });
   }
-  bonusWindow(window) {
-    Console.readLine(`\n${window}\n`, (input) => {
-      this.bonusNumber = parseInt(input);
-      this.numberCompare();
-    })
-  }
-  numberCompare() {
-    this.lottoArray.map((numbers) => {
-      let sameNumber = 0;
-      let isNumberBonus = false;
+
+  compareLottoNumbers() {
+    this.initializeResult();
+    this.arrayLotto.map((numbers) => {
+      let countSameNumbers = 0;
+      let isBonusNumber = false;
       numbers.map((number) => {
-        if(this.winningNumber.includes(number)) sameNumber += 1;
-        if(this.bonusNumber === number) isNumberBonus = true;
+        if(this.arrayWinLotto.includes(number)) countSameNumbers += 1;
+        if(this.numberBonus === number) isBonusNumber = true; 
       });
-      this.winSeparate(sameNumber, isNumberBonus);
+      this.separateWin(countSameNumbers, isBonusNumber);
     });
+    this.printResult();
   }
-  winSeparate(count) {
-    if (count === 3) this.answer['SAME_THREE'] += 1;
-    if (count === 4) this.answer['SAME_FOUR'] += 1;
+
+  initializeResult() {
+    this.result[THREE_SAME_MONEY] = 0;
+    this.result[FOUR_SAME_MONEY] = 0;
+    this.result[FIVE_SAME_MONEY] = 0;
+    this.result[FIVE_BONUS_SAME_MONEY] = 0;
+    this.result[SIX_SAME_MONEY] = 0;
+  }
+
+  separateWin(count, bonus) {
+    if (count === 3) this.result[THREE_SAME_MONEY] += 1;
+    if (count === 4) this.result[FOUR_SAME_MONEY] += 1;
     if (count === 5) {
-      if (bonus === true) this.answer['SAME_FIVE_BONUS'] += 1;
-      if (bonus === false) this.answer['SAME_FIVE'] += 1;
+      if (bonus === false) this.result[FIVE_SAME_MONEY] += 1;
+      if (bonus === true) this.result[FIVE_BONUS_SAME_MONEY] += 1;
     }
-    if (count === 6) this.answer['SAME_SIX'] += 1;
+    if (count === 6) this.result[SIX_SAME_MONEY] += 1;
+  }
+
+  printResult() {
+    Console.print(RESULT_STATISTICS);
+    Console.print(`3개 일치 (5,000원) - ${this.result[THREE_SAME_MONEY]}개`);
+    Console.print(`4개 일치 (50,000원) - ${this.result[FOUR_SAME_MONEY]}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${this.result[FIVE_SAME_MONEY]}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.result[FIVE_BONUS_SAME_MONEY]}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${this.result[SIX_SAME_MONEY]}개`);
+    this.calculateProfitPercentage();
+  }
+
+  calculateProfitPercentage() {
+    let profit = 0;
+    for (let key in this.result) {
+      profit += parseInt(key) * this.result[key];
+    }
+    Console.print(`총 수익률은 ${(profit / this.money * 100).toFixed(1)}%입니다.`);
+    Console.close();
   }
 }
 
