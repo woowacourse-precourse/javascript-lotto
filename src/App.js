@@ -1,9 +1,12 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Lotto = require("../src/Lotto");
 
 class App {
   play() {
     const ticket = this.inputMoeny();
-    this.buyingLotto(ticket)
+    const lottoArr = this.buyingLotto(ticket);
+    const winningNumber = new Lotto(this.consoleInput("당첨 번호를 입력해 주세요.\n"));
+    const bonusNumber = new Lotto(this.consoleInput("보너스 번호를 입력해 주세요.\n"));
   }
 
   createLotto(numbers) {
@@ -19,9 +22,9 @@ class App {
 
   buyingLotto(ticket) {
     const ticketArr = [];
-    this.consolePrint(`${ticket}개를 구매했습니다.`)
+    this.consolePrint(`${ticket}개를 구매했습니다.`);
     while(0 < ticket) {
-      const getCreateLotto = this.createLotto(6)
+      const getCreateLotto = this.createLotto(6);
       ticketArr.push(getCreateLotto);
       this.consolePrint(`[${getCreateLotto.join(', ')}]`);
       ticket-=1;
@@ -36,9 +39,9 @@ class App {
   consoleInput(inputStr) {
     let str = ""
     MissionUtils.Console.readLine(inputStr, (answer) => {
-      str = answer
+      str = answer;
     });
-    return str
+    return str;
   }
 
 }
