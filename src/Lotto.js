@@ -12,7 +12,8 @@ class Lotto {
     NumberPackage(money) {
         this.validate(money);
         this.#numbers = this.howManyLotto(money);
-        Console.print(`\n${this.#numbers}개를 구매했습니다.`)
+        Console.print(`\n${this.#numbers}개를 구매했습니다.`);
+        
         for (let i = 0; i < this.#numbers; i++) {
             let lottoNumber = this.sortLottoNumber(Random.pickUniqueNumbersInRange(1, 45, 6));
             Console.print(lottoNumber);
