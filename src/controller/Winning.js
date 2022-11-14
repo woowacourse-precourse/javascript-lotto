@@ -1,6 +1,6 @@
 const Model = require("../model/Model");
 const View = require("../view/View");
-const Lotto = require("./Lotto");
+const Lotto = require("../Lotto");
 const Ranks = require("./Ranks");
 
 class Winning{
