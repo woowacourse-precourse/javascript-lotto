@@ -1,5 +1,4 @@
-const { Console } = require("@woowacourse/mission-utils");
-const { INPUT, EXCEPTION } = require("./lib/library");
+const { EXCEPTION } = require("./lib/library");
 const Lotto = require("./Lotto");
 
 class LottoSetting {

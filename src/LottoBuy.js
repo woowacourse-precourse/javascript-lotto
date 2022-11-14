@@ -18,6 +18,8 @@ class LottoBuy {
   }
 
   validate(price) {
+    if (price === 0) throw EXCEPTION("1000원 이상의 숫자를 입력하세요.");
+    if (price < 1000) throw EXCEPTION("1000원 이상의 숫자를 입력하세요.");
     if (price % LOTTO.PRICE !== 0)
       throw EXCEPTION("올바른 가격을 입력해 주세요.");
   }
