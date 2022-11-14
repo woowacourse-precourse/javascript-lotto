@@ -3,7 +3,7 @@ const BonusNumber = require("../src/BonusNumber");
 describe("보너스 번호 클래스 테스트", () => {
   test("보너스 번호에 숫자가 아닌 문자가 들어가면 예외가 발생한다.", () => {
     expect(() => {
-      new BonusNumber(6.1, [1, 2, 3, 4, 5, 6]);
+      new BonusNumber("a", [1, 2, 3, 4, 5, 6]);
     }).toThrow("[ERROR]");
   });
 
