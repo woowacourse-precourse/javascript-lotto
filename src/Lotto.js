@@ -1,11 +1,12 @@
 const { LOTTO_NUMBER_RANGE } = require('./Constant');
 const Utils = require('./Utils');
+const Validator = require('./Validator');
 
 class Lotto {
   #numbers;
 
   constructor(numbersArray) {
-    Lotto.validate(numbersArray);
+    Validator.lotto(numbersArray);
     this.#numbers = numbersArray;
   }
 
@@ -50,7 +51,9 @@ class Lotto {
 
 console.log(Lotto.generateLottoArrays(3));
 
-// const lotto = new Lotto([1, 3, 2, 7, 4, 5]);
+const lotto = new Lotto([1, 3, 2, 7, 4, 5]);
+
+console.log(lotto);
 
 // console.log(lotto.ascendingSortLottoArray());
 
