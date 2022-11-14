@@ -18,9 +18,14 @@ class App {
     return parseInt(money / terms.PERMISSIBLE_UNITS);
   }
 
-  purchaseLotto() {
-    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-    this.lotto = new Lotto(numbers);
+  purchaseLotto(lottoCount) {
+    let lottoArray = [];
+    for (let i = 0; i < lottoCount; i += 1) {
+      const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      this.lotto = new Lotto(numbers);
+      lottoArray.push(this.lotto);
+    }
+    return lottoArray;
   }
 }
 
