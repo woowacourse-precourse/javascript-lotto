@@ -1,17 +1,17 @@
 const { Console } = require("@woowacourse/mission-utils");
-const CountLotto = require("./CountLotto");
+const LottoList = require("./LottoList");
 class App {
   constructor() {
-    this.game = new CountLotto();
+    this.lottos = new LottoList();
   }
   play() {
     this.requestMoney();
   }
   requestMoney() {
     Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
-      this.game.setLottoCount(money);
+      this.lottos.setLottoCount(money);
 
-      this.game.printLottoCount();
+      this.lottos.printLottoCount();
     });
   }
 }
