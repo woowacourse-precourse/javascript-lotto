@@ -293,7 +293,7 @@
 - obj, 함수, 인스턴스, 변수 : camelCase
 - class, constructor : PascalCase
 - export하는 것이 빈 object나 function library, singleton인 경우 PascalCase를 사용
-- private property : 선두에 \_(언더스코어) 사용
+- private property : 선두에 _(언더스코어) 사용
 - this의 참조를 변수에 저장하지 말고, 화살표함수나 Function#bind 이용하기 (더 관용적인 표현이 있다면 bind도 사용하지 않는 것을 추천)
 
 - JS의 변수명에는 문자, 숫자, $, _만 명명 가능, 첫 글자는 숫자가 될 수 없음
