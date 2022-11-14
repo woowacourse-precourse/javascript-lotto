@@ -69,6 +69,7 @@ class App {
 
     const earningRate = this.calculateEarningRate(prizeRecord);
     Console.print(`총 수익률은 ${earningRate.toFixed(1)}%입니다.`);
+    Console.close();
   }
 
   calculateEarningRate(prizeRecord) {
