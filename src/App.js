@@ -160,7 +160,4 @@ class App {
   }
 }
 
-const game = new App();
-game.play();
-
 module.exports = App;
