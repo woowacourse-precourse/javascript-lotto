@@ -40,6 +40,10 @@ class App {
     Console.print(
       `${MESSAGE.REWARD_HEAD}${(total / money) * 100}%${MESSAGE.REWARD_TAIL}`
     );
+    this.exit();
+  }
+
+  exit() {
     Console.close();
   }
 }
