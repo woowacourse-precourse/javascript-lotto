@@ -25,6 +25,11 @@
 3. 수익률 계산 함수 - LottoGenerator#calculateProfit
 4. 총 이익 액수 계산 함수 - LottoGenerator#estimateProfit
 
+5. 랜덤 로또 배열 당첨 체크 함수 - LottoJudgement#judgeStart
+6. 각 랜덤 로또 매치 갯수 검사 함수 - LottoJudgement#eachLottoJudge
+7. 각 갯수 scoreBoard 배열에 추가하는 함수 - LottoJudgement#scoreCount
+8. 만들어진 scoreBoard 리턴 함수 - LottoJudgement#getScoreBoard
+
 ---
 
 UI 로직 함수
