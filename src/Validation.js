@@ -29,14 +29,14 @@ class Validation {
   static throwException(error, message) {
     throw new error(message);
   }
-  static isNumber(list) {
-    return REGEX.NUMBER.test(list.join(''));
+  static isNumber(array) {
+    return REGEX.NUMBER.test(array.join(''));
   }
-  static isInRange(list, min, max) {
-    return list.every((num) => Number(num) >= min && Number(num) <= max);
+  static isInRange(array, min, max) {
+    return array.every((num) => Number(num) >= min && Number(num) <= max);
   }
-  static isUnique(list) {
-    return new Set(list).size === list.length;
+  static isUnique(array) {
+    return new Set(array).size === array.length;
   }
 }
 
