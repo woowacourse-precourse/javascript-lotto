@@ -10,8 +10,6 @@ class LottoCompany {
 
   #bonusNumber;
 
-  #winningIntruction;
-
   constructor(lottoPrice, winningMoney) {
     this.#lottoPrice = lottoPrice;
     this.#winningMoney = winningMoney;
@@ -41,11 +39,12 @@ class LottoCompany {
     }
   }
 
-  makeWinningNumbers() {
+  makeWinningNumbers(next) {
     Console.print("당첨 번호를 입력해 주세요");
     Console.readLine("", (input) => {
       this.validateWinningNumbers(input);
       this.#winningNumbers = input.split(",").map((elem) => Number(elem));
+      if (next) next();
     });
   }
 
@@ -62,11 +61,12 @@ class LottoCompany {
     }
   }
 
-  makeBonusNumber() {
+  makeBonusNumber(next) {
     Console.print("보너스 번호를 입력해 주세요");
     Console.readLine("", (input) => {
       this.validateBonusNumber(input);
       this.#bonusNumber = Number(input);
+      if (next) next();
     });
   }
 
@@ -112,7 +112,7 @@ class LottoCompany {
     return this.#winningMoney[winningRank - 1];
   }
 
-  printReportByRanks(ranks) {
+  printReportByRanks(ranks, next) {
     const rankCounts = Array(5).fill(0);
     ranks.forEach((rank) => {
       rankCounts[rank - 1] += 1;
@@ -125,6 +125,7 @@ class LottoCompany {
       reports += `(${this.#winningMoney[i]}원) - ${rankCounts[i]}개\n`;
     }
     Console.print(reports);
+    if (next) next();
   }
 
   static countSameNumbersOfAscSortedArrays(ascSortedNums1, ascSortedNums2) {
@@ -132,13 +133,13 @@ class LottoCompany {
     let j = 0;
     let count = 0;
     while (i < ascSortedNums1.length && j < ascSortedNums2.length) {
-      if (ascSortedNums1 === ascSortedNums2[j]) {
+      if (ascSortedNums1[i] === ascSortedNums2[j]) {
         count += 1;
         i += 1;
         j += 1;
       }
-      if (ascSortedNums1 < ascSortedNums2[j]) i += 1;
-      if (ascSortedNums1 > ascSortedNums2[j]) j += 1;
+      if (ascSortedNums1[i] < ascSortedNums2[j]) i += 1;
+      if (ascSortedNums1[i] > ascSortedNums2[j]) j += 1;
     }
     return count;
   }
