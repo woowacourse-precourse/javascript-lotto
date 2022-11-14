@@ -18,6 +18,22 @@ class Lotto {
     }
   }
 
+  getLottoResult(lottos, bonus) {
+    const lottoTotalResult = new Array(5).fill(0);
+    const lottoNumbers = lottos.length;
+
+    for (let i = 0; i < lottoNumbers; i++) {
+      const lottoResult = this.countLottoResult(lottos[i], bonus);
+
+      if (lottoResult === -1) {
+        continue;
+      }
+      lottoTotalResult[lottoResult - 1] += 1;
+    }
+
+    return lottoTotalResult;
+  }
+
   countLottoResult(lotto, bonus) {
     let match = 0;
     let isBonusMatched = false;
@@ -44,6 +60,8 @@ class Lotto {
       return 4;
     } else if (matchCount === 5) {
       return 5;
+    } else {
+      return -1;
     }
   }
 }

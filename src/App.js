@@ -13,7 +13,13 @@ class App {
     this.enterLottoWinningNumbers();
     this.enterLottoBonusNum();
 
-    const lotto = new Lotto(this.lottoWinningNumber, this.lottoBonusNumber);
+    const lotto = new Lotto(this.lottoWinningNumber);
+    const lottoResult = lotto.getLottoResult(
+      this.lottos,
+      this.lottoBonusNumber
+    );
+
+    MissionUtils.Console.print(lottoResult);
   }
 
   getMoney() {
