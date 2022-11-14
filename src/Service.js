@@ -2,6 +2,7 @@ const { Console } = require('@woowacourse/mission-utils');
 const Purchase = require('./Purchase');
 const ServiceMessage = require('./Constants/ServiceMessages');
 const MyLotto = require('./MyLotto');
+const Lotto = require('./Lotto');
 
 class Service {
   printLottoCount() {
@@ -20,6 +21,14 @@ class Service {
       Console.print(lottoList[lottoList.length - 1]);
     }
     this.lottoList = lottoList;
+  }
+
+  printGetWinningNumber() {
+    Console.readLine(ServiceMessage.WINNING_INPUT, (winningNumber) => {
+      const lottoArray = winningNumber.split(',').map((number) => number * 1);
+      new Lotto(lottoArray);
+      this.lottoNumber = winningNumber;
+    });
   }
 }
 

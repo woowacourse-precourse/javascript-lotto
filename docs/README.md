@@ -42,7 +42,7 @@
 - [x] 중복되지 않은 6개의 숫자를 로또 구매 개수만큼 출력한다. -
       Service#printLottoNumbers()
 
-- [ ] 당첨 번호 입력 메시지를 띄운다. - Service#printGetWinningNumber();
+- [x] 당첨 번호 입력 메시지를 띄운다. - Service#printGetWinningNumber();
 
 - [ ] 보너스 번호 입력 메시지를 띄운다. - Service#printGetBonusNumber();
 

@@ -4,6 +4,7 @@ class App {
     const service = new Service();
     service.printLottoCount();
     service.printLottoNumbers();
+    service.printGetWinningNumber();
   }
 }
 
