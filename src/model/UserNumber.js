@@ -30,13 +30,21 @@ class UserNumber {
     return this.userIssuedLotto;
   }
 
-  setUserIssuedLottoWithPurchasingAmount() {
+  getIssuedLotto() {
+    const issuedLotto = [];
+
     for (let idx = 0; idx < this.purchasingAmount / 1000; idx++) {
       const singleLottoCombination = Random.pickUniqueNumbersInRange(1, 45, 6);
-      this.userIssuedLotto.push(
+      issuedLotto.push(
         singleLottoCombination.sort((first, second) => first - second),
       );
     }
+
+    return issuedLotto;
+  }
+
+  setUserIssuedLottoWithPurchasingAmount() {
+    this.userIssuedLotto = this.getIssuedLotto();
     this.controller.printIssuedLotto(this.userIssuedLotto);
     this.controller.getWinningNumberFromUser();
   }
