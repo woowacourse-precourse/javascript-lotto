@@ -31,7 +31,8 @@ class App {
     this.inputWinning();
   }
   inputWinning() {
-    Console.readLine(INPUT_MESSAGE.WINNING, (winning) => {
+    Console.readLine(INPUT_MESSAGE.WINNING, (input) => {
+      const winning = input.split(",");
       this.winningLotto = new Lotto(winning).returnLotto();
     });
   }
