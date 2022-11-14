@@ -19,6 +19,12 @@ class Check {
     }
   }
 
+  checkBonusVaildation (number) {
+    this.checkBonusNumber(number);
+    this.checkBonusUnique(number);
+    return true;
+  }
+
   checkWinNumVaildation (winningstr) {
     const winningArr = winningstr.split(',').map(Number);
     const lotto = new Lotto(winningArr);
