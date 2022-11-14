@@ -1,6 +1,11 @@
 const Lotto = require("./Lotto");
+const CompareWithLotto = require("./CompareNumbers");
 
-const { RANDOM_UTIL, CONSOLE_UTIL } = require("./Constants");
+const {
+  RANDOM_UTIL,
+  CONSOLE_UTIL,
+  INPUT_NUMBERS_MESSAGE,
+} = require("./Constants");
 
 class MakeLotteryTickets {
   constructor(userMoney, numberOfTickets) {
@@ -37,12 +42,21 @@ class MakeLotteryTickets {
     CONSOLE_UTIL.readLine(INPUT_NUMBERS_MESSAGE, (userNumbers) => {
       userNumbers = userNumbers.split(",").map(Number);
       this.validateNumbers(userNumbers);
+      this.compareWithNumbers();
     });
   }
 
   validateNumbers(userNumbers) {
     new Lotto(userNumbers);
     this.userNumbers = userNumbers;
+  }
+
+  compareWithNumbers() {
+    new CompareWithLotto().compareWithNumbers(
+      this.userNumbers,
+      this.lotteryTickets,
+      this.userMoney
+    );
   }
 }
 
