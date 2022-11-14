@@ -30,16 +30,14 @@ class App {
   }
 
   setUserLottoAmount() {
-    return new Promise((resolve) =>
-      Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
-        this.validateMoney(money);
+    Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
+      this.validateMoney(money);
 
-        const AMOUNT = parseInt(money / 1000);
-        this.setAmount(AMOUNT);
-        Console.print(`\n${AMOUNT}개를 구매했습니다.`);
-        return resolve(AMOUNT);
-      }),
-    );
+      const AMOUNT = parseInt(money / 1000);
+      this.setAmount(AMOUNT);
+      Console.print(`\n${AMOUNT}개를 구매했습니다.`);
+      this.setLottos(AMOUNT);
+    });
   }
 
   setLottos(amount) {
@@ -61,9 +59,7 @@ class App {
   }
 
   play() {
-    this.setUserLottoAmount().then((amount) => {
-      this.setLottos(amount);
-    });
+    this.setUserLottoAmount();
   }
 }
 
