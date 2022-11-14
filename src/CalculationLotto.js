@@ -7,28 +7,28 @@ class CalculationLotto {
   lottoResult = {
     [LOTTO_RESULT_TYPE.three]: {
       count: 0,
-      text: LOTTO_RESULT_MESSAGE.result_three_match,
-      price: LOTTO_RESULT_PRICE.result_three_number,
+      text: LOTTO_RESULT_MESSAGE.three,
+      price: LOTTO_RESULT_PRICE.three,
     },
     [LOTTO_RESULT_TYPE.four]: {
       count: 0,
-      text: LOTTO_RESULT_MESSAGE.result_four_match,
-      price: LOTTO_RESULT_PRICE.result_four_number,
+      text: LOTTO_RESULT_MESSAGE.four,
+      price: LOTTO_RESULT_PRICE.four,
     },
     [LOTTO_RESULT_TYPE.five]: {
       count: 0,
-      text: LOTTO_RESULT_MESSAGE.result_five_match,
-      price: LOTTO_RESULT_PRICE.result_five_number,
+      text: LOTTO_RESULT_MESSAGE.five,
+      price: LOTTO_RESULT_PRICE.five,
     },
     [LOTTO_RESULT_TYPE.six]: {
       count: 0,
-      text: LOTTO_RESULT_MESSAGE.result_six_match,
-      price: LOTTO_RESULT_PRICE.result_six_number,
+      text: LOTTO_RESULT_MESSAGE.six,
+      price: LOTTO_RESULT_PRICE.six,
     },
     [LOTTO_RESULT_TYPE.bonus]: {
       count: 0,
-      text: LOTTO_RESULT_MESSAGE.result_five_bonus_match,
-      price: LOTTO_RESULT_PRICE.result_five_bonus_number,
+      text: LOTTO_RESULT_MESSAGE.bonus,
+      price: LOTTO_RESULT_PRICE.bonus,
     },
   };
 

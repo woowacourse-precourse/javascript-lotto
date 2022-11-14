@@ -5,19 +5,19 @@ const GAME_MESSAGE = {
 };
 
 const LOTTO_RESULT_MESSAGE = {
-  result_three_match: '3개 일치 (5,000원) - ',
-  result_four_match: '4개 일치 (50,000원) - ',
-  result_five_match: '5개 일치 (1,500,000원) - ',
-  result_five_bonus_match: '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
-  result_six_match: '6개 일치 (2,000,000,000원) - ',
+  three: '3개 일치 (5,000원) - ',
+  four: '4개 일치 (50,000원) - ',
+  five: '5개 일치 (1,500,000원) - ',
+  bonus: '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
+  six: '6개 일치 (2,000,000,000원) - ',
 };
 
 const LOTTO_RESULT_PRICE = {
-  result_three_number: 5000,
-  result_four_number: 50000,
-  result_five_number: 1500000,
-  result_five_bonus_number: 30000000,
-  result_six_number: 2000000000,
+  three: 5000,
+  four: 50000,
+  five: 1500000,
+  bonus: 30000000,
+  six: 2000000000,
 };
 
 const LOTTO_RESULT_TYPE = {
