@@ -1,4 +1,4 @@
-const MakeLotteryTickets = require("./MakeLottterytickets");
+const LottoNumbers = require("./LottoNumbers");
 
 const {
   CONSOLE_UTIL,
@@ -10,7 +10,7 @@ const {
 
 const { NOT_MULTIPLES_OF_THOUSAND } = ERROR_MESSAGES;
 
-class InputMoney {
+class MoneyInput {
   constructor() {
     this.userMoney = 0;
     this.numberOfTickets = 0;
@@ -34,8 +34,8 @@ class InputMoney {
     this.numberOfTickets = userMoney / THOUSAND;
     CONSOLE_UTIL.print(`\n${this.numberOfTickets}${NUMBER_OF_TICKETS_MESSAGE}`);
 
-    new MakeLotteryTickets(this.userMoney, this.numberOfTickets).makeTickets();
+    new LottoNumbers(this.userMoney, this.numberOfTickets).makeTickets();
   }
 }
 
-module.exports = InputMoney;
+module.exports = MoneyInput;

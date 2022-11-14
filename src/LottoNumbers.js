@@ -1,5 +1,5 @@
 const Lotto = require("./Lotto");
-const CompareWithLotto = require("./CompareNumbers");
+const ComparisonWithNumbers = require("./ComparisonWithNumbers");
 
 const {
   RANDOM_UTIL,
@@ -7,7 +7,7 @@ const {
   INPUT_NUMBERS_MESSAGE,
 } = require("./Constants");
 
-class MakeLotteryTickets {
+class LottoNumbers {
   constructor(userMoney, numberOfTickets) {
     this.userMoney = userMoney;
     this.numberOfTickets = numberOfTickets;
@@ -54,7 +54,7 @@ class MakeLotteryTickets {
   }
 
   compareWithNumbers() {
-    new CompareWithLotto().compareWithNumbers(
+    new ComparisonWithNumbers().compareWithNumbers(
       this.userNumbers,
       this.lotteryTickets,
       this.userMoney
@@ -62,4 +62,4 @@ class MakeLotteryTickets {
   }
 }
 
-module.exports = MakeLotteryTickets;
+module.exports = LottoNumbers;

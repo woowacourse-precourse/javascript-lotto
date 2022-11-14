@@ -1,8 +1,8 @@
-const InputMoney = require("./InputMoney");
+const MoneyInput = require("./MoneyInput");
 
 class App {
   play() {
-    new InputMoney().buyLotteryTickets();
+    new MoneyInput().buyLotteryTickets();
   }
 }
 

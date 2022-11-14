@@ -11,7 +11,7 @@ const {
 
 const { NOT_BETWEEN_ONE_AND_FORTYFIVE } = ERROR_MESSAGES;
 
-class CompareWithLotto {
+class ComparisonWithNumbers {
   constructor() {
     this.userMoney;
     this.userNumbers;
@@ -117,4 +117,4 @@ class CompareWithLotto {
   }
 }
 
-module.exports = CompareWithLotto;
+module.exports = ComparisonWithNumbers;
