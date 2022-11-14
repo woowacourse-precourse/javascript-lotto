@@ -21,7 +21,7 @@ class Stats {
     this.purchased = purchased;
   }
 
-  countCorrectNumbers(lotto) {
+  getScore(lotto) {
     const lottoNumbers = lotto.showNumbers();
     const correctCount = this.winningNumbers.filter((number) => lottoNumbers.includes(number)).length;
     const bonus = lottoNumbers.includes(this.bonusNumber);
