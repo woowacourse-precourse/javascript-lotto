@@ -19,7 +19,7 @@ class App {
 		this.inputMoney();
 		this.publishLotto();
 		this.inputLotto();
-
+		this.lotto = new Lotto(this.state.winLotto);
 		this.inputBonus();
 	}
 

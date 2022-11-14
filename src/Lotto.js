@@ -17,6 +17,27 @@ class Lotto {
   }*/
 
 	// TODO: 추가 기능 구현
-}
+	compare(publishLotto, bonus) {
+		let compareArr = [0, 0, 0, 0, 0];
+		publishLotto.forEach((numbers) => {
+			const result = this.oneCompareCount(numbers);
 
+			if (result === 3) compareArr[0]++;
+			else if (result === 4) compareArr[1]++;
+			else if (result === 5) {
+				if (this.#numbers.includes(bonus)) {
+					compareArr[3]++;
+				} else compareArr[2]++;
+			} else if (result === 6) compareArr[4]++;
+		});
+		return compareArr;
+	}
+	oneCompareCount(numbers) {
+		let count = 0;
+		for (let num of numbers) {
+			if (this.#numbers.includes(num)) count++;
+		}
+		return count;
+	}
+}
 module.exports = Lotto;
