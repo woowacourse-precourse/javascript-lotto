@@ -1,6 +1,4 @@
 const { Random } = require("@woowacourse/mission-utils");
-const { Console } = require("@woowacourse/mission-utils");
-const { LOTT0_MESSAGE } = require("./../utils/Constant");
 const LottoNumbers = require("./LottoNumber");
 
 class Lotto {
@@ -18,14 +16,16 @@ class Lotto {
   }
 
   // TODO: 추가 기능 구현
-  start() {
-    this.inputMoney();
+  isContain(number) {
+    return this.#numbers.includes(number);
   }
 
-  inputMoney() {
-    Console.readLine(LOTT0_MESSAGE.INPUT, (money) => {
-      Console.print(money);
-    });
+  isEqual(lotto) {
+    return JSON.stringify(this.#numbers) === JSON.stringify(lotto.#numbers);
+  }
+
+  toString() {
+    return JSON.stringify(this.#numbers);
   }
 }
 
