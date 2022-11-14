@@ -1,4 +1,5 @@
 const { LottoNumberData } = require('../lotto_data/LottoNumberData');
+const { RESTRICTIONS } = require('../lotto_data/constant');
 
 class Lotto {
   #numbers;
@@ -37,13 +38,13 @@ class Lotto {
   }
 
   checkCanBuy() {
-    if (this.#numbers % 1000) {
+    if (this.#numbers % RESTRICTIONS.thousand) {
       throw '[ERROR] 로또 구입 금액이 올바르지 않습니다';
     }
   }
 
   checkHowManyBuy() {
-    return this.#numbers / 1000;
+    return this.#numbers / RESTRICTIONS.thousand;
   }
 
   splitNumbers() {
@@ -55,13 +56,13 @@ class Lotto {
   }
 
   checkDistinguishedByCommas() {
-    if (this.#numbers.length === 1) {
+    if (this.#numbers.length === RESTRICTIONS.noComma) {
       throw '[ERROR] 당첨번호 사이를 쉼표로 구분해주세요';
     }
   }
 
   checkSixWinningNumbers() {
-    if (this.#numbers.length !== 6) {
+    if (this.#numbers.length !== RESTRICTIONS.lottoNumberCount_Six) {
       throw '[ERROR] 당첨번호가 6개가 아닙니다.';
     }
   }
@@ -75,7 +76,10 @@ class Lotto {
 
   checkNumberRangesFrom1To45ForArray() {
     this.#numbers.forEach((number) => {
-      if (number < 1 || number > 45) {
+      if (
+        number < RESTRICTIONS.lottoNumberStart_One ||
+        number > RESTRICTIONS.lottoNumberEnd_FortyFive
+      ) {
         throw '[ERROR] 당첨번호가 올바르지 않습니다.';
       }
     });
@@ -89,7 +93,10 @@ class Lotto {
   }
 
   checkNumberRangesFrom1To45() {
-    if (this.#numbers < 1 || this.#numbers > 45) {
+    if (
+      this.#numbers < RESTRICTIONS.lottoNumberStart_One ||
+      this.#numbers > RESTRICTIONS.lottoNumberEnd_FortyFive
+    ) {
       throw '[ERROR] 보너스 번호가 올바르지 않습니다.';
     }
   }
