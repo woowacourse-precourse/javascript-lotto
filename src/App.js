@@ -129,6 +129,7 @@ class App {
     });
     Console.print(`총 수익률은 ${this.calculateProfit()}%입니다.`);
     Console.print("```\n\n---");
+    this.gameOver();
   }
 
   calculateProfit() {
@@ -139,6 +140,10 @@ class App {
       return total;
     }, 0);
     return Math.round((sum / this.payMoney) * 10000) / 100;
+  }
+
+  gameOver() {
+    Console.close();
   }
 }
 
