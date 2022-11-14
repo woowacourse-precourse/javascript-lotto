@@ -17,33 +17,25 @@ class App {
     Console.close();
   }
 
+  calcLottoResultMoney(lottoResult) {
+    let resultMoney = 0;
+    LOTTO_REWARD.forEach((reward, index) => {
+      resultMoney += reward * Number(lottoResult[index]);
+    })
+    return resultMoney;
+  }
+
+  calcLottoResultCount(lottoResult) {
+    lottoResult.forEach((count, index) => {
+      Console.print(LOTTO_PRINT_MENTION.lotto_reward[index] +` ${count}개`);
+    })
+  }
+
   printLottoJackpotResult() {
     let countAmount = 0;
     Console.print(LOTTO_PRINT_MENTION.result_header);
-    this.lottoResult.forEach((count, index) => {
-      switch(true) {
-        case index === 0:
-          Console.print(`3개 일치 (5,000원) - ${count}개`);
-          countAmount += count * 5000;
-          break;
-        case index === 1:
-          Console.print(`4개 일치 (50,000원) - ${count}개`);
-          countAmount += count * 50000;
-          break;
-        case index === 2:
-          Console.print(`5개 일치 (1,500,000원) - ${count}개`);
-          countAmount += count * 1500000;
-          break;
-        case index === 3:
-          Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`);
-          countAmount += count * 30000000;
-          break;
-        case index === 4:
-          Console.print(`6개 일치 (2,000,000,000원) - ${count}개`);
-          countAmount += count * 2000000000;
-          break;
-      }
-    })
+    this.calcLottoResultCount(this.lottoResult);
+    countAmount = this.calcLottoResultMoney(this.lottoResult);
     this.printLottoRevenuePercent(countAmount);
   }
 
