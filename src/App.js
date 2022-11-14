@@ -117,12 +117,12 @@ class App {
   }
 
   setRevenue(){
-    // 수익률 = (현재 가치 - 초기 가치) / 초기 가치 X 100 
+    // 수익률 = 100 - (현재 가치 - 초기 가치) / 초기 가치 X 100 
     let revenue = 0;
     for(let index = 0; index < this.winningResult.length; index++){
       revenue += this.winningResult[index][0] * this.winningResult[index][1];
     }
-    const totalRevenue = 100 - ((this.userAmount - revenue) / this.userAmount * 100);
+    const totalRevenue = (100 - ((this.userAmount - revenue) / this.userAmount * 100)).toFixed(1);
     return totalRevenue;
   }
 }
