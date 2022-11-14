@@ -42,7 +42,7 @@ class LottoGameController {
 
   pickBonusNumber(winning) {
     readLine(INPUT_MESSAGE.BONUS_NUMBER, (bonus) => {
-      BonusValidator.validate(winning, bonus);
+      BonusValidator.validate(winning, Number(bonus));
 
       this.winningLotto = [winning, Number(bonus)];
     });
