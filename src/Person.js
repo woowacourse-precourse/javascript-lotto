@@ -9,6 +9,9 @@ class Person {
         if (isNaN(cash)) {
             throw new Error(ERROR.CASH_IS_NOT_NUMBER);
         }
+        if (cash === "0") {
+            throw new Error(ERROR.CASH_IS_ZERO);
+        }
         if (cash % 1000) {
             throw new Error(ERROR.INVAID_CASH);
         }

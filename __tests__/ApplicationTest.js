@@ -89,6 +89,6 @@ describe("로또 테스트", () => {
     expect(() => {
       const person = new Person();
       person.isCorrectCash("0");
-    }).toThrow(ERROR.INVAID_CASH);
+    }).toThrow(ERROR.CASH_IS_ZERO);
   });
 });
