@@ -28,7 +28,7 @@ class App {
   }
 
   showNumberOfPurchasedLotto(amount) {
-    Console.print(`\n${amount}개를 구매했습니다.`);
+    Console.print(`\n${amount}` + `${appConst.NOTIFY_PURCHASE_NUMBER}`);
   }
 
   showEveryLotto() {

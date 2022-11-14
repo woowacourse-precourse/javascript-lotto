@@ -8,6 +8,7 @@ const appConst = {
   ASK_AMOUNTS_MESSAGE: "구입금액을 입력해 주세요.\n",
   ASK_WINNING_NUMBER_MESSAGE: "\n당첨 번호를 입력해 주세요.\n",
   ASK_BONUS_NUMBER: "\n보너스 번호를 입력해 주세요.\n",
+  NOTIFY_PURCHASE_NUMBER: "개를 구매했습니다.",
   NOTIFY_WINNING_STATE: "\n당첨 통계\n---",
   CONDITION_OF_EACH_RANK: [
     CONDITION_OF_FIFTH_RANK,
