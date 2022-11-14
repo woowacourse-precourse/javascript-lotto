@@ -2,12 +2,14 @@ const { Console } = require('@woowacourse/mission-utils');
 const GetLotto = require('./GetLotto');
 const GetNumber = require('./GetNumber');
 const Lotto = require("./Lotto");
+const CompareLotto = require("./CompareLotto");
 
 class App {
   constructor() {
     this.GetLotto = new GetLotto();
     this.GetNumber = new GetNumber();
     this.lotto = new Lotto();
+    this.CompareLotto = new CompareLotto();
   }
 
   play() {
@@ -28,12 +30,13 @@ class App {
   getBonusNumber(lottoList, numbers) {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (number) => {
       this.GetNumber.bonus(numbers, number);
+      this.compareResult(lottoList, numbers, number);
     });
-    this.getCompareResult(lottoList, numbers, number);
+    
   }
 
-  getCompareResult(lottoList, numbers, number) {
-    
+  compareResult(lottoList, numbers, number) {
+    this.CompareLotto.result(lottoList, numbers, number);
   }
 }
 
