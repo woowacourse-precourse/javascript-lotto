@@ -39,7 +39,7 @@ class Lotto {
       }
     });
 
-    return [threeCount, fourCount, fiveCount, fiveBonusCount, sixCount];
+    return { threeCount, fourCount, fiveCount, fiveBonusCount, sixCount };
   }
 
   getMatchCount(numbers) {

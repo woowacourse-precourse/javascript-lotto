@@ -12,6 +12,13 @@ const initialState = {
   count: 0,
   allNumbers: [],
   bonusNumber: 0,
+  allCount: {
+    threeCount: 0,
+    fourCount: 0,
+    fiveCount: 0,
+    fiveBonusCount: 0,
+    sixCount: 0,
+  },
 };
 
 class App {
@@ -78,10 +85,12 @@ class App {
     Console.print(MESSAGE.MATCH_TITLE);
     Console.print(MESSAGE.MATCH_DIVIDER);
 
-    const [threeCount, fourCount, fiveCount, fiveBonusCount, sixCount] =
-      this.lotto.getAllCount(this.state.allNumbers, this.state.bonusNumber);
+    this.state.allCount = this.lotto.getAllCount(
+      this.state.allNumbers,
+      this.state.bonusNumber
+    );
 
-    this.result({ threeCount, fourCount, fiveCount, fiveBonusCount, sixCount });
+    this.result(this.state.allCount);
   }
 
   result({ threeCount, fourCount, fiveCount, fiveBonusCount, sixCount }) {
