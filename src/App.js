@@ -2,6 +2,7 @@ const PurchasePrice = require('./PurchasePrice')
 const Lotto = require('./Lotto')
 const WinningNum = require('./WinningNum')
 const BonusNum = require('./BonusNum')
+const CorrectValue = require('./CorrectValue')
 const { Console } = require('@woowacourse/mission-utils')
 const { Random } = require('@woowacourse/mission-utils')
 
@@ -9,20 +10,19 @@ class App {
   constructor() {
     this.userLottoNum
     this.winningNum
-    this.lottobonusNum
+    this.lottoBonusNum
   }
 
   play() {
     this.getLottoInfo()
-    this.test()
-    //this.calcLottoResult()
+    this.calcLottoResult()
   }
 
   getLottoInfo() {
     let buyCount = PurchasePrice.getPurchasePrice()
     this.userLottoNum = this.getLottoNum(buyCount)
     this.winningNum = this.getWinningNum()
-    this.lottobonusNum = this.getBounsNum(this.winningNum)
+    this.lottoBonusNum = this.getBounsNum(this.winningNum)
   }
 
   getLottoNum(buyCount) {
@@ -59,23 +59,33 @@ class App {
   }
 
   getBounsNum(winningNum) {
-    let lottobonusNum
+    let lottoBonusNum
     Console.readLine('보너스 번호를 입력해 주세요', (bonus) => {
       let bonusNum = new BonusNum(Number(bonus), winningNum)
       bonusNum.resultPrint()
-      lottobonusNum = bonusNum.showBonusNum()
+      lottoBonusNum = bonusNum.showBonusNum()
     })
 
-    return lottobonusNum
+    return lottoBonusNum
   }
 
-  // calcLottoResult() {
-  //   this.findCorrectValue()
-  // }
+  calcLottoResult() {
+    let correctValueList = this.findCorrectValue(
+      this.userLottoNum,
+      this.winningNum,
+      this.lottoBonusNum,
+    )
+     console.log(correctValueList)
+  }
 
-  // findCorrectValue() {
-
-  // }
+  findCorrectValue(userLottoNum, winningNum, lottoBonusNum) {
+    let result = new CorrectValue(
+      userLottoNum,
+      winningNum,
+      lottoBonusNum,
+    ).findSameValue()
+    return result
+  }
 }
 
 module.exports = App
