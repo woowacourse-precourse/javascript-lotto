@@ -140,6 +140,17 @@ class App {
     MissionUtils.Console.print(PRIZE_RESULTS.FIVE(this.result[PRIZE_REWARDS.FIVE]));
     MissionUtils.Console.print(PRIZE_RESULTS.FIVE_BONUS(this.result[PRIZE_REWARDS.FIVE_BONUS]));
     MissionUtils.Console.print(PRIZE_RESULTS.SIX(this.result[PRIZE_REWARDS.SIX]));
+    this.calculateRevenue();
+  }
+
+  // 최종 수익률을 구하는 함수 구현
+  calculateRevenue() {
+    let deposit = 0;
+    for (let k in this.result) {
+      deposit += parseInt(k) * this.result[k];
+    }
+    MissionUtils.Console.print(STATISTIC.TOTAL_FROFIT(((deposit / this.lottoMoney) * 100).toFixed(1)));
+    MissionUtils.Console.close();
   }
 }
 
