@@ -10,6 +10,7 @@ const {
   isThousandUnits,
   isValuesNumberType,
   isValuesValidRange,
+  isValuesValidLength,
   inputUserValue,
   printMessage,
   generateRandomNumbers,
@@ -77,6 +78,10 @@ class LottoGame {
 
     if (!isValuesValidRange(winningNumbersList)) {
       throw ERROR_MESSAGE.RANGE_ERROR;
+    }
+
+    if (!isValuesValidLength(winningNumbersList)) {
+      throw ERROR_MESSAGE.WINNER_NUMBERS_LENGTH_ERROR;
     }
   }
 }

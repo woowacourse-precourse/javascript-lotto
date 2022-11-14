@@ -3,6 +3,7 @@ const {
   isThousandUnits,
   isValuesNumberType,
   isValuesValidRange,
+  isValuesValidLength,
 } = require("./validate");
 const {
   inputUserValue,
@@ -15,6 +16,7 @@ module.exports = {
   isThousandUnits,
   isValuesNumberType,
   isValuesValidRange,
+  isValuesValidLength,
   inputUserValue,
   printMessage,
   generateRandomNumbers,

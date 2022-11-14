@@ -9,9 +9,12 @@ const isValuesNumberType = (values) => values.every((value) => !isNaN(value));
 const isValuesValidRange = (values) =>
   values.every((value) => value >= LOTTO_VALUE.MIN && value <= LOTTO_VALUE.MAX);
 
+const isValuesValidLength = (values) => values.length === LOTTO_VALUE.LENGTH;
+
 module.exports = {
   isNumberType,
   isThousandUnits,
   isValuesNumberType,
   isValuesValidRange,
+  isValuesValidLength,
 };
