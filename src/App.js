@@ -75,6 +75,9 @@ class App {
       this.#userBonusNumber = bonusNumber;
       // 기능 4 : 당첨 내역 계산
       this.calculateRank();
+      // 기능 4 : 수익률 계산
+      this.calcYield(); 
+      this.printStatatics();
     });
   }
 
@@ -104,6 +107,25 @@ class App {
         this.#totalScore.six += 1;
       }
     })
+  }
+
+  calcYield() {
+    this.#yield += 5000*Number(this.#totalScore['three']);
+    this.#yield += 50000*Number(this.#totalScore['four']);
+    this.#yield += 15000000*Number(this.#totalScore['five']);
+    this.#yield += 30000000*Number(this.#totalScore['five_ball']);
+    this.#yield += 2000000000*Number(this.#totalScore['six']);
+  }
+
+  printStatatics() {
+    MissionUtils.Console.print('\n당첨 통계\n---\n');
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.#totalScore['three']}개\n`);
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${this.#totalScore['four']}개\n`);
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${this.#totalScore['five']}개\n`);
+    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.#totalScore['five_ball']}개\n`);
+    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${this.#totalScore['six']}개\n`);
+    MissionUtils.Console.print(`총 수익률은 ${parseFloat((this.#yield/(this.#lottoCount*10)).toFixed(2))}%입니다.\n`);
+    MissionUtils.Console.close();
   }
 
   play() {
