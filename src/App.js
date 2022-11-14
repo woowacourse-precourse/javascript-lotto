@@ -5,6 +5,7 @@ class App {
   constructor() {
     this.lottoManager = new LottoManager();
     this.winningNumbers = [];
+    this.bonusNumber = 0;
   }
 
   play() {
@@ -31,6 +32,8 @@ class App {
       const splittedNumbers = numbers.split(',');
       this.validateWinningNumbers(splittedNumbers);
       this.winningNumbers = splittedNumbers;
+
+      this.inputBonusNumber();
     });
   }
 
@@ -63,6 +66,39 @@ class App {
 
   isUnique(numbers) {
     return numbers.length === new Set(numbers).size;
+  }
+
+  inputBonusNumber() {
+    Console.readLine('보너스 번호를 입력해 주세요.\n', (number) => {
+      this.validateBonusNumber(number);
+      this.bonusNumber = number;
+    });
+  }
+
+  validateBonusNumber(number) {
+    if (!this.isNumber(number)) {
+      throw new Error('[ERROR] 보너스 번호는 숫자여야 합니다.');
+    }
+    if (!this.isRange(number)) {
+      throw new Error('[ERROR] 보너스 번호는 1이상 45이하의 정수여야 합니다.');
+    }
+    if (this.isDuplicateWithWinningNumber(number)) {
+      throw new Error(
+        '[ERROR] 보너스 번호는 당첨 번호와 중복이 아닌 숫자여야 합니다.'
+      );
+    }
+  }
+
+  isNumber(number) {
+    return number.match(/^[0-9]+$/);
+  }
+
+  isRange(number) {
+    return number >= 1 && number <= 45;
+  }
+
+  isDuplicateWithWinningNumber(number) {
+    return this.winningNumbers.includes(number);
   }
 }
 
