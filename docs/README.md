@@ -20,11 +20,11 @@
   - [x] 1000원으로 나누어 떨어지지 않는 경우 예외 처리한다 UserInput # moneyInput() - checkExceptCaseInMoney()
 
   - 구매한 로또 번호 출력
-  - [] 발행한 로또 수량을 출력한다 ('n개를 구매했습니다.') MessageOutput # printMessage()
-  - [] 로또 번호를 출력한다 MessageOutput # printMessage()
-    - [] 중복되지 않는 6개의 숫자를 뽑는다 LottoNumberGenerator # createRandomNumbers()
+  - [x] 발행한 로또 수량을 출력한다 ('n개를 구매했습니다.') MessageOutput # printMessage()
+  - [x] 로또 번호를 출력한다 MessageOutput # printMessage()
+    - [x] 중복되지 않는 6개의 숫자를 뽑는다 LottoNumberGenerator # createRandomNumbers()
     - [] 로또 번호는 오름차순으로 정렬하여 보여준다 LottoNumberGenerator # sortingNumbers()
-  - [] 발행한 로또 수량만큼 출력한다
+  - [x] 발행한 로또 수량만큼 출력한다
 
   - 당첨 번호 입력
   - [] 사용자에게 당첨 번호 입력을 요구한다 ('당첨 번호를 입력해 주세요.') MessageOutput # printMessage()
