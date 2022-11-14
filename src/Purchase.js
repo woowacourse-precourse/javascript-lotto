@@ -10,6 +10,12 @@ class Purchase {
   static validate(money) {
     const moneyValidation = new MoneyValidator(money);
     MissionUtils.Console.print(moneyValidation.money);
+    Purchase.order(moneyValidation.money);
+  }
+
+  static order(money) {
+    const lottoQuantity = Purchase.calculateQuantity(money);
+    Purchase.issue(lottoQuantity);
   }
 }
 
