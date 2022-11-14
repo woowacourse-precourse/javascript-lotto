@@ -32,9 +32,18 @@ const {
 } = require('./Constants.js');
 
 class App {
+  countLottoRank(drawResult) {}
+
   printLottoResult(rankCount, amount) {}
 
-  drawLotto(lottos, winningNumbers, bonus) {}
+  drawLotto(lottos, winningNumbers, bonus) {
+    const drawResult = lottos.map((lotto) =>
+      lotto.checkWin(winningNumbers, bonus)
+    );
+    const rankCount = this.countLottoRank(drawResult);
+
+    return rankCount;
+  }
 
   validateBonusNumber(winningNumbers, bonus) {
     if (isNaN(bonus)) {
