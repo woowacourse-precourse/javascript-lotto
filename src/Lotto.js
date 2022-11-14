@@ -12,7 +12,6 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error(INPUT_LOTTO_NUMBER_ERROR);
     }
-    
   }
 
   lottoNumberSort(numbers) {
