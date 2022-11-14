@@ -14,7 +14,7 @@ class Calculate {
     this.#publish = publish;
     this.#winning = winning;
     this.#bonus = bonus;
-    this.quantityList = [0, 0, 0, 0, 0];
+    this.quantityList = { THREE: 0, FOUR: 0, FIVE: 0, FIVE_BONUS: 0, SIX: 0 };
     this.numberList = MATCH_LIST;
     this.rewardList = REWARD_LIST;
     this.totalReward = 0;
@@ -47,16 +47,16 @@ class Calculate {
 
   countTotal(count) {
     if (count.winning === MATCH_NUMBER.THREE)
-      this.quantityList[0] += CALCULATION.SCORE;
+      this.quantityList.THREE += CALCULATION.SCORE;
     if (count.winning === MATCH_NUMBER.FOUR)
-      this.quantityList[1] += CALCULATION.SCORE;
+      this.quantityList.FOUR += CALCULATION.SCORE;
     if (count.winning === MATCH_NUMBER.FIVE) {
       if (count.bonus === MATCH_NUMBER.FIVE_BONUS)
-        this.quantityList[3] += CALCULATION.SCORE;
-      else this.quantityList[2] += CALCULATION.SCORE;
+        this.quantityList.FIVE_BONUS += CALCULATION.SCORE;
+      else this.quantityList.FIVE += CALCULATION.SCORE;
     }
     if (count.winning === MATCH_NUMBER.SIX)
-      this.quantityList[4] += CALCULATION.SCORE;
+      this.quantityList.SIX += CALCULATION.SCORE;
   }
 }
 

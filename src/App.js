@@ -86,7 +86,7 @@ class App {
   setResult(count) {
     Console.print(`${OUTPUT.LINE}${OUTPUT.RESULT_TITLE}`);
 
-    count.quantityList.forEach((quantity, index) => {
+    Object.values(count.quantityList).forEach((quantity, index) => {
       const result = new Result(
         quantity,
         count.numberList[index],
