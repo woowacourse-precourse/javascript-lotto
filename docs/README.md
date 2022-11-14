@@ -211,4 +211,4 @@
 
 - LottoAdjustment 클래스에 개수, 수익률이라는 여러가지 책임을 부여, 이를 분리하는 객체 설계 구현
 
-<img width="800" alt="스크린샷 2022-11-14 17 37 31" src="https://user-images.githubusercontent.com/78203399/201614125-b0c4ff33-e380-4c05-81c0-c11a5d4f77af.png">
+<img width="800px" alt="스크린샷 2022-11-14 20 08 21" src="https://user-images.githubusercontent.com/78203399/201645380-b2846080-c9c1-4038-b702-586df7d2eab2.png" />
