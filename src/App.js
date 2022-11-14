@@ -1,5 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { MESSAGE } = require("./constants/index");
+const { formatArray } = require("./utils/index");
 
 const Validator = require("./Validator");
 const Generator = require("./Generator");
@@ -51,7 +52,7 @@ class App {
     this.state.allNumbers = this.generator.getAllNumbers(this.state.count);
 
     this.state.allNumbers.forEach((numbers) => {
-      Console.print(`[${String(numbers).replace(/,/g, ", ")}]`);
+      Console.print(formatArray(numbers));
     });
 
     this.inputNumber();
