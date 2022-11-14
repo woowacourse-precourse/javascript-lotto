@@ -18,6 +18,10 @@ const RANDOM_NUMBER = Object.freeze({
   MIN: 1,
   MAX: 45,
   WINNING_NUMBER_COUNT: 6,
+});
+
+const REGEX = Object.freeze({
+  PURCHASE_AMOUNT_REGEX: /^[1-9]{1}[0-9]*0{3}$/,
   WINNING_NUMBER_REGEX: /^([1-45],){5}[1-45]{1}$/,
   BONUS_NUMBER_REGEX: /^[1-45]{1}$/,
 });
@@ -31,4 +35,4 @@ const ERROR = Object.freeze({
   ENTER_WITHOUT_REPETITION: '[ERROR] 중복되지 않는 숫자를 입력해 주세요.',
 });
 
-module.exports = { MESSAGE, RANDOM_NUMBER, ERROR };
+module.exports = { MESSAGE, RANDOM_NUMBER, REGEX, ERROR };
