@@ -33,6 +33,11 @@ class App {
   startGame() {
     this.game.setWinningBonusNumbers(this.target, this.bonus);
     Console.print(this.game.generateStatPhrase());
+    this.endGame();
+  }
+
+  endGame() {
+    Console.close();
   }
 }
 
