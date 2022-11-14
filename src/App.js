@@ -12,10 +12,16 @@ class App {
 
   play() {
     Console.readLine(MESSAGE.PURCHASE_AMOUT, (amount) => {
+      this.#checkPurchaseError(amount);
       this.amount = amount;
       this.#lottoPurchase(amount);
       this.#inputlottoWinnerNumber();
     });
+  }
+
+  #checkPurchaseError(amount) {
+    if (isNaN(amount))
+      throw new Error('[ERROR] 입력받은 값은 숫자여야 합니다.');
   }
 
   #lottoPurchase() {
