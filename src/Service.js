@@ -3,6 +3,7 @@ const Purchase = require('./Purchase');
 const ServiceMessage = require('./Constants/ServiceMessages');
 const MyLotto = require('./MyLotto');
 const Lotto = require('./Lotto');
+const Bonus = require('./Bonus');
 
 class Service {
   printLottoCount() {
@@ -28,6 +29,13 @@ class Service {
       const lottoArray = winningNumber.split(',').map((number) => number * 1);
       new Lotto(lottoArray);
       this.lottoNumber = winningNumber;
+    });
+  }
+
+  printGetBonusNumber() {
+    Console.readLine('보너스 번호를 입력해 주세요.', (bonusNumber) => {
+      new Bonus(bonusNumber);
+      this.bonusNumber = bonusNumber;
     });
   }
 }

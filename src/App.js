@@ -5,6 +5,7 @@ class App {
     service.printLottoCount();
     service.printLottoNumbers();
     service.printGetWinningNumber();
+    service.printGetBonusNumber();
   }
 }
 

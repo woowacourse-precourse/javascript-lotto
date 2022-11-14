@@ -44,6 +44,6 @@
 
 - [x] 당첨 번호 입력 메시지를 띄운다. - Service#printGetWinningNumber();
 
-- [ ] 보너스 번호 입력 메시지를 띄운다. - Service#printGetBonusNumber();
+- [x] 보너스 번호 입력 메시지를 띄운다. - Service#printGetBonusNumber();
 
 - [ ] 당첨 통계를 출력한다. - Service#printResult()
