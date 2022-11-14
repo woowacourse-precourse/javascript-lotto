@@ -1,5 +1,5 @@
 const {
-  LOTTO_RESULT_MESSAGE, LOTTO_RESULT_PRICE, LOTTO_RESULT_TYPE,
+  LOTTO_RESULT_PRICE, LOTTO_RESULT_TYPE,
 } = require('./lib/Constants');
 const { getRoundSecondDecimalPlace, isLessThanNumber } = require('./lib/Utils');
 
@@ -7,27 +7,22 @@ class Calculation {
   #winResult = {
     [LOTTO_RESULT_TYPE.three]: {
       count: 0,
-      text: LOTTO_RESULT_MESSAGE.three,
       price: LOTTO_RESULT_PRICE.three,
     },
     [LOTTO_RESULT_TYPE.four]: {
       count: 0,
-      text: LOTTO_RESULT_MESSAGE.four,
       price: LOTTO_RESULT_PRICE.four,
     },
     [LOTTO_RESULT_TYPE.five]: {
       count: 0,
-      text: LOTTO_RESULT_MESSAGE.five,
       price: LOTTO_RESULT_PRICE.five,
     },
     [LOTTO_RESULT_TYPE.six]: {
       count: 0,
-      text: LOTTO_RESULT_MESSAGE.six,
       price: LOTTO_RESULT_PRICE.six,
     },
     [LOTTO_RESULT_TYPE.bonus]: {
       count: 0,
-      text: LOTTO_RESULT_MESSAGE.bonus,
       price: LOTTO_RESULT_PRICE.bonus,
     },
   };

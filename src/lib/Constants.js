@@ -4,12 +4,24 @@ const GAME_MESSAGE = Object.freeze({
   input_bonus_number: '보너스 번호를 입력해 주세요.\n',
 });
 
+const LOTTO_RESULT_TYPE = Object.freeze({
+  three: 3,
+  four: 4,
+  five: 5,
+  six: 6,
+  bonus: 5.5,
+});
+
 const LOTTO_RESULT_MESSAGE = Object.freeze({
-  three: '3개 일치 (5,000원) - ',
-  four: '4개 일치 (50,000원) - ',
-  five: '5개 일치 (1,500,000원) - ',
-  bonus: '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
-  six: '6개 일치 (2,000,000,000원) - ',
+  [LOTTO_RESULT_TYPE.three]: (count) => `3개 일치 (5,000원) - ${count}개`,
+  [LOTTO_RESULT_TYPE.four]: (count) => `4개 일치 (50,000원) - ${count}개`,
+  [LOTTO_RESULT_TYPE.five]: (count) => `5개 일치 (1,500,000원) - ${count}개`,
+  [LOTTO_RESULT_TYPE.bonus]: (count) => `5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`,
+  [LOTTO_RESULT_TYPE.six]: (count) => `6개 일치 (2,000,000,000원) - ${count}개`,
+});
+
+const LOTTO_RATE_MESSAGE = Object.freeze({
+  rate: (rate) => `총 수익률은 ${rate}%입니다.`,
 });
 
 const LOTTO_RESULT_PRICE = Object.freeze({
@@ -19,15 +31,6 @@ const LOTTO_RESULT_PRICE = Object.freeze({
   bonus: 30000000,
   six: 2000000000,
 });
-
-const LOTTO_RESULT_TYPE = Object.freeze({
-  three: 3,
-  four: 4,
-  five: 5,
-  six: 6,
-  bonus: 99,
-});
-
 const PRICE_ERROR_MESSAGE = Object.freeze({
   not_valid_number: '숫자를 입력해주세요.',
   not_valid_unit_number: '1000원 단위로 입력해주세요.',
@@ -65,6 +68,7 @@ const ABSTRACT_ERROR_MESSAGE = Object.freeze({
 module.exports = {
   GAME_MESSAGE,
   LOTTO_RESULT_MESSAGE,
+  LOTTO_RATE_MESSAGE,
   LOTTO_RESULT_PRICE,
   LOTTO_RESULT_TYPE,
   PRICE_ERROR_MESSAGE,
