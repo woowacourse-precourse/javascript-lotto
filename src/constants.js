@@ -1,3 +1,10 @@
+const MESSAGE = {
+  LOTTO_NUMBER_GENERATOR: {
+    INPUT_WINNER_NUMBER: '당첨 번호를 입력해 주세요.',
+    INPUT_BONUS_NUMBER: '보너스 번호를 입력해 주세요.',
+  },
+};
+
 const ERROR_PREFIX = '[ERROR]';
 
 const ERROR_MSG = {
@@ -12,4 +19,9 @@ const NUM = {
   LOTTO: 6,
 };
 
-module.exports = { ERROR_MSG, ERROR_PREFIX, NUM };
+module.exports = {
+  MESSAGE,
+  ERROR_MSG,
+  ERROR_PREFIX,
+  NUM,
+};
