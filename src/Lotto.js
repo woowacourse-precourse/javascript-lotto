@@ -1,3 +1,10 @@
+const { Console } = require("@woowacourse/mission-utils");
+const {
+  LOTTO_LENGTH_ERROR,
+  LOTTO_TYPE_ERROR,
+  LOTTO_DUPLICATE_ERROR,
+} = require("./Constant");
+
 class Lotto {
   #numbers;
 
@@ -8,11 +15,23 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error(LOTTO_LENGTH_ERROR);
+    }
+    if (numbers.filter((number) => isNaN(Number(number))).length !== 0) {
+      throw new Error(LOTTO_TYPE_ERROR);
+    }
+    if (new Set(numbers).size !== 6) {
+      throw new Error(LOTTO_DUPLICATE_ERROR);
     }
   }
 
-  // TODO: 추가 기능 구현
+  get() {
+    return this.#numbers;
+  }
+
+  print() {
+    Console.print(`[${this.#numbers.join(", ")}]`);
+  }
 }
 
 module.exports = Lotto;
