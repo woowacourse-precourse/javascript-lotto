@@ -2,6 +2,7 @@ class CompareWithLotto {
   constructor() {
     this.userMoney;
     this.userNumbers;
+    this.tickets;
   }
 
   compareWithNumbers(userNumbers, Lotterytickets, userMoney) {
@@ -14,6 +15,8 @@ class CompareWithLotto {
         userNumbers.includes(num)
       );
     }
+
+    this.tickets = Lotterytickets.map((ticket) => (ticket = ticket.length));
   }
 }
 
