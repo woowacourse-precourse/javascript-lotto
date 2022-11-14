@@ -52,8 +52,8 @@ class App {
     if(!input.includes(",")){
       throw new Error("[ERROR] 당첨 번호는 ','를 기준으로 구분해주세요.");
     }
-
-    const inputLottoArray = input.split(",");
+    let winningLotto = input.split(",").map(Number);
+    return winningLotto;
   }
   
 }
