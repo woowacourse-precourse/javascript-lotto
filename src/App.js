@@ -131,4 +131,9 @@ class App {
     });
   };
 
+  play() {
+    this.inputBuyLottoMoney();
+  }
+}
+
 module.exports = App;
