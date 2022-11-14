@@ -101,32 +101,23 @@ class App {
       }
     );
   }
-  compareLottoNumber() {
-    this.lottoArray.map((numbers) => {
-      this.collectNumber = numbers.filter((samenumber) =>
-        this.winningNumber.includes(samenumber)
-      );
 
-      if (this.collectNumber.length === 3) {
-        this.matchNumber[0]++;
-      }
-      if (this.collectNumber.length === 4) {
-        this.matchNumber[1]++;
-      }
-      if (this.collectNumber.length === 5) {
-        this.matchNumber[2]++;
-      }
-      if (
-        this.collectNumber.length === 5 &&
-        numbers.includes(this.bonusNumber)
-      ) {
-        this.matchNumber[3]++;
-      }
-      if (this.collectNumber.length === 6) {
-        this.matchNumber[4]++;
-      }
-    });
+  collectLottoNumber(numbers) {
+    const collectLength = this.collectLottoNumber.length;
+    const collectBonus = numbers.includes(this.bonusNumber);
 
+    if (collectLength >= 3 && collectLength <= 5 && !collectBonus) {
+      this.matchNumber[collectLength - 3];
+    }
+    if (collectLength === 5 && collectBonus) {
+      this.matchNumber[3]++;
+    }
+    if (this.collectNumber.length === 6) {
+      this.matchNumber[4]++;
+    }
+  }
+
+  winningStatsResult() {
     MissionUtils.Console.print("\n당첨 통계\n---");
 
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.matchNumber[0]}개`);
@@ -142,12 +133,12 @@ class App {
     MissionUtils.Console.print(
       `6개 일치 (2,000,000,000원) - ${this.matchNumber[4]}개`
     );
+  }
 
-    this.yield += this.matchNumber[0] * this.winningMoney[0];
-    this.yield += this.matchNumber[1] * this.winningMoney[1];
-    this.yield += this.matchNumber[2] * this.winningMoney[2];
-    this.yield += this.matchNumber[3] * this.winningMoney[3];
-    this.yield += this.matchNumber[4] * this.winningMoney[4];
+  yieldResult() {
+    for (let index = 0; index < 5; index++) {
+      this.yield += this.matchNumber[index] * this.winningMoney[index];
+    }
 
     MissionUtils.Console.print(
       `총 수익률은 ${(
@@ -155,6 +146,18 @@ class App {
         100
       ).toFixed(1)}%입니다.`
     );
+  }
+
+  compareLottoNumber() {
+    this.lottoArray.map((numbers) => {
+      this.collectNumber = numbers.filter((samenumber) =>
+        this.winningNumber.includes(samenumber)
+      );
+      this.collectLottoNumber(numbers);
+    });
+
+    this.winningStatsResult();
+    this.yieldResult();
   }
   winningNumberValidate() {
     if (this.winningNumber.length !== 6) {
