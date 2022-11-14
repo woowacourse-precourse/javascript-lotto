@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const util = require("./util");
+const {validateWinNums, }= require("./util");
 const Lotto = require("./Lotto.js");
 const [Console, Random] = [MissionUtils.Console, MissionUtils.Random];
 
@@ -52,15 +52,6 @@ class App {
         resolve(this.setMoney(priceNum));
       })
     })
-    // Console.readLine("구입금액을 입력해주세요 : ", (money) => {
-    //   const priceNum = parseInt(money);
-    //   if (priceNum % 1000 !== 0) {
-    //     throw new Error("[ERROR] price가 1000으로 나누어 떨어지지 않습니다.");
-    //   }
-    //   this.setMoney(priceNum);
-    //   this.buyLotto();
-    //   this.readWinNums();
-    // })
   }
 
   buyLotto() {
@@ -72,13 +63,18 @@ class App {
       lotto.printLotto();
       this.pushLotto(lotto);
     }
-    Console.print(this.getLotto());
   }
 
   readWinNums() {
-    Console.readLine("당첨번호를 입력해주세요. : ", (winNums) => {
-      validateWinNums(winNums);
-      this.readBonusNum();
+
+    return new Promise((resolve, reject) =>{
+      Console.readLine("당첨번호를 입력해주세요. : ", (winNums) => {
+        const validation = validateWinNums(winNums);
+        if(!validation[0]){
+          reject(validation[1]);
+        }
+        resolve(this.setWinNums(validation[1]));
+      })
     })
   }
 
@@ -91,7 +87,8 @@ class App {
     try {
       await this.readMoney();
       this.buyLotto();
-
+      await this.readWinNums();
+      Console.print(this.#winningNums);
     }
     catch (err) {
       Console.print(err.message);
