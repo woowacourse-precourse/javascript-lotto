@@ -8,6 +8,7 @@ class App {
     this.lottoGameModel = new LottoGameModel();
     this.lottoGameView = new LottoGameView();
     this.calculatorModel = new CalculatorModel();
+
     this.lottoGameController = new LottoGameController(
       this.lottoGameModel,
       this.lottoGameView,

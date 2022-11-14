@@ -1,7 +1,7 @@
-const { INPUT_MESSAGE } = require('../constant');
-const { readLine } = require('../utils/Utils');
 const BonusValidator = require('../validator/BonusValidator');
 const MoneyValidator = require('../validator/MoneyValidator');
+const { INPUT_MESSAGE } = require('../constant');
+const { readLine } = require('../utils/Utils');
 
 class LottoGameController {
   constructor(model, view, calculator) {

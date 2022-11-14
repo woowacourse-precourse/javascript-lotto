@@ -1,10 +1,18 @@
+const LOTTO_INFO = {
+  START: 1,
+  END: 45,
+  COUNT: 6,
+};
+
+const CURRENCY_UNIT = 1000;
+
+const PREFIX = '[ERROR]';
+
 const INPUT_MESSAGE = {
   MONEY: '구입금액을 입력해 주세요.',
   LOTTO_NUMBER: '당첨 번호를 입력해 주세요.',
   BONUS_NUMBER: '보너스 번호를 입력해 주세요.',
 };
-
-const PREFIX = '[ERROR]';
 
 const ERROR_MESSAGE = {
   TYPE: `${PREFIX} 숫자를 입력해 주세요.`,
@@ -13,14 +21,6 @@ const ERROR_MESSAGE = {
   DUPLICATION: `${PREFIX} 중복되지 않은 수를 입력해 주세요.`,
   CURRENCY_UNIT: `${PREFIX} 1,000원 단위의 금액을 입력해 주세요.`,
 };
-
-const LOTTO_INFO = {
-  START: 1,
-  END: 45,
-  COUNT: 6,
-};
-
-const CURRENCY_UNIT = 1000;
 
 const RANK_MESSAGE = {
   FIFTH: (count) => `3개 일치 (5,000원) - ${count}개`,
