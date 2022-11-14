@@ -13,6 +13,7 @@ class Lotto {
     LottoValidation.isNotNumber(numbers);
     LottoValidation.checkRange(numbers);
     LottoValidation.isUniqueNumber(numbers);
+    LottoValidation.isInteger(numbers);
   }
 
   getNumbers() {

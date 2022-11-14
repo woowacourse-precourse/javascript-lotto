@@ -34,6 +34,14 @@ class LottoValidation {
       throw new Error("[ERROR] 로또 번호는 중복 숫자가 존재해서는 안 됩니다. 종료합니다.");
     }
   }
+  static isInteger(numbers) {
+    numbers.map((number) => {
+      number = Number(number);
+      if (!Number.isInteger(number)) {
+        throw new Error("[ERROR] 로또 번호는 정수만 가능합니다. 종료합니다.");
+      }
+    });
+  }
   static isBonusInteger(number) {
     if (!Number.isInteger(number)) {
       throw new Error("[ERROR] 보너스 번호는 정수만 가능합니다. 종료합니다.");
