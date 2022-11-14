@@ -78,6 +78,7 @@ class LottoGame {
     const prizeStatistics = this.getPrizeStatistics(eachCalculatedLottoPrize);
     const totalPrizeMoney = this.getTotalPrizeMoney(prizeStatistics);
     const yieldRatio = this.getYieldRatio(totalPrizeMoney);
+    const prizeStatisticsTemplate = this.getPrizeStatisticsTemplate(prizeStatistics);
   }
   getEachLottoNumbers() {
     return this.lottos.map((lotto) => lotto.getNumbers());
@@ -137,6 +138,37 @@ class LottoGame {
     }
 
     return 0;
+  }
+  getPrizeStatisticsTemplate(prizeStatistics) {
+    const template = [
+      `${
+        LOTTO_PRIZE_MATCH_COUNT.fifthPlace
+      }개 일치 (${LOTTO_PRIZE_MONEY.fifthPlace.toLocaleString()}원) - ${
+        prizeStatistics.fifthPlace
+      }개`,
+      `${
+        LOTTO_PRIZE_MATCH_COUNT.fourthPlace
+      }개 일치 (${LOTTO_PRIZE_MONEY.fourthPlace.toLocaleString()}원) - ${
+        prizeStatistics.fourthPlace
+      }개`,
+      `${
+        LOTTO_PRIZE_MATCH_COUNT.thirdPlace
+      }개 일치 (${LOTTO_PRIZE_MONEY.thirdPlace.toLocaleString()}원) - ${
+        prizeStatistics.thirdPlace
+      }개`,
+      `${
+        LOTTO_PRIZE_MATCH_COUNT.thirdPlace
+      }개 일치, 보너스 볼 일치 (${LOTTO_PRIZE_MONEY.secondPlace.toLocaleString()}원) - ${
+        prizeStatistics.secondPlace
+      }개`,
+      `${
+        LOTTO_PRIZE_MATCH_COUNT.firstPlace
+      }개 일치 (${LOTTO_PRIZE_MONEY.firstPlace.toLocaleString()}원) - ${
+        prizeStatistics.firstPlace
+      }개`,
+    ];
+
+    return template;
   }
 }
 
