@@ -7,7 +7,7 @@ class Purchase {
   numberOfTicket;
 
   constructor(num) {
-    this.purchaseAmount = num;
+    this.purchaseAmount = Number(num);
     this.numberOfTicket = this.purchaseAmount / 1000;
   }
 

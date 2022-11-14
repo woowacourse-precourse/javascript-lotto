@@ -23,7 +23,5 @@ const isDivisibleBy1000 = (num) => {
 const errorMessage = () => {
   throw new Error('[ERROR] 1000원 단위로 금액을 입력해주세요.');
 };
-const app = new App();
-app.play();
 
 module.exports = App;

@@ -1,5 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
-const App = require('./App');
+const ErrorHandler = require('./ErrorHandler');
+const checker = new ErrorHandler();
 
 class Lotto {
   #numbers;
@@ -11,44 +12,14 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error(
-        '[ERROR] 로또 번호는 6개여야 합니다. 쉼표(,)로 구분해주세요.'
-      );
-    }
-
-    if (isDuplicated(numbers)) {
-      throw new Error('[ERROR] 중복된 번호가 없어야 합니다.');
-    }
-
-    numbers.forEach((number) => {
-      if (isNaN(number)) {
-        throw new Error('[ERROR] 다른 형식이 아닌 숫자만 입력해 주세요.');
-      }
-
-      if (!is1To45(number)) {
-        throw new Error('[ERROR] 1부터 45 사이의 숫자만 입력해 주세요.');
-      }
-    });
+    checker.checkAnArray(numbers);
   }
 
   getBonusNumber(myTickets, purchaseAmount) {
     Console.readLine('보너스 번호를 입력해 주세요.', (num) => {
       const bonusNumber = Number(num);
-      if (isNaN(bonusNumber)) {
-        throw new Error('[ERROR] 다른 형식이 아닌 숫자만 입력해 주세요.');
-      }
 
-      if (!is1To45(bonusNumber)) {
-        throw new Error('[ERROR] 1부터 45 사이의 숫자만 입력해 주세요.');
-      }
-
-      if (this.isIncluded(bonusNumber)) {
-        throw new Error('[ERROR] 로또 번호 6개와 다른 수를 입력해주세요');
-      }
-
-      Console.print('당첨 통계');
-      Console.print('---');
+      this.validateBonusNumber(bonusNumber);
 
       const numberOfWonTicket = this.getNumberOfWonTicket(
         myTickets,
@@ -64,6 +35,11 @@ class Lotto {
       );
       this.printEarningsRate(earningsRate);
     });
+  }
+
+  validateBonusNumber(num) {
+    this.isIncluded(num);
+    checker.checkANumber(num);
   }
 
   getNumberOfWonTicket(tickets, winningNums, bonusNumber) {
@@ -146,25 +122,9 @@ class Lotto {
 
   isIncluded(num) {
     if (this.#numbers.includes(num)) {
-      return true;
+      throw new Error('[ERROR] 로또 번호 6개와 다른 수를 입력해주세요');
     }
-    return false;
   }
 }
-
-const isDuplicated = (arr) => {
-  const set = new Set(arr);
-  if (set.size !== 6) {
-    return true;
-  }
-  return false;
-};
-
-const is1To45 = (num) => {
-  if (num >= 1 && num <= 45) {
-    return true;
-  }
-  return false;
-};
 
 module.exports = Lotto;
