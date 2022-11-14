@@ -64,10 +64,14 @@ class User {
   checkRankWithOneLotto(userLottoNum, winningNumList, bonusNum) {
     //높은 순위부터 체크
     const answerList = [...winningNumList, bonusNum];
-    return this.countCorrectness(userLottoNum, answerList);
+    if (this.count(userLottoNum, answerList) === 6 && this.count([bonusNum], userLottoNum) === 1) {
+      return '5개 보너스';
+    }
+    return `${this.count(userLottoNum, answerList)}개`;
   }
-  countCorrectness(userList, answerList) {
+  count(userList, answerList) {
     //두 배열의 일치하는 원소의 갯수를 반환 (단, 두 배열은 모두 다른 6,7개의 숫자로 구성되어있어야함)
+    console.log(userList, answerList);
     let count = 0;
     userList.forEach((num) => {
       if (answerList.includes(num)) count += 1;
