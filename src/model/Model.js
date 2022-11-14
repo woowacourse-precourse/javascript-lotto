@@ -31,6 +31,18 @@ class Model{
   getPublished(){
     return this.chart.published;
   }
+  setWin(data){
+    this.chart.win_numbers = data;
+  }
+  getWin(){
+    return this.chart.win_numbers;
+  }
+  setBonus(data){
+    this.chart.bonus_number = data;
+  }
+  getBonus(){
+    return this.chart.bonus_number;
+  }
 }
 
 module.exports = Model;

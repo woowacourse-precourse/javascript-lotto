@@ -7,6 +7,12 @@ class Messages{
   number_of_lotto(number){
     return `\n${number}개를 구매했습니다.`
   }
+  input_win(){
+    return '\n당첨 번호를 입력해 주세요.'
+  }
+  input_bonus(){
+    return '\n보너스 번호를 입력해 주세요.'
+  }
 }
 
 class View{
@@ -26,6 +32,18 @@ class View{
   printPublished(published){
     published.forEach( (numbers) => {
       Console.print(numbers);
+    })
+  }
+  inputWin(){
+    Console.print(this.messages.input_win());
+    Console.readLine('',(input)=>{
+      this.task.controllWin(input);
+    })
+  }
+  inputBonus(){
+    Console.print(this.messages.input_bonus());
+    Console.readLine('',(input)=>{
+      this.task.controllBonus(input);
     })
   }
 }
