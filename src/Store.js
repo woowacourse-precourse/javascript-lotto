@@ -15,8 +15,12 @@ class Store {
   #randomLottos = [];
 
   #validateMoney(money) {
-    if (money % LOTTO_PRICE !== 0)
+    if (!money) {
+      throw new Error(ERROR_MESSAGES.NOT_INPUT_MONEY);
+    }
+    if (money % LOTTO_PRICE !== 0) {
       throw new Error(ERROR_MESSAGES.INVALID_MONEY_UNIT);
+    }
   }
   setMoney(money) {
     this.#validateMoney(money);
@@ -36,10 +40,14 @@ class Store {
     const correctPoints = [0, 0, 0, 0, 0];
     const { winningNumbers, bonus } = this.#winningLotto.getLotto();
 
+    console.log(winningNumbers);
+
     this.#randomLottos.forEach((randomLotto) => {
       let correctCount = randomLotto.filter((number) =>
         winningNumbers.includes(number)
       ).length;
+
+      console.log(correctCount);
 
       if (correctCount === 5 && randomLotto.includes(bonus)) {
         correctCount++;
@@ -48,6 +56,8 @@ class Store {
       }
 
       if (correctCount >= MIN_WINNING_COUNT) {
+        console.log(randomLotto);
+        console.log(correctCount);
         correctPoints[correctCount - MIN_WINNING_COUNT]++;
       }
     });
