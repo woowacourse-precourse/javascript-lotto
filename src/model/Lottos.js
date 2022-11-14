@@ -86,6 +86,8 @@ class Lottos {
         cnt = map.get(rank);
         userWinningMoney += winningMoney[rank - 1] * map.get(rank);
       }
+
+      MissionUtils.Console.print(`${statisticsMsg[rank - 1]}${cnt}개`);
     }
   }
 }
