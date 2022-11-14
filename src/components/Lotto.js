@@ -3,8 +3,9 @@ const {
   INITIAL_STATICS,
   WINNING_PRICES,
   ERROR_MESSAGES,
-} = require('../utils/constants');
-const { Console } = require('@woowacourse/mission-utils');
+  ADD_COMMA_EXP,
+} = require("../utils/constants");
+const { Console } = require("@woowacourse/mission-utils");
 
 class Lotto {
   #winningNums;
@@ -25,7 +26,7 @@ class Lotto {
 
         if (index + 1 === lotto.length) {
           if (sameCount === 5 && lotto.includes(bonusNumber)) {
-            statics['5andBonus'] += 1;
+            statics["5andBonus"] += 1;
           } else {
             sameCount in statics && (statics[sameCount] += 1);
           }
@@ -53,9 +54,9 @@ class Lotto {
 
   convertRate(earnings) {
     const earningsRate =
-      (+(Math.round(earnings + 'e+1') + 'e-1'))
+      (+(Math.round(earnings + "e+1") + "e-1"))
         .toFixed(1)
-        .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',') + '%';
+        .replace(ADD_COMMA_EXP, ",") + "%";
 
     return earningsRate;
   }
@@ -67,7 +68,7 @@ class Lotto {
 3개 일치 (5,000원) - ${statics[3]}개
 4개 일치 (50,000원) - ${statics[4]}개
 5개 일치 (1,500,000원) - ${statics[5]}개
-5개 일치, 보너스 볼 일치 (30,000,000원) - ${statics['5andBonus']}개
+5개 일치, 보너스 볼 일치 (30,000,000원) - ${statics["5andBonus"]}개
 6개 일치 (2,000,000,000원) - ${statics[6]}개
 총 수익률은 ${earningsRate}입니다.
 `;
@@ -83,7 +84,7 @@ class Lotto {
 
     winningNums.some((num) => {
       if (
-        typeof +num !== 'number' ||
+        typeof +num !== "number" ||
         Number.isNaN(+num) ||
         +num < 1 ||
         +num > 45
@@ -99,7 +100,7 @@ class Lotto {
     const { BOUNS_NUM } = ERROR_MESSAGES;
 
     if (
-      typeof bonusNumber !== 'number' ||
+      typeof bonusNumber !== "number" ||
       Number.isNaN(bonusNumber) ||
       bonusNumber < 1 ||
       bonusNumber > 45
