@@ -1,3 +1,6 @@
+const makeErrorMsg = require('./utils');
+const { ERROR_MSG, NUM } = require('./constants');
+
 class Lotto {
   #numbers;
 
@@ -8,15 +11,15 @@ class Lotto {
 
   static #validate(numbers) {
     if (numbers.filter((number) => Number.isNaN(number)).length > 0) {
-      throw new Error('[ERROR] 로또 번호는 숫자여야 합니다.');
+      throw new Error(makeErrorMsg(ERROR_MSG.LOTTO.NUMBER));
     }
 
-    if (numbers.length !== 6) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+    if (numbers.length !== NUM.LOTTO) {
+      throw new Error(makeErrorMsg(ERROR_MSG.LOTTO.LENGTH));
     }
 
-    if (new Set(numbers).size !== 6) {
-      throw new Error('[ERROR] 로또 번호는 고유해야 합니다.');
+    if (new Set(numbers).size !== NUM.LOTTO) {
+      throw new Error(makeErrorMsg(ERROR_MSG.LOTTO.DUPLICATION));
     }
   }
 
