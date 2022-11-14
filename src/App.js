@@ -42,7 +42,7 @@ class App {
 
   printLottos() {
     Console.print(`\n${this.#lottos.length}${PRINT.PURCHASE}`);
-    this.#lottos.forEach((lotto) => lotto.printNumbers());
+    this.#lottos.forEach((lotto) => Console.print(lotto.getNumbersString()));
   }
 
   setWinningNumbers(numbers) {
@@ -107,6 +107,10 @@ class App {
     Console.print(
       `${EARNING.HEADER}${this.getEarningRate().toFixed(1)}${EARNING.FOOTER}`
     );
+    this.quit();
+  }
+
+  quit() {
     Console.close();
   }
 }

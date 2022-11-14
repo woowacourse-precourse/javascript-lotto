@@ -20,8 +20,8 @@ class Lotto {
     return this.#numbers.includes(number);
   }
 
-  printNumbers() {
-    Console.print(`[${this.#numbers.join(', ')}]`);
+  getNumbersString() {
+    return `[${this.#numbers.join(', ')}]`;
   }
 }
 
