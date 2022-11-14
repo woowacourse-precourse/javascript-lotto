@@ -6,6 +6,7 @@ class Clerk {
   #payment;
   #myLottoArray;
   #lottoAmount;
+  #winningNumbers;
 
   inputLottoAmount() {
     Mission.Console.readLine(GAME_MESSAGES.ASK_TO_PAY, (payment) => {
@@ -13,6 +14,13 @@ class Clerk {
       this.#payment = payment;
       this.#myLottoArray = quickPick.arrayOutput();
       this.#lottoAmount = quickPick.amountOutput();
+      this.inputWinningNumbers();
+    });
+  }
+
+  inputWinningNumbers() {
+    Mission.Console.readLine(GAME_MESSAGES.ASK_TO_WINNING_NUMBERS, (winNumbers) => {
+      Mission.Console.print(winNumbers);
       Mission.Console.close();
     });
   }
