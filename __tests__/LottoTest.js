@@ -35,14 +35,14 @@ describe("로또 클래스 테스트", () => {
 
     test('당첨 번호 비교 후 맞는 개수 카운트', () => {
       
-      expect(target.countHit([1,2,3,4,5,6])).toBe(6);
-      expect(target.countHit([1,2,3,4,7,8])).toBe(4);
-      expect(target.countHit([1,2,3,9,10,11])).toBe(3);
+      expect(lottoGame.countHit([1,2,3,4,5,6])).toBe(6);
+      expect(lottoGame.countHit([1,2,3,4,7,8])).toBe(4);
+      expect(lottoGame.countHit([1,2,3,9,10,11])).toBe(3);
     });
   
     test('2등 판별을 위한 보너스 번호 당첨', () => {
       const bonus = 7;
-      const secondPrize = target.getResult([1,2,3,4,5,7], bonus);
+      const secondPrize = lottoGame.drawLottery([1,2,3,4,5,7], bonus);
       expect(secondPrize).toBe(2);
     });
 
