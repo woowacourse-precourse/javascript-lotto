@@ -9,8 +9,8 @@ class App {
   }
 
   getMoney() {
-    Console.readLine(MESSAGE.ENTERPRICE, (money) => {
-      this.user.buyLottos(money);
+    Console.readLine(MESSAGE.INPUT.MONEY, (money) => {
+      this.user.buyLottos(Number(money));
     });
   }
 }

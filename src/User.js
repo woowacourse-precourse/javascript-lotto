@@ -1,5 +1,6 @@
 const Lotto = require('./Lotto');
 const MESSAGE = require('./MESSAGE');
+const { Random } = require('@woowacourse/mission-utils');
 
 class User {
   #money;
@@ -9,7 +10,8 @@ class User {
     this.validateMoney(money);
     this.#lottos = Array.from({ length: money / 1000 }, () => {
       this.#money = money;
-      return new Lotto([1, 2, 3, 4, 5, 6]);
+      let LOTTO_NUMBER = this.pickNumber();
+      return new Lotto(LOTTO_NUMBER);
     });
   }
 
@@ -18,6 +20,10 @@ class User {
     if (!numberStyle.test(money)) throw new Error(MESSAGE.ERROR.MONEY.NUMBER);
     if (money % 1000 !== 0) throw new Error(MESSAGE.ERROR.MONEY.THOUSAND);
     if (money === 0) throw new Error(MESSAGE.ERROR.MONEY.ZERO);
+  }
+
+  pickNumber() {
+    return Random.pickUniqueNumbersInRange(1, 45, 6);
   }
 }
 
