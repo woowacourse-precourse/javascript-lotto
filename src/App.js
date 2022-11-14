@@ -34,6 +34,7 @@ function is1000Multiple(purchaseAmount) {
 function makeCandidateNumberSets(purchaseAmount) {
   app.setPurchaseAmount(purchaseAmount)
   const purchase = parseInt(purchaseAmount/1000)
+  MissionUtils.Console.print('\n')
   MissionUtils.Console.print(`${purchase}개를 구매했습니다.`);
   let candidateNumberSets = [];
   for (let i = 0; i < purchase; i++) {
@@ -70,6 +71,7 @@ function sortNumbers(a, b) {
 }
 
 function inputWinningNumbers() {
+  MissionUtils.Console.print('\n')
   MissionUtils.Console.readLine(
     "당첨 번호를 입력해 주세요.\n",
     (inputNumbers) => {
@@ -81,6 +83,7 @@ function inputWinningNumbers() {
 }
 
 function inputBonusNumber(winningNumbers, lotto) {
+  MissionUtils.Console.print('\n')
   MissionUtils.Console.readLine(
     "보너스 번호를 입력해 주세요.\n",
     (bonusNumber) => {

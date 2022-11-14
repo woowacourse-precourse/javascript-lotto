@@ -23,7 +23,7 @@ class Lotto {
   }
 
   validateWinningNumbersRange(numbers) {
-    console.log(numbers);
+    // console.log(numbers);
     numbers.forEach((element) => {
       if (1 > element || element > 45) {
         throw new Error("[ERROR] 로또 번호는 1 ~ 45 사이의 숫자입니다.");
@@ -89,11 +89,12 @@ class Lotto {
       }
     });
     await Promise.all(promises);
-    console.log(winningRanks);
+    // console.log(winningRanks);
     this.printLottoResult(winningRanks);
   }
 
   printLottoResult(results) {
+    MissionUtils.Console.print("\n");
     MissionUtils.Console.print(`당첨 통계\n---`);
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${results[0]}개`);
     MissionUtils.Console.print(`4개 일치 (50,000원) - ${results[1]}개`);
@@ -110,9 +111,10 @@ class Lotto {
     const totalprizeMoney = results.reduce((money, cur, curIdx) => {
       return money + cur * prizeMoneys[curIdx];
     }, 0);
-    console.log(totalprizeMoney);
+    // console.log(totalprizeMoney);
     const profit = ((totalprizeMoney / purchaseAmount) * 100).toFixed(1);
     MissionUtils.Console.print(`총 수익률은 ${profit}%입니다.`);
+    MissionUtils.Console.close();
   }
 }
 
