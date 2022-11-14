@@ -7,7 +7,7 @@ class App {
       const purchaseLottoList = this.lottoPublisher(purchaseLottoCount);
       this.printer(`\n${purchaseLottoCount}개를 구매했습니다.`);
       this.purchaseLottoListPrinter(purchaseLottoList);
-      this.winningNumberDecider(purchaseLottoList);
+      this.winningNumberDecider(purchaseLottoList, purchaseAmount);
     });
   }
 
@@ -37,7 +37,7 @@ class App {
     }
   }
 
-  static winningNumberDecider(purchaseLottoList) {
+  static winningNumberDecider(purchaseLottoList, purchaseAmount) {
     Console.readLine('\n당첨 번호를 입력해 주세요.\n', winningNumber => {
       Console.readLine('\n보너스 번호를 입력해 주세요.\n', bonusNumber => {
         const winningList = this.totalWinningCounter(
@@ -96,12 +96,19 @@ class App {
     );
   }
 
+  static proceedsGetter(winningList) {
+    let procdeeds = 0;
+    procdeeds += winningList.threeMatches * 5000;
+    procdeeds += winningList.fourMatches * 50000;
+    procdeeds += winningList.fiveMatches * 1500000;
+    procdeeds += winningList.fiveAndBonusMatches * 30000000;
+    procdeeds += winningList.sixMatches * 2000000000;
+    return procdeeds;
+  }
+
   play() {
     App.lottoPurchaser();
   }
 }
-
-const app = new App();
-app.play();
 
 module.exports = App;
