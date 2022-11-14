@@ -1,4 +1,4 @@
-const { WINNING_AMOUNT_UNITS } = require('./Constant');
+const { WINNING_AMOUNT_UNITS, LOTTO_NUMBER_RANGE } = require('./Constant');
 
 class Calculator {
   static totalWinningAmount(winningArray) {
@@ -11,6 +11,10 @@ class Calculator {
       if (winning === 5) totalAmount += WINNING_AMOUNT_UNITS.FIFTH_PLACE;
     });
     return totalAmount;
+  }
+
+  static divideUnit(number) {
+    return number / LOTTO_NUMBER_RANGE.UNIT;
   }
 
   static statistics(totalWinning, purchageAmount) {
