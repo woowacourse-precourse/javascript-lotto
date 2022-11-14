@@ -11,5 +11,4 @@ const lottoNumberError = {
   NUMBER_DUPLICATION: '[ERROR] 중복된 번호를 입력할 수 없습니다',
 };
 
-module.exports = purchaseError;
-module.exports = lottoNumberError;
+module.exports = { purchaseError, lottoNumberError };

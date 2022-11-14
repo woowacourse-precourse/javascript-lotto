@@ -1,4 +1,4 @@
-const lottoNumberError = require('./Constants/ErrorMessages');
+const { lottoNumberError } = require('./Constants/ErrorMessages');
 class Lotto {
   #numbers;
 
