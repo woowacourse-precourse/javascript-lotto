@@ -6,10 +6,8 @@ const GameView = class extends IGameView {
     Console.readLine(message, callback);
   }
 
-  output(messages) {
-    messages.forEach(message => {
-      Console.print(message);
-    });
+  output(message) {
+    Console.print(message);
   }
 
   close() {
