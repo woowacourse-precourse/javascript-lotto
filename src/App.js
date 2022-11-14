@@ -1,6 +1,7 @@
 const { Console } = require('@woowacourse/mission-utils');
 const Player = require('./Player');
 const Machine = require('./Machine');
+const Message = require('./Message');
 
 const { PRIZE, WIN_MONEY } = require('./constants/prize');
 
@@ -71,6 +72,32 @@ class App {
         this.player.addWinMoney(WIN_MONEY[prize]);
       }
     });
+
+    this.printStatistics();
+  }
+
+  printStatistics() {
+    Console.print('');
+    Console.print('당첨 통계');
+    Console.print('---');
+
+    this.printResult();
+    this.printProfitRate();
+  }
+
+  printResult() {
+    this.player.prizeCounts.forEach((prizeCount, prize) => {
+      const resultMessage = Message.getResultMessage(prize, prizeCount);
+
+      Console.print(resultMessage);
+    });
+  }
+
+  printProfitRate() {
+    const profitRate = this.player.getProfitRate();
+    const profitRateMessage = Message.getProfitRateMessage(profitRate);
+
+    Console.print(profitRateMessage);
   }
 }
 
