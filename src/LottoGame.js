@@ -1,6 +1,7 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const LottoUser = require('./LottoUser');
 const Lotto = require('./Lotto.js');
+const { RANKING } = require('./constants.js');
 
 class LottoGame {
   #user;
@@ -46,7 +47,24 @@ class LottoGame {
           this.#raffle.winning.getLottoNumbers().concat(numberToInt),
         );
         this.#raffle.bonus = parseInt(numberToInt);
+
+        this.printWinningStatistic();
       },
+    );
+  }
+
+  printWinningStatistic() {
+    MissionUtils.Console.print('\n당첨 통계\n---');
+    RANKING.forEach((rank) => {
+      this.printRanking(rank);
+    });
+  }
+
+  printRanking(rank) {
+    MissionUtils.Console.print(
+      `${rank.matchNumber}개 일치${
+        rank.isCheckBonus ? ', 보너스 볼 일치' : ''
+      } (${rank.prize.toLocaleString('ko-KR')}원) - ${rank.count}개`,
     );
   }
 }
