@@ -14,6 +14,18 @@ describe('로또 클래스 테스트', () => {
     }).toThrow('[ERROR]');
   });
 
+  test('로또 번호에 중복된 숫자가 있으면 예외가 발생한다.2', () => {
+    expect(() => {
+      new Lotto([5, 10, 11, 12, 13, 5]);
+    }).toThrow('[ERROR]');
+  });
+
+  test('로또 번호에 중복된 숫자가 있으면 예외가 발생한다.3', () => {
+    expect(() => {
+      new Lotto([5, 5, 5, 5, 5, 5]);
+    }).toThrow('[ERROR]');
+  });
+
   test('로또 번호의 개수가 6개 미만일때 예외가 발생한다.', () => {
     expect(() => {
       new Lotto([1, 2, 3, 4]);
@@ -59,6 +71,18 @@ describe('로또 클래스 테스트', () => {
   test('큰 값 로또 번호 테스트', () => {
     expect(() => {
       new Lotto([40, 41, 42, 43, 44, 45]);
-    }).expect();
+    }).toThrow('is Valid');
   });
+
+  test('정상적 로또 번호 테스트', () => {
+    expect(() => {
+      new Lotto([10, 11, 12, 13, 14, 25]);
+    }).toThrow('is Valid');
+  })
+
+  test('정상적 로또 번호 테스트2', () => {
+    expect(() => {
+      new Lotto([14, 9, 11, 43, 31, 13]);
+    }).toThrow('is Valid');
+  })
 });
