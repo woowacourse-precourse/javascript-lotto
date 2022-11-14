@@ -12,9 +12,17 @@ class Lotto {
     checkLottoNumbers(numbers);
   }
 
-  // TODO: 추가 기능 구현
   getLottoNumbers() {
     return this.#numbers;
+  }
+
+  compareWinningNumbers(winningNumbers) {
+    return winningNumbers.filter((number) => this.#numbers.includes(number))
+      .length;
+  }
+
+  compareBonusNumber(bonusNumber) {
+    return this.#numbers.includes(bonusNumber);
   }
 }
 

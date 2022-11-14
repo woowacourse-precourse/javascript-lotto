@@ -31,26 +31,10 @@ class LottoModel {
     return this.#lottos;
   }
 
-  compareWinningNumbers(winningNumbers, lottoNumbers) {
-    return winningNumbers.filter((number) => lottoNumbers.includes(number))
-      .length;
-  }
-
-  compareBonusNumber(bonusNumber, lottoNumbers) {
-    return lottoNumbers.includes(bonusNumber);
-  }
-
   checkWinning(winningNumbers, bonusNumber) {
     for (const lotto of this.#lottos) {
-      const lottoNumbers = lotto.getLottoNumbers();
-      const countWinningNumbers = this.compareWinningNumbers(
-        winningNumbers,
-        lottoNumbers
-      );
-      const checkBonusNumber = this.compareBonusNumber(
-        bonusNumber,
-        lottoNumbers
-      );
+      const countWinningNumbers = lotto.compareWinningNumbers(winningNumbers);
+      const checkBonusNumber = lotto.compareBonusNumber(bonusNumber);
       this.countRank(countWinningNumbers, checkBonusNumber);
     }
     return this.#winningRankCount;
