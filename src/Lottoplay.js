@@ -2,12 +2,15 @@ const { Console, Random } = require("@woowacourse/mission-utils");
 const {
   CONSOLE_MESSAGE,
   AMOUNT_ERROR_MESSAGE,
+  LOTTO_NUM_ERROR_MESSAGE,
 } = require("../src/constant/message");
 const { CONSTANTS } = require("./constant/constants");
 const Lotto = require("./Lotto");
 
 class LottoPlay {
   lottoes;
+  winNumber;
+  bonusNumber;
 
   constructor() {
     this.play();
@@ -30,6 +33,9 @@ class LottoPlay {
     Console.print(`\n${this.lottoes}개를 구매했습니다.`);
   }
   validateAmount(amount) {
+    if (amount <= 0) {
+      throw new Error(AMOUNT_ERROR_MESSAGE.NOT_PLUS_INPUT);
+    }
     if (amount % 1000 !== 0) {
       throw new Error(AMOUNT_ERROR_MESSAGE.NOT_RIGHT_UNIT);
     }
@@ -64,9 +70,38 @@ class LottoPlay {
 
   getWinNumber() {
     Console.readLine(CONSOLE_MESSAGE.INPUT_WIN_NUMBER_MESSAGE, (winNum) => {
-      const winnerNumber = winNum.split(",").map(Number);
-      new Lotto(winnerNumber);
+      this.winNumber = winNum.split(",").map(Number);
+      new Lotto(this.winNumber);
+      this.getBonusNumber();
     });
+  }
+
+  getBonusNumber() {
+    Console.readLine("보너스 번호를 입력해 주세요.\n", (bonusNum) => {
+      this.validateBonusNumber(bonusNum);
+      this.bonusNumber = [Number(bonusNum)];
+    });
+  }
+
+  lottoNumberRange(element) {
+    return (
+      CONSTANTS.LOTTO_MINIMUM_NUMBER <= element &&
+      CONSTANTS.LOTTO_MAXIMUM_NUMBER >= element
+    );
+  }
+  isValidRange(bonusNum) {
+    return this.lottoNumberRange(bonusNum);
+  }
+  isDuplicatedWinNumber(bonusNum) {
+    return this.winNumber.includes(Number(bonusNum));
+  }
+  validateBonusNumber(bonusNum) {
+    if (!this.isValidRange(bonusNum)) {
+      throw new Error(LOTTO_NUM_ERROR_MESSAGE.NOT_IN_RANGE);
+    }
+    if (this.isDuplicatedWinNumber(bonusNum)) {
+      throw new Error(LOTTO_NUM_ERROR_MESSAGE.DUPLICATED_WITH_WIN_NUMBER);
+    }
   }
 }
 
