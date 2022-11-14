@@ -3,10 +3,15 @@ const Lotto = require("./Lotto");
 
 class validate {
   check(number) {
-    this.checkNumber(number);
     this.checkLength(number);
+    this.checkNumber(number);
     this.checkDuplication(number);
     this.checkRange(number);
+  }
+
+  bonusCheck(bonusNumber) {
+    this.checkNumber(bonusNumber);
+    this.checkRange(bonusNumber);
   }
 
   checkNumber(number) {
