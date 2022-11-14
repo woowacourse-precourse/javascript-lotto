@@ -1,4 +1,12 @@
-const { isMultipleOf1000, divide1000 } = require('../src/lib/utilFns');
+const { isMultipleOf1000, divide1000, getRandomNumbers } = require('../src/lib/utilFns');
+const MissionUtils = require('@woowacourse/mission-utils');
+
+const mockRandoms = (numbers) => {
+  MissionUtils.Random.pickUniqueNumbersInRange = jest.fn();
+  numbers.reduce((acc, number) => {
+    return acc.mockReturnValueOnce(number);
+  }, MissionUtils.Random.pickUniqueNumbersInRange);
+};
 
 describe('유틸 함수 테스트', () => {
   describe('isMultipleOf1000 함수 테스트', () => {
@@ -30,6 +38,44 @@ describe('유틸 함수 테스트', () => {
         const result = divide1000(input);
         expect(result).toEqual(answers[i]);
       });
+    });
+  });
+
+  describe('getRandomNumbers 함수 테스트', () => {
+    it('size 크기의 배열을 반환한다.', () => {
+      const inputs = [
+        [1, 45, 6],
+        [1, 45, 6],
+      ];
+
+      inputs.forEach(([start, end, size]) => {
+        const result = getRandomNumbers(start, end, size);
+        expect(result.length).toBe(size);
+      });
+    });
+
+    it('start <= x <= end의 숫자 size개를 반환한다.', () => {
+      const input = [1, 45, 6];
+      const [start, end, size] = input;
+      const result = getRandomNumbers(start, end, size);
+
+      const cnt = result.filter((el) => el >= start && el <= end).length;
+      expect(cnt).toBe(size);
+    });
+
+    it('오름차순 정렬된 배열을 반환한다.', () => {
+      mockRandoms([[6, 5, 4, 3, 2, 1]]);
+
+      const input = [1, 45, 6];
+      const [start, end, size] = input;
+      const result = getRandomNumbers(start, end, size);
+
+      let cnt = 0;
+      for (let i = 0; i < result.length - 1; i++) {
+        if (result[i] > result[i + 1]) cnt++;
+      }
+
+      expect(cnt).toBe(0);
     });
   });
 });

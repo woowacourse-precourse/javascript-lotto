@@ -1,3 +1,4 @@
+const { Random } = require('@woowacourse/mission-utils');
 const { amountRegExp } = require('./constant');
 
 const isRight = (regExp) => (amount) => {
@@ -10,4 +11,17 @@ const isMultipleOf1000 = isRight(amountRegExp);
 const divide = (divider) => (share) => Number(share) / divider;
 const divide1000 = divide(1000);
 
-module.exports = { isMultipleOf1000, divide1000 };
+const getRandomNumbers = (start, end, size) => {
+  const pickNums = [];
+
+  while (pickNums.length < size) {
+    const pickNum = Random.pickNumberInRange(start, end);
+    if (!pickNums.includes(pickNum)) pickNums.push(pickNum);
+  }
+
+  pickNums.sort((a, b) => a - b);
+
+  return pickNums;
+};
+
+module.exports = { isMultipleOf1000, divide1000, getRandomNumbers };
