@@ -53,9 +53,7 @@ class Lotto {
     MissionUtils.Console.print(HIT_STASTICS);
     const MATCHED_COUNT = this.NumberOfMatchedLotto(purchasedLottoNumbers);
     for (let hit = 0; hit < 5; hit += 1) {
-      MissionUtils.Console.print(
-        `${STATISTICS_TEMPLATE[hit]} - ${MATCHED_COUNT[hit]}개`,
-      );
+      MissionUtils.Console.print(`${STATISTICS_TEMPLATE[hit]} - ${MATCHED_COUNT[hit]}개`);
     }
     this.printProfitRate(purchasedLottoNumbers.length, MATCHED_COUNT);
   }
