@@ -27,6 +27,18 @@ class Lotto {
     if (this.#numbers.indexOf(bonus) >= 0)
       throw new Error("[ERROR] 보너스 번호는 로또 번호와 중복될 수 없습니다.");
   }
+
+  compareLottoNums(myNumbers, winNums) {
+    let isMatch = new Array(myNumbers.length).fill(0);
+    let bonusNum = winNums.pop();
+
+    for (let i in myNumbers) {
+      for (let j in winNums) {
+        let winnum = Number(winNums[j]);
+      }
+    }
+    return isMatch;
+  }
 }
 
 module.exports = Lotto;
