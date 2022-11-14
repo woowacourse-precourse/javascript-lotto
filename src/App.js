@@ -53,7 +53,7 @@ class App {
 
   getBonusNumber() {
     Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
-      this.validator.checkBonusNumber(this.winningLotto.numbers, bonusNumber);
+      this.validator.checkBonusNumber(this.winningLotto.getNumbers(), bonusNumber);
       this.bonusNumber = Number(bonusNumber);
       this.handleGameEnd();
     });

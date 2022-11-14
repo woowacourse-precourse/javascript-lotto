@@ -11,24 +11,24 @@ class Lotto {
     this.#numbers = numbers;
   }
 
-  get numbers() {
+  getNumbers() {
     return this.#numbers;
   }
 
   print() {
     Console.print(
       FORMAT.LOTTO_PRINT.FIRST 
-      + this.numbers.join(FORMAT.LOTTO_PRINT.SEPARATOR) 
+      + this.getNumbers().join(FORMAT.LOTTO_PRINT.SEPARATOR) 
       + FORMAT.LOTTO_PRINT.LAST
     );
   }
 
   hasBonusNumber(bonusNumber) {
-    return this.numbers.includes(bonusNumber);
+    return this.getNumbers().includes(bonusNumber);
   }
 
   countDuplicateNumber(winningNumber) {
-    return this.numbers
+    return this.getNumbers()
       .filter(number => winningNumber.includes(number))
       .length;
   }

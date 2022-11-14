@@ -16,7 +16,7 @@ class LottoSimulator {
   
   checkWinningResult(lottos, winningLotto, bonusNumber) {
     lottos.forEach(lotto => {
-      this.setGrade(lotto.getRank(winningLotto.numbers, bonusNumber));
+      this.setGrade(lotto.getRank(winningLotto.getNumbers(), bonusNumber));
     });
   }
 
