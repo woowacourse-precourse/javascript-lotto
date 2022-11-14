@@ -1,5 +1,6 @@
 const { Random, Console } = require('@woowacourse/mission-utils');
 const Calculator = require('./Calculator');
+const { PRIZE_MATCH } = require('./Constants');
 const Utils = require('./Utils');
 
 class Lotto {
@@ -10,6 +11,14 @@ class Lotto {
     this.#numbers = userInputWinNumbers;
     this.bonusNumber;
     this.bundle;
+    this.resultMap = {
+      fifthGrade: 0,
+      forthGrade: 0,
+      thirdGrade: 0,
+      secondGrade: 0,
+      firstGrade: 0,
+      loseMoney: 0,
+    };
   }
 
   validate(numbers) {
@@ -22,9 +31,7 @@ class Lotto {
   }
 
   makeSixNumbers() {
-    return Random.pickUniqueNumbersInRange(1, 45, 6).sort(
-      (num1, num2) => num1 - num2,
-    );
+    return Random.pickUniqueNumbersInRange(1, 45, 6).sort((num1, num2) => num1 - num2);
   }
 
   bundleCreate(lottoCount) {
@@ -32,14 +39,27 @@ class Lotto {
     return this.bundle;
   }
 
+  getBundle() {
+    return this.bundle;
+  }
+
   getBonusNumber(UserInputBonusNumber) {
     this.bonusNumber = UserInputBonusNumber;
   }
 
-  sameNumberCount(winNumbers, userPurchaselottos) {
-    const calculator = new Calculator();
-    const countArray = userPurchaselottos.map((lotto) => calculator.matchNumberCount(winNumbers, lotto));
-    return countArray;
+  bundleVerifyForWin(winNumbers, bonusNumber, lottoBundle) {
+    lottoBundle.forEach(lotto => {
+      const count = this.compareNumberOfLotto(winNumbers, bonusNumber, new Set(lotto));
+      this.resultMap[count] += 1;
+    });
+  }
+
+  compareNumberOfLotto(winNumbers, bonusNumber, lotto) {
+    const count = winNumbers.filter(number => lotto.has(number)).length;
+    if (count === 5 && lotto.has(bonusNumber)) {
+      return PRIZE_MATCHp[fivePlusBonus];
+    }
+    return PRIZE_MATCH[count];
   }
 }
 
