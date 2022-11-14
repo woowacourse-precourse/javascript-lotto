@@ -46,7 +46,13 @@ class App {
         45,
         6
       ).sort((a, b) => a - b);
-      MissionUtils.Console.print([...userLottoNumbers[i]]);
+
+      MissionUtils.Console.print(
+        `[${this.userLottoNumbers[i][0]}, ${this.userLottoNumbers[i][1]}, ${this.userLottoNumbers[i][2]}, ${this.userLottoNumbers[i][3]}, ${this.userLottoNumbers[i][4]}, ${this.userLottoNumbers[i][5]}]`
+      );
+    }
+    this.inputLottoNumber();
+  }
     }
     return [...userLottoNumbers];
   }
