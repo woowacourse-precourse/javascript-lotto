@@ -5,6 +5,7 @@ class LottoMachine {
 
   inputPurchaseMoney() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n",(inputMoney)=>{
+      this.purchaseLotto(inputMoney);
     })
   }
 
@@ -14,6 +15,11 @@ class LottoMachine {
       lotto.add(MissionUtils.Random.pickNumberInRange(1, 45));
     }
     return [...lotto]
+  }
+
+  purchaseLotto(inputMoney) {
+    const purchasedLottoNumber = parseInt(inputMoney / 1000);
+    this.#lottoList = Array.from(Array(purchasedLottoNumber),() => this.makeLotto());
   }
 }
 
