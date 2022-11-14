@@ -126,7 +126,7 @@ describe("Validation.isUniqueBonusNumber", () => {
   test("보너스번호가 당첨번호와 중복되면, false를 반환해야 한다.", () => {
     // given
     const bonusNumber = "6";
-    const winningNumbers = ["1", "2", "3", "4", "5", "6"];
+    const winningNumbers = [1, 2, 3, 4, 5, 6];
     // when
     const result = Validation.isUniqueBonusNumber(bonusNumber, winningNumbers);
     // then
