@@ -23,6 +23,8 @@ class Lotto {
   }
 
   bonusNumberException(bonus) {
+    if (Number(bonus) < 0 || Number(bonus) > 45)
+      throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
     if (isNaN(bonus)) throw new Error("[ERROR] 문자를 입력하실 수 없습니다.");
     if (this.#numbers.indexOf(bonus) >= 0)
       throw new Error("[ERROR] 보너스 번호는 로또 번호와 중복될 수 없습니다.");
