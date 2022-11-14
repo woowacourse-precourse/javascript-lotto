@@ -3,8 +3,12 @@ const Lotto = require("./Lotto");
 const Message = require("./Message");
 
 class App {
+  #Lotto;
+
   constructor() {
     this.myLotto = [];
+    this.winningLotto = [];
+    this.bonus = 0;
   }
 
   checkMoney(money) {
@@ -36,9 +40,17 @@ class App {
     }
   }
 
+  winningNum() {
+    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.\n", (winning) => {
+      this.winningLotto = winning.split(',').map(Number);
+      this.#Lotto = new Lotto(this.winningLotto);
+    });
+  }
+
   play() {
     this.purchaseLotto();
     this.makeLotto(this.countLotto);
+    this.winningNum();
   }
 }
 
