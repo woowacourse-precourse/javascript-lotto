@@ -6,6 +6,7 @@ class App {
   constructor() {
     this.lottoArr = [];
     this.winningArr = [];
+    this.bonus = 0;
   }
 
   play() {
@@ -23,6 +24,13 @@ class App {
   getWinning() {
     Console.readLine(COMMAND.WINNING, (winning) => {
       this.winningArr = winning.split(',').map((num) => parseInt(num));
+      this.getBonus();
+    });
+  }
+
+  getBonus() {
+    Console.readLine(COMMAND.BONUS, (bonus) => {
+      this.bonus = bonus;
     });
   }
 }
