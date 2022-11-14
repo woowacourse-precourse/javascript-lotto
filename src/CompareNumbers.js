@@ -91,6 +91,7 @@ class CompareWithLotto {
     }
 
     this.calculateRateOfReturn(matchingTicket);
+    this.endGame();
   }
 
   calculateRateOfReturn(matchingTicket) {
@@ -111,6 +112,10 @@ class CompareWithLotto {
     );
 
     CONSOLE_UTIL.print(`총 수익률은 ${addCommasToNumbers}%입니다.`);
+  }
+
+  endGame() {
+    CONSOLE_UTIL.close();
   }
 }
 
