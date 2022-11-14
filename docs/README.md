@@ -3,15 +3,15 @@
 ## 🦴 구조
 
 ```sh
-├─── App.js
-├─── Lotto.js # 로또 번호 String 변환, 유효성 검사 파일
+├── App.js
+├── Lotto.js # 로또 번호 String 변환, 유효성 검사 파일
 │   
-├─── modules       
+├── modules       
 │      ├── generateLottoNum.js # 로또 번호 생성 파일
 │      ├── isLottoGame.js # 로또 시작 및 당첨번호 생성 파일
 │      └── isResult.js # 결과 생성 파일
 │
-└──  utils
+└── utils
        └── lottoPrize.js # 상금에 대한 상수 처리 파일
 ```
 
