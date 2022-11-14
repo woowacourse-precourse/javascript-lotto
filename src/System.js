@@ -83,22 +83,21 @@ const SYSTEM = Object.freeze({
 
         for (let lotto of lottos) {
             let rankIndex = this.compare(lotto.getNumber(), new Set(winningLotto), bonusNumber);
-            results[rankIndex]++;
+            if (rankIndex < 6) results[rankIndex]++;
         }
 
         return results;
     },
 
     compare(lotto, winningLotto, bonusNumber) {
-        let rank = 8;
-        for (let number of lotto) {
-            if (winningLotto.has(number)) rank--;
-            if (rank === 3 && lotto.includes(bonusNumber)) rank--;
-        }
-        return rank - 1;
+        let rank = 7 - lotto.filter((number) => winningLotto.has(number)).length;
+        if (rank === 1) return 0;
+        if (rank === 2 && lotto.includes(bonusNumber)) rank--;
+        return rank;
     },
 
     printWinningHistory(results) {
+        console.log('results:', results);
         for (let rank = 5; rank >= 1; rank--) {
             let rankIndex = rank - 1;
             SYSTEM.print(`${MESSAGE.RANK_TEXT[rankIndex]} - ${results[rankIndex]}개`)
