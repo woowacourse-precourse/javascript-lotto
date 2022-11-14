@@ -4,9 +4,6 @@ const validateInputMoney = (money) => {
   if (!money) {
     throw new Error(INPUT_MONEY_ERROR.NOT_NULL_ALLOWED);
   }
-  if (!Number.isInteger(money)) {
-    throw new Error(INPUT_MONEY_ERROR.ONLY_NUM_ALLOWED);
-  }
   if (money < 0) {
     throw new Error(INPUT_MONEY_ERROR.NUM_OVER_ZERO_ALLOWED);
   }
@@ -14,6 +11,7 @@ const validateInputMoney = (money) => {
     throw new Error(INPUT_MONEY_ERROR.THOUSAND_UNIT_ALLOWED);
   }
 };
+
 const validateLotto = (numbers) => {
   if (numbers.length !== 6) {
     throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');

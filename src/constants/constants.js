@@ -25,8 +25,7 @@ const WINNING_MONEY = {
 const ERROR = '[ERROR]';
 
 const INPUT_MONEY_ERROR = {
-  NOT_NULL_ALLOWED: `${ERROR} 구입 금액을 입력해야 합니다.`,
-  ONLY_NUM_ALLOWED: `${ERROR} 숫자만 입력할 수 있습니다.`,
+  NOT_NULL_ALLOWED: `${ERROR} 구입 금액을 숫자로 입력해야 합니다.`,
   NUM_OVER_ZERO_ALLOWED: `${ERROR} 금액은 0보다 커야 합니다.`,
   THOUSAND_UNIT_ALLOWED: `${ERROR} 천 원 단위로 입력해야 합니다.`,
 };
