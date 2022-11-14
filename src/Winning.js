@@ -71,6 +71,11 @@ class Winning {
         return yeild;
     }
 
+    printYield(amount, gradeCounts) {
+        const yeild = calculateYield(amount, gradeCounts);
+
+        MissionUtils.Console.print(`총 수익률은 ${yeild}%입니다.`);
+    }
 }
 
 module.exports = Winning;
