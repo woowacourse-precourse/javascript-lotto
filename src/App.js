@@ -4,11 +4,13 @@ class App {
   winNumbers;
   bonusNumber;
   lottos;
+  score;
 
   constructor() {
     this.bonusNumber = 0;
     this.winNumbers = [];
     this.lottos = [];
+    this.score = [];
   }
 
   play() {
@@ -77,12 +79,18 @@ class App {
         throw "[ERROR]";
       } else {
         this.bonusNumber = input;
-        this.matchLottos(this.winNumbers, this.bonusNumber);
+        this.matchLottos(this.lottos, this.winNumbers, this.bonusNumber);
       }
     });
   }
 
-  matchLottos(lotto, winNumbers, bonusNumber) {}
+  matchLottos(lottos, winNumbers, bonusNumber) {
+    console.log(
+      lottos
+        .filter((lotto) => lotto.matchNumbers(winNumbers, bonusNumber) >= 3)
+        .map((e) => e.matchNumbers(winNumbers, bonusNumber))
+    );
+  }
 }
 
 module.exports = App;
