@@ -11,10 +11,10 @@ class WinNums {
 
   isInRange(winNums) {
     const winNumsArr = winNums.split(',');
-    winNumsArr.map((winNum) => {
+    winNumsArr.map(winNum => {
       if (winNum < 1 || winNum > 45) {
         throw new Error(WIN_NUMS_ERROR.CHECK_RANGE);
-      } 
+      }
     });
   }
 
@@ -35,16 +35,16 @@ class WinNums {
 
   isBlankOrSpot(winNums) {
     const winNumsArr = winNums.split('');
-    winNumsArr.map((el) => {
+    winNumsArr.map(el => {
       if (el === '.' || el === ' ') {
         throw new Error(WIN_NUMS_ERROR.CHECK_BLANK_OR_DOT);
       }
-    }); 
+    });
   }
 
   isInteger(winNums) {
     const winNumsArr = winNums.split(',');
-    winNumsArr.map((winNum) => {
+    winNumsArr.map(winNum => {
       if (+winNum % 1 !== 0) {
         throw new Error(WIN_NUMS_ERROR.CHECK_ISINTEGER);
       }

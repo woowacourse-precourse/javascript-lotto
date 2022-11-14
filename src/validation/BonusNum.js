@@ -22,7 +22,7 @@ class BonusNum {
 
   isNum(bonusNum) {
     const splitBonusNum = bonusNum.split('');
-    splitBonusNum.map((el) => {
+    splitBonusNum.map(el => {
       if (isNaN(el) || el === ' ') {
         throw new Error(BONUS_NUM_ERROR.CHECK_ISNUMBER);
       }
@@ -31,7 +31,7 @@ class BonusNum {
 
   isInWinNums(winNums, bonusNum) {
     const winNumsArr = winNums.split(',');
-    winNumsArr.map((winNum) => {
+    winNumsArr.map(winNum => {
       if (winNum === bonusNum) {
         throw new Error(BONUS_NUM_ERROR.CHECK_OVERLAP);
       }

@@ -30,7 +30,7 @@ class Lotto {
   }
 
   isInRange(numbers) {
-    numbers.map((number) => {
+    numbers.map(number => {
       if (number < 1 || number > 45) {
         throw new Error(LOTTO_ERROR.CHECK_RANGE);
       }
@@ -38,7 +38,7 @@ class Lotto {
   }
 
   isInteger(numbers) {
-    numbers.map((number) => {
+    numbers.map(number => {
       if (number % 1 !== 0) {
         throw new Error(LOTTO_ERROR.CHECK_ISINTEGER);
       }

@@ -4,8 +4,8 @@ class LottoCost {
   constructor(lottoCost) {
     this.validate(lottoCost);
     this.hasDot(lottoCost);
-  } 
-  
+  }
+
   validate(lottoCost) {
     if (+lottoCost % 1 !== 0) {
       throw new Error(LOTTO_COST_ERROR.CHECK_ISINTEGER);
@@ -17,7 +17,7 @@ class LottoCost {
       throw new Error(LOTTO_COST_ERROR.CHECK_ISNULL);
     }
     const input = lottoCost.split('');
-    input.map((el) => {
+    input.map(el => {
       if (el === ' ') {
         throw new Error(LOTTO_COST_ERROR.CHECK_BLANK);
       }
@@ -25,11 +25,11 @@ class LottoCost {
   }
 
   hasDot(lottoCost) {
-    lottoCost.split('').map((el) => {
+    lottoCost.split('').map(el => {
       if (el === '.') {
         throw new Error(LOTTO_COST_ERROR.CHECK_DOT);
       }
-    })
+    });
   }
 }
 

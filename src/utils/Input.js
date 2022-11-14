@@ -9,9 +9,9 @@ const View = require('./View');
 
 class Input {
   static lottoCost() {
-    Console.readLine(GAME_MESSAGE.LOTTO_COST_INPUT_MESSAGE, (lottoCost) => {
+    Console.readLine(GAME_MESSAGE.LOTTO_COST_INPUT_MESSAGE, lottoCost => {
       const [lottoCount, lottoArr] = LottoGenerator.publishLotto(lottoCost);
-      lottoArr.map((lotto) => {
+      lottoArr.map(lotto => {
         new Lotto(lotto);
       });
       View.lottos(lottoCount, lottoArr);
@@ -20,23 +20,23 @@ class Input {
   }
 
   static winNums(lottoArr, lottoCost) {
-    Console.readLine(GAME_MESSAGE.WIN_NUM_INPUT_MESSAGE, (winNums) => {
+    Console.readLine(GAME_MESSAGE.WIN_NUM_INPUT_MESSAGE, winNums => {
       new WinNums(winNums);
       this.bonusNum(lottoArr, winNums, lottoCost);
     });
   }
 
   static bonusNum(lottoArr, winNums, lottoCost) {
-    Console.readLine(GAME_MESSAGE.BONUS_NUM_INPUT_MESSAGE, (bonusNum) => {
+    Console.readLine(GAME_MESSAGE.BONUS_NUM_INPUT_MESSAGE, bonusNum => {
       new BonusNum(winNums, bonusNum);
       const lottoResultArr = LottoMatching.getMatchResult(
         lottoArr,
         winNums,
-        bonusNum
+        bonusNum,
       );
       const rateOfReturn = LottoMatching.getRateOfReturn(
         lottoResultArr,
-        lottoCost
+        lottoCost,
       );
       View.winStatistics(lottoResultArr, rateOfReturn);
     });

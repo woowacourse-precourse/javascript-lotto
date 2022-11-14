@@ -1,6 +1,6 @@
-const HOW_MANY_BUY_LOTTO_MESSAGE = (lottoCount) => `
+const HOW_MANY_BUY_LOTTO_MESSAGE = lottoCount => `
 ${lottoCount}개를 구매했습니다.`;
-const LOTTO_PRINT = (lottoString) => `[${lottoString}]`;
+const LOTTO_PRINT = lottoString => `[${lottoString}]`;
 
 const BLANK = '';
 const LOTTO_COST_INPUT_MESSAGE = '구입금액을 입력해 주세요.\n';
