@@ -14,7 +14,9 @@ describe('LottoCounter 클래스 테스트', () => {
     let inputtedCash = 'd134!';
     expect(() => {
       getLottoQuantity(inputtedCash);
-    }).toThrow('[ERROR] 숫자만 입력해야 합니다.');
+    }).toThrow(
+      '[ERROR] 문자, 특수기호를 제외한 1 ~ 45 사이의 숫자만 입력해야 합니다.'
+    );
   });
 
   test('예외 테스트: 입력 받은 금액이 1,000원 미만이면 예외가 발생한다.', () => {

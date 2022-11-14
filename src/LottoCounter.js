@@ -8,7 +8,7 @@ class LottoCounter {
 
   isValidCash(cash) {
     if (Number.isNaN(cash)) {
-      throw ERROR.MUST_BE_NUMBER;
+      throw ERROR.MUST_INPUT_ONLY_NUMBER;
     }
     if (cash < LOTTO_PRICE) {
       throw ERROR.MUST_INPUT_MORE_THAN_LOTTO_PRICE;
