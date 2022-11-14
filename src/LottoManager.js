@@ -60,7 +60,7 @@ class LottoManager {
     this.#statistic = new Statistic();
 
     this.#purchasedLottos.forEach((purchasedLotto) => {
-      const judgedResult = this.#statistic.judgeLotto(
+      const judgedResult = Lotto.judgeLotto(
         this.#winningLotto.numbers,
         this.#bonusNumber.value,
         purchasedLotto.numbers,

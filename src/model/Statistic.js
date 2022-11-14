@@ -28,23 +28,6 @@ class Statistic {
     this.increaseRankCount(rank);
   }
 
-  judgeLotto(winningLotto, bonusNumber, publishedLotto) {
-    return publishedLotto.reduce((judgedResult, number) => {
-      if (winningLotto.includes(number)) {
-        judgedResult.numberOfSame += 1;
-      }
-
-      if (bonusNumber === number) {
-        judgedResult.isBonusNumberSame = true;
-      }
-
-      return judgedResult;
-    }, {
-      numberOfSame: 0,
-      isBonusNumberSame: false,
-    });
-  }
-
   judgeRank({ numberOfSame, isBonusNumberSame }) {
     if (numberOfSame === RULE.FIRST.NUMBER_OF_SAME) return RULE.FIRST.TYPE;
     if (numberOfSame === RULE.SECOND.NUMBER_OF_SAME && isBonusNumberSame) return RULE.SECOND.TYPE;

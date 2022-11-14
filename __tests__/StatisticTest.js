@@ -1,3 +1,4 @@
+const Lotto = require('../src/Lotto');
 const Statistic = require('../src/model/Statistic');
 const { RULE } = require('../src/utils/constants');
 
@@ -8,7 +9,7 @@ describe('통계 클래스 테스트', () => {
     const publishedLotto = [1, 2, 3, 4, 5, 7];
     const winningLotto = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 7;
-    const judgeResult = statistic.judgeLotto(winningLotto, bonusNumber, publishedLotto);
+    const judgeResult = Lotto.judgeLotto(winningLotto, bonusNumber, publishedLotto);
 
     expect(judgeResult).toEqual({
       numberOfSame: 5,
@@ -41,7 +42,7 @@ describe('통계 클래스 최종 테스트', () => {
     const publishedLotto = [1, 2, 3, 4, 5, 7];
     const winningLotto = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 7;
-    const judgedResult = statistic.judgeLotto(winningLotto, bonusNumber, publishedLotto);
+    const judgedResult = Lotto.judgeLotto(winningLotto, bonusNumber, publishedLotto);
     statistic.putInCounts(judgedResult);
     const { counts } = statistic;
 

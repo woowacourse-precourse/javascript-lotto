@@ -20,6 +20,23 @@ class Lotto {
   get numbers() {
     return [...this.#numbers];
   }
+
+  static judgeLotto(winningLotto, bonusNumber, publishedLotto) {
+    return publishedLotto.reduce((judgedResult, number) => {
+      if (winningLotto.includes(number)) {
+        judgedResult.numberOfSame += 1;
+      }
+
+      if (bonusNumber === number) {
+        judgedResult.isBonusNumberSame = true;
+      }
+
+      return judgedResult;
+    }, {
+      numberOfSame: 0,
+      isBonusNumberSame: false,
+    });
+  }
 }
 
 module.exports = Lotto;
