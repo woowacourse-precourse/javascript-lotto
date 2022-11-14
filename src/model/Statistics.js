@@ -36,6 +36,16 @@ class Statistics {
 
     return correctCount;
   }
+
+  getFinalRank(correctCount, singleLotto, bonusNumber) {
+    if (correctCount === 6) return "first";
+    if (correctCount === 5 && singleLotto.includes(bonusNumber)) return "second";
+    if (correctCount === 5) return "third";
+    if (correctCount === 4) return "fourth";
+    if (correctCount === 3) return "fifth";
+
+    return null;
+  }
 }
 
 module.exports = Statistics;
