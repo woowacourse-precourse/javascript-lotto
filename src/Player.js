@@ -6,6 +6,9 @@ class Player {
   constructor(money) {
     this.#lottos = this.makeLottoNumbers(money);
   }
+  getLottos = () => {
+    return this.#lottos;
+  };
   makeLottoNumbers = (quantity) => {
     let lottos = [];
     this.validateMoney(quantity);
