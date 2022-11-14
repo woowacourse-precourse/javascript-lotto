@@ -3,7 +3,7 @@ const Purchase = require('./Purchase');
 const Lotto = require('./Lotto');
 const WinningResult = require('./WinningResult');
 const changeStrToArr = require('./utils/changeStrToArr');
-const { MESSAGE, WINNING_PRIZE } = require('./constants');
+const { MESSAGE, RANK } = require('./constants');
 
 class App {
   constructor() {
@@ -55,14 +55,14 @@ class App {
     Console.print('');
     Console.print(MESSAGE.WINNING_RESULT);
     Console.print('---');
-    const winningResult = new WinningResult(this.purchaseLottoSet, this.winningNumberArr);
-    winningResult.setResult(this.bonusNumber);
-    const result = winningResult.getResult();
-    Console.print(MESSAGE.FIFTH_PLACE_RESULT(result[WINNING_PRIZE.FIFTH]));
-    Console.print(MESSAGE.FOURTH_PLACE_RESULT(result[WINNING_PRIZE.FOURTH]));
-    Console.print(MESSAGE.THIRD_PLACE_RESULT(result[WINNING_PRIZE.THIRD]));
-    Console.print(MESSAGE.SECOND_PLACE_RESULT(result[WINNING_PRIZE.SECOND]));
-    Console.print(MESSAGE.FIRST_PLACE_RESULT(result[WINNING_PRIZE.FIRST]));
+    const winningResult = new WinningResult(
+      this.purchaseLottoSet,
+      this.winningNumberArr,
+      this.bonusNumber,
+    );
+    for (let rank = RANK.FIFTH; rank >= RANK.FIRST; rank--) {
+      Console.print(winningResult.getResultMessage(rank));
+    }
     Console.print(MESSAGE.TOTAL_YIELD_RESULT(winningResult.setYield(this.cash)));
     this.close();
   }

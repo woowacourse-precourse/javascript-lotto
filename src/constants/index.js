@@ -34,6 +34,14 @@ const WINNING_PRIZE = {
   FIRST: 2000000000,
 };
 
+const RANK = {
+  FIFTH: 5,
+  FOURTH: 4,
+  THIRD: 3,
+  SECOND: 2,
+  FIRST: 1,
+};
+
 const LOTTO_NUMBER = {
   START: 1,
   END: 45,
@@ -66,6 +74,7 @@ const constants = Object.freeze({
   LOTTO_NUMBER,
   MONEY_UNIT,
   YIELD,
+  RANK,
 });
 
 module.exports = constants;
