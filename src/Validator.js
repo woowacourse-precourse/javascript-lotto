@@ -13,7 +13,9 @@ class Validator {
     if (Math.sign(+input) === -1 || !Number.isInteger(+input)) {
       throw new Error(COMMON_INVALID_ERROR_MESSAGES.NOT_DECIMAL_AND_MINUS);
     }
-    if (input === '') throw new Error(COMMON_INVALID_ERROR_MESSAGES.NOT_EMPTY);
+    if (input === '' || input.includes('')) {
+      throw new Error(COMMON_INVALID_ERROR_MESSAGES.NOT_EMPTY);
+    }
 
     return true;
   }
@@ -43,3 +45,7 @@ class Validator {
 }
 
 module.exports = Validator;
+
+const a = '     ';
+
+console.log(a.includes(''));
