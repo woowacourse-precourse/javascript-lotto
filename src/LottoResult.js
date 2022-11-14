@@ -33,36 +33,31 @@ class LottoResult {
   #checkLottos(lottos) {
     lottos.forEach((lotto) => {
       const sameNumbers = this.#getSameNumbers(lotto);
+
       if (sameNumbers === VALUE.STANDARD_FIFTH)
         this.#numberOfRanks[VALUE.FIFTH_INDEX]++;
 
       if (sameNumbers === VALUE.STANDARD_FOURTH)
         this.#numberOfRanks[VALUE.FOURTH_INDEX]++;
 
-      if (sameNumbers === VALUE.STANDARD_THIRD) {
+      if (sameNumbers === VALUE.STANDARD_THIRD)
         this.#checkBonus(lotto)
           ? this.#numberOfRanks[VALUE.SECOND_INDEX]++
           : this.#numberOfRanks[VALUE.THIRD_INDEX]++;
-      }
 
       if (sameNumbers === VALUE.STANDARD_FIRST)
         this.#numberOfRanks[VALUE.FIRST_INDEX]++;
     });
   }
 
-  #getTotalReward() {
+  #calculateYeild(money) {
     let totalReward = 0;
 
     this.#numberOfRanks.forEach((numberOfRank, index) => {
       totalReward += numberOfRank * VALUE.MONEY_ARRAY[index];
     });
 
-    return totalReward;
-  }
-
-  #calculateYeild(money) {
-    const reward = this.#getTotalReward();
-    this.#yield = (reward / money) * VALUE.TO_PERCENT;
+    this.#yield = (totalReward / money) * VALUE.TO_PERCENT;
   }
 
   printLottoResult() {
@@ -71,6 +66,7 @@ class LottoResult {
     this.#numberOfRanks.forEach((number, index) => {
       MissionUtils.Console.print(COMMENT.RESULT_ARRAY[index] + number + "개");
     });
+
     MissionUtils.Console.print("총 수익률은 " + this.#yield + "%입니다.");
     MissionUtils.Console.close();
   }
