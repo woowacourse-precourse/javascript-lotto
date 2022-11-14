@@ -5,4 +5,8 @@ const LOTTO = Object.freeze({
   NUMBER_OF_DIGITS: 6,
 });
 
-module.exports = LOTTO;
+const SYSTEM = Object.freeze({
+  JOIN_CHARACTER: ',',
+});
+
+module.exports = { LOTTO, SYSTEM };

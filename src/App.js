@@ -1,4 +1,4 @@
-const LOTTO = require('./consts/Lotto');
+const { LOTTO, SYSTEM } = require('./consts/Lotto');
 const MESSAGE = require('./consts/Message');
 
 const Console = require('./Console');
@@ -9,7 +9,7 @@ const Lotto = require('./Lotto');
 class App {
   purchase;
   numberOfPurchases;
-  lottos;
+  purchaseLottos;
   winningLotto;
 
   play() {
@@ -66,14 +66,14 @@ class App {
   }
 
   setLottos() {
-    let lottos = [];
+    let purchaseLottos = [];
 
     for (let i = 0; i < this.numberOfPurchases; i++) {
       const numbers = this.getLottoNumbers();
-      lottos.push(new Lotto(numbers));
+      purchaseLottos.push(new Lotto(numbers));
     }
 
-    this.lottos = lottos;
+    this.purchaseLottos = purchaseLottos;
   }
 
   getLottoNumbers() {
@@ -89,15 +89,50 @@ class App {
   printPurchaseResult() {
     Console.print(MESSAGE.NOTICE.PURCHASE_SUCCESS(this.numberOfPurchases));
 
-    for (const lotto of this.lottos) {
+    for (const lotto of this.purchaseLottos) {
       Console.print(this.getBracketsString(lotto.getNumbers()));
     }
   }
 
   getBracketsString(numbers) {
-    const joinString = numbers.join(', ');
+    const joinString = numbers.join(`${SYSTEM.JOIN_CHARACTER} `);
 
     return `[${joinString}]`;
+  }
+
+  setWinningLotto() {
+    const winningNumbers = this.inputWinningNumbers();
+    const bonusNumber = this.inputBonusNumber();
+
+    this.winningLotto = new WinningLotto(
+      new Lotto(winningNumbers),
+      bonusNumber
+    );
+  }
+
+  inputWinningNumbers() {
+    let winningNumbers;
+    Console.readLine(MESSAGE.INPUT.WINNING, (input) => {
+      winningNumbers = this.parseNumbers(input);
+      Console.close();
+    });
+
+    return winningNumbers;
+  }
+
+  parseNumbers(input) {
+    return input.split(SYSTEM.JOIN_CHARACTER).map(Number);
+  }
+
+  inputBonusNumber() {
+    let bonusNumber;
+    Console.readLine(MESSAGE.INPUT.BONUS, (input) => {
+      const inputNumber = Number(input);
+      bonusNumber = inputNumber;
+      Console.close();
+    });
+
+    return bonusNumber;
   }
 }
 
