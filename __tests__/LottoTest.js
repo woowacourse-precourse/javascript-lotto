@@ -53,4 +53,37 @@ describe('로또 클래스 테스트', () => {
       lottoSet.validate(money);
     }).toThrow('[ERROR] 최소 금액이 1000원 입니다.');
   });
+
+  // 보너스 번호 입력 예외 처리
+  test('1~45 사이 숫자가 아닐 경우 예외가 발생한다.', () => {
+    const winning = '1,2,3,4,5,6';
+    const bonus = '0';
+    expect(() => {
+      new Bonus(winning, bonus);
+    }).toThrow('[ERROR] 1~45 사이 숫자여야 합니다.');
+  });
+
+  test('숫자가 아닐 경우 예외가 발생한다.', () => {
+    const winning = '1,2,3,4,5,6';
+    const bonus = 'a';
+    expect(() => {
+      new Bonus(winning, bonus);
+    }).toThrow('[ERROR] 숫자만 입력해야 합니다.');
+  });
+
+  test('한자리 숫자가 아닐 경우 예외가 발생한다.', () => {
+    const winning = '1,2,3,4,5,6';
+    const bonus = '7,8';
+    expect(() => {
+      new Bonus(winning, bonus);
+    }).toThrow('[ERROR] 보너스 숫자 하나만 입력해야 합니다.');
+  });
+
+  test('보너스 번호가 당첨 번호와 중복될 경우 예외가 발생한다.', () => {
+    const winning = '1,2,3,4,5,6';
+    const bonus = '1';
+    expect(() => {
+      new Bonus(winning, bonus);
+    }).toThrow('[ERROR] 당첨 번호와 보너스 번호가 중복될 수 없습니다.');
+  });
 });
