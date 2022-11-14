@@ -74,7 +74,7 @@ class LottoSimulator {
       }
     });
 
-    this.#profit = Math.round((sum / this.#money) * 1000) / 10;
+    this.#profit = ((sum / this.#money) * 100).toFixed(1);
     this.printResult();
   }
 
