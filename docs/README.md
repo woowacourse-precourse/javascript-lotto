@@ -301,6 +301,8 @@ class ExceptionrCheck {
   #isMethodIn(exceptionType) {}
 
   check() {}
+
+  is${ErrorMethod}(params){}
 }
 ```
 
@@ -346,16 +348,36 @@ class ExceptionrCheck {
 
 ```
 
-#### 2. 실제 예외 체크 클래스 생성 예시
+#### 2. 중복되는 에러 체크 메서드들 등록
+
+```javascript
+class ExceptionCheck {
+  /*...*/
+
+  // 기능별 예외 체크 클래스에서 중복되어 사용되는 예외체크 메서드들을 ExceptionCheck 클래스에 미리 등록
+  isNumber(number) {} // 파라미러로 받은 number 에러체크
+  isSortedArray(array) {} // 파라미터로 받은 array가 정렬되었는지 확인
+  isNumberInRange(number) {} // 파라미터로 받은 number가 1~45 사이의 숫자인지 확인
+}
+```
+
+#### 3. 실제 예외 체크 클래스 생성 예시
 
 ```javascript
     //부모 클래스 -> ExceptionCheck 클래스
     //자식 클래스 -> Input 클래스 예외처리를 구현할 클래스
     class InputExceptionCheck() extends ExceptionCheck {
 
-      purchaseMoney(checkTarget){}
-      lotteryNumber(checkTarget){}
-      bonuseNumber(checkTarget, param)
+      purchaseMoney(checkTarget){
+        super.isNumber(checkTarget)
+        super.isPositiveNumber(checkTarget)
+      }
+      lotteryNumber(checkTarget){
+        /*...
+          super.예외사항체크메소드() 를 여러개 사용해서 예외사항 체크
+        */
+      }
+      bonusNumber(checkTarget, param)
       /*
       ...
       추가하고 싶은 예외 사항이 있다면, 아래에 메소드를 추가하여 체크가 가능
@@ -482,6 +504,8 @@ Input 클래스 테스트
    - 3-3 당첨번호 + 보너스번호와 로또번호 비교 정확히 했을 시 통과
      </br>
 
-</details open>
+## Print 클래스
+
+1.  </details open>
 
 ---
