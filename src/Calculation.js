@@ -64,11 +64,13 @@ class Calculation {
 
   matchResult() {
     const count = this.getMatchResultType();
+    this.plusPoint(count);
+  }
 
+  plusPoint(count) {
     if (isLessThanNumber(count, 3)) {
       return;
     }
-
     this.#winResult[count].count += 1;
   }
 
