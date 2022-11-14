@@ -30,6 +30,9 @@ class App {
 
   issueLotto() {
     this.#lottoNum = this.#purchaseAmount / LOTTOPRICE;
+  }
+
+  printIssuedLotto() {
     Console.print(`\n${this.#lottoNum}개를 구매했습니다.`);
   }
 }
