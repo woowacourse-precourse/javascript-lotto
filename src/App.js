@@ -7,6 +7,7 @@ class App {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (price) => {
       if (this.checkPrice(price)) {
         const AUTO_LOTTO = this.autoLotto(price);
+        const MANUAL_LOTTO = this.manualLotto();
       }
     })
   }
@@ -40,6 +41,15 @@ class App {
       MissionUtils.Console.print(LOTTO_AUTO[i]);
     }
     return LOTTO_AUTO;
+  }
+
+  manualLotto() { // 당첨 번호를 입력 받고 유효성을 확인하는 메서드
+    MissionUtils.Console.readLine('\n당첨 번호를 입력해 주세요.\n', (manual) => {
+      const NUMBERS = manual.split(',');
+      const NEW_LOTTO = new Lotto(NUMBERS);
+      MissionUtils.Console.print(NEW_LOTTO.manual());
+      MissionUtils.Console.close();
+    })
   }
 
   play() {
