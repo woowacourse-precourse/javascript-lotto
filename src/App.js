@@ -30,6 +30,7 @@ class App {
   }
   lottoBuying(purchaseAmount) {
     const lottoCount = this.getLottoCount(purchaseAmount);
+    MissionUtils.Console.print(`${lottoCount}개를 구매했습니다.`);
     this.getTotalLottoNumber(lottoCount);
   }
   getLottoCount(purchaseAmount) {
@@ -71,8 +72,8 @@ class App {
   }
   printLottoNumber(lotto) {
     lotto.forEach((lottoNumbers) => {
-      const lottoList = lottoNumbers.getLottoNumber();
-      MissionUtils.Console.print(lottoList);
+      const lottoList = lottoNumbers.getLottoNumber().join(", ");
+      MissionUtils.Console.print(`[${lottoList}]`);
     });
   }
 }
