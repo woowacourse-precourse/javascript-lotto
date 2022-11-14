@@ -1,13 +1,16 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 class InsertMoney{
     #insertedMoney;
+    #lottoCount;
     constructor() {
         this.insertMoney();
+        this.printLottoCount();
       }
     insertMoney(){
       MissionUtils.Console.readLine('구입금액을 입력해주세요 (1000원 단위)', (insertMoney) => {
         this.insertMoneyValidCheck(insertMoney);
         this.#insertedMoney = insertMoney;
+        this.#lottoCount = insertMoney/1000;
       });
     }
     insertMoneyValidCheck(insertMoney) {
@@ -31,8 +34,14 @@ class InsertMoney{
         throw new Error("[ERROR] 숫자만 입력해주세요.");
       }
     }
+    printLottoCount(){
+      MissionUtils.Console.print(`${this.#lottoCount}개를 구매했습니다.`);
+    }
     getInsertMoney(){
-        return this.#insertedMoney;
-      }
+      return this.#insertedMoney;
+    }
+    getLottoCount(){
+      return this.#lottoCount;
+    }
 }
 module.exports = InsertMoney;

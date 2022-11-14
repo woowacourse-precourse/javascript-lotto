@@ -10,9 +10,7 @@ const CalcRateOfReturn = require("./CalcRateOfReturn.js");
 class App {
   play() {
     const insertMoney = new InsertMoney();
-    const LOTTO_COUNT = insertMoney.getInsertMoney() / 1000;
-    const generateUserLottoNumber = new GenerateUserLottoNumber(LOTTO_COUNT);
-    this.printLottoCount(LOTTO_COUNT);
+    const generateUserLottoNumber = new GenerateUserLottoNumber(insertMoney.getLottoCount());
     this.printGenerateUserLottoNumber(generateUserLottoNumber.getUserLottoNumberLists());
     const enterPrizeNumber = new EnterPrizeNumber();
     const lotto = new Lotto(enterPrizeNumber.getEnterPrizeNumber());
@@ -22,9 +20,6 @@ class App {
     const calcRateOfReturn = new CalcRateOfReturn(insertMoney.getInsertMoney(), compareLotto.getUserWinningStatics());
     this.printUserWinningStatics(compareLotto.getUserWinningStatics());
     this.printRateOfRetrun(calcRateOfReturn.getRateOfReturn());
-  }
-  printLottoCount(LottoCount){
-    MissionUtils.Console.print(`${LottoCount}개를 구매했습니다.`);
   }
   printGenerateUserLottoNumber(userLottoLists){
     userLottoLists.forEach((userLottoList)=>{
