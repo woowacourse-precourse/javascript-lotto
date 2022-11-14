@@ -57,4 +57,10 @@ class App {
     return count;
   }
 
+  inputBonusNumber() {
+    Console.readLine("보너스 번호를 입력해주세요\n",(Bonus) => {
+      this.BonusNumber = Bonus;
+    })
+  }
+
 module.exports = App;
