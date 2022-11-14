@@ -107,6 +107,7 @@ class Result {
     Console.print(
       `${MESSAGE.RETURN_TOTAL}${totalReturn}${MESSAGE.RETURN_PERCENT}`
     );
+    Console.close();
   }
 
   findReturn() {
