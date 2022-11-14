@@ -5,6 +5,13 @@ class Validation {
     }
     return false;
   }
+
+  static isAvailablePurchase(number) {
+    if (Number.isSafeInteger(number)) {
+      return true;
+    }
+    return false;
+  }
 }
 
 module.exports = Validation;

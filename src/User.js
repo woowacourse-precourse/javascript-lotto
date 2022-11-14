@@ -13,6 +13,11 @@ class User {
       } else {
         throw new Error("[ERROR] 로또 구입 금액이 1,000원으로 나누어 떨어지지 않습니다. 종료합니다.");
       }
+      if (Validation.isAvailablePurchase(input)) {
+        this.numberOfPurchase = Number(userInput);
+      } else {
+        throw new Error("[ERROR] 로또 구입 금액이 너무 큽니다. 종료합니다.");
+      }
     });
   }
 }
