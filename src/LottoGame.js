@@ -7,7 +7,7 @@ const BonusNum = require("./BonusNum");
 class LottoGame {
   money;
   gameCnt;
-  userPickLotto;
+  userPickLottos;
   userPrizeValue;
   prizeList;
 
@@ -24,7 +24,7 @@ class LottoGame {
       this.money = money;
       this.gameCnt = money / 1000;
       MissionUtils.Console.print(this.gameCnt + STATIC.MESSAGE.BUYNUM);
-      this.userPickLotto = this.createUserLotto();
+      this.userPickLottos = this.createUserLotto();
       this.inputLottoNum();
     });
   };
@@ -38,12 +38,13 @@ class LottoGame {
   createUserLotto = () => {
     return [...Array(this.money / 1000).keys()].map(() => {
       const randLotto = new UserLotto().number;
-      let str = "[";
-      [...randLotto].map((e) => {
-        str = str + e + ", ";
+      let lottoStrForPrint = "[";
+      [...randLotto].map((num) => {
+        lottoStrForPrint = lottoStrForPrint + num + ", ";
       });
-      str = str.substring(0, str.length - 2) + "]";
-      MissionUtils.Console.print(str);
+      lottoStrForPrint =
+        lottoStrForPrint.substring(0, lottoStrForPrint.length - 2) + "]";
+      MissionUtils.Console.print(lottoStrForPrint);
       return randLotto;
     });
   };
@@ -63,14 +64,14 @@ class LottoGame {
   };
 
   startCheckResult = (lotto, bonusNumber) => {
-    this.userPickLotto.map((e) => {
-      const resultExceptBonus = this.checkResult(lotto, e);
+    this.userPickLottos.map((userPickLotto) => {
+      const resultExceptBonus = this.checkResult(lotto, userPickLotto);
       this.prizeList.splice(
         resultExceptBonus,
         1,
         this.prizeList[resultExceptBonus] + 1
       );
-      this.checkBonusNum(e, bonusNumber, resultExceptBonus);
+      this.checkBonusNum(userPickLotto, bonusNumber, resultExceptBonus);
     });
     this.announceResult();
     this.userPrizeValue = this.calculateResult();
