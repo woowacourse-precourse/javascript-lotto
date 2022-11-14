@@ -39,8 +39,14 @@ class Purchase {
   }
 
   static printLotto(lottoNumber) {
-    const issuedLotto = `[${lottoNumber.join(", ")}]`;
+    const issuedLotto = Purchase.sortNumbers(lottoNumber);
     MissionUtils.Console.print(issuedLotto);
+  }
+
+  static sortNumbers(lottoNumber) {
+    let sortedNumbers = lottoNumber.sort((a, b) => a - b);
+    sortedNumbers = `[${sortedNumbers.join(", ")}]`;
+    return sortedNumbers;
   }
 
   static inputWinningNumber() {
