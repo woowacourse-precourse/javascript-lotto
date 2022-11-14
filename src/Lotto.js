@@ -2,12 +2,15 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    Lotto.validate(numbers);
     this.#numbers = numbers;
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  validate(numbers) {
+  getNumbers() {
+    return [...this.#numbers];
+  }
+
+  static validate(numbers) {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
@@ -19,10 +22,6 @@ class Lotto {
     ) {
       throw new Error("[ERROR] 로또 번호는 모두 1이상 45이하 정수여야 합니다.");
     }
-  }
-
-  getNumbers() {
-    return [...this.#numbers];
   }
 }
 
