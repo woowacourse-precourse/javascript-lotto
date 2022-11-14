@@ -1,4 +1,5 @@
-const { ERROR_MSG } = require('./Constant');
+const { ERROR_MSG, NEW_LINE } = require('./Constant');
+const IO = require('./IO');
 
 class Lotto {
   #numbers;
@@ -6,6 +7,7 @@ class Lotto {
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
+    IO.print(`[${this.#numbers.join(', ')}]`);
   }
 
   validate(numbers) {
