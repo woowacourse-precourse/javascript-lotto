@@ -84,6 +84,18 @@ class App {
     }
     this.checkNumberCount(this.userLottoNumbers, this.lottoNumber);
   }
+
+  checkNumberCount(userLottoNumbers, lottoNumber) {
+    userLottoNumbers.forEach((eachLottoList) => {
+      let count = 0;
+      count = eachLottoList.filter((eachLottoNumber) =>
+        lottoNumber.includes(eachLottoNumber)
+      ).length;
+      this.checkResult(eachLottoList, this.bonusNumber, count);
+    });
+    this.resultRate(this.buyLotto, this.checkResultRank);
+  }
+
   }
 
 }
