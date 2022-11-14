@@ -24,6 +24,10 @@ class Lotto {
       }
     });
   }
+
+  get numbers() {
+    return this.#numbers;
+  }
 }
 
 export default Lotto;
