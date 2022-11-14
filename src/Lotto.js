@@ -21,10 +21,7 @@ class Lotto {
   }
 
   checkIsNum(numbers) {
-    if (/[1-9]$/.test(numbers)) {
-      return true;
-    }
-    return false;
+    return /[1-9]$/.test(numbers);
   }
 
   checkNumRange(numbers) {
@@ -36,27 +33,18 @@ class Lotto {
   }
 
   checkLength(numbers) {
-    if (numbers.length === 6) {
-      return true;
-    }
-    return false;
+    return numbers.length === 6;
   }
 
   checkNumOverlap(numbers) {
     const SET = new Set(numbers);
     const UNIQUE_ELEMENTS = [...SET];
 
-    if (UNIQUE_ELEMENTS.length === 6) {
-      return true;
-    }
-    return false;
+    return UNIQUE_ELEMENTS.length === 6;
   }
 
   checkHasSpace(numbers) {
-    if (!/\s/g.test(numbers)) {
-      return true;
-    }
-    return false;
+    return !/\s/g.test(numbers);
   }
 }
 
