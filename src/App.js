@@ -3,6 +3,7 @@ const Purchase = require('./Purchase');
 const Lotto = require('./Lotto');
 const WinningResult = require('./WinningResult');
 const changeStrToArr = require('./utils/changeStrToArr');
+const makeLottoSet = require('./utils/makeLottoSet');
 const { MESSAGE, RANK } = require('./constants');
 
 class App {
@@ -81,7 +82,7 @@ class App {
       let purchase = new Purchase(input);
       this.cash = purchase.Cash;
       this.purchaseLottoAmount = purchase.LottoCount;
-      this.purchaseLottoSet = purchase.makeLottoSet(this.purchaseLottoAmount);
+      this.purchaseLottoSet = makeLottoSet(this.purchaseLottoAmount);
       return this.printPurchaseOutputMessage();
     });
   }
