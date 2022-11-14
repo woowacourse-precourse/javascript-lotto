@@ -1,6 +1,7 @@
 const App = require('../src/App')
 const MissionUtils = require('@woowacourse/mission-utils')
 const { LOTTO_PRICE, validationError } = require('../src/constants/app.js')
+const { WINNING_NUMBER_COUNT } = require('../src/constants/common.js')
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn()
@@ -44,7 +45,34 @@ describe('App 클래스 구입 금액 유효성 테스트', () => {
   })
 })
 
-describe('App 클래스 테스트', () => {
+describe('App 클래스 메서드 테스트', () => {
+  const app = new App()
+
+  test(`${LOTTO_PRICE * 3}을 입력하면 3개의 로또를 구매해야 한다.`, () => {
+    expect(app.buyLotto(3)).toHaveLength(3)
+  })
+
+  test(`구입한 로또의 모든 숫자는 겹치지 않아야 한다.`, () => {
+    const lottos = app.buyLotto(3).map((lotto) => Array.from(new Set(lotto)))
+
+    expect(lottos[0]).toHaveLength(WINNING_NUMBER_COUNT)
+    expect(lottos[1]).toHaveLength(WINNING_NUMBER_COUNT)
+    expect(lottos[2]).toHaveLength(WINNING_NUMBER_COUNT)
+  })
+
+  test(`구입한 로또 번호는 오름차순이어야 한다.`, () => {
+    const lotto = app.buyLotto(1).flat()
+    const isIncreasing = lotto.every(
+      (number, index) => index === 0 || number > lotto[index - 1]
+    )
+
+    expect(isIncreasing).toBe(true)
+  })
+
+  test('당첨 통계', () => {})
+})
+
+describe('', () => {
   test('기능 테스트', () => {
     mockRandoms([
       [8, 21, 23, 41, 42, 43],
