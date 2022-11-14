@@ -7,6 +7,7 @@ const {
   PRETTY_MSG,
 } = require("./constants/constants");
 const Vender = require("./Vender");
+const LotteryMachine = require("./LotteryMachine");
 class App {
   #winningNum;
   #bonusNum;
@@ -25,8 +26,10 @@ class App {
     const amount = this.inputPurchaseAmount();
     this.#purchaseLottoList = new Vender(amount).getPurchaseLotto();
 
-    this.setWinningNum();
-    this.setBonusNum();
+    const lotteryMachine = new LotteryMachine();
+    lotteryMachine.draw();
+    this.#winningNum = lotteryMachine.getWinningNum();
+    this.#bonusNum = lotteryMachine.getBonusNum();
 
     MissionUtils.Console.print(PRETTY_MSG.winningResult);
     this.calculMatches();
@@ -54,31 +57,6 @@ class App {
         this.#matchesObj[matches] = this.#matchesObj[matches] + 1;
       }
     }
-  }
-
-  setWinningNum() {
-    let winningNum = [];
-    MissionUtils.Console.readLine(QUESTION.setWinningNum, (input) => {
-      winningNum = this.changeNumArray(input);
-    });
-    MissionUtils.Console.close();
-    this.#winningNum = winningNum;
-  }
-
-  setBonusNum() {
-    MissionUtils.Console.readLine(QUESTION.setBonusNum, (input) => {
-      this.#bonusNum = parseInt(input);
-    });
-    MissionUtils.Console.close();
-  }
-
-  changeNumArray(string) {
-    const array = string.split(",");
-    const numberArray = [];
-    array.map((number) => {
-      numberArray.push(parseInt(number));
-    });
-    return numberArray;
   }
 
   compare(numbers) {
