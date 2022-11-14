@@ -54,7 +54,12 @@ class App {
   inputWinningNumberFromUser() {
     Console.readLine('당첨 번호를 입력해 주세요.\n', (winningNumber) => {
       this.isValidateWinningNumber(separateStringBySpecificCharacter(winningNumber, ','));
+      this.inputBonusNumberFromUser();
     });
+  }
+
+  inputBonusNumberFromUser() {
+    Console.readLine('보너스 번호를 입력해 주세요.\n', (bonusNumber) => {});
   }
 }
 
