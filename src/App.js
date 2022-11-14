@@ -61,13 +61,13 @@ class App {
       this.setWinningNumbers(input.split(','));
       Console.readLine(REQUEST.BONUS_NUMBER, (input) => {
         this.setBonusNumber(input);
-        this.#lottos.forEach((lotto) => this.calculateMatch(lotto));
+        this.#lottos.forEach((lotto) => this.calculateMatched(lotto));
         this.printResult();
       });
     });
   }
 
-  calculateMatch(lotto) {
+  calculateMatched(lotto) {
     const correct = lotto.getNumberOfMatch(this.#winningNumbers);
     if (correct === 3) this.#matched[MATCHED.THREE] += 1;
     if (correct === 4) this.#matched[MATCHED.FOUR] += 1;
