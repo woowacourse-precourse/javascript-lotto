@@ -1,19 +1,21 @@
 const {Console} = require("@woowacourse/mission-utils");
 const {Random} = require("@woowacourse/mission-utils");
-const payValidate = require("./payValidate.js");
-const {GAME_START_MESSAGE, PRINT_MESSAGE, RESULT_MESSAGE, ANSWER_INPUT_MESSAGE} = require("./constant.js");
+const payValidate = require("./payValidate");
+const { GAME_START_MESSAGE,PRINT_MESSAGE, RESULT_MESSAGE, ANSWER_INPUT_MESSAGE, BONUS_INPUT_MESSAGE } = require("./message.js");
+const {MONEY_UNIT, LOTTO_START, LOTTO_END, LOTTO_NUM} = require("./constants.js");
 
-const Lotto = require("./Lotto.js");
+const Lotto = require("./Lotto");
 
 class App {
   constructor() {
     this.payment; //로또 구입 금액
     this.ticketNums; //발행한 로또 수량
+    this.allLines;
+    this.winningNums; //로또 당첨 번호
     this.profit;
   };
 
   calculateProfitRate(rankCntList) {
-    this.payment = this.payment;
     //console.log(this.payment)
     this.profit = rankCntList[0]*5000 + rankCntList[1]*50000 + rankCntList[2]*1500000 + rankCntList[3]*30000000 + rankCntList[4]*200000000;
     this.profitRate = ((this.profit / this.payment) * 100).toFixed(1);
@@ -47,82 +49,83 @@ class App {
     return 0;
   }
 
-  calculateGameResult(allLines, winningNums, bonusNum) {
+  calculateGameResult(bonusNum) {
     Console.print('\n당첨 통계\n---');
     const rankList = [];
-    this.bonusOrNot = false;
+    let bonusOrNot = false;
+    
+    console.log(this.allLines);
+    console.log(this.winningNums);
 
-    for(var i=0;i<allLines.length;i++){
-      const oneLine = allLines[i];
-      const answerCnt = oneLine.filter(x => winningNums.includes(x)).length;
+    for(var i=0;i<this.allLines.length;i++){
+      const oneLine = this.allLines[i];
+      const answerCnt = oneLine.filter(x => this.winningNums.includes(x)).length;
       if(answerCnt == 5) {
-        if(oneLine.includes(bonusNum)) this.bonusOrNot = true;
+        if(oneLine.includes(bonusNum)) bonusOrNot = true;
       }
-      const rank = this.calculateRank(answerCnt, this.bonusOrNot);
+      const rank = this.calculateRank(answerCnt, bonusOrNot);
       rankList.push(rank);
     }
     //console.log(rankList);
-    this.rankCntList = this.showResultPhrase(rankList);
-    return this.calculateProfitRate(this.rankCntList);
+    const rankCntList = this.showResultPhrase(rankList);
+  
+    return this.calculateProfitRate(rankCntList);
   }
+
   //6. 보너스 번호 입력받기
-  enterBonus(allLines, winningNums){
-    Console.readLine('\n보너스 번호를 입력해 주세요.\n',(bonus) =>{
-      const winningArr = Array.from(winningNums).map((i) => Number(i)); //문자열을 Number형 배열로 변환
+  enterBonus(){
+    Console.readLine(BONUS_INPUT_MESSAGE,(bonus) =>{
       //payValidation(bonus);
-      //console.log(winningArr);
-      if(winningArr.includes(parseInt(bonus))){
+      if(this.winningNums.includes(parseInt(bonus))){
         throw new Error('보너스 번호가 당첨 번호와 중복됩니다.')
       }
       //console.log('보너스 번호는... ',bonus);
-      return this.calculateGameResult(allLines, winningArr, bonus);
+      return this.calculateGameResult(bonus);
     })  
   }
 
   //5. 당첨 번호 입력받기
-  enterWinningNums(allLines){
+  enterWinningNums(){
     Console.readLine(ANSWER_INPUT_MESSAGE, (answer) =>{
-      const answerList = answer.split(',');
-      //console.log(answerList);
+      const answerList = answer.split(','); //5-1. 당첨 번호 쉼표 기준으로 구분하여 6개의 숫자 배열로 만들기
       const lotto = new Lotto(answerList);
-      //console.log(lotto)
-      return this.enterBonus(allLines,answerList);
+      this.winningNums = Array.from(answerList).map((i) => Number(i)); //문자열을 Number형 배열로 변환
+
+      return this.enterBonus();
 
     })
   }
 
 //4. 로또 수량만큼 랜덤으로 로또 번호 생성
-  makeLottoNums(amount){
-    let allLines = []; //
-    for(var i=0; i<amount; i++){
-      const oneLine = Random.pickUniqueNumbersInRange(1, 45, 6);
-      allLines.push(oneLine);
-      //Console.print(oneLine);
+  makeLottoNums(ticketNums){
+    const allLines = []; 
+    for(var i=0; i<ticketNums; i++){
+      const oneLine = Random.pickUniqueNumbersInRange(LOTTO_START, LOTTO_END, LOTTO_NUM);
+      allLines.push(oneLine); 
     }
   
     allLines.forEach((oneLine)=>{
-      Console.print(`[${oneLine.join(", ")}]`)    
+      Console.print(`[${oneLine.join(", ")}]`) //로또 번호 출력하기
     });
     
-    return this.enterWinningNums(allLines);
-    //console.log(allLines);
+    this.allLines = allLines;
+    return this.enterWinningNums(); 
   }
 
 
-  showTicketNums(money) {
-    this.ticketNums = parseInt(money)/1000;
-    Console.print('\n'+this.ticketNums+PRINT_MESSAGE);
+  showTicketNums(money) { //3. 로또 수량 계산하고 출력하기
+    const ticketNums = parseInt(money) / MONEY_UNIT;
+    this.ticketNums = ticketNums;
+    Console.print('\n'+ this.ticketNums + PRINT_MESSAGE);
     
-    return this.makeLottoNums(this.ticketNums);
+    return this.makeLottoNums(ticketNums);
   }
 
   //1. 로또 구입 금액 입력받기
   payLottoMoney() {  
-    Console.readLine(GAME_START_MESSAGE, (total) => {
-      
+    Console.readLine(GAME_START_MESSAGE, (total) => {    
       payValidate(total); //2. 구입 금액이 1,000원 단위인지 체크
       this.payment = total;
-
       return this.showTicketNums(total);
     });
   }
