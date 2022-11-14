@@ -39,4 +39,14 @@ const validateLottoBudget = (budget) => {
     throw Error(GAME_INPUT_ERRORS.INVALID_BUDGET_RANGE);
   }
 };
+
+const validateBonusNumber = (bonus) => {
+  const isNumber = !isNaN(bonus);
+  const isInRange = GAME_RANGE.MIN <= bonus && bonus <= GAME_RANGE.MAX;
+
+  if (isNumber === false || isInRange === false) {
+    throw Error(GAME_INPUT_ERRORS.INVALID_INPUT_RANGE);
+  }
+};
+
 module.exports = { getLottoBudget, getTargetNumber, getBonusNumber };
