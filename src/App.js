@@ -77,7 +77,20 @@ class App {
   }
 
   divideWinner(count, bonus) {
-
+    switch (count) {
+      case 3:
+        this.rank['fifth']++;
+        break;
+      case 4:
+        this.rank['fourth']++;
+        break;
+      case 5:
+        if (bonus == 0) this.rank['third']++;
+        if (bonus == 1) this.rank['second']++;
+        break;
+      case 6:
+        this.rank['first']++;
+    }
   }
 
   play() {
