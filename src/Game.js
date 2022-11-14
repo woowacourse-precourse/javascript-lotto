@@ -1,5 +1,12 @@
 const { Random } = require('@woowacourse/mission-utils');
-const { GAME_RANGE, PRIZES, LOTTO_PRICE, PROFIT_PHRASE, STAT_PHRASE } = require('./config');
+const {
+  GAME_RANGE,
+  PRIZES,
+  LOTTO_PRICE,
+  PROFIT_PHRASE,
+  STAT_PHRASE,
+  PURCHASE_PHRASE,
+} = require('./config');
 const Lotto = require('./Lotto.js');
 const Rank = require('./Rank.js');
 const { validateBonusNumberNotInLottoNumber } = require('./validate.js');
@@ -12,11 +19,12 @@ class Game {
   /**
    *
    * @param {number[]} lottoNum
-   * @param {number[]} winningNumbers
-   * @param {number} bonusNumber
    */
-  constructor(lottoNum, winningNumbers, bonusNumber) {
+  constructor(lottoNum) {
     this.#lottos = Array.from({ length: lottoNum }, () => this.generateOneLotto());
+  }
+
+  setWinningBonusNumbers(winningNumbers, bonusNumber) {
     this.#winningNumbers = winningNumbers.map(Number);
     this.#bonusNumber = +bonusNumber;
     validateBonusNumberNotInLottoNumber(this.#bonusNumber, this.#winningNumbers);
@@ -47,11 +55,16 @@ class Game {
     return ranks.filter((rank) => rank !== Infinity);
   }
 
-  generatePhrase() {
-    return this.generateLottoStatPhrase() + this.generateLottoProfit();
+  generatePurchasePhrase() {
+    const lottos = this.#lottos.map((lotto) => `[${lotto.numbers.join(', ')}]`);
+    return PURCHASE_PHRASE(this.#lottos.length) + lottos.join('\n');
   }
 
-  generateLottoProfit() {
+  generateStatPhrase() {
+    return this.generateMatchPhrase() + this.generateProfitPhrase();
+  }
+
+  generateProfitPhrase() {
     const ranks = this.generateLottoRanks();
     const totalValue = ranks.reduce((acc, rank) => acc + PRIZES[rank].VALUE, 0);
     const profitRate = ((totalValue / (this.#lottos.length * LOTTO_PRICE)) * 100).toFixed(1);
@@ -59,7 +72,7 @@ class Game {
     return PROFIT_PHRASE(profitRate);
   }
 
-  generateLottoStatPhrase() {
+  generateMatchPhrase() {
     const ranks = this.generateLottoRanks();
     const rankCount = ranks.reduce((acc, rank) => {
       acc[rank] = acc[rank] + 1 || 1;

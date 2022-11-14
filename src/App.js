@@ -1,6 +1,7 @@
 const { getLottoBudget, getTargetNumber, getBonusNumber } = require('./inputUtils');
 const Game = require('./Game');
 const { LOTTO_PRICE } = require('./config');
+const { Console } = require('@woowacourse/mission-utils');
 class App {
   play() {
     this.getLottoBudget();
@@ -9,6 +10,8 @@ class App {
   getLottoBudget() {
     getLottoBudget((budget) => {
       this.budget = budget;
+      this.game = new Game(this.budget / LOTTO_PRICE);
+      Console.print(this.game.generatePurchasePhrase());
       this.getTargetNumber();
     });
   }
@@ -28,8 +31,8 @@ class App {
   }
 
   startGame() {
-    this.game = new Game(this.budget / LOTTO_PRICE, this.target, this.bonus);
-    console.log(this.game.generatePhrase());
+    this.game.setWinningBonusNumbers(this.target, this.bonus);
+    Console.print(this.game.generateStatPhrase());
   }
 }
 
