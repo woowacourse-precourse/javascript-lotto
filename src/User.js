@@ -21,6 +21,15 @@ class User {
       return callback(winningLottoNumbers);
     });
   }
+
+  static inputBonusLottoNumber(callback) {
+    Console.readLine(MESSAGE.INPUT.BONUS_LOTTO_NUMBER, (answer) => {
+      const bonusLottoNumber = Number(answer);
+      Validator.validateLottoNumber(bonusLottoNumber);
+
+      return callback(bonusLottoNumber);
+    });
+  }
 }
 
 module.exports = User;
