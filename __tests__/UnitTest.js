@@ -3,6 +3,7 @@ const LottoFactory = require("../src/LottoFactory");
 const Lottos = require("../src/Lottos");
 const Management = require("../src/Management");
 const Payment = require("../src/Payment");
+const Status = require("../src/status");
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
@@ -178,5 +179,60 @@ describe("지불 클래스 테스트", () => {
     expect(() => {
       payment.vaildation(1234);
     }).toThrow("[ERROR] 1000원 단위로 입력해야 합니다");
+  });
+});
+
+describe("상태 클래스 테스트", () => {
+  test("당첨번호 3개가 일치하는 객체를 입력한 경우", () => {
+    const status = new Status();
+    status.add({
+      realnum: 3,
+      bonusnum: 0,
+    });
+
+    expect(status.getResult()).toEqual([1, 0, 0, 0, 0]);
+  });
+
+  test("당첨번호 4개가 일치하는 객체를 입력한 경우", () => {
+    const status = new Status();
+    status.add({
+      realnum: 4,
+      bonusnum: 0,
+    });
+
+    expect(status.getResult()).toEqual([0, 1, 0, 0, 0]);
+  });
+  test("당첨번호 5개가 일치하는 객체를 입력한 경우", () => {
+    const status = new Status();
+    status.add({
+      realnum: 5,
+      bonusnum: 0,
+    });
+
+    expect(status.getResult()).toEqual([0, 0, 1, 0, 0]);
+  });
+  test("당첨번호 5개와 보너스번호 한개가 일치하는 객체를 입력한 경우", () => {
+    const status = new Status();
+    status.add({
+      realnum: 5,
+      bonusnum: 1,
+    });
+
+    expect(status.getResult()).toEqual([0, 0, 0, 1, 0]);
+  });
+  test("당첨번호 6개가 일치하는 객체를 입력한 경우", () => {
+    const status = new Status();
+    status.add({
+      realnum: 6,
+      bonusnum: 0,
+    });
+
+    expect(status.getResult()).toEqual([0, 0, 0, 0, 1]);
+  });
+  test("주어진 입력값에 대해 수익률을 잘 계산하는지", () => {
+    const status = new Status();
+    status.setResult([1, 1, 0, 0, 0]);
+    status.countYield(50000);
+    expect(status.getYield()).toEqual(110);
   });
 });
