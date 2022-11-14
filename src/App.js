@@ -6,7 +6,7 @@ const {
   ACTION_MESSAGES,
 } = require('./constant/messages');
 const Purchaser = require('./domain/Purchaser');
-const Validator = require('./validator');
+const Validator = require('./Validator');
 
 class App {
   #winnerNumber;

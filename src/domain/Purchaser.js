@@ -44,8 +44,6 @@ class Purchaser {
   compare(lottoToken, winnerNumber, bonusNumber) {
     let count = 0;
     const bonus = lottoToken.includes(bonusNumber) ? 1 : 0;
-
-    count = 0;
     count = winnerNumber.reduce(
       (acc, cur) => (acc += lottoToken.includes(cur) ? 1 : 0),
       0
