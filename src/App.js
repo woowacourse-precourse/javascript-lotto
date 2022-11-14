@@ -43,7 +43,6 @@ class App {
   askBonusNumber() {
     MissionUtils.Console.readLine(INPUT_MESSEGE.BONUS_NUMBER, (bonusNum) => {
       this.bonusNumber = Number(bonusNum);
-
       this.userLottos.printResult(this.winningNumbers, this.bonusNumber);
     });
   }

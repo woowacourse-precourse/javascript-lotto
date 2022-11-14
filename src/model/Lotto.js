@@ -47,12 +47,12 @@ class Lotto {
 
     if (intersection.length === WINNING_COUNT.FIVE) {
       if (Array.from(this.#numbers).includes(bonusNum)) return RANK.SECOND;
-      RANK.THIRD;
+      return RANK.THIRD;
     }
 
     if (intersection.length === WINNING_COUNT.FOUR) return RANK.FOURTH;
 
-    if (intersection.length === WINNING_COUNT.THREE) return RANK.THIRD;
+    if (intersection.length === WINNING_COUNT.THREE) return RANK.FIFTH;
 
     return 0;
   }
