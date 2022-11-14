@@ -70,8 +70,19 @@ class Lotto {
     return matches;
   }
 
+  printWinningResult(match, count) {
+    const matchMessages = {
+      3: "3개 일치 (5,000원)",
+      4: "4개 일치 (50,000원)",
+      5: "5개 일치 (1,500,000원)",
+      5.5: "5개 일치, 보너스 볼 일치 (30,000,000원)",
+      6: "6개 일치 (2,000,000,000원)",
+    };
+    MissionUtils.Console.print(matchMessages[match] + ` - ${count}개`);
+  }
+
   // test() {
-  //   MissionUtils.Console.print(this.compare([1, 2, 3, 4, 5, 6]));
+  //   this.printWinningResult(3, 2);
   // }
 }
 
