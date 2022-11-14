@@ -1,3 +1,5 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+
 class Result {
   constructor(lottoResult, bonusCnt) {
     this.lottoResult = lottoResult;
