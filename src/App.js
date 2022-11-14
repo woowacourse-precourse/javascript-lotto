@@ -14,9 +14,9 @@ class App {
 
   userInput() {
     MissionUtils.Console.readLine(`${Message.INPUT_MESSAGE.PURCHASE}\n`, (userMoney) => {
-      userMoney = parseInt(userMoney);
       DetectError.prototype.checkUserInput(userMoney);
       const user = this.lottoPurchase(userMoney);
+      userMoney = parseInt(userMoney);
       this.prizeInput(user, userMoney);
     });
   }
@@ -159,5 +159,7 @@ class App {
     MissionUtils.Console.print(`총 수익률은 ${result}%입니다.`);
   }
 }
+const game = new App();
+game.play();
 
 module.exports = App;
