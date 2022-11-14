@@ -1,11 +1,13 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const GenerateLottoNumbers = require("./GenerateRandomNumbers");
 const Lotto = require("./Lotto");
-const { ERROR, UNIT, WINNING_MONEY, RANK } = require("../utils/constants");
+const Validate = require("../Validate");
+const { UNIT, RANK } = require("../utils/constants");
 
 class Lottos {
   constructor(purchaseAmount) {
-    this.validate(purchaseAmount);
+    this.validate = new Validate();
+    this.validate.checkMoneyInput(purchaseAmount);
 
     this.purchaseAmount = purchaseAmount;
     this.generateLottoNumbers = new GenerateLottoNumbers();
@@ -14,22 +16,6 @@ class Lottos {
     this.ranks = [];
 
     this.createLottos();
-  }
-
-  validate(money) {
-    if (isNaN(Number(money))) {
-      throw new Error(ERROR.ISNAN);
-    }
-
-    if (money % UNIT.DIVIDE !== 0) {
-      throw new Error(ERROR.UNIT);
-    }
-  }
-
-  getLotto() {
-    const numbers = this.generateLottoNumbers.generate();
-
-    return new Lotto(numbers);
   }
 
   createLottos() {
