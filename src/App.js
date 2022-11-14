@@ -21,6 +21,7 @@ class App {
 
       const lottoCount = this.#perchaseAmount / LOTTO_PRICE
       this.#lottosOwnedByUser = this.buyLotto(lottoCount)
+      this.#printLottosOwnedByUser()
 
       // TODO: 당첨 통계를 계산한다.
 
@@ -76,6 +77,12 @@ class App {
     }
 
     return lottos
+  }
+
+  #printLottosOwnedByUser() {
+    this.#lottosOwnedByUser.forEach((lotto) => {
+      Console.print(lotto)
+    })
   }
 
   #close() {
