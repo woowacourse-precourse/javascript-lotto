@@ -8,18 +8,30 @@ class Lotto {
     this.#numbers = numbers;
   }
 
-  lottoGame() { // 1부터 45까지의 숫자 중 6개를 고르고 오름차순으로 정렬하는 메서드
-    const LOTTO_RESULT = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-    LOTTO_RESULT.sort((a, b) => {
-      return a - b;
-    });
-    return LOTTO_RESULT;
+  manual() { // 당첨 번호가 유효하면 리턴하는 메서드
+    let numbers = this.#numbers;
+    for (let i = 0; i < 6; i++) {
+      numbers[i] = (parseInt(numbers[i]));
+    }
+    return numbers;
   }
 
-  validate(numbers) {
+  validate(numbers) { // 당첨 번호의 유효성을 판단하는 메서드
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 6개의 숫자여야 합니다.");
     }
+    for (let i = 0; i < 6; i++) {
+      if ((isNaN(numbers[i])) || (!Number.isInteger(Number(numbers[i])))) {
+        throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 6개의 숫자여야 합니다.");
+      } else if ((parseInt(numbers[i]) < 1) || (46 < parseInt(numbers[i]))) {
+        throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 6개의 숫자여야 합니다.");
+      }
+    }
+    let numbers_set = new Set(numbers);
+    if (numbers_set.size !== 6) {
+      throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 6개의 숫자여야 합니다.");
+    }
+    return
   }
 
   // TODO: 추가 기능 구현
