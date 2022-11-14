@@ -1,17 +1,18 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const checkLottoInput = require("../checkInput");
+const Validate = require("../Validate");
 const { RANK, WINNING_COUNT } = require("../utils/constants");
 
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    this.validate = new Validate();
+    this.validate.checkLottoInput(numbers);
     this.#numbers = numbers;
   }
 
   validate(numbers) {
-    checkLottoInput(numbers);
+    this.validate.checkLottoInput(numbers);
   }
 
   printLotto() {
