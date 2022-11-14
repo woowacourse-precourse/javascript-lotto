@@ -1,12 +1,22 @@
+const { Console } = require('@woowacourse/mission-utils');
+
 class Money {
   #money;
 
-  constructor(money) {
+  constructor(money = 0) {
     this.#money = money;
   }
 
   multiply(count) {
-    return this.#money * count;
+    return new Money(this.#money * count);
+  }
+
+  getMoney() {
+    return this.#money;
+  }
+
+  addMoney(money) {
+    this.#money += money.getMoney();
   }
 
   addSeperator() {
@@ -21,6 +31,12 @@ class Money {
       }, [])
       .reverse()
       .join('');
+  }
+
+  printEarningRate(earning) {
+    const earningRate = Number.parseFloat((earning.getMoney() / this.#money) * 100).toFixed(1);
+
+    Console.print(`총 수익률은 ${earningRate}%입니다.`);
   }
 }
 
