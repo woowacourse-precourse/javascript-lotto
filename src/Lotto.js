@@ -3,10 +3,9 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class Lotto {
   #numbers;
 
-  constructor(numbers, bonusNumber, candidateNumbers, purchaseAmount) {
+  constructor(numbers, candidateNumbers, purchaseAmount) {
     this.validate(numbers);
     this.#numbers = numbers;
-    this.bonusNumber = bonusNumber;
     this.candidateNumbers = candidateNumbers;
     this.purchaseAmount = purchaseAmount;
   }
@@ -54,22 +53,22 @@ class Lotto {
     this.computeLottoResult(numbers, bonusNumber, this.candidateNumbers);
   }
 
-  async computeLottoResult(numbers, bonusNumber, candidateNumbers) {
+  computeLottoResult(numbers, bonusNumber, candidateNumbers) {
     let computeResults = [];
-    const promises = candidateNumbers.map((candidateNumber) => {
+    console.log(candidateNumbers);
+    candidateNumbers.map((candidateNumber) => {
       const countWinningNumber = candidateNumber.filter((x) =>
         numbers.includes(x)
       ).length;
       const countBonusNumber = candidateNumber.includes(bonusNumber) ? 1 : 0;
       computeResults.push([countWinningNumber, countBonusNumber]);
     });
-    await Promise.all(promises);
     this.matchLottoResult(computeResults);
   }
 
-  async matchLottoResult(results) {
+  matchLottoResult(results) {
     let winningRanks = [0, 0, 0, 0, 0];
-    const promises = results.map((result) => {
+    results.map((result) => {
       const matchWinningNumber = result[0];
       const matchBonusNumber = result[1];
       if (matchWinningNumber === 3) {
@@ -88,13 +87,10 @@ class Lotto {
         winningRanks[4] += 1;
       }
     });
-    await Promise.all(promises);
-    // console.log(winningRanks);
     this.printLottoResult(winningRanks);
   }
 
   printLottoResult(results) {
-    MissionUtils.Console.print("\n");
     MissionUtils.Console.print(`당첨 통계\n---`);
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${results[0]}개`);
     MissionUtils.Console.print(`4개 일치 (50,000원) - ${results[1]}개`);
