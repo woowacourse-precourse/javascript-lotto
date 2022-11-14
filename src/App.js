@@ -43,16 +43,20 @@ class App {
   printBuyLotto() {
     Console.print(`\n${this.#numOfLotto}개를 구매했습니다.`);
     this.#userLotto.forEach((lotto) => Console.print(`[${lotto.join(", ")}]`));
-    getWinLotto();
+    this.getWinLotto();
   }
 
   getWinLotto() {
     Console.readLine("당첨 번호를 입력해 주세요.\n", (winLotto) => {
       let tmp = winLotto.split(',');
+      for(let i = 0; i < tmp.length; i++) {
+        tmp[i] = Number(tmp[i]);
+      }
       new Lotto(tmp);
       this.#winLotto = tmp;
+      //Console.print(this.#winLotto);
+      getBonusNumber();
     });
-    getBonusNumber();
   }
 }
 
