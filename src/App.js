@@ -15,28 +15,23 @@ class App {
   #purchaseAmount;
 
   #validMatchesList;
+  #matchesObj;
 
   constructor() {
     this.#purchaseNumList = [];
     this.#validMatchesList = [3, 4, 5, 5.5, 6];
+    this.#matchesObj = { 3: 0, 4: 0, 5: 0, 5.5: 0, 6: 0 };
   }
   play() {
-    let matches = 0;
-    let matchesObj = { 3: 0, 4: 0, 5: 0, 5.5: 0, 6: 0 };
     // 1. 구입금액 입력
-    const amount = this.buy();
+    const amount = this.inputPurchaseAmount();
     this.#purchaseAmount = this.validAmount(amount);
 
     // 2. 구매 내역 출력
-    const purchaseCount = this.#purchaseAmount / 1000;
-
-    MissionUtils.Console.print(`${purchaseCount}개를 구매했습니다.`);
-    for (let i = 0; i < purchaseCount; i++) {
-      this.generateLotto();
-    }
-    this.#purchaseNumList.map((lotto) =>
-      MissionUtils.Console.print(lotto.printString())
+    MissionUtils.Console.print(
+      `${this.#purchaseAmount / 1000}개를 구매했습니다.`
     );
+    this.buy();
 
     // 3. 당첨 번호 입력
     this.setWinningNum();
@@ -44,16 +39,12 @@ class App {
 
     // 4. 당첨 통계 계산
     MissionUtils.Console.print(PRETTY_MSG.winningResult);
-    for (let i = 0; i < purchaseCount; i++) {
-      matches = this.compare(this.#purchaseNumList[i].getNumber());
-      if (matches > 2) {
-        matchesObj[matches] = matchesObj[matches] + 1;
-      }
-    }
+    this.calculMatches();
+
     this.#validMatchesList.map((number) =>
-      this.printWinningResult(number, matchesObj[number])
+      this.printWinningResult(number, this.#matchesObj[number])
     );
-    this.printRate(matchesObj);
+    this.printRate(this.#matchesObj);
   }
 
   validAmount(amount) {
@@ -66,18 +57,34 @@ class App {
     return amount;
   }
 
+  calculMatches() {
+    for (let i = 0; i < this.#purchaseNumList.length; i++) {
+      let matches = this.compare(this.#purchaseNumList[i].getNumber());
+      if (matches > 2) {
+        this.#matchesObj[matches] = this.#matchesObj[matches] + 1;
+      }
+    }
+  }
+
   generateLotto() {
     const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
     const newLotto = new Lotto(numbers);
+    MissionUtils.Console.print(newLotto.printString());
     this.#purchaseNumList.push(newLotto);
   }
 
-  buy() {
+  inputPurchaseAmount() {
     let money = 0;
     MissionUtils.Console.readLine(QUESTION.buy, (input) => {
       money = input;
     });
     return money;
+  }
+
+  buy() {
+    for (let i = 0; i < this.#purchaseAmount / 1000; i++) {
+      this.generateLotto();
+    }
   }
 
   setWinningNum() {
@@ -121,10 +128,10 @@ class App {
     MissionUtils.Console.print(MATCH_MSG[match] + ` - ${count}개`);
   }
 
-  printRate(matchesObj) {
+  printRate() {
     let winningAmount = 0;
     this.#validMatchesList.map((matches) => {
-      winningAmount += matchesObj[matches] * WINNING_AMOUNT[matches];
+      winningAmount += this.#matchesObj[matches] * WINNING_AMOUNT[matches];
     });
     MissionUtils.Console.print(
       `총 수익률은 ${(winningAmount / this.#purchaseAmount) * 100}%입니다.`
