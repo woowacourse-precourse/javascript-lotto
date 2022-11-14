@@ -7,7 +7,7 @@ class LottoManager {
 
   #money;
 
-  buyLottos(lottoCompany, next) {
+  buyLottosAsync(lottoCompany, next) {
     Console.print("구매금액을 입력해 주세요");
     Console.readLine("", (money) => {
       this.#money = Number(money);

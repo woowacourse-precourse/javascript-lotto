@@ -39,7 +39,7 @@ class LottoCompany {
     }
   }
 
-  makeWinningNumbers(next) {
+  makeWinningNumbersAsync(next) {
     Console.readLine("\n당첨 번호를 입력해 주세요\n", (input) => {
       this.validateWinningNumbers(input);
       this.#winningNumbers = input.split(",").map((elem) => Number(elem));
@@ -60,7 +60,7 @@ class LottoCompany {
     }
   }
 
-  makeBonusNumber(next) {
+  makeBonusNumberAsync(next) {
     Console.readLine("\n보너스 번호를 입력해 주세요\n", (input) => {
       this.validateBonusNumber(input);
       this.#bonusNumber = Number(input);

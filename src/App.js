@@ -22,10 +22,10 @@ class App {
 
   makeLogicOrders() {
     [
-      () => this.#lottoManager.buyLottos(this.#lottoCompany, () => this.#logicChain.executeNext()),
+      () => this.#lottoManager.buyLottosAsync(this.#lottoCompany, () => this.#logicChain.executeNext()),
       () => { this.#lottoManager.printLottosStatus(); this.#logicChain.executeNext();},
-      () => this.#lottoCompany.makeWinningNumbers(() => this.#logicChain.executeNext()),
-      () => this.#lottoCompany.makeBonusNumber(() => this.#logicChain.executeNext()),
+      () => this.#lottoCompany.makeWinningNumbersAsync(() => this.#logicChain.executeNext()),
+      () => this.#lottoCompany.makeBonusNumberAsync(() => this.#logicChain.executeNext()),
       () => { this.#lottoManager.checkResults(this.#lottoCompany); this.#logicChain.executeNext(); },
       () => { 
         this.#lottoCompany.printReportByRanks(this.#lottoManager.getLottoResults()); 
