@@ -1,5 +1,10 @@
 # 📝 구현할 기능 목록
 
+- UI : App.js
+- 순위 계산 : Lotto.js
+- 돈 계산 : Calculator.js
+- 검증 : Validator.js
+
 ## 입력 / 출력
 
 ### 1. 구입 금액 입력
@@ -47,3 +52,25 @@
 ### 5. 수익률 계산
 
 - Calculator.calcProfitRate
+
+## 검증
+
+### 1. 숫자인지 검증
+
+- Validator.checkNumber
+
+### 2. 로또 범위 검증
+
+- Validator.checkLottoNumber
+
+### 3. 로또 숫자 배열 검증
+
+- Validator.checkLottoNumbers
+
+### 4. 보너스 번호 검증
+
+- Validator.checkBonusNumber
+
+### 5. 구입 금액 검증
+
+- Validator.checkPay
