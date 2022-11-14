@@ -40,7 +40,7 @@ function getLottoNumbers() {
 
 function getBonusNumber() {
   Console.readLine('', (answer) => {
-    const bonusNum = new Bonus(inputObjects['numbers'], answer);
+    const bonusNum = new Bonus(inputObjects['numbers'], Number(answer));
     inputObjects['bonus'] = bonusNum.getBonus();
     startLotto()
   })
