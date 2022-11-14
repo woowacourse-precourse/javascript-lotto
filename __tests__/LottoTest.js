@@ -24,12 +24,15 @@ describe("로또 클래스 테스트", () => {
     expect(() => {
       new Lotto([0, 2, 3, 4, 5, 6]);
     }).toThrow('[ERROR] 1에서 45의 수가 아닌 것이 있습니다.');
+    
     expect(() => {
       new Lotto([2, 3, 4, 5, 6, 46]);
     }).toThrow('[ERROR] 1에서 45의 수가 아닌 것이 있습니다.');
+    
     expect(() => {
       new Lotto(['', 1, 2, 3, 4, 5]);
     }).toThrow('[ERROR] 1에서 45의 수가 아닌 것이 있습니다.');
+    
     expect(() => {
       new Lotto([' ', 1, 2, 3, 4, 5]);
     }).toThrow('[ERROR] 1에서 45의 수가 아닌 것이 있습니다.');
@@ -39,9 +42,11 @@ describe("로또 클래스 테스트", () => {
     expect(() => {
       new Lotto([1.44, 2, 3, 4, 5, 6]);
     }).toThrow('[ERROR] 로또 번호에 정수가 아닌 것이 있습니다.');
+    
     expect(() => {
       new Lotto(['a', 2, 3, 4, 5, 6]);
     }).toThrow('[ERROR] 로또 번호에 정수가 아닌 것이 있습니다.');
+    
     expect(() => {
       new Lotto(['.', 2, 3, 4, 5, 6]);
     }).toThrow('[ERROR] 로또 번호에 정수가 아닌 것이 있습니다.');
