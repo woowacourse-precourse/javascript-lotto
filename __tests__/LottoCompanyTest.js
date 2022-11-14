@@ -16,6 +16,13 @@ describe("로또 발행 회사 테스트", () => {
     expect(() => lottoCompany.publishLottos(2500)).toThrow("[ERROR]");
   });
 
+  test("숫자를 천의 단위로 끊어서 문자열로 반환하는 기능..", () => {
+    expect(LottoCompany.breakInThosands(333555)).toBe("333,555");
+    expect(LottoCompany.breakInThosands(1233433598555)).toBe(
+      "1,233,433,598,555"
+    );
+  });
+
   test("오름차순으로 정렬된 두 개의 배열이 주어질 떄, 같은 수의 개수를 찾는다.", () => {
     const array1 = [1, 4, 9, 10, 16, 29];
     const array2 = [4, 5, 9, 11, 29, 31];

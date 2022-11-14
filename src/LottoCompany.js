@@ -115,14 +115,27 @@ class LottoCompany {
     ranks.forEach((rank) => {
       rankCounts[rank - 1] += 1;
     });
-
     let reports = "당첨 통계\n---\n";
     for (let i = 4; i > -1; i -= 1) {
       reports += `${this.rankToResult(i + 1)[0]}개 일치`;
       if (i === 1) reports += ", 보너스 볼 일치";
-      reports += `(${this.#winningMoney[i]}원) - ${rankCounts[i]}개\n`;
+      reports += ` (${LottoCompany.breakInThosands(
+        this.#winningMoney[i]
+      )}원) - ${rankCounts[i]}개 \n`;
     }
     Console.print(reports);
+  }
+
+  static breakInThosands(money) {
+    const moneyString = String(money);
+    const moneyDigitsWithBreaks = [];
+    for (let i = 0; i < moneyString.length; i += 1) {
+      moneyDigitsWithBreaks.unshift(moneyString[moneyString.length - 1 - i]);
+      if ((i + 1) % 3 === 0 && i + 1 < moneyString.length) {
+        moneyDigitsWithBreaks.unshift(",");
+      }
+    }
+    return moneyDigitsWithBreaks.join("");
   }
 
   static countSameNumbersOfAscSortedArrays(ascSortedNums1, ascSortedNums2) {
