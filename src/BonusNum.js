@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils')
-const WinningNum = require('./WinningNum')
+
 
 class BonusNum {
   #bonus
@@ -41,6 +41,9 @@ class BonusNum {
     Console.print(`${this.#bonus}`)
   }
 
+  showBonusNum(){
+    return this.#bonus
+  }
 }
 
 module.exports = BonusNum

@@ -55,6 +55,10 @@ class Lotto {
     Console.print(`[${this.#numbers}]`)
   }
 
+  showLottoNum(){
+    return this.#numbers
+  }
+
 }
 
 module.exports = Lotto

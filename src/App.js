@@ -1,26 +1,33 @@
 const PurchasePrice = require('./PurchasePrice')
 const Lotto = require('./Lotto')
 const WinningNum = require('./WinningNum')
-const BonusNum=require('./BonusNum')
+const BonusNum = require('./BonusNum')
 const { Console } = require('@woowacourse/mission-utils')
 const { Random } = require('@woowacourse/mission-utils')
 
 class App {
-  constructor() {}
+  constructor() {
+    this.userLottoNum
+    this.winningNum
+    this.lottobonusNum
+  }
 
   play() {
     this.getLottoInfo()
+    this.test()
+    //this.calcLottoResult()
   }
 
   getLottoInfo() {
     let buyCount = PurchasePrice.getPurchasePrice()
-    this.getLottoNum(buyCount)
-    let winningNumForDuplication=this.getWinningNum()
-    this.getBounsNum(winningNumForDuplication)
+    this.userLottoNum = this.getLottoNum(buyCount)
+    this.winningNum = this.getWinningNum()
+    this.lottobonusNum = this.getBounsNum(this.winningNum)
   }
 
   getLottoNum(buyCount) {
     let count = 0
+    let userLottoNum = []
     while (count < Number(buyCount)) {
       //pickUniqueNumbersInRange의 인자를 자세히 보면 인자 하나가 6자리 배열이다
       //즉, 한번에 6자리 로또번호가 들어옴
@@ -28,12 +35,12 @@ class App {
       //하나씩 넣는걸 의도한 것 같다
       const userLottoPick = Random.pickUniqueNumbersInRange(1, 45)
       let lotto = new Lotto(userLottoPick)
-
       //구매 결과 출력
       lotto.resultPrint()
-
+      userLottoNum.push(lotto.showLottoNum())
       count++
     }
+    return userLottoNum
   }
 
   getWinningNum() {
@@ -45,20 +52,30 @@ class App {
       )
       //당첨번호  출력
       winner.resultPrint()
-      winningNum=winner.showWinningNum()
+      winningNum = winner.showWinningNum()
     })
 
     return winningNum
   }
 
-
-  getBounsNum(winningNumForDuplication){
+  getBounsNum(winningNum) {
+    let lottobonusNum
     Console.readLine('보너스 번호를 입력해 주세요', (bonus) => {
-      let bonusNum=new BonusNum(Number(bonus),winningNumForDuplication)
-
+      let bonusNum = new BonusNum(Number(bonus), winningNum)
       bonusNum.resultPrint()
+      lottobonusNum = bonusNum.showBonusNum()
     })
+
+    return lottobonusNum
   }
+
+  // calcLottoResult() {
+  //   this.findCorrectValue()
+  // }
+
+  // findCorrectValue() {
+
+  // }
 }
 
 module.exports = App
