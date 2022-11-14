@@ -9,7 +9,7 @@ class App {
   }
 
   play() {
-    Utils.readLine('구입금액을 입력해 주세요.', (input) => {
+    Utils.readLine('구입금액을 입력해 주세요.\n' , (input) => {
       const amount = this.validateAmount(Number(input));
       const quantity = this.countLottoQuantity(amount);
       Utils.print(`\n${quantity}개를 구매했습니다.`);
@@ -27,8 +27,6 @@ class App {
   }
 
   validateAmount(input){
-    console.log(input);
-
     if (input === 0 || input % 1000 !== 0) {
       throw new Error("[ERROR] 구입금액은 1,000원 단위로 숫자만 입력해야 합니다.");
     }
@@ -51,8 +49,13 @@ class App {
   }
 
   createLottoArray(input){
-    console.log(input);
+    if(!input.includes(",")){
+      throw new Error("[ERROR] 당첨 번호는 ','를 기준으로 구분해주세요.");
+    }
+
+    const inputLottoArray = input.split(",");
   }
+  
 }
 
 const app = new App();
