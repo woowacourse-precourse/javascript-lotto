@@ -1,9 +1,12 @@
 const { LOTTO_TICKET, ERROR_MESSAGE, LOTTO_NUMBER } = require('./constant');
+const MissionUtils = require('@woowacourse/mission-utils');
 const Match = require('./Matcher');
+const Console = MissionUtils.Console;
 
 class InputCheck {
   moneyValidate(money) {
     if (money % LOTTO_TICKET.ONE_PRICE !== 0 || money === 0) {
+      Console.close();
       throw new Error(ERROR_MESSAGE.INPUT_ONE_THOUSAND_WON_UNIT);
     }
   }
