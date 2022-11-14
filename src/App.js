@@ -19,8 +19,7 @@ class App {
   }
 
   enterPurchaseAmountMode() {
-    Console.readLine(MESSAGE.ASK_AMOUNT, (amount) => {
-      Console.print('');
+    this.read(MESSAGE.ASK_AMOUNT, (amount) => {
       this.money = new Money(+amount);
       const numOfLotto = this.money.getNumOfLotto();
       this.randomLottos = new RandomLottos(numOfLotto);
@@ -30,12 +29,10 @@ class App {
   }
 
   enterWinningNumberMode() {
-    Console.readLine(MESSAGE.ASK_WINNING_NUMBERS, (winNums) => {
-      Console.print('');
+    this.read(MESSAGE.ASK_WINNING_NUMBERS, (winNums) => {
       const correct = winNums.split(',').map((e) => +e);
       this.winningLotto = new WinningLotto(correct);
-      Console.readLine(MESSAGE.ASK_BONUS_NUMBER, (bonus) => {
-        Console.print('');
+      this.read(MESSAGE.ASK_BONUS_NUMBER, (bonus) => {
         this.winningLotto.setBonus(+bonus);
         this.printToTalPrizeResult();
       });
@@ -62,6 +59,13 @@ class App {
     const prizeMoney = PRIZE_MONEY[numOfMatchIdx].toLocaleString();
     const numOfLotto = this.matchedLotto[numOfMatchIdx];
     return `(${prizeMoney}원) - ${numOfLotto}개`;
+  }
+
+  read(msg, func) {
+    Console.readLine(msg, (input) => {
+      Console.print('');
+      func(input);
+    });
   }
 }
 module.exports = App;
