@@ -11,7 +11,8 @@ class App {
         this.verificateWinningNumbers(winningNumbers);
         MissionUtils.Console.readLine('\n보너스번호를 입력해 주세요 : ', (bonusNumber) => {
           this.verificateBonusNumber(winningNumbers,bonusNumber);
-          this.isJackpot(myLotto,winningNumbers,bonusNumber);
+          let result = this.isJackpot(myLotto,winningNumbers,bonusNumber);
+          this.showResult(result);
         });
       });
     });
@@ -44,7 +45,7 @@ class App {
     if(money % PRICE != 0) throw new Error('[ERROR] 구입금액은 1000원 단위여야 합니다')
   }
   issueLotto(money){
-    let myLotto = [];
+    let myLotto = { };
     for(let i=0;i<money/PRICE;i++){
       let newLotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       myLotto[`lotto${i}`] = new Lotto(newLotto);
@@ -61,11 +62,22 @@ class App {
     }
   }
   isJackpot(myLotto,winningNumbers,bonusNumber){
-   
-    
+    let result = new Array();
+    winningNumbers = winningNumbers.split(',').map((i)=>Number(i));
+    winningNumbers.push(Number(bonusNumber))
+    for(let i=0;i<Object.keys(myLotto).length;i++){
+      let intersection = myLotto[`lotto${i}`].getLotto().filter(num => winningNumbers.includes(num));
+      if(intersection.length === 6 && !(myLotto[`lotto${i}`].getLotto().includes(Number(bonusNumber)))){
+          result.push(7) //6개일치는 5+보너스와 구별을 위해 7로 넣어준다
+      }
+      else result.push(intersection.length)
+    }
+    return result;
   }
- 
-}
+  showResult(result){
+    console.log(result)
+  }
+}   
 const app = new App();
 app.play();
 
