@@ -3,6 +3,7 @@ class User {
 
 	constructor(money) {
 		this.validate(money);
+		this.profit = 0;
 		this.#seedMoney = money;
 	}
 
@@ -33,6 +34,11 @@ class User {
 
 	getSeedMoney(money) {
 		return this.#seedMoney;
+	}
+	
+	getRateOfReturn() {
+		let rateOfReturn = ((this.profit / this.#seedMoney) * 100).toFixed(1);
+		return (rateOfReturn + "%");
 	}
 }
 
