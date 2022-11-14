@@ -26,14 +26,6 @@ const WINNING_COUNT = {
   SIX: 6,
 };
 
-const WINNING_MONEY = {
-  FIRST: 2000000000,
-  SECOND: 30000000,
-  THIRD: 1500000,
-  FOURTH: 50000,
-  FIFTH: 5000,
-};
-
 const ERROR = {
   ISNAN: "[ERROR] 숫자만 입력해 주세요",
   RANGE: "[ERROR] 1~45의 범위로 입력해 주세요.",
@@ -52,7 +44,6 @@ module.exports = {
   LOTTO_NUMBER,
   RANK,
   WINNING_COUNT,
-  WINNING_MONEY,
   UNIT,
   ERROR,
 };
