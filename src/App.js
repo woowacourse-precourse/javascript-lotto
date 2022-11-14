@@ -2,6 +2,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 
 class App {
   constructor() {
+    this.lotto = new Lotto();
     this.winningNum = [];
     this.bonusNum = 0;
     this.buyMoney = 0;
@@ -12,6 +13,7 @@ class App {
       let lottoNum = 0;
       this.buyMoney = answer;
       lottoNum = this.divideMoneyByThousand();
+      const lottoArr = this.lotto.createTotalLottoArr(lottoNum);
       this.getWinningNum(lottoArr);
     });
   }
