@@ -42,9 +42,7 @@ class App {
 
   printLottos() {
     Console.print(`\n${this.#lottos.length}개를 구매했습니다.`);
-    this.#lottos.forEach((lotto) =>
-      Console.print(`[${lotto.getNumbers().join(', ')}]`)
-    );
+    this.#lottos.forEach((lotto) => lotto.printNumbers());
   }
 
   setWinningNumbers(numbers) {
@@ -70,15 +68,12 @@ class App {
   }
 
   calculateMatching(lotto) {
-    const correct = lotto
-      .getNumbers()
-      .filter((number) => this.#winningNumbers.includes(number)).length;
-
+    const correct = lotto.getNumberOfMatch(this.#winningNumbers);
     if (correct === 3) this.#matching[LOTTO.CORRECT_THREE] += 1;
     if (correct === 4) this.#matching[LOTTO.CORRECT_FOUR] += 1;
     if (correct === 5) {
       this.#matching[
-        lotto.getNumbers().includes(this.#bonusNumber)
+        lotto.hasNumber(this.#bonusNumber)
           ? LOTTO.CORRECT_FIVE_BONUS
           : LOTTO.CORRECT_FIVE
       ] += 1;

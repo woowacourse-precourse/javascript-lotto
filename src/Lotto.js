@@ -19,6 +19,10 @@ class Lotto {
     return this.#numbers.includes(number);
   }
 
+  printNumbers() {
+    Console.print(`[${this.#numbers.join(', ')}]`);
+  }
+
   getNumbers() {
     return this.#numbers;
   }
