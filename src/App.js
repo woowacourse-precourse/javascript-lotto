@@ -7,8 +7,9 @@ class App {
 
   setMoney() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
-      this.money = Number(input);
-      // console.log(this.money);
+      const money = Number(input);
+      if (money % 1000 !== 0) throw new Error("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+      this.money = money;
     }); 
   }
 
