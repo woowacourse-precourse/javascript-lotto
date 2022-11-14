@@ -1,71 +1,102 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const isThousand = require("../src/utils/isThousand.js");
-const buyLottoCount = require("../src/utils/buyLottoCount.js");
-const isAllDifferent = require("../src/utils/isAllDifferent.js");
-const isOneToFF = require("../src/utils/isOnetoFF.js");
-const isNumber = require("../src/utils/isNumber.js");
-const Lotto = require("../src/Lotto");
+
 const { Console, Random } = MissionUtils;
+const returnCount = require("../src/utils/returnCount.js");
+const getResult = require("../src/utils/getResult.js");
+const Lotto = require("../src/Lotto");
+const Bonus = require("../src/Bonus");
+const Money = require("../src/Money");
+const calcRevenue = require("./utils/calcRevenue.js");
+const results = [0, 0, 0, 0, 0, 0];
+const REWARDS = [0, 5000, 50000, 1500000, 30000000, 2000000000];
 class App {
   #money;
-  #bonusNumber;
-  #lottos;
-  #lottoCnt;
+  #cnt;
+  #randomNumbers;
+  #bonus;
+  #numbers;
   constructor() {
     this.#money = 0;
-    this.#bonusNumber = 0;
-    this.#lottoCnt = 0;
-    this.#lottos = [];
+    this.#bonus = 0;
+    this.#cnt = 0;
+    this.#randomNumbers = [];
+    this.#numbers = "";
   }
-  inputMoney() {
-    Console.readLine("구입금액을 입력해 주세요. \n", (input) => {
-      if (!isThousand(input))
-        throw new Error("[ERROR] 금액은 1000원으로 나누어 떨어져야 합니다.");
-      this.#money = parseInt(input);
-      this.#lottoCnt = buyLottoCount(input);
-      Console.print(`${this.#lottoCnt}개를 구매했습니다.\n`);
-      this.makeRandomLottoNumber();
-      this.printLottoNumbers();
-    });
+  printMessage() {
+    Console.print(`3개 일치 (5,000원) - ${results[1]}개`);
+    Console.print(`4개 일치 (50,000원) - ${results[2]}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${results[3]}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${results[4]}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${results[5]}개`);
   }
-  makeRandomLottoNumber() {
-    while (this.#lottoCnt--) {
-      const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
-      this.#lottos.push(numbers);
+  printResult(price) {
+    const revenue = calcRevenue(price, this.#money);
+    Console.print(`총 수익률은 ${revenue}%입니다.`);
+    Console.close("");
+  }
+  calculateMoney() {
+    let price = 0;
+    for (let i = 0; i < 6; i++) {
+      price += REWARDS[i] * results[i];
     }
+    Console.print("당첨 통계");
+    Console.print("---");
+    this.printMessage();
+    this.printResult(price);
   }
-  printLottoNumbers() {
-    this.#lottos.forEach((item) => {
-      Console.print(item);
+  countSameNumber() {
+    this.#randomNumbers.forEach((numberArray) => {
+      let result = getResult(numberArray, this.#bonus, this.#numbers);
+      results[result] += 1;
     });
-    this.inputNumbers();
+    this.calculateMoney();
   }
 
-  inputNumbers() {
-    Console.readLine("당첨 번호를 입력해 주세요. \n", (input) => {
-      const realInput = input.split(",").join("");
-      if (
-        !isAllDifferent(realInput) ||
-        !isOneToFF(realInput) ||
-        !isNumber(realInput)
-      )
-        throw new Error("[ERROR] 잘못된 수를 입력하였습니다.");
-      const lotto = new Lotto([...realInput]);
-      lotto.validate(realInput);
-      lotto.printSuccessNumbers();
-      this.inputBonusNumber();
+  getBonusNumber() {
+    Console.readLine("보너스 번호를 입력해 주세요.\n", (input) => {
+      const bonusNum = new Bonus(this.#numbers, parseInt(input));
+      this.#bonus = bonusNum.getBonus();
+      Console.print("");
+      this.countSameNumber();
     });
   }
-
-  inputBonusNumber() {
-    Console.readLine("보너스 번호를 입력해 주세요. \n", (input) => {
-      if (!isNumber(input) || !isOneToFF(input))
-        throw new Error("[ERROR] 잘못된 수를 입력하였습니다.");
-      this.#bonusNumber = input;
+  getLottoNumber() {
+    Console.readLine("당첨 번호를 입력해주세요.\n", (input) => {
+      const realInput = input.split(",");
+      realInput.forEach((e, idx) => (realInput[idx] = Number(e)));
+      const lotto = new Lotto(realInput);
+      this.#numbers = lotto.getNumbers();
+      Console.print("");
+      this.getBonusNumber();
+    });
+  }
+  printNumbers() {
+    this.#randomNumbers.forEach((element) => {
+      Console.print(element);
+    });
+    Console.print("");
+    this.getLottoNumber();
+  }
+  makeRandomNumbers() {
+    for (let i = 0; i < this.#cnt; i++) {
+      let randoms = Random.pickUniqueNumbersInRange(1, 45, 6);
+      randoms.sort((a, b) => a - b);
+      this.#randomNumbers.push(randoms);
+    }
+    this.printNumbers();
+  }
+  getMoney() {
+    Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
+      const inputMoney = new Money(parseInt(input));
+      this.#money = inputMoney.getMoney();
+      Console.print("");
+      this.#cnt = returnCount(this.#money);
+      Console.print(`${this.#cnt}개를 구매했습니다.`);
+      this.makeRandomNumbers();
     });
   }
   play() {
-    this.inputMoney();
+    this.getMoney();
   }
 }
 
