@@ -6,6 +6,7 @@ class Lotto {
   constructor(numbers) {
     this.validate(numbers);
     this.isSorted(numbers);
+    this.isInRange(numbers);
     this.#numbers = numbers;
   }
 
@@ -23,6 +24,14 @@ class Lotto {
     numbers.map((number, index) => {
       if (number > numbers[index + 1]) {
         throw new Error(LOTTO_ERROR.CHECK_SORTED);
+      }
+    });
+  }
+
+  isInRange(numbers) {
+    numbers.map((number) => {
+      if (number < 1 || number > 45) {
+        throw new Error(LOTTO_ERROR.CHECK_RANGE);
       }
     });
   }
