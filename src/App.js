@@ -2,6 +2,8 @@ const MissionUtils = require("@woowacourse/mission-utils");
 
 class App {
   constructor() {
+    this.winningNum = [];
+    this.bonusNum = 0;
     this.buyMoney = 0;
   }
 
@@ -10,7 +12,7 @@ class App {
       let lottoNum = 0;
       this.buyMoney = answer;
       lottoNum = this.divideMoneyByThousand();
-      this.getWinningNum();
+      this.getWinningNum(lottoArr);
     });
   }
 
@@ -20,10 +22,20 @@ class App {
     return lottoNum;
   }
 
-  getWinningNum() {
+  getWinningNum(lottoArr) {
     MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.\n", (answer) => {
       this.winningNum = answer.split(",").map((item) => Number(item));
+      this.getBonusNum(lottoArr);
     });
+  }
+
+  getBonusNum() {
+    MissionUtils.Console.readLine(
+      "보너스 번호를 입력해 주세요.\n",
+      (answer) => {
+        this.bonusNum = Number(answer);
+      }
+    );
   }
 }
 
