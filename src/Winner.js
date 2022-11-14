@@ -101,7 +101,7 @@ class Winner {
   announce(winnerNumber) {
     this.getResult(winnerNumber);
 
-    Console.print('당첨 통계\n---\n');
+    Console.print('\n당첨 통계\n---');
     Console.print(`${[...Object.entries(this.prizeResult.winner)
       .map(([count, list]) => `${count}개 일치 (${Number(this.winnerRule.prize[count]).toLocaleString()}원) - ${list.length}개`),
     `${this.winnerRule.bonus.count}개 일치, ${this.winnerRule.bonus.message} (${Number(this.winnerRule.bonus.prizeMoney).toLocaleString()}원) - ${this.prizeResult.bonus.length}개`].sort().join('\n')}`);

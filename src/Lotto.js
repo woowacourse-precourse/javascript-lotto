@@ -10,6 +10,11 @@ class Lotto {
     this.#numbers = numbers;
   }
 
+  // TODO: 이 numbers는 어떨때 사용?
+  get numbers() {
+    return this.#numbers;
+  }
+
   // NOTE: 메서드 안에서 this쓰면 static 지워도 됨
   static validate(numbers, numbersCount = 6) {
     if (numbers.length !== numbersCount) {

@@ -24,8 +24,6 @@ class App {
   play() {
     Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
       this.lottos = new LottoSeller().purchase(money);
-      // 추첨하면, 결과가 출력되어야 함
-      // 콜백함수를 넘겨주기?
       const winner = new Winner(money, this.lottos, this.winnerRule);
       new LottoDrawer(this.lottoNumberCount).drawLotto(winner);
     });
