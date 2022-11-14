@@ -2,6 +2,11 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 
 const ONE_THOUSAND_WON = 1000;
+const FIRST_LOTTO_WIN = 2000000000;
+const SECOND_LOTTO_WIN = 30000000;
+const TRHID_LOTTO_WIN = 1500000;
+const FOURTH_LOTTO_WIN = 50000;
+const FIFTH_LOTTO_WIN = 5000;
 
 const ERROR_MESSAGE = {
   NOT_THOUSAND_WON : '[ERROR] 구입 금액은 1,000원 단위 입니다'
@@ -9,6 +14,7 @@ const ERROR_MESSAGE = {
 
 class App {
   constructor() {
+    this.price = 0;
     this.winningLotto = [];
     this.randomNumberArr = [];
     this.bonusLotto = 0;
@@ -21,6 +27,7 @@ class App {
   
   priceInput() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.', (price) => {
+        this.price = parseInt(price);
         this.priceExceptionHandling(price)
         console.log(`구입금액을 입력해 주세요.\n${price}`);
         this.totalLottoCounts(price);
@@ -112,6 +119,13 @@ class App {
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${winningRanking.Third}개`);
     MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningRanking.Second}개`);
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${winningRanking.First}개`);
+    this.printYield(winningRanking, this.price);
+  }
+
+  printYield(winningRanking, price) { 
+    let revenue = (FIRST_LOTTO_WIN * winningRanking.First) + (SECOND_LOTTO_WIN * winningRanking.Second) + (TRHID_LOTTO_WIN * winningRanking.Third) + (FOURTH_LOTTO_WIN * winningRanking.Fourth) + (FIFTH_LOTTO_WIN * winningRanking.Fifth);
+    MissionUtils.Console.print(`총 수익률은 ${((revenue / price) * 100).toFixed(1)}%입니다.`);
+    MissionUtils.Console.close();
   }
 };
 
