@@ -29,11 +29,10 @@ class App {
   }
 
   printLottoList() {
-    MissionUtils.Console.print(this.count+"개를 구매했습니다.");
+    MissionUtils.Console.print("\n"+this.count+"개를 구매했습니다.");
     for (let i=0; i<this.count; i++) {
       MissionUtils.Console.print(this.lottoList[i].getNumbers());
     }
-    MissionUtils.Console.print("\n");
   }
 
   setWinning(winning) {
@@ -51,9 +50,10 @@ class App {
       this.publishLottoList();
       this.printLottoList();
       
-      MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.\n", (winningInput) => {
+      MissionUtils.Console.readLine("\n당첨 번호를 입력해 주세요.\n", (winningInput) => {
         this.setWinning(winningInput);
-        MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.\n", (bonusInput) => {
+
+        MissionUtils.Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusInput) => {
           this.setBonus(bonusInput);
         });
       });
