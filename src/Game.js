@@ -76,7 +76,7 @@ class Game {
 
   getInputBonusNumber() {
     Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (bonus) => {
-      this.initBonusNumber(bonus);
+      this.initBonusNumber(Number(bonus));
       this.initResult();
       printWinningResult(this.#result.getWinningResult(), this.getPercentage());
       Console.close();
