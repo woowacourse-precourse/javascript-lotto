@@ -1,15 +1,19 @@
 const Console = require('./Console');
 const Exception = require('./Exception');
+const Random = require('./Random');
+const Lotto = require('./Lotto');
 const LOTTO = require('./consts/Lotto');
 const MESSAGE = require('./consts/Message');
 
 class App {
   purchase;
   numberOfPurchases;
+  lottos;
 
   play() {
     this.setPurchase();
     this.setNumberOfPurchases();
+    this.setLottos();
   }
 
   setPurchase() {
@@ -46,6 +50,35 @@ class App {
     }
 
     return false;
+  }
+
+  setNumberOfPurchases() {
+    this.numberOfPurchases = this.calculateNumberOfPurchases();
+  }
+
+  calculateNumberOfPurchases() {
+    return this.purchase / LOTTO.PRICE;
+  }
+
+  setLottos() {
+    let lottos = [];
+
+    for (const i = 0; i < this.numberOfPurchases; i++) {
+      const numbers = this.getLottoNumbers();
+      lottos.push(new Lotto(numbers));
+    }
+
+    this.lottos = lottos;
+  }
+
+  getLottoNumbers() {
+    const lotto = Random.pickUniqueNumbersInRange(
+      LOTTO.START_NUMBER,
+      LOTTO.END_NUMBER,
+      LOTTO.NUMBER_OF_DIGITS
+    );
+
+    return lotto;
   }
 }
 
