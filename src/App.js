@@ -62,9 +62,7 @@ class App {
 
   getResult() {
     Console.readLine(MESSAGE.GETWINNINGNUMBER, inputNumbers => {
-      const numbers = inputNumbers.split(',').map(i => +i);
-      validateInputNumbers(numbers);
-      this.winningNumbers = numbers;
+      this.setWinningNumbers(inputNumbers);
       Console.readLine(MESSAGE.GETBONUSNUMBER, inputBonusNumber => {
         validateInputNumber(inputBonusNumber);
         this.bonusNumber = inputBonusNumber;
@@ -73,6 +71,16 @@ class App {
         Console.close();
       });
     });
+  }
+
+  setWinningNumbers(inputNumbers) {
+    const numbers = this.splitNumbers(inputNumbers);
+    validateInputNumbers(numbers);
+    this.winningNumbers = numbers;
+  }
+
+  static splitNumbers(inputNumbers) {
+    return inputNumbers.split(',').map(number => +number);
   }
 
   setResult() {
