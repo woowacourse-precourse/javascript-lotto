@@ -1,29 +1,25 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { OUTPUT_MESSAGE, LOTTO_RULE } = require('../utils/constant');
+const { OUTPUT_MESSAGE } = require('../utils/constant');
 
 class OutputConsole {
   printUserLotto(lotto) {
-    Console.print(`\n${lotto.length}${OUTPUT_MESSAGE.PURCHASE}`);
+    Console.print(OUTPUT_MESSAGE.PURCHASE(lotto));
     lotto.forEach((numbers) => {
-      Console.print(`[${numbers.join(', ')}]`);
+      Console.print(OUTPUT_MESSAGE.NUMBERS(numbers));
     });
   }
 
   printLank([firstPlace, secondPlace, thirdPlace, fourthPlace, fifthPlace]) {
     Console.print(OUTPUT_MESSAGE.STATISTICS);
-    Console.print(`${OUTPUT_MESSAGE.FIFTH_PLACE} ${fifthPlace}${OUTPUT_MESSAGE.UNIT}`);
-    Console.print(`${OUTPUT_MESSAGE.FOURTH_PLACE} ${fourthPlace}${OUTPUT_MESSAGE.UNIT}`);
-    Console.print(`${OUTPUT_MESSAGE.THIRD_PLACE} ${thirdPlace}${OUTPUT_MESSAGE.UNIT}`);
-    Console.print(`${OUTPUT_MESSAGE.SECOND_PLACE} ${secondPlace}${OUTPUT_MESSAGE.UNIT}`);
-    Console.print(`${OUTPUT_MESSAGE.FIRST_PLACE} ${firstPlace}${OUTPUT_MESSAGE.UNIT}`);
+    Console.print(OUTPUT_MESSAGE.FIFTH_PLACE(fifthPlace));
+    Console.print(OUTPUT_MESSAGE.FOURTH_PLACE(fourthPlace));
+    Console.print(OUTPUT_MESSAGE.THIRD_PLACE(thirdPlace));
+    Console.print(OUTPUT_MESSAGE.SECOND_PLACE(secondPlace));
+    Console.print(OUTPUT_MESSAGE.FIRST_PLACE(firstPlace));
   }
 
   printProfitRate(profitRate) {
-    Console.print(
-      `${OUTPUT_MESSAGE.PROFIT.START_SENTENCE} ${profitRate.toFixed(
-        LOTTO_RULE.PROFIT_RATE_TO_FIXED,
-      )}${OUTPUT_MESSAGE.PROFIT.END_SENTENCE}`,
-    );
+    Console.print(OUTPUT_MESSAGE.PROFIT(profitRate));
   }
 }
 

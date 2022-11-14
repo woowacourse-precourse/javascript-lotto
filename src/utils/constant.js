@@ -32,18 +32,24 @@ const INPUT_MESSAGE = Object.freeze({
 });
 
 const OUTPUT_MESSAGE = Object.freeze({
-  PURCHASE: '개를 구매했습니다.',
+  PURCHASE: (lotto) => `${lotto.length}개를 구매했습니다.`,
+  NUMBERS: (numbers) => `[${numbers.join(', ')}]`,
+  FIRST_PLACE: (firstPlace) =>
+    `${MATCHING_NUMBERS_COUNT.FIRST_PLACE}개 일치 (${PRIZE_MONEY.FIRST_PLACE.toLocaleString()}원) - ${firstPlace}개`,
+
+  SECOND_PLACE: (secondPlace) =>
+    `${MATCHING_NUMBERS_COUNT.SECOND_PLACE}개 일치, 보너스 볼 일치 (${PRIZE_MONEY.SECOND_PLACE.toLocaleString()}원) - ${secondPlace}개`,
+
+  THIRD_PLACE: (thirdPlace) =>
+    `${MATCHING_NUMBERS_COUNT.THIRD_PLACE}개 일치 (${PRIZE_MONEY.THIRD_PLACE.toLocaleString()}원) - ${thirdPlace}개`,
+
+  FOURTH_PLACE: (fourthPlace) =>
+    `${MATCHING_NUMBERS_COUNT.FOURTH_PLACE}개 일치 (${PRIZE_MONEY.FOURTH_PLACE.toLocaleString()}원) - ${fourthPlace}개`,
+
+  FIFTH_PLACE: (fifthPlace) =>
+    `${MATCHING_NUMBERS_COUNT.FIFTH_PLACE}개 일치 (${PRIZE_MONEY.FIFTH_PLACE.toLocaleString()}원) - ${fifthPlace}개`,
+  PROFIT: (profitRate) => `총 수익률은 ${profitRate.toFixed(LOTTO_RULE.PROFIT_RATE_TO_FIXED)}%입니다.`,
   STATISTICS: '\n당첨 통계\n---',
-  FIRST_PLACE: `${MATCHING_NUMBERS_COUNT.FIRST_PLACE}개 일치 (${PRIZE_MONEY.FIRST_PLACE.toLocaleString()}원) -`,
-  SECOND_PLACE: `${MATCHING_NUMBERS_COUNT.SECOND_PLACE}개 일치, 보너스 볼 일치 (${PRIZE_MONEY.SECOND_PLACE.toLocaleString()}원) -`,
-  THIRD_PLACE: `${MATCHING_NUMBERS_COUNT.THIRD_PLACE}개 일치 (${PRIZE_MONEY.THIRD_PLACE.toLocaleString()}원) -`,
-  FOURTH_PLACE: `${MATCHING_NUMBERS_COUNT.FOURTH_PLACE}개 일치 (${PRIZE_MONEY.FOURTH_PLACE.toLocaleString()}원) -`,
-  FIFTH_PLACE: `${MATCHING_NUMBERS_COUNT.FIFTH_PLACE}개 일치 (${PRIZE_MONEY.FIFTH_PLACE.toLocaleString()}원) -`,
-  UNIT: '개',
-  PROFIT: {
-    START_SENTENCE: '총 수익률은',
-    END_SENTENCE: '%입니다.',
-  },
 });
 
 const ERROR_MESSAGE_PURCHASE_AMOUNT = Object.freeze({
