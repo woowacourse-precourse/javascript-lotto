@@ -1,10 +1,10 @@
 const { Console } = require('@woowacourse/mission-utils');
 
-const LottoManager = require('./LottoManager');
-const WinningNumbers = require('./WinningNumbers');
-const WinningHistory = require('./WinningHistory');
+const LottoManager = require('../src/LottoManager');
+const WinningNumbers = require('../src/WinningNumbers');
+const WinningHistory = require('../src/WinningHistory');
 
-const { LOTTO_PRIZE_LIST } = require('./lib/constants/lotto');
+const { LOTTO_PRIZE_LIST } = require('../src/lib/constants/lotto');
 
 class App {
   lottoManager;

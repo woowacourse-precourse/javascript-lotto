@@ -1,6 +1,6 @@
 const { Random } = require('@woowacourse/mission-utils');
 
-const { ERROR } = require('./lib/constants/error');
+const { ERROR } = require('../src/lib/constants/error');
 const { LOTTO } = require('../src/lib/constants/lotto');
 
 const Lotto = require('./Lotto');

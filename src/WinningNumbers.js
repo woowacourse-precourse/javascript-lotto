@@ -1,4 +1,4 @@
-const { ERROR } = require('./lib/constants/error');
+const { ERROR } = require('../src/lib/constants/error');
 const { LOTTO } = require('../src/lib/constants/lotto');
 
 class WinningNumbers {
