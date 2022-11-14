@@ -33,12 +33,12 @@ class Validator {
     throw new InValidInputError(BASIC + INVALID_INPUT.PRICE_NOT_NUMBER);
   }
 
-  static isThousandUnit(string) {
-    return Number(string) % 2 === 0;
+  static isThousandUnit(string, unit = 1000) {
+    return Number(string) % unit === 0;
   }
 
   static isValidPriceUnit(string) {
-    if (!this.isValidPriceType(string) && this.isThousandUnit(string))
+    if (this.isValidPriceType(string) && this.isThousandUnit(string))
       return true;
     throw new InValidInputError(BASIC + INVALID_INPUT.PRICE_UNIT);
   }
