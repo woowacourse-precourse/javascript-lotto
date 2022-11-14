@@ -25,7 +25,7 @@ class App {
 		return Console.print(`[${lottoNum.join(", ")}]`);
 	}
 
-	printIssuendLotto(lottoCnt) {
+	printWinLotto(lottoCnt) {
 		for (let i = 0; i < lottoCnt; i++) {
 			let lottoNum = this.sortedLottoNum(this.winLottoNum());
 			this.printLottoNum(lottoNum);
