@@ -69,7 +69,7 @@ class VendingMachine {
 
   askLottoNumbers() {
     const answerCbFn = (answer) => {
-      const lottoNumbers = splitStrByComma(answer);
+      const lottoNumbers = splitStrByComma(answer).map(Number);
       lottoNumbers.sort((a, b) => a - b);
 
       this.#lottoMachine = new Lotto(lottoNumbers);
@@ -81,7 +81,7 @@ class VendingMachine {
 
   askBonusNumber() {
     const answerCbFn = (answer) => {
-      this.#lottoMachine.setBonus(answer);
+      this.#lottoMachine.setBonus(Number(answer));
       this.#randomNumbers.forEach((numbers) => {
         const { score, bonusScore } = this.#lottoMachine.getScore(numbers);
         this.#scores.push([score, bonusScore]);
