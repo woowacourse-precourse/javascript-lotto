@@ -26,14 +26,41 @@ class LottoMachine {
 
   lotteryResult(lottos) {
     const result = new Map();
-    lottos.map((lotto) =>
+    lottos.map((lotto) => {
+      let rank = this.getRank(lotto);
+      let money = getMoneyOfRank(rank);
+      result.set(rank, result.has(rank) ? result.get(rank) + 1 : 0);
       result.set(
-        getRank(lotto),
-        result.has(getRank(lotto)) ? result.get(getRank(lotto)) + 1 : 0
-      )
-    );
+        "profit",
+        result.has("profit") ? result.get("profit") + money : 0
+      );
+    });
 
     return result;
+  }
+
+  getMoneyOfRank(rank) {
+    let money = 0;
+    switch (rank) {
+      case 5:
+        money = 5000;
+        break;
+      case 4:
+        money = 50000;
+        break;
+      case 3:
+        money = 1500000;
+        break;
+      case 2:
+        money = 30000000;
+        break;
+      case 1:
+        money = 2000000000;
+        break;
+      default:
+        money = 0;
+    }
+    return money;
   }
 
   getRank(lotto) {

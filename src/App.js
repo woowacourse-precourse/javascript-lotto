@@ -15,7 +15,7 @@ class App {
     }
     user.printLottos();
     lottoMachine.inputWinningNumber();
-    // lottoMachine.lotteryResult(user.)
+    user.addWinStats(lottoMachine.lotteryResult(user.getLottos));
   }
 }
 
