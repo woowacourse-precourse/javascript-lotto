@@ -47,7 +47,7 @@ describe('로또 당첨 테스트', () => {
   test('로또 당첨번호 일치개수 판별 테스트', () => {
     const { winningDiscriminator } = App;
     const winningNumber = '1,2,3,4,5,6';
-    const lottoNumbers = [
+    const purchaseLottoList = [
       [1, 2, 3, 4, 5, 6],
       [1, 2, 3, 4, 5, 7],
       [1, 8, 3, 4, 5, 7],
@@ -58,7 +58,7 @@ describe('로또 당첨 테스트', () => {
     ];
     const matchCounts = [6, 5, 4, 3, 3, 0, 1];
 
-    lottoNumbers.map((lottoNumber, index) => {
+    purchaseLottoList.map((lottoNumber, index) => {
       expect(winningDiscriminator(lottoNumber, winningNumber)).toEqual(
         matchCounts[index],
       );
@@ -68,7 +68,7 @@ describe('로또 당첨 테스트', () => {
   test('로또 보너스 번호 일치 판별 테스트', () => {
     const { bonusDiscriminator } = App;
     const bonusNumber = 7;
-    const lottoNumbers = [
+    const purchaseLottoList = [
       [1, 2, 3, 4, 5, 6],
       [1, 2, 3, 4, 5, 7],
       [1, 8, 3, 4, 5, 7],
@@ -79,7 +79,7 @@ describe('로또 당첨 테스트', () => {
     ];
     const matchCounts = [0, 1, 1, 1, 1, 0, 0];
 
-    lottoNumbers.map((lottoNumber, index) => {
+    purchaseLottoList.map((lottoNumber, index) => {
       expect(bonusDiscriminator(lottoNumber, bonusNumber)).toEqual(
         matchCounts[index],
       );
