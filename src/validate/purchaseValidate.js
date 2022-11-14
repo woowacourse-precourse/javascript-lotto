@@ -8,11 +8,10 @@ class PurchaseValudate {
   }
 
   checkNumber() {
-    return isNaN(this.#input); // true 이면 안됨
+    return isNaN(this.#input);
   }
 
   checkUnit() {
-    // true 여야 함
     return this.#input % DEFAULT.MONEY_UNIT === DEFAULT.ZERO;
   }
 

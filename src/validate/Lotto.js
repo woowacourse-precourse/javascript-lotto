@@ -41,8 +41,6 @@ class Lotto {
     if (!this.checkDuplicate(this.#numbers))
       throw new Error(ERROR.DUPLICATE_ERROR);
   }
-
-  // TODO: 추가 기능 구현
 }
 
 module.exports = Lotto;
