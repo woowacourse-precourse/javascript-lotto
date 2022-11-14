@@ -46,18 +46,15 @@ class App {
     return numberArray;
   }
 
-  compare(userNum) {
-    let winningNum = this.#numbers.slice(0, 6);
-    let bonusNum = this.#numbers.slice(6, 7);
+  compare(numbers) {
     let matches = 0;
 
     for (let i = 0; i < 6; i++) {
-      if (winningNum.includes(userNum[i])) {
-        console.log(userNum[i], winningNum);
+      if (this.#winningNum.includes(numbers[i])) {
         matches += 1;
       }
     }
-    if (matches === 5 && userNum.includes(bonusNum)) {
+    if (matches === 5 && numbers.includes(this.#bonusNum)) {
       matches += 0.5;
     }
     return matches;
