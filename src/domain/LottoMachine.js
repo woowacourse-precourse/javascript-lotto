@@ -1,6 +1,6 @@
 const { Random } = require("@woowacourse/mission-utils");
 const LottoSystem = require("./LottoSystem");
-const { ERROR_MESSAGES } = require("../constants");
+const ERROR_MESSAGES = require("../errorMessages");
 
 class LottoMachine extends LottoSystem {
   constructor() {

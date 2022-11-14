@@ -1,5 +1,5 @@
 const LottoSystem = require("../src/domain/LottoSystem");
-const { ERROR_MESSAGES } = require("./constants");
+const ERROR_MESSAGES = require("./errorMessages");
 
 class Lotto extends LottoSystem {
   #numbers;
@@ -57,7 +57,7 @@ class Lotto extends LottoSystem {
       number < this.minNumber ||
       number > this.maxNumber
     ) {
-      throw new Error(ERROR_MESSAGES.LOTTO_LENGTH);
+      throw new Error(ERROR_MESSAGES.LOTTO_RANGE);
     }
   }
 }

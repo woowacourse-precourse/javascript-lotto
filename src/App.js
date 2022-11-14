@@ -3,7 +3,7 @@ const LottoStatistics = require("./domain/LottoStatistics");
 const View = require("./View");
 const Lotto = require("./Lotto");
 const Utils = require("./Utils");
-const { ERROR_MESSAGES } = require("./constants");
+const ERROR_MESSAGES = require("./errorMessages");
 
 class App {
   constructor() {
