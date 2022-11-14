@@ -3,7 +3,7 @@ const Purchase = require('./Purchase');
 const Lotto = require('./Lotto');
 const WinningResult = require('./WinningResult');
 const changeStrToArr = require('./utils/changeStrToArr');
-const makeLottoSet = require('./utils/makeLottoSet');
+const { makeLottoSet } = require('./utils/makeLottoSet');
 const { MESSAGE, RANK } = require('./constants');
 
 class App {

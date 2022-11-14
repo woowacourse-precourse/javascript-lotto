@@ -9,6 +9,10 @@ function makeRandomNumberArr() {
   ).sort((a, b) => a - b);
 }
 
+function isSame(count, set) {
+  return set.size === count;
+}
+
 function makeLottoSet(count) {
   let lottoSet = new Set();
   for (let i = 0; i < count; i++) {
@@ -18,11 +22,11 @@ function makeLottoSet(count) {
 
   let lottoSetSize = lottoSet.size;
 
-  if (count !== lottoSetSize) {
+  if (!isSame(count, lottoSet)) {
     return this.makeLottoSet(count - lottoSetSize);
   }
 
   return lottoSet;
 }
 
-module.exports = makeLottoSet;
+module.exports = { isSame, makeLottoSet };
