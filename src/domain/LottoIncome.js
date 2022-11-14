@@ -41,8 +41,18 @@ class LottoIncome extends LottoCalculator {
     return this;
   }
 
+  #checkDecimalPoint() {
+    if (this.#income[this.#income.length - 1] === '0') {
+      return `${Number(this.#income).toLocaleString('ko-KR')}.0`;
+    }
+
+    return Number(this.#income).toLocaleString('ko-KR');
+  }
+
   #calculateIncome() {
-    this.#roundUpFor().#makeDecimalFirst();
+    this.#income = this.#roundUpFor()
+      .#makeDecimalFirst()
+      .#checkDecimalPoint();
   }
 }
 
