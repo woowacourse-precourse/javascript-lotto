@@ -68,4 +68,16 @@ describe("로또 테스트", () => {
       app.play();
     }).toThrow("[ERROR]");
   });
+
+  test("generateLottoWithLottoCount 메소드는 로또 개수를 입력 받아서 그 개수만큼의 로또번호를 담은 배열을 반환한다.", () => {
+    mockRandoms([
+      [8, 21, 23, 41, 42, 43],
+      [3, 5, 11, 16, 32, 38],
+      [7, 11, 16, 35, 36, 44],
+    ]);
+
+    const app = new App();
+    const lottos = app.generateLottoWithLottoCount(3);
+    expect(lottos.length).toBe(3);
+  });
 });
