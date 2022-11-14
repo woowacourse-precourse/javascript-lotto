@@ -11,7 +11,7 @@ const getLottoBudget = (budgetAction) => {
 
 const getTargetNumber = (targetAction) => {
   Console.readLine(USER_INPUT_PHRASE.REQUEST_TARGET_NUMBER, (targetInput) => {
-    const targetNumber = [...targetInput.split(USER_INPUT_PHRASE.DELIMITER)].map(Number);
+    const targetNumber = [...targetInput.split(USER_INPUT_PHRASE.DELIMITER)];
     validateTargetNumber(targetNumber);
     targetAction(targetNumber);
   });
