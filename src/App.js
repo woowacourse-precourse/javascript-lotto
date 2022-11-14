@@ -92,21 +92,25 @@ class App {
           count++;
         }
       }
-      if(count == 3){
-        this.fifth++;
-      }else if(count == 4){
-        this.fourth++;
-      }else if(count == 5){
-        if(this.lottoRandomNum[i].includes(this.BonusNum)){
-          this.second++;
-        }else{
-          this.third++;
-        }
-      }else if(count == 6){
-        this.first++;
-      }
+      this.getPriceResult(count);
     }
     this.printWinResult();
+  }
+
+  getPriceResult(count){ //등수 계산하기
+    if(count == 3){
+      this.fifth++;
+    }else if(count == 4){
+      this.fourth++;
+    }else if(count == 5){
+      if(this.lottoRandomNum[i].includes(this.BonusNum)){
+        this.second++;
+      }else{
+        this.third++;
+      }
+    }else if(count == 6){
+      this.first++;
+    }
   }
 
   printWinResult(){ //당첨내역 출력하기
