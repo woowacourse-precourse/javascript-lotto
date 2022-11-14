@@ -8,6 +8,8 @@ const lottoGenerator = new LottoGenerator();
 const playInfo = new PlayInfo();
 const gameGuide = new GameGuide();
 
+const winningPrize = [0, 2000000000, 30000000, 1500000, 50000, 5000, 0, 0, 0];
+
 class LottoGame {
   issueLotto(amount) {
     lottoGenerator.generate(amount);
@@ -57,7 +59,20 @@ class LottoGame {
       result[rank] += 1;
     });
 
+    playInfo.setWinningStats(result);
     gameGuide.printWinningResult(result);
+  }
+
+  calculateRateOfReturn(amount, result) {
+    const totalPrize = result.reduce((acc, cur, idx) => acc + cur * winningPrize[idx], 0);
+    const rateOfReturn = ((totalPrize / amount) * 100).toFixed(1);
+
+    gameGuide.printRateOfReturn(rateOfReturn);
+  }
+
+  fetchGameResult() {
+    this.checkWinningResult();
+    this.calculateRateOfReturn(playInfo.getAmount(), playInfo.getWinningStats());
   }
 }
 

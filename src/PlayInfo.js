@@ -7,12 +7,18 @@ class PlayInfo {
   #generatedLotto;
   #winningNumbers;
   #bonusNumber;
+  #winningStats;
 
   constructor() {
     this.#amount = null;
     this.#generatedLotto = null;
     this.#winningNumbers = null;
     this.#bonusNumber = null;
+    this.#winningStats = null;
+  }
+
+  getAmount() {
+    return this.#amount;
   }
 
   setAmount(amount) {
@@ -44,6 +50,14 @@ class PlayInfo {
 
   setBonusNumber(number) {
     this.#bonusNumber = number;
+  }
+
+  getWinningStats() {
+    return this.#winningStats;
+  }
+
+  setWinningStats(result) {
+    this.#winningStats = result;
   }
 
   getLottoInfo() {

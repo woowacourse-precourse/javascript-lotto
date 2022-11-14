@@ -34,7 +34,7 @@ class App {
     Console.readLine('', (inputValue) => {
       const number = toNumberType(inputValue);
       lottoGame.drawBonus(number);
-      lottoGame.checkWinningResult();
+      lottoGame.fetchGameResult();
     });
   }
 
