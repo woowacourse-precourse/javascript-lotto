@@ -32,13 +32,13 @@ class LottoMachine {
     this.printMachineOutput(quantity);
   }
   getPurchaseQuantity(money) {
-    return parseInt(money / 1000);
+    return parseInt(money / LOTTO_RANGE.PRICE);
   }
 
   printMachineOutput(quantity) {
     let lottoMachineOutput = [];
 
-    for (let sequence = 1; sequence <= quantity; sequence++) {
+    for (let sequence = 1; sequence <= quantity; sequence += 1) {
       let autoNumber = this.getAutoNumber();
 
       let stringAutoNumber = autoNumber.join(", ");

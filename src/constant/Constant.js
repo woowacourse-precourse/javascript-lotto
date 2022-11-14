@@ -8,6 +8,7 @@ const LOTTO_RANGE = {
   START_NUMBER: 1,
   END_NUMBER: 45,
   LENGTH: 6,
+  PRICE: 1000,
 };
 
 const ERROR_MESSAGE = {
