@@ -12,6 +12,7 @@ class App {
     this.third = 0; //3등
     this.second = 0; //2등
     this.first = 0; //1등
+    this.RateOfReturn; //수익률(총 상금)
   }
 
   play() { //게임시작
@@ -100,10 +101,13 @@ class App {
     let secondPrize = 30000000;
     let firstPrize = 2000000000;
 
-    let prize = this.fifth*fifthPrize + this.fourth*fourthPrize + this.third*thirdPrize + this.second*secondPrize + this.first*firstPrize; //수익률
+    this.RateOfReturn = this.fifth*fifthPrize + this.fourth*fourthPrize + this.third*thirdPrize + this.second*secondPrize + this.first*firstPrize; //수익률
 
   }
 
+  RoundOffRateOfReturn(){ //수익률 반올림하기
+    MissionUtils.Console.print(this.RateOfReturn.toFixed(1));
+  }
 }
 
 module.exports = App;
