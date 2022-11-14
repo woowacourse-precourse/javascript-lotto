@@ -7,6 +7,7 @@ class App {
   play() {
     this.inputPurchaseAmount();
     this.inputWinnerNumber();
+    this.inputBonusNumber();
   }
   inputPurchaseAmount() {
     MissionUtils.Console.readLine(
@@ -31,6 +32,15 @@ class App {
         const winnerNumberArr = winnerNumber.split(",");
         Validation.checkInputWinnerNumber(winnerNumberArr);
         this.winnerNumber = winnerNumberArr;
+      }
+    );
+  }
+  inputBonusNumber() {
+    MissionUtils.Console.readLine(
+      GUIDE_MESSAGE.BONUSNUMBER_INPUT,
+      (bonusNumber) => {
+        const bonusNumberArr = bonusNumber.split("");
+        Validation.checkBonusNumber(bonusNumberArr);
       }
     );
   }
