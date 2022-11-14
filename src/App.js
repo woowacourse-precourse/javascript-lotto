@@ -1,4 +1,4 @@
-const { readLine, print, close } = require("@woowacourse/mission-utils").Console;
+const { Console } = require("@woowacourse/mission-utils");
 const Generator = require('./Generator');
 const Lotto = require("./Lotto");
 
@@ -11,11 +11,9 @@ class App {
   }
 
   getPurchaseAmount() {
-    print('구입금액을 입력해 주세요.');
-    readLine('', (purchaseAmount) =>  {
+    Console.readLine('구입금액을 입력해 주세요.\n', (purchaseAmount) =>  {
       this.#purchaseAmount = purchaseAmount;
       this.Generator.generateRandomNumbers(purchaseAmount);
-      print(' ');
       this.printNumberOfRandomNumbers(this.Generator.getNumberOfRandomNumbers());
       this.printRandomNumbers(this.Generator.getRandomNumbers());
       this.getLottoNumber();
@@ -23,29 +21,28 @@ class App {
   }
 
   printNumberOfRandomNumbers(numberOfRandoms) {
-    print(`${numberOfRandoms}개를 구매했습니다.`);
+    Console.print(`\n${numberOfRandoms}개를 구매했습니다.`);
   }
 
   printRandomNumbers(randomNumbers) {
     randomNumbers.forEach((numbers) => {
-      print(numbers);
+      Console.print(`[${numbers.sort((a, b) => {
+        return a - b;
+      }).join(', ')}]`);
     })
   }
 
   getLottoNumber() {
-    print('\n당첨 번호를 입력해 주세요.');
-    readLine('', (numbers) => {
+    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (numbers) => {
       this.#lotto = new Lotto(numbers.split(','));
       this.getBonusNumber();
     })
   }
 
   getBonusNumber() {
-    print('\n보너스 번호를 입력해 주세요.');
-    readLine('', (number) => {
-      close();
+    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (number) => {
+      Console.close();
       this.#lotto.setBonusNumber(number);
-      print(' ')
       this.getWinningStats();
     })
   }
@@ -68,7 +65,6 @@ class App {
     let count = 0;
     let bonus = false;
     let lottoNumber = this.#lotto.getLotto();
-    console.log(randomNumbers, lottoNumber);
     randomNumbers.forEach((number) => {
       if (lottoNumber.includes(number)) {
         count += 1;
@@ -91,20 +87,22 @@ class App {
     total += countWinning[4] * 2000000000;
 
     const rateOfReturn = ((total / this.#purchaseAmount) * 100).toFixed(1);
-    print(`총 수익률은 ${rateOfReturn}%입니다.`);
+    Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
   }
 
   printWinningStats(countWinning) {
-    print(`3개 일치 (5,000원) - ${countWinning[0]}개`);
-    print(`4개 일치 (50,000원) - ${countWinning[1]}개`);
-    print(`5개 일치 (1,500,000원) - ${countWinning[2]}개`);
-    print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${countWinning[3]}개`);
-    print(`6개 일치 (2,000,000,000원) - ${countWinning[4]}개`);
+    Console.print('\n당첨 통계');
+    Console.print('---');
+    Console.print(`3개 일치 (5,000원) - ${countWinning[0]}개`);
+    Console.print(`4개 일치 (50,000원) - ${countWinning[1]}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${countWinning[2]}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${countWinning[3]}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${countWinning[4]}개`);
   }
 
   play() {
     this.getPurchaseAmount();
   }
 }
-new App().play();
+
 module.exports = App;

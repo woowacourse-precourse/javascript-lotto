@@ -1,7 +1,7 @@
-const { pickUniqueNumbersInRange } = require("@woowacourse/mission-utils").Random;
+const { Random } = require("@woowacourse/mission-utils");
 
 class Generator {
-  #numberOfPurchaseAmount;
+  #purchaseAmount;
   #randomNumbers = [];
 
   validatePurchaseAmount(purchaseAmount) {
@@ -16,21 +16,19 @@ class Generator {
   
   generateRandomNumbers(purchaseAmount) {
     this.validatePurchaseAmount(purchaseAmount);
-    this.#numberOfPurchaseAmount = purchaseAmount;
+    this.#purchaseAmount = purchaseAmount;
     for (let i = 0; i < this.getNumberOfRandomNumbers(); i++) {
-      this.#randomNumbers.push(pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => {
-        return a - b;
-      }));
+      this.#randomNumbers.push(Random.pickUniqueNumbersInRange(1, 45, 6));
     }
   }
 
   getNumberOfRandomNumbers() {
-    return Number(this.#numberOfPurchaseAmount / 1000)
+    return Number(this.#purchaseAmount / 1000)
   }
 
   getRandomNumbers() {
     return this.#randomNumbers
   }
 }
-new Generator().generateRandomNumbers('1000');
+
 module.exports = Generator;
