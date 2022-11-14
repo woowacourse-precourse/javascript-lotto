@@ -15,6 +15,8 @@ class BonusNum {
     this.validateForNumRange(bonus)
 
     this.validateForNotNumber(bonus)
+
+    this.validateForDuplication(bonus, winningNumForDuplication)
   }
 
   validateForNumRange(bonus) {
@@ -28,7 +30,14 @@ class BonusNum {
       throw new Error('[ERROR] 보너스 번호는 숫자로 이뤄진 값이어야 합니다.')
     }
   }
-  
+
+  validateForDuplication(bonus,winningNumForDuplication) {
+    if (winningNumForDuplication.indexOf(bonus) !== -1) {
+      throw Error('[ERROR] 당첨 번호와 동일한 값입니다')
+    }
+  }
+
+
 }
 
 module.exports = BonusNum
