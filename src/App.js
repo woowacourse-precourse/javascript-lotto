@@ -12,7 +12,7 @@ class App {
   }
 
   play() {
-    Console.readline("구입금액을 입력해 주세요.\n", function (money) {
+    Console.readLine("구입금액을 입력해 주세요.\n", function (money) {
       validateMoney(money);
       const lottos = this.#lottoMachine.buyLottos(money);
       /* 당첨 번호 입력 */
