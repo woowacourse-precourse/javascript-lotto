@@ -1,6 +1,3 @@
-const MissionUtils = require('@woowacourse/mission-utils');
-const Console = MissionUtils.Console;
-
 class Validator {
   static isNumber(target) {
     if (isNaN(target)) throw new Error('[ERROR] 숫자가 아닙니다.');
@@ -14,8 +11,15 @@ class Validator {
 
   static isNotDuplicated(list, len = 6) {
     const set = new Set(list);
-    if (set.size !== len) {
+    if (set.size < len) {
       throw new Error('[ERROR] 중복된 숫자가 있습니다.');
+    }
+    return true;
+  }
+
+  static isNotExceedAmount(list, len = 6) {
+    if (list.length > 6) {
+      throw new Error('[ERROR] 6개 이하의 숫자를 입력하세요.');
     }
     return true;
   }
