@@ -40,7 +40,7 @@ class LottoCompany {
   }
 
   makeWinningNumbers(next) {
-    Console.readLine("당첨 번호를 입력해 주세요\n", (input) => {
+    Console.readLine("\n당첨 번호를 입력해 주세요\n", (input) => {
       this.validateWinningNumbers(input);
       this.#winningNumbers = input.split(",").map((elem) => Number(elem));
       if (next) next();
@@ -61,7 +61,7 @@ class LottoCompany {
   }
 
   makeBonusNumber(next) {
-    Console.readLine("보너스 번호를 입력해 주세요\n", (input) => {
+    Console.readLine("\n보너스 번호를 입력해 주세요\n", (input) => {
       this.validateBonusNumber(input);
       this.#bonusNumber = Number(input);
       if (next) next();
@@ -115,7 +115,7 @@ class LottoCompany {
     ranks.forEach((rank) => {
       rankCounts[rank - 1] += 1;
     });
-    let reports = "당첨 통계\n---\n";
+    let reports = "\n당첨 통계\n---\n";
     for (let i = 4; i > -1; i -= 1) {
       reports += `${this.rankToResult(i + 1)[0]}개 일치`;
       if (i === 1) reports += ", 보너스 볼 일치";
