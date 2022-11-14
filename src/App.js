@@ -1,5 +1,5 @@
 const Io = require('./Io');
-const { QUESTION } = require('./constants');
+const { QUESTION, PRINT_SENTENSE } = require('./constants');
 const User = require('./User');
 const Lotto = require('./Lotto');
 
@@ -15,7 +15,9 @@ class App {
         this.#lotto = new Lotto(winninNumbers.split(',').map(Number));
         Io.inputByUser(QUESTION.bonusNumber, bonusNumber => {
           this.#lotto.setBonusNumber(+bonusNumber);
-          this.#lotto.getResult(this.#user.lottoList);
+          const result = this.#lotto.getResult(this.#user.lottoList);
+          Io.printConsole(PRINT_SENTENSE.totalResult);
+          this.#lotto.printResult(result);
         });
       });
     });

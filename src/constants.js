@@ -13,7 +13,8 @@ const ERR_MSG = Object.freeze({
 });
 
 const PRINT_SENTENSE = Object.freeze({
-  purchaseAmout: '개를 구매했습니다.'
+  purchaseAmout: '개를 구매했습니다.',
+  totalResult: '당첨 통계\n---'
 });
 
 const PRIZE_MONEY = Object.freeze({

@@ -4,8 +4,10 @@ const {
   MIN_LOTTO_NUMBER,
   MAX_LOTTO_NUMBER,
   LOTTO_LENGTH,
-  RANKS
+  RANKS,
+  RESULT_MSG
 } = require('./constants');
+const Io = require('./Io');
 
 class Lotto {
   #numbers;
@@ -25,6 +27,11 @@ class Lotto {
     return newLotto;
   }
 
+  printResult(result) {
+    for (const rank in RANKS) {
+      Io.printConsole(`${RESULT_MSG[rank]} - ${result[rank]}개`);
+    }
+  }
   getResult(lottos) {
     const result = {};
 
