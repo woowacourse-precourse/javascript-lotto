@@ -35,11 +35,17 @@ class App {
     for (var count = 0; count < this.#lottoNum; count++) {
       this.issuedLottoNum.push(Random.pickUniqueNumbersInRange(1, 45, 6));
     }
+    this.printIssuedLotto();
   }
 
   printIssuedLotto() {
     Console.print(`\n${this.#lottoNum}개를 구매했습니다.`);
+    for (var count = 0; count < this.#lottoNum; count++) {
+      Console.print(this.issuedLottoNum[count]);
+    }
   }
 }
+const app = new App();
+app.play();
 
 module.exports = App;
