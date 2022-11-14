@@ -5,8 +5,9 @@ const SENTENCE = Object.freeze({
   BONUS_NUMBERS: '보너스 번호를 입력해 주세요.',
   RESULT: '당첨 통계',
   DIVIDING_LINE: '---',
-  MATCH: '개 일치',
   MATCH_BONUS: '보너스 볼 일치',
+  MATCH_COUNT: (matchCount) => `${matchCount}개 일치`,
+  PROFIT_RATE: (profitRate) => `총 수익률은 ${profitRate}%입니다.`,
 });
 
 const UNIT_MONEY = 1000;
