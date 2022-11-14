@@ -5,3 +5,5 @@ const ERROR = {
   overflowNumber: "[ERROR] 1 ~ 45의 범위를 넘어가는 번호",
   notSatisfiedQuantity: "[ERROR] 쉼표(,)로 구분된 숫자의 수가 6개가 아님",
 };
+
+module.exports = { ERROR };
