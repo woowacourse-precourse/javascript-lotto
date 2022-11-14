@@ -3,11 +3,9 @@ const { LOTTO, CALCULATION } = require("./constants/values");
 
 class Lotto {
   #numbers;
-  #lottoList;
 
   constructor(numbers) {
     this.#numbers = [];
-    this.#lottoList = [];
     this.changeIntoArray(numbers);
   }
 
@@ -56,11 +54,11 @@ class Lotto {
   }
 
   changeIntoNumber() {
-    this.#lottoList = this.#numbers.map((number) => {
+    this.#numbers = this.#numbers.map((number) => {
       return (this.#numbers = parseInt(number, CALCULATION.DECIMAL_NUMBER));
     });
 
-    return this.#lottoList;
+    return this.#numbers;
   }
 }
 
