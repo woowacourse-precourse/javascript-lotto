@@ -1,17 +1,17 @@
-const LOTTO_PRICE = 1000;
+const { LOTTO_PRICE, ERROR_MESSAGE } = require('./Constants.js');
 
 const validateMoney = money => {
   if (Number.isNaN(+money)) {
-    throw new Error('[ERROR] 올바르지 않은 금액입니다.');
+    throw new Error(ERROR_MESSAGE.INVALID_INPUT_NOT_NUM);
   }
   if (Number(money) % LOTTO_PRICE !== 0) {
-    throw new Error(`[ERROR] ${LOTTO_PRICE}원 단위로 입력해야 합니다.`);
+    throw new Error(ERROR_MESSAGE.INVALID_MONEY_UNIT);
   }
 };
 
 const validateBonusNumber = (number, winningNumbers) => {
   if (winningNumbers.getNumbers().includes(+number)) {
-    throw new Error('[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.');
+    throw new Error(ERROR_MESSAGE.BONUS_NUMBER_DUPLICATE);
   }
 };
 
