@@ -31,4 +31,11 @@ describe('LottoGame 클래스 테스트', () => {
     const userLottoNumbers = '1,2,3,4,5,6';
     expect(lottoGame.countCorrectLottoNumbers(userLottoNumbers)).toBe(6);
   });
+
+  test('✨ 유저가 뽑은 로또 번호에 보너스 번호가 포함되어 있으면 true를 반환한다.', () => {
+    const lottoGame = new LottoGame();
+    const userLottoNumbers = [1, 2, 3, 4, 5, 44];
+    const bonusNumber = '44';
+    expect(lottoGame.hasBonusLottoNumber(bonusNumber, userLottoNumbers)).toBeTruthy();
+  });
 });
