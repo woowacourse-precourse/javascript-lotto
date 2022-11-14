@@ -14,6 +14,7 @@ class CheckError {
     // TODO : 1 - 45 사이 숫자.
     const lottoNumberSet = new Set(lottoNumbers);
     const arrayToString = lottoNumbers.join("");
+    console.log(CheckError.checkEachNumberInRange(lottoNumbers), lottoNumbers);
     if (lottoNumbers.length !== 6)
       // 로또 길이가 6이 아닐 때
       throw new Error(ERROR_MESSAGE.NOT_SIX_LENGTH);
@@ -23,6 +24,17 @@ class CheckError {
     else if (isNaN(arrayToString))
       // 로또에 숫자 이외의 문자가 있을 때.
       throw new Error(ERROR_MESSAGE.NOT_NUMBER_IN_LOTTO);
+    else if (!CheckError.checkEachNumberInRange(lottoNumbers))
+      // 로또에 1 ~ 45 범위를 벗아난 숫자가 있을 때
+      throw new Error(ERROR_MESSAGE.NOT_RANGE_LOTTO_NUMBER);
+  }
+
+  static checkEachNumberInRange(lottoNumbers) {
+    let isInRange = true;
+    lottoNumbers.forEach((number) => {
+      if (!CheckError.isRangeInLottoNumber(number)) isInRange = false;
+    });
+    return isInRange;
   }
 
   static checkLottoSort(lottoArray) {
