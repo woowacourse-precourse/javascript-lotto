@@ -5,6 +5,7 @@ const Score = require("./Score");
 
 class App {
   constructor() {
+    this.result = new Result();
     this.score = new Score();
     this.lotto = new Lotto();
     this.winningNum = [];
@@ -41,6 +42,13 @@ class App {
       (answer) => {
         this.bonusNum = Number(answer);
         const scores = this.score.getLottoScores(lottoArr, this.winningNum);
+        const lottoResult = this.result.createLottoResult(
+          scores,
+          this.bonusNum,
+          lottoArr
+        );
+        const bonusResult = this.result.createBonusResult();
+        console.log(bonusResult);
       }
     );
   }
