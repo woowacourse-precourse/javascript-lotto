@@ -1,4 +1,3 @@
-const MissionUtils = require("@woowacourse/mission-utils");
 class Lotto {
   #numbers;
 
@@ -21,7 +20,7 @@ class Lotto {
         throw new Error("[ERROR] 로또 번호는 숫자여야 합니다.");
       }
       if (!(number >= 1 && number <= 45)) {
-        throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        throw new Error("[ERROR] 로또 번호는 1~45사이여야 합니다.");
       }
     });
   }
@@ -32,6 +31,10 @@ class Lotto {
 
   getNumber() {
     return this.#numbers;
+  }
+
+  printString() {
+    return "[" + this.#numbers.toString().replace(/,/g, ", ") + "]";
   }
 }
 
