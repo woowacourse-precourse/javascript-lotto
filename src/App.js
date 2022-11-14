@@ -17,13 +17,18 @@ class App {
 
   play() { //게임시작
     this.getMoney();
-    this.getLottoAmount();
+    this.getWinNumber();
+    this.getBonusNumber();
+    this.getRandomNumber();
+    this.getWinResult();
+    this.getRateOfReturn();
   }
 
   getMoney(){ //구매금액 입력받기
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
         this.lottoMoney = money;
     });
+    this.getLottoAmount();
   }
 
   getLottoAmount(){ //로또수량 계산하기 
@@ -48,6 +53,7 @@ class App {
     for(let i = 0; i < this.lottoAmount; i++){
       this.lottoRandomNum[i] = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
     }
+    this.sortRandomNumber();
   }
 
   sortRandomNumber(){ //로또 랜덤번호 오름차순 정렬하기
@@ -55,8 +61,8 @@ class App {
       this.lottoRandomNum[i].sort(function(a, b){
         return a-b;
       });
+      MissionUtils.Console.print(this.lottoRandomNum[i]);
     }
-    MissionUtils.Console.print(this.lottoRandomNum);
   }
 
   getWinResult(){ //당첨내역 계산하기
@@ -81,6 +87,7 @@ class App {
         this.first++;
       }
     }
+    this.printWinResult();
   }
 
   printWinResult(){ //당첨내역 출력하기
@@ -102,10 +109,11 @@ class App {
     let firstPrize = 2000000000;
 
     this.RateOfReturn = this.fifth*fifthPrize + this.fourth*fourthPrize + this.third*thirdPrize + this.second*secondPrize + this.first*firstPrize; //수익률
-
+    this.roundOffRateOfReturn();
+    
   }
 
-  RoundOffRateOfReturn(){ //수익률 반올림하기
+  roundOffRateOfReturn(){ //수익률 반올림하기
     MissionUtils.Console.print(this.RateOfReturn.toFixed(1));
   }
 }
