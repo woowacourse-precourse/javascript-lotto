@@ -6,9 +6,6 @@ describe('LottoValidation 클래스 테스트', () => {
       LottoValidation.checkNumberRange(46);
     }).toThrow('[ERROR]');
     expect(() => {
-      LottoValidation.checkNumberRange(1e1);
-    }).toThrow('[ERROR]');
-    expect(() => {
       LottoValidation.checkNumberRange(0);
     }).toThrow('[ERROR]');
     expect(() => {

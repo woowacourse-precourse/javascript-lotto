@@ -31,11 +31,8 @@ class LottoValidation {
   }
 
   static checkInputIsNumber(input) {
-    const regExp = /^[0-9]+/g;
+    const regExp = /^[0-9]*$/g;
     if (!regExp.test(input)) {
-      throw new Error(ERROR_MESSAGE.number);
-    }
-    if (parseInt(input, 10) !== Number(input)) {
       throw new Error(ERROR_MESSAGE.number);
     }
   }
