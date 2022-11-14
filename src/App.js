@@ -82,7 +82,7 @@ class App {
     for(let i = 0 ; i < this.#lottoNumber ; i++){
       let tmp = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, Constant.LOTTO_LENGTH);
       tmp = tmp.sort((a,b) => utils.ascSort(a, b));
-      utils.print(tmp);
+      utils.arrayPrint(tmp);
       result.push(new Lotto(tmp));
     }
     return result;

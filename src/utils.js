@@ -52,4 +52,14 @@ function onlyNumber(x){
     if(isNaN(Number(x))) throw new Error("[ERROR] 숫자가 아닙니다.");
 }
 
-module.exports = {print, scan, ascSort, validateLotto, onlyNumber};
+function arrayPrint(array){
+    let result = '[';
+    for(let i = 0 ; i < array.length-1 ; i++){
+        result += array[i]+', ';
+    }
+    result += array[array.length-1]+']';
+    print(result);
+}
+
+
+module.exports = {print, scan, ascSort, validateLotto, onlyNumber, arrayPrint};
