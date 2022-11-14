@@ -1,5 +1,6 @@
 const Model = require("../model/Model")
 const View = require("../view/View")
+const Profit = require("./Profit");
 
 class Ranks{
   constructor(lottoChart){
@@ -33,6 +34,12 @@ class Ranks{
     })
 
     this.view.printRank(this.model.getRank());
+    
+    this.next();
+  }
+  next(){
+    const profit = new Profit(this.model.chart);
+    profit.controll();
   }
 }
 
