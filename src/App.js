@@ -14,6 +14,7 @@ class App {
   printNewLine() {
     console.log("");
   }
+
   lottoBunusNumberInputCb = (input) => {
     Validation.validateIsNotNumber(...input);
     this.$LottoBonus = new LottoBonus(Number(input));
