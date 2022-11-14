@@ -5,8 +5,6 @@ const { LOTTO_AMOUNT } = require('../../utils/constants');
 class LottoIncomeDomain extends LottoCalculator {
   #income;
 
-  #payment;
-
   constructor(inputs) {
     super(inputs);
 
