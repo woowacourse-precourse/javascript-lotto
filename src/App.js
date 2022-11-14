@@ -130,6 +130,27 @@ class App {
     this.resultMessage(this.checkResultRank, rate);
   }
 
+  resultMessage(checkResultRank, rate) {
+    MissionUtils.Console.print("\n당첨 통계");
+    MissionUtils.Console.print("---");
+    MissionUtils.Console.print(
+      `3개 일치 (5,000원) - ${checkResultRank.Fifth}개`
+    );
+    MissionUtils.Console.print(
+      `4개 일치 (50,000원) - ${checkResultRank.Fourth}개`
+    );
+    MissionUtils.Console.print(
+      `5개 일치 (1,500,000원) - ${checkResultRank.Third}개`
+    );
+    MissionUtils.Console.print(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${checkResultRank.Second}개`
+    );
+    MissionUtils.Console.print(
+      `6개 일치 (2,000,000,000원) - ${checkResultRank.First}개`
+    );
+    MissionUtils.Console.print(`총 수익률은 ${rate}%입니다.`);
+    MissionUtils.Console.close();
+  }
 }
 
 module.exports = App;
