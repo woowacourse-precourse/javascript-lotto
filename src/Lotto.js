@@ -22,13 +22,11 @@ class Lotto {
         throw new Error(ERROR_NOT_BELONG);
       }
     });
-
-    if (new Set(numbers).size !== 6) {
-      throw new Error(ERROR_NOT_DIFFERENT);
-    }
-
     if (numbers.length !== 6) {
       throw new Error(ERROR_NOT_LENGTH_6);
+    }
+    if (new Set(numbers).size !== 6) {
+      throw new Error(ERROR_NOT_DIFFERENT);
     }
   }
 }

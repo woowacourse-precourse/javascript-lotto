@@ -3,6 +3,7 @@ const Lotto = require('./Lotto');
 const PurchaseLotto = require('./PurchaseLotto');
 const WinningNumber = require('./WinningNumber');
 const WinningRank = require('./WinningRank');
+const Validate = require('./Validate');
 const {
   PURCHASE_MESSAGE,
   DEFAULT_PRICE,
@@ -21,12 +22,19 @@ class App {
       this.purchaseMoney = Number(purchaseMoney);
       this.purchaseCount = this.purchaseMoney / DEFAULT_PRICE;
 
-      const purchaseLotto = new PurchaseLotto(this.purchaseCount);
-      this.purchaseLotto = purchaseLotto;
+      const validate = new Validate();
+      validate.validateMoney(this.purchaseMoney);
 
-      this.purchaseLotto.printPurchaseCountMessage(this.purchaseCount);
-      this.getPurchaseLottoNumber();
+      this.printPurchaseMessage();
     });
+  }
+
+  printPurchaseMessage() {
+    const purchaseLotto = new PurchaseLotto(this.purchaseCount);
+    this.purchaseLotto = purchaseLotto;
+
+    this.purchaseLotto.printPurchaseCountMessage(this.purchaseCount);
+    this.getPurchaseLottoNumber();
   }
 
   getPurchaseLottoNumber() {
@@ -49,8 +57,8 @@ class App {
   getBonusNumber() {
     Console.readLine(BONUS_NUMBER_MESSAGE, (bonusNumber) => {
       this.bonusNumber = this.winningNumber.setBonusNumber(bonusNumber);
-      const lotto = new Lotto(this.bonusNumber);
-      lotto.validateBonus();
+      const validate = new Validate();
+      validate.validateBonusNumber(this.bonusNumber);
       this.printStatisticsMessage();
     });
   }
