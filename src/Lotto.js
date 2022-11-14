@@ -9,6 +9,7 @@ class Lotto {
   validate(numbers) {
     this.checkNumber(numbers);
     this.checkCountNumber(numbers);
+    this.checkDuplicate(numbers);
   }
 
   checkNumber(numbers) {
@@ -25,10 +26,19 @@ class Lotto {
       }
     });
   }
+
   checkCountNumber(numbers) {
     const NUMBER_LENGTH = 6;
     if (numbers.length !== NUMBER_LENGTH) {
       throw new Error(`[ERROR] 당첨 번호는 ${NUMBER_LENGTH}개여야 합니다.`);
+    }
+  }
+
+  checkDuplicate(numbers) {
+    const NUMBER_LENGTH = 6;
+    const deduplication = new Set(numbers);
+    if (deduplication.size !== NUMBER_LENGTH) {
+      throw new Error("[ERROR] 당첨 번호는 중복되지 않아야 합니다.");
     }
   }
 }
