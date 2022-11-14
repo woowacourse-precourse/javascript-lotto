@@ -1,6 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const LottoCalculator = require("./LottoCalculator");
 const { ERROR_MESSAGE, INPUT_MESSAGE } = require("./constants/MessageConstants");
+const { RANGE, LOTTO } = require("./constants/NumberConstants");
 
 class LottoManager {
   #winningNumbers;
@@ -35,21 +36,21 @@ class LottoManager {
 
   checkInputWinningNumbers() {
     const winningNumbers = new Set(this.#winningNumbers);
-    const filteredWinningNumbers = this.filterRange(this.#winningNumbers, 1, 45)
+    const filteredWinningNumbers = this.filterRange(this.#winningNumbers, RANGE.START, RANGE.END);
   
     if (this.#winningNumbers.includes(NaN) === true) {
       throw Error(ERROR_MESSAGE.IS_NOT_A_NUMBER);
     }
 
-    if (this.#winningNumbers.length !== 6) {
+    if (this.#winningNumbers.length !== LOTTO.SIX_NUMBERS) {
       throw Error(ERROR_MESSAGE.IS_NOT_A_SIX_LENGTH);
     }
 
-    if (winningNumbers.size !== 6) {
+    if (winningNumbers.size !== LOTTO.SIX_NUMBERS) {
       throw Error(ERROR_MESSAGE.WINNING_NUMBERS_DO_NOT_OVERLAP);
     }
 
-    if (filteredWinningNumbers.length !== 6) {
+    if (filteredWinningNumbers.length !== LOTTO.SIX_NUMBERS) {
       throw Error(ERROR_MESSAGE.RANGE_IS_WRONG);
     }
   }
@@ -72,7 +73,7 @@ class LottoManager {
       throw Error(ERROR_MESSAGE.IS_NOT_A_NUMBER);
     }
 
-    if ((this.#bonusNumber < 1) || (45 < this.#bonusNumber)) {
+    if ((this.#bonusNumber < RANGE.START) || (RANGE.END < this.#bonusNumber)) {
       throw Error(ERROR_MESSAGE.RANGE_IS_WRONG);
     }
 

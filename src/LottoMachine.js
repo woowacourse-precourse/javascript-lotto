@@ -3,7 +3,7 @@ const Lotto = require("./Lotto");
 const User = require("./User");
 const LottoManager = require("./LottoManager");
 const { MESSAGE, INPUT_MESSAGE, ERROR_MESSAGE } = require("./constants/MessageConstants");
-
+const { MONEY, RANGE, LOTTO } = require("./constants/NumberConstants");
 
 class LottoMachine {
   #money;
@@ -46,18 +46,18 @@ class LottoMachine {
   }
 
   checkInputMoney() {
-    if (this.#money % 1000 !== 0) {
+    if (this.#money % MONEY.IN_THOUSAND !== 0) {
       throw Error(ERROR_MESSAGE.INPUT_MONEY_BE_IN_THOUSANDS);
     }
   }
 
   printLottoAmount() {
-    this.#count = this.#money / 1000;
+    this.#count = this.#money / MONEY.IN_THOUSAND;
     MissionUtils.Console.print(`\n${this.#count}` + MESSAGE.BUY_COUNT);
   }
 
   makeLottoNumber() {
-    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(RANGE.START, RANGE.END, LOTTO.SIX_NUMBERS);
     return numbers;
   }
 

@@ -2,7 +2,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const User = require("./User");
 const LottoMachine = require("./LottoMachine");
 const { RESULT_MESSAGE } = require("./constants/MessageConstants");
-
+const { MONEY, REWARD_MONEY, RANK, LOTTO, CALCULATE } = require("./constants/NumberConstants");
 
 class LottoCalculator {
   winningNumbers;
@@ -10,14 +10,14 @@ class LottoCalculator {
   usersLottos;
   usersMoney;
   usersTotalRank = [];
-  rankReward = [0, 2000000000, 30000000, 1500000, 50000, 5000];
-  checkRank = [0, 0, 0, 0, 0, 0];
-  rewardMoney = 0;
+  rankReward = [REWARD_MONEY.BANG, REWARD_MONEY.FIRST, REWARD_MONEY.SECOND, REWARD_MONEY.THIRD, REWARD_MONEY.FOURTH, REWARD_MONEY.FIFTH];
+  checkRank = new Array(LOTTO.SIX_NUMBERS).fill(0);
+  rewardMoney = MONEY.ZERO;
   yield;
 
   constructor(usersLottos) {
     this.usersLottos = usersLottos;
-    this.usersMoney = this.usersLottos.length * 1000;
+    this.usersMoney = this.usersLottos.length * MONEY.IN_THOUSAND;
   }
 
   calculate() {
@@ -40,15 +40,15 @@ class LottoCalculator {
     });
     
     switch(count) {
-      case 6: return 1;
-      case 5:
+      case LOTTO.SIX_MATCHES: return RANK.FIRST_PLACE;
+      case LOTTO.FIVE_MATCHES:
         if (usersLotto.includes(this.bonusNumber)) {
-          return 2;
+          return RANK.SECOND_PLACE;
         }
-        return 3;
-      case 4: return 4;
-      case 3: return 5;
-    } return 0;
+        return RANK.THIRD_PLACE;
+      case LOTTO.FOUR_MATCHES: return RANK.FOURTH_PLACE;
+      case LOTTO.THREE_MATCHES: return RANK.FIFTH_PLACE;
+    } return RANK.BANG;
   }
 
   calculateResult() {
@@ -56,16 +56,16 @@ class LottoCalculator {
       this.rewardMoney += this.rankReward[rank];
       this.checkRank[rank] += 1;
     });    
-    this.yield = ((this.rewardMoney / this.usersMoney) * 100).toFixed(1);
+    this.yield = ((this.rewardMoney / this.usersMoney) * CALCULATE.MAKE_PERCENTAGE).toFixed(CALCULATE.ROUND_OFF_FROM_SECOND_PLACE);
   }
 
   printResult() {
     MissionUtils.Console.print(RESULT_MESSAGE.OPENING_MESSAGE);
-    MissionUtils.Console.print(RESULT_MESSAGE.FIFTH_PLACE + `${this.checkRank[5]}` + RESULT_MESSAGE.UNIT);
-    MissionUtils.Console.print(RESULT_MESSAGE.FOURTH_PLACE + `${this.checkRank[4]}` + RESULT_MESSAGE.UNIT);
-    MissionUtils.Console.print(RESULT_MESSAGE.THIRD_PLACE + `${this.checkRank[3]}` + RESULT_MESSAGE.UNIT);
-    MissionUtils.Console.print(RESULT_MESSAGE.SECOND_PLACE + `${this.checkRank[2]}` + RESULT_MESSAGE.UNIT);
-    MissionUtils.Console.print(RESULT_MESSAGE.FIRST_PLACE + `${this.checkRank[1]}` + RESULT_MESSAGE.UNIT);
+    MissionUtils.Console.print(RESULT_MESSAGE.FIFTH_PLACE + `${this.checkRank[RANK.FIFTH_PLACE]}` + RESULT_MESSAGE.UNIT);
+    MissionUtils.Console.print(RESULT_MESSAGE.FOURTH_PLACE + `${this.checkRank[RANK.FOURTH_PLACE]}` + RESULT_MESSAGE.UNIT);
+    MissionUtils.Console.print(RESULT_MESSAGE.THIRD_PLACE + `${this.checkRank[RANK.THIRD_PLACE]}` + RESULT_MESSAGE.UNIT);
+    MissionUtils.Console.print(RESULT_MESSAGE.SECOND_PLACE + `${this.checkRank[RANK.SECOND_PLACE]}` + RESULT_MESSAGE.UNIT);
+    MissionUtils.Console.print(RESULT_MESSAGE.FIRST_PLACE + `${this.checkRank[RANK.FIRST_PLACE]}` + RESULT_MESSAGE.UNIT);
     MissionUtils.Console.print(RESULT_MESSAGE.YIELD_FRONT_MESSAGEL + `${this.yield}` + RESULT_MESSAGE.YIELD_BACK_MESSAGEL);
 
     MissionUtils.Console.close();
