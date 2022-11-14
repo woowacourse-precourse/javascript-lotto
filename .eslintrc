@@ -2,7 +2,8 @@
   "rules": {
     "max-depth": ["error", 2],
     "indent": ["error", 2],
-    "quotes": ["error", "double"]
+    "quotes": ["error", "double"],
+    "max-lines-per-function": ["error", 15]
   },
   "env": {
     "es6": true,
