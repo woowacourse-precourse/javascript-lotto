@@ -31,6 +31,12 @@ class Player {
   addWinMoney(winMoney) {
     this.winMoney += winMoney;
   }
+
+  getProfitRate() {
+    const profitRate = (this.winMoney / this.spentMoney) * 100;
+
+    return profitRate.toFixed(1);
+  }
 }
 
 module.exports = Player;
