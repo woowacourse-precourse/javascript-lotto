@@ -38,9 +38,9 @@
   - [x] 로또 게임 종료 : `endLottoGame`
 
 ## 로또 게임을 이용하는 사람인 `User` 클래스를 생성한다.
-- [ ] 총 구입 금액을 입력한다. : `setTotalPurchaseAmount`
-- [ ] 당첨번호를 입력한다. : `setWinningLottoNumbers`
-- [ ] 보너스 번호를 입력한다. : `setBonusLottoNumber`
+- [x] 총 구입 금액을 입력한다. : `inputTotalPurchaseAmount`
+- [ ] 당첨번호를 입력한다. : `inputWinningLottoNumbers`
+- [ ] 보너스 번호를 입력한다. : `inputBonusLottoNumber`
 
 ## 유효한 값인지 판단하는 `Validatior` 클래스를 생성한다.
 

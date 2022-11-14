@@ -1,5 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
+const User = require('./User');
 const Validator = require('./Validator');
 const MESSAGE = require('./constants/message');
 const { RANKING, UNIT_OF_AMOUNT, RANKING_ARRAY } = require('./constants/gameSetting');
@@ -12,12 +13,13 @@ class LottoGameMachine {
     this.totalPurchaseAmount = 0;
     this.lottosResult = [];
     this.statistics = {};
+    this.user = new User();
     this.Lottos = new Map();
     this.winningLotto = new Map();
   }
 
   startLottoGameMachine() {
-    this.setTotalPurchaseAmount();
+    this.user.inputTotalPurchaseAmount(this.setTotalPurchaseAmount.bind(this));
   }
 
   endLottoGame() {
@@ -27,8 +29,6 @@ class LottoGameMachine {
   printLottoNumbers() {
     Console.print(MESSAGE.OUTPUT.totalPurchaseAmount(this.Lottos.size));
     this.Lottos.forEach((lotto) => Console.print(`[${lotto.getLottoNumbers().join(', ')}]`));
-
-    return this;
   }
 
   printStatistics() {
@@ -41,25 +41,20 @@ class LottoGameMachine {
     return this;
   }
 
-  setTotalPurchaseAmount() {
-    Console.readLine(MESSAGE.INPUT.TOTAL_PURCHASE_AMOUNT, (answer) => {
-      const totalPurchaseAmount = Number(answer);
-      Validator.validateTotalPurchaseAmount(totalPurchaseAmount);
-      this.totalPurchaseAmount = totalPurchaseAmount;
-      return this.setLottos().printLottoNumbers().setWinningLottoNumbers();
-    });
+  setTotalPurchaseAmount(totalPurchaseAmount) {
+    this.totalPurchaseAmount = totalPurchaseAmount;
+    this.setLottos();
   }
 
   setLottos() {
     const totalLottosCount = this.totalPurchaseAmount / UNIT_OF_AMOUNT;
     let count = 0;
-
     while (count < totalLottosCount) {
       count += 1;
       this.Lottos.set(`로또${count}`, new Lotto(generateLottoNumbers()));
     }
 
-    return this;
+    this.printLottoNumbers();
   }
 
   setWinningLottoNumbers() {
