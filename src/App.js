@@ -1,5 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 const {
+  LOTTERY_PRICE,
   APP_MESSAGE,
   EXCEPTION_MESSAGE,
   EXCEPTION_REASON,
@@ -12,6 +13,7 @@ const calculateProfitRate = require('./utils/calculate/calculateProfitRate');
 const verifyValidLottery = require('./utils/verify/verifyValidLottery');
 const processRandomLottoNumber = require('./utils/process/processRandomLottoNumber');
 const verifyNumberType = require('./utils/verify/verifyNumberType');
+const verifyStartMoney = require('./utils/verify/verifyStartMoney');
 
 class App {
   #startMoney;
@@ -42,6 +44,8 @@ class App {
     Console.readLine(APP_MESSAGE.INSERT_PURCHASE_COST, (userInput) => {
       if (!verifyNumberType(userInput))
         this.makeException(EXCEPTION_REASON.INPUT_NOT_NUMBER);
+      if (!verifyStartMoney(Number(userInput)))
+        this.makeException(EXCEPTION_REASON.MONEY_UNIT_INCORRECT);
       this.#startMoney = Number(userInput);
       this.#myLotteryQuantity = countPurchasedLotteries(this.#startMoney);
       this.#myLotteryList = Array(this.#myLotteryQuantity).fill({}); // 처음부터 Array(Object) 모양 고정시켜 V8 Map Space에 불필요한 hiddenClass 생성을 막기 위함 (push 사용 x)
