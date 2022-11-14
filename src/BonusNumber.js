@@ -1,12 +1,9 @@
 const checkValidation = require("./errors/checkValidation");
 
 class BonusNumber {
-  constructor(bonusNumber, winningNUmbers) {
-    this.validate(bonusNumber, winningNumbers);
-    this.value = bonusNumber;
-  }
-  validate(bonusNumber, winningNumbers) {
+  constructor(bonusNumber, winningNumbers) {
     checkValidation.checkBonusNumber(bonusNumber, winningNumbers);
+    this.value = bonusNumber;
   }
 }
 module.exports = BonusNumber;

@@ -4,12 +4,8 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
-    this.#numbers = numbers;
-  }
-
-  validate() {
     checkValidation.checkLottoList(numbers);
+    this.#numbers = numbers;
   }
 
   printNumbers() {
