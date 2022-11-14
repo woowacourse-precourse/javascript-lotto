@@ -91,13 +91,13 @@ class Lotto {
     this.printLottoResult(winningRanks)
   }
 
-  // printLottoResult(results){
-  //   MissionUtils.Console.print(`3개 일치 (5,000원) - ${}개`)
-  //   MissionUtils.Console.print('4개 일치 (50,000원) - ${}개')
-  //   MissionUtils.Console.print('5개 일치 (1,500,000원) - ${}개')
-  //   MissionUtils.Console.print('5개 일치, 보너스 볼 일치 (30,000,000원) - ${}개')
-  //   MissionUtils.Console.print('6개 일치 (2,000,000,000원) - ${}개')
-  // }
+  printLottoResult(results){
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${results[0]}개`)
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${results[1]}개`)
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${results[2]}개`)
+    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${results[3]}개`)
+    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${results[4]}개`)
+  }
 }
 
 module.exports = Lotto;
