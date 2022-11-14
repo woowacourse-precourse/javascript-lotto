@@ -78,6 +78,14 @@ class App {
       this.secondInput(lottos, purchaseAmountUnit);
     });
   }
+
+  secondInput(lottos, purchaseAmountUnit) {
+    this.#readLine.inputOriginal(Message.enterWinningNumber(), (winningNumber) => {
+      const winningNumbers = App.convertToNumberArray(winningNumber);
+
+      this.thirdInput(lottos, winningNumbers, purchaseAmountUnit);
+    });
+  }
 }
 
 module.exports = App;
