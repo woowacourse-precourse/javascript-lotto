@@ -159,7 +159,6 @@ class App {
     MissionUtils.Console.print(`총 수익률은 ${result}%입니다.`);
   }
 }
-const game = new App();
-game.play();
+
 
 module.exports = App;
