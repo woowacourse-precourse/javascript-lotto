@@ -14,11 +14,17 @@ class LottoShop {
     return purchaseAmount / 1000;
   }
 
+  sortPurchasedNumbers() {
+    const purchasedNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+
+    return purchasedNumbers.sort((a, b) => a - b);
+  }
+
   createPurchasedNumbers(lottoAmount) {
     const purchasedNumbers = [];
 
     for (let amount = 1; amount <= lottoAmount; amount++)
-      purchasedNumbers.push(Random.pickUniqueNumbersInRange(1, 45, 6));
+      purchasedNumbers.push(this.sortPurchasedNumbers());
 
     return purchasedNumbers;
   }
