@@ -34,14 +34,18 @@ class Result {
 
   drawWinningNumber() {
     Console.readLine(`\n${MESSAGE.ENTER_WINNING_NUMBER}\n`, (inputStr) => {
-      if (!REGEX.WINNING_NUMBER.test(inputStr)) {
-        throw new Error(ERROR.ENTER_VALID_WINNING_NUMBER);
-      }
-
-      const inputArr = inputStr.split(',').map(Number);
+      const inputArr = this.validate(inputStr);
       const winningNumber = new Lotto(inputArr);
       this.drawBonusNumber(winningNumber);
     });
+  }
+
+  validate(inputStr) {
+    if (!REGEX.WINNING_NUMBER.test(inputStr)) {
+      throw new Error(ERROR.ENTER_VALID_WINNING_NUMBER);
+    }
+
+    return inputStr.split(',').map(Number);
   }
 
   drawBonusNumber(winningNumber) {
