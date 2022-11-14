@@ -89,14 +89,14 @@ class LottoGame {
     LottoView.printStatsMessage();
     this.#compareLottoNumbers();
     LottoView.printMatchNumbers(this.user.getCorrectLottoCount());
-    LottoView.printRate(this.calculateRate());
+    LottoView.printRate(this.calculateRate(this.getUserLottoPurchaseInfo()));
   }
 
   #compareLottoNumbers() {
     const userLottos = this.user.getLottos();
     userLottos.forEach((lotto) => {
-      const correctLottoCount = this.#countCorrectLottoNumbers(lotto);
-      const hasBonusNumber = this.#hasBonusLottoNumber(this.#bonusNumber, lotto);
+      const correctLottoCount = this.countCorrectLottoNumbers(lotto);
+      const hasBonusNumber = this.hasBonusLottoNumber(this.#bonusNumber, lotto);
       this.#increaseCorrectLottoCount(correctLottoCount, hasBonusNumber);
     });
   }
@@ -119,7 +119,7 @@ class LottoGame {
     }
   }
 
-  #countCorrectLottoNumbers(userLottoNumbers) {
+  countCorrectLottoNumbers(userLottoNumbers) {
     let count = 0;
     const winNumbers = this.#winNumbers.split(',').map(Number);
     winNumbers.forEach((winNumber) => {
@@ -130,13 +130,17 @@ class LottoGame {
     return count;
   }
 
-  #hasBonusLottoNumber(bonusNumber, userLottoNumbers) {
-    userLottoNumbers.includes(Number(bonusNumber));
+  hasBonusLottoNumber(bonusNumber, userLottoNumbers) {
+    return userLottoNumbers.includes(Number(bonusNumber));
   }
 
-  calculateRate() {
+  getUserLottoPurchaseInfo() {
     const amountPaid = this.user.getMoney();
     const correctLottos = this.user.getCorrectLottoCount();
+    return [amountPaid, correctLottos];
+  }
+
+  calculateRate([amountPaid, correctLottos]) {
     let totalRate = 0;
     Object.entries(correctLottos).forEach(([matchingNumbers, count]) => {
       if (count) {
