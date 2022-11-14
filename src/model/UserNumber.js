@@ -5,7 +5,9 @@ class UserNumber {
   constructor(controller) {
     this.controller = controller;
     this.purchasingAmount = null;
+    this.lottoToUse = null;
     this.userLottoArray = [];
+    this.bonusNumber = null;
   }
 
   validatePurchasingAmount(userPurchasingAmountInput) {
@@ -41,6 +43,33 @@ class UserNumber {
 
   getUserLottoArray() {
     return this.userLottoArray;
+  }
+
+  getLottoToUse() {
+    return this.lottoToUse;
+  }
+
+  setLottoToUse(lotto) {
+    this.lottoToUse = lotto;
+  }
+
+  validateBonusNumber(bonusNumber) {
+    if (isNaN(bonusNumber)) {
+      throw new Error(messages.BONUS_NUMBER_ERROR_MESSAGE);
+    }
+    if (1 > bonusNumber || bonusNumber > 45) {
+      throw new Error(messages.BONUS_NUMBER_ERROR_MESSAGE);
+    }
+  }
+
+  getBonusNumber() {
+    return this.bonusNumber;
+  }
+
+  setBonusNumber(bonusNumber) {
+    this.bonusNumber = bonusNumber;
+    this.validateBonusNumber(bonusNumber);
+    this.controller.getStatistics();
   }
 }
 

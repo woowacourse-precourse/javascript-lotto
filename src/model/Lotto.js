@@ -3,11 +3,10 @@ const messages = require("../constants/messages");
 class Lotto {
   #numbers;
 
-  constructor(controller, numbers) {
+  constructor(numbers, controller) {
     this.controller = controller;
     this.validate(numbers);
     this.#numbers = numbers;
-    this.bonusNumber = null;
   }
 
   isArraySplitByComma(numbersArray) {
@@ -54,26 +53,6 @@ class Lotto {
     this.validate(winningNumberArray);
     this.#numbers = winningNumberArray;
     this.controller.getBonusNumberFromUser();
-  }
-
-  validateBonusNumber(bonusNumber) {
-    if (isNaN(bonusNumber)) {
-      throw new Error(messages.BONUS_NUMBER_ERROR_MESSAGE);
-    }
-    if (1 > bonusNumber || bonusNumber > 45) {
-      throw new Error(messages.BONUS_NUMBER_ERROR_MESSAGE);
-    }
-  }
-
-  getBonusNumber() {
-    return this.bonusNumber;
-  }
-
-  setBonusNumberFromUser(userInput) {
-    const bonusNumber = Number(userInput);
-    this.validateBonusNumber(bonusNumber);
-    this.bonusNumber = bonusNumber;
-    this.controller.getStatistics();
   }
 }
 
