@@ -1,5 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
-
+const LOTTO_PRICE = 1000;
 class User {
   #myLottos;
   #amount;
@@ -15,18 +15,22 @@ class User {
     });
   }
 
-  addLotto(lotto) {
-    this.#myLottos.push(lotto);
+  purchasableLotto() {
+    return this.#amount/LOTTO_PRICE;
+  }
+
+  addLotto(lottos) {
+    this.#myLottos = lottos;
   }
 
   validate(amount) {
     if (amount % 1000 !== 0) {
-      throw new Error("[ERROR] 구입 금액은 천원단위여야 합니다.");
+      throw new Error(`[ERROR] 구입 금액은 ${LOTTO_PRICE}원 단위여야 합니다.`);
     }
   }
 
   printMyLottos() {
-    Console.print(this.#myLottos.length + "개를 구매했습니다.");
+    Console.print(this.purchasableLotto() + "개를 구매했습니다.");
     this.#myLottos.map((lotto) => {
       Console.print(lotto);
     });
