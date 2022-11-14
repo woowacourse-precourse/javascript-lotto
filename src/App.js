@@ -22,14 +22,18 @@ class App {
 
   buyingLotto(ticket) {
     const ticketArr = [];
-    MissionUtils.Console.print(`${ticket}개를 구매했습니다.`)
+    this.consolePrint(`${ticket}개를 구매했습니다.`)
     while(0 < ticket) {
       const getCreateLotto = this.createLotto(6)
       ticketArr.push(getCreateLotto);
-      MissionUtils.Console.print(`[${getCreateLotto.join(', ')}]`);
+      this.consolePrint(`[${getCreateLotto.join(', ')}]`);
       ticket-=1;
     }
     return ticketArr;
+  }
+
+  consolePrint(printStr) {
+    MissionUtils.Console.print(printStr);
   }
 
 }
