@@ -11,6 +11,7 @@ class Lotto {
     "fifth":0,
   };
   bonus;
+  profit;
   constructor(numbers) {
     const coin = new Coin();
     this.setWinningNumber();
@@ -32,7 +33,7 @@ class Lotto {
     })// user 입력 값
 }
   setBonusNumber(){
-    MissionUtils.Console.readLine("보너스 번호를 입력하세요"(answer)=>{
+    MissionUtils.Console.readLine("보너스 번호를 입력하세요",(answer)=>{
       this.bonus = answer;
     })
   }
@@ -72,6 +73,19 @@ class Lotto {
     }
   }
   
+  resultPrint(){
+    MissionUtils.Console.print(`3개 일치(5,000원) - ${this.prize.fifth}개\n`);
+    MissionUtils.Console.print(`4개 일치(50,000원) - ${this.prize.fourth}개\n`);
+    MissionUtils.Console.print(`5개 일치(1,500,000원) - ${this.prize.third}개\n`);
+    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치(30,000,000원) - ${this.prize.second}개\n`);
+    MissionUtils.Console.print(`6개 일치(2,000,000,000원) - ${this.prize.first}개\n`);
+  }
+  getReward(){
+    let reward;
+    reward = 2000000000 * this.prize.first + 30000000 * this.prize.second + 1500000 * this.prize.third + 50000 * this.prize.fourth + 5000 * this.prize.fifth;
+    this.profit = reward/userMoney * 100;
+    MissionUtils.Console.print(`총 수익률 ${this.profit}%입니다.`)
+  }
 }
 
 module.exports = Lotto;
