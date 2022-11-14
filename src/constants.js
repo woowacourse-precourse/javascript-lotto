@@ -12,9 +12,10 @@ const ERROR = {
   IS_ZERO_WON: "[ERROR] 구입 금액이 0원입니다.",
   NOT_SIX_NUMBER: "[ERROR] 당첨 번호가 6자리가 아닙니다.",
   DUPLICATE_NUMBER: "[ERROR] 당첨 번호에 중복 숫자가 있습니다.",
-  IS_OVER_NUMBER_IN_RANGE: "[ERROR] 당첨 번호 중에서 45초과의 숫자가 있습니다.",
-  IS_UNDER_NUMBER_IN_RANGE: "[ERROR] 당첨 번호 중에서 1미만의 숫자가 있습니다.",
-  CONTAINS_BLANKS: "[ERROR] 당첨 번호에 공백문자가 포함되어있습니다.",
+  OVER_NUMBER_IN_RANGE: "[ERROR] 입력 번호 중에서 45초과의 숫자가 있습니다.",
+  UNDER_NUMBER_IN_RANGE: "[ERROR] 입력 번호 중에서 1미만의 숫자가 있습니다.",
+  CONTAINS_BLANKS: "[ERROR] 입력 번호에 공백문자가 포함되어 있습니다.",
+  HAS_CHARACTER: "[ERROR] 입력 번호에 문자가 포함되어 있습니다.",
 };
 
 const RULE = {
