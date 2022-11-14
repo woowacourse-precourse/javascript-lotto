@@ -11,7 +11,7 @@ const addComma = (price) => {
  * @returns {number}
  */
 const substractComma = (price) => {
-  return Number(price.replace(',', ''))
+  return Number(price.replace(/\,/g, ''))
 }
 
 /**
