@@ -33,7 +33,31 @@ class App {
   getWinningNum() {
     Console.readLine("\n당첨 번호를 입력해 주세요.\n", (winningNumString) => {
       this.winningNum = new Lotto(this.stringToArray(winningNumString));
+      this.getBonusNum();
     })
+  }
+
+  getBonusNum() {
+    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusNum) => {
+      this.isValidBonusNum(bonusNum);
+      this.bonusNum = bonusNum;
+    })
+  }
+
+  isValidBonusNum(bonusNum) {
+    if(isNaN(bonusNum) || !Number.isInteger(Number(bonusNum))) {
+      throw new Error("[ERROR] 보너스 번호는 정수형 입니다.");
+    }
+
+    if(1 > bonusNum || bonusNum > 45) {
+      throw new Error("[ERROR] 보너스 번호의 범위는 1~45 입니다.");
+    }
+
+    for(let num of this.winningNum.getLottoNums()) {
+      if(num === bonusNum) {
+        throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+      }
+    }
   }
 
   stringToArray(numString) {
@@ -55,5 +79,10 @@ class App {
     }
   }
 }
+
+
+let a = new App();
+a.play();
+
 
 module.exports = App;
