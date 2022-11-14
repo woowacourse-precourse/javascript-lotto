@@ -31,14 +31,15 @@ class View {
 
   inputLottoNumbers() {
     Console.readLine(INPUT_MESSAGE.LOTTONUMBERS, (lottoNumbers) => {
-      new Lotto(lottoNumbers.split(LOTTO_INFO.SPLITUNIT));
-      this.inputBonusLottoNumbers(lottoNumbers);
+      const lottoNumbersList = lottoNumbers.split(LOTTO_INFO.SPLITUNIT);
+      new Lotto(lottoNumbersList);
+      this.inputBonusLottoNumbers(lottoNumbersList);
     });
   }
 
-  inputBonusLottoNumbers(lottoNumber) {
+  inputBonusLottoNumbers(lottoNumbersList) {
     Console.readLine(INPUT_MESSAGE.BONUSNUMBERS, (bonusNumber) => {
-      const fullNumbers = [lottoNumber.split(LOTTO_INFO.SPLITUNIT), bonusNumber];
+      const fullNumbers = [lottoNumbersList, bonusNumber];
       this.fullLottoNumbers = new BonusLotto(fullNumbers) ? fullNumbers : '';
       this.printStats();
     });
