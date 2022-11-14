@@ -1,8 +1,4 @@
-const {
-  VALID_LOTTO_NUMBER_LENGTH,
-  MIN_LOTTO_NUMBER,
-  MAX_LOTTO_NUMBER
-} = require('../constants/numbers.js');
+const { VALUE } = require('../constants/numbers');
 
 const isValidMoneyNumberAmount = (money) => {
   if (isNaN(money) || money === undefined) {
@@ -14,13 +10,13 @@ const isValidMoneyNumberAmount = (money) => {
   if (money < 0) {
     throw new Error('[ERROR] 금액 입력 시 음수를 입력할 수 없습니다.');
   }
-  if (money % 1000 !== 0) {
+  if (money % VALUE.LOTTO_PRICE !== 0) {
     throw new Error('[ERROR] 금액은 1,000 원 단위로만 입력 가능합니다.');
   }
 };
 
 const isValidLottoNumbers = (numbers) => {
-  if (numbers.length !== VALID_LOTTO_NUMBER_LENGTH) {
+  if (numbers.length !== VALUE.VALID_LOTTO_NUMBER_LENGTH) {
     throw new Error('[ERROR] 로또 번호는 6자리 숫자로 구성되어야 합니다.');
   }
   if (hasNonNumber(numbers)) {
@@ -70,14 +66,7 @@ const hasNonInteger = (array) => {
 
 const hasDuplicateNumbers = (array) => {
   const uniqueSet = new Set(array);
-  if (uniqueSet.size < VALID_LOTTO_NUMBER_LENGTH) {
-    return true;
-  }
-  return false;
-};
-
-const hasNegativeNumber = (array) => {
-  if (array.map(isNegativeNumber).includes(true)) {
+  if (uniqueSet.size < VALUE.VALID_LOTTO_NUMBER_LENGTH) {
     return true;
   }
   return false;
@@ -91,14 +80,7 @@ const hasInvalidSizeNumber = (array) => {
 };
 
 const isInvalidSize = (number) => {
-  if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
-    return true;
-  }
-  return false;
-};
-
-const isNegativeNumber = (number) => {
-  if (number < 0) {
+  if (number < VALUE.MIN_LOTTO_NUMBER || number > VALUE.MAX_LOTTO_NUMBER) {
     return true;
   }
   return false;
