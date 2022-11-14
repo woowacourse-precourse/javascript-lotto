@@ -7,6 +7,7 @@ const {
   LOTTO_MAX_NUMBER,
   LOTTO_RANKING_CONDITION,
   LOTTO_RANKING,
+  LOTTO_MONEY,
 } = require("./Constants");
 const Lotto = require("./Lotto");
 const Validation = require("./validation");
@@ -84,11 +85,10 @@ class App {
       lottoNumber.getLottoNumber()
     );
     const eachResult = singleLotto.map(this.compareNumber.bind(this));
-    console.log(eachResult);
     const eachLottoRanking = eachResult.map(this.getLottoRaking.bind(this));
-
     const rankingTotal = this.getRankingTotal(eachLottoRanking);
-    console.log(rankingTotal);
+    const winningMoney = this.getWinningMoney(rankingTotal);
+    console.log(winningMoney);
   }
   compareNumber(eachLotto) {
     const compareResult = eachLotto.filter((number) =>
@@ -128,6 +128,14 @@ class App {
     };
     eachLottoRanking.forEach((ranking) => (rankingOverall[ranking] += 1));
     return rankingOverall;
+  }
+  getWinningMoney(rankingTotal) {
+    let sumMoney = 0;
+
+    Object.entries(rankingTotal).forEach(
+      ([ranking, count]) => (sumMoney += LOTTO_MONEY[ranking] * count)
+    );
+    return sumMoney;
   }
 }
 
