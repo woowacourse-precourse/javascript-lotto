@@ -32,7 +32,7 @@ class App {
     const money = this.#paid;
     const ticketsCount = countTickets(money);
     for (let i = 0; i < ticketsCount; i += 1) {
-      this.#tickets.push(new Lotto(generateRandomNumbers()));
+      this.#tickets.push(new Lotto(generateRandomNumbers().sort((a, b) => a - b)));
     }
     MissionUtils.Console.print(`\n${this.#tickets.length}${MESSAGE.paid}`);
     this.#tickets.map((ticket) => MissionUtils.Console.print(`[${ticket.getTicketNumbers().join(', ')}]`));
