@@ -5,6 +5,7 @@ const LOTTO_PRICE = 1000;
 class App {
   #buyLotto = [];
   #winningLotto = [];
+  #bonusNumber;
 
   play() {
     Console.readLine(MESSAGES.INPUT_MONEY, (number) => {
@@ -45,8 +46,9 @@ class App {
   }
 
   checkValidBonus(number) {
-    if (number.length !== 1)
-      throw new Error(ERROR_MESSAGES.INVALID_BONUS_LENGTH);
+    //TODO 보너스 번호 1자리만 입력한 것을 판단하는 방법
+    // if (number.length !== 1)
+    //   throw new Error(ERROR_MESSAGES.INVALID_BONUS_LENGTH);
     if (this.#winningLotto.includes(number))
       throw new Error(ERROR_MESSAGES.NOT_DUPLICATE_NUMBER);
   }
@@ -56,7 +58,7 @@ class App {
       const splittedNumbers = numbers.split(',');
       this.checkValidLotto(splittedNumbers);
 
-      this.#winningLotto = splittedNumbers;
+      this.#winningLotto = splittedNumbers.map(Number);
       this.bonusInput();
     });
   }
@@ -64,7 +66,27 @@ class App {
   bonusInput() {
     Console.readLine(MESSAGES.INPUT_BONUS_NUMBER, (number) => {
       this.checkValidBonus(number);
+      this.#bonusNumber = Number(number);
+
+      this.getWinningStatistics();
     });
+  }
+
+  getWinningStatistics() {
+    const correctPoints = [0, 0, 0, 0, 0];
+    this.#buyLotto.forEach((lotto) => {
+      let correctCount = 0;
+      correctCount = lotto.filter((number) =>
+        this.#winningLotto.includes(number)
+      ).length;
+
+      if (correctCount === 5 && lotto.includes(this.#bonusNumber))
+        correctCount++;
+      else if (correctCount === 6) correctCount++;
+
+      if (correctCount >= 3) correctPoints[Number(correctCount) - 3]++;
+    });
+    console.log(correctPoints);
   }
 }
 
