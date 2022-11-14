@@ -20,7 +20,21 @@ class Lotto {
   userLottoWinningLottoCompare(winningLottoArr) {
     let set = new Set(this.#numbers);
     winningLottoArr[0].forEach(x => set.add(x))
-    return this.setSizeCount(set, winningLottoArr[1]) //set.size를 통해 중복번호 확인하기
+    return this.setSizeCount(set, winningLottoArr[1])
+  }
+
+  setSizeCount(set, standardBonus) {  //App.js의 rank(등수 Array) index 반환하기
+    switch (set.size) {
+      case 9:   //3개 일치 = 중복제외 합 9개
+        return 0;
+      case 8:    //4개 일치 = 중복제외 합 8개
+        return 1;
+      case 6:    //6개 일치 = 중복제외 합 6개
+        return 4;
+      case 7:    //5개 일치 = 중복제외 합 7개
+        if (set.has(standardBonus)) return 3;  //보너스 일치
+        else return 2; //보너스 불일치
+    }
   }
 
 }
