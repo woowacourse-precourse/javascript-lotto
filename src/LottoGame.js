@@ -64,6 +64,18 @@ class LottoGame {
     );
   }
 
+  printProfitRate(money, result) {
+    const profit =
+      (result[3] || 0) * 5000 +
+      (result[4] || 0) * 50000 +
+      (result[5] || 0) * 1500000 +
+      (result["5+1"] || 0) * 30000000 +
+      (result[6] || 0) * 2000000000;
+    const profitRate = (profit * 100) / money;
+
+    MissionUtils.Console.print(`총 수익률은 ${profitRate}%입니다.`);
+  }
+
   printResult(lottos, money) {
     const result = {};
     lottos.matchingNumber.forEach((x) => {
@@ -71,6 +83,7 @@ class LottoGame {
     });
 
     this.printWinningResult(result);
+    this.printProfitRate(money, result);
 
     MissionUtils.Console.close();
   }
