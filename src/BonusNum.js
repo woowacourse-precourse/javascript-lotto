@@ -13,6 +13,8 @@ class BonusNum {
 
   validate(bonus, winningNumForDuplication) {
     this.validateForNumRange(bonus)
+
+    this.validateForNotNumber(bonus)
   }
 
   validateForNumRange(bonus) {
@@ -20,6 +22,13 @@ class BonusNum {
       throw new Error('[ERROR] 보너스 번호는 1에서 45사이의 숫자여야 합니다')
     }
   }
+
+  validateForNotNumber(bonus) {
+    if (isNaN(bonus)) {
+      throw new Error('[ERROR] 보너스 번호는 숫자로 이뤄진 값이어야 합니다.')
+    }
+  }
+  
 }
 
 module.exports = BonusNum
