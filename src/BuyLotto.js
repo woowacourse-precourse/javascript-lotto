@@ -4,10 +4,11 @@ const validate = require("./Validate");
 const Lotto = require("./Lotto");
 
 class BuyLotto {
-  constructor(howMany, makeNumbers) {
+  constructor(howMany, makeNumbers, userInputNum, userInputBonusNum) {
     this.howMany = howMany;
     this.makeNumbers = makeNumbers;
-    // this.userNumber = userNumber;
+    this.userInputNum = userInputNum;
+    this.userInputBonusNum = userInputBonusNum;
   }
   start() {
     this.amount();
@@ -31,8 +32,7 @@ class BuyLotto {
       makeNumbers.push(sortNumber);
     }
     this.makeNumbers = makeNumbers;
-    Console.print(amount + "개를 구매하셨습니다.");
-    Console.print(makeNumbers);
+    Console.print(this.howMany + MESSAGE.BUYING_RESULT);
     this.userInputNumber();
   }
 
@@ -44,11 +44,13 @@ class BuyLotto {
   }
 
   userInputNumber() {
+    let userInputNum;
     Console.readLine(MESSAGE.INPUT_PRIZE, (input) => {
-      const userInputNum = this.splitUserInput(input);
-      const userBonusNum = this.userInputBonusNumber();
+      userInputNum = this.splitUserInput(input);
       this.validate = new validate();
       this.validate.check(userInputNum);
+      this.userInputNum = userInputNum;
+      this.userInputBonusNumber();
     });
   }
 
@@ -58,17 +60,18 @@ class BuyLotto {
 
   userInputBonusNumber() {
     Console.readLine(MESSAGE.INPUT_BONUS, (input) => {
-      let makeArray = [];
-      makeArray.push(input);
-      this.validate.bonusCheck(makeArray);
-      return input;
+      let userInputBonusNum = [];
+      userInputBonusNum.push(input);
+      this.validate.bonusCheck(userInputBonusNum);
+      this.userInputBonusNum = userInputBonusNum;
+      this.prize();
     });
   }
 
-  prize(userInputNum, userBonusNum) {
+  prize() {
     Console.print(MESSAGE.PRIZE_RESULT);
-    Console.print(userInputNum);
-    Console.print(userBonusNum);
+    Console.print(this.userInputNum);
+    Console.print(this.userInputBonusNum);
 
     this.getResult();
   }
