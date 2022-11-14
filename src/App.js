@@ -129,7 +129,7 @@ class App {
     this.myLottos.map((myLotto) => {
       let numberOfMatch = myLotto.countNumberOfMatches(this.luckyNumbers);
       let isBonus = myLotto.isBonus(this.bonusNumber);
-      
+
       if (numberOfMatch === 3) {
         this.winningMap.fifthPlace.count += 1;
       } else if (numberOfMatch === 4) {
@@ -162,8 +162,5 @@ class App {
     Console.close();
   }
 }
-
-const app = new App();
-app.play();
 
 module.exports = App;
