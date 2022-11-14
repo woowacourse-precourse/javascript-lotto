@@ -10,10 +10,20 @@ class App {
 
   constructor() {
     this.bonusNumber = 0;
+
     this.winNumbers = [];
+
     this.lottos = [];
-    this.scores = [];
+
+    this.scores = new Map();
+    this.scores.set("3개 일치", 0);
+    this.scores.set("4개 일치", 0);
+    this.scores.set("5개 일치", 0);
+    this.scores.set("5개 일치, 보너스 볼 일치", 0);
+    this.scores.set("6개 일치", 0);
+
     this.profit = 0;
+
     this.payMoney = 0;
   }
 
@@ -90,9 +100,19 @@ class App {
   }
 
   matchLottos(lottos, winNumbers, bonusNumber) {
-    return lottos
+    const scores = this.scores;
+    lottos
       .filter((lotto) => lotto.matchNumbers(winNumbers, bonusNumber) >= 3)
-      .map((e) => e.matchNumbers(winNumbers, bonusNumber));
+      .map((e) =>
+        e.matchNumbers(winNumbers, bonusNumber) === 5.5
+          ? "5개 일치, 보너스 볼 일치"
+          : String(`${e.matchNumbers(winNumbers, bonusNumber)}개 일치`)
+      )
+      .forEach((e) => {
+        scores.set(String(`${e}`), scores.get(String(`${e}`)) + 1);
+      });
+    this.scores = scores;
+    return this.scores;
   }
 
   calculateProfit(scores) {
