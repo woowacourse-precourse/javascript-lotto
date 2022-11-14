@@ -7,21 +7,24 @@ const MESSAGE = {
 
 const ERROR_PREFIX = '[ERROR]';
 
-const ERROR_MSG = {
+const ERROR_MESSAGE = {
   LOTTO: {
     NUMBER: '로또 번호는 숫자여야 합니다.',
     LENGTH: '로또 번호는 6개여야 합니다.',
     DUPLICATION: '로또 번호는 고유해야 합니다.',
+    RANGE: '로또 번호는 1부터 45 사이의 숫자여야 합니다.',
   },
 };
 
 const NUM = {
   LOTTO: 6,
+  WINNER: 6,
+  BONUS: 1,
 };
 
 module.exports = {
   MESSAGE,
-  ERROR_MSG,
+  ERROR_MESSAGE,
   ERROR_PREFIX,
   NUM,
 };
