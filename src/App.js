@@ -1,6 +1,14 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
+const PRIZE_MONEY = {
+  1: 2000000000,
+  2: 30000000,
+  3: 1500000,
+  4: 50000,
+  5: 5000,
+};
+
 class App {
   constructor() {
     this.money = 0;
@@ -8,6 +16,7 @@ class App {
     this.lottos = [];
     this.winningNumber = null;
     this.bonusNumber = null;
+    this.winningHistory = {};
   }
 
   play() {
@@ -68,6 +77,8 @@ class App {
       const value = parseInt(answer);
       this.validateBonusNumber(value);
       this.bonusNumber = value;
+      this.setWinningHistory();
+      this.getWinningHistory();
     });
   }
 
@@ -81,6 +92,34 @@ class App {
     if (this.winningNumber.includes(value)) {
       throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
     }
+  }
+
+  setWinningHistory() {
+    for (let rank = 1; rank <= 5; rank++) {
+      this.winningHistory[rank] = 0;
+    }
+  }
+
+  getWinningHistory() {
+    this.lottos.forEach((lotto) => {
+      const matchCount = lotto.getMatchCount(this.winningNumber);
+
+      switch (matchCount) {
+        case 6:
+          this.winningHistory[1] = this.winningHistory[1] + 1;
+          break;
+        case 5:
+          const matchBonus = lotto.hasBonusNumber(this.bonusNumber);
+          matchBonus ? this.winningHistory[2]++ : this.winningHistory[3]++;
+          break;
+        case 4:
+          this.winningHistory[4]++;
+          break;
+        case 3:
+          this.winningHistory[5]++;
+          break;
+      }
+    });
   }
 }
 

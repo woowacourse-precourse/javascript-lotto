@@ -25,6 +25,16 @@ class Lotto {
   getLotto() {
     return this.#numbers;
   }
+
+  getMatchCount(winningNumber) {
+    return winningNumber.reduce((acc, cur) => {
+      return this.#numbers.includes(cur) ? acc + 1 : acc;
+    }, 0);
+  }
+
+  hasBonusNumber(bonusNumber) {
+    return this.#numbers.includes(bonusNumber);
+  }
 }
 
 module.exports = Lotto;
