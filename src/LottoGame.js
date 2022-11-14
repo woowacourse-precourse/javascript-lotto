@@ -6,6 +6,8 @@ class LottoGame {
     this.purchasePrice = 0;
     this.lottos = [];
     this.winningNumbers = [];
+    this.bonusNumber = "";
+    this.countEachWinningCost = [0, 0, 0, 0, 0];
   }
 
   start() {
@@ -38,6 +40,18 @@ class LottoGame {
         this.winningNumbers = winningNumbers
           .split(",")
           .map((number) => Number(number));
+        this.inputBonusNumber();
+      }
+    );
+  }
+
+  inputBonusNumber() {
+    MissionUtils.Console.readLine(
+      "보너스 번호를 입력해 주세요.\n",
+      (inputBonusNumber) => {
+        this.bonusNumber = Number(inputBonusNumber);
+        this.compareWinningLotto();
+        this.printLottoResult();
       }
     );
   }
