@@ -24,7 +24,9 @@ class App {
         Utils.readLine('보너스 번호를 입력해 주세요.\n', (input) => {
           this.winningBonusNumber = Number(input);
             for(const userLotto of this.userLottos) { 
-              this.compareLottoNumber(userLotto);
+              const matchCount = this.compareLottoNumber(userLotto);
+              this.matchRank(matchCount);
+              Utils.print(this.setMatchResult());
             }
             Utils.close();
         });
@@ -68,8 +70,26 @@ class App {
       if(userLotto.includes(this.winningLotto[index])){
         matchCount += 1;
       }
-      console.log(matchCount);
     }
+    return matchCount;
+  }
+  matchRank(matchCount){
+  if(matchCount == 5 && userLotto.includes(this.winningBonusNumber)){
+    this.winningResult[4] += 1;
+  }
+  else if(2 < matchCount && matchCount < 7) {
+    this.winningResult[matchCount-3] += 1;
+  }
+}
+  setMatchResult(){
+    const result = `
+    3개 일치 (5,000원) - ${this.winningResult[0]}개
+    4개 일치 (50,000원) - ${this.winningResult[1]}개
+    5개 일치 (1,500,000원) - ${this.winningResult[2]}개
+    5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.winningResult[3]}개
+    6개 일치 (2,000,000,000원) - ${this.winningResult[4]}개
+    `
+    return result;
   }
 }
 
