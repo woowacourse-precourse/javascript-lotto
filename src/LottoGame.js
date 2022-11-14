@@ -1,4 +1,3 @@
-const { Console } = require("@woowacourse/mission-utils");
 const {
   GAME_MESSAGE,
   ERROR_MESSAGE,
@@ -94,12 +93,7 @@ class LottoGame {
     inputUserValue(GAME_MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
       if (this.isBonusNumberValid(bonusNumber)) {
         this.#bonusNumber = bonusNumber;
-        console.log(
-          this.countMatchedNumbers(
-            this.#lottoList[0].getLottoNumbers(),
-            this.#winningNumbers
-          )
-        );
+        this.printResult();
       }
     });
   }
@@ -122,6 +116,63 @@ class LottoGame {
   countMatchedNumbers(lottoNumbers, winningNumbers) {
     return lottoNumbers.filter((number) => winningNumbers.includes(number))
       .length;
+  }
+
+  getLottoMatchedResult() {
+    return this.#lottoList
+      .map((lotto) => [
+        this.countMatchedNumbers(lotto.getLottoNumbers(), this.#winningNumbers),
+        lotto.getLottoNumbers().includes(Number(this.#bonusNumber)),
+      ])
+      .filter((num) => num[0] >= LOTTO_VALUE.WINNER_MIN_CNT);
+  }
+
+  getLottoResult() {
+    const lottoResult = { 3: 0, 4: 0, 5: 0, "5-bonus": 0, 6: 0 };
+
+    this.getLottoMatchedResult().forEach((result) => {
+      if (result[0] === 5 && result[1]) {
+        lottoResult["5-bonus"] += 1;
+        return;
+      }
+      lottoResult[result[0]] += 1;
+    });
+
+    return lottoResult;
+  }
+
+  isBonusMatched() {}
+
+  printResult() {
+    printMessage(GAME_MESSAGE.LOTTO_RESULT);
+    printMessage("---");
+    this.printLottoResult(this.getLottoResult());
+  }
+
+  printLottoResult(lottoResult) {
+    Object.keys(lottoResult)
+      .sort()
+      .forEach((result) => {
+        switch (result) {
+          case "3":
+            printMessage(`${GAME_MESSAGE.RANK_FOUR}${lottoResult[result]}개`);
+            break;
+          case "4":
+            printMessage(`${GAME_MESSAGE.RANK_THREE}${lottoResult[result]}개`);
+            break;
+          case "5":
+            printMessage(`${GAME_MESSAGE.RANK_TWO}${lottoResult[result]}개`);
+            break;
+          case "5-bonus":
+            printMessage(
+              `${GAME_MESSAGE.RANK_TWO_BONUS}${lottoResult[result]}개`
+            );
+            break;
+          case "6":
+            printMessage(`${GAME_MESSAGE.RANK_ONE}${lottoResult[result]}개`);
+            break;
+        }
+      });
   }
 }
 
