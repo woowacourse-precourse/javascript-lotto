@@ -87,6 +87,19 @@ class App {
       MissionUtils.Console.print(lotto.printRandom());
     });
   }
+  calculateLotto(){
+    let ranking = {};
+    for (let i = 0; i < 6; i++) {
+      ranking[i] = 0;
+    }
+    const winArr = this.lottoNumber.map((lotte) =>
+      lotte.calculate(this.winningNumber, this.bonusNumber)
+    );
+    winArr.forEach((num) => {
+      ranking[num]++;
+    });
+    this.resultLotto(ranking);
+  }
 
 
 }
