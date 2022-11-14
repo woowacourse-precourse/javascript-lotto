@@ -59,6 +59,7 @@ class AppUtils {
       '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
       '6개 일치 (2,000,000,000원) - '   
     ]
+
     histories.forEach((history, idx) => {
       result.push(labels[idx] + history + '개');
     })
@@ -67,7 +68,7 @@ class AppUtils {
 
   static toStringRate(rate) {
     // 수익률 문자열 반환
-    return '총 수익률은 ' + rate.toLocaleString('ko-KR') + '%입니다.';
+    return '총 수익률은 ' + rate.toFixed(1).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '%입니다.';
   }
 
   static toStringStat(myLotto, winLotto) {
