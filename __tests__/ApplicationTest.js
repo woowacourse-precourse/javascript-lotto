@@ -70,7 +70,7 @@ describe("로또 테스트", () => {
     }).toThrow(ERROR.ISNAN);
   });
 
-  test("[입력] 당첨 번호가 6개가 아닌 경우]", () => {
+  test("[당첨번호 입력 테스트] 당첨 번호가 6개가 아닌 경우]", () => {
     mockQuestions(["1,3,4,5"]);
     expect(() => {
       const app = new App();
@@ -78,11 +78,27 @@ describe("로또 테스트", () => {
     }).toThrow(ERROR.COUNT);
   });
 
-  test("[입력] 당첨 번호에 문자를 입력한 경우]", () => {
+  test("[당첨번호 입력 테스트] 당첨 번호에 문자를 입력한 경우]", () => {
     mockQuestions(["1,3,4,5,40,+"]);
     expect(() => {
       const app = new App();
       app.askWinningLottoNumber();
     }).toThrow(ERROR.ISNAN);
+  });
+
+  test("[당첨번호 입력 테스트] 당첨 번호에 중복이 존재하는 경우]", () => {
+    mockQuestions(["1,3,4,5,40,40"]);
+    expect(() => {
+      const app = new App();
+      app.askWinningLottoNumber();
+    }).toThrow(ERROR.DUPLICATED);
+  });
+
+  test("[당첨번호 입력 테스트] 당첨 번호가 1~45의 범위를 벗어나는 경우]", () => {
+    mockQuestions(["1,3,4,5,48,40"]);
+    expect(() => {
+      const app = new App();
+      app.askWinningLottoNumber();
+    }).toThrow(ERROR.RANGE);
   });
 });
