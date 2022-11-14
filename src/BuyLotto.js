@@ -10,15 +10,19 @@ class BuyLotto {
     // }
 
     inputAmount() {
-        let numberOfLotto;
+        let amount;
 
-        MissionUtils.Console.readLine('구입 금액을 입력하세요.', (amount) => {
-            if(!isValidAmount(amount)) {
+        MissionUtils.Console.readLine('구입 금액을 입력하세요.', (amountInput) => {
+            if(!isValidAmount(amountInput)) {
                 throw new Error('[ERROR] 1,000원 단위로 구입 가능합니다.');
             } 
-            numberOfLotto = amount / 1000;
+            amount = amountInput;
         });
-        return numberOfLotto;
+        return amount;
+    }
+
+    getNumberOfLotto(amount) {
+        return amount / 1000;
     }
 
     printNumberOfLotto(numberOfLotto) {

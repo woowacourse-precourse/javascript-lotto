@@ -7,7 +7,8 @@ class App {
   play() {
     // 로또 구매
     const buy = new BuyLotto();
-    const numberOfLotto = buy.inputAmount();
+    const amount = buy.inputAmount();
+    const numberOfLotto = buy.getNumberOfLotto(amount);
     buy.printNumberOfLotto(numberOfLotto);
     const randomLottos = buy.createRandomLotto(numberOfLotto); 
     buy.printRandomLotto(randomLottos);
