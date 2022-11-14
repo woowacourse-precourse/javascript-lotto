@@ -17,7 +17,7 @@ const LOTTO_COST_ERROR = {
   CHECK_ISINTEGER: '[ERROR] 정수를 입력해주세요.',
   CHECK_THOUSAND: '[ERROR] 1000원 단위로 입력해주세요.',
   CHECK_ISNULL: '[ERROR] 숫자를 입력해 주세요.',
-  CHECK_BLANK: '[ERROR] 숫자만 입력해주세요.',
+  CHECK_SPACE: '[ERROR] 숫자만 입력해주세요.',
   CHECK_DOT: '[ERROR] 온점을 제외하고 입력해주세요.',
 };
 

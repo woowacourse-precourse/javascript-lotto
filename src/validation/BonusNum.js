@@ -1,4 +1,7 @@
 const { BONUS_NUM_ERROR } = require('../constant/errorMessage');
+const STRING = require('../constant/string');
+const NUMBER = require('../constant/number');
+
 
 class BonusNum {
   constructor(winNums, bonusNum) {
@@ -9,28 +12,28 @@ class BonusNum {
   }
 
   isInRange(bonusNum) {
-    if (bonusNum < 1 || bonusNum > 45) {
+    if (bonusNum < NUMBER.START_NUM || bonusNum > NUMBER.END_NUM) {
       throw new Error(BONUS_NUM_ERROR.CHECK_RANGE);
     }
   }
 
   isInteger(bonusNum) {
-    if (+bonusNum % 1 !== 0) {
+    if (+bonusNum % 1 !== NUMBER.ZERO) {
       throw new Error(BONUS_NUM_ERROR.CHECK_ISINTEGER);
     }
   }
 
   isNum(bonusNum) {
-    const splitBonusNum = bonusNum.split('');
+    const splitBonusNum = bonusNum.split(STRING.BLANK);
     splitBonusNum.map(el => {
-      if (isNaN(el) || el === ' ') {
+      if (isNaN(el) || el === STRING.SPACE) {
         throw new Error(BONUS_NUM_ERROR.CHECK_ISNUMBER);
       }
     });
   }
 
   isInWinNums(winNums, bonusNum) {
-    const winNumsArr = winNums.split(',');
+    const winNumsArr = winNums.split(STRING.COMMA);
     winNumsArr.map(winNum => {
       if (winNum === bonusNum) {
         throw new Error(BONUS_NUM_ERROR.CHECK_OVERLAP);

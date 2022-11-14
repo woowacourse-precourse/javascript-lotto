@@ -1,4 +1,6 @@
 const { LOTTO_ERROR } = require('../constant/errorMessage');
+const NUMBER = require('../constant/number');
+
 
 class Lotto {
   #numbers;
@@ -12,7 +14,7 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
+    if (numbers.length !== NUMBER.LOTTO_CORRECT_COUNT) {
       throw new Error(LOTTO_ERROR.CHECK_COUNT);
     }
     const set = new Set(numbers);
@@ -31,7 +33,7 @@ class Lotto {
 
   isInRange(numbers) {
     numbers.map(number => {
-      if (number < 1 || number > 45) {
+      if (number < NUMBER.START_NUM || number > NUMBER.END_NUM) {
         throw new Error(LOTTO_ERROR.CHECK_RANGE);
       }
     });
@@ -39,7 +41,7 @@ class Lotto {
 
   isInteger(numbers) {
     numbers.map(number => {
-      if (number % 1 !== 0) {
+      if (number % 1 !== NUMBER.ZERO) {
         throw new Error(LOTTO_ERROR.CHECK_ISINTEGER);
       }
     });

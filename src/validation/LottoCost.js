@@ -1,4 +1,6 @@
 const { LOTTO_COST_ERROR } = require('../constant/errorMessage');
+const STRING = require('../constant/string');
+const NUMBER = require('../constant/number');
 
 class LottoCost {
   constructor(lottoCost) {
@@ -7,26 +9,26 @@ class LottoCost {
   }
 
   validate(lottoCost) {
-    if (+lottoCost % 1 !== 0) {
+    if (+lottoCost % 1 !== NUMBER.ZERO) {
       throw new Error(LOTTO_COST_ERROR.CHECK_ISINTEGER);
     }
-    if (+lottoCost % 1000 !== 0) {
+    if (+lottoCost % NUMBER.THOUSAND !== NUMBER.ZERO) {
       throw new Error(LOTTO_COST_ERROR.CHECK_THOUSAND);
     }
-    if (lottoCost === '') {
+    if (lottoCost === STRING.BLANK) {
       throw new Error(LOTTO_COST_ERROR.CHECK_ISNULL);
     }
-    const input = lottoCost.split('');
+    const input = lottoCost.split(STRING.BLANK);
     input.map(el => {
-      if (el === ' ') {
-        throw new Error(LOTTO_COST_ERROR.CHECK_BLANK);
+      if (el === STRING.SPACE) {
+        throw new Error(LOTTO_COST_ERROR.CHECK_SPACE);
       }
     });
   }
 
   hasDot(lottoCost) {
-    lottoCost.split('').map(el => {
-      if (el === '.') {
+    lottoCost.split(STRING.BLANK).map(el => {
+      if (el === STRING.DOT) {
         throw new Error(LOTTO_COST_ERROR.CHECK_DOT);
       }
     });
