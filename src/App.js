@@ -42,8 +42,13 @@ class App {
 
   pay() {
     Console.readLine(MESSAGE.GUIDE_INPUT, (input) => {
-      this.inputMoney = input;
-      this.numberOfLotto = Number(this.inputMoney) / UNITS.LOTTO_PRICE;
+      this.inputMoney = Number(input);
+
+      if (validator.isNotRightPay(this.inputMoney)) {
+        throw new Error(ERROR_MESSAGE.PAY_AMOUNT);
+      }
+
+      this.numberOfLotto = this.inputMoney / UNITS.LOTTO_PRICE;
       this.publish();
     });
   }
@@ -81,6 +86,9 @@ class App {
       throw new Error(ERROR_MESSAGE.DUPLICATE_OF_BONUS_NUMBER);
     }
     if (validator.isDigitError(luckyNumbers)) {
+      throw new Error(ERROR_MESSAGE.DIGIT_OF_LOTTO);
+    }
+    if (validator.isDigitError([bonusNumber])) {
       throw new Error(ERROR_MESSAGE.DIGIT_OF_LOTTO);
     }
   }

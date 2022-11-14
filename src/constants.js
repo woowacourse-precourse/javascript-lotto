@@ -29,11 +29,12 @@ const ERROR_MESSAGE = {
   LENGTH_OF_LUCKY_NUMBERS: "[ERROR] 당첨 번호는 6개여야 합니다.",
   DUPLICATE_OF_LUCKY_NUMBERS: "[ERROR] 당첨 번호는 중복이 없어야 합니다.",
   DUPLICATE_OF_BONUS_NUMBER: "[ERROR] 보너스 번호는 당첨번호와 달라야 합니다.",
-  
+
   LENGTH_OF_LOTTO: "[ERROR] 로또 번호는 6개여야 합니다.",
   DUPLICATE_OF_LOTTO: "[ERROR] 로또 번호는 중복이 없어야 합니다.",
   DIGIT_OF_LOTTO: "[ERROR] 로또 번호는 1 ~ 45 사이의 숫자입니다.",
 
+  PAY_AMOUNT: "[ERROR] 투입금액은 1000원으로 나누어 떨어져야 합니다.",
 }
 
 module.exports = {FORMULA, UNITS, MESSAGE, ERROR_MESSAGE};
