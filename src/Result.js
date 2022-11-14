@@ -1,5 +1,4 @@
-const Console = require("@woowacourse/mission-utils").Console;
-const ResultConst = require("./constant/ResultConst");
+const resultConst = require("./constant/ResultConst");
 
 class Result {
   constructor(bundleOfLotto, userLotto, bonus) {
@@ -7,6 +6,7 @@ class Result {
     this.userLotto = userLotto;
     this.bonusNumber = Number(bonus);
     this.rank = [0, 0, 0, 0, 0];
+    this.earningsRate = null;
   }
 
   calculateEachLotto() {
@@ -14,11 +14,8 @@ class Result {
       this.calculateOneLotto(lotto);
     });
 
-    this.showResult();
-
     this.getPrize();
-
-    this.showEarningsRate();
+    this.earningsRate = this.getEarningsRate();
   }
 
   calculateOneLotto(lotto) {
@@ -88,31 +85,14 @@ class Result {
     }
   }
 
-  showResult() {
-    Console.print(ResultConst.NOTIFY_WINNING_STATE);
-
-    this.rank.forEach((item, index) => {
-      Console.print(
-        `${ResultConst.CONDITION_OF_EACH_RANK[index]}` + `${item}개`
-      );
-    });
-  }
-
   getPrize() {
     let finalPrize = 0;
 
     this.rank.forEach((item, index) => {
-      finalPrize += item * ResultConst.EACH_PRIZE[index];
+      finalPrize += item * resultConst.EACH_PRIZE[index];
     });
 
     return finalPrize;
-  }
-
-  showEarningsRate() {
-    const earningsRate = this.getEarningsRate();
-
-    Console.print(`총 수익률은 ${earningsRate}%입니다.`);
-    Console.close();
   }
 
   getEarningsRate() {
