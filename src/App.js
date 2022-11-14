@@ -3,10 +3,10 @@ const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const PrintInfo = require('./PrintInfo');
 const { PRIZE_MONEY } = require('./constants');
+const ErrorInfo = require('./ErrorInfo');
 
-const USER_MONEY_INPUT_ERROR = '[ERROR] 구입금액이 올바르지 않습니다.';
-const ERROR_BONUS_NUMBER = '[ERROR] 유효한 번호가 아닙니다.';
 const printInfo = new PrintInfo();
+const checkError = new ErrorInfo();
 class App {
   // eslint-disable-next-line no-useless-constructor
   // lotteryQuantity = 0;
@@ -43,9 +43,7 @@ class App {
 
   buyLottery(userMoneyInput) {
     const isValidMoney = this.isValidMoney(userMoneyInput);
-    if (!isValidMoney) {
-      throw new Error(USER_MONEY_INPUT_ERROR);
-    }
+    checkError.inputMoneyError(isValidMoney);
     this.userCost = userMoneyInput;
     const lotteryQuantity = this.countLotteries(this.userCost);
     printInfo.printLotteryQuantity(lotteryQuantity);
@@ -108,9 +106,7 @@ class App {
     printInfo.requestBonusNumber();
     Console.readLine('', (bonusNumber) => {
       const inputBonusNumber = parseInt(bonusNumber, 10);
-      if (!this.isValidNumber(inputBonusNumber)) {
-        throw new Error(ERROR_BONUS_NUMBER);
-      }
+      checkError.bonusNumberError(inputBonusNumber, this.winningLotto);
       this.bonusNumber = bonusNumber;
       this.lotteryDraw();
     });
