@@ -12,9 +12,11 @@ class Lottos {
 
   print() {
     Console.print(`\n${this.lottos.length}${LOTTOS_PRINT}`);
+    const printList = [];
     this.lottos.forEach((lotto) => {
-      lotto.print(lotto);
+      printList.push(lotto.print());
     });
+    Console.print(printList.join("\n"));
   }
 
   get() {

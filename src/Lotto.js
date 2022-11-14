@@ -30,7 +30,7 @@ class Lotto {
   }
 
   print() {
-    Console.print(`[${this.#numbers.join(", ")}]`);
+    return `[${this.#numbers.join(", ")}]`;
   }
 }
 

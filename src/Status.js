@@ -46,11 +46,12 @@ class Status {
       STATUS_SECOND_PLACE,
       STATUS_FIRST_PLACE,
     ];
-    Console.print(`\n${STATUS_RESULT_TITLE}\n---`);
-    messages.forEach((message, index) => {
-      Console.print(`${message} - ${this.#result[index]}${STATUS_RESULT_UNIT}`);
+    messages.forEach((message, index, array) => {
+      array[index] = `${message} - ${this.#result[index]}${STATUS_RESULT_UNIT}`;
     });
-    Console.print(`${STATUS_YIELD_START} ${this.#yield}${STATUS_YIELD_END}.`);
+    messages.unshift(`\n${STATUS_RESULT_TITLE}\n---`);
+    messages.push(`${STATUS_YIELD_START} ${this.#yield}${STATUS_YIELD_END}.`);
+    Console.print(messages.join("\n"));
   }
 
   countYield(buyMoney) {
