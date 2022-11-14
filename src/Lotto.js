@@ -1,3 +1,4 @@
+const { Console } = require("@woowacourse/mission-utils");
 const {
   checkDuplicatedLotto,
   checkAscendingLotto,
@@ -27,6 +28,10 @@ class Lotto {
   // TODO: 추가 기능 구현
   checkLottoResult(compareInput, bonus) {
     return checkLottoResult(this.#numbers, compareInput, bonus);
+  }
+
+  print() {
+    Console.print(`${this.#numbers}\n`);
   }
 }
 
