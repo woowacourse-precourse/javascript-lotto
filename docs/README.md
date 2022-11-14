@@ -22,4 +22,4 @@
 - [x] calculate win stats 
 - [x] calculate earning rate by dividing prize money by payment amount and rounding to one decimal place
     - [x] round off to one decimal place with precision
-- [ ] print win stats and earning rate
+- [x] print win stats and earning rate

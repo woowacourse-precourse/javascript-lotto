@@ -2,6 +2,15 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const Bonus = require("./Bonus");
 
+function printWinStats(winStats, earningRate) {
+  MissionUtils.Console.print("\n당첨 통계\n---");
+  winStats.forEach((value, key) => {
+    MissionUtils.Console.print(`${key} - ${value}개`);
+  });
+  MissionUtils.Console.print(`총 수익률은 ${earningRate}%입니다.`);
+  MissionUtils.Console.close();
+}
+
 function roundOffToNearestTenth(number) {
   const DECIMAL_PLACES = 1; 
   const roundedResult = Number(`${Math.round(Number(`${number}e${DECIMAL_PLACES}`))}e-${DECIMAL_PLACES}`).toFixed(DECIMAL_PLACES);
