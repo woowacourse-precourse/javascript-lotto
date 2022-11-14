@@ -47,7 +47,7 @@ class App {
 
   getStatistics(statistics) {
     this.print("\n당첨 통계 \n ---");
-    this.print(getStatisticsTemplate(statistics));
+    getStatisticsTemplate(statistics).forEach((line) => this.print(line));
   }
 
   getRateOfReturn(price, statistics) {

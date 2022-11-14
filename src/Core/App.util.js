@@ -25,8 +25,7 @@ const getRevenue = (statistics) =>
 const getStatisticsTemplate = (statistics) =>
   statistics
     .map((statistic, i) => `${MONEY_INFO[i].name}${statistic}개`)
-    .sort()
-    .join("\n");
+    .sort();
 
 exports.buyLottos = buyLottos;
 exports.getStatistics = getStatistics;
