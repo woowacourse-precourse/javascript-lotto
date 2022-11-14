@@ -24,7 +24,9 @@ class App {
   }
   play() {
     const amount = this.inputAmount();
-    this.#purchaseLottoList = new Vender(amount).getPurchaseLotto();
+    const vender = new Vender(amount);
+    vender.play();
+    this.#purchaseLottoList = vender.getPurchaseLotto();
 
     const lotteryMachine = new LotteryMachine();
     lotteryMachine.draw();

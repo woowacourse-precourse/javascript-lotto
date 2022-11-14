@@ -9,7 +9,6 @@ class Vender {
   constructor(amount) {
     this.#purchaseLottoList = [];
     this.#purchaseAmount = this.valid(amount);
-    this.play();
   }
 
   play() {
