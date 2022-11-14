@@ -1,5 +1,5 @@
 const {
-  WINNING_LOTTO_ERROR,
+  LOTTO_ERROR,
   LOTTO_COUNT,
   LOTTO_MIN,
   LOTTO_MAX,
@@ -23,23 +23,23 @@ class Lotto {
   checkIsNan(numbers) {
     const isNum = (num) => !isNaN(num);
     if (!numbers.every(isNum)) {
-      throw new Error(WINNING_LOTTO_ERROR.NUM);
+      throw new Error(LOTTO_ERROR.NUM);
     }
   }
   checkLength(numbers) {
     if (numbers.length !== LOTTO_COUNT) {
-      throw new Error(WINNING_LOTTO_ERROR.LENGTH);
+      throw new Error(LOTTO_ERROR.LENGTH);
     }
   }
   checkRepeat(numbers) {
     if ([...new Set(numbers)].length !== LOTTO_COUNT) {
-      throw new Error(WINNING_LOTTO_ERROR.REPEAT);
+      throw new Error(LOTTO_ERROR.REPEAT);
     }
   }
   checkRange(numbers) {
     const isRange = (num) => num >= LOTTO_MIN && num <= LOTTO_MAX;
     if (!numbers.every(isRange)) {
-      throw new Error(WINNING_LOTTO_ERROR.RANGE);
+      throw new Error(LOTTO_ERROR.RANGE);
     }
   }
 }

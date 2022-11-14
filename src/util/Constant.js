@@ -17,7 +17,7 @@ const BUDGET_ERROR_MESSAGE = {
   SHORT_OF_MONEY: "[ERROR] 최소 금액은 1000원 입니다.",
 };
 
-const WINNING_LOTTO_ERROR = {
+const LOTTO_ERROR = {
   LENGTH: "[ERROR] 로또 번호는 6개여야 합니다.",
   REPEAT: "[ERROR] 중복된 번호는 사용할 수 없습니다.",
   RANGE: `[ERROR] 로또 번호는 ${LOTTO_MIN} 이상 ${LOTTO_MAX} 이하 이어야 합니다.`,
@@ -31,5 +31,5 @@ module.exports = {
   LOTTO_MAX,
   LOTTO_MESSAGE,
   BUDGET_ERROR_MESSAGE,
-  WINNING_LOTTO_ERROR,
+  LOTTO_ERROR,
 };
