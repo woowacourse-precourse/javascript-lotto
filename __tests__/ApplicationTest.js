@@ -1,5 +1,7 @@
 const App = require("../src/App");
 const MissionUtils = require("@woowacourse/mission-utils");
+const Person = require("../src/Person");
+const { ERROR } = require('../src/Constants')
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();
@@ -67,5 +69,26 @@ describe("로또 테스트", () => {
       const app = new App();
       app.play();
     }).toThrow("[ERROR]");
+  });
+
+  test("예외 테스트: 현금이 1,000원으로 나누어 떨어지지 않는 경우 1", () => {
+    expect(() => {
+      const person = new Person();
+      person.isCorrectCash("1234");
+    }).toThrow(ERROR.INVAID_CASH);
+  });
+
+  test("예외 테스트: 현금이 1,000원으로 나누어 떨어지지 않는 경우 2", () => {
+    expect(() => {
+      const person = new Person();
+      person.isCorrectCash("123");
+    }).toThrow(ERROR.INVAID_CASH);
+  });
+
+  test("예외 테스트: 현금이 1,000원으로 나누어 떨어지지 않는 경우 3", () => {
+    expect(() => {
+      const person = new Person();
+      person.isCorrectCash("0");
+    }).toThrow(ERROR.INVAID_CASH);
   });
 });
