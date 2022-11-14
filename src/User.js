@@ -1,5 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
+const Print = require("./Print");
 
 class User {
 	#seedMoney
@@ -43,9 +44,13 @@ class User {
 	buyLottos(count) {
     for (let i = 0; i < count; i++) {
 			let randomNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+			randomNumbers.sort();
 			let newLotto = new Lotto(randomNumbers);
 			this.lottoBundle.push(newLotto.getLotto());
     }
+		
+		let print = new Print();
+		print.printLottoBundle(this.lottoBundle);
 	}
 }	
 

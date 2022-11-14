@@ -1,8 +1,15 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const Print = require("./Prize");
+const Print = require('./Prize');
 
 class Print {
-	printResult(winningCount, place) {
+	static printLottoBundle(lottoBundle) {
+		MissionUtils.Console.print(`${lottoBundle.length()}개를 구매했습니다.`);
+		for (let i = 0; i < lottoBundle.length(); i++) {
+			MissionUtils.Console.print(lottoBundle[i]);
+		}
+	}
+
+	static printWinningResult(winningCount, place) {
 		switch(place) {
 			case Prize.FIFTH_PLACE:
 				MissionUtils.Console.print(`3개 일치 (5,000원) - ${winningCount[place]}개`);
@@ -28,11 +35,11 @@ class Print {
 		MissionUtils.Console.print('당첨 통계');
 		MissionUtils.Console.print('---');
 		for (let correct = 3; correct < 8; correct++) {
-			this.printResult(winningCount, correct);
+			this.printWinningResult(winningCount, correct);
 		}
 	}
 
-	earningsRate(seedMoney, earnings) {
+	static earningsRate(seedMoney, earnings) {
 		let earningsRate = ((earnings / seedMoney) * 100).toFixed(1);
 		MissionUtils.Console.print(`총 수익률은 ${earningsRate}%입니다.`);
 	}
