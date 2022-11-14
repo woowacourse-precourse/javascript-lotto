@@ -2,20 +2,21 @@ const MissionUtils = require("@woowacourse/mission-utils");
 
 class App {
   play() {
-    this.inputMoeny();
-    
+    const ticket = this.inputMoeny();
   }
 
-  buyingLotto() {
-    
+  createLotto(numbers) {
+    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, numbers)
+    .sort((a,b) => a - b)
   }
+
 
   inputMoeny() {
     let userInput = 0;
     MissionUtils.Console.readLine('구입 금액을 입력해 주세요.\n', (answer) => { 
-      userInput = answer;
+      userInput = Number(answer);
     });
-    if(Number(userInput)%1 === 0) return userInput;
+    if(userInput%1000 === 0 && userInput > 0) return userInput/1000;
     throw new Error("[ERROR] 1,000원 단위로 구매할 수 있습니다.");
   }
 
