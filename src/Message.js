@@ -1,7 +1,4 @@
-const LOTTERY_NUMBER_LENGTH = 6;
-const LOTTERY_MIN_NUMBER = 1;
-const LOTTERY_MAX_NUMBER = 45;
-const LOTTERY_PRICE = 1000;
+const { LOTTERY_NUMBER_LENGTH, LOTTERY_MIN_NUMBER, LOTTERY_MAX_NUMBER, LOTTERY_PRICE } = require("./GameConstants");
 
 const MESSAGE = Object.freeze({
   INPUT: {

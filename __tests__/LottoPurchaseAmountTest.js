@@ -1,5 +1,5 @@
 const LottoGame = require("../src/LottoGame");
-const LOTTERY_PRICE = 1000;
+const { LOTTERY_PRICE } = require("../src/GameConstants");
 const testLottoGame = new LottoGame();
 
 describe("로또 구입 금액 입력 테스트", () => {

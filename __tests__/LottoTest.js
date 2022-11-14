@@ -1,7 +1,5 @@
 const Lotto = require("../src/Lotto");
-const LOTTERY_NUMBER_LENGTH = 6;
-const LOTTERY_MIN_NUMBER = 1;
-const LOTTERY_MAX_NUMBER = 45;
+const { LOTTERY_NUMBER_LENGTH, LOTTERY_MIN_NUMBER, LOTTERY_MAX_NUMBER} = require("../src/GameConstants");
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {

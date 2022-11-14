@@ -1,20 +1,7 @@
 const LottoGame = require("./LottoGame");
 const { Console } = require("@woowacourse/mission-utils");
 const MESSAGE = require("./Message");
-const PRIZE_CRITERIA = Object.freeze({
-  FIRST: 6,
-  SECOND_THIRD: 5,
-  FOURTH: 4,
-  FIFTH: 3,
-});
-
-const PRIZE_MONEY = Object.freeze({
-  FIRST: '2,000,000,000',
-  SECOND: '30,000,000',
-  THIRD: '1,500,000',
-  FOURTH: '50,000',
-  FIFTH: '5,000',
-});
+const { PRIZE_CRITERIA, PRIZE_MONEY } = require("./GameConstants");
 
 class LottoGameView {
   constructor() {

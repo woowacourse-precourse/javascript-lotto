@@ -1,7 +1,6 @@
 const LottoGame = require("../src/LottoGame");
+const { LOTTERY_MIN_NUMBER, LOTTERY_MAX_NUMBER } = require("../src/GameConstants");
 const testLottoGame = new LottoGame();
-const LOTTERY_MIN_NUMBER = 1;
-const LOTTERY_MAX_NUMBER = 45;
 
 describe("보너스 번호 입력 테스트", () => {
   test("보너스 번호가 숫자 1개가 아니면 예외가 발생한다.", () => {

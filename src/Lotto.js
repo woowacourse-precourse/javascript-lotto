@@ -1,7 +1,5 @@
 const MESSAGE = require("./Message");
-const LOTTERY_NUMBER_LENGTH = 6;
-const LOTTERY_MIN_NUMBER = 1;
-const LOTTERY_MAX_NUMBER = 45;
+const { LOTTERY_NUMBER_LENGTH, LOTTERY_MIN_NUMBER, LOTTERY_MAX_NUMBER } = require("./GameConstants");
 
 class Lotto {
   #numbers;

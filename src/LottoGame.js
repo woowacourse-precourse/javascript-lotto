@@ -1,22 +1,7 @@
 const Lotto = require("./Lotto");
 const { Random } = require("@woowacourse/mission-utils");
 const MESSAGE = require("./Message");
-const LOTTERY_PRICE = 1000;
-const LOTTERY_MIN_NUMBER = 1;
-const LOTTERY_MAX_NUMBER = 45;
-const PRIZE_CRITERIA = Object.freeze({
-  FIRST: 6,
-  SECOND_THIRD: 5,
-  FOURTH: 4,
-  FIFTH: 3,
-});
-const PRIZE_MONEY = Object.freeze({
-  FIRST: 2000000000,
-  SECOND: 30000000,
-  THIRD: 1500000,
-  FOURTH: 50000,
-  FIFTH: 5000,
-});
+const { LOTTERY_PRICE, LOTTERY_MIN_NUMBER, LOTTERY_MAX_NUMBER, PRIZE_CRITERIA, PRIZE_MONEY_NUMBER} = require("./GameConstants");
 
 class LottoGame {
   constructor(LottoGameView) {
@@ -165,7 +150,7 @@ class LottoGame {
   getTotalRevenue() {
     let totalRevenue = 0;
     Object.keys(this.prizeCount).forEach((prize) => {
-      totalRevenue += this.prizeCount[prize]*PRIZE_MONEY[prize.toUpperCase()];
+      totalRevenue += this.prizeCount[prize]*PRIZE_MONEY_NUMBER[prize.toUpperCase()];
     });
 
     return totalRevenue;
