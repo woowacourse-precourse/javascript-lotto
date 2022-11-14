@@ -12,6 +12,10 @@ class App {
   }
 
   play() {
+    Casher.getMoney(CASHER.ASK_MONEY, (input) => {
+      this.purchaseRoutine(input);
+      LottoPicker.pickLottoNumbers(this.markRoutine.bind(this));
+    });
   }
 
   purchaseRoutine(purchaseAmount) {
