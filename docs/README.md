@@ -25,7 +25,7 @@
 - [x] 구입 입출력 검증: validateLottoBudget()
 - [x] 당첨 번호 입력 검증: validateTargetNumber()
 - [x] 보너스 번호 입력 검증: validateBonusNumber()
-- [ ] 보너스 번호와 당첨 번호가 겹치지 않는지 검증: validateBonusNumberNotInLottoNumber()
+- [x] 보너스 번호와 당첨 번호가 겹치지 않는지 검증: validateBonusNumberNotInLottoNumber()
 
 ## 연동
 
@@ -35,9 +35,9 @@
 
 ## 예외 처리
 
-- [ ] 입력 길이 오류: INVALID_INPUT_LENGTH
-- [ ] 입력 타입 오류: INVALID_INPUT_TYPE
-- [ ] 입력값 범위 오류: INVALID_INPUT_RANGE
+- [ ] 구입 입력 오류
+- [ ] 당첨번호 입력 오류
+- [ ] 보너스번호 입력 오류
 
 ## 테스트 구현
 
