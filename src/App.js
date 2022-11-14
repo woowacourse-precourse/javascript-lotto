@@ -59,38 +59,26 @@ class App {
   }
 
   printResultInfo() {
-    Console.print("당첨 통계");
+    Console.print("\n당첨 통계");
     Console.print("---");
     this.checkLotteryResult();
   }
 
-  makeBonusNumber() {
-    const bonusNumber = Random.pickUniqueNumbersInRange(1, 45, 1);
-    this.validation.bonusNumberValidate(bonusNumber);
-    this.lotteryArray = [...this.lotteryArray, ...bonusNumber];
-    this.bonus = String(bonusNumber);
-    return bonusNumber;
+  inputBonusNumber() {
+    Console.readLine("\n보너스 번호를 입력해주세요.", (number) => {
+      this.validation.bonusNumberValidate(number);
+      this.lotteryArray.push(Number(number));
+      this.printResultInfo();
+    });
   }
 
-  printBonusNumber() {
-    Console.print("보너스 번호를 입력해주세요.");
-    const bonusNumber = this.makeBonusNumber();
-    Console.print(String(bonusNumber));
-    this.printResultInfo();
-  }
-
-  makeLottoNumber() {
-    const lottoNumber = Random.pickUniqueNumbersInRange(1, 45, 6);
-    const lottoValidate = new Lotto(lottoNumber);
-    this.lotteryArray = lottoNumber;
-    return lottoNumber;
-  }
-
-  printLottoNumber() {
-    Console.print("당첨 번호를 입력해주세요.");
-    const lottoNumber = this.makeLottoNumber();
-    Console.print(String(lottoNumber));
-    this.printBonusNumber();
+  inputLotteryNumber() {
+    Console.readLine("\n당첨 번호를 입력해주세요.", (number) => {
+      const lottoNumber = number.split(",").map(Number);
+      const lottoValidate = new Lotto(lottoNumber);
+      this.lotteryArray = lottoNumber;
+      this.inputBonusNumber();
+    });
   }
 
   makeUserNumber() {
@@ -107,7 +95,7 @@ class App {
       const userNumber = this.makeUserNumber();
       Console.print(userNumber);
     }
-    this.printLottoNumber();
+    this.inputLotteryNumber();
   }
 
   setLottoAmount(money) {

@@ -27,7 +27,7 @@ class InputValidation {
   bonusNumberValidate(bonusNumber) {
     if (bonusNumber.length !== 1)
       throw new Error("[ERROR]보너스 번호는 하나만 입력해야 합니다.");
-    const number = bonusNumber[0];
+    const number = Number(bonusNumber);
     if (typeof number !== "number")
       throw new Error("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
     if (number < 1 || number > 45)
