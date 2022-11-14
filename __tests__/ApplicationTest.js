@@ -105,8 +105,15 @@ describe("로또 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
-  test("예외 테스트: 1000으로 나뉘어지지 않는 값 로또 구매 값으로 입력했을 때", () => {
+  test("예외 테스트: 1000으로 나뉘어지지 않는 값을 로또 구매 값으로 입력했을 때", () => {
     mockQuestions(["1001"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+  test("예외 테스트: 1000보다 작은 값을 로또 구매 값으로 입력했을 때", () => {
+    mockQuestions(["100"]);
     expect(() => {
       const app = new App();
       app.play();
