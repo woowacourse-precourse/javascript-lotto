@@ -1,5 +1,4 @@
 const Lotto = require("./Lotto");
-
 const CompareWithLotto = require("./CompareNumbers");
 
 const {
@@ -30,11 +29,13 @@ class MakeLotteryTickets {
     randomNumbers = randomNumbers.sort(
       (firstEl, secondEl) => firstEl - secondEl
     );
+
     this.printTickets(randomNumbers);
   }
 
   printTickets(randomNumbers) {
     const convertToString = `[${String(randomNumbers).replaceAll(",", ", ")}]`;
+
     CONSOLE_UTIL.print(convertToString);
   }
 
@@ -42,6 +43,7 @@ class MakeLotteryTickets {
     CONSOLE_UTIL.readLine(INPUT_NUMBERS_MESSAGE, (userNumbers) => {
       userNumbers = userNumbers.split(",").map(Number);
       this.validateNumbers(userNumbers);
+
       this.compareWithNumbers();
     });
   }
