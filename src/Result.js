@@ -1,4 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
+const { OUTPUT } = require("./constants/messges");
 
 class Result {
   #quantity;
@@ -15,7 +16,7 @@ class Result {
 
   print() {
     const reward = this.#reward.toLocaleString();
-    Console.print(`${this.#number} (${reward}원) - ${this.#quantity}개`);
+    Console.print(OUTPUT.RESULT(this.#number, reward, this.#quantity));
 
     this.countTotalReward();
   }
