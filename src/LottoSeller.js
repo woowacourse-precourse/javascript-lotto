@@ -1,3 +1,4 @@
+const { Console } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const LottoValidator = require('./LottoValidator');
 // 사용자가 방문해서 사는 곳
@@ -47,10 +48,17 @@ class LottoSeller {
     this.#lottos = lottos;
   }
 
+  informPurchaseResult() {
+    const lottoCount = this.lottos.length;
+    Console.print(`${lottoCount}개를 구매했습니다.`);
+    this.lottos.forEach((lotto) => Console.print(lotto));
+  }
+
   purchase = (money) => {
     //  검증()
     // 하나씩 배열에 추가
     this.issueLotto(this.countLottoTicket(money));
+    this.informPurchaseResult();
     return this.lottos;
   };
 }
