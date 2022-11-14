@@ -11,6 +11,21 @@ class App {
       }
     );
   }
+
+  userLottoNumber(buyCount) {
+    MissionUtils.Console.print(`\n ${buyCount}개를 구매했습니다.`);
+    let userLottoNumbers = [];
+    for (let i = 0; i < buyCount; i++) {
+      userLottoNumbers[i] = MissionUtils.Random.pickUniqueNumbersInRange(
+        1,
+        45,
+        6
+      ).sort((a, b) => a - b);
+      MissionUtils.Console.print([...userLottoNumbers[i]]);
+    }
+    return [...userLottoNumbers];
+  }
+
 }
 
 module.exports = App;
