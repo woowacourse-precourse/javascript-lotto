@@ -94,7 +94,7 @@ class App {
       const amount = this.#user.getAmount();
       const userNumbersList = this.#user.getNumbersList();
 
-      const statistics = this.generateStatistics(amount, userNumbersList);
+      const statistics = this.#generateStatistics(amount, userNumbersList);
       this.#printStatistics(statistics.prizes, statistics.revenue);
 
       this.#finishLotto();
@@ -107,7 +107,7 @@ class App {
    * @param {number[][]} userNumbersList
    * @returns {{prizes:{first: number, second: number, third:number, fourth:number, fifth:number}, revenue: string}}
    */
-  generateStatistics(amount, userNumbersList) {
+  #generateStatistics(amount, userNumbersList) {
     const prizes = this.#lottoManager.getPrizes(userNumbersList);
     const revenue = this.#lottoManager.calculateRevenue(prizes, amount);
 
