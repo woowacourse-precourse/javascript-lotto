@@ -18,7 +18,7 @@ class App {
   buyLotto() {
     Console.readLine('구입금액을 입력해 주세요.\n', (answer) => {
       const price = Number(answer);
-      if (typeof price !== "number") {
+      if (typeof price !== "number" || isNaN(price)) {
         throw new Error("[ERROR] 숫자만 입력하세요.");
       }
       if (price % 1000 !== 0) {
@@ -54,7 +54,7 @@ class App {
     Console.readLine('보너스 번호를 입력해 주세요.\n', (answer) => {
       const bonus = Number(answer);
 
-      if (typeof bonus !== "number") {
+      if (typeof bonus !== "number" || isNaN(bonus)) {
         throw new Error("[ERROR] 숫자만 입력하세요.");
       }
       if (bonus < 1 || bonus > 45) {
