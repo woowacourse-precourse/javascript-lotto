@@ -49,6 +49,16 @@ class Lotto {
     }
     return isMatch;
   }
+
+  compareBonus(myNumbers, bonus, isMatch) {
+    let bonusMatch = 0;
+    for (let i in isMatch) {
+      if (isMatch[i] == 5) {
+        bonusMatch += this.isMatching(bonus, myNumbers[i]);
+      }
+    }
+    return bonusMatch;
+  }
 }
 
 module.exports = Lotto;
