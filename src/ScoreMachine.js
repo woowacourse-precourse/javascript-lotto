@@ -54,7 +54,12 @@ class ScoreMachine {
       (money, ranking) => money + this.#result[RANKING[ranking]] * PRIZE_MONEY[ranking],
       0
     );
-    this.#result[RATE_OF_RETURN] = (totalPrizeMoney / purchaseAmount) * 100;
+    const rateOfReturn = ((totalPrizeMoney / purchaseAmount) * 100)
+      .toFixed(1)
+      .toString()
+      .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+
+    this.#result[RATE_OF_RETURN] = rateOfReturn;
   }
 
   printResult() {
