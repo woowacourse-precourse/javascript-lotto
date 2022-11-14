@@ -27,6 +27,10 @@ class App {
       winningAmount, total,
     };
   }
+
+  static getEarningsRate(principal, earning) {
+    return Application.earningsRate(principal, earning);
+  }
 }
 
 module.exports = App;
