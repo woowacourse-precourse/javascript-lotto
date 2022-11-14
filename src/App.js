@@ -22,7 +22,7 @@ class App {
   }
 
   prizeInput(user, userMoney) {
-    MissionUtils.Console.readLine(`\n${Message.INPUT_MESSAGE.PRIZE}\n`, (prizeNumber) => {
+    MissionUtils.Console.readLine(`${Message.INPUT_MESSAGE.PRIZE}\n`, (prizeNumber) => {
       const przNum = prizeNumber.split(',');
       DetectError.prototype.checkPrizNumber(przNum);
       new Lotto(przNum);
@@ -31,7 +31,7 @@ class App {
   }
 
   bonusInput(user, przNum, userMoney) {
-    MissionUtils.Console.readLine(`\n${Message.INPUT_MESSAGE.BONUS}\n`, (bonusNumber) => {
+    MissionUtils.Console.readLine(`${Message.INPUT_MESSAGE.BONUS}\n`, (bonusNumber) => {
       const bnsNum = parseInt(bonusNumber);
       if (bnsNum < 1 || bnsNum > 45) {
         throw new Error(`${Message.ERROR_MESSAGE.RANGE}`);
@@ -48,7 +48,7 @@ class App {
   numberOfAvailablePurchase(userMoney) {
     if (!(userMoney % 1000)) {
       let availablePurchaseNumber = parseInt(userMoney / 1000);
-      MissionUtils.Console.print(`\n${availablePurchaseNumber}${Message.SUB_MESSAGE.AMOUNT}`);
+      MissionUtils.Console.print(`${availablePurchaseNumber}${Message.SUB_MESSAGE.AMOUNT}`);
       return this.buyRandomLotto(availablePurchaseNumber);
     }
     throw new Error(`${Message.ERROR_MESSAGE.DIVIDED}`);
@@ -95,23 +95,13 @@ class App {
   caculateResult(user, prize, bonus, userMoney) {
     DetectError.prototype.isBonusInPrize(prize, bonus);
 
-    // let lottoPrize = {
-    //   3: [0, 5000],
-    //   4: [0, 50000],
-    //   5: [0, 1500000],
-    //   6: [0, 30000000],
-    //   7: [0, 2000000000],
-    // };
-    let lottoPrize = [
-      [0],
-      [0],
-      [0],
-      [0, 5000],
-      [0, 50000],
-      [0, 1500000],
-      [0, 30000000],
-      [0, 2000000000],
-    ];
+    let lottoPrize = {
+      3: [0, 5000],
+      4: [0, 50000],
+      5: [0, 1500000],
+      6: [0, 30000000],
+      7: [0, 2000000000],
+    };
 
     user.forEach((userNum) => {
       lottoPrize = this.makeLottoPrize(userNum, prize, bonus, lottoPrize);
@@ -146,7 +136,7 @@ class App {
   }
 
   showResult(lottoPrize, userMoney) {
-    MissionUtils.Console.print(`\n${Message.SUB_MESSAGE.RESULT}`);
+    MissionUtils.Console.print(`${Message.SUB_MESSAGE.RESULT}`);
     MissionUtils.Console.print(`${Message.SUB_MESSAGE.BLANK}`);
 
     let i = 3;
@@ -169,5 +159,8 @@ class App {
     MissionUtils.Console.print(`총 수익률은 ${result}%입니다.`);
   }
 }
+
+const game = new App();
+game.play();
 
 module.exports = App;
