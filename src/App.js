@@ -130,6 +130,17 @@ class App {
     );
     this.calculateYield();
   }
+
+  calculateYield() {
+    let deposit = 0;
+    for (let key in this.result) {
+      deposit += parseInt(key) * this.result[key];
+    }
+    MissionUtils.Console.print(
+      `총 수익률은 ${((deposit / this.money) * 100).toFixed(1)}%입니다.`
+    );
+    MissionUtils.Console.close();
+  }
 }
 
 const app = new App();
