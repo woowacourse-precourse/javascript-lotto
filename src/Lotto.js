@@ -1,6 +1,12 @@
 // @ts-check
 
-const { LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER } = require('./const');
+const {
+  LOTTO_MIN_NUMBER,
+  LOTTO_MAX_NUMBER,
+  LOTTO_LENGTH_ERROR_MESSAGE,
+  DUPLICATE_ERROR_MESSAGE,
+  LOTTO_BOUND_ERROR_MESSAGE,
+} = require('./const');
 
 class Lotto {
   #numbers;
@@ -39,7 +45,7 @@ class Lotto {
    */
   validateNumbersLength(numbers) {
     if (numbers.length !== 6) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+      throw new Error(LOTTO_LENGTH_ERROR_MESSAGE);
     }
   }
 
@@ -54,7 +60,7 @@ class Lotto {
         number < LOTTO_MIN_NUMBER ||
         number > LOTTO_MAX_NUMBER
       ) {
-        throw new Error('[ERROR] 로또 번호는 1이상 45 이하의 정수여야 합니다.');
+        throw new Error(LOTTO_BOUND_ERROR_MESSAGE);
       }
     });
   }
@@ -67,7 +73,7 @@ class Lotto {
     const numberSet = new Set(numbers);
 
     if (numberSet.size !== numbers.length) {
-      throw new Error('[ERROR] 로또 번호에 중복이 있을 수 없습니다.');
+      throw new Error(DUPLICATE_ERROR_MESSAGE);
     }
   }
 

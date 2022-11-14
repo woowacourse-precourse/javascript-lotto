@@ -16,6 +16,13 @@ const THIRD_PRIZE = '5개 일치 (1,500,000원)';
 const FOURTH_PRIZE = '4개 일치 (50,000원)';
 const FIFTH_PRIZE = '3개 일치 (5,000원)';
 
+const DUPLICATE_ERROR_MESSAGE = '[ERROR] 로또 번호에 중복이 있을 수 없습니다.';
+const LOTTO_LENGTH_ERROR_MESSAGE = '[ERROR] 로또 번호는 6개여야 합니다.';
+const LOTTO_BOUND_ERROR_MESSAGE =
+  '[ERROR] 로또 번호는 1이상 45 이하의 정수여야 합니다.';
+const INVALID_INTEGER_ERROR_MESSAGE = '[ERROR] 금액은 정수여야 합니다.';
+const INVALID_UNIT_ERROR_MESSAGE = '[ERROR] 금액은 1,000원 단위여야 합니다.';
+
 module.exports = {
   LOTTO_PRICE,
   LOTTO_MAX_NUMBER,
@@ -31,4 +38,9 @@ module.exports = {
   THIRD_PRIZE,
   FOURTH_PRIZE,
   FIFTH_PRIZE,
+  DUPLICATE_ERROR_MESSAGE,
+  LOTTO_LENGTH_ERROR_MESSAGE,
+  LOTTO_BOUND_ERROR_MESSAGE,
+  INVALID_INTEGER_ERROR_MESSAGE,
+  INVALID_UNIT_ERROR_MESSAGE,
 };

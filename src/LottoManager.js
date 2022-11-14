@@ -1,6 +1,7 @@
 // @ts-check
 
 const Lotto = require('./Lotto');
+const { DUPLICATE_ERROR_MESSAGE } = require('./const');
 
 const PRIZE_WITHOUT_SECOND = ['none', 'fifth', 'fourth', 'third', 'first'];
 const PRIZE_REWARD = {
@@ -41,7 +42,7 @@ class LottoManager {
    */
   validateBonusNumber(bonusNumber) {
     if (this.#winningNumbers.includes(bonusNumber)) {
-      throw new Error('[ERROR] 로또 번호에 중복이 있을 수 없습니다.');
+      throw new Error(DUPLICATE_ERROR_MESSAGE);
     }
   }
 

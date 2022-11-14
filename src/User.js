@@ -1,5 +1,10 @@
 // @ts-check
 
+const {
+  INVALID_INTEGER_ERROR_MESSAGE,
+  INVALID_UNIT_ERROR_MESSAGE,
+} = require('./const');
+
 class User {
   /** @type {number} */
   #amount;
@@ -15,11 +20,11 @@ class User {
     const regex = /^[0-9]+$/;
 
     if (!regex.test(amount)) {
-      throw new Error('[ERROR] 금액은 정수여야 합니다.');
+      throw new Error(INVALID_INTEGER_ERROR_MESSAGE);
     }
 
     if (Number(amount) % 1000 !== 0) {
-      throw new Error('[ERROR] 금액은 1,000원 단위여야 합니다.');
+      throw new Error(INVALID_UNIT_ERROR_MESSAGE);
     }
   }
 
