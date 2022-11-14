@@ -3,7 +3,7 @@ const { REQUEST_MESSAGE } = require("./constants/message.js");
 const { LOTTO_PRIZE_MATCH_COUNT, LOTTO_PRIZE_MONEY } = require("./constants/condition.js");
 const LottoGameView = require("./LottoGameView.js");
 const Validation = require("./Validation.js");
-const LottoMachine = require("./LottoMachine.js");
+const LottoPerchaseMachine = require("./LottoPurchaseMachine.js");
 const WinningLotto = require("./WinningLotto.js");
 
 class LottoGame {
@@ -13,7 +13,7 @@ class LottoGame {
 
   constructor() {
     this.LottoGameView = new LottoGameView();
-    this.lottoMachine = new LottoMachine();
+    this.lottoPerchaseMachine = new LottoPerchaseMachine();
     this.winningLotto = new WinningLotto();
   }
 
@@ -23,8 +23,8 @@ class LottoGame {
 
   purchaseLottoPhase() {
     this.LottoGameView.requestInput(REQUEST_MESSAGE.PURCHASE_AMOUNT, (purchaseAmount) => {
-      this.lottoMachine.insertMoney(purchaseAmount);
-      this.lottos = this.lottoMachine.purchaseLottos();
+      this.lottoPerchaseMachine.insertMoney(purchaseAmount);
+      this.lottos = this.lottoPerchaseMachine.purchaseLottos();
 
       this.LottoGameView.printLottoQuantity(this.lottos.length);
       this.LottoGameView.printEachLottoNumbers(this.lottos);

@@ -8,7 +8,7 @@ const {
 const Validation = require("./Validation.js");
 const Lotto = require("./Lotto.js");
 
-class LottoMachine {
+class LottoPerchaseMachine {
   purchaseAmount;
 
   insertMoney(purchaseAmount) {
@@ -40,4 +40,4 @@ class LottoMachine {
   }
 }
 
-module.exports = LottoMachine;
+module.exports = LottoPerchaseMachine;
