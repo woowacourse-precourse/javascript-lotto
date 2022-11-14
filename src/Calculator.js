@@ -1,10 +1,13 @@
 class Calculator {
-  #moneyCount;
-  constructor() {
-    this.#moneyCount;
-  }
+
   ofPurchaseLottoCount(moneyValue) {
-    return Number((this.#moneyCount = moneyValue / 1000));
+    return Number(moneyValue / 1000);
+  }
+
+  matchNumberCount(winNumbers, userPurchaselotto) {
+    const matchNumbers = winNumbers.filter((number) => userPurchaselotto.includes(number));
+    const matchCount = matchNumbers.length;
+    return matchCount;
   }
 }
 
