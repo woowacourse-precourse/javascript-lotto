@@ -15,13 +15,17 @@
 ## 게임 입출력
 
 - [x] 로또 구입 금액 입력: getLottoBudget()
-  - [x] 구입 입출력 검증: validateLottoBudget()
 - [x] 당첨 번호 입력: getTargetNumber()
-  - [ ] 당첨 번호 입력 검증: validateTargetNumber()
 - [x] 보너스 번호 입력: getBonusNumber()
-  - [ ] 보너스 번호 입력 검증: validateBonueNumber()
 - [x] 로또 티켓 getter: get numbers()
 - [ ] 통계 출력: printLottoStat()
+
+## 입출력 검증
+
+- [x] 구입 입출력 검증: validateLottoBudget()
+- [x] 당첨 번호 입력 검증: validateTargetNumber()
+- [x] 보너스 번호 입력 검증: validateBonusNumber()
+- [ ] 보너스 번호와 당첨 번호가 겹치지 않는지 검증: validateBonusNumberNotInLottoNumber()
 
 ## 연동
 
