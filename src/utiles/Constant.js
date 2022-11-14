@@ -7,24 +7,27 @@ const SENTENCE = Object.freeze({
   DIVIDING_LINE: '---',
 });
 
+const UNIT_MONEY = 1000;
+
 const LOTTO = Object.freeze({
   COUNT: 6,
   RANGE_MIN: 1,
   RANGE_MAX: 45,
+  MATCH_START_COUNT: 3,
 });
 
-const MONEY = Object.freeze({
-  '3개 일치': '5,000원',
-  '4개 일치': '50,000원',
-  '5개 일치': '1,500,000원',
-  '5개 일치, 보너스 볼 일치': '30,000,000원',
-  '6개 일치': '2,000,000,000원',
-});
+const MONEY = Object.freeze([
+  '5,000원',
+  '50,000원',
+  '1,500,000원',
+  '30,000,000원',
+  '2,000,000,000원',
+]);
 
 const ERROR = Object.freeze({
   PREFIX: '[ERROR]',
-  RANGE: '로또 번호는 min부터 max 사이의 숫자여야 합니다.',
-  MONETARY_UNIT: ' 로또는 1,000원 단위로만 구매할 수 있습니다.',
+  RANGE: `로또 번호는 ${LOTTO.RANGE_MIN}부터 ${LOTTO.RANGE_MAX}사이의 숫자여야 합니다.`,
+  MONETARY_UNIT: `로또는 ${UNIT_MONEY}원 단위로만 구매할 수 있습니다.`,
   COUNT: `로또 번호는 ${LOTTO.COUNT}개여야 합니다.`,
   NUMBER_ONLY: '숫자만 입력해주세요.',
   COMMA: '쉼표로 구분해 입력해주세요.',
@@ -32,4 +35,4 @@ const ERROR = Object.freeze({
   DUPLICATION_BONUS: '입력한 보너스 번호는 당첨 번호에 이미 포함되어 있습니다.',
 });
 
-module.exports = { SENTENCE, LOTTO, MONEY, ERROR };
+module.exports = { SENTENCE, UNIT_MONEY, LOTTO, MONEY, ERROR };
