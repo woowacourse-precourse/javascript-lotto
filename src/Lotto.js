@@ -1,6 +1,5 @@
 const LottoPurchase = require("../src/LottoPurchase");
-
-const lottoPurchase = new LottoPurchase(1000);
+const lottoPurchase = new LottoPurchase();
 
 class Lotto {
   #numbers;
@@ -75,6 +74,14 @@ class Lotto {
       this.winningNumber[matchNumber - 3] += 1;
     }
     return this.winningNumber;
+  }
+
+  lottoCompareRepeat() {
+    let lottoList = lottoPurchase.lottoPublish();
+
+    lottoList.forEach(lottoNumbers => {
+      this.lottoCampare(lottoNumbers);
+    })
   }
 }
 
