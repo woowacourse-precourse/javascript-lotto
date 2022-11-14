@@ -8,19 +8,17 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (isNaN(numbers)) {
+    if (!numbers.every(Number)) {
       throw new Error("[ERROR] 로또 번호는 숫자여야 합니다.");
     }
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
-    if (
-      numbers.filter((number) => number >= 1 && number <= 45) !== numbers.length
-    ) {
+    if (numbers.every((number) => number >= 1 && number <= 45)) {
       throw new Error("[ERROR] 로또 번호는 1~45범위 내의 숫자여야 합니다.");
     }
     const overlap = new Set(numbers);
-    if (overlap.size !== 0) {
+    if (overlap.size > 0) {
       throw new Error("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
     }
   }
