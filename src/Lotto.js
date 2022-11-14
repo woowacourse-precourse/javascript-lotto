@@ -1,3 +1,4 @@
+const MissionUtils = require("@woowacourse/mission-utils");
 class Lotto {
   #numbers;
 
@@ -8,6 +9,15 @@ class Lotto {
 
   getLotto() {
     return this.#numbers;
+  }
+
+  printLotto() {
+    let str = "[";
+    for (let i = 0; i < 5; i++) {
+      str += this.#numbers[i] + ", ";
+    }
+    str += this.#numbers[5] + "]";
+    MissionUtils.Console.print(str);
   }
 
   validate(numbers) {

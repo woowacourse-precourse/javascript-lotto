@@ -8,7 +8,7 @@ class App {
   Bonus = 0;
   Result = [0, 0, 0, 0, 0, 0, 0];
   isBonus = 0;
-  WinPrice = ["5,000", "50,000", "1,500,000", "30,000,000", "2,000,000,000"];
+  WinPrice = ["5,000", "50,000", "1,500,000", "2,000,000,000"];
   IntPrice = [5000, 50000, 1500000, 2000000000];
   checkMoney(Money) {
     if (parseInt(Money % 1000) != 0) {
@@ -28,29 +28,31 @@ class App {
       try {
         let numArrays = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
         let tmpLotto = new Lotto(numArrays);
-        MissionUtils.Console.print(tmpLotto.getLotto());
+        tmpLotto.printLotto();
         this.TotalLotto.push(tmpLotto.getLotto());
       } catch (e) {
-        MissionUtils.Console.print(e);
+        throw "[ERROR]";
       }
     }
   }
+
+  printArray(arr) {
+    for (let i = 0; i < arr.length; i++) {}
+  }
+
   setWinningNumber() {
     try {
       MissionUtils.Console.readLine(
-        "당첨 번호를 입력해 주세요.:\n",
+        "\n당첨 번호를 입력해 주세요.\n",
         (userInput) => {
           let tmpWin = this.InputToLotto(userInput.split(","));
           this.WinLotto = new Lotto(tmpWin);
-          // console.log(this.WinLotto.getLotto());
           this.setBonusNumber();
         }
       );
     } catch (e) {
-      console.log(e);
-      throw new Error();
+      throw "[ERROR]";
     }
-    return;
   }
 
   InputToLotto(arr) {
@@ -63,7 +65,7 @@ class App {
 
   setBonusNumber() {
     MissionUtils.Console.readLine(
-      "보너스 번호를 입력해 주세요\n",
+      "\n보너스 번호를 입력해 주세요.\n",
       (userInput) => {
         try {
           this.checkBounsNumber(userInput);
@@ -72,6 +74,7 @@ class App {
           this.HowMuchWon();
         } catch (e) {
           MissionUtils.Console.print(e);
+          throw "[ERROR]";
         }
       }
     );
@@ -98,7 +101,6 @@ class App {
     for (let i = 0; i < this.LottoNum; i++) {
       this.forLotto(this.TotalLotto[i]);
     }
-    // console.log(this.Result);
   }
 
   forLotto(arr) {
@@ -111,15 +113,13 @@ class App {
     }
 
     if (cnt == 5 && arr.includes(this.Bonus)) {
-      // console.log(this.isBonus, this.Bonus, arr);
       this.isBonus += 1;
       return;
     }
     this.Result[cnt] += 1;
   }
   calculateYield(Num) {
-    console.log(this.Money);
-    return (Num / this.Money).toFixed(2);
+    return ((Num / this.Money) * 100).toFixed(1);
   }
 
   HowMuchWon() {
@@ -128,8 +128,6 @@ class App {
       wonPrice += this.IntPrice[i - 3] * this.Result[i];
     }
     wonPrice += 30000000 * this.isBonus;
-
-    console.log(wonPrice);
     MissionUtils.Console.print(
       `총 수익률은 ${this.calculateYield(wonPrice)}%입니다.`
     );
@@ -137,13 +135,12 @@ class App {
   }
 
   printResult() {
-    MissionUtils.Console.print("당첨 통계\n---");
+    MissionUtils.Console.print("\n당첨 통계\n---");
     for (let i = 3; i < 7; i++) {
       MissionUtils.Console.print(
-        `${i}개 일치, (${this.WinPrice[i - 3]}원) - ${this.Result[i]}개`
+        `${i}개 일치 (${this.WinPrice[i - 3]}원) - ${this.Result[i]}개`
       );
       if (i == 5) {
-        // console.log(this.isBonus);
         MissionUtils.Console.print(
           `${i}개 일치, 보너스 볼 일치 (30,000,000원) - ${this.isBonus}개`
         );
@@ -153,7 +150,7 @@ class App {
 
   play() {
     MissionUtils.Console.readLine(
-      "구입금액을 입력해 주세요.:\n",
+      "구입금액을 입력해 주세요.\n",
       (userInput) => {
         try {
           this.LottoNum = this.checkMoney(userInput);
@@ -162,7 +159,7 @@ class App {
           this.setWinningNumber();
         } catch (e) {
           MissionUtils.Console.print(e);
-          throw new Error();
+          throw "[ERROR]";
         }
       }
     );
