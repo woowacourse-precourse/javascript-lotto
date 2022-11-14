@@ -1,3 +1,5 @@
+const MissionUtils = require('@woowacourse/mission-utils');
+
 class Lotto {
   /** 로또가 가질 수 있는 숫자 갯수 */
   static NUMBER_COUNT = 6;
@@ -20,6 +22,15 @@ class Lotto {
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers.sort();
+  }
+
+  static fromRandom() {
+    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(
+      Lotto.NUMBER_MIN,
+      Lotto.NUMBER_MAX,
+      Lotto.NUMBER_COUNT,
+    );
+    return new Lotto(numbers);
   }
 
   /**
