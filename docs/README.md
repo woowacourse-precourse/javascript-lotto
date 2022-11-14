@@ -9,12 +9,16 @@
 
 ## 기능 목록
 - [x] get user's payment amount
-    - [x] check if the payment amount is valid (error when the amount invalid e.g. not a multiple of 1000 won)
-- [x] generate 6 random numbers per ticket (from 1-45 without duplicates in ascending order)
+    - [x] check if the payment amount is valid (throw error when invalid e.g. not a multiple of 1000 won)
+- [x] generate 6 random guessed numbers per ticket (from 1-45 without duplicates in ascending order)
 - [x] print the number of purchased tickets and 6 random numbers per ticket
-- [ ] get winning numbers and a bonus number
-    - [ ] winning numbers: 6 numbers (from 1-45 without duplicates per ticket) separated with a comma
-    - [ ] bonus number: 1 bonus number (from 1-45 without duplicates per ticket)
+- [ ] get winning numbers and compare with the guessed numbers
+    - [ ] winning numbers: 6 numbers (from 1-45 without duplicates per ticket) separated with a comma (throw error when invalid)
+    - [ ] count the number of matched numbers per ticket after comparison
+- [ ] get bonus number and compare with the guessed numbers
+    - [ ] bonus number: 1 number (from 1-45 without duplicates per ticket) (throw error when invalid)
+    - [ ] check bonus number only for tickets with 5 guessed number matches and return true/false
+          return null for tickets with less than 5 guessed number matches
 - [ ] calculate prize money by comparing random numbers and winning+bonus numbers
 - [ ] calculate earning rate by dividing prize money by payment amount and rounding to one decimal place
 - [ ] print prize money and earning rate
