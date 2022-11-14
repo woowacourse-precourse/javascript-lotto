@@ -2,6 +2,7 @@ const { Random } = require('@woowacourse/mission-utils');
 const { GAME_RANGE, PRIZES, LOTTO_PRICE, PROFIT_PHRASE, STAT_PHRASE } = require('./config');
 const Lotto = require('./Lotto.js');
 const Rank = require('./Rank.js');
+const { validateBonusNumberNotInLottoNumber } = require('./validate.js');
 
 class Game {
   #lottos = [];
@@ -18,6 +19,7 @@ class Game {
     this.#lottos = Array.from({ length: lottoNum }, () => this.generateOneLotto());
     this.#winningNumbers = winningNumbers;
     this.#bonusNUmber = bonusNumber;
+    validateBonusNumberNotInLottoNumber(bonusNumber, winningNumbers);
   }
 
   /**

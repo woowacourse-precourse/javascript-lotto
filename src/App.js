@@ -29,7 +29,7 @@ class App {
 
   startGame() {
     this.game = new Game(this.budget / LOTTO_PRICE, this.target, this.bonus);
-    this.game.generateLottoStat(this.budget);
+    console.log(this.game.generatePhrase());
   }
 }
 
