@@ -17,6 +17,10 @@ class Purchase {
     const lottoQuantity = Purchase.calculateQuantity(money);
     Purchase.issue(lottoQuantity);
   }
+
+  static calculateQuantity(money) {
+    return Number(money) / 1000;
+  }
 }
 
 module.exports = Purchase;
