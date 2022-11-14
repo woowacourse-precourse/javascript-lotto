@@ -50,17 +50,18 @@ class App {
           reject(new Error("[ERROR] price가 1000으로 나누어 떨어지지 않습니다."));
         }
         resolve(this.setMoney(priceNum));
-      })})
-      // Console.readLine("구입금액을 입력해주세요 : ", (money) => {
-      //   const priceNum = parseInt(money);
-      //   if (priceNum % 1000 !== 0) {
-      //     throw new Error("[ERROR] price가 1000으로 나누어 떨어지지 않습니다.");
-      //   }
-      //   this.setMoney(priceNum);
-      //   this.buyLotto();
-      //   this.readWinNums();
-      // })
-}
+      })
+    })
+    // Console.readLine("구입금액을 입력해주세요 : ", (money) => {
+    //   const priceNum = parseInt(money);
+    //   if (priceNum % 1000 !== 0) {
+    //     throw new Error("[ERROR] price가 1000으로 나누어 떨어지지 않습니다.");
+    //   }
+    //   this.setMoney(priceNum);
+    //   this.buyLotto();
+    //   this.readWinNums();
+    // })
+  }
 
   buyLotto() {
     const lottoCount = this.getMoney() / 1000;
@@ -89,10 +90,13 @@ class App {
   async play() {
     try {
       await this.readMoney();
-      Console.print(this.getMoney());
+      this.buyLotto();
+
     }
     catch (err) {
       Console.print(err.message);
+      Console.print("프로그램을 종료합니다.");
+      Console.close();
     }
 
   }
