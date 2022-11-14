@@ -16,7 +16,7 @@ class Statistics {
   }
 
   setRanks(type, newState) {
-    this.ranks[type] = newState;
+    if (this.ranks[type]) this.ranks[type] = newState;
   }
 
   getRateOfReturn() {
