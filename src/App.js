@@ -1,4 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
+const Lotto = require("../src/Lotto");
 
 const PROMPT_MONEY = '구입금액을 입력해 주세요.';
 const PROMPT_LOTTO = '당첨 번호를 입력해 주세요.';
@@ -54,6 +55,7 @@ class App {
   lottoInput(prompt) {
     Console.readLine(`\n${prompt}\n`, (input) => {
       this.arrayWinLotto = input.split(",");
+      new Lotto(this.arrayWinLotto);
       this.arrayWinLotto = this.arrayWinLotto.map(number => parseInt(number));
       this.bonusInput(PROMPT_BONUS);
     });
@@ -61,8 +63,16 @@ class App {
 
   bonusInput(prompt) {
     Console.readLine(`\n${prompt}\n`, (input) => {
+      this.validBonusInput(input);
       this.numberBonus = parseInt(input);
       this.compareLottoNumbers();
+    });
+  }
+
+  validBonusInput(input) {
+    if (!(Number(input) >= 1 && Number(input) <= 45)) throw new Error("[ERROR] 보너스 번호로 1부터 45까지의 숫자만 입력할 수 있습니다.");
+    this.arrayWinLotto.map(number => {
+      if (number === Number(input)) throw new Error("[ERROR] 보너스 번호로 당첨 번호와 중복된 숫자를 입력할 수 없습니다.");
     });
   }
 
