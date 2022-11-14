@@ -4,13 +4,13 @@ const LottoCtrl = require('./controller/LottoCtrl');
 
 const App = class {
   constructor() {
-    this.lottoView = new LottoView();
-    this.lottoModel = new LottoModel();
-    this.lottoCtrl = new LottoCtrl(this.lottoView, this.lottoModel);
+    this.LottoView = new LottoView();
+    this.LottoModel = new LottoModel();
+    this.LottoCtrl = new LottoCtrl(this.LottoView, this.LottoModel);
   }
 
   play() {
-    this.lottoCtrl.start();
+    this.LottoCtrl.start();
   }
 };
 
