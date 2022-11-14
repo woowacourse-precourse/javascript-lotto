@@ -5,7 +5,7 @@ class Lotto {
 
   constructor(numbers, bonus) {
     this.validate(numbers);
-    this.validateBounus(bonus);
+    this.validateBounus(numbers, bonus);
     this.#numbers = numbers;
   }
 
@@ -24,7 +24,7 @@ class Lotto {
     }
   }
 
-  validateBounus(bonus) {
+  validateBounus(numbers, bonus) {
     if(numbers.includes(bonus))
       throw new Error("[ERROR] 보너스 번호는 로또 번호 6개와 중복되지 않아야 합니다.");
     if (isNaN(bonus)) 
