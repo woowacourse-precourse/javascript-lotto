@@ -1,0 +1,21 @@
+class Bonus {
+    #numbers;
+  
+    constructor(numbers) {
+      this.#numbers = numbers;
+      this.validateBonusNumLength(numbers);
+      this.validateBonusNumBetween1To45(numbers);
+      this.validateBonusNumInteger(numbers);
+    }
+  
+    validateBonusNumLength(numbers) {
+      const numArr = [numbers];
+      if (numArr.length !== 1) {
+        throw new Error("[ERROR] 보너스 번호는 1개여야 합니다.");
+      }
+    }
+  
+    
+  }
+  
+  module.exports = Bonus;
