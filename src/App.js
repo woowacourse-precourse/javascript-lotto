@@ -22,8 +22,8 @@ class App {
     Console.readLine(INPUT_MESSAGE.paymentAmount, (money) => {
       const lottoTickets = money / LOTTO_RANGE.pricePerLotto;
 
+      this.totalLottoNumber = new Payment(money).getLottoNumber(lottoTickets);
       this.payMoney = money;
-      this.totalLottoNumber = new Payment(this.payMoney).getLottoNumber(lottoTickets);
 
       Console.print(OUTPUT_MESSAGE.amountLotto(lottoTickets));
       this.inputWinnerNumber();
@@ -46,8 +46,10 @@ class App {
 
   loadStatisticsAboutLotto() {
     Console.print(OUTPUT_MESSAGE.lottoResultAlarm);
+
     const statistics = new Statistics(this.totalLottoNumber, this.winnerNumber, this.bonusNumber);
     const lottoResult = statistics.getResultOfThreeToFiveMatchingNumbers();
+
     statistics.printLottoResult(lottoResult);
     this.loadLottoProfitRate(lottoResult);
   }
