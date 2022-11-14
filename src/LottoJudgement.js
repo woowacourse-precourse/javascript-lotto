@@ -16,6 +16,21 @@ class LottoJudgement {
     }
     this.getScoreBoard();
   }
+
+  eachLottoJudge(eachLotto) {
+    let count = 0;
+    for (let i = 0; i < 6; i++) {
+      if (eachLotto.includes(this.winLottoNum[i]) == true) {
+        count += 1;
+      }
+    }
+    if (count == 5 && eachLotto.includes(this.BonusNum) == true) {
+      count += 5; // 2st는 10 이 됨
+      this.scoreCount(count);
+    } else {
+      this.scoreCount(count);
+    }
+  }
 }
 
 module.exports = LottoJudgement;
