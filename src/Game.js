@@ -1,5 +1,5 @@
 const Calculator = require('./Calculator');
-const { ERROR_MSG, GAME_MSG, NEW_LINE } = require('./Constant');
+const { ERROR_MSG, GAME_MSG, NEW_LINE, INCOMES } = require('./Constant');
 const IO = require('./IO');
 const NumberGenerator = require('./NumberGenerator');
 const Referee = require('./Referee');
@@ -59,6 +59,11 @@ class Game {
       return result;
     };
     const result = this.lottos.reduce(compareEachLotto, [0, 0, 0, 0, 0]);
+  }
+
+  static convertGameResult(result) {
+    const income = INCOMES.reduce((tot, val, i) => tot + val * result[i], 0);
+    const profit = Calculator.calcProfit(this.cost, income);
   }
 }
 
