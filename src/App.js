@@ -17,6 +17,7 @@ class App {
     Console.readLine('구입금액을 입력해 주세요.\n', (purchaseAmount) => {
       this.isValidatePurchaseAmount(purchaseAmount);
       this.calculatesUserBuyHowManyLotto(this.purchaseAmount);
+      this.LottoNumberArray = Array.from({ length: this.userBuyHowManyLotto }, () => new Lotto(generateLottoNumber()));
     });
   }
 
