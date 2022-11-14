@@ -54,4 +54,20 @@ describe("Validation 클래스 테스트", () => {
       Validation.isValidWinningNumber("1,2,3,4,5,6a");
     }).toThrow("[ERROR]");
   });
+
+  test("보너스 번호가 1~45가 아니면 예외가 발생한다.", () => {
+    expect(() => {
+      Validation.isValidBonusNumber("46");
+    }).toThrow("[ERROR]");
+  });
+
+  test("보너스 번호가 1~45이면 true를 반환한다.", () => {
+    expect(Validation.isValidBonusNumber("45")).toBe(true);
+  });
+
+  test("보너스 번호가 숫자가 아니면 예외가 발생한다.", () => {
+    expect(() => {
+      Validation.isValidBonusNumber("45a");
+    }).toThrow("[ERROR]");
+  });
 });
