@@ -24,6 +24,14 @@ class App {
 	printLottoNum(lottoNum) {
 		return Console.print(`[${lottoNum.join(", ")}]`);
 	}
+
+	printIssuendLotto(lottoCnt) {
+		for (let i = 0; i < lottoCnt; i++) {
+			let lottoNum = this.sortedLottoNum(this.winLottoNum());
+			this.printLottoNum(lottoNum);
+		}
+	}
+
 	play() {
 		Console.print("구입금액을 입력해 주세요.");
 	}
