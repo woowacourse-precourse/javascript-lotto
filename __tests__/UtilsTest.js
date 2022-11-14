@@ -14,5 +14,11 @@ describe("Utils 클래스 테스트", () => {
     const transeInput = utils.transeStringToNumber(input);
     expect(transeInput).toStrictEqual(result);
   });
+  test("transeStringToNumber()로 변환된 값이 숫자타입인지 확인인", () => {
+    const utils = new Utils();
+    const input = "1";
+    const transeInput = utils.transeStringToNumber(input);
+    expect(typeof transeInput).toBeTruthy();
+  });
 
 });
