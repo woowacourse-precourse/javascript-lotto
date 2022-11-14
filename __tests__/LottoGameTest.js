@@ -26,4 +26,18 @@ describe('로또 번호 비교', () => {
 
     expect(result).toEqual(2);
   });
+
+  test('총 당첨 금액 확인하는 테스트1', () => {
+    const input = new Input();
+    const result = input.calcTotalPrize([0, 1, 0, 0, 0, 1, 6]);
+
+    expect(result).toEqual(2000005000);
+  });
+
+  test('총 당첨 금액 확인하는 테스트2', () => {
+    const input = new Input();
+    const result = input.calcTotalPrize([0, 0, 0, 0, 0, 0, 6]);
+
+    expect(result).toEqual(0);
+  });
 });
