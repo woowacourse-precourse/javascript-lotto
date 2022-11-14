@@ -83,6 +83,8 @@ class App {
     );
     const eachResult = singleLotto.map(this.compareNumber.bind(this));
     console.log(eachResult);
+    const eachLottoRanking = eachResult.map(this.getLottoRaking.bind(this));
+    console.log(eachLottoRanking);
   }
   compareNumber(eachLotto) {
     const compareResult = eachLotto.filter((number) =>
@@ -93,6 +95,15 @@ class App {
   }
   hasBonusNumber(eachLotto) {
     return eachLotto.includes(this.bonusNumber);
+  }
+  getLottoRaking(eachResult) {
+    const { compareResult, bonusNumberStatus } = eachResult;
+    if (compareResult === 6) return 1;
+    if (compareResult === 5 && bonusNumberStatus) return 2;
+    if (compareResult === 5) return 3;
+    if (compareResult === 4) return 4;
+    if (compareResult === 3) return 5;
+    return -1;
   }
 }
 
