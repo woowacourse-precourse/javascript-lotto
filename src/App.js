@@ -1,5 +1,21 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+const Lotto = require("./Lotto");
+
 class App {
-  play() {}
+  constructor() {
+    this.buyLotto = 0;
+    this.userLottoNumbers = [];
+    this.lottoNumber = [];
+    this.bonusNumber;
+    this.checkResultRank = {
+      First: 0,
+      Second: 0,
+      Third: 0,
+      Fourth: 0,
+      Fifth: 0,
+    };
+  }
+
   userBuyLotto() {
     MissionUtils.Console.readLine(
       "구입금액을 입력해 주세요. \n",
