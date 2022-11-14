@@ -1,17 +1,9 @@
 const Lotto = require('./Lotto');
-const { isDivisible } = require('./utils/utils');
-const { ERROR, AMOUNT_UNIT } = require('./utils/constants');
+const { AMOUNT_UNIT } = require('./utils/constants');
 
 class User {
   constructor(purchaseAmount) {
-    this.validate(purchaseAmount);
     this.purchaseAmount = Number(purchaseAmount);
-  }
-
-  validate(amount) {
-    if (!isDivisible(amount)) {
-      throw new Error(ERROR.INDIVISIBLE);
-    }
   }
 
   buyLotto() {

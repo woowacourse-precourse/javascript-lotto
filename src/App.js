@@ -4,7 +4,14 @@ const User = require('./User');
 const Lotto = require('./Lotto');
 const Draw = require('./Draw');
 const { MESSAGE, ERROR } = require('../src/utils/constants');
-const { hasChar, hasCharExceptComma, hasDuplicate, isOutOfRange, parseNumbers } = require('../src/utils/utils');
+const {
+  hasChar,
+  hasCharExceptComma,
+  isDivisible,
+  hasDuplicate,
+  isOutOfRange,
+  parseNumbers,
+} = require('../src/utils/utils');
 
 class App {
   constructor() {
@@ -29,6 +36,10 @@ class App {
   validateAmount(amount) {
     if (hasChar(amount)) {
       throw new Error(ERROR.ONLY_NUMBER);
+    }
+
+    if (!isDivisible(amount)) {
+      throw new Error(ERROR.INDIVISIBLE);
     }
   }
 
