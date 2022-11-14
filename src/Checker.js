@@ -2,6 +2,7 @@ const {
   ERROR_MSG_MAIN_NUMS_COUNT,
   ERROR_MSG_NUMS_NAN,
   ERROR_MSG_NUMS_INTEGER,
+  ERROR_MSG_NUM_RANGE,
 } = require("./constants/error-message");
 
 class Checker {
@@ -12,6 +13,7 @@ class Checker {
 
     const mainNums = mainNumStrs.map(Number);
     this.checkAllIsInteger(mainNums);
+    this.checkAllRange(mainNums);
   }
 
   checkSix(mainNumStrs) {
@@ -29,12 +31,21 @@ class Checker {
   }
 
   checkAllIsInteger(mainNums) {
-    mainNums.forEach((num) => this.checkAllIsInteger(num));
+    mainNums.forEach((num) => this.checkIsInteger(num));
   }
 
   checkIsInteger(num) {
     if (Number.isInteger(num)) return;
     throw new Error(ERROR_MSG_NUMS_INTEGER);
+  }
+
+  checkAllRange(mainNums) {
+    mainNums.forEach((num) => this.checkRange(num));
+  }
+
+  checkRange(num) {
+    if (1 <= num && num <= 45) return;
+    throw new Error(ERROR_MSG_NUM_RANGE);
   }
 }
 
