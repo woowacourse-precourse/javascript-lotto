@@ -1,5 +1,4 @@
-const { Random } = require('@woowacourse/mission-utils');
-
+const { RandomAdapter } = require('../adapters');
 const Lotto = require('./Lotto');
 
 class LottoGenerator {
@@ -16,7 +15,8 @@ class LottoGenerator {
   }
 
   #createLottoNumbers() {
-    const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+    const random = new RandomAdapter();
+    const numbers = random.pickUniqueNumbersInRange(1, 45, 6);
 
     return this.#sortAscending(numbers);
   }
