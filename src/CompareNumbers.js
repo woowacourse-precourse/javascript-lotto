@@ -4,6 +4,8 @@ const {
   FROM_ONE_TO_FORTYFIVE,
   ERROR_MESSAGES,
   RANDOM_UTIL,
+  PRIZE_MESSAGES,
+  RESULT_MESSAGE,
 } = require("./Constants");
 
 const { NOT_BETWEEN_ONE_AND_FORTYFIVE } = ERROR_MESSAGES;
@@ -13,6 +15,7 @@ class CompareWithLotto {
     this.userMoney;
     this.userNumbers;
     this.tickets;
+    this.index = Object.keys(PRIZE_MONEY).length;
   }
 
   compareWithNumbers(userNumbers, Lotterytickets, userMoney) {
@@ -63,6 +66,8 @@ class CompareWithLotto {
     numberOfwinningTickets[3] = numberOfwinningTickets[2] = 0;
     this.compareWithBonus(numberOfwinningTickets, isSameBonus);
     numberOfwinningTickets[1] = this.tickets.filter((num) => num === 6).length;
+
+    this.printResult(numberOfwinningTickets);
   }
 
   compareWithBonus(numberOfwinningTickets, isSameBonus) {
@@ -71,6 +76,17 @@ class CompareWithLotto {
       isSameBonus
         ? (numberOfwinningTickets[2] = SecondOrThird)
         : (numberOfwinningTickets[3] = SecondOrThird);
+    }
+  }
+
+  printResult(matchingTicket) {
+    CONSOLE_UTIL.print(RESULT_MESSAGE);
+
+    let index = this.index;
+    for (index; index > 0; index--) {
+      CONSOLE_UTIL.print(
+        `${PRIZE_MESSAGES[index]} - ${matchingTicket[index]}개`
+      );
     }
   }
 }
