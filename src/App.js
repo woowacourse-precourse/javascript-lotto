@@ -73,17 +73,21 @@ class App {
 
   validateMoney(money) {
     if (isNaN(money)) {
+      Console.close();
       throw new Error(MONEY_ERROR.number);
     }
     if (Number(money) % 1000 !== 0) {
+      Console.close();
       throw new Error(MONEY_ERROR.amount);
     }
   }
   validateBonusNumbers(bonusNumber) {
     if (isNaN(bonusNumber)) {
+      Console.close();
       throw new Error(BONUS_ERROR.number);
     }
     if (bonusNumber > 45 && bonusNumber < 1) {
+      Console.close();
       throw new Error(BONUS_ERROR.range);
     }
   }
