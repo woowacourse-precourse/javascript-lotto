@@ -74,4 +74,11 @@ describe("로또 클래스 테스트", () => {
 
     expect(app.matchLottos(lottos, winNumbers, bonusNumber)).toEqual(result);
   });
+
+  test("수익 구하기", () => {
+    const app = new App();
+    const input = [3, 4, 3];
+
+    expect(app.calculateProfit(input)).toEqual(60000);
+  });
 });
