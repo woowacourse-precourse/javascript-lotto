@@ -1,11 +1,16 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+
 class App {
   lottoPrice;
   lottos;
+  lottoWinningNumber;
+  lottoBonusNumber;
 
   play() {
     this.getMoney();
     this.lottos = this.buyLotto(this.lottoPrice / 1000);
+    this.enterLottoWinningNumbers();
+    this.enterLottoBonusNum();
   }
 
   getMoney() {
@@ -55,6 +60,37 @@ class App {
       if (a < b) return -1;
     });
     return lotto;
+  }
+
+  enterLottoWinningNumbers() {
+    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (numbers) => {
+      const isValidInput = this.checkValidWinningNumber(numbers);
+      if (isValidInput == true) {
+        this.lottoWinningNumber = number.split(",");
+      } else {
+        MissionUtils.Console.close();
+      }
+    });
+  }
+
+  checkValidWinningNumber(number) {
+    const numArr = number.split(",");
+    const numSet = new Set(numArr);
+
+    if (numArr.length !== numSet.size) {
+      throw "[ERROR] duplicated character";
+    }
+    if (number.length !== 6) {
+      throw "[ERROR] invalid input length";
+    }
+
+    return true;
+  }
+
+  enterLottoBonusNum() {
+    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요", (bonus) => {
+      this.lottoBonusNumber = bonus;
+    });
   }
 }
 
