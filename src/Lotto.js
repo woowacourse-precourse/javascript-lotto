@@ -7,27 +7,21 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
+    if (numbers.length !== 6)
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
-
-    if (isDuplicated(numbers)) {
+    if (isDuplicated(numbers)) 
       throw new Error("[ERROR] 로또 번호는 중복되지 않는 숫자 6개여야 합니다.");
-    }
 
     for(let i = 0; i < numbers.length; i++) {
       const number = Number(numbers[i]);
-      
-      if (isNaN(number)) {
+      if (isNaN(number)) 
         throw new Error("[ERROR] 숫자만 입력해야 합니다.");
-      }
-      
-      if (!isInRange(number)) {
+      if (!isInRange(number)) 
         throw new Error("[ERROR] 1부터 45 사이의 숫자여야 합니다.");
-      }
     }
   }
- 
+
+
 }
 
 const isDuplicated = (numbers) => {
