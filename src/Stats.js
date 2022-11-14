@@ -14,11 +14,21 @@ const scoreMap = {
   6: six,
 };
 
+const dataForm = {
+  underThree: 0,
+  three: 0,
+  four: 0,
+  five: 0,
+  fivePlusBonus: 0,
+  six: 0,
+};
+
 class Stats {
   constructor({ winningNumbers, bonusNumber, purchased }) {
     this.winningNumbers = winningNumbers;
     this.bonusNumber = bonusNumber;
     this.purchased = purchased;
+    this.data = this.gather();
   }
 
   getScore(lotto) {
@@ -28,6 +38,17 @@ class Stats {
 
     const score = scoreMap[correctCount](bonus);
     return score;
+  }
+
+  gather() {
+    const data = Object.assign({}, dataForm);
+
+    this.purchased.lottoArray.forEach((lotto) => {
+      const score = this.getScore(lotto);
+      data[score]++;
+    });
+
+    return data;
   }
 }
 
