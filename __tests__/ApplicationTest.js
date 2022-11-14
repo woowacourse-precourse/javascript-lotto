@@ -68,4 +68,11 @@ describe('로또 테스트', () => {
       app.play();
     }).toThrow('[ERROR]');
   });
+
+  test('로또 구매 테스트', () => {
+    const app = new App();
+    const lottos = app.buyLotto(3000);
+
+    expect(lottos.length).toBe(3);
+  });
 });
