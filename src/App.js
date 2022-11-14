@@ -11,12 +11,11 @@ class App {
   constructor() {
     this.purchaseAmount = 0;
     this.lottoAmount = 0;
-    this.lottoList = {};
+    this.lottoList = [];
     this.luckyNumbers = 0;
     this.bonusNumber = 0;
-    this.nullBonusArr = 0;
-    this.overlapList = 0;
-    this.countRankList = {};
+    this.overlapList = [];
+    this.countRankList = [];
     this.profitRates = 0;
   }
 
@@ -24,7 +23,7 @@ class App {
     Console.readLine('구입금액을 입력해 주세요.\n', (answer) => {
       this.validatePrice(answer);
       this.purchaseAmount = answer;
-      
+
       this.printLottoAmount();
     })
   }
@@ -40,10 +39,10 @@ class App {
     this.lottoAmount = this.purchaseAmount / LOTTO_PRICE;
     Console.print(`${this.lottoAmount}개를 구매했습니다.`);
 
-    this.nextStepOne();
+    this.hasLottoList();
   }
 
-  nextStepOne() {
+  hasLottoList() {
     this.initLottoListNumbers();
     this.printLottoList();
   }
@@ -61,22 +60,23 @@ class App {
     for(let idex = 0; idex < this.lottoAmount; idex++){
       Console.print(`[${this.lottoList[idex].join(", ")}]`);
     }
+
     this.initLuckyNumbers();
   }
 
   initLuckyNumbers() {
     Console.readLine('당첨번호를 입력해 주세요.\n', (answer)=>{
-      this.validateLuckyNumbers(answer);
+      let checkAnswer = answer.split(',');
+      this.validateLuckyNumbers(checkAnswer);
+      this.luckyNumbers = checkAnswer;
       
       this.initBonusNumber();
     })
   }
 
-  validateLuckyNumbers(answer) {
-    let checkAnswer = answer.split(',');
+  validateLuckyNumbers(checkAnswer) {
     let lotto = new Lotto(checkAnswer);
     lotto.validate(checkAnswer);
-    return this.luckyNumbers = checkAnswer;
   }
 
   initBonusNumber() {
@@ -84,12 +84,12 @@ class App {
       this.validateBonusNumber(answer);
       this.bonusNumber = answer;
 
-      this.nextStepTwo();
+      this.hasLottoRankingSystem();
     })
   }
 
-  nextStepTwo() {
-    this.calcOverlapNum();
+  hasLottoRankingSystem() {
+    this.calcOverlapNumbers();
     this.calcRankCountNumbers();
     this.calcProfit();
     this.printRanking();
@@ -98,21 +98,21 @@ class App {
   validateBonusNumber(answer) {
     let bonusArr = new Array(5).fill(null);
     bonusArr.push(answer);
-    this.nullBonusArr = bonusArr;
     let lotto = new Lotto(bonusArr);
     lotto.validate(bonusArr);
     lotto.validateOverlap(this.luckyNumbers, bonusArr);
-    return answer;
   }
 
-  calcOverlapNum() {
+  calcOverlapNumbers() {
     let count =  0;
     let result = [];
     for(let listIndex = 0; listIndex < this.lottoAmount; listIndex++){
-      for(let index = 0; index < 6; index++) {
-        if(this.lottoList[listIndex].some(element => element == this.luckyNumbers[index]) == true) count += 1;
-      } result.push(count);
-        count = 0;
+      for(let index = 0; index < LOTTO_LENGTH; index++) {
+        let isContain = this.lottoList[listIndex].some(element => element == this.luckyNumbers[index]);
+        if(isContain) count += 1;
+      } 
+      result.push(count);
+      count = 0;
     }
     this.overlapList = result;
     return this.overlapList;
@@ -122,11 +122,13 @@ class App {
     let countRankFive = this.overlapList.filter((value) => value === 3).length;
     let countRankFour = this.overlapList.filter((value) => value === 4).length;
     let countRankOne = this.overlapList.filter((value) => value === 6).length;
-    let countRankThree = 0, countRankTwo = 0;
+    let countRankThree = 0;
+    let countRankTwo = 0;
     for(let index= 0; index < this.overlapList.length; index++){
       if(this.overlapList[index] === 5){
-        if(this.lottoList[index].some(element => element == this.bonusNumber) === true) countRankTwo += 1;
-        if(this.lottoList[index].some(element => element == this.bonusNumber) === false) countRankThree += 1;
+        let isContain = this.lottoList[index].some(element => element == this.bonusNumber);
+        if(isContain) countRankTwo += 1;
+        if(!isContain) countRankThree += 1;
       }
     }
     return this.countRankList = [countRankFive, countRankFour, countRankThree, countRankTwo, countRankOne];
@@ -147,6 +149,7 @@ class App {
     Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.countRankList[3]}개`);
     Console.print(`6개 일치 (2,000,000,000원) - ${this.countRankList[4]}개`);
     Console.print(`총 수익률은 ${this.profitRates}%입니다.`);
+    
     this.endGame();
   }
 
