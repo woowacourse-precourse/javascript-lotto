@@ -27,9 +27,11 @@ class LottoStatistics extends LottoSystem {
   }
 
   getTotalReward(buyingLottos) {
-    const rankCounter = this.createRankCounter(buyingLottos);
-    return Object.entries(rankCounter).reduce((total, [rank, count]) => {
-      const reward = this.getRewardByRank(rank) * count;
+    return buyingLottos.reduce((total, buyingLotto) => {
+      const matchedCount = this.matchCount(buyingLotto, this.winningNumbers);
+      const isMatchedBonus = buyingLotto.includes(this.bonusNumber);
+      const rank = this.getRank(matchedCount, isMatchedBonus);
+      const reward = this.getRewardByRank(rank);
       return total + reward;
     }, 0);
   }
