@@ -1,5 +1,6 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto.js');
+const { validateMoney, validateBonusNumber, getLottoRanking } = require('./Utils.js');
 
 const LOTTO_PRICE = 1000;
 const LOTTO_PRIZE = {
@@ -12,28 +13,19 @@ const LOTTO_PRIZE = {
 
 class LottoSimulator {
   #money = 0;
-  #profits = 0;
+  #profit = 0;
   #lottos = [];
   #winningNumbers;
   #bounsNumber;
   #result;
 
   start() {
-    Console.readLine('구입금액을 입력해 주세요.', answer => {
-      this.validateMoney(answer);
-      this.#money = Number(answer);
+    Console.readLine('구입금액을 입력해 주세요.', input => {
+      validateMoney(input);
+      this.#money = Number(input);
     });
 
     this.buyingLotto();
-  }
-
-  validateMoney(money) {
-    if (Number.isNaN(+money)) {
-      throw new Error('[ERROR] 올바르지 않은 금액입니다.');
-    }
-    if (Number(money) % LOTTO_PRICE !== 0) {
-      throw new Error(`[ERROR] ${LOTTO_PRICE}원 단위로 입력해야 합니다.`);
-    }
   }
 
   buyingLotto() {
@@ -48,12 +40,12 @@ class LottoSimulator {
     Console.print(`${this.#lottos.length}개를 구매했습니다.`);
     this.#lottos.forEach(lotto => lotto.print());
 
-    this.setWinningNumber();
+    this.setWinningNumbers();
   }
 
   setWinningNumbers() {
-    Console.readLine('당첨 번호를 입력해 주세요.', answer => {
-      const numbers = answer.split(',').map(Number);
+    Console.readLine('당첨 번호를 입력해 주세요.', input => {
+      const numbers = input.split(',').map(Number);
       this.#winningNumbers = new Lotto(numbers);
     });
 
@@ -61,24 +53,18 @@ class LottoSimulator {
   }
 
   setBonusNumber() {
-    Console.readLine('보너스 번호를 입력해 주세요.', answer => {
-      this.validateBonusNumber(answer);
-      this.#bounsNumber = Number(answer);
+    Console.readLine('보너스 번호를 입력해 주세요.', input => {
+      validateBonusNumber(input, this.#winningNumbers);
+      this.#bounsNumber = Number(input);
     });
 
     this.calculateResult();
   }
 
-  validateBonusNumber(number) {
-    if (this.#winningNumbers.getNumbers().includes(+number)) {
-      throw new Error('[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.');
-    }
-  }
-
   calculateResult() {
     const result = [0, 0, 0, 0, 0];
     this.#lottos.forEach(lotto => {
-      const rank = this.getLottoRanking(lotto.getNumbers());
+      const rank = getLottoRanking(lotto.getNumbers(), this.#winningNumbers, this.#bounsNumber);
       if (rank > 0) {
         result[rank - 1] += 1;
       }
@@ -86,23 +72,6 @@ class LottoSimulator {
 
     this.#result = result;
     this.calculateProfits();
-  }
-
-  getLottoRanking(lotto) {
-    let cnt = 0;
-    this.#winningNumbers.getNumbers().forEach(num => {
-      if (lotto.includes(num)) {
-        cnt += 1;
-      }
-    });
-
-    if (cnt === 6) return 1;
-    if (cnt === 5 && lotto.includes(this.#bounsNumber)) return 2;
-    if (cnt === 5) return 3;
-    if (cnt === 4) return 4;
-    if (cnt === 3) return 5;
-
-    return 0;
   }
 
   calculateProfits() {
@@ -113,7 +82,7 @@ class LottoSimulator {
       }
     });
 
-    this.#profits = Math.round((sum / this.#money) * 1000) / 10;
+    this.#profit = Math.round((sum / this.#money) * 1000) / 10;
     this.printResult();
   }
 
@@ -125,7 +94,7 @@ class LottoSimulator {
       `5개 일치 (${LOTTO_PRIZE.THIRD.toLocaleString('ko-KR')}원) - ${this.#result[2]}개`,
       `5개 일치, 보너스 볼 일치 (${LOTTO_PRIZE.SECOND.toLocaleString('ko-KR')}원) - ${this.#result[1]}개`,
       `6개 일치 (${LOTTO_PRIZE.FIRST.toLocaleString('ko-KR')}원) - ${this.#result[0]}개`,
-      `총 수익률은 ${this.#profits}%입니다.`,
+      `총 수익률은 ${this.#profit}%입니다.`,
     ].join('\n');
 
     Console.print(str);
