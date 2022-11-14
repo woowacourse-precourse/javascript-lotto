@@ -39,6 +39,17 @@ class MyLotto {
       throw new Error('[ERROR] 구입 금액은 1000단위여야 합니다.');
     }
   }
+
+  print() {
+    Console.print(`\n${this.amount}개를 구매했습니다.`);
+    this.sort();
+    this.myLotto.forEach((lotto) => Console.print(`[${lotto.join(', ')}]`));
+    Console.print('\n');
+  }
+
+  sort() {
+    this.myLotto.forEach((numbers) => numbers.sort((a, b) => a - b));
+  }
 }
 
 module.exports = MyLotto;
