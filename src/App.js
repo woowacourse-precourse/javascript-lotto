@@ -5,22 +5,30 @@ const Lotto = require("./Lotto");
 class App {
   constructor() {
     this.money = null;
-    this.winNumbers = [];
+    this.winNumber = [];
     this.bonusNumber = null;
     this.lottos = [];
   }
 
+  setResult() {
+    const winningArray = this.lottos.map((lotto) => {
+      return lotto.rank(this.winNumber, this.bonusNumber);
+    });
+  }
+
   setBonusNumber() {
-    Console.askUserInput(`\n${Console.ASK_BONUS_NUMBER}`, (bonusNumber) => {
-      if (/[^0-9]/g.test(bonusNumber))
+    Console.askUserInput(`\n${Console.ASK_BONUS_NUMBER}`, (input) => {
+      if (/[^0-9]/g.test(input))
         throw new Error("[Error] 입력된 형식이 올바르지 않습니다.");
-      if (bonusNumber < 1 || 45 < bonusNumber)
+      const BOUNS_NUMBER = Number(input);
+      if (BOUNS_NUMBER < 1 || 45 < BOUNS_NUMBER)
         throw new Error(
           "[ERROR] 보너스 번호는 1부터 45사이의 숫자여야 합니다."
         );
-      if (this.winNumbers.includes(bonusNumber))
+      if (this.winNumber.includes(BOUNS_NUMBER))
         throw new Error("[ERROR] 당첨 번호에 포함되어 있는 번호입니다.");
-      this.bonusNumber = Number(bonusNumber);
+      this.bonusNumber = BOUNS_NUMBER;
+      this.setResult();
     });
   }
 
@@ -39,7 +47,8 @@ class App {
       if (new Set(NUMBER).size !== 6)
         throw new Error("[ERROR] 번호는 중복되지 않아야 합니다.");
 
-      this.winNumbers = NUMBER;
+      this.winNumber = NUMBER;
+
       this.setBonusNumber();
     });
   }
