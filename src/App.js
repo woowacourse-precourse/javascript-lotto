@@ -2,7 +2,8 @@ const Lotto = require("./Lotto");
 const MU = require("@woowacourse/mission-utils");
 class App {
   play() {
-   this.buyLotto();
+    this.getWinNum();
+    //this.buyLotto();
   }
   buyLotto(){
     MU.Console.readLine('구입금액을 입력해 주세요.\n',(money) => {
@@ -23,8 +24,10 @@ class App {
   }
   getWinNum(){
     MU.Console.readLine('\n당첨 번호를 입력해 주세요.', (number) =>{
-      console.log(number.split(','));
-      let win = new Lotto(number.split(','));
+      let stringToNum =  number.split(',').map(a => parseInt(a));
+      console.log(stringToNum); // 테스트코드
+      let win = new Lotto(stringToNum);
+      console.log(win.getNumber()); // 테스트코드
       return MU.Console.close();;
     });
   }
@@ -56,6 +59,6 @@ class App {
   }
   
 }
-const app = new App();
-app.play();
+const app = new App(); // 테스트코드
+app.play(); // 테스트코드
 module.exports = App;
