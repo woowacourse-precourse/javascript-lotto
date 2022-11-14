@@ -11,7 +11,8 @@ class LottoMain {
 
 function printResult(lottoList, prize, bonus) {
   ConsoleWork.print('당첨 통계\n---\n');
-  lottoLoop(lottoList, prize, Number(bonus));
+  const staticLotto = lottoLoop(lottoList, prize, Number(bonus));
+  ConsoleWork.print(staticLotto);
 }
 
 function lottoLoop(lottoList, prize, bonus) {
@@ -25,8 +26,8 @@ function lottoLoop(lottoList, prize, bonus) {
     if (result !== 'NOTHING') {
       resultArray[result]++;
     }
-    return resultArray;
   }
+  return resultArray;
 }
 
 function stringToArray(str) {
