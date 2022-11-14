@@ -64,16 +64,16 @@ class Lotto {
   }
 
   compareTickets(lotteryTickets) {
-    for (let ticket of lotteryTickets) {
-      let matchedNum = this.#numbers.filter((x) => ticket.includes(+x));
+    for (const ticket of lotteryTickets) {
+      const matchedNum = this.#numbers.filter((x) => ticket.includes(+x));
 
       if (matchedNum.length == 5 && this.compareBonusNumber(ticket)) {
-        let value = this.resultMap.get("5B");
+        const value = this.resultMap.get("5B");
         this.resultMap.set("5B", value + 1);
         continue;
       }
       if (matchedNum.length >= 3) {
-        let value = this.resultMap.get(matchedNum.length);
+        const value = this.resultMap.get(matchedNum.length);
         this.resultMap.set(matchedNum.length, value + 1);
       }
     }

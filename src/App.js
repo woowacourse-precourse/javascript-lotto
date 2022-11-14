@@ -32,7 +32,7 @@ class App {
   issueLotteryTicket(ticketAmount) {
     Console.print(`${ticketAmount}${MESSEGE.TELL_PURCHASE_AMOUNT}`);
 
-    let lotteryTickets = [];
+    const lotteryTickets = [];
     while (ticketAmount) {
       const newTicket = Random.pickUniqueNumbersInRange(1, 45, 6).sort(
         (a, b) => a - b
