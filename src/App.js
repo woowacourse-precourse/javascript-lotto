@@ -6,7 +6,7 @@ class App {
   constructor() {
     this.money = 0;
     this.lottoQuantity = 0;
-    this.lottoNumbers = [];
+    this.winningNumbers = [];
   }
 
   play() {
@@ -42,12 +42,15 @@ class App {
       Console.print(JSON.stringify(lottoNumbers).replace(/,/g, ", "));
     }
 
-    this.inputLottoNumbers();
+    this.inputWinningNumbers();
   }
 
-  inputLottoNumbers() {
+  inputWinningNumbers() {
     Console.readLine("당첨 번호를 입력해 주세요.\n", (numbers) => {
-      this.numbers = new Lotto(numbers);
+      this.winningNumbers = numbers.split(",").map(function (item) {
+        return parseInt(item, 10);
+      });
+      const lotto = new Lotto(this.winningNumbers);
     });
   }
 }

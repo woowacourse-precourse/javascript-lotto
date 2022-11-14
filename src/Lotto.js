@@ -27,4 +27,5 @@ class Lotto {
     });
   }
 }
+
 module.exports = Lotto;
