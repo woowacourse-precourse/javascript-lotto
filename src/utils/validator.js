@@ -24,6 +24,11 @@ const Validator = class {
     return this;
   };
 
+  static isExist = (target, value) => {
+    if (!new Set(target).has(value)) return false;
+    return this;
+  };
+
   static isGreaterOrEqual = (target, unit) => {
     if (target < unit) throw new Error("[ERROR] 1,000원 이상으로 입력해주세요.");
     return this;
