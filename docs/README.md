@@ -1,9 +1,9 @@
 # 기능 목록
 
 [:deciduous_tree:] 로또 구입 금액을 입력 받는다.
+    [:deciduous_tree:] 발행할 로또 개수를 계산한다.
     [:deciduous_tree:] [Error] 숫자가 아니면 에러
     [:deciduous_tree:] [Error] 1000원 단위로 떨어지지 않으면 에러
-2. 발행할 로또 개수를 계산한다.
 3. 발행할 로또 수량을 출력한다.
 [:deciduous_tree:] 로또를 발행한다.
     [:deciduous_tree:] 오름차순으로 정렬한다.
