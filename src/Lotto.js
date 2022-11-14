@@ -5,7 +5,7 @@ const app = require("./App");
 class Lotto {
   #numbers;
 
-  constructor(numbers) { // 당첨된 로또 번호 6자리 숫자
+  constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
   }
@@ -62,6 +62,16 @@ class Lotto {
       this.matchNumberArr.push(this.winningNumberArr.includes(this.randomSixNumberArr[i]));
       if(this.matchNumberArr.length === 4) {
         countFourMatch++;
+      }
+    }
+  }
+
+  countOfFiveMatch() {
+    let countFiveMatch = 0;
+    for(let i=0; i<6; i++) {
+      this.matchNumberArr.push(this.winningNumberArr.includes(this.randomSixNumberArr[i]));
+      if(this.matchNumberArr.length === 5) {
+        countFiveMatch++;
       }
     }
   }
