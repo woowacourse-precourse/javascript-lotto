@@ -120,4 +120,15 @@ class App {
     }
   }
 
+  inputBuyLottoMoney() {
+    Console.readLine("구입금액을 입력해주세요\n",(money) => {
+      this.isInputValidate(money);
+      this.lottoCount = Number(money) / 1000;
+      this.printLottoCount(this.lottoCount);
+      this.setRandomLottoNumber();
+      this.printRandomLottoNumber();
+      this.inputJackpotNumber();
+    });
+  };
+
 module.exports = App;
