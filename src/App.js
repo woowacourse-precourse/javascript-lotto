@@ -63,8 +63,13 @@ class App {
   inputBonusNums(winNums, myNumbers) {
     const lotto = new Lotto(winNums);
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (inputBonus) => {
+      lotto.bonusNumberException(inputBonus);
       winNums.push(inputBonus);
-
+      let isMatch = lotto.compareLottoNums(myNumbers, winNums);
+      let bonusMatch = lotto.compareBonus(myNumbers, inputBonus, isMatch);
+      console.log(isMatch);
+      console.log(bonusMatch);
+      lotto.printWinResult(isMatch, bonusMatch);
       Console.close();
     });
     return;
