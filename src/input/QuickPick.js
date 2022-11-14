@@ -49,6 +49,14 @@ class QuickPick {
       Mission.Console.print(`[${eachItems}]`);
     });
   }
+
+  arrayOutput() {
+    return this.#myLottoArray;
+  }
+
+  amountOutput() {
+    return this.#amount;
+  }
 }
 
 module.exports = QuickPick;
