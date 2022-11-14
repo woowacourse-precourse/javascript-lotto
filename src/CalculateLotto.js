@@ -21,7 +21,7 @@ class CalculateLotto {
 
   calculateProfitRate() {
     const TOTAL_USER_PROFIT = this.winningCount.reduce(
-      (acc, curr, index) => acc + curr * PRIZE_MONEY[index]
+      (acc, curr, index) => acc + curr * PRIZE_MONEY[index], 0
     );
 
     return ((TOTAL_USER_PROFIT / this.purchaseAmount) * 100).toFixed(1);
