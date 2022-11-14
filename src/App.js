@@ -29,7 +29,7 @@ class App {
 
   inputCash() {
     input(MESSAGE.INPUT_CASH, (cash) => {
-      this.setLottosQuantity(cash);
+      this.setLottosQuantity(Number(cash));
     });
   }
 
@@ -40,12 +40,12 @@ class App {
   }
 
   setPurchasedLottos() {
-    let count = this.lottosQuantity;
+    let count = 0;
 
-    while (count !== 0) {
+    while (count !== this.lottosQuantity) {
       let numbers = new NumberCreater().createRandomSixNumbers();
       this.purchasedLottos.push(new Lotto(numbers).getLottoNumbers());
-      count -= 1;
+      count += 1;
     }
 
     this.printLottosQuantity();
@@ -53,13 +53,13 @@ class App {
 
   printLottosQuantity() {
     print('');
-    print(this.lottosQuantity + MESSAGE.COUNT_OF_PURCHASED_LOTTOS);
+    print(this.lottosQuantity + MESSAGE.PURCHASED_LOTTOS_QUANTITY);
 
-    this.printLottos();
+    this.printPurchasedLottos();
   }
 
-  printLottos() {
-    this.purchasedLottos.map((lotto) => {
+  printPurchasedLottos() {
+    this.purchasedLottos.forEach((lotto) => {
       const LOTTO_NUMBERS = `[${lotto[0]}, ${lotto[1]}, ${lotto[2]}, ${lotto[3]}, ${lotto[4]}, ${lotto[5]}]`;
       print(LOTTO_NUMBERS);
     });
@@ -69,7 +69,7 @@ class App {
   }
 
   inputWinningNumbers() {
-    input(MESSAGE.INPUT_LOTTO_NUMBERS, (numbers) => {
+    input(MESSAGE.INPUT_WINNING_NUMBERS, (numbers) => {
       this.setWinningNumbers(numbers);
     });
   }
@@ -87,8 +87,8 @@ class App {
     });
   }
 
-  setBonusNumber(number) {
-    let newBonusNumber = new BonusNumber(number, this.winningNumbers);
+  setBonusNumber(bonusNumber) {
+    let newBonusNumber = new BonusNumber(bonusNumber, this.winningNumbers);
     this.bonusNumber = newBonusNumber.getBonusNumber();
 
     this.setWinningResult();

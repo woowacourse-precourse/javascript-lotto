@@ -5,20 +5,20 @@ const {
 } = require('./utils/constants');
 
 class BonusNumber {
-  constructor(bonusNumber, winningLottoNumbers) {
-    this.valid(bonusNumber, winningLottoNumbers);
+  constructor(bonusNumber, winningNumbers) {
+    this.valid(bonusNumber, winningNumbers);
     this.bonusNumber = bonusNumber;
   }
 
-  valid(number, numbers) {
-    if (numbers.includes(number)) {
-      throw ERROR.MUST_NOT_BE_INCLUDED_IN_WINNING_NUMBER;
+  valid(bonusNum, winningNums) {
+    if (Number.isNaN(bonusNum)) {
+      throw ERROR.MUST_INPUT_ONLY_NUMBER;
     }
-    if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+    if (bonusNum < MIN_LOTTO_NUMBER || bonusNum > MAX_LOTTO_NUMBER) {
       throw ERROR.MUST_BE_WITHIN_RANGE;
     }
-    if (Number.isNaN(number)) {
-      throw ERROR.MUST_INPUT_ONLY_NUMBER;
+    if (winningNums.includes(bonusNum)) {
+      throw ERROR.MUST_NOT_BE_INCLUDED_IN_WINNING_NUMBERS;
     }
   }
 

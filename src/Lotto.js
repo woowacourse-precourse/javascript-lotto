@@ -1,6 +1,6 @@
 const {
   ERROR,
-  COUNT_OF_PICKING,
+  LOTTO_NUMBERS_LENGTH,
   MIN_LOTTO_NUMBER,
   MAX_LOTTO_NUMBER,
 } = require('./utils/constants.js');
@@ -14,11 +14,11 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== COUNT_OF_PICKING) {
-      throw ERROR.MUST_HAVE_SIX_NUMBER;
-    }
     if (numbers.includes(NaN)) {
       throw ERROR.MUST_INPUT_ONLY_NUMBER;
+    }
+    if (numbers.length !== LOTTO_NUMBERS_LENGTH) {
+      throw ERROR.MUST_HAVE_SIX_NUMBER;
     }
     if (
       numbers.some((num) => num < MIN_LOTTO_NUMBER || num > MAX_LOTTO_NUMBER)
