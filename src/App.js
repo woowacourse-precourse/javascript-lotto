@@ -11,6 +11,12 @@ const WINNING_PRIZE = {
   6: 0,
 };
 
+const MESSAGE = {
+  PURCHASE_AMOUNT: '구입금액을 입력해주세요.\n',
+  WINNING_NUMBERS: '\n당첨 번호를 입력해주세요.\n',
+  BONUS_NUMBER: '\n보너스 번호을 입력해주세요.\n',
+};
+
 class App {
   constructor() {
     this.user = new User();
@@ -22,14 +28,14 @@ class App {
   }
 
   getPurchaseAmount() {
-    Console.readLine('구입금액을 입력해 주세요.\n', (purchaseAmount) => {
+    Console.readLine(MESSAGE.PURCHASE_AMOUNT, (purchaseAmount) => {
       this.user.handlePurchaseAmount(Number(purchaseAmount));
       this.getWinningNumbers();
     });
   }
 
   getWinningNumbers() {
-    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (winningNumbers) => {
+    Console.readLine(MESSAGE.WINNING_NUMBERS, (winningNumbers) => {
       this.draw.handleWinningNumbers(
         winningNumbers.split(',').map((number) => Number(number)),
       );
@@ -38,7 +44,7 @@ class App {
   }
 
   getBonusNumber() {
-    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
+    Console.readLine(MESSAGE.BONUS_NUMBER, (bonusNumber) => {
       this.draw.handleBonusNumber(Number(bonusNumber));
       this.calculateResult();
       this.printResult();
