@@ -11,13 +11,17 @@ class BuyLotto {
     this.#buyCount = buyCount;
   }
 
-  printBuyCount() {
-    print(`${this.#buyCount}${BUY_MESSAGE}`);
+  getBuyCount() {
+    return `${this.#buyCount}${BUY_MESSAGE}`;
   }
 
   #buyLottoCountTimes(buyCount) {
     for (let currentCount = 0; currentCount < buyCount; currentCount += 1) {
-      this.#buyLotto.push(getRandom(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, LOTTO.TOTAL_COUNT));
+      this.#buyLotto.push(
+        getRandom(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, LOTTO.INPUT_COUNT).sort(
+          (lottoA, lottoB) => lottoA - lottoB,
+        ),
+      );
     }
   }
 

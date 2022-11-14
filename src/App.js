@@ -21,10 +21,11 @@ class App {
 
   buyLottoCountTimes() {
     this.buyLotto = new BuyLotto(this.cost.getValue() / COST.DIVIDE);
-    this.buyLotto.printBuyCount();
+    let buyLottoResult = `${this.buyLotto.getBuyCount()}\n`;
     this.buyLotto.getValue().forEach((buy) => {
-      print(buy);
+      buyLottoResult += `[${buy.join(', ')}]\n`;
     });
+    print(buyLottoResult);
   }
 
   getLottoNumber() {

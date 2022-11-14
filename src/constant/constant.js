@@ -2,7 +2,6 @@ const LOTTO = {
   INPUT_COUNT: 6,
   MIN_NUMBER: 1,
   MAX_NUMBER: 45,
-  TOTAL_COUNT: 7,
 };
 
 const COST = {

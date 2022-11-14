@@ -9,12 +9,7 @@ const utils = {
     Console.print(message);
   },
   getRandom(minNumber, maxNumber, count) {
-    const result = [];
-    while (result.length < count) {
-      const pickedNumber = Random.pickNumberInRange(minNumber, maxNumber);
-      if (!result.includes(pickedNumber)) result.push(pickedNumber);
-    }
-    return result;
+    return Random.pickUniqueNumbersInRange(minNumber, maxNumber, count);
   },
 };
 
