@@ -9,6 +9,13 @@ class App {
     this.myLotto = [];
     this.winningLotto = [];
     this.bonus = 0;
+    this.rank = [{
+      first: 0,
+      second: 0,
+      third: 0,
+      fourth: 0,
+      fifth: 0,
+    }]
   }
 
   checkMoney(money) {
@@ -53,10 +60,31 @@ class App {
     });
   }
 
+  checkWinner() {
+    let count = 0;
+    let bonus = 0;
+    for (let i = 0; i < this.countLotto; i++) {
+      this.myLotto.map(n => {
+        if (this.winningLotto.includes(n)) {
+          count++;
+        }
+        if (n == this.bonus) {
+          bonus++;
+        }
+      });
+      this.divideWinner(count, bonus);
+    }
+  }
+
+  divideWinner(count, bonus) {
+
+  }
+
   play() {
     this.purchaseLotto();
     this.makeLotto(this.countLotto);
     this.winningNum();
+    this.checkWinner();
   }
 }
 
