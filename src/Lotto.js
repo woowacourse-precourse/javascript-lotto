@@ -15,6 +15,10 @@ class Lotto {
   sortNumber(numbers) {
     return numbers.sort((a, b) => a - b);
   }
+
+  getNumber() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
