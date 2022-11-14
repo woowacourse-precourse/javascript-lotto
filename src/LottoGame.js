@@ -8,6 +8,7 @@ const Lotto = require("./Lotto");
 const {
   isNumberType,
   isValidRange,
+  isValidUnique,
   isThousandUnits,
   isValuesNumberType,
   isValuesValidRange,
@@ -69,9 +70,8 @@ class LottoGame {
 
       if (this.isWinningNumbersValid(winningNumbersList)) {
         this.#winningNumbers = winningNumbers;
+        this.inputBonusNumber();
       }
-
-      this.inputBonusNumber();
     });
   }
 
@@ -87,13 +87,13 @@ class LottoGame {
     if (!isValuesValidRange(winningNumbersList)) {
       throw ERROR_MESSAGE.RANGE_ERROR;
     }
+    return true;
   }
 
   inputBonusNumber() {
     inputUserValue(GAME_MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
       if (this.isBonusNumberValid(bonusNumber)) {
         this.#bonusNumber = bonusNumber;
-        console.log(this.#bonusNumber);
       }
     });
   }
@@ -103,9 +103,14 @@ class LottoGame {
       throw ERROR_MESSAGE.TYPE_ERROR;
     }
 
+    if (!isValidUnique(this.#winningNumbers, bonusNumber)) {
+      throw ERROR_MESSAGE.UNIQUE_ERROR;
+    }
+
     if (!isValidRange(bonusNumber)) {
       throw ERROR_MESSAGE.RANGE_ERROR;
     }
+    return true;
   }
 }
 

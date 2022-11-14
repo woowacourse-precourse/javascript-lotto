@@ -1,6 +1,7 @@
 const {
   isNumberType,
   isValidRange,
+  isValidUnique,
   isThousandUnits,
   isValuesNumberType,
   isValuesValidRange,
@@ -15,6 +16,7 @@ const {
 module.exports = {
   isNumberType,
   isValidRange,
+  isValidUnique,
   isThousandUnits,
   isValuesNumberType,
   isValuesValidRange,
