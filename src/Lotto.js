@@ -3,14 +3,13 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class Lotto {
   #numbers;
 
-  constructor(numbers, candidateNumbers, purchaseAmount) {
+  constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
-    this.candidateNumbers = candidateNumbers;
-    this.purchaseAmount = purchaseAmount;
   }
 
   validate(numbers) {
+    // console.log("validate", numbers);
     const deduplicationNumbers = new Set(numbers);
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
@@ -18,11 +17,10 @@ class Lotto {
     if (deduplicationNumbers.size !== 6) {
       throw new Error("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
     }
-    this.validateWinningNumbersRange(numbers);
   }
 
   validateWinningNumbersRange(numbers) {
-    // console.log(numbers);
+    // console.log("validateWinningNumbersRange", numbers);
     numbers.forEach((element) => {
       if (1 > element || element > 45) {
         throw new Error("[ERROR] 로또 번호는 1 ~ 45 사이의 숫자입니다.");
@@ -33,13 +31,8 @@ class Lotto {
     });
   }
 
-  setBonusNumber(numbers, bonusNumber) {
-    this.validateBonus(numbers, bonusNumber);
-    this.bonusNumber = bonusNumber;
-  }
-
-  validateBonus(numbers, bonusNumber) {
-    if (numbers.includes(bonusNumber)) {
+  validateBonus(bonusNumber, candidateNumber, purchaseAmount) {
+    if (this.#numbers.includes(bonusNumber)) {
       throw new Error("[ERROR] 이미 로또번호에 포함된 번호입니다.");
     }
 
@@ -50,23 +43,22 @@ class Lotto {
     if (isNaN(bonusNumber)) {
       throw new Error("[ERROR] 보너스 번호는 숫자여야 합니다.");
     }
-    this.computeLottoResult(numbers, bonusNumber, this.candidateNumbers);
+    this.computeLottoResult(bonusNumber, candidateNumber, purchaseAmount);
   }
 
-  computeLottoResult(numbers, bonusNumber, candidateNumbers) {
+  computeLottoResult(bonusNumber, candidateNumbers, purchaseAmount) {
     let computeResults = [];
-    console.log(candidateNumbers);
     candidateNumbers.map((candidateNumber) => {
       const countWinningNumber = candidateNumber.filter((x) =>
-        numbers.includes(x)
+        this.#numbers.includes(x)
       ).length;
       const countBonusNumber = candidateNumber.includes(bonusNumber) ? 1 : 0;
       computeResults.push([countWinningNumber, countBonusNumber]);
     });
-    this.matchLottoResult(computeResults);
+    this.matchLottoResult(computeResults, purchaseAmount);
   }
 
-  matchLottoResult(results) {
+  matchLottoResult(results, purchaseAmount) {
     let winningRanks = [0, 0, 0, 0, 0];
     results.map((result) => {
       const matchWinningNumber = result[0];
@@ -87,19 +79,21 @@ class Lotto {
         winningRanks[4] += 1;
       }
     });
-    this.printLottoResult(winningRanks);
+    // console.log("winningRanks Lotto", winningRanks);
+    this.printLottoResult(winningRanks, purchaseAmount);
   }
 
-  printLottoResult(results) {
+  printLottoResult(winningRanks, purchaseAmount) {
+    // console.log("printLottoResult", winningRanks);
     MissionUtils.Console.print(`당첨 통계\n---`);
-    MissionUtils.Console.print(`3개 일치 (5,000원) - ${results[0]}개`);
-    MissionUtils.Console.print(`4개 일치 (50,000원) - ${results[1]}개`);
-    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${results[2]}개`);
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${winningRanks[0]}개`);
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${winningRanks[1]}개`);
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${winningRanks[2]}개`);
     MissionUtils.Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${results[3]}개`
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningRanks[3]}개`
     );
-    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${results[4]}개`);
-    this.calculateProfit(results, this.purchaseAmount);
+    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${winningRanks[4]}개`);
+    this.calculateProfit(winningRanks, purchaseAmount);
   }
 
   calculateProfit(results, purchaseAmount) {

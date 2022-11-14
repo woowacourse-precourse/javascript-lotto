@@ -10,6 +10,14 @@ class App {
     this.purchaseAmount = purchaseAmount;
   }
 
+  setWinningNumbers(winningNumbers) {
+    this.winningNumbers = winningNumbers;
+  }
+
+  setBonusNumber(bonusNumber) {
+    this.setBonusNumber = bonusNumber;
+  }
+
   setCandidateNumbers(candidateNumbers) {
     this.candidateNumbers = candidateNumbers;
   }
@@ -24,7 +32,7 @@ class App {
   }
 
   is1000Multiple(purchaseAmount) {
-    console.log("is1000Multiple");
+    // console.log("is1000Multiple");
     if (purchaseAmount % 1000 !== 0 || parseInt(purchaseAmount / 1000) === 0) {
       throw new Error("[ERROR] 로또 구입 금액은 1000의 배수여야 합니다.");
     }
@@ -32,7 +40,7 @@ class App {
   }
 
   makeCandidateNumberSets(purchaseAmount) {
-    console.log("makeCandidateNumberSets");
+    // console.log("makeCandidateNumberSets");
     this.setPurchaseAmount(purchaseAmount);
     const purchase = parseInt(purchaseAmount / 1000);
     MissionUtils.Console.print(`${purchase}개를 구매했습니다.`);
@@ -40,12 +48,8 @@ class App {
     for (let i = 0; i < purchase; i++) {
       candidateNumberSets.push(this.makeCandidateNumber());
     }
-
     this.setCandidateNumbers(candidateNumberSets);
     this.printCandidateNumberSets(candidateNumberSets);
-    console.log(
-      `makeCandidateNumberSets.candidateNumberSets ${candidateNumberSets} ${purchase}`
-    );
   }
 
   makeCandidateNumber() {
@@ -75,27 +79,29 @@ class App {
   }
 
   inputWinningNumbers() {
-    console.log("inputWinningNumbers");
+    // console.log("inputWinningNumbers");
     MissionUtils.Console.readLine(
       "당첨 번호를 입력해 주세요.\n",
       (inputNumbers) => {
         const winningNumbers = inputNumbers.split(",").map((x) => parseInt(x));
-        const lotto = new Lotto(
-          winningNumbers,
-          this.candidateNumbers,
-          this.purchaseAmount
-        );
-        this.inputBonusNumber(winningNumbers, lotto);
+        this.setWinningNumbers(winningNumbers);
+        const lotto = new Lotto(winningNumbers);
+        this.inputBonusNumber(lotto);
       }
     );
   }
 
-  inputBonusNumber(winningNumbers, lotto) {
-    console.log("inputBonusNumber");
+  inputBonusNumber(lotto) {
+    // console.log("inputBonusNumber");
     MissionUtils.Console.readLine(
       "보너스 번호를 입력해 주세요.\n",
       (bonusNumber) => {
-        lotto.setBonusNumber(winningNumbers, parseInt(bonusNumber));
+        this.setBonusNumber(parseInt(bonusNumber));
+        lotto.validateBonus(
+          parseInt(bonusNumber),
+          this.candidateNumbers,
+          this.purchaseAmount
+        );
         MissionUtils.Console.close();
       }
     );
