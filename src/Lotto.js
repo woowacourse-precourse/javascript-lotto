@@ -20,32 +20,32 @@ class Lotto {
   }
 
   validate(numbers) {
-    this.isVaildLength(numbers);
-    this.isDiffNumbers(numbers);
+    this.verifyLength(numbers);
+    this.verifyDiffNumbers(numbers);
 
     const orderedNumbers = numbers.sort((a, b) => a - b);
-    this.isInVaildRange(orderedNumbers[0]);
-    this.isInVaildRange(orderedNumbers[5]);
+    this.verifyInVaildRange(orderedNumbers[0]);
+    this.verifyInVaildRange(orderedNumbers[5]);
   }
 
-  isVaildLength(numbers) {
+  verifyLength(numbers) {
     if (numbers.length !== LOTTO_LENGTH)
       this.utils.throwError(ERROR.NOT_SIX_NUMBERS);
   }
 
-  isDiffNumbers(numbers) {
+  verifyDiffNumbers(numbers) {
     const numberSet = new Set(numbers);
     if (numberSet.size !== LOTTO_LENGTH)
       this.utils.throwError(ERROR.DUPLICATE_NUMBERS);
   }
 
-  isInVaildRange(number) {
+  verifyInVaildRange(number) {
     if (!(+number > 0 && +number <= 45))
       this.utils.throwError(ERROR.NOT_IN_VAILD_RANGE);
   }
 
   setBonusNumber(number) {
-    this.isInVaildRange(number);
+    this.verifyInVaildRange(number);
     this.bonusNumber = number;
   }
 
