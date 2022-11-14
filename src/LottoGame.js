@@ -1,5 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
+const UserLottos = require("./UserLottos");
+
 class LottoGame {
   isNumber(number) {
     return !isNaN(number);
@@ -17,9 +19,20 @@ class LottoGame {
     }
   }
 
+  printTheNumberOfLotto(lottos, number) {
+    lottos.setTheNumberOfLotto(number / 1000);
+    MissionUtils.Console.print(
+      `${lottos.getTheNumberOfLotto()}개를 구매했습니다.`
+    );
+  }
+
   game() {
+    const lottos = new UserLottos();
+
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
       this.validatePurchaseLotto(money);
+
+      this.printTheNumberOfLotto(lottos, money);
     });
   }
 }
