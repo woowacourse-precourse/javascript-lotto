@@ -1,3 +1,5 @@
+const NUMBER_OF_MATCHES = 3;
+
 class ComparisonOfWinningNumbers {
 
   constructor(lottoNumber, winningNumber) {
@@ -15,12 +17,10 @@ class ComparisonOfWinningNumbers {
   }
 
   countAndSave(numberComparison) {
-    let number = [];
-
-    if (numberComparison >= 3) {
-      number.push(numberComparison);
-    } 
-    return number;
+    if (numberComparison >= NUMBER_OF_MATCHES) {
+      return numberComparison;
+    }
+    return 0;
   }
 
 
