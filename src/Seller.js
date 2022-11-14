@@ -18,19 +18,19 @@ const Seller = ((_) => {
       this.#statistic = new Statistic();
     }
 
-    requestLottoBuy() {
-      this.#io.readline("구입금액을 입력해주세요.\n", this.#proceedLottoSale.bind(this));
+    requestLottoSale() {
+      this.#io.readline("구입금액을 입력해주세요.\n", this.#handleLottoSale.bind(this));
     }
 
     requestLottoWinNumber() {
-      this.#io.readline("\n당첨 번호를 입력해 주세요.\n", this.#proceedLottoWinNumber.bind(this));
+      this.#io.readline("\n당첨 번호를 입력해 주세요.\n", this.#handleLottoWinNumber.bind(this));
     }
 
     requestLottoBonusNumber() {
-      this.#io.readline("\n보너스 번호를 입력해 주세요.\n", this.#proceedLottoBonusNumber.bind(this));
+      this.#io.readline("\n보너스 번호를 입력해 주세요.\n", this.#handleLottoBonusNumber.bind(this));
     }
 
-    #proceedLottoSale(amount) {
+    #handleLottoSale(amount) {
       if (!this.validateAmount(amount)) this.#io.close();
       this[Private] = { buyLottoNumber: Number(amount) / LOTTO_AMOUNT.VALID_UNIT };
       Object.assign(this[Private], { lottos: this.#generateLottos() });
@@ -39,16 +39,18 @@ const Seller = ((_) => {
       this.requestLottoWinNumber();
     }
 
-    #proceedLottoWinNumber(winNumber) {
+    #handleLottoWinNumber(winNumber) {
       this.validateWinNumber(winNumber);
       Object.assign(this[Private], { winNumber });
       this.requestLottoBonusNumber();
     }
 
-    #proceedLottoBonusNumber(bonusNumber) {
+    #handleLottoBonusNumber(bonusNumber) {
       this.validateBonusNumber(bonusNumber);
       Object.assign(this[Private], { bonusNumber: Number(bonusNumber) });
-      this.#announcementResult();
+      const { winNumber, bonusNumber, lottos } = this[Private];
+      this.#statistic.outputView({ lottos, winNumber, bonusNumber });
+      this.#io.close();
     }
 
     #generateLottos() {
@@ -64,12 +66,6 @@ const Seller = ((_) => {
           LOTTO_NUMBER.VALID_NUMBER_LENGTH
         )
       ).getSortedLotto();
-    }
-
-    #announcementResult() {
-      const { winNumber, bonusNumber, lottos } = this[Private];
-      this.#statistic.outputView({ lottos, winNumber, bonusNumber });
-      this.#io.close();
     }
 
     validateAmount(amount) {
