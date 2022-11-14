@@ -19,7 +19,9 @@ class View {
       }`,
     );
     for (const singleLottoCombination of userIssuedLotto) {
-      Console.print(singleLottoCombination);
+      Console.print(
+        `[${singleLottoCombination.toString()}]`.replace(/,/g, ", "),
+      );
     }
   }
 
