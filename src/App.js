@@ -18,6 +18,9 @@ class App {
       this.lottos,
       this.lottoBonusNumber
     );
+    this.printLottoResult(lottoResult);
+    this.printRevenueRate(lottoResult);
+    MissionUtils.Console.close();
   }
 
   getMoney() {
