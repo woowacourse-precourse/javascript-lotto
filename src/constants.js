@@ -16,8 +16,7 @@ const ERROR = {
   UNDER_NUMBER_IN_RANGE: "[ERROR] 입력 번호 중에서 1미만의 숫자가 있습니다.",
   CONTAINS_BLANKS: "[ERROR] 입력 번호에 공백문자가 포함되어 있습니다.",
   HAS_CHARACTER: "[ERROR] 입력 번호에 문자가 포함되어 있습니다.",
-  CONTAINS_WINNING_NUMBER:
-    "[ERROR] 보너스 번호가 당첨 번호에 포함되어 있습니다.",
+  CONTAINS_WINNING_NUMBER: "[ERROR] 보너스 번호가 당첨 번호에 포함되어 있습니다.",
 };
 
 const RULE = {
@@ -27,4 +26,14 @@ const RULE = {
   SELECT_NUMBER: 6,
 };
 
-module.exports = { MESSAGE, ERROR, RULE };
+const PRIZE_MONEY = {
+  3: 5000,
+  4: 50000,
+  5: 1500000,
+  "5+1": 30000000,
+  6: 2000000000,
+};
+
+const A_LOTTO_PRICE = 1000;
+
+module.exports = { MESSAGE, ERROR, RULE, PRIZE_MONEY, A_LOTTO_PRICE };

@@ -32,6 +32,27 @@ class WinningResult {
       }
     });
   }
+
+  getWinningLottoNumber() {
+    const winningLottoNumberList = Object.values(this.numberByMatching);
+    return winningLottoNumberList.reduce((sum, currentNumber) => {
+      return sum + currentNumber;
+    }, 0);
+  }
+
+  getNumberByMatchingKey() {
+    return Object.keys(this.numberByMatching);
+  }
+
+  getProfitRate() {
+    const totalPrizeMoney = this.getNumberByMatchingKey().reduce((prizeMoney, key) => {
+      prizeMoney += this.numberByMatching[key] * PRIZE_MONEY[key];
+      return prizeMoney;
+    }, 0);
+    const profitRate =
+      (totalPrizeMoney * 100) / (this.getWinningLottoNumber() * this.lottoTicketList.length * A_LOTTO_PRICE);
+    return Math.round(profitRate * 100) / 100;
+  }
 }
 
 module.exports = WinningResult;
