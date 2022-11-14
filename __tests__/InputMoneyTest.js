@@ -18,7 +18,7 @@ describe("구입 금액 입력 테스트", () => {
     expect(() => {
       const machine = new LottoMachine();
       machine.inputMoney();
-    }).toThrow("[ERROR]");
+    }).toThrow("[ERROR] 1,000원 단위의 금액을 투입해주세요.");
   });
   MissionUtils.Console.close();
 });

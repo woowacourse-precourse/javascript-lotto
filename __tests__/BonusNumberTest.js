@@ -17,7 +17,7 @@ describe("보너스 번호 입력 테스트", () => {
     expect(() => {
       const manager = new LottoManager();
       manager.inputWinningNumbers();
-    }).toThrow("[ERROR]");
+    }).toThrow("[ERROR] 숫자를 입력해주세요.");
   });
 
   test("숫자가 아닌 경우 예외가 발생한다. - 특수문자", () => {
@@ -26,7 +26,7 @@ describe("보너스 번호 입력 테스트", () => {
     expect(() => {
       const manager = new LottoManager();
       manager.inputWinningNumbers();
-    }).toThrow("[ERROR]");
+    }).toThrow("[ERROR] 숫자를 입력해주세요.");
   });
 
   test("1부터 45사이의 값이 아닌 경우 예외가 발생한다. - 1미만", () => {
@@ -35,7 +35,7 @@ describe("보너스 번호 입력 테스트", () => {
     expect(() => {
       const manager = new LottoManager();
       manager.inputWinningNumbers();
-    }).toThrow("[ERROR]");
+    }).toThrow("[ERROR] 1부터 45사이의 숫자를 입력해주세요.");
   });
 
   test("1부터 45사이의 값이 아닌 경우 예외가 발생한다. - 45초과", () => {
@@ -44,7 +44,7 @@ describe("보너스 번호 입력 테스트", () => {
     expect(() => {
       const manager = new LottoManager();
       manager.inputWinningNumbers();
-    }).toThrow("[ERROR]");
+    }).toThrow("[ERROR] 1부터 45사이의 숫자를 입력해주세요.");
   });
 
   test("당첨 번호와 중복인 경우 예외가 발생한다.", () => {
@@ -53,7 +53,7 @@ describe("보너스 번호 입력 테스트", () => {
     expect(() => {
       const manager = new LottoManager();
       manager.inputWinningNumbers();
-    }).toThrow("[ERROR]");
+    }).toThrow("[ERROR] 당첨 번호와 중복되지 않게 입력해주세요.");
   });
   MissionUtils.Console.close();
 });
