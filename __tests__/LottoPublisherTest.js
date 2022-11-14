@@ -1,6 +1,6 @@
 const LottoPublisher = require('../src/LottoPublisher');
 
-describe('로또스토어 클래스 테스트', () => {
+describe('로또퍼블리셔 클래스 테스트', () => {
   const lottoPublisher = new LottoPublisher();
   test('당첨 번호의 개수가 6개가 넘어가면 예외가 발생한다.', () => {
     expect(() => {
@@ -89,13 +89,13 @@ describe('로또스토어 클래스 테스트', () => {
 
   test('당첨 번호를 입력하면 해당 값이 당첨 번호로 저장되고, getter로 이를 불러올 수 있다.', () => {
     lottoPublisher.receiveUserInputWinningNumbers('1,2,3,4,5,6');
-    expect(lottoPublisher.winningNumbers).toEqual([1, 2, 3, 4, 5, 6]);
+    expect(lottoPublisher.getWinningNumbers()).toEqual([1, 2, 3, 4, 5, 6]);
   });
 
   test('보너스 번호를 입력하면 해당 값이 당첨 번호로 저장되고, getter로 이를 불러올 수 있다.', () => {
     lottoPublisher.receiveUserInputWinningNumbers('1,2,3,4,5,6');
     lottoPublisher.receiveUserInputBonusNumber('7');
-    expect(lottoPublisher.bonusNumber).toEqual(7);
+    expect(lottoPublisher.getBonusNumber()).toEqual(7);
   });
 
   test('주어진 로또를 당첨 번호와 대조하고, 번호 일치 수에 따른 등수를 반환한다.', () => {
