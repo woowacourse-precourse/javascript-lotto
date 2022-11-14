@@ -84,8 +84,17 @@ describe("로또 클래스 테스트", () => {
 
   test("수익률 구하기", () => {
     const app = new App();
-    const input = [3, 4, 3];
+    app.rewards = [
+      [3, 5_000, 1],
+      [4, 50_000, 2],
+      [5, 1_500_000, 0],
+      [5.5, 30_000_000, 0],
+      [6, 2_000_000_000, 0],
+    ];
+    app.payMoney = 10000;
+    const result =
+      Math.round(5000 + ((10000 * 2) / app.payMoney) * 10000) / 100;
 
-    expect(app.calculateProfit(input)).toEqual(60000);
+    expect(app.calculateProfit()).toEqual(1050);
   });
 });
