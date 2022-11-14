@@ -1,6 +1,5 @@
 const Lotto = require("../src/Lotto");
-
-const { ERROR } = require("../src/utils/constants");
+const { InvalidLottoNumberRangeError } = require("../src/lib/errors");
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
@@ -20,21 +19,21 @@ describe("로또 클래스 테스트", () => {
   test("로또 번호에 범위를 벗어나는 숫자가 있으면 예외가 발생한다.", () => {
     expect(() => {
       new Lotto([0, 1, 2, 3, 4, 5]);
-    }).toThrow(ERROR.OUT_OF_RANGE);
+    }).toThrow(new InvalidLottoNumberRangeError());
     expect(() => {
       new Lotto([0, 13, 24, 3, 26, 45]);
-    }).toThrow(ERROR.OUT_OF_RANGE);
+    }).toThrow(new InvalidLottoNumberRangeError());
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 46]);
-    }).toThrow(ERROR.OUT_OF_RANGE);
+    }).toThrow(new InvalidLottoNumberRangeError());
     expect(() => {
       new Lotto([0, 1, 2, 45, 46, 47]);
-    }).toThrow(ERROR.OUT_OF_RANGE);
+    }).toThrow(new InvalidLottoNumberRangeError());
     expect(() => {
       new Lotto([-1, 0, 1, 2, 3, 4]);
-    }).toThrow(ERROR.OUT_OF_RANGE);
+    }).toThrow(new InvalidLottoNumberRangeError());
     expect(() => {
       new Lotto([3, 5, 6, 11, 35, 58]);
-    }).toThrow(ERROR.OUT_OF_RANGE);
+    }).toThrow(new InvalidLottoNumberRangeError());
   });
 });

@@ -1,6 +1,6 @@
 const { Random } = require('@woowacourse/mission-utils');
 
-const { InvalidWinningNumberInputError } = require('../lib/errors');
+const { InvalidWinningNumbersInputError } = require('../lib/errors');
 const { NUMBER_COUNT, MIN_NUMBER, MAX_NUMBER } = require('./constants');
 
 const hasChar = input => {
@@ -27,7 +27,7 @@ const hasCharExceptComma = string => {
 const makeSplit = string => {
   const array = string.split(',');
   if (array.includes('') || array.includes(' ')) {
-    throw new InvalidWinningNumberInputError();
+    throw new InvalidWinningNumbersInputError();
   }
   return array;
 };
@@ -35,7 +35,7 @@ const makeSplit = string => {
 const makeNumberArray = array => {
   const numberArray = array.map(Number);
   if (numberArray.includes(NaN)) {
-    throw new InvalidWinningNumberInputError();
+    throw new InvalidWinningNumbersInputError();
   }
   return numberArray;
 };

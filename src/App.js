@@ -8,7 +8,7 @@ const { hasChar, hasCharExceptComma, isDivisible, hasDuplicate, isOutOfRange, pa
 const {
   InvalidAmountInputError,
   IndivisibleError,
-  InvalidWinningNumberInputError,
+  InvalidWinningNumbersInputError,
   InvalidBonusNumberInputError,
   InvalidLottoNumberRangeError,
 } = require('./lib/errors');
@@ -61,7 +61,7 @@ class App {
 
   validateWinningNumbers(numbers) {
     if (hasCharExceptComma(numbers)) {
-      throw new InvalidWinningNumberInputError();
+      throw new InvalidWinningNumbersInputError();
     }
   }
 
@@ -97,5 +97,4 @@ class App {
   }
 }
 
-// new App().play();
 module.exports = App;

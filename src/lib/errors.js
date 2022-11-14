@@ -5,7 +5,6 @@ const ERROR = Object.freeze({
   INVALID_WINNING_NUMBER_INPUT: '[ERROR] 유효하지 않은 입력입니다. 당첨 번호는 숫자와 쉼표만 입력할 수 있습니다.',
   INVALID_BONUS_NUMBER_INPUT:
     '[ERROR] 유효하지 않은 입력입니다. 보너스 번호는 중복되지 않은 한 가지의 숫자만 입력할 수 있습니다.',
-  INDIVISIBLE: `[ERROR] 구입금액은 ${AMOUNT_UNIT}원으로 나누어 떨어져야 합니다.`,
   INVALID_NUMBER_COUNT: `[ERROR] 로또 번호는 ${NUMBER_COUNT}개여야 합니다.`,
   OUT_OF_RANGE: `[ERROR] 로또 번호는 ${MIN_NUMBER}부터 ${MAX_NUMBER} 사이의 숫자여야 합니다.`,
   DUPLICATED: '[ERROR] 로또 번호는 중복된 숫자가 없어야 합니다.',
@@ -18,7 +17,7 @@ class InvalidAmountInputError extends Error {
   }
 }
 
-class InvalidWinningNumberInputError extends Error {
+class InvalidWinningNumbersInputError extends Error {
   constructor() {
     super();
     this.message = ERROR.INVALID_WINNING_NUMBER_INPUT;
@@ -35,7 +34,7 @@ class InvalidBonusNumberInputError extends Error {
 class IndivisibleError extends Error {
   constructor() {
     super();
-    this.message = ERROR.INDIVISIBLE;
+    this.message = ERROR.INVALID_AMOUNT_INPUT;
   }
 }
 
@@ -62,7 +61,7 @@ class DuplicatedLottoNumberError extends Error {
 
 module.exports = {
   InvalidAmountInputError,
-  InvalidWinningNumberInputError,
+  InvalidWinningNumbersInputError,
   InvalidBonusNumberInputError,
   IndivisibleError,
   InvalidLottoNumberCountError,

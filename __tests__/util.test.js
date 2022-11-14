@@ -1,6 +1,6 @@
 const App = require('../src/App');
 const utils = require('../src/utils/utils');
-const { InvalidWinningNumberInputError, InvalidBonusNumberInputError } = require('../src/lib/errors');
+const { InvalidWinningNumbersInputError, InvalidBonusNumberInputError } = require('../src/lib/errors');
 
 describe('입력한 구매 금액이 유효한 값인지 검사한다.', () => {
   test('금액에 숫자 이외의 값이 있다면 true를 반환한다.', () => {
@@ -67,79 +67,79 @@ describe('입력받은 당첨 번호(Winning Number)가 유효한 입력인지 �
   test('문자열에 쉼표가 연속적으로 존재한다면 예외가 발생한다.', () => {
     expect(() => {
       utils.makeSplit('1,,2,3,4,5');
-    }).toThrow(new InvalidWinningNumberInputError());
+    }).toThrow(new InvalidWinningNumbersInputError());
     expect(() => {
       utils.makeSplit('1,2,,3,4,5');
-    }).toThrow(new InvalidWinningNumberInputError());
+    }).toThrow(new InvalidWinningNumbersInputError());
     expect(() => {
       utils.makeSplit('1,2,3,,4,5');
-    }).toThrow(new InvalidWinningNumberInputError());
+    }).toThrow(new InvalidWinningNumbersInputError());
     expect(() => {
       utils.makeSplit('1,2,3,4,,5');
-    }).toThrow(new InvalidWinningNumberInputError());
+    }).toThrow(new InvalidWinningNumbersInputError());
     expect(() => {
       utils.makeSplit('1,2,3,4,5,');
-    }).toThrow(new InvalidWinningNumberInputError());
+    }).toThrow(new InvalidWinningNumbersInputError());
   });
 
   test('문자열이 쉼표로 시작하거나 쉼표로 끝나면 예외가 발생한다.', () => {
     expect(() => {
       utils.makeSplit(',1,2,3,4,5,6');
-    }).toThrow(new InvalidWinningNumberInputError());
+    }).toThrow(new InvalidWinningNumbersInputError());
     expect(() => {
       utils.makeSplit('1,2,3,4,5,6,');
-    }).toThrow(new InvalidWinningNumberInputError());
+    }).toThrow(new InvalidWinningNumbersInputError());
     expect(() => {
       utils.makeSplit(',1,2,3,4,5,6,');
-    }).toThrow(new InvalidWinningNumberInputError());
+    }).toThrow(new InvalidWinningNumbersInputError());
     expect(() => {
       utils.makeSplit(',,1,2,3,4,5,6');
-    }).toThrow(new InvalidWinningNumberInputError());
+    }).toThrow(new InvalidWinningNumbersInputError());
     expect(() => {
       utils.makeSplit('1,2,3,4,5,6,,');
-    }).toThrow(new InvalidWinningNumberInputError());
+    }).toThrow(new InvalidWinningNumbersInputError());
     expect(() => {
       utils.makeSplit(',,1,2,3,4,5,6,,');
-    }).toThrow(new InvalidWinningNumberInputError());
+    }).toThrow(new InvalidWinningNumbersInputError());
   });
 
   test('문자열에 두 쉼표가 공백을 사이에 두고 있다면 예외가 발생한다.', () => {
     expect(() => {
       utils.makeSplit('1, ,2,3,4,5');
-    }).toThrow(new InvalidWinningNumberInputError());
+    }).toThrow(new InvalidWinningNumbersInputError());
     expect(() => {
       utils.makeSplit('1,2, ,3,4,5');
-    }).toThrow(new InvalidWinningNumberInputError());
+    }).toThrow(new InvalidWinningNumbersInputError());
     expect(() => {
       utils.makeSplit('1,2,3, ,4,5');
-    }).toThrow(new InvalidWinningNumberInputError());
+    }).toThrow(new InvalidWinningNumbersInputError());
     expect(() => {
       utils.makeSplit('1,2,3,4, ,5');
-    }).toThrow(new InvalidWinningNumberInputError());
+    }).toThrow(new InvalidWinningNumbersInputError());
   });
 
   test('숫자와 숫자 사이에 공백이 있다면 예외가 발생한다.', () => {
     expect(() => {
       utils.makeNumberArray(['1', '2 3', '3', '4', '5']);
-    }).toThrow(new InvalidWinningNumberInputError());
+    }).toThrow(new InvalidWinningNumbersInputError());
     expect(() => {
       utils.makeNumberArray(['1', '2  3', '3', '4', '5']);
-    }).toThrow(new InvalidWinningNumberInputError());
+    }).toThrow(new InvalidWinningNumbersInputError());
     expect(() => {
       utils.makeNumberArray(['1', '23', '3   5', '4', '5']);
-    }).toThrow(new InvalidWinningNumberInputError());
+    }).toThrow(new InvalidWinningNumbersInputError());
     expect(() => {
       utils.makeNumberArray(['1', '23', '3', '4 4', '5']);
-    }).toThrow(new InvalidWinningNumberInputError());
+    }).toThrow(new InvalidWinningNumbersInputError());
     expect(() => {
       utils.makeNumberArray(['1', '3', '22', '4 4', '5']);
-    }).toThrow(new InvalidWinningNumberInputError());
+    }).toThrow(new InvalidWinningNumbersInputError());
     expect(() => {
       utils.makeNumberArray(['1', '3', '2 2', '4 4', '5']);
-    }).toThrow(new InvalidWinningNumberInputError());
+    }).toThrow(new InvalidWinningNumbersInputError());
     expect(() => {
       utils.makeNumberArray(['1 0', '3 0', '2 2', '4 4', '5 8']);
-    }).toThrow(new InvalidWinningNumberInputError());
+    }).toThrow(new InvalidWinningNumbersInputError());
   });
 
   test('배열 요소 중 연속된 숫자의 앞뒤에 있는 공백은 제거한 후 숫자 배열을 반환한다.', () => {
