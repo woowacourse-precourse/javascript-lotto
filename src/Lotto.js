@@ -13,7 +13,22 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
+
+    if (isNaN(numbers)) {
+      throw new Error("[ERROR] 당첨 번호는 숫자만 입력해주세요.");
+    }
+
+    if (numbers[i] < 1 || numbers[i] > 45) {
+      throw new Error("[ERROR] 당첨 번호는 1 ~ 45 사이의 숫자를 입력해주세요.");
+    }
+
+    for(let i=0; i<numbers.length; i++) {
+      if(numbers[i] === numbers[i+1]) {
+        throw new Error("[ERROR] 중복되지 않는 값을 입력해주세요.");
+      }
+    }
   }
+
 }
 
 module.exports = Lotto;

@@ -59,28 +59,7 @@ class App {
     Console.readLine("당첨 번호를 입력해 주세요.", (winNumber) => {
       winningNumbers = winNumber.split(",").map(Number).sort((idx1,idx2) => idx1-idx2 );
     });
-    this.validationInputWinningNumber(winningNumbers);
   }
-  
-  validationInputWinningNumber(WINNINGNUMBERS) {
-    if (WINNINGNUMBERS.length !== 6) {
-      throw new Error("[ERROR] 당첨 번호 6개를 입력해주세요. 예시) 1,2,3,4,5,6");
-    }
-    if (isNaN(WINNINGNUMBERS)) {
-      throw new Error("[ERROR] 당첨 번호는 숫자만 입력해주세요.");
-    }
-
-    if (WINNINGNUMBERS[i] < 1 || WINNINGNUMBERS[i] > 45) {
-      throw new Error("[ERROR] 당첨 번호는 1 ~ 45 사이의 숫자를 입력해주세요.");
-    }
-
-    for(let i=0; i<WINNINGNUMBERS.length; i++) {
-      if(WINNINGNUMBERS[i] === WINNINGNUMBERS[i+1]) {
-        throw new Error("[ERROR] 중복되지 않는 값을 입력해주세요.");
-      }
-    }
-  }
-
 }
 
 const app = new App();
