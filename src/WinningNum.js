@@ -4,8 +4,10 @@ class WinningNum {
   #inputs
 
   constructor(inputs) {
+    
     this.validate(inputs)
     this.#inputs = inputs
+    console.log(this.#inputs)
   }
   validate(inputs) {
     this.validateForNumLength(inputs)
@@ -54,6 +56,11 @@ class WinningNum {
 
   resultPrint(){
     Console.print(`${this.#inputs}`)
+  }
+
+
+  showWinningNum(){
+    return this.#inputs
   }
 
 

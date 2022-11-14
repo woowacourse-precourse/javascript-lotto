@@ -1,6 +1,7 @@
 const PurchasePrice = require('./PurchasePrice')
 const Lotto = require('./Lotto')
 const WinningNum = require('./WinningNum')
+const BonusNum=require('./BonusNum')
 const { Console } = require('@woowacourse/mission-utils')
 const { Random } = require('@woowacourse/mission-utils')
 
@@ -14,7 +15,8 @@ class App {
   getLottoInfo() {
     let buyCount = PurchasePrice.getPurchasePrice()
     this.getLottoNum(buyCount)
-    this.getWinningNum()
+    let winningNumForDuplication=this.getWinningNum()
+    this.getBounsNum(winningNumForDuplication)
   }
 
   getLottoNum(buyCount) {
@@ -35,6 +37,7 @@ class App {
   }
 
   getWinningNum() {
+    let winningNum
     Console.readLine('당첨 번호를 입력해 주세요', (inputs) => {
       console.log(inputs.split('"').join().split(',').map(Number))
       let winner = new WinningNum(
@@ -42,6 +45,18 @@ class App {
       )
       //당첨번호  출력
       winner.resultPrint()
+      winningNum=winner.showWinningNum()
+    })
+
+    return winningNum
+  }
+
+
+  getBounsNum(winningNumForDuplication){
+    Console.readLine('보너스 번호를 입력해 주세요', (bonus) => {
+      let bonusNum=new BonusNum(Number(bonus),winningNumForDuplication)
+      
+      
     })
   }
 }
