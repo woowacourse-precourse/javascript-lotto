@@ -20,8 +20,8 @@ class Lotto {
     }
   }
 
-  printMyLottery() {
-    Console.print(`[${String(this.#numbers).split(',').join(', ')}]`);
+  returnMyLottery() {
+    return `[${String(this.#numbers).split(',').join(', ')}]`;
   }
 
   returnMyLotteryRank(answer, bonusNumber) {

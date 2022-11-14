@@ -20,6 +20,7 @@ class App {
   #earnedMoney;
   #myLotteryQuantity;
   #myLotteryList;
+  #myLotteryPrintList;
   #winNumber;
   #bonusNumber;
   #myLotteryRankList;
@@ -48,7 +49,8 @@ class App {
         this.makeException(EXCEPTION_REASON.MONEY_UNIT_INCORRECT);
       this.#startMoney = Number(userInput);
       this.#myLotteryQuantity = countPurchasedLotteries(this.#startMoney);
-      this.#myLotteryList = Array(this.#myLotteryQuantity).fill({}); // 처음부터 Array(Object) 모양 고정시켜 V8 Map Space에 불필요한 hiddenClass 생성을 막기 위함 (push 사용 x)
+      this.#myLotteryList = Array(this.#myLotteryQuantity).fill(0); // 처음부터 Array(Object) 모양 고정시켜 V8 Map Space에 불필요한 hiddenClass 생성을 막기 위함 (push 사용 x)
+      this.#myLotteryPrintList = Array(this.#myLotteryQuantity).fill(0);
       return this.makeLotteries();
     });
   }
@@ -64,9 +66,10 @@ class App {
 
   myLotteryResult() {
     Console.print(APP_MESSAGE.PURCHASE_AMOUNT(this.#myLotteryQuantity));
-    this.#myLotteryList.forEach((lottery) => {
-      lottery.printMyLottery();
+    this.#myLotteryList.forEach((lottery, i) => {
+      this.#myLotteryPrintList[i] = lottery.returnMyLottery(); // 매번 Console.print()를 하게되면 속도가 매우 느려질 수 있기에, 배열에 로또 번호들을 저장해두고 한번에 Print()
     });
+    Console.print(this.#myLotteryPrintList.join('\n'));
     return this.makeWinNumber();
   }
 
@@ -107,7 +110,6 @@ class App {
     return this.calculateProfitRate();
   }
 
-  // 수익률 계산
   calculateProfitRate() {
     this.#earnedMoney = calculateProfit(this.#myLotteryRankList);
     this.#profitRate = calculateProfitRate(this.#startMoney, this.#earnedMoney);
