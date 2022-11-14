@@ -15,6 +15,10 @@ const {
   THIRD_PRIZE,
   SECOND_PRIZE,
   FIRST_PRIZE,
+  LOTTO_PRICE,
+  LOTTO_MIN_NUMBER,
+  LOTTO_MAX_NUMBER,
+  LOTTO_MAX_COUNT,
 } = require('./const.js');
 
 class App {
@@ -34,7 +38,7 @@ class App {
       this.#user.setAmount(inputAmount);
       const amount = this.#user.getAmount();
 
-      const numbersList = this.#user.generateNumbersList(amount);
+      const numbersList = this.generateNumbersList(amount);
       this.#user.setNumbersList(numbersList);
       const userNumbersList = this.#user.getNumbersList();
 
@@ -42,6 +46,38 @@ class App {
 
       this.#askLottoNumbers();
     });
+  }
+
+  /**
+   *
+   * @param {number[]} numbers
+   * @returns {number[]}
+   */
+  publishLotto(numbers) {
+    const lotto = new Lotto(numbers);
+    return lotto.getNumbers();
+  }
+
+  /**
+   *
+   * @param {number} amount
+   * @returns {number[][]}
+   */
+  generateNumbersList(amount) {
+    const list = [];
+
+    for (let i = 0; i < amount / LOTTO_PRICE; i++) {
+      const randomNumbers = Utils.getRandomNumbers(
+        LOTTO_MIN_NUMBER,
+        LOTTO_MAX_NUMBER,
+        LOTTO_MAX_COUNT
+      );
+
+      const lottoNumbers = this.publishLotto(randomNumbers);
+      list.push(lottoNumbers);
+    }
+
+    return list;
   }
 
   /**

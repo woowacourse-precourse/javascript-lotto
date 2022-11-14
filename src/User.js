@@ -1,8 +1,5 @@
 // @ts-check
 
-const Utils = require('./Utils.js');
-const { LOTTO_PRICE } = require('./const.js');
-
 class User {
   /** @type {number} */
   #amount;
@@ -41,22 +38,6 @@ class User {
    */
   getAmount() {
     return this.#amount;
-  }
-
-  /**
-   *
-   * @param {number} amount
-   * @returns {number[][]}
-   */
-  generateNumbersList(amount) {
-    const list = [];
-
-    for (let i = 0; i < amount / LOTTO_PRICE; i++) {
-      const randomNumbers = Utils.getRandomNumbers(1, 45, 6);
-      list.push(randomNumbers.sort((a, b) => a - b));
-    }
-
-    return list;
   }
 
   /**

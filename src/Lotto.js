@@ -11,7 +11,7 @@ class Lotto {
    */
   constructor(numbers) {
     this.validate(numbers);
-    this.#numbers = numbers;
+    this.#numbers = this.sortLottoNumbers(numbers);
   }
 
   /**
@@ -22,6 +22,15 @@ class Lotto {
     this.validateNumbersLength(numbers);
     this.validateLottoNumbersBound(numbers);
     this.validateDuplication(numbers);
+  }
+
+  /**
+   *
+   * @param {number[]} numbers
+   * @returns {number[]}
+   */
+  sortLottoNumbers(numbers) {
+    return numbers.sort((a, b) => a - b);
   }
 
   /**
