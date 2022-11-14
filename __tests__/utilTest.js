@@ -20,7 +20,7 @@ describe('util 테스트', () => {
       [50000, 5000],
       [15000, 7000],
     ];
-    const result = [0, 500, 1000, 214.3];
+    const result = ['0.0', '500.0', '1000.0', '214.3'];
     answer.forEach((arr, index) => expect(calculateProfitRate(...arr)).toBe(result[index]));
   });
 
