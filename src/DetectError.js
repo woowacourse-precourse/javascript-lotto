@@ -2,6 +2,11 @@ const Message = require("./Message");
 
 class DetectError {
     isBonusInPrize(prize, bonus) {
+
+        if (bonus.length === 0) {
+            throw new Error(`${Message.ERROR_MESSAGE.NUMBER}`);
+        }
+
         if (prize.includes(bonus)) {
             throw new Error(`${Message.ERROR_MESSAGE.OVERLAP}`);
         }
