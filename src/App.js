@@ -5,9 +5,8 @@ const InsertMoney = require("./InsertMoney.js");
 const GenerateUserLottoNumber = require("./GenerateUserLottoNumber.js");
 const EnterPrizeNumber = require("./EnterPrizeNumber.js");
 const EnterBonusNumber = require("./EnterBonusNumber.js");
+const CompareLotto = require("./CompareLotto.js");
 class App {
-  userWinningStatics = [0,0,0,0,0];
-
   play() {
     const insertMoney = new InsertMoney();
     const LOTTO_COUNT = insertMoney.getInsertMoney() / 1000;
@@ -18,12 +17,10 @@ class App {
     const lotto = new Lotto(enterPrizeNumber.getEnterPrizeNumber());
     const enterBonusNumber = new EnterBonusNumber();
     const bonus = new Bonus(lotto.getNumbers(), enterBonusNumber.getEnterBonusNumber());
-    generateUserLottoNumber.getUserLottoNumberLists().forEach((OneUserNumber)=>{
-      this.comparePrizeNumberAndUserNumber(lotto.getNumbers(), bonus.getNumbers(),OneUserNumber);
-    });
-    const earnMoney = this.calcEarnMoney(this.userWinningStatics);
+    const compareLotto = new CompareLotto(generateUserLottoNumber.getUserLottoNumberLists(), lotto.getNumbers(), bonus.getNumbers());
+    const earnMoney = this.calcEarnMoney(compareLotto.getUserWinningStatics());
     const RateOfReturn = this.calcRateOfReturn(insertMoney.getInsertMoney(), earnMoney);
-    this.printUserWinningStatics(this.userWinningStatics);
+    this.printUserWinningStatics(compareLotto.getUserWinningStatics());
     this.printRateOfRetrun(RateOfReturn);
   }
   printLottoCount(LottoCount){
@@ -41,40 +38,6 @@ class App {
       userLotto+=']';
       MissionUtils.Console.print(userLotto);
     });
-  }
-  comparePrizeNumberAndUserNumber(lottoNumbers, bonusNumber, userNumbers){
-    let count = 0;
-    userNumbers.forEach((userNumber)=>{
-      lottoNumbers.forEach((lottoNumber)=>{
-        if(userNumber === lottoNumber){
-          count+=1;
-        }
-      })
-    });
-    const state = this.checkBonusNumber(bonusNumber, userNumbers);
-    count += state[0];
-    const isBonus = state[1];
-    this.addWinningStatics(count,isBonus);
-  }
-  checkBonusNumber(bonusNumber, userNumbers){
-    if(userNumbers.includes(...bonusNumber)){
-      return [1,true];
-    }else {
-      return [0,false];
-    }
-  }
-  addWinningStatics(count, isBonus){
-    if(count===6){
-      this.userWinningStatics[0] +=1;
-    }else if(count === 5 && isBonus){
-      this.userWinningStatics[1] +=1;
-    }else if(count === 5){
-      this.userWinningStatics[2] +=1;
-    }else if(count === 4){
-      this.userWinningStatics[3] +=1;
-    }else if(count === 3){
-      this.userWinningStatics[4] +=1;
-    }
   }
   printUserWinningStatics(winningStatic){
     MissionUtils.Console.print("당첨 통계");
