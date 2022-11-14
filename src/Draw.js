@@ -15,6 +15,7 @@ class Draw {
 
   bonus() {
     Console.readLine('보너스 번호를 입력해 주세요.', (inputValue) => {
+      new Validation().bonusInputValue(this.winningNumbers, inputValue);
       Console.close();
       this.bonusNumber = Number(inputValue);
     });
