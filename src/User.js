@@ -17,9 +17,17 @@ class User {
   }
   generateLottoNumbers(numberOfPurchase) {
     for (let i = 0; i < numberOfPurchase; i++) {
-      const lottoNumber = Random.pickUniqueNumbersInRange(1, 45, 6);
+      const lottoNumber = User.randomSortedNumbers();
+      console.log("lotto: ", lottoNumber);
       this.lottoNumbers.push(lottoNumber);
     }
+    console.log("ALL: ", this.lottoNumbers);
+  }
+
+  static randomSortedNumbers() {
+    const lottoNumber = Random.pickUniqueNumbersInRange(1, 45, 6);
+    lottoNumber.sort();
+    return lottoNumber;
   }
   static isValidPurchase(amount) {
     // 로또 구입 금액에 대한 유효성 검사
