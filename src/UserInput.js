@@ -1,6 +1,7 @@
 const { readLine } = require("./util.js");
 const { INPUT_QUERY } = require("./constants.js");
 const LottoGenerator = require("./LottoGenerator");
+const Lotto = require("./Lotto")
 
 class UserInput {
 
@@ -10,6 +11,11 @@ class UserInput {
 
   publishLotto(money) {
     this.lotto = new LottoGenerator(money);
+    readLine(INPUT_QUERY.WINNING_NUMBER, this.handleLottoNumber.bind(this));
+  }
+
+  handleLottoNumber(winningNumber) {
+    this.winningNumber = new Lotto(winningNumber);
   }
 }
 
