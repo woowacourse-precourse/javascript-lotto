@@ -20,8 +20,8 @@ class Lotto {
     return `[${this.#numbers.join(', ')}]`;
   }
 
-  countSameNumber(anotherLotto) {
-    return this.#numbers.filter((myNumber) => anotherLotto.hasNumber(myNumber)).length;
+  countSameNumber(winning) {
+    return this.#numbers.filter((lottos) => winning.hasNumber(lottos)).length;
   }
 
   hasNumber(number) {
