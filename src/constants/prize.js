@@ -7,4 +7,12 @@ const PRIZE = Object.freeze({
   LOST: -1,
 });
 
-module.exports = { PRIZE };
+const WIN_MONEY = Object.freeze({
+  [PRIZE.FIRST]: 2000000000,
+  [PRIZE.SECOND]: 30000000,
+  [PRIZE.THIRD]: 1500000,
+  [PRIZE.FOURTH]: 50000,
+  [PRIZE.FIFTH]: 5000,
+});
+
+module.exports = { PRIZE, WIN_MONEY };
