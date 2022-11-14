@@ -124,3 +124,53 @@ describe('당첨번호 입력 유효성 테스트', () => {
     }).toThrow('[ERROR]');
   });
 });
+
+describe('보너스 번호 입력 유효성 테스트', () => {
+  test('아무것도 입력하지 않았을 떄', () => {
+    mockQuestions(['']);
+    expect(() => {
+      const app = new App();
+      app.inputBonusNumberFromUser();
+    }).toThrow('[ERROR]');
+  });
+
+  test('빈 공백을 입력했을 때', () => {
+    mockQuestions([' ']);
+    expect(() => {
+      const app = new App();
+      app.inputBonusNumberFromUser();
+    }).toThrow('[ERROR]');
+  });
+
+  test('엔터만 쳤을 때', () => {
+    mockQuestions(['\n']);
+    expect(() => {
+      const app = new App();
+      app.inputBonusNumberFromUser();
+    }).toThrow('[ERROR]');
+  });
+
+  test('숫자를 입력하지 않았을 때', () => {
+    mockQuestions(['!DA']);
+    expect(() => {
+      const app = new App();
+      app.inputBonusNumberFromUser();
+    }).toThrow('[ERROR]');
+  });
+
+  test('로또 숫자 범위가 아닌 수를 입력하였을 떄', () => {
+    mockQuestions(['46']);
+    expect(() => {
+      const app = new App();
+      app.inputBonusNumberFromUser();
+    }).toThrow('[ERROR]');
+  });
+
+  test('로또 숫자 범위가 아닌 수를 입력하였을 떄', () => {
+    mockQuestions(['-1']);
+    expect(() => {
+      const app = new App();
+      app.inputBonusNumberFromUser();
+    }).toThrow('[ERROR]');
+  });
+});
