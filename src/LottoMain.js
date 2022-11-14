@@ -16,13 +16,16 @@ function printResult(lottoList, prize, bonus) {
 
 function lottoLoop(lottoList, prize, bonus) {
   const prizeArray = stringToArray(prize);
-  console.log(prizeArray);
+  resultArray = [0, 0, 0, 0, 0];
   for (let i = 0; i < lottoList.length; i++) {
     const countArray = countCorrectNumber(lottoList[i], prizeArray, bonus);
     const prizeCount = countArray[0];
     const bonusCount = countArray[1];
     const result = prizeResult(prizeCount, bonusCount);
-    ConsoleWork.print(result);
+    if (result !== 'NOTHING') {
+      resultArray[result]++;
+    }
+    return resultArray;
   }
 }
 
@@ -47,19 +50,19 @@ function countCorrectNumber(lotto, prize, bonus) {
 
 function prizeResult(prizeCount, bonusCount) {
   if (prizeCount == 3) {
-    return 'CORRECT3';
+    return 0;
   }
   if (prizeCount == 4) {
-    return 'CORRECT4';
+    return 1;
   }
   if (prizeCount == 5) {
     if (bonusCount == 1) {
-      return 'CORRECT5_BONUS';
+      return 3;
     }
-    return 'CORRECT5';
+    return 2;
   }
   if (prizeCount == 6) {
-    return 'CORRECT6';
+    return 4;
   }
   return 'NOTHING';
 }
