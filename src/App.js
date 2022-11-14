@@ -61,24 +61,28 @@ class App {
   }
   bonusWindow(window) {
     Console.readLine(`\n${window}\n`, (input) => {
-      this.bonusNumber = input;
+      this.bonusNumber = parseInt(input);
       this.numberCompare();
     })
   }
   numberCompare() {
     this.lottoArray.map((numbers) => {
       let sameNumber = 0;
+      let isNumberBonus = false;
       numbers.map((number) => {
         if(this.winningNumber.includes(number)) sameNumber += 1;
+        if(this.bonusNumber === number) isNumberBonus = true;
       });
-      this.winSeparate(sameNumber);
+      this.winSeparate(sameNumber, isNumberBonus);
     });
-    Console.print(this.answer);
   }
   winSeparate(count) {
     if (count === 3) this.answer['SAME_THREE'] += 1;
     if (count === 4) this.answer['SAME_FOUR'] += 1;
-    if (count === 5) this.answer['SAME_FIVE'] += 1;
+    if (count === 5) {
+      if (bonus === true) this.answer['SAME_FIVE_BONUS'] += 1;
+      if (bonus === false) this.answer['SAME_FIVE'] += 1;
+    }
     if (count === 6) this.answer['SAME_SIX'] += 1;
   }
 }
