@@ -47,6 +47,10 @@ class Lotto {
     });
     return matchingCount;
   }
+
+  checkBonusNumber(IssuedLotto) {
+    return IssuedLotto.includes(this.bonusNumber);
+  }
 }
 
 module.exports = Lotto;
