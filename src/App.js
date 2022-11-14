@@ -48,6 +48,10 @@ class App {
       this.#mesage.print(`[${lotto.join(SEPARATOR)}]`);
     });
   }
+
+  printEarningsRate(winningAmount) {
+    this.#mesage.print(Message.statistics(winningAmount));
+  }
 }
 
 module.exports = App;
