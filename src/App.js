@@ -24,6 +24,7 @@ class App {
     winning_number = this.input("당첨 번호를 입력해 주세요.");
     winning_number = this.input_arrangement(winning_number);
     bonus_number = this.input("보너스 번호를 입력해 주세요.");
+    const lotto = new Lotto(winning_number);
   }
 
   input(text) {
