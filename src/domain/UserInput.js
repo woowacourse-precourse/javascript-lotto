@@ -8,7 +8,14 @@ class UserInput {
   }
 
   moneyInput(message) {
-    MissionUtils.Console.readLine(message, (userInput) => {});
+    MissionUtils.Console.readLine(message, (userInput) => {
+      this.checkExceptCaseInMoney(userInput);
+    });
+  }
+
+  checkExceptCaseInMoney(money) {
+    const remains = money % 1000;
+    return remains > 0 ? false : true;
   }
 }
 
