@@ -23,7 +23,7 @@ class App {
       5: 0,
       '5+': 0,
       6: 0,
-      sum: 0,
+      reward: 0,
     };
   }
 
@@ -92,29 +92,33 @@ class App {
       const result = lotto.checkRank(this.winningNumbers, this.bonusNumber);
       switch (result.lotto) {
         case 3:
-          this.result.sum += 5000;
+          this.result.reward += 5000;
           this.result['3'] += 1;
           break;
         case 4:
-          this.result.sum += 50000;
+          this.result.reward += 50000;
           this.result['4'] += 1;
           break;
         case 5:
           if (result.bonus) {
-            this.result.sum += 1500000;
+            this.result.reward += 1500000;
             this.result['5+'] += 1;
             break;
           }
-          this.result.sum += 30000000;
+          this.result.reward += 30000000;
           this.result['5'] += 1;
           break;
         case 6:
-          this.result.sum += 2000000000;
+          this.result.reward += 2000000000;
           this.result['6'] += 1;
           break;
         default:
       }
     }
+  }
+
+  static getRateOfReturn(reward, lottoCount) {
+    return Math.round((reward / (lottoCount * 1000)) * 10000) / 100;
   }
 
   printResult() {
@@ -124,9 +128,7 @@ class App {
     Console.print(MESSAGE.THIRD(this.result['5']));
     Console.print(MESSAGE.SECOND(this.result['5+']));
     Console.print(MESSAGE.FIRST(this.result['6']));
-    const sum =
-      Math.round((this.result.sum / (this.lottoCount * 1000)) * 10000) / 100;
-    Console.print(MESSAGE.SUM(sum));
+    Console.print(MESSAGE.SUM(this.getRateOfReturn(this.result.reward)));
   }
 }
 
