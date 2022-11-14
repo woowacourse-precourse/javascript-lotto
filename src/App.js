@@ -11,6 +11,7 @@ class App {
     ask.buyLotto();
     ask.showLottoList();
     const lotto = new Lotto(ask.winningNumber());
+    ask.bonus();
 
     MissionUtils.Console.close();
   }

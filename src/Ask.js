@@ -49,6 +49,14 @@ class Ask{
           });
         return numbers;
     }
+
+    bonus(){
+        let bonus;
+        MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (answer) => {
+            bonus = answer;
+          });
+        return bonus;
+    }
 }
 
 module.exports = Ask;
