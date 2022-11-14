@@ -3,11 +3,15 @@ const { isMultipleOf1000, divide1000 } = require('./lib/utilFns.js');
 
 class VendingMachine {
   #purchaseAmount;
-  #purchaseNumber;
+  #numberOfLottos;
 
   askPurchaseAmount() {
-    const validate = this.validate.bind(this);
-    Console.readLine('구입금액을 입력해 주세요.\n', validate);
+    const answerCbFn = (answer) => {
+      this.validate(answer);
+      this.setPurchaseOptions(answer);
+    };
+
+    Console.readLine('구입금액을 입력해 주세요.\n', answerCbFn);
   }
 
   validate(purchaseAmount) {
@@ -16,6 +20,14 @@ class VendingMachine {
     }
 
     return true;
+  }
+
+  setPurchaseOptions(purchaseAmount) {
+    const puchaseAmount = purchaseAmount.trim();
+    const numberOfLottos = divide1000(purchaseAmount);
+
+    this.#purchaseAmount = puchaseAmount;
+    this.#numberOfLottos = numberOfLottos;
   }
 }
 

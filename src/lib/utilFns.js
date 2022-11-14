@@ -7,4 +7,7 @@ const isRight = (regExp) => (amount) => {
 
 const isMultipleOf1000 = isRight(amountRegExp);
 
-module.exports = { isMultipleOf1000 };
+const divide = (divider) => (share) => Number(share) / divider;
+const divide1000 = divide(1000);
+
+module.exports = { isMultipleOf1000, divide1000 };
