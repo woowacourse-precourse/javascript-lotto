@@ -94,7 +94,7 @@ class App {
     this.printWinResult();
   }
 
-  getResultOfIncludeWinArr(i){ //당첨번호 포함 여부 계산하기
+  getResultOfIncludeWinArr(i){ //당첨번호 포함여부 계산하기
     for(let j = 0; j < this.lottoRandomNum[i].length; j++){
       if(this.lottoRandomNum[i].includes(parseInt(this.winArr[j]))){
         this.count++;
