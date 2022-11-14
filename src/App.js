@@ -59,8 +59,41 @@ class App {
       "\n보너스 번호를 입력해 주세요.\n",
       (input) => {
         this.lotto.bonusNumber = Number(input);
+        this.checkWin(this.lotto, this.issuedLottos);
       }
     );
+  }
+  checkWin(lotto, issuedLottos) {
+    let result = { "1등": 0, "2등": 0, "3등": 0, "4등": 0, "5등": 0 };
+    issuedLottos.forEach((issuedLotto) => {
+      const winCount = issuedLotto.filter((number) =>
+        lotto.numbers.includes(number)
+      ).length;
+      switch (winCount) {
+        case 3:
+          result["5등"] += 1;
+          break;
+        case 4:
+          result["4등"] += 1;
+          break;
+        case 5:
+          this.checkSecond(issuedLotto, lotto, bonusNumber)
+            ? (result["2등"] += 1)
+            : (result["3등"] += 1);
+          break;
+        case 6:
+          result["1등"] += 1;
+          break;
+      }
+    });
+    return result;
+  }
+  checkSecond(issuedLotto, lotto, bonusNumber) {
+    const NumbersExceptMatch = issuedLotto.filter(
+      (number) => !lotto.numbers.includes(number)
+    );
+    if (NumbersExceptMatch.includes(bonusNumber)) return true;
+    return false;
   }
 }
 
