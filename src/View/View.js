@@ -17,12 +17,25 @@ class View {
     lottoLists.forEach((lotto) => Console.print(`[${lotto}]`));
   }
 
-  showUserLottosNumber() {
-    Console.print(`당첨 번호를 입력해 주세요. ${this.model.userLottoNumber}`);
+  showUserLottosNumber(userLottoNumber) {
+    Console.print(`당첨 번호를 입력해 주세요. ${userLottoNumber}`);
   }
 
-  showUserBonusNumber() {
-    Console.print(`보너스 번호를 입력해 주세요. ${this.model.userBonusNumber}`);
+  showUserBonusNumber(userBonusNumber) {
+    Console.print(`보너스 번호를 입력해 주세요. ${userBonusNumber}`);
+  }
+
+  showUserLottoResults(lottoResults) {
+    const resultMessages = [
+      '3개 일치 (5,000원) - ',
+      '4개 일치 (50,000원) - ',
+      '5개 일치 (1,500,000원) - ',
+      '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
+      '6개 일치 (2,000,000,000원) - ',
+    ];
+    Object.values(lottoResults).forEach((count, idx) => {
+      Console.print(`${resultMessages[idx]} ${count}개`);
+    });
   }
 }
 

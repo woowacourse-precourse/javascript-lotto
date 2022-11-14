@@ -1,9 +1,8 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const Model = require('../Model/Model');
 const Lotto = require('../Model/Lotto');
 const Validation = require('../Utilities/Validation');
 const View = require('../View/View');
-
+const { LOTTO_RANK } = require('../Constants');
 const { Console } = MissionUtils;
 
 class Controller {
@@ -35,12 +34,12 @@ class Controller {
     });
   }
 
-  getUserLottos() {
+  getUserLottoNumber() {
     Console.readLine('당첨 번호를 입력해 주세요.', (userLottoNumber) => {
-      this.model.userLottoNumber = this.isValidUserLottoNumber(
+      this.model.userLottoNumber = this.validation.isValidUserLottoNumber(
         userLottoNumber.replace(/\s/g, ''),
       );
-      this.view.showUserLottosNumber();
+      this.view.showUserLottosNumber(userLottoNumber);
     });
   }
 
@@ -49,8 +48,43 @@ class Controller {
       this.model.userBonusNumber = this.validation.isValidBonusNumber(
         userBonusNumber.replace(/\s/g, ''),
       );
-      this.view.showUserBonusNumber();
+      this.view.showUserBonusNumber(userBonusNumber);
     });
+  }
+
+  getTest() {
+    this.getUserMoneyAndLottos();
+    this.getUserLottoNumber();
+    this.getUserBonusNumber();
+    this.getUserLottoResult();
+  }
+
+  getUserLottoResult() {
+    const { lottoLists, userLottoNumber, userBonusNumber } = this.model;
+    const results = lottoLists.map(
+      (lotto) => lotto.filter((num) => userLottoNumber.includes(num)).length,
+    );
+    this.getUserChart(results, userBonusNumber);
+  }
+
+  getUserChart(results, bonus) {
+    results.forEach((correctNum) => {
+      this.compareLottos(correctNum, bonus);
+    });
+    this.view.showUserLottoResults(this.model.lottoResults);
+  }
+
+  compareLottos(correctNum, bonus) {
+    const { lottoResults } = this.model;
+    if (correctNum === LOTTO_RANK.FIVE) lottoResults.five += 1;
+    if (correctNum === LOTTO_RANK.FOUR) lottoResults.four += 1;
+    if (correctNum === LOTTO_RANK.THREE) {
+      lottoResults.three += 1;
+      if (bonus === this.model.userBonusNumber) {
+        lottoResults.two += 1;
+      }
+    }
+    if (correctNum === LOTTO_RANK.ONE) lottoResults.one += 1;
   }
 }
 

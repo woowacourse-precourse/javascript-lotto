@@ -29,4 +29,11 @@ const ERROR = {
   },
 };
 
-module.exports = { ERROR };
+const LOTTO_RANK = {
+  FIVE: 3,
+  FOUR: 4,
+  THREE: 5,
+  ONE: 6,
+};
+
+module.exports = { ERROR, LOTTO_RANK };
