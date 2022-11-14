@@ -3,34 +3,48 @@
 - 컨벤션(커밋, 코딩, 네이밍)에 따른 일관성있는 코드 작성
 - 함수 / 메서드 / 클래스의 분리 (한 가지 일만 담당 / 길이 15라인 미만)
 - 핵심 로직에 대한 단위 테스트 구현
-<br/>
+  <br/>
 
 ## 🎰 기능 구현 목록
 
-### 📗 메인 로직
-###
-feat (init)
-* [ ] 로또 번호의 '숫자' '범위' 지정 - LottoMachine#validation
-* [ ] 로또 발행 : '중복'되지 않는 '6'개의 숫자 발행 - LottoMachine#validation
-* [ ] 당첨 번호 추첨 : 중복되지 않는 숫자 6개 + 보너스 번호 1개 - Winning#inputNumbers
-* [ ] 당첨 기준과 금액 지정  
-###
-feat (game)
-* [ ] user: 로또 구입 금액 입력 - Player#buyTickets
-* [ ] 구입 금액에 해당하는 만큼 로또 발행 - LottoMachine#issue
-* [ ] user : 당첨 번호 입력 - Winning#numbers
-* [ ] user : 보너스 번호 입력 - Winning#bonusNumber
-* [ ] 당첨 내역 출력 - Result#winning
-* [ ] 수익률 출력 (소수점 둘째자리에서 반올림) - Result#profit
-<br/>
+### feat () : init , game , error
 
-### 📕 에러 로직 : throw "[ERROR]에러 메시지"
-feat (error)
-* [ ] 로또 구입 금액 : number type이 아닌 경우, 1,000원으로 나눠 떨어지지 않는 경우 - InputError#buyTickets
-* [ ] 당첨 번호 : 입력값이 쉼표로 구분되지 않은 경우, 숫자가 아닐 경우, 범위 안의 숫자가 아닐 경우, 숫자의 갯수가 맞지 않은 경우 - InputError#winningNumbers
-* [ ] 보너스 번호 : 숫자가 아닐경우, 범위 안의 숫자가 아닐 경우 - InputError#bonusNumber
-* [ ] 로또 발행 : number type이 아닌 경우, 숫자의 갯수가 맞지 않는 경우, 범위 안의 숫자가 아닐 경우 - Error#issue
-
+- [ ] user: 로또 구입 금액 입력 - Player#buyTickets
+    - [ ] 숫자 타입인가 - Input#numberType -> static
+    - [ ] 1,000원 단위로 떨어지는가 - Input#moneyUnit
+      - [ ] 각각의 경우 에러 발생시 - InputError # numberType, moneyUnit
+###
+- [ ] 로또 발행 : 유효성 체크 - LottoMachine#validation
+    - [ ] 각 요소가 숫자 타입인가 - Input#numberType -> static
+    - [ ] 요소가 범위 내에서 생성되는가 (1~45) - Input#range -> static
+    - [ ] 요소가 6개 인가 - Input#lengthSix -> static
+    - [ ] 요소가 중복되지 않는가 - Input#duplication -> static
+    - [ ] 발행 결과가 [,] 형태로 만들어지는가 - Input#format#issue
+        - [ ] 각각의 경우 에러 발생시 - IssueError # LAST_KEYWORD
+###
+- [ ] 로또 발행 : 발행 - LottoMachine#issue
+    - [ ] 구입 금액만큼 발행 - Issue
+        - [ ] 각각의 경우 에러 발생시 - IssueError # LAST_KEYWORD
+###
+- [ ] user: 당첨 번호 입력 - Player#winningNumbers
+    - [ ] 요소가 숫자 타입인가 - Input#numberType -> static
+    - [ ] 요소가 범위 내에 있는가 - Input#range -> static
+    - [ ] 요소가 6개 인가 - Input#lengthSix -> static
+    - [ ] 요소가 중복되지 않는가 - Input#duplication -> static
+    - [ ] 발생 결과가 ',' 형태로 만들어지는가 - Input#format#input
+        - [ ] 각각의 경우 에러 발생시 - InputError # LAST_KEYWORD
+###
+- [ ] user: 보너스 번호 입력 - Player#winningBonusNumber
+    - [ ] 요소가 숫자 타입인가 - Input#numberType -> static
+    - [ ] 요소가 범위 내에 있는가 - Input#range -> static
+    - [ ] 요소가 1개 인가 - Input#lengthOne -> static
+        - [ ] 각각의 경우 에러 발생시 - InputError # LAST_KEYWORD
+###
+- [ ] 당첨 결과 - Result
+    - [ ] 내역 - Result#winning
+    - [ ] 수익률 (소수점 둘째자리에서 반올림) - Result#profit
+           - [ ] 각각의 경우 에러 발생시 - ResultError # LAST_KEYWORD
+###
 <br/>
 
 ## 🚀 미션 - 로또
@@ -54,7 +68,7 @@ feat (error)
 - 당첨 번호와 보너스 번호를 입력받는다.
 - 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 및 수익률을 출력하고 로또 게임을 종료한다.
 - 사용자가 잘못된 값을 입력할 경우 `throw`문을 사용해 예외를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 종료한다.
-<br/>
+  <br/>
 
 ### 실행 결과 예시
 
