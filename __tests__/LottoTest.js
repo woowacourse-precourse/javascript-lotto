@@ -1,9 +1,14 @@
 const Lotto = require('../src/Lotto');
 const { ERROR } = require('../src/utiles/Constant');
 
+beforeEach(() => {
+  const lotto = new Lotto();
+});
+
 describe('로또 클래스 테스트', () => {
   test('로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.', () => {
     const lotto = new Lotto();
+
     expect(() => {
       lotto.setWinningNumbers([1, 2, 3, 4, 5, 6, 7]);
     }).toThrow(`${ERROR.PREFIX} ${ERROR.COUNT}`);
@@ -33,8 +38,19 @@ describe('로또 클래스 테스트', () => {
     }).toThrow(`${ERROR.PREFIX} ${ERROR.RANGE}`);
   });
 
+  test('보너스 번호가 잘 입력되는지 확인', () => {
+    const lotto = new Lotto();
+
+    const numbers = [1, 2, 3, 4, 5, 6];
+    lotto.setWinningNumbers(numbers);
+    lotto.addBonusNumber(7);
+
+    expect(lotto.getLottoNumbers()).toEqual([1, 2, 3, 4, 5, 6, 7]);
+  });
+
   test('로또 번호가 당첨 번호와 몇 개 일치하는지 확인', () => {
     const lotto = new Lotto();
+
     lotto.setWinningNumbers([1, 2, 3, 4, 5, 6]);
     lotto.addBonusNumber(7);
 
