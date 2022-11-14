@@ -28,6 +28,7 @@
 
 - 필요한 상수 파일 구현
   - MESSAGES [O]
+  - 모듈 exports 및 import [O]
 
 ### 비즈니스 로직
 
