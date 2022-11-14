@@ -13,6 +13,13 @@ class Validation {
     }
   }
 
+  // checkTickets(amount, purchased) { //circular import -> class undefined error
+  //   const player = new Player();
+  //   // if (player.buyTickets(amount) !== purchased.length) {
+  //   //   throw new Error(ERROR_LOGIC_MESSAGE.ISSUE);
+  //   // }
+  // }
+
   // numbers : [1,2,3,4,5,6]
   checkSixNumbers(array) {
     this.type(array);

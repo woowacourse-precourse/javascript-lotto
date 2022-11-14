@@ -1,9 +1,12 @@
 const Player = require("../src/Player");
 const Validation = require("../src/Validation");
 
-const { ERROR_INPUT_MESSAGE } = require("../src/constants");
+const {
+  ERROR_INPUT_MESSAGE,
+  ERROR_LOGIC_MESSAGE,
+} = require("../src/constants");
 
-describe("Lotto 클래스 유효성 테스트", () => {
+describe("Lotto 클래스 테스트", () => {
   test("1: 로또 번호의 요소가 숫자가 아니면 예외가 발생한다.", () => {
     expect(() => {
       new Validation().type([1, 2, 3, 4, 5, "a"]);
@@ -32,6 +35,15 @@ describe("Lotto 클래스 유효성 테스트", () => {
     expect(() => {
       new Validation().formatArray("1, 2, 3, 4, 5, 6");
     }).toThrow(ERROR_INPUT_MESSAGE.FORMAT_ARRAY);
+  });
+
+  test("6: 구입 금액에 해당하는 만큼 로또를 발행하지 않으면 예외가 발생한다.", () => {
+    expect(() => {
+      new Player().checkTickets(8000, [
+        [1, 2, 3, 4, 5, 6],
+        [7, 8, 9, 10, 11, 12],
+      ]);
+    }).toThrow(ERROR_LOGIC_MESSAGE.ISSUE);
   });
 });
 

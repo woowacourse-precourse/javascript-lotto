@@ -12,6 +12,8 @@ class App {
 
       const tickets = player.buyTickets(Number(amount));
       lotto.issue(tickets);
+
+      console.log("ans", new Player().buyTickets(8000));
     });
   }
 }
