@@ -90,11 +90,9 @@ class LottoUtils {
   }
 
   static getYield(lottoTickets, result) {
-    console.log(lottoTickets.length);
     const totalReward = Object.keys(result).reduce((acc, key) => {
       return acc + RANK_REWARD[key] * result[key];
     }, 0);
-    console.log(totalReward);
 
     // 수익률을 반환한다
     return roundNumber((totalReward / (lottoTickets.length * PRICE)) * 100);
