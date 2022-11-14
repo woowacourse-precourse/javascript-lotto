@@ -24,8 +24,9 @@ const {
 
 class App {
   constructor() {
-    this.lottoCount = 0;
-    this.lottoNums = [];
+    this.howManyLottos = 0;
+    this.lottoWinNums = [];
+    this.lottoRandomNums = [];
   }
 
   play() {
@@ -38,13 +39,33 @@ class App {
 
   getMoney() {
     Console.readLine(GET_MONEY, answer => {
-      this.lottoCount = Number(answer) / 1000;
+      this.howManyLottos = Number(answer) / 1000;
+      this.getLottoNum(this.howManyLottos);
+      this.buyAutoLottos(this.howManyLottos);
+
       if (!isNumber(answer)) {
         throw new Error(ERROR.NOT_A_NUMBER);
       } else if (!isVaildMoney(answer, 1000)) {
         throw new Error(ERROR.NOT_VALID_MONEY);
       }
     });
+  }
+
+  getLottoNum(input) {
+    this.printMessage(input + SHOW_AMOUNT);
+  }
+
+  buyOneLotto(min, max, count) {
+    return Random.pickUniqueNumbersInRange(min, max, count).sort(
+      (a, b) => a - b,
+    );
+  }
+
+  buyAutoLottos(num) {
+    while (this.lottoRandomNums.length < num) {
+      this.lottoRandomNums.push(this.buyOneLotto(1, 45, 6));
+    }
+    this.printMessage(this.lottoRandomNums);
   }
 }
 
