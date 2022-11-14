@@ -69,6 +69,9 @@ class LottoCompany {
     if (!Number.isInteger(number) || !(number > 0 && number < 46)) {
       throw new Error("[ERROR] 1이상 45이하 정수를 입력해야합니다.");
     }
+    if (this.#winningNumbers.includes(number)) {
+      throw new Error("[ERROR] 보너스 번호는 당첨번호와 중복될 수 없습니다.");
+    }
   }
 
   checkResult(lotto) {
