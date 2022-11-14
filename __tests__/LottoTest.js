@@ -59,11 +59,19 @@ describe("로또 클래스 테스트", () => {
     });
   });
 
-  // test("로또 발행하기", () => {
-  //   const app = new App();
-  //   const number = 6;
-  //   const result = app.publishLotto(number);
+  test("동일한 로또 번호의 개수를 구한다.", () => {
+    const lottos = [
+      new Lotto([7, 21, 23, 30, 42, 43]),
+      new Lotto([3, 5, 6, 7, 32, 38]),
+      new Lotto([7, 11, 16, 35, 36, 44]),
+      new Lotto([2, 3, 4, 5, 6, 7]),
+      new Lotto([3, 4, 5, 38, 39, 40]),
+    ];
+    const winNumbers = new Set([1, 2, 3, 4, 5, 6]);
+    const bonusNumber = 7;
+    const result = [3, 5.5, 3];
+    const app = new App();
 
-  //   expect(result).toContain();
-  // });
+    expect(app.matchLottos(lottos, winNumbers, bonusNumber)).toEqual(result);
+  });
 });
