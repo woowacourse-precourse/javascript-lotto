@@ -45,6 +45,13 @@ class App {
     });
   }
 
+  static winningDiscriminator(lottoNumber, winningNumber) {
+    const matchCount = lottoNumber.reduce((acc, currentLottoNumber) => {
+      return winningNumber.includes(currentLottoNumber) ? acc + 1 : acc;
+    }, 0);
+    return matchCount;
+  }
+
   play() {
     App.lottoPurchaser();
   }
