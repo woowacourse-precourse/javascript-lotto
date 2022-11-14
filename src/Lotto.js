@@ -141,7 +141,4 @@ class Lotto {
   }
 }
 
-const lotto = new Lotto("8, 11, 44, 27, 36, 15", "10", "8000");
-lotto.matchLotto(lotto.makeRandomValue(8000));
-
 module.exports = Lotto;
