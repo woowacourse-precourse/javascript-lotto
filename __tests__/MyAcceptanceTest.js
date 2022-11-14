@@ -94,4 +94,36 @@ describe('My Acceptance test', () => {
       app.play();
     }).toThrow('[ERROR]');
   });
+
+  test('1~45 범위를 벗어난 당첨 번호를 입력', () => {
+    mockQuestions(['5000', '0,1,2,3,4,5']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
+
+  test('당첨 번호와 중복된 보너스 번호를 입력', () => {
+    mockQuestions(['5000', '1,2,3,4,5,6', '1']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
+
+  test('숫자가 아닌 보너스 번호를 입력', () => {
+    mockQuestions(['5000', '1,2,3,4,5,6', 'seven']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
+
+  test('1~45 범위를 벗어난 보너스 번호를 입력', () => {
+    mockQuestions(['5000', '1,2,3,4,5,6', '46']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
 });
