@@ -104,6 +104,7 @@ class App {
         }
         this.rateOfReturn = (this.rateOfReturn / this.money) * 100
         this.view.winningStatistics(this.rank, this.rateOfReturn)
+        MissionUtils.Console.close();
     }
 }
 

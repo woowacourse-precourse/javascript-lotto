@@ -14,9 +14,9 @@ const LENGTH_WINNING_ERROR="[ERROR] 당첨 번호는 6개여야 합니다."
 const FLOAT_WINNING_ERROR="[ERROR] 당첨 번호에 실수가 들어가면 안됩니다."
 const BONUS_WINNING_ERROR="[ERROR] 당첨 번호에 보너스 번호가 중복되면 안됩니다.."
 
-const INPUT_MONEY = '구입금액을 입력해 주세요.';
-const INPUT_WINNING_NUMBER = '당첨 번호를 입력해 주세요.';
-const INPUT_BONUS_NUMBER = '보너스 번호를 입력해 주세요.';
+const INPUT_MONEY = '구입금액을 입력해 주세요.\n';
+const INPUT_WINNING_NUMBER = '당첨 번호를 입력해 주세요.\n';
+const INPUT_BONUS_NUMBER = '보너스 번호를 입력해 주세요.\n';
 const PURCHASE_LOTTO = '개를 구매했습니다.';
 const WINNING_STATICS= "당첨 통계\n---";
 const THREE_MATCHED = "3개 일치 (5,000원) - ";
