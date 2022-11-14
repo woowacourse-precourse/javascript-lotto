@@ -84,12 +84,13 @@ class App {
   }
   calculateReturnRate(purchasedNumber, result) {
     const returnRate =
-      (result["5등"] * 5e3 +
+      ((result["5등"] * 5e3 +
         result["4등"] * 5e4 +
         result["3등"] * 15e5 +
         result["2등"] * 3e7 +
         result["1등"] * 2e9) /
-      (purchasedNumber * 1000);
+        (purchasedNumber * 1000)) *
+      100;
     let roundedReturnRate = +(Math.round(returnRate + "e+2") + "e-2");
     this.printResult(result, roundedReturnRate);
   }
