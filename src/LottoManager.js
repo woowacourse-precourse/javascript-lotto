@@ -1,6 +1,7 @@
 const { Random } = require('@woowacourse/mission-utils');
 
 const { ERROR } = require('./lib/constants/error');
+const { LOTTO } = require('../src/lib/constants/lotto');
 
 const Lotto = require('./Lotto');
 
@@ -16,11 +17,14 @@ class LottoManager {
     switch (true) {
       case this.isNotNumber(purchaseAmountInput):
         throw new Error(ERROR.PURCHASE_AMOUNT.NOT_NUMBER);
-      case this.isSmallerThanUnitPrice(parseInt(purchaseAmountInput, 10), 1000):
+      case this.isSmallerThanUnitPrice(
+        parseInt(purchaseAmountInput, 10),
+        LOTTO.UNIT_PRICE,
+      ):
         throw new Error(ERROR.PURCHASE_AMOUNT.SMALLER);
       case this.isNotBeDividedByUnitPrice(
         parseInt(purchaseAmountInput, 10),
-        1000,
+        LOTTO.UNIT_PRICE,
       ):
         throw new Error(ERROR.PURCHASE_AMOUNT.CANNOT_BE_DIVIDED);
     }
@@ -39,7 +43,7 @@ class LottoManager {
   }
 
   issueLottos(purchaseAmount) {
-    const lottoCount = purchaseAmount / 1000;
+    const lottoCount = purchaseAmount / LOTTO.UNIT_PRICE;
     const lottos = [];
 
     for (let i = 0; i < lottoCount; i++) {
@@ -52,8 +56,13 @@ class LottoManager {
   createLottoNumbers() {
     const lottoNumbers = new Set();
 
-    while (lottoNumbers.size < 6) {
-      lottoNumbers.add(Random.pickNumberInRange(1, 45));
+    while (lottoNumbers.size < LOTTO.NUMBER_COUNT) {
+      lottoNumbers.add(
+        Random.pickNumberInRange(
+          LOTTO.MIN_NUMBER_LIMIT,
+          LOTTO.MAX_NUMBER_LIMIT,
+        ),
+      );
     }
 
     return [...lottoNumbers].sort((a, b) => a - b);
