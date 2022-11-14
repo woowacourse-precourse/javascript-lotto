@@ -1,7 +1,7 @@
 class Prize {
 	constructor() {
 		this.prizeMoney = 0;
-		this.winningNums = "";
+		this.winningNums = [];
 		this.winningBonusNum = 0;
 	}
 
@@ -9,7 +9,7 @@ class Prize {
 		let numbers = [...this.winningNums];
 		numbers.init(this.bonusNum);
 
-		this.isNum(numnbers);
+		this.isNum(numbers);
 		this.isSevenNumbers(numbers);
 		this.isNumsInRange(numbers);
 		this.isDuplicated(numbers);
@@ -45,10 +45,6 @@ class Prize {
       throw new Error("[ERROR] 보너스 번호 포함 당첨 번호는 중복되지 않아야 합니다.");
     }
   }
-
-	getWinningNums() {
-
-	}
 
 	winningCheck(lottoBundle) {
 		Console.readLine('당첨 번호를 입력해 주세요.\n', (nums) => {
