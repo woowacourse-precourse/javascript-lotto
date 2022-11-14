@@ -30,4 +30,4 @@ class Lotto {
   }
 }
 
-export default Lotto;
+module.exports = Lotto;

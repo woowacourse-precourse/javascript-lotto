@@ -1,5 +1,5 @@
-import Lotto from "./Lotto.js";
-import MissionUtils from "@woowacourse/mission-utils";
+const Lotto = require("./Lotto.js");
+const MissionUtils = require("@woowacourse/mission-utils");
 
 class App {
   constructor() {
@@ -9,8 +9,6 @@ class App {
 
   play() {
     this.buy();
-    // this.getWinningNumber();
-    // this.getBonusNumber();
   }
   buy() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
@@ -123,4 +121,4 @@ class App {
 const app = new App();
 app.play();
 
-export default App;
+module.exports = App;
