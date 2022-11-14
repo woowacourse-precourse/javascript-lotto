@@ -1,31 +1,30 @@
-class compareWinNumber {
-  winAndBonus(lotteries, winNumber, bonusNumber) {
-    const results = [];
-    lotteries.forEach((lotteries) => {
-      results.push(this.countWinNumber({ lotteries, winNumber, bonusNumber }));
+class JudgeLotto {
+  compareLotto({ lottos, wins, bonus }) {
+    const winAndBonus = [];
+    lottos.forEach((lotto) => {
+      winAndBonus.push(this.checkWin({ lotto, wins, bonus }));
     });
-    return results;
+    return winAndBonus;
   }
 
-  countWinNumber({ lotteries, winNumber, bonusNumber }) {
+  checkWin({ lotto, wins, bonus }) {
     let winCount = 0;
     let isBonus = false;
-    winNumber.forEach((number) => {
-      if (lotteries.getNumbers().includes(number)) winCount += 1;
+    wins.forEach((number) => {
+      if (lotto.getNumbers().includes(number)) winCount += 1;
     });
     if (winCount === 5) {
-      isBonus = this.checkBonus(lotteries, bonusNumber);
+      isBonus = this.checkBonus({ lotto, bonus, isBonus });
     }
     return [winCount, isBonus];
   }
 
-  checkBonus(lotteries, bonusNumber) {
-    let isBonus = false;
-    lotteries.getNumbers().forEach((number) => {
-      if (number === bonusNumber) isBonus = true;
+  checkBonus({ lotto, bonus, isBonus }) {
+    lotto.getNumbers().forEach((number) => {
+      if (number === bonus) isBonus = true;
     });
     return isBonus;
   }
 }
 
-module.exports = compareWinNumber;
+module.exports = JudgeLotto;
