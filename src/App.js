@@ -1,9 +1,11 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 
+const ONE_THOUSAND_WON = 1000;
+
 class App {
   constructor() {
-    this.lottoArr = [];
+    this.winningLotto = [];
     this.randomNumberArr = [];
     this.bonusLotto = 0;
     }
@@ -28,23 +30,23 @@ class App {
   };
 
   totalLottoCounts(price) {
-    const totalCounts = price / 1000;
+    const totalCounts = price / ONE_THOUSAND_WON;
     MissionUtils.Console.print(`${totalCounts}개를 구매했습니다.`);
     this.printRandomLotto(totalCounts)
   };
 
   printRandomLotto(totalCounts) {
     for (let i = 0; i < totalCounts; i++) {
-      this.lottoArr.push(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b));
-      MissionUtils.Console.print(this.lottoArr[i]);
+      this.randomNumberArr.push(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b));
+      MissionUtils.Console.print(this.randomNumberArr[i]);
     };
   };
 
   userRandomNumber() {
     MissionUtils.Console.readLine('당첨번호을 입력해 주세요.', (number) => {
-      this.randomNumberArr = number.split(",").map(Number);
-      new Lotto(this.randomNumberArr);
-      console.log(`당첨번호을 입력해 주세요.\n${this.randomNumberArr}`);
+      this.winningLotto = number.split(",").map(Number);
+      new Lotto(this.winningLotto);
+      console.log(`당첨번호을 입력해 주세요.\n${this.winningLotto}`);
     });
   };
 
