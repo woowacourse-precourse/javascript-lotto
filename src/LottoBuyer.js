@@ -3,6 +3,7 @@ const Lotto = require("./Lotto.js");
 class LottoBuyer {
   money;
   lottoAmount;
+  lottoArray = new Array();
   constructor(money) {
     money = parseInt(money);
 
