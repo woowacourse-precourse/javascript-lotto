@@ -31,12 +31,20 @@ class LottoManager {
     });
   }
 
-  calculateYield(lottoCompany) {
+  getLottoResults() {
+    return [...this.#winningResults];
+  }
+
+  printYield(lottoCompany) {
     let totalMoney = 0;
     this.#winningResults.forEach((winningRank) => {
       totalMoney += lottoCompany.winningMoney(winningRank);
     });
-    return `${Math.round((totalMoney / this.#money) * 1000) / 10}%`;
+    Console.print(
+      `총 수익률은 ${
+        Math.round((totalMoney / this.#money) * 1000) / 10
+      }%입니다.`
+    );
   }
 }
 
