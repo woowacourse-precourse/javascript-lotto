@@ -172,7 +172,7 @@ class App {
       0
     );
 
-    const earningsRate = (totalEarnings / amountOfPaid).toFixed(1);
+    const earningsRate = ((totalEarnings / amountOfPaid) * 100).toFixed(1);
 
     return earningsRate;
   }
