@@ -61,8 +61,16 @@ describe("로또 테스트", () => {
     });
   });
 
-  test("예외 테스트", () => {
+  test("구매 금액이 숫자가 아닐 경우 예외를 발생시킨다.", () => {
     mockQuestions(["1000j"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+
+  test("구매 금액이 1,000원 단위가 아닐 경우 예외를 발생시킨다.", () => {
+    mockQuestions(["1111"]);
     expect(() => {
       const app = new App();
       app.play();
