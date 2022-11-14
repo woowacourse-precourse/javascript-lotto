@@ -2,12 +2,17 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("../src/Lotto")
 
 class App {
+  price;
+  auto;
+  manual;
+  bonus;
 
   purchasePrice() { // 구입 금액을 입력받는 메서드
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (price) => {
       if (this.checkPrice(price)) {
-        const AUTO_LOTTO = this.autoLotto(price);
-        const MANUAL_LOTTO = this.manualLotto();
+        this.price = price;
+        this.autoLotto(price);
+        this.manualLotto();
       }
     })
   }
@@ -40,16 +45,34 @@ class App {
       LOTTO_AUTO.push(this.lottoGame());
       MissionUtils.Console.print(LOTTO_AUTO[i]);
     }
-    return LOTTO_AUTO;
+    this.auto = LOTTO_AUTO;
   }
 
   manualLotto() { // 당첨 번호를 입력 받고 유효성을 확인하는 메서드
     MissionUtils.Console.readLine('\n당첨 번호를 입력해 주세요.\n', (manual) => {
       const NUMBERS = manual.split(',');
       const NEW_LOTTO = new Lotto(NUMBERS);
-      MissionUtils.Console.print(NEW_LOTTO.manual());
-      MissionUtils.Console.close();
+      this.manual = NEW_LOTTO.manual();
+      this.bonusNumber(NEW_LOTTO.manual());
     })
+  }
+
+  bonusNumber(manual) { // 보너스 번호를 입력받는 메서드
+    MissionUtils.Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonus) => {
+      if (this.checkBonus(manual, bonus)) {
+        this.bonus = parseInt(bonus);
+        MissionUtils.Console.close();
+      }
+    })
+  }
+
+  checkBonus(manual, number) { // 보너스 번호의 유효성을 판단하는 메서드
+    if ((isNaN(number)) || (!Number.isInteger(Number(number)))) {
+      throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+    } else if (manual.includes(number)) {
+      throw new Error("[ERROR] 보너스 번호는 당첨 번호와 다른 숫자여야 합니다.");
+    }
+    return true;
   }
 
   play() {
