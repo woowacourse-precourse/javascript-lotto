@@ -24,5 +24,36 @@ class LottoMachine {
     }
   }
 
-  
+  lotteryResult(lottos) {
+    const result = [];
+    lottos.map((lotto) => result.push(getRank(lotto)));
+    return result;
+  }
+
+  getRank(lotto) {
+    let matchCount = 0;
+    let rank;
+    lotto.map((number) => {
+      if (this.#winningNumbers.includes(number)) {
+        matchCount++;
+      }
+    });
+    switch (matchCount) {
+      case 3:
+        rank = 5;
+        break;
+      case 4:
+        rank = 4;
+        break;
+      case 5:
+        rank = lotto.includes(this.#bonusNumber) ? 2 : 3;
+        break;
+      case 6:
+        rank = 1;
+        break;
+      default:
+        rank = 0;
+    }
+    return rank;
+  }
 }
