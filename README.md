@@ -146,83 +146,80 @@
 
 # 🔧 도메인 클래스별 메소드 설명
 
-### 💵 LottoSeller Class
+### 🎰 LottoMachine Class
 
-`getPurchaseCount(money)`
+구매 금액을 통해 로또를 구매할 수 있는 클래스
 
-- 인자로 금액을 인자로 호출하면 로또 구매 횟수를 반환해준다.
+`constructor(money)`
+
+- 생성자로 구매 금액을 입력받고 필드로 저장한다.
 - 입력한 금액이 숫자 형식이 아니라면 예외 처리한다.
 - 입력한 금액이 1000 단위가 아니라면 예외 처리한다.
-- parameter type: `string` or `number`
-- return type: `number`
-- 예시
-  ```js
-  getPurChaseCount("8000"); // 8
-  getPurChaseCount("3000"); // 3
-  ```
+- parameter type: `number` or `string`
 
-### 🖨 LottoGenerator Class
+`getLottos()`
 
-`getLottos(purchaseCount)`
-
-- 로또 구매 횟수를 인자로 호출한다.
-- 해당 횟수만큼의 로또를 생성하여 배열로 반환한다.
-- parameter type: `number`
+- 금액의 양 만큼 로또를 생성하여 배열로 반환한다.
+- 로또의 번호는 1~45 사이의 랜덤한 숫자 값이다.
 - return type: `Array<Lotto>`
 - 예시
   ```js
-  getLottos(2); // [Lotto([1, 2, 3, 4, 5, 6]), Lotto(2, 4, 6, 8, 10, 12)]
+  const lottoMachine = new LottoMachine("2000");
+  lottoMachine.getLottos(); // [Lotto([1, 2, 3, 4, 5, 6]), Lotto(2, 4, 6, 8, 10, 12)]
   ```
 
 ### 🥇 RankCalculator Class
 
-`getRankCount(playerLottos, WinningLotto)`
+플레이어의 로또들과 당첨 로또를 비교해서 등수를 계산하는 클래스
 
-- 로또를 담은 배열과 당첨 로또를 인자로 호출한다.
+`constructor(playerLottos, winningLotto)`
+
+- 생성자로 로또를 담은 배열과 당첨 로또를 입력받고 필드로 저장한다.
+- parameter type: `Array<Lotto>, WinningLotto`
+
+`getRankCountArray()`
+
 - 등수별 당첨 횟수를 배열로 반환한다.
 - 반환된 배열의 0번 인덱스는 1등 횟수 ~ 4번 인덱스는 5등 횟수를 나타낸다.
-- parameter type: `Array<Lotto>, WinningLotto`
 - return type: `Array<Number>`
 - 예시
 
   ```js
   const playerLottos = [new Lotto([1, 2, 3, 4, 5, 6]), new Lotto(1, 3, 5, 7, 9, 11)];
   const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
-  getRankCount(playerLottos, winningLotto);
+  const rankCalculator = new RankCalculator(playerLottos, winningLotto);
+  rankCalculator.getRankCountArray();
   // [1, 0, 0, 0, 1]
   // 1등 1번, 5등 1번을 나타낸다.
 
   const playerLottos = [new Lotto([1, 2, 3, 4, 5, 6]), new Lotto(1, 3, 5, 7, 9, 11)];
   const winningLotto = new WinningLotto([5, 7, 9, 11, 13, 15], 16);
-  getRankCount(playerLottos, winningLotto);
+  const rankCalculator = new RankCalculator(playerLottos, winningLotto);
+  rankCalculator.getRankCountArray();
   // [0, 0, 0, 1, 0]
   // 4등 1번을 나타낸다.
   ```
 
-### 💸 PrizeCalculator Class
+### 💸 YieldCalculator Class
 
-`getPrizeMoney(rank)`
+구매 금액과 등수 결과를 비교해서 총 수익률을 구하는 클래스
 
-- 등수별 당첨 횟수를 담은 배열을 인자로 호출한다.
-- 당첨 횟수를 통해 총 상금을 계산하여 반환한다.
-- parameter type: `Array<Number>`
-- return type: `number`
-- 예시
-  ```js
-  getPrizeMoney([1, 0, 0, 0, 1]); //2000005000
-  getPrizeMoney([0, 0, 1, 1, 0]); //1550000
-  getPrizeMoney([0, 0, 0, 0, 1]); //5000
-  ```
+`constructor(purchaseAmount, rankCountArray)`
 
-`getRateOfReturn(purchaseAmount, prizeMoney)`
+- 구매 금액과 등수 결과 배열을 입력받고 필드로 저장한다.
+- parameter type: `number, Array<number>`
 
-- 로또를 구매한 금액과 총 상금을 인자로 호출한다.
+`getPrizeYield()`
+
 - 구매 금액과 총 상금을 비교한 수익률을 반환한다.
 - 수익률은 소수점 둘째 자리에서 반올림한다.
-- parameter type: `number, number`;
-- return type: `number`;
+- return type: `number`
 - 예시
+
   ```js
-  getRateOfReturn(8000, 5000); // 62.5
-  getRateOfRetrun(5000, 50000); // 1000
+  const yieldCalculator = new YieldCalculator(5000, [0, 0, 0, 0, 1]);
+  yieldCalculator.getPrizeYield(); // 62.5
+
+  const yieldCalculator = new YieldCalculator(5000, [0, 0, 0, 1, 0]);
+  yieldCalculator.getPrizeYield(); // 1000
   ```
