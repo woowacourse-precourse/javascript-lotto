@@ -44,6 +44,13 @@ class App {
       throw new Error(ERROR_MESSAGES.NOT_DUPLICATE_NUMBER);
   }
 
+  checkValidBonus(number) {
+    if (number.length !== 1)
+      throw new Error(ERROR_MESSAGES.INVALID_BONUS_LENGTH);
+    if (this.#winningLotto.includes(number))
+      throw new Error(ERROR_MESSAGES.NOT_DUPLICATE_NUMBER);
+  }
+
   lottoInput() {
     Console.readLine(MESSAGES.INPUT_LOTTO_NUMBERS, (numbers) => {
       const splittedNumbers = numbers.split(',');
@@ -51,6 +58,12 @@ class App {
 
       this.#winningLotto = splittedNumbers;
       this.bonusInput();
+    });
+  }
+
+  bonusInput() {
+    Console.readLine(MESSAGES.INPUT_BONUS_NUMBER, (number) => {
+      this.checkValidBonus(number);
     });
   }
 }
