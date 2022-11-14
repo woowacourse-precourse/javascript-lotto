@@ -1,6 +1,7 @@
 const { readLine, print } = require('@woowacourse/mission-utils').Console;
 const { INPUT, OUTPUT } = require('./Constants');
 const LottoStore = require('./LottoStore');
+const LottoResult = require('./LottoResult');
 const Lotto = require('./Lotto');
 
 class Lottery {
@@ -42,6 +43,11 @@ class Lottery {
     readLine(INPUT.BONUS_NUMBER, (number) => {
       this.#lotto.setBonus(number);
     });
+    this.printResult();
+  }
+
+  printResult() {
+    print(OUTPUT.STATISTICS);
   }
 
 }
