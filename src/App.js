@@ -10,11 +10,13 @@ class App {
   purchase;
   numberOfPurchases;
   lottos;
+  winningLotto;
 
   play() {
     this.setPurchase();
     this.setNumberOfPurchases();
     this.setLottos();
+    this.printPurchaseResult();
   }
 
   setPurchase() {
@@ -82,6 +84,20 @@ class App {
     );
 
     return lotto;
+  }
+
+  printPurchaseResult() {
+    Console.print(MESSAGE.NOTICE.PURCHASE_SUCCESS(this.numberOfPurchases));
+
+    for (const lotto of this.lottos) {
+      Console.print(this.getBracketsString(lotto.getNumbers()));
+    }
+  }
+
+  getBracketsString(numbers) {
+    const joinString = numbers.join(', ');
+
+    return `[${joinString}]`;
   }
 }
 

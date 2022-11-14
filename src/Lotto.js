@@ -10,6 +10,10 @@ class Lotto {
     this.#numbers = numbers;
   }
 
+  getNumbers() {
+    return this.#numbers;
+  }
+
   handleLottoException(numbers) {
     const {
       LOTTO_NUMBER: { DIGITS, RANGE, UNIQUE },

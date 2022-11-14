@@ -4,6 +4,11 @@ const INPUT = {
   PURCHASE: '구입금액을 입력해주세요.',
 };
 
+const NOTICE = {
+  PURCHASE_SUCCESS: (numberOfPurchases) =>
+    `${numberOfPurchases}개를 구매했습니다.`,
+};
+
 const ERROR = {
   PURCHASE: {
     INTEGER: `금액은 정수여야 합니다.`,
@@ -16,4 +21,4 @@ const ERROR = {
   },
 };
 
-module.exports = { INPUT, ERROR };
+module.exports = { INPUT, NOTICE, ERROR };

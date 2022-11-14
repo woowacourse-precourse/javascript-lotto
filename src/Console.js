@@ -12,6 +12,10 @@ class Console {
   static close() {
     return MissionUtils.Console.close();
   }
+
+  static print(message) {
+    return MissionUtils.Console.print(message);
+  }
 }
 
 module.exports = Console;
