@@ -31,15 +31,17 @@ class App {
     MissionUtils.Console.readLine(
       INPUT_MESSEGE.WINNING_NUMBER,
       (winningNumber) => {
-        const winningNumberArr = winningNumber
-          .split(",")
-          .map((num) => Number(num));
+        const winningNumberArr = this.splitWinningNumbers(winningNumber);
         this.Validate.checkLottoInput(winningNumberArr);
-
         this.winningNumbers = winningNumberArr;
+        
         this.askBonusNumber();
       }
     );
+  }
+
+  splitWinningNumbers(winningNumbers) {
+    return winningNumbers.split(",").map((number) => Number(number));
   }
 
   askBonusNumber() {

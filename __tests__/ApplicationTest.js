@@ -76,7 +76,7 @@ describe("당첨 번호 입력 테스트", () => {
     mockQuestions(["1,3,4,5"]);
     expect(() => {
       const app = new App();
-      app.askWinningLottoNumber();
+      app.askWinningNumber();
     }).toThrow(ERROR.COUNT);
   });
 
@@ -84,7 +84,7 @@ describe("당첨 번호 입력 테스트", () => {
     mockQuestions(["1,3,4,5,40,+"]);
     expect(() => {
       const app = new App();
-      app.askWinningLottoNumber();
+      app.askWinningNumber();
     }).toThrow(ERROR.ISNAN);
   });
 
@@ -92,7 +92,7 @@ describe("당첨 번호 입력 테스트", () => {
     mockQuestions(["1,3,4,5,40,40"]);
     expect(() => {
       const app = new App();
-      app.askWinningLottoNumber();
+      app.askWinningNumber();
     }).toThrow(ERROR.DUPLICATED);
   });
 
@@ -100,7 +100,7 @@ describe("당첨 번호 입력 테스트", () => {
     mockQuestions(["1,3,4,5,48,40"]);
     expect(() => {
       const app = new App();
-      app.askWinningLottoNumber();
+      app.askWinningNumber();
     }).toThrow(ERROR.RANGE);
   });
 });
