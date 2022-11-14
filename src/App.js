@@ -2,6 +2,14 @@ const { NUMBER_OF_LOTTO_PURCHASED } = require("./Console");
 const Console = require("./Console");
 const Lotto = require("./Lotto");
 
+const prizeObject = {
+  1: 2000000000,
+  2: 30000000,
+  3: 1500000,
+  4: 50000,
+  5: 5000,
+};
+
 class App {
   constructor() {
     this.money = null;
@@ -28,6 +36,19 @@ class App {
     return mapObj;
   }
 
+  calculateEarningRate(rankingMap) {
+    let totalPrize = 0;
+    for (const item in rankingMap) {
+      if (rankingMap[item] !== 0)
+        totalPrize += prizeObject[item] * rankingMap[item];
+    }
+
+    totalPrize = (totalPrize / this.money) * 100;
+
+    Console.printMessage(`총 수익률은 ${totalPrize.toFixed(1)}%입니다.`);
+    Console.close();
+  }
+
   setResult() {
     let rankingMap = this.setRankMap();
     const winningArray = this.lottos.map((lotto) => {
@@ -44,8 +65,7 @@ class App {
       `5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankingMap[2]}개`
     );
     Console.printMessage(`6개 일치 (2,000,000,000원) - ${rankingMap[1]}개`);
-
-    console.log("끝");
+    this.calculateEarningRate(rankingMap);
   }
 
   setBonusNumber() {
@@ -61,6 +81,7 @@ class App {
         throw new Error("[ERROR] 당첨 번호에 포함되어 있는 번호입니다.");
       this.bonusNumber = BOUNS_NUMBER;
       this.setResult();
+      Console.close();
     });
   }
 
