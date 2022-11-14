@@ -43,8 +43,8 @@ class Controller {
     this.view.getBonusNumberFromUser();
   }
 
-  setBonusNumberFromUser() {
-    this.lotto.setBonusNumberFromUser();
+  setBonusNumberFromUser(bonusNumber) {
+    this.lotto.setBonusNumberFromUser(bonusNumber);
   }
 
   getOverallInformationForStatistics() {
