@@ -1,19 +1,25 @@
-const { ERROR_MESSAGE } = require('./CONSTANT');
+const { TICKET_PRICE, ERROR_MESSAGE } = require('./CONSTANT');
+const { convertNumberToComma } = require('./string');
 
+const isNumberInRange = (number) => {
+  if (number > 45) {
+    return false;
+  }
+  if (number < 1) {
+    return false;
+  }
+  return true;
+};
 const isSixNumbers = (numbers) => numbers.length !== 6;
 const isNumbersUnique = (numbers) => Array.from(new Set(numbers)).length !== 6;
 const isNumbersInRange = (numbers) => {
   let result = true;
   numbers.forEach((number) => {
-    if (number > 45) {
-      result = false;
-    }
-    if (number < 1) {
-      result = false;
-    }
+    result = isNumberInRange(number);
   });
   return result;
 };
+
 const validateNumbers = (numbers) => {
   if (isSixNumbers(numbers)) {
     throw new Error(`[ERROR] ${ERROR_MESSAGE.isSixNumbers}`);
@@ -25,4 +31,24 @@ const validateNumbers = (numbers) => {
     throw new Error(`[ERROR] ${ERROR_MESSAGE.isNumbersInRange}`);
   }
 };
-module.exports = { validateNumbers };
+
+const validateNumber = (number) => {
+  if (!isNumberInRange(number)) {
+    throw new Error(`[ERROR] ${ERROR_MESSAGE.isNumbersInRange}`);
+  }
+};
+
+const isNaN = (money) => {
+  if (Number.isNaN(money)) {
+    throw Error(`[ERROR] ${ERROR_MESSAGE.isNumber}`);
+  }
+};
+
+const validateMoney = (money) => {
+  isNaN(money);
+  if (money % TICKET_PRICE !== 0) {
+    throw Error(`[ERROR] ${convertNumberToComma(1000)}${ERROR_MESSAGE.isThousands}`);
+  }
+};
+
+module.exports = { validateNumbers, validateMoney, validateNumber };

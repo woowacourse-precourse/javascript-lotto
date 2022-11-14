@@ -3,7 +3,7 @@ const Lotto = require('./Lotto');
 const { RANK, MESSAGE } = require('./utils/CONSTANT');
 const { countTickets, generateRandomNumbers, profitRate } = require('./utils/lottery');
 const { convertNumberToComma } = require('./utils/string');
-const { validateNumbers } = require('./utils/validation');
+const { validateNumbers, validateNumber } = require('./utils/validation');
 
 class App {
   #paid;
@@ -50,7 +50,9 @@ class App {
 
   setBonusNumber() {
     MissionUtils.Console.readLine(`\n${MESSAGE.inputBonusNumber}\n`, (answer) => {
-      this.#bonusNumber = Number(answer);
+      const bonus = Number(answer);
+      validateNumber(bonus);
+      this.#bonusNumber = bonus;
       this.calculateTickets();
     });
   }

@@ -1,6 +1,6 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const { TICKET_PRICE, ERROR_MESSAGE } = require('./CONSTANT');
-const { convertNumberToComma } = require('./string');
+const { TICKET_PRICE } = require('./CONSTANT');
+const { validateMoney } = require('./validation');
 
 const figureLotteryRank = (hit, bonus) => {
   if (hit === 6) {
@@ -19,15 +19,6 @@ const figureLotteryRank = (hit, bonus) => {
     return 'FIFTH';
   }
   return null;
-};
-
-const validateMoney = (money) => {
-  if (Number.isNaN(money)) {
-    throw Error(`[ERROR] ${ERROR_MESSAGE.isNumber}`);
-  }
-  if (money % TICKET_PRICE !== 0) {
-    throw Error(`[ERROR] ${convertNumberToComma(1000)}${ERROR_MESSAGE.isThousands}`);
-  }
 };
 
 const countTickets = (money) => {
