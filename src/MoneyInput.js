@@ -27,6 +27,7 @@ class MoneyInput {
       throw new Error(NOT_MULTIPLES_OF_THOUSAND);
     }
     this.userMoney = userMoney;
+
     this.printNumberOfTickets(userMoney);
   }
 

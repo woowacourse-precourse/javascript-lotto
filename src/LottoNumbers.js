@@ -42,8 +42,8 @@ class LottoNumbers {
   acceptUserNumbers() {
     CONSOLE_UTIL.readLine(INPUT_NUMBERS_MESSAGE, (userNumbers) => {
       userNumbers = userNumbers.split(",").map(Number);
-      this.validateNumbers(userNumbers);
 
+      this.validateNumbers(userNumbers);
       this.compareWithNumbers();
     });
   }
