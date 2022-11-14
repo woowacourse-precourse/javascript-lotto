@@ -83,10 +83,15 @@ class App {
     );
     const eachResult = singleLotto.map(this.compareNumber.bind(this));
     console.log(eachResult);
+    const bonusNumberStatus = singleLotto.map(this.hasBonusNumber.bind(this));
+    console.log(bonusNumberStatus);
   }
   compareNumber(eachLotto) {
     return eachLotto.filter((number) => this.winnerNumber.includes(number))
       .length;
+  }
+  hasBonusNumber(eachLotto) {
+    return eachLotto.includes(this.bonusNumber);
   }
 }
 
