@@ -1,5 +1,4 @@
 const Lotto = require("../src/Lotto");
-const LottoArray = require("../src/LottoArray");
 const Stats = require("../src/Stats");
 
 describe("통계 기능 검증", () => {
