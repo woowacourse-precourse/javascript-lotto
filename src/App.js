@@ -1,5 +1,6 @@
 const Lotto = require("../src/Lotto");
 const MissionUtils = require("@woowacourse/mission-utils");
+const PRIZE_MONEY = [0,2000000000,30000000,1500000,50000,5000];
 class App {
   #numberOfLottos;
   #issuedLottosList= new Array();
@@ -62,6 +63,11 @@ class App {
       if(prize<=5)
         countOfLottoWinning[prize]++;
     }
+    MissionUtils.Console.print(`3개 일치 (${PRIZE_MONEY[5].toLocaleString("ko-KR")}원) - ${countOfLottoWinning[5]}개`);
+    MissionUtils.Console.print(`4개 일치 (${PRIZE_MONEY[4].toLocaleString("ko-KR")}원) - ${countOfLottoWinning[4]}개`);
+    MissionUtils.Console.print(`5개 일치 (${PRIZE_MONEY[3].toLocaleString("ko-KR")}원) - ${countOfLottoWinning[3]}개`);
+    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (${PRIZE_MONEY[2].toLocaleString("ko-KR")}원) - ${countOfLottoWinning[2]}개`);
+    MissionUtils.Console.print(`6개 일치 (${PRIZE_MONEY[1].toLocaleString("ko-KR")}원) - ${countOfLottoWinning[1]}개`);
   }
   getPrize(numbers){
     const countOfMatchNumber = numbers.getCountOfMatchNumber(this.#lottoWinningNumbers);
