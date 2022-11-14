@@ -1,6 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
 const PURCHASE_MONEY = '구입금액을 입력해 주세요.';
+const LOTTO_PRICE = 1000;
 
 class App {
   play() {
@@ -16,6 +17,10 @@ const userWindow = (window, callback) => {
 
 const printOutput = (output) => {
   MissionUtils.Console.print(`${output}\n`);
+};
+
+const lottoCount = (money) => {
+  const lottoAmount = money / LOTTO_PRICE;
 };
 
 new App().play();
