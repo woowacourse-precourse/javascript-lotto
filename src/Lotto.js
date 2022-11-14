@@ -19,7 +19,7 @@ class Lotto {
 
   validateIsNum = (numbers) => {
     numbers.map((e) => {
-      if (isNaN(parseInt(e))) {
+      if (isNaN(parseInt(e)) || Number.isInteger(e)) {
         throw new Error(STATIC.MESSAGE.ERR_INPUT);
       }
     });
