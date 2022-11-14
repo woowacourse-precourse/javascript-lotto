@@ -1,3 +1,6 @@
+const GAME_START_MESSAGE = '구입금액을 입력해 주세요.\n';
+const ANSWER_INPUT_MESSAGE = '\n당첨 번호를 입력해 주세요.\n';
+
 const BASE_MESSAGE = "[ERROR] ";
 const ERROR_MESSAGE = Object.freeze({
     BLANK: BASE_MESSAGE + "아무것도 입력되지 않았습니다.",
@@ -7,6 +10,8 @@ const ERROR_MESSAGE = Object.freeze({
     WRONG_INPUT: BASE_MESSAGE + "잘못된 값을 입력하여 게임을 종료합니다.",
     UNIT_ERROR: BASE_MESSAGE + "1,000원 단위로 입력해 주세요."
 })
+
+const PRINT_MESSAGE = ' 개를 구매했습니다.';
 
 const RESULT_MESSAGE = Object.freeze({
     RANK_FIVE: "3개 일치 (5,000원) - ",
@@ -21,4 +26,4 @@ const PROFIT_MESSAGE = Object.freeze({
     
 })
 */
-  module.exports = {ERROR_MESSAGE, RESULT_MESSAGE};
+  module.exports = {GAME_START_MESSAGE, ANSWER_INPUT_MESSAGE, PRINT_MESSAGE, ERROR_MESSAGE, RESULT_MESSAGE};

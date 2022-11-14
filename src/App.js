@@ -1,13 +1,14 @@
 const {Console} = require("@woowacourse/mission-utils");
 const {Random} = require("@woowacourse/mission-utils");
 const payValidate = require("./payValidate.js");
-const {RESULT_MESSAGE} = require("./constant.js");
+const {GAME_START_MESSAGE, PRINT_MESSAGE, RESULT_MESSAGE, ANSWER_INPUT_MESSAGE} = require("./constant.js");
 
 const Lotto = require("./Lotto.js");
 
 class App {
   constructor() {
-    this.payment;
+    this.payment; //로또 구입 금액
+    this.ticketNums; //발행한 로또 수량
     this.profit;
   };
 
@@ -68,7 +69,7 @@ class App {
   enterBonus(allLines, winningNums){
     Console.readLine('\n보너스 번호를 입력해 주세요.\n',(bonus) =>{
       const winningArr = Array.from(winningNums).map((i) => Number(i)); //문자열을 Number형 배열로 변환
-      generalValidation(bonus);
+      //payValidation(bonus);
       //console.log(winningArr);
       if(winningArr.includes(parseInt(bonus))){
         throw new Error('보너스 번호가 당첨 번호와 중복됩니다.')
@@ -80,7 +81,7 @@ class App {
 
   //5. 당첨 번호 입력받기
   enterWinningNums(allLines){
-    Console.readLine('\n당첨 번호를 입력해 주세요.\n',(answer) =>{
+    Console.readLine(ANSWER_INPUT_MESSAGE, (answer) =>{
       const answerList = answer.split(',');
       //console.log(answerList);
       const lotto = new Lotto(answerList);
@@ -108,26 +109,26 @@ class App {
   }
 
 
-  showLottoAmount(money) {
-    const amount = parseInt(money)/1000;
-    Console.print(`\n${amount}개를 구매했습니다.`);
+  showTicketNums(money) {
+    this.ticketNums = parseInt(money)/1000;
+    Console.print('\n'+this.ticketNums+PRINT_MESSAGE);
     
-    return this.makeLottoNums(amount);
-    //return this.amount;
+    return this.makeLottoNums(this.ticketNums);
   }
 
   //1. 로또 구입 금액 입력받기
   payLottoMoney() {  
-    Console.readLine('구입금액을 입력해 주세요.\n', (total) => {
-      payValidate(total); 
+    Console.readLine(GAME_START_MESSAGE, (total) => {
+      
+      payValidate(total); //2. 구입 금액이 1,000원 단위인지 체크
       this.payment = total;
 
-      return this.showLottoAmount(total);
+      return this.showTicketNums(total);
     });
   }
 
   play() {
-    this.amount = this.payLottoMoney(); 
+    this.ticketNums = this.payLottoMoney(); 
 
   }
 }
