@@ -1,5 +1,5 @@
 const { Random, Console } = require('@woowacourse/mission-utils');
-const { LOTTO_PRICE_DATA, PRINT } = require('./constant');
+const { LOTTO_PRICE_DATA, PRINT, NUMBER, STRING, BOOLEAN } = require('./constant');
 
 const sortLotteryNumbers = (lotteryTicket) => {
   const sortedArray = lotteryTicket.sort((a, b) => a - b);
@@ -7,7 +7,11 @@ const sortLotteryNumbers = (lotteryTicket) => {
 };
 
 const createLotteryTicket = () => {
-  const lotteryTicket = Random.pickUniqueNumbersInRange(1, 45, 6);
+  const lotteryTicket = Random.pickUniqueNumbersInRange(
+    NUMBER.MIN_LOTTO_RANGE,
+    NUMBER.MAX_LOTTO_RANGE,
+    NUMBER.LOTTO_LENGTH,
+  );
   const sortedLotteryTicket = sortLotteryNumbers(lotteryTicket);
 
   return sortedLotteryTicket;
@@ -16,12 +20,12 @@ const createLotteryTicket = () => {
 const printMyLotteries = (lotteryTickets) => {
   PRINT.TICKETS_AMOUNT(lotteryTickets.length);
   lotteryTickets.forEach((lottery) => {
-    Console.print(`[${lottery.join(', ')}]`);
+    Console.print(`[${lottery.join(STRING.COMMA_WITH_SPACE)}]`);
   });
 };
 
 const changeToNumbersArray = (stringInput) => {
-  const stringsArray = stringInput.split(',');
+  const stringsArray = stringInput.split(STRING.COMMA);
   const numbersArray = stringsArray.map((string) => Number(string));
 
   return numbersArray;
@@ -29,16 +33,16 @@ const changeToNumbersArray = (stringInput) => {
 
 /* Check Lottery Result */
 const checkLottery = (ticket, lottoNumbers, bonusNumber) => {
-  let count = 0;
-  let getBonus = false;
+  let count = NUMBER.DEFAULT_COUNT;
+  let getBonus = BOOLEAN.DEFAULT_BONUS;
 
   ticket.forEach((ticketNumber) => {
     if (lottoNumbers.includes(ticketNumber)) {
-      count += 1;
+      count += NUMBER.COUNT_UNIT;
     }
 
     if (ticketNumber === bonusNumber) {
-      getBonus = true;
+      getBonus = BOOLEAN.GET_BONUS;
     }
   });
 
@@ -59,11 +63,11 @@ const getLotteryResult = (tickets, numbers, bonusNumber) => {
 const checkWinTickets = (totalResult) => {
   const winTickets = { ...LOTTO_PRICE_DATA };
   totalResult.forEach(({ count, getBonus }) => {
-    if (count === 3) return (winTickets.getThree.amount += 1);
-    if (count === 4) return (winTickets.getFour.amount += 1);
-    if (count === 5 && getBonus) return (winTickets.getFiveAndBonus.amount += 1);
-    if (count === 5) return (winTickets.getFive.amount += 1);
-    if (count === 6) return (winTickets.getSix.amount += 1);
+    if (count === NUMBER.GET_THREE) return (winTickets.getThree.amount += 1);
+    if (count === NUMBER.GET_FOUR) return (winTickets.getFour.amount += 1);
+    if (count === NUMBER.GET_FIVE && getBonus) return (winTickets.getFiveAndBonus.amount += 1);
+    if (count === NUMBER.GET_FIVE) return (winTickets.getFive.amount += 1);
+    if (count === NUMBER.GET_SIX) return (winTickets.getSix.amount += 1);
   });
 
   return winTickets;
@@ -73,14 +77,15 @@ const getTotalRevenue = (winTickets) => {
   const totalRevenue = Object.entries(winTickets).reduce((acc, [_, ticket]) => {
     const revenue = ticket.amount * ticket.price;
     return revenue + acc;
-  }, 0);
+  }, NUMBER.DEFAULT_REVENUE);
 
   return totalRevenue;
 };
 
 const getRevenueRate = (winTickets, cost) => {
   const totalRevenue = getTotalRevenue(winTickets);
-  const revenueRate = Math.round((totalRevenue * 1000) / cost) / 10;
+  const numerator = Math.round((totalRevenue * NUMBER.REVENUE_CONSTANT) / cost);
+  const revenueRate = numerator / NUMBER.RATE_CONSTANT;
 
   return revenueRate;
 };

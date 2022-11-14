@@ -1,9 +1,10 @@
 const { createLotteryTicket, printMyLotteries } = require('./utils/lotteryHandler');
+const { NUMBER } = require('./utils/constant');
 
 class User {
   constructor() {
-    this.money = 0;
-    this.ticketAmount = 0;
+    this.money = NUMBER.DEFAULT_MONEY;
+    this.ticketAmount = NUMBER.DEFAULT_TICKET_AMOUT;
     this.tickets = [];
   }
 
@@ -14,7 +15,7 @@ class User {
   }
 
   calculateTicketsAmount() {
-    this.ticketAmount = Number(this.money) / 1000;
+    this.ticketAmount = Number(this.money) / NUMBER.PRICE_UNIT;
   }
 
   getTickets() {
