@@ -56,10 +56,24 @@ class App {
     MissionUtils.Console.readLine(
       "\n보너스 번호를 입력해 주세요.\n",
       (input) => {
+        this.validateBonusNumber(input);
         this.lotto.bonusNumber = Number(input);
         this.checkWin(this.lotto, this.issuedLottos);
       }
     );
+  }
+  validateBonusNumber(bonusNumber) {
+    if (isNaN(bonusNumber)) {
+      throw new Error("[ERROR] 보너스 번호를 숫자로 입력해주세요.");
+    }
+    bonusNumber = Number(bonusNumber);
+    if (this.lotto.numbers.indcludes(bonusNumber)) {
+      throw new Error("[ERROR] 당첨 번호를 제외한 숫자를 입력해주세요.");
+    }
+    if (bonusNumber > 45 || bonusNumber < 1) {
+      throw new Error("[ERROR] 1~45 범위의 숫자를 입력해주세요.");
+    }
+    MissionUtils.Console.close();
   }
   checkWin(lotto, issuedLottos) {
     let result = { "1등": 0, "2등": 0, "3등": 0, "4등": 0, "5등": 0 };
@@ -108,7 +122,7 @@ class App {
     MissionUtils.Console.print(`당첨 통계
 ---
 3개 일치 (5000원) - ${result["5등"]}개
-3개 일치 (50,000원) - ${result["4등"]}개
+4개 일치 (50,000원) - ${result["4등"]}개
 5개 일치 (1,500,000원) - ${result["3등"]}개
 5개 일치, 보너스 볼 일치 (30,000,000원) - ${result["2등"]}개
 6개 일치 (2,000,000,000원) - ${result["1등"]}개
