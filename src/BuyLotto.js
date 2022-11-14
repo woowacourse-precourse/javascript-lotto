@@ -41,27 +41,30 @@ class BuyLotto {
     }
 
     inputLottoNumbers() {
+        let lottoNumbers;
+
         MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (lottoInput) => {
             MissionUtils.Console.print('당첨 번호를 입력해주세요.')
             
-            const lottoNumbers = lottoInput.split(',').map(Number);
+            lottoNumbers = lottoInput.split(',').map(Number);
 
-            MissionUtils.Console.print(lottoNumbers);
-            
-            this.inputBonusNumber(lottoNumbers);
+            MissionUtils.Console.print(lottoNumbers);    
         }); 
+        return lottoNumbers;
     }
 
     inputBonusNumber() {
+        let bonusNumber;
+
         MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (bonusInput) => {
             MissionUtils.Console.print('보너스 번호를 입력해주세요.')
             
-            const bonusNumber = bonusInput;
+            bonusNumber = bonusInput;
 
             MissionUtils.Console.print(bonusNumber);
-            
-            return bonusNumber;
+           
         }); 
+        return bonusNumber;
     }
 }
 
