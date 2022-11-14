@@ -1,3 +1,10 @@
+const {
+  isValuesValidLength,
+  isValuesValidUnique,
+  isValuesValidRange,
+} = require("./utils/index");
+const { ERROR_MESSAGE } = require("./constants/index");
+
 class Lotto {
   #numbers;
 
@@ -7,12 +14,14 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+    if (!isValuesValidLength(numbers)) throw ERROR_MESSAGE.LENGTH_ERROR;
+    if (!isValuesValidUnique(numbers)) throw ERROR_MESSAGE.LOTTO_UNIQUE_ERROR;
+    if (!isValuesValidRange(numbers)) throw ERROR_MESSAGE.RANGE_ERROR;
   }
-
   // TODO: 추가 기능 구현
+  getLottoNumbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
