@@ -7,6 +7,7 @@ class StatisticsMachine {
 
   makeStatisticsData(eachLottoPrize, purchaseAmount) {
     const prizeStatistics = this.getPrizeStatistics(eachLottoPrize);
+
     this.totalPrizeMoney = this.getTotalPrizeMoney(prizeStatistics);
     this.yieldRatio = this.getYieldRatio(this.totalPrizeMoney, purchaseAmount);
     this.prizeStatisticsTemplates = this.getPrizeStatisticsTemplates(prizeStatistics);
@@ -48,6 +49,7 @@ class StatisticsMachine {
 
   getPrizeStatisticsTemplates(prizeStatistics) {
     const ranks = ["fifthPlace", "fourthPlace", "thirdPlace", "secondPlace", "firstPlace"];
+
     const templates = ranks.map((rank) => {
       if (rank === "secondPlace") {
         return `${LOTTO_PRIZE_MATCH_COUNT[rank]}개 일치, 보너스 볼 일치 (${LOTTO_PRIZE_MONEY[

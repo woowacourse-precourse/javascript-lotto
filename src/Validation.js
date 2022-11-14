@@ -23,17 +23,21 @@ class Validation {
       throw new Error(ERROR_MESSAGE.INDIVISIBLE_BY_LOTTO_PRICE);
     }
   }
+
   static isEmptyInput(input) {
     return input.length === 0;
   }
+
   static hasOnlyNumber(input) {
     const isNumber = (number) => !Number.isNaN(number);
 
     return input.map((eachLetter) => parseInt(eachLetter, 10)).every(isNumber);
   }
+
   static isStartedZero(purchaseAmount) {
     return purchaseAmount.startsWith("0");
   }
+
   static isDivisibleByLottoPrice(purchaseAmount) {
     const remainder = parseInt(purchaseAmount, 10) % LOTTO_PRICE;
 
@@ -57,12 +61,15 @@ class Validation {
       throw new Error(ERROR_MESSAGE.DUPLICATE_LOTTO_NUMBER);
     }
   }
+
   static isValidLottoNumberLength(lottoNumbers) {
     return lottoNumbers.length === LOTTO_DIGITS;
   }
+
   static hasUniqueLottoNumber(lottoNumbers) {
     return new Set(lottoNumbers).size === LOTTO_DIGITS;
   }
+
   static isValidLottoNumberRange(lottoNumbers) {
     const isValidRange = (number) => {
       return LOTTO_NUM_MIN_RANGE <= number && number <= LOTTO_NUM_MAX_RANGE;
@@ -88,6 +95,7 @@ class Validation {
       throw new Error(ERROR_MESSAGE.DUPLICATE_LOTTO_NUMBER);
     }
   }
+
   static isUniqueBonusNumber(bonusNumber, winningNumbers) {
     return !winningNumbers.includes(Number(bonusNumber));
   }

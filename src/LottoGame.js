@@ -27,6 +27,7 @@ class LottoGame {
   purchaseLottoPhase() {
     this.LottoGameView.requestInput(REQUEST_MESSAGE.PURCHASE_AMOUNT, (purchaseAmount) => {
       this.purchaseAmount = purchaseAmount;
+
       this.lottoPerchaseMachine.insertMoney(this.purchaseAmount);
       this.lottos = this.lottoPerchaseMachine.purchaseLottos();
 
@@ -68,11 +69,13 @@ class LottoGame {
 
   statisticsPhase(eachLottoPrize) {
     this.statisticsMachine.makeStatisticsData(eachLottoPrize, this.purchaseAmount);
+
     const prizeStatisticsTemplates = this.statisticsMachine.prizeStatisticsTemplates;
     const yieldRatio = this.statisticsMachine.yieldRatio;
 
     this.LottoGameView.printPrizeStatistics(prizeStatisticsTemplates);
     this.LottoGameView.printYieldRatio(yieldRatio);
+
     Console.close();
   }
 

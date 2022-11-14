@@ -19,6 +19,7 @@ class WinningLotto {
   getWinningNumbers() {
     return this.winningNumbers;
   }
+
   getBonusNumber() {
     return this.bonusNumber;
   }
