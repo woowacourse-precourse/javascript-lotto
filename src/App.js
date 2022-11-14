@@ -40,10 +40,9 @@ class App {
     for(let i = 0; i < 6; i++) {
       if(i < 5){
         string += `${array[i]}, `;
+        continue
       }
-      else{
-        string += `${array[i]}]`;
-      }
+      string += `${array[i]}]`;
     }
     return string
   }
