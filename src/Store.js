@@ -1,5 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const { MESSAGE, REGEX, ERROR } = require('./constants');
+const { MESSAGE, RANDOM_NUMBER, REGEX, ERROR } = require('./constants');
 
 class Store {
   issuedQuantity;
@@ -30,9 +30,11 @@ class Store {
   issue() {
     for (let i = 0; i < this.issuedQuantity; ++i) {
       this.lottos.push(
-        Random.pickUniqueNumbersInRange(1, 45, 6).sort(
-          (num1, num2) => num1 - num2
-        )
+        Random.pickUniqueNumbersInRange(
+          RANDOM_NUMBER.MIN,
+          RANDOM_NUMBER.MAX,
+          RANDOM_NUMBER.COUNT
+        ).sort((num1, num2) => num1 - num2)
       );
     }
   }

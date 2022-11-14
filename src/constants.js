@@ -17,7 +17,7 @@ const MESSAGE = Object.freeze({
 const RANDOM_NUMBER = Object.freeze({
   MIN: 1,
   MAX: 45,
-  WINNING_NUMBER_COUNT: 6,
+  COUNT: 6,
 });
 
 const REGEX = Object.freeze({
