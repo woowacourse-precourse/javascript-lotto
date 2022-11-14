@@ -2,7 +2,7 @@ const { Console } = require('@woowacourse/mission-utils');
 const LottoSeller = require('../src/LottoSeller');
 
 describe('로또셀러 클래스 테스트', () => {
-  test('발행한 로또 번호가 오름차순인지 확인', () => {
+  test('발행한 로또 번호가 오름차순으로 정렬되었는지 확인', () => {
     const sellLotto = new LottoSeller().sellLotto(3000);
     const lottos = sellLotto.map((lotto) => JSON.parse(lotto));
 
@@ -21,6 +21,15 @@ describe('로또셀러 클래스 테스트', () => {
     const lottoPrice = new LottoSeller().getLottoPrice();
 
     expect(lottoPrice).toEqual(1000);
+  });
+
+  test('구매한 로또 개수 확인', () => {
+    const lottoSeller = new LottoSeller();
+    const lottoPrice = lottoSeller.getLottoPrice();
+    const count = 3;
+    const sellLotto = lottoSeller.sellLotto(count * lottoPrice);
+
+    expect(sellLotto.length).toEqual(count);
   });
 });
 
