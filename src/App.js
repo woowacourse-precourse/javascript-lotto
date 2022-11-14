@@ -65,6 +65,16 @@ class App {
     );
   }
 
+  inputBonusNumber() {
+    MissionUtils.Console.readLine(
+      "\n보너스 번호를 입력해 주세요.\n",
+      (bonusNumber) => {
+        this.bonusNumber = parseInt(bonusNumber);
+        this.validateBonus(this.bonusNumber);
+      }
+    );
+  }
+
     }
     return [...userLottoNumbers];
   }
