@@ -83,10 +83,19 @@ const STAT_PHRASE = {
 };
 
 const GAME_INPUT_ERRORS = {
-  INVALID_BUDGET_RANGE: ' 구입 금액은 1,000으로 나누어떨어지지 않습니다.\n',
-  INVALID_TARGET_LENGTH: '[ERROR] 당첨 번호들의 갯수가 일치하지 않습니다.\n',
-  INVALID_INPUT_TYPE: '[ERROR] 로또 번호는 숫자 형식이어야 합니다.\n',
-  INVALID_INPUT_RANGE: '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.\n',
+  INVALID_INPUT_TYPE: '[ERROR] 로또 구입 금액은 숫자여야 합니다.\n',
+  INVALID_BUDGET_RANGE: '[ERROR] 로또 구입 금액은 0보다 커야 합니다.\n',
+  INVALID_BUDGET_REMAINDER: '[ERROR] 구입 금액은 1,000으로 나누어떨어져야 합니다.\n',
+
+  INVALID_TARGET_TYPE: '[ERROR] 당첨 번호는 숫자여야 합니다.\n',
+  INVALID_TARGET_RANGE: '[ERROR] 당첨 번호는 1 이상 45 이하의 숫자여야 합니다.\n',
+  INVALID_TARGET_DUPLICATED: '[ERROR] 당첨 번호는 중복되지 않아야 합니다.\n',
+  INVALID_TARGET_LENGTH: '[ERROR] 당첨 번호는 6개여야 합니다.\n',
+
+  INVALID_BONUS_TYPE: '[ERROR] 보너스 번호는 숫자여야 합니다.\n',
+  INVALID_BONUS_RANGE: '[ERROR] 보너스 번호는 1 이상 45 이하의 숫자여야 합니다.\n',
+
+  BONUS_IN_TARGET: '[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.\n',
 };
 
 module.exports = {
