@@ -41,9 +41,12 @@ const validateBonusNumber = (bonus) => {
 const validateBonusNumberNotInLottoNumber = (bonusNumber, targetNumbers) => {
   const isNotInTarget = targetNumbers.includes(bonusNumber) === false;
 
-  if (isNotInTarget === false) {
-    throw Error(GAME_INPUT_ERRORS.INVALID_INPUT_RANGE);
-  }
+  if (isNotInTarget === false) throw Error(GAME_INPUT_ERRORS.BONUS_IN_TARGET);
 };
 
-module.exports = { validateLottoBudget, validateTargetNumber, validateBonusNumber };
+module.exports = {
+  validateLottoBudget,
+  validateTargetNumber,
+  validateBonusNumber,
+  validateBonusNumberNotInLottoNumber,
+};
