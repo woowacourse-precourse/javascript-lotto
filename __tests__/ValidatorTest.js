@@ -71,4 +71,13 @@ describe('✅ Validator 클래스 : 당첨 번호 테스트', () => {
   });
 });
 
-// 보너스 번호 테스트 추가하기
+describe('✅ Validator 클래스 : 보너스 번호 테스트', () => {
+  test('🖐 사용자가 당첨 번호와 중복되는 숫자를 입력하면 에러가 발생한다.', () => {
+    const winLottoNumbers = '1,2,3,4,5,6';
+    const bonuseNumber = '6';
+
+    expect(() => {
+      Validator.checkDuplicateBonusNumber(winLottoNumbers, bonuseNumber);
+    }).toThrowError(`${ERROR_MESSAGES.DUPLICATE_NUMBER}`);
+  });
+});
