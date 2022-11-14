@@ -39,10 +39,20 @@ class App {
 
   static winningNumberDecider(purchaseLottoList) {
     Console.readLine('\n당첨 번호를 입력해 주세요.\n', winningNumber => {
-      Console.readLine('\n보너스 번호를 입력해 주세요.\n', bonusNumber => {
-        this.printer('당첨통계 나온다 이제');
-      });
+      Console.readLine('\n보너스 번호를 입력해 주세요.\n', bonusNumber => {});
     });
+  }
+
+  static winningHistoryPrinter(winningList) {
+    this.printer(`
+      당첨통계 \n
+      --- \n
+      3개 일치 (5,000원) - ${winningList.threeMatches}개 \n
+      4개 일치 (50,000원) - ${winningList.fourMatches}개\n
+      5개 일치 (1,500,000원) - ${winningList.fiveMatches}개\n
+      5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningList.fiveAndBonusMatches}개\n
+      6개 일치 (2,000,000,000원) - ${winningList.sixMatches}개
+    `);
   }
 
   static totalWinningCounter(purchaseLottoList, winningNumber, bonusNumber) {
@@ -88,20 +98,13 @@ class App {
     App.lottoPurchaser();
   }
 }
-console.log(
-  App.totalWinningCounter(
-    [
-      [1, 2, 3, 4, 5, 6],
-      [1, 2, 3, 4, 5, 7],
-      [1, 8, 3, 4, 5, 7],
-      [1, 9, 24, 4, 5, 7],
-      [1, 45, 34, 3, 5, 7],
-      [21, 22, 23, 24, 25, 27],
-      [1, 23, 43, 24, 25, 27],
-    ],
-    '1,2,3,4,5,6',
-    7,
-  ),
-);
+
+App.winningHistoryPrinter({
+  threeMatches: 2,
+  fourMatches: 1,
+  fiveMatches: 0,
+  fiveAndBonusMatches: 1,
+  sixMatches: 1,
+});
 
 module.exports = App;
