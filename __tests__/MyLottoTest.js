@@ -7,4 +7,8 @@ describe("마이 로또 클래스 테스트", () => {
         }).toThrow("[ERROR] 로또 구입 금액은 1000원 단위로 입력 가능합니다.");
     });
 
+    test("생성된 로또 갯수 테스트", () => {
+        let myLotto = new MyLotto(8000);
+        expect(myLotto.lottoList.length).toEqual(8);
+    });
 });
