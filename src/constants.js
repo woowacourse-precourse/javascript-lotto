@@ -25,7 +25,7 @@ const REGEX = Object.freeze({
   PURCHASE_AMOUNT: /^[1-9]{1}[0-9]*0{3}$/,
   WINNING_NUMBER:
     /^(([1-9]{1}|[1-3]{1}[0-9]{1}|4{1}[0-5]{1}),){5}([1-9]{1}|[1-3]{1}[0-9]{1}|4{1}[0-5]{1}){1}$/,
-  BONUS_NUMBER: /^[1-45]{1}$/,
+  BONUS_NUMBER: /^([1-9]{1}|[1-3]{1}[0-9]{1}|4{1}[0-5]{1}){1}$/,
 });
 
 const ERROR = Object.freeze({
