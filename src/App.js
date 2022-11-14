@@ -4,6 +4,7 @@ const { Console, Random } = require("@woowacourse/mission-utils");
 class App {
 	lottoCnt;
 	winLottoNums;
+	BonusLottoNums;
 
 	userInputLotto(price) {
 		let userInput = new UserInput(price);
@@ -59,6 +60,29 @@ class App {
 			}
 		});
 	}
+
+	useBonusLottoNum() {
+		Console.print("보너스 번호를 입력해 주세요.");
+		Console.readline("", input => {
+			this.isBonusValidation(input);
+			this.BonusLottoNums = Number(input);
+		});
+	}
+
+	isBonusValidation(input) {
+		if (isNaN(input)) {
+			throw new Error("[ERROR] 보너스 번호에는 숫자만 입력 가능합니다.");
+		}
+		if (this.winLottoNums.includes(+input)) {
+			throw new Error(
+				"[ERROR] 보너스 번호와 로또 번호는 중복되지 않아야 합니다."
+			);
+		}
+		if (input.length !== 1) {
+			throw new Error("[ERROR] 보너스 번호는 하나만 입력 가능합니다.");
+		}
+	}
+
 	play() {
 		Console.print("구입금액을 입력해 주세요.");
 	}
