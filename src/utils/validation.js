@@ -20,6 +20,12 @@ const isNumbersInRange = (numbers) => {
   return result;
 };
 
+const isNaN = (number) => {
+  if (Number.isNaN(number)) {
+    throw Error(`[ERROR] ${ERROR_MESSAGE.isNumber}`);
+  }
+};
+
 const validateNumbers = (numbers) => {
   if (isSixNumbers(numbers)) {
     throw new Error(`[ERROR] ${ERROR_MESSAGE.isSixNumbers}`);
@@ -30,12 +36,7 @@ const validateNumbers = (numbers) => {
   if (!isNumbersInRange(numbers)) {
     throw new Error(`[ERROR] ${ERROR_MESSAGE.isNumbersInRange}`);
   }
-};
-
-const isNaN = (number) => {
-  if (Number.isNaN(number)) {
-    throw Error(`[ERROR] ${ERROR_MESSAGE.isNumber}`);
-  }
+  numbers.forEach((number) => isNaN(number));
 };
 
 const validateNumber = (number) => {
