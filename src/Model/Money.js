@@ -10,6 +10,7 @@ class Money {
     this.checkNumber(money);
     this.checkMoneyDivide(money);
     this.checkMoneyMinus(money);
+    this.checkZero(money);
   }
 
   checkMoneyDivide(money) {
