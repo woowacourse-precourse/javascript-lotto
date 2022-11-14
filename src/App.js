@@ -1,13 +1,14 @@
 const { Console } = require('@woowacourse/mission-utils');
+const LottoDrawer = require('./LottoDrawer');
 const LottoSeller = require('./LottoSeller');
 
 class App {
   lottos;
 
   play() {
-    Console.readLine('구입금액을 입력해 주세요.', (money) => {
+    Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
       this.lottos = new LottoSeller().purchase(money);
-      console.log(this.lottos);
+      new LottoDrawer(6).drawLotto();
     });
   }
 }
