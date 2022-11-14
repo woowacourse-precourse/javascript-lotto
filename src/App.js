@@ -32,8 +32,8 @@ function printLottoResult(reward) {
     if(index === 0) return;
     Console.print(RANK_MESSAGE[index]+element+'개');
   })
-  const yield = (reward/inputObjects['budget']*100).toFixed(1);
-  Console.print(`총 수익률은 ${yield}%입니다.`);
+  const rateOfReturn = (reward/inputObjects['budget']*100).toFixed(1);
+  Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
   finishLotto()
 }
 
@@ -110,23 +110,24 @@ function getRandomNumber() {
 }
 
 function getRandomNumbers() {
-  const randomNumbers = []
-  while(randomNumbers.length < 6) {
-    const randomNumber = getRandomNumber();
-    if(randomNumbers.includes(randomNumber)) continue;
-    randomNumbers.push(randomNumber);
-  }
+  const randomNumbers = Random.pickUniqueNumbersInRange(1, 45, 6)
   return randomNumbers;
+}
+
+function printNumberList() {
+  randomNumbersArrays.forEach((element) => {
+    Console.print(`[${element.join(', ')}]`);
+  })
+  Console.print('');
+  getLottoNumbers();
 }
 
 function getRandomNumberList() {
   for(let i=0; i<inputObjects['budget']/1000; i++){
     const randomNumbers = getRandomNumbers();
     randomNumbersArrays.push(randomNumbers)
-    Console.print(randomNumbers);
   }
-  Console.print('');
-  getLottoNumbers();
+  printNumberList()
 }
 
 function startLotto() {
@@ -143,16 +144,6 @@ function getBudget() {
   })
 }
 
-
-
-
-
-
-
-
-
-
-
 class App {
   constructor() {
     this.play();
@@ -164,4 +155,3 @@ class App {
 }
 
 module.exports = App;
-test = new App();
