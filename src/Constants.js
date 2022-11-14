@@ -9,8 +9,18 @@ const GAME_MESSAGES = {
     PURCHASE_RESULT: "개를 구매했습니다.",
     INPUT_NUMBER: "당첨 번호를 입력해 주세요.",
     BONUS_NUMBER: "보너스 번호를 입력해 주세요.",
-    PRINT_RESULTS: "당첨 통계\n---"
+    PRINT_RESULTS: "당첨 통계\n---",
+    YIELD_FIRST: "총 수익률은 ",
+    YIELD_LAST: "%입니다."
 }
+
+const PRIZES = [
+    5000, 
+    50000, 
+    1500000, 
+    30000000, 
+    2000000000
+];
 
 const RESULT = [
     "3개 일치 (5,000원)",
@@ -20,4 +30,4 @@ const RESULT = [
     "6개 일치 (2,000,000,000원)"
 ];
 
-module.exports = {INPUT_ERROR, GAME_MESSAGES, RESULT};
+module.exports = {INPUT_ERROR, GAME_MESSAGES, PRIZES, RESULT};

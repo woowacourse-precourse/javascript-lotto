@@ -84,7 +84,7 @@ class App {
         all_results[result - 3] += 1
       }
     }
-    this.printResults(all_results);
+    this.printResults(all_results, count);
   }
 
   getSingleResult(published_Lotto, winning) {
@@ -100,13 +100,25 @@ class App {
     return result
   }
 
-  printResults(all_results) {
+  printResults(all_results, count) {
     MissionUtils.Console.print(Constants.GAME_MESSAGES.PURCHASE_RESULT);
     let i = 0;
     Constants.RESULT.forEach(element => {
       MissionUtils.Console.print(`${element} - ${all_results[i]}개`);
       i++;
     });
+    this.getYield(all_results, count);
+  }
+
+  getYield(all_results, count) {
+    let sum = 0;
+    const prizes = Constants.PRIZES;
+    const money = count * 1000
+    for(let i = 0; i < 5; i++){
+      sum += prizes[i] * all_results[i]
+    }
+    let total = ((sum / money) * 100).toFixed(1);
+    MissionUtils.Console.print(`${Constants.GAME_MESSAGES.YIELD_FIRST}${total}${Constants.GAME_MESSAGES.YIELD_LAST}`)
   }
 
 }
