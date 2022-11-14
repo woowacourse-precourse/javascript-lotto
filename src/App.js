@@ -5,6 +5,7 @@ const UNIT = 1000;
 class App {
   #count = 0;
   #lottos = [];
+  #win_lotto=[];
 
   play() {
     this.start();
@@ -12,11 +13,13 @@ class App {
 
   start() {
     Console.readLine(MESSAGES.PAY_COST, (input) => {
-      this.checkPayValidation(input);
-      this.#count = this.checkPayAmount(input);
-      this.#lottos = this.getAllLottoList(this.#count);
-      this.printLottoList(this.#lottos);
+      this.checkProcess(input);
     });
+  }
+
+  checkProcess(input) {
+    this.checkPayValidation(input);
+    this.checkPayAmount(input);
   }
 
   checkPayValidation(purchase) {
@@ -26,16 +29,16 @@ class App {
   }
 
   checkPayAmount(purchase) {
-    purchase /= UNIT;
-    Console.print('\n' + MESSAGES.PURCHASED_MESSAGE(purchase));
-    return purchase;
+    this.#count = purchase / UNIT;
+    Console.print('\n' + MESSAGES.PURCHASED_MESSAGE(this.#count));
+    this.getLottoProcess();
   }
 
-  getlottoList() {
-    const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
-    return numbers.sort((a, b) => a - b);
+  getLottoProcess() {
+    this.#lottos = this.getAllLottoList(this.#count);
+    this.printLottoList(this.#lottos);
   }
-  
+
   getAllLottoList(count) {
     let list = [];
     for(let i = 0 ; i < count ; i++) {
@@ -44,6 +47,11 @@ class App {
     return list;
   }
 
+  getlottoList() {
+    const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+    return numbers.sort((a, b) => a - b);
+  }
+  
   printLottoList(lists) {
     lists.forEach((list) => {
       Console.print(`[${list.join(", ")}]`);
