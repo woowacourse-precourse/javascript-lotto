@@ -22,6 +22,10 @@ class Lotto {
     if (!this.#hasNumberValuesOnly(numbers)) {
       throw new Error('[ERROR] 로또 번호는 숫자여야 합니다.');
     }
+
+    if (!this.#hasValidRangeValues(numbers)) {
+      throw new Error('[ERROR] 로또 번호는 1~45 사이의 수여야 합니다.');
+    }
   }
 
   #hasValidLength(numbers) {
@@ -38,6 +42,14 @@ class Lotto {
 
   #isNumber(value) {
     return typeof value === 'number';
+  }
+
+  #hasValidRangeValues(numbers) {
+    return numbers.some((number) => this.#isInRange(number));
+  }
+
+  #isInRange(number) {
+    return number >= 1 && number <= 45;
   }
 }
 
