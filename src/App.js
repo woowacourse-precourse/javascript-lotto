@@ -23,7 +23,6 @@ class App {
       GUIDE_MESSAGE.PURCHASEAMOUNT_INPUT,
       (purchaseAmount) => {
         Validation.checkPurchaseAmount(purchaseAmount);
-        console.log(purchaseAmount);
         this.lottoBuying(purchaseAmount);
       }
     );
@@ -63,11 +62,11 @@ class App {
     );
   }
   getTotalLottoNumber(lottoCount) {
-    const lottoNumber = this.randomLottoNumberPick();
-    this.lotto = Array.from(
-      { length: lottoCount },
-      () => new Lotto(lottoNumber)
-    );
+    this.lotto = Array.from({ length: lottoCount }, () => {
+      const lottoNumber = this.randomLottoNumberPick();
+      const ascLottoNumber = lottoNumber.sort((num1, num2) => num1 - num2);
+      return new Lotto(ascLottoNumber);
+    });
   }
 }
 
