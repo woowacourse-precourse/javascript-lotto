@@ -27,6 +27,13 @@ class App {
 
   printBuyingLottoList() {
     this.lottoTicketList = LottoTicket.publish(this.buyingLottoNumber);
+    return this.InputWinningNumber();
+  }
+
+  InputWinningNumber() {
+    Console.readLine(MESSAGE.INPUT_WINNING_NUMBER, (winningNumber) => {
+      console.log(winningNumber);
+    });
   }
 }
 
