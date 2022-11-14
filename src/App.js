@@ -69,10 +69,10 @@ class App {
     return true;
   }
   isValidLottoNumbers(numbers) {
-    numbers.forEach((number) => {
+    for (let number of numbers) {
       if (isNaN(number)) return false;
-      if (this.isInRange(number)) return false;
-    });
+      if (!this.isInRange(number)) return false;
+    }
     return true;
   }
   isReapted(arr) {
