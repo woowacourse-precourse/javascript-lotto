@@ -9,12 +9,11 @@ const { changePrintFormat, toLocaleMoney } = require("./utils/utils");
 class App {
   lottos;
   purchaseMoney;
-  winningNumber;
+  winningLotto;
   bonusNumber;
 
   constructor() {
     this.lottos = [];
-    this.winningNumber = [];
     this.lottoSimulator = new LottoSimulator();
     this.validator = new Validator();
   }
@@ -47,21 +46,21 @@ class App {
   getWinningNumber() {
     Console.readLine(MESSAGE.INPUT_WINNING_NUMBER, (winningNumber) => {
       this.validator.checkWinningNumber(winningNumber);
-      this.winningNumber = new Lotto(winningNumber.split(',').map(num => Number(num)));
+      this.winningLotto = new Lotto(winningNumber.split(',').map(num => Number(num)));
       this.getBonusNumber();
     });
   }
 
   getBonusNumber() {
     Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
-      this.validator.checkBonusNumber(this.winningNumber.numbers, bonusNumber);
+      this.validator.checkBonusNumber(this.winningLotto.numbers, bonusNumber);
       this.bonusNumber = Number(bonusNumber);
       this.handleGameEnd();
     });
   }
 
   handleGameEnd() {
-    this.lottoSimulator.checkWinningResult(this.lottos, this.winningNumber, this.bonusNumber);
+    this.lottoSimulator.checkWinningResult(this.lottos, this.winningLotto, this.bonusNumber);
     Console.print(MESSAGE.PRINT_RESULT_TITLE);
     this.printWinningResult();
     this.printReturnRate();
@@ -69,13 +68,13 @@ class App {
   }
 
   printWinningResult() {
-    this.lottoSimulator.gradeCount.forEach((count, rank) => {
-      const rankUpperCase = rank.toUpperCase();
+    this.lottoSimulator.gradeCount.forEach((gradeCount, grade) => {
+      const gradeUpperCase = grade.toUpperCase();
       Console.print(MESSAGE.PRINT_WINNING_RESULT.format(
-        GRADE[rankUpperCase].DUPLICATE_COUNT,
-        GRADE[rankUpperCase].EXTRA_TEXT,
-        toLocaleMoney(GRADE[rankUpperCase].PRIZE_MONEY),
-        count,
+        GRADE[gradeUpperCase].DUPLICATE_COUNT,
+        GRADE[gradeUpperCase].EXTRA_TEXT,
+        toLocaleMoney(GRADE[gradeUpperCase].PRIZE_MONEY),
+        gradeCount,
         )
       );
     });

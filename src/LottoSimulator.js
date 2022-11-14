@@ -14,9 +14,9 @@ class LottoSimulator {
     ]);
   }
   
-  checkWinningResult(lottos, winningNumber, bonusNumber) {
+  checkWinningResult(lottos, winningLotto, bonusNumber) {
     lottos.forEach(lotto => {
-      this.setGrade(lotto.getRank(winningNumber.numbers, bonusNumber));
+      this.setGrade(lotto.getRank(winningLotto.numbers, bonusNumber));
     });
   }
 
