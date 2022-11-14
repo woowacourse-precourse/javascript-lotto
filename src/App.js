@@ -1,12 +1,15 @@
 const { Console } = require('@woowacourse/mission-utils');
 
 const LottoManager = require('./LottoManager');
+const WinningNumbers = require('./WinningNumbers');
 
 class App {
   lottoManager;
+  winningNumbers;
 
   constructor() {
     this.lottoManager = new LottoManager();
+    this.winningNumbers = new WinningNumbers();
   }
 
   play() {
@@ -31,7 +34,7 @@ class App {
   inputWinningNumbers() {
     Console.print('');
     Console.readLine('당첨 번호를 입력해주세요.\n', winningNumbersInput => {
-      this.lottoManager.initWinningNumbers(winningNumbersInput);
+      this.winningNumbers.initWinningNumbers(winningNumbersInput);
       this.inputBonusNumber();
     });
   }
@@ -39,8 +42,16 @@ class App {
   inputBonusNumber() {
     Console.print('');
     Console.readLine('보너스 번호를 입력해주세요.\n', bonusNumberInput => {
-      this.lottoManager.initBonusNumber(bonusNumberInput);
+      this.winningNumbers.initBonusNumber(bonusNumberInput);
+      this.printWinningStats();
     });
+  }
+
+  printWinningStats() {
+    Console.print('');
+    Console.print('당첨 통계');
+    Console.print('---');
+    Console.close();
   }
 
   exitGameByError(errorMessage) {
