@@ -16,7 +16,11 @@ class App {
     user.printLottos();
     lottoMachine.inputWinningNumber();
     user.addWinStats(lottoMachine.lotteryResult(user.getLottos));
+    user.printWinStats();
   }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
