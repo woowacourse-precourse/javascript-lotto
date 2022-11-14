@@ -12,8 +12,8 @@ class Controller {
     this.statistics = new Statistics(this);
   }
 
-  printReadOnlyMessage(type, data) {
-    if (type === "userLottoArray") this.view.printUserLottoArray(data);
+  printIssuedLotto(issuedLotto) {
+    this.view.printUserLottoArray(issuedLotto);
   }
 
   getPurchasingAmountFromUser() {

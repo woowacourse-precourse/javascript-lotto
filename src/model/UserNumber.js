@@ -35,7 +35,7 @@ class UserNumber {
         singleLottoCombinationArray.sort((first, second) => first - second),
       );
     }
-    this.controller.printReadOnlyMessage("userLottoArray", this.userLottoArray);
+    this.controller.printIssuedLotto(this.userLottoArray);
     this.controller.getWinningNumberFromUser();
   }
 
