@@ -19,6 +19,37 @@ class App {
     });
     return;
   }
+
+  autoLottoNums(cnt) {
+    let myNumbers = [];
+    while (cnt) {
+      const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+      numbers.sort((a, b) => {
+        return a - b;
+      });
+      for (let i in numbers) {
+        Console.print(
+          "[" +
+            numbers[0] +
+            ", " +
+            numbers[1] +
+            ", " +
+            numbers[2] +
+            ", " +
+            numbers[3] +
+            ", " +
+            numbers[4] +
+            ", " +
+            numbers[5] +
+            "]"
+        );
+        break;
+      }
+      myNumbers.push(numbers);
+      cnt--;
+    }
+    return myNumbers;
+  }
 }
 
 module.exports = App;
