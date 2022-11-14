@@ -72,7 +72,18 @@ class App {
       this.getWinStatistic();
     }
   }
-  getWinStatistic() {}
+  getWinStatistic() {
+    this.#lotto = new Lotto(this.winNumberList);
+
+    const winStatistic = this.lottoList.reduce(
+      (acc, lotto) => {
+        acc = this.#lotto.calculateWin(lotto, this.bonusNumber);
+        return acc;
+      },
+      { THREE: 0, FOUR: 0, FIVE: 0, FIVE_BONUS: 0, SIX: 0 }
+    );
+    this.printWinStatistic(winStatistic);
+  }
   printWinStatistic(winStatistic) {}
 }
 
