@@ -23,9 +23,7 @@ class App {
       this.#lottosOwnedByUser = this.buyLotto(lottoCount)
       this.#printLottosOwnedByUser()
 
-      // TODO: 당첨 통계를 계산한다.
-
-      this.#close()
+      this.#selectWinningNumbers()
     })
   }
 
@@ -82,6 +80,14 @@ class App {
   #printLottosOwnedByUser() {
     this.#lottosOwnedByUser.forEach((lotto) => {
       Console.print(lotto)
+    })
+  }
+
+  #selectWinningNumbers() {
+    Console.readLine(`${query.WINNING_NUMBERS}\n`, (numbersInString) => {
+      const winningNumbers = numbersInString.split(',').map(Number)
+
+      // this.#selectBonusNumber(winningNumbers)
     })
   }
 
