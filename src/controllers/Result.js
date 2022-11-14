@@ -1,3 +1,4 @@
+const { WINNINGS } = require('../utils/Constants');
 const LottoGame = require('./LottoGame');
 
 class Result {
@@ -19,13 +20,13 @@ class Result {
     this.getRevenue();
   }
     
-    get score() {
-        return this.#score;
-    }
+  get score() {
+      return this.#score;
+  }
 
-    get revenue() {
-        return this.#revenue;
-    }
+  get revenue() {
+      return this.#revenue;
+  }
 
   getScore() {
     this.lottoArray.forEach((item) => {
@@ -42,11 +43,11 @@ class Result {
 
   getRevenue() {
     const total =
-      this.#score.three * 5000
-      + this.#score.four * 50000
-      + this.#score.five * 1500000
-      + this.#score.fivePlusBonus * 30000000
-      + this.#score.six * 2000000000;
+      this.#score.three * WINNINGS.matchedThree
+      + this.#score.four * WINNINGS.matchedFour
+      + this.#score.five * WINNINGS.matchedFive
+      + this.#score.fivePlusBonus * WINNINGS.matchedFiveAndBonus
+      + this.#score.six * WINNINGS.matchedSix;
 
     this.#revenue = Number((total / this.money) * 100).toFixed(1);
   }

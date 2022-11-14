@@ -1,3 +1,5 @@
+const { LOTTO_COST } = require("../utils/Constants");
+
 class Money {
   #money;
 
@@ -30,8 +32,8 @@ class Money {
   }
 
   validMultiple(money) {
-    if (money % 1000 !== 0) {
-      throw new Error('[ERROR] 구입 금액은 1,000원 단위 입니다.');
+    if (money % LOTTO_COST.cost !== 0) {
+      throw new Error(`[ERROR] 구입 금액은 ${LOTTO_COST.cost}원 단위 입니다.`);
     }
   }
 }

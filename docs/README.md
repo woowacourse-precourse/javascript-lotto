@@ -34,6 +34,8 @@ src
  │  ├── Money.js
  │  ├── RandomLotto.js (금액별 랜덤 로또를 생성하여 갖는다)
  │  └── WinningNumbers.js
+ ├─── utils
+ │  └── Constant.js (프로그램 전체에 사용되는 변수들을 갖는다)
  ├─── App.js (프로그램의 시작점, Input 클래스에 콜백함수를 넘겨주고 Output 클래스에 데이터를 넘겨주는 역할)
  └─── Lotto.js (Lotto 데이터의 형식을 설명)
 ```

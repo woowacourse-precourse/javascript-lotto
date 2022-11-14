@@ -1,3 +1,5 @@
+const { LOTTO_NUMBER } = require("../utils/Constants");
+
 class BonusNumber {
   #bonusNumber;
 
@@ -26,7 +28,7 @@ class BonusNumber {
   }
   
   validRange(number) {
-    if (number < 1 || 45 < number) {
+    if (number < LOTTO_NUMBER.minimum || LOTTO_NUMBER.maximum < number) {
       throw new Error('[ERROR] 숫자의 범위는 1부터 45까지 입니다.');
     }
   }
