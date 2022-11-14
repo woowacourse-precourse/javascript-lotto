@@ -1,4 +1,5 @@
 const Lotto = require("./Lotto");
+const { INPUTS } = require("../constants");
 
 class money {
   #money;
@@ -14,7 +15,13 @@ class money {
   randomBonusNumber() {
     // const bonusNum = Random.
   }
+
+  inputMoney() {
+    Console.readLine(INPUTS.INPUT_MONEY, (money) => {
+      //8개 구매했습니다. 8개 당첨로또 로직
+    });
+  }
 }
 
 module.exports = Money;
-const b = new Lotto();
+// const b = new Lotto();

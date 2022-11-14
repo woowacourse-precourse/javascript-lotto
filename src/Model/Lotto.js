@@ -1,11 +1,13 @@
 const Random = require("@woowacourse/mission-utils").Random;
 const Console = require("@woowacourse/mission-utils").Console;
-const inputValidation = require("./inputValidation");
+const inputValidation = require("../inputValidation");
+const { INPUTS } = require("../constants");
 
 class Lotto {
   #numbers;
 
   constructor(numbers) {
+    this.inputNumbers();
     this.validate(numbers);
     this.#numbers = numbers;
   }
@@ -23,20 +25,14 @@ class Lotto {
     const checkSixNum = inputValidation.checkSixNum(numbers);
   }
 
-  //로또 입력logic
-  inputMoney() {
-    Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
-      //8개 구매했습니다. 8개 당첨로또 로직
+  //당첨번호 입력받기
+  inputNumbers() {
+    Console.readLine(INPUTS.INPUT_NUMBERS, (numbers) => {
+      this.#numbers = numbers;
     });
   }
-
-  inputLotto() {
-    Console.readLine("당첨 번호를 입력해 주세요.\n", (lotto) => {});
-  }
-
-  inputBonus() {
-    Console.readLine("보너스 번호를 입력해 주세요.\n", (bonus) => {});
-  }
 }
+
+new Lotto().inputNumbers;
 
 module.exports = Lotto;

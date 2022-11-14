@@ -11,4 +11,4 @@ const OUTPUTS = {
   CORRECT_FIVE_BONUS: "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
 };
 
-module.exports = { INPUTS, OUTPUT };
+module.exports = { INPUTS, OUTPUTS };
