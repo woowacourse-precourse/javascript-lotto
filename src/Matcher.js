@@ -17,19 +17,19 @@ class Match {
       if (this.lottoNumbers[i].includes(this.winningNumber[4])) match++;
       if (this.lottoNumbers[i].includes(this.winningNumber[5])) match++;
 
-      if (match > 2 && match !== 5) this.setRank(match);
+      if (match > 2 && match !== 5) this.setPrize(match);
       if (match === 5) this.matchBonusNumber(this.lottoNumbers[i]);
     }
   }
 
   matchBonusNumber(fiveMatchLotto) {
     if (fiveMatchLotto.includes(this.bonusNumber[0])) {
-      return this.setRank(7);
+      return this.setPrize(7);
     }
-    return this.setRank(5);
+    return this.setPrize(5);
   }
 
-  setRank(match) {
+  setPrize(match) {
     if (match === 6) this.lottoWinnerNumber[0] += 1;
     if (match === 7) this.lottoWinnerNumber[1] += 1;
     if (match === 5) this.lottoWinnerNumber[2] += 1;
