@@ -1,18 +1,12 @@
 const Random = require('../utils/Random');
 
-class Ticket {
-  static pickParam = {
-    startInclusive: 1,
-    endInclusive: 45,
-    count: 6,
-  };
+const MIN_TICKET_NUMBER = 1;
+const MAX_TICKET_NUMBER = 45;
+const TICKET_COUNT = 6;
 
-  static get() {
-    return Random.pickUniqueNumbersInRange({
-      startInclusive: Ticket.pickParam.startInclusive,
-      endInclusive: Ticket.pickParam.endInclusive,
-      count: Ticket.pickParam.count,
-    });
+class Ticket {
+  static getTicket() {
+    return Random.pickUniqueNumbersInRange(MIN_TICKET_NUMBER, MAX_TICKET_NUMBER, TICKET_COUNT);
   }
 
   static sortByAscendingNumber(lotto) {

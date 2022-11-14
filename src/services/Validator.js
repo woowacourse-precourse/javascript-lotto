@@ -25,9 +25,7 @@ class Validator {
   };
 
   static checkTruthy(truthy) {
-    const checker = Boolean(truthy);
-
-    if (!checker) {
+    if (!truthy) {
       Console.close();
       throw new Error(`${Validator.#errorMessage.head} ${Validator.#errorMessage.falsy}`);
     }

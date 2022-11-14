@@ -13,7 +13,7 @@ class Tickets {
   }
 
   static #addTicketInLottoTickets(lottos) {
-    return [...lottos, Ticket.sortByAscendingNumber(Ticket.get())];
+    return [...lottos, Ticket.sortByAscendingNumber(Ticket.getTicket())];
   }
 
   static #removeDuplicatedTicket(lottos) {

@@ -5,6 +5,34 @@ describe('Validator 클래스 테스트', () => {
     expect(() => Validator.checkTruthy('')).toThrow('[ERROR]');
   });
 
+  test('checkTruthy에 NaN는 예외를 발생시킨다.', () => {
+    expect(() => Validator.checkTruthy(NaN)).toThrow('[ERROR]');
+  });
+
+  test('checkTruthy에 null는 예외를 발생시킨다.', () => {
+    expect(() => Validator.checkTruthy(null)).toThrow('[ERROR]');
+  });
+
+  test('checkTruthy에 undefined는 예외를 발생시킨다.', () => {
+    expect(() => Validator.checkTruthy(undefined)).toThrow('[ERROR]');
+  });
+
+  test('checkTruthy에 0는 예외를 발생시킨다.', () => {
+    expect(() => Validator.checkTruthy(0)).toThrow('[ERROR]');
+  });
+
+  test('checkTruthy에 -0는 예외를 발생시킨다.', () => {
+    expect(() => Validator.checkTruthy(-0)).toThrow('[ERROR]');
+  });
+
+  test('checkTruthy에 0n는 예외를 발생시킨다.', () => {
+    expect(() => Validator.checkTruthy(0n)).toThrow('[ERROR]');
+  });
+
+  test('checkTruthy에 false는 예외를 발생시킨다.', () => {
+    expect(() => Validator.checkTruthy(false)).toThrow('[ERROR]');
+  });
+
   test('checkStringType에 123는 예외를 발생시킨다', () => {
     expect(() => Validator.checkStringType(123)).toThrow('[ERROR]');
   });

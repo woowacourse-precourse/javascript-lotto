@@ -13,7 +13,7 @@ class GameOutput {
     Console.print(lottos);
   }
 
-  static printResult(result, profit) {
+  static printResult({ result, profit }) {
     Console.print('\n당첨 통계');
     Console.print('---');
     Console.print(`3개 일치 (5,000원) - ${result[GRADE.fifth]}개`);
