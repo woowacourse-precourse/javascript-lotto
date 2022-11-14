@@ -1,4 +1,4 @@
-const { Console } = require('@woowacourse/mission-utils');
+const { Console } = require("@woowacourse/mission-utils");
 
 class Validation {
   validate(numbers) {
@@ -15,6 +15,7 @@ class Validation {
         Console.close();
         throw new Error("[ERROR] 1과 45사이의 숫자를 입력해주세요.");
       }
+
       if (Validation.isThatDuplicate(numbers)) {
         Console.close();
         throw new Error("[ERROR] 중복되는 숫자가 존재합니다.");
@@ -22,14 +23,14 @@ class Validation {
     }
   }
 
-  bonusValidate(numbers ,number) {
+  bonusValidate(numbers, number) {
     if (!Validation.itThatNumber(number)) {
       Console.close();
-      throw new Error("[ERROR] 1개의 보너스 숫자를 입력해주세요.")
+      throw new Error("[ERROR] 1개의 보너스 숫자를 입력해주세요.");
     }
     if (!Validation.singleNumberNet(number)) {
       Console.close();
-      throw new Error("[ERROR] 1과 45사이의 숫자를 입력해주세요.")
+      throw new Error("[ERROR] 1과 45사이의 숫자를 입력해주세요.");
     }
     if (!Validation.isThatInclude(numbers, number)) {
       Console.close();
@@ -51,7 +52,7 @@ class Validation {
   }
 
   static numberNet(numbers) {
-    const validNumber = numbers.filter(number => number > 0 && number < 46);
+    const validNumber = numbers.filter((number) => number > 0 && number < 46);
     return numbers.length !== validNumber.length;
   }
 
