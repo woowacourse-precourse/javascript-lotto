@@ -27,11 +27,11 @@ class Lotto {
 
   // TODO: 추가 기능 구현
   checkLottoResult(compareInput, bonus) {
-    return checkLottoResult(this.#numbers, compareInput, bonus);
+    return checkLottoResult(this.#numbers, compareInput.split(","), bonus);
   }
 
   print() {
-    Console.print(`${this.#numbers}`);
+    Console.print(this.#numbers);
   }
 }
 

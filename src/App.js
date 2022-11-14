@@ -1,5 +1,11 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { buyLottos, getStatisticsTemplate } = require("./Core/App.util");
+const {
+  buyLottos,
+  getStatisticsTemplate,
+  getStatistics,
+  getRateOfReturn,
+  getRevenue,
+} = require("./Core/App.util");
 class App {
   play() {
     this.inputBuyPrice((price) => {
@@ -15,9 +21,9 @@ class App {
           const counts = lottos.map((lotto) =>
             lotto.checkLottoResult(winningNumbers, bonusNumber)
           );
-          const result = getStatistics(counts);
-          this.getStatistics(result);
-          this.getRateOfReturn(price, result);
+          const statistics = getStatistics(counts);
+          this.getStatistics(statistics);
+          this.getRateOfReturn(price, statistics);
         });
       });
     });
@@ -40,7 +46,7 @@ class App {
   }
 
   getStatistics(statistics) {
-    this.print("당첨 통계 \n --- \n");
+    this.print("\n당첨 통계 \n ---");
     this.print(getStatisticsTemplate(statistics));
   }
 
@@ -48,6 +54,7 @@ class App {
     this.print(
       `총 수익률은 ${getRateOfReturn(price, getRevenue(statistics))}%입니다.`
     );
+    Console.close();
   }
   print(message) {
     Console.print(message);
