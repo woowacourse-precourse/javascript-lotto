@@ -26,7 +26,10 @@ class App {
     this.#buyer = new LottoBuyer(+money);
     this.#buyer.buyLotto();
 
+    App.#printEmptyLine();
     this.#printBuyerLotto();
+
+    App.#printEmptyLine();
     this.#readLottoNumber();
   }
 
@@ -36,7 +39,8 @@ class App {
     Console.print(`${GAME_MESSAGE.BUY_COUNT(buyerLotto.length)}`);
 
     buyerLotto.forEach((lotto) => {
-      Console.print(`[${lotto.join(', ')}]`);
+      const lottoNumbers = `[${lotto.join(', ')}]`;
+      Console.print(lottoNumbers);
     });
   }
 
@@ -52,6 +56,7 @@ class App {
 
     this.#lotto = new Lotto(lottoNumbers);
 
+    App.#printEmptyLine();
     this.#readBonusNumber();
   }
 
@@ -65,6 +70,7 @@ class App {
     this.#lotto.setBonusNumber(+number);
     this.#setComparer();
 
+    App.#printEmptyLine();
     this.#printResult();
 
     Console.close();
@@ -85,6 +91,10 @@ class App {
     });
 
     Console.print(GAME_MESSAGE.PROFIT_RATE(this.#comparer.profitRate));
+  }
+
+  static #printEmptyLine() {
+    Console.print('');
   }
 
   static #validateNumberInput(input) {
