@@ -15,6 +15,10 @@ class App {
     return lotteryNumbers;
   };
 
+  printMyLottery = () => {
+    this.#myLottery.forEach((lottery) => Console.print(lottery));
+  };
+
   buyLottery = () => {
     this.#myLottery = this.getLotteryNumbers();
     this.printMyLottery();
