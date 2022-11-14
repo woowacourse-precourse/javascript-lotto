@@ -23,8 +23,15 @@ class LottoPurchase {
     const lottoNumbers = [];
 
     for (let i = 0; i < count; i++) {
-      lottoNumbers.push(randomNumbers());
+      lottoNumbers.push(this.randomNumbers());
     }
+    return this.lottoNumbersSort(lottoNumbers);
+  }
+
+  lottoNumbersSort(lottoNumbers) {
+    lottoNumbers = lottoNumbers.map(arr => arr.sort((a,b) => {
+      return a - b;
+    }))
     return lottoNumbers;
   }
 }
