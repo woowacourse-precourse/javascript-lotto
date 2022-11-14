@@ -1,5 +1,6 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const { MESSAGES, PAY_ERROR } = require("./constants/Constants.js");
+const { MESSAGES, PAY_ERROR, BONUS_ERROR } = require("./constants/Constants.js");
+const Lotto = require('./Lotto');
 const UNIT = 1000;
 
 class App {
@@ -56,8 +57,15 @@ class App {
     lists.forEach((list) => {
       Console.print(`[${list.join(", ")}]`);
     });
+    this.inputWinLotto();
   }
 
+  inputWinLotto() {
+    Console.readLine(MESSAGES.INPUT_LOTTO_ANSWER, (input) => {
+      this.#win_lotto = input.split(',').map(Number);
+      const lotto = new Lotto(this.#win_lotto);
+    }); 
+  }
 }
 
 const app = new App();
