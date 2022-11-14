@@ -26,10 +26,10 @@ describe("로또 클래스 테스트", () => {
     let winningNumber = [12, 16, 21, 22, 26, 44];
     let answer = [];
     let result = [3, 0, 3];
-    for(let i of userLottoNumber){
+    for (let i of userLottoNumber) {
       const comparison = new Comparison(i, winningNumber);
       answer.push(comparison.countAndSave(comparison.checkTheNumber(comparison.Comparison())));
     }
     expect(answer).toEqual(result);
-  })
+  });
 });
