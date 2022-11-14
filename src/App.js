@@ -86,7 +86,6 @@ class App {
 
   getWinResult(){ //당첨내역 계산하기
     for(let i = 0; i < this.lottoRandomNum.length; i++){
-      //console.log(this.lottoRandomNum.length);
       let count = 0;
       for(let j = 0; j < this.lottoRandomNum[i].length; j++){
         if(this.lottoRandomNum[i].includes(parseInt(this.winArr[j]))){
@@ -128,13 +127,13 @@ class App {
     let secondPrize = 30000000;
     let firstPrize = 2000000000;
 
-    this.RateOfReturn = parseInt((this.fifth*fifthPrize + this.fourth*fourthPrize + this.third*thirdPrize + this.second*secondPrize + this.first*firstPrize) / this.lottoMoney); //수익률
+    this.RateOfReturn = (this.fifth*fifthPrize + this.fourth*fourthPrize + this.third*thirdPrize + this.second*secondPrize + this.first*firstPrize) / this.lottoMoney * 100; //수익률
     this.roundOffRateOfReturn();
     
   }
 
   roundOffRateOfReturn(){ //수익률 반올림하기
-    MissionUtils.Console.print(this.RateOfReturn.toFixed(1));
+    MissionUtils.Console.print('총 수익률은 ' + this.RateOfReturn.toFixed(1) + '%입니다.');
   }
 }
 
