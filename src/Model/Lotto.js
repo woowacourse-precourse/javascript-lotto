@@ -23,16 +23,6 @@ class Lotto {
     const checkSixNum = inputValidation.checkSixNum(numbers);
   }
 
-  //로또 뽑기 logic
-  randomLottoNumber() {
-    const lottoNum = Random.pickUniqueNumbersInRange(1, 45, 6);
-    return lottoNum;
-  }
-
-  randomBonusNumber() {
-    // const bonusNum = Random.
-  }
-
   //로또 입력logic
   inputMoney() {
     Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
