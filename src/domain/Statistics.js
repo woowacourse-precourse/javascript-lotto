@@ -16,12 +16,15 @@ class Statistics {
     if (numberOfMatchingNumbers === 6) {
       return (this.lottoResult[numberOfMatchingNumbers - 2] += 1);
     }
+
     if (numberOfMatchingNumbers === 5 && this.isContainBonusNumber(numbers)) {
       return (this.lottoResult[numberOfMatchingNumbers - 2] += 1);
     }
+
     if (numberOfMatchingNumbers >= 3) {
       return (this.lottoResult[numberOfMatchingNumbers - 3] += 1);
     }
+
     return;
   }
 

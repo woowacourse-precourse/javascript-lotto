@@ -29,9 +29,11 @@ class ProfitRate {
       PRIZE_MONEY_CURRENCY.second,
       PRIZE_MONEY_CURRENCY.first,
     ];
+
     const prizeMoney = lottoResult.map((lotto, index) => {
       if (lotto !== 0) return lotto * currency[index];
     });
+
     return prizeMoney.filter((money) => money !== undefined);
   }
 }
