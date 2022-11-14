@@ -13,8 +13,7 @@ class App {
       MissionUtils.Console.print(answer);
       this.isPurchaseAmountValid(answer);
       const how_many = Number(answer) / 1000;
-      const published_Lottos = this.getLottos(how_many);
-      this.inputWinnings(published_Lottos, how_many);
+      this.getLottos(how_many);
     });
   }
 
@@ -33,7 +32,7 @@ class App {
       MissionUtils.Console.print(one_lotto);
       published_Lottos.push(array);
     }
-    return published_Lottos;
+    this.inputWinnings(published_Lottos, how_many);
   }
 
   stringifyLottos(array) {
