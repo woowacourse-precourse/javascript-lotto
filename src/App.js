@@ -81,7 +81,8 @@ class App {
 
   getEarningRate() {
     const prize = this.#matched.reduce(
-      (acc, matchedNumber, index) => acc + matchedNumber * PRIZE[index]
+      (acc, matchedNumber, index) => acc + matchedNumber * PRIZE[index],
+      0
     );
     return (prize / this.#money) * 100;
   }
@@ -109,8 +110,5 @@ class App {
     Console.close();
   }
 }
-
-const app = new App();
-app.play();
 
 module.exports = App;
