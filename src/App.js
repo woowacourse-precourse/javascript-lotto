@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Lotto = require("./Lotto");
 const PRICE = 1000
 class App {
   play() {
@@ -19,8 +20,10 @@ class App {
     this.showIssuedLotto(myLotto);
   }
   showIssuedLotto(myLotto){
+    MissionUtils.Console.print("\n")
+    MissionUtils.Console.print(myLotto.length + "개를 구매했습니다.")
     for(let i=0;i<myLotto.length;i++){
-      MissionUtils.Console.print(myLotto[i].sort(function compare(a, b) {
+      MissionUtils.Console.print(myLotto[i].sort(function compare(a, b) { //오름차순으로 정렬
         return a - b;
       }));
     }
