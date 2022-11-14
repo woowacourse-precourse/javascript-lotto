@@ -26,7 +26,7 @@ class Lotto {
     if (NUMBER.includes(NaN)) {
       throw new Error('[ERROR] 로또 번호는 숫자만 입력 하셔야 합니다.');
     }
-    for (let index = 0; index < NUMBER.length; index++) {
+    for (let index = 0; index < NUMBER.length; index += 1) {
       if (NUMBER[index] < 1 || NUMBER[index] > 45) {
         throw new Error('[ERROR] 로또 번호는 공백 없이 1 ~ 45 사이의 숫자를 입력 하셔야 합니다.');
       }

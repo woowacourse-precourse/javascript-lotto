@@ -11,7 +11,6 @@ class App {
     MissionUtils.Console.readLine('', (userInput) => {
       const PAID_MONEY = userInput.split('').map((item) => +item);
       const LOTTO_PRICE = 1000;
-      let amount;
 
       if (PAID_MONEY.includes(NaN)) {
         throw new Error('[ERROR] 구입하실 금액은 숫자로 입력하셔야 합니다.');
@@ -20,8 +19,8 @@ class App {
         throw new Error('[ERROR] 로또는 1000원 단위로 구입하셔야 합니다.');
       }
 
-      amount = userInput / LOTTO_PRICE;
-      this.printLottoNumber(amount, userInput);
+      const AMOUNT = userInput / LOTTO_PRICE;
+      this.printLottoNumber(AMOUNT, userInput);
     });
   }
 
@@ -29,7 +28,7 @@ class App {
     MissionUtils.Console.print(`${amount}개를 구매했습니다.`);
     const LOTTO_NUMBER_ARRAY = [];
 
-    for (let number = 0; number < amount; number++) {
+    for (let number = 0; number < amount; number += 1) {
       const LOTTO_NUMBER = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       LOTTO_NUMBER_ARRAY.push(LOTTO_NUMBER);
       MissionUtils.Console.print(`[${LOTTO_NUMBER.sort((a, b) => a - b).join(', ')}]`);
@@ -50,7 +49,7 @@ class App {
   bonusNumber(winNumber, lottoNumber, investment) {
     MissionUtils.Console.print('\n보너스 번호를 입력해 주세요.');
     MissionUtils.Console.readLine('', (userInput) => {
-      const BONUS_NUMBER = parseInt(userInput);
+      const BONUS_NUMBER = Number(userInput);
       if (Number.isNaN(BONUS_NUMBER)) {
         throw new Error('[ERROR] 보너스 번호는 숫자만 입력하셔야 합니다.');
       }
@@ -71,42 +70,42 @@ class App {
   result(lottoNumber, winNumber, bonusNumber, investment) {
     MissionUtils.Console.print('\n당첨 통계');
     MissionUtils.Console.print('---');
-    let lottoWinNumber = [];
-    let lottoBonusNumber = [];
+    const LOTTOWINNUMBER = [];
+    const LOTTOBONUSNUMBER = [];
 
-    for (let index = 0; index < lottoNumber.length; index++) {
-      lottoWinNumber.push(
+    for (let index = 0; index < lottoNumber.length; index += 1) {
+      LOTTOWINNUMBER.push(
         lottoNumber[index].filter((sameNumber) => winNumber.includes(sameNumber))
       );
 
-      lottoBonusNumber.push(
+      LOTTOBONUSNUMBER.push(
         lottoNumber[index].filter((sameNumber) => bonusNumber.includes(sameNumber))
       );
     }
-    for (let index = 0; index < lottoWinNumber.length; index++) {
-      if (lottoWinNumber[index].length !== 5) {
-        lottoBonusNumber[index].pop();
+    for (let index = 0; index < LOTTOWINNUMBER.length; index += 1) {
+      if (LOTTOWINNUMBER[index].length !== 5) {
+        LOTTOBONUSNUMBER[index].pop();
       }
     }
-    this.calculateRank(lottoWinNumber, lottoBonusNumber, investment);
+    this.calculateRank(LOTTOWINNUMBER, LOTTOBONUSNUMBER, investment);
   }
 
   calculateRank(win, bonus, investment) {
-    let rank = {
+    const RANK = {
       rank5: 0,
       rank4: 0,
       rank3: 0,
       rank2: 0,
       rank1: 0,
     };
-    for (let index = 0; index < win.length; index++) {
-      if (win[index].length === 3) rank.rank5++;
-      if (win[index].length === 4) rank.rank4++;
-      if (win[index].length === 5 && bonus[index].length === 0) rank.rank3++;
-      if (win[index].length === 5 && bonus[index].length === 1) rank.rank2++;
-      if (win[index].length === 6) rank.rank1++;
+    for (let index = 0; index < win.length; index += 1) {
+      if (win[index].length === 3) RANK.rank5 += 1;
+      if (win[index].length === 4) RANK.rank4 += 1;
+      if (win[index].length === 5 && bonus[index].length === 0) RANK.rank3 += 1;
+      if (win[index].length === 5 && bonus[index].length === 1) RANK.rank2 += 1;
+      if (win[index].length === 6) RANK.rank1 += 1;
     }
-    this.printRank(rank, investment);
+    this.printRank(RANK, investment);
   }
 
   printRank(rank, investment) {
@@ -125,7 +124,7 @@ class App {
   }
 
   returnOnInvestment(winMoney, investment) {
-    let YIELD = (winMoney / parseInt(investment)) * 100;
+    let YIELD = (winMoney / Number(investment)) * 100;
     YIELD = Math.round(YIELD * 100) / 100;
     MissionUtils.Console.print(`총 수익률은 ${YIELD}%입니다.`);
     MissionUtils.Console.close();
