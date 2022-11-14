@@ -89,6 +89,9 @@ class Lottos {
 
       MissionUtils.Console.print(`${statisticsMsg[rank - 1]}${cnt}개`);
     }
+
+    let revenueRate = (userWinningMoney / this.purchaseAmount) * 100;
+    MissionUtils.Console.print(`총 수익률은 ${revenueRate}%입니다.`);
   }
 }
 
