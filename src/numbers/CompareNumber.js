@@ -1,9 +1,11 @@
 const CORRECT = [];
+const GRADE = [];
 let count = 0;
 
 class CompareNumber {
-  constructor(correct) {
+  constructor(correct, grade) {
     this.correct = correct;
+    this.grade = grade;
   }
 
   checkNumber(computerNumbers, inputLottoNumbers) {
@@ -18,6 +20,25 @@ class CompareNumber {
       count = 0;
     });
     this.correct = CORRECT;
+    this.checkGrade();
+  }
+
+  checkGrade() {
+    this.correct.forEach(function (number) {
+      if (number === 3) {
+        this.fiveGrade();
+      }
+      if (number === 4) {
+      }
+      if (number === 5) {
+      }
+      if (number === 6) {
+      }
+    });
+  }
+
+  fiveGrade() {
+    return (GRADE[4] += 1);
   }
 }
 
