@@ -1,33 +1,10 @@
-const { Random } = require('@woowacourse/mission-utils');
+const { Random, Console } = require('@woowacourse/mission-utils');
 
 class MyLotto {
   constructor(purchasePrice) {
     this.validate(purchasePrice);
     this.amount = Number(purchasePrice) / 1000;
-    this.numbers = [];
-    this.createN();
-  }
-
-  createN() {
-    for (let i = 0; i < this.amount; i++) {
-      this.create();
-    }
-  }
-
-  create() {
-    const lottoNumber = [];
-
-    while (lottoNumber.length !== 6) {
-      const number = Random.pickNumberInRange(1, 45);
-
-      if (lottoNumber.includes(number)) {
-        continue;
-      }
-
-      lottoNumber.push(number);
-    }
-
-    this.numbers.push(lottoNumber);
+    this.myLotto = [];
   }
 
   validate(purchasePrice) {
@@ -38,6 +15,32 @@ class MyLotto {
     if (Number(purchasePrice) % 1000 !== 0) {
       throw new Error('[ERROR] 구입 금액은 1000단위여야 합니다.');
     }
+  }
+
+  purchase() {
+    const lottos = [];
+
+    for (let i = 0; i < this.amount; i++) {
+      lottos.push(this.create());
+    }
+
+    this.myLotto = lottos;
+  }
+
+  create() {
+    const numbers = [];
+
+    while (numbers.length !== 6) {
+      const number = Random.pickNumberInRange(1, 45);
+
+      if (numbers.includes(number)) {
+        continue;
+      }
+
+      numbers.push(number);
+    }
+
+    return numbers;
   }
 
   print() {
