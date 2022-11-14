@@ -127,6 +127,29 @@ class Lotto {
         this.winPoint.first++;
     }
   }
+
+  lottoResult() {
+    this.calcLottoCount();
+    Console.print(Constant.OUTPUT_MESSAGE.result);
+    Console.print(`${Constant.OUTPUT_MESSAGE.threeMatch(this.winPoint.fifth)}`);
+    Console.print(`${Constant.OUTPUT_MESSAGE.fourMatch(this.winPoint.fourth)}`);
+    Console.print(`${Constant.OUTPUT_MESSAGE.fiveMatch(this.winPoint.third)}`);
+    Console.print(`${Constant.OUTPUT_MESSAGE.fiveBonusMatch(this.winPoint.second)}`);
+    Console.print(`${Constant.OUTPUT_MESSAGE.sixMatch(this.winPoint.first)}`);
+    Console.print(`${Constant.OUTPUT_MESSAGE.rateOfReturn(this.winPoint.rateOfReturn)}`);
+  }
+
+  calcRateOfReturn() {
+    const rateOfReturn =
+      this.winLotto.first * Constant.REWADR.first +
+      this.winLotto.second * Constant.REWADR.second +
+      this.winLotto.third * Constant.REWADR.third +
+      this.winLotto.fourth * Constant.REWADR.fourth +
+      this.winLotto.fifth * Constant.REWADR.fifth;
+
+    const result = ((rateOfReturn / this.money) * 100).toFixed(1);
+    this.winPoint.rateOfReturn = result;
+  }
 }
 
 module.exports = Lotto;
