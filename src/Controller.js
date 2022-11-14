@@ -4,10 +4,10 @@ const ValidationCheck = require("./util/ValidationCheck");
 
 class Controller {
   startGame() {
-    this.requestInput();
+    this.purchaseMoneyInput();
   }
 
-  inputMoney() {
+  purchaseMoneyInput() {
     Console.readLine(CONSOLE.PURCHASE_MONEY_INPUT + "\n", (input) => {
       ValidationCheck.purchaseMoney(input);
     });
