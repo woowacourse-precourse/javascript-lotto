@@ -12,16 +12,19 @@ class Lotto {
       throw new Error(ERR_LOTTO_CNT);
     }
   }
+  // TODO: 추가 기능 구현
+
   sortNumbers(numbers) {
     //로또 번호 정렬하여 저장
-    const sortedNumbers = numbers.sort((a, b) =>a - b);
+    const sortedNumbers = numbers.sort((a, b) => a - b);
     return sortedNumbers;
   }
   toString() {
     console.log(this.#numbers);
   }
-
-  // TODO: 추가 기능 구현
+  getNumbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
