@@ -67,9 +67,11 @@ class Game {
   generateProfitPhrase() {
     const ranks = this.generateLottoRanks();
     const totalValue = ranks.reduce((acc, rank) => acc + PRIZES[rank].VALUE, 0);
-    const profitRate = ((totalValue / (this.#lottos.length * LOTTO_PRICE)) * 100).toFixed(1);
+    const profitRate = (totalValue / (this.#lottos.length * LOTTO_PRICE)) * 100;
 
-    return PROFIT_PHRASE(profitRate);
+    return PROFIT_PHRASE(
+      profitRate.toLocaleString('en-US', { maximumFractionDigits: 2, minimumFractionDigits: 1 }),
+    );
   }
 
   generateMatchPhrase() {
