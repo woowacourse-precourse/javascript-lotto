@@ -1,5 +1,6 @@
 const { Random } = require("@woowacourse/mission-utils");
 const messages = require("../constants/messages");
+const generalConstants = require("../constants/generalConstants");
 
 class UserNumber {
   constructor(controller) {
@@ -11,7 +12,7 @@ class UserNumber {
   }
 
   validatePurchasingAmount(userPurchasingAmountInput) {
-    if (userPurchasingAmountInput % 1000 !== 0) {
+    if (userPurchasingAmountInput % generalConstants.SINGLE_LOTTO_PRICE !== 0) {
       throw new Error(messages.PURCHASING_AMOUNT_ERROR_MESSAGE);
     }
   }
@@ -33,7 +34,11 @@ class UserNumber {
   getIssuedLotto() {
     const issuedLotto = [];
 
-    for (let idx = 0; idx < this.purchasingAmount / 1000; idx++) {
+    for (
+      let idx = 0;
+      idx < this.purchasingAmount / generalConstants.SINGLE_LOTTO_PRICE;
+      idx++
+    ) {
       const singleLottoCombination = Random.pickUniqueNumbersInRange(1, 45, 6);
       issuedLotto.push(
         singleLottoCombination.sort((first, second) => first - second),
