@@ -13,13 +13,13 @@ class LottoGameMachine {
     this.totalPurchaseAmount = 0;
     this.lottosResult = [];
     this.statistics = {};
-    this.user = new User();
+    // this.user = new User();
     this.Lottos = new Map();
     this.winningLotto = new Map();
   }
 
   startLottoGameMachine() {
-    this.user.inputTotalPurchaseAmount(this.setTotalPurchaseAmount.bind(this));
+    User.inputTotalPurchaseAmount(this.setTotalPurchaseAmount.bind(this));
   }
 
   endLottoGame() {
@@ -43,7 +43,21 @@ class LottoGameMachine {
 
   setTotalPurchaseAmount(totalPurchaseAmount) {
     this.totalPurchaseAmount = totalPurchaseAmount;
-    this.setLottos();
+    this.setLottos().printLottoNumbers();
+    User.inputWinningLottoNumbers(this.setWinningLottoNumbers.bind(this));
+  }
+
+  setWinningLottoNumbers(winningLottoNumbers) {
+    this.winningLotto.set('당첨 번호', winningLottoNumbers);
+  }
+
+  setBonusLottoNumber() {
+    Console.readLine(MESSAGE.INPUT.BONUS_LOTTO_NUMBER, (answer) => {
+      const bonusLottoNumber = Number(answer);
+      Validator.validateLottoNumber(bonusLottoNumber);
+      this.winningLotto.set('보너스 번호', bonusLottoNumber);
+      return this.setLottosResult().collectStatistics().printStatistics().endLottoGame();
+    });
   }
 
   setLottos() {
@@ -54,25 +68,7 @@ class LottoGameMachine {
       this.Lottos.set(`로또${count}`, new Lotto(generateLottoNumbers()));
     }
 
-    this.printLottoNumbers();
-  }
-
-  setWinningLottoNumbers() {
-    Console.readLine(MESSAGE.INPUT.WINNING_LOTTO_NUMBERS, (answer) => {
-      const winningLottoNumbers = answer.split(',').map(Number);
-      Validator.validateLottoNumbers(winningLottoNumbers);
-      this.winningLotto.set('당첨 번호', winningLottoNumbers);
-      return this.setBonusLottoNumber();
-    });
-  }
-
-  setBonusLottoNumber() {
-    Console.readLine(MESSAGE.INPUT.BONUS_LOTTO_NUMBER, (answer) => {
-      const bonusLottoNumber = Number(answer);
-      Validator.validateLottoNumber(bonusLottoNumber);
-      this.winningLotto.set('보너스 번호', bonusLottoNumber);
-      return this.setLottosResult().collectStatistics().printStatistics().endLottoGame();
-    });
+    return this;
   }
 
   setLottosResult() {
