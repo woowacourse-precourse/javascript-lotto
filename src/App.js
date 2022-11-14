@@ -5,7 +5,6 @@ class App {
   constructor() {
     this.money = 0;
     this.lottoQuantity = 0;
-    this.lottoNumbers = [];
   }
 
   play() {
@@ -23,10 +22,11 @@ class App {
   printLottoQuantity(money) {
     const lottoQuantity = money / 1000;
     Console.print(`${lottoQuantity}개를 구매했습니다.`);
+
+    this.printLotto(lottoQuantity);
   }
 
   printLotto(lottoQuantity) {
-    //랜덤 로또번호 생성 기능(오름차순 정렬)
     for (let num = 0; num < lottoQuantity; num++) {
       const MINIMUN_NUMBER = 1;
       const MAXIMUN_NUMBER = 45;
@@ -36,8 +36,8 @@ class App {
         MAXIMUN_NUMBER,
         NUMBER_LENGTH
       );
-      this.lottoNumbers.push(randomNumbers);
-      Console.print(JSON.stringify(randomNumbers).replace(/,/g, ", "));
+      const lottoNumbers = [...randomNumbers].sort((a, b) => a - b);
+      Console.print(JSON.stringify(lottoNumbers).replace(/,/g, ", "));
     }
   }
 }
