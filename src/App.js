@@ -1,3 +1,5 @@
+const Lotto = require('./Lotto');
+
 class App {
   play() {}
 }
