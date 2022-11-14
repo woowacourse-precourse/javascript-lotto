@@ -97,6 +97,7 @@ class App {
       } else {
         this.bonusNumber = input;
         this.matchLottos(this.lottos, this.winNumbers, this.bonusNumber);
+        this.printScore();
       }
     });
   }
@@ -113,11 +114,21 @@ class App {
   }
 
   printScore() {
-    let idx = 0;
-    console.log(this.scores);
-    this.scores.forEach((value, key) => {
-      Console.print(`${key} (${this.reward[idx]}원) - ${value}개`);
-      idx += 1;
+    Console.print("당첨 통계\n---\n");
+    this.rewards.forEach((reward) => {
+      reward[0] != 5.5
+        ? Console.print(
+            `${reward[0]}개 일치 (${reward[1].toLocaleString()}원) - ${
+              reward[2]
+            }개`
+          )
+        : Console.print(
+            `${Math.floor(
+              reward[0]
+            )}개 일치, 보너스 볼 일치 (${reward[1].toLocaleString()}원) - ${
+              reward[2]
+            }개`
+          );
     });
   }
 
