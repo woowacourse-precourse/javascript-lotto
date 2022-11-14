@@ -26,14 +26,16 @@ class App {
 
   getMoney(){ //구매금액 입력받기
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
-        this.lottoMoney = money;
+      this.ExceptionOfGetMoney(money);
+      this.lottoMoney = money;
     });
     this.getLottoAmount();
   }
 
   ExceptionOfGetMoney(money){ //구매금액 입력받기 예외처리
     if(money % 1000 != 0){
-      throw new Error("[ERROR] 1000원 단위가 아닙니다.");
+      console.log(money);
+      throw new Error("[ERROR] 구매금액은 1000원 단위여야 합니다.");
     }
   } 
 
@@ -60,6 +62,18 @@ class App {
       this.lottoRandomNum[i] = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
     }
     this.sortRandomNumber();
+  }
+
+  ExceptionOfGetRandomNumber(){ //로또 랜덤번호 뽑기 예외처리
+    lottoRandomNum.forEach(game => {
+      if(game.length != 6){
+        throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      }else if(game[0] < 1 || game[5] > 45){
+        throw new Error("[ERROR] 로또 번호는 1과 45사이의 수여야 합니다.");
+      }else if((new Set(game)).size != 6){
+        throw new Error("[ERROR] 중복된 숫자가 있습니다.");
+      }
+    });
   }
 
   sortRandomNumber(){ //로또 랜덤번호 오름차순 정렬하기
