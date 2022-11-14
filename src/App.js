@@ -14,7 +14,7 @@ class App {
       }
       const lottoLength = price / 1000;
       const lottos = buyLottos(lottoLength);
-      this.print(`${lottoLength}개를 구매했습니다.\n`);
+      this.print(`${lottoLength}개를 구매했습니다.`);
       lottos.forEach((lotto) => lotto.print());
       this.inputWinningNumber((winningNumbers) => {
         this.inputBonusNumber((bonusNumber) => {
