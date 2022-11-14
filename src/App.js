@@ -32,8 +32,8 @@ class App {
     this.print(`${lottoNumber}개를 구매했습니다.`);
     for (let i = 0; i < lottoNumber; i++) {
       const randomNumber = RandomNumbers.generate();
+      this.printLottoNumber(randomNumber);
       const lotto = new Lotto(randomNumber);
-      this.print(randomNumber);
       this.lottoList.push(lotto);
     }
   }
@@ -102,6 +102,14 @@ class App {
 
   printYield(lottoYield) {
     this.print(`총 수익률은 ${lottoYield}%입니다.`);
+  }
+
+  printLottoNumber(randomNumber) {
+    let tmpString = '[';
+    randomNumber.map((number) => (tmpString += number + ', '));
+    const randomNumberString = tmpString.slice(0, -2) + ']';
+
+    Console.print(randomNumberString);
   }
 }
 
