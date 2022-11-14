@@ -7,10 +7,14 @@ const {
   prize,
 } = require('./constants/app.js')
 const { range, WINNING_NUMBER_COUNT } = require('./constants/common.js')
-const { sortIncreasingOrder } = require('./lib/utils.js')
+const { sortIncreasingOrder, addComma } = require('./lib/utils.js')
 
 /**
  * @typedef {import('./Lotto.js').lotto} lotto
+ */
+
+/**
+ * @typedef {Object.<string, number>} lottoResult - key: 등수, value: 개수
  */
 
 class App {
@@ -126,12 +130,15 @@ class App {
         wins: winningNumbers,
         bonus: bonusNumber,
       })
+
+      this.#printLottoResult(lottoResult)
+      // calcReturnRate
     })
   }
 
   /**
    * @param {lotto} lotto
-   * @returns {Object.<number, number>} - key: 등수, value: 개수
+   * @returns {lottoResult}
    */
   getLottoResult({ wins, bonus }) {
     const lotto = new Lotto({ wins, bonus })
@@ -151,9 +158,30 @@ class App {
     return lottoResult
   }
 
+  /**
+   * @param {lottoResult} lottoResult
+   */
+  #printLottoResult(lottoResult) {
+    Console.print('\n당첨 통계\n---')
+
+    const keysInDescendingOrder = Object.keys(prize).sort((number1, number2) =>
+      sortIncreasingOrder(-number1, -number2)
+    )
+
+    keysInDescendingOrder.forEach((key) => {
+      Console.print(
+        `${prize[key].CRITERIA} (${addComma(prize[key].PRICE)}원) - ${
+          lottoResult[key]
+        }개`
+      )
+    })
+  }
+
   #close() {
     Console.close()
   }
 }
+
+new App().play()
 
 module.exports = App
