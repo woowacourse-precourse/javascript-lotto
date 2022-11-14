@@ -86,6 +86,15 @@ class App {
       this.thirdInput(lottos, winningNumbers, purchaseAmountUnit);
     });
   }
+
+  thirdInput(lottos, winningNumbers, purchaseAmountUnit) {
+    this.#readLine.inputNumber(Message.enterBonusNumber(), (bonus) => {
+      const { winningAmount, total } = App.createLottoResult(lottos, winningNumbers, bonus);
+
+      this.printResult(winningAmount, purchaseAmountUnit, total);
+      this.exit();
+    });
+  }
 }
 
 module.exports = App;
