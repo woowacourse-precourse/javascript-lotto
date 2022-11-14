@@ -1,34 +1,16 @@
-const RANKING = [
-  {
-    matchNumber: 3,
-    isCheckBonus: false,
-    prize: 5000,
-    count: 0,
-  },
-  {
-    matchNumber: 4,
-    isCheckBonus: false,
-    prize: 50000,
-    count: 0,
-  },
-  {
-    matchNumber: 5,
-    isCheckBonus: false,
-    prize: 1500000,
-    count: 0,
-  },
-  {
-    matchNumber: 5,
-    isCheckBonus: true,
-    prize: 30000000,
-    count: 0,
-  },
-  {
-    matchNumber: 6,
-    isCheckBonus: false,
-    prize: 2000000000,
-    count: 0,
-  },
-];
-
-module.exports = { RANKING };
+const STATISTIC_KEY = ['THREE', 'FOUR', 'FIVE', 'FIVE_BONUS', 'SIX'];
+const MATCH_NUMBER = {
+  THREE: 3,
+  FOUR: 4,
+  FIVE: 5,
+  FIVE_BONUS: 5,
+  SIX: 6,
+};
+const PRIZE = {
+  THREE: 5000,
+  FOUR: 50000,
+  FIVE: 1500000,
+  FIVE_BONUS: 30000000,
+  SIX: 2000000000,
+};
+module.exports = { STATISTIC_KEY, MATCH_NUMBER, PRIZE };

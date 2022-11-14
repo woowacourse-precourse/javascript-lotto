@@ -1,11 +1,12 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const LottoUser = require('./LottoUser');
 const Lotto = require('./Lotto.js');
-const { RANKING } = require('./constants.js');
+const { STATISTIC_KEY, PRIZE, MATCH_NUMBER } = require('./constants.js');
 
 class LottoGame {
   #user;
   #raffle;
+  #statistic;
 
   constructor() {
     this.#user = undefined;
@@ -13,6 +14,10 @@ class LottoGame {
       winning: undefined,
       bonus: undefined,
     };
+    this.#statistic = STATISTIC_KEY.reduce((prev, currentKey) => {
+      prev[currentKey] = 0;
+      return prev;
+    }, {});
   }
 
   start() {
@@ -55,17 +60,52 @@ class LottoGame {
 
   printWinningStatistic() {
     MissionUtils.Console.print('\n당첨 통계\n---');
-    RANKING.forEach((rank) => {
-      this.printRanking(rank);
+    this.calcStatistic();
+    STATISTIC_KEY.forEach((key) => {
+      this.printRanking(key);
     });
   }
 
-  printRanking(rank) {
+  printRanking(key) {
     MissionUtils.Console.print(
-      `${rank.matchNumber}개 일치${
-        rank.isCheckBonus ? ', 보너스 볼 일치' : ''
-      } (${rank.prize.toLocaleString('ko-KR')}원) - ${rank.count}개`,
+      `${MATCH_NUMBER[key]}개 일치${
+        key.includes('BONUS') ? ', 보너스 볼 일치' : ''
+      } (${PRIZE[key].toLocaleString('ko-KR')}원) - ${this.#statistic[key]}개`,
     );
+  }
+
+  calcStatistic() {
+    this.#user.getLottos().forEach((lotto) => {
+      const sameWinningCount = this.countWinningNumber(
+        lotto.getLottoNumbers(),
+        this.#raffle.winning.getLottoNumbers(),
+      );
+      const hasBonus = this.hasBonusNumber(
+        lotto.getLottoNumbers(),
+        this.#raffle.bonus,
+      );
+      this.setRanking(sameWinningCount, hasBonus);
+    });
+  }
+
+  setRanking(winningCount, hasBonus) {
+    if (winningCount === 6) this.#statistic.SIX += 1;
+    else if (winningCount === 5 && hasBonus) this.#statistic[FIVE_BONUS] += 1;
+    else if (winningCount === 5) this.#statistic.FIVE += 1;
+    else if (winningCount === 4) this.#statistic.FOUR += 1;
+    else if (winningCount === 3) this.#statistic.THREE += 1;
+  }
+
+  countWinningNumber(lotto, winning) {
+    let count = 0;
+    lotto.forEach((number) => {
+      if (winning.includes(number)) count += 1;
+    });
+    return count;
+  }
+
+  hasBonusNumber(lotto, bonus) {
+    return lotto.includes(bonus);
   }
 }
 

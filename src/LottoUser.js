@@ -22,6 +22,10 @@ class LottoUser {
     }
   }
 
+  getLottos() {
+    return this.#lottos;
+  }
+
   calcLottoCount(amount) {
     return amount / 1000;
   }
