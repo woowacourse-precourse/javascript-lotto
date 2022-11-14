@@ -15,6 +15,17 @@ class Lotto {
   getNumbers() {
     return this.#numbers;
   }
+
+  getMatchCount(winNumbers) {
+    const winNumberSet = new Set(winNumbers);
+    const matchNumbers = this.#numbers.filter((number) => winNumberSet.has(number));
+
+    return matchNumbers.length;
+  }
+
+  hasWinBonus(winBonus) {
+    return this.#numbers.includes(winBonus);
+  }
 }
 
 module.exports = Lotto;
