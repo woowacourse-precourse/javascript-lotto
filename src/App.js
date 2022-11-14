@@ -80,11 +80,11 @@ class App {
   }
 
   countProcess() {
-    this.countOfThreeMatch;
-    this.countOfFourMatch;
-    this.countOfFiveMatch;
-    this.countOfFiveAndBounsMatch;
-    this.countOfSixMatch;
+    this.countOfThreeMatch();
+    this.countOfFourMatch();
+    this.countOfFiveMatch();
+    this.countOfFiveAndBounsMatch();
+    this.countOfSixMatch();
   }
 
   countOfThreeMatch() {
