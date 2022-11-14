@@ -1,9 +1,4 @@
-const WINNING_NUMBER_COUNT = 6
-
-const range = {
-  MIN: 1,
-  MAX: 45,
-}
+const { WINNING_NUMBER_COUNT, range } = require('./common.js')
 
 const validationError = {
   TYPE: `[ERROR] 당첨 번호와 보너스 번호는 정수여야 합니다.`,

@@ -1,10 +1,6 @@
 const Lotto = require('../src/Lotto')
-const {
-  range,
-  WINNING_NUMBER_COUNT,
-  validationError,
-  prize,
-} = require('../src/constants/lotto.js')
+const { validationError, prize } = require('../src/constants/lotto.js')
+const { range, WINNING_NUMBER_COUNT } = require('../src/constants/common.js')
 
 describe('Lotto 클래스 생성자 유효성 테스트', () => {
   test('로또 번호에 숫자 이외의 값이 있으면 예외가 발생한다.', () => {
