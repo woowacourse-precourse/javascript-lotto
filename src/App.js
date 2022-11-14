@@ -10,6 +10,8 @@ const {
   WINNING_STATISTICS_MESSAGE,
   LINE,
   WINNING_STATISTICS,
+  EARNINGS,
+  WINNING_PRIZE,
 } = require('./Constants');
 
 class App {
@@ -78,6 +80,28 @@ class App {
     Console.print(WINNING_STATISTICS.PLACE_3RD(rank[2]));
     Console.print(WINNING_STATISTICS.PLACE_2ND(rank[1]));
     Console.print(WINNING_STATISTICS.PLACE_1ST(rank[0]));
+
+    this.printEarnings();
+  }
+
+  calEarnings() {
+    const rank = this.getMatchCount();
+
+    const totalWinning =
+      rank[4] * WINNING_PRIZE.PLACE_5TH +
+      rank[3] * WINNING_PRIZE.PLACE_4TH +
+      rank[2] * WINNING_PRIZE.PLACE_3RD +
+      rank[1] * WINNING_PRIZE.PLACE_2ND +
+      rank[0] * WINNING_PRIZE.PLACE_1ST;
+
+    const totalPurchaseCount = this.purchaseMoney;
+    const earnings = ((totalWinning / totalPurchaseCount) * 100).toFixed(2);
+    return earnings;
+  }
+
+  printEarnings() {
+    Console.print(EARNINGS.YIELD_MESSAGE(this.calEarnings()));
+    Console.close();
   }
 }
 
