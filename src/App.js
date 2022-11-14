@@ -1,5 +1,7 @@
-const { Console, Random } = require('@woowacourse/mission-utils');
+const { Console } = require('@woowacourse/mission-utils');
+const Lotto = require('./Lotto.js');
 const { isValidateNumber, isAmountUnitOf1000, isZeroNumber } = require('./utils/validation.js');
+const { generateLottoNumber } = require('./utils/lottoNumberGenerator.js');
 
 class App {
   play() {
@@ -18,6 +20,7 @@ class App {
       this.isValidatePurchaseAmount(purchaseAmount);
       this.calculatesUserBuyHowManyLotto(this.purchaseAmount);
       this.LottoNumberArray = Array.from({ length: this.userBuyHowManyLotto }, () => new Lotto(generateLottoNumber()));
+      this.providesInformationPurchaseLotto();
     });
   }
 
@@ -25,10 +28,11 @@ class App {
     this.userBuyHowManyLotto = purchaseAmount / 1000;
   }
 
-  generateLottoNumber() {
-    const lottoNumber = this.createLottoNumber();
-    const sortedLottoNumber = this.sortAscendingOrderLottoNumber(lottoNumber);
-    return sortedLottoNumber;
+  providesInformationPurchaseLotto() {
+    Console.print(`${this.userBuyHowManyLotto}개를 구매했습니다.`);
+    this.LottoNumberArray.forEach((lotto) => {
+      Console.print(lotto.getLottoNumber());
+    });
   }
 }
 
