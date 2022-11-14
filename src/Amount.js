@@ -8,7 +8,7 @@ class Amount {
    * @param {string} inputAmount
    */
   constructor(inputAmount) {
-    this.#validate(inputAmount);
+    this.validate(inputAmount);
     this.#amount = Number(inputAmount);
   }
 
@@ -16,7 +16,7 @@ class Amount {
    *
    * @param {string} amount
    */
-  #validate(amount) {
+  validate(amount) {
     const regex = /^[0-9]+$/;
 
     if (!regex.test(amount)) {

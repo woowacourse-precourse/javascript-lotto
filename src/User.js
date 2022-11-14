@@ -11,7 +11,7 @@ class User {
    * @param {number} amount
    */
   constructor(amount) {
-    this.#numbersList = this.#generateNumbersList(amount);
+    this.#numbersList = this.generateNumbersList(amount);
   }
 
   /**
@@ -19,7 +19,7 @@ class User {
    * @param {number} amount
    * @returns {number[][]}
    */
-  #generateNumbersList(amount) {
+  generateNumbersList(amount) {
     const list = [];
 
     for (let i = 0; i < amount / LOTTO_PRICE; i++) {
