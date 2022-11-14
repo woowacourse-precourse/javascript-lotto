@@ -14,7 +14,7 @@ class Lotto {
     }
   }
 
-  buy() {
+  generateLotto() {
     const lotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
     lotto.sort((a, b) => a - b);
     return lotto;
