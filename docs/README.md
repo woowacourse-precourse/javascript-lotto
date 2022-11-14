@@ -19,9 +19,10 @@
 - [x] 보너스 번호 입력: getBonusNumber()
 - [x] 로또 티켓 getter: get numbers()
 
-- [x] 통계 출력: printLottoStat()
 - [ ] 구매 로또 출력: printLottos()
-- [ ] 수익률 출력: printProfit()
+- [x] 통계 출력: generatePhrase()
+- [x] 수익률 생성: generateLottoProfit()
+- [x] 통계 생성: generateLottoStatPhrase()
 
 ## 입출력 검증
 
