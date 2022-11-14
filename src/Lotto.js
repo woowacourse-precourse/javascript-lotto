@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+import {User} from "./User";
 
 class Lotto {
   #numbers;
