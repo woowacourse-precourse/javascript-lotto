@@ -3,7 +3,7 @@ const PurchaseLotto = require('./PurchaseLotto');
 const Lotto = require('./Lotto');
 
 class App {
-  purchasedLottoNumbers;
+  purchasedLottoTickets;
 
   play() {
     this.purchaseAmountInputHandler();
@@ -16,7 +16,7 @@ class App {
 
   winningNumberInputHandler = (userMoney) => {
     const PURCHASE_LOTTO = new PurchaseLotto(userMoney);
-    this.purchasedLottoNumbers = PURCHASE_LOTTO.purchasedLottoNumbers;
+    this.purchasedLottoTickets = PURCHASE_LOTTO.purchasedLottoTickets;
     const REQUIRE_WINNING_NUMBER = '\n당첨 번호를 입력해 주세요.\n';
     MissionUtils.Console.readLine(REQUIRE_WINNING_NUMBER, this.bonusNumberInputHandler);
   };
@@ -29,7 +29,7 @@ class App {
 
   printHitStatistics = (bonusNumber) => {
     this.lotto.setBounusNumber(bonusNumber);
-    this.lotto.printHitStatistics(this.purchasedLottoNumbers);
+    this.lotto.printHitStatistics(this.purchasedLottoTickets);
   };
 }
 

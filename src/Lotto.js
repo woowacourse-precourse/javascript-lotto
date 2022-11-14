@@ -23,7 +23,7 @@ class Lotto {
     const VALID_NUMBER_REGEX = /^[\d]+$/;
     const LOWER_BOUND = 1;
     const UPPER_BOUND = 45;
-    const VALID_BOUND = ((+num) >= LOWER_BOUND && (+num) <= UPPER_BOUND);
+    const VALID_BOUND = +num >= LOWER_BOUND && +num <= UPPER_BOUND;
     if (!VALID_NUMBER_REGEX.test(num) || !VALID_BOUND) {
       throw new Error('[ERROR] 로또 번호는 1 ~ 45 사이의 숫자여야 합니다.');
     }
@@ -53,7 +53,9 @@ class Lotto {
     MissionUtils.Console.print(HIT_STASTICS);
     const MATCHED_COUNT = this.NumberOfMatchedLotto(purchasedLottoNumbers);
     for (let hit = 0; hit < 5; hit += 1) {
-      MissionUtils.Console.print(`${STATISTICS_TEMPLATE[hit]} - ${MATCHED_COUNT[hit]}개`);
+      MissionUtils.Console.print(
+        `${STATISTICS_TEMPLATE[hit]} - ${MATCHED_COUNT[hit]}개`,
+      );
     }
     this.printProfitRate(purchasedLottoNumbers.length, MATCHED_COUNT);
   }
@@ -63,9 +65,15 @@ class Lotto {
     const MATCHED_COUNT = [0, 0, 0, 0, 0];
     purchasedLottoNumbers.forEach((purchased) => {
       const [HIT_COUNT, BONUS_HIT] = this.countHitNumbers(purchased);
-      const NORMAL_MATCHED = () => { MATCHED_COUNT[HIT_COUNT - 3] += 1; };
-      const BONUS_MATCHED = () => { MATCHED_COUNT[HIT_COUNT - 1] += 1; };
-      const COUNT_MATCHING = BONUS_HIT ? () => BONUS_MATCHED() : () => NORMAL_MATCHED();
+      const NORMAL_MATCHED = () => {
+        MATCHED_COUNT[HIT_COUNT - 3] += 1;
+      };
+      const BONUS_MATCHED = () => {
+        MATCHED_COUNT[HIT_COUNT - 1] += 1;
+      };
+      const COUNT_MATCHING = BONUS_HIT
+        ? () => BONUS_MATCHED()
+        : () => NORMAL_MATCHED();
       COUNT_MATCHING();
     });
     // 3 4 5 5(bonus) 6
@@ -97,7 +105,7 @@ class Lotto {
     const PROFIT_TEMPLATE = [5000, 50000, 1500000, 30000000, 2000000000];
     let profit = 0;
     for (let compute = 0; compute < 5; compute += 1) {
-      profit += (PROFIT_TEMPLATE[compute] * matched[compute]);
+      profit += PROFIT_TEMPLATE[compute] * matched[compute];
     }
     // toBeFixed() returns a string
     return ((profit / (tickets * 1000)) * 100).toFixed(1);

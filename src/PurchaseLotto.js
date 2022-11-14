@@ -1,14 +1,15 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+const GenreateLotto = require('./GenerateLotto');
 
 class PurchaseLotto {
   totalTicketNumbers = 0;
 
-  purchasedLottoNumbers = [];
+  purchasedLottoTickets = [];
 
   constructor(userMoneyInput) {
     this.userMoneyInputExceptionHandler(userMoneyInput);
     this.totalTicketNumbers = +(userMoneyInput) / 1000;
-    this.setPurchasedLottoNumbers();
+    this.setPurchasedLottoTickets();
     this.printPurchaseHistory();
   }
 
@@ -26,13 +27,10 @@ class PurchaseLotto {
     }
   }
 
-  setPurchasedLottoNumbers() {
-    for (let count = 0; count < this.totalTicketNumbers; count += 1) {
-      const LOTTO_NUMBERS = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-      // Sort by increasing order
-      LOTTO_NUMBERS.sort((a, b) => a - b);
-      this.purchasedLottoNumbers.push(LOTTO_NUMBERS);
-    }
+  setPurchasedLottoTickets() {
+    const GENERTATE_LOTTO = new GenreateLotto();
+    GENERTATE_LOTTO.generateLottoTickets(this.totalTicketNumbers);
+    this.purchasedLottoTickets = GENERTATE_LOTTO.lottoTickets;
   }
 
   printPurchaseHistory() {
@@ -44,11 +42,7 @@ class PurchaseLotto {
       MissionUtils.Console.print(`[${LOTTO_NUMBERS}]`);
     };
 
-    this.purchasedLottoNumbers.forEach(printNumbers);
-  }
-
-  get PurchasedLottoNumbers() {
-    return this.purchasedLottoNumbers;
+    this.purchasedLottoTickets.forEach(printNumbers);
   }
 }
 
