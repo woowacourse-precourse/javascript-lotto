@@ -14,7 +14,7 @@ class LottoBonus {
   }
 
   getNumber() {
-    return Number(this.#number);
+    return this.#number;
   }
 }
 

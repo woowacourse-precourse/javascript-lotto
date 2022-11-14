@@ -4,21 +4,21 @@ const { checkLottoRange, checkDuplicate, checkLength } = require('./LottoValidat
 class Lotto {
   #numbers;
 
-  constructor(winningNumber) {
-    const winning = winningNumber.map((number) => Number(number));
+  constructor(winningNumbers) {
+    const winning = winningNumbers.map((number) => Number(number));
     Lotto.validate(winning);
     this.bonus = null;
     this.#numbers = { winning };
   }
 
   static validate(winning) {
-    checkLottoRange(winning);
     checkLength(winning);
+    checkLottoRange(winning);
     checkDuplicate(winning);
   }
 
   setBonusNumber(bonusNumber) {
-    const bonus = new LottoBonus(bonusNumber, this.#numbers.winning).getNumber();
+    const bonus = new LottoBonus(Number(bonusNumber), this.#numbers.winning).getNumber();
     this.#numbers.bonus = bonus;
   }
 
