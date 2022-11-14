@@ -77,6 +77,7 @@ class LottoGame {
     const eachCalculatedLottoPrize = eachCompareResult.map(this.getCalculatedLottoPrize);
     const prizeStatistics = this.getPrizeStatistics(eachCalculatedLottoPrize);
     const totalPrizeMoney = this.getTotalPrizeMoney(prizeStatistics);
+    const yieldRatio = this.getYieldRatio(totalPrizeMoney);
   }
   getEachLottoNumbers() {
     return this.lottos.map((lotto) => lotto.getNumbers());
@@ -129,6 +130,13 @@ class LottoGame {
     }
 
     return totalPrizeMoney;
+  }
+  getYieldRatio(totalPrizeMoney) {
+    if (totalPrizeMoney) {
+      return ((totalPrizeMoney / this.purchaseAmount) * 100).toFixed(1);
+    }
+
+    return 0;
   }
 }
 
