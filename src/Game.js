@@ -1,3 +1,4 @@
+const Calculator = require('./Calculator');
 const { ERROR_MSG, GAME_MSG, NEW_LINE } = require('./Constant');
 const IO = require('./IO');
 
@@ -18,6 +19,11 @@ class Game {
       this.cost = money;
       Game.validate(money);
     });
+  }
+
+  static printMoneyInfo(money) {
+    const n = Calculator.calcQuotient(money);
+    IO.print(NEW_LINE + n + GAME_MSG.bought);
   }
 }
 
