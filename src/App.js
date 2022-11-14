@@ -10,6 +10,7 @@ class App {
   play() {
     this.inputOfLottoPurchaseAmount();
     this.conditionOfWinning();
+    this.printResult();
   }
 
   inputOfLottoPurchaseAmount() {
