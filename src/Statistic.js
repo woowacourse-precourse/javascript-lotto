@@ -56,7 +56,7 @@ const Statistic = class {
     const buyAmount = lottos.length * LOTTO_AMOUNT.VALID_UNIT;
     const winAmounts = [];
     rank.forEach((value, key) => winAmounts.push(this.calculateYield(key, value)));
-    return (((winAmounts.reduce((acc, cur) => acc + cur, 0) + buyAmount - buyAmount) / buyAmount) * 100).toFixed(1);
+    return ((winAmounts.reduce((acc, cur) => acc + cur, 0) / buyAmount) * 100).toFixed(1);
   }
 
   getRankResult({ lottos, winNumber, bonusNumber }) {
