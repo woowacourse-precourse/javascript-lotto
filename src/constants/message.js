@@ -16,6 +16,7 @@ const RESULT_MESSAGE = {
 };
 
 const ERROR_MESSAGE = {
+  input: '[ERROR] 숫자와 쉼표만 입력 가능합니다.',
   number: '[ERROR] 숫자를 입력해야 합니다.',
   integer: '[ERROR] 정수를 입력해야 합니다.',
   lottoRange: '[ERROR] 로또 범위의 숫자를 입력해야 합니다.',

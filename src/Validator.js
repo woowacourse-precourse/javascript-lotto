@@ -7,6 +7,12 @@ const {
 } = require('./constants/number');
 
 class Validator {
+  static checkInput(input) {
+    input.split('').forEach((character) => {
+      if ('0123456789,'.includes(character) === false) throw new Error(ERROR_MESSAGE.input);
+    });
+  }
+
   static checkNumber(number) {
     if (isNaN(number)) throw new Error(ERROR_MESSAGE.number);
     if (Number.isInteger(number) === false) throw new Error(ERROR_MESSAGE.integer);
