@@ -1,5 +1,14 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { isMultipleOf1000, divide1000, splitStrByComma, getRandomNumbers, getRank } = require('./lib/utilFns.js');
+const {
+  isMultipleOf1000,
+  divide1000,
+  splitStrByComma,
+  getRandomNumbers,
+  getRank,
+  getWinMessage,
+  getWinAmount,
+  getRateStrOfProfit,
+} = require('./lib/utilFns.js');
 const Lotto = require('./Lotto');
 
 class VendingMachine {
@@ -75,6 +84,7 @@ class VendingMachine {
       });
 
       this.#rankBoard = this.getRanksByScores();
+      const [winMessages, rateOfProfit] = this.calculateStatistics();
     };
 
     Console.readLine('\n보너스 번호를 입력해주세요.\n', answerCbFn);
@@ -89,6 +99,16 @@ class VendingMachine {
     });
 
     return rankBoard;
+  }
+
+  calculateStatistics() {
+    const ranks = Object.entries(this.#rankBoard).slice(1).reverse();
+    const winMessages = ranks.map(([rank, cnt]) => getWinMessage(rank, cnt));
+
+    const profit = ranks.reduce((acc, [rank, cnt]) => acc + getWinAmount(rank, cnt), 0);
+    const rateOfProfit = getRateStrOfProfit(profit, this.#purchaseAmount);
+
+    return [winMessages, rateOfProfit];
   }
 }
 
