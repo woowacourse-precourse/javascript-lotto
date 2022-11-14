@@ -12,9 +12,15 @@ describe('머니 클래스 테스트', () => {
     }).toThrow('[ERROR]');
   });
 
-  test('머니가 0이하인 경우 오류발생', () => {
+  test('머니가 0미만인 경우 오류발생', () => {
     expect(() => {
       new Money('-1000');
+    }).toThrow('[ERROR]');
+  });
+
+  test('머니가 0인 경우 오류발생', () => {
+    expect(() => {
+      new Money('0');
     }).toThrow('[ERROR]');
   });
 });
