@@ -40,7 +40,11 @@ class App {
       new BonusExceptions(bonus).check(this.winningArr);
       this.bonus = parseInt(bonus);
 
-      new CompareNumbers(this.lottoArr, this.winningArr, this.bonus);
+      new CompareNumbers(
+        this.lottoArr,
+        this.winningArr,
+        this.bonus
+      ).getResult();
     });
   }
 }
