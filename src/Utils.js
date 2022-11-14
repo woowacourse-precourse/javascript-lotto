@@ -2,25 +2,15 @@ const { Random } = require("@woowacourse/mission-utils");
 const { LOTTO_INFO_VALUES, INITIALIZE_VALUES } = require("./Constant");
 
 class Utils {
-  isBlank(input) {
-    return !input;
-  }
+  isBlank = (input) => !input;
 
-  isNumber(input) {
-    return !isNaN(input);
-  }
+  isNumber = (input) => !isNaN(input);
 
-  isThousandUnit(input) {
-    return (input % LOTTO_INFO_VALUES.LOTTO_COST === 0);
-  }
+  isThousandUnit = (input) => (input % LOTTO_INFO_VALUES.LOTTO_COST === 0);
 
-  isPositive(input) {
-    return (input >= 0);
-  }
+  isPositive = (input) => (input >= 0);
 
-  isNaturalNumber(input) {
-    return (input % 1 === 0);
-  }
+  isNaturalNumber = (input) => (input % 1 === 0);
 
   isValidLottoNumber = (number) => {
     return (

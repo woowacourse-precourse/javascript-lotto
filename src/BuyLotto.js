@@ -21,9 +21,7 @@ class BuyLotto {
     }
   }
 
-  getLottoArray() {
-    return this.lottoArray;
-  }
+  getLottoArray = () => this.lottoArray;
 }
 
 module.exports = BuyLotto;

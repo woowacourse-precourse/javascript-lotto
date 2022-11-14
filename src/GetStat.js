@@ -23,9 +23,8 @@ class GetStat {
     }
   }
 
-  initializeLottoInfoProperty() {
+  initializeLottoInfoProperty = () =>
     this.lottoInfo.numberOfCorrectNumbers = INITIALIZE_VALUES.ZERO;
-  }
 
   countCorrectNumbers(index) {
     this.lottoInfo['winningNumbers'].forEach((number) => {

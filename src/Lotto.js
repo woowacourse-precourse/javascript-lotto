@@ -38,9 +38,7 @@ class Lotto {
       this.utils.throwError(ERROR_MESSAGES.ERROR_INCLUDE_WINNING_NUMBER));
   }
 
-  getWinningNumbers() {
-    return this.#numbers;
-  }
+  getWinningNumbers = () => this.#numbers;
 }
 
 module.exports = Lotto;
