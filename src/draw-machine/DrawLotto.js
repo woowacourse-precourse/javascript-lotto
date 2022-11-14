@@ -22,6 +22,9 @@ class DrawLotto {
       return this.draw_number;
     }
 
+    sendBonusNumber(){
+      return this.bonus_number;
+    }
 
   }
   
