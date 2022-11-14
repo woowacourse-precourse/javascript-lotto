@@ -40,7 +40,7 @@
 
 # 📌 최종 객체 설계 그림
 
-## <img width="800px" alt="스크린샷 2022-11-14 13 35 57" src="https://user-images.githubusercontent.com/78203399/201578664-08deb7b3-1512-42a1-a113-3d3f1f1a52da.png">
+<img width="800px" alt="스크린샷 2022-11-14 20 08 21" src="https://user-images.githubusercontent.com/78203399/201645380-b2846080-c9c1-4038-b702-586df7d2eab2.png" />
 
 ---
 
