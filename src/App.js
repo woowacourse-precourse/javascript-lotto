@@ -23,6 +23,9 @@ class App {
       }
     );
   }
+  consoleLottoAmount() {
+    MissionUtils.Console.print(this.lottoAmount + "개를 구매했습니다.\n");
+  }
 }
 
 module.exports = App;
