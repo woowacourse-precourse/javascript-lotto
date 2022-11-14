@@ -1,11 +1,7 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const RandomNums = require('./RandomNums');
-
-const REGEX_NUM = /^[0-9]+$/;
-const PRICE_PER_LOTTO = 1000;
-const MIN_LOTTO_NUM = 1;
-const MAX_LOTTO_NUM = 45;
+const { LOTTO, REGEX_NUM, PRICE_PER_LOTTO } = require('./constants');
 
 class User {
   readInput() {
@@ -36,7 +32,6 @@ class User {
   makeLotto() {
     const amount = this.getAmount();
     this.randomNums = new RandomNums(amount);
-    console.log(this.randomNums);
     this.readLottoNums();
   }
 
@@ -68,7 +63,7 @@ class User {
   }
 
   static checkNumRange(number) {
-    if (number < MIN_LOTTO_NUM || number > MAX_LOTTO_NUM)
+    if (number < LOTTO.MIN_NUM || number > LOTTO.MAX_NUM)
       throw new Error('[ERROR] 로또 번호는 1~45 범위의 숫자여야 합니다.');
   }
 

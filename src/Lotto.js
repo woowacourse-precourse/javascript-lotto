@@ -1,8 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-
-const MIN_LOTTO_NUM = 1;
-const MAX_LOTTO_NUM = 45;
-const REGEX_NUM = /^[0-9]+$/;
+const { LOTTO, REGEX_NUM } = require('./constants');
 
 class Lotto {
   #numbers;
@@ -20,7 +17,7 @@ class Lotto {
   }
 
   static checkSixNum(numbers) {
-    if (numbers.length !== 6) {
+    if (numbers.length !== LOTTO.NUM) {
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
     }
   }
@@ -34,7 +31,7 @@ class Lotto {
 
   checkNumRange(numbers) {
     numbers.forEach((num) => {
-      if (num < MIN_LOTTO_NUM || num > MAX_LOTTO_NUM)
+      if (num < LOTTO.MIN_NUM || num > LOTTO.MAX_NUM)
         throw new Error('[ERROR] 로또 번호는 1~45 범위의 숫자여야 합니다.');
     });
   }
