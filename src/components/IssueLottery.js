@@ -1,7 +1,7 @@
 const { Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 
-class IssueLottery {
+class IssueLotto {
   static setLotteryNumber(purchaseNumber) {
     const results = [];
     let draw = purchaseNumber / 1000;
@@ -14,4 +14,4 @@ class IssueLottery {
   }
 }
 
-module.exports = IssueLottery;
+module.exports = IssueLotto;
