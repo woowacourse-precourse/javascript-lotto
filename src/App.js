@@ -14,8 +14,13 @@ const {
   FOURTH_RANK,
   FIFTH_RANK,
   NOTHING_RANK,
+  RANK,
   WINNING_SPLIT,
   INPUT_PRICE_MSG,
+  BUY_MSG,
+  INPUT_WINNING_MSG,
+  INPUT_BONUS_MSG,
+  RESULT_INTRO_MSG,
   LOTTO_LENGTH_NOT_SIX_ERROR,
   LOTTO_DUPLICATE_ERROR,
   LOTTO_OUT_OF_RANGE_ERROR,
@@ -23,12 +28,18 @@ const {
   PRICE_NAN_ERROR,
   PRICE_TOO_LOW_ERROR,
   PRICE_NOT_MULTIPLE_ERROR,
+  BONUS_DUPLICATE_ERROR,
 } = require('./Constants.js');
 
 class App {
   inputWinningNumbers(lottos) {}
 
-  printLottos(lottos) {}
+  printLottos(lottos) {
+    Console.print(`${lottos.length}${BUY_MSG}`);
+    lottos.forEach((lotto) => {
+      Console.print(lotto.toString());
+    });
+  }
 
   generateLotto() {
     const numbers = Random.pickUniqueNumbersInRange(MIN_NUM, MAX_NUM, PICK_NUM);
