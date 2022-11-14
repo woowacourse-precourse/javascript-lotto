@@ -16,9 +16,14 @@ describe('LottoBonus 클래스 테스트', () => {
     }).toThrow('[ERROR]');
   });
 
-  test('보너스 번호를 가지고 오는 getNumber 매서드가 정상적으로 동작한다.', () => {
+  test('보너스 번호를 가지고 오는 getNumber 매서드가 정상 동작한다.', () => {
+    // 준비(arrange)
     const lottoBonus = new LottoBonus(12, [1, 2, 3, 4, 5, 6]);
+
+    // 실행(act)
     const result = lottoBonus.getNumber();
+
+    // 검증(assert)
     expect(result).toEqual(12);
   });
 });

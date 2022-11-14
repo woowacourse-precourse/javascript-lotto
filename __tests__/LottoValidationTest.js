@@ -3,25 +3,25 @@ const LottoValidation = require('../src/LottoValidation');
 describe('LottoValidation 클래스 테스트', () => {
   test('숫자가 1~45범위의 숫자가 아니면 예외가 발생한다.', () => {
     expect(() => {
-      LottoValidation.checkNumberRange('46');
+      LottoValidation.checkNumberRange(46);
     }).toThrow('[ERROR]');
     expect(() => {
-      LottoValidation.checkNumberRange('1e1');
+      LottoValidation.checkNumberRange(1e1);
     }).toThrow('[ERROR]');
     expect(() => {
-      LottoValidation.checkNumberRange('0');
+      LottoValidation.checkNumberRange(0);
     }).toThrow('[ERROR]');
     expect(() => {
-      LottoValidation.checkNumberRange('-12');
+      LottoValidation.checkNumberRange(-12);
     }).toThrow('[ERROR]');
   });
 
   test('배열에 1~45범위가 아닌 숫자가 있으면 예외가 발생한다.', () => {
     expect(() => {
-      LottoValidation.checkLottoRange(['11', '12', '13', '14', '15', '49']);
+      LottoValidation.checkLottoRange([11, 12, 13, 14, 15, 49]);
     }).toThrow('[ERROR]');
     expect(() => {
-      LottoValidation.checkLottoRange(['0', '19', '13', '14', '15', '45']);
+      LottoValidation.checkLottoRange([0, 19, 13, 14, 15, 45]);
     }).toThrow('[ERROR]');
   });
 
