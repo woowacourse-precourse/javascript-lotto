@@ -14,55 +14,44 @@ class App {
   }
 
   play() {
-    this.buyLotto().then(() => {
-      this.generateLuckyLotto().then(() => {
-        this.getResultOfLotto(
-          this.lottoGenerator.lottos,
-          this.winningLotto.lotto,
-          this.winningLotto.bonusNum
-        );
-      });
-    });
+    this.buyLotto();
   }
 
   buyLotto() {
-    return new Promise((resolve) => {
-      Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
-        this.lottoGenerator.validateInputMoney(money);
-        const generatedLottos = this.lottoGenerator.generateLottos(money);
-        resolve(printGeneratedLottos(generatedLottos));
-      });
+    Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
+      this.lottoGenerator.validateInputMoney(money);
+      const GENERATED_LOTTOS = this.lottoGenerator.generateLottos(money);
+      printGeneratedLottos(GENERATED_LOTTOS);
+      return this.generateLuckyLotto();
     });
   }
 
-  async generateLuckyLotto() {
-    return new Promise((resolve) => {
-      Console.readLine('\n당첨 번호를 입력해 주세요.\n', (lotto) => {
-        lotto = lotto.split(',').map((num) => {
-          return parseInt(num);
-        });
-        resolve(this.winningLotto.setLotto(lotto));
+  generateLuckyLotto() {
+    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (lotto) => {
+      lotto = lotto.split(',').map((num) => {
+        return parseInt(num);
       });
-    }).then(() => {
-      return new Promise((resolve) => {
-        Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNum) => {
-          resolve(this.winningLotto.setBonusNum(bonusNum));
-        });
-      });
+      this.winningLotto.setLotto(lotto);
+      return this.generateBonusNum();
+    });
+  }
+
+  generateBonusNum() {
+    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNum) => {
+      this.winningLotto.setBonusNum(bonusNum);
+      return this.getResultOfLotto(
+        this.lottoGenerator.lottos,
+        this.winningLotto.lotto,
+        this.winningLotto.bonusNum
+      );
     });
   }
 
   getResultOfLotto(lottos, winningLotto, bonusNum) {
-    return new Promise((resolve) => {
-      const lottoCalculator = new LottoCalculator(
-        lottos,
-        winningLotto,
-        bonusNum
-      );
-      const PROFIT = lottoCalculator.calculateProfit();
-      const SCORE = lottoCalculator.score;
-      resolve(printLottoResult(SCORE, PROFIT), Console.close());
-    });
+    const lottoCalculator = new LottoCalculator(lottos, winningLotto, bonusNum);
+    const PROFIT = lottoCalculator.calculateProfit();
+    const SCORE = lottoCalculator.score;
+    return printLottoResult(SCORE, PROFIT), Console.close();
   }
 }
 
