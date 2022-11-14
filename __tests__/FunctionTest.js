@@ -64,4 +64,25 @@ describe('로또 당첨 테스트', () => {
       );
     });
   });
+
+  test('로또 보너스 번호 일치 판별 테스트', () => {
+    const { bonusDiscriminator } = App;
+    const bonusNumber = 7;
+    const lottoNumbers = [
+      [1, 2, 3, 4, 5, 6],
+      [1, 2, 3, 4, 5, 7],
+      [1, 8, 3, 4, 5, 7],
+      [1, 9, 24, 4, 5, 7],
+      [1, 45, 34, 3, 5, 7],
+      [21, 22, 23, 24, 25, 27],
+      [1, 23, 43, 24, 25, 27],
+    ];
+    const matchCounts = [0, 1, 1, 1, 1, 0, 0];
+
+    lottoNumbers.map((lottoNumber, index) => {
+      expect(bonusDiscriminator(lottoNumber, bonusNumber)).toEqual(
+        matchCounts[index],
+      );
+    });
+  });
 });
