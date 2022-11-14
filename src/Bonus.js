@@ -27,7 +27,7 @@ class Bonus {
 
   checkCountNumber(bonus) {
     const NUMBER_LENGTH = 1;
-    if (bonus.length < 2) {
+    if (bonus.length > 2) {
       throw new Error(`[ERROR] 보너스 번호는 ${NUMBER_LENGTH}개여야 합니다.`);
     }
   }
