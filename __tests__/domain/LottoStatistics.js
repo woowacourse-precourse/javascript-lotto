@@ -38,7 +38,9 @@ describe("로또 통계 클래스 테스트", () => {
     ];
 
     TEST_CASE.forEach(({ numbers, result }) => {
-      expect(lottoStatistics.matchCount(numbers)).toEqual(result);
+      expect(lottoStatistics.matchCount(numbers, winningLotto.numbers)).toEqual(
+        result,
+      );
     });
   });
 
@@ -67,16 +69,24 @@ describe("로또 통계 클래스 테스트", () => {
       },
       {
         numbers: [1, 2, 13, 14, 15, 16],
-        result: -1,
+        result: null,
       },
       {
         numbers: [11, 12, 13, 14, 15, 16],
-        result: -1,
+        result: null,
       },
     ];
 
     TEST_CASE.forEach(({ numbers, result }) => {
-      expect(lottoStatistics.getRank(numbers)).toEqual(result);
+      const matchedCount = lottoStatistics.matchCount(
+        numbers,
+        winningLotto.numbers,
+      );
+      const isMatchedBonus = numbers.includes(7);
+
+      expect(lottoStatistics.getRank(matchedCount, isMatchedBonus)).toEqual(
+        result,
+      );
     });
   });
 
