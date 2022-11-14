@@ -15,7 +15,7 @@ class LottoProgram {
 
   bonus;
 
-  calcuLotto;
+  calcLotto;
 
   lottoResult;
 
@@ -54,6 +54,11 @@ class LottoProgram {
 
   getBonusNumber(answer) {
     this.bonus = new Bonus(answer, this.lotto.getNumbers());
+    return this.saveCalcClass();
+  }
+
+  saveCalcClass() {
+    this.calcLotto = new Calculation();
     return this.calcLottoResult();
   }
 
@@ -63,19 +68,23 @@ class LottoProgram {
     const bonusNumber = this.bonus.getBonusNumber();
     const lottoPrice = this.price.getLottoPrice();
 
-    this.calcuLotto = new Calculation();
-    this.calcuLotto
+    this.calcLotto
       .calcList(lottoList, winNumberList, bonusNumber)
       .calcLottoRate(lottoPrice);
+
+    return this.saveResultClass();
+  }
+
+  saveResultClass() {
+    const result = this.calcLotto.getWinResult();
+    const rate = this.calcLotto.getRate();
+
+    this.lottoResult = new LottoResult(result, rate);
 
     return this.printResult();
   }
 
   printResult() {
-    const result = this.calcuLotto.getWinResult();
-    const rate = this.calcuLotto.getRate();
-
-    this.lottoResult = new LottoResult(result, rate);
     this.lottoResult.printResult()
       .printRate();
 
