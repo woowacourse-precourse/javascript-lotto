@@ -1,6 +1,6 @@
 const LottoResult = require("../src/controller/LottoResult.js");
 const { RANK } = require("../src/utils/constant.js");
-describe("당첨 통계 계산 클래스 테스트", () => {
+describe("당첨 결과 클래스 테스트", () => {
   test("1등 개수 확인", () => {
     const lottos = [
       [1, 2, 3, 4, 5, 6],

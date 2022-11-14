@@ -1,7 +1,7 @@
 const PurchaseValidate = require("../src/validate/PurchaseValidate.js");
 const { ERROR } = require("../src/utils/constant.js");
 
-describe("구메 클래스 테스트", () => {
+describe("구매 클래스 테스트", () => {
   test("입력 금액이 숫자가 아니면 예외처리한다.", () => {
     expect(() => {
       const input = Number("가나다라마바사");
