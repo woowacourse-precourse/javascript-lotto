@@ -48,6 +48,17 @@ describe('로또 클래스 테스트', () => {
     expect(lotto.getLottoNumbers()).toEqual([1, 2, 3, 4, 5, 6, 7]);
   });
 
+  test('보너스 번호가 기존의 정답 번호에 있으면 예외 발생', () => {
+    const lotto = new Lotto();
+
+    const numbers = [1, 2, 3, 4, 5, 6];
+    lotto.setWinningNumbers(numbers);
+
+    expect(() => lotto.addBonusNumber(6)).toThrow(
+      `${ERROR.PREFIX} ${ERROR.DUPLICATION_BONUS}`
+    );
+  });
+
   test('로또 번호가 당첨 번호와 몇 개 일치하는지 확인', () => {
     const lotto = new Lotto();
 
