@@ -5,7 +5,9 @@ const isNumberType = (value) => !isNaN(value);
 const isValidRange = (value) =>
   value >= LOTTO_VALUE.MIN && value <= LOTTO_VALUE.MAX;
 
-const isValidUnique = (values, value) => !values.includes(value);
+const isValidUnique = (values, value) => {
+  return !values.split(",").includes(value);
+};
 
 const isThousandUnits = (value) => value % LOTTO_VALUE.UNIT === 0;
 
