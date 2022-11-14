@@ -2,14 +2,18 @@ const { Console } = require('@woowacourse/mission-utils');
 
 const LottoManager = require('./LottoManager');
 const WinningNumbers = require('./WinningNumbers');
+const WinningHistory = require('./WinningHistory');
+const { LOTTO_PRIZE_LIST } = require('./lib/constants/lotto');
 
 class App {
   lottoManager;
   winningNumbers;
+  winningHistory;
 
   constructor() {
     this.lottoManager = new LottoManager();
     this.winningNumbers = new WinningNumbers();
+    this.winningHistory = new WinningHistory();
   }
 
   play() {
@@ -43,15 +47,47 @@ class App {
     Console.print('');
     Console.readLine('보너스 번호를 입력해주세요.\n', bonusNumberInput => {
       this.winningNumbers.initBonusNumber(bonusNumberInput);
-      this.printWinningStats();
+      this.initWinningHistory();
     });
   }
 
-  printWinningStats() {
+  initWinningHistory() {
+    this.winningHistory.initWinningList({
+      lottos: this.lottoManager.lottos,
+      winningNumbers: this.winningNumbers.winningNumbers,
+      bonusNumber: this.winningNumbers.bonusNumber,
+    });
+    this.winningHistory.calcProfitRate(this.lottoManager.purchaseAmount);
+
+    this.printWinningHistory(
+      this.winningHistory.winningList,
+      this.winningHistory.profitRate,
+    );
+  }
+
+  printWinningHistory(winningList, profitRate) {
     Console.print('');
     Console.print('당첨 통계');
     Console.print('---');
+    this.printWinningList(winningList);
+    Console.print(
+      `총 수익률은 ${Number(profitRate.toFixed(1)).toLocaleString(
+        'ko-KR',
+      )}%입니다.`,
+    );
     Console.close();
+  }
+
+  printWinningList(winningList) {
+    [...winningList].reverse().forEach((winningLottoCount, idx) => {
+      const { CONDITION, PRIZE_MONEY } =
+        LOTTO_PRIZE_LIST[winningList.length - idx - 1];
+      Console.print(
+        `${CONDITION} (${PRIZE_MONEY.toLocaleString(
+          'ko-KR',
+        )}원) - ${winningLottoCount}개`,
+      );
+    });
   }
 
   exitGameByError(errorMessage) {
