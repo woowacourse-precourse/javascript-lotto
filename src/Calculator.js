@@ -1,5 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { MESSAGE, CONSTANTS } = require("../constant/Message");
+const { MESSAGE, CONSTANTS, RANK, REWARD } = require("../constant/Message");
 
 class Calculator {
   #myLottos;
@@ -10,23 +10,40 @@ class Calculator {
     this.#myLottos = myLottos;
     this.#winningNumbers = winningNumbers;
     this.#bonus = bonus;
-    this.printWinningStats();
     this.checkMatchingNumbers();
   }
 
   checkMatchingNumbers() {
-    const matchingCount = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, B: 0 };
-    const count = this.#myLottos.map(
-      (lotto) =>
-        [...new Set([...lotto, ...this.#winningNumbers])].length -
-        CONSTANTS.LOTTO_MAX_COUNT
-    );
+    const matchingCount = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0 };
+    const count = this.#myLottos.map((lotto) => {
+      const rank =
+        CONSTANTS.TWELVE -
+        [...new Set([...lotto, ...this.#winningNumbers])].length;
+      if (rank === 5 && lotto.includes(this.#bonus)) {
+        return 7;
+      }
+      return rank;
+    });
     count.map((item) => (matchingCount[item] += 1));
-    Console.print(matchingCount);
+    this.printWinningStats(matchingCount);
   }
 
-  printWinningStats() {
+  printWinningStats(matchingCount) {
     Console.print("당첨 통계\n---");
+    let total = 0;
+    for (let index = 3; index <= 6; index++) {
+      Console.print(`${RANK[index]} ${matchingCount[index]}개`);
+      if (index === 5) {
+        total += this.checkBonusReward(7, matchingCount);
+      }
+      total += REWARD[index] * matchingCount[index];
+    }
+    console.log(total);
+  }
+
+  checkBonusReward(index, matchingCount) {
+    Console.print(`${RANK[index]} ${matchingCount[index]}개`);
+    return REWARD[index] * matchingCount[index];
   }
 }
 
