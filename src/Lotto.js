@@ -12,8 +12,7 @@ class Lotto {
     if (numbers !== undefined) {
       if (Number(numbers) > 45) throw "[ERROR] 콤마로 구분해주세요";
       if (numbers.length !== 6) throw "[ERROR] 6개의 숫자가 아닙니다";
-      if (/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(numbers))
-        throw "[ERROR] 한글은 불가능 합니다";
+      if (/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(numbers)) throw "[ERROR] 한글은 불가능 합니다";
       if (/[a-zA-Z]/g.test(numbers)) throw "[ERROR] 영어는 불가능 합니다";
       numbers.forEach((num) => {
         if (Number(num) > 45) throw "[ERROR] 45보다 큰 숫자는 불가능합니다";
@@ -26,11 +25,9 @@ class Lotto {
   // TODO: 추가 기능 구현
 
   setComputerRandomNumber(amount) {
-    const computerNumbers = [];
+    let computerNumbers=[];
     for (let i = 0; i < amount; i++) {
-      computerNumbers.push(
-        MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6)
-      );
+      computerNumbers.push(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6))
     }
     return computerNumbers;
   }
@@ -93,9 +90,11 @@ class Lotto {
 
   showLottoArrays(amount, computerNumberArray, amountOfMoney) {
     MissionUtils.Console.print(`${amount}개를 구매했습니다.`);
+    // 이 부분이 문제 -> 테스트에서는 문자열형 배열로 받음 -> 배열을 문자로 바꿔줘야함
     computerNumberArray.forEach((computerNumbers) => {
-      MissionUtils.Console.print(computerNumbers);
+      MissionUtils.Console.print("["+computerNumbers+"]");
     });
+    MissionUtils.Console.print('')
     this.getUserLottoNumber(computerNumberArray, amountOfMoney);
   }
 
@@ -175,13 +174,13 @@ class Lotto {
     return (Math.round(m) / 10) * Math.sign(num);
   }
   showPrizeAndRate(prizeObj, money) {
-    MissionUtils.Console.print(`3개 일치 (5000원) - ${prizeObj["3"] ? prizeObj["3"] : 0}개`);
-    MissionUtils.Console.print(`4개 일치 (50,000원) - ${prizeObj["4"] ? prizeObj["4"] : 0}개`);
-    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${prizeObj["5"] ? prizeObj["5"] : 0}개`);
-    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${prizeObj["6"] ? prizeObj["6"] : 0}개`);
-    MissionUtils.Console.print(`5개 일치,보너스 볼 일치 (3,000,000원) - ${prizeObj["7"] ? prizeObj["7"] : 0}개`
-    );
-    MissionUtils.Console.print(`총 수익률은 ${money.toFixed(1)}% 입니다.`);
+    MissionUtils.Console.print('\n당첨 통계\n---')
+    MissionUtils.Console.print(`"3개 일치 (5,000원) - ${prizeObj["3"] ? prizeObj["3"] : 0}개"`);
+    MissionUtils.Console.print(`"4개 일치 (50,000원) - ${prizeObj["4"] ? prizeObj["4"] : 0}개"`);
+    MissionUtils.Console.print(`"5개 일치 (1,500,000원) - ${prizeObj["5"] ? prizeObj["5"] : 0}개"`);
+    MissionUtils.Console.print(`"5개 일치, 보너스 볼 일치 (30,000,000원) - ${prizeObj["7"] ? prizeObj["7"] : 0}개"`);
+    MissionUtils.Console.print(`"6개 일치 (2,000,000,000원) - ${prizeObj["6"] ? prizeObj["6"] : 0}개"`);
+    MissionUtils.Console.print(`"총 수익률은 ${money.toFixed(1)}%입니다."`);
     MissionUtils.Console.close();
   }
 }
