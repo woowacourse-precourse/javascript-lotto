@@ -26,6 +26,16 @@ class Statistics {
   setRateOfReturn(newRateOfReturn) {
     this.rateOfReturn = newRateOfReturn;
   }
+
+  getCorrectNumberFromSingleLotto(winningNumber, singleLotto) {
+    let correctCount = 0;
+
+    for (const singleNumber of singleLotto) {
+      if (winningNumber.includes(singleNumber)) correctCount += 1;
+    }
+
+    return correctCount;
+  }
 }
 
 module.exports = Statistics;
