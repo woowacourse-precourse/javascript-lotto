@@ -5,7 +5,7 @@ const Lotto = require("../Lotto");
 
 class IsLottoGame {
   GenerateLottoNum = {};
-  IsResult = [];
+  isResult = [];
   winningNum = [];
   bonusNum = null;
   userLotto = [];
@@ -56,8 +56,8 @@ class IsLottoGame {
         if (number < 1 || number > 45) throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         if (this.winningNum.includes(number)) throw new Error("[ERROR] 보너스 번호가 입력한 당첨 번호에 있습니다.");
         this.bonusNum = number;
-        this.IsResult = new IsResult(this.userLotto,this.winningNum,this.bonusNum,this.userCost);
-        this.IsResult.resultProcess();
+        this.isResult = new IsResult(this.userLotto,this.winningNum,this.bonusNum,this.userCost);
+        this.isResult.resultProcess();
       }
     );
   }
