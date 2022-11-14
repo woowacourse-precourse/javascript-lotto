@@ -1,13 +1,26 @@
 const MESSAGE = Object.freeze({
   START: "구입금액을 입력해주세요.\n",
-  PURCHASE: (count) => `${count}개를 구매하였습니다.`,
+  PURCHASE: (count) => `${count}개를 구매했습니다.`,
   WINNING: "당첨 번호를 입력해주세요.\n",
   BONUS: "보너스 번호를 입력해주세요.\n",
   RESULT: "당첨통계\n---",
-  RANK: (rank, count, total) =>
-    rank === "5"
-      ? `${rank}개 일치, 보너스 볼 일치 (${total}) - ${count}개`
-      : `${rank}개 일치 (${total}원) - ${count}개`,
+  RANK: (rank, total, count) => {
+    if (rank === "FIRST_RANK") {
+      return `6개 일치 (${total}원) - ${count}개`;
+    }
+    if (rank === "SECOND_RANK") {
+      return `5개 일치, 보너스 볼 일치 (${total}원) - ${count}개`;
+    }
+    if (rank === "THIRD_RANK") {
+      return `5개 일치 (${total}원) - ${count}개`;
+    }
+    if (rank === "FOURTH_RANK") {
+      return `4개 일치 (${total}원) - ${count}개`;
+    }
+    if (rank === "FIFTH_RANK") {
+      return `3개 일치 (${total}원) - ${count}개`;
+    }
+  },
   YIELD: (revenue) => `총 수익률은 ${revenue}%입니다.`,
 
   ERROR: {
