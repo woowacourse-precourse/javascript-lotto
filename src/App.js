@@ -32,6 +32,12 @@ const {
 } = require('./Constants.js');
 
 class App {
+  resultMessage(rank, count) {
+    const prize = PRIZE[rank].toLocaleString('ko-KR');
+
+    return `${PRIZE_MSG[rank]} (${prize}원) - ${count}개`;
+  }
+
   countLottoRank(drawResult) {
     const rankCount = {
       [FIRST_RANK]: 0,
@@ -49,7 +55,16 @@ class App {
     return rankCount;
   }
 
-  printLottoResult(rankCount, amount) {}
+  printLottoResult(rankCount, amount) {
+    Console.print(RESULT_INTRO_MSG);
+    RANK.forEach((rank) => {
+      const count = rankCount[rank];
+      const message = this.resultMessage(rank, count);
+
+      Console.print(message);
+    });
+    this.printProfitRate(rankCount, amount);
+  }
 
   drawLotto(lottos, winningNumbers, bonus) {
     const drawResult = lottos.map((lotto) =>
