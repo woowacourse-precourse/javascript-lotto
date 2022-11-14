@@ -1,5 +1,11 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
+const {
+  isNumber,
+  isInThousands,
+  isInRange,
+  isExist,
+} = require("./Exceptions");
 
 class App {
   constructor() {
@@ -18,12 +24,8 @@ class App {
   buyLotto() {
     Console.readLine('구입금액을 입력해 주세요.\n', (answer) => {
       const price = Number(answer);
-      if (typeof price !== "number" || isNaN(price)) {
-        throw new Error("[ERROR] 숫자만 입력하세요.");
-      }
-      if (price % 1000 !== 0) {
-        throw new Error("[ERROR] 구입 금액은 1000원 단위만 가능합니다.");
-      } 
+      isNumber(price);
+      isInThousands(price);
       this.numberOfPurchases = price / 1000;
     });
   }
@@ -54,15 +56,9 @@ class App {
     Console.readLine('보너스 번호를 입력해 주세요.\n', (answer) => {
       const bonus = Number(answer);
 
-      if (typeof bonus !== "number" || isNaN(bonus)) {
-        throw new Error("[ERROR] 숫자만 입력하세요.");
-      }
-      if (bonus < 1 || bonus > 45) {
-        throw new Error("[ERROR] 1 ~ 45 사이의 숫자만 입력하세요.");
-      }
-      if (this.winningNumber.includes(bonus)) {
-        throw new Error("[ERROR] 당첨 번호에 보너스 숫자가 존재합니다.")
-      }
+      isNumber(bonus);
+      isInRange(bonus);
+      isExist(this.winningNumber, bonus);
       
       this.bonusNumber = bonus;
     });
