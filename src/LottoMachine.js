@@ -23,34 +23,32 @@ class LottoMachine {
 
       this.#payment = Number(payment);
 
-      this.getWinningNumbers();
+      this.getRandomNumberLottos();
     });
   }
 
-  getWinningNumbers() {
+  getWinningNumbers(lottos) {
     Console.readLine(MESSAGE.REQUEST.WINNING_NUMBERS, (numbers) => {
       this.#winningNumbers = numbers.split(",").map(Number);
       this.validateWinningNumbers(this.#winningNumbers);
 
-      this.getBonusNumber();
+      this.getBonusNumber(lottos);
     });
   }
 
-  getBonusNumber() {
+  getBonusNumber(lottos) {
     Console.readLine(MESSAGE.REQUEST.BONUS_NUMBER, (number) => {
       this.validateBonusNumber(number);
 
       this.#bonusNumber = number;
 
-      this.compareNumbers();
+      this.compareNumbers(lottos);
       this.printWinningStats();
       Console.close();
     });
   }
 
-  compareNumbers() {
-    const lottos = this.getRandomNumberLottos();
-
+  compareNumbers(lottos) {
     lottos.forEach((lotto) => {
       let count = 0;
 
@@ -95,13 +93,11 @@ class LottoMachine {
       this.ranking.secondPlace * LOTTO.WINNINGS.SECOND_PLACE +
       this.ranking.firstPlace * LOTTO.WINNINGS.FIRST_PLACE;
 
-    return (winnings / this.#payment / 100).toFixed(1);
+    return ((winnings / this.#payment) * 100).toFixed(1);
   }
 
   printWinningStats() {
-    Console.print(`당첨 통계
----
-3개 일치 (5,000원) - ${this.ranking.fifthPlace}개
+    Console.print(`3개 일치 (5,000원) - ${this.ranking.fifthPlace}개
 4개 일치 (50,000원) - ${this.ranking.forthPlace}개
 5개 일치 (1,500,000원) - ${this.ranking.thirdPlace}개
 5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.ranking.secondPlace}개
@@ -115,6 +111,8 @@ class LottoMachine {
 
     while (payment !== 0) {
       const numbers = Random.pickUniqueNumbersInRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, LOTTO.WINNING_NUMBER_COUNT);
+      numbers.sort((a, b) => a - b);
+
       const lotto = new Lotto(numbers);
 
       lottos.push(lotto.getNumbers());
@@ -122,7 +120,10 @@ class LottoMachine {
       payment -= LOTTO.PRICE;
     }
 
-    return lottos;
+    Console.print(`${lottos.length}개를 구매했습니다.`);
+    lottos.forEach((lotto) => Console.print(`[${lotto.join(", ")}]`));
+
+    this.getWinningNumbers(lottos);
   }
 
   validatePayment(payment) {
