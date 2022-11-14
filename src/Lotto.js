@@ -1,6 +1,5 @@
 const { validateWiningNumber } = require("./utils/validator");
 const { Console } = require("@woowacourse/mission-utils");
-const { RANK_TABLE } = require("./constraints");
 
 class Lotto {
   #numbers;
@@ -28,7 +27,17 @@ class Lotto {
 
   getRank(matchedNumbers, match_bonus) {
     const match_cnt = matchedNumbers.length + match_bonus;
-    return RANK_TABLE[match_cnt];
+
+    switch (match_cnt) {
+      case 3:
+        return "FIFTH";
+      case 4:
+        return "FOURTH";
+      case 5:
+        return "THIRD";
+      case 6:
+        return match_bonus ? "SECOND" : "FIRST";
+    }
   }
 }
 

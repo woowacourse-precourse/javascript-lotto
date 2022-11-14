@@ -39,12 +39,4 @@ const REWARDS_TABLE = [
   ["FIRST", 0],
 ];
 
-// 당첨 개수에 따른 등수
-const RANK_TABLE = {
-  3: "FIFTH",
-  4: "FOURTH",
-  5: "THIRD",
-  6: this.match_bonus ? "SECOND" : "FIRST",
-};
-
-module.exports = { MESSAGES, REWARDS, REWARDS_TABLE, RANK_TABLE };
+module.exports = { MESSAGES, REWARDS, REWARDS_TABLE };

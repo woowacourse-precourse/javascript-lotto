@@ -73,15 +73,17 @@ class App {
         this.winningNumbers,
         this.bonusNumber
       );
-      result ?? false
-        ? this.results.set(result, this.results.get(result) + 1)
-        : null;
+
+      if (result !== undefined) {
+        this.results.set(result, this.results.get(result) + 1);
+      }
     });
 
     return this.getWinningPrize();
   }
 
   getWinningPrize() {
+    console.log("디스리절트", this.results);
     this.results.forEach((value, key) => {
       this.rewards += REWARDS[key] * value;
     });
