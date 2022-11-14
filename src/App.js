@@ -3,16 +3,17 @@ const { Message } = require('./Message');
 
 class App {
   inputMoney;
+  numLotto;
 
   constructor() {
-    this.inputMoney = 0;
+    this.numLotto = 0;
   }
   getMoney() {
     let money;
     MissionUtils.Console.readLine(`${Message.COST_MESSAGE}`, input => {
       money = input;
       this.validate(money);
-      this.inputMoney = money;
+      this.numLotto = this.buyLotto(this.inputMoney);
     });
   }
   checkUnit(money) {
@@ -31,8 +32,11 @@ class App {
     if (!this.checkRange(money)) throw new Error(Message.ERROR_COST_RANGE);
     if (!this.checkUnit(money)) throw new Error(Message.ERROR_COST_UNIT);
     if (!this.checkType(money)) throw new Error(Message.ERROR_COST_TYPE);
+    this.inputMoney = Number(money);
   }
-
+  buyLotto(money) {
+    return money / 1000;
+  }
   play() {
     this.getMoney();
   }
