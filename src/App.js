@@ -70,6 +70,10 @@ class App {
 
   calculateProfits(rewards) {
     MissionUtils.Console.print(`${MESSAGE.profitPrefix}${convertNumberToComma(profitRate(rewards, this.#paid))}${MESSAGE.profitPostfix}`);
+    this.destroyGame();
+  }
+
+  destroyGame() {
     MissionUtils.Console.close();
   }
 }
