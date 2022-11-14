@@ -9,6 +9,7 @@ class Lotto {
     this.#numbers = numbers;
     this.mylotto = [];
     this.bonusNumber = 0;
+    this.lottoCount = [];
   }
   
   askLottoCost(){
@@ -49,10 +50,14 @@ class Lotto {
       this.bonusNumber = parseInt(bonusNumber);
       this.#numbers.push(this.bonusNumber);
       this.sortLotto(this.#numbers);
+      this.printWinnningResult();
     })
-
-    
   }
+
+  printWinnningResult(){
+    this.calcWinningResult();
+  }
+
   // validate(numbers) {
   //   if (numbers.length !== 6) {
   //     throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
