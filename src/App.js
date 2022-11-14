@@ -10,7 +10,7 @@ class App {
   }
   inputPurchaseAmount() {
     MissionUtils.Console.readLine(
-      GUIDE_MESSAGE.PURCHASEAMOUNT_INPUT_MESSAGE,
+      GUIDE_MESSAGE.PURCHASEAMOUNT_INPUT,
       (purchaseAmount) => {
         Validation.checkPurchaseAmount(purchaseAmount);
         console.log(purchaseAmount);
@@ -26,7 +26,7 @@ class App {
   }
   inputWinnerNumber() {
     MissionUtils.Console.readLine(
-      GUIDE_MESSAGE.WINNERNUMBER_INPUT_MESSAGE,
+      GUIDE_MESSAGE.WINNERNUMBER_INPUT,
       (winnerNumber) => {
         const winnerNumberArr = winnerNumber.split(",");
         Validation.checkInputWinnerNumber(winnerNumberArr);

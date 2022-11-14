@@ -3,10 +3,10 @@ const { ERROR_MESSAGE, LOTTO_PRICE, LOTTO_SIZE } = require("./Constants");
 class Validation {
   static checkPurchaseAmount(purchaseAmount) {
     if (this.isOnlyNumber(purchaseAmount)) {
-      throw new Error(ERROR_MESSAGE.ERROR_MESSAGE_NOTONLY_NUMBER);
+      throw new Error(ERROR_MESSAGE.NOT_ONLY_NUMBER);
     }
     if (!this.isDivided(purchaseAmount)) {
-      throw new Error(ERROR_MESSAGE.ERROR_MESSAGE_UNDIVIDED);
+      throw new Error(ERROR_MESSAGE.PURCHASEAMOUNT_UNDIVIDED);
     }
   }
   static isOnlyNumber(purchaseAmount) {
@@ -18,16 +18,16 @@ class Validation {
   }
   static checkInputWinnerNumber(winnerNumber) {
     if (!this.isLottoSize(winnerNumber)) {
-      throw new Error(ERROR_MESSAGE.ERROR_MESSAGE_SIZE_INVALID);
+      throw new Error(ERROR_MESSAGE.SIZE_INVALID);
     }
     if (!this.isOnlyNumber(winnerNumber)) {
-      throw new Error(ERROR_MESSAGE.ERROR_MESSAGE_NOTONLY_NUMBER);
+      throw new Error(ERROR_MESSAGE.NOT_ONLY_NUMBER);
     }
     if (!this.isUniqueNumber(winnerNumber)) {
-      throw new Error(ERROR_MESSAGE.ERROR_MESSAGE_NOTUNIQUE_NUMBER);
+      throw new Error(ERROR_MESSAGE.NOT_UNIQUE_NUMBER);
     }
     if (!this.isNumberInRange(winnerNumber)) {
-      throw new Error(ERROR_MESSAGE.ERROR_MESSAGE_NOTINRANGE);
+      throw new Error(ERROR_MESSAGE.NOT_IN_RANGE);
     }
   }
   static isLottoSize(winnerNumber) {
