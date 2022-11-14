@@ -11,6 +11,18 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
+  test("숫자와 문자가 섞여있을때 발생하는 예외", () => {
+    const find = (str) => {
+      n = [...str];
+      n.forEach(element => {
+          if ( !(element >= '0' && element <= '9') ) {
+            throw new Error("[ERROR] 에러 발생");
+          }
+      });
+    };
+    expect(find("1000j")).toThrow("[ERROR]");
+  });
+
   // 아래에 추가 테스트 작성 가능
 
   test("구매가능한 로또 개수를 알려준다.", () => {
@@ -38,10 +50,17 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
+  test("사용자 구매금액 입력시 숫자가 안됬을때.", () => {
+    expect(() => {
+      const detecterror = new DetectError();
+      detecterror.checkUserInput(parseInt("abc"));
+    }).toThrow("[ERROR]");
+  });
+
   test("당첨번호가 범위안의 숫자가 아니거나 or 콤마로 구분되지 않을때 오류를 발생시킨다.", () => {
     expect(() => {
       const detecterror = new DetectError();
-      detecterror.checkPrizNumber(["1", "2", ";", "4", "", "11"]);
+      detecterror.checkPrizNumber(["1;2;3;4"]);
     }).toThrow("[ERROR]");
 
     expect(() => {

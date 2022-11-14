@@ -9,6 +9,7 @@ const ERROR_MESSAGE = {
     OVERLAP: "[ERROR] 번호는 중복될 수 없습니다.",
     DIVIDED: "[ERROR] 천원 단위로 입력해주세요.",
     COMMA: "[ERROR] 당첨 번호는 숫자와 숫자사이를 ,로 올바르게 구분시켜주세요.",
+    NUMBER: "[ERROR] 숫자를 입력해주세요."
 };
 
 const WINNING_RESULT = [
