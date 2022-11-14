@@ -14,11 +14,11 @@ class QuickPick {
   }
 
   validate(payment) {
-    if (payment < 1000) {
+    if (payment < LOTTO_INFO.LOTTO_PRICE) {
       throw new Error(ERROR_MESSAGES.INVALID_COST_MIN);
     }
 
-    if (payment % 1000 !== 0) {
+    if (payment % LOTTO_INFO.LOTTO_PRICE !== 0) {
       throw new Error(ERROR_MESSAGES.INVALID_COST_UNIT);
     }
 
