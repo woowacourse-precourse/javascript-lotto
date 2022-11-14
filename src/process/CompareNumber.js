@@ -34,7 +34,7 @@ class CompareNumber {
       firstnumber.forEach(function (secondnumber) {
         const COMPARE_BONUS = inputBonus.indexOf(secondnumber);
         if (COMPARE_BONUS > -1) {
-          bonusCount += 1;
+          bonusCount = 1;
         }
       });
       CORRECT_BONUS.push(bonusCount);
@@ -45,25 +45,23 @@ class CompareNumber {
   }
 
   correctNumbers() {
-    this.correct.forEach(function (number) {
-      if (number === 3) {
+    for (let i = 0; i < this.correct.length; i++) {
+      if (this.correct[i] === 3) {
         GRADE[4] += 1;
       }
-      if (number === 4) {
+      if (this.correct[i] === 4) {
         GRADE[3] += 1;
       }
-      if (number === 5) {
-        this.correctBonus.forEach(function (bonus) {
-          if (bonus === 1) {
-            GRADE[1] += 1;
-          }
-        });
+      if (this.correct[i] === 5 && this.correctBonus[i] !== 1) {
         GRADE[2] += 1;
       }
-      if (number === 6) {
+      if (this.correct[i] === 5 && this.correctBonus[i] === 1) {
+        GRADE[1] += 1;
+      }
+      if (this.correct[i] === 6) {
         GRADE[0] += 1;
       }
-    });
+    }
     this.caculateRate.caculateNumbers(this.computerNumbers, GRADE);
   }
 }
