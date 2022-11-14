@@ -9,6 +9,13 @@ const PRIZE_CRITERIA = Object.freeze({
   FOURTH: 4,
   FIFTH: 3,
 });
+const PRIZE_MONEY = Object.freeze({
+  FIRST: 2000000000,
+  SECOND: 30000000,
+  THIRD: 1500000,
+  FOURTH: 50000,
+  FIFTH: 5000,
+});
 
 class LottoGame {
   constructor(LottoGameView) {
@@ -25,6 +32,7 @@ class LottoGame {
       fourth: 0,
       fifth: 0,
     }
+    this.totalYield = 0;
   }
 
   setPurchaseAmount(purchaseAmount) {
@@ -109,7 +117,7 @@ class LottoGame {
       const bonusMatch = lottoNumber.includes(this.bonusNumber);
       this.comparePrizeCriteria(matchCount, bonusMatch);
     });
-    
+
     this.view.printWinningStatistics(this.prizeCount);
   }
 
@@ -145,6 +153,21 @@ class LottoGame {
     }
 
     this.prizeCount[criteria.toLowerCase()] += 1;
+  }
+
+  setTotalYield() {
+    this.totalYield = this.getTotalRevenue();
+    this.totalYield = (this.totalYield / this.purchaseAmount) * 100;
+    this.view.printYield(this.totalYield.toFixed(1));
+  }
+
+  getTotalRevenue() {
+    let totalRevenue = 0;
+    Object.keys(this.prizeCount).forEach((prize) => {
+      totalRevenue += this.prizeCount[prize]*PRIZE_MONEY[prize.toUpperCase()];
+    });
+
+    return totalRevenue;
   }
 }
 

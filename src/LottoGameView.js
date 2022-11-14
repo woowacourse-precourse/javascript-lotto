@@ -64,6 +64,11 @@ class LottoGameView {
     Console.print(`${PRIZE_CRITERIA.SECOND_THIRD}개 일치 (${PRIZE_MONEY.THIRD}원) - ${prizeCount.third}개`);
     Console.print(`${PRIZE_CRITERIA.SECOND_THIRD}개 일치, 보너스 볼 일치 (${PRIZE_MONEY.SECOND}원) - ${prizeCount.second}개`);
     Console.print(`${PRIZE_CRITERIA.FIRST}개 일치 (${PRIZE_MONEY.FIRST}원) - ${prizeCount.first}개`);
+    this.game.setTotalYield();
+  }
+
+  printYield(totalYield) {
+    Console.print(`총 수익률은 ${totalYield}%입니다.`);
     this.gameFinish();
   }
 
