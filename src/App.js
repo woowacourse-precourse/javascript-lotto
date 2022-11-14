@@ -5,7 +5,7 @@ class App {
   play() {}
   #purchaseAmount;
   #lottoNum;
-  #winningNum;
+  #winningNum = [];
 
   constructor() {
     this.issuedLottoNum = [];
@@ -48,7 +48,26 @@ class App {
   }
 
   inputWinningNum() {
-    Console.readLine("당첨 번호를 입력해 주세요. \n", (winningNum) => {});
+    Console.readLine("당첨 번호를 입력해 주세요. \n", (winningNum) => {
+      const winningNumArr = winningNum.split(",");
+      this.isValidWinningNum(winningNumArr);
+      this.#winningNum = winningNumArr;
+    });
+  }
+
+  isValidWinningNum(winningNumArr) {
+    const winningNumSet = new Set(winningNumArr);
+    if (winningNumArr.length !== 6) {
+      throw "[EROR] 로또 번호는 6자리여야 합니다.";
+    }
+    winningNumArr.forEach((element) => {
+      if (element < 1 || element > 45) {
+        throw "[EROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
+      }
+    });
+    if (winningNumArr.length !== winningNumSet.size) {
+      throw "[EROR] 로또 번호는 중복되지 않아야 합니다.";
+    }
   }
 }
 
