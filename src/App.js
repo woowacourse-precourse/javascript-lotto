@@ -91,6 +91,34 @@ class App {
     return true;
   }
 
+  lottoResult() { // 당첨 내역을 확인하고 출력하는 메서드
+    let prize = new Array(8).fill(0);
+    for (let i = 0; i < this.auto.length; i++) {
+      prize[this.compareLotto(i)] += 1;
+    }
+    MissionUtils.Console.print('\n당첨 통계\n---');
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${prize[3]}개`)
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${prize[4]}개`)
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${prize[5]}개`)
+    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${prize[6]}개`)
+    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${prize[7]}개`)
+  }
+
+  compareLotto(num) { // 각 로또에 대해 당첨번호와 몇개가 일치하는지 확인하는 메서드
+    let count = 0;
+    for (let i = 0; i < 6; i++) {
+      if (this.auto[num].includes(this.manual[i])) {
+        count += 1;
+      }
+    }
+    if (count === 5) {
+      if (this.auto[num].includes(this.bonus)) {
+        count += 2;
+      }
+    }
+    return count;
+  }
+
   play() {
     this.purchasePrice();
   }
