@@ -19,8 +19,22 @@ class InputUI extends UI {
     return new Promise((resolve, reject) => {
       MissionUtils.Console.readLine(message, (answer) => {
         answer = TypeConverter.stringToArray(answer, ',');
-        console.log(answer);
         if (Vaildator.isRightLottoNumbers(answer)) {
+          resolve(answer);
+        }
+        reject('error');
+      });
+    });
+  }
+
+  bonus(hitNumbers, message = '') {
+    return new Promise((resolve, reject) => {
+      MissionUtils.Console.readLine(message, (answer) => {
+        answer = TypeConverter.stringToNumber(answer);
+        if (
+          Vaildator.isRightLottoNumber(answer) &&
+          Vaildator.isDuplicateNumberInArray(hitNumbers, answer)
+        ) {
           resolve(answer);
         }
         reject('error');

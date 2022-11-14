@@ -13,12 +13,14 @@ class App {
     this.output = new OutputUI();
     this.user = new User();
     this.hitLotto;
+    this.bonusNumber;
   }
 
   async play() {
     await this.inputBuyAmountView();
     this.printUserLottos();
     await this.inputHitNumberView();
+    await this.inputBonusView();
   }
 
   async inputBuyAmountView() {
@@ -37,6 +39,15 @@ class App {
       .then((resolve) => resolve)
       .catch((e) => {});
     this.hitLotto = new Lotto(numbers);
+  }
+
+  async inputBonusView() {
+    this.output.print(message.BONUS_NUMBER);
+    const bonusNumber = await this.input
+      .bonus(this.hitLotto.getNumbers())
+      .then((resolve) => resolve)
+      .catch((e) => {});
+    this.bounsNumber = bonusNumber;
   }
 
   printUserLottos() {
