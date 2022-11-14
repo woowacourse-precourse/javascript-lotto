@@ -15,7 +15,9 @@ class Lotto {
     if (Validator.isDuplicatedLotto(string)) return;
   }
 
-  // TODO: 추가 기능 구현
+  static caculateLottoNumPerUnit(price, unit = 1000) {
+    return Math.floor(price / unit);
+  }
 }
 
 module.exports = Lotto;
