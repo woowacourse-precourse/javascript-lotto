@@ -1,4 +1,4 @@
-const Validator = require('../src/domains/Validator');
+const Validator = require('../src/services/Validator');
 
 describe('Validator 클래스 테스트', () => {
   test("checkTruthy에 ''는 예외를 발생시킨다.", () => {

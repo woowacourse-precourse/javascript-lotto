@@ -1,9 +1,11 @@
 const GameInput = require('../views/GameInput');
 const GameOutput = require('../views/GameOutput');
 const Player = require('../domains/Player');
-const WinningNumber = require('../domains/WinningNumber');
 const Lotto = require('../domains/Lotto');
-const Console = require('../domains/Console');
+const SixNumbers = require('../domains/SixNumbers');
+const Bonus = require('../domains/Bonus');
+const Console = require('../utils/Console');
+const Profit = require('../services/Profit');
 
 class Game {
   #instance = {};
@@ -20,27 +22,28 @@ class Game {
   }
 
   #registerSixNumbers(sixNumbers) {
-    this.#instance.winningNumber = new WinningNumber();
-    this.#instance.winningNumber.registerSixNumbers(sixNumbers);
+    this.#instance.sixNumbers = new SixNumbers(sixNumbers);
 
     GameInput.enter(GameOutput.message.bonus, this.#registerBonus.bind(this));
   }
 
   #registerBonus(bonus) {
-    this.#instance.winningNumber.registerBonus(bonus);
+    this.#instance.bonus = new Bonus(bonus, this.#instance.sixNumbers.getSixNumbers());
 
     this.#calculateLottoResult();
   }
 
   #calculateLottoResult() {
-    this.#instance.lotto = new Lotto(this.#instance.winningNumber.getSixNumbers());
+    this.#instance.lotto = new Lotto(this.#instance.sixNumbers.getSixNumbers());
 
-    const result = this.#instance.lotto.calculateResult(
-      this.#instance.player.getLottos(),
-      this.#instance.winningNumber.getBonus()
+    const result = this.#instance.lotto.calculateGradeResult({
+      lottos: this.#instance.player.getLottos(),
+      bonus: this.#instance.bonus.getBonus(),
+    });
+    GameOutput.printResult(
+      result,
+      Profit.calculate({ result, purchaseAmount: this.#instance.player.getPurchaseAmount() })
     );
-    const profit = this.#instance.player.calculateProfit(result);
-    GameOutput.printResult(result, profit);
 
     this.#endGame();
   }

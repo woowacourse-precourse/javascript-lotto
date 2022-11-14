@@ -1,4 +1,4 @@
-const Console = require('../domains/Console');
+const Console = require('../utils/Console');
 
 class GameInput {
   static enter(message, playLotto) {

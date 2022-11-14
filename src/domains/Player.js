@@ -1,6 +1,5 @@
-const DataProcessor = require('./DataProcessor');
-const DataChecker = require('./DataChecker');
-const Tickets = require('./Tickets');
+const PlayerDataChecker = require('../services/PlayerPurchaseAmountChecker');
+const Tickets = require('../services/Tickets');
 
 class Player {
   #data = {};
@@ -10,23 +9,19 @@ class Player {
   }
 
   #purchaseLotto(purchaseAmount) {
-    DataChecker.isValidRowDataOfPurchaseAmount(purchaseAmount);
-    this.#data.purchaseAmount = DataProcessor.convertStringToNumber(purchaseAmount);
-    DataChecker.isValidPurchaseAmount(this.#data.purchaseAmount);
-
-    this.#getQuantityOfLotto(this.#data.purchaseAmount);
+    PlayerDataChecker.checkRowDataOfPurchaseAmount(purchaseAmount);
+    this.#data.purchaseAmount = parseInt(purchaseAmount, 10);
+    PlayerDataChecker.checkPurchaseAmount(this.#data.purchaseAmount);
+    this.#calculateQuantityOfLotto(this.#data.purchaseAmount);
     this.#data.lottos = Tickets.publish(this.#data.quantity);
   }
 
-  #getQuantityOfLotto() {
+  #calculateQuantityOfLotto() {
     this.#data.quantity = this.#data.purchaseAmount / 1000;
   }
 
-  getPurchaseResult() {
-    return {
-      quantity: this.#data.quantity,
-      lottos: DataProcessor.convertLottosToPrintableLottos(this.#data.lottos),
-    };
+  getPurchaseAmount() {
+    return this.#data.purchaseAmount;
   }
 
   getLottos() {
@@ -37,25 +32,19 @@ class Player {
     return this.#data.quantity;
   }
 
-  calculateProfit(result) {
-    const totalAmount = Object.values(result).reduce(this.#calculateTotalAmount, 0);
-    const profit = this.#convertIntegerToFloatWithFirstDecimalPlace(totalAmount);
-
-    return this.#convertProfitToProfitWithComma(profit);
+  getPurchaseResult() {
+    return {
+      quantity: this.#data.quantity,
+      lottos: this.#convertLottosToPrintableLottos(),
+    };
   }
 
-  #calculateTotalAmount(accumulator, currentValue, currentIndex) {
-    const prizeMoney = [2000000000, 30000000, 1500000, 50000, 5000];
-
-    return accumulator + currentValue * prizeMoney[currentIndex];
+  #convertLottosToPrintableLottos() {
+    return this.#data.lottos.map(ticket => this.#createPrintableTicket(ticket)).join('\n');
   }
 
-  #convertIntegerToFloatWithFirstDecimalPlace(totalAmount) {
-    return parseFloat(Math.round((totalAmount / this.#data.purchaseAmount) * 1000) / 10).toFixed(1);
-  }
-
-  #convertProfitToProfitWithComma(profit) {
-    return profit.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  #createPrintableTicket(ticket) {
+    return `[${ticket.join(', ')}]`;
   }
 }
 

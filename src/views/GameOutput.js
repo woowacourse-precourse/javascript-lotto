@@ -1,5 +1,5 @@
-const Console = require('../domains/Console');
-const GRADE = require('../domains/grade');
+const Console = require('../utils/Console');
+const GRADE = require('../utils/grade');
 
 class GameOutput {
   static message = {
@@ -9,8 +9,7 @@ class GameOutput {
   };
 
   static printLottos({ quantity, lottos }) {
-    Console.print('');
-    Console.print(`${quantity}개를 구매했습니다.`);
+    Console.print(`\n${quantity}개를 구매했습니다.`);
     Console.print(lottos);
   }
 

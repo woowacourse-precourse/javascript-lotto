@@ -1,4 +1,4 @@
-const Console = require('./Console');
+const Console = require('../utils/Console');
 
 class Validator {
   static #errorMessage = {
@@ -11,6 +11,17 @@ class Validator {
     range: '잘못된 범위의 입력입니다.',
     duplication: '중복된 입력입니다.',
     sortByAscending: '오름차순 정렬이 되지 않았습니다.',
+  };
+
+  static #regExp = {
+    number: /^[0-9]+$/,
+    sixNumbers: /^[0-9|,]+$/,
+  };
+
+  static #data = {
+    sixNumbersLength: 6,
+    minLottoNumber: 1,
+    maxLottoNumber: 45,
   };
 
   static checkTruthy(truthy) {
@@ -30,9 +41,7 @@ class Validator {
   }
 
   static checkOnlyNumbersInString(string) {
-    const numberRegExp = /^[0-9]+$/;
-
-    if (!numberRegExp.test(string)) {
+    if (!Validator.#regExp.number.test(string)) {
       Console.close();
       throw new Error(`${Validator.#errorMessage.head} ${Validator.#errorMessage.format}`);
     }
@@ -53,9 +62,7 @@ class Validator {
   }
 
   static checkFormatSixNumbers(format) {
-    const sixNumbersRegExp = /^[0-9|,]+$/;
-
-    if (!sixNumbersRegExp.test(format)) {
+    if (!Validator.#regExp.sixNumbers.test(format)) {
       Console.close();
       throw new Error(`${Validator.#errorMessage.head} ${Validator.#errorMessage.format}`);
     }
@@ -73,7 +80,7 @@ class Validator {
   }
 
   static checkSixLength(sixNumbers) {
-    if (sixNumbers.length !== 6) {
+    if (sixNumbers.length !== this.#data.sixNumbersLength) {
       Console.close();
       throw new Error(`${Validator.#errorMessage.head} ${Validator.#errorMessage.length}`);
     }
@@ -84,7 +91,7 @@ class Validator {
   }
 
   static checkRangeOfLottoNumber(lottoNumber) {
-    if (lottoNumber < 1 || lottoNumber > 45) {
+    if (lottoNumber < this.#data.minLottoNumber || lottoNumber > this.#data.maxLottoNumber) {
       Console.close();
       throw new Error(`${Validator.#errorMessage.head} ${Validator.#errorMessage.range}`);
     }
