@@ -48,10 +48,28 @@ class User {
   }
 
   printWinStats() {
-    //   Console.print(`3개 일치 (5,000원) - 1개`);
-    //   Console.print(`4개 일치 (50,000원) - 0개`);
-    //   Console.print(`5개 일치 (1,500,000원) - 0개`);
-    //   Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - 0개`);
-    //   Console.print(`6개 일치 (2,000,000,000원) - 0개`);
+    for (let rank = 5; rank >= 1; rank--) {
+      printRank(rank, this.#winStats.get(rank));
+    }
+  }
+
+  printRank(rank, count) {
+    switch (rank) {
+      case 5:
+        Console.print(`3개 일치 (5,000원) - ${count}개`);
+        break;
+      case 4:
+        Console.print(`4개 일치 (50,000원) - ${count}개`);
+        break;
+      case 3:
+        Console.print(`5개 일치 (1,500,000원) - ${count}개`);
+        break;
+      case 2:
+        Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`);
+        break;
+      case 1:
+        Console.print(`6개 일치 (2,000,000,000원) - ${count}개`);
+        break;
+    }
   }
 }
