@@ -35,7 +35,7 @@ class Match {
     if (match === MATCH_NUM.IS_SIX) this.lottoWinnerNumber[0] += 1;
     if (match === MATCH_NUM.IS_FIVE_BONUS) this.lottoWinnerNumber[1] += 1;
     if (match === MATCH_NUM.IS_FIVE) this.lottoWinnerNumber[2] += 1;
-    if (match === MATCH_NUM.IS_FIVE) this.lottoWinnerNumber[3] += 1;
+    if (match === MATCH_NUM.IS_FOUR) this.lottoWinnerNumber[3] += 1;
     if (match === MATCH_NUM.IS_THREE) this.lottoWinnerNumber[4] += 1;
     return this.lottoWinnerNumber;
   }
