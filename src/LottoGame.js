@@ -157,9 +157,10 @@ const calculatePrize = (value, cnt) => {
 };
 
 const announceYield = (money, userPrizeValue) => {
-  console.log(money, userPrizeValue);
   MissionUtils.Console.print(
-    `${STATIC.MESSAGE.YIELD}${(userPrizeValue / money) * 100}%입니다.`
+    `${STATIC.MESSAGE.YIELD}${((userPrizeValue / money) * 100).toFixed(
+      1
+    )}%입니다.`
   );
 };
 
