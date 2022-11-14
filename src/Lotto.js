@@ -13,7 +13,9 @@ class Lotto {
     this.exception.validateWinningNumber(numbers);
   }
 
-  // TODO: 추가 기능 구현
+  get winningNumber() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
