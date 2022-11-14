@@ -55,6 +55,12 @@ class LottoGame {
       }
     );
   }
+  countMatchLotto(winningNumbers, lottoNumbers) {
+    const addedArrSize = [...winningNumbers, ...lottoNumbers].length;
+    const delteDuplicateArrSize = new Set([...winningNumbers, ...lottoNumbers])
+      .size;
+    return addedArrSize - delteDuplicateArrSize;
+  }
 }
 
 module.exports = LottoGame;
