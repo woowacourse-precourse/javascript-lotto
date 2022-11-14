@@ -69,7 +69,15 @@ class App {
   }
   printGenerateUserLottoNumber(userLottoLists){
     userLottoLists.forEach((userLottoList)=>{
-      MissionUtils.Console.print(userLottoList);
+      let userLotto = '[';
+      userLottoList.forEach((index)=>{
+        userLotto+=index;
+        userLotto+=',';
+        userLotto+=' ';
+      });
+      userLotto = userLotto.slice(0,userLotto.length-2);
+      userLotto+=']';
+      MissionUtils.Console.print(userLotto);
     });
   }
   enterPrizeNumber(){
