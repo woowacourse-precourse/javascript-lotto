@@ -5,7 +5,10 @@ const { INPUT_MESSAGE } = require("./message");
 const { Console } = MissionUtils;
 
 class App {
-  constructor() {}
+  constructor() {
+    this.userLottos = null;
+    this.winningLotto = null;
+  }
 
   play() {
     this.inputPrice();
@@ -14,6 +17,7 @@ class App {
     Console.readLine(INPUT_MESSAGE.PURCHASE, (payment) => {
       const lottoGenerator = new LottoGenerator();
       const myLotto = lottoGenerator.generate(payment);
+      this.userLottos = myLotto;
       this.printMyLotto(myLotto);
     });
   }
@@ -28,7 +32,7 @@ class App {
   }
   inputBonus() {
     Console.readLine(INPUT_MESSAGE.WINNING, (winning) => {
-      new Lotto(winning);
+      this.winningLotto = new Lotto(winning).returnLotto();
     });
   }
 }

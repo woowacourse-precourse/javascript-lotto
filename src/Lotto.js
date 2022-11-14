@@ -10,7 +10,7 @@ class Lotto {
 
   validate(numbers) {
     this.validateComma(numbers);
-    numbers = convertToArray(numbers);
+    numbers = this.convertToArray(numbers);
     this.validateLength(numbers);
     this.validateOverlap(numbers);
     this.validateRange(numbers);
@@ -38,14 +38,18 @@ class Lotto {
     numbers = numbers.split("");
     numbers.forEach((e) => {
       const ascii = e.charCodeAt(0);
-      if (ascii !== 44 && (ascii <= 48 || ascii >= 57)) {
+      if (ascii !== 44 && (ascii < 48 || ascii > 57)) {
+        console.log(e);
         throw new Error(ERROR_MESSAGE.SPLIT_COMMA);
       }
     });
   }
+  returnLotto() {
+    return this.convertToArray(this.#numbers);
+  }
 
-  static convertToArray(str) {
-    return str.split(",");
+  convertToArray(str) {
+    return str.split(",").map((num) => Number(num));
   }
 }
 
