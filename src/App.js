@@ -27,6 +27,9 @@ class App {
     }
     return lottoArray;
   }
+  printNumberOfLotto(lottoCount) {
+    MissionUtils.Console.print(lottoCount);
+  }
 }
 
 a = new App();
