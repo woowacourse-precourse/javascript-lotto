@@ -32,6 +32,7 @@ class CompareNumber {
         this.fourGrade();
       }
       if (number === 5) {
+        this.threeGrade();
       }
       if (number === 6) {
       }
@@ -44,6 +45,10 @@ class CompareNumber {
 
   fourGrade() {
     return (GRADE[3] += 1);
+  }
+
+  threeGrade() {
+    return (GRADE[2] += 1);
   }
 }
 
