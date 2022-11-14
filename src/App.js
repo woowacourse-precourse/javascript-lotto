@@ -15,6 +15,17 @@ class App {
 
   getRandomNumber() {
     const ret = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+
+    ret.sort(function (a, b) {
+      if (a > b) {
+        return 1;
+      }
+      if (a < b) {
+        return -1;
+      }
+      return 0;
+    });
+
     return ret;
   }
 
@@ -31,7 +42,7 @@ class App {
 
   countLotto(cost) {
     if (cost % 1000) {
-      throw new Error("1,000원 단위로 입력해야합니다");
+      throw new Error("[ERROR] 1,000원 단위로 입력해야합니다");
     }
     return cost / 1000;
   }
