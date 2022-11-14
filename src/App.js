@@ -88,6 +88,7 @@ class App {
   yield(money,result){
     let ANSWER = ( result / money ) * 100
     MissionUtils.Console.print(`총 수익률은 ${ANSWER}%입니다.`)
+    MissionUtils.Console.close()
   }
 
   statistics(lottoArray,winNumber,bonus){
