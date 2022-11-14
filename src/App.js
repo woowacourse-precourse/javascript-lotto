@@ -18,12 +18,16 @@ class App {
     this.lottoMoney = 0;
   }
 
-  play() { }
+  play() {
+    this.inputPurchaseAmount();
+  }
 
   // 구입금액 입력 함수 구현
   inputPurchaseAmount() {
     MissionUtils.Console.readLine(INPUT_MESSAGES.PURCHASE_AMOUNT, (money) => {
+      this.inputPurchaseAmountDivide(money);
       this.lottoMoney = money;
+      this.buyLotto(money);
     })
   }
 
@@ -35,6 +39,22 @@ class App {
   }
 
   // 로또 구입 금액에 해당하는 만큼 로또를 발행하는 함수 구현
+  buyLotto(money) {
+    const lottoQuantity = money / 1000;
+    MissionUtils.Console.print(`${lottoQuantity}개를 구입했습니다.`);
+    this.createLotto(lottoQuantity);
+  }
+
+  createLotto(lottoQuantity) {
+    for (let i = 0; i < lottoQuantity; i++) {
+      const lottoNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
+      MissionUtils.Console.print(lottoNumbers);
+      this.lottos.push(lottoNumbers);
+    }
+    this.inputWinNumber();
+  }
+
+  // 당첨 번호를 입력하는 함수 구현
 }
 
 const app = new App();
