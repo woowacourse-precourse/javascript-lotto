@@ -12,6 +12,7 @@ class App {
     let winning_number;
     let bonus_number;
     let result;
+    let yield_amount;
 
     this.purchase = this.input('구입금액을 입력해 주세요.\n');
     if (this.purchase === undefined)
@@ -28,6 +29,7 @@ class App {
     const lotto = new Lotto(winning_number);
 
     result = lotto.compare_result(bonus_number, lotto_list);
+    yield_amount = this.calc_yield(result);
   }
 
   input(text) {
@@ -91,6 +93,13 @@ class App {
       return parseInt(value, 10);
     })
     return result;
+  }
+
+  calc_yield(result) {
+    let yield_amount = result[0]*5000 + result[1]*50000 + result[2]*1500000 + result[3]*30000000 + result[4]*2000000000;
+    yield_amount = yield_amount / this.purchase * 100;
+    yield_amount.toFixed(1);
+    return yield_amount;
   }
 }
 
