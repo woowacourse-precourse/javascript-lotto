@@ -1,21 +1,12 @@
 const Lotto = require("../Lotto");
 const Utils = require("../Utils");
-const { LOTTO_SPEC } = require("../constants");
+const { LOTTO_SPEC, RANK } = require("../constants");
 
 const MATCH_COUNT = Object({
   SIX: 6,
   FIVE: 5,
   FOUR: 4,
   THREE: 3,
-});
-
-const RANK = Object({
-  ONE: 1,
-  TWO: 2,
-  THREE: 3,
-  FOUR: 4,
-  FIVE: 5,
-  UN_RANK: -1,
 });
 
 const RANK_MAP = Object({
