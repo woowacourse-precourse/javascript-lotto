@@ -1,5 +1,6 @@
 const Lotto = require("../src/Lotto");
 const App = require("../src/App");
+const DetectError = require("../src/DetectError");
 const { MissionUtils } = require("@woowacourse/mission-utils");
 describe("로또 클래스 테스트", () => {
 
@@ -29,6 +30,26 @@ describe("로또 클래스 테스트", () => {
       app.numberOfAvailablePurchase(800)
     }).toThrow("[ERROR]");
   });
+
+  test("보너스 번호와 당첨 번호간의 중복이 발생할때 예외를 발생시킨다.", () => {
+    expect(() => {
+      const detecterror = new DetectError();
+      detecterror.isBonusInPrize(["1","2","3","4","5","6"], "6");
+    }).toThrow("[ERROR]");
+  });
+
+  test("당첨번호가 범위안의 숫자가 아니거나 or 콤마로 구분되지 않을때 오류를 발생시킨다.", () => {
+    expect(() => {
+      const detecterror = new DetectError();
+      detecterror.checkPrizNumber(["1", "2", ";", "4", "", "11"]);
+    }).toThrow("[ERROR]");
+
+    expect(() => {
+      const detecterror = new DetectError();
+      detecterror.checkPrizNumber(["1","2","3","4","a","6"]);
+    }).toThrow("[ERROR]");
+  });
+  
 
   test("총 수익률을 계산해주는 로직", () => {
     let lottoPrize = {
