@@ -1,9 +1,10 @@
+const LOTTO = require('./consts/Lotto');
+const MESSAGE = require('./consts/Message');
+
 const Console = require('./Console');
 const Exception = require('./Exception');
 const Random = require('./Random');
 const Lotto = require('./Lotto');
-const LOTTO = require('./consts/Lotto');
-const MESSAGE = require('./consts/Message');
 
 class App {
   purchase;
@@ -29,7 +30,9 @@ class App {
 
   handlePurchaseException(inputNumber) {
     const {
-      ERROR: { INTEGER, UNIT },
+      ERROR: {
+        PURCHASE: { INTEGER, UNIT },
+      },
     } = MESSAGE;
 
     switch (false) {
@@ -63,7 +66,7 @@ class App {
   setLottos() {
     let lottos = [];
 
-    for (const i = 0; i < this.numberOfPurchases; i++) {
+    for (let i = 0; i < this.numberOfPurchases; i++) {
       const numbers = this.getLottoNumbers();
       lottos.push(new Lotto(numbers));
     }
