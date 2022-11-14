@@ -126,11 +126,11 @@ class App {
 
   /**
    * 구매 비용에 따라 로또 여러 장을 발급하는 함수
-   * @param {number} pay 로또 구매 비용
+   * @param {number} cost 로또 구매 비용
    * @returns {Lotto[]} 구매한 로또 객체들이 담긴 배열
    */
-  publishLottos(pay) {
-    const PURCHASE_QUANTITY = pay / 1000;
+  publishLottos(cost) {
+    const PURCHASE_QUANTITY = cost / 1000;
     let lottos = []; // 구매한 로또들
 
     for (let i = 0; i < PURCHASE_QUANTITY; i++) {
@@ -181,12 +181,12 @@ class App {
 
   /**
    * 구매 비용과 총 수익을 바탕으로 총 수익률을 계산하는 함수
-   * @param {number} pay 로또 구매 비용
+   * @param {number} cost 로또 구매 비용
    * @param {PrizeInformation} PRIZE_INFORMATION 로또 당첨 정보
    * @returns {number} 총 수익률
    */
-  getIncomeRate(pay, PRIZE_INFORMATION) {
-    const INCOME_RATE = PRIZE_INFORMATION.getTotalPrize() * 100 / pay;
+  getIncomeRate(cost, PRIZE_INFORMATION) {
+    const INCOME_RATE = PRIZE_INFORMATION.getTotalPrize() * 100 / cost;
 
     return Math.round(INCOME_RATE * 10) / 10; // 소수점 둘째 자리에서 반올림
   }
