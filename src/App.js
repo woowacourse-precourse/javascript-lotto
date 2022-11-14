@@ -21,8 +21,14 @@ class App {
   }
 
   inputWinningNum(){
-    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', async(winning_num) => {
+    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (winning_num) => {
       console.log(winning_num);
+    });
+  }
+
+  inputBonusNum(){
+    MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (bonus_num) => {
+      console.log(bonus_num);
     });
   }
 
@@ -33,6 +39,7 @@ class App {
         this.print_lotto_cnt(lotto_cnt);
         this.draw_lotto(lotto_cnt);
         this.inputWinningNum();
+        this.inputBonusNum();
       }
       await MissionUtils.Console.close();
 
