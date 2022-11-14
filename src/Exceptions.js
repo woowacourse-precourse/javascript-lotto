@@ -17,7 +17,7 @@ class Exceptions {
     return false;
   }
 
-  isNotInRange(num) {
+  isInRange(num) {
     return 0 < parseInt(num) && parseInt(num) < 46;
   }
 }
@@ -37,7 +37,7 @@ class WinningExceptions extends Exceptions {
   check() {
     if (this.isNotRightLength(6)) super.occurError(ERROR.WINNING_LENGTH);
     if (this.isNotAllDigit()) super.occurError(ERROR.WINNING_DIGIT);
-    if (this.isNotInRange()) super.occurError(ERROR.WINNING_RANGE);
+    if (this.isNotInRangeArr()) super.occurError(ERROR.WINNING_RANGE);
     if (this.isDuplicated()) super.occurError(ERROR.WINNING_DUPLICATED);
   }
 
@@ -50,7 +50,7 @@ class WinningExceptions extends Exceptions {
   }
 
   isNotInRangeArr() {
-    return !this.input.every((winningNum) => isNotInRange(winningNum));
+    return !this.input.every((winningNum) => super.isInRange(winningNum));
   }
 
   isDuplicated() {
