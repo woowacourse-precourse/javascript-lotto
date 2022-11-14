@@ -27,7 +27,7 @@ class Lotto {
     return MissionUtils.Random.pickUniqueNumbersInRange(
       CONSTANT.LOTTO_START,
       CONSTANT.LOTTO_END,
-      CONSTANT.LOTTO_LENGT와
+      CONSTANT.LOTTO_LENGTH
     );
   }
 
@@ -36,7 +36,7 @@ class Lotto {
 
     const matchedList = this.#numbers.filter((number) => {
       return winNumberArray.includes(number);
-    }); 
+    });
 
     return matchedList.length === 5
       ? this.isMatchedWithBonus(this.#numbers, bonus)
