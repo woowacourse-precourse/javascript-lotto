@@ -31,6 +31,7 @@ class Lotto {
         throw new Error("[ERROR] 로또 번호는 숫자여야 합니다.");
       }
     });
+  
   }
 
   setBonusNumber(numbers, bonusNumber) {
@@ -54,18 +55,44 @@ class Lotto {
   }
 
   async computeLottoResult(numbers, bonusNumber, candidateNumbers) {
-    let results = []
+    let computeResults = []
     const promises = candidateNumbers.map(candidateNumber => {
       const countWinningNumber = candidateNumber.filter(x => numbers.includes(x)).length
       const countBonusNumber = candidateNumber.includes(bonusNumber) ? 1 : 0
-      results.push([countWinningNumber, countBonusNumber])
+      computeResults.push([countWinningNumber, countBonusNumber])
     });
     await Promise.all(promises)
-    console.log(results)
+    this.matchLottoResult(computeResults)
   }
-  // printLottoResult(numbers, bonusNumber){
-  //   console.log('printLottoResult',numbers,bonusNumber)
-  //   MissionUtils.Console.print('3개 일치 (5,000원) - ${}개')
+
+  async matchLottoResult(results){
+    let winningRanks = [0,0,0,0,0]
+    const promises = results.map(result => {
+      const matchWinningNumber = result[0]
+      const matchBonusNumber = result[1]
+      if(matchWinningNumber === 3){
+        winningRanks[0] += 1
+      }
+      if(matchWinningNumber === 4){
+        winningRanks[1] += 1
+      }
+      if(matchWinningNumber === 5 && matchBonusNumber === 0){
+        winningRanks[2] += 1
+      }
+      if(matchWinningNumber === 5 && matchBonusNumber === 1){
+        winningRanks[3] += 1
+      }
+      if(matchWinningNumber === 6){
+        winningRanks[4] += 1
+      }
+    })
+    await Promise.all(promises)
+    console.log(winningRanks)
+    this.printLottoResult(winningRanks)
+  }
+
+  // printLottoResult(results){
+  //   MissionUtils.Console.print(`3개 일치 (5,000원) - ${}개`)
   //   MissionUtils.Console.print('4개 일치 (50,000원) - ${}개')
   //   MissionUtils.Console.print('5개 일치 (1,500,000원) - ${}개')
   //   MissionUtils.Console.print('5개 일치, 보너스 볼 일치 (30,000,000원) - ${}개')
