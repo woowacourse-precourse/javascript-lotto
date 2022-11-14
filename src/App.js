@@ -41,13 +41,25 @@ class App {
     Console.readLine(`\n${prompt}\n`, (input) => {
 
       this.winningNumber = input.split(',');
+      this.winningNumber = this.winningNumber.map(number => parseInt(number));
+      console.log(this.winningNumber);
       this.bonusWindow(BONUS_WINDOW);
     });
   }
   bonusWindow(window) {
     Console.readLine(`\n${window}\n`, (input) => {
       this.bonusNumber = input;
+      this.numberCompare();
     })
+  }
+  numberCompare() {
+    this.lottoArray.map((numbers) => {
+      let sameNumber = 0;
+      numbers.map((number) => {
+        if(this.winningNumber.includes(number)) sameNumber += 1;
+      });
+      console.log(sameNumber);
+    });
   }
 }
 
