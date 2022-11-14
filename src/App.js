@@ -50,7 +50,25 @@ class App {
     for(let i = 0; i < lottos.length; i++) {
       rslt[this.isSameNum(win,bonus,lottos[i])]++;
     }
-    console.log(rslt);
+    this.printLottoResult(rslt);
+    this.calcRateOfReturn(rslt, lottos.length);
+  }
+  calcRateOfReturn(rslt, quantity){
+    let money = 0;
+    money = rslt[1] * 2000000000 + 
+            rslt[2] * 30000000 +
+            rslt[3] * 1500000 +
+            rslt[4] * 50000 +
+            rslt[5] * 5000;
+    let rateOfReturn = Math.round(money / (quantity * 1000) * 1000)/10;
+    MU.Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
+  }
+  printLottoResult(rslt) {
+    MU.Console.print(`\n\n당첨 통계\n---\n3개 일치 (5,000원) - ${rslt[5]}개`);
+    MU.Console.print(`4개 일치 (50,000원) - ${rslt[4]}개`);
+    MU.Console.print(`5개 일치 (1,500,000원) - ${rslt[3]}개`);
+    MU.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${rslt[2]}개`);
+    MU.Console.print(`6개 일치 (2,000,000,000원) - ${rslt[1]}개`);   
   }
   isSameNum(win, bonus, lotto) {
     let count = win.filter(x => lotto.includes(x)).length;
