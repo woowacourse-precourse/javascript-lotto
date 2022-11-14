@@ -8,6 +8,7 @@ const RandomNumbers = require('./RandomNumbers');
 class App {
   constructor() {
     this.lottoList = [];
+    this.numberOfWins = [0, 0, 0, 0, 0];
   }
 
   play() {
@@ -43,7 +44,7 @@ class App {
 
   #inputlottoBonusNumber() {
     Console.readLine(MESSAGE.BONUS_NUMBER, (bonusNumber) => {
-      console.log(bonusNumber);
+      this.lottoBonusNumber = bonusNumber;
       this.#checkLottoResult();
     });
   }
@@ -55,7 +56,14 @@ class App {
 
   #checkLottoResult() {
     this.lottoList.map((lottery) => {
-      lottery.matchLottoNumber(this.lottoWinnerNumber);
+      const numberOfSuccess = lottery.matchLottoNumber(
+        this.lottoWinnerNumber,
+        this.lottoBonusNumber,
+      );
+
+      if (numberOfSuccess !== -1) {
+        this.numberOfWins[numberOfSuccess]++;
+      }
     });
   }
 

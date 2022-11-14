@@ -17,17 +17,35 @@ class Lotto {
     console.log(this.#numbers);
   }
 
-  matchLottoNumber(lottoWinnerNumber) {
-    const result = this.#numbers.reduce((acc, cur, i) => {
+  matchLottoNumber(lottoWinnerNumber, lottoBonusNumber) {
+    const numberOfSuccess = this.#numbers.reduce((acc, cur, i) => {
       if (lottoWinnerNumber.includes(cur)) acc += 1;
 
       return acc;
     }, 0);
 
-    console.log(result);
+    return this.#checkRanking(numberOfSuccess, lottoBonusNumber);
   }
 
-  // TODO: 추가 기능 구현
+  #checkRanking(numberOfSuccess, lottoBonusNumber) {
+    switch (numberOfSuccess) {
+      case 3:
+        return 4;
+      case 4:
+        return 3;
+      case 5:
+        return this.#check2ndOr3rd(lottoBonusNumber);
+      case 6:
+        return 0;
+      default:
+        return -1;
+    }
+  }
+
+  #check2ndOr3rd(lottoBonusNumber) {
+    if (this.#numbers.includes(lottoBonusNumber)) return 1;
+    return 2;
+  }
 }
 
 module.exports = Lotto;
