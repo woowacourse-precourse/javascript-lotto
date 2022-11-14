@@ -1,5 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const { GAME_MESSAGE, LOTTO_VALUE } = require("../constants/index");
+const { LOTTO_VALUE } = require("../constants/index");
 
 const generateRandomNumbers = () =>
   Random.pickUniqueNumbersInRange(
