@@ -20,18 +20,14 @@ class Lotto {
   }
 
   get numbers() {
-    return Utils.sort(this.#numbers);
-  }
-
-  set numbers(numbers) {
-    this.#numbers = numbers;
+    return Utils.sort(this.#numbers); //오름차순 정렬
   }
 
   getRandomNumbers() {
     return MissionUtils.Random.pickUniqueNumbersInRange(
       CONSTANT.LOTTO_START,
       CONSTANT.LOTTO_END,
-      CONSTANT.LOTTO_LENGTH
+      CONSTANT.LOTTO_LENGT와
     );
   }
 
@@ -40,16 +36,16 @@ class Lotto {
 
     const matchedList = this.#numbers.filter((number) => {
       return winNumberArray.includes(number);
-    }); // 번호가 맞는경우 배열에 저장하여 배열길이를 정답 수로 이용한다
+    }); 
 
     return matchedList.length === 5
       ? this.isMatchedWithBonus(this.#numbers, bonus)
-      : matchedList.length;
+      : matchedList.length; //배열길이반환 =>정답갯수로 이용
   }
 
-  isMatchedWithBonus(list, bonus) {
-    return list.includes(+bonus) ? CONSTANT.BONUS_MATCH : list.length;
-    //5개 맞은 경우 -1을 리턴하여 보너스번호가 맞았음을 판단한다. 아닐경우 원래 길이 리턴.
+  isMatchedWithBonus(numbers, bonus) {
+    return numbers.includes(+bonus) ? CONSTANT.BONUS_MATCH : numbers.length;
+    //5개와 보너스가맞은 경우 -1을 리턴하여 보너스번호가 맞았음을 판단한다. 아닐경우 원래 길이 리턴.
   }
 }
 

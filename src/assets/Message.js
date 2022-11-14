@@ -25,6 +25,10 @@ const MESSAGE = Object.freeze({
     LOTTO_NUMBER: `로또 번호는 중복되지 않게 선택해야 합니다.`,
     LOTTO_LENGTH: `로또 번호는 6개여야 합니다.`,
   },
+
+  profit(profit) {
+    return `총 수익률은 ${profit}%입니다.`;
+  },
 });
 
 module.exports = MESSAGE;

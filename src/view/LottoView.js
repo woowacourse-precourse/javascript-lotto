@@ -19,7 +19,15 @@ class LottoView {
   }
 
   printAllLottery(lottos) {
-    lottos.forEach((lotto) => MissionUtils.Console.print(lotto.numbers));
+    lottos.forEach((lotto) =>
+      MissionUtils.Console.print(`[${lotto.numbers.join(", ")}]`)
+    );
+  }
+
+  printResultInfo(prize, buyPrice) {
+    this.printLastResult();
+    this.printWinResult(prize);
+    this.printEarnPerMoney(prize.totalPrize, buyPrice);
   }
 
   printLastResult() {
@@ -29,6 +37,11 @@ class LottoView {
   printWinResult(prize) {
     const resultText = Utils.translateResultToText(prize);
     MissionUtils.Console.print(resultText);
+  }
+
+  printEarnPerMoney(prize, buyPrice) {
+    const profit = Utils.mathRound(prize, buyPrice);
+    MissionUtils.Console.print(MESSAGE.profit(profit));
   }
 }
 

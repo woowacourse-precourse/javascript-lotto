@@ -1,10 +1,8 @@
 const CONSTANT = require("../assets/constant");
 const Lotto = require("./Lotto");
 const Validate = require("../domain/Validate");
-const Utils = require("../assets/Utils");
 
 class LottoModel {
-  controller;
   #lottos = [];
   #winNumber = "";
   #bonuse = "";

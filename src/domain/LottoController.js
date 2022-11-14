@@ -17,9 +17,10 @@ class LottoController {
 
   start() {
     MissionUtils.Console.readLine(MESSAGE.INSERT_MONEY, (money) => {
-      const amount = money / CONSTANT.LOTTO_PRICE;
       this.lottoModel = new LottoModel(money);
       this.lottoModel.controller = this;
+
+      const amount = money / CONSTANT.LOTTO_PRICE;
       this.lottoView.printStartInfo(amount, this.lottoModel.lottos);
 
       this.selectWinNumber();
@@ -44,11 +45,11 @@ class LottoController {
 
   evaluateLotto() {
     const result = this.lottoModel.result;
-    this.prize.appliResult(result);
+    this.prize.applyResult(result);
 
-    this.lottoView.printLastResult();
-    this.lottoView.printWinResult(this.prize);
-    //print earn
+    const buyPrice = this.lottoModel.lottos.length * CONSTANT.LOTTO_PRICE;
+    this.lottoView.printResultInfo(this.prize, buyPrice);
+    MissionUtils.Console.close();
   }
 }
 

@@ -16,6 +16,9 @@ class Prize {
     this.threeWin = 0;
     this.totalPrize = 0;
   }
+  get totalPrize() {
+    return this.totalPrize;
+  }
 
   get allWin() {
     return +this.allWin;
@@ -60,7 +63,7 @@ class Prize {
     this.totalPrize += CONSTANT.PRICE.FIFTH;
   }
 
-  appliResult(result) {
+  applyResult(result) {
     result.forEach((number) => this.setResult(number));
   }
 

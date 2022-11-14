@@ -18,6 +18,11 @@ class Utils {
     });
   }
 
+  static mathRound(prize, lottoQuantity) {
+    const answer = (prize / lottoQuantity) * 100;
+    return answer.toFixed(1);
+  }
+
   static translateResultToText(prize) {
     return `${MESSAGE.RESULT.THREEWIN}${prize.threeWin}${MESSAGE.RESULT.EA}
 ${MESSAGE.RESULT.FOURWIN}${prize.fourWin}${MESSAGE.RESULT.EA}
