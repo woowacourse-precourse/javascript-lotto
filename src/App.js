@@ -7,7 +7,7 @@ class App {
   }
 
   inputPurchasingPrice() {
-    Console.readLine('구입금액을 입력해 주세요.\n', (price) => {
+    Console.readLine(MESSAGE.INPUT_PURCHASING_PRICE, (price) => {
       this.validate(price);
       this.showLottosAmount(price);
     });
