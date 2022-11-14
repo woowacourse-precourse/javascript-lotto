@@ -13,6 +13,10 @@ class Lotto {
     }
   }
 
+  getLottoNumbers() {
+    return this.#numbers;
+  }
+
   printLottoNumbers() {
     MissionUtils.Console.print(
       `[${this.#numbers[0]}, ${this.#numbers[1]}, ${this.#numbers[2]}, ${
