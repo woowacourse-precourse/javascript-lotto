@@ -53,13 +53,13 @@ class CalculatorModel {
   }
 
   getProfit(rank) {
-    const prizeList = [5000, 50000, 1500000, 30000000, 2000000000];
+    const rewardList = [5000, 50000, 1500000, 30000000, 2000000000];
 
-    const prize = Object.values(rank).reduce((acc, cur, idx) => {
-      return acc + cur * prizeList[idx];
+    const reward = Object.values(rank).reduce((acc, cur, idx) => {
+      return acc + cur * rewardList[idx];
     }, 0);
 
-    return { rank, prize };
+    return { rank, reward };
   }
 }
 
