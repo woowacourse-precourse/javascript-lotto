@@ -18,6 +18,10 @@ class DrawLotto {
     });
     }
 
+    sendDrawNumber(){
+      return this.draw_number;
+    }
+
 
   }
   
