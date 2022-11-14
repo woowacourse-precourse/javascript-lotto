@@ -1,6 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./model/Lotto");
-const UserLottos = require("./model/Lottos");
+const Lottos = require("./model/Lottos");
 const { INPUT_MESSEGE } = require("./utils/constants");
 
 class App {
@@ -18,7 +18,7 @@ class App {
     MissionUtils.Console.readLine(
       INPUT_MESSEGE.PURCHASE_AMOUNT,
       (purchaseAmount) => {
-        this.userLottos = new UserLottos(purchaseAmount);
+        this.userLottos = new Lottos(purchaseAmount);
         this.userLottos.printCount();
         this.userLottos.printLottos();
 
@@ -44,12 +44,8 @@ class App {
     MissionUtils.Console.readLine(INPUT_MESSEGE.BONUS_NUMBER, (bonusNum) => {
       this.bonusNumber = Number(bonusNum);
 
-      this.printResult();
+      this.userLottos.printResult(this.winningNumbers, this.bonusNumber);
     });
-  }
-
-  printResult() {
-    this.userLottos.printResult(this.winningNumbers, this.bonusNumber);
   }
 }
 
