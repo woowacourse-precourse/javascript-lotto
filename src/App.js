@@ -82,7 +82,6 @@ class App {
     this.checkList[int]+=value;
   }
   printResult(){
-    console.log(this.WinningNum);
     var reward = 2000000000*this.WinningNum[5]+30000000*this.WinningNum[4]+1500000*this.WinningNum[3]+50000*this.WinningNum[2]+5000*this.WinningNum[1];
     MissionUtil.Console.print('3개 일치 (5,000원) - '+this.WinningNum[1]+'개\n'+'4개 일치 (50,000원) - '+this.WinningNum[2]+'개\n'
     +'5개 일치 (1,500,000원) - '+this.WinningNum[3]+'개\n'+'5개 일치, 보너스 볼 일치 (30,000,000원) - '+this.WinningNum[4]+'개\n'+
