@@ -14,6 +14,8 @@ class MakeLotteryTickets {
       this.lotteryTickets.push(randomNumbers);
       this.sortLotteryNumbers(randomNumbers);
     }
+
+    this.acceptUserNumbers();
   }
 
   sortLotteryNumbers(randomNumbers) {
@@ -26,6 +28,12 @@ class MakeLotteryTickets {
   printTickets(randomNumbers) {
     const convertToString = `[${String(randomNumbers).replaceAll(",", ", ")}]`;
     CONSOLE_UTIL.print(convertToString);
+  }
+
+  acceptUserNumbers() {
+    CONSOLE_UTIL.readLine(INPUT_NUMBERS_MESSAGE, (userNumbers) => {
+      userNumbers = userNumbers.split(",").map(Number);
+    });
   }
 }
 
