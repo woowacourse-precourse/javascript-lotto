@@ -12,13 +12,13 @@ class App {
     MissionUtils.Console.readLine(`${Constants.GAME_MESSAGES.PURCHASE}\n`, (answer) => {
       MissionUtils.Console.print(answer);
       this.isPurchaseAmountValid(answer);
-      const how_many = Number(answer) / 1000;
+      const how_many = Number(answer) / Constants.PRICE;
       this.getLottos(how_many);
     });
   }
 
   isPurchaseAmountValid(money) {
-    if(Number(money) % 1000 != 0){
+    if(Number(money) % Constants.PRICE != 0){
       throw Constants.INPUT_ERROR.NOT_DIVIDED;
     }
   }
@@ -108,7 +108,7 @@ class App {
   getYield(all_results, how_many) {
     let sum = 0;
     const prizes = Constants.PRIZES;
-    const money = how_many * 1000
+    const money = how_many * Constants.PRICE
     for(let i = 0; i < 5; i++){
       sum += prizes[i] * all_results[i]
     }
