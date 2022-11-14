@@ -1,3 +1,11 @@
+const LottoPayment = require('../src/ui/component/LottoPayment');
+const LottoWinCount = require('../src/ui/component/LottoWinCount');
+const LottoIncome = require('../src/ui/component/LottoIncome');
+const Component = require('../src/ui/core/Component');
+
+const LottoAdjustment = require('../src/domain/LottoAdjustment');
+const LottoDrawFactory = require('../src/domain/LottoDrawFactory');
+
 const { VARIABLE_LOTTO, LOTTO_ERROR_MESSAGE } = require('./constants');
 
 const validateLottoRange = number => {
@@ -8,6 +16,33 @@ const validateLottoRange = number => {
   return Number(number);
 };
 
+const print = {
+  lottoPaymentUI: ({ count, lottos }) => {
+    const ui = new Component(new LottoPayment({ count, lottos }));
+    ui.render();
+  },
+
+  lottoWinCountUI: ({ winScore }) => {
+    const ui = new Component(new LottoWinCount({ winScore }));
+    ui.render();
+  },
+
+  lottoIncomeUI: ({ income }) => {
+    const ui = new Component(new LottoIncome({ income }));
+    ui.render();
+  },
+
+  lottoAdjustmentUI: ({ lotto, bonus, lottoStore }) => {
+    const lottoPayment = new LottoAdjustment(
+      new LottoDrawFactory({ lotto, bonus, lottoStore }),
+    );
+
+    print.lottoWinCountUI({ winScore: lottoPayment.getLottoCountScore() });
+    print.lottoIncomeUI({ income: lottoPayment.getIncome() });
+  },
+};
+
 module.exports = {
   validateLottoRange,
+  print,
 };
