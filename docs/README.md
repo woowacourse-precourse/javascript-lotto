@@ -18,9 +18,12 @@
      - [x] 6개가 아닌 경우 - LottoValidation#hasSixNumbers(numbers)
      - [x] 숫자가 아닌 경우 - LottoValidation#isNotNumber(numbers)
      - [x] 중복된 숫자가 존재하는 경우 - LottoValidation#isUniqueNumber(numbers)
-4. [ ] 보너스 번호를 입력 받는다.
-   - [ ] 예외 상황[ERROR]:
-     - [ ] 1부터 45까지의 정수 범위를 벗어나는 경우
+     - [x] 정수가 아닌 숫자인 경우 - LottoValidation#isInteger(numbers)
+4. [x] 보너스 번호를 입력 받는다. - LottoGenerator#getBonusNumber()
+   - [x] 예외 상황[ERROR]: - LottoGenerator#checkBonusValidation()
+     - [x] 숫자가 아닌 경우 - LottoValidation#isBonusNotNumber(number)
+     - [x] 1부터 45까지의 정수 범위를 벗어나는 경우 - LottoValidation#checkBonusRange(number)
+     - [x] 정수가 아닌 숫자인 경우 - LottoValidation#isBonusInteger(number)
 5. [ ] 사용자의 발행된 로또와 로또 당첨 번호를 비교한다.
    1. [ ] 3개, 4개, 5개, 5개(+ 보너스 번호 일치), 6개 일치 별로 각각의 당첨 횟수를 연산한다.
    2. [ ] 당첨 횟수 \* 해당 당첨 금액의 합계 / 로또 구입 금액을 계산하여 총 수익률을 계산하고 소수점 둘째 자리에서 반올림한다.
