@@ -1,5 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const { MESSAGE, SENTANCE } = require("./constant/constant.js");
+const { MESSAGE, SENTANCE, CORRECT_MONEY } = require("./constant/constant.js");
 
 class Lotto {
   #numbers;
@@ -10,6 +10,13 @@ class Lotto {
     this.mylotto = [];
     this.bonusNumber = 0;
     this.lottoCount = [];
+    this.result = {
+      [CORRECT_MONEY.FIRST] : 0,
+      [CORRECT_MONEY.SECOND] : 0,
+      [CORRECT_MONEY.THIRD] : 0,
+      [CORRECT_MONEY.FOURTH] : 0,
+      [CORRECT_MONEY.FIFTH] : 0,
+    };
   }
   
   askLottoCost(){
@@ -56,8 +63,6 @@ class Lotto {
   enterBonusNumber(){
     Console.readLine(`${MESSAGE.BONUS}\n`,(bonusNumber) => {
       this.bonusNumber = parseInt(bonusNumber);
-      this.#numbers.push(this.bonusNumber);
-      this.sortLotto(this.#numbers);
       this.printWinnningResult();
     })
   }
@@ -79,11 +84,11 @@ class Lotto {
         count += 1;
       }
     }) 
-    this.rankScore(count,mylottoArray);
+    this.matchRank(count,mylottoArray);
   }
 
-  rankScore(){
-    
+  matchRank(count,mylottoArray){
+    switch
   }
   // validate(numbers) {
   //   if (numbers.length !== 6) {
