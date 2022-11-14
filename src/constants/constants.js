@@ -2,10 +2,10 @@ const LOTTERY_PRICE = 1000;
 
 const APP_MESSAGE = {
   INSERT_PURCHASE_COST: '구입금액을 입력해 주세요.\n',
-  PURCHASE_AMOUNT: (count) => `${count}개를 구매했습니다.`,
   INSERT_WIN_NUMBER: '당첨 번호를 입력해 주세요.\n',
   INSERT_BONUS_NUMBER: '보너스 번호를 입력해 주세요.\n',
   GET_RANK_STATISTICS: '당첨 통계\n---',
+  PURCHASE_AMOUNT: (count) => `${count}개를 구매했습니다.`,
 };
 
 const EXCEPTION_MESSAGE = {
