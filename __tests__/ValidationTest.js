@@ -25,10 +25,34 @@ describe("App 내부의 Validation 메서드에 대한 테스트", () => {
       app.validateWinningNumbers("1,2,3,4,5,50");
     }).toThrow("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
   });
+  test("입력한 당첨 번호 중 숫자가 포함되어 있지 않을 경우 오류가 발생한다.", () => {
+    const app = new App();
+    expect(() => {
+      app.validateWinningNumbers("a,1,2,3,4,5");
+    }).toThrow("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+  });
   test("입력한 당첨 번호 중 1~45의 범위 외의 숫자가 포함되어 있으면 오류가 발생한다.", () => {
     const app = new App();
     expect(() => {
       app.validateWinningNumbers("1,1,2,3,4,5");
+    }).toThrow("[ERROR] 동일한 숫자가 포함되어 있습니다.");
+  });
+  test("입력한 보너스 번호가 숫자가 아닐 경우 오류가 발생한다.", () => {
+    const app = new App();
+    expect(() => {
+      app.validateBonusNumber("a");
+    }).toThrow("[ERROR] 숫자를 입력해 주세요.");
+  });
+  test("입력한 보너스 번호가 1~45의 범위를 초과할 경우 오류가 발생한다.", () => {
+    const app = new App();
+    expect(() => {
+      app.validateBonusNumber("50");
+    }).toThrow("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+  });
+  test("입력한 보너스 번호가 당첨번호의 번호와 겹칠 경우 오류가 발생한다.", () => {
+    const app = new App();
+    expect(() => {
+      app.validateBonusNumber("1", [1, 2, 3, 4, 5, 6]);
     }).toThrow("[ERROR] 동일한 숫자가 포함되어 있습니다.");
   });
 });
