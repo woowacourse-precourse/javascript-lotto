@@ -1,4 +1,4 @@
-const LottoNumberError = require('./Constants/Messages');
+const lottoNumberError = require('./Constants/Messages');
 class Bonus {
   #number;
 
@@ -9,7 +9,7 @@ class Bonus {
 
   validate(number) {
     if (number < 1 || number > 45) {
-      throw new Error(LottoNumberError.NOT_VALID_NUMBER_SCOPE);
+      throw new Error(lottoNumberError.NOT_VALID_NUMBER_SCOPE);
     }
   }
 }
