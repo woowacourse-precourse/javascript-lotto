@@ -54,6 +54,18 @@ class App {
         throw new Error("[ERROR] 보너스 번호는 당첨 번호와 다른 숫자여야 합니다.");
     })
   }
+  getPrize(numbers){
+    const countOfMatchNumber = numbers.getCountOfMatchNumber(this.#lottoWinningNumbers);
+    if(countOfMatchNumber==6){
+      return 1;
+    }
+    if(countOfMatchNumber==5){
+      if(numbers.getCountOfMatchNumber(this.#lottoBonusNumber) == 1)
+        return 2;
+      return 3;
+    }
+    return 8-countOfMatchNumber;
+  }
 }
 
 module.exports = App;
