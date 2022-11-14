@@ -2,6 +2,8 @@ const { Console } = require('@woowacourse/mission-utils');
 const Player = require('./Player');
 const Machine = require('./Machine');
 
+const { PRIZE, WIN_MONEY } = require('./constants/prize');
+
 class App {
   constructor() {
     this.player = new Player();
@@ -63,6 +65,11 @@ class App {
     this.player.lottos.forEach((lotto) => {
       const matchCount = lotto.getMatchCount(this.winNumbers);
       const prize = Machine.judgePrize(lotto, matchCount, this.winBonus);
+
+      if (prize !== PRIZE.LOST) {
+        this.player.addPrizeCounts(prize);
+        this.player.addWinMoney(WIN_MONEY[prize]);
+      }
     });
   }
 }
