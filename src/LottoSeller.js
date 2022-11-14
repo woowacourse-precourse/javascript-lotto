@@ -5,6 +5,7 @@ const LottoValidator = require('./LottoValidator');
 class LottoSeller {
   #lottos;
 
+  // TODO: constructor로 초기화
   #LOTTO_PRICE = 1000;
 
   set lottos(lottoList) {

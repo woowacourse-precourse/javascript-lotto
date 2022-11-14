@@ -1,5 +1,8 @@
-// TODO: [ERROR] 부분 상수 처리
 class Validator {
+  constructor(ERROR_MESSAGE_HEADER = '[ERROR]') {
+    this.ERROR_MESSAGE_HEADER = ERROR_MESSAGE_HEADER;
+  }
+
   static #isNumber(value) {
     return !Number.isNaN(Number(value));
   }
@@ -8,32 +11,33 @@ class Validator {
     return Number(value) === parseInt(value, 10);
   }
 
-  static isValidInput(input) {
-    // 빈입력인지
+  isValidInput = (input) => {
     if (!input.length) {
-      throw new Error('[ERROR] 아무것도 입력하지 않았습니다.');
+      throw new Error(`${this.ERROR_MESSAGE_HEADER} 아무것도 입력하지 않았습니다.`);
     }
 
     if (input !== input.trim()) {
-      throw new Error('[ERROR] 입력에 공백이 포함되어 있습니다.');
+      throw new Error(`${this.ERROR_MESSAGE_HEADER} 입력에 공백이 포함되어 있습니다.`);
     }
 
     return true;
-  }
+  };
 
-  static isValidNumber(input) {
-    if (!Validator.#isNumber(input)) {
-      throw new Error('[ERROR] 숫자(양수)만 입력할 수 있습니다.');
+  isValidNumber = (input) => {
+    if (!(Validator.#isNumber(input))) {
+      throw new Error(`${this.ERROR_MESSAGE_HEADER} 숫자(양수)만 입력할 수 있습니다.`);
     }
 
+    return true;
+  };
+
+  isValidMoney = (input) => {
     if (!Validator.#isInteger(input)) {
-      throw new Error('[ERROR] 올바른 금액을 입력하세요.');
+      throw new Error(`${this.ERROR_MESSAGE_HEADER} 올바른 금액을 입력하세요.`);
     }
 
-    // if (Number(input) < 0) {
-    //   throw new Error('[ERROR] 올바른 금액을 입력하세요.');
-    // }
-  }
+    return true;
+  };
 }
 
 module.exports = Validator;

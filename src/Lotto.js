@@ -31,7 +31,7 @@ class Lotto {
       throw new Error(`[ERROR] 로또 번호는 ${numbersCount}개여야 합니다.`);
     }
 
-    if (!numbers.every(Validator.isValidNumber)) {
+    if (!numbers.every(new Validator().isValidNumber)) {
       throw new Error('[ERROR] 숫자가 아닌 입력이 있습니다.');
     }
 
