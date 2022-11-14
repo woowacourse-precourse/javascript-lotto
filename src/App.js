@@ -32,14 +32,18 @@ class App {
   askWinningNumbers() {
     Console.readLine(MESSAGE.ASK_WINNING_NUMBER, (inputValue) => {
       Validator.throwErrorIfInvalidWinningForm(inputValue);
-      const winningNumbers = inputValue
-        .split(DELIMITER)
-        .map((num) => Number(num))
-        .sort((a, b) => a - b);
+      const winningNumbers = this.winningInputToSortedNumberArray(inputValue);
       this.lotto = new Lotto(winningNumbers);
 
       this.askBonusNumber(winningNumbers);
     });
+  }
+
+  winningInputToSortedNumberArray(inputValue) {
+    return inputValue
+      .split(DELIMITER)
+      .map((num) => Number(num))
+      .sort((a, b) => a - b);
   }
 
   askBonusNumber(winningNumbers) {
