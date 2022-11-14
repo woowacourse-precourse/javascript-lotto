@@ -85,10 +85,17 @@ describe("로또 테스트", () => {
     }).toThrow(ERROR.INVAID_CASH);
   });
 
-  test("예외 테스트: 현금이 1,000원으로 나누어 떨어지지 않는 경우 3", () => {
+  test("예외 테스트: 현금 값이 0인 경우", () => {
     expect(() => {
       const person = new Person();
       person.isCorrectCash("0");
     }).toThrow(ERROR.CASH_IS_ZERO);
+  });
+
+  test("예외 테스트: 현금 값이 음수인 경우", () => {
+    expect(() => {
+      const person = new Person();
+      person.isCorrectCash("-1");
+    }).toThrow(ERROR.CASH_IS_NOT_NATURAL_NUMBER);
   });
 });
