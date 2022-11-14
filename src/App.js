@@ -33,7 +33,7 @@ class App {
       const array = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       const one_lotto = this.stringifyLottos(array);
       MissionUtils.Console.print(one_lotto);
-      published_Lottos.push(one_lotto);
+      published_Lottos.push(array);
     }
     return published_Lottos;
   }
@@ -53,6 +53,7 @@ class App {
 
   InputLottos(published_Lottos, how_many) {
     MissionUtils.Console.readLine(`${Constants.GAME_MESSAGES.INPUT_NUMBER}\n`, (answer) => {
+      MissionUtils.Console.print(answer);
       const numbers = answer.split(',').map(Number);
       new Lotto(numbers);
       this.InputBonus(published_Lottos, numbers, how_many);
@@ -61,6 +62,7 @@ class App {
 
   InputBonus(published_Lottos, array, how_many) {
     MissionUtils.Console.readLine(`${Constants.GAME_MESSAGES.BONUS_NUMBER}\n`, (answer) => {
+      MissionUtils.Console.print(answer);
       this.isBonusDuplicated(answer, array);
       array.push(answer);
       this.getAllResults(published_Lottos, array, how_many);
@@ -74,6 +76,7 @@ class App {
   }
 
   getAllResults(published_Lottos, winning, count) {
+    MissionUtils.Console.print(published_Lottos[0][0]);
     let all_results = [0, 0, 0, 0, 0];
     for(let i = 0; i < count; i++){
       const result = this.getSingleResult(published_Lottos[i], winning);
@@ -94,6 +97,7 @@ class App {
         result += 1;
       }
     }
+    return result
   }
 
   printResults(all_results) {
