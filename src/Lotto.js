@@ -9,15 +9,12 @@ class Lotto {
   }
 
   checkWinNumber(winNumberArr) {
-    if (winNumberArr.length != 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
     if (new Set(winNumberArr).size != 6)
-      throw new Error("[ERROR] 중복 숫자가 없어야합니다.");
+      throw new Error("[ERROR]로또 번호 입력 오류");
     winNumberArr.forEach((number) => {
-      if (!isNaN(number)) throw new Error("[ERROR] 숫자만 입력하세요.");
+      if (!isNaN(number)) throw new Error("[ERROR]로또 번호 입력 오류");
       if (number > 45 || number < 1)
-        throw new Error("[ERROR]  숫자 범위는 1~45까지입니다.");
+        throw new Error("[ERROR]로또 번호 입력 오류");
     });
   }
 }
