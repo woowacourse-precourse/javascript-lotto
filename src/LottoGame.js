@@ -30,7 +30,7 @@ class LottoGame {
     this.LottoGameView.requestInput(REQUEST_MESSAGE.PURCHASE_AMOUNT, (purchaseAmount) => {
       Validation.validatePurchaseAmount(purchaseAmount);
       this.purchaseAmount = Number(purchaseAmount);
-      const lottoQuantity = this.getLottoQuantity(purchaseAmount);
+      const lottoQuantity = this.getLottoQuantity(this.purchaseAmount);
       this.createLottos(lottoQuantity);
       this.LottoGameView.printLottoQuantity(lottoQuantity);
       this.LottoGameView.printEachLottoNumbers(this.lottos);
@@ -39,7 +39,7 @@ class LottoGame {
     });
   }
   getLottoQuantity(purchaseAmount) {
-    return parseInt(purchaseAmount, 10) / LOTTO_PRICE;
+    return purchaseAmount / LOTTO_PRICE;
   }
   generateLottoNumbers() {
     return Random.pickUniqueNumbersInRange(LOTTO_NUM_MIN_RANGE, LOTTO_NUM_MAX_RANGE, LOTTO_DIGITS);
