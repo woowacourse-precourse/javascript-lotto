@@ -52,7 +52,7 @@ class Winning {
         ];
 
         for(let i = 0; i < gradeCounts.length; i++) {
-            MissionUtils.Console.print(`${WinningAnouncement[i]}${gradeCounts}개`);
+            MissionUtils.Console.print(`${WinningAnouncement[i]}${gradeCounts[i]}개`);
         }
     }
 
