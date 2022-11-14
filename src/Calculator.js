@@ -25,11 +25,19 @@ class Calculator {
       this.#winningNumber["winningNumber"].includes(number)
     ).length;
 
-    if (this.isSecondPlace(matchCount, myLotto)) {
-      this.#prizeStatus[2] += 1;
-      return;
-    }
     return matchCount;
+  }
+
+  getWinningResult() {
+    let matchCountFromEachLotto;
+    Array.from(this.#myNumbers).forEach((myNumber) => {
+      matchCountFromEachLotto = this.applyWinnerSelectionRule(myNumber);
+
+      if (matchCountFromEachLotto && matchCountFromEachLotto >= 3) {
+        this.#prizeStatus[RANKING_FROM_MATCH_COUNT[matchCountFromEachLotto]] += 1;
+      }
+    });
+    return this.#prizeStatus;
   }
 }
 
