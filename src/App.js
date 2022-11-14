@@ -95,6 +95,8 @@ class App {
     Object.entries(result).forEach(([ranking, count]) =>
       MissionUtils.Console.print(result[ranking])
     );
+    MissionUtils.Console.print(`총 수익률은 ${earningRatio}%입니다.`);
+    MissionUtils.Console.close();
   }
   compareNumber(eachLotto) {
     const compareResult = eachLotto.filter((number) =>
