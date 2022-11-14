@@ -1,3 +1,4 @@
+const PRICE = 1000;
 const LOTTO_LENGTH_NOT_SIX_ERROR = '[ERROR] 로또 번호는 6개의 숫자여야 합니다.';
 const LOTTO_DUPLICATE_ERROR = '[ERROR] 로또 번호는 중복되면 안됩니다.';
 const LOTTO_OUT_OF_RANGE_ERROR =
@@ -9,6 +10,7 @@ const PRICE_NOT_MULTIPLE_ERROR =
   '[ERROR] 구입금액은 1000원 단위로 입력해주세요.';
 
 module.exports = {
+  PRICE,
   LOTTO_LENGTH_NOT_SIX_ERROR,
   LOTTO_DUPLICATE_ERROR,
   LOTTO_OUT_OF_RANGE_ERROR,
