@@ -7,11 +7,11 @@ class LottoPublisher {
   #winningNumbers = [];
   #bonusNumber;
 
-  get winningNumbers() {
+  getWinningNumbers() {
     return this.#winningNumbers;
   }
 
-  get bonusNumber() {
+  getBonusNumber() {
     return this.#bonusNumber;
   }
 
