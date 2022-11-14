@@ -23,6 +23,11 @@ const getLogSpy = () => {
   return logSpy;
 };
 
+const play = () => {
+  const app = new App();
+  return app.play();
+};
+
 describe('로또 테스트', () => {
   test('기능 테스트 - 1', () => {
     mockRandoms([
@@ -54,8 +59,7 @@ describe('로또 테스트', () => {
       '총 수익률은 62.5%입니다.',
     ];
     const logSpy = getLogSpy();
-    const app = new App();
-    app.play();
+    play();
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
@@ -81,8 +85,7 @@ describe('로또 테스트', () => {
       '총 수익률은 1,000,000.0%입니다.',
     ];
     const logSpy = getLogSpy();
-    const app = new App();
-    app.play();
+    play();
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
@@ -112,8 +115,7 @@ describe('로또 테스트', () => {
       '총 수익률은 1,000.0%입니다.',
     ];
     const logSpy = getLogSpy();
-    const app = new App();
-    app.play();
+    play();
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
@@ -133,8 +135,7 @@ describe('로또 테스트', () => {
       '총 수익률은 150,000.0%입니다.',
     ];
     const logSpy = getLogSpy();
-    const app = new App();
-    app.play();
+    play();
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
@@ -143,8 +144,7 @@ describe('로또 테스트', () => {
   test('예외 테스트: 입력 받은 금액이 숫자가 아니면 예외가 발생한다.', () => {
     mockQuestions(['1000j']);
     expect(() => {
-      const app = new App();
-      app.play();
+      play();
     }).toThrow(
       '[ERROR] 문자, 특수기호를 제외한 1 ~ 45 사이의 숫자만 입력해야 합니다.'
     );
@@ -153,16 +153,14 @@ describe('로또 테스트', () => {
   test('예외 테스트: 입력 받은 금액이 1,000원 미만이면 에외가 발생한다.', () => {
     mockQuestions(['500']);
     expect(() => {
-      const app = new App();
-      app.play();
+      play();
     }).toThrow('[ERROR] 1,000원 미만의 금액으로 로또를 구매할 수 없습니다.');
   });
 
   test('예외 테스트: 입력 받은 금액이 1,000원 단위가 아니면 예외가 발생한다.', () => {
     mockQuestions(['90001']);
     expect(() => {
-      const app = new App();
-      app.play();
+      play();
     }).toThrow('[ERROR] 1,000원 단위의 금액만 입력 가능합니다.');
   });
 
@@ -170,8 +168,7 @@ describe('로또 테스트', () => {
     mockRandoms([[2, 9, 11, 17, 26, 45]]);
     mockQuestions(['1000', '1,2,9,17,26,31,45']);
     expect(() => {
-      const app = new App();
-      app.play();
+      play();
     }).toThrow('[ERROR] 로또 번호는 6개여야 합니다.');
   });
 
@@ -184,8 +181,7 @@ describe('로또 테스트', () => {
     ]);
     mockQuestions(['4000', '1,2,9,17,17,31']);
     expect(() => {
-      const app = new App();
-      app.play();
+      play();
     }).toThrow('[ERROR] 서로 다른 숫자만 입력해야 합니다.');
   });
 
@@ -197,8 +193,7 @@ describe('로또 테스트', () => {
     ]);
     mockQuestions(['3000', '1,2,9,12,17,46']);
     expect(() => {
-      const app = new App();
-      app.play();
+      play();
     }).toThrow('[ERROR] 1 ~ 45 범위 이내의 숫자만 입력해야 합니다.');
   });
 
@@ -210,8 +205,7 @@ describe('로또 테스트', () => {
     ]);
     mockQuestions(['3000', '1,2,9,12,17,44', 'wow']);
     expect(() => {
-      const app = new App();
-      app.play();
+      play();
     }).toThrow(
       '[ERROR] 문자, 특수기호를 제외한 1 ~ 45 사이의 숫자만 입력해야 합니다.'
     );
@@ -225,8 +219,7 @@ describe('로또 테스트', () => {
     ]);
     mockQuestions(['3000', '1,2,9,12,17,44', '0']);
     expect(() => {
-      const app = new App();
-      app.play();
+      play();
     }).toThrow('[ERROR] 1 ~ 45 범위 이내의 숫자만 입력해야 합니다.');
   });
 
@@ -238,8 +231,7 @@ describe('로또 테스트', () => {
     ]);
     mockQuestions(['3000', '1,2,9,12,17,44', '12']);
     expect(() => {
-      const app = new App();
-      app.play();
+      play();
     }).toThrow(
       '[ERROR] 당첨 번호에 포함된 숫자를 보너스 번호로 지정할 수 없습니다.'
     );
