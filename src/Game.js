@@ -7,6 +7,7 @@ class Game {
   constructor() {
     this.lottos = null;
     this.cost = 0;
+    this.winningNumbers = null;
   }
 
   static validate(money) {
@@ -31,6 +32,12 @@ class Game {
     this.lottos = [...Array(n)].map(
       () => new Lotto(NumberGenerator.generateRandomNumbers())
     );
+  }
+
+  static enterWinningNumbers() {
+    IO.readLine(GAME_MSG.pleaseEnterWinningNumbers, (input) => {
+      this.winningNumbers = input.trim().split(',').map(Number);
+    });
   }
 }
 
