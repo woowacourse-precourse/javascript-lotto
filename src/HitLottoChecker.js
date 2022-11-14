@@ -63,5 +63,17 @@ class HitLottoChecker {
       this.matchLottoNumbersTable[matchNumbersAmount] += 1;
     }
   }
+  carculateEarningRate() {
+    let totalPrizeMoney =
+      5000 * this.matchLottoNumbersTable[3] +
+      50000 * this.matchLottoNumbersTable[4] +
+      1500000 * this.matchLottoNumbersTable[5] +
+      30000000 * this.matchLottoNumbersTable["5B"] +
+      2000000000 * this.matchLottoNumbersTable[6];
+    let earningRate = ((totalPrizeMoney / this.lottoPurchaseFee) * 100).toFixed(
+      1
+    );
+    return earningRate;
+  }
 }
 module.exports = HitLottoChecker;
