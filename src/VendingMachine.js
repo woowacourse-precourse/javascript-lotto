@@ -1,5 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { isMultipleOf1000, divide1000, getRandomNumbers } = require('./lib/utilFns.js');
+const { isMultipleOf1000, divide1000, splitStrByComma, getRandomNumbers } = require('./lib/utilFns.js');
+const Lotto = require('./Lotto');
 
 class VendingMachine {
   #purchaseAmount;
@@ -12,6 +13,7 @@ class VendingMachine {
       this.setPurchaseOptions(answer);
       this.#randomNumbers = this.pickRandomNumbers();
       this.printPickedNumbers();
+      this.askLottoNumbers();
     };
 
     Console.readLine('구입금액을 입력해 주세요.\n', answerCbFn);
@@ -47,6 +49,15 @@ class VendingMachine {
     Console.print(`\n${this.#numberOfLottos}개를 구매했습니다.`);
 
     this.#randomNumbers.forEach(Console.print);
+  }
+
+  askLottoNumbers() {
+    const answerCbFn = (answer) => {
+      const lottoNumbers = splitStrByComma(answer);
+      new Lotto(lottoNumbers);
+    };
+
+    Console.readLine('\n당첨 번호를 입력해 주세요.\n', answerCbFn);
   }
 }
 
