@@ -69,20 +69,18 @@ class App {
       let duplicate = lotto.filter(item => this.winningNumber.includes(item)).length;
       
       if (duplicate === 6) this.sixMatch += 1; 
-      if (duplicate === 5) {
-        if (this.bonusCheck(lotto)) {
-          this.bonusFiveMatch += 1;
-          return;
-        }
-        this.fiveMatch += 1;
-      } 
+      if (duplicate === 5) this.bonusCheck(lotto);
       if (duplicate === 4) this.fourMatch += 1;
       if (duplicate === 3) this.threeMatch += 1;
     })
   }
 
   bonusCheck(lotto) {
-    if (lotto.includes(this.bonusNumber)) return true;
+    if (lotto.includes(this.bonusNumber)) {
+      this.bonusFiveMatch += 1;
+      return;
+    }
+    this.fiveMatch += 1;
   }
 
   calcProfitRate() {
