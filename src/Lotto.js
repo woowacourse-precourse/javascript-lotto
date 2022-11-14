@@ -44,6 +44,15 @@ class Lotto {
       this.prizeResult.text = '6개 일치 (2,000,000,000원)';
     }
   }
+
+  isValidLotto() {
+    if (this.#numbers.includes(0)) throw new Error("[ERROR] 0 또는 공백이 포함되어 있습니다.")
+    if (this.#numbers.filter(x => x < 1 && x > 45).length !== 0) throw new Error("[ERROR] 1~45 사이의 정수만 입력가능합니다.");
+    if (this.#numbers.length !== 6) throw new Error("[ERROR] 6개의 숫자가 필요합니다.");
+    if (new Set(this.#numbers).size !== 6) throw new Error("[ERROR] 서로 중복되지 않는 숫자들만 입력 가능합니다.");
+    return true;
+  }
+
 }
 
 module.exports = Lotto;
