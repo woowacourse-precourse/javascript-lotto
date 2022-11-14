@@ -6,17 +6,17 @@ const {
   LOTTO_MIN_NUMBER,
   LOTTO_MAX_NUMBER,
 } = require("./Constants");
+const Lotto = require("./Lotto");
 const Validation = require("./validation");
 
 class App {
   winnerNumber;
   bonusNumber;
+  lotto;
   play() {
     this.inputPurchaseAmount();
     this.inputWinnerNumber();
     this.inputBonusNumber();
-    console.log(this.winnerNumber);
-    console.log(this.bonusNumber);
   }
   inputPurchaseAmount() {
     MissionUtils.Console.readLine(
@@ -30,6 +30,7 @@ class App {
   }
   lottoBuying(purchaseAmount) {
     const lottoCount = this.getLottoCount(purchaseAmount);
+    this.getTotalLottoNumber(lottoCount);
   }
   getLottoCount(purchaseAmount) {
     return parseInt(purchaseAmount, 10) / LOTTO_PRICE;
@@ -59,6 +60,13 @@ class App {
       LOTTO_MIN_NUMBER,
       LOTTO_MAX_NUMBER,
       LOTTO_SIZE
+    );
+  }
+  getTotalLottoNumber(lottoCount) {
+    const lottoNumber = this.randomLottoNumberPick();
+    this.lotto = Array.from(
+      { length: lottoCount },
+      () => new Lotto(lottoNumber)
     );
   }
 }
