@@ -1,90 +1,24 @@
-# 미션 - 로또
+<h1 align="middle">우아한테크코스</h1>
+<h1 align="middle">프리코스 2주차 - 로또 🎱</h1>
+<p align="middle">Console을 통해 작동하는 로또 애플리케이션</p>
+<br>
 
-## 🔍 진행 방식
+# 📱 실행 순서
 
-- 미션은 **기능 요구 사항, 프로그래밍 요구 사항, 과제 진행 요구 사항** 세 가지로 구성되어 있다.
-- 세 개의 요구 사항을 만족하기 위해 노력한다. 특히 기능을 구현하기 전에 기능 목록을 만들고, 기능 단위로 커밋 하는 방식으로 진행한다.
-- 기능 요구 사항에 기재되지 않은 내용은 스스로 판단하여 구현한다.
+### 1. 구매 금액 입력
 
-## 📮 미션 제출 방법
-
-- 미션 구현을 완료한 후 GitHub을 통해 제출해야 한다.
-  - GitHub을 활용한 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고해
-    제출한다.
-- GitHub에 미션을 제출한 후 [우아한테크코스 지원](https://apply.techcourse.co.kr) 사이트에 접속하여 프리코스 과제를 제출한다.
-  - 자세한 방법은 [제출 가이드](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse#제출-가이드) 참고
-  - **Pull Request만 보내고 지원 플랫폼에서 과제를 제출하지 않으면 최종 제출하지 않은 것으로 처리되니 주의한다.**
-
-## 🚨 과제 제출 전 체크 리스트 - 0점 방지
-
-- 기능 구현을 모두 정상적으로 했더라도 **요구 사항에 명시된 출력값 형식을 지키지 않을 경우 0점으로 처리**한다.
-- 기능 구현을 완료한 뒤 아래 가이드에 따라 테스트를 실행했을 때 모든 테스트가 성공하는지 확인한다.
-- **테스트가 실패할 경우 0점으로 처리**되므로, 반드시 확인 후 제출한다.
-
-### 테스트 실행 가이드
-
-- 테스트 패키지 설치를 위해 `Node.js` 버전 `14` 이상이 필요하다.
-- 다음 명령어를 입력해 패키지를 설치한다.
-
-```bash
-npm install
-```
-
-- 설치가 완료되었다면, 다음 명령어를 입력해 테스트를 실행한다.
-
-```bash
-npm test
-```
-
----
-
-## 🚀 기능 요구 사항
-
-로또 게임 기능을 구현해야 한다. 로또 게임은 아래와 같은 규칙으로 진행된다.
+처음 앱을 실행 할 때, 다음과 같은 문장이 출력됩니다.
 
 ```
-- 로또 번호의 숫자 범위는 1~45까지이다.
-- 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다.
-- 당첨 번호 추첨 시 중복되지 않는 숫자 6개와 보너스 번호 1개를 뽑는다.
-- 당첨은 1등부터 5등까지 있다. 당첨 기준과 금액은 아래와 같다.
-    - 1등: 6개 번호 일치 / 2,000,000,000원
-    - 2등: 5개 번호 + 보너스 번호 일치 / 30,000,000원
-    - 3등: 5개 번호 일치 / 1,500,000원
-    - 4등: 4개 번호 일치 / 50,000원
-    - 5등: 3개 번호 일치 / 5,000원
+구입금액을 입력해 주세요.
 ```
 
-- 로또 구입 금액을 입력하면 구입 금액에 해당하는 만큼 로또를 발행해야 한다.
-- 로또 1장의 가격은 1,000원이다.
-- 당첨 번호와 보너스 번호를 입력받는다.
-- 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 및 수익률을 출력하고 로또 게임을 종료한다.
-- 사용자가 잘못된 값을 입력할 경우 `throw`문을 사용해 예외를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 종료한다.
+1000원 단위의 숫자를 입력해 주시면 됩니다.
+(ex. 8000)
 
-### 입출력 요구 사항
+### 2. 구매한 로또 출력
 
-#### 입력
-
-- 로또 구입 금액을 입력 받는다. 구입 금액은 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다.
-
-```
-14000
-```
-
-- 당첨 번호를 입력 받는다. 번호는 쉼표(,)를 기준으로 구분한다.
-
-```
-1,2,3,4,5,6
-```
-
-- 보너스 번호를 입력 받는다.
-
-```
-7
-```
-
-#### 출력
-
-- 발행한 로또 수량 및 번호를 출력한다. 로또 번호는 오름차순으로 정렬하여 보여준다.
+입력한 금액만큼의 로또를 구매하고, 구매한 로또를 다음과 같이 출력합니다.
 
 ```
 8개를 구매했습니다.
@@ -98,29 +32,46 @@ npm test
 [1, 3, 5, 14, 22, 45]
 ```
 
-- 당첨 내역을 출력한다.
+### 3. 당첨 로또 입력
+
+구매한 로또의 리스트가 출력되고, 당첨 로또를 생성해야 하므로 다음과 같은 문장이 출력됩니다.
 
 ```
+당첨 번호를 입력해 주세요.
+```
+
+당첨 번호 6자리를 입력해 주시면 됩니다. 이 때, 숫자는 쉼표(,)를 기준으로 나눠서 입력하시면 됩니다.
+(ex. 1,2,3,4,5,6)
+
+이후, 당첨 로또의 보너스 번호를 입력하라는 문장이 출력됩니다.
+
+```
+보너스 번호를 입력해 주세요.
+```
+
+원하는 보너스 번호 하나를 입력하면 됩니다.
+(ex. 7)
+
+### 4. 당첨 통계 출력
+
+구매한 로또와 당첨 로또를 비교해서 당첨 통계를 출력합니다.
+
+```
+당첨 통계
+---
 3개 일치 (5,000원) - 1개
 4개 일치 (50,000원) - 0개
 5개 일치 (1,500,000원) - 0개
 5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
 6개 일치 (2,000,000,000원) - 0개
-```
-
-- 수익률은 소수점 둘째 자리에서 반올림한다. (ex. 100.0%, 51.5%, 1,000,000.0%)
-
-```
 총 수익률은 62.5%입니다.
 ```
 
-- 예외 상황 시 에러 문구를 출력해야 한다. 단, 에러 문구는 "[ERROR]"로 시작해야 한다.
+수익률은 로또 당첨금의 총액과 구매한 금액을 비교한 결과를 출력합니다.
 
-```
-[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.
-```
+<br>
 
-#### 실행 결과 예시
+# 💻 실행 결과
 
 ```
 구입금액을 입력해 주세요.
@@ -152,85 +103,127 @@ npm test
 총 수익률은 62.5%입니다.
 ```
 
----
+<br>
 
-## 🎯 프로그래밍 요구 사항
+# 🎯 기능 목록
 
-- Node.js 14 버전에서 실행 가능해야 한다. **Node.js 14에서 정상적으로 동작하지 않을 경우 0점 처리한다.**
-- 프로그램 실행의 시작점은 `App.js`의 `play` 메서드이다. 아래와 같이 프로그램을 실행시킬 수 있어야 한다.
+### 💵 금액 입력 받기
 
-**예시**
+- [x] 사용자로부터 금액을 입력받는다.
+- [x] 입력 값이 숫자가 아닌 경우 예외 처리한다.
+- [x] 입력 값이 1000으로 나누어지지 않는 경우 예외 처리한다.
 
-```javascript
-const app = new App();
-app.play();
-```
+### 🖨 로또 발행하기
 
-- `package.json`을 변경할 수 없고 외부 라이브러리(jQuery, Lodash 등)를 사용하지 않는다. 순수 Vanilla JS로만 구현한다.
-- [JavaScript 코드 컨벤션](https://github.com/woowacourse/woowacourse-docs/tree/main/styleguide/javascript)을 지키면서 프로그래밍 한다
-- 프로그램 종료 시 `process.exit()`를 호출하지 않는다.
-- 프로그램 구현이 완료되면 `ApplicationTest`의 모든 테스트가 성공해야 한다. **테스트가 실패할 경우 0점 처리한다.**
-- 프로그래밍 요구 사항에서 달리 명시하지 않는 한 파일, 패키지 이름을 수정하거나 이동하지 않는다.
-- indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
-  - 예를 들어 while문 안에 if문이 있으면 들여쓰기는 2이다.
-  - 힌트: indent(인덴트, 들여쓰기) depth를 줄이는 좋은 방법은 함수(또는 메서드)를 분리하면 된다.
-- 함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들어라.
-- Jest를 이용하여 본인이 정리한 기능 목록이 정상 동작함을 테스트 코드로 확인한다.
+- [x] 금액 만큼(1000원 당 1개) 로또를 발행한다.
+- [x] 로또 번호와 수량 규칙을 지킨다.
+  - [x] 로또 번호의 숫자 범위는 1~45이다.
+  - [x] 각 로또 번호는 서로 중복되지 않는다.
+  - [x] 6개의 숫자를 뽑는다.
+- [x] 발행된 로또를 1개씩 출력한다.
+  - [x] 로또 번호는 오름차순으로 정렬해서 출력한다.
 
-### 추가된 요구 사항
+### 🎱 당첨 번호 입력받기
 
-- 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
-  - 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
-- else를 지양한다.
-  - 힌트: if 조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다.
-  - 때로는 if/else, switch문을 사용하는 것이 더 깔끔해 보일 수 있다. 어느 경우에 쓰는 것이 적절할지 스스로 고민해 본다.
-- 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(Console.readLine, Console.print) 로직에 대한 단위 테스트는 제외한다.
-  - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 구분한다.
-  - 단위 테스트 작성이 익숙하지 않다면 `__tests__/LottoTest.js`를 참고하여 학습한 후 테스트를 구현한다.
+- [x] 쉼표(,) 단위로 입력받는다.
+- [x] 번호의 수가 6개가 아닐 경우 예외 처리한다.
+- [x] 중복 번호가 있을 경우 예외 처리 한다.
+- [x] 로또 번호의 숫자 범위(1~45)를 벗어날 경우 예외 처리한다.
+- [x] 보너스 번호를 입력받는다.
+  - [x] 숫자가 아니거나, 숫자 범위를 벗어날 경우 예외 처리한다.
 
-### 라이브러리
+### 🗒 당첨 통계 계산하기
 
-- [MissionUtils 라이브러리](https://github.com/woowacourse-projects/javascript-mission-utils#mission-utils)에서 제공하는 `Random` 및 `Console` API를 사용하여 구현해야 한다.
-  - Random 값 추출은 [MissionUtils 라이브러리](https://github.com/woowacourse-projects/javascript-mission-utils#mission-utils)의 `Random.pickUniqueNumbersInRange()`를 활용한다.
-  - 사용자의 값을 입력 받고 출력하기 위해서는 [MissionUtils 라이브러리](https://github.com/woowacourse-projects/javascript-mission-utils#mission-utils)에서 제공하는 `Console.readLine`, `Console.print`를 활용한다.
+- [x] 발행한 로또와 당첨 번호를 비교한다.
+  - [x] 발행한 로또의 등수를 계산하고 저장한다.
+- [x] 수익률을 계산한다.
+  - [x] 등수에 따른 총 당첨 금액을 계산한다.
+  - [x] 구매한 금액을 계산한다.
+  - [x] 구매한 금액과 총 당첨 금액을 비교해서 수익률을 계산한다.
+  - [x] 수익률은 소수점 둘째 자리에서 반올림한다.
+- [x] 당첨 내역을 출력한다.
 
-#### 사용 예시
+<br>
 
-```javascript
-const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-```
+# 🔧 클래스별 메소드 설명
 
-### Lotto 클래스
+### 💵 LottoSeller Class
 
-- 제공된 `Lotto` 클래스를 활용해 구현해야 한다.
-- `numbers`의 `#` prefix를 변경할 수 없다.
-- `Lotto`에 필드를 추가할 수 없다.
+`getPurchaseCount(money)`
 
-```javascript
-class Lotto {
-  #numbers;
+- 인자로 금액을 인자로 호출하면 로또 구매 횟수를 반환해준다.
+- 입력한 금액이 숫자 형식이 아니라면 예외 처리한다.
+- 입력한 금액이 1000 단위가 아니라면 예외 처리한다.
+- parameter type: `string` or `number`
+- return type: `number`
+- 예시
+  ```js
+  getPurChaseCount("8000"); // 8
+  getPurChaseCount("3000"); // 3
+  ```
 
-  constructor(numbers) {
-    this.validate(numbers);
-    this.#numbers = numbers;
-  }
+### 🖨 LottoGenerator Class
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error();
-    }
-  }
+`getLottos(purchaseCount)`
 
-  // TODO: 추가 기능 구현
-}
-```
+- 로또 구매 횟수를 인자로 호출한다.
+- 해당 횟수만큼의 로또를 생성하여 배열로 반환한다.
+- parameter type: `number`
+- return type: `Array<Lotto>`
+- 예시
+  ```js
+  getLottos(2); // [Lotto([1, 2, 3, 4, 5, 6]), Lotto(2, 4, 6, 8, 10, 12)]
+  ```
 
----
+### 🥇 RankCalculator Class
 
-## ✏️ 과제 진행 요구 사항
+`getRankCount(playerLottos, WinningLotto)`
 
-- 미션은 [javascript-lotto](https://github.com/woowacourse-precourse/javascript-lotto/) 저장소를 Fork & Clone해 시작한다.
-- **기능을 구현하기 전 `docs/README.md`에 구현할 기능 목록을 정리**해 추가한다.
-- **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
-  - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
-- 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+- 로또를 담은 배열과 당첨 로또를 인자로 호출한다.
+- 등수별 당첨 횟수를 배열로 반환한다.
+- 반환된 배열의 0번 인덱스는 1등 횟수 ~ 4번 인덱스는 5등 횟수를 나타낸다.
+- parameter type: `Array<Lotto>, WinningLotto`
+- return type: `Array<Number>`
+- 예시
+
+  ```js
+  const playerLottos = [new Lotto([1, 2, 3, 4, 5, 6]), new Lotto(1, 3, 5, 7, 9, 11)];
+  const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
+  getRankCount(playerLottos, winningLotto);
+  // [1, 0, 0, 0, 1]
+  // 1등 1번, 5등 1번을 나타낸다.
+
+  const playerLottos = [new Lotto([1, 2, 3, 4, 5, 6]), new Lotto(1, 3, 5, 7, 9, 11)];
+  const winningLotto = new WinningLotto([5, 7, 9, 11, 13, 15], 16);
+  getRankCount(playerLottos, winningLotto);
+  // [0, 0, 0, 1, 0]
+  // 4등 1번을 나타낸다.
+  ```
+
+### 💸 PrizeCalculator Class
+
+`getPrizeMoney(rank)`
+
+- 등수별 당첨 횟수를 담은 배열을 인자로 호출한다.
+- 당첨 횟수를 통해 총 상금을 계산하여 반환한다.
+- parameter type: `Array<Number>`
+- return type: `number`
+- 예시
+  ```js
+  getPrizeMoney([1, 0, 0, 0, 1]); //2000005000
+  getPrizeMoney([0, 0, 1, 1, 0]); //1550000
+  getPrizeMoney([0, 0, 0, 0, 1]); //5000
+  ```
+
+`getRateOfReturn(purchaseAmount, prizeMoney)`
+
+- 로또를 구매한 금액과 총 상금을 인자로 호출한다.
+- 구매 금액과 총 상금을 비교한 수익률을 반환한다.
+- 수익률은 소수점 둘째 자리에서 반올림한다.
+- parameter type: `number, number`;
+- return type: `number`;
+- 예시
+  ```js
+  getRateOfReturn(8000, 5000); // 62.5
+  getRateOfRetrun(5000, 50000); // 1000
+  ```
