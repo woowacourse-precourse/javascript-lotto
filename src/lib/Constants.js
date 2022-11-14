@@ -38,13 +38,13 @@ const PRICE_ERROR_MESSAGE = {
 const WIN_NUMBER_ERROR_MESSAGE = {
   not_valid_answer: '입력값이 없습니다.',
   not_valid_division: '구분은 쉼표(,)를 사용해주세요.',
-  not_valid_range_number: '1부터 45까지의 숫자를 입력해주세요.',
+  not_valid_range_number: '1부터 45 중 6개의 숫자를 입력해주세요.',
   not_valid_overlap_number: '중복되는 숫자는 입력할 수 없습니다.',
 };
 
 const BONUS_NUMBER_ERROR_MESSAGE = {
   not_valid_answer: '입력값이 없습니다.',
-  not_valid_range_number: '1부터 45까지의 숫자를 입력해주세요.',
+  not_valid_range_number: '1부터 45 중 6개의 숫자를 입력해주세요.',
   not_valid_overlap_number: '중복되는 숫자는 입력할 수 없습니다.',
 };
 
