@@ -36,7 +36,12 @@ class App {
 
   compareResult(lottoList, numbers, number) {
     this.CompareLotto.result(lottoList, numbers, number);
+    // this.printResult(result);
   }
+
+  // printResult(result) {
+  //   Console.print(``)
+  // }
 }
 
 let a = new App();

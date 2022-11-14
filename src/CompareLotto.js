@@ -1,3 +1,5 @@
+const LOTTO_WIN = [5000, 50000, 1500000, 30000000, 2000000000];
+
 class CompareLotto {
     // 길이리턴
     count(lottoList, winNumber) {
@@ -42,12 +44,14 @@ class CompareLotto {
     }
 
     money(howManyWin) {
-        const total = 0;
+        let total = [];
         for(let i = 0; i < howManyWin.length; i++) {
-            total = howManyWin[i] * LOTTO_WIN[i];
+            console.log(howManyWin[i]);
+            console.log(LOTTO_WIN[i])
+            total.push(howManyWin[i] * LOTTO_WIN[i]);
         }
         
-        return total;
+        return total.reduce((a,b) => (a+b));
       }
     
     // 수익률 내려면 howManyWin, 로또 구입비
