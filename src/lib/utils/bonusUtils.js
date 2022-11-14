@@ -9,7 +9,9 @@ const checkWinningIncludeBonus = (winningNumbers, bonus) => {
 };
 
 const checkBonusRange = (bonus) => {
-  if (!LOTTO_RANGE_REGEX.test(bonus)) return true;
+  if (!LOTTO_RANGE_REGEX.test(bonus)) {
+    return true;
+  }
   return false;
 };
 
