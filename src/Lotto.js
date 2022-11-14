@@ -36,13 +36,11 @@ class Lotto {
   }
 
   printLotto() {
-    MissionUtils.Console.print(
-      `[${this.ascendingOrderNumbers(this.#numbers).join(', ')}]`,
-    );
+    MissionUtils.Console.print(`[${this.ascendingOrderNumbers().join(', ')}]`);
   }
 
-  ascendingOrderNumbers(numbers) {
-    return numbers.sort((a, b) => a - b);
+  ascendingOrderNumbers() {
+    return this.#numbers.sort((a, b) => a - b);
   }
 }
 
