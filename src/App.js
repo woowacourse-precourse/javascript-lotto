@@ -5,7 +5,8 @@ class App {
   constructor() {
     this.userLottos = [];
     this.winningLotto = [];
-    this.winningBonusLottoNumber = 0;
+    this.winningBonusNumber = 0;
+    this.winningResult = [0, 0, 0, 0, 0]  
   }
 
   play() {
@@ -18,10 +19,14 @@ class App {
         Utils.print(userLotto);
       }
       Utils.readLine('당첨 번호를 입력해 주세요.\n', (input) => {
-        this.winningLotto = new Lotto(this.createLottoArray(input));
-        console.log(this.winningLotto)
+        this.winningLotto = this.createLottoArray(input);
+        new Lotto(this.winningLotto);
         Utils.readLine('보너스 번호를 입력해 주세요.\n', (input) => {
-            this.winningBonusLottoNumber = input;
+          this.winningBonusNumber = Number(input);
+            for(const userLotto of this.userLottos) { 
+              this.compareLottoNumber(userLotto);
+            }
+            Utils.close();
         });
       });
     });
@@ -56,7 +61,16 @@ class App {
     let winningLotto = input.split(",").map(Number);
     return winningLotto;
   }
-  
+
+  compareLottoNumber(userLotto){
+    let matchCount = 0;
+    for(let index = 0; index < userLotto.length; index++){
+      if(userLotto.includes(this.winningLotto[index])){
+        matchCount += 1;
+      }
+      console.log(matchCount);
+    }
+  }
 }
 
 const app = new App();
