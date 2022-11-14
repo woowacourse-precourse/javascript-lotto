@@ -10,7 +10,6 @@ class App {
       this.isCorrectRange(answer);
       this.lottoTicketPages();
       this.makeTicket();
-      this.getWinningNumber();
     });
   }
   isCorrectRange(number) {
@@ -42,7 +41,8 @@ class App {
       });
       tickets.push(randomNumber);
     }
-    return MissionUtils.Console.print(`[${tickets.join(", ")}]`);
+    MissionUtils.Console.print(`[${tickets.join(", ")}]`);
+    this.getWinningNumber();
   }
 
   getWinningNumber() {
@@ -53,8 +53,24 @@ class App {
 
       const lotto = new Lotto(WINNTING_NUMBER);
       lotto.validate(WINNTING_NUMBER);
+      this.getBonusNumber();
     });
-    return WINNTING_NUMBER;
+  }
+
+  getBonusNumber() {
+    let BONUS_NUMBER = 0;
+    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (number) => {
+      BONUS_NUMBER = number;
+      this.validateRange(BONUS_NUMBER);
+      MissionUtils.Console.print(BONUS_NUMBER);
+      MissionUtils.Console.close();
+    });
+  }
+
+  validateRange(number) {
+    if (number < 1 || number > 45) {
+      throw new Error("[ERROR] 로또 번호는 1~45사이의 숫자여야 합니다.");
+    }
   }
 
   play() {
