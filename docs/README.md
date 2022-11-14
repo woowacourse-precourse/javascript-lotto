@@ -6,6 +6,18 @@
 
 2. 도메인 로직에 대한 단위 테스트를 작성하는 연습
 
+## 사용 라이브 러리
+
+[MissionUtils 라이브러리](https://github.com/woowacourse-projects/javascript-mission-utils#mission-utils)
+
+## 적용한 컨벤션
+
+[air-bnb](https://github.com/airbnb/javascript)
+
+## node version
+
+v14.20.0
+
 ## 기능 구현 목록
 
 ### 상수 구현
@@ -71,3 +83,21 @@
 5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
 6개 일치 (2,000,000,000원) - 0개
 총 수익률은 입니다.
+
+## 클래스 분리 에 대한 부연 설명
+
+App.js : 로또 앱의 전체 적인 진행 클래스
+
+Calculator.js : 로또 앱에 필요한 계산 관련 기능 클래스
+
+Lotto: 로또 관련 생성 클래스
+
+Validator: : input에 대한 검증 기능 클래스
+
+Printer: 메세지 출력 에 대한 기능 클래스
+
+Utils: 라이브러리 기능 관련 클래스
+
+를 기준으로 클래스를 분리하려고 시도해봤습니다.
+
+## 테스트 코드 작성
