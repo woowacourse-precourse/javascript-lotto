@@ -63,6 +63,7 @@ class App {
       this.inputBonusNumber();
       this.lottoInfo.forEach((lotto) => {
         let correctCount = this.compareLottoNumber(String(lotto).split(','), lottoNumber.getLottoNumber());
+        if (correctCount === 0) return;
         lottoNumber.calcLottoResultCount(correctCount, lotto, this.lottoResult, this.BonusNumber);
       });
       this.printLottoJackpotResult();
