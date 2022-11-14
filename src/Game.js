@@ -6,7 +6,7 @@ const {
   getRateOfReturn,
   getRevenue,
   convertAnswerIntoArray,
-} = require('./lib/utils/returnUtils');
+} = require('./lib/utils/gameUtils');
 const {
   printWinningResult,
   printMyLottosArray,
