@@ -4,6 +4,8 @@ const RandomNums = require('./RandomNums');
 
 const REGEX_NUM = /^[0-9]+$/;
 const PRICE_PER_LOTTO = 1000;
+const MIN_LOTTO_NUM = 1;
+const MAX_LOTTO_NUM = 45;
 
 class User {
   readInput() {
@@ -33,7 +35,8 @@ class User {
 
   makeLotto() {
     const amount = this.getAmount();
-    this.randomNums = new RandomNums();
+    this.randomNums = new RandomNums(amount);
+    console.log(this.randomNums);
     this.readLottoNums();
   }
 
@@ -59,8 +62,22 @@ class User {
 
   validateBonusNum(number) {
     User.checkIsNum(number);
-    this.lotto.checkNumRange(number);
+    User.checkNumRange(number);
+    User.checkDuplicatedNum(this.lotto.getNumbers(), number);
     this.bonusNum = number;
+  }
+
+  static checkNumRange(number) {
+    if (number < MIN_LOTTO_NUM || number > MAX_LOTTO_NUM)
+      throw new Error('[ERROR] 로또 번호는 1~45 범위의 숫자여야 합니다.');
+  }
+
+  static checkDuplicatedNum(lottoNum, bonusNum) {
+    if (lottoNum.includes(bonusNum) === true) {
+      throw new Error(
+        '[ERROR] 당첨 번호와 보너스 번호는 중복된 값을 가질 수 없습니다.'
+      );
+    }
   }
 }
 
