@@ -1,7 +1,7 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
-const RANKING = {
+const RANK_INFO = {
   1: { match: 6, money: 2000000000 },
   2: { match: 5, money: 30000000 },
   3: { match: 5, money: 1500000 },
@@ -80,6 +80,7 @@ class App {
       this.bonusNumber = value;
 
       this.getWinningHistory();
+      this.getEarningsRate();
     });
   }
 
@@ -133,13 +134,27 @@ class App {
     Console.print("\n당첨 통계\n---");
     RANK.forEach((rank) => {
       Console.print(
-        `${RANKING[rank].match}개 일치${
+        `${RANK_INFO[rank].match}개 일치${
           rank === 2 ? ", 보너스 볼 일치" : ""
-        } (${RANKING[rank].money.toLocaleString()}원) - ${
+        } (${RANK_INFO[rank].money.toLocaleString()}원) - ${
           this.winningHistory[rank]
         }개`
       );
     });
+  }
+
+  getEarningsRate() {
+    let earnings = 0;
+    for (let rank in this.winningHistory) {
+      earnings += this.winningHistory[rank] * RANK_INFO[rank].money;
+    }
+
+    const earningsRate = (earnings / this.money) * 100;
+    this.printEarningsRate(earningsRate);
+  }
+
+  printEarningsRate(earningsRate) {
+    Console.print(`총 수익률은 ${earningsRate}%입니다.`);
   }
 }
 
