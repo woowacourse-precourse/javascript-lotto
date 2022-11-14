@@ -20,6 +20,7 @@ class RankingCalculate {
       this.eachLotto = this.lottoCalculateList.pop();
       this.countMatchLength(this.eachLotto);
     };
+
     return this.rankListCount;
   };
 
@@ -49,6 +50,7 @@ class RankingCalculate {
     if (this.eachLotto.includes(this.#bonus)) {
       return 3;
     };
+    
     return 2;
   };
 };

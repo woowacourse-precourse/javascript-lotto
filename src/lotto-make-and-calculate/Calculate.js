@@ -20,6 +20,7 @@ class Calculate {
     for (let i = 0; i < 5; i++) {
       this.prizeMoney += NUMBER.PRIZE_MONEY[i] * this.ranking[i];
     };
+    
     this.earnPercentage = (this.prizeMoney / price * 100).toFixed(1);
     this.printResult.printPriz(this.earnPercentage);
   };

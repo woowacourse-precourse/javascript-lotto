@@ -1,4 +1,4 @@
-const { Console } = require("@woowacourse/mission-utils");
+const { Console } = require('@woowacourse/mission-utils');
 const { MESSAGE, RESULT } = require('../utils/Constants');
 
 class PrintResults {

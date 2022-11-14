@@ -1,4 +1,4 @@
-const { Console } = require("@woowacourse/mission-utils");
+const { Console } = require('@woowacourse/mission-utils');
 const { MESSAGE } = require('./Constants');
 const Price = require('../Price');
 const Lotto = require('../Lotto');
@@ -26,14 +26,14 @@ class LottoHandler {
   };
 
   makeLottos() {
-    this.amount = this.price/1000;
+    this.amount = this.price / 1000;
     const lottoMaker = new MakeLottos(this.amount);
-    this.lottoList = lottoMaker.lottoLists
+    this.lottoList = lottoMaker.lottoLists;
     this.printLottoLists();
   };
 
   printLottoLists() {
-    this.printResults.printLotto(this.amount,this.lottoList);
+    this.printResults.printLotto(this.amount, this.lottoList);
     this.getLottoAnswerNumber();
   };
 
@@ -48,7 +48,7 @@ class LottoHandler {
   
   getBonusNumber(answerNumber) {
     Console.readLine(MESSAGE.BONUS, (answer) => {
-      new Bonus(answer,answerNumber);
+      new Bonus(answer, answerNumber);
       this.bonusNumber = Number(answer);
       this.startCalculate();
     });

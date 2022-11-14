@@ -1,4 +1,4 @@
-const { Random } = require("@woowacourse/mission-utils");
+const { Random } = require('@woowacourse/mission-utils');
 
 class MakeLottos {
   constructor(amount) {
@@ -7,9 +7,10 @@ class MakeLottos {
 
   makeNewLottos(amount) {
     let arr = [];
-    for (let i = 0 ; i < amount ; i++) {
+    for (let i = 0; i < amount; i++) {
       arr.push(this.sortLotto(Random.pickUniqueNumbersInRange(1, 45, 6)));
     };
+
     return arr;
   };
 
