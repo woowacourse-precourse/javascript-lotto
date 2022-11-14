@@ -1,3 +1,9 @@
+const GUIDE_MESSAGES = {
+  PURCHASE: "구입 금액을 입력해주세요.\n",
+  WINNING_NUMS: `\n당첨 번호를 입력해 주세요.\n`,
+  BONUS_NUM: `\n보너스 번호를 입력해 주세요.\n`,
+};
+
 const LOTTO_PRICE = 1000;
 
 const RANGE_OF_LOTTO_NUMBER = {
@@ -32,6 +38,7 @@ const WINNING_PRICES = {
 const ADD_COMMA_EXP = /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g;
 
 module.exports = {
+  GUIDE_MESSAGES,
   LOTTO_PRICE,
   RANGE_OF_LOTTO_NUMBER,
   TOTAL_COUNTS,
