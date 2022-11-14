@@ -27,9 +27,13 @@ class Store {
     return parseInt(inputStr);
   }
 
-  issue(issuedQuantity) {
-    for (let i = 0; i < issuedQuantity; ++i) {
-      this.lottos.push(Random.pickUniqueNumbersInRange(1, 45, 6));
+  issue() {
+    for (let i = 0; i < this.issuedQuantity; ++i) {
+      this.lottos.push(
+        Random.pickUniqueNumbersInRange(1, 45, 6).sort(
+          (num1, num2) => num1 - num2
+        )
+      );
     }
   }
 
