@@ -26,6 +26,10 @@ class LottoManager {
     }
   }
 
+  isNotNumber(numberInput) {
+    return !/^\d+$/g.test(numberInput);
+  }
+
   isNotBeDividedByUnitPrice(amount, unitPrice) {
     return amount % unitPrice !== 0;
   }
