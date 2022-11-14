@@ -1,6 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
+const MATCH_STRING = ["6개 일치 (2,000,000,000원)", "5개 일치, 보너스 볼 일치 (30,000,000원)", "5개 일치(1,500,000원)", "4개 일치(50,000원)", "3개 일치(5,000원)"];
 const REWARD_MONEY = [2000000000, 30000000, 1500000, 50000, 5000];
 const LOTTO_LEN = 6;
 const RANK_COUNT = 5;
@@ -89,6 +90,15 @@ class App {
     this.revenueRatio = Math.round(this.money / revenue * 100 * 100) / 100;
   }
 
+  printStatistics() {
+    MissionUtils.Console.print("\n당첨 통계");
+    MissionUtils.Console.print("---");
+    for (let i=RANK_COUNT-1; i>=0; i--) {
+      MissionUtils.Console.print(MATCH_STRING[i]+" - "+this.results[i]+"개");
+    }
+    MissionUtils.Console.print("총 수익률은 "+this.revenueRatio+"%입니다.");
+  }
+
   play() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
       this.setMoney(input);
@@ -103,6 +113,7 @@ class App {
           this.setBonus(bonusInput);
           this.calculateResults();
           this.calculateRevenueRatio();
+          this.printStatistics();
         });
       });
     });
