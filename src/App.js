@@ -1,5 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const { GAME, MESSAGE, PRIZE_BOARD } = require('./modules/Constant');
+const { GAME, MESSAGE, PRIZE_BOARD, ERROR } = require('./modules/Constant');
 const Lotto = require('./Lotto');
 
 class App {
@@ -25,10 +25,7 @@ class App {
 
   publishLotto() {
     Console.readLine(MESSAGE.BUY, (amount) => {
-      // TODO: 입력 금액의 유효성검사
-      // 인풋은 숫자를 입력해도 문자열로 들어온다
-      // 문자열 => 숫자 했는데 숫자가아니면 무효!
-      // 1000의 배수가 아니면 무효
+      this.validateAmount(amount);
       this.amount = Number(amount);
 
       const countOfLotto = this.amount / GAME.PRICE; // 1000 상수처리
@@ -107,6 +104,18 @@ class App {
     }
     Console.print(MESSAGE.profit(this.profit));
     Console.close();
+  }
+
+  validateAmount(amount) {
+    const stringToNumber = Number(amount);
+    if (isNaN(stringToNumber)) {
+      throw new Error(`${ERROR.COMMON} ${ERROR.NOT_NUMBER}`);
+    } else if (stringToNumber % 1000 !== 0) {
+      throw new Error(`${ERROR.COMMON} ${ERROR.NOT_MULTIPLE_OF_THOUSAND}`);
+    } else if (stringToNumber === 0) {
+      throw new Error(`${ERROR.COMMON} ${ERROR.CANT_ZERO}`);
+    }
+    return stringToNumber;
   }
 }
 
