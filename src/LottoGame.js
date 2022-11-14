@@ -9,8 +9,6 @@ const StatisticsMachine = require("./StatisticsMachine.js");
 class LottoGame {
   lottos;
   purchaseAmount;
-  winningNumbers;
-  bonusNumber;
 
   constructor() {
     this.LottoGameView = new LottoGameView();
@@ -41,7 +39,6 @@ class LottoGame {
   setWinningNumbersPhase() {
     this.LottoGameView.requestInput(REQUEST_MESSAGE.WINNING_NUMBERS, (winningNumbers) => {
       this.winningLotto.setWinningNumbers(winningNumbers);
-      this.winningNumbers = this.winningLotto.getWinningNumbers();
 
       this.setBonusNumberPhase();
     });
@@ -50,7 +47,6 @@ class LottoGame {
   setBonusNumberPhase() {
     this.LottoGameView.requestInput(REQUEST_MESSAGE.BONUS_NUMBER, (bonusNumber) => {
       this.winningLotto.setBonusNumber(bonusNumber);
-      this.bonusNumber = this.winningLotto.getBonusNumber();
 
       this.drawLottoPhase();
     });
@@ -60,8 +56,8 @@ class LottoGame {
     const eachLottoNumbers = this.getEachLottoNumbers();
     const eachLottoPrize = this.lottoDrawMachine.drawLotto(
       eachLottoNumbers,
-      this.winningNumbers,
-      this.bonusNumber
+      this.winningLotto.getWinningNumbers(),
+      this.winningLotto.getBonusNumber()
     );
 
     this.statisticsPhase(eachLottoPrize);
