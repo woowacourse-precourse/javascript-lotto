@@ -3,9 +3,14 @@ const {
   getWinningNumber,
   getBonusNumber,
 } = require("./UserInput.js");
-const { printUserPurchaseAmount, printLottoResult } = require("./Output.js");
+const {
+  printUserPurchaseAmount,
+  printLottoResult,
+  printProfit,
+} = require("./Output.js");
 const { Print } = require("./lib/MissionUtils.js");
 const { createLotto } = require("./Random.js");
+const { RESULT_WINNINGS } = require("./ResultMessage.js");
 class App {
   $purchaseAmount;
   $lottos;
@@ -37,7 +42,9 @@ class App {
     this.$lottos.forEach((el, i) => {
       this.$lottoResult.push(el.checkCorrespond(this.$winNum, this.$bonus));
     });
-    printLottoResult(this.sortResult(this.$lottoResult));
+    let sortedResult = this.sortResult(this.$lottoResult);
+    printLottoResult(sortedResult);
+    this.calculateProfit(sortedResult);
   }
   sortResult(lottoResult) {
     let result = [];
@@ -45,6 +52,11 @@ class App {
       result.push(lottoResult.filter((el) => el === i).length);
     }
     return result;
+  }
+  calculateProfit(sorted) {
+    let profit = 0;
+    sorted.forEach((el, i) => (profit += RESULT_WINNINGS[i] * el));
+    printProfit(profit, this.$purchaseAmount * 1000);
   }
 }
 
