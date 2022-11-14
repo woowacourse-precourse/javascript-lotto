@@ -12,6 +12,20 @@ class App {
       lottos.forEach((lotto) => {
         Console.print(lotto.getNumbers());
       });
+      this.typedWinNumber();
+    });
+  }
+
+  typedWinNumber() {
+    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (input) => {
+      const winNumbers = input.split(',').map((number) => Number(number));
+      this.typedBonusNumber();
+    });
+  }
+
+  typedBonusNumber() {
+    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (input) => {
+      const bonusNumber = Number(input);
     });
   }
 }
