@@ -17,7 +17,7 @@ class Player {
   }  
 
   set profit(money) {
-    return this.#profit += money;
+    this.#profit += money;
   }  
 
   sumAllProfit(matchedCount) {

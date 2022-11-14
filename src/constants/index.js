@@ -1,5 +1,5 @@
-module.exports = {  
-  MESSAGES : Object.freeze({
+module.exports = {
+  MESSAGES: Object.freeze({
     PAYMONEY: '구입금액을 입력해 주세요.',
     NO_MONEY: '돈이 없으시군요?',
     NOT_ACCEPTABLE: '1000원 단위로만 구매가능합니다.',
@@ -12,7 +12,7 @@ module.exports = {
     WRONG_RANGE: '1 ~ 45 사이에 숫자를 넣어주세요.',
   }),
 
-  CONSTANTS : Object.freeze({
+  CONSTANTS: Object.freeze({
     PRIZE: [5000, 50000, 1500000, 30000000, 2000000000],
     STATTEXT: [
       '3개 일치 (5,000원) - ',

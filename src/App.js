@@ -39,7 +39,9 @@ class App {
   #getStatsResult(tickets, luckyNum) {
     const count = Stat.countWinning(tickets, luckyNum);
     this.player.sumAllProfit(count);
-    const rateOfReturn = Stat.getROR(this.player.profit, this.machine.insertedMoney);
+    const totalProfit = this.player.profit;
+    const paidMoney = this.machine.insertedMoney;
+    const rateOfReturn = Stat.getROR(totalProfit, paidMoney);
     this.#printResults(count, rateOfReturn);
   }
   
