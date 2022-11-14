@@ -47,7 +47,3 @@ class Validator {
 }
 
 module.exports = Validator;
-
-const a = '1000';
-
-console.log(a.includes(''));
