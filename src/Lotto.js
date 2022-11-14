@@ -16,6 +16,10 @@ class Lotto {
     console.log(this.#numbers);
   }
 
+  static covertStringToNumberArray(strings) {
+    return strings.split(',').map((string) => +string);
+  }
+
   static generateLottoArray() {
     return Utils.generateRandomNumberArray(
       LOTTO_NUMBER_RANGE.MIN_RANGE,
@@ -49,11 +53,11 @@ class Lotto {
   }
 }
 
-console.log(Lotto.generateLottoArrays(3));
+// console.log(Lotto.generateLottoArrays(3));
 
-const lotto = new Lotto([1, 3, 2, 7, 4, 5]);
+// const lotto = new Lotto([1, 3, 2, 7, 4, 5]);
 
-console.log(lotto);
+console.log(Lotto.covertStringToNumberArray('2,3,4,5,6,7'));
 
 // console.log(lotto.ascendingSortLottoArray());
 
