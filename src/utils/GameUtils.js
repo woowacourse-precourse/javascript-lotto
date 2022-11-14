@@ -5,34 +5,43 @@ class GameUtils {
   constructor() {}
 
   static getRandomNumberArray() {
-    let randomNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+    const randomNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+
     randomNumbers.sort((a, b) => Number(a) - Number(b));
+
     return randomNumbers;
   }
 
   static getLottos(count) {
-    let lottos = [];
+    const lottos = [];
 
     for (let i = 0; i < Number(count); i++) {
       const lotto = new Lotto(this.getRandomNumberArray());
+
       lottos.push(lotto);
     }
 
     return lottos;
   }
 
-  static getWinnigNumbers(inputString) {
+  static getWinnigNumbersArray(inputString) {
     const winningNumberArray = inputString.split(",");
 
     return winningNumberArray;
   }
 
   static getTotalRankArray(lottos, winningNumber, bonusNumber) {
-    let rankArray = [0, 0, 0, 0, 0];
+    const rankArray = [0, 0, 0, 0, 0];
+
     winningNumber = winningNumber.map((v) => String(v));
 
     lottos.forEach((lotto) => {
-      const rank = this.getRank(lotto.getNumbers(), winningNumber, bonusNumber);
+      const rank = this.getRankOfLotto(
+        lotto.getNumbers(),
+        winningNumber,
+        bonusNumber
+      );
+
       if (rank) rankArray[5 - Number(rank)] += 1;
     });
 
@@ -42,6 +51,7 @@ class GameUtils {
   static getYield(ranks, pay) {
     const reward = [5000, 50000, 1500000, 30000000, 2000000000];
     let totalReward = 0;
+
     reward.forEach((rw, i) => {
       totalReward += ranks[i] * rw;
     });
@@ -49,7 +59,7 @@ class GameUtils {
     return ((totalReward / Number(pay)) * 100).toFixed(1);
   }
 
-  static getRank(lottoNumber, winningNumber, bonusNumber) {
+  static getRankOfLotto(lottoNumber, winningNumber, bonusNumber) {
     const sameNumberCount = this.getSameNumberCount(lottoNumber, winningNumber);
     const isHaveBonusNumber = this.getIsHaveBonusNumber(
       lottoNumber,
@@ -61,6 +71,7 @@ class GameUtils {
 
   static getSameNumberCount(lottoNumber, winningNumber) {
     let sameNumberCount = 0;
+
     lottoNumber.forEach((number) => {
       if (winningNumber.includes(number)) sameNumberCount += 1;
     });

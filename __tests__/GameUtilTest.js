@@ -28,9 +28,9 @@ describe("게임 유틸 클래스 테스트", () => {
     const ranks = [1, 2, 3, 4, 5, undefined, undefined];
 
     lottos.forEach((lotto, i) => {
-      expect(GameUtils.getRank(lotto, winningNumber, bonusNumber)).toEqual(
-        ranks[i]
-      );
+      expect(
+        GameUtils.getRankOfLotto(lotto, winningNumber, bonusNumber)
+      ).toEqual(ranks[i]);
     });
   });
 
