@@ -20,7 +20,7 @@ class Lotto {
     })
   }
 
-  sortMylotto(lotto){
+  sortLotto(lotto){
     lotto.sort((a,b) => {
       if (a>b) return 1;
       if (a === b) return 0;
@@ -32,7 +32,7 @@ class Lotto {
   makeLottoNumber(lottoCount){
     for(let i = 0; i<lottoCount; i++){
       let lotto = Random.pickUniqueNumbersInRange(1,45,6);
-      lotto = this.sortMylotto(lotto);
+      lotto = this.sortLotto(lotto);
       this.mylotto.push(lotto);
     }
   }
@@ -48,6 +48,7 @@ class Lotto {
     Console.readLine(`${MESSAGE.BONUS}\n`,(bonusNumber) => {
       this.bonusNumber = parseInt(bonusNumber);
       this.#numbers.push(this.bonusNumber);
+      this.sortLotto(this.#numbers);
     })
 
     
