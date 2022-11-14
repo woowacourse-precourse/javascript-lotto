@@ -37,8 +37,7 @@ class Validation {
     return new Set(winnerNumber).size === LOTTO_SIZE;
   }
   static isNumberInRange(winnerNumber) {
-    const winnerNumberArr = winnerNumber.split(",");
-    return winnerNumberArr.every((number) => number >= 1 && number <= 45);
+    return winnerNumber.every((number) => number >= 1 && number <= 45);
   }
 }
 

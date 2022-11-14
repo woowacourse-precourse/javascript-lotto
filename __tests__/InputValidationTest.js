@@ -42,7 +42,7 @@ describe("Validation.isOnlyNumber", () => {
 describe("Validation.isNumberRange", () => {
   test("입력된 당첨 번호 6개가 1부터 45까지의 범위가 아니라면 false를 반환해야 한다.", () => {
     // given
-    const input = "[1, 2, 3, 4, 5, 46]";
+    const input = [1, 2, 3, 4, 5, 46];
     // when
     const result = Validation.isNumberInRange(input);
     // then
