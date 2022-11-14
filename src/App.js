@@ -133,6 +133,9 @@ class App {
 
       this.#printLottoResult(lottoResult)
       const returnRate = this.calculateReturnRate(lottoResult)
+      this.#printReturnRate(returnRate)
+
+      this.#close()
     })
   }
 
@@ -191,6 +194,13 @@ class App {
     const returnRate = round((returnSum * 100) / this.#purchaseAmount, 1)
 
     return returnRate
+  }
+
+  /**
+   * @param {number} returnRate
+   */
+  #printReturnRate(returnRate) {
+    Console.print(`총 수익률은 ${returnRate}입니다.`)
   }
 
   #close() {
