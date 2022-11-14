@@ -1,12 +1,32 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
-function printGuessNumbersTotal(numOfTickets, guessNumbersTotal) {
-  MissionUtils.Console.print(`\n${numOfTickets}개를 구매했습니다.`);
-  for (let i = 0; i < guessNumbersTotal.length; i += 1) {
-    MissionUtils.Console.print(guessNumbersTotal[i]);
+function numArraytoStringArray (numArray) {
+  const stringArray = [];
+  for (let i = 0; i < numArray.length; i += 1) {
+    let newArr = "\"[";
+    const commaSpace = ", ";
+    for (let j = 0; j < numArray[i].length; j += 1) {
+        newArr = newArr + String(numArray[i][j]) + commaSpace;
+    }
+    newArr = newArr.slice(0, -2);
+    newArr += "]\"";
+    stringArray.push(newArr);
   }
-  getWinningNumbers();
+  return stringArray;
+}
+
+function printGuessNumbersTotal(numOfTickets, guessNumbersTotal) {
+  const stringArray = numArraytoStringArray(guessNumbersTotal);
+  stringArray.forEach((guessNumbers) => {
+    MissionUtils.Console.print(guessNumbers);
+  }); 
+  getWinningNumbers(guessNumbersTotal, numOfTickets);
+}
+
+function printNumTickets(numOfTickets, guessNumbersTotal) {
+  MissionUtils.Console.print(`\n${numOfTickets}개를 구매했습니다.`);
+  printGuessNumbersTotal(numOfTickets, guessNumbersTotal);
 }
 
 function generateGuessNumbers(numOfTickets) {
@@ -15,7 +35,7 @@ function generateGuessNumbers(numOfTickets) {
     const guessNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
     guessNumbersTotal[i] = guessNumbers;
   }
-  printGuessNumbersTotal(numOfTickets, guessNumbersTotal);
+  printNumTickets(numOfTickets, guessNumbersTotal);
 }
 
 function validatePayment(payment) {
@@ -49,6 +69,6 @@ class App {
   }
 }
 
-// module.exports = App;
-const app = new App();
-app.play();
+module.exports = App;
+// const app = new App();
+// app.play();
