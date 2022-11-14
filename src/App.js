@@ -1,3 +1,4 @@
+const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("../src/Lotto");
 const Ask = require("../src/Ask");
 
@@ -7,7 +8,7 @@ class App {
     const ask = new Ask();
     ask.money();
 
-    Console.close();
+    MissionUtils.Console.close();
   }
 }
 
