@@ -11,7 +11,6 @@ class LottoJudgement {
 
   judgeStart() {
     for (let i = 0; i < this.userLottoArray.length; i++) {
-      const eachLotto = new Lotto(this.userLottoArray[i]); /// 유효성 체크
       this.eachLottoJudge(this.userLottoArray[i]);
     }
     this.getScoreBoard();

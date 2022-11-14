@@ -41,3 +41,10 @@ LottoGameStart
 3. 당첨 번호 입력 및 보너스 번호 입력 함수 - LottoGameStart#makeWinLottoNumber
 4. 당첨 통계 출력 함수 - LottoGameStart#printResultStatic
    수익률 출력 함수 - LottoGameStart#estimateProfit
+
+---
+
+입출력 요구 사항
+
+1. 로또 구입 금액은 1000원 단위 >> 아니면 예외처리
+2. 로또 번호는 1~45사이의 숫자로 구성 >> 아니면 예외처리

@@ -1,7 +1,11 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
 const getLottoNumber = (userInputPrice) => {
-  return userInputPrice / 1000;
+  if (userInputPrice % 1000 != 0) {
+    throw new Error("[ERROR]");
+  } else {
+    return userInputPrice / 1000;
+  }
 };
 
 const makeLottoArray = (lottoCount) => {
