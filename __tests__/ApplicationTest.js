@@ -1,4 +1,7 @@
 const App = require("../src/App");
+
+const Validation = require("../src/Validation");
+
 const MissionUtils = require("@woowacourse/mission-utils");
 
 const mockQuestions = (answers) => {

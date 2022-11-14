@@ -12,6 +12,9 @@ const ERROR = {
 	NUM_TYPE: "[ERROR] 숫자 만 입력 해주세요.",
 	MIN_SIZE_TYPE: "[ERROR] 최소 입력 숫자 1000 이상 입니다",
 	ZERO_TYPE: "[ERROR] 0 보다 큰 숫자를 입력 해주세요",
+	LEN_TYPE: "[ERROR] 길이가 초과 되었습니다",
+	DUPLI_TYPE: "[ERROR] 중복된 숫자가 있습니다",
+	RANGE_TYPE: "[ERROR] 유효한 범위가 아닙니다",
 };
 
 module.exports = {

@@ -9,6 +9,7 @@ class App {
 
 		this.state = {
 			money: 0,
+			buyLotto: 0,
 		};
 	}
 	play() {
@@ -20,6 +21,7 @@ class App {
 			this.state.money = Number(money);
 
 			this.valid.inputMoney(this.state.money);
+			this.state.buyLotto = this.state.money / 1000;
 		});
 	}
 }
