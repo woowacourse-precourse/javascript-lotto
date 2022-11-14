@@ -11,12 +11,14 @@ class App {
     let winningNumbers = await lottoView.getWinningNumbers();
     winningNumbers = winningNumbers.map(Number);
     const bonusNumber = await lottoView.getBonusNumber();
+
     const winningRank = lottoModel.checkWinning(
       winningNumbers,
       Number(bonusNumber)
     );
     lottoView.printWinnings(winningRank);
-    const yield = lottoModel.calcYield(purchaseAmount);
+    const totalYield = lottoModel.calcYield(purchaseAmount);
+    lottoView.printTotalYield(totalYield);
   }
 }
 

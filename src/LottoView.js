@@ -5,29 +5,41 @@ const {
   checkBonusNumber,
 } = require("./Validation");
 const { WINNINGS } = require("./Constants");
+const RANKING = [
+  WINNINGS.FIFTH_WIN,
+  WINNINGS.FOURTH_WIN,
+  WINNINGS.THIRD_WIN,
+  WINNINGS.SECOND_WIN,
+  WINNINGS.FIRST_WIN,
+];
 
 class LottoView {
+  #winningNumbers;
+
   inputPurchaseAmount(resolve) {
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (answer) => {
+    MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (answer) => {
       checkPurchaseAmount(answer);
       resolve(answer);
     });
   }
 
   inputWinningNumbers(resolve) {
-    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (answer) => {
-      const numbers = answer.split(",");
-      checkLottoNumbers(numbers);
-      resolve(numbers);
+    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.\n", (answer) => {
+      this.#winningNumbers = answer.split(",");
+      checkLottoNumbers(this.#winningNumbers);
+      resolve(this.#winningNumbers);
     });
   }
 
   inputBonusNumber(resolve) {
-    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (answer) => {
-      checkBonusNumber(answer);
-      resolve(answer);
-      MissionUtils.Console.close();
-    });
+    MissionUtils.Console.readLine(
+      "보너스 번호를 입력해 주세요.\n",
+      (answer) => {
+        checkBonusNumber(this.#winningNumbers, answer);
+        resolve(answer);
+        MissionUtils.Console.close();
+      }
+    );
   }
 
   getPurchaseAmount() {
@@ -64,14 +76,7 @@ class LottoView {
   }
 
   printWinnings(winningRank) {
-    const ranking = [
-      WINNINGS.FIFTH_WIN,
-      WINNINGS.FOURTH_WIN,
-      WINNINGS.THIRD_WIN,
-      WINNINGS.SECOND_WIN,
-      WINNINGS.FIRST_WIN,
-    ];
-    for (const rank of ranking) {
+    for (const rank of RANKING) {
       let bonus = false;
       if (rank.RANK === 2) bonus = true;
       const numberCount = rank.COUNT;
@@ -81,6 +86,10 @@ class LottoView {
         this.makeWinningMessage(numberCount, bonus, amount, winningCount)
       );
     }
+  }
+
+  printTotalYield(totalYield) {
+    MissionUtils.Console.print(`총 수익률은 ${totalYield}%입니다.`);
   }
 }
 
