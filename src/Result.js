@@ -52,6 +52,7 @@ class Result {
       const hasBonus = bonusNumber.compare(lotto);
       this.updateHistory(countMatching, hasBonus);
     });
+    this.printStatistics();
   }
 
   updateHistory(countMatching, hasBonus) {
@@ -83,6 +84,29 @@ class Result {
     const purchaseAmount = this.lottos.length * 1000;
 
     return (winningAmount * 100) / purchaseAmount;
+  }
+
+  printStatistics() {
+    const totalReturn = this.findReturn().toFixed(1);
+    Console.print(`\nMESSAGE.STATISTICS`);
+    Console.print(
+      `${MESSAGE.HISTORY_FIFTH_PLACE}${this.history.fifthPlace.count}${MESSAGE.HISTORY_COUNT}`
+    );
+    Console.print(
+      `${MESSAGE.HISTORY_FOURTH_PLACE}${this.history.fourthPlace.count}${MESSAGE.HISTORY_COUNT}`
+    );
+    Console.print(
+      `${MESSAGE.HISTORY_THIRD_PLACE}${this.history.thirdPlace.count}${MESSAGE.HISTORY_COUNT}`
+    );
+    Console.print(
+      `${MESSAGE.HISTORY_SECOND_PLACE}${this.history.secondPlace.count}${MESSAGE.HISTORY_COUNT}`
+    );
+    Console.print(
+      `${MESSAGE.HISTORY_FIRST_PLACE}${this.history.firstPlace.count}${MESSAGE.HISTORY_COUNT}`
+    );
+    Console.print(
+      `${MESSAGE.RETURN_TOTAL}${totalReturn}${MESSAGE.RETURN_PERCENT}`
+    );
   }
 }
 
