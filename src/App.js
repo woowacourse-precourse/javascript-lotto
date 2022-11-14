@@ -15,9 +15,13 @@ class App {
     this.Lotto = undefined;
   }
 
+  play() {
+    this.printPurchaseInputMessage();
+  }
+
   printPurchaseInputMessage() {
     Console.print(MESSAGE.INPUT_CASH);
-    return this;
+    this.submitPurchaseAmount();
   }
 
   printPurchaseOutputMessage() {
@@ -84,10 +88,6 @@ class App {
       this.bonusNumber = Number(input);
       return this.printWinningResult();
     });
-  }
-
-  play() {
-    this.printPurchaseInputMessage().submitPurchaseAmount();
   }
 }
 
