@@ -1,6 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const RandomNumber = require("./RandomNumber");
-
 class AmountNumber {
   constructor(purchaseAmout, purchaseNumber) {
     this.purchaseAmout = purchaseAmout;
@@ -20,15 +19,7 @@ class AmountNumber {
 
   amountDivide() {
     this.purchaseNumber = this.purchaseAmout / 1000;
-    this.showPurchaseNumber();
-  }
-
-  showPurchaseNumber() {
-    MissionUtils.Console.print(`\n${this.purchaseNumber}개를 구매했습니다.`);
-    this.randomNumber.randomComputerNumber(
-      this.purchaseAmout,
-      this.purchaseNumber
-    );
+    this.randomNumber.showPurchaseNumber(this.purchaseNumber);
   }
 }
 
