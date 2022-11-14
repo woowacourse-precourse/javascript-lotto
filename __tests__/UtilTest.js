@@ -1,4 +1,4 @@
-const { isMultipleOf1000, divide1000, splitStrByComma, getRandomNumbers } = require('../src/lib/utilFns');
+const { isMultipleOf1000, isDuplicated, divide1000, splitStrByComma, getRandomNumbers } = require('../src/lib/utilFns');
 const MissionUtils = require('@woowacourse/mission-utils');
 
 const mockRandoms = (numbers) => {
@@ -93,6 +93,22 @@ describe('유틸 함수 테스트', () => {
 
       const result = splitStrByComma(inputStr);
       expect(result).toStrictEqual(answer);
+    });
+  });
+
+  describe('isDuplicated 함수 테스트', () => {
+    it('배열 원소가 중복되면 true를 반환한다.', () => {
+      const arr = ['1', '2', '3', '4', '4'];
+      const result = isDuplicated(arr);
+
+      expect(result).toBe(true);
+    });
+
+    it('배열 원소가 중복되지 않으면 false를 반환한다.', () => {
+      const arr = ['1', '2', '3', '4', '5'];
+      const result = isDuplicated(arr);
+
+      expect(result).toBe(false);
     });
   });
 });
