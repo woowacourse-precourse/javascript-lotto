@@ -1,18 +1,13 @@
-const Lotto = require("./Lotto.js");
-
-class Bonus extends Lotto{
+class Bonus{
     #bonusNumber
-    #lottoNumbers
   constructor(lottoNumber ,bonusNumber) {
-    super(lottoNumber);
-    this.#lottoNumbers = lottoNumber;
     this.bonusValidationCheckList(lottoNumber,bonusNumber);
     this.#bonusNumber = bonusNumber;
   }
   bonusValidationCheckList(lottoNumbers, bonusNumber){
     this.isBonusLengthOne(bonusNumber);
-    super.isNumber(bonusNumber);
-    super.isInRange(bonusNumber);
+    this.isNumber(bonusNumber);
+    this.isInRange(bonusNumber);
     this.isDuplication(lottoNumbers, bonusNumber);
   }
   isBonusLengthOne(bonusNumber){
@@ -21,12 +16,27 @@ class Bonus extends Lotto{
     }
   }
   isDuplication(lottoNumbers, bonusNumber){
-    if(lottoNumbers.indexOf(bonusNumber)){
+    if(lottoNumbers.includes(...bonusNumber)){
+      console.log("왜?");
       throw new Error("[ERROR] 보너스 번호가 당첨번호와 중복됩니다.");
     }    
   }
   getNumbers(){
     return this.#bonusNumber;
+  }
+  isInRange(numbers){
+    numbers.forEach((number)=>{
+      if(number<1 || number>45){
+        throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+      }
+    })
+  }
+  isNumber(numbers){
+    const IS_NOT_NUMBER = /\D/g;
+    const numbersArrayToString = numbers.join("");
+    if(IS_NOT_NUMBER.test(numbersArrayToString)){
+      throw new Error("[ERROR] 로또 번호는 문자가 아닌 숫자여야 합니다.");
+    }
   }
 }
 
