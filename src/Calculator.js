@@ -18,7 +18,7 @@ class Calculator {
   }
 
   static statistics(totalWinning, purchageAmount) {
-    return (totalWinning / purchageAmount) * 100;
+    return Calculator.toFixedNumber((totalWinning / purchageAmount) * 100);
   }
 
   static toFixedNumber(number) {
@@ -28,5 +28,4 @@ class Calculator {
 
 module.exports = Calculator;
 
-console.log(Calculator.totalWinningAmoun([5, 5, 5, 5, 5]));
-t;
+console.log(Calculator.statistics(5000, 8000));
