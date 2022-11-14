@@ -15,6 +15,7 @@ const ERROR_MESSAGES = Object.freeze({
   DUPLICATED_LOTTO_NUM: "[ERROR] 로또 번호는 중복될 수 없습니다.",
   INVALID_LOTTO_AMOUNT:
     "[ERROR] 구입한 로또의 갯수와 생성된 로또 번호의 갯수가 맞는지 확인해 주세요.",
+  INVALID_SEPARATOR: "[ERROR] 쉼표(,) 로 숫자를 구분해 주세요!",
 });
 
 const NUMBERS = Object.freeze({

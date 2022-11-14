@@ -1,6 +1,6 @@
 const { GAME_MESSAGES, ERROR_MESSAGES } = require("./constants");
-const { Console } = require("@woowacourse/mission-utils");
-const { getRandomInt } = require("./utils");
+const { Console, Random } = require("@woowacourse/mission-utils");
+const { isDuplicated, isOutOfRange } = require("./utils");
 
 class Purchase {
   constructor(cost) {
@@ -20,7 +20,6 @@ class Purchase {
 
     return true;
   };
-
   purchaseLotto = (cost) => {
     this.isValidCost(cost);
     this.amountOfLotto = Number(cost) / 1000;
@@ -28,51 +27,44 @@ class Purchase {
     return this.amountOfLotto;
   };
 
-  isInValidRange = (randomNumber) => {
-    if (randomNumber < 1 || randomNumber > 45)
-      throw new Error(ERROR_MESSAGES.INVALID_LOTTO_RANGE);
-  };
-
   generateOneLotto = () => {
-    const sixRandomNumber = Array.from({ length: 6 }, () => {
-      const randomNumber = getRandomInt();
-      this.isInValidRange(randomNumber);
-      return randomNumber;
-    });
+    const sixRandomNumber = Random.pickUniqueNumbersInRange(1, 45, 6);
 
     return sixRandomNumber.sort((a, b) => a - b);
   };
-
   getAllPurchasedLottos = (amount) => {
     const lottoNumbers = [];
 
     for (let i = 0; i < amount; i++) {
       lottoNumbers.push(this.generateOneLotto());
     }
+    this.isValidNumber(amount, lottoNumbers);
+    this.lottoNumbers = lottoNumbers;
 
     return lottoNumbers;
   };
 
-  isValidNumber = (amount, numbers) => {
-    // const amount = this.amountOfLotto;
-    // const numbers = this.lottoNumbers;
-
-    numbers.forEach((number) => {
-      if (number.length !== 6)
+  isValidNumber = (amount, lottoNumbers) => {
+    lottoNumbers.forEach((eachLotto) => {
+      if (eachLotto.length !== 6)
         throw new Error(ERROR_MESSAGES.INVALID_LOTTO_LENGTH);
-      if (number.includes())
+      if (isDuplicated(eachLotto))
         throw new Error(ERROR_MESSAGES.DUPLICATED_LOTTO_NUM);
+      if (isOutOfRange(eachLotto))
+        throw new Error(ERROR_MESSAGES.INVALID_LOTTO_RANGE);
     });
 
-    if (numbers.length !== amount)
+    if (lottoNumbers.length !== amount)
       throw new Error(ERROR_MESSAGES.INVALID_LOTTO_AMOUNT);
+
+    return true;
   };
 
   printResult = () => {
-    this.isValidNumber(this.amountOfLotto, this.lottoNumbers);
-
     Console.print(GAME_MESSAGES.RETURN_PURCHASED_AMOUNT(this.amountOfLotto));
-    Console.print(this.lottoNumbers);
+    this.lottoNumbers.forEach((number) =>
+      Console.print(`[${number.join(", ")}]`)
+    );
   };
 }
 

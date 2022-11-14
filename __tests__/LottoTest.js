@@ -2,7 +2,7 @@ const Lotto = require("../src/Lotto");
 const { GAME_MESSAGES, ERROR_MESSAGES } = require("../src/constants");
 
 describe("로또 클래스 테스트", () => {
-  test("입력 받은 당첨번호가 올바르지 않은 형식이면 예외가 발생한다.", () => {
+  test("1. 입력 받은 당첨번호가 올바르지 않은 형식이면 예외가 발생한다.", () => {
     const lotto = new Lotto([[]]);
     expect(() => {
       lotto.validateWinningNumber([1, 2, 3, 4, 5, 6, 7]);
@@ -17,7 +17,7 @@ describe("로또 클래스 테스트", () => {
       lotto.validateWinningNumber([0, 2, 3, 4, 5, 6]);
     }).toThrow(ERROR_MESSAGES.INVALID_LOTTO_RANGE);
   });
-  test("입력 받은 보너스 번호가 올바르지 않은 형식이면 예외가 발생한다.", () => {
+  test("2. 입력 받은 보너스 번호가 올바르지 않은 형식이면 예외가 발생한다.", () => {
     const lotto = new Lotto([[]]);
     const tempWinningNumber = [1, 2, 3, 4, 5, 6];
     // 예외1) 숫자로 변환할 수 없는 문자를 포함한 경우
@@ -36,7 +36,7 @@ describe("로또 클래스 테스트", () => {
       lotto.validateBonusNumber("5", tempWinningNumber);
     }).toThrow(ERROR_MESSAGES.DUPLICATED_LOTTO_NUM);
   });
-  test("입력 받은 당첨 번호와 보너스 번호를 올바르게 취합한다.", () => {
+  test("3. 입력 받은 당첨 번호와 보너스 번호를 올바르게 취합한다.", () => {
     const lotto = new Lotto([[]]);
 
     expect(lotto.setUserInput([1, 2, 3, 4, 5, 6], 7)).toEqual({
@@ -44,7 +44,7 @@ describe("로또 클래스 테스트", () => {
       bonusNumber: 7,
     });
   });
-  test("로또 번호와 당첨 번호, 보너스 번호를 비교하여 계산한다.", () => {
+  test("4. 로또 번호와 당첨 번호, 보너스 번호를 비교하여 계산한다.", () => {
     const tempCost = 1000;
     const userInput = { winningNumber: [1, 2, 3, 4, 5, 6], bonusNumber: 7 };
     const lottoNum = [
@@ -67,7 +67,7 @@ describe("로또 클래스 테스트", () => {
       })
     );
   });
-  test("로또 구입 금액과 당첨액을 비교하여 수익률을 계산한다.(단, 수익률은 소숫점 둘째 자리에서 반올림한다.)", () => {
+  test("5. 로또 구입 금액과 당첨액을 비교하여 수익률을 계산한다.(단, 수익률은 소숫점 둘째 자리에서 반올림한다.)", () => {
     const tempCost = 30000;
     const result = [
       { fifth: 1, fourth: 0, third: 0, second: 0, first: 0 },

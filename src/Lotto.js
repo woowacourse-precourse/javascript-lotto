@@ -12,10 +12,16 @@ class Lotto {
 
   handleUserInput = (cost) => {
     Console.readLine(GAME_MESSAGES.ASK_FOR_WINNING_NUMBERS, (winningNumber) => {
-      this.getWinningNumber(winningNumber);
+      const validWinningNumber = this.getWinningNumber(winningNumber);
       Console.readLine(GAME_MESSAGES.ASK_FOR_BONUS_NUMBER, (bonusNumber) => {
-        this.getBonusNumber(bonusNumber, winningNumber);
-        const userInput = this.setUserInput(winningNumber, bonusNumber);
+        const validBonusNumber = this.getBonusNumber(
+          bonusNumber,
+          winningNumber
+        );
+        const userInput = this.setUserInput(
+          validWinningNumber,
+          validBonusNumber
+        );
         const resultMessage = this.getResultMessage(userInput, cost);
 
         Console.print(resultMessage);
@@ -26,6 +32,8 @@ class Lotto {
   };
 
   validateWinningNumber = (winningNumber) => {
+    if (winningNumber.length === 1)
+      throw new Error(ERROR_MESSAGES.INVALID_SEPARATOR);
     if (winningNumber.length !== 6)
       throw new Error(ERROR_MESSAGES.INVALID_LOTTO_LENGTH);
     if (isDuplicated(winningNumber)) {
@@ -101,8 +109,6 @@ class Lotto {
       count = 0;
     }
 
-    console.log("lotto: ", lottoNumbers, "seven num: ", sevenNums);
-    console.log("result: ", result);
     return result;
   };
 
@@ -126,7 +132,6 @@ class Lotto {
     const result = this.calculateResult(userInput);
     const rateOfReturn = this.calculateRateOfReturn(result, cost);
 
-    console.log("result: ", result, "rate of return: ", rateOfReturn);
     const resultMessage = `당첨 통계
     ---
     3개 일치 (5,000원) - ${result.fifth}개
