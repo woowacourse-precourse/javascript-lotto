@@ -1,11 +1,8 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { Console, Random } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const LottoCalculator = require("./LottoCalculator");
 const Validation = require("./validator/Validation");
 const { RULE } = require("./constants/rule");
-
-const mConsole = MissionUtils.Console;
-const mRandom = MissionUtils.Random;
 
 class LottoController {
   constructor() {
@@ -22,13 +19,13 @@ class LottoController {
   }
 
   printLottoAmount() {
-    mConsole.print(`\n${this.lottoAmount}개를 구매했습니다.`);
+    Console.print(`\n${this.lottoAmount}개를 구매했습니다.`);
   }
 
   generateLottoNumbers(lottoAmount) {
     for (let count = 0; count < lottoAmount; count++) {
       const lotto = new Lotto(
-        mRandom.pickUniqueNumbersInRange(
+        Random.pickUniqueNumbersInRange(
           RULE.MIN_LOTTO_NUMBER,
           RULE.MAX_LOTTO_NUMBER,
           RULE.LOTTO_NUMS

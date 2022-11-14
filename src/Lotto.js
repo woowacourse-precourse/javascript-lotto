@@ -1,7 +1,5 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { Console } = require("@woowacourse/mission-utils");
 const { ERROR_LOTTO } = require("./constants/messages");
-
-const mConsole = MissionUtils.Console;
 
 class Lotto {
   #numbers;
@@ -33,7 +31,7 @@ class Lotto {
   printNumbers() {
     this.#numbers.sort((a, b) => (a > b ? 1 : -1));
 
-    mConsole.print(`[${this.#numbers.join(", ")}]`);
+    Console.print(`[${this.#numbers.join(", ")}]`);
   }
 
   getResult(winningNumberList, bonusNumber) {

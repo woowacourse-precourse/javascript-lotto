@@ -1,7 +1,5 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { Console } = require("@woowacourse/mission-utils");
 const { RULE, RANK, REWARD } = require("./constants/rule");
-
-const mConsole = MissionUtils.Console;
 
 class LottoCalculator {
   constructor(winNumbers, boughtNumbers, bonusNumber, lottoAmount) {
@@ -51,13 +49,13 @@ class LottoCalculator {
     const rankList = RANK.LIST;
     rankList.forEach((rank, idx) => {
       const rankCount = this.getRankCount(idx);
-      mConsole.print(`${rank} ${rankCount}개`);
+      Console.print(`${rank} ${rankCount}개`);
     });
   }
 
   printProfitRate() {
     const profitRate = this.calculateProfitRate();
-    mConsole.print(`총 수익률은 ${profitRate}%입니다.`);
+    Console.print(`총 수익률은 ${profitRate}%입니다.`);
   }
 }
 
