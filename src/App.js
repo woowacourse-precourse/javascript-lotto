@@ -84,13 +84,16 @@ class App {
         }
       })
     });
-    count = checkBonusNumber(bonusNumber, userNumbers, count);
+    state = checkBonusNumber(bonusNumber, userNumbers);
+    count += state[0];
+    const isBonus = state[1]; 
   }
-  checkBonusNumber(bonusNumber, userNumbers, count){
+  checkBonusNumber(bonusNumber, userNumbers){
     if(userNumbers.includes(...bonusNumber)){
-      count += 1;
+      return [1,true];
+    }else {
+      return [0,false];
     }
-    return count;
   }
 }
 
