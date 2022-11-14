@@ -21,6 +21,14 @@ class Store {
     const lotto = new Lotto(numbers);
     this.candidates.push(lotto);
   }
+
+  validatePrice(price) {
+    if (price === "" || isNaN(price))
+      throw new Error("[ERROR] 숫자를 입력해 주세요.");
+    if (price % 1000 !== 0)
+      throw new Error("[ERROR] 1000원 단위로 입력해 주세요.");
+    if (price <= 0) throw new Error("[ERROR] 양의 정수를 입력해 주세요.");
+  }
 }
 
 module.exports = Store;
