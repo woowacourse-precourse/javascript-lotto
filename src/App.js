@@ -1,13 +1,17 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
-// const { ERROR_MSG_THOUSAND_UNIT } = require("./constants/error-message");
 const {
   RANKS,
   WINNINGS_NUM,
   WINNINGS_STR,
 } = require("./constants/winnings.js");
 const Lotto = require("./Lotto");
+const Checker = require("./Checker");
 
 class App {
+  constructor() {
+    this.checker = new Checker();
+  }
+
   play() {
     Console.readLine("구입금액을 입력해주세요.\n", (input) => {
       const budget = input.trim();
@@ -54,6 +58,7 @@ class App {
 
   inputMainNums() {
     Console.readLine("\n당첨 번호를 입력해주세요.\n", (input) => {
+      this.checker.validateMainNums(input);
       const mainNums = input.split(",");
       this.mainNums = mainNums.map(Number);
       this.inputBonusNum();
