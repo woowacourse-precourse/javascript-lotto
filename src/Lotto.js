@@ -1,3 +1,7 @@
+const Util = require('./Util');
+const { LOTTO, ERROR_MESSAGE } = require('./domain/constant');
+const { Console } = require('@woowacourse/mission-utils');
+
 class Lotto {
   #numbers;
 
@@ -7,12 +11,32 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    if (!Util.hasNElements(numbers, LOTTO.LENGTH)) {
+      throw new Error(ERROR_MESSAGE.INVALID_LENGTH_LOTTO);
+    }
+    if (!Util.isBetween(numbers, LOTTO.START, LOTTO.END)) {
+      throw new Error(ERROR_MESSAGE.OUT_OF_RANGE_LOTTO);
+    }
+    if (Util.hasDuplicateElements(numbers)) {
+      throw new Error(ERROR_MESSAGE.HAS_DUPLICATE_NUMBERS);
     }
   }
 
-  // TODO: 추가 기능 구현
+  printLottoNumbers() {
+    Console.print(`[${this.#numbers.join(', ')}]`);
+  }
+
+  getMatchCount(winningNumbers) {
+    let matchCount = 0;
+    winningNumbers.forEach((num) => {
+      if (this.#numbers.includes(num)) matchCount += 1;
+    });
+    return matchCount;
+  }
+
+  hasBonusNumber(bonusNumber) {
+    return this.#numbers.includes(bonusNumber);
+  }
 }
 
 module.exports = Lotto;
