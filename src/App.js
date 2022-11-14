@@ -89,10 +89,10 @@ class App {
       throw new Error(`[ERROR] 당첨 로또 번호의 길이는 6개입니다.`);
     }
     if (!this.isValidLottoNumbers(split)) {
-      throw new Error(`[Error] 로또 번호는 1부터 45 사이의 숫자여야 합니다.`);
+      throw new Error(`[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.`);
     }
     if (this.isReapted(split)) {
-      throw new Error(`[Error] 동일한 숫자가 포함되어 있습니다.`);
+      throw new Error(`[ERROR] 동일한 숫자가 포함되어 있습니다.`);
     }
     return split.map((v) => parseInt(v, 10));
   }
@@ -106,13 +106,13 @@ class App {
 
   validateBonusNumber(bonusNumber) {
     if (isNaN(bonusNumber)) {
-      throw new Error(`[Error] 숫자를 입력해 주세요.`);
+      throw new Error(`[ERROR] 숫자를 입력해 주세요.`);
     }
     if (!this.isInRange(bonusNumber)) {
-      throw new Error(`[Error] 로또 번호는 1부터 45 사이의 숫자여야 합니다.`);
+      throw new Error(`[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.`);
     }
     if (this.isReapted([...this.winningNumbers, bonusNumber])) {
-      throw new Error(`[Error] 동일한 숫자가 포함되어 있습니다.`);
+      throw new Error(`[ERROR] 동일한 숫자가 포함되어 있습니다.`);
     }
 
     return parseInt(bonusNumber, 10);
@@ -203,6 +203,3 @@ class App {
 }
 
 module.exports = App;
-
-const app = new App();
-app.play();
