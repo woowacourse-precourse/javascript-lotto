@@ -1,4 +1,4 @@
-const MESSAGES = {
+const ACTION_MESSAGES = {
   purchase: '개를 구매했습니다.',
   result: '\n당첨 통계\n---',
 };
@@ -11,8 +11,8 @@ const INPUT_MESSAGES = {
 
 const ERROR_MESSAGES = {
   length: '[ERROR] 로또 번호는 6개여야 합니다\n',
-  type: '[ERROR] 입력 금액은 숫자여야 합니다\n',
-  divisionByThousand: '[ERROR] 금액은 1,000원 단위여야 합니다\n',
+  type: '[ERROR] 입력 금액은 숫자여야 합니다',
+  divisionByThousand: '[ERROR] 금액은 1,000원 단위여야 합니다',
   overlap: '[ERROR] 로또 번호에 중복된 숫자가 있습니다.\n',
 };
 
@@ -33,7 +33,7 @@ const MATCHING_MESSAGES = {
 };
 
 module.exports = {
-  MESSAGES,
+  ACTION_MESSAGES,
   INPUT_MESSAGES,
   ERROR_MESSAGES,
   PRIZE_MESSAGES,

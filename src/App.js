@@ -1,9 +1,9 @@
 const { Console } = require('@woowacourse/mission-utils');
 const {
-  MESSAGES,
   MATCHING_MESSAGES,
   PRIZE_MESSAGES,
   INPUT_MESSAGES,
+  ACTION_MESSAGES,
 } = require('./constant/messages');
 const Purchaser = require('./domain/Purchaser');
 const Validator = require('./validator');
@@ -34,7 +34,7 @@ class App {
   }
 
   showLottoNumber() {
-    Console.print(`${this.#lottos.length}${MESSAGES.purchase}`);
+    Console.print(`${this.#lottos.length}${ACTION_MESSAGES.purchase}`);
     this.#lottos.forEach((lotto) =>
       Console.print(`[${lotto.getNumbers().join(', ')}]`)
     );
@@ -58,7 +58,7 @@ class App {
   }
 
   showResult() {
-    Console.print(MESSAGES.result);
+    Console.print(ACTION_MESSAGES.result);
     const matchedCountList = this.purchaser.countMatchedNumber(
       this.#lottos,
       this.#winnerNumber,
@@ -68,11 +68,11 @@ class App {
     this.showReturnRate(matchedCountList);
   }
 
-  showMatchedNumber(list) {
+  showMatchedNumber(matchedCountlist) {
     Object.keys(MATCHING_MESSAGES).forEach((matched, idx) => {
       Console.print(
         `${MATCHING_MESSAGES[matched]} ${PRIZE_MESSAGES[matched]} - ${
-          list[idx + 3]
+          matchedCountlist[idx + 3]
         }개`
       );
     });
