@@ -6,7 +6,7 @@ describe('LottoBonus 클래스 테스트', () => {
       new LottoBonus(0, []);
     }).toThrow('[ERROR]');
     expect(() => {
-      new LottoBonus('46', []);
+      new LottoBonus(46, []);
     }).toThrow('[ERROR]');
   });
 

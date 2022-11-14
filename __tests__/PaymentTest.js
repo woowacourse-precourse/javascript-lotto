@@ -22,6 +22,6 @@ describe('Payment 클래스 테스트', () => {
   test('지불한 입력값을 Number 타입으로 가지고 오는 getMoney 매서드가 정상적으로 동작한다.', () => {
     const payment = new Payment('80000');
     const result = payment.getMoney();
-    expect(() => result.toEqual(80000));
+    expect(result).toEqual(80000);
   });
 });
