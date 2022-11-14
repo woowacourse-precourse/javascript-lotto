@@ -1,4 +1,5 @@
 const App = require("./App");
+const { Console } = require("@woowacourse/mission-utils");
 
 class CountLotto {
   constructor() {
@@ -6,6 +7,7 @@ class CountLotto {
   }
   setLottoCount(money) {
     this.validateMoney(money);
+    this.lottoCount = money / 1000;
   }
   throwError(money) {
     if (money < 1000) {
@@ -17,6 +19,10 @@ class CountLotto {
     if (isNaN(money)) {
       throw new Error("[ERROR] 숫자만 입력할 수 있습니다.");
     }
+  }
+
+  printLotteCount() {
+    Console.print(`\n${this.lottoCount}개를 구매했습니다.`);
   }
 }
 

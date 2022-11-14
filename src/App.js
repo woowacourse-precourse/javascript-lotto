@@ -10,6 +10,8 @@ class App {
   requestMoney() {
     Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
       this.game.setLottoCount(money);
+
+      this.game.printLottoCount();
     });
   }
 }
