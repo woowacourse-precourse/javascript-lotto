@@ -7,7 +7,6 @@ class Lotto {
   constructor(winningNumbers) {
     const winning = winningNumbers.map((number) => Number(number));
     Lotto.validate(winning);
-    this.bonus = null;
     this.#numbers = { winning };
   }
 
