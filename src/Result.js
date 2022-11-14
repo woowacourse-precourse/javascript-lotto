@@ -75,5 +75,32 @@ class Result {
 
     return Number(((totalProfit / buyMoney) * 100).toFixed(1));
   }
+
+  printLottoResult(lottoResult, bonusResult, totalYield) {
+    // for (const score in lottoResult) {
+    //   MissionUtils.Console.print(
+    //     `${score}개 일치 (${lottoResult[score][
+    //       "money"
+    //     ].toLocaleString()}원) - ${lottoResult[score]["count"]}개`
+    //   );
+    // }
+    console.log(bonusResult["count"]);
+    MissionUtils.Console.print(
+      `3개 일치 (5,000원) - ${lottoResult["3"]["count"]}개`
+    );
+    MissionUtils.Console.print(
+      `4개 일치 (50,000원) - ${lottoResult["4"]["count"]}개`
+    );
+    MissionUtils.Console.print(
+      `5개 일치 (1,500,000원) - ${lottoResult["5"]["count"]}개`
+    );
+    MissionUtils.Console.print(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${bonusResult["count"]}개`
+    );
+    MissionUtils.Console.print(
+      `6개 일치 (2,000,000,000원) - ${lottoResult["6"]["count"]}개`
+    );
+    MissionUtils.Console.print(`총 수익률은 ${totalYield}%입니다.`);
+  }
 }
 module.exports = Result;

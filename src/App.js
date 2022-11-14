@@ -54,6 +54,7 @@ class App {
           lottoResult,
           bonusResult
         );
+        this.result.printLottoResult(lottoResult, bonusResult, totalYield);
       }
     );
   }
