@@ -12,7 +12,7 @@ describe('로또스토어 클래스 테스트', () => {
     const testMoney = 5000;
     const expectedBuyCount = 5;
     const testCount = lottoStore.askBuyLottoCount(testMoney);
-    expect(testCount).toBe(expectedBuyCount);
+    expect(testCount).toEqual(expectedBuyCount);
   });
 
   test('금액 입력 시 숫자 이외의 값을 입력하면 에러가 발생한다.', () => {
