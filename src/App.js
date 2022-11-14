@@ -91,6 +91,7 @@ class App {
       checkHowManyCorrect(lotto, this.winningNumber, this.bonusNumber),
     );
     this.mappingResult(lottoResultData);
+    this.calculateTotalPrizeMoney();
 
   mappingResult(lottoResultData) {
     lottoResultData.forEach((data) => {
@@ -102,6 +103,13 @@ class App {
     });
   }
 
+  calculateTotalPrizeMoney() {
+    this.totalPrizeMoney =
+      5_000 * this.lottoResultMap['3개'] +
+      50_000 * this.lottoResultMap['4개'] +
+      1_500_000 * this.lottoResultMap['5개'] +
+      30_000_000 * this.lottoResultMap['5개+보너스'] +
+      2_000_000_000 * this.lottoResultMap['6개'];
   }
   }
 }
