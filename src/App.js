@@ -14,6 +14,10 @@ const userWindow = (window, callback) => {
   });
 };
 
+const printOutput = (output) => {
+  MissionUtils.Console.print(`${output}\n`);
+};
+
 new App().play();
 
 module.exports = App;
