@@ -82,6 +82,11 @@ class App {
     const result = Array.from(lottoNum).sort((a, b) => a - b);
     return result;
   }
+  printLottoNumber(){
+    this.lottoNumber.forEach((lotto) => {
+      MissionUtils.Console.print(lotto.printRandom());
+    });
+  }
 
 
 }
