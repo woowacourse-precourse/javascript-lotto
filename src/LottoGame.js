@@ -13,16 +13,20 @@ class LottoGame {
   }
 
   start() {
-    Console.readLine(`${SENTENCE.PURCHASE}\n`, this.purchaseLotto.bind(this));
+    Console.readLine(`${SENTENCE.PURCHASE}\n`, (money) =>
+      this.purchaseLotto(money)
+    );
   }
 
   purchaseLotto(money) {
     this.shop.buyFor(money);
     this.allLottoNumber = this.shop.getAllLottoNumbers();
+    this.printAllLottoNumber();
   }
 
   printAllLottoNumber() {
     const lottoCount = this.shop.getLottoCount();
+
     Console.print(`${lottoCount}${SENTENCE.PURCHASE_COUNT}`);
     this.allLottoNumber.forEach((lottoNumber) =>
       Console.print(`[${lottoNumber.join(', ')}]`)
@@ -48,9 +52,10 @@ class LottoGame {
   printLottoResult() {
     Console.print(`${SENTENCE.RESULT}\n${SENTENCE.DIVIDING_LINE}`);
     const lottoResult = this.lotto.getLottoResult(this.allLottoNumber);
-    for (let key in lottoResult) {
-      Console.print(`${key} (${MONEY[key]}) - ${lottoResult[key]}개`);
-    }
+    Object.entries(lottoResult).forEach(([matchSentence, matchCount], i) => {
+      Console.print(`${matchSentence} (${MONEY[i]}) - ${matchCount}개`);
+    });
+
     this.printProfitRete(lottoResult);
   }
 
