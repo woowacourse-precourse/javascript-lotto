@@ -19,11 +19,13 @@ class App {
   #numoflottosWon;
   #bonusnumber;
   #userlottos;
+  #lottos;
   constructor() {
     this.#winnumbers = '';
     this.#numoflottos = 0;
     this.#numoflottosWon = 0;
     this.#bonusnumber = '';
+    this.#lottos = [];
   }
 
   inputWon() {
@@ -43,8 +45,8 @@ class App {
 
   getrandomlotto() {
     this.#userlottos = new UserLotto(LOTTO_LENGTH);
-    this.#userlottos.getUserLottos(this.#numoflottos);
-    this.#userlottos.printLottos();
+    this.#lottos = this.#userlottos.getUserLottos(this.#numoflottos);
+    this.#userlottos.printLottos(this.#lottos);
   }
 
   getwinbonuslotto() {
@@ -59,14 +61,17 @@ class App {
     this.buylotto();
     this.getrandomlotto();
     this.getwinbonuslotto();
-    this.#userlottos.lottoArr.forEach((eachArr) => {
-      const result = this.#userlottos.compareLotto(eachArr, this.#winnumbers);
+    /*
+    array,String
+    */
+    this.#lottos.forEach((eachlotto) => {
+      const result = this.#userlottos.compareLotto(eachlotto, this.#winnumbers);
       if (result >= MESSAGE.Three) {
         numberObj[result] += 1;
       }
       if (
         result === MESSAGE.Five &&
-        this.#userlottos.compareBonusNumber(eachArr, this.#bonusnumber)
+        this.#userlottos.compareBonusNumber(eachlotto, this.#bonusnumber)
       ) {
         numberObj[MESSAGE.FiveBonus] += 1;
       }
