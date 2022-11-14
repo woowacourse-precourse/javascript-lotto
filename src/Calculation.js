@@ -67,15 +67,15 @@ class Calculation {
     this.plusPoint(count);
   }
 
+  getMatchResultType() {
+    return this.isBonusFiveMatch() ? LOTTO_RESULT_TYPE.bonus : this.matchCount;
+  }
+
   plusPoint(count) {
     if (isLessThanNumber(count, 3)) {
       return;
     }
     this.#winResult[count].count += 1;
-  }
-
-  getMatchResultType() {
-    return this.isBonusFiveMatch() ? LOTTO_RESULT_TYPE.bonus : this.matchCount;
   }
 
   isBonusFiveMatch() {
