@@ -48,6 +48,16 @@ class Purchase {
       Purchase.validateLotto
     );
   }
+
+  static validateLotto(number) {
+    MissionUtils.Console.print(number);
+    Purchase.createWinnigLotto(number);
+  }
+
+  static createWinnigLotto(number) {
+    const winningNumber = number.split(",");
+    const winnigLotto = new Lotto(winningNumber);
+  }
 }
 
 module.exports = Purchase;
