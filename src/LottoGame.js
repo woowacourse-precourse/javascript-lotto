@@ -6,6 +6,7 @@ const {
   LOTTO_NUM_MAX_RANGE,
   LOTTO_DIGITS,
   LOTTO_PRIZE_MATCH_COUNT,
+  LOTTO_PRIZE_MONEY,
 } = require("./constants/condition.js");
 const LottoGameView = require("./LottoGameView.js");
 const Lotto = require("./Lotto.js");
@@ -73,6 +74,7 @@ class LottoGame {
     const eachCompareResult = eachLottoNumbers.map(this.getCompareResult.bind(this));
     const eachCalculatedLottoPrize = eachCompareResult.map(this.getCalculatedLottoPrize);
     const prizeStatistics = this.getPrizeStatistics(eachCalculatedLottoPrize);
+    const totalPrizeMoney = this.getTotalPrizeMoney(prizeStatistics);
   }
   getEachLottoNumbers() {
     return this.lottos.map((lotto) => lotto.getNumbers());
@@ -115,6 +117,16 @@ class LottoGame {
     eachCalculatedLottoPrize.forEach((lottoPrize) => (prizeStatistics[lottoPrize] += 1));
 
     return prizeStatistics;
+  }
+  getTotalPrizeMoney(prizeStatistics) {
+    let totalPrizeMoney = 0;
+
+    for (let [prize, count] of Object.entries(prizeStatistics)) {
+      const prizeMoney = LOTTO_PRIZE_MONEY[prize] * count;
+      totalPrizeMoney += prizeMoney;
+    }
+
+    return totalPrizeMoney;
   }
 }
 
