@@ -118,7 +118,7 @@ class Lotto {
 
   /**
    * @param {number[]} lottoOwnedByUser
-   * @returns {string}
+   * @returns {number}
    */
   checkRank(lottoOwnedByUser) {
     const { matchCount, bonusContained } = this.#calculateRank(lottoOwnedByUser)
