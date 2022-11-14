@@ -2,6 +2,7 @@ const LOTTO = {
   INPUT_COUNT: 6,
   MIN_NUMBER: 1,
   MAX_NUMBER: 45,
+  TOTAL_COUNT: 7,
 };
 
 const COST = {
@@ -14,9 +15,7 @@ const INPUT_MESSAGE = {
   BONUS_NUMBER: '보너스 번호를 입력해 주세요.',
 };
 
-const OUTPUT_MESSAGE = {
-  BUY_COUNT: '개를 구매했습니다.',
-};
+const BUY_MESSAGE = '개를 구매했습니다.';
 
 const ERROR = '[ERROR] ';
 
@@ -36,6 +35,6 @@ module.exports = {
   LOTTO,
   COST,
   INPUT_MESSAGE,
-  OUTPUT_MESSAGE,
+  BUY_MESSAGE,
   ERROR_MESSAGE,
 };
