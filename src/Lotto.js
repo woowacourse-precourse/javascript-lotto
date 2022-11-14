@@ -18,11 +18,19 @@ class Lotto {
     })
   }
 
-
+  sortMylotto(lotto){
+    lotto.sort((a,b) => {
+      if (a>b) return 1;
+      if (a === b) return 0;
+      if (a < b) return -1 ;
+    });
+    return lotto;
+  }
 
   makeLottoNumber(lottoCount){
     for(let i = 0; i<lottoCount; i++){
       let lotto = Random.pickUniqueNumbersInRange(1,45,6);
+      lotto = this.sortMylotto(lotto);
       this.mylotto.push(lotto);
     }
     console.log(this.mylotto)
