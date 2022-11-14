@@ -6,13 +6,13 @@ class Cost {
 
   constructor(cost) {
     this.getCost();
-    this.validate(cost);
+    this.validate(this.#cost);
     this.#cost = cost;
   }
 
   getCost() {
     utils.getInput(INPUT_MESSAGE.COST, (input) => {
-      this.#cost = input;
+      this.#cost = +input;
     });
   }
 
