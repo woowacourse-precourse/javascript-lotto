@@ -12,6 +12,9 @@ const ERROR_MESSAGE = Object.freeze({
   CANT_DIVIDE: "[ERROR] 로또 구입금액을 1000단위로 입력해주세요.",
   OVER_LENGTH: "[ERROR] 로또 번호는 6개여야 합니다.",
   MAX_MONEY: "[ERROR] 로또 구입금액이 너무 큽니다.",
+  WORNG_LENGTH: "[ERROR] 로또 번호는 6개여야 합니다.",
+  IS_DUPLICATE: "[ERROR] 로또 번호가 중복되었습니다.",
+  NOT_LOTTO_NUMBER: "[ERROR] 로또 번호는 숫자만 가능합니다.",
 });
 
 module.exports = { INPUT_MESSAGE, OUTPUT_MESSAGE, ERROR_MESSAGE };
