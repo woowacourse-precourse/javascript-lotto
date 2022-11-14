@@ -21,10 +21,13 @@ class Lotto {
     });
   }
 
-  match(winNumbers, bonusNumber) {
-    const lottoNumbers = this.#numbers;
-
-    lottoNumbers.filter((value) => winNumbers.includes(value));
+  matchNumbers(winNumbers, bonusNumber) {
+    let winCount = this.#numbers.filter((value) =>
+      winNumbers.has(value)
+    ).length;
+    const matchBonus = winCount === 5 && this.#numbers.includes(bonusNumber);
+    if (matchBonus) winCount = 5.5;
+    return winCount;
   }
 }
 
