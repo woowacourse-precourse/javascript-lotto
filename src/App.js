@@ -1,5 +1,6 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
+const LOTTO_PRINT_MENTION = require("./constant/PrintMention");
 const LOTTO_ERROR_MENTION = require("./constant/ErrorMention");
 
 class App {
@@ -19,7 +20,7 @@ class App {
 
   printLottoJackpotResult() {
     let countAmount = 0;
-    Console.print('당첨 통계\n---')
+    Console.print(LOTTO_PRINT_MENTION.result_header);
     this.lottoResult.forEach((count, index) => {
       switch(true) {
         case index === 0:
@@ -49,7 +50,7 @@ class App {
 
   compareLottoNumber(lottoNumber, jackpotNumber) {
     let count = 0;
-    Console.print(count);
+  
     jackpotNumber.forEach((number) => {
       if (lottoNumber.includes(number)) {
         count++;
@@ -60,17 +61,17 @@ class App {
   }
 
   inputBonusNumber() {
-    Console.readLine("보너스 번호를 입력해주세요\n",(Bonus) => {
+    Console.readLine(LOTTO_PRINT_MENTION.input_bonus_number,(Bonus) => {
       this.BonusNumber = Bonus;
     })
   }
 
   inputJackpotNumber() {
-    Console.readLine("당첨 번호를 입력해 주세요\n",(jackpotNumber) => {
-      const lottoNumber = jackpotNumber.split(',');
+    Console.readLine(LOTTO_PRINT_MENTION.input_jackpot_number,(jackpotNumber) => {
+      const lottoNumber = new Lotto(jackpotNumber.trim().split(','));
       this.inputBonusNumber();
       this.lottoInfo.forEach((lotto) => {
-        let correctCount = this.compareLottoNumber(String(lotto).split(','), lottoNumber);
+        let correctCount = this.compareLottoNumber(String(lotto).split(','), lottoNumber.getLottoNumber());
         switch(true){
           case correctCount === 3:
             this.lottoResult[0]++;
@@ -122,7 +123,7 @@ class App {
   }
 
   inputBuyLottoMoney() {
-    Console.readLine("구입금액을 입력해주세요\n",(money) => {
+    Console.readLine(LOTTO_PRINT_MENTION.input_money,(money) => {
       this.isInputValidate(money);
       this.lottoCount = Number(money) / 1000;
       this.printLottoCount(this.lottoCount);
