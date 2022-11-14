@@ -87,4 +87,11 @@ describe('✅ Validator 클래스 : 보너스 번호 테스트', () => {
       Validator.checkNegativeBonusNumber(bonusNumber);
     }).toThrowError(`${ERROR_MESSAGES.INVALID_NEGATIVE_NUMBER}`);
   });
+
+  test('🖐 사용자가 보너스 번호로 1 ~ 45 범위의 숫자가 아닌 값을 입력하면 에러가 발생한다.', () => {
+    const bonusNumber = '505';
+    expect(() => {
+      Validator.checkBonusNumberRange(bonusNumber);
+    }).toThrowError(`${ERROR_MESSAGES.INVALID_LOTTO_NUMBER_RANGE}`);
+  });
 });
