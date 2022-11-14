@@ -95,11 +95,17 @@ class App {
     this.print();
   }
 
-  initResult() {}
+  initResult() {
+    this.result["5000"] = 0;
+    this.result["50000"] = 0;
+    this.result["1500000"] = 0;
+    this.result["30000000"] = 0;
+    this.result["2000000000"] = 0;
+  }
 
   compareNumberUnit() {}
 
-  print()
+  print() {}
 }
 
 const app = new App();
