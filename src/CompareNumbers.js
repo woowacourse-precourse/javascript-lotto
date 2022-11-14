@@ -50,6 +50,28 @@ class CompareWithLotto {
   isSameBonusNumber(userBonus) {
     const lottoBonus = RANDOM_UTIL.pickNumberInRange(1, 45);
     let isSameBonus = userBonus === lottoBonus;
+
+    this.findNumberOfWinningTickets(isSameBonus);
+  }
+
+  findNumberOfWinningTickets(isSameBonus) {
+    let numberOfwinningTickets = {};
+    this.tickets = this.tickets.filter((num) => num > 2);
+
+    numberOfwinningTickets[5] = this.tickets.filter((num) => num === 3).length;
+    numberOfwinningTickets[4] = this.tickets.filter((num) => num === 4).length;
+    numberOfwinningTickets[3] = numberOfwinningTickets[2] = 0;
+    this.compareWithBonus(numberOfwinningTickets, isSameBonus);
+    numberOfwinningTickets[1] = this.tickets.filter((num) => num === 6).length;
+  }
+
+  compareWithBonus(numberOfwinningTickets, isSameBonus) {
+    let SecondOrThird = this.tickets.filter((num) => num === 5).length;
+    if (SecondOrThird) {
+      isSameBonus
+        ? (numberOfwinningTickets[2] = SecondOrThird)
+        : (numberOfwinningTickets[3] = SecondOrThird);
+    }
   }
 }
 
