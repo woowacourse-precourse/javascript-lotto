@@ -20,6 +20,14 @@ class Lotto {
     return lotto;
   }
 
+  buy() {
+    let money = 0;
+    MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (input) => {
+      money = parseInt(input);
+    });
+    return money;
+  }
+
   // test() {
   //   MissionUtils.Console.print(this.buy());
   // }
