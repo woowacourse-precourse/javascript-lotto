@@ -7,9 +7,11 @@ const {
   BonusExceptions,
 } = require('./Exceptions');
 const CompareNumbers = require('./CompareNumbers');
+const lotto = require('../util/lotto');
 
 class App {
   constructor() {
+    this.money = 0;
     this.lottoArr = [];
     this.winningArr = [];
     this.bonus = 0;
@@ -22,6 +24,7 @@ class App {
   getUserMoney() {
     Console.readLine(COMMAND.MONEY, (money) => {
       new MoneyExceptions(money).check();
+      this.money = parseInt(money);
       this.lottoArr = new CreateLotto(money).make();
       this.getWinning();
     });
@@ -39,17 +42,20 @@ class App {
     Console.readLine(COMMAND.BONUS, (bonus) => {
       new BonusExceptions(bonus).check(this.winningArr);
       this.bonus = parseInt(bonus);
-      this.printResult();
+      const result = new CompareNumbers(
+        this.lottoArr,
+        this.winningArr,
+        this.bonus
+      ).getResult();
+      this.printResult(result);
     });
   }
 
-  printResult() {
-    const result = new CompareNumbers(
-      this.lottoArr,
-      this.winningArr,
-      this.bonus
-    ).getResult();
-    console.log(result);
+  printResult(result) {
+    Console.print(COMMAND.RESULT);
+    for (let index = 5; index > 0; index--) {
+      Console.print(`${lotto[index].message}${result[index]}개`);
+    }
   }
 }
 

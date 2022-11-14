@@ -3,6 +3,7 @@ const COMMAND = Object.freeze({
   LOTTONUM: '개를 구매했습니다.',
   WINNING: '\n당첨 번호를 입력해 주세요.\n',
   BONUS: '\n보너스 번호를 입력해 주세요.\n',
+  RESULT: '\n당첨 통계\n---',
 });
 
 const ERROR = Object.freeze({
