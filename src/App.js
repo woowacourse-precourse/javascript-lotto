@@ -8,6 +8,7 @@ const {
   IS_RANGE,
   IS_NOT_IN_WINNER_NUMBER,
 } = require("../src/const/ErrorMessages");
+const PRICES = require("./const/Prices");
 const Lotto = require("./Lotto");
 class App {
   #amount;
@@ -80,6 +81,7 @@ class App {
     Console.print("---");
     const RESULT_LIST = this.calculateResult();
     this.showResult(RESULT_LIST);
+    Console.print(`총 수익률은 ${this.calculateBenefits(RESULT_LIST)}%입니다.`);
   }
 
   calculateResult() {
@@ -105,6 +107,21 @@ class App {
       `5개 일치, 보너스 볼 일치 (30,000,000원) - ${resultList.WIN_2 || 0}개`,
     );
     Console.print(`6개 일치 (2,000,000,000원) - ${resultList.WIN_1 || 0}개`);
+    Console.close();
+  }
+
+  calculateBenefits(resultList) {
+    const PAYED = this.#amount * 1000;
+    let earned = 0;
+
+    for (const [key, value] of Object.entries(resultList)) {
+      if (PRICES[key]) {
+        earned += PRICES[key] * value;
+      }
+    }
+
+    const BENEFIT = ((earned / PAYED) * 100).toFixed(1);
+    return BENEFIT;
   }
 
   validateMoney(money) {
