@@ -19,6 +19,10 @@ class UserInput {
 			this.payment = payment;
 		});
 	}
+
+	setLottoCnt() {
+		this.lottoCnt = this.payment / 1000;
+	}
 }
 
 module.exports = UserInput;
