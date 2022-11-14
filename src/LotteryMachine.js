@@ -1,5 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const { QUESTION, ERR_MSG } = require("./constants/constants");
+const Lotto = require("./Lotto");
 
 class LotteryMachine {
   #winningNum;
@@ -16,20 +17,32 @@ class LotteryMachine {
       winningNum = this.changeNumArray(input);
     });
     MissionUtils.Console.close();
-    this.#winningNum = winningNum;
+    this.#winningNum = new Lotto(winningNum).getNumber();
   }
 
   setBonusNum() {
+    let bonusNum = 0;
     MissionUtils.Console.readLine(QUESTION.setBonusNum, (input) => {
-      isNumber(input);
-      this.#bonusNum = parseInt(input);
+      bonusNum = input;
     });
     MissionUtils.Console.close();
+    this.validNum(bonusNum);
+    this.validBonusNum(bonusNum);
+    this.#bonusNum = parseInt(bonusNum);
   }
 
-  isNumber(value) {
+  validNum(value) {
     if (isNaN(+value)) {
       throw new Error(ERR_MSG.notNumber);
+    }
+    if (!(value >= 1 && value <= 45)) {
+      throw new Error(ERR_MSG.notLottoRange);
+    }
+  }
+
+  validBonusNum(value) {
+    if (this.#winningNum.includes(parseInt(value))) {
+      throw new Error(ERR_MSG.notUniqueNumber);
     }
   }
 
@@ -37,7 +50,7 @@ class LotteryMachine {
     const array = string.split(",");
     const numberArray = [];
     array.map((number) => {
-      isNumber(number);
+      this.validNum(number);
       numberArray.push(parseInt(number));
     });
     return numberArray;
