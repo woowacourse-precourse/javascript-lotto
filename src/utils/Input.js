@@ -29,16 +29,16 @@ class Input {
   static bonusNum(lottoArr, winNums, lottoCost) {
     Console.readLine(GAME_MESSAGE.BONUS_NUM_INPUT_MESSAGE, (bonusNum) => {
       new BonusNum(winNums, bonusNum);
-      const lottoResultObj = LottoMatching.getResultObj(
+      const lottoResultArr = LottoMatching.getMatchResult(
         lottoArr,
         winNums,
         bonusNum
       );
       const rateOfReturn = LottoMatching.getRateOfReturn(
-        lottoResultObj,
+        lottoResultArr,
         lottoCost
       );
-      View.winStatistics(lottoResultObj, rateOfReturn);
+      View.winStatistics(lottoResultArr, rateOfReturn);
     });
   }
 }

@@ -9,8 +9,8 @@ class View {
     });
   }
 
-  static winStatistics(lottoResultObj, rateOfReturn) {
-    Console.print(GAME_MESSAGE.WIN_STATISTICS_MESSAGE(lottoResultObj, rateOfReturn));
+  static winStatistics(lottoResultArr, rateOfReturn) {
+    Console.print(GAME_MESSAGE.WIN_STATISTICS_MESSAGE(lottoResultArr, rateOfReturn));
     Console.close();
   }
 }
