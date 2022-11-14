@@ -74,10 +74,17 @@ describe('✅ Validator 클래스 : 당첨 번호 테스트', () => {
 describe('✅ Validator 클래스 : 보너스 번호 테스트', () => {
   test('🖐 사용자가 당첨 번호와 중복되는 숫자를 입력하면 에러가 발생한다.', () => {
     const winLottoNumbers = '1,2,3,4,5,6';
-    const bonuseNumber = '6';
+    const bonusNumber = '6';
 
     expect(() => {
-      Validator.checkDuplicateBonusNumber(winLottoNumbers, bonuseNumber);
+      Validator.checkDuplicateBonusNumber(winLottoNumbers, bonusNumber);
     }).toThrowError(`${ERROR_MESSAGES.DUPLICATE_NUMBER}`);
+  });
+
+  test('🖐 사용자가 보너스 번호에 음수를 입력하면 에러가 발생한다.', () => {
+    const bonusNumber = '-1';
+    expect(() => {
+      Validator.checkNegativeBonusNumber(bonusNumber);
+    }).toThrowError(`${ERROR_MESSAGES.INVALID_NEGATIVE_NUMBER}`);
   });
 });
