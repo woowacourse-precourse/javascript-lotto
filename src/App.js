@@ -2,8 +2,10 @@ const isThousand = require("../src/utils/isThousand.js");
 const { Console, Random } = MissionUtils;
 class App {
   #money;
+  #lottos;
   constructor() {
     this.#money = 0;
+    this.#lottos = [];
   }
   printInputMoney() {
     Console.print("구입금액을 입력해 주세요.");
