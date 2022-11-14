@@ -46,7 +46,11 @@ class App {
     this.printLottoList();
   }
   // 로또 출력하기
-  printLottoList() {}
+  printLottoList() {
+    Console.print(RESULT_MESSAGE.RETURN_LOTTO_COUNT(this.lottoList.length));
+    this.lottoList.map((lotto) => Console.print(`[${lotto.join(", ")}]`));
+    this.getWinNumber();
+  }
   // 당첨 번호 입력하기
   getWinNumber() {}
   // 보너스 금액 입력
