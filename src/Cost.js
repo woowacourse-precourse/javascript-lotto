@@ -1,4 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+const { INPUT_MESSAGE, ERROR_MESSAGE } = require('./constant/constant');
 
 class Cost {
   #cost;
@@ -10,7 +11,7 @@ class Cost {
   }
 
   getCost() {
-    MissionUtils.Console.readLine('구입금액을 입력해 주세요.', (x) => {
+    MissionUtils.Console.readLine(INPUT_MESSAGE.COST, (x) => {
       this.#cost = x;
     });
     MissionUtils.Console.close();
@@ -18,7 +19,7 @@ class Cost {
 
   validate(cost) {
     if (cost % 1_000 !== 0) {
-      throw new Error('[ERROR]');
+      throw new Error(ERROR_MESSAGE.COST);
     }
   }
 }
