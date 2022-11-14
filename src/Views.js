@@ -1,12 +1,12 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { INPUT, RANKING } = require("./Constants");
+const { INPUT, RANKING } = require("./utils/Constants");
 
 const printAskLottoPayment = () => {
   Console.print(INPUT.LOTTO_PAYMENT);
 };
 
 const printLottoCount = (lottoCount) => {
-  Console.print(`\n${lottoCount}개를 구매했습니다`);
+  Console.print(`\n${lottoCount}개를 구매했습니다.`);
 };
 
 const printIssuendLotto = (issuedLotto) => {
