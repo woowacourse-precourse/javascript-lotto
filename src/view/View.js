@@ -24,6 +24,9 @@ class Messages{
                    "6개 일치 (2,000,000,000원) - "];
     return `${ranks[index]}${rank.length}개`
   }
+  profit(profit){
+    return `총 수익률은 ${profit}%입니다.`
+  }
 }
 
 class View{
@@ -62,6 +65,9 @@ class View{
     ranks.forEach((rank,idx)=>{
       Console.print(this.messages.ranks(rank, idx))
     })
+  }
+  printProfit(profit){
+    Console.print(this.messages.profit(profit));
   }
 }
 

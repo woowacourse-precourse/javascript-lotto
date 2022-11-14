@@ -54,6 +54,12 @@ class Model{
   addRank(rank_index, data){
     this.chart.rank[rank_index].push(data);
   }
+  setProfit(data){
+    this.chart.profit = data;
+  }
+  getProfit(){
+    return this.chart.profit;
+  }
 }
 
 module.exports = Model;
