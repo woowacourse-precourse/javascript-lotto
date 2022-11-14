@@ -7,19 +7,19 @@ class LottoUser {
   #lottos;
 
   constructor(amount) {
-    this.validate(amount);
-    this.#amount = amount;
+    this.#amount = this.validate(amount);
     this.#lottoCount = this.calcLottoCount(amount);
     this.#lottos = this.makeLottos(this.#lottoCount);
   }
 
   validate(amount) {
-    if (typeof amount !== 'number') {
+    if (!/^[0-9]+$/.test(amount)) {
       throw new TypeError('[ERROR] 로또 구입 금액은 숫자여야 합니다.');
     }
     if (amount % 1000 !== 0) {
       throw new Error('[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.');
     }
+    return parseInt(amount, 10);
   }
 
   getAmount() {

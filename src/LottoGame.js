@@ -28,7 +28,7 @@ class LottoGame {
 
   inputAmount() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (amount) => {
-      this.#user = new LottoUser(parseInt(amount, 10));
+      this.#user = new LottoUser(amount);
       this.#user.printUserLottos();
       this.inputWinningNumbers();
     });
@@ -53,7 +53,7 @@ class LottoGame {
         Lotto.validateNumberArrayDuplication(
           this.#raffle.winning.getLottoNumbers().concat(numberToInt),
         );
-        this.#raffle.bonus = parseInt(numberToInt);
+        this.#raffle.bonus = parseInt(numberToInt, 10);
 
         this.printWinningStatistic();
       },
