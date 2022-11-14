@@ -66,7 +66,7 @@ class Lotto {
 
   calRevenue(winngarray, money){
     const TOTAL = this.calTotal(winngarray);
-    const REVENUE = TOTAL/money*100;
+    const REVENUE = Math.round(TOTAL/money*1000)/10;
     MissionUtils.Console.print(`총 수익률은 ${REVENUE}%입니다.`);
   }
 
