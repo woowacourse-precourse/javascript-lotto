@@ -1,3 +1,4 @@
+const LottoNumber = require('./model/LottoNumber');
 const Validator = require('./model/Validator');
 
 class Lotto {
@@ -5,17 +6,15 @@ class Lotto {
 
   constructor(numbers) {
     this.validate(numbers);
-    this.#numbers = numbers.map(Number).sort((a, b) => a - b);
+    this.#numbers = numbers.map((number) => {
+      const lottoNumber = new LottoNumber(number);
+      return lottoNumber.value;
+    }).sort((a, b) => a - b);
   }
 
   validate(numbers) {
     Validator.validateNumbersLength(numbers);
     Validator.validateUnique(numbers);
-
-    numbers.forEach((number) => {
-      Validator.validateNaN(number);
-      Validator.validateNumberRange(number);
-    });
   }
 
   get numbers() {

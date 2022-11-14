@@ -1,5 +1,5 @@
 const Lotto = require('./Lotto');
-const BonusNumber = require('./model/BonusNumber');
+const LottoNumber = require('./model/LottoNumber');
 const Deposit = require('./model/Deposit');
 const Statistic = require('./model/Statistic');
 const Validator = require('./model/Validator');
@@ -53,7 +53,7 @@ class LottoManager {
 
   generateBonusNumber(number) {
     Validator.validateBonusNumber(this.#winningLotto.numbers, number);
-    this.#bonusNumber = new BonusNumber(number);
+    this.#bonusNumber = new LottoNumber(number);
   }
 
   generateStatistic() {
