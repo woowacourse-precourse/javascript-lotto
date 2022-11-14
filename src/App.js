@@ -1,6 +1,6 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
 // const { ERROR_MSG_THOUSAND_UNIT } = require("./constants/error-message");
-// const { WINNINGS } = require("./constants/winnings");
+const { WINNINGS_NUM, WINNINGS_STR } = require("./constants/winnings.js");
 const Lotto = require("./Lotto");
 
 class App {
@@ -79,6 +79,7 @@ class App {
     };
 
     this.lottos.forEach((lotto) => this.checkLotto(lotto));
+    this.getMatchResult();
   }
 
   checkLotto(lotto) {
@@ -109,6 +110,27 @@ class App {
     if (mainCount === 4) return "fourth";
     if (mainCount === 3) return "fifth";
     return "nothing";
+  }
+
+  getMatchResult() {
+    Console.print(this.lottoResult);
+    Console.print("\n당첨 통계");
+    Console.print("---");
+    Console.print(
+      `3개 일치 (${WINNINGS_STR.fifth}원) - ${this.lottoResult.fifth}개`
+    );
+    Console.print(
+      `4개 일치 (${WINNINGS_STR.fourth}원) - ${this.lottoResult.fourth}개`
+    );
+    Console.print(
+      `5개 일치 (${WINNINGS_STR.third}원) - ${this.lottoResult.third}개`
+    );
+    Console.print(
+      `5개 일치, 보너스 볼 일치 (${WINNINGS_STR.second}원) - ${this.lottoResult.second}개`
+    );
+    Console.print(
+      `6개 일치 (${WINNINGS_STR.first}원) - ${this.lottoResult.first}개`
+    );
   }
 }
 
