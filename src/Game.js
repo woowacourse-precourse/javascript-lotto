@@ -94,6 +94,10 @@ class Game {
     IO.print(match6 + first + ea);
     IO.print(totalProfit + profit + isNPercent);
   }
+
+  static end() {
+    IO.close();
+  }
 }
 
 module.exports = Game;
