@@ -38,5 +38,6 @@ class App {
     closeReadLine();
   }
 }
-
+print('8개를 구매했습니다.');
+new App().play();
 module.exports = App;
