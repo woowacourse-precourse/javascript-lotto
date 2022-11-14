@@ -15,12 +15,32 @@ describe('로또 클래스 테스트', () => {
   });
 
   describe('순위 테스트', () => {
-    test('당첨 번호 5개와 보너스 번호를 맞추면 2등이다.', () => {
-      const winNumbers = [1, 2, 3, 4, 5, 6];
-      const bonusNumber = 7;
-      const ranking = new Lotto([3, 6, 1, 4, 2, 7]).rank(winNumbers, bonusNumber);
+    const winNumbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
 
+    test('6개 번호 일치는 1등이다.', () => {
+      const ranking = new Lotto([1, 2, 3, 4, 5, 6]).rank(winNumbers, bonusNumber);
+      expect(ranking).toEqual(1);
+    });
+
+    test('5개 번호 + 보너스 번호 일치는 2등이다.', () => {
+      const ranking = new Lotto([2, 3, 4, 5, 6, 7]).rank(winNumbers, bonusNumber);
       expect(ranking).toEqual(2);
+    });
+
+    test('3개 번호 일치는 5등이다.', () => {
+      const ranking = new Lotto([4, 5, 6, 11, 12, 13]).rank(winNumbers, bonusNumber);
+      expect(ranking).toEqual(5);
+    });
+
+    test('3개 번호 + 보너스 번호 일치는 5등이다.', () => {
+      const ranking = new Lotto([4, 5, 6, 7, 11, 12]).rank(winNumbers, bonusNumber);
+      expect(ranking).toEqual(5);
+    });
+
+    test('당첨이 안되면 0을 반환한다.', () => {
+      const ranking = new Lotto([5, 6, 7, 11, 12, 13]).rank(winNumbers, bonusNumber);
+      expect(ranking).toEqual(0);
     });
   });
 });
