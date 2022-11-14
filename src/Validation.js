@@ -39,8 +39,18 @@ class Validation {
     return true;
   }
 
+  static isValidBonusNumber(bonusNumber) {
+    if (bonusNumber < 1 || bonusNumber > 45) {
+      throw new Error("[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.");
+    }
+
+    if (isNaN(bonusNumber)) {
+      throw new Error("[ERROR] 보너스 번호는 숫자여야 합니다.");
+    }
+
+    return true;
+  }
   static isValidLottoArray(lotto) {}
-  static isValidBonusNumber(bonusNumber) {}
 }
 
 module.exports = Validation;
