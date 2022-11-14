@@ -1,2 +1,1 @@
-
-    MissionUtils.Console.print("\n")
+money/PRICE
