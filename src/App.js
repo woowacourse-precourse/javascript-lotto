@@ -12,6 +12,7 @@ class App {
       this.lottos.setLottoCount(money);
 
       this.lottos.printLottoCount();
+      this.lottos.printLottoList();
     });
   }
 }
