@@ -25,7 +25,7 @@ class LottoNumber {
       "\n보너스 번호를 입력해 주세요.\n",
       (inputBonusNumber) => {
         this.inputBonusNumbers = inputBonusNumber;
-        this.compareNumber.compareNumber(
+        this.compareNumber.comparefirstCipher(
           this.computerNumbers,
           this.inputLottoNumbers,
           this.inputBonusNumbers

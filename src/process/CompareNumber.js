@@ -6,42 +6,82 @@ let count = 0;
 let bonusCount = 0;
 
 class CompareNumber {
-  constructor(computerNumbers, correct, correctBonus) {
+  constructor(computerNumbers, correct, correctBonus, inputLotto, inputBonus) {
     this.computerNumbers = computerNumbers;
     this.correct = correct;
     this.correctBonus = correctBonus;
+    this.inputLotto = inputLotto;
+    this.inputBonus = inputBonus;
     this.caculateRate = new CaculateRate();
   }
 
-  compareNumber(computerNumbers, inputLotto, inputBonus) {
-    computerNumbers.forEach(function (firstnumber) {
-      firstnumber.forEach(function (secondnumber) {
-        const COMPARE = inputLotto.indexOf(secondnumber);
-        if (COMPARE > -1) {
-          count += 1;
-        }
-      });
+  comparefirstCipher(computerNumbers, inputLotto, inputBonus) {
+    this.computerNumbers = computerNumbers;
+    this.inputLotto = inputLotto;
+    this.inputBonus = inputBonus;
+    for (
+      let firstCipher = 0;
+      firstCipher < this.computerNumbers.length;
+      firstCipher++
+    ) {
+      this.compareSecondCipher(firstCipher);
       CORRECT.push(count);
       count = 0;
-    });
+    }
     this.correct = CORRECT;
-    this.computerNumbers = computerNumbers;
-    this.compareBonus(inputBonus);
+    this.compareBonusfirstCipher();
   }
 
-  compareBonus(inputBonus) {
-    this.computerNumbers.forEach(function (firstnumber) {
-      firstnumber.forEach(function (secondnumber) {
-        const COMPARE_BONUS = inputBonus.indexOf(secondnumber);
-        if (COMPARE_BONUS > -1) {
-          bonusCount = 1;
-        }
-      });
+  compareSecondCipher(firstCipher) {
+    for (
+      let secondCipher = 0;
+      secondCipher < this.computerNumbers[firstCipher].length;
+      secondCipher++
+    ) {
+      this.checklotto(firstCipher, secondCipher);
+    }
+  }
+
+  checklotto(firstCipher, secondCipher) {
+    const COMPARE = this.inputLotto.indexOf(
+      this.computerNumbers[firstCipher][secondCipher]
+    );
+    if (COMPARE > -1) {
+      count += 1;
+    }
+  }
+
+  compareBonusfirstCipher() {
+    for (
+      let firstCipher = 0;
+      firstCipher < this.computerNumbers.length;
+      firstCipher++
+    ) {
+      this.compareBonusSecondCipher(firstCipher);
       CORRECT_BONUS.push(bonusCount);
       bonusCount = 0;
-    });
+    }
     this.correctBonus = CORRECT_BONUS;
     this.correctNumbers();
+  }
+
+  compareBonusSecondCipher(firstCipher) {
+    for (
+      let secondCipher = 0;
+      secondCipher < this.computerNumbers[firstCipher].length;
+      secondCipher++
+    ) {
+      this.checkbonus(firstCipher, secondCipher);
+    }
+  }
+
+  checkbonus(firstCipher, secondCipher) {
+    const COMPARE_BONUS = this.inputBonus.indexOf(
+      this.computerNumbers[firstCipher][secondCipher]
+    );
+    if (COMPARE_BONUS > -1) {
+      bonusCount = 1;
+    }
   }
 
   correctNumbers() {
