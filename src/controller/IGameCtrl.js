@@ -7,9 +7,13 @@ const IGameCtrl = class {
     throw Error('메서드구현필요');
   }
 
+  end() {
+    throw Error('메서드구현필요');
+  }
+
   renderGameResult() {
     throw Error('메서드구현필요');
   }
 };
 
-export default IGameCtrl;
+module.exports = IGameCtrl;
