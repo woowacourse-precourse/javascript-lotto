@@ -2,9 +2,12 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
 class BuyLotto {
-    constructor() {
-        this.printNumberOfLotto(this.inputAmount());
-    }
+    // constructor() {
+    //     const numberOfLotto = this.inputAmount();
+    //     this.printNumberOfLotto(numberOfLotto);
+    //     const randomLottos = this.createRandomLotto(numberOfLotto); 
+    //     this.printRandomLotto(randomLottos);
+    // }
 
     inputAmount() {
         let numberOfLotto;
@@ -20,7 +23,7 @@ class BuyLotto {
 
     printNumberOfLotto(numberOfLotto) {
         MissionUtils.Console.print(`${numberOfLotto}개를 구매했습니다.`);
-        this.createRandomLotto(numberOfLotto);
+        // this.createRandomLotto(numberOfLotto);
     }
 
     createRandomLotto(numberOfLotto) {
@@ -31,7 +34,8 @@ class BuyLotto {
 
             randomLottos.push(randomLotto.sort((a, b) => a - b));
         }
-        this.printRandomLotto(randomLottos);
+        // this.printRandomLotto(randomLottos);
+        return randomLottos;
     }
 
     printRandomLotto(randomLottos) {

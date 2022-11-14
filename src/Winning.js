@@ -1,8 +1,10 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
 class Winning {
-    constructor() {
+    constructor(randomLottos, winningNumbers, bonusNumber) {
         this.printWinningAnnouncement();
+        this.calculateGradeCount(randomLottos, winningNumbers, bonusNumber);
+        
     }
 
     printWinningAnnouncement() {
@@ -10,7 +12,7 @@ class Winning {
     }
         
     calculateCorrectCount(randomNumber, winningNumbers, bonusNumber) {
-        let count = 0;
+        let count = 0; // 번호 몇 개 일치하는지
 
         for(let i = 0; i < winningNumbers.length; i++) {
             if (randomNumber.includes(winningNumbers[i]))
@@ -33,7 +35,7 @@ class Winning {
         let gradeCounts = new Array(5).fill(0); // [5등, 4등, 3등, 2등, 1등]
 
         for(let i = 0; i < randomLottos.length; i++) {
-            const correctCount = calculateWinningCount(randomLottos[i], winningNumbers, bonusNumber);
+            const correctCount = calculateCorrectCount(randomLottos[i], winningNumbers, bonusNumber);
 
             gradeCounts[correctCount - 3]++;
         }
