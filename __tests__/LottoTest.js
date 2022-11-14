@@ -1,5 +1,5 @@
 const Lotto = require('../src/Lotto');
-const { figureLotteryRank, validateMoney } = require('../src/utils/lottery');
+const { figureLotteryRank, validateMoney, countTickets } = require('../src/utils/lottery');
 
 describe('로또 클래스 테스트', () => {
   test('로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.', () => {
@@ -72,6 +72,19 @@ describe('로또 클래스 테스트', () => {
   test('잘못된 돈을 투입했을 때 : 천원 단위가 아닌 경우', () => {
     expect(() => {
       validateMoney(8800);
+    }).toThrow('[ERROR]');
+  });
+
+  test('티켓 장수 계산 : 14000원', () => {
+    const input = 14000;
+    const result = countTickets(input);
+    expect(result).toEqual(14);
+  });
+
+  test('티켓 장수 계산 : 천원 단위가 아닌 경우', () => {
+    expect(() => {
+      const input = 14400;
+      countTickets(input);
     }).toThrow('[ERROR]');
   });
 });
