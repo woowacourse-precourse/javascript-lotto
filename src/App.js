@@ -44,8 +44,8 @@ class App {
 
   askBonusNumber(winningNumbers) {
     Console.readLine(MESSAGE.ASK_BONUS_NUMBER, (bonusNumber) => {
-      Validator.throwErrorIfInvalidBonusNumber(winningNumbers, bonusNumber);
-      this.printWinningStatistics(bonusNumber);
+      Validator.throwErrorIfInvalidBonusNumber(bonusNumber, winningNumbers);
+      this.printWinningStatistics(Number(bonusNumber));
     });
   }
 

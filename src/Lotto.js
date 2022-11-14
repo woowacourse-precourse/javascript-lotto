@@ -1,5 +1,5 @@
 const Validator = require('./Validator');
-const { RANK, LOTTO, PRIZE_MONEY } = require('./constants');
+const { RANK, LOTTO, PRIZE_MONEY, PLACES_OF_DECIMALS } = require('./constants');
 
 class Lotto {
   #numbers;
@@ -24,7 +24,7 @@ class Lotto {
   informWinningState(userLottos, bonusNumber) {
     const winningState = userLottos.reduce((state, lotto) => {
       const matchingCount = this.getMatchingNumCount(lotto);
-      const matchesBonusNum = lotto.includes(Number(bonusNumber));
+      const matchesBonusNum = lotto.includes(bonusNumber);
       const ranking = this.getWinningRanking(matchingCount, matchesBonusNum);
       if (ranking !== RANK.FAIL) state[ranking] += 1;
 
@@ -59,7 +59,9 @@ class Lotto {
   }
 
   calcRateOfReturn(totalPrize, countOfLottos) {
-    return (totalPrize / (countOfLottos * LOTTO.PRICE)) * 100;
+    const rateOfReturn = (totalPrize / (countOfLottos * LOTTO.PRICE)) * 100;
+
+    return rateOfReturn.toFixed(PLACES_OF_DECIMALS);
   }
 }
 

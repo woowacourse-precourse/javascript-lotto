@@ -20,7 +20,6 @@ class Validator {
 
   static throwErrorIfInvalidWinningForm(inputValue) {
     this.throwErrorIfHasBlack(inputValue);
-    this.throwErrorIfHasBlack(inputValue);
     const winningNumbers = inputValue.split(DELIMITER);
     if (!REGEX.winningNumbers.test(winningNumbers)) {
       this.throwError(ERROR_MESSAGE.WINNING_NUM_FORM);
@@ -42,14 +41,15 @@ class Validator {
     }
   }
 
-  static throwErrorIfInvalidBonusNumber(winningNumbers, bonusNumber) {
+  static throwErrorIfInvalidBonusNumber(bonusNumber, winningNumbers) {
     this.throwErrorIfHasBlack(bonusNumber);
     this.throwErrorIfStartsWithZero(bonusNumber);
     this.throwErrorIfOutOfRange(bonusNumber);
     if (!REGEX.number.test(bonusNumber)) {
       this.throwError(ERROR_MESSAGE.INT_FORM);
     }
-    if (winningNumbers.includes(bonusNumber)) {
+
+    if (winningNumbers.includes(Number(bonusNumber))) {
       this.throwError(ERROR_MESSAGE.WINNING_HAS);
     }
   }
