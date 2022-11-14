@@ -10,16 +10,6 @@ class App {
   constructor() {
     this.userLottoList = [];
   }
-  getMoney() {
-    let money;
-    MissionUtils.Console.readLine(`${Message.COST_MESSAGE}`, input => {
-      money = input;
-      this.validate(money);
-      this.buyLottos(this.inputMoney / 1000);
-      MissionUtils.Console.print(`${this.userLottoList.length}개를 구매했습니다.`);
-      this.userLottoList.forEach(lotto => MissionUtils.Console.print(`[${lotto.getNumbers().join(', ')}]`));
-    });
-  }
 
   validate(money) {
     if (!checkRange(money)) throw new Error(Message.ERROR_COST_RANGE);
@@ -34,7 +24,14 @@ class App {
     }
   }
   play() {
-    this.getMoney();
+    let money;
+    MissionUtils.Console.readLine(`${Message.COST_MESSAGE}`, input => {
+      money = input;
+      this.validate(money);
+      this.buyLottos(this.inputMoney / 1000);
+      MissionUtils.Console.print(`${this.userLottoList.length}개를 구매했습니다.`);
+      this.userLottoList.forEach(lotto => MissionUtils.Console.print(`[${lotto.getNumbers().join(', ')}]`));
+    });
   }
 }
 const app = new App();
