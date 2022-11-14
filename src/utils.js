@@ -7,6 +7,6 @@ const validator = {
   isNotRightBonus: (luckyNumbers, bonusNumber) => luckyNumbers.includes(bonusNumber),
   isDigitError: (inputs) => !(inputs.every((input) => input >= UNITS.MIN && input <= UNITS.MAX)),
   isNotIntegers: (inputs) => !(inputs.every((input) => Number.isInteger(input)))
-}
+};
 
 module.exports = {validator};

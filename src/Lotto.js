@@ -1,7 +1,5 @@
-const { Console, Random } = require("@woowacourse/mission-utils");
-const { validator } = require("./utils");
-const {FORMULA, MESSAGE, ERROR_MESSAGE} = require('./constants')
-
+const { validator } = require('./utils');
+const { FORMULA, ERROR_MESSAGE } = require('./constants');
 
 class Lotto {
   #numbers;
@@ -28,11 +26,11 @@ class Lotto {
 
   // TODO: 추가 기능 구현
   getNumbers() {
-    return `[${this.#numbers.join(", ")}]`;
+    return `[${this.#numbers.join(', ')}]`;
   }
 
   countNumberOfMatches(luckyNumbers) {
-    let count = 0
+    let count = 0;
     this.#numbers.filter((number) => {
       if (luckyNumbers.includes(number)) {
         count += 1;

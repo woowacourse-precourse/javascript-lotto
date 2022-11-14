@@ -1,8 +1,8 @@
-const { Console, Random } = require("@woowacourse/mission-utils");
-const Lotto = require("./Lotto");
-const { validator } = require("./utils");
+const { Console, Random } = require('@woowacourse/mission-utils');
+const Lotto = require('./Lotto');
+const { validator } = require('./utils');
 
-const { FORMULA, UNITS, MESSAGE, ERROR_MESSAGE } = require("./constants");
+const { FORMULA, UNITS, MESSAGE, ERROR_MESSAGE } = require('./constants');
 
 class App {
   payAmount = 0;
@@ -12,7 +12,7 @@ class App {
   bonusNumber = 0;
   revenue = 0;
   profit = 0;
-  
+
   winningMap = {
     firstPlace: {
       count: 0,
@@ -58,7 +58,11 @@ class App {
     Console.print(MESSAGE.GUIDE_NUMBER_OF_LOTTO(this.numberOfLotto));
     for (let i = 0; i < this.numberOfLotto; i++) {
       const lotto = new Lotto(
-        Random.pickUniqueNumbersInRange(UNITS.MIN, UNITS.MAX, UNITS.LIMIT_LOTTO)
+        Random.pickUniqueNumbersInRange(
+          UNITS.MIN,
+          UNITS.MAX,
+          UNITS.LIMIT_LOTTO,
+        ),
       );
       this.myLottos.push(lotto);
     }
@@ -100,7 +104,7 @@ class App {
 
   setLuckyNumbers() {
     Console.readLine(MESSAGE.REQUEST_LUCKY_NUMBERS, (input) => {
-      this.luckyNumbers = input.split(",").map(Number);
+      this.luckyNumbers = input.split(',').map(Number);
       this.setBonusNumber();
     });
 
@@ -111,15 +115,12 @@ class App {
     Console.readLine(MESSAGE.REQUEST_BONUS_NUMBER, (input) => {
       this.bonusNumber = Number(input);
       this.validate(this.luckyNumbers, this.bonusNumber);
-      this.winning()
+      this.winning();
     });
   }
 
   winning() {
-    this.match()
-      .calculateRevenue()
-      .calculateProfit()
-      .printResult();
+    this.match().calculateRevenue().calculateProfit().printResult();
   }
 
   match() {

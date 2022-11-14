@@ -11,12 +11,12 @@ const UNITS = {
 };
 
 const MESSAGE = {
-  GUIDE_INPUT: "구입금액을 입력해 주세요.\n",
+  GUIDE_INPUT: '구입금액을 입력해 주세요.\n',
   GUIDE_NUMBER_OF_LOTTO: (count) => `\n${count}개를 구매했습니다.`,
-  REQUEST_LUCKY_NUMBERS: "\n당첨 번호를 입력해 주세요.\n",
-  REQUEST_BONUS_NUMBER: "\n보너스 번호를 입력해 주세요.\n",
-  WINNING_STATS: (result, profit) => 
-`
+  REQUEST_LUCKY_NUMBERS: '\n당첨 번호를 입력해 주세요.\n',
+  REQUEST_BONUS_NUMBER: '\n보너스 번호를 입력해 주세요.\n',
+  WINNING_STATS: (result, profit) =>
+    `
 당첨통계
 ---
 3개 일치 (5,000원) - ${result.fifthPlace.count}개
@@ -28,14 +28,14 @@ const MESSAGE = {
 };
 
 const ERROR_MESSAGE = {
-  LENGTH_OF_LUCKY_NUMBERS: "[ERROR] 당첨 번호는 6개여야 합니다.",
-  DUPLICATE_OF_LUCKY_NUMBERS: "[ERROR] 당첨 번호는 중복이 없어야 합니다.",
-  DUPLICATE_OF_BONUS_NUMBER: "[ERROR] 보너스 번호는 당첨번호와 달라야 합니다.",
-  LENGTH_OF_LOTTO: "[ERROR] 로또 번호는 6개여야 합니다.",
-  DUPLICATE_OF_LOTTO: "[ERROR] 로또 번호는 중복이 없어야 합니다.",
-  DIGIT_OF_LOTTO: "[ERROR] 로또 번호는 1 ~ 45 사이의 숫자입니다.",
-  INTEGER_OF_LOTTO: "[ERROR] 로또 번호는 1 ~ 45 사이의 정수입니다.",
-  PAY_AMOUNT: "[ERROR] 투입금액은 1000원으로 나누어 떨어져야 합니다.",
+  LENGTH_OF_LUCKY_NUMBERS: '[ERROR] 당첨 번호는 6개여야 합니다.',
+  DUPLICATE_OF_LUCKY_NUMBERS: '[ERROR] 당첨 번호는 중복이 없어야 합니다.',
+  DUPLICATE_OF_BONUS_NUMBER: '[ERROR] 보너스 번호는 당첨번호와 달라야 합니다.',
+  LENGTH_OF_LOTTO: '[ERROR] 로또 번호는 6개여야 합니다.',
+  DUPLICATE_OF_LOTTO: '[ERROR] 로또 번호는 중복이 없어야 합니다.',
+  DIGIT_OF_LOTTO: '[ERROR] 로또 번호는 1 ~ 45 사이의 숫자입니다.',
+  INTEGER_OF_LOTTO: '[ERROR] 로또 번호는 1 ~ 45 사이의 정수입니다.',
+  PAY_AMOUNT: '[ERROR] 투입금액은 1000원으로 나누어 떨어져야 합니다.',
 };
 
 module.exports = { FORMULA, UNITS, MESSAGE, ERROR_MESSAGE };
