@@ -8,7 +8,7 @@ class LottoUser {
 
   constructor(amount) {
     this.#amount = this.validate(amount);
-    this.#lottoCount = this.calcLottoCount(amount);
+    this.#lottoCount = this.calcLottoCount();
     this.#lottos = this.makeLottos(this.#lottoCount);
   }
 
@@ -30,8 +30,8 @@ class LottoUser {
     return this.#lottos;
   }
 
-  calcLottoCount(amount) {
-    return amount / 1000;
+  calcLottoCount() {
+    return this.#amount / 1000;
   }
 
   makeLottos(count) {
