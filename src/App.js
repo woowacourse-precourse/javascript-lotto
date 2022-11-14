@@ -71,6 +71,11 @@ class App {
     return lotto_list;
   }
 
+  random_lotto_number() {
+    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    return numbers;
+  }
+
   print_publish_result(amount, lotto_list) {
     MissionUtils.Console.print(`${amount}개를 구매했습니다.\n`);
     this.lotto_print_formating(lotto_list);
