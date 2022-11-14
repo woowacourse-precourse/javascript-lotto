@@ -7,6 +7,10 @@ class App {
   lottoWinningNumber;
   lottoBonusNumber;
 
+  print(message) {
+    MissionUtils.Console.print(message);
+  }
+
   play() {
     this.getMoney();
     this.lottos = this.buyLotto(this.lottoPrice / 1000);
@@ -49,7 +53,7 @@ class App {
 
     for (let i = 0; i < number; i++) {
       const lotto = this.generateRandomLotto();
-      MissionUtils.Console.print(`[${lotto.join(", ")}]`);
+      MissionUtils.Console.print(`[${lotto.join(", ")}]\n`);
       lottos.concat(lotto);
     }
 
@@ -57,13 +61,8 @@ class App {
   }
 
   generateRandomLotto() {
-    const lotto = [];
-    while (lotto.length < 6) {
-      const num = MissionUtils.Random.pickNumberInRange(1, 45);
-      if (!lotto.includes(num)) {
-        lotto.push(num);
-      }
-    }
+    const lotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+
     lotto.sort(function (a, b) {
       if (a > b) return 1;
       if (a === b) return 0;
@@ -104,15 +103,13 @@ class App {
   }
 
   printLottoResult(result) {
-    MissionUtils.Console.print(`당첨 통계`);
-    MissionUtils.Console.print(`---`);
-    MissionUtils.Console.print(`3개 일치 (5,000원) - ${result[4]}개`);
-    MissionUtils.Console.print(`4개 일치 (50,000원) - ${result[3]}개`);
-    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${result[2]}개`);
-    MissionUtils.Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${result[1]}개`
-    );
-    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${result[0]}개`);
+    this.print("당첨통계\n");
+    this.print("---\n");
+    this.print(`3개 일치 (5,000원) - ${result[4]}개\n`);
+    this.print(`4개 일치 (50,000원) - ${result[3]}개\n`);
+    this.print(`5개 일치 (1,500,000원) - ${result[2]}개\n`);
+    this.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${result[1]}개\n`);
+    this.print(`6개 일치 (2,000,000,000원) - ${result[0]}개\n`);
   }
 
   printRevenueRate(result) {
