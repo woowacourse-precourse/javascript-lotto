@@ -64,6 +64,19 @@ class Statistics {
       this.setRanks(resultRank, this.ranks[resultRank] + 1);
     }
   }
+
+  getMoneyEarned() {
+    const currentRanks = this.getRanks();
+    let totalMoneyEarned = 0;
+
+    totalMoneyEarned += 5000 * currentRanks.fifth;
+    totalMoneyEarned += 50000 * currentRanks.fourth;
+    totalMoneyEarned += 1500000 * currentRanks.third;
+    totalMoneyEarned += 30000000 * currentRanks.second;
+    totalMoneyEarned += 2000000000 * currentRanks.first;
+
+    return totalMoneyEarned;
+  }
 }
 
 module.exports = Statistics;
