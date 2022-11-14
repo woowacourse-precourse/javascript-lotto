@@ -9,7 +9,7 @@ const LOTTO_ERROR = {
   CHECK_COUNT: '[ERROR] 로또 번호는 6개여야 합니다.',
   CHECK_OVERLAP: '[ERROR] 로또 번호에 중복되는 숫자가 있습니다.',
   CHECK_SORTED: '[ERROR] 번호가 오름차순으로 정렬되지 않습니다.',
-  CHECK_RANGE: '[ERROR] 번호중 1에서 45의 수가 아닌 번호가 있습니다.',
+  CHECK_RANGE: '[ERROR] 번호 중 1에서 45의 수가 아닌 번호가 있습니다.',
 };
 
 const LOTTO_COST_ERROR = {
