@@ -20,6 +20,6 @@
     - [x] check bonus number only for tickets with 5 guessed number matches and return true/false
           return null for tickets with less than 5 guessed number matches
 - [x] calculate win stats 
-- [ ] calculate earning rate by dividing prize money by payment amount and rounding to one decimal place
-    - [ ] round off to one decimal place with precision
+- [x] calculate earning rate by dividing prize money by payment amount and rounding to one decimal place
+    - [x] round off to one decimal place with precision
 - [ ] print win stats and earning rate
