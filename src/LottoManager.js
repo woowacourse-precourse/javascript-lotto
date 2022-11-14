@@ -1,5 +1,7 @@
 const { Random } = require('@woowacourse/mission-utils');
 
+const { ERROR } = require('./lib/constants/error');
+
 const Lotto = require('./Lotto');
 
 class LottoManager {
@@ -14,16 +16,14 @@ class LottoManager {
   validatePurchaseAmount(purchaseAmountInput) {
     switch (true) {
       case this.isNotNumber(purchaseAmountInput):
-        throw new Error('[ERROR] 구입 금액에 숫자가 아닌 문자가 존재합니다.');
+        throw new Error(ERROR.PURCHASE_AMOUNT.NOT_NUMBER);
       case this.isSmallerThanUnitPrice(parseInt(purchaseAmountInput, 10), 1000):
-        throw new Error('[ERROR] 구입 금액은 1,000원 이상이어야 합니다.');
+        throw new Error(ERROR.PURCHASE_AMOUNT.SMALLER);
       case this.isNotBeDividedByUnitPrice(
         parseInt(purchaseAmountInput, 10),
         1000,
       ):
-        throw new Error(
-          '[ERROR] 구입 금액은 1,000으로 나누어 떨어지는 숫자여야 합니다.',
-        );
+        throw new Error(ERROR.PURCHASE_AMOUNT.CANNOT_BE_DIVIDED);
     }
   }
 
@@ -68,19 +68,13 @@ class LottoManager {
   validateWinningNumbers(winningNumbers) {
     switch (true) {
       case this.hasNotNumber(winningNumbers):
-        throw new Error(
-          '[ERROR] 당첨 번호에 숫자가 아닌 문자가 입력되었습니다.',
-        );
+        throw new Error(ERROR.WINNING_NUMBERS.NOT_NUMBER);
       case this.isNotLottoLength(winningNumbers):
-        throw new Error(
-          '[ERROR] 당첨 번호의 개수는 로또 번호의 개수와 동일해야 합니다.',
-        );
+        throw new Error(ERROR.WINNING_NUMBERS.NOT_LOTTO_LENGTH);
       case this.hasOutOfBoundNumber(winningNumbers):
-        throw new Error(
-          '[ERROR] 당첨 번호는 1부터 45까지의 숫자로 구성되어야 합니다.',
-        );
+        throw new Error(ERROR.WINNING_NUMBERS.OUT_OF_BOUND);
       case this.hasDuplicate(winningNumbers):
-        throw new Error('[ERROR] 당첨 번호는 중복된 숫자가 없어야 합니다.');
+        throw new Error(ERROR.WINNING_NUMBERS.DUPLICATE);
     }
   }
 
@@ -113,17 +107,11 @@ class LottoManager {
   validateBonusNumber(bonusNumberInput) {
     switch (true) {
       case this.isNotNumber(bonusNumberInput):
-        throw new Error(
-          '[ERROR] 보너스 번호에 숫자가 아닌 문자가 입력되었습니다.',
-        );
+        throw new Error(ERROR.BONUS_NUMBER.NOT_NUMBER);
       case this.isOutOfBound(parseInt(bonusNumberInput, 10)):
-        throw new Error(
-          '[ERROR] 보너스 번호는 1부터 45까지의 숫자여야 합니다.',
-        );
+        throw new Error(ERROR.BONUS_NUMBER.OUT_OF_BOUND);
       case this.isDuplicateWinningNumber(parseInt(bonusNumberInput, 10)):
-        throw new Error(
-          '[ERROR] 보너스 번호는 이전에 입력한 당첨 번호에 없는 숫자여야 합니다.',
-        );
+        throw new Error(ERROR.BONUS_NUMBER.DUPLICATE);
     }
   }
 
