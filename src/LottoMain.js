@@ -15,19 +15,22 @@ function printResult(lottoList, prize, bonus) {
 
 function lottoLoop(lottoList, prize, bonus) {
   for (let i = 0; i < lottoList.length; i++) {
-    checkLottoResult(lottoList[i], prize, bonus);
+    const countArray = countCorrectNumber(lottoList[i], prize, bonus);
+    const prizeCount = countArray[0];
+    const bonusCount = countArray[1];
   }
 }
 
-function checkLottoResult(lotto, prize, bonus) {
+function countCorrectNumber(lotto, prize, bonus) {
   const prizeCount = 0;
+  const bonusCount = 0;
   if (lotto.includes(prize)) {
     prizeCount++;
   }
   if (lotto.includes(bonus)) {
-    prizeCount++;
+    bonusCount++;
   }
-  return prizeCount;
+  return [prizeCount, bonusCount];
 }
 
 module.exports = LottoMain;
