@@ -1,3 +1,5 @@
+const { Random, Console } = require("@woowacourse/mission-utils");
+
 class Lotto {
   #numbers;
 
@@ -12,7 +14,9 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
+  inputLottoNumbers() {
+    Console.readLine("구입금액을 입력해 주세요.", (answer) => {});
+  }
 }
 
 module.exports = Lotto;
