@@ -6,13 +6,12 @@ describe("LottoGame.purchaseLottos", () => {
   afterEach(() => Console.close());
 
   test("금액이 투입되면 투입금 만큼의 로또가 발행되어야 한다.", () => {
-    // given
     const lottoPerchaseMachine = new LottoPerchaseMachine();
     const input = "5000";
     lottoPerchaseMachine.insertMoney(input);
-    // when
+
     const result = lottoPerchaseMachine.purchaseLottos();
-    // then
+
     expect(result).toHaveLength(5);
   });
 
