@@ -26,19 +26,31 @@ class App {
   }
 
   printPlayerLottos() {
-    const lottoCount = this.player.spentMoney / 1000;
-
     Console.print('');
-    Console.print(`${lottoCount}개를 구매했습니다.`);
 
-    this.player.lottos.forEach((lotto) => {
+    this.printLottoCount();
+    this.printLottos();
+
+    this.askWinNumbers();
+  }
+
+  printLottoCount() {
+    const lottos = this.player.lottos;
+    const lottoCount = lottos.length;
+    const lottoCountMessage = Message.getLottoCountMessage(lottoCount);
+
+    Console.print(lottoCountMessage);
+  }
+
+  printLottos() {
+    const lottos = this.player.lottos;
+
+    lottos.forEach((lotto) => {
       const numbers = lotto.getNumbers();
-      const lottoMessage = `[${numbers.join(', ')}]`;
+      const lottoMessage = Message.getLottoNumbersMessage(numbers);
 
       Console.print(lottoMessage);
     });
-
-    this.askWinNumbers();
   }
 
   askWinNumbers() {
