@@ -44,15 +44,18 @@ class App {
     });
   }
 
+  startBonusInput(number) {
+    if (!Validator.isValidBonus(number)) return;
+    this.bonus = Number(number);
+    Console.print("\n" + Console.WIN_STATISTICS);
+  }
+
   requestBonusNumber() {
     Console.getUserInput("\n" + Console.REQUEST_BONUS_NUMBER, (number) => {
-      if (!Validator.isValidBonus(number)) return;
-      this.bonus = Number(number);
-      Console.print("\n" + Console.WIN_STATISTICS);
-      const { win, bonus, lottos } = this;
-      const statistics = Ranker.getPriceRank(lottos, [win, bonus]);
-      LottoAdmin.printWinStatistics(statistics);
-      const margin = LottoAdmin.getMargin(price, [lottos, statistics]);
+      this.startBonusInput(number);
+      const ranks = Ranker.getPriceRank(this.lottos, [this.win, this.bonus]);
+      LottoAdmin.printWinStatistics(ranks);
+      const margin = LottoAdmin.getMargin(price, [this.lottos, ranks]);
       Console.print(`총 수익률은 ${margin}%입니다.`);
       Console.close();
     });
