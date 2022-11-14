@@ -47,6 +47,12 @@ class App {
     });
   }
 
+  bonusNum() {
+    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.\n", (bonus) => {
+      this.bonus = bonus;
+    });
+  }
+
   play() {
     this.purchaseLotto();
     this.makeLotto(this.countLotto);
