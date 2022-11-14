@@ -1,6 +1,7 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
 const LOTTOPRICE = 1000;
 const LOTTONUMCOUNT = 6;
+const PRIZEMONEY = [5000, 50000, 1500000, 30000000, 2000000000];
 
 class App {
   play() {}
@@ -13,6 +14,7 @@ class App {
     this.issuedLottoNum = [];
     this.winningResult = [];
     this.winningCountResult = [];
+    this.earningRate;
   }
 
   play() {
@@ -141,7 +143,7 @@ class App {
   }
 
   printResult() {
-    Console.print("\n당첨 통계\n---\n");
+    Console.print("\n당첨 통계\n---");
     Console.print(`3개 일치 (5,000원) - ${this.winningCountResult[0]}개`);
     Console.print(`4개 일치 (50,000원) - ${this.winningCountResult[1]}개`);
     Console.print(`5개 일치 (1,500,000원) - ${this.winningCountResult[2]}개`);
@@ -151,7 +153,21 @@ class App {
     Console.print(
       `6개 일치 (2,000,000,000원) - ${this.winningCountResult[4]}개`
     );
+    this.calcEaringsRate();
+    Console.print(`총 수익률은 ${this.earningRate}%입니다.`);
+  }
+
+  calcEaringsRate() {
+    let prizeMoneySum = 0;
+    for (var index = 0; index < PRIZEMONEY.length; index++) {
+      prizeMoneySum += PRIZEMONEY[index] * this.winningCountResult[index];
+    }
+    this.earningRate =
+      Math.round((prizeMoneySum / this.#purchaseAmount) * 100 * 100) / 100;
   }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
