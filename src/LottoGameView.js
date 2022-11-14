@@ -1,7 +1,7 @@
 const LottoGame = require("./LottoGame");
 const { Console } = require("@woowacourse/mission-utils");
 const MESSAGE = require("./Message");
-const { PRIZE_CRITERIA, PRIZE_MONEY } = require("./GameConstants");
+const { PRIZE_CRITERIA } = require("./GameConstants");
 
 class LottoGameView {
   constructor() {
@@ -46,11 +46,11 @@ class LottoGameView {
 
   printWinningStatistics(prizeCount) {
     Console.print(MESSAGE.OUTPUT.WINNING_STATISTICS);
-    Console.print(`${PRIZE_CRITERIA.FIFTH}개 일치 (${PRIZE_MONEY.FIFTH}원) - ${prizeCount.fifth}개`);
-    Console.print(`${PRIZE_CRITERIA.FOURTH}개 일치 (${PRIZE_MONEY.FOURTH}원) - ${prizeCount.fourth}개`);
-    Console.print(`${PRIZE_CRITERIA.SECOND_THIRD}개 일치 (${PRIZE_MONEY.THIRD}원) - ${prizeCount.third}개`);
-    Console.print(`${PRIZE_CRITERIA.SECOND_THIRD}개 일치, 보너스 볼 일치 (${PRIZE_MONEY.SECOND}원) - ${prizeCount.second}개`);
-    Console.print(`${PRIZE_CRITERIA.FIRST}개 일치 (${PRIZE_MONEY.FIRST}원) - ${prizeCount.first}개`);
+    Console.print(`${PRIZE_CRITERIA.FIFTH}개 일치 (${MESSAGE.PRIZE_MONEY.FIFTH}원) - ${prizeCount.fifth}개`);
+    Console.print(`${PRIZE_CRITERIA.FOURTH}개 일치 (${MESSAGE.PRIZE_MONEY.FOURTH}원) - ${prizeCount.fourth}개`);
+    Console.print(`${PRIZE_CRITERIA.SECOND_THIRD}개 일치 (${MESSAGE.PRIZE_MONEY.THIRD}원) - ${prizeCount.third}개`);
+    Console.print(`${PRIZE_CRITERIA.SECOND_THIRD}개 일치, 보너스 볼 일치 (${MESSAGE.PRIZE_MONEY.SECOND}원) - ${prizeCount.second}개`);
+    Console.print(`${PRIZE_CRITERIA.FIRST}개 일치 (${MESSAGE.PRIZE_MONEY.FIRST}원) - ${prizeCount.first}개`);
     this.game.setTotalYield();
   }
 

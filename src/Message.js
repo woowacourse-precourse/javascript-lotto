@@ -28,7 +28,15 @@ const MESSAGE = Object.freeze({
     NOT_INTEGER_BONUS: '[ERROR] 정수를 입력해주세요.',
     OUT_OF_RANGE_BONUS: `[ERROR] 보너스 번호는 ${LOTTERY_MIN_NUMBER}~${LOTTERY_MAX_NUMBER}까지의 숫자여야 합니다.`,
     DUPLICATION_BONUS: '[ERROR] 당첨 번호와 중복되지 않는 번호를 입력해주세요.',
-  }
+  },
+
+  PRIZE_MONEY: {
+    FIRST: '2,000,000,000',
+    SECOND: '30,000,000',
+    THIRD: '1,500,000',
+    FOURTH: '50,000',
+    FIFTH: '5,000',
+  },
 });
 
 module.exports = MESSAGE;
