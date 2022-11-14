@@ -1,19 +1,15 @@
 const { Random } = require('@woowacourse/mission-utils');
+const Lotto = require('./Lotto');
 
 class IssueLottery {
-  setLotteryNumber(purchaseNumber) {
+  static setLotteryNumber(purchaseNumber) {
     const results = [];
-    while (purchaseNumber !== 0) {
-      const lotteries = Random.pickUniqueNumbersInRange(1, 45, 6);
-      const sortedLotteries = this.sortingLottery(lotteries);
-      results.push(sortedLotteries);
-      purchaseNumber -= 1;
+    let draw = purchaseNumber / 1000;
+    while (draw !== 0) {
+      results.push(new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6)));
+      draw -= 1;
     }
     return results;
-  }
-
-  sortingLottery(lotteries) {
-    return lotteries.sort((a, b) => a - b);
   }
 }
 
