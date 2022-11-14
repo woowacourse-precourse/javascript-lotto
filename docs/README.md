@@ -68,7 +68,9 @@
 
 ## 클래스 구조 🏡
 
-### Error 클래스 구조
+**추상화 클래스**
+
+### Error
 
 > 예외 사항을 보면 에러 문구는 "[ERROR]" 라는 정해진 문구로 시작해야 한다는 규칙이 있었습니다. 처음
 > 에는 모든 오류 메시지를 "[ERROR] 유효하지 않은 값입니다." 처럼 "[ERROR]"를 붙인 메시지로 선언을 할
@@ -100,7 +102,7 @@ classDiagram
 
 <br/><br/>
 
-### Validation 클래스 구조
+### Validation
 
 > 저번 2주차 미션 때와 같이 Validation이라는 클래스를 따로 만들어 구현을 하려고 생각 했지만 이번 미
 > 션에는 입력을 받는 값이 다양했기 때문에 그만큼 유효성 검사를 다양하게 해주어야 했습니다. 그래서 공
@@ -157,7 +159,7 @@ classDiagram
 
 <br/><br/>
 
-### Input 클래스 구조
+### Input
 
 > 이번 미션에서는 로또 구입 가격, 로또 당첨번호, 로또 보너스 번호 이렇게 3가지의 값을 입력을 받아야
 > 하는 플로우가 있습니다. 처음에는 LottoConstoller 클래스에서 관리를 하려 했지만 중간 중간 유사한 코
@@ -193,5 +195,180 @@ classDiagram
         printLottoCount()
         getLottoPrice()
         getLottoCount()
+    }
+```
+
+**기본 클래스**
+
+<br/><br/>
+
+### App
+
+<br/><br/>
+
+```mermaid
+classDiagram
+    App
+    class App {
+        LottoProgram: lottoProgram
+        play()
+    }
+```
+
+<br/><br/>
+
+### LottoProgram
+
+<details>
+    <summary>함수 설명</summary>
+    <div markdown="1">
+      <pre>
+        - start: 프로그램 시작
+        - inputPrice: readLine 함수를 통해서 로또 구매 금액을 입력받는 함수
+        - getPrice: 금액을 Price 클래스로 넘겨 유효성 검사 및 데이터 저장 함수
+        - publishLotto: Lottery 클래스를 통해 로또를 개수만큼 발행/출력하는 함수
+        - inputLotto: readLine 함수를 통해서 당첨번호를 입력받는 함수
+        - getWinNumbers: 당첨번호를 Lotto 클래스로 넘겨 유효성 검사 및 데이터 저장 함수
+        - inputBonus: readLine 함수를 통해서 보너스 번호를 입력받는 함수
+        - getBonusNumber: 보너스 번호를 Bonus 클래스로 넘겨 유효성 검사 및 데이터 저장 함수
+        - saveCalcClass: Calculation 객체 생성 함수
+        - calcLottoResult: 발행한 로또 리스트, 당첨 번호, 보너스 번호, 로또 금액 등을 넘겨 결과를 계산하는 함수
+        - saveResultClass: 계산한 결과를 출력하기 위해 LottoResult 객체를 생성하는 함수
+        - printResult: 결과값 출력 함수
+      </pre>
+    </div>
+</details>
+
+<br/><br/>
+
+```mermaid
+classDiagram
+    LottoProgram
+    class LottoProgram {
+        Price: price
+        Lottery: lottery
+        Bonus: bonus
+        calculation: calcLotto
+        LottoResult: lottoResult
+
+        start()
+        inputPrice()
+        getPrice(answer)
+        publishLotto()
+        inputLotto()
+        getWinNumbers(answer)
+        inputBonus()
+        getBonusNumber(answer)
+        saveCalcClass()
+        calcLottoResult()
+        saveResultClass()
+        printResult()
+    }
+```
+
+<br/><br/>
+
+### Calculation
+
+<details>
+    <summary>함수 설명</summary>
+    <div markdown="1">
+      <pre>
+        - calcList: 프로그램 시작
+        - calcMatchCount: 로또번호와 당첨번호를 비교하여 일치하는 개수를 계산하는 함수
+        - matchResult: 개수를 구하고 점수 부여 함수를 호출하는 함수
+        - getMatchResultType: isBonusFiveMatch 조건을 통해 bonus OR matchCount를 반환하는 함수
+        - plusPoint: 일치하는 타입에 점수를 추가하는 함수
+        - isBonusFiveMatch: 보너스 포함 5개 일치일 경우 확인하는 함수
+        - calcLottoRate: 수익률 계산 함수
+        - getPrizeMoney: 당첨금 계산 및 반환 함수
+        - getWinResult: 멤버변수 winResult 반환 함수
+        - getRate: 멤버변수 rate 반환 함수
+      </pre>
+    </div>
+</details>
+
+<br/><br/>
+
+```mermaid
+classDiagram
+    Calculation
+    class Calculation {
+        private Object winResult
+        private Number rate
+        Number matchCount
+        Boolean isBonusMatch
+        calcList(lottoList, winList, bonus)
+        calcMatchCount(lotto)
+        matchResult()
+        getMatchResultType()
+        plusPoint(count)
+        isBonusFiveMatch()
+        calcLottoRate()
+        getPrizeMoney()
+        getWinResult()
+        getRate()
+    }
+```
+
+<br/><br/>
+
+### Lottery
+
+<details>
+    <summary>함수 설명</summary>
+    <div markdown="1">
+      <pre>
+        - pick: 1부터 45까지의 중복되지 않는 숫자 3개를 발행하여 오름차순으로 배열에 추가하는 함수
+        - printList: 발행한 함수를 forEach문으로 돌면서 printMessage 호출하는 함수
+        - printMessage: 각 로또를 규격에 맞게 출력하는 함수
+        - isSameIndex: index가 발행한 로또 개수랑 같은지 확인하는 함수
+        - getLottoList: 발행한 로또들을 반환하는 함수
+      </pre>
+    </div>
+</details>
+
+<br/><br/>
+
+```mermaid
+classDiagram
+    Lottery
+    class Lottery {
+        private Array<number> lottoList
+        Number lottoCount
+        pick()
+        printList()
+        printMessage(lotto, index)
+        isSameIndex(index)
+        getLottoList()
+    }
+```
+
+<br/><br/>
+
+### LottoResult
+
+<details>
+    <summary>함수 설명</summary>
+    <div markdown="1">
+      <pre>
+        - printResult: "당첨 통계"출력 및 결과값 출력함수를 호출하는 함수
+        - printMatchCount: 결과를 출력하는 함수
+        - printRate: 수익률을 출력하는 함수
+      </pre>
+    </div>
+</details>
+
+<br/><br/>
+
+```mermaid
+classDiagram
+    LottoResult
+    class LottoResult {
+        Object result
+        Number rate
+        printResult()
+        printMatchCount()
+        printRate()
     }
 ```
