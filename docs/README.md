@@ -81,7 +81,7 @@
 
 - [ ] LottoCampany.setWinningLottoNumbers(winning lotto numbers);
 
-- [ ] 4. Customer.winLottoStatistic( {winning numbers, winning bonus number, generate lottos} )
+- [x] 4. Customer.winLottoStatistic( {winning numbers, winning bonus number, generate lottos} )
 
   - find winning numbers in generate lottos(lotto object)
   - print lotto statistic(statistics object)
@@ -135,7 +135,6 @@
 ### 학습 과정
 
 - 기능 설계 고민
-  - [ ] 콜백 사용
   - [v] 콜백 사용 X
     - 단위 테스트에서나 다른 면에서 콜백을 사용하지 않는 것이 좋다고 판단했습니다. 다만, 테스트를 어떻게 통과할지는 고민을 조금 더 해야할 듯 싶습니다.
 - isNaN 검증 관련 고민
@@ -144,5 +143,7 @@
     - isNaN으로 값을 비교해야 된다는 것을 알았습니다.
 - 궁금한 점
   - TDD를 하면서 테스트 코드를 작성하고, 테스트를 통과하는 코드를 짜는 것은 실제 기능을 만드는 것과는 다르다는 생각이 들었습니다. 이를 의도하고 이러한 미션을 짜신 건지 궁금합니다.
+- truthy, falsy
+  - -1은 truthy한 값이며 0은 falsy한 값이다
 
 ### 배운점
