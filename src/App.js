@@ -15,10 +15,15 @@ class App {
   #winningNumList;
   #bonusNum;
 
+  showResult() {
+    const result = this.#user.checkRankWithUserLottos(this.#winningNumList, this.#bonusNum);
+    console.log(result);
+  }
+
   askBonusNum() {
     Console.readLine(CMM_INPUT_BONUS, (input) => {
       this.#bonusNum = this.validateBonusInput(input);
-      console.log(this.#winningNumList,this.#bonusNum);
+      this.showResult();
       Console.close();
     });
   }
