@@ -19,7 +19,7 @@ class Game {
   }
 
   quantityOfPurchase() {
-    Console.print(`${this.quantity}개를 구매했습니다.`);
+    Console.print(`${this.quantity}개를 구매했습니다.\n`);
   }
 
   generateWinningNumberList(quantity) {
