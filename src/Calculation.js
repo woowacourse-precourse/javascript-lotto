@@ -70,13 +70,17 @@ class Calculation {
   }
 
   matchResult() {
-    const count = this.isBonusFiveMatch() ? LOTTO_RESULT_TYPE.bonus : this.matchCount;
+    const count = this.getMatchResultType();
 
     if (isLessThanNumber(count, 3)) {
       return;
     }
 
     this.#winResult[count].count += 1;
+  }
+
+  getMatchResultType() {
+    return this.isBonusFiveMatch() ? LOTTO_RESULT_TYPE.bonus : this.matchCount;
   }
 
   isBonusFiveMatch() {
