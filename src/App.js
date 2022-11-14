@@ -17,61 +17,74 @@ class App {
   }
 
   #readMoney() {
-    Console.readLine(GAME_MESSAGE.MONEY_INPUT, (money) => {
-      App.#validateNumberInput(money);
+    Console.readLine(GAME_MESSAGE.MONEY_INPUT, this.#onMoneySubmit.bind(this));
+  }
 
-      this.#buyer = new LottoBuyer(+money);
-      this.#buyer.buyLotto();
+  #onMoneySubmit(money) {
+    App.#validateNumberInput(money);
 
-      const buyerLotto = this.#buyer.lotto;
+    this.#buyer = new LottoBuyer(+money);
+    this.#buyer.buyLotto();
 
-      Console.print(`\n${buyerLotto.length}${GAME_MESSAGE.BUY_COUNT}`);
+    this.#printBuyerLotto();
+    this.#readLottoNumber();
+  }
 
-      buyerLotto.forEach((lotto) => {
-        Console.print(lotto);
-      });
+  #printBuyerLotto() {
+    const buyerLotto = this.#buyer.lotto;
 
-      this.#readLottoNumber();
+    Console.print(`${buyerLotto.length}${GAME_MESSAGE.BUY_COUNT}`);
+
+    buyerLotto.forEach((lotto) => {
+      Console.print(`[${lotto.join(', ')}]`);
     });
   }
 
   #readLottoNumber() {
-    Console.readLine(GAME_MESSAGE.LOTTO_NUMBER_INPUT, (numbers) => {
-      const lottoNumbers = numbers.split(',').map((number) => {
-        App.#validateNumberInput(number);
-        return +number;
-      });
+    Console.readLine(GAME_MESSAGE.LOTTO_NUMBER_INPUT, this.#onLottoNumberSubmit.bind(this));
+  }
 
-      this.#lotto = new Lotto(lottoNumbers);
-
-      this.#readBonusNumber();
+  #onLottoNumberSubmit(numbers) {
+    const lottoNumbers = numbers.split(',').map((number) => {
+      App.#validateNumberInput(number);
+      return +number;
     });
+
+    this.#lotto = new Lotto(lottoNumbers);
+
+    this.#readBonusNumber();
   }
 
   #readBonusNumber() {
-    Console.readLine(GAME_MESSAGE.BONUS_NUMBER_INPUT, (number) => {
-      App.#validateNumberInput(number);
-
-      this.#lotto.setBonusNumber(+number);
-      this.#comparer = new LottoComparer(this.#buyer, this.#lotto);
-
-      this.#comparer.setBuyerLottoRanking();
-      this.#printLottoRank();
-
-      this.#comparer.setYield();
-      Console.print(`총 수익률은 ${this.#comparer.yield}%입니다.`);
-
-      Console.close();
-    });
+    Console.readLine(GAME_MESSAGE.BONUS_NUMBER_INPUT, this.#onBonusNumberSubmit.bind(this));
   }
 
-  #printLottoRank() {
+  #onBonusNumberSubmit(number) {
+    App.#validateNumberInput(number);
+
+    this.#lotto.setBonusNumber(+number);
+    this.#setComparer();
+
+    this.#printResult();
+
+    Console.close();
+  }
+
+  #setComparer() {
+    this.#comparer = new LottoComparer(this.#buyer, this.#lotto);
+    this.#comparer.setBuyerLottoRanking();
+    this.#comparer.setYield();
+  }
+
+  #printResult() {
     Console.print(GAME_MESSAGE.RESULT_TITLE);
 
     Object.keys(RANK_MESSAGE).forEach((rankKey) => {
       const rank = RANK[rankKey];
-      Console.print(`${RANK_MESSAGE[rankKey]} ${this.#comparer.ranking[rank]}`);
+      Console.print(`${RANK_MESSAGE[rankKey]} ${this.#comparer.ranking[rank]}개`);
     });
+
+    Console.print(`총 수익률은 ${this.#comparer.yield}%입니다.`);
   }
 
   static #validateNumberInput(input) {
