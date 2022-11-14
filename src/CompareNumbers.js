@@ -3,6 +3,7 @@ const {
   INPUT_BONUS_NUMBERS_MESSAGE,
   FROM_ONE_TO_FORTYFIVE,
   ERROR_MESSAGES,
+  RANDOM_UTIL,
 } = require("./Constants");
 
 const { NOT_BETWEEN_ONE_AND_FORTYFIVE } = ERROR_MESSAGES;
@@ -42,6 +43,12 @@ class CompareWithLotto {
     if (!FROM_ONE_TO_FORTYFIVE.includes(Number(userBonus))) {
       throw new Error(NOT_BETWEEN_ONE_AND_FORTYFIVE);
     }
+
+    return this.isSameBonusNumber(userBonus);
+  }
+
+  isSameBonusNumber() {
+    const lottoBonus = RANDOM_UTIL.pickNumberInRange(1, 45);
   }
 }
 
