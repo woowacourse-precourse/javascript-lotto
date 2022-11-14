@@ -28,4 +28,29 @@ describe('로또 클래스 테스트', () => {
       new Lotto(['a', 'ㄱ', '!', 'z', 'Z', '@']);
     }).toThrow('[ERROR] 숫자여야 합니다.');
   });
+
+  // 로또 구입 금액 입력 예외 처리
+  test('숫가가 아닐 경우 예외가 발생한다.', () => {
+    const money = '8!aㅇ';
+    expect(() => {
+      const lottoSet = new LottoSet();
+      lottoSet.validate(money);
+    }).toThrow('[ERROR] 숫자만 입력해야 합니다.');
+  });
+
+  test('1000으로 나눠 떨어지지 않는 경우 예외가 발생한다.', () => {
+    const money = '8500';
+    expect(() => {
+      const lottoSet = new LottoSet();
+      lottoSet.validate(money);
+    }).toThrow('[ERROR] 로또 구입 후 잔돈이 남습니다.');
+  });
+
+  test('1000원 미만 금액일 경우 예외가 발생한다.', () => {
+    const money = '800';
+    expect(() => {
+      const lottoSet = new LottoSet();
+      lottoSet.validate(money);
+    }).toThrow('[ERROR] 최소 금액이 1000원 입니다.');
+  });
 });
