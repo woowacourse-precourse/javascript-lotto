@@ -3,6 +3,12 @@ const { Random } = require("@woowacourse/mission-utils");
 const LOTTERY_PRICE = 1000;
 const LOTTERY_MIN_NUMBER = 1;
 const LOTTERY_MAX_NUMBER = 45;
+const PRIZE_CRITERIA = Object.freeze({
+  FIRST: 6,
+  SECOND_THIRD: 5,
+  FOURTH: 4,
+  FIFTH: 3,
+});
 
 class LottoGame {
   constructor(LottoGameView) {
@@ -12,6 +18,13 @@ class LottoGame {
     this.lottoQuantity = null;
     this.winningLotto = null;
     this.bonusNumber = null;
+    this.prizeCount = {
+      first: 0,
+      second: 0,
+      third: 0,
+      fourth: 0,
+      fifth: 0,
+    }
   }
 
   setPurchaseAmount(purchaseAmount) {
@@ -94,6 +107,7 @@ class LottoGame {
       const lottoNumber = lotto.getNumber();
       const matchCount = this.getMatchCount(winningNumber, lottoNumber);
       const bonusMatch = lottoNumber.includes(this.bonusNumber);
+      this.comparePrizeCriteria(matchCount, bonusMatch);
     });
   }
 
@@ -105,6 +119,30 @@ class LottoGame {
       }
     })
     return count;
+  }
+
+  comparePrizeCriteria(matchCount, bonusMatch) {
+    for (const criteria of Object.keys(PRIZE_CRITERIA)) {
+      const winningCount = PRIZE_CRITERIA[criteria];
+      if(matchCount === winningCount){
+        this.increasePrizeCount(criteria, bonusMatch);
+        return;
+      }
+    }
+  }
+
+  increasePrizeCount(criteria, bonusMatch) {
+    if (criteria === 'SECOND_THIRD') {
+      if (bonusMatch) {
+        this.prizeCount.second += 1;
+        return;
+      }
+
+      this.prizeCount.third += 1;
+      return;
+    }
+
+    this.prizeCount[criteria.toLowerCase()] += 1;
   }
 }
 
