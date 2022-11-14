@@ -2,6 +2,7 @@ const { Console, Random } = require("@woowacourse/mission-utils");
 const InputMoney = require("./InputMoney");
 const Lotto = require("./Lotto");
 const Bonus = require("./Bonus");
+const Compare = require("./Compare");
 
 class App {
   constructor() {
@@ -19,16 +20,15 @@ class App {
   inputMoney() {
     Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
       this.money = new InputMoney(money);
-
+      this.money = money;
       this.printLottoQuantity(money);
     });
   }
 
   printLottoQuantity(money) {
-    const lottoQuantity = money / 1000;
-    Console.print(`${lottoQuantity}개를 구매했습니다.`);
-
-    this.printLotto(lottoQuantity);
+    this.lottoQuantity = money / 1000;
+    Console.print(`${this.lottoQuantity}개를 구매했습니다.`);
+    this.printLotto(this.lottoQuantity);
   }
 
   printLotto(lottoQuantity) {
@@ -54,14 +54,15 @@ class App {
         return parseInt(item, 10);
       });
       const lotto = new Lotto(this.winningNumbers);
-    });
 
-    this.inputBonusNumber();
+      this.inputBonusNumber();
+    });
   }
 
   inputBonusNumber() {
     Console.readLine("보너스 번호를 입력해 주세요.\n", (bonusNumber) => {
       this.bonusNumber = new Bonus(bonusNumber);
+      this.bonusNumber = bonusNumber;
     });
   }
 }
