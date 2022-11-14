@@ -4,7 +4,7 @@ const LottoGameView = require("./LottoGameView.js");
 const LottoPerchaseMachine = require("./LottoPurchaseMachine.js");
 const WinningLotto = require("./WinningLotto.js");
 const PrizeCalculator = require("./PrizeCalculator.js");
-const StatisticsMachine = require("./StatisticsMachine.js");
+const Statistics = require("./Statistics.js");
 
 class LottoGame {
   playerLottos;
@@ -15,7 +15,7 @@ class LottoGame {
     this.lottoPerchaseMachine = new LottoPerchaseMachine();
     this.winningLotto = new WinningLotto();
     this.prizeCalculator = new PrizeCalculator();
-    this.statisticsMachine = new StatisticsMachine();
+    this.statistics = new Statistics();
   }
 
   play() {
@@ -64,10 +64,10 @@ class LottoGame {
   }
 
   statisticsPhase(eachLottoPrize) {
-    this.statisticsMachine.makeStatisticsData(eachLottoPrize, this.purchaseAmount);
+    this.statistics.makeStatisticsData(eachLottoPrize, this.purchaseAmount);
 
-    const prizeStatisticsTemplates = this.statisticsMachine.prizeStatisticsTemplates;
-    const yieldRatio = this.statisticsMachine.yieldRatio;
+    const prizeStatisticsTemplates = this.statistics.prizeStatisticsTemplates;
+    const yieldRatio = this.statistics.yieldRatio;
 
     this.LottoGameView.printPrizeStatistics(prizeStatisticsTemplates);
     this.LottoGameView.printYieldRatio(yieldRatio);

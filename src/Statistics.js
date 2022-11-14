@@ -1,6 +1,6 @@
 const { PRIZE_MATCH_NUMBER_COUNT, LOTTO_PRIZE_MONEY } = require("./constants/condition.js");
 
-class StatisticsMachine {
+class Statistics {
   totalPrizeMoney;
   yieldRatio;
   prizeStatisticsTemplates;
@@ -66,4 +66,4 @@ class StatisticsMachine {
   }
 }
 
-module.exports = StatisticsMachine;
+module.exports = Statistics;
