@@ -2,6 +2,12 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require("./Lotto");
 const Print = require("./Print");
 
+const FIRST_PLACE = 7;
+const SECOND_PLACE = 6;
+const THIRD_PLACE = 5;
+const FOURTH_PLACE = 4;
+const FIFTH_PLACE = 3;
+
 class Prize {
 	constructor() {
 		this.prizeMoney = 0;
@@ -88,14 +94,25 @@ class Prize {
 			this.winningCount[winningCount] += 1;
 		}
 	}
-	winningCheck(lottoBundle) {
+
+	calculateEarnings(user) {
+		user.earnings += (this.winningCount[FIFTH_PLACE]) * 5000;
+		user.earnings += (this.winningCount[FOURTH_PLACE]) * 50000;
+		user.earnings += (this.winningCount[THIRD_PLACE]) * 1500000;
+		user.earnings += (this.winningCount[SECOND_PLACE]) * 30000000;
+		user.earnings += (this.winningCount[FIRST_PLACE]) * 2000000000;
+	}
+
+	winningCheck(user) {
 		Console.readLine('당첨 번호를 입력해 주세요.\n', (nums) => {
 			Console.readLine('보너스 번호를 입력해 주세요.\n', (bonusNum) => {
 				this.validate(nums, bonusNum);
-				this.countingPrize(lottoBundle);
+				this.countingPrize(user.lottoBundle);
+				this.calculateEarnings(user);
 
 				const print = new Print();
-				print.winningResult(this.winningCount);
+				print.result(user, this.winningCount);
+				Console.close();
 			})
 		})
 	}
