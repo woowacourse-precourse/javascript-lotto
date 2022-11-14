@@ -1,21 +1,35 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { Console, Random } = require("@woowacourse/mission-utils");
 const Validation = require("../src/Validation");
 
 class User {
+  lottoNumbers;
   constructor() {
-    this.numberOfPurchase = 0;
+    this.lottoNumbers = []; //로또 발행 번호 목록
   }
   buyLotto() {
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요", (userInput) => {
-      this.isValidPurchase(userInput);
-      this.numberOfPurchase = Number(userInput);
+    // 로또를 구입한다.
+    let numberOfPurchase;
+    Console.readLine("구입금액을 입력해 주세요.\n", (userInput) => {
+      User.isValidPurchase(userInput);
+      numberOfPurchase = Number(userInput) / 1000;
+      this.generateLottoNumbers(numberOfPurchase);
     });
   }
-  isValidPurchase(amount) {
+  generateLottoNumbers(numberOfPurchase) {
+    for (let i = 0; i < numberOfPurchase; i++) {
+      const lottoNumber = Random.pickUniqueNumbersInRange(1, 45, 6);
+      this.lottoNumbers.push(lottoNumber);
+    }
+  }
+  static isValidPurchase(amount) {
     // 로또 구입 금액에 대한 유효성 검사
     amount = Number(amount);
     return Validation.isDivisible(amount) && Validation.isAvailablePurchase(amount) && Validation.isPositiveInteger(amount);
   }
 }
+
+const user = new User();
+// user.buyLotto();
+// user.generateLottoNumbers();
 
 module.exports = User;
