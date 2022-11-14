@@ -1,5 +1,3 @@
-const LottoPurchase = require("../src/LottoPurchase");
-const lottoPurchase = new LottoPurchase(1000);
 
 class Lotto {
   #numbers;
@@ -80,7 +78,7 @@ class Lotto {
     let lottoList = lottoPurchase.lottoPublish();
 
     lottoList.forEach(lottoNumbers => {
-      this.lottoCampare(lottoNumbers);
+      this.lottoCompare(lottoNumbers);
     })
   }
 
@@ -94,7 +92,15 @@ class Lotto {
 
     revenue = firstPlace + secondPlace + thirdPlace 
     + fourthPlace + fifthPlace;
-    return revenue
+    return revenue;
+  }
+
+  caculationRevenueRate() {
+    let revenueRate = 0;
+    let revenue = this.getRevenue();
+
+    revenueRate = revenue / (lottoPurchase.amount / 100);
+    return revenueRate;
   }
 }
 
