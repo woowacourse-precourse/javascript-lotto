@@ -1,5 +1,6 @@
-const { NUMBER_OF_LOTTO_PURCHASED } = require("./Console");
+const MissionUtils = require("@woowacourse/mission-utils");
 const Console = require("./Console");
+const Validation = require("./Validation");
 const Lotto = require("./Lotto");
 
 const prizeObject = {
@@ -26,14 +27,14 @@ class App {
     return rankMap;
   }
 
-  checkRanking(mapObj, winningArray) {
+  checkRanking(rankMap, winningArray) {
     winningArray.forEach((el) => {
-      if (mapObj.has(el)) {
-        mapObj.set(el, mapObj.get(el) + 1);
+      if (rankMap.has(el)) {
+        rankMap.set(el, rankMap.get(el) + 1);
       }
     });
 
-    return mapObj;
+    return rankMap;
   }
 
   calculateEarningRate(rankingMap) {
@@ -57,19 +58,21 @@ class App {
     rankingMap = Object.fromEntries(
       this.checkRanking(rankingMap, winningArray)
     );
-    Console.printMessage("\n당첨통계" + "\n---");
+    Console.printMessage(Console.WINNING_STATUS);
     Console.printMessage(`3개 일치 (5,000원) - ${rankingMap[5]}개`);
     Console.printMessage(`4개 일치 (50,000원) - ${rankingMap[4]}개`);
     Console.printMessage(`5개 일치 (1,500,000원) - ${rankingMap[3]}개`);
     Console.printMessage(
       `5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankingMap[2]}개`
     );
-    Console.printMessage(`6개 일치 (2,000,000,000원) - ${rankingMap[1]}개`);
+    MissionUtils.Console.print(
+      `6개 일치 (2,000,000,000원) - ${rankingMap[1]}개`
+    );
     this.calculateEarningRate(rankingMap);
   }
 
   setBonusNumber() {
-    Console.askUserInput(`\n${Console.ASK_BONUS_NUMBER}`, (input) => {
+    Console.askUserInput("\n" + Console.ASK_BONUS_NUMBER, (input) => {
       if (/[^0-9]/g.test(input))
         throw new Error("[Error] 입력된 형식이 올바르지 않습니다.");
       const BOUNS_NUMBER = Number(input);
@@ -86,21 +89,8 @@ class App {
   }
 
   setWinNumber() {
-    Console.askUserInput(`\n${Console.ASK_WIN_NUMBER}`, (winningNumber) => {
-      if (!/^(\d{1,2}[,]){5}\d{1,2}$/.test(winningNumber))
-        throw new Error("[ERROR] 입력된 형식이 올바르지 않습니다.");
-      const NUMBER = winningNumber.split(",").map((number) => {
-        if (number < 1 || 45 < number)
-          throw new Error(
-            "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."
-          );
-        return Number(number);
-      });
-      if (new Set(NUMBER).size !== 6)
-        throw new Error("[ERROR] 번호는 중복되지 않아야 합니다.");
-
-      this.winNumber = NUMBER;
-
+    Console.askUserInput("\n" + Console.ASK_WIN_NUMBER, (input) => {
+      this.winNumber = Validation.checkVaildWinNumber(input);
       this.setBonusNumber();
     });
   }
@@ -111,10 +101,20 @@ class App {
     });
   }
 
+  generateRandomLottoNumber(lottoCount) {
+    return Array.from({ length: lottoCount }, () =>
+      MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort(
+        (a, b) => a - b
+      )
+    );
+  }
+
   setRandomLotto() {
     const LOTTO_COUNT = this.money / 1000;
-    Console.printMessage(`\n${LOTTO_COUNT}${NUMBER_OF_LOTTO_PURCHASED}`);
-    Lotto.generateRandomLottoNumber(LOTTO_COUNT).map((lotto) => {
+    Console.printMessage(
+      `\n${LOTTO_COUNT}${Console.NUMBER_OF_LOTTO_PURCHASED}`
+    );
+    this.generateRandomLottoNumber(LOTTO_COUNT).map((lotto) => {
       this.lottos.push(new Lotto(lotto));
     });
 
@@ -124,15 +124,9 @@ class App {
 
   setUserQuantityOfLotto() {
     Console.askUserInput(Console.ASK_BUY_LOTTO_AMOUNT, (input) => {
-      if (/[^0-9]/g.test(input))
-        throw new Error("[ERROR] 구입금액에 문자가 포함되어 있습니다.");
-      const MONEY = input;
-      if (Number(MONEY) % 1000 !== 0)
-        throw new Error("[ERROR] 1000원 단위의 금액을 입력하세요.");
-      if (Number(MONEY) <= 0)
-        throw new Error("[ERROR] 구입급액이 0보다 커야 합니다.");
+      const AMOUNT = Validation.checkVaildLottoAmount(input);
 
-      this.money = MONEY;
+      this.money = AMOUNT;
       this.setRandomLotto();
     });
   }
