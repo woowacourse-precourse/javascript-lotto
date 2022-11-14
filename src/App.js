@@ -2,13 +2,14 @@ const { Console } = require("@woowacourse/mission-utils");
 const Calculator = require("./Calculator");
 const ExceptionCheck = require("./ExceptionCheck");
 const Lotto = require("./Lotto");
-const Printer = require("./Printer");
+const Utils = require("./Utils");
 
 class App {
   constructor() {
     this.exeptionCheck = new ExceptionCheck;
-    this.print = new Printer();
     this.calculator = new Calculator();
+    this.utils = new Utils;
+    this.winNumbers;
     this.LottoCount;
   }
 
@@ -25,7 +26,7 @@ class App {
 
   requestWinNumbers() {
     Console.readLine('당첨번호를 입력해주세요.\n', userInput => {
-      this.winNumbers = userInput;
+      this.winNumbers = this.utils.transeStringToNumber(userInput);
     });
   }
 }
