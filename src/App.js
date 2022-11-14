@@ -85,11 +85,9 @@ class App {
   }
 
   matchLottos(lottos, winNumbers, bonusNumber) {
-    console.log(
-      lottos
-        .filter((lotto) => lotto.matchNumbers(winNumbers, bonusNumber) >= 3)
-        .map((e) => e.matchNumbers(winNumbers, bonusNumber))
-    );
+    return lottos
+      .filter((lotto) => lotto.matchNumbers(winNumbers, bonusNumber) >= 3)
+      .map((e) => e.matchNumbers(winNumbers, bonusNumber));
   }
 }
 
