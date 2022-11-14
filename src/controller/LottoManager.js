@@ -4,7 +4,7 @@ const Deposit = require('../model/Deposit');
 const Statistic = require('../model/Statistic');
 const Validator = require('../model/Validator');
 const { RULE, NUMBER_RANGE, DECIMAL_PLACE } = require('../constants');
-const { pickUniqueNumbersInRange, calcPercentRounding } = require('../utils/utils');
+const { pickUniqueNumbersInRange, calcPercentRounding } = require('../utils');
 
 class LottoManager {
   #deposit;
