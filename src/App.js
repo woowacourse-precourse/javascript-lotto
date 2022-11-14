@@ -107,19 +107,25 @@ class App {
     for(var i=0; i<amount; i++){
       const oneLine = Random.pickUniqueNumbersInRange(1, 45, 6);
       allLines.push(oneLine);
-      Console.print(oneLine);
+      //Console.print(oneLine);
     }
-
-    this.enterWinningNums(allLines);
+    
+    allLines.forEach((oneLine) => {
+      Console.print("["+oneLine[0]+", "+oneLine[1]+", "+oneLine[2]+", "+oneLine[3]+", "+oneLine[4]+", "+oneLine[5]+"]");
+    })
+    
+    
+   
+    return this.enterWinningNums(allLines);
     //console.log(allLines);
   }
 
 
   showLottoAmount(money) {
-    this.amount = parseInt(money)/1000;
-    Console.print(`\n${this.amount}개를 구매했습니다.`);
+    const amount = parseInt(money)/1000;
+    Console.print(`\n${amount}개를 구매했습니다.`);
     
-    this.makeLottoNums(this.amount);
+    return this.makeLottoNums(amount);
     //return this.amount;
   }
 
