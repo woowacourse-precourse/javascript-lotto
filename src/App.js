@@ -4,6 +4,7 @@ const { Console, Random } = MissionUtils;
 class App {
   play() {
     this.inputOfLottoPurchaseAmount();
+    this.printPurchaseCountMessage();
   }
 
   inputOfLottoPurchaseAmount() {
@@ -30,6 +31,10 @@ class App {
     if (VALIDATE_AMOUNT_1000 != 0) {
       throw new Error(`[ERROR] 입력한 금액 ${amountInput}원은 1,000원 단위로 나누어 떨어지지 않습니다.`)
     }
+  }
+
+  printPurchaseCountMessage(VALIDATE_AMOUNT_1000) {
+    Console.print(`${VALIDATE_AMOUNT_1000}개를 구매했습니다.`);
   }
 }
 
