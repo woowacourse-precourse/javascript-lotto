@@ -1,4 +1,4 @@
-const Lotto = require('../src/Lotto');
+const Lotto = require('../src/Components/Lotto');
 
 describe('로또 클래스 테스트', () => {
   test('로또 번호를 , 단위로 구분하지 않으면 예외가 발생한다', () => {

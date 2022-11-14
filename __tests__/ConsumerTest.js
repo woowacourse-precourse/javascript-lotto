@@ -1,5 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const Consumer = require('../src/Consumer');
+const Consumer = require('../src/Components/Consumer');
 
 const mockRandoms = (numbers) => {
   MissionUtils.Random.pickUniqueNumbersInRange = jest.fn();
@@ -42,6 +42,7 @@ describe('Consumer 클래스 테스트', () => {
   });
 
   test('로또 번호는 오름차순으로 정렬 후 출력한다.', () => {
+    // 조건
     mockRandoms([
       [8, 7, 6, 5, 4, 3],
       [5, 7, 6, 9, 11, 10],
@@ -51,6 +52,7 @@ describe('Consumer 클래스 테스트', () => {
     const logSpy = getLogSpy();
     const consumer = new Consumer(3000);
 
+    // 평가
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
