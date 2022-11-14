@@ -222,3 +222,12 @@ class Lotto {
 - [x] 생성한 6자리 수 오름차순으로 정렬하기 - `LottoGenrator#sortAscending`
 - [x] 생성한 6자리 수를 Lotto클래스에 넣어 로또 발행하기 - `LottoGenerator#createLotto`;
 - [x] 발행할 로또 개수만큼 로또 생성하기 - `LottoGenerator#createMultipleLotto`
+
+- [x] 로또 번호의 길이가 6이 아니라면 예외 처리하기 - `Lotto#validate`
+- [ ] 로또 번호에 중복되는 수가 있다면 예외 처리하기 - `Lotto#validate`
+- [ ] 로또 번호에 숫자가 아닌 값이 있다면 예외 처리하기 - `Lotto#validate`
+- [ ] 로또 번호가 1~45 사이의 수가 아니라면 예외 처리하기 - `Lotto#validate`
+
+### 에러 처리
+
+- [ ] 예외 상황 시 "[ERROR]"로 시작하는 에러 문구를 출력하는 기능

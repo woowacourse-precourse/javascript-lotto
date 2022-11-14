@@ -2,7 +2,7 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    this.#validate(numbers);
     this.#numbers = numbers;
   }
 
@@ -10,10 +10,14 @@ class Lotto {
     return this.#numbers;
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
+  #validate(numbers) {
+    if (!this.#hasValidLength(numbers)) {
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
     }
+  }
+
+  #hasValidLength(numbers) {
+    return numbers.length === 6;
   }
 }
 
