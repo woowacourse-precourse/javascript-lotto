@@ -25,6 +25,13 @@ describe("로또 클래스 테스트", () => {
     lotto.setLottoResult([1,2,3,4,5,6])
 
     expect(lotto.result.lotto).toBe(6);
+  })
 
+  test("BonusNumber 당첨여부 확인",()=>{
+    const lotto= new Lotto([1,2,3,4,5,6])
+
+    lotto.setBonusResult(6);
+
+    expect(lotto.result.bonus).toBe(true);
   })
 });
