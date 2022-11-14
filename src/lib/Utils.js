@@ -27,6 +27,9 @@ const utils = {
     if (count < number) return true;
     return false;
   },
+  getRoundSecondDecimalPlace(number) {
+    return Math.round(number * 100) / 100;
+  },
 };
 
 module.exports = utils;

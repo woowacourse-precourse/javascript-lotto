@@ -1,7 +1,7 @@
 const {
   LOTTO_RESULT_MESSAGE, LOTTO_RESULT_PRICE, LOTTO_RESULT_TYPE,
 } = require('./lib/Constants');
-const { isLessThanNumber } = require('./lib/Utils');
+const { getRoundSecondDecimalPlace, isLessThanNumber } = require('./lib/Utils');
 
 class Calculation {
   #winResult = {
@@ -90,7 +90,8 @@ class Calculation {
    */
   calcLottoRate(lottoPrice) {
     const prizeMoney = this.getPrizeMoney(lottoPrice);
-    this.#rate = (prizeMoney / lottoPrice) * 100;
+    const rate = (prizeMoney / lottoPrice) * 100;
+    this.#rate = getRoundSecondDecimalPlace(rate);
 
     return this;
   }
