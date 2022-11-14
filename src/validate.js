@@ -24,9 +24,10 @@ const validateTargetNumber = (target) => {
   const isUnique = new Set(target).size === target.length;
   const isValidLength = target.length === GAME_RANGE.NUM_LENGTH;
 
-  if (isNumber === false || isInRange === false || isUnique === false || isValidLength === false) {
-    throw Error(GAME_INPUT_ERRORS.INVALID_INPUT_TYPE);
-  }
+  if (isNumber === false) throw Error(GAME_INPUT_ERRORS.INVALID_TARGET_TYPE);
+  if (isInRange === false) throw Error(GAME_INPUT_ERRORS.INVALID_TARGET_RANGE);
+  if (isUnique === false) throw Error(GAME_INPUT_ERRORS.INVALID_TARGET_DUPLICATED);
+  if (isValidLength === false) throw Error(GAME_INPUT_ERRORS.INVALID_TARGET_LENGTH);
 };
 
 const validateBonusNumber = (bonus) => {
