@@ -133,6 +133,10 @@ class App {
     Console.print(`총 수익률은 ${this.percent}%입니다.`);
     this.endLotto();
   }
+
+  endLotto() {
+    Console.close();
+  }
 }
 
 const app = new App();
