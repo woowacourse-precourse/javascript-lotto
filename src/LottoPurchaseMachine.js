@@ -13,7 +13,7 @@ class LottoPerchaseMachine {
 
   insertMoney(purchaseAmount) {
     Validation.validatePurchaseAmount(purchaseAmount);
-    this.purchaseAmount = purchaseAmount;
+    this.purchaseAmount = Number(purchaseAmount);
   }
 
   purchaseLottos() {
