@@ -1,4 +1,4 @@
-const { UNIT, FORMAT, PRIZE } = require('./Const');
+const { FORMAT, RANK } = require('./Const');
 
 class Lotto {
   #numbers;
@@ -22,16 +22,14 @@ class Lotto {
     this.hasBonus = numbers.includes(bonusNumber);
   }
 
-  getMatchInformation() {
+  setRank() {
     const { matchCount, hasBonus } = this;
     let matchInfo = `${matchCount}${FORMAT.MATCH}`;
 
     if (matchCount === 5 && hasBonus) {
       matchInfo += FORMAT.MATCH_BONUS;
     }
-    this.prize = PRIZE[matchInfo];
-    this.formatPrize = this.prize.toLocaleString(FORMAT.LOCALE);
-    this.matchInfo = `${matchInfo} (${this.formatPrize}${UNIT.MONEY})`;
+    this.rank = RANK[matchInfo] ?? 0;
   }
 }
 

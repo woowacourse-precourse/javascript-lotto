@@ -15,20 +15,36 @@ const MESSAGE = Object.freeze({
   INPUT_BONUS_NUMBER: '보너스 번호를 입력해 주세요.\n',
 });
 
+const MATCH = Object.freeze({
+  5: `3${FORMAT.MATCH}`,
+  4: `4${FORMAT.MATCH}`,
+  3: `5${FORMAT.MATCH}`,
+  2: `5${FORMAT.MATCH}${FORMAT.MATCH_BONUS}`,
+  1: `6${FORMAT.MATCH}`,
+});
+
+const RANK = Object.freeze({
+  [MATCH[5]]: 5,
+  [MATCH[4]]: 4,
+  [MATCH[3]]: 3,
+  [MATCH[2]]: 2,
+  [MATCH[1]]: 1,
+});
+
 const PRIZE = Object.freeze({
-  [`0${FORMAT.MATCH}`]: 0,
-  [`1${FORMAT.MATCH}`]: 0,
-  [`2${FORMAT.MATCH}`]: 0,
-  [`3${FORMAT.MATCH}`]: 5000,
-  [`4${FORMAT.MATCH}`]: 50000,
-  [`5${FORMAT.MATCH}`]: 1500000,
-  [`5${FORMAT.MATCH}${FORMAT.MATCH_BONUS}`]: 30000000,
-  [`6${FORMAT.MATCH}`]: 2000000000,
+  0: 0,
+  5: 5000,
+  4: 50000,
+  3: 1500000,
+  2: 30000000,
+  1: 2000000000,
 });
 
 module.exports = {
   UNIT,
   FORMAT,
   MESSAGE,
+  MATCH,
+  RANK,
   PRIZE,
 };

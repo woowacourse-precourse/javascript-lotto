@@ -1,16 +1,11 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const { UNIT, MESSAGE } = require('./Const');
+const { UNIT, FORMAT, MESSAGE, MATCH, RANK, PRIZE } = require('./Const');
 const Lotto = require('./Lotto');
 
 class App {
+  ranks = Object.values(RANK);
+  statistics = new Array(this.ranks.length + 1).fill(0);
   earning = 0;
-  statistics = {
-    '3개 일치 (5,000원)': 0,
-    '4개 일치 (50,000원)': 0,
-    '5개 일치 (1,500,000원)': 0,
-    '5개 일치, 보너스 볼 일치 (30,000,000원)': 0,
-    '6개 일치 (2,000,000,000원)': 0,
-  };
 
   getLottoCount() {
     Console.readLine(MESSAGE.INPUT_PURCHASE_AMOUNT, (input) => {
@@ -59,11 +54,9 @@ class App {
       const lotto = new Lotto(lottoNumbers);
 
       lotto.matchNumbers(winningNumbers, bonusNumber);
-      lotto.getMatchInformation();
-      if (lotto.prize > 0) {
-        this.earning += lotto.prize;
-        this.statistics[lotto.matchInfo] += 1;
-      }
+      lotto.setRank();
+      this.earning += PRIZE[lotto.rank];
+      this.statistics[lotto.rank] += 1;
     });
     this.getEarningRate(this.earning);
   }
@@ -76,12 +69,16 @@ class App {
   }
 
   printStatistics() {
-    const { statistics, earningRate } = this;
+    const { ranks, statistics, earningRate } = this;
 
     Console.print('당첨 통계\n---');
-    for (const key in statistics) {
-      Console.print(`${key} - ${statistics[key]}${UNIT.LOTTO}`);
-    }
+    ranks.forEach((rank) => {
+      const formatPrize = PRIZE[rank].toLocaleString(FORMAT.LOCALE);
+
+      Console.print(
+        `${MATCH[rank]} (${formatPrize}) - ${statistics[rank]}${UNIT.LOTTO}`
+      );
+    });
     Console.print(`총 수익률은 ${earningRate}%입니다.`);
   }
 
