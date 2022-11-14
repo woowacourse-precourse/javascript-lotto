@@ -70,4 +70,28 @@ describe('My Acceptance test', () => {
       app.play();
     }).toThrow('[ERROR]');
   });
+
+  test('중복된 당첨 번호를 입력', () => {
+    mockQuestions(['5000', '1,2,3,4,5,5']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
+
+  test('6개가 아닌 당첨 번호를 입력', () => {
+    mockQuestions(['5000', '1,2,3,4,5']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
+
+  test('숫자가 아닌 당첨 번호를 입력', () => {
+    mockQuestions(['5000', '일,이,삼,사,오,육']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
 });
