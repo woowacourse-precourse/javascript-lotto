@@ -1,85 +1,50 @@
-const { RULE, NUMBER_RANGE, DECIMAL_PLACE } = require('../utils/constants');
-const { pickUniqueNumbersInRange, calcPercentRounding } = require('../utils/utils');
 const View = require('../view/View');
-const Lotto = require('../Lotto');
-const Deposit = require('../model/Deposit');
-const Statistic = require('../model/Statistic');
-const BonusNumber = require('../model/BonusNumber');
-const Validator = require('../model/Validator');
+const LottoManager = require('../LottoManager');
 
 class Controller {
-  start() {
-    View.printStart();
-    View.readLine((input) => {
-      this.deposit = new Deposit(input);
-      View.printQuantity(this.deposit.quantity);
-      this.purchase();
-    });
+  #lottoManager;
+
+  constructor() {
+    this.#lottoManager = new LottoManager();
   }
 
-  purchase() {
-    this.purchasedLottos = Array.from({ length: this.deposit.quantity })
-      .map(() => {
-        const numbers = pickUniqueNumbersInRange(
-          NUMBER_RANGE.START,
-          NUMBER_RANGE.END,
-          RULE.FIRST.NUMBER_OF_SAME,
-        );
-
-        return new Lotto(numbers);
-      });
-
-    this.renderPurchasedLottos();
+  start() {
+    View.printStart();
+    View.readLine((amount) => {
+      this.#lottoManager.purchase(amount);
+      View.printQuantity(this.#lottoManager.quantity);
+      this.renderPurchasedLottos();
+    });
   }
 
   renderPurchasedLottos() {
-    this.purchasedLottos.forEach((purchasedLotto) => {
-      View.printArray(purchasedLotto.numbers);
-    });
-    this.generateWinningLotto();
+    this.#lottoManager.purchasedLottos
+      .forEach((purchasedLotto) => {
+        View.printArray(purchasedLotto);
+      });
+    this.renderWinningLotto();
   }
 
-  generateWinningLotto() {
+  renderWinningLotto() {
     View.printWinningLotto();
-    View.readLine((input) => {
-      this.winningLotto = new Lotto(input.split(','));
-      this.generateBonusNumber();
+    View.readLine((numbers) => {
+      this.#lottoManager.generateWinningLotto(numbers);
+      this.renderBonusNumber();
     });
   }
 
-  generateBonusNumber() {
+  renderBonusNumber() {
     View.printBonusNumber();
-    View.readLine((input) => {
-      Validator.validateBonusNumber(this.winningLotto.numbers, input);
-      this.bonusNumber = new BonusNumber(input);
-      this.generateStatistic();
+    View.readLine((number) => {
+      this.#lottoManager.generateBonusNumber(number);
+      this.renderStatistic();
     });
-  }
-
-  generateStatistic() {
-    this.statistic = new Statistic();
-
-    this.purchasedLottos.forEach((purchasedLotto) => {
-      this.statistic.putInCounts(
-        this.winningLotto.numbers,
-        this.bonusNumber.value,
-        purchasedLotto.numbers,
-      );
-    });
-
-    this.renderStatistic();
   }
 
   renderStatistic() {
-    View.printStatistic(this.statistic.counts);
-
-    const percentageRevenue = calcPercentRounding(
-      this.statistic.revenue,
-      this.deposit.amount,
-      DECIMAL_PLACE,
-    );
-
-    View.printPercentageRevenue(percentageRevenue);
+    this.#lottoManager.generateStatistic();
+    View.printStatistic(this.#lottoManager.counts);
+    View.printPercentageRevenue(this.#lottoManager.percentageRevenue);
     View.close();
   }
 }
