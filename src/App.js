@@ -68,7 +68,7 @@ class App {
       const trimmedNumber = number.trim();
       this.validateBonusNumber(trimmedNumber);
       this.drawing.bonusNumber = Number(trimmedNumber);
-      this.drawing.start();
+      this.printStatistics();
     });
   }
 
@@ -85,6 +85,14 @@ class App {
       throw new Error(ERROR.DUPLICATED_BONUS);
     }
   }
+
+  printStatistics() {
+    const statistics = this.drawing.draw();
+
+    Console.print(statistics);
+    Console.close();
+  }
 }
 
+new App().play();
 module.exports = App;

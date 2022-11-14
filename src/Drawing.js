@@ -1,5 +1,3 @@
-const { Console } = require('@woowacourse/mission-utils');
-
 const { REWARD, STATISTICS } = require('./utils/constants');
 
 class Drawing {
@@ -31,15 +29,14 @@ class Drawing {
     return this.#bonusNumber;
   }
 
-  start() {
-    const gameResult = this.getGameResult();
-    const reward = this.calcReward(gameResult);
+  draw() {
+    const drawResult = this.getDrawResult();
+    const reward = this.calcReward(drawResult);
     const revenue = this.calcRevenue(reward);
-    this.printStatistics(gameResult, revenue);
-    Console.close();
+    return this.getStatistics(drawResult, revenue);
   }
 
-  getGameResult() {
+  getDrawResult() {
     const matchCount = this.user.lottos.map(lotto =>
       this.getMatchCount(lotto.numbers, this.winningNumbers, this.bonusNumber)
     );
@@ -80,7 +77,7 @@ class Drawing {
     return +(Math.round(number + 'e+2') + 'e-2');
   }
 
-  printStatistics({ fifth, fourth, third, second, first }, revenue) {
+  getStatistics({ fifth, fourth, third, second, first }, revenue) {
     const statistics = [];
     statistics.push(STATISTICS.TITLE);
     statistics.push(STATISTICS.FIFTH_PRIZE(fifth));
@@ -90,7 +87,7 @@ class Drawing {
     statistics.push(STATISTICS.FIRST_PRIZE(first));
     statistics.push(STATISTICS.REVENUE(revenue));
 
-    Console.print(statistics.join(''));
+    return statistics.join('');
   }
 }
 
