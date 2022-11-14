@@ -3,7 +3,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class Result {
   constructor() {}
   showResult(GRADE, RESULT) {
-    MissionUtils.Console.print(`당첨 통계\n`);
+    MissionUtils.Console.print(`\n당첨 통계`);
     MissionUtils.Console.print(`---`);
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${GRADE[4]}개`);
     MissionUtils.Console.print(`4개 일치 (50,000원) - ${GRADE[3]}개`);
