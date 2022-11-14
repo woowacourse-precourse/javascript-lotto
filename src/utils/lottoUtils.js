@@ -98,7 +98,6 @@ class LottoUtils {
       return acc + RANK_REWARD[key] * result[key];
     }, 0);
 
-    // 수익률을 반환한다
     return roundNumber((totalReward / (lottoTickets.length * PRICE)) * 100);
   }
 }
