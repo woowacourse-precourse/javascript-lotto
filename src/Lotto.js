@@ -3,6 +3,12 @@ const {
   LOTTO_DUPLICATE_ERROR,
   LOTTO_OUT_OF_RANGE_ERROR,
   LOTTO_NAN_ERROR,
+  FIRST_RANK,
+  SECOND_RANK,
+  THIRD_RANK,
+  FOURTH_RANK,
+  FIFTH_RANK,
+  NOTHING_RANK,
 } = require('./Constants');
 
 class Lotto {
@@ -41,6 +47,12 @@ class Lotto {
     if (this.checkNumber(numbers)) {
       throw new Error(LOTTO_NAN_ERROR);
     }
+  }
+
+  toString() {
+    const numbers = this.#numbers.join(', ');
+
+    return `[${numbers}]`;
   }
 }
 
