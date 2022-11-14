@@ -20,4 +20,5 @@ class ValidationCheck {
   }
 }
 
-module.exports = ValidationCheck;
+const validationCheck = new ValidationCheck();
+module.exports = validationCheck;
