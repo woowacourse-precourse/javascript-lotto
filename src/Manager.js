@@ -2,23 +2,15 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Validation = require("./Validation.js");
 const InssusedLotto = require("./IssusedLotto.js")
 const Lotto = require("./Lotto.js");
-
+const Bonus = require("./Bonus.js");
 
 class Manager {
-  #numbers;
-  #lottos;
-  #bonus;
-  #inssusedLottos
+  numbers;
+  lottos;
+  bonus;
+  inssusedLottos;
 
   constructor() {
-
-  }
-  setInssusedLottos(inssusedLottos){
-    this.#inssusedLottos = inssusedLottos;
-  }
-
-  setNumbers(numbers){
-    this.#numbers = numbers;
   }
 
   start(){
@@ -30,9 +22,11 @@ class Manager {
       Validation.isDividedByThousand(input);
       const quantity = input / 1000;
       this.printQuantity(quantity);
+
       const inssusedLotto = new InssusedLotto(quantity);
       inssusedLotto.makeLotto();
-      this.setInssusedLottos(inssusedLotto.getInssusedLottos());
+      this.inssusedLottos = inssusedLotto.getInssusedLottos();
+
       this.enterNumbers();
     });
   }
@@ -44,10 +38,21 @@ class Manager {
   enterNumbers(){
     MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (input) => {
       const numbers = input.split(',').map(number => parseInt(number));
+
       const lotto = new Lotto(numbers);
-      this.setNumbers(lotto.getNumbers());
+      this.numbers = lotto.getNumbers();
+
+      this.enterBonus();
     });
   }
+
+  enterBonus(){
+    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (input) => {
+      const bonus = new Bonus(this.numbers, input);
+      this.bonus = bonus.getBonus();
+    })
+  }
+
 }
 
 module.exports = Manager;
