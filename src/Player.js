@@ -13,7 +13,7 @@ class Player {
     return amount / 1000;
   }
 
-  insertNumbers() {}
+  insertNumbers(string) {}
   insertBonusNumber() {}
 }
 
