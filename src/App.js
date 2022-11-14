@@ -6,11 +6,11 @@ const Drawing = require('./Drawing');
 const { MESSAGE, AMOUNT_UNIT } = require('../src/utils/constants');
 const { hasChar, hasCharExceptComma, isDivisible, hasDuplicate, isOutOfRange, parseNumbers } = require('./utils/utils');
 const {
-  InvalidInputError,
-  InvalidLottoNumberRangeError,
+  InvalidAmountInputError,
   IndivisibleError,
-  InvalidBonusNumberError,
-  InvalidWinningNumberFormatError,
+  InvalidWinningNumberInputError,
+  InvalidBonusNumberInputError,
+  InvalidLottoNumberRangeError,
 } = require('./lib/errors');
 
 class App {
@@ -35,7 +35,7 @@ class App {
 
   validateAmount(amount) {
     if (hasChar(amount)) {
-      throw new InvalidInputError();
+      throw new InvalidAmountInputError();
     }
 
     if (!isDivisible(amount, AMOUNT_UNIT)) {
@@ -61,7 +61,7 @@ class App {
 
   validateWinningNumbers(numbers) {
     if (hasCharExceptComma(numbers)) {
-      throw new InvalidWinningNumberFormatError();
+      throw new InvalidWinningNumberInputError();
     }
   }
 
@@ -77,7 +77,7 @@ class App {
 
   validateBonusNumber(number) {
     if (hasChar(number)) {
-      throw new InvalidInputError();
+      throw new InvalidBonusNumberInputError();
     }
 
     if (isOutOfRange(number)) {
@@ -85,7 +85,7 @@ class App {
     }
 
     if (hasDuplicate([...this.drawing.winningNumbers, Number(number)])) {
-      throw new InvalidBonusNumberError();
+      throw new InvalidBonusNumberInputError();
     }
   }
 
@@ -97,5 +97,5 @@ class App {
   }
 }
 
-new App().play();
+// new App().play();
 module.exports = App;

@@ -1,16 +1,17 @@
 const { Random } = require('@woowacourse/mission-utils');
 
-const { NUMBER_COUNT, AMOUNT_UNIT, MIN_NUMBER, MAX_NUMBER, ERROR } = require('./constants');
+const { InvalidWinningNumberInputError } = require('../lib/errors');
+const { NUMBER_COUNT, MIN_NUMBER, MAX_NUMBER } = require('./constants');
 
 const hasChar = input => {
-  if (/([^0-9])/g.test(input)) {
+  if (input.length === 0 || /([^0-9])/g.test(input)) {
     return true;
   }
   return false;
 };
 
-const isDivisible = input => {
-  if (Number(input) % AMOUNT_UNIT !== 0) {
+const isDivisible = (input, unit) => {
+  if (Number(input) === 0 || Number(input) % unit !== 0) {
     return false;
   }
   return true;
@@ -26,7 +27,7 @@ const hasCharExceptComma = string => {
 const makeSplit = string => {
   const array = string.split(',');
   if (array.includes('') || array.includes(' ')) {
-    throw new Error(ERROR.MISUSE_COMMA);
+    throw new InvalidWinningNumberInputError();
   }
   return array;
 };
@@ -34,7 +35,7 @@ const makeSplit = string => {
 const makeNumberArray = array => {
   const numberArray = array.map(Number);
   if (numberArray.includes(NaN)) {
-    throw new Error(ERROR.IS_NAN);
+    throw new InvalidWinningNumberInputError();
   }
   return numberArray;
 };

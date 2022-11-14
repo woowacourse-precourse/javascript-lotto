@@ -1,16 +1,34 @@
-const { ERROR } = require('../utils/constants');
+const { AMOUNT_UNIT, NUMBER_COUNT, MIN_NUMBER, MAX_NUMBER } = require('../utils/constants');
 
-class InvalidLottoNumberRangeError extends Error {
+const ERROR = Object.freeze({
+  INVALID_AMOUNT_INPUT: `[ERROR] 유효하지 않은 입력입니다. 구입금액은 ${AMOUNT_UNIT}단위의 숫자로만 입력해야 합니다.`,
+  INVALID_WINNING_NUMBER_INPUT: '[ERROR] 유효하지 않은 입력입니다. 당첨 번호는 숫자와 쉼표만 입력할 수 있습니다.',
+  INVALID_BONUS_NUMBER_INPUT:
+    '[ERROR] 유효하지 않은 입력입니다. 보너스 번호는 중복되지 않은 한 가지의 숫자만 입력할 수 있습니다.',
+  INDIVISIBLE: `[ERROR] 구입금액은 ${AMOUNT_UNIT}원으로 나누어 떨어져야 합니다.`,
+  INVALID_NUMBER_COUNT: `[ERROR] 로또 번호는 ${NUMBER_COUNT}개여야 합니다.`,
+  OUT_OF_RANGE: `[ERROR] 로또 번호는 ${MIN_NUMBER}부터 ${MAX_NUMBER} 사이의 숫자여야 합니다.`,
+  DUPLICATED: '[ERROR] 로또 번호는 중복된 숫자가 없어야 합니다.',
+});
+
+class InvalidAmountInputError extends Error {
   constructor() {
     super();
-    this.message = ERROR.OUT_OF_RANGE;
+    this.message = ERROR.INVALID_AMOUNT_INPUT;
   }
 }
 
-class DuplicatedLottoNumberError extends Error {
+class InvalidWinningNumberInputError extends Error {
   constructor() {
     super();
-    this.message = ERROR.DUPLICATED;
+    this.message = ERROR.INVALID_WINNING_NUMBER_INPUT;
+  }
+}
+
+class InvalidBonusNumberInputError extends Error {
+  constructor() {
+    super();
+    this.message = ERROR.INVALID_BONUS_NUMBER_INPUT;
   }
 }
 
@@ -28,49 +46,26 @@ class InvalidLottoNumberCountError extends Error {
   }
 }
 
-class InvalidInputError extends Error {
+class InvalidLottoNumberRangeError extends Error {
   constructor() {
     super();
-    this.message = ERROR.ONLY_NUMBER;
+    this.message = ERROR.OUT_OF_RANGE;
   }
 }
 
-class InvalidWinningNumberFormatError extends Error {
+class DuplicatedLottoNumberError extends Error {
   constructor() {
     super();
-    this.message = ERROR.ONLY_NUMBER_AND_COMMA;
-  }
-}
-
-class MisuseCommaError extends Error {
-  constructor() {
-    super();
-    this.message = ERROR.MISUSE_COMMA;
-  }
-}
-
-class InvalidNumberInputError extends Error {
-  constructor() {
-    super();
-    this.message = ERROR.IS_NAN;
-  }
-}
-
-class InvalidBonusNumberError extends Error {
-  constructor() {
-    super();
-    this.message = ERROR.DUPLICATED_BONUS;
+    this.message = ERROR.DUPLICATED;
   }
 }
 
 module.exports = {
-  InvalidLottoNumberRangeError,
-  DuplicatedLottoNumberError,
+  InvalidAmountInputError,
+  InvalidWinningNumberInputError,
+  InvalidBonusNumberInputError,
   IndivisibleError,
   InvalidLottoNumberCountError,
-  InvalidInputError,
-  InvalidWinningNumberFormatError,
-  MisuseCommaError,
-  InvalidNumberInputError,
-  InvalidBonusNumberError,
+  InvalidLottoNumberRangeError,
+  DuplicatedLottoNumberError,
 };
