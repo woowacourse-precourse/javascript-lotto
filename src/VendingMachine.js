@@ -110,7 +110,7 @@ class VendingMachine {
 
   calculateStatistics() {
     const ranks = Object.entries(this.#rankBoard).slice(1).reverse();
-    const winMessages = ranks.map(([rank, cnt]) => getWinMessage(rank, cnt));
+    const winMessages = ranks.map(([rank, cnt]) => getWinMessage(rank, cnt)).join('\n');
 
     const profit = ranks.reduce((acc, [rank, cnt]) => acc + getWinAmount(rank, cnt), 0);
     const rateOfProfit = getRateStrOfProfit(profit, this.#purchaseAmount);
@@ -120,7 +120,7 @@ class VendingMachine {
 
   printStatistics(winMessages, rateOfProfit) {
     Console.print('당첨 통계\n---\n');
-    winMessages.forEach(Console.print);
+    Console.print(winMessages);
     Console.print(`총 수익률은 ${rateOfProfit}입니다.`);
   }
 }
