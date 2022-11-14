@@ -35,10 +35,14 @@ class App {
 
       this.#issuedLottos = [...this.#issuedLottos, newLotto];
 
-      Console.print(JSON.stringify(newLotto).replaceAll(",", ", "));
+      this.printLotto(newLotto);
     });
 
     this.getWinningNums();
+  }
+
+  printLotto(newLotto) {
+    Console.print(JSON.stringify(newLotto).replaceAll(",", ", "));
   }
 
   issueLotto() {
