@@ -1,5 +1,5 @@
 const { Random } = require('@woowacourse/mission-utils');
-const { amountRegExp } = require('./constant');
+const { amountRegExp, AMOUNT_BY_RANK, SCORE_MSG_BY_RANK } = require('./constant');
 
 const isRight = (regExp) => (amount) => {
   const target = amount.trim();
@@ -52,6 +52,13 @@ const getRank = (score, bonusScore) => {
   }
 };
 
+const getWinMessage = (rank, cnt) => {
+  const scoreMsg = SCORE_MSG_BY_RANK[rank];
+  const amountMsg = AMOUNT_BY_RANK[rank];
+
+  return `${scoreMsg} (${amountMsg}원) - ${cnt}개`;
+};
+
 module.exports = {
   isMultipleOf1000,
   isLottoNumbers,
@@ -61,4 +68,5 @@ module.exports = {
   getRandomNumbers,
   splitStrByComma,
   getRank,
+  getWinMessage,
 };
