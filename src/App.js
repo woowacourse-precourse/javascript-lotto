@@ -6,6 +6,7 @@ class App {
     this.prizeNumber = 0;
     this.bonusNumber = 0;
     this.result = {};
+    this.money = 0;
   }
 
   play() {
@@ -16,6 +17,7 @@ class App {
     MissionUtils.Console.readLine(`구입금액을 입력해 주세요.\n`, (money) => {
       this.thousandValidate(money);
       this.countLotto(money);
+      this.money = money;
     });
   }
 
@@ -57,11 +59,12 @@ class App {
     MissionUtils.Console.readLine(`보너스 번호를 입력해 주세요.\n`, (bonus) => {
       this.bonusValidate(bonus);
       this.bonusNumber = parseInt(bonus);
+      this.checkLottoNumbers();
     });
   }
 
-  bonusValidate() {
-    if (!(parseInt(input) >= 1 && parseInt(input) <= 45))
+  bonusValidate(bonus) {
+    if (!(parseInt(bonus) >= 1 && parseInt(bonus) <= 45))
       throw new Error(
         "[ERROR] 보너스 번호는 1부터 45까지의 숫자만 입력할 수 있습니다."
       );
@@ -74,6 +77,7 @@ class App {
   }
 
   checkLottoNumbers() {
+    this.initResult();
     this.lottoArray.map((numbers) => {
       let sameNumberCount = 0;
       let isbonusNumber = false;
@@ -86,8 +90,16 @@ class App {
           isbonusNumber = true;
         }
       });
+      this.compareNumberUnit(sameNumberCount, isbonusNumber);
     });
+    this.print();
   }
+
+  initResult() {}
+
+  compareNumberUnit() {}
+
+  print()
 }
 
 const app = new App();
