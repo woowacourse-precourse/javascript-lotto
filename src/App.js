@@ -19,6 +19,34 @@ class App {
     // 1. 구입금액 입력
     const amount = this.buy();
     this.#purchaseAmount = this.validAmount(amount);
+
+    // 2. 구매 내역 출력
+    const purchaseCount = this.#purchaseAmount / 1000;
+
+    MissionUtils.Console.print(`${purchaseCount}개를 구매했습니다.`);
+    for (let i = 0; i < purchaseCount; i++) {
+      this.generateLotto();
+    }
+    this.#purchaseNumList.map((lotto) =>
+      MissionUtils.Console.print(lotto.printString())
+    );
+
+    // 3. 당첨 번호 입력
+    this.setWinningNum();
+    this.setBonusNum();
+
+    // 4. 당첨 통계 계산
+    MissionUtils.Console.print("당첨 통계\n---");
+    for (let i = 0; i < purchaseCount; i++) {
+      matches = this.compare(this.#purchaseNumList[i].getNumber());
+      if (matches > 2) {
+        matchesObj[matches] = matchesObj[matches] + 1;
+      }
+    }
+    this.#validMatchesList.map((number) =>
+      this.printWinningResult(number, matchesObj[number])
+    );
+    this.printRate(matchesObj);
   }
 
   validAmount(amount) {
