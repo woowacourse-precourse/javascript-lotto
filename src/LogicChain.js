@@ -7,12 +7,12 @@ class LogicChain {
     this.deque = [];
   }
 
-  addNextLogic(nextLogic) {
-    this.deque.push([this.#SYNC, nextLogic]);
+  addNextJob(job) {
+    this.deque.push([this.#SYNC, job]);
   }
 
-  addNextAsyncLogic(nextLogic) {
-    this.deque.push([this.#ASYNC, nextLogic]);
+  addNextAsyncJob(job) {
+    this.deque.push([this.#ASYNC, job]);
   }
 
   #executeNext() {
