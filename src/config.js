@@ -71,14 +71,8 @@ const USER_INPUT_PHRASE = {
   REQUEST_BONUS_NUMBER: '보너스 번호를 입력해 주세요.\n',
 };
 
-const USER_OUTPUT_PHRASE = {
-  NOTICE_PURCHASE_SUCCESSFUL: '개를 구매했습니다.\n',
-  LOTTO_START: '[',
-  LOTTO_END: ']',
-  LOTTO_DELIMITER: ', ',
-};
-
 const STAT_PHRASE = {
+  TOTAL_NUM: '개를 구매했습니다.\n',
   STAT: '당첨 통계\n---\n',
   STAT_RANK: {
     MATCH: '개 일치',
