@@ -7,6 +7,8 @@ const {
   STATUS_THIRD_PLACE,
   STATUS_SECOND_PLACE,
   STATUS_FIRST_PLACE,
+  STATUS_YIELD_END,
+  STATUS_YIELD_START,
 } = require("./Constant");
 
 class Status {
@@ -48,6 +50,18 @@ class Status {
     messages.forEach((message, index) => {
       Console.print(`${message} - ${this.#result[index]}${STATUS_RESULT_UNIT}`);
     });
+    Console.print(`${STATUS_YIELD_START} ${this.#yield}${STATUS_YIELD_END}.`);
+  }
+
+  countYield(buyMoney) {
+    this.#yield =
+      Math.round(
+        (this.#result
+          .map((count, idx) => count * this.#reward[idx])
+          .reduce((prev, cur) => prev + cur) /
+          buyMoney) *
+          1000
+      ) / 10;
   }
 
   getResult() {
@@ -56,6 +70,10 @@ class Status {
 
   setResult(result) {
     return (this.#result = result);
+  }
+
+  getYield() {
+    return this.#yield;
   }
 }
 

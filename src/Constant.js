@@ -33,6 +33,8 @@ const STATUS_FOURTH_PLACE = "4개 일치 (50,000원)";
 const STATUS_THIRD_PLACE = "5개 일치 (1,500,000원)";
 const STATUS_SECOND_PLACE = "5개 일치, 보너스 볼 일치 (30,000,000원)";
 const STATUS_FIRST_PLACE = "6개 일치 (2,000,000,000원)";
+const STATUS_YIELD_START = "총 수익률은";
+const STATUS_YIELD_END = "%입니다";
 
 module.exports = {
   LOTTO_LENGTH_ERROR,
@@ -59,4 +61,6 @@ module.exports = {
   STATUS_THIRD_PLACE,
   STATUS_SECOND_PLACE,
   STATUS_FIRST_PLACE,
+  STATUS_YIELD_START,
+  STATUS_YIELD_END,
 };
