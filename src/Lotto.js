@@ -46,6 +46,10 @@ class Lotto {
   }
 
   #validateBonus(bonus) {
+    if (!bonus) {
+      throw new Error(ERROR_MESSAGES.NOT_INPUT_BONUS);
+    }
+
     if (bonus < RANGE.START || bonus > RANGE.END) {
       throw new Error(ERROR_MESSAGES.INVALID_BONUS_RANGE);
     }

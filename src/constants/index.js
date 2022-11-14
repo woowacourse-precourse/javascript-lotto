@@ -4,6 +4,7 @@ const ERROR_MESSAGES = Object.freeze({
   INVALID_LOTTO_LENGTH: '[ERROR] 로또 번호는 6개여야 합니다.',
   INVALID_LOTTO_RANGE: '[ERROR] 로또 번호는 1 ~ 45 사이의 숫자여야 합니다.',
   INVALID_BONUS_RANGE: '[ERROR] 보너스 번호는 1 ~ 45 사이의 숫자여야 합니다.',
+  NOT_INPUT_BONUS: '[ERROR] 보너스 번호를 입력해 주세요.',
   NOT_DUPLICATE_NUMBER: '[ERROR] 로또 번호는 중복될 수 없습니다.',
 
   // 예외 에러 메세지
