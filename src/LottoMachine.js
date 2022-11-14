@@ -25,8 +25,14 @@ class LottoMachine {
   }
 
   lotteryResult(lottos) {
-    const result = [];
-    lottos.map((lotto) => result.push(getRank(lotto)));
+    const result = new Map();
+    lottos.map((lotto) =>
+      result.set(
+        getRank(lotto),
+        result.has(getRank(lotto)) ? result.get(getRank(lotto)) + 1 : 0
+      )
+    );
+
     return result;
   }
 
