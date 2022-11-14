@@ -27,8 +27,10 @@ const RESULT = {
 };
 
 const ERROR = Object.freeze({
-  BUY_CHECK: "[ERROR] 구입금액은 정수로만 입력해주세요",
+  INPUT_NUMBER_CHECK: "[ERROR] 구입금액은 숫자(정수)로만 입력해주세요",
   INPUT_UNIT_CHECK: "[ERROR] 구입금액은 1,000원 단위로 입력해주세요.",
+  INPUT_BLANK_CHECK: "[ERROR] 구입금액은 공백을 포함하지 않고 입력해주세요",
+  INPUT_NOVALUE_CHECK: "[ERROR] 구입금액은 빈 값이 올 수 없습니다.",
   SEPARATOR_CHECK: "[ERROR] 당첨번호는 쉼표를 사용하여 구분해주세요.",
   NUMBER_RANGE_CHECK: "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.",
   INPUT_CNT_CHECK: "[ERROR] 숫자는 6개만 입력해주세요.",
