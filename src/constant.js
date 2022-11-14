@@ -1,3 +1,7 @@
+const LOTTO_TICKET = {
+  ONE_PRICE: 1000,
+};
+
 const LOTTO_NUMBER_RANGE = {
   MINIMUM_NUMBER: 1,
   MAXIMUM_NUMBER: 45,
@@ -22,4 +26,9 @@ const RESULT_TXT = {
   MATCH_SIX: '6개 일치 (2,000,000,000원) - ',
 };
 
-module.exports = { LOTTO_NUMBER_RANGE, LOTTO_WINNING_AMOUNT, RESULT_TXT };
+module.exports = {
+  LOTTO_TICKET,
+  LOTTO_NUMBER_RANGE,
+  LOTTO_WINNING_AMOUNT,
+  RESULT_TXT,
+};

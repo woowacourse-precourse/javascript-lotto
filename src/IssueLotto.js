@@ -1,4 +1,4 @@
-const { LOTTO_NUMBER_RANGE } = require('./constant');
+const { LOTTO_NUMBER_RANGE, LOTTO_TICKET } = require('./constant');
 const MissionUtils = require('@woowacourse/mission-utils');
 const Match = require('./Matcher');
 
@@ -8,11 +8,10 @@ const Random = MissionUtils.Random;
 class LottoGenerator {
   constructor() {
     this.lottoCount = 0;
-    this.LOTTO_TICKET_PRICE = 1000;
   }
 
   getPurchaseLottoCount(money) {
-    this.lottoCount += money / this.LOTTO_TICKET_PRICE;
+    this.lottoCount += money / LOTTO_TICKET.ONE_PRICE;
     this.makeRandomLottoNumber();
   }
 
