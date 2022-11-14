@@ -58,6 +58,7 @@ class Winning {
 
     calculateYield(amount, gradeCounts) {
         // 수익률 = 얻은 수익 / 구매 금액 * 100
+        // 둘째 자리에서 반올림
         const reward = [5000, 50000, 1500000, 30000000, 2000000000];
         let total = 0;
 
@@ -65,11 +66,10 @@ class Winning {
             total += gradeCounts[i] * reward[i];
         }
 
-        const yeild = total / amount * 100;
+        const yeild = (total / amount * 100).toFixed(1);
 
         return yeild;
     }
-
 
 }
 
