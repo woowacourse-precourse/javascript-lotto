@@ -2,7 +2,7 @@ const { Console, Random } = require('@woowacourse/mission-utils');
 
 class App {
   static lottoPurchaser() {
-    Console.readLine('구입금액을 입력해 주세요.\n', (purchaseAmount) => {
+    Console.readLine('구입금액을 입력해 주세요.\n', purchaseAmount => {
       const purchaseLottoCount = this.lottoCountGetter(purchaseAmount);
       const purchaseLottoList = this.lottoPublisher(purchaseLottoCount);
       this.printer(`\n${purchaseLottoCount}개를 구매했습니다.`);
@@ -38,18 +38,18 @@ class App {
   }
 
   static winningNumberDecider(purchaseLottoList) {
-    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (winningNumber) => {
-      Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
+    Console.readLine('\n당첨 번호를 입력해 주세요.\n', winningNumber => {
+      Console.readLine('\n보너스 번호를 입력해 주세요.\n', bonusNumber => {
         this.printer('당첨통계 나온다 이제');
       });
     });
   }
 
   static winningDiscriminator(lottoNumber, winningNumber) {
-    const matchCount = lottoNumber.reduce((acc, currentLottoNumber) => {
-      return winningNumber.includes(currentLottoNumber) ? acc + 1 : acc;
-    }, 0);
-    return matchCount;
+    return lottoNumber.reduce(
+      (acc, myNumber) => (winningNumber.includes(myNumber) ? acc + 1 : acc),
+      0,
+    );
   }
 
   play() {
