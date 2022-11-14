@@ -1,4 +1,4 @@
-const { ERRORS } = require('../constants');
+const { ERROR_MESSAGE } = require('../constants');
 const { ValidationError } = require('../errors');
 
 class Lotto {
@@ -23,7 +23,7 @@ class Lotto {
 
     Object.entries(validations).forEach(([key, validateLotto]) => {
       if (!validateLotto(numbers)) {
-        throw new ValidationError(ERRORS.LOTTO[key]);
+        throw new ValidationError(ERROR_MESSAGE.LOTTO[key]);
       }
     });
   }

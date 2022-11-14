@@ -1,5 +1,5 @@
-const ERRORS = require('./errors');
+const ERROR_MESSAGE = require('./errors');
 
 module.exports = {
-  ERRORS,
+  ERROR_MESSAGE,
 };
