@@ -11,7 +11,7 @@ class Controller {
   start() {
     View.printStart();
     View.readLine((input) => {
-      this.deposit = new Deposit(Number(input));
+      this.deposit = new Deposit(input);
       View.printQuantity(this.deposit.quantity);
       this.purchase();
     });
@@ -42,7 +42,7 @@ class Controller {
   generateWinningLotto() {
     View.printWinningLotto();
     View.readLine((input) => {
-      this.winningLotto = new Lotto(input.split(',').map(Number));
+      this.winningLotto = new Lotto(input.split(','));
       this.generateBonusNumber();
     });
   }
@@ -51,7 +51,7 @@ class Controller {
     View.printBonusNumber();
     View.readLine((input) => {
       Validator.validateBonusNumber(this.winningLotto.numbers, input);
-      this.bonusNumber = new BonusNumber(Number(input));
+      this.bonusNumber = new BonusNumber(input);
       this.generateStatistic();
     });
   }

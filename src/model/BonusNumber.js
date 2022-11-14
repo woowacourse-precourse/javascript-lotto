@@ -6,7 +6,7 @@ class BonusNumber {
   constructor(value) {
     Validator.validateNaN(value);
     Validator.validateNumberRange(value);
-    this.#value = value;
+    this.#value = Number(value);
   }
 
   get value() {

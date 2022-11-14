@@ -2,13 +2,13 @@ const { RULE, NUMBER_RANGE, PRICE_OF_LOTTO } = require('../utils/constants');
 
 class Validator {
   static validateNaN(number) {
-    if (Number.isNaN(number)) {
+    if (Number.isNaN(Number(number))) {
       throw new Error('[ERROR] 로또 구입 금액은 숫자만 입력 가능합니다.');
     }
   }
 
   static validateAmount(amount) {
-    if (amount % PRICE_OF_LOTTO) {
+    if (Number(amount) % PRICE_OF_LOTTO) {
       throw new Error(`[ERROR] 로또 구입 금액은 ${PRICE_OF_LOTTO}원 단위만 가능합니다.`);
     }
   }
@@ -27,7 +27,7 @@ class Validator {
   }
 
   static validateNumberRange(number) {
-    if (number < NUMBER_RANGE.START || number > NUMBER_RANGE.END) {
+    if (Number(number) < NUMBER_RANGE.START || Number(number) > NUMBER_RANGE.END) {
       throw new Error(`[ERROR] 로또 번호는 ${NUMBER_RANGE.START}이상 ${NUMBER_RANGE.END}이하 입니다.`);
     }
   }

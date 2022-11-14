@@ -7,7 +7,7 @@ class Deposit {
   constructor(amount) {
     Validator.validateNaN(amount);
     Validator.validateAmount(amount);
-    this.#amount = amount;
+    this.#amount = Number(amount);
   }
 
   get amount() {
