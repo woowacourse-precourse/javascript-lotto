@@ -48,7 +48,7 @@ class Lotto {
   }
 
   includeBonus(lotto, bonus){
-    if(lotto.includs(bonus)){
+    if(lotto.includes(bonus)){
       return true;
     }
     return false;
@@ -83,13 +83,15 @@ class Lotto {
 
   winningConfirm(lottoList, bonus, money){
     let winning =[0,0,0,0,0,0,0,0];
+    MissionUtils.Console.print(lottoList);
     MissionUtils.Console.print(this.#numbers);
     lottoList.map((lotto)=>{
-      let collect = this.checkLotto(lotto);
+      let collect = this.checkLotto(lotto.split(", "));
       if(collect==3 && this.includeBonus(lotto, bonus)){
         collect+=2;
       }
       winning[collect]++;
+      MissionUtils.Console.print(winning);
     })
     this.printResult(winning, money);
   }

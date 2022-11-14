@@ -4,7 +4,6 @@ const Ask = require("../src/Ask");
 
 class App {
   play() {
-
     const ask = new Ask();
     ask.money();
     ask.buyLotto();
