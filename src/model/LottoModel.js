@@ -1,0 +1,37 @@
+const { Console, Random } = require('@woowacourse/mission-utils');
+
+const GameModel = require('./GameModel');
+const Lotto = require('../Lotto');
+const Bonus = require('../Bonus');
+const Budget = require('../Budget');
+
+const LottoModel = class extends GameModel {
+  constructor() {
+    super();
+  }
+
+  setLottoBudget(budget) {
+    this.budget = budget;
+    this.budget = new Budget(this.budget);
+  }
+
+  setLottoCount() {
+    this.ticketCount = this.budget.countTicket();
+    return this.ticketCount;
+  }
+
+  pickLottoTickets(start, end, count) {
+    const ticket = Random.pickUniqueNumbersInRange(start, end, count);
+    this.validateLottoTicket(ticket);
+
+    return this.lottoTickets;
+  }
+
+  validateLottoTicket(ticket) {
+    new Lotto(ticket);
+  }
+
+  getBonusNumber() {}
+};
+
+module.exports = LottoModel;
