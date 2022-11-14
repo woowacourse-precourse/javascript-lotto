@@ -44,12 +44,26 @@ class App {
     })
   }
 
-  getMatchNum(lotto, winningNum) {
+  getMatchNum(lotto) {
     let match = 0;
     for (let num of lotto) {
-      if(winningNum.includes(num)) matchs++;
+      if(this.winningNum.includes(num)) matchs++;
     }
     return match;
+  }
+
+  isBonusMatch(lotto) {
+    if(lotto.includes(this.bonusNum)) return true;
+    return false;
+  }
+
+  getResultPlace(matchNum) {
+    if(matchNum === 3) return 5;
+    if(matchNum === 4) return 4;
+    if(matchNum === 5 && !this.isBonusMatch()) return 3;
+    if(matchNum === 5 && this.isBonusMatch()) return 2;
+    if(matchNum === 6) return 1;
+    return 6;
   }
 
 
