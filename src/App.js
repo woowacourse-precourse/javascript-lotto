@@ -1,30 +1,32 @@
 const Lotto = require("./validate/Lotto.js");
 const PurchaseLotto = require("./controller/PurchaseLotto.js");
 const PurchaseValudate = require("./validate/PurchaseValidate.js");
-const { Console, Random } = require("@woowacourse/mission-utils");
+const LottoResult = require("./controller/LottoResult.js");
 const Bonus = require("./validate/Bonus.js");
+
+const { Console, Random } = require("@woowacourse/mission-utils");
+const {
+  DEFAULT,
+  LOTTO_PRIZE,
+  RESULT_STRING,
+  RANK,
+} = require("./utils/constant.js");
+const { divideThousandUnit } = require("./utils/utils.js");
 class App {
   constructor() {
-    this.randomLottoNums = [];
+    this.lottos = [];
     this.luckyNumber = [];
     this.bonusNumber = 0;
     this.earningRate = 0;
     this.input = 0;
-    this.rank = {
-      1: 0,
-      2: 0,
-      3: 0,
-      4: 0,
-      5: 0,
-    };
-    8000;
+    this.rank = {};
   }
 
   play() {
     Console.readLine("구입금액을 입력해주세요.\n", (input) => {
       this.input = Number(input);
       new PurchaseValudate(this.input);
-      this.randomLottoNums = new PurchaseLotto(this.input).start();
+      this.lottos = new PurchaseLotto(this.input).start();
       this.getLuckyNumbers();
     });
   }
@@ -38,7 +40,7 @@ class App {
       new Lotto(this.luckyNumber);
 
       this.getBonusLottoNums();
-    }); // ,로 구분
+    });
   }
 
   getBonusLottoNums() {
@@ -53,20 +55,22 @@ class App {
     Console.print("당첨 통계");
     Console.print("---");
 
-    for (const numbers of this.randomLottoNums) {
-      let correctCount = 0;
+    this.rank = new LottoResult(
+      this.lottos,
+      this.luckyNumber,
+      this.bonusNumber,
+    ).getRank();
+    console.log(this.rank, "this Rank");
 
-      for (let i = 0; i < 5; i++) {
-        if (numbers[i] === this.luckyNumber[i]) correctCount++;
-      }
-      console.log(numbers, this.luckyNumber, correctCount, "!@!@");
-      if (correctCount > 2) {
-        this.rank[
-          `${this.getRank(correctCount, numbers.includes(this.bonusNumber))}`
-        ] += 1;
-      }
-      console.log(this.rank, "rank");
-    }
+    Object.entries(this.rank)
+      .reverse()
+      .forEach(([rank, count]) => {
+        Console.print(
+          `${RESULT_STRING[rank]} (${divideThousandUnit(
+            LOTTO_PRIZE[rank],
+          )}원) - ${count}개`,
+        );
+      });
 
     const totalEarning = Object.entries(this.rank).reduce((acc, cur) => {
       const [rank, count] = cur;
@@ -100,24 +104,6 @@ class App {
     );
     Console.print(`총 수익률은 ${this.earningRate}%입니다.`);
     Console.close();
-  }
-
-  getRank(correctCount, isBonus) {
-    switch (correctCount) {
-      case 6:
-        return "1";
-      case 5:
-        if (isBonus) {
-          return "2";
-        }
-        return "3";
-      case 4:
-        return "4";
-      case 3:
-        return "5";
-      default:
-        return;
-    }
   }
 }
 

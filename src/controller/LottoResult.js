@@ -31,8 +31,8 @@ class LottoResult {
 
   countLuckyCount(lotto, luckyNumber) {
     return lotto.reduce(
-      (luckyCount, number, index) =>
-        (luckyCount += number === luckyNumber[index] ? 1 : 0),
+      (luckyCount, number) =>
+        (luckyCount += luckyNumber.includes(number) ? 1 : 0),
       DEFAULT.ZERO,
     );
   }
@@ -42,6 +42,7 @@ class LottoResult {
     Object.values(RANK).forEach((value) => (rank[value] = 0));
     for (const lotto of this.lottos) {
       const luckyCount = this.countLuckyCount(lotto, this.luckyNumber);
+      console.log(lotto, this.luckyNumber, luckyCount, "@@@@@");
       if (luckyCount <= DEFAULT.MIN_LUCKY_COUNT) continue;
       rank[this.convertRank(luckyCount, this.isBonus(lotto))] += 1;
     }
