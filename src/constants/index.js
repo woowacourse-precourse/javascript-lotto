@@ -48,8 +48,9 @@ const RENDER_MESSAGE = Object.freeze({
   issuedLotto: (numbers) => `[${numbers.join(', ')}]`,
   matchThree: (count) => `3개 일치 (5,000원) - ${count}개`,
   matchFour: (count) => `4개 일치 (50,000원) - ${count}개`,
-  matchFiveAndBonus: (count) => `5개 일치 (1,500,000원) - ${count}개`,
-  matchFive: (count) => `5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`,
+  matchFive: (count) => `5개 일치 (1,500,000원) - ${count}개`,
+  matchFiveAndBonus: (count) =>
+    `5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`,
   matchSix: (count) => `6개 일치 (2,000,000,000원) - ${count}개`,
   rateOfReturn: (rateOfReturn) => `총 수익률은 ${rateOfReturn}%입니다.`,
 });
