@@ -117,6 +117,17 @@ class App {
     }
   }
 
+  resultRate(buyLotto, checkResultRank) {
+    let rate =
+      (checkResultRank.Fifth * 5000 +
+        checkResultRank.Fourth * 50000 +
+        checkResultRank.Third * 1500000 +
+        checkResultRank.Second * 30000000 +
+        checkResultRank.First * 2000000000) /
+      buyLotto;
+    rate = (rate * 100).toFixed(1);
+    rate = rate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    this.resultMessage(this.checkResultRank, rate);
   }
 
 }
