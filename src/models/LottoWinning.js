@@ -11,7 +11,7 @@ class LottoWinning {
   }
 
   setBonusNumber(input) {
-    this.isValidBonusNumber(input);
+    this.isValidBonusNumber(+input);
     this.bonusNumber = +input;
   }
 

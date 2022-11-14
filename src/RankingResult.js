@@ -1,9 +1,9 @@
-const { RANKING } = require("./Constants");
+const { RANKING } = require("./utils/Constants");
 const {
   getMatchedinWinningNumberCount,
   hasBounsNumber,
   getEarningsRate,
-} = require("./utils");
+} = require("./utils/utils");
 
 class RankingResult {
   rankingResult;
