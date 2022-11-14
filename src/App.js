@@ -1,4 +1,4 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { Random, Console } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 class App {
   constructor() {
@@ -14,7 +14,7 @@ class App {
   }
 
   inputMoney() {
-    MissionUtils.Console.readLine(`구입금액을 입력해 주세요.\n`, (money) => {
+    Console.readLine(`구입금액을 입력해 주세요.\n`, (money) => {
       this.thousandValidate(money);
       this.lottoMoney = money;
       this.countLotto(money);
@@ -29,18 +29,16 @@ class App {
 
   countLotto(money) {
     const lottoQuantity = money / 1000;
-    MissionUtils.Console.print(`${lottoQuantity}개를 구매했습니다.`);
+    Console.print(`${lottoQuantity}개를 구매했습니다.`);
     this.createLotto(lottoQuantity);
   }
 
   createLotto(qunatity) {
     for (let i = 0; i < qunatity; i++) {
-      const lottoNumbers = MissionUtils.Random.pickUniqueNumbersInRange(
-        1,
-        45,
-        6
-      ).sort((a, b) => a - b);
-      MissionUtils.Console.print(
+      const lottoNumbers = Random.pickUniqueNumbersInRange(1, 45, 6).sort(
+        (a, b) => a - b
+      );
+      Console.print(
         `[${lottoNumbers[0]}, ${lottoNumbers[1]}, ${lottoNumbers[2]}, ${lottoNumbers[3]}, ${lottoNumbers[4]}, ${lottoNumbers[5]}]`
       );
       this.lottoArray.push(lottoNumbers);
@@ -49,19 +47,16 @@ class App {
   }
 
   inputLottoNumber() {
-    MissionUtils.Console.readLine(
-      `\n당첨 번호를 입력해 주세요.\n`,
-      (number) => {
-        this.prizeNumber = number.split(",");
-        new Lotto(this.prizeNumber);
-        this.prizeNumber = this.prizeNumber.map((number) => parseInt(number));
-        this.inputBonusNumber();
-      }
-    );
+    Console.readLine(`\n당첨 번호를 입력해 주세요.\n`, (number) => {
+      this.prizeNumber = number.split(",");
+      new Lotto(this.prizeNumber);
+      this.prizeNumber = this.prizeNumber.map((number) => parseInt(number));
+      this.inputBonusNumber();
+    });
   }
 
   inputBonusNumber() {
-    MissionUtils.Console.readLine(`보너스 번호를 입력해 주세요.\n`, (bonus) => {
+    Console.readLine(`보너스 번호를 입력해 주세요.\n`, (bonus) => {
       this.bonusValidate(bonus);
       this.bonusNumber = parseInt(bonus);
       this.checkLottoNumbers();
@@ -119,18 +114,14 @@ class App {
   }
 
   print() {
-    MissionUtils.Console.print(`\n당첨 통계\n---`);
-    MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.result["5000"]}개`);
-    MissionUtils.Console.print(
-      `4개 일치 (50,000원) - ${this.result["50000"]}개`
-    );
-    MissionUtils.Console.print(
-      `5개 일치 (1,500,000원) - ${this.result["1500000"]}개`
-    );
-    MissionUtils.Console.print(
+    Console.print(`\n당첨 통계\n---`);
+    Console.print(`3개 일치 (5,000원) - ${this.result["5000"]}개`);
+    Console.print(`4개 일치 (50,000원) - ${this.result["50000"]}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${this.result["1500000"]}개`);
+    Console.print(
       `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.result["30000000"]}개`
     );
-    MissionUtils.Console.print(
+    Console.print(
       `6개 일치 (2,000,000,000원) - ${this.result["2000000000"]}개`
     );
     this.calculateYield();
@@ -141,10 +132,10 @@ class App {
     for (let key in this.result) {
       deposit += parseInt(key) * this.result[key];
     }
-    MissionUtils.Console.print(
+    Console.print(
       `총 수익률은 ${((deposit / this.lottoMoney) * 100).toFixed(1)}%입니다.`
     );
-    MissionUtils.Console.close();
+    Console.close();
   }
 }
 
