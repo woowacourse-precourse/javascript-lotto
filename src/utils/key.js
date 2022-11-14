@@ -1,7 +1,7 @@
 const KEY_PURCHASE_MONEY = "purchaseMoney";
 const KEY_LOTTERY_NUMBER = "lotteryNumber";
 const KEY_BONUS_NUMBER = "bonusNumber";
-const KEY_LOTTO_NUMBER = "lotteryNumber";
+const KEY_LOTTO_NUMBER = "lottoNumber";
 
 const keys = {
   inputType: {
@@ -11,7 +11,7 @@ const keys = {
   },
   lotto: {
     lotteryNumber: KEY_LOTTERY_NUMBER,
-    lotteryNumber: KEY_LOTTO_NUMBER,
+    lottoNumber: KEY_LOTTO_NUMBER,
   },
 };
 

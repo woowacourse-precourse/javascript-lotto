@@ -69,51 +69,29 @@ class Lotto {
 }
 
 class LottoExceptionCheck extends ExceptionCheck {
+  constructor() {
+    super();
+  }
   lotteryNumber(lottery) {
-    const lottoNumReg = /(^[1-9]$)|(^[1-3]{1}[0-9]{1}$)|(^4{1}[0-5]{1}$)/;
-    const overLap = {};
-    if (!Array.isArray(lottery)) {
-      throw new CustomError(ErrorMessage.notNumberArray);
-    }
-    if (lottery.length !== 6)
-      throw new CustomError(ErrorMessage.numberListLengthMustSix);
+    super.isArray(lottery);
+    super.isRightLength(lottery, 6);
+    super.isOverLapArray(lottery);
+    super.isSortedArray(lottery);
     lottery.forEach((num, i, arr) => {
-      overLap[num] ? (overLap[num] += 1) : (overLap[num] = 1);
-      if (!lottoNumReg.test(num))
-        throw new CustomError(ErrorMessage.notNumberInRange);
-      if (typeof num != "number") throw new CustomError(ErrorMessage.notNumber);
-      if (overLap[num] > 1) throw new CustomError(ErrorMessage.overLapNumber);
-      if (i == 0) return;
-      if (arr[i - 1] > arr[i]) {
-        throw new CustomError(ErrorMessage.notSortedNumberList);
-      }
+      super.isLotteryNumberAtom(num);
     });
   }
 
   lottoNumber(lottoNumber) {
     const { lottery = [], bonus = 0 } = lottoNumber;
+    super.isBonusNumber(lottery, bonus);
+    super.isRightLength(lottery, 6);
+    super.isLotteryNumber(lottery);
 
-    if (!(bonus || typeof bonus !== "number"))
-      throw new CustomError(ErrorMessage.notBonusNumber);
-
-    if (lottery.length !== 6)
-      throw new CustomError(ErrorMessage.numberListLengthMustSix);
-
-    if (!this.lotteryNumber(lottery)) {
-      throw new CustomError(ErrorMessage.notLotteryNumber);
-    }
-
-    if (!this.bonusNumber(bonus)) {
-      throw new CustomError(ErrorMessage.notBonusNumber);
-    }
     return true;
   }
   bonusNumber(bonusNumber, lottery) {
-    if (!(bonus || typeof bonus !== "number"))
-      throw new CustomError(ErrorMessage.notBonusNumber);
-
-    if (lottery.includes(bonusNumber))
-      throw new CustomError(ErrorMessage.notBonusNumber);
+    super.isBonusNumber(lottery, bonusNumber);
   }
 }
 

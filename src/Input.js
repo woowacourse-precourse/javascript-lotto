@@ -24,38 +24,28 @@ class InputExceptionCheck extends ExceptionCheck {
   }
   purchaseMoney(checkTarget) {
     const answer = Number(checkTarget);
-
-    if (!Number(answer)) throw new CustomError(ErrorMessage.notNumber);
-    if (answer < 0) throw new CustomError(ErrorMessage.notPositiveNumber);
+    super.isNumber(answer);
+    super.isPositiveNumber(answer);
     return true;
   }
   lotteryNumber(checkTarget) {
     const numOrCommaReg = /,|[0-9]/g;
-    const lottoNumReg = /(^[1-9]$)|(^[1-3]{1}[0-9]{1}$)|(^4{1}[0-5]{1}$)/;
     const lotteryNumberArray = checkTarget.split(",");
-    if (!numOrCommaReg.test(checkTarget))
-      throw new CustomError(ErrorMessage.notLotteryNumber);
-    if (lotteryNumberArray.length != 6)
-      throw new CustomError(ErrorMessage.notLotteryNumber);
-    const overLap = {};
     lotteryNumberArray.forEach((num) => {
-      overLap[num] ? (overLap[num] += 1) : (overLap[num] = 1);
-      if (overLap[num] > 1) throw new CustomError(ErrorMessage.overLapNumber);
-      if (!lottoNumReg.test(num))
-        throw new CustomError(ErrorMessage.notLotteryNumber);
+      super.isLotteryNumberAtom(num);
     });
+    super.isError(
+      !numOrCommaReg.test(checkTarget),
+      ErrorMessage.notLotteryNumber
+    );
+    super.isRightLength(lotteryNumberArray, 6);
+    super.isOverLapArray(lotteryNumberArray);
+
     return true;
   }
 
   bonusNumber(checkTarget, lotteryNumberArray) {
-    const lottoNumReg = /(^[1-9]$)|(^[1-3]{1}[0-9]{1}$)|(^4{1}[0-5]{1}$)/;
-    if (!lottoNumReg.test(checkTarget))
-      throw new CustomError(ErrorMessage.notInRangeNumber);
-    if (!Array.isArray(lotteryNumberArray))
-      throw new CustomError(ErrorMessage.notNumberArray);
-    if (lotteryNumberArray.includes(Number(checkTarget)))
-      throw new CustomError(ErrorMessage.notBonusNumber);
-    return true;
+    super.isBonusNumber(lotteryNumberArray, checkTarget);
   }
 }
 
