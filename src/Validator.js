@@ -14,6 +14,11 @@ class Validator {
       throw new Error(COMMON_INVALID_ERROR_MESSAGES.NOT_DECIMAL_AND_MINUS);
     }
     if (input === '') throw new Error(COMMON_INVALID_ERROR_MESSAGES.NOT_EMPTY);
+
+    return true;
+  }
+
+  static bonus(input) {
     if (+input > LOTTO_NUMBER_RANGE.MAX_RANGE || +input === 0) {
       throw new Error(COMMON_INVALID_ERROR_MESSAGES.ONLY_NUMBER_BETWEEN_1_45);
     }
@@ -27,6 +32,7 @@ class Validator {
     if (new Set([...numbersArray]).size !== LOTTO_NUMBER_RANGE.LENGTH) {
       throw new Error(LOTTO_ERROR_MESSAGES.UNIQUE);
     }
+
     return true;
   }
 
@@ -35,7 +41,5 @@ class Validator {
     return true;
   }
 }
-
-console.log(Validator.lotto(''));
 
 module.exports = Validator;
