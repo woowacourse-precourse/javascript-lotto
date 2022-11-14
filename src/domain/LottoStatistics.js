@@ -31,7 +31,6 @@ class LottoStatistics {
     if (!winningLotto.bonusNumber) {
       throw new ReferenceError("Lotto must have bonus number.");
     }
-
     this.winningNumbers = winningLotto.numbers;
     this.bonusNumber = winningLotto.bonusNumber;
   }

@@ -19,7 +19,9 @@ describe("로또 통계 클래스 테스트", () => {
   test("번호를 몇 개 맞췄는지 알려준다.", () => {
     const winningLotto = new Lotto([1, 2, 3, 4, 5, 6]);
     winningLotto.addBonusNumber(7);
+
     const lottoStatistics = new LottoStatistics(winningLotto);
+
     const TEST_CASE = [
       {
         numbers: [1, 2, 3, 4, 5, 6],
@@ -43,7 +45,9 @@ describe("로또 통계 클래스 테스트", () => {
   test("등수를 알려준다.", () => {
     const winningLotto = new Lotto([1, 2, 3, 4, 5, 6]);
     winningLotto.addBonusNumber(7);
+
     const lottoStatistics = new LottoStatistics(winningLotto);
+
     const TEST_CASE = [
       {
         numbers: [1, 2, 3, 4, 5, 6],
@@ -79,6 +83,7 @@ describe("로또 통계 클래스 테스트", () => {
   test("구매한 로또들의 등수를 객체 형태로 반환한다.", () => {
     const winningLotto = new Lotto([1, 2, 3, 4, 5, 6]);
     winningLotto.addBonusNumber(7);
+
     const lottoStatistics = new LottoStatistics(winningLotto);
 
     const TEST_CASE = [
@@ -141,6 +146,7 @@ describe("로또 통계 클래스 테스트", () => {
   test("구매한 로또들의 총 상금을 반환한다.", () => {
     const winningLotto = new Lotto([1, 2, 3, 4, 5, 6]);
     winningLotto.addBonusNumber(7);
+
     const lottoStatistics = new LottoStatistics(winningLotto);
 
     const TEST_CASE = [
@@ -190,6 +196,7 @@ describe("로또 통계 클래스 테스트", () => {
   test("구매한 로또들의 수익률을 포맷팅하여 반환한다.", () => {
     const winningLotto = new Lotto([1, 2, 3, 4, 5, 6]);
     winningLotto.addBonusNumber(7);
+
     const lottoStatistics = new LottoStatistics(winningLotto);
 
     const TEST_CASE = [
