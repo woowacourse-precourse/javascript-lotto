@@ -39,7 +39,7 @@ class App {
 
   inputBonusNumber() {
     Console.readLine(INPUT_MESSAGE.bonusNumber, (number) => {
-      this.bonusNumber = new BonusNumber(number).getBonusNumberWithoutSpace(number);
+      this.bonusNumber = new BonusNumber(number).getBonusNumberWithoutSpace();
       this.loadStatisticsAboutLotto();
     });
   }
