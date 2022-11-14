@@ -53,6 +53,24 @@ describe('My Unit test', () => {
     }).toThrow('[ERROR]');
   });
 
+  test('숫자가 아닌 당첨 번호가 있을 때 오류가 난다.', () => {
+    const app = new App();
+    const winNumbers = ['일', 2, 3, 4, 5, 6];
+
+    expect(() => {
+      app.setWinNumbers(winNumbers);
+    }).toThrow('[ERROR]');
+  });
+
+  test('1~45 범위를 벗어난 당첨 번호가 있을 때 오류가 난다.', () => {
+    const app = new App();
+    const winNumbers = [0, 1, 2, 3, 4, 5];
+
+    expect(() => {
+      app.setWinNumbers(winNumbers);
+    }).toThrow('[ERROR]');
+  });
+
   test('당첨 번호가 6개가 아닐 때 오류가 난다.', () => {
     const app = new App();
     const winNumbers = [1, 2, 3, 4, 5];
@@ -66,6 +84,28 @@ describe('My Unit test', () => {
     const app = new App();
     const winNumbers = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 1;
+
+    expect(() => {
+      app.setWinNumbers(winNumbers);
+      app.setBonusNumber(bonusNumber);
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호가 숫자가 아닐 때 오류가 난다.', () => {
+    const app = new App();
+    const winNumbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 'one';
+
+    expect(() => {
+      app.setWinNumbers(winNumbers);
+      app.setBonusNumber(bonusNumber);
+    }).toThrow('[ERROR]');
+  });
+
+  test('1~45 범위를 벗어난 보너스 번호일 때 오류가 난다.', () => {
+    const app = new App();
+    const winNumbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 0;
 
     expect(() => {
       app.setWinNumbers(winNumbers);
