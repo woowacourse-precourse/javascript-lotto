@@ -9,7 +9,7 @@ describe('검증기 클래스 테스트', () => {
   });
 
   test('숫자가 아니면 예외가 발생한다.', () => {
-    const nanList = ['one', '1st', '2nd', '10e-9'];
+    const nanList = ['one', '1st', '2nd', '1000j'];
     nanList.forEach((nan) => {
       expect(() => {
         Validator.checkNumber(nan);
