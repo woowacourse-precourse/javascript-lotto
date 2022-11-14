@@ -1,17 +1,17 @@
 class Validation {
-  //함수 / 메서드가 한 가지 일만 하도록 + 15 라인 미만
-  //else ~
+  // amount
 
-  amountType() {}
-  amountUnit() {}
+  unit() {}
 
-  numbersType() {}
-  numbersRange() {}
-  numbersLengthOne() {}
-  numbersLengthSix() {}
-  numbersDuplicattion() {}
-  numbersFormatArray() {}
-  numbersFormatString() {}
+  // numbers
+
+  type() {}
+  range() {}
+  lengthOne() {}
+  lengthSix() {}
+  duplication() {}
+  formatArray() {}
+  formatString() {}
 }
 
 module.exports = Validation;
