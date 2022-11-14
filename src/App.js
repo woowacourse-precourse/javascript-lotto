@@ -41,15 +41,15 @@ class App {
 
   enterUserInput(inputType) {
     if (inputType === ENTER_PURCHASE_AMOUNT) {
-      this.enterPurchaseAmount();
+      return this.enterPurchaseAmount();
     }
 
     if (inputType === ENTER_WINNING_NUMBERS) {
-      this.enterWinningNumbers();
+      return this.enterWinningNumbers();
     }
 
     if (inputType === ENTER_BONUS_NUMBER) {
-      this.enterBonusNumber();
+      return this.enterBonusNumber();
     }
   }
 

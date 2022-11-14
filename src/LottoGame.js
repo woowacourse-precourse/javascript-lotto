@@ -3,6 +3,7 @@ const Lotto = require('./Lotto');
 const Bonus = require('./Bonus');
 const PlayInfo = require('./PlayInfo');
 const GameGuide = require('./GameGuide');
+const { ROUND_PLACE } = require('./constans');
 
 const lottoGenerator = new LottoGenerator();
 const playInfo = new PlayInfo();
@@ -65,7 +66,7 @@ class LottoGame {
 
   calculateRateOfReturn(amount, result) {
     const totalPrize = result.reduce((acc, cur, idx) => acc + cur * winningPrize[idx], 0);
-    const rateOfReturn = ((totalPrize / amount) * 100).toFixed(1);
+    const rateOfReturn = ((totalPrize / amount) * 100).toFixed(ROUND_PLACE);
 
     gameGuide.printRateOfReturn(rateOfReturn);
   }
