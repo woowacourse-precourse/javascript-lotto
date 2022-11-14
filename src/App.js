@@ -3,37 +3,40 @@ const { Random } = require('@woowacourse/mission-utils');
 
 const Lotto = require('./Lotto');
 const Bonus = require('./Bonus');
+const Error = require('./components/Error');
 
 class App {
+  #money;
+
+  #count;
+
   play() {
+    this.error = new Error();
     this.getPurchaseAmount();
   }
 
   getPurchaseAmount() {
-    Console.readLine('구매금액을 입력해 주세요. \n', (userInput) => {
-      this.checkPurchaseAmount(userInput);
+    Console.readLine('구매금액을 입력해 주세요. \n', (money) => {
+      if (this.error.isDividedByTen(money)) {
+        this.#money = money;
+        this.printNumberOfPurchase(money);
+        this.getLottoList();
+      }
     });
   }
 
-  checkPurchaseAmount(userInput) {
-    if (userInput % 1000 !== 0) {
-      throw '[ERROR] 1000원 단위로 금액을 입력하지 않았습니다.'
-    }
-    
-    const numberOfPurchase = userInput / 1000;
-    this.printNumberOfPurchase(numberOfPurchase);
-    this.getLottoList(numberOfPurchase);
+  printPurchaseCount (money) {
+    const count = money / 1000;
+    Console.print(`${amount}개를 구매했습니다.`);
+    this.#count = count;
   }
 
-  printNumberOfPurchase(number) {
-    Console.print(`${number}개를 구매했습니다.`);
-  }
-
-  getLottoList(requestCount) {
+  getLottoList() {
+    const amount = this.#amount;
     let lottoList = [];
     let countIndex = 0;
 
-    while (countIndex < requestCount) {
+    while (countIndex < amount) {
       const lottoNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
       lottoNumbers.sort((a, b) => a - b);
       lottoList.push(lottoNumbers);
