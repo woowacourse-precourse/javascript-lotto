@@ -86,6 +86,27 @@ class App {
     }
     this.getLottoResult();
   }
+
+  getLottoResult() {
+    for(let i = 0; i < this.lottoCmpResult.length; i++) {
+      if(this.lottoCmpResult[i] === 6) {
+        this.lottoPrizeResult[firstPrize]++;
+      }
+      if(this.lottoCmpResult[i] === 5 && this.#userLotto[i].includes(this.#bonusNumber)) {
+        this.lottoPrizeResult[secondPrize]++;
+      }
+      if(this.lottoCmpResult[i] === 5) {
+        this.lottoPrizeResult[thirdPrize]++;
+      }
+      if(this.lottoCmpResult[i] === 4) {
+        this.lottoPrizeResult[fourthPrize]++;
+      }
+      if(this.lottoCmpResult[i] === 3) {
+        this.lottoPrizeResult[fifthPrize]++;
+      }
+    }
+    printLottoMatchResult();
+  }
 }
 
 const app = new App();
