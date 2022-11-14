@@ -4,11 +4,14 @@ const { isMultipleOf1000, divide1000, getRandomNumbers } = require('./lib/utilFn
 class VendingMachine {
   #purchaseAmount;
   #numberOfLottos;
+  #randomNumbers;
 
   askPurchaseAmount() {
     const answerCbFn = (answer) => {
       this.validate(answer);
       this.setPurchaseOptions(answer);
+      this.#randomNumbers = this.pickRandomNumbers();
+      this.printPickedNumbers();
     };
 
     Console.readLine('구입금액을 입력해 주세요.\n', answerCbFn);
@@ -38,6 +41,12 @@ class VendingMachine {
     }
 
     return randomNumbers;
+  }
+
+  printPickedNumbers() {
+    Console.print(`\n${this.#numberOfLottos}개를 구매했습니다.`);
+
+    this.#randomNumbers.forEach(Console.print);
   }
 }
 
