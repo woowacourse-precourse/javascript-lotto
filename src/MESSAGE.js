@@ -8,7 +8,7 @@ const MESSAGE = {
   FIRST_RANGE: 1,
   LAST_RANGE: 45,
   LOTTO_LENGTH: 6,
-  LOTTO_INIT_STR: '######',
+  LOTTO_INIT_STR: 'q1w2e3',
   USER_LOTTO_SEPERATOR: ', ',
   LOTTO_SIZE_ERROR: '[ERROR] 로또 번호는 6개여야 합니다. ',
   LOTTO_SAME_NUMBER_ERROR: '[ERROR] 로또 번호는 중복되지 않아야 합니다',
@@ -19,7 +19,10 @@ const MESSAGE = {
   Four: 4,
   Five: 5,
   FiveBonus: 7,
+  FiveBonusStr: ', 보너스 볼 일치',
   Six: 6,
+  LOTTO_EQUAL_MESSAGE: '개 일치',
+  WON: '원',
 };
 
 module.exports = MESSAGE;
