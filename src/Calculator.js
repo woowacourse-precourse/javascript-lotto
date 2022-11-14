@@ -1,4 +1,4 @@
-const { RANKING_FROM_MATCH_COUNT, RANK_ACCORDING_REWARD } = require("./constants");
+const { RANKING_FROM_MATCH_COUNT, RANK_ACCORDING_REWARD } = require("./constants/constants");
 class Calculator {
   #myNumbers;
   #winningNumber;
@@ -46,6 +46,7 @@ class Calculator {
   isRanked(myRank) {
     return myRank && myRank >= 3;
   }
+
   setNumbers(myNumbers, winningNumber) {
     this.#myNumbers = myNumbers;
     this.#winningNumber = winningNumber;

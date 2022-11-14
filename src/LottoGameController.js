@@ -1,4 +1,5 @@
 const Calculator = require("./Calculator");
+const ASK_MESSAGE = require("./constants/message");
 const MyNumberGenerator = require("./Generator");
 const Lotto = require("./Lotto");
 const { readLine, close } = require("./Missionutils");
@@ -18,24 +19,39 @@ class LottoGameController {
   }
 
   inputMoneyFromUser() {
-    readLine("구입 금액을 입력해주세요.", (moneyInput) => {
+    readLine(ASK_MESSAGE.INPUT_MONEY, (moneyInput) => {
       this.#moneyInput = moneyInput;
       this.generateMyNumbers();
     });
   }
+
   generateMyNumbers() {
     const myLottoNumbers = this.#model.generatorModel.generateMyLottoNumber(this.#moneyInput);
+    this.notifyMyInfo(myLottoNumbers);
     this.getWinningNumbersFromUser(myLottoNumbers);
   }
 
+  notifyMyInfo(myLottoNumbers) {
+    this.notifyMyLottoSize(myLottoNumbers);
+    this.notifyMyLottoList(myLottoNumbers);
+  }
+
+  notifyMyLottoSize(myLottoNumbers) {
+    this.#view.View.printPurchasedSize(myLottoNumbers);
+  }
+
+  notifyMyLottoList(myLottoNumbers) {
+    this.#view.View.printPurchasedList(myLottoNumbers);
+  }
+
   getWinningNumbersFromUser(myLottoNumbers) {
-    readLine("당첨 번호를 입력해 주세요.", (winningNumber) => {
+    readLine(ASK_MESSAGE.INPUT_WINNING_NUMBER, (winningNumber) => {
       this.getBonusNumberFromUser(myLottoNumbers, winningNumber);
     });
   }
 
   getBonusNumberFromUser(myLottoNumbers, winningNumber) {
-    readLine("보너스 번호를 입력해 주세요.", (bonusNumber) => {
+    readLine(ASK_MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
       const lottoModel = new Lotto({ winningNumber, bonusNumber: +bonusNumber });
       this.#winningNumbers = lottoModel.getConvertedLottoNumber();
       this.calculateWinningCount(myLottoNumbers);
