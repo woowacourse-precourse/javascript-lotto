@@ -47,6 +47,23 @@ class Calculator {
     });
     return this.#prizeStatus;
   }
+
+  getEarningRate(moneyInput) {
+    Object.keys(this.#prizeStatus).forEach((key) => {
+      this.#earningMoney += this.#prizeStatus[key] * RANK_ACCORDING_REWARD[key];
+    });
+    this.#earningMoney /= moneyInput;
+    this.getRoundNumber();
+    return this.makePercent(this.#earningMoney);
+  }
+
+  getRoundNumber() {
+    Math.round(this.#earningMoney * 10) / 10;
+  }
+
+  makePercent(number) {
+    return number * 100;
+  }
 }
 
 module.exports = Calculator;
