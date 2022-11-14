@@ -3,6 +3,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class App {
   constructor() {
     this.money = 0;
+    this.count = 0;
   }
 
   setMoney(input) {
@@ -11,9 +12,14 @@ class App {
     this.money = money;
   }
 
+  setCount() {
+    this.count = this.money / 1000;
+  }
+
   buyLotto() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
       this.setMoney(input);
+      this.setCount();
     });
   }
 
