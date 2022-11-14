@@ -21,6 +21,7 @@ class LottoGame {
   #lottoCnt;
   #lottoList;
   #winningNumbers;
+  #bonusNumber;
 
   playLottoGame() {
     inputUserValue(GAME_MESSAGE.INPUT_PURCHASE_AMOUNT, (inputAmount) => {
@@ -29,6 +30,7 @@ class LottoGame {
         this.generateLottoList();
         this.printLottoList();
         this.inputWinningNumbers();
+        this.inputBonusNumber();
       }
     });
   }
@@ -66,8 +68,9 @@ class LottoGame {
 
       if (this.isWinningNumbersValid(winningNumbersList)) {
         this.#winningNumbers = winningNumbers;
-        console.log(this.#winningNumbers);
       }
+
+      this.inputBonusNumber();
     });
   }
 
@@ -83,6 +86,13 @@ class LottoGame {
     if (!isValuesValidLength(winningNumbersList)) {
       throw ERROR_MESSAGE.WINNER_NUMBERS_LENGTH_ERROR;
     }
+  }
+
+  inputBonusNumber() {
+    inputUserValue(GAME_MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
+      this.#bonusNumber = bonusNumber;
+      console.log(this.#bonusNumber);
+    });
   }
 }
 
