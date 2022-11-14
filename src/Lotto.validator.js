@@ -26,7 +26,7 @@ class LottoValidator {
     return lottoNumbers;
   }
 
-  static AdditionalNumber(lottoAdditinalNumber, lottoNumbers) {
+  static additionalNumber(lottoAdditinalNumber, lottoNumbers) {
     if (lottoNumbers.includes(lottoAdditinalNumber)) {
       throw new Error(ERROR.CONFLICT_ADDITIONIONL_NUMBER);
     }

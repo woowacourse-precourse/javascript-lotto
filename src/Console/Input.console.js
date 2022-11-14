@@ -3,20 +3,20 @@ const { INPUT } = require('../Resource/String');
 const LottoValidator = require('../Lotto.validator');
 
 class InputConsole {
-  static GetMoney = async () => {
-    const money = Console.Input(INPUT.GET_MONEY);
+  static getMoney = async () => {
+    const money = Console.input(INPUT.GET_MONEY);
     LottoValidator.checkMoney(money);
     return money;
   };
-  static GetLotto = async () => {
-    const lottoNumbersString = await Console.Input(INPUT.GET_LOTTO);
+  static getLotto = async () => {
+    const lottoNumbersString = await Console.input(INPUT.GET_LOTTO);
     return LottoValidator.splitLottoNumbers(lottoNumbersString);
   };
-  static GetLottoAdditional = async (lottoNumbers) => {
-    const LottoAdditinalNumberString = await Console.Input(
+  static getLottoAdditional = async (lottoNumbers) => {
+    const LottoAdditinalNumberString = await Console.input(
       INPUT.GET_LOTTO_ADDITINAL,
     );
-    return LottoValidator.AdditionalNumber(LottoAdditinalNumberString, lottoNumbers);
+    return LottoValidator.additionalNumber(LottoAdditinalNumberString, lottoNumbers);
   };
 }
 
