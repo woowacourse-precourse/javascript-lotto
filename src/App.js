@@ -107,4 +107,11 @@ class App {
     Console.print(`${lottoCount}개를 구매했습니다.`)
   }
 
+  printRandomLottoNumber() {
+    this.lottoInfo.forEach((randomLotto) => {
+      let randomLottoString = String(randomLotto).split(',').join(', ');
+      Console.print(`[${randomLottoString}]`);
+    })
+  }
+
 module.exports = App;
