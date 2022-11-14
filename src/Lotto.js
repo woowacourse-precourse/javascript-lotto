@@ -42,8 +42,13 @@ class Lotto {
   }
 
   static countLotto(lottoAmount) {
-    let countOfLotto = lottoAmount / Constant.MINIMUM_AMOUNT;
-    return countOfLotto;
+    this.countOfLotto = lottoAmount / Constant.MINIMUM_AMOUNT;
+    Lotto.#printCountLotto();
+    return this.countOfLotto;
+  }
+
+  static #printCountLotto() {
+    Console.print(`${this.countOfLotto}개를 구매했습니다.`);
   }
 }
 
