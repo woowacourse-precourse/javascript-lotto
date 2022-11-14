@@ -2,6 +2,10 @@ const { Random, Console } = require('@woowacourse/mission-utils');
 const { REGEXP, MESSAGE, ERROR_MESSAGE } = require('./constant/constant');
 
 class App {
+  constructor() {
+    this.lottos = [];
+  }
+
   play() {
     this.inputPurchasingPrice();
   }
@@ -10,6 +14,7 @@ class App {
     Console.readLine(MESSAGE.INPUT_PURCHASING_PRICE, (price) => {
       this.validate(price);
       this.showLottosAmount(price);
+      this.showLottosNumber();
     });
   }
 
@@ -32,7 +37,23 @@ class App {
   }
 
   showLottosAmount(price) {
-    Console.print(`\n${price / 1000}${MESSAGE.NUMBER_OF_LOTTOS_AMOUNT}`);
+    Console.print(
+      `\n${parseInt(price, 10) / 1000}${MESSAGE.NUMBER_OF_LOTTOS_AMOUNT}`
+    );
+    this.setLottosNumber(parseInt(price, 10) / 1000);
+  }
+
+  setLottosNumber(amount) {
+    for (let count = 0; count < amount; count += 1) {
+      const lotto = Random.pickUniqueNumbersInRange(1, 45, 6).sort(
+        (num1, num2) => num1 - num2
+      );
+      this.lottos.push(lotto);
+    }
+  }
+
+  showLottosNumber() {
+    Console.print(this.lottos);
   }
 }
 
