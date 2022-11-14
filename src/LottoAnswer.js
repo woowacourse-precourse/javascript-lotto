@@ -20,6 +20,10 @@ class LottoAnswer extends Lotto {
     this.validateBonus(bonus);
     this.#bonus = bonus;
   }
+
+  get bonus() {
+    if (this.#bonus !== null) return this.#bonus;
+  }
 }
 
 module.exports = LottoAnswer;
