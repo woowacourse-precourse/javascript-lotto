@@ -47,10 +47,10 @@ class CompareNumber {
   correctNumbers() {
     this.correct.forEach(function (number) {
       if (number === 3) {
-        this.fiveGrade();
+        GRADE[4] += 1;
       }
       if (number === 4) {
-        this.fourGrade();
+        GRADE[3] += 1;
       }
       if (number === 5) {
         this.correctBonus.forEach(function (bonus) {
@@ -61,27 +61,10 @@ class CompareNumber {
         GRADE[2] += 1;
       }
       if (number === 6) {
-        this.firstGrade();
+        GRADE[0] += 1;
       }
     });
-    this.grade = GRADE;
-    this.caculateRate.caculateNumbers(this.purchaseAmout, this.grade);
-  }
-
-  fiveGrade() {
-    return (GRADE[4] += 1);
-  }
-
-  fourGrade() {
-    return (GRADE[3] += 1);
-  }
-
-  threeGrade() {
-    return (GRADE[2] += 1);
-  }
-
-  firstGrade() {
-    return (GRADE[0] += 1);
+    this.caculateRate.caculateNumbers(this.computerNumbers, GRADE);
   }
 }
 
