@@ -53,6 +53,18 @@ class App {
     }
     this.inputLottoNumber();
   }
+
+  inputLottoNumber() {
+    MissionUtils.Console.readLine(
+      "\n당첨 번호를 입력해 주세요.\n",
+      (lottoNumber) => {
+        this.lottoNumber = lottoNumber.split(",").map(Number);
+        new Lotto(this.lottoNumber);
+        this.inputBonusNumber();
+      }
+    );
+  }
+
     }
     return [...userLottoNumbers];
   }
