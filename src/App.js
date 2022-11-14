@@ -15,6 +15,7 @@ class App {
       this.checkPayValidation(input);
       this.#count = this.checkPayAmount(input);
       this.#lottos = this.getAllLottoList(this.#count);
+      this.printLottoList(this.#lottos);
     });
   }
 
@@ -41,6 +42,12 @@ class App {
       list.push(this.getlottoList());
     }
     return list;
+  }
+
+  printLottoList(lists) {
+    lists.forEach((list) => {
+      Console.print(`[${list.join(", ")}]`);
+    });
   }
 
 }
