@@ -39,13 +39,17 @@ class App {
     Console.readLine(COMMAND.BONUS, (bonus) => {
       new BonusExceptions(bonus).check(this.winningArr);
       this.bonus = parseInt(bonus);
-
-      new CompareNumbers(
-        this.lottoArr,
-        this.winningArr,
-        this.bonus
-      ).getResult();
+      this.printResult();
     });
+  }
+
+  printResult() {
+    const result = new CompareNumbers(
+      this.lottoArr,
+      this.winningArr,
+      this.bonus
+    ).getResult();
+    console.log(result);
   }
 }
 
