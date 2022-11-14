@@ -10,6 +10,6 @@ describe('RateOfReturnCalculator 클래스 테스트', () => {
         winningLottosQuantity,
         lottosQuantity
       ).getRateOfReturn()
-    ).toEqual((375000).toFixed(1));
+    ).toEqual('375,000.0');
   });
 });

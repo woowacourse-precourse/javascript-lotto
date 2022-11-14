@@ -3,6 +3,7 @@ class RateOfReturnCalculator {
     this.winningLottosQuantity = winningLottosQuantity;
     this.lottosQuantity = lottosQuantity;
     this.rateOfReturn = this.calculateRateOfReturn();
+    this.rateOfReturn = this.addThousandsComma(this.rateOfReturn);
   }
 
   calculateRateOfReturn() {
@@ -14,7 +15,12 @@ class RateOfReturnCalculator {
     });
 
     let rateOfReturn = (totalProfit / (this.lottosQuantity * 1000)) * 100;
+
     return rateOfReturn.toFixed(1);
+  }
+
+  addThousandsComma(number) {
+    return number.toLocaleString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 
   getRateOfReturn() {
