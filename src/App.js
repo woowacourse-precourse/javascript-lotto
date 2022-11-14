@@ -7,7 +7,7 @@ const PRICE_LOTTO = 1000;
 
 class App {
   constructor() {
-    
+    this.lottoArray = [];
   }
 
   play() {
@@ -15,12 +15,22 @@ class App {
   }
 
   userWindow(window) {
-    
-    });
+   MissionUtils.Console.readLine(`${window}\n`, (input) => {
+    this.lottoCount(input);
+   });
   }
 
-  countLotto(money) {
-    
+  lottoCount(money) {
+    const lottoAmount = money / PRICE_LOTTO;
+    MissionUtils.Console.print(`\n${lottoAmount}개를 구매했습니다.`);
+    this.lottoCreate(lottoAmount);
+  }
+
+  lottoCreate(amount) {
+    for (let i = 0; i < amount; i++) {
+      const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      this.lottoArray.push(numbers);
+    }
   }
 }
 
