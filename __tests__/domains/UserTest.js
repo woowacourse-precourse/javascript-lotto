@@ -28,4 +28,12 @@ describe('유저 도메인 테스트', () => {
 
     expect(user.getLottos()).toEqual(lottos);
   });
+
+  test('로또를 1장도 사지 못할 돈으로 로또를 구매할 시 예외가 발생해야 한다.', () => {
+    const user = new User();
+
+    expect(() => {
+      user.buyLottos(Lotto.PRICE - 1);
+    }).toThrow('[ERROR]');
+  });
 });
