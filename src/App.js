@@ -3,8 +3,10 @@ const { GUIDE_MESSAGE, LOTTO_PRICE } = require("./Constants");
 const Validation = require("./validation");
 
 class App {
+  winnerNumber;
   play() {
     this.inputPurchaseAmount();
+    this.inputWinnerNumber();
   }
   inputPurchaseAmount() {
     MissionUtils.Console.readLine(
@@ -21,6 +23,16 @@ class App {
   }
   getLottoCount(purchaseAmount) {
     return parseInt(purchaseAmount, 10) / LOTTO_PRICE;
+  }
+  inputWinnerNumber() {
+    MissionUtils.Console.readLine(
+      GUIDE_MESSAGE.WINNERNUMBER_INPUT_MESSAGE,
+      (winnerNumber) => {
+        const winnerNumberArr = winnerNumber.split(",");
+        Validation.checkInputWinnerNumber(winnerNumberArr);
+        this.winnerNumber = winnerNumberArr;
+      }
+    );
   }
 }
 
