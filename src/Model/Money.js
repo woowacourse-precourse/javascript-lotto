@@ -18,7 +18,7 @@ class Money {
 
   checkMoneyMinus(money) {
     if (money < 0) {
-      throw new Error('[ERROR] 돈은 자연수여야 합니다');
+      throw new Error('[ERROR] 돈은 자연수여야 합니다.');
     }
   }
 
@@ -26,6 +26,12 @@ class Money {
     const NumberReg = /[0-9]/g;
     if (!NumberReg.test(money)) {
       throw new Error('[ERROR] 돈은 숫자여야합니다.');
+    }
+  }
+
+  checkZero(money) {
+    if (money === 0) {
+      throw new Error('[ERROR] 로또를 구매할 수 없습니다.');
     }
   }
 }
