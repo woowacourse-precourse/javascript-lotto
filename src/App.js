@@ -1,4 +1,4 @@
-const { Console } = require('@woowacourse/mission-utils');
+const { Console, Random } = require('@woowacourse/mission-utils');
 const { UNIT_OF_AMOUNT } = require('./constant/index');
 
 class App {
@@ -21,9 +21,14 @@ class App {
 
       this.validatePurchaseAmount(amountOfPurchase);
 
-      Console.print(
-        `${this.numberOfPurchase(amountOfPurchase)}개를 구매했습니다.`
-      );
+      const numberOfPurchase = this.getNumberOfPurchase(amountOfPurchase);
+
+      Console.print(`${numberOfPurchase}개를 구매했습니다.`);
+
+      for (let i = 0; i < numberOfPurchase; i++) {
+        const randomNumbers = this.generateRandomNumbers();
+        Console.print(randomNumbers);
+      }
     });
   }
 
@@ -36,8 +41,15 @@ class App {
       throw new Error('[ERROR] 로또 구입 금액은 1,000원 단위로 입력해주세요');
   }
 
-  numberOfPurchase(amount) {
+  getNumberOfPurchase(amount) {
     return Math.floor(amount / UNIT_OF_AMOUNT);
+  }
+
+  generateRandomNumbers() {
+    const randomNumbers = Random.pickUniqueNumbersInRange(1, 45, 6).sort(
+      (a, b) => a - b
+    );
+    return randomNumbers;
   }
 }
 
