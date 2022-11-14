@@ -42,11 +42,21 @@ class App {
   }
 
   issueLottos() {
+    this.setLottosRandomNumbers();
+    this.printLottos();
+  }
+
+  setLottosRandomNumbers() {
     for (let i = 0; i < this.lottoCount; i += 1) {
       const numbers = Function.setRandomNumbers();
       const lotto = new Lotto(numbers);
-      lotto.print();
       this.lottos.push(lotto);
+    }
+  }
+
+  printLottos() {
+    for (const lotto of this.lottos) {
+      lotto.print();
     }
   }
 

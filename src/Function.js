@@ -22,12 +22,9 @@ class Function {
   }
 
   static setRandomNumbers() {
-    const numbers = Random.pickUniqueNumbersInRange(
-      START_NUMBER,
-      END_NUMBER,
-      LOTTO_LENGTH,
+    return this.sortNumbers(
+      Random.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, LOTTO_LENGTH),
     );
-    return this.sortNumbers(numbers);
   }
 
   static sortNumbers(numbers) {
