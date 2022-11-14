@@ -1,4 +1,4 @@
-const { LOTTO_NUMBER_RANGE, LOTTO_TICKET } = require('./constant');
+const { LOTTO_NUMBER, LOTTO_TICKET } = require('./constant');
 const MissionUtils = require('@woowacourse/mission-utils');
 const Match = require('./Matcher');
 
@@ -19,9 +19,9 @@ class LottoGenerator {
     const lottoNumbers = [];
     for (let i = 0; i < this.lottoCount; i++) {
       const lottoNumber = Random.pickUniqueNumbersInRange(
-        LOTTO_NUMBER_RANGE.MINIMUM_NUMBER,
-        LOTTO_NUMBER_RANGE.MAXIMUM_NUMBER,
-        LOTTO_NUMBER_RANGE.PICK_SIX_NUMBER,
+        LOTTO_NUMBER.MIN_RANGE,
+        LOTTO_NUMBER.MAX_RANGE,
+        LOTTO_NUMBER.PICK_SIX,
       );
       lottoNumbers.push(lottoNumber.sort((a, b) => a - b));
     }
