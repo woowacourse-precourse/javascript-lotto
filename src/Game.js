@@ -69,6 +69,7 @@ class Game {
   static enterWinningNumbers() {
     IO.readLine(NEW_LINE + pleaseEnterWinningNumbers + NEW_LINE, (input) => {
       Game.winningNumbers = input.trim().split(',').map(Number);
+      IO.validateNumbers(Game.winningNumbers);
       Game.enterBonusNumber();
     });
   }
