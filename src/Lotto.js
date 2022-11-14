@@ -3,8 +3,9 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class Lotto {
   #numbers;
 
-  constructor(numbers) {
+  constructor(numbers, bonus) {
     this.validate(numbers);
+    this.validateBounus(bonus);
     this.#numbers = numbers;
   }
 
@@ -21,6 +22,15 @@ class Lotto {
       if (!isInRange(number)) 
         throw new Error("[ERROR] 1부터 45 사이의 숫자여야 합니다.");
     }
+  }
+
+  validateBounus(bonus) {
+    if(numbers.includes(bonus))
+      throw new Error("[ERROR] 보너스 번호는 로또 번호 6개와 중복되지 않아야 합니다.");
+    if (isNaN(bonus)) 
+      throw new Error("[ERROR] 숫자만 입력해야 합니다.");
+    if (!isInRange(bonus)) 
+      throw new Error("[ERROR] 1부터 45 사이의 숫자여야 합니다.");
   }
 
 }
