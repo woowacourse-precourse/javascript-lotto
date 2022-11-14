@@ -16,6 +16,11 @@ class CheckError {
         throw new Error('[ERROR] 로또 번호는 1~45 사이여야 합니다.');
     });
   }
+
+  static bonusNumberCheck(bonusNumber, lottoWinnerNumber) {
+    if (lottoWinnerNumber.includes(bonusNumber))
+      throw new Error('[ERROR] 로또 번호와 보너스 번호가 중복될 수 없습니다.');
+  }
 }
 
 module.exports = CheckError;

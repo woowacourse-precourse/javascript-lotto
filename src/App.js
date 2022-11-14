@@ -44,12 +44,19 @@ class App {
   #inputlottoBonusNumber() {
     Console.readLine(MESSAGE.BONUS_NUMBER, (bonusNumber) => {
       console.log(bonusNumber);
+      this.#checkLottoResult();
     });
   }
 
   #parsingStringToArray(numbers) {
     this.lottoWinnerNumber = numbers.split(',').map(Number);
     CheckError.check(this.lottoWinnerNumber);
+  }
+
+  #checkLottoResult() {
+    this.lottoList.map((lottery) => {
+      lottery.matchLottoNumber(this.lottoWinnerNumber);
+    });
   }
 
   print(message) {

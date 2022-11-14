@@ -17,6 +17,16 @@ class Lotto {
     console.log(this.#numbers);
   }
 
+  matchLottoNumber(lottoWinnerNumber) {
+    const result = this.#numbers.reduce((acc, cur, i) => {
+      if (lottoWinnerNumber.includes(cur)) acc += 1;
+
+      return acc;
+    }, 0);
+
+    console.log(result);
+  }
+
   // TODO: 추가 기능 구현
 }
 
