@@ -1,3 +1,5 @@
+const MakeLotteryTickets = require("./MakeLottterytickets");
+
 const {
   CONSOLE_UTIL,
   THOUSAND,
@@ -31,6 +33,8 @@ class InputMoney {
   printNumberOfTickets(userMoney) {
     this.numberOfTickets = userMoney / THOUSAND;
     CONSOLE_UTIL.print(`\n${this.numberOfTickets}${NUMBER_OF_TICKETS_MESSAGE}`);
+
+    new MakeLotteryTickets(this.userMoney, this.numberOfTickets).makeTickets();
   }
 }
 
