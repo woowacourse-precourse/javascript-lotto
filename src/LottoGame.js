@@ -4,6 +4,7 @@ const { LOTTO_PRIZE_MATCH_COUNT, LOTTO_PRIZE_MONEY } = require("./constants/cond
 const LottoGameView = require("./LottoGameView.js");
 const Validation = require("./Validation.js");
 const LottoMachine = require("./LottoMachine.js");
+const WinningLotto = require("./WinningLotto.js");
 
 class LottoGame {
   lottos;
@@ -13,6 +14,7 @@ class LottoGame {
   constructor() {
     this.LottoGameView = new LottoGameView();
     this.lottoMachine = new LottoMachine();
+    this.winningLotto = new WinningLotto();
   }
 
   play() {
@@ -27,24 +29,23 @@ class LottoGame {
       this.LottoGameView.printLottoQuantity(this.lottos.length);
       this.LottoGameView.printEachLottoNumbers(this.lottos);
 
-      this.saveWinningNumbersPhase();
+      this.setWinningNumbersPhase();
     });
   }
 
-  saveWinningNumbersPhase() {
+  setWinningNumbersPhase() {
     this.LottoGameView.requestInput(REQUEST_MESSAGE.WINNING_NUMBERS, (winningNumbers) => {
-      const winningNumbersArr = winningNumbers.split(",");
-      Validation.validateLottoNumber(winningNumbersArr);
-      this.winningNumbers = winningNumbersArr.map(Number);
+      this.winningLotto.setWinningNumbers(winningNumbers);
+      this.winningNumbers = this.winningLotto.getWinningNumbers();
 
-      this.saveBonusNumberPhase();
+      this.setBonusNumberPhase();
     });
   }
 
-  saveBonusNumberPhase() {
+  setBonusNumberPhase() {
     this.LottoGameView.requestInput(REQUEST_MESSAGE.BONUS_NUMBER, (bonusNumber) => {
-      Validation.validateBonusNumber(bonusNumber, this.winningNumbers);
-      this.bonusNumber = Number(bonusNumber);
+      this.winningLotto.setBonusNumber(bonusNumber);
+      this.bonusNumber = this.winningLotto.getBonusNumber();
 
       this.drawLottoPhase();
     });
