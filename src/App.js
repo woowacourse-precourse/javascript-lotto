@@ -118,6 +118,16 @@ class App {
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${this.lottoResult[firstPlace]}`);
     this.getProfit();
   }
+
+  getProfit() {
+    let sum = 0;
+    for(let i = 0; i < this.lottoPrizeResult.length; i++) {
+      sum += (prize[i] * this.lottoPrizeResult[i]);
+    }
+    this.#totalProfitMoney = sum;
+    this.#percent = Math.round(((this.#totalProfitMoney / this.#userMoney) * 100) * 100) / 100;
+    this.printPercentage();
+  }
 }
 
 const app = new App();
