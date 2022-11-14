@@ -78,9 +78,9 @@ class LottoGame {
     const prizeStatistics = this.getPrizeStatistics(eachCalculatedLottoPrize);
     const totalPrizeMoney = this.getTotalPrizeMoney(prizeStatistics);
     const yieldRatio = this.getYieldRatio(totalPrizeMoney);
-    const prizeStatisticsTemplate = this.getPrizeStatisticsTemplate(prizeStatistics);
+    const prizeStatisticsTemplates = this.getPrizeStatisticsTemplates(prizeStatistics);
 
-    this.LottoGameView.printPrizeStatistics(prizeStatisticsTemplate);
+    this.LottoGameView.printPrizeStatistics(prizeStatisticsTemplates);
     this.LottoGameView.printYieldRatio(yieldRatio);
   }
   getEachLottoNumbers() {
@@ -142,8 +142,8 @@ class LottoGame {
 
     return 0;
   }
-  getPrizeStatisticsTemplate(prizeStatistics) {
-    const template = [
+  getPrizeStatisticsTemplates(prizeStatistics) {
+    const templates = [
       `${
         LOTTO_PRIZE_MATCH_COUNT.fifthPlace
       }개 일치 (${LOTTO_PRIZE_MONEY.fifthPlace.toLocaleString()}원) - ${
@@ -171,7 +171,7 @@ class LottoGame {
       }개`,
     ];
 
-    return template;
+    return templates;
   }
 }
 

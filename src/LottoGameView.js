@@ -14,8 +14,8 @@ class LottoGameView {
       Console.print(`[${lottoNumbers}]`);
     });
   }
-  printPrizeStatistics(prizeStatisticsTemplate) {
-    prizeStatisticsTemplate.forEach((template) => {
+  printPrizeStatistics(prizeStatisticsTemplates) {
+    prizeStatisticsTemplates.forEach((template) => {
       Console.print(template);
     });
   }
