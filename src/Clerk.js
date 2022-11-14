@@ -4,7 +4,7 @@ const Message = require("./Message.js");
 class Clerk {
   getBuyLottoMoney() {
     let buyMoney = 0;
-    MissionUtils.Console.readLine(Message.moneyInput, (money) => {
+    MissionUtils.Console.readLine(Message.INFORMATION.moneyInput, (money) => {
       buyMoney = money;
       this.checkMoney(money);
     });
@@ -13,7 +13,7 @@ class Clerk {
 
   checkMoney(money) {
     if (money % 1000 !== 0) {
-      throw new Error(Message.moneyValidWarning);
+      throw new Error(Message.ERROR.moneyValidWarning);
     }
   }
 }

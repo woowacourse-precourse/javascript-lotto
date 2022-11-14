@@ -80,14 +80,14 @@ class Lotto {
 
   printResult(resultArray) {
     const RESULT_MESSAGE = [
-      Message.threeMatches,
-      Message.fourMatches,
-      Message.fiveMatches,
-      Message.fiveAndBonusMatches,
-      Message.sixMatches,
+      Message.INFORMATION.threeMatches,
+      Message.INFORMATION.fourMatches,
+      Message.INFORMATION.fiveMatches,
+      Message.INFORMATION.fiveAndBonusMatches,
+      Message.INFORMATION.sixMatches,
     ];
 
-    MissionUtils.Console.print(Message.winningStatistics);
+    MissionUtils.Console.print(Message.INFORMATION.winningStatistics);
     let answer = [];
     for (let i = 0; i < resultArray.length; i++) {
       answer.push(`${RESULT_MESSAGE[i]} ${resultArray[i]}개`);
@@ -109,7 +109,7 @@ class Lotto {
   validate(numbers) {
     const MAX_LENGTH = 6;
     if (numbers.length !== MAX_LENGTH) {
-      throw new Error(Message.lottoNumberValidWarning);
+      throw new Error(Message.ERROR.lottoNumberValidWarning);
     }
   }
 }

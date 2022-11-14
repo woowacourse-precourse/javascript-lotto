@@ -11,7 +11,7 @@ class NumberReceiver {
   }
 
   inputLottoNumber() {
-    MissionUtils.Console.readLine(Message.winningNumberInput, (numbers) => {
+    MissionUtils.Console.readLine(Message.INFORMATION.winningNumberInput, (numbers) => {
       this.#lottoNumber = numbers.split(",").map((x) => +x);
     });
   }
@@ -21,7 +21,7 @@ class NumberReceiver {
   }
 
   inputBonusNumber() {
-    MissionUtils.Console.readLine(Message.bonusNumberInput, (numbers) => {
+    MissionUtils.Console.readLine(Message.INFORMATION.bonusNumberInput, (numbers) => {
       this.#bonusNumber = Number(numbers);
     });
   }

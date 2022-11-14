@@ -10,7 +10,7 @@ class NumberGenerator {
   }
 
   issueUserNumber() {
-    MissionUtils.Console.print(`${this.count}${Message.lottoCount}`);
+    MissionUtils.Console.print(`${this.count}${Message.INFORMATION.lottoCount}`);
     const lottoArray = [];
     while (lottoArray.length < this.count) {
       const lotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
