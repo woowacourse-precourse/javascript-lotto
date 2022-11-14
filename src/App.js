@@ -116,6 +116,6 @@ class App {
   }
 }
 
-console.log(App.returnRateGetter(5, 8));
+console.log(typeof App.returnRateGetter(5, 8));
 
 module.exports = App;
