@@ -8,6 +8,9 @@ class Lotto {
   /** 로또가 가질 수 있는 숫자의 최대값 */
   static NUMBER_MAX = 45;
 
+  /** 로또 1장의 가격 */
+  static PRICE = 1000;
+
   /** @type {number[]} */
   #numbers;
 
