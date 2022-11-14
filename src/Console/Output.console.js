@@ -9,6 +9,10 @@ class OutputConsole {
     });
   };
 
+  static lottoPurchaseNumber = (purchaseNumber) => {
+    Console.Output(`${purchaseNumber}개를 구매했습니다.`);
+  }
+
   static result = (lottoPrizeDto) => {
     const lottoPrizeReversed = lottoPrizeDto.prizeCount.reverse();
     [...LOTTO_PRIZE].reverse().forEach((prize, index) => {

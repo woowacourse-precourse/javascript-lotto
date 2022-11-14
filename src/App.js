@@ -19,6 +19,7 @@ class App {
       { length: money / LOTTO.LOTTO_COST },
       () => new LottoPurchaseDto(),
     );
+    OutputConsole.lottoPurchaseNumber(money / LOTTO.LOTTO_COST);
     OutputConsole.lottoNumbers(this.#lottoPurchaseDtos);
 
     const lottoNumbers = await InputConsole.getLotto();
