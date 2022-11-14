@@ -1,4 +1,5 @@
 const validate = require("./validation/validation");
+const { Console } = require("@woowacourse/mission-utils");
 
 class Lotto {
   #numbers;
@@ -9,10 +10,17 @@ class Lotto {
   }
 
   validate(numbers) {
-    validate.numbersOutput(numbers)
+    validate.numbersOutput(numbers);
   }
 
-  // TODO: 추가 기능 구현
+  sortWinningNumber() {
+    this.#numbers.sort((a, b) => a - b);
+  }
+
+  printWinningNumber() {
+    this.sortWinningNumber();
+    Console.print(`[${this.#numbers.join(", ")}]`);
+  }
 }
 
 module.exports = Lotto;

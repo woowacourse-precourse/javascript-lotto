@@ -1,22 +1,21 @@
-const Purchase = require("./Purchase");
-const WinningNumber = require("./Generator");
+const Game = require("./Game");
 const { Console } = require("@woowacourse/mission-utils");
 
 class App {
+  constructor() {
+    this.game = new Game();
+  }
+
   play() {
     this.purchaseLotto();
-    this.generateWinningNumber();
   }
 
   purchaseLotto() {
     Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
-      this.purchase = new Purchase(input);
-      this.purchase.quantityOfPurchase();
+      this.game.setGame(input);
+      this.game.quantityOfPurchase();
+      this.game.printWinningNumberList();
     });
-  }
-
-  generateWinningNumber() {
-    this.winningNumber = new WinningNumber();
   }
 }
 
