@@ -16,6 +16,7 @@ class Lotto {
       if ((input % 1000) !== 0) throw new Error("[ERROR] 올바르지 않은 구입금액입니다.");
       const quantity = input / 1000;
       this.printQuantity(quantity);
+      this.makeLotto(quantity);
     });
   }
 
@@ -23,6 +24,10 @@ class Lotto {
     MissionUtils.Console.print(`${quantity}개를 구매했습니다.`);
   }
 
+  makeLotto(quantity){
+    let uniqueNumbersList = [];
+    for (let i=0; i<quantity; i++) uniqueNumbersList.push(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
+  }
 }
 
 module.exports = Lotto;
