@@ -23,6 +23,7 @@ class App {
       this.comparePrizeNumberAndUserNumber(lotto.getNumbers(), bonus.getNumbers(),OneUserNumber);
     });
     const earnMoney = this.calcEarnMoney(this.userWinningStatics);
+    this.calcRateOfReturn(this.insertedMoney, earnMoney);
     this.printUserWinningStatics(this.userWinningStatics);
   }
   insertMoney(){
@@ -128,8 +129,8 @@ class App {
     MissionUtils.Console.print("5개 일치, 보너스 볼 일치 (30,000,000원) - "+winningStatic[1]+"개");
     MissionUtils.Console.print("6개 일치 (2,000,000,000원) - "+winningStatic[0]+"개");
   }
-  calcRateOfReturn(){
-    
+  calcRateOfReturn(inputMoney, earnMoney){
+    const RateOfReturn = (earnMoney/inputMoney)*100;
   }
   calcEarnMoney(winningStatic){
     let winningMoney = winningStatic[4]*5000 +  winningStatic[3]*50000 +  winningStatic[2]*1500000 +  winningStatic[1]*30000000 +  winningStatic[0]*2000000000;
