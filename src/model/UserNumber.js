@@ -1,4 +1,5 @@
 const { Random } = require("@woowacourse/mission-utils");
+const messages = require("../constants/messages");
 
 class UserNumber {
   constructor(controller) {
@@ -9,7 +10,7 @@ class UserNumber {
 
   validatePurchasingAmount(userPurchasingAmountInput) {
     if (userPurchasingAmountInput % 1000 !== 0) {
-      this.controller.throwErrorWithMessage("purchasingAmountError");
+      throw new Error(messages.PURCHASING_AMOUNT_ERROR_MESSAGE);
     }
   }
 

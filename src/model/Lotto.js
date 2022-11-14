@@ -1,3 +1,5 @@
+const messages = require("../constants/messages");
+
 class Lotto {
   #numbers;
 
@@ -10,23 +12,29 @@ class Lotto {
 
   isArraySplitByComma(numbersArray) {
     if (numbersArray.length !== 6) {
-      this.controller.throwErrorWithMessage("winningNumberCommaNumberError");
+      throw new Error(messages.WINNING_NUMBER_ERROR_COMMA_NUMBER_MESSAGE);
     }
 
     for (const singleElement of numbersArray) {
-      if (isNaN(singleElement)) this.controller.throwErrorWithMessage("winningNumberCommaNumberError");
+      if (isNaN(singleElement)) {
+        throw new Error(messages.WINNING_NUMBER_ERROR_COMMA_NUMBER_MESSAGE);
+      }
     }
   }
 
   isArrayInRange(numbersArray) {
     for (const singleElement of numbersArray) {
-      if (1 > singleElement || singleElement > 45) this.controller.throwErrorWithMessage("winningNumberRangeError");
+      if (1 > singleElement || singleElement > 45) {
+        throw new Error(messages.WINNING_NUMBER_ERROR_RANGE_MESSAGE);
+      }
     }
   }
 
   isArrayUnique(numbersArray) {
     const numbersSet = new Set(numbersArray);
-    if (numbersSet.size !== 6) this.controller.throwErrorWithMessage("winningNumberUniqueError");
+    if (numbersSet.size !== 6) {
+      throw new Error(messages.WINNING_NUMBER_ERROR_UNIQUE_NUMBERS_MESSAGE);
+    }
   }
 
   validate(numbers) {
@@ -49,8 +57,12 @@ class Lotto {
   }
 
   validateBonusNumber(bonusNumber) {
-    if (isNaN(bonusNumber)) this.controller.throwErrorWithMessage("bonusNumberError");
-    if (1 > bonusNumber || bonusNumber > 45) this.controller.throwErrorWithMessage("bonusNumberError");
+    if (isNaN(bonusNumber)) {
+      throw new Error(messages.BONUS_NUMBER_ERROR_MESSAGE);
+    }
+    if (1 > bonusNumber || bonusNumber > 45) {
+      throw new Error(messages.BONUS_NUMBER_ERROR_MESSAGE);
+    }
   }
 
   getBonusNumber() {

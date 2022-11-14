@@ -12,10 +12,6 @@ class View {
     });
   }
 
-  printPurchasingAmountErrorMessage() {
-    throw new Error(messages.PURCHASING_AMOUNT_ERROR_MESSAGE);
-  }
-
   printUserLottoArray(userLottoArray) {
     Console.print(
       `\n${this.controller.userNumber.getUserLottoArray().length}${
@@ -33,26 +29,10 @@ class View {
     });
   }
 
-  printWinningNumberCommaNumberErrorMessage() {
-    throw new Error(messages.WINNING_NUMBER_ERROR_COMMA_NUMBER_MESSAGE);
-  }
-
-  printWinningNumberRangeErrorMessage() {
-    throw new Error(messages.WINNING_NUMBER_ERROR_RANGE_MESSAGE);
-  }
-
-  printWinningNumberUniqueErrorMessage() {
-    throw new Error(messages.WINNING_NUMBER_ERROR_UNIQUE_NUMBERS_MESSAGE);
-  }
-
   getBonusNumberFromUser() {
     Console.readLine(messages.BONUS_NUMBER_MESSAGE, (userInput) => {
       this.controller.setBonusNumberFromUser(userInput);
     });
-  }
-
-  printBonusNumberErrorMessage() {
-    throw new Error(messages.BONUS_NUMBER_ERROR_MESSAGE);
   }
 
   printStatistics(ranks, rateOfReturn) {

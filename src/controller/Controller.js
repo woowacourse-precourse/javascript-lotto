@@ -16,14 +16,6 @@ class Controller {
     if (type === "userLottoArray") this.view.printUserLottoArray(data);
   }
 
-  throwErrorWithMessage(type) {
-    if (type === "purchasingAmountError") this.view.printPurchasingAmountErrorMessage();
-    if (type === "winningNumberCommaNumberError") this.view.printWinningNumberCommaNumberErrorMessage();
-    if (type === "winningNumberRangeError") this.view.printWinningNumberRangeErrorMessage();
-    if (type === "winningNumberUniqueError") this.view.printWinningNumberUniqueErrorMessage();
-    if (type === "bonusNumberError") this.view.printBonusNumberErrorMessage();
-  }
-
   getPurchasingAmountFromUser() {
     this.view.getPurchasingAmountFromUser();
   }
