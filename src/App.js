@@ -20,6 +20,7 @@ class App {
 
   recordPay() {
     Console.readLine(READ_MESSAGE.pay, (input) => {
+      Validator.checkInput(input);
       const pay = Number(input);
       this.#calculator = new Calculator(pay);
       this.buyLottos();
@@ -47,6 +48,7 @@ class App {
 
   recordWinNumbers() {
     Console.readLine(READ_MESSAGE.winNumbers, (input) => {
+      Validator.checkInput(input);
       const winNumbers = input.split(',').map((number) => Number(number));
       Validator.checkLottoNumbers(winNumbers);
       this.#winNumbers = winNumbers;
@@ -56,6 +58,7 @@ class App {
 
   recordBonusNumber() {
     Console.readLine(READ_MESSAGE.bonusNumber, (input) => {
+      Validator.checkInput(input);
       const bonusNumber = Number(input);
       Validator.checkBonusNumber(bonusNumber, this.#winNumbers);
       this.#bonusNumber = bonusNumber;
@@ -88,3 +91,5 @@ class App {
 }
 
 module.exports = App;
+
+new App().play();
