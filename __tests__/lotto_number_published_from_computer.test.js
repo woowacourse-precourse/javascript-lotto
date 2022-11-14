@@ -1,4 +1,4 @@
-const LottoNumberPublishedFromComputer = require('../src/components/LottoNumberPublishedFromComputer');
+const LottoNumberPublishedFromComputer = require('../src/components/util/LottoNumberIssuedFromComputer');
 const MissionUtils = require('@woowacourse/mission-utils');
 
 describe('LottoNumberPublishedFromComputer', () => {
