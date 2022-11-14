@@ -20,7 +20,10 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
+  getQrCode() {
+    this.#numbers.sort((a, b) => a - b);
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
