@@ -51,7 +51,16 @@ class App {
     return numbers
   }
 
-
+  winningLottoBonusValidate(num) {
+    if (num < 1 || num > 45) {
+      throw new Error("[ERROR] 로또 번호는 0보다 크고 46보다 작아야 합니다.");
+    }
+    if (this.winningLottoArr[0].indexOf(num) !== -1) {
+      throw new Error("[ERROR] 보너스 번호는 로또번호와 중복되지 않아야 합니다.")
+    }
+    return num
+  }
+  
 }
 
 module.exports = App;
