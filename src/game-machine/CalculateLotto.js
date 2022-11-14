@@ -24,10 +24,12 @@ class CalculateLotto{
     random_lotto_numbers=MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6); 
     return random_lotto_numbers;
   }
-  sendLottoInfo(){
-    let lotto_numbers = this.calculateLottoNumbers();
-    const lotto = new Lotto(lotto_numbers);
-    lotto.getLottoQuantity(this.lotto_quantity);
+
+  sendLottoNumbers(){
+    for(let i =0;i<this.lotto_quantity;i++){
+      let lotto_numbers = this.calculateLottoNumbers();
+      const lotto = new Lotto(lotto_numbers);
+    }
   }
 
 }
