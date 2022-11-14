@@ -98,6 +98,19 @@ class Lotto {
 
     return count;
   }
+
+  makeResult(prize) {
+    let result = [0, 0, 0, 0, 0];
+    prize.forEach((item) => {
+      if (item[0] == 3) result[0]+=1;
+      else if(item[0] == 4) result[1]+=1;
+      else if(item[0] == 5 && item[1] == 1) result[3]+=1;
+      else if(item[0] == 5) result[2]+=1;
+      else if(item[0] == 6) result[4]+=1;
+    });
+
+    return result;
+  }
 }
 
 const lotto = new Lotto("8, 11, 44, 27, 36, 15", "10", "8000");
