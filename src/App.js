@@ -28,9 +28,9 @@ class App {
       lotto.sort((a, b) => a - b);
       Console.print(lotto);
     });
-    this.inputBonus();
+    this.inputWinning();
   }
-  inputBonus() {
+  inputWinning() {
     Console.readLine(INPUT_MESSAGE.WINNING, (winning) => {
       this.winningLotto = new Lotto(winning).returnLotto();
     });

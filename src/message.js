@@ -10,6 +10,6 @@ const ERROR_MESSAGE = {
   NOT_LENGTH_SIX: "ERROR] 로또 번호는 6개여야 합니다.",
   OVERLAP: "[ERROR] 로또 번호는 중복되지 않아야 합니다.",
   NOT_RANGE: "[ERROR] 로또 번호는 1 이상 45 이하 입니다.",
-  SPLIT_COMMA: "[ERROR] 로또 번호는 숫자를 ','로 구분해 입력해주세요.",
+  SPLIT_COMMA: "[ERROR] 입력은 숫자와 ','로 구분해 입력해주세요.",
 };
 module.exports = { INPUT_MESSAGE, ERROR_MESSAGE };
