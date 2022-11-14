@@ -230,4 +230,4 @@ class Lotto {
 
 ### 에러 처리
 
-- [ ] 예외 상황 시 "[ERROR]"로 시작하는 에러 문구를 출력하는 기능
+- [x] 예외 상황 시 "[ERROR]"로 시작하는 에러 문구를 출력하는 기능 - `errors#ValidationError`
