@@ -26,4 +26,14 @@ describe("로또 클래스 테스트", () => {
       new Lotto([1, 2, 3, 4, 5, 90]);
     }).toThrow("[ERROR]");
   });
+
+  test("로또 등수를 확인한다.", () => {
+    const rank = new Lotto([1, 2, 3, 4, 5, 6]).checkRank([1, 2, 3, 4, 5, 6], 7);
+    expect(rank).toEqual(1);
+  });
+
+  test("로또 번호를 원하는 형식으로 출력한다.", () => {
+    const lottoNumbers = new Lotto([1, 2, 3, 4, 5, 6]).getNumbersToArrayFormat();
+    expect(lottoNumbers).toEqual("[1, 2, 3, 4, 5, 6]");
+  });
 });
