@@ -55,12 +55,20 @@ describe("LottoGame 클래스 isBonusNumberValid 함수 테스트", () => {
 });
 
 describe("LottoGame 클래스 countMatchedNumbers 함수 테스트", () => {
-  test("값이 문자면 예외가 발생한다.", () => {
+  test("로또 번호와 당첨 번호의 겹치는 숫자 개수를 구한다.", () => {
     expect(
       new LottoGame().countMatchedNumbers(
         [1, 2, 3, 4, 5, 6],
         [1, 2, 3, 4, 5, 7]
       )
     ).toEqual(5);
+  });
+});
+
+describe("LottoGame 클래스 calculateEarning 함수 테스트", () => {
+  test("로또 결과에 따른 수익을 계산한다.", () => {
+    expect(
+      new LottoGame().calculateEarning({ 3: 1, 4: 0, 5: 1, "5-bonus": 0, 6: 0 })
+    ).toEqual(1505000);
   });
 });
