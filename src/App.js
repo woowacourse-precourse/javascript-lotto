@@ -23,7 +23,7 @@ class App {
     Console.readLine(INPUT_MESSAGE.BUY_MONEY, (answer) => {
       let lottoNum;
       this.#buyMoney = answer;
-      this.validate(answer);
+      this.validateBuyMoney(answer);
       lottoNum = this.divideMoneyByThousand();
       this.lottoArr = Lotto.createTotalLottoArr(lottoNum);
 
@@ -32,7 +32,7 @@ class App {
     });
   }
 
-  validate(inputBuyMoney) {
+  validateBuyMoney(inputBuyMoney) {
     this.validateIsNumber(inputBuyMoney);
     this.validateIsOverThousand(inputBuyMoney);
     this.validateIsDividedByThounsand(inputBuyMoney);
@@ -67,6 +67,7 @@ class App {
 
   getBonusNum(lottoArr) {
     Console.readLine(INPUT_MESSAGE.BONUS_NUM, (answer) => {
+      this.validateBonusNum(answer);
       const bonusNum = Number(answer);
       const scores = this.getLottoScores(lottoArr, this.#winningLotto);
       const lottoResult = this.result.createLottoResult(
@@ -82,7 +83,18 @@ class App {
         bonusResult
       );
       this.result.printLottoResult(lottoResult, bonusResult, totalYield);
+      Console.close();
     });
+  }
+
+  validateBonusNum(input) {
+    this.validateIsNumber(input);
+    this.validateRange(input);
+  }
+
+  validateRange(input) {
+    if (Number(input) < 1 || Number(input) > 45)
+      throw "[ERROR]1부터 45 사이의 숫자를 입력해주세요.";
   }
 
   getLottoScores(lottos, winningLotto) {
