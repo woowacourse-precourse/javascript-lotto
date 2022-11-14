@@ -24,6 +24,13 @@ class Lotto {
     }
   }
 
+  checkRange(numbers) {
+    numbers.forEach(num => {
+      if (num > 45 || num < 1) {
+        throw new Error('[ERROR] 당첨 번호는 1 ~ 45 사이여야 합니다.');
+      }
+    });
+  }
 }
 
 module.exports = Lotto;
