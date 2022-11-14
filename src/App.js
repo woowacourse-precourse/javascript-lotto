@@ -46,7 +46,7 @@ class App {
   }
 
   setWinningNumbers(numbers) {
-    Validator.validateNumbers(numbers);
+    Validator.validateLottoNumbers(numbers);
     this.#winningNumbers = numbers.map((number) => Number(number));
   }
 

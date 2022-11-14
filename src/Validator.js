@@ -15,7 +15,7 @@ class Validator {
     );
   }
 
-  static validateNumbers(numbers) {
+  static validateLottoNumbers(numbers) {
     if (numbers.length !== LOTTO.NUMBER_LENGTH) {
       throw new Error(ERROR.WRONG_LENGTH);
     }
