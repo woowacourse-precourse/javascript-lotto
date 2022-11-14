@@ -24,6 +24,7 @@ class App {
       (purchaseAmount) => {
         Validation.checkPurchaseAmount(purchaseAmount);
         this.lottoBuying(purchaseAmount);
+        this.printLottoNumber(this.lotto);
       }
     );
   }
@@ -66,6 +67,12 @@ class App {
       const lottoNumber = this.randomLottoNumberPick();
       const ascLottoNumber = lottoNumber.sort((num1, num2) => num1 - num2);
       return new Lotto(ascLottoNumber);
+    });
+  }
+  printLottoNumber(lotto) {
+    lotto.forEach((lottoNumbers) => {
+      const lottoList = lottoNumbers.getLottoNumber();
+      MissionUtils.Console.print(lottoList);
     });
   }
 }

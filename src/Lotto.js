@@ -7,6 +7,10 @@ class Lotto {
     Validation.checkLottoNumber(numbers);
     this.#numbers = numbers;
   }
+
+  getLottoNumber() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
