@@ -9,6 +9,16 @@ class CalculateLotto {
     this.purchaseAmount = purchaseCount * PARAMETERS.purchaseAmountUnit;
   }
 
+  testUserLottos() {
+    this.userLottoNumbers.forEach((lottoNumber) => {
+      const COUNT = this.getCommonNumberCount(lottoNumber);
+      const HAS_BONUS_NUMBER = this.checkBonusNumber(lottoNumber);
+      this.updateWinningCount(COUNT, HAS_BONUS_NUMBER);
+    });
+
+    return this.winningCount;
+  }
+
   getCommonNumberCount(userLottoNumber) {
     return userLottoNumber.filter((number) => this.winningNumber.includes(number)).length;
   }
