@@ -1,4 +1,4 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { Console, Random } = require('@woowacourse/mission-utils');
 const Message = require("./Message.js");
 
 class NumberGenerator {
@@ -10,12 +10,12 @@ class NumberGenerator {
   }
 
   issueUserNumber() {
-    MissionUtils.Console.print(`${this.count}${Message.INFORMATION.lottoCount}`);
+    Console.print(`${this.count}${Message.INFORMATION.lottoCount}`);
     const lottoArray = [];
     while (lottoArray.length < this.count) {
-      const lotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      const lotto = Random.pickUniqueNumbersInRange(1, 45, 6);
       lottoArray.push(lotto);
-      MissionUtils.Console.print(`[${lotto.join(", ")}]`);
+      Console.print(`[${lotto.join(", ")}]`);
     }
 
     this.#userLottoNumber = lottoArray;

@@ -1,4 +1,4 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { Console } = require('@woowacourse/mission-utils');
 const Message = require("./Message.js");
 
 class NumberReceiver {
@@ -11,7 +11,7 @@ class NumberReceiver {
   }
 
   inputLottoNumber() {
-    MissionUtils.Console.readLine(Message.INFORMATION.winningNumberInput, (numbers) => {
+    Console.readLine(Message.INFORMATION.winningNumberInput, (numbers) => {
       this.#lottoNumber = numbers.split(",").map((x) => +x);
     });
   }
@@ -21,7 +21,7 @@ class NumberReceiver {
   }
 
   inputBonusNumber() {
-    MissionUtils.Console.readLine(Message.INFORMATION.bonusNumberInput, (numbers) => {
+    Console.readLine(Message.INFORMATION.bonusNumberInput, (numbers) => {
       this.#bonusNumber = Number(numbers);
     });
   }

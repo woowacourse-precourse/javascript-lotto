@@ -1,4 +1,4 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { Console } = require('@woowacourse/mission-utils');
 const Message = require("./Message.js");
 
 class Lotto {
@@ -70,8 +70,8 @@ class Lotto {
       winningDetails.join("\n") +
       "\n" +
       `총 수익률은 ${profitRate.toFixed(1)}%입니다.`;
-    MissionUtils.Console.print(Message.INFORMATION.winningStatistics);
-    MissionUtils.Console.print(resultPrint);
+    Console.print(Message.INFORMATION.winningStatistics);
+    Console.print(resultPrint);
   }
 
   result({ money, userNumber, bonusNumber }) {
