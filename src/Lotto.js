@@ -104,11 +104,14 @@ class Lotto {
   }
 }
 
-// 당첨번호 입력 메소드
-function insertLottoNumber(tickets) {
-  MissionUtils.Console.readLine('당첨번호를 입력해주세요.\n', (num) => {
-    const lottoNumber = num.split(',').map((element) => parseInt(element));
-    const lotto = new Lotto(lottoNumber, tickets);
+// 시작 메소드
+function start() {
+  MissionUtils.Console.readLine('구입금액을 입력해주세요.\n', (money) => {
+    if (money % 1000 !== 0) {
+      throw new Error('[ERROR] 1,000원 단위로 나누어 떨어져야 합니다.');
+    }
+    MONEY = money;
+    buyTicket(money);
   });
 }
 
@@ -127,15 +130,12 @@ function buyTicket(money) {
   insertLottoNumber(tickets);
 }
 
-// 시작 메소드
-function start() {
-  MissionUtils.Console.readLine('구입금액을 입력해주세요.\n', (money) => {
-    if (money % 1000 !== 0) {
-      throw new Error('[ERROR] 1,000원 단위로 나누어 떨어져야 합니다.');
-    }
-    MONEY = money;
-    buyTicket(money);
+// 당첨번호 입력 메소드
+function insertLottoNumber(tickets) {
+  MissionUtils.Console.readLine('당첨번호를 입력해주세요.\n', (num) => {
+    const lottoNumber = num.split(',').map((element) => parseInt(element));
+    const lotto = new Lotto(lottoNumber, tickets);
   });
 }
 
-module.exports = { start, Lotto };
+module.exports = { start, Lotto, buyTicket, insertLottoNumber };
