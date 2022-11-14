@@ -9,6 +9,13 @@ describe("로또 발행 회사 테스트", () => {
     expect(lottos2.length).toBe(5);
   });
 
+  test("로또 가격으로 나누어지지 않는 금액만큼 발행시 오류를 발생시킨다.", () => {
+    const lottoCompany = new LottoCompany(1000);
+
+    expect(() => lottoCompany.publishLottos(1500)).toThrow("[ERROR]");
+    expect(() => lottoCompany.publishLottos(2500)).toThrow("[ERROR]");
+  });
+
   test("오름차순으로 정렬된 두 개의 배열이 주어질 떄, 같은 수의 개수를 찾는다.", () => {
     const array1 = [1, 4, 9, 10, 16, 29];
     const array2 = [4, 5, 9, 11, 29, 31];
