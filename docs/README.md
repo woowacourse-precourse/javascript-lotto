@@ -1,6 +1,6 @@
-# 로또 프로그램 기능 목록
+# 로또 프로그램 도큐먼트 📄
 
-## 기능 목록
+## 기능 목록 📝
 
 1. 구입금액 입력문 출력
 2. 구입금액 입력받기
@@ -30,8 +30,136 @@
     1. 소수점 둘째 자리에서 반올림한다.
 13. 수익률 출력
 
-**예외 사항 출력시**
+**예외사항 처리❗️**
 
 - throw를 통하여 예외 반환
 - 예외 상황에서는 에러 문구를 출력해야 함
 - 에러 문구는 “[ERROR]”로 시작해야 함
+
+## 클래스 구조 🏡
+
+### Error 클래스 구조
+
+> 예외 사항을 보면 에러 문구는 "[ERROR]" 라는 정해진 문구로 시작해야 한다는 규칙이 있었습니다. 처음
+> 에는 모든 오류 메시지를 "[ERROR] 유효하지 않은 값입니다." 처럼 "[ERROR]"를 붙인 메시지로 선언을 할
+> 까 고민하다가 따로 Error 클래스를 상속받는 CustomError (추상)클래스를 정의하고 그곳에서 "[ERROR]"
+> 를 붙여주면 오류 메시지를 상수로 선언할 때 "[ERROR]"를 붙이지 않을 수 있어서 구현을 해보았습니다.
+
+**함께 읽어보면 좋을 것 같은 문서링크**
+[커스텀 에러와 에러 확장](https://ko.javascript.info/custom-errors)
+
+<br/><br/>
+
+```mermaid
+classDiagram
+    Error <|-- CustomError
+    CustomError <|-- AbstractError
+    CustomError <|-- BonusNumberError
+    CustomError <|-- PriceError
+    CustomError <|-- WinNumberError
+
+    class Error{
+        String name
+    }
+    class CustomError{
+        String name
+        checkAbstract()
+        isCustomErrorConstructor()
+    }
+```
+
+<br/><br/>
+
+### Validation 클래스 구조
+
+> 저번 2주차 미션 때와 같이 Validation이라는 클래스를 따로 만들어 구현을 하려고 생각 했지만 이번 미
+> 션에는 입력을 받는 값이 다양했기 때문에 그만큼 유효성 검사를 다양하게 해주어야 했습니다. 그래서 공
+> 통적으로 검사해야하는 유효성 검사를 묶어 Validation이라는 (추상)클래스를 정의했습니다. 또한 입력받
+> 는 값들 3가지에 대한 유효성 검사 클래스를 정의하였고 Validation을 상속받게 하였습니다.
+
+<br/><br/>
+
+```mermaid
+classDiagram
+    Validation <|-- BonusValidation
+    Validation <|-- PriceValidation
+    Validation <|-- WinNumbersValidation
+
+    class Validation{
+        String answer
+        validate()
+        isEmpty()
+        isRangeNumber()
+    }
+
+    class BonusValidation{
+        Array winNumberList
+        validate()
+        checkEmpty()
+        checkRange()
+        checkOverlap()
+        isNumberIncludesWinNumberList()
+    }
+
+    class PriceValidation{
+        validate()
+        checkEmpty()
+        checkZero()
+        isZero()
+        checkNumber()
+        isOnlyNumber()
+        checkUnitNumber()
+        isPriceUnitThousand()
+    }
+
+    class WinNumbersValidation{
+        abstract validate()
+        checkEmpty()
+        checkValidDivision()
+        isWinNumberLengthSix()
+        checkRange()
+        checkOverlap()
+        isSizeSame()
+    }
+```
+
+<br/><br/>
+
+### Input 클래스 구조
+
+> 이번 미션에서는 로또 구입 가격, 로또 당첨번호, 로또 보너스 번호 이렇게 3가지의 값을 입력을 받아야
+> 하는 플로우가 있습니다. 처음에는 LottoConstoller 클래스에서 관리를 하려 했지만 중간 중간 유사한 코
+> 드들이 반복되는 것이 보여 Input이라는 (추상)클래스를 정의하고 이를 상속받는 자식클래스 각각 Price,
+> Lotto, Bonus 클래스로 분리하였습니다.
+
+<br/><br/>
+
+```mermaid
+classDiagram
+    Input <|-- Bonus
+    Input <|-- Lotto
+    Input <|-- Price
+
+    class Input{
+        String answer
+        checkAbstract()
+        isInputConstructor()
+        abstract validate()
+        abstract save()
+    }
+    class Bonus{
+        private Number bonusNumber
+        getBonusNumber()
+    }
+    class Lotto{
+        private Array numbers
+        getNumbers()
+    }
+    class Price{
+        private Number lottoPrice
+        private Number lottoCount
+        printLottoCount()
+        getLottoPrice()
+        getLottoCount()
+    }
+```
