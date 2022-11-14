@@ -129,10 +129,10 @@
 
 [MissionUtils라이브러리](https://github.com/woowacourse-projects/javascript-mission-utils#mission-utils)에서 제공하는 `MissionUtils.Console.readLine`을 사용합니다.
 
-- [ ] 로또 구입 금액 입력 받기
+- [x] 로또 구입 금액 입력 받기
 
-  - [ ] 1,000원 단위인지 확인하는 기능
-  - [ ] 1,000원으로 나누어 떨어지지 않는 경우 예외 처리하기
+  - [x] 1,000원 단위인지 확인하는 기능
+  - [x] 1,000원으로 나누어 떨어지지 않는 경우 예외 처리하기
 
 - [ ] 당첨 번호 입력 받기
 
