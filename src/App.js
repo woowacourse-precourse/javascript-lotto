@@ -8,16 +8,16 @@ class App {
   userLottoNumberLists = [];
   userWinningStatics = [0,0,0,0,0];
 
-  async play() {
-    await this.insertMoney();
+  play() {
+    this.insertMoney();
     const LOTTO_COUNT = this.insertedMoney / 1000;
     for(let count = 0; count <LOTTO_COUNT; count++){
       this.userLottoNumberLists.push(this.generateUserLottoNumber());
     }
     this.printLottoCount(LOTTO_COUNT);
-    await this.enterPrizeNumber();
+    this.enterPrizeNumber();
     const lotto = new Lotto(this.prizeNumbers);
-    await this.enterBonusNumber();
+    this.enterBonusNumber();
     const bonus = new Bonus(lotto.getNumbers(), this.bonusNumber);
     this.userLottoNumberLists.forEach((OneUserNumber)=>{
       this.comparePrizeNumberAndUserNumber(lotto.getNumbers(), bonus.getNumbers(),OneUserNumber);
