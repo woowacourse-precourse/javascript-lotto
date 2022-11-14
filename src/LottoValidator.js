@@ -7,6 +7,7 @@ class LottoValidator extends Validator {
     this.minNumber = minNumber;
     this.maxNumber = maxNumber;
     this.numbersCount = numbersCount;
+    this.validator = new Validator();
   }
 
   #isValidLottoNumber = (number) => {
@@ -21,8 +22,11 @@ class LottoValidator extends Validator {
     return true;
   };
 
-  isValidBonusNumber(bonusNumber, lottoNumbers) {
-    if (lottoNumbers.includes(bonusNumber)) {
+  isValidBonusNumber(bonus, lottoNumbers) {
+    this.validator.isValidInput(bonus);
+    this.validator.isValidNumber(bonus);
+
+    if (lottoNumbers.includes(Number(bonus))) {
       throw new Error(`${this.ERROR_MESSAGE_HEADER} 로또 번호와 보너스 번호는 서로 달라야 합니다.`);
     }
   }
@@ -45,7 +49,7 @@ class LottoValidator extends Validator {
     }
 
     if (Number(money) % this.lottoPrice !== 0) {
-      throw new Error(`${this.ERROR_MESSAGE_HEADER} 1000원 단위로 입력하여야 합니다. (최소 구매금액 : ${this.lottoPrice}) `);
+      throw new Error(`${this.ERROR_MESSAGE_HEADER} ${this.lottoPrice}원 단위로 입력하여야 합니다. (최소 구매금액 : ${this.lottoPrice}원)`);
     }
   }
 
