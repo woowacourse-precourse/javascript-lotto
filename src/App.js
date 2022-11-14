@@ -58,8 +58,17 @@ class App {
     });
   }
 
+  isValidateBonusNumber(bonusNumber) {
+    isValidateNumber(bonusNumber);
+    isLottoRange(bonusNumber);
+    if (this.winningNumber.includes(Number(bonusNumber)))
+      throw new Error('[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.');
+  }
+
   inputBonusNumberFromUser() {
-    Console.readLine('보너스 번호를 입력해 주세요.\n', (bonusNumber) => {});
+    Console.readLine('보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
+      this.isValidateBonusNumber(bonusNumber);
+    });
   }
 }
 
