@@ -5,20 +5,8 @@ class View {
   static lottos(lottoCount, lottoArr) {
     Console.print(GAME_MESSAGE.HOW_MANY_BUY_LOTTO_MESSAGE(lottoCount));
     lottoArr.map((lotto) => {
-      const lottoString = this.changeLottoToString(lotto); 
-      Console.print(GAME_MESSAGE.LOTTO_PRINT(lottoString));
+      Console.print(GAME_MESSAGE.LOTTO_PRINT(lotto.join(', ')));
     });
-  }
-
-  static changeLottoToString(lotto) {
-    return lotto
-      .toString()
-      .split('')
-      .map(el => {
-        if (el === ',') return ', ' ;
-        return el;
-      })
-      .join('');
   }
 
   static winStatistics(lottoResultObj, rateOfReturn) {
