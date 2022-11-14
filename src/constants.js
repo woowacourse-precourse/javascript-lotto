@@ -22,14 +22,25 @@ const LOTTO = {
   NUMBERS_COUNT: 6,
   MAX_NUMBER: 45,
   MIN_NUMBER: 1,
+  PRICE: 1000,
 };
 
 const RANKING = {
-  FIRST: '1등',
-  SECOND: '2등',
-  THIRD: '3등',
-  FOURTH: '4등',
   FIFTH: '5등',
+  FOURTH: '4등',
+  THIRD: '3등',
+  SECOND: '2등',
+  FIRST: '1등',
 };
 
-module.exports = { PHRASE, ERROR, LOTTO, RANKING };
+const PRIZE_MONEY = {
+  FIFTH: 5000,
+  FOURTH: 50000,
+  THIRD: 1500000,
+  SECOND: 30000000,
+  FIRST: 2000000000,
+};
+
+const RATE_OF_RETURN = '수익률';
+
+module.exports = { PHRASE, ERROR, LOTTO, RANKING, PRIZE_MONEY, RATE_OF_RETURN };

@@ -1,4 +1,4 @@
-const { RANKING } = require('./constants');
+const { RANKING, PRIZE_MONEY, RATE_OF_RETURN, LOTTO } = require('./constants');
 
 class ScoreMachine {
   static lottoNumberList = [];
@@ -10,6 +10,7 @@ class ScoreMachine {
     [RANKING.THIRD]: 0,
     [RANKING.SECOND]: 0,
     [RANKING.FIRST]: 0,
+    [RATE_OF_RETURN]: 0,
   };
 
   compare(winningNumber, bonusNumber) {
@@ -19,6 +20,8 @@ class ScoreMachine {
     ScoreMachine.lottoNumberList.forEach((lottoNumber) => {
       this.compareWinningNumber(lottoNumber);
     });
+
+    this.calculateRateOfReturn();
   }
 
   compareWinningNumber(lottoNumber) {
@@ -26,6 +29,7 @@ class ScoreMachine {
     this.#winningNumber.forEach((number) => {
       if (lottoNumber.includes(number)) matchCount += 1;
     });
+
     this.rank(matchCount, lottoNumber);
   }
 
@@ -38,6 +42,15 @@ class ScoreMachine {
     }[matchCount];
 
     if (ranking) this.#result[ranking] += 1;
+  }
+
+  calculateRateOfReturn() {
+    const purchaseAmount = ScoreMachine.lottoNumberList.length * LOTTO.PRICE;
+    const totalPrizeMoney = Object.keys(PRIZE_MONEY).reduce(
+      (money, ranking) => money + this.#result[RANKING[ranking]] * PRIZE_MONEY[ranking],
+      0
+    );
+    this.#result[RATE_OF_RETURN] = (totalPrizeMoney / purchaseAmount) * 100;
   }
 }
 
