@@ -45,6 +45,7 @@ class LottoModel {
     try {
       new Lotto(convertNumber);
     } catch (errorMessage) {
+      MissionUtils.Console.close();
       throw new Error(errorMessage)
     }
 
