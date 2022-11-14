@@ -20,14 +20,14 @@ const validateLottoBudget = (budget) => {
 
 const validateTargetNumber = (target) => {
   const isNumber = _isNumber(...target);
-  const isInRange = _isInRange(...target);
-  const isUnique = new Set(target).size === target.length;
+  const isInRange = _isInRange(...target.map(Number));
   const isValidLength = target.length === GAME_RANGE.NUM_LENGTH;
+  const isUnique = new Set(target).size === target.length;
 
   if (isNumber === false) throw Error(GAME_INPUT_ERRORS.INVALID_TARGET_TYPE);
   if (isInRange === false) throw Error(GAME_INPUT_ERRORS.INVALID_TARGET_RANGE);
-  if (isUnique === false) throw Error(GAME_INPUT_ERRORS.INVALID_TARGET_DUPLICATED);
   if (isValidLength === false) throw Error(GAME_INPUT_ERRORS.INVALID_TARGET_LENGTH);
+  if (isUnique === false) throw Error(GAME_INPUT_ERRORS.INVALID_TARGET_DUPLICATED);
 };
 
 const validateBonusNumber = (bonus) => {
@@ -39,9 +39,9 @@ const validateBonusNumber = (bonus) => {
 };
 
 const validateBonusNumberNotInLottoNumber = (bonusNumber, targetNumbers) => {
-  const isNotInTarget = targetNumbers.includes(bonusNumber) === false;
+  const isBonusInTarget = targetNumbers.includes(bonusNumber);
 
-  if (isNotInTarget === false) throw Error(GAME_INPUT_ERRORS.BONUS_IN_TARGET);
+  if (isBonusInTarget === true) throw Error(GAME_INPUT_ERRORS.BONUS_IN_TARGET);
 };
 
 module.exports = {

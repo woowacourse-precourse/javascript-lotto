@@ -7,7 +7,7 @@ const { validateBonusNumberNotInLottoNumber } = require('./validate.js');
 class Game {
   #lottos = [];
   #winningNumbers = [];
-  #bonusNUmber = 0;
+  #bonusNumber = 0;
 
   /**
    *
@@ -17,9 +17,9 @@ class Game {
    */
   constructor(lottoNum, winningNumbers, bonusNumber) {
     this.#lottos = Array.from({ length: lottoNum }, () => this.generateOneLotto());
-    this.#winningNumbers = winningNumbers;
-    this.#bonusNUmber = bonusNumber;
-    validateBonusNumberNotInLottoNumber(bonusNumber, winningNumbers);
+    this.#winningNumbers = winningNumbers.map(Number);
+    this.#bonusNumber = +bonusNumber;
+    validateBonusNumberNotInLottoNumber(this.#bonusNumber, this.#winningNumbers);
   }
 
   /**
@@ -41,7 +41,7 @@ class Game {
    * @returns {number[]} ranks
    */
   generateLottoRanks() {
-    const rank = new Rank(this.#winningNumbers, this.#bonusNUmber);
+    const rank = new Rank(this.#winningNumbers, this.#bonusNumber);
     const ranks = this.#lottos.map((lotto) => rank.checkWinningLottoRank(lotto));
 
     return ranks.filter((rank) => rank !== Infinity);
