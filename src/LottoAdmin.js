@@ -26,12 +26,12 @@ class LottoAdmin {
     Console.print(this.getStatisticsStrArr(statistics));
   }
 
-  static getStatisticsPriceSum(price, statistics) {
-    return statistics.reduce((acc, value, idx) => acc + value * price[idx], 0);
+  static getStatisticsPriceSum(price, ranks) {
+    return ranks.reduce((acc, value, idx) => acc + value * price[idx], 0);
   }
 
-  static getMargin(price, [lottos, statistics]) {
-    const margin = this.getStatisticsPriceSum(price, statistics);
+  static getMargin(price, [lottos, ranks]) {
+    const margin = this.getStatisticsPriceSum(price, ranks);
     const totalLottoPrice = lottos.length * 1000;
     const middle = (margin / totalLottoPrice) * 100;
     return Math.round(middle * 100) / 100;
