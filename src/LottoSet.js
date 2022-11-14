@@ -12,10 +12,10 @@ class LottoSet {
 
   validate(money) {
     const testType = /[0-9]/;
-    if (!testType.test(money)) throw new Error('[ERROR] 숫자만 입력해야 합니다.');
-    if (money < 1000) throw new Error('[ERROR] 최소 금액이 1000원 입니다.');
-    if (money % 1000) throw new Error('[ERROR] 로또 구입 후 잔돈이 남습니다');
-    return money;
+    if (!testType.test(Number(money))) throw new Error('[ERROR] 숫자만 입력해야 합니다.');
+    if (Number(money) < 1000) throw new Error('[ERROR] 최소 금액이 1000원 입니다.');
+    if (Number(money) % 1000) throw new Error('[ERROR] 로또 구입 후 잔돈이 남습니다.');
+    return Number(money);
   }
 
   buyLottos(money) {
