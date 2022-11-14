@@ -1,5 +1,6 @@
 const { BUY_LOTTO, LOTTO_DETAILS, ERROR } = require("./constant/constant");
 const { Random } = require("@woowacourse/mission-utils");
+const Validation = require("./utils/Validation");
 
 class BuyLotto {
   userLottoArr;
@@ -7,20 +8,16 @@ class BuyLotto {
 
   constructor(userMoney) {
     this.validate(userMoney);
-    this.howManyUserLotto(userMoney);
+    this.userLottoEA(userMoney);
     this.getUserLottoArr(this.#userLottos);
   }
 
   validate(userMoney) {
-    if (isNaN(userMoney)) {
-      throw new Error(ERROR.NAN);
-    }
-    if (userMoney % 1000 !== 0) {
-      throw new Error(BUY_LOTTO.ERROR);
-    }
+    Validation.isNumber(userMoney);
+    Validation.isLottoMoney(userMoney);
   }
 
-  howManyUserLotto(userMoney) {
+  userLottoEA(userMoney) {
     this.#userLottos = userMoney / LOTTO_DETAILS.PRICE;
   }
 
