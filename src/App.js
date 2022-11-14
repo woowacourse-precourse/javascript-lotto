@@ -93,7 +93,7 @@ class App {
   printUserNumber() {
     for (let time = 0; time < this.lotteryAmount; time += 1) {
       const userNumber = this.makeUserNumber();
-      Console.print(userNumber);
+      Console.print(`[${userNumber.join(", ")}]`);
     }
     this.inputLotteryNumber();
   }
