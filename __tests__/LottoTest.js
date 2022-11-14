@@ -44,4 +44,10 @@ describe("로또 클래스 테스트", () => {
     const result = lotto.getLotto();
     expect(result).toEqual([1, 2, 3, 4, 5, 6]);
   });
+
+  test("로또 번호와 당첨 번호를 비교하여 일치하는 번호의 개수를 반환한다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    const result = lotto.getMatchCount([1, 2, 3, 10, 11, 12]);
+    expect(result).toEqual(3);
+  });
 });
