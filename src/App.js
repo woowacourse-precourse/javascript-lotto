@@ -9,6 +9,8 @@ class App {
   inputBudgetCallback(input) {
     const inputBudget = parseInt(input, 10);
     this.ticket = new TicketBox(inputBudget);
+    this.ticket.makeTickets();
+    this.ticket.printTickets();
     MissionUtils.Console.close();
   }
 
