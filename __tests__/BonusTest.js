@@ -12,4 +12,10 @@ describe("보너스 클래스 테스트", () => {
       new Bonus(46);
     }).toThrow("[ERROR]");
   });
+
+  test("보너스 번호가 정수가 아니면 예외가 발생한다.", () => {
+    expect(() => {
+      new Bonus(6.7);
+    }).toThrow("[ERROR]");
+  });
 });
