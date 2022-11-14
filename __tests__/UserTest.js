@@ -7,4 +7,17 @@ describe("사용자 클래스 테스트", () => {
       user.getMoney()
     ).toBe(8000);
   });
+
+  test("구입금액이 숫자가 아니면 예외가 발생한다.", () => {
+    expect(() => {
+      new User("팔천원");
+    }).toThrow("[ERROR]");
+  });
+
+  test("구입금액이 1000원 단위가 아니면 예외가 발생한다.", () => {
+    expect(() => {
+      new User(7500);
+    }).toThrow("[ERROR]");
+  });
+
 });
