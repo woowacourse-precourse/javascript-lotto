@@ -94,6 +94,12 @@ class LottoGame {
     inputUserValue(GAME_MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
       if (this.isBonusNumberValid(bonusNumber)) {
         this.#bonusNumber = bonusNumber;
+        console.log(
+          this.countMatchedNumbers(
+            this.#lottoList[0].getLottoNumbers(),
+            this.#winningNumbers
+          )
+        );
       }
     });
   }
@@ -111,6 +117,11 @@ class LottoGame {
       throw ERROR_MESSAGE.RANGE_ERROR;
     }
     return true;
+  }
+
+  countMatchedNumbers(lottoNumbers, winningNumbers) {
+    return lottoNumbers.filter((number) => winningNumbers.includes(number))
+      .length;
   }
 }
 
