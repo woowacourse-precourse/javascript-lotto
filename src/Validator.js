@@ -25,7 +25,6 @@ class Validator {
     if (this.isNotRangeOfLottoNumber(bonusNumber)) {
       throw new Error(ERROR.NOT_RANGE_OF_LOTTO_NUMBER);
     }
-
     if (this.existInWinningNumber(winningNumber, bonusNumber)) {
       throw new Error(ERROR.EXIST_IN_WINNING_NUMBER);
     }
@@ -66,7 +65,7 @@ class Validator {
   }
 
   existInWinningNumber(winningNumber, bonusNumber) {
-    return winningNumber.includes(bonusNumber);
+    return winningNumber.includes(Number(bonusNumber));
   }
 
   isNotValidLottoNumberCount(lotto) {
