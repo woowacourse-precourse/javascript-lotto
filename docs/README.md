@@ -16,7 +16,7 @@
 - [] **게임 진행**
 
   - 로또 구매 금액 입력
-  - [] 사용자가 구입금액을 입력한다 UserInput # moneyInput()
+  - [x] 사용자가 구입금액을 입력한다 UserInput # moneyInput()
   - [] 1000원으로 나누어 떨어지지 않는 경우 예외 처리한다 UserInput # moneyInput() - checkExceptCaseInMoney()
 
   - 구매한 로또 번호 출력
