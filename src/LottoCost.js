@@ -1,3 +1,5 @@
+const { LOTTO_COST_ERROR } = require('./constant/errorMessage');
+
 class LottoCost {
   constructor(lottoCost) {
     this.validate(lottoCost);
@@ -5,17 +7,19 @@ class LottoCost {
   
   validate(lottoCost) {
     if (+lottoCost % 1 !== 0) {
-      throw new Error('[ERROR] 정수를 입력해주세요.');
+      throw new Error(LOTTO_COST_ERROR.CHECK_ISINTEGER);
     }
     if (+lottoCost % 1000 !== 0) {
-      throw new Error('[ERROR] 1000원 단위로 입력해주세요.');
+      throw new Error(LOTTO_COST_ERROR.CHECK_THOUSAND);
     }
     if (lottoCost === '') {
-      throw new Error('[ERROR] 숫자를 입력해 주세요.');
+      throw new Error(LOTTO_COST_ERROR.CHECK_ISNULL);
     }
     const input = lottoCost.split('');
     input.map((el) => {
-      if (el === ' ' || el === '.') throw new Error('[ERROR] 숫자만 입력해주세요.');
+      if (el === ' ' || el === '.') {
+        throw new Error(LOTTO_COST_ERROR.CHECK_BLANK_OR_DOT);
+      }
     });
   }
 }

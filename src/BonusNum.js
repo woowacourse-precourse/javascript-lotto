@@ -1,3 +1,5 @@
+const { BONUS_NUM_ERROR } = require('./constant/errorMessage');
+
 class BonusNum {
   constructor(winNums, bonusNum) {
     this.isInRange(bonusNum);
@@ -8,27 +10,31 @@ class BonusNum {
 
   isInRange(bonusNum) {
     if (bonusNum < 1 || bonusNum > 45) {
-      throw new Error('[ERROR] 1에서 45사이의 수를 입력해주세요.');
+      throw new Error(BONUS_NUM_ERROR.CHECK_RANGE);
     }
   }
 
   isInteger(bonusNum) {
     if (+bonusNum % 1 !== 0) {
-      throw new Error('[ERROR] 정수를 입력해주세요.');
+      throw new Error(BONUS_NUM_ERROR.CHECK_ISINTEGER);
     }
   }
 
   isNum(bonusNum) {
     const splitBonusNum = bonusNum.split('');
     splitBonusNum.map((el) => {
-      if (isNaN(el) || el === ' ') throw new Error('[ERROR] 숫자만 입력해주세요.');
+      if (isNaN(el) || el === ' ') {
+        throw new Error(BONUS_NUM_ERROR.CHECK_ISNUMBER);
+      }
     });
   }
 
   isInWinNums(winNums, bonusNum) {
     const winNumsArr = winNums.split(',');
     winNumsArr.map((winNum) => {
-      if (winNum === bonusNum) throw new Error('[ERROR] 당첨번호와 중복되는 숫자입니다.')
+      if (winNum === bonusNum) {
+        throw new Error(BONUS_NUM_ERROR.CHECK_OVERLAP);
+      }
     });
   }
 }

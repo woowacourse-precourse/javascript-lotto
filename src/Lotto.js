@@ -1,3 +1,5 @@
+const { LOTTO_ERROR } = require('./constant/errorMessage');
+
 class Lotto {
   #numbers;
 
@@ -9,18 +11,18 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+      throw new Error(LOTTO_ERROR.CHECK_COUNT);
     }
     const set = new Set(numbers);
     if (set.size < numbers.length) {
-      throw new Error('[ERROR] 로또 번호에 중복되는 숫자가 있습니다.');
+      throw new Error(LOTTO_ERROR.CHECK_OVERLAP);
     }
   }
 
   isSorted(numbers) {
     numbers.map((number, index) => {
       if (number > numbers[index + 1]) {
-        throw new Error('[ERROR] 번호가 오름차순으로 정렬되지 않습니다.');
+        throw new Error(LOTTO_ERROR.CHECK_SORTED);
       }
     });
   }
