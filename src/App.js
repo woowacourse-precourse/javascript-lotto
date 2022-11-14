@@ -1,4 +1,4 @@
-const { LOTTO, SYSTEM } = require('./consts/Lotto');
+const { LOTTO, SYSTEM } = require('./consts/LottoSystem');
 const MESSAGE = require('./consts/Message');
 
 const Console = require('./Console');
@@ -122,6 +122,7 @@ class App {
     let winningNumbers;
     Console.readLine(MESSAGE.INPUT.WINNING, (input) => {
       winningNumbers = this.parseNumbers(input);
+      this.handleWinningNumbersException(winningNumbers);
       Console.close();
     });
 
@@ -130,6 +131,26 @@ class App {
 
   parseNumbers(input) {
     return input.split(SYSTEM.JOIN_CHARACTER).map(Number);
+  }
+
+  handleWinningNumbersException(winningNumbers) {
+    const {
+      ERROR: {
+        WINNING: { FORM },
+      },
+    } = MESSAGE;
+
+    if (!this.isCorrectForm(winningNumbers)) {
+      throw Exception.error(FORM);
+    }
+  }
+
+  isCorrectForm(winningNumbers) {
+    if (winningNumbers.length === LOTTO.NUMBER_OF_DIGITS) {
+      return true;
+    }
+
+    return false;
   }
 
   inputBonusNumber() {
