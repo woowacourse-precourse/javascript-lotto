@@ -39,8 +39,15 @@ class UserInterface {
     return bonusNumber;
   }
 
-  static printStartStatisics() {
+  static printStartStatistics() {
     Console.print(PRINT_MESSAGE.START_STATISTICS);
+  }
+  static printBodyStatistics(resultArray) {
+    Console.print(PRINT_MESSAGE.FIFTH_RANKING_MESSAGE(resultArray[5]));
+    Console.print(PRINT_MESSAGE.FOURTH_RANKING_MESSAGE(resultArray[4]));
+    Console.print(PRINT_MESSAGE.THIRD_RANKING_MESSAGE(resultArray[3]));
+    Console.print(PRINT_MESSAGE.SECOND_RANKING_MESSAGE(resultArray[2]));
+    Console.print(PRINT_MESSAGE.FIRST_RANKING_MESSAGE(resultArray[1]));
   }
 }
 
