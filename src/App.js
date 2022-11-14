@@ -10,6 +10,7 @@ class App {
     this.purchase = this.input('구입금액을 입력해 주세요.\n');
     if (this.purchase === undefined)
       return 0;
+    this.input_exception();
   }
 
   input(text) {
@@ -18,6 +19,19 @@ class App {
       result = answer;
     });
     return result;
+  }
+
+  input_exception() {
+    let regex = /^[0-9]+$/;
+
+    if (this.purchase === undefined || this.purchase === null) {
+      MissionUtils.Console.close();
+      throw new Error("[ERROR] 입력된 구입금액이 없습니다.");
+    }
+    if (!regex.test(this.purchase)) {
+      MissionUtils.Console.close();
+      throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
   }
 }
 
