@@ -25,9 +25,9 @@ class WinningResult {
       let sameArr = lotto.filter(num => this.#winningNumberArr.includes(num));
       if (sameArr.length === 3) this.#result[WINNING_PRIZE.FIFTH]++;
       if (sameArr.length === 4) this.#result[WINNING_PRIZE.FOURTH]++;
-      if (sameArr.length === 5 && lotto.includes(this.#bonusNumber))
-        this.#result[WINNING_PRIZE.THIRD]++;
       if (sameArr.length === 5 && !lotto.includes(this.#bonusNumber))
+        this.#result[WINNING_PRIZE.THIRD]++;
+      if (sameArr.length === 5 && lotto.includes(this.#bonusNumber))
         this.#result[WINNING_PRIZE.SECOND]++;
       if (sameArr.length === 6) this.#result[WINNING_PRIZE.FIRST]++;
     });
