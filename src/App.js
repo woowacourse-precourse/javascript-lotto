@@ -36,7 +36,7 @@ class App {
 
   getBonus() {
     Console.readLine(COMMAND.BONUS, (bonus) => {
-      new BonusExceptions(bonus).check();
+      new BonusExceptions(bonus).check(this.winningArr);
       this.bonus = bonus;
     });
   }

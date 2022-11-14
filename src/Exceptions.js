@@ -61,9 +61,14 @@ class WinningExceptions extends Exceptions {
 }
 
 class BonusExceptions extends Exceptions {
-  check() {
+  check(winningArr) {
     if (super.isNotDigit(this.input)) super.occurError(ERROR.BONUS_DIGIT);
     if (!super.isInRange(this.input)) super.occurError(ERROR.BONUS_RANGE);
+    if (this.isDuplicated(winningArr)) super.occurError(ERROR.BONUS_DUPLICATED);
+  }
+
+  isDuplicated(winningArr) {
+    return winningArr.includes(parseInt(this.input));
   }
 }
 
