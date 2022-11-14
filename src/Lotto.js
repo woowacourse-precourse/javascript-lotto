@@ -31,7 +31,7 @@ class Lotto {
   }
 
   print() {
-    Console.print(`${this.#numbers}\n`);
+    Console.print(`${this.#numbers}`);
   }
 }
 
