@@ -1,4 +1,4 @@
-const { print, pickUniqueNumbersInRange } = require('./lib/Utils');
+const { pickUniqueNumbersInRange, print } = require('./lib/Utils');
 const { LOTTO_MAX_NUMBER, LOTTO_MIN_NUMBER, LOTTO_NUMBER } = require('./lib/Constants');
 
 class Lottery {

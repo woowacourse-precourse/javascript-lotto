@@ -1,5 +1,5 @@
 const { GAME_MESSAGE } = require('./lib/Constants');
-const { readLine, close } = require('./lib/Utils');
+const { close, readLine } = require('./lib/Utils');
 
 const Bonus = require('./Input/Bonus');
 const CalculationLotto = require('./CalculationLotto');
