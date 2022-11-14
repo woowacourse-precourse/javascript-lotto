@@ -26,24 +26,18 @@ class CompareLotto{
         this.addWinningStatics(count,isBonus);
     }
     checkBonusNumber(bonusNumber, userNumbers){
-        if(userNumbers.includes(...bonusNumber)){
-          return [1,true];
-        }else {
-          return [0,false];
-        }
+      if(userNumbers.includes(...bonusNumber)){
+        return [1,true];
+      }else {
+        return [0,false];
+      }
     }
     addWinningStatics(count, isBonus){
-        if(count===6){
-          this.#userWinningStatics[0] +=1;
-        }else if(count === 5 && isBonus){
-          this.#userWinningStatics[1] +=1;
-        }else if(count === 5){
-          this.#userWinningStatics[2] +=1;
-        }else if(count === 4){
-          this.#userWinningStatics[3] +=1;
-        }else if(count === 3){
-          this.#userWinningStatics[4] +=1;
-        }
+      if(count===6){ return this.#userWinningStatics[0] +=1;}
+      if(count === 5 && isBonus){ return this.#userWinningStatics[1] +=1;}
+      if(count === 5){ return this.#userWinningStatics[2] +=1;}
+      if(count === 4){ return this.#userWinningStatics[3] +=1;}
+      if(count === 3){ return this.#userWinningStatics[4] +=1;}
     }
     printUserWinningStatics(winningStatic){
       MissionUtils.Console.print("당첨 통계");
@@ -55,7 +49,7 @@ class CompareLotto{
       MissionUtils.Console.print("6개 일치 (2,000,000,000원) - "+winningStatic[0]+"개");
     }
     getUserWinningStatics(){
-        return this.#userWinningStatics;
+      return this.#userWinningStatics;
     }  
 }
 module.exports = CompareLotto;
