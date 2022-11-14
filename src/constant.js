@@ -20,6 +20,7 @@ const ERROR_MESSAGE = {
   RANGE: `${PREFIX} 1부터 45 사이의 숫자를 입력해 주세요.`,
   DUPLICATION: `${PREFIX} 중복되지 않은 수를 입력해 주세요.`,
   CURRENCY_UNIT: `${PREFIX} 1,000원 단위의 금액을 입력해 주세요.`,
+  FALSY_INPUT: `${PREFIX} 1,000원 단위의 금액을 입력해 주세요.`,
 };
 
 const RANK_MESSAGE = {

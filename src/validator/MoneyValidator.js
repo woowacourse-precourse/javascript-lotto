@@ -7,12 +7,17 @@ class MoneyValidator extends NumberValidator {
   }
 
   static validate(input) {
+    this.isValidMoneyRange(input);
     this.isValidMoney(input);
     this.isValidNumber(input);
   }
 
   static isValidMoney(input) {
-    if (input % 1000) throw new Error(ERROR_MESSAGE.CURRENCY_UNIT);
+    if (Number(input) % 1000) throw new Error(ERROR_MESSAGE.CURRENCY_UNIT);
+  }
+
+  static isValidMoneyRange(input) {
+    if (!Number(input)) throw new Error(ERROR_MESSAGE.FALSY_INPUT);
   }
 }
 
