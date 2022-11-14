@@ -37,12 +37,23 @@ class Lotto {
     return [count,includeBonus];
   }
 
+  printProfit(price,three,four,five,fiveBonus,six){
+    let profit = three*5000+four*50000+five*1500000+fiveBonus*30000000+six*2000000000;
+    let rateOfProfit = ((profit - price) / price)*100;
+    if(rateOfProfit<0){
+      rateOfProfit+=100;
+    }
+    Console.print(`총 수익률은 ${rateOfProfit.toFixed(1)}%입니다.`);
+    Console.close();
+  }
+
   printHistory(price,three,four,five,fiveBonus,six){
     Console.print(`3개 일치 (5,000원) - ${three}개`);
     Console.print(`4개 일치 (50,000원) - ${four}개`);
     Console.print(`5개 일치 (1,500,000원) - ${five}개`);
     Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${fiveBonus}개`);
     Console.print(`6개 일치 (2,000,000,000원) - ${six}개`);
+    this.printProfit(price,three,four,five,fiveBonus,six);
   }
 
   winningHistory(price,lottos,bonus){
