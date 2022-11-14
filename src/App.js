@@ -94,35 +94,40 @@ class App {
 
   #askLottoNumbers() {
     Utils.readLine(`\n${INPUT_LOTTO_NUMBERS}\n`, (inputWinningNumbers) => {
-      this.#setWinningNumbers(inputWinningNumbers);
+      const lottoNumbers = Utils.separateNumbers(inputWinningNumbers, ',');
+      this.#lottoManager.setWinningNumbers(lottoNumbers);
       this.#askBonusNumber();
     });
   }
 
   /**
    *
-   * @param {string} inputWinningNumbers
+   * @param {number} amount
+   * @param {number[][]} userNumbersList
+   * @returns {{prizes:{first: number, second: number, third:number, fourth:number, fifth:number}, revenue: string}}
    */
-  #setWinningNumbers(inputWinningNumbers) {
-    const lottoNumbers = Utils.separateNumbers(inputWinningNumbers, ',');
-    this.#lottoManager.setWinningNumbers(lottoNumbers);
+  generateStatistics(amount, userNumbersList) {
+    const prizes = this.#lottoManager.getPrizes(userNumbersList);
+    const revenue = this.#lottoManager.calculateRevenue(prizes, amount);
+
+    return { prizes, revenue };
   }
 
   #askBonusNumber() {
     Utils.readLine(`\n${INPUT_BONUS_NUMBER}\n`, (inputBonus) => {
       this.#lottoManager.setBonusNumber(inputBonus);
-
       const amount = this.#user.getAmount();
       const userNumbersList = this.#user.getNumbersList();
-      const bonusNumber = this.#lottoManager.getBonusNumber();
 
-      const prizes = this.#lottoManager.getPrizes(userNumbersList, bonusNumber);
-      const revenue = this.#lottoManager.calculateRevenue(prizes, amount);
+      const statistics = this.generateStatistics(amount, userNumbersList);
+      this.#printStatistics(statistics.prizes, statistics.revenue);
 
-      this.#printStatistics(prizes, revenue);
-
-      Utils.close();
+      this.#finishLotto();
     });
+  }
+
+  #finishLotto() {
+    Utils.close();
   }
 
   /**

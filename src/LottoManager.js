@@ -65,16 +65,15 @@ class LottoManager {
   /**
    *
    * @param {number[]} userNumbers
-   * @param {number} bonusNumber
    * @returns {{count: number, isBonusCorrect: boolean}}
    */
-  countSame(userNumbers, bonusNumber) {
+  countSame(userNumbers) {
     let count = 0;
     let isBonusCorrect = false;
 
     userNumbers.forEach((userNumber) => {
       if (this.#winningNumbers.includes(userNumber)) count += 1;
-      if (userNumber === bonusNumber) isBonusCorrect = true;
+      if (userNumber === this.#bonusNumber) isBonusCorrect = true;
     });
 
     return { count, isBonusCorrect };
@@ -99,21 +98,20 @@ class LottoManager {
   /**
    *
    * @param {number[][]} userNumbersList
-   * @param {number} bonusNumber
    * @returns {{first: number, second: number, third:number, fourth:number, fifth:number}}
    */
-  getPrizes(userNumbersList, bonusNumber) {
-    const statistics = { first: 0, second: 0, third: 0, fourth: 0, fifth: 0 };
+  getPrizes(userNumbersList) {
+    const prizes = { first: 0, second: 0, third: 0, fourth: 0, fifth: 0 };
 
     userNumbersList.forEach((userNumbers) => {
-      const countInfo = this.countSame(userNumbers, Number(bonusNumber));
+      const countInfo = this.countSame(userNumbers);
       const { count, isBonusCorrect } = countInfo;
       const prize = this.getPrize(count, isBonusCorrect);
 
-      if (prize !== 'none') statistics[prize] += 1;
+      if (prize !== 'none') prizes[prize] += 1;
     });
 
-    return statistics;
+    return prizes;
   }
 
   /**
