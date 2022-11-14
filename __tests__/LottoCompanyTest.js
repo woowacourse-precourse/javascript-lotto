@@ -8,7 +8,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 //   });
 // });
 
-describe("Feat 4. LottoCompany.drawLottoNumber", () => {
+describe("Feat 3. LottoCompany.drawLottoNumber", () => {
   const lottoCompany = new LottoCompany();
 
   test("로또 당첨 번호를 받아 당첨 번호 전체를 반환한다.", () => {

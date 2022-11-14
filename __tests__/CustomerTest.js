@@ -1,23 +1,13 @@
 const Customer = require("../src/Customer");
 const MissionUtils = require("@woowacourse/mission-utils");
 
-const mockQuestions = (answer) => {
-  MissionUtils.Console.readLine = jest.fn().mockReturnValue(answer);
-};
-
-// dummy test codes
-// describe("", () => {
-//   test("", () => {
-//     expect()
-//   });
-// });
-
 describe("Feat 1. Customer.buyLotto", () => {
   const customer = new Customer();
 
   test("입력된 금액이 천원으로 나누어 떨어진다.", () => {
-    mockQuestions("8000");
-    expect(customer.payMoney()).toBe(8000);
+    expect(() => {
+      customer.isMoneyValidate(8000);
+    }).not.toThrow("[ERROR]");
   });
 
   test("입력된 금액이 천원으로 나누어 떨어지지 않으면 예외가 발생한다.", () => {

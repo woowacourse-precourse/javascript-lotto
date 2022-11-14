@@ -2,12 +2,18 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
 class LottoStore {
-  constructor() {}
-
-  generateLotto(money) {
+  makeLotto(money) {
+    this.isMoneyValidate(money);
     const count = this.calculateLottoCount(money);
     const lottos = this.generateLottoNumber(count);
+    console.log(lottos);
     return lottos;
+  }
+
+  isMoneyValidate(moneyString) {
+    const money = parseInt(moneyString);
+    if (money % 1000 !== 0)
+      throw new Error("[ERROR] 구입 금액이 천원 단위가 아닙니다");
   }
 
   calculateLottoCount(money) {
