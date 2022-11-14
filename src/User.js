@@ -1,10 +1,22 @@
+const Lotto = require("./Lotto");
+const MissionUtils = require("@woowacourse/mission-utils");
+
 class User {
 	#seedMoney
-
+	
 	constructor(money) {
 		this.validate(money);
 		this.profit = 0;
 		this.#seedMoney = money;
+	}
+	
+	getSeedMoney(money) {
+		return this.#seedMoney;
+	}
+	
+	getRateOfReturn() {
+		let rateOfReturn = ((this.profit / this.#seedMoney) * 100).toFixed(1);
+		return (rateOfReturn + "%");
 	}
 
 	validate(money) {
@@ -19,27 +31,28 @@ class User {
 			throw new Error('[ERROR] 구입 금액은 숫자여야 합니다.');
 		}
   }
-
+	
 	isMoneyEnough(money) {
 		if (money < 1000) {
 			throw new Error('[ERROR] 구입 금액이 충분하지 않습니다.');
 		}
 	}
-
+	
 	isThousands(money) {
 		if ((money % 1000) !== 0) {
 			throw new Error('[ERROR] 구입 금액은 1,000원 단위여야 합니다.');
 		}
 	}
 
-	getSeedMoney(money) {
-		return this.#seedMoney;
+	buyLottos(count) {
+		let lottoBundle = [];
+    for (let i = 0; i < count; i++) {
+			let randomNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+			let newLotto = new Lotto(randomNumbers);
+			lottoBundle.push(newLotto.getLotto());
+    }
+		return lottoBundle;
 	}
-	
-	getRateOfReturn() {
-		let rateOfReturn = ((this.profit / this.#seedMoney) * 100).toFixed(1);
-		return (rateOfReturn + "%");
-	}
-}
+}	
 
 module.exports = User;
