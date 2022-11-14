@@ -50,12 +50,10 @@ class Lotto {
   }
 
   calcTotalPrize(winningState) {
-    let totalPrize = 0;
-    for (let i = 0; i < LOTTO.NUM_OF_PRIZE; i++) {
-      totalPrize += winningState[i] * PRIZE_MONEY[i];
-    }
-
-    return totalPrize;
+    return PRIZE_MONEY.reduce(
+      (totalPrize, prize, idx) => totalPrize + prize * winningState[idx],
+      0
+    );
   }
 
   calcRateOfReturn(totalPrize, countOfLottos) {
