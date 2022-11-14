@@ -49,7 +49,7 @@
 |:heavy_check_mark:|보너스 번호가 로또 번호 내에 포함되는 경우||
 |:heavy_check_mark:|로또 구입 금액이 숫자형이 아닌 경우||
 |:heavy_check_mark:|로또 구입 금액이 자연수가 아닌 경우||
-|:heavy_minus_sign:|로또 구입 금액이 1,000원 단위로 나누어 떨어지지 않는 경우||
+|:heavy_check_mark:|로또 구입 금액이 1,000원 단위로 나누어 떨어지지 않는 경우||
 
 
 

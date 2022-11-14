@@ -15,7 +15,7 @@ const ERROR_MSG_BUDGET_NAN =
   ERROR_MSG_PREFIX + "로또 구입 금액은 숫자형이어야 합니다.";
 const ERROR_MSG_BUDGET_NATURAL_NUM =
   ERROR_MSG_PREFIX + "로또 구입 금액은 자연수이어야 합니다.";
-const ERROR_MSG_THOUSAND_UNIT =
+const ERROR_MSG_BUDGET_THOUSAND_UNIT =
   ERROR_MSG_PREFIX + "로또 구입 금액은 1,000원으로 나누어 떨어져야 합니다.";
 
 module.exports = {
@@ -28,5 +28,5 @@ module.exports = {
   ERROR_MSG_BONUS_NUM_IN_MAIN_NUMS,
   ERROR_MSG_BUDGET_NAN,
   ERROR_MSG_BUDGET_NATURAL_NUM,
-  ERROR_MSG_THOUSAND_UNIT,
+  ERROR_MSG_BUDGET_THOUSAND_UNIT,
 };

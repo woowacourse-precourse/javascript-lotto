@@ -7,7 +7,7 @@ const {
   ERROR_MSG_BONUS_NUM_IN_MAIN_NUMS,
   ERROR_MSG_BUDGET_NAN,
   ERROR_MSG_BUDGET_NATURAL_NUM,
-  ERROR_MSG_THOUSAND_UNIT,
+  ERROR_MSG_BUDGET_THOUSAND_UNIT,
 } = require("./constants/error-message");
 
 class Checker {
@@ -16,6 +16,8 @@ class Checker {
 
     const budget = Number(input);
     this.checkBudgetIsNaturalNumber(budget);
+    this.checkBudgetThousandUnit(budget);
+    return budget;
   }
 
   checkBudgetIsNumber(input) {
@@ -26,6 +28,11 @@ class Checker {
   checkBudgetIsNaturalNumber(budget) {
     if (0 <= budget) return;
     throw new Error(ERROR_MSG_BUDGET_NATURAL_NUM);
+  }
+
+  checkBudgetThousandUnit(budget) {
+    if (!budget % 1000) return;
+    throw new Error(ERROR_MSG_BUDGET_THOUSAND_UNIT);
   }
 
   validateMainNums(input) {
