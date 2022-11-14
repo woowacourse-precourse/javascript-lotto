@@ -1,6 +1,6 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const lottoValidation = require('./validation/lottoValidation');
-const { RANK, MATCH, MONEY } = require('./constant/constant');
+const { RANK, MATCH, MONEY, NUMBER } = require('./constant/constant');
 
 class LottoBuilder {
   constructor() {
@@ -21,12 +21,16 @@ class LottoBuilder {
   }
 
   #creatLottoNumber() {
-    const randomNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    const randomNumber = MissionUtils.Random.pickUniqueNumbersInRange(
+      NUMBER.ONE,
+      NUMBER.FORTY_FIVE,
+      NUMBER.SIX
+    );
     return randomNumber.sort((a, b) => a - b);
   }
 
   countAmountLotto(input) {
-    return Number(input.slice(0, input.length - 3));
+    return Number(input.slice(NUMBER.ZERO, input.length - NUMBER.THREE));
   }
 
   build() {
@@ -41,7 +45,13 @@ class Lotto {
     this.#numbers = numbers;
     this.lottoList = lottoList;
     this.bonusNumber = bonusNumber;
-    this.stats = [0, 0, 0, 0, 0];
+    this.stats = [
+      NUMBER.ZERO,
+      NUMBER.ZERO,
+      NUMBER.ZERO,
+      NUMBER.ZERO,
+      NUMBER.ZERO,
+    ];
     this.yield = null;
     this.validate(numbers);
   }
@@ -78,49 +88,52 @@ class Lotto {
     ];
 
     return stats.reduce((money, value, index) => {
-      if (value > 0) {
+      if (value > NUMBER.ZERO) {
         return (money += moneyArray[index] * value);
       }
 
       return money;
-    }, 0);
+    }, NUMBER.ZERO);
   }
 
   yieldCalculation(money, lottoList) {
-    return ((money / (lottoList.length * 1000)) * 100).toFixed(1);
+    return (
+      (money / (lottoList.length * NUMBER.ONE_THOUSAND)) *
+      NUMBER.ONE_HUNDRED
+    ).toFixed(NUMBER.ONE);
   }
 
   countLotto(lotto, numbers) {
     return lotto.reduce((count, value) => {
       if (numbers.includes(value.toString())) {
-        return count + 1;
+        return count + NUMBER.ONE;
       }
 
       return count;
-    }, 0);
+    }, NUMBER.ZERO);
   }
 
   compareBonus(count, lotto, bonus) {
     return count === MATCH.FIVE && lotto.includes(Number(bonus))
-      ? (count += 0.5)
+      ? (count += NUMBER.ZERO_POINT_FIVE)
       : count;
   }
 
   rank(correct) {
     if (correct === MATCH.THREE) {
-      return (this.stats[RANK.FIVE] += 1);
+      return this.stats[RANK.FIVE]++;
     }
     if (correct === MATCH.FOUR) {
-      return (this.stats[RANK.FOUR] += 1);
+      return this.stats[RANK.FOUR]++;
     }
     if (correct === MATCH.FIVE) {
-      return (this.stats[RANK.THREE] += 1);
+      return this.stats[RANK.THREE]++;
     }
     if (correct === MATCH.FIVE_BONUS) {
-      return (this.stats[RANK.TWO] += 1);
+      return this.stats[RANK.TWO]++;
     }
     if (correct === MATCH.SIX) {
-      return (this.stats[RANK.ONE] += 1);
+      return this.stats[RANK.ONE]++;
     }
   }
 }

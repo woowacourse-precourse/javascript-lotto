@@ -18,7 +18,7 @@ class LottoView {
 
   setPurchaseAmount() {
     this.print(INPUT_TEXT.PURCHASE_AMOUNT);
-    this.readLine('', (input) => {
+    this.readLine(INPUT_TEXT.EMPTY, (input) => {
       if (amountValidation(input)) {
         const lottoList = this.LottoBuilder.creatLottoList(input);
         this.LottoBuilder.lottoList = lottoList;
@@ -30,7 +30,7 @@ class LottoView {
 
   setWinningNumber() {
     this.print(INPUT_TEXT.LINE_BREAK, INPUT_TEXT.WINNING_NUMBER);
-    this.readLine('', (input) => {
+    this.readLine(INPUT_TEXT.EMPTY, (input) => {
       if (winningValidation(input)) {
         this.LottoBuilder.WinningNumber = input.split(',');
         this.setBonusNumber();
@@ -40,7 +40,7 @@ class LottoView {
 
   setBonusNumber() {
     this.print(INPUT_TEXT.LINE_BREAK, INPUT_TEXT.BONUS_NUMBER);
-    this.readLine('', (input) => {
+    this.readLine(INPUT_TEXT.EMPTY, (input) => {
       if (bonusValidation(input, this.LottoBuilder.WinningNumber)) {
         this.LottoBuilder.bonusNumber = input;
 
@@ -76,11 +76,11 @@ class LottoView {
 
   showRankList(lottoRanks) {
     this.print(
-      `${STATS_TEXT.MATCH_THREE}${lottoRanks[RANK.FIVE]}개`,
-      `${STATS_TEXT.MATCH_FOUR}${lottoRanks[RANK.FOUR]}개`,
-      `${STATS_TEXT.MATCH_FIVE}${lottoRanks[RANK.THREE]}개`,
-      `${STATS_TEXT.MATCH_FIVE_BONUS}${lottoRanks[RANK.TWO]}개`,
-      `${STATS_TEXT.MATCH_SIX}${lottoRanks[RANK.ONE]}개`
+      `${STATS_TEXT.MATCH_THREE}${lottoRanks[RANK.FIVE]}${STATS_TEXT.EACH}`,
+      `${STATS_TEXT.MATCH_FOUR}${lottoRanks[RANK.FOUR]}${STATS_TEXT.EACH}`,
+      `${STATS_TEXT.MATCH_FIVE}${lottoRanks[RANK.THREE]}${STATS_TEXT.EACH}`,
+      `${STATS_TEXT.MATCH_FIVE_BONUS}${lottoRanks[RANK.TWO]}${STATS_TEXT.EACH}`,
+      `${STATS_TEXT.MATCH_SIX}${lottoRanks[RANK.ONE]}${STATS_TEXT.EACH}`
     );
   }
 

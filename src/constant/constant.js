@@ -4,6 +4,7 @@ const INPUT_TEXT = {
   WINNING_NUMBER: '당첨 번호를 입력해 주세요.',
   BONUS_NUMBER: '보너스 번호를 입력해 주세요.',
   LINE_BREAK: '',
+  EMPTY: '',
 };
 
 const STATS_TEXT = {
@@ -13,6 +14,7 @@ const STATS_TEXT = {
   MATCH_FIVE: '5개 일치 (1,500,000원) - ',
   MATCH_FIVE_BONUS: '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
   MATCH_SIX: '6개 일치 (2,000,000,000원) - ',
+  EACH: '개',
   YIELD: '총 수익률은 ',
   YIELD_ENDING: '%입니다.',
   HORIZONTAL_LINE: '---',
@@ -65,4 +67,21 @@ const MONEY = {
   RANK_FIVE: 5000,
 };
 
-module.exports = { INPUT_TEXT, STATS_TEXT, ERROR, RANK, MATCH, MONEY };
+const NUMBER = {
+  ZERO: 0,
+  ZERO_POINT_FIVE: 0.5,
+  ONE: 1,
+  TWO: 2,
+  THREE: 3,
+  FOUR: 4,
+  FIVE: 5,
+  SIX: 6,
+  SEVEN: 7,
+  EIGHT: 8,
+  NINE: 9,
+  FORTY_FIVE: 45,
+  ONE_HUNDRED: 100,
+  ONE_THOUSAND: 1000,
+};
+
+module.exports = { INPUT_TEXT, STATS_TEXT, ERROR, RANK, MATCH, MONEY, NUMBER };
