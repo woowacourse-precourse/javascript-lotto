@@ -15,12 +15,16 @@ class LottoStatistics extends LottoSystem {
     this.bonusNumber = winningLotto.bonusNumber;
   }
 
+  getRankHelper(buyingLotto) {
+    const matchedCount = this.matchCount(buyingLotto, this.winningNumbers);
+    const isMatchedBonus = buyingLotto.includes(this.bonusNumber);
+    return this.getRank(matchedCount, isMatchedBonus);
+  }
+
   createRankCounter(buyingLottos) {
     const filteredRanks = buyingLottos
       .map((buyingLotto) => {
-        const matchedCount = this.matchCount(buyingLotto, this.winningNumbers);
-        const isMatchedBonus = buyingLotto.includes(this.bonusNumber);
-        return this.getRank(matchedCount, isMatchedBonus);
+        return this.getRankHelper(buyingLotto);
       })
       .filter((rank) => rank !== null);
     return Utils.createCounter(filteredRanks);
@@ -28,9 +32,7 @@ class LottoStatistics extends LottoSystem {
 
   getTotalReward(buyingLottos) {
     return buyingLottos.reduce((total, buyingLotto) => {
-      const matchedCount = this.matchCount(buyingLotto, this.winningNumbers);
-      const isMatchedBonus = buyingLotto.includes(this.bonusNumber);
-      const rank = this.getRank(matchedCount, isMatchedBonus);
+      const rank = this.getRankHelper(buyingLotto);
       const reward = this.getRewardByRank(rank);
       return total + reward;
     }, 0);
