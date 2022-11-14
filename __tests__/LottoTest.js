@@ -1,4 +1,4 @@
-const Lotto = require("../src/Lotto");
+const Lotto = require("../src/components/Lotto");
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
@@ -15,4 +15,28 @@ describe("로또 클래스 테스트", () => {
   });
 
   // 아래에 추가 테스트 작성 가능
+  test("로또 번호에 숫자 아닌 문자가 있으면 예외가 발생한다. (1)", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, 'a']);
+    }).toThrow("[ERROR]");
+  });
+
+  test("로또 번호에 숫자 아닌 문자가 있으면 예외가 발생한다. (2)", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, '/']);
+    }).toThrow("[ERROR]");
+  });
+
+  test("로또 번호에 정수가 아닌 수가 있으면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, 6.7]);
+    }).toThrow("[ERROR]");
+  });
+
+  test("getNumbers() 메서드는 생성된 로또의 번호를 반환해야 한다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    const result = lotto.getNumbers();
+
+    expect(result).toEqual([1, 2, 3, 4, 5, 6]);
+  });
 });
