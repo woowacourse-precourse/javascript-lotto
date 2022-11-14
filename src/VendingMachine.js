@@ -1,4 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
+const Lotto = require('./Lotto');
 const {
   isMultipleOf1000,
   divide1000,
@@ -10,7 +11,7 @@ const {
   getRateStrOfProfit,
   lottoArrToString,
 } = require('./lib/utilFns.js');
-const Lotto = require('./Lotto');
+const { CONSOLE_MSG, ERROR_MSG } = require('./lib/constant');
 
 class VendingMachine {
   #purchaseAmount;
@@ -33,12 +34,12 @@ class VendingMachine {
       this.askLottoNumbers();
     };
 
-    Console.readLine('구입금액을 입력해 주세요.\n', answerCbFn);
+    Console.readLine(CONSOLE_MSG.enterPerchaseAmount, answerCbFn);
   }
 
   validate(purchaseAmount) {
     if (!isMultipleOf1000(purchaseAmount)) {
-      throw new Error('[ERROR] 구입 금액은 1,000원 단위로 입력해주세요.');
+      throw new Error(ERROR_MSG.invalidUnitOf1000);
     }
 
     return true;
@@ -65,7 +66,7 @@ class VendingMachine {
   printPickedNumbers() {
     const pickedNumbers = this.#randomNumbers.map(lottoArrToString).join('\n');
 
-    Console.print(`\n${this.#numberOfLottos}개를 구매했습니다.`);
+    Console.print(CONSOLE_MSG.confirmNumbers(this.#numberOfLottos));
     Console.print(pickedNumbers);
   }
 
@@ -78,7 +79,7 @@ class VendingMachine {
       this.askBonusNumber();
     };
 
-    Console.readLine('\n당첨 번호를 입력해 주세요.\n', answerCbFn);
+    Console.readLine(CONSOLE_MSG.enterLottoNumbers, answerCbFn);
   }
 
   askBonusNumber() {
@@ -94,7 +95,7 @@ class VendingMachine {
       this.printStatistics(winMessages, rateOfProfit);
     };
 
-    Console.readLine('\n보너스 번호를 입력해주세요.\n', answerCbFn);
+    Console.readLine(CONSOLE_MSG.enterBonusNumber, answerCbFn);
   }
 
   getRanksByScores() {
@@ -119,9 +120,8 @@ class VendingMachine {
   }
 
   printStatistics(winMessages, rateOfProfit) {
-    Console.print('당첨 통계\n---\n');
-    Console.print(winMessages);
-    Console.print(`총 수익률은 ${rateOfProfit}입니다.`);
+    const printMsg = [CONSOLE_MSG.winStatistics, winMessages, CONSOLE_MSG.confirmRate(rateOfProfit)].join('\n');
+    Console.print(printMsg);
   }
 }
 

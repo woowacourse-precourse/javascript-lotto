@@ -1,4 +1,5 @@
 const { isLottoNumbers, isDuplicated, isInclude } = require('./lib/utilFns');
+const { ERROR_MSG } = require('./lib/constant');
 
 class Lotto {
   #numbers;
@@ -11,7 +12,7 @@ class Lotto {
 
   validate(numbers) {
     if (!isLottoNumbers(numbers, 1, 45, 6) || isDuplicated(numbers)) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+      throw new Error(ERROR_MSG.invalidLottos);
     }
 
     return true;
@@ -25,7 +26,7 @@ class Lotto {
 
   validateAllNumbers(allNumbers) {
     if (isDuplicated(allNumbers)) {
-      throw new Error('[ERROR] 로또 번호와 보너스 번호는 중복되지 않아야 합니다.');
+      throw new Error(ERROR_MSG.duplicatedLottosAndBonus);
     }
 
     return true;

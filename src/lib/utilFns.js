@@ -1,5 +1,5 @@
 const { Random } = require('@woowacourse/mission-utils');
-const { amountRegExp, AMOUNT_BY_RANK, SCORE_MSG_BY_RANK } = require('./constant');
+const { amountRegExp, AMOUNT_BY_RANK, SCORE_MSG_BY_RANK, CONSOLE_MSG } = require('./constant');
 
 const isRight = (regExp) => (amount) => {
   const target = amount.trim();
@@ -50,7 +50,7 @@ const getWinMessage = (rank, cnt) => {
   const scoreMsg = SCORE_MSG_BY_RANK[rank];
   const amountMsg = AMOUNT_BY_RANK[rank];
 
-  return `${scoreMsg} (${amountMsg}원) - ${cnt}개`;
+  return CONSOLE_MSG.winMessage(scoreMsg, amountMsg, cnt);
 };
 
 const getWinAmount = (rank, cnt) => {
@@ -66,7 +66,7 @@ const getRateStrOfProfit = (profit, spend) => {
   const [quotientStr, remainderStr] = rateStr.split('.');
   const quotientCommaStr = getCommaStr(quotientStr);
 
-  return `${quotientCommaStr}.${remainderStr}%`;
+  return CONSOLE_MSG.rateOfProfit(quotientCommaStr, remainderStr);
 };
 
 const getRoundRateStr = (digit) => (rate) => {
