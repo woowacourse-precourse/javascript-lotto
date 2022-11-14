@@ -67,6 +67,12 @@ class Lotto {
       this.winningNumber[sameNumber.length - 3] += 1;
     }
   }
+
+  lottoWinning(sameNumber) {
+    if (sameNumber.length >= 3) {
+      this.winningNumber[sameNumber.length - 3] += 1;
+    }
+  }
 }
 
 module.exports = Lotto;
