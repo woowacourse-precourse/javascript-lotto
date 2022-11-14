@@ -1,5 +1,5 @@
 const { ERROR_MESSAGES } = require('../src/constant/messages');
-const Validator = require('../src/Validator');
+const Validator = require('../src/utils/Validator');
 
 describe('유효성 검사 클래스 메서드 테스트', () => {
   test('구입 금액 입력 시 숫자로 된 값이 아니면 타입 에러가 발생한다.', () => {
