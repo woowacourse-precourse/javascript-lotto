@@ -9,7 +9,8 @@ class App {
 
   getUserInput(message) {
     Console.readLine(message, (answer) => {
-      CreateLotto.print(parseInt(answer));
+      const createLotto = new CreateLotto(parseInt(answer));
+      createLotto.make();
     });
   }
 }
