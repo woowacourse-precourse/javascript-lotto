@@ -25,6 +25,16 @@ class App {
       .catch((e) => {});
     this.user.amount = amount;
   }
+
+  printUserLottos() {
+    this.user.calculateLottoCount();
+    this.user.lottos = LottoGenerator.generatedByCount(this.user.lottoCount);
+    this.output.print(`${this.user.lottoCount}${message.BUY_AMOUNT}`);
+
+    this.user.lottos.forEach((lotto) => {
+      this.output.print(lotto.show());
+    });
+  }
 }
 
 module.exports = App;
