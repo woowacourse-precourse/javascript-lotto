@@ -2,8 +2,6 @@ const { Console, Random } = require("@woowacourse/mission-utils");
 const { isLengthError, isDuplicate } = require("./utils");
 class Lotto {
   #numbers;
-  numberOfMatches = 0;
-  isBonus = false;
 
   constructor(numbers) {
     this.validate(numbers);
@@ -25,20 +23,21 @@ class Lotto {
     return this.#numbers;
   }
 
-  setNumberOfMatches(luckyNumbers) {
+  getNumberOfMatches(luckyNumbers) {
+    let count = 0
     this.#numbers.filter((number) => {
       if (luckyNumbers.includes(number)) {
-        this.numberOfMatches += 1;
+        count += 1;
       }
     });
-    return this;
+    return count;
   }
 
-  setIsBonus(bonusNumber) {
+  isBonus(bonusNumber) {
     if (this.#numbers.includes(bonusNumber)) {
-      this.isBonus = true;
+      return true;
     }
-    return this;
+    return false;
   }
 }
 

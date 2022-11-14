@@ -1,6 +1,6 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto')
-const { isLengthError, isDuplicate } = require("./utils");
+const { isLengthError, isDuplicate, isNotRightBonus } = require("./utils");
 
 
 class App {
@@ -26,7 +26,7 @@ class App {
   pay() {
     Console.readLine('구입금액을 입력해 주세요.\n', (input) => {
       this.inputMoney = input;
-      this.numberOfLotto = Number(input) / 1000;
+      this.numberOfLotto = Number(this.inputMoney) / 1000;
       this.publish();
     });
   }
@@ -50,20 +50,23 @@ class App {
     return;
   }
 
-  validate(numbers) {
-    if (isLengthError(numbers)) {
+  validate(luckyNumbers, bonusNumber) {
+    if (isLengthError(luckyNumbers)) {
       throw new Error("[ERROR] 당첨 번호는 6개여야 합니다.");
     }
 
-    if (isDuplicate(numbers)) {
+    if (isDuplicate(luckyNumbers)) {
       throw new Error("[ERROR] 당첨 번호는 중복이 없어야 합니다.");
+    }
+
+    if (isNotRightBonus(luckyNumbers, bonusNumber)) {
+      throw new Error("[ERROR] 보너스 번호는 당첨번호와 달라야 합니다.");
     }
   }
 
   draw() {
     Console.readLine('\n당첨 번호를 입력해 주세요.\n', (input) => {
       this.luckyNumbers = input.split(",").map(Number);
-      this.validate(this.luckyNumbers)
       this.setBonus();
     });
     return;
@@ -71,6 +74,8 @@ class App {
   setBonus() {
     Console.readLine('\n보너스 번호를 입력해 주세요.\n', (input) => {
       this.bonusNumber = Number(input)
+      this.validate(this.luckyNumbers, this.bonusNumber)
+
       this.winning();
     });
 
@@ -79,23 +84,17 @@ class App {
 
   winning () {
     this.myLottos.map(myLotto => {
-      myLotto
-        .setNumberOfMatches(this.luckyNumbers)
-        .setIsBonus(this.bonusNumber);
-
-      if (myLotto.numberOfMatches === 3) {
+      if (myLotto.getNumberOfMatches(this.luckyNumbers) === 3) {
         this.resultMap.fifthPlace += 1;
-      } else if (myLotto.numberOfMatches === 4) {
+      } else if (myLotto.getNumberOfMatches(this.luckyNumbers) === 4) {
         this.resultMap.fourthPlace += 1;
-      } else if (myLotto.numberOfMatches === 5) {
+      } else if (myLotto.getNumberOfMatches(this.luckyNumbers) === 5 && !myLotto.isBonus(this.bonusNumber)) {
         this.resultMap.thirdPlace += 1;
-      } else if (myLotto.numberOfMatches === 5 && myLotto.isBonus) {
+      } else if (myLotto.getNumberOfMatches(this.luckyNumbers) === 5 && myLotto.isBonus(this.bonusNumber)) {
         this.resultMap.secondPlace += 1;
-      } else if (myLotto.numberOfMatches === 6) {
+      } else if (myLotto.getNumberOfMatches(this.luckyNumbers) === 6) {
         this.resultMap.firstPlace += 1;
       }
-
-
     })
     this.getYield();
     this.printResult();
