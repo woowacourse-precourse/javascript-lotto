@@ -18,8 +18,23 @@ const MESSAGE = {
   profit: (percentage) => `총 수익률은 ${percentage}%입니다.`,
 };
 
+const RULE = {
+  3: 'fifth',
+  4: 'fourth',
+  5: 'third',
+  6: 'first',
+};
+
+const PRIZE_BOARD = {
+  fifth: 5000,
+  fourth: 50000,
+  third: 1500000,
+  second: 30000000,
+  first: 2000000000,
+};
+
 const ERROR = {
   COMMON: '[ERROR]',
 };
 
-module.exports = { GAME, MESSAGE, ERROR };
+module.exports = { GAME, MESSAGE, RULE, PRIZE_BOARD, ERROR };
