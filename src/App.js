@@ -61,8 +61,10 @@ class App {
 
   inputBonus() {
     Console.readLine(`${OUTPUT.LINE}${INPUT.BONUS}${OUTPUT.LINE}`, (number) => {
-      this.bonusNumber = parseInt(number, CALCULATION.DECIMAL_NUMBER);
-      new Bonus(this.bonusNumber, this.winningNumbers);
+      this.bonusNumber = new Bonus().changeIntoNumber(
+        number,
+        this.winningNumbers
+      );
       this.getReward();
     });
   }
@@ -103,5 +105,4 @@ class App {
   }
 }
 
-// module.exports = App;
-new App().play();
+module.exports = App;

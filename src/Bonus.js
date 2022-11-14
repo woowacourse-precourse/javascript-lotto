@@ -1,12 +1,19 @@
 const { ERROR } = require("./constants/messges");
-const { LOTTO } = require("./constants/values");
+const { LOTTO, CALCULATION } = require("./constants/values");
 
 class Bonus {
   #number;
 
-  constructor(number, winning) {
-    this.validate(number, winning);
-    this.#number = number;
+  constructor() {
+    this.#number = 0;
+  }
+
+  changeIntoNumber(number, winning) {
+    this.#number = parseInt(number, CALCULATION.DECIMAL_NUMBER);
+
+    this.validate(this.#number, winning);
+
+    return this.#number;
   }
 
   validate(number, winning) {
