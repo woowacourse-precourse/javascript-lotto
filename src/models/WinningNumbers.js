@@ -12,7 +12,7 @@ class WinningNumbers {
   }
 
   winningNumbersConverter(numbers) {
-    const winningNumberArray = numbers.split(',').map((item) => parseInt(item));
+    const winningNumberArray = numbers.split(',').map((item) => Number(item));
     return winningNumberArray;
   }
 

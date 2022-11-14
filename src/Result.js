@@ -48,7 +48,7 @@ class Result {
       + this.#score.fivePlusBonus * 30000000
       + this.#score.six * 2000000000;
 
-    this.#revenue = parseFloat((total / this.money) * 100).toFixed(1);
+    this.#revenue = Number((total / this.money) * 100).toFixed(1);
   }
 }
 
