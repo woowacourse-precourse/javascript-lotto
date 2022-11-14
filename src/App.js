@@ -4,9 +4,11 @@ const LOTTO = require('./consts/Lotto');
 
 class App {
   purchase;
+  numberOfPurchases;
 
   play() {
     this.setPurchase();
+    this.setNumberOfPurchases();
   }
 
   setPurchase() {
@@ -39,6 +41,14 @@ class App {
     }
 
     return false;
+  }
+
+  setNumberOfPurchases() {
+    this.numberOfPurchases = this.calculatenumberOfPurchases();
+  }
+
+  calculateNumberOfPurchases() {
+    return this.purchase / LOTTO.PRICE;
   }
 }
 
