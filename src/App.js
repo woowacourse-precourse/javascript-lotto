@@ -59,6 +59,13 @@ class App {
     Console.readLine("당첨 번호를 입력해 주세요.", (winNumber) => {
       winningNumbers = winNumber.split(",").map(Number).sort((idx1,idx2) => idx1-idx2 );
     });
+    const lotto = new Lotto(winningNumbers);
+  }
+
+  inputOfBonusNumber() {
+    Console.readLine("보너스 번호를 입력해 주세요.", (bonusNumber) => {
+      bonusNumber = parseInt(bonusNumber);
+    })
   }
 }
 
