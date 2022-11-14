@@ -1,27 +1,11 @@
 const { Console } = require("@woowacourse/mission-utils");
-
+const { LOTTO_RESULT, BONUS_RESULT } = require("./constants/core");
+const { LOTTO, PRINT_MESSAGE } = require("./constants/constants");
 class Result {
   #bonusCnt;
 
   createLottoResult(scores, bonusNum, lottoArr) {
-    const lottoResult = {
-      3: {
-        money: 5000,
-        count: 0,
-      },
-      4: {
-        money: 50000,
-        count: 0,
-      },
-      5: {
-        money: 1500000,
-        count: 0,
-      },
-      6: {
-        money: 2000000000,
-        count: 0,
-      },
-    };
+    const lottoResult = LOTTO_RESULT;
     this.#bonusCnt = 0;
     for (let i = 0; i < scores.length; i++) {
       const score = scores[i];
@@ -30,16 +14,14 @@ class Result {
         this.#bonusCnt += 1;
         continue;
       }
-      lottoResult[score]["count"] += 1;
+      lottoResult[score][LOTTO.COUNT] += 1;
     }
     return lottoResult;
   }
 
   createBonusResult() {
-    const bonusResult = {
-      money: 30000000,
-      count: this.#bonusCnt,
-    };
+    const bonusResult = BONUS_RESULT;
+    bonusResult[LOTTO.COUNT] += this.#bonusCnt;
     return bonusResult;
   }
 
@@ -60,12 +42,12 @@ class Result {
   getTotalYield(buyMoney, lottoResult, bonusResult) {
     let totalProfit = 0;
     for (const score in lottoResult) {
-      if (lottoResult[score]["count"] > 0) {
-        totalProfit += lottoResult[score]["money"];
+      if (lottoResult[score][LOTTO.COUNT] > 0) {
+        totalProfit += lottoResult[score][LOTTO.MONEY];
       }
     }
-    if (bonusResult["count"] > 0) {
-      totalProfit += bonusResult["money"];
+    if (bonusResult[LOTTO.COUNT] > 0) {
+      totalProfit += bonusResult[LOTTO.MONEY];
     }
     return totalProfit === 0
       ? 0
@@ -73,16 +55,34 @@ class Result {
   }
 
   printLottoResult(lottoResult, bonusResult, totalYield) {
-    Console.print(`3개 일치 (5,000원) - ${lottoResult["3"]["count"]}개`);
-    Console.print(`4개 일치 (50,000원) - ${lottoResult["4"]["count"]}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${lottoResult["5"]["count"]}개`);
     Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${bonusResult["count"]}개`
+      PRINT_MESSAGE.THREE_CORRECT +
+        lottoResult[LOTTO.THREE][LOTTO.COUNT] +
+        PRINT_MESSAGE.COUNT
     );
     Console.print(
-      `6개 일치 (2,000,000,000원) - ${lottoResult["6"]["count"]}개`
+      PRINT_MESSAGE.FOUR_CORRECT +
+        lottoResult[LOTTO.FOUR][LOTTO.COUNT] +
+        PRINT_MESSAGE.COUNT
     );
-    Console.print(`총 수익률은 ${totalYield}%입니다.`);
+    Console.print(
+      PRINT_MESSAGE.FIVE_CORRECT +
+        lottoResult[LOTTO.FIVE][LOTTO.COUNT] +
+        PRINT_MESSAGE.COUNT
+    );
+    Console.print(
+      PRINT_MESSAGE.FIVE_CORRECT_AND_BONUS +
+        bonusResult[LOTTO.COUNT] +
+        PRINT_MESSAGE.COUNT
+    );
+    Console.print(
+      PRINT_MESSAGE.SIX_CORRECT +
+        lottoResult[LOTTO.SIX][LOTTO.COUNT] +
+        PRINT_MESSAGE.COUNT
+    );
+    Console.print(
+      PRINT_MESSAGE.YIELD_START + totalYield + PRINT_MESSAGE.YIELD_END
+    );
   }
 }
 module.exports = Result;

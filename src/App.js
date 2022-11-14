@@ -1,4 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
+const { INPUT_MESSAGE, PRINT_MESSAGE } = require("./constants/constants");
+
 const Lotto = require("./Lotto");
 const Output = require("./Output");
 const Result = require("./Result");
@@ -16,11 +18,10 @@ class App {
 
   play() {
     this.inputBuyMoney();
-    this.test();
   }
 
   inputBuyMoney() {
-    Console.readLine("구입금액을 입력해 주세요\n", (answer) => {
+    Console.readLine(INPUT_MESSAGE.BUY_MONEY, (answer) => {
       let lottoNum;
       this.#buyMoney = answer;
       lottoNum = this.divideMoneyByThousand();
@@ -30,25 +31,21 @@ class App {
     });
   }
 
-  test() {
-    Console.print("55555555");
-  }
-
   divideMoneyByThousand() {
     const lottoNum = parseInt(this.#buyMoney / 1000);
-    Console.print(`${lottoNum}개를 구매했습니다.`);
+    Console.print(`${lottoNum}${PRINT_MESSAGE.BUY_LOTTO}`);
     return lottoNum;
   }
 
   getWinningNum(lottoArr) {
-    Console.readLine("당첨 번호를 입력해 주세요.\n", (answer) => {
+    Console.readLine(INPUT_MESSAGE.WINNING_NUM, (answer) => {
       this.#winningNum = answer.split(",").map((item) => Number(item));
       this.getBonusNum(lottoArr);
     });
   }
 
   getBonusNum(lottoArr) {
-    Console.readLine("보너스 번호를 입력해 주세요.\n", (answer) => {
+    Console.readLine(INPUT_MESSAGE.BONUS_NUM, (answer) => {
       const bonusNum = Number(answer);
       const scores = this.score.getLottoScores(lottoArr, this.#winningNum);
       const lottoResult = this.result.createLottoResult(
