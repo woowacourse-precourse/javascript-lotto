@@ -25,6 +25,7 @@ class ScoreMachine {
 
     this.calculateRateOfReturn();
     this.printResult();
+    this.endGame();
   }
 
   compareWinningNumber(lottoNumber) {
@@ -62,6 +63,10 @@ class ScoreMachine {
     });
 
     Console.print(RESULT.RATE_OF_RETURN(this.#result[RATE_OF_RETURN]));
+  }
+
+  endGame() {
+    Console.close();
   }
 }
 
