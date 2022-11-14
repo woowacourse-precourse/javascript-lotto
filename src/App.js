@@ -9,11 +9,35 @@ class App {
     this.bonusNumber = null;
     this.lottos = [];
   }
+  setRankMap() {
+    let rankMap = new Map();
+    for (let i = 0; i < 6; i++) {
+      rankMap.set(i, 0);
+    }
+
+    return rankMap;
+  }
+
+  checkRanking(mapObj, winningArray) {
+    winningArray.forEach((el) => {
+      if (mapObj.has(el)) {
+        mapObj.set(el, mapObj.get(el) + 1);
+      }
+    });
+
+    return mapObj;
+  }
 
   setResult() {
+    let rankingMap = this.setRankMap();
     const winningArray = this.lottos.map((lotto) => {
       return lotto.rank(this.winNumber, this.bonusNumber);
     });
+    rankingMap = Object.fromEntries(
+      this.checkRanking(rankingMap, winningArray)
+    );
+
+    //이제 받아온 랭킹 맵으로 결과 값 출력만 하면 됨
   }
 
   setBonusNumber() {
