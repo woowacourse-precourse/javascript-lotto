@@ -78,11 +78,11 @@ class Lotto {
 
   showMatchResult(result) {
     Console.print(STATISTIC_MESSAGE.TITLE);
-    Console.print(`${STATISTIC_MESSAGE.THREE} - ${result[0]}개`);
-    Console.print(`${STATISTIC_MESSAGE.FOUR} - ${result[1]}개`);
-    Console.print(`${STATISTIC_MESSAGE.FIVE} - ${result[2]}개`);
-    Console.print(`${STATISTIC_MESSAGE.FIVE_ALPHA} - ${result[4]}개`);
-    Console.print(`${STATISTIC_MESSAGE.SIX} - ${result[3]}개`);
+    Console.print(STATISTIC_MESSAGE.THREE(result[0]));
+    Console.print(STATISTIC_MESSAGE.FOUR(result[1]));
+    Console.print(STATISTIC_MESSAGE.FIVE(result[2]));
+    Console.print(STATISTIC_MESSAGE.FIVE_ALPHA(result[4]));
+    Console.print(STATISTIC_MESSAGE.SIX(result[3]));
   }
 
   showRateOfReturn(seedMoney, profit) {
@@ -91,9 +91,7 @@ class Lotto {
       0,
     );
     const rateOfReturn = (totalProfit / seedMoney) * LOTTO.PERCENT;
-    Console.print(
-      `${STATISTIC_MESSAGE.EARN}${rateOfReturn.toFixed(LOTTO.DECIMAL)}%입니다.`,
-    );
+    Console.print(STATISTIC_MESSAGE.EARN(rateOfReturn.toFixed(LOTTO.DECIMAL)));
     Console.close();
   }
 }
