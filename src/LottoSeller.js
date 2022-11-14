@@ -45,13 +45,16 @@ class LottoSeller {
     // 로또 발행하는 부분
     // 다 발행되면
     // 다 제대로 발행됐는지확인도 해야하나? count비교?
-    this.#lottos = lottos;
+    this.lottos = lottos;
   }
 
   informPurchaseResult() {
     const lottoCount = this.lottos.length;
-    Console.print(`${lottoCount}개를 구매했습니다.`);
-    this.lottos.forEach((lotto) => Console.print(lotto));
+    const purchaseMessage = `${lottoCount}개를 구매했습니다.`;
+    const result = this.lottos.map((lotto) => `[${lotto.join(', ')}]`).join('\n');
+
+    Console.print(purchaseMessage);
+    Console.print(result);
   }
 
   purchase = (money) => {
@@ -59,6 +62,7 @@ class LottoSeller {
     // 하나씩 배열에 추가
     this.issueLotto(this.countLottoTicket(money));
     this.informPurchaseResult();
+
     return this.lottos;
   };
 }
