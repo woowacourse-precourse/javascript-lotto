@@ -24,6 +24,12 @@ class Lotto {
     })
   }
 
+  printNumberOfLottos(inputMoney) {
+    const numberOfLotto = Math.floor(inputMoney / 1000);
+    Console.print('\n' + numberOfLotto + '개를 구매했습니다.');
+    this.printLottos(numberOfLotto);
+  }
+
 }
 
 module.exports = Lotto;
