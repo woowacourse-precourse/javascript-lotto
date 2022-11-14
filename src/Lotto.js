@@ -42,7 +42,9 @@ class Lotto {
     return true;
   }
 
-  static countLotto() {}
+  static countLotto() {
+    return 8;
+  }
 }
 
 module.exports = Lotto;
