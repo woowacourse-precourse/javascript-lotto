@@ -10,6 +10,7 @@ const {
   LOTTO_NUMBER_COUNT,
   MINIMUM_MATCH_COUNT,
 } = require('./Constants');
+const Money = require('./Money');
 
 const ui = new UI();
 const validation = new Validation();
@@ -34,17 +35,6 @@ class App {
       6: 0,
     };
     this.#revenue = 0;
-  }
-
-  #validateMoney() {
-    try {
-      validation.checkPositiveInteger(this.#money);
-      validation.checkSplitIntoDivisor(this.#money, LOTTO_PRICE);
-    } catch (error) {
-      ui.printError(error);
-    }
-
-    return true;
   }
 
   #validateWinningNumbers() {
@@ -103,7 +93,7 @@ class App {
     Object.entries(this.#result).forEach(([key, value]) => {
       this.#revenue += REVENUE[key].revenue * value;
     });
-    const revenuePercentage = (this.#revenue / this.#money) * 100;
+    const revenuePercentage = (this.#revenue / this.#money.getMoney()) * 100;
     const roundNumber = Math.round(revenuePercentage * 10) / 10;
     return roundNumber;
   }
@@ -166,11 +156,9 @@ class App {
 
   #getMoney() {
     ui.input('구입금액을 입력해 주세요.\n', (money) => {
-      this.#money = money;
-      if (this.#validateMoney()) {
-        this.#lottoCount = parseInt(this.#money / LOTTO_PRICE, 10);
-        this.#startLotto();
-      }
+      this.#money = new Money(money);
+      this.#lottoCount = this.#money.getMoneyDivideByPrice(LOTTO_PRICE);
+      this.#startLotto();
     });
   }
 
@@ -178,5 +166,8 @@ class App {
     this.#getMoney();
   }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
