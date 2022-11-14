@@ -10,7 +10,15 @@
 // } 
 
 class Model{
-
+  constructor(lottoChart){
+    this.chart = lottoChart;
+  }
+  getPaid(){
+    return this.chart.paid;
+  }
+  setPaid(data){
+    this.chart.paid = data;
+  }
 }
 
 module.exports = Model;
