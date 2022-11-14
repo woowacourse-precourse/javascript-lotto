@@ -4,6 +4,7 @@ class Winning {
     this.validate(inputNumber);
     this.#Winning = inputNumber;
     this.splitInputNumber = null;
+    this.winningandBonusNumber = null;
   }
   validate(inputNumber) {
     const splitInputNumber = inputNumber.split(",");
@@ -21,12 +22,16 @@ class Winning {
     if (isNaN(BonusNumber)) {
       throw new Error("[ERROR] 숫자를 입력해주세요.");
     }
-    if (new Set(this.splitInputNumber.push(BonusNumber)).size !== 7) {
+    this.WinningNumber = new Set(this.splitInputNumber.push(BonusNumber));
+    if (WinningNumber.size !== 7) {
       throw new Error("[ERROR] 중복된 데이터가 있습니다.");
     }
   }
   getWinning() {
     return this.#Winning;
+  }
+  getWinningAndBonus() {
+    return this.winningandBonusNumber;
   }
 }
 
