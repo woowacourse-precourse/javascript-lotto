@@ -26,7 +26,8 @@ class App {
           `${'\n'}보너스 번호를 입력해 주세요.${'\n'}`,
           (bonus) => {
             Console.print(`number: ${number} bonus: ${bonus}`);
-            Console.close();
+            Console.print(`${'\n'}당첨 통계`);
+            Console.print(`---`);
           }
         )
       );
