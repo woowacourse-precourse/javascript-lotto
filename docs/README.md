@@ -1,0 +1,20 @@
+## 🚀 기능 요구 사항
+- [x] 1~45 사이 중복되지않는 6개 숫자를 뽑는다.-createRandomLottoNumbers
+  - [x] 로또 번호는 오름차순으로 정렬해서 보여준다.
+- [x] 구입 금액 만큼 로또 번호를 발행한다. - Purchase.getPublishCount
+  - [x] 구입 금액이 1,000원 단위로 나눠떨어지지 않으면 예외처리- Purchase.validate
+- [x] 발행한 로또 수량을 출력한다.
+- [x] 발행한 로또 번호를 출력한다.-generateUserLottos
+- [x] 당첨 번호를 입력받는다.-setWinningNumbers
+  - [x] 쉼표를 기준으로 구분한다. - Lotto.validate
+  - [x] 입력한 숫자가 6개 초과 시 예외처리- Lotto.validate
+  - [x] 중복되면 예외처리 - Lotto.validate 
+- [x] 보너스 번호를 입력받는다.-setBonusNumber
+  - [x] 당첨번호와 중복되면 예외처리-Bonus.validate
+  - [x] 입력한 숫자가 1개 초과 시 예외처리-Bonus.validate
+  - [x] 1~45사이 수가 아니면 예외처리-Bonus.validate
+- [x] 사용자가 구매한 로또번호와 당첨번호를 비교한다.-checkLottoResult
+- [x] 당첨 내역을 출력한다.-printRankCountMessage
+- [x] 수익률을 출력한다.-printRatioMessage
+  - [x] 수익률은 소수점 둘째자리에서 반올림-calcEarningsRate
+- [x] 예외처리 시 "[ERROR]"로 시작하는 에러메세시 출력 후 종료
