@@ -232,11 +232,11 @@ class Lotto {
 // 프로그램의 현재 상태와 당첨번호를 관리하는 클래스
 class App {
   #purchaseMoney; // 사용자가 입력한 로또 구입 금액
-  #winningNumber; // 로또 당첨 번호
+  #lotteryNumber; // 로또 추첨 번호
   #bonusNumber; // 보너스 번호
 
   play(){}
-  winningNumberPhase(){}
+  lotteryNumberPhase(){}
   bonusNumberPhase(){}
   statisticPhase(){}
   end()
@@ -247,7 +247,7 @@ class App {
 - **사용자가 값을 입력할 때**를 기준으로 로직을 순차적으로 실행합니다
   시작 - 당첨번호값 입력 - 보너스번호값 입력 - 통계출력 - 게임종료 순
 - 각각의 phase에서는 getValueWithType()로 게임에 필요한 값들을 저장합니다.  
-  #purchaseMoney (구입금액), winningNumber (당첨번호),#bonusNumber 보너스번호
+  #purchaseMoney (구입금액),#lotteryNumber (추첨번호),#bonusNumber 보너스번호
 
 </br>
 
@@ -345,7 +345,7 @@ class ExceptionrCheck {
     class InputExceptionCheck() extends ExceptionCheck {
 
       purchaseMoney(checkTarget){}
-      winningNumber(checkTarget){}
+      lotteryNumber(checkTarget){}
       bonuseNumber(checkTarget, param)
       /*
       ...

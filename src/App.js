@@ -3,34 +3,34 @@ const keys = require("../src/utils/key");
 
 class App {
   #purchaseMoney;
-  #winningNumber;
+  #lotteryNumber;
   #bonusNumber;
 
   constructor() {}
 
   play() {
-    Input.getValueWithType(keys.inputType.purchase_money, (money) => {
+    Input.getValueWithType(keys.inputType.purchaseMoney, (money) => {
       this.#purchaseMoney = Number(money);
-      this.winningNumberPhase();
+      this.lotteryNumberPhase();
     });
   }
 
-  winningNumberPhase() {
+  lotteryNumberPhase() {
     console.log("당첨번호 입력받는 페이즈");
-    Input.getValueWithType(keys.inputType.winning_number, (winningNumber) => {
-      this.#winningNumber = winningNumber.split(",");
+    Input.getValueWithType(keys.inputType.lotteryNumber, (lotteryNumber) => {
+      this.#lotteryNumber = lotteryNumber.split(",");
       this.bonusNumberPhase();
     });
   }
   bonusNumberPhase() {
     console.log("보너스번호 입력받는 페이즈");
     Input.getValueWithType(
-      keys.inputType.bonus_number,
+      keys.inputType.bonusNumber,
       (bonusNumber) => {
         this.#bonusNumber = Number(bonusNumber);
         this.statisticPhase();
       },
-      this.#winningNumber
+      this.#lotteryNumber
     );
   }
 
@@ -38,7 +38,7 @@ class App {
     console.log("통계 페이즈");
 
     console.log(this.#purchaseMoney);
-    console.log(this.#winningNumber);
+    console.log(this.#lotteryNumber);
     console.log(this.#bonusNumber);
     this.end();
   }

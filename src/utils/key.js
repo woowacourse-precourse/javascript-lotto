@@ -1,12 +1,12 @@
 const KEY_PURCHASE_MONEY = "purchaseMoney";
-const KEY_WINNING_NUMBER = "winningNumber";
+const KEY_LOTTERY_NUMBER = "lotteryNumber";
 const KEY_BONUS_NUMBER = "bonusNumber";
 
 const keys = {
   inputType: {
-    purchase_money: KEY_PURCHASE_MONEY,
-    winning_number: KEY_WINNING_NUMBER,
-    bonus_number: KEY_BONUS_NUMBER,
+    purchaseMoney: KEY_PURCHASE_MONEY,
+    lotteryNumber: KEY_LOTTERY_NUMBER,
+    bonusNumber: KEY_BONUS_NUMBER,
   },
 };
 

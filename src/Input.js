@@ -29,31 +29,31 @@ class InputExceptionCheck extends ExceptionCheck {
     if (answer < 0) throw new CustomError(ErrorMessage.notPositiveNumber);
     return true;
   }
-  winningNumber(checkTarget) {
+  lotteryNumber(checkTarget) {
     const numOrCommaReg = /,|[0-9]/g;
     const lottoNumReg = /(^[1-9]$)|(^[1-3]{1}[0-9]{1}$)|(^4{1}[0-5]{1}$)/;
-    const winningNumberArray = checkTarget.split(",");
+    const lotteryNumberArray = checkTarget.split(",");
     if (!numOrCommaReg.test(checkTarget))
-      throw new CustomError(ErrorMessage.notWinningNumber);
-    if (winningNumberArray.length != 6)
-      throw new CustomError(ErrorMessage.notWinningNumber);
+      throw new CustomError(ErrorMessage.notLotteryNumber);
+    if (lotteryNumberArray.length != 6)
+      throw new CustomError(ErrorMessage.notLotteryNumber);
     const overLap = {};
-    winningNumberArray.forEach((num) => {
+    lotteryNumberArray.forEach((num) => {
       overLap[num] ? (overLap[num] += 1) : (overLap[num] = 1);
       if (overLap[num] > 1) throw new CustomError(ErrorMessage.overLapNumber);
       if (!lottoNumReg.test(num))
-        throw new CustomError(ErrorMessage.notWinningNumber);
+        throw new CustomError(ErrorMessage.notLotteryNumber);
     });
     return true;
   }
 
-  bonusNumber(checkTarget, winningNumberArray) {
+  bonusNumber(checkTarget, lotteryNumberArray) {
     const lottoNumReg = /(^[1-9]$)|(^[1-3]{1}[0-9]{1}$)|(^4{1}[0-5]{1}$)/;
     if (!lottoNumReg.test(checkTarget))
-      throw new CustomError(ErrorMessage.notLottoNumer);
-    if (!(typeof winningNumberArray === "object" && winningNumberArray.length))
-      throw new CustomError(ErrorMessage.winningNumberArrayNotNumberArray);
-    if (winningNumberArray.includes(Number(checkTarget)))
+      throw new CustomError(ErrorMessage.notInRangeNumber);
+    if (!Array.isArray(lotteryNumberArray))
+      throw new CustomError(ErrorMessage.notNumberArray);
+    if (lotteryNumberArray.includes(Number(checkTarget)))
       throw new CustomError(ErrorMessage.notBonusNumber);
     return true;
   }
