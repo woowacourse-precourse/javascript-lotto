@@ -1,4 +1,8 @@
 class Lotto {
+  //함수 / 메서드가 한 가지 일만 하도록 + 15 라인 미만
+  //else ~
+  //Lotto 필드 변경 금지
+
   #numbers;
 
   constructor(numbers) {
@@ -12,7 +16,10 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
+  issue() {}
+  result() {
+    //winning, profit
+  }
 }
 
 module.exports = Lotto;

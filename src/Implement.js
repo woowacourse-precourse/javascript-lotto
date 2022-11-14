@@ -1,3 +1,3 @@
-const App = require("../src/App");
+const App = require("./App");
 const app = new App();
 app.play();

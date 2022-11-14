@@ -10,17 +10,17 @@
 ### feat () : init , game , error
 
 - [ ] user: 로또 구입 금액 입력 - Player#buyTickets
-  - [ ] 숫자 타입인가 - Input#type -> static
+  - [ ] 숫자 타입인가 - Input#type 
   - [ ] 1,000원 단위로 떨어지는가 - Input#unit
     - [ ] 각각의 경우 에러 발생시 - InputError # type, unit
 
 ###
 
 - [ ] 로또 발행 : 유효성 체크 - Lotto#validate
-  - [ ] 각 요소가 숫자 타입인가 - Input#type -> static
-  - [ ] 요소가 범위 내에서 생성되는가 (1~45) - Input#range -> static
-  - [ ] 요소가 6개 인가 - Input#lengthSix -> static
-  - [ ] 요소가 중복되지 않는가 - Input#duplication -> static
+  - [ ] 각 요소가 숫자 타입인가 - Input#type
+  - [ ] 요소가 범위 내에서 생성되는가 (1~45) - Input#range 
+  - [ ] 요소가 6개 인가 - Input#lengthSix
+  - [ ] 요소가 중복되지 않는가 - Input#duplication
   - [ ] 발행 결과가 [,] 형태로 만들어지는가 - Input#format#issue
     - [ ] 각각의 경우 에러 발생시 - IssueError # LAST_KEYWORD
 
@@ -33,19 +33,19 @@
 ###
 
 - [ ] user: 당첨 번호 입력 - Player#winningNumbers
-  - [ ] 요소가 숫자 타입인가 - Input#type -> static
-  - [ ] 요소가 범위 내에 있는가 - Input#range -> static
-  - [ ] 요소가 6개 인가 - Input#lengthSix -> static
-  - [ ] 요소가 중복되지 않는가 - Input#duplication -> static
+  - [ ] 요소가 숫자 타입인가 - Input#type 
+  - [ ] 요소가 범위 내에 있는가 - Input#range 
+  - [ ] 요소가 6개 인가 - Input#lengthSix 
+  - [ ] 요소가 중복되지 않는가 - Input#duplication 
   - [ ] 발생 결과가 ',' 형태로 만들어지는가 - Input#format#input
     - [ ] 각각의 경우 에러 발생시 - InputError # LAST_KEYWORD
 
 ###
 
 - [ ] user: 보너스 번호 입력 - Player#winningBonusNumber
-  - [ ] 요소가 숫자 타입인가 - Input#type -> static
-  - [ ] 요소가 범위 내에 있는가 - Input#range -> static
-  - [ ] 요소가 1개 인가 - Input#lengthOne -> static
+  - [ ] 요소가 숫자 타입인가 - Input#type
+  - [ ] 요소가 범위 내에 있는가 - Input#range 
+  - [ ] 요소가 1개 인가 - Input#lengthOne 
     - [ ] 각각의 경우 에러 발생시 - InputError # LAST_KEYWORD
 
 ###
