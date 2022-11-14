@@ -3,14 +3,17 @@ const Message = require('./Message');
 
 class LottoMain {
   static takeBonus(lottoList, prize) {
-    ConsoleWork.takeInput(Message.BONUSNUMBER_MESSAGE + '\n', function (bonus) {
-      printResult(lottoList, prize, bonus);
-    });
+    ConsoleWork.takeInput(
+      `\n${Message.BONUSNUMBER_MESSAGE}\n`,
+      function (bonus) {
+        printResult(lottoList, prize, bonus);
+      }
+    );
   }
 }
 
 function printResult(lottoList, prize, bonus) {
-  ConsoleWork.print('당첨 통계\n---\n');
+  ConsoleWork.print(`\n당첨 통계\n---`);
   const staticLotto = lottoLoop(lottoList, prize, Number(bonus));
   printResultMessages(staticLotto);
   printProfitRate(staticLotto);

@@ -12,7 +12,7 @@ class Lotto {
   }
 
   startGame() {
-    ConsoleWork.print(`${this.#numbers / 1000}${Message.PURCHASE_MESSAGE}`);
+    ConsoleWork.print(`\n${this.#numbers / 1000}${Message.PURCHASE_MESSAGE}`);
     const lottoList = this.makeLottoList(this.#numbers / 1000);
     this.printLotttoList(lottoList);
     this.takePrizeNumber(lottoList);
@@ -46,9 +46,12 @@ class Lotto {
   }
 
   takePrizeNumber(lottoList) {
-    ConsoleWork.takeInput(Message.PRIZENUMBER_MESSAGE + '\n', function (prize) {
-      LottoMain.takeBonus(lottoList, prize);
-    });
+    ConsoleWork.takeInput(
+      `\n${Message.PRIZENUMBER_MESSAGE}\n`,
+      function (prize) {
+        LottoMain.takeBonus(lottoList, prize);
+      }
+    );
   }
 
   validateMoney(money) {
