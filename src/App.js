@@ -81,7 +81,8 @@ class App {
     const singleLotto = this.lotto.map((lottoNumber) =>
       lottoNumber.getLottoNumber()
     );
-    const eachResult = singleLotto.map(this.compareNumber(singleLotto));
+    const eachResult = singleLotto.map(this.compareNumber.bind(this));
+    console.log(eachResult);
   }
   compareNumber(eachLotto) {
     return eachLotto.filter((number) => this.winnerNumber.includes(number))
