@@ -16,16 +16,10 @@ class App {
     for (let lottoCount = 0; lottoCount < purchaseCount; lottoCount += 1) {
       purchaseLottoNumbers.push(Random.pickUniqueNumbersInRange(1, 45, 6));
     }
-    Console.print(purchaseLottoNumbers);
     return purchaseLottoNumbers;
   }
 
-  play() {
-    App.lottoPublisher(6);
-  }
+  play() {}
 }
-
-const app = new App();
-app.play();
 
 module.exports = App;

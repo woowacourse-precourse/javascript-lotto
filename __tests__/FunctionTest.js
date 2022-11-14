@@ -32,4 +32,13 @@ describe('로또 구매 테스트', () => {
       );
     });
   });
+
+  test('로또 발행개수 테스트', () => {
+    const { lottoPublisher } = App;
+    const publishingCounts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100];
+
+    publishingCounts.map((publishCount) => {
+      expect(lottoPublisher(publishCount).length).toEqual(publishCount);
+    });
+  });
 });
