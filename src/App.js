@@ -13,9 +13,18 @@ class App {
   }
 
   getTotalMoneyInput() {
-    Console.readLine("구입금액을 입력해 주세요.", (totalMoney) => {
+    Console.readLine("구입금액을 입력해 주세요.\n", (totalMoney) => {
       this.isValidMoney(totalMoney);
-      this.creatLottos(totalMoney / 1000);
+      this.lottoAmount = totalMoney/1000;
+      this.creatLottos();
+      this.displayAllLottos();
+    })
+  } 
+  
+  displayAllLottos() {
+    Console.print("\n"+this.lottoAmount+"개를 구매했습니다.")
+    this.Lottos.forEach((lotto) => {
+      Console.print(lotto.getLottoNums());
     })
   }
 
@@ -28,15 +37,16 @@ class App {
     }
   }
 
-  creatLottos(lottoAmount) {
-    for(let i=0; i<lottoAmount; i++) {
+  creatLottos() {
+    for(let i=0; i<this.lottoAmount; i++) {
       this.Lottos.push(this.Customer.buyLotto());
     }
   }
 
+
+
 }
 
-console.log(Console.readLine);
 let a = new App();
 a.play();
 
