@@ -5,7 +5,7 @@ const getLottoNumber = (userInputPrice) => {
 };
 
 const makeLottoArray = (lottoCount) => {
-  lottoArray = [];
+  let lottoArray = [];
   for (let i = 0; i < lottoCount; i++) {
     lottoArray.push(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
   }

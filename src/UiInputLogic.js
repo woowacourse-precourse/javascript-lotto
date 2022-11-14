@@ -1,10 +1,14 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const { Console } = require("@woowacourse/mission-utils");
 
+const { getLottoNumber, makeLottoArray } = require("./LottoGenerator");
+
 const changePriceToCount = () => {
+  //구입액 >> 갯수에 맞춰 로또 생성
+
   Console.readLine("구입금액을 입력해 주세요.", (userInputPrice) => {
-    this.lottoArray = makeLottoArray(getLottoNumber(userInputPrice));
-    console.log(this.lottoArray, "play");
+    let lottoArray = makeLottoArray(getLottoNumber(userInputPrice));
+    printLottoArray(lottoArray);
   });
 };
 
@@ -19,6 +23,12 @@ const makeWinLottoNumber = () => {
       return lottoWinNumber;
     });
   });
+};
+
+const printLottoArray = (inputArray) => {
+  for (let i = 0; i < inputArray.length; i++) {
+    Console.print(inputArray[i]);
+  }
 };
 
 module.exports = { makeWinLottoNumber, changePriceToCount };

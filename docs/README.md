@@ -56,6 +56,6 @@ UiInputLogic
 
 1. 로또 번호 입력 함수 [o] - UiInputLogic#makeWinLottoNumber
 2. 당첨 내역 입력 함수 [o] - UiInputLogic#changePriceToCount
-3. 로또 목록 출력 함수
+3. 로또 목록 출력 함수 [o] - UIInputLogic#printLottoArray
 4. 당첨 통계 출력 함수
 5. 수익률 출력 함수
