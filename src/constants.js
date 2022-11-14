@@ -12,6 +12,9 @@ const ERROR = {
 
 const RULE = {
   DIVISOR: 1000,
+  MIN_NUMBER: 1,
+  MAX_NUMBER: 45,
+  SELECT_NUMBER: 6,
 };
 
 module.exports = { MESSAGE, ERROR, RULE };

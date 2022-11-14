@@ -1,10 +1,12 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { MESSAGE } = require("./constants.js");
 const buyingAmountValidator = require("./buyingAmountValidator.js");
+const LottoTicket = require("./LottoTicket.js");
 
 class App {
   constructor() {
     this.buyingLottoNumber;
+    this.lottoTicketList;
   }
 
   play() {
@@ -17,8 +19,14 @@ class App {
       this.printBuyingLottoNumber();
     });
   }
+
   printBuyingLottoNumber() {
     Console.print(`${this.buyingLottoNumber}${MESSAGE.BUYING_LOTTO_NUMBER}`);
+    return this.printBuyingLottoList();
+  }
+
+  printBuyingLottoList() {
+    this.lottoTicketList = LottoTicket.publish(this.buyingLottoNumber);
   }
 }
 
