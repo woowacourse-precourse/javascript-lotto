@@ -96,6 +96,27 @@ class App {
     this.resultRate(this.buyLotto, this.checkResultRank);
   }
 
+  checkResult(eachLottoList, bonusNumber, count) {
+    switch (count) {
+      case 3:
+        this.checkResultRank.Fifth++;
+        break;
+      case 4:
+        this.checkResultRank.Fourth++;
+        break;
+      case 5:
+        if (!eachLottoList.includes(bonusNumber)) {
+          this.checkResultRank.Third++;
+          break;
+        }
+        this.checkResultRank.Second++;
+        break;
+      case 6:
+        this.checkResultRank.First++;
+        break;
+    }
+  }
+
   }
 
 }
