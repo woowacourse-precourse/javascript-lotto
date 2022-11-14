@@ -57,6 +57,7 @@ class App {
     Console.readLine("", (bonusNum) => {
       this.validateBonusNumbers(bonusNum);
       this.bonusNum = Number(bonusNum);
+      this.lotto.printResult(this.userNumbersArray, Number(bonusNum));
 
       Console.close();
     });
