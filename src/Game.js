@@ -2,6 +2,7 @@ const Calculator = require('./Calculator');
 const { ERROR_MSG, GAME_MSG, NEW_LINE } = require('./Constant');
 const IO = require('./IO');
 const NumberGenerator = require('./NumberGenerator');
+const Referee = require('./Referee');
 
 class Game {
   constructor() {
@@ -45,6 +46,19 @@ class Game {
     IO.readLine(GAME_MSG.pleaseEnterBonusNumber, (input) => {
       this.bonusNumber = +input;
     });
+  }
+
+  static calcResult() {
+    const compareEachLotto = (result, lotto) => {
+      const place = Referee.compare(
+        lotto.numbers,
+        this.winningNumbers,
+        this.bonusNumber
+      );
+      place > 0 && result[place - 1]++;
+      return result;
+    };
+    const result = this.lottos.reduce(compareEachLotto, [0, 0, 0, 0, 0]);
   }
 }
 
