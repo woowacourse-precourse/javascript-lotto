@@ -1,12 +1,12 @@
-const Validator = require('./validator');
+const Validator = require('./Validator');
 
 class Lotto {
   #numbers;
 
-  validator = new Validator();
-
   constructor(numbers) {
-    this.validator.validateLotto(numbers);
+    const validator = new Validator();
+
+    validator.validateLotto(numbers);
     this.#numbers = numbers;
   }
 
