@@ -24,13 +24,13 @@ const SENTANCE = Object.freeze({
     "STATICS" : "당첨 통계",
     "LINE" : "---",
     "PROFIT_HEAD" : "총 수익률은",
-    "PROFIT_REAR" : "%입니다."
+    "PROFIT_REAR" : "%입니다.",
+    "BUY" : "개를 구매했습니다.",
 });
 
 
-
-const NUMBER_MESSAGE = "개를 구매했습니다.";
-
-const RESULT_MESSAGE = "당첨 통계\n---";
-
 const ERROR = Object.freeze({});
+
+module.exports = {
+    MESSAGE,CORRECT,CORRECT_MONEY,SENTANCE,ERROR,
+};
