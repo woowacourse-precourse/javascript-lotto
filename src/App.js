@@ -71,6 +71,8 @@ class App {
       this.#bonus = new Bonus(input);
 
       this.#printResult();
+
+      Console.close();
     });
   }
 
