@@ -38,4 +38,12 @@ const validateBonusNumber = (bonus) => {
   }
 };
 
+const validateBonusNumberNotInLottoNumber = (bonusNumber, targetNumbers) => {
+  const isNotInTarget = targetNumbers.includes(bonusNumber) === false;
+
+  if (isNotInTarget === false) {
+    throw Error(GAME_INPUT_ERRORS.INVALID_INPUT_RANGE);
+  }
+};
+
 module.exports = { validateLottoBudget, validateTargetNumber, validateBonusNumber };
