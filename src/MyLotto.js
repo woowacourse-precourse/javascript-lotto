@@ -31,7 +31,7 @@ class MyLotto {
   }
 
   printPurchaseAmount(amount) {
-    Console.print(`${amount}${MESSAGE.PRINT_AMOUNT}`);
+    Console.print(`\n${amount}${MESSAGE.PRINT_AMOUNT}`);
   }
 
   printMyLottery(myLottos) {

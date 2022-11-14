@@ -1,9 +1,9 @@
 const MESSAGE = Object.freeze({
   INSERT_MONEY: "구매금액을 입력해 주세요.\n",
-  INPUT_WINNINGNUMBERS: "당첨 번호를 입력해 주세요.\n",
-  INPUT_BONUSNUMBER: "보너스 번호를 입력해 주세요.\n",
+  INPUT_WINNINGNUMBERS: "\n당첨 번호를 입력해 주세요.\n",
+  INPUT_BONUSNUMBER: "\n보너스 번호를 입력해 주세요.\n",
   PRINT_AMOUNT: "개를 구매했습니다.",
-  STATS: "당첨 통계\n---",
+  STATS: "\n당첨 통계\n---",
   REWARD_HEAD: "총 수익률은 ",
   REWARD_TAIL: "입니다.",
 
