@@ -48,6 +48,22 @@ class LottoController {
     if (this.validation.checkBonusNumber(this.inputBonus, this.winningNumber))
       return (this.bonusNumber = this.inputBonus);
   }
+
+  getLottoResult() {
+    const lottoResultList = [];
+    this.boughtLotto.forEach((lotto) => {
+      lottoResultList.push(
+        lotto.getResult(this.winningNumber, this.inputBonus)
+      );
+    });
+    this.compareResult = lottoResultList.filter((result) => result);
+  }
+
+  getRankCount(idx) {
+    return this.compareResult.filter(
+      (result) => result === RULE.RANK_LENGTH - idx
+    ).length;
+  }
 }
 
 module.exports = LottoController;

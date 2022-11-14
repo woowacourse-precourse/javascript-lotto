@@ -31,7 +31,12 @@ class LottoGame {
   getBonusNumber() {
     mConsole.readLine("\n보너스 번호를 입력해 주세요.\n", (inputBonus) => {
       this.lottoController.setBonusNumber(inputBonus);
+      this.printLottoResult();
     });
+  }
+
+  printLottoResult() {
+    mConsole.print("\n당첨 통계\n---");
   }
 }
 

@@ -39,6 +39,21 @@ class Lotto {
 
     mConsole.print(`[${this.#numbers.join(", ")}]`);
   }
+
+  getResult(winningNumberList, bonusNumber) {
+    let compareCount = 0;
+
+    this.#numbers.forEach((number) => {
+      if (winningNumberList.includes(number)) compareCount++;
+    });
+
+    if (compareCount === 6) return 1;
+    if (compareCount === 5 && this.#numbers.includes(bonusNumber)) return 2;
+    if (compareCount === 5) return 3;
+    if (compareCount === 4) return 4;
+    if (compareCount === 3) return 5;
+    if (compareCount < 3) return null;
+  }
 }
 
 module.exports = Lotto;
