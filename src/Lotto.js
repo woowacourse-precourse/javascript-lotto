@@ -22,7 +22,55 @@ class Lotto {
       Console.print(ans);
     }
   }
-  
+
+  countWin(idx,lottos,bonus){
+    let count=0;
+    let includeBonus=false;
+    for(let lotto=0; lotto<this.#numbers.length; lotto++){
+      if(lottos[idx].includes(Number(this.#numbers[lotto]))){
+        count+=1;
+      }
+      if(lottos[idx].includes(Number(bonus))){
+        includeBonus=true;
+      }
+    }
+    return [count,includeBonus];
+  }
+
+  printHistory(price,three,four,five,fiveBonus,six){
+    Console.print(`3개 일치 (5,000원) - ${three}개`);
+    Console.print(`4개 일치 (50,000원) - ${four}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${five}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${fiveBonus}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${six}개`);
+  }
+
+  winningHistory(price,lottos,bonus){
+    let three=0,four=0,five=0,fiveBonus=0,six=0;
+    for(let idx=0; idx<lottos.length; idx++){
+      const count=this.countWin(idx,lottos,bonus);
+      switch(count[0]){
+        case 3:
+          three+=1;
+          break;
+        case 4:
+          four+=1;
+          break;
+        case 5:
+          if(count[1]){
+            fiveBonus+=1;
+          }else{
+            five+=1;
+          }
+          break;
+        case 6:
+          six+=1;
+          break;
+      }
+    }
+    this.printHistory(price,three,four,five,fiveBonus,six);
+  }
+
   bonusNumber(price,lottos){
     Console.readLine('보너스 번호를 입력해 주세요.', (bonus) =>{
       this.inputCheck.bonusCheck(bonus);
