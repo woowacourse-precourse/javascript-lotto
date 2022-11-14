@@ -32,10 +32,15 @@
 - [x] 로또의 결과를 가져와 통계를 낸다. : `collectStatistics`
   - [x] 로또의 결과들을 저장한다. : `setLottosResult`
     - `getLottoRanking` util 함수를 사용한다.
-  - 수익률은 `calculateProfitRate` util 함수를 사용한다.
+    - 수익률은 `calculateProfitRate` util 함수를 사용한다.
 - [x] 통계를 출력하고 로또 게임을 종료한다.
   - [x] 당첨 통계 및 수익률 통계 출력 : `printStatistics`
   - [x] 로또 게임 종료 : `endLottoGame`
+
+## 로또 게임을 이용하는 사람인 `User` 클래스를 생성한다.
+- [ ] 총 구입 금액을 입력한다. : `setTotalPurchaseAmount`
+- [ ] 당첨번호를 입력한다. : `setWinningLottoNumbers`
+- [ ] 보너스 번호를 입력한다. : `setBonusLottoNumber`
 
 ## 유효한 값인지 판단하는 `Validatior` 클래스를 생성한다.
 
