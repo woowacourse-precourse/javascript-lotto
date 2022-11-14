@@ -8,7 +8,6 @@ class Controller {
   constructor() {
     this.view = new View(this);
     this.userNumber = new UserNumber(this);
-    this.lotto = new Lotto(this);
     this.statistics = new Statistics(this);
   }
 
@@ -29,7 +28,12 @@ class Controller {
   }
 
   setWinningNumberFromUser(winningNumber) {
-    this.lotto.setLottoNumbers(winningNumber);
+    const lotto = new Lotto(winningNumber, this);
+    lotto.setLottoNumbers();
+  }
+
+  setLottoToUse(lotto) {
+    this.userNumber.setLottoToUse(lotto);
   }
 
   getBonusNumberFromUser() {
@@ -37,13 +41,13 @@ class Controller {
   }
 
   setBonusNumberFromUser(bonusNumber) {
-    this.lotto.setBonusNumberFromUser(bonusNumber);
+    this.userNumber.setBonusNumber(Number(bonusNumber));
   }
 
   getOverallInformationForStatistics() {
     return {
-      winningNumber: this.lotto.getLottoNumbers(),
-      bonusNumber: this.lotto.getBonusNumber(),
+      winningNumber: this.userNumber.getLottoToUse(),
+      bonusNumber: this.userNumber.getBonusNumber(),
       userLottoArray: this.userNumber.getUserLottoArray(),
       purchasingAmount: this.userNumber.getPurchasingAmount(),
     };

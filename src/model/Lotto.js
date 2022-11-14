@@ -36,22 +36,21 @@ class Lotto {
     }
   }
 
-  validate(numbers) {
-    if (typeof numbers !== "undefined") {
-      this.isArraySplitByComma(numbers);
-      this.isArrayInRange(numbers);
-      this.isArrayUnique(numbers);
-    }
+  validate(userInput) {
+    const winningSplitNumber = userInput.split(",").map(Number);
+    this.isArraySplitByComma(winningSplitNumber);
+    this.isArrayInRange(winningSplitNumber);
+    this.isArrayUnique(winningSplitNumber);
   }
 
   getLottoNumbers() {
     return this.#numbers;
   }
 
-  setLottoNumbers(winningNumber) {
-    const winningNumberArray = winningNumber.split(",").map(Number);
-    this.validate(winningNumberArray);
-    this.#numbers = winningNumberArray;
+  setLottoNumbers() {
+    const winningSplitNumber = this.getLottoNumbers().split(",")
+      .map(Number);
+    this.controller.setLottoToUse(winningSplitNumber);
     this.controller.getBonusNumberFromUser();
   }
 }
