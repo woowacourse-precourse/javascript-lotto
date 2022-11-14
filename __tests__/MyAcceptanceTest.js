@@ -54,4 +54,20 @@ describe('My Acceptance test', () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
+
+  test('1000원 단위가 아닌 로또 구입 금액을 입력', () => {
+    mockQuestions(['1500']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
+
+  test('숫자가 아닌 잘못된 로또 구입 금액을 입력', () => {
+    mockQuestions(['오천원']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
 });
