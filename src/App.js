@@ -11,7 +11,6 @@ class App {
   play() {
     const insertMoney = new InsertMoney();
     const generateUserLottoNumber = new GenerateUserLottoNumber(insertMoney.getLottoCount());
-    this.printGenerateUserLottoNumber(generateUserLottoNumber.getUserLottoNumberLists());
     const enterPrizeNumber = new EnterPrizeNumber();
     const lotto = new Lotto(enterPrizeNumber.getEnterPrizeNumber());
     const enterBonusNumber = new EnterBonusNumber();
@@ -20,19 +19,6 @@ class App {
     const calcRateOfReturn = new CalcRateOfReturn(insertMoney.getInsertMoney(), compareLotto.getUserWinningStatics());
     this.printUserWinningStatics(compareLotto.getUserWinningStatics());
     this.printRateOfRetrun(calcRateOfReturn.getRateOfReturn());
-  }
-  printGenerateUserLottoNumber(userLottoLists){
-    userLottoLists.forEach((userLottoList)=>{
-      let userLotto = '[';
-      userLottoList.forEach((index)=>{
-        userLotto+=index;
-        userLotto+=',';
-        userLotto+=' ';
-      });
-      userLotto = userLotto.slice(0,userLotto.length-2);
-      userLotto+=']';
-      MissionUtils.Console.print(userLotto);
-    });
   }
   printUserWinningStatics(winningStatic){
     MissionUtils.Console.print("당첨 통계");
