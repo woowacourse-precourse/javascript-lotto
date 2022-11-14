@@ -1,5 +1,8 @@
 const { Random } = require("@woowacourse/mission-utils");
-const messages = require("../constants/messages");
+const {
+  PURCHASE_MESSAGE,
+  BONUS_NUMBER_MESSAGE,
+} = require("../constants/messages");
 const generalConstants = require("../constants/generalConstants");
 
 class UserNumber {
@@ -13,7 +16,7 @@ class UserNumber {
 
   validatePurchasingAmount(userPurchasingAmountInput) {
     if (userPurchasingAmountInput % generalConstants.SINGLE_LOTTO_PRICE !== 0) {
-      throw new Error(messages.PURCHASING_AMOUNT_ERROR_MESSAGE);
+      throw new Error(PURCHASE_MESSAGE.AMOUNT_ERROR);
     }
   }
 
@@ -64,10 +67,10 @@ class UserNumber {
 
   validateBonusNumber(bonusNumber) {
     if (isNaN(bonusNumber)) {
-      throw new Error(messages.BONUS_NUMBER_ERROR_MESSAGE);
+      throw new Error(BONUS_NUMBER_MESSAGE.NUMBER_ERROR);
     }
     if (1 > bonusNumber || bonusNumber > 45) {
-      throw new Error(messages.BONUS_NUMBER_ERROR_MESSAGE);
+      throw new Error(BONUS_NUMBER_MESSAGE.NUMBER_ERROR);
     }
   }
 

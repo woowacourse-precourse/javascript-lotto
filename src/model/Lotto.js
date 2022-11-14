@@ -1,4 +1,4 @@
-const messages = require("../constants/messages");
+const { WINNING_NUMBER_MESSAGE } = require("../constants/messages");
 
 class Lotto {
   #numbers;
@@ -10,12 +10,12 @@ class Lotto {
 
   isInputSplitByComma(userSplitInput) {
     if (userSplitInput.length !== 6) {
-      throw new Error(messages.WINNING_NUMBER_ERROR_COMMA_NUMBER_MESSAGE);
+      throw new Error(WINNING_NUMBER_MESSAGE.COMMA_NUMBER_ERROR);
     }
 
     for (const singleElement of userSplitInput) {
       if (isNaN(singleElement)) {
-        throw new Error(messages.WINNING_NUMBER_ERROR_COMMA_NUMBER_MESSAGE);
+        throw new Error(WINNING_NUMBER_MESSAGE.COMMA_NUMBER_ERROR);
       }
     }
   }
@@ -23,7 +23,7 @@ class Lotto {
   isSingleLottoElementInRange(userSplitInput) {
     for (const singleElement of userSplitInput) {
       if (1 > singleElement || singleElement > 45) {
-        throw new Error(messages.WINNING_NUMBER_ERROR_RANGE_MESSAGE);
+        throw new Error(WINNING_NUMBER_MESSAGE.RANGE_ERROR);
       }
     }
   }
@@ -31,7 +31,7 @@ class Lotto {
   isLottoUnique(userSplitInput) {
     const numbersSet = new Set(userSplitInput);
     if (numbersSet.size !== 6) {
-      throw new Error(messages.WINNING_NUMBER_ERROR_UNIQUE_NUMBERS_MESSAGE);
+      throw new Error(WINNING_NUMBER_MESSAGE.UNIQUE_ERROR);
     }
   }
 
