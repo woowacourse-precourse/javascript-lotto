@@ -8,7 +8,7 @@ class WinningLotto {
     const winningNumbersArr = winningNumbers.split(",");
 
     Validation.validateLottoNumber(winningNumbersArr);
-    this.winningNumbers = winningNumbersArr;
+    this.winningNumbers = winningNumbersArr.map(Number);
   }
 
   setBonusNumber(bonusNumber) {
