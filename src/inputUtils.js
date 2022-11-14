@@ -24,7 +24,7 @@ const validateLottoBudget = (budget) => {
   const isPositive = budget > 0;
   const isMultiple = budget % LOTTO_PRICE === 0;
 
-  if (!isNumber || !isPositive || !isMultiple) {
+  if (isNumber === false || isPositive === false || isMultiple === false) {
     throw Error(GAME_INPUT_ERRORS.INVALID_BUDGET_RANGE);
   }
 };
