@@ -29,6 +29,24 @@ class Lotto {
         }
       }
   }
+
+  // 당첨된 번호 갯수 반환하는 함수
+  get WinningNumber(){
+    return this.#same;
+  }
+
+  // 당첨된 번호 갯수 계산하는 함수
+  calcWinning(winnings){
+    for(let i = 0 ; i <Constant.LOTTO_LENGTH ; i++ ){
+      if(this.#numbers.includes(Number(winnings[i]))){
+        this.#same += 1;
+      }
+    }
+  }
+
+  // 보너스 번호 일치하는지 확인하는 함수
+
+  // 수익금
 }
 
 module.exports = Lotto;
