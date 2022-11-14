@@ -30,4 +30,20 @@ const REWARDS = {
   FIRST: 2000000000,
 };
 
-module.exports = { MESSAGES, REWARDS };
+// 당첨금 테이블 생성용 상수
+const REWARDS_TABLE = [
+  ["FIFTH", 0],
+  ["FOURTH", 0],
+  ["THIRD", 0],
+  ["SECOND", 0],
+  ["FIRST", 0],
+];
+
+const RANK_TABLE = {
+  3: "FIFTH",
+  4: "FOURTH",
+  5: "THIRD",
+  6: this.match_bonus ? "SECOND" : "FIRST",
+};
+
+module.exports = { MESSAGES, REWARDS, REWARDS_TABLE, RANK_TABLE };
