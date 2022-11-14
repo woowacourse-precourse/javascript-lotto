@@ -22,46 +22,58 @@ class Game {
   }
 
   init() {
-    Console.readLine(QUESTION_MESSAGE.buy, money => {
-      Validations.isThousand(money);
-      this.purchaseAmount = money;
-      this.totalLotto = Purchase.lottoes(this.purchaseAmount);
-      this.setPrizeNumber();
-    });
+    Console.readLine(QUESTION_MESSAGE.buy, money => this.purchaseLotto(money));
+  }
+
+  purchaseLotto(money) {
+    Validations.isThousand(money);
+    this.purchaseAmount = money;
+    this.totalLotto = Purchase.lottoes(this.purchaseAmount);
+    this.setPrizeNumber();
   }
 
   setPrizeNumber() {
-    Console.readLine(QUESTION_MESSAGE.prize, userInput => {
-      Validations.isNotCommaPrize(userInput);
-      const prizeStringArray = userInput.split(',').map(item => item.trim());
-      const prizeNumberArray = prizeStringArray.map(item => Number(item));
-      this.lottoNumber = new Lotto(prizeNumberArray);
-      this.prizeNumber = prizeNumberArray;
-      this.setBonusNumber();
+    Console.readLine(QUESTION_MESSAGE.prize, userInput =>
+      this.enterPrizeNumbers(userInput),
+    );
+  }
 
-      //   this.#prizeNumber = prizeNumberArray;
-    });
+  enterPrizeNumbers(userInput) {
+    Validations.isNotCommaPrize(userInput);
+    const prizeStringArray = userInput.split(',').map(item => item.trim());
+    const prizeNumberArray = prizeStringArray.map(item => Number(item));
+    this.lottoNumber = new Lotto(prizeNumberArray);
+    this.prizeNumber = prizeNumberArray;
+    this.setBonusNumber();
   }
 
   setBonusNumber() {
-    Console.readLine(QUESTION_MESSAGE.bonus, userInput => {
-      this.bonusNumber = this.lottoNumber.setBonusNum(userInput);
-      this.getView();
-    });
+    Console.readLine(QUESTION_MESSAGE.bonus, userInput =>
+      this.enterBounsNumber(userInput),
+    );
+  }
+
+  enterBounsNumber(userInput) {
+    this.bonusNumber = this.lottoNumber.setBonusNum(userInput);
+    this.getView();
   }
 
   getView() {
     this.lottoNumber.winCheck(this.totalLotto);
     this.lottoNumber.winningAmountCalculation();
     this.lottoNumber.printWinner();
-    this.lottoNumber.printYield(this.purchaseAmount);
+    const yieldPercent = this.lottoNumber.yieldCaculation(this.purchaseAmount);
+    this.lottoNumber.printYield(yieldPercent);
+    this.exit();
+  }
+
+  exit() {
+    Console.close();
   }
 
   play() {
     this.init();
   }
-
-  // TODO: 추가 기능 구현
 }
 
 module.exports = Game;

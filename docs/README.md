@@ -78,6 +78,8 @@
   - Utils,Purchase,Game,Lotto Class로 분리
 - [x] refactor: 기존의 예외 조건 함수들을 Class로 분리
   - Validations 파일 추가
+- [x] refactor: 핵심 로직을 구현하는 코드와 UI를 담당하는 로직 분리
+  - UI (Console.readLine, Console.print)
 
 ### 체크리스트
 

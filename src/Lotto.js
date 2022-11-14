@@ -91,14 +91,19 @@ class Lotto {
     Utils.printUtil(WIN_MESSAGE.first, this.ranking.first);
   }
 
-  printYield(purchaseAmount) {
+  yieldCaculation(purchaseAmount) {
     const yieldPercent = ((this.winningAmount / purchaseAmount) * 100).toFixed(
       1,
     );
 
     const localeYeild = Utils.convertLocale(yieldPercent);
+    return localeYeild;
+  }
 
-    Console.print(`${YIELD_MESSAGE.front} ${localeYeild}${YIELD_MESSAGE.back}`);
+  printYield(yeildPercent) {
+    Console.print(
+      `${YIELD_MESSAGE.front} ${yeildPercent}${YIELD_MESSAGE.back}`,
+    );
   }
 }
 
