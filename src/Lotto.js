@@ -7,10 +7,6 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
-
     for (const number of numbers) {
       if (/[^0-9]/g.test(number)) {
         throw new Error("[ERROR] 로또 번호는 숫자로만 이루어져야 합니다.");
@@ -29,8 +25,12 @@ class Lotto {
       }
     }
 
+    if (numbers.length !== 6) {
+      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    }
+
     if (numbers.length !== new Set(numbers).size) {
-      throw new Error("[ERROR] 중복되지 않는 6개의 숫자여야 합니다.");
+      throw new Error("[ERROR] 로또 번호는 중복되지 않는 숫자여야 합니다.");
     }
   }
 
