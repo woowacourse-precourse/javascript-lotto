@@ -30,11 +30,25 @@ class App {
     MissionUtils.Console.print(`${how_many}${Constants.GAME_MESSAGES.PURCHASE_RESULT}\n`)
     const published_Lottos = [];
     for(let i = 0; i < how_many; i++){
-      const one_lotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      const array = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      const one_lotto = this.stringifyLottos(array);
       MissionUtils.Console.print(one_lotto);
       published_Lottos.push(one_lotto);
     }
     return published_Lottos;
+  }
+
+  stringifyLottos(array) {
+    let string = '[';
+    for(let i = 0; i < 6; i++) {
+      if(i < 5){
+        string += `${array[i]}, `;
+      }
+      else{
+        string += `${array[i]}]`;
+      }
+    }
+    return string
   }
 
   InputLottos(published_Lottos, how_many) {
