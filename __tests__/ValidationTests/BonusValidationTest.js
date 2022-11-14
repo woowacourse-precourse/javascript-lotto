@@ -24,19 +24,19 @@ describe('로또 보너스 번호 입력값 유효성 검사 테스트 ', () => 
     expect(() => {
       const bonusValidation = new BonusValidation('0', []);
       bonusValidation.validate();
-    }).toThrow('[ERROR] 1부터 45까지의 숫자를 입력해주세요.');
+    }).toThrow('[ERROR] 1부터 45 중 6개의 숫자를 입력해주세요.');
   });
   test('1부터 45까지의 숫자가 아니라면 예외가 발생한다. (2)', () => {
     expect(() => {
       const bonusValidation = new BonusValidation('46', []);
       bonusValidation.validate();
-    }).toThrow('[ERROR] 1부터 45까지의 숫자를 입력해주세요.');
+    }).toThrow('[ERROR] 1부터 45 중 6개의 숫자를 입력해주세요.');
   });
   test('1부터 45까지의 숫자가 아니라면 예외가 발생한다. (3)', () => {
     expect(() => {
       const bonusValidation = new BonusValidation('100', []);
       bonusValidation.validate();
-    }).toThrow('[ERROR] 1부터 45까지의 숫자를 입력해주세요.');
+    }).toThrow('[ERROR] 1부터 45 중 6개의 숫자를 입력해주세요.');
   });
 
   test('당첨 번호와 중복되는 값이라면 예외가 발생한다. (1)', () => {

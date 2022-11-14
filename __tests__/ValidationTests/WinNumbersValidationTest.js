@@ -43,13 +43,13 @@ describe('로또 당첨번호 입력값 유효성 검사 테스트 ', () => {
     expect(() => {
       const winNumbersValidation = new WinNumbersValidation('0,1,2,3,4,5');
       winNumbersValidation.validate();
-    }).toThrow('[ERROR] 1부터 45까지의 숫자를 입력해주세요.');
+    }).toThrow('[ERROR] 1부터 45 중 6개의 숫자를 입력해주세요.');
   });
   test('1부터 45까지의 숫자가 아니라면 예외가 발생한다. (2)', () => {
     expect(() => {
       const winNumbersValidation = new WinNumbersValidation('41,42,43,44,45,46');
       winNumbersValidation.validate();
-    }).toThrow('[ERROR] 1부터 45까지의 숫자를 입력해주세요.');
+    }).toThrow('[ERROR] 1부터 45 중 6개의 숫자를 입력해주세요.');
   });
 
   test('중복된 숫자가 입력된다면 예외가 발생한다. (1)', () => {
