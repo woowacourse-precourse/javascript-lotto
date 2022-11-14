@@ -12,14 +12,14 @@ class GameController {
   play() {
     input.call(
       this,
-      this.getLottosByMoney,
+      this.generateLottosByMoney,
       this.setWinLotto,
       this.setBonusNumber,
       this.getResult
     );
   }
 
-  getLottosByMoney(money) {
+  generateLottosByMoney(money) {
     this.game.money = Number(money);
     this.game.lottos = new Lottos(money);
     printMessage.printLottos(this.game.lottos);
