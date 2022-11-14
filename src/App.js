@@ -22,7 +22,7 @@ class App {
     this.userLottoNumberLists.forEach((OneUserNumber)=>{
       this.comparePrizeNumberAndUserNumber(lotto.getNumbers(), bonus.getNumbers(),OneUserNumber);
     });
-    this.printUserWinningStatics(this.userLottoNumberLists);
+    this.printUserWinningStatics(this.userWinningStatics);
   }
   insertMoney(){
     MissionUtils.Console.readLine('구입금액을 입력해주세요 (1000원 단위)', (insertMoney) => {
