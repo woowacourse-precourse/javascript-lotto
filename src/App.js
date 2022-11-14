@@ -6,6 +6,10 @@ class App {
     inputPurchaseAmount();
   }
 
+  setPurchaseAmount(purchaseAmount) {
+    this.purchaseAmount = purchaseAmount;
+  }
+
   setCandidateNumbers(candidateNumbers) {
     this.candidateNumbers = candidateNumbers;
   }
@@ -24,13 +28,15 @@ function is1000Multiple(purchaseAmount) {
   if (purchaseAmount % 1000 !== 0 || parseInt(purchaseAmount / 1000) === 0) {
     throw new Error("[ERROR] 로또 구입 금액은 1000의 배수여야 합니다.");
   }
-  makeCandidateNumberSets(parseInt(purchaseAmount / 1000));
+  makeCandidateNumberSets(purchaseAmount);
 }
 
-function makeCandidateNumberSets(purchaseNumber) {
-  MissionUtils.Console.print(`${purchaseNumber}개를 구매했습니다.`);
+function makeCandidateNumberSets(purchaseAmount) {
+  app.setPurchaseAmount(purchaseAmount)
+  const purchase = parseInt(purchaseAmount/1000)
+  MissionUtils.Console.print(`${purchase}개를 구매했습니다.`);
   let candidateNumberSets = [];
-  for (let i = 0; i < purchaseNumber; i++) {
+  for (let i = 0; i < purchase; i++) {
     candidateNumberSets.push(makeCandidateNumber());
   }
   printCandidateNumberSets(candidateNumberSets);
@@ -68,7 +74,7 @@ function inputWinningNumbers() {
     "당첨 번호를 입력해 주세요.\n",
     (inputNumbers) => {
       const winningNumbers = inputNumbers.split(",").map((x) => parseInt(x));
-      const lotto = new Lotto(winningNumbers, null, app.candidateNumbers);
+      const lotto = new Lotto(winningNumbers, null, app.candidateNumbers, app.purchaseAmount);
       inputBonusNumber(winningNumbers, lotto);
     }
   );
