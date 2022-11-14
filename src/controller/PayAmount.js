@@ -1,5 +1,6 @@
 const Model = require("../model/Model")
 const View = require("../view/View")
+const Publish = require("./Publish")
 
 class PayAmount{
   constructor(lottoChart){
@@ -20,6 +21,11 @@ class PayAmount{
     if(this.validPaid(paid)){
       this.model.setPaid(paid);
     }
+    this.next();
+  }
+  next(){ 
+    const publish = new Publish(this.model.chart);
+    publish.controll();
   }
 }
 
