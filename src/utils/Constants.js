@@ -16,6 +16,4 @@ const WINNINGS = {
   matchedThree: 5000,
 };
 
-exports.LOTTO_NUMBER = LOTTO_NUMBER;
-exports.LOTTO_COST = LOTTO_COST;
-exports.WINNINGS = WINNINGS;
+module.exports = { LOTTO_NUMBER, LOTTO_COST, WINNINGS };

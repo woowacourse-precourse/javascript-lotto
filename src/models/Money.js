@@ -1,4 +1,5 @@
 const { LOTTO_COST } = require("../utils/Constants");
+const { MONEY_ERROR_MESSAGE, NUMBER_ERROR_MESSAGE } = require("../utils/Message");
 
 class Money {
   #money;
@@ -13,27 +14,27 @@ class Money {
   }
 
   validMoney(money) {
-    this.validForm(money);
+    this.validFormat(money);
     this.validRange(money);
     this.validMultiple(money);
   }
   
-  validForm(money) {
+  validFormat(money) {
       const reg = /^[0-9]+$/;
       if (!reg.test(money)) {
-        throw new Error('[ERROR] 구입 금액은 숫자만 입력 가능합니다.');
+        throw new Error(NUMBER_ERROR_MESSAGE.numberFormat);
       }
     }
 
   validRange(money) {
     if (money <= 0) {
-      throw new Error('[ERROR] 구입 금액은 0보다 커야 합니다.');
+      throw new Error(NUMBER_ERROR_MESSAGE.numberRange);
     }
   }
 
   validMultiple(money) {
     if (money % LOTTO_COST.cost !== 0) {
-      throw new Error(`[ERROR] 구입 금액은 ${LOTTO_COST.cost}원 단위 입니다.`);
+      throw new Error(MONEY_ERROR_MESSAGE.moneyMultiple);
     }
   }
 }

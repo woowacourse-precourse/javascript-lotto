@@ -1,4 +1,5 @@
 const { LOTTO_NUMBER } = require("./utils/Constants");
+const { LOTTO_ERROR_MESSAGE, NUMBER_ERROR_MESSAGE } = require("./utils/Message");
 
 class Lotto {
   #numbers;
@@ -21,7 +22,7 @@ class Lotto {
 
   validLength(numbers) {
     if (numbers.length !== LOTTO_NUMBER.count) {
-      throw new Error(`[ERROR] 로또 번호는 ${LOTTO_NUMBER.count}개여야 합니다.`);
+      throw new Error(LOTTO_ERROR_MESSAGE.lottoNumberCount);
     }
   }
 
@@ -29,7 +30,7 @@ class Lotto {
     const lottoNumbersSet = new Set(numbers);
 
     if (lottoNumbersSet.size !== numbers.length) {
-      throw new Error('[ERROR] 로또 번호에는 중복이 있을 수 없습니다.');
+      throw new Error(LOTTO_ERROR_MESSAGE.lottoOverlap);
     }
   }
 
@@ -38,7 +39,7 @@ class Lotto {
 
     numbers.forEach((item) => {
       if (!reg.test(item)) {
-        throw new Error('[ERROR] 로또 번호는 숫자만 입력할 수 있습니다.');
+        throw new Error(NUMBER_ERROR_MESSAGE.numberFormat);
       }
     })
   }
@@ -46,7 +47,7 @@ class Lotto {
   validRange(numbers) {
     numbers.forEach((item) => {
       if (item < LOTTO_NUMBER.minimum || LOTTO_NUMBER.maximum < item) {
-        throw new Error(`[ERROR] 로또 숫자의 범위는 ${LOTTO_NUMBER.minimum}부터 ${LOTTO_NUMBER.maximum}까지 입니다.`);
+        throw new Error(LOTTO_ERROR_MESSAGE.lottoNumberRange);
       }
     })
   }

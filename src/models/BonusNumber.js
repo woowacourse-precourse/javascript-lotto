@@ -1,4 +1,5 @@
 const { LOTTO_NUMBER } = require("../utils/Constants");
+const { BONUS_NUMBER_ERROR_MESSAGE, NUMBER_ERROR_MESSAGE, LOTTO_ERROR_MESSAGE } = require("../utils/Message");
 
 class BonusNumber {
   #bonusNumber;
@@ -23,19 +24,19 @@ class BonusNumber {
   validFormat(number) {
     const reg = /^[0-9]+$/;
     if (!reg.test(number)) {
-      throw new Error('[ERROR] 보너스 숫자는 숫자만 입력 가능합니다.');
+      throw new Error(NUMBER_ERROR_MESSAGE.numberFormat);
     }
   }
   
   validRange(number) {
     if (number < LOTTO_NUMBER.minimum || LOTTO_NUMBER.maximum < number) {
-      throw new Error('[ERROR] 숫자의 범위는 1부터 45까지 입니다.');
+      throw new Error(LOTTO_ERROR_MESSAGE.lottoNumberRange);
     }
   }
 
   checkOverlap(number) {
     if (this.winningNumbers.includes(number)) {
-      throw new Error('[ERROR] 보너스 숫자는 당첨 번호와 중복될 수 없습니다.');
+      throw new Error(BONUS_NUMBER_ERROR_MESSAGE.bonusNumberOverlap);
     }
   }
 }
