@@ -1,3 +1,5 @@
+const { ERROR_MESSAGE } = require("./message");
+
 class Lotto {
   #numbers;
 
@@ -7,12 +9,44 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+    this.validateComma(numbers);
+    numbers = convertToArray(numbers);
+    this.validateLength(numbers);
+    this.validateOverlap(numbers);
+    this.validateRange(numbers);
   }
 
-  // TODO: 추가 기능 구현
+  validateLength(numbers) {
+    if (numbers.length !== 6) {
+      throw new Error(ERROR_MESSAGE.NOT_LENGTH_SIX);
+    }
+  }
+  validateOverlap(numbers) {
+    const deletedOverlap = [...new Set(numbers)];
+    if (deletedOverlap.length !== numbers.length) {
+      throw new Error(ERROR_MESSAGE.OVERLAP);
+    }
+  }
+  validateRange(numbers) {
+    numbers.forEach((number) => {
+      if (number < 1 || number > 45) {
+        throw new Error(ERROR_MESSAGE.NOT_RANGE);
+      }
+    });
+  }
+  validateComma(numbers) {
+    numbers = numbers.split("");
+    numbers.forEach((e) => {
+      const ascii = e.charCodeAt(0);
+      if (ascii !== 44 && (ascii <= 48 || ascii >= 57)) {
+        throw new Error(ERROR_MESSAGE.SPLIT_COMMA);
+      }
+    });
+  }
+
+  static convertToArray(str) {
+    return str.split(",");
+  }
 }
 
 module.exports = Lotto;
