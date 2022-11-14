@@ -46,6 +46,7 @@ class UserInterface {
     Console.readLine(INPUT_MESSAGES.bonusNumber, (bonusNumber) => {
       this.#bonusNumber = +bonusNumber;
       this.showResult();
+      Console.close();
     });
   }
 
@@ -58,7 +59,6 @@ class UserInterface {
     );
     this.showMatchedNumber(matchedCountList);
     this.showReturnRate(matchedCountList);
-    Console.close();
   }
 
   showMatchedNumber(matchedCountlist) {

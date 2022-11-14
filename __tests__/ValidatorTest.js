@@ -12,12 +12,11 @@ describe('유효성 검사 클래스 메서드 테스트', () => {
 
   test('구입 금액 입력 시 1000으로 나누어지지 않으면 에러가 발생한다.', () => {
     const money = '1001';
-    const validateUnit = () => {
-      if (parseInt(money, 10) % 1000 !== 0)
-        throw new Error(ERROR_MESSAGES.divisionByThousand);
-    };
+    const validator = new Validator();
 
-    expect(validateUnit).toThrow(ERROR_MESSAGES.divisionByThousand);
+    expect(() => {
+      validator.validateUnit(money);
+    }).toThrow(ERROR_MESSAGES.divisionByThousand);
   });
 
   test('로또 숫자가 6개가 아니면 에러가 발생한다.', () => {
