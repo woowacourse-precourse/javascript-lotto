@@ -23,7 +23,7 @@ describe('LottoDrawFactory 클래스 테스트', () => {
 
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     const bonus = new Bonus('7');
-    const lottoStore = new LottoStore('1000')
+    const lottoStore = new LottoStore('1000');
 
     const inputInstances = new LottoDrawFactory({ lotto, bonus, lottoStore });
 
@@ -47,7 +47,7 @@ describe('LottoDrawFactory 클래스 테스트', () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     const bonus = new Bonus('7');
 
-    const lottoStore = new LottoStore('1000')
+    const lottoStore = new LottoStore('1000');
 
     const inputInstances = new LottoDrawFactory({ lotto, bonus, lottoStore });
 
@@ -70,7 +70,7 @@ describe('LottoDrawFactory 클래스 테스트', () => {
 
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     const bonus = new Bonus('7');
-    const lottoStore = new LottoStore('1000')
+    const lottoStore = new LottoStore('1000');
 
     const inputInstances = new LottoDrawFactory({ lotto, bonus, lottoStore });
 
@@ -93,7 +93,7 @@ describe('LottoDrawFactory 클래스 테스트', () => {
 
     const lotto = new Lotto([7, 8, 9, 10, 11, 12]);
     const bonus = new Bonus('13');
-    const lottoStore = new LottoStore('1000')
+    const lottoStore = new LottoStore('1000');
 
     const inputInstances = new LottoDrawFactory({ lotto, bonus, lottoStore });
 
