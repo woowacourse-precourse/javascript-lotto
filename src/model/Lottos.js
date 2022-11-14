@@ -56,11 +56,12 @@ class Lottos {
     this.lottos.forEach((lotto) => {
       this.ranks.push(lotto.getRank(winningNumbers, bonusNum));
     });
+
+    this.ranks = this.ranks.filter((rank) => rank !== 0);
   }
 
   printResult(winningNumber, bonusNum) {
     this.createRanks(winningNumber, bonusNum);
-    this.ranks = this.ranks.filter((rank) => rank !== 0);
 
     const map = this.ranks.reduce((accu, curr) => {
       accu.set(curr, (accu.get(curr) || 0) + 1);
@@ -79,7 +80,7 @@ class Lottos {
 
     let userWinningMoney = 0;
 
-    for (let rank = RANK.FIFTH; rank >= RANKE.FIRST; rank--) {
+    for (let rank = RANK.FIFTH; rank >= RANK.FIRST; rank--) {
       let cnt = 0;
 
       if (map.has(rank)) {
@@ -90,7 +91,16 @@ class Lottos {
       MissionUtils.Console.print(`${statisticsMsg[rank - 1]}${cnt}개`);
     }
 
-    let revenueRate = (userWinningMoney / this.purchaseAmount) * 100;
+    this.printRevenueRate(userWinningMoney);
+  }
+
+  calculateRevenueRate(userWinningMoney) {
+    return (userWinningMoney / this.purchaseAmount) * 100;
+  }
+
+  printRevenueRate(userWinningMoney) {
+    let revenueRate = this.calculateRevenueRate(userWinningMoney);
+
     MissionUtils.Console.print(`총 수익률은 ${revenueRate}%입니다.`);
   }
 }
