@@ -11,7 +11,13 @@ class App {
     this.winNumber = 0;
     this.bonusNumber = 0;
     this.lottoList = [];
-    this.matchingCount = {three: 0, four: 0, five: 0, fiveBonus: 0, six: 0};
+    this.rank = {
+      first: 0,
+      second: 0,
+      third: 0,
+      fourth: 0,
+      fifth: 0,
+    };
   }
 
   play() {
@@ -62,7 +68,7 @@ class App {
 
   inputWinNumber() {
     Console.readLine('당첨 번호를 입력해 주세요. \n', (numbers) => {
-      const  winNumber = numbers.split(',');
+      const  winNumber = numbers.split(',').map(Number);
       new Lotto(winNumber);
       this.winNumber = winNumber;
       this.inputBonusNumber();
@@ -78,34 +84,13 @@ class App {
   }
 
   compare() {
-    this.lottoList.forEach((list) => {
-      let count = { normal: 0, bonus: 0 };
-      list.forEach((number) => {
-        if (this.winNumber.map(Number).includes(number) === true) {
-          count.normal++;
-        }
+    this.lottoList.forEach((lotto) => {
+      const matchingNumber = this.winNumber.filter((ele) => lotto.includes(ele));
 
-        if (this.bonusNumber.includes(number) === true) {
-          count.bonus++;
-        }
-      });
-      this.getMatchingCount(count.normal, count.bonus);
+      if (matchingNumber.length > 2) {
+        this.getRank(matchingNumber, lotto);
+      }
     });
-    console.log(this.matchingCount);
-  }
-
-  getMatchingCount(normalCount, bonusCount) {
-    if (normalCount === 3) {
-      this.matchingCount.three++;
-    } else if (normalCount === 4) {
-      this.matchingCount.four++;
-    } else if (normalCount === 5) {
-      this.matchingCount.five++;
-    } else if (normalCount === 5 && bonusCount === 1) {
-      this.matchingCount.fiveBonus++;
-    } else if (normalCount === 6) {
-      this.matchingCount.six++;
-    }
   }
 }
 
