@@ -54,6 +54,8 @@ class VendingMachine {
   askLottoNumbers() {
     const answerCbFn = (answer) => {
       const lottoNumbers = splitStrByComma(answer);
+      lottoNumbers.sort((a, b) => a - b);
+
       new Lotto(lottoNumbers);
     };
 
