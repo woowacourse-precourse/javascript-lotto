@@ -2,7 +2,7 @@ const { LOTTO_COST, LOTTO_NUMBER } = require('./Constants');
 
 const NUMBER_ERROR_MESSAGE = {
   numberFormat: '[ERROR] 숫자만 입력 가능합니다.',
-  numberRange: '[ERROR] 0보다 커야 합니다.',
+  numberRange: '[ERROR] 입력은 0보다 커야 합니다.',
 };
 
 const MONEY_ERROR_MESSAGE = {
@@ -10,7 +10,7 @@ const MONEY_ERROR_MESSAGE = {
 };
 
 const LOTTO_ERROR_MESSAGE = {
-  lottoNumberRange: `[ERROR] 숫자의 범위는 ${LOTTO_NUMBER.minimum}부터 ${LOTTO_NUMBER.maximum}까지 입니다.`,
+  lottoNumberRange: `[ERROR] 로또 숫자의 범위는 ${LOTTO_NUMBER.minimum}부터 ${LOTTO_NUMBER.maximum}까지 입니다.`,
   lottoNumberCount: `[ERROR] 로또 번호는 ${LOTTO_NUMBER.count}개여야 합니다.`,
   lottoOverlap: '[ERROR] 로또 번호에는 중복이 있을 수 없습니다.',
 };
