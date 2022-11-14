@@ -46,7 +46,7 @@ class UI {
     try {
       const cash = await getUserInput(CASH_INPUT_MESSAGE, ErrorCase.isWrongCashInput);
 
-      return cash;
+      return Number(cash);
     } catch {
       throw new Error(CASH_INPUT_ERROR_MESSAGE);
     }
