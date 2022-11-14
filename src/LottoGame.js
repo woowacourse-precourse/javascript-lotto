@@ -61,6 +61,15 @@ class LottoGame {
       .size;
     return addedArrSize - delteDuplicateArrSize;
   }
+
+  countWinningCost(countMatch, lotto) {
+    if (countMatch === 3) this.countEachWinningCost[0]++;
+    if (countMatch === 4) this.countEachWinningCost[1]++;
+    if (countMatch === 4 && lotto.includes(this.bonusNumber))
+      this.countEachWinningCost[3]++;
+    if (countMatch === 5) this.countEachWinningCost[2]++;
+    if (countMatch === 6) this.countEachWinningCost[4]++;
+  }
 }
 
 module.exports = LottoGame;
