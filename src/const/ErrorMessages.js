@@ -7,6 +7,8 @@ const ERROR_MESSAGES = {
   IS_UNEXPECTABLE: "[ERROR] 예기치 못한 에러 발생",
   IS_WINNER_NUMBER:
     "[ERROR] 숫자와 쉼표를 이용해 중복되지 않은 6개의 숫자를 입력해주세요.",
+  IS_NOT_IN_WINNER_NUMBER:
+    "[ERROR] 당첨 번호에 입력되지 않은 번호를 입력해주세요.",
 };
 
 module.exports = ERROR_MESSAGES;
