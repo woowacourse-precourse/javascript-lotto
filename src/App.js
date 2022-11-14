@@ -110,14 +110,14 @@ class App {
     });
   }
 
-  validateBonusNumber(bonusNumber) {
+  validateBonusNumber(bonusNumber, winningNumbers) {
     if (isNaN(bonusNumber)) {
       throw new Error(`[ERROR] 숫자를 입력해 주세요.`);
     }
     if (!this.isInRange(bonusNumber)) {
       throw new Error(`[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.`);
     }
-    if (this.isReapted([...this.winningNumbers, bonusNumber])) {
+    if (this.isReapted([...winningNumbers, bonusNumber])) {
       throw new Error(`[ERROR] 동일한 숫자가 포함되어 있습니다.`);
     }
 
@@ -125,7 +125,10 @@ class App {
   }
   askBonusNumber() {
     Console.readLine("보너스 번호를 입력해 주세요.\n", (bonusNumber) => {
-      const validatedNum = this.validateBonusNumber(bonusNumber);
+      const validatedNum = this.validateBonusNumber(
+        bonusNumber,
+        this.winningNumbers
+      );
       this.bonusNumber = validatedNum;
       this.drawLots();
     });
