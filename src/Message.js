@@ -8,7 +8,9 @@ class Message {
   static CORRECT5_MESSAGE = '5개 일치 (1,500,000원) - ';
   static CORRECT5_BONUS_MESSAGE = '5개 일치, 보너스 볼 일치 (30,000,000원) - ';
   static CORRECT6_MESSAGE = '6개 일치 (2,000,000,000원) - ';
-  static ERROR_MONEY = '[ERROR] 구매할 금액은 1000단위의 숫자여야 합니다';
+  static ERROR_MONEY = '[ERROR] 구매할 금액은 1000단위의 숫자여야 합니다.';
+  static ERROR_PRIZE =
+    '[ERROR] 당첨 번호는 ,로 구별되는 6자리의 숫자여야 합니다.';
 }
 
 module.exports = Message;
