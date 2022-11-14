@@ -1,5 +1,5 @@
 const ERROR = Object.freeze({
-  ERROR_WINNING_NUM_ZERO: `[ERROR] 0은 입력이 불가능합니다.`,
+  ERROR_WINNING_NUM_ONLY_NUM: `[ERROR] 0이 아닌 숫자만 입력이 가능합니다.`,
   ERROR_WINNING_NUM_COMMA: `[ERROR] ,이 연속으로 입력되었습니다.`,
   ERROR_WINNING_NUM_RANGE: `[ERROR] 당첨 번호는 1~45 사이에 있습니다.`,
   ERROR_WINNING_NUM_LENGTH: `[ERROR] 당첨 번호는 6개만 입력이 가능합니다.`,
