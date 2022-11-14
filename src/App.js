@@ -3,9 +3,15 @@ class App {
 
   #lottos;
 
+  #winNumbers;
+
+  #bonusNumber;
+
   constructor() {
     this.#amount = 0;
     this.#lottos = [];
+    this.#winNumbers = [];
+    this.#bonusNumber = 0;
   }
 
   play() {}
@@ -28,6 +34,22 @@ class App {
 
   getLottos() {
     return this.#lottos;
+  }
+
+  setWinNumbers(number) {
+    this.#winNumbers = number;
+  }
+
+  getWinNumbers() {
+    return this.#winNumbers;
+  }
+
+  setBonusNumber(number) {
+    this.#bonusNumber = number;
+  }
+
+  getBonusNumber() {
+    return this.#bonusNumber;
   }
 }
 

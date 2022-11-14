@@ -38,4 +38,20 @@ describe('My Unit test', () => {
       expect(lotto).toEqual(sortedLotto);
     });
   });
+
+  test('중복된 당첨 번호가 있을 때 오류가 난다.', () => {
+    const app = new App();
+    const winNumbers = [1, 2, 3, 4, 5, 1];
+    expect(() => {
+      app.setWinNumbers(winNumbers);
+    }).toThrow('[ERROR]');
+  });
+
+  test('당첨 번호가 6개가 아닐 때 오류가 난다.', () => {
+    const app = new App();
+    const winNumbers = [1, 2, 3, 4, 5];
+    expect(() => {
+      app.setWinNumbers(winNumbers);
+    }).toThrow('[ERROR]');
+  });
 });
