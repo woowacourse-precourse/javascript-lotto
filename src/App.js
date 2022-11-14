@@ -4,6 +4,7 @@ const Lotto = require('./Lotto');
 class App {
   constructor() {
     let purchaseNum = 0;
+    let purchasedLotto = [];
   }
 
   play() {
@@ -16,7 +17,7 @@ class App {
       this.purchaseNum = amount / 1000;
       Console.print(`${this.purchaseNum}개를 구매했습니다.`)
 
-      this.pickLottoNumber();
+      this.purchaseLotto();
     })
   }
 
@@ -26,15 +27,19 @@ class App {
     }
   }
 
-  pickLottoNumber() {
+  purchaseLotto() {
+    let purchasedLotto = [];
     for (let i = 0; i < this.purchaseNum; i++) {
-      let lottoNums = Random.pickUniqueNumbersInRange(1, 45, 6);
+      let lottoNums = Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => { a - b });
 
-      lottoNums = lottoNums.sort(function (a, b) { return a - b });
+      let lotto = new Lotto(lottoNums);
 
-      let buyLotto = new Lotto(lottoNums);
-      Console.print(buyLotto.getNumbers());
+      purchasedLotto.push(lotto);
     }
+    this.purchaseLotto = purchasedLotto;
+    this.purchaseLotto.map((lotto) => {
+      Console.print(lotto.getNumbers());
+    });
   }
 }
 
