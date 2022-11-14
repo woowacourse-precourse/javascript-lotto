@@ -15,28 +15,25 @@ class LottoResult {
     };
   }
 
-  print(winningNumber, lotteries, money) {
-    this.countMatching(winningNumber, lotteries);
+  print(winningNumbers, lotteries, money) {
+    this.countMatching(winningNumbers, lotteries);
     this.calculateProfitRate(money);
     this.printResult();
   }
 
-  countMatching(winningNumber, lotteries) {
+  countMatching(winningNumbers, lotteries) {
     lotteries.forEach((lottery) => {
-      const count = LottoResult.getMatchCount(winningNumber, lottery);
+      const count = LottoResult.getMatchCount(winningNumbers, new Set(lottery));
       this.lottoMatchCounter[count] += 1;
       this.profit += LOTTO_PRIZE[count];
     });
   }
 
   static getMatchCount({ winning, bonus }, lottery) {
-    const lotterySet = new Set(lottery);
-    const count = winning.filter((number) => lotterySet.has(number)).length;
-
-    if (count === 5 && lotterySet.has(bonus)) {
+    const count = winning.filter((number) => lottery.has(number)).length;
+    if (count === 5 && lottery.has(bonus)) {
       return LOTTO_MATCHES.fiveWithBonus;
     }
-
     return LOTTO_MATCHES[count];
   }
 

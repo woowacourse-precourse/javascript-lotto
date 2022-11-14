@@ -1,9 +1,9 @@
 const { Console } = require('@woowacourse/mission-utils');
+const { INPUT_MESSAGE, LOTTO_PRICE } = require('./Constants');
 const Lotto = require('./Lotto');
 const Payment = require('./Payment');
 const LottoIssuer = require('./LottoIssuer');
 const LottoResult = require('./LottoResult');
-const { INPUT_MESSAGE, LOTTO_PRICE } = require('./Constants');
 
 class LottoGame {
   #payment;
@@ -33,7 +33,7 @@ class LottoGame {
   }
 
   drawBonusNumber() {
-    Console.readLine(INPUT_MESSAGE.bonuse, (bonusNumber) => {
+    Console.readLine(INPUT_MESSAGE.bonus, (bonusNumber) => {
       this.#lotto.setBonusNumber(bonusNumber);
       this.printResult();
     });

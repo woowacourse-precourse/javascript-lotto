@@ -1,4 +1,5 @@
 const { checkInputIsNumber, checkInputIsZero, checkInputDivisible } = require('./LottoValidation');
+const { LOTTO_PRICE } = require('./Constants');
 
 class Payment {
   #money;
@@ -11,7 +12,7 @@ class Payment {
   static validate(money) {
     checkInputIsNumber(money);
     checkInputIsZero(money);
-    checkInputDivisible(money, 1000);
+    checkInputDivisible(money, LOTTO_PRICE);
   }
 
   getMoney() {
