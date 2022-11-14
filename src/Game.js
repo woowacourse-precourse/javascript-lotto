@@ -1,5 +1,5 @@
 const { Random } = require('@woowacourse/mission-utils');
-const { GAME_RANGE, PRIZES, STAT_PHRASE } = require('./config');
+const { GAME_RANGE, PRIZES, LOTTO_PRICE, PROFIT_PHRASE, STAT_PHRASE } = require('./config');
 const Lotto = require('./Lotto.js');
 const Rank = require('./Rank.js');
 
@@ -45,18 +45,16 @@ class Game {
     return ranks.filter((rank) => rank !== Infinity);
   }
 
-  /**
-   *
-   * @param {number} budget
-   * @param {number[]} ranks
-   * @returns {number} profitRate
-   */
-  generateLottoStat(budget) {
+  generatePhrase() {
+    return this.generateLottoStatPhrase() + this.generateLottoProfit();
+  }
+
+  generateLottoProfit() {
     const ranks = this.generateLottoRanks();
     const totalValue = ranks.reduce((acc, rank) => acc + PRIZES[rank].VALUE, 0);
-    const profitRate = ((totalValue / budget) * 100).toFixed(1);
+    const profitRate = ((totalValue / (this.#lottos.length * LOTTO_PRICE)) * 100).toFixed(1);
 
-    return profitRate;
+    return PROFIT_PHRASE(profitRate);
   }
 
   generateLottoStatPhrase() {
