@@ -5,4 +5,8 @@ const COMMAND = Object.freeze({
   BONUS: '\n보너스 번호를 입력해 주세요.\n',
 });
 
-module.exports = { COMMAND };
+const ERROR = Object.freeze({
+  MONEY_DIVISIBLE: '[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.',
+});
+
+module.exports = { COMMAND, ERROR };

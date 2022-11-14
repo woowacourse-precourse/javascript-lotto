@@ -1,6 +1,7 @@
 const { COMMAND } = require('../util/Message');
 const { Console } = require('@woowacourse/mission-utils');
 const CreateLotto = require('./CreateLotto');
+const { MoneyExceptions } = require('./Exceptions');
 
 class App {
   constructor() {
@@ -15,8 +16,8 @@ class App {
 
   getUserMoney() {
     Console.readLine(COMMAND.MONEY, (money) => {
-      const createLotto = new CreateLotto(money);
-      this.lottoArr = createLotto.make();
+      new MoneyExceptions(money).check();
+      this.lottoArr = new CreateLotto(money).make();
       this.getWinning();
     });
   }
