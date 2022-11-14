@@ -5,7 +5,70 @@ const { stringToNumber } = require("./utils/common");
 const LottoUtils = require("./utils/lottoUtils");
 
 class LottoManager {
-  constructor() {}
+  #lottoTickets;
+  #winningNumber;
+  #bonusNumber;
+
+  constructor() {
+    this.#lottoTickets = [];
+  }
+
+  get lottoTickets() {
+    return this.#lottoTickets;
+  }
+
+  set lottoTickets(lottoTickets) {
+    this.#lottoTickets = lottoTickets;
+  }
+
+  get winningNumber() {
+    return this.#winningNumber;
+  }
+
+  set winningNumber(winningNumber) {
+    this.#winningNumber = winningNumber;
+  }
+
+  get bonusNumber() {
+    return this.#bonusNumber;
+  }
+
+  set bonusNumber(bonusNumber) {
+    this.#bonusNumber = bonusNumber;
+  }
+
+  processingLottoResult() {
+    const result = LottoUtils.getLottoResult(
+      this.lottoTickets,
+      this.winningNumbers,
+      this.bonusNumber
+    );
+    LottoUtils.printResult(this.lottoTickets, result);
+  }
+
+  receiveBonusNumber() {
+    Console.readLine(MESSAGE.BONUS, (bonusNumberString) => {
+      this.bonusNumber = stringToNumber(bonusNumberString);
+      Validation.validateNumbers([this.bonusNumber]);
+      Validation.validateBonusNumbers(this.winningNumbers, [this.bonusNumber]);
+
+      this.processingLottoResult();
+      Console.close();
+    });
+  }
+
+  receiveWinningNumbers() {
+    Console.readLine(MESSAGE.WINNING, (winningNumberString) => {
+      this.winningNumbers = winningNumberString
+        .split(",")
+        .map((number) => stringToNumber(number));
+
+      Validation.validateNumbers(this.winningNumbers);
+      Validation.validateWinningNumbers(this.winningNumbers);
+
+      this.receiveBonusNumber();
+    });
+  }
 
   receivePurchaseCost() {
     Console.readLine(MESSAGE.START, (purchaseString) => {
@@ -13,30 +76,11 @@ class LottoManager {
 
       const purchaseCost = stringToNumber(purchaseString);
       const lottoCount = LottoUtils.calculateLottoCount(purchaseCost);
-      const lottoTickets = LottoUtils.createLottos(lottoCount);
+      this.lottoTickets = LottoUtils.createLottos(lottoCount);
 
-      LottoUtils.printLotto(lottoTickets);
+      LottoUtils.printLotto(this.lottoTickets);
 
-      Console.readLine(MESSAGE.WINNING, (winningNumberString) => {
-        const winningNumbers = winningNumberString
-          .split(",")
-          .map((number) => stringToNumber(number));
-        Validation.validateNumbers(winningNumbers);
-        Validation.validateWinningNumbers(winningNumbers);
-
-        Console.readLine(MESSAGE.BONUS, (bonusNumberString) => {
-          const bonusNumber = stringToNumber(bonusNumberString);
-          Validation.validateNumbers([bonusNumber]);
-          Validation.validateBonusNumbers(winningNumbers, [bonusNumber]);
-
-          const result = LottoUtils.getLottoResult(
-            lottoTickets,
-            winningNumbers,
-            bonusNumber
-          );
-          LottoUtils.printResult(lottoTickets, result);
-        });
-      });
+      this.receiveWinningNumbers();
     });
   }
 
