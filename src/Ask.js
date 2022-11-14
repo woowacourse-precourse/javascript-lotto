@@ -41,6 +41,14 @@ class Ask{
             MissionUtils.Console.print("["+this.lottoList[index]+"]");
         }
     }
+
+    winningNumber(){
+        let numbers;
+        MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (answer) => {
+            numbers = answer.split(",");
+          });
+        return numbers;
+    }
 }
 
 module.exports = Ask;

@@ -10,6 +10,7 @@ class App {
     ask.money();
     ask.buyLotto();
     ask.showLottoList();
+    const lotto = new Lotto(ask.winningNumber());
 
     MissionUtils.Console.close();
   }
