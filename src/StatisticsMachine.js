@@ -47,33 +47,18 @@ class StatisticsMachine {
   }
 
   getPrizeStatisticsTemplates(prizeStatistics) {
-    const templates = [
-      `${
-        LOTTO_PRIZE_MATCH_COUNT.fifthPlace
-      }개 일치 (${LOTTO_PRIZE_MONEY.fifthPlace.toLocaleString()}원) - ${
-        prizeStatistics.fifthPlace
-      }개`,
-      `${
-        LOTTO_PRIZE_MATCH_COUNT.fourthPlace
-      }개 일치 (${LOTTO_PRIZE_MONEY.fourthPlace.toLocaleString()}원) - ${
-        prizeStatistics.fourthPlace
-      }개`,
-      `${
-        LOTTO_PRIZE_MATCH_COUNT.thirdPlace
-      }개 일치 (${LOTTO_PRIZE_MONEY.thirdPlace.toLocaleString()}원) - ${
-        prizeStatistics.thirdPlace
-      }개`,
-      `${
-        LOTTO_PRIZE_MATCH_COUNT.secondPlace
-      }개 일치, 보너스 볼 일치 (${LOTTO_PRIZE_MONEY.secondPlace.toLocaleString()}원) - ${
-        prizeStatistics.secondPlace
-      }개`,
-      `${
-        LOTTO_PRIZE_MATCH_COUNT.firstPlace
-      }개 일치 (${LOTTO_PRIZE_MONEY.firstPlace.toLocaleString()}원) - ${
-        prizeStatistics.firstPlace
-      }개`,
-    ];
+    const ranks = ["fifthPlace", "fourthPlace", "thirdPlace", "secondPlace", "firstPlace"];
+    const templates = ranks.map((rank) => {
+      if (rank === "secondPlace") {
+        return `${LOTTO_PRIZE_MATCH_COUNT[rank]}개 일치, 보너스 볼 일치 (${LOTTO_PRIZE_MONEY[
+          rank
+        ].toLocaleString()}원) - ${prizeStatistics[rank]}개`;
+      }
+
+      return `${LOTTO_PRIZE_MATCH_COUNT[rank]}개 일치 (${LOTTO_PRIZE_MONEY[
+        rank
+      ].toLocaleString()}원) - ${prizeStatistics[rank]}개`;
+    });
 
     return templates;
   }
