@@ -377,5 +377,14 @@ describe('정수 판단 함수 테스트', () => {
 
       expect(Application.increase.name).toEqual(METHOD_NAME);
     });
+
+    test('요소의 4번째 인데스에 위치한 값을 증가시켜 [0, 0, 0, 0, 2]을 반환한다.', () => {
+      const array = [0, 0, 0, 0, 0];
+      const [POINT, INCREASE] = [4, 2];
+      const EXPECTED = [array, POINT, INCREASE];
+      const RECEIVED = [0, 0, 0, 0, 2];
+
+      expect(Application.increase(...EXPECTED)).toStrictEqual(RECEIVED);
+    });
   });
 });
