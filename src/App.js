@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const {INPUT_ERROR, RESULT} = require('./Constants');
+const Constants = require('./Constants');
 const Lotto = require("./Lotto");
 
 class App {
@@ -19,7 +19,7 @@ class App {
 
   isPurchaseAmountValid(money) {
     if(Number(money) % 1000 != 0){
-      throw INPUT_ERROR.NOT_DIVIDED;
+      throw Constants.INPUT_ERROR.NOT_DIVIDED;
     }
     return Number(money) / 1000;
   }
@@ -51,7 +51,7 @@ class App {
 
   isBonusDuplicated(answer, array) {
     if(array.includes(answer)){
-      throw INPUT_ERROR.DUPLICATED;
+      throw Constants.INPUT_ERROR.DUPLICATED;
     }
   }
 
@@ -80,7 +80,7 @@ class App {
 
   printResults(all_results) {
     let i = 0;
-    RESULT.forEach(element => {
+    Constants.RESULT.forEach(element => {
       MissionUtils.Console.print(`${element} - ${all_results[i]}개`);
     });
   }

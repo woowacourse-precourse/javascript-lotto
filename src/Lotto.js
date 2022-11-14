@@ -1,4 +1,4 @@
-const INPUT_ERROR = require('./Constants');
+const Constants = require('./Constants');
 
 class Lotto {
   #numbers;
@@ -11,14 +11,14 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw INPUT_ERROR.LESS_THAN_EXPECTED;
+      throw Constants.INPUT_ERROR.LESS_THAN_EXPECTED;
     }
   }
 
   isDuplicated(numbers) {
     const set = new Set(numbers);
     if(numbers.length != set.size){
-      throw INPUT_ERROR.DUPLICATED;
+      throw Constants.INPUT_ERROR.DUPLICATED;
     }
   }
   
