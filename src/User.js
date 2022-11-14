@@ -6,6 +6,12 @@ const {
   LOTTO_MIN_NUM,
   LOTTO_MAX_NUM,
   LOTTO_NUM_COUNT,
+  RANK2_MONEY,
+  RANK5_MONEY,
+  RANK4_MONEY,
+  RANK3_MONEY,
+  RANK1_MONEY,
+  RANK_NO_MONEY,
 } = require('./Constants');
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
@@ -55,28 +61,49 @@ class User {
     }
   }
   checkRankWithUserLottos(winningNumList, bonusNum) {
-    const resultList = [];
-    this.#lottos.forEach((userLotto) =>
-      resultList.push(this.checkRankWithOneLotto(userLotto.getNumbers(), winningNumList, bonusNum))
-    );
-    return resultList;
+    const resultMap = new Map();
+    this.#lottos.forEach((userLotto) => {
+      const earn = this.checkRankWithOneLotto(userLotto.getNumbers(), winningNumList, bonusNum);
+      if (resultMap.has(earn)) {
+        resultMap.set(earn, resultMap.get(earn) + 1);
+      } else {
+        resultMap.set(earn, 1);
+      }
+      this.#earns += earn;
+    });
+    return resultMap;
   }
   checkRankWithOneLotto(userLottoNum, winningNumList, bonusNum) {
     //높은 순위부터 체크
     const answerList = [...winningNumList, bonusNum];
-    if (this.count(userLottoNum, answerList) === 6 && this.count([bonusNum], userLottoNum) === 1) {
-      return '5개 보너스';
+    const answerCount = this.count(userLottoNum, answerList);
+    switch (answerCount) {
+      case 3:
+        return RANK5_MONEY;
+      case 4:
+        return RANK4_MONEY;
+      case 5:
+        return RANK3_MONEY;
+      case 6:
+        return this.checkRank1or2(bonusNum, userLottoNum);
+      default:
+        return RANK_NO_MONEY;
     }
-    return `${this.count(userLottoNum, answerList)}개`;
+  }
+  checkRank1or2(bonusNum, userLottoNum) {
+    if (userLottoNum.includes(bonusNum)) return RANK2_MONEY;
+    return RANK1_MONEY;
   }
   count(userList, answerList) {
     //두 배열의 일치하는 원소의 갯수를 반환 (단, 두 배열은 모두 다른 6,7개의 숫자로 구성되어있어야함)
-    console.log(userList, answerList);
     let count = 0;
     userList.forEach((num) => {
       if (answerList.includes(num)) count += 1;
     });
     return count;
+  }
+  getEarns() {
+    return this.#earns;
   }
 }
 

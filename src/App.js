@@ -15,9 +15,11 @@ class App {
   #winningNumList;
   #bonusNum;
 
+  printResultMap(resultMap) {}
   showResult() {
-    const result = this.#user.checkRankWithUserLottos(this.#winningNumList, this.#bonusNum);
-    console.log(result);
+    const resultMap = this.#user.checkRankWithUserLottos(this.#winningNumList, this.#bonusNum);
+    this.printResultMap(resultMap);
+    console.log(this.#user.getEarns());
   }
 
   askBonusNum() {
@@ -46,22 +48,29 @@ class App {
   validateWinningInput(winningInput) {
     const splitedInput = winningInput.split(',').map((el) => parseInt(el));
     const numSet = new Set(splitedInput);
-
     if (splitedInput.length !== 6) {
       throw new Error(ERR_SPLIT_SIX);
     }
+    if (numSet.size !== 6) {
+      throw new Error(ERR_WINNING_DUP);
+    }
     splitedInput.forEach((num) => {
+      if (!Number.isInteger(num)) {
+        throw new Error(ERR_NOT_NUM);
+      }
       if (num < 1 || num > 45) {
         throw new Error(ERR_NOT_NUM);
       }
     });
-    if (numSet.size !== 6) {
-      throw new Error(ERR_WINNING_DUP);
-    }
+
     return splitedInput;
   }
 
   validateBonusInput(bonusInput) {
+    bonusInput = parseInt(bonusInput);
+    if (!Number.isInteger(bonusInput)) {
+      throw new Error(ERR_NOT_NUM);
+    }
     if (bonusInput < 1 || bonusInput > 45) {
       throw new Error(ERR_NOT_NUM);
     }
