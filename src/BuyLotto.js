@@ -1,4 +1,4 @@
-const { print, getRandom } = require('./utils');
+const { getRandom } = require('./utils');
 const { LOTTO, BUY_MESSAGE } = require('./constant/constant');
 
 class BuyLotto {
@@ -17,11 +17,8 @@ class BuyLotto {
 
   #buyLottoCountTimes(buyCount) {
     for (let currentCount = 0; currentCount < buyCount; currentCount += 1) {
-      this.#buyLotto.push(
-        getRandom(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, LOTTO.INPUT_COUNT).sort(
-          (lottoA, lottoB) => lottoA - lottoB,
-        ),
-      );
+      const pickedNumbers = getRandom(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, LOTTO.INPUT_COUNT);
+      this.#buyLotto.push(pickedNumbers);
     }
   }
 

@@ -15,9 +15,11 @@ class App {
   }
 
   getCost() {
+    let inputCost;
     getInput(INPUT_MESSAGE.COST, (input) => {
-      this.cost = new Cost(+input);
+      inputCost = +input;
     });
+    this.cost = new Cost(inputCost);
   }
 
   buyLottoCountTimes() {
@@ -55,8 +57,8 @@ class App {
 
   play() {
     this.getCost();
-    this.buyLottoCountTimes();
     this.getInputAndValidate();
+    this.buyLottoCountTimes();
     print(
       getLottoResult(
         this.cost.getValue(),
