@@ -1,8 +1,6 @@
 class Lotto {
   #numbers
 
-  //여기에 내가 구입한 로또번호들을 구현하면 되는 듯?
-
   constructor(numbers) {
     this.validate(numbers)
     this.#numbers = numbers
@@ -13,6 +11,10 @@ class Lotto {
     this.validateForNumLength(numbers)
 
     this.validateForDuplication(numbers)
+    
+    this.validateForNumRange(numbers)
+
+    
   }
 
   validateForNumLength(numbers){
@@ -27,6 +29,16 @@ class Lotto {
     if (numbers.length !== set.size) {
       throw new Error('[ERROR] 로또 번호는 중복된 숫자가 없어야 합니다.')
     }
+  }
+
+  validateForNumRange(numbers){
+    let min=Math.min(...numbers)
+    let max=Math.max(...numbers)
+
+    if(min<=1 || max>45){
+      throw new Error('[ERROR] 로또 번호는 1에서 45사이의 숫자여야 합니다')
+    }
+
   }
   
 
