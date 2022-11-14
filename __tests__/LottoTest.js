@@ -386,5 +386,15 @@ describe('로또 클래스 테스트', () => {
 
       expect(Lotto.unitIncrease.name).toEqual(METHOD_NAME);
     });
+
+    test('로또 번호가 6개 일치한다면 값을 증가시켜 [0, 0, 0, 0, 1]을 반환한다.', () => {
+      const array = [0, 0, 0, 0, 0];
+      const COUNT = 6;
+      const [DATUM_POINT, POINT, INCREASE] = [6, 4, 1];
+      const EXPECTED = [array, COUNT, DATUM_POINT, POINT, INCREASE];
+      const RECEIVED = [0, 0, 0, 0, 1];
+
+      expect(Lotto.unitIncrease(...EXPECTED)).toStrictEqual(RECEIVED);
+    });
   });
 });
