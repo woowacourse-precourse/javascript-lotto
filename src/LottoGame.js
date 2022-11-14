@@ -92,7 +92,8 @@ class LottoGame {
     const winningNumber = this.winningLotto.getNumber();
     this.lotteries.forEach((lotto) => {
       const lottoNumber = lotto.getNumber();
-      const count = this.getMatchCount(winningNumber, lottoNumber);
+      const matchCount = this.getMatchCount(winningNumber, lottoNumber);
+      const bonusMatch = lottoNumber.includes(this.bonusNumber);
     });
   }
 
