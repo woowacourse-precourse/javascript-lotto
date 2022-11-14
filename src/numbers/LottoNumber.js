@@ -25,6 +25,7 @@ class LottoNumber {
 
   lottoNumbersError() {
     this.Lotto.validate(this.inputLottoNumbers);
+    this.Lotto.duplicatedate(this.inputLottoNumbers);
   }
 
   bonusNumber() {
