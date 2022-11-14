@@ -11,6 +11,7 @@ class App {
         this.play();
         return;
       }
+
       const amountOfPaid = this.makePayment(value);
       const lottos = this.issueLotto(amountOfPaid / 1000);
       this.getWinner(lottos, amountOfPaid);
@@ -18,7 +19,7 @@ class App {
   }
 
   isValidate(value) {
-    if (value.match(/\D+/)) {
+    if (Number.isNaN(value) || value.match(/\D+/)) {
       throw new TypeError("[ERROR] 올바른 숫자값을 입력해주세요.");
     }
 
