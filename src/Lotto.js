@@ -22,7 +22,7 @@ class Lotto {
       if (!(parseInt(number) >= 1 && parseInt(number) <= 45)) {
         throw new Error(ERROR_MESSAGES.LOTTO_RANGE_ERROR);
       }
-    })
+    });
   }
 }
 

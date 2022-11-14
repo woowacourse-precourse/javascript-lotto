@@ -28,7 +28,7 @@ class App {
       this.inputPurchaseAmountDivide(money);
       this.lottoMoney = money;
       this.buyLotto(money);
-    })
+    });
   }
 
   // 입력된 금액이 1000원 단위로 나누어 지는지 확인하는 함수 구현
@@ -40,15 +40,15 @@ class App {
 
   // 로또 구입 금액에 해당하는 만큼 로또를 발행하는 함수 구현
   buyLotto(money) {
-    const lottoQuantity = money / 1000;
-    MissionUtils.Console.print(`${lottoQuantity}개를 구입했습니다.`);
-    this.createLotto(lottoQuantity);
+    const qunatity = money / 1000;
+    MissionUtils.Console.print(`${qunatity}개를 구매했습니다.`);
+    this.createLotto(qunatity);
   }
 
-  createLotto(lottoQuantity) {
-    for (let i = 0; i < lottoQuantity; i++) {
+  createLotto(qunatity) {
+    for (let i = 0; i < qunatity; i++) {
       const lottoNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
-      MissionUtils.Console.print(lottoNumbers);
+      MissionUtils.Console.print(`[${lottoNumbers[0]}, ${lottoNumbers[1]}, ${lottoNumbers[2]}, ${lottoNumbers[3]}, ${lottoNumbers[4]}, ${lottoNumbers[5]}]`);
       this.lottos.push(lottoNumbers);
     }
     this.inputWinNumber();
@@ -75,11 +75,11 @@ class App {
 
   // 보너스 번호 유효성 검사 함수 구현
   inputBonusNumberValidate(bonus) {
-    if (!(parseInt(bonus) >= 1 && parseInt(bonus) <= 45)) {
+    if (!(bonus >= 1 && bonus <= 45)) {
       throw new Error(ERROR_MESSAGES.LOTTO_RANGE_ERROR);
     }
     this.lottos.map((number) => {
-      if (number === parseInt(bonus)) {
+      if (number === bonus) {
         throw new Error(ERROR_MESSAGES.DUPLICATE_ERROR);
       }
     });
@@ -105,11 +105,11 @@ class App {
   }
 
   initResult() {
-    this.result[PRIZE_REWARDS.THREE];
-    this.result[PRIZE_REWARDS.FOUR];
-    this.result[PRIZE_REWARDS.FIVE];
-    this.result[PRIZE_REWARDS.FIVE_BONUS];
-    this.result[PRIZE_REWARDS.SIX];
+    this.result[PRIZE_REWARDS.THREE] = 0;
+    this.result[PRIZE_REWARDS.FOUR] = 0;
+    this.result[PRIZE_REWARDS.FIVE] = 0;
+    this.result[PRIZE_REWARDS.FIVE_BONUS] = 0;
+    this.result[PRIZE_REWARDS.SIX] = 0;
   }
 
   // 당첨 번호가 있는지 검증하는 함수 구현
@@ -147,7 +147,7 @@ class App {
   calculateRevenue() {
     let deposit = 0;
     for (let k in this.result) {
-      deposit += parseInt(k) * this.result[k];
+      deposit += (k) * this.result[k];
     }
     MissionUtils.Console.print(STATISTIC.TOTAL_FROFIT(((deposit / this.lottoMoney) * 100).toFixed(1)));
     MissionUtils.Console.close();

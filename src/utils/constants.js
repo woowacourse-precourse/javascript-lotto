@@ -12,11 +12,11 @@ const ERROR_MESSAGES = {
 };
 
 const PRIZE_REWARDS = {
-    THREE: 0,
-    FOUR: 0,
-    FIVE: 0,
-    FIVE_BONUS: 0,
-    SIX: 0,
+    THREE: "5000",
+    FOUR: "50000",
+    FIVE: "1500000",
+    FIVE_BONUS: "30000000",
+    SIX: "2000000000",
 };
 
 const STATISTIC = {
