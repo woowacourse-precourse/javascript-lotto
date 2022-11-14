@@ -1,4 +1,4 @@
-const { isMultipleOf1000, divide1000, getRandomNumbers } = require('../src/lib/utilFns');
+const { isMultipleOf1000, divide1000, splitStrByComma, getRandomNumbers } = require('../src/lib/utilFns');
 const MissionUtils = require('@woowacourse/mission-utils');
 
 const mockRandoms = (numbers) => {
@@ -76,6 +76,23 @@ describe('유틸 함수 테스트', () => {
       }
 
       expect(cnt).toBe(0);
+    });
+  });
+
+  describe('splitStrByComma 함수 테스트', () => {
+    it('실행 결과로 배열을 반환한다.', () => {
+      const inputStr = '';
+
+      const result = Array.isArray(splitStrByComma(inputStr));
+      expect(result).toBe(true);
+    });
+
+    it('문자열을 ,을 기준으로 나눈 배열을 반환한다.', () => {
+      const inputStr = '안,녕,하,세,요';
+      const answer = ['안', '녕', '하', '세', '요'];
+
+      const result = splitStrByComma(inputStr);
+      expect(result).toStrictEqual(answer);
     });
   });
 });

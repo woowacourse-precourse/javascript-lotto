@@ -24,4 +24,7 @@ const getRandomNumbers = (start, end, size) => {
   return pickNums;
 };
 
-module.exports = { isMultipleOf1000, divide1000, getRandomNumbers };
+const splitStr = (sep) => (str) => str.trim().split(sep);
+const splitStrByComma = splitStr(',');
+
+module.exports = { isMultipleOf1000, divide1000, getRandomNumbers, splitStrByComma };
