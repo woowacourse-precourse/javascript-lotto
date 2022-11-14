@@ -15,18 +15,20 @@ class Lotto {
     console.log(this.#numbers);
   }
 
-  static generateLottoArray(generateNumber) {
+  static generateLottoArray() {
+    return Utils.generateRandomNumberArray(
+      LOTTO_NUMBER_RANGE.MIN_RANGE,
+      LOTTO_NUMBER_RANGE.MAX_RANGE,
+      LOTTO_NUMBER_RANGE.LENGTH,
+    );
+  }
+
+  static generateLottoArrays(generateNumber) {
     const lottoNumbers = [];
-    for (let i = generateNumber; i === 0; i -= 1) {
-      lottoNumbers
-        .push(
-          Utils.generateRandomNumberArray(
-            LOTTO_NUMBER_RANGE.MIN_RANGE,
-            LOTTO_NUMBER_RANGE.MAX_RANGE,
-            LOTTO_NUMBER_RANGE.LENGTH,
-          ),
-        )
-        .sort((a, b) => a - b);
+    console.log(generateNumber);
+    for (let i = generateNumber; i !== 0; i -= 1) {
+      console.log(i, 'dsadsasdasad');
+      lottoNumbers.push(Lotto.generateLottoArray());
     }
     return lottoNumbers;
   }
@@ -46,10 +48,12 @@ class Lotto {
   }
 }
 
-const lotto = new Lotto([1, 3, 2, 7, 4, 5]);
+console.log(Lotto.generateLottoArrays(3));
 
-console.log(lotto.ascendingSortLottoArray());
+// const lotto = new Lotto([1, 3, 2, 7, 4, 5]);
 
-console.log(lotto.matchLotto([1, 3, 2, 7, 4, 5], 1));
+// console.log(lotto.ascendingSortLottoArray());
+
+// console.log(lotto.matchLotto([1, 3, 2, 7, 4, 5], 1));
 
 module.exports = Lotto;

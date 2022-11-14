@@ -14,7 +14,7 @@ class Utils {
   }
 
   static generateRandomNumberArray(minRange, maxRange, length) {
-    return MissionUtils.Random.pickNumberInRange(minRange, maxRange, length);
+    return MissionUtils.Random.pickUniqueNumbersInRange(minRange, maxRange, length);
   }
 }
 
