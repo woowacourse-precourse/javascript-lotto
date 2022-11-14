@@ -9,7 +9,7 @@ class PrizeInformation {
 
     /**
      * 총 수익을 계산하는 함수
-     * @returns 총 수익
+     * @returns {number} 총 수익
      */
     getTotalPrize() {
         let result = 0;

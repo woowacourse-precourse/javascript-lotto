@@ -1,7 +1,7 @@
 /**
  * 배열의 요소들을 문자 형태로 변환하는 함수
  * @param {*} arr 변환할 배열
- * @returns 변환된 문자열
+ * @returns {string} 변환된 문자열
  */
 function convertArrayToString(arr) {
     let str = "[";
@@ -14,7 +14,7 @@ function convertArrayToString(arr) {
 /**
  * 특정 숫자가 로또 유효 범위(1-45)인지 판단 결과를 반환하는 함수
  * @param {number} number 
- * @returns 로또 유효 범위를 벗어났는지에 대한 boolean값
+ * @returns {boolean} 로또 유효 범위를 벗어났다
  */
 function outofLottoNumberRange(number) {
     const LEFT_BOUNDARY = 1, RIGHT_BOUNDARY = 45;
