@@ -1,6 +1,7 @@
 const App = require('../src/App');
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('../src/Lotto');
+const LottoGenerator = require('../src/IssueLotto');
 
 const mockQuestions = answers => {
   MissionUtils.Console.readLine = jest.fn();
@@ -9,6 +10,19 @@ const mockQuestions = answers => {
       callback(input);
     });
   }, MissionUtils.Console.readLine);
+};
+
+const mockRandoms = numbers => {
+  MissionUtils.Random.pickUniqueNumbersInRange = jest.fn();
+  numbers.reduce((acc, number) => {
+    return acc.mockReturnValueOnce(number);
+  }, MissionUtils.Random.pickUniqueNumbersInRange);
+};
+
+const getLogSpy = () => {
+  const logSpy = jest.spyOn(MissionUtils.Console, 'print');
+  logSpy.mockClear();
+  return logSpy;
 };
 
 describe('투입 금액 테스트', () => {
@@ -34,6 +48,29 @@ describe('투입 금액 테스트', () => {
       const app = new App();
       app.injectMoney();
     }).toThrow('[ERROR]');
+  });
+});
+
+describe('로또 발행 테스트', () => {
+  test('2000원을 투입 했을 때 2장과 로또 번호가 나오는지 테스트', () => {
+    mockRandoms([
+      [8, 21, 23, 41, 42, 43],
+      [3, 5, 11, 16, 32, 38],
+    ]);
+    mockQuestions(['2000']);
+    const logs = [
+      '2개를 구매했습니다.',
+      '[8, 21, 23, 41, 42, 43]',
+      '[3, 5, 11, 16, 32, 38]',
+    ];
+    const logSpy = getLogSpy();
+    const app = new App();
+    app.injectMoney();
+    expect(() => {
+      logs.forEach(log => {
+        expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+      });
+    });
   });
 });
 
