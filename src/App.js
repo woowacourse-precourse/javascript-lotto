@@ -6,7 +6,7 @@ const UNIT = 1000;
 class App {
   #count = 0;
   #lottos = [];
-  #win_lotto=[];
+  #win_lotto = [];
 
   play() {
     this.start();
@@ -64,7 +64,21 @@ class App {
     Console.readLine(MESSAGES.INPUT_LOTTO_ANSWER, (input) => {
       this.#win_lotto = input.split(',').map(Number);
       const lotto = new Lotto(this.#win_lotto);
+      this.inputBonusLotto();
     }); 
+  }
+
+  inputBonusLotto() {
+    Console.readLine(MESSAGES.INPUT_BONUS_ANSWER, (input) => {
+      this.checkBonusLotto(Number(input));
+      this.#win_lotto.push(Number(input));
+    });
+  }
+  
+  checkBonusLotto(bonus) {
+    if (isNaN(bonus)) throw new Error(BONUS_ERROR.ONLY_NUMBER);
+    if (bonus < 1 || bonus > 45) throw new Error(BONUS_ERROR.RANGE);   
+    if (this.#win_lotto.includes(bonus) === true) throw new Error(BONUS_ERROR.DUPLICATE);
   }
 }
 
