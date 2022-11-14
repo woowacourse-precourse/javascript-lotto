@@ -3,6 +3,7 @@ const Lotto = require("./Lotto");
 
 class App {
   constructor() {}
+  buyLottoNum = new Array();
 
   play() {}
 
@@ -17,14 +18,19 @@ class App {
     Console.print(`${changeLotto}개를 구매했습니다.`);
   }
   //구매한 lotto 갯수만큼 로또 번호 발행
-  buyLottoNum = new Array();
-
   buyLottoNum() {
     for ( let i = 0; i < changeMoney.length; i++){
       let jackPot = Random.pickUniqueNumberInRange(1, 45, 6);
     };
     this.buyLottoNum.push(jackpot); 
     Console.print(buyLottoNum);
+  }
+  //당첨 번호 사용자로부터 입력 받기
+  insertLottoNum () {
+    Console.readLine('당첨 번호를 입력해 주세요/n', (answer)=> {
+      Console.print(answer);
+      return new Lotto(numbers);
+    });
   }
 }
 
