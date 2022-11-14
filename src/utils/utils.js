@@ -8,4 +8,8 @@ const changePrintFormat = () => {
   };
 }
 
+const toLocaleMoney = (money) => {
+  return money.toLocaleString('ko-KR');
+}
+
 module.exports = { round, changePrintFormat };
