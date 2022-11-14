@@ -56,18 +56,11 @@ class LottoManager {
   }
 
   createLottoNumbers() {
-    const lottoNumbers = new Set();
-
-    while (lottoNumbers.size < LOTTO.NUMBER_COUNT) {
-      lottoNumbers.add(
-        Random.pickNumberInRange(
-          LOTTO.MIN_NUMBER_LIMIT,
-          LOTTO.MAX_NUMBER_LIMIT,
-        ),
-      );
-    }
-
-    return [...lottoNumbers].sort((a, b) => a - b);
+    return Random.pickUniqueNumbersInRange(
+      LOTTO.MIN_NUMBER_LIMIT,
+      LOTTO.MAX_NUMBER_LIMIT,
+      LOTTO.NUMBER_COUNT,
+    ).sort((a, b) => a - b);
   }
 
   get purchaseAmount() {
