@@ -74,12 +74,10 @@ const USER_INPUT_PHRASE = {
 const STAT_PHRASE = {
   TOTAL_NUM: '개를 구매했습니다.\n',
   STAT: '당첨 통계\n---\n',
-  STAT_RANK: {
-    MATCH: '개 일치',
-    BONUS: ', 보너스 볼 일치 ',
-    DIVDER: ' - ',
-    UNIT: '개\n',
-  },
+  MATCH: '개 일치',
+  BONUS: ', 보너스 볼 일치 ',
+  DIVDER: ' - ',
+  UNIT: '개\n',
   YIELD: '총 수익률은 ',
   PERCENT: '%입니다.\n',
 };
