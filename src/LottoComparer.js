@@ -1,4 +1,4 @@
-const { RANK, RANK_LENGTH, RANK_REWARDS } = require('./constants/lotto');
+const { RANK, RANK_COUNT, RANK_REWARDS } = require('./constants/lotto');
 
 class LottoComparer {
   constructor(buyer, lotto) {
@@ -29,28 +29,28 @@ class LottoComparer {
   }
 
   #getLottoRank(buyerLotto) {
-    const matchingLength = this.#getMatchingLength(buyerLotto, this.lotto.numbers);
+    const matchingCount = this.#getMatchingCount(buyerLotto, this.lotto.numbers);
 
-    if (this.#isSecondRank(matchingLength, buyerLotto)) {
+    if (this.#isSecondRank(matchingCount, buyerLotto)) {
       return RANK.SECOND;
     }
 
     const rank =
       {
-        [RANK_LENGTH.FIFTH]: RANK.FIFTH,
-        [RANK_LENGTH.FOURTH]: RANK.FOURTH,
-        [RANK_LENGTH.THIRD]: RANK.THIRD,
-        [RANK_LENGTH.FIRST]: RANK.FIRST,
-      }[matchingLength] ?? undefined;
+        [RANK_COUNT.FIFTH]: RANK.FIFTH,
+        [RANK_COUNT.FOURTH]: RANK.FOURTH,
+        [RANK_COUNT.THIRD]: RANK.THIRD,
+        [RANK_COUNT.FIRST]: RANK.FIRST,
+      }[matchingCount] ?? undefined;
 
     return rank;
   }
 
-  #isSecondRank(matchingLength, buyerLotto) {
-    return matchingLength === RANK_LENGTH.THIRD && buyerLotto.includes(this.lotto.bonusNumber);
+  #isSecondRank(matchingCount, buyerLotto) {
+    return matchingCount === RANK_COUNT.THIRD && buyerLotto.includes(this.lotto.bonusNumber);
   }
 
-  #getMatchingLength(buyerLotto) {
+  #getMatchingCount(buyerLotto) {
     const matchingNumbers = buyerLotto.filter((number) => this.#isIncludeLotto(number));
     return matchingNumbers.length;
   }

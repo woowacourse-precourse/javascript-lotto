@@ -34,7 +34,7 @@ const RANK = Object.freeze({
   FIRST: 'first',
 });
 
-const RANK_LENGTH = Object.freeze({
+const RANK_COUNT = Object.freeze({
   FIFTH: 3,
   FOURTH: 4,
   THIRD: 5,
@@ -50,13 +50,13 @@ const RANK_REWARDS = Object.freeze({
 });
 
 const RANK_MESSAGE = Object.freeze({
-  FIFTH: `${RANK_LENGTH.FIFTH}개 일치 (${RANK_REWARDS.FIFTH.toLocaleString()}원) -`,
-  FOURTH: `${RANK_LENGTH.FOURTH}개 일치 (${RANK_REWARDS.FOURTH.toLocaleString()}원) -`,
-  THIRD: `${RANK_LENGTH.THIRD}개 일치 (${RANK_REWARDS.THIRD.toLocaleString()}원) -`,
+  FIFTH: `${RANK_COUNT.FIFTH}개 일치 (${RANK_REWARDS.FIFTH.toLocaleString()}원) -`,
+  FOURTH: `${RANK_COUNT.FOURTH}개 일치 (${RANK_REWARDS.FOURTH.toLocaleString()}원) -`,
+  THIRD: `${RANK_COUNT.THIRD}개 일치 (${RANK_REWARDS.THIRD.toLocaleString()}원) -`,
   SECOND: `${
-    RANK_LENGTH.THIRD
+    RANK_COUNT.THIRD
   }개 일치, 보너스 볼 일치 (${RANK_REWARDS.SECOND.toLocaleString()}원) -`,
-  FIRST: `${RANK_LENGTH.FIRST}개 일치 (${RANK_REWARDS.FIRST.toLocaleString()}원) -`,
+  FIRST: `${RANK_COUNT.FIRST}개 일치 (${RANK_REWARDS.FIRST.toLocaleString()}원) -`,
 });
 
 module.exports = {
@@ -64,7 +64,7 @@ module.exports = {
   GAME_MESSAGE,
   ERROR_MESSAGE,
   RANK,
-  RANK_LENGTH,
+  RANK_COUNT,
   RANK_REWARDS,
   RANK_MESSAGE,
 };
