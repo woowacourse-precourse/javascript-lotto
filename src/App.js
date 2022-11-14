@@ -38,6 +38,16 @@ class App {
   printBuy(amount) {
     this.#mesage.print(Message.buy(amount));
   }
+
+  printLottoList(lottos) {
+    Application.validateArray(lottos);
+
+    const SEPARATOR = ', ';
+
+    lottos.forEach((lotto) => {
+      this.#mesage.print(`[${lotto.join(SEPARATOR)}]`);
+    });
+  }
 }
 
 module.exports = App;
