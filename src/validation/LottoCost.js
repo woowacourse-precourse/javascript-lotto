@@ -1,4 +1,4 @@
-const { LOTTO_COST_ERROR } = require('./constant/errorMessage');
+const { LOTTO_COST_ERROR } = require('../constant/errorMessage');
 
 class LottoCost {
   constructor(lottoCost) {

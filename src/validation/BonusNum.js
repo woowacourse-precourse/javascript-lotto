@@ -1,4 +1,4 @@
-const { BONUS_NUM_ERROR } = require('./constant/errorMessage');
+const { BONUS_NUM_ERROR } = require('../constant/errorMessage');
 
 class BonusNum {
   constructor(winNums, bonusNum) {

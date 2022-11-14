@@ -1,4 +1,4 @@
-const { WIN_NUMS_ERROR } = require('./constant/errorMessage');
+const { WIN_NUMS_ERROR } = require('../constant/errorMessage');
 
 class WinNums {
   constructor(winNums) {
