@@ -56,6 +56,11 @@ class App {
   printGrossReturn(earningsRate) {
     this.#mesage.print(Message.grossReturn(earningsRate));
   }
+
+  printResult(winningAmount, purchaseAmountUnit, total) {
+    this.printEarningsRate(winningAmount);
+    this.printGrossReturn(App.getEarningsRate(purchaseAmountUnit, total));
+  }
 }
 
 module.exports = App;
