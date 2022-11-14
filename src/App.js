@@ -41,6 +41,13 @@ class App {
   getWinningNumberList(winningNumber) {
     this.winningNumberList = winningNumber.split(",");
     new Lotto(this.winningNumberList);
+    this.inputBonusNumber();
+  }
+
+  inputBonusNumber() {
+    Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
+      console.log(bonusNumber);
+    });
   }
 }
 
