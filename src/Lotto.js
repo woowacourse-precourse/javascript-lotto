@@ -64,11 +64,13 @@ class Lotto {
     return winnings;
   }
 
-  calRevenue(winngarray){
-    let total = this.calTotal(winngarray);
+  calRevenue(winngarray, money){
+    const TOTAL = this.calTotal(winngarray);
+    const REVENUE = TOTAL/money*100;
+    MissionUtils.Console.print(`총 수익률은 ${REVENUE}%입니다.`);
   }
 
-  printResult(winningArray){
+  printResult(winningArray, money){
     MissionUtils.Console.print("당첨 통계");
     MissionUtils.Console.print("---");
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${winningArray[3]}개`);
@@ -76,10 +78,10 @@ class Lotto {
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${winningArray[5]}개`);
     MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningArray[7]}개`);
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${winningArray[6]}개`);
-    this.calRevenue(winningArray);
+    this.calRevenue(winningArray, money);
   }
 
-  winningConfirm(lottoList, bonus){
+  winningConfirm(lottoList, bonus, money){
     let winning =[0,0,0,0,0,0,0,0];
     MissionUtils.Console.print(this.#numbers);
     lottoList.map((lotto)=>{
@@ -89,7 +91,7 @@ class Lotto {
       }
       winning[collect]++;
     })
-    this.printResult(winning);
+    this.printResult(winning, money);
   }
 
 
