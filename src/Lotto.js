@@ -20,7 +20,6 @@ class Lotto {
   duplicateCheck(numbers) {
     let tempNumbers = new Set(numbers);
     tempNumbers = [...tempNumbers];
-
     if (tempNumbers.length < 6) {
       throw new Error("[ERROR] 로또 번호는 중복되면 안됩니다.");
     }
@@ -55,7 +54,6 @@ class Lotto {
     for (let purchaseLotto of purchaseLottos) {
       const sameCount = this.sameCheck(purchaseLotto);
       if (sameCount < 3) continue;
-
       const [reward, rank] = this.rewardCheck(purchaseLotto, sameCount, bonus);
       resultTable = {
         ...resultTable,
@@ -63,6 +61,7 @@ class Lotto {
         [rank]: resultTable[rank] += 1,
       }
     }
+
     return resultTable;
   };
 
@@ -71,6 +70,7 @@ class Lotto {
     purchaseLotto.forEach((number) => {
       if (this.#numbers.includes(number)) sameCount += 1;
     });
+
     return sameCount;
   }
 

@@ -76,7 +76,7 @@ class App {
 
   showResultTable(resultTable) {
     Console.print('\n당첨 통계\n---');
-    for(let i = 5; i > 0; i--){
+    for (let i = 5; i > 0; i--) {
       const statisticalOutput = PHRASES[i] + resultTable[i] + '개';
       Console.print(statisticalOutput);
     }

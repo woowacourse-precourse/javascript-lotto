@@ -29,7 +29,7 @@ class Buyer {
             throw new Error("[ERROR] 금액은 정수로 입력해야 합니다.");
         }
     }
-
+    
     divideException(money) {
         if ((money % 1000 !== 0)) {
             throw new Error("[ERROR] 금액은 1000으로 나누어떨어져야 합니다.");
@@ -61,6 +61,7 @@ class Buyer {
         const tempNumbers = purchaseNumbers.sort((a, b) => {
             return a - b;
         })
+
         return tempNumbers;
     }
 
@@ -70,6 +71,7 @@ class Buyer {
             outputPurchaseLotto += purchaseLotto[i];
             if (purchaseLotto[i] === ',') outputPurchaseLotto += ' ';
         }
+
         return outputPurchaseLotto;
     }
 }
