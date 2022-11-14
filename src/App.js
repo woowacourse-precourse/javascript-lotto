@@ -3,10 +3,12 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class App {
   #numberOfLottos;
   #issuedLottosList= new Array();
+  #lottoWinningNumbers;
   play() {
     this.inputMoneyToBuyLottos();
     this.printNumberOfLottos();
     this.createIssuedLottoList();
+    this.inputLottoWinningNumber();
   }
   inputMoneyToBuyLottos() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (moneyToBuyLottos) => {
@@ -27,6 +29,12 @@ class App {
       MissionUtils.Console.print(`[${tempRandomNumbers.join(', ')}]`);
       this.#issuedLottosList.push(issuedLottoNumbers);
     }
+  }
+  inputLottoWinningNumber(){
+    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (inputNumbers)=>{
+      const winningNumbers = inputNumbers.split(",");
+      this.#lottoWinningNumbers = winningNumbers.map(v => Number(v));
+    });
   }
 }
 
