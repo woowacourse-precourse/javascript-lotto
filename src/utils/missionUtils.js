@@ -16,4 +16,8 @@ const printMessage = (message) => {
   Console.print(message);
 };
 
-module.exports = { generateRandomNumbers, inputUserValue, printMessage };
+const close = () => {
+  Console.close();
+};
+
+module.exports = { generateRandomNumbers, inputUserValue, printMessage, close };

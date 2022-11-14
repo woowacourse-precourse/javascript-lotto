@@ -22,6 +22,7 @@ const GAME_MESSAGE = {
   RANK_TWO: "5개 일치 (1,500,000원) - ",
   RANK_THREE: "4개 일치 (50,000원) - ",
   RANK_FOUR: "3개 일치 (5,000원) - ",
+  EARNING_RATE: "총 수익률은 ",
 };
 
 const ERROR_MESSAGE = {

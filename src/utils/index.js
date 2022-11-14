@@ -11,6 +11,7 @@ const {
   inputUserValue,
   printMessage,
   generateRandomNumbers,
+  close,
 } = require("./missionUtils");
 
 module.exports = {
@@ -24,4 +25,5 @@ module.exports = {
   inputUserValue,
   printMessage,
   generateRandomNumbers,
+  close,
 };

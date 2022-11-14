@@ -15,6 +15,7 @@ const {
   inputUserValue,
   printMessage,
   generateRandomNumbers,
+  close,
 } = require("./utils/index");
 
 class LottoGame {
@@ -146,7 +147,7 @@ class LottoGame {
 
     const lottoResult = this.getLottoResult();
     this.printLottoResult(lottoResult);
-    console.log(this.getEarningRate(this.calculateEarning(lottoResult)));
+    this.printEarning(this.getEarningRate(this.calculateEarning(lottoResult)));
   }
 
   printLottoResult(lottoResult) {
@@ -192,7 +193,12 @@ class LottoGame {
   }
 
   getEarningRate(earning) {
-    return ((earning / this.#purchaseAmount) * 100).toFixed(2);
+    return ((earning / this.#purchaseAmount) * 100).toFixed(1);
+  }
+
+  printEarning(earningRate) {
+    printMessage(`${GAME_MESSAGE.EARNING_RATE}${earningRate}%입니다.`);
+    close();
   }
 }
 
