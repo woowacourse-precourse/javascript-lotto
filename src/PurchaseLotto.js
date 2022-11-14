@@ -41,8 +41,12 @@ class PurchaseLotto {
             this.#purchasedLotto.push(lotto);
         }
         this.#purchasedLotto.map((lotto) => {
-            Console.print(lotto.getNumbers());
+            Console.print(lotto.getNumbersToString());
         });
+    }
+
+    getPurchasedLotto() {
+        return this.#purchasedLotto
     }
 }
 

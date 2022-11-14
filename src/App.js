@@ -5,9 +5,11 @@ const WinningLotto = require('./WinningLotto');
 class App {
   #purchaseLotto;
   #winningLotto;
+  #rank;
 
   constructor() {
     this.#purchaseLotto = new PurchaseLotto();
+    this.#rank = [0, 0, 0, 0, 0];
   }
 
   play() {
@@ -39,6 +41,50 @@ class App {
       this.#winningLotto = new WinningLotto(winningNum, parseInt(bonusNum));
     })
 
+    this.checkWinningInfo();
+  }
+
+  checkWinningInfo() {
+    this.#purchaseLotto.getPurchasedLotto().map((lotto) => {
+      let matches = this.matchWithWinning(lotto.getNumbers());
+      switch (matches) {
+        case 3:
+          this.#rank[0]++;
+          break;
+        case 4:
+          this.#rank[1]++;
+          break;
+        case 5:
+          if (lotto.getNumbers().includes(this.#winningLotto.getBonusNum())) {
+            this.#rank[3]++;
+          } else {
+            this.#rank[2]++;
+          }
+          break;
+        case 6:
+          this.#rank[4]++;
+          break;
+      }
+    })
+
+    this.printWinningInfo()
+  }
+
+  matchWithWinning(lotto) {
+    let matches = 0;
+    lotto.map((l) => {
+      if (this.#winningLotto.getWinningNum().includes(l)) {
+        matches++;
+      }
+    })
+    return matches
+  }
+
+  printWinningInfo() {
+    const matchMessage = ['3개 일치 (5,000원) - ', '4개 일치 (50,000원) - ', '5개 일치 (1,500,000원) - ', '5개 일치, 보너스 볼 일치 (30,000,000원) - ', '6개 일치 (2,000,000,000원) - ']
+    this.#rank.map((rankNum, idx) => {
+      Console.print(`${matchMessage[idx]}${rankNum}개`)
+    })
   }
 }
 
