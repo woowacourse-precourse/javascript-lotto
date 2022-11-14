@@ -51,7 +51,7 @@ const LOTTO_NUMBER = {
 const MONEY_UNIT = 1000;
 
 const YIELD = {
-  ROUND: 10,
+  ROUND: 1,
   PERCENT: 100,
 };
 

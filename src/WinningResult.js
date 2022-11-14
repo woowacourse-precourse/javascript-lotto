@@ -1,4 +1,4 @@
-const { YIELD, WINNING_PRIZE, MESSAGE, RANK } = require('./constants');
+const { YIELD, WINNING_PRIZE, MESSAGE, RANK, MONEY_UNIT } = require('./constants');
 
 class WinningResult {
   #lottoArr;
@@ -54,10 +54,10 @@ class WinningResult {
 
   setYield() {
     this.#sum = this.calculateSum();
-    const cash = this.#lottoArr.length * 1000;
-    return parseFloat(
-      Math.round((this.#sum * YIELD.PERCENT * YIELD.ROUND) / cash) / YIELD.ROUND,
-    ).toFixed(1);
+    const cash = this.#lottoArr.length * MONEY_UNIT;
+    return parseFloat(Math.round((this.#sum * YIELD.PERCENT * 10) / cash) / 10).toFixed(
+      YIELD.ROUND,
+    );
   }
 }
 
