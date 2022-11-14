@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { INPUT_MONEY_UNIT } = require('./Constant');
+const { INPUT_MONEY_UNIT, ERROR_MESSAGE } = require('./Constant');
 
 const {
   validateInputMoney,
@@ -74,7 +74,14 @@ class App {
 
   setBonusNumber(inputBonusNumber) {
     validateInputNumber(inputBonusNumber);
+    this.validateOverLapWithWinningNumbers(inputBonusNumber);
     this.bonusNumber = inputBonusNumber;
+  }
+
+  validateOverLapWithWinningNumbers(inputBonusNumber) {
+    if (this.winningNumbers.includes(inputBonusNumber)) {
+      throw new Error(ERROR_MESSAGE.INPUT_MONEY);
+    }
   }
 
   setWinningNumbers(inputNumbers) {

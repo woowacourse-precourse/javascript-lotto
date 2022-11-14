@@ -8,17 +8,29 @@ const END_NUMBER = 45;
 class Function {
   static validateInputMoney(inputMoney) {
     const input = Number(inputMoney);
-    if (Number.isNaN(input) || Number(input) % INPUT_MONEY_UNIT) {
+    this.validateTypeNumber(input);
+    this.validateUnitRemainder(input);
+  }
+
+  static validateUnitRemainder(input) {
+    if (input % INPUT_MONEY_UNIT) {
       throw new Error(ERROR_MESSAGE.INPUT_MONEY);
     }
   }
 
-  static validateInputNumbers(inputNumbers) {
-    return inputNumbers;
+  static validateInputNumbers(numbers) {
+    numbers.forEach(number => {
+      this.validateTypeNumber(number);
+    });
   }
 
   static validateInputNumber(inputNumber) {
+    this.validateTypeNumber(inputNumber);
     return inputNumber;
+  }
+
+  static validateTypeNumber(number) {
+    if (Number.isNaN(number)) throw new Error(ERROR_MESSAGE.INPUT_TYPE_ERROR);
   }
 
   static setRandomNumbers() {

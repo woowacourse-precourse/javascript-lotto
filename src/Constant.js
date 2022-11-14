@@ -15,6 +15,8 @@ const MESSAGE = {
 const ERROR_MESSAGE = {
   INPUT_MONEY: '[ERROR] 1000원 단위로 구입할 수 있습니다.',
   LOTTO_NUMBER: '[ERROR] 로또 번호는 6개여야 합니다.',
+  INPUT_OVERLAP: '[ERROR] 보너스 번호는 당첨번호와 달라야 합니다..',
+  INPUT_TYPE_ERROR: '[ERROR] 숫자만 입력하세요.',
 };
 
 const INPUT_MONEY_UNIT = 1000;
