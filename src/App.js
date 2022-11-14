@@ -1,14 +1,69 @@
 const { Console } = require('@woowacourse/mission-utils');
 const User = require('./User');
-const { CMM_INPUT_MONEY } = require('./Constants');
+const {
+  CMM_INPUT_MONEY,
+  CMM_INPUT_WINNING,
+  CMM_INPUT_BONUS,
+  ERR_SPLIT_SIX,
+  ERR_NOT_NUM,
+  ERR_WINNING_DUP,
+  ERR_BONIUS_DUP,
+} = require('./Constants');
 
 class App {
-  play() {
-    Console.readLine(CMM_INPUT_MONEY, (input) => {
-      const user = new User(input);
-      user.printUsersLottos();
+  #user;
+  #winningNum;
+  #bonusNum;
+
+  askBonusNum() {
+    Console.readLine(CMM_INPUT_BONUS, (input) => {
+      this.#bonusNum = this.validateBonusInput(input);
+      console.log(this.#winningNum,this.#bonusNum);
       Console.close();
     });
+  }
+
+  askWinningNumbers() {
+    Console.readLine(CMM_INPUT_WINNING, (input) => {
+      this.#winningNum = this.validateWinningInput(input);
+      this.askBonusNum();
+    });
+  }
+
+  play() {
+    Console.readLine(CMM_INPUT_MONEY, (input) => {
+      this.#user = new User(input);
+      this.#user.printUsersLottos();
+      this.askWinningNumbers();
+    });
+  }
+
+  validateWinningInput(winningInput) {
+    const splitedInput = winningInput.split(',').map((el) => parseInt(el));
+    const numSet = new Set(splitedInput);
+
+    if (splitedInput.length !== 6) {
+      throw new Error(ERR_SPLIT_SIX);
+    }
+    splitedInput.forEach((num) => {
+      if (num < 1 || num > 45) {
+        throw new Error(ERR_NOT_NUM);
+      }
+    });
+    if (numSet.size !== 6) {
+      throw new Error(ERR_WINNING_DUP);
+    }
+    return splitedInput;
+  }
+
+  validateBonusInput(bonusInput) {
+    if (bonusInput < 1 || bonusInput > 45) {
+      throw new Error(ERR_NOT_NUM);
+    }
+    if (this.#winningNum.includes(parseInt(bonusInput))) {
+      throw new Error(ERR_BONIUS_DUP);
+    }
+    return bonusInput;
   }
 }
 
