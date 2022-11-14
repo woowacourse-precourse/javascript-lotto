@@ -23,11 +23,16 @@ const LOTTO = {
 }
 
 const NUMBER = {
-  LOTTO: 6,
-  LOTTO_AMOUNT: 1000,
+  LOTTO_NUMBER: 6,
+  LOTTO_UNIT: 1000,
+  LOTTO_MAXIMUM: 45,
+  LOTTO_MINIMUM: 1,
 }
 
 const ERROR = {
+  MONEY_NUMBER: '[ERROR] 구입금액은 숫자로만 이루어져야 합니다.',
+  MONEY_UNIT: '[ERROR] 구입금액은 1,000 단위여야 합니다.',
+
   LOTTO_COUNT: '[ERROR] 로또 번호는 6개여야 합니다.',
   LOTTO_OVERLAP: '[ERROR] 로또 번호는 중복된 숫자가 없어야 합니다.',
   LOTTO_NUMBER: '[ERROR] 로또 번호는 숫자로만 이루어져야 합니다.',

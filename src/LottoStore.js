@@ -1,44 +1,38 @@
 const { pickUniqueNumbersInRange } = require('@woowacourse/mission-utils').Random;
-const { NUMBER } = require('./Constants');
-
+const { NUMBER, ERROR } = require('./Constants');
 
 class LottoStore {
-  #amount;
-  #number;
-  #lottoNumber = [];
+  #money;
+  #count;
+  #autoLotto = [];
 
-  constructor(amount) {
-    this.validate(amount);
-    this.#amount = amount;
+  constructor(money) {
+    this.validate(money);
+    this.#money = money;
   }
 
-  validate(amount) {
-    if (/[^0-9]/g.test(amount)) {
-        throw new Error("[ERROR] 구입금액은 숫자로만 이루어져야 합니다.")
+  validate(money) {
+    if (/[^0-9]/g.test(money)) {
+        throw new Error(ERROR.MONEY_NUMBER);
     }
 
-    if (amount % 1000 !== 0) {
-      throw new Error("[ERROR] 구입금액은 1,000 단위여야 합니다.");
+    if (money % NUMBER.LOTTO_UNIT !== 0) {
+      throw new Error(ERROR.MONEY_UNIT);
     }
   }
 
-  getLottoAmount() {
-    this.#number = this.#amount / 1000;
-    return this.#number
+  getCount() {
+    this.#count = this.#money / NUMBER.LOTTO_UNIT;
+    return this.#count;
   }
 
-  getLottoNumber() {
-    for(let index = 0; index < this.#number; index++){
-      let numbers = pickUniqueNumbersInRange(1, 45, 6).sort();
-      this.#lottoNumber.push(numbers);
-    }    
-    return this.#lottoNumber;
+  getAutoLotto() {
+    for(let index = 0; index < this.#count; index++){
+      const numbers = pickUniqueNumbersInRange(NUMBER.LOTTO_MINIMUM, NUMBER.LOTTO_MAXIMUM, NUMBER.LOTTO_NUMBER).sort();
+      this.#autoLotto.push(numbers);
+    }
+    return this.#autoLotto;
   }
-
-
-
-  
-
 
 }
 
