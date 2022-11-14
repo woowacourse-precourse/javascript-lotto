@@ -1,4 +1,4 @@
-const { Random } = require("@woowacourse/mission-utils");
+const { Random, } = require("@woowacourse/mission-utils");
 
 class Lotto {
   #numbers;
@@ -8,7 +8,6 @@ class Lotto {
     this.#numbers = userInputWinNumbers;
     this.bonusNumber;
     this.lottoBundle;
-
   }
 
   validate(numbers) {
@@ -29,6 +28,10 @@ class Lotto {
       this.makeSixNumbers();
     });
     return this.lottoBundle;
+  }
+
+  getBonusNumber(UserInputBonusNumber) {
+    this.bonusNumber = UserInputBonusNumber;
   }
 }
 
