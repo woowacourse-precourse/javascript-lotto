@@ -63,6 +63,13 @@ class LottoGameStart {
     );
     Console.close();
   }
+
+  printLottoArray(inputArray) {
+    for (let i = 0; i < inputArray.length; i++) {
+      let convertString = inputArray[i].join(", ");
+      MissionUtils.Console.print(`[${convertString}]`);
+    }
+  }
 }
 
 module.exports = LottoGameStart;
