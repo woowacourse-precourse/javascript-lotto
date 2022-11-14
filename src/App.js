@@ -1,6 +1,7 @@
 const { Console } = require('@woowacourse/mission-utils');
 const Store = require('./Store');
 const { MESSAGES } = require('./constants/index');
+const { winningResult } = require('./utils/winningResult');
 
 class App {
   constructor() {
@@ -39,7 +40,7 @@ class App {
     const correctPoints = this.store.getCorrectCount();
     const winningRate = this.store.getWinningRate(correctPoints);
 
-    Console.print(MESSAGES.WINNING_STATS(correctPoints, winningRate));
+    Console.print(winningResult(correctPoints, winningRate));
     Console.close();
   }
 }
