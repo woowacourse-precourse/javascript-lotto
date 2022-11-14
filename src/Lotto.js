@@ -1,5 +1,3 @@
-const { ERROR } = require("./Error");
-const { REG_EXP } = require("./RegEx");
 const {
   isCorrectLength,
   isOnlyNumber,

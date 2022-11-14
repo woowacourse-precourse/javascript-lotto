@@ -1,6 +1,4 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
-const { REG_EXP } = require("./RegEx");
-const { ERROR } = require("./Error");
 const { isOnlyNumber, isAvailableMoney } = require("./Validation");
 class Player {
   #lottos;
