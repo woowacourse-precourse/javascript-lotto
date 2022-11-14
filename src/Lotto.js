@@ -73,16 +73,6 @@ class Lotto {
 
   /**
    *
-   * @param {number} bonus
-   */
-  validateBonusNumber(bonus) {
-    if (this.#numbers.includes(bonus)) {
-      throw new Error('[ERROR] 로또 번호에 중복이 있을 수 없습니다.');
-    }
-  }
-
-  /**
-   *
    * @param {number[]} userNumbers
    * @param {number} bonusNumber
    * @returns {{count: number, isBonusCorrect: boolean}}
@@ -122,7 +112,6 @@ class Lotto {
    * @returns {{first: number, second: number, third:number, fourth:number, fifth:number}}
    */
   getStatistics(userNumbersList, bonusNumber) {
-    this.validateBonusNumber(Number(bonusNumber));
     const statistics = { first: 0, second: 0, third: 0, fourth: 0, fifth: 0 };
 
     userNumbersList.forEach((userNumbers) => {

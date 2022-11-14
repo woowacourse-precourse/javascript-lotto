@@ -3,7 +3,6 @@
 const User = require('./User.js');
 const Lotto = require('./Lotto.js');
 const Utils = require('./Utils.js');
-const Amount = require('./Amount.js');
 const {
   INPUT_AMOUNT_MESSAGE,
   INPUT_BONUS_NUMBER,
@@ -18,22 +17,25 @@ const {
 } = require('./const.js');
 
 class App {
-  /** @type {number} */
-  #amount;
-
-  /** @type {number[][]} */
-  #userNumbersList;
+  /** @type {User} */
+  #user;
 
   /** @type {number[]} */
   #lottoNumbers;
 
+  constructor() {
+    this.#user = new User();
+  }
+
   play() {
     Utils.readLine(`${INPUT_AMOUNT_MESSAGE}\n`, (inputAmount) => {
-      this.#setAmount(inputAmount);
-      const amount = this.#getAmount();
+      this.#user.setAmount(inputAmount);
+      const amount = this.#user.getAmount();
 
-      this.#setUserNumbersList(amount);
-      const userNumbersList = this.#getUserNumbersList();
+      const numbersList = this.#user.generateNumbersList(amount);
+      this.#user.setNumbersList(numbersList);
+      const userNumbersList = this.#user.getNumbersList();
+
       this.#printUserNumberList(userNumbersList);
 
       this.#askLottoNumbers();
@@ -42,39 +44,13 @@ class App {
 
   /**
    *
-   * @param {string} inputAmount
+   * @param {number[][]} userNumbersList
    */
-  #setAmount(inputAmount) {
-    const lottoAmount = new Amount(inputAmount);
-    const amount = lottoAmount.getAmount();
-    this.#amount = amount;
-  }
-
-  /**
-   *
-   * @returns {number}
-   */
-  #getAmount() {
-    return this.#amount;
-  }
-
-  /**
-   *
-   * @param {number} amount
-   */
-  #setUserNumbersList(amount) {
-    const user = new User(amount);
-    const userNumbersList = user.getNumbersList();
-
-    this.#userNumbersList = userNumbersList;
-  }
-
-  /**
-   *
-   * @returns {number[][]}
-   */
-  #getUserNumbersList() {
-    return this.#userNumbersList;
+  #printUserNumberList(userNumbersList) {
+    Utils.print(`\n${userNumbersList.length}개를 구매했습니다.`);
+    userNumbersList.forEach((numbers) =>
+      Utils.print(`[${numbers.join(', ')}]`)
+    );
   }
 
   #askLottoNumbers() {
@@ -95,29 +71,19 @@ class App {
 
   #askBonusNumber() {
     Utils.readLine(`\n${INPUT_BONUS_NUMBER}\n`, (inputBonus) => {
-      const lotto = new Lotto(this.#lottoNumbers);
-      const statistics = lotto.getStatistics(
-        this.#userNumbersList,
-        Number(inputBonus)
-      );
+      this.#user.setBonusNumber(inputBonus, this.#lottoNumbers);
+      const amount = this.#user.getAmount();
+      const userNumbersList = this.#user.getNumbersList();
+      const bonusNumber = this.#user.getBonusNumber();
 
-      const revenue = lotto.calculateRevenue(statistics, this.#amount);
+      const lotto = new Lotto(this.#lottoNumbers);
+      const statistics = lotto.getStatistics(userNumbersList, bonusNumber);
+      const revenue = lotto.calculateRevenue(statistics, amount);
 
       this.#printStatistics(statistics, revenue);
 
       Utils.close();
     });
-  }
-
-  /**
-   *
-   * @param {number[][]} userNumbersList
-   */
-  #printUserNumberList(userNumbersList) {
-    Utils.print(`\n${userNumbersList.length}개를 구매했습니다.`);
-    userNumbersList.forEach((numbers) =>
-      Utils.print(`[${numbers.join(', ')}]`)
-    );
   }
 
   /**

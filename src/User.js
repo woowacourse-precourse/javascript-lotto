@@ -4,14 +4,46 @@ const Utils = require('./Utils.js');
 const { LOTTO_PRICE } = require('./const.js');
 
 class User {
+  /** @type {number} */
+  #amount;
+
+  /** @type {number[][]} */
   #numbersList;
+
+  /** @type {number} */
+  #bonusNumber;
 
   /**
    *
-   * @param {number} amount
+   * @param {string} amount
    */
-  constructor(amount) {
-    this.#numbersList = this.generateNumbersList(amount);
+  validateAmount(amount) {
+    const regex = /^[0-9]+$/;
+
+    if (!regex.test(amount)) {
+      throw new Error('[ERROR] 금액은 정수여야 합니다.');
+    }
+
+    if (Number(amount) % 1000 !== 0) {
+      throw new Error('[ERROR] 금액은 1,000원 단위여야 합니다.');
+    }
+  }
+
+  /**
+   *
+   * @param {string} amount
+   */
+  setAmount(amount) {
+    this.validateAmount(amount);
+    this.#amount = Number(amount);
+  }
+
+  /**
+   *
+   * @returns {number}
+   */
+  getAmount() {
+    return this.#amount;
   }
 
   /**
@@ -32,10 +64,47 @@ class User {
 
   /**
    *
+   * @param {number[][]} numbersList
+   */
+  setNumbersList(numbersList) {
+    this.#numbersList = numbersList;
+  }
+
+  /**
+   *
    * @returns {number[][]}
    */
   getNumbersList() {
     return this.#numbersList;
+  }
+
+  /**
+   *
+   * @param {number} bonusNumber
+   * @param {number[]} lottoNumbers
+   */
+  validateBonusNumber(bonusNumber, lottoNumbers) {
+    if (lottoNumbers.includes(bonusNumber)) {
+      throw new Error('[ERROR] 로또 번호에 중복이 있을 수 없습니다.');
+    }
+  }
+
+  /**
+   *
+   * @param {number} bonusNumber
+   * @param {number[]} lottoNumbers
+   */
+  setBonusNumber(bonusNumber, lottoNumbers) {
+    this.validateBonusNumber(bonusNumber, lottoNumbers);
+    this.#bonusNumber = Number(bonusNumber);
+  }
+
+  /**
+   *
+   * @returns {number}
+   */
+  getBonusNumber() {
+    return this.#bonusNumber;
   }
 }
 
