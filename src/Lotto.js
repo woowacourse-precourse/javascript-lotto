@@ -25,6 +25,9 @@ class Lotto {
   printNumbers() {
     Console.print(this.#numbers);
   }
+  hasNumber(number) {
+    return this.#numbers.includes(number);
+  }
 }
 
 module.exports = Lotto;
