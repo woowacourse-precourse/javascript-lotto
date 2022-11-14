@@ -1,4 +1,5 @@
 const Validator = require('./Validator');
+const { Console } = require('@woowacourse/mission-utils');
 
 class Lotto {
   #numbers;
@@ -21,10 +22,6 @@ class Lotto {
 
   printNumbers() {
     Console.print(`[${this.#numbers.join(', ')}]`);
-  }
-
-  getNumbers() {
-    return this.#numbers;
   }
 }
 
