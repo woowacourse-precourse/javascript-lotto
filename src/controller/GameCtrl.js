@@ -1,7 +1,8 @@
-import IGameCtrl from './IGameCtrl';
+const IGameCtrl = require('./IGameCtrl');
 
 const GameCtrl = class extends IGameCtrl {
   constructor(view, model) {
+    super();
     this.view = view;
     this.model = model;
   }
@@ -10,9 +11,11 @@ const GameCtrl = class extends IGameCtrl {
 
   gameProcess() {}
 
+  end() {}
+
   renderGameResult(message) {
     this.view.output(message);
   }
 };
 
-export default GameCtrl;
+module.exports = GameCtrl;
