@@ -18,7 +18,7 @@ class App {
     this.count = this.money / 1000;
   }
 
-  publishLotto() {
+  publishLottoList() {
     for (let i=0; i<this.count; i++) {
       const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
       const lotto = new Lotto(numbers);
