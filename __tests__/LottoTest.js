@@ -1,4 +1,5 @@
 const Lotto = require("../src/Lotto");
+const game = require('../src/LottoGame');
 
 describe("로또 클래스 테스트", () => {
 
@@ -20,9 +21,16 @@ describe("로또 클래스 테스트", () => {
   describe('로또 당첨 관련 테스트', () => {
     
     let target;
-
+    let lottoGame;
     beforeEach(() => {
+      lottoGame = new game.GameBuilder()
+      .lottoLength(6)
+      .maxNumber(45)
+      .minPrice(1000)
+      .build();
+
       target = new Lotto([1,2,3,4,5,6]);
+      
     })
 
     test('당첨 번호 비교 후 맞는 개수 카운트', () => {
