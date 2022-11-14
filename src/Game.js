@@ -2,6 +2,10 @@ const { Console } = require('@woowacourse/mission-utils');
 const LottoGenerator = require('./domain/LottoGenerator');
 const LottoCalculator = require('./domain/LottoCalculator');
 const WinningLotto = require('./Lotto');
+const {
+  printLottoResult,
+  printGeneratedLottos,
+} = require('./utils/manageConsole');
 
 class Game {
   constructor() {
@@ -25,7 +29,7 @@ class Game {
     return new Promise((resolve) => {
       Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
         const generatedLottos = this.lottoGenerator.generateLottos(money);
-        resolve(generatedLottos.forEach((lotto) => Console.print(lotto)));
+        resolve(printGeneratedLottos(generatedLottos));
       });
     });
   }
@@ -54,24 +58,9 @@ class Game {
         winningLotto,
         bonusNum
       );
-
       const YIELD = lottoCalculator.calculateYield();
-      resolve(
-        Console.print('\n당첨 통계\n---'),
-        Console.print(`3개 일치 (5,000원) - ${lottoCalculator.score['3']}개`),
-        Console.print(`4개 일치 (50,000원) - ${lottoCalculator.score['4']}개`),
-        Console.print(
-          `5개 일치 (1,500,000원) - ${lottoCalculator.score['5']}개`
-        ),
-        Console.print(
-          `5개 일치, 보너스 볼 일치 (30,000,000원) - ${lottoCalculator.score['bonus']}개`
-        ),
-        Console.print(
-          `6개 일치 (2,000,000,000원) - ${lottoCalculator.score['6']}개`
-        ),
-        Console.print(`총 수익률은 ${YIELD}%입니다.`),
-        Console.close()
-      );
+      const SCORE = lottoCalculator.score;
+      resolve(printLottoResult(SCORE, YIELD), Console.close());
     });
   }
 }
