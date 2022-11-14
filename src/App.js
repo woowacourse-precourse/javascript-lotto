@@ -2,12 +2,14 @@ const { Console, Random } = require("@woowacourse/mission-utils");
 
 const PURCHASE_MONEY = '구입금액을 입력해 주세요.';
 const LOTTO_WINDOW = '당첨 번호를 입력해 주세요.'
+const BONUS_WINDOW = '보너스 번호를 입력해 주세요.'
 const PRICE_LOTTO = 1000;
 
 class App {
   constructor() {
     this.lottoArray = [];
     this.winningNumber = 0;
+    this.bonusNumber = 0;
   }
 
   play() {
@@ -39,7 +41,13 @@ class App {
     Console.readLine(`\n${prompt}\n`, (input) => {
 
       this.winningNumber = input.split(',');
+      this.bonusWindow(BONUS_WINDOW);
     });
+  }
+  bonusWindow(window) {
+    Console.readLine(`\n${window}\n`, (input) => {
+      this.bonusNumber = input;
+    })
   }
 }
 
