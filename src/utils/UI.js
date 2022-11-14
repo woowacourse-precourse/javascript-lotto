@@ -2,10 +2,13 @@ const Console = require("./Console");
 const Constant = require("../Constant");
 const makeLotto = require("./MakeLotto");
 const Validate = require("./Validate");
+const Lotto = require("../Lotto");
 class UI {
   #countLotto;
+  #arrUserInputLottoNumbers;
+  #bonusNumber;
 
-  getLottoPurchaseAmount() {
+  askMoney() {
     Console.readLine("구입금액을 입력해 주세요.\n", (userInputMoney) => {
       let numberUserInputMoney = Number(userInputMoney) ?? NaN;
       if (Validate.validateMoney(numberUserInputMoney)) {
@@ -21,23 +24,39 @@ class UI {
     return this.#countLotto;
   }
 
-  static inputBonusNumber() {
-    Console.readLine(Constant.INPUT_BONUS_NUMBER, (strBonusNumber) => {
-      const numberBonusNumber = +strBonusNumber ?? NaN;
-      if (Validate.validateBonusNumber(numberBonusNumber)) {
-      }
-    });
+  get arrUserInputLottoNumbers() {
+    return this.#arrUserInputLottoNumbers;
+  }
+
+  set arrUserInputLottoNumbers(value){
+
+  }
+
+  get bonusNumber() {
+    return this.#bonusNumber;
   }
 
   inputUserLottoNumber() {
     Console.readLine(
       "\n당첨 번호를 입력해 주세요.\n",
       (userInputLottoNumbers) => {
-        if (Validate.validateUserInputLottoNumbers(UserInputLottoNumbers)) {
-          let arrUserInputLottoNumbers = userInputLottoNumbers.split(",");
+        this.inputBonusNumber()
+        if (Validate.validateUserInputLottoNumbers(userInputLottoNumbers)) {
+          this.#arrUserInputLottoNumbers = userInputLottoNumbers.split(",").map((number)=> +number);
         }
       }
     );
+  }
+
+  inputBonusNumber() {
+    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (strBonusNumber) => {
+      let numberBonusNumber = +strBonusNumber ?? NaN;
+      if (Validate.validateBonusNumber(numberBonusNumber)) {
+        this.#bonusNumber = numberBonusNumber;
+        const lotto = new Lotto(this.#arrUserInputLottoNumbers);
+      }
+      Console.close()
+    });
   }
 
   showLottosCount() {

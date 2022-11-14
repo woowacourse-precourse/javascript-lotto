@@ -5,7 +5,7 @@ const UI = require("./utils/UI");
 class App {
   play() {
     const ui = new UI();
-    ui.getLottoPurchaseAmount();
+    ui.askMoney();
   }
 }
 

@@ -28,6 +28,7 @@ class Validate {
     if (!isAllNumber) {
       throw new Error("당첨번호는 숫자만 입력하세요.");
     }
+    return true
   }
 
   static validateBonusNumber(bonusNumber) {
@@ -37,6 +38,7 @@ class Validate {
     if ((!isNaN(bonusNumber) && bonusNumber < 1) || bonusNumber > 45) {
       throw new Error(Constant.INPUT_ONLY_1_TO_45);
     }
+    return true
   }
 }
 
