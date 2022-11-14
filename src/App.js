@@ -1,5 +1,12 @@
+const game = require("./game/game");
+
 class App {
-  play() {}
+  play() {
+    game.Start();
+  }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
