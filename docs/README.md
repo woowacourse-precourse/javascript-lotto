@@ -12,3 +12,4 @@
 - checkDuplicatedLotto : validation에 중복 숫자 확인
 - checkAscendingLotto : validation에 숫자 오름차순 확인
 - checkLottoResult : 로또의 당첨 여부 확인
+- makeCountObj : 배열의 원소 참조를 위해 객체 생성
