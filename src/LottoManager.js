@@ -33,11 +33,11 @@ class LottoManager {
 
   #calculateProfit(winningArray) {
     return (
-      winningArray[0] * 5000 +
-      winningArray[1] * 50000 +
-      winningArray[2] * 1500000 +
-      winningArray[3] * 30000000 +
-      winningArray[4] * 2000000000
+      winningArray[0] * 5_000 +
+      winningArray[1] * 50_000 +
+      winningArray[2] * 1_500_000 +
+      winningArray[3] * 30_000_000 +
+      winningArray[4] * 2_000_000_000
     );
   }
 }
