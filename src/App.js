@@ -12,8 +12,8 @@ class App {
       if (money % 1000 !== 0) throw new Error("[ERROR] 천 원 단위로 넣어주세요.")
       this.money = money;
       MissionUtils.Console.print(`${money / 1000}개를 구매했습니다.`);
-      this.makeUserLotto();        //뒤에 랜덤번호 생성
-      this.makeWinningLotto();       // 뒤에 당첨번호 생성
+      this.makeUserLotto(); 
+      this.makeWinningLotto(); 
     });
   }
 
@@ -24,6 +24,19 @@ class App {
       MissionUtils.Console.print(`[${lotto.numbers.join(", ")}]`);
       this.#lottos.push(lotto)
     }
+  }
+
+  makeWinningLotto() {
+    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", winningLotto => {
+      winningLotto = winningLotto.split(",").map(Number);
+      this.winningLottoArr = [this.winningLottoValidate(winningLotto)]; //뒤에 예외처리하기
+      MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", winningLottoBonus => {
+        winningLottoBonus = +winningLottoBonus;
+        this.winningLottoArr.push(this.winningLottoBonusValidate(winningLottoBonus)) //뒤에 예외처리하기
+        //여기에 랜덤번호랑 당첨번호랑 비교해서 결과 내보내는 함수 입력하기
+        MissionUtils.Console.close();
+      });
+    });
   }
 
 }
