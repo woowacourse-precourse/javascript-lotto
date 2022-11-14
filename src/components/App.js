@@ -42,7 +42,7 @@ class App {
   }
 
   printLotto(newLotto) {
-    Console.print(JSON.stringify(newLotto).replaceAll(",", ", "));
+    Console.print(JSON.stringify(newLotto).replace(/,/g, ", "));
   }
 
   issueLotto() {
