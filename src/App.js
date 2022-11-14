@@ -79,7 +79,7 @@ class App {
 
   returnRate() {
     let rate = (correct3 * 5000 + correct4 * 50000 + correct5 * 1500000 + correct5B * 30000000 + correct6 * 2000000000) / (numOfLotto * 1000);
-    Console.print(`총 수익률은 ${rate.toFixed(2)}%입니다.`);
+    Console.print(`총 수익률은 ${rate.toFixed(1)}%입니다.`);
   }
 
   play() {
