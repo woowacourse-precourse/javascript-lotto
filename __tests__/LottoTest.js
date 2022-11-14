@@ -24,4 +24,13 @@ describe("로또 클래스 테스트", () => {
     //then
     expect(result).toBe(8);
   });
+
+  test("로또 구매갯수에 맞춰 랜덤 번호를 생성해야한다.", () => {
+    //given
+    const countOfLotto = 8;
+    //when
+    let result = Lotto.makeRandomArray(countOfLotto);
+    //then
+    expect(result).toHaveLength(countOfLotto);
+  });
 });
