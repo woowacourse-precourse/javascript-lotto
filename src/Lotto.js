@@ -1,3 +1,5 @@
+const { ERROR_MESSAGE } = require("./constants/constants");
+
 class Lotto {
   #numbers;
 
@@ -8,21 +10,21 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error(ERROR_MESSAGE.LOTTO_NUMBER_ERROR);
     }
 
     if (new Set(numbers).size !== 6) {
-      throw new Error("[ERROR] 로또 번호는 중복되지 않는 숫자여야 합니다.");
+      throw new Error(ERROR_MESSAGE.LOTTO_SAME_ERROR);
     }
 
     numbers.map((number) => {
-      if (!(Number(number) >= 1 && Number(number) <= 45)) throw new Error("[ERROR] 로또 번호는 1부터 45까지의 숫자여야 합니다.");
+      if (!(Number(number) >= 1 && Number(number) <= 45)) throw new Error(ERROR_MESSAGE.BONUS_RANGE_ERROR);
       this.filterNumber(number);
     });
   }
 
   filterNumber(number) {
-    if (!(/^[0-9]{1,2}$/.test(number))) throw new Error("[ERROR] 숫자와 쉼표를 제외한 문자는 입력할 수 없습니다.");
+    if (!(/^[0-9]{1,2}$/.test(number))) throw new Error(ERROR_MESSAGE.INPUT_CHARACTER_ERROR);
   }
 }
 

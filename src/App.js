@@ -1,16 +1,6 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
+const { MESSAGE, MONEY, ERROR_MESSAGE } = require("./constants/constants");
 const Lotto = require("../src/Lotto");
-
-const PROMPT_MONEY = '구입금액을 입력해 주세요.';
-const PROMPT_LOTTO = '당첨 번호를 입력해 주세요.';
-const PROMPT_BONUS = '보너스 번호를 입력해 주세요.';
-const RESULT_STATISTICS = '\n당첨 통계\n---';
-const THREE_SAME_MONEY = '5000';
-const FOUR_SAME_MONEY = '50000';
-const FIVE_SAME_MONEY = '1500000';
-const FIVE_BONUS_SAME_MONEY = '30000000';
-const SIX_SAME_MONEY = '2000000000';
-const LOTTO_PRICE = 1000;
 
 class App {
   constructor() {
@@ -22,23 +12,23 @@ class App {
   }
 
   play() {
-    this.moneyInput(PROMPT_MONEY);
+    this.moneyInput(MESSAGE.PROMPT_MONEY);
   }
 
   moneyInput(prompt) {
     Console.readLine(`${prompt}\n`, (input) => {
-      if (this.validMoneyInput(input) === false) throw new Error("[ERROR] 1,000원 단위의 금액이어야 합니다.");
+      if (this.validMoneyInput(input) === false) throw new Error(ERROR_MESSAGE.UNIT_ERROR);
       this.money = input;
       this.countLotto(input);
     });
   }
 
   validMoneyInput(input) {
-    if (input % LOTTO_PRICE !== 0) return false;
+    if (input % MONEY.LOTTO_PRICE !== 0) return false;
   }
 
   countLotto(money) {
-    const amountLotto = money / LOTTO_PRICE;
+    const amountLotto = money / MONEY.LOTTO_PRICE;
     Console.print(`\n${amountLotto}개를 구매했습니다.`);
     this.createLotto(amountLotto);
   }
@@ -49,7 +39,7 @@ class App {
       Console.print(`[${numbers[0]}, ${numbers[1]}, ${numbers[2]}, ${numbers[3]}, ${numbers[4]}, ${numbers[5]}]`);
       this.arrayLotto.push(numbers);
     }
-    this.lottoInput(PROMPT_LOTTO);
+    this.lottoInput(MESSAGE.PROMPT_LOTTO);
   }
 
   lottoInput(prompt) {
@@ -57,7 +47,7 @@ class App {
       this.arrayWinLotto = input.split(",");
       new Lotto(this.arrayWinLotto);
       this.arrayWinLotto = this.arrayWinLotto.map(number => parseInt(number));
-      this.bonusInput(PROMPT_BONUS);
+      this.bonusInput(MESSAGE.PROMPT_BONUS);
     });
   }
 
@@ -70,9 +60,9 @@ class App {
   }
 
   validBonusInput(input) {
-    if (!(Number(input) >= 1 && Number(input) <= 45)) throw new Error("[ERROR] 보너스 번호로 1부터 45까지의 숫자만 입력할 수 있습니다.");
+    if (!(Number(input) >= 1 && Number(input) <= 45)) throw new Error(ERROR_MESSAGE.BONUS_RANGE_ERROR);
     this.arrayWinLotto.map(number => {
-      if (number === Number(input)) throw new Error("[ERROR] 보너스 번호로 당첨 번호와 중복된 숫자를 입력할 수 없습니다.");
+      if (number === Number(input)) throw new Error(ERROR_MESSAGE.BONUS_SAME_ERROR);
     });
   }
 
@@ -91,30 +81,30 @@ class App {
   }
 
   initializeResult() {
-    this.result[THREE_SAME_MONEY] = 0;
-    this.result[FOUR_SAME_MONEY] = 0;
-    this.result[FIVE_SAME_MONEY] = 0;
-    this.result[FIVE_BONUS_SAME_MONEY] = 0;
-    this.result[SIX_SAME_MONEY] = 0;
+    this.result[MONEY.THREE_SAME_MONEY] = 0;
+    this.result[MONEY.FOUR_SAME_MONEY] = 0;
+    this.result[MONEY.FIVE_SAME_MONEY] = 0;
+    this.result[MONEY.FIVE_BONUS_SAME_MONEY] = 0;
+    this.result[MONEY.SIX_SAME_MONEY] = 0;
   }
 
   separateWin(count, bonus) {
-    if (count === 3) this.result[THREE_SAME_MONEY] += 1;
-    if (count === 4) this.result[FOUR_SAME_MONEY] += 1;
+    if (count === 3) this.result[MONEY.THREE_SAME_MONEY] += 1;
+    if (count === 4) this.result[MONEY.FOUR_SAME_MONEY] += 1;
     if (count === 5) {
-      if (bonus === false) this.result[FIVE_SAME_MONEY] += 1;
-      if (bonus === true) this.result[FIVE_BONUS_SAME_MONEY] += 1;
+      if (bonus === false) this.result[MONEY.FIVE_SAME_MONEY] += 1;
+      if (bonus === true) this.result[MONEY.FIVE_BONUS_SAME_MONEY] += 1;
     }
-    if (count === 6) this.result[SIX_SAME_MONEY] += 1;
+    if (count === 6) this.result[MONEY.SIX_SAME_MONEY] += 1;
   }
 
   printResult() {
-    Console.print(RESULT_STATISTICS);
-    Console.print(`3개 일치 (5,000원) - ${this.result[THREE_SAME_MONEY]}개`);
-    Console.print(`4개 일치 (50,000원) - ${this.result[FOUR_SAME_MONEY]}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${this.result[FIVE_SAME_MONEY]}개`);
-    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.result[FIVE_BONUS_SAME_MONEY]}개`);
-    Console.print(`6개 일치 (2,000,000,000원) - ${this.result[SIX_SAME_MONEY]}개`);
+    Console.print(MESSAGE.RESULT_STATISTICS);
+    Console.print(`3개 일치 (5,000원) - ${this.result[MONEY.THREE_SAME_MONEY]}개`);
+    Console.print(`4개 일치 (50,000원) - ${this.result[MONEY.FOUR_SAME_MONEY]}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${this.result[MONEY.FIVE_SAME_MONEY]}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.result[MONEY.FIVE_BONUS_SAME_MONEY]}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${this.result[MONEY.SIX_SAME_MONEY]}개`);
     this.calculateProfitPercentage();
   }
 
