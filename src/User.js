@@ -3,6 +3,8 @@ const LOTTO_PRICE = 1000;
 class User {
   #myLottos;
   #amount;
+  #profit;
+  #winStats;
 
   constructor(amount) {
     this.validate(amount);
@@ -19,8 +21,12 @@ class User {
     return this.#amount/LOTTO_PRICE;
   }
 
-  addLotto(lottos) {
-    this.#myLottos = lottos;
+  addLotto(lotto) {
+    this.#myLottos.push(lotto);
+  }
+
+  getRateOfProfit(){
+    return (this.#profit/this.#amount).toFixed(1); 
   }
 
   validate(amount) {
