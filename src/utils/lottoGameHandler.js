@@ -14,4 +14,8 @@ const generateLottoNumber = () => {
   return sortedLottoNumber;
 };
 
-module.exports = { generateLottoNumber };
+const separateStringBySpecificCharacter = (string, charactor) => {
+  return string.split(charactor);
+};
+
+module.exports = { createLottoNumber, generateLottoNumber, separateStringBySpecificCharacter };
