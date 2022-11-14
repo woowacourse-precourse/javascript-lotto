@@ -13,7 +13,7 @@ class Ask{
         if(money%1000 != 0){
         throw new Error("[ERROR] 구입금액은 1000원 단위로 입력해야합니다.")
         }
-        this.#money = money;
+        this.money = money;
     }
 
     money(){
@@ -23,10 +23,8 @@ class Ask{
     }
 
     buyLotto(){
-        MissionUtils.Console.print(`${parseInt(money/1000)}개를 구매했습니다.`)
+        MissionUtils.Console.print(`${parseInt(this.money/1000)}개를 구매했습니다.`)
     }
-
-
 
 }
 

@@ -11,6 +11,12 @@ const mockQuestions = (answers) => {
   }, MissionUtils.Console.readLine);
 };
 
+const getLogSpy = () => {
+  const logSpy = jest.spyOn(MissionUtils.Console, "print");
+  logSpy.mockClear();
+  return logSpy;
+};
+
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
     expect(() => {
@@ -41,5 +47,19 @@ describe("로또 클래스 테스트", () => {
       app.play();
   }).toThrow("[ERROR]");
   });
+
+  test("구매한 금액에 따라 로또 장수를 출력한다", ()=>{
+    mockQuestions(["1000"]);
+    const logs = [
+      "1개를 구매했습니다.",
+    ];
+    const logSpy = getLogSpy();
+    const app = new App();
+    app.play();
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    })
+  });
+
 
 });
