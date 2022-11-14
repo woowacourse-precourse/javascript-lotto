@@ -39,7 +39,7 @@ class App {
         1,
         45,
         6
-      );
+      ).sort((a, b) => a - b);
       MissionUtils.Console.print(
         `[${lottoNumbers[0]}, ${lottoNumbers[1]}, ${lottoNumbers[2]}, ${lottoNumbers[3]}, ${lottoNumbers[4]}, ${lottoNumbers[5]}]`
       );
