@@ -5,6 +5,7 @@ const {
   ERROR_MESSAGES,
   ADD_COMMA_EXP,
 } = require("../utils/constants");
+const { validateType } = require("../utils/functions");
 
 class Lotto {
   #winningNums;
@@ -14,6 +15,7 @@ class Lotto {
 
     this.#winningNums = winningNums.map((num) => +num);
     this.statics = Object.assign({}, INITIAL_STATICS);
+    this.totalPrice = 0;
   }
 
   calculateStatics(issuedLottos, bonusNumber) {
@@ -36,26 +38,26 @@ class Lotto {
   updateStatics(sameCount, isMatchBonusNum) {
     if (sameCount === 5 && isMatchBonusNum) {
       this.statics["5andBonus"] += 1;
-    } else {
-      sameCount in this.statics && (this.statics[sameCount] += 1);
+    } else if (sameCount in this.statics) {
+      this.statics[sameCount] += 1;
     }
   }
 
   calculateEarningsRate(purchase) {
     const matchedCounts = Object.keys(this.statics);
-    let total = 0;
 
-    const addWinningPrice = (matchedCount) => {
-      this.statics[matchedCount] !== 0 &&
-        (total += WINNING_PRICES[matchedCount] * this.statics[matchedCount]);
-    };
+    matchedCounts.forEach((matchedCount) => this.addWinningPrice(matchedCount));
 
-    matchedCounts.forEach((matchedCount) => addWinningPrice(matchedCount));
-
-    const earnings = (total / (purchase * LOTTO_PRICE)) * 100;
+    const earnings = (this.totalPrice / (purchase * LOTTO_PRICE)) * 100;
 
     return this.convertRate(earnings);
   }
+
+  addWinningPrice = (matchedCount) => {
+    this.statics[matchedCount] !== 0 &&
+      (this.totalPrice +=
+        WINNING_PRICES[matchedCount] * this.statics[matchedCount]);
+  };
 
   convertRate(earnings) {
     const earningsRate =
@@ -69,35 +71,21 @@ class Lotto {
   validateWinningNubmer(winningNums) {
     const { WINNING_NUMS } = ERROR_MESSAGES;
 
-    if (winningNums.length !== 6) throw new Error(WINNING_NUMS);
+    winningNums.forEach((num) => validateType(num, WINNING_NUMS));
 
-    winningNums.some((num) => {
-      if (
-        typeof +num !== "number" ||
-        Number.isNaN(+num) ||
-        +num < 1 ||
-        +num > 45
-      )
-        throw new Error(WINNING_NUMS);
-    });
-
-    if (winningNums.length !== new Set(winningNums).size)
+    if (
+      winningNums.length !== 6 ||
+      winningNums.length !== new Set(winningNums).size
+    )
       throw new Error(WINNING_NUMS);
   }
 
   validateBonusNumber(bonusNumber) {
     const { BOUNS_NUM } = ERROR_MESSAGES;
 
-    if (
-      typeof bonusNumber !== "number" ||
-      Number.isNaN(bonusNumber) ||
-      bonusNumber < 1 ||
-      bonusNumber > 45
-    )
-      throw new Error(BOUNS_NUM);
+    validateType(bonusNumber, BOUNS_NUM);
 
-    if (this.#winningNums.some((num) => num === bonusNumber))
-      throw new Error(BOUNS_NUM);
+    if (this.#winningNums.includes(bonusNumber)) throw new Error(BOUNS_NUM);
   }
 }
 
