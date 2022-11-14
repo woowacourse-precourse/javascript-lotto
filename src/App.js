@@ -1,5 +1,4 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const Lotto = require("./model/Lotto");
 const Lottos = require("./model/Lottos");
 const Validate = require("./Validate");
 const { INPUT_MESSEGE } = require("./utils/constants");

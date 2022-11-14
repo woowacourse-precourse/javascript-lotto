@@ -4,7 +4,6 @@ const INPUT_MESSEGE = {
   BONUS_NUMBER: "보너스 번호를 입력해 주세요.",
 };
 
-const RESULT_MESSAGE = {};
 const LOTTO_NUMBER = {
   MIN_RANGE: 1,
   MAX_RANGE: 45,
@@ -40,7 +39,6 @@ const UNIT = {
 
 module.exports = {
   INPUT_MESSEGE,
-  RESULT_MESSAGE,
   LOTTO_NUMBER,
   RANK,
   WINNING_COUNT,
