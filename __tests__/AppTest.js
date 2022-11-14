@@ -1,6 +1,7 @@
 /* eslint no-use-before-define: 0 */
 /* eslint no-undef: "off" */
 /* eslint no-new: "off" */
+const MissionUtils = require('@woowacourse/mission-utils');
 const App = require('../src/App');
 
 describe('App 클래스 테스트', () => {
@@ -24,5 +25,22 @@ describe('App 클래스 테스트', () => {
     });
 
     expect(answer).toStrictEqual(lottoCountArray);
+  });
+
+  test('setWinningNumbers에서 값이 입력과 동일하게 변수에 할당 되었는지 테스트', () => {
+    const app = new App();
+    const numbersArray = [];
+    for (let i = 0; i < 20; i += 1) {
+      const number = MissionUtils.Random.pickUniqueNumbersInRange(
+        1,
+        45,
+        6,
+      ).join(',');
+      numbersArray.push(number);
+    }
+    numbersArray.forEach(numbers => {
+      app.setWinningNumbers(numbers);
+      expect(app.winningNumbers.length).toBe(6);
+    });
   });
 });
