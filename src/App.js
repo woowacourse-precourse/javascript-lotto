@@ -9,6 +9,8 @@ const inputObjects = {
   'bonus': '',
 }
 
+const randomNumbersArrays = []
+
 const results = [0, 0, 0, 0, 0, 0]
 const REWARDS = [0, 5000, 50000, 1500000, 30000000, 2000000000]
 const RANK_MESSAGE = ['', 
@@ -19,59 +21,27 @@ const RANK_MESSAGE = ['',
   '6개 일치 (2,000,000,000원) - ',
 ]
 
-function getBudget() {
-  Console.readLine('', (answer) => {
-    const gameBudget = new Budget(Number(answer));
-    inputObjects['budget'] = gameBudget.getBudget();
-    getLottoNumbers();
+function finishLotto() {
+  Console.close();
+}
+
+function printLottoResult(reward) {
+  Console.print('당첨 통계')
+  Console.print('---')
+  results.forEach((element, index) => {
+    if(index === 0) return;
+    Console.print(RANK_MESSAGE[index]+element+'개');
   })
+  const yield = (reward/inputObjects['budget']*100).toFixed(1);
+  Console.print(`총 수익률은 ${yield}%입니다.`);
+  finishLotto()
 }
 
-function inputValueToArray(inputValue) {
-  const inputArray = inputValue.split(',')
-  inputArray.forEach((element, index) => {
-    inputArray[index] = Number(element.trim());
-  })
-  return inputArray;
-}
-
-function getLottoNumbers() {
-  Console.readLine('', (answer) => {
-    const inputArray = inputValueToArray(answer)
-    const lotto = new Lotto(inputArray);
-    lotto.getNumbers().forEach((element) => {
-      inputObjects['numbers'].push(element);
-    })
-    getBonusNumber();
-  })
-}
-
-function getBonusNumber() {
-  Console.readLine('', (answer) => {
-    const bonusNum = new Bonus(inputObjects['numbers'], Number(answer));
-    inputObjects['bonus'] = bonusNum.getBonus();
-    startLotto();
-  })
-}
-
-function startLotto() {
-  Console.print(`${inputObjects['budget']/1000}개를 구매했습니다.`);
-  getRandomNumberList();
-}
-
-function getRandomNumber() {
-  const randomNumber = Random.pickNumberInRange(1, 45);
-  return randomNumber;
-}
-
-function getRandomNumbers() {
-  const randomNumbers = []
-  while(randomNumbers.length < 6) {
-    const randomNumber = getRandomNumber();
-    if(randomNumbers.includes(randomNumber)) continue;
-    randomNumbers.push(randomNumber);
-  }
-  return randomNumbers;
+function getResultStatics() {
+  const reward = results.reduce((acc, element, index) => {
+    return acc + element * REWARDS[index];
+  }, 0)
+  printLottoResult(reward);
 }
 
 function getBonusResult(bonus) {
@@ -97,37 +67,91 @@ function getResult(randomNumbers, bonus) {
   return 0;
 }
 
-function getRandomNumberList() {
-  for(let i=0; i<inputObjects['budget']/1000; i++){
-    const randomNumbers = getRandomNumbers();
-    const result = getResult(randomNumbers, inputObjects['bonus']);
-    Console.print(randomNumbers);
+function countSameNumbers() {
+  randomNumbersArrays.forEach((element) => {
+    const result = getResult(element, inputObjects['bonus']);
     results[result] += 1;
-  }
+  })
   getResultStatics();
 }
 
-function getResultStatics() {
-  const reward = results.reduce((acc, element, index) => {
-    return acc + element * REWARDS[index];
-  }, 0)
-  printLottoResult(reward);
-}
-
-function printLottoResult(reward) {
-  results.forEach((element, index) => {
-    if(index === 0) return;
-    Console.print(RANK_MESSAGE[index]+element+'개');
+function getBonusNumber() {
+  Console.readLine('보너스 번호를 입력해 주세요.\n', (answer) => {
+    const bonusNum = new Bonus(inputObjects['numbers'], Number(answer));
+    inputObjects['bonus'] = bonusNum.getBonus();
+    Console.print('')
+    countSameNumbers();
   })
-  console.log(reward)
-  const yield = (reward/inputObjects['budget']*100).toFixed(1);
-  Console.print(`총 수익률은 ${yield}%입니다.`);
-  finishLotto()
 }
 
-function finishLotto() {
-  Console.close();
+function inputValueToArray(inputValue) {
+  const inputArray = inputValue.split(',')
+  inputArray.forEach((element, index) => {
+    inputArray[index] = Number(element.trim());
+  })
+  return inputArray;
 }
+
+function getLottoNumbers() {
+  Console.readLine('당첨 번호를 입력해주세요.\n', (answer) => {
+    const inputArray = inputValueToArray(answer)
+    const lotto = new Lotto(inputArray);
+    lotto.getNumbers().forEach((element) => {
+      inputObjects['numbers'].push(element);
+    })
+    Console.print('');
+    getBonusNumber();
+  })
+}
+
+function getRandomNumber() {
+  const randomNumber = Random.pickNumberInRange(1, 45);
+  return randomNumber;
+}
+
+function getRandomNumbers() {
+  const randomNumbers = []
+  while(randomNumbers.length < 6) {
+    const randomNumber = getRandomNumber();
+    if(randomNumbers.includes(randomNumber)) continue;
+    randomNumbers.push(randomNumber);
+  }
+  return randomNumbers;
+}
+
+function getRandomNumberList() {
+  for(let i=0; i<inputObjects['budget']/1000; i++){
+    const randomNumbers = getRandomNumbers();
+    randomNumbersArrays.push(randomNumbers)
+    Console.print(randomNumbers);
+  }
+  Console.print('');
+  getLottoNumbers();
+}
+
+function startLotto() {
+  Console.print(`${inputObjects['budget']/1000}개를 구매했습니다.`);
+  getRandomNumberList();
+}
+
+function getBudget() {
+  Console.readLine('구입금액을 입력해 주세요.\n', (answer) => {
+    const gameBudget = new Budget(Number(answer));
+    inputObjects['budget'] = gameBudget.getBudget();
+    Console.print('')
+    startLotto();
+  })
+}
+
+
+
+
+
+
+
+
+
+
 
 class App {
   constructor() {
