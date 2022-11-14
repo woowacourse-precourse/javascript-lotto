@@ -24,14 +24,19 @@ class App {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (answer) => {
       const money = Number(answer);
       this.#paid = money;
-      const ticketsCount = countTickets(money);
-      MissionUtils.Console.print(`\n${ticketsCount}개를 구매했습니다.`);
-      for (let i = 0; i < ticketsCount; i += 1) {
-        this.#tickets.push(new Lotto(this.generateRandomNumbers()));
-      }
-      this.#tickets.map((ticket) => MissionUtils.Console.print(`[${ticket.getTicketNumbers().join(', ')}]`));
-      this.setLottoNumbers();
+      this.generateTickets();
     });
+  }
+
+  generateTickets() {
+    const money = this.#paid;
+    const ticketsCount = countTickets(money);
+    MissionUtils.Console.print(`\n${ticketsCount}개를 구매했습니다.`);
+    for (let i = 0; i < ticketsCount; i += 1) {
+      this.#tickets.push(new Lotto(this.generateRandomNumbers()));
+    }
+    this.#tickets.map((ticket) => MissionUtils.Console.print(`[${ticket.getTicketNumbers().join(', ')}]`));
+    this.setLottoNumbers();
   }
 
   generateRandomNumbers() {
