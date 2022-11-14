@@ -1,0 +1,1 @@
+Console.print(this.getLotto());
