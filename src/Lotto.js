@@ -99,6 +99,15 @@ class Lotto {
     MissionUtils.Console.close();
   }
 
+  calcTotalMoney(lottoResultArr) {
+    let sum = 0;
+    const prize = [5000, 50000, 1500000, 30000000, 2000000000];
+    for(let i = 0; i < lottoResultArr.length; i++) {
+      sum += (prize[i] * lottoResultArr[i]);
+    }
+    return sum;
+  }
+
   validate(numbers) {
     this.checkLottoSize(numbers);
     this.checkLottoOverlap(numbers);
