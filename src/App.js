@@ -3,7 +3,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class App {
   play() {
     const ticket = this.inputMoeny();
-    buyingLotto(ticket)
+    this.buyingLotto(ticket)
   }
 
   createLotto(numbers) {
@@ -26,7 +26,7 @@ class App {
     while(0 < ticket) {
       const getCreateLotto = this.createLotto(6)
       ticketArr.push(getCreateLotto);
-      MissionUtils.Console.print(`[${getCreateLotto.join(', ')}]`)
+      MissionUtils.Console.print(`[${getCreateLotto.join(', ')}]`);
       ticket-=1;
     }
     return ticketArr;
