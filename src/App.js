@@ -6,6 +6,8 @@ class App {
     this.money = 0;
     this.count = 0;
     this.lottoList = [];
+    this.winning = [];
+    this.bonus = 0;
   }
 
   setMoney(input) {
@@ -34,17 +36,28 @@ class App {
     MissionUtils.Console.print("\n");
   }
 
-  buyLotto() {
+  setWinning(winning) {
+    this.winning = winning;
+  }
+
+  setBonus(bonus) {
+    this.bonus = bonus;
+  }
+
+  play() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
       this.setMoney(input);
       this.setCount();
       this.publishLottoList();
       this.printLottoList();
+      
+      MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.\n", (winningInput) => {
+        this.setWinning(winningInput);
+        MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.\n", (bonusInput) => {
+          this.setBonus(bonusInput);
+        });
+      });
     });
-  }
-
-  play() {
-    this.buyLotto();
   }
 } 
 
