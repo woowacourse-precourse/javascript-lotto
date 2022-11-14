@@ -24,12 +24,18 @@ class Lotto {
   }
 
   checkNumber(numbers) {
-    return !numbers.every((number) => isNaN(number));
+    let result = false;
+
+    numbers.forEach((number) => {
+      if (number % 1 !== 0) result = result || true;
+    });
+
+    return result;
   }
 
   check() {
     if (!this.checkLength(this.#numbers)) throw new Error(ERROR.LENGTH_ERROR);
-    if (!this.checkNumber(this.#numbers))
+    if (this.checkNumber(this.#numbers))
       throw new Error(ERROR.CORRECT_NUM_ERROR);
     if (!this.checkRange(this.#numbers)) throw new Error(ERROR.RANGE_ERROR);
     if (!this.checkDuplicate(this.#numbers))

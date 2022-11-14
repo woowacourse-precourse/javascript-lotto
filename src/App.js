@@ -5,7 +5,6 @@ const LottoResult = require("./controller/LottoResult.js");
 const Bonus = require("./validate/Bonus.js");
 
 const { Console } = require("@woowacourse/mission-utils");
-const { DEFAULT, LOTTO_PRIZE, RANK } = require("./utils/constant.js");
 const Earning = require("./controller/Earning.js");
 
 class App {
