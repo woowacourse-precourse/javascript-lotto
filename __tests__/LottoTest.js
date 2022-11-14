@@ -76,8 +76,9 @@ describe("로또 클래스 테스트", () => {
     result.set("5개 일치, 보너스 볼 일치", 1);
     result.set("6개 일치", 0);
     const app = new App();
+    app.matchLottos(lottos, winNumbers, bonusNumber);
 
-    expect(app.matchLottos(lottos, winNumbers, bonusNumber)).toEqual(result);
+    expect(app.scores).toEqual(result);
   });
 
   test("수익률 구하기", () => {
