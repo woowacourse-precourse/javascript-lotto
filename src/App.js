@@ -1,24 +1,24 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { MESSAGE, MATCH, RANK } = require('./Constant');
-const { UNIT, FORMAT, PRIZE } = require('./Setting');
+const { MESSAGE } = require('./Constant');
+const { UNIT } = require('./Setting');
 const Lotto = require('./Lotto');
+const Statistics = require('./Statistics');
 const Validate = require('./Validate');
 
+const statistics = new Statistics();
 const validate = new Validate();
 
 class App {
   myLotto = [];
-  ranks = Object.values(RANK);
-  statistics = new Array(this.ranks.length + 1).fill(0);
 
   play() {
     Console.readLine(MESSAGE.INPUT_PURCHASE_AMOUNT, (input) => {
       validate.purchaseAmount(input);
-      this.purchaseAmount = input;
+      statistics.purchaseAmount = input;
       this.lottoCount = input / 1000;
       this.setMyLotto();
       this.printMyLotto();
-      this.winningResult();
+      this.readWinningNumbers();
     });
   }
 
@@ -39,60 +39,32 @@ class App {
     });
   }
 
-  winningResult() {
+  readWinningNumbers() {
     Console.readLine(MESSAGE.INPUT_WINNING_NUMBERS, (input) => {
       const winningNumbers = input.split(',');
 
       validate.lotto(winningNumbers);
       this.winningNumbers = new Set(winningNumbers.map(Number));
-      this.winningStatistics();
+      this.readBonusNumber();
     });
   }
 
-  winningStatistics() {
+  readBonusNumber() {
     const { winningNumbers } = this;
 
     Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (input) => {
       validate.bonus(input, winningNumbers);
       this.bonusNumber = Number(input);
-      this.setStatistics();
       this.printStatistics();
-      this.exit();
     });
-  }
-
-  setStatistics() {
-    const { myLotto, winningNumbers, bonusNumber, statistics } = this;
-    let earning = 0;
-
-    myLotto.forEach((lotto) => {
-      lotto.match(winningNumbers, bonusNumber);
-      earning += PRIZE[lotto.rank];
-      statistics[lotto.rank] += 1;
-    });
-    this.earning = earning;
-    this.setEarningRate();
-  }
-
-  setEarningRate() {
-    const { purchaseAmount, earning } = this;
-    const earningRate = (earning / purchaseAmount) * 100;
-
-    this.earningRate = +(Math.round(earningRate + 'e+1') + 'e-1');
   }
 
   printStatistics() {
-    const { ranks, statistics, earningRate } = this;
+    const { myLotto, winningNumbers, bonusNumber } = this;
 
-    Console.print(MESSAGE.TITLE_STATISTICS);
-    ranks.forEach((rank) => {
-      const formatPrize = PRIZE[rank].toLocaleString(FORMAT.LOCALE);
-
-      Console.print(
-        `${MATCH[rank]} (${formatPrize}${UNIT.MONEY}) - ${statistics[rank]}${UNIT.LOTTO}`
-      );
-    });
-    Console.print(`총 수익률은 ${earningRate}%입니다.`);
+    statistics.set(myLotto, winningNumbers, bonusNumber);
+    statistics.print();
+    this.exit();
   }
 
   exit() {
