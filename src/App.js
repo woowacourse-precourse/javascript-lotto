@@ -38,7 +38,8 @@ class App {
   printLottoes() {
     Console.print(`\n${this.issuedLottoes.length}개를 구매했습니다.`);
     this.issuedLottoes.forEach((issuedLotto) => {
-      Console.print(issuedLotto);
+      const issuedLottoString = issuedLotto.toString();
+      Console.print(`[${issuedLottoString.replace(/,/g, ', ')}]`);
     });
   }
 
