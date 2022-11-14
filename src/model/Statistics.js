@@ -77,6 +77,14 @@ class Statistics {
 
     return totalMoneyEarned;
   }
+
+  updateRateOfReturn(userPurchasingAmount) {
+    const totalMoneyEarned = this.getMoneyEarned();
+
+    this.setRateOfReturn(
+      ((totalMoneyEarned / userPurchasingAmount) * 100).toFixed(1),
+    );
+  }
 }
 
 module.exports = Statistics;
