@@ -3,7 +3,7 @@ const Lotto = require("./Lotto");
 
 class App {
   constructor() {
-    this.LottoCount = null;
+    this.LottoCount = 8;
     this.Lotto = [];
     this.winNum = [];
     this.bonusNum = null;
@@ -30,7 +30,8 @@ class App {
     // 당첨 결과 출력
     // this.compareWinToLotto();
     // score를 금액으로 환산
-    this.calculateScoreToMoney(); // 5000
+    // this.calculateScoreToMoney(); // 5000
+    console.log(this.calculateProfit());
   }
 
   getLottoCount() {
@@ -115,6 +116,10 @@ class App {
     for (let keys in this.score) {
       this.totalMoney += this.prize[keys] * this.score[keys];
     }
+  }
+
+  calculateProfit() {
+    return ((this.totalMoney / (this.LottoCount * 1000)) * 100).toFixed(1);
   }
 }
 
