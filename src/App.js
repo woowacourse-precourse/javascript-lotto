@@ -90,6 +90,18 @@ class App {
     const lottoResultData = this.LottoNumberArray.map((lotto) =>
       checkHowManyCorrect(lotto, this.winningNumber, this.bonusNumber),
     );
+    this.mappingResult(lottoResultData);
+
+  mappingResult(lottoResultData) {
+    lottoResultData.forEach((data) => {
+      if (data.correctCount === 3) this.lottoResultMap['3개'] += 1;
+      if (data.correctCount === 4) this.lottoResultMap['4개'] += 1;
+      if (data.correctCount === 5 && data.bonusCount === 0) this.lottoResultMap['5개'] += 1;
+      if (data.correctCount === 5 && data.bonusCount === 1) this.lottoResultMap['5개+보너스'] += 1;
+      if (data.correctCount === 6) this.lottoResultMap['6개'] += 1;
+    });
+  }
+
   }
   }
 }
