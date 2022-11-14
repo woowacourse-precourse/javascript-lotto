@@ -1,12 +1,12 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto.js');
 const { isValidMoneyNumberAmount } = require('./util/utils');
-const constants = require('./constants/numbers.js');
+const { VALUE } = require('./constants/numbers');
 
 class LottoStore {
   askBuyLottoCount(money) {
     this.validateMoney(money);
-    return money / 1000;
+    return money / VALUE.LOTTO_PRICE;
   }
 
   validateMoney(input) {
@@ -25,9 +25,9 @@ class LottoStore {
 
   getRandomLottoNumbers() {
     return MissionUtils.Random.pickUniqueNumbersInRange(
-      constants.MIN_LOTTO_NUMBER,
-      constants.MAX_LOTTO_NUMBER,
-      constants.VALID_LOTTO_NUMBER_LENGTH
+      VALUE.MIN_LOTTO_NUMBER,
+      VALUE.MAX_LOTTO_NUMBER,
+      VALUE.VALID_LOTTO_NUMBER_LENGTH
     ).sort(function (a, b) {
       return a - b;
     });
