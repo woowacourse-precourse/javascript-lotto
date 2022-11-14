@@ -1,3 +1,5 @@
+const LOTTO = require('../constant/constant');
+
 class Money {
   money;
   constructor(inputMoney) {
@@ -11,7 +13,7 @@ class Money {
   }
 
   checkMoneyDivide(money) {
-    if (money % 1000 !== 0) {
+    if (money % LOTTO.PRICE !== 0) {
       throw new Error('[ERROR] 돈은 1000원단위여야 합니다!');
     }
   }

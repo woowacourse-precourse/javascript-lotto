@@ -1,4 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+const LOTTO = require('../constant/constant.js');
 const Lotto = require('../Model/Lotto.js');
 const LottoGame = require('../Model/LottoGame.js');
 const Result = require('../Model/Result.js');
@@ -21,7 +22,7 @@ class GameController {
 
   getLottosByMoney(money) {
     this.game.money = Number(money);
-    const lottoNums = money / 1000;
+    const lottoNums = money / LOTTO.PRICE;
     for (let x = 0; x < lottoNums; x++) {
       const lottoNumbers = this.getRandomNumber();
       this.game.lottos.push(new Lotto(lottoNumbers));
@@ -39,9 +40,11 @@ class GameController {
   }
 
   getRandomNumber() {
-    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort(
-      (a, b) => a - b
-    );
+    return MissionUtils.Random.pickUniqueNumbersInRange(
+      LOTTO.RANGE.START,
+      LOTTO.RANGE.END,
+      LOTTO.LENGTH
+    ).sort((a, b) => a - b);
   }
   getResult() {
     const result = new Result(this.game);

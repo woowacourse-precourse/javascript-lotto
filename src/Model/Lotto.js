@@ -1,3 +1,5 @@
+const LOTTO = require('../constant/constant');
+
 class Lotto {
   #numbers;
 
@@ -18,7 +20,7 @@ class Lotto {
   }
 
   checkLength(numbers) {
-    if (numbers.length !== 6) {
+    if (numbers.length !== LOTTO.LENGTH) {
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
     }
   }
@@ -29,7 +31,7 @@ class Lotto {
       set.add(number);
     });
 
-    if (set.size != 6) {
+    if (set.size != LOTTO.LENGTH) {
       throw new Error('[ERROR] 로또 번호는 중복되면 안됩니다. ');
     }
   }
@@ -37,13 +39,13 @@ class Lotto {
   checkIsNumber(numbers) {
     const checker = /^[0-9]+$/;
     const checkedArray = numbers.filter((n) => checker.test(n));
-    if (checkedArray.length !== 6)
+    if (checkedArray.length !== LOTTO.LENGTH)
       throw new Error('[ERROR] 로또 번호는 숫자여야 합니다.');
   }
 
   checkNumberRange(numbers) {
     const checkedArray = numbers.filter((n) => n > 0 && n < 46);
-    if (checkedArray.length !== 6) {
+    if (checkedArray.length !== LOTTO.LENGTH) {
       throw new Error('[ERROR] 로또 번호의 범위를 벗어났습니다.');
     }
   }

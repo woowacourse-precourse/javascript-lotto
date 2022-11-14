@@ -1,3 +1,5 @@
+const LOTTO = require('../constant/constant');
+
 class BonusNumber {
   constructor(winLotto, inputNumber) {
     this.validate(winLotto, inputNumber);
@@ -21,7 +23,7 @@ class BonusNumber {
   }
 
   cehckNumberRange(inputNumber) {
-    if (!(inputNumber > 0 && inputNumber < 46)) {
+    if (!(inputNumber >= LOTTO.RANGE.START && inputNumber <= LOTTO.RANGE.END)) {
       throw new Error('[ERROR] 보너스 숫자는 로또 숫자 범위 내여야 합니다.');
     }
   }
