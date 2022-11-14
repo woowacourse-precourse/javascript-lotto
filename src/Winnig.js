@@ -13,13 +13,13 @@ class Winning {
         let count = 0;
 
         for(let i = 0; i < winningNumbers.length; i++) {
-            if (randomNumbers.includes(winningNumbers[i]))
+            if (randomNumber.includes(winningNumbers[i]))
                 count++;
         }
-        if(count === 6)
+        if(count === 6) // 6개 일치
             count++;
-        if(count === 5) 
-            count = this.checkBonus(randomNumbers, bonusNumber, count);
+        if(count === 5) // 5개 일치 -> 보너스 번호 검사
+            count = this.checkBonus(randomNumber, bonusNumber, count);
 
         return count;
     }
@@ -37,18 +37,23 @@ class Winning {
 
             gradeCounts[correctCount - 3]++;
         }
-        return gradeCounts;
+        printWinningHistory(gradeCounts);
     }
 
-    printWinningHistory() {
+    printWinningHistory(gradeCounts) {
+        const WinningAnouncement = [
+            '3개 일치 (5,000원) - ',
+            '4개 일치 (50,000원) - ',
+            '5개 일치 (1,500,000원) - ',
+            '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
+            '6개 일치 (2,000,000,000원) - '
+        ];
 
+        for(let i = 0; gradeCounts.length; i++) {
+            MissionUtils.Console.print(`${WinningAnouncement[i]}${gradeCounts}개`);
+        }
     }
 
-    // 3개 일치 (5,000원) - 1개
-    // 4개 일치 (50,000원) - 0개
-    // 5개 일치 (1,500,000원) - 0개
-    // 5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
-    // 6개 일치 (2,000,000,000원) - 0개
 }
 
 module.exports = Winning;
