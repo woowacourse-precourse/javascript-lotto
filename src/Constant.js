@@ -33,9 +33,9 @@ const INPUT_TEXT = {
 };
 
 const ERROR_TEXT = {
-  MIN_PURCHASE: '[ERROR] 금액은 천원 단위로 입력해주세요.',
-  MIN_COUNT: '[ERROR] 로또 번호는 6개여야 합니다.',
-  VALUE_BETWEEN: '[ERROR] 1부터 45 사이의 숫자를 입력해주세요.',
+  MIN_PURCHASE: `[ERROR] 금액은 ${MONEY.MIN}원 단위로 입력해주세요.`,
+  MIN_COUNT: `[ERROR] 로또 번호는 ${PUBLISH.AMOUNT}개여야 합니다.`,
+  VALUE_BETWEEN: `[ERROR] ${PUBLISH.MIN_RANGE}부터 ${PUBLISH.MAX_RANGE} 사이의 숫자를 입력해주세요.`,
   DUPLICATE_VALUE: '[ERROR] 중복되지 않은 번호를 입력해주세요.',
   DUPLICATE_WINNING: '[ERROR] 당첨 번호와 중복되지 않는 숫자를 입력해주세요.',
 };
