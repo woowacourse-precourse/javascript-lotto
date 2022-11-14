@@ -1,3 +1,4 @@
+const { INPUT_MESSAGE } = require('./constant');
 const MissionUtils = require('@woowacourse/mission-utils');
 const LottoGenerator = require('./IssueLotto');
 const LottoEarnings = require('./Calculator');
@@ -13,7 +14,7 @@ class App {
   }
 
   injectMoney() {
-    Console.readLine(`구입금액을 입력해 주세요.\n`, money => {
+    Console.readLine(INPUT_MESSAGE.ENTER_MONEY, money => {
       if (money % 1000 !== 0) {
         throw new Error('[ERROR] 1000원 단위로 입력해주세요.');
       }
@@ -24,7 +25,7 @@ class App {
   }
 
   enterWinningNumber() {
-    Console.readLine('\n당첨 번호를 입력해 주세요.\n', input => {
+    Console.readLine(INPUT_MESSAGE.ENTER_WINNING_NUMBER, input => {
       const inputNumber = input.split(',').map(num => Number(num));
       const lotto = new Lotto(inputNumber);
       lotto.validate(inputNumber);
@@ -34,7 +35,7 @@ class App {
   }
 
   enterBonusNumber() {
-    Console.readLine('\n보너스 번호를 입력해 주세요.\n', input => {
+    Console.readLine(INPUT_MESSAGE.ENTER_BONUS_NUMBER, input => {
       const inputNumber = Number(input);
       Match.bonusNumber.push(inputNumber);
       this.winningStatistics();
