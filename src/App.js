@@ -36,7 +36,8 @@ class App {
   }
 
   setWinning(winning) {
-    this.winning = winning;
+    this.winning = winning.split(',').map((v) => Number(v));
+    console.log(this.winning);
   }
 
   setBonus(bonus) {
