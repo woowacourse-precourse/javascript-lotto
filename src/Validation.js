@@ -14,8 +14,6 @@ const checkPurchaseAmount = (number) => {
   if (checkRemainder(number)) throw INPUT_ERROR_MESSAGE.REMAINDER_ERROR;
 };
 
-const checkSeparator = (numbers) => {};
-
 const checkNumberCount = (numbers) => {
   if (numbers.length !== 6) return true;
 };
@@ -32,9 +30,15 @@ const checkLottoNumbers = (numbers) => {
   }
 };
 
-const checkBonusNumber = (number) => {
-  if (checkNaN(number)) throw INPUT_ERROR_MESSAGE.NAN_ERROR;
-  if (checkRange(number)) throw INPUT_ERROR_MESSAGE.RANGE_ERROR;
+const checkBonusInWinningNumbers = (winningNumbers, bonusNumber) => {
+  if (winningNumbers.includes(bonusNumber)) return true;
+};
+
+const checkBonusNumber = (winningNumbers, bonusNumber) => {
+  if (checkNaN(bonusNumber)) throw INPUT_ERROR_MESSAGE.NAN_ERROR;
+  if (checkRange(bonusNumber)) throw INPUT_ERROR_MESSAGE.RANGE_ERROR;
+  if (checkBonusInWinningNumbers(winningNumbers, bonusNumber))
+    throw INPUT_ERROR_MESSAGE.OVERLAP_ERROR;
 };
 
 module.exports = {
