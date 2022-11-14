@@ -23,11 +23,11 @@ class LottoView {
   }
 
   static printMatchNumbers({ three, four, five, bonus, six }) {
-    print(`${OUTPUT_MESSAGES.TOTAL(`${LOTTO_MATCH.THREE}`, `${WINNING_AMOUNT[5]}`, three)}`);
-    print(`${OUTPUT_MESSAGES.TOTAL(`${LOTTO_MATCH.FOUR}`, `${WINNING_AMOUNT[4]}`, four)}`);
-    print(`${OUTPUT_MESSAGES.TOTAL(`${LOTTO_MATCH.FIVE}`, `${WINNING_AMOUNT[3]}`, five)}`);
-    print(`${OUTPUT_MESSAGES.TOTAL_BONUS(`${WINNING_AMOUNT[2]}`, bonus)}`);
-    print(`${OUTPUT_MESSAGES.TOTAL(`${LOTTO_MATCH.SIX}`, `${WINNING_AMOUNT[1]}`, six)}`);
+    print(`${OUTPUT_MESSAGES.TOTAL(`${LOTTO_MATCH.THREE}`, WINNING_AMOUNT[0], three)}`);
+    print(`${OUTPUT_MESSAGES.TOTAL(`${LOTTO_MATCH.FOUR}`, WINNING_AMOUNT[1], four)}`);
+    print(`${OUTPUT_MESSAGES.TOTAL(`${LOTTO_MATCH.FIVE}`, WINNING_AMOUNT[2], five)}`);
+    print(`${OUTPUT_MESSAGES.TOTAL_BONUS(WINNING_AMOUNT[3], bonus)}`);
+    print(`${OUTPUT_MESSAGES.TOTAL(`${LOTTO_MATCH.SIX}`, WINNING_AMOUNT[4], six)}`);
   }
 
   static printRate(rate) {
