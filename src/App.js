@@ -104,17 +104,17 @@ class App {
       7: [0, 2000000000],
     };
 
-    user.forEach((element) => {
-      lottoPrize = this.makeLottoPrize(element, prize, bonus, lottoPrize);
+    user.forEach((userNum) => {
+      lottoPrize = this.makeLottoPrize(userNum, prize, bonus, lottoPrize);
     });
     this.showResult(lottoPrize, userMoney);
   }
 
-  makeLottoPrize(element, prize, bonus, lottoPrize) {
+  makeLottoPrize(userNum, prize, bonus, lottoPrize) {
     let cnt = 0;
     for (let i = 0; i < prize.length; i++) {
       const n = parseInt(prize[i]);
-      if (element.includes(n)) {
+      if (userNum.includes(n)) {
         cnt++;
       }
     }
@@ -122,7 +122,7 @@ class App {
     if (cnt === 6) {
       lottoPrize[cnt+1][0] += 1;
     }
-    else if (element.includes(parseInt(bonus)) && cnt === 5) {
+    else if (userNum.includes(parseInt(bonus)) && cnt === 5) {
       lottoPrize[cnt + 1][0] += 1;
     } 
     else if (cnt >= 3) {
