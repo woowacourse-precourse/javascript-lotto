@@ -42,7 +42,9 @@ class LottoCompany {
   makeWinningNumbersAsync(next) {
     Console.readLine("\n당첨 번호를 입력해 주세요\n", (input) => {
       this.validateWinningNumbers(input);
-      this.#winningNumbers = input.split(",").map((elem) => Number(elem));
+      const winningNumbers = input.split(",").map((elem) => Number(elem));
+      winningNumbers.sort((a,b) => a - b);
+      this.#winningNumbers = winningNumbers;
       if (next) next();
     });
   }
