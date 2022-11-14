@@ -50,7 +50,7 @@ class LottoManager {
     Console.readLine(MESSAGE.BONUS, (bonusNumberString) => {
       this.bonusNumber = stringToNumber(bonusNumberString);
       Validation.validateNumbers([this.bonusNumber]);
-      Validation.validateBonusNumbers(this.winningNumbers, [this.bonusNumber]);
+      Validation.validateBonusNumber(this.winningNumbers, [this.bonusNumber]);
 
       this.processingLottoResult();
       Console.close();

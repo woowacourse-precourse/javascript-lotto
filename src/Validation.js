@@ -41,7 +41,7 @@ class Validation {
     }
   }
 
-  static validateBonusNumbers(winningNumbers, bonusNumber) {
+  static validateBonusNumber(winningNumbers, bonusNumber) {
     if (bonusNumber.length !== BONUS_LENGTH) {
       throw new Error(MESSAGE.ERROR.BONUS_NUMBER_LENGTH);
     }
