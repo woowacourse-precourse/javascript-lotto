@@ -5,6 +5,15 @@ const LOTTO_PRICE = 1000;
 const START_LOTTO_NUMBER = 1;
 const END_LOTTO_NUMBER = 45;
 const LOTTO_LENGTH = 6;
+const FIRST_PRICE_MONEY = 2000000000;
+const SECOND_PRICE_MONEY = 30000000;
+const THIRD_PRICE_MONEY = 1500000;
+const FOURTH_PRICE_MONEY = 50000;
+const FIVETH_PRICE_MONEY = 5000;
+const OVERLAP_COUNT_THREE = 3;
+const OVERLAP_COUNT_FOUR = 4;
+const OVERLAP_COUNT_FIVE = 5;
+const OVERLAP_COUNT_SIX = 6;
 
 class App {
 
@@ -118,14 +127,14 @@ class App {
     return this.overlapList;
   }
 
-  calcRankCountNumbers(){
-    let countRankFive = this.overlapList.filter((value) => value === 3).length;
-    let countRankFour = this.overlapList.filter((value) => value === 4).length;
-    let countRankOne = this.overlapList.filter((value) => value === 6).length;
+  calcRankCountNumbers() {
+    let countRankFive = this.overlapList.filter((value) => value === OVERLAP_COUNT_THREE).length;
+    let countRankFour = this.overlapList.filter((value) => value === OVERLAP_COUNT_FOUR).length;
+    let countRankOne = this.overlapList.filter((value) => value === OVERLAP_COUNT_SIX).length;
     let countRankThree = 0;
     let countRankTwo = 0;
     for(let index= 0; index < this.overlapList.length; index++){
-      if(this.overlapList[index] === 5){
+      if(this.overlapList[index] === OVERLAP_COUNT_FIVE){
         let isContain = this.lottoList[index].some(element => element == this.bonusNumber);
         if(isContain) countRankTwo += 1;
         if(!isContain) countRankThree += 1;
@@ -134,8 +143,12 @@ class App {
     return this.countRankList = [countRankFive, countRankFour, countRankThree, countRankTwo, countRankOne];
   }
 
-  calcProfit(){
-    let profit = this.countRankList[0] * 5000 + this.countRankList[1] * 50000 + this.countRankList[2] * 1500000 + this.countRankList[3] * 30000000 + this.countRankList[4] * 2000000000;
+  calcProfit() {
+    let profit = this.countRankList[0] * FIVETH_PRICE_MONEY 
+    + this.countRankList[1] * FOURTH_PRICE_MONEY 
+    + this.countRankList[2] * THIRD_PRICE_MONEY
+    + this.countRankList[3] * SECOND_PRICE_MONEY
+    + this.countRankList[4] * FIRST_PRICE_MONEY;
     let calProfitRates = ((profit  / this.purchaseAmount) * 100)
     return this.profitRates = calProfitRates.toFixed(1);
   }
