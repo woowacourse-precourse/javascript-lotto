@@ -10,6 +10,16 @@ const {
 const { generateLottoNumber, separateStringBySpecificCharacter } = require('./utils/lottoGameHandler.js');
 
 class App {
+  constructor() {
+    this.lottoResultMap = {
+      '3개': 0,
+      '4개': 0,
+      '5개': 0,
+      '5개+보너스': 0,
+      '6개': 0,
+    };
+  }
+
   play() {
     this.buyLotto();
   }
