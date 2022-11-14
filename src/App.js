@@ -10,7 +10,7 @@ class App {
 
   const bonus_number = this.get_bonus_number();   //보너스 번호 입력받기
 
-  this.print_winning_history(lotteries, winning_numbers, bonus_number); //당첨내역 계산 및 출력
+  this.print_winning_history(amount, lotteries, winning_numbers, bonus_number); //당첨내역 계산 및 출력
   }
 
 
@@ -55,12 +55,12 @@ class App {
     return amount;
     }
 
-  print_winning_history(lotteries, winning_numbers, bonus_number){
+  print_winning_history(amount, lotteries, winning_numbers, bonus_number){
     const MissionUtils = require("@woowacourse/mission-utils");
 
     //3개 일치
     const lotteries_three_numbers_identical = this.matching_lottery_count(lotteries, winning_numbers, 3);
-    var sentence = "3개 일치 (5,000원) - "+lotteries_three_numbers_identical.toString()+"개"
+    var sentence = "3개 일치 (5,000원) - "+lotteries_three_numbers_identical.toString()+"개"   
     MissionUtils.Console.print(sentence);
 
     //4개 일치
@@ -82,6 +82,20 @@ class App {
     const lotteries_six_numbers_identical = this.matching_lottery_count(lotteries, winning_numbers, 6);
     sentence = "6개 일치 (2,000,000,000원) - "+lotteries_six_numbers_identical.toString()+"개"
     MissionUtils.Console.print(sentence);
+
+    //전체수익 구하기
+    var winning_count = [];
+    winning_count.push(lotteries_three_numbers_identical);
+    winning_count.push(lotteries_four_numbers_identical);
+    winning_count.push(lotteries_five_numbers_identical);
+    winning_count.push(lotteries_five_numbers_and_bonus_identical);
+    winning_count.push(lotteries_six_numbers_identical);
+
+    //수익률 공지
+    const profit_rate = this.profit_rate(amount, winning_count);
+    sentence = "총 수익률은 " + profit_rate + "%입니다."
+    MissionUtils.Console.print(sentence);
+
   }
 
   matching_lottery_count(lotteries, winning_numbers, k){ //몇개 일치하는지 보여주기
@@ -101,7 +115,17 @@ class App {
          count++;
     }
     return count;
-     
+  }
+
+  profit_rate(amount, winning_count){
+    var sum = 0;
+    sum += winning_count[0]*5000;
+    sum += winning_count[1]*50000;
+    sum += winning_count[2]*1500000;
+    sum += winning_count[3]*30000000;
+    sum += winning_count[4]*2000000000;
+    var profit_rate = (sum/amount*100).toFixed(1);
+    return profit_rate;
   }
 
   check_number_errors(amount){
@@ -163,11 +187,12 @@ class App {
     var number;
     MissionUtils.Console.print('보너스 번호를 입력해 주세요.');
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (answer) => {
-    //번호는 쉼표를 기준으로 구분
+    
     this.check_number_errors(answer);
     this.rangecheck(answer);
     number = answer;
   })
+
   MissionUtils.Console.print(number);
   return number;
   }
