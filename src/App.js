@@ -53,36 +53,36 @@ class App {
   InputLottos(published_Lottos, how_many) {
     MissionUtils.Console.readLine(`${Constants.GAME_MESSAGES.INPUT_NUMBER}\n`, (answer) => {
       MissionUtils.Console.print(answer);
-      const numbers = answer.split(',').map(Number);
-      new Lotto(numbers);
-      this.InputBonus(published_Lottos, numbers, how_many);
+      const winning = answer.split(',').map(Number);
+      new Lotto(winning);
+      this.InputBonus(published_Lottos, winning, how_many);
     });
   }
 
-  InputBonus(published_Lottos, array, how_many) {
+  InputBonus(published_Lottos, winning, how_many) {
     MissionUtils.Console.readLine(`${Constants.GAME_MESSAGES.BONUS_NUMBER}\n`, (answer) => {
       MissionUtils.Console.print(answer);
-      this.isBonusDuplicated(answer, array);
-      array.push(answer);
-      this.getAllResults(published_Lottos, array, how_many);
+      this.isBonusDuplicated(answer, winning);
+      winning.push(answer);
+      this.getAllResults(published_Lottos, winning, how_many);
     });
   }
 
-  isBonusDuplicated(answer, array) {
-    if(array.includes(answer)){
+  isBonusDuplicated(answer, winning) {
+    if(winning.includes(answer)){
       throw Constants.INPUT_ERROR.DUPLICATED;
     }
   }
 
-  getAllResults(published_Lottos, winning, count) {
+  getAllResults(published_Lottos, winning, how_many) {
     let all_results = [0, 0, 0, 0, 0];
-    for(let i = 0; i < count; i++){
+    for(let i = 0; i < how_many; i++){
       const result = this.getSingleResult(published_Lottos[i], winning);
       if(result >= 3){
         all_results[result - 3] += 1
       }
     }
-    this.printResults(all_results, count);
+    this.printResults(all_results, how_many);
   }
 
   getSingleResult(published_Lotto, winning) {
@@ -98,20 +98,20 @@ class App {
     return result
   }
 
-  printResults(all_results, count) {
+  printResults(all_results, how_many) {
     MissionUtils.Console.print(Constants.GAME_MESSAGES.PURCHASE_RESULT);
     let i = 0;
     Constants.RESULT.forEach(element => {
       MissionUtils.Console.print(`${element} - ${all_results[i]}개`);
       i++;
     });
-    this.getYield(all_results, count);
+    this.getYield(all_results, how_many);
   }
 
-  getYield(all_results, count) {
+  getYield(all_results, how_many) {
     let sum = 0;
     const prizes = Constants.PRIZES;
-    const money = count * 1000
+    const money = how_many * 1000
     for(let i = 0; i < 5; i++){
       sum += prizes[i] * all_results[i]
     }
