@@ -1,4 +1,11 @@
-const checkDuplicatedLotto = (input) => {};
+const checkDuplicatedLotto = (input) => {
+  const res = {};
+  for (const num of input) {
+    if (res[num]) return true;
+    res[num] = 1;
+  }
+  return false;
+};
 
 const checkAscendingLotto = (input) => {};
 
