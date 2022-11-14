@@ -65,7 +65,7 @@ const ERROR = {
   NOT_RANGE_OF_LOTTO_NUMBER: `[ERROR] 로또 번호는 ${LOTTO.MIN}부터 ${LOTTO.MAX} 사이의 숫자여야 합니다.`,
   EXIST_IN_WINNING_NUMBER: "[ERROR] 보너스 번호는 당첨 번호에 존재하지 않는 값이어야 합니다.",
   NOT_VALID_LOTTO_NUMBER_COUNT: `[ERROR] 로또 번호는 ${LOTTO.NUMBER_COUNT}개여야 합니다.`,
-  DUPLICATE_NUMBER: "[ERROR] 보너스 번호는 당첨 번호에 존재하지 않는 값이어야 합니다.",
+  DUPLICATE_NUMBER: "[ERROR] 로또 번호에 중복된 값이 포함되어있습니다.",
 };
 
 module.exports = { LOTTO, GRADE, MESSAGE, FORMAT, ERROR };
