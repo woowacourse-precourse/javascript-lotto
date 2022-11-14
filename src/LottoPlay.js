@@ -17,6 +17,11 @@ class LottoPlay {
     const winnerNumberArray = CheckError.checkWinnerNumber(winnerNumber);
     const bonusNumber = UserInterface.bonusNumberRequest();
     CheckError.checkBonusNumber(bonusNumber, winnerNumberArray);
+    const resultArray = this.compareWholeLotto(
+      lottoArray,
+      winnerNumberArray,
+      bonusNumber
+    );
   }
 
   purchaseLotto(purchaseAmount) {
@@ -42,6 +47,70 @@ class LottoPlay {
   sortNumberArray(arr) {
     arr.sort((a, b) => a - b);
     return arr;
+  }
+
+  /**
+   *
+   * @param {array} lottoArray 모든 로또 배열이 들어있는 배열
+   * @param {array} winnerNumberArray  당첨 번호 배열
+   * @param {number} bonusNumber 2등 3등을 판별할 보너스 번호
+   * @returns {array} 당첨 등수가 들어있는 배열을 결과로 리턴.
+   */
+  compareWholeLotto(lottoArray, winnerNumberArray, bonusNumber) {
+    let resultArray = [];
+    lottoArray.forEach((lotto) => {
+      resultArray.push(
+        this.findWinningResult(lotto, winnerNumberArray, bonusNumber)
+      );
+    });
+    return resultArray;
+  }
+
+  /**
+   *
+   * @param {array} lotto 등수를 구할 로또 번호 배열
+   * @param {array} winnerNumberArray 당첨 번호 배열
+   * @param {number} bonusNumber 2등 3등을 판별할 보너스 번호
+   * @returns {number} 등수를 리턴 1등 ~ 6등 6등은 꽝
+   */
+  findWinningResult(lotto, winnerNumberArray, bonusNumber) {
+    const overlapNumber = this.compareLotteryAndWinning(
+      lotto,
+      winnerNumberArray
+    );
+    switch (overlapNumber) {
+      case 3:
+        return 5;
+      case 4:
+        return 4;
+      case 5:
+        return findSecondOrThirdWinning(lotto, bonusNumber);
+      case 6:
+        return 1;
+      default:
+        return 6;
+    }
+  }
+  /**
+   *
+   * @param {array} lotto 로또 배열
+   * @param {array} winnerNumberArray 당첨 번호 배열
+   * @returns {number} 로또 배열과 당첨 번호 배열의 일치하는 숫자 개수를 리턴
+   */
+  compareLotteryAndWinning(lotto, winnerNumberArray) {
+    let matchNumberArray;
+    matchNumberArray = lotto.filter((item) => winnerNumberArray.includes(item));
+    return matchNumberArray.length;
+  }
+  /**
+   *
+   * @param {array} lotto
+   * @param {number} bonusNumber
+   * @returns {number} 2 or 3등을 리턴
+   */
+  findSecondOrThirdWinning(lotto, bonusNumber) {
+    if (lotto.includes(bonusNumber)) return 2;
+    return 3;
   }
 }
 
