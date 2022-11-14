@@ -5,4 +5,7 @@ const MESSAGE = {
     WINNING_STATISTICS : "당첨 통계\n---",
 }
 
-module.exports = {MESSAGE};
+const LOTTO_LENGTH = 6;
+
+
+module.exports = {MESSAGE, WINNER, LOTTO_LENGTH};
