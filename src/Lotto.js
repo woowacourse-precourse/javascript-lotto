@@ -49,6 +49,28 @@ class Lotto {
     }
   }
 
+  getRank(matchedCount, hasBonus) {
+    switch (matchedCount) {
+      case 6:
+        return FIRST_RANK;
+      case 5:
+        return hasBonus ? SECOND_RANK : THIRD_RANK;
+      case 4:
+        return FOURTH_RANK;
+      case 3:
+        return FIFTH_RANK;
+      default:
+        return NOTHING_RANK;
+    }
+  }
+
+  checkWin(winningNumbers, bonus) {
+    const matched = this.#numbers.filter((num) => winningNumbers.includes(num));
+    const rank = this.getRank(matched.length, this.#numbers.includes(bonus));
+
+    return rank;
+  }
+
   toString() {
     const numbers = this.#numbers.join(', ');
 
