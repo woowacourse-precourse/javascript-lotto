@@ -31,9 +31,7 @@ class Lotto {
 
   validateLength(winnigNumbers, length) {
     if (winnigNumbers.length !== length) {
-      throw new Error(
-        `${ERROR_MESSAGE_WINNING_NUMBER.NOT_VALID_LENGTH.START_SENTENCE} ${length}${ERROR_MESSAGE_WINNING_NUMBER.NOT_VALID_LENGTH.END_SENTENCE}`,
-      );
+      throw new Error(ERROR_MESSAGE_WINNING_NUMBER.NOT_VALID_LENGTH(length));
     }
   }
 

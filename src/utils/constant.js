@@ -52,21 +52,20 @@ const OUTPUT_MESSAGE = Object.freeze({
   STATISTICS: '\n당첨 통계\n---',
 });
 
+const ERROR_MESSAGE_HEADER = '[ERROR]';
+
 const ERROR_MESSAGE_PURCHASE_AMOUNT = Object.freeze({
-  NOT_VALID_BLANK: '[ERROR] 로또 구입 금액에 공백이 포함되어 있습니다.',
-  NOT_VALID_TYPE: '[ERROR] 로또 구입 금액이 숫자가 아닙니다',
-  NOT_VALID_UNIT: `[ERROR] 로또 구입 금액이 ${LOTTO_RULE.MONEY_UNIT}원 단위가 아닙니다.`,
+  NOT_VALID_BLANK: `${ERROR_MESSAGE_HEADER} 로또 구입 금액에 공백이 포함되어 있습니다.`,
+  NOT_VALID_TYPE: `${ERROR_MESSAGE_HEADER} 로또 구입 금액이 숫자가 아닙니다`,
+  NOT_VALID_UNIT: `${ERROR_MESSAGE_HEADER} 로또 구입 금액이 ${LOTTO_RULE.MONEY_UNIT}원 단위가 아닙니다.`,
 });
 
 const ERROR_MESSAGE_WINNING_NUMBER = Object.freeze({
-  NOT_VALID_BLANK: '[ERROR] 로또 번호에 공백이 포함되어 있습니다.',
-  NOT_VALID_RANGE: `[ERROR] 로또 번호는 ${LOTTO_RULE.WINNING_NUMBERS_MIN_NUMBER}부터 ${LOTTO_RULE.WINNING_NUMBERS_MAX_NUMBER} 사이의 숫자여야 합니다.`,
-  NOT_VALID_DUPLICATE: '[ERROR] 로또 번호에 중복된 수가 존재하면 안됩니다.',
-  NOT_VALID_TYPE: '[ERROR] 로또 번호는 숫자여야 합니다.',
-  NOT_VALID_LENGTH: {
-    START_SENTENCE: '[ERROR] 로또 번호는',
-    END_SENTENCE: '개여야 합니다.',
-  },
+  NOT_VALID_BLANK: `${ERROR_MESSAGE_HEADER} 로또 번호에 공백이 포함되어 있습니다.`,
+  NOT_VALID_RANGE: `${ERROR_MESSAGE_HEADER} 로또 번호는 ${LOTTO_RULE.WINNING_NUMBERS_MIN_NUMBER}부터 ${LOTTO_RULE.WINNING_NUMBERS_MAX_NUMBER} 사이의 숫자여야 합니다.`,
+  NOT_VALID_DUPLICATE: `${ERROR_MESSAGE_HEADER} 로또 번호에 중복된 수가 존재하면 안됩니다.`,
+  NOT_VALID_TYPE: `${ERROR_MESSAGE_HEADER} 로또 번호는 숫자여야 합니다.`,
+  NOT_VALID_LENGTH: (length) => `${ERROR_MESSAGE_HEADER} 로또 번호는 ${length}개여야 합니다`,
 });
 
 module.exports = {
