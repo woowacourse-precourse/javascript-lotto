@@ -1,5 +1,6 @@
 const App = require('../src/App')
 const MissionUtils = require('@woowacourse/mission-utils')
+const { LOTTO_PRICE, validationError } = require('../src/constants/app.js')
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn()
@@ -23,7 +24,27 @@ const getLogSpy = () => {
   return logSpy
 }
 
-describe('로또 테스트', () => {
+describe('App 클래스 구입 금액 유효성 테스트', () => {
+  test('구입 금액이 올바른 숫자 형식이 아니라면 예외가 발생한다.', () => {
+    mockQuestions(['1000j'])
+
+    expect(() => {
+      const app = new App()
+      app.play()
+    }).toThrow(validationError.TYPE)
+  })
+
+  test(`구입 금액이 ${LOTTO_PRICE} 단위가 아니라면 예외가 발생한다.`, () => {
+    mockQuestions(['1002'])
+
+    expect(() => {
+      const app = new App()
+      app.play()
+    }).toThrow(validationError.UNIT)
+  })
+})
+
+describe('App 클래스 테스트', () => {
   test('기능 테스트', () => {
     mockRandoms([
       [8, 21, 23, 41, 42, 43],
@@ -62,14 +83,5 @@ describe('로또 테스트', () => {
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log))
     })
-  })
-
-  test('예외 테스트', () => {
-    mockQuestions(['1000j'])
-
-    expect(() => {
-      const app = new App()
-      app.play()
-    }).toThrow('[ERROR]')
   })
 })
