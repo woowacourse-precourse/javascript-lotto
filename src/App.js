@@ -1,7 +1,7 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const Lotto = require('./Lotto');
-const Message = require('./Message');
-const Money = require('./Money');
+const Lotto = require('./components/Lotto');
+const Message = require('./components/Message');
+const Money = require('./components/Money');
 
 class App {
   constructor() {

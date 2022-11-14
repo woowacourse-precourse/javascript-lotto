@@ -1,4 +1,4 @@
-const Money = require("../src/Money");
+const Money = require("../src/components/Money");
 
 describe("Money 클래스 테스트", () => {
   test("getTotalPrize() 메서드는 총 당첨 금액을 반환해야 한다.", () => {

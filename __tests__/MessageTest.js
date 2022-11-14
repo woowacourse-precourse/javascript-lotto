@@ -1,4 +1,4 @@
-const Message = require("../src/Message");
+const Message = require("../src/components/Message");
 
 describe("Message 클래스 테스트", () => {
   test("printPurchase() 메서드는 로또를 구매한 개수를 콘솔에 출력해야 한다.", () => {
