@@ -99,8 +99,17 @@ class App {
   }
 
   getYield() {
-    const total_yield = ((this.rewards / this.purchaseAmount) * 100).toFixed(1);
-    Console.print(`총 수익률은 ${total_yield}%입니다.`);
+    const total_yield = (this.rewards / this.purchaseAmount) * 100; // 25000625;
+    const formatted_total_yield = this.formatYieldForPrint(total_yield);
+    Console.print(`총 수익률은 ${formatted_total_yield}%입니다.`);
+  }
+
+  formatYieldForPrint(total_yield) {
+    const integerPart = parseInt(total_yield).toLocaleString("ko-KR");
+    const fractionalPart = (total_yield - parseInt(total_yield))
+      .toFixed(1)
+      .slice(1);
+    return integerPart + fractionalPart;
   }
 }
 
