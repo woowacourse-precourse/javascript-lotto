@@ -1,14 +1,17 @@
+const CaculateRate = require("../process/CaculateRate");
 const CORRECT = [];
 const GRADE = [];
 let count = 0;
 
 class CompareNumber {
-  constructor(correct, grade) {
+  constructor(correct, grade, purchaseAmout) {
     this.correct = correct;
     this.grade = grade;
+    this.purchaseAmout = purchaseAmout;
+    this.caculateRate = new CaculateRate();
   }
 
-  checkNumber(computerNumbers, inputLottoNumbers) {
+  checkNumber(purchaseAmout, computerNumbers, inputLottoNumbers) {
     computerNumbers.forEach(function (firstnumber) {
       firstnumber.forEach(function (secondnumber) {
         const COMPARE = inputLottoNumbers.indexOf(secondnumber);
@@ -20,6 +23,7 @@ class CompareNumber {
       count = 0;
     });
     this.correct = CORRECT;
+    this.purchaseAmout = purchaseAmout;
     this.correctNumbers();
   }
 
@@ -38,6 +42,8 @@ class CompareNumber {
         this.firstGrade();
       }
     });
+    this.grade = GRADE;
+    this.caculateRate.caculateNumbers(this.purchaseAmout, this.grade);
   }
 
   fiveGrade() {

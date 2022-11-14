@@ -25,7 +25,10 @@ class AmountNumber {
 
   showPurchaseNumber() {
     MissionUtils.Console.print(`\n${this.purchaseNumber}개를 구매했습니다.`);
-    this.randomNumber.randomComputerNumber(this.purchaseNumber);
+    this.randomNumber.randomComputerNumber(
+      this.purchaseAmout,
+      this.purchaseNumber
+    );
   }
 }
 
