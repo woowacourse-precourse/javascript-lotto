@@ -77,11 +77,35 @@ describe('로또 테스트', () => {
     }).toThrow('[ERROR] 구입금액은 1000단위여야 합니다.');
   });
 
-  test('예외 테스트 - 0', () => {
+  test('예외 테스트 - 구입금액[0]', () => {
     mockQuestions(['0']);
     expect(() => {
       const app = new App();
       app.play();
     }).toThrow('[ERROR] 구입금액은 0이상 이여야 합니다.');
+  });
+
+  test('예외 테스트 - 로또[숫자]', () => {
+    mockRandoms([
+      [8, 21, 23, 41, 42, 43],
+      [3, 5, 11, 16, ab, 38],
+    ]);
+    mockQuestions(['2000']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR] 로또 번호는 숫자여야 합니다.');
+  });
+
+  test('예외 테스트 - 로또[범위]', () => {
+    mockRandoms([
+      [8, 21, 23, 41, 42, 43],
+      [3, 5, 11, 16, 52, 38],
+    ]);
+    mockQuestions(['2000']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR] 로또 번호는 1부터 45 사이여야 합니다.');
   });
 });
