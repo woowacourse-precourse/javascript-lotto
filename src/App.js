@@ -51,9 +51,8 @@ class App {
   lottoMatch(userLotto,winningNumber,bonusNumber){
     let ballCount = 0;
     let bonusBallCount = 0;
-    
-    userLotto.forEach(innerArr => {
-      if(innerArr.includes(winningNumber)) ballCount+=1
+    winningNumber.forEach(value => {
+      if(userLotto.includes(value)) ballCount+=1
     })
     if(userLotto.includes(bonusNumber) && ballCount === 5) bonusBallCount+=1
 
