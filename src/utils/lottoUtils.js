@@ -32,6 +32,8 @@ class LottoUtils {
       { length: count },
       () => new Lotto(Random.pickUniqueNumbersInRange(MIN, MAX, NUMBERS_LENGTH))
     );
+
+    tickets.map((ticket) => ticket.sort());
     return tickets;
   }
 
