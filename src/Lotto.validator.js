@@ -13,6 +13,11 @@ class LottoValidator {
     }
   }
 
+  static getLottoPuchaseNumber(money) {
+    this.#canDevideCost(money);
+    return +money / LOTTO.LOTTO_COST;
+  }
+
   static splitLottoNumbers(lottoNumbersString) {
     const lottoNumbers = lottoNumbersString
       .split(',')
@@ -38,6 +43,12 @@ class LottoValidator {
       lottoPurchaseDto,
     );
     lottoPrizeDto.prizeCountUp(lottoMatchCount, isLottoMatchAdditionalNumber);
+  }
+
+  static #canDevideCost(number) {
+    if (number % LOTTO.LOTTO_COST !== 0) {
+      throw new Error(ERROR.MONEY_UNIT);
+    }
   }
 
   static #getLottoMatchCount(lottoInputDto, lottoPurchaseDto) {

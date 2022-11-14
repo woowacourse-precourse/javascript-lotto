@@ -14,9 +14,10 @@ class App {
 
   async play() {
     const money = await InputConsole.getMoney();
+    const purchaseNumber = LottoValidator.getLottoPuchaseNumber(money);
 
     this.#lottoPurchaseDtos = Array.from(
-      { length: money / LOTTO.LOTTO_COST },
+      {purchaseNumber},
       () => new LottoPurchaseDto(),
     );
     OutputConsole.lottoPurchaseNumber(money / LOTTO.LOTTO_COST);
