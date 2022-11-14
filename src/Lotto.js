@@ -37,7 +37,7 @@ class Lotto {
     return bonusArray;
   }
 
-  getMatchResult(lottoResults, bonusResultArray) {
+  getWinningResult(lottoResults, bonusResultArray) {
     const winningHistoryArray = new Array(5).fill(0);
     lottoResults.forEach((lottoResult, index) => {
       if (lottoResult >= 3) {
@@ -73,11 +73,10 @@ class Lotto {
   }
 
   calculateProfitRate(profit, investment) {
-    const number = (profit / investment) * 100;
-    MissionUtils.Console.print(`총 수익률은 ${number.toFixed(1)}%입니다.`);
+    return (profit / investment) * 100;
   }
 
-  printResult(resultArray) {
+  makeWinningDetails(resultArray) {
     const RESULT_MESSAGE = [
       Message.INFORMATION.threeMatches,
       Message.INFORMATION.fourMatches,
@@ -86,23 +85,28 @@ class Lotto {
       Message.INFORMATION.sixMatches,
     ];
 
-    MissionUtils.Console.print(Message.INFORMATION.winningStatistics);
-    let answer = [];
+    let detail = [];
     for (let i = 0; i < resultArray.length; i++) {
-      answer.push(`${RESULT_MESSAGE[i]} ${resultArray[i]}개`);
-      MissionUtils.Console.print(`${RESULT_MESSAGE[i]} ${resultArray[i]}개`);
+      detail.push(`${RESULT_MESSAGE[i]} ${resultArray[i]}개`);
     }
 
-    return answer;
+    return detail;
+  }
+
+  printResult(winningDetails, profitRate) {
+    const resultPrint = winningDetails.join('\n') + '\n' + `총 수익률은 ${profitRate.toFixed(1)}%입니다.`;
+    MissionUtils.Console.print(Message.INFORMATION.winningStatistics);
+    MissionUtils.Console.print(resultPrint);
   }
 
   result({ money, userNumber, bonusNumber }) {
     const lottoMatch = this.getMatchCount(userNumber);
     const bonusMatch = this.getMatchBonus(bonusNumber, userNumber);
-    const result = this.getMatchResult(lottoMatch, bonusMatch);
+    const result = this.getWinningResult(lottoMatch, bonusMatch);
     const profit = this.calculateProfit(result);
-    this.printResult(result);
-    this.calculateProfitRate(profit, money);
+    const winningDetails = this.makeWinningDetails(result)
+    const profitRate = this.calculateProfitRate(profit, money);
+    this.printResult(winningDetails, profitRate);
   }
 
   validate(numbers) {
