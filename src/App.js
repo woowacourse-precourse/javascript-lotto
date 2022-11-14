@@ -55,8 +55,8 @@ class App {
   getBounsNum(winningNumForDuplication){
     Console.readLine('보너스 번호를 입력해 주세요', (bonus) => {
       let bonusNum=new BonusNum(Number(bonus),winningNumForDuplication)
-      
-      
+
+      bonusNum.resultPrint()
     })
   }
 }

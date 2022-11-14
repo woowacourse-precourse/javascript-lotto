@@ -37,6 +37,9 @@ class BonusNum {
     }
   }
 
+  resultPrint(){
+    Console.print(`${this.#bonus}`)
+  }
 
 }
 
