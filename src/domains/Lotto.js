@@ -29,7 +29,7 @@ class Lotto {
     if (!numbers.every((number) => Lotto.NUMBER_MIN <= number && number <= Lotto.NUMBER_MAX)) {
       throw new Error('[ERROR] 로또 번호는 1에서 45 사이여야 합니다.');
     }
-    if (new Set(numbers).size() !== numbers.length) {
+    if (new Set(numbers).size !== numbers.length) {
       throw new Error('[ERROR] 로또 번호는 모두 중복되어선 안됩니다.');
     }
   }
