@@ -5,7 +5,7 @@ const Validator = class {
   };
 
   static isNumber = (number) => {
-    if (!number.toString().match(/\d/)) throw new Error(`[ERROR] 숫자를 입력해주세요.`);
+    if (!/^[0-9]+$/.test(number)) throw new Error(`[ERROR] 숫자를 입력해주세요.`);
     return this;
   };
 
