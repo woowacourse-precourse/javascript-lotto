@@ -7,10 +7,6 @@ class User {
   #profit;
   #winStats;
 
-  constructor(amount) {
-    this.validate(amount);
-    this.#amount = amount;
-  }
   inputAmount() {
     Console.readLine("구입금액을 입력해 주세요.", (input) => {
       this.validate(input);
@@ -74,3 +70,5 @@ class User {
     }
   }
 }
+
+module.exports = User;

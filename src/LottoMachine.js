@@ -63,3 +63,5 @@ class LottoMachine {
     return rank;
   }
 }
+
+module.exports = LottoMachine;
