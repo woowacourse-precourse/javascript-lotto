@@ -32,7 +32,7 @@ class App {
       this.winningLottoArr = [this.winningLottoValidate(winningLotto)]; 
       MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", winningLottoBonus => {
         winningLottoBonus = +winningLottoBonus;
-        this.winningLottoArr.push(this.winningLottoBonusValidate(winningLottoBonus)) //뒤에 예외처리하기
+        this.winningLottoArr.push(this.winningLottoBonusValidate(winningLottoBonus))
         //여기에 랜덤번호랑 당첨번호랑 비교해서 결과 내보내는 함수 입력하기
         MissionUtils.Console.close();
       });
@@ -60,7 +60,16 @@ class App {
     }
     return num
   }
-  
+
+  rankCount() {
+    let rank = [0, 0, 0, 0, 0]; //각 순서대로 3개 일치 ~ 6개 일치
+    this.#lottos.forEach(x => {
+      rank[x.userLottoWinningLottoCompare(this.winningLottoArr)]++
+    })
+    rank.push(Math.round(((this.yieldCal(rank) / this.money) * 1000)) / 10);  //추후 수익률 계산함수 만들기
+    return rank;
+  }
+
 }
 
 module.exports = App;
