@@ -33,7 +33,7 @@ describe("isValidateUserInput 함수 테스트", () => {
   });
 });
 
-describe.only("isValidateBonusNumber 함수 테스트", () => {
+describe("isValidateBonusNumber 함수 테스트", () => {
   test("보너스 번호 입력 값이 숫자가 아닌지 테스트", () => {
     let bonusNumber = "2,7";
     expect(() => {
