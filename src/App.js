@@ -8,10 +8,10 @@ class App {
   }
 
   play() {
-    this.getUserInput(COMMAND.MONEY);
+    this.getUserMoney(COMMAND.MONEY);
   }
 
-  getUserInput(message) {
+  getUserMoney(message) {
     Console.readLine(message, (money) => {
       const createLotto = new CreateLotto(money);
       this.lottos = createLotto.make();
