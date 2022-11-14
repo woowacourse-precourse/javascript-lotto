@@ -4,6 +4,8 @@ class Lotto {
   constructor(numbers) {
     //인스턴스 생성 및 초기화
     this.validate(numbers);
+    this.duplicatecheck(numbers);
+    this.rangecheck(numbers);
     this.#numbers = numbers;
   }
 
@@ -17,15 +19,38 @@ class Lotto {
 
   //중복되지 않는 숫자
   duplicatecheck(numbers){
-
+    for(var i=0 ;i<5;i++){
+      for(var j=i+1 ;j<6;j++){
+        if (numbers[i] == numbers[j])
+         throw '[ERROR]duplicate numberes'
+      }
+    }
   }
 
   //1~45까지의 숫자
   rangecheck(numbers){
-    
+    for(var i =0;i<6;i++){
+      if (numbers[i]<1 || numbers[i]>45)
+        throw '[ERROR]range error'
+    }
   }
 
+  getnumber(){
+    return this.#numbers;
+  }
   
+  print_numbers(){
+    const MissionUtils = require("@woowacourse/mission-utils");
+    const numbers = this.#numbers;
+    var sentence = "["
+    sentence = sentence + numbers[0].toString();
+    for(var i =1;i<6;i++){
+      sentence = sentence + ', ' + numbers[i].toString();
+    }
+    sentence = sentence+ "]"
+    MissionUtils.Console.print(sentence);
+  }
+
 }
 
 module.exports = Lotto;
