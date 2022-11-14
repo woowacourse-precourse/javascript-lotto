@@ -1,8 +1,12 @@
 const USER_MONEY_INPUT_REQUEST = '구입금액을 입력해 주세요.';
-const USER_MONEY_INPUT_ERROR = '[ERROR] 구입금액이 올바르지 않습니다.';
+const ERROR_USER_MONEY_INPUT = '[ERROR] 구입금액이 올바르지 않습니다.';
 const LOTTO_QUANTITY_OUTPUT = '개를 구매했습니다.';
 const WINNING_LOTTO_REQUEST = '\n당첨 번호를 입력해 주세요.';
 const BONUS_NUMBER_REQUEST = '\n보너스 번호를 입력해 주세요.';
+const ERROR_SIX_NUMBER = '[ERROR] 로또 번호는 6개여야 합니다.';
+const ERROR_OVERLAP_NUMBER = '[ERROR] 로또 번호는 중복될 수 없습니다.';
+const ERROR_NUMBER_RANGE = '[ERROR] 로또 번호는 1~45번 사이여야 합니다.';
+const ERROR_NOT_NUMBER = '[ERROR] 로또 번호는 숫자여야 합니다.';
 const PRINT_STRING = [
   '3개 일치 (5,000원) - ',
   '4개 일치 (50,000원) - ',
@@ -16,7 +20,7 @@ const PRIZE_RESULT_PRINT = '\n당첨 통계\n---';
 
 module.exports = {
   USER_MONEY_INPUT_REQUEST,
-  USER_MONEY_INPUT_ERROR,
+  ERROR_USER_MONEY_INPUT,
   LOTTO_QUANTITY_OUTPUT,
   WINNING_LOTTO_REQUEST,
   BONUS_NUMBER_REQUEST,
@@ -24,4 +28,8 @@ module.exports = {
   PRIZE_MONEY,
   ERROR_BONUS_NUMBER,
   PRIZE_RESULT_PRINT,
+  ERROR_SIX_NUMBER,
+  ERROR_OVERLAP_NUMBER,
+  ERROR_NUMBER_RANGE,
+  ERROR_NOT_NUMBER,
 };
