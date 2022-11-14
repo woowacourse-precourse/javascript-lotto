@@ -20,14 +20,22 @@ class App {
   }
 
   setPurchase() {
+    this.purchase = this.inputPurchase();
+  }
+
+  inputPurchase() {
+    let purchase;
+
     Console.readLine(MESSAGE.INPUT.PURCHASE, (input) => {
       const inputNumber = Number(input);
 
       this.handlePurchaseException(inputNumber);
-      this.purchase = inputNumber;
+      purchase = inputNumber;
 
       Console.close();
     });
+
+    return purchase;
   }
 
   handlePurchaseException(inputNumber) {
