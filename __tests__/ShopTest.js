@@ -27,7 +27,7 @@ describe('로또판매점 클래스 테스트', () => {
     expect(shop.getAllLottoNumbers().length).toBe(shop.getLottoCount());
   });
 
-  test('로또번호가 오름차순인지 테스트', () => {
+  test('생성된 로또번호가 오름차순인지 테스트', () => {
     const shop = new Shop();
     shop.buyFor(5000);
 
