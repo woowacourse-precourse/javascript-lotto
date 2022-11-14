@@ -12,11 +12,11 @@ function validateLottoLength(numbers) {
 
 function validateNumbersRange(numbers) {
   numbers.forEach(function (number) {
-    checkRangeOfNumber(number);
+    validateRangeOfNumber(number);
   });
 }
 
-function checkRangeOfNumber(number) {
+function validateRangeOfNumber(number) {
   if (number < 1 || number > 45) {
     throw new Error("[ERROR] 유효하지 않은 로또 번호입니다.");
   }
@@ -47,10 +47,19 @@ function checkNumberType(number) {
     throw new Error("[ERROR] 올바르지 않은 문자가 포함되어 있습니다.");
   }
 }
+
+function validateWinningNumbersLength(numbers) {
+  if (numbers.length !== 6) {
+    throw new Error("[ERROR] 당첨 번호는 6개여야 합니다.");
+  }
+}
+
 module.exports = {
   validateMoney,
   validateLottoLength,
   validateNumbersRange,
+  validateRangeOfNumber,
   validateDuplicateNumbers,
   validateOnlyNumber,
+  validateWinningNumbersLength,
 };
