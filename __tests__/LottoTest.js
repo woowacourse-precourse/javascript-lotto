@@ -46,6 +46,21 @@ describe('로또 클래스 테스트', () => {
     });
   });
 
+  test('로또 번호에 보너스 번호가 포함되어 있다면 true를 반환한다.', () => {
+    const lotto = [
+      [1, 2, 3, 4, 5, 6],
+      [12, 14, 21, 25, 36, 45],
+    ];
+    const BonusNumbers = [3, 25];
+
+    lotto.forEach((numbers, i) => {
+      const ILotto = new Lotto([1, 2, 3, 4, 5, 6]);
+      expect(ILotto.doesLottoIncludeBonusNum(numbers, BonusNumbers[i])).toBe(
+        true
+      );
+    });
+  });
+
   test('하나의 로또에 대한 당첨 등수를 반환한다.', () => {
     const matchingCounts = [1, 2, 3, 3, 4, 4, 5, 5, 6, 6];
     const matchesBonusNums = [
