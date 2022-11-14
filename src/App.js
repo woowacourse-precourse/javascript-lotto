@@ -1,10 +1,10 @@
 const LottoGame = require('./LottoGame');
 
 class App {
-  lottoGame = new LottoGame();
+  #lottoGame = new LottoGame();
 
   play() {
-    this.lottoGame.run();
+    this.#lottoGame.run();
   }
 }
 
