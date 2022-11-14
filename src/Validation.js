@@ -20,10 +20,10 @@ class Validation {
     if (!this.isLottoSize(winnerNumber)) {
       throw new Error(ERROR_MESSAGE.ERROR_MESSAGE_SIZE_INVALID);
     }
-    if (this.isOnlyNumber(winnerNumber)) {
+    if (!this.isOnlyNumber(winnerNumber)) {
       throw new Error(ERROR_MESSAGE.ERROR_MESSAGE_NOTONLY_NUMBER);
     }
-    if (this.isUniqueNumber(winnerNumber)) {
+    if (!this.isUniqueNumber(winnerNumber)) {
       throw new Error(ERROR_MESSAGE.ERROR_MESSAGE_NOTUNIQUE_NUMBER);
     }
     if (!this.isNumberInRange(winnerNumber)) {
