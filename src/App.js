@@ -137,12 +137,9 @@ class App {
   }
 
   calculateRevenue() {
-    this.revenue = 
-      (this.winningMap.fifthPlace.count * this.winningMap.fifthPlace.WINNING_AMOUNT)
-      + (this.winningMap.fourthPlace.count * this.winningMap.fourthPlace.WINNING_AMOUNT)
-      + (this.winningMap.thirdPlace.count * this.winningMap.thirdPlace.WINNING_AMOUNT)
-      + (this.winningMap.secondPlace.count * this.winningMap.secondPlace.WINNING_AMOUNT)
-      + (this.winningMap.firstPlace.count * this.winningMap.firstPlace.WINNING_AMOUNT)
+    for (let [rank, pair] of Object.entries(this.winningMap)) {
+      this.revenue += (pair.count * pair.WINNING_AMOUNT)
+    }
   }
 
   calculateProfit() {
