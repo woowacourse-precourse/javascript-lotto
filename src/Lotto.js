@@ -29,6 +29,10 @@ class Lotto {
   isUnique(numbers) {
     return numbers.length === new Set(numbers).size;
   }
+
+  getNumbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;

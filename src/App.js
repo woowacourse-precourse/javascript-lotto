@@ -13,10 +13,16 @@ class App {
   inputPurchaseAmount() {
     Console.readLine('구입금액을 입력해 주세요.\n', (purchaseAmount) => {
       const lottoArray = this.lottoManager.issueLotto(purchaseAmount);
+      this.printLotto(lottoArray);
     });
   }
 
-  printNumberOfLotto() {}
+  printLotto(lottoArray) {
+    Console.print(`${lottoArray.length}개를 구매했습니다.`);
+    lottoArray.forEach((lotto) =>
+      Console.print(`[${lotto.getNumbers().join(', ')}]`)
+    );
+  }
 }
 
 const app = new App();
