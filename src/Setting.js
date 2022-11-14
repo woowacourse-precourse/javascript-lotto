@@ -3,8 +3,8 @@ class Setting {
     this.lottoBox = [];
     this.money;
     this.reward = 0;
-    this.winning;
-    this.bonus;
+    this.winNumber;
+    this.bonusNumber;
     this.check = 0;
     this.score = {
       0: 0,
