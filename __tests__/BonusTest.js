@@ -27,7 +27,7 @@ describe("보너스 번호 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
-  test("번호가 중복되면 예외가 발생한다.", () => {
+  test("번호가 범위 밖이면 예외가 발생한다.", () => {
     expect(() => {
       new Bonus(100);
     }).toThrow("[ERROR]");
