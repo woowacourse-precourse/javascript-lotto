@@ -1,9 +1,15 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
-import { MESSAGE } from "./Constant";
+const { MESSAGE, LOTTERY_PRICE } = require("./Constant");
 class App {
   #money;
+  #numberOfLottery;
 
   constructor() {}
+
+  getNumberOfLottery = () => {
+    this.#numberOfLottery = Math.trunc(this.#money / LOTTERY_PRICE);
+    this.buyLottery();
+  };
 
   getMoney = () => {
     Console.readLine(MESSAGE.GETMONEY, (money) => {
