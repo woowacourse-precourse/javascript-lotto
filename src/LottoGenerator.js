@@ -2,7 +2,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 
 const getLottoNumber = (userInputPrice) => {
   if (userInputPrice % 1000 != 0) {
-    throw new Error("[ERROR]");
+    throw new Error("[ERROR] 금액은 1000원 단위입니다.");
   } else {
     return userInputPrice / 1000;
   }

@@ -1,5 +1,3 @@
-const Lotto = require("./Lotto");
-
 class LottoJudgement {
   #scoreBoard = [0, 0, 0, 0, 0];
 

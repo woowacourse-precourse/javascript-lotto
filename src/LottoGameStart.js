@@ -1,6 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const { Console } = require("@woowacourse/mission-utils");
 const LottoJudgement = require("./LottoJudgement");
+const Lotto = require("./Lotto");
 
 const {
   getLottoNumber,
@@ -34,7 +35,9 @@ class LottoGameStart {
   makeWinLottoNumber() {
     Console.readLine("당첨 번호를 입력해 주세요.\n", (inputWinNumber) => {
       let lottoWinNumber = inputWinNumber.split(",").map(Number);
+      const lotto = new Lotto(lottoWinNumber);
       Console.readLine("보너스 번호를 입력해 주세요.\n", (inputBonusNumber) => {
+        lotto.validateBonusNum(inputBonusNumber);
         this.#winLottoNum = lottoWinNumber;
         this.#BonusNum = Number(inputBonusNumber);
         const lottoJudgement = new LottoJudgement(
