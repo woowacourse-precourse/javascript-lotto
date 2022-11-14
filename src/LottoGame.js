@@ -72,6 +72,7 @@ class LottoGame {
     const eachLottoNumbers = this.getEachLottoNumbers();
     const eachCompareResult = eachLottoNumbers.map(this.getCompareResult.bind(this));
     const eachCalculatedLottoPrize = eachCompareResult.map(this.getCalculatedLottoPrize);
+    const prizeStatistics = this.getPrizeStatistics(eachCalculatedLottoPrize);
   }
   getEachLottoNumbers() {
     return this.lottos.map((lotto) => lotto.getNumbers());
@@ -100,6 +101,20 @@ class LottoGame {
     if (matchedLottoNumberCount === LOTTO_PRIZE_MATCH_COUNT.fifthPlace) return "fifthPlace";
 
     return "fail";
+  }
+  getPrizeStatistics(eachCalculatedLottoPrize) {
+    const prizeStatistics = {
+      fifthPlace: 0,
+      fourthPlace: 0,
+      thirdPlace: 0,
+      secondPlace: 0,
+      firstPlace: 0,
+      fail: 0,
+    };
+
+    eachCalculatedLottoPrize.forEach((lottoPrize) => (prizeStatistics[lottoPrize] += 1));
+
+    return prizeStatistics;
   }
 }
 
