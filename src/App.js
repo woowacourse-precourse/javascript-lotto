@@ -16,18 +16,17 @@ class App {
 
     this.lottos = [];
 
-    this.scores = new Map();
-    this.scores.set("3개 일치", 0);
-    this.scores.set("4개 일치", 0);
-    this.scores.set("5개 일치", 0);
-    this.scores.set("5개 일치, 보너스 볼 일치", 0);
-    this.scores.set("6개 일치", 0);
+    this.rewards = [
+      [3, 5_000, 0],
+      [4, 50_000, 0],
+      [5, 1_500_000, 0],
+      [5.5, 30_000_000, 0],
+      [6, 2_000_000_000, 0],
+    ];
 
     this.profit = 0;
 
     this.payMoney = 0;
-
-    this.reward = [5_000, 50_000, 1_500_000, 30_000_000, 2_000_000_000];
   }
 
   play() {
@@ -105,13 +104,11 @@ class App {
   matchLottos(lottos, winNumbers, bonusNumber) {
     lottos
       .filter((lotto) => lotto.matchNumbers(winNumbers, bonusNumber) >= 3)
-      .map((e) =>
-        e.matchNumbers(winNumbers, bonusNumber) === 5.5
-          ? "5개 일치, 보너스 볼 일치"
-          : String(`${e.matchNumbers(winNumbers, bonusNumber)}개 일치`)
-      )
-      .forEach((e) => {
-        this.scores.set(String(`${e}`), this.scores.get(String(`${e}`)) + 1);
+      .map((lotto) => lotto.matchNumbers(winNumbers, bonusNumber))
+      .forEach((score) => {
+        this.rewards.forEach((reward) => {
+          if (score == reward[0]) reward[2] += 1;
+        });
       });
   }
 
