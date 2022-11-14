@@ -7,7 +7,8 @@ const END_NUMBER = 45;
 
 class Function {
   static validateInputMoney(inputMoney) {
-    if (Number(inputMoney) % INPUT_MONEY_UNIT) {
+    const input = Number(inputMoney);
+    if (Number.isNaN(input) || Number(input) % INPUT_MONEY_UNIT) {
       throw new Error(ERROR_MESSAGE.INPUT_MONEY);
     }
   }
