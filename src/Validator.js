@@ -1,5 +1,5 @@
 const { ERROR_MESSAGE } = require('./constants/message');
-const { LOTTO_PRICE } = require('./constants/price');
+const { LOTTO_PRICE } = require('./constants/number');
 
 class Validator {
   static checkNumber(number) {

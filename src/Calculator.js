@@ -1,4 +1,4 @@
-const { LOTTO_PRICE, WINNIG_PRIZE } = require('./constants/price');
+const { LOTTO_PRICE, WINNIG_PRIZE } = require('./constants/number');
 const Validator = require('./Validator');
 
 class Calculator {
