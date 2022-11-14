@@ -16,19 +16,19 @@ class Price {
 
   checkWord(price) {
     if ((/[^0-9]/g).test(price)) {
-      throw new Error(`${ERROR.INVALID_PRICE_WORD}`);
+      throw new Error(ERROR.INVALID_PRICE_WORD);
     };
   };
 
   checkRange(price) {
     if (price < 1) {
-      throw new Error(`${ERROR.INVALID_PRICE_RANGE}`);
+      throw new Error(ERROR.INVALID_PRICE_RANGE);
     };
   };
 
   checkDivision(price) {
     if (price % 1000 !== 0) {
-      throw new Error(`${ERROR.INVALID_PRICE_DIVISION}`);
+      throw new Error(ERROR.INVALID_PRICE_DIVISION);
     };
   };
 };

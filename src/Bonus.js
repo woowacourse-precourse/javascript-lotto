@@ -16,19 +16,19 @@ class Bonus {
 
   checkRange(bonus) {
     if (bonus < 1 || bonus > 45) {
-      throw new Error(`${ERROR.INVALID_BONUS_RANGE}`);
+      throw new Error(ERROR.INVALID_BONUS_RANGE);
     };
   };
 
   checkSameNumber(bonus, answerNumber) {
     if (answerNumber.includes(bonus)) {
-      throw new Error(`${ERROR.INVALID_BONUS_SAME_ANSWER}`);
+      throw new Error(ERROR.INVALID_BONUS_SAME_ANSWER);
     };
   };
 
   checkWords(bonus) {
     if ((/[\D]/g).test(bonus)) {
-      throw new Error(`${ERROR.INVALID_BONUS_WORDS}`);
+      throw new Error(ERROR.INVALID_BONUS_WORDS);
     };
   };
 };
