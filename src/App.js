@@ -12,23 +12,30 @@ class App {
   }
 
   runLotto(value) {
+    if (!this.isValidate(value)) {
+      this.play();
+      return;
+    }
     const amountOfPaid = this.makePayment(value);
     const lottos = this.issueLotto(amountOfPaid / 1000);
     this.getWinner(lottos, amountOfPaid);
   }
 
-  makePayment(value) {
-    const money = value;
-
-    if (money.match(/\D+/)) {
+  isValidate(value) {
+    if (value.match(/\D+/)) {
       throw new TypeError("[ERROR] 올바른 숫자값을 입력해주세요.");
     }
 
-    if (money % 1000 !== 0) {
+    if (value % 1000 !== 0) {
       Console.print("1000원 단위로 입력해주세요.");
-      this.play();
-      return;
+      return false;
     }
+
+    return true;
+  }
+
+  makePayment(value) {
+    const money = value;
 
     const numberOfLotto = money / 1000;
 
