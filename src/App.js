@@ -19,6 +19,16 @@ class App {
   purchase() {
     this.user.readAmount(MESSAGE.AMOUNT, (amount) => {
       this.user.lottoList = Lotto.purchase(amount);
+      this.printMessage("");
+      this.printPurchaseResult();
+    });
+  }
+
+  printPurchaseResult() {
+    this.printMessage(MESSAGE.PURCHASE(this.user.lottoList.length));
+
+    this.user.lottoList.forEach((lotto) => {
+      this.printMessage(JSON.stringify(lotto.numbers).replaceAll(",", ", "));
     });
   }
 

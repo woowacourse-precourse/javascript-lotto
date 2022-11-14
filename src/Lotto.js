@@ -30,8 +30,6 @@ class Lotto {
   get numbers() {
     return this.#numbers;
   }
-
-  // TODO: 추가 기능 구현
 }
 
 module.exports = Lotto;
