@@ -89,14 +89,12 @@ class App {
 
   getLottoResult() {
     for(let i = 0; i < this.lottoCmpResult.length; i++) {
+      Console.print(`userLotto[${i}] is ${this.#userLotto[i]}`);
       if(this.lottoCmpResult[i] === 6) {
         this.lottoPrizeResult[firstPrize]++;
       }
-      if(this.lottoCmpResult[i] === 5 && this.#userLotto[i].includes(this.#bonusNumber)) {
-        this.lottoPrizeResult[secondPrize]++;
-      }
       if(this.lottoCmpResult[i] === 5) {
-        this.lottoPrizeResult[thirdPrize]++;
+        this.isSecond(i);
       }
       if(this.lottoCmpResult[i] === 4) {
         this.lottoPrizeResult[fourthPrize]++;
@@ -106,6 +104,16 @@ class App {
       }
     }
     this.printLottoMatchResult();
+  }
+
+  isSecond(i) {
+    console.log(this.#userLotto[i]);
+    console.log(this.#bonusNumber);
+    if((this.#userLotto[i]).includes(Number(this.#bonusNumber))) {
+      this.lottoPrizeResult[secondPrize]++;
+      return;
+    }
+    this.lottoPrizeResult[thirdPrize]++;
   }
 
   printLottoMatchResult() {
