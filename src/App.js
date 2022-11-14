@@ -3,7 +3,24 @@ const Lotto = require('./Lotto');
 const { INPUT_PRICE_MSG } = require('./Constants.js');
 
 class App {
-  inputPriceCallback(input) {}
+  inputWinningNumbers(lottos) {}
+
+  printLottos(lottos) {}
+
+  buyLotto(price) {}
+
+  validateBuyPrice(price) {}
+
+  inputPriceCallback(input) {
+    const totalPrice = Number(input);
+
+    this.validateBuyPrice(totalPrice);
+
+    const lottos = this.buyLotto(totalPrice);
+
+    this.printLottos(lottos);
+    this.inputWinningNumbers(lottos);
+  }
 
   play() {
     Console.readLine(INPUT_PRICE_MSG, (input) =>
