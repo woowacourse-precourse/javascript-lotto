@@ -1,4 +1,4 @@
-const RankCalculator = require("../src/RankCalculator");
+const RankCalculator = require("../src/domain/RankCalculator");
 const Lotto = require("../src/Lotto");
 const WinningLotto = require("../src/WinningLotto");
 

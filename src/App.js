@@ -1,8 +1,8 @@
 const Utils = require("./Utils");
-const LottoSeller = require("./LottoSeller");
-const LottoGenerator = require("./LottoGenerator");
-const PrizeCalculator = require("./PrizeCalculator");
-const RankCalculator = require("./RankCalculator");
+const LottoSeller = require("./domain/LottoSeller");
+const LottoGenerator = require("./domain/LottoGenerator");
+const PrizeCalculator = require("./domain/PrizeCalculator");
+const RankCalculator = require("./domain/RankCalculator");
 const WinningLotto = require("./WinningLotto");
 
 class App {

@@ -1,4 +1,4 @@
-const LottoGenerator = require("../src/LottoGenerator");
+const LottoGenerator = require("../src/domain/LottoGenerator");
 const MissionUtils = require("@woowacourse/mission-utils");
 
 const mockRandoms = (numbers) => {

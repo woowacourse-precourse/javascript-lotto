@@ -1,4 +1,4 @@
-const PrizeCalculator = require("../src/PrizeCalculator");
+const PrizeCalculator = require("../src/domain/PrizeCalculator");
 
 describe("상금 계산기 클래스 테스트", () => {
   test("5등 당첨금은 5,000원이다.", () => {

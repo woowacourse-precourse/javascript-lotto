@@ -1,4 +1,4 @@
-const LottoSeller = require("../src/LottoSeller");
+const LottoSeller = require("../src/domain/LottoSeller");
 
 describe("로또 생성기 클래스 테스트", () => {
   test("금액이 숫자가 아닐 경우 예외가 발생한다.", () => {
