@@ -33,7 +33,7 @@ class App {
       MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", winningLottoBonus => {
         winningLottoBonus = +winningLottoBonus;
         this.winningLottoArr.push(this.winningLottoBonusValidate(winningLottoBonus))
-        //여기에 랜덤번호랑 당첨번호랑 비교해서 결과 내보내는 함수 입력하기
+        this.printRank(this.rankCount());
         MissionUtils.Console.close();
       });
     });
@@ -77,6 +77,16 @@ class App {
     yieldLotto += rank[3] * 30000000;
     yieldLotto += rank[4] * 2000000000;
     return yieldLotto;
+  }
+
+  printRank(rank) {
+    MissionUtils.Console.print("당첨 통계\n---")
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${rank[0]}개`)
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${rank[1]}개`)
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${rank[2]}개`)
+    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${rank[3]}개`)
+    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${rank[4]}개`)
+    MissionUtils.Console.print(`총 수익률은 ${rank[5]}%입니다.`)
   }
 
 }
