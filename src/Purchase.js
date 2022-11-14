@@ -1,4 +1,4 @@
-const purchaseError = require('./Constants/Messages');
+const purchaseError = require('./Constants/ErrorMessages');
 
 class Purchase {
   constructor(number) {
