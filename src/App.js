@@ -84,6 +84,25 @@ class App {
       }
     });
   }
+
+  // 로또 번호화 당첨 번호를 비교하는 함수 구현
+  checkLottoNumbers() {
+    this.initResult();
+    this.lottos.map((numbers) => {
+      let sameNumberCount = 0;
+      let isBonusNumber = false;
+      numbers.map((number) => {
+        if (this.winNumber.includes(number)) {
+          sameNumberCount += 1;
+        }
+        if (this.bonusNumber === number) {
+          isBonusNumber = true;
+        }
+      });
+      this.compareNumbers(sameNumberCount, isBonusNumber);
+    });
+    this.resultPrint();
+  }
 }
 
 const app = new App();
