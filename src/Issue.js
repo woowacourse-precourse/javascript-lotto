@@ -18,6 +18,14 @@ class Issue {
       issueSet.add(Random.pickUniqueNumbersInRange(1, 45, 6));
     }
     this.issueList = issueSet;
+    this.print();
+  }
+
+  print() {
+    Console.print(`${this.issueList.size}개를 구매했습니다.`);
+    this.issueList.forEach((issueItem) => {
+      Console.print("[" + issueItem.join(', ') + "]");
+    });
   }
 }
 
