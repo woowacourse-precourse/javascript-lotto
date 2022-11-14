@@ -41,5 +41,27 @@ describe("로또 클래스 테스트", () => {
     }).toThrow(ERROR.NAN);
   });
 
+  test("로또 넘버를 입력해서 등수가 몇개인지 체크", () => {
+    const winningBoard = {
+      FIFTH: 1,
+      FORTH: 1,
+      THIRD: 1,
+      SECOND: 1,
+      FIRST: 1,
+    };
+
+    const mockArr = [
+      [1, 2, 3, 4, 5, 6],
+      [1, 2, 3, 4, 5, 7],
+      [1, 2, 3, 4, 5, 41],
+      [1, 2, 3, 4, 34, 42],
+      [1, 2, 3, 41, 42, 43],
+    ];
+    const bonus = 7;
+    const lotto = new Lotto("1,2,3,4,5,6", mockArr);
+
+    expect(lotto.calculate(bonus, mockArr)).toEqual(winningBoard);
+  });
+
   // 아래에 추가 테스트 작성 가능
 });
