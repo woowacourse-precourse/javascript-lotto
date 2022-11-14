@@ -7,6 +7,7 @@ const {
 const Lotto = require("./Lotto");
 const {
   isNumberType,
+  isValidRange,
   isThousandUnits,
   isValuesNumberType,
   isValuesValidRange,
@@ -75,16 +76,16 @@ class LottoGame {
   }
 
   isWinningNumbersValid(winningNumbersList) {
+    if (!isValuesValidLength(winningNumbersList)) {
+      throw ERROR_MESSAGE.LENGTH_ERROR;
+    }
+
     if (!isValuesNumberType(winningNumbersList)) {
       throw ERROR_MESSAGE.TYPE_ERROR;
     }
 
     if (!isValuesValidRange(winningNumbersList)) {
       throw ERROR_MESSAGE.RANGE_ERROR;
-    }
-
-    if (!isValuesValidLength(winningNumbersList)) {
-      throw ERROR_MESSAGE.WINNER_NUMBERS_LENGTH_ERROR;
     }
   }
 
@@ -102,12 +103,8 @@ class LottoGame {
       throw ERROR_MESSAGE.TYPE_ERROR;
     }
 
-    if (!isValuesValidRange([bonusNumber])) {
+    if (!isValidRange(bonusNumber)) {
       throw ERROR_MESSAGE.RANGE_ERROR;
-    }
-
-    if (!isValuesValidLength([bonusNumber])) {
-      throw ERROR_MESSAGE.BONUS_NUMBER_LENGTH_ERROR;
     }
   }
 }
