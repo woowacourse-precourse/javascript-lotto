@@ -23,4 +23,10 @@ describe("BonusNumber 테스트", () => {
       new BonusNumber("-3");
     }).toThrow(ERROR_MESSAGE.lottoRange);
   });
+
+  test("보너스 번호가 문자인 경우", () => {
+    expect(() => {
+      new BonusNumber("B");
+    }).toThrow(ERROR_MESSAGE.lottoRange);
+  });
 });
