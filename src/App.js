@@ -1,5 +1,16 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
+const Bonus = require("./Bonus");
+
+function getWinStats(matchCountTotal, bonusMatchTotal, numOfTickets) {
+  const winStats = new Map();
+  winStats.set("3개 일치 (5,000원)", matchCountTotal.filter((matchCount) => matchCount === 3).length);
+  winStats.set("4개 일치 (50,000원)", matchCountTotal.filter((matchCount) => matchCount === 4).length);
+  winStats.set("5개 일치 (1,500,000원)", bonusMatchTotal.filter((bonusMatch) => bonusMatch === false).length);
+  winStats.set("5개 일치, 보너스 볼 일치 (30,000,000원)", bonusMatchTotal.filter((bonusMatch) => bonusMatch === true).length);
+  winStats.set("6개 일치 (2,000,000,000원)", matchCountTotal.filter((matchCount) => matchCount === 6).length);
+  getEarningRate(winStats, numOfTickets);
+}
 
 function compareGuessandBounus(guessNumbersTotal, matchCountTotal, bonusNumber, numOfTickets) {
   const bonusMatchTotal = matchCountTotal.map(
