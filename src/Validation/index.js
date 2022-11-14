@@ -1,9 +1,14 @@
+const { ABSTRACT_ERROR_MESSAGE } = require('../lib/Constants');
+const AbstractError = require('../Error/AbstractError');
+
 class Validation {
   constructor(answer) {
     this.answer = answer;
   }
 
-  static validate() {}
+  static validate() {
+    throw new AbstractError(ABSTRACT_ERROR_MESSAGE.abstract_method);
+  }
 
   isEmpty() {
     return this.answer === null || this.answer === undefined || this.answer === '';
