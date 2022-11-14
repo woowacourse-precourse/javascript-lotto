@@ -22,11 +22,20 @@
    -> 숫자 범위는 1~45이며, 당첨 번호와 중복되지 않는 1개의 숫자이다.
 
 6. 보너스 번호 예외처리 (Lotto.bonusNumberException)
-   -> 중복, isNaN, 갯수 check
+   -> 중복, isNaN, 갯수, 범위 check
 
 7. 배열에 주어진 숫자와 같은 숫자가 있으면 그 수를 세는 메소드를 구현한다. (Lotto.isMatching)
+   -> 로또 당첨번호와 보너스 번호 비교에서 겹치는 부분을 메소드로 분리.
+
 8. 위 메소드를 이용하여 당첨번호와 내가 구매한 로또의 번호들을 비교한다. (Lotto.compareLottoNums)
+   -> 새 배열의 로또 인덱스에 해당하는 인덱스에다가 로또 번호가 일치하는 갯수를 저장.
+
 9. 로또 번호 5개 일치 시 보너스 번호 포함 여부를 비교한다. (Lotto.compareBonus)
+
 10. 각 당첨갯수 별 로또 수를 센다. (Lotto.countWinLotto)
+    -> 갯수 출력을 위해.
+
 11. 수익률을 계산한다. (Lotto.priceEarningsRatio)
+    -> 수익률 = (로또에 당첨되어 얻은 돈) / (로또 구매 금액)
+
 12. 결과를 출력한다. (Lotto.printWinResult)
