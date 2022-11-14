@@ -50,6 +50,14 @@ class App {
     }
     return myNumbers;
   }
+
+  inputWinningNums(myNumbers) {
+    let winNums = [];
+    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (inputNums) => {
+      winNums = inputNums.split(",");
+    });
+    return 1;
+  }
 }
 
 module.exports = App;
