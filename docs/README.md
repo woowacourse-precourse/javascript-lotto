@@ -19,7 +19,7 @@
 - [x] 보너스 번호 입력: getBonusNumber()
 - [x] 로또 티켓 getter: get numbers()
 
-- [ ] 구매 로또 출력: printLottos()
+- [x] 구매 로또 출력: printLottos()
 - [x] 통계 출력: generatePhrase()
 - [x] 수익률 생성: generateLottoProfit()
 - [x] 통계 생성: generateLottoStatPhrase()
@@ -30,6 +30,7 @@
 - [x] 당첨 번호 입력 검증: validateTargetNumber()
 - [x] 보너스 번호 입력 검증: validateBonusNumber()
 - [x] 보너스 번호와 당첨 번호가 겹치지 않는지 검증: validateBonusNumberNotInLottoNumber()
+- [ ] game을 성공적으로 종료: endGame()
 
 ## 연동
 
