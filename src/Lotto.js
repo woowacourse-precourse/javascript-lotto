@@ -4,6 +4,14 @@ const { ERROR, MESSAGE } = require('./Contants.js');
 class Lotto {
   #countLotto;
 
+  inputMoney() {
+    Console.readLine('구입금액을 입력해 주세요.\n', inputMoney => {
+      this.validate(inputMoney);
+      this.buyLotto(inputMoney);
+    });
+  }
+
+
   validate(price) {
     this.isNumber(price);
     this.isThousandUnit(price);
@@ -21,12 +29,6 @@ class Lotto {
     }
   };
 
-  inputMoney() {
-    Console.readLine('구입금액을 입력해 주세요.\n', inputMoney => {
-      this.validate(inputMoney);
-      this.buyLotto(inputMoney);
-    });
-  }
 
   buyLotto(inputMoney) {
     this.#countLotto = Number(inputMoney) / 1000
@@ -46,6 +48,7 @@ class Lotto {
     }
   }
 
+
   makeRandomLottoNumber() {
     return Random.pickUniqueNumbersInRange(1, 45, 6);
   }
@@ -56,6 +59,11 @@ class Lotto {
 
   printRandomLottoNumber(lottoNumber) {
     return Console.print(`[${lottoNumber.join(', ')}]`);
+  }
+
+  getWinningLottoNumber(){
+    Console.print(MESSAGE.INPUT_WINNING_NUMBER);
+    Console.readline("", number=> this.winningLottoNumber=number.split(","));
   }
 
   play() {
