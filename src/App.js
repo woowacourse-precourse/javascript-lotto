@@ -36,7 +36,7 @@ class App {
         throw "[ERROR]";
       } else {
         this.payMoney = input;
-        Console.print(`${input / 1000}개를 구매했습니다.`);
+        Console.print(`\n${input / 1000}개를 구매했습니다.`);
         this.lottos = this.publishLotto(input / 1000);
         this.printLottosNumbers();
         this.getWinNumbers();
@@ -72,7 +72,7 @@ class App {
   }
 
   getWinNumbers() {
-    Console.readLine("당첨 번호를 입력해 주세요.\n", (input) => {
+    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (input) => {
       let wins = new Set(input.split(",").map(Number));
       if (!this.isValidWinNumbers(wins)) {
         throw "[ERROR]";
@@ -88,7 +88,7 @@ class App {
   }
 
   getBonusNumber() {
-    Console.readLine("번호를 입력해 주세요.\n", (input) => {
+    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (input) => {
       if (!this.isValidBonusNumber(input)) {
         throw "[ERROR]";
       } else {
@@ -111,7 +111,7 @@ class App {
   }
 
   printScore() {
-    Console.print("당첨 통계\n---\n");
+    Console.print("\n당첨 통계\n---\n");
     this.rewards.forEach((reward) => {
       reward[0] != 5.5
         ? Console.print(
@@ -128,6 +128,7 @@ class App {
           );
     });
     Console.print(`총 수익률은 ${this.calculateProfit()}%입니다.`);
+    Console.print("```\n\n---");
   }
 
   calculateProfit() {
