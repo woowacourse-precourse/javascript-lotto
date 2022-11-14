@@ -46,6 +46,14 @@ class Lotto {
     }    
   }
 
+  countProcess() {
+    this.countOfThreeMatch;
+    this.countOfFourMatch;
+    this.countOfFiveMatch;
+    this.countOfFiveAndBounsMatch;
+    this.countOfSixMatch;
+  }
+
   countOfThreeMatch() {
     let countThreeMatch = 0;
     for(let i=0; i<6; i++) {
