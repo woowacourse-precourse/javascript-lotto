@@ -117,6 +117,12 @@ class App {
     }
     return stringToNumber;
   }
+
+  validateWinNumbers(win) {
+    if (win.split(',').length !== GAME.COUNT) {
+      throw new Error(`${ERROR.COMMON} ${ERROR.MUST_HAVE_COMMA}`);
+    }
+  }
 }
 
 const app = new App();
