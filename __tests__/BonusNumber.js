@@ -1,6 +1,6 @@
 const LottoController = require("../src/LottoController");
 const { ERROR_BONUS } = require("../src/constants/messages");
-const Validation = require("../src/Validation");
+const Validation = require("../src/validator/Validation");
 const validation = new Validation();
 
 describe("로또 보너스 번호 입력 유효성 테스트", () => {

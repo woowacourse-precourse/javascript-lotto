@@ -2,7 +2,7 @@ const {
   ERROR_MONEY,
   ERROR_LOTTO,
   ERROR_BONUS,
-} = require("./constants/messages");
+} = require("../constants/messages");
 
 class Validation {
   checkType = (purchaseAmount) => {

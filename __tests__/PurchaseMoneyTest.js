@@ -1,4 +1,4 @@
-const Validation = require("../src/Validation");
+const Validation = require("../src/validator/Validation");
 const { ERROR_MONEY } = require("../src/constants/messages.js");
 const validation = new Validation();
 
