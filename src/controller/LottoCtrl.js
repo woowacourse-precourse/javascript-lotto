@@ -33,9 +33,8 @@ const LottoCtrl = class extends GameCtrl {
   }
 
   buyLottoTicket() {
-    this.getLottoCount();
+    const ticketCount = this.getLottoCount();
 
-    const { ticketCount } = this.model.Budget;
     const lottoTickets = [...new Array(ticketCount)].reduce(tickets => {
       const currTicket = this.model.pickLottoTickets(TICKET_NUMBER);
       tickets.push(currTicket);
@@ -43,7 +42,7 @@ const LottoCtrl = class extends GameCtrl {
       return tickets;
     }, []);
 
-    this.model.lottoTickets = lottoTickets;
+    this.model.setLottoTickets(lottoTickets);
     this.renderLottoTickets(lottoTickets);
 
     this.inputLottoWinningNumbers();
@@ -60,6 +59,7 @@ const LottoCtrl = class extends GameCtrl {
     const ticketMessage = `${ticketCount}${TICKET_MESSAGE}`;
 
     this.view.output(ticketMessage);
+    return ticketCount;
   }
 
   inputLottoWinningNumbers() {
@@ -85,15 +85,34 @@ const LottoCtrl = class extends GameCtrl {
   }
 
   end() {
-    this.getLottoWinningHistory();
+    const winningHistory = this.getLottoWinningHistory();
+    const lottoYield = this.getLottoYield();
 
+    this.renderLottoStatics(winningHistory, lottoYield);
     this.view.close();
+  }
+
+  // TODO: 통계 로직 분리 -> Statics 클래스
+  renderLottoStatics(winningHistory, lottoYield) {
+    const { MESSAGE } = LOTTO_RANK;
+
+    this.view.output('당첨 통계');
+    this.view.output('---');
+
+    const resultMessages = Object.entries(MESSAGE)
+      .reverse()
+      .map(([key, value]) => `${value}${winningHistory[key]}개`)
+      .concat(`총 수익률은 ${lottoYield}%입니다.`);
+
+    resultMessages.forEach(message => this.view.output(message));
   }
 
   getLottoWinningHistory() {
     const { lottoTickets, winningNumbers, bonus } = this.model;
 
+    const initWinningHistory = [...new Array(6)].fill(0);
     const winningHistory = lottoTickets.reduce((winningHistory, currTicket) => {
+      // TODO: 로또 등수 구하는 로직 분리 = getLottoRank
       const intersectionSize = currTicket.filter(number => winningNumbers.includes(number)).length;
 
       switch (intersectionSize) {
@@ -118,13 +137,39 @@ const LottoCtrl = class extends GameCtrl {
         default:
           return winningHistory;
       }
-    }, [...new Array(6)].fill(0));
+    }, initWinningHistory);
 
-    this.model.winningHistory = winningHistory;
+    this.model.setLottoWinnerHistory(winningHistory);
+    return winningHistory;
   }
 
-  // 2. 총 수익률을 출력한다.
-  getLottoYield() {}
+  getLottoRank() {}
+
+  getLottoYield() {
+    const lottoRevenue = this.getLottoRevenue();
+    const { budget } = this.model;
+
+    const lottoYield = (lottoRevenue / budget) * 100;
+
+    this.model.setLottoYield(lottoYield);
+    return lottoYield;
+  }
+
+  getLottoRevenue() {
+    const { winningHistory } = this.model;
+    const { REWARD } = LOTTO_RANK;
+
+    const lottoRevenue = winningHistory.reduce((lottoRevenue, rankCount, rank) => {
+      const currRankReward = REWARD[rank] ?? 0;
+      const currRankRevenue = rankCount * currRankReward;
+
+      lottoRevenue += currRankRevenue;
+      return lottoRevenue;
+    }, 0);
+
+    this.model.setLottoRevenue(lottoRevenue);
+    return lottoRevenue;
+  }
 };
 
 module.exports = LottoCtrl;
