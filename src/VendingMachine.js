@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { isMultipleOf1000, divide1000 } = require('./lib/utilFns.js');
+const { isMultipleOf1000, divide1000, getRandomNumbers } = require('./lib/utilFns.js');
 
 class VendingMachine {
   #purchaseAmount;
@@ -28,6 +28,16 @@ class VendingMachine {
 
     this.#purchaseAmount = puchaseAmount;
     this.#numberOfLottos = numberOfLottos;
+  }
+
+  pickRandomNumbers(cnt = this.#numberOfLottos) {
+    const randomNumbers = [];
+
+    for (let i = 0; i < cnt; i++) {
+      randomNumbers.push(getRandomNumbers(1, 45, 6));
+    }
+
+    return randomNumbers;
   }
 }
 
