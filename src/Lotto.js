@@ -46,8 +46,10 @@ class Lotto {
   }
 
   #validateBonus(bonus) {
-    //TODO 보너스 번호 1자리만 입력한 것을 판단하는 방법
-    // throw new Error(ERROR_MESSAGES.INVALID_BONUS_LENGTH);
+    if (bonus < RANGE.START || bonus > RANGE.END) {
+      throw new Error(ERROR_MESSAGES.INVALID_BONUS_RANGE);
+    }
+
     if (this.#numbers.includes(bonus))
       throw new Error(ERROR_MESSAGES.NOT_DUPLICATE_NUMBER);
   }

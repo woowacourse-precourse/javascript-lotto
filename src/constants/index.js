@@ -2,8 +2,8 @@ const ERROR_MESSAGES = Object.freeze({
   // 사용자 입력 예외 에러 메세지
   INVALID_MONEY_UNIT: '[ERROR] 1,000원 단위로 입력해 주세요.',
   INVALID_LOTTO_LENGTH: '[ERROR] 로또 번호는 6개여야 합니다.',
-  INVALID_LOTTO_RANGE: '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.',
-  INVALID_BONUS_LENGTH: '[ERROR] 보너스 번호 1자리를 입력해 주세요.',
+  INVALID_LOTTO_RANGE: '[ERROR] 로또 번호는 1 ~ 45 사이의 숫자여야 합니다.',
+  INVALID_BONUS_RANGE: '[ERROR] 보너스 번호는 1 ~ 45 사이의 숫자여야 합니다.',
   NOT_DUPLICATE_NUMBER: '[ERROR] 로또 번호는 중복될 수 없습니다.',
 
   // 예외 에러 메세지
