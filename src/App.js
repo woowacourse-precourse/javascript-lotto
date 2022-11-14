@@ -109,7 +109,7 @@ class App {
   }
 
   printLottoMatchResult() {
-    MissionUtils.Console.print("당첨 통계");
+    MissionUtils.Console.print("\n당첨 통계");
     MissionUtils.Console.print("---");
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.lottoResult[fifthPlace]}`);
     MissionUtils.Console.print(`4개 일치 (50,000원) - ${this.lottoResult[fourthPlace]}`);
@@ -127,6 +127,11 @@ class App {
     this.#totalProfitMoney = sum;
     this.#percent = Math.round(((this.#totalProfitMoney / this.#userMoney) * 100) * 100) / 100;
     this.printPercentage();
+  }
+
+  printPercentage() {
+    Console.print(`총 수익률은 ${this.percent}%입니다.`);
+    this.endLotto();
   }
 }
 
