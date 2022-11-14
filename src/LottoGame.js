@@ -90,9 +90,17 @@ class LottoGame {
 
   inputBonusNumber() {
     inputUserValue(GAME_MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
-      this.#bonusNumber = bonusNumber;
-      console.log(this.#bonusNumber);
+      if (this.isBonusNumberValid(bonusNumber)) {
+        this.#bonusNumber = bonusNumber;
+        console.log(this.#bonusNumber);
+      }
     });
+  }
+
+  isBonusNumberValid(bonusNumber) {
+    if (!isNumberType(bonusNumber)) {
+      throw ERROR_MESSAGE.TYPE_ERROR;
+    }
   }
 }
 
