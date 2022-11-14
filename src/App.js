@@ -1,4 +1,5 @@
 const { Random, Console } = require('@woowacourse/mission-utils')
+const Lotto = require('./Lotto.js')
 const { LOTTO_PRICE, query, validationError } = require('./constants/app.js')
 const { range, WINNING_NUMBER_COUNT } = require('./constants/common.js')
 const { sortIncreasingOrder } = require('./lib/utils.js')
@@ -87,7 +88,18 @@ class App {
     Console.readLine(`${query.WINNING_NUMBERS}\n`, (numbersInString) => {
       const winningNumbers = numbersInString.split(',').map(Number)
 
-      // this.#selectBonusNumber(winningNumbers)
+      this.#selectBonusNumber(winningNumbers)
+    })
+  }
+
+  /**
+   * @param {*[]} winningNumbers
+   */
+  #selectBonusNumber(winningNumbers) {
+    Console.readLine(`${query.BONUS_NUMBER}\n`, (numberInString) => {
+      const bonusNumber = Number(numberInString)
+
+      const lotto = new Lotto({ wins: winningNumbers, bonus: bonusNumber })
     })
   }
 
@@ -95,7 +107,5 @@ class App {
     Console.close()
   }
 }
-
-new App().play()
 
 module.exports = App
