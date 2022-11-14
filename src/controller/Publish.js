@@ -1,6 +1,7 @@
 const Model = require("../model/Model");
 const View = require("../view/View");
 const {Random} = require("@woowacourse/mission-utils");
+const Winning = require("./Winning");
 
 class Publish{
   constructor(lottoChart){
@@ -27,6 +28,11 @@ class Publish{
     this.view.printNumberOfLotto(number_of_lotto);
     this.view.printPublished(this.model.getPublished()); // view 에 print
     
+    this.next();
+  }
+  next(){
+    const winning = new Winning(this.model.chart);
+    winning.start();
   }
 }
 
