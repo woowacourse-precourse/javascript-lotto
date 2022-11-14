@@ -42,6 +42,9 @@ class LottoGame {
       (number) => {
         const numberToInt = parseInt(number);
         Lotto.validateLottoNumber(parseInt(numberToInt));
+        Lotto.validateNumberArrayDuplication(
+          this.#raffle.winning.getLottoNumbers().concat(numberToInt),
+        );
         this.#raffle.bonus = parseInt(numberToInt);
       },
     );
