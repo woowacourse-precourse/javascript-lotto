@@ -7,6 +7,10 @@ class App {
     const lottoArr = this.buyingLotto(ticket);
     const winningNumber = new Lotto([this.consoleInput("당첨 번호를 입력해 주세요.\n")]);
     const bonusNumber = new Lotto(this.consoleInput("보너스 번호를 입력해 주세요.\n"));
+    const winningArr = [0,0,0,0,0];
+    lottoArr.forEach(outterArr =>{
+      winningArr[this.lottoMatch(outterArr,winningNumber,bonusNumber)]+=1
+    })
   }
 
   createLotto(numbers) {
@@ -42,6 +46,22 @@ class App {
       str = answer;
     });
     return str;
+  }
+
+  lottoMatch(userLotto,winningNumber,bonusNumber){
+    let ballCount = 0;
+    let bonusBallCount = 0;
+    
+    userLotto.forEach(innerArr => {
+      if(innerArr.includes(winningNumber)) ballCount+=1
+    })
+    if(userLotto.includes(bonusNumber) && ballCount === 5) bonusBallCount+=1
+
+    if(ballCount === 6) return 0
+    if(ballCount === 5 && bonusBallCount === 1) return 1
+    if(ballCount === 5 && bonusBallCount !== 1) return 2
+    if(ballCount === 4) return 3
+    if(ballCount === 3) return 4
   }
 
 }
