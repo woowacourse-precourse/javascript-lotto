@@ -21,7 +21,7 @@ class RandomNumber {
     this.computerNumbers.forEach(function (purchaseNumber) {
       console.log(purchaseNumber);
     });
-    this.lottoNumber.lottoNumbers();
+    this.lottoNumber.lottoNumbers(this.computerNumbers);
   }
 }
 
