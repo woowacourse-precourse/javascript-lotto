@@ -18,6 +18,8 @@ class App {
           const result = this.#lotto.getResult(this.#user.lottoList);
           Io.printConsole(PRINT_SENTENSE.totalResult);
           this.#lotto.printResult(result);
+          const lottoYield = this.#lotto.getYield(result, purchaseMoney);
+          Io.printConsole(`총 수익률은 ${lottoYield}%입니다.`);
         });
       });
     });

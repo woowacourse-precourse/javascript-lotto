@@ -5,7 +5,8 @@ const {
   MAX_LOTTO_NUMBER,
   LOTTO_LENGTH,
   RANKS,
-  RESULT_MSG
+  RESULT_MSG,
+  PRIZE_MONEY
 } = require('./constants');
 const Io = require('./Io');
 
@@ -25,6 +26,15 @@ class Lotto {
     );
     newLotto.sort((a, b) => a - b);
     return newLotto;
+  }
+
+  getYield(result, purchaseMoney) {
+    let prizeMoney = 0;
+    console.log(result);
+    for (const money in PRIZE_MONEY) {
+      prizeMoney += result[money] * PRIZE_MONEY[money];
+    }
+    return ((prizeMoney / purchaseMoney) * 100).toFixed(1);
   }
 
   printResult(result) {
