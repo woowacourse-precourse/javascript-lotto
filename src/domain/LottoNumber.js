@@ -1,5 +1,5 @@
 const { Random } = require("@woowacourse/mission-utils");
-const { LOTTO_NUMBER } = require("./../utils/Constant");
+const { LOTTO_NUMBER } = require("../constants/gameCondition");
 
 class LottoNumber {
   static generate() {

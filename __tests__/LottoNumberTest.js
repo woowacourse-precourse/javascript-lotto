@@ -1,5 +1,5 @@
-const LottoNumber = require("./../src/LottoNumber");
-const { LOTTO_NUMBER } = require("./../src/utils/Constant");
+const LottoNumber = require("../src/domain/LottoNumber");
+const { LOTTO_NUMBER } = require("../src/constants/gameCondition");
 
 describe("로또넘버 클래스 테스트", () => {
   test("가져온 로또번호가 6개인지 확인한다.", () => {

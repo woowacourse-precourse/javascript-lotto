@@ -1,4 +1,3 @@
-const Lottos = require("./domain/Lottos");
 const OutputView = require("./view/OutputView");
 const LottoGameService = require("./LottoGameService");
 
