@@ -63,6 +63,25 @@ class App {
     }
     return num;
   }
+  randomPurchaseLotto(){
+    let moneyCount = this.purchase;
+    moneyCount = parseInt(moneyCount/1000);
+    MissionUtils.Console.print(`${moneyCount}개를 구매했습니다.`);
+    for(let lotto = 0; lotto < moneyCount; lotto++){
+      const randomLotto = this.setRandomNumberLotto();
+      this.lottoNumber.push(new Lotto(randomLotto));
+    }
+    this.printLottoNumber();
+    this.calculateLotto();
+  }
+  setRandomNumberLotto(){
+    let lottoNum = new Set();
+    while (lottoNum.size < 6) {
+      lottoNum.add(MissionUtils.Random.pickNumberInRange(1, 45));
+    }
+    const result = Array.from(lottoNum).sort((a, b) => a - b);
+    return result;
+  }
 
 
 }
