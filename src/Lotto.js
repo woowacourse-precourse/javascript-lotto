@@ -88,7 +88,10 @@ class Lotto {
     });
   }
 
-
+  inputBonusNumber() {
+    Console.readline(MESSAGE.INPUT_BONUS_NUMBER, (input) => {
+    });
+  }
 
 
   play() {
