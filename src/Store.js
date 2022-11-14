@@ -3,7 +3,7 @@ const { Console } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 
 const { ERROR_MESSAGES } = require('./constants/index');
-const { formatTwoDecimal } = require('./utils/formatNumber');
+const { roundOneDecimal } = require('./utils/formatNumber');
 const { WINNINGS } = require('./utils/winningResult');
 
 const LOTTO_PRICE = 1_000;
@@ -43,10 +43,12 @@ class Store {
 
       if (correctCount === 5 && randomLotto.includes(bonus)) {
         correctCount++;
+      } else if (correctCount === 6) {
+        correctCount++;
       }
 
       if (correctCount >= MIN_WINNING_COUNT) {
-        correctPoints[Number(correctCount) - MIN_WINNING_COUNT]++;
+        correctPoints[correctCount - MIN_WINNING_COUNT]++;
       }
     });
 
@@ -61,7 +63,8 @@ class Store {
   }
   getWinningRate(correctPoints = []) {
     const winningMoney = this.getWinningMoney(correctPoints);
-    return formatTwoDecimal((winningMoney / this.#money) * 100);
+
+    return roundOneDecimal((winningMoney / this.#money) * 100);
   }
 
   createRandomLottos() {

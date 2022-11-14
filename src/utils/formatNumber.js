@@ -3,8 +3,8 @@ const formatWithComma = (number) => {
   return `${number}`.replace(commaRegex, ',');
 };
 
-const formatTwoDecimal = (number) => {
+const roundOneDecimal = (number) => {
   return Math.round(number * 10) / 10;
 };
 
-module.exports = { formatWithComma, formatTwoDecimal };
+module.exports = { formatWithComma, roundOneDecimal };
