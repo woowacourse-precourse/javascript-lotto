@@ -75,7 +75,7 @@ class Lotto {
     );
   }
 
-  #initLottoResultStorage() {
+  initLottoResultStorage() {
     const storage = {};
     for (let i = LOTTO.MATCH_START_COUNT; i <= LOTTO.COUNT; i++) {
       storage[`${SENTENCE.MATCH_COUNT(i)}`] = 0;
@@ -88,7 +88,7 @@ class Lotto {
   }
 
   getLottoResult(allLottoNumbers) {
-    const lottoResult = this.#initLottoResultStorage();
+    const lottoResult = this.initLottoResultStorage();
 
     allLottoNumbers.forEach((oneLottoNumbers) => {
       const matchCount = this.getMatchCount(oneLottoNumbers);

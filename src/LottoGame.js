@@ -13,9 +13,10 @@ class LottoGame {
   }
 
   start() {
-    Console.readLine(`${SENTENCE.PURCHASE}\n`, (money) =>
-      this.purchaseLotto(money)
-    );
+    Console.readLine(`${SENTENCE.PURCHASE}\n`, (money) => {
+      this.printNewLine();
+      this.purchaseLotto(money);
+    });
   }
 
   purchaseLotto(money) {
@@ -31,6 +32,7 @@ class LottoGame {
     this.allLottoNumber.forEach((lottoNumber) =>
       Console.print(`[${lottoNumber.join(', ')}]`)
     );
+    this.printNewLine();
     this.getWinningNumber();
   }
 
@@ -38,6 +40,7 @@ class LottoGame {
     Console.readLine(`${SENTENCE.WINNING_NUMBERS}\n`, (winningNumbers) => {
       const formatNumbers = winningNumbers.split(',').map(Number);
       this.lotto.setWinningNumbers(formatNumbers);
+      this.printNewLine();
       this.getBonusNumber();
     });
   }
@@ -45,6 +48,7 @@ class LottoGame {
   getBonusNumber() {
     Console.readLine(`${SENTENCE.BONUS_NUMBERS}\n`, (bonusNumber) => {
       this.lotto.addBonusNumber(bonusNumber);
+      this.printNewLine();
       this.printLottoResult();
     });
   }
@@ -67,6 +71,10 @@ class LottoGame {
     );
     Console.print(SENTENCE.PROFIT_RATE(profitRate));
     this.end();
+  }
+
+  printNewLine() {
+    Console.print('');
   }
 
   end() {
