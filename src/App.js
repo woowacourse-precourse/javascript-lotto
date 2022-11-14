@@ -66,8 +66,17 @@ class App {
     this.#lottos.forEach(x => {
       rank[x.userLottoWinningLottoCompare(this.winningLottoArr)]++
     })
-    rank.push(Math.round(((this.yieldCal(rank) / this.money) * 1000)) / 10);  //추후 수익률 계산함수 만들기
+    rank.push(Math.round(((this.yieldCal(rank) / this.money) * 1000)) / 10);  
     return rank;
+  }
+
+  yieldCal(rank) {
+    let yieldLotto = rank[0] * 5000;
+    yieldLotto += rank[1] * 50000;
+    yieldLotto += rank[2] * 1500000;
+    yieldLotto += rank[3] * 30000000;
+    yieldLotto += rank[4] * 2000000000;
+    return yieldLotto;
   }
 
 }
