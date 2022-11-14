@@ -1,8 +1,11 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { changeLottoClass } = require("./Lotto.js");
-const lotto = require("./Lotto.js");
+const Lotto = require("./Lotto");
 
 class App {
+  play() {
+    this.inputPurchaseAmount();
+  }
+
   inputPurchaseAmount() {
     MissionUtils.Console.readLine(
       "구입 금액을 입력해주세요.\n",
@@ -16,7 +19,7 @@ class App {
     MissionUtils.Console.readLine(
       "\n당첨 번호를 입력해주세요.\n",
       (winNumber) => {
-        return this.winNumberArr(winNumber);
+        this.winNumberArr(winNumber);
       }
     );
   }
@@ -41,7 +44,9 @@ class App {
     );
     this.inputWinNumber();
   }
+
   pickRandomNumber(lottoCnt) {
+    // 로또 번호 출력
     let pickNumberArray = [];
     for (let i = 0; i < lottoCnt; i++) {
       pickNumberArray.push(
@@ -53,11 +58,7 @@ class App {
 
   winNumberArr(winNumber) {
     const WIN_NUMBER_ARRAY = winNumber.split(",").map((x) => parseInt(x));
-    changeLottoClass(WIN_NUMBER_ARRAY);
-  }
-
-  play() {
-    this.inputPurchaseAmount();
+    let lotto = new Lotto(WIN_NUMBER_ARRAY);
   }
 }
 
