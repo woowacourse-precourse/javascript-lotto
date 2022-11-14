@@ -1,4 +1,5 @@
-const { ERROR, LOTTO_PRICE } = require('./utils/constants.js');
+const { LOTTO_PRICE } = require('./utils/constants.js');
+const Validation = require('./utils/Validation');
 
 class LottoCounter {
   constructor(cash) {
@@ -7,15 +8,9 @@ class LottoCounter {
   }
 
   isValidCash(cash) {
-    if (Number.isNaN(cash)) {
-      throw ERROR.MUST_INPUT_ONLY_NUMBER;
-    }
-    if (cash < LOTTO_PRICE) {
-      throw ERROR.MUST_INPUT_MORE_THAN_LOTTO_PRICE;
-    }
-    if (cash % LOTTO_PRICE !== 0) {
-      throw ERROR.MUST_BE_1000_UNIT;
-    }
+    Validation.isNumber(cash);
+    Validation.isMoreThanLottoPrice(cash);
+    Validation.has1000Unit(cash);
 
     return true;
   }
