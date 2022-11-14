@@ -13,4 +13,3 @@ class Coin{
       } // user 구매 금액 입력
 }
 module.exports = Coin;
-

@@ -5,7 +5,7 @@ class WinningNumber{
         this.setWinningNumber();
     }
     setWinningNumber(){
-        MissionUtils.Console.readLine((answer)=>{
+        MissionUtils.Console.readLine("당첨번호를 입력하세요",(answer)=>{
             this.winningList = answer.split(",");
         })
     }
