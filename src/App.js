@@ -32,7 +32,19 @@ const {
 } = require('./Constants.js');
 
 class App {
-  inputWinningNumbersCallback(lottos, winningNumbers, bonus) {}
+  printLottoResult(rankCount, amount) {}
+
+  drawLotto(lottos, winningNumbers, bonus) {}
+
+  validateBonusNumber(winningNumbers, bonus) {}
+
+  inputWinningNumbersCallback(lottos, winningNumbers, bonus) {
+    this.validateBonusNumber(winningNumbers, bonus);
+
+    const rankCount = this.drawLotto(lottos, winningNumbers, bonus);
+
+    this.printLottoResult(rankCount, lottos.length);
+  }
 
   inputBonusNumber(winningNumbers, lottos) {
     Console.readLine(INPUT_BONUS_MSG, (input) => {
