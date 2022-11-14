@@ -64,8 +64,10 @@ class App {
     const sortedNumbers = generatedNumbers.sort((front,back)=>(front-back));
     return sortedNumbers;
   }
-  printGenerateUserLottoNumber(userLottoList){
-    MissionUtils.Console.print(userLottoList);
+  printGenerateUserLottoNumber(userLottoLists){
+    userLottoLists.forEach((userLottoList)=>{
+      MissionUtils.Console.print(userLottoList);
+    });
   }
   enterPrizeNumber(){
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (inputPrizeNumberWithComma) => {
