@@ -3,6 +3,7 @@ const COMMAND = require('../util/Message');
 
 class CreateLotto {
   constructor(money) {
+    this.result = [];
     this.money = parseInt(money);
     this.lottoNum = this.money / 1000;
   }
@@ -10,6 +11,7 @@ class CreateLotto {
   make() {
     this.start();
     this.create();
+    return this.result;
   }
 
   start() {
@@ -22,8 +24,14 @@ class CreateLotto {
       lotto.sort((a, b) => {
         return a - b;
       });
+      this.save(lotto);
       this.lottoNum -= 1;
     }
+  }
+
+  save(lotto) {
+    this.result.push(lotto);
+    Console.print(lotto);
   }
 }
 

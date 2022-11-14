@@ -3,6 +3,10 @@ const { Console } = require('@woowacourse/mission-utils');
 const CreateLotto = require('./CreateLotto');
 
 class App {
+  constructor() {
+    this.lottos = [];
+  }
+
   play() {
     this.getUserInput(COMMAND.MONEY);
   }
@@ -10,7 +14,7 @@ class App {
   getUserInput(message) {
     Console.readLine(message, (money) => {
       const createLotto = new CreateLotto(money);
-      createLotto.make();
+      this.lottos = createLotto.make();
     });
   }
 }
