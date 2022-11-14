@@ -2,8 +2,7 @@ const Utils = require("./Utils");
 const Lotto = require("./Lotto");
 const Validation = require('./Validation');
 
-
-const prizeObject = [
+const prizeMoneyObject = [
     [0, 0],
     [2000000000, 0],
     [30000000, 0],
@@ -154,8 +153,8 @@ class LottoGame {
 
         for(let lotto of this.issuedLottos) {
             prize = this.lottoContainer.getResult(lotto, this.bonusNumber)
-            prizeObject[prize][1]++;
-            earnMoney += prizeObject[prize][0];
+            prizeMoneyObject[prize][1]++;
+            earnMoney += prizeMoneyObject[prize][0];
         } 
 
         return ((earnMoney / this.cost)* 100).toFixed(1);
@@ -167,11 +166,11 @@ class LottoGame {
         const msg = `
 당첨 통계
 ---
-3개 일치 (${this.commaDelimeter(prizeObject[5][0])}원) - ${prizeObject[5][1]}개
-4개 일치 (${this.commaDelimeter(prizeObject[4][0])}원) - ${prizeObject[4][1]}개
-5개 일치 (${this.commaDelimeter(prizeObject[3][0])}원) - ${prizeObject[3][1]}개
-5개 일치, 보너스 볼 일치 (${this.commaDelimeter(prizeObject[2][0])}원) - ${prizeObject[2][1]}개
-6개 일치 (${this.commaDelimeter(prizeObject[1][0])}원) - ${prizeObject[1][1]}개
+3개 일치 (${this.commaDelimeter(prizeMoneyObject[5][0])}원) - ${prizeMoneyObject[5][1]}개
+4개 일치 (${this.commaDelimeter(prizeMoneyObject[4][0])}원) - ${prizeMoneyObject[4][1]}개
+5개 일치 (${this.commaDelimeter(prizeMoneyObject[3][0])}원) - ${prizeMoneyObject[3][1]}개
+5개 일치, 보너스 볼 일치 (${this.commaDelimeter(prizeMoneyObject[2][0])}원) - ${prizeMoneyObject[2][1]}개
+6개 일치 (${this.commaDelimeter(prizeMoneyObject[1][0])}원) - ${prizeMoneyObject[1][1]}개
 총 수익률은 ${benefitRate}%입니다.
     `
 
@@ -182,7 +181,6 @@ class LottoGame {
         return num.toLocaleString('ko-KR');
     }
 }
-
 
 exports.gameSetting = gameSetting;
 exports.GameBuilder = GameBuilder;
