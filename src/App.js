@@ -10,7 +10,7 @@ const WINNER_RULE = {
     5: 1500000,
     6: 2000000000,
   },
-  bonus: { count: 5, prizeMoney: 3000000, message: '보너스 볼 일치' },
+  bonus: { count: 5, prizeMoney: 30000000, message: '보너스 볼 일치' },
 };
 class App {
   lottos;
