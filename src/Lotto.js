@@ -20,7 +20,7 @@ class Lotto {
     }
   }
 
-  getLottoResult(lottos, bonus) {
+  getLottoResult(lottos) {
     const lottoTotalResult = new Array(5).fill(0);
     const lottoNumbers = lottos.length;
 
