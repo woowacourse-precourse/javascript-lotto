@@ -1,3 +1,5 @@
+const { Console } = require("@woowacourse/mission-utils");
+
 class Lotto {
   #numbers;
 
@@ -13,6 +15,9 @@ class Lotto {
   }
 
   // TODO: 추가 기능 구현
+  getLottoNumbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
