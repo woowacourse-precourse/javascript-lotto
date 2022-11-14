@@ -1,4 +1,4 @@
-const { ERROR_MESSAGE } = require("../constants");
+const { ERROR_MESSAGE } = require('../constants');
 
 class BonusNumber {
   constructor(number) {
@@ -8,11 +8,11 @@ class BonusNumber {
   }
 
   getBonusNumberWithoutSpace() {
-    return this.number.replace(/\s/g, "").split(",");
+    return this.number.replace(/\s/g, '').split(',');
   }
 
   validateInputBonusNumber(number) {
-    if (number < 1 || number > 45 || !new RegExp("^[0-9]+$").test(number)) {
+    if (number < 1 || number > 45 || !new RegExp('^[0-9]+$').test(number)) {
       throw new Error(ERROR_MESSAGE.lottoRange);
     }
   }

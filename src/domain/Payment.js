@@ -1,6 +1,6 @@
-const { Random } = require("@woowacourse/mission-utils");
-const { ERROR_MESSAGE, LOTTO_RANGE } = require("../constants");
-const Lotto = require("./Lotto");
+const { Random } = require('@woowacourse/mission-utils');
+const { ERROR_MESSAGE, LOTTO_RANGE } = require('../constants');
+const Lotto = require('./Lotto');
 
 class Payment {
   constructor(payMoney) {
@@ -16,7 +16,7 @@ class Payment {
   }
 
   validateNaturalNumber() {
-    if (!new RegExp("^[1-9][0-9]+$").test(this.payMoney)) {
+    if (!new RegExp('^[1-9][0-9]+$').test(this.payMoney)) {
       throw new Error(ERROR_MESSAGE.naturalNumber);
     }
   }

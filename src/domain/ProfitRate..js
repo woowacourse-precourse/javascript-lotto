@@ -1,4 +1,4 @@
-const { PRIZE_MONEY_CURRENCY } = require("../constants");
+const { PRIZE_MONEY_CURRENCY } = require('../constants');
 
 class ProfitRate {
   constructor(lottoResult, payMoney) {
@@ -8,7 +8,7 @@ class ProfitRate {
 
   getProfitRate() {
     const totalPrizeMoney = this.sumTotalPrizeMoney(this.lottoResult);
-    return this.calculateProfitRate(totalPrizeMoney, this.payMoney).toLocaleString("ko-KR");
+    return this.calculateProfitRate(totalPrizeMoney, this.payMoney).toLocaleString('ko-KR');
   }
 
   calculateProfitRate(totalPrizeMoney, payMoney) {

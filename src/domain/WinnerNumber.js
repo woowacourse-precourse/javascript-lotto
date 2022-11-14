@@ -1,4 +1,4 @@
-const { ERROR_MESSAGE } = require("../constants");
+const { ERROR_MESSAGE } = require('../constants');
 
 class WinnerNumber {
   constructor(number) {
@@ -8,7 +8,7 @@ class WinnerNumber {
   }
 
   getNumberWithoutSpace() {
-    return this.number.replace(/\s/g, "").split(",");
+    return this.number.replace(/\s/g, '').split(',');
   }
 
   validateRange() {
@@ -19,14 +19,14 @@ class WinnerNumber {
 
   validateFromOneToFourtyFiveNumber() {
     this.numberWithoutSpace.map((number) => {
-      if (number < 1 || number > 45 || !new RegExp("^[0-9]+$").test(number)) {
+      if (number < 1 || number > 45 || !new RegExp('^[0-9]+$').test(number)) {
         throw new Error(ERROR_MESSAGE.winnerNumberRange);
       }
     });
   }
 
   validateSixNumberByComma() {
-    if (this.number.split(",").length !== 6) {
+    if (this.number.split(',').length !== 6) {
       throw new Error(ERROR_MESSAGE.winnerNumberCountOnlySix);
     }
   }

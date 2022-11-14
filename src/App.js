@@ -1,10 +1,10 @@
-const { Console } = require("@woowacourse/mission-utils");
-const { LOTTO_RANGE, INPUT_MESSAGE, OUTPUT_MESSAGE } = require("./constants");
-const BonusNumber = require("./domain/BonusNumber");
-const ProfitRate = require("./domain/ProfitRate.");
-const Payment = require("./domain/Payment");
-const WinnerNumber = require("./domain/WinnerNumber");
-const Statistics = require("./domain/Statistics");
+const { Console } = require('@woowacourse/mission-utils');
+const { LOTTO_RANGE, INPUT_MESSAGE, OUTPUT_MESSAGE } = require('./constants');
+const BonusNumber = require('./domain/BonusNumber');
+const ProfitRate = require('./domain/ProfitRate.');
+const Payment = require('./domain/Payment');
+const WinnerNumber = require('./domain/WinnerNumber');
+const Statistics = require('./domain/Statistics');
 
 class App {
   constructor() {
@@ -33,7 +33,7 @@ class App {
 
   printLotto(totalLottoNumber) {
     totalLottoNumber.forEach((number) => {
-      return Console.print(`[${number.toString().replace(/\,/g, ", ")}]`);
+      return Console.print(`[${number.toString().replace(/\,/g, ', ')}]`);
     });
   }
 
