@@ -6,10 +6,11 @@ class App {
   randomSixNumberArr = [];
   winningNumberArr = [];
   matchNumberArr = [];
+  countMatchNumberArr = [];
+  prizeMoneyArr = [5000, 50000, 1500000, 30000000, 2000000000];
 
   play() {
     this.inputOfLottoPurchaseAmount();
-    this.conditionOfWinning();
     this.printResult();
   }
 
@@ -21,6 +22,7 @@ class App {
       countLotto = amountInput % 1000;
       this.printPurchaseCountMessage(countLotto);
       this.createRandomSixNumber(countLotto);
+      this.findingTheReturn(amountInput);
     });
   }
 
@@ -96,6 +98,7 @@ class App {
         countThreeMatch++;
       }
     }
+    this.countMatchNumberArr.push(countThreeMatch);
   }
 
   countOfFourMatch() {
@@ -106,6 +109,7 @@ class App {
         countFourMatch++;
       }
     }
+    this.countMatchNumberArr.push(countFourMatch);
   }
 
   countOfFiveMatch() {
@@ -116,6 +120,7 @@ class App {
         countFiveMatch++;
       }
     }
+    this.countMatchNumberArr.push(countFiveMatch);
   }
 
   countOfFiveAndBounsMatch() {
@@ -126,6 +131,7 @@ class App {
         countFiveAndBounsMatch++;
       }
     }
+    this.countMatchNumberArr.push(countFiveAndBounsMatch);
   }
 
   countOfSixMatch() {
@@ -136,6 +142,7 @@ class App {
         countSixMatch++;
       }
     }
+    this.countMatchNumberArr.push(countSixMatch);
   }
 
   printCountAll() {
@@ -166,10 +173,20 @@ class App {
     Console.print(`6개 일치 (2,000,000,000원) - ${this.countSixMatch}개`);
   }
 
+  findingTheReturn(amountInput) {
+    let winningAmount = 0;
+    for(let i=0; i<this.prizeMoneyArr.length; i++) {
+      winnigAmount += this.prizeMoneyArr[i] * this.countMatchNumberArr[i]; 
+    }
+    const grossRateOfReturn = winningAmount / amountInput * 100;
+    Console.print(`총 수익율은 ${grossRateOfReturn}%입니다.`);
+  }
+
   printResult() {
     Console.print("당첨 통계");
     Console.print("---");
     this.printCountAll();
+    this.findingTheReturn();
   }
 }
 
