@@ -1,10 +1,6 @@
 const LottoStore = require('../src/LottoStore');
 const Lotto = require('../src/Lotto');
-const {
-  MIN_LOTTO_NUMBER,
-  MAX_LOTTO_NUMBER,
-  VALID_LOTTO_NUMBER_LENGTH
-} = require('../src/constants/numbers');
+const { VALUE } = require('../src/constants/numbers');
 
 describe('로또스토어 클래스 테스트', () => {
   const lottoStore = new LottoStore();
@@ -43,10 +39,10 @@ describe('로또스토어 클래스 테스트', () => {
     const randomLottoNumbers = lottoStore.getRandomLottoNumbers();
     for (const element of randomLottoNumbers) {
       expect(
-        element >= MIN_LOTTO_NUMBER && MAX_LOTTO_NUMBER >= element
+        element >= VALUE.MIN_LOTTO_NUMBER && VALUE.MAX_LOTTO_NUMBER >= element
       ).toBeTruthy();
       expect(
-        randomLottoNumbers.length === VALID_LOTTO_NUMBER_LENGTH
+        randomLottoNumbers.length === VALUE.VALID_LOTTO_NUMBER_LENGTH
       ).toBeTruthy();
     }
     for (i = 0; i < randomLottoNumbers.length - 1; i++) {
