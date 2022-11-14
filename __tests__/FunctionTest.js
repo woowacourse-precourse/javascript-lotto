@@ -85,4 +85,30 @@ describe('로또 당첨 테스트', () => {
       );
     });
   });
+
+  test('당첨 기준에 따른 개수 저장 테스트', () => {
+    const { totalWinningCounter } = App;
+    const winningNumber = '1,2,3,4,5,6';
+    const bonusNumber = 7;
+    const purchaseLottoList = [
+      [1, 2, 3, 4, 5, 6],
+      [1, 2, 3, 4, 5, 7],
+      [1, 8, 3, 4, 5, 7],
+      [1, 9, 24, 4, 5, 7],
+      [1, 45, 34, 3, 5, 7],
+      [21, 22, 23, 24, 25, 27],
+      [1, 23, 43, 24, 25, 27],
+    ];
+    const winningList = {
+      threeMatches: 2,
+      fourMatches: 1,
+      fiveMatches: 0,
+      fiveAndBonusMatches: 1,
+      sixMatches: 1,
+    };
+
+    expect(
+      totalWinningCounter(purchaseLottoList, winningNumber, bonusNumber),
+    ).toEqual(winningList);
+  });
 });
