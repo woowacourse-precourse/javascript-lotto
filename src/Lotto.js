@@ -7,28 +7,32 @@ class Lotto {
   }
 
   validate(numbers) {
-    const [IS_NUM, SIX_LENGTH, IS_OVERLAP, HAS_SPACE] = [
-      this.checkIsNum(numbers),
-      this.checkLength(numbers),
-      this.checkNumOverlap(numbers),
-      this.checkHasSpace(numbers),
-    ];
-
-    if ((IS_NUM && SIX_LENGTH && IS_OVERLAP && HAS_SPACE) === false) {
+    if (
+      !(
+        this.checkIsNum(numbers) &&
+        this.checkLength(numbers) &&
+        this.checkNumOverlap(numbers) &&
+        this.checkHasSpace(numbers) &&
+        this.checkNumRange(numbers)
+      )
+    ) {
       throw new Error('[ERROR] 입력한 당첨 번호가 올바르지 않습니다.');
     }
   }
 
   checkIsNum(numbers) {
-    let numRange;
-    numbers.forEach((nums) => {
-      numRange = nums <= 45;
-    });
-
-    if (/[1-9]$/.test(numbers) && numRange) {
+    if (/[1-9]$/.test(numbers)) {
       return true;
     }
     return false;
+  }
+
+  checkNumRange(numbers) {
+    function checkRange(number) {
+      return 0 < number && number <= 45;
+    }
+
+    return numbers.every(checkRange);
   }
 
   checkLength(numbers) {
