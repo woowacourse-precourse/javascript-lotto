@@ -1,5 +1,6 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
 const LOTTOPRICE = 1000;
+const LOTTONUMCOUNT = 6;
 
 class App {
   play() {}
@@ -10,6 +11,7 @@ class App {
 
   constructor() {
     this.issuedLottoNum = [];
+    this.winningResult = [];
   }
 
   play() {
@@ -76,6 +78,7 @@ class App {
     Console.readLine("\n보너스 번호를 입력해 주세요. \n", (bonusNum) => {
       this.isValidBonusNum(bonusNum);
       this.#bonusNum = bonusNum;
+      this.compareLottoNum();
     });
   }
 
@@ -84,6 +87,20 @@ class App {
       throw "[EROR] 로또 구입금액은 숫자여야 합니다.";
     } else if (bonusNum < 1 || bonusNum > 45) {
       throw "[EROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
+    }
+  }
+
+  compareLottoNum() {
+    for (var index = 0; index < this.#lottoNum; index++) {
+      let count = 0;
+      for (var winningIndex = 0; winningIndex < LOTTONUMCOUNT; winningIndex++) {
+        this.issuedLottoNum[index].includes(
+          parseInt(this.#winningNum[winningIndex])
+        )
+          ? count++
+          : "";
+      }
+      this.winningResult.push(count);
     }
   }
 }
