@@ -13,6 +13,7 @@ class App {
   start() {
     let buyCount = PurchasePrice.getPurchasePrice()
     this.getLottoNum(buyCount)
+    //let winningNumber=
   }
 
   getLottoNum(buyCount) {
@@ -22,10 +23,16 @@ class App {
       //즉, 한번에 6자리 로또번호가 들어옴
 
       //하나씩 넣는걸 의도한 것 같다
-      new Lotto(Random.pickUniqueNumbersInRange(1, 45))
+      const userLottoPick=Random.pickUniqueNumbersInRange(1, 45)
+      let lotto=new Lotto(userLottoPick)
+      lotto.resultPrint()
+      
+
       count++
     }
   }
+
+  
 }
 
 module.exports = App

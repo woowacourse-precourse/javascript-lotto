@@ -1,3 +1,5 @@
+const { Console } = require('@woowacourse/mission-utils')
+
 class Lotto {
   #numbers
 
@@ -23,7 +25,7 @@ class Lotto {
   }
 
   validateForDuplication(numbers) {
-    this.validateForNotNumber(numbers) 
+    this.validateForNotNumber(numbers)
     //숫자가 아닌 값이 들어오면 set로직이 이상해지므로 여기서 미리 체크
 
     const set = new Set(numbers)
@@ -49,7 +51,10 @@ class Lotto {
     })
   }
 
-  // TODO: 추가 기능 구현
+  resultPrint(){
+    Console.print(`[${this.#numbers}]`)
+  }
+
 }
 
 module.exports = Lotto
