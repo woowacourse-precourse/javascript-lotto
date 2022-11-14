@@ -21,6 +21,14 @@ const LOTTO = Object.freeze({
   NUMBER_OF_NUMBERS: 6,
 });
 
+const PRIZE = Object.freeze({
+  FIFTH_PLACE: 5000,
+  FOURTH_PLACE: 50000,
+  THIRD_PLACE: 1500000,
+  SECOND_PLACE: 30000000,
+  FIRST_PLACE: 2000000000,
+});
+
 const REGEX = Object.freeze({
   PURCHASE_AMOUNT: /^[1-9]{1}[0-9]*0{3}$/,
   WINNING_NUMBER:
