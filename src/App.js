@@ -33,7 +33,14 @@ class App {
   inputLottoWinningNumber(){
     MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (inputNumbers)=>{
       const winningNumbers = inputNumbers.split(",");
+      if(winningNumbers.length !== 6)
+        throw new Error("[ERROR] 로또 번호는 6개입니다");
+      
       this.#lottoWinningNumbers = winningNumbers.map(v => Number(v));
+      if(!this.#lottoWinningNumbers.every(v => v >= 1 && v <= 45))
+        throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+      if(new Set(this.#lottoWinningNumbers).size != 6)
+        throw new Error("[ERROR] 로또 번호는 서로 다른 6개의 숫자여야 합니다.");
     });
   }
 }
