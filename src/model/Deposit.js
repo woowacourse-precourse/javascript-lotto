@@ -1,10 +1,12 @@
 const { PRICE_OF_LOTTO } = require('../utils/constants');
+const Validator = require('./Validator');
 
 class Deposit {
   #amount;
 
   constructor(amount) {
-    this.validate(amount);
+    Validator.validateNaN(amount);
+    Validator.validateAmount(amount);
     this.#amount = amount;
   }
 
@@ -14,16 +16,6 @@ class Deposit {
 
   get quantity() {
     return this.#amount / PRICE_OF_LOTTO;
-  }
-
-  validate(amount) {
-    if (Number.isNaN(amount)) {
-      throw new Error('[ERROR] 로또 구입 금액은 숫자만 입력 가능합니다.');
-    }
-
-    if (amount % PRICE_OF_LOTTO) {
-      throw new Error(`[ERROR] 로또 구입 금액은 ${PRICE_OF_LOTTO}원 단위만 가능합니다.`);
-    }
   }
 }
 

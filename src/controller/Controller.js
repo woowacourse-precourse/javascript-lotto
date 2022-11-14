@@ -5,6 +5,7 @@ const Lotto = require('../Lotto');
 const Deposit = require('../model/Deposit');
 const Statistic = require('../model/Statistic');
 const BonusNumber = require('../model/BonusNumber');
+const Validator = require('../model/Validator');
 
 class Controller {
   start() {
@@ -49,7 +50,7 @@ class Controller {
   generateBonusNumber() {
     View.printBonusNumber();
     View.readLine((input) => {
-      this.#validateBonusNumber(input);
+      Validator.validateBonusNumber(this.winningLotto.numbers, input);
       this.bonusNumber = new BonusNumber(Number(input));
       this.generateStatistic();
     });
@@ -80,12 +81,6 @@ class Controller {
 
     View.printPercentageRevenue(percentageRevenue);
     View.close();
-  }
-
-  #validateBonusNumber(number) {
-    if (this.winningLotto.numbers.includes(Number(number))) {
-      throw new Error('[ERROR] 보너스 번호는 당첨 번호와 겹칠 수 없습니다.');
-    }
   }
 }
 
