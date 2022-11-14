@@ -55,4 +55,12 @@ describe('당첨 내역 클래스 테스트', () => {
 
     expect(result).toEqual([5, 4, 3, 2, 1]);
   });
+
+  test('구입 금액과 총 수익을 기반으로 수익률을 계산한다.', () => {
+    const winningHistory = new WinningHistory();
+    winningHistory.calcProfitRate(8000, 5000);
+    const result = winningHistory.profitRate;
+
+    expect(result).toEqual(62.5);
+  });
 });
