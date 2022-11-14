@@ -28,9 +28,10 @@ describe('로또 클래스 테스트', () => {
     }).toThrow(ERROR.LOTTO.OUT_OF_BOUND);
   });
 
-  test('올바른 로또 번호가 입력되면 해당 번호를 갖는 로또를 생성한다.', () => {
+  test('올바른 로또 번호가 인자로 들어오면 해당 번호를 갖는 로또를 생성한다.', () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    const result = lotto.numbers;
 
-    expect(lotto.numbers).toHaveLength(6);
+    expect(result).toEqual([1, 2, 3, 4, 5, 6]);
   });
 });
