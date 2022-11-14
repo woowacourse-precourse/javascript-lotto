@@ -6,6 +6,7 @@ const {
   RANDOM_UTIL,
   PRIZE_MESSAGES,
   RESULT_MESSAGE,
+  PRIZE_MONEY,
 } = require("./Constants");
 
 const { NOT_BETWEEN_ONE_AND_FORTYFIVE } = ERROR_MESSAGES;
@@ -87,6 +88,16 @@ class CompareWithLotto {
       CONSOLE_UTIL.print(
         `${PRIZE_MESSAGES[index]} - ${matchingTicket[index]}개`
       );
+    }
+
+    this.calculateRateOfReturn(matchingTicket);
+  }
+
+  calculateRateOfReturn(matchingTicket) {
+    let index = this.index;
+    let totalPrize = 0;
+    for (index; index > 0; index--) {
+      totalPrize += matchingTicket[index] * PRIZE_MONEY[index];
     }
   }
 }
