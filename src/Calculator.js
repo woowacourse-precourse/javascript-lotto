@@ -32,7 +32,7 @@ class Calculator {
   }
 
   static getstatistics(totalWinning, purchaseAmount) {
-    return Calculator.toFixedNumber((totalWinning / purchaseAmount) * 100);
+    return Calculator.toFixedNumber((totalWinning / purchaseAmount) * 0.1);
   }
 
   static toFixedNumber(number) {
