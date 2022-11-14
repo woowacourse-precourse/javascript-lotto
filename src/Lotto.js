@@ -31,6 +31,16 @@ class Lotto {
         this.winningCounterArr[4] += 1;
       }
     });
+    this.yieldCalculation();
+  }
+
+  yieldCalculation() {
+    let profit = 0;
+    this.winningAmountArr.forEach((amount, index) => {
+      profit += Number(amount.replace(/\,/g, '')) * this.winningCounterArr[index];
+    });
+    const calculation = profit / this.purchaseAmount * 100;
+    this.yield = calculation.toFixed(1);
   }
 }
 
