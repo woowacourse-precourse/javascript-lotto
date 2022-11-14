@@ -19,18 +19,21 @@ class App {
   }
 
   play() {
-    this.getPurchaseAmount();
+    this.getPurchaseAmount(this.setLottoBuyer.bind(this));
   }
 
-  getPurchaseAmount() {
-    Console.readLine(MESSAGE.ENTER_PURCHASE_AMOUNT, amount => {
-      const trimmedAmount = amount.trim();
-      this.validateAmount(trimmedAmount);
-      this.drawing.user = new User(trimmedAmount);
+  getPurchaseAmount(callback) {
+    Console.readLine(MESSAGE.ENTER_PURCHASE_AMOUNT, callback);
+  }
 
-      this.printBoughtLottos(this.drawing.user.buyLotto());
-      this.getWinningNumbers();
-    });
+  setLottoBuyer(amount) {
+    const trimmedAmount = amount.trim();
+    this.validateAmount(amount);
+
+    this.drawing.user = new User(trimmedAmount);
+    this.printBoughtLottos(this.drawing.user.buyLotto());
+
+    this.getWinningNumbers(this.setLottoWinningNumbers.bind(this));
   }
 
   validateAmount(amount) {
@@ -49,14 +52,18 @@ class App {
     lottos.forEach(lotto => Console.print(lotto.toString()));
   }
 
-  getWinningNumbers() {
+  getWinningNumbers(callback) {
     Console.print('');
-    Console.readLine(MESSAGE.ENTER_WINNING_NUMBERS, numbers => {
-      const trimmedNumbers = numbers.trim();
-      this.validateWinningNumbers(trimmedNumbers);
-      this.drawing.winningNumbers = new Lotto(parseNumbers(trimmedNumbers)).numbers;
-      this.getBonusNumber();
-    });
+    Console.readLine(MESSAGE.ENTER_WINNING_NUMBERS, callback);
+  }
+
+  setLottoWinningNumbers(numbers) {
+    const trimmedNumbers = numbers.trim();
+    this.validateWinningNumbers(trimmedNumbers);
+
+    this.drawing.winningNumbers = new Lotto(parseNumbers(trimmedNumbers)).numbers;
+
+    this.getBonusNumber(this.setLottoBonusNumber.bind(this));
   }
 
   validateWinningNumbers(numbers) {
@@ -65,14 +72,17 @@ class App {
     }
   }
 
-  getBonusNumber() {
+  getBonusNumber(callback) {
     Console.print('');
-    Console.readLine(MESSAGE.ENTER_BONUS_NUMBER, number => {
-      const trimmedNumber = number.trim();
-      this.validateBonusNumber(trimmedNumber);
-      this.drawing.bonusNumber = Number(trimmedNumber);
-      this.printStatistics();
-    });
+    Console.readLine(MESSAGE.ENTER_BONUS_NUMBER, callback);
+  }
+
+  setLottoBonusNumber(number) {
+    const trimmedNumber = number.trim();
+    this.validateBonusNumber(trimmedNumber);
+
+    this.drawing.bonusNumber = Number(trimmedNumber);
+    this.printStatistics();
   }
 
   validateBonusNumber(number) {
@@ -97,4 +107,5 @@ class App {
   }
 }
 
+new App().play();
 module.exports = App;
