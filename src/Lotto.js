@@ -26,7 +26,7 @@ class Lotto {
   }
 
   validate(numbers) {
-    this.verifyLength(numbers);
+    this.verifyVaildLength(numbers);
     this.verifyDiffNumbers(numbers);
 
     const orderedNumbers = numbers.sort((a, b) => a - b);
@@ -34,7 +34,7 @@ class Lotto {
     this.verifyInVaildRange(orderedNumbers[5]);
   }
 
-  verifyLength(numbers) {
+  verifyVaildLength(numbers) {
     if (numbers.length !== LOTTO_LENGTH)
       this.utils.throwError(ERROR.NOT_SIX_NUMBERS);
   }
