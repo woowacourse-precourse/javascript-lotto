@@ -83,10 +83,11 @@ class App {
 
   sortRandomNumber(){ //로또 랜덤번호 오름차순 정렬하기
     for(let i = 0; i < this.lottoRandomNum.length; i++){
+      let RandomStr = this.lottoRandomNum[i].join(', ');  
       this.lottoRandomNum[i].sort(function(a, b){
         return a-b;
       });
-      MissionUtils.Console.print(this.lottoRandomNum[i]);
+      MissionUtils.Console.print('[' + RandomStr + ']');
     }
   }
 
