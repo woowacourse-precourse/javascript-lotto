@@ -60,4 +60,19 @@ describe('LottoDrawFactory 클래스 테스트', () => {
     expect(lottoAdjustment.getLottoCountScore()).toEqual([0, 0, 0, 0, 1]);
     expect(lottoAdjustment.getIncome()).toEqual('200000000.0');
   });
+
+  test('(당첨x) 내가 산 로또들과 추첨한 로또 비교한 결과값 테스트', () => {
+    mockRandoms([[1, 2, 3, 4, 5, 6]]);
+
+    const lotto = new Lotto([7, 8, 9, 10, 11, 12]);
+    const bonus = new Bonus('13');
+    const lottoStore = new LottoStore('1000')
+
+    const lottoAdjustment = new LottoAdjustment(
+      new LottoDrawFactory({ lotto, bonus, lottoStore })
+    );
+
+    expect(lottoAdjustment.getLottoCountScore()).toEqual([0, 0, 0, 0, 0]);
+    expect(lottoAdjustment.getIncome()).toEqual('0.0');
+  });
 });
