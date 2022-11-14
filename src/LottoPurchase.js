@@ -17,6 +17,16 @@ class LottoPurchase {
     const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
     return numbers;
   }
+
+  lottoPublish() {
+    const count = this.amount / 1000;
+    const lottoNumbers = [];
+
+    for (let i = 0; i < count; i++) {
+      lottoNumbers.push(randomNumbers());
+    }
+    return lottoNumbers;
+  }
 }
 
 module.exports = LottoPurchase;
