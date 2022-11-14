@@ -9,42 +9,15 @@ class Lotto {
     this.#numbers = numbers;
   }
 
-  getMatchCount(userNums) {
-    let matchCounts = [];
-    userNums.forEach((userNum) => {
-      matchCounts.push(this.matchLotto(userNum));
-    });
-    return matchCounts;
-  }
-
-  matchLotto(userNum) {
-    let matchNum = 0;
-    this.#numbers.forEach((lottoNumber) => {
-      if (userNum.includes(lottoNumber)) {
-        matchNum += 1;
-      }
-    });
-    return matchNum;
-  }
-
-  getMatchBonus(bonus, userNums) {
-    const bonusArray = new Array(userNums.length).fill(false);
-    userNums.forEach((userNum, index) => {
-      if (userNum.includes(bonus)) {
-        bonusArray[index] = true;
-      }
-    });
-    return bonusArray;
-  }
-
-  getWinningResult(lottoResults, bonusResultArray) {
+  getWinningResult(bonus, userNumArrays) {
     const winningHistoryArray = new Array(5).fill(0);
-    lottoResults.forEach((lottoResult, index) => {
-      if (lottoResult >= 3) {
+    userNumArrays.forEach((userNumArray) => {
+      const matchCount = userNumArray.filter((userNum) => this.#numbers.includes(userNum)).length;
+      if (matchCount >= 3) {
         const plusIndex = this.searchPlusIndex({
-          lottoResult,
-          bonusResultArray,
-          index,
+          userNumArray,
+          matchCount,
+          bonus,
         });
         winningHistoryArray[plusIndex] += 1;
       }
@@ -52,15 +25,14 @@ class Lotto {
     return winningHistoryArray;
   }
 
-  searchPlusIndex({ lottoResult, bonusResultArray, index }) {
-    const FIVE_MATCH_INDEX = 3;
+  searchPlusIndex({ userNumArray, matchCount, bonus }) {
     const MIN_MATCH_COUNT = 3;
-    if (lottoResult === 5) {
-      if (bonusResultArray[index]) {
-        return FIVE_MATCH_INDEX;
+    if (matchCount === 5) {
+      if (userNumArray.includes(bonus)) {
+        return 3;
       }
     }
-    return lottoResult - MIN_MATCH_COUNT;
+    return matchCount - MIN_MATCH_COUNT;
   }
 
   calculateProfit(lottoCounts) {
@@ -85,7 +57,7 @@ class Lotto {
       Message.INFORMATION.sixMatches,
     ];
 
-    let detail = [];
+    const detail = [];
     for (let i = 0; i < resultArray.length; i++) {
       detail.push(`${RESULT_MESSAGE[i]} ${resultArray[i]}개`);
     }
@@ -94,17 +66,18 @@ class Lotto {
   }
 
   printResult(winningDetails, profitRate) {
-    const resultPrint = winningDetails.join('\n') + '\n' + `총 수익률은 ${profitRate.toFixed(1)}%입니다.`;
+    const resultPrint =
+      winningDetails.join("\n") +
+      "\n" +
+      `총 수익률은 ${profitRate.toFixed(1)}%입니다.`;
     MissionUtils.Console.print(Message.INFORMATION.winningStatistics);
     MissionUtils.Console.print(resultPrint);
   }
 
   result({ money, userNumber, bonusNumber }) {
-    const lottoMatch = this.getMatchCount(userNumber);
-    const bonusMatch = this.getMatchBonus(bonusNumber, userNumber);
-    const result = this.getWinningResult(lottoMatch, bonusMatch);
+    const result = this.getWinningResult(bonusNumber, userNumber);
     const profit = this.calculateProfit(result);
-    const winningDetails = this.makeWinningDetails(result)
+    const winningDetails = this.makeWinningDetails(result);
     const profitRate = this.calculateProfitRate(profit, money);
     this.printResult(winningDetails, profitRate);
   }
