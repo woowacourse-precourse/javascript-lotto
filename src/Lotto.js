@@ -4,6 +4,7 @@ const App = require("./App");
 const START_LOTTO_NUMBER = 1;
 const END_LOTTO_NUMBER = 45;
 const LOTTO_LENGTH = 6;
+const SPACE_ASKII = 32;
 
 class Lotto {
   #numbers;
@@ -21,10 +22,9 @@ class Lotto {
     this.validateInputNumbers(numbers);
   }
 
-  // TODO: 추가 기능 구현
   validateInputNumbers(numbers) {
     for(let index = 0; index < numbers.length; index++){
-      if(isNaN(numbers[index]) || numbers.join("").charCodeAt(numbers[index]) == 32) {
+      if(isNaN(numbers[index]) || numbers.join("").charCodeAt(numbers[index]) == SPACE_ASKII) {
         Console.close();
         throw new Error ("[ERROR] 정확한 번호를 입력해주세요.");
       }

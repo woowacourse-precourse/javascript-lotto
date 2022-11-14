@@ -60,7 +60,7 @@ class App {
     let lottoList = [];
     for(let idex = 0; idex < this.lottoAmount; idex++){
       let makeLotto = Random.pickUniqueNumbersInRange(START_LOTTO_NUMBER, END_LOTTO_NUMBER, LOTTO_LENGTH);
-      lottoList.push(makeLotto.sort((elementOne, elementTwo) => elementOne - elementTwo));
+      lottoList.push(makeLotto.sort((bigElement, littleElement) => bigElement - littleElement));
     }
     return this.lottoList = lottoList;
   }
