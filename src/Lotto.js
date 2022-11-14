@@ -1,4 +1,4 @@
-const { Random, } = require("@woowacourse/mission-utils");
+const { Random, Console } = require("@woowacourse/mission-utils");
 
 class Lotto {
   #numbers;
@@ -20,13 +20,11 @@ class Lotto {
   }
 
   makeSixNumbers() {
-    return Random.pickUniqueNumbersInRange(1, 45, 6);
+    return Random.pickUniqueNumbersInRange(1, 45, 6).sort((num1, num2) => num1 - num2);
   }
 
   bundleCreate(lottoCount) {
-    this.lottoBundle = Array.from({ length: lottoCount }, () => {
-      this.makeSixNumbers();
-    });
+    this.lottoBundle = Array.from({ length: lottoCount }, this.makeSixNumbers);
     return this.lottoBundle;
   }
 
