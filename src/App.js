@@ -8,13 +8,15 @@ class App {
 
   play() {
     let amount;
-    
+    let lotto_list;
+
     this.purchase = this.input('구입금액을 입력해 주세요.\n');
     if (this.purchase === undefined)
       return 0;
     this.input_exception();
 
     amount = this.get_quantity();
+    lotto_list = this.publish_lotto(amount);
   }
 
   input(text) {
@@ -45,6 +47,14 @@ class App {
     }
     let result = amount / 1000;
     return result;
+  }
+
+  publish_lotto(amount) {
+    let lotto_list = [];
+    for (let i=0; i<amount; i++) {
+      lotto_list.push(this.random_lotto_number());
+    }
+    return lotto_list;
   }
 }
 
