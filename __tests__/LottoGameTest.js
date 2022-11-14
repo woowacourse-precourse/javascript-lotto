@@ -24,4 +24,11 @@ describe('LottoGame 클래스 테스트', () => {
     const typeCheck = typeof LottoGame.makeLottos(lottoQuantity);
     expect(typeCheck).toBe('object');
   });
+
+  test('✨ 유저가 뽑은 로또 번호와 당첨 번호가 일치하는지 확인 후 일치하는 번호의 개수를 반환한다. ', () => {
+    const lottoGame = new LottoGame();
+    lottoGame.setupWinLottoNumberInfo('1,2,3,4,5,6');
+    const userLottoNumbers = '1,2,3,4,5,6';
+    expect(lottoGame.countCorrectLottoNumbers(userLottoNumbers)).toBe(6);
+  });
 });
