@@ -26,13 +26,6 @@ const FOURTH = "4등";
 const FIFTH = "5등";
 const FAIL = "낙첨";
 
-const FIRST_MONEY = 2000000000;
-const SECONDE_MONEY = 30000000;
-const THIRD_MONEY = 1500000;
-const FOURTH_MONEY = 50000;
-const FIFTH_MONEY = 5000;
-const FAIL_MONEY = 0;
-
 const GUIDE_MESSAGE = {
   PURCHASEAMOUNT_INPUT,
   WINNERNUMBER_INPUT,
@@ -51,7 +44,6 @@ const LOTTO_RANKING_CONDITION = {
   THIRD_RANK,
   FOURTH_RANK,
   FIFTH_RANK,
-  FAIL_MONEY,
 };
 
 const LOTTO_RANKING = {
@@ -64,11 +56,12 @@ const LOTTO_RANKING = {
 };
 
 const LOTTO_MONEY = {
-  FIRST_MONEY,
-  SECONDE_MONEY,
-  THIRD_MONEY,
-  FOURTH_MONEY,
-  FIFTH_MONEY,
+  "1등": 2000000000,
+  "2등": 30000000,
+  "3등": 1500000,
+  "4등": 50000,
+  "5등": 5000,
+  낙첨: 0,
 };
 
 module.exports = {
