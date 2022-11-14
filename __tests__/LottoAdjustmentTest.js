@@ -4,11 +4,11 @@ const Lotto = require('../src/Lotto');
 
 const Bonus = require('../src/domain/Bonus');
 const LottoStore = require('../src/domain/LottoStore');
-const LottoCalculator = require('../src/domain/LottoCalculator');
+
 const LottoDrawFactory = require('../src/domain/LottoDrawFactory');
 
-const LottoIncomeDomain = require('../src/domain/LottoIncome');
-const LottoWinCountDomain = require('../src/domain/LottoWinCount');
+const LottoIncome = require('../src/domain/LottoIncome');
+const LottoWinCount = require('../src/domain/LottoWinCount');
 
 const mockRandoms = numbers => {
   MissionUtils.Random.pickUniqueNumbersInRange = jest.fn();
@@ -27,8 +27,8 @@ describe('LottoDrawFactory 클래스 테스트', () => {
 
     const inputInstances = new LottoDrawFactory({ lotto, bonus, lottoStore });
 
-    const winCount = new LottoWinCountDomain(inputInstances);
-    const income = new LottoIncomeDomain(inputInstances);
+    const winCount = new LottoWinCount(inputInstances);
+    const income = new LottoIncome(inputInstances);
 
     expect(winCount.getResult()).toEqual({
       fifth: 1,
@@ -51,8 +51,8 @@ describe('LottoDrawFactory 클래스 테스트', () => {
 
     const inputInstances = new LottoDrawFactory({ lotto, bonus, lottoStore });
 
-    const winCount = new LottoWinCountDomain(inputInstances);
-    const income = new LottoIncomeDomain(inputInstances);
+    const winCount = new LottoWinCount(inputInstances);
+    const income = new LottoIncome(inputInstances);
 
     expect(winCount.getResult()).toEqual({
       fifth: 0,
@@ -74,8 +74,8 @@ describe('LottoDrawFactory 클래스 테스트', () => {
 
     const inputInstances = new LottoDrawFactory({ lotto, bonus, lottoStore });
 
-    const winCount = new LottoWinCountDomain(inputInstances);
-    const income = new LottoIncomeDomain(inputInstances);
+    const winCount = new LottoWinCount(inputInstances);
+    const income = new LottoIncome(inputInstances);
 
     expect(winCount.getResult()).toEqual({
       fifth: 0,
@@ -97,8 +97,8 @@ describe('LottoDrawFactory 클래스 테스트', () => {
 
     const inputInstances = new LottoDrawFactory({ lotto, bonus, lottoStore });
 
-    const winCount = new LottoWinCountDomain(inputInstances);
-    const income = new LottoIncomeDomain(inputInstances);
+    const winCount = new LottoWinCount(inputInstances);
+    const income = new LottoIncome(inputInstances);
 
     expect(winCount.getResult()).toEqual({
       fifth: 0,

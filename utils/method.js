@@ -5,8 +5,8 @@ const Component = require('../src/ui/core/Component');
 
 const LottoDrawFactory = require('../src/domain/LottoDrawFactory');
 
-const LottoIncomeDomain = require('../src/domain/LottoIncome');
-const LottoWinCountDomain = require('../src/domain/LottoWinCount');
+const LottoIncome = require('../src/domain/LottoIncome');
+const LottoWinCount = require('../src/domain/LottoWinCount');
 
 const { VARIABLE_LOTTO, LOTTO_ERROR_MESSAGE } = require('./constants');
 
@@ -37,8 +37,8 @@ const print = {
   lottoAdjustmentUI: ({ lotto, bonus, lottoStore }) => {
     const inputInstances = new LottoDrawFactory({ lotto, bonus, lottoStore });
 
-    const lottoWinCount = new LottoWinCountDomain(inputInstances);
-    const lottoIncome = new LottoIncomeDomain(inputInstances);
+    const lottoWinCount = new LottoWinCount(inputInstances);
+    const lottoIncome = new LottoIncome(inputInstances);
 
     print.lottoWinCountUI({ winScore: lottoWinCount.getResult() });
     print.lottoIncomeUI({ income: lottoIncome.getResult() });
