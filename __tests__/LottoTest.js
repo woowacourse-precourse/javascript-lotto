@@ -39,7 +39,7 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
-  test("일치하는 번호의 갯수에 따라서 로또 등수를 정한다.", () => {
+  test("일치하는 번호의 개수에 따라서 로또 등수를 정한다.", () => {
     expect(new Lotto([1, 2, 3, 4, 5, 6], 7).lottoCompare([1, 2, 3, 4, 5, 6])
     ).toEqual([0, 0, 0, 1, 0]);
     expect(new Lotto([1, 2, 3, 4, 5, 6], 7).lottoCompare([1, 2, 3, 4, 5, 7])
@@ -50,5 +50,17 @@ describe("로또 클래스 테스트", () => {
     ).toEqual([0, 1, 0, 0, 0]);
     expect(new Lotto([1, 2, 3, 4, 5, 6], 7).lottoCompare([1, 2, 3, 7, 8, 9])
     ).toEqual([1, 0, 0, 0, 0]);
+  });
+
+  test("수익을 모두 더한다", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6], 7);
+    lotto.lottoCompare([1, 2, 3, 4, 5, 6]);
+    expect(lotto.getRevenue()).toEqual(20e8);
+  });
+
+  test("수익을 모두 더한다", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6], 7);
+    lotto.lottoCompare([1, 2, 3, 4, 5, 7]);
+    expect(lotto.getRevenue()).toEqual(30e6);
   });
 });

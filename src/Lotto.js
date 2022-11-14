@@ -1,5 +1,5 @@
 const LottoPurchase = require("../src/LottoPurchase");
-const lottoPurchase = new LottoPurchase();
+const lottoPurchase = new LottoPurchase(1000);
 
 class Lotto {
   #numbers;
@@ -7,7 +7,7 @@ class Lotto {
   constructor(numbers, bonusNumber) {
     this.lottoNumberMax = 45;
     this.lottoNumberMin = 1;
-    this.winningNumber = [0, 0, 0, 0, 0];
+    this.winningNumbers = [0, 0, 0, 0, 0];
     this.validate(numbers);
     this.duplicate(numbers);
     this.numberLimit(numbers);
@@ -62,18 +62,18 @@ class Lotto {
 
   bonusCompare(matchNumber, lottoNumbers) {
     if (lottoNumbers.includes(this.bonusNumber)) {
-      this.winningNumber[4] += 1;
+      this.winningNumbers[4] += 1;
     } else {
-      this.winningNumber[matchNumber - 3] += 1;
+      this.winningNumbers[matchNumber - 3] += 1;
     }
-    return this.winningNumber;
+    return this.winningNumbers;
   }
 
   lottoWinning(matchNumber) {
     if (matchNumber >= 3) {
-      this.winningNumber[matchNumber - 3] += 1;
+      this.winningNumbers[matchNumber - 3] += 1;
     }
-    return this.winningNumber;
+    return this.winningNumbers;
   }
 
   lottoCompareRepeat() {
@@ -82,6 +82,19 @@ class Lotto {
     lottoList.forEach(lottoNumbers => {
       this.lottoCampare(lottoNumbers);
     })
+  }
+
+  getRevenue() {
+    let revenue = 0; 
+    let firstPlace = this.winningNumbers[3] * 20e8;
+    let secondPlace = this.winningNumbers[4] * 30e6;
+    let thirdPlace = this.winningNumbers[2] * 150e4;
+    let fourthPlace = this.winningNumbers[1] * 50e3;
+    let fifthPlace = this.winningNumbers[0] * 50e2;
+
+    revenue = firstPlace + secondPlace + thirdPlace 
+    + fourthPlace + fifthPlace;
+    return revenue
   }
 }
 
