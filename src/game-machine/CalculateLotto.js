@@ -23,6 +23,11 @@ class CalculateLotto{
     return random_lotto_numbers;
   }
 
+  sendLottoQuantity(){
+    const lotto = new Lotto();
+    lotto.getLottoQuantity(this.lotto_quantity);
+  }
+
 }
 
 const cal_lotto = new CalculateLotto();
