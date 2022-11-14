@@ -1,3 +1,5 @@
+const { PRIZE } = require("./constant/inputMessage");
+
 class Stats {
   #unitedThird;
   #unitedFourth;
@@ -14,23 +16,23 @@ class Stats {
     lottos.forEach((lotto) => {
       const [winMatch, bonusMatch] = this.matchLottos(lotto, win, bonus);
 
-      if (winMatch === 3) {
+      if (winMatch === PRIZE.FIFTH.MATCH_BALL) {
         this.#unitedThird = (this.#unitedThird || 0) + 1;
       }
 
-      if (winMatch === 4) {
+      if (winMatch === PRIZE.FOURTH.MATCH_BALL) {
         this.#unitedFourth = (this.#unitedFourth || 0) + 1;
       }
 
-      if (winMatch === 5 && !bonusMatch) {
+      if (winMatch === PRIZE.THIRD.MATCH_BALL && !bonusMatch) {
         this.#unitedFifth = (this.#unitedFifth || 0) + 1;
       }
 
-      if (winMatch === 5 && bonusMatch) {
+      if (winMatch === PRIZE.SECOND.MATCH_BALL && bonusMatch) {
         this.#unitedSixthWithBonus = (this.#unitedSixthWithBonus || 0) + 1;
       }
 
-      if (winMatch === 6) {
+      if (winMatch === PRIZE.FIRST.MATCH_BALL) {
         this.#unitedSixth = (this.#unitedSixth || 0) + 1;
       }
     });
@@ -47,14 +49,14 @@ class Stats {
 
   calculateRateOfReturn(price) {
     const obj = {
-      three: this.#unitedThird || 0,
-      four: this.#unitedFourth || 0,
-      five: this.#unitedFifth || 0,
-      sixWithBouns: this.#unitedSixthWithBonus || 0,
       six: this.#unitedSixth || 0,
+      sixWithBouns: this.#unitedSixthWithBonus || 0,
+      five: this.#unitedFifth || 0,
+      four: this.#unitedFourth || 0,
+      three: this.#unitedThird || 0,
     };
 
-    const prizeMoney = [5_000, 50_000, 1_500_000, 30_000_000, 2_000_000_000];
+    const prizeMoney = Object.values(PRIZE).map((prize) => prize.MONEY);
     const total = Object.values(obj)
       .map((v, i) => v * prizeMoney[i])
       .reduce((prev, curr) => prev + curr, 0);

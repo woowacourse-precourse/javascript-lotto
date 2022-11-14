@@ -16,6 +16,29 @@ const TOTAL_MEESAGE = (number) => `
 총 수익률은 ${number.total}%입니다.
 `;
 
+const PRIZE = {
+  FIRST: {
+    MATCH_BALL: 6,
+    MONEY: 2_000_000_000,
+  },
+  SECOND: {
+    MATCH_BALL: 5,
+    MONEY: 30_000_000,
+  },
+  THIRD: {
+    MATCH_BALL: 5,
+    MONEY: 1_500_000,
+  },
+  FOURTH: {
+    MATCH_BALL: 4,
+    MONEY: 50_000,
+  },
+  FIFTH: {
+    MATCH_BALL: 3,
+    MONEY: 5_000,
+  },
+};
+
 const RANGE = {
   START: 1,
   END: 45,
@@ -30,4 +53,5 @@ module.exports = {
   BONUS_NUMBERS_MESSAGE,
   THOUSAND,
   RANGE,
+  PRIZE,
 };
