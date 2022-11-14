@@ -1,0 +1,42 @@
+const Validator = require('./Vaildator');
+const { Random } = require('@woowacourse/mission-utils');
+const { outputLottoNumbers } = require('./output');
+
+class LottoShop {
+  #purchasedNumbers;
+
+  constructor(purchaseAmount) {
+    this.validator = new Validator(purchaseAmount);
+    this.validator.purchaseAmount();
+  }
+
+  countLottoAmount(purchaseAmount) {
+    return purchaseAmount / 1000;
+  }
+
+  createPurchasedNumbers(lottoAmount) {
+    const purchasedNumbers = [];
+
+    for (let amount = 1; amount <= lottoAmount; amount++)
+      purchasedNumbers.push(Random.pickUniqueNumbersInRange(1, 45, 6));
+
+    return purchasedNumbers;
+  }
+
+  setpurchasedNumbers(lottoAmount) {
+    this.#purchasedNumbers = this.createPurchasedNumbers(lottoAmount);
+  }
+
+  buyLotto(purchaseAmount) {
+    const lottoAmount = this.countLottoAmount(purchaseAmount);
+    this.setpurchasedNumbers(lottoAmount);
+
+    outputLottoNumbers(lottoAmount, this.#purchasedNumbers);
+  }
+
+  getPurchasedNumbers() {
+    return this.#purchasedNumbers;
+  }
+}
+
+module.exports = LottoShop;
