@@ -9,6 +9,7 @@ class App {
 
     ask.money();
     ask.buyLotto();
+    ask.showLottoList();
 
     MissionUtils.Console.close();
   }

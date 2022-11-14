@@ -3,7 +3,9 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class Ask{
     static money;
     static bonus;
-    
+    lottoCnt;
+    lottoList=[];
+
     constructor(){
     }
 
@@ -23,9 +25,22 @@ class Ask{
     }
 
     buyLotto(){
-        MissionUtils.Console.print(`${parseInt(this.money/1000)}개를 구매했습니다.`)
+        this.lottoCnt = parseInt(this.money/1000);
+        MissionUtils.Console.print(`${this.lottoCnt}개를 구매했습니다.`)
+        this.makeLotto();
     }
 
+    makeLotto(){
+        for(let count = 0; count < this.lottoCnt; count++){
+            this.lottoList.push(String(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6)).split(",").join(", "));
+        }
+    }
+
+    showLottoList(){
+        for(let index = 0; index<this.lottoCnt; index++){
+            MissionUtils.Console.print("["+this.lottoList[index]+"]");
+        }
+    }
 }
 
 module.exports = Ask;
