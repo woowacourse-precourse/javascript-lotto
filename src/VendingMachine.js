@@ -50,7 +50,7 @@ class VendingMachine {
   }
 
   printLottoNumber() {
-    Console.print(this.#lottoNumber.sort((a, b) => a - b));
+    Console.print(`[${this.#lottoNumber.join(', ')}]`);
   }
 }
 
