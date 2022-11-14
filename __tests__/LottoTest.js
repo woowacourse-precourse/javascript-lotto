@@ -1,5 +1,3 @@
-const { Console } = require('@woowacourse/mission-utils');
-
 const Lotto = require('../src/Lotto');
 
 describe('로또 클래스 테스트', () => {
