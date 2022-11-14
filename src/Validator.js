@@ -10,13 +10,13 @@ class Validator {
   static isInRange(number) {
     return (
       /^[0-9]+$/.test(number) &&
-      number >= LOTTO.RANGE_BEGIN &&
-      number <= LOTTO.RANGE_END
+      number >= LOTTO.UNIT.RANGE_BEGIN &&
+      number <= LOTTO.UNIT.RANGE_END
     );
   }
 
   static validateLottoNumbers(numbers) {
-    if (numbers.length !== LOTTO.NUMBER_LENGTH) {
+    if (numbers.length !== LOTTO.UNIT.NUMBER_LENGTH) {
       throw new Error(ERROR.WRONG_LENGTH);
     }
     if (!this.isDistinct(numbers)) {
@@ -43,7 +43,7 @@ class Validator {
     if (
       !/^[0-9]+$/.test(money) ||
       Number(money) <= 0 ||
-      Number(money) % 1000 !== 0
+      Number(money) % LOTTO.UNIT.PURCHASE !== 0
     ) {
       throw new Error(ERROR.WRONG_MONEY);
     }

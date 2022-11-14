@@ -1,23 +1,23 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const Validator = require('./Validator');
-const LOTTO = require('./constants/Lotto');
-const MESSAGE = require('./constants/Message');
+const { UNIT, PRIZE, MATCHED } = require('./constants/Lotto');
+const { REQUEST, PRINT } = require('./constants/Message');
 
 class App {
   #money;
   #winningNumbers;
   #bonusNumber;
   #lottos;
-  #matching;
+  #matched;
 
   constructor() {
     this.#lottos = [];
-    this.#matching = [0, 0, 0, 0, 0];
+    this.#matched = [0, 0, 0, 0, 0];
   }
 
   play() {
-    Console.readLine(MESSAGE.REQUEST_MONEY, (input) => {
+    Console.readLine(REQUEST.MONEY, (input) => {
       this.buyLottos(input);
       this.printLottos();
       this.readWinningNumbers();
@@ -27,21 +27,21 @@ class App {
   buyLottos(money) {
     Validator.validateMoney(money);
     this.#money = Number(money);
-    for (let i = 0; i < money / 1000; i += 1) this.issueLotto();
+    for (let i = 0; i < money / UNIT.PURCHASE; i += 1) this.issueLotto();
   }
 
   issueLotto() {
     const numbers = Random.pickUniqueNumbersInRange(
-      LOTTO.RANGE_BEGIN,
-      LOTTO.RANGE_END,
-      LOTTO.NUMBER_LENGTH
+      UNIT.RANGE_BEGIN,
+      UNIT.RANGE_END,
+      UNIT.NUMBER_LENGTH
     );
     const lotto = new Lotto(numbers);
     this.#lottos.push(lotto);
   }
 
   printLottos() {
-    Console.print(`\n${this.#lottos.length}개를 구매했습니다.`);
+    Console.print(`\n${this.#lottos.length}${PRINT.PURCHASE}`);
     this.#lottos.forEach((lotto) => lotto.printNumbers());
   }
 
@@ -57,9 +57,9 @@ class App {
   }
 
   readWinningNumbers() {
-    Console.readLine(MESSAGE.REQUEST_WINNING_NUMBERS, (input) => {
+    Console.readLine(REQUEST.WINNING_NUMBERS, (input) => {
       this.setWinningNumbers(input.split(','));
-      Console.readLine(MESSAGE.REQUEST_BONUS_NUMBER, (input) => {
+      Console.readLine(REQUEST.BONUS_NUMBER, (input) => {
         this.setBonusNumber(input);
         this.#lottos.forEach((lotto) => this.calculateMatch(lotto));
         this.printResult();
@@ -69,40 +69,48 @@ class App {
 
   calculateMatch(lotto) {
     const correct = lotto.getNumberOfMatch(this.#winningNumbers);
-    if (correct === 3) this.#matching[LOTTO.CORRECT_THREE] += 1;
-    if (correct === 4) this.#matching[LOTTO.CORRECT_FOUR] += 1;
+    if (correct === 3) this.#matched[MATCHED.THREE] += 1;
+    if (correct === 4) this.#matched[MATCHED.FOUR] += 1;
     if (correct === 5) {
-      this.#matching[
-        lotto.hasNumber(this.#bonusNumber)
-          ? LOTTO.CORRECT_FIVE_BONUS
-          : LOTTO.CORRECT_FIVE
+      this.#matched[
+        lotto.hasNumber(this.#bonusNumber) ? MATCHED.FIVE_BONUS : MATCHED.FIVE
       ] += 1;
     }
-    if (correct === 6) this.#matching[LOTTO.CORRECT_SIX] += 1;
+    if (correct === 6) this.#matched[MATCHED.SIX] += 1;
   }
 
   getEarningRate() {
-    const prize = this.#matching.reduce(
-      (acc, matchedNumber, index) => acc + matchedNumber * LOTTO.PRIZE[index]
+    const prize = this.#matched.reduce(
+      (acc, matchedNumber, index) => acc + matchedNumber * PRIZE[index]
     );
     return (prize / this.#money) * 100;
   }
 
   printResult() {
-    Console.print(`
-당첨 통계
----
-3개 일치 (5,000원) - ${this.#matching[LOTTO.CORRECT_THREE]}개
-4개 일치 (50,000원) - ${this.#matching[LOTTO.CORRECT_FOUR]}개
-5개 일치 (1,500,000원) - ${this.#matching[LOTTO.CORRECT_FIVE]}개
-5개 일치, 보너스 볼 일치 (30,000,000원) - ${
-      this.#matching[LOTTO.CORRECT_FIVE_BONUS]
-    }개
-6개 일치 (2,000,000,000원) - ${this.#matching[LOTTO.CORRECT_SIX]}개
-총 수익률은 ${this.getEarningRate().toFixed(1)}%입니다.`);
+    const RESULT = PRINT.RESULT;
+    Console.print(RESULT.HEADER);
+    Console.print(
+      `${RESULT.THREE}${this.#matched[MATCHED.THREE]}${RESULT.UNIT}`
+    );
+    Console.print(`${RESULT.FOUR}${this.#matched[MATCHED.FOUR]}${RESULT.UNIT}`);
+    Console.print(`${RESULT.FIVE}${this.#matched[MATCHED.FIVE]}${RESULT.UNIT}`);
+    Console.print(
+      `${RESULT.FIVE_BONUS}${this.#matched[MATCHED.FIVE_BONUS]}${RESULT.UNIT}`
+    );
+    Console.print(`${RESULT.SIX}${this.#matched[MATCHED.SIX]}${RESULT.UNIT}`);
+    this.printEarningRate();
+  }
 
+  printEarningRate() {
+    const EARNING = PRINT.EARNING;
+    Console.print(
+      `${EARNING.HEADER}${this.getEarningRate().toFixed(1)}${EARNING.FOOTER}`
+    );
     Console.close();
   }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
