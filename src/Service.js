@@ -4,6 +4,7 @@ const ServiceMessage = require('./Constants/ServiceMessages');
 const MyLotto = require('./MyLotto');
 const Lotto = require('./Lotto');
 const Bonus = require('./Bonus');
+const Result = require('./Result');
 
 class Service {
   printLottoCount() {
@@ -37,6 +38,36 @@ class Service {
       new Bonus(bonusNumber);
       this.bonusNumber = bonusNumber;
     });
+  }
+
+  printResult() {
+    const result = new Result();
+    let ranking = [0, 0, 0, 0, 0, 0];
+
+    for (let i = 0; i < this.lottoList.length; i += 1) {
+      let winnings = result.compare(
+        this.lottoList[i],
+        this.lottoNumber,
+        this.bonusNumber
+      );
+      ranking[winnings] += 1;
+    }
+    this.ranking = ranking;
+
+    const prizeMoney = [0, 2000000000, 30000000, 1500000, 50000, 5000];
+    const gotPrize = ranking.reduce(
+      (total, rank, index) => total + rank * prizeMoney[index],
+      0
+    );
+    const yields = (gotPrize / this.amount) * 100;
+    Console.print(`당첨 통계
+    ---
+  3개 일치 (5,000원) - ${ranking[5]}개
+  4개 일치 (50,000원) - ${ranking[4]}개
+  5개 일치 (1,500,000원) - ${ranking[3]}개
+  5개 일치, 보너스 볼 일치 (30,000,000원) - ${ranking[2]}개
+  6개 일치 (2,000,000,000원) - ${ranking[1]}개
+  총 수익률은 ${yields}%입니다.`);
   }
 }
 
