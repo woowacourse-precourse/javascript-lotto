@@ -14,7 +14,7 @@ class Result {
       this.calculateOneLotto(lotto);
     });
 
-    this.earningsRate = this.getEarningsRate();
+    this.getEarningsRate();
   }
 
   calculateOneLotto(lotto) {
@@ -101,8 +101,6 @@ class Result {
     this.earningsRate = ((prize / purchaseAmount) * 100).toFixed(1);
 
     this.checkEarningsRateOverThousand();
-
-    return this.earningsRate;
   }
 
   checkEarningsRateOverThousand() {
