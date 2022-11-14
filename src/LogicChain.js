@@ -8,8 +8,7 @@ class LogicChain {
   }
 
   executeNext() {
-    if (this.deque.length >= 2) this.deque.shift()(this.deque[0]);
-    if (this.deque.length === 1) this.deque.shift()(null);
+    if (this.deque.length > 0) this.deque.shift()();
   }
 }
 
