@@ -1,4 +1,8 @@
+const { Console } = require('@woowacourse/mission-utils');
+
 const Validator = require('../src/Validator');
+
+afterAll(() => Console.close());
 
 test('공백을 포함한 경우 예외 발생', () => {
   const inputValues = ['q e', ' 123', '123 ', ' '];
@@ -138,6 +142,53 @@ describe('숫자 배열 당첨 번호에 대한 유효성 검사 테스트', () 
     winningNumbers.forEach((numbers) => {
       expect(() =>
         Validator.throwErrorIfInvalidWinningNumbers(numbers)
+      ).toThrow('[ERROR]');
+    });
+  });
+});
+
+describe('입력된 보너스 번호에 대한 유효성 검사 테스트', () => {
+  test('공백을 포함한 경우 예외 발생', () => {
+    const inputValues = [' 13', ' 45', '2 7', ' '];
+
+    inputValues.forEach((value) => {
+      expect(() => Validator.throwErrorIfInvalidBonusNumber(value)).toThrow(
+        '[ERROR]'
+      );
+    });
+  });
+
+  test('0으로 시작하는 경우 예외 발생', () => {
+    const inputValues = ['013', '05', '009', '0000'];
+
+    inputValues.forEach((value) => {
+      expect(() => Validator.throwErrorIfInvalidBonusNumber(value)).toThrow(
+        '[ERROR]'
+      );
+    });
+  });
+
+  test('1에서 45까지의 수가 아닌 경우 예외 발생', () => {
+    const inputValues = ['-4', '46', '100'];
+
+    inputValues.forEach((value) => {
+      expect(() => Validator.throwErrorIfInvalidBonusNumber(value)).toThrow(
+        '[ERROR]'
+      );
+    });
+  });
+
+  test('당첨 번호에 포함된 숫자일 경우 예외 발생', () => {
+    const winningNumbers = [
+      [1, 2, 3, 4, 5, 6],
+      [3, 5, 13, 31, 42, 45],
+      [28, 30, 31, 32, 34, 35],
+    ];
+    const inputValues = ['1', '13', '35'];
+
+    inputValues.forEach((value, i) => {
+      expect(() =>
+        Validator.throwErrorIfInvalidBonusNumber(value, winningNumbers[i])
       ).toThrow('[ERROR]');
     });
   });
