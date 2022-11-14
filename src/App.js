@@ -38,7 +38,13 @@ class App {
   }
 
   // 로또 리스트 가져오기
-  getLottoList(count) {}
+  getLottoList(count) {
+    for (let i = 0; i < count; i++) {
+      const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+      this.lottoList.push(numbers);
+    }
+    this.printLottoList();
+  }
   // 로또 출력하기
   printLottoList() {}
   // 당첨 번호 입력하기
