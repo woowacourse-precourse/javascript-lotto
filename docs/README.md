@@ -26,9 +26,9 @@
 
 ### utils
 
-- 필요한 상수 파일 구현
-  - MESSAGES [O]
-  - 모듈 exports 및 import [O]
+- [O] 필요한 상수 폴더 생성
+  - [O] MESSAGES
+  - [O] 모듈 exports 및 import
 
 ### 비즈니스 로직
 
