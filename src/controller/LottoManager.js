@@ -3,7 +3,7 @@ const LottoNumber = require('../model/LottoNumber');
 const Deposit = require('../model/Deposit');
 const Statistic = require('../model/Statistic');
 const Validator = require('../model/Validator');
-const { RULE, NUMBER_RANGE, DECIMAL_PLACE } = require('../utils/constants');
+const { RULE, NUMBER_RANGE, DECIMAL_PLACE } = require('../constants');
 const { pickUniqueNumbersInRange, calcPercentRounding } = require('../utils/utils');
 
 class LottoManager {

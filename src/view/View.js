@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { RULE, STATISTIC_PRINT } = require('../utils/constants');
+const { RULE, STATISTIC_PRINT } = require('../constants');
 
 class View {
   static printStart() {

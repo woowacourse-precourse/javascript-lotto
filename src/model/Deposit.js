@@ -1,4 +1,4 @@
-const { PRICE_OF_LOTTO } = require('../utils/constants');
+const { PRICE_OF_LOTTO } = require('../constants');
 const Validator = require('./Validator');
 
 class Deposit {

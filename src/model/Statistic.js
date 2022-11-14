@@ -1,4 +1,4 @@
-const { RULE } = require('../utils/constants');
+const { RULE } = require('../constants');
 
 class Statistic {
   #counts;

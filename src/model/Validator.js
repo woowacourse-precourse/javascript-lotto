@@ -1,4 +1,4 @@
-const { RULE, NUMBER_RANGE, PRICE_OF_LOTTO } = require('../utils/constants');
+const { RULE, NUMBER_RANGE, PRICE_OF_LOTTO } = require('../constants');
 
 class Validator {
   static validateNaN(number) {

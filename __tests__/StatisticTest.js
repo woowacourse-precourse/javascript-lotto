@@ -1,6 +1,6 @@
 const Lotto = require('../src/model/Lotto');
 const Statistic = require('../src/model/Statistic');
-const { RULE } = require('../src/utils/constants');
+const { RULE } = require('../src/constants');
 
 describe('통계 클래스 테스트', () => {
   const statistic = new Statistic();
