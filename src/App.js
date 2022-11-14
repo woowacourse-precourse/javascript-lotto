@@ -1,5 +1,11 @@
+const User = require("../src/User");
+
 class App {
-  play() {}
+  play() {
+    const user = new User();
+
+    user.buy();
+  }
 }
 
 module.exports = App;
