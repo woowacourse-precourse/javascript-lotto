@@ -12,6 +12,7 @@ const DEFAULT = Object.freeze({
   MONEY_UNIT: 1000,
   MAX_LOTTO_NUM: 45,
   MIN_LOTTO_NUM: 1,
+  MIN_LUCKY_COUNT: 2,
   LOTTO_LENGTH: 6,
   ZERO: 0,
   TRUE: true,
@@ -27,8 +28,26 @@ const LOTTO_PRIZE = Object.freeze({
   FIFTH: 5000,
 });
 
+const RESULT_STRING = Object.freeze({
+  FIRST: "6개 일치",
+  SECOND: "5개 일치, 보너스 볼 일치",
+  THIRD: "5개 일치",
+  FOURTH: "4개 일치",
+  FIFTH: "3개 일치",
+});
+
+const RANK = Object.freeze({
+  1: "FIRST",
+  2: "SECOND",
+  3: "THIRD",
+  4: "FOURTH",
+  5: "FIFTH",
+});
+
 module.exports = {
   ERROR,
   DEFAULT,
   LOTTO_PRIZE,
+  RANK,
+  RESULT_STRING,
 };
