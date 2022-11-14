@@ -24,7 +24,7 @@ describe('유저 도메인 테스트', () => {
     mockLottos(lottos);
 
     const user = new User();
-    user.buyLottos(3000);
+    user.buyLottos(Lotto.PRICE * 3);
 
     expect(user.getLottos()).toEqual(lottos);
   });
