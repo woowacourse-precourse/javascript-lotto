@@ -19,7 +19,7 @@ class App {
     Console.readLine('구매금액을 입력해 주세요. \n', (money) => {
       if (this.error.isDividedByTen(money)) {
         this.#money = money;
-        this.printNumberOfPurchase(money);
+        this.printPurchasemoney(money);
         this.getLottoList();
       }
     });
