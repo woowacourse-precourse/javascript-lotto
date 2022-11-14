@@ -13,6 +13,12 @@ const messages = {
   BONUS_NUMBER_MESSAGE: "\n보너스 번호를 입력해 주세요.\n",
   BONUS_NUMBER_ERROR_MESSAGE:
     "[ERROR] 보너스 번호는 1~45 사이의 숫자이어야 합니다.",
+  STATISTICS_OPENING_MESSAGE: "\n당첨 통계\n---\n",
+  STATISTICS_FIFTH_MESSAGE: "3개 일치 (5,000원) - ",
+  STATISTICS_FOURTH_MESSAGE: "4개 일치 (50,000원) - ",
+  STATISTICS_THIRD_MESSAGE: "5개 일치 (1,500,000원) - ",
+  STATISTICS_SECOND_MESSAGE: "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
+  STATISTICS_FIRST_MESSAGE: "6개 일치 (2,000,000,000원) - ",
 };
 
 module.exports = messages;
