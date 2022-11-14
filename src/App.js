@@ -18,6 +18,8 @@ class App {
       this.lottoAmount = totalMoney/1000;
       this.creatLottos();
       this.displayAllLottos();
+
+      this.getWinningNum();
     })
   } 
   
@@ -26,6 +28,16 @@ class App {
     this.Lottos.forEach((lotto) => {
       Console.print(lotto.getLottoNums());
     })
+  }
+
+  getWinningNum() {
+    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (winningNumString) => {
+      this.winningNum = new Lotto(this.stringToArray(winningNumString));
+    })
+  }
+
+  stringToArray(numString) {
+    return numString.split(',').map(Number);
   }
 
   isValidMoney(money) {
@@ -42,12 +54,6 @@ class App {
       this.Lottos.push(this.Customer.buyLotto());
     }
   }
-
-
-
 }
-
-let a = new App();
-a.play();
 
 module.exports = App;
