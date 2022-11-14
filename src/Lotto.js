@@ -21,6 +21,10 @@ class Lotto {
 
     return numbers.sort(compareNumbers)
 }
+
+  getNumbers(){
+    return this.#numbers;
+  }
   // TODO: 추가 기능 구현
 }
 
