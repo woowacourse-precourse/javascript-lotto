@@ -1,5 +1,5 @@
 const Io = require("./utils/Io");
-const { LOTTO_RANK } = require("./constants/index");
+const { LOTTO_RANK, LOTTO_AMOUNT } = require("./constants/index");
 
 const Statistic = class {
   #io;
@@ -28,6 +28,28 @@ const Statistic = class {
       default:
         return;
     }
+  }
+
+  calculateYield(rank, count) {
+    switch (rank) {
+      case LOTTO_RANK.NAME.RANK_ONE:
+        return 2000000000 * count;
+      case LOTTO_RANK.NAME.RANK_TWO:
+        return 30000000 * count;
+      case LOTTO_RANK.NAME.RANK_TREE:
+        return 1500000 * count;
+      case LOTTO_RANK.NAME.RANK_FOUR:
+        return 50000 * count;
+      case LOTTO_RANK.NAME.RANK_FIVE:
+        return 5000 * count;
+    }
+  }
+
+  getYield(rank) {
+    const buyAmount = this.#lottos.length * LOTTO_AMOUNT.VALID_UNIT;
+    const winAmounts = [];
+    rank.forEach((value, key) => winAmounts.push(this.calculateYield(key, value)));
+    return (((winAmounts.reduce((acc, cur) => acc + cur, 0) + buyAmount - buyAmount) / buyAmount) * 100).toFixed(1);
   }
 
   getRankResult() {
