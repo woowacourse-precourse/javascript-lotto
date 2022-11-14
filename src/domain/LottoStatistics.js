@@ -26,10 +26,10 @@ const REWARD_MAP = Object({
 class LottoStatistics {
   constructor(winningLotto) {
     if (!winningLotto instanceof Lotto) {
-      throw new ReferenceError("param's instance must be Lotto.");
+      throw new ReferenceError("[ERROR] param's instance must be Lotto.");
     }
     if (!winningLotto.bonusNumber) {
-      throw new ReferenceError("Lotto must have bonus number.");
+      throw new ReferenceError("[ERROR] Lotto must have bonus number.");
     }
     this.winningNumbers = winningLotto.numbers;
     this.bonusNumber = winningLotto.bonusNumber;

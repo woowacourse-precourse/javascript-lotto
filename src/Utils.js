@@ -9,7 +9,7 @@ class Utils {
 
   static intersect(setA, setB) {
     if (!setA instanceof Set || !setB instanceof Set) {
-      throw new Error("params is not Set instance.");
+      throw new Error("[ERROR] params is not Set instance.");
     }
     return new Set([...setA].filter((x) => setB.has(x)));
   }
