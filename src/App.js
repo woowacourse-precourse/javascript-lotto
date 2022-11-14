@@ -26,9 +26,14 @@ class App {
 
   moneyInput(prompt) {
     Console.readLine(`${prompt}\n`, (input) => {
+      if (this.validMoneyInput(input) === false) throw new Error("[ERROR] 1,000원 단위의 금액이어야 합니다.");
       this.money = input;
       this.countLotto(input);
     });
+  }
+
+  validMoneyInput(input) {
+    if (input % LOTTO_PRICE !== 0) return false;
   }
 
   countLotto(money) {
@@ -40,7 +45,7 @@ class App {
   createLotto(amount) {
     for (let i = 0; i < amount; i++) {
       const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
-      Console.print(numbers);
+      Console.print(`[${numbers[0]}, ${numbers[1]}, ${numbers[2]}, ${numbers[3]}, ${numbers[4]}, ${numbers[5]}]`);
       this.arrayLotto.push(numbers);
     }
     this.lottoInput(PROMPT_LOTTO);
@@ -50,7 +55,6 @@ class App {
     Console.readLine(`\n${prompt}\n`, (input) => {
       this.arrayWinLotto = input.split(",");
       this.arrayWinLotto = this.arrayWinLotto.map(number => parseInt(number));
-      console.log(this.arrayWinLotto);
       this.bonusInput(PROMPT_BONUS);
     });
   }
@@ -110,6 +114,7 @@ class App {
       profit += parseInt(key) * this.result[key];
     }
     Console.print(`총 수익률은 ${(profit / this.money * 100).toFixed(1)}%입니다.`);
+    Console.close();
   }
 }
 
