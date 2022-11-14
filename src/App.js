@@ -54,7 +54,7 @@ class App {
     let result = { "1등": 0, "2등": 0, "3등": 0, "4등": 0, "5등": 0 };
     issuedLottos.forEach((issuedLotto) => {
       const winCount = issuedLotto.filter((number) =>
-        lotto.numbers.includes(number)
+        lotto.numbers.includes(String(number))
       ).length;
       switch (winCount) {
         case 3:
