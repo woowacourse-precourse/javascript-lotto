@@ -53,6 +53,11 @@ class Calculation {
     return this;
   }
 
+  /**
+   *
+   * @param {Array<number>} lotto
+   * @returns
+   */
   calcMatchCount(lotto) {
     const myLottoSet = new Set(lotto);
     const winListSet = new Set(this.winList);
@@ -84,13 +89,21 @@ class Calculation {
    * @returns
    */
   calcLottoRate(lottoPrice) {
-    const initialValue = 0;
-    const winResult = Object.values(this.#winResult).filter((resultType) => !!resultType.count);
-    const prizeMoney = winResult.reduce((acc, cur) => acc + cur.price, initialValue);
-
+    const prizeMoney = this.getPrizeMoney(lottoPrice);
     this.#rate = (prizeMoney / lottoPrice) * 100;
 
     return this;
+  }
+
+  /**
+   *
+   * @param {number} lottoPrice
+   * @returns
+   */
+  getPrizeMoney() {
+    const initialValue = 0;
+    const winResult = Object.values(this.#winResult).filter((resultType) => !!resultType.count);
+    return winResult.reduce((acc, { price }) => acc + price, initialValue);
   }
 
   getWinResult() {
