@@ -7,6 +7,7 @@ class Game {
     this.quantity = null;
     this.list = [];
     this.inputLottoList = null;
+    this.inputBonusNumber = null;
   }
 
   setGame(input) {
@@ -46,6 +47,15 @@ class Game {
     input = input.split(",");
     this.validateWinningNumber(input);
     this.inputLottoList = input;
+  }
+
+  validateBonusNumber(input) {
+    validate.bonusNumber(input, this.inputLottoList);
+  }
+
+  setBonusNumber(input) {
+    this.validateBonusNumber(input);
+    this.bonusNumber = input;
   }
 }
 
