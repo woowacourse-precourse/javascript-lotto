@@ -44,6 +44,16 @@ class App {
     })
   }
 
+  getMatchNum(lotto, winningNum) {
+    let match = 0;
+    for (let num of lotto) {
+      if(winningNum.includes(num)) matchs++;
+    }
+    return match;
+  }
+
+
+
   isValidBonusNum(bonusNum) {
     if(isNaN(bonusNum) || !Number.isInteger(Number(bonusNum))) {
       throw new Error("[ERROR] 보너스 번호는 정수형 입니다.");
