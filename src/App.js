@@ -2,9 +2,11 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 
 class App {
-  lottoArr = [];
-  randomNumberArr = [];
-  bonusLotto = 0;
+  constructor() {
+    this.lottoArr = [];
+    this.randomNumberArr = [];
+    this.bonusLotto = 0;
+    }
 
   play() {
     this.priceInput();
