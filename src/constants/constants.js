@@ -1,3 +1,5 @@
+const LOTTERY_PRICE = 1000;
+
 const APP_MESSAGE = {
   INSERT_PURCHASE_COST: '구입금액을 입력해 주세요.\n',
   PURCHASE_AMOUNT: (count) => `${count}개를 구매했습니다.`,
@@ -57,6 +59,7 @@ const LOTTERY_INFORMATION = {
 };
 
 module.exports = {
+  LOTTERY_PRICE,
   APP_MESSAGE,
   EXCEPTION_MESSAGE,
   EXCEPTION_REASON,
