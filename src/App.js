@@ -65,23 +65,24 @@ class App {
       const result = lotto.checkRank(this.winningNumbers, this.bonusNumber);
       switch (result.lotto) {
         case 3:
-          this.result.sum += 1;
+          this.result.sum += 5000;
           this.result['3'] += 1;
           break;
         case 4:
-          this.result.sum += 1;
+          this.result.sum += 50000;
           this.result['4'] += 1;
           break;
         case 5:
-          this.result.sum += 1;
           if (result.bonus) {
+            this.result.sum += 1500000;
             this.result['5+'] += 1;
             break;
           }
+          this.result.sum += 30000000;
           this.result['5'] += 1;
           break;
         case 6:
-          this.result.sum += 1;
+          this.result.sum += 2000000000;
           this.result['6'] += 1;
           break;
         default:
@@ -96,7 +97,8 @@ class App {
     Console.print(MESSAGE.THIRD(this.result['5']));
     Console.print(MESSAGE.SECOND(this.result['5+']));
     Console.print(MESSAGE.FIRST(this.result['6']));
-    const sum = Math.round((this.result.sum / this.lottoNumber) * 10000) / 100;
+    const sum =
+      Math.round((this.result.sum / (this.lottoNumber * 1000)) * 10000) / 100;
     Console.print(MESSAGE.SUM(sum));
   }
 }

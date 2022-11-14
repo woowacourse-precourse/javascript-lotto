@@ -21,7 +21,7 @@ class Lotto {
   }
 
   print() {
-    Console.print(this.#numbers);
+    Console.print(`[${this.#numbers.join(', ')}]`);
   }
 
   checkRank(winningNumbers, bonusNumber) {

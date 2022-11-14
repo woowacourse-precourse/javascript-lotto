@@ -1,3 +1,4 @@
+/* eslint no-use-before-define: 0 */
 const App = require("../src/App");
 const MissionUtils = require("@woowacourse/mission-utils");
 

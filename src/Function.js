@@ -27,12 +27,11 @@ class Function {
   }
 
   static setRandomNumbers() {
-    const numbers = [];
-    while (numbers.length !== LOTTO_LENGTH) {
-      const number = Random.pickNumberInRange(START_NUMBER, END_NUMBER);
-      if (!numbers.includes(number)) numbers.push(number);
-    }
-
+    const numbers = Random.pickUniqueNumbersInRange(
+      START_NUMBER,
+      END_NUMBER,
+      LOTTO_LENGTH,
+    );
     return this.sortNumbers(numbers);
   }
 
