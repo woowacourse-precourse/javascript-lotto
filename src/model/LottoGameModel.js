@@ -1,7 +1,6 @@
 const { LOTTO_INFO, CURRENCY_UNIT } = require('../constant');
 const Lotto = require('../Lotto');
 const { pickUniqueNumbersInRange } = require('../utils/Utils');
-const LottoGameView = require('../view/LottoGameView');
 
 class LottoGameModel {
   payMoney(money) {

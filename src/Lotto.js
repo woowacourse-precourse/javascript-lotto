@@ -1,4 +1,3 @@
-const { ERROR_MESSAGE } = require('./constant');
 const LottoValidator = require('./validator/LottoValidator');
 
 class Lotto {

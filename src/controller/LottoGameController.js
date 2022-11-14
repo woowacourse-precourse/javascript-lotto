@@ -1,5 +1,4 @@
 const { INPUT_MESSAGE } = require('../constant');
-const Lotto = require('../Lotto');
 const { readLine } = require('../utils/Utils');
 const BonusValidator = require('../validator/BonusValidator');
 const MoneyValidator = require('../validator/MoneyValidator');
