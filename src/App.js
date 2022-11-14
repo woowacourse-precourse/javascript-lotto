@@ -7,6 +7,7 @@ const PRICE_LOTTO = 1000;
 class App {
   constructor() {
     this.lottoArray = [];
+    this.winningNumber = 0;
   }
 
   play() {
@@ -36,6 +37,8 @@ class App {
 
   inputLotto(window) {
     Console.readLine(`\n${prompt}\n`, (input) => {
+
+      this.winningNumber = input.split(',');
     });
   }
 }
