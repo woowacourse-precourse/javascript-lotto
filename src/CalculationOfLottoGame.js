@@ -2,9 +2,10 @@ const { Console, Random } = require("@woowacourse/mission-utils");
 
 function checkOfBonusNumHave(usersLotto, bonusNum, { index }, winLotto) {
   if (usersLotto[index].includes(parseInt(bonusNum)) === true) {
-    winLotto.set("2등", winLotto.get("2등") + 1);
+    return winLotto.set("2등", winLotto.get("2등") + 1);
   }
-  winLotto.set("3등", winLotto.get("3등") + 1);
+
+  return winLotto.set("3등", winLotto.get("3등") + 1);
 }
 
 class CalculationOfLottoGame {
