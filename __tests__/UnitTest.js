@@ -1,6 +1,7 @@
 const Lotto = require("../src/Lotto");
 const LottoFactory = require("../src/LottoFactory");
 const Lottos = require("../src/Lottos");
+const Management = require("../src/Management");
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
@@ -59,5 +60,106 @@ describe("로또들 클래스 테스트", () => {
     expect(
       lottos.get().filter((lotto) => lotto instanceof Lotto).length
     ).toEqual(2);
+  });
+});
+
+describe("관리 클래스 테스트", () => {
+  test("당첨 번호가 6자리가 아닌경우 예외가 발생한다", () => {
+    const management = new Management();
+    expect(() => {
+      management.WinNumberVaild("1,2,3,4,5,6,7");
+    }).toThrow("[ERROR] 당첨 번호는 6개여야 합니다.");
+  });
+  test("당첨 번호가 숫자가 아닌경우 예외가 발생한다", () => {
+    const management = new Management();
+    expect(() => {
+      management.WinNumberVaild("1,a,3,4,5,6");
+    }).toThrow("[ERROR] 당첨 번호는 숫자로 구성되어야 합니다");
+  });
+  test("당첨 번호가 1 ~ 45 범위가 아닌경우 예외가 발생한다", () => {
+    const management = new Management();
+    expect(() => {
+      management.WinNumberVaild("1,2,60,4,5,6");
+    }).toThrow("[ERROR] 당첨 번호는 1 ~ 45 범위이어야 합니다");
+  });
+  test("당첨 번호가 중복되는 경우 예외가 발생한다", () => {
+    const management = new Management();
+    expect(() => {
+      management.WinNumberVaild("1,2,2,3,5,6");
+    }).toThrow("[ERROR] 당첨 번호는 중복되지 않아야 합니다");
+  });
+  test("보너스 번호가 숫자가 아닌경우 예외가 발생한다", () => {
+    const management = new Management();
+    expect(() => {
+      management.bonusNumberVaild("a");
+    }).toThrow("[ERROR] 보너스 번호는 숫자이어야 합니다.");
+  });
+  test("보너스 번호가 1 ~ 45 사이인 경우 예외가 발생한다", () => {
+    const management = new Management();
+    expect(() => {
+      management.bonusNumberVaild("55");
+    }).toThrow("[ERROR] 보너스 번호는 1 ~ 45 범위이어야 합니다");
+  });
+  test("보너스 번호가 당첨번호와 중복되는 경우 예외가 발생한다.", () => {
+    const management = new Management();
+    management.setWinNumber([1, 2, 3, 4, 5, 6]);
+    expect(() => {
+      management.bonusNumberVaild("6");
+    }).toThrow("[ERROR] 보너스 번호는 당첨번호와 중복되지 않아야 합니다");
+  });
+
+  test("당첨번호 3개가 일치한 경우", () => {
+    const lotto = new Lotto([1, 2, 3, 14, 15, 16]);
+    const management = new Management();
+    management.setBonusNumber(7);
+    management.setWinNumber([1, 2, 3, 4, 5, 6]);
+    expect(management.checkNum(lotto.get())).toEqual({
+      realnum: 3,
+      bonusnum: 0,
+    });
+  });
+
+  test("당첨번호 4개가 일치한 경우", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 15, 16]);
+    const management = new Management();
+    management.setBonusNumber(7);
+    management.setWinNumber([1, 2, 3, 4, 5, 6]);
+    expect(management.checkNum(lotto.get())).toEqual({
+      realnum: 4,
+      bonusnum: 0,
+    });
+  });
+
+  test("당첨번호 5개가 일치한 경우", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 16]);
+    const management = new Management();
+    management.setBonusNumber(7);
+    management.setWinNumber([1, 2, 3, 4, 5, 6]);
+    expect(management.checkNum(lotto.get())).toEqual({
+      realnum: 5,
+      bonusnum: 0,
+    });
+  });
+
+  test("당첨번호 5개와 보너스번호 1개 일치한 경우", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 16]);
+    const management = new Management();
+    management.setBonusNumber(16);
+    management.setWinNumber([1, 2, 3, 4, 5, 6]);
+    expect(management.checkNum(lotto.get())).toEqual({
+      realnum: 5,
+      bonusnum: 1,
+    });
+  });
+
+  test("당첨번호 6개 일치한 경우", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    const management = new Management();
+    management.setBonusNumber(7);
+    management.setWinNumber([1, 2, 3, 4, 5, 6]);
+    expect(management.checkNum(lotto.get())).toEqual({
+      realnum: 6,
+      bonusnum: 0,
+    });
   });
 });
