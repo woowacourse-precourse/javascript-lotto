@@ -6,6 +6,7 @@ const {
   WinningExceptions,
   BonusExceptions,
 } = require('./Exceptions');
+const CompareNumbers = require('./CompareNumbers');
 
 class App {
   constructor() {
@@ -37,7 +38,9 @@ class App {
   getBonus() {
     Console.readLine(COMMAND.BONUS, (bonus) => {
       new BonusExceptions(bonus).check(this.winningArr);
-      this.bonus = bonus;
+      this.bonus = parseInt(bonus);
+
+      new CompareNumbers(this.lottoArr, this.winningArr, this.bonus);
     });
   }
 }
