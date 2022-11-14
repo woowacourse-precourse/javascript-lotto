@@ -36,4 +36,12 @@ const LOTTO_RANK = {
   ONE: 6,
 };
 
-module.exports = { ERROR, LOTTO_RANK };
+const LOTTO_PRIZE = {
+  FIVE_TH: 5000,
+  FOUR_TH: 50000,
+  THREE_RD: 1500000,
+  TWO_ND: 30000000,
+  ONE_ST: 2000000000,
+};
+
+module.exports = { ERROR, LOTTO_RANK, LOTTO_PRIZE };

@@ -2,7 +2,8 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('../Model/Lotto');
 const Validation = require('../Utilities/Validation');
 const View = require('../View/View');
-const { LOTTO_RANK } = require('../Constants');
+const { LOTTO_RANK, LOTTO_PRIZE } = require('../Constants');
+
 const { Console } = MissionUtils;
 
 class Controller {
@@ -10,6 +11,14 @@ class Controller {
     this.model = model;
     this.validation = new Validation();
     this.view = new View();
+  }
+
+  start() {
+    this.getUserMoneyAndLottos();
+    this.getUserLottoNumber();
+    this.getUserBonusNumber();
+    this.getUserLottoResult();
+    this.getUserRateOfReturn();
   }
 
   getUserMoneyAndLottos() {
@@ -48,13 +57,6 @@ class Controller {
     });
   }
 
-  getTest() {
-    this.getUserMoneyAndLottos();
-    this.getUserLottoNumber();
-    this.getUserBonusNumber();
-    this.getUserLottoResult();
-  }
-
   getUserLottoResult() {
     const { lottoLists, userLottoNumber, userBonusNumber } = this.model;
     const results = lottoLists.map(
@@ -81,6 +83,22 @@ class Controller {
       }
     }
     if (correctNum === LOTTO_RANK.ONE) lottoResults.one += 1;
+  }
+
+  getUserRateOfReturn() {
+    const { lottoResults, userMoney } = this.model;
+    const prizeByRank = [
+      LOTTO_PRIZE.FIVE_TH,
+      LOTTO_PRIZE.FOUR_TH,
+      LOTTO_PRIZE.THREE_RD,
+      LOTTO_PRIZE.TWO_ND,
+      LOTTO_PRIZE.ONE_ST,
+    ];
+    const userPrize = Object.values(lottoResults).reduce(
+      (sum, rank, idx) => sum + rank * prizeByRank[idx],
+      0,
+    );
+    this.view.showUserRateOfReturn(((userPrize * 100) / userMoney).toFixed(1));
   }
 }
 

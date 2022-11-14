@@ -1,13 +1,8 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const Model = require('../Model/Model');
 
 const { Console } = MissionUtils;
 
 class View {
-  constructor() {
-    this.model = new Model();
-  }
-
   showMoney(userMoney) {
     Console.print(`구입금액을 입력해 주세요. \n ${userMoney}`);
   }
@@ -36,6 +31,10 @@ class View {
     Object.values(lottoResults).forEach((count, idx) => {
       Console.print(`${resultMessages[idx]}${count}개`);
     });
+  }
+
+  showUserRateOfReturn(rateOfReturn) {
+    Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
   }
 }
 
