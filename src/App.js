@@ -62,7 +62,7 @@ class App {
       }
       new Lotto(tmp);
       this.#winLotto = tmp;
-      getBonusNumber();
+      this.getBonusNumber();
     });
   }
 
@@ -75,14 +75,14 @@ class App {
   }
 
   compareLottoResult() {
-    for(let i = 0; i < this.#userLotto.length; i++) {
+    for(let i = 0; i < this.#numOfLotto; i++) {
       let numOfMatch = 0;
-      for( let j = 0; j < this.#winLotto; j++) {
+      for(let j = 0; j < this.#winLotto.length; j++) {
         if(this.#userLotto[i].includes(this.#winLotto[j])){
           numOfMatch++;
         }
       }
-      this.lottoCmpResult[i].push(numOfMatch);
+      this.lottoCmpResult.push(numOfMatch);
     }
     this.getLottoResult();
   }
@@ -109,28 +109,28 @@ class App {
   }
 
   printLottoMatchResult() {
-    MissionUtils.Console.print("\n당첨 통계");
-    MissionUtils.Console.print("---");
-    MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.lottoResult[fifthPlace]}`);
-    MissionUtils.Console.print(`4개 일치 (50,000원) - ${this.lottoResult[fourthPlace]}`);
-    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${this.lottoResult[thirdPlace]}`);
-    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.lottoResult[secondPlace]}`);
-    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${this.lottoResult[firstPlace]}`);
+    Console.print("\n당첨 통계");
+    Console.print("---");
+    Console.print(`3개 일치 (5,000원) - ${this.lottoPrizeResult[fifthPrize]}개`);
+    Console.print(`4개 일치 (50,000원) - ${this.lottoPrizeResult[fourthPrize]}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${this.lottoPrizeResult[thirdPrize]}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.lottoPrizeResult[secondPrize]}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${this.lottoPrizeResult[firstPrize]}개`);
     this.getProfit();
   }
 
   getProfit() {
     let sum = 0;
     for(let i = 0; i < this.lottoPrizeResult.length; i++) {
-      sum += (prize[i] * this.lottoPrizeResult[i]);
+      sum += (lottoPrizePrice[i] * this.lottoPrizeResult[i]);
     }
     this.#totalProfitMoney = sum;
-    this.#percent = Math.round(((this.#totalProfitMoney / this.#userMoney) * 100) * 100) / 100;
+    this.#percent = Math.round(((this.#totalProfitMoney / this.#money) * 100) * 100) / 100;
     this.printPercentage();
   }
 
   printPercentage() {
-    Console.print(`총 수익률은 ${this.percent}%입니다.`);
+    Console.print(`총 수익률은 ${this.#percent}%입니다.`);
     this.endLotto();
   }
 

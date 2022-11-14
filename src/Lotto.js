@@ -13,6 +13,7 @@ class Lotto {
 
   validate(numbers) {
     this.checkLottoSize(numbers);
+    this.checkLottoIsInt(numbers);
     this.checkLottoOverlap(numbers);
     this.checkLottoValue(numbers);
   }
