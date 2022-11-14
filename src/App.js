@@ -100,7 +100,26 @@ class App {
     });
     this.resultLotto(ranking);
   }
+  resultLotto(rank){
+    MissionUtils.Console.print("당첨 통계\n---");
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${rank[5]}개`);
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${rank[4]}개`);
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${rank[3]}개`);
+    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${rank[2]}개`);
+    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${rank[1]}개`);
+    MissionUtils.Console.print(`총 수익률은 ${this.resultRate(rank)}%입니다.`);
+  }
+  resultRate(rank){
+    let sum = 0;
+    sum += rank[5]*5000;
+    sum += rank[4]*50000;
+    sum += rank[3]*1500000;
+    sum += rank[1]*2000000000;
+    sum += rank[2]*30000000;
 
+    let rate = (sum / this.purchase) * 100;
+    return rate.toFixed(1);
+  }
 
 }
 
