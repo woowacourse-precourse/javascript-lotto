@@ -27,5 +27,12 @@ class HitLottoChecker {
       }
     );
   }
+  hitLottoToInt(hitLottoNumbers) {
+    return new Lotto(
+      hitLottoNumbers.split(",").map(function (stringNumber) {
+        return parseInt(stringNumber);
+      })
+    );
+  }
 }
 module.exports = HitLottoChecker;
