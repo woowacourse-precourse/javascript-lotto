@@ -1,3 +1,12 @@
+const {
+  CONSOLE_UTIL,
+  INPUT_BONUS_NUMBERS_MESSAGE,
+  FROM_ONE_TO_FORTYFIVE,
+  ERROR_MESSAGES,
+} = require("./Constants");
+
+const { NOT_BETWEEN_ONE_AND_FORTYFIVE } = ERROR_MESSAGES;
+
 class CompareWithLotto {
   constructor() {
     this.userMoney;
@@ -17,6 +26,22 @@ class CompareWithLotto {
     }
 
     this.tickets = Lotterytickets.map((ticket) => (ticket = ticket.length));
+
+    this.acceptBonusNumber();
+  }
+
+  acceptBonusNumber() {
+    let userBonus;
+    CONSOLE_UTIL.readLine(INPUT_BONUS_NUMBERS_MESSAGE, (userBonusNumber) => {
+      userBonus = userBonusNumber;
+      this.validateBonusNumber(userBonus);
+    });
+  }
+
+  validateBonusNumber(userBonus) {
+    if (!FROM_ONE_TO_FORTYFIVE.includes(Number(userBonus))) {
+      throw new Error(NOT_BETWEEN_ONE_AND_FORTYFIVE);
+    }
   }
 }
 
