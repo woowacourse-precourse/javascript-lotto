@@ -35,6 +35,7 @@ class CompareNumber {
         this.threeGrade();
       }
       if (number === 6) {
+        this.firstGrade();
       }
     });
   }
@@ -49,6 +50,10 @@ class CompareNumber {
 
   threeGrade() {
     return (GRADE[2] += 1);
+  }
+
+  firstGrade() {
+    return (GRADE[0] += 1);
   }
 }
 
