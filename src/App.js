@@ -22,6 +22,12 @@ class App {
       this.lottoCount = this.calculator.ofPurchaseLottoCount(moneyValue);
     });
   }
+
+  requestWinNumbers() {
+    Console.readLine('당첨번호를 입력해주세요.\n', userInput => {
+      this.winNumbers = userInput;
+    });
+  }
 }
 
 const app = new App();
