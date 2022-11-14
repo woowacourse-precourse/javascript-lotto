@@ -1,4 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
+const { UNIT, MESSAGE } = require('./Const');
 const Lotto = require('./Lotto');
 
 class App {
@@ -12,7 +13,7 @@ class App {
   };
 
   getLottoCount() {
-    Console.readLine('구입금액을 입력해 주세요.\n', (input) => {
+    Console.readLine(MESSAGE.INPUT_PURCHASE_AMOUNT, (input) => {
       this.purchaseAmount = input;
       this.lottoCount = input / 1000;
     });
@@ -33,20 +34,20 @@ class App {
   printLottos() {
     const { lottoCount, lottos } = this;
 
-    Console.print(`${lottoCount}개를 구매했습니다.`);
+    Console.print(`${lottoCount}${UNIT.LOTTO}를 구매했습니다.`);
     lottos.forEach((lottoNumbers) => {
       Console.print(lottoNumbers);
     });
   }
 
   readWinnigNumbers() {
-    Console.readLine('당첨 번호를 입력해 주세요.\n', (input) => {
+    Console.readLine(MESSAGE.INPUT_WINNING_NUMBERS, (input) => {
       this.winningNumbers = new Set(input.split(',').map(Number));
     });
   }
 
   readBonusNumber() {
-    Console.readLine('보너스 번호를 입력해 주세요.\n', (input) => {
+    Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (input) => {
       this.bonusNumber = Number(input);
     });
   }
@@ -59,7 +60,7 @@ class App {
 
       lotto.matchNumbers(winningNumbers, bonusNumber);
       lotto.getMatchInformation();
-      if (lotto.matchCount >= 3) {
+      if (lotto.prize > 0) {
         this.earning += lotto.prize;
         this.statistics[lotto.matchInfo] += 1;
       }
@@ -79,7 +80,7 @@ class App {
 
     Console.print('당첨 통계\n---');
     for (const key in statistics) {
-      Console.print(`${key} - ${statistics[key]}개`);
+      Console.print(`${key} - ${statistics[key]}${UNIT.LOTTO}`);
     }
     Console.print(`총 수익률은 ${earningRate}%입니다.`);
   }
