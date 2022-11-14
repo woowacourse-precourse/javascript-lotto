@@ -5,6 +5,7 @@ const {
   TICKET_NUMBER,
   BONUS_MESSAGE,
   LOTTO_RANK,
+  STATIC_MESSAGE,
 } = require('../constants/lotto');
 const GameCtrl = require('./GameCtrl');
 const LottoView = require('../view/LottoView');
@@ -50,7 +51,7 @@ const LottoCtrl = class extends GameCtrl {
 
   renderLottoTickets(lottoTickets) {
     lottoTickets.forEach(ticket => {
-      this.view.output(ticket);
+      this.view.output(`[${ticket.join(', ')}]`);
     });
   }
 
@@ -96,14 +97,12 @@ const LottoCtrl = class extends GameCtrl {
   renderLottoStatics(winningHistory, lottoYield) {
     const { MESSAGE } = LOTTO_RANK;
 
-    this.view.output('당첨 통계');
-    this.view.output('---');
-
     const resultMessages = Object.entries(MESSAGE)
       .reverse()
       .map(([key, value]) => `${value}${winningHistory[key]}개`)
       .concat(`총 수익률은 ${lottoYield}%입니다.`);
 
+    this.view.output(STATIC_MESSAGE);
     resultMessages.forEach(message => this.view.output(message));
   }
 
