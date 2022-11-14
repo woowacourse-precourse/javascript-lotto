@@ -13,14 +13,14 @@ function validatePurchase(input) {
   }
   MissionUtils.Console.close();
 }
-function validateBonusNumber(bonusNumber) {
+function validateBonusNumber(numbers, bonusNumber) {
   if (isNaN(bonusNumber)) {
     throw new Error("[ERROR] 보너스 번호를 숫자로 입력해주세요.");
   }
-  bonusNumber = Number(bonusNumber);
-  if (this.lotto.numbers.indcludes(bonusNumber)) {
+  if (numbers.indexOf(bonusNumber) > 0) {
     throw new Error("[ERROR] 당첨 번호를 제외한 숫자를 입력해주세요.");
   }
+  bonusNumber = Number(bonusNumber);
   if (bonusNumber > 45 || bonusNumber < 1) {
     throw new Error("[ERROR] 1~45 범위의 숫자를 입력해주세요.");
   }

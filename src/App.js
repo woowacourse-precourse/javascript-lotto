@@ -35,7 +35,7 @@ class App {
     });
   }
   getWinningNumber() {
-    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (input) => {
+    MissionUtils.Console.readLine("\n당첨 번호를 입력해 주세요.\n", (input) => {
       this.lotto = new Lotto(input.split(","));
       this.getBonusNumber();
     });
@@ -44,7 +44,7 @@ class App {
     MissionUtils.Console.readLine(
       "\n보너스 번호를 입력해 주세요.\n",
       (input) => {
-        validateBonusNumber(input);
+        validateBonusNumber(this.lotto.numbers, input);
         this.lotto.bonusNumber = Number(input);
         this.checkWin(this.lotto, this.issuedLottos);
       }
