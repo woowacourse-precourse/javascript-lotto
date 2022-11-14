@@ -4,7 +4,6 @@ class Check {
         this.LOTTO_AMOUNT = 0
     }
 
-    // 금액 숫자인지 확인
     checkNumbers(number) {
         this.CHECKNUM = number.split("")
         for (let i = 0 ; i < this.CHECKNUM.length; i ++) {

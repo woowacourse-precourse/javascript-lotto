@@ -11,8 +11,7 @@ class Stat {
         }
     }
 
-    // 등수 확인
-    checkRank(count,lotto,winNum,bonus){
+    checkRank(count,lotto,bonus){
         switch (count) {
             case 6:
                 return 1
@@ -27,14 +26,13 @@ class Stat {
     }
     
     checkNumber(lotto,winNum,bonus){
-        // 로또 번호 몇개가 맞았는지 확인
         let COUNT = 0
         for ( let i = 0 ; i < lotto.length; i ++) {
             if (winNum.includes(String(lotto[i]))){
                 COUNT += 1
             }
         }
-        return this.checkRank(COUNT,lotto,winNum,bonus)
+        return this.checkRank(COUNT,lotto,bonus)
     }
     checkMatch(){
         return this.checkNumber(this.LOTTO,this.WIN_NUM,this.BONUS)
