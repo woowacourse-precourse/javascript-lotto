@@ -3,15 +3,17 @@ const { RESULT_MESSAGE } = require("./constants/MessageConstants");
 const { MONEY, REWARD_MONEY, RANK, LOTTO, CALCULATE } = require("./constants/NumberConstants");
 
 class LottoCalculator {
-  winningNumbers;
-  bonusNumber;
   usersLottos;
   usersMoney;
-  usersWinningRecord = [];
-  rankReward = [REWARD_MONEY.BANG, REWARD_MONEY.FIRST, REWARD_MONEY.SECOND, REWARD_MONEY.THIRD, REWARD_MONEY.FOURTH, REWARD_MONEY.FIFTH];
-  countWinningRecord = new Array(LOTTO.SIX_NUMBERS).fill(0);
-  rewardMoney = MONEY.ZERO;
+  winningNumbers;
+  bonusNumber;
   yield;
+  usersRewardMoney = MONEY.ZERO;
+  usersWinningRecord = [];
+  winningReward = [REWARD_MONEY.BANG, REWARD_MONEY.FIRST, REWARD_MONEY.SECOND, REWARD_MONEY.THIRD, REWARD_MONEY.FOURTH, REWARD_MONEY.FIFTH];
+  countWinningRecord = new Array(LOTTO.SIX_NUMBERS).fill(0);
+  
+  
 
   constructor(usersLottos) {
     this.usersLottos = usersLottos;
@@ -51,10 +53,10 @@ class LottoCalculator {
 
   calculateResult() {
     this.usersWinningRecord.forEach((rank) => {
-      this.rewardMoney += this.rankReward[rank];
+      this.usersRewardMoney += this.winningReward[rank];
       this.countWinningRecord[rank] += 1;
     });    
-    this.yield = ((this.rewardMoney / this.usersMoney) * CALCULATE.MAKE_PERCENTAGE).toFixed(CALCULATE.ROUND_OFF_FROM_SECOND_PLACE);
+    this.yield = ((this.usersRewardMoney / this.usersMoney) * CALCULATE.MAKE_PERCENTAGE).toFixed(CALCULATE.ROUND_OFF_FROM_SECOND_PLACE);
   }
 
   printResult() {
