@@ -10,8 +10,8 @@ class Winner {
 
   // NOTE: purchaseAmount를 상수로 뺼 수 있음
   // 뺀다면 LottoSeller와 함께 빼야함
-  constructor(purchaseAmount, lottos, winnerRule, fixedPoint = 2) {
-    this.purchaseAmount = purchaseAmount;
+  constructor(purchaseAmount, lottos, winnerRule, fixedPoint = 1) {
+    this.purchaseAmount = Number(purchaseAmount);
     this.lottos = lottos;
     this.winnerRule = winnerRule;
     this.fixedPoint = fixedPoint;
@@ -44,7 +44,7 @@ class Winner {
   calcEarningRate() {
     const earningRate = (this.prizeMoney / this.purchaseAmount) * 100;
 
-    this.earningRate = Math.round(earningRate.toFixed(this.fixedPoint));
+    this.earningRate = earningRate.toFixed(this.fixedPoint);
   }
 
   getMatchingLottoResult(winnerNumber) {
@@ -101,7 +101,8 @@ class Winner {
   announce(winnerNumber) {
     this.getResult(winnerNumber);
 
-    Console.print(`당첨 통계\n---\n${[...Object.entries(this.prizeResult.winner)
+    Console.print('당첨 통계\n---\n');
+    Console.print(`${[...Object.entries(this.prizeResult.winner)
       .map(([count, list]) => `${count}개 일치 (${Number(this.winnerRule.prize[count]).toLocaleString()}원) - ${list.length}개`),
     `${this.winnerRule.bonus.count}개 일치, ${this.winnerRule.bonus.message} (${Number(this.winnerRule.bonus.prizeMoney).toLocaleString()}원) - ${this.prizeResult.bonus.length}개`].sort().join('\n')}`);
     Console.print(`총 수익률은 ${this.earningRate}%입니다.`);
