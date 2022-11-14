@@ -6,11 +6,22 @@ class App {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (input) => {
       this.validate(input);
       count = this.countLotto(parseInt(input));
-      MissionUtils.Console.print(count + "개를 구매했습니다.");
+      this.printMessage(`${count}개를 구매했습니다.`);
       for (let index = 0; index < count; index++) {
         this.getRandomNumber();
       }
+      this.getWinningNumbersInput();
     });
+  }
+
+  getWinningNumbersInput() {
+    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (input) => {
+      this.validateWinningNumbers(input);
+    });
+  }
+
+  printMessage(message) {
+    MissionUtils.Console.print(message);
   }
 
   getRandomNumber() {
@@ -36,6 +47,22 @@ class App {
       element = Number(input[index]);
       if (isNaN(element)) {
         throw new Error("[ERROR] 숫자만 입력해 주세요");
+      }
+    }
+  }
+
+  validateWinningNumbers(input) {
+    let splitInput = input.split(",");
+    let ret = [];
+
+    if (splitInput.length !== 6) {
+      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    }
+    for (let index = 0; index < splitInput.length; index++) {
+      this.validate(splitInput[index]);
+      ret.push(parseInt(splitInput));
+      if (ret[index] < 1 || ret[index] > 45) {
+        throw new Error("[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다.");
       }
     }
   }
