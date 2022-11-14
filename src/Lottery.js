@@ -35,8 +35,8 @@ class Lottery {
   }
 
   static getMessage(lotto = []) {
-    const stringLotto = JSON.stringify(lotto);
-    return stringLotto.replace(/,/gi, ', ');
+    const message = JSON.stringify(lotto);
+    return message.replace(/,/gi, ', ');
   }
 
   getLottoList() {
