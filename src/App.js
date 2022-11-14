@@ -51,8 +51,16 @@ class App {
   getWinningNumber() {
     MissionUtils.Console.readLine("\n당첨 번호를 입력해 주세요.\n", (input) => {
       this.lotto = new Lotto(input.split(","));
-      // this.getBonusNumber();
+      this.getBonusNumber();
     });
+  }
+  getBonusNumber() {
+    MissionUtils.Console.readLine(
+      "\n보너스 번호를 입력해 주세요.\n",
+      (input) => {
+        this.lotto.bonusNumber = Number(input);
+      }
+    );
   }
 }
 
