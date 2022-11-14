@@ -12,8 +12,18 @@ const validationError = {
   DUPLICATION: `[ERROR] 당첨 번호와 보너스 번호에 중복된 정수가 존재하면 안 됩니다.`,
 }
 
+const prize = {
+  FIRST: '1',
+  SECOND: '2',
+  THIRD: '3',
+  FOURTH: '4',
+  FIFTH: '5',
+  NONE: '-1',
+}
+
 module.exports = {
   WINNING_NUMBER_COUNT,
   range,
   validationError,
+  prize,
 }

@@ -3,6 +3,7 @@ const {
   range,
   WINNING_NUMBER_COUNT,
   validationError,
+  prize,
 } = require('../src/constants/lotto.js')
 
 describe('Lotto 클래스 생성자 유효성 테스트', () => {
@@ -100,5 +101,40 @@ describe('Lotto 클래스 생성자 유효성 테스트', () => {
         bonus: 6,
       })
     }).toThrow(validationError.DUPLICATION)
+  })
+})
+
+describe('Lotto 클래스 등수 확인', () => {
+  const lotto = new Lotto({
+    wins: [1, 2, 3, 4, 5, 6],
+    bonus: 7,
+  })
+
+  test(`6개가 일치하면 ${prize.FIRST}등이다.`, () => {
+    expect(lotto.checkRank([1, 2, 3, 4, 5, 6])).toEqual(prize.FIRST)
+  })
+
+  test(`5개가 일치하고, 보너스 볼이 포함되면 ${prize.SECOND}등이다.`, () => {
+    expect(lotto.checkRank([1, 2, 3, 4, 5, 7])).toEqual(prize.SECOND)
+  })
+
+  test(`5개가 일치하고, 보너스 볼이 포함되지 않으면 ${prize.THIRD}등이다.`, () => {
+    expect(lotto.checkRank([1, 2, 3, 4, 5, 8])).toEqual(prize.THIRD)
+  })
+
+  test(`4개가 일치하면 ${prize.FOURTH}등이다.`, () => {
+    expect(lotto.checkRank([1, 2, 3, 4, 8, 9])).toEqual(prize.FOURTH)
+  })
+
+  test(`4개가 일치하고 보너스 볼이 포함되어도 ${prize.FOURTH}등이다.`, () => {
+    expect(lotto.checkRank([1, 2, 3, 4, 7, 8])).toEqual(prize.FOURTH)
+  })
+
+  test(`3개가 일치하면 ${prize.FIFTH}등이다.`, () => {
+    expect(lotto.checkRank([1, 2, 3, 8, 9, 10])).toEqual(prize.FIFTH)
+  })
+
+  test(`3개가 일치하고 보너스 볼이 포함되어도 ${prize.FIFTH}등이다.`, () => {
+    expect(lotto.checkRank([1, 2, 3, 7, 8, 9])).toEqual(prize.FIFTH)
   })
 })
