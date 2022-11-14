@@ -1,4 +1,4 @@
-const { ERROR_MESSAGES } = require("../utils/constants");
+const { ERROR_MESSAGES, NUMBERS } = require("../utils/constants");
 
 class Bonus {
   #bonusNumber;
@@ -15,13 +15,20 @@ class Bonus {
       throw new Error(ERROR_MESSAGES.INVALID_BONUS_TYPE);
     }
 
-    if (String(bonusNumber).split("").length > 2) {
+    if (!this.correctInRange(bonusNumber)) {
       throw new Error(ERROR_MESSAGES.INVALID_BONUS_RANGE);
     }
 
     if (this.#winningNumbers.includes(Number(bonusNumber))) {
       throw new Error(ERROR_MESSAGES.DUPLICATED_BONUS_NUM);
     }
+  }
+
+  correctInRange(bonusNumber) {
+    if (+bonusNumber >= NUMBERS.MIN_LOTTO_NUMBER && +bonusNumber <= NUMBERS.MAX_LOTTO_NUMBER) {
+      return true;
+    }
+    return false;
   }
 
   output() {
