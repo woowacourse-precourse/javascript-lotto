@@ -38,6 +38,12 @@ class Validator {
 
     return true;
   };
+
+  hasDuplicateNumberInNumbers(numbers) {
+    if ([...new Set(numbers)].length !== numbers.length) {
+      throw new Error(`${this.ERROR_MESSAGE_HEADER} 로또 번호는 서로 중복되지 않아야 합니다.`);
+    }
+  }
 }
 
 module.exports = Validator;

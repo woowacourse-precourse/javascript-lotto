@@ -3,7 +3,6 @@ const Lotto = require('./Lotto');
 const Validator = require('./Validator');
 
 class LottoDrawer {
-  // {numbers, bonus}
   #result;
 
   constructor(numbersCount) {
