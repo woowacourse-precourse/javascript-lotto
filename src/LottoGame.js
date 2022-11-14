@@ -95,24 +95,24 @@ class LottoGame {
   }
 
   receiveLottoNumbers(lottos, money) {
-    MissionUtils.Console.readLine("당첨번호를 입력해 주세요.\n", (number) => {
-      this.validateLottoNumber(number);
+    MissionUtils.Console.readLine("당첨번호를 입력해 주세요.\n", (numbers) => {
+      numbers.split(",").forEach((number) => this.validateLottoNumber(number));
+
       MissionUtils.Console.readLine(
         "보너스 번호를 입력해 주세요.\n",
-
         (bonusNumber) => {
           this.validateLottoNumber(bonusNumber);
 
           const winningLotto = new Lotto(
-            number.split(",").map(Number),
+            numbers.split(",").map(Number),
             bonusNumber
           );
-          const winningLottoNumber = winningLotto.getNumbers();
+          const winningLottoNumbers = winningLotto.getNumbers();
           const winningLottoBonusNumber = winningLotto.getBonusNumber();
 
           this.compareNumber(
             lottos,
-            winningLottoNumber,
+            winningLottoNumbers,
             winningLottoBonusNumber
           );
 
