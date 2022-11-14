@@ -45,5 +45,16 @@ class App {
     this.printLottoRevenuePercent(countAmount);
   }
 
-}
+  compareLottoNumber(lottoNumber, jackpotNumber) {
+    let count = 0;
+    Console.print(count);
+    jackpotNumber.forEach((number) => {
+      if (lottoNumber.includes(number)) {
+        count++;
+      }
+    })
+
+    return count;
+  }
+
 module.exports = App;
