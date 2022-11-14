@@ -2,7 +2,7 @@ const {
   VALID_LOTTO_NUMBER_LENGTH,
   MIN_LOTTO_NUMBER,
   MAX_LOTTO_NUMBER
-} = require('./constants/numbers');
+} = require('../constants/numbers.js');
 
 const isValidMoneyNumberAmount = (money) => {
   if (isNaN(money) || money === undefined) {
