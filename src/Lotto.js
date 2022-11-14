@@ -1,25 +1,22 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const { FORMAT } = require('./Setting');
 const { RANK } = require('./Constant');
+const Validate = require('./Validate');
+
+const validate = new Validate();
 
 class Lotto {
   #numbers;
 
   constructor(numbers) {
     this.#numbers = numbers ?? this.generate();
-    this.validate(this.#numbers);
+    validate.lotto(this.#numbers);
   }
 
   generate() {
     const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
 
-    return (numbers.sort((num1, num2) => num1 - num2));
-  }
-
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
-    }
+    return numbers.sort((num1, num2) => num1 - num2);
   }
 
   print() {

@@ -2,6 +2,9 @@ const { Console } = require('@woowacourse/mission-utils');
 const { MESSAGE, MATCH, RANK } = require('./Constant');
 const { UNIT, FORMAT, PRIZE } = require('./Setting');
 const Lotto = require('./Lotto');
+const Validate = require('./Validate');
+
+const validate = new Validate();
 
 class App {
   myLotto = [];
@@ -10,6 +13,7 @@ class App {
 
   play() {
     Console.readLine(MESSAGE.INPUT_PURCHASE_AMOUNT, (input) => {
+      validate.purchaseAmount(input);
       this.purchaseAmount = input;
       this.lottoCount = input / 1000;
       this.setMyLotto();
@@ -37,16 +41,19 @@ class App {
 
   winningResult() {
     Console.readLine(MESSAGE.INPUT_WINNING_NUMBERS, (input) => {
-      const winningNumbers = input.split(',').map(Number);
+      const winningNumbers = input.split(',');
 
-      new Lotto(winningNumbers);
-      this.winningNumbers = new Set(winningNumbers);
+      validate.lotto(winningNumbers);
+      this.winningNumbers = new Set(winningNumbers.map(Number));
       this.winningStatistics();
     });
   }
 
   winningStatistics() {
+    const { winningNumbers } = this;
+
     Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (input) => {
+      validate.bonus(input, winningNumbers);
       this.bonusNumber = Number(input);
       this.setStatistics();
       this.printStatistics();
