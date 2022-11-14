@@ -2,13 +2,14 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validateLottoNumbers(numbers);
+    this.validate(numbers);
     this.#numbers = numbers;
   }
 
-  validateLottoNumbers(numbers) {
+  validate(numbers) {
     this.validateLengthIsSix(numbers);
     this.validateIsDuplication(numbers);
+    this.validateInNumberRange(numbers);
   }
 
   validateLengthIsSix(numbers) {
@@ -21,6 +22,14 @@ class Lotto {
     const duplicationCheck = new Set(numbers);
     if (duplicationCheck.size !== numbers.length) {
       throw new Error('[ERROR] 중복이 없는 서로 다른 숫자를 입력하세요.');
+    }
+  }
+
+  validateInNumberRange(numbers) {
+    for (let i = 0; i < numbers.length; i++) {
+      if (numbers[i] < 1 || numbers[i] > 45) {
+        throw new Error('[ERROR] 로또 번호는 숫자 1 ~ 45 범위 내에서 입력하세요.');
+      }
     }
   }
 }
