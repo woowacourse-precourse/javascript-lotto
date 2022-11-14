@@ -25,7 +25,7 @@ class Lotto {
       this.utils.throwError(ERROR_MESSAGES.ERROR_OVERLAP));
   }
 
-  validateEachLottoNumber = () => {
+  validateEachLottoNumber() {
     ([...this.#numbers].every(this.utils.isValidLottoNumber) === false &&
       this.utils.throwError(ERROR_MESSAGES.ERROR_NOT_RANGE));
   }
