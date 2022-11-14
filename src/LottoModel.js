@@ -1,10 +1,18 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const { WINNINGS } = require("./Constants");
+const RANKING = [
+  WINNINGS.FIFTH_WIN,
+  WINNINGS.FOURTH_WIN,
+  WINNINGS.THIRD_WIN,
+  WINNINGS.SECOND_WIN,
+  WINNINGS.FIRST_WIN,
+];
 
 class LottoModel {
   #lottos;
   #winningRankCount;
+  #totalAmount;
 
   constructor() {
     this.#lottos = [];
@@ -12,6 +20,7 @@ class LottoModel {
     for (let i = 0; i < WINNINGS.RANK_MAX; i++) {
       this.#winningRankCount.push(0);
     }
+    this.#totalAmount = 0;
   }
 
   createLottos(amount) {
@@ -70,7 +79,14 @@ class LottoModel {
   }
 
   calcWinningAmount() {
-    this.#winningRankCount;
+    for (const rank of RANKING) {
+      this.#totalAmount += this.#winningRankCount[rank.RANK - 1] * rank.AMOUNT;
+    }
+  }
+
+  calcYield(purchaseAmount) {
+    this.calcWinningAmount();
+    return ((this.#totalAmount * 100) / purchaseAmount).toFixed(1);
   }
 }
 

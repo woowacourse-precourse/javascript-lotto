@@ -5,10 +5,9 @@ const lottoModel = new LottoModel();
 
 class App {
   async play() {
-    let amount = await lottoView.getPurchaseAmount();
-    amount /= 1000;
-    const lottos = lottoModel.createLottos(amount);
-    lottoView.printLottos(amount, lottos);
+    const purchaseAmount = await lottoView.getPurchaseAmount();
+    const lottos = lottoModel.createLottos(purchaseAmount / 1000);
+    lottoView.printLottos(purchaseAmount, lottos);
     let winningNumbers = await lottoView.getWinningNumbers();
     winningNumbers = winningNumbers.map(Number);
     const bonusNumber = await lottoView.getBonusNumber();
@@ -17,6 +16,7 @@ class App {
       Number(bonusNumber)
     );
     lottoView.printWinnings(winningRank);
+    const yield = lottoModel.calcYield(purchaseAmount);
   }
 }
 
