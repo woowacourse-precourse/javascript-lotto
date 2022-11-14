@@ -50,7 +50,7 @@ class LottoController {
 
   setBonusNumber(inputNumber) {
     this.inputBonus = Number(inputNumber);
-    if (this.validation.checkBonusNumber(this.inputBonus, this.winningNumber))
+    if (this.validation.isBonusNumber(this.inputBonus, this.winningNumber))
       return this.inputBonus;
   }
 

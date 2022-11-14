@@ -26,15 +26,6 @@ class Validation {
     if (purchaseAmount < 0) throw new Error(ERROR_MONEY.NEGATIVE_INPUT);
   };
 
-  isValidMoney = (purchaseAmount) => {
-    this.checkNotZero(purchaseAmount);
-    this.checkType(purchaseAmount);
-    this.checkEmpty(purchaseAmount);
-    this.checkNegativeInput(purchaseAmount);
-    this.checkNotThousandUnit(purchaseAmount);
-    return true;
-  };
-
   isNumberType = (numbers) => {
     return numbers.every((number) => !isNaN(number));
   };
@@ -60,6 +51,15 @@ class Validation {
       throw new Error(ERROR_LOTTO.DUPLICATED);
   }
 
+  isValidMoney = (purchaseAmount) => {
+    this.checkNotZero(purchaseAmount);
+    this.checkType(purchaseAmount);
+    this.checkEmpty(purchaseAmount);
+    this.checkNegativeInput(purchaseAmount);
+    this.checkNotThousandUnit(purchaseAmount);
+    return true;
+  };
+
   isValidLottoNumber = (numbers) => {
     this.checkLottoLength(numbers);
     this.checkLottoType(numbers);
@@ -68,7 +68,7 @@ class Validation {
     return true;
   };
 
-  checkBonusNumber(number, winNumbers) {
+  isBonusNumber(number, winNumbers) {
     if (number < 1 || number > 45) throw new Error(ERROR_BONUS.RANGE);
 
     if (isNaN(number)) throw new Error(ERROR_BONUS.TYPE);
