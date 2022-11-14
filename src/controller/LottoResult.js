@@ -49,7 +49,6 @@ class LottoResult {
     Object.values(RANK).forEach((value) => (result[value] = 0));
     for (const lotto of this.lottos) {
       const luckyCount = this.countLuckyCount(lotto, this.luckyNumber);
-      console.log(lotto, this.luckyNumber, luckyCount, "@@@@@");
       if (luckyCount <= DEFAULT.MIN_LUCKY_COUNT) continue;
       result[this.convertRank(luckyCount, this.isBonus(lotto))] += 1;
     }
