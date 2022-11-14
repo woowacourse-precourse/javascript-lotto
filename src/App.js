@@ -4,6 +4,7 @@ const Bonus = require('./Bonus');
 const { COST, INPUT_MESSAGE, ERROR_MESSAGE } = require('./constant/constant');
 const { getInput, print } = require('./utils');
 const BuyLotto = require('./BuyLotto');
+const { getLottoResult } = require('./lottoResult');
 
 class App {
   constructor() {
@@ -56,6 +57,14 @@ class App {
     this.getCost();
     this.buyLottoCountTimes();
     this.getInputAndValidate();
+    print(
+      getLottoResult(
+        this.cost.getValue(),
+        this.lotto.getValue(),
+        this.bonus.getValue(),
+        this.buyLotto.getValue(),
+      ),
+    );
   }
 }
 module.exports = App;
