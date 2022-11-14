@@ -1,5 +1,5 @@
 class WinStatistics {
-  static statizeWin(results) {
+  static getWinStatistics(results) {
     const winPlace = {
       firstPlace: 0,
       secondPlace: 0,
@@ -7,18 +7,18 @@ class WinStatistics {
       fourthPlace: 0,
       fifthPlace: 0,
     };
-    results.forEach((results) => {
-      WinStatistics.#winCondition({ results, winPlace });
+    results.forEach((winAndBonus) => {
+      WinStatistics.#winCondition({ winAndBonus, winPlace });
     });
     return winPlace;
   }
 
-  static #winCondition({ results, winPlace }) {
-    if (results.win === 6) winPlace.firstPlace += 1;
-    if (results.win === 5 && results.bonus) winPlace.secondPlace += 1;
-    if (results.win === 5 && !results.bonus) winPlace.thirdPlace += 1;
-    if (results.win === 4) winPlace.fourthPlace += 1;
-    if (results.win === 3) winPlace.fifthPlace += 1;
+  static #winCondition({ winAndBonus, winPlace }) {
+    if (winAndBonus.win === 6) winPlace.firstPlace += 1;
+    if (winAndBonus.win === 5 && winAndBonus.bonus) winPlace.secondPlace += 1;
+    if (winAndBonus.win === 5 && !winAndBonus.bonus) winPlace.thirdPlace += 1;
+    if (winAndBonus.win === 4) winPlace.fourthPlace += 1;
+    if (winAndBonus.win === 3) winPlace.fifthPlace += 1;
   }
 }
 
