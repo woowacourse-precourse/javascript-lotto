@@ -39,6 +39,7 @@ const ERROR = {
   NOT_NUMBER: '구입금액은 쉼표를 제외한 숫자로 입력해야 합니다.',
   NOT_MULTIPLE_OF_THOUSAND: '구입금액은 1000단위로 입력하세요.',
   CANT_ZERO: '0개는 구매할 수 없습니다.',
+  MUST_HAVE_COMMA: '당첨번호는 쉼표(,)로 구분하여 6개의 정수를 입력해야 합니다.',
 };
 
 module.exports = { GAME, MESSAGE, RULE, PRIZE_BOARD, ERROR };
