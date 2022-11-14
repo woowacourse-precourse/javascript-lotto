@@ -80,7 +80,7 @@ class App {
     for (let cnt = 1; cnt <= lotteryQuantity; cnt += 1) {
       const oneLottery = Random.pickUniqueNumbersInRange(1, 45, 6);
       oneLottery.sort((a, b) => a - b);
-      const userLotto = this.makeLottoInstance(oneLottery);
+      const userLotto = new Lotto(oneLottery);
       userLottoArray.push(userLotto.getNumbers());
     }
     return userLottoArray;
@@ -92,14 +92,9 @@ class App {
       const winningNumberArray = winningNumber
         .split(',')
         .map((number) => parseInt(number, 10));
-      this.winningLotto = this.makeLottoInstance(winningNumberArray);
+      this.winningLotto = new Lotto(winningNumberArray);
       this.inputBonusNumber();
     });
-  }
-
-  makeLottoInstance(numberArray) {
-    const lotto = new Lotto(numberArray);
-    return lotto;
   }
 
   inputBonusNumber() {

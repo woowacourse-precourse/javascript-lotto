@@ -76,16 +76,15 @@ describe('issueLotteries 함수 테스트', () => {
   });
 });
 
-describe('makeLottoInstance 함수 테스트', () => {
+describe('LottoInstance 테스트', () => {
   test('인수로 받은 숫자배열과 로또 인스턴스의 #numbers가 같은지 확인', () => {
-    const app = new App();
     const testInput = [
       [1, 2, 3, 4, 5, 6],
       [34, 45, 1, 8, 7, 6],
       [6, 7, 8, 10, 44, 33],
     ];
     testInput.forEach((testArray) => {
-      const lottoInstance = app.makeLottoInstance(testArray);
+      const lottoInstance = new Lotto(testArray);
       expect(lottoInstance.getNumbers()).toEqual(testArray);
     });
   });
