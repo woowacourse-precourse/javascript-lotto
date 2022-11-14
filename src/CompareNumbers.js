@@ -19,26 +19,24 @@ class CompareWithLotto {
     this.index = Object.keys(PRIZE_MONEY).length;
   }
 
-  compareWithNumbers(userNumbers, Lotterytickets, userMoney) {
+  compareWithNumbers(userNumbers, LotteryTickets, userMoney) {
     this.userMoney = userMoney;
     this.userNumbers = userNumbers;
 
-    let index = Lotterytickets.length;
+    let index = LotteryTickets.length;
     while (index--) {
-      Lotterytickets[index] = Lotterytickets[index].filter((num) =>
+      LotteryTickets[index] = LotteryTickets[index].filter((num) =>
         userNumbers.includes(num)
       );
     }
 
-    this.tickets = Lotterytickets.map((ticket) => (ticket = ticket.length));
+    this.tickets = LotteryTickets.map((ticket) => (ticket = ticket.length));
 
     this.acceptBonusNumber();
   }
 
   acceptBonusNumber() {
-    let userBonus;
-    CONSOLE_UTIL.readLine(INPUT_BONUS_NUMBERS_MESSAGE, (userBonusNumber) => {
-      userBonus = userBonusNumber;
+    CONSOLE_UTIL.readLine(INPUT_BONUS_NUMBERS_MESSAGE, (userBonus) => {
       this.validateBonusNumber(userBonus);
     });
   }
@@ -59,24 +57,24 @@ class CompareWithLotto {
   }
 
   findNumberOfWinningTickets(isSameBonus) {
-    let numberOfwinningTickets = {};
+    let numberOfWinningTickets = {};
     this.tickets = this.tickets.filter((num) => num > 2);
 
-    numberOfwinningTickets[5] = this.tickets.filter((num) => num === 3).length;
-    numberOfwinningTickets[4] = this.tickets.filter((num) => num === 4).length;
-    numberOfwinningTickets[3] = numberOfwinningTickets[2] = 0;
-    this.compareWithBonus(numberOfwinningTickets, isSameBonus);
-    numberOfwinningTickets[1] = this.tickets.filter((num) => num === 6).length;
+    numberOfWinningTickets[5] = this.tickets.filter((num) => num === 3).length;
+    numberOfWinningTickets[4] = this.tickets.filter((num) => num === 4).length;
+    numberOfWinningTickets[3] = numberOfWinningTickets[2] = 0;
+    this.compareWithBonus(numberOfWinningTickets, isSameBonus);
+    numberOfWinningTickets[1] = this.tickets.filter((num) => num === 6).length;
 
-    this.printResult(numberOfwinningTickets);
+    this.printResult(numberOfWinningTickets);
   }
 
-  compareWithBonus(numberOfwinningTickets, isSameBonus) {
+  compareWithBonus(numberOfWinningTickets, isSameBonus) {
     let SecondOrThird = this.tickets.filter((num) => num === 5).length;
     if (SecondOrThird) {
       isSameBonus
-        ? (numberOfwinningTickets[2] = SecondOrThird)
-        : (numberOfwinningTickets[3] = SecondOrThird);
+        ? (numberOfWinningTickets[2] = SecondOrThird)
+        : (numberOfWinningTickets[3] = SecondOrThird);
     }
   }
 
