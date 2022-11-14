@@ -17,12 +17,14 @@ class Lotto {
   constructor(numbers, userInputLotto, userInputMoney) {
     this.bonusNumber = null;
     this.userLotto = userInputLotto;
-    this.money = userInputMoney;
+    this.userMoney = userInputMoney;
     this.numOfPrize = 0;
+    
     this.validate(numbers);
     this.#numbers = numbers;
-    this.getBonusNumber();
   }
+
+
 
   getBonusNumber() {
     MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.\n", (userInput) => {
@@ -58,9 +60,16 @@ class Lotto {
     this.numOfPrize++;
     if(numOfLottoMatched === 5) {
       this.isSecondPlace(lottoResultArr);
-      return;
     }
-    lottoResultArr[numOfLottoMatched - 3]++;
+    if(numOfLottoMatched === 3) {
+      lottoResultArr[fifthPlace]++;
+    }
+    if(numOfLottoMatched === 4) {
+      lottoResultArr[fourthPlace]++;
+    }
+    if(numOfLottoMatched === 6) {
+      lottoResultArr[firstPlace]++;
+    }
   }
 
   isSecondPlace(lottoResultArr) {
@@ -72,18 +81,22 @@ class Lotto {
   }
 
   printLottoResult(lottoResultArr) {
-    MissionUtils.Console.print("당첨 통계\n");
+    MissionUtils.Console.print("당첨 통계");
     MissionUtils.Console.print("---");
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${lottoResultArr[fifthPlace]}`);
     MissionUtils.Console.print(`4개 일치 (50,000원) - ${lottoResultArr[fourthPlace]}`);
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${lottoResultArr[thirdPlace]}`);
     MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${lottoResultArr[secondPlace]}`);
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${lottoResultArr[firstPlace]}`);
-    this.getProfit();
+    this.getProfit(lottoResultArr);
   }
 
-  getProfit() {
-    
+  getProfit(lottoResultArr) {
+    let totalMoney, percent;
+    totalMoney = this.calcTotalMoney(lottoResultArr);
+    percent = Math.round(((totalMoney / this.userMoney) * 100) * 100) / 100;
+    MissionUtils.Console.print(`총 수익률은 ${percent}%입니다.`);
+    MissionUtils.Console.close();
   }
 
   validate(numbers) {
