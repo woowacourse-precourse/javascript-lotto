@@ -1,5 +1,5 @@
-const LottoNumber = require('./model/LottoNumber');
-const Validator = require('./model/Validator');
+const LottoNumber = require('./LottoNumber');
+const Validator = require('./Validator');
 
 class Lotto {
   #numbers;

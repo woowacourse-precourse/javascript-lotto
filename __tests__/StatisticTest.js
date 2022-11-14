@@ -1,4 +1,4 @@
-const Lotto = require('../src/Lotto');
+const Lotto = require('../src/model/Lotto');
 const Statistic = require('../src/model/Statistic');
 const { RULE } = require('../src/utils/constants');
 

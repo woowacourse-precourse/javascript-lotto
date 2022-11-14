@@ -1,4 +1,4 @@
-const Lotto = require('./Lotto');
+const Lotto = require('./model/Lotto');
 const LottoNumber = require('./model/LottoNumber');
 const Deposit = require('./model/Deposit');
 const Statistic = require('./model/Statistic');
