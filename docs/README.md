@@ -201,8 +201,14 @@
 
 <img width = "500px" src = https://user-images.githubusercontent.com/78203399/201493466-1153021e-0f09-4fab-858a-4cf2551df215.jpeg />
 
-### 2. 최종 - 네 번째 객체 설계 (3차 수정)
+### 2. 네 번째 객체 설계 (3차 수정)
 
 - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 구분한다.
 
 <img width="800px" alt="스크린샷 2022-11-14 13 35 57" src="https://user-images.githubusercontent.com/78203399/201578664-08deb7b3-1512-42a1-a113-3d3f1f1a52da.png">
+
+### 3. 다섯 번째 객체 설계 (4차 수정)
+
+- LottoAdjustment 클래스에 개수, 수익률이라는 여러가지 책임을 부여, 이를 분리하는 객체 설계 구현
+
+<img width="800" alt="스크린샷 2022-11-14 17 37 31" src="https://user-images.githubusercontent.com/78203399/201614125-b0c4ff33-e380-4c05-81c0-c11a5d4f77af.png">
