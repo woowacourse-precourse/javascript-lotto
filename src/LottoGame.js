@@ -121,10 +121,15 @@ class LottoGame {
       totalPrize,
     );
     MissionUtils.Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
+    this.exitGame();
   }
 
   calcRateOfReturn(amount, totalPrize) {
     return ((totalPrize / amount) * 100).toFixed(1);
+  }
+
+  exitGame() {
+    MissionUtils.Console.close();
   }
 }
 
