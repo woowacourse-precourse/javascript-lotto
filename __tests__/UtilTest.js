@@ -7,6 +7,7 @@ const verifyValidLottery = require('../src/utils/verify/verifyValidLottery');
 const calculateProfit = require('../src/utils/calculate/calculateProfit');
 const calculateProfitRate = require('../src/utils/calculate/calculateProfitRate');
 const verifyStartMoneyUnit = require('../src/utils/verify/verifyStartMoneyUnit');
+const makeException = require('../src/utils/exception/makeException');
 
 describe('유틸 함수 동작 테스트', () => {
   test('금액에 맞는 구매 로또의 개수를 리턴하는 함수', () => {
@@ -95,5 +96,21 @@ describe('유틸 함수 동작 테스트', () => {
     expect(calculateProfitRate(10000, 1500000)).toBe(15000);
     expect(calculateProfitRate(13000, 55000)).toBe(423.1);
     expect(calculateProfitRate(13000, 0)).toBe(0);
+  });
+
+  it('예외처리 유틸 함수 유닛 테스트', () => {
+    try {
+      makeException('INPUT_NOT_NUMBER');
+    } catch (err) {
+      expect(err).toEqual(new Error('[ERROR] 숫자만 입력해주세요.'));
+    }
+  });
+
+  it('예외처리 유틸 함수 유닛 테스트', () => {
+    try {
+      makeException('INPUT_LENGTH_ERROR');
+    } catch (err) {
+      expect(err).toEqual(new Error('[ERROR] 6개의 숫자를 입력하셔야 합니다.'));
+    }
   });
 });
