@@ -1,4 +1,3 @@
-const { Console } = require('@woowacourse/mission-utils');
 const Validator = require('./Validator');
 
 class Lotto {
