@@ -1,7 +1,36 @@
-const START_MESSAGE = "구입금액을 입력해 주세요.";
-const WINNING_MESSAGE = "당첨 번호를 입력해 주세요.";
-const BONUS_MESSAGE = "보너스 번호를 입력해 주세요."
+const MESSAGE = Object.freeze({
+    START : "구입금액을 입력해 주세요.",
+    WINNING : "당첨 번호를 입력해 주세요.",
+    BONUS : "보너스 번호를 입력해 주세요.",
+});
+
+const CORRECT = Object.freeze({
+    1 : "6개 일치 (2,000,000,000원) -",
+    2 : "5개 일치, 보너스 볼 일치 (30,000,000원) -",
+    3 : "5개 일치 (1,500,000원) -",
+    4 : "4개 일치 (50,000원) -",
+    5 : "3개 일치 (5,000원) -",
+});
+
+const CORRECT_MONEY = Object.freeze({
+    1 : 2000000,
+    2 : 30000000,
+    3 : 1500000,
+    4 : 50000,
+    5 : 5000,
+});
+
+const SENTANCE = Object.freeze({
+    "STATICS" : "당첨 통계",
+    "LINE" : "---",
+    "PROFIT_HEAD" : "총 수익률은",
+    "PROFIT_REAR" : "%입니다."
+});
+
+
 
 const NUMBER_MESSAGE = "개를 구매했습니다.";
 
 const RESULT_MESSAGE = "당첨 통계\n---";
+
+const ERROR = Object.freeze({});
