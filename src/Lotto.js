@@ -56,6 +56,16 @@ class Lotto {
     }
   }
 
+  countOfFourMatch() {
+    let countFourMatch = 0;
+    for(let i=0; i<6; i++) {
+      this.matchNumberArr.push(this.winningNumberArr.includes(this.randomSixNumberArr[i]));
+      if(this.matchNumberArr.length === 4) {
+        countFourMatch++;
+      }
+    }
+  }
+
 }
 
 module.exports = Lotto;
