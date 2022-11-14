@@ -18,5 +18,8 @@ const Lotto = require("../src/Lotto");
     }).toThrow("[ERROR]");
   });
 
-  // 아래에 추가 테스트 작성 가능
+  test('로또의 qrCode를 통해 로또 번호를 읽을 수 있다.', () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    expect(lotto.getQrCode()).toEqual([1, 2, 3, 4, 5, 6]);
+  });
 });
