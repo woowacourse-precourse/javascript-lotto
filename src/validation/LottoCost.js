@@ -17,8 +17,8 @@ class LottoCost {
     }
     const input = lottoCost.split('');
     input.map((el) => {
-      if (el === ' ' || el === '.') {
-        throw new Error(LOTTO_COST_ERROR.CHECK_BLANK_OR_DOT);
+      if (el === ' ') {
+        throw new Error(LOTTO_COST_ERROR.CHECK_BLANK);
       }
     });
   }
