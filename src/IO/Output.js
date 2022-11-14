@@ -5,9 +5,12 @@ class Output {
     MissionUtils.Console.print(`\n${lottoCount}개를 구매했습니다.`);
   }
 
-  printUserLottoNumber(randomLotto) {
-    const convertedNumber = String(randomLotto).replace(/,/g, ', ');
-    MissionUtils.Console.print('[' + convertedNumber + ']');
+  printUserLottoNumber(lottoArray) {
+    lottoArray.forEach((item) => {
+      const randomLottoNumbers = item.lottoNumber;
+      const convertedNumber = String(randomLottoNumbers).replace(/,/g, ', ');
+      MissionUtils.Console.print('[' + convertedNumber + ']');
+    })
   }
 
   printResult(score, revenue) {
