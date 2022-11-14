@@ -52,8 +52,10 @@ class App {
   }
 
   printResult(result) {
+    let income = 0;
     Console.print(COMMAND.RESULT);
     for (let index = 5; index > 0; index--) {
+      income += lotto[index].amount * result[index];
       Console.print(`${lotto[index].message}${result[index]}개`);
     }
   }
