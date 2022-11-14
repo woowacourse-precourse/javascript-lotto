@@ -7,7 +7,7 @@ class QuickPick {
 
   constructor(payment) {
     this.validate(payment);
-    this.checkAmount(payment);
+    this.countAmount(payment);
     this.pickRandomNumbers();
   }
 
@@ -20,7 +20,7 @@ class QuickPick {
     }
   }
 
-  checkAmount(payment) {
+  countAmount(payment) {
     this.#amount = payment / LOTTO_INFO.LOTTO_PRICE;
   }
 
