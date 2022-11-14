@@ -4,8 +4,17 @@ class App {
   #money;
   #numberOfLottery;
   #myLottery;
+  #winningNumbers;
 
   constructor() {}
+
+  getWinningNumber = () => {
+    Console.readLine(MESSAGE.GET_WINNING_NUMBERS, (winningNumbers) => {
+      this.#winningNumbers = winningNumbers.split(",").map(Number);
+      // TODO: validate test
+      this.getBonusNumber();
+    });
+  };
 
   getLotteryNumbers = () => {
     const lotteryNumbers = [];
@@ -17,6 +26,7 @@ class App {
 
   printMyLottery = () => {
     this.#myLottery.forEach((lottery) => Console.print(lottery));
+    this.getWinningNumber();
   };
 
   buyLottery = () => {
