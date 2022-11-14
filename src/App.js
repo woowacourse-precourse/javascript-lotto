@@ -1,6 +1,6 @@
 const Lotto = require("./Lotto.js");
 const MissionUtils = require("@woowacourse/mission-utils");
-const { validateBonusNumber, validatePurchase } = require("./Validate.js");
+const { validateBonusNumber, validatePurchase } = require("../src/Validate");
 
 class App {
   constructor() {
@@ -19,7 +19,7 @@ class App {
       MissionUtils.Console.print(`\n${purchasedNumber}개를 구매했습니다.`);
       for (let i = 0; i < purchasedNumber; i++) {
         const issuedLotto = this.issueLotto();
-        MissionUtils.Console.print(`[${issuedLotto}]`);
+        MissionUtils.Console.print(`[${issuedLotto.join(", ")}]`);
         this.issuedLottos.push(issuedLotto);
       }
       this.getWinningNumber();
