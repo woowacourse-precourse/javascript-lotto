@@ -26,7 +26,7 @@ class Lotto {
     if (Number(bonus) < 0 || Number(bonus) > 45)
       throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
     if (isNaN(bonus)) throw new Error("[ERROR] 문자를 입력하실 수 없습니다.");
-    if (this.#numbers.indexOf(bonus) >= 0)
+    if (this.#numbers.indexOf(Number(bonus)) >= 0)
       throw new Error("[ERROR] 보너스 번호는 로또 번호와 중복될 수 없습니다.");
   }
 
@@ -71,22 +71,21 @@ class Lotto {
     return matchNums;
   }
 
-  priceEarningsRatio(isMatch) {
+  priceEarningsRatio(isMatch, matchNums, bonusMatch) {
     let buyPrice = 1000 * isMatch.length;
     let earnPrice = 0;
-    for (let i = 0; i < isMatch.length; ++i) {
-      if (isMatch[i] == 3) earnPrice += 5000;
-      if (isMatch[i] == 4) earnPrice += 50000;
-      if (isMatch[i] == 5) earnPrice += 1500000;
-      if (isMatch[i] == 6) earnPrice += 2000000000;
-    }
-    let earningRatio = (100 * (earnPrice / buyPrice)).toFixed(1);
+    earnPrice += 30000000 * bonusMatch;
+    earnPrice += 5000 * matchNums[0];
+    earnPrice += 50000 * matchNums[1];
+    earnPrice += 1500000 * matchNums[2];
+    earnPrice += 2000000000 * matchNums[3];
+    let earningRatio = (100 * (earnPrice / buyPrice).toFixed(3)).toFixed(1);
     return earningRatio;
   }
 
   printWinResult(isMatch, bonusMatch) {
     let winLottoCount = this.countWinLotto(isMatch, bonusMatch);
-    let priceEarn = this.priceEarningsRatio(isMatch);
+    let priceEarn = this.priceEarningsRatio(isMatch, winLottoCount, bonusMatch);
     Console.print("\n당첨 통계\n---");
     Console.print("3개 일치 (5,000원) - " + winLottoCount[0] + "개");
     Console.print("4개 일치 (50,000원) - " + winLottoCount[1] + "개");
