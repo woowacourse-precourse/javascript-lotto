@@ -66,7 +66,6 @@ class LottoProgram {
     this.calcuLotto = new Calculation();
     this.calcuLotto
       .calcList(lottoList, winNumberList, bonusNumber)
-      .matchResult()
       .calcLottoRate(lottoPrice);
 
     return this.printResult();

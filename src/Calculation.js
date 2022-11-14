@@ -62,6 +62,8 @@ class Calculation {
 
     this.isBonusMatch = myLottoSet.has(this.bonus);
     this.matchCount = this.isBonusMatch + lottoIntersecrt.size;
+
+    return this.matchResult();
   }
 
   matchResult() {
