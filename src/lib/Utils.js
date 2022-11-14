@@ -16,6 +16,16 @@ const utils = {
   pickUniqueNumbersInRange(startInclusive, endInclusive, count) {
     return Random.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
   },
+
+  getArrayToCustomMessage(myArray = []) {
+    const message = JSON.stringify(myArray);
+    return message.replace(/,/gi, ', ');
+  },
+
+  isLessThanNumber(count, number) {
+    if (count < number) return true;
+    return false;
+  },
 };
 
 module.exports = utils;

@@ -34,11 +34,6 @@ class Lottery {
     return this;
   }
 
-  static getMessage(lotto = []) {
-    const message = JSON.stringify(lotto);
-    return message.replace(/,/gi, ', ');
-  }
-
   getLottoList() {
     return this.#lottoList;
   }

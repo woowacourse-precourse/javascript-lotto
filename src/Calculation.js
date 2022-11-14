@@ -76,11 +76,6 @@ class Calculation {
     return this;
   }
 
-  static isNotMatch(count) {
-    if (count < 3) return true;
-    return false;
-  }
-
   isBonusFiveMatch() {
     return this.isBonusMatch && this.matchCount === 5;
   }
