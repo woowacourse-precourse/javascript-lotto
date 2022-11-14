@@ -21,23 +21,20 @@ class App {
   }
 
   makeLogicOrders() {
+    this.#logicChain.addNextAsyncLogic((next) => { this.#lottoManager.buyLottosAsync(this.#lottoCompany, next); });
+    this.#logicChain.addNextLogic(() => { this.#lottoManager.printLottosStatus(); });
+    this.#logicChain.addNextAsyncLogic((next) => this.#lottoCompany.makeWinningNumbersAsync(next));
+    this.#logicChain.addNextAsyncLogic((next) => this.#lottoCompany.makeBonusNumberAsync(next));
     [
-      () => this.#lottoManager.buyLottosAsync(this.#lottoCompany, () => this.#logicChain.executeNext()),
-      () => { this.#lottoManager.printLottosStatus(); this.#logicChain.executeNext();},
-      () => this.#lottoCompany.makeWinningNumbersAsync(() => this.#logicChain.executeNext()),
-      () => this.#lottoCompany.makeBonusNumberAsync(() => this.#logicChain.executeNext()),
-      () => { this.#lottoManager.checkResults(this.#lottoCompany); this.#logicChain.executeNext(); },
-      () => { 
-        this.#lottoCompany.printReportByRanks(this.#lottoManager.getLottoResults()); 
-        this.#logicChain.executeNext();
-      },
-      () => { this.#lottoManager.printYield(this.#lottoCompany); this.#logicChain.executeNext(); },
+      () => { this.#lottoManager.checkResults(this.#lottoCompany); },
+      () => { this.#lottoCompany.printReportByRanks(this.#lottoManager.getLottoResults()); },
+      () => { this.#lottoManager.printYield(this.#lottoCompany); },
       () => { Console.close(); },
     ].forEach((logic) => this.#logicChain.addNextLogic(logic));
   }
 
   play() {
-    this.#logicChain.executeNext();
+    this.#logicChain.execute();
   }
 }
 
