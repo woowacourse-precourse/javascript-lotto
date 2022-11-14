@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { RULE, RANK } = require("./constants/rule");
+const { RULE, RANK, REWARD } = require("./constants/rule");
 
 const mConsole = MissionUtils.Console;
 
@@ -27,7 +27,13 @@ class LottoCalculator {
   }
 
   calcualtePrizeMoney() {
-    const prize = [5000, 50000, 1500000, 30000000, 2000000000];
+    const prize = [
+      REWARD.FIFTH,
+      REWARD.FOURTH,
+      REWARD.THIRD,
+      REWARD.SECOND,
+      REWARD.FIRST,
+    ];
     return prize.reduce((acc, currentRank, idx) => {
       const rankCount = this.getRankCount(idx);
       return acc + currentRank * rankCount;
