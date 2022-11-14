@@ -1,5 +1,5 @@
 const Lotto = require('../src/Lotto');
-const { LOTTO_LENGTH, ERR_MSG } = require('../src/constants');
+const { LOTTO_LENGTH, ERR_MSG, RANKS } = require('../src/constants');
 
 describe('셀프 로또 테스트', () => {
   test('로또 구입 금액 예외 테스트', () => {
@@ -40,5 +40,36 @@ describe('셀프 로또 테스트', () => {
       const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
       lotto.setBonusNumber(1);
     }).toThrow(ERR_MSG.duplicatedNumber);
+  });
+
+  describe('로또 당첨 로직', () => {
+    let lotto;
+
+    beforeEach(() => {
+      lotto = new Lotto([8, 21, 23, 41, 42, 43]);
+      lotto.setBonusNumber(7);
+    });
+
+    test('1등', () => {
+      expect(lotto.getResult([[8, 21, 23, 41, 42, 43]])[RANKS.FIRST]).toEqual(
+        1
+      );
+    });
+    test('2등', () => {
+      expect(lotto.getResult([[8, 21, 23, 41, 42, 7]])[RANKS.SECOND]).toEqual(
+        1
+      );
+    });
+    test('3등', () => {
+      expect(lotto.getResult([[8, 1, 23, 41, 42, 43]])[RANKS.THIRD]).toEqual(1);
+    });
+    test('4등', () => {
+      expect(lotto.getResult([[1, 2, 23, 41, 42, 43]])[RANKS.FOURTH]).toEqual(
+        1
+      );
+    });
+    test('5등', () => {
+      expect(lotto.getResult([[1, 2, 3, 41, 42, 43]])[RANKS.FIFTH]).toEqual(1);
+    });
   });
 });
