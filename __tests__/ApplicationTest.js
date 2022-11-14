@@ -71,4 +71,17 @@ describe("로또 테스트", () => {
 			app.play();
 		}).toThrow("[ERROR]");
 	});
+
+	test("구매 입력이 0원이면 예외 발생.", () => {
+		expect(() => {
+			const validation = new Validation();
+			validation.inputMoney(0);
+		}).toThrow("[ERROR]");
+	});
+	test("1000원 단위 확인.", () => {
+		expect(() => {
+			const validation = new Validation();
+			validation.inputMoney(1001);
+		}).toThrow("[ERROR]");
+	});
 });
