@@ -1,6 +1,6 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
-const { RANK, MESSAGE } = require('./utils/CONSTANT');
+const { RANK, MESSAGE, ERROR_MESSAGE } = require('./utils/CONSTANT');
 const { countTickets, generateRandomNumbers, profitRate } = require('./utils/lottery');
 const { convertNumberToComma } = require('./utils/string');
 const { validateNumbers, validateNumber } = require('./utils/validation');
@@ -51,6 +51,9 @@ class App {
   setBonusNumber() {
     MissionUtils.Console.readLine(`\n${MESSAGE.inputBonusNumber}\n`, (answer) => {
       const bonus = Number(answer);
+      if (this.#answerNumbers.includes(bonus)) {
+        throw new Error(`[ERROR] ${ERROR_MESSAGE.duplicated}`);
+      }
       validateNumber(bonus);
       this.#bonusNumber = bonus;
       this.calculateTickets();

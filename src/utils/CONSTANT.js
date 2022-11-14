@@ -12,6 +12,7 @@ const MESSAGE = {
   profitPostfix: '%입니다.',
 };
 const ERROR_MESSAGE = {
+  duplicated: '중복된 숫자가 있습니다.',
   isSixNumbers: '로또 번호는 6개여야 합니다.',
   isNumbersUnique: '로또 번호에 중복된 숫자가 없어야 합니다.',
   isNumbersInRange: '로또 번호는 1부터 45 사이의 숫자여야 합니다.',
