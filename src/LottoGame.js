@@ -1,6 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
-const UserLottos = require("./UserLottos");
+const { ERROR, TEXT, MATCHES } = require("./message");
 const Lotto = require("./Lotto");
 
 class LottoGame {
@@ -20,20 +20,20 @@ class LottoGame {
 
   validatePurchaseLotto(number) {
     if (!this.isThousandUnit(number)) {
-      throw new Error("[ERROR] 구입금액은 1,000원 단위여야 합니다.");
+      throw new Error(ERROR.THOUSAND_UNIT);
     }
   }
 
   validateLottoNumber(number) {
     if (!this.isNumber(number)) {
-      throw new Error("[ERROR] 로또 번호는 숫자여야 합니다.");
+      throw new Error(ERROR.NOT_NUMBER);
     }
   }
 
   printTheNumberOfLotto(lottos, payment) {
     lottos.setTheNumberOfLotto(payment / 1000);
     MissionUtils.Console.print(
-      `${lottos.getTheNumberOfLotto()}개를 구매했습니다.`
+      `${lottos.getTheNumberOfLotto()}${TEXT.PURCHASE}`
     );
   }
 
@@ -63,24 +63,22 @@ class LottoGame {
   }
 
   printWinningResult(result) {
-    MissionUtils.Console.print(`3개 일치 (5,000원) - ${result[3] || 0}개`);
-    MissionUtils.Console.print(`4개 일치 (50,000원) - ${result[4] || 0}개`);
-    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${result[5] || 0}개`);
+    MissionUtils.Console.print(`${MATCHES.THREE.TEXT} - ${result[3] || 0}개`);
+    MissionUtils.Console.print(`${MATCHES.FOUR.TEXT} - ${result[4] || 0}개`);
+    MissionUtils.Console.print(`${MATCHES.FIVE.TEXT} - ${result[5] || 0}개`);
     MissionUtils.Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${result["5+1"] || 0}개`
+      `${MATCHES.FIVE_WITH_BONUS.TEXT} - ${result["5+1"] || 0}개`
     );
-    MissionUtils.Console.print(
-      `6개 일치 (2,000,000,000원) - ${result[6] || 0}개`
-    );
+    MissionUtils.Console.print(`${MATCHES.SIX.TEXT} - ${result[6] || 0}개`);
   }
 
   printProfitRate(payment, result) {
     const profit =
-      (result[3] || 0) * 5000 +
-      (result[4] || 0) * 50000 +
-      (result[5] || 0) * 1500000 +
-      (result["5+1"] || 0) * 30000000 +
-      (result[6] || 0) * 2000000000;
+      (result[3] || 0) * MATCHES.THREE.PRICE +
+      (result[4] || 0) * MATCHES.FOUR.PRICE +
+      (result[5] || 0) * MATCHES.FIVE.PRICE +
+      (result["5+1"] || 0) * MATCHES.FIVE_WITH_BONUS.PRICE +
+      (result[6] || 0) * MATCHES.SIX.PRICE;
     const profitRate = (profit * 100) / payment;
 
     MissionUtils.Console.print(`총 수익률은 ${profitRate.toFixed(1)}%입니다.`);
@@ -115,26 +113,23 @@ class LottoGame {
   }
 
   startGame(lottos, payment) {
-    MissionUtils.Console.readLine("당첨번호를 입력해 주세요.\n", (numbers) => {
+    MissionUtils.Console.readLine(TEXT.WINNING_NUMBER, (numbers) => {
       numbers.split(",").forEach((number) => this.validateLottoNumber(number));
 
-      MissionUtils.Console.readLine(
-        "보너스 번호를 입력해 주세요.\n",
-        (bonusNumber) => {
-          this.validateLottoNumber(bonusNumber);
+      MissionUtils.Console.readLine(TEXT.BONUS_NUMBER, (bonusNumber) => {
+        this.validateLottoNumber(bonusNumber);
 
-          this.winLotto(lottos, numbers, bonusNumber);
+        this.winLotto(lottos, numbers, bonusNumber);
 
-          this.printResult(lottos, payment);
-        }
-      );
+        this.printResult(lottos, payment);
+      });
     });
   }
 
   game() {
     const lottos = this.lottos;
 
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (payment) => {
+    MissionUtils.Console.readLine(TEXT.PAYMENT, (payment) => {
       this.purchaseLotto(lottos, payment);
       this.startGame(lottos, payment);
     });
