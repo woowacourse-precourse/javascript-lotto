@@ -1,4 +1,4 @@
-const { isValidLottoNumbers } = require('../../backup/src/new/util/utils');
+const { isValidLottoNumbers } = require('./util/utils');
 
 class Lotto {
   #numbers;
