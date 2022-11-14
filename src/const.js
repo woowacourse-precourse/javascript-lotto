@@ -1,6 +1,7 @@
 const LOTTO_PRICE = 1000;
 const LOTTO_MAX_NUMBER = 45;
 const LOTTO_MIN_NUMBER = 1;
+const LOTTO_MAX_COUNT = 6;
 
 const INPUT_AMOUNT_MESSAGE = '구입금액을 입력해주세요.';
 const INPUT_LOTTO_NUMBERS = '당첨 번호를 입력해 주세요.';
@@ -19,6 +20,7 @@ module.exports = {
   LOTTO_PRICE,
   LOTTO_MAX_NUMBER,
   LOTTO_MIN_NUMBER,
+  LOTTO_MAX_COUNT,
   INPUT_AMOUNT_MESSAGE,
   INPUT_LOTTO_NUMBERS,
   INPUT_BONUS_NUMBER,
