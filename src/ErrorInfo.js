@@ -5,6 +5,9 @@ const {
   ERROR_OVERLAP_NUMBER,
   ERROR_NUMBER_RANGE,
   ERROR_NOT_NUMBER,
+  LOTTO_COUNT,
+  MIN_NUMBER,
+  MAX_NUMBER,
 } = require('./constants');
 
 class ErrorInfo {
@@ -22,9 +25,9 @@ class ErrorInfo {
 
   isValidNumber(bonusNumber, winningLotto) {
     if (
-      bonusNumber < 1 ||
-      bonusNumber > 45 ||
-      !Number(bonusNumber) ||
+      bonusNumber < MIN_NUMBER ||
+      bonusNumber > MAX_NUMBER ||
+      Number.isNaN(bonusNumber) ||
       winningLotto.getNumbers().includes(bonusNumber)
     ) {
       return false;
@@ -33,7 +36,7 @@ class ErrorInfo {
   }
 
   notSixNumberError(numbers) {
-    if (numbers.length !== 6) {
+    if (numbers.length !== LOTTO_COUNT) {
       throw new Error(ERROR_SIX_NUMBER);
     }
   }
@@ -46,7 +49,7 @@ class ErrorInfo {
   }
 
   numberRangeError(number) {
-    if (number <= 0 || number > 45) {
+    if (number < MIN_NUMBER || number > MAX_NUMBER) {
       throw new Error(ERROR_NUMBER_RANGE);
     }
   }

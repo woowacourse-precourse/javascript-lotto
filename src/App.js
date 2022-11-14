@@ -2,30 +2,25 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const PrintInfo = require('./PrintInfo');
-const { PRIZE_MONEY } = require('./constants');
+const {
+  PRIZE_MONEY,
+  MIN_NUMBER,
+  MAX_NUMBER,
+  LOTTO_COUNT,
+  MONEY_UNIT,
+} = require('./constants');
 const ErrorInfo = require('./ErrorInfo');
 
 const printInfo = new PrintInfo();
 const checkError = new ErrorInfo();
 class App {
-  // eslint-disable-next-line no-useless-constructor
-  // lotteryQuantity = 0;
-
-  // eslint-disable-next-line no-useless-constructor
   constructor() {
     this.prizeSum = 0;
-
     this.winResult = [0, 0, 0, 0, 0];
-
     this.userLottoArray = [];
-
     this.bonusNumber = 0;
-
-    // eslint-disable-next-line no-unused-expressions
     this.winningLotto;
-
     this.userCost = 0;
-
     this.rateOfReturn = 0.0;
   }
 
@@ -45,6 +40,7 @@ class App {
     const isValidMoney = this.isValidMoney(userMoneyInput);
     checkError.inputMoneyError(isValidMoney);
     this.userCost = userMoneyInput;
+
     const lotteryQuantity = this.countLotteries(this.userCost);
     printInfo.printLotteryQuantity(lotteryQuantity);
     this.issueLotteries(lotteryQuantity);
@@ -52,9 +48,9 @@ class App {
 
   isValidMoney(userMoneyInput) {
     if (
-      userMoneyInput < 1000 ||
-      !Number(userMoneyInput) ||
-      userMoneyInput % 1000 !== 0
+      userMoneyInput < MONEY_UNIT ||
+      Number.isNaN(userMoneyInput) ||
+      userMoneyInput % MONEY_UNIT !== 0
     ) {
       return false;
     }
@@ -62,7 +58,7 @@ class App {
   }
 
   countLotteries(userMoneyInput) {
-    const lotteryQunatity = userMoneyInput / 1000;
+    const lotteryQunatity = userMoneyInput / MONEY_UNIT;
 
     return lotteryQunatity;
   }
@@ -78,7 +74,11 @@ class App {
   pickRandomLotteries(lotteryQuantity) {
     const userLottoArray = [];
     for (let cnt = 1; cnt <= lotteryQuantity; cnt += 1) {
-      const oneLottery = Random.pickUniqueNumbersInRange(1, 45, 6);
+      const oneLottery = Random.pickUniqueNumbersInRange(
+        MIN_NUMBER,
+        MAX_NUMBER,
+        LOTTO_COUNT,
+      );
       oneLottery.sort((a, b) => a - b);
       const userLotto = new Lotto(oneLottery);
       userLottoArray.push(userLotto.getNumbers());
@@ -107,18 +107,6 @@ class App {
     });
   }
 
-  isValidNumber(bonusNumber) {
-    if (
-      bonusNumber < 1 ||
-      bonusNumber > 45 ||
-      !Number(bonusNumber) ||
-      this.winningLotto.getNumbers().includes(bonusNumber)
-    ) {
-      return false;
-    }
-    return true;
-  }
-
   lotteryDraw() {
     printInfo.printPrizeResult();
     this.checkLottoNumber();
@@ -127,15 +115,20 @@ class App {
   checkLottoNumber() {
     const winningLotto = this.winningLotto.getNumbers();
     this.userLottoArray.forEach((oneLotto) => {
-      let count = 0;
-      oneLotto.forEach((number) => {
-        if (winningLotto.includes(number)) {
-          count += 1;
-        }
-      });
-      this.checkWinResult(oneLotto, count);
+      const sameNumbercount = this.sameNumberCheck(oneLotto, winningLotto);
+      this.checkWinResult(oneLotto, sameNumbercount);
     });
     this.printWinResult();
+  }
+
+  sameNumberCheck(oneLotto, winningLotto) {
+    let sameNumbercount = 0;
+    oneLotto.forEach((number) => {
+      if (winningLotto.includes(number)) {
+        sameNumbercount += 1;
+      }
+    });
+    return sameNumbercount;
   }
 
   checkWinResult(oneLotto, count) {
@@ -147,9 +140,9 @@ class App {
         this.winResult[1] += 1;
         break;
       case 5:
-        if (oneLotto.includes(this.bonusNumber)) {
-          this.winResult[3] += 1;
-        } else this.winResult[2] += 1;
+        oneLotto.includes(this.bonusNumber)
+          ? (this.winResult[3] += 1)
+          : (this.winResult[2] += 1);
         break;
       case 6:
         this.winResult[4] += 1;

@@ -17,6 +17,10 @@ const PRINT_STRING = [
 const PRIZE_MONEY = [5000, 50000, 1500000, 30000000, 2000000000];
 const ERROR_BONUS_NUMBER = '[ERROR] 유효한 번호가 아닙니다.';
 const PRIZE_RESULT_PRINT = '\n당첨 통계\n---';
+const MIN_NUMBER = 1;
+const MAX_NUMBER = 45;
+const MONEY_UNIT = 1000;
+const LOTTO_COUNT = 6;
 
 module.exports = {
   USER_MONEY_INPUT_REQUEST,
@@ -32,4 +36,8 @@ module.exports = {
   ERROR_OVERLAP_NUMBER,
   ERROR_NUMBER_RANGE,
   ERROR_NOT_NUMBER,
+  MIN_NUMBER,
+  MAX_NUMBER,
+  MONEY_UNIT,
+  LOTTO_COUNT,
 };
