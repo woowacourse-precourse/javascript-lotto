@@ -34,4 +34,6 @@ describe("보너스 테스트", () => {
       app.play();
     }).toThrow("[ERROR]");
   });
+
+  MissionUtils.Console.close();
 });
