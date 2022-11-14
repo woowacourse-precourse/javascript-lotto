@@ -1,5 +1,5 @@
 const App = require("./App");
-const { Console } = require("@woowacourse/mission-utils");
+const { Console, Random } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
 class CountLotto {
