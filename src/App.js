@@ -2,9 +2,20 @@ const MissionUtils = require("@woowacourse/mission-utils");
 
 class App {
   getPlayerInput() {
+    let count;
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (input) => {
-      console.log(this.validate(input));
+      this.validate(input);
+      count = this.countLotto(parseInt(input));
+      MissionUtils.Console.print(count + "개를 구매했습니다.");
+      for (let index = 0; index < count; index++) {
+        this.getRandomNumber();
+      }
     });
+  }
+
+  getRandomNumber() {
+    const ret = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    return ret;
   }
 
   validate(input) {
@@ -16,7 +27,6 @@ class App {
         throw new Error("숫자만 입력해 주세요");
       }
     }
-    return this.countLotto(parseInt(input));
   }
 
   countLotto(cost) {
@@ -30,5 +40,8 @@ class App {
     this.getPlayerInput();
   }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
