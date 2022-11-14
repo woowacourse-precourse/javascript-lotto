@@ -8,22 +8,6 @@ const getLogSpy = () => {
 };
 const lottoSetting = new LottoSetting();
 describe("로또 당첨 세팅 테스트", () => {
-  test("로또 당첨 입력 확인", () => {
-    const numbers = ["1,2,3,4,5,6", "3,4,5,6,7,8", "8,21,23,41,42,43"];
-    const result = [
-      [1, 2, 3, 4, 5, 6],
-      [3, 4, 5, 6, 7, 8],
-      [8, 21, 23, 41, 42, 43],
-    ];
-    const logSpy = getLogSpy();
-    numbers.forEach((number) => {
-      lottoSetting.winNumToLottoClass(number);
-    });
-    result.forEach((numbers) => {
-      expect(logSpy).toHaveBeenCalledWith(expect.arrayContaining(numbers));
-    });
-  });
-
   test("로또 입력 예외처리 테스트", () => {
     const logs = ["1,2,3,4", "1,2,3,4,5,5,3,4,"];
     logs.forEach((log) => {
