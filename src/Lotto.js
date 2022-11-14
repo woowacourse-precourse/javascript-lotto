@@ -29,11 +29,15 @@ class Lotto {
   };
 
   specifiedNumber(numbers) {
-    if (!(numbers < 0 || numbers > 46)) throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    numbers.forEach((number) => {
+      if (number < 1 || number > 45) throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    });
   };
   
   notNumber(numbers) {
-    if (!(isNaN(numbers))) throw new Error("[ERROR] 로또 번호는 문자가 들어 갈 수 없습니다.");
+    numbers.forEach((number) => {
+      if (isNaN(number) === true) throw new Error("[ERROR] 로또 번호는 숫자여야 합니다.");
+    });
   };
 }
 
