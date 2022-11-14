@@ -24,11 +24,11 @@ class App {
     Console.readLine(`${INPUT.BUY}${OUTPUT.LINE}`, (money) => {
       this.money = new Money(money).changeIntoNumber();
 
-      this.printQuantity(this.money);
+      this.setQuantity(this.money);
     });
   }
 
-  printQuantity(money) {
+  setQuantity(money) {
     this.quantity = money / MONEY.UNIT;
     Console.print(`${OUTPUT.LINE}${OUTPUT.BUY(this.quantity)}`);
 
@@ -46,22 +46,22 @@ class App {
       Console.print(JSON.stringify(publishPiece).replace(/,/g, ", "));
     }
 
-    this.inputWinning();
+    this.getWinning();
   }
 
-  inputWinning() {
+  getWinning() {
     Console.readLine(
       `${OUTPUT.LINE}${INPUT.WINNNG}${OUTPUT.LINE}`,
       (numbers) => {
         const lotto = new Lotto(numbers);
         this.winningNumbers = lotto.changeIntoNumber();
 
-        this.inputBonus();
+        this.getBonus();
       }
     );
   }
 
-  inputBonus() {
+  getBonus() {
     Console.readLine(`${OUTPUT.LINE}${INPUT.BONUS}${OUTPUT.LINE}`, (number) => {
       this.bonusNumber = new Bonus().changeIntoNumber(
         number,
@@ -79,11 +79,11 @@ class App {
       this.bonusNumber
     );
 
-    this.printResult(count);
-    this.countBenefit(count.totalReward, this.money);
+    this.setResult(count);
+    this.getBenefit(count.totalReward, this.money);
   }
 
-  printResult(count) {
+  setResult(count) {
     Console.print(`${OUTPUT.LINE}${OUTPUT.RESULT_TITLE}`);
 
     count.quantityList.forEach((quantity, index) => {
@@ -96,14 +96,14 @@ class App {
     });
   }
 
-  countBenefit(totalReward, money) {
+  getBenefit(totalReward, money) {
     const benefit = (totalReward / money) * CALCULATION.PERCENTILE;
     const benefitRate = Math.round(benefit * 10) / 10;
 
-    this.printBenefit(benefitRate);
+    this.setBenefit(benefitRate);
   }
 
-  printBenefit(rate) {
+  setBenefit(rate) {
     Console.print(OUTPUT.BENEFIT(rate));
     Console.close();
   }

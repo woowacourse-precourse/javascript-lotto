@@ -22,7 +22,7 @@ describe("기능 테스트", () => {
     const money = 10000;
 
     const app = new App();
-    app.printQuantity(money);
+    app.setQuantity(money);
 
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
   });
@@ -92,7 +92,7 @@ describe("기능 테스트", () => {
     const log = "총 수익률은 10%입니다.";
 
     const app = new App();
-    app.countBenefit(totalReward, money);
+    app.getBenefit(totalReward, money);
 
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
   });
