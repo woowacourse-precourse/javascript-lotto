@@ -22,6 +22,10 @@ class User {
     this.#lottoList.forEach(lotto => Io.printConsole(`[${lotto.join(', ')}]`));
   }
 
+  get purchaseAmout() {
+    return this.#purchaseAmout;
+  }
+
   get lottoList() {
     return this.#lottoList;
   }

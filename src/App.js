@@ -8,21 +8,38 @@ class App {
 
   #lotto;
 
+  showYield = result => {
+    const lottoYield = this.#lotto.getYield(
+      result,
+      this.#user.purchaseAmout * 1000
+    );
+    Io.printConsole(`총 수익률은 ${lottoYield}%입니다.`);
+  };
+
+  showResult = () => {
+    const result = this.#lotto.getResult(this.#user.lottoList);
+    Io.printConsole(PRINT_SENTENSE.totalResult);
+    this.#lotto.printResult(result);
+    this.showYield(result);
+  };
+
+  inputBonusNumber = bonusNumber => {
+    this.#lotto.setBonusNumber(+bonusNumber);
+    this.showResult();
+  };
+
+  inputWinningNumber = winningNumbers => {
+    this.#lotto = new Lotto(winningNumbers.split(',').map(Number));
+    Io.inputByUser(QUESTION.bonusNumber, this.inputBonusNumber);
+  };
+
+  inputByUser = purchaseMoney => {
+    this.#user = new User(purchaseMoney);
+    Io.inputByUser(QUESTION.winningNumbers, this.inputWinningNumber);
+  };
+
   play() {
-    Io.inputByUser(QUESTION.purchaseAmout, purchaseMoney => {
-      this.#user = new User(purchaseMoney);
-      Io.inputByUser(QUESTION.winningNumbers, winninNumbers => {
-        this.#lotto = new Lotto(winninNumbers.split(',').map(Number));
-        Io.inputByUser(QUESTION.bonusNumber, bonusNumber => {
-          this.#lotto.setBonusNumber(+bonusNumber);
-          const result = this.#lotto.getResult(this.#user.lottoList);
-          Io.printConsole(PRINT_SENTENSE.totalResult);
-          this.#lotto.printResult(result);
-          const lottoYield = this.#lotto.getYield(result, purchaseMoney);
-          Io.printConsole(`총 수익률은 ${lottoYield}%입니다.`);
-        });
-      });
-    });
+    Io.inputByUser(QUESTION.purchaseAmout, this.inputByUser);
   }
 }
 
