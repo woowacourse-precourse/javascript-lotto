@@ -1,4 +1,9 @@
-const { ERROR, LOTTO_RANGE_REGEX } = require('./lib/constants');
+const { ERROR } = require('./lib/constants');
+const {
+  checkWinningNumbersLength,
+  checkWinningNumbersDuplication,
+  checkWinningNumbersRange,
+} = require('./lib/utils/LottoUtils');
 
 class Lotto {
   #numbers;
@@ -9,19 +14,17 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
+    if (checkWinningNumbersLength(numbers)) {
       throw new Error(ERROR.LOTTO_LENGTH_ERROR);
     }
 
-    if (new Set(numbers).size !== numbers.length) {
+    if (checkWinningNumbersDuplication(numbers)) {
       throw new Error(ERROR.DUPLICATE_LOTTO_ERROR);
     }
 
-    numbers.forEach((item) => {
-      if (!LOTTO_RANGE_REGEX.test(item)) {
-        throw new Error(ERROR.INCORRECT_RANGE_ERROR);
-      }
-    });
+    if (!checkWinningNumbersRange(numbers)) {
+      throw new Error(ERROR.INCORRECT_RANGE_ERROR);
+    }
   }
 
   getWinningNumbers() {
