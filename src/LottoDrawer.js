@@ -41,7 +41,7 @@ class LottoDrawer {
     Console.readLine('당첨 번호를 입력해 주세요.\n', (numbers) => {
       this.setLottoWinner(numbers);
       this.setBonusNumer();
-      winner.annouce();
+      winner.annouce(this.result);
     });
   }
 }

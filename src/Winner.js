@@ -1,11 +1,12 @@
 const { Console } = require('@woowacourse/mission-utils');
+const Utils = require('./Utils');
 
 class Winner {
   #prizeResult;
 
-  #prizeMoney;
+  #prizeMoney = 0;
 
-  #earningRate;
+  #earningRate = 0;
 
   // NOTE: purchaseAmount를 상수로 뺼 수 있음
   // 뺀다면 LottoSeller와 함께 빼야함
@@ -18,11 +19,11 @@ class Winner {
   }
 
   set prizeResult(result) {
-    this.#prizeMoney = result;
+    this.#prizeResult = result;
   }
 
   get prizeResult() {
-    return this.#prizeMoney;
+    return this.#prizeResult;
   }
 
   set prizeMoney(money) {
@@ -47,32 +48,55 @@ class Winner {
     this.earningRate = Math.round(earningRate.toFixed(this.fixedPoint));
   }
 
-  getMatchingNumberCount(current, target) {
+  getMatchingLottoResult(winnerNumber) {
     // 당첨 번호에 현재 로또 번호가 얼마나 포함되어있는지 확인
+
+    const { numbers: winner, bonus: bonusNumber } = winnerNumber;
+    const { bonus } = this.winnerRule;
+    const result = {};
+
+    // 당첨번호와 내 로또 번호 비교하여 저장
+    // {3: [번호들], [번호들]} 과 같은 형태로 저장
+    this.lottos.forEach((lotto) => {
+      const matchedCount = lotto.filter((lottoNumber) => winner.includes(lottoNumber)).length;
+      result[matchedCount] = { ...result[matchedCount], lotto };
+    });
+
+    // 보너스 정보
+    const bonusMatchedLottos = result[bonus.count].filter((lotto) => lotto.includes(bonusNumber));
+
+    // 보너스에 해당하는 수 만큼 result에서 제외
+    result[bonus.count] = result[bonus.count]
+      .filter((lotto) => !Utils.includesArray(bonusMatchedLottos, lotto));
+
+    // 결과 저장
+    this.prizeResult = { winner: result, bonus: bonusMatchedLottos };
   }
 
   calcPrizeMoney() {
     const { prize, bonus } = this.winnerRule;
+    const prizeInfo = Object.entries(prize);
 
-    Object.entries(prize).map(([key, value]) => `${key}개 일치(${Number(value).toLocaleString()}) - ${/* this.getMatchingNumberCount()이 key개인 개수 */ || "0"}개`);
-    // bonus의 경우에 표시방법도 작성
+    prizeInfo.forEach(([rank, money]) => {
+      this.prizeMoney += this.prizeResult.winner[rank] * money;
+    });
 
-
-    // TODO:
-    // 구한 후에, sort로 정렬
-    // 정렬해야 3, 4, 5, 5+보너스, 6개일치 순으로 출력
-
-    // prizeResult에 결과저장
-    // prizeMoney에 결과 저장
+    this.prizeMoney += this.prizeResult.bonus * bonus.prizeMoney;
   }
 
-  getResult() {
+  getResult(winnerNumber) {
+    this.getMatchingLottoResult(winnerNumber);
     this.calcPrizeMoney();
     this.calcEarningRate();
   }
 
-  announce() {
+  announce(winnerNumber) {
+    this.getResult(winnerNumber);
+
     Console.print('당첨 통계\n---\n');
+    Console.print([...Object.entries(this.prizeResult.winner)
+      .map(([count, list]) => `${count}개 일치 (${Number(this.winnerRule.prize[count]).toLocaleString()})원) - ${list.length}개`),
+    `${this.winnerRule.bonus.count}개 일치, ${this.winnerRule.bonus.message} (${Number(this.winnerRule.bonus.prizeMoney).toLocaleString()}원) - ${this.prizeResult.bonus.length}개`].sort().join('\n'));
     Console.print(`총 수익률은 ${this.earningRate}%입니다.`);
   }
 }
