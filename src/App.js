@@ -5,7 +5,7 @@ class App {
   constructor() {
     this.LottoCount = null;
     this.Lotto = [];
-    this.winNum = [1, 2, 3, 4, 5, 6];
+    this.winNum = [];
     this.bonusNum = null;
     this.score = {};
   }
@@ -16,9 +16,9 @@ class App {
     // 구입 금액만큼 로또 번호 출력
     // this.buyLotto();
     // 당첨 번호 입력
-    // this.getWinNum();
+    this.getWinNum();
     // 보너스 번호 입력
-    this.getBonusNum();
+    // this.getBonusNum();
     // 당첨 결과 출력
     // this.compareWinToLotto();
   }
@@ -60,6 +60,8 @@ class App {
       throw new TypeError(
         "[ERROR] 숫자 6개를 쉽표(,)로 구분하여 입력해주세요."
       );
+    if (winNum.length !== new Set(winNum).size)
+      throw new Error("[ERROR] 당첨번호는 서로 중복되지 않아야 합니다.");
   }
 
   getBonusNum() {
