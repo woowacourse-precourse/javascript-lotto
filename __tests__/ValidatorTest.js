@@ -94,4 +94,13 @@ describe('✅ Validator 클래스 : 보너스 번호 테스트', () => {
       Validator.checkBonusNumberRange(bonusNumber);
     }).toThrowError(`${ERROR_MESSAGES.INVALID_LOTTO_NUMBER_RANGE}`);
   });
+
+  test('🖐 사용자가 보너스 번호로 숫자가 아닌 값을 입력하면 에러가 발생한다.', () => {
+    const notNumbers = ['우테코 조아요', '1e8', ' ', ''];
+    expect(() => {
+      notNumbers.forEach((notNumber) => {
+        Validator.checkNotNumber(notNumber);
+      });
+    }).toThrowError(`${ERROR_MESSAGES.INVALID_NUMBER}`);
+  });
 });
