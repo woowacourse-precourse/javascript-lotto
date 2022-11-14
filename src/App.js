@@ -60,6 +60,11 @@ class App {
     }
     const percent = (income / this.money) * 100;
     Console.print(`${COMMAND.YIELD}${percent.toFixed(1)}%입니다.`);
+    this.end();
+  }
+
+  end() {
+    Console.close();
   }
 }
 
