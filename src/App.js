@@ -73,9 +73,10 @@ class App {
 
   #printRate(profit, count) {
     const money = count * this.#lottoSeller.getLottoPrice();
-    const rate = ((profit / money) * 100).toFixed(1);
+    let rate = ((profit / money) * 100).toFixed(1);
+    let result = Number(rate).toLocaleString();
 
-    Console.print(`총 수익률은 ${rate}%입니다.`);
+    Console.print(`총 수익률은 ${result}%입니다.`);
   }
 }
 
