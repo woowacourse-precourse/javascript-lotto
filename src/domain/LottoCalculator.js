@@ -1,6 +1,6 @@
 const { LOTTO_AMOUNT, VARIABLE_FACTORY } = require('../../utils/constants');
 
-class LottoAdjustment {
+class LottoCalculator {
   #lotto;
 
   #bonus;
@@ -98,4 +98,4 @@ class LottoAdjustment {
   }
 }
 
-module.exports = LottoAdjustment;
+module.exports = LottoCalculator;

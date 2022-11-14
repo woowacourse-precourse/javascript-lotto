@@ -3,7 +3,7 @@ const LottoWinCount = require('../src/ui/component/LottoWinCount');
 const LottoIncome = require('../src/ui/component/LottoIncome');
 const Component = require('../src/ui/core/Component');
 
-const LottoAdjustment = require('../src/domain/LottoAdjustment');
+const LottoCalculator = require('../src/domain/LottoCalculator');
 const LottoDrawFactory = require('../src/domain/LottoDrawFactory');
 
 const { VARIABLE_LOTTO, LOTTO_ERROR_MESSAGE } = require('./constants');
@@ -33,7 +33,7 @@ const print = {
   },
 
   lottoAdjustmentUI: ({ lotto, bonus, lottoStore }) => {
-    const lottoPayment = new LottoAdjustment(
+    const lottoPayment = new LottoCalculator(
       new LottoDrawFactory({ lotto, bonus, lottoStore }),
     );
 
