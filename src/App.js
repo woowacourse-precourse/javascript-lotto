@@ -23,9 +23,18 @@ class App {
   // 구입금액 입력 함수 구현
   inputPurchaseAmount() {
     MissionUtils.Console.readLine(INPUT_MESSAGES.PURCHASE_AMOUNT, (money) => {
-      // 이후 로직 작성 예정
+      this.lottoMoney = money;
     })
   }
+
+  // 입력된 금액이 1000원 단위로 나누어 지는지 확인하는 함수 구현
+  inputPurchaseAmountDivide(money) {
+    if (money % 1000 !== 0) {
+      throw new Error(ERROR_MESSAGES.DIVIDE_ERROR);
+    }
+  }
+
+  // 로또 구입 금액에 해당하는 만큼 로또를 발행하는 함수 구현
 }
 
 const app = new App();
