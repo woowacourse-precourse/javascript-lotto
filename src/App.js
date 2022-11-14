@@ -1,6 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
 const {
-  LOTTERY_PRICE,
   APP_MESSAGE,
   EXCEPTION_MESSAGE,
   EXCEPTION_REASON,
