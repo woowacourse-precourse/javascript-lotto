@@ -37,6 +37,7 @@
   - [x] 로또 게임 종료 : `endLottoGame`
 
 ## 로또 게임을 이용하는 사람인 `User` 클래스를 생성한다.
+
 - [x] 총 구입 금액을 입력한다. : `inputTotalPurchaseAmount`
 - [x] 당첨번호를 입력한다. : `inputWinningLottoNumbers`
 - [x] 보너스 번호를 입력한다. : `inputBonusLottoNumber`
@@ -57,16 +58,13 @@
 ## utils/
 
 - [x] 로또 번호를 랜덤으로 생성한다. : `generateRandomLottoNumbers.js`
-
   - 로또 번호의 숫자 범위는 1~45까지이다.
   - 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다.
   - 오름차순으로 정렬하여 배열에 담아 return한다.
-
 - [x] 수익률을 계산한다. : `calculateProfitRate.js`
-
   - 수익률은 소수점 둘째 자리에서 반올림한다.
-
-- [x] 로또 랭킹을 가져온다. :`getLottoRanking.js`
+- [x] 로또 랭킹을 가져온다. : `getLottoRanking.js`
+- [ ] 로또 통계를 수집한다. : `collectLottoStatistics.js`
 
 ## constants/
 
