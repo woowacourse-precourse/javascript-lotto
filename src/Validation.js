@@ -1,13 +1,13 @@
 const { ERROR_MESSAGES, LOTTO } = require("./Constants/Constants");
 
 class Validation {
-  validatePurchaseAmount(purchaseAmount) {
+  static validatePurchaseAmount(purchaseAmount) {
     if (!this.isValidAmountUnit(purchaseAmount)) {
       throw new ERROR(ERROR_MESSAGES.INVALID_AMOUNT_UNIT);
     }
   }
 
-  isValidAmountUnit(amount) {
+  static isValidAmountUnit(amount) {
     return amount % LOTTO.PRICE === 0;
   }
 }

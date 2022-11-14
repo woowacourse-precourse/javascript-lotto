@@ -1,8 +1,12 @@
 const LottoGame = require("./LottoGame.js");
 
 class App {
+  constructor() {
+    this.lottoGame = new LottoGame();
+  }
+
   play() {
-    LottoGame.play();
+    this.lottoGame.play();
   }
 }
 

@@ -1,11 +1,15 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { MESSAGES } = require("./Constants/Constants");
 const Validation = require("./Validation");
-const Operator = require("./LottoGameOperator");
+const LottoGameOperator = require("./LottoGameOperator");
 
 class LottoGame {
   #purchaseAmount;
   #LottoList;
+
+  constructor() {
+    this.operator = new LottoGameOperator();
+  }
 
   play() {
     this.purchaseLotto();
@@ -15,9 +19,13 @@ class LottoGame {
     Console.readLine(MESSAGES.ENTER_PURCHASE_AMOUNT, (input) => {
       this.#purchaseAmount = Number(input);
       Validation.validatePurchaseAmount(this.#purchaseAmount);
-      const lottoQuantity = Operator.countLottoTickets(this.#purchaseAmount);
+      console.log("happy", typeof this.#purchaseAmount);
+      const lottoQuantity = this.operator.countLottoTickets(
+        this.#purchaseAmount
+      );
 
-      Operator.showLottoQuantity(lottoQuantity);
+      this.operator.showLottoQuantity(lottoQuantity);
+      this.#LottoList = this.operator.createLottoNumbers(lottoQuantity);
     });
   }
 }
