@@ -46,8 +46,7 @@ class App {
   setBonusNum() {
     Console.readLine(LOTTO_MESSAGE.BONUS_NUM, (input) => {
       const number = Number(input);
-      this.checkBonusNum(number);
-      this.bonusLotto = number;
+      this.bonusLotto = this.checkBonusNum(number);
     });
   }
   checkBonusNum(number) {
@@ -60,6 +59,7 @@ class App {
     if (this.winningLotto.indexOf(number) != -1) {
       throw new Error(LOTTO_ERROR.REPEAT);
     }
+    return number;
   }
 }
 const app = new App();
