@@ -17,6 +17,9 @@ class Lotto {
   }
 
   // TODO: 추가 기능 구현
+  getLottoNumber() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
