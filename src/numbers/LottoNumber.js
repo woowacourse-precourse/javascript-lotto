@@ -15,7 +15,6 @@ class LottoNumber {
       (inputNumbers) => {
         this.inputLottoNumbers = inputNumbers.split(",").map(Number);
         this.computerNumbers = computerNumbers;
-        console.log(this.inputLottoNumbers);
         this.bonusNumber();
       }
     );
@@ -26,7 +25,7 @@ class LottoNumber {
       "\n보너스 번호를 입력해 주세요.\n",
       (inputBonusNumber) => {
         this.inputBonusNumbers = inputBonusNumber;
-        this.compareNumber.checkNumber(
+        this.compareNumber.compareNumber(
           this.computerNumbers,
           this.inputLottoNumbers,
           this.inputBonusNumbers

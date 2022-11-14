@@ -13,7 +13,7 @@ class CompareNumber {
     this.caculateRate = new CaculateRate();
   }
 
-  checkNumber(computerNumbers, inputLotto, inputBonus) {
+  compareNumber(computerNumbers, inputLotto, inputBonus) {
     computerNumbers.forEach(function (firstnumber) {
       firstnumber.forEach(function (secondnumber) {
         const COMPARE = inputLotto.indexOf(secondnumber);
@@ -26,10 +26,10 @@ class CompareNumber {
     });
     this.correct = CORRECT;
     this.computerNumbers = computerNumbers;
-    this.checkBonus(inputBonus);
+    this.compareBonus(inputBonus);
   }
 
-  checkBonus(inputBonus) {
+  compareBonus(inputBonus) {
     this.computerNumbers.forEach(function (firstnumber) {
       firstnumber.forEach(function (secondnumber) {
         const COMPARE_BONUS = inputBonus.indexOf(secondnumber);
@@ -45,24 +45,54 @@ class CompareNumber {
   }
 
   correctNumbers() {
-    for (let i = 0; i < this.correct.length; i++) {
-      if (this.correct[i] === 3) {
-        GRADE[4] += 1;
-      }
-      if (this.correct[i] === 4) {
-        GRADE[3] += 1;
-      }
-      if (this.correct[i] === 5 && this.correctBonus[i] !== 1) {
-        GRADE[2] += 1;
-      }
-      if (this.correct[i] === 5 && this.correctBonus[i] === 1) {
-        GRADE[1] += 1;
-      }
-      if (this.correct[i] === 6) {
-        GRADE[0] += 1;
-      }
+    for (
+      let lottoCipher = 0;
+      lottoCipher < this.correct.length;
+      lottoCipher++
+    ) {
+      this.fifthPlace(lottoCipher);
+      this.fourthPlace(lottoCipher);
+      this.thirthdPlace(lottoCipher);
+      this.secondPlace(lottoCipher);
+      this.firstPlace(lottoCipher);
     }
     this.caculateRate.caculateNumbers(this.computerNumbers, GRADE);
+  }
+
+  fifthPlace(lottoCipher) {
+    if (this.correct[lottoCipher] === 3) {
+      GRADE[4] += 1;
+    }
+  }
+
+  fourthPlace(lottoCipher) {
+    if (this.correct[lottoCipher] === 4) {
+      GRADE[3] += 1;
+    }
+  }
+
+  thirthdPlace(lottoCipher) {
+    if (
+      this.correct[lottoCipher] === 5 &&
+      this.correctBonus[lottoCipher] !== 1
+    ) {
+      GRADE[2] += 1;
+    }
+  }
+
+  secondPlace(lottoCipher) {
+    if (
+      this.correct[lottoCipher] === 5 &&
+      this.correctBonus[lottoCipher] === 1
+    ) {
+      GRADE[1] += 1;
+    }
+  }
+
+  firstPlace(lottoCipher) {
+    if (this.correct[lottoCipher] === 6) {
+      GRADE[0] += 1;
+    }
   }
 }
 
