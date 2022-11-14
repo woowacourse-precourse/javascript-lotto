@@ -14,7 +14,7 @@ class LottoIncomeUI extends Component {
   #template() {
     const { income } = this.state;
 
-    return `총 수익률은 ${income}%입니다.`;
+    return `\n총 수익률은 ${income}%입니다.`;
   }
 
   print() {

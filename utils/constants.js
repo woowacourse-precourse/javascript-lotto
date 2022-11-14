@@ -32,8 +32,8 @@ const LOTTO_AMOUNT = Object.freeze([
 
 const LOTTO_QUESTION = Object.freeze({
   money: '구입금액을 입력해주세요.\n',
-  lotto: '당첨 번호를 입력해 주세요.\n',
-  bonus: '보너스 번호를 입력해 주세요.\n',
+  lotto: '\n당첨 번호를 입력해 주세요.\n',
+  bonus: '\n보너스 번호를 입력해 주세요.\n',
 });
 
 module.exports = {
