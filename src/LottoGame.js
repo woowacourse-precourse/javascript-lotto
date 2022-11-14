@@ -39,6 +39,7 @@ class LottoGame {
     mConsole.print("\n당첨 통계\n---");
     this.lottoController.printRank();
     this.lottoController.printProfitRate();
+    mConsole.close();
   }
 }
 
