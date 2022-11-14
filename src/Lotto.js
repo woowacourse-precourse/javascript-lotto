@@ -10,13 +10,14 @@ class Lotto {
 
   validate(numbers) {
     if(numbers!==undefined){
-      console.log(new Set([...numbers].filter((i)=>i!==',')).size);
-      if(new Set([...numbers].filter((i)=>i!==',')).size<6) throw "[ERROR]"
-      if ([...numbers].filter((i)=>i!==',').length !== 6) throw "[ERROR]"
-      if(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(numbers)) throw "[ERROR]"
-      if(/[a-zA-Z]/g.test(numbers)) throw "[ERROR]"
+      console.log(numbers);
+      // 오류 발생 1,3,5,7,9,11 일때 11이 두개로 나눠짐
+      if(Number(numbers)>45) throw "[ERROR] 콤마로 구분해주세요"
+      if (numbers.length!==6) throw "[ERROR] 6개의 숫자가 아닙니다"
+      if(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(numbers)) throw "[ERROR] 한글은 불가능 합니다"
+      if(/[a-zA-Z]/g.test(numbers)) throw "[ERROR] 영어는 불가능 합니다"
       ([...numbers].filter((i)=>i!==',').forEach((num)=>{
-        if(num>'45' || num < '1') throw "[ERROR]"
+        if(num>'45' || num < '1') throw "[ERROR] 1~45사이의 숫자만 가능합니다."
       }))
     }
   }
@@ -36,10 +37,8 @@ class Lotto {
   }
   checkInputMoney(money){
     let numberMoney=Number(money)
-    if(numberMoney<0) throw "[ERROR]"
-    if(money[0]==='0') throw "[ERROR]"
-    if(numberMoney%1000!==0) throw "[ERROR]"
-    if(numberMoney===0) throw "[ERROR]"
+    if(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(numberMoney)) throw "[ERROR] 한글 불가능"
+    if(/[a-zA-Z]/g.test(numberMoney)) throw "[ERROR] 영어 불가능"
     this.createLottoNumArrays(numberMoney)
   }
 
@@ -47,7 +46,7 @@ class Lotto {
     MissionUtils.Console.readLine(
       "당첨 번호를 입력해 주세요.\n",
       (userLottoNumber) => {
-        this.#numbers=userLottoNumber
+        this.#numbers=userLottoNumber.split(',')
         this.validate(this.#numbers)
         this.getUserBonusNumber(computerNumberArray, userLottoNumber,amountOfMoney);
       }
@@ -69,9 +68,9 @@ class Lotto {
     );
   }
   checkBonusNumber(bonusNumber){
-    if(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(bonusNumber)) throw "한글 불가능"
-    if(/[a-zA-Z]/g.test(bonusNumber)) throw "영어 불가능"
-    if(Number(bonusNumber)<1 || Number(bonusNumber)>45) throw "1~45사이"
+    if(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(bonusNumber)) throw "[ERROR] 한글 불가능"
+    if(/[a-zA-Z]/g.test(bonusNumber)) throw "[ERROR] 영어 불가능"
+    if(Number(bonusNumber)<1 || Number(bonusNumber)>45) throw "[ERROR] 1~45사이"
   }
   createLottoNumArrays(money) {
     let amountOfMoney = this.divideMoney(money);
@@ -79,12 +78,12 @@ class Lotto {
     for (let i = 0; i < amountOfMoney; i++) {
       computerNumberArray.push(this.setComputerRandomNumber());
     }
-    this.showAmountOfMoney(amountOfMoney);
-    this.showLottoArrays(computerNumberArray,amountOfMoney);
+    this.showAmountOfMoney(amountOfMoney,computerNumberArray,amountOfMoney);
   }
 
-  showAmountOfMoney(amount) {
+  showAmountOfMoney(amount,computerNumberArray,amountOfMoney) {
     MissionUtils.Console.print(`${amount}개를 구매했습니다.`);
+    this.showLottoArrays(computerNumberArray,amountOfMoney);
   }
   
   divideMoney(money) {
