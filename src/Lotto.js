@@ -10,6 +10,12 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
+    numbers.forEach((number) => {
+      if (typeof number !== "number")
+        throw new Error("[ERROR] 로또 번호는 숫자로만 구성해야 합니다.");
+      if (number < 1 || number > 45)
+        throw new Error("[ERROR] 로또 번호는 1~45 사이의 정수 입니다.");
+    });
   }
 
   // TODO: 추가 기능 구현
