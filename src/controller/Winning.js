@@ -1,6 +1,7 @@
 const Model = require("../model/Model");
 const View = require("../view/View");
 const Lotto = require("./Lotto");
+const Ranks = require("./Ranks");
 
 class Winning{
   constructor(lottoChart){
@@ -33,6 +34,11 @@ class Winning{
     if(this.validBonus(bonus_number)){
       this.model.setBonus(bonus_number);
     }
+    this.next();
+  }
+  next(){
+    const ranks = new Ranks(this.model.chart);
+    ranks.controll();
   }
 }
 
