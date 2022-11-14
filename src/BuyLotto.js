@@ -21,6 +21,19 @@ class BuyLotto {
         MissionUtils.Console.print(`${numberOfLotto}개를 구매했습니다.`);
     }
 
+    createRandomLotto(numberOfLotto) {
+        let randomLottos = [];
+
+        for(let i = 0; i < numberOfLotto; i++) {
+            const randomLotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+
+            randomLottos.push(randomLotto.sort((a, b) => a - b));
+        }
+        return randomLottos;
+    }
+
+
+
 }
 
 const isValidAmount = (amount) => {
