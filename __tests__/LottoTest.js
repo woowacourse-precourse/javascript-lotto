@@ -122,4 +122,9 @@ describe("[기능8] 보너스 번호 입력 예외 처리", () => {
       new Lotto([1, 2, 3, 4, 5, 6]).checkWinNumber(["57", 1]);
     }).toThrow("[ERROR]");
   });
+  test("[8-4] 보너스 번호가 당첨 번호와 중복이면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, 6]).checkWinNumber(["1", 1]);
+    }).toThrow("[ERROR]");
+  });
 });

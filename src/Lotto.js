@@ -17,6 +17,11 @@ class Lotto {
       if (number > 45 || number < 1)
         throw new Error("[ERROR]로또 번호 입력 오류");
     });
+    if (arrSize == 1) {
+      if (this.#numbers.includes(Number(winNumberArr))) {
+        throw new Error("[ERROR] 로또 번호 입력 오류");
+      }
+    }
   }
 
   inputBonusNumber() {
