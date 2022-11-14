@@ -1,4 +1,5 @@
 const Lotto = require("./Lotto");
+
 const CompareWithLotto = require("./CompareNumbers");
 
 const {
@@ -17,7 +18,7 @@ class MakeLotteryTickets {
 
   makeTickets() {
     let numberOfRepetition = this.numberOfTickets + 1;
-    while (numberOfRepetition--) {
+    while ((numberOfRepetition -= 1)) {
       const randomNumbers = RANDOM_UTIL.pickUniqueNumbersInRange(1, 45, 6);
       this.lotteryTickets.push(randomNumbers);
       this.sortLotteryNumbers(randomNumbers);
