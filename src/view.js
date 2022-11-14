@@ -10,5 +10,9 @@ class view {
     print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.#winngingResult[2]}개`);
     print(`6개 일치 (2,000,000,000원) - ${this.#winngingResult[1]}개`);
   }
+
+  printEariningRate(percentage) {
+    print(`총 수익률은 ${percentage}%입니다.`);
+  }
 }
 module.exports = view;
