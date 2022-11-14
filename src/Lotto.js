@@ -7,11 +7,11 @@ class Lotto {
     this.#numbers = numbers;
   }
 
-  inputAmount(amount) {
-    let answer = 0;
+  inputAmount(numbers) {
     MissionUtils.Console.readLine("금액을 입력해주세요.", (answer) => {
       console.log(`입력한 금액: ${answer}`);
       this.checkAmount(answer);
+      this.purchaseLotto(answer);
       MissionUtils.Console.close();
       return answer;
     });
@@ -81,10 +81,18 @@ class Lotto {
   bonusNumber(number) {
     MissionUtils.Console.readLine("보너스 번호를 입력해주세요. ", (answer) => {
       console.log(`입력한 숫자 : ${answer}`);
+      MissionUtils.Console.close();
     });
   }
+
+  checkBonusNumber(number) {
+    const winNumber = this.winningNumber();
+    const newNumber = number;
+    for (var i = 0; i < winNumber.length; i++) {
+      if (winNumber[i] === newNumber) {
+        throw new Error("[ERROR] 중복된 숫자를 입력하면 안됩니다.");
+      }
+    }
+  }
 }
-const lotto = new Lotto();
-//lotto.inputAmount();
-console.log(lotto.bonusNumber());
 module.exports = Lotto;
