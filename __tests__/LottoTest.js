@@ -25,4 +25,15 @@ describe("로또 클래스 테스트", () => {
       new Lotto([1, 2, 3, 4, 5, 46]);
     }).toThrow("[ERROR]");
   });
+
+  test("랜덤번호와 당첨번호가 4개 일치할때 등수 index = 1", () => {
+    let lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    expect(lotto.setSizeCount(new Set([1, 2, 3, 4, 5, 6, 7, 8]), 9)).toEqual(1);
+  });
+
+  test("랜덤번호와 당첨번호가 6개 일치할때 등수 index = 4", () => {
+    let lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    expect(lotto.setSizeCount(new Set([1, 2, 3, 4, 5, 6]), 9)).toEqual(4);
+  });
+  
 });
