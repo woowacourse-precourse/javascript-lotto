@@ -1,5 +1,11 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { LOTTO_LENGTH, ERROR, RESULT, PRIZE } = require("./constant/lotto");
+const {
+  LOTTO_LENGTH,
+  LOTTO_COST,
+  ERROR,
+  RESULT,
+  PRIZE,
+} = require("./constant/lotto");
 const Utils = require("./utils/utils");
 
 class Lotto {
@@ -91,7 +97,7 @@ class Lotto {
   }
 
   printProfit(ticketAmount) {
-    const ticketPrice = ticketAmount * 1000;
+    const ticketPrice = ticketAmount * LOTTO_COST;
     const totalSum = this.sumTotalPrize(this.resultMap);
     const profit = ((totalSum / ticketPrice) * 100).toFixed(1);
     Console.print(`총 수익률은 ${profit}%입니다.`);

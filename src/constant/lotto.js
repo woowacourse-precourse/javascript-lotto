@@ -1,4 +1,5 @@
 const LOTTO_LENGTH = 6;
+const LOTTO_COST = 1000;
 
 const ERROR = {
   NOT_SIX_NUMBERS: "로또 번호는 6개여야 합니다.",
@@ -34,6 +35,7 @@ const PRIZE = {
 
 module.exports = {
   LOTTO_LENGTH,
+  LOTTO_COST,
   ERROR,
   MESSEGE,
   RESULT,
