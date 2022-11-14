@@ -43,7 +43,9 @@
 |:heavy_check_mark:|로또 번호가 정수형의 나열이 아닌 경우||
 |:heavy_check_mark:|로또 번호의 숫자 범위가 1~45가 아닌 경우||
 |:heavy_check_mark:|로또 번호의 숫자가 중복되는 경우||
-|:heavy_minus_sign:|보너스 번호의 숫자가 1개가 아닌 경우||
+|:heavy_check_mark:|보너스 번호의 숫자가 숫자형이 아닌 경우||
+|:heavy_minus_sign:|보너스 번호의 숫자가 정수형이 아닌 경우||
+|:heavy_minus_sign:|보너스 번호의 숫자 범위가 1~45가 아닌 경우||
 |:heavy_minus_sign:|로또 구입 금액이 1,000원 단위로 나누어떨어지지 않는 경우||
 
 

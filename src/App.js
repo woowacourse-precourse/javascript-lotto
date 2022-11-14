@@ -58,17 +58,16 @@ class App {
 
   inputMainNums() {
     Console.readLine("\n당첨 번호를 입력해주세요.\n", (input) => {
-      this.checker.validateMainNums(input);
-      const mainNums = input.split(",");
-      this.mainNums = mainNums.map(Number);
+      const mainNums = this.checker.validateMainNums(input);
+      this.mainNums = mainNums;
       this.inputBonusNum();
     });
   }
 
   inputBonusNum() {
     Console.readLine("\n보너스 번호를 입력해주세요.\n", (input) => {
-      const bonusNum = input;
-      this.bonusNum = Number(bonusNum);
+      const bonusNum = this.checker.validateBonusNum(input);
+      this.bonusNum = bonusNum;
       this.checkAllLottos();
       Console.close();
     });

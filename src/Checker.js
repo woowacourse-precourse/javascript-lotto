@@ -16,6 +16,7 @@ class Checker {
     this.checkAllIsInteger(mainNums);
     this.checkAllRange(mainNums);
     this.checkDuplicate(mainNums);
+    return mainNums;
   }
 
   checkSix(mainNumStrs) {
@@ -54,6 +55,10 @@ class Checker {
     const mainNumSet = new Set([...mainNums]);
     if (mainNumSet.size === 6) return;
     throw new Error(ERROR_MSG_NUMS_DUPLICATED);
+  }
+
+  validateBonusNum(input) {
+    this.checkIsNumber(input);
   }
 }
 
