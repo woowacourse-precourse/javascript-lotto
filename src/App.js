@@ -29,6 +29,10 @@ class App {
   }
 
   play() {
+    this.initPurchaseAmount();
+  }
+
+  initPurchaseAmount() {
     Console.readLine('구입금액을 입력해 주세요.\n', (answer) => {
       this.validatePrice(answer);
       this.purchaseAmount = answer;
@@ -97,19 +101,23 @@ class App {
     })
   }
 
+  validateBonusNumber(answer) {
+    let isContain = this.luckyNumbers.filter((value) => value === answer);
+    if(isContain.length > 0) {
+      Console.close();
+      throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+    }
+    let bonusArr = new Array(5).fill(null);
+    bonusArr.push(answer);
+    let lotto = new Lotto(bonusArr);
+    lotto.validate(bonusArr);
+  }
+
   hasLottoRankingSystem() {
     this.calcOverlapNumbers();
     this.calcRankCountNumbers();
     this.calcProfit();
     this.printRanking();
-  }
-
-  validateBonusNumber(answer) {
-    let bonusArr = new Array(5).fill(null);
-    bonusArr.push(answer);
-    let lotto = new Lotto(bonusArr);
-    lotto.validate(bonusArr);
-    lotto.validateOverlap(this.luckyNumbers, bonusArr);
   }
 
   calcOverlapNumbers() {
