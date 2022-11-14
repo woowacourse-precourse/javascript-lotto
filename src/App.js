@@ -83,7 +83,6 @@ class App {
   }
 
   getWinningPrize() {
-    console.log("디스리절트", this.results);
     this.results.forEach((value, key) => {
       this.rewards += REWARDS[key] * value;
     });
