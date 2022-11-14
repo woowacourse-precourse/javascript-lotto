@@ -45,7 +45,7 @@ class Lotto {
   }
 
   #hasValidRangeValues(numbers) {
-    return numbers.some((number) => this.#isInRange(number));
+    return numbers.every((number) => this.#isInRange(number));
   }
 
   #isInRange(number) {
