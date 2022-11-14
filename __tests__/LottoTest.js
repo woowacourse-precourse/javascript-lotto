@@ -12,6 +12,13 @@ const mockQuestions = (answers) => {
   }, MissionUtils.Console.readLine);
 };
 
+const mockRandoms = (numbers) => {
+  MissionUtils.Random.pickUniqueNumbersInRange = jest.fn();
+  numbers.reduce((acc, number) => {
+    return acc.mockReturnValueOnce(number);
+  }, MissionUtils.Random.pickUniqueNumbersInRange);
+};
+
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
     expect(() => {

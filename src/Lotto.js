@@ -23,9 +23,18 @@ class Lotto {
     }
   }
   
+  winningNumber(price,lottos){
+    Console.readLine('당첨 번호를 입력해 주세요.', (input) => {
+      let numbers = input.split(',');
+      this.inputCheck.validate(numbers);
+      this.#numbers = numbers;
+    });
+  }
+
   generateLotto = (price,amount) => {
     const lottos = generateRandom(amount);
     this.printLotto(lottos,amount); 
+    this.winningNumber(price,lottos);
   }
 
   buyLotto(){
