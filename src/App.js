@@ -8,8 +8,14 @@ class App {
   play() {
     let user = new User();
     let lottoMachine = new LottoMachine();
-    let lotto = new Lotto();
     user.inputAmount();
+    for (let i = 0; i < user.purchasableLotto(); i++) {
+      let lotto = new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6));
+      user.addLotto(lotto);
+    }
+    user.printLottos();
+    lottoMachine.inputWinningNumber();
+    // lottoMachine.lotteryResult(user.)
   }
 }
 

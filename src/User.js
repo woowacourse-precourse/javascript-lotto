@@ -36,6 +36,10 @@ class User {
     this.#winStats = winStats;
   }
 
+  getLottos() {
+    return this.#myLottos;
+  }
+
   printLottos() {
     Console.print(this.purchasableLotto() + "개를 구매했습니다.");
     this.#myLottos.map((lotto) => {
