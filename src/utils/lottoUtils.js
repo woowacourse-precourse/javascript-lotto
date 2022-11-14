@@ -6,6 +6,10 @@ const MESSAGE = require("../constant/message");
 const { commaizeNumber, roundNumber } = require("../utils/common");
 
 class LottoUtils {
+  static calculateLottoCount(purchaseCost) {
+    return Math.floor(purchaseCost / 1000);
+  }
+
   static printLotto(tickets) {
     let count = tickets.length;
 
