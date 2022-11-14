@@ -126,11 +126,11 @@ class App {
 
   calculateProfit(scores) {
     return scores.reduce((total, arg) => {
-      if (arg === 3) return (total += 5_000);
-      if (arg === 4) return (total += 50_000);
-      if (arg === 5) return (total += 1_500_000);
-      if (arg === 5.5) return (total += 30_000_000);
-      if (arg === 6) return (total += 2_000_000_000);
+      if (arg === 3) return (total += this.reward[0]);
+      if (arg === 4) return (total += this.reward[1]);
+      if (arg === 5) return (total += this.reward[2]);
+      if (arg === 5.5) return (total += this.reward[3]);
+      if (arg === 6) return (total += this.reward[4]);
     }, 0);
   }
 }
