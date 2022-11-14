@@ -6,15 +6,15 @@ const Bonus = require("./validate/Bonus.js");
 
 const { Console } = require("@woowacourse/mission-utils");
 const { DEFAULT, LOTTO_PRIZE, RANK } = require("./utils/constant.js");
+const Earning = require("./controller/Earning.js");
 
 class App {
   constructor() {
     this.lottos = [];
     this.luckyNumber = [];
     this.bonusNumber = 0;
-    this.earningRate = 0;
     this.input = 0;
-    this.rank = {};
+    this.lottoResult = {};
   }
 
   play() {
@@ -46,33 +46,6 @@ class App {
     });
   }
 
-  convertRankToPrize(rank, count) {
-    switch (rank) {
-      case RANK[1]:
-        return LOTTO_PRIZE.FIRST * count;
-      case RANK[2]:
-        return LOTTO_PRIZE.SECOND * count;
-      case RANK[3]:
-        return LOTTO_PRIZE.THIRD * count;
-      case RANK[4]:
-        return LOTTO_PRIZE.FOURTH * count;
-      case RANK[5]:
-        return LOTTO_PRIZE.FIFTH * count;
-      default:
-        return;
-    }
-  }
-
-  getTotalLottoEarning(result) {
-    const rankCountArray = Object.entries(result);
-    const totalEarning = rankCountArray.reduce(
-      (total, [rank, count]) => (total += this.convertRankToPrize(rank, count)),
-      DEFAULT.ZERO,
-    );
-
-    return totalEarning;
-  }
-
   getEarningRate() {
     Console.print("당첨 통계");
     Console.print("---");
@@ -82,15 +55,16 @@ class App {
       this.luckyNumber,
       this.bonusNumber,
     );
-    this.rank = lottoResult.getResult();
-    // this.rank = new LottoResult().getRank();
+    this.lottoResult = lottoResult.getResult();
 
-    lottoResult.printLottoResult(this.rank);
+    lottoResult.printLottoResult(this.lottoResult);
 
-    const totalEarning = this.getTotalLottoEarning(this.rank);
-    this.earningRate = ((totalEarning / this.input) * 100).toFixed(1);
+    const earning = new Earning(this.lottoResult);
 
-    Console.print(`총 수익률은 ${this.earningRate}%입니다.`);
+    const totalEarning = earning.getTotalLottoEarning();
+    const earningRate = earning.getEarningRate(totalEarning, this.input);
+
+    Console.print(`총 수익률은 ${earningRate}%입니다.`);
     Console.close();
   }
 }
