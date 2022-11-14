@@ -1,6 +1,6 @@
 const {ERROR_MESSAGE} = require("./constant.js")
 
-const generalValidation = (userInput) =>  {
+const payValidate = (userInput) =>  {
   
     if (userInput === "") throw new Error(ERROR_MESSAGE.BLANK);
   
@@ -8,7 +8,10 @@ const generalValidation = (userInput) =>  {
     for(var i=0;i<inputArr.length;i++){
         if(isNaN(inputArr[i])) throw new Error(ERROR_MESSAGE.NOT_NUMBER);
     }
+
+    if(parseInt(userInput) % 1000 != 0) throw new Error(ERROR_MESSAGE.UNIT_ERROR);
+    
     
   }
   
-module.exports = generalValidation;
+module.exports = payValidate;

@@ -4,7 +4,8 @@ const ERROR_MESSAGE = Object.freeze({
     SIX_DIGIT: BASE_MESSAGE + "로또 번호는 6개여야 합니다.",
     DUPLICATE: BASE_MESSAGE + "중복된 숫자가 있습니다.",
     NOT_NUMBER: BASE_MESSAGE + "숫자만 입력해 주세요.",
-    WRONG_INPUT: BASE_MESSAGE + "잘못된 값을 입력하여 게임을 종료합니다."
+    WRONG_INPUT: BASE_MESSAGE + "잘못된 값을 입력하여 게임을 종료합니다.",
+    UNIT_ERROR: BASE_MESSAGE + "1,000원 단위로 입력해 주세요."
 })
 
 const RESULT_MESSAGE = Object.freeze({
