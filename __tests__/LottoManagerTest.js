@@ -1,9 +1,11 @@
 const LottoManager = require('../src/LottoManager');
 
+const { LOTTO } = require('../src/lib/constants/lotto');
+
 const mockCreateLottoNumbers = () => [1, 2, 3, 4, 5, 6];
 
 describe('로또 관리자 클래스 테스트', () => {
-  test('로또 구입 금액이 1,000으로 나누어 떨어지지 않으면 예외가 발생한다', () => {
+  test(`로또 구입 금액이 ${LOTTO.UNIT_PRICE}으로 나누어 떨어지지 않으면 예외가 발생한다`, () => {
     expect(() => {
       const lottoManager = new LottoManager();
       lottoManager.initLottos('1001');
