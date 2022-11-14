@@ -1,6 +1,6 @@
 const { LOTTO, CASHER, LOTTO_RESULT } = require('../constants');
-const Io = require('../infrastructure/io/io');
-const InputValidator = require('../utils/InputValidator');
+const Io = require('../infrastructure/io');
+const { validateMoney } = require('../utils/validators/InputValidator');
 
 class Casher {
   static ranks = new Map();
