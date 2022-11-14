@@ -1,12 +1,12 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
-const PRIZE_MONEY = {
-  1: 2000000000,
-  2: 30000000,
-  3: 1500000,
-  4: 50000,
-  5: 5000,
+const RANKING = {
+  1: { match: 6, money: 2000000000 },
+  2: { match: 5, money: 30000000 },
+  3: { match: 5, money: 1500000 },
+  4: { match: 4, money: 50000 },
+  5: { match: 3, money: 5000 },
 };
 
 class App {
@@ -75,9 +75,10 @@ class App {
   setBonusNumber() {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (answer) => {
       const value = parseInt(answer);
+
       this.validateBonusNumber(value);
       this.bonusNumber = value;
-      this.setWinningHistory();
+
       this.getWinningHistory();
     });
   }
@@ -101,24 +102,43 @@ class App {
   }
 
   getWinningHistory() {
+    this.setWinningHistory();
+
     this.lottos.forEach((lotto) => {
       const matchCount = lotto.getMatchCount(this.winningNumber);
 
       switch (matchCount) {
-        case 6:
-          this.winningHistory[1] = this.winningHistory[1] + 1;
+        case 3:
+          this.winningHistory[5]++;
+          break;
+        case 4:
+          this.winningHistory[4]++;
           break;
         case 5:
           const matchBonus = lotto.hasBonusNumber(this.bonusNumber);
           matchBonus ? this.winningHistory[2]++ : this.winningHistory[3]++;
           break;
-        case 4:
-          this.winningHistory[4]++;
-          break;
-        case 3:
-          this.winningHistory[5]++;
+        case 6:
+          this.winningHistory[1] = this.winningHistory[1] + 1;
           break;
       }
+    });
+
+    this.printWinningHistory();
+  }
+
+  printWinningHistory() {
+    const RANK = [5, 4, 3, 2, 1];
+
+    Console.print("\n당첨 통계\n---");
+    RANK.forEach((rank) => {
+      Console.print(
+        `${RANKING[rank].match}개 일치${
+          rank === 2 ? ", 보너스 볼 일치" : ""
+        } (${RANKING[rank].money.toLocaleString()}원) - ${
+          this.winningHistory[rank]
+        }개`
+      );
     });
   }
 }
