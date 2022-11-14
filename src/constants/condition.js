@@ -8,6 +8,13 @@ const LOTTO_PRIZE_MATCH_COUNT = {
   fourthPlace: 4,
   fifthPlace: 3,
 };
+const LOTTO_PRIZE_MONEY = {
+  firstPlace: 2000000000,
+  secondPlace: 30000000,
+  thirdPlace: 1500000,
+  fourthPlace: 50000,
+  fifthPlace: 5000,
+};
 
 module.exports = {
   LOTTO_PRICE,
@@ -15,4 +22,5 @@ module.exports = {
   LOTTO_NUM_MAX_RANGE,
   LOTTO_DIGITS,
   LOTTO_PRIZE_MATCH_COUNT,
+  LOTTO_PRIZE_MONEY,
 };
