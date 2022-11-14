@@ -42,7 +42,12 @@ class Lottos {
 
   printResult(winningNumber, bonusNum) {
     this.createRanks(winningNumber, bonusNum);
-    
+    this.ranks = this.ranks.filter((rank) => rank !== 0);
+
+    const map = this.ranks.reduce((accu, curr) => {
+      accu.set(curr, (accu.get(curr) || 0) + 1);
+      return accu;
+    }, new Map());
   }
 }
 
