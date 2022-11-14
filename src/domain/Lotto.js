@@ -1,4 +1,3 @@
-const { Console } = require("@woowacourse/mission-utils");
 const { ERROR_MESSAGE } = require("../constants");
 
 class Lotto {
