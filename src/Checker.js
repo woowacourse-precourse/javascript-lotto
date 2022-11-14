@@ -4,6 +4,7 @@ const {
   ERROR_MSG_NUMS_INTEGER,
   ERROR_MSG_NUM_RANGE,
   ERROR_MSG_NUMS_DUPLICATED,
+  ERROR_MSG_BONUS_NUM_IN_MAIN_NUMS,
 } = require("./constants/error-message");
 
 class Checker {
@@ -57,12 +58,18 @@ class Checker {
     throw new Error(ERROR_MSG_NUMS_DUPLICATED);
   }
 
-  validateBonusNum(input) {
+  validateBonusNum(input, mainNums) {
     this.checkIsNumber(input);
 
     const bonusNum = Number(input);
     this.checkIsInteger(bonusNum);
     this.checkRange(bonusNum);
+    this.checkIsBonusNumInMainNums(bonusNum, mainNums);
+  }
+
+  checkIsBonusNumInMainNums(bonusNum, mainNums) {
+    if (!mainNums.includes(bonusNum)) return;
+    throw new Error(ERROR_MSG_BONUS_NUM_IN_MAIN_NUMS);
   }
 }
 

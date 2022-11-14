@@ -66,7 +66,7 @@ class App {
 
   inputBonusNum() {
     Console.readLine("\n보너스 번호를 입력해주세요.\n", (input) => {
-      const bonusNum = this.checker.validateBonusNum(input);
+      const bonusNum = this.checker.validateBonusNum(input, this.mainNums);
       this.bonusNum = bonusNum;
       this.checkAllLottos();
       Console.close();
