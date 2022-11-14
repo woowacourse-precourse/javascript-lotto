@@ -1,6 +1,6 @@
 class LottoValidate {
   //  총 당첨 번호 확인
-  constructor(winningNumber, bonusNumber) {
+  constructor(winningNumber) {
     this.countValidate(winningNumber);
     this.repeatValidate(winningNumber);
     this.limitNumberValidate(winningNumber);
@@ -28,7 +28,7 @@ class LottoValidate {
   limitNumberValidate(winningNumber) {
     winningNumber.map(x => {
       if (x < 1 || x > 45) {
-        throw new Error('[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.');
+        throw new Error('[ERROR] 로또 번호는 1에서 45 사이의 숫자여야 합니다.');
       }
     });
     return;
