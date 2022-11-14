@@ -1,13 +1,17 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const LottoUser = require('./LottoUser');
 const Lotto = require('./Lotto.js');
-const { STATISTIC_KEY, PRIZE, MATCH_NUMBER } = require('./constants.js');
+const {
+  STATISTIC_KEY,
+  PRIZE,
+  MATCH_NUMBER,
+  INPUT_MESSAGE,
+} = require('./constants.js');
 
 class LottoGame {
   #user;
   #raffle;
   #statistic;
-  #rateOfReturn;
 
   constructor() {
     this.#user = undefined;
@@ -19,7 +23,6 @@ class LottoGame {
       prev[currentKey] = 0;
       return prev;
     }, {});
-    this.#rateOfReturn = 0;
   }
 
   start() {
@@ -27,7 +30,7 @@ class LottoGame {
   }
 
   inputAmount() {
-    MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (amount) => {
+    MissionUtils.Console.readLine(INPUT_MESSAGE.AMOUNT, (amount) => {
       this.#user = new LottoUser(amount);
       this.#user.printUserLottos();
       this.inputWinningNumbers();
@@ -35,33 +38,27 @@ class LottoGame {
   }
 
   inputWinningNumbers() {
-    MissionUtils.Console.readLine(
-      '\n당첨 번호를 입력해 주세요.\n',
-      (numbers) => {
-        this.#raffle.winning = new Lotto(numbers.split(',').map(Number));
-        this.inputBonusNumber();
-      },
-    );
+    MissionUtils.Console.readLine(INPUT_MESSAGE.WINNING, (numbers) => {
+      this.#raffle.winning = new Lotto(numbers.split(',').map(Number));
+      this.inputBonusNumber();
+    });
   }
 
   inputBonusNumber() {
-    MissionUtils.Console.readLine(
-      '\n보너스 번호를 입력해 주세요.\n',
-      (number) => {
-        const numberToInt = parseInt(number);
-        Lotto.validateLottoNumber(parseInt(numberToInt));
-        Lotto.validateNumberArrayDuplication(
-          this.#raffle.winning.getLottoNumbers().concat(numberToInt),
-        );
-        this.#raffle.bonus = parseInt(numberToInt, 10);
+    MissionUtils.Console.readLine(INPUT_MESSAGE.BONUS, (number) => {
+      const numberToInt = parseInt(number, 10);
+      Lotto.validateLottoNumber(numberToInt);
+      Lotto.validateNumberArrayDuplication(
+        this.#raffle.winning.getLottoNumbers().concat(numberToInt),
+      );
+      this.#raffle.bonus = parseInt(numberToInt, 10);
 
-        this.printWinningStatistic();
-      },
-    );
+      this.printWinningStatistic();
+    });
   }
 
   printWinningStatistic() {
-    MissionUtils.Console.print('\n당첨 통계\n---');
+    MissionUtils.Console.print(INPUT_MESSAGE.STATISTIC);
     this.calcStatistic();
     STATISTIC_KEY.forEach((key) => {
       this.printRanking(key);

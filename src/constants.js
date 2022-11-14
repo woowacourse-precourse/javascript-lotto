@@ -13,4 +13,10 @@ const PRIZE = {
   FIVE_BONUS: 30000000,
   SIX: 2000000000,
 };
-module.exports = { STATISTIC_KEY, MATCH_NUMBER, PRIZE };
+const INPUT_MESSAGE = {
+  AMOUNT: '구입금액을 입력해 주세요.\n',
+  WINNING: '\n당첨 번호를 입력해 주세요.\n',
+  BONUS: '\n보너스 번호를 입력해 주세요.\n',
+  STATISTIC: '\n당첨 통계\n---',
+};
+module.exports = { STATISTIC_KEY, MATCH_NUMBER, PRIZE, INPUT_MESSAGE };
