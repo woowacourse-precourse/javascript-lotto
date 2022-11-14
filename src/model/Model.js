@@ -19,6 +19,18 @@ class Model{
   setPaid(data){
     this.chart.paid = data;
   }
+  setNumberOfLotto(data){
+    this.chart.number_of_lotto = data;
+  }
+  initPublished(){
+    this.chart.published = [];
+  }
+  addPublished(data){
+    this.chart.published.push(data);
+  }
+  getPublished(){
+    return this.chart.published;
+  }
 }
 
 module.exports = Model;
