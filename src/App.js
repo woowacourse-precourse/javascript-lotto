@@ -4,7 +4,9 @@ class App {
   static lottoPurchaser() {
     Console.readLine('구입금액을 입력해 주세요.\n', (purchaseAmount) => {
       const purchaseLottoCount = this.lottoCountGetter(purchaseAmount);
+      const purchaseLottoList = this.lottoPublisher(purchaseLottoCount);
       Console.print(`\n${purchaseLottoCount}개를 구매했습니다.`);
+      this.purchaseLottoListPrinter(purchaseLottoList);
     });
   }
 
@@ -18,6 +20,16 @@ class App {
       purchaseLottoNumbers.push(Random.pickUniqueNumbersInRange(1, 45, 6));
     }
     return purchaseLottoNumbers;
+  }
+
+  static purchaseLottoListPrinter(purchaseLottoList) {
+    for (
+      let lottoNumber = 0;
+      lottoNumber < purchaseLottoList.length;
+      lottoNumber += 1
+    ) {
+      Console.print(purchaseLottoList[lottoNumber].sort((a, b) => a - b));
+    }
   }
 
   play() {
