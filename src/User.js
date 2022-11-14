@@ -1,23 +1,18 @@
-const Lotto = require("./Lotto");
 const MissionUtils = require("@woowacourse/mission-utils");
+const Lotto = require("./Lotto");
 
 class User {
 	#seedMoney
 	
 	constructor(money) {
 		this.validate(money);
-		this.profit = 0;
+		this.earnings = 0;
 		this.#seedMoney = money;
 		this.lottoBundle = [];
 	}
 	
 	getSeedMoney(money) {
 		return this.#seedMoney;
-	}
-	
-	getRateOfReturn() {
-		let rateOfReturn = ((this.profit / this.#seedMoney) * 100).toFixed(1);
-		return (rateOfReturn + "%");
 	}
 
 	validate(money) {
@@ -26,20 +21,20 @@ class User {
 		this.isThousands(money);
 	}
 
-	isNum(money) {
+	static isNum(money) {
     const validNums = /[^0-9]/;
 		if (validNums.test(money)) {
 			throw new Error('[ERROR] 구입 금액은 숫자여야 합니다.');
 		}
   }
 	
-	isMoneyEnough(money) {
+	static isMoneyEnough(money) {
 		if (money < 1000) {
 			throw new Error('[ERROR] 구입 금액이 충분하지 않습니다.');
 		}
 	}
 	
-	isThousands(money) {
+	static isThousands(money) {
 		if ((money % 1000) !== 0) {
 			throw new Error('[ERROR] 구입 금액은 1,000원 단위여야 합니다.');
 		}
