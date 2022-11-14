@@ -12,6 +12,9 @@ const PRIZE_REWARD = {
   fifth: 5000,
 };
 
+Object.freeze(PRIZE_WITHOUT_SECOND);
+Object.freeze(PRIZE_REWARD);
+
 class LottoManager {
   /** @type {number[]} */
   #winningNumbers;
