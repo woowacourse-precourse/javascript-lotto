@@ -6,6 +6,8 @@ const LottoGameOperator = require("./LottoGameOperator");
 class LottoGame {
   #purchaseAmount;
   #LottoList;
+  #winningNumbers;
+  #bonusNumber;
 
   constructor() {
     this.operator = new LottoGameOperator();
@@ -17,28 +19,30 @@ class LottoGame {
 
   purchaseLotto() {
     Console.readLine(MESSAGES.ENTER_PURCHASE_AMOUNT, (input) => {
+      Validation.validatePurchaseAmount(input);
       this.#purchaseAmount = Number(input);
-      Validation.validatePurchaseAmount(this.#purchaseAmount);
       const lottoQuantity = this.operator.countLottoTickets(
         this.#purchaseAmount
       );
 
       this.operator.showLottoQuantity(lottoQuantity);
       this.#LottoList = this.operator.createLottoNumbers(lottoQuantity);
+      this.makeWinningNumbers();
     });
   }
 
   makeWinningNumbers() {
     Console.readLine(MESSAGES.INPUT_WINNING_NUMBERS, (input) => {
       const winningNumbersArray = input.split(",");
-      Validation.validateWinningNumbers(winningNumbers);
+      Validation.validateWinningNumbers(winningNumbersArray);
 
       this.#winningNumbers = winningNumbersArray.map(Number);
+      this.makeBonusNumber();
     });
   }
 
   makeBonusNumber() {
-    Console.log(MESSAGES.INPUT_BONUS_NUMBER, (input) => {
+    Console.print(MESSAGES.INPUT_BONUS_NUMBER, (input) => {
       Validation.validateBonusNumber(Number(input), this.#winningNumbers);
 
       this.#bonusNumber = Number(input);

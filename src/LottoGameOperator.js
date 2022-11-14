@@ -8,7 +8,7 @@ class LottoGameOperator {
   }
 
   showLottoQuantity(lottoQuantity) {
-    Console.print(`${lottoQuantity}개를 구매했습니다.`);
+    Console.print(`${lottoQuantity}개를 구매했습니다.\n`);
   }
 
   createLottoNumbers(lottoQuantity) {
@@ -23,6 +23,7 @@ class LottoGameOperator {
     });
 
     this.showLottoNumbers(lottoArray);
+    return;
   }
 
   showLottoNumbers(lottoArray) {

@@ -3,7 +3,7 @@ const { ERROR_MESSAGES, LOTTO } = require("./Constants/Constants");
 class Validation {
   /**
    * 플레이어가 게임 중 입력 값이 형식에 어긋날 경우 예외를 발생시킵니다.
-   * @param {number} playerInput - 플레이어의 입력
+   * @param {string} playerInput - 플레이어의 입력
    */
   static validatePurchaseAmount(purchaseAmount) {
     if (!this.isValidAmountUnit(purchaseAmount)) {
