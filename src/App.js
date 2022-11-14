@@ -2,6 +2,22 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const Bonus = require("./Bonus");
 
+function roundOffToNearestTenth(number) {
+  const DECIMAL_PLACES = 1; 
+  const roundedResult = Number(`${Math.round(Number(`${number}e${DECIMAL_PLACES}`))}e-${DECIMAL_PLACES}`).toFixed(DECIMAL_PLACES);
+  return roundedResult;
+}
+
+function getEarningRate(winStats, numOfTickets) { 
+  const earnings = (winStats.get("3개 일치 (5,000원)") * 5000
+    + winStats.get("4개 일치 (50,000원)") * 50000
+    + winStats.get("5개 일치 (1,500,000원)") * 1500000
+    + winStats.get("5개 일치, 보너스 볼 일치 (30,000,000원)") * 30000000
+    + winStats.get("6개 일치 (2,000,000,000원)") * 2000000000);
+  const earningRate = roundOffToNearestTenth((earnings / (numOfTickets * 1000)) * 100);
+  printWinStats(winStats, earningRate);
+}
+
 function getWinStats(matchCountTotal, bonusMatchTotal, numOfTickets) {
   const winStats = new Map();
   winStats.set("3개 일치 (5,000원)", matchCountTotal.filter((matchCount) => matchCount === 3).length);
