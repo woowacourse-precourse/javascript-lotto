@@ -18,5 +18,11 @@ const ERROR_MESSAGE = Object.freeze({
 const PRINT_MESSAGE = Object.freeze({
   PURCHASE_MESSAGE: (num) => `${num}개를 구매했습니다.`,
   START_STATISTICS: `당첨 통계\n ---\n`,
+  FIFTH_RANKING_MESSAGE: (num) => `3개 일치 (5,000원) - ${num}개`,
+  FOURTH_RANKING_MESSAGE: (num) => `4개 일치 (50,000원) - ${num}개`,
+  THIRD_RANKING_MESSAGE: (num) => `5개 일치 (1,500,000원) - ${num}개`,
+  SECOND_RANKING_MESSAGE: (num) =>
+    `5개 일치, 보너스 볼 일치 (30,000,000원) - ${num}개`,
+  FIRST_RANKING_MESSAGE: (num) => `6개 일치 (2,000,000,000원) - ${num}개`,
 });
 module.exports = { INPUT_MESSAGE, ERROR_MESSAGE, PRINT_MESSAGE };
