@@ -1,10 +1,9 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Validator = require("./Validator");
 
 class User {
   readAmount(query, callback) {
-    MissionUtils.Console.readLine(query, (amount) => {
-      callback(amount);
-    });
+    MissionUtils.Console.readLine(query, Validator.amount(callback));
   }
 }
 
