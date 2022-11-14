@@ -5,12 +5,19 @@ class DetectError {
         if (prize.includes(bonus)) {
             throw new Error(`${Message.ERROR_MESSAGE.OVERLAP}`);
         }
+
+        this.checkNumberHasString(bonus.toString());
     }
 
     checkPrizNumber(przNum) {
+        let idx = 0;
         if (przNum.length !== 6) {
             throw new Error(`${Message.ERROR_MESSAGE.COMMA}`);
         }
+
+        przNum.forEach(element => {
+            this.checkNumberHasString(element);
+        });
 
         przNum.forEach(element => {
             let prizeN = parseInt(element);
@@ -22,13 +29,20 @@ class DetectError {
 
     checkUserInput(userMoney) {
         const userInput = [...userMoney];
-        let idx = 0;
+        
 
         if (userInput.length === 0) {
             throw new Error(`${Message.ERROR_MESSAGE.NUMBER}`);
         }
+        
+        this.checkNumberHasString(userInput);
+    }
 
-        userInput.forEach(element => {
+    checkNumberHasString(ele) {
+        let idx = 0;
+        ele = [...ele];
+        
+        ele.forEach(element => {
             if (element === '0' && idx === 0) {
                 throw new Error(`${Message.ERROR_MESSAGE.NUMBER}`);
             }
@@ -37,6 +51,7 @@ class DetectError {
             }
             idx++;
         });
+
     }
 
 
