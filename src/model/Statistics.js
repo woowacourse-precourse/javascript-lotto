@@ -48,6 +48,22 @@ class Statistics {
 
     return null;
   }
+
+  updateRanks({ winningNumber, bonusNumber, userLottoArray }) {
+    for (const singleLotto of userLottoArray) {
+      const correctCount = this.getCorrectNumberFromSingleLotto(
+        winningNumber,
+        singleLotto,
+      );
+      const resultRank = this.getFinalRank(
+        correctCount,
+        singleLotto,
+        bonusNumber,
+      );
+
+      this.setRanks(resultRank, this.ranks[resultRank] + 1);
+    }
+  }
 }
 
 module.exports = Statistics;
