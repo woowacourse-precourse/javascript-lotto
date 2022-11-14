@@ -5,14 +5,12 @@ const Lotto = require("./Lotto");
 class LottoMachine {
   #lottoList;
 
-  getLottoList() {
-    return this.#lottoList; 
+  constructor(purchaseMoney) {
+    this.#lottoList = this.purchaseLotto(purchaseMoney);
   }
 
-  inputPurchaseMoney() {
-    MissionUtils.Console.readLine(CONSOLE_MESSAGE.INPUT_PURCHASE_MONEY,(inputMoney)=>{
-      this.purchaseLotto(inputMoney);
-    })
+  getLottoList() {
+    return this.#lottoList; 
   }
 
   makeLotto() {
@@ -23,17 +21,9 @@ class LottoMachine {
     return [...lotto];
   }
 
-  purchaseLotto(inputMoney) {
-    const purchasedLottoNumber = parseInt(inputMoney / 1000);
-    this.#lottoList = Array.from(Array(purchasedLottoNumber),() => new Lotto(this.makeLotto()));
-    this.showPurchasedLotto();
-  }
-
-  showPurchasedLotto() {
-    MissionUtils.Console.print(`\n${this.#lottoList.length}${CONSOLE_MESSAGE.SHOW_PURCHASED_MONEY}`);
-    this.#lottoList.forEach((lotto)=>{
-      MissionUtils.Console.print(lotto.getNumbers());
-    });
+  purchaseLotto(purchaseMoney) {
+    const purchasedLottoNumber = parseInt(purchaseMoney / 1000);
+    return Array.from(Array(purchasedLottoNumber),() => new Lotto(this.makeLotto()));
   }
 }
 
