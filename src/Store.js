@@ -11,7 +11,7 @@ class Store {
   }
 
   pay() {
-    Console.readLine('구입금액을 입력해 주세요.\n', (inputStr) => {
+    Console.readLine(`${MESSAGE.ENTER_PURCHASE_AMOUNT}\n`, (inputStr) => {
       const purchaseAmount = this.validate(inputStr);
       this.issuedQuantity = purchaseAmount / 1000;
       this.issue();
