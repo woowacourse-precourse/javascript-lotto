@@ -46,6 +46,18 @@ class Management {
     return number;
   }
 
+  checkNum(lotto) {
+    let realnum = 0;
+    let bonusnum = 0;
+    lotto.forEach((number) => {
+      if (this.#winNumber.includes(number)) {
+        realnum += 1;
+      }
+    });
+    if (lotto.includes(this.#bonusNumber)) bonusnum += 1;
+    return { realnum, bonusnum };
+  }
+
   WinNumberQuery(next) {
     Console.readLine(`\n${MANAGEMENT_WIN_NUMBER_QUERY}\n`, (answer) => {
       this.#winNumber = this.WinNumberVaild(answer);
