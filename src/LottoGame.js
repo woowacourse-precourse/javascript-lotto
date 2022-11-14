@@ -106,9 +106,7 @@ class LottoGame {
 
   purchaseLotto(lottos, payment) {
     this.validatePurchaseLotto(payment);
-
     this.printTheNumberOfLotto(lottos, payment);
-
     this.createLotto(lottos);
   }
 
@@ -118,9 +116,7 @@ class LottoGame {
 
       MissionUtils.Console.readLine(TEXT.BONUS_NUMBER, (bonusNumber) => {
         this.validateLottoNumber(bonusNumber);
-
         this.winLotto(lottos, numbers, bonusNumber);
-
         this.printResult(lottos, payment);
       });
     });
