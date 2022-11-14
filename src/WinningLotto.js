@@ -1,5 +1,6 @@
 const { MIN_NUMBER, MAX_NUMBER } = require("./utils/constants");
 const Lotto = require("./Lotto");
+const { ERROR } = require("./utils/messages");
 
 class WinningLotto extends Lotto {
   #bonusNumber;
@@ -12,7 +13,7 @@ class WinningLotto extends Lotto {
 
   #validateBonus(bonusNumber) {
     if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
-      throw new Error("[ERROR] 보너스 번호의 범위는 1~45 사이여야 합니다.");
+      throw new Error(ERROR.BONUS_NUMBER_RANGE);
     }
   }
 

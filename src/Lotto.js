@@ -1,4 +1,5 @@
 const { LOTTO_LENGTH, MIN_NUMBER, MAX_NUMBER } = require("./utils/constants");
+const { ERROR } = require("./utils/messages");
 
 class Lotto {
   #numbers;
@@ -10,21 +11,21 @@ class Lotto {
 
   #validateNumberLength(numbers) {
     if (numbers.length !== LOTTO_LENGTH) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error(ERROR.NUMBERS_LENGTH);
     }
   }
 
   #validateNumberRange(numbers) {
     numbers.forEach((number) => {
       if (number < MIN_NUMBER || number > MAX_NUMBER) {
-        throw new Error("[ERROR] 로또 번호의 범위는 1~45 사이여야 합니다.");
+        throw new Error(ERROR.NUMBER_RANGE);
       }
     });
   }
 
   #validateNumberDuplicate(numbers) {
     if (numbers.length !== new Set(numbers).size) {
-      throw new Error("[ERROR] 로또 번호는 서로 중복 되지 않아야 합니다.");
+      throw new Error(ERROR.NUMBERS_DUPLICATE);
     }
   }
 

@@ -1,15 +1,16 @@
 const { LOTTO_PRICE } = require("../utils/constants");
+const { ERROR } = require("../utils/messages");
 
 class LottoSeller {
   #validateType(money) {
     if (!Number(money)) {
-      throw new Error("[ERROR] 금액은 숫자만 입력해야 합니다.");
+      throw new Error(ERROR.AMOUNT_TYPE);
     }
   }
 
   #validateDivideThousand(money) {
     if (Number(money) % LOTTO_PRICE !== 0) {
-      throw new Error("[ERROR] 금액은 1,000원 단위만 입력 가능합니다.");
+      throw new Error(ERROR.AMOUNT_UNIT);
     }
   }
 

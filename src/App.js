@@ -4,6 +4,7 @@ const LottoGenerator = require("./domain/LottoGenerator");
 const PrizeCalculator = require("./domain/PrizeCalculator");
 const RankCalculator = require("./domain/RankCalculator");
 const WinningLotto = require("./WinningLotto");
+const { MESSAGE } = require("./utils/messages");
 
 class App {
   #playerLottos;
@@ -14,7 +15,7 @@ class App {
   }
 
   purchaseProcess() {
-    Utils.readLine("구입금액을 입력해 주세요.\n", (moneyInput) => {
+    Utils.readLine(`${MESSAGE.ENTER_PURCHASE_AMOUNT}\n`, (moneyInput) => {
       const lottoSeller = new LottoSeller();
       const lottoGenerator = new LottoGenerator();
 
@@ -28,13 +29,13 @@ class App {
   }
 
   winningNumberProcess() {
-    Utils.readLine("\n당첨 번호를 입력해 주세요.\n", (winningNumberInput) => {
+    Utils.readLine(`\n${MESSAGE.ENTER_WINNING_NUMBER}\n`, (winningNumberInput) => {
       this.bonusNumberProcess(winningNumberInput);
     });
   }
 
   bonusNumberProcess(winningNumberInput) {
-    Utils.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusNumberInput) => {
+    Utils.readLine(`\n${MESSAGE.ENTER_BONUS_NUMBER}\n`, (bonusNumberInput) => {
       const winningNumber = Utils.separateByComma(winningNumberInput);
       const bonusNumber = Number(bonusNumberInput);
       this.#winningLotto = new WinningLotto(winningNumber, bonusNumber);
