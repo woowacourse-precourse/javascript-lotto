@@ -11,6 +11,8 @@ const NOT_IN_RANGE = "[ERROR] 로또 번호는 1이상 45이하의 숫자만 가
 
 const LOTTO_PRICE = 1000;
 const LOTTO_SIZE = 6;
+const LOTTO_MIN_NUMBER = 1;
+const LOTTO_MAX_NUMBER = 45;
 
 const GUIDE_MESSAGE = {
   PURCHASEAMOUNT_INPUT,
@@ -30,4 +32,6 @@ module.exports = {
   ERROR_MESSAGE,
   LOTTO_PRICE,
   LOTTO_SIZE,
+  LOTTO_MIN_NUMBER,
+  LOTTO_MAX_NUMBER,
 };
