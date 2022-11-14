@@ -79,9 +79,9 @@ class App {
         );
       if (this.winNumber.includes(BOUNS_NUMBER))
         throw new Error("[ERROR] 당첨 번호에 포함되어 있는 번호입니다.");
+
       this.bonusNumber = BOUNS_NUMBER;
       this.setResult();
-      Console.close();
     });
   }
 
@@ -94,7 +94,6 @@ class App {
           throw new Error(
             "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."
           );
-
         return Number(number);
       });
       if (new Set(NUMBER).size !== 6)
@@ -107,13 +106,19 @@ class App {
   }
 
   printRandomLotto() {
+    this.lottos.forEach((lotto) => {
+      Console.printMessage(lotto.numberToString());
+    });
+  }
+
+  setRandomLotto() {
     const LOTTO_COUNT = this.money / 1000;
     Console.printMessage(`\n${LOTTO_COUNT}${NUMBER_OF_LOTTO_PURCHASED}`);
     Lotto.generateRandomLottoNumber(LOTTO_COUNT).map((lotto) => {
       this.lottos.push(new Lotto(lotto));
-      Console.printMessage(lotto);
     });
 
+    this.printRandomLotto();
     this.setWinNumber();
   }
 
@@ -128,7 +133,7 @@ class App {
         throw new Error("[ERROR] 구입급액이 0보다 커야 합니다.");
 
       this.money = MONEY;
-      this.printRandomLotto();
+      this.setRandomLotto();
     });
   }
 
