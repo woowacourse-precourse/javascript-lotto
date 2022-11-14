@@ -8,6 +8,7 @@ class Purchase {
   constructor() {
     this.lotteries = [];
     this.winningNumber = [];
+    this.bonusNumber = "";
     this.inputMoney();
   }
 
@@ -87,7 +88,8 @@ class Purchase {
   }
 
   createBonusLotto(number) {
-    const bonusNumber = new BonusNumber(number);
+    this.bonusNumber = number;
+    const bonusLotto = new BonusNumber(number);
   }
 }
 
