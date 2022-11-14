@@ -30,7 +30,8 @@ class LottoGame {
       this.lottos = this.lottoPerchaseMachine.purchaseLottos();
 
       this.LottoGameView.printLottoQuantity(this.lottos.length);
-      this.LottoGameView.printEachLottoNumbers(this.lottos);
+
+      this.LottoGameView.printEachLottoNumbers(this.getEachLottoNumbers());
 
       this.setWinningNumbersPhase();
     });
