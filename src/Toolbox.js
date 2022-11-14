@@ -9,7 +9,13 @@ function generateRandomNumbers(min, max, numbers) {
     return randoms.map(x => Number(x)).sort((i, j) => i - j);
 }
 
+function showMylottos(storeClass) {
+    printMessage(`\n${storeClass.amount}개를 구매했습니다.`)
+    storeClass.generatedLottos.forEach(numbersArr => printMessage(`[${numbersArr.join(', ')}]`));
+}
+
 module.exports = {
+    showMylottos,
     printMessage,
     generateRandomNumbers,
 }
