@@ -47,5 +47,8 @@ describe('로또스토어 클래스 테스트', () => {
       ).toBeTruthy();
       expect(test.length === VALID_LOTTO_NUMBER_LENGTH).toBeTruthy();
     }
+    for (i = 0; i < test.length - 1; i++) {
+      expect(test[i] < test[i + 1]).toBeTruthy();
+    }
   });
 });
