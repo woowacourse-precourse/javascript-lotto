@@ -8,6 +8,7 @@ class LottoCalculator {
     this.inputBonus = bonusNumber;
     this.lottoAmount = lottoAmount;
   }
+
   getLottoResult() {
     const lottoResultList = [];
     this.boughtLotto.forEach((lotto) => {
