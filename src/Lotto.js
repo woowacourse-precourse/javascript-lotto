@@ -12,11 +12,11 @@ class Lotto {
     if (winNumberArr.length != 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
-    if (!isNaN(winNumberArr.join())) {
-      throw new Error("[ERROR] 숫자만 입력하세여~");
-    } else {
-      MissionUtils.Console.print("통과");
-    }
+    winNumberArr.forEach((number) => {
+      if (!isNaN(number)) throw new Error("[ERROR] 숫자만 입력하세요.");
+      if (number > 45 || number < 1)
+        throw new Error("[ERROR]  숫자 범위는 1~45까지입니다.");
+    });
   }
 }
 
