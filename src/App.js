@@ -1,6 +1,10 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const messages = require('./constants/constants.js');
 class App {
+  constructor() {
+    this.purchaseAmount = 0;
+    this.generatedLottos = [];
+  }
   play() {
     this.getPurchaseAmount();
   }
@@ -8,7 +12,13 @@ class App {
     Console.readLine(messages.GUIDE.ENTER_LOTTO_PURCHASE_AMOUNT, (purchaseAmountInput) => {
       if (this.isValidPurchaseAmount(purchaseAmountInput))
         this.purchaseAmount = Number(purchaseAmountInput);
+      this.buyLottos();
     });
+  }
+
+  buyLottos() {
+    this.numberOfGeneratedLottos = this.calculateNumberOfGeneratedLottos();
+    this.generateLottos();
   }
 
   generateLottoNumbers() {
@@ -40,6 +50,16 @@ class App {
   isDivisibleByThousand(purchaseAmountInput) {
     if (Number(purchaseAmountInput) % 1000 === 0) return true;
     throw new Error(messages.ERROR.NOT_DIVISIBLE_BY_THOUSAND_ERROR);
+  }
+
+  calculateNumberOfGeneratedLottos() {
+    return this.purchaseAmount / 1000;
+  }
+
+  generateLottos() {
+    for (let i = 0; i < this.numberOfGeneratedLottos; i++) {
+      this.generatedLottos.push(this.generateLottoNumbers());
+    }
   }
 }
 
