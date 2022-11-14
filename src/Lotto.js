@@ -25,7 +25,7 @@ class Lotto {
   }
 
   isNumber(input) {
-    return !input.isNaN; //
+    return !isNaN(input); //
   }
 
   isThousandUnit(input) {
