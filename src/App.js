@@ -84,7 +84,15 @@ class App {
     );
     this.printWinStatistic(winStatistic);
   }
-  printWinStatistic(winStatistic) {}
+  printWinStatistic(winStatistic) {
+    let profit = 0;
+    Console.print(STATISTIC.WINNING_STATISTIC);
+    PRIZE_KEY.forEach((key) => {
+      Console.print(PRIZE_RESULT[key](winStatistic[key]));
+      profit += PRIZE_REWARD[key] * winStatistic[key];
+    });
+    Console.print(STATISTIC.TOTAL_PROFIT(getTotalProfit(this.price, profit)));
+  }
 }
 
 const game = new App();
