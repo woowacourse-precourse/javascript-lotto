@@ -11,6 +11,12 @@ class App {
   static buyLotto(userInputNumber) {
     return Lotto.buyLotto(userInputNumber);
   }
+
+  static convertToNumberArray(target = '') {
+    const SPLITTER = ',';
+
+    return target.split(SPLITTER).map(Application.convertNumber.bind(Application));
+  }
 }
 
 module.exports = App;
