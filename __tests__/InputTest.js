@@ -27,17 +27,6 @@ const getLogSpy = () => {
     });
   });
 
-  describe('isBlank(input)', () => {
-    const lotto = new Lotto();
-    test('빈 문자열일 경우', () => {
-      expect(lotto.isBlank('')).toBeTruthy();
-    });
-  
-    test('빈 문자열이 아닐 경우', () => {
-      expect(lotto.isBlank('3000')).toBeFalsy();
-    });
-  });
-
   describe('isThousandUnit(input)', () => {
     const lotto = new Lotto();
   
