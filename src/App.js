@@ -66,7 +66,7 @@ class App {
       (acc, rank) => acc + WINNING_PRIZE[rank] * this.result[rank],
       0,
     );
-    return (totalPrize / this.user.purchaseAmount) * 100;
+    return ((totalPrize / this.user.purchaseAmount) * 100).toFixed(1);
   }
 
   printResult() {
