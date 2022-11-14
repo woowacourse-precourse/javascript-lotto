@@ -5,6 +5,7 @@ const {
   VALID_LOTTO_NUMBER_LENGTH
 } = require('../src/constants/numbers');
 const LottoStore = require('../src/LottoStore');
+const Lotto = require('../src/Lotto');
 
 describe('로또스토어 클래스 테스트', () => {
   const lottoStore = new LottoStore();
@@ -40,15 +41,22 @@ describe('로또스토어 클래스 테스트', () => {
   });
 
   test('로또 번호 생성 시 로또 번호 조건에 맞는 배열이 생성된다.', () => {
-    const test = lottoStore.getRandomLottoNumbers();
-    for (const element of test) {
+    const randomLottoNumbers = lottoStore.getRandomLottoNumbers();
+    for (const element of randomLottoNumbers) {
       expect(
         element >= MIN_LOTTO_NUMBER && MAX_LOTTO_NUMBER >= element
       ).toBeTruthy();
-      expect(test.length === VALID_LOTTO_NUMBER_LENGTH).toBeTruthy();
+      expect(
+        randomLottoNumbers.length === VALID_LOTTO_NUMBER_LENGTH
+      ).toBeTruthy();
     }
-    for (i = 0; i < test.length - 1; i++) {
-      expect(test[i] < test[i + 1]).toBeTruthy();
+    for (i = 0; i < randomLottoNumbers.length - 1; i++) {
+      expect(randomLottoNumbers[i] < randomLottoNumbers[i + 1]).toBeTruthy();
     }
+  });
+
+  test('로또 생성 시 새로운 Lotto 객체의 인스턴스가 생성된다', () => {
+    const lotto = getNewLotto();
+    expect(lotto instanceof Lotto).toBeTruthy();
   });
 });
