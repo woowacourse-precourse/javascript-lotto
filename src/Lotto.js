@@ -17,7 +17,13 @@ class Lotto {
       throw new Error('[ERROR] 당첨 번호는 6개여야 합니다.');
     }
   }
-  
+
+  checkDuplicate(numbers) {
+    if (new Set(numbers).size < 6) {
+      throw new Error('[ERROR] 당첨 번호 중에서 중복된 번호가 있습니다.');
+    }
+  }
+
 }
 
 module.exports = Lotto;
