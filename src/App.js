@@ -35,11 +35,13 @@ class App {
 
       for (let i = 0; i < countOfLotto; i++) {
         const lotto = new Lotto(this.makeLottoAuto());
-        lotto.publishLotto();
         this.publishedLottos.push(lotto);
       }
 
       Console.print(`${MESSAGE.CONFIRM_BUY(countOfLotto)}`);
+      this.publishedLottos.forEach((publishedLotto) => {
+        publishedLotto.publishLotto();
+      });
 
       this.getWinNumber();
     });
@@ -99,6 +101,7 @@ class App {
   }
 
   printResult() {
+    Console.print(MESSAGE.NOTICE_RESULT);
     for (const [result, count] of Object.entries(this.scoreBoard)) {
       Console.print(MESSAGE[result](count));
     }

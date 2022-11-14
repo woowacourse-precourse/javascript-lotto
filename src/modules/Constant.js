@@ -6,10 +6,11 @@ const GAME = {
 };
 
 const MESSAGE = {
-  BUY: '구입금액을 입력해 주세요.',
-  CONFIRM_BUY: (count) => `${count}개를 구매했습니다.`,
-  CONFIRM_WIN: '당첨 번호를 입력해 주세요.',
-  CONFIRM_BONUS: '보너스 번호를 입력해 주세요.',
+  BUY: '구입금액을 입력해 주세요.\n',
+  CONFIRM_BUY: (count) => `\n${count}개를 구매했습니다.`,
+  CONFIRM_WIN: '당첨 번호를 입력해 주세요.\n',
+  CONFIRM_BONUS: '보너스 번호를 입력해 주세요.\n',
+  NOTICE_RESULT: '당첨 통계\n---',
   first: (count) => `6개 일치 (2,000,000,000원) - ${count}개`,
   second: (count) => `5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`,
   third: (count) => `5개 일치 (1,500,000원) - ${count}개`,
