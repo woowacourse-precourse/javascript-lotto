@@ -134,12 +134,23 @@ class App {
     let lottos = []; // 구매한 로또들
 
     for (let i = 0; i < PURCHASE_QUANTITY; i++) {
-      const NUMBERS = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-      NUMBERS.sort((a, b) => (a - b)); // 오름차순 정렬
-      lottos.push(new Lotto(NUMBERS));
+      const LOTTO = this.publishOneLotto();
+      lottos.push(LOTTO);
     }
 
     return lottos;
+  }
+
+  /**
+   * 하나의 로또를 발급하는 함수
+   * @returns {Lotto} 발급된 로또 객체
+   */
+  publishOneLotto() {
+    const NUMBERS = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    NUMBERS.sort((a, b) => (a - b)); // 오름차순 정렬
+    const LOTTO = new Lotto(NUMBERS);
+
+    return LOTTO;
   }
 
   /**
