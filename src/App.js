@@ -39,11 +39,16 @@ class App {
       );
       lotteryTickets.push(newTicket);
       ticketAmount -= 1;
-      Console.print(newTicket);
+      Console.print(this.makeArrToString(newTicket));
     }
 
     this.lotteryTickets = lotteryTickets;
     this.askWinningNumbers();
+  }
+
+  makeArrToString(arr) {
+    const regex = /,/g;
+    return `[${arr.toString().replace(regex, ", ")}]`;
   }
 
   askWinningNumbers() {
