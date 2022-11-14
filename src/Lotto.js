@@ -37,22 +37,18 @@ class Lotto {
     const winningCount = this.#numbers.filter((number) => winningNumbers.includes(number)).length;
     const matchBonus = this.#numbers.includes(bonusNumber);
 
-    if (winningCount === 6) {
-      return 1;
+    switch (winningCount) {
+      case 6:
+        return 1;
+      case 5:
+        return matchBonus ? 2 : 3;
+      case 4:
+        return 4;
+      case 3:
+        return 5;
+      default:
+        return 6;
     }
-    if (winningCount === 5 && matchBonus) {
-      return 2;
-    }
-    if (winningCount === 5) {
-      return 3;
-    }
-    if (winningCount === 4) {
-      return 4;
-    }
-    if (winningCount === 3) {
-      return 5;
-    }
-    return 6;
   }
 }
 
