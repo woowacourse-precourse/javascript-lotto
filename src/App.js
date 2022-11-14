@@ -1,6 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { MESSAGE, PRIZE } = require("./constants/index");
-const { throwError } = require("./utils/index");
 
 const Validator = require("./Validator");
 const Generator = require("./Generator");
@@ -53,7 +52,7 @@ class App {
     this.state.allNumbers = this.generator.getAllNumbers(this.state.count);
 
     this.state.allNumbers.forEach((numbers) => {
-      Console.print(numbers);
+      Console.print(`[${String(numbers).replace(/,/g, ", ")}]`);
     });
 
     this.inputNumber();
@@ -90,10 +89,13 @@ class App {
       this.state.bonusNumber
     );
 
-    this.result(this.state.allCount);
+    this.result();
   }
 
-  result({ threeCount, fourCount, fiveCount, fiveBonusCount, sixCount }) {
+  result() {
+    const { threeCount, fourCount, fiveCount, fiveBonusCount, sixCount } =
+      this.state.allCount;
+
     Console.print(
       MESSAGE.MATCH_THREE +
         PRIZE.THREE.toLocaleString() +
@@ -133,10 +135,25 @@ class App {
         String(sixCount) +
         MESSAGE.MATCH_COUNT
     );
+
+    this.calculate();
+  }
+
+  calculate() {
+    const revenue = this.lotto.getRevenue(this.state.allCount);
+    const rate = ((revenue / this.state.money) * 100).toFixed(1);
+
+    Console.print(MESSAGE.CALCULATE_RATE + rate + MESSAGE.CALCULATE_PERCENT);
+
+    this.exit();
+  }
+
+  exit() {
+    Console.close();
   }
 
   error(message) {
-    throwError(message);
+    throw new Error(message);
   }
 }
 

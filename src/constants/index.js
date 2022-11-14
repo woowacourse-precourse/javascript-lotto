@@ -12,6 +12,8 @@ const MESSAGE = Object.freeze({
   MATCH_SIX: "6개 일치 (",
   MATCH_PRIZE: "원) - ",
   MATCH_COUNT: "개",
+  CALCULATE_RATE: "총 수익률은 ",
+  CALCULATE_PERCENT: "%입니다.",
 });
 
 const PRIZE = Object.freeze({

@@ -1,3 +1,5 @@
+const { PRIZE } = require("./constants/index");
+
 const Validator = require("./Validator");
 
 class Lotto {
@@ -52,6 +54,19 @@ class Lotto {
     });
 
     return count;
+  }
+
+  getRevenue({ threeCount, fourCount, fiveCount, fiveBonusCount, sixCount }) {
+    const threeRevenue = threeCount * PRIZE.THREE;
+    const fourRevenue = fourCount * PRIZE.FOUR;
+    const fiveRevenue = fiveCount * PRIZE.FIVE;
+    const fiveBonusRevenue = fiveBonusCount * PRIZE.FIVE_BONUS;
+    const sixRevenue = sixCount * PRIZE.SIX;
+
+    const revenue =
+      threeRevenue + fourRevenue + fiveRevenue + fiveBonusRevenue + sixRevenue;
+
+    return revenue;
   }
 }
 
