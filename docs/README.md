@@ -10,14 +10,14 @@
 ### feat () : init , game , error
 
 - [ ] user: 로또 구입 금액 입력 - Player#buyTickets
-  - [ ] 숫자 타입인가 - Input#numberType -> static
-  - [ ] 1,000원 단위로 떨어지는가 - Input#moneyUnit
-    - [ ] 각각의 경우 에러 발생시 - InputError # numberType, moneyUnit
+  - [ ] 숫자 타입인가 - Input#type -> static
+  - [ ] 1,000원 단위로 떨어지는가 - Input#unit
+    - [ ] 각각의 경우 에러 발생시 - InputError # type, unit
 
 ###
 
 - [ ] 로또 발행 : 유효성 체크 - Lotto#validate
-  - [ ] 각 요소가 숫자 타입인가 - Input#numberType -> static
+  - [ ] 각 요소가 숫자 타입인가 - Input#type -> static
   - [ ] 요소가 범위 내에서 생성되는가 (1~45) - Input#range -> static
   - [ ] 요소가 6개 인가 - Input#lengthSix -> static
   - [ ] 요소가 중복되지 않는가 - Input#duplication -> static
@@ -33,7 +33,7 @@
 ###
 
 - [ ] user: 당첨 번호 입력 - Player#winningNumbers
-  - [ ] 요소가 숫자 타입인가 - Input#numberType -> static
+  - [ ] 요소가 숫자 타입인가 - Input#type -> static
   - [ ] 요소가 범위 내에 있는가 - Input#range -> static
   - [ ] 요소가 6개 인가 - Input#lengthSix -> static
   - [ ] 요소가 중복되지 않는가 - Input#duplication -> static
@@ -43,7 +43,7 @@
 ###
 
 - [ ] user: 보너스 번호 입력 - Player#winningBonusNumber
-  - [ ] 요소가 숫자 타입인가 - Input#numberType -> static
+  - [ ] 요소가 숫자 타입인가 - Input#type -> static
   - [ ] 요소가 범위 내에 있는가 - Input#range -> static
   - [ ] 요소가 1개 인가 - Input#lengthOne -> static
     - [ ] 각각의 경우 에러 발생시 - InputError # LAST_KEYWORD
