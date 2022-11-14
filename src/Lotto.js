@@ -15,6 +15,9 @@ class Lotto {
     if (numbers.some((number, index, array) => array.indexOf(number) !== index)) {
       throw new Error(ERROR_MESSAGE.LOTTO.NUMBER_DUPLICATED);
     }
+    if (numbers.length !== numbers.filter((number) => number >= 1 && numbers <= 45)) {
+      throw new Error(ERROR_MESSAGE.LOTTO.NUMBER_RANGE);
+    }
   }
 }
 

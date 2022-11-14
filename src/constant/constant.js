@@ -2,7 +2,11 @@ const ERROR = '[ERROR] ';
 
 const ERROR_MESSAGE = {
   COST: `${ERROR}구입 금액은 1,000원 단위로 이루어져야 합니다.`,
-  NUMBER_RANGE: `${ERROR}로또 번호는 1부터 45 사이의 숫자여야 합니다.`,
+  LOTTO: {
+    NUMBER_DUPLICATED: `${ERROR}로또 번호에 중복된 숫자가 있습니다.`,
+    NUMBER_RANGE: `${ERROR}로또 번호는 1부터 45 사이의 숫자여야 합니다.`,
+    NUMBER_COUNT: `${ERROR}로또 번호는 6개여야 합니다.`,
+  },
 };
 
 const INPUT_MESSAGE = {
