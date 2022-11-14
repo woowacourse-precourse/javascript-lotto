@@ -28,6 +28,15 @@ class Lotto {
       throw new Error("[ERROR] 보너스 번호는 로또 번호와 중복될 수 없습니다.");
   }
 
+  isMatching(winnum, myNumber) {
+    let matchCount = 0;
+    for (let k = 0; k < 6; ++k) {
+      let my = myNumber[k];
+      if (my == winnum) matchCount++;
+    }
+    return matchCount;
+  }
+
   compareLottoNums(myNumbers, winNums) {
     let isMatch = new Array(myNumbers.length).fill(0);
     let bonusNum = winNums.pop();
@@ -35,6 +44,7 @@ class Lotto {
     for (let i in myNumbers) {
       for (let j in winNums) {
         let winnum = Number(winNums[j]);
+        isMatch[i] += this.isMatching(winnum, myNumbers[i]);
       }
     }
     return isMatch;
