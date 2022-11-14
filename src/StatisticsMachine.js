@@ -13,7 +13,7 @@ class StatisticsMachine {
     this.prizeStatisticsTemplates = this.getPrizeStatisticsTemplates(prizeStatistics);
   }
 
-  getPrizeStatistics(eachCalculatedLottoPrize) {
+  getPrizeStatistics(eachLottoPrize) {
     const prizeStatistics = {
       fifthPrize: 0,
       fourthPrize: 0,
@@ -23,7 +23,7 @@ class StatisticsMachine {
       fail: 0,
     };
 
-    eachCalculatedLottoPrize.forEach((lottoPrize) => (prizeStatistics[lottoPrize] += 1));
+    eachLottoPrize.forEach((lottoPrize) => (prizeStatistics[lottoPrize] += 1));
 
     return prizeStatistics;
   }
