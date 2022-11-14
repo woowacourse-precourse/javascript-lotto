@@ -1,0 +1,16 @@
+const UNIT = {
+  NUMBER_LENGTH: 6,
+  RANGE_BEGIN: 1,
+  RANGE_END: 45,
+  PURCHASE: 1000,
+};
+const PRIZE = [5000, 50000, 1500000, 30000000, 2000000000];
+const MATCHED = {
+  THREE: 0,
+  FOUR: 1,
+  FIVE: 2,
+  FIVE_BONUS: 3,
+  SIX: 4,
+};
+
+module.exports = { UNIT, PRIZE, MATCHED };
