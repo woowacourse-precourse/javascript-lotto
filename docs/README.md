@@ -48,11 +48,11 @@
         * [x] 값이 숫자인지 검사
 
 ## 기능 테스트 목록
-* [ ] LottoTest.js
+* [x] LottoTest.js
     * [x] howManyLotto 로또를 몇장 살수있는지 검사
-    * [ ] sortLottoNumber 정렬 기능 검사
-    * [ ] isItNumber 돈이 들어왔는지 검사
-    * [ ] rightAmount 천원단위로 들어왔는지 검사
+    * [x] sortLottoNumber 정렬 기능 검사
+    * [x] isItNumber 돈이 들어왔는지 검사
+    * [x] rightAmount 천원단위로 들어왔는지 검사
 ---
 * [ ] ValidationTest.js
     * [ ] itThatRightFormat 올바른 형식인지 검사
