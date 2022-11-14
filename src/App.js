@@ -21,6 +21,7 @@ class App {
       this.calculatesUserBuyHowManyLotto(this.purchaseAmount);
       this.LottoNumberArray = Array.from({ length: this.userBuyHowManyLotto }, () => new Lotto(generateLottoNumber()));
       this.providesInformationPurchaseLotto();
+      this.receiveWinningNumberFromUser();
     });
   }
 
@@ -32,6 +33,12 @@ class App {
     Console.print(`${this.userBuyHowManyLotto}개를 구매했습니다.`);
     this.LottoNumberArray.forEach((lotto) => {
       Console.print(lotto.getLottoNumber());
+    });
+  }
+
+  receiveWinningNumberFromUser() {
+    Console.readLine('당첨 번호를 입력해 주세요.\n', (winningNumber) => {
+      console.log(winningNumber);
     });
   }
 }
