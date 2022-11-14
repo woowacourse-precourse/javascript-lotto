@@ -21,22 +21,6 @@ class Lotto {
     return Random.pickUniqueNumbersInRange(1, 45, 6);
   }
 
-  makeBonusNumber() {
-    return Random.pickUniqueNumbersInRange(1, 45, 1).join('');
-  }
-
-  numbersPurchaseByUser() {
-    const winNumbers = this.makeSixNumbers();
-    let bonusNumber = this.makeBonusNumber();
-    while (winNumbers.length < 7) {
-      if (winNumbers.includes(bonusNumber)) {
-        bonusNumber = this.makeBonusNumber();
-        continue;
-      }
-      winNumbers.push(bonusNumber);
-      return winNumbers.sort((a, b) => a - b);
-    }
-  }
 }
 
 module.exports = Lotto;
