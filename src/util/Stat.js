@@ -1,3 +1,4 @@
+
 class Stat {
 
   static countWinning(lottos, answer) {
@@ -9,31 +10,15 @@ class Stat {
     return results;
   }
 
-  
   static compareEach(lotto, answer) {
     const bonus = Number(answer.at(-1));
-    let count = 0;
-    count = answer.filter((num) => lotto.includes(num)).length;
-
-    if (count === 5 && lotto.indexOf(bonus)) count = 7;
-
-    const index = this.countToIndex(count);
-    return index;
-  }
-
-  static countToIndex(count) {
-    switch (count) {
-    case 3:
-      return 0;
-    case 4:
-      return 1;
-    case 5:
-      return 2;
-    case 7:
-      return 3;
-    case 6:
-      return 4;
-    }
+    const count = answer.filter((num) => lotto.includes(num)).length;
+    
+    if (count === 3) return 0;
+    if (count === 4) return 1;
+    if (count === 5 && lotto.indexOf(bonus)) return 3;
+    if (count === 5) return 2;
+    if (count === 6) return 4;
   }
 
   static getROR(profit, principal) {
