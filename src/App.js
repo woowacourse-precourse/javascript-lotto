@@ -1,6 +1,7 @@
 const { Console } = require('@woowacourse/mission-utils');
 
 const Lotto = require('./Lotto');
+const CheckError = require('./CheckError');
 const MESSAGE = require('./utils/constants');
 const RandomNumbers = require('./RandomNumbers');
 
@@ -42,6 +43,7 @@ class App {
 
   #parsingStringToArray(numbers) {
     this.lottoWinnerNumber = numbers.split(',').map(Number);
+    CheckError.check(this.lottoWinnerNumber);
   }
 
   print(message) {
