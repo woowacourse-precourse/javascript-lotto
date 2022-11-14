@@ -1,4 +1,4 @@
-const checkMyNumber = (list, winNumber, score, bonusNumber) => {
+const checkMyNumber = (list, winNumber, score, bonusNumber, reword) => {
   let correctCount = 0;
   if (JSON.stringify(list) === JSON.stringify(winNumber)) {
     return (score[2000000000] += 1);
@@ -24,4 +24,8 @@ const checkMyNumber = (list, winNumber, score, bonusNumber) => {
       : (score[30000000] += 1);
   }
 };
-module.exports = { checkMyNumber };
+const getRevenue = (reword, money) => {
+  revenue = (reword / (money * 1000)) * 100;
+  return +(Math.round(revenue + "e+2") + "e-2");
+};
+module.exports = { checkMyNumber, getRevenue };

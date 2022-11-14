@@ -1,6 +1,6 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
 const Setting = require("./Setting");
-const { checkMyNumber } = require("./utils");
+const { checkMyNumber, getRevenue } = require("./utils");
 class View extends Setting {
   lottoStart() {
     Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
@@ -38,8 +38,18 @@ class View extends Setting {
     Console.readLine("보너스 번호를 입력해 주세요.\n", (bonusNumber) => {
       this.bonusNumber = Number(bonusNumber);
       this.lottoBox.map((oneLine) => {
-        checkMyNumber(oneLine, this.winNumber, this.score, this.bonusNumber);
+        checkMyNumber(
+          oneLine,
+          this.winNumber,
+          this.score,
+          this.bonusNumber,
+          this.reword
+        );
       });
+      for (const [key, value] of Object.entries(this.score)) {
+        this.reword += key * value;
+      }
+      this.revenue = getRevenue(this.reword, this.money);
       Console.print("당첨 통계");
       Console.print("---");
       Object.keys(this.score).map((ranking, index) => {
@@ -61,19 +71,10 @@ class View extends Setting {
           );
         }
       });
+      Console.print(`총 수익률은 ${this.revenue}%입니다.`);
     });
   }
 
-  //   printWinningBoard() {
-  //     /*
-  // 3개 일치 (5,000원) - 1개
-  // 4개 일치 (50,000원) - 0개
-  // 5개 일치 (1,500,000원) - 0개
-  // 5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
-  // 6개 일치 (2,000,000,000원) - 0개
-  // 총 수익률은 62.5%입니다.
-  // */
-  //   }
   sortList(list) {
     list = list.sort(function (a, b) {
       return a - b;
