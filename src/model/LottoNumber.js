@@ -1,6 +1,6 @@
 const Validator = require('./Validator');
 
-class BonusNumber {
+class LottoNumber {
   #value;
 
   constructor(value) {
@@ -14,4 +14,4 @@ class BonusNumber {
   }
 }
 
-module.exports = BonusNumber;
+module.exports = LottoNumber;
