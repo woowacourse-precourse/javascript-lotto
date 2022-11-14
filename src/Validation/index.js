@@ -4,6 +4,17 @@ const AbstractError = require('../Error/AbstractError');
 class Validation {
   constructor(answer) {
     this.answer = answer;
+    this.checkAbstract();
+  }
+
+  checkAbstract() {
+    if (this.isInputConstructor()) {
+      throw new AbstractError(ABSTRACT_ERROR_MESSAGE.abstract_class);
+    }
+  }
+
+  isInputConstructor() {
+    return this.constructor === Validation;
   }
 
   static validate() {
