@@ -2,6 +2,7 @@ const ERROR = require('./constants/error');
 
 class Validator {
   static validateTotalPurchaseAmount(totalPurchaseAmount) {
+    
     if (!this.isNaturalNumber(totalPurchaseAmount)) {
       throw new Error(ERROR.NATURAL_NUMBER);
     }

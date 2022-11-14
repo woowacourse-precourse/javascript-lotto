@@ -53,13 +53,17 @@ class LottoGameMachine {
   }
 
   setTotalPurchaseAmount() {
-    Console.readLine(MESSAGE.INPUT.TOTAL_PURCHASE_AMOUNT, (totalPurchaseAmount) => {
+    Console.readLine(MESSAGE.INPUT.TOTAL_PURCHASE_AMOUNT, (answer) => {
+      const totalPurchaseAmount = Number(answer);
       Validator.validateTotalPurchaseAmount(totalPurchaseAmount);
-
       this.totalPurchaseAmount = totalPurchaseAmount;
-      this.totalLottosCount = this.totalPurchaseAmount / 1000;
-      this.setLottos().printLottoNumbers().setWinningLottoNumbers();
+      return this.setTotalLottosCount().setLottos().printLottoNumbers().setWinningLottoNumbers();
     });
+  }
+
+  setTotalLottosCount() {
+    this.totalLottosCount = this.totalPurchaseAmount / 1000;
+    return this;
   }
 
   setLottos() {
@@ -73,21 +77,20 @@ class LottoGameMachine {
   }
 
   setWinningLottoNumbers() {
-    Console.readLine(MESSAGE.INPUT.WINNING_LOTTO_NUMBERS, (numbers) => {
-      const numbersArray = numbers.split(',');
-      Validator.validateLottoNumbers(numbersArray);
-
-      this.winningLotto.set('당첨 번호', numbersArray.map(Number));
-      this.setBonusLottoNumber();
+    Console.readLine(MESSAGE.INPUT.WINNING_LOTTO_NUMBERS, (answer) => {
+      const winningLottoNumbers = answer.split(',').map(Number);
+      Validator.validateLottoNumbers(winningLottoNumbers);
+      this.winningLotto.set('당첨 번호', winningLottoNumbers);
+      return this.setBonusLottoNumber();
     });
   }
 
   setBonusLottoNumber() {
-    Console.readLine(MESSAGE.INPUT.BONUS_LOTTO_NUMBER, (number) => {
-      Validator.validateLottoNumber(number);
-
-      this.winningLotto.set('보너스 번호', Number(number));
-      this.collectStatistics().printStatistics().endLottoGame();
+    Console.readLine(MESSAGE.INPUT.BONUS_LOTTO_NUMBER, (answer) => {
+      const bonusLottoNumber = Number(answer);
+      Validator.validateLottoNumber(bonusLottoNumber);
+      this.winningLotto.set('보너스 번호', bonusLottoNumber);
+      return this.setLottosResult().collectStatistics().printStatistics().endLottoGame();
     });
   }
 
@@ -101,12 +104,10 @@ class LottoGameMachine {
 
   collectStatistics() {
     let totalPrizeMoney = 0;
-    this.statistics = Object.values(RANKING).reduce((acc, cur) => ({ ...acc, [cur.name]: 0 }), {});
-    this.setLottosResult();
-
-    this.lottosResult.forEach((lottoResult) => {
-      this.statistics[lottoResult.name] += 1;
-      totalPrizeMoney += lottoResult.prizeMoney;
+    this.statistics = Object.values(RANKING).reduce((acc, { name }) => ({ ...acc, [name]: 0 }), {});
+    this.lottosResult.forEach(({ prizeMoney, name }) => {
+      totalPrizeMoney += prizeMoney;
+      this.statistics[name] += 1;
     });
 
     this.statistics.profitRate = calculateProfitRate(totalPrizeMoney, this.totalPurchaseAmount);

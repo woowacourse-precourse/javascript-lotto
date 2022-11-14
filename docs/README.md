@@ -22,6 +22,7 @@
 
 - [x] 게임 머신을 킨다. : `startLottoGameMachine`
 - [x] 사용자에게 구입 금액을 입력받는다. : `setTotalPurchaseAmount`
+- [x] 총 로또 개수를 저장한다. : `setTotalLottosCount`
 - [x] 구입 금액에 해당하는 만큼 로또를 발행한다. : `setLottos`
   - `generateRandomLottoNumbers` util 함수를 사용한다.
 - [x] 생성된 번호들을 출력한다. : `printLottoNumbers`
@@ -58,6 +59,7 @@
   - 오름차순으로 정렬하여 배열에 담아 return한다.
 
 - [x] 수익률을 계산한다. : `calculateProfitRate.js`
+
   - 수익률은 소수점 둘째 자리에서 반올림한다.
 
 - [x] 로또 랭킹을 가져온다. :`getLottoRanking.js`
