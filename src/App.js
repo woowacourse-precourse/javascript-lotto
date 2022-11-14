@@ -84,7 +84,9 @@ class App {
     const eachResult = singleLotto.map(this.compareNumber.bind(this));
     console.log(eachResult);
     const eachLottoRanking = eachResult.map(this.getLottoRaking.bind(this));
-    console.log(eachLottoRanking);
+
+    const rankingTotal = this.getRankingTotal(eachLottoRanking);
+    console.log(rankingTotal);
   }
   compareNumber(eachLotto) {
     const compareResult = eachLotto.filter((number) =>
@@ -98,12 +100,24 @@ class App {
   }
   getLottoRaking(eachResult) {
     const { compareResult, bonusNumberStatus } = eachResult;
-    if (compareResult === 6) return 1;
-    if (compareResult === 5 && bonusNumberStatus) return 2;
-    if (compareResult === 5) return 3;
-    if (compareResult === 4) return 4;
-    if (compareResult === 3) return 5;
-    return -1;
+    if (compareResult === 6) return "1등";
+    if (compareResult === 5 && bonusNumberStatus) return "2등";
+    if (compareResult === 5) return "3등";
+    if (compareResult === 4) return "4등";
+    if (compareResult === 3) return "5등";
+    return "낙첨";
+  }
+  getRankingTotal(eachLottoRanking) {
+    const rankingOverall = {
+      "1등": 0,
+      "2등": 0,
+      "3등": 0,
+      "4등": 0,
+      "5등": 0,
+      낙첨: 0,
+    };
+    eachLottoRanking.forEach((ranking) => (rankingOverall[ranking] += 1));
+    return rankingOverall;
   }
 }
 
