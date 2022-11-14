@@ -1,5 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const { REGEX, ERROR } = require('./constants');
+const { MESSAGE, REGEX, ERROR } = require('./constants');
 
 class Store {
   issuedQuantity;
@@ -14,7 +14,8 @@ class Store {
     Console.readLine('구입금액을 입력해 주세요.\n', (inputStr) => {
       const purchaseAmount = this.validate(inputStr);
       this.issuedQuantity = purchaseAmount / 1000;
-      this.issue(this.issuedQuantity);
+      this.issue();
+      this.print();
     });
   }
 
@@ -30,6 +31,13 @@ class Store {
     for (let i = 0; i < issuedQuantity; ++i) {
       this.lottos.push(Random.pickUniqueNumbersInRange(1, 45, 6));
     }
+  }
+
+  print() {
+    Console.print(`\n${this.issuedQuantity}${MESSAGE.ISSUED_QUANTITY}`);
+    this.lottos.forEach(([num1, num2, num3, num4, num5, num6]) => {
+      Console.print(`[${num1}, ${num2}, ${num3}, ${num4}, ${num5}, ${num6}]`);
+    });
   }
 }
 
