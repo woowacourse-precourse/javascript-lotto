@@ -13,6 +13,14 @@ class Lotto {
     this.lottos = [];
     this.userNumbers = [];
     this.bonusNum;
+    this.winPoint = {
+      first: 0,
+      second: 0,
+      third: 0,
+      fourth: 0,
+      fifth: 0,
+      rateOfReturn: 0,
+    };
   }
 
   validate(numbers) {
@@ -85,10 +93,40 @@ class Lotto {
     Console.readLine(`\n${Constant.INPUT_MESSAGE.bonusNumber}\n`, (answer) => {
       this.bonusNum = answer;
       this.validate(this.bonusNum);
+      this.winLottoCount();
     });
   }
 
-  winLottoCount() {}
+  winLottoCount() {
+    for (let i = 0; i < this.userNumbers; i++) {
+      const matchCount = this.lottos.filter((numb) => this.userNumbers[i].includes(numb));
+
+      if (matchCount.length >= 3) {
+        this.calcWinPoint(matchCount, i);
+      }
+    }
+    this.lottoResult();
+  }
+
+  calcWinPoint(matchCount, i) {
+    switch (matchCount) {
+      case "3":
+        this.winPoint.fifth++;
+        break;
+      case "4":
+        this.winPoint.fourth++;
+        break;
+      case "5":
+        if (this.lottos[i].includes(this.bonusNum)) {
+          this.winPoint.second++;
+        } else {
+          this.winPoint.third++;
+        }
+        break;
+      case "6":
+        this.winPoint.first++;
+    }
+  }
 }
 
 module.exports = Lotto;
