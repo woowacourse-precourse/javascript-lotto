@@ -38,7 +38,6 @@ class Clerk {
       const bonus = new Bonus(bonusNumber, this.#winningNumbers);
       this.#bonusNumber = bonus.output();
     });
-    return;
   }
 }
 
