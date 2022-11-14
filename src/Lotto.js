@@ -17,7 +17,12 @@ class Lotto {
     if (set.size !== 6) throw new Error("[ERROR] 로또 번호는 중복되지 않아야 합니다.")
   }
 
-  // TODO: 추가 기능 구현
+  userLottoWinningLottoCompare(winningLottoArr) {
+    let set = new Set(this.#numbers);
+    winningLottoArr[0].forEach(x => set.add(x))
+    return this.setSizeCount(set, winningLottoArr[1]) //set.size를 통해 중복번호 확인하기
+  }
+
 }
 
 module.exports = Lotto;
