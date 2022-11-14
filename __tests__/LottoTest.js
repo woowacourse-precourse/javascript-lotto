@@ -137,4 +137,8 @@ describe('Lotto 클래스 등수 확인', () => {
   test(`3개가 일치하고 보너스 볼이 포함되어도 ${prize.FIFTH}등이다.`, () => {
     expect(lotto.checkRank([1, 2, 3, 7, 8, 9])).toEqual(prize.FIFTH)
   })
+
+  test(`2개 이하가 일치한다면 ${prize.NONE}등이다.`, () => {
+    expect(lotto.checkRank([7, 8, 9, 10, 11, 12])).toEqual(prize.NONE)
+  })
 })
