@@ -1,4 +1,9 @@
-const { REWARD_LIST, MATCH_LIST, CALCULATION } = require("./constants/values");
+const {
+  REWARD_LIST,
+  MATCH_LIST,
+  MATCH_NUMBER,
+  CALCULATION,
+} = require("./constants/values");
 
 class Calculate {
   #publish;
@@ -41,13 +46,17 @@ class Calculate {
   }
 
   countTotal(count) {
-    if (count.winning === 3) this.quantityList[0] += CALCULATION.SCORE;
-    if (count.winning === 4) this.quantityList[1] += CALCULATION.SCORE;
-    if (count.winning === 5) {
-      if (count.bonus === 1) this.quantityList[3] += CALCULATION.SCORE;
+    if (count.winning === MATCH_NUMBER.THREE)
+      this.quantityList[0] += CALCULATION.SCORE;
+    if (count.winning === MATCH_NUMBER.FOUR)
+      this.quantityList[1] += CALCULATION.SCORE;
+    if (count.winning === MATCH_NUMBER.FIVE) {
+      if (count.bonus === MATCH_NUMBER.FIVE_BONUS)
+        this.quantityList[3] += CALCULATION.SCORE;
       else this.quantityList[2] += CALCULATION.SCORE;
     }
-    if (count.winning === 6) this.quantityList[4] += CALCULATION.SCORE;
+    if (count.winning === MATCH_NUMBER.SIX)
+      this.quantityList[4] += CALCULATION.SCORE;
   }
 }
 

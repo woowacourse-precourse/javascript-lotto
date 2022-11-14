@@ -41,6 +41,14 @@ const MATCH_LIST = [
   MATCH.SIX,
 ];
 
+const MATCH_NUMBER = {
+  THREE: 3,
+  FOUR: 4,
+  FIVE: 5,
+  FIVE_BONUS: 1,
+  SIX: 6,
+};
+
 const CALCULATION = {
   DECIMAL_NUMBER: 10,
   PERCENTILE: 100,
@@ -54,5 +62,6 @@ module.exports = {
   REWARD_LIST,
   MATCH,
   MATCH_LIST,
+  MATCH_NUMBER,
   CALCULATION,
 };
