@@ -13,6 +13,13 @@ class App {
     this.inputPurchaseMoney();
   }
   inputPurchaseMoney(){
+    MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
+      const purchase = this.validatePurchase(money);
+      this.purchase = purchase; 
+    });
+    this.winningLottoNumber();
+  }
+  validatePurchase(money){
     
   }
 }
