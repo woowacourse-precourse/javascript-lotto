@@ -12,6 +12,8 @@ class Lotto {
     this.lottoCount = 0;
     this.bonusNumber = 0;
     this.myLottos = [];
+    if(numbers !== undefined) exception.checkInputCount(numbers);
+    if(numbers !== undefined) exception.checkInputDuplicate(numbers);
   }
 
   // TODO: 추가 기능 구현
