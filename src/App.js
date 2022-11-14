@@ -22,6 +22,9 @@ class App {
     const bonusNumber = this.getBonusNumber();
     // 반환된 일치 갯수로 당첨내역에 넣기
     this.creatWinningChart();
+
+    // 결과 출력
+    this.printResult();
   }
 
   // 금액 입력
@@ -107,6 +110,17 @@ class App {
       second.count = bonusCount.length;
       second.prizeMoney = SECOND_MONEY * bonusCount.length;
     }
+  }
+  // 결과 출력
+  printResult() {
+    MissionUtils.Console.print(
+      `3개 일치 (5,000원) - ${fifth.count}개,
+      4개 일치 (50,000원) - ${fourth.count}개,
+      5개 일치 (1,500,000원) - ${third.count}개,
+      5개 일치, 보너스 볼 일치 (30,000,000원) - ${second.count}개,
+      6개 일치 (2,000,000,000원) - ${first.count}개)
+      총 수익률은 ${printEarningRatio()}입니다.`
+    );
   }
 }
 
