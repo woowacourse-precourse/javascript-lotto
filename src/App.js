@@ -82,11 +82,7 @@ class App {
     let elements = input.split(",");
     let numbers = [];
     elements.forEach((element) => {
-      // TODO: 예외 처리 부분은 따로 함수로 리팩토링하는 것이 좋겠다.
-      if (isNaN(element))
-        throw new Error("[ERROR] 당첨 번호는 숫자여야 합니다.");
-      if (element === "")
-        throw new Error("[ERROR] 숫자들이 ,로 올바르게 나뉘지 않았습니다.");
+      this.checkIfElementIsNumber(element);
       numbers.push(parseInt(element));
     })
 
@@ -99,13 +95,23 @@ class App {
    * @param {Lotto} wonLotto 현재 저장된 당첨 번호에 대한 로또 객체
    */
   checkBonusNumber(number, wonLotto) {
-    if (isNaN(number) || number === "")
-      throw new Error("[ERROR] 보너스 번호는 숫자여야 합니다.");
+    this.checkIfElementIsNumber(number);
     const NUMBER = parseInt(number);
     if (outofLottoNumberRange(NUMBER))
       throw new Error("[ERROR] 보너스 번호는 1-45 범위 숫자여야 합니다.");
     if (wonLotto.includesNumber(NUMBER))
       throw new Error("[ERROR] 보너스 번호는 기존 당첨 번호와 중복될 수 없습니다.");
+  }
+
+  /**
+   * 입력으로 받은 요소가 숫자가 맞는지 확인하는 함수
+   * @param {string} element 입력에 담긴 특정 요소
+   */
+  checkIfElementIsNumber(element) {
+    if (isNaN(element))
+      throw new Error("[ERROR] 번호 입력은 숫자여야 합니다.");
+    if (element === "")
+      throw new Error("[ERROR] 입력된 데이터 중 빈 데이터가 없어야 합니다.");
   }
 
   /**
