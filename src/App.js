@@ -7,7 +7,7 @@ const {
   prize,
 } = require('./constants/app.js')
 const { range, WINNING_NUMBER_COUNT } = require('./constants/common.js')
-const { sortIncreasingOrder, addComma } = require('./lib/utils.js')
+const { sortIncreasingOrder, addComma, round } = require('./lib/utils.js')
 
 /**
  * @typedef {import('./Lotto.js').lotto} lotto
@@ -19,7 +19,7 @@ const { sortIncreasingOrder, addComma } = require('./lib/utils.js')
 
 class App {
   #lottosOwnedByUser
-  #perchaseAmount
+  #purchaseAmount
 
   /**
    * @param {number[][]} lottosOwnedByUser
@@ -29,25 +29,25 @@ class App {
   }
 
   /**
-   * @param {number} perchaseAmount
+   * @param {number} purchaseAmount
    */
-  set perchaseAmount(perchaseAmount) {
-    this.#perchaseAmount = perchaseAmount
+  set purchaseAmount(purchaseAmount) {
+    this.#purchaseAmount = purchaseAmount
   }
 
   play() {
     this.#lottosOwnedByUser = []
-    this.#perchaseAmount = 0
+    this.#purchaseAmount = 0
 
     this.#getPurchaseAmount()
   }
 
   #getPurchaseAmount() {
     Console.readLine(`${query.PURCHASE}\n`, (price) => {
-      this.#perchaseAmount = Number(price)
+      this.#purchaseAmount = Number(price)
       this.#checkValidation()
 
-      const lottoCount = this.#perchaseAmount / LOTTO_PRICE
+      const lottoCount = this.#purchaseAmount / LOTTO_PRICE
       this.#lottosOwnedByUser = this.buyLotto(lottoCount)
       this.#printLottosOwnedByUser()
 
@@ -73,14 +73,14 @@ class App {
    * @returns {booelan}
    */
   #isNotValidType() {
-    return !Number.isInteger(this.#perchaseAmount)
+    return !Number.isInteger(this.#purchaseAmount)
   }
 
   /**
    * @returns {booelan}
    */
   #isNotValidUnit() {
-    return this.#perchaseAmount <= 0 || this.#perchaseAmount % LOTTO_PRICE !== 0
+    return this.#purchaseAmount <= 0 || this.#purchaseAmount % LOTTO_PRICE !== 0
   }
 
   /**
@@ -132,7 +132,7 @@ class App {
       })
 
       this.#printLottoResult(lottoResult)
-      // calcReturnRate
+      const returnRate = this.calculateReturnRate(lottoResult)
     })
   }
 
@@ -167,7 +167,6 @@ class App {
     const keysInDescendingOrder = Object.keys(prize).sort((number1, number2) =>
       sortIncreasingOrder(-number1, -number2)
     )
-
     keysInDescendingOrder.forEach((key) => {
       Console.print(
         `${prize[key].CRITERIA} (${addComma(prize[key].PRICE)}원) - ${
@@ -177,11 +176,26 @@ class App {
     })
   }
 
+  /**
+   * @param {lottoResult} lottoResult
+   * @returns {number}
+   */
+  calculateReturnRate(lottoResult) {
+    let returnSum = 0
+
+    const prizeKeys = Object.keys(prize)
+    prizeKeys.forEach((key) => {
+      returnSum += prize[key].PRICE * lottoResult[key]
+    })
+
+    const returnRate = round((returnSum * 100) / this.#purchaseAmount, 1)
+
+    return returnRate
+  }
+
   #close() {
     Console.close()
   }
 }
-
-new App().play()
 
 module.exports = App

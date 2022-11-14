@@ -31,9 +31,21 @@ const sortIncreasingOrder = (number1, number2) => {
   return number1 - number2
 }
 
+/**
+ * @param {number} float
+ * @param {number} toDecimalPoint
+ * @returns {number}
+ */
+const round = (float, toDecimalPoint = 0) => {
+  const roundHelper = 10 ** toDecimalPoint
+
+  return Math.round(float * roundHelper) / roundHelper
+}
+
 module.exports = {
   addComma,
   substractComma,
   getIntersection,
   sortIncreasingOrder,
+  round,
 }
