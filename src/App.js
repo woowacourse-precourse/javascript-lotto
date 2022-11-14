@@ -82,6 +82,17 @@ class App {
     }
   }
 
+  printWinResult(){ //당첨내역 출력하기
+    MissionUtils.Console.print('당첨 통계\n---');
+    MissionUtils.Console.print(
+      '3개 일치 (5,000원) - ' + this.fifth + '개\n',
+      '4개 일치 (50,000원) - ' + this.fourth + '개\n',
+      '5개 일치 (1,500,000원) - ' + this.third + '개\n',
+      '5개 일치, 보너스 볼 일치 (30,000,000원) - ' + this.second + '개\n',
+      '6개 일치 (2,000,000,000원) - ' + this.first + '개'
+    )
+  }
+  
 }
 
 module.exports = App;
