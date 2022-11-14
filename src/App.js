@@ -72,6 +72,18 @@ class App {
       this.checkLottoNumbers();
     });
   }
+
+  // 보너스 번호 유효성 검사 함수 구현
+  inputBonusNumberValidate(bonus) {
+    if (!(parseInt(bonus) >= 1 && parseInt(bonus) <= 45)) {
+      throw new Error(ERROR_MESSAGES.LOTTO_RANGE_ERROR);
+    }
+    this.lottos.map((number) => {
+      if (number === parseInt(bonus)) {
+        throw new Error(ERROR_MESSAGES.DUPLICATE_ERROR);
+      }
+    });
+  }
 }
 
 const app = new App();
