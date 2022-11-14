@@ -25,11 +25,12 @@ const getLogSpy = () => {
 }
 
 describe('App 클래스 구입 금액 유효성 테스트', () => {
+  const app = new App()
+
   test('구입 금액이 올바른 숫자 형식이 아니라면 예외가 발생한다.', () => {
     mockQuestions(['1000j'])
 
     expect(() => {
-      const app = new App()
       app.play()
     }).toThrow(validationError.TYPE)
   })
@@ -38,7 +39,6 @@ describe('App 클래스 구입 금액 유효성 테스트', () => {
     mockQuestions(['1002'])
 
     expect(() => {
-      const app = new App()
       app.play()
     }).toThrow(validationError.UNIT)
   })
