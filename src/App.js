@@ -19,7 +19,6 @@ class App {
   }
 
   play() {
-    this.error = new Error();
     this.inputPurchaseAmount();
   }
 
