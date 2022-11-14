@@ -1,7 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const Validation = require("./Validation");
-const { RULE } = require("./constants/rule");
+const { RULE, RANK } = require("./constants/rule");
 
 const mConsole = MissionUtils.Console;
 const mRandom = MissionUtils.Random;
@@ -88,16 +88,10 @@ class LottoController {
 
   printRank() {
     this.getLottoResult();
-    const rankList = [
-      "3개 일치 (5,000원)",
-      "4개 일치 (50,000원)",
-      "5개 일치 (1,500,000원)",
-      "5개 일치, 보너스 볼 일치 (30,000,000원)",
-      "6개 일치 (2,000,000,000원)",
-    ];
+    const rankList = RANK.LIST;
     rankList.forEach((rank, idx) => {
       const rankCount = this.getRankCount(idx);
-      mConsole.print(`${rank} - ${rankCount}개`);
+      mConsole.print(`${rank} ${rankCount}개`);
     });
   }
 
