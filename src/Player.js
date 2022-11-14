@@ -1,6 +1,7 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
 const { REG_EXP } = require("./RegEx");
 const { ERROR } = require("./Error");
+const { isOnlyNumber, isAvailableMoney } = require("./Validation");
 class Player {
   #lottos;
   constructor(money) {
@@ -18,12 +19,8 @@ class Player {
     return lottos;
   };
   validateMoney = (money) => {
-    if (!REG_EXP.onlyNumber.test(money)) {
-      throw new Error(ERROR.notNumber);
-    }
-    if (Number(money) % 1000 !== 0) {
-      throw new Error(ERROR.cannotDivide);
-    }
+    isOnlyNumber(String(money).split(""));
+    isAvailableMoney(money);
     return true;
   };
   showLottoNumbers = () => {
