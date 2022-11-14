@@ -1,5 +1,50 @@
 # 로또 게임 기능 명세서
 
+## 🛠 메서드
+
+### 🔌 App.js (게임 구동)
+
+- `play()`: 게임을 시작하는 메서드
+
+### 📲 UserInterface.js (UI, 입출력)
+
+- `inputMoney()`: 로또 구입 금액을 입력받는 메서드
+- `showLottoNumber()`: 구입한 로또 번호 6자리를 출력하는 메서드
+- `inputWinnerNumber()`: 당첨 번호를 입력받는 메서드
+- `inputBonusNumber()`: 보너스 번호를 입력받는 메서드
+- `showResult()`: 구입한 로또의 당첨 결과 및 통계를 출력하는 메서드
+- `showMatchedNumber()`: 구입한 로또의 번호와 당첨 번호 및 보너스 번호가 몇 개나 일치하는지 출력하는 메서드
+- `showReturnRate()`: 수익률을 출력하는 메서드
+
+### 💸 Lotto.js (로또)
+
+- `getNumbers()`: 로또 번호를 출력하는 메서드
+
+### 🛠️ Purchaser.js (도메인 로직)
+
+- `buyLotto()`: `Lotto` 객체를 구매한 숫자만큼 배열로 반환하는 메서드
+- `createToken()`: 로또를 구매할 때 필요한 6자리 숫자(토큰)를 생성하는 메서드
+- `countMatchedNumber()`: 로또 번호와 당첨 번호 및 보너스 번호를 비교하여 0부터 6까지 각각 몇 개나 일치하는지를 배열로 반환하는 메서드
+- `compare()`: 로또 번호와 당첨 번호 및 보너스 번호를 비교하여 각각 몇 개나 일치하는지 객체로 반환하는 메서드
+- `computeMatchingNumber()`: 로또 번호와 당첨 번호 및 보너스 번호가 일치하는 개수를 계산하여 배열로 반환하는 메서드
+- `getInputMoney()`: 입력한 구입 금액을 반환하는 메서드
+- `getRevenue()`: 로또를 긁어서 얻은 수익을 반환하는 메서드
+- `computeRevenue()`: 구입한 로또를 긁어서 얻은 수익의 총합을 계산하는 메서드
+- `getReturnRate()`: 수익률을 반환하는 메서드
+
+### 🧰 Validator.js (유효성 검사)
+
+- `validateInput()`: 입력한 구입 금액에 대해 유효성 검사하는 메서드
+- `validateNumber()`: 입력한 구입 금액이 숫자로 이루어져 있는지 검사하는 메서드
+- `validateUnit()`: 입력한 구입 금액이 1,000원으로 나누어 떨어지는지 검사하는 메서드
+- `validateLotto()`: 로또 객체에 대해 유효성 검사하는 메서드
+- `validateLength()`: 로또 번호가 6자리인지 검사하는 메서드
+- `validateDoubled()`: 로또 번호에 중복된 숫자가 존재하는지 검사하는 메서드
+
+### 🎱 NumberGenerator.js (랜덤 넘버)
+
+- `pickRandomNumbers()`: 6자리의 중복되지 않는 숫자를 반환하는 메서드
+
 ## 🚀 기능 구현 목록: To do
 
 **로또 조건**
