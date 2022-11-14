@@ -1,31 +1,11 @@
-const {
-    LENGTH_INPUT_LOTTO_NUMBER_ERROR,
-    RANGE_INPUT_LOTTO_NUMBER_ERROR,
-    REPEATED_LOTTO_NUMBER_ERROR,
-    STRING_LOTTO_NUMBER_ERROR,
-} = require('./constants')
-const {
-    rangeCheck,
-    repeatedCheck,
-    lengthCheckLottoNumber,
-    includeString,
-} = require('./validationLotto')
+const { validateLotto } = require('./functionValidation')
+
 class Lotto {
     #numbers
 
     constructor(numbers) {
-        this.validate(numbers)
+        validateLotto(numbers)
         this.#numbers = this.lottoNumberSort(numbers)
-    }
-
-    validate(numbers) {
-        if (!rangeCheck(numbers)) throw new Error(RANGE_INPUT_LOTTO_NUMBER_ERROR)
-
-        if (!repeatedCheck(numbers)) throw new Error(REPEATED_LOTTO_NUMBER_ERROR)
-
-        if (!lengthCheckLottoNumber(numbers)) throw new Error(LENGTH_INPUT_LOTTO_NUMBER_ERROR)
-
-        if (!includeString(numbers)) throw new Error(STRING_LOTTO_NUMBER_ERROR)
     }
 
     lottoNumberSort(numbers) {

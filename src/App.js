@@ -6,16 +6,12 @@ const {
     INPUT_WINNING_NUMBER,
     INPUT_BONUS_NUMBER,
   } = require("./constants");
-const {
-    RANGE_MONEY_ERROR,
-    NOT_NUMBER_MONEY_ERROR,
-    SMALLER_MONEY_ERROR,
-} = require('./constants')
-const {
-    withoutRemainderByThousand,
-    isNotNumber,
-    smallerThanThousand
-    } = require('./validationMoney')
+  const {
+    validateBonus,
+    validateMoney,
+    validateWinningNumber
+  } = require('./functionValidation')
+  
 class App {
     money
     lottoCount
@@ -44,20 +40,11 @@ class App {
     insertMoney() {
         MissionUtils.Console.readLine(INPUT_MONEY, (answer) => {
             this.money = answer
-            this.validate(this.money)
+            validateMoney(this.money)
             this.lottoCount = this.lottoPurchaseCount(this.money)
             this.view.lottoCountPrint(this.lottoCount)
             this.makeLottoNumber()
         })
-    }
-
-    validate(money) {
-        if (!withoutRemainderByThousand(money)) throw new Error(RANGE_MONEY_ERROR)
-
-        if (!isNotNumber(money)) throw new Error(NOT_NUMBER_MONEY_ERROR)
-
-        if (!smallerThanThousand(money)) throw new Error(SMALLER_MONEY_ERROR)
-
     }
 
     lottoPurchaseCount(money) {
@@ -77,6 +64,7 @@ class App {
 
     winningNumberInput() {
         MissionUtils.Console.readLine(INPUT_WINNING_NUMBER, (answer) => {
+            validateWinningNumber(answer)
             this.winningNumbers = answer.split(',')
             this.BonusNumberInput()
         })
@@ -84,10 +72,12 @@ class App {
 
     BonusNumberInput() {
         MissionUtils.Console.readLine(INPUT_BONUS_NUMBER, (answer) => {
+            validateBonus(this.winningNumbers,answer)
             this.bonusNumber = Number(answer)
             this.putWinNumToArray()
         })
     }
+
 
     winningCount(order) {
         return this.userLottoNumbers[order].filter((lotto) =>
