@@ -52,14 +52,14 @@ function startLotto() {
 }
 
 function getRandomNumber() {
-  const randomNumber = MissionUtils.Random.pickNumberInRange(1, 45)
+  const randomNumber = Random.pickNumberInRange(1, 45)
   return randomNumber
 }
 
 function getRandomNumbers() {
   const randomNumbers = []
   while(randomNumbers.length < 6) {
-    const randomNumber = makeRandomNumber();
+    const randomNumber = getRandomNumber();
     if(randomNumbers.includes(randomNumber)) continue;
     randomNumbers.push(randomNumber);
   }
@@ -67,7 +67,7 @@ function getRandomNumbers() {
 }
 
 function getRandomNumberList() {
-  for(let i=0; i<budget/10; i++){
+  for(let i=0; i<inputObjects['budget']/1000; i++){
     const randomNumbers = getRandomNumbers()
     randomNumberList.push(randomNumbers)
     Console.print(randomNumbers)
