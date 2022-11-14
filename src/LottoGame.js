@@ -109,6 +109,8 @@ class LottoGame {
       const bonusMatch = lottoNumber.includes(this.bonusNumber);
       this.comparePrizeCriteria(matchCount, bonusMatch);
     });
+    
+    this.view.printWinningStatistics(this.prizeCount);
   }
 
   getMatchCount(winningNumber, lottoNumber) {
