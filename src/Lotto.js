@@ -1,3 +1,10 @@
+const {
+  LOTTO_DIGITS,
+  NUMBER_RANGE,
+  PRIZE,
+  LOTTO_ERROR_MESSAGE,
+} = require('./Constants');
+
 class Lotto {
   #numbers;
 
@@ -8,38 +15,43 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+    if (numbers.length !== LOTTO_DIGITS) {
+      throw new Error(LOTTO_ERROR_MESSAGE.digits);
     }
     if (numbers.some((number) => !Number.isInteger(number))) {
-      throw new Error('[ERROR] 로또 번호는 정수여야 합니다.');
+      throw new Error(LOTTO_ERROR_MESSAGE.integer);
     }
-    if (numbers.some((number) => !(number >= 1 && number <= 45))) {
-      throw new Error('[ERROR] 로또 번호는 1에서 45 사이의 숫자여야 합니다.');
+    if (
+      numbers.some(
+        (number) =>
+          !(number >= NUMBER_RANGE.lower && number <= NUMBER_RANGE.upper)
+      )
+    ) {
+      throw new Error(LOTTO_ERROR_MESSAGE.range);
     }
     if (numbers.length !== new Set(numbers).size) {
-      throw new Error('[ERROR] 로또 번호는 중복된 숫자를 포함할 수 없습니다.');
+      throw new Error(LOTTO_ERROR_MESSAGE.duplication);
     }
   }
 
   validateBonusNumber(number) {
     if (!number) {
-      throw new Error('[ERROR] 보너스 번호는 한자리 숫자여야 합니다.');
+      throw new Error(LOTTO_ERROR_MESSAGE.bonus);
     }
     if (!Number.isInteger(number)) {
-      throw new Error('[ERROR] 로또 번호는 정수여야 합니다.');
+      throw new Error(LOTTO_ERROR_MESSAGE.integer);
     }
-    if (!(number >= 1 && number <= 45)) {
-      throw new Error('[ERROR] 로또 번호는 1에서 45 사이의 숫자여야 합니다.');
+    if (!(number >= NUMBER_RANGE.lower && number <= NUMBER_RANGE.upper)) {
+      throw new Error(LOTTO_ERROR_MESSAGE.range);
     }
     if (this.#numbers.includes(number)) {
-      throw new Error('[ERROR] 로또 번호는 중복된 숫자를 포함할 수 없습니다.');
+      throw new Error(LOTTO_ERROR_MESSAGE.duplication);
     }
     this.bonusNumber = number;
   }
 
   getResult(IssuedLottoes) {
-    let prizeRecord = { '1등': 0, '2등': 0, '3등': 0, '4등': 0, '5등': 0 };
+    const prizeRecord = { first: 0, second: 0, third: 0, fourth: 0, fifth: 0 };
     IssuedLottoes.forEach((IssuedLotto) => {
       const prize = this.checkPrize(IssuedLotto);
       if (prize) {
@@ -52,16 +64,16 @@ class Lotto {
   checkPrize(IssuedLotto) {
     const matchingCount = this.countMatchingNumber(IssuedLotto);
     if (matchingCount === 6) {
-      return '1등';
+      return PRIZE.first;
     }
     if (matchingCount === 5) {
-      return this.checkBonusNumber(IssuedLotto) ? '2등' : '3등';
+      return this.checkBonusNumber(IssuedLotto) ? PRIZE.second : PRIZE.third;
     }
     if (matchingCount === 4) {
-      return '4등';
+      return PRIZE.fourth;
     }
     if (matchingCount === 3) {
-      return '5등';
+      return PRIZE.fifth;
     }
   }
 

@@ -1,6 +1,13 @@
 const { Console } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const LottoIssuer = require('./LottoIssuer');
+const {
+  LOTTO_PRICE,
+  PRIZE_MONEY,
+  INPUT_MESSAGE,
+  MONEY_ERROR_MESSAGE,
+  RESULT_MESSAGE,
+} = require('./Constants');
 
 class App {
   play() {
@@ -8,34 +15,35 @@ class App {
   }
 
   receiveMoney() {
-    Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
-      this.checkMoneyValidity(money);
-      this.issueLottoes(money);
+    Console.readLine(INPUT_MESSAGE.money, (money) => {
+      this.money = Number(money);
+      this.checkMoneyValidity(this.money);
+      this.issueLottoes(this.money);
       this.getLuckyNumbers();
     });
   }
 
   issueLottoes(money) {
     const lottoIssuer = new LottoIssuer();
-    const issuedLottoes = lottoIssuer.issue(money);
-    this.printLottoes(issuedLottoes);
+    this.issuedLottoes = lottoIssuer.issue(money);
+    this.printLottoes(this.issuedLottoes);
   }
 
   checkMoneyValidity(money) {
-    if (money % 1000 !== 0) {
-      throw new Error('[ERROR] 구입 금액은 1,000원 단위여야 합니다.');
+    if (money % LOTTO_PRICE !== 0) {
+      throw new Error(MONEY_ERROR_MESSAGE.unit);
     }
   }
 
-  printLottoes(issuedLottoes) {
-    Console.print(`\n${issuedLottoes.length}개를 구매했습니다.`);
-    issuedLottoes.forEach((issuedLotto) => {
+  printLottoes() {
+    Console.print(`\n${this.issuedLottoes.length}개를 구매했습니다.`);
+    this.issuedLottoes.forEach((issuedLotto) => {
       Console.print(issuedLotto);
     });
   }
 
   getLuckyNumbers() {
-    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (stringNumbers) => {
+    Console.readLine(INPUT_MESSAGE.lucky, (stringNumbers) => {
       const numbers = [...stringNumbers.split(',')].map(Number);
       this.lotto = new Lotto(numbers);
       this.getBonusNumber();
@@ -43,13 +51,13 @@ class App {
   }
 
   getBonusNumber() {
-    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (stringNumber) => {
+    Console.readLine(INPUT_MESSAGE.bonus, (stringNumber) => {
       this.lotto.validateBonusNumber(Number(stringNumber));
     });
   }
 }
 
 const app = new App();
-app.getLuckyNumbers();
+app.play();
 
 module.exports = App;
