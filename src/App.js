@@ -1,13 +1,18 @@
 const utils = require("./utils");
 const Constant = require("./Constant");
+const Lotto = require("./Lotto");
+const MissionUtils = require("@woowacourse/mission-utils");
+
 
 class App {
   #price; // 로또 구입금액
   #lottoNumber; // 구입 로또 갯수
+  #Lotto; // 발급 받은 로또 배열
 
   constructor() {
     this.#price = 0;
     this.#lottoNumber = 0;
+    this.#Lotto = [];
   }
 
   play() {
@@ -18,7 +23,20 @@ class App {
     }
 
     utils.print(this.#lottoNumber+"개를 구매했습니다.");
+    this.#Lotto = this.#issueLotto();
+  }
 
+  /***
+   * lotto 발급하는 함수
+   */
+  #issueLotto(){
+    const result = [];
+    for(let i = 0 ; i < this.#lottoNumber ; i++){
+      const tmp = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      utils.print(tmp);
+      result.push(new Lotto(tmp));
+    }
+    return result;
   }
 
   /***
@@ -32,8 +50,6 @@ class App {
     }
     return -1;
   }
-
-
 }
 
 module.exports = App;
