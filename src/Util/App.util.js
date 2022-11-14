@@ -8,7 +8,11 @@ const buyLottos = (lottoLength) =>
     return new Lotto(input);
   });
 
-const getStatistics = () => {};
+const getStatistics = (counts) => {
+  const result = [0, 0, 0, 0, 0];
+  counts.forEach((count) => count - 3 >= 0 && result[count - 3]++);
+  return result;
+};
 const getRateOfReturn = () => {};
 
 exports.buyLottos = buyLottos;
