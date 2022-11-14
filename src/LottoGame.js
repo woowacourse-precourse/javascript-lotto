@@ -105,6 +105,10 @@ class LottoGame {
     if (!isValuesValidRange([bonusNumber])) {
       throw ERROR_MESSAGE.RANGE_ERROR;
     }
+
+    if (!isValuesValidLength([bonusNumber])) {
+      throw ERROR_MESSAGE.BONUS_NUMBER_LENGTH_ERROR;
+    }
   }
 }
 

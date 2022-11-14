@@ -9,7 +9,8 @@ const ERROR_MESSAGE = {
   TYPE_ERROR: "[ERROR] 숫자를 입력해주세요.",
   UNIT_ERROR: "[ERROR] 1,000으로 나누어 떨어지는 금액을 입력해주세요.",
   RANGE_ERROR: "[ERROR] 1~45 범위의 값만 입력해주세요.",
-  WINNER_NUMBERS_LENGTH_ERROR: `6자릿수 까지만 입력해주세요.`,
+  WINNER_NUMBERS_LENGTH_ERROR: `[ERROR] 값을 6개만 입력해주세요.`,
+  BONUS_NUMBER_LENGTH_ERROR: `[ERROR] 값을 1개만 입력해주세요.`,
 };
 
 const LOTTO_VALUE = {
