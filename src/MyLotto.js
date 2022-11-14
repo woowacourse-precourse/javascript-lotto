@@ -35,9 +35,7 @@ class MyLotto {
   }
 
   printMyLottery(myLottos) {
-    for (let index = CONSTANTS.ZERO; index < myLottos.length; index++) {
-      Console.print(myLottos[index]);
-    }
+    myLottos.forEach((lotto) => Console.print(`[${lotto.join(", ")}]`));
   }
 }
 
