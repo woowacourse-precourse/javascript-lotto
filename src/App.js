@@ -63,6 +63,15 @@ class App {
       this.inputBonusNumber();
     });
   }
+
+  // 보너스 번호를 입력하는 함수 구현
+  inputBonusNumber() {
+    MissionUtils.Console.readLine(INPUT_MESSAGES.BONUS_NUMBER, (bonus) => {
+      this.inputBonusNumberValidate(bonus);
+      this.bonusNumber = parseInt(bonus);
+      this.checkLottoNumbers();
+    });
+  }
 }
 
 const app = new App();
