@@ -1,9 +1,13 @@
+const FORMULA = {
+  COMPARE: (former, latter) => former - latter,
+  PROFIT: (revenue, pay) => revenue / pay * 100
+}
+
 const UNITS = {
   LOTTO_PRICE: 1000,
   LIMIT_LOTTO: 6,
   MIN: 1,
   MAX: 45,
-  PERCENTAGE: 100
 }
 
 const MESSAGE = {
@@ -25,8 +29,11 @@ const ERROR_MESSAGE = {
   LENGTH_OF_LUCKY_NUMBERS: "[ERROR] 당첨 번호는 6개여야 합니다.",
   DUPLICATE_OF_LUCKY_NUMBERS: "[ERROR] 당첨 번호는 중복이 없어야 합니다.",
   DUPLICATE_OF_BONUS_NUMBER: "[ERROR] 보너스 번호는 당첨번호와 달라야 합니다.",
+  
   LENGTH_OF_LOTTO: "[ERROR] 로또 번호는 6개여야 합니다.",
   DUPLICATE_OF_LOTTO: "[ERROR] 로또 번호는 중복이 없어야 합니다.",
+  DIGIT_OF_LOTTO: "[ERROR] 로또 번호는 1 ~ 45 사이의 숫자입니다.",
+
 }
 
-module.exports = {UNITS, MESSAGE, ERROR_MESSAGE};
+module.exports = {FORMULA, UNITS, MESSAGE, ERROR_MESSAGE};

@@ -1,17 +1,18 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto')
-const { isLengthError, isDuplicate, isNotRightBonus } = require("./utils");
+const { validator } = require("./utils");
 
-const {UNITS, MESSAGE, ERROR_MESSAGE} = require('./constants')
+const {FORMULA,UNITS, MESSAGE, ERROR_MESSAGE} = require('./constants')
 
 class App {
   inputMoney = 0
-  numberOfLotto;
+  numberOfLotto = 0;
   myLottos = [];
   luckyNumbers = [];
   bonusNumber;
-  
-  resultMap = {
+  revenue = 0;
+  profit = 0;
+  winningMap = {
     firstPlace: {
       count: 0,
       WINNING_AMOUNT: 2000000000
@@ -33,9 +34,6 @@ class App {
       WINNING_AMOUNT: 5000
     },
   };
-
-  revenue = 0;
-  profit = 0;
 
   play() {
     this.pay();
@@ -73,16 +71,17 @@ class App {
   }
 
   validate(luckyNumbers, bonusNumber) {
-    if (isLengthError(luckyNumbers)) {
+    if (validator.isLengthError(luckyNumbers)) {
       throw new Error(ERROR_MESSAGE.LENGTH_OF_LUCKY_NUMBERS);
     }
-
-    if (isDuplicate(luckyNumbers)) {
+    if (validator.isDuplicate(luckyNumbers)) {
       throw new Error(ERROR_MESSAGE.DUPLICATE_OF_LUCKY_NUMBERS);
     }
-
-    if (isNotRightBonus(luckyNumbers, bonusNumber)) {
+    if (validator.isNotRightBonus(luckyNumbers, bonusNumber)) {
       throw new Error(ERROR_MESSAGE.DUPLICATE_OF_BONUS_NUMBER);
+    }
+    if (validator.isDigitError(luckyNumbers)) {
+      throw new Error(ERROR_MESSAGE.DIGIT_OF_LOTTO);
     }
   }
 
@@ -91,13 +90,14 @@ class App {
       this.luckyNumbers = input.split(",").map(Number);
       this.setBonusNumber();
     });
+
     return;
   }
+
   setBonusNumber() {
     Console.readLine(MESSAGE.REQUEST_BONUS_NUMBER, (input) => {
       this.bonusNumber = Number(input)
       this.validate(this.luckyNumbers, this.bonusNumber)
-
       this.winning();
     });
 
@@ -106,22 +106,21 @@ class App {
 
   winning () {
     this.myLottos.map(myLotto => {
-
       let numberOfMatch = myLotto.countNumberOfMatches(this.luckyNumbers);
       let isBonus = myLotto.isBonus(this.bonusNumber);
-
       if (numberOfMatch === 3) {
-        this.resultMap.fifthPlace.count += 1;
+        this.winningMap.fifthPlace.count += 1;
       } else if (numberOfMatch === 4) {
-        this.resultMap.fourthPlace.count += 1;
+        this.winningMap.fourthPlace.count += 1;
       } else if (numberOfMatch === 5 && !isBonus) {
-        this.resultMap.thirdPlace.count += 1;
+        this.winningMap.thirdPlace.count += 1;
       } else if (numberOfMatch === 5 && isBonus) {
-        this.resultMap.secondPlace.count += 1;
+        this.winningMap.secondPlace.count += 1;
       } else if (numberOfMatch === 6) {
-        this.resultMap.firstPlace.count += 1;
+        this.winningMap.firstPlace.count += 1;
       }
     })
+
     this.calculateRevenue();
     this.calculateProfit();
     this.printResult();
@@ -131,19 +130,19 @@ class App {
 
   calculateRevenue() {
     this.revenue = 
-      (this.resultMap.fifthPlace.count * this.resultMap.fifthPlace.WINNING_AMOUNT)
-      + (this.resultMap.fourthPlace.count * this.resultMap.fourthPlace.WINNING_AMOUNT)
-      + (this.resultMap.thirdPlace.count * this.resultMap.thirdPlace.WINNING_AMOUNT)
-      + (this.resultMap.secondPlace.count * this.resultMap.secondPlace.WINNING_AMOUNT)
-      + (this.resultMap.firstPlace.count * this.resultMap.firstPlace.WINNING_AMOUNT)
+      (this.winningMap.fifthPlace.count * this.winningMap.fifthPlace.WINNING_AMOUNT)
+      + (this.winningMap.fourthPlace.count * this.winningMap.fourthPlace.WINNING_AMOUNT)
+      + (this.winningMap.thirdPlace.count * this.winningMap.thirdPlace.WINNING_AMOUNT)
+      + (this.winningMap.secondPlace.count * this.winningMap.secondPlace.WINNING_AMOUNT)
+      + (this.winningMap.firstPlace.count * this.winningMap.firstPlace.WINNING_AMOUNT)
   }
 
   calculateProfit() {
-    this.profit = this.revenue / this.inputMoney * UNITS.PERCENTAGE
+    this.profit = FORMULA.PROFIT(this.revenue, this.inputMoney)
   }
 
   printResult () {
-    Console.print(MESSAGE.WINNING_STATS(this.resultMap, this.profit))
+    Console.print(MESSAGE.WINNING_STATS(this.winningMap, this.profit))
     Console.close();
   }
 }

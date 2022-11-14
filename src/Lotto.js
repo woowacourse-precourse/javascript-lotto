@@ -1,6 +1,6 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const { isLengthError, isDuplicate } = require("./utils");
-const {MESSAGE, ERROR_MESSAGE} = require('./constants')
+const { validator } = require("./utils");
+const {FORMULA, MESSAGE, ERROR_MESSAGE} = require('./constants')
 
 
 class Lotto {
@@ -8,16 +8,19 @@ class Lotto {
 
   constructor(numbers) {
     this.validate(numbers);
-    this.#numbers = numbers.sort((comp1, comp2) => comp1 - comp2);
+    this.#numbers = numbers.sort(FORMULA.COMPARE);
   }
 
   validate(numbers) {
-    if (isLengthError(numbers)) {
+    if (validator.isLengthError(numbers)) {
       throw new Error(ERROR_MESSAGE.LENGTH_OF_LOTTO);
     }
 
-    if (isDuplicate(numbers)) {
+    if (validator.isDuplicate(numbers)) {
       throw new Error(ERROR_MESSAGE.DUPLICATE_OF_LOTTO);
+    }
+    if (validator.isDigitError(numbers)) {
+      throw new Error(ERROR_MESSAGE.DIGIT_OF_LOTTO);
     }
   }
 
