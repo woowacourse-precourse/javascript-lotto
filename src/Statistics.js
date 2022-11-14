@@ -37,12 +37,11 @@ class Statistics {
   }
 
   getTotalPrizeMoney() {
-    const RANKING1 = this.ranking[0] * PRIZE_MONEY.RANKING1;
-    const RANKING2 = this.ranking[1] * PRIZE_MONEY.RANKING2;
-    const RANKING3 = this.ranking[2] * PRIZE_MONEY.RANKING3;
-    const RANKING4 = this.ranking[3] * PRIZE_MONEY.RANKING4;
-    const RANKING5 = this.ranking[4] * PRIZE_MONEY.RANKING5;
-    return RANKING1 + RANKING2 + RANKING3 + RANKING4 + RANKING5;
+    const PRIZE_MONEY_ARRAY = Object.values(PRIZE_MONEY);
+    const RANKING = this.ranking
+      .map((rank, idx) => rank * PRIZE_MONEY_ARRAY[idx])
+      .reduce((prev, curr) => prev + curr);
+    return RANKING;
   }
 
   getYield(totalPrizeMoney, amount) {
