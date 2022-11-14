@@ -13,6 +13,9 @@ class Cost {
   }
 
   validate(cost) {
+    if (cost !== +cost) {
+      throw new Error(ERROR_MESSAGE.NOT_NUMBER);
+    }
     if (cost % COST.DIVIDE !== 0) {
       throw new Error(ERROR_MESSAGE.COST);
     }
