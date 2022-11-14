@@ -62,7 +62,7 @@ describe('LottoDrawFactory 클래스 테스트', () => {
       first: 0,
     });
 
-    expect(income.getResult()).toEqual('3000000.0');
+    expect(income.getResult()).toEqual('3,000,000.0');
   });
 
   test('(1등) 내가 산 로또들과 추첨한 로또 비교한 결과값 테스트', () => {
@@ -85,7 +85,7 @@ describe('LottoDrawFactory 클래스 테스트', () => {
       first: 1,
     });
 
-    expect(income.getResult()).toEqual('200000000.0');
+    expect(income.getResult()).toEqual('200,000,000.0');
   });
 
   test('(당첨x) 내가 산 로또들과 추첨한 로또 비교한 결과값 테스트', () => {
@@ -107,5 +107,7 @@ describe('LottoDrawFactory 클래스 테스트', () => {
       second: 0,
       first: 0,
     });
+
+    expect(income.getResult()).toEqual('0.0');
   });
 });
