@@ -9,7 +9,7 @@ class UserLotto {
     this.lottoCount = amount / 1000;
     for (let make = 0; make < this.lottoCount; make++) {
       const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-      this.userLottoList.push(numbers);
+      this.userLottoList.push(numbers.sort((a, b) => a - b));
     }
   }
 
