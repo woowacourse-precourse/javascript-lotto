@@ -1,6 +1,7 @@
 const Mission = require("@woowacourse/mission-utils");
 const { GAME_MESSAGES } = require("../utils/Constants");
 const QuickPick = require("../input/QuickPick");
+const Lotto = require("../Lotto");
 
 class Clerk {
   #payment;
@@ -20,8 +21,12 @@ class Clerk {
 
   inputWinningNumbers() {
     Mission.Console.readLine(GAME_MESSAGES.ASK_TO_WINNING_NUMBERS, (winNumbers) => {
-      Mission.Console.print(winNumbers);
-      Mission.Console.close();
+      const winningNum = winNumbers
+        .split(",")
+        .map((value) => Number(value))
+        .sort((a, b) => a - b);
+      const lotto = new Lotto(winningNum);
+      this.#winningNumbers = lotto.output();
     });
   }
 }
