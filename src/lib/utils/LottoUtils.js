@@ -11,12 +11,7 @@ const checkWinningNumbersDuplication = (numbers) => {
 };
 
 const checkWinningNumbersRange = (numbers) => {
-  numbers.forEach((item) => {
-    if (!LOTTO_RANGE_REGEX.test(item)) {
-      return true;
-    }
-  });
-  return false;
+  return numbers.every((item) => LOTTO_RANGE_REGEX.test(item));
 };
 
 module.exports = {
