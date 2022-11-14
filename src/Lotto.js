@@ -1,4 +1,5 @@
 const { Random } = require('@woowacourse/mission-utils');
+const Validator = require('./Validator');
 
 // TODO: 6, 1, 45 같은 상수 어떻게 처리할것인지?
 
@@ -6,7 +7,7 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    Lotto.validate(numbers);
+    this.validate(numbers);
     this.#numbers = numbers;
   }
 
@@ -15,10 +16,29 @@ class Lotto {
     return this.#numbers;
   }
 
-  // NOTE: 메서드 안에서 this쓰면 static 지워도 됨
-  static validate(numbers, numbersCount = 6) {
+  static isValidLottoNumber(number) {
+    return number >= 1 && number <= 45;
+  }
+
+  static isValidLottoNumbers(numbers, numbersCount) {
     if (numbers.length !== numbersCount) {
       throw new Error(`[ERROR] 로또 번호는 ${numbersCount}개여야 합니다.`);
+    }
+
+    if (!numbers.every(Validator.isValidNumber)) {
+      throw new Error('[ERROR] 숫자가 아닌 입력이 있습니다.');
+    }
+
+    if ([...new Set(numbers)].length !== numbers.length) {
+      throw new Error('[ERROR] 로또 번호는 서로 중복되지 않아야 합니다.');
+    }
+  }
+
+  validate(numbers, numbersCount = 6) {
+    Lotto.isValidLottoNumbers(numbers, numbersCount);
+
+    if (!numbers.every(this.isValidLottoNumber)) {
+      throw new Error(`[ERROR] 로또 번호는 ${1}부터 ${45}까지 입니다.`);
     }
   }
 

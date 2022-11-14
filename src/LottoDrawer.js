@@ -1,4 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
+const Lotto = require('./Lotto');
+const Validator = require('./Validator');
 
 class LottoDrawer {
   // {numbers, bonus}
@@ -25,9 +27,11 @@ class LottoDrawer {
   // 보너스번호와도 중복이 없어야 함
 
   setLottoWinner(input) {
+    Validator.isValidInput(input);
+
     const winnerNumbers = input.split(',').map(Number);
 
-    this.result = { numbers: winnerNumbers };
+    this.result = { numbers: new Lotto(winnerNumbers).numbers };
   }
 
   setBonusNumber(winner) {
@@ -40,7 +44,7 @@ class LottoDrawer {
   }
 
   drawLotto(winner) {
-    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (numbers) => {
+    Console.readLine('\n당첨 번호를 입력해 주세요. (,로 구분하여 입력하세요.)\n', (numbers) => {
       this.setLottoWinner(numbers);
       this.setBonusNumber(winner);
     });
