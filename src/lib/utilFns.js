@@ -22,13 +22,7 @@ const divide = (divider) => (share) => Number(share) / divider;
 const divide1000 = divide(1000);
 
 const getRandomNumbers = (start, end, size) => {
-  const pickNums = [];
-
-  while (pickNums.length < size) {
-    const pickNum = Random.pickNumberInRange(start, end);
-    if (!pickNums.includes(pickNum)) pickNums.push(pickNum);
-  }
-
+  const pickNums = Random.pickUniqueNumbersInRange(start, end, size);
   pickNums.sort((a, b) => a - b);
 
   return pickNums;
