@@ -1,19 +1,32 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const {validateWinNums, }= require("./util");
+const { validateWinNums, } = require("./util");
 const Lotto = require("./Lotto.js");
 const [Console, Random] = [MissionUtils.Console, MissionUtils.Random];
 
-function validateBounus(bonusNum, winNums){
+function validateBounus(bonusNum, winNums) {
 
-  if(isNaN(bonusNum)){
-    return [false, new Error("[ERROR] 보너스번호는 숫자여야 합니다.") ]
+  if (isNaN(bonusNum)) {
+    return [false, new Error("[ERROR] 보너스번호는 숫자여야 합니다.")];
   }
-  
-  if(winNums.includes(bonusNum)){
-    return [false, new Error("[ERROR] 보너스 번호가 당첨번호에 포함되어 있습니다.")]
+
+  if (winNums.includes(bonusNum)) {
+    return [false, new Error("[ERROR] 보너스 번호가 당첨번호에 포함되어 있습니다.")];
   }
 
   return [true, bonusNum];
+}
+
+function validatePrice(price) {
+  const priceNum = parseInt(money);
+
+  if (isNaN(priceNum)) {
+    return [false, new Error("[ERROR] price는 숫자여야 합니다.")];
+  }
+  if (priceNum % 1000 !== 0) {
+    return [false, new Error("[ERROR] price가 1000으로 나누어 떨어지지 않습니다.")];
+  }
+
+  return [true, priceNum];
 }
 
 class App {
@@ -57,11 +70,13 @@ class App {
   readMoney() {
     return new Promise((resolve, reject) => {
       Console.readLine("구입금액을 입력해주세요 : ", (money) => {
-        const priceNum = parseInt(money);
-        if (priceNum % 1000 !== 0) {
-          reject(new Error("[ERROR] price가 1000으로 나누어 떨어지지 않습니다."));
+        const validation = validatePrice(money);
+        if (!validation[0]) {
+          reject(validation[1]);
         }
-        resolve(this.setMoney(priceNum));
+        resolve(this.setMoney(validation[1]));
+      })
+          
       })
     })
   }
@@ -79,10 +94,10 @@ class App {
 
   readWinNums() {
 
-    return new Promise((resolve, reject) =>{
+    return new Promise((resolve, reject) => {
       Console.readLine("당첨번호를 입력해주세요. : ", (winNums) => {
         const validation = validateWinNums(winNums);
-        if(!validation[0]){
+        if (!validation[0]) {
           reject(validation[1]);
         }
         resolve(this.setWinNums(validation[1]));
@@ -91,11 +106,11 @@ class App {
   }
 
   readBonusNum() {
-    return new Promise((resolve, reject) =>{
+    return new Promise((resolve, reject) => {
       Console.readLine("보너스 넘버를 입력해주세요. : ", (bonus) => {
         const bonusNum = parseInt(bonus);
-        const validation = validateBounus(bonusNum,this.getWinNums());
-        if(!validation[0]){
+        const validation = validateBounus(bonusNum, this.getWinNums());
+        if (!validation[0]) {
           reject(validation[1]);
         }
         resolve(this.setBonus(validation[1]));
