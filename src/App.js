@@ -2,25 +2,23 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto.js");
 const Bonus = require("./Bonus.js");
 const InsertMoney = require("./InsertMoney.js");
+const GenerateUserLottoNumber = require("./GenerateUserLottoNumber.js");
 class App {
   bonusNumber;
   prizeNumbers = [];
-  userLottoNumberLists = [];
   userWinningStatics = [0,0,0,0,0];
 
   play() {
     const insertMoney = new InsertMoney();
-
     const LOTTO_COUNT = insertMoney.getInsertMoney() / 1000;
-    for(let count = 0; count <LOTTO_COUNT; count++){
-      this.userLottoNumberLists.push(this.generateUserLottoNumber());
-    }
+    const generateUserLottoNumber = new GenerateUserLottoNumber(LOTTO_COUNT);
     this.printLottoCount(LOTTO_COUNT);
+    this.printGenerateUserLottoNumber(generateUserLottoNumber.getUserLottoNumberLists());
     this.enterPrizeNumber();
     const lotto = new Lotto(this.prizeNumbers);
     this.enterBonusNumber();
     const bonus = new Bonus(lotto.getNumbers(), this.bonusNumber);
-    this.userLottoNumberLists.forEach((OneUserNumber)=>{
+    generateUserLottoNumber.getUserLottoNumberLists().forEach((OneUserNumber)=>{
       this.comparePrizeNumberAndUserNumber(lotto.getNumbers(), bonus.getNumbers(),OneUserNumber);
     });
     const earnMoney = this.calcEarnMoney(this.userWinningStatics);
@@ -30,16 +28,6 @@ class App {
   }
   printLottoCount(LottoCount){
     MissionUtils.Console.print(`${LottoCount}개를 구매했습니다.`);
-    this.printGenerateUserLottoNumber(this.userLottoNumberLists);
-  }
-  generateUserLottoNumber(){
-    const generatedNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-    const sortedNumbers = this.sortUserLottoNumber(generatedNumbers);
-    return sortedNumbers;
-  }
-  sortUserLottoNumber(generatedNumbers){
-    const sortedNumbers = generatedNumbers.sort((front,back)=>(front-back));
-    return sortedNumbers;
   }
   printGenerateUserLottoNumber(userLottoLists){
     userLottoLists.forEach((userLottoList)=>{
