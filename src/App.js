@@ -36,17 +36,6 @@ class App {
       throw new Error("[ERROR] 로또 구입 금액은 1000원 단위여야 합니다.");
     }
   }
-  winningNumberValidate() {
-    if (this.winningNumber.length !== 6) {
-      throw new Error("[ERROR] 당첨 번호는 6자리여야 합니다.");
-    }
-
-    this.winningNumber.map((number) => {
-      if (Number(number) > 45 || Number(number) === 0) {
-        throw new Error("[ERROR] 당첨 번호가 1~45가 아닙니다.");
-      }
-    });
-  }
 
   buyAmountCalculate() {
     this.buyAmount = this.buyPrice / 1000;
@@ -82,7 +71,7 @@ class App {
           return a - b;
         });
 
-        this.winningNumberValidate();
+        new Lotto(this.winningNumber);
 
         this.getBonusNumber();
       }
@@ -103,11 +92,11 @@ class App {
   }
 
   collectLottoNumber(numbers) {
-    const collectLength = this.collectLottoNumber.length;
+    const collectLength = this.collectNumber.length;
     const collectBonus = numbers.includes(this.bonusNumber);
 
     if (collectLength >= 3 && collectLength <= 5 && !collectBonus) {
-      this.matchNumber[collectLength - 3];
+      this.matchNumber[collectLength - 3]++;
     }
     if (collectLength === 5 && collectBonus) {
       this.matchNumber[3]++;
@@ -158,17 +147,6 @@ class App {
 
     this.winningStatsResult();
     this.yieldResult();
-  }
-  winningNumberValidate() {
-    if (this.winningNumber.length !== 6) {
-      throw new Error("[ERROR] 당첨 번호는 6자리여야 합니다.");
-    }
-
-    this.winningNumber.map((number) => {
-      if (Number(number) > 45 || Number(number) === 0) {
-        throw new Error("[ERROR] 당첨 번호가 1~45가 아닙니다.");
-      }
-    });
   }
 
   splitWinningNumber(number) {
