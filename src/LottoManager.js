@@ -23,8 +23,8 @@ class LottoManager {
 
       if (matches === 3) winningArray[0] += 1;
       else if (matches === 4) winningArray[1] += 1;
-      else if (matches === 5) winningArray[2] += 1;
       else if (matches === 5 && hasBonusNumber) winningArray[3] += 1;
+      else if (matches === 5) winningArray[2] += 1;
       else if (matches === 6) winningArray[4] += 1;
     });
 
