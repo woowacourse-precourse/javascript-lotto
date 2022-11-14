@@ -30,6 +30,18 @@ class Validation {
     }
   }
 
+  static validateBonusNumber(bonusNumber, winningNumbers) {
+    const bonusNumberArray = [bonusNumber];
+    if (!this.isValidNumberofNumbers(bonusNumberArray, LOTTO.BONUS)) {
+      throw new Error(ERROR_MESSAGES.ERROR_INVALID_NUMBER);
+    }
+    if (!this.isValidRangeOfBonusNumber(bonusNumberArray)) {
+      throw new Error(ERROR_MESSAGES.ERROR_INVALID_RANGE);
+    }
+    if (!this.hasUniqueBonusNumber(bonusNumber, winningNumbers)) {
+      throw new Error(ERROR_MESSAGES.DUPLICATION_NUMBERS);
+    }
+  }
   /**
    * 플레이어가 게임 중 입력한 당첨 번호가 형식에 어긋날 경우 예외를 발생시킵니다.
    * @param {array} inputNumbers - 당첨 번호
@@ -49,6 +61,10 @@ class Validation {
 
   static hasUniqueLottoNumber(inputNumbers) {
     return new Set(inputNumbers).size === LOTTO.NUMBER;
+  }
+
+  static hasUniqueBonusNumber(bonusNumber, winningNumbers) {
+    return !winningNumbers.includes(bonusNumber);
   }
 }
 

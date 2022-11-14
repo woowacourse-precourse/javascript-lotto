@@ -36,6 +36,14 @@ class LottoGame {
       this.#winningNumbers = winningNumbersArray.map(Number);
     });
   }
+
+  makeBonusNumber() {
+    Console.log(MESSAGES.INPUT_BONUS_NUMBER, (input) => {
+      Validation.validateBonusNumber(Number(input), this.#winningNumbers);
+
+      this.#bonusNumber = Number(input);
+    });
+  }
 }
 
 module.exports = LottoGame;
