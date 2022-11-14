@@ -1,46 +1,45 @@
-const { Console, Random } = require('@woowacourse/mission-utils');
+const { Console } = require('@woowacourse/mission-utils');
 const { UNIT, FORMAT, MESSAGE, MATCH, RANK, PRIZE } = require('./Constant');
 const Lotto = require('./Lotto');
 
 class App {
+  myLotto = [];
   ranks = Object.values(RANK);
   statistics = new Array(this.ranks.length + 1).fill(0);
-  earning = 0;
 
-  interaction() {
+  play() {
     Console.readLine(MESSAGE.INPUT_PURCHASE_AMOUNT, (input) => {
       this.purchaseAmount = input;
       this.lottoCount = input / 1000;
-      this.generateLottos();
-      this.printLottos();
+      this.setMyLotto();
+      this.printMyLotto();
       this.winningResult();
     });
   }
 
-  generateLottos() {
-    const { lottoCount } = this;
-    let lottos = [];
+  setMyLotto() {
+    const { myLotto, lottoCount } = this;
 
-    while (lottos.length < lottoCount) {
-      const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
-
-      lottos.push(numbers.sort((num1, num2) => num1 - num2));
+    while (myLotto.length < lottoCount) {
+      myLotto.push(new Lotto());
     }
-    this.lottos = lottos;
   }
 
-  printLottos() {
-    const { lottoCount, lottos } = this;
+  printMyLotto() {
+    const { myLotto, lottoCount } = this;
 
     Console.print(`${lottoCount}${UNIT.LOTTO}를 구매했습니다.`);
-    lottos.forEach((lottoNumbers) => {
-      Console.print(`[${lottoNumbers.join(', ')}]`);
+    myLotto.forEach((lotto) => {
+      lotto.print();
     });
   }
 
   winningResult() {
     Console.readLine(MESSAGE.INPUT_WINNING_NUMBERS, (input) => {
-      this.winningNumbers = new Set(input.split(',').map(Number));
+      const winningNumbers = input.split(',').map(Number);
+
+      new Lotto(winningNumbers);
+      this.winningNumbers = new Set(winningNumbers);
       this.winningStatistics();
     });
   }
@@ -50,21 +49,20 @@ class App {
       this.bonusNumber = Number(input);
       this.setStatistics();
       this.printStatistics();
-      Console.close();
+      this.exit();
     });
   }
 
   setStatistics() {
-    const { lottos, winningNumbers, bonusNumber } = this;
+    const { myLotto, winningNumbers, bonusNumber, statistics } = this;
+    let earning = 0;
 
-    lottos.forEach((lottoNumbers) => {
-      const lotto = new Lotto(lottoNumbers);
-
-      lotto.matchNumbers(winningNumbers, bonusNumber);
-      lotto.setRank();
-      this.earning += PRIZE[lotto.rank];
-      this.statistics[lotto.rank] += 1;
+    myLotto.forEach((lotto) => {
+      lotto.match(winningNumbers, bonusNumber);
+      earning += PRIZE[lotto.rank];
+      statistics[lotto.rank] += 1;
     });
+    this.earning = earning;
     this.setEarningRate();
   }
 
@@ -78,7 +76,7 @@ class App {
   printStatistics() {
     const { ranks, statistics, earningRate } = this;
 
-    Console.print('당첨 통계\n---');
+    Console.print(MESSAGE.TITLE_STATISTICS);
     ranks.forEach((rank) => {
       const formatPrize = PRIZE[rank].toLocaleString(FORMAT.LOCALE);
 
@@ -89,8 +87,8 @@ class App {
     Console.print(`총 수익률은 ${earningRate}%입니다.`);
   }
 
-  play() {
-    this.interaction();
+  exit() {
+    Console.close();
   }
 }
 
