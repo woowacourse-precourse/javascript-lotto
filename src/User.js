@@ -11,10 +11,10 @@ class User {
       this.numberOfPurchase = Number(userInput);
     });
   }
-  isValidPurchase(number) {
+  isValidPurchase(amount) {
     // 로또 구입 금액에 대한 유효성 검사
-    number = Number(number);
-    return Validation.isDivisible(number) && Validation.isAvailablePurchase(number) && Validation.isPositiveInteger(number);
+    amount = Number(amount);
+    return Validation.isDivisible(amount) && Validation.isAvailablePurchase(amount) && Validation.isPositiveInteger(amount);
   }
 }
 
