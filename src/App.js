@@ -6,6 +6,7 @@ class App {
   #purchaseAmount;
   #lottoNum;
   #winningNum = [];
+  #bonusNum;
 
   constructor() {
     this.issuedLottoNum = [];
@@ -68,6 +69,10 @@ class App {
     if (winningNumArr.length !== winningNumSet.size) {
       throw "[EROR] 로또 번호는 중복되지 않아야 합니다.";
     }
+  }
+
+  inputBonusNum() {
+    Console.readLine("\n보너스 번호를 입력해 주세요. \n", (bonusNum) => {});
   }
 }
 
