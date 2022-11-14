@@ -38,7 +38,7 @@ class LottoManager {
             winningNumbers,
             bonusNumber
           );
-          LottoUtils.printResult(result);
+          LottoUtils.printResult(lottoTickets, result);
         });
       });
     });
