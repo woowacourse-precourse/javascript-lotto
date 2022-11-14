@@ -103,7 +103,20 @@ class App {
         result["2등"] * 3e7 +
         result["1등"] * 2e9) /
       (purchasedNumber * 1000);
-    return +(Math.round(returnRate + "e+2") + "e-2");
+    let roundedReturnRate = +(Math.round(returnRate + "e+2") + "e-2");
+    this.printResult(result, roundedReturnRate);
+  }
+  printResult(result, returnRate) {
+    MissionUtils.Console.print(`당첨 통계
+---
+3개 일치 (5000원) - ${result["5등"]}개
+3개 일치 (50,000원) - ${result["4등"]}개
+5개 일치 (1,500,000원) - ${result["3등"]}개
+5개 일치, 보너스 볼 일치 (30,000,000원) - ${result["2등"]}개
+6개 일치 (2,000,000,000원) - ${result["1등"]}개
+총 수익률은 ${returnRate}%입니다.
+`);
+    MissionUtils.Console.close();
   }
 }
 
