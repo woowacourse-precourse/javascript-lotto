@@ -25,14 +25,14 @@ class App {
 
   getWinNumber(lottoList) {
     Console.readLine('\n당첨 번호를 입력해 주세요.\n', (numbers) => {
-      this.GetNumber.toWin(numbers);
+      GetNumber.toWin(numbers);
       this.getBonusNumber(lottoList, numbers);
     });
   }
 
   getBonusNumber(lottoList, numbers) {
     Console.readLine('\n보너스 번호를 입력해 주세요.\n', (number) => {
-      this.GetNumber.bonus(numbers, number);
+      GetNumber.bonus(numbers, number);
       this.compareResult(lottoList, numbers, number);
     });
   }
@@ -49,9 +49,7 @@ class App {
   }
 
   printRate() {
-    const rate = ((this.#winningAmount / this.#purchaseAmount) * 100).toFixed(
-      1
-    );
+    const rate = ((this.#winningAmount / this.#purchaseAmount) * 100).toFixed(1);
     Console.print(`총 수익률은 ${rate}%입니다.`);
   }
 }

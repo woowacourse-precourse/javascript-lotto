@@ -21,11 +21,11 @@ class Lotto {
     return this.lottoList;
   }
 
-  static howManyLotto(money) {
+  howManyLotto(money) {
     return money / 1000;
   }
 
-  static sortLottoNumber(Array) {
+  sortLottoNumber(Array) {
     return Array.sort((a, b) => a - b);
   }
 
@@ -35,12 +35,13 @@ class Lotto {
     return true;
   }
 
-  static isItNumber(money) {
-    if (!Number.isNaN(money)) throw new Error('[ERROR] 돈이 아닙니다.');
+  isItNumber(money) {
+    if (isNaN(money)) throw new Error('[ERROR] 돈이 아닙니다.');
   }
 
-  static rightAmount(money) {
-    if (money % 1000 !== 0) throw new Error('[ERROR] 천원 단위로 입력해주세요.');
+  rightAmount(money) {
+    if (money % 1000 !== 0)
+      throw new Error('[ERROR] 천원 단위로 입력해주세요.');
   }
 }
 

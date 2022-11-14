@@ -5,13 +5,12 @@ class GetNumber {
     this.validation = new Validation();
   }
 
-  toWin(numbers) {
-    const lotto = numbers.split(',');
-    this.validation.validate(lotto);
+  static toWin(numbers) {
+    Validation.validate(numbers.split(','));
   }
 
-  bonus(numbers, number) {
-    this.validation.bonusValidate(numbers, number);
+  static bonus(numbers, number) {
+    Validation.bonusValidate(numbers, number);
   }
 }
 
