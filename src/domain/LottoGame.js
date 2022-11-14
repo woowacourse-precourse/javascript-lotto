@@ -20,13 +20,13 @@ class LottoGame {
       Validator.checkValidMoneyBundle(money);
       this.user.setMoney(money);
       this.exchangeLottos(money);
+      this.showPurchaseLottoInfo();
       this.drawWinLottoNumbers();
     });
   }
 
   exchangeLottos(money) {
     this.setupPurchaseLottoInfo(this.countLottos(money));
-    this.showPurchaseLottoInfo();
   }
 
   countLottos(money) {
