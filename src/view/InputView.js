@@ -1,5 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { LOTT0_MESSAGE } = require("../utils/Constant");
+const { INPUT_MESSAGE } = require("../constants/message");
 const LottoGameController = require("../LottoGameController");
 
 class InputView {
@@ -10,7 +10,7 @@ class InputView {
   }
 
   inputMoney() {
-    Console.readLine(LOTT0_MESSAGE.START, (money) =>
+    Console.readLine(INPUT_MESSAGE.BUY, (money) =>
       this.#lottoGameController.start(money)
     );
   }
