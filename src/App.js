@@ -17,7 +17,9 @@ class App {
     });
   }
   setWinningNumbers() {
-    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (winningNumbers) => {});
+    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (winningNumbers) => {
+      this.lottos.setWinningNumbers(winningNumbers);
+    });
   }
 }
 
