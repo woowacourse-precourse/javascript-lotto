@@ -59,7 +59,6 @@ class Lotto {
       if (bonusResultArray[index]) {
         return FIVE_MATCH_INDEX;
       }
-      return lottoResult - MIN_MATCH_COUNT;
     }
     return lottoResult - MIN_MATCH_COUNT;
   }
