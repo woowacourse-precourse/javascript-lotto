@@ -1,5 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { UNIT, FORMAT, MESSAGE, MATCH, RANK, PRIZE } = require('./Constant');
+const { MESSAGE, MATCH, RANK } = require('./Constant');
+const { UNIT, FORMAT, PRIZE } = require('./Setting');
 const Lotto = require('./Lotto');
 
 class App {

@@ -1,5 +1,6 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const { FORMAT, RANK } = require('./Constant');
+const { FORMAT } = require('./Setting');
+const { RANK } = require('./Constant');
 
 class Lotto {
   #numbers;
