@@ -13,6 +13,9 @@ class Lotto {
   }
 
   validate(numbers) {
+    if (numbers.length !== numbers.filter((number) => number === +number).length) {
+      throw new Error(ERROR_MESSAGE.NOT_NUMBER);
+    }
     if (numbers.length !== LOTTO.INPUT_COUNT) {
       throw new Error(ERROR_MESSAGE.LOTTO.NUMBER_COUNT);
     }
