@@ -79,4 +79,68 @@ describe('로또 테스트', () => {
       }
     }).not.toThrow('[ERROR]');
   });
+
+  test('당첨 번호 예외 테스트', () => {
+    const app = new App();
+
+    expect(() => {
+      app.validateWinningNumbers('1,2,3,4,5');
+    }).toThrow('[ERROR]');
+    expect(() => {
+      app.validateWinningNumbers('1,2,3a,4,5,6');
+    }).toThrow('[ERROR]');
+    expect(() => {
+      app.validateWinningNumbers('1,2,3,4,5,3');
+    }).toThrow('[ERROR]');
+    expect(() => {
+      app.validateWinningNumbers('1,2,53,4,5,3');
+    }).toThrow('[ERROR]');
+    expect(() => {
+      app.validateWinningNumbers('1,2,3,4.5,6');
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호 예외 테스트', () => {
+    const app = new App();
+    const winningNumbers = [1, 2, 3, 4, 5, 6];
+
+    expect(() => {
+      app.validateBonusNumber(winningNumbers, NaN);
+    }).toThrow('[ERROR]');
+    expect(() => {
+      app.validateBonusNumber(winningNumbers, 3);
+    }).toThrow('[ERROR]');
+    expect(() => {
+      app.validateBonusNumber(winningNumbers, 46);
+    }).toThrow('[ERROR]');
+  });
+
+  test('당첨 결과 카운팅 테스트', () => {
+    const app = new App();
+    const drawResult = [4, 3, 2, 4, 0, 0];
+
+    expect(app.countLottoRank(drawResult)).toEqual({
+      1: 0,
+      2: 1,
+      3: 1,
+      4: 2,
+      5: 0,
+      0: 2,
+    });
+  });
+
+  test('수익률 테스트', () => {
+    const app = new App();
+    const rankCount = {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 1,
+      0: 7,
+    };
+    const amount = 8;
+
+    expect(app.calculateProfitRate(rankCount, amount)).toBe(62.5);
+  });
 });
