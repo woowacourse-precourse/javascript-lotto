@@ -11,6 +11,8 @@ class Issuer {
     let lottos = [];
     const NUMBER_OF_LOTTOS = money / PRICE;
 
+    this.validate(money);
+
     for (let count = 0; count < NUMBER_OF_LOTTOS; count++) {
       let LOTTO_NUMBERS = MissionUtils.Random.pickUniqueNumbersInRange(
         LOTTO_MIN_NUMBER,
@@ -27,6 +29,12 @@ class Issuer {
     }
 
     return lottos;
+  }
+
+  validate(money) {
+    if (money % 1000 !== 0) {
+      throw new Error("[ERROR] 1000원 단위로 입력해야 합니다.");
+    }
   }
 }
 
