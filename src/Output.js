@@ -1,24 +1,18 @@
 const { Console } = require("@woowacourse/mission-utils");
 
 class Output {
-  constructor() {}
-
   static createLottoString(numbers) {
     let lottoStr = "";
     for (let i = 0; i < numbers.length; i++) {
       if (i === 0) {
-        lottoStr += "[";
-        lottoStr += numbers[i];
-        lottoStr += ", ";
+        lottoStr += `[${numbers[i]}, `;
         continue;
       }
       if (i === numbers.length - 1) {
-        lottoStr += numbers[i];
-        lottoStr += "]";
+        lottoStr += `${numbers[i]}]`;
         continue;
       }
-      lottoStr += numbers[i];
-      lottoStr += ", ";
+      lottoStr += `${numbers[i]}, `;
     }
     return lottoStr;
   }
