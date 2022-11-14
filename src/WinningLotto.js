@@ -1,4 +1,6 @@
 const Exception = require('./Exception');
+const { ERROR } = require('./consts/Message');
+const { LOTTO } = require('./consts/LottoSystem');
 
 class WinningLotto {
   lotto;
@@ -12,10 +14,8 @@ class WinningLotto {
 
   handleBonusException(bonus) {
     const {
-      ERROR: {
-        BONUS: { INTEGER, UNIQUE, RANGE },
-      },
-    } = MESSAGE;
+      BONUS: { INTEGER, UNIQUE, RANGE },
+    } = ERROR;
 
     switch (false) {
       case this.isInteger(bonus):
