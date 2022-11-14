@@ -29,21 +29,21 @@ class App {
     });
   }
 
-  getCostLottoBonusInput() {
-    this.getCost();
-    this.getLottoNumber();
-    this.getBonusNumber();
-  }
-
   lottoBonusCheck() {
     if (this.lotto.getValue().filter((number) => number === this.bonus.getValue()).length === 1) {
       throw new Error(ERROR_MESSAGE.BONUS.NUMBER_DUPLICATED);
     }
   }
 
-  play() {
-    this.getCostLottoBonusInput();
+  getInputAndValidate() {
+    this.getCost();
+    this.getLottoNumber();
+    this.getBonusNumber();
     this.lottoBonusCheck();
+  }
+
+  play() {
+    this.getInputAndValidate();
   }
 }
 module.exports = App;
