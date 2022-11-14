@@ -1,11 +1,10 @@
-const MissionUtils = require('@woowacourse/mission-utils');
 const BonusNumber = require('./models/BonusNumber');
 const userInput = require('./IO/Input');
-const Lotto = require('./Lotto');
 const Money = require('./models/Money');
 const Output = require('./IO/Output');
 const WinningNumbers = require('./models/WinningNumbers');
 const Result = require('./Result');
+const RandomLotto = require('./RandomLotto');
 
 class App {
   money;
@@ -22,23 +21,15 @@ class App {
   }
 
   getLottos(money) {
-    const inputMoney = new Money(Number(money));
+    const inputMoney = new Money(money);
     this.money = inputMoney.money;
+    
+    const randomLotto = new RandomLotto(money);
+    const lottoCount = randomLotto.lottoCount;
+    this.lottoArray = randomLotto.lottoArray;
 
-    const lottoCount = this.money / 1000;
     this.print.printUserLottoCount(lottoCount);
-
-    for (let i = 0; i < lottoCount; i++) {
-      const randomLottoNumber = this.getRandomLottoNumber();
-      const lotto = new Lotto(randomLottoNumber);
-      this.lottoArray.push(lotto);
-      this.print.printUserLottoNumber(randomLottoNumber);
-    }
-  }
-
-  getRandomLottoNumber() {
-    const randomNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-    return randomNumbers.sort((a, b) => a - b);
+    this.print.printUserLottoNumber(this.lottoArray);
   }
 
   getWinningNumbers(numbers) {
@@ -53,6 +44,7 @@ class App {
 
   getResult() {
     const result = new Result(this.lottoArray, this.winningNumbers, this.bonusNumber, this.money);
+
     this.print.printResult(result.score, result.revenue);
   }
 }
