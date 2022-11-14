@@ -38,6 +38,17 @@ class App {
     });
   }
 
+  inputBonusNumberHandler() {
+    Console.readLine('보너스 번호를 입력해주세요\n', input => {
+      validate(
+        input,
+        isNumber(input),
+        this.winNumberArr.push(Number(input)),
+        isNotDuplicated(this.winNumberArr, this.winNumberArr.length),
+      );
+      Console.print(this.winNumberArr);
+    });
+  }
 
   play() {
     this.inputPaymentHandler();
