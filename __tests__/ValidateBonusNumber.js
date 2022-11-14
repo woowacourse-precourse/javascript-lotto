@@ -71,7 +71,7 @@ describe("보너스 번호 유효성 검사", () => {
   test("당첨 번호에 존재하는 숫자 입력", () => {
     expect(() => {
       const app = new App();
-      app.setWinnerNumbers("1, 2, 3, 4, 5, 6");
+      app.setWinnerNumbers([1, 2, 3, 4, 5, 6]);
       app.validateBonusNumbers("6");
     }).toThrow(IS_NOT_IN_WINNER_NUMBER);
   });
