@@ -1,5 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 const LOTTO_PRICE = 1000;
+
 class User {
   #myLottos;
   #amount;
@@ -18,15 +19,15 @@ class User {
   }
 
   purchasableLotto() {
-    return this.#amount/LOTTO_PRICE;
+    return this.#amount / LOTTO_PRICE;
   }
 
   addLotto(lotto) {
     this.#myLottos.push(lotto);
   }
 
-  getRateOfProfit(){
-    return (this.#profit/this.#amount).toFixed(1); 
+  getRateOfProfit() {
+    return (this.#profit / this.#amount).toFixed(1);
   }
 
   validate(amount) {
@@ -35,10 +36,22 @@ class User {
     }
   }
 
-  printMyLottos() {
+  addWinStats(winStats) {
+    this.#winStats = winStats;
+  }
+
+  printLottos() {
     Console.print(this.purchasableLotto() + "개를 구매했습니다.");
     this.#myLottos.map((lotto) => {
       Console.print(lotto);
     });
+  }
+
+  printWinStats() {
+    //   Console.print(`3개 일치 (5,000원) - 1개`);
+    //   Console.print(`4개 일치 (50,000원) - 0개`);
+    //   Console.print(`5개 일치 (1,500,000원) - 0개`);
+    //   Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - 0개`);
+    //   Console.print(`6개 일치 (2,000,000,000원) - 0개`);
   }
 }
