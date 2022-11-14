@@ -11,7 +11,6 @@ class Messages {
   static NUMBERS_IN_RANGE = '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.';
 
   static ONE_NUMBER_IN_RANGE = '[ERROR] 1부터 45 사이의 1개의 숫자만 입력해주세요.';
-  static NOT_DUPLICATE = '[ERROR] 당첨 번호와 중복되지 않는 1개의 숫자만 입력해주세요.';
 }
 
 module.exports = Object.freeze(Messages);
