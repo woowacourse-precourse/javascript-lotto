@@ -58,44 +58,42 @@ class App {
   print_winning_history(amount, lotteries, winning_numbers, bonus_number){
     const MissionUtils = require("@woowacourse/mission-utils");
 
-    //3개 일치
-    const lotteries_three_numbers_identical = this.matching_lottery_count(lotteries, winning_numbers, 3);
-    var sentence = "3개 일치 (5,000원) - "+lotteries_three_numbers_identical.toString()+"개"   
-    MissionUtils.Console.print(sentence);
-
-    //4개 일치
-    const lotteries_four_numbers_identical = this.matching_lottery_count(lotteries, winning_numbers, 4);
-    sentence = "4개 일치 (50,000원) - "+lotteries_four_numbers_identical.toString()+"개"
-    MissionUtils.Console.print(sentence);
-
-    //5개 일치
-    const lotteries_five_numbers_identical = this.matching_lottery_count(lotteries, winning_numbers, 5);
-    sentence = "5개 일치 (1,500,000원) - "+lotteries_five_numbers_identical.toString()+"개"
-    MissionUtils.Console.print(sentence);
-
-    //5개 일치, 보너스 볼 일치
-    const lotteries_five_numbers_and_bonus_identical = this.five_and_bonus_matching_lottery_count(lotteries, winning_numbers, bonus_number);
-    sentence = "5개 일치, 보너스 볼 일치 (30,000,000원) - "+lotteries_five_numbers_and_bonus_identical.toString()+"개"
-    MissionUtils.Console.print(sentence);
-
-    //6개 일치
-    const lotteries_six_numbers_identical = this.matching_lottery_count(lotteries, winning_numbers, 6);
-    sentence = "6개 일치 (2,000,000,000원) - "+lotteries_six_numbers_identical.toString()+"개"
-    MissionUtils.Console.print(sentence);
-
     //전체수익 구하기
-    var winning_count = [];
-    winning_count.push(lotteries_three_numbers_identical);
-    winning_count.push(lotteries_four_numbers_identical);
-    winning_count.push(lotteries_five_numbers_identical);
-    winning_count.push(lotteries_five_numbers_and_bonus_identical);
-    winning_count.push(lotteries_six_numbers_identical);
+    var winning_count = this.calculate_winning_history(lotteries, winning_numbers, bonus_number);
+    this.print_winning_count(winning_count);
 
     //수익률 공지
     const profit_rate = this.profit_rate(amount, winning_count);
-    sentence = "총 수익률은 " + profit_rate + "%입니다."
+    var sentence = "총 수익률은 " + profit_rate + "%입니다."
+    MissionUtils.Console.print(sentence);
+  }
+
+  print_winning_count(winning_count){
+    const MissionUtils = require("@woowacourse/mission-utils");
+    var sentence = "3개 일치 (5,000원) - "+winning_count[0]+"개"   //3개 일치
     MissionUtils.Console.print(sentence);
 
+    sentence = "4개 일치 (50,000원) - "+winning_count[1]+"개" //4개 일치
+    MissionUtils.Console.print(sentence);
+ 
+    sentence = "5개 일치 (1,500,000원) - "+winning_count[2]+"개" //5개 일치
+    MissionUtils.Console.print(sentence);
+   
+    sentence = "5개 일치, 보너스 볼 일치 (30,000,000원) - "+winning_count[3]+"개" //5개 일치, 보너스 볼 일치
+    MissionUtils.Console.print(sentence);
+
+    sentence = "6개 일치 (2,000,000,000원) - "+winning_count[4]+"개" //6개 일치
+    MissionUtils.Console.print(sentence);
+  }
+
+  calculate_winning_history(lotteries, winning_numbers, bonus_number){
+    var winning_count = []
+    winning_count.push(this.matching_lottery_count(lotteries, winning_numbers, 3));
+    winning_count.push(this.matching_lottery_count(lotteries, winning_numbers, 4));
+    winning_count.push(this.matching_lottery_count(lotteries, winning_numbers, 5));
+    winning_count.push(this.five_and_bonus_matching_lottery_count(lotteries, winning_numbers, bonus_number));
+    winning_count.push(this.matching_lottery_count(lotteries, winning_numbers, 6));
+    return winning_count;
   }
 
   matching_lottery_count(lotteries, winning_numbers, k){ //몇개 일치하는지 보여주기
@@ -188,7 +186,7 @@ class App {
     MissionUtils.Console.print('보너스 번호를 입력해 주세요.');
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (answer) => {
     this.duplicatecheck(winning_numbers, answer);
-    this.check_number_errors(answer);
+    this.check_number_errors(answer); 
     this.rangecheck(answer);
     number = answer;
   })
