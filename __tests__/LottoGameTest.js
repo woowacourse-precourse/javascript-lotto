@@ -21,7 +21,7 @@ describe("LottoGame 클래스 isWinningNumbersValid 함수 테스트", () => {
     }).toThrow("[ERROR] 값을 6개만 입력해주세요.");
   });
 
-  test("문자를 입력하면 예외가 발생한다.", () => {
+  test("값이 문자면 예외가 발생한다.", () => {
     expect(() => {
       new LottoGame().isWinningNumbersValid(["a", "b", 1, 2, 3, 4]);
     }).toThrow("[ERROR] 숫자를 입력해주세요.");
@@ -30,6 +30,26 @@ describe("LottoGame 클래스 isWinningNumbersValid 함수 테스트", () => {
   test("1~45 범위를 벗어나는 값이 있으면 예외가 발생한다.", () => {
     expect(() => {
       new LottoGame().isWinningNumbersValid([1, 2, 3, 4, 5, 55]);
+    }).toThrow("[ERROR] 1~45 범위의 값만 입력해주세요.");
+  });
+});
+
+describe("LottoGame 클래스 isBonusNumberValid 함수 테스트", () => {
+  test("값이 문자면 예외가 발생한다.", () => {
+    expect(() => {
+      new LottoGame().isBonusNumberValid([1, 2, 3, 4, 5, 6], "a");
+    }).toThrow("[ERROR] 숫자를 입력해주세요.");
+  });
+
+  test("값이 당첨 숫자와 중복된다면 예외가 발생한다.", () => {
+    expect(() => {
+      new LottoGame().isBonusNumberValid([1, 2, 3, 4, 5, 6], 1);
+    }).toThrow("[ERROR] 보너스 번호가 당첨 번호와 중복되지 않게 입력해주세요.");
+  });
+
+  test("1~45 범위를 벗어나는 값이 있으면 예외가 발생한다.", () => {
+    expect(() => {
+      new LottoGame().isBonusNumberValid([1, 2, 3, 4, 5, 6], 55);
     }).toThrow("[ERROR] 1~45 범위의 값만 입력해주세요.");
   });
 });
