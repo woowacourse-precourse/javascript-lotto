@@ -12,12 +12,10 @@ class Utils {
   /**
    *
    * @param {string} message
-   * @returns {Promise<string>}
+   * @param {Function} callback
    */
-  static readLine(message) {
-    Console.readLine(message, (answer) => {
-      resolve(answer);
-    });
+  static readLine(message, callback) {
+    Console.readLine(message, callback);
   }
 
   static close() {

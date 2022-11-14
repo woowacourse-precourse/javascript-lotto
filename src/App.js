@@ -18,57 +18,52 @@ const {
 } = require('./const.js');
 
 class App {
-  async play() {
-    const amount = await this.getLottoAmount();
-    const userNumbersList = this.getUserNumberList(amount);
-    this.printUserNumberList(userNumbersList);
+  play() {
+    Utils.readLine(`${INPUT_AMOUNT_MESSAGE}\n`, (inputAmount) => {
+      const lottoAmount = new Amount(inputAmount);
+      const amount = lottoAmount.getAmount();
 
-    const { statistics, revenue } = await this.getStatistics(
-      amount,
-      userNumbersList
-    );
-    this.printStatistics(statistics, revenue);
+      const user = new User(amount);
+      const userNumbersList = user.getNumbersList();
 
-    Utils.close();
-  }
+      this.printUserNumberList(userNumbersList);
 
-  async getLottoAmount() {
-    const lottoAmount = new Amount();
-    await lottoAmount.setInputAmount(`${INPUT_AMOUNT_MESSAGE}\n`);
-
-    return lottoAmount.getAmount();
+      this.getInputLottoNumbers(userNumbersList, amount);
+    });
   }
 
   /**
    *
-   * @param {number} amount
-   * @returns
-   */
-  getUserNumberList(amount) {
-    const user = new User(amount);
-
-    return user.getNumbersList();
-  }
-
-  /**
-   *
-   * @param {number} amount
    * @param {number[][]} userNumbersList
-   * @returns
+   * @param {number} amount
    */
-  async getStatistics(amount, userNumbersList) {
-    const inputLottoNumbers = await Utils.readLine(
-      `\n${INPUT_LOTTO_NUMBERS}\n`
-    );
-    const bonus = await Utils.readLine(`\n${INPUT_BONUS_NUMBER}\n`);
-    const numbers = Utils.separateNumbers(inputLottoNumbers, ',');
+  getInputLottoNumbers(userNumbersList, amount) {
+    Utils.readLine(`\n${INPUT_LOTTO_NUMBERS}\n`, (inputLottoNumbers) => {
+      const numbers = Utils.separateNumbers(inputLottoNumbers, ',');
+      this.getInputBonusNumber(numbers, userNumbersList, amount);
+    });
+  }
 
-    const lotto = new Lotto(numbers);
+  /**
+   *
+   * @param {number[]} numbers
+   * @param {number[][]} userNumbersList
+   * @param {number} amount
+   */
+  getInputBonusNumber(numbers, userNumbersList, amount) {
+    Utils.readLine(`\n${INPUT_BONUS_NUMBER}\n`, (inputBonus) => {
+      const lotto = new Lotto(numbers);
+      const statistics = lotto.getStatistics(
+        userNumbersList,
+        Number(inputBonus)
+      );
 
-    const statistics = lotto.getStatistics(userNumbersList, Number(bonus));
-    const revenue = lotto.calculateRevenue(statistics, amount);
+      const revenue = lotto.calculateRevenue(statistics, amount);
 
-    return { statistics, revenue };
+      this.printStatistics(statistics, revenue);
+
+      Utils.close();
+    });
   }
 
   /**
@@ -77,7 +72,9 @@ class App {
    */
   printUserNumberList(userNumbersList) {
     Utils.print(`\n${userNumbersList.length}개를 구매했습니다.`);
-    userNumbersList.forEach((numbers) => Utils.print(numbers));
+    userNumbersList.forEach((numbers) =>
+      Utils.print(`[${numbers.join(', ')}]`)
+    );
   }
 
   /**
@@ -97,7 +94,7 @@ class App {
   }
 }
 
-const app = new App();
-app.play();
+// const app = new App();
+// app.play();
 
 module.exports = App;

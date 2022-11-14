@@ -1,34 +1,31 @@
 // @ts-check
 
-const Utils = require('./Utils.js');
-
 class Amount {
-  /** @type {number} */
   #amount;
 
   /**
    *
-   * @param {number} amount
+   * @param {string} inputAmount
    */
-  #validate(amount) {
-    if (!Number.isInteger(amount)) {
-      throw new Error('[ERROR] 금액은 1,000 단위의 정수여야 합니다.');
-    }
-
-    if (amount % 1000 !== 0) {
-      throw new Error('[ERROR] 금액은 1,000원 단위여야 합니다.');
-    }
+  constructor(inputAmount) {
+    this.#validate(inputAmount);
+    this.#amount = Number(inputAmount);
   }
 
   /**
    *
-   * @param {string} message
+   * @param {string} amount
    */
-  async setInputAmount(message) {
-    const amount = await Utils.readLine(message);
+  #validate(amount) {
+    const regex = /^[0-9]+$/;
 
-    this.#validate(Number(amount));
-    this.#amount = Number(amount);
+    if (!regex.test(amount)) {
+      throw new Error('[ERROR] 금액은 정수여야 합니다.');
+    }
+
+    if (Number(amount) % 1000 !== 0) {
+      throw new Error('[ERROR] 금액은 1,000원 단위여야 합니다.');
+    }
   }
 
   /**
