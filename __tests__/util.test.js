@@ -174,3 +174,13 @@ describe('입력받은 보너스 번호가 유효한 입력인지 검사한다.'
     }).toThrow(new InvalidBonusNumberInputError());
   });
 });
+
+describe('숫자를 오름차순 정렬하는 기능이 제대로 작동하는지 검사한다.', () => {
+  test('배열의 숫자들을 오름차순 정렬하여 반환한다.', () => {
+    expect(utils.ascendingSort([1, 2, 3, 4, 5, 6])).toEqual([1, 2, 3, 4, 5, 6]);
+    expect(utils.ascendingSort([3, 7, 1, 9, 11, 5])).toEqual([1, 3, 5, 7, 9, 11]);
+    expect(utils.ascendingSort([1, 10, 11, 0, 9, 7])).toEqual([0, 1, 7, 9, 10, 11]);
+    expect(utils.ascendingSort([-1, -11, -4, -41, -10, 0])).toEqual([-41, -11, -10, -4, -1, 0]);
+    expect(utils.ascendingSort([0, 1, 11, 21, 12, 3, 222])).toEqual([0, 1, 3, 11, 12, 21, 222]);
+  });
+});
