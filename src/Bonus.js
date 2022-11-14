@@ -30,7 +30,7 @@ const Bonus = class extends ErrorBoundary {
     return { status: false, message: bonusErrorMessage };
   }
 
-  static getErrorMessage({ isBonusNotDuplicated, isBonusRangeValid }) {
+  getErrorMessage({ isBonusNotDuplicated, isBonusRangeValid }) {
     const { DUPLICATED, RANGE, DEFAULT } = BONUS_ERROR_MESSAGE;
 
     if (isBonusNotDuplicated) return DUPLICATED;

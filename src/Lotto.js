@@ -29,7 +29,7 @@ const Lotto = class extends ErrorBoundary {
     return { status: false, message: lottoErrorMessage };
   }
 
-  static getErrorMessage({ isNumberLengthValid, isNumberNotDuplicated, isNumberRangeValid }) {
+  getErrorMessage({ isNumberLengthValid, isNumberNotDuplicated, isNumberRangeValid }) {
     const { LENGTH, DUPLICATED, RANGE, DEFAULT } = LOTTO_ERROR_MESSAGE;
 
     if (isNumberLengthValid === false) return LENGTH;
