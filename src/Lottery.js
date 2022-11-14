@@ -25,8 +25,8 @@ class Lottery {
 
   printList() {
     this.#lottoList.forEach((lotto) => {
-      const lottoMessage = Lottery.getMessage(lotto);
-      print(lottoMessage);
+      const message = Lottery.getMessage(lotto);
+      print(message);
     });
 
     print('\n');
