@@ -58,7 +58,7 @@ class Lotto {
   /**
    * 특정 숫자가 이 로또 객체의 숫자에 포함되어 있는지를 반환하는 함수
    * @param {number} number 비교할 숫자
-   * @returns 포함 여부(boolean)
+   * @returns {boolean} 포함 여부
    */
   includesNumber(number) {
     return this.#numbers.includes(number);
@@ -76,7 +76,7 @@ class Lotto {
    * 해당 로또를 당첨 번호 및 보너스 번호와 비교하여 등수를 반환하는 함수
    * @param {Lotto} WonLotto 당첨 번호를 담은 로또 객체
    * @param {number} bonus 보너스 볼 번호
-   * @returns 당첨 등수
+   * @returns {number} 당첨 등수(0-5등)
    */
   compareWithWinningNumbers(WonLotto, bonus) {
     let correspondence = 0;
@@ -91,7 +91,7 @@ class Lotto {
    * 일치한 번호 개수와 보너스 번호 일치 여부를 바탕으로 등수를 반환하는 함수
    * @param {number} correspondence 당첨 번호와 일치한 번호 개수
    * @param {boolean} bonusCorrespondence 보너스 번호 일치 여부
-   * @returns 등수
+   * @returns {number} 등수
    */
   getPrize(correspondence, bonusCorrespondence) {
     switch (correspondence) {

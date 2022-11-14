@@ -76,7 +76,7 @@ class App {
   /**
    * 입력된 비용이 로또 하나의 비용으로 나뉘어 떨어지지 않는지를 반환하는 함수
    * @param {number} cost 입력된 로또 구매 비용
-   * @returns 거스름돈 없이 로또를 살 수 없는지에 대한 boolean 값
+   * @returns {boolean} 거스름돈 없이 로또를 살 수 없다
    */
   cannotPurchaseWith(cost) {
     const EACH_LOTTO_COST = 1000;
@@ -86,7 +86,7 @@ class App {
   /**
    * 입력한 당첨 번호를 각각 숫자 형태로 반환하는 함수
    * @param {string} input 입력한 당첨 번호 문자열
-   * @returns 각 번호를 숫자 형태로 오름차순으로 저장한 배열
+   * @returns {number[]} 각 번호를 숫자 형태로 저장한 배열
    */
   convertSixInputsToNumbers(input) {
     let elements = input.split(",");
@@ -127,7 +127,7 @@ class App {
   /**
    * 구매 비용에 따라 로또 여러 장을 발급하는 함수
    * @param {number} pay 로또 구매 비용
-   * @returns 구매한 로또 객체들이 담긴 배열
+   * @returns {Lotto[]} 구매한 로또 객체들이 담긴 배열
    */
   publishLottos(pay) {
     const PURCHASE_QUANTITY = pay / 1000;
