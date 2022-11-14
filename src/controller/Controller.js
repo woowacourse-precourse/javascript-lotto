@@ -4,18 +4,18 @@ const Lotto = require("../model/Lotto");
 const Statistics = require("../model/Statistics");
 
 class Controller {
-  constructor() {
+  constructor () {
     this.view = new View(this);
     this.userNumber = new UserNumber(this);
     this.lotto = new Lotto(this);
     this.statistics = new Statistics(this);
   }
 
-  printReadOnlyMessage(type, data) {
+  printReadOnlyMessage (type, data) {
     if (type === "userLottoArray") this.view.printUserLottoArray(data);
   }
 
-  throwErrorWithMessage(type) {
+  throwErrorWithMessage (type) {
     if (type === "purchasingAmountError") this.view.printPurchasingAmountErrorMessage();
     if (type === "winningNumberCommaNumberError") this.view.printWinningNumberCommaNumberErrorMessage();
     if (type === "winningNumberRangeError") this.view.printWinningNumberRangeErrorMessage();
@@ -23,31 +23,31 @@ class Controller {
     if (type === "bonusNumberError") this.view.printBonusNumberErrorMessage();
   }
 
-  getPurchasingAmountFromUser() {
+  getPurchasingAmountFromUser () {
     this.view.getPurchasingAmountFromUser();
   }
 
-  setPurchasingAmount(userPurchasingAmount) {
+  setPurchasingAmount (userPurchasingAmount) {
     this.userNumber.setPurchasingAmount(userPurchasingAmount);
   }
 
-  getWinningNumberFromUser() {
+  getWinningNumberFromUser () {
     this.view.getWinningNumberFromUser();
   }
 
-  setWinningNumberFromUser(winningNumber) {
+  setWinningNumberFromUser (winningNumber) {
     this.lotto.setLottoNumbers(winningNumber);
   }
 
-  getBonusNumberFromUser() {
+  getBonusNumberFromUser () {
     this.view.getBonusNumberFromUser();
   }
 
-  setBonusNumberFromUser(bonusNumber) {
+  setBonusNumberFromUser (bonusNumber) {
     this.lotto.setBonusNumberFromUser(bonusNumber);
   }
 
-  getOverallInformationForStatistics() {
+  getOverallInformationForStatistics () {
     return {
       winningNumber: this.lotto.getLottoNumbers(),
       bonusNumber: this.lotto.getBonusNumber(),
@@ -56,11 +56,15 @@ class Controller {
     };
   }
 
-  getStatistics() {
+  getStatistics () {
     this.statistics.getStatistics();
   }
 
-  init() {
+  printStatistics (ranks, rateOfReturn) {
+    this.view.printStatistics(ranks, rateOfReturn);
+  }
+
+  init () {
     this.getPurchasingAmountFromUser();
   }
 }
