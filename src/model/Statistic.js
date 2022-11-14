@@ -23,23 +23,22 @@ class Statistic {
       .reduce((acc, ranking) => acc + this.#counts[ranking.TYPE] * ranking.PRIZE_MONEY, 0);
   }
 
-  putInCounts(winningLotto, bonusNumber, publishedLotto) {
-    const judgeResult = this.judgeLotto(winningLotto, bonusNumber, publishedLotto);
-    const rank = this.judgeRank(judgeResult);
+  putInCounts(judgedResult) {
+    const rank = this.judgeRank(judgedResult);
     this.increaseRankCount(rank);
   }
 
   judgeLotto(winningLotto, bonusNumber, publishedLotto) {
-    return publishedLotto.reduce((judgeResult, number) => {
+    return publishedLotto.reduce((judgedResult, number) => {
       if (winningLotto.includes(number)) {
-        judgeResult.numberOfSame += 1;
+        judgedResult.numberOfSame += 1;
       }
 
       if (bonusNumber === number) {
-        judgeResult.isBonusNumberSame = true;
+        judgedResult.isBonusNumberSame = true;
       }
 
-      return judgeResult;
+      return judgedResult;
     }, {
       numberOfSame: 0,
       isBonusNumberSame: false,

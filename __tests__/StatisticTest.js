@@ -41,7 +41,8 @@ describe('통계 클래스 최종 테스트', () => {
     const publishedLotto = [1, 2, 3, 4, 5, 7];
     const winningLotto = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 7;
-    statistic.putInCounts(winningLotto, bonusNumber, publishedLotto);
+    const judgedResult = statistic.judgeLotto(winningLotto, bonusNumber, publishedLotto);
+    statistic.putInCounts(judgedResult);
     const { counts } = statistic;
 
     expect(counts[RULE.SECOND.TYPE]).toEqual(1);

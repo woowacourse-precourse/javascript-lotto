@@ -60,11 +60,12 @@ class LottoManager {
     this.#statistic = new Statistic();
 
     this.#purchasedLottos.forEach((purchasedLotto) => {
-      this.#statistic.putInCounts(
+      const judgedResult = this.#statistic.judgeLotto(
         this.#winningLotto.numbers,
         this.#bonusNumber.value,
         purchasedLotto.numbers,
       );
+      this.#statistic.putInCounts(judgedResult);
     });
   }
 }
