@@ -155,6 +155,11 @@ class App {
 
   printEarningsRate(earningsRate) {
     Console.print(`총 수익률은 ${earningsRate}%입니다.`);
+    this.gameOver();
+  }
+
+  gameOver() {
+    Console.close();
   }
 }
 
