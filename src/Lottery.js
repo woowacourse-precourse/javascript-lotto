@@ -8,11 +8,22 @@ class Lottery {
   progress() {
     this.inputWinningNumber();
 
+    /*
+    const LOTTO = this.#lotto.getLotto();
+    console.log(LOTTO)
+    */
   }
   
   inputWinningNumber() {
     Console.readLine(INPUT.LOTTO_NUMBER, (numbers) => {
       this.#lotto = new Lotto(numbers.split(','));
+      this.inputBonusNumber();
+    });
+  }
+
+  inputBonusNumber() {
+    Console.readLine(INPUT.BONUS_NUMBER, (number) => {
+      this.#lotto.setBonusNumber(number);
     });
   }
 

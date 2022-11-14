@@ -28,7 +28,29 @@ class Lotto {
     });
   }
 
-  // TODO: 추가 기능 구현
+  setBonusNumber(number){
+    this.validateBonusNumber(number);
+    this.#numbers.push(number);
+  }
+
+  validateBonusNumber(number) {
+    if (/[^0-9]/g.test(number)){
+      throw new Error("[ERROR] 보너스 번호는 숫자로만 이루어져야 합니다.")
+    }
+
+    if (number < 1 || number > 45) {
+      throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.")
+    }
+
+    if (this.#numbers.includes(number)){
+      throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.")
+    }
+  }
+  
+  getLotto() {
+    return this.#numbers;
+  }
+
 }
 
 module.exports = Lotto;
