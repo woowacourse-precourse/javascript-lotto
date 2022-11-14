@@ -11,12 +11,10 @@ const validateMoney = (money) => {
 
 const validateBonusNum = (bonusNum, winningNum) => {
   if (bonusNum > 45 || bonusNum < 1) {
-    throw new Error(ERROR.ERROR_BONUS_RANGE);
+    throw new Error(ERROR.ERROR_BONUS_RANGE); //1~45
   }
-  if (bonusNum) {
-    if (/^[0-9]*$/g.test(bonusNum) === false) {
-      throw new Error(ERROR.ERROR_BONUS_NUMBER);
-    }
+  if (/^[0-9]*$/g.test(bonusNum) === false) {
+    throw new Error(ERROR.ERROR_BONUS_NUMBER);
   }
   if (winningNum.includes(bonusNum) === true) {
     throw new Error(ERROR.ERROR_BONUS_DUPLICATION);
