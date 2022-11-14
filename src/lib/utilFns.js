@@ -59,6 +59,13 @@ const getWinMessage = (rank, cnt) => {
   return `${scoreMsg} (${amountMsg}원) - ${cnt}개`;
 };
 
+const getWinAmount = (rank, cnt) => {
+  const amountStr = AMOUNT_BY_RANK[rank];
+  const winAmount = Nubmer(splitStrByComma(amountStr).join(''));
+
+  return winAmount * cnt;
+};
+
 module.exports = {
   isMultipleOf1000,
   isLottoNumbers,
@@ -69,4 +76,5 @@ module.exports = {
   splitStrByComma,
   getRank,
   getWinMessage,
+  getWinAmount,
 };
