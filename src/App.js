@@ -2,11 +2,12 @@ const { Console } = require('@woowacourse/mission-utils');
 
 const Lotto = require('./Lotto');
 const CheckError = require('./CheckError');
-const MESSAGE = require('./utils/constants');
+const { MESSAGE, PRIZE_MONEY } = require('./utils/constants');
 const RandomNumbers = require('./RandomNumbers');
 
 class App {
   constructor() {
+    this.amount = 0;
     this.lottoList = [];
     this.numberOfWins = [0, 0, 0, 0, 0];
   }
@@ -66,14 +67,27 @@ class App {
       }
     });
 
-    this.print_rank();
+    this.printRank();
+    this.prizeCalculation();
+  }
+
+  prizeCalculation() {
+    const reward = this.numberOfWins.reduce((acc, cur, i) => {
+      acc += cur * PRIZE_MONEY[i];
+      return acc;
+    }, 0);
+
+    const lottoYield = (reward * 100) / this.amount;
+
+    this.printYield(Math.round(lottoYield * 10) / 10);
+    Console.close();
   }
 
   print(message) {
     Console.print(message);
   }
 
-  print_rank() {
+  printRank() {
     this.print(MESSAGE.PRINT_RANK_TITLE);
     this.print('---');
     this.print(MESSAGE.THREE_MATCHES + `${this.numberOfWins[4]}개`);
@@ -81,6 +95,10 @@ class App {
     this.print(MESSAGE.FIVE_MATCHES + `${this.numberOfWins[2]}개`);
     this.print(MESSAGE.FIVE_BONUS_MATCHES + `${this.numberOfWins[1]}개`);
     this.print(MESSAGE.SIX_MATCHES + `${this.numberOfWins[0]}개`);
+  }
+
+  printYield(lottoYield) {
+    this.print(`총 수익률은 ${lottoYield}%입니다.`);
   }
 }
 

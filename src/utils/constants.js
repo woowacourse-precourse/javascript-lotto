@@ -10,4 +10,6 @@ const MESSAGE = Object.freeze({
   SIX_MATCHES: '6개 일치 (2,000,000,000원) - ',
 });
 
-module.exports = MESSAGE;
+const PRIZE_MONEY = [2000000000, 30000000, 1500000, 50000, 5000];
+
+module.exports = { MESSAGE, PRIZE_MONEY };
