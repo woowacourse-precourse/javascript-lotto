@@ -23,8 +23,22 @@ class App {
   }
 
   showPurchaseLottos() {
-    this.#Buyer.countLotto();
-    this.#Buyer.createLottos();
+    const lottoNumbers = this.#Buyer.countLotto();
+    this.printLottoNumbers(lottoNumbers);
+
+    const purchaseLottos = this.#Buyer.createLottos();
+    this.printPurchaseLottos(purchaseLottos);
+  }
+
+  printLottoNumbers(lottoNumbers) {
+    Console.print(`\n${lottoNumbers}개를 구매했습니다.`);
+  }
+
+  printPurchaseLottos(purchaseLottos) {
+    purchaseLottos.forEach((purchaseLotto) => {
+      const changePurchaseLotto = this.#Buyer.createOutputPurchaseLotto(JSON.stringify(purchaseLotto))
+      Console.print(changePurchaseLotto);
+    });
   }
 
   enterLottoNumbers() {

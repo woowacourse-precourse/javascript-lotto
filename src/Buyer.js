@@ -1,5 +1,4 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const Console = MissionUtils.Console;
 const Random = MissionUtils.Random;
 
 class Buyer {
@@ -42,11 +41,7 @@ class Buyer {
     // 금액에 맞체 로또 개수를 정하고 출력하는 메서드
     countLotto() {
         this.#lottoNumbers = this.#money / 1000;
-        this.printLottoNumbers();
-    }
-
-    printLottoNumbers() {
-        Console.print(`\n${this.#lottoNumbers}개를 구매했습니다.`);
+        return this.#lottoNumbers;
     }
 
     // 로또 개수에 맞게 번호가 담긴 리스트를 생성하고 출력하는 메서드
@@ -59,7 +54,7 @@ class Buyer {
         }
 
         this.#purchaseLottos = tempLottos;
-        this.printPurchaseLottos();
+        return this.#purchaseLottos;
     }
 
     createRandomNumbers() {
@@ -71,12 +66,6 @@ class Buyer {
             return a - b;
         })
         return tempNumbers;
-    }
-
-    printPurchaseLottos() {
-        this.#purchaseLottos.forEach((purchaseLotto) => {
-            Console.print(this.createOutputPurchaseLotto(JSON.stringify(purchaseLotto)));
-        });
     }
 
     createOutputPurchaseLotto(purchaseLotto) {
