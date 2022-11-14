@@ -23,6 +23,11 @@ class DetectError {
     checkUserInput(userMoney) {
         const userInput = [...userMoney];
         let idx = 0;
+
+        if (userInput.length === 0) {
+            throw new Error(`${Message.ERROR_MESSAGE.NUMBER}`);
+        }
+
         userInput.forEach(element => {
             if (element === '0' && idx === 0) {
                 throw new Error(`${Message.ERROR_MESSAGE.NUMBER}`);
