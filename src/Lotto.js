@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { convertArrayToString } = require("./utils");
+const { convertArrayToString, outofLottoNumberRange } = require("./utils");
 
 class Lotto {
   #numbers;
@@ -35,7 +35,7 @@ class Lotto {
    */
   checkEachNumberInValidRange(numbers) {
     for (let number of numbers) {
-      if (number < 1 || number > 45) {
+      if (outofLottoNumberRange(number)) {
         throw new Error("[ERROR] 로또 번호는 1-45 사이 숫자여야 합니다.");
       }
     }

@@ -1,6 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const { PrizeInformation } = require("./LottoInfo");
+const { outofLottoNumberRange } = require("./utils");
 
 class App {
   play() {
@@ -103,7 +104,7 @@ class App {
     if (isNaN(number) || number === "")
       throw new Error("[ERROR] 보너스 번호는 숫자여야 합니다.");
     const NUMBER = parseInt(number);
-    if (NUMBER < 1 || NUMBER > 45)
+    if (outofLottoNumberRange(NUMBER))
       throw new Error("[ERROR] 보너스 번호는 1-45 범위 숫자여야 합니다.");
     if (wonLotto.includesNumber(NUMBER))
       throw new Error("[ERROR] 보너스 번호는 기존 당첨 번호와 중복될 수 없습니다.");

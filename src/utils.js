@@ -11,6 +11,17 @@ function convertArrayToString(arr) {
     return str;
 }
 
+/**
+ * 특정 숫자가 로또 유효 범위(1-45)인지 판단 결과를 반환하는 함수
+ * @param {number} number 
+ * @returns 로또 유효 범위를 벗어났는지에 대한 boolean값
+ */
+function outofLottoNumberRange(number) {
+    const LEFT_BOUNDARY = 1, RIGHT_BOUNDARY = 45;
+    return !(number >= LEFT_BOUNDARY && number <= RIGHT_BOUNDARY)
+}
+
 module.exports = {
-    convertArrayToString
+    convertArrayToString,
+    outofLottoNumberRange
 }
