@@ -24,10 +24,14 @@ class Utils {
     }, {});
   }
 
-  static formatProfit(profit) {
-    const formattedProfit = profit.toLocaleString("ko-KR", {
-      maximumFractionDigits: 1,
+  static formatNumber(number, maximumFractionDigits = 0) {
+    return number.toLocaleString("ko-KR", {
+      maximumFractionDigits,
     });
+  }
+
+  static formatProfit(profit) {
+    const formattedProfit = Utils.formatNumber(profit, 1);
     return !formattedProfit.includes(".")
       ? `${formattedProfit}.0`
       : formattedProfit;

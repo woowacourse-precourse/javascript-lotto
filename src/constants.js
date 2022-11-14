@@ -1,17 +1,3 @@
-const UI_MESSAGES = Object.freeze({
-  PLEASE_MONEY: "구입금액을 입력해 주세요.\n",
-  PLEASE_WINNING_NUMBERS: "\n당첨 번호를 입력해 주세요.\n",
-  PLEASE_BONUS_NUMBER: "\n보너스 번호를 입력해 주세요.\n",
-  BUY: "개를 구매했습니다.",
-  RANK_TO_MESSAGES: Object.freeze({
-    1: "6개 일치 (2,000,000,000원)",
-    2: "5개 일치, 보너스 볼 일치 (30,000,000원)",
-    3: "5개 일치 (1,500,000원)",
-    4: "4개 일치 (50,000원)",
-    5: "3개 일치 (5,000원)",
-  }),
-});
-
 const ERROR_MESSAGES = Object.freeze({
   MONEY_RANGE: "[ERROR] 1000원 이상 입력해주세요.",
   MONEY_UNIT: "[ERROR] 1000원 단위로 입력해주세요.",
@@ -22,6 +8,5 @@ const ERROR_MESSAGES = Object.freeze({
 });
 
 module.exports = {
-  UI_MESSAGES,
   ERROR_MESSAGES,
 };
