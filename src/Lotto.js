@@ -1,6 +1,7 @@
 const {
   checkDuplicatedLotto,
   checkAscendingLotto,
+  checkLottoResult,
 } = require("./Util/Lotto.util");
 
 class Lotto {
@@ -24,6 +25,9 @@ class Lotto {
   }
 
   // TODO: 추가 기능 구현
+  checkLottoResult(compareInput, bonus) {
+    return checkLottoResult(this.#numbers, compareInput, bonus);
+  }
 }
 
 module.exports = Lotto;
