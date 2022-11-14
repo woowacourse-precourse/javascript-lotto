@@ -8,6 +8,10 @@ class App {
   }
 
   play() {
+    this.inputPurchaseMoney();
+  }
+  
+  inputPurchaseMoney() {
     MissionUtils.Console.readLine(CONSOLE_MESSAGE.INPUT_PURCHASE_MONEY,(inputMoney)=>{
       const lottoMachine = new LottoMachine(inputMoney);
       this.showPurchasedLotto(lottoMachine);
@@ -26,6 +30,12 @@ class App {
   inputWinningLotto() {
     MissionUtils.Console.readLine(CONSOLE_MESSAGE.INPUT_WINNING_LOTTO,(winningNumber)=>{
       stringToNumberArray(winningNumber);
+      this.inputBonusNumber();
+    });
+  }
+  
+  inputBonusNumber() {
+    MissionUtils.Console.readLine(CONSOLE_MESSAGE.INPUT_BONUS_LOTTO,(bonusNumber)=>{
     });
   }
 }
