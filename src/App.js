@@ -7,7 +7,9 @@ import { exceptLottoPrice, exceptBonusNumber } from './Exception';
 
 class App {
   #lotteryTicketNumber; //로또 수량
-  #lotteryTickets
+  #lotteryTickets;
+  #winningNumbers = [];
+  #bonusNumber = 0;
 
   play() {
     this.#inputLottoPrice();
@@ -18,36 +20,64 @@ class App {
       exceptLottoPrice(Number(lottoPrice));
       this.#lotteryTicketNumber = Number(lottoPrice) / 1000;
 
-      this.#makeLotteryTickets(this.#lotteryTicketNumber, this.#lotteryTickets);
+      this.#lotteryTickets = this.#makeLotteryTickets(
+        this.#lotteryTicketNumber
+      );
+
+      this.#inputWinningNumbers();
     });
   }
 
-  #makeLotteryTickets(lotteryTicketNumber, lotteryTickets) {
-    lotteryTickets = new Array(lotteryTicketNumber);
+  #makeLotteryTickets(lotteryTicketNumber) {
+    let lotteryTickets = new Array(lotteryTicketNumber);
     lotteryTickets.map((lotteryTicket) => {
       lotteryTicket = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       lotteryTicket.sort();
     });
 
-    this.#printLotteryTickets(lotteryTicketNumber, lotteryTickets)
+    this.#printLotteryTickets(lotteryTicketNumber, lotteryTickets);
+    return lotteryTickets;
   }
 
-  #printLotteryTickets(lotteryTicketNumber, lotteryTickets=[]){
-    MissionUtils.Console.print(`${lotteryTicketNumber}개를 구매했습니다.`)
-    lotteryTickets.map((lotteryTicket)=>{
-      MissionUtils.Console.print(`${lotteryTicket}`)
+  #printLotteryTickets(lotteryTicketNumber, lotteryTickets) {
+    MissionUtils.Console.print(`${lotteryTicketNumber}개를 구매했습니다.`);
+    lotteryTickets.map((lotteryTicket) => {
+      MissionUtils.Console.print(`${lotteryTicket}`);
+    });
+  }
+
+  #inputWinningNumbers() {
+    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요', (winNum) => {
+      //예외사항
+      const lotto = new Lotto(winNum.split(','));
+      this.#winningNumbers = lotto.getLottoNumber();
+
+      this.#inputBonusNumber();
+    });
+  }
+
+  #inputBonusNumber() {
+    MissionUtils.Console.readLine(
+      '보너스 번호를 입력해 주세요.',
+      (bonusNum) => {
+        exceptBonusNumber(this.#winningNumbers, bonusNum);
+        this.#bonusNumber = bonusNum;
+
+        this.#makeWinningHistorys(this.#lotteryTicketNumber);
+      }
+    );
+  }
+
+  #makeWinningHistorys(lotteryTicketNumber) {
+    let winningHistorys = new Array(lotteryTicketNumber);
+    winningHistorys.map((winningHistory)=>{
+      
     })
   }
 
-  #inputWinningNumbers(){
-
+  #confrimLottery(){
+    
   }
-
-  #inputBonusNumbers(){
-
-  }
-
-  
 }
 
 const app = new App();
