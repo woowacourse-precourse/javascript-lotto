@@ -15,7 +15,7 @@ class LottoDrawer {
     return this.#result;
   }
 
-  // 로또 추천 입력 검증
+  // TODO: 로또 추천 입력 검증
   // 맨 뒤에 , 는 없어야 함
   // 모두 숫자
   // 총 갯수가 numbersCount
@@ -26,14 +26,13 @@ class LottoDrawer {
   setLottoWinner(input) {
     const winnerNumbers = input.split(',').map(Number);
 
-    this.result = winnerNumbers;
+    this.result = { numbers: winnerNumbers };
   }
 
   setBonusNumer() {
     Console.readLine('보너스 번호를 입력해 주세요.\n', (input) => {
-      const bonusNumber = Number(input);
-      this.result = [...this.result, bonusNumber];
-      Console.print(this.result);
+      const bonus = Number(input);
+      this.result = { ...this.result, bonus };
     });
   }
 
