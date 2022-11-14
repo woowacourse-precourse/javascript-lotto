@@ -6,7 +6,7 @@ const COMMAND = Object.freeze({
 });
 
 const ERROR = Object.freeze({
-  MONEY_DIVISIBLE: '[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.',
+  MONEY_DIVISIBLE: '[ERROR] 구입 금액은 1,000원 단위의 정수로 입력해야 합니다.',
 });
 
 module.exports = { COMMAND, ERROR };

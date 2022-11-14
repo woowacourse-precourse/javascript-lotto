@@ -12,11 +12,16 @@ class Exceptions {
 
 class MoneyExceptions extends Exceptions {
   check() {
-    if (this.isNotDivisible()) super.occurError(ERROR.MONEY_DIVISIBLE);
+    if (this.isDigit() | this.isNotDivisible())
+      super.occurError(ERROR.MONEY_DIVISIBLE);
   }
 
   isNotDivisible() {
     return this.input % 1000 !== 0;
+  }
+
+  isDigit() {
+    return this.input % 1 !== 0;
   }
 }
 
