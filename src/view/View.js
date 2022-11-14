@@ -7,6 +7,15 @@ class Messages{
   number_of_lotto(number){
     return `\n${number}개를 구매했습니다.`
   }
+  numbers(numbers){
+    let numbers_message = '[';
+    numbers.forEach((number, idx)=>{
+      if(idx===numbers.length-1) { numbers_message += String(number); }
+      else { numbers_message += (String(number)+', '); }
+    });
+    numbers_message += ']';
+    return numbers_message;
+  }
   input_win(){
     return '\n당첨 번호를 입력해 주세요.'
   }
@@ -45,7 +54,7 @@ class View{
   }
   printPublished(published){
     published.forEach( (numbers) => {
-      Console.print(numbers);
+      Console.print(this.messages.numbers(numbers));
     })
   }
   inputWin(){
