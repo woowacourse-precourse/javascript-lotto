@@ -1,3 +1,5 @@
+const { ERRORS } = require('../constants');
+
 class Lotto {
   #numbers;
 
@@ -12,19 +14,19 @@ class Lotto {
 
   #validate(numbers) {
     if (!this.#hasValidLength(numbers)) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+      throw new Error(ERRORS.LOTTO.LENGTH);
     }
 
     if (!this.#hasUniqueValues(numbers)) {
-      throw new Error('[ERROR] 로또 번호는 중복되지 않아야 합니다.');
+      throw new Error(ERRORS.LOTTO.UNIQUE);
     }
 
     if (!this.#hasNumberValuesOnly(numbers)) {
-      throw new Error('[ERROR] 로또 번호는 숫자여야 합니다.');
+      throw new Error(ERRORS.LOTTO.VALUE);
     }
 
     if (!this.#hasValidRangeValues(numbers)) {
-      throw new Error('[ERROR] 로또 번호는 1~45 사이의 수여야 합니다.');
+      throw new Error(ERRORS.LOTTO.RANGE);
     }
   }
 
