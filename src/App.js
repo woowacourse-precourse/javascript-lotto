@@ -8,6 +8,7 @@ class App {
     this.lottoList = [];
     this.winning = null;
     this.bonus = 0;
+    this.results = [0, 0, 0, 0, 0];
   }
 
   setMoney(input) {
@@ -36,7 +37,7 @@ class App {
   }
 
   setWinning(winning) {
-    this.winning = new Lotto(winning.split(',').map((v) => Number(v)));
+    this.winning = new Lotto(winning.split(',').map((v) => Number(v)).sort((a, b) => a - b));
   }
 
   setBonus(bonus) {
@@ -44,6 +45,32 @@ class App {
     
     if (this.winning.getNumbers().indexOf(this.bonus) !== -1) {
       throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    }
+  }
+
+  getRank(winning, lotto) {
+    let count = 0;
+    let bonusMatch = false;
+
+    for (let i=0; i<6; i++) {
+      if (lotto.indexOf(winning[i]) !== -1) count++; 
+    }
+
+    if (lotto.indexOf(this.bonus) !== -1) bonusMatch = true;
+
+    if (count === 6) return 1;
+    if (count === 5 && bonusMatch) return 2;
+    if (count === 5) return 3;
+    if (count === 4) return 4;
+    if (count === 3) return 5;
+    return 6;
+  }
+
+  calculateResults() {
+    for (let i=0; i<this.count; i++) {
+      const rank = this.getRank(this.winning.getNumbers(), this.lottoList[i].getNumbers());
+      if (rank > 5) continue;
+      this.results[rank-1]++; 
     }
   }
 
@@ -59,6 +86,7 @@ class App {
 
         MissionUtils.Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusInput) => {
           this.setBonus(bonusInput);
+          this.calculateResults();
         });
       });
     });
