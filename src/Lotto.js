@@ -1,4 +1,5 @@
 const { MissionUtils } = require("@woowacourse/mission-utils");
+const { WIN_NUM_ERROR_MESSAGE } = require("./constant/message");
 
 class Lotto {
   #numbers;
@@ -8,9 +9,22 @@ class Lotto {
     this.#numbers = numbers;
   }
 
+  isDuplicated(numbers) {
+    const setNumbers = new Set(numbers);
+    if (setNumbers.length === numbers.length) {
+      return true;
+    }
+    return false;
+  }
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error(WIN_NUM_ERROR_MESSAGE.NOT_SIX_NUMBERS);
+    }
+    if (numbers.includes(0)) {
+      throw new Error(WIN_NUM_ERROR_MESSAGE.INCLUED_SPACE_ZERO);
+    }
+    if (!this.isDuplicated(numbers)) {
+      throw new Error(WIN_NUM_ERROR_MESSAGE.DUPLICATED_NUMBERS);
     }
   }
 }

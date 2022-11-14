@@ -1,6 +1,10 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const { CONSOLE_MESSAGE, ERROR_MESSAGE } = require("../src/constant/message");
+const {
+  CONSOLE_MESSAGE,
+  AMOUNT_ERROR_MESSAGE,
+} = require("../src/constant/message");
 const { CONSTANTS } = require("./constant/constants");
+const Lotto = require("./Lotto");
 
 class LottoPlay {
   lottoes;
@@ -15,6 +19,7 @@ class LottoPlay {
       this.lottoes = this.countLotto(amount);
       this.printCountedLottoes();
       this.printRandomLottoes();
+      this.getWinNumber();
     });
   }
 
@@ -26,13 +31,13 @@ class LottoPlay {
   }
   validateAmount(amount) {
     if (amount % 1000 !== 0) {
-      throw new Error(ERROR_MESSAGE.NOT_RIGHT_UNIT);
+      throw new Error(AMOUNT_ERROR_MESSAGE.NOT_RIGHT_UNIT);
     }
     if (amount === "") {
-      throw new Error(ERROR_MESSAGE.REQUIRE_INPUT);
+      throw new Error(AMOUNT_ERROR_MESSAGE.REQUIRE_INPUT);
     }
     if (amount.includes(" ")) {
-      throw new Error(ERROR_MESSAGE.INCLUDED_SPACE);
+      throw new Error(AMOUNT_ERROR_MESSAGE.INCLUDED_SPACE);
     }
   }
 
@@ -54,6 +59,13 @@ class LottoPlay {
     const randomLottoNumbers = this.createRandomLottoes();
     randomLottoNumbers.forEach((lottonumber) => {
       Console.print(lottonumber);
+    });
+  }
+
+  getWinNumber() {
+    Console.readLine(CONSOLE_MESSAGE.INPUT_WIN_NUMBER_MESSAGE, (winNum) => {
+      const winnerNumber = winNum.split(",").map(Number);
+      new Lotto(winnerNumber);
     });
   }
 }
