@@ -2,11 +2,11 @@ const { PRIZE_AMOUNT } = require("../utils/constants");
 
 class YieldCalculator {
   #purchaseAmount;
-  #rankCount;
+  #rankCountArray;
 
-  constructor(purchaseAmount, rankCount) {
+  constructor(purchaseAmount, rankCountArray) {
     this.#purchaseAmount = purchaseAmount;
-    this.#rankCount = rankCount;
+    this.#rankCountArray = rankCountArray;
   }
 
   #getPrizeMoney() {
@@ -18,7 +18,7 @@ class YieldCalculator {
       PRIZE_AMOUNT.FIFTH_RANK,
     ];
 
-    return this.#rankCount.reduce((acc, currentRank, idx) => {
+    return this.#rankCountArray.reduce((acc, currentRank, idx) => {
       return acc + currentRank * prize[idx];
     }, 0);
   }
