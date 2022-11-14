@@ -1,3 +1,6 @@
+/* eslint no-use-before-define: 0 */
+/* eslint no-undef: "off" */
+/* eslint no-new: "off" */
 const Lotto = require("../src/Lotto");
 
 describe("로또 클래스 테스트", () => {

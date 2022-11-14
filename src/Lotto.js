@@ -18,6 +18,10 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error(ERROR_MESSAGE.LOTTO_NUMBER);
     }
+
+    if (numbers.length !== new Set(numbers).size) {
+      throw new Error(ERROR_MESSAGE.LOTTO_NUMBER);
+    }
   }
 
   print() {
