@@ -1,5 +1,3 @@
-Lotto
-
 class Lotto {
   #numbers;
 
