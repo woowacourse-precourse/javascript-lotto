@@ -14,6 +14,9 @@ class App {
     this.askForAmount();
   }
 
+  /**
+   * 구입금액을 입력 받습니다.
+   */
   askForAmount() {
     Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
       this.inputAmount = Number(input);
@@ -22,6 +25,9 @@ class App {
     });
   }
 
+  /**
+   * 로또 수량을 계산하여 수량만큼 로또를 발행합니다.
+   */
   generateLotto() {
     const quantityOfLottos = this.inputAmount / 1000;
     for (let i = 0; i < quantityOfLottos; i++) {
@@ -34,6 +40,9 @@ class App {
     this.askForLottoNumbers();
   }
 
+  /**
+   * 당첨 번호를 입력 받습니다.
+   */
   askForLottoNumbers() {
     Console.readLine("\n당첨 번호를 입력해 주세요.\n", (input) => {
       this.lottoNumbers = input.split(",").map((el) => Number(el));
@@ -42,6 +51,9 @@ class App {
     });
   }
 
+  /**
+   * 보너스 번호를 입력 받습니다.
+   */
   askForBonusNumber() {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (input) => {
       this.bonusNumber = Number(input);
@@ -50,6 +62,9 @@ class App {
     });
   }
 
+  /**
+   * 당첨 통계를 출력합니다.
+   */
   printWinStats() {
     Console.print("\n당첨 통계\n---");
     const prize = new Prize(
@@ -60,6 +75,10 @@ class App {
     this.printYieldRate(prize);
   }
 
+  /**
+   * 수익률을 출력합니다.
+   * @param {Prize} prize - Prize 인스턴스
+   */
   printYieldRate(prize) {
     const totalPrize = prize.totalPrize;
     const yieldRate = ((totalPrize / this.inputAmount) * 100).toFixed(1);

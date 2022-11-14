@@ -8,6 +8,10 @@ class InputAmount {
     this.#inputAmount = input;
   }
 
+  /**
+   * input이 천 단위의 값인지 확인합니다.
+   * @param {number} input
+   */
   validate(input) {
     const inputAmount = input;
     const error = new Error("[ERROR] 구입금액은 천 원 단위여야 합니다.");

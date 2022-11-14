@@ -16,6 +16,12 @@ class Prize {
     this.totalPrize = this.totalPrize;
   }
 
+  /**
+   * 각 generatedLottos의 요소들과 lottoNumbers의 중복 값을 소거하여 통계 배열을 생성합니다.
+   * @param {Array<Array<number>>} generatedLottos
+   * @param {Array<number>} lottoNumbers
+   * @param {number} bonusNumber
+   */
   makeStats(generatedLottos, lottoNumbers, bonusNumber) {
     let stats = [];
     for (let i = 0; i < generatedLottos.length; i++) {
@@ -25,6 +31,11 @@ class Prize {
     this.prize(stats, bonusNumber);
   }
 
+  /**
+   * stats의 요소들의 size에 따라 통계 값 배열을 생성합니다.
+   * @param {Array<Set>} stats
+   * @param {number} bonusNumber
+   */
   prize(stats, bonusNumber) {
     let statValue = [0, 0, 0, 0, 0];
     for (let i = 0; i < stats.length; i++) {
@@ -46,6 +57,9 @@ class Prize {
     this.printWinStats();
   }
 
+  /**
+   * 당첨 통계를 출력합니다.
+   */
   printWinStats() {
     for (let i = 0; i < 5; i++) {
       const key = Object.keys(this.prizeByMatchingNumbers[i])[0];
@@ -59,6 +73,9 @@ class Prize {
     this.getTotalPrize();
   }
 
+  /**
+   * 당첨금을 계산합니다.
+   */
   getTotalPrize() {
     for (let i = 0; i < this.statValue.length; i++) {
       const value = Object.values(this.prizeByMatchingNumbers[i])[0];
