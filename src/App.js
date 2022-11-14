@@ -29,7 +29,7 @@ class App {
   makeWinningLotto() {
     MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", winningLotto => {
       winningLotto = winningLotto.split(",").map(Number);
-      this.winningLottoArr = [this.winningLottoValidate(winningLotto)]; //뒤에 예외처리하기
+      this.winningLottoArr = [this.winningLottoValidate(winningLotto)]; 
       MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", winningLottoBonus => {
         winningLottoBonus = +winningLottoBonus;
         this.winningLottoArr.push(this.winningLottoBonusValidate(winningLottoBonus)) //뒤에 예외처리하기
@@ -38,6 +38,19 @@ class App {
       });
     });
   }
+
+  winningLottoValidate(numbers) {
+    if (numbers.length !== 6) {
+      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    }
+    numbers.forEach(x => {
+      if (x < 1 || x > 45) throw new Error("[ERROR] 로또 번호는 0보다 크고 46보다 작아야 합니다.");
+    })
+    let set = new Set(numbers);
+    if (set.size !== 6) throw new Error("[ERROR] 로또 번호는 중복되지 않아야 합니다.")
+    return numbers
+  }
+
 
 }
 
