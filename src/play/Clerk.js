@@ -1,7 +1,7 @@
 const Mission = require("@woowacourse/mission-utils");
 const { GAME_MESSAGES } = require("../utils/Constants");
 const QuickPick = require("../input/QuickPick");
-const Lotto = require("../input/Lotto");
+const Lotto = require("../Lotto");
 const Bonus = require("../input/Bonus");
 const Result = require("../play/Result");
 
