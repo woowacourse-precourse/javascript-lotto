@@ -37,3 +37,14 @@ describe("getRateOfReturn", () => {
     expect(expectResult).toBe("687.5");
   });
 });
+
+describe("getRevenue", () => {
+  test("is calculate Revenue", () => {
+    // given
+    const input = [3, 0, 5, 6, 0];
+    // when
+    const expectResult = getRevenue(input);
+    // then
+    expect(expectResult).toBe(2001505000);
+  });
+});

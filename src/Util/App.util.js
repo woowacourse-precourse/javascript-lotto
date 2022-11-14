@@ -16,6 +16,9 @@ const getStatistics = (counts) => {
 
 const getRateOfReturn = (cost, revenue) => ((revenue / cost) * 100).toFixed(1);
 
+const getRevenue = () => {};
+
 exports.buyLottos = buyLottos;
 exports.getStatistics = getStatistics;
 exports.getRateOfReturn = getRateOfReturn;
+exports.getRevenue = getRevenue;
