@@ -49,3 +49,15 @@ describe("Validation.isNumberRange", () => {
     expect(result).toBe(false);
   });
 });
+
+describe("Validation.isUniqueBonusNumber", () => {
+  test("보너스번호 입력이 당첨번호 입력과 중복된다면 false를 반환해야 한다.", () => {
+    // given
+    const bonusNumber = [45];
+    const winnerNumber = [1, 2, 3, 4, 5, 45];
+    // when
+    const result = Validation.isUniqueBonusNumber(bonusNumber, winnerNumber);
+    // then
+    expect(result).toBe(false);
+  });
+});
