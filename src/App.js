@@ -5,9 +5,8 @@ const Result = require("./Result");
 const Score = require("./Score");
 
 class App {
-  winningNum;
-  bonusNum;
-  buyMoney;
+  #winningNum;
+  #buyMoney;
 
   constructor() {
     this.result = new Result();
@@ -16,9 +15,14 @@ class App {
   }
 
   play() {
+    this.inputBuyMoney();
+    this.test();
+  }
+
+  inputBuyMoney() {
     Console.readLine("구입금액을 입력해 주세요\n", (answer) => {
-      let lottoNum = 0;
-      this.buyMoney = answer;
+      let lottoNum;
+      this.#buyMoney = answer;
       lottoNum = this.divideMoneyByThousand();
       const lottoArr = this.lotto.createTotalLottoArr(lottoNum);
       Output.printLottos(lottoArr);
@@ -26,32 +30,36 @@ class App {
     });
   }
 
+  test() {
+    Console.print("55555555");
+  }
+
   divideMoneyByThousand() {
-    const lottoNum = parseInt(this.buyMoney / 1000);
+    const lottoNum = parseInt(this.#buyMoney / 1000);
     Console.print(`${lottoNum}개를 구매했습니다.`);
     return lottoNum;
   }
 
   getWinningNum(lottoArr) {
     Console.readLine("당첨 번호를 입력해 주세요.\n", (answer) => {
-      this.winningNum = answer.split(",").map((item) => Number(item));
+      this.#winningNum = answer.split(",").map((item) => Number(item));
       this.getBonusNum(lottoArr);
     });
   }
 
   getBonusNum(lottoArr) {
     Console.readLine("보너스 번호를 입력해 주세요.\n", (answer) => {
-      this.bonusNum = Number(answer);
-      const scores = this.score.getLottoScores(lottoArr, this.winningNum);
+      const bonusNum = Number(answer);
+      const scores = this.score.getLottoScores(lottoArr, this.#winningNum);
       const lottoResult = this.result.createLottoResult(
         scores,
-        this.bonusNum,
+        bonusNum,
         lottoArr
       );
       const bonusResult = this.result.createBonusResult();
       console.log(bonusResult);
       const totalYield = this.result.getTotalYield(
-        this.buyMoney,
+        this.#buyMoney,
         lottoResult,
         bonusResult
       );
