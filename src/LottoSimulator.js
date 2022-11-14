@@ -1,3 +1,4 @@
+const { GRADE } = require("./constant/constant");
 const { round } = require("./utils/utils");
 
 class LottoSimulator {
@@ -5,11 +6,11 @@ class LottoSimulator {
 
   constructor() {
     this.gradeCount = new Map([
-      ['fifth', 0],
-      ['fourth', 0],
-      ['third', 0],
-      ['second', 0],
-      ['first', 0],
+      [GRADE.FIFTH.NAME, 0],
+      [GRADE.FOURTH.NAME, 0],
+      [GRADE.THIRD.NAME, 0],
+      [GRADE.SECOND.NAME, 0],
+      [GRADE.FIRST.NAME, 0],
     ]);
   }
   
@@ -25,7 +26,10 @@ class LottoSimulator {
   }
 
   calcReturnRate(money) {
-    const profit = this.gradeCount.get('first') * 2000000000 + this.gradeCount.get('second') * 30000000 + this.gradeCount.get('third') * 1500000 + this.gradeCount.get('fourth') * 50000 + this.gradeCount.get('fifth') * 5000;
+    let profit = 0;
+    this.gradeCount.forEach((count, grade) => {
+      profit += count * GRADE[grade.toUpperCase()].PRIZE_MONEY;
+    });
     const returnRate = profit / money * 100;
     return round(returnRate);
   }

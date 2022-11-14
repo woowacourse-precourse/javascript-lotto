@@ -1,5 +1,7 @@
+const { FORMAT } = require("../constant/constant");
+
 const round = (num) => {
-  return (+(Math.round(num + "e+1") + "e-1")).toFixed(1);
+  return (+(Math.round(num + `e+${FORMAT.RESULT_ROUND}`) + `e-${FORMAT.RESULT_ROUND}`)).toFixed(FORMAT.RESULT_ROUND);
 }
 
 const changePrintFormat = () => {
@@ -9,7 +11,7 @@ const changePrintFormat = () => {
 }
 
 const toLocaleMoney = (money) => {
-  return money.toLocaleString('ko-KR');
+  return money.toLocaleString(FORMAT.LOCALE_MONEY);
 }
 
 module.exports = { round, changePrintFormat };

@@ -1,4 +1,4 @@
-const { ERROR } = require("./constant/constant");
+const { ERROR, LOTTO } = require("./constant/constant");
 
 class Validator {
   checkPurchaseMoney(purchaseMoney) {
@@ -53,7 +53,7 @@ class Validator {
   }
 
   isNotUnitOfLottoPrice(money) {
-    return money % 1000 || money === 0;
+    return money % LOTTO.PRICE || money === 0;
   }
 
   isNotWinningNumberInputFormat(winningNumber) {
@@ -62,7 +62,7 @@ class Validator {
   }
 
   isNotRangeOfLottoNumber(num) {
-    return num < 1 || num > 45;
+    return num < LOTTO.MIN || num > LOTTO.MAX;
   }
 
   existInWinningNumber(winningNumber, bonusNumber) {
@@ -70,7 +70,7 @@ class Validator {
   }
 
   isNotValidLottoNumberCount(lotto) {
-    return lotto.length !== 6;
+    return lotto.length !== LOTTO.NUMBER_COUNT;
   }
 
   hasDuplicateNumber(arr) {

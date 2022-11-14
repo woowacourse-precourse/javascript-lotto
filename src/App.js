@@ -1,5 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { GRADE, MESSAGE } = require("./constant/constant");
+const { GRADE, MESSAGE, LOTTO } = require("./constant/constant");
 const NumberGenerator = require("./NumberGenerator");
 const Lotto = require("./Lotto");
 const LottoSimulator = require("./LottoSimulator");
@@ -18,37 +18,38 @@ class App {
   }
 
   play() {
-    Console.readLine('구입금액을 입력해 주세요.\n', this.handleGameStart.bind(this));
+    Console.readLine(MESSAGE.INPUT_PURCHASE_MONEY, this.handleGameStart.bind(this));
   }
 
   handleGameStart(purchaseMoney) {
     this.purchaseMoney = Number(purchaseMoney);
     this.issueLotto();
+    changePrintFormat();
     this.printMyLottos();
     this.getWinningNumber();
   }
 
   issueLotto() {
     const numberGenerator = new NumberGenerator();
-    for (let purchaseCount = 0; purchaseCount < this.purchaseMoney / 1000; purchaseCount++){
+    for (let purchaseCount = 0; purchaseCount < this.purchaseMoney / LOTTO.PRICE; purchaseCount++){
       this.lottos.push(new Lotto(numberGenerator.createRandomNumber()));
     }
   }
 
   printMyLottos() {
-    Console.print(`\n${this.lottos.length}개를 구매했습니다.`);
+    Console.print(MESSAGE.PRINT_LOTTOS.format(this.lottos.length));
     this.lottos.forEach(lotto => lotto.print());
   }
 
   getWinningNumber() {
-    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (winningNumber) => {
+    Console.readLine(MESSAGE.INPUT_WINNING_NUMBER, (winningNumber) => {
       this.winningNumber = winningNumber.split(',').map(num => Number(num));
       this.getBonusNumber();
     });
   }
 
   getBonusNumber() {
-    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
+    Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
       this.bonusNumber = Number(bonusNumber);
       this.handleGameEnd();
     });
@@ -56,8 +57,7 @@ class App {
 
   handleGameEnd() {
     this.lottoSimulator.checkWinningResult(this.lottos, this.winningNumber, this.bonusNumber);
-    Console.print('\n당첨 통계\n---');
-    changePrintFormat();
+    Console.print(MESSAGE.PRINT_RESULT_TITLE);
     this.printWinningResult();
     this.printReturnRate();
     Console.close();
@@ -66,7 +66,7 @@ class App {
   printWinningResult() {
     this.lottoSimulator.gradeCount.forEach((count, rank) => {
       const rankUpperCase = rank.toUpperCase();
-      Console.print('%s개 일치%s (%s원) - %s개'.format(
+      Console.print(MESSAGE.PRINT_WINNING_RESULT.format(
         GRADE[rankUpperCase].DUPLICATE_COUNT,
         GRADE[rankUpperCase].EXTRA_TEXT,
         GRADE[rankUpperCase].PRIZE_MONEY,
@@ -77,7 +77,11 @@ class App {
   }
 
   printReturnRate() {
-    Console.print(`총 수익률은 ${this.lottoSimulator.calcReturnRate(this.purchaseMoney)}%입니다.`);
+    Console.print(
+      MESSAGE.PRINT_RETURN_RATE.format(
+        this.lottoSimulator.calcReturnRate(this.purchaseMoney)
+      ) 
+    );
   }
 }
 
