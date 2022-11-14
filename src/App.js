@@ -2,6 +2,15 @@ const { Console } = require('@woowacourse/mission-utils');
 const { User } = require('./User');
 const { Draw } = require('./Draw');
 
+const WINNING_PRIZE = {
+  1: 2000000000,
+  2: 30000000,
+  3: 1500000,
+  4: 50000,
+  5: 5000,
+  6: 0,
+};
+
 class App {
   constructor() {
     this.user = new User();
