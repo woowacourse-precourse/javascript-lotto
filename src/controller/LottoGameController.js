@@ -9,6 +9,8 @@ class LottoGameController {
     this.lottoGameModel = model;
     this.lottoGameView = view;
     this.calculatorModel = calculator;
+
+    this.money;
     this.lottos;
     this.winningLotto;
   }
@@ -17,13 +19,13 @@ class LottoGameController {
     this.setGame();
     this.pickWinningLotto();
     const result = this.calculatorModel.draw(this.lottos, this.winningLotto);
-    console.log(result);
   }
 
   setGame() {
     readLine(INPUT_MESSAGE.MONEY, (input) => {
       MoneyValidator.validate(input);
 
+      this.money = input;
       this.lottos = this.lottoGameModel.payMoney(input);
 
       this.printLottos(this.lottos);
