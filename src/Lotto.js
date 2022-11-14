@@ -5,37 +5,36 @@ class Lotto {
   #countLotto;
 
   inputMoney() {
-    Console.readLine('구입금액을 입력해 주세요.\n', inputMoney => {
+    Console.readLine(MESSAGE.INPUT_MONEY, inputMoney => {
       this.validate(inputMoney);
       this.buyLotto(inputMoney);
     });
   }
 
+  buyLotto(inputMoney) {
+    this.#countLotto = Number(inputMoney) / 1000
+    this.printCountLotto(this.#countLotto);
+    this.makeLotto();
+  }
+
 
   validate(price) {
-    this.isNumber(price);
-    this.isThousandUnit(price);
+    this.checkNumber(price);
+    this.checkThousandUnit(price);
   };
 
-  isNumber(price) {
+  checkNumber(price) {
     if(isNaN(price)) {
         throw new Error(ERROR.NOT_NUMBER_ERROR)
     }
   };
 
-  isThousandUnit(price) {
+  checkThousandUnit(price) {
     if(price % 1000 !== 0) {
         throw new Error(ERROR.NOT_THOUSAND_ERROR)
     }
   };
 
-
-  buyLotto(inputMoney) {
-    this.#countLotto = Number(inputMoney) / 1000
-    this.printCountLotto(this.#countLotto);
-    this.makeLotto();
-    Console.close();
-  }
 
   printCountLotto(inputCount) {
     Console.print(`\n${inputCount}`+ MESSAGE.PRINT_COUNTLOTTO);
@@ -47,7 +46,6 @@ class Lotto {
       this.printRandomLottoNumber(lottoNumber);
     }
   }
-
 
   makeRandomLottoNumber() {
     return Random.pickUniqueNumbersInRange(1, 45, 6);
@@ -61,14 +59,43 @@ class Lotto {
     return Console.print(`[${lottoNumber.join(', ')}]`);
   }
 
-  getWinningLottoNumber(){
-    Console.print(MESSAGE.INPUT_WINNING_NUMBER);
-    Console.readline("", number=> this.winningLottoNumber=number.split(","));
+
+  inputWinningLottoNumber() {
+    Console.readLine(MESSAGE.INPUT_WINNING_NUMBER+'\n', number => {this.isValidWinningLottoNumber(number);});
   }
 
-  play() {
-    this.inputMoney();
+  isValidWinningLottoNumber(number) {
+    const inputValue = number.split(",")
+    this.checkEachVaule(inputValue);
+    this.checkOverlap(inputValue);
   }
+  
+
+  checkOverlap(inputValue) {
+    if ([...new Set(inputValue)].length !== 6) {
+      throw new Error(ERROR.CHECK_OVERLAP_LENGTH);
+    }
+  }
+
+  checkEachVaule(inputValue) {
+    inputValue.forEach((value) => {
+      if (isNaN(value)) {
+        throw new Error(ERROR.CHECK_NUMBER_RANGE_IS_NUMBER);
+      }
+      if (value < 1 || value > 45) {
+        throw new Error(ERROR.CHECK_NUMBER_RANGE_IS_NUMBER);
+      }
+    });
+  }
+
+
+
+
+  play() {
+    // this.inputMoney();
+    this.inputWinningLottoNumber();
+  }
+
 }
 
 module.exports = Lotto;

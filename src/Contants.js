@@ -2,6 +2,8 @@ const CONSTANT = {
   ERROR: {
     NOT_THOUSAND_ERROR: `[ERROR] 결제 금액은 1000원 단위로 입력해주셔야 합니다.`,
     NOT_NUMBER_ERROR: `[ERROR] 결제 금액은 숫자만 입력해주셔야 합니다.`,
+    CHECK_OVERLAP_LENGTH: `[ERROR] 당첨번호는 6자리의 중복되지 않는 숫자를 입력해주셔야 합니다.`,
+    CHECK_NUMBER_RANGE_IS_NUMBER: `[ERROR] 당첨번호는 1부터 45까지의 '숫자'만 입력해주셔야 합니다.`,
   },
   MESSAGE: {
     INPUT_MONEY: '구입금액을 입력해 주세요.',
