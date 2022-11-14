@@ -59,12 +59,12 @@ class LottoCalculator {
 
   printResult() {
     MissionUtils.Console.print(RESULT_MESSAGE.OPENING_MESSAGE);
-    MissionUtils.Console.print(RESULT_MESSAGE.FIFTH_PLACE + `${this.countWinningRecord[RANK.FIFTH_PLACE]}` + RESULT_MESSAGE.UNIT);
-    MissionUtils.Console.print(RESULT_MESSAGE.FOURTH_PLACE + `${this.countWinningRecord[RANK.FOURTH_PLACE]}` + RESULT_MESSAGE.UNIT);
-    MissionUtils.Console.print(RESULT_MESSAGE.THIRD_PLACE + `${this.countWinningRecord[RANK.THIRD_PLACE]}` + RESULT_MESSAGE.UNIT);
-    MissionUtils.Console.print(RESULT_MESSAGE.SECOND_PLACE + `${this.countWinningRecord[RANK.SECOND_PLACE]}` + RESULT_MESSAGE.UNIT);
-    MissionUtils.Console.print(RESULT_MESSAGE.FIRST_PLACE + `${this.countWinningRecord[RANK.FIRST_PLACE]}` + RESULT_MESSAGE.UNIT);
-    MissionUtils.Console.print(RESULT_MESSAGE.YIELD_FRONT_MESSAGEL + `${this.yield}` + RESULT_MESSAGE.YIELD_BACK_MESSAGEL);
+    MissionUtils.Console.print(`${RESULT_MESSAGE.FIFTH_PLACE} ${this.countWinningRecord[RANK.FIFTH_PLACE]}${RESULT_MESSAGE.UNIT}`);
+    MissionUtils.Console.print(`${RESULT_MESSAGE.FOURTH_PLACE} ${this.countWinningRecord[RANK.FOURTH_PLACE]}${RESULT_MESSAGE.UNIT}`);
+    MissionUtils.Console.print(`${RESULT_MESSAGE.THIRD_PLACE} ${this.countWinningRecord[RANK.THIRD_PLACE]}${RESULT_MESSAGE.UNIT}`);
+    MissionUtils.Console.print(`${RESULT_MESSAGE.SECOND_PLACE} ${this.countWinningRecord[RANK.SECOND_PLACE]}${RESULT_MESSAGE.UNIT}`);
+    MissionUtils.Console.print(`${RESULT_MESSAGE.FIRST_PLACE} ${this.countWinningRecord[RANK.FIRST_PLACE]}${RESULT_MESSAGE.UNIT}`);
+    MissionUtils.Console.print(`${RESULT_MESSAGE.YIELD_FRONT_MESSAGEL} ${this.yield}${RESULT_MESSAGE.YIELD_BACK_MESSAGEL}`);
 
     MissionUtils.Console.close();
   } 

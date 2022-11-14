@@ -21,13 +21,13 @@ const MESSAGE = {
 
 const RESULT_MESSAGE = {
   OPENING_MESSAGE: '\n당첨 통계\n---',
-  FIRST_PLACE: '6개 일치 (2,000,000,000원) - ',
-  SECOND_PLACE: '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
-  THIRD_PLACE: '5개 일치 (1,500,000원) - ',
-  FOURTH_PLACE: '4개 일치 (50,000원) - ',
-  FIFTH_PLACE: '3개 일치 (5,000원) - ',
+  FIRST_PLACE: '6개 일치 (2,000,000,000원) -',
+  SECOND_PLACE: '5개 일치, 보너스 볼 일치 (30,000,000원) -',
+  THIRD_PLACE: '5개 일치 (1,500,000원) -',
+  FOURTH_PLACE: '4개 일치 (50,000원) -',
+  FIFTH_PLACE: '3개 일치 (5,000원) -',
   UNIT: '개', 
-  YIELD_FRONT_MESSAGEL: '총 수익률은 ',
+  YIELD_FRONT_MESSAGEL: '총 수익률은',
   YIELD_BACK_MESSAGEL: '%입니다.'
 }
 

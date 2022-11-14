@@ -52,7 +52,7 @@ class LottoMachine {
 
   printLottoAmount() {
     this.#count = this.#money / MONEY.IN_THOUSAND;
-    MissionUtils.Console.print(`\n${this.#count}` + MESSAGE.BUY_COUNT);
+    MissionUtils.Console.print(`\n${this.#count}${MESSAGE.BUY_COUNT}`);
   }
 
   makeLottoNumber() {
