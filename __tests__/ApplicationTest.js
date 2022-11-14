@@ -1,20 +1,23 @@
-const App = require("../src/App");
 const MissionUtils = require("@woowacourse/mission-utils");
+const App = require("../src/App");
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();
-  answers.reduce((acc, input) => {
-    return acc.mockImplementationOnce((question, callback) => {
-      callback(input);
-    });
-  }, MissionUtils.Console.readLine);
+  answers.reduce(
+    (acc, input) =>
+      acc.mockImplementationOnce((question, callback) => {
+        callback(input);
+      }),
+    MissionUtils.Console.readLine
+  );
 };
 
 const mockRandoms = (numbers) => {
   MissionUtils.Random.pickUniqueNumbersInRange = jest.fn();
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, MissionUtils.Random.pickUniqueNumbersInRange);
+  numbers.reduce(
+    (acc, number) => acc.mockReturnValueOnce(number),
+    MissionUtils.Random.pickUniqueNumbersInRange
+  );
 };
 
 const getLogSpy = () => {
@@ -67,5 +70,20 @@ describe("로또 테스트", () => {
       const app = new App();
       app.play();
     }).toThrow("[ERROR]");
+  });
+
+  test("getCollectInfo에 2등 로또 번호를 넣어 호출하였을 때, 맞은 번호의 정보(2등)을 반환한다", () => {
+    const app = new App();
+    app.winningNumbers.addWinningNumbers([1, 2, 3, 4, 5, 6]);
+    app.winningNumbers.addBonusNumber(7);
+    const result = app.getCollectInfo([1, 2, 3, 4, 5, 7]);
+    expect(result).toEqual({ collectNumber: 5, bonusNumber: true });
+  });
+
+  test("plusWinnerCount에 2등 결과를 넣어 호출하였을 때, app의 lottoResults의 2등 카운트(index: 5)를 증가시킨다", () => {
+    const app = new App();
+    app.plusWinnerCount({ collectNumber: 5, bonusNumber: true });
+    const result = app.lottoResults;
+    expect(result).toEqual([0, 0, 0, 0, 0, 1]);
   });
 });

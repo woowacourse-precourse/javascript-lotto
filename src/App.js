@@ -5,11 +5,22 @@ const WinningNumbers = require("./WinningNumbers");
 
 const { Console, Random } = MissionUtils;
 
+const LOTTO_RESULT_MESSAGE = (resultNumber) => `
+3개 일치 (5,000원) - ${resultNumber[0]}개
+4개 일치 (50,000원) - ${resultNumber[1]}개
+5개 일치 (1,500,000원) - ${resultNumber[2]}개
+5개 일치, 보너스 볼 일치 (30,000,000원) - ${resultNumber[5]}개
+6개 일치 (2,000,000,000원) - ${resultNumber[4]}개
+`;
+
 class App {
   constructor() {
     this.user = new User();
     this.lottos = [];
     this.winningNumbers = new WinningNumbers();
+
+    // 5,4,3,1,2등 순서
+    this.lottoResults = [0, 0, 0, 0, 0, 0];
   }
 
   play() {
@@ -56,6 +67,39 @@ class App {
   showResultMessage() {
     Console.print("당첨 통계");
     Console.print("---");
+    this.checkResult();
+  }
+
+  checkResult() {
+    this.lottos.forEach((lotto) => {
+      const collectInfo = this.getCollectInfo(lotto.getLottoNumbers());
+      this.plusWinnerCount(collectInfo);
+    });
+    Console.print(LOTTO_RESULT_MESSAGE(this.lottoResults));
+  }
+
+  getCollectInfo(lottoNumbers) {
+    let collectNumber = 0;
+    let bonusNumber = false;
+    lottoNumbers.forEach((number) => {
+      if (this.winningNumbers.bonusNumber === number) {
+        bonusNumber = true;
+      }
+      if (this.winningNumbers.winningNumbers.includes(number)) {
+        collectNumber += 1;
+      }
+    });
+    return { collectNumber, bonusNumber };
+  }
+
+  plusWinnerCount(collectInfo) {
+    if (collectInfo.collectNumber === 5 && collectInfo.bonusNumber) {
+      this.lottoResults[5] += 1;
+      return;
+    }
+    if (collectInfo.collectNumber > 2) {
+      this.lottoResults[collectInfo.collectNumber - 3] += 1;
+    }
   }
 }
 
