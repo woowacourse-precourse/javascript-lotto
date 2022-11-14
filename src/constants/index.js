@@ -11,6 +11,7 @@ const LOTTO_VALUE = {
   MIN: 1,
   MAX: 45,
   LENGTH: 6,
+  UNIT: 1000,
 };
 
 module.exports = { GAME_MESSAGE, ERROR_MESSAGE, LOTTO_VALUE };

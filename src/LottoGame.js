@@ -1,5 +1,9 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { GAME_MESSAGE, ERROR_MESSAGE } = require("./constants/index");
+const {
+  GAME_MESSAGE,
+  ERROR_MESSAGE,
+  LOTTO_VALUE,
+} = require("./constants/index");
 const Lotto = require("./Lotto");
 const {
   isNumberType,
@@ -34,7 +38,7 @@ class LottoGame {
 
   generateLottoList() {
     this.#lottoList = [];
-    let lottoCnt = Math.floor(this.#purchaseAmount / 1000);
+    let lottoCnt = Math.floor(this.#purchaseAmount / LOTTO_VALUE.UNIT);
 
     for (let i = 0; i < lottoCnt; i++) {
       let lotto = new Lotto(generateRandomNumbers());
