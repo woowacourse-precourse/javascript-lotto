@@ -116,10 +116,6 @@ class App {
   exit() {
     Console.close();
   }
-
-  error(message) {
-    throw new Error(message);
-  }
 }
 
 const app = new App();
