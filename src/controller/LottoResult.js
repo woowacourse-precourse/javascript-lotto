@@ -1,4 +1,11 @@
-const { DEFAULT, ERROR, RANK } = require("../utils/constant.js");
+const {
+  DEFAULT,
+  RESULT_STRING,
+  LOTTO_PRIZE,
+  RANK,
+} = require("../utils/constant.js");
+const { divideThousandUnit } = require("../utils/utils.js");
+const { Console } = require("@woowacourse/mission-utils");
 
 class LottoResult {
   constructor(lottos, luckyNumber, bonusNumber) {
@@ -37,17 +44,28 @@ class LottoResult {
     );
   }
 
-  getRank() {
-    const rank = {};
-    Object.values(RANK).forEach((value) => (rank[value] = 0));
+  getResult() {
+    const result = {};
+    Object.values(RANK).forEach((value) => (result[value] = 0));
     for (const lotto of this.lottos) {
       const luckyCount = this.countLuckyCount(lotto, this.luckyNumber);
       console.log(lotto, this.luckyNumber, luckyCount, "@@@@@");
       if (luckyCount <= DEFAULT.MIN_LUCKY_COUNT) continue;
-      rank[this.convertRank(luckyCount, this.isBonus(lotto))] += 1;
+      result[this.convertRank(luckyCount, this.isBonus(lotto))] += 1;
     }
 
-    return rank;
+    return result;
+  }
+
+  printLottoResult(lottoResult) {
+    const rankAscendingOrder = Object.entries(lottoResult).reverse();
+    for (const [rank, count] of rankAscendingOrder) {
+      Console.print(
+        `${RESULT_STRING[rank]} (${divideThousandUnit(
+          LOTTO_PRIZE[rank],
+        )}원) - ${count}개`,
+      );
+    }
   }
 }
 

@@ -4,14 +4,9 @@ const PurchaseValudate = require("./validate/PurchaseValidate.js");
 const LottoResult = require("./controller/LottoResult.js");
 const Bonus = require("./validate/Bonus.js");
 
-const { Console, Random } = require("@woowacourse/mission-utils");
-const {
-  DEFAULT,
-  LOTTO_PRIZE,
-  RESULT_STRING,
-  RANK,
-} = require("./utils/constant.js");
-const { divideThousandUnit } = require("./utils/utils.js");
+const { Console } = require("@woowacourse/mission-utils");
+const { DEFAULT, LOTTO_PRIZE, RANK } = require("./utils/constant.js");
+
 class App {
   constructor() {
     this.lottos = [];
@@ -51,57 +46,50 @@ class App {
     });
   }
 
+  convertRankToPrize(rank, count) {
+    switch (rank) {
+      case RANK[1]:
+        return LOTTO_PRIZE.FIRST * count;
+      case RANK[2]:
+        return LOTTO_PRIZE.SECOND * count;
+      case RANK[3]:
+        return LOTTO_PRIZE.THIRD * count;
+      case RANK[4]:
+        return LOTTO_PRIZE.FOURTH * count;
+      case RANK[5]:
+        return LOTTO_PRIZE.FIFTH * count;
+      default:
+        return;
+    }
+  }
+
+  getTotalLottoEarning(result) {
+    const rankCountArray = Object.entries(result);
+    const totalEarning = rankCountArray.reduce(
+      (total, [rank, count]) => (total += this.convertRankToPrize(rank, count)),
+      DEFAULT.ZERO,
+    );
+
+    return totalEarning;
+  }
+
   getEarningRate() {
     Console.print("당첨 통계");
     Console.print("---");
 
-    this.rank = new LottoResult(
+    const lottoResult = new LottoResult(
       this.lottos,
       this.luckyNumber,
       this.bonusNumber,
-    ).getRank();
-    console.log(this.rank, "this Rank");
-
-    Object.entries(this.rank)
-      .reverse()
-      .forEach(([rank, count]) => {
-        Console.print(
-          `${RESULT_STRING[rank]} (${divideThousandUnit(
-            LOTTO_PRIZE[rank],
-          )}원) - ${count}개`,
-        );
-      });
-
-    const totalEarning = Object.entries(this.rank).reduce((acc, cur) => {
-      const [rank, count] = cur;
-      let price = 0;
-      switch (rank) {
-        case "1":
-          price += count * 2000000000;
-          break;
-        case "2":
-          price += count * 30000000;
-          break;
-        case "3":
-          price += count * 1500000;
-          break;
-        case "4":
-          price += count * 50000;
-          break;
-        case "5":
-          price += count * 5000;
-          break;
-      }
-      return (acc += price);
-    }, 0);
-
-    this.earningRate = (totalEarning / this.input).toFixed(1);
-    console.log(
-      this.luckyNumber,
-      this.bonusNumber,
-      this.rank,
-      this.earningRate,
     );
+    this.rank = lottoResult.getResult();
+    // this.rank = new LottoResult().getRank();
+
+    lottoResult.printLottoResult(this.rank);
+
+    const totalEarning = this.getTotalLottoEarning(this.rank);
+    this.earningRate = ((totalEarning / this.input) * 100).toFixed(1);
+
     Console.print(`총 수익률은 ${this.earningRate}%입니다.`);
     Console.close();
   }
