@@ -70,3 +70,46 @@ describe('validate 테스트', () => {
     }).toThrow('[ERROR]');
   });
 });
+
+describe('Rank 테스트', () => {
+  test('matchLotto가 올바르게 계산된다.', () => {
+    expect(
+      (() => {
+        const rank = new Rank([1, 2, 3, 4, 5, 6], 7);
+        const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+        const { lottoMatchCount, _ } = rank.matchLotto(lotto);
+        return lottoMatchCount;
+      })(),
+    ).toBe(6);
+  });
+
+  test('checkWinningLottoRank가F 올바르게 계산된다.(2위)', () => {
+    expect(
+      (() => {
+        const rank = new Rank([1, 2, 3, 4, 5, 6], 7);
+        const lotto = new Lotto([1, 2, 3, 4, 5, 7]);
+        return rank.checkWinningLottoRank(lotto);
+      })(),
+    ).toBe(2);
+  });
+
+  test('checkWinningLottoRank가F 올바르게 계산된다2.(5위)', () => {
+    expect(
+      (() => {
+        const rank = new Rank([1, 2, 3, 4, 5, 6], 7);
+        const lotto = new Lotto([1, 2, 3, 11, 12, 13]);
+        return rank.checkWinningLottoRank(lotto);
+      })(),
+    ).toBe(5);
+  });
+
+  test('checkWinningLottoRank가F 올바르게 계산된다3.(Infinity)', () => {
+    expect(
+      (() => {
+        const rank = new Rank([1, 2, 3, 4, 5, 6], 7);
+        const lotto = new Lotto([11, 12, 13, 14, 15, 16]);
+        return rank.checkWinningLottoRank(lotto);
+      })(),
+    ).toBe(Infinity);
+  });
+});
