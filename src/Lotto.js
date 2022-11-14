@@ -23,7 +23,7 @@ class Lotto {
 
   // TODO: 추가 기능 구현
   printNumbers() {
-    Console.print(this.#numbers);
+    Console.print(`[${this.#numbers.join(", ")}]`);
   }
   hasNumber(number) {
     return this.#numbers.includes(number);
