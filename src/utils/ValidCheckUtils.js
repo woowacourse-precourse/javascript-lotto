@@ -4,6 +4,8 @@ class ValidCheckUtils {
   constructor() {}
 
   static checkPay(pay) {
+    if (pay.length === 0) throw new Error(ErrorMsg.INVALID_PAY_EMPTY_STRING);
+
     if (pay.replace(/[0-9]/g, "").length > 0)
       throw new Error(ErrorMsg.INVALID_PAY_NOT_NUM);
 
@@ -12,6 +14,9 @@ class ValidCheckUtils {
 
   static checkWinningNumber(winningNum) {
     const winningNumberArray = String(winningNum).split(",");
+
+    if (winningNum.length === 0)
+      throw new Error(ErrorMsg.INVALID_WINNING_EMPTY_STRING);
 
     if (new Set(winningNumberArray).size !== winningNumberArray.length)
       throw new Error(ErrorMsg.INVALID_WINNING_DUPLICATE);
@@ -30,6 +35,9 @@ class ValidCheckUtils {
   }
 
   static checkBonusNumber(bonusNum, winningNumberArray) {
+    if (bonusNum.length === 0)
+      throw new Error(ErrorMsg.INVALID_BONUS_EMPTY_STRING);
+
     if (winningNumberArray.includes(bonusNum))
       throw new Error(ErrorMsg.INVALID_BONUS_DUPLICATE);
 
