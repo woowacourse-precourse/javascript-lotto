@@ -1,4 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
+const { GAME, MESSAGE, RULE, PRIZE_BOARD, ERROR } = require('./modules/Constant');
 
 class Lotto {
   #numbers;
@@ -16,6 +17,15 @@ class Lotto {
 
   publishLotto() {
     Console.print(this.#numbers);
+  }
+
+  calculateResult(winNumbers, bonus) {
+    const intersection = this.#numbers.filter((number) => winNumbers.includes(number));
+    const duplicateCount = intersection.length;
+    if (duplicateCount === 5 && this.#numbers.includes(bonus)) {
+      return 'second'; // TODO: 상수처리 고민
+    }
+    return RULE[duplicateCount]; // TODO: undefined 핸들링
   }
 }
 

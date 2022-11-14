@@ -66,6 +66,9 @@ class App {
 
       this.bonusNumber = Number(bonus);
       console.log(this.bonusNumber);
+      this.publishedLottos.forEach((publishedLotto) => {
+        console.log(publishedLotto.calculateResult(this.winNumbers, this.bonusNumber));
+      });
     });
   }
 }
