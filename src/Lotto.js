@@ -102,6 +102,10 @@ class Lotto {
 
     return lottoResult;
   }
+
+  getLottoNumbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
