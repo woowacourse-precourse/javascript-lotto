@@ -8,6 +8,7 @@ class App {
     this.winningNumbers = [];
     this.bonusNumber = 0;
   }
+
   play() {
     this.playLottoGame();
   }
@@ -50,7 +51,8 @@ class App {
       String(number)
     );
     if (input.split('').every((digit) => possibleNumbers.includes(digit))) return true;
-    if (type === 'purchaseAmount') throw new Error(ERROR.INCLUDE_NOT_NUMBER_ERROR);
+    if (type === 'purchaseAmount')
+      throw new Error(ERROR.INCLUDE_NOT_NUMBER_IN_PURCHASE_AMOUNT_ERROR);
     if (type === 'winningNumber')
       throw new Error(ERROR.INCLUDE_NOT_NUMBER_IN_WINNING_NUMBERS_ERROR);
     if (type === 'bonusNumber') throw new Error(ERROR.INCLUDE_NOT_NUMBER_IN_BONUS_NUMBER_ERROR);
@@ -161,6 +163,14 @@ class App {
   isNotDuplicatedWithWinningNumbers(input) {
     if (!this.winningNumbers.includes(Number(input))) return true;
     throw new Error(ERROR.BONUS_NUMBER_DUPLICATED_WITH_WINNING_NUMBERS);
+  }
+
+  compareGeneratedLottoWithWinngNumbers(generatedLotto) {
+    let numberOfMatching = 0;
+    generatedLotto.forEach((number) => {
+      if (this.winningNumbers.includes(number)) numberOfMatching += 1;
+    });
+    return numberOfMatching;
   }
 }
 
