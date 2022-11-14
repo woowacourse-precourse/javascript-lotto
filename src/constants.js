@@ -1,3 +1,9 @@
+const CONFIG = Object.freeze({
+  START: 1,
+  END: 45,
+  COUNT: 6,
+});
+
 const ERROR_INPUT_MESSAGE = Object.freeze({
   TYPE: "[ERROR] 입력값은 숫자여야 합니다.",
   UNIT: "[ERROR] 입력값은 1,000원 단위로 떨어져야 합니다.",
@@ -34,6 +40,7 @@ const INGAME_RESULT = Object.freeze({
 });
 
 module.exports = {
+  CONFIG,
   ERROR_INPUT_MESSAGE,
   ERROR_LOGIC_MESSAGE,
   INGAME_INPUT,

@@ -1,19 +1,20 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+const { INGAME_INFORM } = require("./constants");
+const purchased = require("./utils/listPurchased");
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
     this.#numbers = numbers;
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      //[1,2,3,4,5,6]
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+  issue(tickets) {
+    MissionUtils.Console.print(tickets + INGAME_INFORM.PURCHASED);
+
+    purchased(tickets);
   }
 
-  issue() {}
   result() {
     //winning, profit
   }

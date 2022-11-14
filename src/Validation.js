@@ -14,6 +14,13 @@ class Validation {
   }
 
   // numbers : [1,2,3,4,5,6]
+  checkSixNumbers(array) {
+    this.type(array);
+    this.range(array);
+    this.lengthSix(array);
+    this.duplication(array);
+    this.formatArray(array);
+  }
 
   type(numbers) {
     if (numbers.filter((el) => typeof el !== "number").length !== 0) {
