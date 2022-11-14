@@ -1,5 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const Validation = require("../src/Validation");
+const UserValidation = require("./Validation/UserValidation");
 
 class User {
   lottoNumbers;
@@ -37,7 +37,7 @@ class User {
   static isValidPurchase(amount) {
     // 로또 구입 금액에 대한 유효성 검사
     amount = Number(amount);
-    return Validation.isDivisible(amount) && Validation.isMaxPurchase(amount) && Validation.isPositiveInteger(amount);
+    return UserValidation.isDivisible(amount) && UserValidation.isUnderMaxPurchase(amount) && UserValidation.isPositiveInteger(amount);
   }
 }
 
