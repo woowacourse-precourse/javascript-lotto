@@ -6,15 +6,9 @@ class App {
   static PRIZE = [5000, 50000, 1500000, 30000000, 2000000000];
 
   play() {
-    this.readLine("구입금액을 입력해주세요.", this.runLotto.bind(this));
-  }
-
-  readLine(message, callback) {
-    Console.readLine(message, callback);
-  }
-
-  print(message) {
-    Console.print(message);
+    Console.readLine("구입금액을 입력해주세요.", (value) => {
+      this.runLotto(value);
+    });
   }
 
   runLotto(value) {
@@ -31,14 +25,14 @@ class App {
     }
 
     if (money % 1000 !== 0) {
-      this.print("1000원 단위로 입력해주세요.");
-      this.makePayment();
+      Console.print("1000원 단위로 입력해주세요.");
+      this.play();
       return;
     }
 
     const numberOfLotto = money / 1000;
 
-    this.print(`${numberOfLotto}개를 구매했습니다.`);
+    Console.print(`${numberOfLotto}개를 구매했습니다.`);
 
     return money;
   }
@@ -75,7 +69,7 @@ class App {
   }
 
   getWinner(lottos, amountOfPaid) {
-    this.readLine("당첨번호를 입력해주세요.", (value) => {
+    Console.readLine("당첨번호를 입력해주세요.", (value) => {
       this.getWinnerNumber(value, lottos, amountOfPaid);
     });
   }
@@ -84,12 +78,12 @@ class App {
     const winnerNumber = value.split(",").map((string) => parseInt(string, 10));
 
     if (winnerNumber.length !== App.LENGTH_OF_LOTTO_NUMBER) {
-      this.print("6개의 번호를 입력해주세요.");
+      Console.print("6개의 번호를 입력해주세요.");
       this.getWinner(lottos, amountOfPaid);
       return;
     }
 
-    this.readLine("보너스 번호를 입력해주세요.", (value) => {
+    Console.readLine("보너스 번호를 입력해주세요.", (value) => {
       this.getBonusNumber(value, winnerNumber, lottos, amountOfPaid);
     });
   }
@@ -102,7 +96,7 @@ class App {
       amountOfPaid
     );
     this.showFinalResult(winningDetails, amountOfPaid);
-    Console.close();
+    this.afterEnded();
   }
 
   getWinningDetails(lottos, winnerNumber, bonusNumber) {
@@ -144,15 +138,15 @@ class App {
     fiveMatchesWithBonus,
     sixMatches,
   }) {
-    this.print("당첨통계\n");
-    this.print("---\n");
-    this.print(`3개 일치 (5,000원) - ${threeMatches}개\n`);
-    this.print(`4개 일치 (50,000원) - ${fourMatches}개\n`);
-    this.print(`5개 일치 (1,500,000원) - ${fiveMatches}개\n`);
-    this.print(
+    Console.print("당첨통계\n");
+    Console.print("---\n");
+    Console.print(`3개 일치 (5,000원) - ${threeMatches}개\n`);
+    Console.print(`4개 일치 (50,000원) - ${fourMatches}개\n`);
+    Console.print(`5개 일치 (1,500,000원) - ${fiveMatches}개\n`);
+    Console.print(
       `5개 일치, 보너스 볼 일치 (30,000,000원) - ${fiveMatchesWithBonus}개\n`
     );
-    this.print(`6개 일치 (2,000,000,000원) - ${sixMatches}개\n`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${sixMatches}개\n`);
   }
 
   showEarningsRate(winningDetails, amountOfPaid) {
@@ -161,7 +155,12 @@ class App {
       amountOfPaid
     );
 
-    this.print(`총 수익률은 ${earningsRate}%입니다.`);
+    Console.print(`총 수익률은 ${earningsRate}%입니다.`);
+  }
+
+  afterEnded() {
+    Console.close();
+    return;
   }
 
   caculateEarningsRate(winningDetails, amountOfPaid) {
@@ -171,7 +170,6 @@ class App {
       },
       0
     );
-
     const earningsRate = ((totalEarnings / amountOfPaid) * 100).toFixed(1);
 
     return earningsRate;
@@ -179,4 +177,5 @@ class App {
 }
 
 new App().play();
+
 module.exports = App;
