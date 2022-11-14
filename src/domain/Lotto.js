@@ -8,7 +8,6 @@ class Lotto {
     this.validate(numbers);
     this.#numbers = numbers;
     this.sortLotto(numbers);
-    this.printLotto(numbers);
   }
 
   validate(numbers) {
@@ -30,10 +29,6 @@ class Lotto {
       return a - b;
     });
     return numbers;
-  }
-
-  printLotto(numbers) {
-    return Console.print(`[${numbers.toString().replace(/\,/g, ", ")}]`);
   }
 }
 

@@ -6,20 +6,20 @@ const INPUT_MESSAGE = Object.freeze({
 
 const OUTPUT_MESSAGE = Object.freeze({
   amountLotto: (lottoTickets) => `\n${lottoTickets}개를 구매했습니다.`,
-  lottoResultAlarm: "\n당첨 통계\n---",
   profitRate: (lottoProfitRate) => `총 수익률은 ${lottoProfitRate}%입니다.`,
   firstPrize: (lottoResult) => `6개 일치 (2,000,000,000원) - ${lottoResult}개`,
   secondPrize: (lottoResult) => `5개 일치, 보너스 볼 일치 (30,000,000원) - ${lottoResult}개`,
   thirdPrize: (lottoResult) => `5개 일치 (1,500,000원) - ${lottoResult}개`,
   fourthPrize: (lottoResult) => `4개 일치 (50,000원) - ${lottoResult}개`,
   fifthPrize: (lottoResult) => `3개 일치 (5,000원) - ${lottoResult}개`,
+  lottoResultAlarm: "\n당첨 통계\n---",
 });
 
 const LOTTO_RANGE = Object.freeze({
-  pricePerLotto: 1000,
   minimunNumberRange: 1,
   maximunNumberRange: 45,
   lottoCount: 6,
+  pricePerLotto: 1000,
 });
 
 const PRIZE_MONEY_CURRENCY = Object.freeze({

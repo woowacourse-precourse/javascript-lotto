@@ -22,11 +22,18 @@ class App {
     Console.readLine(INPUT_MESSAGE.paymentAmount, (money) => {
       const lottoTickets = money / LOTTO_RANGE.pricePerLotto;
 
-      this.totalLottoNumber = new Payment(money).getLottoNumber(lottoTickets);
       this.payMoney = money;
-
+      this.totalLottoNumber = new Payment(money).getLottoNumber(lottoTickets);
+      this.printLotto(this.totalLottoNumber);
       Console.print(OUTPUT_MESSAGE.amountLotto(lottoTickets));
+
       this.inputWinnerNumber();
+    });
+  }
+
+  printLotto(totalLottoNumber) {
+    totalLottoNumber.forEach((number) => {
+      return Console.print(`[${number.toString().replace(/\,/g, ", ")}]`);
     });
   }
 
