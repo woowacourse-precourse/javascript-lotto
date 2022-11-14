@@ -155,6 +155,7 @@ class App {
     );
     this.calcEaringsRate();
     Console.print(`총 수익률은 ${this.earningRate}%입니다.`);
+    this.gameEnd();
   }
 
   calcEaringsRate() {
@@ -164,6 +165,10 @@ class App {
     }
     this.earningRate =
       Math.round((prizeMoneySum / this.#purchaseAmount) * 100 * 100) / 100;
+  }
+
+  gameEnd() {
+    Console.close();
   }
 }
 
