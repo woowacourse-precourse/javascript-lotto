@@ -1,6 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { CONSOLE } = require("./constants");
-const ValidationCheck = require("./util/validation");
+const ValidationCheck = require("./util/ValidationCheck");
 
 class Controller {
   startGame() {
