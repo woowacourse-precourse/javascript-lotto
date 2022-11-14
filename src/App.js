@@ -35,7 +35,7 @@ class App {
     for (let index = 0; index < input.length; index++) {
       element = Number(input[index]);
       if (isNaN(element)) {
-        throw new Error("숫자만 입력해 주세요");
+        throw new Error("[ERROR] 숫자만 입력해 주세요");
       }
     }
   }
