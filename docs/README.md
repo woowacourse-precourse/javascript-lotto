@@ -30,6 +30,6 @@
 2. LottoMachine - 복권 발행기
 3. WinningLotto - 사용자가 입력하는 당첨 번호
 4. Matcher - 번호가 몇 개 일치하는지 계산
-5. Calculator - 수익률 계산
-6. Printer - 메시지 출력
-7. InputDevice - 입력 받기
+5. ReturnCalculator - 수익률 계산기
+6. MessagePrinter - 메시지 출력기
+7. InputAcceptor - 입력 받기
