@@ -1,4 +1,3 @@
-const { Console } = require("@woowacourse/mission-utils");
 const {
   LOTTO_LENGTH_ERROR,
   LOTTO_TYPE_ERROR,

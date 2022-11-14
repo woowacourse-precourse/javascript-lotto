@@ -38,9 +38,9 @@ describe("로또 팩토리 클래스 테스트", () => {
     expect(
       numbers.filter((number) => number >= 1 && number <= 45).length
     ).toEqual(6);
-    expect(numbers.filter((number) => !isNaN(Number(number))).length).toEqual(
-      6
-    );
+    expect(
+      numbers.filter((number) => !Number.isNaN(Number(number))).length
+    ).toEqual(6);
     expect(new Set(numbers).size).toEqual(6);
     expect(
       numbers.filter((number, index) => {

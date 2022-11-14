@@ -18,9 +18,9 @@ describe("1 ~ 45사이의 임의의 숫자 6개를 생성후 오름차순으로 
     expect(
       numbers.filter((number) => number >= 1 && number <= 45).length
     ).toEqual(6);
-    expect(numbers.filter((number) => !isNaN(Number(number))).length).toEqual(
-      6
-    );
+    expect(
+      numbers.filter((number) => !Number.isNaN(Number(number))).length
+    ).toEqual(6);
     expect(new Set(numbers).size).toEqual(6);
     expect(
       numbers.filter((number, index) => {
@@ -35,6 +35,7 @@ describe("입력값 % 1000 개 만큼의 로또를 만들수 있다", () => {
   test("입력값에 따른 로또 객체 생성", () => {
     MissionUtils.Console.readLine = jest.fn(() => {});
     const app = new App();
+    app.play();
     app.makeLottos(5);
     expect(app.lottos.get().length).toEqual(5);
     expect(

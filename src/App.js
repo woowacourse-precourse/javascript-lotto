@@ -4,17 +4,9 @@ const LottoFactory = require("./LottoFactory");
 const Lottos = require("./Lottos");
 const Management = require("./Management");
 const Payment = require("./Payment");
-const Status = require("./status");
+const Status = require("./Status");
 
 class App {
-  constructor() {
-    this.payment = new Payment();
-    this.lottos = new Lottos();
-    this.lottoFactory = new LottoFactory();
-    this.management = new Management();
-    this.status = new Status();
-  }
-
   makeLottos = (count) => {
     for (let i = 0; i < count; i++) {
       this.lottos.add(new Lotto(this.lottoFactory.makeLotto()));
@@ -33,6 +25,11 @@ class App {
   };
 
   play() {
+    this.payment = new Payment();
+    this.lottos = new Lottos();
+    this.lottoFactory = new LottoFactory();
+    this.management = new Management();
+    this.status = new Status();
     this.payment.query(this.makeLottos);
   }
 }
