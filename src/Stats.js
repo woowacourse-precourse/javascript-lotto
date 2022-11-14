@@ -38,11 +38,11 @@ const incomeMap = {
 };
 
 class Stats {
-  constructor({ winningNumbers, bonusNumber, purchased, expense }) {
+  constructor({ winningNumbers, bonusNumber, purchased, cash }) {
     this.winningNumbers = winningNumbers;
     this.bonusNumber = bonusNumber;
     this.purchased = purchased;
-    this.expense = this.getExpense(expense);
+    this.expense = this.getExpense(cash);
     this.data = this.gather();
     this.performance = this.getPerformance();
   }
@@ -67,8 +67,8 @@ class Stats {
     return data;
   }
 
-  getExpense(expense) {
-    return Math.floor(expense);
+  getExpense(cash) {
+    return Math.floor(cash);
   }
 
   getPerformance() {
