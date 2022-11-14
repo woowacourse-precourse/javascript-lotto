@@ -2,10 +2,10 @@ class Setting {
   constructor() {
     this.lottoBox = [];
     this.money;
-    this.reward = 0;
+    this.reword = 0;
+    this.revenue;
     this.winNumber;
     this.bonusNumber;
-    this.check = 0;
     this.score = {
       0: 0,
       5000: 0,
