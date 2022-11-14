@@ -22,21 +22,21 @@ class LottoGame {
   }
 
   getWinNumbers() {
-    mConsole.readLine("\n당첨 번호를 입력해 주세요.\n", (inputNumbers) => {
+    mConsole.readLine(GAME_MESSAGES.WIN_NUMBERS, (inputNumbers) => {
       this.lottoController.setWinNumbers(inputNumbers);
       this.getBonusNumber();
     });
   }
 
   getBonusNumber() {
-    mConsole.readLine("\n보너스 번호를 입력해 주세요.\n", (inputBonus) => {
+    mConsole.readLine(GAME_MESSAGES.BONUS, (inputBonus) => {
       this.lottoController.setBonusNumber(inputBonus);
       this.printLottoResult();
     });
   }
 
   printLottoResult() {
-    mConsole.print("\n당첨 통계\n---");
+    mConsole.print(GAME_MESSAGES.RESULT);
     this.lottoController.printRank();
     this.lottoController.printProfitRate();
     mConsole.close();
