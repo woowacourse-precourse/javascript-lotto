@@ -35,9 +35,7 @@ class Lotto {
 
   isCorrectRange(numbers) {
     for (const number of numbers) {
-      if (LOTTO.START_NUMBER <= number <= LOTTO.END_NUMBER) {
-        continue;
-      } else {
+      if (number < LOTTO.START_NUMBER || number > LOTTO.END_NUMBER) {
         return false;
       }
     }
