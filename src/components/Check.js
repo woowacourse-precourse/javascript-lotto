@@ -7,6 +7,12 @@ class Check {
     return true
   }
 
+  checkBonusNumber (number) {
+    if (!(number >= 1 && number <= 45)) {
+      throw new Error('[ERROR] 로또 번호가 잘못 입력되었습니다.');
+    }
+  }
+
   checkWinNumVaildation (winningstr) {
     const winningArr = winningstr.split(',').map(Number);
     const lotto = new Lotto(winningArr);
