@@ -1,8 +1,13 @@
-const {RANKING} = require("./Constants");
-const { getMatchedinWinningNumberCount, hasBounsNumber } = require("./utils");
+const { RANKING } = require("./Constants");
+const {
+  getMatchedinWinningNumberCount,
+  hasBounsNumber,
+  getEarningsRate,
+} = require("./utils");
 
 class RankingResult {
   rankingResult;
+  earningsRate;
 
   constructor() {
     this.rankingResult = [
@@ -56,7 +61,11 @@ class RankingResult {
         ranking.amount += 1;
       }
     });
-    return this.rankingResult
+    return this.rankingResult;
+  }
+
+  setEarningsRate(rankingResult, lottopayment) {
+    return getEarningsRate(rankingResult, lottopayment);
   }
 }
 
