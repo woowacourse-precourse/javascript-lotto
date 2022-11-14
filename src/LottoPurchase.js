@@ -12,6 +12,11 @@ class LottoPurchase {
       throw new Error("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다. ");
     }
   } 
+
+  randomNumbers() {
+    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    return numbers;
+  }
 }
 
 module.exports = LottoPurchase;
