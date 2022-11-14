@@ -9,7 +9,7 @@ class CalculateLotto{
   getPurchaseAmount(purchase_amount){
     this.purchase_amount = purchase_amount;
     this.calculateLottoQuantity(purchase_amount);
-    this.sendLottoNumbers();
+    this.printLottoQuantity();
   }
 
   calculateLottoQuantity(purchase_amount){
@@ -23,6 +23,11 @@ class CalculateLotto{
     let random_lotto_numbers;
     random_lotto_numbers=MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6); 
     return random_lotto_numbers;
+  }
+  
+  printLottoQuantity(){
+    MissionUtils.Console.print(`${this.lotto_quantity}개를 구매했습니다.`);
+    this.sendLottoNumbers();
   }
 
   sendLottoNumbers(){
