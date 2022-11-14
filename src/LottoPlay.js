@@ -123,7 +123,7 @@ class LottoPlay {
   }
   calculateYield(purchaseAmount, resultArray) {
     const totalWinningMoney = this.calculateTotalWinningMoney(resultArray);
-    let percentYield = ((totalWinningMoney / purchaseAmount) * 100).toFixed(1);
+    return ((totalWinningMoney / purchaseAmount) * 100).toFixed(1);
   }
 }
 
