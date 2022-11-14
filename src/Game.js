@@ -1,8 +1,27 @@
 const Calculator = require('./Calculator');
-const { ERROR_MSG, GAME_MSG, NEW_LINE, INCOMES } = require('./Constant');
+const {
+  ERROR_MSG,
+  GAME_MSG,
+  NEW_LINE,
+  INCOMES,
+  RESULT_MSG,
+} = require('./Constant');
 const IO = require('./IO');
 const NumberGenerator = require('./NumberGenerator');
 const Referee = require('./Referee');
+
+const {
+  ea,
+  hrLine,
+  isNPercent,
+  match3,
+  match4,
+  match5,
+  match6,
+  matchBonus,
+  stats,
+  totalProfit,
+} = RESULT_MSG;
 
 class Game {
   constructor() {
@@ -64,6 +83,16 @@ class Game {
   static convertGameResult(result) {
     const income = INCOMES.reduce((tot, val, i) => tot + val * result[i], 0);
     const profit = Calculator.calcProfit(this.cost, income);
+  }
+
+  static printGameResult([first, second, third, fourth, fifth], profit) {
+    IO.print(stats + NEW_LINE + hrLine);
+    IO.print(match3 + fifth + ea);
+    IO.print(match4 + fourth + ea);
+    IO.print(match5 + third + ea);
+    IO.print(matchBonus + second + ea);
+    IO.print(match6 + first + ea);
+    IO.print(totalProfit + profit + isNPercent);
   }
 }
 
