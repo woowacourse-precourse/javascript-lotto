@@ -18,21 +18,9 @@ class Lotto {
   }
 
   static purchase(numberCount = 6, minNumber = 1, maxNumber = 45) {
-    const lotto = [];
-
-    while (lotto.length < numberCount) {
-      const pickedNumber = Random.pickNumberInRange(minNumber, maxNumber);
-
-      if (!lotto.includes(pickedNumber)) {
-        lotto.push(pickedNumber);
-      }
-    }
+    const lotto = Random.pickUniqueNumbersInRange(minNumber, maxNumber, numberCount);
 
     return lotto;
-  }
-
-  get numbers() {
-    return this.#numbers;
   }
 }
 
