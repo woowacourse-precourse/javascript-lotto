@@ -35,11 +35,13 @@ const mockRandoms = (numbers) => {
   }, MissionUtils.Random.pickUniqueNumbersInRange);
 };
 
-const getLogSpyWinNumber = () => {
-  const logSpyWinNumber = jest.spyOn(Lotto, "checkWinNumber");
-  logSpyWinNumber.mockClear();
-  return logSpyWinNumber;
-};
+// const testBonusNumber = (bonusNumber) => {
+//   const winNumbers = [1, 2, 3, 4, 5, 6];
+//   expect(() => {
+//     const lotto = new Lotto(winNumbers);
+//     lotto.inputBonusNumber([...winNumbers, bonusNumber], 7);
+//   }).toThrow("[ERROR]");
+// };
 
 describe("[기능2] 금액 입력 예외 처리", () => {
   test("[2-1] 1000원 이하로 입력하면 예외가 발생한다.", () => {
@@ -100,6 +102,24 @@ describe("[기능6] 당첨 번호 입력 예외 처리", () => {
   test("[6-4] 중복 숫자가 있으면 예외가 발생한다.", () => {
     expect(() => {
       new Lotto([1, 1, 3, 4, 5, 6]);
+    }).toThrow("[ERROR]");
+  });
+});
+
+describe("[기능8] 보너스 번호 입력 예외 처리", () => {
+  test("[8-1] 1자리가 아니면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, 6]).checkWinNumber([[1, 2], 1]);
+    }).toThrow("[ERROR]");
+  });
+  test("[8-2] 숫자 외 문자면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, 6]).checkWinNumber(["a", 1]);
+    }).toThrow("[ERROR]");
+  });
+  test("[8-3] 1~45 범위를 벗어나면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, 6]).checkWinNumber(["57", 1]);
     }).toThrow("[ERROR]");
   });
 });
