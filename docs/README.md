@@ -27,7 +27,7 @@
 # 지시 사항
 [○] 기능목록 업데이트
 [ ] 클래스 관련
-     L [ ] Lotto에 필드를 추가할 수 없음
+     L [○] Lotto에 필드를 추가할 수 없음
      L [○] numbers의 # prefix를 변경할 수 없음
 [○] 하드코딩 한 값이 없는가
 [○] 클래스가 필드, 생성자, 메소드 순으로 작성되어 있는가
@@ -35,12 +35,12 @@
 [ ] 함수가 한가지 일만 하도록 구현
 [ ] else 지양 어떤 시점에 써야 할지 스스로 고민
 [ ] 도메인 로직에 단위 테스트를 구현
-[ ] 올바른 라이브러리를 사용하얐는가(MissionUtils )
-     L [ ] 랜덤값 추출은 Random.pickUniqueNumbersInRange()를 활용
-     L [ ] 사용자 입출력은 Console.readLine, Console.print
-[ ] ApplicationTest의 모든 테스트가 성공했는가
-[ ] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용
+[○] 올바른 라이브러리를 사용하얐는가(MissionUtils )
+     L [○] 랜덤값 추출은 Random.pickUniqueNumbersInRange()를 활용
+     L [○] 사용자 입출력은 Console.readLine, Console.print
+[○] ApplicationTest의 모든 테스트가 성공했는가
+[○] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용
 [ ] Jest를 이용하여 본인이 정리한 기능 목록이 정상 동작함을 테스트 코드로 확인
-[ ] 줄여서 쓴 변수가 없는가
-[ ] 하드코딩 한 부분이 없는가
-[ ] 예외 상황 시 "[ERROR]"로 시작하는 에러 문구 출력
+[○] 줄여서 쓴 변수가 없는가
+[○] 하드코딩 한 부분이 없는가
+[○] 예외 상황 시 "[ERROR]"로 시작하는 에러 문구 출력
