@@ -1,4 +1,5 @@
-class Statistics {
+class Stat {
+
   static countWinning(lottos, answer) {
     const results = Array(5).fill(0);
     lottos.forEach((lotto) => {
@@ -8,6 +9,7 @@ class Statistics {
     return results;
   }
 
+  
   static compareEach(lotto, answer) {
     const bonus = Number(answer.at(-1));
     let count = 0;
@@ -34,10 +36,10 @@ class Statistics {
     }
   }
 
-  static rateOfReturn(profit, principal) {
+  static getROR(profit, principal) {
     return parseFloat(((profit / principal) * 100).toFixed(1));
   }
 
 }
 
-module.exports = Statistics;
+module.exports = Stat;

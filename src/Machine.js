@@ -19,9 +19,9 @@ class Machine {
   }
 
   generateLottery(bills) {
-    const { BEGIN, END, MAX } = CONSTANTS;
+    const { BEGIN, END, MAX, ZERO } = CONSTANTS;
     const newLotto = [];
-    for (let i = 0; i < bills; i++) {
+    for (let index = ZERO; index < bills; index++) {
       const lotto = Random.pickUniqueNumbersInRange(BEGIN, MAX, END)
         .sort((pre, next) => (pre - next));
       newLotto.push(lotto);

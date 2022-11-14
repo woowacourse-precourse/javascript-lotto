@@ -12,18 +12,15 @@ module.exports = {
     WRONG_RANGE: '1 ~ 45 사이에 숫자를 넣어주세요.',
   }),
 
-  RESULTS : Object.freeze({
+  CONSTANTS : Object.freeze({
     PRIZE: [5000, 50000, 1500000, 30000000, 2000000000],
-    TEXT: [
+    STATTEXT: [
       '3개 일치 (5,000원) - ',
       '4개 일치 (50,000원) - ',
       '5개 일치 (1,500,000원) - ',
       '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
       '6개 일치 (2,000,000,000원) - ',
     ],
-  }),
-
-  CONSTANTS : Object.freeze({
     PREFIX: '[ERROR] ',
     BEGIN: 1,
     END: 6,
