@@ -1,5 +1,10 @@
 const { ERROR_MESSAGE } = require('./constants/message');
-const { LOTTO_PRICE } = require('./constants/number');
+const {
+  LOTTO_PRICE,
+  LOTTO_SIZE,
+  MIN_LOTTO_NUMBER,
+  MAX_LOTTO_NUMBER,
+} = require('./constants/number');
 
 class Validator {
   static checkNumber(number) {
@@ -9,13 +14,15 @@ class Validator {
 
   static checkLottoNumber(number) {
     this.checkNumber(number);
-    if (number < 1 || number > 45) throw new Error(ERROR_MESSAGE.lottoRange);
+    if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+      throw new Error(ERROR_MESSAGE.lottoRange);
+    }
   }
 
   static checkLottoNumbers(numbers) {
-    if (numbers.length !== 6) throw new Error(ERROR_MESSAGE.lottoSize);
+    if (numbers.length !== LOTTO_SIZE) throw new Error(ERROR_MESSAGE.lottoSize);
     const set = new Set(numbers);
-    if (set.size !== 6) throw new Error(ERROR_MESSAGE.unique);
+    if (set.size !== LOTTO_SIZE) throw new Error(ERROR_MESSAGE.unique);
 
     numbers.forEach((number) => {
       this.checkLottoNumber(number);
