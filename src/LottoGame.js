@@ -181,9 +181,6 @@ class LottoGame {
     commaDelimeter(num) {
         return num.toLocaleString('ko-KR');
     }
-
-
-
 }
 
 
