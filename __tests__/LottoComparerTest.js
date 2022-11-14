@@ -33,7 +33,7 @@ describe('로또 비교 클래스 테스트', () => {
     const comparer = new LottoComparer(new LottoBuyer(5000), new Lotto([8, 22, 23, 42, 43, 45]));
     comparer.buyer.buyLotto();
     comparer.lotto.setBonusNumber(bonusNumber);
-    comparer.setBuyerLottoRanking();
+    comparer.setRanking();
 
     expect(comparer.ranking).toStrictEqual(ranking);
   });
@@ -53,9 +53,9 @@ describe('로또 비교 클래스 테스트', () => {
     const comparer = new LottoComparer(new LottoBuyer(5000), new Lotto([1, 2, 3, 4, 5, 31]));
     comparer.buyer.buyLotto();
     comparer.lotto.setBonusNumber(bonusNumber);
-    comparer.setBuyerLottoRanking();
-    comparer.setYield();
+    comparer.setRanking();
+    comparer.setProfitRate();
 
-    expect(comparer.yield).toEqual('30000.0');
+    expect(comparer.profitRate).toEqual('30000.0');
   });
 });

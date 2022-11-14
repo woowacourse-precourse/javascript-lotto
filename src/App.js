@@ -72,8 +72,8 @@ class App {
 
   #setComparer() {
     this.#comparer = new LottoComparer(this.#buyer, this.#lotto);
-    this.#comparer.setBuyerLottoRanking();
-    this.#comparer.setYield();
+    this.#comparer.setRanking();
+    this.#comparer.setProfitRate();
   }
 
   #printResult() {
@@ -84,7 +84,7 @@ class App {
       Console.print(`${RANK_MESSAGE[rankKey]} ${GAME_MESSAGE.COUNT(this.#comparer.ranking[rank])}`);
     });
 
-    Console.print(GAME_MESSAGE.PROFIT_RATE(this.#comparer.yield));
+    Console.print(GAME_MESSAGE.PROFIT_RATE(this.#comparer.profitRate));
   }
 
   static #validateNumberInput(input) {

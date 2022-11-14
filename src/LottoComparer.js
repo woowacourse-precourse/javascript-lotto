@@ -6,7 +6,7 @@ class LottoComparer {
     this.lotto = lotto;
   }
 
-  setBuyerLottoRanking() {
+  setRanking() {
     const ranking = {
       [RANK.FIRST]: 0,
       [RANK.SECOND]: 0,
@@ -29,7 +29,7 @@ class LottoComparer {
   }
 
   #getLottoRank(buyerLotto) {
-    const matchingLength = this.#compareLotto(buyerLotto, this.lotto.numbers);
+    const matchingLength = this.#getMatchingLength(buyerLotto, this.lotto.numbers);
 
     if (this.#isSecondRank(matchingLength, buyerLotto)) {
       return RANK.SECOND;
@@ -50,7 +50,7 @@ class LottoComparer {
     return matchingLength === RANK_LENGTH.THIRD && buyerLotto.includes(this.lotto.bonusNumber);
   }
 
-  #compareLotto(buyerLotto) {
+  #getMatchingLength(buyerLotto) {
     const matchingNumbers = buyerLotto.filter((number) => this.#isIncludeLotto(number));
     return matchingNumbers.length;
   }
@@ -59,11 +59,11 @@ class LottoComparer {
     return this.lotto.numbers.includes(number);
   }
 
-  setYield() {
+  setProfitRate() {
     const totalReward = this.#getTotalReward();
-    const buyerYield = (totalReward / this.buyer.money) * 100;
+    const profitRate = (totalReward / this.buyer.money) * 100;
 
-    this.yield = buyerYield.toFixed(1);
+    this.profitRate = profitRate.toFixed(1);
   }
 
   #getTotalReward() {
