@@ -6,6 +6,7 @@ describe('NumberCreator 테스트', () => {
     let numbers = numberCreator.getRandomSixNumbers();
 
     expect(numbers).toHaveLength(6);
+    expect(numbers.length).toEqual(new Set(numbers).size);
     numbers.every((number) => {
       expect(number).toBeGreaterThanOrEqual(1);
       expect(number).toBeLessThanOrEqual(45);
