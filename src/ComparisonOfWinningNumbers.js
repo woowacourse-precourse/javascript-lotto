@@ -10,6 +10,9 @@ class ComparisonOfWinningNumbers {
     return winner;
   }
 
+  WinningCriteriaAndAmount(winner) {
+    return winner.length;
+  }
 }
 
 module.exports = ComparisonOfWinningNumbers;
