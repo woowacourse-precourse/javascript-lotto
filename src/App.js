@@ -4,13 +4,17 @@ class App {
   winNumbers;
   bonusNumber;
   lottos;
-  score;
+  scores;
+  profit;
+  payMoney;
 
   constructor() {
     this.bonusNumber = 0;
     this.winNumbers = [];
     this.lottos = [];
-    this.score = [];
+    this.scores = [];
+    this.profit = 0;
+    this.payMoney = 0;
   }
 
   play() {
@@ -22,6 +26,7 @@ class App {
       if (!this.isValidMoney(input)) {
         throw "[ERROR]";
       } else {
+        this.payMoney = input;
         Console.print(`${input / 1000}개를 구매했습니다.`);
         this.lottos = this.publishLotto(input / 1000);
         this.printLottosNumbers();
@@ -88,6 +93,16 @@ class App {
     return lottos
       .filter((lotto) => lotto.matchNumbers(winNumbers, bonusNumber) >= 3)
       .map((e) => e.matchNumbers(winNumbers, bonusNumber));
+  }
+
+  calculateProfit(scores) {
+    return scores.reduce((total, arg) => {
+      if (arg === 3) return (total += 5_000);
+      if (arg === 4) return (total += 50_000);
+      if (arg === 5) return (total += 1_500_000);
+      if (arg === 5.5) return (total += 30_000_000);
+      if (arg === 6) return (total += 2_000_000_000);
+    }, 0);
   }
 }
 
