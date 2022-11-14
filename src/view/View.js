@@ -13,6 +13,17 @@ class Messages{
   input_bonus(){
     return '\n보너스 번호를 입력해 주세요.'
   }
+  result_title(){
+    return '\n당첨 통계\n---'
+  }
+  ranks(rank, index){
+    const ranks = ["3개 일치 (5,000원) - ",
+                   "4개 일치 (50,000원) - ",
+                   "5개 일치 (1,500,000원) - ",
+                   "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
+                   "6개 일치 (2,000,000,000원) - "];
+    return `${ranks[index]}${rank.length}개`
+  }
 }
 
 class View{
@@ -44,6 +55,12 @@ class View{
     Console.print(this.messages.input_bonus());
     Console.readLine('',(input)=>{
       this.task.controllBonus(input);
+    })
+  }
+  printRank(ranks){
+    Console.print(this.messages.result_title());
+    ranks.forEach((rank,idx)=>{
+      Console.print(this.messages.ranks(rank, idx))
     })
   }
 }

@@ -43,6 +43,17 @@ class Model{
   getBonus(){
     return this.chart.bonus_number;
   }
+  initRank(){
+    this.chart.rank = [
+      [],[],[],[],[]
+    ]
+  }
+  getRank(){
+    return this.chart.rank;
+  }
+  addRank(rank_index, data){
+    this.chart.rank[rank_index].push(data);
+  }
 }
 
 module.exports = Model;
