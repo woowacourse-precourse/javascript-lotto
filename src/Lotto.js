@@ -14,8 +14,8 @@ class Lotto {
       throw new Error(ERROR_MESSAGE.LOTTO_NOT_SIX_LENGTH);
     }
 
-    const setNumbers = new Set(numbers);
-    if (setNumbers.size !== LOTTO.SIX_NUMBERS) {
+    const noOverlapNumbers = new Set(numbers);
+    if (noOverlapNumbers.size !== LOTTO.SIX_NUMBERS) {
       throw new Error(ERROR_MESSAGE.LOTTO_DO_NOT_OVERLAP);
     }
   }
