@@ -24,7 +24,7 @@ class Lotto {
         throw Exception.error(DIGITS);
       case this.isAllInteger(numbers):
         throw Exception.error(INTEGER);
-      case this.isCorrectRange(numbers):
+      case this.isInRange(numbers):
         throw Exception.error(RANGE);
       case this.isUnique(numbers):
         throw Exception.error(UNIQUE);
@@ -49,7 +49,7 @@ class Lotto {
     return true;
   }
 
-  isCorrectRange(numbers) {
+  isInRange(numbers) {
     for (const number of numbers) {
       if (number < LOTTO.START_NUMBER || number > LOTTO.END_NUMBER) {
         return false;
