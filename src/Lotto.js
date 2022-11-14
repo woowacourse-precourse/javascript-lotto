@@ -1,3 +1,6 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+const UserError = require("./UserError");
+
 class Lotto {
   #numbers;
 
@@ -7,9 +10,12 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+    const userError = new UserError();
+    userError.includingCharactersError(numbers);
+    userError.numbersFormError(numbers);
+    userError.validateWinningNumbers(numbers);
+    userError.validateNumberRange(numbers);
+    userError.validateOverlapNumber(numbers);
   }
 
   // TODO: 추가 기능 구현
