@@ -8,12 +8,13 @@ const WINNING_PRICE = {
   fourth: 50000,
   fifth: 5000,
 };
+
 class App {
   lottoAmount;
   winningLotteryNumbers;
   bonusNumber;
+  profit;
   lottos = [];
-  profit = 0;
   result = {
     first: 0,
     second: 0,
@@ -96,13 +97,13 @@ class App {
 
   compareNumbers() {
     this.lottos.forEach((lotto) => {
-      const numbersOfMatch = this.winningLotteryNumbers.filter((num) => lotto.includes(num)).length;
-      this.winLotto(numbersOfMatch);
+      this.winLotto(lotto);
     });
   }
 
-  winLotto(matchNumber) {
-    switch (matchNumber) {
+  winLotto(lotto) {
+    const numbersOfMatch = this.winningLotteryNumbers.filter((num) => lotto.includes(num)).length;
+    switch (numbersOfMatch) {
       case 3:
         this.result.fifth += 1;
         break;
