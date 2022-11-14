@@ -77,6 +77,12 @@ const bonusNumberInput = (winningNumber, tickets) => {
 
 const checkBonusValidation = (bonusNumber, winningNumber) => {
   bonusNumber = Number(bonusNumber);
+  if (isNaN(bonusNumber)) {
+    throw new Error('[ERROR] 보너스 번호는 숫자만 입력 가능합니다.');
+  }
+  if (bonusNumber < 1 || bonusNumber > 45) {
+    throw new Error('[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.');
+  }
   winningNumber.map((num) => {
     if (num === bonusNumber) {
       throw new Error('[ERROR] 보너스 번호는 로또 번호와 중복될 수 없습니다.');
