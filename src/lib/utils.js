@@ -23,8 +23,17 @@ const getIntersection = (set1, set2) => {
   return new Set([...set1].filter((x) => set2.has(x)))
 }
 
+/**
+ * @param {number} number1
+ * @param {number} number2
+ */
+const sortIncreasingOrder = (number1, number2) => {
+  return number1 - number2
+}
+
 module.exports = {
   addComma,
   substractComma,
   getIntersection,
+  sortIncreasingOrder,
 }
