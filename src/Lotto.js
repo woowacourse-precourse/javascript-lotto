@@ -36,6 +36,14 @@ class Lotto {
     return winningNum;
   }
 
+  readBonusNum() {
+    let bonusNum = 0;
+    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (input) => {
+      bonusNum = parseInt(input);
+    });
+    return bonusNum;
+  }
+
   changeNumArray(string) {
     const array = string.split(",");
     const numberArray = [];
