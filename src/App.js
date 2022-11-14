@@ -50,6 +50,7 @@ class App {
       this.#myLotteryQuantity = countPurchasedLotteries(this.#startMoney);
       this.#myLotteryList = Array(this.#myLotteryQuantity).fill(0); // 처음부터 Array(Object) 모양 고정시켜 V8 Map Space에 불필요한 hiddenClass 생성을 막기 위함 (push 사용 x)
       this.#myLotteryPrintList = Array(this.#myLotteryQuantity).fill(0); // 위와 동일한 이유로 생성
+      this.breakLine();
       return this.makeLotteries();
     });
   }
@@ -69,6 +70,7 @@ class App {
       this.#myLotteryPrintList[i] = lottery.returnMyLottery(); // 매번 Console.print()를 하게되면 속도가 매우 느려질 수 있기에, 배열에 로또 번호들을 저장해두고 한번에 Print()
     });
     Console.print(this.#myLotteryPrintList.join('\n')); // 내 로또 리스트 출력
+    this.breakLine();
     return this.makeWinNumber();
   }
 
@@ -83,6 +85,7 @@ class App {
       if (validCheck !== true) return makeException(validCheck);
 
       this.#winNumber = answerLottery;
+      this.breakLine();
       return this.makeBonusNumber();
     });
   }
@@ -94,6 +97,7 @@ class App {
         return makeException(EXCEPTION_REASON.INPUT_OVERLAPPED);
 
       this.#bonusNumber = inputBonusNumber;
+      this.breakLine();
       return this.calculateResult();
     });
   }
@@ -127,6 +131,10 @@ class App {
 
   endGame() {
     return Console.close();
+  }
+
+  breakLine() {
+    return Console.print('');
   }
 }
 
