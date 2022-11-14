@@ -7,7 +7,15 @@ class App {
     this.Lotto = [];
     this.winNum = [];
     this.bonusNum = null;
-    this.score = {};
+    this.score = { 3: 1, 4: 0, 5: 0, bonus: 0, 6: 0 };
+    this.prize = {
+      3: 5000,
+      4: 50000,
+      5: 1500000,
+      bonus: 30000000,
+      6: 2000000000,
+    };
+    this.totalMoney = null;
   }
 
   play() {
@@ -16,11 +24,13 @@ class App {
     // 구입 금액만큼 로또 번호 출력
     // this.buyLotto();
     // 당첨 번호 입력
-    this.getWinNum();
+    // this.getWinNum();
     // 보너스 번호 입력
     // this.getBonusNum();
     // 당첨 결과 출력
     // this.compareWinToLotto();
+    // score를 금액으로 환산
+    this.calculateScoreToMoney(); // 5000
   }
 
   getLottoCount() {
@@ -98,6 +108,12 @@ class App {
         }
       }
       this.score[count] = this.score[count] ?? 0 + 1;
+    }
+  }
+
+  calculateScoreToMoney() {
+    for (let keys in this.score) {
+      this.totalMoney += this.prize[keys] * this.score[keys];
     }
   }
 }
