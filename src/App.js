@@ -42,21 +42,10 @@ class App {
 
       this.#user.setNumbersList(numbersList);
       const userNumbersList = this.#user.getNumbersList();
-
       this.#printUserNumberList(userNumbersList);
 
       this.#askLottoNumbers();
     });
-  }
-
-  /**
-   *
-   * @param {number[]} numbers
-   * @returns {number[]}
-   */
-  publishLotto(numbers) {
-    const lotto = new Lotto(numbers);
-    return lotto.getNumbers();
   }
 
   /**
@@ -83,13 +72,12 @@ class App {
 
   /**
    *
-   * @param {number[][]} userNumbersList
+   * @param {number[]} numbers
+   * @returns {number[]}
    */
-  #printUserNumberList(userNumbersList) {
-    Utils.print(`\n${userNumbersList.length}개를 구매했습니다.`);
-    userNumbersList.forEach((numbers) =>
-      Utils.print(`[${numbers.join(', ')}]`)
-    );
+  publishLotto(numbers) {
+    const lotto = new Lotto(numbers);
+    return lotto.getNumbers();
   }
 
   #askLottoNumbers() {
@@ -97,6 +85,19 @@ class App {
       const lottoNumbers = Utils.separateNumbers(inputWinningNumbers, ',');
       this.#lottoManager.setWinningNumbers(lottoNumbers);
       this.#askBonusNumber();
+    });
+  }
+
+  #askBonusNumber() {
+    Utils.readLine(`\n${INPUT_BONUS_NUMBER}\n`, (inputBonus) => {
+      this.#lottoManager.setBonusNumber(inputBonus);
+      const amount = this.#user.getAmount();
+      const userNumbersList = this.#user.getNumbersList();
+
+      const statistics = this.generateStatistics(amount, userNumbersList);
+      this.#printStatistics(statistics.prizes, statistics.revenue);
+
+      this.#finishLotto();
     });
   }
 
@@ -113,21 +114,19 @@ class App {
     return { prizes, revenue };
   }
 
-  #askBonusNumber() {
-    Utils.readLine(`\n${INPUT_BONUS_NUMBER}\n`, (inputBonus) => {
-      this.#lottoManager.setBonusNumber(inputBonus);
-      const amount = this.#user.getAmount();
-      const userNumbersList = this.#user.getNumbersList();
-
-      const statistics = this.generateStatistics(amount, userNumbersList);
-      this.#printStatistics(statistics.prizes, statistics.revenue);
-
-      this.#finishLotto();
-    });
-  }
-
   #finishLotto() {
     Utils.close();
+  }
+
+  /**
+   *
+   * @param {number[][]} userNumbersList
+   */
+  #printUserNumberList(userNumbersList) {
+    Utils.print(`\n${userNumbersList.length}개를 구매했습니다.`);
+    userNumbersList.forEach((numbers) =>
+      Utils.print(`[${numbers.join(', ')}]`)
+    );
   }
 
   /**
