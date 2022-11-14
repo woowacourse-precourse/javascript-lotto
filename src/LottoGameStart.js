@@ -66,6 +66,9 @@ class LottoGameStart {
 
   printLottoArray(inputArray) {
     for (let i = 0; i < inputArray.length; i++) {
+      inputArray[i].sort(function (a, b) {
+        return a - b;
+      });
       let convertString = inputArray[i].join(", ");
       MissionUtils.Console.print(`[${convertString}]`);
     }
