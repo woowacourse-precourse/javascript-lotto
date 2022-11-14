@@ -1,4 +1,5 @@
-const { Lotto, LottoBuilder } = require('../src/Lotto');
+const { Lotto } = require('../src/Lotto');
+const LottoList = require('../src/LottoList');
 
 describe('로또 클래스 테스트', () => {
   test('로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.', () => {
@@ -69,8 +70,8 @@ describe('로또 빌더 기능 테스트', () => {
   test('구매한 금액만큼의 로또 갯수', () => {
     const input = '8000';
 
-    const lottoBuilder = new LottoBuilder();
-    const result = lottoBuilder.countAmountLotto(input);
+    const lottoList = new LottoList();
+    const result = lottoList.countAmountLotto(input);
     expect(result).toBe(8);
   });
 });

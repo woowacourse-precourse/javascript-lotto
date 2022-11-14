@@ -9,30 +9,6 @@ class LottoBuilder {
     this.bonusNumber = null;
   }
 
-  creatLottoList(input) {
-    const lottoList = [];
-    const countLotto = this.countAmountLotto(input);
-
-    Array(countLotto)
-      .fill(countLotto)
-      .forEach((_) => lottoList.push(this.#creatLottoNumber()));
-
-    return lottoList;
-  }
-
-  #creatLottoNumber() {
-    const randomNumber = MissionUtils.Random.pickUniqueNumbersInRange(
-      NUMBER.ONE,
-      NUMBER.FORTY_FIVE,
-      NUMBER.SIX
-    );
-    return randomNumber.sort((a, b) => a - b);
-  }
-
-  countAmountLotto(input) {
-    return Number(input.slice(NUMBER.ZERO, input.length - NUMBER.THREE));
-  }
-
   build() {
     return new Lotto(this.WinningNumber, this.lottoList, this.bonusNumber);
   }

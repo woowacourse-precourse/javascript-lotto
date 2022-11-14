@@ -1,3 +1,4 @@
+const LottoList = require('./LottoList');
 const { LottoBuilder } = require('./Lotto');
 const MissionUtils = require('@woowacourse/mission-utils');
 const {
@@ -9,6 +10,7 @@ const { INPUT_TEXT, STATS_TEXT, RANK } = require('./constant/constant');
 
 class LottoView {
   constructor() {
+    this.LottoList = new LottoList();
     this.LottoBuilder = new LottoBuilder();
   }
 
@@ -20,7 +22,7 @@ class LottoView {
     this.print(INPUT_TEXT.PURCHASE_AMOUNT);
     this.readLine(INPUT_TEXT.EMPTY, (input) => {
       if (amountValidation(input)) {
-        const lottoList = this.LottoBuilder.creatLottoList(input);
+        const lottoList = this.LottoList.creatLottoList(input);
         this.LottoBuilder.lottoList = lottoList;
         this.showLottoList(lottoList);
         this.setWinningNumber();
