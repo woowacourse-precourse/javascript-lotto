@@ -19,7 +19,7 @@ class Service {
     let lottoList = [];
     for (let i = this.amount / 1000; i > 0; i -= 1) {
       lottoList.push(myLotto.generateRandom());
-      Console.print(lottoList[lottoList.length - 1]);
+      Console.print(`[${lottoList[lottoList.length - 1].join(', ')}]`);
     }
     this.lottoList = lottoList;
   }
