@@ -22,7 +22,13 @@ class App {
     const bonusNumber = this.getBonusNumber();
     // 반환된 일치 갯수로 당첨내역에 넣기
     this.creatWinningChart();
-
+    //상금 더하기
+    const allPrizeMoney =
+      fifth.prizeMoney +
+      fourth.prizeMoney +
+      third.prizeMoney +
+      second.prizeMoney +
+      first.prizeMoney;
     // 결과 출력
     this.printResult();
   }
@@ -121,6 +127,14 @@ class App {
       6개 일치 (2,000,000,000원) - ${first.count}개)
       총 수익률은 ${printEarningRatio()}입니다.`
     );
+  }
+
+  // 총 수익률 출력
+  printEarningRatio() {
+    const inputMoney = getMoney(money) * LOTTO_PRICE;
+    const earningRatio = (inputMoney / allPrizeMoney) * 100;
+    const rounding = earningRatio.toFixed(1);
+    return rounding;
   }
 }
 
