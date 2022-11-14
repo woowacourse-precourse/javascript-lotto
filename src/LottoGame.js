@@ -52,6 +52,15 @@ class LottoGame {
     });
   }
 
+  printResult(lottos) {
+    const result = {};
+    lottos.matchingNumber.forEach((x) => {
+      result[x] = (result[x] || 0) + 1;
+    });
+
+    MissionUtils.Console.close();
+  }
+
   receiveLottoNumbers(lottos, money) {
     MissionUtils.Console.readLine("당첨번호를 입력해 주세요.\n", (number) => {
       const winningLotto = new Lotto(number.split(",").map(Number));
@@ -64,6 +73,8 @@ class LottoGame {
           const bonusNumber = winningLotto.getBonusNumber();
 
           this.compareNumber(lottos, wonLotto, bonusNumber);
+
+          this.printResult(lottos, money);
         }
       );
     });
