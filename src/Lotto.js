@@ -12,8 +12,12 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
+    if (numbers < 1 || numbers > 45) {
+      throw new Error("[ERROR] 로또 번호는 1~45 사이의 숫자여야 합니다.");
+    }
+    this.winningNumbers();
   }
-
+  
   userInput = (amount) => {
     this.isValidAmount(amount);
   }
@@ -48,7 +52,7 @@ class Lotto {
   }
 
 }
-const a = new Lotto;
-a.buyLotto();
+// const a = new Lotto;
+// a.buyLotto();
 
-// module.exports = Lotto;
+module.exports = Lotto;
