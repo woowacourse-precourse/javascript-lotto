@@ -48,6 +48,18 @@ class CalculatorModel {
           this.rank.FIRST += 1;
       }
     });
+
+    return this.getProfit(this.rank);
+  }
+
+  getProfit(rank) {
+    const prizeList = [5000, 50000, 1500000, 30000000, 2000000000];
+
+    const prize = Object.values(rank).reduce((acc, cur, idx) => {
+      return acc + cur * prizeList[idx];
+    }, 0);
+
+    return { rank, prize };
   }
 }
 
