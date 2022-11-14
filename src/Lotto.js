@@ -25,7 +25,7 @@ class Lotto {
   }
 
   print() {
-    Console.print(`[${this.#numbers.join(', ')}]`);
+    Console.print(`[${this.#numbers.sort((a, b) => a - b).join(', ')}]`);
   }
 
   getNumbers() {
