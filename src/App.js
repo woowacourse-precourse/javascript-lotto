@@ -31,6 +31,7 @@ class App {
   }
   printWinningStat() {
     Console.print("\n당첨 통계\n---");
+    this.lottos.printWinningList();
   }
 }
 
