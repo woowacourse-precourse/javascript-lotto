@@ -1,9 +1,8 @@
 const { Console } = require('@woowacourse/mission-utils');
+const { SYSTME_MESSAGE } = require('../constants/game message');
 const ErrorCheck = require('./ErrorCheck');
 const Lotto = require('../src/Lotto');
 const INIT = require('../constants/basic number');
-const Functions = require('./Functions');
-const { SYSTME_MESSAGE } = require('../constants/game message');
 
 class Game {
   #lottos;
@@ -16,72 +15,86 @@ class Game {
 
   #winningResult;
 
+  #lotto;
+
+  #lottoYield;
+
   constructor() {
     this.#lottos = [];
-    this.#winningNumber = [];
     this.#purchaseAmount = INIT;
+    this.#winningNumber = [];
     this.#bonusNumber = INIT;
     this.#winningResult = [];
+    this.#lottoYield = [];
   }
 
   start() {
     Console.readLine(SYSTME_MESSAGE.PURCHASE_INPUT, (money) => {
-      ErrorCheck.purchase(money);
-      this.#purchaseAmount = +money;
-      this.purchaseLotto();
+      this.#purchaseAmount = Number(money);
+      this.validateMoney();
     });
   }
 
-  purchaseLotto() {
-    const lottoCount = Functions.getLottoCount(this.#purchaseAmount);
-
-    Console.print(SYSTME_MESSAGE.PURCHASE_COUNT(lottoCount));
-    this.#lottos = Functions.generateLottos(lottoCount);
-    this.printLottos();
+  validateMoney() {
+    ErrorCheck.purchase(this.#purchaseAmount);
+    this.purchaseLottos();
   }
 
-  printLottos() {
-    Functions.printLottoToString(this.#lottos);
+  purchaseLottos() {
+    const lottoCount = Lotto.getCount(this.#purchaseAmount);
+
+    Console.print(SYSTME_MESSAGE.PURCHASE_COUNT(lottoCount));
+    this.#lottos = Lotto.generate(lottoCount);
+    this.printPurchasedLottos();
+  }
+
+  printPurchasedLottos() {
+    Lotto.printToString(this.#lottos);
     this.getWinningNumbers();
   }
 
   getWinningNumbers() {
     Console.readLine(SYSTME_MESSAGE.WINNING_INPUT, (inputNumber) => {
-      this.#winningNumber = Functions.digitize(inputNumber);
-      const lottoClass = new Lotto(this.#winningNumber);
-
-      this.getBonusNumber();
+      this.#winningNumber = Lotto.digitize(inputNumber);
+      this.validateWinningNumber();
     });
+  }
+
+  validateWinningNumber() {
+    this.#lotto = new Lotto(this.#winningNumber);
+    this.getBonusNumber();
   }
 
   getBonusNumber() {
     Console.readLine(SYSTME_MESSAGE.BONUS_INPUT, (inputNumber) => {
       this.#bonusNumber = +inputNumber;
-      ErrorCheck.bonusNumber(this.#winningNumber, this.#bonusNumber);
-      this.checkWinningResult();
+      this.validateBonusNumber();
     });
   }
 
-  checkWinningResult() {
-    this.#winningResult = Functions.getWinningResult(
+  validateBonusNumber() {
+    ErrorCheck.bonusNumber(this.#winningNumber, this.#bonusNumber);
+    this.getWinningResult();
+  }
+
+  getWinningResult() {
+    this.#winningResult = this.#lotto.getWinningResult(
       this.#lottos,
-      this.#winningNumber,
       this.#bonusNumber
     );
     this.getLottoYield();
   }
 
   getLottoYield() {
-    const lottoYield = Functions.calLottoYield(
+    this.#lottoYield = Lotto.calYield(
       this.#purchaseAmount,
       this.#winningResult
     );
-
-    this.printLottoResult(lottoYield);
+    this.printLottoResult();
   }
 
-  printLottoResult(lottoYield) {
-    Functions.printResult(this.#winningResult, lottoYield);
+  printLottoResult() {
+    Lotto.printResult(this.#winningResult, this.#lottoYield);
     Console.close();
   }
 }

@@ -1,12 +1,14 @@
 const Game = require('../components/Game');
 
 class App {
+  #game;
+
   constructor() {
-    this.game = new Game();
+    this.#game = new Game();
   }
 
   play() {
-    this.game.start();
+    this.#game.start();
   }
 }
 
