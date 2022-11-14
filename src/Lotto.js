@@ -44,8 +44,15 @@ class Lotto {
       this.utils.throwError(ERROR.NOT_IN_VAILD_RANGE);
   }
 
+  verifyOverlapWithNumbers(number) {
+    if (this.#numbers.includes(number))
+      this.utils.throwError(ERROR.OVERLAP_WITH_NUMBERS);
+  }
+
   setBonusNumber(number) {
     this.verifyInVaildRange(number);
+    this.verifyOverlapWithNumbers(number);
+
     this.bonusNumber = number;
   }
 

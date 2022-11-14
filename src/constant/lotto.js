@@ -5,6 +5,7 @@ const ERROR = {
   DUPLICATE_NUMBERS: "중복된 숫자가 있으면 안 됩니다.",
   NOT_DIVIDED_BY_THOUSAND: "1000원 단위로 입력해야합니다.",
   NOT_IN_VAILD_RANGE: "1부터 45 사이의 숫자를 입력해야 합니다.",
+  OVERLAP_WITH_NUMBERS: "이미 로또 번호에 있는 숫자입니다.",
 };
 
 const MESSEGE = {
