@@ -1,3 +1,8 @@
+const LOTTO_SIZE = 6;
+
+const MIN_LOTTO_NUMBER = 1;
+const MAX_LOTTO_NUMBER = 45;
+
 const LOTTO_PRICE = 1000;
 
 const WINNIG_PRIZE = {
@@ -9,6 +14,9 @@ const WINNIG_PRIZE = {
 };
 
 module.exports = {
+  LOTTO_SIZE,
+  MIN_LOTTO_NUMBER,
+  MAX_LOTTO_NUMBER,
   LOTTO_PRICE,
   WINNIG_PRIZE,
 };
