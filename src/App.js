@@ -8,8 +8,8 @@ class App {
   }
 
   getUserInput(message) {
-    Console.readLine(message, (answer) => {
-      const createLotto = new CreateLotto(parseInt(answer));
+    Console.readLine(message, (money) => {
+      const createLotto = new CreateLotto(money);
       createLotto.make();
     });
   }

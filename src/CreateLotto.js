@@ -3,13 +3,13 @@ const COMMAND = require('../util/Message');
 
 class CreateLotto {
   constructor(money) {
-    this.money = money;
+    this.money = parseInt(money);
     this.lottoNum = this.money / 1000;
   }
 
   make() {
     this.start();
-    Console.print(this.create());
+    this.create();
   }
 
   start() {
@@ -17,13 +17,13 @@ class CreateLotto {
   }
 
   create() {
-    let result = {};
     while (this.lottoNum) {
       const lotto = Random.pickUniqueNumbersInRange(1, 45, 6);
-      result[this.lottoNum] = lotto;
+      lotto.sort((a, b) => {
+        return a - b;
+      });
       this.lottoNum -= 1;
     }
-    return result;
   }
 }
 
