@@ -6,7 +6,7 @@ const processLotteryRank = require('../src/utils/process/processLotteryRank');
 const verifyValidLottery = require('../src/utils/verify/verifyValidLottery');
 const calculateProfit = require('../src/utils/calculate/calculateProfit');
 const calculateProfitRate = require('../src/utils/calculate/calculateProfitRate');
-const verifyStartMoney = require('../src/utils/verify/verifyStartMoney');
+const verifyStartMoneyUnit = require('../src/utils/verify/verifyStartMoneyUnit');
 
 describe('유틸 함수 동작 테스트', () => {
   test('금액에 맞는 구매 로또의 개수를 리턴하는 함수', () => {
@@ -17,10 +17,10 @@ describe('유틸 함수 동작 테스트', () => {
   });
 
   test('금액 단위 검증 함수', () => {
-    expect(verifyStartMoney(10000)).toBe(true);
-    expect(verifyStartMoney(11500)).toBe(false);
-    expect(verifyStartMoney(10000)).toBe(true);
-    expect(verifyStartMoney(1234)).toBe(false);
+    expect(verifyStartMoneyUnit(10000)).toBe(true);
+    expect(verifyStartMoneyUnit(11500)).toBe(false);
+    expect(verifyStartMoneyUnit(10000)).toBe(true);
+    expect(verifyStartMoneyUnit(1234)).toBe(false);
   });
 
   test('구매 로또의 정답 개수를 리턴하는 함수', () => {

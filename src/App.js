@@ -13,7 +13,7 @@ const calculateProfitRate = require('./utils/calculate/calculateProfitRate');
 const verifyValidLottery = require('./utils/verify/verifyValidLottery');
 const processRandomLottoNumber = require('./utils/process/processRandomLottoNumber');
 const verifyNumberType = require('./utils/verify/verifyNumberType');
-const verifyStartMoney = require('./utils/verify/verifyStartMoney');
+const verifyStartMoneyUnit = require('./utils/verify/verifyStartMoneyUnit');
 
 class App {
   #startMoney;
@@ -45,7 +45,7 @@ class App {
     Console.readLine(APP_MESSAGE.INSERT_PURCHASE_COST, (userInput) => {
       if (!verifyNumberType(userInput))
         this.makeException(EXCEPTION_REASON.INPUT_NOT_NUMBER);
-      if (!verifyStartMoney(Number(userInput)))
+      if (!verifyStartMoneyUnit(Number(userInput)))
         this.makeException(EXCEPTION_REASON.MONEY_UNIT_INCORRECT);
       this.#startMoney = Number(userInput);
       this.#myLotteryQuantity = countPurchasedLotteries(this.#startMoney);
