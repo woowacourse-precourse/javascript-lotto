@@ -1,10 +1,6 @@
 class Yield {
-  constructor() {
-    this.yield = 0;
-  }
-
-  calculateYield(winPlace, purchaseAmount) {
-    this.yield =
+  static calculateYield(winPlace, purchaseAmount) {
+    const yield =
       ((winPlace.firstPlace * 2000000000 +
         winPlace.secondPlace * 30000000 +
         winPlace.thirdPlace * 1500000 +
@@ -12,7 +8,7 @@ class Yield {
         winPlace.fifthPlace * 5000) /
         purchaseAmount) *
       100;
-    return this.yield;
+    return yield;
   }
 }
 
