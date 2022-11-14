@@ -10,10 +10,11 @@
 
 ## UI 로직
 
-- [x] 구매한 로또를 보여준다. - LottoGame#viewLottos()
-- [x] 당첨 번호를 입력 받는다. - LottoGame#inputWinNums()
-- [x] 보너스 번호를 입력 받는다. - LottoGame#inputBonusNum()
-- [x] 당첨통계를 보여준다. - LottoGame#viewWinStatistics()
+- [x] 로또를 얼마만큼 구입할 건지 입력 받는다 - Input#lottoCost()
+- [x] 구매한 로또를 보여준다. - View#lottos()
+- [x] 당첨 번호를 입력 받는다. - Input#winNums()
+- [x] 보너스 번호를 입력 받는다. - Input#bonusNum()
+- [x] 당첨통계를 보여준다. - View#winStatistics()
 
 ## 예외 처리
 

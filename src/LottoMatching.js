@@ -1,5 +1,5 @@
 class LottoMatching {
-  getResultObj(lottoArr, winNums, bonusNum) {
+  static getResultObj(lottoArr, winNums, bonusNum) {
     const resultObject = {
       '1st' : 0,
       '2nd': 0,
@@ -18,7 +18,7 @@ class LottoMatching {
     return resultObject;
   }
   
-  getMatchResult(lottoArr, winNums, bonusNum) {
+  static getMatchResult(lottoArr, winNums, bonusNum) {
     const winNumsAndBonusNum = winNums.split(',').concat(bonusNum).map(el => +el);
     const correctNumArr = lottoArr.map((lotto) => {
       return lotto.filter(num => winNumsAndBonusNum.includes(num));
@@ -35,7 +35,7 @@ class LottoMatching {
     return lottoResult;
   }
 
-  getRateOfReturn(lottoResultObj, lottoCost) {
+  static getRateOfReturn(lottoResultObj, lottoCost) {
     let winSum = 0;
     for (let key in lottoResultObj) {
       if (key === '1st') winSum += 2000000000 * lottoResultObj[key];

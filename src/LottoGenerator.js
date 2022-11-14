@@ -2,12 +2,12 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const LottoCost = require('./LottoCost');
 
 class LottoGenerator {
-  createLottoNums() {
+  static createLottoNums() {
     const number = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
     return number.sort((a, b) => a - b);
   }
 
-  publishLotto(lottoCost) {
+  static publishLotto(lottoCost) {
     new LottoCost(lottoCost);
     const lottoArr = [];
     const lottoCount = +lottoCost / 1000;
