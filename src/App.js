@@ -10,9 +10,6 @@ const prizeInfo = {
   5: 5000
 }
 
-// TODO 테스트 케이스 변수명 변경
-// TODO README 업데이트 
-
 class App {
   play() {
     const myLottos = this.buyLotto();
