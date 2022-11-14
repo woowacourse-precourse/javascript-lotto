@@ -34,6 +34,14 @@ const PRIZE_MONEY = {
   6: 2000000000,
 };
 
+const WINNING_RESULT_PRINT = {
+  3: "3개 일치 (5,000원)",
+  4: "4개 일치 (50,000원)",
+  5: "5개 일치 (1,500,000원)",
+  "5+1": "5개 일치, 보너스 볼 일치 (30,000,000원)",
+  6: "6개 일치 (2,000,000,000원)",
+};
+
 const A_LOTTO_PRICE = 1000;
 
-module.exports = { MESSAGE, ERROR, RULE, PRIZE_MONEY, A_LOTTO_PRICE };
+module.exports = { MESSAGE, ERROR, RULE, PRIZE_MONEY, WINNING_RESULT_PRINT, A_LOTTO_PRICE };
