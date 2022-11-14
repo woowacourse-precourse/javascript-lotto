@@ -1,24 +1,24 @@
 class LottoManager {
   lottosWinningBonus(lottos, winning, bonus) {
-    let countResult = [];
+    let matchesAndHasBonus = [];
 
     lottos.forEach((lotto) => {
       let matches = lotto.countSameNumber(winning);
       let hasBonusNumber = lotto.hasNumber(bonus);
 
-      countResult.push({ matches, hasBonusNumber });
+      matchesAndHasBonus.push({ matches, hasBonusNumber });
     });
 
-    const winningArray = this.#countWinning(countResult);
+    const winningArray = this.#countWinning(matchesAndHasBonus);
     const profit = this.#calculateProfit(winningArray);
 
     return { winningArray, profit };
   }
 
-  #countWinning(countResult) {
+  #countWinning(matchesAndHasBonus) {
     let winningArray = [0, 0, 0, 0, 0];
 
-    countResult.forEach((result) => {
+    matchesAndHasBonus.forEach((result) => {
       const { matches, hasBonusNumber } = result;
 
       if (matches === 3) winningArray[0] += 1;
