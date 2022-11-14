@@ -2,167 +2,133 @@ const MissionUtils = require("@woowacourse/mission-utils");
 
 const Lotto = require("./Lotto");
 
-const FIRST_LOTTO = 200000000;
-const SECOND_LOTTO = 30000000;
-const THIRD_LOTTO = 1500000;
-const FOURTH_LOTTO = 50000;
-const FIFTH_LOTTO = 5000;
+const prizeInfo = {
+  1: 200000000,
+  2: 30000000,
+  3: 1500000,
+  4: 50000,
+  5: 5000
+}
+
+// TODO 테스트 케이스 변수명 변경
+// TODO README 업데이트 
 
 class App {
   play() {
-    const countOfLotto = this.buyLotto();
-    const myLotto = this.generateLottoNumber(countOfLotto);
+    const myLottos = this.buyLotto();
     const winningNums = this.getWinningNums();
-    this.calLottoProfit(myLotto, winningNums);
+    this.calLottoProfit(myLottos, winningNums);
+    MissionUtils.Console.close();
   }
 
   buyLotto() {
     let money = 0;
 
-    MissionUtils.Console.readLine("구매금액을 입력해주세요. \n >", (answer) => {
-      money = Number(answer);
-    });
-    MissionUtils.Console.close();
+    MissionUtils.Console.readLine("구매금액을 입력해주세요. \n >",
+      answer => money = Number(answer)
+    );
     this.isValidMoney(money);
+    const lottoCount = parseInt(money / 1000);
+    const myLottos = this.generateLottoNumber(lottoCount);
 
-    return parseInt(money / 1000);
+    return myLottos;
   }
 
   isValidMoney(money) {
+    if (money % 1000 !== 0 ) {
+      throw (`[ERROR] 천원 단위로 금액을 지불해주세요.`); // TODO: 금액에 대한 테스트 케이스 추가
+    }
     if (Number.isNaN(money)) {
       throw (`[ERROR] 입력 금액이 숫자형태가 아닙니다.`);
     }
-
     if (money < 1000) {
       throw `[ERROR] 로또 한장의 가격은 1000원입니다. 입력한 금액: ${money}`;
     }
-
     if (money > 1000000) {
       throw `[ERROR] 한 번에 최대로 구입할 수 있는 금액은 100만원 입니다. 입력한 금액: ${money}`;
     }
   }
 
-  generateLottoNumber(count) {
-    const myLotto = [];
+  generateLottoNumber(lottoCount) {
+    const myLottos = [];
 
-    while (myLotto.length < count) {
-      const numbersOfLotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-      const lotto = new Lotto(numbersOfLotto, false);
-      myLotto.push(lotto);
+    while (myLottos.length < lottoCount) {
+      const lottoNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      const lotto = new Lotto(lottoNumbers, false);
+      myLottos.push(lotto);
     }
-    this.showMyLotto(myLotto);
+    this.showMyLotto(myLottos);
 
-    return myLotto;
+    return myLottos;
   }
 
   showMyLotto(myLotto) {
     MissionUtils.Console.print(`${myLotto.length}개를 구매했습니다.`);
-    myLotto.forEach((lotto) => {
-      lotto.printLottoNumbers();
-    });
+    myLotto.forEach(lotto => lotto.printLottoNumbers());
   }
 
   getWinningNums() {
-    let winningLotto = [];
-    let bonusNumber = undefined;
+    let winningNums = [];
 
-    MissionUtils.Console.readLine(
-      "당첨 번호를 입력해주세요. \n >",
-      (answer) => {
-        winningLotto = answer.split(",");
-      }
+    MissionUtils.Console.readLine("당첨 번호를 입력해주세요. \n >",
+      answer => winningNums = answer.split(",")
     );
-    MissionUtils.Console.close();
-    winningLotto = winningLotto.map((element) => Number(element));
-    new Lotto(winningLotto);
-
-    MissionUtils.Console.readLine(
-      "보너스 번호를 입력해주세요. \n >",
-      (answer) => {
-        bonusNumber = Number(answer);
-      }
+    MissionUtils.Console.readLine("보너스 번호를 입력해주세요. \n >", 
+      answer => winningNums.push(answer)
     );
-    MissionUtils.Console.close();
-    this.validBonusNumber(winningLotto, bonusNumber);
-    winningLotto.push(bonusNumber);
+    winningNums = winningNums.map((element) => Number(element));
+    this.validWinningNums(winningNums);
 
-    return winningLotto;
+    return winningNums;
   }
 
-  validBonusNumber(winingLotto, num) {
-    if (isNaN(num)) {
+  validWinningNumber(winningNums) {
+    const frontWinningNums = winningNums.slice(0, 6);
+    const bonusNum = winningNums[6];
+
+    new Lotto(frontWinningNums); // 앞의 6자리 숫자를 예외 처리
+
+    if (isNaN(bonusNum)) {
       throw `[ERROR] 보너스 번호가 숫자형태가 아닙니다.`;
     }
 
-    if (num < 1 || num > 45) {
+    if (bonusNum < 1 || bonusNum > 45) {
       throw `[ERROR] 로또 번호는 1 ~ 45까지 입니다.`;
     }
 
-    if (winingLotto.includes(num)) {
-      throw `[ERROR] 중복되는 숫자입니다.`;
+    if (frontWinningNums.includes(bonusNum)) {
+      throw `[ERROR] 보너스 번호가 앞의 6자리 번호와 중복되는 숫자입니다.`;
     }
   }
 
-  calLottoProfit(myLotto, winningNums) {
+  calLottoProfit(myLottos, winningNums) {
     const winningInfo = {};
-    const principal = myLotto.length * 1000;
-    let totalMoney = 0;
+    const principal = myLottos.length * 1000;
+    let totalPrize = 0;
 
     for (let rank = 0; rank <= 5; rank++) {
       winningInfo[rank] = 0;
     }
 
-    myLotto.forEach((lotto) => {
-      const rank = lotto.calRank([...winningNums]);
+    myLottos.forEach((lotto) => {
+      const rank = lotto.getRankFromLotto([...winningNums]);
       winningInfo[rank] += 1;
-      totalMoney += this.moneyAccordingToRank(rank);
+      totalPrize += prizeInfo[rank];
     });
 
-    this.showProfitResult(winningInfo, totalMoney, principal);
+    this.showPrizeResult(winningInfo, totalPrize, principal);
   }
 
-  moneyAccordingToRank(rank) {
-    let money = 0;
-
-    switch(rank) {
-      case 1:
-        money += FIRST_LOTTO;
-        break;
-
-      case 2:
-        money += SECOND_LOTTO;
-        break;
-
-      case 3:
-        money += THIRD_LOTTO;
-        break;
-
-      case 4:
-        money += FOURTH_LOTTO;
-        break;
-
-      case 5:
-        money += FIFTH_LOTTO;
-        break;
-
-      default:
-        break;
-    }
-
-    return money;
-  }
-
-  showProfitResult(winningInfo, profit, principal) {
-    const totalProfit = profit / principal;
+  showProfitResult(winningInfo, totalPrize, principal) {
+    const profit = totalPrize / principal;
 
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${winningInfo[5]}개`);
     MissionUtils.Console.print(`4개 일치 (50,000원) - ${winningInfo[4]}개`);
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${winningInfo[3]}개`);
     MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningInfo[2]}개`);
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${winningInfo[1]}개`);
-    MissionUtils.Console.print(`총 수익률은 ${Math.round(totalProfit * 1000) / 10}%입니다.`);
+    MissionUtils.Console.print(`총 수익률은 ${Math.round(profit * 1000) / 10}%입니다.`);
   }
-
 }
 
 module.exports = App;
