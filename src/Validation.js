@@ -1,10 +1,10 @@
 class Validation {
   static isValidPurchaseAmount(amount) {
     if (amount < 0) {
-      throw new Error("[ERROR] 구입 금액은 0보다 커야 합니다.");
+      throw new Error("[ERROR] 구입 금액은 0원이상이어야 합니다.");
     }
 
-    if (isNaN(amount)) {
+    if (typeof amount !== "number") {
       throw new Error("[ERROR] 구입 금액은 숫자여야 합니다.");
     }
 
@@ -17,6 +17,7 @@ class Validation {
 
   static isValidWinningNumber(winningNumbers) {}
   static isValidLottoArray(lotto) {}
+  static isValidBonusNumber(bonusNumber) {}
 }
 
 module.exports = Validation;
