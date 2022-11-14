@@ -25,9 +25,9 @@
 
 ## 연동
 
-- [ ] Game 클래스가 Lotto 클래스 사용하게 변경
-- [ ] Rank 클래스가 Lotto 클래스 사용하게 변경
-- [ ] Game, Lotto, Rank 클래스 연동
+- [x] Game 클래스가 Lotto 클래스 사용하게 변경
+- [x] Rank 클래스가 Lotto 클래스 사용하게 변경
+- [x] Rank 클래스 Game 내 삽입: generateLottoRanks()
 
 ## 예외 처리
 
