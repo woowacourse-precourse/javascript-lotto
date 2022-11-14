@@ -10,9 +10,12 @@ class ComparisonOfWinningNumbers {
     return numberComparison;
   }
 
-  WinningCriteriaAndAmount(numberComparison) {
+  checkTheNumber(numberComparison) {
     return numberComparison.length;
   }
+
+
+
 }
 
 module.exports = ComparisonOfWinningNumbers;
