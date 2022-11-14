@@ -3,12 +3,13 @@ const MissionUtils = require('@woowacourse/mission-utils');
 class App {
   play() {
     this.priceInput();
+    this.userRandomNumber();
   };
   
   priceInput() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.', (price) => {
         this.priceExceptionHandling(price)
-        console.log(`구입금액을 입력해 주세요.\n ${price}`);
+        console.log(`구입금액을 입력해 주세요.\n${price}`);
         this.totalLottoCounts(price);
       }
     );
@@ -30,6 +31,13 @@ class App {
       MissionUtils.Console.print(LottoArr);
     }
   }
+
+  userRandomNumber() {
+    MissionUtils.Console.readLine('당첨번호을 입력해 주세요.', (number) => {
+      console.log(`당첨번호을 입력해 주세요.\n${number}`);
+    }
+    );
+  };
 }
 
 module.exports = App;
