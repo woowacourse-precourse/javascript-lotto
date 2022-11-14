@@ -25,6 +25,7 @@ class App {
         new Lotto(this.winningLotto);
         Utils.readLine('보너스 번호를 입력해 주세요.\n', (input) => {
           this.winningBonusNumber = Number(input);
+          this.validateBonusNumber(this.winningBonusNumber);
             for(const userLotto of this.userLottos) { 
               const matchCount = this.compareLottoNumber(userLotto);
               this.matchRank(matchCount);
@@ -81,6 +82,12 @@ class App {
     }
     let winningLotto = input.split(",").map(Number);
     return winningLotto;
+  }
+
+  validateBonusNumber(number){
+    if(this.winningLotto.includes(number)){
+      throw new Error("[ERROR] 보너스 번호가 다른 번호와 중복되지 않게 해주세요.");
+    }
   }
 
   compareLottoNumber(userLotto){
