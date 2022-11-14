@@ -40,7 +40,7 @@ class App {
   };
 
   getMoney = () => {
-    Console.readLine(MESSAGE.GETMONEY, (money) => {
+    Console.readLine(MESSAGE.GET_MONEY, (money) => {
       // TODO: 입력된 값 유효성 체크
       this.#money = money;
       this.getNumberOfLottery();
