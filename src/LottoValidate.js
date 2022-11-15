@@ -13,15 +13,15 @@ const validatePurchaseAmount = (amount) => {
 
 const validateNumberArray = (numArr) => {
   numArr.forEach((el) => {
-    if (isNaN(el)) throw new Error("[ERROR] 숫자를 입력해 주세요");
+    if (isNaN(el)) throw new Error("[ERROR] 숫자를 입력해 주세요.");
     if (el < 1 || el > 45)
-      throw new Error("[ERROR] 1 ~ 45 범위 내 숫자를 입력해 주세요");
+      throw new Error("[ERROR] 1 ~ 45 범위 내 숫자를 입력해 주세요.");
   });
 };
 
 const validateNumber = (num) => {
   if (isNaN(num)) {
-    throw new Error("[ERROR] 숫자를 입력해 주세요");
+    throw new Error("[ERROR] 로또 구입 금액은 숫자여야 합니다.");
   }
 };
 
