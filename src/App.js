@@ -13,7 +13,6 @@ class App {
   buyLotto() {
     Console.readLine('구입금액을 입력해 주세요.\n', (input) => {
       const purchase = Number(input);
-      Validation.validatePurchase(purchase);
       const [lottos, count] = IssueLotto.setLotteryNumber(purchase);
       Console.print(`\n${count}개를 구매했습니다.`);
       lottos.forEach((lotto) => {

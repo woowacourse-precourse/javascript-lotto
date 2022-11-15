@@ -1,10 +1,12 @@
 const { Random } = require('@woowacourse/mission-utils');
 const Lotto = require('../Lotto');
+const Validation = require('./Validation');
 
 class IssueLotto {
-  static setLotteryNumber(purchaseNumber) {
+  static setLotteryNumber(purchase) {
+    Validation.validatePurchase(purchase);
     const results = [];
-    let draw = purchaseNumber / 1000;
+    let draw = purchase / 1000;
     let count = draw;
     while (draw !== 0) {
       results.push(new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6)));
