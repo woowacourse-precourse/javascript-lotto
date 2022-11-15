@@ -1,10 +1,12 @@
-const { Console } = require("@woowacourse/mission-utils");
-const Lotto = require("./Lotto");
-const { lottoQuantity } = require("./utils");
-const { validateInputMoney, validateInputBonusNum } = require("./validator");
+const { Console } = require('@woowacourse/mission-utils');
+const Lotto = require('./Lotto');
+const LottoMachine = require('./LottoMachine');
+const { lottoQuantity } = require('./utils');
+const { validateInputMoney, validateInputBonusNum } = require('./validator');
 
 class App {
   constructor() {
+    this.lottoMachine = new LottoMachine();
     this.userLottoNumbers;
   }
 
@@ -13,7 +15,7 @@ class App {
   }
 
   inputMoney() {
-    Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
+    Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
       validateInputMoney(money);
       this.userLottoNumbers = lottoQuantity(money);
       this.inputWinningNum();
@@ -21,9 +23,9 @@ class App {
   }
 
   inputWinningNum() {
-    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (number) => {
+    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (number) => {
       const winningNumbers = number
-        .split(",")
+        .split(',')
         .map((winningNumber) => Number(winningNumber));
       new Lotto(winningNumbers);
       this.inputBonusNum(winningNumbers);
@@ -31,7 +33,7 @@ class App {
   }
 
   inputBonusNum(winningNumbers) {
-    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusNum) => {
+    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNum) => {
       validateInputBonusNum(winningNumbers, bonusNum);
     });
   }
