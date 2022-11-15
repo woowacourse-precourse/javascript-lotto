@@ -1,5 +1,12 @@
+const Input = require('./utils/Input');
+
 class App {
-  play() {}
+  play() {
+    Input.lottoCost();
+  }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
