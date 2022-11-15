@@ -31,7 +31,7 @@ class LottoController {
 
   customerLottoPurchase(money) {
     const lottoCount = this.lottoStore.askBuyLottoCount(money);
-    for (let i = 0; i < lottoCount; i++) {
+    for (let i = 0; i < lottoCount; i += 1) {
       const lotto = this.lottoStore.sellLotto();
       this.customer.purchaseLotto(lotto);
     }
