@@ -48,11 +48,21 @@ class Lotto {
   }
 
   isValidLotto() {
-    if (/[^0-9]/g.test(this.#numbers.join(''))) throw new Error("[ERROR] 숫자만 입력 가능합니다.")
-    if (this.#numbers.includes(undefined)) throw new Error("[ERROR] 누락된 숫자가 있습니다.")
-    if (this.#numbers.filter(x => x < 1 || x > 45).length !== 0) throw new Error("[ERROR] 1~45 사이의 정수만 입력가능합니다.");
-    if (this.#numbers.length !== 6) throw new Error("[ERROR] 6개의 숫자가 필요합니다.");
-    if (new Set(this.#numbers).size !== 6) throw new Error("[ERROR] 서로 중복되지 않는 숫자들만 입력 가능합니다.");
+    if (/[^0-9]/g.test(this.#numbers.join(''))) {
+      throw new Error("[ERROR] 숫자만 입력 가능합니다.");
+    }
+    if (this.#numbers.includes(undefined)) {
+      throw new Error("[ERROR] 누락된 숫자가 있습니다.");
+    }
+    if (this.#numbers.filter(x => x < 1 || x > 45).length !== 0) {
+      throw new Error("[ERROR] 1~45 사이의 정수만 입력가능합니다.");
+    }
+    if (this.#numbers.length !== 6) {
+      throw new Error("[ERROR] 6개의 숫자가 필요합니다.");
+    }
+    if (new Set(this.#numbers).size !== 6) {
+      throw new Error("[ERROR] 서로 중복되지 않는 숫자들만 입력 가능합니다.");
+    }
     return true;
   }
 
