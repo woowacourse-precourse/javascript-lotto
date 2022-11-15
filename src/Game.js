@@ -27,6 +27,12 @@ class Game {
     }
     return lottoList;
   }
+  printPurchaseResult(lottoList) {
+    Console.print(MESSAGE.PURCHASE_RESULT(lottoList.length));
+    this.lottoList.forEach((lotto) => {
+      Console.print(MESSAGE.LOTTO_NUMBER(lotto));
+    });
+  }
 }
 
 module.exports = Game;
