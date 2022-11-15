@@ -27,8 +27,8 @@ class ErrorInfo {
     if (
       bonusNumber < MIN_NUMBER ||
       bonusNumber > MAX_NUMBER ||
-      Number.isNaN(bonusNumber) ||
-      winningLotto.getNumbers().includes(bonusNumber)
+      isNaN(bonusNumber) ||
+      winningLotto.getNumbers().includes(parseInt(bonusNumber, 10))
     ) {
       return false;
     }
