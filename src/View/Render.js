@@ -1,5 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { RESULT } = require("./data/Constants");
+const { RESULT } = require("../data/Constants");
 class Render {
   userInputRequest(message, callback) {
     Console.readLine(message, callback);

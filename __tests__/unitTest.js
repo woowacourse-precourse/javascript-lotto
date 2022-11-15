@@ -1,9 +1,9 @@
 const {
   validateBonusNum,
   validateMoney,
-} = require("../src/CheckValidationOfBonusAndMoney");
+} = require("../src/Model/CheckValidationOfBonusAndMoney");
 const Lotto = require("../src/Lotto");
-const calculationOfLottoGame = require("../src/CalculationOfLottoGame");
+const calculationOfLottoGame = require("../src/Model/CalculationOfLottoGame");
 const { ERROR, RESULT } = require("../src/data/Constants");
 
 describe("로또게임 입력값 타당성검사 에러작동 테스트", () => {
