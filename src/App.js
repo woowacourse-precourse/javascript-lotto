@@ -11,8 +11,6 @@ const {
   PRIZE_TABLE,
 } = require("./constants");
 
-// 테스트 코드 작성 후 소감문 작성
-
 class App {
   constructor() {
     this.money = null;
