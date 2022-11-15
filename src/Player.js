@@ -1,10 +1,5 @@
 const Validation = require("./Validation");
-const {
-  ERROR_INPUT_MESSAGE,
-  ERROR_LOGIC_MESSAGE,
-  INGAME_INPUT,
-} = require("./constants");
-const MissionUtils = require("@woowacourse/mission-utils");
+const { ERROR_INPUT_MESSAGE, ERROR_LOGIC_MESSAGE } = require("./constants");
 
 class Player {
   buyTickets(amount) {
@@ -27,23 +22,29 @@ class Player {
     }
   }
 
-  insertNumbers() {
-    MissionUtils.Console.readLine(INGAME_INPUT.WINNING_NUMBERS, (string) => {
-      new Validation().checkSixString(string);
-      MissionUtils.Console.print(string);
-    });
-  }
+  // insertNumbers() {
+  //   MissionUtils.Console.readLine(INGAME_INPUT.WINNING_NUMBERS, (numbers) => {
+  //     new Validation().checkSixString(numbers);
+  //     MissionUtils.Console.print(numbers);
 
-  insertBonusNumber() {
-    MissionUtils.Console.readLine(INGAME_INPUT.WINNING_BONUS, (string) => {
-      new Validation().checkOneString(string);
-      MissionUtils.Console.print(string);
-    });
-  }
-  //결과 로직은 [1,2,3,4,5,6].includes 갯수 체크
-  //[7] 따로 체크해서 로직에 넣고, 출력시키도록
-  //그다음 수익률
-  // 그다음 총 test 되어야하고, #numbers 활용 하도록 리팩토링
+  //     this.insertBonusNumber(numbers);
+  //   });
+  // }
+
+  // insertBonusNumber(numbers) {
+  //   MissionUtils.Console.readLine(INGAME_INPUT.WINNING_BONUS, (bonus) => {
+  //     new Validation().checkOneString(bonus);
+  //     MissionUtils.Console.print(bonus);
+
+  //     this.returnWinning(numbers, bonus);
+  //   });
+  // }
+
+  // returnWinning(numbers, bonus) {
+  //   const win = stringToArray(numbers);
+  //   const bonusWin = stringToArray(bonus);
+  //   return { win, bonusWin };
+  // }
 }
 
 module.exports = Player;

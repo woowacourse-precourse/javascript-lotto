@@ -24,7 +24,7 @@ const listPurchased = (tickets) => {
 
   //show
 
-  purchased.map((el) => MissionUtils.Console.print(el));
+  return purchased;
 };
 
 module.exports = listPurchased;

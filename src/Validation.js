@@ -1,4 +1,5 @@
 const { ERROR_INPUT_MESSAGE } = require("./constants");
+const stringToArray = require("./utils/stringToArray");
 
 class Validation {
   amountType(value) {
@@ -39,23 +40,25 @@ class Validation {
   //string : '1,2,3,4,5,6'
   checkSixString(string) {
     if (this.stringType(string)) {
-      const resolved = string.split(",").map((el) => Number(el));
-      this.formatString(resolved);
-      this.type(resolved);
-      this.range(resolved);
-      this.lengthSix(resolved);
-      this.duplication(resolved);
+      const array = stringToArray(string);
+
+      this.formatString(array);
+      this.type(array);
+      this.range(array);
+      this.lengthSix(array);
+      this.duplication(array);
       return string;
     }
   }
 
-  checkOneString(string) {
+  checkOneString(numbersArray, string) {
     if (this.stringType(string)) {
-      const resolved = string.split(",").map((el) => Number(el));
+      const array = stringToArray(string);
 
-      this.type(resolved);
-      this.range(resolved);
-      this.lengthOne(resolved);
+      this.type(array);
+      this.range(array);
+      this.lengthOne(array);
+      this.duplicationOne(numbersArray, string);
       return string;
     }
   }
@@ -89,6 +92,12 @@ class Validation {
   duplication(numbers) {
     if (new Set(numbers).size !== 6) {
       throw new Error(ERROR_INPUT_MESSAGE.DUPLICATION);
+    }
+  }
+
+  duplicationOne(numbersArray, string) {
+    if (numbersArray.includes(string)) {
+      throw new Error(ERROR_INPUT_MESSAGE.DUPLICATION_ONE);
     }
   }
 

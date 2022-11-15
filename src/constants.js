@@ -11,6 +11,7 @@ const ERROR_INPUT_MESSAGE = Object.freeze({
   LENGTH_ONE: "[ERROR] 입력 요소의 갯수는 1개여야 합니다.",
   LENGTH_SIX: "[ERROR] 입력 요소의 갯수는 6개여야 합니다.",
   DUPLICATION: "[ERROR] 입력 요소는 중복되지 않는 수여야 합니다.",
+  DUPLICATION_ONE: "[ERROR] 보너스 넘버는 당첨 번호와 중복될 수 없습니다.",
   FORMAT_ARRAY: "[ERROR] 입력 형태는 [1,2,3,4,5,6] 꼴로 입력되어야 합니다.",
   FORMAT_STRING: "[ERROR] 입력 형태는 1,2,3,4,5,6 꼴로 입력되어야 합니다.",
 });
