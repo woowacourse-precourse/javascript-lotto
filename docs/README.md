@@ -8,3 +8,11 @@ Added new method to $App:
 - print the counts of lotto
 
 ---
+feat($App): buyLotto method
+
+Added new method to $App:
+- print the random lotto numbers
+- sort the numbers
+
+Breaks LottoCount, which was removed from $App.play
+Changes $App.inputMoney, which calls $App.buyLotto
