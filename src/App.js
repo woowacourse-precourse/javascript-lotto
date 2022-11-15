@@ -5,6 +5,7 @@ class App {
   LOTTO_PRICE = 1000;
   price = 0;
   lottos = [];
+  lottoMachine;
 
   play() {
     this.purchaseLottos();
@@ -37,6 +38,17 @@ class App {
     this.lottos.forEach((lotto) => {
       lotto.sort((a, b) => a - b);
       Console.print('[' + lotto.join(', ') + ']');
+    });
+    this.setWinning();
+  }
+
+  setWinning() {
+    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (numbers) => {
+      this.lottoMachine = new Lotto(numbers.split(',').map(Number));
+
+      Console.readLine('\n보너스 번호를 입력해 주세요.\n', (number) => {
+        this.lottoMachine.bonus = +number;
+      });
     });
   }
 }

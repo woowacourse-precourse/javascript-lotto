@@ -4,6 +4,7 @@ class Lotto {
   static LOTTO_LENGTH = 6;
   static LOTTO_RANGE = { MIN: 1, MAX: 45 };
   #numbers;
+  #bonus;
 
   constructor(numbers) {
     this.validate(numbers);
@@ -41,6 +42,14 @@ class Lotto {
       Lotto.LOTTO_LENGTH
     );
   };
+
+  /**
+   * @param {number} number
+   */
+  set bonus(number) {
+    this.validateNumber(number);
+    this.#bonus = +number;
+  }
 }
 
 module.exports = Lotto;
