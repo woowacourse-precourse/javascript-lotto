@@ -1,3 +1,10 @@
+const { Console } = require('@woowacourse/mission-utils');
+const { EXCEPTION_MESSAGE } = require('./constants/constants');
+const countIncludeNumber = require('./utils/count/countIncludeNumber');
+const verifyValidBonusNumber = require('./utils/verify/verifyValidBonusNumber');
+const verifyValidLottery = require('./utils/verify/verifyValidLottery');
+const processLotteryRank = require('./utils/process/processLotteryRank');
+
 class Lotto {
   #numbers;
 
@@ -7,12 +14,23 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    const validCheck = verifyValidLottery(numbers);
+    if (validCheck !== true) {
+      throw new Error(EXCEPTION_MESSAGE[validCheck]);
     }
   }
 
-  // TODO: 추가 기능 구현
+  returnMyLottery() {
+    return `[${String(this.#numbers).split(',').join(', ')}]`;
+  }
+
+  returnMyLotteryRank(answer, bonusNumber) {
+    const countResult = countIncludeNumber(this.#numbers, answer);
+    const bonusResult = verifyValidBonusNumber(bonusNumber, answer);
+    const result = processLotteryRank(countResult, bonusResult);
+
+    return result;
+  }
 }
 
 module.exports = Lotto;
