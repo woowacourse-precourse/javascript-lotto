@@ -1,4 +1,7 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+
 const ranks = ["noRank", "noRank", "noRank", "rank5", "rank4", "rank3", "rank1", "rank2"];
+const LOTTO_LENGTH = 6;
 
 class Lotto {
   #numbers;
@@ -8,14 +11,20 @@ class Lotto {
     this.#numbers = numbers;
     this.matchedNumberCount = 0;
     this.isBonusNumberMatched = false;
+
+    this.print();
+  }
+
+  print() {
+    MissionUtils.Console.print(`[${this.#numbers.join(", ")}]`);
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
+    if (numbers.length !== LOTTO_LENGTH) {
       throw new Error("[ERROR] 로또의 숫자는 6개여야 합니다.");
     }
 
-    if (new Set(numbers).size !== 6) {
+    if (new Set(numbers).size !== LOTTO_LENGTH) {
       throw new Error("[ERROR] 로또의 각 숫자들은 중복되지 않아야 합니다.");
     }
   }
