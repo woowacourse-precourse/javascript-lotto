@@ -14,5 +14,15 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
-  // 아래에 추가 테스트 작성 가능
+  test("toString", () => {
+    const lottoTest = new Lotto([1, 2, 3, 4, 5, 6])
+    expect(lottoTest.toString()).toEqual('[1, 2, 3, 4, 5, 6]')
+  });
+
+  test("로또 번호에 숫자가 아닌 것이 들어있으면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 'a', 'a']);
+    }).toThrow("[ERROR]");
+  });
+
 });
