@@ -19,6 +19,9 @@ class App {
 
     MissionUtils.Console.print("당첨 번호를 입력해 주세요.");
     this.receiveWinningNumbers();
+
+    MissionUtils.Console.print("보너스 번호를 입력해 주세요.");
+    this.receiveBonusNumber();
   }
 
   receivePurchaseAmount() {
@@ -45,6 +48,15 @@ class App {
       winningNumbers = answer;
     });
     return winningNumbers;
+  }
+
+  receiveBonusNumber() {
+    let bonusNumber;
+    MissionUtils.Console.readLine("보너스 번호", (answer) => {
+      console.log(answer);
+      bonusNumber = answer;
+    });
+    return bonusNumber;
   }
 }
 
