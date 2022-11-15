@@ -1,3 +1,5 @@
+const { ERROR_MESSAGE } = require("./constants");
+
 class Lotto {
   #numbers;
 
@@ -7,13 +9,36 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+    this.validateDuplication(numbers);
+    this.validateIsNaN(numbers);
+    this.validateRange(numbers);
   }
 
   getNumbers() {
     return this.#numbers;
+  }
+  
+  validateDuplication(numbers) {
+    const numbersSet = new Set(numbers);
+    if(numbersSet.size !== 6) {
+      throw ERROR_MESSAGE.LOTTO_DUPLCATION_ERROR;
+    }
+  }
+
+  validateIsNaN(numbers) {
+    numbers.forEach((number) => {
+      if(isNaN(number)){
+        throw ERROR_MESSAGE.LOTTO_IS_NAN_ERROR;
+      }
+    });
+  }
+
+  validateRange(numbers) {
+    numbers.forEach((number) => {
+      if(number < 1 || number > 45){
+        throw ERROR_MESSAGE.LOTTO_RANGE_ERROR;
+      }
+    });
   }
 }
 
