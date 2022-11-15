@@ -99,7 +99,7 @@ describe('lottoGameMainSystem 클래스 테스트', () => {
       '5개 일치 (1,500,000원) - 0개',
       '5개 일치, 보너스 볼 일치 (30,000,000원) - 0개',
       '6개 일치 (2,000,000,000원) - 0개',
-      '총 수익률은 0.0%입니다.',
+      '총 수익률은 0%입니다.',
     ];
     const logSpy = getLogSpy();
     const lottoGameMainSystem = new LottoGameMainSystem();
