@@ -10,6 +10,7 @@ const {
   LOTTO_MONEY,
 } = require("./Constants");
 const Lotto = require("./Lotto");
+const LottoUI = require("./LottoUI");
 const Validation = require("./validation");
 
 class App {
@@ -17,32 +18,35 @@ class App {
   bonusNumber;
   lotto;
   purchaseAmount;
+  constructor() {
+    this.LottoUI = new LottoUI();
+  }
   play() {
     this.inputPurchaseAmount();
     this.inputWinnerNumber();
     this.inputBonusNumber();
   }
   inputPurchaseAmount() {
-    MissionUtils.Console.readLine(
+    this.LottoUI.requestPurchaseAmount(
       GUIDE_MESSAGE.PURCHASEAMOUNT_INPUT,
       (inputPurchaseAmount) => {
         Validation.checkPurchaseAmount(inputPurchaseAmount);
         this.lottoBuying(inputPurchaseAmount);
-        this.printLottoNumber(this.lotto);
+        this.LottoUI.prinntLottoNumber(this.lotto);
         this.purchaseAmount = inputPurchaseAmount;
       }
     );
   }
   lottoBuying(purchaseAmount) {
     const lottoCount = this.getLottoCount(purchaseAmount);
-    MissionUtils.Console.print(`${lottoCount}개를 구매했습니다.`);
+    this.LottoUI.printLottoCount(lottoCount);
     this.getTotalLottoNumber(lottoCount);
   }
   getLottoCount(purchaseAmount) {
     return parseInt(purchaseAmount, 10) / LOTTO_PRICE;
   }
   inputWinnerNumber() {
-    MissionUtils.Console.readLine(
+    this.LottoUI.requestWinnerNumber(
       GUIDE_MESSAGE.WINNERNUMBER_INPUT,
       (winnerNumberElement) => {
         const winnerNumberArr = winnerNumberElement.split(",");
@@ -52,7 +56,7 @@ class App {
     );
   }
   inputBonusNumber() {
-    MissionUtils.Console.readLine(
+    this.LottoUI.requestBonusNumber(
       GUIDE_MESSAGE.BONUSNUMBER_INPUT,
       (bonusNumberElement) => {
         const bonusNumberArr = bonusNumberElement.split("");
@@ -76,12 +80,6 @@ class App {
       return new Lotto(ascLottoNumber);
     });
   }
-  printLottoNumber(lotto) {
-    lotto.forEach((lottoNumbers) => {
-      const lottoList = lottoNumbers.getLottoNumber().join(", ");
-      MissionUtils.Console.print(`[${lottoList}]`);
-    });
-  }
   getResult() {
     const singleLotto = this.lotto.map((lottoNumber) =>
       lottoNumber.getLottoNumber()
@@ -92,10 +90,9 @@ class App {
     const winningMoney = this.getWinningMoney(rankingTotal);
     const earningRatio = this.getEarningRatio(winningMoney);
     const result = this.resultSynthesis(rankingTotal);
-    Object.entries(result).forEach(([ranking, count]) =>
-      MissionUtils.Console.print(result[ranking])
-    );
-    MissionUtils.Console.print(`총 수익률은 ${earningRatio}%입니다.`);
+
+    this.LottoUI.printRankingTotal(result);
+    this.LottoUI.printEarningRatio(earningRatio);
     MissionUtils.Console.close();
   }
   compareNumber(eachLotto) {
