@@ -74,8 +74,7 @@ class Lotto {
     return this.winningNumbers;
   }
 
-  lottoCompareRepeat() {
-    let lottoList = lottoPurchase.lottoPublish();
+  lottoCompareRepeat(lottoList) {
 
     lottoList.forEach(lottoNumbers => {
       this.lottoCompare(lottoNumbers);
@@ -95,11 +94,10 @@ class Lotto {
     return revenue;
   }
 
-  caculationRevenueRate() {
+  caculationRevenueRate(revenue, amount) {
     let revenueRate = 0;
-    let revenue = this.getRevenue();
 
-    revenueRate = revenue / (lottoPurchase.amount / 100);
+    revenueRate = revenue / (amount / 100);
     return revenueRate;
   }
 }
