@@ -90,6 +90,22 @@ class App {
       }
     MissionUtils.Console.print(obj);
     }
+
+    function compareLottoNumber(lottoIndNum){
+      let cnt = 0;
+      for (let ind=0; ind < userLottoNumbers.length; ind++){
+        if (lottos[lottoIndNum].includes(userLottoNumbers[ind])){
+          cnt += 1;
+        }
+      }
+      if (cnt == 5 && bonusNum in lottos[lottoIndNum]){
+        obj['5+보너스'][0] += 1;
+        obj['5+보너스'][1] += 30000000;
+      } else if (cnt > 2 && cnt < 7){
+          calculateLotto(cnt);
+      }
+      cnt = 0;
+    }
   } //Play() 닫는 닫는 괄호
 }//class App 닫는괄호
 
