@@ -4,7 +4,6 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    console.log(numbers);
     this.checkLength(numbers);
     this.checkIsDuplicated(numbers);
     this.checkIsInteger(numbers);
@@ -26,8 +25,6 @@ class Lotto {
       }
       lotterySet.add(number);
     });
-
-    console.log(lotterySet);
   }
 
   checkIsInteger(numbers) {
