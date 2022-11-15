@@ -1,28 +1,14 @@
-const config = require("./util/config")
+const config = require("./util/config");
 
 class User {
-  #fee = 0;
-  #lottos = [];
-  #lottoCount = 0;
-
-  get fee() {
-    return this.#fee;
-  }
-
-  set fee(fee) {
-    this.#fee = fee;
-  }
-
-  get lottoCount() {
-    return this.#lottoCount;
-  }
-
-  set lottoCount(lottoCount) {
-    this.#lottoCount = lottoCount;
+  constructor() {
+    this.fee = 0;
+    this.lottos = [];
+    this.lottoCount = 0;
   }
 
   calculateLottoCount() {
-    this.#lottoCount = this.#fee / config.FEE_PER_GAME;
+    this.lottoCount = this.fee / config.FEE_PER_GAME;
   }
 }
 

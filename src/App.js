@@ -3,6 +3,7 @@ const input = require("./console/input");
 const message = require("./util/message");
 const User = require("./User");
 const Validator = require("./Validator");
+const LottoGenerator = require("./LottoGenerator");
 
 class App {
   constructor() {
@@ -11,24 +12,30 @@ class App {
     this.user = new User();
   }
 
-  play() {
-    this.inputByFeeView();
+  async play() {
+    await this.inputByFeeView();
+    printUserLottos();
   }
 
-  inputByFeeView() {
+  async inputByFeeView() {
     this.print.print(message.INPUT_MESSAGE);
-    this.input.inputLine(this.handleInputByFee.bind(this));
-  }
 
-  handleInputByFee(value) {
-    const fee = +value;
-
-    if (!Validator.isRightFee(fee)) {
-      throw new Error("[ERROR] : 잘못된 금액을 입력했습니다.");
-    }
+    let fee = await this.input
+      .fee()
+      .then((resolve) => resolve)
+      .catch((e) => {});
 
     this.user.fee = fee;
-    this.input.close();
+  }
+
+  printUserLottos() {
+    this.user.calculateLottoCount();
+    this.user.lottos = LottoGenerator.generatedByCount(this.user.lottoCount);
+    this.print.print(`${this.user.lottoCount}${message.BUY_MESSAGE}`);
+
+    this.user.lottos.forEach((lotto) => {
+      this.print.print(lotto.show());
+    });
   }
 }
 

@@ -1,3 +1,5 @@
+const Validator = require("./Validator");
+
 class Lotto {
   #numbers;
 
@@ -7,9 +9,13 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
+    if (!Validator.isRightLottoNumbers(numbers)) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
+  }
+
+  show() {
+    return JSON.stringify(this.#numbers);
   }
 
   // TODO: 추가 기능 구현
