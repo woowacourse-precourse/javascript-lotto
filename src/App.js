@@ -23,6 +23,7 @@ class App {
         this.#countLottos = Number(money) / 1000;
         this.printCountLottos();
         this.makeLottosList();
+        this.inputNumbers();
       }
     });
   }
@@ -37,15 +38,14 @@ class App {
     return pickedLottoNum;
   }
 
-  //여기 안됨
   makeLottosList() {
     let lottosList = [];
     for (let lottos = 0; lottos < this.#countLottos; lottos++) {
       const pickRandomLottoNumber = this.pickRandomLottoNumber().sort();
       const validateLottoNumber = new Lotto(pickRandomLottoNumber);
       lottosList.push(validateLottoNumber.inputLottoNumbers);
-      Console.print(pickRandomLottoNumber);//
-      Console.print(lottosList);//
+      Console.print(pickRandomLottoNumber); //
+      // Console.print(lottosList);
     }
     this.#lottosList = lottosList;
     return this.#lottosList;
@@ -54,7 +54,11 @@ class App {
   //당첨번호 입력받기 -> Lotto에 넣어서 validation 검증 받기
   inputNumbers() {
     Console.readLine(INPUTS.INPUT_NUMBERS, (numbers) => {
-      this.#inputLottoNums = 
+      const inputLottoNumArr = numbers.split(",").map((value) => Number(value));
+      const validateInputLottoNumber = new Lotto(inputLottoNumArr);
+      // validateInputLottoNumber.inputLottoNumbers(numbers);
+      this.#inputLottoNums = validateInputLottoNumber.inputLottoNumbers;
+      Console.print(this.#inputLottoNums);
     });
   }
 
