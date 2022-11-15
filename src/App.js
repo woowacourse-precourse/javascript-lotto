@@ -71,14 +71,15 @@ class App {
   }
 
   validateWinNumbers(winNumbers) {
+    if (winNumbers.length !== SETTING.NUMBER_COUNT) {
+      throw new Error(ERROR.NUMBER_COUNT);
+    }
+
     if (winNumbers.some((number) => !Number.isInteger(number))) {
       throw new Error(ERROR.ONLY_NUMBER);
     }
 
-    if (
-      winNumbers.length !== SETTING.NUMBER_COUNT ||
-      new Set(winNumbers).size !== SETTING.NUMBER_COUNT
-    ) {
+    if (winNumbers.length !== new Set(winNumbers).size) {
       throw new Error(ERROR.NO_DUPLICATE);
     }
 
