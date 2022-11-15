@@ -2,11 +2,11 @@ const { Console } = require("@woowacourse/mission-utils");
 
 class Statistic {
   #player;
-  #winnigLotto;
+  #winningLotto;
   #totalCount;
   constructor(player, winningLotto) {
     this.#player = player;
-    this.#winnigLotto = winningLotto;
+    this.#winningLotto = winningLotto;
     this.#totalCount = {
       "3hit": 0,
       "4hit": 0,
