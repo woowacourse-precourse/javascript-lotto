@@ -1,3 +1,41 @@
+## 클래스
+
+### App
+
+사용자로부터 입력과 결과 출력을 담당하는 클래스
+
+- `play`: 로또 플레이 시작
+- `getPurchaseAmount`: 사용자로부터 구매 금액 입력
+- `getWinningNumbers`, `getBonusNumber`: 사용자로부터 당첨 번호, 보너스 번호 입력
+- `calculateResult`: 등수 계산 및 각 등수별 당첨 개수 저장
+- `getProfitRate`: 총 수익률 계산
+- `printResult`: 당첨 통계 출력
+
+### User
+
+입력 받은 구매 금액에 따라 로또를 구매하는 클래스
+
+- `handlePurchaseAmount`: 입력 받은 구매 금액 처리
+- `checkPurchaseAmount`: 구매 금액 검증
+- `purchaseLottos`: 로또 구매
+
+### Lotto
+
+로또를 발행하고 당첨 번호, 보너스 번호에 따라 등수를 계산하는 클래스
+
+- `validate`: 로또 번호 검증
+- `printNumbers`: 발행한 로또 번호 출력
+- `getRank`: 당첨 번호, 보너스 번호에 따라 등수 계산
+
+### Draw
+
+당첨 번호와 보너스 번호를 검증 및 저장하는 클래스
+
+- `handleWinningNumbers`: 입력 받은 당첨 번호 처리
+- `checkWinningNumbers`: 당첨 번호 검증
+- `handleBonusNumber`: 입력 받은 보너스 번호 처리
+- `checkBonusNumber`: 보너스 번호 검증
+
 ## 기능 목록
 
 - [x] 사용자로부터 구매 금액 입력
