@@ -1,5 +1,11 @@
+const Lotto = require('./Lotto');
+
 class App {
-  play() {}
+  lotto = new Lotto();
+
+  play() {
+    this.lotto.getPurchaseAmount();
+  }
 }
 
 module.exports = App;
