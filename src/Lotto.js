@@ -22,7 +22,7 @@ class Lotto {
 
   checkLottoNumber(numbers){
     for(let i = 0; i < numbers.length; i++){
-      if(numbers.length[i] < 1 || numbers.length[i] > 45){
+      if(numbers[i] < 1 || numbers[i] > 45){
         throw new Error(NOT_BETWEEN_NUMBER);
       }
     }
