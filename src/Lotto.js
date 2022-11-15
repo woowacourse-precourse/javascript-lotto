@@ -12,6 +12,8 @@ class Lotto {
     this.winningAmountArr = ['5,000', '50,000', '1,500,000', '30,000,000', '2,000,000,000'];
     this.winningCounterArr = new Array(5).fill(0);
     this.statistics();
+    this.yieldCalculation();
+    this.print();
   }
 
   statistics() {
@@ -19,8 +21,6 @@ class Lotto {
       const matchCount = issueNumber.filter((number) => this.winningNumber.includes(number)).length;
       this.comparison(matchCount);
     });
-    this.yieldCalculation();
-    this.print();
   }
 
   comparison(matchCount) {
