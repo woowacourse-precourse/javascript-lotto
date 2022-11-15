@@ -1,6 +1,6 @@
 const { ERROR_MESSAGE } = require("../constants");
 
-class LottoResultValidator {
+class WinningLottoValidator {
   validateWinningLottoDuplication(winningLotto) {
     const winningLottoSet = new Set(winningLotto);
     if(winningLottoSet.size !== 6){
@@ -43,4 +43,4 @@ class LottoResultValidator {
   }
 }
 
-module.exports = LottoResultValidator;
+module.exports = WinningLottoValidator;

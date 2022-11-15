@@ -3,11 +3,17 @@ const { CONSOLE_MESSAGE, PRINT_RESULT, RANK_STRING, profitRateString } = require
 const LottoMachine = require("./LottoMachine");
 const LottoResult = require("./LottoResult");
 const { stringToNumberArray } = require("./utils");
+const WinningLotto = require("./WinningLotto");
 
 class LottoGame {
   #result;
   #lottoMachine;
+  #winningLotto;
   #money;
+
+  constructor() {
+    this.#winningLotto = new WinningLotto();
+  }
 
   play() {
     this.inputPurchaseMoney();
@@ -33,18 +39,20 @@ class LottoGame {
   inputWinningLotto() {
     MissionUtils.Console.readLine(CONSOLE_MESSAGE.INPUT_WINNING_LOTTO,(winningNumberString)=>{
       const winningLotto = stringToNumberArray(winningNumberString);
-      this.inputBonusNumber(winningLotto);
+      this.#winningLotto.setNumbers(winningLotto);
+      this.inputBonusNumber();
     });
   }
   
-  inputBonusNumber(winningLotto) {
+  inputBonusNumber() {
     MissionUtils.Console.readLine(CONSOLE_MESSAGE.INPUT_BONUS_LOTTO,(bonusNumber)=>{
-      this.#result = new LottoResult(winningLotto,Number(bonusNumber),this.#lottoMachine);
+      this.#winningLotto.setBonus(Number(bonusNumber));
       this.showWinningStats();
     });
   }
 
   showWinningStats() {
+    this.#result = new LottoResult(this.#winningLotto.getNumbers(), this.#winningLotto.getBonus(), this.#lottoMachine.getLottoList());
     this.#result.makeResult();
     MissionUtils.Console.print(PRINT_RESULT.TITLE);
     Object.keys(RANK_STRING).forEach((rank) => {

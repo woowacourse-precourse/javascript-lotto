@@ -1,17 +1,14 @@
 const { WINNING_MONEY } = require("./constants");
-const LottoResultValidator = require("./validator/LottoResultValidator");
-
 class LottoResult {
-  #number;
-  #bonus;
-  #lottoMachine;
+  #lottoList;
+  #winningNumbers;
+  #bonusNumber;
   #rank;
 
-  constructor(winningLotto, bonusNumber, LottoMachine) {
-    this.validate(winningLotto,bonusNumber);
-    this.#lottoMachine = LottoMachine;
-    this.#number = winningLotto;
-    this.#bonus = bonusNumber;
+  constructor(numbers, bonus, lottoList) {
+    this.#lottoList = lottoList;
+    this.#winningNumbers = numbers;
+    this.#bonusNumber = bonus;
     this.#rank = {};
   }
 
@@ -19,18 +16,8 @@ class LottoResult {
     return this.#rank;
   }
 
-  validate(winningLotto, bonusNumber) {
-    const validator = new LottoResultValidator();
-    validator.validateBonusNumberDuplication(winningLotto,bonusNumber);
-    validator.validateBonusNumberIsNaN(bonusNumber);
-    validator.validateBonusNumberRange(bonusNumber);
-    validator.validateWinningLottoDuplication(winningLotto);
-    validator.validateWinningLottoIsNaN(winningLotto);
-    validator.validateWinningLottoRange(winningLotto);
-  }
-
   makeResult() {
-    this.#lottoMachine.getLottoList().forEach((Lotto)=>{
+    this.#lottoList.forEach((Lotto)=>{
       const matchCnt = this.checkWinning(Lotto.getNumbers());
       if(matchCnt > 2) {
         const rank = this.checkRank(matchCnt);
@@ -56,7 +43,7 @@ class LottoResult {
 
   checkWinning(lotto) {
     let matchCnt = 0;
-    this.#number.forEach((number)=>{
+    this.#winningNumbers.forEach((number)=>{
       if(lotto.includes(number)){
         matchCnt = matchCnt + 1;
       }
@@ -65,7 +52,7 @@ class LottoResult {
   }
 
   checkBonus(lotto) {
-    if(lotto.includes(this.#bonus)){
+    if(lotto.includes(this.#bonusNumber)){
       return true
     }
     return false;
