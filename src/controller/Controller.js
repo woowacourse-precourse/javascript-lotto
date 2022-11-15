@@ -38,6 +38,7 @@ class Controller {
 
     this.quickPickModel = new QuickPick(quickPickList);
     this.view.printQuickPick(quickPickList);
+    this.inputWinningNumber();
   }
 
   inputWinningNumber() {
