@@ -2,7 +2,13 @@ const { LOTTO } = require('./constants');
 const { ConsoleAdapter } = require('./adapters');
 const { LottoGenerator, LottoChecker } = require('./domain');
 const { CostValidator, LottoValidator } = require('./validators');
-const { STATISTICS } = require('./constants');
+const {
+  INPUT_MESSAGE,
+  PURCHASE_NOTIFIER,
+  STATISTIC_NOTIFIER,
+  STATISTICS,
+  PROFIT_RATE,
+} = require('./constants');
 
 class App {
   #console;
@@ -24,7 +30,7 @@ class App {
   }
 
   #queryPurchaseCost() {
-    this.#console.readLine('구입 금액을 입력해 주세요.\n', (input) => {
+    this.#console.readLine(INPUT_MESSAGE.COST, (input) => {
       const cost = Number(input);
 
       CostValidator.validatePurchaseCost(cost);
@@ -45,7 +51,7 @@ class App {
   }
 
   #printPurchaseInformation(lottoTickets) {
-    this.#console.print(`\n${lottoTickets.length}개를 구매했습니다.`);
+    this.#console.print(`\n${lottoTickets.length}${PURCHASE_NOTIFIER}`);
 
     lottoTickets.forEach(({ numbers }) => {
       this.#console.print(`[${numbers.join(', ')}]`);
@@ -53,7 +59,7 @@ class App {
   }
 
   #queryWinningNumbers() {
-    this.#console.readLine('\n당첨 번호를 입력해 주세요.\n', (input) => {
+    this.#console.readLine(INPUT_MESSAGE.WINNING_NUMBERS, (input) => {
       const winningNumbers = input.split(',').map(Number);
 
       LottoValidator.validateWinningNumbers(winningNumbers);
@@ -64,7 +70,7 @@ class App {
   }
 
   #queryBonusNumber() {
-    this.#console.readLine('\n보너스 번호를 입력해 주세요.\n', (input) => {
+    this.#console.readLine(INPUT_MESSAGE.BONUS_NUMBER, (input) => {
       const bonusNumber = Number(input);
 
       LottoValidator.validateBonusNumber(bonusNumber, this.#winningNumbers);
@@ -84,13 +90,13 @@ class App {
     const ranks = lottoChecker.getLottoRankings();
     const profitRate = lottoChecker.getProfitRate();
 
-    this.#console.print('\n당첨 통계\n---');
+    this.#console.print(STATISTIC_NOTIFIER);
 
     Object.entries(STATISTICS).forEach(([key, message]) => {
       this.#console.print(message(ranks[key]));
     });
 
-    this.#console.print(`총 수익률은 ${profitRate}%입니다.`);
+    this.#console.print(PROFIT_RATE(profitRate));
   }
 
   #quit() {

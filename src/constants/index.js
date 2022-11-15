@@ -1,3 +1,9 @@
+const INPUT_MESSAGE = {
+  COST: '구입 금액을 입력해주세요.\n',
+  WINNING_NUMBERS: '\n당첨 번호를 입력해 주세요.\n',
+  BONUS_NUMBER: '\n보너스 번호를 입력해 주세요.\n',
+};
+
 const ERROR_MESSAGE = {
   COST: {
     TYPE: '구입 금액은 숫자여야 합니다.',
@@ -32,6 +38,8 @@ const LOTTO = {
 };
 
 const RANKS = ['FIFTH', 'FOURTH', 'THIRD', 'FIRST', 'SECOND'];
+const PURCHASE_NOTIFIER = '개를 구매했습니다.';
+const STATISTIC_NOTIFIER = '\n당첨 통계\n---';
 
 const STATISTICS = {
   FIFTH: (count) => `3개 일치 (5,000원) - ${count}개`,
@@ -49,10 +57,16 @@ const PRIZE = {
   FIRST: 2000000000,
 };
 
+const PROFIT_RATE = (rate) => `총 수익률은 ${rate}%입니다.`;
+
 module.exports = {
+  INPUT_MESSAGE,
   ERROR_MESSAGE,
   LOTTO,
   RANKS,
+  PURCHASE_NOTIFIER,
+  STATISTIC_NOTIFIER,
   STATISTICS,
   PRIZE,
+  PROFIT_RATE,
 };
