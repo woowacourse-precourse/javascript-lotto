@@ -38,11 +38,15 @@ describe('로또 클래스 테스트', () => {
   });
 
   test('번호 일치 개수 확인.', () => {
+    // 조건
     const lotto = new Lotto([1, 2, 3, 4, 5, 6], 7);
-    const [count, bonusCount] = lotto.checkWin([1, 3, 5, 7, 9, 11]);
     const expectCount = 3;
     const expectBonusCount = 1;
 
+    // 실행
+    const [count, bonusCount] = lotto.checkWin([1, 3, 5, 7, 9, 11]);
+
+    // 평가
     expect(expectCount).toBe(count);
     expect(expectBonusCount).toBe(bonusCount);
   });

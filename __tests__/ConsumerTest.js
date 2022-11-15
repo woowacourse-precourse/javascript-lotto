@@ -49,6 +49,8 @@ describe('Consumer 클래스 테스트', () => {
       [19, 18, 11, 12, 14, 13],
     ]);
     const logs = ['[3, 4, 5, 6, 7, 8]', '[5, 6, 7, 9, 10, 11]', '[11, 12, 13, 14, 18, 19]'];
+
+    // 실행
     const logSpy = getLogSpy();
     const consumer = new Consumer(3000);
 
