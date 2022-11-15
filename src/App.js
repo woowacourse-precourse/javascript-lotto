@@ -41,8 +41,12 @@ class App {
     }
 
     this.winningNumber.map((v) => {
-      if(Number.isNaN(v)) {
+      if (Number.isNaN(v)) {
         throw new Error('[ERROR] 당첨 번호가 올바르지 않습니다.');
+      }
+
+      if (1 > v || 45 < v) {
+        throw new Error('[ERROR] 당첨 번호는 1에서 45사이의 숫자여야 합니다.');
       }
     });
 
@@ -76,6 +80,10 @@ class App {
 
     if(this.winningNumber.includes(this.bonusNumber)) {
       throw new Error('[ERROR] 당첨 번호내에 보너스 번호와 중복되는 숫자가 있습니다.');
+    }
+
+    if(1 > this.winningNumber || 45 < this.winningNumber) {
+      throw new Error('[ERROR] 보너스 번호는 1에서 45사이의 숫자여야 합니다.')
     }
   }
 
