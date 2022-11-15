@@ -1,6 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const { Console, Random } = MissionUtils;
 const InpuVal = require('./InputVal');
+const LottoVal = require('./Lotto');
 
 class App {
   play() {
@@ -33,8 +34,14 @@ class App {
  }
   InputWinninglotteryNum() {
     Console.readLine('당첨 번호를 입력해 주세요.', (nums) => {
-    Console.print(nums);
+    console.log(nums);
+    let winningNum = this.winningNumToNumArr(nums);
+    const lotto = new LottoVal(winningNum);
     });
+  }
+  winningNumToNumArr(nums) {
+    const replaceNum= nums.replace(/,/g, '');
+    return replaceNum
   }
 }
   
