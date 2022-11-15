@@ -1,5 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const { result, money } = require('./Result');
+const { RESULT_MESSAGE, MONEY } = require('./Result');
 
 class Calculate {
   constructor(amount, winning, bonus, lottos) {
@@ -53,7 +53,7 @@ class Calculate {
   print_result() {
     const ANS = this.count_rank();
     ANS.map((ans, i) => {
-      MissionUtils.Console.print(`${result[i]} - ${ans}개`);
+      MissionUtils.Console.print(`${RESULT_MESSAGE[i]} - ${ans}개`);
     });
     const RESULT = this.calculate_rate();
     MissionUtils.Console.print(`총 수익률은 ${RESULT}%입니다.`);
@@ -64,7 +64,7 @@ class Calculate {
     const COUNT_RANK = this.count_rank();
     const PROFIT = COUNT_RANK.reduce((sum, rank, i) => {
       if (rank === 0) return sum;
-      return (sum += rank * money[i]);
+      return (sum += rank * MONEY[i]);
     }, 0);
 
     return PROFIT;

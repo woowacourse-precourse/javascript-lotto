@@ -1,4 +1,4 @@
-const message = {
+const MESSAGE = {
   INPUT_AMOUNT: '구입 금액을 입력해 주세요\n',
   INPUT_WINNING: '\n당첨 번호를 입력해 주세요.\n',
   INPUT_BONUS: '\n보너스 번호를 입력해 주세요.\n',
@@ -10,4 +10,4 @@ const message = {
   LOTTO_OVERLAP_ERROR: '[ERROR] 로또 번호는 중복이 없어야 합니다.',
 };
 
-module.exports = message;
+module.exports = MESSAGE;

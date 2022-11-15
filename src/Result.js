@@ -1,4 +1,4 @@
-const result = [
+const RESULT_MESSAGE = [
   '3개 일치 (5,000원)',
   '4개 일치 (50,000원)',
   '5개 일치 (1,500,000원)',
@@ -6,6 +6,6 @@ const result = [
   '6개 일치 (2,000,000,000원)',
 ];
 
-const money = [5000, 50000, 1500000, 30000000, 2000000000];
+const MONEY = [5000, 50000, 1500000, 30000000, 2000000000];
 
-module.exports = { result, money };
+module.exports = { RESULT_MESSAGE, MONEY };

@@ -43,9 +43,9 @@ class User {
   }
 
   issue_lottos(count) {
-    const lottos = new Lottos(count);
-    lottos.issue_lottos();
-    this.setLottos(lottos.lottos);
+    const LOTTOS = new Lottos(count);
+    LOTTOS.issue_lottos();
+    this.setLottos(LOTTOS.lottos);
   }
 
   validate_amount(amount) {
