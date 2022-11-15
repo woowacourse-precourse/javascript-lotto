@@ -5,12 +5,22 @@ class App {
     purchaseAmountArr = [];
     lotteryNumbersArr = [];
     lotteryWinningNumbersArr = [];
+    lotteryBonusNumberArr = [];
+
+    lotteryBonusNumber() {
+        MissionUtils.Console.print("\n보너스 번호를 입력해 주세요.");
+        MissionUtils.Console.readLine("", (inputNumber) => {
+            let lotteryBonusNumber = parseInt(inputNumber);
+            this.lotteryBonusNumberArr.push(lotteryBonusNumber);
+        });
+    }
 
     lotteryWinningNumbers() {
         MissionUtils.Console.print("\n당첨 번호를 입력해 주세요.");
         MissionUtils.Console.readLine("", (inputNumbers) => {
             let lotteryWinningNumbers = inputNumbers.split(",").map(Number)
             this.lotteryWinningNumbersArr.push(new Lotto(lotteryWinningNumbers));
+            this.lotteryBonusNumber();
         });
     }
 
