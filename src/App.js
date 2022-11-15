@@ -5,6 +5,7 @@ class App {
   constructor() {
     this.winningNumber = [];
     this.myLottery = [];
+    this.result = [0, 0, 0, 0, 0, 0];
   }
 
   getPlayerInput() {
@@ -37,7 +38,17 @@ class App {
     }
   }
 
-  getResult() {}
+  getResult(bonusNumber) {
+    let lottoResult = 0;
+
+    for (let index = 0; index < this.myLottery.length; index++) {
+      lottoResult = this.myLottery[index].isWinLottery(
+        this.winningNumber,
+        bonusNumber
+      );
+      this.result[lottoResult]++;
+    }
+  }
 
   getWinningNumbersInput() {
     MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (input) => {
@@ -62,13 +73,20 @@ class App {
   getBonusNumberInput() {
     MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (input) => {
       this.validateBonusNumber(input);
-      this.getResult();
+      this.getResult(parseInt(input));
     });
   }
 
   validateBonusNumber(input) {
     this.isNumber(input);
     this.validateNumberRange(parseInt(input));
+    this.validateNumberOvelap(parseInt(input));
+  }
+
+  validateNumberOvelap(number) {
+    if (this.winningNumber.includes(number)) {
+      throw new Error("[ERROR] 로또 번호는 중복되어서는 안됩니다.");
+    }
   }
 
   printMessage(message) {
