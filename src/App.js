@@ -1,19 +1,27 @@
 const Lotto = require('./Lotto');
+const LottoList = require('./LottoList');
 const { Random, Console } = require("@woowacourse/mission-utils");
 
 class App {
+  constructor() {
+    this.makeLotto = new LottoList();
+  }
+  
   play() {
-    Console.readLine("당첨 번호를 입력해 주세요.\n", this.letWinningNumbers);
+    this.buyLotto();
   }
 
-  letWinningNumbers = (winningNumbers) => {
-    let winningList = winningNumbers.split(',').map(num => parseInt(num));
-    console.log(winningList);
-    const startLotto = new Lotto(winningList);
-    startLotto;
-  }
+  buyLotto() {
+		Console.readLine("구입금액을 입력해주세요.\n", (amount) => {
+      this.amount = Number(amount);
+      this.total = this.makeLotto.isValidAmount(this.amount);
+      [this.lottoLists, this.stringedLottoLists] = this.makeLotto.makeLottoList(this.total);
+      this.makeLotto.printLottoList(this.total, this.stringedLottoLists);
+      this.letWinningNumbers();
+    });
+	}
+
 }
 const a = new App;
 a.play();
-
 module.exports = App;
