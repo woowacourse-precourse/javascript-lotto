@@ -23,20 +23,20 @@ class LottoManager {
       throw new Error(ERROR.PURCHASE_AMOUNT.NOT_DIVISIBLE);
     }
     if (this.isLessThanLottoPrice) {
-      throw new Error(ERROR.PURCHASE_AMOUNT.LESS);
+      throw new Error(ERROR.PURCHASE_AMOUNT.IS_LESS);
     }
   }
 
   isNumber(input) {
-    return input.match(/^[0-9]+$/);
+    return input.match(/^\d+$/g);
   }
 
   isDivisibleByLottoPrice(input) {
-    return input % LOTTO.PRICE === 0;
+    return parseInt(input) % LOTTO.PRICE === 0;
   }
 
-  isLessThanLottoPrice(input) {
-    return input < LOTTO.PRICE;
+  isGreaterThanLottoPrice(input) {
+    return parseInt(input) < LOTTO.PRICE;
   }
 }
 

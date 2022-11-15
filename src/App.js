@@ -20,7 +20,7 @@ class App {
   inputPurchaseAmount() {
     Console.readLine('구입금액을 입력해 주세요.\n', (purchaseAmount) => {
       this.purchaseAmount = purchaseAmount;
-      this.lottoArray = this.lottoManager.issueLotto(purchaseAmount);
+      this.lottoArray = this.lottoManager.issueLotto(this.purchaseAmount);
       this.printLotto(this.lottoArray);
       this.inputWinningNumbers();
     });
@@ -78,8 +78,8 @@ class App {
 
   inputBonusNumber() {
     Console.readLine('보너스 번호를 입력해 주세요.\n', (number) => {
-      this.validateBonusNumber(number);
       this.bonusNumber = parseInt(number);
+      this.validateBonusNumber(this.bonusNumber);
       this.checkCorrectCount();
     });
   }
@@ -97,7 +97,7 @@ class App {
   }
 
   isNumber(number) {
-    return number.match(/^[0-9]+$/);
+    return String(number).match(/^[0-9]+$/);
   }
 
   isRange(number) {
@@ -168,5 +168,9 @@ class App {
 
 const app = new App();
 app.play();
+
+// console.log(isNaN('6'));
+// console.log(isNaN('HI'));
+// console.log(isNaN('1000J'));
 
 module.exports = App;
