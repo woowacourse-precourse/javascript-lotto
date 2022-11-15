@@ -10,14 +10,14 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
+    if (numbers.length !== GAME.COUNT) {
       throw new Error(`${ERROR.COMMON} ${ERROR.NOT_PROPER_LENGTH}`);
-    } else if (new Set(numbers).size < 6) {
+    } else if (new Set(numbers).size < GAME.COUNT) {
       throw new Error(`${ERROR.COMMON} ${ERROR.CANT_OVERLAP_LOTTO}`);
     }
     const numberReg = /^[0-9]*$/;
     numbers.forEach((number) => {
-      if (!numberReg.test(number) || number < 1 || number > 45) {
+      if (!numberReg.test(number) || number < GAME.START || number > GAME.END) {
         throw new Error(`${ERROR.COMMON} ${ERROR.MUST_IN_RANGE}`);
       }
     });

@@ -1,5 +1,5 @@
 const Lotto = require('./Lotto');
-const { ERROR } = require('./modules/Constant');
+const { GAME, ERROR } = require('./modules/Constant');
 
 class WinLotto extends Lotto {
   constructor(numbers, bonus) {
@@ -10,7 +10,7 @@ class WinLotto extends Lotto {
 
   validateWin(numbers, bonus) {
     const numberReg = /^[0-9]*$/;
-    if (!numberReg.test(bonus) || bonus < 1 || bonus > 45) {
+    if (!numberReg.test(bonus) || bonus < GAME.START || bonus > GAME.END) {
       throw new Error(`${ERROR.COMMON} ${ERROR.MUST_IN_RANGE}`);
     }
     if (numbers.includes(bonus)) {

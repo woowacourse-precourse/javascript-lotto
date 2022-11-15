@@ -107,7 +107,7 @@ class App {
     const stringToNumber = Number(amount);
     if (isNaN(stringToNumber)) {
       throw new Error(`${ERROR.COMMON} ${ERROR.NOT_NUMBER}`);
-    } else if (stringToNumber % 1000 !== 0) {
+    } else if (stringToNumber % GAME.PRICE !== 0) {
       throw new Error(`${ERROR.COMMON} ${ERROR.NOT_MULTIPLE_OF_THOUSAND}`);
     } else if (stringToNumber === 0) {
       throw new Error(`${ERROR.COMMON} ${ERROR.CANT_ZERO}`);
