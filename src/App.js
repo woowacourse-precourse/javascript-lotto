@@ -7,7 +7,10 @@ class App {
 
   play() {
     Console.readLine("구입금액을 입력해주세요.", (value) => {
-      if (!this.isValidate(value)) {
+      const isValidate = this.isValidate(value);
+
+      if (isValidate.state === "exception") {
+        Console.print(isValidate.reason);
         this.play();
         return;
       }
@@ -24,11 +27,13 @@ class App {
     }
 
     if (value % 1000 !== 0) {
-      Console.print("1000원 단위로 입력해주세요.");
-      return false;
+      return {
+        state: "exception",
+        reason: "1000원 단위로 입력해주세요.",
+      };
     }
 
-    return true;
+    return { state: "success" };
   }
 
   makePayment(value) {
@@ -77,7 +82,12 @@ class App {
 
   getWinner(lottos, amountOfPaid) {
     Console.readLine("당첨번호를 입력해주세요.", (value) => {
-      this.getWinnerNumber(value, lottos, amountOfPaid);
+      const result = this.getWinnerNumber(value, lottos, amountOfPaid);
+      if (result.state === "exception") {
+        Console.print(result.reason);
+        this.getWinner(lottos, amountOfPaid);
+        return;
+      }
     });
   }
 
@@ -85,16 +95,17 @@ class App {
     const winnerNumber = value.split(",").map((string) => parseInt(string, 10));
 
     if (winnerNumber.length !== App.LENGTH_OF_LOTTO_NUMBER) {
-      Console.print("6개의 번호를 입력해주세요.");
-      this.getWinner(lottos, amountOfPaid);
-
-      return { state: "exception" };
+      return {
+        state: "exception",
+        reason: "6개의 번호를 입력해주세요",
+      };
     }
 
     Console.readLine("보너스 번호를 입력해주세요.", (value) => {
       const bonusNumber = parseInt(value, 10);
       this.getBonusNumber(bonusNumber, winnerNumber, lottos, amountOfPaid);
     });
+
     return { state: "success" };
   }
 

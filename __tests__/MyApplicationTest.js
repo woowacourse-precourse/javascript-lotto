@@ -18,8 +18,11 @@ describe("App 클래스 추가 테스트", () => {
         "1,2,3,4,5,6,7",
         new Lotto([1, 2, 3, 4, 5, 6]),
         1000
-      ).state
-    ).toBe("exception");
+      )
+    ).toMatchObject({
+      state: "exception",
+      reason: "[ERROR] 6개의 번호를 입력해주세요",
+    });
   });
 
   test("정확하게 당첨 결과가 계산되는지 확인한다.", () => {
