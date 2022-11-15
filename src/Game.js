@@ -53,11 +53,12 @@ class Game {
   compareLotto() {
     const lottoList = this.lottoList;
     const winningNumber = this.winningNumber;
+    const bonusNumber = this.bonusNumber;
     const result = new Array(LOTTO.TOTAL_RANK).fill(0);
     lottoList.forEach((lottoNumber) => {
       const match = this.countMatch(lottoNumber, winningNumber);
       if (match >= 3) {
-        const rank = this.getRank(lottoNumber, match);
+        const rank = this.getRank(lottoNumber, bonusNumber, match);
         result[rank] += 1;
       }
     });
@@ -69,8 +70,7 @@ class Game {
       0
     );
   }
-  getRank(lottoNumber, match) {
-    const bonusNumber = this.bonusNumber;
+  getRank(lottoNumber, bonusNumber, match) {
     if (match == 6) return LOTTO.RANK.FIRST;
     if (match == 5) return lottoNumber.includes(bonusNumber) ? LOTTO.RANK.SECOND : LOTTO.RANK.THIRD;
     if (match == 4) return LOTTO.RANK.FOURTH;
