@@ -17,13 +17,8 @@ class App {
     MissionUtils.Console.print(`총 수익률은 ${totalRate}%입니다.`);
     MissionUtils.Console.close();
   }
-  lottoDraw() {
+  lottoDraw(winningAndBonustNumber) {
     let lottoMatch = [];
-    let winningAndBonustNumber =
-      this.WinningData.getWinning() + "," + this.BonusData.getBonus();
-    winningAndBonustNumber = winningAndBonustNumber
-      .split(",")
-      .map((num) => parseInt(num, 10));
     this.LottoNumber.forEach((num) => {
       lottoMatch.push(
         num.filter((lottoNum) => {
@@ -84,6 +79,15 @@ class App {
     );
     this.rateOfReturn(hitsNumber.money);
   }
+  NumberCombine() {
+    let winningAndBonustNumber =
+      this.WinningData.getWinning() + "," + this.BonusData.getBonus();
+
+    winningAndBonustNumber = winningAndBonustNumber
+      .split(",")
+      .map((num) => parseInt(num, 10));
+    this.lottoDraw(winningAndBonustNumber);
+  }
   bonusNumber() {
     MissionUtils.Console.readLine(
       "보너스 번호를 입력해 주세요.",
@@ -91,7 +95,7 @@ class App {
         this.BonusData = new Bonus(BonusInput);
       }
     );
-    this.lottoDraw();
+    this.NumberCombine();
   }
   winningNumber() {
     MissionUtils.Console.readLine(
