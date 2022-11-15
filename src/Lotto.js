@@ -10,6 +10,7 @@ class Lotto {
     this.validate(numbers);
     this.notDuplicated(numbers)
     this.#numbers = numbers;
+    this.lottoBonusNumber;
   }
 
   numberValue(numbers) {
@@ -36,14 +37,29 @@ class Lotto {
       throw new Error(ERROR_MESSATE.DUPLICATED);
   }
 
-  notBonusDuplicated(bonusNumber){
-    if (this.#numbers.includes(bonusNumber)) {
+  makeBonusNumber() {
+    const randomNumber = Random.pickNumberInRange(1, 45);
+
+    if (this.#numbers.includes(randomNumber)) {
+      this.makeBonusNumber();
+    }
+
+    if (!this.#numbers.includes(randomNumber)) {
+      this.lottoBonusNumber = randomNumber;
+    }
+  }
+
+  notBonusDuplicated(lottoBonusNumber){
+    if (this.#numbers.includes(lottoBonusNumber)) {
       throw new Error(ERROR_MESSATE.DUPLICATED);
     }
     return true;
   }
 // TODO: 추가 기능 구현 
-
+  printNumbers() {
+    const sorted = this.#numbers.sort((a, b) => a - b).join(', ');
+    Console.print(`[${sorted}]`);
+  }
 }
 module.exports = Lotto;
 
