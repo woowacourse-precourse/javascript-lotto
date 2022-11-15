@@ -19,4 +19,18 @@ describe("당첨 번호 클래스 테스트", () => {
       ]);
     }).toThrow("[ERROR] 당첨 번호는 중복될 수 없습니다.");
   });
+
+  test("당첨 번호가 1~45 사이의 숫자가 아니면 예외가 발생한다.", () => {
+    expect(() => {
+      new WinningNumber(DUMMY_LOTTOS, DUMMY_MONEY).validateWinningNumbers([
+        1, 2, 3, 4, 5, 46,
+      ]);
+    }).toThrow("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+  });
+
+  test("보너스 번호가 1~45 사이의 숫자가 아니면 예외가 발생한다.", () => {
+    expect(() => {
+      new WinningNumber(DUMMY_LOTTOS, DUMMY_MONEY).validateBonusNumber(46);
+    }).toThrow("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+  });
 });
