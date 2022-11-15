@@ -1,72 +1,9 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { validateWinNums, validateBounus, validatePrice } = require("./util.js");
+const { validateWinNums, validateBounus, validatePrice } = require("./vadiation.js");
 const Lotto = require("./Lotto.js");
+const {calProfit, printMap, printProfit} = require("./profitFn");
+const {initMap, makeMap, printMap} = require("./mapFn");
 const [Console, Random] = [MissionUtils.Console, MissionUtils.Random];
-
-const mapKey = Object.freeze({
-  THREE: "3개 일치 (5,000원)",
-  FOUR: "4개 일치 (50,000원)",
-  FIVE: "5개 일치 (1,500,000원)",
-  FIVE_BOUNS: "5개 일치, 보너스 볼 일치 (30,000,000원)",
-  SIX: "6개 일치 (2,000,000,000원)",
-});
-
-const priceMap = Object.freeze({
-  THREE: 5000,
-  FOUR: 50000,
-  FIVE: 1500000,
-  FIVE_BOUNS: 30000000,
-  SIX: 2000000000,
-})
-
-function initMap(map) {
-  map.set(mapKey.THREE, 0);
-  map.set(mapKey.FOUR, 0);
-  map.set(mapKey.FIVE, 0);
-  map.set(mapKey.FIVE_BOUNS, 0);
-  map.set(mapKey.SIX, 0);
-}
-
-function makeMap(map, result) {
-  for (let i = 0; i < result.length; i++) {
-    const [winCount, bonusCount] = result[i];
-    if (winCount + bonusCount < 3) continue;
-    if (winCount + bonusCount === 3) map.set(mapKey.THREE, map.get(mapKey.THREE) + 1);
-    if (winCount + bonusCount === 4) map.set(mapKey.FOUR, map.get(mapKey.FOUR) + 1);
-    if (winCount + bonusCount === 5) map.set(mapKey.FIVE, map.get(mapKey.FIVE) + 1);
-    if (winCount + bonusCount === 6 && bonusCount === 1) map.set(mapKey.FIVE_BOUNS, map.get(mapKey.FIVE_BOUNS) + 1);
-    if (winCount + bonusCount === 6 && bonusCount === 0) map.set(mapKey.SIX, map.get(mapKey.SIX) + 1);
-  }
-}
-
-function calProfit(map){
-
-  let profit = 0;
-
-  for (const [key,value] of map){
-    if(key === mapKey.THREE) profit += value*priceMap.THREE;
-    if(key === mapKey.FOUR) profit += value*priceMap.FOUR;
-    if(key === mapKey.FIVE) profit += value*priceMap.FIVE;
-    if(key === mapKey.FIVE_BOUNS) profit += value*priceMap.FIVE_BOUNS;
-    if(key === mapKey.SIX) profit += value*priceMap.SIX;
-  }
-
-  return profit;
-}
-
-function printMap(map){
-  Console.print("당첨 통계\n---");
-  for (const [key,value] of map){
-    Console.print(`${key} - ${value}개`);
-  }
-}
-
-function printProfit(profit, input){
-  const profitRate = (profit*100/input).toFixed(1);
-  Console.print(`총 수익률은 ${profitRate}%입니다.`);
-  Console.close();
-}
-
 
 class App {
   #totalMoney;
