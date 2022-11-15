@@ -124,8 +124,11 @@ class Vendor {
     const total = this.#money / 1000;
     const Tickets = [];
 
-    for (i = 0; i < total; ++i) {
+    MissionUtils.Console.print(`${total}개를 구매했습니다.`);
+
+    for (let i = 0; i < total; ++i) {
       Tickets.push(this.#drawLotto());
+      Tickets[Tickets.length - 1].print();
     }
 
     return Tickets;
@@ -138,6 +141,21 @@ class Vendor {
     });
     return new Lotto(numbers);
   }
+
+  announceResult(tickets) {
+    MissionUtils.Console.print("당첨 통계\n---");
+    MisstionUtils.Console.print("3개 일치 (5,000원) - 1개");
+    MisstionUtils.Console.print("4개 일치 (50,000원) - 0개");
+    MisstionUtils.Console.print("5개 일치 (1,500,000원) - 0개");
+    MisstionUtils.Console.print(
+      "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개"
+    );
+    MisstionUtils.Console.print("6개 일치 (2,000,000,000원) - 0개");
+    MisstionUtils.Console.print("총 수익률은 62.5%입니다.");
+    MisstionUtils.Console.print("```\n\n---");
+  }
+
+  #computeResult(tickets) {}
 }
 
 module.exports = App;
