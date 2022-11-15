@@ -68,6 +68,45 @@ class Statistic {
   getTotalCount() {
     return this.#totalCount;
   }
+  showStatistics() {
+    Console.print("\n당첨 통계");
+    Console.print("---");
+    this.showTotalCount();
+    this.showLotteryReturn();
+  }
+  showTotalCount() {
+    for (let hit = 3; hit < 7; hit++) {
+      this.showCount(hit);
+    }
+  }
+  showCount(hit) {
+    Console.print(
+      `${hit}개 일치 ` +
+        `(${LOTTO_REWARD[hit + "hit"]
+          .toString()
+          .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원) ` +
+        `- ${this.#totalCount[hit + "hit"]}개`
+    );
+    if (hit === 5) {
+      this.showBonusCount();
+    }
+  }
+  showBonusCount() {
+    Console.print(
+      `5개 일치, 보너스 볼 일치 (${LOTTO_REWARD["5hitBonus"]
+        .toString()
+        .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원) - ${
+        this.#totalCount["5hitBonus"]
+      }개`
+    );
+  }
+  showLotteryReturn() {
+    Console.print(
+      `총 수익률은 ${this.#totalReturn
+        .toString()
+        .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}%입니다.\n`
+    );
+  }
 }
 
 module.exports = { Statistic };
