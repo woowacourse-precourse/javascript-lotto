@@ -10,7 +10,7 @@ const Bonus = class extends ErrorBoundary {
 
     this.#winningNumbers = winningNumbers;
     this.#bonus = bonus;
-    this.validateInput({ winningNumbers, bonus });
+    this.validateInput({ winningNumbers: this.#winningNumbers, bonus: this.#bonus });
   }
 
   validate({ winningNumbers, bonus }) {
@@ -19,7 +19,7 @@ const Bonus = class extends ErrorBoundary {
 
     const isBonusValid = isBonusNotDuplicated && isBonusRangeValid;
 
-    if (isBonusValid === true) return { status: true };
+    if (isBonusValid) return { status: true };
 
     const bonusErrorMessage = this.getErrorMessage({ isBonusNotDuplicated, isBonusRangeValid });
     return { status: false, message: bonusErrorMessage };
@@ -28,8 +28,8 @@ const Bonus = class extends ErrorBoundary {
   getErrorMessage({ isBonusNotDuplicated, isBonusRangeValid }) {
     const { DUPLICATED, RANGE, DEFAULT } = BONUS_ERROR_MESSAGE;
 
-    if (isBonusNotDuplicated === false) return DUPLICATED;
-    if (isBonusRangeValid === false) return RANGE;
+    if (!isBonusNotDuplicated) return DUPLICATED;
+    if (!isBonusRangeValid) return RANGE;
 
     return DEFAULT;
   }

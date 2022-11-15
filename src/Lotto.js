@@ -16,7 +16,7 @@ const Lotto = class extends ErrorBoundary {
     const isNumberRangeValid = numbers.every(number => number >= 1 && number <= 45);
 
     const isLottoValid = isNumberLengthValid && isNumberNotDuplicated && isNumberRangeValid;
-    if (isLottoValid === true) {
+    if (isLottoValid) {
       return { status: true };
     }
 
@@ -32,9 +32,9 @@ const Lotto = class extends ErrorBoundary {
   getErrorMessage({ isNumberLengthValid, isNumberNotDuplicated, isNumberRangeValid }) {
     const { LENGTH, DUPLICATED, RANGE, DEFAULT } = LOTTO_ERROR_MESSAGE;
 
-    if (isNumberLengthValid === false) return LENGTH;
-    if (isNumberNotDuplicated === false) return DUPLICATED;
-    if (isNumberRangeValid === false) return RANGE;
+    if (!isNumberLengthValid) return LENGTH;
+    if (!isNumberNotDuplicated) return DUPLICATED;
+    if (!isNumberRangeValid) return RANGE;
 
     return DEFAULT;
   }

@@ -5,7 +5,7 @@ const ErrorLogger = class {
 
   onCallback(callback) {
     const { status, message } = callback();
-    if (status === false) {
+    if (!status) {
       throw new Error(message);
     }
   }
