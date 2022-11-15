@@ -7,6 +7,7 @@ const {
   BonusExceptions,
 } = require('./Exceptions');
 const CompareNumbers = require('./CompareNumbers');
+const Lotto = require('./Lotto');
 const lotto = require('../util/lotto');
 
 class App {
@@ -32,7 +33,7 @@ class App {
 
   getWinning() {
     Console.readLine(COMMAND.WINNING, (winning) => {
-      new WinningExceptions(winning.split(',')).check();
+      new Lotto(winning.split(','));
       this.winningArr = winning.split(',').map((num) => parseInt(num));
       this.getBonus();
     });

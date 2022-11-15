@@ -11,7 +11,7 @@ class Exceptions {
 
   isNotDigit(numStr) {
     if (numStr === '') return true;
-    for (let letter of [...numStr]) {
+    for (let letter of [...numStr.toString()]) {
       if (isNaN(parseInt(letter))) return true;
     }
     return false;
