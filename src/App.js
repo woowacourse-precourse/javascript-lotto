@@ -7,16 +7,43 @@ class App {
   constructor() {
     this.lottos=[];
     this.bonus=0;
+    this.result = {
+      lotto : 0,
+      bonus : false,
+    }
+    this.winLotto=0;
     this.lottoCount=0;
+  }
+
+  statistics(){ // 두개 비교
+    // console.log(`통계: ${this.winLotto.getNumbers().includes(this.lottos)}`);
+
+
+
+
+    for(const lottoNum of this.lottos){
+      // 여러개의 사용자 로또 번호 중 하나의 로또에서 당첨 로또 번호 있는지 비교
+      // console.log(lottoNum.getNumbers());
+      // console.log(this.winLotto.getNumbers());
+      lottoNum.setLottoResult(this.winLotto.getNumbers());
+      lottoNum.setBonusResult(this.bonus);
+      this.result = lottoNum.getResult();
+      // if(this.lottos.includes(lotto)){
+      //   this.result.lotto++;
+      // }
+      console.log(this.result);
+      console.log(`==============================`);
+
+    }
   }
 
   InputWinLotto(){
     Console.readLine('당첨 번호를 입력해 주세요.', (answer)=>{
       const splitNum = answer.split(',');
-      const lotto = new Lotto(splitNum);
+      this.winLotto = new Lotto(splitNum);
       Console.readLine('보너스 번호를 입력해 주세요.', (answer)=>{
         this.bonus=answer;
-        console.log(`bonus : ${this.bonus}`);
+        console.log(`당첨번호 : ${this.winLotto.getNumbers()}, bonus : ${this.bonus}`);
       })
     })
     Console.close();
@@ -79,6 +106,10 @@ class App {
     //InputBonusLotto();
       // 당첨번호와 사용자 번호 비교
      // CheckWin();
+
+    // 통계
+    this.statistics();
+
     // 출력
     //PrintLotto();
   }
