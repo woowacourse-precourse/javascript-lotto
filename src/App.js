@@ -3,9 +3,9 @@ const InputUI = require('./ui/InputUI');
 const message = require('./util/message');
 const User = require('./User');
 const LottoGenerator = require('./LottoGenerator');
-const Vaildator = require('./Vaildator');
 const Lotto = require('./Lotto');
-const TypeConverter = require('./util/TypeConverter');
+const rank = require('./util/rank');
+const lottoRank = require('./util/lottoRank');
 
 class App {
   constructor() {
@@ -21,10 +21,13 @@ class App {
     this.printUserLottos();
     await this.inputHitNumberView();
     await this.inputBonusView();
+    this.user.calculateStat(this.hitLotto, this.bonusNumber);
+    this.printStat();
+    this.input.close();
   }
 
   async inputBuyAmountView() {
-    this.output.print(message.INPUT_AMOUNT);
+    // this.output.print(message.INPUT_AMOUNT);
     let amount = await this.input
       .amount()
       .then((resolve) => resolve)
@@ -43,11 +46,10 @@ class App {
 
   async inputBonusView() {
     this.output.print(message.BONUS_NUMBER);
-    const bonusNumber = await this.input
+    this.bonusNumber = await this.input
       .bonus(this.hitLotto.getNumbers())
       .then((resolve) => resolve)
       .catch((e) => {});
-    this.bounsNumber = bonusNumber;
   }
 
   printUserLottos() {
@@ -58,6 +60,22 @@ class App {
     this.user.lottos.forEach((lotto) => {
       this.output.print(lotto.show());
     });
+  }
+
+  printStat() {
+    this.output.print(message.PRIZE_STAT);
+    this.output.print(message.LINE);
+    this.printHitResult();
+    this.output.print(message.returnOfInvestment(this.user.returnOfInvestment));
+  }
+
+  printHitResult() {
+    for (let i = rank.FIFTH; i >= rank.FIRST; i--) {
+      const { prize, isBonus, matchCount } = lottoRank[i];
+      this.output.print(
+        message.hitStat(matchCount, prize, this.user.hitRanks[i], isBonus)
+      );
+    }
   }
 }
 

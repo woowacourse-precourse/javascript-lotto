@@ -15,7 +15,11 @@ class Lotto {
   }
 
   show() {
-    return JSON.stringify(this.#numbers);
+    return `[${this.#numbers.join(', ')}]`;
+  }
+
+  getNumbers() {
+    return this.#numbers;
   }
 
   // TODO: 추가 기능 구현
