@@ -1,13 +1,11 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const {
   INPUT_MESSAGE,
-  AMOUNT_ERROR_MESSAGE,
-  LOTTO_NUM_ERROR_MESSAGE,
   WINNING_STATICS_MESSAGE,
 } = require("../src/constant/message");
 const { CONSTANTS } = require("./constant/constants");
 const Lotto = require("./Lotto");
-const LottoAmount = require("./LottoAmount");
+const Validate = require("./Validate");
 
 class App {
   amount;
@@ -25,19 +23,25 @@ class App {
   };
 
   constructor() {
-    this.lottoAmount = new LottoAmount();
     this.lotto = new Lotto();
+    this.validate = new Validate();
   }
 
   play() {
     Console.readLine(INPUT_MESSAGE.INPUT_MONEY_MESSAGE, (amount) => {
       this.amount = amount;
-      this.lottoAmount.validateAmount(amount);
-      this.lottoes = this.lottoAmount.countLotto(amount);
-      this.lottoAmount.printCountedLottoes(this.lottoes);
+      this.validate.validateAmount(amount);
+      this.lottoes = this.countLotto(amount);
+      this.printCountedLottoes(this.lottoes);
       this.printRandomLottoes();
       this.getWinNumber();
     });
+  }
+  countLotto(amount) {
+    return amount / CONSTANTS.LOTTO_PRICE;
+  }
+  printCountedLottoes(lottoes) {
+    Console.print(`\n${lottoes}개를 구매했습니다.`);
   }
 
   getRandomLottoArray() {
@@ -73,32 +77,12 @@ class App {
 
   getBonusNumber() {
     Console.readLine(INPUT_MESSAGE.INPUT_BOUNUS_NUMBER_MESSAGE, (bonusNum) => {
-      this.validateBonusNumber(bonusNum);
       this.bonusNumber = [Number(bonusNum)];
+      this.validate.validateBonusNumber(bonusNum, this.winNumber);
       this.getResult();
       this.printResult();
       this.printRateOfReturn();
     });
-  }
-  lottoNumberRange(element) {
-    return (
-      CONSTANTS.LOTTO_MINIMUM_NUMBER <= element &&
-      CONSTANTS.LOTTO_MAXIMUM_NUMBER >= element
-    );
-  }
-  isValidRange(bonusNum) {
-    return this.lottoNumberRange(bonusNum);
-  }
-  isDuplicatedWinNumber(bonusNum) {
-    return this.winNumber.includes(Number(bonusNum));
-  }
-  validateBonusNumber(bonusNum) {
-    if (!this.isValidRange(bonusNum)) {
-      throw new Error(LOTTO_NUM_ERROR_MESSAGE.NOT_IN_RANGE);
-    }
-    if (this.isDuplicatedWinNumber(bonusNum)) {
-      throw new Error(LOTTO_NUM_ERROR_MESSAGE.DUPLICATED_WITH_WIN_NUMBER);
-    }
   }
 
   checkSameNumber(winBonusNumber) {
@@ -172,8 +156,5 @@ class App {
     Console.close();
   }
 }
-
-const app = new App();
-app.play();
 
 module.exports = App;
