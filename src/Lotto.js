@@ -24,6 +24,18 @@ class Lotto {
   getLottoNum() {
     return this.#numbers;
   }
+
+  setBonusNum(bonusNum) {
+    this.validateBonusNum(bonusNum);
+  }
+
+  validateBonusNum(bonusNum) {
+    if (isNaN(bonusNum)) {
+      throw new Error("[ERROR] 로또 구입금액은 숫자여야 합니다.");
+    } else if (bonusNum < 1 || bonusNum > 45) {
+      throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+  }
 }
 
 module.exports = Lotto;
