@@ -10,7 +10,8 @@ class LottoResult {
   isWinning(winningLottoNumberCount, winningBonusNumberCount) {
     const isSame = this.#lottoNumberCount.isSame(winningLottoNumberCount);
 
-    if (!winningBonusNumberCount) return isSame;
+    // if (!winningBonusNumberCount) return isSame;
+    if (winningBonusNumberCount.isNull()) return isSame;
 
     return isSame && this.#bonusNumberCount.isSame(winningBonusNumberCount);
   }
