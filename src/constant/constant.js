@@ -12,6 +12,10 @@ const CONDITION = {
 
 const ERR_MESSAGE = {
   ERR_LOTTO_NUM_LENGHT: "[ERROR] 로또 번호는 6개여야 합니다.",
+  ERR_LOTTO_INPUT_VALUE: "[ERROR] 1000원 단위로 입력이 되어야합니다.",
+  ERR_LOTTO_INCLUDE_STRING: "[ERROR] 문자열이 포함되어 있습니다.",
+  ERR_LOTTO_OVERLAP_VALUE: "[ERROR] 중복된 숫자가 존재합니다.",
+  ERR_LOTTO_VALID_VALUE: "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.",
 };
 
 const PRIZE_MONEY = {

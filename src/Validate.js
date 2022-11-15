@@ -1,5 +1,5 @@
-const { Console } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
+const { CONDITION, ERR_MESSAGE } = require("./constant/constant");
 
 class validate {
   check(number) {
@@ -7,6 +7,13 @@ class validate {
     this.checkNumber(number);
     this.checkDuplication(number);
     this.checkRange(number);
+    this.checkInputValue(number);
+  }
+
+  checkInputValue(number) {
+    if (number % CONDITION.BASE_PRICE !== 0) {
+      throw new Error(ERR_MESSAGE.ERR_LOTTO_INPUT_VALUE);
+    }
   }
 
   bonusCheck(bonusNumber) {
@@ -19,11 +26,11 @@ class validate {
       const check = /\d/;
 
       if (!check.test(number[i])) {
-        throw new Error("[ERROR] 문자열이 포함되어 있습니다.");
+        throw new Error(ERR_MESSAGE.ERR_LOTTO_INCLUDE_STRING);
       }
     }
   }
-  // 숫자 범위 체크
+
   checkLength(number) {
     this.lotto = new Lotto(number);
   }
@@ -31,15 +38,15 @@ class validate {
   checkDuplication(number) {
     const set = new Set(number);
     if (set.size !== 6) {
-      throw new Error("[ERROR] 중복된 숫자가 존재합니다.");
+      throw new Error(ERR_MESSAGE.ERR_LOTTO_OVERLAP_VALUE);
     }
   }
 
   checkRange(number) {
     for (let i = 0; i < number.length; i++) {
-      const check = /^[1-9]{1}$|^[1-4]{1}[0-5]{1}$|^45$/;
+      const check = /^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$/;
       if (!check.test(number[i])) {
-        throw new Error("[ERROR] 1부터 45까지의 숫자만 입력할 수 있습니다.");
+        throw new Error(ERR_MESSAGE.ERR_LOTTO_VALID_VALUE);
       }
     }
   }

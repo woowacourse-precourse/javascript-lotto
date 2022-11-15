@@ -1,6 +1,4 @@
-const Lotto = require("./Lotto");
 const BuyLotto = require("./BuyLotto");
-const { Console, Random } = require("@woowacourse/mission-utils");
 
 class App {
   constructor() {

@@ -20,8 +20,6 @@ class BuyLotto {
     this.makeNumbers = makeNumbers;
     this.userInputNum = userInputNum;
     this.userInputBonusNum = userInputBonusNum;
-    this.resultArray = new Array(5).fill(0);
-    this.prizeArray = new Array();
     this.fifthPrize = fifthPrize;
     this.fourthPrize = fourthPrize;
     this.thirdPrize = thirdPrize;
@@ -35,10 +33,9 @@ class BuyLotto {
     this.amount();
   }
   amount() {
+    this.validate = new validate();
     Console.readLine(MESSAGE.BUYING_AMOUNT, (inputValue) => {
-      if (inputValue % CONDITION.BASE_PRICE !== 0) {
-        throw new Error("[ERROR] 1000원 단위로 입력이 되어야합니다.");
-      }
+      this.validate.checkInputValue(inputValue);
       this.howMany = inputValue / CONDITION.BASE_PRICE;
       this.getAutoNumber();
     });
@@ -71,7 +68,7 @@ class BuyLotto {
     let userInputNum;
     Console.readLine(MESSAGE.INPUT_PRIZE, (input) => {
       userInputNum = this.splitUserInput(input);
-      this.validate = new validate();
+
       this.validate.check(userInputNum);
       this.userInputNum = userInputNum;
       this.userInputBonusNumber();
