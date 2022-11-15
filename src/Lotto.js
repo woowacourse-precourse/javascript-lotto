@@ -16,8 +16,6 @@ class Lotto {
     const lottoNumbers = this.getNumbers();
     const isIncludeBonus = lottoNumbers.includes(bonusNumber);
     const matchCount = 12 - new Set([...lottoNumbers, ...winNumbers]).size;
-    console.log(isIncludeBonus, lottoNumbers);
-    console.log(typeof bonusNumber);
     if (matchCount === 6) return 1;
     if (matchCount === 5 && isIncludeBonus) return 2;
     if (matchCount === 5) return 3;

@@ -5,7 +5,9 @@ const {
   winNumberValidate,
   bonusNumberValidate,
 } = require('./Validates');
-const { printLottoAmount, printWinStatistics } = require('./Print');
+const { printLottoAmount, printWinStatistics, printRevenueRate } = require('./Print');
+
+const REWORDS = [2000000000, 30000000, 1500000, 50000, 5000];
 
 class App {
   #amount;
@@ -68,6 +70,8 @@ class App {
         const lottosResult = this.makeLottosResult();
         this.setWinHistory(lottosResult);
         printWinStatistics(this.getWinHistory());
+        this.makeTotalRevenue();
+        printRevenueRate(this.getRevenueRate());
       },
     );
   }
@@ -82,6 +86,13 @@ class App {
       result[rank - 1] += 1;
     });
     return result;
+  }
+
+  makeTotalRevenue() {
+    const winHistory = this.getWinHistory();
+    winHistory.forEach((count, rank) => {
+      this.setRevenue(this.getRevenue() + count * REWORDS[rank]);
+    });
   }
 
   setAmount(amount) {
@@ -102,6 +113,7 @@ class App {
   }
 
   setWinNumbers(numbers) {
+    numbers.sort((a, b) => a - b);
     winNumberValidate(numbers);
     this.#winNumbers = numbers.map((number) => parseInt(number, 10));
   }

@@ -16,7 +16,11 @@ module.exports = {
         + `4개 일치 (50,000원) - ${winHistory[3]}개\n`
         + `5개 일치 (1,500,000원) - ${winHistory[2]}개\n`
         + `5개 일치, 보너스 볼 일치 (30,000,000원) - ${winHistory[1]}개\n`
-        + `6개 일치 (2,000,000,000원) - ${winHistory[0]}개`,
+        + `6개 일치 (2,000,000,000원) - ${winHistory[0]}개\n`,
     );
+  },
+
+  printRevenueRate(revenueRate) {
+    MissionUtils.Console.print(`총 수익률은 ${revenueRate}%입니다.`);
   },
 };
