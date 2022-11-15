@@ -1,6 +1,12 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const { UNIT_OF_AMOUNT } = require('./constant/index');
+const {
+  UNIT_OF_AMOUNT,
+  VALID_LENGTH,
+  VALID_MIN_NUM,
+  VALID_MAX_NUM,
+} = require('./constant/index');
 const Lotto = require('./Lotto');
+const { convertToNumber, convertToNumberArray } = require('./util/convert');
 
 class App {
   constructor() {
@@ -18,7 +24,7 @@ class App {
 
   getAmountOfPurchase() {
     Console.readLine('구입금액을 입력해 주세요.\n', (answer) => {
-      const amountOfPurchase = this.convertToNumber(answer);
+      const amountOfPurchase = convertToNumber(answer);
 
       this.validatePurchaseAmount(amountOfPurchase);
 
@@ -32,10 +38,6 @@ class App {
     });
   }
 
-  convertToNumber(stringNumber) {
-    return parseInt(stringNumber, 10);
-  }
-
   validatePurchaseAmount(amount) {
     if (amount % UNIT_OF_AMOUNT !== 0)
       throw new Error('[ERROR] 로또 구입 금액은 1,000원 단위로 입력해주세요');
@@ -47,26 +49,20 @@ class App {
 
   generateRandomNumbers(number) {
     for (let i = 0; i < number; i++) {
-      const randomNumbers = Random.pickUniqueNumbersInRange(1, 45, 6).sort(
-        (a, b) => a - b
-      );
+      const randomNumbers = Random.pickUniqueNumbersInRange(
+        VALID_MIN_NUM,
+        VALID_MAX_NUM,
+        VALID_LENGTH
+      ).sort((a, b) => a - b);
 
       this.randomNumbersArray.push(randomNumbers);
       Console.print(randomNumbers);
     }
   }
 
-  convertToNumberArray(string) {
-    return string
-      .trim()
-      .split(',')
-      .map(Number)
-      .sort((a, b) => a - b);
-  }
-
   getLottoNumbers() {
     Console.readLine('당첨 번호를 입력해 주세요.\n', (answer) => {
-      this.lotto = new Lotto(this.convertToNumberArray(answer));
+      this.lotto = new Lotto(convertToNumberArray(answer));
     });
   }
 }
