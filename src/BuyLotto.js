@@ -19,20 +19,24 @@ class BuyLotto {
         throw new Error("[ERROR] 1000원 단위로 입력이 되어야합니다.");
       }
       this.howMany = inputValue / CONDITION.BASE_PRICE;
-      this.getAutoNumber(inputValue);
+      this.getAutoNumber();
     });
   }
 
-  getAutoNumber(buyAmount) {
-    const amount = buyAmount / CONDITION.BASE_PRICE;
+  getAutoNumber() {
     const makeNumbers = [];
-    for (let i = 1; i <= amount; i++) {
+    for (let i = 1; i <= this.howMany; i++) {
       const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
       const sortNumber = this.getSortNumber(numbers);
+      for (let i = 0; i < sortNumber.length; i++) {
+        sortNumber[i] = sortNumber[i].toString();
+      }
       makeNumbers.push(sortNumber);
     }
     this.makeNumbers = makeNumbers;
     Console.print(this.howMany + MESSAGE.BUYING_RESULT);
+    Console.print(this.makeNumbers);
+
     this.userInputNumber();
   }
 
@@ -70,13 +74,26 @@ class BuyLotto {
 
   prize() {
     Console.print(MESSAGE.PRIZE_RESULT);
-    Console.print(this.userInputNum);
-    Console.print(this.userInputBonusNum);
+    Console.print("---");
 
     this.getResult();
   }
 
-  getResult() {}
+  getResult() {
+    let count = 0;
+    for (let i = 0; i < this.howMany - 1; i++) {
+      // if (this.userInputNum.includes(this.makeNumbers[i])) {
+      if (this.makeNumbers[i].includes(this.userInputNum)) {
+        count++;
+      }
+    }
+    Console.print(this.makeNumbers[0]);
+    Console.print(this.userInputNum);
+    Console.print(this.userInputBonusNum);
+    Console.print(count);
+
+    const result = new Array(5).fill(0);
+  }
 }
 
 module.exports = BuyLotto;
