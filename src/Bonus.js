@@ -7,10 +7,6 @@ class Bonus {
   }
 
   validate(bonus) {
-    // 개수가 올바르지 않은 경우 에러 처리
-    if (bonus.length !== 1) {
-      throw new Error("[ERROR] 보너스 번호는 1개여야 합니다.");
-    }
     // 숫자가 아닌 경우 에러 처리
     if (isNaN(bonus)) {
       throw new Error("[ERROR] 보너스 번호는 숫자만 입력되어야 합니다.");
