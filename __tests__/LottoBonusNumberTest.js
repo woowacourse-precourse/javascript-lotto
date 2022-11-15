@@ -1,5 +1,5 @@
 const LottoGame = require("../src/LottoGame");
-const { LOTTERY_MIN_NUMBER, LOTTERY_MAX_NUMBER } = require("../src/GameConstants");
+const { LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER } = require("../src/GameConstants");
 const testLottoGame = new LottoGame();
 
 describe("보너스 번호 입력 테스트", () => {
@@ -30,7 +30,7 @@ describe("보너스 번호 입력 테스트", () => {
   });
 
   test("보너스 번호가 1~45까지의 숫자가 아니면 예외가 발생한다.", () => {
-    const ERROR_MESSAGE = `[ERROR] 보너스 번호는 ${LOTTERY_MIN_NUMBER}~${LOTTERY_MAX_NUMBER}까지의 숫자여야 합니다.`;
+    const ERROR_MESSAGE = `[ERROR] 보너스 번호는 ${LOTTO_MIN_NUMBER}~${LOTTO_MAX_NUMBER}까지의 숫자여야 합니다.`;
     expect(() => {
       testLottoGame.validateBonusNumber('0');
     }).toThrow(ERROR_MESSAGE);

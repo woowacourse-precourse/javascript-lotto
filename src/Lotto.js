@@ -1,5 +1,5 @@
 const MESSAGE = require("./Message");
-const { LOTTERY_NUMBER_LENGTH, LOTTERY_MIN_NUMBER, LOTTERY_MAX_NUMBER } = require("./GameConstants");
+const { LOTTO_NUMBER_LENGTH, LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER } = require("./GameConstants");
 
 class Lotto {
   #numbers;
@@ -24,7 +24,7 @@ class Lotto {
   }
 
   checkLength(num) {
-    if (num.length !== LOTTERY_NUMBER_LENGTH) {
+    if (num.length !== LOTTO_NUMBER_LENGTH) {
       throw new Error(MESSAGE.ERROR_LOTTO.LENGTH);
     }
   }
@@ -42,7 +42,7 @@ class Lotto {
   }
 
   checkOutOfRange(num) {
-    if (num < LOTTERY_MIN_NUMBER || num > LOTTERY_MAX_NUMBER) {
+    if (num < LOTTO_MIN_NUMBER || num > LOTTO_MAX_NUMBER) {
       throw new Error(MESSAGE.ERROR_LOTTO.OUT_OF_RANGE);
     }
   }

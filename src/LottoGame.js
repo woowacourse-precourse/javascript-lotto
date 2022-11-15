@@ -1,12 +1,12 @@
 const Lotto = require("./Lotto");
 const { Random } = require("@woowacourse/mission-utils");
 const MESSAGE = require("./Message");
-const { LOTTERY_PRICE, LOTTERY_MIN_NUMBER, LOTTERY_MAX_NUMBER, PRIZE_CRITERIA, PRIZE_MONEY_PRICE} = require("./GameConstants");
+const { LOTTO_PRICE, LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, PRIZE_CRITERIA, PRIZE_MONEY_PRICE} = require("./GameConstants");
 
 class LottoGame {
   constructor(LottoGameView) {
     this.view = LottoGameView;
-    this.lotteries = [];
+    this.lottos = [];
     this.purchaseAmount = null;
     this.lottoQuantity = null;
     this.winningLotto = null;
@@ -31,27 +31,27 @@ class LottoGame {
       throw new Error(MESSAGE.ERROR_LOTTO_GAME.NOT_NUMBER_AMOUNT);
     }
 
-    if ((purchaseAmount < LOTTERY_PRICE)) {
+    if ((purchaseAmount < LOTTO_PRICE)) {
       throw new Error(MESSAGE.ERROR_LOTTO_GAME.MINIMUM_AMOUNT);
     }
 
-    if (!Number.isInteger(purchaseAmount) || purchaseAmount % LOTTERY_PRICE) {
+    if (!Number.isInteger(purchaseAmount) || purchaseAmount % LOTTO_PRICE) {
       throw new Error(MESSAGE.ERROR_LOTTO_GAME.UNIT_OF_AMOUNT);
     }
   }
   
-  issueLottories() {
+  issueLottos() {
     this.setLottoQuantity();
-    while (this.lotteries.length < this.lottoQuantity) {
+    while (this.lottos.length < this.lottoQuantity) {
       const lotto = this.getNewLotto();
-      this.lotteries.push(lotto);
+      this.lottos.push(lotto);
     }
 
-    this.view.printPurchasedLotteries(this.lottoQuantity, this.lotteries);
+    this.view.printPurchasedLottos(this.lottoQuantity, this.lottos);
   }
 
   setLottoQuantity() {
-    this.lottoQuantity = this.purchaseAmount / LOTTERY_PRICE;
+    this.lottoQuantity = this.purchaseAmount / LOTTO_PRICE;
   }
 
   getNewLotto() {
@@ -81,7 +81,7 @@ class LottoGame {
       throw new Error(MESSAGE.ERROR_LOTTO_GAME.NOT_INTEGER_BONUS);
     }
 
-    if (Number(bonus) < LOTTERY_MIN_NUMBER || Number(bonus) > LOTTERY_MAX_NUMBER) {
+    if (Number(bonus) < LOTTO_MIN_NUMBER || Number(bonus) > LOTTO_MAX_NUMBER) {
       throw new Error(MESSAGE.ERROR_LOTTO_GAME.OUT_OF_RANGE_BONUS);
     }
 
@@ -97,7 +97,7 @@ class LottoGame {
 
   compareWinningLotto() {
     const winningNumber = this.winningLotto.getNumber();
-    this.lotteries.forEach((lotto) => {
+    this.lottos.forEach((lotto) => {
       const lottoNumber = lotto.getNumber();
       const matchCount = this.getMatchCount(winningNumber, lottoNumber);
       const bonusMatch = lottoNumber.includes(this.bonusNumber);
@@ -150,7 +150,7 @@ class LottoGame {
   getTotalRevenue() {
     let totalRevenue = 0;
     Object.keys(this.prizeCount).forEach((prize) => {
-      totalRevenue += this.prizeCount[prize]*PRIZE_MONEY_PRICE[prize.toUpperCase()];
+      totalRevenue += this.prizeCount[prize] * PRIZE_MONEY_PRICE[prize.toUpperCase()];
     });
 
     return totalRevenue;

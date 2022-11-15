@@ -15,14 +15,14 @@ class LottoGameView {
   receivePurchaseAmount() {
     Console.readLine(MESSAGE.INPUT.PURCHASE_AMOUNT, (amount) => {
       this.game.setPurchaseAmount(Number(amount));
-      this.game.issueLottories();
+      this.game.issueLottos();
     });
   }
 
-  printPurchasedLotteries(lottoQuantity, lotteries) {
+  printPurchasedLottos(lottoQuantity, lottos) {
     const quantitNotificationMessage = `\n${lottoQuantity}${MESSAGE.OUTPUT.PURCHASE_COUNT}`;
     Console.print(quantitNotificationMessage);
-    lotteries.forEach((lotto) => {
+    lottos.forEach((lotto) => {
       const number = lotto.getNumber().map((num) => num).join(', ');
       const numberMessage = `[${number}]`;
       Console.print(numberMessage);
