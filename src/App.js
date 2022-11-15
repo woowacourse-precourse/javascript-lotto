@@ -1,8 +1,8 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+const { Console, Random } = MissionUtils;
 const Bonus = require('./Bonus');
 const Cost = require('./Cost');
 const Lotto = require('./Lotto');
-const { Console, Random } = MissionUtils;
 
 class App {
   constructor() {
@@ -10,6 +10,7 @@ class App {
     this.lottoArray = [];
     this.winningLottoNumberArray = [];
     this.bonusNumber;
+    this.lottoResult = [0, 0, 0, 0, 0, 0];
   }
 
   getCost() {
@@ -50,11 +51,29 @@ class App {
     });
   }
 
+  getLottoResult() {
+    let winningLottoArray = this.winningLottoNumberArray.getValue();
+    for (i = 0; i < this.lottoArray.length; i++) {
+      let count = 0;
+      let bonusBoolean = false;
+      this.lottoArray[i].filter(number => {
+        if (winningLottoArray.includes(number)) count++;
+        if (number === this.bonusNumber.getValue()) bonusBoolean = true;
+      });
+    }
+    if (count === 3) this.lottoResult[1]++;
+    if (count === 4) this.lottoResult[2]++;
+    if (count === 5 && !bonusBoolean) this.lottoResult[3]++;
+    if (count === 5 && bonusBoolean) this.lottoResult[4]++;
+    if (count === 6) this.lottoResult[5]++;
+  }
+
   play() {
     this.getCost();
     this.getLottoArray();
     this.getWinningLottoNumberArray();
     this.getBonusNumber();
+    this.getLottoResult();
   }
 }
 
