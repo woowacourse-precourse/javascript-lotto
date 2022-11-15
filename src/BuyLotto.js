@@ -1,13 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
 class BuyLotto {
-    // constructor() {
-    //     const numberOfLotto = this.inputAmount();
-    //     this.printNumberOfLotto(numberOfLotto);
-    //     const randomLottos = this.createRandomLotto(numberOfLotto); 
-    //     this.printRandomLotto(randomLottos);
-    // }
-
     inputAmount() {
         let amount;
 
@@ -26,7 +19,6 @@ class BuyLotto {
 
     printNumberOfLotto(numberOfLotto) {
         MissionUtils.Console.print(`${numberOfLotto}개를 구매했습니다.`);
-        // this.createRandomLotto(numberOfLotto);
     }
 
     createRandomLotto(numberOfLotto) {
@@ -34,17 +26,14 @@ class BuyLotto {
 
         for(let i = 0; i < numberOfLotto; i++) {
             const randomLotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-
             randomLottos.push(randomLotto.sort((a, b) => a - b));
         }
-        // this.printRandomLotto(randomLottos);
         return randomLottos;
     }
 
     printRandomLotto(randomLottos) {
         for(let i = 0; i < randomLottos.length; i++) {
             const randomLotto = randomLottos[i].join(', ');
-     
             MissionUtils.Console.print(`[${randomLotto}]`);
         }
     }
@@ -53,10 +42,8 @@ class BuyLotto {
         let lottoNumbers;
 
         MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (lottoInput) => {
-            MissionUtils.Console.print('당첨 번호를 입력해주세요.')
-            
             lottoNumbers = lottoInput.split(',').map(Number);
-
+            MissionUtils.Console.print('당첨 번호를 입력해주세요.');
             MissionUtils.Console.print(lottoNumbers);    
         }); 
         return lottoNumbers;
@@ -66,12 +53,9 @@ class BuyLotto {
         let bonusNumber;
 
         MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (bonusInput) => {
-            MissionUtils.Console.print('보너스 번호를 입력해주세요.')
-            
             bonusNumber = bonusInput;
-
+            MissionUtils.Console.print('보너스 번호를 입력해주세요.');
             MissionUtils.Console.print(bonusNumber);
-           
         }); 
         return bonusNumber;
     }
