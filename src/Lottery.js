@@ -1,5 +1,5 @@
 const { readLine, print } = require('@woowacourse/mission-utils').Console;
-const { INPUT, OUTPUT } = require('./Constants');
+const { INPUT, OUTPUT, LOTTO } = require('./Constants');
 const LottoStore = require('./LottoStore');
 const LottoResult = require('./LottoResult');
 const Lotto = require('./Lotto');
@@ -49,10 +49,13 @@ class Lottery {
 
   printResult() {
     this.#lottoResult = new LottoResult(this.#lotto.getLotto(), this.#lottoStore.getAutoLotto());
+    const result = this.#lottoResult.getResult();
     print(OUTPUT.STATISTICS);
-    print()
-
-    print(this.#lottoResult.getResult());
+    print(LOTTO.FIFTH_PLACE + result[0] + LOTTO.COUNT);
+    print(LOTTO.FOURTH_PLACE + result[1] + LOTTO.COUNT);
+    print(LOTTO.THIRD_PLACE + result[2] + LOTTO.COUNT);
+    print(LOTTO.SECOND_PLACE + result[3] + LOTTO.COUNT);
+    print(LOTTO.FIRST_PLACE + result[4] + LOTTO.COUNT);
 
   }
 

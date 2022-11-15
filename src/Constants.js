@@ -6,7 +6,7 @@ const INPUT = {
 
 const OUTPUT = {
   COUNT: '개를 구매했습니다.',
-  STATISTICS: '당첨 통계\n---',
+  STATISTICS: '\n당첨 통계\n---',
   NEW_LINE: '\n',
 };
 
