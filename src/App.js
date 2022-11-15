@@ -2,6 +2,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const LottoGenerator = require("./LottoGenerator");
 const LottoResultManager = require("./LottoResultManager");
+const validator = require("./validator");
 
 class App {
   play() {
@@ -23,6 +24,7 @@ class App {
 
   getWinNumber() {
     MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (winNumber) => {
+      validator.checkWinNumber(winNumber);
       this.winNumber = winNumber;
       this.getBonusNumber();
     });
@@ -30,6 +32,7 @@ class App {
 
   getBonusNumber() {
     MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (bonusNumber) => {
+      validator.checkBonusNumber(bonusNumber, this.winNumber);
       const winRanks = this.getLottoRank(Number(bonusNumber), this.lotteries, this.winNumber);
       this.handleResult(winRanks);
     });
