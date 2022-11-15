@@ -82,7 +82,7 @@ class App {
       throw new Error('[ERROR] 당첨 번호내에 보너스 번호와 중복되는 숫자가 있습니다.');
     }
 
-    if(1 > this.winningNumber || 45 < this.winningNumber) {
+    if(1 > this.bonusNumber || 45 < this.bonusNumber) {
       throw new Error('[ERROR] 보너스 번호는 1에서 45사이의 숫자여야 합니다.')
     }
   }
