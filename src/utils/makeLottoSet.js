@@ -6,7 +6,7 @@ function makeRandomNumberArr() {
     LOTTO_NUMBER.START,
     LOTTO_NUMBER.END,
     LOTTO_NUMBER.LENGTH,
-  ).sort((a, b) => a - b);
+  ).sort((pre, next) => pre - next);
 }
 
 function isSame(count, set) {
@@ -15,7 +15,7 @@ function isSame(count, set) {
 
 function makeLottoSet(count) {
   let lottoSet = new Set();
-  for (let i = 0; i < count; i++) {
+  for (let index = 0; index < count; index++) {
     const numbers = makeRandomNumberArr();
     lottoSet.add(JSON.stringify(numbers));
   }
