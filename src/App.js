@@ -6,6 +6,8 @@ const LottoGenerator = require('./LottoGenerator');
 const Lotto = require('./Lotto');
 const rank = require('./util/rank');
 const lottoRank = require('./util/lottoRank');
+const Vaildator = require('./Vaildator');
+const TypeConverter = require('./util/TypeConverter');
 
 class App {
   constructor() {
@@ -16,55 +18,57 @@ class App {
     this.bonusNumber;
   }
 
-  async play() {
-    await this.inputBuyAmountView();
+  play() {
+    this.input.readLine(this.handleBuyAmount.bind(this));
+  }
+
+  handleBuyAmount(amount) {
+    amount = +amount;
+    if (!Vaildator.isRightAmount(+amount)) {
+      throw new Error('[ERROR]');
+    }
+    this.user.amount = +amount;
     this.printUserLottos();
-    await this.inputHitNumberView();
-    await this.inputBonusView();
+    this.input.readLine(this.handleHitLottos.bind(this));
+  }
+
+  handleHitLottos(hitLottos) {
+    hitLottos = TypeConverter.stringToArray(hitLottos, ',').map((e) => +e);
+    if (!Vaildator.isRightLottoNumbers(hitLottos)) {
+      throw new Error('[ERROR]');
+    }
+    this.hitLotto = new Lotto(hitLottos);
+    this.input.readLine(this.handleBonusNumber.bind(this));
+  }
+
+  handleBonusNumber(number) {
+    number = TypeConverter.stringToNumber(number);
+    if (
+      !Vaildator.isRightLottoNumber(number) ||
+      Vaildator.isDuplicateNumberInArray(this.hitLotto.getNumbers(), number)
+    ) {
+      throw new Error('[ERROR]');
+    }
+    this.bonusNumber = number;
+    this.showStat();
+  }
+
+  showStat() {
     this.user.calculateStat(this.hitLotto, this.bonusNumber);
     this.printStat();
     this.input.close();
-  }
-
-  async inputBuyAmountView() {
-    // this.output.print(message.INPUT_AMOUNT);
-    let amount = await this.input
-      .amount()
-      .then((resolve) => resolve)
-      .catch((e) => {});
-    this.user.amount = amount;
-  }
-
-  async inputHitNumberView() {
-    this.output.print(message.HIT_NUMBER);
-    const numbers = await this.input
-      .hitNumber()
-      .then((resolve) => resolve)
-      .catch((e) => {});
-    this.hitLotto = new Lotto(numbers);
-  }
-
-  async inputBonusView() {
-    this.output.print(message.BONUS_NUMBER);
-    this.bonusNumber = await this.input
-      .bonus(this.hitLotto.getNumbers())
-      .then((resolve) => resolve)
-      .catch((e) => {});
   }
 
   printUserLottos() {
     this.user.calculateLottoCount();
     this.user.lottos = LottoGenerator.generatedByCount(this.user.lottoCount);
     this.output.print(`${this.user.lottoCount}${message.BUY_AMOUNT}`);
-
     this.user.lottos.forEach((lotto) => {
       this.output.print(lotto.show());
     });
   }
 
   printStat() {
-    this.output.print(message.PRIZE_STAT);
-    this.output.print(message.LINE);
     this.printHitResult();
     this.output.print(message.returnOfInvestment(this.user.returnOfInvestment));
   }
