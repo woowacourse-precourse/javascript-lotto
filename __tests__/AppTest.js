@@ -5,7 +5,7 @@ const LottoMachineController = require('../src/controller/LottoMachineController
 const Lotto = require('../src/Lotto.js');
 const MissionUtils = require('@woowacourse/mission-utils');
 const { createSelectedRangeArray, generateSortedRandomNumber } = require('../src/utils/common.js');
-const { RULES } = require('../src/constants/index.js');
+const { RULES, RANKING_ACCORDING_MATCH_COUNT } = require('../src/constants/index.js');
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();
@@ -238,5 +238,45 @@ describe('당첨여부를 판단하는 기능 테스트', () => {
     const bonusNumber = 7;
     const lotto = new Lotto([11, 12, 13, 14, 15, 17]);
     expect(lotto.checkHowManyCorrect(winningNumber, bonusNumber)).toEqual(0);
+  });
+});
+
+describe('lottoResult Object 테스트', () => {
+  test('1등', () => {
+    const lottoResult = { '1등': 0, '2등': 0, '3등': 0, '4등': 0, '5등': 0 };
+    const numberArray = [
+      [8, 21, 23, 41, 42, 43],
+      [3, 5, 11, 16, 32, 38],
+      [7, 11, 16, 35, 36, 44],
+      [1, 8, 11, 31, 41, 42],
+      [13, 14, 16, 38, 42, 45],
+      [7, 11, 30, 40, 42, 43],
+      [2, 13, 22, 32, 38, 45],
+      [1, 3, 5, 14, 22, 45],
+    ];
+    const winningNumber = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+    const purchasedLottos = numberArray.map((number) => new Lotto(number));
+    purchasedLottos.forEach((lotto) => {
+      const matchCount = lotto.checkHowManyCorrect(winningNumber, bonusNumber);
+      const ranking = RANKING_ACCORDING_MATCH_COUNT[matchCount];
+
+      if (lottoResult[ranking] === undefined) return;
+
+      lottoResult[ranking] += 1;
+    });
+    expect(lottoResult).toEqual({ '1등': 0, '2등': 0, '3등': 0, '4등': 0, '5등': 1 });
+  });
+
+  test('1등', () => {
+    const lottoResult = { '1등': 0, '2등': 0, '3등': 0, '4등': 0, '5등': 0 };
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    const winningNumber = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+    const matchCount = lotto.checkHowManyCorrect(winningNumber, bonusNumber);
+    const ranking = RANKING_ACCORDING_MATCH_COUNT[matchCount];
+    if (lottoResult[ranking] === undefined) return;
+    lottoResult[ranking] += 1;
+    expect(lottoResult).toEqual({ '1등': 1, '2등': 0, '3등': 0, '4등': 0, '5등': 0 });
   });
 });

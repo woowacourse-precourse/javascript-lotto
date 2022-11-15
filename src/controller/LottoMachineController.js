@@ -50,7 +50,7 @@ class LottoMachineController {
   }
 
   generateLottoResultObject() {
-    const lottoResult = [];
+    const lottoResult = {};
 
     for (let ranking of Object.keys(LOTTO_RANKING_REWARD)) {
       lottoResult[ranking] = 0;
