@@ -19,17 +19,17 @@ const lottoPriceInput = () => {
 
 }
 
-const lottoPriceValidate = (lottoprice) => {
-  if ((lottoprice % LOTTO) !== 0) {
+const lottoPriceValidate = (lottoPrice) => {
+  if ((lottoPrice % LOTTO) !== 0) {
     throw new Error("[ERROR] 올바른 금액을 입력 하세요.");
   }
 }
 
 
-const createLottoArr = (lottocnt) => {
+const createLottoArr = (lottoCnt) => {
   const lottoArr = [];
-  MissionUtils.Console.print(`\n${lottocnt}개를 구매했습니다.`);
-  for (let i = 0; i < lottocnt; i++){
+  MissionUtils.Console.print(`\n${lottoCnt}개를 구매했습니다.`);
+  for (let i = 0; i < lottoCnt; i++){
     let numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
     const lottoNum = new Lotto(numbers);
     lottoArr.push(lottoNum.getArr());
@@ -73,6 +73,11 @@ const bonusLottoValidate = (bonusNumber) => {
       throw new Error("[ERROR] 올바른 보너스 번호를 입력 하세요.");
   }
 } 
+
+
+const calLotto = (lottoArr, ) => {
+
+}
 
 const app = new App();
 app.play();
