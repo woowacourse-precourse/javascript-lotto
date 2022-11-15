@@ -1,9 +1,9 @@
 const Validator = require('./Validator');
-const {TYPE} = require('./constants.js');
+const { TYPE } = require('./constants');
 
 class Lotto {
   #numbers;
-  
+
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;

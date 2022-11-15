@@ -1,9 +1,8 @@
-const {TYPE} = require('./constants.js');
+const { TYPE } = require('./constants');
 const regex = /[^0-9]/;
 
 class Validator {	
 	static isNum(numbers, type) {
-
     numbers.forEach((num) => {
       if (regex.test(num)) {
         throw new Error(`[ERROR] ${type} 번호는 숫자여야 합니다.`);
@@ -30,6 +29,7 @@ class Validator {
 
   static isDuplicated(numbers, type) {
     const duplicateCheck = new Set(numbers);
+
     if (duplicateCheck.size !== numbers.length) {
       throw new Error(`[ERROR] ${type} 번호는 중복되지 않아야 합니다.`);
     }
