@@ -1,7 +1,10 @@
 const { Console } = require('@woowacourse/mission-utils');
 const checkPriceValidation = require('./checkValid/checkPriceValidation');
+const { LottoBuilder } = require('./Lotto');
 class App {
-  constructor() {}
+  constructor() {
+    this.LottoBuilder = new LottoBuilder();
+  }
 
   play() {
     this.setPurchaseAmount();
@@ -9,7 +12,7 @@ class App {
 
   setPurchaseAmount() {
     this.print('구입금액을 입력해 주세요.');
-    const input = this.readLine('', input => {
+    this.readLine('', input => {
       if (checkPriceValidation(input)) {
       }
     });
@@ -25,5 +28,5 @@ class App {
 }
 
 const app = new App();
-app.setPurchaseAmount();
+app.play();
 module.exports = App;
