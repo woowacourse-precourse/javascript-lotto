@@ -32,16 +32,24 @@ class Lotto {
     }
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      Console.close();
-      throw new Error(ERROR_MENTION.lotto_number_length);
-    }
+  isDuplicateNumber(numbers) {
     const duplicateSet = new Set(numbers);
     if (numbers.length !== duplicateSet.size) {
       Console.close();
       throw new Error(ERROR_MENTION.duplicate_lotto_number);
     }
+  }
+
+  isNumberLengthCheck(numbers) {
+    if (numbers.length !== 6) {
+      Console.close();
+      throw new Error(ERROR_MENTION.lotto_number_length);
+    }
+  }
+
+  validate(numbers) {
+    this.isDuplicateNumber(numbers);
+    this.isNumberLengthCheck(numbers);    
   }
 }
 
