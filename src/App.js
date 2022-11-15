@@ -26,6 +26,7 @@ class App {
 
   constructor() {
     this.#money = 0;
+    this.#lottoCount = 0;
     this.#lottos = [];
     this.#result = {
       3: 0,
@@ -44,8 +45,8 @@ class App {
       LOTTO_END,
       LOTTO_NUMBER_COUNT,
     );
-    lotto = lotto.sort((a, b) => {
-      return a - b;
+    lotto = lotto.sort((currentNumber, nextNumber) => {
+      return currentNumber - nextNumber;
     });
     this.#lottos.push(new Lotto(lotto));
     return lotto;
