@@ -75,4 +75,14 @@ describe('유효성 검사 테스트', () => {
       }).toThrow('[ERROR]');
     });
   });
+
+  test('보너스 번호 예외 테스트', () => {
+    const bonusNumbers = ['a', 0, 5];
+    const winningNumber = [1, 2, 3, 4, 5, 6];
+    bonusNumbers.forEach((bonus) => {
+      expect(() => {
+        Validation.validateBonusNumber(bonus, winningNumber);
+      }).toThrow('[ERROR]');
+    });
+  });
 });
