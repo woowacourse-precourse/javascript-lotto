@@ -20,7 +20,7 @@ class Lotto {
       firstGrade: 0,
       loseMoney: 0,
     };
-    this.lottoCount;
+    this.spendMoneyOfUser;
     this.profitRate;
   }
 
@@ -41,6 +41,7 @@ class Lotto {
 
   bundleCreate(lottoCount) {
     this.bundle = Array.from({ length: lottoCount }, this.makeSixNumbers);
+    this.spendMoneyOfUser = lottoCount * 1000;
     return this.bundle;
   }
 
@@ -74,11 +75,14 @@ class Lotto {
 
   print() {
     const { fifthGrade, forthGrade, thirdGrade, secondGrade, firstGrade } = this.resultMap;
+    Console.print('당첨 통계\n---');
     Console.print(LOTTO_MSG.FIFTH_GRADE(fifthGrade));
     Console.print(LOTTO_MSG.FORTH_GRADE(forthGrade));
     Console.print(LOTTO_MSG.THIRTH_GRADE(thirdGrade));
     Console.print(LOTTO_MSG.SECOND_GRADE(secondGrade));
     Console.print(LOTTO_MSG.FIRST_GRADE(firstGrade));
+    this.profitRateOfUserPurchase(this.resultMap, this.spendMoneyOfUser);
+    Console.print(LOTTO_MSG.PROFIT_RATE(this.profitRate));
   }
 }
 
