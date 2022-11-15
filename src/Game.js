@@ -1,7 +1,7 @@
 "use strict";
 
 const Lotto = require("./Lotto");
-const { Notice } = require("./Constants");
+const { Notice, Result } = require("./Constants");
 const {
   validateUserMoney,
   sortAscending,
@@ -62,7 +62,7 @@ class Game {
     Console.readLine(Notice.inputBonusNumbers, (userInput) => {
       validateBonusNumber(userInput, this.#winningNumbers);
       this.#bonusNumber = userInput;
-      return;
+      return this.calcResult();
     });
   }
 
@@ -73,7 +73,7 @@ class Game {
       });
       this.calcScore(intersection.length, number.includes(this.#bonusNumber));
     });
-    return;
+    return this.printResult();
   }
 
   calcScore(count, hasBonus) {
@@ -88,6 +88,20 @@ class Game {
     } else if (count === 3) {
       this.score.three++;
     }
+    return;
+  }
+
+  printResult() {
+    Console.print(Result.title);
+    Console.print(Result.line);
+    Console.print(`${Result.three}${this.score.three}${Result.unit}`);
+    Console.print(`${Result.four}${this.score.four}${Result.unit}`);
+    Console.print(`${Result.five}${this.score.five}${Result.unit}`);
+    Console.print(
+      `${Result.fiveWithBonus}${this.score.fiveWithBonus}${Result.unit}`
+    );
+    Console.print(`${Result.six}${this.score.six}${Result.unit}`);
+
     return;
   }
 }
