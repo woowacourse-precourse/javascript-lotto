@@ -41,7 +41,6 @@ class Winning {
             if(correctCount >= 3)
                 gradeCounts[correctCount - 3]++;
         }
-        // this.printWinningHistory(gradeCounts);
         return gradeCounts;
     }
 
@@ -70,13 +69,11 @@ class Winning {
         }
 
         const yeild = (total / amount * 100).toFixed(1);
-
         return yeild;
     }
 
     printYield(amount, gradeCounts) {
         const yeild = this.calculateYield(amount, gradeCounts);
-
         MissionUtils.Console.print(`총 수익률은 ${yeild}%입니다.`);
     }
 }
