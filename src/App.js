@@ -60,13 +60,13 @@ class App {
   calculateCount(count, bonusCheck) {
     if (count === 3) this.#winList.three++;
     else if (count === 4) this.#winList.four++;
-    else if (count === 5) this.#winList.five++;
     else if (count === 5 && bonusCheck) this.#winList.bonus++;
+    else if (count === 5) this.#winList.five++;
     else if (count === 6) this.#winList.six++;
   }
 
   matchBonus(user) {
-    if (user.indexOf(this.#bonus) !== -1) {
+    if (user.indexOf(parseInt(this.#bonus)) !== -1) {
       return true;
     }
     return false;
