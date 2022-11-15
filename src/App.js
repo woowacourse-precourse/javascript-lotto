@@ -19,8 +19,7 @@ class App {
   }
   inputPrice() {
     Console.readLine(INPUT_MESSAGE.PURCHASE, (payment) => {
-      const lottoGenerator = new LottoGenerator();
-      const myLotto = lottoGenerator.generate(payment);
+      const myLotto = new LottoGenerator(payment).returnMyLotto();
       this.userLottos = myLotto;
       this.userPurchase = Number(payment);
       this.printMyLotto(myLotto);

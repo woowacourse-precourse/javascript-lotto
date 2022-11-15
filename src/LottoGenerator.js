@@ -6,7 +6,9 @@ class LottoGenerator {
   #PRICE = 1000;
 
   constructor(payment) {
+    this.myLotto = null;
     this.payment = payment;
+    this.generate(payment);
   }
 
   generate(payment) {
@@ -17,7 +19,7 @@ class LottoGenerator {
       const randomLotto = Random.pickUniqueNumbersInRange(1, 45, 6);
       myLotto.push(randomLotto);
     }
-    return myLotto;
+    this.myLotto = myLotto;
   }
 
   validatePayment(input) {
@@ -29,6 +31,10 @@ class LottoGenerator {
     } else if (payment % this.#PRICE !== 0) {
       throw new Error(ERROR_MESSAGE.NOT_DIVIDED);
     }
+  }
+
+  returnMyLotto() {
+    return this.myLotto;
   }
 }
 
