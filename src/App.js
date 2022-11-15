@@ -4,19 +4,10 @@ const CalculateLotto = require("./game-machine/CalculateLotto");
 const DrawLotto = require("./draw-machine/DrawLotto");
 
 class App {
-
-  constructor(){
-    this.purchase_amount;
-  }
   play() {
-    this.getPurchaseAmount();
-  }
-
-  getPurchaseAmount(){
     const amount = new PurchaseAmount();
-    this.purchase_amount=amount.inputPurchaseAmount();
+    amount.inputPurchaseAmount();
   }
-
 }
 const app = new App();
 app.play();
