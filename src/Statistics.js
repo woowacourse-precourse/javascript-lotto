@@ -15,4 +15,14 @@ class Statistic {
       "6hit": 0,
     };
   }
+  countHit(lottoNumber, winningNumber) {
+    let hit = 0;
+    for (let number = 0; number < winningNumber.length - 1; number++) {
+      if (lottoNumber[number] !== winningNumber[number]) {
+        return hit;
+      }
+      hit += 1;
+    }
+    return hit;
+  }
 }
