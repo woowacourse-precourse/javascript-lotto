@@ -1,7 +1,6 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
 const { MESSAGE, CONDITION } = require("./constant/constant");
 const validate = require("./Validate");
-const Lotto = require("./Lotto");
 
 class BuyLotto {
   constructor(
@@ -13,7 +12,8 @@ class BuyLotto {
     fourthPrize,
     thirdPrize,
     secondPrize,
-    firstPrize
+    firstPrize,
+    getYield
   ) {
     this.howMany = howMany;
     this.makeNumbers = makeNumbers;
@@ -26,6 +26,7 @@ class BuyLotto {
     this.thirdPrize = thirdPrize;
     this.secondPrize = secondPrize;
     this.firstPrize = firstPrize;
+    this.getYield = getYield;
   }
 
   start() {
@@ -96,6 +97,7 @@ class BuyLotto {
     this.thirdPrize = 0;
     this.secondPrize = 0;
     this.firstPrize = 0;
+    this.yield = 0;
 
     Console.print(MESSAGE.PRIZE_RESULT);
     Console.print("---");
@@ -107,9 +109,7 @@ class BuyLotto {
       );
 
       if (result.length === 6) {
-        // Console.print("6개 일치 (2,000,000,000원)");
         this.firstPrize += 1;
-        // this.prize(result.length);
       }
 
       if (result.length === 5) {
@@ -134,61 +134,7 @@ class BuyLotto {
       }
     }
 
-    for (let i = 0; i < this.howMany; i++) {
-      const result = this.makeNumbers[i].filter((x) => prizeArray.includes(x));
-      // console.log(result);
-      // this.checkBonusPrize(result, i);
-    }
     this.printResult();
-  }
-
-  checkBonusPrize(result, i) {
-    if (result.length === 5) {
-      this.makeNumbers[i].includes(String(this.userInputBonusNum))
-        ? (this.secondPrize += 1)
-        : (this.thirdPrize += 1);
-    }
-    console.log(result);
-
-    console.log(this.makeNumbers[i].includes(String(this.userInputBonusNum)));
-
-    this.printResult();
-
-    // if (this.makeNumbers[i].includes(String(this.userInputBonusNum))) {
-    //   const prize = result.length + 1;
-    //   Console.print(`${prize}개 일치`);
-    //   return;
-    // }
-    // if (result.length >= 3) {
-    //   const prize = result.length;
-    //   Console.print(`${prize}개 일치`);
-    // }
-  }
-
-  prize(correct) {
-    // 결과값을 this.전체 생성자로 받아서 리턴하기
-    console.log(correct);
-    switch (correct) {
-      case 6:
-        // Console.print(`6개 일치 (2,000,000,000원) - ${this.firstPrize}개`);
-        this.resultArray[0] += 1;
-        break;
-      case 5:
-        // 보너스 볼 일치하는 지 확인하는 메소드 필요
-
-        break;
-      case 4:
-        this.resultArray[3] += 1;
-
-        // Console.print(`4개 일치 (50,000원) - ${this.fourthPrize}개`);
-        break;
-      case 3:
-        this.resultArray[4] += 1;
-        // Console.print(`3개 일치 (5,000원) - ${this.fifthPrize}개`);
-        break;
-      default:
-        break;
-    }
   }
 
   printResult() {
@@ -199,7 +145,7 @@ class BuyLotto {
       `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.secondPrize}개`
     );
     Console.print(`6개 일치 (2,000,000,000원) - ${this.firstPrize}개`);
-    Console.print("총 수익률은 입니다");
+    Console.print(`총 수익률은 ${this.getYield}입니다`);
   }
 }
 
