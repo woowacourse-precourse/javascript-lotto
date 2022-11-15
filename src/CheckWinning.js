@@ -1,7 +1,6 @@
 const { RANGKING_COUNT } = require('./constant/constantOfLotto');
 
 class CheckWinning {
-
     #controller;
     #result;
 
