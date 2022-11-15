@@ -45,8 +45,6 @@ class App {
 
   static winningNumberDecider(purchaseLottoList, purchaseAmount) {
     Console.readLine('\n당첨 번호를 입력해 주세요.\n', winningNumber => {
-      const lotto = new Lotto(winningNumber.split(','));
-      console.log(lotto);
       Console.readLine('\n보너스 번호를 입력해 주세요.\n', bonusNumber => {
         const winningList = this.totalWinningCounter(
           purchaseLottoList,
