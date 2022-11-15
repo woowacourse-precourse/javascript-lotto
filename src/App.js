@@ -106,6 +106,12 @@ class App {
       }
       cnt = 0;
     }
+
+    function sendLotto(){
+      for (let ind=0; ind < lottos.length; ind++){
+        compareLottoNumber(ind);
+      }
+    }
   } //Play() 닫는 닫는 괄호
 }//class App 닫는괄호
 
