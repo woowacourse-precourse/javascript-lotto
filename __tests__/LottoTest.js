@@ -27,4 +27,10 @@ describe("로또 클래스 테스트", () => {
       new LottoBuyer("1000j");
     }).toThrow("[ERROR]");
   });
+
+  test("로또 구입 금액이 1,000원으로 나누어 떨어지지 않는 경우", () => {
+    expect(() => {
+      new LottoBuyer("1100");
+    }).toThrow("[ERROR]");
+  });
 });
