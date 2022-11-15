@@ -7,13 +7,13 @@ const { INPUTS, OUTPUTS } = require("./constants");
 class App {
   #countLottos;
   #lottosList = []; //8개 [[1,2,1,2,2],[],...]
-  #inputLottoNums;
+  #inputWinningLottoNums;
   #scoreList = [];
 
   play() {
     this.inputStartWithMoney();
     // this.makeLottosList();
-    this.inputNumbers();
+    // this.inputNumbers();
     // Console.close();
   }
 
@@ -23,7 +23,7 @@ class App {
         this.#countLottos = Number(money) / 1000;
         this.printCountLottos();
         this.makeLottosList();
-        this.inputNumbers();
+        this.inputWinningNumbers();
       }
     });
   }
@@ -52,13 +52,15 @@ class App {
   }
 
   //당첨번호 입력받기 -> Lotto에 넣어서 validation 검증 받기
-  inputNumbers() {
-    Console.readLine(INPUTS.INPUT_NUMBERS, (numbers) => {
-      const inputLottoNumArr = numbers.split(",").map((value) => Number(value));
-      const validateInputLottoNumber = new Lotto(inputLottoNumArr);
-      // validateInputLottoNumber.inputLottoNumbers(numbers);
-      this.#inputLottoNums = validateInputLottoNumber.inputLottoNumbers;
-      Console.print(this.#inputLottoNums);
+  inputWinningNumbers() {
+    Console.readLine(INPUTS.INPUT_NUMBERS, (winningNumbers) => {
+      const inputWinningNumArr = winningNumbers
+        .split(",")
+        .map((value) => Number(value));
+      const validateWinningLottoNumber = new Lotto(inputWinningNumArr);
+      this.#inputWinningLottoNums =
+        validateWinningLottoNumber.inputLottoNumbers;
+      Console.print(this.#inputWinningLottoNums);
     });
   }
 
