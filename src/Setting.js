@@ -5,6 +5,8 @@ const UNIT = Object.freeze({
 
 const FORMAT = Object.freeze({
   LOCALE: 'ko-KR',
+  MIN_FRACTION_DIGIT: 1,
+  MAX_FRACTION_DIGIT: 1,
   MATCH: '개 일치',
   MATCH_BONUS: ', 보너스 볼 일치',
 });

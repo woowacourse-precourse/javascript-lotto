@@ -23,7 +23,10 @@ class Statistics {
     const { purchaseAmount, earning } = this;
     const earningRate = (earning / purchaseAmount) * 100;
 
-    this.earningRate = +(Math.round(earningRate + 'e+1') + 'e-1');
+    this.earningRate = earningRate.toLocaleString(FORMAT.LOCALE, {
+      minimumFractionDigits: FORMAT.MIN_FRACTION_DIGIT,
+      maximumFractionDigits: FORMAT.MAX_FRACTION_DIGIT,
+    });
   }
 
   print() {
