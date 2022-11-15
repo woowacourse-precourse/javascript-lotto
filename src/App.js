@@ -49,6 +49,8 @@ class App {
 
   bonusNumber() {
     Console.readLine("보너스 번호를 입력해 주세요", (bonusnumber) => {
+      const lotto = new Lotto();
+      lotto.validateBonusNumber(bonusnumber);
     });
   }
 
