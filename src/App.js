@@ -36,12 +36,14 @@ class App {
       this.winLotto = new WinLotto(numbers);
       MissionUtils.Console.readLine(`\n${Message.BONUS_MESSAGE}`, input => {
         this.winLotto.setBonusNumber(Number(input));
-        const rankResult = Computer.userLottoRankResult(this.userLottoList, this.winLotto);
-        const userProfit = Computer.getUserProfit(rankResult, this.inputMoney);
-        View.printResult(rankResult, userProfit);
-        MissionUtils.Console.close();
       });
     });
+  }
+  getLottoResult() {
+    const rankResult = Computer.userLottoRankResult(this.userLottoList, this.winLotto);
+    const userProfit = Computer.getUserProfit(rankResult, this.inputMoney);
+    View.printResult(rankResult, userProfit);
+    MissionUtils.Console.close();
   }
 
   play() {
@@ -51,6 +53,7 @@ class App {
       View.printUserLottoNum(this.userLottoList.length);
       this.userLottoList.forEach(lotto => View.printUserLotto(lotto.getNumbers()));
       this.createWinLotto();
+      this.getLottoResult();
     });
   }
 }
