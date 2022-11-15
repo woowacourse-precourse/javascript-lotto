@@ -20,6 +20,7 @@ class App {
   }
 
   play() {
+    this.output.print(message.INPUT_AMOUNT);
     this.input.readLine(this.handleAmount.bind(this));
   }
 
@@ -30,6 +31,7 @@ class App {
     }
     this.user.amount = amount;
     this.printUserLottos();
+    this.output.print(message.HIT_NUMBER);
     this.input.readLine(this.handleHitNumbers.bind(this));
   }
 
@@ -39,6 +41,7 @@ class App {
       throw new Error(error.INVALID_HIT_NUMBERS);
     }
     this.hitLotto = new Lotto(hitNumbers);
+    this.output.print(message.BONUS_NUMBER);
     this.input.readLine(this.handleBonusNumber.bind(this));
   }
 
@@ -56,6 +59,8 @@ class App {
 
   showStat() {
     this.user.calculateStat(this.hitLotto, this.bonusNumber);
+    this.output.print(message.PRIZE_STAT);
+    this.output.print(message.LINE);
     this.printStat();
     this.input.close();
   }
