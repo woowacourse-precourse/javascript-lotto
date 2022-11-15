@@ -4,6 +4,7 @@ class Lotto {
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
+    
   }
 
   validate(numbers) {
@@ -13,6 +14,9 @@ class Lotto {
   }
 
   // TODO: 추가 기능 구현
+  money() {
+    
+  }
 }
 
 module.exports = Lotto;
