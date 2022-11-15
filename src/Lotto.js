@@ -34,9 +34,9 @@ class Lotto {
   notDuplicated(numbers) {
     if (numbers.length !== new Set(numbers).size)
       throw new Error(ERROR_MESSATE.DUPLICATED);
-  // TODO: 추가 기능 구현 
   }
-
+  
+// TODO: 추가 기능 구현 
 }
 module.exports = Lotto;
 
