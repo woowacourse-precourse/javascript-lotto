@@ -42,7 +42,7 @@ class App {
         END_LOTTO_NUMBER,
         TOTAL_LOTTO_COUNT
       );
-      Console.print(lotto);
+      Console.print(JSON.stringify(lotto).replace(/,/g, ", "));
       this.lottoList.push(lotto);
     }
 
