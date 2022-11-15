@@ -15,9 +15,9 @@ class Lotto {
     } else if (new Set(numbers).size < 6) {
       throw new Error(`${ERROR.COMMON} ${ERROR.CANT_OVERLAP_LOTTO}`);
     }
-    const numberInRange = /^[1-45]$/;
+    const numberReg = /^[0-9]*$/;
     numbers.forEach((number) => {
-      if (!numberInRange.test(number)) {
+      if (!numberReg.test(number) || number < 1 || number > 45) {
         throw new Error(`${ERROR.COMMON} ${ERROR.MUST_IN_RANGE}`);
       }
     });
