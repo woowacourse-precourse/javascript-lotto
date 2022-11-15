@@ -1,3 +1,5 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+
 class Calculator {
   constructor(lotteries, winningNumber, bonusNumber, money) {
     this.lotteries = lotteries;
@@ -62,6 +64,45 @@ class Calculator {
 
   getPrizeMoneyArray(statistic) {
     return statistic.map((count, index) => count * this.prize[index]);
+  }
+
+  printResult() {
+    this.print5thPrize();
+    this.print4thPrize();
+    this.print3rdPrize();
+    this.print2ndPrize();
+    this.print1stPrize();
+    this.printYield();
+  }
+
+  print5thPrize() {
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.statistic[0]}개`);
+  }
+
+  print4thPrize() {
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${this.statistic[1]}개`);
+  }
+
+  print3rdPrize() {
+    MissionUtils.Console.print(
+      `5개 일치 (1,500,000원) - ${this.statistic[2]}개`
+    );
+  }
+
+  print2ndPrize() {
+    MissionUtils.Console.print(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.statistic[3]}개`
+    );
+  }
+
+  print1stPrize() {
+    MissionUtils.Console.print(
+      `6개 일치 (2,000,000,000원) - ${this.statistic[4]}개`
+    );
+  }
+
+  printYield() {
+    MissionUtils.Console.print(`총 수익률은 ${this.yield}%입니다.`);
   }
 }
 
