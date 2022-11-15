@@ -1,27 +1,21 @@
 const Lotto = require("./Lotto");
-
-const WINMESSAGE = {
-  3: "3개 일치",
-  4: "4개 일치",
-  5: "5개 일치",
-  "5+": "5개 일치, 보너스 볼 일치",
-  6: "6개 일치",
-};
+const { CONSTANT, ERROR_MESSAGE, WINMESSAGE } = require("../src/Utils");
 
 class LottoAnswer extends Lotto {
   #bonus;
+
   constructor(numbers) {
     super(numbers);
     this.#bonus = null;
   }
 
   validateBonus(bonus) {
-    if (isNaN(bonus)) throw new Error("[ERROR] 1개의 숫자를 입력하세요.");
+    if (isNaN(bonus)) throw new Error(ERROR_MESSAGE.LOTTO_BONUS.NAN);
     if (this.numbers.includes(bonus))
-      throw new Error("[ERROR] 당첨 번호와 중복되지 않는 숫자를 입력하세요.");
-    if (bonus < 1 || bonus > 45)
-      throw new Error("[ERROR] 1부터 45까지 숫자 중 입력하세요.");
-    if (!Number.isInteger(bonus)) throw new Error("[ERROR] 정수를 입력하세요.");
+      throw new Error(ERROR_MESSAGE.LOTTO_BONUS.DUPLICATE);
+    if (bonus < CONSTANT.LOTTO_RANGE_START || bonus > CONSTANT.LOTTO_RANGE_END)
+      throw new Error(ERROR_MESSAGE.LOTTO_BONUS.OVER_RANGE);
+    if (!Number.isInteger(bonus)) throw new Error(ERROR_MESSAGE.LOTTO_BONUS.NOT_INTEGER);
   }
 
   set bonus(bonus) {
@@ -37,17 +31,17 @@ class LottoAnswer extends Lotto {
     let match = candidate.filter((number) => this.numbers.includes(number)).length;
     switch (match) {
       case 3:
-        return WINMESSAGE[3];
+        return WINMESSAGE.FIFTH;
       case 4:
-        return WINMESSAGE[4];
+        return WINMESSAGE.FOURTH;
       case 5: {
-        if (candidate.includes(this.#bonus)) return WINMESSAGE["5+"];
-        return WINMESSAGE[5];
+        if (candidate.includes(this.#bonus)) return WINMESSAGE.SECOND;
+        return WINMESSAGE.THIRD;
       }
       case 6:
-        return WINMESSAGE[6];
+        return WINMESSAGE.FIRST;
     }
   }
 }
 
-module.exports = { LottoAnswer, WINMESSAGE };
+module.exports = LottoAnswer;

@@ -1,43 +1,55 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
-const { WINMESSAGE, LottoAnswer } = require("./LottoAnswer");
-const { parseAnswerInput, parseBonusInput } = require("./Utils");
+const LottoAnswer = require("./LottoAnswer");
+const {
+  CONSTANT,
+  ERROR_MESSAGE,
+  WINMESSAGE,
+  WINMONEY,
+  parseAnswerInput,
+  parseBonusInput,
+  parsePrintNumber,
+  getPercentage,
+} = require("./Utils");
 
 class Store {
   constructor() {
-    this.price = 0;
+    this.cost = 0;
     this.candidates = [];
     this.answer = null;
     this.result = new Map([
-      [WINMESSAGE[3], [5000, 0]],
-      [WINMESSAGE[4], [50000, 0]],
-      [WINMESSAGE[5], [1500000, 0]],
-      [WINMESSAGE["5+"], [30000000, 0]],
-      [WINMESSAGE[6], [2000000000, 0]],
+      [WINMESSAGE.FIFTH, [WINMONEY.FIFTH, 0]],
+      [WINMESSAGE.FOURTH, [WINMONEY.FOURTH, 0]],
+      [WINMESSAGE.THIRD, [WINMONEY.THIRD, 0]],
+      [WINMESSAGE.SECOND, [WINMONEY.SECOND, 0]],
+      [WINMESSAGE.FIRST, [WINMONEY.FIRST, 0]],
     ]);
     this.prizeMoney = 0;
   }
 
   issue() {
-    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-    numbers.sort((a, b) => a - b);
-    const lotto = new Lotto(numbers);
+    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(
+      CONSTANT.LOTTO_RANGE_START,
+      CONSTANT.LOTTO_RANGE_END,
+      CONSTANT.LOTTO_LENGTH
+    );
+    const sortedNumbers = numbers.sort((a, b) => a - b);
+    const lotto = new Lotto(sortedNumbers);
     this.candidates.push(lotto);
   }
 
-  validatePrice(price) {
-    if (price === "" || isNaN(price))
-      throw new Error("[ERROR] 숫자를 입력해 주세요.");
-    if (price % 1000 !== 0)
-      throw new Error("[ERROR] 1000원 단위로 입력해 주세요.");
-    if (price <= 0) throw new Error("[ERROR] 양의 정수를 입력해 주세요.");
+  validateCost(cost) {
+    if (cost === "" || isNaN(cost)) throw new Error(ERROR_MESSAGE.LOTTO_COST.NAN);
+    if (cost % CONSTANT.LOTTO_PRICE !== 0)
+      throw new Error(ERROR_MESSAGE.LOTTO_COST.NOT_THOUSAND);
+    if (cost <= 0) throw new Error(ERROR_MESSAGE.LOTTO_COST.NEGATIVE);
   }
 
   buy() {
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (userInput) => {
-      this.validatePrice(Number(userInput));
-      this.price = Number(userInput);
-      const lottoMaxCount = this.price / 1000;
+    MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (userInput) => {
+      this.validateCost(Number(userInput));
+      this.cost = Number(userInput);
+      const lottoMaxCount = this.cost / CONSTANT.LOTTO_PRICE;
       MissionUtils.Console.print(`${lottoMaxCount}개를 구매했습니다.`);
       for (let lottoCount = 0; lottoCount < lottoMaxCount; lottoCount++) {
         this.issue();
@@ -48,26 +60,23 @@ class Store {
 
   printCandidates() {
     this.candidates.forEach((candidate) => {
-      MissionUtils.Console.print(`[${candidate.numbers.join(", ")}]`);
+      MissionUtils.Console.print(parsePrintNumber(candidate.numbers));
     });
     this.setAnswer();
   }
 
   setAnswer() {
-    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (userInput) => {
+    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.\n", (userInput) => {
       this.answer = new LottoAnswer(parseAnswerInput(userInput));
       return this.setBonus();
     });
   }
 
   setBonus() {
-    MissionUtils.Console.readLine(
-      "보너스 번호를 입력해 주세요.",
-      (userInput) => {
-        this.answer.bonus = parseBonusInput(userInput);
-        return this.setResult();
-      }
-    );
+    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.\n", (userInput) => {
+      this.answer.bonus = parseBonusInput(userInput);
+      return this.setResult();
+    });
   }
 
   setResult() {
@@ -93,7 +102,7 @@ class Store {
   }
 
   getEarningRate() {
-    return ((100 * this.prizeMoney) / this.price).toFixed(1);
+    return getPercentage(this.prizeMoney, this.cost);
   }
 
   printReport() {

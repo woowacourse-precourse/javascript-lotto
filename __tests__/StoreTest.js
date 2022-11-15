@@ -1,14 +1,13 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Store = require("../src/Store");
-const { WINMESSAGE, LottoAnswer } = require("../src/LottoAnswer");
+const LottoAnswer = require("../src/LottoAnswer");
 const Lotto = require("../src/Lotto");
+const { ERROR_MESSAGE, WINMESSAGE, WINMONEY } = require("../src/Utils");
 
 const mockReadLine = (input) => {
-  MissionUtils.Console.readLine = jest
-    .fn()
-    .mockImplementation((question, callback) => {
-      callback(input);
-    });
+  MissionUtils.Console.readLine = jest.fn().mockImplementation((question, callback) => {
+    callback(input);
+  });
 };
 
 const getLogSpy = () => {
@@ -28,42 +27,42 @@ describe("Store 클래스 테스트", () => {
       .fn()
       .mockReturnValue([4, 5, 6, 1, 2, 3]);
     store.issue();
-    expect(
-      store.candidates.map((candidate) => candidate.numbers)
-    ).toContainEqual([1, 2, 3, 4, 5, 6]);
+    expect(store.candidates.map((candidate) => candidate.numbers)).toContainEqual([
+      1, 2, 3, 4, 5, 6,
+    ]);
   });
 
   test("1개의 숫자가 아니면 예외가 발생한다.", () => {
     expect(() => {
-      store.validatePrice("");
-    }).toThrow("[ERROR] 숫자를 입력해 주세요.");
+      store.validateCost("");
+    }).toThrow(ERROR_MESSAGE.LOTTO_COST.NAN);
     expect(() => {
-      store.validatePrice("1,2");
-    }).toThrow("[ERROR] 숫자를 입력해 주세요.");
+      store.validateCost("1,2");
+    }).toThrow(ERROR_MESSAGE.LOTTO_COST.NAN);
     expect(() => {
-      store.validatePrice("%");
-    }).toThrow("[ERROR] 숫자를 입력해 주세요.");
+      store.validateCost("%");
+    }).toThrow(ERROR_MESSAGE.LOTTO_COST.NAN);
   });
 
   test("1000원 단위로 입력되지 않으면 예외가 발생한다.", () => {
     expect(() => {
-      store.validatePrice(1500);
-    }).toThrow("[ERROR] 1000원 단위로 입력해 주세요.");
+      store.validateCost(1500);
+    }).toThrow(ERROR_MESSAGE.LOTTO_COST.NOT_THOUSAND);
     expect(() => {
-      store.validatePrice(1);
-    }).toThrow("[ERROR] 1000원 단위로 입력해 주세요.");
+      store.validateCost(1);
+    }).toThrow(ERROR_MESSAGE.LOTTO_COST.NOT_THOUSAND);
     expect(() => {
-      store.validatePrice(1000.5);
-    }).toThrow("[ERROR] 1000원 단위로 입력해 주세요.");
+      store.validateCost(1000.5);
+    }).toThrow(ERROR_MESSAGE.LOTTO_COST.NOT_THOUSAND);
   });
 
   test("0 또는 음수가 입력되면 예외가 발생한다.", () => {
     expect(() => {
-      store.validatePrice(-1000);
-    }).toThrow("[ERROR] 양의 정수를 입력해 주세요.");
+      store.validateCost(-1000);
+    }).toThrow(ERROR_MESSAGE.LOTTO_COST.NEGATIVE);
     expect(() => {
-      store.validatePrice(0);
-    }).toThrow("[ERROR] 양의 정수를 입력해 주세요.");
+      store.validateCost(0);
+    }).toThrow(ERROR_MESSAGE.LOTTO_COST.NEGATIVE);
   });
 
   test("구입 금액을 입력하면 금액만큼 로또를 발행한다.", () => {
@@ -77,10 +76,7 @@ describe("Store 클래스 테스트", () => {
     store.setAnswer = jest.fn();
     const logs = ["[1, 2, 3, 4, 5, 6]", "[4, 5, 6, 7, 8, 9]"];
     const logSpy = getLogSpy();
-    store.candidates = [
-      new Lotto([1, 2, 3, 4, 5, 6]),
-      new Lotto([4, 5, 6, 7, 8, 9]),
-    ];
+    store.candidates = [new Lotto([1, 2, 3, 4, 5, 6]), new Lotto([4, 5, 6, 7, 8, 9])];
     store.printCandidates();
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
@@ -112,25 +108,25 @@ describe("Store 클래스 테스트", () => {
     store.answer = new LottoAnswer([4, 5, 6, 7, 8, 10]);
     store.answer.bonus = 9;
     store.setResult();
-    expect(store.result.get(WINMESSAGE[3])[1]).toBe(1);
-    expect(store.result.get(WINMESSAGE["5+"])[1]).toBe(1);
+    expect(store.result.get(WINMESSAGE.FIFTH)[1]).toBe(1);
+    expect(store.result.get(WINMESSAGE.SECOND)[1]).toBe(1);
   });
 
   test("총 당첨금을 산출한다.", () => {
     store.printReport = jest.fn();
     store.result = new Map([
-      [WINMESSAGE[3], [5000, 0]],
-      [WINMESSAGE[4], [50000, 1]],
-      [WINMESSAGE[5], [1500000, 1]],
-      [WINMESSAGE["5+"], [30000000, 0]],
-      [WINMESSAGE[6], [2000000000, 0]],
+      [WINMESSAGE.FIFTH, [WINMONEY.FIFTH, 0]],
+      [WINMESSAGE.FOURTH, [WINMONEY.FOURTH, 1]],
+      [WINMESSAGE.THIRD, [WINMONEY.THIRD, 1]],
+      [WINMESSAGE.SECOND, [WINMONEY.SECOND, 0]],
+      [WINMESSAGE.FIRST, [WINMONEY.FIRST, 0]],
     ]);
     store.setPrizeMoney();
     expect(store.prizeMoney).toBe(1550000);
   });
 
   test("수익률을 산출한다.", () => {
-    store.price = 5000;
+    store.cost = 5000;
     store.prizeMoney = 5000;
     expect(store.getEarningRate()).toBe("100.0");
   });
@@ -146,7 +142,7 @@ describe("Store 클래스 테스트", () => {
       "총 수익률은 100.0%입니다.",
     ];
     const logSpy = getLogSpy();
-    store.price = 10000;
+    store.cost = 10000;
     store.prizeMoney = 10000;
     store.printReport();
     logs.forEach((log) => {
