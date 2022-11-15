@@ -63,9 +63,9 @@ class App {
 
   getBonusNumber(){
     MissionUtils.Console.readLine("\n보너스 번호를 입력해 주세요.\n",(number) => {
-      const vaildation = new Vaildation(number);
-      vaildation.isVaildBounsNumber(number)
       const bonusNum = parseInt(number);
+      const vaildation = new Vaildation(bonusNum);
+      vaildation.isVaildBounsNumber(bonusNum)
       this.bonusNumber =bonusNum;
       if(this.winningList.includes(this.bonusNumber)){
         throw new Error("[ERROR] 보너스번호는 당첨번호와 중복되지 않게 입력하세요.")
@@ -112,17 +112,6 @@ class App {
     const rateOfReturn = (returnList.reduce((acc,cur)=>acc+cur)/this.purchaseAmount).toFixed(1);
     this.rateOfReturn =rateOfReturn;
   }
-
-  
-
-
-
 }
-
-
-
-
-const app = new App();
-app.play();
 
 module.exports = App;
