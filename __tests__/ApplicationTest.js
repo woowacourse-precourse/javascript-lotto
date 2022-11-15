@@ -84,6 +84,19 @@ describe("로또 테스트", () => {
     const app = new App();
     app.plusWinnerCount({ collectNumber: 5, bonusNumber: true });
     const result = app.lottoResults;
-    expect(result).toEqual([0, 0, 0, 0, 0, 1]);
+    expect(result).toEqual([0, 0, 0, 0, 1]);
+  });
+
+  test("getTotalProceed 2등 결과를 넣어 호출하였을 때, 총 수익금을 반환한다", () => {
+    const app = new App();
+    const result = app.getTotalProceeds([0, 0, 0, 0, 1]);
+    expect(result).toEqual(30000000);
+  });
+
+  test("changeProceedFormat 총 수입금을 넣어 호출하였을 때, 소숫점 첫번째 까지를 백분률로 표시하는 수익률을 반환한다", () => {
+    const app = new App();
+    app.user.changeMoney(10000);
+    const result = app.changeProceedFormat(5000);
+    expect(result).toEqual("50.0");
   });
 });

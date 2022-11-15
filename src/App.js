@@ -9,9 +9,20 @@ const LOTTO_RESULT_MESSAGE = (resultNumber) => `
 3개 일치 (5,000원) - ${resultNumber[0]}개
 4개 일치 (50,000원) - ${resultNumber[1]}개
 5개 일치 (1,500,000원) - ${resultNumber[2]}개
-5개 일치, 보너스 볼 일치 (30,000,000원) - ${resultNumber[5]}개
-6개 일치 (2,000,000,000원) - ${resultNumber[4]}개
+5개 일치, 보너스 볼 일치 (30,000,000원) - ${resultNumber[4]}개
+6개 일치 (2,000,000,000원) - ${resultNumber[3]}개
 `;
+
+const TOTAL_PROFIT_MESSAGE = (profit) => `총 수익률은 ${profit}%입니다.`;
+
+// 5,4,3,1,2등 순서
+const LOTTO_PROCEEDS_INFO = [
+  { ranking: 5, proceed: 5000 },
+  { ranking: 4, proceed: 50000 },
+  { ranking: 3, proceed: 1500000 },
+  { ranking: 1, proceed: 2000000000 },
+  { ranking: 2, proceed: 30000000 },
+];
 
 class App {
   constructor() {
@@ -20,7 +31,7 @@ class App {
     this.winningNumbers = new WinningNumbers();
 
     // 5,4,3,1,2등 순서
-    this.lottoResults = [0, 0, 0, 0, 0, 0];
+    this.lottoResults = [0, 0, 0, 0, 0];
   }
 
   play() {
@@ -76,6 +87,10 @@ class App {
       this.plusWinnerCount(collectInfo);
     });
     Console.print(LOTTO_RESULT_MESSAGE(this.lottoResults));
+    const totalProceeds = this.getTotalProceeds(this.lottoResults);
+    Console.print(
+      TOTAL_PROFIT_MESSAGE(this.changeProceedFormat(totalProceeds))
+    );
   }
 
   getCollectInfo(lottoNumbers) {
@@ -94,12 +109,24 @@ class App {
 
   plusWinnerCount(collectInfo) {
     if (collectInfo.collectNumber === 5 && collectInfo.bonusNumber) {
-      this.lottoResults[5] += 1;
+      this.lottoResults[4] += 1;
       return;
     }
     if (collectInfo.collectNumber > 2) {
       this.lottoResults[collectInfo.collectNumber - 3] += 1;
     }
+  }
+
+  getTotalProceeds(lottoResults) {
+    let proceeds = 0;
+    lottoResults.forEach((result, index) => {
+      proceeds += result * LOTTO_PROCEEDS_INFO[index].proceed;
+    });
+    return proceeds;
+  }
+
+  changeProceedFormat(number) {
+    return ((number / this.user.getMoney()) * 100).toFixed(1);
   }
 }
 
