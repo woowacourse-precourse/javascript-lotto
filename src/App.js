@@ -1,5 +1,5 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
-const { MESSAGE, LOTTERY_PRICE, LOTTERY_RESULT, PRIZE, PRIZE_MONEY } = require("./Constant");
+const { MESSAGE, LOTTERY_PRICE, LOTTERY_RESULT, PRIZE_GRADE, PRIZE_PRICE } = require("./Constant");
 class App {
   #money;
   #numberOfLottery;
@@ -20,7 +20,7 @@ class App {
   };
 
   getPrizeMoney = () => {
-    return PRIZE_MONEY.reduce((sum, prizeUnit, index) => sum + prizeUnit * this.#lotteryResult[index], 0);
+    return PRIZE_PRICE.reduce((sum, prizeUnit, index) => sum + prizeUnit * this.#lotteryResult[index], 0);
   };
 
   printProfit = () => {
@@ -32,26 +32,26 @@ class App {
 
   printLotteryResult = () => {
     Console.print(LOTTERY_RESULT.TITLE);
-    Console.print(`${LOTTERY_RESULT.MATCHED_THREE}${this.#lotteryResult[PRIZE.FIFTH_PLACE]}${LOTTERY_RESULT.UNIT}`);
-    Console.print(`${LOTTERY_RESULT.MATCHED_FOUR}${this.#lotteryResult[PRIZE.FOURTH_PLACE]}${LOTTERY_RESULT.UNIT}`);
-    Console.print(`${LOTTERY_RESULT.MATCHED_FIVE}${this.#lotteryResult[PRIZE.THIRD_PLACE]}${LOTTERY_RESULT.UNIT}`);
-    Console.print(`${LOTTERY_RESULT.MATCHED_FIVE_AND_BONUS}${this.#lotteryResult[PRIZE.SECOND_PLACE]}${LOTTERY_RESULT.UNIT}`);
-    Console.print(`${LOTTERY_RESULT.MATCHED_SIX}${this.#lotteryResult[PRIZE.FIRST_PLACE]}${LOTTERY_RESULT.UNIT}`);
+    Console.print(`${LOTTERY_RESULT.MATCHED_THREE}${this.#lotteryResult[PRIZE_GRADE.FIFTH]}${LOTTERY_RESULT.UNIT}`);
+    Console.print(`${LOTTERY_RESULT.MATCHED_FOUR}${this.#lotteryResult[PRIZE_GRADE.FOURTH]}${LOTTERY_RESULT.UNIT}`);
+    Console.print(`${LOTTERY_RESULT.MATCHED_FIVE}${this.#lotteryResult[PRIZE_GRADE.THIRD]}${LOTTERY_RESULT.UNIT}`);
+    Console.print(`${LOTTERY_RESULT.MATCHED_FIVE_AND_BONUS}${this.#lotteryResult[PRIZE_GRADE.SECOND]}${LOTTERY_RESULT.UNIT}`);
+    Console.print(`${LOTTERY_RESULT.MATCHED_SIX}${this.#lotteryResult[PRIZE_GRADE.FIRST]}${LOTTERY_RESULT.UNIT}`);
 
     this.printProfit();
   };
 
   checkBonusNumber = (index) => {
-    if (this.#myLottery[index].includes(this.#bonusNumber)) return this.#lotteryResult[PRIZE.SECOND_PLACE]++;
-    else return this.#lotteryResult[PRIZE.THIRD_PLACE]++;
+    if (this.#myLottery[index].includes(this.#bonusNumber)) return this.#lotteryResult[PRIZE_GRADE.SECOND]++;
+    else return this.#lotteryResult[PRIZE_GRADE.THIRD]++;
   };
 
   getLotteryResult = () => {
     this.#matchedCounts.forEach((count, index) => {
-      if (count === 6) this.#lotteryResult[PRIZE.FIRST_PLACE]++;
+      if (count === 6) this.#lotteryResult[PRIZE_GRADE.FIRST]++;
       if (count === 5) this.checkBonusNumber(index);
-      if (count === 4) this.#lotteryResult[PRIZE.FOURTH_PLACE]++;
-      if (count === 3) this.#lotteryResult[PRIZE.FIFTH_PLACE]++;
+      if (count === 4) this.#lotteryResult[PRIZE_GRADE.FOURTH]++;
+      if (count === 3) this.#lotteryResult[PRIZE_GRADE.FIFTH]++;
     });
 
     this.printLotteryResult();
