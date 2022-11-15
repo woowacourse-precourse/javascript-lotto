@@ -1,6 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 const LottoManager = require('./LottoManager');
-const { ERROR } = require('./constants/constants');
+const { ERROR, LOTTO } = require('./constants/constants');
 
 class App {
   constructor() {
@@ -59,7 +59,7 @@ class App {
   }
 
   isLength(numbers) {
-    return numbers.length === 6;
+    return numbers.length === LOTTO.LENGTH;
   }
 
   isAllNumber(numbers) {
@@ -67,7 +67,9 @@ class App {
   }
 
   isAllRange(numbers) {
-    return numbers.every((number) => number >= 1 && number <= 45);
+    return numbers.every(
+      (number) => number >= LOTTO.MINIMUM_RANGE && number <= LOTTO.MAXIMUM_RANGE
+    );
   }
 
   isUnique(numbers) {
@@ -99,7 +101,7 @@ class App {
   }
 
   isRange(number) {
-    return number >= 1 && number <= 45;
+    return number >= LOTTO.MINIMUM_RANGE && number <= LOTTO.MAXIMUM_RANGE;
   }
 
   isDuplicateWithWinningNumber(number) {
@@ -122,20 +124,20 @@ class App {
   checkRanking(count, lotto) {
     if (count === 3) {
       this.ranking = { ...this.ranking, fifth: this.ranking.fifth + 1 };
-      this.winningReward += 5000;
+      this.winningReward += LOTTO.WINNING_REWARD.FIFTH;
     } else if (count === 4) {
       this.ranking = { ...this.ranking, fourth: this.ranking.fourth + 1 };
-      this.winningReward += 50000;
+      this.winningReward += LOTTO.WINNING_REWARD.FOURTH;
     } else if (count === 5) {
       if (lotto.getNumbers().includes(this.bonusNumber)) {
         this.ranking = { ...this.ranking, second: this.ranking.second + 1 };
-        this.winningReward += 30000000;
+        this.winningReward += LOTTO.WINNING_REWARD.SECOND;
       }
       this.ranking = { ...this.ranking, third: this.ranking.third + 1 };
-      this.winningReward += 1500000;
+      this.winningReward += LOTTO.WINNING_REWARD.THIRD;
     } else if (count === 6) {
       this.ranking = { ...this.ranking, first: this.ranking.first + 1 };
-      this.winningReward += 2000000000;
+      this.winningReward += LOTTO.WINNING_REWARD.FIRST;
     }
   }
 

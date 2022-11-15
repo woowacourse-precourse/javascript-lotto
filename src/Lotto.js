@@ -1,4 +1,4 @@
-const { ERROR } = require('./constants/constants');
+const { ERROR, LOTTO } = require('./constants/constants');
 
 class Lotto {
   #numbers;
@@ -24,7 +24,7 @@ class Lotto {
   }
 
   isLength(numbers) {
-    return numbers.length === 6;
+    return numbers.length === LOTTO.LENGTH;
   }
 
   isNumber(numbers) {
@@ -32,7 +32,9 @@ class Lotto {
   }
 
   isRange(numbers) {
-    return numbers.every((number) => number >= 1 && number <= 45);
+    return numbers.every(
+      (number) => number >= LOTTO.MINIMUM_RANGE && number <= LOTTO.MAXIMUM_RANGE
+    );
   }
 
   isUnique(numbers) {

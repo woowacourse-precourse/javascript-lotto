@@ -1,12 +1,12 @@
 const Lotto = require('./Lotto');
 const NumberGenerator = require('./NumberGenerator');
-const { ERROR } = require('./constants/constants');
+const { ERROR, LOTTO } = require('./constants/constants');
 
 class LottoManager {
   issueLotto(purchaseAmount) {
     this.validatePurchaseAmount(purchaseAmount);
     const lottoArray = [];
-    const numberOfLotto = purchaseAmount / 1000;
+    const numberOfLotto = purchaseAmount / LOTTO.PRICE;
     for (let i = 0; i < numberOfLotto; i++) {
       const lottoNumbers = new NumberGenerator().createLottoNumbers();
       const lotto = new Lotto(lottoNumbers);
@@ -32,11 +32,11 @@ class LottoManager {
   }
 
   isDivisibleByLottoPrice(input) {
-    return input % 1000 === 0;
+    return input % LOTTO.PRICE === 0;
   }
 
   isLessThanLottoPrice(input) {
-    return input < 1000;
+    return input < LOTTO.PRICE;
   }
 }
 

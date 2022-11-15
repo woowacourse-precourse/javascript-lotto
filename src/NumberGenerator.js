@@ -1,4 +1,5 @@
 const { Random } = require('@woowacourse/mission-utils');
+const { LOTTO } = require('./constants/constants');
 
 class NumberGenerator {
   compareNumbers(a, b) {
@@ -6,7 +7,11 @@ class NumberGenerator {
   }
 
   createLottoNumbers() {
-    return Random.pickUniqueNumbersInRange(1, 45, 6).sort(this.compareNumbers);
+    return Random.pickUniqueNumbersInRange(
+      LOTTO.MINIMUM_RANGE,
+      LOTTO.MAXIMUM_RANGE,
+      LOTTO.LENGTH
+    ).sort(this.compareNumbers);
   }
 }
 
