@@ -60,27 +60,27 @@ class Lotto {
 
   matchLottoResult(results, purchaseAmount) {
     let winningRanks = [0, 0, 0, 0, 0];
-    results.map((result) => {
-      const matchWinningNumber = result[0];
-      const matchBonusNumber = result[1];
-      if (matchWinningNumber === 3) {
-        winningRanks[0] += 1;
-      }
-      if (matchWinningNumber === 4) {
-        winningRanks[1] += 1;
-      }
-      if (matchWinningNumber === 5 && matchBonusNumber === 0) {
-        winningRanks[2] += 1;
-      }
-      if (matchWinningNumber === 5 && matchBonusNumber === 1) {
-        winningRanks[3] += 1;
-      }
-      if (matchWinningNumber === 6) {
-        winningRanks[4] += 1;
-      }
-    });
+    for (let result of results) {
+      winningRanks = this.calculateWinningRanks(winningRanks, result);
+    }
     // console.log("winningRanks Lotto", winningRanks);
     this.printLottoResult(winningRanks, purchaseAmount);
+  }
+
+  calculateWinningRanks(winningRanks, result) {
+    const [matchWinningNumber, matchBonusNumber] = result;
+    if (matchWinningNumber === 3) {
+      winningRanks[0] += 1;
+    } else if (matchWinningNumber === 4) {
+      winningRanks[1] += 1;
+    } else if (matchWinningNumber === 5 && matchBonusNumber === 0) {
+      winningRanks[2] += 1;
+    } else if (matchWinningNumber === 5 && matchBonusNumber === 1) {
+      winningRanks[3] += 1;
+    } else if (matchWinningNumber === 6) {
+      winningRanks[4] += 1;
+    }
+    return winningRanks;
   }
 
   printLottoResult(winningRanks, purchaseAmount) {
@@ -92,15 +92,20 @@ class Lotto {
     MissionUtils.Console.print(
       `5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningRanks[3]}개`
     );
-    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${winningRanks[4]}개`);
+    MissionUtils.Console.print(
+      `6개 일치 (2,000,000,000원) - ${winningRanks[4]}개`
+    );
     this.calculateProfit(winningRanks, purchaseAmount);
   }
 
   calculateProfit(results, purchaseAmount) {
     const prizeMoneys = [5000, 50000, 1500000, 30000000, 2000000000];
-    const totalprizeMoney = results.reduce((money, cur, curIdx) => {
-      return money + cur * prizeMoneys[curIdx];
-    }, 0);
+    const totalprizeMoney = results.reduce(
+      (money, currentValue, currentIndex) => {
+        return money + currentValue * prizeMoneys[currentIndex];
+      },
+      0
+    );
     // console.log(totalprizeMoney);
     const profit = ((totalprizeMoney / purchaseAmount) * 100).toFixed(1);
     MissionUtils.Console.print(`총 수익률은 ${profit}%입니다.`);
