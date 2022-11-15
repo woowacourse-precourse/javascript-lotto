@@ -43,7 +43,7 @@ class LottoShop {
     const lottoAmount = this.countLottoAmount(purchaseAmount);
     this.setpurchasedNumbers(lottoAmount);
 
-    new Output().lottoNumbers(lottoAmount, this.#purchasedNumbers);
+    new Output().purchasedResult(lottoAmount, this.#purchasedNumbers);
   }
 
   getPurchasedNumbers() {
