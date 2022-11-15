@@ -1,8 +1,12 @@
+const Text = require("./Text");
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
     this.validate(numbers);
+    this.range(numbers);
+    this.repeating(numbers);
     this.#numbers = numbers;
   }
 
@@ -12,7 +16,23 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
+  range(numbers) {
+    numbers.forEach((lottos) => {
+      var lottoNum = +lottos;
+      if (lottoNum < 1 || lottoNum > 45) {
+        throw new Error(`${Text.ERROR_TEXT.LIMIT}`);
+      }
+    });
+  }
+
+  repeating(numbers) {
+    var lottoNumSet = new Set(numbers);
+    lottoNum = [...lottoNumSet];
+
+    if (lottoNum.length !== 6) {
+      throw new Error(`${Text.ERROR_TEXT.REPEAT}`);
+    }
+  }
 }
 
 module.exports = Lotto;
