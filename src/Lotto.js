@@ -2,10 +2,14 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
+    this.validate(numbers)
+    this.#numbers = numbers;
+  }
+
+  validate(numbers) {
     this.validateLength(numbers);
     this.validateDuplicated(numbers);
-    this.validateNumber(numbers)
-    this.#numbers = numbers;
+    this.validateNumber(numbers);
   }
 
   validateLength(numbers) {
