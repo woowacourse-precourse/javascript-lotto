@@ -2,7 +2,7 @@ const { prizeCount, PRIZE_MONEY } = require('../common/constants');
 const { print, random } = require('../common/util');
 const { checkLottoAmount } = require('../common/Validation');
 
-class LottoGenerator {
+class LottoAmount {
   #lottoAmount;
 
   constructor(money) {
@@ -32,4 +32,4 @@ class LottoGenerator {
   }
 }
 
-module.exports = LottoGenerator;
+module.exports = LottoAmount;
