@@ -2,7 +2,7 @@ const Calculator = require("../model/Calculator");
 const { MESSAGE_ACCORDING_ASK } = require("../constants/Message");
 const MyNumberGenerator = require("../model/Generator");
 const Lotto = require("../model/Lotto");
-const { readLine, close } = require("../utils/MissionUtils");
+const { readLine } = require("../utils/MissionUtils");
 const View = require("../view/View");
 
 class LottoGameController {
@@ -11,7 +11,7 @@ class LottoGameController {
   #moneyInput;
   #model = {
     generatorModel: new MyNumberGenerator(),
-    calculatorModel: new Calculator()
+    calculatorModel: new Calculator(),
   };
   #view = { print: new View() };
 
@@ -27,7 +27,9 @@ class LottoGameController {
   }
 
   #generateMyNumbers() {
-    const myLottoNumbers = this.#model.generatorModel.generateMyLottoNumber(this.#moneyInput);
+    const myLottoNumbers = this.#model.generatorModel.generateMyLottoNumber(
+      this.#moneyInput
+    );
     this.#notifyMyInfo(myLottoNumbers);
     this.#getWinningNumbersFromUser(myLottoNumbers);
   }
@@ -53,7 +55,10 @@ class LottoGameController {
 
   #getBonusNumberFromUser(myLottoNumbers, winningNumber) {
     readLine(MESSAGE_ACCORDING_ASK.INPUT_BONUS_NUMBER, (bonusNumber) => {
-      const lottoModel = new Lotto({ winningNumber, bonusNumber: +bonusNumber });
+      const lottoModel = new Lotto({
+        winningNumber,
+        bonusNumber: +bonusNumber,
+      });
       this.#winningNumbers = lottoModel.getConvertedLottoNumber();
       this.#calculateWinningCount(myLottoNumbers);
     });
@@ -76,7 +81,6 @@ class LottoGameController {
     );
 
     this.#view.print.eariningRate(earningRate);
-    close();
   }
 }
 
