@@ -30,6 +30,7 @@ class State {
     const lottos = [];
     for (let count = 1; count <= buyLottoCount; count++) {
       const lotto = this.lottoNumberGenerator.createRandomNumbers();
+      MissionUtils.Console.print(lotto);
       lottos.push(lotto);
     }
     this.buyLottoNumbers = lottos;
@@ -48,7 +49,10 @@ class State {
   }
 
   setWinNumbersInput(userInput) {
-    console.log(userInput, "🍔");
+    this.splitNumber(userInput, ",");
+  }
+  splitNumber(number, flag) {
+    const splited = number.split(flag);
   }
 }
 
