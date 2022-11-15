@@ -7,9 +7,10 @@
     
 
 - [ ] 당첨 번호와 보너스 번호를 입력 받는다. #Lotto
-  - [ ] 로또 번호의 숫자 범위는 1~45까지이다. #Lotto numberValue(){}
-  - [ ] 로또 번호는 6자리 이상 넘어가지 않는다. #Lotto validate(){}
-  - [ ] 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다. #Lotto notDuplicated(){}
+  - [x] 로또 번호는 숫자이여야 한다. #Lotto numberValue(){}
+  - [x] 로또 번호의 숫자 범위는 1~45까지이다. #Lotto numberRange(){}
+  - [x] 로또 번호는 6자리 이상 넘어가지 않는다. #Lotto validate(){}
+  - [x] 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다. #Lotto notDuplicated(){}
   - [ ] 보너스 번호도 입력 받는다. #Lotto bonusNumber(){}
 
 - [ ] 사용자 번호와 당첨 번호를 비교하여 추첨. #DrawLots compareValue(){}
