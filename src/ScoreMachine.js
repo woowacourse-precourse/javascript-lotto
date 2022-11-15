@@ -17,14 +17,21 @@ class ScoreMachine {
   };
 
   run(winningNumber, bonusNumber) {
-    this.#winningNumber = winningNumber;
-    this.#bonusNumber = bonusNumber;
-
+    this.setWinningNumber(winningNumber);
+    this.setBonusNumber(bonusNumber);
     this.makeLottoNumberList();
     this.compare();
     this.calculateRateOfReturn();
     this.printResult();
     this.endGame();
+  }
+
+  setWinningNumber(winningNumber) {
+    this.#winningNumber = winningNumber;
+  }
+
+  setBonusNumber(bonusNumber) {
+    this.#bonusNumber = bonusNumber;
   }
 
   makeLottoNumberList() {
@@ -57,11 +64,15 @@ class ScoreMachine {
     const ranking = {
       3: RANKING.FIFTH,
       4: RANKING.FOURTH,
-      5: lottoNumber.includes(this.#bonusNumber) ? RANKING.SECOND : RANKING.THIRD,
+      5: this.isMatchWithBounusNumber(lottoNumber) ? RANKING.SECOND : RANKING.THIRD,
       6: RANKING.FIRST,
     }[matchCount];
 
     if (ranking) this.#result[ranking] += 1;
+  }
+
+  isMatchWithBounusNumber(lottoNumber) {
+    return lottoNumber.includes(this.#bonusNumber);
   }
 
   calculateRateOfReturn() {
