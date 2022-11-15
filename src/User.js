@@ -2,17 +2,15 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 
 class User {
-	#seedMoney
-	
 	constructor(money) {
 		this.validate(money);
 		this.earnings = 0;
-		this.#seedMoney = money;
+		this.seedMoney = money;
 		this.lottoBundle = [];
 	}
 	
 	getSeedMoney() {
-		return this.#seedMoney;
+		return this.seedMoney;
 	}
 
 	validate(money) {
