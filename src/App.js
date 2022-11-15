@@ -36,6 +36,7 @@ class App {
     Utils.readLine(MESSAGE.INPUT_LOTTO_NUMBERS, (inputWinningNumbers) => {
       const lottoNumbers = Utils.separateNumbers(inputWinningNumbers, ',');
       this.#lottoManager.setWinningNumbers(lottoNumbers);
+
       this.#askBonusNumber();
     });
   }
@@ -45,18 +46,19 @@ class App {
       this.#lottoManager.setBonusNumber(inputBonus);
       const amount = this.#user.getAmount();
       const userNumbersList = this.#user.getNumbersList();
-
       const statistics = this.#lottoManager.generateStatistics(
         amount,
         userNumbersList
       );
       Printer.printStatistics(statistics.prizes, statistics.revenue);
-      Utils.close();
+
+      this.#finishLotto();
     });
   }
-}
 
-const app = new App();
-app.play();
+  #finishLotto() {
+    Utils.close();
+  }
+}
 
 module.exports = App;
