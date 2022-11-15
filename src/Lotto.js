@@ -25,9 +25,14 @@ class Lotto {
     let winCount = this.#numbers.filter((value) =>
       winNumbers.includes(value)
     ).length;
-    const matchBonus = winCount === 5 && this.#numbers.includes(bonusNumber);
-    if (matchBonus) winCount = 5.5;
+    if (winCount == 5) {
+      winCount = this.isIncludeBonus(bonusNumber) ? 5.5 : 5;
+    }
     return winCount;
+  }
+
+  isIncludeBonus(bonusNumber) {
+    return this.#numbers.includes(bonusNumber);
   }
 }
 
