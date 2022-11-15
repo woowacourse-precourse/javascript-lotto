@@ -20,6 +20,10 @@ class Validator {
     return fee % config.FEE_PER_GAME === 0;
   }
 
+  static isRightNumber(number) {
+    return this.isRightFee(number) && this.isPositiveNumber(number);
+  }
+
   static isNumberInArray(array, number) {
     return array.includes(number);
   }
