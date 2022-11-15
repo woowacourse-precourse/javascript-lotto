@@ -8,6 +8,7 @@ class App {
     this.lottoNumbers = [];
     this.winningNumbers = 0;
     this.bonusNumber = 0;
+    this.countOfWinningways = [0, 0, 0, 0, 0];
   }
 
   play() {
@@ -17,6 +18,7 @@ class App {
     this.consoleRandomLottoNumbers();
     this.inputWinningNumbers();
     this.inputBonusNumbers();
+    this.consoleWinningResult();
   }
 
   buyLotto() {
@@ -63,6 +65,46 @@ class App {
     Console.readLine("보너스 번호를 입력해 주세요.", (input) => {
       this.bonusNumber = input;
     });
+  }
+
+  consoleWinningResult() {
+    for (let i = 0; i < this.lottoAmount; i++) {
+      let winningCount = 0;
+      for (let j = 0; j < 6; j++) {
+        if (
+          this.lottoNumbers[i]
+            .getLottoNumbersArray()
+            .includes(this.winningNumbers.getLottoNumbersArray()[j])
+        )
+          winningCount++;
+      }
+      if (
+        this.lottoNumbers[i].getLottoNumbersArray().includes(this.bonusNumber) &&
+        winningCount == 5
+      ) {
+        this.countOfWinningways[3]++;
+      } 
+      else if (winningCount == 3) this.countOfWinningways[0]++;
+      else if (winningCount == 4) this.countOfWinningways[1]++;
+      else if (winningCount == 5) this.countOfWinningways[2]++;
+      else if (winningCount == 6) this.countOfWinningways[4]++;
+    }
+    Console.print("당첨 통계");
+    Console.print("---");
+    Console.print("3개 일치 (5,000원) - " + this.countOfWinningways[0] + "개");
+    Console.print("4개 일치 (50,000원) - " + this.countOfWinningways[1] + "개");
+    Console.print(
+      "5개 일치 (1,500,000원) - " + this.countOfWinningways[2] + "개"
+    );
+    Console.print(
+      "5개 일치, 보너스 볼 일치 (30,000,000원) - " +
+        this.countOfWinningways[3] +
+        "개"
+    );
+    Console.print(
+      "6개 일치 (2,000,000,000원) - " + this.countOfWinningways[4] + "개"
+    );
+    this.calculateResultPercentage();
   }
 }
 
