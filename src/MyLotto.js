@@ -1,10 +1,11 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
 class MyLotto {
-    lottoList = [];
+    #lottoList = [];
+
     constructor(money) {
         this.validate(money);
-        this.createLottoList(this.calculateNumberOfLotto(money))
+        this.createLottoList(this.calculateNumberOfLotto(money));
     }
 
     validate(money) {
@@ -20,17 +21,13 @@ class MyLotto {
     createLottoList(numbers) {
         for (let i = 0; i < numbers; i++) {
             let lotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-            this.lottoList.push(lotto)
+            this.#lottoList.push(lotto)
         }
     }
 
-    printLottoList() {
-        MissionUtils.Console.print(this.lottoList.length + '개를 구매했습니다.');
-        for (const lotto of this.lottoList) {
-            MissionUtils.Console.print(lotto.sort());
-        }
+    getMyLottoList() {
+        return this.#lottoList;
     }
-
 }
 
 module.exports = MyLotto;
