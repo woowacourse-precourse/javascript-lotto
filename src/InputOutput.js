@@ -1,4 +1,7 @@
+const { Console } = require('@woowacourse/mission-utils');
+
 class InputOutput {
+
     static input (message, callback) {
         Console.readLine(message, callback);
     }
