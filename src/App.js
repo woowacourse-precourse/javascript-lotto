@@ -1,57 +1,36 @@
-const Lotto = require('./Lotto');
-const MissionUtils = require('@woowacourse/mission-utils');
-const { validate, makeIntArray } = require('./Lotto.js');
-const { isValidPayAmount, isNumber, isNotDuplicated } = require('./Validator');
-const Console = MissionUtils.Console;
+const { read } = require('./Funcs.js');
+const {
+  moneyInputCheckHandler,
+  lottoInputCheckHandler,
+} = require('./Validator.js');
+const User = require('./User.js');
 
 class App {
-  purchaseAmount = 0;
-  winNumberArr = [];
+  constructor() {
+    this.user = new User();
+  }
 
-  inputPaymentHandler() {
-    Console.readLine('구입 금액을 입력해주세요 \n', input => {
-      validate(input, isNumber(input), this.addPurchaseAmount(input));
+  inputMoneyHandler() {
+    read('구입 금액을 입력해주세요\n', input => {
+      moneyInputCheckHandler(input, input => User.purchaseLotto(input));
       this.inputWinningNumberHandler();
     });
   }
-
-  addPurchaseAmount(input) {
-    validate(
-      input,
-      isValidPayAmount(input),
-      (this.purchaseAmount += parseInt(input / 1000)),
-    );
-    Console.print(`총 ${this.purchaseAmount}개를 구매했습니다.`);
-  }
-
+  
   inputWinningNumberHandler() {
-    Console.readLine('당첨 번호를 입력해주세요\n', input => {
-      const target = makeIntArray(input);
-      validate(
-        target,
-        isNotDuplicated(target),
-        target.map(item => isNumber(item)),
-      );
-      this.winNumberArr = target;
+    read(`당첨 번호를 입력해주세요\n`, input => {
+      lottoInputCheckHandler(input, input => this.addWinningNumber(input));
       this.inputBonusNumberHandler();
-      Console.print(this.winNumberArr);
     });
   }
 
   inputBonusNumberHandler() {
-    Console.readLine('보너스 번호를 입력해주세요\n', input => {
-      validate(
-        input,
-        isNumber(input),
-        this.winNumberArr.push(Number(input)),
-        isNotDuplicated(this.winNumberArr, this.winNumberArr.length),
-      );
-      Console.print(this.winNumberArr);
+    read(`보너스 번호를 입력해주세요\n`, input => {
+      lottoInputCheckHandler(input, input => console.log(input), 7);
     });
   }
-
   play() {
-    this.inputPaymentHandler();
+    this.inputMoneyHandler();
   }
 }
 
