@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const { GUIDE_MESSAGE } = require("./Constants");
 class LottoUI {
   inputRequest(message, callbackFunction) {
     MissionUtils.Console.readLine(message, callbackFunction);
@@ -13,12 +14,13 @@ class LottoUI {
     });
   }
   printRankingTotal(result) {
+    MissionUtils.Console.print(GUIDE_MESSAGE.RESULT_GUIDE);
     Object.entries(result).forEach(([ranking, count]) =>
       MissionUtils.Console.print(result[ranking])
     );
   }
   printEarningRatio(earningRatio) {
-    MissionUtils.Console.print(`총 수익률은 ${earningRatio}%입니다.`);
+    MissionUtils.Console.print(`총 수익률은 ${earningRatio}%입니다.\n---`);
     MissionUtils.Console.close();
   }
 }

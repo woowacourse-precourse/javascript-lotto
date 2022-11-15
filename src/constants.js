@@ -1,6 +1,7 @@
 const PURCHASEAMOUNT_INPUT = "구입금액을 입력해 주세요.";
 const WINNERNUMBER_INPUT = "당첨 번호를 입력해 주세요.";
 const BONUSNUMBER_INPUT = "보너스 번호를 입력해 주세요.";
+const RESULT_GUIDE = "\n당첨 통계\n---";
 
 const PURCHASEAMOUNT_UNDIVIDED =
   "[ERROR] 구입 금액이 로또 가격으로 나누어 떨어지지 않습니다.";
@@ -31,6 +32,7 @@ const GUIDE_MESSAGE = {
   PURCHASEAMOUNT_INPUT,
   WINNERNUMBER_INPUT,
   BONUSNUMBER_INPUT,
+  RESULT_GUIDE,
 };
 const ERROR_MESSAGE = {
   PURCHASEAMOUNT_UNDIVIDED,

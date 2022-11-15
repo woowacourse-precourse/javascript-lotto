@@ -60,7 +60,6 @@ class App {
       (bonusNumberElement) => {
         Validation.checkBonusNumber(bonusNumberElement, this.winnerNumber);
         this.bonusNumber = Number(bonusNumberElement);
-
         this.getResult();
       }
     );
