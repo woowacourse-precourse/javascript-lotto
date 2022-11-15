@@ -49,7 +49,7 @@ class Lotto {
   }
 
   printMylotto(lottoCount){
-    Console.print(`${lottoCount}${SENTANCE.BUY}`);
+    Console.print(`\n${lottoCount}${SENTANCE.BUY}`);
     this.makeLottoNumber(lottoCount);
     this.mylotto.forEach((mylottoArray) => {
       Console.print(mylottoArray);
@@ -66,14 +66,14 @@ class Lotto {
   }
 
   enterWinningNumber(){
-    Console.readLine(`${MESSAGE.WINNING}\n`,(winningNumber) => {
+    Console.readLine(`\n${MESSAGE.WINNING}\n`,(winningNumber) => {
       this.#numbers = winningNumber.split(",").map(Number)
       this.enterBonusNumber();
     })
   }
 
   enterBonusNumber(){
-    Console.readLine(`${MESSAGE.BONUS}\n`,(bonusNumber) => {
+    Console.readLine(`\n${MESSAGE.BONUS}\n`,(bonusNumber) => {
       this.bonusNumber = parseInt(bonusNumber);
       this.calcResults();
     })
@@ -83,7 +83,6 @@ class Lotto {
     this.mylotto.forEach((mylottoArray) => {
       this.compareNumbers(mylottoArray);
     })
-    console.log(`rankCount ${this.rankCountArray}`);
     this.printResults();
   }
 
@@ -106,7 +105,7 @@ class Lotto {
   }
 
   printResults(){
-    Console.print(`${SENTANCE.STATICS}`);
+    Console.print(`\n${SENTANCE.STATICS}`);
     Console.print(`${SENTANCE.LINE}`);
     this.matchRank(this.rankCountArray); 
     this.printWinnningResult()
