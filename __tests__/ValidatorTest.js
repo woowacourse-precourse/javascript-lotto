@@ -40,3 +40,24 @@ describe("보너스 로또 번호 유효성 테스트", () => {
     }).toThrow("[ERROR]");
   });
 });
+
+describe("로또 당첨 번호 유효성 테스트", () => {
+  test("로또 당첨 번호 숫자가 숫자가 아니면 예외를 발생시킨다.", () => {
+    expect(() => {
+      Validator.isValidPriceType("우테코 하이");
+    }).toThrow("[ERROR]");
+  });
+  test("보너스 로또 숫자가 1000원 단위가 아니면 예외를 발생시킨다.", () => {
+    expect(Validator.isThousandUnit(4800)).toEqual(false);
+  });
+  test("보너스 로또 숫자가 숫자가 아니면 예외를 발생시킨다.", () => {
+    expect(() => {
+      Validator.isValidPriceUnit("45a");
+    }).toThrow("[ERROR]");
+  });
+  test("보너스 로또 숫자가 1000원 단위가 아니면 예외를 발생시킨다.", () => {
+    expect(() => {
+      Validator.isValidPriceUnit("4500");
+    }).toThrow("[ERROR]");
+  });
+});

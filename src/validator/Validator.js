@@ -43,7 +43,7 @@ class Validator {
     throw new InValidInputError(BASIC + INVALID_INPUT.PRICE_UNIT);
   }
   static isValidPrice(string) {
-    return this.isValidPriceType(string) && this.isValidPriceUnit(string);
+    return this.isValidPriceUnit(string);
   }
 }
 
