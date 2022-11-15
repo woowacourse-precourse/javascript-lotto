@@ -13,10 +13,4 @@ describe('로또 매니저 클래스 테스트', () => {
       new LottoManager().validatePurchaseAmount(3400);
     }).toThrow(ERROR.PURCHASE_AMOUNT.NOT_DIVISIBLE);
   });
-
-  test('로또 구매 금액이 로또 금액보다 작으면 예외가 발생한다.', () => {
-    expect(() => {
-      new LottoManager().validatePurchaseAmount(800);
-    }).toThrow(ERROR.PURCHASE_AMOUNT.IS_LESS);
-  });
 });
