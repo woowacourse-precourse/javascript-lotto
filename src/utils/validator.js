@@ -1,4 +1,4 @@
-const MESSAGE = require('../MESSAGE');
+const MESSAGE = require('../constants/message');
 
 function checkValidMoney(money) {
   let numberStyle = /^[0-9]+$/;
