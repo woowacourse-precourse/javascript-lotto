@@ -1,33 +1,33 @@
 const {
-  isNumberOfBonusNumberCorrect,
+  isNumberOfBonusNumbersCorrect,
   isNumbersInRange,
 } = require("../Validation/Lotto");
 const { ERROR } = require("../Constants");
 
 class Bonus {
-  #number;
+  #numbers;
 
-  constructor(number, winningLotto) {
-    this.validate(number, winningLotto);
-    this.#number = number;
+  constructor(numbers, winningLotto) {
+    this.validate(numbers, winningLotto);
+    this.#numbers = numbers;
   }
 
-  validate(number, winningLotto) {
-    if (!isNumberOfBonusNumberCorrect(number)) {
+  validate(numbers, winningLotto) {
+    if (!isNumberOfBonusNumbersCorrect(numbers)) {
       throw new Error(ERROR.incorrect_number_of_bonus_number);
     }
 
-    if (!isNumbersInRange(number)) {
+    if (!isNumbersInRange(numbers)) {
       throw new Error(ERROR.number_out_of_range);
     }
 
-    if (winningLotto.isBonusNumberDuplicated(number)) {
+    if (winningLotto.isBonusNumbersDuplicated(numbers)) {
       throw new Error(ERROR.has_duplicate_number);
     }
   }
 
-  getNumber() {
-    return this.#number;
+  getNumbers() {
+    return this.#numbers;
   }
 }
 

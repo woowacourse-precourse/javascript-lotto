@@ -28,7 +28,7 @@ class Lotto {
     }
   }
 
-  isBonusNumberDuplicated(numbers) {
+  isBonusNumbersDuplicated(numbers) {
     for (let index = 0, length = numbers.length; index < length; index++) {
       let number = numbers[index];
 

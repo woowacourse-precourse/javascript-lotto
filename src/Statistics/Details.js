@@ -3,12 +3,12 @@ const { Console } = require("@woowacourse/mission-utils");
 
 class Details {
   #details = {};
-  #bonusNumber;
+  #bonusNumbers;
   #winningNumbers;
 
   constructor(lottos, winning, bonus) {
     this.#winningNumbers = winning.getNumbers();
-    this.#bonusNumber = bonus.getNumber(); // 배열
+    this.#bonusNumbers = bonus.getNumbers(); // 배열
     this.getLottosRanks(lottos);
   }
 
@@ -32,7 +32,7 @@ class Details {
     let duplicatedCount = this.getNumberOfDuplicatedNumbers(lotto);
 
     if (
-      this.checkBonusNumber(lotto, duplicatedCount) ||
+      this.checkBonusNumbers(lotto, duplicatedCount) ||
       duplicatedCount === 6
     ) {
       rank--;
@@ -48,18 +48,18 @@ class Details {
     }).length;
   }
 
-  checkBonusNumber(lotto, duplicatedCount) {
+  checkBonusNumbers(lotto, duplicatedCount) {
     if (
       duplicatedCount === LOTTO_INFO.number_of_numbers - 1 &&
-      this.hasBonusNumber(lotto)
+      this.hasBonusNumbers(lotto)
     ) {
       return true;
     }
     return false;
   }
 
-  hasBonusNumber(lotto) {
-    return lotto.isBonusNumberDuplicated(this.#bonusNumber);
+  hasBonusNumbers(lotto) {
+    return lotto.isBonusNumbersDuplicated(this.#bonusNumbers);
   }
 
   print() {

@@ -8,6 +8,14 @@ const Bonus = require("./Lotto/Bonus");
 const Statistics = require("./Statistics/Statistics");
 
 class App {
+  constructor() {
+    this.result;
+    this.issueCount;
+    this.lottos;
+    this.winningNumbers;
+    this.bonusNumbers;
+  }
+
   play() {
     this.getInput("purchase");
   }
@@ -28,7 +36,7 @@ class App {
       case "winning_numbers":
         return this.getWinningNumbers(validatedInput);
       case "bonus_number":
-        return this.getBonusNumber(validatedInput);
+        return this.getBonusNumbers(validatedInput);
     }
   }
 
@@ -46,21 +54,21 @@ class App {
   }
 
   getWinningNumbers(input) {
-    this.winningLotto = new Lotto(input);
+    this.winningNumbers = new Lotto(input);
     this.getInput("bonus_number");
   }
 
-  getBonusNumber(input) {
-    this.bonusNumber = new Bonus(input, this.winningLotto);
-    this.getStatics();
+  getBonusNumbers(input) {
+    this.bonusNumbers = new Bonus(input, this.winningNumbers);
+    this.getStatistics();
   }
 
-  getStatics() {
+  getStatistics() {
     if (!this.result) {
       this.result = new Statistics({
         lottos: this.lottos,
-        winning: this.winningLotto,
-        bonus: this.bonusNumber,
+        winning: this.winningNumbers,
+        bonus: this.bonusNumbers,
         amount: this.issueCount,
       });
     }
@@ -68,7 +76,7 @@ class App {
   }
 
   printResults() {
-    if (!this.result) this.getStatics();
+    if (!this.result) this.getStatistics();
     this.result.print();
     this.end();
   }

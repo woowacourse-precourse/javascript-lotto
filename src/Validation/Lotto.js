@@ -15,7 +15,7 @@ const isNumbersInRange = (numbers) => {
 const hasDuplicateNumbers = (numbers) =>
   new Set(numbers).size !== numbers.length;
 
-const isNumberOfBonusNumberCorrect = (numbers) => {
+const isNumberOfBonusNumbersCorrect = (numbers) => {
   return numbers.length === LOTTO_INFO.number_of_bonus_number;
 };
 
@@ -23,5 +23,5 @@ module.exports = {
   isNumberOfLottoNumbersCorrect,
   isNumbersInRange,
   hasDuplicateNumbers,
-  isNumberOfBonusNumberCorrect,
+  isNumberOfBonusNumbersCorrect,
 };
