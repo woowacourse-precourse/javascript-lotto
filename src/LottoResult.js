@@ -45,6 +45,18 @@ class LottoResult {
       return cumulativeProfit;
     }, 0);
   }
+
+  printResult() {
+    const { three, four, five, fiveWithBonus, six } = this.lottoMatchCounter;
+
+    Console.print(RESULT_MESSAGE.START);
+    Console.print(RESULT_MESSAGE.THREE(three));
+    Console.print(RESULT_MESSAGE.FOUR(four));
+    Console.print(RESULT_MESSAGE.FIVE(five));
+    Console.print(RESULT_MESSAGE.FIVE_BONUS(fiveWithBonus));
+    Console.print(RESULT_MESSAGE.SIX(six));
+    Console.print(RESULT_MESSAGE.PROFIT(this.profitRate));
+  }
 }
 
 module.exports = LottoResult;
