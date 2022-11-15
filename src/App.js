@@ -1,5 +1,3 @@
-const { Random, Console } = require("@woowacourse/mission-utils");
-const Lotto = require("./Lotto");
 const {
   createUserInput,
   createUserLotto,
@@ -8,6 +6,10 @@ const {
   createLottoResult,
   printResult,
 } = require("./utils/handler");
+const {
+  validateInputMoney,
+  validateLottoNumber,
+} = require("./validation/validator");
 
 class App {
   play() {
@@ -20,4 +22,5 @@ class App {
     printResult(LottoResult, money);
   }
 }
+
 module.exports = App;

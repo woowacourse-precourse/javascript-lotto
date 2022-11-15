@@ -1,3 +1,7 @@
+const {
+  validateLottoNumber,
+  validateBonusNumber,
+} = require("./validation/validator");
 
 class Lotto {
   #numbers;
