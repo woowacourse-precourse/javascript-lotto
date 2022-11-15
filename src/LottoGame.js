@@ -5,9 +5,9 @@ const {
 } = require('./utils/Validator');
 
 class LottoGame {
-  #winningNumbers = [];
+  #winningNumbers;
 
-  #bonusNumber = 0;
+  #bonusNumber;
 
   setWinningNumbers(numbers) {
     validate(numbers, areWinningNumbers);
