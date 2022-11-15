@@ -5,6 +5,10 @@ class Game {
         this.bonusNumber = 0;
     }
 
+    play () {
+        this.getMoney();
+    }
+      
 }
 
 module.exports = Game;
