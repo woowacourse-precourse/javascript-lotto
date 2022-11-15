@@ -24,6 +24,10 @@ class App {
     this.money = input;
     return inputValue;
   }
+
+  setMoneyCount() {
+    this.count = this.money / LOTTO_MONEY_UNIT;
+  }
 }
 
 module.exports = App;
