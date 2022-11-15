@@ -15,6 +15,14 @@ class UserNumber {
   }
 
   /**
+   * 유저 구입금액을 반환하는 getter 메서드
+   * @return {number} [유저 구입금액]
+   */
+  getPurchasingAmount() {
+    return this.purchasingAmount;
+  }
+
+  /**
    * 구입 금액이 1000 으로 나누어 떨어지는지 검증하는 메서드
    * @param userPurchasingAmountInput {number} [유저 구입금액]
    */
@@ -22,14 +30,6 @@ class UserNumber {
     if (userPurchasingAmountInput % generalConstants.SINGLE_LOTTO_PRICE !== 0) {
       throw new Error(PURCHASE_MESSAGE.AMOUNT_ERROR);
     }
-  }
-
-  /**
-   * 유저 구입금액을 반환하는 getter 메서드
-   * @return {number} [유저 구입금액]
-   */
-  getPurchasingAmount() {
-    return this.purchasingAmount;
   }
 
   /**
