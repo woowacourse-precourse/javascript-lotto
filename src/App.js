@@ -1,6 +1,7 @@
 const { Console } = require('@woowacourse/mission-utils');
 const Lotto = require("./Lotto.js");
 const Customer = require("./Customer.js");
+const { LOTTO, MESSAGE, RESULT, PRISE, DISPLAY, ALERT} = require('./Const.js');
 
 class App {
   constructor() {
@@ -13,9 +14,9 @@ class App {
   }
 
   getTotalMoneyInput() {
-    Console.readLine("구입금액을 입력해 주세요.\n", (totalMoney) => {
+    Console.readLine(MESSAGE.GET_MONEY, (totalMoney) => {
       this.isValidMoney(totalMoney);
-      this.lottoAmount = totalMoney/1000;
+      this.lottoAmount = totalMoney/LOTTO.PRISE;
       this.creatLottos();
       this.displayAllLottos();
 
@@ -24,22 +25,22 @@ class App {
   } 
   
   displayAllLottos() {
-    Console.print(this.lottoAmount+"개를 구매했습니다.")
+    Console.print(this.lottoAmount+MESSAGE.LOTTO_AMOUNT)
     this.Lottos.forEach((lotto) => {
 
-      Console.print("["+lotto.getLottoNums().join(', ')+"]");
+      Console.print(DISPLAY.LEFT+lotto.getLottoNums().join(DISPLAY.UNIT)+DISPLAY.RIGHT);
     })
   }
 
   getWinningNum() {
-    Console.readLine("당첨 번호를 입력해 주세요.\n", (winningNumString) => {
+    Console.readLine(MESSAGE.GET_WINNING_NUM, (winningNumString) => {
       this.winningNum = new Lotto(this.stringToArray(winningNumString));
       this.getBonusNum();
     })
   }
 
   getBonusNum() {
-    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusNum) => {
+    Console.readLine(MESSAGE.GET_BONNUS_NUM, (bonusNum) => {
       this.isValidBonusNum(bonusNum);
       this.bonusNum = bonusNum;
       this.showTotalResult();
@@ -51,12 +52,12 @@ class App {
     const moneyResult = this.getTotalMoney(placeResult);
     const earned = this.getYield(moneyResult);
 
-    Console.print("3개 일치 (5,000원) - " + placeResult[5] + "개");
-    Console.print("4개 일치 (50,000원) - " + placeResult[4] + "개");
-    Console.print("5개 일치 (1,500,000원) - " + placeResult[3] + "개");
-    Console.print("5개 일치, 보너스 볼 일치 (30,000,000원) - " + placeResult[2] + "개");
-    Console.print("6개 일치 (2,000,000,000원) - " + placeResult[1] + "개");
-    Console.print("총 수익률은 " + earned + "%입니다.");
+    Console.print(RESULT.FIFTH + placeResult[5] + RESULT.UNIT);
+    Console.print(RESULT.FOURTH + placeResult[4] + RESULT.UNIT);
+    Console.print(RESULT.THIRD + placeResult[3] + RESULT.UNIT);
+    Console.print(RESULT.SECOND + placeResult[2] + RESULT.UNIT);
+    Console.print(RESULT.FIRST + placeResult[1] + RESULT.UNIT);
+    Console.print(RESULT.YIELD + earned + RESULT.YEILD_UNIT);
   }
 
   getTotalResult() {
@@ -72,16 +73,8 @@ class App {
 
   getTotalMoney(placeResult) {
     let moneyResult = [0, 0, 0, 0, 0, 0];
-    const prise = [
-      0,
-      2000000000,
-      30000000,
-      1500000,
-      50000,
-      5000
-    ]
     placeResult.forEach((num, index)=> {
-      moneyResult[index] += prise[index] * num;
+      moneyResult[index] += PRISE[index] * num;
     })
 
     return moneyResult;
@@ -93,7 +86,7 @@ class App {
       totalPrise += money;
     }
 
-    return (totalPrise / (this.Lottos.length * 1000) * 100).toFixed(1);
+    return (totalPrise / (this.Lottos.length * LOTTO.PRISE) * 100).toFixed(1);
   }
 
   getMatchNum(lotto) {
@@ -121,30 +114,30 @@ class App {
 
   isValidBonusNum(bonusNum) {
     if(isNaN(bonusNum) || !Number.isInteger(Number(bonusNum))) {
-      throw new Error("[ERROR] 보너스 번호는 정수형 입니다.");
+      throw new Error(ALERT.HEADER+ALERT.BONUS_INT);
     }
 
     if(1 > bonusNum || bonusNum > 45) {
-      throw new Error("[ERROR] 보너스 번호의 범위는 1~45 입니다.");
+      throw new Error(ALERT.HEADER+ALERT.BONUS_RANGE);
     }
 
     for(let num of this.winningNum.getLottoNums()) {
       if(num === bonusNum) {
-        throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        throw new Error(ALERT.HEADER+ALERT.BONUS_UNIGUE);
       }
     }
   }
 
   stringToArray(numString) {
-    return numString.split(',').map(Number);
+    return numString.split(DISPLAY.SPLIT_UNIT).map(Number);
   }
 
   isValidMoney(money) {
     if(isNaN(money) || !Number.isInteger(Number(money))) {
-      throw new Error("[ERROR] 구입 금액은 정수형 입니다.");
+      throw new Error(ALERT.HEADER+ALERT.MONEY_INT);
     }
     if(money % 1000 !== 0) {
-      throw new Error("[ERROR] 구입 금액은 1000원 단위 입니다.");
+      throw new Error(ALERT.HEADER+ALERT.MONEY_UNIT);
     }
   }
 

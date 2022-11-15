@@ -46,7 +46,10 @@ const ALERT = {
 }
 
 const DISPLAY = {
-    SPLIT_UNIT : ','
+    LEFT : '[',
+    RIGHT : ']',
+    SPLIT_UNIT : ',',
+    UNIT : ', '
 }
 
 module.exports = { LOTTO, MESSAGE, RESULT, PRISE, ALERT, DISPLAY };

@@ -1,4 +1,4 @@
-const { LOTTO, ALERT} = require('./Const.js');
+const { LOTTO, ALERT } = require('./Const.js');
 
 class Lotto {
   #numbers;
