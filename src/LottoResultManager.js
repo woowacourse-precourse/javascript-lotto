@@ -33,7 +33,7 @@ class LottoResultManager {
     6개 일치 (2,000,000,000원) - ${this.winCount.rank1}개`;
   }
 
-  calculateProfitRate(payment) {
+  getProfitRate(payment) {
     const lottoCalculator = new LottoCalculator();
     lottoCalculator.sumRewards(this.winCount);
 

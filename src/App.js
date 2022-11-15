@@ -59,7 +59,7 @@ class App {
 
     lottoResultManager.countWin(winRanks);
     lottoResultManager.makeWinHistoryMessage();
-    lottoResultManager.calculateProfitRate(this.userPayment);
+    lottoResultManager.getProfitRate(this.userPayment);
     lottoResultManager.printResult();
 
     MissionUtils.Console.close();
