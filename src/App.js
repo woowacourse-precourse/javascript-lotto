@@ -17,12 +17,8 @@ class App {
     const winningNumbers = buy.inputLottoNumbers();
     const bonusNumber = buy.inputBonusNumber();
     new Lotto(winningNumbers, bonusNumber); // 유효성 검사
-    
-    // MissionUtils.Console.print(randomLottos);
-    // MissionUtils.Console.print(winningNumbers);
-    // MissionUtils.Console.print(bonusNumber);
 
-    // 당첨 결과
+    // 당첨 통계 출력
     new Winning(amount, randomLottos, winningNumbers, bonusNumber);
   }
 }
