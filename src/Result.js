@@ -5,26 +5,27 @@ const { LOTTO, PRINT_MESSAGE } = require("./constants/constants");
 class Result {
   #bonusCnt;
 
-  createLottoResult(scores, bonusNum, lottoArr) {
-    const lottoResult = LOTTO_RESULT;
+  createLottoResult(scores, bonusNum, lottos) {
     this.#bonusCnt = 0;
+    const lottoResult = LOTTO_RESULT;
+    const lottosForResult = lottos.getLottos();
+
     for (let i = 0; i < scores.length; i++) {
       const score = scores[i];
-      const lottoNubers = lottoArr[i].getLottoNumber();
-      if (score < 3) continue;
+      const lottoNumbers = lottosForResult[i].getLottoNumber();
+      if (score < LOTTO.MIN_SCORE) continue;
 
-      if (this.isFiveScoreAndContainBonusNumber(score, lottoNubers, bonusNum)) {
+      if (
+        this.isFiveScoreAndContainBonusNumber(score, lottoNumbers, bonusNum)
+      ) {
         this.#bonusCnt += 1;
         continue;
       }
       lottoResult[score][LOTTO.COUNT] += 1;
     }
+
     return lottoResult;
   }
-
-  //   getBonusCnt() {
-  //     return this.#bonusCnt;
-  //   }
 
   createBonusResult() {
     const bonusResult = BONUS_RESULT;
@@ -46,19 +47,22 @@ class Result {
     return lotto.includes(bonusNum);
   }
 
-  getTotalYield(buyMoney, lottoResult, bonusResult) {
+  getTotalYield(lottoMoney, lottoResult, bonusResult) {
     let totalProfit = 0;
+
     for (const score in lottoResult) {
       if (lottoResult[score][LOTTO.COUNT] > 0) {
         totalProfit += lottoResult[score][LOTTO.MONEY];
       }
     }
+
     if (bonusResult[LOTTO.COUNT] > 0) {
       totalProfit += bonusResult[LOTTO.MONEY];
     }
+
     return totalProfit === 0
       ? 0
-      : Number(((totalProfit / buyMoney) * 100).toFixed(1));
+      : Number(((totalProfit / lottoMoney) * 100).toFixed(1));
   }
 
   printLottoResult(lottoResult, bonusResult, totalYield) {
