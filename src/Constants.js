@@ -11,7 +11,8 @@ const MESSAGE = Object.freeze({
         "3개 일치 (5,000원)"
     ],
     WINNING_STATISTICS: "당첨 통계",
-    DIVISION: "---"
+    DIVISION: "---",
+    NEW_LINE: ""
 });
 
 const ERROR = Object.freeze({
