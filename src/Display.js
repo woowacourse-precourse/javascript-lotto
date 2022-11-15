@@ -1,6 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
 const { OUTPUT_MESSAGE } = require('./utils/constant');
-OUNT
 const { ENTER_COST, ENTER_WINNING_NUMBERS, ENTER_BONUS_NUMBER, WINNING_STATISTICS } =
     OUTPUT_MESSAGE;
 
