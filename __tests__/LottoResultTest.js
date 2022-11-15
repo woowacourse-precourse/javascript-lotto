@@ -13,4 +13,10 @@ describe("로또결과 클래스 테스트", () => {
     const result = lottoResult.checkBonus([1, 12, 34, 45, 23, 16]);
     expect(result).toEqual(false);
   });
+  
+  test("일치한 숫자에 따라 랭크를 반환한다.", () => {
+    const lottoResult = new LottoResult([1, 12, 34, 2, 3, 4], 7, new LottoMachine(7000));
+    const result = lottoResult.checkRank(6);
+    expect(result).toEqual('RANK_1');
+  });
 });
