@@ -7,28 +7,17 @@ class Lotto {
     this.#numbers = numbers;
   }
 
+
   validate(numbers) {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
+    else { console.log('6자리 숫자를 입력하셨습니다.')}
   }
-  getMoney() {
-    MissionUtils.Console.readLine('구입금액을 입력해주세요\n', this.saveMoney.bind(this));
-  }
-  saveMoney(input) {
-    const money = input;
-    MissionUtils.Console.print(money + ' 개를 구매했습니다.')
-  }
-
-  
 
 
   // TODO: 추가 기능 구현
 }
-
-
-
-
 
 
 
