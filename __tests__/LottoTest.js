@@ -69,4 +69,9 @@ describe('Validator 클래스 테스트', () => {
       LottoValidator.additionalNumber(6, '1,2,3,4,5,6');
     }).toThrow('[ERROR]');
   });
+  test('additionalNumber는 추가적인 숫자는 숫자이어야 한다. ', () => {
+    expect(() => {
+      LottoValidator.additionalNumber(6, '1,2,3,4,5,6');
+    }).toThrow('[ERROR]');
+  });
 });
