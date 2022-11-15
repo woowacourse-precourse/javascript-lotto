@@ -34,7 +34,7 @@ class App {
         throw "[ERROR]";
       }
       this.payMoney = input;
-      this.lottos = this.publishLotto(input / 1000);
+      this.lottos = this.publishLottos(input / 1000);
       this.printLottosNumbers();
       this.getWinNumbers();
     });
@@ -47,7 +47,7 @@ class App {
     return true;
   }
 
-  publishLotto(count) {
+  publishLottos(count) {
     return new Array(count)
       .fill(undefined)
       .map((e) => new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6)));
@@ -55,8 +55,8 @@ class App {
 
   printLottosNumbers() {
     Console.print(`\n${this.payMoney / 1000}개를 구매했습니다.`);
-    this.lottos.forEach((e) => {
-      Console.print(`[${e.getNumbers().join(", ")}]`);
+    this.lottos.forEach((lotto) => {
+      Console.print(`[${lotto.getNumbers().join(", ")}]`);
     });
   }
 
