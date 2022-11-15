@@ -12,7 +12,7 @@ class Statistics {
             "5개 일치 (1,500,000원)": 0,
             "5개 일치, 보너스 볼 일치 (30,000,000원)": 0,
             "6개 일치 (2,000,000,000원)": 0,
-          };
+        };
     }
 
     compareLottoNum(this.MY_LOTTO_NUM) {
@@ -75,4 +75,9 @@ class Statistics {
         return EARNINGS;
     }
     
+    getEarningsRate(EARNINGS) {
+        const EARNINGS_RATE = (EARNINGS / this.#money) * 100;
+    
+        return EARNINGS_RATE.toFixed(1);
+    }
 }
