@@ -1,5 +1,5 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
-const { MESSAGE, LOTTERY_PRICE, LOTTERY_RESULT, PRIZE } = require("./Constant");
+const { MESSAGE, LOTTERY_PRICE, LOTTERY_RESULT, PRIZE, PRIZE_MONEY } = require("./Constant");
 class App {
   #money;
   #numberOfLottery;
@@ -8,11 +8,17 @@ class App {
   #bonusNumber;
   #matchedCounts;
   #lotteryResult;
+  #profit;
 
   constructor() {
     this.#matchedCounts = [];
     this.#lotteryResult = new Array(5).fill(0);
   }
+
+  printProfit = () => {
+    this.#profit = ((this.getPrizeMoney() / this.#money) * 100).toFixed(1);
+    Console.print(`${MESSAGE.PROFIT_FRONT}${this.#profit}${MESSAGE.PROFIT_BACK}`);
+  };
 
   printLotteryResult = () => {
     Console.print(LOTTERY_RESULT.TITLE);
@@ -21,6 +27,8 @@ class App {
     Console.print(`${LOTTERY_RESULT.MATCHED_FIVE}${this.#lotteryResult[PRIZE.THIRD_PLACE]}${LOTTERY_RESULT.UNIT}`);
     Console.print(`${LOTTERY_RESULT.MATCHED_FIVE_AND_BONUS}${this.#lotteryResult[PRIZE.SECOND_PLACE]}${LOTTERY_RESULT.UNIT}`);
     Console.print(`${LOTTERY_RESULT.MATCHED_SIX}${this.#lotteryResult[PRIZE.FIRST_PLACE]}${LOTTERY_RESULT.UNIT}`);
+
+    this.printProfit();
   };
 
   checkBonusNumber = (index) => {

@@ -5,6 +5,8 @@ const MESSAGE = {
   GET_WINNING_NUMBERS: "\n당첨 번호를 입력해 주세요.\n",
   BOUGHT_LOTTERY: "개를 구매했습니다.",
   GET_BONUS_NUMBER: "\n보너스 번호를 입력해 주세요.\n",
+  PROFIT_FRONT: "총 수익률은 ",
+  PROFIT_BACK: "%입니다.",
 };
 
 const LOTTERY_RESULT = {
@@ -25,4 +27,6 @@ const PRIZE = {
   FIFTH_PLACE: 0,
 };
 
-module.exports = { MESSAGE, LOTTERY_PRICE, LOTTERY_RESULT, PRIZE };
+const PRIZE_MONEY = [5000, 50000, 1500000, 30000000, 2000000000];
+
+module.exports = { MESSAGE, LOTTERY_PRICE, LOTTERY_RESULT, PRIZE, PRIZE_MONEY };
