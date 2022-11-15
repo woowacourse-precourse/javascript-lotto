@@ -1,6 +1,7 @@
 const { print } = require('./utils');
 const { LOTTO_PRICE, RANK_COUNT, RANK_REWARD } = require('./var');
 const ranks = ['fail', 'fifth', 'forth', 'third', 'first'];
+const {Console} = require("@woowacourse/mission-utils");
 class Lotto {
   #numbers;
 
@@ -47,18 +48,28 @@ class Lotto {
     return `${correctCount}개 일치 (${rewardLocalString}원) - ${count}개`;
   };
 
+  yieldRate({ price, result, orderRank }) {
+    const totalPrice = orderRank.reduce((prevSumReward, prize) => {
+      const prizeReward = RANK_REWARD[prize];
+      const prizeCount = result[prize];
+      prevSumReward += prizeReward * prizeCount;
+      return prevSumReward;
+    }, 0);
+    const rating = ((totalPrice * 100) / price).toFixed(1);
+    return rating;
+  }
+
   statistics(madeLotto, bonusNumber) {
     const orderRank = ['fifth', 'forth', 'third', 'second', 'first'];
-    print('당첨 통계\n');
-    print('---');
+    print('당첨 통계\n---');
     const result = this.countStatistics(madeLotto, bonusNumber);
     const price = madeLotto.length * LOTTO_PRICE;
     orderRank.forEach(rank => {
       print(this.resultLotto(rank, result[rank]))
     });
+    print(`총 수익률은 ${this.yieldRate({price, result, orderRank})}%입니다`);
+    Console.close();
   }
-
-  // TODO: 추가 기능 구현
 }
 
 module.exports = Lotto;

@@ -11,7 +11,7 @@ class App {
   }
 
   inputPrice(){
-    readLine('구입금액을 입력해주세요.\n', (money) => {
+    readLine('구입금액을 입력해 주세요.\n', (money) => {
       this.checkInputPrice(money);
     })
   }
@@ -21,7 +21,7 @@ class App {
       throw new Error('[ERROR] 숫자만 입력할 수 있습니다.');
     }
     if (money < 1000) {
-      throw new Error('[ERROR] 1000원 이상의 단위를 입력해주세요.');
+      throw new Error('[ERROR] 1000원 이상을 입력해 주세요.');
     }
     if (!isNaN(money) && money >= 1000) {
       const countLotto = Math.floor(Number(money) / LOTTO_PRICE);
@@ -54,11 +54,11 @@ class App {
   }
 
   inputBonusLottoNumbers() {
-    readLine('보너스 번호를 입력해주세요.\n', bonusNumber => {
+    readLine('보너스 번호를 입력해 주세요.\n', bonusNumber => {
       this.#bonusNumber = bonusNumber;
       this.#lotto.statistics({ madeLotto: this.#madeLotto, bonusNumber: this.#bonusNumber });
     })
   }
 }
-
+new App().play();
 module.exports = App;
