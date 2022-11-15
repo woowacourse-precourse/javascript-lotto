@@ -76,7 +76,7 @@ class WinnerSelector {
     const purchaseAmount = this.lottoPrice * this.lottos.length;
     const earningRate = (this.prizeMoney / purchaseAmount) * 100;
 
-    this.earningRate = earningRate.toFixed(this.fixedPoint);
+    this.earningRate = earningRate.toLocaleString('ko-KR', { minimumFractionDigits: this.fixedPoint, maximumFractionDigits: this.fixedPoint });
   }
 
   getBonusMatchedLottos(result, bonusNumber) {
