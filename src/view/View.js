@@ -27,6 +27,15 @@ class View {
       Console.print(`${STATISTICS_MESSAGE[matchCount]}${statistics[matchCount]}개`)
     }
   }
+
+  printYield(_yield) {
+    Console.print(`총 수익률은 ${_yield}%입니다.`);
+    this.quit();
+  }
+
+  quit() {
+    Console.close();
+  }
 }
 
 module.exports = View;
