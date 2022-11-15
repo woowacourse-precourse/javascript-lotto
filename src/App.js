@@ -120,7 +120,6 @@ class App {
   }
 
   getMatchResult() {
-    Console.print(this.lottoResult);
     Console.print("\n당첨 통계");
     Console.print("---");
     this.printMatchResult("3개 일치", "fifth");
@@ -133,7 +132,7 @@ class App {
 
   printMatchResult(matchMsg, ordNum) {
     Console.print(
-      `${matchMsg} (${WINNINGS_STR[ordNum]}원 - ${this.lottoResult[ordNum]}개)`
+      `${matchMsg} (${WINNINGS_STR[ordNum]}원) - ${this.lottoResult[ordNum]}개`
     );
   }
 
@@ -151,5 +150,5 @@ class App {
 }
 
 module.exports = App;
-// const app = new App();
-// app.play();
+const app = new App();
+app.play();
