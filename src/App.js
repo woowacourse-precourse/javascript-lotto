@@ -9,6 +9,8 @@ class App {
     const [winningNumbers, bonusNumber] = createLottoNumber();
     validateLottoNumber(winningNumbers, bonusNumber);
     const result = calculateLottoResult(userLotto, winningNumbers, bonusNumber);
+    const LottoResult = createLottoResult(result);
+
   }
 }
 
@@ -94,6 +96,34 @@ function calculateLottoResult(userLotto, winningNumbers, bonusNumber) {
   });
 
   return result;
+}
+
+function createLottoResult(result) {
+  let LottoResult = {
+    matchThree: 0,
+    matchFour: 0,
+    matchFive: 0,
+    matchFiveAndBous: 0,
+    matchSix: 0,
+  }
+  result.forEach((v) => {
+    if (v.countResult === 3) {
+      LottoResult.matchThree++;
+    }
+    if (v.countResult === 4) {
+      LottoResult.matchFour++;
+    }
+    if (v.countResult === 5 && bonusResult == false) {
+      LottoResult.matchFive++;
+    }
+    if (v.countResult === 5 && bonusResult == true) {
+      LottoResult.matchFiveAndBous++;
+    }
+    if (v.countResult === 6) {
+      LottoResult.matchSix++;
+    }
+  });
+  return LottoResult;
 }
 
 module.exports = App;
