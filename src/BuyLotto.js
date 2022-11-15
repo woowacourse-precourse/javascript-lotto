@@ -4,11 +4,27 @@ const validate = require("./Validate");
 const Lotto = require("./Lotto");
 
 class BuyLotto {
-  constructor(howMany, makeNumbers, userInputNum, userInputBonusNum) {
+  constructor(
+    howMany,
+    makeNumbers,
+    userInputNum,
+    userInputBonusNum,
+    fifthPrize,
+    fourthPrize,
+    thirdPrize,
+    secondPrize,
+    firstPrize
+  ) {
     this.howMany = howMany;
     this.makeNumbers = makeNumbers;
     this.userInputNum = userInputNum;
     this.userInputBonusNum = userInputBonusNum;
+    this.prizeArray = new Array();
+    this.fifthPrize = fifthPrize;
+    this.fourthPrize = fourthPrize;
+    this.thirdPrize = thirdPrize;
+    this.secondPrize = secondPrize;
+    this.firstPrize = firstPrize;
   }
   start() {
     this.amount();
@@ -67,39 +83,90 @@ class BuyLotto {
       userInputBonusNum.push(input);
       this.validate.bonusCheck(userInputBonusNum);
       this.userInputBonusNum = userInputBonusNum;
-      this.prize();
+      this.getResult();
     });
   }
 
-  prize() {
+  getResult() {
+    const prizeArray = [...this.userInputNum, ...this.userInputBonusNum];
+
     Console.print(MESSAGE.PRIZE_RESULT);
     Console.print("---");
 
-    this.getResult();
+    // 1등 판별
+    for (let i = 0; i < this.howMany; i++) {
+      const result = this.makeNumbers[i].filter((x) =>
+        this.userInputNum.includes(x)
+      );
+
+      if (result.length === 6) {
+        Console.print("6개 일치 (2,000,000,000원)");
+      }
+
+      this.checkBonusPrize(result, i);
+    }
+
+    // // 그외 등수  !! 현재 에러
+    // for (let i = 0; i < this.howMany; i++) {
+    //   const result = this.makeNumbers[i].filter((x) =>
+    //     this.prizeArray.includes(x)
+    //   );
+    //   this.prize(result.length);
+    // }
+
+    // for (let i = 0; i < this.howMany; i++) {
+    //   const result = this.makeNumbers[i].filter((x) =>
+    //     this.userInputBonusNum.includes(x)
+    //   );
+    //   this.prize(result.length);
+    // }
   }
 
-  getResult() {
-    let count = 0;
-    // for (let i = 0; i < this.howMany - 1; i++) {
-    //   // if (this.userInputNum.includes(this.makeNumbers[i])) {
-    //   if (this.makeNumbers[i].includes(this.userInputNum)) {
-    //     count++;
-    //   }
-    // }
-    const hey = this.makeNumbers[0].filter((x) =>
-      this.userInputNum.includes(x)
-    );
-    console.log(hey.length);
+  checkBonusPrize(result, i) {
+    console.log(result);
 
-    console.log(
-      this.makeNumbers[0].filter((x) => this.userInputNum.includes(x))
-    );
+    console.log(this.makeNumbers[i].includes(String(this.userInputBonusNum)));
+    if (this.makeNumbers[i].includes(String(this.userInputBonusNum))) {
+      const prize = result.length + 1;
+      Console.print(`${prize}개 일치`);
+      return;
+    }
+    if (result.length >= 3) {
+      const prize = result.length;
+      Console.print(`${prize}개 일치`);
+    }
+  }
 
-    Console.print(this.makeNumbers[0]);
-    Console.print(this.userInputNum);
-    Console.print(this.userInputBonusNum);
+  prize(correct) {
+    // 결과값을 this.전체 생성자로 받아서 리턴하기
+    console.log(correct);
+    switch (correct) {
+      case 6:
+        Console.print("6개 일치 (2,000,000,000원)");
+        break;
+      case 5:
+        // 보너스 볼 일치하는 지 확인하는 메소드 필요
+        Console.print("5개 일치 (1,500,000원)");
+        break;
+      case 4:
+        Console.print("4개 일치 (50,000원)");
+        break;
+      case 3:
+        Console.print("3개 일치 (5,000원)");
+        break;
+      default:
+        // 콘솔에
+        Console.print("그 외");
 
-    const result = new Array(5).fill(0);
+        break;
+    }
+
+    Console.print(`
+    3개 일치 (5,000원) - ${this.fifthPrize}개
+    4개 일치 (50,000원) - ${this.fourthPrize}개
+    5개 일치 (1,500,000원) - ${this.thirdPrize}개
+    5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.secondPrize}개
+    6개 일치 (2,000,000,000원) - ${this.firstPrize}개`);
   }
 }
 
