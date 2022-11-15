@@ -61,8 +61,30 @@ describe("로또 테스트", () => {
     });
   });
 
-  test("예외 테스트", () => {
+  test("예외 테스트 1", () => {
     mockQuestions(["1000j"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR] 숫자만 입력 가능합니다.");
+  });
+
+  test("예외 테스트 2", () => {
+    mockRandoms([
+      [8, 21, 23, 41, 42, 43]
+    ]);
+    mockQuestions(["1000", "1,2j,3,4,5,6"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR] 숫자만 입력 가능합니다.");
+  });
+
+  test("예외 테스트 3", () => {
+    mockRandoms([
+      [8, 21, 23, 41, 42, 43]
+    ]);
+    mockQuestions(["1000", "1,2j,3,4,5,6", "a"]);
     expect(() => {
       const app = new App();
       app.play();
