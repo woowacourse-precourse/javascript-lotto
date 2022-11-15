@@ -54,14 +54,14 @@
     * [x] isItNumber 돈이 들어왔는지 검사
     * [x] rightAmount 천원단위로 들어왔는지 검사
 ---
-* [ ] ValidationTest.js
-    * [ ] itThatRightFormat 올바른 형식인지 검사
-    * [ ] isThatSix 로또 번호 갯수 검사
-    * [ ] numberNet 1과 45 사이인지 검사(배열일때)
-    * [ ] isThatDuplicate 중복되는지 검사
-    * [ ] itThatNumber 숫자인지 검사
-    * [ ] singleNumberNet 1과 45 사이인지 검사(1개의 숫자일때)
-    * [ ] isThatInclude 당첨번호와 값이 중복되는지 검사
+* [x] ValidationTest.js
+    * [x] itThatRightFormat 올바른 형식인지 검사
+    * [x] isThatSix 로또 번호 갯수 검사
+    * [x] numberNet 1과 45 사이인지 검사(배열일때)
+    * [x] isThatDuplicate 중복되는지 검사
+    * [x] itThatNumber 숫자인지 검사
+    * [x] singleNumberNet 1과 45 사이인지 검사(1개의 숫자일때)
+    * [x] isThatInclude 당첨번호와 값이 중복되는지 검사
 ---
 * [ ] CompareLottoTest.js
     * [ ] count 당첨 번호와 로또 대조 결과 검사
@@ -80,7 +80,7 @@
 
 
 ## 참고사항
-[JavaScript 코드 컨벤션](https://github.com/woowacourse/woowacourse-docs/tree/main/styleguide/javascript)
+[JavaScript 코드 컨벤션](https://github.com/woowacourse/woowacourse-docs/tree/main/styleguide/javascript)  
 [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153)  
-[MissionUtils 라이브러리](https://github.com/woowacourse-projects/javascript-mission-utils#mission-utils)
+[MissionUtils 라이브러리](https://github.com/woowacourse-projects/javascript-mission-utils#mission-utils)  
 [Airbnb 자바스크립트 스타일 가이드](https://github.com/airbnb/javascript)
