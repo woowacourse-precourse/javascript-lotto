@@ -1,6 +1,6 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const { FORMAT } = require('./Setting');
 const { RANK } = require('./Constant');
+const { FORMAT, LOTTO } = require('./Setting');
 const Validate = require('./Validate');
 
 const validate = new Validate();
@@ -14,7 +14,11 @@ class Lotto {
   }
 
   generate() {
-    const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+    const numbers = Random.pickUniqueNumbersInRange(
+      LOTTO.MIN_NUMBER,
+      LOTTO.MAX_NUMBER,
+      LOTTO.NUMBER_COUNT
+    );
 
     return numbers.sort((num1, num2) => num1 - num2);
   }

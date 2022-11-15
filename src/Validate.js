@@ -1,4 +1,5 @@
 const { ERROR, REG_EXP, InputError } = require('./Error');
+const { LOTTO } = require('./Setting');
 
 class Validate {
   format(regExp, input) {
@@ -9,7 +10,7 @@ class Validate {
 
   purchaseAmount(input) {
     this.format(REG_EXP.NUMBER_ONLY, input);
-    if (input % 1000 !== 0 || input === '0') {
+    if (input % LOTTO.PRICE !== 0 || input === '0') {
       throw new InputError(`${ERROR.PREFIX} ${ERROR.PURCHASE_AMOUNT}`);
     }
   }
@@ -20,17 +21,17 @@ class Validate {
     numbers.forEach((num) => {
       this.single(num);
     });
-    if (numbers.length !== 6) {
+    if (numbers.length !== LOTTO.NUMBER_COUNT) {
       throw new InputError(`${ERROR.PREFIX} ${ERROR.NUMBER_COUNT}`);
     }
-    if (uniqueNumbers.size !== 6) {
+    if (uniqueNumbers.size !== LOTTO.NUMBER_COUNT) {
       throw new InputError(`${ERROR.PREFIX} ${ERROR.NUMBER_DUPLICATE}`);
     }
   }
 
   single(num) {
     this.format(REG_EXP.NUMBER_ONLY, num);
-    if (num < 1 || num > 45) {
+    if (num < LOTTO.MIN_NUMBER || num > LOTTO.MAX_NUMBER) {
       throw new InputError(`${ERROR.PREFIX} ${ERROR.NUMBER_RANGE}`);
     }
   }

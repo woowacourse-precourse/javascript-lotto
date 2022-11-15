@@ -1,8 +1,9 @@
 const { ERROR } = require('../src/Error');
+const { LOTTO } = require('../src/Setting');
 const Lotto = require('../src/Lotto');
 
 describe('로또 클래스 테스트', () => {
-  test('로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.', () => {
+  test(`로또 번호의 개수가 ${LOTTO.NUMBER_COUNT}개가 넘어가면 예외가 발생한다.`, () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 6, 7]);
     }).toThrow(`${ERROR.PREFIX} ${ERROR.NUMBER_COUNT}`);
@@ -14,7 +15,7 @@ describe('로또 클래스 테스트', () => {
     }).toThrow(`${ERROR.PREFIX} ${ERROR.NUMBER_DUPLICATE}`);
   });
 
-  test('로또 번호의 숫자 범위가 1~45를 벗어나면 예외가 발생한다.', () => {
+  test(`로또 번호의 숫자 범위가 ${LOTTO.MIN_NUMBER}~${LOTTO.MAX_NUMBER}를 벗어나면 예외가 발생한다.`, () => {
     expect(() => {
       new Lotto([41, 42, 43, 44, 45, 46]);
     }).toThrow(`${ERROR.PREFIX} ${ERROR.NUMBER_RANGE}`);

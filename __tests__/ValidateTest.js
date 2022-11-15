@@ -1,4 +1,5 @@
 const { ERROR } = require('../src/Error');
+const { LOTTO } = require('../src/Setting');
 const Validate = require('../src/Validate');
 
 const validate = new Validate();
@@ -10,7 +11,7 @@ describe('유효성 검사 클래스 테스트', () => {
     }).toThrow(`${ERROR.PREFIX} ${ERROR.FORMAT}`);
   });
 
-  test('로또 구입 금액이 1000원으로 나누어 떨어지지 않는 경우 예외가 발생한다.', () => {
+  test(`로또 구입 금액이 ${LOTTO.PRICE}원으로 나누어 떨어지지 않는 경우 예외가 발생한다.`, () => {
     expect(() => {
       validate.purchaseAmount('8500');
     }).toThrow(`${ERROR.PREFIX} ${ERROR.PURCHASE_AMOUNT}`);
@@ -28,7 +29,7 @@ describe('유효성 검사 클래스 테스트', () => {
     }).toThrow(`${ERROR.PREFIX} ${ERROR.FORMAT}`);
   });
 
-  test('보너스 번호의 숫자 범위가 1~45를 벗어나면 예외가 발생한다.', () => {
+  test(`보너스 번호의 숫자 범위가 ${LOTTO.MIN_NUMBER}~${LOTTO.MAX_NUMBER}를 벗어나면 예외가 발생한다.`, () => {
     expect(() => {
       validate.bonus('50');
     }).toThrow(`${ERROR.PREFIX} ${ERROR.NUMBER_RANGE}`);

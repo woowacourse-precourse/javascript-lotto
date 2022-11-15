@@ -11,6 +11,13 @@ const FORMAT = Object.freeze({
   MATCH_BONUS: ', 보너스 볼 일치',
 });
 
+const LOTTO = Object.freeze({
+  PRICE: 1000,
+  NUMBER_COUNT: 6,
+  MIN_NUMBER: 1,
+  MAX_NUMBER: 45,
+});
+
 const PRIZE = Object.freeze({
   0: 0,
   5: 5000,
@@ -23,5 +30,6 @@ const PRIZE = Object.freeze({
 module.exports = {
   UNIT,
   FORMAT,
+  LOTTO,
   PRIZE,
 };

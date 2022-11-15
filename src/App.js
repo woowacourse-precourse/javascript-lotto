@@ -1,6 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 const { MESSAGE } = require('./Constant');
-const { UNIT } = require('./Setting');
+const { UNIT, LOTTO } = require('./Setting');
 const Lotto = require('./Lotto');
 const Statistics = require('./Statistics');
 const Validate = require('./Validate');
@@ -15,7 +15,7 @@ class App {
     Console.readLine(MESSAGE.INPUT_PURCHASE_AMOUNT, (input) => {
       validate.purchaseAmount(input);
       statistics.purchaseAmount = input;
-      this.lottoCount = input / 1000;
+      this.lottoCount = input / LOTTO.PRICE;
       this.setMyLotto();
       this.printMyLotto();
       this.readWinningNumbers();
