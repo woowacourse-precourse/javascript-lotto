@@ -7,9 +7,16 @@ class Lotto {
   winningLottoNumber;
   bonusNumber;
   compareLotto = [];
+  profits;
+
+  setInputMoney(inputMoney) {
+    this.inputMoney = inputMoney;
+  }
   
+
   inputMoney() {
     Console.readLine(MESSAGE.INPUT_MONEY+('\n'), inputMoney => {
+      this.setInputMoney(inputMoney);
       this.validate(inputMoney);
       this.buyLotto(inputMoney);
     });
@@ -169,6 +176,17 @@ class Lotto {
     Console.print(RESULT.RESULT_RANK_5 + `${results[2]}개`);
     Console.print(RESULT.RESULT_RANK_4 + `${results[3]}개`);
     Console.print(RESULT.RESULT_RANK_3 + `${results[4]}개`);
+    this.calculateEarningsRate(results,this.inputMoney);
+  }
+
+  calculateEarningsRate(rankArray, inputMoney) {
+    const winningsArray = [2000000000, 30000000, 1500000, 50000, 5000];
+    const total = rankArray.reduce((sum, count, countIndex) => {
+      return sum + count * winningsArray[countIndex];
+    }, 0);
+    console.log(total);
+    const profits = ((total / inputMoney) * 100).toFixed(1);
+    Console.print(`총 수익률은 ${profits}%입니다.`);
     Console.close();
   }
 
