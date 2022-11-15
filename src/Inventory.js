@@ -27,6 +27,23 @@ class Inventory {
       this.#lottoScoreBoard.addLottoDrawResult(sameCount, bonusSameCount);
     });
   }
+
+  #getLottoScore(currentLotto, winLotto, bonusNumber) {
+    let sameCount = 0;
+    let bonusSameCount = 0;
+
+    currentLotto.forEach((currentNumber) => {
+      if (winLotto.includes(currentNumber)) {
+        sameCount += 1;
+      }
+
+      if (currentNumber === bonusNumber) {
+        bonusSameCount += 1;
+      }
+    });
+
+    return { sameCount, bonusSameCount };
+  }
 }
 
 module.exports = Inventory;
