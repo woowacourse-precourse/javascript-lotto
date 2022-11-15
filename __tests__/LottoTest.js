@@ -40,7 +40,7 @@ describe('로또 클래스 테스트', () => {
   });
 
   // 아래에 추가 테스트 작성 가능
-  test('로또 입력, 출력 기능 테스트', () => {
+  test('금액 입력, 출력 기능 테스트', () => {
     mockQuestions(['8000']);
     const logs = ['8개를 구매했습니다.'];
     const logSpy = getLogSpy();
@@ -52,7 +52,7 @@ describe('로또 클래스 테스트', () => {
     });
   });
 
-  test('로또 입력 예외 테스트 - 문자열이 입력될 경우', () => {
+  test('금액 입력 예외 테스트 - 문자열이 입력될 경우', () => {
     mockQuestions(['문자열이입력']);
     expect(() => {
       const app = new App();
