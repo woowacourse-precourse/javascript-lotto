@@ -16,6 +16,12 @@ class App {
     this.clerk = new Clerk();
     this.statistics = new Statistics();
   }
+
+  async getMoney() {
+    return this.judge.isBuyerInputValid(
+      await this.buyer.getInput(SYS_MESSAGE.INPUT_MONEY_MESSAGE)
+    );
+  }
 }
 
 module.exports = App;
