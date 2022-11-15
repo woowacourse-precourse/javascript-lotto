@@ -1,4 +1,4 @@
-class ValidateWinnigNumber {
+class ValidateWinningNumber {
 
   constructor(inputWinningNumber) {
     this.winningNumber = [];
@@ -17,4 +17,4 @@ class ValidateWinnigNumber {
   }
 };
 
-module.exports = ValidateWinnigNumber;
+module.exports = ValidateWinningNumber;
