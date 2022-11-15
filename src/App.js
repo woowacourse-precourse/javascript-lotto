@@ -86,9 +86,9 @@ class App {
     if(this.#winBonus) {
       profit += this.#winBonus * this.#BONUS_PROFIT;
     }
-    profit = profit / (this.#myLottoNumbers.length*1000);
+    // 당첨금액 / 구입금액
+    profit = (profit / (this.#myLottoNumbers.length*1000)) * 100;
     this.#profitPercent = profit.toFixed(1);
-    // this.#profitPercent = parseInt(String(this.#profitPercent).toLocalString('ko-KR'));
     this.printResult();
   }
 
