@@ -1,5 +1,10 @@
+const Store = require("./Store");
+
 class App {
-  play() {}
+  play() {
+    const store = new Store();
+    store.buy();
+  }
 }
 
 module.exports = App;
