@@ -15,13 +15,17 @@ class LottoMachine {
   }
   
   takeWinningNumbers() {
+    let winningNumbers = [];
+
     this.#console.readLine('당첨 번호를 입력해 주세요.\n', (rawWinningNumbers) => {
       this.#validateRawWinningNumbers(rawWinningNumbers);
-      const winningNumbers = rawWinningNumbers.split(',');
+      winningNumbers = rawWinningNumbers.split(',');
+      winningNumbers = winningNumbers.map((number) => parseInt(number));
       this.#validateWinningNumbers(winningNumbers);
-      return winningNumbers;
     });
+
     this.#console.close();
+    return winningNumbers;
   }
   
   #validateRawWinningNumbers(rawWinningNumbers) {
@@ -45,11 +49,13 @@ class LottoMachine {
   }
 
   takeBonusNumberExcept(winningNumbers) {
-    this.#console.readLine('보너스 번호를 입력해주세요.\n', (bonusNumber) => {
-      this.#validateBonusNumber(bonusNumber, winningNumbers);
-      return bonusNumber;
+    let bonusNumber;
+    this.#console.readLine('보너스 번호를 입력해주세요.\n', (takenBonusNumber) => {
+      this.#validateBonusNumber(takenBonusNumber, winningNumbers);
+      bonusNumber = parseInt(takenBonusNumber);
     });
     this.#console.close();
+    return bonusNumber;
   }
 
   #validateBonusNumber(bonusNumber, winningNumbers) {
