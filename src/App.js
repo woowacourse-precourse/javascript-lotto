@@ -38,7 +38,6 @@ class App {
 
   play() {
     this.pay();
-    this.setLuckyNumbers();
   }
 
   pay() {
