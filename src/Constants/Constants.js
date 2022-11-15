@@ -37,4 +37,15 @@ const LOTTO_PRIZE = {
   fifthPlace: 5000,
 };
 
-module.exports = { MESSAGES, ERROR_MESSAGES, LOTTO, LOTTO_RANK, LOTTO_PRIZE };
+const LOTTO_STATS_MESSAGES = {
+  TOTAL_PROFIT_RATE: (rate) => `총 수익률은 ${rate}%입니다.`,
+};
+
+module.exports = {
+  MESSAGES,
+  ERROR_MESSAGES,
+  LOTTO,
+  LOTTO_RANK,
+  LOTTO_PRIZE,
+  LOTTO_STATS_MESSAGES,
+};
