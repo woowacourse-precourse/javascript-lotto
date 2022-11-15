@@ -1,4 +1,5 @@
 const { print, close } = require("../utils/MissionUtils");
+const MissionUtils = require("@woowacourse/mission-utils");
 const {
   MESSAGE_ACCORDING_CORRECT_COUNT,
   MESSAGE_ACCORDING_PRIZE_MONEY,
@@ -12,12 +13,12 @@ class view {
 
   rankingResult(winningResults) {
     this.#winngingResult = winningResults;
-    print(MESSAGE_ACCORDING_ACTION.NOTIFY_WINNING);
+    MissionUtils.Console.print(MESSAGE_ACCORDING_ACTION.NOTIFY_WINNING);
     [...Array(LOTTO_INFO.LEAST_PLACE).keys()]
       .map((key) => key + 1)
       .reverse()
       .forEach((place) => {
-        print(
+        MissionUtils.Console.print(
           `${MESSAGE_ACCORDING_CORRECT_COUNT[place]} ${
             MESSAGE_ACCORDING_PRIZE_MONEY[place]
           } ${this.#winngingResult[place]}개`
@@ -26,12 +27,14 @@ class view {
   }
 
   eariningRate(percentage) {
-    print(MESSAGE_ACCORDING_INPUT_ACTION.RETURN_EARNING_RATE(percentage));
+    MissionUtils.Console.print(
+      MESSAGE_ACCORDING_INPUT_ACTION.RETURN_EARNING_RATE(percentage)
+    );
     close();
   }
 
   purchasedSize(purchaseNumbers) {
-    print(
+    MissionUtils.Console.print(
       MESSAGE_ACCORDING_INPUT_ACTION.RETURN_PURCHASED_LENGTH(
         purchaseNumbers.length
       )
@@ -40,7 +43,7 @@ class view {
 
   purchasedList(purchaseNumbers) {
     Array.from(purchaseNumbers).forEach((lotto) =>
-      print(`[${lotto.join(", ")}]`)
+      MissionUtils.Console.print(`[${lotto.join(", ")}]`)
     );
   }
 }
