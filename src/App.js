@@ -1,6 +1,7 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
 const { MESSAGE, LOTTERY_PRICE, LOTTERY_RESULT, PRIZE_GRADE, PRIZE_PRICE } = require("./Constant");
 const Money = require("./Money");
+const Lotto = require("./Lotto");
 class App {
   #money;
   #numberOfLottery;
@@ -82,10 +83,14 @@ class App {
     });
   };
 
+  checkIsValidWinningNumber = (winningNumbers) => {
+    return new Lotto(winningNumbers);
+  };
+
   getWinningNumber = () => {
     Console.readLine(MESSAGE.GET_WINNING_NUMBERS, (winningNumbers) => {
       this.#winningNumbers = winningNumbers.split(",").map(Number);
-      // TODO: winningNumbers Validate Test
+      this.checkIsValidWinningNumber(this.#winningNumbers);
       this.getBonusNumber();
     });
   };
