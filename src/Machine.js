@@ -68,8 +68,9 @@ class Machine {
         bonus: this.#bonusNumber,
       });
       this.#computeRankingCountMap(winningBonusCounts);
-      this.#displayResult();
     });
+
+    this.#displayResult();
   }
 
   #computeRankingCountMap(lottoCounts) {
