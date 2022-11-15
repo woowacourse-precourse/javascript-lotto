@@ -61,4 +61,14 @@ class App {
 
     Console.close();
   }
+
+  // [v][게임 시작 기능]
+  play() {
+    this.readInputMoney();
+  }
+}
+
+const app = new App();
+app.play();
+
 module.exports = App;
