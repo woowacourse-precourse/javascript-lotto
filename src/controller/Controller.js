@@ -41,7 +41,17 @@ class Controller {
       this.validateWinningNumber(number);
       const numbers = number.split(",").map(Number);
       this.lottoModel = new Lotto(numbers);
+      this.inputBonusNumber();
     });
+  }
+
+  inputBonusNumber() {
+    this.view.readLine(QUERY.BONUS, (bonus) => {
+      const winningNumber = this.lottoModel.getNumbers();
+
+      this.bonusModel = new Bonus(bonus, winningNumber);
+      this.calcStatistics();
+    })
   }
 
   validateWinningNumber(number) {
