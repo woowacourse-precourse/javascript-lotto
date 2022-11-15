@@ -1,6 +1,7 @@
 const { print, readLine } = require('./utils');
 const { LOTTO_PRICE } = require('./var');
 const {Random} = require("@woowacourse/mission-utils");
+const Lotto = require('./Lotto');
 class App {
   #lotto;
   #madeLotto;
@@ -26,6 +27,7 @@ class App {
       print(`${countLotto}개를 구매했습니다.\n`);
       this.#madeLotto = this.makingLottoNumbers(countLotto);
       this.#madeLotto.forEach(lottoNumber => print(`[${lottoNumber.join(', ')}]`));
+      this.inputNumbers();
     }
   }
 
@@ -36,6 +38,17 @@ class App {
       lottoNumbers.push(lottoNumber);
     }
     return lottoNumbers;
+  }
+
+  inputNumbers() {
+    this.inputLottoNumbers();
+  }
+
+  inputLottoNumbers() {
+    readLine('당첨 번호를 입력해 주세요.\n', lottoNumber => {
+      const lottoNumbers = lottoNumber.split(',').map(Number);
+      this.#lotto = new Lotto(lottoNumbers);
+    })
   }
 }
 
