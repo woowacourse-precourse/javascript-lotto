@@ -57,7 +57,7 @@ class UserNumber {
     const issuedLotto = [];
     for (
       let idx = 0;
-      idx < this.purchasingAmount / generalConstants.SINGLE_LOTTO_PRICE;
+      idx < purchasingAmount / generalConstants.SINGLE_LOTTO_PRICE;
       idx++
     ) {
       const singleLottoCombination = Random.pickUniqueNumbersInRange(1, 45, 6);
