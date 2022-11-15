@@ -10,6 +10,7 @@ class App {
   bonusNumber;
   result = {'1등': 0, '2등': 0, '3등': 0, '4등': 0, '5등': 0, 'none': 0}
   reward = {'1등': 2000000000, '2등': 30000000, '3등': 1500000, '4등': 50000, '5등': 5000, 'none': 0}
+  revenue = 0
 
   play() {
     this.inputBuyLottoMoney();
@@ -102,6 +103,10 @@ class App {
       return '1등'
     }
     return 'none'
+  }
+  
+  calculateRateOfReturn() {
+    return this.revenue / this.money * 100
   }
 }
 
