@@ -30,19 +30,32 @@ class ResultStats {
 
   findDuplicateNumbers(){
     let duplication_number = this.#lotto_num.filter(it=>this.draw_number.includes(it));
+    if(duplication_number.length+1==5){
+      if(this.#lotto_num.includes(this.bonus_number)){
+        return 5.5;
+      }
+    }
     return duplication_number.length+1;
   }
 
-  countWinningLotto(win_num){
+  countWinningLotto(){
+    let win_num;
+    win_num = this.findDuplicateNumbers();
     let equal_three_num;
     let equal_four_num;
     let equal_five_num;
+    let equal_five_bonus_num;
     let equal_all_num;
     if(win_num==3)equal_three_num+=1;
     if(win_num==4)equal_four_num+=1;
-    if(win_num==5) equal_five_num+=1;
-    if(win_num==6) equal_all_num+=1;
+    if(win_num==5)equal_five_num+=1;
+    if(win_num==5.5)equal_five_bonus_num+=1;
+    if(win_num==6)equal_all_num+=1;
+
+    this.printWinningResult(equal_three_num,equal_four_num,equal_five_num,equal_five_bonus_num,equal_all_num);
   }
+
+
 
 }
 
