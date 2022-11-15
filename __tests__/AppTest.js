@@ -280,3 +280,21 @@ describe('lottoResult Object 테스트', () => {
     expect(lottoResult).toEqual({ '1등': 1, '2등': 0, '3등': 0, '4등': 0, '5등': 0 });
   });
 });
+
+describe('수익률을 계산하는 기능', () => {
+  test('Test1', () => {
+    const lottoResult = { '1등': 1, '2등': 0, '3등': 0, '4등': 0, '5등': 0 };
+    const lottoMachineController = new LottoMachineController();
+    lottoMachineController.purchaseAmount = 8000;
+
+    expect(lottoMachineController.calculateTotalPrizeMoney(lottoResult)).toEqual('25000000.0');
+  });
+
+  test('Test1', () => {
+    const lottoResult = { '1등': 1, '2등': 1, '3등': 1, '4등': 1, '5등': 1 };
+    const lottoMachineController = new LottoMachineController();
+    lottoMachineController.purchaseAmount = 8000;
+
+    expect(lottoMachineController.calculateTotalPrizeMoney(lottoResult)).toEqual('25394437.5');
+  });
+});
