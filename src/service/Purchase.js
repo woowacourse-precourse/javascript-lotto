@@ -1,4 +1,8 @@
-const { GAME_MESSAGES, ERROR_MESSAGES } = require("../constants/constants");
+const {
+  GAME_MESSAGES,
+  ERROR_MESSAGES,
+  NUMBERS,
+} = require("../constants/constants");
 const { Console, Random } = require("@woowacourse/mission-utils");
 const { isDuplicated, isOutOfRange } = require("../utils/utils");
 
@@ -13,9 +17,9 @@ class Purchase {
   }
 
   isValidCost = (cost) => {
-    if (cost / 1000 !== Math.floor(cost / 1000))
+    if (cost / NUMBERS.MIN_COST_NUM !== Math.floor(cost / NUMBERS.MIN_COST_NUM))
       throw new Error(ERROR_MESSAGES.INVALID_COST_UNIT);
-    if (cost < 1000 || cost > 10000)
+    if (cost < NUMBERS.MIN_COST_NUM || cost > NUMBERS.MAX_COST_NUM)
       throw new Error(ERROR_MESSAGES.INVALID_COST_RANGE);
 
     return true;

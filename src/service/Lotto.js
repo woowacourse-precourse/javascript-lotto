@@ -29,16 +29,15 @@ class Lotto {
         const resultMessage = this.getResultMessage(userInput, cost);
 
         Console.print(resultMessage);
-        Console.print("게임 종료");
-        Console.close();
+        Console.print(GAME_MESSAGES.GAME_OVER);
       });
     });
   };
 
   validateWinningNumber = (winningNumber) => {
-    if (winningNumber.length === 1)
+    if (winningNumber.length === NUMBERS.MIN_LOTTO_NUM)
       throw new Error(ERROR_MESSAGES.INVALID_SEPARATOR);
-    if (winningNumber.length !== 6)
+    if (winningNumber.length !== NUMBERS.MAX_LOTTO_NUM)
       throw new Error(ERROR_MESSAGES.INVALID_LOTTO_LENGTH);
     if (isDuplicated(winningNumber)) {
       throw new Error(ERROR_MESSAGES.DUPLICATED_LOTTO_NUM);
@@ -115,7 +114,6 @@ class Lotto {
 
     return result;
   };
-
   calculateRateOfReturn = (result, cost) => {
     let rate = 0;
 

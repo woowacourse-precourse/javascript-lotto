@@ -3,6 +3,7 @@ const GAME_MESSAGES = Object.freeze({
   RETURN_PURCHASED_AMOUNT: (n) => `${n}개를 구매했습니다.`,
   ASK_FOR_WINNING_NUMBERS: "당첨 번호를 입력해 주세요: ",
   ASK_FOR_BONUS_NUMBER: "보너스 번호를 입력해 주세요: ",
+  GAME_OVER: "게임 종료",
 });
 
 const ERROR_MESSAGES = Object.freeze({
@@ -21,6 +22,9 @@ const ERROR_MESSAGES = Object.freeze({
 const NUMBERS = Object.freeze({
   MIN_LOTTO_NUM: 1,
   MAX_LOTTO_NUM: 45,
+  LOTTO_NUM: 6,
+  MIN_COST_NUM: 1000,
+  MAX_COST_NUM: 10000,
   FIRST_PRIZE: "2,000,000,000".replace(/,/g, ""),
   SECOND_PRIZE: "30,000,000".replace(/,/g, ""),
   THIRD_PRIZE: "1,500,000".replace(/,/g, ""),

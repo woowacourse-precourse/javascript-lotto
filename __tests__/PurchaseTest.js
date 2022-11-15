@@ -16,12 +16,8 @@ describe("구매 클래스 테스트", () => {
   });
   test.skip.failing(
     "3. 발행된 로또 번호는 1~45 사이의 중복되지 않은 6자리 숫자이며, 아닐시 예외가 발생한다.",
-    () => {
-      expect(
-        expect(
-          new Purchase(1000).isValidNumber(1000, [[1, 1, 3, 4, 5, 6]])
-        ).toThrow(ERROR_MESSAGES.DUPLICATED_LOTTO_NUM)
-      );
-    }
+    expect(
+      new Purchase(1000).isValidNumber(1000, [[1, 1, 3, 4, 5, 6]])
+    ).toThrow(ERROR_MESSAGES.DUPLICATED_LOTTO_NUM)
   );
 });
