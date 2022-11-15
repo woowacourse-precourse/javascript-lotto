@@ -1,5 +1,6 @@
 const print = require("./console/print");
 const input = require("./console/input");
+const message = require("./util/message");
 
 class App {
   constructor() {
@@ -8,6 +9,11 @@ class App {
   }
 
   play() {}
+
+  buyMessagePrint() {
+    this.print.print(message.INPUT_MESSAGE);
+    this.input.inputLine().then((data) => {});
+  }
 }
 
 module.exports = App;
