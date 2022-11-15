@@ -1,5 +1,5 @@
-const { prizeCount } = require("../common/constants");
-const { checkWinningNumber } = require("../Validation")
+const { prizeCount } = require('../common/constants');
+const { checkWinningNumber } = require('../Validation');
 
 class Lotto {
   #numbers;
@@ -10,7 +10,7 @@ class Lotto {
   }
 
   getWinningNumber() {
-    return this.#numbers.split(",").map((item) => Number(item));
+    return this.#numbers.split(',').map((item) => Number(item));
   }
 
   checkEachLottoNumber(publishedLotto) {
@@ -20,7 +20,7 @@ class Lotto {
     publishedLotto.forEach((eachUserLottoNumber) => {
       matchedNumberList.push(this.getMatchNumberList(winningNumber, eachUserLottoNumber).length);
     });
-    this.countMatchNumber(matchedNumberList)
+    this.countMatchNumber(matchedNumberList);
   }
 
   getMatchNumberList(winningNumber, eachUserLottoNumber) {
@@ -42,6 +42,5 @@ class Lotto {
       }
     });
   }
-
 }
 module.exports = Lotto;
