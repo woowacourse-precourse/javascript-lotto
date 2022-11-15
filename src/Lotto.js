@@ -6,6 +6,7 @@ class Lotto {
   constructor(numbers, userLottos) {
     this.validateLength(numbers);
     this.validateRange(numbers);
+    this.validateDuplicate(numbers);
     this.#numbers = numbers.map((num) => Number(num));
 
     this.inputBonusNumber(userLottos);
@@ -36,6 +37,11 @@ class Lotto {
       if (numbers[i] < 1 || numbers[i] > 45) {
         throw new Error("[ERROR] 로또 번호는 1~45 사이만 가능합니다.");
       }
+    }
+  }
+  validateDuplicate(numbers) {
+    if (numbers.length !== new Set(numbers).size) {
+      throw new Error("[ERROR] 로또 번호는 중복된 숫자가 없어야 합니다.");
     }
   }
 
