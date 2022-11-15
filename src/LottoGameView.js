@@ -2,7 +2,7 @@ const LottoController = require("./LottoController");
 const { Console } = require("@woowacourse/mission-utils");
 const { GAME_MESSAGES } = require("./constants/messages");
 
-class LottoGame {
+class LottoGameView {
   constructor() {
     this.lottoController = new LottoController();
   }
@@ -37,4 +37,4 @@ class LottoGame {
   }
 }
 
-module.exports = LottoGame;
+module.exports = LottoGameView;

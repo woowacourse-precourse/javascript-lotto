@@ -1,12 +1,12 @@
-const LottoGame = require("./LottoGame");
+const LottoGameView = require("./LottoGameView");
 
 class App {
   constructor() {
-    this.lottogame = new LottoGame();
+    this.lottoGameView = new LottoGameView();
   }
 
   play() {
-    this.lottogame.getMoney();
+    this.lottoGameView.getMoney();
   }
 }
 
