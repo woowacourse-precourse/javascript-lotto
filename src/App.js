@@ -37,8 +37,9 @@ class App {
 
   getWinNumbers() {
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (numbers) => {
-      numbers = numbers.split(',');
-      this.#winNumbers = numbers.map((x) => parseInt(x));
+      const inputStrArray = numbers.split(',');
+      const lotto = new Lotto(inputStrArray);
+      this.#winNumbers = lotto.getNumbers().map((x) => parseInt(x));
       this.getBonusNumber();
     });
   }
