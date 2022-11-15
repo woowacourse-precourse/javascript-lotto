@@ -1,8 +1,4 @@
-const {
-  LOTTO_INFO,
-  RANK_TO_ORDINAL,
-  RESULT,
-} = require("../Constants/Constants");
+const { LOTTO_INFO, RANK_TO_ORDINAL, RESULT } = require("../Constants");
 const { Console } = require("@woowacourse/mission-utils");
 
 class Details {

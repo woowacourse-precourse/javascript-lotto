@@ -1,11 +1,11 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { QUESTION } = require("./Constants");
 const { getValidatedInput } = require("./Validation/App");
-const { getPurchaseAmount } = require("./Purchase");
-const Lotto = require("./Lotto");
-const LottosMaker = require("./LottoMaker");
-const Bonus = require("./Bonus");
-const Statistics = require("./Statistics");
+const { getPurchaseAmount } = require("./Lotto/Purchase");
+const Lotto = require("./Lotto/Lotto");
+const LottosMaker = require("./Lotto/LottoMaker");
+const Bonus = require("./Lotto/Bonus");
+const Statistics = require("./Statistics/Statistics");
 
 class App {
   play() {
