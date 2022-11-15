@@ -45,6 +45,7 @@
 - `private`를 어떻게 활용하는지 [이 질문](https://stackoverflow.com/questions/22156326/private-properties-in-javascript-es6-classes)에 대한 답을 보고 감을 잡을 수 있었다.
 - `number.toLocaleString()`하면 숫자 3자리마다 `,`를 넣을 수 있다.
 - `reduce`를 `function`으로 짜는 방법이 있다는 것을 알게 되었다.
+- Test 파일 1개만 실행하는 방법 : `npm test -- ApplicationTest` 또는 `npm test ApplicationTest`
 
 ## 파일 설명
 
