@@ -4,6 +4,7 @@ const ERROR = {
   PURCHASE_AMOUNT: {
     NOT_NUMBER: `${ERROR_TAG} 숫자를 입력해 주세요.`,
     NOT_DIVISIBLE: `${ERROR_TAG} 1,000원 단위의 금액을 입력해 주세요.`,
+    LESS: `${ERROR_TAG} 1,000원 이상의 금액을 입력해 주세요.`,
   },
   LOTTO_NUMBER: {
     NOT_LENGTH: `${ERROR_TAG} 로또 번호는 6개여야 합니다.`,
