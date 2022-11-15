@@ -17,49 +17,49 @@ class App {
   }
 
   play() {
-    this.submitAmount();
+    this.#submitAmount();
   }
 
-  submitAmount() {
+  #submitAmount() {
     MissionUtils.Console.readLine(MESSAGES.GAME.REQUIRE_PURCHASE_AMOUNT, (amount) => {
       this.amount = GameUtils.removeMarkingStandardMoney(amount);
       Validator.amountValidCheck(this.amount);
       this.amount = Number(this.amount);
       this.sheets = GameUtils.getSheets(this.amount);
       GamePrint.sheets(this.sheets);
-      this.userLottos = this.getUserLottos(this.sheets);
+      this.userLottos = this.#getUserLottos(this.sheets);
       GamePrint.lottoList(this.userLottos);
-      this.submitWinningLotto();
+      this.#submitWinningLotto();
     });
   }
 
-  submitWinningLotto() {    
+  #submitWinningLotto() {    
     MissionUtils.Console.readLine(MESSAGES.GAME.REQUIRE_WINNING_LOTTO_NUMBER, (input) => {
       const submittedNumbers = GameUtils.toArray(input);
       this.winningLotto = new Lotto(submittedNumbers);
-      this.submitBonus();
+      this.#submitBonus();
     });
   }
 
-  submitBonus() {    
+  #submitBonus() {    
     MissionUtils.Console.readLine(MESSAGES.GAME.REQUIRE_BONUS, (input) => {
       const submittedBonus = GameUtils.toArray(input);
       this.winningLotto.setBonus(submittedBonus);
-      this.getResult();
+      this.#getResult();
       GamePrint.result(this.prize, this.revenueRate);
       MissionUtils.Console.close();
     });
   }
 
-  getResult() {
+  #getResult() {
     this.userLottos.forEach(lotto => {
       const result = this.winningLotto.compare(lotto);
-      this.setRevenue(result);      
+      this.#setRevenue(result);      
     });
     this.revenueRate = GameUtils.getRevenueRate(this.amount, this.revenue);
   }
 
-  setRevenue(matched) {
+  #setRevenue(matched) {
     const matchedEA = String(matched.ea);
     const rank = this.prize[matchedEA];
     if(matchedEA === LOTTO_BASIC_CONDITION.bonusCheckPoint && matched.bonus === false) {
@@ -76,7 +76,7 @@ class App {
     }
   }
 
-  getUserLottos(sheets) {
+  #getUserLottos(sheets) {
     const lottos = [];
     while(lottos.length < sheets) {
       const lotto = MissionUtils.Random.pickUniqueNumbersInRange(LOTTO_BASIC_CONDITION.start, LOTTO_BASIC_CONDITION.end, LOTTO_BASIC_CONDITION.length);
