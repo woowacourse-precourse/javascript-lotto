@@ -35,4 +35,3 @@ describe("앱 유틸 클래스 테스트", () => {
     expect(AppUtils.calRate(10000, 0)).toEqual(0);
   });
 });
-  

@@ -34,15 +34,15 @@ class AppUtils {
     return reward == 0 ? 0 : Math.round(reward / purchase * 1000) / 10;
   }
 
-  static toStringCountLotto(myLotto) {
-    // 구매한 로또 개수 문자열 반환
-    return myLotto.getCount() + '개를 구매했습니다.';
+  static toStringCountLotto(countMyLotto) {
+    // 구매한 로또 개수를 받아 문자열로 반환
+    return countMyLotto + '개를 구매했습니다.';
   }
 
-  static toStringMyLotto(myLotto) {
+  static toStringMyLotto(myLottoes) {
     // 구매한 로또 내역 문자열 반환
     const result = new Array();
-    myLotto.getMyLottoes().forEach(numbers => {
+    myLottoes.forEach(numbers => {
       let numStr = '[' + numbers.toString().replace(/,/g, ', ') + ']';
       result.push(numStr);
     });
@@ -59,7 +59,6 @@ class AppUtils {
       '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
       '6개 일치 (2,000,000,000원) - '   
     ]
-
     histories.forEach((history, idx) => {
       result.push(labels[idx] + history + '개');
     })
@@ -71,10 +70,8 @@ class AppUtils {
     return '총 수익률은 ' + rate.toFixed(1).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '%입니다.';
   }
 
-  static toStringStat(myLotto, winLotto) {
+  static toStringStat(histories, rate) {
     // 당첨 통계 문자열 반환
-    const histories = this.getHistories(myLotto.getMyLottoes(), winLotto.getNumbers(), winLotto.getBonus());
-    const rate = this.calRate(myLotto.getPurchase(), this.calReward(histories));
     const result = [
       '당첨 통계',
       '---',
