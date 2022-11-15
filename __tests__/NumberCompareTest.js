@@ -27,7 +27,7 @@ const mockRandoms = (numbers) => {
         [1, 8, 11, 31, 41, 42],
         [13, 14, 16, 38, 42, 45],
         [7, 11, 30, 40, 42, 43],
-    ])
+    ]);
     mockQuestions(["6000" , "1,15,23,31,39,41" , "15"]);
     expect(() => {
       const app = new App();

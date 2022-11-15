@@ -15,7 +15,7 @@ describe("로또 금액 값 테스트", () => {
         mockQuestions([""]);
         const userInputNumber = new UserInputNumber();
         expect(() => {
-            userInputNumber.userLottoPaymentAmount()
+            userInputNumber.userLottoPaymentAmount();
             }).toThrow("[ERROR]");
     });
 
@@ -23,7 +23,7 @@ describe("로또 금액 값 테스트", () => {
         mockQuestions(["8500"]);
         const userInputNumber = new UserInputNumber();
         expect(() => {
-            userInputNumber.userLottoPaymentAmount()
+            userInputNumber.userLottoPaymentAmount();
             }).toThrow("[ERROR]");
     });
 });

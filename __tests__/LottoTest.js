@@ -16,13 +16,13 @@ describe("로또 클래스 테스트", () => {
 
   test("로또 번호에 1미만 45초과인 숫자가 있으면 예외가 발생한다" , () => {
     expect(() => {
-      new Lotto([1,46,3,20,23,47])
-    }).toThrow("[ERROR]")
+      new Lotto([1,46,3,20,23,47]);
+    }).toThrow("[ERROR]");
   });
 
   test("로또 번호에 숫자만 들어있지 않는 경우 예외가 발생한다." , () => {
     expect(() => {
-      new Lotto([1,46,3,20,23,"y"])
-    }).toThrow("[ERROR]")
+      new Lotto([1,46,3,20,23,"y"]);
+    }).toThrow("[ERROR]");
   });
 });
