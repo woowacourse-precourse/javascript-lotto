@@ -31,25 +31,19 @@ class Lotto {
   }
 
   isWrongRange(numbers) {
-    return numbers.map((number) => this.checkRange(number));
+    return numbers.find(this.checkRange);
   }
 
   checkRange(number) {
-    if (Number(number) < 1 || Number(number) > 45) {
-      return true;
-    }
-    return false;
+    return number < 1 || number > 45;
   }
 
   isNotNumber(numbers) {
-    return numbers.map((number) => this.checkNumber(number));
+    return numbers.find(this.checkNumber);
   }
 
   checkNumber(number) {
-    if (!Number(number)) {
-      return true;
-    }
-    return false;
+    return !Number(number);
   }
 }
 
