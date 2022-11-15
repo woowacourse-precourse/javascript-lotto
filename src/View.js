@@ -4,7 +4,23 @@ const Exception = require("./Exception");
 const Lotto = require("./Lotto");
 const { checkMyNumber, getRevenue } = require("./utils");
 const exception = new Exception();
-class View extends Setting {
+class View {
+  constructor() {
+    this.lottoBox = [];
+    this.money;
+    this.reword = 0;
+    this.revenue;
+    this.winNumber;
+    this.bonusNumber;
+    this.score = {
+      0: 0,
+      5000: 0,
+      50000: 0,
+      1500000: 0,
+      30000000: 0,
+      2000000000: 0,
+    };
+  }
   lottoStart() {
     Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
       this.isEmpty(money);
