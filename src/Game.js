@@ -61,25 +61,37 @@ class Game {
     while(count--){
       const numbers = this.generateNumbers();
       this.publishNumbers.push(numbers);
-      Console.print(numbers);
+      Console.print(`[${String(numbers).replaceAll(",", ", ")}]`);
     }
   }
 
   getWinningNumberInput() {
     return Console.readLine('당첨 번호를 입력해 주세요.', (inputWinningNumber) => {
-      const arr = new Set(inputWinningNumber);
-      if (inputWinningNumber.length !== [...arr].length) throw "[ERROR] 중복되지 않는 수를 입력해 주세요.";
-      console.log(inputWinningNumber);
-      let splitWinningNumber = inputWinningNumber.split(',');
-      new Lotto(splitWinningNumber);
-      this.winningNumber = splitWinningNumber.map(Number);  
+      this.winningNumber = inputWinningNumber.split(",").map(Number);
+      this.checkWinningNumber(this.winningNumber);
       Console.close();
     });
   }
 
+	checkWinningNumber(input) {
+    input.forEach((e) => {
+			if (isNaN(e)) throw "[ERROR] 숫자로만 입력해 주세요.";
+		});
+
+    if (input.length !== 6) throw "[ERROR] 개수를 맞게 입력해 주세요.";
+
+    const arr = new Set(input);
+		if (input.length !== [...arr].length) throw "[ERROR] 중복되지 않는 수를 입력해 주세요.";
+
+		input.forEach((e) => {
+			if (e < 1 || e > 45) throw "[ERROR] 1부터 45까지의 수만 입력해 주세요.";
+		});
+
+	}
+
   getBonusNumberInput() {
     return Console.readLine('보너스 번호를 입력해 주세요.', (inputBonusNumber) => {
-      console.log(inputBonusNumber);
+      //console.log(inputBonusNumber);
       this.bonusNumber = Number(inputBonusNumber);
       Console.close();
     });
@@ -92,7 +104,8 @@ class Game {
     this.countArr.forEach((count, idx) => {
       total += this.static[idx].prize * count;
     });
-    this.earningPercent = ((add / this.price) * 100).toFixed(1);
+    this.earningPercent = ((total / this.price) * 100).toFixed(1);
+    console.log(this.earningPercent);
   }
 
   printResult() {

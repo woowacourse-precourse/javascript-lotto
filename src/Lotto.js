@@ -10,9 +10,14 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
+
+    const arr = new Set(numbers);
+		if (numbers.length !== [...arr].length) {
+      throw new Error("[ERROR] 중복된 숫자가 있으면 안 됩니다.");
+    }
+    
   }
 
-  // TODO: 추가 기능 구현
   compareNumbers(publishNumbers, bonusNumber) {
     let matchCountArr = [0,0,0,0,0];
 
