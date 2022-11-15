@@ -1,47 +1,48 @@
-const Mission = require("@woowacourse/mission-utils");
+const { Console } = require("@woowacourse/mission-utils");
 const { LOTTO_INFO, RESULT_MESSAGES } = require("../utils/Constants");
 
 class Result {
   #profit;
   #scoreArray;
+  #lottoScore;
+  #totalProfitRate;
 
-  constructor(myLottoArray, winningNumbers, bonusNumber, amount, payment) {
+  constructor(winningNumbers, myLottoArray, bonusNumber, payment) {
     this.#scoreArray = Array(5).fill(0);
-    this.myLottoArray = myLottoArray;
     this.winningNumbers = winningNumbers;
+    this.myLottoArray = myLottoArray;
     this.bonusNumber = bonusNumber;
-    this.amount = amount;
     this.payment = payment;
     this.checkMatchNumber();
+    this.makeLottoResult();
   }
 
   checkMatchNumber() {
     this.myLottoArray.forEach((item, index) => this.countMatchNumber(item, index));
-    this.announceScore();
   }
 
   countMatchNumber(item, index) {
-    const accum = item.reduce((acc, cur) => {
+    const matchingNumberStack = item.reduce((acc, cur) => {
       if (this.winningNumbers.includes(cur)) {
         return acc + 1;
       }
       return acc;
     }, 0);
 
-    this.addScoreArray(accum, index);
+    this.addScoreArray(matchingNumberStack, index);
   }
 
-  addScoreArray(accum, index) {
-    if (accum === 3) {
+  addScoreArray(matchingNumberStack, index) {
+    if (matchingNumberStack === 3) {
       this.#scoreArray[0] += 1;
     }
-    if (accum === 4) {
+    if (matchingNumberStack === 4) {
       this.#scoreArray[1] += 1;
     }
-    if (accum === 5) {
+    if (matchingNumberStack === 5) {
       this.checkIncludeBonus(index);
     }
-    if (accum === 6) {
+    if (matchingNumberStack === 6) {
       this.#scoreArray[4] += 1;
     }
   }
@@ -55,23 +56,10 @@ class Result {
     return;
   }
 
-  announceScore() {
-    Mission.Console.print(RESULT_MESSAGES.WINNING_STATISTICS);
-    Mission.Console.print(this.printScore());
+  makeLottoResult() {
     this.calculateProfit();
-  }
-
-  printScore() {
-    return RESULT_MESSAGES.PRINT_RESULT(
-      [3, 4, 5, 5, 6],
-      [
-        this.#scoreArray[0],
-        this.#scoreArray[1],
-        this.#scoreArray[2],
-        this.#scoreArray[3],
-        this.#scoreArray[4],
-      ]
-    );
+    this.calculateScore();
+    this.calculateTotalProfitRate();
   }
 
   calculateProfit() {
@@ -83,8 +71,27 @@ class Result {
       this.#scoreArray[4] * LOTTO_INFO.FIRST_PRIZE;
   }
 
-  totalProfitRate() {
-    return RESULT_MESSAGES.TOTAL_PROFIT_RATE(this.#profit, this.payment);
+  calculateScore() {
+    this.#lottoScore = RESULT_MESSAGES.PRINT_RESULT(
+      [3, 4, 5, 5, 6],
+      [
+        this.#scoreArray[0],
+        this.#scoreArray[1],
+        this.#scoreArray[2],
+        this.#scoreArray[3],
+        this.#scoreArray[4],
+      ]
+    );
+  }
+
+  calculateTotalProfitRate() {
+    this.#totalProfitRate = RESULT_MESSAGES.TOTAL_PROFIT_RATE(this.#profit, this.payment);
+  }
+
+  announceScore() {
+    Console.print(RESULT_MESSAGES.WINNING_STATISTICS);
+    Console.print(this.#lottoScore);
+    Console.print(this.#totalProfitRate);
   }
 }
 
