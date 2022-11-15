@@ -76,4 +76,17 @@ describe("로또 클래스 테스트", () => {
       expect(lotto.compareBonusNumber(ticket)).toEqual(result[idx]);
     });
   });
+
+  test("등수에 따른 총 상금 구하기", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    lotto.resultMap = new Map([
+      [3, 1],
+      [4, 1],
+      [5, 0],
+      ["5B", 0],
+      [6, 1],
+    ]);
+
+    expect(lotto.sumTotalPrize(lotto.resultMap)).toEqual(2000055000);
+  });
 });
