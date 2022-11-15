@@ -123,12 +123,11 @@ class Statistics {
   /**
    * 수익률을 판단하여 적용하는 메서드
    * @param userPurchasingAmount {number} [유저 구입 금액]
+   * @param totalMoneyEarned {number} [총 수익 금액]
    */
-  updateRateOfReturn(userPurchasingAmount) {
-    const totalMoneyEarned = this.getMoneyEarned();
-
+  updateRateOfReturn(userPurchasingAmount, totalMoneyEarned) {
     this.setRateOfReturn(
-      ((totalMoneyEarned / userPurchasingAmount) * 100).toFixed(1),
+      (+(totalMoneyEarned / userPurchasingAmount) * 100).toFixed(1),
     );
   }
 
@@ -136,8 +135,11 @@ class Statistics {
   getStatistics() {
     const information = this.controller.getOverallInformationForStatistics();
     this.updateRanks(information);
-    this.updateRateOfReturn(information.purchasingAmount);
-    this.controller.printStatistics(this.getRanks(), this.getRateOfReturn());
+    this.updateRateOfReturn(
+      information.purchasingAmount,
+      this.getMoneyEarned(),
+    );
+    this.controller.printStatistics(this.ranks, this.rateOfReturn);
   }
 }
 
