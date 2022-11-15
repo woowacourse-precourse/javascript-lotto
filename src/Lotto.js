@@ -61,6 +61,7 @@ class Lotto {
     for(let i = 0; i<lottoCount; i++){
       let lotto = Random.pickUniqueNumbersInRange(1,45,6);
       lotto = this.sortLotto(lotto);
+      this.validate(lotto);
       this.mylotto.push(lotto);
     }
   }
@@ -68,6 +69,7 @@ class Lotto {
   enterWinningNumber(){
     Console.readLine(`\n${MESSAGE.WINNING}\n`,(winningNumber) => {
       this.#numbers = winningNumber.split(",").map(Number)
+      this.validate(this.#numbers);
       this.enterBonusNumber();
     })
   }
@@ -145,11 +147,11 @@ class Lotto {
     return EARNING_RATE;
   }
 
-  // validate(numbers) {
-  //   if (numbers.length !== 6) {
-  //     throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-  //   }
-  // }
+  validate(numbers) {
+    if (numbers.length !== 6) {
+      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    }
+  }
 }
 
 module.exports = Lotto;
