@@ -12,19 +12,26 @@ class InputView {
   inputMoney() {
     Console.readLine(INPUT_MESSAGE.BUY, (money) => {
       const lottos = this.#lottoGameController.start(money);
-      this.#showLottos(lottos);
+      this.#printLottosSize();
     });
   }
 
-  #showLottos(lottos) {
-    Console.print(OUTPUT_MESSAGE.BUY(lottos.size()));
+  #printLottosSize() {
+    const size = this.#lottoGameController.outputLottoSize();
+    Console.print(OUTPUT_MESSAGE.BUY(size));
+    this.#printLottos();
+  }
+
+  #printLottos() {
+    const lottos = this.#lottoGameController.outputLottos();
     Console.print(lottos.toString());
     this.#inputWinNumber();
   }
 
   #inputWinNumber() {
     Console.readLine(INPUT_MESSAGE.WIN_NUMBER, (numbers) => {
-      console.log(numbers);
+      this.#lottoGameController.inputWinNumber(numbers);
+      this.#inputBonus();
     });
   }
 }

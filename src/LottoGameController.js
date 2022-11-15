@@ -1,18 +1,33 @@
-const OutputView = require("./view/OutputView");
 const LottoGameService = require("./LottoGameService");
+const WinNumber = require("./domain/WinNumber");
 
 class LottoGameController {
-  #outputView;
   #gameService;
 
   constructor() {
-    this.#outputView = new OutputView();
     this.#gameService = new LottoGameService();
   }
 
   start(money) {
-    const lottos = this.#gameService.buyLotto(money);
-    this.#outputView.showLottos(lottos);
+    this.#gameService.buyLotto(money);
+  }
+
+  outputLottoSize() {
+    return this.#gameService.getLottosSize();
+  }
+
+  outputLottos() {
+    return this.#gameService.getLottos();
+  }
+
+  inputWinNumber(numbers) {
+    const winNumber = new WinNumber(numbers);
+    this.#gameService.setWinNumber(numbers);
+  }
+
+  inputWinNumber(number) {
+    const bonus = new Bonus(number);
+    this.#gameService.setBonus(number);
   }
 }
 
