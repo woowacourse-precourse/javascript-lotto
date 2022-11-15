@@ -65,7 +65,7 @@ class Statistics {
     return templates;
   }
 
-  getPrizeStatisticsTemplate() {
+  getPrizeStatisticsTemplates() {
     return this.prizeStatisticsTemplates;
   }
 
