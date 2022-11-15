@@ -1,5 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 const { VALIDATION_MESSAGE } = require('./setting/Message');
+const { VALIDATION_VALUE } = require('./setting/Constants');
 
 class Validation {
   static validate(numbers) {
@@ -42,11 +43,11 @@ class Validation {
   }
 
   static isThatEmpty(numbers) {
-    return numbers.length === 0;
+    return numbers.length === VALIDATION_VALUE.empty;
   }
 
   static isThatSix(numbers) {
-    return numbers.length === 6;
+    return numbers.length === VALIDATION_VALUE.six;
   }
 
   static isThatDuplicate(numbers) {
@@ -54,22 +55,22 @@ class Validation {
   }
 
   static itThatRightFormat(numbers) {
-    const RegExp = /^[1-9|,]+$/;
+    const RegExp = VALIDATION_VALUE.arrayFormat;
     return RegExp.test(numbers);
   }
 
   static numberNet(numbers) {
-    const validNumber = numbers.filter((number) => number > 0 && number < 46);
+    const validNumber = numbers.filter((number) => number > VALIDATION_VALUE.min && number < VALIDATION_VALUE.max);
     return numbers.length !== validNumber.length;
   }
 
   static itThatNumber(number) {
-    const RegExp = /^[0-9]+$/;
+    const RegExp = VALIDATION_VALUE.numberFormat;
     return RegExp.test(number);
   }
 
   static singleNumberNet(number) {
-    return number > 0 && number < 46;
+    return number > VALIDATION_VALUE.min && number < VALIDATION_VALUE.max;
   }
 
   static isThatInclude(numbers, number) {
