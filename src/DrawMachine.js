@@ -43,9 +43,11 @@ class DrawMachine {
   }
 
   validateBonusNumber(input) {
-    if (isNaN(input)) throw new Error(ERROR.BONUS_NUMBER);
+    if (isNaN(input)) throw new Error(ERROR.BONUS_NUMBER_COUNT);
     if (input < LOTTO.MIN_NUMBER || input > LOTTO.MAX_NUMBER)
       throw new Error(ERROR.LOTTO_NUMBER_RANGE);
+    if (this.#winningNumber.includes(Number(input)))
+      throw new Error(ERROR.BONUS_NUMBER_OVERLAP);
   }
 
   acceptBonusNumber(input) {

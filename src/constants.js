@@ -15,7 +15,9 @@ const ERROR = {
 
   WINNING_NUMBER: '[ERROR] 당첨 번호는 숫자 6개를 쉼표(,)로 구분하여야 합니다.',
 
-  BONUS_NUMBER: '[ERROR] 보너스 번호는 숫자 1개여야 합니다.',
+  BONUS_NUMBER_COUNT: '[ERROR] 보너스 번호는 숫자 1개여야 합니다.',
+  BONUS_NUMBER_OVERLAP:
+    '[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 숫자여야 합니다.',
 };
 
 const LOTTO = {
