@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const PurchaseLotto = require("./PurchaseLotto");
 
 class App {
   #inputMoney = 0;
@@ -8,6 +9,19 @@ class App {
   #matchingNumberCountObj = {};
 
   play() {}
+
+  startLotto() {
+    MissionUtils.Console.readLine(
+      Message.REQUEST.PRICE + "\n",
+      (inputMoney) => {
+        const purchaseLotto = new PurchaseLotto(inputMoney);
+        this.#inputMoney = inputMoney;
+        this.#purchaseLottoList = purchaseLotto.returnPurchasedLottoNumbersList();
+        purchaseLotto.printLottoCount();
+        this.printPurchasedLottoList();
+      }
+    );
+  }
 
   printPurchasedLottoList() {
     const purchaseLottoList = this.#purchaseLottoList;
@@ -23,7 +37,6 @@ class App {
     let output = "[" + strList + "]";
     return output;
   }
-
 }
 
 module.exports = App;
