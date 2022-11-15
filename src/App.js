@@ -7,11 +7,10 @@ const {
 } = require('./constants/constants');
 
 class App {
-  constructor() {
-    this.lotto = 0;
-    this.myLotto = 0;
-    this.bonus = 0;
-  }
+  lotto;
+  myLotto;
+
+  constructor() {}
 
   play() {
     Console.readLine(PURCHASE_PRICE_MESSAGE, (answer) => this.start(answer));
