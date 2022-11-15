@@ -15,7 +15,9 @@ class User {
   purchaseLotto(number) {
     let myLottos = [];
     for (let i = 0; i < number; i++) {
-      myLottos.push(Random.pickUniqueNumbersInRange(1, 45, 6));
+      myLottos.push(
+        Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b)
+      );
     }
     this.#myLottos = myLottos;
   }
