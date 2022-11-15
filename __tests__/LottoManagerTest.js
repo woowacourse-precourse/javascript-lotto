@@ -9,6 +9,24 @@ describe('로또 매니저 클래스 테스트', () => {
     }).toThrow('[ERROR]');
   });
 
+  test('숫자 배열로 로또를 발행한다.', () => {
+    const lottoManager = new LottoManager();
+    const lottoNumbers = lottoManager.publishLotto([1, 2, 4, 5, 3, 6]);
+
+    expect(lottoNumbers).toEqual([1, 2, 3, 4, 5, 6]);
+  });
+
+  test('금액이 들어오면 금액/1000 개의 로또를 발행한다.', () => {
+    const lottoManager = new LottoManager();
+    const numbersList = lottoManager.generateNumbersList(8000);
+
+    expect(numbersList.length).toEqual(8);
+
+    numbersList.forEach((numbers) => {
+      expect(numbers.length).toEqual(6);
+    });
+  });
+
   test('유저의 숫자들과 정답 숫자/보너스 숫자 비교하여 같은 숫자 개수와 보너스 숫자가 있는지를 반환한다.', () => {
     const lottoManager = new LottoManager();
 

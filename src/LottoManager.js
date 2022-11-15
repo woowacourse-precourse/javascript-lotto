@@ -1,8 +1,9 @@
 // @ts-check
 
 const Lotto = require('./Lotto');
-const { prize } = require('./utils/const');
+const { prize, lotto } = require('./utils/const');
 const { error } = require('./utils/messages');
+const Utils = require('./utils/Utils');
 
 class LottoManager {
   /** @type {number[]} */
@@ -53,6 +54,38 @@ class LottoManager {
    */
   getBonusNumber() {
     return this.#bonusNumber;
+  }
+
+  /**
+   *
+   * @param {number} amount
+   * @returns {number[][]}
+   */
+  generateNumbersList(amount) {
+    const list = [];
+
+    for (let i = 0; i < amount / lotto.PRICE; i++) {
+      const randomNumbers = Utils.getRandomNumbers(
+        lotto.MIN_NUMBER,
+        lotto.MAX_NUMBER,
+        lotto.MAX_COUNT
+      );
+
+      const lottoNumbers = this.publishLotto(randomNumbers);
+      list.push(lottoNumbers);
+    }
+
+    return list;
+  }
+
+  /**
+   *
+   * @param {number[]} numbers
+   * @returns {number[]}
+   */
+  publishLotto(numbers) {
+    const lotto = new Lotto(numbers);
+    return lotto.getNumbers();
   }
 
   /**
@@ -124,6 +157,19 @@ class LottoManager {
     const revenue = (sum / amount) * 100;
 
     return revenue.toFixed(1);
+  }
+
+  /**
+   *
+   * @param {number} amount
+   * @param {number[][]} userNumbersList
+   * @returns {{prizes:{first: number, second: number, third:number, fourth:number, fifth:number}, revenue: string}}
+   */
+  generateStatistics(amount, userNumbersList) {
+    const prizes = this.getPrizes(userNumbersList);
+    const revenue = this.calculateRevenue(prizes, amount);
+
+    return { prizes, revenue };
   }
 }
 

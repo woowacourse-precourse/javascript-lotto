@@ -1,4 +1,5 @@
 const { message } = require('./messages');
+const Utils = require('./Utils');
 
 class Printer {
   static printNewLine() {
@@ -28,7 +29,7 @@ class Printer {
    */
   static printUserNumberList(userNumbersList) {
     this.printNewLine();
-    Utils.print(message.USER_NUMBERS_LIST_LENGTH);
+    Utils.print(message.USER_NUMBERS_LIST_LENGTH(userNumbersList.length));
 
     userNumbersList.forEach((numbers) =>
       Utils.print(`[${numbers.join(', ')}]`)

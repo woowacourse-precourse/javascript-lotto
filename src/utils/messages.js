@@ -1,7 +1,7 @@
 const message = {
   INPUT_AMOUNT_MESSAGE: '구입금액을 입력해주세요.\n',
   INPUT_LOTTO_NUMBERS_MESSAGE: '당첨 번호를 입력해 주세요.\n',
-  INPUT_BONUS_NUMBER_MESSAGE: '보너스 번호를 입력해 주세요.\n',
+  INPUT_BONUS_NUMBER_MESSAGE: '\n보너스 번호를 입력해 주세요.\n',
 
   STATISTICS: '당첨 통계',
   DIVIDER: '---',
