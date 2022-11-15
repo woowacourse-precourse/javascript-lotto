@@ -1,6 +1,8 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto.js");
 const utils = require("./utils.js");
+const print = require("./print.js");
+
 class LottoGame {
   constructor() {
     this.lottoCount = 0;
@@ -95,35 +97,6 @@ class LottoGame {
 
   printLottoResult() {
     print.lottoResult(this.countEachWinningCost, this.purchasePrice);
-    MissionUtils.Console.print("---");
-    MissionUtils.Console.print(
-      `3개 일치 (5,000원) - ${this.countEachWinningCost[0]}개`
-    );
-    MissionUtils.Console.print(
-      `4개 일치 (50,000원) - ${this.countEachWinningCost[1]}개`
-    );
-    MissionUtils.Console.print(
-      `5개 일치 (1,500,000원) - ${this.countEachWinningCost[2]}개`
-    );
-    MissionUtils.Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.countEachWinningCost[3]}개`
-    );
-    MissionUtils.Console.print(
-      `6개 일치 (2,000,000,000원) - ${this.countEachWinningCost[4]}개`
-    );
-    const totalRevenue =
-      this.countEachWinningCost[0] * 5000 +
-      this.countEachWinningCost[1] * 50000 +
-      this.countEachWinningCost[2] * 1500000 +
-      this.countEachWinningCost[3] * 30000000 +
-      this.countEachWinningCost[4] * 2000000000;
-
-    const calculatedRevenue = (
-      (totalRevenue / this.purchasePrice) *
-      100
-    ).toFixed(1);
-    MissionUtils.Console.print(`총 수익률은 ${calculatedRevenue}%입니다.`);
-    MissionUtils.Console.close();
   }
 }
 
