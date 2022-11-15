@@ -1,10 +1,10 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 class compareLotto {
   #gradeSet;
-  #count;
+  #countSet;
 
   constructor() {
-    this.#count = [0, 0, 0, 0, 0];
+    this.#countSet = [0, 0, 0, 0, 0];
     this.#gradeSet = [
       { win: 3, prize: '5,000', isBonus: false, count: 0 },
       { win: 4, prize: '50,000', isBonus: false, count: 0 },
@@ -14,27 +14,27 @@ class compareLotto {
     ];
   }
 
-  matchWinning(lottoSet, winning, bonus) {
+  calculateWiningResult(lottoSet, winning, bonus) {
     lottoSet.forEach((lotto) => {
-      const matchWin = lotto.filter((number) => winning.includes(number));
-      if (matchWin.length === 3) this.#count[0] += 1;
-      if (matchWin.length === 4) this.#count[1] += 1;
-      if (matchWin.length === 5 && !lotto.includes(bonus)) this.#count[2] += 1;
-      if (matchWin.length === 5 && lotto.includes(bonus)) this.#count[3] += 1;
-      if (matchWin.length === 6) this.#count[4] += 1;
+      const winningNum = lotto.filter((number) => winning.includes(number));
+      if (winningNum.length === 3) this.#countSet[0] += 1;
+      if (winningNum.length === 4) this.#countSet[1] += 1;
+      if (winningNum.length === 5 && !lotto.includes(bonus)) this.#countSet[2] += 1;
+      if (winningNum.length === 5 && lotto.includes(bonus)) this.#countSet[3] += 1;
+      if (winningNum.length === 6) this.#countSet[4] += 1;
     });
   }
 
-  printResult() {
+  printLottoResult() {
     MissionUtils.Console.print('당첨 통계');
     MissionUtils.Console.print('---');
 
     this.#gradeSet.forEach((grade, index) => {
       const { win, prize, isBonus } = grade;
       MissionUtils.Console.print(
-        `${win}개 일치${isBonus ? ', 보너스 볼 일치' : ''} (${prize}원) - ${this.#count[index]}개`,
+        `${win}개 일치${isBonus ? ', 보너스 볼 일치' : ''} (${prize}원) - ${this.#countSet[index]}개`,
       );
-      grade['count'] = this.#count[index];
+      grade['count'] = this.#countSet[index];
     });
   }
 
@@ -53,8 +53,8 @@ class compareLotto {
   }
 
   play(lottoSet, money, winning, bonus) {
-    this.matchWinning(lottoSet, winning, bonus);
-    this.printResult();
+    this.calculateWiningResult(lottoSet, winning, bonus);
+    this.printLottoResult();
     this.calculateTotalProfit(money);
   }
 }
