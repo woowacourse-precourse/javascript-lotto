@@ -5,7 +5,7 @@ const Lotto = require("./Lotto.js");
 
 class App {
   constructor() {
-    this.money = new Clerk().getBuyLottoMoney();
+    this.money = Clerk.getBuyLottoMoney();
     this.lottoNumberGenerator = new NumberGenerator(this.money / 1000);
     this.numberReceiver = new NumberReceiver();
   }

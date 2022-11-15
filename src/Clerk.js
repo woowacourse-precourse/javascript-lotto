@@ -2,16 +2,16 @@ const { Console } = require('@woowacourse/mission-utils');
 const Message = require("./Message.js");
 
 class Clerk {
-  getBuyLottoMoney() {
+  static getBuyLottoMoney() {
     let buyMoney = 0;
     Console.readLine(Message.INFORMATION.moneyInput, (money) => {
       buyMoney = money;
-      this.checkMoney(money);
+      Clerk.checkMoney(money);
     });
     return buyMoney;
   }
 
-  checkMoney(money) {
+  static checkMoney(money) {
     if (money % 1000 !== 0) {
       throw new Error(Message.ERROR.moneyValidWarning);
     }
