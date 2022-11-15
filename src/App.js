@@ -43,5 +43,17 @@ class App {
     })
   }
 
+  printResult(result) {
+    Console.print(`${MESSAGE.THREE_MATCHS} ${result[0]}개`);
+    Console.print(`${MESSAGE.FOUR_MATCHS} ${result[1]}개`);
+    Console.print(`${MESSAGE.FIVE_MATCHS} ${result[2]}개`);
+    Console.print(`${MESSAGE.FIVE_BONUS_MATCHS} ${result[3]}개`);
+    Console.print(`${MESSAGE.SIX_MATCHS} ${result[4]}개`);
+
+    let totalWins = 5000 * result[0] + 50000 * result[1] + 1500000 * result[2] + 30000000 * result[3] + 2000000000 * result[4];
+
+    Console.print(`${MESSAGE.TOTAL_YIELD} ${Math.round(totalWins / this.totalPurchase * 1000) / 10}%입니다.`);
+    Console.close();
+  }
 }
 module.exports = App;
