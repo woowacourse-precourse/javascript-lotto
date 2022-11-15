@@ -6,7 +6,7 @@ const {
   MONEY_ERROR_MESSAGE,
 } = require('./Constants');
 
-class Validater {
+class Validator {
   static checkNumberOfDigits(numbers) {
     if (numbers.length !== LOTTO_DIGITS) {
       throw new Error(LOTTO_ERROR_MESSAGE.digits);
@@ -15,12 +15,12 @@ class Validater {
 
   static checkInteger(numbers) {
     if (typeof numbers === 'number') {
-      if (Validater.verifyNonIntger(numbers)) {
+      if (Validator.verifyNonIntger(numbers)) {
         throw new Error(LOTTO_ERROR_MESSAGE.integer);
       }
       return;
     }
-    if (numbers.some(Validater.verifyNonIntger)) {
+    if (numbers.some(Validator.verifyNonIntger)) {
       throw new Error(LOTTO_ERROR_MESSAGE.integer);
     }
   }
@@ -34,12 +34,12 @@ class Validater {
 
   static checkRange(numbers) {
     if (typeof numbers === 'number') {
-      if (Validater.verifyOutOfRange(numbers)) {
+      if (Validator.verifyOutOfRange(numbers)) {
         throw new Error(LOTTO_ERROR_MESSAGE.range);
       }
       return;
     }
-    if (numbers.some(Validater.verifyOutOfRange)) {
+    if (numbers.some(Validator.verifyOutOfRange)) {
       throw new Error(LOTTO_ERROR_MESSAGE.range);
     }
   }
@@ -63,7 +63,7 @@ class Validater {
     }
   }
 
-  static checkSingleDigit(number) {
+  static checkSingleNumber(number) {
     if (!number) {
       throw new Error(LOTTO_ERROR_MESSAGE.bonus);
     }
@@ -79,4 +79,4 @@ class Validater {
   }
 }
 
-module.exports = Validater;
+module.exports = Validator;
