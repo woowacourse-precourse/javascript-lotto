@@ -37,7 +37,7 @@ class User {
   printLottos() {
     Console.print("\n" + this.purchasableLotto() + "개를 구매했습니다.");
     this.#myLottos.map((lotto) => {
-      Console.print(lotto);
+      Console.print(`[${lotto.join(", ")}]`);
     });
   }
 }
