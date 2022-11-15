@@ -27,7 +27,7 @@ describe("유저 클래스 테스트", () => {
     expect(() => {
       const user = new User();
       user.readAmount("금액", (amount) => {});
-    }).toThrow();
+    }).toThrow("[ERROR]");
   });
 
   test("구입 금액이 천원 단위가 아니면 예외가 발생한다", () => {
@@ -36,7 +36,7 @@ describe("유저 클래스 테스트", () => {
     expect(() => {
       const user = new User();
       user.readAmount("금액", (amount) => {});
-    }).toThrow();
+    }).toThrow("[ERROR]");
   });
 
   test("당첨 번호 입력 문구 출력 테스트", () => {
