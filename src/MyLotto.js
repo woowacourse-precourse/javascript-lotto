@@ -38,6 +38,11 @@ class MyLotto {
             throw new Error("[ERROR] 금액은 1000원 단위로 입력해야 합니다.");
         }
     }
+
+    MyLottoResult() {
+        this.getInputAmount();
+        this.getMyLottoNum();
+    }
 }
 
 module.exports = MyLotto;

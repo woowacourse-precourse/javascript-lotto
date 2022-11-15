@@ -1,3 +1,5 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+
 class Lotto {
   #numbers;
   #bonusNumber
@@ -23,7 +25,7 @@ class Lotto {
 
       return LOTTO_WINNING_NUM;      
     });
-
+    
     this.getInputBonusNum();
   }
 

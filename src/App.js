@@ -5,11 +5,9 @@ const Statistics = require("./Statistics");
 
 class App {
   play() {
-    this.getInputAmount();
-    this.getMyLottoNum();
+    this.MyLottoResult();
     this.getInputLottoNum();
-    this.winCost();
-    this.getEarningsRate();
+    this.printWinContent();
   }
 }
 
