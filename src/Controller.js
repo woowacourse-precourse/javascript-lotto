@@ -1,8 +1,8 @@
-const console = require("@woowacourse/mission-utils").Console;
-const InputView = require("./views/InputView");
+const {View, printPurchase, printResult} = require("./View");
 const Calculator = require("./model/Calculator");
 const Lottery = require("./model/Lottery");
 const Buyer = require("./model/Buyer");
+const { isNumber } = require("./validator");
 const PROMPT = require("./enum");
 
 class Controller {
@@ -12,49 +12,47 @@ class Controller {
 	#calculator;
 	#lotteryBuilder;
 	constructor() {
-		this.#purchaseInput = new InputView(PROMPT.PURCHASE, this.#purchase.bind(this));
-		this.#answerInput = new InputView(PROMPT.ANSWER, this.#chargeAnswer.bind(this));
-		this.#bonusAnswerInput = new InputView(PROMPT.BONUS, this.#chargeBonus.bind(this));
+		this.#purchaseInput = new View(PROMPT.PURCHASE, this.#purchase.bind(this));
+		this.#answerInput = new View(PROMPT.ANSWER, this.#chargeAnswer.bind(this));
+		this.#bonusAnswerInput = new View(PROMPT.BONUS, this.#chargeBonus.bind(this));
 		this.#calculator = new Calculator();
 		this.#lotteryBuilder = new Lottery.Builder();
 	}
 
-	#purchase(command) {
-		const purchaseMoney = parseInt(command);
+	#validate(numbers) {
+		if (numbers.some((number) => !isNumber(number)))
+			throw new Error("[ERROR] 숫자를 입력하세요.");
+	}
 
-		const ticketList = Buyer.buy(purchaseMoney);
+	#purchase(command) {
+		this.#validate([command]);
+		const purchaseMoney = parseInt(command);
+		const ticketList = Buyer.buy(command);
 		ticketList.forEach((ticket) => this.#calculator.appendTicket(ticket));
-		console.print(ticketList.map((ticket) => ticket.getNumbers()));
+		printPurchase(ticketList.map((item) => item.getNumbers()));
 		this.#answerInput.render();
 	}
 
 	#chargeAnswer(command) {
-		const answerNumbers = command
-			.split(",")
-			.map((number) => parseInt(number.trim()));
-		this.#lotteryBuilder.setNumbers(answerNumbers);
+		const numbers = command.split(",").map((number) => number.trim());
+		this.#validate(numbers);
+		this.#lotteryBuilder.setNumbers(numbers.map(Number));
 		this.#bonusAnswerInput.render();
 	}
 
 	#chargeBonus(command) {
+		this.#validate([command]);
 		const bonusNumber = parseInt(command);
 		this.#lotteryBuilder.setBonus(bonusNumber);
-		this.#compareAnswer();
-	}
-	
-	#compareAnswer() {
-		this.#calculator.chargeLottery(this.#lotteryBuilder.build());
+		this.#calculator.setLottery(this.#lotteryBuilder.build());
 		const result = this.#calculator.calculate();
-		const profitRate = result.profitRate();
-		console.print("당첨 통계\n---");
-		const printResult = result.stringify().map(({count, price, bonus}, idx) =>
-			`${idx + 3}개 일치 (${price}원) - ${count}개`);
-		printResult.push(`총 수익률은 ${profitRate}%입니다.`);
-		console.print(printResult.join("\n"));
+		printResult(result.stringify(), result.profitRate());
+		View.close();
 	}
 
 	run() {
 		this.#purchaseInput.render();
+		this.#calculator.emptyTicket();
 	}
 }
 
