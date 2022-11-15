@@ -1,6 +1,6 @@
 const lottoRank = require('./util/lottoRank');
 const rank = require('./util/rank');
-const util = require('./util/util');
+const gameConfig = require('./util/gameConfig');
 
 class User {
   constructor() {
@@ -13,7 +13,7 @@ class User {
   }
 
   calculateLottoCount() {
-    this.lottoCount = this.amount / util.AMOUNT_PER_GAME;
+    this.lottoCount = this.amount / gameConfig.AMOUNT_PER_GAME;
   }
 
   calculateHitLottoCount(hitLotto, bonusNumber) {

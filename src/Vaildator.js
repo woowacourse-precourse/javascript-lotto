@@ -1,4 +1,4 @@
-const util = require('./util/util');
+const gameConfig = require('./util/gameConfig');
 
 class Vaildator {
   static isRangeIn(start, end, target) {
@@ -6,7 +6,7 @@ class Vaildator {
   }
 
   static isLottoLength(target) {
-    return target === util.LOTTO_MAX_LENGTH;
+    return target === gameConfig.LOTTO_MAX_LENGTH;
   }
 
   static isPositiveNumber(target) {
@@ -17,7 +17,7 @@ class Vaildator {
   }
 
   static isDivisible(amount) {
-    return amount % util.AMOUNT_PER_GAME === 0;
+    return amount % gameConfig.AMOUNT_PER_GAME === 0;
   }
 
   static isRightAmount(amount) {
@@ -36,7 +36,11 @@ class Vaildator {
   static isRightLottoNumber(number) {
     return (
       this.isPositiveNumber(number) &&
-      this.isRangeIn(util.LOTTO_RANGE_MIN, util.LOTTO_RANGE_MAX, number)
+      this.isRangeIn(
+        gameConfig.LOTTO_RANGE_MIN,
+        gameConfig.LOTTO_RANGE_MAX,
+        number
+      )
     );
   }
 
