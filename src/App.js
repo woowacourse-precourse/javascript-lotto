@@ -14,6 +14,9 @@ class App {
             if (amount % 1000 !== 0)
                 throw new Error("[ERROR] 구입금액의 단위는 1000원입니다.");
             let purchaseAmountString = purchaseAmount.toString();
+            let numberOfPurchases = parseInt(purchaseAmountString.slice(0, -3))
+            MissionUtils.Console.print("\n" + numberOfPurchases + "개를 구매했습니다.");
+            this.purchaseAmountArr.push(purchaseAmount);
         });
     }
 
