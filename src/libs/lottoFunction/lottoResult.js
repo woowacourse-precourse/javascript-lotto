@@ -1,22 +1,6 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 
-const lottoStatistics = (lottos, winningNumber, bonusNumber) => {
-  const totalNumber = [...winningNumber, Number(bonusNumber)];
-  MissionUtils.Console.print('\n당첨 통계\n---');
-  calculateMatch(lottos, totalNumber, bonusNumber);
-};
-
-const calculateMatch = (lottos, totalNumber, bonusNumber) => {
-  const rank = calculateRank(lottos, totalNumber, bonusNumber);
-  const account = lottos.length * 1000;
-
-  printLottoResult(rank);
-  calculateProfit(account, rank);
-
-  MissionUtils.Console.close();
-};
-
-const checkRank = (count, bonusNumber) => {
+const checkRank = (lotto, count, bonusNumber) => {
   if (count === 3) {
     return '5등';
   }
@@ -51,7 +35,7 @@ const calculateRank = (lottos, totalNumber, bonusNumber) => {
         count += 1;
       }
     }
-    rank[checkRank(count, bonusNumber)] += 1;
+    rank[checkRank(lottos[i], count, bonusNumber)] += 1;
   }
 
   return rank;
@@ -81,6 +65,22 @@ const calculateProfit = (account, rank) => {
       ) / 10
     }%입니다.`
   );
+};
+
+const calculateMatch = (lottos, totalNumber, bonusNumber) => {
+  const rank = calculateRank(lottos, totalNumber, bonusNumber);
+  const account = lottos.length * 1000;
+
+  printLottoResult(rank);
+  calculateProfit(account, rank);
+
+  MissionUtils.Console.close();
+};
+
+const lottoStatistics = (lottos, winningNumber, bonusNumber) => {
+  const totalNumber = [...winningNumber, Number(bonusNumber)];
+  MissionUtils.Console.print('\n당첨 통계\n---');
+  calculateMatch(lottos, totalNumber, bonusNumber);
 };
 
 module.exports = {
