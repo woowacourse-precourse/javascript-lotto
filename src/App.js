@@ -3,6 +3,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class App {
   constructor() {
     this.userAmount;
+    this.lottoNumbers;
   }
 
   play() {}
@@ -24,6 +25,17 @@ class App {
   getLottoNumbers() {
     const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
     return numbers.sort((a, b) => a - b);
+  }
+
+  printLottoList(count) {
+    let lottoNumbers = [];
+    for (let index = 0; index < count; index++) {
+      lottoNumbers.push(this.getLottoNumbers());
+      this.lottoNumbers = lottoNumbers;
+      MissionUtils.Console.print(
+        JSON.stringify(lottoNumbers[index]).replace(/,/g, ", ")
+      );
+    }
   }
 }
 
