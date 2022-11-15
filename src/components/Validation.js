@@ -21,7 +21,7 @@ class Validation {
       if (number > 45 || number < 1) {
         throw new Error('[ERROR] 로또 번호는 1에서 45사이 값이어야 합니다.');
       }
-      if (Number.isNaN(number)) {
+      if (Number.isNaN(Number(number))) {
         throw new Error('[ERROR] 로또 번호는 숫자만 가능합니다.');
       }
     });
