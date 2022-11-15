@@ -1,13 +1,4 @@
-const processWinningNumbersInput = (input) => {
-  return input
-    .split(" ")
-    .join("")
-    .split(",")
-    .map((number) => parseInt(number))
-    .filter((number) => !isNaN(number))
-    .filter((number) => number >= 1 && number <= 45)
-    .filter((number) => number === Math.floor(number));
-};
+const { Process } = require("./Utils");
 
 class ErrorCase {
   static isWrongCashInput(cashInput) {
@@ -24,7 +15,7 @@ class ErrorCase {
   }
 
   static isWrongWinningNumbersInput(winningNumbersInput) {
-    const processed = processWinningNumbersInput(winningNumbersInput);
+    const processed = Process.winningNumbersInput(winningNumbersInput);
     if (processed.length !== 6) return true;
 
     const isDuplicated = ErrorCase.duplicatedNumbers(processed);

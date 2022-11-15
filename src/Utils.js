@@ -23,4 +23,17 @@ module.exports = {
         .map((number) => parseInt(number));
     },
   },
+
+  Process: {
+    winningNumbersInput(input) {
+      return input
+        .split(" ")
+        .join("")
+        .split(",")
+        .map((number) => parseInt(number))
+        .filter((number) => !isNaN(number))
+        .filter((number) => number >= 1 && number <= 45)
+        .filter((number) => number === Math.floor(number));
+    },
+  },
 };
