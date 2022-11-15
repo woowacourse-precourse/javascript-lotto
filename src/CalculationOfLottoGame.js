@@ -4,8 +4,6 @@ function checkOfBonusNumHave(usersLotto, bonusNum, { index }, winLotto) {
   if (usersLotto[index].includes(parseInt(bonusNum)) === true) {
     return winLotto.set("2등", winLotto.get("2등") + 1);
   }
-
-  return winLotto.set("3등", winLotto.get("3등") + 1);
 }
 
 function ascendingArr(array) {
@@ -44,10 +42,6 @@ class CalculationOfLottoGame {
     return winningNumArr;
   }
 
-  makeArrayOfArrayPlusNum(array, num) {
-    return [...array, num];
-  }
-
   resultOfLottoClass(winningNum, userHaveLotto, bonusNum) {
     let winLotto = new Map();
 
@@ -70,6 +64,7 @@ class CalculationOfLottoGame {
           break;
 
         case 5:
+          winLotto.set("3등", winLotto.get("3등") + 1);
           checkOfBonusNumHave(userHaveLotto, bonusNum, { index: i }, winLotto);
           break;
 

@@ -82,14 +82,9 @@ class App {
   }
 
   makeWinningLottoArr() {
-    this.totalWinningNum = makeArrayOfArrayPlusNum(
-      this.winningNum,
-      this.bonusNum
-    );
-
     const winningOfLottoArr = makeWinningOfLottoArr(
       this.userHaveLotto,
-      this.totalWinningNum
+      this.winningNum
     );
 
     this.makeLottoGameResult(winningOfLottoArr);

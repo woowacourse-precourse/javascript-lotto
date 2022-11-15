@@ -113,15 +113,6 @@ describe("로또 게임 계산 테스트", () => {
     ).toEqual([0, 1, 1]);
   });
 
-  test("배열과 숫자를 배열로 합쳐주는 함수 테스트", () => {
-    const arr = [1, 2, 3];
-    const num = 4;
-
-    expect(calculationOfLottoGame.makeArrayOfArrayPlusNum(arr, num)).toEqual([
-      1, 2, 3, 4,
-    ]);
-  });
-
   test("유저의 로또번호 중 보너스 당첨 번호가 있는지 확인 함수 테스트", () => {
     const userLotto = [
       [1, 2, 3, 4],
