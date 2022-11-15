@@ -1,6 +1,7 @@
 const { Console, Random } = require("@woowacourse/mission-utils/");
 const User = require("./User")
 const Lotto = require("./Lotto");
+const Util = require("./Util");
 const { lookup } = require("dns");
 
 class App {
@@ -9,10 +10,13 @@ class App {
   #bonusNumber;
 
   play() {
+    const util = new Util();
     this.getPerchaseAmount();
     this.#User.createLottoList();
     this.getWinLottoNumber();
     this.getBonusNumber();
+    const rankCountTable = util.getRankCount(this.#User.getLottoList(), this.#Lotto.getNumbers(), this.#bonusNumber);
+    util.printRankCount(rankCountTable);
   }
 
   getPerchaseAmount() {
