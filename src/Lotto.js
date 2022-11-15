@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { LOTTO_ERROR_MESSAGE, LOTTO_OUTPUT } = require('./constants');
+const { LOTTO_ERROR_MESSAGE, LOTTO_OUTPUT, LOTTO_WINNING_PRICE } = require('./constants');
 
 class Lotto {
   #numbers;
@@ -51,8 +51,9 @@ class Lotto {
       if (matchNumber[i] === 4) fourthCount++;
       if (matchNumber[i] === 3) fifthCount++;
     }
+    const totalYeild = (((firstCount * LOTTO_WINNING_PRICE.FIFTH_REWARD) + (secondCount * LOTTO_WINNING_PRICE.SECOND_REWARD) + (thirdCount * LOTTO_WINNING_PRICE.THIRD_REWARD) + (fourthCount * LOTTO_WINNING_PRICE.FOURTH_REWARD) + (fifthCount * LOTTO_WINNING_PRICE.FIFTH_REWARD)) / (matchNumber.length * 1000)) * 100;
 
-    this.printLottoResult(firstCount, secondCount, thirdCount, fourthCount, fifthCount);
+    this.printLottoResult(firstCount, secondCount, thirdCount, fourthCount, fifthCount, totalYeild);
   }
 
   printLottoResult(firstCount, secondCount, thirdCount, fourthCount, fifthCount) {
@@ -63,6 +64,7 @@ class Lotto {
     Console.print(`${LOTTO_OUTPUT.THIRD_PLACE}${thirdCount}개`);
     Console.print(`${LOTTO_OUTPUT.SECOND_PLACE}${secondCount}개`);
     Console.print(`${LOTTO_OUTPUT.FIRST_PLACE}${firstCount}개`);
+    Console.print(`${LOTTO_OUTPUT.TOTAL_YIELD}${totalYeild.toFixed(1)}%입니다.`);
     Console.close();
   }
 }
