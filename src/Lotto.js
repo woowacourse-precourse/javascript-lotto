@@ -11,6 +11,8 @@ class Lotto {
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
     }
     numbers.map((number, index) => {
+      if (/[^0-9]/g.test(number))
+        throw new Error('[ERROR] 로또 번호는 숫자여야 합니다.');
       if (numbers.indexOf(number) !== index)
         throw new Error('[ERROR] 로또 번호는 중복이 없어야 합니다.');
       if (number > 45 || number < 1)
