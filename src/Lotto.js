@@ -1,8 +1,10 @@
+const { ERROR } = require("./lib/error");
 class Lotto {
   #numbers;
 
   constructor(numbers) {
     this.validate(numbers);
+    ERROR.CHECK_LOTTO(numbers);
     this.#numbers = numbers;
   }
 
@@ -12,7 +14,18 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
+  countWinNumbers(winningNumbers, bonusNumber) {
+    let winCount = this.#numbers.filter((x) =>
+      winningNumbers.includes(x)
+    ).length;
+    let isBonus = this.#numbers.includes(bonusNumber);
+
+    return { winCount: winCount, isBonus: isBonus };
+  }
+
+  getNumbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
