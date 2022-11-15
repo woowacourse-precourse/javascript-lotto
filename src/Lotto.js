@@ -12,6 +12,8 @@ class Lotto {
     }
     if (new Set(numbers).size !== 6)
       throw new Error("[ERROR] 로또 번호는 서로 다른 6개의 숫자여야 합니다.");
+    if(!numbers.every(v => v >= 1 && v <= 45))
+      throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
   }
   getCountOfMatchNumber(numbersToCompare){
     let countOfMatchNumber = 0;
