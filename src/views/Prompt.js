@@ -5,6 +5,7 @@ const PromptError = require('../errors/PromptError');
 /**
  * Console.readLine의 콜백 지옥에서 벗어나게 도와주는 클래스입니다.
  * Javascript Generator 문법을 응용하여 async/await 없이 입력을 가능케 합니다.
+ *
  * @example
  * new Prompt(function*(prompt) {
  *   prompt.print('반갑습니다! 나이가 어떻게 되시나요?');
@@ -50,7 +51,7 @@ class Prompt {
   }
 
   /**
-   * @returns {Number}
+   * @returns {number}
    */
   readNumber() {
     const number = Number(this.read());

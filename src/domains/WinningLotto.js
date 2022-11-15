@@ -66,6 +66,7 @@ class WinningLotto {
   /**
    * @param {number} investment
    * @param {Reward[]} rewards
+   * @returns {string}
    */
   static getRateOfReturn(investment, rewards) {
     const earning = rewards.reduce((money, reward) => money + reward.getMoney(), 0);

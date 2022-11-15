@@ -29,6 +29,7 @@ class Lotto {
 
   /**
    * 무작위 번호를 가지는 로또를 생성한다.
+   *
    * @returns {Lotto}
    */
   static fromRandom() {
@@ -42,6 +43,7 @@ class Lotto {
 
   /**
    * 문자열로부터 숫자를 파싱하여 로또를 생성한다.
+   *
    * @param {string} text
    * @returns {Lotto}
    */

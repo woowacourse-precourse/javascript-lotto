@@ -15,6 +15,7 @@ class App {
 
   /**
    * @param {Prompt} prompt
+   * @yields {string}
    */
   *#routineBuy(prompt) {
     yield Messages.ROUTINE_BUY_PUT_MONEY;
@@ -27,6 +28,7 @@ class App {
 
   /**
    * @param {Prompt} prompt
+   * @yields {string}
    */
   *#routineReward(prompt) {
     yield Messages.ROUTINE_REWARD_PUT_WINNING_NUMBERS;
@@ -52,8 +54,9 @@ class App {
     prompt.print(Messages.ROUTINE_STATS_RATE_OF_RETURN, rateOfReturn);
   }
 
-  /** r
+  /**
    * @param {Prompt} prompt
+   * @yields {string}
    */
   *#routine(prompt) {
     yield* this.#routineBuy(prompt);

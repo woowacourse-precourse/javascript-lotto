@@ -23,6 +23,13 @@ module.exports = Object.freeze({
   ROUTINE_STATS_TITLE: '당첨 통계',
   ROUTINE_STATS_RATE_OF_RETURN: '총 수익률은 {0}%입니다.',
 
+  /**
+   * 주어진 메세지에서 {0}, {1} 부분을 args로 채워 반환한다.
+   *
+   * @param {string} message
+   * @param  {...string} args
+   * @returns {string}
+   */
   format(message, ...args) {
     return args.reduce((formatted, arg, index) => formatted.replace(`{${index}}`, arg), message);
   },
