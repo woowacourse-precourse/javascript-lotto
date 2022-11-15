@@ -2,12 +2,9 @@ const MissionUtils = require("@woowacourse/mission-utils");
 
 class Lotto {
   #numbers;
-  constructor() {
-    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 46, 6).sort(
-      (a, b) => a - b
-    );
+  constructor(numbers) {
     this.validate(numbers);
-    this.#numbers = numbers;
+    this.#numbers = numbers.sort((a, b) => a - b);
   }
 
   validate(numbers) {
@@ -31,7 +28,7 @@ class Lotto {
 
   checkDuplicateNumber(numbers) {
     if (numbers.length !== new Set(numbers).size)
-      throw new Error("[ERROR] 로또는 중복이 있어선 안됩니다.");
+      throw new Error("[ERROR] 중복이 있습니다.");
   }
 
   getLotto() {
