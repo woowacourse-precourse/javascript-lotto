@@ -13,6 +13,18 @@ class App {
     return numberOfTickets;
   }
 
+  validateInputPurchase(price) {
+    if (isNaN(price)) {
+      throw new Error(PURCHASE_AMOUNT_ERROR_MESSAGE2);
+    }
+    if (price % 1000 !== 0) {
+      throw new Error(PURCHASE_AMOUNT_ERROR_MESSAGE);
+    }
+    if (price < 0) {
+      throw new Error(PURCHASE_AMOUNT_ERROR_MESSAGE3);
+    }
+  }
+  
 }
 
 module.exports = App;
