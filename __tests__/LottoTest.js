@@ -27,4 +27,9 @@ describe("로또 클래스 테스트", () => {
     expect(lotto.returnSameNumberCount([1, 2, 3, 4, 5, 6], 7)).toBe(6);
   });
 
+  test("로또 번호가 5개 일치하고 보너스 번호가 일치하다면 'Bonus'를 출력한다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    expect(lotto.returnSameNumberCount([1, 2, 3, 4, 5, 9], 6)).toBe("Bonus");
+  });
+
 });
