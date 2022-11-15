@@ -1,18 +1,38 @@
+const {  VALIDATE_NUMBER, ERROR_MESSAGE } = require('./utils/Constants'); 
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
     this.#numbers = numbers;
+    this.validate(numbers);
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    this.checkLength(numbers);
+    this.checkDuplicate(numbers);
+    this.checkRange(numbers);
+  }
+
+  checkLength(numbers) {
+    if (numbers.length !== VALIDATE_NUMBER.len) {
+      throw new Error(ERROR_MESSAGE.len);
     }
   }
 
-  // TODO: 추가 기능 구현
+  checkDuplicate(numbers) {
+    if (new Set(numbers).size < VALIDATE_NUMBER.len) {
+      throw new Error(ERROR_MESSAGE.duplicate);
+    }
+  }
+
+  checkRange(numbers) {
+    numbers.forEach(num => {
+      if (num > VALIDATE_NUMBER.end || num < VALIDATE_NUMBER.start) {
+        throw new Error(ERROR_MESSAGE.range);
+      }
+    });
+  }
 }
 
 module.exports = Lotto;
