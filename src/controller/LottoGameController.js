@@ -1,9 +1,9 @@
 const Calculator = require("../model/Calculator");
-const { MESSAGE_ACCORDING_ASK } = require("../constants/message");
+const { MESSAGE_ACCORDING_ASK } = require("../constants/Message");
 const MyNumberGenerator = require("../model/Generator");
 const Lotto = require("../model/Lotto");
-const { readLine, close } = require("../utils/Missionutils");
-const View = require("../view/view");
+const { readLine, close } = require("../utils/MissionUtils");
+const View = require("../view/View");
 
 class LottoGameController {
   #winningNumbers;
@@ -15,59 +15,59 @@ class LottoGameController {
   #view = { print: new View() };
 
   start() {
-    this.inputMoneyFromUser();
+    this.#inputMoneyFromUser();
   }
 
-  inputMoneyFromUser() {
+  #inputMoneyFromUser() {
     readLine(MESSAGE_ACCORDING_ASK.INPUT_MONEY, (moneyInput) => {
       this.#moneyInput = moneyInput;
-      this.generateMyNumbers();
+      this.#generateMyNumbers();
     });
   }
 
-  generateMyNumbers() {
+  #generateMyNumbers() {
     const myLottoNumbers = this.#model.generatorModel.generateMyLottoNumber(this.#moneyInput);
-    this.notifyMyInfo(myLottoNumbers);
-    this.getWinningNumbersFromUser(myLottoNumbers);
+    this.#notifyMyInfo(myLottoNumbers);
+    this.#getWinningNumbersFromUser(myLottoNumbers);
   }
 
-  notifyMyInfo(myLottoNumbers) {
-    this.notifyMyLottoSize(myLottoNumbers);
-    this.notifyMyLottoList(myLottoNumbers);
+  #notifyMyInfo(myLottoNumbers) {
+    this.#notifyMyLottoSize(myLottoNumbers);
+    this.#notifyMyLottoList(myLottoNumbers);
   }
 
-  notifyMyLottoSize(myLottoNumbers) {
+  #notifyMyLottoSize(myLottoNumbers) {
     this.#view.print.purchasedSize(myLottoNumbers);
   }
 
-  notifyMyLottoList(myLottoNumbers) {
+  #notifyMyLottoList(myLottoNumbers) {
     this.#view.print.purchasedList(myLottoNumbers);
   }
 
-  getWinningNumbersFromUser(myLottoNumbers) {
+  #getWinningNumbersFromUser(myLottoNumbers) {
     readLine(MESSAGE_ACCORDING_ASK.INPUT_WINNING_NUMBER, (winningNumber) => {
-      this.getBonusNumberFromUser(myLottoNumbers, winningNumber);
+      this.#getBonusNumberFromUser(myLottoNumbers, winningNumber);
     });
   }
 
-  getBonusNumberFromUser(myLottoNumbers, winningNumber) {
+  #getBonusNumberFromUser(myLottoNumbers, winningNumber) {
     readLine(MESSAGE_ACCORDING_ASK.INPUT_BONUS_NUMBER, (bonusNumber) => {
       const lottoModel = new Lotto({ winningNumber, bonusNumber: +bonusNumber });
       this.#winningNumbers = lottoModel.getConvertedLottoNumber();
-      this.calculateWinningCount(myLottoNumbers);
+      this.#calculateWinningCount(myLottoNumbers);
     });
   }
 
-  calculateWinningCount(myLottoNumbers) {
+  #calculateWinningCount(myLottoNumbers) {
     this.#winningNumbers = this.#model.calculatorModel.getWinningResult(
       myLottoNumbers,
       this.#winningNumbers
     );
     this.#view.print.rankingResult(this.#winningNumbers);
-    this.calculateEarningRate();
+    this.#calculateEarningRate();
   }
 
-  calculateEarningRate() {
+  #calculateEarningRate() {
     const earningRate = this.#model.calculatorModel.getEarningRate(this.#moneyInput);
     this.#view.print.eariningRate(earningRate);
     close();
