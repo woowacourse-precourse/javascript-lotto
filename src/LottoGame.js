@@ -31,6 +31,15 @@ class LottoGame {
   getLottoGames() {
     return this.#lottoArray;
   }
+
+  // [x]사용자가 입력한 당첨 번호를 확인하고 저장하는 기능
+  setWinningNumbers(winningNumbers) {
+    LottoNumberUtils.validateLength(winningNumbers);
+    LottoNumberUtils.validateDuplication(winningNumbers);
+    winningNumbers.forEach((value) => LottoNumberUtils.validateRange(value));
+
+    this.#winningNumbers = winningNumbers;
+  }
 }
 
 module.exports = LottoGame;
