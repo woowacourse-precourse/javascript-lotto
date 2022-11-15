@@ -10,6 +10,7 @@ const {
   parseBonusInput,
   parsePrintNumber,
   getPercentage,
+  MESSAGE,
 } = require("./Utils");
 
 class Store {
@@ -46,7 +47,7 @@ class Store {
   }
 
   buy() {
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (userInput) => {
+    MissionUtils.Console.readLine(MESSAGE.GET_USER_COST, (userInput) => {
       this.validateCost(Number(userInput));
       this.cost = Number(userInput);
       const lottoMaxCount = this.cost / CONSTANT.LOTTO_PRICE;
@@ -66,14 +67,14 @@ class Store {
   }
 
   setAnswer() {
-    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.\n", (userInput) => {
+    MissionUtils.Console.readLine(MESSAGE.GET_LOTTO_ANSWER, (userInput) => {
       this.answer = new LottoAnswer(parseAnswerInput(userInput));
       return this.setBonus();
     });
   }
 
   setBonus() {
-    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.\n", (userInput) => {
+    MissionUtils.Console.readLine(MESSAGE.GET_LOTTO_BONUS, (userInput) => {
       this.answer.bonus = parseBonusInput(userInput);
       return this.setResult();
     });
@@ -106,7 +107,7 @@ class Store {
   }
 
   printReport() {
-    MissionUtils.Console.print("당첨 통계\n---");
+    MissionUtils.Console.print(MESSAGE.REPORT_TITLE);
     this.result.forEach(([winMoney, winCount], winMessage) => {
       MissionUtils.Console.print(
         `${winMessage} (${winMoney.toLocaleString("kr")}원) - ${winCount}개`

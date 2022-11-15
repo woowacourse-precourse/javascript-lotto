@@ -1,3 +1,10 @@
+const MESSAGE = {
+  GET_USER_COST: "구입금액을 입력해 주세요.\n",
+  GET_LOTTO_ANSWER: "당첨 번호를 입력해 주세요.\n",
+  GET_LOTTO_BONUS: "보너스 번호를 입력해 주세요.\n",
+  REPORT_TITLE: "당첨 통계\n---",
+};
+
 const CONSTANT = {
   LOTTO_LENGTH: 6,
   LOTTO_RANGE_START: 1,
@@ -62,6 +69,7 @@ function getPercentage(numerator, denominator) {
 }
 
 module.exports = {
+  MESSAGE,
   CONSTANT,
   ERROR_MESSAGE,
   WINMESSAGE,
