@@ -46,7 +46,7 @@ class App {
 
   inputWinningNumbers() {
     Console.readLine(MESSAGE.INPUT_WINNING_NUMBERS, (numbers) => {
-      const winningNumbers = numbers.split(',');
+      const winningNumbers = numbers.split(',').sort((num1, num2) => num1 - num2);
       this.lotto = new Lotto(winningNumbers);
 
       this.inputBonusNumber();

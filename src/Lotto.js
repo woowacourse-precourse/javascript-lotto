@@ -21,7 +21,7 @@ class Lotto {
   }
 
   getNumbers() {
-    return this.#numbers;
+    return this.#numbers.map((number) => parseInt(number, 10));
   }
 }
 
