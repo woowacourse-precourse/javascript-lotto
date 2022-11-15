@@ -23,7 +23,7 @@ class LottoMachine {
   }
 
   sortLottoNum(randomNumArr) {
-    return randomNumArr.sort();
+    return randomNumArr.sort((a, b) => a - b);
   }
 }
 
