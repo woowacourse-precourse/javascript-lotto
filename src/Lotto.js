@@ -38,9 +38,14 @@ class Lotto {
   }
 
   validate(money) {
+    this.isItEmpty(money);
     this.isItNumber(money);
     this.rightAmount(money);
     return true;
+  }
+
+  isItEmpty(money) {
+    if (money < 1) throw new Error(LOTTO_MESSAGE.EMPTY);
   }
 
   isItNumber(money) {
