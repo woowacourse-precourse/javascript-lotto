@@ -1,4 +1,6 @@
+const { Console } = require('@woowacourse/mission-utils');
 const Ranking = require('./Ranking');
+const Message = require('./Message');
 
 class Prize {
   static #rankings = [
@@ -56,6 +58,17 @@ class Prize {
     return Prize.#rankings;
   }
 
+  static #getWinningLogMessage(rankings) {
+    return rankings
+      .map(({ criteria, money, hasBonus, count }) => {
+        criteria = hasBonus ? `${criteria}개 일치, 보너스 볼 일치` : `${criteria}개 일치`;
+        money = `${money.toLocaleString('en-US')}원`;
+
+        return `${criteria} (${money}) - ${count}개`;
+      })
+      .join('\n');
+  }
+
   static getReturnRate(expense, rankings) {
     const profit = rankings.reduce((acc, cur) => {
       const { money, count } = cur;
@@ -65,6 +78,21 @@ class Prize {
     const percentage = (profit / expense) * 100;
 
     return percentage;
+  }
+
+  static printLottoResult(expense, purchases, winningNumbers, bonusNumber) {
+    const { STATISTICS, printReturnRate } = Message;
+
+    const resultRanking = Prize.compareAllPurchasesWithWinningNumbers(
+      purchases,
+      winningNumbers,
+      bonusNumber,
+    );
+    const winningLogMessage = Prize.#getWinningLogMessage(resultRanking);
+    const returnRate = Prize.getReturnRate(expense, resultRanking).toFixed(1);
+    const returnRateMessage = printReturnRate(returnRate.replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+
+    Console.print(`${STATISTICS}\n${winningLogMessage}\n${returnRateMessage}`);
   }
 }
 
