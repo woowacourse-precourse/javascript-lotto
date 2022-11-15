@@ -21,3 +21,7 @@ class Lotto {
     });
   }
 
+  printLotto() { // 출력
+    Console.print(`[${this.number.join(', ')}]`);
+  }
+
