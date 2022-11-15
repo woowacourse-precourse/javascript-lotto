@@ -8,17 +8,7 @@ const Lotto = require('./Lotto');
 class Game {
   constructor() {
     this.totalLottoes = [];
-    this.prizeNumber = null;
-    this.bonusNumber = null;
-    this.winnigAmount = 0;
-    this.lottoNumber = null;
-    this.ranking = {
-      first: 0,
-      second: 0,
-      third: 0,
-      fourth: 0,
-      fifth: 0,
-    };
+    this.Lotto = null;
     this.Purchase = null;
   }
 
@@ -28,7 +18,6 @@ class Game {
 
   purchaseLotto(money) {
     this.Purchase = new Purchase(money);
-    this.Purchase.money = money;
     this.totalLottoes = this.Purchase.createLottoArray(this.Purchase.money);
     this.Purchase.print();
     this.setPrizeNumber();
@@ -44,8 +33,7 @@ class Game {
     Validations.isNotCommaPrize(userInput);
     const prizeStringArray = Utils.splitComma(userInput);
     const prizeNumberArray = Utils.convertStringNumber(prizeStringArray);
-    this.lottoNumber = new Lotto(prizeNumberArray);
-    this.prizeNumber = prizeNumberArray;
+    this.Lotto = new Lotto(prizeNumberArray);
     this.setBonusNumber();
   }
 
@@ -56,16 +44,16 @@ class Game {
   }
 
   enterBounsNumber(userInput) {
-    this.bonusNumber = this.lottoNumber.setBonusNum(userInput);
+    this.Lotto.setBonusNum(userInput);
     this.getView();
   }
 
   getView() {
-    this.lottoNumber.winCheck(this.totalLottoes);
-    this.lottoNumber.winningAmountCalculation();
-    this.lottoNumber.printWinner();
-    const yieldPercent = this.lottoNumber.yieldCaculation(this.Purchase.money);
-    this.lottoNumber.printYield(yieldPercent);
+    this.Lotto.winCheck(this.totalLottoes);
+    this.Lotto.winningAmountCalculation();
+    this.Lotto.printWinner();
+    const yieldPercent = this.Lotto.yieldCaculation(this.Purchase.money);
+    this.Lotto.printYield(yieldPercent);
     this.exit();
   }
 

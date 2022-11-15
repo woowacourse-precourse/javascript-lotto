@@ -48,6 +48,17 @@ class Utils {
     const numberArray = stringArray.map(item => Number(item));
     return numberArray;
   }
+
+  static matchArrayNumbers(arr1, arr2) {
+    const matchArr = arr1.filter(item => {
+      if (arr2.includes(item)) {
+        return item;
+      }
+      return null;
+    });
+    const count = matchArr.length;
+    return count;
+  }
 }
 
 module.exports = Utils;

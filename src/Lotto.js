@@ -42,14 +42,7 @@ class Lotto {
   }
 
   getPrizeMatch(userLottoNumber) {
-    const matchArr = userLottoNumber.filter(item => {
-      if (this.#numbers.includes(item)) {
-        return item;
-      }
-      return null;
-    });
-    const count = matchArr.length;
-    return count;
+    return Utils.matchArrayNumbers(this.#numbers, userLottoNumber);
   }
 
   getBonusMatch(userLottoNumber) {
