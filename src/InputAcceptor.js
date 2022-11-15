@@ -7,7 +7,7 @@ class InputAcceptor {
         const answer = await new Promise(resolve => {
             MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', resolve)
         });
-        if (!parseInt(answer)) throw new Error('[ERROR] 숫자만 입력해주세요.');
+        checkANumber(answer);
         if (!Number.isInteger(answer / PURCHASE_UNIT)) throw new Error('[ERROR] 구입 금액은 1000원 단위로 입력해주세요.');
         return answer / PURCHASE_UNIT;
     }
