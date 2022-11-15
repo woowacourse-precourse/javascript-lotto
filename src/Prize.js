@@ -1,7 +1,7 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Printer = require('./Printer');
 const Validator = require('./Validator');
-const { PLACE, TYPE, PRIZE } = require('./constants');
+const { TYPE, PRIZE, PLACE } = require('./constants');
 // const PLACE = {
 // 	FIRST: 7,
 // 	SECOND: 6,
