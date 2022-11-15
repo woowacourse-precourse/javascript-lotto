@@ -91,6 +91,7 @@ class App {
     Console.print(
       TOTAL_PROFIT_MESSAGE(this.changeProceedFormat(totalProceeds))
     );
+    Console.close();
   }
 
   getCollectInfo(lottoNumbers) {
