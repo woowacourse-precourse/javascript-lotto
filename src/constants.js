@@ -1,6 +1,8 @@
-const INPUT_MESSAGE = Object.freeze({
+const PURCHASE = Object.freeze({
   INPUT_PRICE: "구입 금액을 입력해 주세요",
   INPUT_SUCCESS: "개를 구매했습니다.",
+});
+const SET_WINNGNUMBER = Object.freeze({
   INPUT_NUMBER: "당첨 번호를 입력해 주세요.",
   INPUT_BONUS_NUMBER: "보너스 번호를 입력해 주세요.",
 });
@@ -31,4 +33,4 @@ const ERROR_MESSAGE = Object.freeze({
   BONUS_DUPLICATE: "[ERROR] 보너스 번호가 당첨 번호에 중복되는 값입니다.",
 });
 
-module.exports = { INPUT_MESSAGE, LOTTO_PRICE, FIVE, RESULT_MESSAGE, ERROR_MESSAGE };
+module.exports = { PURCHASE, SET_WINNGNUMBER, LOTTO_PRICE, FIVE, RESULT_MESSAGE, ERROR_MESSAGE };
