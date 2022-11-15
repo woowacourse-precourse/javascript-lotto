@@ -65,4 +65,26 @@ describe('리절트 클래스 테스트', () => {
     expect(result.history.secondPlace.count).toEqual(1);
     expect(result.history.firstPlace.count).toEqual(1);
   });
+
+  test('수익률 구하기', () => {
+    const winningNumber = new Lotto([1, 2, 3, 4, 5, 6]);
+    const bonusNumber = new Bonus('7', winningNumber);
+    const result = new Result([
+      [8, 21, 23, 41, 42, 43],
+      [3, 5, 11, 16, 32, 38],
+      [7, 11, 16, 35, 36, 44],
+      [1, 8, 11, 31, 41, 42],
+      [13, 14, 16, 38, 42, 45],
+      [7, 11, 30, 40, 42, 43],
+      [2, 13, 22, 32, 38, 45],
+      [1, 3, 5, 14, 22, 45],
+    ]);
+    result.lottos.forEach((lotto) => {
+      const numberOfMatches = winningNumber.compare(lotto);
+      const hasBonus = bonusNumber.compare(lotto);
+      result.updateHistory(numberOfMatches, hasBonus);
+    });
+
+    expect(result.findReturn().toFixed(1)).toEqual('62.5');
+  });
 });
