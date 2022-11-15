@@ -9,9 +9,8 @@ const mockRandoms = (numbers) => {
 };
 
 describe("Ticket 메서드 테스트", () => {
-	const ticketBuilder = new Ticket.Builder();
   mockRandoms([[1, 2, 3, 4, 5, 6]]);
-  const ticket = ticketBuilder.build();
+  const ticket = new Ticket();
 	test("pirce()", () => {
     expect(Ticket.price()).toEqual(1000);
   });
