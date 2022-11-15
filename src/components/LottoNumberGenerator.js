@@ -12,12 +12,12 @@ class LottoNumberGenerator {
   #winningNumbers = { winnerNumbers: [], bonusNumber: 0 };
 
   drawLottery() {
-    this.inputWinnerNumber();
-    this.inputBonusNumber();
+    this.#inputWinnerNumber();
+    this.#inputBonusNumber();
     return this.#winningNumbers;
   }
 
-  inputWinnerNumber() {
+  #inputWinnerNumber() {
     Console.readLine(
       MESSAGE.LOTTO_NUMBER_GENERATOR.INPUT_WINNER_NUMBER,
       (numbers) => {
@@ -28,7 +28,7 @@ class LottoNumberGenerator {
     );
   }
 
-  inputBonusNumber() {
+  #inputBonusNumber() {
     Console.readLine(
       MESSAGE.LOTTO_NUMBER_GENERATOR.INPUT_BONUS_NUMBER,
       (number) => {
