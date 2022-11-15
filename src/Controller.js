@@ -27,7 +27,7 @@ class Controller {
 	#purchase(command) {
 		this.#validate([command]);
 		const purchaseMoney = parseInt(command);
-		const ticketList = Buyer.buy(command);
+		const ticketList = Buyer.buy(purchaseMoney);
 		ticketList.forEach((ticket) => this.#calculator.appendTicket(ticket));
 		printPurchase(ticketList.map((item) => item.getNumbers()));
 		this.#answerInput.render();
