@@ -1,5 +1,5 @@
-const calcRevenueRate = (input, money) => {
-  return ((input / money) * 100).toFixed(1);
+const calcRevenueRate = (revenue, money) => {
+  return ((revenue / money) * 100).toFixed(1);
 };
 
 module.exports = calcRevenueRate;

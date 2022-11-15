@@ -17,7 +17,7 @@ class Money {
     if (money < MONEY_UNIT) {
       throw new Error(EXCEPTION_MONEY.INPUT_ERROR);
     }
-    if (parseInt(money) % MONEY_UNIT !== 0) {
+    if (Number(money) % MONEY_UNIT !== 0) {
       throw new Error(EXCEPTION_MONEY.MONEY_UNIT_INCORRECT);
     }
   }

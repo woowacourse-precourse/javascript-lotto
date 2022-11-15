@@ -11,7 +11,7 @@ class Bonus {
   }
 
   validate(bonus) {
-    if (Number.isInteger(bonus)) {
+    if (!Number.isInteger(bonus)) {
       throw new Error(EXCEPTION_MESSAGE_BONUS.INPUT_INTEGER);
     }
     if (!(bonus >= 1 && bonus <= 45)) {
