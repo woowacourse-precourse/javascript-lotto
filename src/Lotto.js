@@ -3,6 +3,9 @@ const { Random } = require('@woowacourse/mission-utils');
 class Lotto {
   static LOTTO_LENGTH = 6;
   static LOTTO_RANGE = { MIN: 1, MAX: 45 };
+  static LOTTO_PRICE = 1000;
+  static AWARD = [5000, 50000, 1500000, 30000000, 2000000000];
+
   #numbers;
   #bonus;
 
@@ -35,22 +38,12 @@ class Lotto {
       );
   }
 
-  calculateResult(lottos) {
-    const result = [0, 0, 0, 0, 0];
+  getMatchedCount(lotto) {
+    return lotto.filter((number) => this.#numbers.includes(number)).length;
+  }
 
-    lottos.forEach((lotto) => {
-      const count = lotto.filter((number) =>
-        this.#numbers.includes(number)
-      ).length;
-
-      if (count === 5 && lotto.includes(this.#bonus)) {
-        result[3] += 1;
-      } else if (count > 2) {
-        result[count - 3] += 1;
-      }
-    });
-
-    return result;
+  isBonusMatched(lotto) {
+    return lotto.includes(this.#bonus);
   }
 
   static issueLotto = () => {

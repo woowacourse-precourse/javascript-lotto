@@ -89,9 +89,7 @@ describe('로또 테스트', () => {
 
     const app = new App();
     app.play();
-    expect(app.lottoMachine.calculateResult(app.lottos)).toEqual([
-      1, 0, 0, 0, 0,
-    ]);
+    expect(app.calculateResult(app.lottos)).toEqual([1, 0, 0, 0, 0]);
   });
 
   test('수익률은 당첨된 금액을 구입 금액으로 나누어 백분율로 환산한 값이다.', () => {
