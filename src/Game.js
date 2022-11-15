@@ -47,7 +47,32 @@ class Game {
     const bonusNumber = Number(input);
     Validation.validateBonusNumber(bonusNumber, winningNumber);
     this.bonusNumber = bonusNumber;
+    const result = this.compareLotto();
     Console.close();
+  }
+  compareLotto() {
+    const lottoList = this.lottoList;
+    const winningNumber = this.winningNumber;
+    const result = new Array(LOTTO.TOTAL_RANK).fill(0);
+    for (let i = 0; i < lottoList.length; i++) {
+      let match = 0;
+      const lottoNumber = lottoList[i];
+      for (let j = 0; j < LOTTO.LENGTH; j++) {
+        const number = lottoNumber[j];
+        match += winningNumber.includes(number) ? 1 : 0;
+      }
+      if (match < 3) continue;
+      const rank = this.getRank(lottoNumber, match);
+      result[rank] += 1;
+    }
+    return result;
+  }
+  getRank(lottoNumber, match) {
+    const bonusNumber = this.bonusNumber;
+    if (match == 6) return LOTTO.RANK.FIRST;
+    if (match == 5) return lottoNumber.includes(bonusNumber) ? LOTTO.RANK.SECOND : LOTTO.RANK.THIRD;
+    if (match == 4) return LOTTO.RANK.FOURTH;
+    if (match == 3) return LOTTO.RANK.FIFTH;
   }
 }
 
