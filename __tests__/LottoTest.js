@@ -82,3 +82,21 @@ describe('lotto 클래스의 bundleVerifyForWin() 기능 테스트', () => {
     expect(lotto.resultMap).toEqual(tobe);
   });
 });
+
+describe('lotto 클래스의 profitRateOfUserPurchase() 기능 테슽트', () => {
+  test('수익률이 제대로 나오는지 확인', () => {
+    const winNumbers = [1, 2, 3, 4, 5, 6];
+    const lotto = new Lotto(winNumbers);
+    const resultMap = {
+      fifthGrade: 1,
+      forthGrade: 0,
+      thirdGrade: 0,
+      secondGrade: 0,
+      firstGrade: 0,
+      loseMoney: 0,
+    };
+    const userInputMoney = 8000;
+    const profitRate = lotto.profitRateOfUserPurchase(resultMap, userInputMoney);
+    expect(profitRate).toBe(62.5);
+  });
+});
