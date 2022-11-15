@@ -40,6 +40,5 @@ class App {
     this.#logicChain.execute();
   }
 }
-const app = new App();
-app.play();
+
 module.exports = App;
