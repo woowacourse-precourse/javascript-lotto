@@ -42,12 +42,18 @@ class CheckLotto {
   }
 
   bonusNumberMatch(bonusNumber) {
-    this.#lotto.includes(parseInt(bonusNumber)) ? (this.#rankCount[1] += 1) : (this.#rankCount[2] += 1);
+    if (this.#lotto.includes(parseInt(bonusNumber))) {
+      return (this.#rankCount[1] += 1);
+    }
+
+    if (!this.#lotto.includes(parseInt(bonusNumber))) {
+      return (this.#rankCount[2] += 1);
+    }
   }
 
   play(money, lottoSet, winningNumber, bonusNumber) {
     this.winningNumberMatch(lottoSet, winningNumber, bonusNumber);
-
+    Console.print(this.#rankCount);
     return { rankCount: this.#rankCount };
   }
 }
