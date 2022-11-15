@@ -62,12 +62,17 @@ class View {
       this.bonusNumber = Number(bonusNumber);
       this.isInWinNumber(this.bonusNumber, this.winNumber);
       this.lottoBox.map((oneLine) => {
-        checkMyNumber(oneLine, this.winNumber, this.score, this.bonusNumber);
+        this.checkMyNumber(
+          oneLine,
+          this.winNumber,
+          this.score,
+          this.bonusNumber
+        );
       });
       for (const [key, value] of Object.entries(this.score)) {
         this.reword += key * value;
       }
-      this.revenue = getRevenue(this.reword, this.money);
+      this.revenue = this.getRevenue(this.reword, this.money);
       Console.print("당첨 통계");
       Console.print("---");
       Object.keys(this.score).map((ranking, index) => {
@@ -114,7 +119,36 @@ class View {
     }
     return true;
   }
-
+  checkMyNumber = (list, winNumber, score, bonusNumber) => {
+    let correctCount = 0;
+    if (JSON.stringify(list) === JSON.stringify(winNumber)) {
+      return (score[2000000000] += 1);
+    }
+    list.map((number) => {
+      if (winNumber.includes(number)) {
+        return (correctCount += 1);
+      }
+    });
+    if (correctCount === 0 || correctCount === 1 || correctCount === 2) {
+      return (score[0] += 1);
+    }
+    if (correctCount === 3) {
+      return (score[5000] += 1);
+    }
+    if (correctCount === 4) {
+      return (score[50000] += 1);
+    }
+    if (correctCount === 5) {
+      const difference = list.filter((x) => !winNumber.includes(x));
+      return difference[difference.length - 1] !== bonusNumber
+        ? (score[1500000] += 1)
+        : (score[30000000] += 1);
+    }
+  };
+  getRevenue = (reword, money) => {
+    const revenue = (reword / (money * 1000)) * 100;
+    return +(Math.round(revenue + "e+2") + "e-2");
+  };
   isInWinNumber(bonusNumber, winNumber) {
     if (winNumber.includes(bonusNumber)) {
       throw new Error("[ERROR] : 당첨 번호 리스트에 이미 존재하는 번호입니다.");
