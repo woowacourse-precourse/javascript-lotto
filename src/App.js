@@ -2,7 +2,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Money = require("./Money");
 const Lotto = require("./Lotto");
 const Bonus = require("./Bonus");
-const Compare = require("./Compare");
+const Result = require("./Result");
 
 class App {
   constructor() {
@@ -11,7 +11,6 @@ class App {
     this.lottoList = [];
     this.winningNumbers;
     this.bonusNumber;
-    this.compareResult;
   }
 
   play() {
@@ -72,13 +71,14 @@ class App {
   }
 
   getResult() {
-    const compareResult = new Compare(
+    const compare = new Result(
       this.lottoList,
       this.winningNumbers,
       this.bonusNumber
     );
-    this.compareResult = compareResult;
   }
+
+  getWinningStatics() {}
 }
 
 const app = new App();

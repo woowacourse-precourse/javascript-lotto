@@ -1,4 +1,6 @@
-class Compare {
+const { Console } = require("@woowacourse/mission-utils");
+
+class Result {
   #lottoList;
   #winningNumbers;
   #bonusNumber;
@@ -14,6 +16,7 @@ class Compare {
       six: 0,
     };
     this.compare();
+    this.result();
   }
 
   compare() {
@@ -62,6 +65,23 @@ class Compare {
       this.winningStatistics.three += 1;
     }
   }
+
+  result() {
+    this.printResult();
+  }
+
+  printResult() {
+    const { three, four, five, fiveWithBonus, six } = this.winningStatistics;
+
+    Console.print("당첨 통계\n---\n");
+    Console.print(`3개 일치 (5,000원) - ${three}개`);
+    Console.print(`4개 일치 (50,000원) - ${four}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${five}개`);
+    Console.print(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${fiveWithBonus}개`
+    );
+    Console.print(`6개 일치 (2,000,000,000원) - ${six}개`);
+  }
 }
 
-module.exports = Compare;
+module.exports = Result;
