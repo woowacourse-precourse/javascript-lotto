@@ -22,8 +22,16 @@ class Lotto {
     }
 
     numbers.forEach(number =>{
-      if (number < 0 || number > 45){
+      if (number < 1 || number > 45){
         throw new Error("[ERROR] 로또 번호는 1과 45 사이여야 합니다.");
+      }
+
+      if (isNaN(number)){
+        throw new Error("[ERROR] 숫자가 아닌 값이 입력되었습니다.");
+      }
+
+      if(parseInt(number) !== number){
+        throw new Error("[ERROR] 정수만 입력해주세요.");
       }
     });
 
