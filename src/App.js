@@ -39,7 +39,7 @@ class App {
   lottoBuying(purchaseAmount) {
     const lottoCount = this.getLottoCount(purchaseAmount);
     this.LottoUI.printLottoCount(lottoCount);
-    const singleLotto = this.getTotalLottoNumber(lottoCount);
+    this.getTotalLottoNumber(lottoCount);
   }
   getLottoCount(purchaseAmount) {
     return purchaseAmount / LOTTO_PRICE;
@@ -75,8 +75,8 @@ class App {
 
   getTotalLottoNumber(lottoCount) {
     this.lotto = Array.from({ length: lottoCount }, () => {
-      const lottoNumber = this.randomLottoNumberPick();
-      const ascLottoNumber = lottoNumber.sort((num1, num2) => num1 - num2);
+      let lottoNumber = this.randomLottoNumberPick();
+      let ascLottoNumber = lottoNumber.sort((num1, num2) => num1 - num2);
       return new Lotto(ascLottoNumber);
     });
   }
