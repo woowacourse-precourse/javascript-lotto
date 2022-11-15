@@ -53,6 +53,13 @@ class Game {
         InputOutput.input(Message.PLEASE_TYPING_CORRECT_NUMBER , (correct) => {this.setCorrectNumber(correct)
     })}
 
+    setCorrectNumber (correctNumber) {
+        correctNumber = correctNumber.split(",").map((item) => Number(item));
+        const lotto = new Lotto(correctNumber);
+        this.score.setCorrectNumber(lotto.getCorrectNumber());
+        this.inputBonusNumber();
+    }
+
 }
 
 module.exports = Game;
