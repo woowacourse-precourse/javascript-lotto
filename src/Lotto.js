@@ -14,10 +14,10 @@ class Lotto {
     }
     
     const numPattern = /[^0-9]/g;
-    if(numPattern.test(numbers)){
+    if(!numPattern.test(numbers)){
       throw new Error("[ERROR] 숫자만 입력하세요.")
     }  
-    
+
     const uniqueNums = new Set(numbers);
     if (uniqueNums.size !== numbers.length){
       throw new Error("[ERROR] 중복 되지 않는 숫자를 입력하세요.")
