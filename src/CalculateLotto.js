@@ -37,23 +37,19 @@ class CalculateLotto {
 
   updateWinningCount(count, hasBonusNumber) {
     switch (count) {
-      case 3: {
+      case 3:
         this.winningCount[4] += 1;
         break;
-      }
-      case 4: {
+      case 4:
         this.winningCount[3] += 1;
         break;
-      }
-      case 5: {
+      case 5:
         if (hasBonusNumber) this.winningCount[1] += 1;
         else this.winningCount[2] += 1;
         break;
-      }
-      case 6: {
+      case 6: 
         this.winningCount[0] += 1;
         break;
-      }
     }
   }
 }
