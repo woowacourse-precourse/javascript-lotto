@@ -22,6 +22,7 @@ class Lotto {
 
   validate(numbers) {
     const checkSixNum = inputValidation.checkSixNum(numbers);
+    if (checkSixNum) return true;
   }
 }
 

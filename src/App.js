@@ -6,22 +6,23 @@ const { INPUTS, OUTPUTS } = require("./constants");
 
 class App {
   #countLottos;
-  #pickedLottoNum;
-  #lottosList = [];
+  #lottosList = []; //8개 [[1,2,1,2,2],[],...]
+  #inputLottoNums;
+  #scoreList = [];
 
   play() {
-    this.inputMoney();
-    // this.pickRandomLottoNumber();
-    this.makeLottosList();
+    this.inputStartWithMoney();
+    // this.makeLottosList();
     this.inputNumbers();
     // Console.close();
   }
 
-  inputMoney() {
+  inputStartWithMoney() {
     Console.readLine(INPUTS.INPUT_MONEY, (money) => {
       if (inputValidation.checkThousandNum(money)) {
         this.#countLottos = Number(money) / 1000;
         this.printCountLottos();
+        this.makeLottosList();
       }
     });
   }
@@ -33,16 +34,18 @@ class App {
   //로또 뽑기 logic
   pickRandomLottoNumber() {
     const pickedLottoNum = Random.pickUniqueNumbersInRange(1, 45, 6);
-    this.#pickedLottoNum = pickedLottoNum;
+    return pickedLottoNum;
   }
 
   //여기 안됨
   makeLottosList() {
     let lottosList = [];
     for (let lottos = 0; lottos < this.#countLottos; lottos++) {
-      const lottoNums = new Lotto(this.pickRandomLottoNumber());
-      lottosList.push(lottoNums.inputLottoNumbers);
-      Console.print(sort(lottoNums.inputLottoNumbers));
+      const pickRandomLottoNumber = this.pickRandomLottoNumber().sort();
+      const validateLottoNumber = new Lotto(pickRandomLottoNumber);
+      lottosList.push(validateLottoNumber.inputLottoNumbers);
+      Console.print(pickRandomLottoNumber);//
+      Console.print(lottosList);//
     }
     this.#lottosList = lottosList;
     return this.#lottosList;
@@ -51,9 +54,17 @@ class App {
   //당첨번호 입력받기 -> Lotto에 넣어서 validation 검증 받기
   inputNumbers() {
     Console.readLine(INPUTS.INPUT_NUMBERS, (numbers) => {
-      this.#numbers = numbers;
+      this.#inputLottoNums = 
     });
   }
+
+  //등수 logic -> 8개의 로또를 돌면서 체크
+  winLottoScore() {
+    for (let index = 0; index < this.#lottosList.length; index++) {}
+  }
+
+  //lottos는 array, numbers
+  matchCountLotto(lottos, numbers) {}
 }
 
 const startLotto = new App();
