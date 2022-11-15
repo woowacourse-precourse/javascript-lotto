@@ -1,9 +1,20 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+const Lotto = require('./Lotto');
 
 class App {
+  #ticketCnt;
+  #purchased;
+
+  constructor() {
+    this.#ticketCnt = 0;
+    this.#purchased = [];
+  }
+
   play() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
       this.#inputMoneyExceptionCheck(money);
+      this.#ticketCnt = money / 1000;
+      this.#generateLotto();
     });
   }
 
@@ -23,6 +34,18 @@ class App {
         return true;
     }
     return false;
+  }
+
+  #generateLotto() {
+    for (let i = 0; i < this.#ticketCnt; ++i) {
+      this.#purchased.push(new Lotto(this.#numGenerator()));
+    }
+  }
+
+  #numGenerator() {
+    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort(
+      (a, b) => a - b
+    );
   }
 }
 
