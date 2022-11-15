@@ -27,7 +27,7 @@ class App {
 
   getMoney() {
     Console.readLine(INPUT_MESSAGE.money, (money) => {
-      this.#money = +money;
+      this.#money = Number(money);
       Validation.validateMoney(this.#money);
       this.#lottos = this.exchangeLotto(this.#money / UNIT.money);
       this.printLottos(this.#lottos);
@@ -39,6 +39,7 @@ class App {
     const lottos = [...Array(quantity)].map(
       () => new Lotto(this.generateRandomNumbers())
     );
+
     return lottos;
   }
 
@@ -53,7 +54,7 @@ class App {
 
   getWinningNumbers() {
     Console.readLine(INPUT_MESSAGE.winningNumber, (numbers) => {
-      this.#winningNumbers = numbers.split(",").map((number) => +number);
+      this.#winningNumbers = numbers.split(",").map((number) => Number(number));
       Validation.validateNumbers(this.#winningNumbers);
       this.getBonusNumber();
     });
@@ -61,7 +62,7 @@ class App {
 
   getBonusNumber() {
     Console.readLine(INPUT_MESSAGE.bonusNumber, (number) => {
-      this.#bonusNumber = +number;
+      this.#bonusNumber = Number(number);
       Validation.validateBonusNumber(this.#winningNumbers, this.#bonusNumber);
       this.compare(this.#lottos, this.#winningNumbers, this.#bonusNumber);
     });
