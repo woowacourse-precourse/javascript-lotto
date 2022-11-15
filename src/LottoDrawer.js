@@ -30,7 +30,7 @@ class LottoDrawer {
     this.winnerSelector.setResultData();
   }
 
-  setLottoWinnerNumber(input) {
+  setWinnerNumber(input) {
     this.validator.isValidInput(input);
 
     const winnerNumbers = input.split(',').map(Number);
@@ -54,7 +54,7 @@ class LottoDrawer {
     this.winnerSelector.lottos = lottos;
 
     Console.readLine('\n당첨 번호를 입력해 주세요. (,로 구분하여 입력하세요.)\n', (numbers) => {
-      this.setLottoWinnerNumber(numbers);
+      this.setWinnerNumber(numbers);
       this.setBonusNumber();
     });
   }

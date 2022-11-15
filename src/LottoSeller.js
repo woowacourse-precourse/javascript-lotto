@@ -37,12 +37,12 @@ class LottoSeller {
     new LottoValidator(this.lottoPrice).isValidMoney(money);
   }
 
-  countLottoTicket(money) {
+  countTicket(money) {
     this.isValidMoney(money);
     return money / this.lottoPrice;
   }
 
-  issueLotto(count) {
+  issue(count) {
     const lottos = [];
 
     while (lottos.length < count) {
@@ -64,7 +64,7 @@ class LottoSeller {
   }
 
   run(money) {
-    this.issueLotto(this.countLottoTicket(money));
+    this.issue(this.countTicket(money));
     this.setResultData();
     View.print(this);
   }

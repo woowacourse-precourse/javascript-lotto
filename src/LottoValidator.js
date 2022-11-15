@@ -13,7 +13,6 @@ class LottoValidator extends Validator {
     this.minNumber = minNumber;
     this.maxNumber = maxNumber;
     this.numbersCount = numbersCount;
-    this.validator = new Validator();
   }
 
   #isValidLottoNumber = (number) => {
@@ -29,8 +28,8 @@ class LottoValidator extends Validator {
   };
 
   isValidBonusNumber(bonus, lottoNumbers) {
-    this.validator.isValidInput(bonus);
-    this.validator.isValidNumber(bonus);
+    this.isValidInput(bonus);
+    this.isValidNumber(bonus);
 
     if (lottoNumbers.includes(Number(bonus))) {
       throw new Error(`${this.ERROR_MESSAGE_HEADER} 로또 번호와 보너스 번호는 서로 달라야 합니다.`);
