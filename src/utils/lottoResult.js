@@ -20,7 +20,9 @@ lottoResult.getMatchingNumbersResult = (userLottoNumbers, winningNumbers, bonusN
   userLottoNumbers.forEach((userLottoNumber) => {
     if (winningNumbers.includes(userLottoNumber)) {
       winningNumbersResult += 1;
-    } else if (bonusNumber === userLottoNumber) {
+      return;
+    }
+    if (bonusNumber === userLottoNumber) {
       bonusNumberResult += 1;
     }
   });
