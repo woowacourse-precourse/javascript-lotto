@@ -1,9 +1,11 @@
 const Utils = require('./Utils');
 
-class Winner {
+class WinnerSelector {
   #prizeResult;
 
   #winnerNumber;
+
+  #lottos;
 
   #data;
 
@@ -11,9 +13,8 @@ class Winner {
 
   #earningRate = 0;
 
-  constructor(lottoPrice, lottos, winnerRule, fixedPoint = 1) {
+  constructor(lottoPrice, winnerRule, fixedPoint = 1) {
     this.lottoPrice = Number(lottoPrice);
-    this.lottos = lottos;
     this.winnerRule = winnerRule;
     this.fixedPoint = fixedPoint;
   }
@@ -56,6 +57,14 @@ class Winner {
 
   get earningRate() {
     return this.#earningRate;
+  }
+
+  set lottos(lottos) {
+    this.#lottos = lottos;
+  }
+
+  get lottos() {
+    return this.#lottos;
   }
 
   setWinnerNumber(winnerNumber) {
@@ -133,11 +142,11 @@ class Winner {
   setResultData() {
     this.getResult();
 
-    const message = ('\n당첨 통계\n---');
+    const message = '\n당첨 통계\n---';
     const result = `${this.stringifyResult()}\n총 수익률은 ${this.earningRate}%입니다.`;
 
     this.data = { message, result };
   }
 }
 
-module.exports = Winner;
+module.exports = WinnerSelector;

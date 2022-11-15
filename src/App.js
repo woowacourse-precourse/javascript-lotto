@@ -1,7 +1,7 @@
 const { Console } = require('@woowacourse/mission-utils');
 const LottoDrawer = require('./LottoDrawer');
 const LottoSeller = require('./LottoSeller');
-const Winner = require('./Winner');
+const WinnerSelector = require('./WinnerSelector');
 
 const WINNER_RULE = {
   prize: {
@@ -13,24 +13,29 @@ const WINNER_RULE = {
   bonus: { count: 5, prizeMoney: 30000000, message: '보너스 볼 일치' },
 };
 
+const LOTTO_NUMBER_COUNT = 6;
+
 const LOTTO_PRICE = 1000;
 
 class App {
-  constructor(lottoNumberCount = 6, winnerRule = WINNER_RULE) {
+  constructor(
+    lottoNumberCount = LOTTO_NUMBER_COUNT,
+    winnerRule = WINNER_RULE,
+    lottoPrice = LOTTO_PRICE,
+  ) {
     this.lottoNumberCount = lottoNumberCount;
     this.winnerRule = winnerRule;
+    this.lottoPrice = lottoPrice;
   }
 
   play() {
     Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
-      const lottoSeller = new LottoSeller(LOTTO_PRICE);
+      const lottoSeller = new LottoSeller(this.lottoPrice);
+      const winnerSelector = new WinnerSelector(this.lottoPrice, this.winnerRule);
+      const lottoDrawer = new LottoDrawer(this.lottoNumberCount, winnerSelector);
 
       lottoSeller.purchase(money);
-
-      const lottoDrawer = new LottoDrawer(this.lottoNumberCount);
-      const winner = new Winner(LOTTO_PRICE, lottoSeller.lottos, this.winnerRule);
-
-      lottoDrawer.drawLotto(winner);
+      lottoDrawer.drawLotto(lottoSeller.lottos);
     });
   }
 }

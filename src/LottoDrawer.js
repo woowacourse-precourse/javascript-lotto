@@ -6,8 +6,9 @@ const View = require('./View');
 class LottoDrawer {
   #result;
 
-  constructor(numbersCount) {
+  constructor(numbersCount, winnerSelector) {
     this.numbersCount = numbersCount;
+    this.winnerSelector = winnerSelector;
     this.validator = new Validator();
   }
 
@@ -19,6 +20,11 @@ class LottoDrawer {
     return this.#result;
   }
 
+  selectWinner() {
+    this.winnerSelector.setWinnerNumber(this.result);
+    View.print(this.winnerSelector);
+  }
+
   setLottoWinner(input) {
     this.validator.isValidInput(input);
 
@@ -27,24 +33,22 @@ class LottoDrawer {
     this.result = { numbers: new Lotto(winnerNumbers).numbers };
   }
 
-  setBonusNumber(winner) {
+  setBonusNumber() {
     Console.readLine('\n보너스 번호를 입력해 주세요.\n', (input) => {
       Lotto.isValidBonusNumber(input, this.result.numbers);
 
       const bonus = Number(input);
 
       this.result = { ...this.result, bonus };
-      // TODO: 호출위치 변경
-
-      winner.setWinnerNumber(this.result);
-      View.print(winner);
+      this.selectWinner();
     });
   }
 
-  drawLotto(winner) {
+  drawLotto(lottos) {
     Console.readLine('\n당첨 번호를 입력해 주세요. (,로 구분하여 입력하세요.)\n', (numbers) => {
+      this.winnerSelector.lottos = lottos;
       this.setLottoWinner(numbers);
-      this.setBonusNumber(winner);
+      this.setBonusNumber();
     });
   }
 }
