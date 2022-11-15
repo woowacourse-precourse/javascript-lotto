@@ -19,11 +19,11 @@ describe("Validation 클래스 테스트", () => {
     expect(Validation.itThatRightFormat(input)).toBe(false);
   });
 
-//   test("당첨 번호 입력값이 1 ~ 45 사이인지 검사", () => {
-//     const input = [1, 2, 3, 4, 5, 70];
+  test("당첨 번호 입력값이 1 ~ 45 사이인지 검사", () => {
+    const input = [1, 2, 3, 4, 5, 70];
 
-//     expect(Validation.numberNet(input)).toBe(true);
-//   });
+    expect(Validation.numberNet(input)).toBe(true);
+  });
 
 //   test("당첨 번호 입력값이 6개인지 검사", () => {
 //     const input = [1, 2, 3, 4, 5];
