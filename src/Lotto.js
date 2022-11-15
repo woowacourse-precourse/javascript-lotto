@@ -1,3 +1,5 @@
+const inputDataObject = require('../src/model/InputDataObject')
+
 class Lotto {
   #numbers;
 
@@ -20,9 +22,16 @@ class Lotto {
     if(new Set(numbers).size < numbers.length) {
       throw new Error('[ERROR] 중복되는 숫자가 존재합니다.')
     }
+    return this.compareLotto()
   }
 
-  // TODO: 추가 기능 구현
+  compareLotto() {
+    inputDataObject.correctNumber = inputDataObject.raffle.map(index =>
+      inputDataObject.raffleNumbers.filter(x => index.includes(x)),
+    );
+    return null
+  }
+
 }
 
 module.exports = Lotto;
