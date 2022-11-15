@@ -6,6 +6,7 @@
     "max-lines-per-function": ["error", 15]
   },
   "env": {
+    "browser": true,
     "node": true,
     "es6": true,
     "es2022": true
