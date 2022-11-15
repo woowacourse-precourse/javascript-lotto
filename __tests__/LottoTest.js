@@ -82,16 +82,16 @@ describe("로또 클래스 테스트", () => {
   test("수익률 구하기", () => {
     const calculator = new Calculator();
     const rewards = [
-      [3, 5_000, 1],
-      [4, 50_000, 2],
+      [3, 5_000, 2],
+      [4, 50_000, 1],
       [5, 1_500_000, 0],
       [5.5, 30_000_000, 0],
       [6, 2_000_000_000, 0],
     ];
 
-    const payMoney = 10000;
-    const result = Math.round(5000 + ((50000 * 2) / payMoney) * 10000) / 100;
+    const payMoney = 10_000;
+    const sum = (((5000 * 2 + 50000) / payMoney) * 100).toFixed(1);
 
-    expect(calculator.conductRevenue(rewards, payMoney)).toEqual(result);
+    expect(calculator.conductRevenue(rewards, payMoney)).toEqual(sum);
   });
 });
