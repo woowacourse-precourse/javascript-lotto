@@ -13,11 +13,14 @@ class VendingMachine {
   }
 
   askPurchaseAmount() {
-    Console.readLine(PHRASE.PURCHASE_AMOUNT, (input) => {
-      this.validate(input);
-      this.makeLotto(input);
-      this.drawMachine.darwWinningNumber();
-    });
+    Console.readLine(PHRASE.PURCHASE_AMOUNT, this.run.bind(this));
+  }
+
+  run(input) {
+    this.validate(input);
+    this.printLottoCount(input);
+    this.makeLotto(input);
+    this.drawMachine.darwWinningNumber();
   }
 
   validate(input) {
@@ -26,14 +29,16 @@ class VendingMachine {
       throw new Error(ERROR.PURCHASE_AMOUNT_UNIT);
   }
 
+  printLottoCount(input) {
+    const count = input / LOTTO.PRICE;
+    Console.print(count + PHRASE.LOTTO_COUNT);
+  }
+
   makeLotto(input) {
     const count = input / LOTTO.PRICE;
-    this.printLottoCount(count);
-
     for (let i = 0; i < count; i++) {
       this.generateLottoNumber();
-      const lotto = new Lotto(this.#lottoNumber);
-      ScoreMachine.lottoList.push(lotto);
+      this.generateLotto();
       this.printLottoNumber();
     }
   }
@@ -47,8 +52,13 @@ class VendingMachine {
     this.#lottoNumber = number;
   }
 
-  printLottoCount(count) {
-    Console.print(count + PHRASE.LOTTO_COUNT);
+  generateLotto() {
+    const lotto = new Lotto(this.#lottoNumber);
+    this.conveyLotto(lotto);
+  }
+
+  conveyLotto(lotto) {
+    ScoreMachine.lottoList.push(lotto);
   }
 
   printLottoNumber() {
