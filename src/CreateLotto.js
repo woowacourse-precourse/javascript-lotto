@@ -1,11 +1,17 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const { COMMAND } = require('../util/Message');
+const {
+  MONEY_UNIT,
+  LOTTO_NUM,
+  RANGE_START,
+  RANGE_END,
+} = require('../util/constants');
 
 class CreateLotto {
   constructor(money) {
     this.result = [];
     this.money = parseInt(money);
-    this.lottoNum = this.money / 1000;
+    this.lottoNum = this.money / MONEY_UNIT;
   }
 
   make() {
@@ -20,7 +26,11 @@ class CreateLotto {
 
   create() {
     while (this.lottoNum) {
-      const lotto = Random.pickUniqueNumbersInRange(1, 45, 6);
+      const lotto = Random.pickUniqueNumbersInRange(
+        RANGE_START,
+        RANGE_END,
+        LOTTO_NUM
+      );
       lotto.sort((a, b) => {
         return a - b;
       });

@@ -1,5 +1,6 @@
 const { Exceptions } = require('./Exceptions');
 const { ERROR } = require('../util/Message');
+const { LOTTO_NUM } = require('../util/constants');
 
 class Lotto extends Exceptions {
   #numbers;
@@ -18,7 +19,7 @@ class Lotto extends Exceptions {
   }
 
   isNotRightLength() {
-    return this.input.length !== 6;
+    return this.input.length !== LOTTO_NUM;
   }
 
   isNotAllDigit() {

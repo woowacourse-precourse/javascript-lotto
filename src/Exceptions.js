@@ -1,4 +1,5 @@
 const { ERROR } = require('../util/Message');
+const { RANGE_START, RANGE_END, MONEY_UNIT } = require('../util/constants');
 
 class Exceptions {
   constructor(input) {
@@ -18,7 +19,7 @@ class Exceptions {
   }
 
   isInRange(num) {
-    return 0 < parseInt(num) && parseInt(num) < 46;
+    return RANGE_START <= parseInt(num) && parseInt(num) <= RANGE_END;
   }
 }
 
@@ -29,7 +30,7 @@ class MoneyExceptions extends Exceptions {
   }
 
   isNotDivisible() {
-    return parseInt(this.input) % 1000 !== 0;
+    return parseInt(this.input) % MONEY_UNIT !== 0;
   }
 }
 

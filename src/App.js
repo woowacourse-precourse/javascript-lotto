@@ -5,6 +5,7 @@ const { MoneyExceptions, BonusExceptions } = require('./Exceptions');
 const CompareNumbers = require('./CompareNumbers');
 const Lotto = require('./Lotto');
 const lotto = require('../util/lotto');
+const { ZERO, DECIMAL_PLACES, FIFTH } = require('../util/constants');
 
 class App {
   #money;
@@ -47,14 +48,14 @@ class App {
   }
 
   printResult(result) {
-    let income = 0;
+    let income = ZERO;
     console.log(COMMAND.RESULT);
-    for (let index = 5; index > 0; index--) {
+    for (let index = FIFTH; index > ZERO; index--) {
       income += lotto[index].amount * result[index];
       Console.print(`${lotto[index].message}${result[index]}개`);
     }
     const percent = (income / this.#money) * 100;
-    Console.print(`${COMMAND.YIELD}${percent.toFixed(1)}%입니다.`);
+    Console.print(`${COMMAND.YIELD}${percent.toFixed(DECIMAL_PLACES)}%입니다.`);
     this.end();
   }
 

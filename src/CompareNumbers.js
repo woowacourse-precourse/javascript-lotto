@@ -1,7 +1,16 @@
+const {
+  FIRST,
+  FOURTH,
+  FIFTH,
+  LOTTO_NUM,
+  ZERO,
+  FIVE,
+} = require('../util/constants');
+
 let rank = {
-  3: 5,
-  4: 4,
-  6: 1,
+  3: FIFTH,
+  4: FOURTH,
+  6: FIRST,
 };
 
 class CompareNumbers {
@@ -9,13 +18,13 @@ class CompareNumbers {
     this.lottoArr = lottoArr;
     this.winningArr = winningArr;
     this.bonus = bonus;
-    this.result = new Array(6).fill(0);
+    this.result = new Array(LOTTO_NUM).fill(ZERO);
   }
 
   getResult() {
     for (let index = 0; index < this.lottoArr.length; index++) {
       const matchNumber = this.countSameNumbers(this.lottoArr[index]);
-      matchNumber === 5
+      matchNumber === FIVE
         ? this.compareSecondThird(index)
         : this.ranking(matchNumber);
     }
@@ -49,8 +58,8 @@ class CompareNumbers {
 
   compareSecondThird(index) {
     this.lottoArr[index].includes(this.bonus)
-      ? (this.result[2] += 1)
-      : (this.result[3] += 1);
+      ? (this.result[SECOND] += 1)
+      : (this.result[THIRD] += 1);
   }
 }
 
