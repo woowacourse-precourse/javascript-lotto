@@ -1,19 +1,12 @@
-const Lotto = require('../Lotto.js');
 const { generateSortedRandomNumber, checkHowManyCorrect } = require('../utils/lottoGameHandler.js');
+const { LOTTO_RANKING_REWARD } = require('../constants/index.js');
+const Lotto = require('../Lotto.js');
 const InputMoneyView = require('../view/InputMoneyView.js');
 const InputWinningNumberView = require('../view/InputWinningNumberView.js');
 const OutputView = require('../view/OutputView.js');
 
 class LottoMachineController {
   constructor() {
-    this.lottoResultMap = {
-      '3개': 0,
-      '4개': 0,
-      '5개': 0,
-      '5개+보너스': 0,
-      '6개': 0,
-    };
-
     this.view = {
       inputMoneyView: new InputMoneyView(),
       inputWinningNumberView: new InputWinningNumberView(),
@@ -48,10 +41,21 @@ class LottoMachineController {
     const lottoResultData = this.purchasedLottos.map((lotto) =>
       checkHowManyCorrect(lotto, this.winningNumber, this.bonusNumber),
     );
+    const lottoResult = this.generateLottoResultObject();
     this.mappingResult(lottoResultData);
     this.calculateTotalPrizeMoney();
 
     this.view.outputView.printLottoGameResult(this.lottoResultMap, this.calculateYield.bind(this));
+  }
+
+  generateLottoResultObject() {
+    const lottoResult = [];
+
+    for (let ranking of Object.keys(LOTTO_RANKING_REWARD)) {
+      lottoResult[ranking] = 0;
+    }
+
+    return lottoResult;
   }
 
   mappingResult(lottoResultData) {
