@@ -66,8 +66,8 @@ javascript-lotto
 ### 🔸 Error Case
 
 - [x] 게임 시작 시 사용자가 입력한 금액이 1000으로 나누어 떨어지지 않는 경우 에러를 발생시킨다.
-  - 입력 값 검증 - `App.#validatePrice()`
+  - 입력 값 검증 - `App.#validatePrice`
 - [x] 당첨 번호를 입력할 때 입력 형식이 올바르지 않거나 중복되는 경우 에러를 발생시킨다.
-  - 입력 값 검증 - `Lotto.validateWinningNums()`
+  - 입력 값 검증 - `Lotto.validateWinningNums`
 - [x] 보너스 번호를 입력할 때 입력 형식이 올바르지 않거나 당첨 번호와 중복되는 경우 에러를 발생시킨다.
-  - 입력 값 검증 - `Lotto.validateBonusNum()`
+  - 입력 값 검증 - `Lotto.validateBonusNum`
