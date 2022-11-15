@@ -19,6 +19,7 @@ class App {
         this.#purchaseLottoList = purchaseLotto.returnPurchasedLottoNumbersList();
         purchaseLotto.printLottoCount();
         this.printPurchasedLottoList();
+        this.inputLottoWinningNumbers();
       }
     );
   }
