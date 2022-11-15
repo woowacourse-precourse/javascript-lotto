@@ -36,6 +36,10 @@ class App {
       }
       
       MadeNumber.checkBonusNumber(answer);
+
+      let result = MadeNumber.numberCompare(this.lottoArray, this.userArray, answer);
+
+      this.printResult(result);
     })
   }
 

@@ -69,5 +69,35 @@ class MadeNumber {
     }
   }
 
+  static numberCompare(randomLotto, userLotto, bonusNumber) {
+    let userLottoMap = new Map();
+    userLotto.forEach(number => userLottoMap.set(number, 1));
+
+    let sixHits = 0;
+    let fiveHitsPlusBonus = 0;
+    let fiveHits = 0;
+    let fourHits = 0;
+    let threeHits = 0;
+
+    randomLotto.forEach(
+      lotto => {
+        let correctNumbers = 0;
+        lotto.forEach(number => {
+          if (userLottoMap.get(number) == 1) {
+            correctNumbers += 1;
+          }
+        })
+        if (correctNumbers == 3) { threeHits += 1 }
+        if (correctNumbers == 4) { fourHits += 1 }
+        if (correctNumbers == 5) {
+          if (lotto.includes(bonusNumber)) { fiveHitsPlusBonus += 1 }
+          else { fiveHits += 1 }
+        }
+        if (correctNumbers == 6) { sixHits += 1 }
+
+      }
+    )
+    return [threeHits, fourHits, fiveHits, fiveHitsPlusBonus, sixHits];
+  }
 }
 module.exports = MadeNumber;
