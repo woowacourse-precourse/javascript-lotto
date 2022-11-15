@@ -95,7 +95,7 @@ class App {
 
   askWinBonus() {
     Console.print('');
-    Console.print(ASK.WIN_NUMBERS);
+    Console.print(ASK.WIN_BONUS);
     Console.readLine('', (input) => {
       const winBonus = Number(input);
       this.validateWinBonus(winBonus);
