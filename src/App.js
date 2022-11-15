@@ -112,6 +112,14 @@ class App {
         compareLottoNumber(ind);
       }
     }
+
+    function statisticYield(){
+      for (let val in obj){
+        amount += parseInt(obj[val][1]);
+      }
+      amount = amount / parseInt(payCash) * 100;
+      amount = amount.toFixed(1);
+    }
   } //Play() 닫는 닫는 괄호
 }//class App 닫는괄호
 
