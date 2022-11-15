@@ -18,7 +18,6 @@ class App {
     };
   }
   play() {
-    this.error = new Error();
     this.inputPurchaseAmount();
   }
 
@@ -30,7 +29,7 @@ class App {
       }
     });
   }
-  
+
   isDividedByTen(money) {
     if (money % 1000 !== 0) {
       throw new Error('[ERROR] 1000원 단위로 금액을 입력하지 않았습니다.');
