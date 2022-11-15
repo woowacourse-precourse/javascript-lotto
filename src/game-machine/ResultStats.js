@@ -20,14 +20,19 @@ class ResultStats {
   }
 
   changeDrawNumbersToArray(draw_number){
-    let arr = (draw_number + "").split(",");
-    console.log(arr);
-    return arr;
+    let draw_arr = (draw_number + "").split(",");
+    this.draw_number=draw_arr;
   }
 
   createLottoNumbersList(lotto_list){
     this.#lotto_num.push(lotto_list);
   }
+
+  findDuplicateNumbers(){
+    let duplication_number = this.#lotto_num.filter(it=>this.draw_number.includes(it));
+    return duplication_number.length;
+  }
+  
 
 
 }
