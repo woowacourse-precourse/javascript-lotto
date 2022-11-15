@@ -3,6 +3,7 @@ class LottoResult {
   #lottoList;
   #winningNumbers;
   #bonusNumber;
+  #rankInfo
 
   constructor(numbers, bonus, lottoList) {
     this.#lottoList = lottoList;
@@ -11,15 +12,16 @@ class LottoResult {
   }
 
   makeResult() {
-    let rankList = {};
+    let rankInfo = {};
     this.#lottoList.forEach((Lotto)=>{
       const matchCnt = this.checkWinning(Lotto.getNumbers());
       if(matchCnt > 2) {
         const rank = this.checkRank(matchCnt);
-        rankList = {...rankList, [rank] : rankList?.[rank] + 1 || 1};
+        rankInfo = {...rankInfo, [rank] : rankInfo?.[rank] + 1 || 1};
       }  
     });
-    return rankList;
+    this.#rankInfo = rankInfo;
+    return rankInfo;
   }
 
   checkRank(matchCnt) {
@@ -54,9 +56,9 @@ class LottoResult {
     return false;
   }
 
-  haveProfitRate(rankInfo, purchaseMoney) {
+  haveProfitRate(purchaseMoney) {
     let winningMoney = 0;
-    Object.keys(rankInfo).forEach((rank) => {
+    Object.keys(this.#rankInfo).forEach((rank) => {
       winningMoney += WINNING_MONEY[rank];
     })
     return ((winningMoney/purchaseMoney) * 100).toFixed(1);

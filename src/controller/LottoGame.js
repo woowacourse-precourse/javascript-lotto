@@ -62,8 +62,7 @@ class LottoGame {
   }
 
   showProfitRate() {
-    const rankInfo = this.#lottoResult.makeResult()
-    const profitRate = this.#lottoResult.haveProfitRate(rankInfo, this.#money);
+    const profitRate = this.#lottoResult.haveProfitRate(this.#money);
     MissionUtils.Console.print(profitRateString(profitRate));
     MissionUtils.Console.close();
   }
