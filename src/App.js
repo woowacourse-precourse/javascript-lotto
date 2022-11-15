@@ -1,9 +1,8 @@
 const { Console } = require('@woowacourse/mission-utils');
 const checkPriceValidation = require('./checkValid/checkPriceValidation');
 const { LottoBuilder } = require('./Lotto');
-const {
-  checkWinningValidation,
-} = require('./checkValid/checkWinningValidation');
+const checkWinningValidation = require('./checkValid/checkWinningValidation');
+const checkBonusValidation = require('./checkValid/checkBonusValidation');
 
 class App {
   constructor() {
@@ -20,8 +19,28 @@ class App {
       if (checkPriceValidation(input)) {
         const lottoList = this.LottoBuilder.createLottoList(input);
         this.showLottoList(lottoList);
+        this.setWinningNumber();
       }
-      this.close();
+      // this.close();
+    });
+  }
+
+  setWinningNumber() {
+    this.print('당첨 번호를 입력해 주세요.');
+    this.readLine('', input => {
+      if (checkWinningValidation(input)) {
+        this.LottoBuilder.WinningNumber = input;
+        this.setBonusNumber();
+      }
+    });
+  }
+
+  setBonusNumber() {
+    this.print('보너스 번호를 입력해 주세요.');
+    this.readLine('', input => {
+      if (checkBonusValidation(input, this.LottoBuilder.WinningNumber)) {
+        this.LottoBuilder.bonusNumber = input;
+      }
     });
   }
 
