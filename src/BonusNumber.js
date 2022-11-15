@@ -29,6 +29,10 @@ class BonusNumber {
             throw new Error("[ERROR] 보너스 번호는 자연수여야 합니다.");
         }
     }
+
+    getBonusNumber() {
+        return this.#number;
+    }
 }
 
 module.exports = BonusNumber;
