@@ -9,7 +9,7 @@ class Pay {
 	}
 
 	validate(pay) {
-		if (typeof Number(pay) !== 'number') {
+		if (this.checkNumber(pay)) {
 			throw new Error(Messages.ERROR.BUY_PRICE.NOT_NUMBER);
 		}
 		if (pay < 1000) {
@@ -18,6 +18,10 @@ class Pay {
 		if (pay % 1000 !== 0) {
 			throw new Error(Messages.ERROR.BUY_PRICE.NOT_ZERO_REMAIN);
 		}
+	}
+
+	checkNumber(pay) {
+		return !Number(pay);
 	}
 
 	getters() {

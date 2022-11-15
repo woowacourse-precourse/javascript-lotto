@@ -11,15 +11,15 @@ const Messages = Object.freeze({
 		},
 		WINNING_NUMBERS: {
 			NOT_NUMBER: '[ERROR] 번호는 숫자를 입력해야 합니다.',
-			NOT_BELONG_NUMBER: '[ERROR] 당첨 번호는 1부터 45사이여야 합니다.',
-			DUPLICATED_NUMBER: '[ERROR] 당첨 번호는 서로 다른 숫자여야 합니다.',
 			NOT_INSERT_COMMA: '[ERROR] 당첨 번호를 쉼표로 구분하여 입력하십시오.',
+			NOT_BELONG_NUMBER: '[ERROR] 당첨 번호는 1부터 45사이여야 합니다.',
 			DIFFERENT_LENGTH: '[ERROR] 당첨 번호는 6개여야 합니다.',
+			DUPLICATED_NUMBER: '[ERROR] 당첨 번호는 서로 다른 숫자여야 합니다.',
 		},
 		BONUS_NUMBER: {
+			NOT_ONE_NUMBER: '[ERROR] 보너스 번호는 1개여야 합니다.',
 			NOT_NUMBER: '[ERROR] 번호는 숫자를 입력해야 합니다.',
 			NOT_BELONG_NUMBER: '[ERROR] 보너스 번호는 1부터 45사이여야 합니다.',
-			NOT_ONE_NUMBER: '[ERROR] 보너스 번호는 1개여야 합니다.',
 			DUPLICATED_NUMBER: '[ERROR] 당첨 번호에 없는 번호를 입력하십시오.',
 		},
 	},

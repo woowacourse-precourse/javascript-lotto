@@ -9,22 +9,26 @@ class Bonus {
 	}
 
 	validate(bonus, winningNumbers) {
-		if (typeof Number(bonus) !== 'number') {
+		if (bonus.split(',').length !== 1) {
+			throw new Error(Messages.ERROR.BONUS_NUMBER.NOT_ONE_NUMBER);
+		}
+		if (this.checkNumber(bonus)) {
 			throw new Error(Messages.ERROR.BONUS_NUMBER.NOT_NUMBER);
 		}
-		if (this.checkBelongTo(bonus)) {
+		if (!this.checkBelongTo(bonus)) {
 			throw new Error(Messages.ERROR.BONUS_NUMBER.NOT_BELONG_NUMBER);
-		}
-		if (bonus.length !== 1) {
-			throw new Error(Messages.ERROR.BONUS_NUMBER.NOT_ONE_NUMBER);
 		}
 		if (winningNumbers.includes(bonus)) {
 			throw new Error(Messages.ERROR.BONUS_NUMBER.DUPLICATED_NUMBER);
 		}
 	}
 
+	checkNumber(bonus) {
+		return !Number(bonus);
+	}
+
 	checkBelongTo(bonus) {
-		return bonus < 1 && bonus > 45;
+		return bonus >= 1 && bonus <= 45;
 	}
 
 	getters() {
