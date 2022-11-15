@@ -1,5 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils')
-const { Console, Random } = MissionUtils
+const { Random } = MissionUtils
 
 class BoughtGames {
 	#purchasePrice
@@ -8,30 +8,33 @@ class BoughtGames {
 
 	constructor (purchasePrice) {
 		this.#purchasePrice = purchasePrice
-    this.getGameCount()
+    this.#setGameCount()
 		this.#generateGames()
 	}
 
-  getGameCount() {
+  #setGameCount() {
     this.#gameCount = parseInt(this.#purchasePrice / 1000)
   }
-
-  getGameAt() {
-    return this.#games
+  
+  #generateGames() {
+    for(let i = 0; i < this.#gameCount; i++) {
+      this.#games.push(
+        Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b)=> a - b)
+      )
+    }
+  }
+  
+  getPurchasePrice() {
+    return this.#purchasePrice
   }
 
-  getCount() {
+  getGameCount() {
     return this.#gameCount
   }
 
-	#generateGames() {
-    for(let i = 0; i < this.#gameCount; i++) {
-      this.#games.push(
-        Random.pickUniqueNumbersInRange(1, 45, 6)
-        .sort((a, b)=> a - b)
-      ) // ex. [ 39, 6, 14, 2, 36, 15 ]
-    }
-	}
+  getGameAt(i) {
+    return this.#games[i]
+  }
 }
 
 module.exports = BoughtGames

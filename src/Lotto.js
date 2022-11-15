@@ -1,26 +1,40 @@
-const MissionUtils = require('@woowacourse/mission-utils')
-const { Console, Random } = MissionUtils
+const { ERROR_MESSAGE } = require('./common/contants')
 
+const PRIZE_MONEY = {
+  TREE: 5000,
+  FOUR: 50000,
+  FIVE: 1500000,
+  FIVE_LUCKY: 30000000,
+  SIX: 2000000000
+}
 class Lotto {
-  // Lotto class 내에 filed 추가 금지
-  #numbers;
+  #numbers
 
   constructor(numbers) {
-    this.validate(numbers);
-    this.#numbers = numbers;
-    console.log(this.#numbers)
+    this.validate(numbers)
+    this.#numbers = numbers
   }
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.")
+      throw new Error(ERROR_MESSAGE.NUMBERS_LENGTH)
+    }
+    if (numbers.length !== new Set(numbers).size) {
+      throw new Error(ERROR_MESSAGE.DUPLICATION)
+    }
+    if (numbers.some( number => {
+      return isNaN(number)
+    })) {
+      throw new Error(ERROR_MESSAGE.ONLY_NUMBER)
+    }
+    if (numbers.some( number => {
+      return number < 1 || number > 45 || number === 0
+    })) {
+      throw new Error(ERROR_MESSAGE.NUMBER_RANGE)
     }
   }
 
-  // numbers = [1,2,3,4,5,6]
-  // games = [[1,2,3,4,5,6], [2,7,5,34,38,45]]
-  // luckyNumber = 7
-  judge(games, luckyNumber, purchasePrice) {
+  judge(boughtGames, purchasePrice, luckyNumber) {
     let result = {
       three : 0,
       four : 0,
@@ -28,11 +42,10 @@ class Lotto {
       fiveLucky : 0,
       six : 0,
       yield : 0
-      // 당첨금 / 구입액 * 100
     }
 
-    for (let i = 0; i < games.length; i++) {
-      let count = games[i].filter(number => 
+    for (let i = 0; i < boughtGames.getGameCount(); i++) {
+      const count = boughtGames.getGameAt(i).filter(number => 
         this.#numbers.includes(number)
       ).length
 
@@ -52,16 +65,22 @@ class Lotto {
       }
 
       if (count === 5) {
-        games[i].includes(luckyNumber)
-        ? result.fiveLucky += 1
-        : result.five += 1
+        if (boughtGames.getGameAt(i).includes(luckyNumber)) {
+          result.fiveLucky += 1
+          continue
+        }
+        result.five += 1
       }
     }
-    // 당첨금 / 구입액 * 100 
-    // TODO: 3자리마다 쉼표, 소수점은 두자리까지만
-    result.yield = (result.three * 5000 + result.four * 50000 + result.five * 1500000 + result.fiveLucky * 30000000 + result.six * 2000000000) / purchasePrice * 100
-    console.log(result)
+
+    result.yield = (
+      result.three * PRIZE_MONEY.TREE + result.four * PRIZE_MONEY.FOUR 
+      + result.five * PRIZE_MONEY.FIVE + result.fiveLucky * PRIZE_MONEY.FIVE_LUCKY 
+      + result.six * PRIZE_MONEY.SIX
+      ) / purchasePrice * 100
+
+    return result
   }
 }
 
-module.exports = Lotto;
+module.exports = Lotto
