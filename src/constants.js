@@ -28,6 +28,7 @@ const MESSAGE = {
   },
   LOTTERY_MACHINE: {
     INPUT_MONEY: '구입금액을 입력해 주세요.',
+    PRINT_STATISTICS: '당첨 통계\n---',
     BUY_LOTTO(count) {
       return `${count}개를 구매했습니다.`;
     },

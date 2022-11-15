@@ -56,6 +56,11 @@ class LotteryMachine {
     });
   }
 
+  static confirmWin(lottos, winnerNumbers) {
+    const winningStatistics = LotteryMachine.readQrCode(lottos, winnerNumbers);
+    LotteryMachine.printWinResult(winningStatistics);
+  }
+
   static readQrCode(lottos, winnerNumbers) {
     const { winningStatistics, winTheLottery } =
       LotteryMachine.#calcWinningStatistics(lottos);
@@ -113,6 +118,7 @@ class LotteryMachine {
 
   static printWinResult(winningStatistics) {
     const { ranking, totalLottoNum, totalWinnings } = winningStatistics;
+    Console.print(MESSAGE.LOTTERY_MACHINE.PRINT_STATISTICS);
 
     Object.keys(ranking).forEach((rank) => {
       const correctNum = ranking[rank];
