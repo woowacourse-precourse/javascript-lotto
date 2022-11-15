@@ -1,8 +1,12 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { getRandomNum } = require("./utils");
+const { lottoQuantity } = require("./utils");
 const { validateInputMoney } = require("./validator");
 
 class App {
+  constructor() {
+    this.userLottoNumbers;
+  }
+
   play() {
     this.inputMoney();
   }
@@ -10,6 +14,7 @@ class App {
   inputMoney() {
     Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
       validateInputMoney(money);
+      this.userLottoNumbers = lottoQuantity(money);
     });
   }
 }
