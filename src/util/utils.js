@@ -1,46 +1,45 @@
 const { VALUE } = require('../constants/numbers');
+const { ERROR } = require('../constants/numbers');
 
 const isValidMoneyNumberAmount = (money) => {
   if (isNaN(money) || money === undefined) {
-    throw new Error('[ERROR] 금액 입력 시 숫자 이외에는 입력할 수 없습니다.');
+    throw new Error(ERROR.MONEY_INPUT_NON_NUMBER);
   }
   if (!Number.isInteger(money)) {
-    throw new Error('[ERROR] 금액 입력 시 소수점 이하는 허용되지 않습니다.');
+    throw new Error(ERROR.MONEY_INPUT_NON_INTEGER);
   }
   if (money < 0) {
-    throw new Error('[ERROR] 금액 입력 시 음수를 입력할 수 없습니다.');
+    throw new Error(ERROR.MONEY_INPUT_NEGATIVE);
   }
   if (money % VALUE.LOTTO_PRICE !== 0) {
-    throw new Error('[ERROR] 금액은 1,000 원 단위로만 입력 가능합니다.');
+    throw new Error(ERROR.MONEY_INPUT_NON_DIVISIBLE);
   }
 };
 
 const isValidLottoNumbers = (numbers) => {
   if (numbers.length !== VALUE.VALID_LOTTO_NUMBER_LENGTH) {
-    throw new Error('[ERROR] 로또 번호는 6자리 숫자로 구성되어야 합니다.');
+    throw new Error(ERROR.LOTTO_NUMBERS_LENGTH_INVALID);
   }
   if (hasNonNumber(numbers)) {
-    throw new Error('[ERROR] 로또 번호는 숫자로만 구성되어야 합니다.');
+    throw new Error(ERROR.LOTTO_NUMBERS_HAVE_NON_NUMBER);
   }
   if (hasNonInteger(numbers) || hasInvalidSizeNumber(numbers)) {
-    throw new Error('[ERROR] 로또 번호는 1 이상 45 이하의 자연수여야 합니다.');
+    throw new Error(ERROR.LOTTO_NUMBERS_HAVE_INVALID_SIZE_NUMBER);
   }
   if (hasDuplicateNumbers(numbers)) {
-    throw new Error('[ERROR] 로또 번호에 중복된 숫자가 포함되어 있습니다.');
+    throw new Error(ERROR.LOTTO_NUMBERS_HAVE_DUPLICATE);
   }
 };
 
 const isValidLottoBonusNumber = (number, winningNumbers) => {
   if (isNaN(number) || number === undefined) {
-    throw new Error('[ERROR] 보너스 번호는 하나의 숫자만 허용됩니다.');
+    throw new Error(ERROR.BONUS_NUMBER_INVALID_INPUT);
   }
   if (!Number.isInteger(number) || isInvalidSize(number)) {
-    throw new Error(
-      '[ERROR] 보너스 번호는 1 이상 45 이하의 자연수여야 합니다.'
-    );
+    throw new Error(ERROR.BONUS_NUMBER_SIZE_INVALID);
   }
   if (winningNumbers.includes(number)) {
-    throw new Error('[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.');
+    throw new Error(ERROR.BONUS_NUMBER_OVERLAPPED);
   }
 };
 
