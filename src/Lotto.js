@@ -19,18 +19,14 @@ class Lotto {
     Console.print(`[${this.#numbers.join(", ")}]`);
   }
 
-  compare(winningNumber, bonusNumber) {
-    let match = 0;
-    this.#numbers.forEach((number) => {
-      if (winningNumber.includes(number)) {
-        match += 1;
-      }
-    });
+  compare(winningNumbers, bonusNumber) {
+    let match = this.#numbers.reduce(
+      (match, number) => (match += winningNumbers.includes(number) ? 1 : 0),
+      0
+    );
 
-    if (match === 5) {
-      if (this.#numbers.includes(bonusNumber)) {
-        match = 5.5;
-      }
+    if (match === 5 && this.#numbers.includes(bonusNumber)) {
+      match = 5.5;
     }
 
     return match;
