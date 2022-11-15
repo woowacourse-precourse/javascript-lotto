@@ -54,7 +54,7 @@ class App {
   MakeLotto() {
     Console.print(INPUT_MESSAGE.winning);
     Console.readLine("", (prizeNums) => {
-      this.validInput(prizeNums);
+      this.validatePrizeNumberInput(prizeNums);
       this.lotto = new Lotto(prizeNums.split(","));
       this.getBonusNumberAndPrintResult();
     });
@@ -70,7 +70,7 @@ class App {
     });
   }
 
-  validInput(input) {
+  validatePrizeNumberInput(input) {
     for (let word of input) {
       if (isNaN(word) && word !== ",") {
         throw new Error(NUMBER_ERROR);
