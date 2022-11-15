@@ -2,7 +2,7 @@ class BonusNumber {
     #number;
 
     constructor(number, lotto) {
-        this.validate(number);
+        this.validate(number, lotto);
         this.#number = number;
     }
 
@@ -13,7 +13,7 @@ class BonusNumber {
     }
 
     validateDuplicatedLotto(lotto, number) {
-        if (!lotto.includes(number)) {
+        if (lotto.includes(number)) {
             throw new Error("[ERROR] 보너스 번호는 로또 번호와 중복이 없어야 합니다.");
         }
     }
