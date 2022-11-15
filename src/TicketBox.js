@@ -38,9 +38,6 @@ class TicketBox {
 
   inputBonusCallback(inputBonus) {
     this.bonus = new Bonus(inputBonus, this.lotto.numbers);
-    // MissionUtils.Console.print(this.bonus.bonusNumber);
-    // MissionUtils.Console.print(this.tickets);
-    // MissionUtils.Console.print(this.lotto.numbers);
     this.billBoard = new BillBoard(
       this.tickets,
       this.lotto.numbers,
@@ -74,7 +71,7 @@ class TicketBox {
       .map((number) => parseInt(number, DECIMAL_NUMBER));
     this.lotto = new Lotto(inputLotto);
     MissionUtils.Console.readLine(
-      '보너스 번호를 입력해 주세요.\n',
+      '\n보너스 번호를 입력해 주세요.\n',
       this.inputBonusCallback.bind(this),
     );
   }
