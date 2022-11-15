@@ -1,17 +1,19 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
     this.validate(numbers);
-    this.#numbers = numbers.split(',');
+    this.#numbers = numbers;
   }
 
   validate(numbers) {
     this.notComma(numbers);
     this.overlapCheck(numbers);
     this.lengthCheck(numbers);
-    this.notNumberCheck(numbers);
     this.limitedNumber(numbers);
+    this.notNumber(numbers);
   }
 
   notComma(numbers) {
@@ -35,16 +37,23 @@ class Lotto {
     }
   }
 
-  notNumberCheck(numbers) {
-    if (isNaN(numbers)) {
-        throw new Error('[ERROR] 숫자만 입력해주세요.');
+  limitedNumber(numbers) {
+    numbers.split(',').map((num) => {
+      if (Number(num) > 45 || Number(num) < 1) {
+        throw new Error('[ERROR] 숫자 1부터 45까지 입력해주세요.');
+      }
+    })
+  }
+
+  notNumber(numbers) {
+    const numberSplit = numbers.split(',');
+    if (typeof numberSplit === 'string') {
+      throw new Error('[ERROR] 숫자만 입력해주세요.');
     }
   }
 
-  limitedNumber(numbers) {
-    if (numbers > 45 || numbers < 1) {
-      throw new Error('[ERROR] 숫자 1부터 45까지 입력해주세요.');
-    }
+  getNumber() {
+    return this.#numbers;
   }
 }
 

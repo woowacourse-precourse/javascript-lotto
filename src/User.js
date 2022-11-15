@@ -1,45 +1,48 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { THOUSAND, BUY_MESSAGE } = require('../constant/constant');
+const { THOUSAND, BUY_MESSAGE } = require('./constant/constant');
 const sortedLottoNumbers = require('./random/lottoRandomNumber');
 
 class User {
-    #userBuyMoney;
-    #lottoAmount;
-    #lottoArray;
-
-    constructor(money) {
-        this.#userBuyMoney = money;
-        this.#lottoAmount = 0;
-        this.#lottoArray = [];
+    constructor() {
+        this.userBuyMoney = 0;
+        this.lottoArray = [];
+        this.bonusNumber = 0;
     }
 
-    lottoBuy() {
-        this.amountOfBuying();
-        this.makeLotto(this.#lottoAmount);
+    lottoBuy(money) {
+        this.userBuyMoney = Number(money);
+        this.makeLotto();
     }
 
     amountOfBuying() {
-        this.#lottoAmount = parseInt(Number(this.#userBuyMoney)) / THOUSAND;
+        const amount = this.userBuyMoney / THOUSAND;
+
+        return amount;
     }
 
-    makeLotto(buyAmount) {
-        for (let i = 0; i < buyAmount; i++) {
+    makeLotto() {
+        const amount = this.amountOfBuying();
+        for (let i = 0; i < amount; i++) {
             const randomLottoNumber = sortedLottoNumbers();
-            saveLotto(randomLottoNumber);
+            this.saveLotto(randomLottoNumber);
         }
 
-        this.printRandomNumber(this.#lottoArray);
+        this.printRandomNumber(this.lottoArray, amount);
     }
 
     saveLotto(randomNumber) {
-        this.#lottoArray.push(randomNumber);
+        this.lottoArray.push(randomNumber);
     }
 
-    printRandomNumber(randomNumbers) {
-        MissionUtils.Console.print(BUY_MESSAGE(randomNumbers.length));
+    printRandomNumber(randomNumbers, amount) {
+        MissionUtils.Console.print(BUY_MESSAGE(amount));
         randomNumbers.forEach((numbers) => {
-            MissionUtils.Console.print(numbers);
+            MissionUtils.Console.print(`[${numbers.join(', ')}]`);
         })
+    }
+
+    saveBonusNumber(bonusNumber) {
+        this.bonusNumber = Number(bonusNumber);
     }
 }
 
