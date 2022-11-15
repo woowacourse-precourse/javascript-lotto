@@ -8,6 +8,7 @@ class LottoWinningNumber{
       winningNumber = winning.split(",");
     });
     MissionUtils.Console.close();
+    
     return winningNumber;
   } 
 
