@@ -64,6 +64,10 @@ class App {
     return ticketNumbers.sort((a, b) => a - b);
   }
 
+  getInputLottoNumbers(callback) {
+    MissionUtils.Console.readLine(Constant.LOTTO_NUMBERS_QUESTION_MESSAGE, callback);
+  }
+  
 }
 
 const app = new App();
