@@ -6,6 +6,7 @@ const {
   PLACES_OF_DECIMALS,
   RATIO,
 } = require('./constants');
+const { getSameElemetCount, doesArrayIncludeNumber } = require('./utils');
 
 class Lotto {
   #numbers;
@@ -29,8 +30,8 @@ class Lotto {
 
   informWinningState(userLottos, bonusNumber) {
     const winningState = userLottos.reduce((state, lotto) => {
-      const matchingCount = this.getMatchingNumCount(lotto);
-      const matchesBonusNum = this.doesLottoIncludeBonusNum(lotto, bonusNumber);
+      const matchingCount = getSameElemetCount(lotto, this.#numbers);
+      const matchesBonusNum = doesArrayIncludeNumber(lotto, bonusNumber);
       const ranking = this.getWinningRanking(matchingCount, matchesBonusNum);
       if (ranking !== RANK.FAIL) state[ranking] += 1;
 
@@ -38,15 +39,6 @@ class Lotto {
     }, Array(LOTTO.NUM_OF_PRIZE).fill(0));
 
     return winningState;
-  }
-
-  getMatchingNumCount(lottoNumbers) {
-    return lottoNumbers.filter((number) => this.#numbers.includes(number))
-      .length;
-  }
-
-  doesLottoIncludeBonusNum(lotto, bonusNumber) {
-    return lotto.includes(bonusNumber);
   }
 
   getWinningRanking(matchingCount, matchesBonusNum) {

@@ -27,40 +27,6 @@ describe('로또 클래스 테스트', () => {
     });
   });
 
-  test('두 배열이 모두 가진 숫자 요소의 개수를 반환한다.', () => {
-    const lottoNumbers = [
-      [1, 2, 3, 4, 5, 6],
-      [1, 5, 8, 31, 24, 45],
-      [5, 6, 7, 8, 9, 10],
-    ];
-    const winningNumbers = [
-      [3, 4, 5, 6, 1, 2],
-      [8, 1, 44, 31, 9, 10],
-      [11, 12, 13, 14, 15, 16],
-    ];
-    const answers = [6, 3, 0];
-
-    lottoNumbers.forEach((lotto, i) => {
-      const ILotto = new Lotto(winningNumbers[i]);
-      expect(ILotto.getMatchingNumCount(lotto)).toBe(answers[i]);
-    });
-  });
-
-  test('로또 번호에 보너스 번호가 포함되어 있다면 true를 반환한다.', () => {
-    const lotto = [
-      [1, 2, 3, 4, 5, 6],
-      [12, 14, 21, 25, 36, 45],
-    ];
-    const BonusNumbers = [3, 25];
-
-    lotto.forEach((numbers, i) => {
-      const ILotto = new Lotto([1, 2, 3, 4, 5, 6]);
-      expect(ILotto.doesLottoIncludeBonusNum(numbers, BonusNumbers[i])).toBe(
-        true
-      );
-    });
-  });
-
   test('하나의 로또에 대한 당첨 등수를 반환한다.', () => {
     const matchingCounts = [1, 2, 3, 3, 4, 4, 5, 5, 6, 6];
     const matchesBonusNums = [

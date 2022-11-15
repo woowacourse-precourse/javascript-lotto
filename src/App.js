@@ -3,8 +3,9 @@ const { Console } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const Render = require('./Render');
 const Validator = require('./Validator');
-const { LOTTO, MESSAGE, DELIMITER } = require('./constants');
+const { LOTTO, MESSAGE } = require('./constants');
 const LottoGenerator = require('./LottoGenerator');
+const { stringToNumberArray } = require('./utils');
 
 class App {
   lotto;
@@ -32,18 +33,11 @@ class App {
   askWinningNumbers() {
     Console.readLine(MESSAGE.ASK_WINNING_NUMBER, (inputValue) => {
       Validator.throwErrorIfInvalidWinningForm(inputValue);
-      const winningNumbers = this.winningInputToSortedNumberArray(inputValue);
+      const winningNumbers = stringToNumberArray(inputValue);
       this.lotto = new Lotto(winningNumbers);
 
       this.askBonusNumber(winningNumbers);
     });
-  }
-
-  winningInputToSortedNumberArray(inputValue) {
-    return inputValue
-      .split(DELIMITER)
-      .map((num) => Number(num))
-      .sort((a, b) => a - b);
   }
 
   askBonusNumber(winningNumbers) {
