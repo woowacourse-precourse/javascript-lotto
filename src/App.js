@@ -1,5 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 const { LOTTERY_PRICE, MESSAGE, EXCEPTIONS } = require('./constant/constant');
+const isNumber = require('./utils/isNumber');
 
 class App {
   play() {
@@ -7,7 +8,11 @@ class App {
   }
 
   budget() {
-    Console.readLine(MESSAGE.LOTTERY_BUDGET, (input) => {});
+    Console.readLine(MESSAGE.LOTTERY_BUDGET, (input) => {
+      if (!isNumber(input)) {
+        throw new Error(EXCEPTIONS.NOT_A_NUMBER);
+      }
+    });
   }
 }
 
