@@ -1,7 +1,7 @@
-const Utils = require("../utils/Utils")
+const Utils = require("../utils/Utils");
 
 class LottoIsuued {
-  lottoIssued=[];
+  lottoIssued = [];
 
   constructor(lottoCount) {
     this.setLottoIssued(lottoCount);

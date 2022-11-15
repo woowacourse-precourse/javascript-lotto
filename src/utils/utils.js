@@ -1,4 +1,4 @@
-const {Random} = require("@woowacourse/mission-utils");
+const { Random } = require("@woowacourse/mission-utils");
 
 class Utils {
   static makeLottoNumber() {

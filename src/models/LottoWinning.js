@@ -1,5 +1,5 @@
 const Lotto = require("./Lotto");
-const {ERROR} = require("../utils/Constants");
+const { ERROR } = require("../utils/Constants");
 
 class LottoWinning {
   winningLotto;

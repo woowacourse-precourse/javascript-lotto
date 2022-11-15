@@ -15,7 +15,8 @@ const ERROR = Object.freeze({
 
   BONUS_TYPE: "[ERROR] 보너스 번호는 숫자여야 합니다.",
   BONUS_RANGE: "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.",
-  BONUS_DUPLICATE: "[ERROR] 보너스 번호는 로또 번호와 중복되지 않는 숫자여야 합니다.",
+  BONUS_DUPLICATE:
+    "[ERROR] 보너스 번호는 로또 번호와 중복되지 않는 숫자여야 합니다.",
 });
 
 const LOTTO = Object.freeze({

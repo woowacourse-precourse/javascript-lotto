@@ -2,7 +2,7 @@ const Lotto = require("../src/models/Lotto");
 const LottoPayment = require("../src/models/LottoPayment");
 const LottoIsuued = require("../src/models/LottoIssued");
 const LottoWinning = require("../src/models/LottoWinning");
-const {ERROR} = require("../src/utils/Constants")
+const { ERROR } = require("../src/utils/Constants");
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {

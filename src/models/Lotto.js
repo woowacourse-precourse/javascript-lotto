@@ -1,4 +1,4 @@
-const {LOTTO, ERROR} = require("../utils/Constants")
+const { LOTTO, ERROR } = require("../utils/Constants");
 
 class Lotto {
   #numbers;
@@ -12,8 +12,8 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
-    if([...new Set(numbers)].length !== LOTTO.LENGTH){
-      throw new Error(ERROR.LOTTO_DUPLICATE)
+    if ([...new Set(numbers)].length !== LOTTO.LENGTH) {
+      throw new Error(ERROR.LOTTO_DUPLICATE);
     }
     numbers.forEach((value) => {
       if (isNaN(value)) {

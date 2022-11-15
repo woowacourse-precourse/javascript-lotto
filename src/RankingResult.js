@@ -47,7 +47,10 @@ class RankingResult {
 
   setRankingResult(issuedLotto, winniglotto, bonusLotto) {
     issuedLotto.forEach((lotto) => {
-      const matchCount = Utils.getMatchedinWinningNumberCount(lotto, winniglotto);
+      const matchCount = Utils.getMatchedinWinningNumberCount(
+        lotto,
+        winniglotto
+      );
       const ranking = this.rankingResult.find(
         (rank) =>
           rank.mathcedCount == matchCount &&
@@ -58,7 +61,7 @@ class RankingResult {
   }
 
   setEarningsRate(lottopayment) {
-    const totalReward = Utils.getTotalReward(this.rankingResult)
+    const totalReward = Utils.getTotalReward(this.rankingResult);
     this.earningsRate = Utils.getEarningsRate(totalReward, lottopayment);
   }
 }
