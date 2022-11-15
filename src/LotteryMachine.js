@@ -10,6 +10,16 @@ const Lotto = require('./Lotto');
 const { makeErrorMsg } = require('./utils');
 
 class LotteryMachine {
+  #winnerNumber = [];
+
+  #bonusNumber;
+
+  updateWinnerNumber(winnerNumbers) {
+    const [winnerNumber, bonusNumber] = winnerNumbers;
+    this.#winnerNumber = winnerNumber;
+    this.#bonusNumber = bonusNumber;
+  }
+
   static issueTicket() {
     let lottos = [];
 
