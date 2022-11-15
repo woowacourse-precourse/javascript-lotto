@@ -104,7 +104,7 @@ class App {
  }
 
 play() {
-    this.buyLotto();
+    this.inputmoney();
   }
 }
 
