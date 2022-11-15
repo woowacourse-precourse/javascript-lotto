@@ -1,3 +1,6 @@
+/* eslint no-use-before-define: 0 */
+/* eslint no-undef: "off" */
+/* eslint no-new: "off" */
 const Lotto = require("../src/Lotto");
 
 describe("로또 클래스 테스트", () => {
@@ -15,4 +18,28 @@ describe("로또 클래스 테스트", () => {
   });
 
   // 아래에 추가 테스트 작성 가능
+
+  test("1등 당첨 Case에 대한 LottoResult 세팅 테스트",()=>{
+    const lotto=new Lotto([1,2,3,4,5,6]);
+
+    lotto.setLottoResult([1,2,3,4,5,6])
+
+    expect(lotto.result.lotto).toBe(6);
+  })
+
+  test("BonusNumber 당첨여부 확인",()=>{
+    const lotto= new Lotto([1,2,3,4,5,6])
+
+    lotto.setBonusResult(6);
+
+    expect(lotto.result.bonus).toBe(true);
+  })
+
+  test("2등에 보너스 숫자를 맞춘 것을 정확하게 확인하는지 테스트", ()=>{
+    const lotto= new Lotto([1,2,3,4,5,6])
+
+    lotto.checkRank([1,2,3,4,5,7],6)
+
+    expect(lotto.result).toStrictEqual({lotto:5, bonus:true});
+  })
 });

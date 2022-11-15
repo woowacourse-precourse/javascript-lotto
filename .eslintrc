@@ -1,0 +1,10 @@
+{
+  "extends": ["airbnb", "plugin:prettier/recommended"],
+  "rules": {
+    "prettier/prettier": ["error"],
+    "no-restricted-syntax": ["error", "BinaryExpression[operator='in']"]
+  },
+  "parserOptions": {
+    "ecmaVersion": 13
+  }
+}
