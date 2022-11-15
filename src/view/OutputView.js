@@ -8,15 +8,15 @@ class OutputView {
     });
   }
 
-  printLottoGameResult(lottoResultMap, calculateYield) {
+  printLottoGameResult(lottoResult, profitRate) {
     Console.print(`당첨 통계`);
     Console.print(`---`);
-    Console.print(`3개 일치 (5,000원) - ${lottoResultMap['3개']}개`);
-    Console.print(`4개 일치 (50,000원) - ${lottoResultMap['4개']}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${lottoResultMap['5개']}개`);
-    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${lottoResultMap['5개+보너스']}개`);
-    Console.print(`6개 일치 (2,000,000,000원) - ${lottoResultMap['6개']}개`);
-    Console.print(`총 수익률은 ${calculateYield()}%입니다.`);
+    Console.print(`3개 일치 (5,000원) - ${lottoResult['5등']}개`);
+    Console.print(`4개 일치 (50,000원) - ${lottoResult['4등']}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${lottoResult['3등']}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${lottoResult['2등']}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${lottoResult['1등']}개`);
+    Console.print(`총 수익률은 ${profitRate}%입니다.`);
     Console.close();
   }
 }

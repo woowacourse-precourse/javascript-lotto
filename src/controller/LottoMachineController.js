@@ -44,9 +44,8 @@ class LottoMachineController {
 
       lottoResult[ranking] += 1;
     });
-
-    this.calculateTotalPrizeMoney();
-    this.view.outputView.printLottoGameResult(lottoResult, this.calculateYield.bind(this));
+    const profitRate = this.calculateTotalPrizeMoney(lottoResult);
+    this.view.outputView.printLottoGameResult(lottoResult, profitRate);
   }
 
   generateLottoResultObject() {
@@ -59,17 +58,13 @@ class LottoMachineController {
     return lottoResult;
   }
 
-  calculateTotalPrizeMoney() {
-    this.totalPrizeMoney =
-      5_000 * this.lottoResultMap['3개'] +
-      50_000 * this.lottoResultMap['4개'] +
-      1_500_000 * this.lottoResultMap['5개'] +
-      30_000_000 * this.lottoResultMap['5개+보너스'] +
-      2_000_000_000 * this.lottoResultMap['6개'];
-  }
+  calculateTotalPrizeMoney(lottoResult) {
+    const totalProfit = Object.keys(lottoResult).reduce(
+      (total, ranking) => (total += lottoResult[ranking] * LOTTO_RANKING_REWARD[ranking]),
+      0,
+    );
 
-  calculateYield() {
-    return ((this.totalPrizeMoney / this.purchaseAmount) * 100).toFixed(1);
+    return ((totalProfit / this.purchaseAmount) * 100).toFixed(1);
   }
 }
 
