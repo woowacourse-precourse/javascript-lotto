@@ -1,6 +1,6 @@
 const { LOTTO } = require('./constants');
 const { ConsoleAdapter } = require('./adapters');
-const { LottoGenerator } = require('./domain');
+const { LottoGenerator, LottoChecker } = require('./domain');
 const { CostValidator, LottoValidator } = require('./validators');
 
 class App {
@@ -68,7 +68,24 @@ class App {
 
       LottoValidator.validateBonusNumber(bonusNumber, this.#winningNumbers);
       this.#bonusNumber = bonusNumber;
+
+      this.#printWinningStatistics();
+      this.#quit();
     });
+  }
+
+  #printWinningStatistics() {
+    const lottoChecker = new LottoChecker(
+      this.#lottoTickets,
+      this.#winningNumbers,
+      this.#bonusNumber,
+    );
+    const ranks = lottoChecker.getLottoRankings();
+    console.log(ranks);
+  }
+
+  #quit() {
+    this.#console.close();
   }
 }
 
