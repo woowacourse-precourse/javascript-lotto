@@ -3,7 +3,6 @@ const { RANGE, MAX_COUNT } = require('../constants/Lotto');
 
 class Lotto {
   #numbers = [];
-  #bonus = 1;
 
   constructor(numbers) {
     this.#validate(numbers);
@@ -12,14 +11,18 @@ class Lotto {
 
   setBonus(number) {
     this.#validateBonus(number);
-    this.#bonus = number;
+    this.#numbers.push(number);
+  }
+  getBonusIndex() {
+    const numberLength = this.#numbers.length;
+    return numberLength - 1;
   }
 
   get numbers() {
-    return this.#numbers;
+    return this.#numbers.splice(0, this.getBonusIndex());
   }
   get bonus() {
-    return this.#bonus;
+    return this.#numbers[this.getBonusIndex()];
   }
 
   #validate(numbers = []) {
