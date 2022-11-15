@@ -1,5 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const { MESSAGE, SENTANCE,CORRECT, CORRECT_MONEY } = require("./constant/constant.js");
+const { MESSAGE, SENTANCE,CORRECT, CORRECT_MONEY, ERROR } = require("./constant/constant.js");
 
 class Lotto {
   #numbers;
@@ -70,6 +70,7 @@ class Lotto {
     Console.readLine(`\n${MESSAGE.WINNING}\n`,(winningNumber) => {
       this.#numbers = winningNumber.split(",").map(Number)
       this.validate(this.#numbers);
+      this.checkDuplicate(this.#numbers);
       this.enterBonusNumber();
     })
   }
@@ -149,7 +150,14 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error(ERROR.COUNT);
+    }
+  }
+
+  checkDuplicate(numbers){
+    let uniqueNumbers = [...new Set(numbers)];
+    if(uniqueNumbers.length !== numbers.length){
+      throw new Error(ERROR.DUPLICATE);
     }
   }
 }
