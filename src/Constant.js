@@ -29,4 +29,11 @@ const PRIZE_GRADE = {
 
 const PRIZE_PRICE = [5000, 50000, 1500000, 30000000, 2000000000];
 
-module.exports = { MESSAGE, LOTTERY_PRICE, LOTTERY_RESULT, PRIZE_GRADE, PRIZE_PRICE };
+const LOTTERY_ERROR = {
+  LENGTH: "[ERROR] 로또 번호는 6개여야 합니다.",
+  DUPLICATED: "[ERROR] 로또 번호는 중복될 수 없습니다.",
+  INTEGER: "[ERROR] 로또 번호는 정수입니다.",
+  RANGE: "[ERROR] 로또 번호의 범위는 1 ~ 45 까지입니다.",
+};
+
+module.exports = { MESSAGE, LOTTERY_PRICE, LOTTERY_RESULT, PRIZE_GRADE, PRIZE_PRICE, LOTTERY_ERROR };
