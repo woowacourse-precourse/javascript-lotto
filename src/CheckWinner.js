@@ -23,8 +23,6 @@ class CheckWinner {
 
   checkPrice() {
     for (let i = 0; i < this.#myLotto.length; i++) {
-      MissionUtils.Console.print(i + 1 + '번째 로또번호');
-
       let count = 0;
       let bonus = 0;
       this.#myLotto[i].map((n) => {
@@ -43,25 +41,32 @@ class CheckWinner {
   }
 
   divideWinner(count, bonus) {
-    switch (count) {
-      case 3:
-        this.rank['fifth'] += 1;
-        this.reward += 5000;
-        break;
-      case 4:
-        this.rank['fourth']++;
-        this.reward += 50000;
-        break;
-      case 5:
-        if (bonus == 0) this.rank['third']++;
-        this.reward += 1500000;
-        if (bonus == 1) this.rank['second']++;
-        this.reward += 30000000;
-        break;
-      case 6:
-        this.rank['first']++;
-        this.reward += 2000000000;
+    if (count === 3) {
+      this.rank['fifth'] += 1;
+      this.reward += 5000;
+      return;
     }
+    if (count === 4) {
+      this.rank['fourth']++;
+      this.reward += 50000;
+      return;
+    }
+    if (count === 5) {
+      if (bonus === 0) {
+        this.rank['third']++;
+        this.reward += 1500000;
+        return;
+      }
+      this.rank['second']++;
+      this.reward += 30000000;
+      return;
+    }
+    if (count === 6) {
+      this.rank['first']++;
+      this.reward += 2000000000;
+      return;
+    }
+
     MissionUtils.Console.print('최종상금:' + this.reward);
   }
   getReward() {
