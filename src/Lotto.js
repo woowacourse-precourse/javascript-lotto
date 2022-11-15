@@ -44,6 +44,13 @@ class Lotto {
     this.printMatchResult();
     this.printProfitRate();
   }
+  inputPay() {
+    MissionUtils.Console.print(`${Data.INPUT_MESSAGES.inputPay}`);
+    MissionUtils.Console.readLine("", (answer) => {
+      if (answer % 1000 !== 0) throw new Error(Data.ERROR_MESSAGES.inputMoney);
+      this.myPay = answer;
+    });
+  }
 
   // TODO: 추가 기능 구현
 }
