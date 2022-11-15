@@ -2,7 +2,7 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const UI = require('./UI');
 const WinningTicket = require('./WinningTicket');
-const { LOTTO, REVENUE, INPUT } = require('./Constants');
+const { LOTTO, PRIZE, INPUT } = require('./Constants');
 const Money = require('./Money');
 
 const ui = new UI();
@@ -53,7 +53,7 @@ class App {
 
   #getRevenue() {
     Object.entries(this.#result).forEach(([key, value]) => {
-      this.#revenue += REVENUE[key].revenue * value;
+      this.#revenue += PRIZE[key].REVENUE * value;
     });
     const revenuePercentage = (this.#revenue / this.#money.getMoney()) * 100;
     const roundNumber = Math.round(revenuePercentage * 10) / 10;
@@ -69,7 +69,7 @@ class App {
     ui.print('당첨 통계');
     ui.print('---');
     LOTTO.RESULT_PRINT_ORDER.forEach((order) => {
-      ui.print(`${REVENUE[order].message} - ${this.#result[order]}개`);
+      ui.print(`${PRIZE[order].MESSAGE} - ${this.#result[order]}개`);
     });
   }
 
