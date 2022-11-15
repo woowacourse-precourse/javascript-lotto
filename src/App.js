@@ -1,8 +1,7 @@
 const { LOTTO } = require('./constants');
 const { ConsoleAdapter } = require('./adapters');
 const { LottoGenerator } = require('./domain');
-const { LottoValidator } = require('./validators');
-const { ValidationError } = require('./errors');
+const { CostValidator, LottoValidator } = require('./validators');
 
 class App {
   #console;
@@ -20,14 +19,13 @@ class App {
     this.#printPurchaseInformation(lotteryTickets);
 
     const winningNumbers = await this.#queryWinningNumbers();
-    console.log(winningNumbers);
   }
 
   async #queryPurchaseCost() {
     const input = await this.#requestUserInput('구입 금액을 입력해 주세요.');
     const cost = Number(input);
 
-    this.#validatePurchaseCost(cost);
+    CostValidator.validatePurchaseCost(cost);
 
     return cost;
   }
@@ -42,12 +40,6 @@ class App {
 
   #question(query, callback) {
     this.#console.readLine(`${query}\n`, (input) => callback(input));
-  }
-
-  #validatePurchaseCost(cost) {
-    if (cost % LOTTO.PRICE !== 0) {
-      throw new ValidationError('구입 금액은 1,000원 단위여야 합니다.');
-    }
   }
 
   #purchaseLotteryTickets(cost) {
