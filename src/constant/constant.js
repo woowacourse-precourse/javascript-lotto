@@ -25,6 +25,7 @@ module.exports = {
       SECOND: 0,
       FIRST: 0,
     },
+    BONUS_ANNOUNCEMENT: "보너스 번호를 입력해 주세요.",
   }),
 
   LOTTO_DETAILS: Object.freeze({

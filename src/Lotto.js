@@ -29,12 +29,11 @@ class Lotto {
     Validation.isNumber(bonusNumber);
     const toNumberBonusNumber = Number(bonusNumber);
     Validation.isIncludeNumberInArr(bonusNumber, this.#numbers);
-
     Validation.isLottoVariable(toNumberBonusNumber);
   }
 
   getBonusNumber(userLottoArr) {
-    Console.readLine("보너스 번호를 입력해 주세요.", (bonusNumber) => {
+    Console.readLine(LOTTO.BONUS_ANNOUNCEMENT, (bonusNumber) => {
       const toNumberBonusNumber = Number(bonusNumber);
       this.validateBonusNumber(toNumberBonusNumber);
       const winningBoard = this.calculate(toNumberBonusNumber, userLottoArr);
