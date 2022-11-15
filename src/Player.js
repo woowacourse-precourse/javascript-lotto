@@ -17,7 +17,7 @@ class Player {
     return lottos;
   };
   validateMoney = (money) => {
-    isOnlyNumber(String(money).split(""));
+    isOnlyNumber(money);
     isAvailableMoney(money);
     return true;
   };
