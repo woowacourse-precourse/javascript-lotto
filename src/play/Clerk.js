@@ -1,58 +1,59 @@
+const { Console } = require("@woowacourse/mission-utils");
 const Mission = require("@woowacourse/mission-utils");
-const { GAME_MESSAGES } = require("../utils/Constants");
+const { GAME_MESSAGES, LOTTO_INFO } = require("../utils/Constants");
+const LottoUtils = require("../utils/LottoUtils");
 const QuickPick = require("../input/QuickPick");
 const Lotto = require("../Lotto");
 const Bonus = require("../input/Bonus");
+const PurChase = require("../input/PurChase");
 const Result = require("../play/Result");
 
 class Clerk {
   #payment;
-  #myLottoArray;
-  #lottoAmount;
-  #winningNumbers;
-  #bonusNumber;
+  #quickPick;
+  #lotto;
+  #bonus;
+  #result;
 
-  inputLottoAmount() {
-    Mission.Console.readLine(GAME_MESSAGES.ASK_TO_PAY, (payment) => {
-      const quickPick = new QuickPick(payment);
-      this.#myLottoArray = quickPick.arrayOutput();
-      this.#lottoAmount = quickPick.amountOutput();
-      this.#payment = quickPick.paymentOutput();
-      this.inputWinningNumbers();
+  initLottoGame() {
+    Console.readLine(GAME_MESSAGES.ASK_TO_PAY, (payment) => {
+      this.inputLottoAmount(payment);
     });
   }
 
+  inputLottoAmount(payment) {
+    this.#payment = new PurChase(payment);
+    this.#quickPick = new QuickPick(this.#payment.getPayment() / LOTTO_INFO.LOTTO_PRICE);
+    this.#quickPick.printNumbersArray();
+    this.inputWinningNumbers();
+  }
+
   inputWinningNumbers() {
-    Mission.Console.readLine(GAME_MESSAGES.ASK_TO_WINNING_NUMBERS, (winNumbers) => {
-      const winningNum = winNumbers
-        .split(",")
-        .map((value) => Number(value))
-        .sort((a, b) => a - b);
-      const lotto = new Lotto(winningNum);
-      this.#winningNumbers = lotto.output();
+    Console.readLine(GAME_MESSAGES.ASK_TO_WINNING_NUMBERS, (winNumbers) => {
+      const lottoUtils = new LottoUtils(winNumbers);
+
+      this.#lotto = new Lotto(lottoUtils.getConvertArray());
       this.inputBonusNumber();
     });
   }
 
   inputBonusNumber() {
-    Mission.Console.readLine(GAME_MESSAGES.ASK_TO_BONUS_NUMBER, (bonusNumber) => {
-      const bonus = new Bonus(bonusNumber, this.#winningNumbers);
-      this.#bonusNumber = bonus.output();
+    Console.readLine(GAME_MESSAGES.ASK_TO_BONUS_NUMBER, (bonusNumber) => {
+      this.#bonus = new Bonus(bonusNumber, this.#lotto.getLottoWinningNumber());
       this.makeResult();
     });
   }
 
   makeResult() {
-    const result = new Result(
-      this.#myLottoArray,
-      this.#winningNumbers,
-      this.#bonusNumber,
-      this.#lottoAmount,
-      this.#payment
+    this.#result = new Result(
+      this.#lotto.getLottoWinningNumber(),
+      this.#quickPick.getMyLottoArray(),
+      this.#bonus.getBonusNumber(),
+      this.#payment.getPayment()
     );
 
-    Mission.Console.print(result.totalProfitRate());
-    Mission.Console.close();
+    this.#result.announceScore();
+    Console.close();
   }
 }
 
