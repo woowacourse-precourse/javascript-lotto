@@ -53,10 +53,17 @@ class App {
   }
 
   getLottoResult() {
-    this.lottoWinNumbers.checkLottoWinResult(
+    const lottoWinResult = this.lottoWinNumbers.checkLottoWinResult(
       this.lottoTickets.userBuyedTickets,
       this.lottoBonusNumber.number
     );
+    const earningsRate = this.lottoWinNumbers.calculrateEarningsRate(
+      this.userBudget.budget,
+      this.lottoWinNumbers.calculratePrizeMoney(lottoWinResult)
+    );
+    console.log('수익률', earningsRate);
+
+    this.printLottoResult(this.lottoWinNumbers.printLottoStatistics(lottoWinResult, earningsRate));
   }
 
   validateIsNotNumber(number) {
@@ -65,6 +72,16 @@ class App {
         throw new Error('[ERROR] 당첨 번호는 숫자만 입력해야 합니다.');
       }
     }
+  }
+
+  printLottoResult(result) {
+    if (Array.isArray(result)) {
+      result.forEach((str) => {
+        Console.print(str);
+      });
+      return null;
+    }
+    MissionUtils.Console.print(result);
   }
 }
 

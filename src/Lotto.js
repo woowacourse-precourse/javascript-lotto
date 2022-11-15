@@ -59,7 +59,6 @@ class Lotto {
           break;
       }
     });
-    console.log('lottoResult', lottoResult);
     return lottoResult;
   }
 
@@ -69,6 +68,47 @@ class Lotto {
 
   checkHasBonusNumber(numbers, bonusNumber) {
     return numbers.includes(bonusNumber);
+  }
+
+  calculratePrizeMoney(lottoResult) {
+    const prizeMoneys = [5000, 50000, 1500000, 30000000, 2000000000];
+    return lottoResult.reduce((acc, cur, index) => acc + cur * prizeMoneys[index], 0);
+  }
+
+  calculrateEarningsRate(budget, reward) {
+    return reward == 0 ? 0 : Math.round((reward / budget) * 1000) / 10;
+  }
+
+  printLottoStatistics(lottoWinResult, earningsRate) {
+    const resultWords = [
+      '당첨 통계',
+      '---',
+      ...this.printRewardList(lottoWinResult),
+      this.printEarningsRate(earningsRate),
+    ];
+    return resultWords;
+  }
+
+  printRewardList(lottoWinResult) {
+    const RewardResult = new Array();
+    const labels = [
+      '3개 일치 (5,000원) - ',
+      '4개 일치 (50,000원) - ',
+      '5개 일치 (1,500,000원) - ',
+      '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
+      '6개 일치 (2,000,000,000원) - ',
+    ];
+    lottoWinResult.forEach((list, index) => {
+      RewardResult.push(labels[index] + list + '개');
+    });
+    return RewardResult;
+  }
+
+  printEarningsRate(earningsRate) {
+    console.log('check', earningsRate);
+    return (
+      '총 수익률은 ' + earningsRate.toFixed(1).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '%입니다.'
+    );
   }
 }
 
