@@ -66,7 +66,7 @@ const ERROR_MESSAGE = Object.freeze({
   notDivide: '[ERROR] 1000원으로 나누어 떨어지지 않습니다.',
   notCorrect: '[ERROR] 당첨번호가 올바르지 않습니다.',
   notComma: '[ERROR] 당첨번호 사이를 쉼표로 구분해주세요',
-  notSix: '[ERROR] 당첨번호가 6개가 아닙니다.',
+  notSix: '[ERROR] 당첨번호가 6개가 아니거나 불필요한 문자가 포함되어있습니다.',
   outOfRange: '[ERROR] 당첨번호중 1~45범위를 벗어나는 숫자가 존재합니다.',
   hasDuplication: '[ERROR] 중복되는 숫자가 존재합니다.',
   hasDuplicationWithWinning: '[ERROR] 당첨번호와 중복되는 숫자가 존재합니다.',
