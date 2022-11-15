@@ -12,7 +12,12 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
+  validateDuplicated(numbers) {
+    let numberSet = new Set(numbers)
+    if (numberSet.size !== 6) {
+      throw new Error("[ERROR] 로또 번호는 중복이 없어야 합니다.");
+    }
+  }
 }
 
 module.exports = Lotto;
