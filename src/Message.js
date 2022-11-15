@@ -19,3 +19,10 @@ const MESSAGE = { // 출력 메세지
   return: (percentage) => `총 수익률은 ${percentage}%입니다.`,
 };
 
+const RANK = { // 등수
+  3: 'fifth',
+  4: 'fourth',
+  5: 'third',
+  6: 'first',
+};
+
