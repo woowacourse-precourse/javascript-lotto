@@ -10,9 +10,9 @@ const utils = {
   close() {
     MissionUtils.Console.close();
   },
-  pickNumberInRange(start, end) {
-    return MissionUtils.Random.pickNumberInRange(start, end);
-  },
+  pickUniqueNumbersInRange(start, end, count) {
+    return MissionUtils.Random.pickUniqueNumbersInRange(start, end, count);
+  }
 };
 
 module.exports = utils;
