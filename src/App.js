@@ -6,14 +6,21 @@ class App {
   #myLottery;
   #winningNumbers;
   #bonusNumber;
+  #matchedCounts;
 
-  constructor() {}
+  computeLotteryResult = () => {
+    this.#myLottery.forEach((lottery) => {
+      const numberOfMatchedNumbers = this.compareLotteryNumbers(lottery);
+      this.#matchedCounts.push(numberOfMatchedNumbers);
+    });
+    this.printLotteryResult();
+  };
 
   getBonusNumber = () => {
     Console.readLine(MESSAGE.GET_BONUS_NUMBER, (bonusNumber) => {
       this.#bonusNumber = Number(bonusNumber);
       // TODO: bonusNumber Validate Test
-      this.printResult();
+      this.computeLotteryResult();
     });
   };
 
