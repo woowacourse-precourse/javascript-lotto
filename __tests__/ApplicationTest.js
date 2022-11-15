@@ -66,6 +66,6 @@ describe("로또 테스트", () => {
     expect(() => {
       const app = new App();
       app.play();
-    }).toThrow("[ERROR]");
+    }).toThrow("[ERROR] 숫자만 입력 가능합니다.");
   });
 });
