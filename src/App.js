@@ -23,8 +23,6 @@ class App {
   }
   play() {
     this.inputPurchaseAmount();
-    this.inputWinnerNumber();
-    this.inputBonusNumber();
   }
   inputPurchaseAmount() {
     this.LottoUI.inputRequest(
@@ -34,7 +32,7 @@ class App {
         this.lottoBuying(inputPurchaseAmount);
         this.LottoUI.prinntLottoNumber(this.lotto);
         this.purchaseAmount = Number(inputPurchaseAmount);
-        console.log(this.purchaseAmount);
+        this.inputWinnerNumber();
       }
     );
   }
@@ -53,6 +51,7 @@ class App {
         const winnerNumberArr = winnerNumberElement.split(",");
         Validation.checkInputWinnerNumber(winnerNumberArr);
         this.winnerNumber = winnerNumberElement;
+        this.inputBonusNumber();
       }
     );
   }
