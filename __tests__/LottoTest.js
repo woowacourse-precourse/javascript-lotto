@@ -80,3 +80,20 @@ describe('로또 발급 테스트', () => {
     expect(countMoney[0]).toEqual(result)
   })
 })
+
+describe('발행한 로또와 당첨 번호 및 보너스 번호 테스트', () => {
+  test('발행한 로또 중 맞은 개수가 3개 이상인 경우', () => {
+    const lotto = new Lotto([1,2,3,4,5,6])
+    inputDataObject.raffle = [
+      [8, 21, 23, 41, 42, 43],
+      [3, 5, 11, 16, 32, 38],
+      [7, 11, 30, 40, 42, 43],
+      [2, 13, 22, 32, 38, 45],
+      [1, 3, 5, 14, 22, 45],
+    ]
+    inputDataObject.raffleNumbers = [1, 3, 5, 14, 21, 11]
+    lotto.compareLotto()
+
+    expect(inputDataObject.correctNumber.length).toEqual(2)
+  })
+})
