@@ -1,18 +1,30 @@
+const LottoNumberUtils = require("./LottoNumberUtil");
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
     this.validate(numbers);
-    this.#numbers = numbers;
+    this.#numbers = numbers.sort((a, b) => a - b);
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+    LottoNumberUtils.validateLength(numbers);
+    LottoNumberUtils.validateDuplication(numbers);
+    numbers.forEach((value) => LottoNumberUtils.validateRange(value));
   }
 
-  // TODO: 추가 기능 구현
+  getNumberString() {
+    return "[" + this.#numbers.join(", ") + "]";
+  }
+
+  getCountMatches(winningNumber, bonusNumber) {
+    const countMatches =
+      this.#numbers.filter((value) => winningNumber.includes(value)).length +
+      (this.#numbers.includes(bonusNumber) ? 0.5 : 0);
+
+    return countMatches;
+  }
 }
 
 module.exports = Lotto;
