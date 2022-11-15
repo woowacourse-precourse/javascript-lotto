@@ -5,8 +5,8 @@ const {
   LOTTO_MAX,
   LOTTO_ERROR,
 } = require("./util/Constant");
-const buyLotto = require("./BuyLotto");
 
+const buyLotto = require("./BuyLotto");
 const Budget = require("./Budget");
 const Lotto = require("./Lotto");
 const Result = require("./Result");

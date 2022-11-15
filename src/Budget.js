@@ -2,11 +2,13 @@ const { BUDGET_ERROR_MESSAGE, LOTTO_PRICE } = require("./util/Constant");
 
 class Budget {
   #money;
+
   constructor(input) {
     this.#money = input;
     this.lottoToBuy = 0;
     this.isValidMoney();
   }
+
   isValidMoney() {
     if (isNaN(this.#money)) {
       throw new Error(BUDGET_ERROR_MESSAGE.NON_NUMBER);

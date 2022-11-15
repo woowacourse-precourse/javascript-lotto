@@ -38,7 +38,6 @@ class Result {
     });
     this.printStats();
   }
-
   printStats() {
     const result = this.#result;
     Console.print(RESULT_CORRECT.STAT);
