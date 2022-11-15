@@ -30,4 +30,11 @@ describe('로또 클래스 테스트', () => {
       new Lotto([1, 2, 3, 4, 5, 46]);
     }).toThrow('[ERROR]');
   });
+
+  test('로또 번호를 오름차순으로 정렬 후 반환한다.', () => {
+    const numbers = [6, 5, 4, 3, 2, 1];
+    const expectedOutput = [1, 2, 3, 4, 5, 6];
+    const lotto = new Lotto(numbers);
+    expect(lotto.getNumbers()).toStrictEqual(expectedOutput);
+  });
 });
