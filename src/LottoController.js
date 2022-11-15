@@ -16,13 +16,9 @@ class LottoController {
   initiate() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (input) => {
       this.customerLottoPurchase(input);
-      MissionUtils.Console.readLine(
-        '\n당첨 번호를 입력해 주세요.\n',
-        (input) => {
+      MissionUtils.Console.readLine('\n당첨 번호를 입력해 주세요.\n', (input) => {
           this.lottoPublisher.receiveUserInputWinningNumbers(input);
-          MissionUtils.Console.readLine(
-            '\n보너스 번호를 입력해 주세요.\n',
-            (input) => {
+          MissionUtils.Console.readLine('\n보너스 번호를 입력해 주세요.\n', (input) => {
               this.lottoPublisher.receiveUserInputBonusNumber(input);
               this.matchNumbersPrintResult();
               MissionUtils.Console.close();
