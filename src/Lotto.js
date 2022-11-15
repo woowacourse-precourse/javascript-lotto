@@ -1,4 +1,4 @@
-import { exceptLottoNumbers } from './Exception';
+const Exception = require('./Exception');
 
 class Lotto {
   //로또 당첨 번호
@@ -19,7 +19,7 @@ class Lotto {
     }
 
     numbers.map((numbersData) => {
-      exceptLottoNumbers(numbersData);
+      new Exception().exceptLottoNumbers(numbersData);
     });
   }
 
@@ -30,4 +30,3 @@ class Lotto {
 }
 
 module.exports = Lotto;
-

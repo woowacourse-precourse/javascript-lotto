@@ -3,9 +3,9 @@
 
 const Lotto = require('./Lotto');
 const MissionUtils = require('@woowacourse/mission-utils');
-import { exceptLottoPrice, exceptBonusNumber } from './Exception';
+const Exception = require('./Exception');
 
-const winningPrice = [0, 2000000000, 30000000, 1500000, 50000, 5000];
+const WINNING_PRICE = [0, 2000000000, 30000000, 1500000, 50000, 5000];
 
 class App {
   #lotteryTicketNumber; //로또 수량
@@ -19,23 +19,31 @@ class App {
   }
 
   #inputLottoPrice() {
-    MissionUtils.Console.readLine('구입금액을 입력해 주세요.', (lottoPrice) => {
-      exceptLottoPrice(Number(lottoPrice));
-      this.#lotteryTicketNumber = parseInt(Number(lottoPrice) / 1000);
+    MissionUtils.Console.readLine(
+      '구입금액을 입력해 주세요.\n',
+      (lottoPrice) => {
+        new Exception().exceptLottoPrice(Number(lottoPrice));
+        this.#lotteryTicketNumber = parseInt(Number(lottoPrice) / 1000);
 
-      this.#lotteryTickets = this.#makeLotteryTickets(
-        this.#lotteryTicketNumber
-      );
+        this.#lotteryTickets = this.#makeLotteryTickets(
+          this.#lotteryTicketNumber
+        );
 
-      this.#inputWinningNumbers();
-    });
+        this.#inputWinningNumbers();
+      }
+    );
   }
 
   #makeLotteryTickets(lotteryTicketNumber) {
-    let lotteryTickets = new Array(lotteryTicketNumber);
-    lotteryTickets.map((lotteryTicket) => {
-      lotteryTicket = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-      lotteryTicket.sort();
+    let lotteryTickets = new Array(lotteryTicketNumber).fill([]);
+    lotteryTickets.map((lotteryTicket, ticketsIdx) => {
+      lotteryTickets[ticketsIdx] = MissionUtils.Random.pickUniqueNumbersInRange(1,45,6);
+
+      lotteryTickets[ticketsIdx].sort((a, b) => {
+        if (a < b) {return -1;}
+        if (a > b) {return 1;}
+        return 0;
+      });
     });
 
     this.#printLotteryTickets(lotteryTicketNumber, lotteryTickets);
@@ -44,15 +52,23 @@ class App {
 
   #printLotteryTickets(lotteryTicketNumber, lotteryTickets) {
     MissionUtils.Console.print(`${lotteryTicketNumber}개를 구매했습니다.`);
+
     lotteryTickets.map((lotteryTicket) => {
-      MissionUtils.Console.print(`${lotteryTicket}`);
+      MissionUtils.Console.print(lotteryTicket);
     });
   }
 
+  #arrayStrToNumber(array = []) {
+    array.map((value, idx) => {
+      array[idx] = Number(value);
+    });
+    return array;
+  }
+
   #inputWinningNumbers() {
-    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요', (winNum) => {
+    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요\n', (winNum) => {
       //예외사항
-      const lotto = new Lotto(winNum.split(','));
+      const lotto = new Lotto(this.#arrayStrToNumber(winNum.split(',')));
       this.#winningNumbers = lotto.getLottoNumber();
 
       this.#inputBonusNumber();
@@ -61,17 +77,15 @@ class App {
 
   #inputBonusNumber() {
     MissionUtils.Console.readLine(
-      '보너스 번호를 입력해 주세요.',
+      '보너스 번호를 입력해 주세요.\n',
       (bonusNum) => {
-        exceptBonusNumber(this.#winningNumbers, bonusNum);
-        this.#bonusNumber = bonusNum;
+        new Exception().exceptBonusNumber(this.#winningNumbers, bonusNum);
+        this.#bonusNumber = Number(bonusNum);
 
-        this.#winningCount = this.#makeWinningCount(
-          this.#lotteryTicketNumber
-        );
+        this.#winningCount = this.#makeWinningCount(this.#lotteryTicketNumber);
 
-        this.#printWinningCounts(this.#winningCount)
-        this.#printYield(this.#winningCount, this.#lotteryTicketNumber)
+        this.#printWinningCounts(this.#winningCount);
+        this.#printYield(this.#winningCount, this.#lotteryTicketNumber);
 
         //프로그램 종료
         MissionUtils.Console.close();
@@ -79,56 +93,61 @@ class App {
     );
   }
 
-  #printWinningCounts(winningCount){
-    MissionUtils.Console.print('당첨 통계')
-    MissionUtils.Console.print('---')
-    MissionUtils.Console.print(`3개 일치 (5,000원) - ${winningCount[5]}개`)
-    MissionUtils.Console.print(`4개 일치 (50,000원) - ${winningCount[4]}개`)
-    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${winningCount[3]}개`)
-    MissionUtils.Console.print(`5개, 보너스 볼 일치 (30,000,000원) - ${winningCount[2]}개`)
-    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${winningCount[1]}개`)
+  #printWinningCounts(winningCount) {
+    MissionUtils.Console.print('당첨 통계');
+    MissionUtils.Console.print('---');
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${winningCount[5]}개`);
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${winningCount[4]}개`);
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${winningCount[3]}개`);
+    MissionUtils.Console.print(`5개, 보너스 볼 일치 (30,000,000원) - ${winningCount[2]}개`);
+    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${winningCount[1]}개`);
   }
 
-  #printYield(winningCount, lotteryTicketNumber){
+  #printYield(winningCount, lotteryTicketNumber) {
     let amount = 0;
-    winningCount.map((count,countIdx)=>{
-      amount += count * winningPrice[countIdx]
-    })
-    let yield = amount / lotteryTicketNumber * 10
+    winningCount.map((count, countIdx) => {
+      amount += count * WINNING_PRICE[countIdx];
+    });
 
-    MissionUtils.Console.print(`총 수익률은 ${yield}입니다.`)
+    let yields = amount / lotteryTicketNumber / 10;
 
+    MissionUtils.Console.print(`총 수익률은 ${yields}% 입니다.`);
   }
 
   #makeWinningCount(lotteryTicketNumber) {
-    let winningHistorys = new Array(lotteryTicketNumber);
+    let winningHistorys = new Array(lotteryTicketNumber).fill(0);
+
     winningHistorys.map((winningHistory, historysIdx) => {
-      winningHistory = this.#confirmLottery(
+      winningHistorys[historysIdx] = this.#confirmLottery(
         this.#lotteryTickets[historysIdx],
         this.#winningNumbers,
         this.#bonusNumber
       );
     });
 
-    return this.#convertWinningCount(winningHistorys)
+    return this.#convertWinningCount(winningHistorys);
   }
 
   //각각 로또마다 몇등을 했는지에서 몇 등을 몇 번 했는지로 변환한다
-  #convertWinningCount(winningHistorys){
-    let winningCount = new Array(6).fill(0)
-    winningCount.map((count,countIdx)=>{
-      winningHistorys.map((winningHistory)=>{
-        if(countIdx===winningHistory){count++}
-      })
-    })
+  #convertWinningCount(winningHistorys) {
+    let winningCount = new Array(6).fill(0);
+
+    winningCount.map((count, countIdx) => {
+      winningHistorys.map((winningHistory) => {
+        if (countIdx === winningHistory) {
+          winningCount[countIdx]++;
+        }
+      });
+    });
+    return winningCount;
   }
 
   #confirmLottery(lotteryTicket = [], winningNumbers = [], bonusNumber = 0) {
-    let winning = []
     let countSameNumber = 0;
     let countBonus = 0;
 
     lotteryTicket.map((lottoNumber) => {
+      //arr.includes(1) 값이 포함되면 true를 리턴함
       if (winningNumbers.includes(lottoNumber) === true) {
         countSameNumber++;
       }
@@ -140,7 +159,7 @@ class App {
       }
     }
 
-    winning = this.#convertToWinningHistory(countSameNumber, countBonus);
+    return this.#convertToWinningHistory(countSameNumber, countBonus);
   }
 
   //각각 몇등 했는지로 변환
@@ -162,11 +181,6 @@ class App {
         return 0;
     }
   }
-
-  #convertToWinningHistory(winning){
-
-  }
-  
 }
 
 const app = new App();
