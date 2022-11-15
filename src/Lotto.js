@@ -39,6 +39,44 @@ class Lotto {
     }
     return usersLottos;
   }
+
+  compareLotto(lotto, winningNumber, bonusNumber) {
+    let count = 0;
+    let bonus = false;
+
+    lotto.forEach(num => {
+      if (winningNumber.includes(num)) {
+        count++;
+      }
+      if (num === bonusNumber) {
+        bonus = true;
+      }
+    });
+
+    return [count, bonus];
+  }
+
+  getResult(usersLottos, winningNumber) {
+    let result = [0, 0, 0, 0, 0];
+    const bonusNumber = winningNumber.pop();
+
+    for (let lotto of usersLottos) {
+      const [count, bonus] = this.compareLotto(
+        lotto,
+        winningNumber,
+        bonusNumber,
+      );
+
+      if (count === 3) result[0] += 1;
+      if (count === 4) result[1] += 1;
+      if (count === 5 && bonus === false) result[2] += 1;
+      if (count === 5 && bonus === true) result[3] += 1;
+      if (count === 6) result[4] += 1;
+    }
+
+    return result;
+  }
+
   // TODO: 추가 기능 구현
 }
 
