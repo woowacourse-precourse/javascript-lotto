@@ -44,14 +44,14 @@
     - [x] 로또 번호 6개 생성 -> App#createRandomNumbers()
       - [x] 1~45 사이의 숫자를 랜덤 생성
 - [x] 로또 번호 목록 출력 -> Print#printLottos()
-- [] '당첨 번호를 입력해 주세요.' 메시지 출력 후 당첨 번호 입력 -> ReadLine#getWinningNumbers()
+- [x] '당첨 번호를 입력해 주세요.' 메시지 출력 후 당첨 번호 입력 -> ReadLine#getWinningNumbers()
   - [x] 입력 값 예외처리
     - [x] 숫자 이외의 문자 입력시 -> Lotto#checkNumber()
     - [x] 1~45 숫자 이외의 문자 입력시 -> Lotto#checkBelongTo()
     - [x] 같은 숫자 입력시 -> Lotto#checkDuplicate()
     - [x] 쉼표 미입력시 -> Lotto#checkComma()
     - [x] 6개의 숫자가 아닐시
-- [] '보너스 번호를 입력해 주세요.' 메시지 출력 후 보너스 번호 입력 -> ReadLine#getBonusNumber()
+- [x] '보너스 번호를 입력해 주세요.' 메시지 출력 후 보너스 번호 입력 -> ReadLine#getBonusNumber()
   - [x] 입력 값 예외처리
     - [x] 1~45 숫자 이외의 문자 입력시 -> Bonus#checkBelongTo()
     - [x] 1개의 숫자가 아닐시

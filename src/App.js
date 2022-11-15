@@ -30,6 +30,16 @@ class App {
 
 			printLottos(this.lottos);
 		});
+
+		getWinningNumbers((numbers) => {
+			const lotto = new Lotto(numbers);
+			this.winningNumbers = lotto.getters();
+		});
+
+		getBonusNumber((number) => {
+			const bonus = new Bonus(number, this.winningNumbers);
+			this.bonusNumber = bonus.getters();
+		});
 	}
 
 	lottoPublish(count) {
