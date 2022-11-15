@@ -19,7 +19,7 @@ const printResult = ({ three, four, five, bonus, six }, profitRate) => {
     StatisticsMessage({ three, four, five, bonus, six })
   );
   MissionUtils.Console.print(ProfitMessage(profitRate));
-  // MissionUtils.Console.close();
+  MissionUtils.Console.close();
 };
 
 const makeStrLotto = (lotto) => {
