@@ -6,22 +6,29 @@ class CalculatorModel {
   }
 
   draw(lottos, winning) {
-    const [winningLotto, bonus] = winning;
     const winningList = [];
 
     lottos.forEach((lotto) => {
-      let comparedLotto = lotto.compare(winningLotto);
-      let comparedBonus = lotto.isContain(bonus);
-
-      const result = [
-        comparedBonus ? comparedLotto + 1 : comparedLotto,
-        comparedBonus,
-      ];
+      const result = this.compare(lotto, winning);
 
       winningList.push(result);
     });
 
     return this.getRank(winningList);
+  }
+
+  compare(lotto, winning) {
+    const [winningLotto, bonus] = winning;
+
+    let comparedLotto = lotto.compare(winningLotto);
+    let comparedBonus = lotto.isContain(bonus);
+
+    const result = [
+      comparedBonus ? comparedLotto + 1 : comparedLotto,
+      comparedBonus,
+    ];
+
+    return result;
   }
 
   getRank(winningList) {
@@ -34,25 +41,29 @@ class CalculatorModel {
     };
 
     winningList.forEach((list) => {
-      const [count, isBonusCorrected] = list;
-
-      switch (count) {
-        case 3:
-          rank.FIFTH += 1;
-          break;
-        case 4:
-          rank.FOURTH += 1;
-          break;
-        case 5:
-          !isBonusCorrected ? (rank.THIRD += 1) : (rank.SECOND += 1);
-          break;
-        case 6:
-          rank.FIRST += 1;
-          break;
-      }
+      this.checkRank(list, rank);
     });
 
     return this.getReward(rank);
+  }
+
+  checkRank(list, rank) {
+    const [count, isBonusCorrected] = list;
+
+    switch (count) {
+      case 3:
+        rank.FIFTH += 1;
+        break;
+      case 4:
+        rank.FOURTH += 1;
+        break;
+      case 5:
+        !isBonusCorrected ? (rank.THIRD += 1) : (rank.SECOND += 1);
+        break;
+      case 6:
+        rank.FIRST += 1;
+        break;
+    }
   }
 
   getReward(rank) {
