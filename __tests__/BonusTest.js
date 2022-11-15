@@ -1,7 +1,7 @@
 const Bonus = require('../src/Bonus');
 const Lotto = require('../src/Lotto');
 
-describe('Bonus 클래스 테스트', () => {
+describe('보너스 클래스 테스트', () => {
   test('잘못된 보너스 번호를 입력한 경우 에러처리', () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     const values = [
