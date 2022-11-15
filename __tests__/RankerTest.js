@@ -15,7 +15,7 @@ describe("순위 계산 단위 테스트", () => {
   const bonus1 = 43;
   test("금액의 오름차순으로 금액 당 당첨 개수 계산", () => {
     expect(Ranker.getPriceRank(lottos, [win1, bonus1])).toEqual([
-      0, 1, 0, 1, 0,
+      1, 1, 0, 0, 0,
     ]);
   });
 
@@ -23,7 +23,7 @@ describe("순위 계산 단위 테스트", () => {
   const bonus2 = 43;
   test("금액의 오름차순으로 금액 당 당첨 개수 계산", () => {
     expect(Ranker.getPriceRank(lottos, [win2, bonus2])).toEqual([
-      1, 1, 0, 0, 0,
+      1, 0, 0, 0, 0,
     ]);
   });
 });

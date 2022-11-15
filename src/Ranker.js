@@ -17,8 +17,7 @@ class Ranker {
   static getPriceRank(lottos, [wins, bonus]) {
     const initialState = [0, 0, 0, 0, 0];
     return lottos.reduce((acc, lotto) => {
-      const lottoWithBonus = [...wins, bonus];
-      const count = LottoAdmin.getSameNumWithInputLotto(lotto, lottoWithBonus);
+      const count = LottoAdmin.getSameNumWithInputLotto(lotto, wins);
       const conditions = this.#generateRankCondition(count, [lotto, bonus]);
       this.#calculatePriceRank(conditions, acc);
       return acc;
