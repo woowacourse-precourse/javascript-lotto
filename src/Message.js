@@ -17,10 +17,8 @@ class Message{
     for (let i = 0; i < winCount.length; i++) {
       if (winCount[i] === 3) winInfo[0] += 1;
       if (winCount[i] === 4) winInfo[1] += 1;
-      if (winCount[i] === 5) { 
-        winInfo[2] += 1;
-        if (hasBonus === 1) winInfo[3] += 1; 
-      }
+      if (winCount[i] === 5 && hasBonus === 0) winInfo[2] += 1;
+      if (winCount[i] === 5 && hasBonus === 1) winInfo[3] += 1;
       if (winCount[i] === 6) winInfo[4] += 1;
     }
     return winInfo;
