@@ -1,5 +1,4 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const Lotto = require("./Lotto");
 
 class BuyLotto {
     // constructor() {
@@ -44,7 +43,9 @@ class BuyLotto {
 
     printRandomLotto(randomLottos) {
         for(let i = 0; i < randomLottos.length; i++) {
-            MissionUtils.Console.print(randomLottos[i]);
+            const randomLotto = randomLottos[i].join(', ');
+     
+            MissionUtils.Console.print(`[${randomLotto}]`);
         }
     }
 

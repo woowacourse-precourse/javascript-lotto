@@ -18,9 +18,9 @@ class App {
     const bonusNumber = buy.inputBonusNumber();
     new Lotto(winningNumbers, bonusNumber); // 유효성 검사
     
-    MissionUtils.Console.print(randomLottos);
-    MissionUtils.Console.print(winningNumbers);
-    MissionUtils.Console.print(bonusNumber);
+    // MissionUtils.Console.print(randomLottos);
+    // MissionUtils.Console.print(winningNumbers);
+    // MissionUtils.Console.print(bonusNumber);
 
     // 당첨 결과
     new Winning(amount, randomLottos, winningNumbers, bonusNumber);
