@@ -1,11 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
-const {
-  LOTTO_LENGTH,
-  LOTTO_COST,
-  ERROR,
-  RESULT,
-  PRIZE,
-} = require("./constant/lotto");
+const { LOTTO, ERROR, RESULT, PRIZE } = require("./constant/lotto");
 const Utils = require("./utils/utils");
 
 class Lotto {
@@ -35,13 +29,13 @@ class Lotto {
   }
 
   verifyVaildLength(numbers) {
-    if (numbers.length !== LOTTO_LENGTH)
+    if (numbers.length !== LOTTO.LENGTH)
       this.utils.throwError(ERROR.NOT_SIX_NUMBERS);
   }
 
   verifyDiffNumbers(numbers) {
     const numberSet = new Set(numbers);
-    if (numberSet.size !== LOTTO_LENGTH)
+    if (numberSet.size !== LOTTO.LENGTH)
       this.utils.throwError(ERROR.DUPLICATE_NUMBERS);
   }
 
@@ -93,7 +87,7 @@ class Lotto {
   }
 
   printProfit(ticketAmount) {
-    const ticketPrice = ticketAmount * LOTTO_COST;
+    const ticketPrice = ticketAmount * LOTTO.COST;
     const totalSum = this.sumTotalPrize(this.resultMap);
     const profit = ((totalSum / ticketPrice) * 100).toFixed(1);
     Console.print(RESULT.PROFIT(profit));
