@@ -12,15 +12,26 @@ class Output {
     });
   }
 
-  result(totalRank, rateOfReturn) {
+  resultHeader() {
     Console.print(RESULT.STATISTIC);
     Console.print(RESULT.BOUNDARY_LINE);
+  }
 
+  resultStatistic(totalRank) {
     for (let rank = 1; rank <= 6; rank++) {
       Console.print(`${RESULT.MATCHES[rank]}${totalRank[rank]}${RESULT.PEICE}`);
     }
+  }
 
+  resultRateOfReturn(rateOfReturn) {
     Console.print(`${RESULT.RATE_OF_RETURN}${rateOfReturn}%입니다.`);
+  }
+
+  result(totalRank, rateOfReturn) {
+    this.resultHeader();
+    this.resultStatistic(totalRank);
+    this.resultRateOfReturn(rateOfReturn);
+    Console.close();
   }
 }
 
