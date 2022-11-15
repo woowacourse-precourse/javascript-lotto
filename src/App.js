@@ -61,8 +61,8 @@ class App {
   }
   printLottoWinningResult(){
     let countOfLottoWinning = [0,0,0,0,0,0];
-    for(let i=0; i<this.#countOfLottos; i++){
-      const prize = this.getPrize(this.#issuedLottosList[i]);
+    for(let issuedLottos of this.#issuedLottosList){
+      const prize = this.getPrize(issuedLottos);
       if(prize<=5)
         countOfLottoWinning[prize]++;
     }
