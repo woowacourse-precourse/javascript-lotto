@@ -59,15 +59,14 @@ class App {
 
   showLottoResult() {
     const ranking = new RankingResult();
-    const rankingResult = ranking.setRankingResult(
+    ranking.setRankingResult(
       this.lottoIsuued,
       this.lottoWinning.winningLotto,
       this.lottoWinning.bonusNumber
     );
-    printRankingResult(rankingResult);
-    printEarningsRate(
-      ranking.setEarningsRate(rankingResult, this.lottoPayment)
-    );
+    ranking.setEarningsRate(ranking.rankingResult, this.lottoPayment)
+    printRankingResult(ranking.rankingResult);
+    printEarningsRate(ranking.earningsRate);
     Console.close();
   }
 
@@ -75,5 +74,9 @@ class App {
     this.buyLotto();
   }
 }
+
+const app = new App();
+app.play();
+
 
 module.exports = App;

@@ -36,16 +36,6 @@ const RANKING = Object.freeze({
   REWARD_FOURTH: 50000,
   REWARD_FIFTH: 5000,
   OUTPUT_ORDER: ["FIFTH", "FOURTH", "THIRD", "SECOND", "FIRST"],
-  SECOND_RESULT: (value) =>
-    `${
-      value.mathcedCount
-    }개 일치, 보너스 볼 일치 (${value.reward.toLocaleString()}원) - ${
-      value.amount
-    }개`,
-  OTHER_RESULT: (value) =>
-    `${value.mathcedCount}개 일치 (${value.reward.toLocaleString()}원) - ${
-      value.amount
-    }개`,
 });
 
 module.exports = { INPUT, ERROR, LOTTO, RANKING };

@@ -26,12 +26,28 @@ const getTotalReward = (rankingResult)=>{
   }, 0);
 }
 
+const getResultRanking = (value)=>{
+  if (value.ranking== "SECOND"){
+    return `${
+      value.mathcedCount
+    }개 일치, 보너스 볼 일치 (${changeNumberWithCommas(
+      "" + value.reward
+    )}원) - ${value.amount}개`;
+  }
+  return `${value.mathcedCount}개 일치 (${changeNumberWithCommas(
+    "" + value.reward
+  )}원) - ${value.amount}개`;
+}
+
+
+
 const getEarningsRate = (rankingResult, lottoPayment) => {
   const totalReward = getTotalReward(rankingResult);
-  return ((totalReward / lottoPayment) * 100).toFixed(1);
+  const earningsRate = ((totalReward / lottoPayment) * 100).toFixed(1)
+  return changeNumberWithCommas(earningsRate);
 };
 
-const getNumberWithCommas = (string) => {
+const changeNumberWithCommas = (string) => {
   return string.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
@@ -40,6 +56,6 @@ module.exports = {
   sortLottoNumberInAscendignOrder,
   getMatchedinWinningNumberCount,
   hasBounsNumber,
+  getResultRanking,
   getEarningsRate,
-  getNumberWithCommas
 };

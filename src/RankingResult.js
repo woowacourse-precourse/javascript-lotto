@@ -7,7 +7,7 @@ const {
 
 class RankingResult {
   rankingResult;
-  earningsRate=0;
+  earningsRate;
 
   constructor() {
     this.rankingResult = [
@@ -59,11 +59,10 @@ class RankingResult {
       );
       ranking ? (ranking.amount += 1) : null;
     });
-    return this.rankingResult;
   }
 
   setEarningsRate(rankingResult, lottopayment) {
-    return getEarningsRate(rankingResult, lottopayment);
+    this.earningsRate = getEarningsRate(rankingResult, lottopayment);
   }
 }
 
