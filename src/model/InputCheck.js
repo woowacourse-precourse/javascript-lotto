@@ -10,9 +10,11 @@ class InputCheck {
   }
 
   checkBonusInput(input, winSplitNum) {
-    const IS_NUM_AND_RANGE = /[0-9]$/.test(input) && input <= 45 && input > 0;
-
-    return IS_NUM_AND_RANGE && !winSplitNum.includes(input);
+    return (
+      this.checkIsNum(input) &&
+      this.checkNumRange(input) &&
+      this.checkSameWinNum(input, winSplitNum)
+    );
   }
 
   checkIsNum(input) {
@@ -25,6 +27,14 @@ class InputCheck {
 
   checkUnit(input) {
     return input % 1000 === 0;
+  }
+
+  checkNumRange(input) {
+    return input <= 45 && input > 0;
+  }
+
+  checkSameWinNum(input, winSplitNum) {
+    return !winSplitNum.includes(input);
   }
 }
 
