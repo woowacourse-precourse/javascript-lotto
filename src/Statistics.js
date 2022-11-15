@@ -6,7 +6,7 @@ class Statistics {
   constructor() {}
 
   getRateOfReturn(money, revenue) {
-    this.#rateOfReturn = (revenue / money) * 100;
+    this.#rateOfReturn = ((revenue / money) * 100).toFixed(2);
   }
 }
 
