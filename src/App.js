@@ -87,10 +87,26 @@ class App {
     Console.print('보너스 번호를 입력해 주세요.');
     Console.readLine('', (input) => {
       const winBonus = Number(input);
+      this.validateWinBonus(winBonus);
+
       this.winBonus = winBonus;
 
       this.calculateResult();
     });
+  }
+
+  validateWinBonus(bonus) {
+    if (!Number.isInteger(bonus)) {
+      throw new Error('[ERROR] 숫자만 입력해주세요.');
+    }
+
+    if (bonus < 1 || bonus > 45) {
+      throw new Error('[ERROR] 1부터 45까지의 숫자만 입력해주세요.');
+    }
+
+    if (this.winNumbers.includes(bonus)) {
+      throw new Error('[ERROR] 당첨 번호와 중복된 번호를 입력하지 마세요.');
+    }
   }
 
   calculateResult() {
