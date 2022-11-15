@@ -47,15 +47,22 @@ class App {
     this.inputWinningNumber();
   }
 
-  /** 5. 당첨번호 입력 안내 및 입력 구현 
-  */
+  /** 5. 당첨번호 입력 안내 및 입력 구현 */
   inputWinningNumber() {
     Console.readLine('당첨 번호를 입력해 주세요.\n', (winning) => {
       var winningArr = Array.from(winning.split(','),Number);
       var winningNumber = new WinningNumber(winningArr);
+      this.inputBonusNumber(winningNumber);
     });
   }
 
+  /** 6. 보너스 번호 입력 안내 및 출력 */
+  inputBonusNumber(winningNumber) {
+    Console.readLine('보너스 번호를 입력해 주세요. \n', (bonus) => {
+      winningNumber.bonusNumber = bonus;
+    });
+  }
+  
  
 }
 
