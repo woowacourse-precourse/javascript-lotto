@@ -15,7 +15,6 @@
         "class-methods-use-this": "off",
         "no-undef":"off",
         "no-new": "off",
-        "no-alert": "off",
         "comma-dangle": ["warn", "always-multiline"],     
         "object-curly-spacing": ["warn", "always"],  
         "space-in-parens": ["warn", "never"],       
