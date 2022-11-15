@@ -72,6 +72,15 @@ class Lotto {
       this.currentScore[4]++;
     }
   }
+
+  compareBonus(lottoNumArr, bonusNum) {
+    const compareBonusandNum = lottoNumArr;
+    compareBonusandNum.forEach((element) => {
+      if (element === bonusNum) {
+        return true;
+      }
+    });
+  }
 }
 
 module.exports = Lotto;
