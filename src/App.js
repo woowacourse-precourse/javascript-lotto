@@ -27,9 +27,9 @@ class App {
   }
   getLotto() {
     this.boughtLotto = buyLotto(this.buyCount);
-    this.printLotto();
+    this.printBoughtLotto();
   }
-  printLotto() {
+  printBoughtLotto() {
     Console.print(LOTTO_MESSAGE.BUYING(this.buyCount));
     const userLotto = this.boughtLotto;
     userLotto.forEach((lotto) => {
