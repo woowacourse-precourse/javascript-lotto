@@ -25,11 +25,11 @@ describe("Validation 클래스 테스트", () => {
     expect(Validation.numberNet(input)).toBe(true);
   });
 
-//   test("당첨 번호 입력값이 6개인지 검사", () => {
-//     const input = [1, 2, 3, 4, 5];
+  test("당첨 번호 입력값이 6개인지 검사", () => {
+    const input = [];
 
-//     expect(Validation.itThatNumber(input)).toBe(false);
-//   });
+    expect(Validation.isThatEmpty(input)).toBe(true);
+  });
 
 //   test("배열 정렬 테스트", () => {
 //     const input = [5, 4, 3, 2, 1, 7];
