@@ -24,10 +24,6 @@ class InputView {
       callback(Number(answer));
     });
   }
-
-  static validateLottoNumbers() {
-
-  }
 }
 
 module.exports = InputView;
