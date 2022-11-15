@@ -4,17 +4,36 @@ const { BUY_MESSAGE } = require('./const');
 const Utils = require('./Utils');
 
 class Purchase {
-  static lottoes(money) {
-    const total = [];
-    const count = money / 1000;
+  constructor() {
+    this.money = 0;
+    this.totalLottoes = [];
+  }
+
+  print() {
+    this.printMoney();
+    this.printLottoArray();
+  }
+
+  printMoney() {
+    const count = this.money / 1000;
     Console.print(`${count}${BUY_MESSAGE}`);
+  }
+
+  printLottoArray() {
+    this.totalLottoes.forEach(lotto => {
+      const stringArray = Utils.convertFromArrayToString(lotto);
+      Console.print(stringArray);
+    });
+  }
+
+  createLottoArray(money) {
+    this.money = money;
+    const count = money / 1000;
     for (let i = 0; i < count; i += 1) {
       const lottoArray = Utils.setLotto();
-      const stringArray = Utils.convertFromArrayToString(lottoArray);
-      Console.print(stringArray);
-      total.push(lottoArray);
+      this.totalLottoes.push(lottoArray);
     }
-    return total;
+    return this.totalLottoes;
   }
 }
 

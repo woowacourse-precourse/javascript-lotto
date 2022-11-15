@@ -92,10 +92,7 @@ class Lotto {
   }
 
   yieldCaculation(purchaseAmount) {
-    const yieldPercent = ((this.winningAmount / purchaseAmount) * 100).toFixed(
-      1,
-    );
-
+    const yieldPercent = Utils.percentage(this.winningAmount, purchaseAmount);
     const localeYeild = Utils.convertLocale(yieldPercent);
     return localeYeild;
   }

@@ -34,6 +34,20 @@ class Utils {
       .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
     return convert;
   }
+
+  static percentage(partialValue, totalValue) {
+    return ((partialValue / totalValue) * 100).toFixed(1);
+  }
+
+  static splitComma(string) {
+    const stringArray = string.split(',').map(item => item.trim());
+    return stringArray;
+  }
+
+  static convertStringNumber(stringArray) {
+    const numberArray = stringArray.map(item => Number(item));
+    return numberArray;
+  }
 }
 
 module.exports = Utils;
