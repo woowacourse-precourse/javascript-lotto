@@ -8,10 +8,6 @@ const {
 } = require('../utils/constants');
 
 class OutputView {
-  constructor(lottoGame) {
-    this.lottoGame = lottoGame;
-  }
-
   printLottosQuantity(lottosQuantity) {
     print('');
     print(lottosQuantity + MESSAGE.PURCHASED_LOTTOS_QUANTITY);
