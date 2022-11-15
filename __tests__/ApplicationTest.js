@@ -62,6 +62,45 @@ describe('로또 테스트', () => {
     });
   });
 
+  test('기능 테스트', () => {
+    mockRandoms([[8, 21, 23, 41, 42, 43]]);
+    mockQuestions(['1000', '8, 21, 23, 30, 40, 45', '7']);
+    const logs = [
+      '1개를 구매했습니다.',
+      '[8, 21, 23, 41, 42, 43]',
+      '3개 일치 (5,000원) - 1개',
+      '4개 일치 (50,000원) - 0개',
+      '5개 일치 (1,500,000원) - 0개',
+      '5개 일치, 보너스 볼 일치 (30,000,000원) - 0개',
+      '6개 일치 (2,000,000,000원) - 0개',
+      '총 수익률은 500%입니다.',
+    ];
+    const logSpy = getLogSpy();
+    const app = new App();
+    app.play();
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  test('로또별 당첨 통계 테스트', () => {
+    mockRandoms([[8, 21, 23, 41, 42, 43]]);
+    mockQuestions(['1000', '8, 21, 23, 30, 40, 45', '7']);
+
+    const app = new App();
+    app.play();
+    expect(app.lottoMachine.calculateResult(app.lottos)).toEqual([
+      1, 0, 0, 0, 0,
+    ]);
+  });
+
+  test('수익률은 당첨된 금액을 구입 금액으로 나누어 백분율로 환산한 값이다.', () => {
+    const app = new App();
+    app.price = 8000;
+    app.play();
+    expect(app.getProfit([1, 0, 0, 0, 0])).toEqual(62.5);
+  });
+
   test('로또 구입 금액을 입력하면 구입 금액에 해당하는 만큼 로또를 발행한다.', () => {
     mockRandoms([
       [43, 42, 41, 21, 23, 8],
