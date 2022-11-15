@@ -4,6 +4,13 @@ const { separateStringBySpecificCharacter } = require('../utils/common.js');
 const { INFORMATION_MESSAGE, ERROR_MESSAGE } = require('../constants/index.js');
 
 class InputWinningNumberView {
+  inputWinningNumberFromUser(judgePurchasedLottoOfResult) {
+    Console.readLine(INFORMATION_MESSAGE.INPUT_WINNING_NUMBER, (winningNumber) => {
+      this.isValidateWinningNumber(separateStringBySpecificCharacter(winningNumber, ','));
+      this.inputBonusNumberFromUser(judgePurchasedLottoOfResult);
+    });
+  }
+
   isValidateWinningNumber(winningNumber) {
     winningNumber.forEach((number) => {
       isValidateNumber(number);
@@ -13,10 +20,10 @@ class InputWinningNumberView {
     this.winningNumber = winningNumber.map(Number);
   }
 
-  inputWinningNumberFromUser(judgePurchasedLottoOfResult) {
-    Console.readLine(INFORMATION_MESSAGE.INPUT_WINNING_NUMBER, (winningNumber) => {
-      this.isValidateWinningNumber(separateStringBySpecificCharacter(winningNumber, ','));
-      this.inputBonusNumberFromUser(judgePurchasedLottoOfResult);
+  inputBonusNumberFromUser(judgePurchasedLottoOfResult) {
+    Console.readLine(INFORMATION_MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
+      this.isValidateBonusNumber(bonusNumber);
+      judgePurchasedLottoOfResult(this.winningNumber, bonusNumber);
     });
   }
 
@@ -24,13 +31,6 @@ class InputWinningNumberView {
     isValidateNumber(bonusNumber);
     isLottoRange(bonusNumber);
     if (this.winningNumber.includes(Number(bonusNumber))) throw new Error(ERROR_MESSAGE.BONUS_NUMBER_ALREADY_EXISTS);
-  }
-
-  inputBonusNumberFromUser(judgePurchasedLottoOfResult) {
-    Console.readLine(INFORMATION_MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
-      this.isValidateBonusNumber(bonusNumber);
-      judgePurchasedLottoOfResult(this.winningNumber, bonusNumber);
-    });
   }
 }
 
