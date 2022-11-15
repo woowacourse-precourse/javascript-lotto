@@ -36,10 +36,7 @@ class App {
   }
 
   bonusValidate(bonus) {
-    if (bonus.length > 1) {
-      throw new Error("[ERROR] 보너스 번호가 한 자리가 아닙니다.");
-    }
-    if (bonus.length < 1) {
+    if (bonus.length > 1 || bonus.length < 1) {
       throw new Error("[ERROR] 보너스 번호가 한 자리가 아닙니다.");
     }
   }
@@ -153,8 +150,5 @@ class App {
     return number.split(",").map(Number);
   }
 }
-
-const app = new App();
-app.play();
 
 module.exports = App;
