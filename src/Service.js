@@ -58,8 +58,8 @@ class Service {
 
     for (let i = 0; i < this.lottoList.length; i += 1) {
       let winnings = result.compare(
-        this.lottoList[i],
         this.lottoNumber,
+        this.lottoList[i],
         this.bonusNumber
       );
       ranking[winnings] += 1;

@@ -9,7 +9,7 @@ class Result {
     this.#bonusNumber = bonusNumber;
   }
 
-  compare(lottoNumber, myLottoNumber, bonusNumber) {
+  /*compare(lottoNumber, myLottoNumber, bonusNumber) {
     let originalResult = 0;
     const myLottoNumberArray = myLottoNumber
       .split(',')
@@ -18,6 +18,18 @@ class Result {
 
     lottoNumber.forEach((number) => {
       if (myLottoNumberArray.includes(number)) {
+        originalResult += 1;
+      }
+    });
+  }
+  */
+  compare(lottoNumber, myLottoNumber, bonusNumber) {
+    let originalResult = 0;
+    const lottoNumberArray = lottoNumber.split(',').map((number) => number * 1);
+    const bonusResult = myLottoNumber.includes(bonusNumber * 1);
+
+    myLottoNumber.forEach((number) => {
+      if (lottoNumberArray.includes(number)) {
         originalResult += 1;
       }
     });
