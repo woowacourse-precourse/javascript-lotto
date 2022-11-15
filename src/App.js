@@ -53,6 +53,7 @@ class App {
 
   createLottoNumber() {
     let lottos = Random.pickUniqueNumbersInRange(1, 45, 9);
+    lottos.map((item, index) => validation.isDuplicate(lottos, item, index));
     this.#numbers.push(lottos);
     Console.print(this.arrayToString(lottos));
   }

@@ -1,5 +1,7 @@
 const { MAX_LENGTH, MESSAGE } = require("./utils/Constants");
+const Validation = require("./utils/Validation");
 
+const validation = new Validation();
 class Lotto {
   #numbers;
 
@@ -17,8 +19,7 @@ class Lotto {
 
   validateDuplicate(numbers) {
     numbers.map((item, index) => {
-      if (numbers.indexOf(item) !== index)
-        throw new Error("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+      validation.isDuplicate(numbers, item, index);
     });
   }
 
