@@ -5,7 +5,7 @@ const {
 const { MONEY, PERCENTAGE, SECOND_DECIMAL } = require('../lotto-data/Constant');
 
 function calculateRateOfReturn() {
-  saveRateOfReturn(calculate());
+  saveRateOfReturn(RoundSecondDecimalPlace(calculate()));
 }
 
 function saveRateOfReturn(calculatedValue) {
@@ -13,9 +13,11 @@ function saveRateOfReturn(calculatedValue) {
 }
 
 function calculate() {
-  return ((sum() / LottoNumberData.AmountPaid) * PERCENTAGE).toFixed(
-    SECOND_DECIMAL
-  );
+  return (sum() / LottoNumberData.AmountPaid) * PERCENTAGE;
+}
+
+function RoundSecondDecimalPlace(value) {
+  return value.toFixed(SECOND_DECIMAL);
 }
 
 function sum() {
