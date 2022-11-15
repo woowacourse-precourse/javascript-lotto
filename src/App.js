@@ -26,7 +26,7 @@ class App {
   }
 
   printBuyingLottoNumber() {
-    Console.print(`${this.buyingLottoNumber}${MESSAGE.BUYING_LOTTO_NUMBER}`);
+    Console.print(`\n${this.buyingLottoNumber}${MESSAGE.BUYING_LOTTO_NUMBER}`);
     return this.printBuyingLottoList();
   }
 
@@ -57,6 +57,7 @@ class App {
 
   printWinningResult() {
     const winningResult = new WinningResult(this.winningNumberList, this.bonusNumber, this.lottoTicketList);
+    Console.print(MESSAGE.WINNING_STATICS);
     Console.print(`${WINNING_RESULT_PRINT[3]} - ${winningResult.numberByMatching[3]}개`);
     Console.print(`${WINNING_RESULT_PRINT[4]} - ${winningResult.numberByMatching[4]}개`);
     Console.print(`${WINNING_RESULT_PRINT[5]} - ${winningResult.numberByMatching[5]}개`);
