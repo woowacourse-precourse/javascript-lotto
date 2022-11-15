@@ -143,6 +143,8 @@ class App {
     Console.readLine(GUIDE.ENTER_BONUS_NUMBER, (input) => {
       if (this.isValidBonusNumber(input)) {
         this.bonusNumber = Number(input);
+        Console.print('');
+        this.printGameResult();
       }
     });
   }
@@ -166,11 +168,77 @@ class App {
   }
 
   compareGeneratedLottoWithWinngNumbers(generatedLotto) {
-    let numberOfMatching = 0;
+    let numberOfMatchingWithWinngNumbers = 0;
     generatedLotto.forEach((number) => {
-      if (this.winningNumbers.includes(number)) numberOfMatching += 1;
+      if (this.winningNumbers.includes(number)) numberOfMatchingWithWinngNumbers += 1;
     });
-    return numberOfMatching;
+    return numberOfMatchingWithWinngNumbers;
+  }
+
+  isMatchWithBonusNumber(generatedLotto) {
+    return generatedLotto.includes(this.bonusNumber);
+  }
+
+  calculateResult() {
+    const numbersOfMatching = [0, 0, 0, 0, 0];
+    this.generatedLottos.forEach((generatedLotto) => {
+      let numberOfMatchingWithWinngNumbers =
+        this.compareGeneratedLottoWithWinngNumbers(generatedLotto);
+      if (numberOfMatchingWithWinngNumbers < 3) return;
+      if (numberOfMatchingWithWinngNumbers < 6 && !this.isMatchWithBonusNumber(generatedLotto))
+        numbersOfMatching[numberOfMatchingWithWinngNumbers - 3] += 1;
+      if (numberOfMatchingWithWinngNumbers === 5 && this.isMatchWithBonusNumber(generatedLotto))
+        numbersOfMatching[3] += 1;
+      if (numberOfMatchingWithWinngNumbers === 6) numbersOfMatching[4] += 1;
+    });
+    return numbersOfMatching;
+  }
+
+  getResultSixNumbersMatching(winningAmount, number) {
+    return `6개 일치 (${winningAmount.toLocaleString()}원) - ${number}개\n`;
+  }
+
+  getResultThreetoFiveNumbersMatching(numberOfMatching, winningAmount, number) {
+    return `${numberOfMatching}개 일치 (${winningAmount.toLocaleString()}원) - ${number}개\n`;
+  }
+
+  getResultFiveNumbersWithBonusNumberMatching(winningAmount, number) {
+    return `5개 일치, 보너스 볼 일치 (${winningAmount.toLocaleString()}원) - ${number.toLocaleString()}개\n`;
+  }
+
+  getMatchiingResult(winningAmounts, numbersOfMatching) {
+    let matchingResult = '';
+    numbersOfMatching.forEach((number, idx) => {
+      let amount = winningAmounts[idx];
+      if (idx !== 3 && idx !== 4) {
+        matchingResult += this.getResultThreetoFiveNumbersMatching(idx + 3, amount, number);
+      }
+      if (idx === 3)
+        matchingResult += this.getResultFiveNumbersWithBonusNumberMatching(amount, number);
+      if (idx === 4) {
+        matchingResult += this.getResultSixNumbersMatching(amount, number);
+      }
+    });
+    return matchingResult;
+  }
+
+  getRateOfReturn(winningAmounts, numbersOfMatching) {
+    let totalWinningAmount = 0;
+    winningAmounts.forEach(
+      (_, idx) => (totalWinningAmount += winningAmounts[idx] * numbersOfMatching[idx])
+    );
+    return Number.parseFloat((totalWinningAmount / this.purchaseAmount) * 100).toFixed(2);
+  }
+
+  printGameResult() {
+    const winningAmounts = [5000, 50000, 1500000, 30000000, 2000000000];
+    const numbersOfMatching = this.calculateResult();
+    let result = '';
+    Console.print(GUIDE.SHOW_GAME_RESULT);
+    result += this.getMatchiingResult(winningAmounts, numbersOfMatching);
+    result += `총 수익률은 ${this.getRateOfReturn(winningAmounts, numbersOfMatching)}%입니다.`;
+    Console.print(result);
+    Console.close();
   }
 }
 

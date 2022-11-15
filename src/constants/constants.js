@@ -13,6 +13,7 @@ const INCLUDE_NOT_NUMBER_IN_BONUS_NUMBER_ERROR = '[ERROR] 보너스번호는 숫
 const BONUS_NUMBER_OUT_OF_RANGE_ERROR = '[ERROR] 보너스번호는 1이상 45이하의 숫자이어야 합니다.';
 const BONUS_NUMBER_DUPLICATED_WITH_WINNING_NUMBERS =
   '[ERROR] 당첨번호와 보너스 번호는 중복되지 않아야 합니다.';
+const SHOW_GAME_RESULT = '당첨 통계\n---';
 
 module.exports = {
   GUIDE: {
@@ -20,6 +21,7 @@ module.exports = {
     SHOW_NUMBER_OF_LOTTOS,
     ENTER_WINNING_NUMBERS,
     ENTER_BONUS_NUMBER,
+    SHOW_GAME_RESULT,
   },
   ERROR: {
     INCLUDE_NOT_NUMBER_IN_PURCHASE_AMOUNT_ERROR,
