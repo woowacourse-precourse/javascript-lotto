@@ -1,5 +1,3 @@
-// @ts-check
-
 const User = require('./User.js');
 const LottoManager = require('./LottoManager.js');
 const Utils = require('./utils/Utils.js');
