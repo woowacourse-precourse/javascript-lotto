@@ -1,6 +1,7 @@
 /* eslint-disable no-new */
 const Lotto = require('../src/Lotto');
 const App = require('../src/App');
+const ErrorInfo = require('../src/ErrorInfo');
 
 describe('로또 클래스 테스트', () => {
   test('로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.', () => {
@@ -86,6 +87,19 @@ describe('LottoInstance 테스트', () => {
     testInput.forEach((testArray) => {
       const lottoInstance = new Lotto(testArray);
       expect(lottoInstance.getNumbers()).toEqual(testArray);
+    });
+  });
+});
+
+describe('isValidNumber 테스트', () => {
+  test('보너스 숫자 유효성검사', () => {
+    const errInfo = new ErrorInfo();
+    const winningLotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    const testBonusNumber = ['0', 'abc', '12', '67', '7', '3'];
+    const testOutput = [false, false, true, false, true, false];
+    testBonusNumber.forEach((bonusNumber, idx) => {
+      const result = errInfo.isValidNumber(bonusNumber, winningLotto);
+      expect(result).toEqual(testOutput[idx]);
     });
   });
 });
