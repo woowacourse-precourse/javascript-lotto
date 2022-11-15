@@ -24,9 +24,14 @@ function validateRange(number) {
   }
 }
 
+function roundCustom(number) {
+  return Math.round(number * 100) / 100;
+}
+
 module.exports = {
   validateMoney,
   validateLength,
   validateDuplication,
   validateRange,
+  roundCustom,
 };
