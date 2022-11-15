@@ -43,5 +43,17 @@ class MadeNumber {
     return randomLotto;
   }
 
+  static checkLotto(number) {
+    number = number.split(',');
+    [...number].forEach(numbers => {
+      if (isNaN(numbers)) {
+        throw Error(MESSAGE.NAN_ERROR);
+      }
+      if (numbers <= 0 || numbers > 45) {
+        throw Error(MESSAGE.NUMBER_RANGE_ERROR);
+      }
+    });
+    return new Lotto(number);
+  }
 }
 module.exports = MadeNumber;
