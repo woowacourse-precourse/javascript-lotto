@@ -1,3 +1,4 @@
+//예제테스트
 const { Random } = require('@woowacourse/mission-utils');
 const { RESTRICTIONS } = require('../lotto-data/Constant');
 const Lotto = require('../../Lotto');

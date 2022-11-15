@@ -1,3 +1,4 @@
+//예제테스트
 const {
   LottoNumberData,
   LottoRanking,

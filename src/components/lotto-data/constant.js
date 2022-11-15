@@ -1,3 +1,4 @@
+//예제테스트
 // matchLottoNumberWithWinningNumber.js 상수
 
 const RANK = Object.freeze({

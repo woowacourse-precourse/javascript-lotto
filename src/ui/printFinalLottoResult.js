@@ -1,3 +1,4 @@
+//예제테스트
 const { Console } = require('@woowacourse/mission-utils');
 const {
   RESULT_MESSAGE,
