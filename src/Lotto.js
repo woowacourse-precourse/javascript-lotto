@@ -1,7 +1,10 @@
+const Validation = require('./components/Validation');
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
+    Validation.validateLotto(numbers);
     this.#numbers = numbers;
   }
 
