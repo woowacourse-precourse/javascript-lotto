@@ -7,6 +7,10 @@ class Calculate {
         return money % 1000;
     }
 
+    static calculateProfit (sum, money) {
+        return (sum / money) * 100;
+    }
+
     
 }
 
