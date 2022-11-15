@@ -33,5 +33,4 @@ describe('당첨 통계 테스트', () => {
     expect(rankTest.getRank()).toEqual(rank);
   });
 
-
 });

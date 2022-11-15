@@ -64,6 +64,20 @@ class staticLotto {
     return this.#rank;
   }
 
+  setTotalRevenue() {
+    const rank = this.#rank;
+    const revenue = (
+      ((5000 * rank.rankFive +
+        50000 * rank.rankFour +
+        1500000 * rank.rankThree +
+        30000000 * rank.rankTwo +
+        2000000000 * rank.rankOne) /
+        this.#purchasePrice) *
+      100
+    ).toFixed(1);
+    return revenue;
+  }
+
 }
 
 module.exports = staticLotto;
