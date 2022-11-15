@@ -1,4 +1,5 @@
 const { Random, Console } = require('@woowacourse/mission-utils');
+const { MY_LOTTO_ERROR } = require('./constants/constants');
 
 class MyLotto {
   constructor(purchasePrice) {
@@ -9,11 +10,11 @@ class MyLotto {
 
   validate(purchasePrice) {
     if (/[^0-9]/.test(purchasePrice)) {
-      throw new Error('[ERROR] 구입 금액은 숫자여야 합니다.');
+      throw new Error(MY_LOTTO_ERROR.NUMBER);
     }
 
     if (Number(purchasePrice) % 1000 !== 0) {
-      throw new Error('[ERROR] 구입 금액은 1000단위여야 합니다.');
+      throw new Error(MY_LOTTO_ERROR.UNIT);
     }
   }
 
@@ -47,7 +48,6 @@ class MyLotto {
     Console.print(`\n${this.amount}개를 구매했습니다.`);
     this.sort();
     this.myLotto.forEach((lotto) => Console.print(`[${lotto.join(', ')}]`));
-    Console.print('\n');
   }
 
   sort() {
