@@ -23,4 +23,9 @@ module.exports = {
   printRevenueRate(revenueRate) {
     MissionUtils.Console.print(`총 수익률은 ${revenueRate}%입니다.`);
   },
+
+  printError(error) {
+    MissionUtils.Console.print(error);
+    MissionUtils.Console.close();
+  },
 };
