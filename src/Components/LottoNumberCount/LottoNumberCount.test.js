@@ -16,4 +16,11 @@ describe('LottoNumberCount 클래스 테스트', () => {
 
     expect(isSame).toBe(false);
   });
+
+  test('null로도 초기화할 수 있다.', () => {
+    const lottoNumberCount = new LottoNumberCount(null);
+    const isNull = lottoNumberCount.isNull();
+
+    expect(isNull).toBe(true);
+  });
 });
