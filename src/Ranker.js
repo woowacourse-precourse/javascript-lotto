@@ -8,14 +8,19 @@ class Ranker {
     });
   }
 
-  static getPriceRank(lottos, [winNumbers, bonus]) {
+  static #calculatePriceRank(conditions, acc) {
+    conditions.forEach((condition, idx) => {
+      if (condition) acc[idx] += 1;
+    });
+  }
+
+  static getPriceRank(lottos, [wins, bonus]) {
     const initialState = [0, 0, 0, 0, 0];
     return lottos.reduce((acc, lotto) => {
-      const sameCount = LottoAdmin.getSameNumWithInputLotto(lotto, winNumbers);
-      const conditions = this.#generateRankCondition(sameCount, [lotto, bonus]);
-      conditions.forEach((condition, idx) => {
-        if (condition) acc[idx] += 1;
-      });
+      const lottoWithBonus = [...wins, bonus];
+      const count = LottoAdmin.getSameNumWithInputLotto(lotto, lottoWithBonus);
+      const conditions = this.#generateRankCondition(count, [lotto, bonus]);
+      this.#calculatePriceRank(conditions, acc);
       return acc;
     }, initialState);
   }

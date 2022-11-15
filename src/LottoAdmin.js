@@ -14,6 +14,7 @@ class LottoAdmin {
   }
 
   static getSameNumWithInputLotto(lotto, winNumbers) {
+    console.log(lotto, winNumbers);
     return lotto.filter((num) => winNumbers.includes(num)).length;
   }
 
