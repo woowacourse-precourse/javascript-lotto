@@ -3,6 +3,12 @@ const { Random, Console } = require("@woowacourse/mission-utils");
 const Lotto = require('./Lotto.js');
 
 class App {
+  constructor(){
+    this.money = null;
+    this.lotto = []; 
+    this.winNum = [];
+    this.bonusNum = null;
+  }
 
 buyLotto() {
   let countLotto;
@@ -14,8 +20,8 @@ buyLotto() {
     countLotto = Number(num) / 1000;
     throwInput = Number(num) % 1000;
     Console.print(`${countLotto}개를 구매했습니다.`);
+    this.showLottoNumber(countLotto, throwInput);
   });
-  this.showLottoNumber(countLotto, throwInput);
 }
 
 setLottoNumbers(){
@@ -48,25 +54,26 @@ inputLottoNumber(lottos){
     // const uniqueNumber = [...lengthThrow];
     // if(uniqueNumber.length != inputSixNumber.length) throw '[ERROR] 중복된 로또 번호가 있습니다.';
     // console.log(uniqueNumber);
+    const lottoCheck = new Lotto(inputSixNumber);
+    lottoCheck.checkNum();
+    lottoCheck.checkOther(inputSixNumber);
+    this.inputBonusLotto(inputSixNumber, lottos);
   });
-  const lottoCheck = new Lotto(inputSixNumber);
-  lottoCheck.checkNum();
-  lottoCheck.checkOther(inputSixNumber);
-  this.inputBonusLotto(inputSixNumber, lottos);
 }
 
 inputBonusLotto(inputSixNumber, lottos){
   let inputBonusNumber;
+  let last;
   Console.readLine('보너스 번호를 입력해 주세요.\n', (num) => {
     inputBonusNumber = Number(num);
     inputSixNumber.push(inputBonusNumber);
+    last = inputBonusNumber;
+    this.compareLotto(inputSixNumber,last, lottos);
   });
-  this.compareLotto(inputSixNumber, lottos);
 }
 
-compareLotto(inputSixNumber, lottos){
+compareLotto(inputSixNumber,last, lottos){
   let checkLength = [];
-  let last = inputSixNumber.pop();
   for (let i = 0; i < lottos.length; i++) {
     checkLength[i] = inputSixNumber.filter(num => lottos[i].includes(num)).length;
   }
@@ -74,16 +81,16 @@ compareLotto(inputSixNumber, lottos){
 }
 
 countScore(checkLength,lottos,last){
+  let first = 0;
   let second = 0;
-  let third = 0;
   for(let i = 0; i < lottos.length; i++){
-    if (lottos[i].includes(last) && checkLength[i] === 5) {
+    if (lottos[i].includes(last) && checkLength[i] === 6) {
       second++;
-    } else if(!lottos[i].includes(last) && checkLength[i] === 5) {
-      third++;
+    } else if(!lottos[i].includes(last) && checkLength[i] === 6) {
+      first++;
     }
   }
-  let first = checkLength.filter(num => 6 === num).length;
+  let third = checkLength.filter(num => 5 === num).length;
   let fourth = checkLength.filter(num => 4 === num).length;
   let fiveth = checkLength.filter(num => 3 === num).length;
   this.showCount(first,second,third,fourth,fiveth,lottos);
@@ -118,7 +125,7 @@ play() {
   }
 }
 
-// const app = new App();
-// app.play();
+const app = new App();
+app.play();
 
 module.exports = App;
