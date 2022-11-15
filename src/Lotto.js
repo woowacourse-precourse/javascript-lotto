@@ -14,6 +14,10 @@ class Lotto {
   checkSameNumber(numbers) {
     return this.#numbers.filter((number) => numbers.includes(number)).length;
   }
+
+  printLotto() {
+    return `[${this.#numbers.join(', ')}]`;
+  }
 }
 
 module.exports = Lotto;
