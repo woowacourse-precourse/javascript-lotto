@@ -60,6 +60,10 @@ class Game {
         this.inputBonusNumber();
     }
 
+    inputBonusNumber () {
+        InputOutput.input(Message.PLEASE_TYPING_BONUS_NUMBER, (bonus) => this.setBonusNumber(bonus));
+    }
+
 }
 
 module.exports = Game;
