@@ -3,6 +3,8 @@ const Console = MissionUtils.Console;
 
 const Buyer = require("./Buyer");
 const Lotto = require("./Lotto");
+const Exception = require("./Exception");
+
 const STATIC = require("./static.json");
 const PHRASES = STATIC.phrases;
 
@@ -58,13 +60,21 @@ class App {
 
   enterBonus() {
     Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonus) => {
-      this.#Lotto.bonusCharacterCheck(bonus);
-      this.#Lotto.bonusRangeCheck(bonus);
-      this.#Lotto.bonusDuplicateCheck(bonus);
       this.#bonus = bonus;
+      const tempNumbers = this.#Lotto.numbers;
 
+      this.bonusException(bonus, tempNumbers);
       this.winningCalculation();
     });
+  }
+
+  bonusException(bonus, tempNumbers) {
+    const exception = new Exception;
+    const addBonusNumbers = [bonus, ...tempNumbers];
+
+    exception.string(bonus);
+    exception.range(bonus);
+    exception.duplicate(addBonusNumbers);
   }
 
   winningCalculation() {

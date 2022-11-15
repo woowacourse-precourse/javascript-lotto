@@ -1,14 +1,15 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Random = MissionUtils.Random;
 
+const Exception = require("./Exception");
+
 class Buyer {
     #money;
     #lottoNumbers;
     #purchaseLottos;
 
     constructor(money) {
-        this.stringException(money);
-        this.divideException(money);
+        this.purchaseException(money);
         this.#money = money;
     }
 
@@ -24,16 +25,10 @@ class Buyer {
         return this.#purchaseLottos;
     }
 
-    stringException(money) {
-        if (!Number(money)) {
-            throw new Error("[ERROR] 금액은 정수로 입력해야 합니다.");
-        }
-    }
-    
-    divideException(money) {
-        if ((money % 1000 !== 0)) {
-            throw new Error("[ERROR] 금액은 1000으로 나누어떨어져야 합니다.");
-        }
+    purchaseException(money) {
+        const exception = new Exception;
+        exception.string(money);
+        exception.divide(money);
     }
 
     countLotto() {
