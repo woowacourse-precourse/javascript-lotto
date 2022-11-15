@@ -27,4 +27,16 @@ describe('로또 결과 판단 클래스 테스트', () => {
     const winningNum = winningArr[5]; // 6
     expect(compareNumbers.hasSameNumber(lotto, winningNum)).toBeFalsy();
   });
+
+  test('(countSameNumbers) 로또와 당첨번호 일치하는 개수 구하기', () => {
+    const lotto = lottoArr[7]; // [1, 3, 5, 14, 22, 45]
+    const expected = 3;
+    expect(compareNumbers.countSameNumbers(lotto)).toBe(expected);
+  });
+
+  test('(countSameNumbers) 로또와 당첨번호 일치하는 개수 구하기2', () => {
+    const lotto = lottoArr[6]; // [2, 13, 22, 32, 38, 45]
+    const expected = 1;
+    expect(compareNumbers.countSameNumbers(lotto)).toBe(expected);
+  });
 });
