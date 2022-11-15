@@ -6,10 +6,13 @@ const Errors = require("./Error.js")
 class App {
   constructor() {
     this.Lotto() = new Lotto()
+    this.raffleNumber = [];
   }
   play() {
     MissionUtils.Console.readLine(Messages.INPUT_MONEY, (money) => {
       this.inputNumber()
+      this.inputIsValid(money)
+      this.createRandomNumber(money)
     });
   }
 
@@ -21,7 +24,18 @@ class App {
   inputNumber() {
     MissionUtils.Console.readLine(Messages.INPUT_NUMBER, (numbers) => {
 
-    })
+    });
+  }
+  createRandomNumber(number) {
+    const lottoLength = money / 1000;
+    MissionUtils.Console.print(lottoLength + Messages.BUY_LOTTO)
+
+    for (let i = 0; i < lottoLength; i++) {
+      let randomNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
+      MissionUtils.Console.print(`[${randomNumber.join(', ')}]`);
+      this.Lotto.validate(randomNumber);
+      this.raffleNumber.push(`${randomNumber}`)
+    }
   }
 }
 
