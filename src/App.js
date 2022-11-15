@@ -64,6 +64,21 @@ class App {
     Console.print(Const.WINNING_COUNT_MESSAGE.SECOND + winning.SECOND + '개');
     Console.print(Const.WINNING_COUNT_MESSAGE.FIRST + winning.FIRST + '개');
   }
+
+  carculateProfitRate(lottoCount, winning) {
+    let profit =
+      winning.FIFTH * 5000 + winning.FOURTH * 50000 + winning.THIRD * 1500000 + winning.SECOND * 30000000 + winning.FIRST * 2000000000;
+
+    let buyPrice = lottoCount * Const.PRICE_PER_LOTTO;
+
+    const profitRate = (profit / buyPrice) * 100;
+    this.printProfitRate(profitRate);
+    return profitRate.toFixed(1);
+  }
+
+  printProfitRate(profitRate) {
+    Console.print(`총 수익률은 ${profitRate}%입니다.`);
+  }
 }
 
 module.exports = App;
