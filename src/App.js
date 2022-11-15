@@ -15,7 +15,7 @@ class App {
     MissionUtils.Console.print(matchNumbersInput)
 
     const bonusNumberInput = await getInput('보너스 번호를 입력해 주세요\n')
-    validateBonusNumberInput(matchNumbers, bonusNumberInput)
+    validateBonusNumberInput(bonusNumberInput, matchNumbers)
     const bonusNumber = parseInt(bonusNumberInput, 10)
     MissionUtils.Console.print(bonusNumberInput)
     
