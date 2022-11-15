@@ -13,24 +13,8 @@ class Lottos {
     this.generateLottoNumbers = new GenerateLottoNumbers();
     this.count = purchaseAmount / UNIT.DIVIDE;
     this.lottos = [];
-    this.ranks = [];
 
     this.createLottos();
-  }
-
-  printCount() {
-    MissionUtils.Console.print("\n");
-    MissionUtils.Console.print(`${this.count}개를 구매했습니다.`);
-  }
-
-  printLottos() {
-    this.printCount();
-
-    this.lottos.forEach((lotto) => {
-      lotto.printLotto();
-    });
-
-    MissionUtils.Console.print("\n");
   }
 
   createLottos() {
@@ -43,18 +27,37 @@ class Lottos {
     }
   }
 
-  createRanks(winningNumbers, bonusNum) {
+  printLottoCount() {
+    MissionUtils.Console.print("\n");
+    MissionUtils.Console.print(`${this.count}개를 구매했습니다.`);
+  }
+
+  printLottos() {
+    this.printLottoCount();
+
     this.lottos.forEach((lotto) => {
-      this.ranks.push(lotto.getRank(winningNumbers, bonusNum));
+      lotto.printLotto();
     });
 
-    this.ranks = this.ranks.filter((rank) => rank !== 0);
+    MissionUtils.Console.print("\n");
+  }
+
+  getRanks(winningNumbers, bonusNum) {
+    let ranks = [];
+
+    this.lottos.forEach((lotto) => {
+      ranks.push(lotto.getRank(winningNumbers, bonusNum));
+    });
+
+    ranks = ranks.filter((rank) => rank !== 0);
+
+    return ranks;
   }
 
   getResult(winningNumber, bonusNum) {
-    this.createRanks(winningNumber, bonusNum);
+    const ranks = this.getRanks(winningNumber, bonusNum);
 
-    const result = this.ranks.reduce((accu, curr) => {
+    const result = ranks.reduce((accu, curr) => {
       accu.set(curr, (accu.get(curr) || 0) + 1);
       return accu;
     }, new Map());
@@ -64,6 +67,7 @@ class Lottos {
 
   printResult(winningNumber, bonusNum) {
     const result = this.getResult(winningNumber, bonusNum);
+
     let { userWinningMoney, userWinningCount } =
       this.createUserWinningData(result);
 
@@ -77,7 +81,7 @@ class Lottos {
     const winningMoney = [2000000000, 30000000, 1500000, 50000, 5000];
 
     let userWinningMoney = 0;
-    const userWinningCount = [];
+    let userWinningCount = [];
 
     for (let rank = RANK.FIFTH; rank >= RANK.FIRST; rank--) {
       let cnt = 0;
