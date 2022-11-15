@@ -1,5 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("../src/Lotto");
+const winstatistics = require("../src/statistics");
 
 class App {
   constructor() {
@@ -54,14 +55,14 @@ class App {
     }
   }
 
-  getWinLotto() {
+  putWinLotto() {
     MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.\n", (number) => {
       this.commaValidation(number);
       let winNum = number.split(",", 6).map(function (item) {
         return parseInt(item, 10);
       });
       this.winLotto = new Lotto(winNum);
-      this.getBonusNum();
+      this.putBonusNum();
     });
   }
 
@@ -74,14 +75,69 @@ class App {
     }
   }
 
-  getBonusNum() {
+  putBonusNum() {
     MissionUtils.Console.readLine(
       "보너스 번호를 입력해 주세요.\n",
       (number) => {
         this.bonusValidation(parseInt(number));
         this.bonusNum = parseInt(number);
+        this.printWinContent();
       }
     );
+  }
+
+  equalLotto(lotto) {
+    let equal = {
+      equalNumCount: 0,
+      equalBonus: 0,
+    };
+    for (let num of lotto) {
+      if (this.winLotto.includes(num)) {
+        equal.equalNumCount += 1;
+      }
+      if (this.bonusNum === num) {
+        equal.equalBonus += 1;
+      }
+    }
+    return equal;
+  }
+
+  winCost(winContent) {
+    const equalNumCount = winContent.equalNumCount;
+    const equalBonus = winContent.equalBonus;
+
+    if (equalNumCount + equalBonus === 3) {
+      winstatistics["3개 일치 (5,000원)"] += 1;
+    }
+
+    if (equalNumCount + equalBonus === 4) {
+      winstatistics["4개 일치 (50,000원)"] += 1;
+    }
+
+    if (equalNumCount + equalBonus === 5) {
+      winstatistics["5개 일치 (1,500,000원)"] += 1;
+    }
+
+    if (equalNumCount === 5 && equalBonus === 1) {
+      winstatistics["5개 일치, 보너스 볼 일치 (30,000,000원)"] += 1;
+    }
+
+    if (equalNumCount === 6) {
+      winstatistics["6개 일치 (2,000,000,000원)"] += 1;
+    }
+  }
+
+  printWinContent() {
+    this.winLotto = this.winLotto.getWinLotto();
+    this.myLotto.forEach((lotto) => {
+      this.winCost(this.equalLotto(lotto));
+    });
+
+    MissionUtils.Console.print("당첨 통계");
+    MissionUtils.Console.print("---");
+    for (let item in winstatistics) {
+      MissionUtils.Console.print(`${item} - ${winstatistics[item]}개`);
+    }
   }
 
   play() {
@@ -92,12 +148,11 @@ class App {
       MissionUtils.Console.print(`${lottoCount}개를 구매했습니다.`);
       this.getLottoNum(lottoCount);
 
-      this.getWinLotto();
+      this.putWinLotto();
     });
   }
 }
 
 const app = new App();
 app.play();
-
 module.exports = App;
