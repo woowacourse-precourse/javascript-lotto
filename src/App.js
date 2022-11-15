@@ -61,6 +61,13 @@ class App {
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${winningNumber[3]}개`)
     this.getRevenueRate(lotto)
   }
+
+  getRevenueRate(lotto) {
+    const revenue = lotto.getRevenue();
+    const revenueRate = lotto.caculationRevenueRate(revenue, this.amount)
+
+    MissionUtils.Console.print(`총 수익률은 ${revenueRate}%입니다.`)
+  }
 }
 
 const app = new App;
