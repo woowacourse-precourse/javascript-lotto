@@ -38,7 +38,7 @@ class App {
   }
 
   getInputMoney() {
-    Console.readLine("구매금액을 입력해 주세요.\n", (input) => {
+    Console.readLine("```\n구매금액을 입력해 주세요.\n", (input) => {
       if (!this.isValidMoney(input)) {
         throw "[ERROR]";
       }
