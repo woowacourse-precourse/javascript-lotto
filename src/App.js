@@ -17,6 +17,18 @@ class App {
         payCash = answer;
       });
     }
+
+    function checkMoney(){
+      if (Number.isNaN(Number(payCash))){
+        throw new Error("[ERROR] 숫자를 입력해주세요.");
+      } else if (parseInt(payCash) !== Number(payCash)){
+        throw new Error("[ERROR] 1,000원 단위로 입력해주세요.");
+      } else if (Number(payCash)%1000 !== 0){
+        throw new Error("[ERROR] 1,000원 단위로 입력해주세요.");
+      } else if (Number(payCash) < 1000){
+        throw new Error("[ERROR] 1,000원 이상으로 구매 가능합니다.");
+      }
+    }
   } //Play() 닫는 닫는 괄호
 }//class App 닫는괄호
 
