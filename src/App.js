@@ -58,7 +58,7 @@ class App {
   }
 
   showStat() {
-    this.user.calculateStat(this.hitLotto, this.bonusNumber);
+    this.user.calcStat(this.hitLotto, this.bonusNumber);
     this.output.print(message.PRIZE_STAT);
     this.output.print(message.LINE);
     this.printStat();
@@ -66,7 +66,7 @@ class App {
   }
 
   printUserLottos() {
-    this.user.calculateLottoCount();
+    this.user.calcLottoCount();
     this.user.lottos = LottoGenerator.generatedByCount(this.user.lottoCount);
     this.output.print(`${this.user.lottoCount}${message.BUY_AMOUNT}`);
     this.user.lottos.forEach((lotto) => {

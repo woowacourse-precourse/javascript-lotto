@@ -4,7 +4,7 @@ describe('User 클래스 테스트', () => {
   test('금액으로 로또 게임을 얼마나 살 수 있는지 계산하는 기능', () => {
     const user = new User();
     user.amount = 10000;
-    user.calculateLottoCount();
+    user.calcLottoCount();
     expect(user.lottoCount).toEqual(10);
   });
 
@@ -28,7 +28,7 @@ describe('User 클래스 테스트', () => {
   test('총 받을 금액을 계산하는 기능', () => {
     const user = new User();
     user.hitRanks = [0, 0, 0, 0, 0, 1];
-    user.calculateTotalPrize();
+    user.calcTotalPrize();
     expect(user.prize).toEqual(5000);
   });
 
@@ -36,7 +36,7 @@ describe('User 클래스 테스트', () => {
     const user = new User();
     user.prize = 5000;
     user.amount = 8000;
-    user.calcuateReturnOfInvestment();
+    user.calcReturnOfInvestment();
     expect(user.returnOfInvestment).toEqual('62.5');
   });
 });

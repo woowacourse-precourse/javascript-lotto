@@ -12,11 +12,11 @@ class User {
     this.returnOfInvestment = 0;
   }
 
-  calculateLottoCount() {
+  calcLottoCount() {
     this.lottoCount = this.amount / gameConfig.AMOUNT_PER_GAME;
   }
 
-  calculateHitLottoCount(hitLotto, bonusNumber) {
+  calcHitLottoCount(hitLotto, bonusNumber) {
     const hitLottoNumbers = hitLotto.getNumbers();
     this.lottos.forEach((lotto) => {
       const lottoNumbers = lotto.getNumbers();
@@ -57,19 +57,19 @@ class User {
     return rank.LOST;
   }
 
-  calculateStat(hitLotto, bonusNumber) {
-    this.calculateHitLottoCount(hitLotto, bonusNumber);
-    this.calculateTotalPrize();
-    this.calcuateReturnOfInvestment();
+  calcStat(hitLotto, bonusNumber) {
+    this.calcHitLottoCount(hitLotto, bonusNumber);
+    this.calcTotalPrize();
+    this.calcReturnOfInvestment();
   }
 
-  calculateTotalPrize() {
+  calcTotalPrize() {
     this.hitRanks.forEach((count, index) => {
       this.prize += lottoRank[index].prize * count;
     });
   }
 
-  calcuateReturnOfInvestment() {
+  calcReturnOfInvestment() {
     this.returnOfInvestment = ((this.prize / this.amount) * 100).toFixed(1);
   }
 }
