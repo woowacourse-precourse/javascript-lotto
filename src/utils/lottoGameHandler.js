@@ -1,17 +1,17 @@
 const { Random } = require('@woowacourse/mission-utils');
 
-const createLottoNumber = () => {
-  return Random.pickUniqueNumbersInRange(1, 45, 6);
+const createSelectedRangeArray = (min, max, count) => {
+  return Random.pickUniqueNumbersInRange(min, max, count);
 };
 
-const sortAscendingOrderLottoNumber = (lottoNumber) => {
-  return lottoNumber.sort((a, b) => a - b);
+const sortAscendingOrder = (arr) => {
+  return arr.sort((a, b) => a - b);
 };
 
-const generateLottoNumber = () => {
-  const lottoNumber = createLottoNumber();
-  const sortedLottoNumber = sortAscendingOrderLottoNumber(lottoNumber);
-  return sortedLottoNumber;
+const generateSortedRandomNumber = (min, max, count) => {
+  const randomeNumberArray = createSelectedRangeArray(min, max, count);
+  const sortedLottoNumberArray = sortAscendingOrder(randomeNumberArray);
+  return sortedLottoNumberArray;
 };
 
 const separateStringBySpecificCharacter = (string, charactor) => {
@@ -28,4 +28,9 @@ const checkHowManyCorrect = (lotto, winningNumber, bonusNumber) => {
     { correctCount: 0, bonus: 0 },
   );
 };
-module.exports = { createLottoNumber, generateLottoNumber, separateStringBySpecificCharacter, checkHowManyCorrect };
+module.exports = {
+  createSelectedRangeArray,
+  generateSortedRandomNumber,
+  separateStringBySpecificCharacter,
+  checkHowManyCorrect,
+};

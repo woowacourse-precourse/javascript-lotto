@@ -6,7 +6,7 @@ class App {
   }
 
   play() {
-    this.lottoMachineController.work();
+    this.lottoMachineController.start();
   }
 }
 
