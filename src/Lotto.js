@@ -1,3 +1,5 @@
+const { Random } = require('@woowacourse/mission-utils');
+
 class Lotto {
   static LOTTO_LENGTH = 6;
   static LOTTO_RANGE = { MIN: 1, MAX: 45 };
@@ -31,6 +33,14 @@ class Lotto {
         `[ERROR] 로또 번호는 ${Lotto.LOTTO_RANGE.MIN}부터 ${Lotto.LOTTO_RANGE.MAX} 사이의 숫자여야 합니다.`
       );
   }
+
+  static issueLotto = () => {
+    return Random.pickUniqueNumbersInRange(
+      Lotto.LOTTO_RANGE.MIN,
+      Lotto.LOTTO_RANGE.MAX,
+      Lotto.LOTTO_LENGTH
+    );
+  };
 }
 
 module.exports = Lotto;
