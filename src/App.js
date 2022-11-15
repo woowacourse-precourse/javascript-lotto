@@ -4,13 +4,7 @@ const LottoPayment = require("./models/LottoPayment.js");
 const RankingResult = require("./RankingResult.js");
 
 const { Console } = require("@woowacourse/mission-utils");
-const {
-  printAskLottoPayment,
-  printLottoCount,
-  printIssuendLotto,
-  printRankingResult,
-  printEarningsRate,
-} = require("./Views");
+const Views = require("./Views");
 
 const ASK_WINNING_LOTTO_NUMBER = "당첨 번호를 입력해 주세요.";
 const ASK_BONUS_LOTTO_NUMBER = "보너스 번호를 입력해 주세요.";
@@ -20,12 +14,8 @@ class App {
   lottoIsuued;
   lottoWinning;
 
-  constructor() {
-    this.lottoWinning = new LottoWinning();
-  }
-
   buyLotto() {
-    printAskLottoPayment();
+    Views.printAskLottoPayment();
     Console.readLine("", (input) => {
       const payment = new LottoPayment(input);
       this.lottoPayment = payment.lottoPayment;
@@ -34,14 +24,15 @@ class App {
   }
 
   showLottoIsuued(lottoCount) {
-    printLottoCount(lottoCount);
+    Views.printLottoCount(lottoCount);
     this.lottoIsuued = new LottoIsuued(lottoCount).lottoIssued;
-    printIssuendLotto(this.lottoIsuued);
+    Views.printIssuendLotto(this.lottoIsuued);
     this.getwinningNumbers();
   }
 
   getwinningNumbers() {
     Console.readLine(`\n${ASK_WINNING_LOTTO_NUMBER}\n`, (input) => {
+      this.lottoWinning = new LottoWinning();
       this.lottoWinning.setWinningLotto(input);
       this.getBonumsNumbers();
     });
@@ -62,10 +53,10 @@ class App {
       this.lottoWinning.bonusNumber
     );
     ranking.setEarningsRate(this.lottoPayment);
-    printRankingResult(ranking.rankingResult);
-    printEarningsRate(ranking.earningsRate);
+    Views.printRankingResult(ranking.rankingResult);
+    Views.printEarningsRate(ranking.earningsRate);
 
-    return Console.close();
+    Console.close();
   }
 
   play() {
