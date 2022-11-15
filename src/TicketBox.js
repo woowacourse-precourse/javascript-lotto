@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable function-paren-newline */
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-restricted-globals */
@@ -33,7 +34,25 @@ class TicketBox {
     return this.#budget;
   }
 
+  lottoValidate(input) {
+    const commaCount = (input.match(/,/g) || []).length;
+    const notNumber = (input) =>
+      input.split(',').filter((number) => isNaN(number, DECIMAL_NUMBER)).length;
+    const isSpace = (input) => /[\s]/g.test(input);
+
+    if (commaCount !== 5) {
+      throw new Error('[ERROR] 당첨 번호를 쉼표(,)로 구분해주세요.');
+    }
+    if (notNumber(input)) {
+      throw new Error('[ERROR] 숫자를 ,로 구분하여 입력하여 주십시오.');
+    }
+    if (isSpace(input)) {
+      throw new Error('[ERROR] 공백없이 입력해주십시오');
+    }
+  }
+
   inputLottoCallback(input) {
+    this.lottoValidate(input);
     const inputLotto = input
       .split(',')
       .map((number) => parseInt(number, DECIMAL_NUMBER));
