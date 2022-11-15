@@ -1,5 +1,10 @@
+const { Console } = require('@woowacourse/mission-utils');
+const Message = require('../constants/Message');
+
 class App {
-  play() {}
+  play() {
+    
+  }
 }
 
 module.exports = App;
