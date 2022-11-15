@@ -59,6 +59,16 @@ class App {
       this.printWinningStatistics(this.lottos, checker, this.money);
     });
   }
+
+  printWinningStatistics(lottos, checker, money) {
+    const histories = checker.checkLottos(lottos);
+    Console.print(PRINT.STATISTICS);
+    let rewards = 0;
+    histories.forEach((history) => {
+      rewards += history.totalReward();
+      Console.print(history.getMessage());
+    });
+  }
 }
 
 module.exports = App;
