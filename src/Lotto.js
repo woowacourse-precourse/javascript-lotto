@@ -29,7 +29,7 @@ class Lotto {
     let winningCount = 0;
     let bonusCount = 0;
     this.#numbers.forEach((number) => {
-      if (winning.include(number)) {
+      if (winning.includes(number)) {
         winningCount += 1;
       }
       if (bonus === number) {
