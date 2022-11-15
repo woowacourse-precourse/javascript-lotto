@@ -52,11 +52,12 @@ class Validation {
     return winnerNumber.map(Number).every(validRange);
   }
   static checkBonusNumber(bonusNumber, winnerNumber) {
-    const bonusNumberArr = bonusNumber.split("");
+    const splitBonusNumber = bonusNumber.split("");
+    const bonusNumberArr = [bonusNumber];
     if (bonusNumber.length === 0) {
       throw new Error(ERROR_MESSAGE.NOT_EMPTY_INPUT);
     }
-    if (!this.isOnlyNumber(bonusNumberArr)) {
+    if (!this.isOnlyNumber(splitBonusNumber)) {
       throw new Error(ERROR_MESSAGE.NOT_ONLY_NUMBER);
     }
     if (!this.isNumberInRange(bonusNumberArr)) {
@@ -67,7 +68,7 @@ class Validation {
     }
   }
   static isUniqueBonusNumber(bonusNumber, winnerNumber) {
-    return winnerNumber.includes(bonusNumber);
+    return winnerNumber.includes(Number(bonusNumber));
   }
   static checkLottoNumber(lottoNumber) {
     if (lottoNumber.length === 0) {

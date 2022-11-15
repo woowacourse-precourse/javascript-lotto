@@ -23,7 +23,7 @@ describe("Validation.isDivided", () => {
 describe("Validation.isOnlyNumber", () => {
   test("input에 숫자가 아닌 문자가 포함되어있으면 false를 반환해야 한다.", () => {
     // given
-    const input = ["가", "0", "0"];
+    const input = ["가", "0", "0", "0"];
     // when
     const result = Validation.isOnlyNumber(input);
     // then
@@ -52,13 +52,13 @@ describe("Validation.isNumberRange", () => {
 });
 
 describe("Validation.isUniqueBonusNumber", () => {
-  test("보너스번호 입력이 당첨번호 입력과 중복된다면 false를 반환해야 한다.", () => {
+  test("보너스번호 입력이 당첨번호 입력과 중복된다면 true를 반환해야 한다.", () => {
     // given
     const bonusNumber = [45];
     const winnerNumber = [1, 2, 3, 4, 5, 45];
     // when
     const result = Validation.isUniqueBonusNumber(bonusNumber, winnerNumber);
     // then
-    expect(result).toBe(false);
+    expect(result).toBe(true);
   });
 });
