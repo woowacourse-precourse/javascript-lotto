@@ -30,14 +30,20 @@ const INGAME_INFORM = Object.freeze({
   PURCHASED: "개를 구매했습니다.",
 });
 
+//   STATS_4: (count) => `5개 일치, 보너스 볼 일치 (30,000,000원) -${count}개`,
+//   STATS_5: (count) => `6개 일치 (2,000,000,000원) -${count}개`,
+//   PROFIT: (profit) => `총 수익률은 ${profit}%입니다.`,
+// });
+
 const INGAME_RESULT = Object.freeze({
-  TITLE: "당첨 통계\n---",
-  STATS_1: (count) => `3개 일치 (5,000원) -${count}개`,
-  STATS_2: (count) => `4개 일치 (50,000원) -${count}개`,
-  STATS_3: (count) => `5개 일치 (1,500,000원) -${count}개`,
-  STATS_4: (count) => `5개 일치, 보너스 볼 일치 (30,000,000원) -${count}개`,
-  STATS_5: (count) => `6개 일치 (2,000,000,000원) -${count}개`,
-  PROFIT: (profit) => `총 수익률은 ${profit}%입니다.`,
+  STATS: (hit3, hit4, hit5, hitBonus, hitAll, profit) =>
+    `당첨 통계\n---\n` +
+    `3개 일치 (5,000원) -${hit3}개\n` +
+    `4개 일치 (50,000원) -${hit4}개\n` +
+    `5개 일치 (1,500,000원) -${hit5}개\n` +
+    `5개 일치, 보너스 볼 일치 (30,000,000원) -${hitBonus}개\n` +
+    `6개 일치 (2,000,000,000원) -${hitAll}개\n` +
+    `총 수익률은 ${profit}%입니다.`,
 });
 
 module.exports = {
