@@ -4,6 +4,7 @@ const LottoManager = require('./LottoManager');
 class App {
   constructor() {
     this.lottoManager = new LottoManager();
+    this.purchaseAmount = 0;
     this.lottoArray = [];
     this.winningNumbers = [];
     this.bonusNumber = 0;
@@ -17,6 +18,7 @@ class App {
 
   inputPurchaseAmount() {
     Console.readLine('구입금액을 입력해 주세요.\n', (purchaseAmount) => {
+      this.purchaseAmount = purchaseAmount;
       this.lottoArray = this.lottoManager.issueLotto(purchaseAmount);
       this.printLotto(this.lottoArray);
       this.inputWinningNumbers();
@@ -135,6 +137,10 @@ class App {
       this.ranking = { ...this.ranking, first: this.ranking.first + 1 };
       this.winningReward += 2000000000;
     }
+  }
+
+  calculateEarningsRate() {
+    return (this.winningReward / this.purchaseAmount) * 100;
   }
 }
 
