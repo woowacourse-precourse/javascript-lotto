@@ -51,6 +51,27 @@ class Lotto {
 
     return sumNumAndLottoNumLength - removeDuplicateElements;
   }
+
+  scoreCalculation(NumOfDuplicateElements, lottoNumArr) {
+    if (NumOfDuplicateElements === 3) {
+      this.currentScore[0]++;
+    }
+    if (NumOfDuplicateElements === 4) {
+      this.currentScore[1]++;
+    }
+    if (NumOfDuplicateElements === 5) {
+      this.currentScore[2]++;
+    }
+    if (
+      NumOfDuplicateElements === 5 &&
+      this.compareBonus(lottoNumArr, this.bonusNum)
+    ) {
+      this.currentScore[3]++;
+    }
+    if (NumOfDuplicateElements === 6) {
+      this.currentScore[4]++;
+    }
+  }
 }
 
 module.exports = Lotto;
