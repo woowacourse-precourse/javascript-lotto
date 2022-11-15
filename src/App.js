@@ -44,13 +44,10 @@ class App {
   }
 
   readMoney() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _) => {
       Console.readLine("구입금액을 입력해주세요.\n", (money) => {
         const validation = validatePrice(money);
-        if (!validation[0]) {
-          reject(validation[1]);
-        }
-        resolve(this.setMoney(validation[1]));
+        resolve(this.setMoney(validation));
       })
 
     })
@@ -71,10 +68,7 @@ class App {
     return new Promise((resolve, reject) => {
       Console.readLine("\n당첨번호를 입력해주세요\n", (winNums) => {
         const validation = validateWinNums(winNums);
-        if (!validation[0]) {
-          reject(validation[1]);
-        }
-        resolve(this.setWinNums(validation[1]));
+        resolve(this.setWinNums(validation));
       })
     })
   }
@@ -84,10 +78,7 @@ class App {
       Console.readLine("\n보너스 넘버를 입력해주세요.\n", (bonus) => {
         const bonusNum = parseInt(bonus);
         const validation = validateBounus(bonusNum, this.getWinNums());
-        if (!validation[0]) {
-          reject(validation[1]);
-        }
-        resolve(this.setBonus(validation[1]));
+        resolve(this.setBonus(validation));
       })
     })
   }

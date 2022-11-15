@@ -13,6 +13,10 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
+    const numberSet = new Set(numbers);
+    if(numbers.length !== numberSet.size){
+      throw new Error("[ERROR] 로또 번호가 중복되었습니다.");
+    }
   }
 
   getLotto(){
