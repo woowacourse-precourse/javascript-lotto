@@ -7,6 +7,7 @@ const error = {
   OVERLAP_IMPOSSIBLE: "[ERROR] 중복은 불가능합니다",
   PREFIX_ZERO_IMPOSSIBLE: "[ERROR] 앞자리 0 불가능",
   UNIT_1000: "[ERROR] 1000원 단위로 입력해주세요",
+  MINUS: "[ERROR] 음수는 불가능합니다",
   ONE_TO_FOUTYFIVE: "[ERROR] 1~45사이",
   MONEY_INPUT: "구입금액을 입력해주세요.\n",
   USER_LOTTO_NUM: "당첨 번호를 입력해 주세요.\n",
