@@ -1,0 +1,14 @@
+const PRICE = 1_000;
+
+const MIN_WINNING_COUNT = 3;
+
+const MAX_COUNT = 6;
+
+const RANGE = {
+  START: 1,
+  END: 45,
+};
+
+const WINNINGS = [5_000, 50_000, 1_500_000, 30_000_000, 2_000_000_000];
+
+module.exports = { PRICE, MIN_WINNING_COUNT, MAX_COUNT, RANGE, WINNINGS };

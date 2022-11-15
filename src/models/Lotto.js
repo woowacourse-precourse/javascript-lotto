@@ -1,11 +1,6 @@
-const { Random } = require('@woowacourse/mission-utils');
-const { MESSAGES, ERROR_MESSAGES } = require('./constants/index');
+const { ERROR_MESSAGES } = require('../constants/index');
+const { RANGE, MAX_COUNT } = require('../constants/Lotto');
 
-const MAX_COUNT = 6;
-const RANGE = {
-  START: 1,
-  END: 45,
-};
 class Lotto {
   #numbers = [];
   #bonus = 1;
@@ -20,11 +15,11 @@ class Lotto {
     this.#bonus = number;
   }
 
-  getLotto() {
-    return {
-      winningNumbers: this.#numbers,
-      bonus: this.#bonus,
-    };
+  get numbers() {
+    return this.#numbers;
+  }
+  get bonus() {
+    return this.#bonus;
   }
 
   #validate(numbers = []) {
@@ -56,16 +51,6 @@ class Lotto {
 
     if (this.#numbers.includes(bonus))
       throw new Error(ERROR_MESSAGES.NOT_DUPLICATE_NUMBER);
-  }
-
-  static createRandomNumbers() {
-    const numbers = Random.pickUniqueNumbersInRange(
-      RANGE.START,
-      RANGE.END,
-      MAX_COUNT
-    );
-    if (!numbers) throw new Error(ERROR_MESSAGES.EMPTY_NUMBERS);
-    return numbers.sort((a, b) => a - b);
   }
 }
 

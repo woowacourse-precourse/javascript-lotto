@@ -1,6 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 
-const { Lotto } = require('./models/Lotto');
+const Lotto = require('./Lotto');
 const { createRandomNumbers } = require('../utils/createRandomNumbers');
 
 class LotteryMachine {
@@ -12,6 +12,13 @@ class LotteryMachine {
   }
   setBonus(number) {
     this.#winningLotto.setBonus(number);
+  }
+
+  getLottos() {
+    const winningNumbers = this.#winningLotto.numbers;
+    const bonus = this.#winningLotto.bonus;
+
+    return { randomLottos: this.#randomLottos, winningNumbers, bonus };
   }
 
   createRandomLottos(count) {

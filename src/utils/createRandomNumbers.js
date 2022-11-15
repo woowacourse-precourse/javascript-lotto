@@ -1,4 +1,5 @@
-const { MAX_COUNT, RANGE } = require('./models/Lotto');
+const { Random } = require('@woowacourse/mission-utils');
+const { MAX_COUNT, RANGE } = require('../constants/Lotto');
 
 const createRandomNumbers = () => {
   const numbers = Random.pickUniqueNumbersInRange(

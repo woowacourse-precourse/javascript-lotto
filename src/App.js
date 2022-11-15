@@ -1,11 +1,15 @@
 const { Console } = require('@woowacourse/mission-utils');
-const Store = require('./Store');
+
+const Store = require('./models/Store');
+const LotteryMachine = require('./models/LotteryMachine');
+
 const { MESSAGES } = require('./constants/index');
 const { winningResult } = require('./utils/winningResult');
 
 class App {
   constructor() {
     this.store = new Store();
+    this.lotteryMachine = new LotteryMachine();
   }
 
   play() {
@@ -14,11 +18,11 @@ class App {
 
   inputMoney() {
     Console.readLine(MESSAGES.INPUT_MONEY, (money) => {
-      this.store.setMoney(money);
+      this.store.setMoney(Number(money));
       const count = this.store.getBuyLottoCount(money);
 
       Console.print(MESSAGES.BUY_COUNT(count));
-      this.store.createRandomLottos();
+      this.lotteryMachine.createRandomLottos(count);
 
       this.inputLotto();
     });
@@ -27,7 +31,7 @@ class App {
   inputLotto() {
     Console.readLine(MESSAGES.INPUT_LOTTO_NUMBERS, (numbers) => {
       const splittedNumbers = numbers.split(',').map(Number);
-      this.store.setLottos(splittedNumbers);
+      this.lotteryMachine.setLottos(splittedNumbers);
 
       this.inputBonus();
     });
@@ -35,13 +39,15 @@ class App {
 
   inputBonus() {
     Console.readLine(MESSAGES.INPUT_BONUS_NUMBER, (number) => {
-      this.store.setBonus(Number(number));
+      this.lotteryMachine.setBonus(Number(number));
       this.showResult();
     });
   }
 
   showResult() {
-    const correctPoints = this.store.getCorrectCount();
+    const winningLotto = this.lotteryMachine.getLottos();
+    console.log(winningLotto);
+    const correctPoints = this.store.getCorrectCount(winningLotto);
     const winningRate = this.store.getWinningRate(correctPoints);
 
     Console.print(winningResult(correctPoints, winningRate));
