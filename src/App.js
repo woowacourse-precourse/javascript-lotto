@@ -61,10 +61,22 @@ class App {
       this.bonusNum = parseInt(answer);
       if(this.winningNum.includes(this.bonusNum))throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복 되지 않는 숫자여야 합니다.");
       //console.log(this.bonusNum);
-      //this.comparePlay();
+      this.comparePlay();
 
     });
   }
+
+  //feature 2 
+  comparePlay(){
+    this.checkLotteryNumber();
+    const compareLotto = new CompareLotto(this.ticketList, this.winningNum, this.bonusNum);
+    this.printRank(compareLotto.rankList);
+  }
+
+  checkLotteryNumber(){
+    const lotto = new Lotto(this.winningNum);
+  }
+
 
   
 
