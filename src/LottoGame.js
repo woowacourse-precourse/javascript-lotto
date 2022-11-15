@@ -83,6 +83,8 @@ class LottoGame {
 
       this.#lottoRanking[result] += 1;
     });
+
+    this.calculateTotalPrizeMoney();
   }
 
   compareLottoNumbers(lottoNumber, winningNumbers, bonusNumber) {
@@ -103,6 +105,34 @@ class LottoGame {
       default:
         return "boom";
     }
+  }
+
+  calculateTotalPrizeMoney() {
+    let totalPrizeMoney = 0;
+
+    for (const [prize, count] of Object.entries(this.#lottoRanking)) {
+      let prizeMoney = LOTTO_PRIZE[prize] * count;
+      totalPrizeMoney += prizeMoney;
+    }
+
+    Console.print(`
+    3개 일치 (5,000원) - ${this.#lottoRanking["fifthPlace"]}개\n
+    4개 일치 (50,000원) - ${this.#lottoRanking["fourthPlace"]}개\n
+    5개 일치 (1,500,000원) - ${this.#lottoRanking["thirdPlace"]}개\n
+    5개 일치, 보너스 볼 일치 (30,000,000원) - ${
+      this.#lottoRanking["secondPlace"]
+    }개\n
+    6개 일치 (2,000,000,000원) - ${this.#lottoRanking["firstPlace"]}개\n`);
+    Console.print(
+      `총 수익률은 ${((totalPrizeMoney / this.#purchaseAmount) * 100).toFixed(
+        1
+      )}%입니다.`
+    );
+    this.endGame();
+  }
+
+  endGame() {
+    Console.close();
   }
 }
 
