@@ -8,7 +8,7 @@ class Judge {
   constructor() {}
 
   isBuyerInputValid(buyerInput) {
-    if (buyerInput % 1000 !== 0) {
+    if (+buyerInput % 1000 !== 0) {
       MissionUtils.Console.print(
         "[ERROR] 로또 한 장은 1000원 입니다. 1000의 배수로만 입력해주세요."
       );
@@ -16,7 +16,7 @@ class Judge {
         "[ERROR] 로또 한 장은 1000원 입니다. 1000의 배수로만 입력해주세요."
       );
     }
-    return buyerInput;
+    return +buyerInput;
   }
 
   lottoInputValid(lottoInput) {
