@@ -1,3 +1,5 @@
+const config = require("./util/config")
+
 class User {
   #fee = 0;
   #lottos = [];
@@ -17,6 +19,10 @@ class User {
 
   set lottoCount(lottoCount) {
     this.#lottoCount = lottoCount;
+  }
+
+  calculateLottoCount() {
+    this.#lottoCount = this.#fee / config.FEE_PER_GAME;
   }
 }
 
