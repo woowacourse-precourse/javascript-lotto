@@ -123,18 +123,58 @@ class Lotto {
   checkRank(lottoOwnedByUser) {
     const { matchCount, bonusContained } = this.#calculateRank(lottoOwnedByUser)
 
-    if (matchCount === WINNING_NUMBER_COUNT) return prize.FIRST
+    if (this.#isFirst(matchCount)) return prize.FIRST
 
-    if (matchCount === WINNING_NUMBER_COUNT - 1 && bonusContained)
-      return prize.SECOND
+    if (this.#isSecond(matchCount, bonusContained)) return prize.SECOND
 
-    if (matchCount === WINNING_NUMBER_COUNT - 1) return prize.THIRD
+    if (this.#isThird(matchCount)) return prize.THIRD
 
-    if (matchCount === WINNING_NUMBER_COUNT - 2) return prize.FOURTH
+    if (this.#isFourth(matchCount)) return prize.FOURTH
 
-    if (matchCount === WINNING_NUMBER_COUNT - 3) return prize.FIFTH
+    if (this.#isFifth(matchCount)) return prize.FIFTH
 
     return prize.NONE
+  }
+
+  /**
+   * @param {number} matchCount
+   * @returns {boolean}
+   */
+  #isFirst(matchCount) {
+    return matchCount === WINNING_NUMBER_COUNT
+  }
+
+  /**
+   * @param {number} matchCount
+   * @param {booelan} bonusContained
+   * @returns {boolean}
+   */
+  #isSecond(matchCount, bonusContained) {
+    return matchCount === WINNING_NUMBER_COUNT - 1 && bonusContained
+  }
+
+  /**
+   * @param {number} matchCount
+   * @returns {boolean}
+   */
+  #isThird(matchCount) {
+    return matchCount === WINNING_NUMBER_COUNT - 1
+  }
+
+  /**
+   * @param {number} matchCount
+   * @returns {boolean}
+   */
+  #isFourth(matchCount) {
+    return matchCount === WINNING_NUMBER_COUNT - 2
+  }
+
+  /**
+   * @param {number} matchCount
+   * @returns {boolean}
+   */
+  #isFifth(matchCount) {
+    return matchCount === WINNING_NUMBER_COUNT - 3
   }
 
   /**
