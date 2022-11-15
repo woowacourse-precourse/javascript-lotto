@@ -2,6 +2,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const { MESSAGE, ERROR } = require("./constant");
 const Lotto = require("./Lotto");
 const Result = require("./Result");
+const Amount = require("./Amount");
 class App {
   constructor() {
     this.myMoney = 0;
@@ -13,14 +14,10 @@ class App {
 
   inputAmount() {
     MissionUtils.Console.readLine(MESSAGE.INPUT_AMOUNT, (answer) => {
-      if (+answer % 1000 > 0) {
-        throw new Error(ERROR.AMOUNT_UNIT);
+      if (new Amount(+answer)) {
+        this.myMoney += +answer;
       }
-      this.myMoney += +answer;
       const piece = +answer / 1000;
-      if (isNaN(piece)) {
-        throw new Error(ERROR.AMOUNT_ISNAN);
-      }
       MissionUtils.Console.print(`${piece}개를 구매했습니다.`);
       this.createLottoBundle(piece);
     });
