@@ -1,5 +1,5 @@
 const { Random } = require('@woowacourse/mission-utils');
-const { NUMBER, ERROR } = require('./Constants');
+const { NUMBER, ERROR } = require('./Constant');
 
 class LottoStore {
   #money;

@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { INPUT, OUTPUT, LOTTO } = require('./Constants');
+const { INPUT, OUTPUT, LOTTO } = require('./Constant');
 const Lotto = require('./Lotto');
 const LottoStore = require('./LottoStore');
 const LottoResult = require('./LottoResult');
@@ -57,5 +57,7 @@ class App {
   }
 
 }
+
+new App().play();
 
 module.exports = App;
