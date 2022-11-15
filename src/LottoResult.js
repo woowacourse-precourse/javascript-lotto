@@ -36,7 +36,10 @@ class LottoResult {
   }
 
   calculateProfitRate(money) {
-    this.profitRate = ((this.calculateProfit() / money) * 100).toFixed(1);
+    this.profitRate = ((this.calculateProfit() / money) * 100).toLocaleString(undefined, {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1,
+    });
   }
 
   calculateProfit() {
