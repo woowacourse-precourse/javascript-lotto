@@ -1,5 +1,13 @@
+const Play = require('./Lotto/Play');
+
 class App {
-  play() {}
+  constructor() {
+    this.play();
+  }
+
+  play() {
+    new Play();
+  }
 }
 
 module.exports = App;
