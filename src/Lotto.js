@@ -68,7 +68,7 @@ class Lotto {
 
   profitRateOfUserPurchase(resultMap, UserInputMoney) {
     const totalprofit = this.calculator.profit(resultMap);
-    this.resultMap.profitRate = this.calculator.profitRate(totalprofit, UserInputMoney);
+    return (this.resultMap.profitRate = this.calculator.profitRate(totalprofit, UserInputMoney));
   }
 
   getResultMap() {
