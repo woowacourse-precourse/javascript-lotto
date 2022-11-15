@@ -1,5 +1,6 @@
 const { Random } = require('@woowacourse/mission-utils');
 const { LOTTO_LENGTH, LOTTO_RANGE } = require('./constants');
+const { hasDuplicate, isNumber } = require('./utils');
 
 class Lotto {
   #numbers;
@@ -10,19 +11,17 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== LOTTO_LENGTH) {
+    if (numbers.length !== LOTTO_LENGTH)
       throw new Error(`[ERROR] 로또 번호는 ${LOTTO_LENGTH}개여야 합니다.`);
-    }
 
-    if (new Set(numbers).size !== LOTTO_LENGTH) {
+    if (hasDuplicate(numbers))
       throw new Error(`[ERROR] 로또 번호에는 중복이 존재할 수 없습니다.`);
-    }
 
     numbers.forEach((number) => this.validateNumber(number));
   }
 
   validateNumber(number) {
-    if (Number.isNaN(+number))
+    if (isNumber(number))
       throw new TypeError('[ERROR] 로또 번호는 숫자만 입력해야 합니다.');
 
     if (+number < LOTTO_RANGE.MIN || +number > LOTTO_RANGE.MAX)
@@ -40,8 +39,8 @@ class Lotto {
       throw new Error(
         '[Error] 중복된 숫자를 보너스 번호로 지정할 수 없습니다.'
       );
+
     this.validateNumber(bonus);
-    return true;
   }
 
   static issueLotto = () => {

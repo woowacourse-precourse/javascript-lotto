@@ -1,6 +1,12 @@
 const { Console } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const { LOTTO_PRICE, AWARD } = require('./constants');
+const {
+  sortByNumber,
+  getStringArray,
+  getRoundto2,
+  isStringNumbers,
+} = require('./utils');
 
 class App {
   price = 0;
@@ -13,7 +19,7 @@ class App {
   }
 
   validate(price) {
-    if (!/^[0-9]+$/.test(price)) {
+    if (!isStringNumbers(price)) {
       throw new TypeError('[ERROR] 금액은 숫자만 입력할 수 있습니다.');
     }
     if (+price % LOTTO_PRICE) {
@@ -26,20 +32,24 @@ class App {
   purchaseLottos() {
     Console.readLine('구입금액을 입력해 주세요.\n', (price) => {
       this.validate(price);
-      this.price = price;
-      Array.from({ length: this.price / 1000 }).forEach(() => {
+      this.price = +price;
+
+      Array.from({ length: this.price / LOTTO_PRICE }).forEach(() => {
         this.lottos = [...this.lottos, Lotto.issueLotto()];
       });
+
       this.printLottos();
     });
   }
 
   printLottos() {
     Console.print(`\n${this.price / LOTTO_PRICE}개를 구매했습니다.`);
+
     this.lottos.forEach((lotto) => {
-      lotto.sort((a, b) => a - b);
-      Console.print(`[${lotto.join(', ')}]`);
+      lotto.sort(sortByNumber);
+      Console.print(getStringArray(lotto));
     });
+
     this.setWinning();
   }
 
@@ -72,12 +82,9 @@ class App {
   }
 
   getProfit(result) {
-    return (
-      Math.round(
-        (result.reduce((total, count, i) => total + count * AWARD[i], 0) /
-          this.price) *
-          10000
-      ) / 100
+    return getRoundto2(
+      result.reduce((profit, count, i) => profit + count * AWARD[i], 0) /
+        this.price
     );
   }
 
