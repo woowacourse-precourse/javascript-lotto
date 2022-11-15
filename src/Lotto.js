@@ -1,6 +1,5 @@
 class Lotto {
   #numbers;
-
   constructor(numbersArr) {
     this.#numbers = numbersArr;
     this.matchingResult = {};
@@ -8,8 +7,8 @@ class Lotto {
     this.isValidLotto();
   }
 
-  matching(lottoArr, bonusNumber) {
-    let numbersMatching = 12 - new Set(this.#numbers.concat(lottoArr)).size;
+  matching(lottoNumsArr, bonusNumber) {
+    let numbersMatching = 12 - new Set(this.#numbers.concat(lottoNumsArr)).size;
     let bonusCheck = this.#numbers.filter(x => x === bonusNumber).length;
     let bonusMatching = false;
     if (bonusCheck === 1) {
@@ -49,10 +48,21 @@ class Lotto {
   }
 
   isValidLotto() {
-    if (this.#numbers.includes(0)) throw new Error("[ERROR] 0 또는 공백이 포함되어 있습니다.")
-    if (this.#numbers.filter(x => x < 1 && x > 45).length !== 0) throw new Error("[ERROR] 1~45 사이의 정수만 입력가능합니다.");
-    if (this.#numbers.length !== 6) throw new Error("[ERROR] 6개의 숫자가 필요합니다.");
-    if (new Set(this.#numbers).size !== 6) throw new Error("[ERROR] 서로 중복되지 않는 숫자들만 입력 가능합니다.");
+    if (/[^0-9]/g.test(this.#numbers.join(''))) {
+      throw new Error("[ERROR] 숫자만 입력 가능합니다.");
+    }
+    if (this.#numbers.includes(undefined)) {
+      throw new Error("[ERROR] 누락된 숫자가 있습니다.");
+    }
+    if (this.#numbers.filter(x => x < 1 || x > 45).length !== 0) {
+      throw new Error("[ERROR] 1~45 사이의 정수만 입력가능합니다.");
+    }
+    if (this.#numbers.length !== 6) {
+      throw new Error("[ERROR] 6개의 숫자가 필요합니다.");
+    }
+    if (new Set(this.#numbers).size !== 6) {
+      throw new Error("[ERROR] 서로 중복되지 않는 숫자들만 입력 가능합니다.");
+    }
     return true;
   }
 

@@ -1,7 +1,8 @@
 const Lotto = require('./Lotto');
 const Store = require('./Store');
+const Process = require('./Process');
+const process = new Process();
 const { Console } = require('@woowacourse/mission-utils');
-const { showMylottos, getMatchingResult, getPrizeResult, getRecord, showRecord, showEarningRatio } = require('./Toolbox');
 
 class App {
   play() {
@@ -12,23 +13,21 @@ class App {
   readPurchase(storeClass) {
     Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
       this.isNull(money);
-      storeClass.setStoreVars(money);
-      storeClass.isValidCharacter(storeClass.purchase);
+      storeClass.setStoreVariables(money);
       storeClass.isValidNumber(storeClass.purchase);
       storeClass.isValidUnit(storeClass.purchase);
 
-      const myLottos = storeClass.generatedLottos.map(x => new Lotto(x));
-      showMylottos(storeClass);
-      this.readWinningNumbers(storeClass, myLottos);
+      const myLottos = storeClass.generatedSixNumbers.map(numbers => new Lotto(numbers));
+      process.showMylottos(storeClass);
+      this.readWinningNumber(storeClass, myLottos);
     });
   }
 
-  readWinningNumbers(storeClass, lottoClasses) {
+  readWinningNumber(storeClass, lottoClasses) {
     Console.readLine('\n당첨 번호를 입력해 주세요.\n', (commaNumbers) => {
       this.isNull(commaNumbers);
-      storeClass.setWinningNumbers(commaNumbers);
-      storeClass.isValidLotto(storeClass.winningNumbers);
-
+      storeClass.setWinningNumber(commaNumbers);
+      storeClass.isValidWinning(storeClass.winningNumber);
       this.readBonusNumber(storeClass, lottoClasses);
     })
   }
@@ -37,17 +36,17 @@ class App {
     Console.readLine('\n보너스 번호를 입력해 주세요.\n', (number) => {
       this.isNull(number);
       storeClass.setBonusNumber(number);
-      storeClass.isValidCharacter(storeClass.purchase);
       storeClass.isValidNumber(storeClass.purchase);
       storeClass.isValidBonus(storeClass.bonusNumber);
 
-      getMatchingResult(storeClass, lottoClasses);
-      getPrizeResult(lottoClasses);
-      getRecord(storeClass, lottoClasses);
-      showRecord(storeClass);
+      process.getMatchingResult(storeClass, lottoClasses);
+      process.getPrizeResult(lottoClasses);
+      process.getRecord(storeClass, lottoClasses);
+      process.showRecord(storeClass);
+
       storeClass.setEarning();
       storeClass.setEarningRatio();
-      showEarningRatio(storeClass);
+      process.showEarningRatio(storeClass);
       this.end();
     });
   }
