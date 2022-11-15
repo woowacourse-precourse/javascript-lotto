@@ -2,7 +2,7 @@ const { UNIT, LOTTO_NUMBER, ERROR } = require("./utils/constants");
 
 class Validate {
   checkNumber(number) {
-    if (isNaN(number)) {
+    if (isNaN(Number(number))) {
       throw new Error(ERROR.ISNAN);
     }
   }
@@ -28,7 +28,7 @@ class Validate {
   }
 
   checkMoneyInput(money) {
-    this.checkNumber(Number(money));
+    this.checkNumber(money);
 
     if (money % UNIT.DIVIDE !== 0) {
       throw new Error(ERROR.UNIT);
@@ -49,7 +49,7 @@ class Validate {
   }
 
   checkBonusNumInput(winningNumbers, bonusNum) {
-    this.checkNumber(Number(bonusNum));
+    this.checkNumber(bonusNum);
     this.checkRange(bonusNum);
 
     if (winningNumbers.includes(bonusNum)) {
