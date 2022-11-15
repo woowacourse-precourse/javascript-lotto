@@ -1,4 +1,5 @@
 const App = require("../src/App");
+const Seller = require("../src/Seller");
 const MissionUtils = require("@woowacourse/mission-utils");
 
 const mockQuestions = (answers) => {
@@ -63,6 +64,22 @@ describe("로또 테스트", () => {
 
   test("예외 테스트", () => {
     mockQuestions(["1000j"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+
+  test("예외테스트 - 2", () => {
+    mockQuestions(["-1000"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+
+  test("예외테스트 - 3", () => {
+    mockQuestions([""]);
     expect(() => {
       const app = new App();
       app.play();
