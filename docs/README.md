@@ -74,8 +74,8 @@
 
 - [] **예외 상황**
 
-  - [] 구입 금액에 대한 예외
-    - [] 입력받은 구입 금액이 1000으로 나누어 떨어지지 않는다 UserInput # moneyInput() - checkExceptCaseInMoney()
+  - [x] 구입 금액에 대한 예외
+    - [x] 입력받은 구입 금액이 1000으로 나누어 떨어지지 않는다 UserInput # moneyInput() - checkExceptCaseInMoney()
     - [] 구입 금액이 공백일 경우 UserInput # moneyInput() - isInputBlank()
     - [] 구입 금액이 0일 경우 UserInput # moneyInput() - isInputZero()
   - [] 당첨 번호에 대한 예외

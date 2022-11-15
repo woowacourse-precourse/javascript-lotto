@@ -29,12 +29,13 @@ class App {
   }
 
   play() {
-    this.messageOutput.printMesage(GAME_START_MESSAGE);
-    this.moneyInput("");
+    // this.messageOutput.printMesage(GAME_START_MESSAGE);
+    this.moneyInput(GAME_START_MESSAGE);
   }
 
   makePurchaceMessage(userBuyCount, message) {
     const messages = `${userBuyCount}${message}`;
+    this.messageOutput.printMesage("");
     this.messageOutput.printMesage(messages);
   }
 }
