@@ -23,7 +23,7 @@ class App {
   }
 
   validatePrice() {
-    if (this.purchasemoney % 1000 !== 0) throw new Error("[ERROR] 1000단위의 수를 입력해주세요!");
+    if (this.purchasemoney % 1000 !== 0) throw new Error("[ERROR] 1000단위의 수를 입력해주세요.");
   }
 
   countingLotto() {
@@ -46,7 +46,9 @@ class App {
       lotto.bonusNumber(this.sixlotterynumbers,this.purchasemoney);
     });
   }
-
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
