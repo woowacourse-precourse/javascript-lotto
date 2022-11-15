@@ -33,12 +33,12 @@ class App {
     MissionUtils.Console.print("---");
     this.printWinningList(listOfNumbers, winningNumbers, bonusNumber);
 
-    const comparator = new Comparator();
-    const prizeMoney = comparator.compare(
+    const comparator = new Comparator(
       listOfNumbers,
       winningNumbers,
       bonusNumber
-    ).prizeMoney;
+    );
+    const prizeMoney = comparator.compare().prizeMoney;
     const rateOfReturn = calculator.calculateRateOfReturn(
       purchaseAmount,
       prizeMoney
@@ -84,12 +84,12 @@ class App {
   }
 
   printWinningList(listOfNumbers, winningNumbers, bonusNumber) {
-    const comparator = new Comparator();
-    const winningList = comparator.compare(
+    const comparator = new Comparator(
       listOfNumbers,
       winningNumbers,
       bonusNumber
-    ).winningList;
+    );
+    const winningList = comparator.compare().winningList;
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${winningList.three}개`);
     MissionUtils.Console.print(`4개 일치 (50,000원) - ${winningList.four}개`);
     MissionUtils.Console.print(

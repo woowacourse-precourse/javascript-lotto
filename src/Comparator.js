@@ -1,5 +1,11 @@
 class Comparator {
-  compare(listOfNumbers, winningNumbers, bonusNumber) {
+  constructor(listOfNumbers, winningNumbers, bonusNumber) {
+    this.listOfNumbers = listOfNumbers;
+    this.winningNumbers = winningNumbers;
+    this.bonusNumber = bonusNumber;
+  }
+
+  compare() {
     let winningList = {
       three: 0,
       four: 0,
@@ -9,14 +15,14 @@ class Comparator {
     };
     let prizeMoney = 0;
 
-    listOfNumbers.forEach((numbersOfLotto) => {
+    this.listOfNumbers.forEach((numbersOfLotto) => {
       let countWinningNumbers = 0;
       let countBonusNumbers = 0;
       numbersOfLotto.forEach((number) => {
-        if (winningNumbers.includes(number)) {
+        if (this.winningNumbers.includes(number)) {
           countWinningNumbers += 1;
         }
-        if (bonusNumber === number) {
+        if (this.bonusNumber === number) {
           countBonusNumbers = 1;
         }
       });
