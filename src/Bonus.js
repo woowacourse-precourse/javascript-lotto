@@ -12,13 +12,7 @@ class Bonus {
 
   checkIsNumber(number) {
     if (isNaN(number) === true) {
-      throw new Error('[ERROR] 보너스 번호는 한자리 숫자여야 합니다.');
-    }
-  }
-
-  checkLength(number) {
-    if (number.length !== 1) {
-      throw new Error('[ERROR] 보너스 번호는 한자리 숫자여야 합니다.');
+      throw new Error('[ERROR] 보너스 번호는 숫자여야 합니다.');
     }
   }
 
