@@ -15,4 +15,9 @@ describe('로또 클래스 테스트', () => {
   });
 
   // 아래에 추가 테스트 작성 가능
+  test('당첨 번호와 중복된 보너스 번호를 입력한 경우 에러처리', () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+
+    expect(lotto.isBonusValid(6)).toBe(false);
+  });
 });
