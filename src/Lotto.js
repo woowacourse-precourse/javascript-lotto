@@ -35,10 +35,8 @@ class Lotto {
           if(this.#numbers.includes(bonusNumber)){
             matchCountArr[3]++;
             break;
-          }else{
-            matchCountArr[2]++;
-            break;
           }
+          matchCountArr[2]++;
         case 6:
           matchCountArr[4]++;
           break;
