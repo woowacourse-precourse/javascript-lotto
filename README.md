@@ -212,7 +212,7 @@ class Lotto {
 
   constructor(numbers) {
     this.validate(numbers);
-    this.#numbers = numbers;
+    lottoArray = numbers;
   }
 
   validate(numbers) {
