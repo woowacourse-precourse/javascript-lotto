@@ -1,17 +1,22 @@
 const { LOTTO } = require('./constants');
 const { ConsoleAdapter } = require('./adapters');
+const { LottoGenerator } = require('./domain');
 const { ValidationError } = require('./errors');
 
 class App {
   #console;
+  #lottoGenerator;
 
   constructor() {
     this.#console = new ConsoleAdapter();
+    this.#lottoGenerator = new LottoGenerator();
   }
 
   async play() {
     const cost = await this.#queryPurchaseCost();
-    console.log(cost);
+    const lotteryTickets = this.#purchaseLotteryTickets(cost);
+
+    this.#printPurchaseInformation(lotteryTickets);
   }
 
   async #queryPurchaseCost() {
@@ -39,6 +44,18 @@ class App {
     if (cost % LOTTO.PRICE !== 0) {
       throw new ValidationError('구입 금액은 1,000원 단위여야 합니다.');
     }
+  }
+
+  #purchaseLotteryTickets(cost) {
+    const quantity = cost / LOTTO.PRICE;
+    const lotteryTickets = this.#lottoGenerator.createMultipleLotto(quantity);
+
+    return lotteryTickets;
+  }
+
+  #printPurchaseInformation(lotteryTickets) {
+    this.#console.print(`\n${lotteryTickets.length}개를 구매했습니다.`);
+    lotteryTickets.forEach((lotto) => this.#console.print(lotto.numbers));
   }
 }
 
