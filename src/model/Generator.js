@@ -1,5 +1,6 @@
 const { pickUniqueNumbersInRange } = require("../utils/Missionutils");
 const { MESSAGE_ACCORDING_ERROR } = require("../constants/message");
+const { LOTTO_INFO, MATH_INFO } = require("../constants/value");
 
 class MyNumberGenerator {
   #countOfLottos;
@@ -15,13 +16,17 @@ class MyNumberGenerator {
   #setMyLottoNumbers() {
     let pickedNumber;
     while (this.#selectedLottoNumberSet.size < this.#countOfLottos) {
-      pickedNumber = pickUniqueNumbersInRange(1, 45, 6);
+      pickedNumber = pickUniqueNumbersInRange(
+        LOTTO_INFO.MIN_VALUE,
+        LOTTO_INFO.MAX_VALUE,
+        LOTTO_INFO.WINNING_LOTTO_LENGTH
+      );
       this.#addValidNumberIntoSet(pickedNumber);
     }
   }
 
   #addValidNumberIntoSet(pickedNumber) {
-    if (this.isLottoSetValid(pickedNumber))
+    if (this.#isLottoSetValid(pickedNumber))
       this.#selectedLottoNumberSet.add(this.#makeArrayAscendingOrder(pickedNumber));
   }
 
@@ -30,7 +35,7 @@ class MyNumberGenerator {
   }
 
   #getNumberOfLottos(money) {
-    this.#countOfLottos = money / 1000;
+    this.#countOfLottos = money / LOTTO_INFO.LEAST_LOTTO_PURCHASED_PRICE;
   }
 
   isInputNumbersValid(numbers) {
@@ -40,7 +45,7 @@ class MyNumberGenerator {
     if (this.#isNotDividedThousand(numbers)) throw Error(MESSAGE_ACCORDING_ERROR.NOT_THOUSAND_UNIT);
   }
 
-  isLottoSetValid(lottoList) {
+  #isLottoSetValid(lottoList) {
     if (this.#hasDuplicatedValue(lottoList)) return false;
     return true;
   }
@@ -50,7 +55,10 @@ class MyNumberGenerator {
   }
 
   #isNotDividedThousand(input) {
-    return input === "0" || input % 1000 !== 0;
+    return (
+      input === MATH_INFO.STRING_ZERO ||
+      input % LOTTO_INFO.LEAST_LOTTO_PURCHASED_PRICE !== MATH_INFO.INT_ZERO
+    );
   }
 
   #isInputless(input) {
@@ -62,7 +70,7 @@ class MyNumberGenerator {
   }
 
   #isNegativeNumber(input) {
-    return +input < 0;
+    return +input < MATH_INFO.INT_ZERO;
   }
 }
 module.exports = MyNumberGenerator;

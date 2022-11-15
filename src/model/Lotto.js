@@ -1,8 +1,13 @@
+const { MESSAGE_ACCORDING_ERROR } = require("../constants/message");
+const { LOTTO_INFO, NUMBER_TYPE } = require("../constants/value");
+
 class Lotto {
   #winningNumbers;
   constructor(numbers) {
-    numbers["winningNumber"] = this.#setConvertedWinningLottoNumber(numbers["winningNumber"]);
-    this.validate(numbers["winningNumber"]);
+    numbers[NUMBER_TYPE.WINNING_NUMBER] = this.#setConvertedWinningLottoNumber(
+      numbers[NUMBER_TYPE.WINNING_NUMBER]
+    );
+    this.validate(numbers[NUMBER_TYPE.WINNING_NUMBER]);
     this.#winningNumbers = numbers;
   }
 
@@ -11,19 +16,20 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (this.#isLengthNotEqualsSix(numbers)) throw Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    if (this.#isIncludeNotNumber(numbers)) throw Error("[ERROR] 로또 번호는 숫자여야 합니다.");
-    if (this.#isNotRangeValid(numbers)) throw Error("[ERROR] 로또 번호의 범위는 1~45 입니다.");
+    if (this.#isLengthNotEqualsSix(numbers))
+      throw Error(MESSAGE_ACCORDING_ERROR.LOTTO_NOT_LENGTH_SIX);
+    if (this.#isIncludeNotNumber(numbers)) throw Error(MESSAGE_ACCORDING_ERROR.LOTTO_NOT_NUMBER);
+    if (this.#isNotRangeValid(numbers)) throw Error(MESSAGE_ACCORDING_ERROR.LOTTO_NOT_RANGE);
     if (this.#isDuplicatedValueExist(numbers))
-      throw Error("[ERROR] 로또 번호는 중복되지 않습니다.");
+      throw Error(MESSAGE_ACCORDING_ERROR.LOTTO_NOT_DUPLICATED);
   }
 
   #isNotRangeValid(numbers) {
-    return numbers.some((number) => number < 1 || number > 45);
+    return numbers.some((number) => number < LOTTO_INFO.MIN_VALUE || number > LOTTO_INFO.MAX_VALUE);
   }
 
   #isLengthNotEqualsSix(numbers) {
-    return numbers.length !== 6;
+    return numbers.length !== LOTTO_INFO.WINNING_LOTTO_LENGTH;
   }
 
   #setConvertedWinningLottoNumber(numbers) {

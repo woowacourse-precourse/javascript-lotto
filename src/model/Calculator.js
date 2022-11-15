@@ -2,80 +2,93 @@ const {
   RANKING_FROM_MATCH_COUNT,
   RANK_ACCORDING_REWARD,
   NUMBER_TYPE,
-  RANKING
+  RANKING,
+  LOTTO_INFO,
+  MATH_INFO
 } = require("../constants/value");
 
 class Calculator {
   #myNumbers;
   #winningNumber;
-  #prizeStatus = {
-    1: 0,
-    2: 0,
-    3: 0,
-    4: 0,
-    5: 0
-  };
-  #earningMoney = 0;
+  #prizeStatus = {};
+  #earningMoney = MATH_INFO.INT_ZERO;
 
-  getRankAccordingMatchCount(myLottoNumber) {
-    const matchCount = this.getMatchCount(myLottoNumber);
-    if (this.isSecondPlace(matchCount, myLottoNumber)) {
+  #getRankAccordingMatchCount(myLottoNumber) {
+    const matchCount = this.#getMatchCount(myLottoNumber);
+    if (this.#isSecondPlace(matchCount, myLottoNumber)) {
       this.#prizeStatus[RANKING.SECOND_PLACE] += 1;
       return;
     }
     return matchCount;
   }
+  #initPrizeStatus() {
+    [...Array(LOTTO_INFO.LEAST_PLACE).keys()]
+      .map((key) => key + 1)
+      .forEach((index) => (this.#prizeStatus[index] = MATH_INFO.INT_ZERO));
+  }
 
-  getMatchCount(myLotto) {
+  #getMatchCount(myLotto) {
     return myLotto.filter((number) =>
       this.#winningNumber[NUMBER_TYPE.WINNING_NUMBER].includes(number)
     ).length;
   }
 
-  isSecondPlace(matchCount, myLotto) {
-    return matchCount === 5 && myLotto.includes(this.#winningNumber[NUMBER_TYPE.BONUS_NUMBER]);
+  #isSecondPlace(matchCount, myLotto) {
+    return (
+      matchCount === LOTTO_INFO.SECOND_PLACE_OR_THIRD_PLACE &&
+      myLotto.includes(this.#winningNumber[NUMBER_TYPE.BONUS_NUMBER])
+    );
   }
 
   getWinningResult(myNumbers, winningNumber) {
-    this.setNumbers(myNumbers, winningNumber);
-    this.compareWinningNumberToMine();
+    this.#initPrizeStatus();
+    this.#setNumbers(myNumbers, winningNumber);
+    this.#compareWinningNumberToMine();
     return this.#prizeStatus;
   }
 
-  compareWinningNumberToMine() {
+  #compareWinningNumberToMine() {
     let matchCountFromEachLotto;
     Array.from(this.#myNumbers).forEach((myNumber) => {
-      matchCountFromEachLotto = this.getRankAccordingMatchCount(myNumber);
-      if (this.isRanked(matchCountFromEachLotto)) {
+      matchCountFromEachLotto = this.#getRankAccordingMatchCount(myNumber);
+      if (this.#isRanked(matchCountFromEachLotto)) {
         this.#prizeStatus[RANKING_FROM_MATCH_COUNT[matchCountFromEachLotto]] += 1;
       }
     });
   }
 
-  isRanked(myRank) {
-    return myRank && myRank >= 3;
+  #isRanked(myRank) {
+    return myRank && myRank >= LOTTO_INFO.LEAST_REWARD_POSSIBLE_MATCH_COUNT;
   }
 
-  setNumbers(myNumbers, winningNumber) {
+  #setNumbers(myNumbers, winningNumber) {
     this.#myNumbers = myNumbers;
     this.#winningNumber = winningNumber;
   }
 
   getEarningRate(moneyInput) {
+    this.#getEarnedMoney();
+    return this.#getEarnedPercenage(moneyInput);
+  }
+
+  #getEarnedMoney() {
     Object.keys(this.#prizeStatus).forEach((key) => {
       this.#earningMoney += this.#prizeStatus[key] * RANK_ACCORDING_REWARD[key];
     });
+  }
+
+  #getEarnedPercenage(moneyInput) {
     this.#earningMoney /= moneyInput;
-    this.getRoundNumber();
-    return this.makePercent(this.#earningMoney);
+    this.#getTwoDecimalDown();
+    return this.#makePercent();
   }
 
-  getRoundNumber() {
-    Math.round(this.#earningMoney * 10) / 10;
+  #getTwoDecimalDown() {
+    this.#earningMoney.toFixed(MATH_INFO.DIGIT_FOR_ROUND);
   }
 
-  makePercent(number) {
-    return number * 100;
+  #makePercent() {
+    return this.#earningMoney * MATH_INFO.DECIMAL_TO_PERCENTAGE_NUMBER;
   }
 }
 

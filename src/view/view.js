@@ -1,9 +1,10 @@
 const { print } = require("../utils/Missionutils");
-const { RANKING } = require("../constants/value");
+
 const {
   MESSAGE_ACCORDING_CORRECT_COUNT,
   MESSAGE_ACCORDING_PRIZE_MONEY,
-  MESSAGE_ACCORDING_ACTION
+  MESSAGE_ACCORDING_ACTION,
+  MESSAGE_ACCORDING_INPUT_ACTION
 } = require("../constants/message");
 
 class view {
@@ -17,7 +18,7 @@ class view {
       .reverse()
       .forEach((place) => {
         print(
-          `${MESSAGE_ACCORDING_CORRECT_COUNT[place]} ${MESSAGE_ACCORDING_PRIZE_MONEY[place]} - ${
+          `${MESSAGE_ACCORDING_CORRECT_COUNT[place]} ${MESSAGE_ACCORDING_PRIZE_MONEY[place]} ${
             this.#winngingResult[place]
           }개`
         );
@@ -25,15 +26,14 @@ class view {
   }
 
   eariningRate(percentage) {
-    print(`총 수익률은 ${percentage}%입니다.`);
+    print(MESSAGE_ACCORDING_INPUT_ACTION.RETURN_EARNING_RATE(percentage));
   }
 
   purchasedSize(purchaseNumbers) {
-    print(`\n${purchaseNumbers.size}개를 구매했습니다.`);
+    print(MESSAGE_ACCORDING_INPUT_ACTION.RETURN_PURCHASED_LENGTH(purchaseNumbers.size));
   }
 
   purchasedList(purchaseNumbers) {
-    // `[${lotto.getNumbers().join(", ")}]`;
     Array.from(purchaseNumbers).forEach((lotto) => print(`[${lotto.join(", ")}]`));
   }
 }
