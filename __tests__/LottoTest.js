@@ -36,4 +36,11 @@ describe('로또 클래스 테스트', () => {
       Lotto.isValidBonusNumber(1, [1, 2, 3, 4, 5, 6]);
     }).toThrow('[ERROR]');
   });
+
+  test('로또 구입 테스트', () => {
+    const result = Lotto.purchase();
+
+    expect(result).toHaveLength(6);
+    expect(result.every((el) => !Number.isNaN(el) && el >= 1 && el <= 45)).toBeTruthy();
+  });
 });
