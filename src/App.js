@@ -1,11 +1,13 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Cost = require('./Cost');
+const Lotto = require('./Lotto');
 const { Console, Random } = MissionUtils;
 
 class App {
   constructor() {
     this.cost;
     this.lottoArray = [];
+    this.winningLottoNumberArray = [];
   }
 
   getCost() {
@@ -28,9 +30,19 @@ class App {
     }
   }
 
+  getWinningLottoNumberArray() {
+    Console.readLine('당첨 번호를 입력해 주세요.', winningLottoNumberInput => {
+      let winningLottoNumberInputArray = winningLottoNumberInput
+        .split(',')
+        .map(number => Number(number));
+      this.winningLottoNumberArray = new Lotto(winningLottoNumberInputArray);
+    });
+  }
+
   play() {
     this.getCost();
     this.getLottoArray();
+    this.getWinningLottoNumberArray();
   }
 }
 
