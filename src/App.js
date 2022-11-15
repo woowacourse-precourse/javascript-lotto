@@ -40,6 +40,8 @@ class App {
 			const bonus = new Bonus(number, this.winningNumbers);
 			this.bonusNumber = bonus.getters();
 		});
+
+		this.showResult();
 	}
 
 	lottoPublish(count) {
@@ -50,6 +52,40 @@ class App {
 
 	createRandomLottoNumbers() {
 		return Random.pickUniqueNumbersInRange(1, 45, 6);
+	}
+
+	showResult() {
+		this.getResult();
+		printResults(this.#result);
+	}
+
+	getResult() {
+		this.lottos.forEach((lotto) => {
+			this.checkWinning(lotto);
+		});
+	}
+
+	checkWinning(lotto) {
+		let count = 0;
+
+		lotto.forEach((number) => {
+			if (this.winningNumbers.includes(number)) count++;
+		});
+
+		if (count === 5) {
+			this.checkBonus(lotto);
+			return;
+		}
+
+		if (count > 2) {
+			this.#result[count] += 1;
+		}
+	}
+
+	checkBonus(lotto) {
+		if (lotto.includes(this.bonusNumber)) {
+			this.#result.bonus += 1;
+		}
 	}
 }
 

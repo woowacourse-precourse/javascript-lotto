@@ -56,11 +56,11 @@
     - [x] 1~45 숫자 이외의 문자 입력시 -> Bonus#checkBelongTo()
     - [x] 1개의 숫자가 아닐시
     - [x] 당첨 번호와 중복되는 숫자 입력시
-- [] 당첨 번호와 로또 번호 비교
-  - [] 로또 번호에 당첨 번호가 포함되어있는지 확인 -> App#getResult()
-    - [] 로또 번호에 보너스 번호가 포함되어있는지 확인 -> App#checkBonus()
-    - [] 포함되어있는 숫자가 있을 경우 카운트 -> App#checkWinning()
+- [x] 당첨 번호와 로또 번호 비교
+  - [x] 로또 번호에 당첨 번호가 포함되어있는지 확인 -> App#getResult()
+    - [x] 로또 번호에 보너스 번호가 포함되어있는지 확인 -> App#checkBonus()
+    - [x] 포함되어있는 숫자가 있을 경우 카운트 -> App#checkWinning()
 - [] 수익률을 계산 -> App#calculate()
 - [] '당첨 통계' 메시지, 구분선 출력
-  - [] 등수별 갯수 출력 -> Print#printResults()
+  - [x] 등수별 갯수 출력 -> Print#printResults()
   - [] 수익률 출력 -> Print#printProfitPercent()
