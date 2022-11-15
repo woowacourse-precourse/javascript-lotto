@@ -41,13 +41,13 @@ class App {
     }
   }
 
-  buyAmountCalculate() {
-    this.buyAmount = this.buyPrice / 1000;
+  buyAmountCalculate(price) {
+    this.buyAmount = price / 1000;
     MissionUtils.Console.print("\n" + this.buyAmount + "개를 구매했습니다.");
   }
 
   createLottoNumber() {
-    this.buyAmountCalculate();
+    this.buyAmountCalculate(this.buyPrice);
     for (let index = 0; index < this.buyAmount; index++) {
       this.lottoArray.push(
         MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6)
