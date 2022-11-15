@@ -25,4 +25,10 @@ describe("로또 클래스 테스트", () => {
       new Lotto([1,46,3,20,23,"y"]);
     }).toThrow("[ERROR]");
   });
-});
+
+  test("로또 번호가 빈칸인 경우 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([""]);
+    }).toThrow("[ERROR]");
+  })
+})

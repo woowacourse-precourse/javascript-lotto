@@ -16,6 +16,6 @@ describe("보너스 번호 값 테스트", () => {
         const inputWinningNum = new InputWinningNum();
         expect(() => {
             inputWinningNum.bonusNumber();
-            }).toThrow("[ERROR]");
+        }).toThrow("[ERROR]");
     });
 });
