@@ -77,6 +77,22 @@ class App {
     const lotto = new Lotto(this.winningNum);
   }
 
+  //feature 4
+   printRank(rankList){
+    let lotteryMoney = [5000, 50000, 1500000, 30000000, 2000000000];
+    let total = 0;
+    MissionUtils.Console.print("당첨 통계\n---");
+    let resultString = `3개 일치 (5,000원) - ${rankList[0]}개\n4개 일치 (50,000원) - ${rankList[1]}개\n5개 일치 (1,500,000원) - ${rankList[2]}개\n5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankList[3]}개\n6개 일치 (2,000,000,000원) - ${rankList[4]}개`;
+
+    for(let i = 0; i < rankList.length; i++){
+      if(rankList[i] !== 0) total += lotteryMoney[i];
+    }
+ 
+    MissionUtils.Console.print(resultString);
+    MissionUtils.Console.print(`총 수익률은 ${(total/this.payment) * 100}%입니다.`);
+    MissionUtils.Console.close();
+  }
+
 
   
 
