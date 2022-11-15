@@ -1,0 +1,25 @@
+const error = {
+  COMMA: "[ERROR] 콤마로 구분해주세요",
+  LEN_NOT_SIX: "[ERROR] 6개의 숫자가 아닙니다",
+  KOREA_IMPOSSIBLE: "[ERROR] 한글은 불가능 합니다",
+  ENGLISH_IMPOSSIBLE: "[ERROR] 영어는 불가능 합니다",
+  OVER_45_IMPOSSIBLE: "[ERROR] 45보다 큰 숫자는 불가능합니다",
+  OVERLAP_IMPOSSIBLE: "[ERROR] 중복은 불가능합니다",
+  PREFIX_ZERO_IMPOSSIBLE: "[ERROR] 앞자리 0 불가능",
+  UNIT_1000: "[ERROR] 1000원 단위로 입력해주세요",
+  ONE_TO_FOUTYFIVE: "[ERROR] 1~45사이",
+  MONEY_INPUT: "구입금액을 입력해주세요.\n",
+  USER_LOTTO_NUM: "당첨 번호를 입력해 주세요.\n",
+  BONUS_NUM: "보너스 번호를 입력해 주세요.\n",
+  AMOUNT_LONG: "개를 구매했습니다.",
+  AMOUNT_SHORT:'개',
+  PRIZE_STATS: "\n당첨 통계\n---",
+  FIFTH_PRIZE: "3개 일치 (5,000원) -",
+  FORTH_PRIZE: "4개 일치 (50,000원) -",
+  THIRD_PRIZE: "5개 일치 (1,500,000원) -",
+  SECOND_PRIZE: "5개 일치, 보너스 볼 일치 (30,000,000원) -",
+  FIRST_PRIZE: "6개 일치 (2,000,000,000원) -",
+  TOTAL_PRIZE_RATE: "총 수익률은",
+  PERCENT:"%입니다."
+};
+module.exports = error;

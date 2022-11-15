@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const str=require("./Constant")
 
 class Lotto {
   #numbers;
@@ -10,15 +11,15 @@ class Lotto {
 
   validate(numbers) {
     if (numbers !== undefined) {
-      if (Number(numbers) > 45) throw "[ERROR] 콤마로 구분해주세요";
-      if (numbers.length !== 6) throw "[ERROR] 6개의 숫자가 아닙니다";
-      if (/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(numbers)) throw "[ERROR] 한글은 불가능 합니다";
-      if (/[a-zA-Z]/g.test(numbers)) throw "[ERROR] 영어는 불가능 합니다";
+      if (Number(numbers) > 45) throw str.COMMA;
+      if (numbers.length !== 6) throw str.LEN_NOT_SIX;
+      if (/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(numbers)) throw str.KOREA_IMPOSSIBLE;
+      if (/[a-zA-Z]/g.test(numbers)) throw str.ENGLISH_IMPOSSIBLE;
       numbers.forEach((num) => {
-        if (Number(num) > 45) throw "[ERROR] 45보다 큰 숫자는 불가능합니다";
+        if (Number(num) > 45) throw str.OVER_45_IMPOSSIBLE;
       });
       let len = numbers.filter((v, i) => numbers.indexOf(v) === i);
-      if (len.length !== 6) throw "[ERROR] 중복은 불가능합니다";
+      if (len.length !== 6) throw str.OVERLAP_IMPOSSIBLE;
     }
   }
 
@@ -33,51 +34,42 @@ class Lotto {
   }
 
   getUserInputMoney() {
-    MissionUtils.Console.readLine("구입금액을 입력해주세요.\n", (money) => {
+    MissionUtils.Console.readLine(str.MONEY_INPUT, (money) => {
       this.checkInputMoney(money);
     });
   }
   checkInputMoney(money) {
-    if (money[0] === "0") throw "[ERROR] 앞자리 0 불가능";
-    if (Number(money) % 1000 !== 0) throw "[ERROR] 1000원 단위로 입력해주세요";
+    if (money[0] === "0") throw str.PREFIX_ZERO_IMPOSSIBLE;
+    if (Number(money) % 1000 !== 0) throw str.UNIT_1000;
     this.createLottoNumArrays(money);
   }
 
   getUserLottoNumber(computerNumberArray, amountOfMoney) {
     MissionUtils.Console.readLine(
-      "당첨 번호를 입력해 주세요.\n",
+      str.USER_LOTTO_NUM,
       (userLottoNumber) => {
         this.#numbers = userLottoNumber.split(",");
         this.validate(this.#numbers);
-        this.getUserBonusNumber(
-          computerNumberArray,
-          userLottoNumber,
-          amountOfMoney
-        );
+        this.getUserBonusNumber(computerNumberArray,userLottoNumber,amountOfMoney);
       }
     );
   }
 
   getUserBonusNumber(computerNumberArray, userLottoNumber, amountOfMoney) {
     MissionUtils.Console.readLine(
-      "보너스 번호를 입력해 주세요.\n",
+      str.BONUS_NUM,
       (bonusNumber) => {
         this.checkBonusNumber(bonusNumber);
-        this.calculatePrizeLottery(
-          computerNumberArray,
-          userLottoNumber,
-          Number(bonusNumber),
-          amountOfMoney
-        );
+        this.calculatePrizeLottery(computerNumberArray,userLottoNumber,Number(bonusNumber),amountOfMoney);
       }
     );
   }
 
   checkBonusNumber(bonusNumber) {
-    if (/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(bonusNumber)) throw "[ERROR] 한글 불가능";
-    if (/[a-zA-Z]/g.test(bonusNumber)) throw "[ERROR] 영어 불가능";
+    if (/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(bonusNumber)) throw str.KOREA_IMPOSSIBLE;
+    if (/[a-zA-Z]/g.test(bonusNumber)) throw str.ENGLISH_IMPOSSIBLE;
     if (Number(bonusNumber) < 1 || Number(bonusNumber) > 45)
-      throw "[ERROR] 1~45사이";
+      throw str.ONE_TO_FOUTYFIVE;
   }
 
   createLottoNumArrays(money) {
@@ -87,7 +79,7 @@ class Lotto {
   }
 
   showLottoArrays(amount, computerNumberArray, amountOfMoney) {
-    MissionUtils.Console.print(`${amount}개를 구매했습니다.`);
+    MissionUtils.Console.print(`${amount}${str.AMOUNT_LONG}`);
     computerNumberArray.forEach((computerNumbers) => {
       MissionUtils.Console.print("["+computerNumbers+"]");
     });
@@ -97,10 +89,7 @@ class Lotto {
 
   calculatePrizeLottery(computerNumberArray,userLottoNumber,bonusNumber,amountOfMoney) {
     let userLottoArray = userLottoNumber.split(",").map((e) => Number(e));
-    let [getCountedArray, getBonusArray] = this.checkLottery(
-      computerNumberArray,
-      userLottoArray,
-      bonusNumber
+    let [getCountedArray, getBonusArray] = this.checkLottery(computerNumberArray,userLottoArray,bonusNumber
     );
     this.checkPrizeAmount(getCountedArray, getBonusArray, amountOfMoney);
   }
@@ -146,7 +135,6 @@ class Lotto {
   }
 
   rateofReturn(prizeObj, amountOfMoney) {
-    console.log(prizeObj);
     let fifthPrize = 5000;
     let forthPrize = 50000;
     let thirdPrize = 1500000;
@@ -176,13 +164,13 @@ class Lotto {
     return (Math.round(m) / 10) * Math.sign(num);
   }
   showPrizeAndRate(prizeObj, money) {
-    MissionUtils.Console.print('\n당첨 통계\n---')
-    MissionUtils.Console.print(`"3개 일치 (5,000원) - ${prizeObj["3"] ? prizeObj["3"] : 0}개"`);
-    MissionUtils.Console.print(`"4개 일치 (50,000원) - ${prizeObj["4"] ? prizeObj["4"] : 0}개"`);
-    MissionUtils.Console.print(`"5개 일치 (1,500,000원) - ${prizeObj["5"] ? prizeObj["5"] : 0}개"`);
-    MissionUtils.Console.print(`"5개 일치, 보너스 볼 일치 (30,000,000원) - ${prizeObj["7"] ? prizeObj["7"] : 0}개"`);
-    MissionUtils.Console.print(`"6개 일치 (2,000,000,000원) - ${prizeObj["6"] ? prizeObj["6"] : 0}개"`);
-    MissionUtils.Console.print(`"총 수익률은 ${money.toFixed(1)}%입니다."`);
+    MissionUtils.Console.print(str.PRIZE_STATS)
+    MissionUtils.Console.print(`"${str.FIFTH_PRIZE} ${prizeObj["3"] ? prizeObj["3"] : 0}${str.AMOUNT_SHORT}"`);
+    MissionUtils.Console.print(`"${str.FORTH_PRIZE} ${prizeObj["4"] ? prizeObj["4"] : 0}${str.AMOUNT_SHORT}"`);
+    MissionUtils.Console.print(`"${str.THIRD_PRIZE} ${prizeObj["5"] ? prizeObj["5"] : 0}${str.AMOUNT_SHORT}"`);
+    MissionUtils.Console.print(`"${str.SECOND_PRIZE} ${prizeObj["7"] ? prizeObj["7"] : 0}${str.AMOUNT_SHORT}"`);
+    MissionUtils.Console.print(`"${str.FIRST_PRIZE} ${prizeObj["6"] ? prizeObj["6"] : 0}${str.AMOUNT_SHORT}"`);
+    MissionUtils.Console.print(`"${str.TOTAL_PRIZE_RATE} ${money.toFixed(1)}${str.PERCENT}"`);
     MissionUtils.Console.close();
   }
 }
