@@ -39,6 +39,14 @@ describe("로또 클래스 테스트", () => {
   test("로또 객체가 숫자로 변환되는 지 확인한다.", () => {
     const lotto = new Lotto([4, 5, 6, 7, 8, 9]);
 
-    expect(lotto.toString()).toEqual("[4,5,6,7,8,9]");
+    expect(lotto.toString()).toEqual("[4, 5, 6, 7, 8, 9]");
+  });
+
+  test("당첨 번호와 보너스 번호로 로또의 등수를 확인한다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    const winNumbers = [1, 2, 3, 4, 5, 8];
+    const bonusNumber = 6;
+
+    expect(lotto.getRank(winNumbers, bonusNumber)).toEqual(2);
   });
 });
