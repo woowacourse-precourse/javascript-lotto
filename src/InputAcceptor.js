@@ -45,6 +45,10 @@ class InputAcceptor {
         numberArray.forEach(numberElement => this.checkANumber(numberElement));
         return true;
     }
+
+    static checkNumberValidRange(number) {
+        if (number < 1 && number > 45) throw new Error('[ERROR] 1~45 사이의 숫자를 입력해주세요.');
+    }
 }
 
 module.exports = InputAcceptor;
