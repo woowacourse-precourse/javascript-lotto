@@ -14,7 +14,28 @@ function sortAscending(numbers) {
   });
 }
 
+function validateLottoNumber(input) {
+  if (Array.from(input).length !== 6) {
+    throw new Error(ErrorMessage.length);
+  }
+
+  input.map((number) => {
+    if (number < 1 || number > 45) {
+      throw Error(ErrorMessage.range);
+    }
+  });
+}
+
+function validateUniqueNumbers(numbers) {
+  const set = new Set(numbers);
+  if (set.size !== Array.from(numbers).length) {
+    throw Error(ErrorMessage.duplicated);
+  }
+}
+
 module.exports = {
   validateUserMoney,
   sortAscending,
+  validateLottoNumber,
+  validateUniqueNumbers,
 };
