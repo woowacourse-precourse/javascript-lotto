@@ -1,5 +1,7 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { Random }= require('@woowacourse/mission-utils');
+const { Random } = require('@woowacourse/mission-utils');
+
+const Lotto = require('./Lotto');
 
 class App {
   play() {}
@@ -44,6 +46,15 @@ class App {
   printLottoList(lottoList) {
     lottoList.forEach((lottoNumbers) => {
       Console.print(lottoNumbers);
+    });
+    
+    this.getUserInputNumbers();
+  }
+
+  getUserLottoNumbers() {
+    Console.readLine('당첨 번호를 입력해 주세요. \n', (userInput) => {
+      const userInputArr = userInput.split(',');
+      new Lotto(userInputArr);
     });
   }
 }
