@@ -20,5 +20,21 @@ const LOTTO = {
   MAX_RANGE: 45,
   MIN_RANGE: 1,
 };
+const LOTTO_RANK = {
+  firstPlace: 6,
+  secondPlace: 5,
+  thirdPlace: 5,
+  fourthPlace: 4,
+  fifthPlace: 3,
+};
 
-module.exports = { MESSAGES, ERROR_MESSAGES, LOTTO };
+const LOTTO_PRIZE = {
+  boom: 0,
+  firstPlace: 2000000000,
+  secondPlace: 30000000,
+  thirdPlace: 1500000,
+  fourthPlace: 50000,
+  fifthPlace: 5000,
+};
+
+module.exports = { MESSAGES, ERROR_MESSAGES, LOTTO, LOTTO_RANK, LOTTO_PRIZE };
