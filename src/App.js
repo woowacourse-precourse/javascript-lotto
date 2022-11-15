@@ -48,7 +48,7 @@ function winningNumber (lotto_number, winning_inputnumber, bonus_inputnumber) {
     })
     countcheck(count, bonus_inputnumber, winningPoint, lotto_number)
   })
-
+  return winningresult(lotto_number, winningPoint)
 }
 function countcheck(count, bonus_inputnumber, winningPoint, lotto_number){
   if(count==5 && lotto_number.includes(bonus_inputnumber)){
@@ -71,7 +71,6 @@ function countcheck(count, bonus_inputnumber, winningPoint, lotto_number){
     case 100:
       winningPoint[3]++
   }
-  return winningresult(lotto_number, winningPoint)
 }
 function winningresult(lotto_number, winningPoint) {
   let value = 5000*winningPoint[0] + 50000*winningPoint[1] + 1500000*winningPoint[2] + 30000000*winningPoint[3] + 2000000000*winningPoint[4]
@@ -105,6 +104,7 @@ function exceptiondollar(dollarInput) {
 function exceptionWinningInput(winningInput){
   let winningInputArray = winningInput.split(',')
   let regExp = new RegExp('/\D/gm')
+  let winningSet = new Set(winningInputArray)
   if (regExp.test(winningInput)){
     throw '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.'
   }
@@ -113,6 +113,9 @@ function exceptionWinningInput(winningInput){
   }
   if (winningInputArray.length !== 6) {
     throw '[ERROR] 로또 번호는 6개여야 합니다.'
+  }
+  if (winningSet.size !== 6) {
+    throw '[ERROR] 로또 번호는 서로 다른 6개여야 합니다.'
   }
 }
 
