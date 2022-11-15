@@ -4,26 +4,26 @@ const LottoGenerator = require("./LottoGenerator");
 const LottoResultManager = require("./LottoResultManager");
 const validator = require("./validator");
 
+const MESSAGE = {
+  PAYMENT: "구입금액을 입력해 주세요.",
+  WIN_NUMBER: "당첨 번호를 입력해 주세요.",
+  BONUS_NUMBER: "보너스 번호를 입력해 주세요.",
+};
+
 class App {
   play() {
     this.getUserPayment();
   }
 
   getUserPayment() {
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (payment) => {
+    MissionUtils.Console.readLine(`${MESSAGE.PAYMENT}`, (payment) => {
       this.userPayment = Number(payment);
       this.createLotto(payment);
     });
   }
 
-  createLotto(payment) {
-    const lottoGenerator = new LottoGenerator(payment);
-    this.lotteries = lottoGenerator.createLottos();
-    this.getWinNumber();
-  }
-
   getWinNumber() {
-    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (winNumber) => {
+    MissionUtils.Console.readLine(`${MESSAGE.WIN_NUMBER}`, (winNumber) => {
       validator.checkWinNumber(winNumber);
       this.winNumber = winNumber;
       this.getBonusNumber();
@@ -31,11 +31,17 @@ class App {
   }
 
   getBonusNumber() {
-    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (bonusNumber) => {
+    MissionUtils.Console.readLine(`${MESSAGE.BONUS_NUMBER}`, (bonusNumber) => {
       validator.checkBonusNumber(bonusNumber, this.winNumber);
       const winRanks = this.getLottoRank(Number(bonusNumber), this.lotteries, this.winNumber);
       this.handleResult(winRanks);
     });
+  }
+
+  createLotto(payment) {
+    const lottoGenerator = new LottoGenerator(payment);
+    this.lotteries = lottoGenerator.createLottos();
+    this.getWinNumber();
   }
 
   getLottoRank(bonusNumber, lotteries, winNumber) {

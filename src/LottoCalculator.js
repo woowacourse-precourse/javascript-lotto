@@ -1,4 +1,5 @@
 const rewards = [2000000000, 30000000, 1500000, 50000, 5000];
+const ROUNDED_DIGIT = 1;
 
 class LottoCalculator {
   constructor() {
@@ -17,7 +18,7 @@ class LottoCalculator {
   }
 
   divideProfitBy(payment) {
-    return ((this.totalProfit / payment) * 100).toFixed(1);
+    return ((this.totalProfit / payment) * 100).toFixed(ROUNDED_DIGIT);
   }
 }
 

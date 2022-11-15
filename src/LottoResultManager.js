@@ -1,6 +1,8 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const LottoCalculator = require("./LottoCalculator");
 
+const NOT_IN_RANK = "noRank";
+
 class LottoResultManager {
   constructor() {
     this.profitRate = 0;
@@ -17,8 +19,8 @@ class LottoResultManager {
 
   countWin(winRanks) {
     winRanks.forEach((winRank) => {
-      if (winRank !== "noRank") {
-        this.winCount[winRank] += 1;
+      if (winRank !== "NOT_IN_RANK") {
+        this.winCount[winRank]++;
       }
     });
   }
@@ -39,6 +41,7 @@ class LottoResultManager {
   }
 
   printResult() {
+    MissionUtils.Console.print("당첨통계\n---");
     MissionUtils.Console.print(this.WinHistoryMessage);
     MissionUtils.Console.print(`총 수익률은 ${this.profitRate}%입니다.`);
   }

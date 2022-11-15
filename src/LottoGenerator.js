@@ -6,6 +6,11 @@ const MIN_NUMBER = 1;
 const MAX_NUMBER = 45;
 const PICK_COUNT = 6;
 
+const ERROR_MESSAGE = {
+  WRONG_TYPE: "[ERROR] 구매 금액은 숫자만 입력하셔야 합니다.",
+  WRONG_UNIT: "[ERROR] 구매 금액은 천원 단위로 입력하셔야 합니다.",
+};
+
 class LottoGenerator {
   constructor(payment) {
     this.validate(payment);
@@ -19,11 +24,11 @@ class LottoGenerator {
 
   validate(payment) {
     if (isNaN(payment)) {
-      throw new Error("[ERROR] 구매 금액은 숫자만 입력하셔야 합니다.");
+      throw new Error(ERROR_MESSAGE.WRONG_TYPE);
     }
 
     if (payment % LOTTO_PRICE !== 0) {
-      throw new Error("[ERROR] 구매 금액은 천원 단위로 입력하셔야 합니다.");
+      throw new Error(ERROR_MESSAGE.WRONG_UNIT);
     }
   }
 
