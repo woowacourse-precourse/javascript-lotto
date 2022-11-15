@@ -42,6 +42,14 @@ class App {
     this.lottos.map((lotto) => Console.print(lotto.printLotto()));
     this.inputWinningNumber();
   }
+
+  inputWinningNumber() {
+    Console.readLine(INPUT.WINNING_NUMBER, (input) => {
+      this.winningNumber = input.split(',').map((number) => Number(number));
+      checkValidWinningNumberInput(this.winningNumber);
+      this.inputBonusNumber();
+    });
+  }
 }
 
 module.exports = App;
