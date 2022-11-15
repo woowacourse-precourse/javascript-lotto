@@ -39,8 +39,8 @@ class Validator {
     );
   }
 
-  isBonusDuplicate(lottoNumbers) {
-    return lottoNumbers.includes(this.#numbers);
+  isBonusDuplicate(winningNumbers) {
+    return winningNumbers.includes(this.#numbers);
   }
 
   purchaseAmount() {
@@ -57,10 +57,10 @@ class Validator {
     if (this.isLottoDuplicate()) throw new Error(ERROR.DUPLICATE);
   }
 
-  bonusNumber(lottoNumbers) {
+  bonusNumber(winningNumbers) {
     if (!this.isBonusValidateRange()) throw new Error(ERROR.RANGE);
 
-    if (this.isBonusDuplicate(lottoNumbers)) throw new Error(ERROR.DUPLICATE);
+    if (this.isBonusDuplicate(winningNumbers)) throw new Error(ERROR.DUPLICATE);
   }
 }
 
