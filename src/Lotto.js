@@ -74,6 +74,24 @@ class Lotto {
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${usersRank[1]}개`);
   }
 
+  countPrize(){
+    const RANK = {
+      5: 5000,
+      4: 50000,
+      3: 1500000,  
+      2: 30000000,
+      1: 2000000000,
+    }
+
+    let prize = 0;
+    for(let i=1;i<6;i++){
+      for(let j=0; j<usersRank[i];j++){
+        prize += RANK[i];
+      }
+    }
+    return prize;
+  }
+
   // TODO: 추가 기능 구현
 }
 
