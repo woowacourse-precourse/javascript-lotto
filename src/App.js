@@ -1,6 +1,19 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 class App {
+  // 유저가 낸 금액
+  userPaid() {
+    MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (userInput) => {
+      if (userPaidValid(userInput)) {
+        this.userPrice = userInput;
+        MissionUtils.Console.print(
+          `${Number(userPrice) / 1000}개를 구매했습니다.`
+        );
+        this.userLottoNum(userPrice);
+      }
+    });
+  }
+
   //당첨 로또 번호
   winLottoNum() {
     MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (userInput) => {
@@ -24,19 +37,6 @@ class App {
   //당첨 통계
   LottoResult() {
     MissionUtils.Console.print("당첨 통계");
-  }
-
-  // 유저가 낸 금액
-  userPaid() {
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (userInput) => {
-      if (userPaidValid(userInput)) {
-        this.userPrice = userInput;
-        MissionUtils.Console.print(
-          `${Number(userPrice) / 1000}개를 구매했습니다.`
-        );
-        this.userLottoNum(userPrice);
-      }
-    });
   }
 
   // 유저가 낸 금액 확인하는 메서드
