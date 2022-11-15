@@ -4,6 +4,7 @@ const Lotto = require("./Lotto");
 class App {
   play() {
     this.lottoList = [];
+    this.buyPrice = 0;
     this.lottoNum = this.inputMoney();
     this.publishLotto(this.lottoNum);
     this.printLotto(this.lottoNum);
@@ -14,12 +15,11 @@ class App {
   }
 
   inputMoney() {
-    let money;
     MissionUtils.Console.readLine("구입금액을 입력해주세요", (input) => {
       if (input % 1000 !== 0) {
         throw new error("[ERROR] 잘못된 금액입니다.");
       }
-      money = input;
+      this.buyPrice = input;
     });
 
     return money / 1000;
@@ -78,6 +78,10 @@ class App {
       );
       this.increase += this.score[grade] * lottoMoney[grade];
     }
+  }
+
+  printIncrease() {
+    const rate = 
   }
 }
 
