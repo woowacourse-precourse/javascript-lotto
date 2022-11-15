@@ -1,9 +1,10 @@
-const { Console, Random } = require('@woowacourse/mission-utils')
+const { Console, Random } = require('@woowacourse/mission-utils');
+const { PROCESS_MESSAGE } = require('./constants/Message');
 const Validation = require('./Validation');
 
 class Issue {
   purchase() {
-    Console.readLine('구입금액을 입력해 주세요.', (inputValue) => {
+    Console.readLine(PROCESS_MESSAGE.INPUT_PURCHASE_AMOUNT, (inputValue) => {
       new Validation().purchaseInputValue(inputValue);
       this.purchaseCount = Math.floor(Number(inputValue) / 1000);
       Console.close();
