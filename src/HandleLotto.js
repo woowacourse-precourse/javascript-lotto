@@ -39,11 +39,7 @@ class HandleLotto {
                     this.#rank[1]++;
                     break;
                 case 5:
-                    if (lotto.getNumbers().includes(this.#bonusNum)) {
-                        this.#rank[3]++;
-                    } else {
-                        this.#rank[2]++;
-                    }
+                    lotto.getNumbers().includes(this.#bonusNum) ? this.#rank[3]++ : this.#rank[2]++;
                     break;
                 case 6:
                     this.#rank[4]++;
