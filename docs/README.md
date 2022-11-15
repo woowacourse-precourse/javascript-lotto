@@ -241,6 +241,7 @@ src/
     ```js
     /**
      * 공백을 횟수만큼 늘려주는 함수
+     *
      * @param {number} count
      * @returns {string}
      */
@@ -248,4 +249,8 @@ src/
       return Array(count).fill(' ').join('');
     }
     ```
+
+    JSDoc의 eslint 지원을 위해 `npm install --save-dev eslint-plugin-jsdoc` 명령으로 플러그인을 설치한다.
+
+    설치 후, .eslintrc.js의 `extends: [...]` 에 `'plugin:jsdoc/recommended'` 를 추가한다.
   </details>
