@@ -17,9 +17,12 @@ class OutputUtils {
     return lottoStr;
   }
 
-  static printLottos(lottoArr) {
-    for (let i = 0; i < lottoArr.length; i++) {
-      const result = Output.createLottoString(lottoArr[i].getLottoNumber());
+  static printLottos(lottos) {
+    const lottosForPrint = lottos.getLottos();
+    for (let i = 0; i < lottosForPrint.length; i++) {
+      const result = OutputUtils.createLottoString(
+        lottosForPrint[i].getLottoNumber()
+      );
       Console.print(result);
     }
   }
