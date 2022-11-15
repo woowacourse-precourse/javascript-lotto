@@ -1,5 +1,5 @@
 const { Random } = require('@woowacourse/mission-utils');
-const Lotto = require('../Lotto');
+const Lotto = require('./Lotto');
 const Validation = require('./Validation');
 const { UTILS } = require('../constant/constant');
 
