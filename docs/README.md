@@ -125,12 +125,6 @@ src/
     LottoError.js
     LottoValidationError.js
   domains/
-    User.js
-      class User
-        #lottos
-        constructor()
-        buyLottos(money)
-        getLottos()
     Lotto.js
       class Lotto
         NUMBER_SIZE = 6
@@ -142,6 +136,7 @@ src/
         validate(numbers)
         static parseLotto(text)
         static fromRandom()
+        static buyLottos(money)
         getNumber()
         hasNumber()
         toString()
