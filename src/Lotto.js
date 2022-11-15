@@ -101,6 +101,7 @@ class Lotto {
       this.bonus = bonusNum;
       this.processList();
       this.lottoValueResult();
+      this.printResult();
     });
   }
 
@@ -131,7 +132,7 @@ class Lotto {
     });
   }
 
-  lottoValueResult() {
+  lottoValueResult(count, bonus) {
     if (this.sameCount === 3) {
       this.valueResult["5,000"] += 1;
     } else if (this.sameCount === 4) {
@@ -143,6 +144,26 @@ class Lotto {
     } else if (this.sameCount === 6) {
       this.valueResult["2,000,000,000"] += 1;
     }
+  }
+
+  printResult() {
+    MissionUtils.Console.print(`당첨 통계`);
+    MissionUtils.Console.print(`============`);
+    MissionUtils.Console.print(
+      `3개 일치 (5,000원) - ${this.valueResult["5,000"]} 개`
+    );
+    MissionUtils.Console.print(
+      `4개 일치 (50,000원) - ${this.valueResult["50,000"]} 개`
+    );
+    MissionUtils.Console.print(
+      `5개 일치 (1,500,000원) - ${this.valueResult["1,500,000"]} 개`
+    );
+    MissionUtils.Console.print(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.valueResult["30,000,000"]} 개`
+    );
+    MissionUtils.Console.print(
+      `6개 일치 (2,000,000,000원) - ${this.valueResult["2,000,000,000"]} 개`
+    );
   }
 }
 module.exports = Lotto;
