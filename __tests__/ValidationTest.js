@@ -52,4 +52,13 @@ describe('유효성 검사 테스트', () => {
       Validation.throwException(InvalidInputError, message);
     }).toThrow('[ERROR]');
   });
+
+  test('구매 금액 예외 테스트', () => {
+    const inputs = ['1000a', 500, 1100];
+    inputs.forEach((input) => {
+      expect(() => {
+        Validation.validateMoney(input);
+      }).toThrow('[ERROR]');
+    });
+  });
 });
