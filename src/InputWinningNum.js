@@ -2,7 +2,7 @@ const {Console} = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const {INPUT_MESSAGE, ERROR_MESSAGE} = require("./Constants");
 const {INPUT_BONUS_NUMBER, INPUT_WINNING_NUMBER} = INPUT_MESSAGE;
-const {NOT_ONE_NUMBER, NOT_BETWEEN_NUMBER, IS_NOT_NUMBER} = ERROR_MESSAGE;
+const {NOT_ONE_NUMBER, NOT_BETWEEN_NUMBER, IS_NOT_NUMBER, INPUT_NUM_BLANK} = ERROR_MESSAGE;
 
 class InputWinningNumber{
     constructor(){

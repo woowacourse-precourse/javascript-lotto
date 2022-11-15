@@ -11,18 +11,18 @@ class UserInputNumber {
         this.issudLotto;
     }
     
-    userLottoPaymentAmount(input){
+    userLottoPaymentAmount(){
         Console.readLine( INPUT_MONEY_MESSAGE , (input) => {
             let issuedLotto = input/THOUSAND;
             this.issudLotto = issuedLotto;
-            this.checkNum(input);
+            this.checkInput(input);
             Console.print(`${issuedLotto}${BUY_LOTTO_MESSAGE}`);
             this.issuedRandomNum = this.createRandomLotto.issuedRandomNumber(issuedLotto);
         })
         return this.issuedRandomNum;
     }
 
-    checkNum(value){
+    checkInput(value){
         if(value % THOUSAND !==  0){
             throw new Error(NOT_THOUSAND_UNIT);
         }
