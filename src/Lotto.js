@@ -10,6 +10,9 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
+    const duplicationNum = new Set(numbers);
+    if(duplicationNum.size != 6)
+      throw new Error("[ERROR] 중복값이 포함되어 있습니다.");
   }
   toString() {
     return `[${this.#numbers.join(", ")}]`;
