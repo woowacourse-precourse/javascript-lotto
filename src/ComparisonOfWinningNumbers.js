@@ -12,7 +12,7 @@ class ComparisonOfWinningNumbers {
   }
 
   comparison() {
-    let numberComparison = this.lottoNumber.filter(number => this.winningNumber.includes(number));
+    let numberComparison = this.lottoNumber.filter(x1 => this.winningNumber.some(x2 => x1 == x2));
     return numberComparison;
   }
 
@@ -44,7 +44,7 @@ class ComparisonOfWinningNumbers {
                     rank.filter(element => 5 === element).length * 1500000 + 
                     rank.filter(element => 1 === element).length * 30000000 + 
                     rank.filter(element => 6 === element).length * 2000000000;
-    MissionUtils.Console.print(`총 수익률은 ${(totalMoney / price * 100).toFixed(1)}입니다.`);
+    MissionUtils.Console.print(`총 수익률은 ${(totalMoney / price * 100).toFixed(1)}%입니다.`);
   }
 }
 
