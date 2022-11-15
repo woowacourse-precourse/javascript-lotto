@@ -13,7 +13,7 @@ const mockRandoms = (numbers) => {
 
 describe('로또 도메인 테스트', () => {
   test(`로또 번호의 개수가 ${Lotto.NUMBER_COUNT}개가 넘어가면 예외가 발생한다.`, () => {
-    const numbers = Array.from(Lotto.NUMBER_COUNT + 1)
+    const numbers = Array(Lotto.NUMBER_COUNT + 1)
       .fill()
       .map((_, index) => Lotto.NUMBER_MIN + index)
       .sort(() => 0.5 - Math.random());
