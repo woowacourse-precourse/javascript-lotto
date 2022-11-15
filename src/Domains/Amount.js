@@ -1,4 +1,4 @@
-const { ERROR } = require("../Utils/constant");
+const { ERROR, UNIT } = require("../Utils/constant");
 class Amount {
   #amount;
 
@@ -8,10 +8,10 @@ class Amount {
   }
 
   validate(amount) {
-    if (amount % 1000 > 0) {
+    if (amount % UNIT > 0) {
       throw new Error(ERROR.AMOUNT_UNIT);
     }
-    if (isNaN(amount / 1000)) {
+    if (isNaN(amount / UNIT)) {
       throw new Error(ERROR.AMOUNT_ISNAN);
     }
     return true;
