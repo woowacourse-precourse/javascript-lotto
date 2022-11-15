@@ -44,6 +44,15 @@ class App {
     })
   }
 
+  getYield(moneyResult) {
+    let totalPrise = 0;
+    for (const money of moneyResult) {
+      totalPrise += money;
+    }
+
+    return (totalPrise / (this.Lottos.length * 1000) * 100).toFixed(1);
+  }
+
   getMatchNum(lotto) {
     let matchs = 0;
     for (let num of lotto) {
