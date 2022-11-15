@@ -1,3 +1,4 @@
+// 화면 출력
 const MissionUtils = require("@woowacourse/mission-utils");
 const {
   MESSAGES,
@@ -5,8 +6,8 @@ const {
   StatisticsMessage,
 } = require("./constant/Constant");
 
-const printNumber = (purchased) => {
-  MissionUtils.Console.print(`${purchased}${MESSAGES.PURCHASEDLOTTO}`);
+const printNumber = (amounts) => {
+  MissionUtils.Console.print(`${amounts}${MESSAGES.PURCHASEDLOTTO}`);
 };
 
 const printLotto = (lotto) => {
@@ -21,7 +22,7 @@ const printResult = ({ three, four, five, bonus, six }, profitRate) => {
   MissionUtils.Console.print(ProfitMessage(profitRate));
   MissionUtils.Console.close();
 };
-
+// 로또의 문자열화
 const makeStrLotto = (lotto) => {
   let str = "[";
   lotto.forEach((cur, idx) => {

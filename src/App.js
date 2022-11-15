@@ -4,30 +4,25 @@ const {
   LOTTOREQUIREMENT,
   LOTTOPRIZE,
 } = require("./constant/Constant");
-const {
-  printNumber,
-  printLotto,
-  printResult,
-  makeStrLotto,
-} = require("./LottoView");
+const { printNumber, printLotto, printResult } = require("./LottoView");
 const { validateLotto, validateBonus } = require("./LottoValidation");
 const Lotto = require("./Lotto");
 
 class App {
-  #purchaseLotto;
+  #purchaselottos;
   #publishedLottos = [];
   #winningNumber;
   #bonusNumber;
   #profitRate;
 
   play() {
-    this.getLotto();
+    this.getPurchaseLotto();
   }
 
-  getLotto() {
+  getPurchaseLotto() {
     MissionUtils.Console.readLine(MESSAGES.PURCHASEPRICE, (input) => {
       validateLotto(input);
-      this.#purchaseLotto = Number(input);
+      this.#purchaselottos = Number(input);
 
       return this.publishLottos();
     });
@@ -53,10 +48,10 @@ class App {
   }
 
   publishLottos() {
-    const purchased = ~~(this.#purchaseLotto / LOTTOREQUIREMENT.LOTTOPRICE);
-    printNumber(purchased);
+    const amounts = ~~(this.#purchaselottos / LOTTOREQUIREMENT.LOTTOPRICE);
+    printNumber(amounts);
 
-    for (let i = 0; i < purchased; i++) {
+    for (let i = 0; i < amounts; i++) {
       const publishLotto = MissionUtils.Random.pickUniqueNumbersInRange(
         LOTTOREQUIREMENT.MIN,
         LOTTOREQUIREMENT.MAX,
@@ -82,7 +77,7 @@ class App {
           LOTTOPRIZE.FIVEMATCHES * five +
           LOTTOPRIZE.BONUSMATCHES * bonus +
           LOTTOPRIZE.SIXMATCHES * six) /
-          this.#purchaseLotto) *
+          this.#purchaselottos) *
           10000
       ) / 100;
     printResult({ three, four, five, bonus, six }, this.#profitRate);

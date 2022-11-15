@@ -7,8 +7,18 @@ class Lotto {
     this.validate(numbers);
     this.#numbers = numbers;
   }
+  // 유효성 체크
+  validate(numbers) {
+    this.validateRange(numbers);
+    if (numbers.length !== LOTTOREQUIREMENT.LENGTH) {
+      throw new Error(WINNINGCONDITION.LENGTH);
+    }
+    if (new Set(numbers).size !== LOTTOREQUIREMENT.LENGTH) {
+      throw new Error(WINNINGCONDITION.DUPLICATE);
+    }
+  }
 
-  validateLottoRange(numbers) {
+  validateRange(numbers) {
     numbers.forEach((number) => {
       if (Number.isNaN(number)) {
         throw new Error(WINNINGCONDITION.NaN);
@@ -19,21 +29,11 @@ class Lotto {
     });
   }
 
-  validate(numbers) {
-    this.validateLottoRange(numbers);
-    if (numbers.length !== LOTTOREQUIREMENT.LENGTH) {
-      throw new Error(WINNINGCONDITION.LENGTH);
-    }
-    if (new Set(numbers).size !== LOTTOREQUIREMENT.LENGTH) {
-      throw new Error(WINNINGCONDITION.DUPLICATE);
-    }
-  }
-
   comparisonNumbers(publishedlottos, bonusNumber) {
     let arr = [0, 0, 0, 0, 0, 0, 0, 0];
 
     publishedlottos.forEach((lotto) => {
-      const { cnt, bonusCnt } = this.comparisonEachothers(lotto, bonusNumber);
+      const { cnt, bonusCnt } = this.comparisonEach(lotto, bonusNumber);
       const idx = this.sortRank(cnt, bonusCnt);
       arr[idx] += 1;
     });
@@ -47,7 +47,7 @@ class Lotto {
     };
   }
 
-  comparisonEachothers(lotto, bonusNumber) {
+  comparisonEach(lotto, bonusNumber) {
     let cnt = 0;
     let bonusCnt = 0;
 
