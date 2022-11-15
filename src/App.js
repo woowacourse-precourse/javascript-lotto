@@ -1,5 +1,3 @@
-const { Console } = require("@woowacourse/mission-utils");
-
 const Game = require('./Game');
 
 class App {

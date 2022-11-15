@@ -40,9 +40,9 @@ class Game {
   }
 
   checkPriceInput(inputPrice) {
-    if(isNaN(inputPrice) === true) throw "[ERROR] 숫자를 입력해 주세요.";
-    if(inputPrice % 1000 !== 0) throw "[ERROR] 로또 1장의 가격은 1,000원입니다. 1,000원 단위로 입력해 주세요.";
-    if(inputPrice < 1000) throw "[ERROR] 로또 1장의 가격은 1,000원입니다. 1,000원 이상을 입력해 주세요.";
+    if(isNaN(inputPrice) === true) throw new Error("[ERROR] 숫자를 입력해 주세요.");
+    if(inputPrice % 1000 !== 0) throw new Error("[ERROR] 로또 1장의 가격은 1,000원입니다. 1,000원 단위로 입력해 주세요.");
+    if(inputPrice < 1000) throw new Error("[ERROR] 로또 1장의 가격은 1,000원입니다. 1,000원 이상을 입력해 주세요.");
   }
 
   generateNumbers() {
@@ -72,16 +72,16 @@ class Game {
 
 	checkWinningNumber(inputNumbers) {
     inputNumbers.forEach((e) => {
-			if (isNaN(e)) throw "[ERROR] 숫자로만 입력해 주세요.";
+			if (isNaN(e)) throw new Error("[ERROR] 숫자로만 입력해 주세요.");
 		});
 
-    if (inputNumbers.length !== 6) throw "[ERROR] 개수를 맞게 입력해 주세요.";
+    if (inputNumbers.length !== 6) throw new Error("[ERROR] 개수를 맞게 입력해 주세요.");
 
     const arr = new Set(inputNumbers);
-		if (inputNumbers.length !== [...arr].length) throw "[ERROR] 중복되지 않는 수를 입력해 주세요.";
+		if (inputNumbers.length !== [...arr].length) throw new Error("[ERROR] 중복되지 않는 수를 입력해 주세요.");
 
 		inputNumbers.forEach((e) => {
-			if (e < 1 || e > 45) throw "[ERROR] 1부터 45까지의 수만 입력해 주세요.";
+			if (e < 1 || e > 45) throw new Error("[ERROR] 1부터 45까지의 수만 입력해 주세요.");
 		});
 
 	}
