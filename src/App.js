@@ -49,6 +49,15 @@ class App {
 
 	handleAnswer(answer) {
 		this.lotto = new Lotto(answer.split(',').map((v) => Number(v)));
+		this.getBonus();
+	}
+
+	getBonus() {
+		Prompter.promptBonus(this.handleBonus.bind(this));
+	}
+
+	handleBonus(bonus) {
+		this.bonus = new Bonus(Number(bonus), this.lotto);
 	}
 }
 
