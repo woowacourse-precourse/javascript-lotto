@@ -29,17 +29,11 @@ class App {
   validate(price) {
     if (!REGEXP.CHECK_NUMBER.test(price)) {
       throw new Error(ERROR_MESSAGE.ONLY_INPUT_NUMBER);
-    }
-
-    if (REGEXP.CHECK_START_NUMBER.test(price)) {
+    } else if (REGEXP.CHECK_START_NUMBER.test(price)) {
       throw new Error(ERROR_MESSAGE.START_NUMBER_ZERO);
-    }
-
-    if (parseInt(price, 10) < 1000) {
+    } else if (parseInt(price, 10) < 1000) {
       throw new Error(ERROR_MESSAGE.MIN_PRICE);
-    }
-
-    if (parseInt(price, 10) % 1000 !== 0) {
+    } else if (parseInt(price, 10) % 1000 !== 0) {
       throw new Error(ERROR_MESSAGE.INVALID_UNIT);
     }
   }
