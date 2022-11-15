@@ -56,7 +56,7 @@ class View extends Setting {
       for (const [key, value] of Object.entries(this.score)) {
         this.reword += key * value;
       }
-      this.revenue = getRevenue(this.reword, this.money);
+      this.revenue = this.getRevenue(this.reword, this.money);
       Console.print("당첨 통계");
       Console.print("---");
       Object.keys(this.score).map((ranking, index) => {
@@ -111,6 +111,10 @@ class View extends Setting {
         ? (score[1500000] += 1)
         : (score[30000000] += 1);
     }
+  };
+  getRevenue = (reword, money) => {
+    const revenue = (reword / (money * 1000)) * 100;
+    return +(Math.round(revenue + "e+2") + "e-2");
   };
   sortList(list) {
     list = list.sort(function (a, b) {
