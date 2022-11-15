@@ -4,6 +4,10 @@ const MESSAGE = require("./constants/message");
 const Lotto = require("./Lotto");
 
 class LottoMachine {
+  #payment;
+  #winningNumbers;
+  #bonusNumber;
+
   constructor() {
     this.ranking = {
       firstPlace: 0,
@@ -13,9 +17,6 @@ class LottoMachine {
       fifthPlace: 0,
     };
   }
-  #payment;
-  #winningNumbers;
-  #bonusNumber;
 
   getPayment() {
     Console.readLine(MESSAGE.REQUEST.PAYMENT, (payment) => {
