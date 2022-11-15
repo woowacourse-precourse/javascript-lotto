@@ -1,5 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const { MESSAGE } = require('../Constants');
+const { MESSAGE, RESULT_MESSAGES } = require('../Constants');
 
 const { Console } = MissionUtils;
 
@@ -22,15 +22,8 @@ class View {
   }
 
   showUserLottoResults(lottoResults) {
-    const resultMessages = [
-      '3개 일치 (5,000원) - ',
-      '4개 일치 (50,000원) - ',
-      '5개 일치 (1,500,000원) - ',
-      '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
-      '6개 일치 (2,000,000,000원) - ',
-    ];
     Object.values(lottoResults).forEach((count, idx) => {
-      Console.print(`${resultMessages[idx]}${count}개`);
+      Console.print(`${RESULT_MESSAGES[idx]}${count}개`);
     });
   }
 
