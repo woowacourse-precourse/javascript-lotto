@@ -24,6 +24,13 @@ class MyLotto {
         }
     }
 
+    printLottoList() {
+        MissionUtils.Console.print(this.lottoList.length + '개를 구매했습니다.');
+        for (const lotto of this.lottoList) {
+            MissionUtils.Console.print(lotto.sort());
+        }
+    }
+
 }
 
 module.exports = MyLotto;
