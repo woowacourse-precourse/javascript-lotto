@@ -26,14 +26,14 @@ class App {
 
   setWinNumbers() {
     this.user.readWinNumbers(MESSAGE.WIN_NUMBERS, (winNumbers) => {
-      Lotto.prototype.winNumbers = winNumbers.split(",").map(Number);
+      Lotto.setWinNumbers(winNumbers.split(",").map(Number));
       this.setBonusNumber();
     });
   }
 
   setBonusNumber() {
     this.user.readBonusNumber(MESSAGE.BONUS_NUMBER, (bonusNumber) => {
-      Lotto.prototype.bonusNumber = bonusNumber;
+      Lotto.setBonusNumber(bonusNumber);
       this.draw();
     });
   }

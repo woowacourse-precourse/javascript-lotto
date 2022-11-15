@@ -38,6 +38,14 @@ class Lotto {
       .map(() => new Lotto(this.generateNumbers()));
   }
 
+  static setWinNumbers(winNumbers) {
+    Lotto.prototype.winNumbers = winNumbers;
+  }
+
+  static setBonusNumber(bonusNumber) {
+    Lotto.prototype.bonusNumber = bonusNumber;
+  }
+
   get numbers() {
     return this.#numbers;
   }
