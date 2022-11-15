@@ -48,9 +48,8 @@ class App {
       .forEach(([reward, count]) => prompt.print(`${reward.toString()} - ${count}개`));
 
     const investment = Lotto.PRICE * this.#lottos.length;
-    const earning = this.#rewards.reduce((money, reward) => money + reward.getMoney(), 0);
-
-    prompt.print(`총 수익률은 ${Math.round((earning / investment) * 10000) / 100}%입니다.`);
+    const rateOfReturn = WinningLotto.getRateOfReturn(investment, this.#rewards);
+    prompt.print(Messages.ROUTINE_STATS_RATE_OF_RETURN, rateOfReturn);
   }
 
   /** r

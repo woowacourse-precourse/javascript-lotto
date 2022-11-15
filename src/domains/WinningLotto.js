@@ -66,6 +66,18 @@ class WinningLotto {
   getRewardFor(lotto) {
     return this.#availableRewards.find((reward) => reward.isEligible(this, lotto)) ?? null;
   }
+
+  /**
+   * @param {number} investment
+   * @param {Reward[]} rewards
+   */
+  static getRateOfReturn(investment, rewards) {
+    const earning = rewards.reduce((money, reward) => money + reward.getMoney(), 0);
+    const rateOfReturn = (Math.round((earning / investment) * 10000) / 100).toFixed(1);
+    const [integerPart, fractionPart] = rateOfReturn.split('.');
+
+    return `${Number(integerPart).toLocaleString()}.${fractionPart}`;
+  }
 }
 
 module.exports = WinningLotto;
