@@ -7,12 +7,11 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.inputNumbers();
     this.validate(numbers);
     this.#numbers = numbers;
   }
 
-  get inputNumbers() {
+  get inputLottoNumbers() {
     return this.#numbers;
   }
 
@@ -25,7 +24,5 @@ class Lotto {
     const checkSixNum = inputValidation.checkSixNum(numbers);
   }
 }
-
-new Lotto().inputNumbers;
 
 module.exports = Lotto;

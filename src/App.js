@@ -1,7 +1,8 @@
-const Lotto = require("./");
+const Lotto = require("./Lotto");
 const Console = require("@woowacourse/mission-utils").Console;
 const Random = require("@woowacourse/mission-utils").Random;
 const inputValidation = require("./inputValidation");
+const { INPUTS, OUTPUTS } = require("./constants");
 
 class App {
   #countLottos;
@@ -9,14 +10,17 @@ class App {
 
   play() {
     this.inputMoney();
-    this.printCountLottos();
+    this.pickRandomLottoNumber();
+
     Console.close();
   }
 
   inputMoney() {
     Console.readLine(INPUTS.INPUT_MONEY, (money) => {
-      inputValidation.checkThousandNum(money);
-      this.#countLottos = Number(money) / 1000;
+      if (inputValidation.checkThousandNum(money)) {
+        this.#countLottos = Number(money) / 1000;
+        this.printCountLottos();
+      }
     });
   }
 
@@ -30,8 +34,16 @@ class App {
     this.#pickedLottoNum = pickedLottoNum;
   }
 
-  makeLottosList() {}
+  makeLottosList() {
+    for (let lottos = 0; lottos < this.#countLottos; lottos++) {
+      const lottosList = new Lotto(this.pickRandomLottoNumber());
+      Console.print(lottosList);
+    }
+  }
 }
+
+const startLotto = new App();
+startLotto.play();
 
 module.exports = App;
 
