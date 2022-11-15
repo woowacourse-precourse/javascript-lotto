@@ -6,6 +6,7 @@ const User = require('./User');
 
 class App {
   winningNumber = [];
+  UsersLottos = [];
 
   constructor() {
     this.Lotto = new Lotto();
@@ -26,14 +27,13 @@ class App {
   }
 
   issueLotto(quantity) {
-    let i = 0;
     Console.print(`${quantity}개를 구매했습니다.`);
-    while (i < quantity) {
-      const lotto = Random.pickUniqueNumbersInRange(1, 45, 6);
-      Console.print(lotto);
-      i++;
-    }
+    this.UsersLottos = this.Lotto.pickLottoNumber(quantity);
+    this.printLottos();
+  }
 
+  printLottos() {
+    this.UsersLottos.forEach(lotto => Console.print(lotto));
     this.inputWinNumber();
   }
 
