@@ -1,6 +1,7 @@
 const { Console, Random } = require("@woowacourse/mission-utils/");
 const User = require("./User")
-const Lotto = require("./Lotto")
+const Lotto = require("./Lotto");
+const { lookup } = require("dns");
 
 class App {
   #User;
@@ -37,8 +38,27 @@ class App {
 
   getBonusNumber() {
     Console.readLine('\n보너스 번호를 입력해 주세요.\n', (answer) => {
+      if (!this.isValidBonusNumberInput(answer)) {
+        throw new Error("[ERROR] 보너스 번호는 로또 번호와 중복되지 않는 1과 45 사이의 수여야 합니다.");
+      }
       this.#bonusNumber = answer;
     })
+  }
+
+  isValidBonusNumberInput(answer) {
+    if (!Number(answer)) {
+      return false;
+    }
+    if (answer < 1 || answer > 45) {
+      return false;
+    }
+    const lottoList = this.#User.getLottoList();
+    lottoList.forEach(lotto => {
+      if(lotto.includes(answer)) {
+        return false;
+      }
+    });
+    return true;
   }
 }
 
