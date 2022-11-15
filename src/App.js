@@ -54,9 +54,7 @@ class App {
   getBonusNumber(){
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.\n', (bonus) => {
       this.#bonusNumber = parseInt(bonus);
-      // this.printNumbers();
       this.compareEachNumber();
-      
     });
   }
 
@@ -67,11 +65,10 @@ class App {
       if(this.#myLottoNumbers[i].includes(this.#bonusNumber)) {
         bonus++;
       }
-
       if(myWinNumbers.length === 5 && bonus === 1) {
         this.#winBonus++;
       } else{
-        this.#equalNumber[myWinNumbers.length+bonus]++;
+        this.#equalNumber[myWinNumbers.length]++;
       }
     }
     this.calculateProfit();
