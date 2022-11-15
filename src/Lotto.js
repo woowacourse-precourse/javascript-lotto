@@ -1,3 +1,5 @@
+const { RULE, ERROR } = require('./constants.js');
+
 class Lotto {
   #numbers;
 
@@ -7,12 +9,57 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    if (this.isNotSixNumber(numbers)) {
+      throw new Error(ERROR.NOT_SIX_NUMBER);
+    }
+    if (this.isDuplicateNumber(numbers)) {
+      throw new Error(ERROR.DUPLICATE_NUMBER);
+    }
+    if (this.isOverNumberInRange(numbers)) {
+      throw new Error(ERROR.OVER_NUMBER_IN_RANGE);
+    }
+    if (this.isUnderNumberInRange(numbers)) {
+      throw new Error(ERROR.UNDER_NUMBER_IN_RANGE);
+    }
+
+    if (this.containsBlanks(numbers)) {
+      throw new Error(ERROR.CONTAINS_BLANKS);
+    }
+
+    if (this.containsCharacter(numbers)) {
+      throw new Error(ERROR.HAS_CHARACTER);
     }
   }
 
-  // TODO: 추가 기능 구현
+  isNotSixNumber(numbers) {
+    return numbers.length !== RULE.SELECT_NUMBER;
+  }
+
+  isDuplicateNumber(numbers) {
+    return new Set(numbers).size !== numbers.length;
+  }
+
+  isOverNumberInRange(numbers) {
+    return numbers.some((number) => {
+      return number > RULE.MAX_NUMBER;
+    });
+  }
+
+  isUnderNumberInRange(numbers) {
+    return numbers.some((number) => {
+      return number < RULE.MIN_NUMBER;
+    });
+  }
+
+  containsBlanks(numbers) {
+    return numbers.includes(' ');
+  }
+
+  containsCharacter(numbers) {
+    return numbers.some((number) => {
+      return isNaN(number);
+    });
+  }
 }
 
 module.exports = Lotto;
