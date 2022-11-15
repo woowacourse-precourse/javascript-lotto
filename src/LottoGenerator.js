@@ -9,7 +9,7 @@ const PICK_COUNT = 6;
 class LottoGenerator {
   constructor(payment) {
     this.validate(payment);
-    this.totalNumberOfLotto = Number(payment) / LOTTO_PRICE;
+    this.numberOfPurchasedLotto = Number(payment) / LOTTO_PRICE;
   }
 
   validate(payment) {
@@ -23,16 +23,16 @@ class LottoGenerator {
   }
 
   createLottos() {
-    const lottos = [];
+    const lotteries = [];
     let numberOfCreatedLotto = 0;
 
-    while (numberOfCreatedLotto < this.totalNumberOfLotto) {
-      const randomNumbers = MissionUtils.Random.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, PICK_COUNT);
-      lottos.push(new Lotto(randomNumbers));
+    while (numberOfCreatedLotto < this.numberOfPurchasedLotto) {
+      const uniqueNumbers = MissionUtils.Random.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, PICK_COUNT);
+      lotteries.push(new Lotto(uniqueNumbers));
       numberOfCreatedLotto++;
     }
 
-    return lottos;
+    return lotteries;
   }
 }
 
