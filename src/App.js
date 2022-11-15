@@ -1,12 +1,11 @@
-const MissionUtils = require("@woowacourse/mission-utils");
-const DomainLogic1 = require("./DomainLogic1.js");
+const Question1 = require("./mainLogic/Question1");
 
 class App {
   constructor() {
-    this.domain = new DomainLogic1();
+    this.question1 = new Question1();
   }
   play() {
-    this.domain.getMoneyToSpend();
+    this.question1.start();
   }
 }
 
