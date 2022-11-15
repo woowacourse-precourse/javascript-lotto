@@ -120,6 +120,14 @@ class App {
     let winning_cost = WINNING_AMOUNT[0] * RANK['three'] + WINNING_AMOUNT[1] * RANK['four'] + WINNING_AMOUNT[2] * RANK['five'] + WINNING_AMOUNT[3] * RANK['bfive'] + WINNING_AMOUNT[4] * RANK['six'];
     winning_cost = (winning_cost / this.#payment) * 100;
     Console.print(WINNING_STATISTICS.YIELD(winning_cost.toFixed(1)));
+    this.endLotto();
+  }
+
+  endLotto() {
+    for(const key in RANK) {
+      RANK[key]=0;
+    }
+    Console.close();
   }
 }
 
