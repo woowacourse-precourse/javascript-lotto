@@ -9,6 +9,7 @@ class Issue {
       this.purchaseCount = Math.floor(Number(inputValue) / 1000);
       Console.close();
       this.list();
+      this.print();
     });
     return this.issueList;
   }
@@ -16,10 +17,9 @@ class Issue {
   list() {
     const issueSet = new Set();
     while (issueSet.size < this.purchaseCount) {
-      issueSet.add(Random.pickUniqueNumbersInRange(1, 45, 6));
+      issueSet.add(Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b));
     }
     this.issueList = issueSet;
-    this.print();
   }
 
   print() {

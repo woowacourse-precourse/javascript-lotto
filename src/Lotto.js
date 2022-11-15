@@ -1,13 +1,21 @@
 const { Console } = require('@woowacourse/mission-utils');
+const Draw = require('./Draw');
+const Issue = require('./Issue');
+const Validation = require('./Validation');
 
 class Lotto {
   #numbers;
-  constructor(totalNumbers, issueList) {
+  constructor(inputNumbers, issueList) {
+    this.validation = new Validation();
+    this.draw = new Draw();
+    this.winningNumber = this.validation.winningInputValue(inputNumbers);
+    const bonusInput = this.draw.bonus();
+    this.validation.bonusInputValue(inputNumbers, bonusInput);
+    this.bonusNumber = Number(bonusInput);
+    const totalNumbers = [...this.winningNumber, this.bonusNumber];
     this.#numbers = totalNumbers;
     this.issueList = issueList;
-    this.winningNumber = this.#numbers.slice(0, 6);
-    this.bonusNumber = this.#numbers.slice(6);
-    this.purchaseAmount = issueList.size * 1000;
+    this.purchaseAmount = this.issueList.size * 1000;
     this.winningContentArr = ['3개 일치', '4개 일치', '5개 일치', '5개 일치, 보너스 볼 일치', '6개 일치'];
     this.winningAmountArr = ['5,000', '50,000', '1,500,000', '30,000,000', '2,000,000,000'];
     this.winningCounterArr = new Array(5).fill(0);

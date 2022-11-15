@@ -10,8 +10,8 @@ class App {
 
   play() {
     const issueList = this.issue.purchase();
-    const totalNumbers = this.draw.winning();
-    new Lotto(totalNumbers, issueList);
+    const winningInput = this.draw.winning();
+    new Lotto(winningInput, issueList);
   }
 }
 
