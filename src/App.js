@@ -40,6 +40,12 @@ class App {
       this.lottoList.push(lotto);
     }
   }
+  showLotto() {
+    MissionUtils.Console.print(`${this.inputCount}${RESULT_MESSAGE.PURCHASE}`);
+    this.lottoList.forEach((lotto) =>
+      MissionUtils.Console.print(`[${lotto.getNumbers().join(", ")}]`)
+    );
+  }
 }
 
 module.exports = App;
