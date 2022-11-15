@@ -9,7 +9,7 @@ class LottoGenerator {
     this.viewer = new MessageViewer();
   }
 
-  makeLottoNumber() {
+  #makeLottoNumber() {
     const LOTTONUMBER = MissionUtils.Random.pickUniqueNumbersInRange(
       VALUE_NUMBER.FIRST_LOTTO_NUMBER,
       VALUE_NUMBER.LAST_LOTTO_NUMBER,
@@ -21,7 +21,7 @@ class LottoGenerator {
   generateLotto(numberOfGames) {
     this.viewer.numberOfGamesMessage(numberOfGames);
     for (let gameCount = 0; gameCount < numberOfGames; gameCount++) {
-      const LOTTO_NUMBER = this.makeLottoNumber();
+      const LOTTO_NUMBER = this.#makeLottoNumber();
       this.viewer.issuedLottoNumberMessage(LOTTO_NUMBER);
       LottoResultCheck.lottoNumbersArray.push(LOTTO_NUMBER);
     }

@@ -12,14 +12,14 @@ class LottoResultCheck {
   checkWinning(lottonumbers) {
     const COUNT_OF_MATCHES = lottonumbers.filter((number) => this.winningNumbers.includes(number)).length;
 
-    if (COUNT_OF_MATCHES === VALUE_NUMBER.REQUIRED_MATCHES_1ST_PRIZE) return this.countLottoRanking(GRADE.FIRST);
+    if (COUNT_OF_MATCHES === VALUE_NUMBER.REQUIRED_MATCHES_1ST_PRIZE) return this.#countLottoRanking(GRADE.FIRST);
     if (COUNT_OF_MATCHES === VALUE_NUMBER.REQUIRED_MATCHES_2ND_PRIZE && lottonumbers.includes(this.bonusNumber))
-      return this.countLottoRanking(GRADE.SECOND);
-    if (COUNT_OF_MATCHES === VALUE_NUMBER.REQUIRED_MATCHES_3RD_PRIZE) return this.countLottoRanking(GRADE.THIRD);
-    if (COUNT_OF_MATCHES === VALUE_NUMBER.REQUIRED_MATCHES_4TH_PRIZE) return this.countLottoRanking(GRADE.FOURTH);
-    if (COUNT_OF_MATCHES === VALUE_NUMBER.REQUIRED_MATCHES_5TH_PRIZE) return this.countLottoRanking(GRADE.FIFTH);
+      return this.#countLottoRanking(GRADE.SECOND);
+    if (COUNT_OF_MATCHES === VALUE_NUMBER.REQUIRED_MATCHES_3RD_PRIZE) return this.#countLottoRanking(GRADE.THIRD);
+    if (COUNT_OF_MATCHES === VALUE_NUMBER.REQUIRED_MATCHES_4TH_PRIZE) return this.#countLottoRanking(GRADE.FOURTH);
+    if (COUNT_OF_MATCHES === VALUE_NUMBER.REQUIRED_MATCHES_5TH_PRIZE) return this.#countLottoRanking(GRADE.FIFTH);
   }
-  countLottoRanking(ranking) {
+  #countLottoRanking(ranking) {
     this.resultArray[ranking - 1]++;
   }
 

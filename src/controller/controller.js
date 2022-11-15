@@ -15,10 +15,10 @@ class LottoGameHandler {
   }
 
   gameStart() {
-    this.buyLotto();
+    this.#buyLotto();
   }
 
-  buyLotto() {
+  #buyLotto() {
     MissionUtils.Console.readLine(GET_INPUT.MONEY, (userInput) => {
       this.inputCheck.isMoneyValid(userInput);
 
@@ -26,11 +26,11 @@ class LottoGameHandler {
       const TOTAL_LOTTO_GAMES = parseInt(userInput / VALUE_NUMBER.MONEY_FOR_ONE_GAME);
       this.lottoUtil.generateLotto(TOTAL_LOTTO_GAMES);
 
-      this.getWinningNumbers();
+      this.#getWinningNumbers();
     });
   }
 
-  getWinningNumbers() {
+  #getWinningNumbers() {
     MissionUtils.Console.readLine(GET_INPUT.WINNING_NUMBER, (userInput) => {
       this.inputCheck.isWinningNumberValid(userInput);
 
@@ -38,25 +38,25 @@ class LottoGameHandler {
       new Lotto(WINNING_NUMBERS);
       LottoResultCheck.winningNumbers = WINNING_NUMBERS;
 
-      this.getBonusNumber(WINNING_NUMBERS);
+      this.#getBonusNumber(WINNING_NUMBERS);
     });
   }
 
-  getBonusNumber(winningNumbers) {
+  #getBonusNumber(winningNumbers) {
     MissionUtils.Console.readLine(GET_INPUT.BONUS_NUMBER, (userInput) => {
       this.inputCheck.isBonusNumberValid(winningNumbers, userInput);
       LottoResultCheck.bonusNumber = parseInt(userInput);
-      this.checkWinningOfBoughtLottos();
+      this.#checkWinningOfBoughtLottos();
     });
   }
 
-  checkWinningOfBoughtLottos() {
+  #checkWinningOfBoughtLottos() {
     for (let idx = 0; idx < LottoResultCheck.lottoNumbersArray.length; idx++)
       LottoResultCheck.checkWinning(LottoResultCheck.lottoNumbersArray[idx]);
-    this.getResult();
+    this.#getResult();
   }
 
-  getResult() {
+  #getResult() {
     const earningsRate = LottoResultCheck.getEarningsRate();
     this.viewer.resultMessage(LottoResultCheck.resultArray, earningsRate);
   }
