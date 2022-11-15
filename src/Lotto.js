@@ -12,6 +12,7 @@ class Lotto {
     this.checkLottoLength(numbers);
     this.checkLottoNumber(numbers);
     this.checkDuplicateNumber(numbers);
+    this.isNotLottoNumber(numbers);
   }
 
   checkLottoLength(numbers){
@@ -36,8 +37,10 @@ class Lotto {
   }
 
   isNotLottoNumber(numbers){
-    if(isNaN(numbers)){
-      throw new Error(IS_NOT_NUMBER);
+    for(let i = 0; i < numbers.length; i++){
+      if(isNaN(numbers[i])){
+        throw new Error("[ERROR]")
+      }
     }
   }
 }

@@ -37,6 +37,9 @@ class InputWinningNumber{
         if(num < 1 || num > 45){
             throw new Error(NOT_BETWEEN_NUMBER);
         }
+        if(isNaN(num)){
+            throw new Error("[ERROR]")
+        }
     }
 }
 
