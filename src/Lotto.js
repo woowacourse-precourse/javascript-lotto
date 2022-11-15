@@ -19,6 +19,17 @@ class Lotto {
     return numbers;
   }
 
+  static draw(lotto) {
+    const { numbers, winNumbers, bonusNumber } = lotto;
+    let result = 0;
+
+    winNumbers.forEach((number) => numbers.includes(number) && (result += 1));
+
+    result === 5 && numbers.includes(bonusNumber) && (result = "BONUS");
+
+    return result;
+  }
+
   static purchase(amount) {
     const TOTAL = amount / LOTTO.PRICE;
 

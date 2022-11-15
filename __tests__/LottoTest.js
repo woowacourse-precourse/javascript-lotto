@@ -32,4 +32,17 @@ describe("로또 클래스 테스트", () => {
     expect(lottoList.length).toBe(count);
     expect(logSpy).toHaveReturnedTimes(count);
   });
+
+  test("로또의 결과를 판별한다", () => {
+    const lottoList = Lotto.purchase(8000);
+    Lotto.prototype.winNumbers = [1, 2, 3, 4, 5, 6];
+    Lotto.prototype.bonusNumber = 7;
+
+    const resultList = lottoList.map(Lotto.draw);
+    const validate = resultList.every(
+      (count) => (count >= 0 && count <= 6) || count === "BONUS"
+    );
+    expect(resultList.length).toBe(8);
+    expect(validate).toBe(true);
+  });
 });

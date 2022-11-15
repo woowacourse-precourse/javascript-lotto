@@ -35,8 +35,16 @@ class App {
 
   setBonusNumber() {
     this.user.readBonusNumber(MESSAGE.BONUS_NUMBER, (bonusNumber) => {
-      console.log(bonusNumber);
+      Lotto.prototype.bonusNumber = bonusNumber;
+      this.printMessage("");
+      this.draw();
     });
+  }
+
+  draw() {
+    const resultList = this.user.lottoList.map(Lotto.draw);
+    console.log(resultList);
+    this.exit();
   }
 
   printPurchaseResult() {
