@@ -7,8 +7,8 @@
   - [x] (예외) 1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다.
 - [x] 발행한 로또 수량을 알 수 있다. | Calculator#calculateAmountOfLotto()
   - [x] 발행한 로또 수량을 출력한다. | #printAmountOfLotto()
-- [ ] 로또 1개당 1부터 45까지의 중복되지 않는 6개의 숫자를 생성한다. | NumberGenerator#createNumbersOfLotto()
-  - [ ] 생성한 로또 번호를 출력한다. | #printNumbersOfLotto()
+- [x] 로또 1개당 1부터 45까지의 중복되지 않는 6개의 숫자를 생성한다. | NumberGenerator#createNumbersOfLotto()
+  - [x] 생성한 로또 번호를 출력한다. | #printNumbersOfLotto()
 - [ ] 당첨 번호를 입력 받는다. | #receiveWinningNumbers()
 - [ ] 보너스 번호를 입력 받는다. | #receiveBonusNumber()
 - [ ] 당첨 번호와 보너스 번호의 유효성 검사를 할 수 있다. | Lotto#validate()

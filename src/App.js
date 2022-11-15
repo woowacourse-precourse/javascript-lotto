@@ -1,5 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Calculator = require("./Calculator");
+const NumberGenerator = require("./NumberGenerator");
 
 class App {
   play() {
@@ -8,8 +9,13 @@ class App {
     const calculator = new Calculator();
     const purchaseAmount = this.receivePurchaseAmount();
     const amountOfLotto = calculator.calculateAmountOfLotto(purchaseAmount);
-
     MissionUtils.Console.print(`${amountOfLotto}개를 구매했습니다.`);
+
+    const numberGenerator = new NumberGenerator();
+    for (let i = 0; i < amountOfLotto; i++) {
+      let numbersOfLotto = numberGenerator.createNumbersOfLotto(amountOfLotto);
+      MissionUtils.Console.print(numbersOfLotto);
+    }
   }
 
   receivePurchaseAmount() {
