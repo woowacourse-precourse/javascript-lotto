@@ -1,4 +1,5 @@
 const Lotto = require("../src/Lotto");
+const Lottos = require("../src/Lottos");
 const Result = require("../src/Result");
 
 describe("Result 클래스 테스트", () => {
@@ -9,7 +10,7 @@ describe("Result 클래스 테스트", () => {
     const firstLotto = new Lotto([1, 2, 3, 4, 7, 6]);
     const secondLotto = new Lotto([22, 23, 24, 1, 5, 6]);
     const thirdLotto = new Lotto([22, 23, 24, 1, 3, 5]);
-    const lottoArr = [firstLotto, secondLotto, thirdLotto];
+    const lottoArr = new Lottos([firstLotto, secondLotto, thirdLotto]);
     expect(result.createLottoResult(scores, bonusNum, lottoArr)).toStrictEqual({
       3: {
         money: 5000,
@@ -30,7 +31,7 @@ describe("Result 클래스 테스트", () => {
     });
   });
 
-  test("점수가 5이면서 보너스 번호와 일치하는 숫자를 포함하는지 확인하는 함수", () => {
+  test("점수가 5이면서 보너스 번호와 일치하는 숫자를 포함하는지 확인하는 함수_반환값이 true", () => {
     const result = new Result();
     const score = 5;
     const lotto = [1, 2, 3, 4, 5, 6];
@@ -41,18 +42,37 @@ describe("Result 클래스 테스트", () => {
     ).toEqual(true);
   });
 
+  test("점수가 5이면서 보너스 번호와 일치하는 숫자를 포함하는지 확인하는 함수_반환값이 false", () => {
+    const result = new Result();
+    const score = 5;
+    const lotto = [1, 2, 3, 4, 5, 6];
+    const bonusNum = 7;
+
+    expect(
+      result.isFiveScoreAndContainBonusNumber(score, lotto, bonusNum)
+    ).toEqual(false);
+  });
+
   test("점수가 5인지 확인하는 함수", () => {
     const result = new Result();
     const score = 5;
     expect(result.isFiveScore(score)).toEqual(true);
   });
 
-  test("보너스 점수를 포함하는지 확인하는 함수", () => {
+  test("보너스 점수를 포함하는지 확인하는 함수_반환값이 true", () => {
     const result = new Result();
     const lotto = [1, 2, 3, 4, 5, 6];
     const bonusNum = 6;
 
     expect(result.isContainBonusNumber(lotto, bonusNum)).toEqual(true);
+  });
+
+  test("보너스 점수를 포함하는지 확인하는 함수_반환값이 false", () => {
+    const result = new Result();
+    const lotto = [1, 2, 3, 4, 5, 6];
+    const bonusNum = 8;
+
+    expect(result.isContainBonusNumber(lotto, bonusNum)).toEqual(false);
   });
 
   test("수익률을 구하는 함수", () => {
