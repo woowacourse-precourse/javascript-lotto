@@ -51,7 +51,7 @@ describe('로또 클래스 테스트', () => {
 
   test('numberGetter 메서드를 사용해 lotto 인스턴스의 #numbers 필드 값을 확인할 수 있다', () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
-    const numberGetter = lotto.numbers;
+    const numberGetter = lotto.getNumbers();
     expect(numberGetter).toEqual([1, 2, 3, 4, 5, 6]);
   });
 });

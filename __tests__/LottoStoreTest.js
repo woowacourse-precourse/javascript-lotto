@@ -37,7 +37,7 @@ describe('로또스토어 클래스 테스트', () => {
 
   test('로또 번호 생성 시 로또 번호 조건에 맞는 배열이 생성된다.', () => {
     const randomLotto = lottoStore.sellLotto();
-    const randomLottoNumbers = randomLotto.numbers;
+    const randomLottoNumbers = randomLotto.getNumbers();
     for (const element of randomLottoNumbers) {
       expect(
         element >= VALUE.MIN_LOTTO_NUMBER && VALUE.MAX_LOTTO_NUMBER >= element

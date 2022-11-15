@@ -6,7 +6,7 @@ class LottoViewer {
   printLottoPurchaseResult(lottos) {
     MissionUtils.Console.print(`\n${lottos.length}개를 구매했습니다.`);
     lottos.forEach((element) => {
-      MissionUtils.Console.print(`[${element.numbers.join(', ')}]`);
+      MissionUtils.Console.print(`[${element.getNumbers().join(', ')}]`);
     });
   }
 
