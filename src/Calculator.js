@@ -6,7 +6,7 @@ class Calculator {
       }
       return total;
     }, 0);
-    return Math.round((sum / payMoney) * 10000) / 100;
+    return ((sum / payMoney) * 100).toFixed(1);
   }
 }
 module.exports = Calculator;
