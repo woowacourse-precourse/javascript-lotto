@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Console = MissionUtils.Console;
 const Lotto = require("./Lotto");
 
 const PRICE = 1000;
@@ -28,7 +29,19 @@ class Issuer {
       );
     }
 
+    this.displayResultOfBuy(lottos);
+
     return lottos;
+  }
+
+  displayResultOfBuy(lottos) {
+    const numbersOfLottos = lottos.length;
+
+    Console.print(`\n${numbersOfLottos}개를 구매했습니다.`);
+
+    lottos.forEach((lotto) => {
+      Console.print(lotto.numbers);
+    });
   }
 
   validate(money) {
