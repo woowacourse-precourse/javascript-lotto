@@ -27,7 +27,7 @@ class Lotto {
     let result = false;
 
     numbers.forEach((number) => {
-      if (number % 1 !== 0) result = result || true;
+      if (number % 1 !== 0) result = result || DEFAULT.TRUE;
     });
 
     return result;

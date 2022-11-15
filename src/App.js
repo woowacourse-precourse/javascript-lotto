@@ -1,23 +1,25 @@
-const Lotto = require("./validate/Lotto.js");
+const Earning = require("./controller/Earning.js");
 const PurchaseLotto = require("./controller/PurchaseLotto.js");
-const PurchaseValudate = require("./validate/PurchaseValidate.js");
 const LottoResult = require("./controller/LottoResult.js");
+
+const Lotto = require("./validate/Lotto.js");
+const PurchaseValudate = require("./validate/PurchaseValidate.js");
 const Bonus = require("./validate/Bonus.js");
 
 const { Console } = require("@woowacourse/mission-utils");
-const Earning = require("./controller/Earning.js");
+const { DEFAULT } = require("./utils/constant.js");
 
 class App {
   constructor() {
-    this.lottos = [];
-    this.luckyNumber = [];
-    this.bonusNumber = 0;
-    this.input = 0;
+    this.lottos = DEFAULT.INITIAL_ARRAY;
+    this.luckyNumber = DEFAULT.INITIAL_ARRAY;
+    this.bonusNumber = DEFAULT.ZERO;
+    this.input = DEFAULT.ZERO;
     this.lottoResult = {};
   }
 
   play() {
-    Console.readLine("구입금액을 입력해주세요.\n", (input) => {
+    Console.readLine("구입금액을 입력해주세요.", (input) => {
       this.input = Number(input);
       new PurchaseValudate(this.input);
       this.lottos = new PurchaseLotto(this.input).start();
