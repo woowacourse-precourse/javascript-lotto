@@ -1,5 +1,11 @@
 const FIVE = 5;
 const LOTTO_PRICE = 1000;
+const LOTTO_NUMBER = 6;
+
+const LOTTO_RANGE = Object.freeze({
+  min: 1,
+  max: 45,
+});
 
 const LOTTO_MATCHES = Object.freeze({
   0: 'out',
@@ -51,6 +57,8 @@ const ERROR_MESSAGE = Object.freeze({
 module.exports = {
   FIVE,
   LOTTO_PRICE,
+  LOTTO_NUMBER,
+  LOTTO_RANGE,
   LOTTO_MATCHES,
   LOTTO_PRIZE,
   RESULT_MESSAGE,
