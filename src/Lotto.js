@@ -39,7 +39,7 @@ class Lotto {
     this.inputPay();
     this.lotto();
     this.inputWinNumbers();
-    this.inputBonusNumbers();
+    this.inputBonusNumber();
     this.checkReward();
     this.printMatchResult();
     this.printProfitRate();
@@ -47,10 +47,11 @@ class Lotto {
   inputPay() {
     MissionUtils.Console.print(`${Data.INPUT_MESSAGES.inputPay}`);
     MissionUtils.Console.readLine("", (answer) => {
-      if (answer % 1000 !== 0) throw new Error(Data.ERROR_MESSAGES.inputMoney);
+      if (answer % 1000 !== 0) throw new Error(Data.ERROR_MESSAGES.errUnit);
       this.myPay = answer;
     });
   }
+
   lotto() {
     this.printLottoAmount();
     for (let i = 0; i < this.getLottoAmount(); i++) {
@@ -61,7 +62,7 @@ class Lotto {
 
   printLottoAmount() {
     MissionUtils.Console.print(
-      `${Data.RESULT_MESSAGES.printLottoAmount(this.lottoCountReturn())}`
+      `${Data.RESULT_MESSAGES.printLottoAmount(this.getLottoAmount())}`
     );
   }
 
@@ -140,6 +141,20 @@ class Lotto {
     );
   }
 
+  printProfitRate() {
+    const profitRate =
+      this.rewardLotto.first * Data.REWARD.first +
+      this.rewardLotto.second * Data.REWARD.second +
+      this.rewardLotto.third * Data.REWARD.third +
+      this.rewardLotto.fourth * Data.REWARD.fourth +
+      this.rewardLotto.fifth * Data.REWARD.fifth;
+    MissionUtils.Console.print(
+      `${Data.RESULT_MESSAGES.getProfitRate(
+        ((profitRate / this.myPay) * 100).toFixed(1)
+      )}`
+    );
+    MissionUtils.Console.close();
+  }
   // TODO: 추가 기능 구현
 }
 
