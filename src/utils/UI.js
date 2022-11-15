@@ -28,8 +28,8 @@ class UI {
     return this.#arrUserInputLottoNumbers;
   }
 
-  set arrUserInputLottoNumbers(value){
-
+  set arrUserInputLottoNumbers(value) {
+    this.#arrUserInputLottoNumbers = value;
   }
 
   get bonusNumber() {
@@ -40,9 +40,11 @@ class UI {
     Console.readLine(
       "\n당첨 번호를 입력해 주세요.\n",
       (userInputLottoNumbers) => {
-        this.inputBonusNumber()
         if (Validate.validateUserInputLottoNumbers(userInputLottoNumbers)) {
-          this.#arrUserInputLottoNumbers = userInputLottoNumbers.split(",").map((number)=> +number);
+          this.#arrUserInputLottoNumbers = userInputLottoNumbers
+            .split(",")
+            .map((number) => +number);
+          this.inputBonusNumber();
         }
       }
     );
@@ -53,9 +55,10 @@ class UI {
       let numberBonusNumber = +strBonusNumber ?? NaN;
       if (Validate.validateBonusNumber(numberBonusNumber)) {
         this.#bonusNumber = numberBonusNumber;
-        const lotto = new Lotto(this.#arrUserInputLottoNumbers);
+        this.lotto = new Lotto(this.#arrUserInputLottoNumbers);
+        Console.print(this.lotto.compare(this.lottoMachine.lottoNumbers));
       }
-      Console.close()
+      Console.close();
     });
   }
 
@@ -64,9 +67,9 @@ class UI {
   }
 
   showLottoNumber() {
-    const lottoMachine = new makeLotto(this.#countLotto);
-    lottoMachine.makeLotto();
-    lottoMachine.lottoNumbers.forEach((numbers) => {
+    this.lottoMachine = new makeLotto(this.#countLotto);
+    this.lottoMachine.makeLotto();
+    this.lottoMachine.lottoNumbers.forEach((numbers) => {
       Console.print(numbers);
     });
   }

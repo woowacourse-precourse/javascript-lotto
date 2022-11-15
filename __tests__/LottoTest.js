@@ -15,4 +15,13 @@ describe("로또 클래스 테스트", () => {
       new Lotto([1, 2, 3, 4, 5, 5]);
     }).toThrow(Constant.LOTTO_NUMBERS_SHOULD_BE_UNIQUE);
   });
+  test("로또 번호와 사용자가 입력한 로또번호를 비교해서 같은 번호를 세준다.", () => {
+    //given
+    const randomLottoNumbers = [1, 4, 13, 23, 34, 36];
+    const userInputNumbers = [1, 4, 5, 6, 10, 15];
+    //when
+    const lotto = new Lotto(userInputNumbers);
+    //then
+    expect(lotto.compare(randomLottoNumbers)).toBe(2);
+  });
 });

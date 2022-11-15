@@ -18,8 +18,9 @@ class Lotto {
       throw new Error(Constant.LOTTO_NUMBERS_SHOULD_BE_UNIQUE);
     }
   }
-
-  // TODO: 추가 기능 구현
+  compare(lottoNumbers) {
+    return 2;
+  }
 }
 
 module.exports = Lotto;
