@@ -39,21 +39,7 @@ class Issuer {
     Console.print(`\n${numbersOfLottos}개를 구매했습니다.`);
 
     lottos.forEach((lotto) => {
-      Console.print(
-        "[" +
-          lotto.numbers[0] +
-          ", " +
-          lotto.numbers[1] +
-          ", " +
-          lotto.numbers[2] +
-          ", " +
-          lotto.numbers[3] +
-          ", " +
-          lotto.numbers[4] +
-          ", " +
-          lotto.numbers[5] +
-          "]"
-      );
+      lotto.displayNumbers();
     });
   }
 

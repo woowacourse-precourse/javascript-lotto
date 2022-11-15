@@ -47,45 +47,22 @@ class Drawer {
   }
 
   checkLottos() {
+    let result = [];
     this.lottos.forEach((lotto) => {
-      lotto.result = this.compareNumbers(lotto);
+      result.push(lotto.compareNumbers(this.winningNumber, this.bonusNumber));
     });
-    this.checkResult(this.lottos);
+    this.checkResult(result);
   }
 
-  compareNumbers(lotto) {
-    let winningPoint = 0;
-
-    lotto.numbers.forEach((number) => {
-      if (this.winningNumber.includes(number)) {
-        winningPoint = winningPoint + 1;
-      }
-    });
-
-    if (winningPoint === 5) {
-      if (this.checkBonusNumber(lotto.numbers) === true) {
-        return RESULT.BONUS;
-      }
-    }
-    return winningPoint;
-  }
-
-  checkBonusNumber(numbers) {
-    if (numbers.includes(this.bonusNumber)) {
-      return true;
-    }
-    return false;
-  }
-
-  checkResult(lottos) {
+  checkResult(result) {
     let bonus = 0;
     let first = 0;
     let second = 0;
     let third = 0;
     let fourth = 0;
 
-    lottos.forEach((lotto) => {
-      switch (lotto.result) {
+    result.forEach((score) => {
+      switch (score) {
         case RESULT.BONUS:
           bonus = bonus + 1;
           break;
