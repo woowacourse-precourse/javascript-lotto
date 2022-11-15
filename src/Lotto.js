@@ -10,14 +10,14 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+      throw new Error('[ERROR] 로또 번호를 쉼표(,)로 구분하여 6개 입력하셔야 합니다.');
     }
   }
 
   duplicate(numbers) {
     const NOT_DUPLICATE = new Set(numbers);
     if (NOT_DUPLICATE.size !== 6) {
-      throw new Error('[ERROR] 로또 번호는 중복되지 않는 숫자를 입력하여야 합니다.');
+      throw new Error('[ERROR] 로또 번호는 중복되지 않는 숫자를 입력하셔야 합니다.');
     }
   }
 
