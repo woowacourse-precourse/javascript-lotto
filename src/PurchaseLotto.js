@@ -15,8 +15,8 @@ class PurchaseLotto {
 
   getLottoNumbers(purchaseCount) {
     for (let i = 0; i < purchaseCount; i++) {
-      const num = lottoNumber.createLottoNumber();
-      this.lottoNumbers.push(num);
+      const newLottoNumber = lottoNumber.createLottoNumber();
+      this.lottoNumbers.push(newLottoNumber);
     }
   }
 
@@ -25,8 +25,8 @@ class PurchaseLotto {
   }
 
   printLottoNumber() {
-    return this.getLottoTickets().forEach((num) =>
-      Console.print(`[${num.join(', ')}]`)
+    return this.getLottoTickets().forEach((lottoNumber) =>
+      Console.print(`[${lottoNumber.join(', ')}]`)
     );
   }
 }
