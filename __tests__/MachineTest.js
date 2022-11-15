@@ -10,7 +10,12 @@ describe('로또 머신 테스트', () => {
 
   test('로또 구매 수량만큼 로또 발행', () => {
     const machine = new Machine(2000);
-    machine.work();
+    machine.issue();
     expect(Machine.user.purchasedLotto.length).toEqual(2);
+  });
+
+  test('로또 랭킹 가져오기', () => {
+    const machine = new Machine(3000);
+    expect(machine.getRanking({ winningCount: 3, bonusCount: 1 })).toEqual('FIFTH');
   });
 });

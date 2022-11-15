@@ -28,7 +28,7 @@ describe('로또 메시지 출력 테스트', () => {
   });
 
   test('에러 메시지', () => {
-    const types = ['UNACCEPTABLE_PAYMENT', 'DUPLICATED', 'OUT_OF_RANGE', 'OUT_OF_VOLUME'];
+    const types = ['PAYMENT', 'DUPLICATED', 'OUT_OF_RANGE', 'OUT_OF_VOLUME'];
     const message = [
       '[ERROR] 금액은 1000원으로 나눠 떨어져야 합니다.',
       '[ERROR] 중복된 숫자가 입력되었습니다.',
