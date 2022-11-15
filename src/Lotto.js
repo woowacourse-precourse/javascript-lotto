@@ -1,6 +1,8 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const str=require("./Constant")
+const nums=require("./Number")
 
+console.log(nums);
 class Lotto {
   #numbers;
 
@@ -142,11 +144,11 @@ class Lotto {
     let firstPrize = 2000000000;
     let totalMoney = 0;
     for (const num in prizeObj) {
-      if (num === "3") totalMoney += prizeObj[num] * fifthPrize;
-      if (num === "4") totalMoney += prizeObj[num] * forthPrize;
-      if (num === "5") totalMoney += prizeObj[num] * thirdPrize;
-      if (num === "7") totalMoney += prizeObj[num] * secondPrize;
-      if (num === "6") totalMoney += prizeObj[num] * firstPrize;
+      if (num === "3") totalMoney += prizeObj[num] * nums.fifthPrize;
+      if (num === "4") totalMoney += prizeObj[num] * nums.forthPrize;
+      if (num === "5") totalMoney += prizeObj[num] * nums.thirdPrize;
+      if (num === "7") totalMoney += prizeObj[num] * nums.secondPrize;
+      if (num === "6") totalMoney += prizeObj[num] * nums.firstPrize;
     }
     this.calculateRate(prizeObj, totalMoney, amountOfMoney);
   }
