@@ -61,8 +61,8 @@ class App {
 
   inputBonusNumber() {
     Console.readLine("보너스 번호를 입력해 주세요.\n", (bonusNumber) => {
-      const bonus = new Bonus(bonusNumber ,this.winningNumbers);
-      this.bonusNumber = parseInt(bonusNumber,10);
+      const bonus = new Bonus(bonusNumber, this.winningNumbers);
+      this.bonusNumber = parseInt(bonusNumber, 10);
       this.compareLotto();
     });
   }
@@ -73,6 +73,18 @@ class App {
       this.winningNumbers,
       this.bonusNumber
     );
+
+    this.result(compare);
+  }
+
+  result(compare) {
+    Console.print("당첨 통계\n---");
+
+    Object.values(compare.compareResult).forEach((result, index) => {
+      Console.print(
+        `${compare.resultMessage[index]} (${compare.resultReward[index].toLocaleString()}원) - ${result}개`
+      );
+    });
   }
 }
 const app = new App();
