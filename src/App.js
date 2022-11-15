@@ -48,6 +48,7 @@ class App {
       const number = Number(input);
       this.bonusLotto = this.checkBonusNum(number);
     });
+    this.makeResult();
   }
   checkBonusNum(number) {
     if (isNaN(number)) {
@@ -60,6 +61,15 @@ class App {
       throw new Error(LOTTO_ERROR.REPEAT);
     }
     return number;
+  }
+  makeResult() {
+    new Result(
+      this.boughtLotto,
+      this.winningLotto,
+      this.bonusLotto,
+      this.buyCount
+    );
+    Console.close();
   }
 }
 const app = new App();
