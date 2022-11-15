@@ -2,6 +2,7 @@ const { Random } = require("@woowacourse/mission-utils");
 const { LOTTO, QUERY, WINNING_PRICE_MAP, ERROR_MESSAGE } = require("../constants");
 const Payment = require("../model/Payment");
 const QuickPick = require("../model/QuickPick");
+const Lotto = require("../model/Lotto");
 
 class Controller {
   view;
@@ -33,6 +34,13 @@ class Controller {
 
     this.quickPickModel = new QuickPick(quickPickList);
     this.view.printQuickPick(quickPickList);
+  }
+
+  inputWinningNumber() {
+    this.view.readLine(QUERY.WINNING, (number) => {
+      const numbers = number.split(",").map(Number);
+      this.lottoModel = new Lotto(numbers);
+    });
   }
 }
 
