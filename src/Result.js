@@ -15,6 +15,7 @@ class Result {
       fiveWithBonus: 0,
       six: 0,
     };
+    this.profit = 0;
     this.compare();
     this.result();
   }
@@ -47,22 +48,33 @@ class Result {
   }
 
   getWinningStatus(countList) {
+    const FIRST_PRIZE_MONEY = 2000000000;
+    const SECOND_PRIZE_MONEY = 30000000;
+    const THIRD_PRIZE_MONEY = 1500000;
+    const FOURTH_PRIZE_MONEY = 50000;
+    const FIFTH_PRIZE_MONEY = 5000;
+
     if (countList.winningNumbers === 6) {
       this.winningStatistics.six += 1;
+      this.profit += FIRST_PRIZE_MONEY;
     }
 
     if (countList.winningNumbers === 5 && countList.bonusNumber === 1) {
       this.winningStatistics.fiveWithBonus += 1;
+      this.profit += SECOND_PRIZE_MONEY;
     } else if (countList.winningNumbers === 5) {
       this.winningStatistics.five += 1;
+      this.profit += THIRD_PRIZE_MONEY;
     }
 
     if (countList.winningNumbers === 4) {
       this.winningStatistics.four += 1;
+      this.profit += FOURTH_PRIZE_MONEY;
     }
 
     if (countList.winningNumbers === 3) {
       this.winningStatistics.three += 1;
+      this.profit += FIFTH_PRIZE_MONEY;
     }
   }
 
@@ -73,7 +85,7 @@ class Result {
   printResult() {
     const { three, four, five, fiveWithBonus, six } = this.winningStatistics;
 
-    Console.print("당첨 통계\n---\n");
+    Console.print("\n당첨 통계\n---");
     Console.print(`3개 일치 (5,000원) - ${three}개`);
     Console.print(`4개 일치 (50,000원) - ${four}개`);
     Console.print(`5개 일치 (1,500,000원) - ${five}개`);

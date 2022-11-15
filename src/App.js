@@ -1,4 +1,4 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { Console, Random } = require("@woowacourse/mission-utils");
 const Money = require("./Money");
 const Lotto = require("./Lotto");
 const Bonus = require("./Bonus");
@@ -11,10 +11,11 @@ class App {
     this.lottoList = [];
     this.winningNumbers;
     this.bonusNumber;
+    this.profit = 0;
   }
 
   play() {
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
+    Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
       new Money(money);
       this.money = money;
       this.printPurchaseQuantity(this.money);
@@ -25,7 +26,7 @@ class App {
     const UNIT = 1000;
     const convertIntoQuantity = money / UNIT;
     this.purchaseQuantity = convertIntoQuantity;
-    MissionUtils.Console.print(`\n${this.purchaseQuantity}개를 구매했습니다.`);
+    Console.print(`\n${this.purchaseQuantity}개를 구매했습니다.`);
 
     this.issueLotto(this.purchaseQuantity);
   }
@@ -36,12 +37,12 @@ class App {
     const TOTAL_LOTTO_COUNT = 6;
 
     for (let line = 0; line < quantity; line++) {
-      const lotto = MissionUtils.Random.pickUniqueNumbersInRange(
+      const lotto = Random.pickUniqueNumbersInRange(
         START_LOTTO_NUMBER,
         END_LOTTO_NUMBER,
         TOTAL_LOTTO_COUNT
       );
-      MissionUtils.Console.print(lotto);
+      Console.print(lotto);
       this.lottoList.push(lotto);
     }
 
@@ -49,25 +50,19 @@ class App {
   }
 
   inputWinningNumbers() {
-    MissionUtils.Console.readLine(
-      "\n당첨 번호를 입력해 주세요.\n",
-      (winnigNumbers) => {
-        this.winningNumbers = winnigNumbers.split(",");
-        new Lotto(this.winningNumbers);
-        this.inputBonusNumber();
-      }
-    );
+    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (winnigNumbers) => {
+      this.winningNumbers = winnigNumbers.split(",");
+      new Lotto(this.winningNumbers);
+      this.inputBonusNumber();
+    });
   }
 
   inputBonusNumber() {
-    MissionUtils.Console.readLine(
-      "\n보너스 번호를 입력해 주세요.\n",
-      (bonusNumber) => {
-        new Bonus(bonusNumber);
-        this.bonusNumber = bonusNumber;
-        this.getResult();
-      }
-    );
+    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusNumber) => {
+      new Bonus(bonusNumber);
+      this.bonusNumber = bonusNumber;
+      this.getResult();
+    });
   }
 
   getResult() {
@@ -76,9 +71,16 @@ class App {
       this.winningNumbers,
       this.bonusNumber
     );
+    const getProfit = compare.profit;
+    this.printTotalProfit(getProfit);
   }
-
-  getWinningStatics() {}
+  printTotalProfit(getProfit) {
+    const PERCENTAGE = 100;
+    const profitPercentage = (getProfit / this.money) * PERCENTAGE;
+    this.profit = Math.round(profitPercentage * 10) / 10;
+    Console.print(`총 수익률은 ${this.profit}%입니다.`);
+    Console.close();
+  }
 }
 
 const app = new App();
