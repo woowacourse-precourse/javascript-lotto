@@ -14,7 +14,7 @@ class App {
 
   buyLotto() {
     MissionUtils.Console.readLine('구입 금액을 입력해 주세요.\n', (money) => {
-      if(money % 1000) {
+      if(!money || money % 1000) {
         throw new Error("[ERROR] 구입 금액이 잘못되었습니다.");
       }
       
@@ -53,7 +53,11 @@ class App {
 
   getBonusNumber(){
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.\n', (bonus) => {
-      this.#bonusNumber = parseInt(bonus);
+      bonus = parseInt(bonus);
+      if(this.#winNumbers.includes(bonus)) {
+        throw new Error("[ERROR] 당첨 번호와 보너스 번호가 중복됩니다.");
+      }
+      this.#bonusNumber = bonus;
       this.compareEachNumber();
     });
   }
