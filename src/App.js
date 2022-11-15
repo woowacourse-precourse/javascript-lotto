@@ -1,7 +1,7 @@
 const { Console } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const { lottoQuantity } = require("./utils");
-const { validateInputMoney } = require("./validator");
+const { validateInputMoney, validateInputBonusNum } = require("./validator");
 
 class App {
   constructor() {
@@ -26,6 +26,13 @@ class App {
         .split(",")
         .map((winningNumber) => Number(winningNumber));
       new Lotto(winningNumbers);
+      this.inputBonusNum(winningNumbers);
+    });
+  }
+
+  inputBonusNum(winningNumbers) {
+    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusNum) => {
+      validateInputBonusNum(winningNumbers, bonusNum);
     });
   }
 }

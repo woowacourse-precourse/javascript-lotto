@@ -11,4 +11,15 @@ const validateInputMoney = (money) => {
   return money;
 };
 
-module.exports = { validateInputMoney };
+const validateInputBonusNum = (winningNumbers, bonusNum) => {
+  if (isNaN(bonusNum))
+    throw new Error("[ERROR] 보너스 번호는 숫자여야 합니다.");
+  if (bonusNum < 1 || bonusNum > 45)
+    throw new Error("[ERROR] 보너스 번호의 범위는 1부터 45까지여야 합니다.");
+  if (winningNumbers.includes(bonusNum))
+    throw new Error(
+      "[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다."
+    );
+};
+
+module.exports = { validateInputMoney, validateInputBonusNum };
