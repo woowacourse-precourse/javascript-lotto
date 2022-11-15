@@ -1,3 +1,5 @@
+const { ERROR } = require('../constant/constant');
+
 function amountValidation(input) {
   checkAmountEmpty(input);
   checkAmountStirng(input);
@@ -5,7 +7,6 @@ function amountValidation(input) {
 
   return true;
 }
-const { ERROR } = require('../constant/constant');
 
 function checkAmountUnit(input) {
   if (input[input.length - 1] !== '0') {
