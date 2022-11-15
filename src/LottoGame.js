@@ -1,5 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 const { INPUT_MESSAGE, LOTTO_PRICE } = require('./Constants');
+
 const Lotto = require('./Lotto');
 const Payment = require('./Payment');
 const LottoIssuer = require('./LottoIssuer');
