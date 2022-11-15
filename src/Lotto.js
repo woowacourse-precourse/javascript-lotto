@@ -1,4 +1,4 @@
-const { ERROR_MESSAGE_WINNING_NUMBER } = require("./constant");
+const { ERROR_MESSAGE_WINNING_NUMBER, GAME_RULES } = require("./constant");
 
 class Lotto {
   #numbers;
@@ -9,11 +9,11 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
+    if (numbers.length !== GAME_RULES.LENGTH) {
       throw new Error(ERROR_MESSAGE_WINNING_NUMBER.LENGTH);
     }
     for (let num of numbers) {
-      if (num < 1 || num > 45) {
+      if (num < GAME_RULES.MIN_NUMBER || num > GAME_RULES.MAX_NUMBER) {
         throw new Error(ERROR_MESSAGE_WINNING_NUMBER.RANGE);
       }
       if (isNaN(num)) {

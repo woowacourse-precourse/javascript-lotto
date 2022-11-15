@@ -1,8 +1,13 @@
 const { Random } = require("@woowacourse/mission-utils");
+const { GAME_RULES } = require("./constant");
 
 class LottoMachine {
   getRandomNum() {
-    const randomArr = Random.pickUniqueNumbersInRange(1, 45, 6);
+    const randomArr = Random.pickUniqueNumbersInRange(
+      GAME_RULES.MIN_NUMBER,
+      GAME_RULES.MAX_NUMBER,
+      GAME_RULES.LENGTH
+    );
     this.getRandomNumAscendingSort(randomArr);
     return randomArr;
   }
@@ -14,12 +19,12 @@ class LottoMachine {
   }
 
   getLottoQuantity(money) {
-    const lottoQuantity = parseInt(money / 1000);
+    const lottoQuantity = parseInt(money / GAME_RULES.UNIT);
     return lottoQuantity;
   }
 
   getProfit(equalScore) {
-    const prizeMoney = [2000000000, 30000000, 1500000, 50000, 5000];
+    const prizeMoney = GAME_RULES.PRIZE_MONEY;
 
     let sumPrizeMoney = 0;
     for (let i = 0; i < prizeMoney.length; i++) {
@@ -31,7 +36,7 @@ class LottoMachine {
 
   getProfitRate(equalScore, userMoney) {
     const sumPrizeMoney = this.getProfit(equalScore);
-    return (sumPrizeMoney / userMoney) * 100;
+    return (sumPrizeMoney / userMoney) * GAME_RULES.PERCENT;
   }
 
   getRank(counts) {
