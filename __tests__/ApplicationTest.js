@@ -61,11 +61,41 @@ describe("로또 테스트", () => {
     });
   });
 
-  test("예외 테스트", () => {
+  test("입력 예외 테스트", () => {
     mockQuestions(["1000j"]);
     expect(() => {
       const app = new App();
       app.play();
+    }).toThrow("[ERROR]");
+  });
+
+  test("입력 예외 테스트-2", () => {
+    mockQuestions([" "]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+
+  test("입력 예외 테스트-3", () => {
+    mockQuestions([null]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+
+  test("amountException Method Test", () => {
+    expect(() => {
+      const app = new App();
+      app.amountException("32120");
+    }).toThrow("[ERROR]");
+  });
+
+  test("amountException Method Test-2", () => {
+    expect(() => {
+      const app = new App();
+      app.amountException("900");
     }).toThrow("[ERROR]");
   });
 });
