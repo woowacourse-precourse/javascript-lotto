@@ -12,42 +12,50 @@ const {
 } = require('./constant/constant');
 
 class GameService {
-  buyLotto() {
+  inputLottoPurchase() {
     Console.readLine(INPUT.GET_PURCHASE, (input) => {
       const purchase = Number(input);
-      const [lottos, count] = IssueLotto.setLotteryNumber(purchase);
-      Console.print(OUTPUT_PURCHASE(count));
-      lottos.forEach((lotto) => {
-        Console.print(`[${lotto.getNumbers().join(', ')}]`);
-      });
-      this.typedWinNumber({ lottos, purchase });
+      this.#buyLotto(purchase);
     });
   }
 
-  typedWinNumber({ lottos, purchase }) {
+  #buyLotto(purchase) {
+    const [lottos, count] = IssueLotto.setLottoNumber(purchase);
+    this.#outputLottoPurchase({ lottos, count });
+    this.#inputWinNumber({ lottos, purchase });
+  }
+
+  #outputLottoPurchase({ lottos, count }) {
+    Console.print(OUTPUT_PURCHASE(count));
+    lottos.forEach((lotto) => {
+      Console.print(`[${lotto.getNumbers().join(', ')}]`);
+    });
+  }
+
+  #inputWinNumber({ lottos, purchase }) {
     Console.readLine(INPUT.GET_WIN_NUMBER, (input) => {
       const wins = input.split(',').map((number) => Number(number));
       Validation.validateLotto(wins);
-      this.typedBonusNumber({ lottos, wins, purchase });
+      this.#inputBonusNumber({ lottos, wins, purchase });
     });
   }
 
-  typedBonusNumber({ lottos, wins, purchase }) {
+  #inputBonusNumber({ lottos, wins, purchase }) {
     Console.readLine(INPUT.GET_BONUS_NUMBER, (input) => {
       const bonus = Number(input);
       Validation.validateBonus(bonus);
-      this.printWinStatistics({ lottos, wins, bonus, purchase });
+      this.#outputWinStatistics({ lottos, wins, bonus, purchase });
     });
   }
 
-  printWinStatistics({ lottos, wins, bonus, purchase }) {
+  #outputWinStatistics({ lottos, wins, bonus, purchase }) {
     const judgeLotto = JudgeLotto.compareLotto({ lottos, wins, bonus });
     const winPlace = WinStatistics.getWinStatistics(judgeLotto);
     Console.print(OUTPUT_STATISTICS(winPlace));
-    this.printEarningRate({ winPlace, purchase });
+    this.#outputEarningRate({ winPlace, purchase });
   }
 
-  printEarningRate({ winPlace, purchase }) {
+  #outputEarningRate({ winPlace, purchase }) {
     const earningRate = EarningRate.getEarningRate({ winPlace, purchase });
     Console.print(OUTPUT_EARNING_RATE(earningRate));
     Console.close();

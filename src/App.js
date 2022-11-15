@@ -2,7 +2,7 @@ const GameService = require('./GameService');
 
 class App {
   play() {
-    new GameService().buyLotto();
+    new GameService().inputLottoPurchase();
   }
 }
 
