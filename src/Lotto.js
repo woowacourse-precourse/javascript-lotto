@@ -1,3 +1,6 @@
+const { VALID_LOTTO, ERROR_MESSAGES } = require('./constant');
+const Utils = require('./Utils');
+
 class Lotto {
   #numbers;
 
@@ -7,12 +10,21 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    if (numbers.length !== VALID_LOTTO.NUMBER_COUNT)
+      throw new Error(`${ERROR_MESSAGES.LOTTO_NUMBER_COUNT}`);
+
+    const setNumbers = new Set(numbers);
+    if (setNumbers.size !== numbers.length)
+      throw new Error(`${ERROR_MESSAGES.LOTTO_REDUPLICATION}`);
+
+    for (let i = 0; i < numbers.length; i++) {
+      Utils.validateLottoSingleNumber(numbers[i]);
     }
   }
 
-  // TODO: 추가 기능 구현
+  getValue() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
