@@ -1,13 +1,14 @@
 class App {
-  #LottoNumbers;
+  #myLottoNumbers;
   #winNumbers;
   #bonusNumber;
+  #winRank = [0, 0, 0, 0, 0, 0];
 
   play() {
-    this.getLotto();
+    this.buyLotto();
   }
 
-  getLotto() {
+  buyLotto() {
     MissionUtils.Console.readLine('구입 금액을 입력해 주세요.\n', (money) => {
       const count = Math.floor(money / 1000);
       MissionUtils.Console.print(`${count}개를 구매했습니다.`);
@@ -27,8 +28,16 @@ class App {
   getBonusNumber(){
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.\n', (bonus) => {
       this.#bonusNumber = bonus;
+      // this.printNumbers();
+      this.compareEachNumber();
       
     });
+  }
+
+  compareEachNumber() {
+    for(let i = 0; i < this.#myLottoNumbers.length; i++) {
+      console.log(this.#myLottoNumbers[i].filter(x => this.#winNumbers.includes(x)));
+    }
   }
 
   getLottoNumbers(count) {
@@ -40,7 +49,13 @@ class App {
       MissionUtils.Console.print(lotto);
     });
     
-    this.#LottoNumbers = numbers;
+    this.#myLottoNumbers = numbers;
+  }
+
+  printNumbers() {
+    MissionUtils.Console.print(this.#myLottoNumbers);
+    MissionUtils.Console.print(this.#winNumbers);
+    MissionUtils.Console.print(this.#bonusNumber);
   }
 }
 
