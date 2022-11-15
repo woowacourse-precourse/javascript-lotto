@@ -84,7 +84,7 @@ class Statistic {
   showCount(hit) {
     Console.print(
       `${hit}개 일치 ` +
-        `(${formatingNummber(LOTTO_REWARD[hit + "hit"])}원) ` +
+        `(${this.formatingNumber(LOTTO_REWARD[hit + "hit"])}원) ` +
         `- ${this.#totalCount[hit + "hit"]}개`
     );
     if (hit === 5) {
@@ -93,14 +93,14 @@ class Statistic {
   }
   showBonusCount() {
     Console.print(
-      `5개 일치, 보너스 볼 일치 (${formatinNumber(
+      `5개 일치, 보너스 볼 일치 (${this.formatingNumber(
         LOTTO_REWARD["5hitBonus"]
       )}원) - ${this.#totalCount["5hitBonus"]}개`
     );
   }
   showLotteryReturn() {
     Console.print(
-      `총 수익률은 ${formatingNumber(this.#totalReturn)}%입니다.\n`
+      `총 수익률은 ${this.formatingNumber(this.#totalReturn)}%입니다.\n`
     );
   }
   formatingNumber(number) {
