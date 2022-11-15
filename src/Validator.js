@@ -30,19 +30,21 @@ class Validator {
     return set.size === array.length;
   }
 
+  static isRightLottoNumber(number) {
+    return (
+      this.isPositiveNumber(number) &&
+      this.isRange(
+        config.LOTTO_RANGE_MIX_NUMBER,
+        config.LOTTO_RANGE_MAX_NUMBER,
+        number
+      )
+    );
+  }
+
   static isRightLottoNumbers(target) {
     const lottoNumbers = target.split(",").map((v) => +v);
 
-    if (
-      lottoNumbers.some(
-        (lottoNumber) =>
-          !this.isRange(
-            config.LOTTO_RANGE_MIX_NUMBER,
-            config.LOTTO_RANGE_MAX_NUMBER,
-            lottoNumber
-          ) || !this.isPositiveNumber(lottoNumber)
-      )
-    ) {
+    if (!lottoNumbers.every(this.isRightLottoNumber.bind(this))) {
       return false;
     }
 
