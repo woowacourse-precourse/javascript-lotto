@@ -97,4 +97,36 @@ describe('로또 테스트', () => {
       app.play();
     }).toThrow('[ERROR]');
   });
+
+  test('예외 테스트 - 댱첨 번호 예외 처리 1', () => {
+    mockQuestions(['1000', '1,2,3,4,5,6,7']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
+
+  test('예외 테스트 - 댱첨 번호 예외 처리 2', () => {
+    mockQuestions(['1000', '1,2,3,4,5,5']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
+
+  test('예외 테스트 - 댱첨 번호 예외 처리 3', () => {
+    mockQuestions(['1000', '1,2,3,4,5']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
+
+  test('예외 테스트 - 댱첨 번호 예외 처리 4', () => {
+    mockQuestions(['1000', '1,2,3,4,5,6', '6']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
 });

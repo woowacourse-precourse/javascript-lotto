@@ -48,9 +48,9 @@ class App {
     }
   }
   #numGenerator() {
-    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort(
-      (a, b) => a - b
-    );
+    const ranArr = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    if (!Array.isArray(ranArr)) throw new Error('[ERROR]');
+    return ranArr.sort((a, b) => a - b);
   }
 
   #printPurchasedLotto() {
@@ -155,3 +155,6 @@ class App {
 }
 
 module.exports = App;
+
+const app = new App();
+app.play();
