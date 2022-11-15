@@ -65,6 +65,19 @@ class Judgement {
 
     return result;
   }
+
+  rateOfReturn(result, purchaseNumber) {
+    purchaseNumber = purchaseNumber * 1000;
+    let total = [];
+    for (const item in result) {
+      const money = result[item][0];
+      const number = result[item][1];
+      total.push(money * number);
+    }
+    total = total.reduce((a, b) => a + b);
+    const rateOfReturn = ((total / purchaseNumber) * 100).toFixed(1);
+    return rateOfReturn;
+  }
 }
 
 module.exports = Judgement;
