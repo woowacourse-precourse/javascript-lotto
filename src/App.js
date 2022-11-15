@@ -4,7 +4,7 @@ const machine = new Machine();
 
 class App {
   constructor() {
-    
+    this.lottos;
   }
 
   inputCost() {
@@ -12,6 +12,7 @@ class App {
     
     Console.readLine('', (cost) => {
       machine.calculateCount(cost);
+      this.lottos = machine.issueLottos();
     })
   }
 
