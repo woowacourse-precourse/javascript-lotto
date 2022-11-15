@@ -1,7 +1,9 @@
 const { Console } = require("@woowacourse/mission-utils");
 
-const existError = (errorMessage) => {
+const existError = (errorMsg) => {
   Console.close();
-  throw new Error(errorMessage);
+
+  throw new Error(errorMsg);
 };
+
 module.exports = existError;

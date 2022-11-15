@@ -1,4 +1,4 @@
-const checkValidation = require("./errors/checkValidation");
+const checkValue = require("./errors/checkValidation");
 const existError = require("./errors/existError");
 
 class BonusNumber {
@@ -8,12 +8,10 @@ class BonusNumber {
   }
 
   validate(bonusNumber, winningNumbers) {
-    const { errorMessage } = checkValidation.bonusNumber(
-      bonusNumber,
-      winningNumbers
-    );
+    const { errorMsg } = checkValue.bonusNumber(bonusNumber, winningNumbers);
 
-    if (errorMessage) existError(errorMessage);
+    if (errorMsg) existError(errorMsg);
   }
 }
+
 module.exports = BonusNumber;

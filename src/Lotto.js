@@ -2,6 +2,7 @@ const { Console } = require("@woowacourse/mission-utils");
 const checkValidation = require("./errors/checkValidation");
 const existError = require("./errors/existError");
 const { LOTTO_NUMBER, PLACE } = require("./errors/message");
+
 class Lotto {
   #numbers;
 
@@ -11,8 +12,9 @@ class Lotto {
   }
 
   validate(numbers) {
-    const { errorMessage } = checkValidation.numbers(numbers, LOTTO_NUMBER);
-    if (errorMessage) existError(errorMessage);
+    const { errorMsg } = checkValidation.numbers(numbers, LOTTO_NUMBER);
+
+    if (errorMsg) existError(errorMsg);
   }
 
   printNumbers() {
@@ -24,6 +26,7 @@ class Lotto {
   sortNumbers() {
     this.#numbers.sort((a, b) => a - b);
   }
+
   getResult(winningNumbers, bonusNumber) {
     let count = 0;
 
@@ -32,6 +35,7 @@ class Lotto {
     });
 
     if (count === 6) return PLACE.FIRST;
+
     if (count === 5 && this.#numbers.includes(bonusNumber)) return PLACE.SECOND;
 
     return 8 - count;
