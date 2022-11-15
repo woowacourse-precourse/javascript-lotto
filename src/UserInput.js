@@ -1,5 +1,5 @@
-const { readLine, print } = require("./util.js");
-const { INPUT_QUERY } = require("./constants.js");
+const { readLine, print, close } = require("./util.js");
+const { INPUT_QUERY, prizeCount, OUTPUT } = require("./constants.js");
 const LottoGenerator = require("./LottoGenerator");
 const Lotto = require("./Lotto");
 const Bonus = require("./Bonus.js");
@@ -30,11 +30,17 @@ class UserInput {
   handleBonusNumber(bonusNumber) {
     this.bonusNumber = new Bonus(bonusNumber, this.winningNumbers);
     this.bonusNumber.compareUserAndBonus(this.publishedLotto);
-    this.printProfit();
+    this.printLottoResult();
   }
 
-  printProfit() {
-    print(`총 수익률은 ${this.lotto.calculateProfit()}%입니다.`);
+  printLottoResult() {
+    print(OUTPUT.THREE(prizeCount.fifth));
+    print(OUTPUT.FOUR(prizeCount.fourth));
+    print(OUTPUT.FIVE(prizeCount.third));
+    print(OUTPUT.FIVEBONUS(prizeCount.second));
+    print(OUTPUT.SIX(prizeCount.first));
+    print(OUTPUT.PROFIT(this.lotto.calculateProfit()));
+    close();
   }
 }
 
