@@ -8,7 +8,8 @@ class Purchase {
   constructor() {
     this.lotteries = [];
     this.winningNumber = [];
-    this.bonusNumber = "";
+    this.bonusNumber = 0;
+    this.money = 0;
     this.inputMoney();
   }
 
@@ -19,6 +20,7 @@ class Purchase {
   }
 
   validate(money) {
+    this.money = Number(money);
     const moneyValidation = new MoneyValidator(money);
     MissionUtils.Console.print(moneyValidation.money);
     this.order(moneyValidation.money);
@@ -88,7 +90,7 @@ class Purchase {
   }
 
   createBonusLotto(number) {
-    this.bonusNumber = number;
+    this.bonusNumber = Number(number);
     const bonusLotto = new BonusNumber(number);
   }
 }
