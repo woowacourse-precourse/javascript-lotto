@@ -50,6 +50,7 @@ class PlayLotto {
         const numbers = userInput.split(',').map((number) => {
           if (parseInt(number) < 1 || parseInt(number) > 45)
             throw '[ERROR] 로또 번호는 1부터 45 사이의 숫자입니다.';
+          if(isNaN(number)) throw '[ERROR] 숫자를 입력하세요.';
           return parseInt(number);
         });
         new Lotto(numbers);
@@ -75,7 +76,8 @@ class PlayLotto {
           this.bonus,
           this.cost
         );
-        
+
+        this.LottoResult.winLottoLogic();
       }
     );
   }
