@@ -1,16 +1,7 @@
 const Ticket = require("../Ticket");
-const MissionUtils = require("@woowacourse/mission-utils");
-
-const mockRandoms = (numbers) => {
-  MissionUtils.Random.pickUniqueNumbersInRange = jest.fn();
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, MissionUtils.Random.pickUniqueNumbersInRange);
-};
 
 describe("Ticket 메서드 테스트", () => {
-  mockRandoms([[1, 2, 3, 4, 5, 6]]);
-  const ticket = new Ticket();
+  const ticket = new Ticket([1, 2, 3, 4, 5, 6]);
 	test("pirce()", () => {
     expect(Ticket.price()).toEqual(1000);
   });
