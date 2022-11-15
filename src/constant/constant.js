@@ -13,6 +13,7 @@ const EXCEPTIONS = {
   LENGTH_OVERFLOW: '[ERROR] 6개의 숫자를 입력하셔야 합니다.',
   NUMBER_OVERLAPPED: '[ERROR] 중복된 번호를 입력하셨습니다.',
   NOT_A_DECIMAL: '[ERROR] 자연수만 입력 가능합니다.',
+  UNIT_ERROR: `[ERROR] 금액의 단위가 맞지 않습니다! ${LOTTERY_PRICE}원 단위로 입력해주세요!`,
 };
 
 module.exports = {
