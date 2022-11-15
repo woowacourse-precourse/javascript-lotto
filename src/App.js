@@ -28,6 +28,10 @@ class App {
     this.rankCnt = {};
   }
 
+  makeWonUnit(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   printResult() {
     const ranking = Object.keys(RANK).slice(0, 5).reverse();
     Console.print(`\n${TITLE}\n${LINE}`);
@@ -38,10 +42,6 @@ class App {
       );
     });
     Console.print(`${GUIDE.TOTAL_PROFIT} ${this.profit}${GUIDE.PERCENT}`);
-  }
-
-  makeWonUnit(number) {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
   getProfit() {

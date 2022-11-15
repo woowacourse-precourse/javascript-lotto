@@ -21,23 +21,20 @@ class Lotto extends Exception {
     return this.#numbers.length !== UNIT.WIN_NUMBER_CNT;
   }
 
-  checkRange(number) {
-    return number < UNIT.MIN_NUMBER || number > UNIT.MAX_NUMBER;
-  }
-
   isAllowNumber(number) {
     return number % 1 !== 0;
   }
 
-  checkInput() {
-    if (this.checkCnt()) throw new Error(ERROR.WIN_NUMBER);
-    this.#numbers.forEach((number) => {
-      if (this.checkRange(number)) throw new Error(ERROR.WIN_NUMBER);
-    });
-    this.#numbers.forEach((number) => {
-      if (this.isAllowNumber(number)) throw new Error(ERROR.WIN_NUMBER);
-    });
+  checkRange(number) {
+    return number < UNIT.MIN_NUMBER || number > UNIT.MAX_NUMBER;
+  }
 
+  checkInput() {
+    this.#numbers.forEach((number) => {
+      if (this.checkRange(number) || this.isAllowNumber(number))
+        throw new Error(ERROR.WIN_NUMBER);
+    });
+    if (this.checkCnt()) throw new Error(ERROR.WIN_NUMBER);
     if (this.duplicateCheck()) throw new Error(ERROR.WIN_NUMBER_DUPLICATE);
   }
 }

@@ -56,8 +56,6 @@ const UNIT = Object.freeze({
   BONUS_LENGTH: 1,
   DEFAULT: 0,
   STORAGE_SPACE: [],
-  ALLOW: false,
-  NOT_ALLOW: true,
 });
 
 const PRIZE_MONEY = Object.freeze({

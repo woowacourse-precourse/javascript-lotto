@@ -124,9 +124,7 @@
 - `WIN_NUMBER_CNT` : 로또 번호 개수
 - `BONUS_LENGTH` : 보너스 번호 길이
 - `DEFAULT` : 기본값 0
-- `STORAGE_SPACE` : 로또 저장 배열 기본값
-- `ALLOW` : 허용되는 불린 값
-- `NOT_ALLOW` : 허락되지 않는 불린 값<br>
+- `STORAGE_SPACE` : 로또 저장 배열 기본값 <br>
   <br>
 
 ### 📛 에러 메시지
