@@ -2,16 +2,20 @@ const MissionUtils = require("@woowacourse/mission-utils");
 
 const ESCAPE = ["\n", "\t", "\a", "\v", "\b", "\f", "\\", "\'", "\""];
 
-class Lotto {
+class Lotto { 
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    this.isValidInputNumbers(numbers);
     this.#numbers = numbers;
     MissionUtils.Console.close();
   }
 
-  validate(numbers) {
+  getNumbers() {
+    return this.#numbers;
+  }
+
+  isValidInputNumbers(numbers) { 
     const numSet = new Set(numbers);
 
     if (numbers.length !== 6) {
@@ -28,13 +32,37 @@ class Lotto {
     })
 
     numbers.forEach((num) => {
-      if (isNaN(num)) {
-        throw `[ERROR] 숫자가 아닌 값이 있습니다.`;
-      }
-      if (Number(num) < 1 || Number(num) > 45) {
-        throw `[ERROR] 로또 번호는 1 ~ 45번까지만 존재합니다.`; 
-      }
+      this.isValidNumber(num, false);
     });
+  }
+
+  /**
+   * 로또 번호 하나에 대해 유효한 값인지 검사 
+   * @param {number} bonusNumber - 검사할 숫자 
+   * @param {boolean} isBonusNumber - 보너스 번호에 대한 검사일 경우 true, 아니면 false
+   */
+  isValidNumber(num, isBonusNumber) {
+    if (isNaN(num)) {
+      throw `[ERROR] 번호가 숫자형태가 아닙니다.`;
+    }
+
+    if (num < 1 || num > 45) {
+      throw `[ERROR] 로또 번호는 1 ~ 45까지 입니다.`;
+    }
+
+    if (isBonusNumber) {
+      if (this.#numbers.includes(num)) {
+        throw `[ERROR] 보너스 번호가 앞의 6자리 번호와 중복되는 숫자입니다.`;
+      }
+    }
+
+    return true;
+  }
+
+  addBonusNumber(bonusNumber) {
+    if (this.isValidNumber(bonusNumber, true)) {
+      this.#numbers.push(bonusNumber);
+    }
   }
 
   printLottoNumbers() {

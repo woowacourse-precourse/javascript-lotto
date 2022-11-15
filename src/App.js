@@ -13,8 +13,8 @@ const prizeInfo = {
 class App {
   play() {
     const myLottos = this.buyLotto();
-    const winningNums = this.getWinningNums();
-    this.calLottoProfit(myLottos, winningNums);
+    const winningLotto = this.getWinningLotto();
+    this.calLottoPrize(myLottos, winningLotto);
     MissionUtils.Console.close();
   }
 
@@ -64,43 +64,28 @@ class App {
     myLotto.forEach(lotto => lotto.printLottoNumbers());
   }
 
-  getWinningNums() {
-    let winningNums = [];
+  getWinningLotto() {
+    let winningNumbers = [];
+    let bonusNumber = undefined;
 
     MissionUtils.Console.readLine("당첨 번호를 입력해주세요. \n >",
-      answer => winningNums = answer.split(",")
+      answer => winningNumbers = answer.split(",")
     );
     MissionUtils.Console.readLine("보너스 번호를 입력해주세요. \n >", 
-      answer => winningNums.push(answer)
+      answer => bonusNumber = Number(answer)
     );
-    winningNums = winningNums.map((element) => Number(element));
-    this.validWinningNums(winningNums);
+    
+    winningNumbers = winningNumbers.map((element) => Number(element));
+    const winningLotto = new Lotto(winningNumbers);
+    winningLotto.addBonusNumber(bonusNumber);
 
-    return winningNums;
+    return winningLotto;
   }
 
-  validWinningNums(winningNums) {
-    const frontWinningNums = winningNums.slice(0, 6);
-    const bonusNum = winningNums[6];
-
-    new Lotto(frontWinningNums); // 앞의 6자리 숫자를 예외 처리
-
-    if (isNaN(bonusNum)) {
-      throw `[ERROR] 보너스 번호가 숫자형태가 아닙니다.`;
-    }
-
-    if (bonusNum < 1 || bonusNum > 45) {
-      throw `[ERROR] 로또 번호는 1 ~ 45까지 입니다.`;
-    }
-
-    if (frontWinningNums.includes(bonusNum)) {
-      throw `[ERROR] 보너스 번호가 앞의 6자리 번호와 중복되는 숫자입니다.`;
-    }
-  }
-
-  calLottoProfit(myLottos, winningNums) {
+  calLottoPrize(myLottos, winningLotto) {
     const winningInfo = {};
     const principal = myLottos.length * 1000;
+    const winningNums = winningLotto.getNumbers();
     let totalPrize = 0;
 
     for (let rank = 0; rank <= 5; rank++) {
