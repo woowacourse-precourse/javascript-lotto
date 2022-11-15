@@ -12,6 +12,12 @@ class Lotto {
     this.#numbers = numbers;
   }
 
+  get numbers() {
+    this.#numbers.sort((a, b) => a - b);
+
+    return this.#numbers;
+  }
+
   validate(numbers) {
     isOutOfVolumeAndThrowError(numbers, 6);
     isDuplicatedAndThrowError(numbers);
