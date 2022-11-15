@@ -17,16 +17,33 @@ class App {
     this.#lottoPrizeDto = new LottoPrizeDto();
   }
 
-  async play() {
-    let waterfall = [
-      await this.#getMoney(),
-      this.#makeLottoPurchaseDtos(),
-      await this.#makeLottoInputDto(),
-      this.#getResult(),
-    ];
-    waterfall.forEach((fn) => {
-      fn;
-    });
+  play() {
+    this.#getMoney();
+    this.#makeLottoPurchaseDtos();
+    this.#makeLottoInputDto();
+    this.#getResult();
+  }
+
+  async #getMoney() {
+    this.#money = await InputConsole.getMoney();
+    this.#purchaseNumber = LottoValidator.getLottoPuchaseNumber(this.#money);
+    OutputConsole.lottoPurchaseNumber(this.#purchaseNumber);
+  }
+
+  #makeLottoPurchaseDtos() {
+    this.#lottoPurchaseDtos = Array.from(
+      { length: this.#purchaseNumber },
+      () => new LottoPurchaseDto(),
+    );
+    OutputConsole.lottoNumbers(this.#lottoPurchaseDtos);
+  }
+
+  async #makeLottoInputDto() {
+    const lottoNumbers = await InputConsole.getLotto();
+    const lottoAdditinalNumber = await InputConsole.getLottoAdditional(
+      lottoNumbers,
+    );
+    this.#lottoInputDto = new LottoInputDto(lottoNumbers, lottoAdditinalNumber);
   }
 
   #getResult() {
@@ -39,28 +56,6 @@ class App {
     });
     OutputConsole.result(this.#lottoPrizeDto);
     OutputConsole.sumMoney(this.#lottoPrizeDto, this.#money);
-  }
-
-  async #makeLottoInputDto() {
-    const lottoNumbers = await InputConsole.getLotto();
-    const lottoAdditinalNumber = await InputConsole.getLottoAdditional(
-      lottoNumbers,
-    );
-    this.#lottoInputDto = new LottoInputDto(lottoNumbers, lottoAdditinalNumber);
-  }
-
-  #makeLottoPurchaseDtos() {
-    this.#lottoPurchaseDtos = Array.from(
-      { length: this.#purchaseNumber },
-      () => new LottoPurchaseDto(),
-    );
-    OutputConsole.lottoNumbers(this.#lottoPurchaseDtos);
-  }
-
-  async #getMoney() {
-    this.#money = await InputConsole.getMoney();
-    this.#purchaseNumber = LottoValidator.getLottoPuchaseNumber(this.#money);
-    OutputConsole.lottoPurchaseNumber(this.#purchaseNumber);
   }
 }
 
