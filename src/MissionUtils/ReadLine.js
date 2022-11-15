@@ -1,10 +1,23 @@
 const { Console } = require('@woowacourse/mission-utils');
 const { Messages } = require('../Constants');
 
-class ReadLine {
-	payout(callback) {
-		Console.readline(Messages.START_BUY, (pay) => callback(pay));
-	}
-}
+const getPayout = (callback) => {
+	Console.readLine(Messages.START_BUY, (pay) => callback(pay));
+	Console.close();
+};
 
-module.exports = ReadLine;
+const getWinningNumbers = (callback) => {
+	Console.readLine(Messages.INSERT_WINNING, (numbers) => callback(numbers));
+	Console.close();
+};
+
+const getBonusNumber = (callback) => {
+	Console.readLine(Messages.INSERT_BONUS, (number) => callback(number));
+	Console.close();
+};
+
+module.exports = {
+	getPayout,
+	getWinningNumbers,
+	getBonusNumber,
+};
