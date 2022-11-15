@@ -1,6 +1,6 @@
 const { Random, Console } = require('@woowacourse/mission-utils');
 const Calculator = require('./Calculator');
-const { PRIZE_MATCH } = require('./Constants');
+const { PRIZE_MATCH, LOTTO_MSG, NUM } = require('./Constants');
 const Utils = require('./Utils');
 
 class Lotto {
@@ -22,16 +22,18 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+    if (numbers.length !== NUM.DEMAND_FOR_LOTTO_INPUT_COUNT) {
+      throw new Error(LOTTO_MSG.INPUT_NUMBER_COUNT_ERROR);
     }
     if (numbers.length !== [...new Set(numbers)].length) {
-      throw new Error('[ERROR] 중복된 숫자가 없어야 합니다.');
+      throw new Error(LOTTO_MSG.DUPLICATE_NUMBER_ERROR);
     }
   }
 
   makeSixNumbers() {
-    return Random.pickUniqueNumbersInRange(1, 45, 6).sort((num1, num2) => num1 - num2);
+    return Random.pickUniqueNumbersInRange(NUM.MIN_RANGE, NUM.MAX_RANGE, NUM.HOW_MANY).sort(
+      (num1, num2) => num1 - num2
+    );
   }
 
   bundleCreate(lottoCount) {
@@ -64,11 +66,11 @@ class Lotto {
 
   print() {
     const { fifthGrade, forthGrade, thirdGrade, secondGrade, firstGrade } = this.resultMap;
-    Console.print(`3개 일치 (5,000원) - ${fifthGrade}개`);
-    Console.print(`4개 일치 (50,000원) - ${forthGrade}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${thirdGrade}개`);
-    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${secondGrade}개`);
-    Console.print(`6개 일치 (2,000,000,000원) - ${firstGrade}개`);
+    Console.print(LOTTO_MSG.FIFTH_GRADE(fifthGrade));
+    Console.print(LOTTO_MSG.FORTH_GRADE(forthGrade));
+    Console.print(LOTTO_MSG.THIRTH_GRADE(thirdGrade));
+    Console.print(LOTTO_MSG.SECOND_GRADE(secondGrade));
+    Console.print(LOTTO_MSG.FIRST_GRADE(firstGrade));
   }
 }
 
