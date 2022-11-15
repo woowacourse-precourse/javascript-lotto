@@ -22,7 +22,7 @@ class App {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
       this.purchaseAmount = parseInt(money);
       const numberPattern = /[^0-9]/g;
-      if (numberPattern.test(this.purchaseAmount)) {
+      if (!numberPattern.test(this.purchaseAmount)) {
         throw new Error("[ERROR] 숫자만 입력하세요.");
       }
       if (this.purchaseAmount < 1000) {
