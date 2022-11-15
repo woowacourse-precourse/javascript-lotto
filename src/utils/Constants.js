@@ -12,6 +12,8 @@ const ERROR_MESSAGE = Object.freeze({
   duplicate: '[ERROR] 당첨 번호 중에서 중복된 번호가 없어야 합니다.',
   bonusDuplicate: '[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 숫자여야 합니다.',
   moneyUnit: '[ERROR] 구매 금액의 단위는 1000원 단위여야 합니다.',
+  notMoney: '[ERROR] 금액은 숫자만 입력해야 합니다.',
+  empty: '[ERROR] 아무것도 입력되지 않았습니다.',
 });
 
 const INPUT_QUESTION = Object.freeze({
