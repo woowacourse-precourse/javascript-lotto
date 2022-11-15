@@ -50,6 +50,43 @@ class LottoDraw {
             }
         }
     }
+
+    checkResult(lottos) {
+        const result = {};
+        for(let i = 0; i < 6; i++) result[i] = 0;
+
+        lottos.forEach((element) => {
+            const prize = get_prize(element.getNumbers());
+            if (prize > 0) {
+                result[prize] += 1;
+            }
+        })
+
+        this.printResult(result);
+    }
+    printResult(result) {
+
+    }
+    getYield(result) {
+
+    }
+    get_prize(lottoNums) {
+        let match = 0;
+        lottoNums.forEach((element) => {
+            if (this.#winningNums.indexOf(element) != -1) {
+                match += 1;
+            }
+        });
+
+        if (match == 6) return 1;
+        if (match == 5) {
+            if(lottoNums.indexOf(this.#bonusNum) != -1) return 2;
+            return 3;
+        }
+        if (match == 4) return 4;
+        if (match == 3) return 5;
+        return 0;
+    }
 }
 
 module.exports = LottoDraw;
