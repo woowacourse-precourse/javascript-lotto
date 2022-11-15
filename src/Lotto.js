@@ -51,7 +51,7 @@ class Lotto {
 
   lottoCompare(lottoNumbers) {
     const sameNumber = lottoNumbers.filter(num => this.#numbers.includes(num));
-    const matchNumber = sameNumber.length
+    const matchNumber = sameNumber.length;
 
     if (matchNumber === 5) {
       return this.bonusCompare(lottoNumbers);
@@ -74,7 +74,7 @@ class Lotto {
     } else if (matchNumber === 4) {
       this.winningNumbers[1] += 1;
     } else if (matchNumber === 3) {
-      this.winningNumbers[0] +=1;
+      this.winningNumbers[0] += 1;
     }
     return this.winningNumbers;
   }
