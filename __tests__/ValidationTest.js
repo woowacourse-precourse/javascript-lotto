@@ -31,12 +31,11 @@ describe("Validation 클래스 테스트", () => {
     expect(Validation.isThatEmpty(input)).toBe(true);
   });
 
-//   test("배열 정렬 테스트", () => {
-//     const input = [5, 4, 3, 2, 1, 7];
-//     const result = lotto.sortLottoNumber(input);
+  test("보너스번호가 숫자로 입력되었는지 검사", () => {
+    const input = "number";
 
-//     expect(result).toStrictEqual([1, 2, 3, 4, 5, 7]);
-//   });
+    expect(Validation.itThatNumber(input)).toBe(false);
+  });
 
 //   test("돈이 아닐 경우 에러 발생 테스트", () => {
 //     const input = "money";
