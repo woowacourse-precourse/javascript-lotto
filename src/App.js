@@ -6,6 +6,7 @@ class App {
     const [amount, money] = createUserInput();
     validateInputMoney(money);
     const userLotto = createUserLotto(amount);
+    const [winningNumbers, bonusNumber] = createLottoNumber();
   }
 }
 
@@ -42,4 +43,17 @@ function createUserLotto(amount) {
   return lottoArr;
 }
 
+function createLottoNumber() {
+  let winningNumbers;
+  let bonusNumber;
+  Console.readLine("당첨 번호를 입력해주세요.", (numbers) => {
+    winningNumbers = numbers.split(",").map(Number);
+    this.lotto = new Lotto(winningNumbers);
+    Console.readLine("보너스 번호를 입력해주세요.", (number) => {
+      bonusNumber = number;
+      // this.lotto.setBonusNumber(bonusNumber);
+    });
+  });
+  return [winningNumbers, bonusNumber];
+}
 module.exports = App;
