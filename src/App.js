@@ -73,6 +73,23 @@ class App {
         }
       });
     }
+
+    function calculateLotto(pcs){
+      if (pcs == 3){
+        obj[pcs][0] += 1;
+        obj[pcs][1] += 5000;
+      } else if (pcs == 4){
+        obj[pcs][0] += 1;
+        obj[pcs][1] += 50000;
+      } else if (pcs == 5){
+        obj[pcs][0] += 1;
+        obj[pcs][1] += 1500000;
+      } else if (pcs == 6){
+        obj[pcs][0] += 1;
+        obj[pcs][1] += 2000000000;
+      }
+    MissionUtils.Console.print(obj);
+    }
   } //Play() 닫는 닫는 괄호
 }//class App 닫는괄호
 
