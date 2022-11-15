@@ -14,8 +14,7 @@ class App {
     const money = this.buyLotto();
 
     // 구입 금액에 해당하는 만큼 로또 발행, 출력
-    const lottosNumbers = [];
-    this.creatLotto();
+    const lottosList = this.creatLotto();
 
     // 당첨번호 입력받기
     const winningNumber = this.getWinningNumber();
@@ -23,30 +22,14 @@ class App {
     // 보너스번호 입력받기
     const bonusNumber = this.getBonusNumber();
 
-    // 반환된 일치 갯수로 당첨내역에 넣기
-    let fifth = { count: 0, prizeMoney: 0 };
-    let fourth = { count: 0, prizeMoney: 0 };
-    let third = { count: 0, prizeMoney: 0 };
-    let second = { count: 0, prizeMoney: 0 };
-    let first = { count: 0, prizeMoney: 0 };
-    this.creatWinningChart();
-
-    //상금 더하기
-    const allPrizeMoney =
-      fifth.prizeMoney +
-      fourth.prizeMoney +
-      third.prizeMoney +
-      second.prizeMoney +
-      first.prizeMoney;
-
-    // 결과 출력
+    // 당첨 결과 출력
     this.printResult();
   }
 
   // 금액 입력
   buyLotto() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (money) => {
-      if (isNaN(money)) {
+      if (!Number(money)) {
         throw new Error("[ERROR] 숫자를 입력하지 않았습니다.");
       }
       const moneyChange = money / LOTTO_PRICE;
@@ -60,18 +43,16 @@ class App {
 
   // 구입 금액에 해당하는 만큼 로또 발행, 출력
   creatLotto() {
+    let lottoList = [];
     for (let i = 0; i < this.money / LOTTO_PRICE; i++) {
-      const lottoNumber = MissionUtils.Random.pickUniqueNumbersInRange(
-        1,
-        45,
-        6
-      );
-      lottoNumber.sort(function (a, b) {
+      const lotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      lotto.sort(function (a, b) {
         return a - b;
       });
-      this.lottosNumbers.push(lottoNumber);
+      lottoList.push(lotto);
     }
-    MissionUtils.Console.print(this.lottosNumbers);
+    MissionUtils.Console.print(lottoList);
+    return lottoList;
   }
 
   // 당첨번호 입력받기
@@ -88,58 +69,92 @@ class App {
       if (isNaN(number)) {
         throw new Error("[ERROR] 보너스 번호는 숫자여야 합니다.");
       }
-      if (number >= 1 && number <= 45) {
+      if (number < 1 || 45 < number) {
         throw new Error("[ERROR] 보너스 번호는 1~45범위 내의 숫자여야 합니다.");
       }
       return number;
     });
   }
 
-  // 반환된 일치 갯수로 당첨내역에 넣기
-  creatWinningChart() {
-    const [matchLotteCount, bonusCount] = Lotto.matchLotte();
-    for (let i = 0; i < matchLotteCount.length; i++) {
-      if (matchLotteCount[i] === 3) {
-        this.fifth.count += 1;
-        this.fifth.prizeMoney += FIFTH_MONEY;
-      }
-      if (matchLotteCount[i] === 4) {
-        this.fourth.count += 1;
-        this.fourth.prizeMoney += FOURTH_MONEY;
-      }
-      if (matchLotteCount[i] === 5) {
-        this.third.count += 1;
-        this.third.prizeMoney += THIRD_MONEY;
-      }
-
-      if (matchLotteCount[i] === 6) {
-        this.first.count += 1;
-        this.first.prizeMoney += FIRST_MONEY;
+  // 당첨 로또와 로또 리스트의 일치 갯수 반환
+  matchLotto() {
+    let matchingCountArr = [];
+    let bonusMatch = [];
+    for (let i = 0; i < this.money / LOTTO_PRICE; i++) {
+      const lottoPiece = this.lottoLists[i];
+      const matchingNumber = winningNumber.filter((num) =>
+        lottoPiece.includes(num)
+      );
+      if (
+        matchingNumber.length === 5 &&
+        this.lottoList[i].includes(bonusNumber)
+      ) {
+        bonusMatch.push(bonusNumber);
+      } else {
+        matchingCountArr.push(matchingNumber.length);
       }
     }
-    if (bonusCount > 0) {
-      this.second.count = bonusCount.length;
-      this.second.prizeMoney = SECOND_MONEY * bonusCount.length;
-    }
+    return [matchingCountArr, bonusMatch];
   }
 
-  // 결과 출력
+  // 반환된 일치 갯수로 당첨내역에 넣기
+  creatWinningChart() {
+    let rankFifth = 0;
+    let rankFourth = 0;
+    let rankThird = 0;
+    let rankSecond = 0;
+    let rankFirst = 0;
+    const [lottoMatchingCount, bonusMatchCount] = this.matchLotto();
+    for (let i = 0; i < lottoMatchingCount.length; i++) {
+      if (this.lottoMatchingCount === 3) {
+        rankFifth += 1;
+      }
+      if (this.lottoMatchingCount === 4) {
+        rankFourth += 1;
+      }
+      if (this.lottoMatchingCount === 5) {
+        rankThird += 1;
+      }
+      if (this.lottoMatchingCount === 6) {
+        rankFirst += 1;
+      }
+    }
+    if (bonusMatchCount.length > 0) {
+      rankSecond = bonusCount.length;
+    }
+    return [rankFifth, rankFourth, rankThird, rankSecond, rankFirst];
+  }
+
+  // 최종 결과 출력
   printResult() {
+    const [rankFifth, rankFourth, rankThird, rankSecond, rankFirst] =
+      this.creatWinningChart();
+
     MissionUtils.Console.print(
-      `3개 일치 (5,000원) - ${this.fifth.count}개,
-      4개 일치 (50,000원) - ${this.fourth.count}개,
-      5개 일치 (1,500,000원) - ${this.third.count}개,
-      5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.second.count}개,
-      6개 일치 (2,000,000,000원) - ${this.first.count}개)
-      총 수익률은 ${this.printEarningRatio()}입니다.`
+      `3개 일치 (5,000원) - ${rankFifth}개,
+      4개 일치 (50,000원) - ${rankFourth}개,
+      5개 일치 (1,500,000원) - ${rankThird}개,
+      5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankSecond}개,
+      6개 일치 (2,000,000,000원) - ${rankFirst}개)
+      총 수익률은 ${this.prizeMoneyRate()}입니다.`
     );
   }
 
-  // 총 수익률 출력
-  printEarningRatio() {
-    const inputMoney = this.money * LOTTO_PRICE;
-    const earningRatio = (inputMoney / this.allPrizeMoney) * 100;
-    const rounding = earningRatio.toFixed(1);
+  // 최종 상금
+  prizeMoney() {
+    const [fifth, fourth, third, second, first] = this.creatWinningChart();
+    const fifthMoney = fifth * FIFTH_MONEY;
+    const fourthMoney = fourth * FOURTH_MONEY;
+    const thirdMoney = third * THIRD_MONEY;
+    const secondMoney = second * SECOND_MONEY;
+    const firstMoney = first * FIRST_MONEY;
+    return fifthMoney + fourthMoney + thirdMoney + secondMoney + firstMoney;
+  }
+
+  // 총 수익률
+  prizeMoneyRate() {
+    const profitRate = (this.money / this.prizeMoney()) * 100;
+    const rounding = profitRate.toFixed(1);
     return rounding;
   }
 }
