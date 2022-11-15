@@ -63,7 +63,13 @@ class Lotto {
 }
 
 function checkErrorPrizeInput(prize) {
-  if (!prize.includes(',') || prize.split(',').length !== 6) {
+  const prizeArrayWithNumberType = prize.split(',').map(Number);
+  if (
+    !prize.includes(',') ||
+    prize.split(',').length !== 6 ||
+    prizeArrayWithNumberType.every((number) => number < 46) == false ||
+    prizeArrayWithNumberType.every((number) => 0 < number) == false
+  ) {
     throw new Error(Message.ERROR_PRIZE);
   }
 }
