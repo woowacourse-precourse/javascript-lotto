@@ -1,4 +1,5 @@
 const inputDataObject = require('../src/model/InputDataObject');
+const printAverageReturn = require('./view/printAverageReturn')
 
 class Lotto {
   #numbers;
@@ -33,7 +34,7 @@ class Lotto {
       .filter(index => index.length > 2).map(count => {
         return this.profitSum(count)
       })
-    return null
+    return printAverageReturn.printAverageReturn()
   }
 
   profitSum(i) {
