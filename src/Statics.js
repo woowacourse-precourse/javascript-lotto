@@ -1,12 +1,4 @@
-const {
-  BUDGET_MESSAGE,
-  TICKET_MESSAGE,
-  WINNING_NUMBER_MESSAGE,
-  TICKET_NUMBER,
-  BONUS_MESSAGE,
-  LOTTO_RANK,
-  STATIC_MESSAGE,
-} = require('./constants/lotto');
+const { LOTTO_RANK } = require('./constants/lotto');
 
 const Statics = class {
   getLottoWinningHistory({ lottoTickets, winningNumbers, bonus }) {
@@ -14,34 +6,35 @@ const Statics = class {
     const winningHistory = lottoTickets.reduce((winningHistory, currTicket) => {
       const intersectionSize = currTicket.filter(number => winningNumbers.includes(number)).length;
 
-      switch (intersectionSize) {
-        case 6:
-          winningHistory[1] += 1;
-          return winningHistory;
+      const currRank = this.getLottoRank({ intersectionSize, currTicket, bonus });
+      winningHistory[currRank] += 1;
 
-        case 5:
-          const isBonus = currTicket.includes(bonus);
-          const rank = isBonus === true ? 2 : 3;
-          winningHistory[rank] += 1;
-          return winningHistory;
-
-        case 4:
-          winningHistory[4] += 1;
-          return winningHistory;
-
-        case 3:
-          winningHistory[5] += 1;
-          return winningHistory;
-
-        default:
-          return winningHistory;
-      }
+      return winningHistory;
     }, initWinningHistory);
 
     return winningHistory;
   }
 
-  getLottoRank() {}
+  getLottoRank({ intersectionSize, currTicket, bonus }) {
+    switch (intersectionSize) {
+      case 6:
+        return 1;
+
+      case 5:
+        const isBonus = currTicket.includes(bonus);
+        const rank = isBonus === true ? 2 : 3;
+        return rank;
+
+      case 4:
+        return 4;
+
+      case 3:
+        return 5;
+
+      default:
+        return;
+    }
+  }
 
   getLottoYield(lottoRevenue, budget) {
     const lottoYield = (lottoRevenue / budget) * 100;
