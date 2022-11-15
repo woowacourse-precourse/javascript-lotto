@@ -1,3 +1,4 @@
+const { Console } = require('@woowacourse/mission-utils');
 const Lotto = require('../src/Lotto');
 const Statistics = require('../src/Statistics');
 
@@ -21,4 +22,5 @@ describe('통계 클래스 테스트', () => {
   test('로또 2개를 구입해서 4등, 5등에 1개씩 당첨된 경우 수익률은 2,750.0%이다.', () => {
     expect(statistics.earningRate).toEqual('2,750.0');
   });
+  Console.close();
 });

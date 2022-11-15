@@ -1,4 +1,3 @@
-const { Console } = require('@woowacourse/mission-utils');
 const { ERROR } = require('../src/Error');
 const Lotto = require('../src/Lotto');
 
@@ -56,5 +55,4 @@ describe('로또 클래스 테스트', () => {
     lotto.setRank();
     expect(lotto.rank).toEqual(2);
   });
-  Console.close();
 });
