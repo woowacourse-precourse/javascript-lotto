@@ -1,5 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const PurchaseLotto = require("./PurchaseLotto");
+const Lotto = require("./Lotto");
+const { Helper } = require("./lib/Helper");
 
 class App {
   #inputMoney = 0;
@@ -57,10 +59,21 @@ class App {
       Message.REQUEST.BONUS_NUMBER+"\n",
       (bonusNumber) => {
         Helper.checkDuplicatedNumber([this.#winningNumbersList, bonusNumber]);
-        Helper.checkIsRangedNumber([bonusNumber]);
+        Helper.checkRangedNumber([bonusNumber]);
         this.#bonusNumber = bonusNumber;
       }
     );
+  }
+
+  matchLottoGame() {
+    const lotto = new Lotto(this.#winningNumberList.map((number) => +number));
+    const winningPrizeList = [];
+    for (let purchaseLotto of this.#purchaseLottoList) {
+      winningPrizeList.push(
+        lotto.returnSameNumberCount(purchaseLotto, this.#bonusNumber)
+      );
+    }
+    this.#matchingNumberCountObj = lotto.returnMatchingNumberObj(winningPrizeList);
   }
 
 }
