@@ -8,7 +8,7 @@ class Publish{
     this.model = new Model(lottoChart);
     this.view = new View(this);
   }
-  calculate(){ //paid -> number_of_lotto 계산 !
+  calculateNumberOfLotto(){ //paid -> number_of_lotto 계산 !
     const paid = this.model.chart.paid;
     return paid/1000;
   }
@@ -16,8 +16,8 @@ class Publish{
     const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
     return numbers;
   }
-  controll(){
-    const number_of_lotto = this.calculate();
+  controllPublish(){
+    const number_of_lotto = this.calculateNumberOfLotto();
     this.model.setNumberOfLotto(number_of_lotto); //number_of_lotto 계산 및 전달
 
     this.model.initPublished(); //모델 published 초기화
@@ -32,7 +32,7 @@ class Publish{
   }
   next(){
     const winning = new Winning(this.model.chart);
-    winning.start();
+    winning.startWinning();
   }
 }
 

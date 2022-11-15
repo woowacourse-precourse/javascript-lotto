@@ -23,7 +23,7 @@ class PayAmount{
     }
     return true;
   }
-  controll(input){
+  controllPaid(input){
     let paid;
     if(this.validInput(input)){
       paid = parseInt(input);
@@ -35,7 +35,7 @@ class PayAmount{
   }
   next(){ 
     const publish = new Publish(this.model.chart);
-    publish.controll();
+    publish.controllPublish();
   }
 }
 

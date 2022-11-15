@@ -8,7 +8,7 @@ class Winning{
     this.model = new Model(lottoChart);
     this.view = new View(this);
   }
-  start(){
+  startWinning(){
     this.view.inputWin();
   }
   validateWin(input){
@@ -54,7 +54,7 @@ class Winning{
   }
   next(){
     const ranks = new Ranks(this.model.chart);
-    ranks.controll();
+    ranks.controllRanks();
   }
 }
 

@@ -6,28 +6,28 @@ class Profit{
     this.model = new Model(lottoChart);
     this.view = new View(this);
   }
-  calculate_profit(paid, prize){
+  calculateProfit(paid, prize){
     return prize/(paid/1000)*100;
   }
-  each_rank_prize(rank){
+  eachRankPrize(rank){
     if(rank===0){ return 5 }
     if(rank===1){ return 50 }
     if(rank===2){ return 1500 }
     if(rank===3){ return 30000 }
     if(rank===4){ return 2000000 }
   }
-  calculate_prize(){
+  calculatePrize(){
     const ranks = this.model.getRank();
     let prize = 0;
     ranks.forEach((rank, index)=>{
-      prize += (rank.length * this.each_rank_prize(index))
+      prize += (rank.length * this.eachRankPrize(index))
     })
     return prize;
   }
-  controll(){
-    const prize = this.calculate_prize();
+  profitControll(){
+    const prize = this.calculatePrize();
     const paid = this.model.getPaid();
-    const profit = this.calculate_profit(paid, prize);
+    const profit = this.calculateProfit(paid, prize);
     this.model.setProfit(profit);
     this.view.printProfit(this.model.getProfit());
   }
