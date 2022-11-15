@@ -34,6 +34,8 @@ class Validator {
       throw Error("[ERROR] 보너스 번호는 숫자 하나만 입력해주세요.");
     if (this.#isBonusNotNumber(bonusNumber))
       throw Error("[ERROR] 보너스 번호는 숫자만 입력해주세요.");
+    if (this.#isBonusAlreadyInWinNumber(winningNumber, bonusNumber))
+      throw Error("[ERROR] 보너스 번호가 이미 존재하는 당첨 번호 입니다.");
   }
 
   static #isBonusLengthOverOne(bonusNumber) {
@@ -43,6 +45,10 @@ class Validator {
   static #isBonusNotNumber(bonusNumber) {
     console.log(+bonusNumber, +bonusNumber === "NaN");
     return isNaN(+bonusNumber);
+  }
+
+  static #isBonusAlreadyInWinNumber(winningNumber, bonusNumber) {
+    return winningNumber.includes(bonusNumber);
   }
 
   static #isNotRangeValid(numbers) {
