@@ -21,15 +21,15 @@ class App {
   }
   setBudget(money) {
     const budget = new Budget(money);
-    this.userBudget = budget;
+    this.buyCount = budget.lottoToBuy;
     this.getLotto();
   }
   getLotto() {
-    this.boughtLotto = buyLotto(this.userBudget.lottoToBuy);
+    this.boughtLotto = buyLotto(this.buyCount);
     this.printLotto();
   }
   printLotto() {
-    Console.print(LOTTO_MESSAGE.BUYING(this.userBudget.lottoToBuy));
+    Console.print(LOTTO_MESSAGE.BUYING(this.buyCount));
     this.boughtLotto.forEach((lotto) => {
       Console.print(lotto);
     });
