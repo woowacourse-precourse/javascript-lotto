@@ -1,4 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
+const Validator = require("./Validator");
 
 class Lotto {
   #numbers;
@@ -17,11 +18,7 @@ class Lotto {
       throw new Error("[ERROR] 로또 번호 숫자는 중복되지 않아야 합니다.");
     }
 
-    const isAscending = numbers.every(
-      (value, index, array) => !index || array[index - 1] <= value
-    );
-
-    if (!isAscending) {
+    if (!Validator.isAscending(numbers)) {
       throw new Error("[ERROR] 로또 번호 숫자는 오름차순이어야 합니다.");
     }
   }

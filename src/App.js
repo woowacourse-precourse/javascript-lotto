@@ -1,5 +1,6 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
+const Validator = require("./Validator");
 
 class App {
   static LENGTH_OF_LOTTO_NUMBER = 6;
@@ -65,11 +66,7 @@ class App {
       App.LENGTH_OF_LOTTO_NUMBER
     );
 
-    const isAscending = numbers.every(
-      (value, index, array) => !index || array[index - 1] <= value
-    );
-
-    if (isAscending) return numbers;
+    if (Validator.isAscending(numbers)) return numbers;
 
     return numbers.sort((a, b) => a - b);
   }
