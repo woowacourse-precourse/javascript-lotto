@@ -113,4 +113,10 @@ describe("Player 클래스 테스트", () => {
       new Validation().checkOneString("1,2");
     }).toThrow(ERROR_INPUT_MESSAGE.LENGTH_ONE);
   });
+
+  test("12: 입력 보너스 번호와 기존 당첨 번호가 중복되는 경우 예외 발생", () => {
+    expect(() => {
+      new Validation().bonusDuplication([1, 2, 3, 4, 5, 6], "1");
+    }).toThrow(ERROR_INPUT_MESSAGE.DUPLICATION_ONE);
+  });
 });

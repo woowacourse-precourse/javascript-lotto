@@ -51,14 +51,13 @@ class Validation {
     }
   }
 
-  checkOneString(numbersArray, string) {
+  checkOneString(string) {
     if (this.stringType(string)) {
       const array = stringToArray(string);
 
       this.type(array);
       this.range(array);
       this.lengthOne(array);
-      this.duplicationOne(numbersArray, string);
       return string;
     }
   }
@@ -95,8 +94,8 @@ class Validation {
     }
   }
 
-  duplicationOne(numbersArray, string) {
-    if (numbersArray.includes(string)) {
+  bonusDuplication(numbersArray, string) {
+    if (numbersArray.includes(Number(string))) {
       throw new Error(ERROR_INPUT_MESSAGE.DUPLICATION_ONE);
     }
   }
