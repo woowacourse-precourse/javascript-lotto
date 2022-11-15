@@ -56,7 +56,7 @@ class Lotto {
     this.printLottoResult(firstCount, secondCount, thirdCount, fourthCount, fifthCount, totalYeild);
   }
 
-  printLottoResult(firstCount, secondCount, thirdCount, fourthCount, fifthCount) {
+  printLottoResult(firstCount, secondCount, thirdCount, fourthCount, fifthCount, totalYeild) {
     Console.print(LOTTO_OUTPUT.SUMMARY_LOTTO);
     Console.print(LOTTO_OUTPUT.HYPHEN);
     Console.print(`${LOTTO_OUTPUT.FIFTH_PLACE}${fifthCount}개`);
