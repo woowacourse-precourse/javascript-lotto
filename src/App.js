@@ -23,8 +23,9 @@ class App {
   }
 
   amountException(input) {
+    if(input == " " || input == null) throw new Error("[ERROR] 공백이나 null을 입력하실 수 없습니다.");
     if (input % LOTTO_PRICE != 0) throw "[ERROR] 올바르지 않은 입력입니다.";
-    if(input < LOTTO_PRICE) throw "[ERROR] 로또는 1000원부터 구매 가능합니다.";
+    if (input < LOTTO_PRICE) throw "[ERROR] 로또는 1000원부터 구매 가능합니다.";
     return;
   }
 
