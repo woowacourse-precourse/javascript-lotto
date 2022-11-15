@@ -10,6 +10,7 @@ class App {
   isBonus = 0;
   WinPrice = ["5,000", "50,000", "1,500,000", "2,000,000,000"];
   IntPrice = [5000, 50000, 1500000, 2000000000];
+
   checkMoney(Money) {
     if (parseInt(Money % 1000) != 0) {
       throw "[ERROR] 1000으로 나누어 떨어지지 않음";
@@ -22,6 +23,7 @@ class App {
     }
     return parseInt(Money / 1000);
   }
+
   setLottoNumber(Num) {
     MissionUtils.Console.print(`\n${Num}개를 구매했습니다.`);
     for (let i = 0; i < Num; i++) {
@@ -114,6 +116,7 @@ class App {
     }
     this.Result[cnt] += 1;
   }
+
   calculateYield(Num) {
     return ((Num / this.Money) * 100).toFixed(1);
   }
@@ -162,7 +165,7 @@ class App {
   }
 }
 
-tmp = new App();
-tmp.play();
+app = new App();
+app.play();
 
 module.exports = App;

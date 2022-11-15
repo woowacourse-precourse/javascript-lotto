@@ -25,19 +25,32 @@ class Lotto {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
     for (let i; i < 6; i++) {
-      if (!parseInt(numbers[i])) {
-        throw new Error("[ERROR] 로또 번호는 숫자여야 합니다.");
-      }
-      if (parseInt(numbers[i]) < 1 || parseInt(numbers[i] > 45)) {
-        throw new Error("[ERROR] 로또 번호는 1에서 45사이의 정수여야 합니다.");
-      }
-      if (!Number.isInteger(numbers[i])) {
-        throw new Error("[ERROR] 로또 번호는 1에서 45사이의 정수여야 합니다.");
-      }
+      this.findIntException(numbers[i]);
+      this.findRangeException(numbers[i]);
+      this.findCommonException(numbers[i]);
     }
-    const setNumber = new Set(numbers);
-    if (setNumber.size != numbers.length) {
+    this.findOverLap(numbers);
+  }
+
+  findOverLap(NumArray) {
+    const setNumber = new Set(NumArray);
+    if (setNumber.size != NumArray.length) {
       throw new Error("[ERROR] 번호가 중복됩니다!");
+    }
+  }
+  findIntException(Num) {
+    if (!parseInt(Num)) {
+      throw new Error("[ERROR] 로또 번호는 숫자여야 합니다.");
+    }
+  }
+  findRangeException(Num) {
+    if (parseInt(Num) < 1 || parseInt(Num > 45)) {
+      throw new Error("[ERROR] 로또 번호는 1에서 45사이의 정수여야 합니다.");
+    }
+  }
+  findCommonException(Num) {
+    if (!Number.isInteger(Num)) {
+      throw new Error("[ERROR] 로또 번호는 1에서 45사이의 정수여야 합니다.");
     }
   }
 
