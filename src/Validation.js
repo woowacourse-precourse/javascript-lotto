@@ -1,4 +1,4 @@
-const { PURCHASE_ERROR_MESSAGE, WINNING_ERROR_MESSAGE, BONUS_ERROR_MESSAGE } = require('./constants/Error');
+const { PURCHASE_ERROR_MESSAGE, WINNING_ERROR_MESSAGE, BONUS_ERROR_MESSAGE } = require('./constants/Message');
 
 class Validation {
   purchaseInputValue(inputValue) {
