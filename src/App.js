@@ -110,6 +110,5 @@ class App {
       throw "[ERROR]1부터 45 사이의 숫자를 입력해주세요.";
   }
 }
-const app = new App();
-app.play();
+
 module.exports = App;
