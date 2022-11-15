@@ -23,6 +23,17 @@ class InputAcceptor {
         return winningLottoNumbers;
     }
 
+    static async askWinningLottoBonusNumber(winningLottoNumbers) {
+        const answer = await new Promise(resolve => {
+            MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.\n', resolve)
+        });
+        this.checkANumber(answer);
+        this.checkNumberValidRange(answer);
+        const allNumbers = [...winningLottoNumbers, parseInt(answer)];
+
+        return winningLottoNumbers;
+    }
+
     static stringToNumber(string) {
         if (string.length === 1) return parseInt(string);
         let numberArray = [];
