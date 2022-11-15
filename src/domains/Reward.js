@@ -8,13 +8,13 @@ class Reward {
   /** @type {number} */
   #money;
 
-  /** @type {(winningLotto: WinningLotto, lotto: Lotto) => boolean} */
+  /** @type {(numberCount: number, bonusNumber: boolean) => boolean} */
   #condition;
 
   /**
    * @param {string} title
    * @param {number} money
-   * @param {(winningLotto: WinningLotto, lotto: Lotto) => boolean} condition
+   * @param {(numberCount: number, bonusNumber: boolean) => boolean} condition
    */
   constructor(title, money, condition) {
     this.#title = title;
@@ -28,7 +28,10 @@ class Reward {
    * @returns {boolean}
    */
   isEligible(winningLotto, lotto) {
-    return this.#condition(winningLotto, lotto);
+    return this.#condition(
+      winningLotto.countMatchNumber(lotto),
+      winningLotto.isMatchBonusNumber(lotto),
+    );
   }
 
   getMoney() {
