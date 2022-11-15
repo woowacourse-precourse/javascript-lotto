@@ -38,9 +38,19 @@ class Controller {
 
   inputWinningNumber() {
     this.view.readLine(QUERY.WINNING, (number) => {
+      this.validateWinningNumber(number);
       const numbers = number.split(",").map(Number);
       this.lottoModel = new Lotto(numbers);
     });
+  }
+
+  validateWinningNumber(number) {
+    if (!number.includes(",")) {
+      throw new Error(ERROR_MESSAGE.COMMA);
+    }
+    if (number.split(",").length !== LOTTO.LENGTH) {
+      throw new Error(ERROR_MESSAGE.LENGTH);
+    }
   }
 }
 
