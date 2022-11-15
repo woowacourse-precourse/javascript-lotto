@@ -1,5 +1,9 @@
+const GameService = require('./GameService');
+
 class App {
-  play() {}
+  play() {
+    new GameService().inputLottoPurchase();
+  }
 }
 
 module.exports = App;
