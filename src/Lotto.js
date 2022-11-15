@@ -31,5 +31,4 @@ class Lotto {
   }
 }
 
-const lotto = new Lotto(["1", "2", "3", "4", "5", "45"]);
 module.exports = Lotto;
