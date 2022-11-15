@@ -3,6 +3,7 @@ const { MESSAGE, RANK, PRIZE } = require('./utils/constant');
 const LottoShop = require('./LottoShop');
 const Lotto = require('./Lotto');
 const Bonus = require('./Bonus');
+const Output = require('./Output');
 
 class LottoGame {
   constructor() {
@@ -36,6 +37,7 @@ class LottoGame {
     Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
       const bonus = new Bonus(Number(bonusNumber), this.winningNumbers);
       this.bonusNumber = bonus.getBonusNumber();
+      this.drawLotto();
     });
   }
 
@@ -80,6 +82,20 @@ class LottoGame {
 
   calcRateOfReturn(totalPrize) {
     return ((totalPrize / this.purchaseAmount) * 100).toFixed(1);
+  }
+
+  drawLotto() {
+    const totalRank = [0, 0, 0, 0, 0, 0, 0];
+
+    this.purchasedNumbers.forEach((purchasedNumber) => {
+      const correctNumbers = this.countCorrectNumbers(purchasedNumber);
+      const lottoRank = this.getLottoRank(correctNumbers);
+      totalRank[lottoRank] += 1;
+    });
+
+    const totalPrize = this.calcTotalPrize(totalRank);
+    const rateOfReturn = this.calcRateOfReturn(totalPrize);
+    new Output().result(totalRank, rateOfReturn);
   }
 }
 
