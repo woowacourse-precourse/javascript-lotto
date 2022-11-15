@@ -93,8 +93,7 @@ class App {
         result["1등"] * REWARDS.first) /
         (purchasedNumber * LOTTO_PRICE)) *
       100;
-    let roundedReturnRate = +(Math.round(returnRate + "e+2") + "e-2");
-    console.log("roundedReturnRate:", roundedReturnRate);
+    let roundedReturnRate = +(Math.round(returnRate + "e+1") + "e-1");
     this.printResult(result, roundedReturnRate);
   }
   printResult(result, returnRate) {
