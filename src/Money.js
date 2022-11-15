@@ -1,6 +1,6 @@
 const Validation = require('./Validation');
 const UI = require('./UI');
-const { LOTTO_PRICE } = require('./Constants');
+const { LOTTO } = require('./Constants');
 
 const validation = new Validation();
 const ui = new UI();
@@ -16,7 +16,7 @@ class Money {
   validate(money) {
     try {
       validation.checkPositiveInteger(money);
-      validation.checkSplitIntoDivisor(money, LOTTO_PRICE);
+      validation.checkSplitIntoDivisor(money, LOTTO.PRICE);
     } catch (error) {
       ui.printError(error);
     }

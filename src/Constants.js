@@ -1,10 +1,11 @@
-const LOTTO_PRICE = 1000;
-const LOTTO_START = 1;
-const LOTTO_END = 45;
-const LOTTO_NUMBER_COUNT = 6;
-const MINIMUM_MATCH_COUNT = 3;
-
-const PRINT_ORDER = [3, 4, 5, '5B', 6];
+const LOTTO = {
+  PRICE: 1000,
+  START: 1,
+  END: 45,
+  LENGTH: 6,
+  MINIMUM_MATCH_COUNT: 3,
+  RESULT_PRINT_ORDER: [3, 4, 5, '5B', 6],
+};
 
 const REVENUE = {
   3: {
@@ -36,12 +37,7 @@ const INPUT = {
 };
 
 module.exports = {
-  LOTTO_PRICE,
-  LOTTO_END,
-  LOTTO_START,
-  LOTTO_NUMBER_COUNT,
+  LOTTO,
   REVENUE,
-  MINIMUM_MATCH_COUNT,
   INPUT,
-  PRINT_ORDER,
 };

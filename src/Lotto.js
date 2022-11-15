@@ -1,4 +1,4 @@
-const { LOTTO_NUMBER_COUNT } = require('./Constants');
+const { LOTTO } = require('./Constants');
 const UI = require('./UI');
 const Validation = require('./Validation');
 
@@ -15,7 +15,7 @@ class Lotto {
 
   validate(numbers) {
     try {
-      validation.checkArrayLength(numbers, LOTTO_NUMBER_COUNT);
+      validation.checkArrayLength(numbers, LOTTO.LENGTH);
       validation.checkDuplication(numbers);
     } catch (error) {
       ui.printError(error);

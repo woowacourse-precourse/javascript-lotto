@@ -1,6 +1,6 @@
 const Validation = require('./Validation');
 const UI = require('./UI');
-const { LOTTO_END, LOTTO_START, LOTTO_NUMBER_COUNT } = require('./Constants');
+const { LOTTO } = require('./Constants');
 
 const validation = new Validation();
 const ui = new UI();
@@ -17,11 +17,11 @@ class WinningTicket {
   validateWinningNumbers(numbers) {
     try {
       validation.checkEmptyItem(numbers);
-      validation.checkArrayLength(numbers, LOTTO_NUMBER_COUNT);
+      validation.checkArrayLength(numbers, LOTTO.LENGTH);
       validation.checkDuplication(numbers);
       numbers.forEach((number) => {
         validation.checkPositiveInteger(number);
-        validation.checkNumberIncludeInRange(number, LOTTO_START, LOTTO_END);
+        validation.checkNumberIncludeInRange(number, LOTTO.START, LOTTO.END);
       });
     } catch (error) {
       ui.printError(error);
@@ -31,7 +31,7 @@ class WinningTicket {
   validateBonusNumber(number) {
     try {
       validation.checkPositiveInteger(number);
-      validation.checkNumberIncludeInRange(number, LOTTO_START, LOTTO_END);
+      validation.checkNumberIncludeInRange(number, LOTTO.START, LOTTO.END);
       validation.checkDuplication([...this.#winningNumbers, number]);
     } catch (error) {
       ui.printError(error);

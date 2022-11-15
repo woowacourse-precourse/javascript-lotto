@@ -2,16 +2,7 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const UI = require('./UI');
 const WinningTicket = require('./WinningTicket');
-const {
-  LOTTO_END,
-  LOTTO_PRICE,
-  LOTTO_START,
-  REVENUE,
-  LOTTO_NUMBER_COUNT,
-  MINIMUM_MATCH_COUNT,
-  INPUT,
-  PRINT_ORDER,
-} = require('./Constants');
+const { LOTTO, REVENUE, INPUT } = require('./Constants');
 const Money = require('./Money');
 
 const ui = new UI();
@@ -41,9 +32,9 @@ class App {
 
   #publishLotto() {
     let lotto = MissionUtils.Random.pickUniqueNumbersInRange(
-      LOTTO_START,
-      LOTTO_END,
-      LOTTO_NUMBER_COUNT,
+      LOTTO.START,
+      LOTTO.END,
+      LOTTO.LENGTH,
     );
     lotto = lotto.sort((currentNumber, nextNumber) => {
       return currentNumber - nextNumber;
@@ -77,7 +68,7 @@ class App {
   #printAnalysis() {
     ui.print('당첨 통계');
     ui.print('---');
-    PRINT_ORDER.forEach((order) => {
+    LOTTO.RESULT_PRINT_ORDER.forEach((order) => {
       ui.print(`${REVENUE[order].message} - ${this.#result[order]}개`);
     });
   }
@@ -89,7 +80,7 @@ class App {
         this.#winningTicket.getBonusNumber(),
       );
 
-      if (matchCount >= MINIMUM_MATCH_COUNT || matchCount === '5B') {
+      if (matchCount >= LOTTO.MINIMUM_MATCH_COUNT || matchCount === '5B') {
         this.#result[matchCount] += 1;
       }
     });
@@ -126,7 +117,7 @@ class App {
   #getMoney() {
     ui.input(`${INPUT.MONEY}\n`, (money) => {
       this.#money = new Money(money);
-      this.#lottoCount = this.#money.getMoneyDivideByPrice(LOTTO_PRICE);
+      this.#lottoCount = this.#money.getMoneyDivideByPrice(LOTTO.PRICE);
       this.#startLotto();
     });
   }
@@ -135,5 +126,8 @@ class App {
     this.#getMoney();
   }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
