@@ -1,4 +1,5 @@
 const { ERR_MESSAGE } = require("./constant/constant");
+const getValidate = require("./Validate");
 
 class Lotto {
   #numbers;

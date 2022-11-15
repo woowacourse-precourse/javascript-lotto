@@ -35,8 +35,20 @@ class BuyLotto {
   }
 
   start() {
+    this.init();
     this.amount();
   }
+
+  init() {
+    this.fifthPrize = 0;
+    this.fourthPrize = 0;
+    this.thirdPrize = 0;
+    this.secondPrize = 0;
+    this.firstPrize = 0;
+    this.getYield = 0;
+    this.sum = 0;
+  }
+
   amount() {
     this.validate = new validate();
     Console.readLine(MESSAGE.BUYING_AMOUNT, (inputValue) => {
@@ -93,26 +105,15 @@ class BuyLotto {
       this.validate.bonusCheck(userInputBonusNum);
       this.userInputBonusNum = userInputBonusNum;
       this.validate.checkIncludeBonus(this.userInputNum, input);
-      console.log(this.userInputNum);
-      console.log(input);
 
       this.getResult();
     });
   }
 
   getResult() {
-    this.fifthPrize = 0;
-    this.fourthPrize = 0;
-    this.thirdPrize = 0;
-    this.secondPrize = 0;
-    this.firstPrize = 0;
-    this.getYield = 0;
-    this.sum = 0;
-
     Console.print(MESSAGE.PRIZE_RESULT);
     Console.print("---");
 
-    // 1등 판별
     for (let i = 0; i < this.howMany; i++) {
       const result = this.makeNumbers[i].filter((x) =>
         this.userInputNum.includes(x)
@@ -121,7 +122,6 @@ class BuyLotto {
       if (result.length === 6) {
         this.firstPrize += 1;
       }
-
       if (result.length === 5) {
         this.makeNumbers[i].includes(String(this.userInputBonusNum))
           ? (this.secondPrize += 1)
@@ -144,12 +144,19 @@ class BuyLotto {
       }
     }
 
+    this.getSum();
+  }
+
+  getSum() {
     this.sum = this.sum + this.firstPrize * PRIZE_MONEY.FIRST_PRIZE;
     this.sum = this.sum + this.secondPrize * PRIZE_MONEY.SECOND_PRIZE;
     this.sum = this.sum + this.thirdPrize * PRIZE_MONEY.THIRD_PRIZE;
     this.sum = this.sum + this.fourthPrize * PRIZE_MONEY.FOURTH_PRIZE;
     this.sum = this.sum + this.fifthPrize * PRIZE_MONEY.FIFTH_PRIZE;
+    this.getYieldResult();
+  }
 
+  getYieldResult() {
     this.getYield = (this.sum / (this.howMany * 1000)) * 100;
     this.getYield = this.getYield.toFixed(1);
     this.printResult();
