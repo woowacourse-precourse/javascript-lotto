@@ -11,6 +11,24 @@ class App {
     printRevenue(cntLotto, benefit);
   }
 
+  InputWinningNumber(){
+    let num=[];
+    MissionUtils.Console.readLine('구입금액을 입력해 주세요.', (input) => {
+      winning = input.split(',');
+      for(n of winning)
+        num.push(parseInt(n));
+    });
+    return num;
+  }
+
+  InputBonusNumber(){
+    let num;
+    MissionUtils.Console.readLine('구입금액을 입력해 주세요.', (input) => {
+      num = parseInt(input);
+    });
+    return num;
+  }
+
   InputMoney(){
     let money;
     let cntLotto;
@@ -40,6 +58,8 @@ class App {
     for(lotto of Lotto_list)
     MissionUtils.Console.print(lotto);
   }
+
+
 
 
 }
