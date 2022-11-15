@@ -25,7 +25,8 @@ class ProfitResult {
     }
     
     printPercentage() {
-        Console.print(`총 수익률은 ${this.#percent}%입니다.`);
+        const PRINT_PERCENTAGE_MESSAGE = `총 수익률은 ${this.#percent}%입니다.`;
+        Console.print(PRINT_PERCENTAGE_MESSAGE);
     }
 }
 
