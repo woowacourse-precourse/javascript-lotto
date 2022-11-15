@@ -25,19 +25,14 @@ class App {
 
   play() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.', (price) => {
-      this.validate(price);
+      this.validatePrice(price);
       this.getLottoAmount(price);
       this.printPurchaseList();
       this.getWinningLotteryNumbers();
     });
   }
 
-  getLottoAmount(price) {
-    this.lottoAmount = parseInt(price) / 1000;
-    this.makeLottoNumbers(this.lottoAmount);
-  }
-
-  validate(price) {
+  validatePrice(price) {
     if (!Number(price)) {
       throw new Error('[ERROR] 구입금액은 숫자여야 합니다.');
     }
@@ -46,16 +41,31 @@ class App {
     }
   }
 
+  getLottoAmount(price) {
+    this.lottoAmount = parseInt(price) / 1000;
+    this.makeLottoNumbers(this.lottoAmount);
+  }
+
   getWinningLotteryNumbers() {
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (inputNumbers) => {
       const numbers = inputNumbers.toString().split(',').map(Number);
-      if (numbers.length !== 6) {
-        throw new Error('[ERROR] 당첨번호는 6개여야 합니다.');
-      }
+      this.validateLotteryNumbers(numbers);
 
       this.winningLotteryNumbers = numbers;
       this.getBonusNumber();
     });
+  }
+
+  validateLotteryNumbers(numbers) {
+    if (numbers.length !== 6) {
+      throw new Error('[ERROR] 당첨번호는 6개여야 합니다.');
+    }
+    if (numbers.filter((number) => typeof parseInt(number) !== Number).length > 0) {
+      throw new Error('[ERROR] 당첨번호는 숫자여야 합니다.');
+    }
+    if (numbers.filter((number) => number < 1 || number > 45).length > 0) {
+      throw new Error('[ERROR] 번호는 1에서 45사이어야 합니다.');
+    }
   }
 
   getBonusNumber() {
