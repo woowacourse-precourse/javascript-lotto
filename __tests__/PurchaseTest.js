@@ -1,5 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const User = require('../src/User');
+const Purchase = require('../src/Purchase');
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();
@@ -14,7 +14,8 @@ describe('사용자 입력값 테스트', () => {
   test('구입금액이 1,000원 단위가 아니면 예외가 발생한다.', () => {
     mockQuestions(['8100']);
     expect(() => {
-      const user = new User();
+      const purchase = new Purchase();
+      purchase.readInput();
     }).toThrow('[ERROR]');
   });
 });

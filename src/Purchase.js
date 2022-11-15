@@ -4,7 +4,7 @@ const RandomNums = require('./RandomNums');
 const Result = require('./Result');
 const { LOTTO, REGEX_NUM, PRICE_PER_LOTTO } = require('./constants');
 
-class User {
+class Purchase {
   constructor() {
     this.money;
     this.randomNumUnits;
@@ -19,7 +19,7 @@ class User {
   }
 
   validateMoney(money) {
-    User.checkIsNum(money);
+    Purchase.checkIsNum(money);
     this.checkRightAmountMoney(money);
     this.money = money;
   }
@@ -71,9 +71,9 @@ class User {
   }
 
   validateBonusNum(number) {
-    User.checkIsNum(number);
-    User.checkNumRange(number);
-    User.checkDuplicatedNum(this.lotto.getNumbers(), number);
+    Purchase.checkIsNum(number);
+    Purchase.checkNumRange(number);
+    Purchase.checkDuplicatedNum(this.lotto.getNumbers(), number);
   }
 
   static checkNumRange(number) {
@@ -90,4 +90,4 @@ class User {
   }
 }
 
-module.exports = User;
+module.exports = Purchase;

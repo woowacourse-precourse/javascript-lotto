@@ -1,13 +1,11 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const User = require('./User');
+const Purchase = require('./Purchase');
 
 class App {
   play() {
-    const user = new User();
-    user.readInput();
+    const purchase = new Purchase();
+    purchase.readInput();
   }
 }
 
-// const app = new App();
-// app.play();
 module.exports = App;
