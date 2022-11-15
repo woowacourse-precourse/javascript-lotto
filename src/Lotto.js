@@ -10,12 +10,14 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error(ERROR_MESSAGE.WRONG_QUANTITY);
+      throw new Error(ERROR_MESSAGE.wrongQuantity);
     }
   }
 
   get numbers() {
-    return this.#numbers;
+    return this.#numbers.map((number, ind) =>
+      ind === 0 ? number : ` ${number}`
+    );
   }
 
   compare(winningNumber, bonusNumber) {

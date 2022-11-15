@@ -1,26 +1,32 @@
 const ERROR = "[ERROR]";
+const NEW_LINE = "\n";
 
 const ERROR_MESSAGE = {
-  HAS_REPEAT: `${ERROR} 로또 번호는 중복되는 수가 들어갈 수 없습니다.`,
-  WRONG_QUANTITY: `${ERROR} 로또 번호는 6개여야 합니다.`,
-  NOT_IN_RANGE: `${ERROR} 로또 번호는 1부터 45사이의 수여야 합니다.`,
-  WRONG_MONEY: `${ERROR}1000원 단위로 입력해야 합니다.`,
+  hasRepeat: `${ERROR} 로또 번호는 중복되는 수가 들어갈 수 없습니다.`,
+  wrongQuantity: `${ERROR} 로또 번호는 6개여야 합니다.`,
+  notInRange: `${ERROR} 로또 번호는 1부터 45사이의 수여야 합니다.`,
+  wrongUnit: `${ERROR}1000원 단위로 입력해야 합니다.`,
 };
 
 const INPUT_MESSAGE = {
-  MONEY: "구입금액을 입력해 주세요.\n",
-  WINNING_NUMBER: "당첨 번호를 입력해 주세요.\n",
-  BONUS_NUMBER: "보너스 번호를 입력해 주세요.\n",
+  money: "구입금액을 입력해 주세요." + NEW_LINE,
+  winningNumber: "당첨 번호를 입력해 주세요." + NEW_LINE,
+  bonusNumber: "보너스 번호를 입력해 주세요." + NEW_LINE,
 };
 
 const RESULT_MEESAGE = {
-  PURCHASE: "N개를 구매했습니다.",
-  LOTTERY_RESULT: "당첨 통계\n---",
-  PROFIT: "총 수익률은 N%입니다.",
+  purchase: "N개를 구매했습니다.",
+  lottoResult: `당첨 통계${NEW_LINE}---`,
+  match3: `3개 일치 (5,000원) - N개`,
+  match4: `4개 일치 (50,000원) - N개`,
+  match5: `5개 일치 (1,500,000원) - N개`,
+  match5andBonus: `5개 일치, 보너스 볼 일치 (30,000,000원) - N개`,
+  match6: `6개 일치 (2,000,000,000원) - N개`,
+  profit: "총 수익률은 N%입니다.",
 };
 
 const UNIT = {
-  MONEY: 1000,
+  money: 1000,
 };
 
 const PRIZE_MONEY = {
@@ -37,4 +43,5 @@ module.exports = {
   RESULT_MEESAGE,
   UNIT,
   PRIZE_MONEY,
+  NEW_LINE,
 };

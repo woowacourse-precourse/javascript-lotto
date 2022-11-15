@@ -5,12 +5,20 @@ const {
   UNIT,
   RESULT_MEESAGE,
   PRIZE_MONEY,
+  NEW_LINE,
 } = require("./constant/constant");
 const Lotto = require("./Lotto");
 
 class App {
+  #money;
+  #lottos;
+  #winningNumber;
+  #bonusNumber;
+  #result;
+  #profitRatio;
+
   constructor() {
-    this.result = { 3: 0, 4: 0, 5: 0, 5.5: 0, 6: 0 };
+    this.#result = { 3: 0, 4: 0, 5: 0, 5.5: 0, 6: 0 };
   }
 
   play() {
@@ -18,18 +26,18 @@ class App {
   }
 
   getMoney() {
-    Console.readLine(INPUT_MESSAGE.MONEY, (money) => {
+    Console.readLine(INPUT_MESSAGE.money, (money) => {
       this.validateMoney(money);
-      this.money = money;
-      this.lottos = this.exchangeLotto(+money / UNIT.MONEY);
-      this.printLottos(this.lottos);
+      this.#money = money;
+      this.#lottos = this.exchangeLotto(+money / UNIT.money);
+      this.printLottos(this.#lottos);
       this.getWinningNumbers();
     });
   }
 
   validateMoney(money) {
     if (+money % 1000 !== 0) {
-      throw new Error(ERROR_MESSAGE.WRONG_MONEY);
+      throw new Error(ERROR_MESSAGE.wrongQuantity);
     }
   }
 
@@ -47,74 +55,82 @@ class App {
 
   printLottos(lottos) {
     const numbers = lottos.map((lotto) => `[${lotto.numbers}]`);
-    Console.print(RESULT_MEESAGE.PURCHASE.replace("N", numbers.length));
+    Console.print(RESULT_MEESAGE.purchase.replace("N", numbers.length));
     Console.print(numbers.join("\n"));
   }
 
   getWinningNumbers() {
-    Console.readLine(INPUT_MESSAGE.WINNING_NUMBER, (numbers) => {
-      this.winningNumber = numbers.split(",").map((number) => +number);
-      this.validateWinningNumbers(this.winningNumber);
+    Console.readLine(INPUT_MESSAGE.winningNumber, (numbers) => {
+      this.#winningNumber = numbers.split(",").map((number) => +number);
+      this.validateWinningNumbers(this.#winningNumber);
       this.getBonusNumber();
     });
   }
 
   validateWinningNumbers(numbers) {
     if (numbers.length !== 6) {
-      throw new Error(ERROR_MESSAGE.WRONG_QUANTITY);
+      throw new Error(ERROR_MESSAGE.wrongQuantity);
     }
 
     if (!numbers.every((number) => number >= 1 && number <= 45)) {
-      throw new Error(ERROR_MESSAGE.NOT_IN_RANGE);
+      throw new Error(ERROR_MESSAGE.notInRange);
     }
 
     if (numbers.length !== new Set(numbers).size) {
-      throw new Error(ERROR_MESSAGE.HAS_REPEAT);
+      throw new Error(ERROR_MESSAGE.hasRepeat);
     }
   }
 
   getBonusNumber() {
-    Console.readLine(INPUT_MESSAGE.BONUS_NUMBER, (number) => {
+    Console.readLine(INPUT_MESSAGE.bonusNumber, (number) => {
       this.validateBonusNumber(number);
-      this.bonusNumber = +number;
-      this.compare(this.lottos, this.winningNumber, this.bonusNumber);
+      this.#bonusNumber = +number;
+      this.compare(this.#lottos, this.#winningNumber, this.#bonusNumber);
     });
   }
 
   validateBonusNumber(number) {
     if (number < 1 || number > 45) {
-      throw new Error(ERROR_MESSAGE.NOT_IN_RANGE);
+      throw new Error(ERROR_MESSAGE.notInRange);
     }
 
-    if (this.winningNumber.includes(number)) {
-      throw new Error(ERROR_MESSAGE.HAS_REPEAT);
+    if (this.#winningNumber.includes(number)) {
+      throw new Error(ERROR_MESSAGE.hasRepeat);
     }
   }
 
   compare(lottos, winningNumber, bonusNumber) {
     for (const lotto of lottos) {
       const match = lotto.compare(winningNumber, bonusNumber);
-      this.result[match] += 1;
+      this.#result[match] += 1;
     }
-    const profitRatio = this.caculateProfitRatio();
-    this.printResult(profitRatio);
+    this.#profitRatio = this.caculateProfitRatio(
+      this.#money,
+      this.getTotalPrize()
+    );
+    this.printResult();
   }
 
-  printResult(profitRatio) {
-    Console.print(RESULT_MEESAGE.LOTTERY_RESULT);
+  printResult() {
+    Console.print(RESULT_MEESAGE.lottoResult);
     Console.print(
-      `3개 일치 (5,000원) - ${this.result[3]}개
-4개 일치 (50,000원) - ${this.result[4]}개
-5개 일치 (1,500,000원) - ${this.result[5]}개
-5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.result[5.5]}개
-6개 일치 (2,000,000,000원) - ${this.result[6]}개`
+      RESULT_MEESAGE.match3.replace("N", this.#result[3]) +
+        NEW_LINE +
+        RESULT_MEESAGE.match4.replace("N", this.#result[4]) +
+        NEW_LINE +
+        RESULT_MEESAGE.match5.replace("N", this.#result[5]) +
+        NEW_LINE +
+        RESULT_MEESAGE.match5andBonus.replace("N", this.#result[5.5]) +
+        NEW_LINE +
+        RESULT_MEESAGE.match6.replace("N", this.#result[6])
     );
-    Console.print(RESULT_MEESAGE.PROFIT.replace("N", profitRatio));
+    Console.print(RESULT_MEESAGE.profit.replace("N", this.#profitRatio));
+    Console.close();
   }
 
   getTotalPrize() {
     let total = 0;
-    for (const [key, value] of Object.entries(this.result)) {
+    for (const [key, value] of Object.entries(this.#result)) {
       if (PRIZE_MONEY[key]) {
         total += PRIZE_MONEY[key] * value;
       }
@@ -122,11 +138,12 @@ class App {
     return total;
   }
 
-  caculateProfitRatio() {
+  caculateProfitRatio(money, totalPrize) {
     const prize = this.getTotalPrize();
-    return (Math.round((prize / this.money) * 1000) / 10).toFixed(1);
+    return (Math.round((totalPrize / money) * 1000) / 10).toFixed(1);
   }
 }
 
 new App().play();
+
 module.exports = App;
