@@ -24,14 +24,14 @@ class App {
   }
 
   lottoNum(answer) {
-    console.readLine('구입금액을 입력 해주세요\n', (answer) => {
+    MissionUtils.Console.readLine('구입금액을 입력 해주세요\n', (answer) => {
       console.log(answer);
     });
   }
   //제출 금액 만큼 lotto 구매하기
   changeLotto(answer) {
     let changeMoney = answer/1000;
-    Console.print(`${changeLotto}개를 구매했습니다.`);
+    MissionUtils.Console.print(this.changeLotto() +' 개를 구매했습니다.');
   }
   //구매한 lotto 갯수만큼 로또 번호 발행
   buyLottoNum() {
@@ -39,12 +39,12 @@ class App {
       let jackPot = Random.pickUniqueNumberInRange(1, 45, 6);
     };
     this.buyLottoNum.push(jackpot); 
-    Console.print(buyLottoNum);
+    MissionUtils.Console.print(buyLottoNum);
   }
   //당첨 번호 사용자로부터 입력 받기 + 보너스 번호 
   insertLottoNum () {
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요\n', (answer)=> {
-      Console.print(answer);
+      MissionUtils.Console.print(answer);
       return new Lotto(numbers);
     });
   }
@@ -52,7 +52,7 @@ class App {
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요\n', (number) => {
       if(this.insertLottoNum.numbers.indexOf(number)!=-1){
         return number;
-        Console.print(number);
+        MissionUtils.Console.print(number);
       } else if(this.insertLottoNum.numbers.indexOf(number)!=0) {
         throw Error('중복 된 숫자 입니다.'); 
       }

@@ -9,14 +9,14 @@ class Lotto {
   validate(numbers) {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }if(isNaN(numbers)){
-      throw new Error("숫자를 입력하세요");
-    }if(numbers.filter((num) => num <0 && num >45 )) {
-      throw new Error('로또 번호는 1부터 45사이의 숫자여야 합니다');
+    }if(!numbers.every(Number)){
+      throw new Error("[ERROR] 숫자를 입력하세요");
+    }if(numbers.filter((number) => number <0 && number >45 )) {
+      throw new Error('[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다');
     }
     const set = new Set(numbers); 
     if(numbers.length !== set.size) {
-      throw new Error('중복 된 번호는 선택하실 수 없습니다.'); //true
+      throw new Error('[ERROR] 중복 된 번호는 선택하실 수 없습니다.'); //true
     }
   }
 
