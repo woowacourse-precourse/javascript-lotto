@@ -56,4 +56,26 @@ describe('Validation 클래스 테스트', () => {
   test('올바른 당첨 번호 입력 테스트 케이스', () => {
     expect(Validation.checkInputHitLottoNumber('1,2,3,4,5,6')).toBe(true);
   });
+
+  test('보너스 번호가 당첨 번호에 있으면 예외가 발생', () => {
+    expect(() => {
+      Validation.checkInputBonusNumber([1, 2, 3, 4, 5, 6], 6);
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호가 1~45가 아니면 예외가 발생한다.', () => {
+    expect(() => {
+      Validation.checkInputBonusNumber([1, 2, 3, 4, 5, 6], 46);
+    }).toThrow('[ERROR]');
+  });
+
+  test('올바른 보너스 번호 케이스', () => {
+    expect(Validation.checkInputBonusNumber([1, 2, 3, 4, 5, 6], 10)).toBe(true);
+  });
+
+  test('보너스 번호가 숫자가 아니면 예외가 발생', () => {
+    expect(() => {
+      Validation.checkInputBonusNumber([1, 2, 3, 4, 5, 6], '45a');
+    }).toThrow('[ERROR]');
+  });
 });
