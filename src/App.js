@@ -4,6 +4,15 @@ const Lotto = require("./Lotto");
 class App {
     purchaseAmountArr = [];
 
+    lotteryNumbers(numberOfPurchases) {
+        let count = 0;
+        while (count < numberOfPurchases) {
+            let lotteryNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
+            count++;
+            this.lotteryNumbersArr.push(new Lotto(lotteryNumbers))
+        }
+    }
+
     purchaseAmount() {
         MissionUtils.Console.readLine("", (purchaseAmount) => {
             if (!/^\d+$/.test(purchaseAmount))
@@ -17,6 +26,7 @@ class App {
             let numberOfPurchases = parseInt(purchaseAmountString.slice(0, -3))
             MissionUtils.Console.print("\n" + numberOfPurchases + "개를 구매했습니다.");
             this.purchaseAmountArr.push(purchaseAmount);
+            this.lotteryNumbers(numberOfPurchases);
         });
     }
 
