@@ -4,9 +4,9 @@ const { Random } = MissionUtils;
 
 class LottoGenerator {
   #PRICE = 1000;
+  #myLotto = null;
 
   constructor(payment) {
-    this.myLotto = null;
     this.payment = payment;
     this.generate(payment);
   }
@@ -19,7 +19,7 @@ class LottoGenerator {
       const randomLotto = Random.pickUniqueNumbersInRange(1, 45, 6);
       myLotto.push(randomLotto);
     }
-    this.myLotto = myLotto;
+    this.#myLotto = myLotto;
   }
 
   validatePayment(input) {
@@ -34,7 +34,7 @@ class LottoGenerator {
   }
 
   returnMyLotto() {
-    return this.myLotto;
+    return this.#myLotto;
   }
 }
 
