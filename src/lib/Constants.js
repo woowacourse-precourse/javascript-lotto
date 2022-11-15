@@ -31,6 +31,9 @@ const LOTTO_RESULT_PRICE = Object.freeze({
   bonus: 30000000,
   six: 2000000000,
 });
+
+const ERROR_CODE = '[ERROR]';
+
 const PRICE_ERROR_MESSAGE = Object.freeze({
   not_valid_number: '숫자를 입력해주세요.',
   not_valid_unit_number: '1000원 단위로 입력해주세요.',
@@ -71,6 +74,7 @@ module.exports = {
   LOTTO_RATE_MESSAGE,
   LOTTO_RESULT_PRICE,
   LOTTO_RESULT_TYPE,
+  ERROR_CODE,
   PRICE_ERROR_MESSAGE,
   WIN_NUMBER_ERROR_MESSAGE,
   BONUS_NUMBER_ERROR_MESSAGE,
