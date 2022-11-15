@@ -120,6 +120,18 @@ class App {
       amount = amount / parseInt(payCash) * 100;
       amount = amount.toFixed(1);
     }
+
+    function printResult(){
+      MissionUtils.Console.print('당첨 통계');
+      MissionUtils.Console.print('---');
+      MissionUtils.Console.print(`3개 일치 (5,000원) - ${obj[3][0]}개`);
+      MissionUtils.Console.print(`4개 일치 (50,000원) - ${obj[4][0]}개`);
+      MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${obj[5][0]}개`);
+      MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${obj['5+보너스'][0]}개`);
+      MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${obj[6][0]}개`);
+      MissionUtils.Console.print(`총 수익률은 ${amount}%입니다.`);
+      MissionUtils.Console.close();
+    }
   } //Play() 닫는 닫는 괄호
 }//class App 닫는괄호
 
