@@ -14,6 +14,7 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
+
     if (deduplicationNumbers.size !== 6) {
       throw new Error("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
     }
@@ -25,6 +26,7 @@ class Lotto {
       if (1 > element || element > 45) {
         throw new Error("[ERROR] 로또 번호는 1 ~ 45 사이의 숫자입니다.");
       }
+
       if (isNaN(element)) {
         throw new Error("[ERROR] 로또 번호는 숫자여야 합니다.");
       }
@@ -106,7 +108,7 @@ class Lotto {
       },
       0
     );
-    // console.log(totalprizeMoney);
+    // console.log("calculateProfit");
     const profit = ((totalprizeMoney / purchaseAmount) * 100).toFixed(1);
     MissionUtils.Console.print(`총 수익률은 ${profit}%입니다.`);
     MissionUtils.Console.close();
