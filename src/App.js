@@ -32,10 +32,14 @@ class App {
     this.read(MESSAGE.ASK_WINNING_NUMBERS, (winNums) => {
       const correct = winNums.split(',').map((e) => +e);
       this.winningLotto = new WinningLotto(correct);
-      this.read(MESSAGE.ASK_BONUS_NUMBER, (bonus) => {
-        this.winningLotto.setBonus(+bonus);
-        this.printToTalPrizeResult();
-      });
+      this.enterBonusMode();
+    });
+  }
+
+  enterBonusMode() {
+    this.read(MESSAGE.ASK_BONUS_NUMBER, (bonus) => {
+      this.winningLotto.setBonus(+bonus);
+      this.printToTalPrizeResult();
     });
   }
 
@@ -68,4 +72,6 @@ class App {
     });
   }
 }
+const app = new App();
+app.play();
 module.exports = App;
