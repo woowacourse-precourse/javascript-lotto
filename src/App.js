@@ -22,6 +22,14 @@ class App {
     Console.close();
   }
 
+  PrintUserLottoNum(){
+    for(const lotto of this.lottos){
+      // Console.print(lotto.getNumbers());
+      Console.print(lotto.print());
+    }
+
+  }
+
   CreateLottoNum(){
     return Random.pickUniqueNumbersInRange(1, 45, 6);
   }
@@ -63,6 +71,8 @@ class App {
       // 금액에 맞는 로또 수량 발행
       // 해당 갯수에 맞는 로또 번호 생성
     this.CreateUserLottoNum();
+    // 사용자 로또 번호 출력
+    this.PrintUserLottoNum();
     // 당첨번호 입력
     this.InputWinLotto();
     // 보너스 번호 입력

@@ -24,6 +24,9 @@ class Lotto {
     return this.#numbers;
   }
 
+  print(){
+    return `[${this.#numbers.join(', ')}]`;
+  }
   // TODO: 추가 기능 구현
 }
 
