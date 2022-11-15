@@ -25,4 +25,15 @@ describe('유저 테스트', () => {
     user.checkLottos([8, 21, 23, 3, 5, 11], 44);
     expect(user.checkRateOfReturn()).toBe('500.0');
   });
+
+  test('수익금 계산하기', () => {
+    mockRandoms([
+      [8, 21, 23, 41, 42, 43],
+      [3, 5, 11, 16, 32, 38],
+    ]);
+    const user = new User();
+    user.buyLottos(2000);
+    user.checkLottos([8, 21, 23, 3, 5, 41], 44);
+    expect(user.calculateRevenue()).toBe(50000);
+  });
 });
