@@ -57,10 +57,27 @@ class App {
     Console.print('');
     Console.print('당첨번호를 입력해주세요.');
     Console.readLine('', (input) => {
-      this.winNumbers = input.split(',').map(Number);
+      const winNumbers = input.split(',').map(Number);
+      this.validateWinNumbers(winNumbers);
+
+      this.winNumbers = winNumbers;
 
       this.askWinBonus();
     });
+  }
+
+  validateWinNumbers(winNumbers) {
+    if (winNumbers.some((number) => !Number.isInteger(number))) {
+      throw new Error('[ERROR] 숫자만 입력해주세요.');
+    }
+
+    if (winNumbers.length !== 6 || new Set(winNumbers).size !== 6) {
+      throw new Error('[ERROR] 중복되지 않는 6개의 숫자를 입력해주세요.');
+    }
+
+    if (Math.min(...winNumbers) < 1 || Math.max(...winNumbers) > 45) {
+      throw new Error('[ERROR] 1부터 45까지의 숫자만 입력해주세요.');
+    }
   }
 
   askWinBonus() {
