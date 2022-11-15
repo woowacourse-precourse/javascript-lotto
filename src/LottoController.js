@@ -10,18 +10,12 @@ class LottoController {
     this.lottoPublisher = new LottoPublisher();
     this.lottoStore = new LottoStore();
     this.lottoViewer = new LottoViewer();
-
-    this.init();
+    this.customer = new Customer();
+    this.initiate();
   }
-  init() {
-    const customer = new Customer();
+  initiate() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (input) => {
-      const lottoCount = this.lottoStore.askBuyLottoCount(input);
-      for (let i = 0; i < lottoCount; i++) {
-        const lotto = this.lottoStore.sellLotto();
-        customer.purchaseLotto(lotto);
-      }
-      customer.printLottoPurchaseResult();
+      this.customerLottoPurchase(input);
       MissionUtils.Console.readLine(
         '\n당첨 번호를 입력해 주세요.\n',
         (input) => {
@@ -30,21 +24,34 @@ class LottoController {
             '\n보너스 번호를 입력해 주세요.\n',
             (input) => {
               this.lottoPublisher.receiveUserInputBonusNumber(input);
-              const purchasedLottos = customer.list();
-              const matchedLottoNumbers = purchasedLottos.map((lotto) =>
-                this.lottoPublisher.checkMatchedLottoNumbersRank(lotto.numbers)
-              );
-              const arranged = this.lottoViewer.arrangeLottoWinningResult(
-                matchedLottoNumbers,
-                lottoCount * VALUE.LOTTO_PRICE
-              );
-              this.lottoViewer.printLottoWinningStats(arranged);
+              this.matchNumbersPrintResult();
               MissionUtils.Console.close();
             }
           );
         }
       );
     });
+  }
+
+  customerLottoPurchase(money) {
+    const lottoCount = this.lottoStore.askBuyLottoCount(money);
+    for (let i = 0; i < lottoCount; i++) {
+      const lotto = this.lottoStore.sellLotto();
+      this.customer.purchaseLotto(lotto);
+    }
+    this.customer.printLottoPurchaseResult();
+  }
+
+  matchNumbersPrintResult() {
+    const purchasedLottos = this.customer.list();
+    const matchedLottoNumbers = purchasedLottos.map((lotto) =>
+      this.lottoPublisher.checkMatchedLottoNumbersRank(lotto.numbers)
+    );
+    const arranged = this.lottoViewer.arrangeLottoWinningResult(
+      matchedLottoNumbers,
+      this.customer.list().length * VALUE.LOTTO_PRICE
+    );
+    this.lottoViewer.printLottoWinningStats(arranged);
   }
 }
 
