@@ -19,11 +19,11 @@ const CONSOLE = Object.freeze({
 
 const RESULT = {
   PURCHASE_CHECK: (num) => `${String(num)}개를 구매했습니다.`,
-  FIFTH_PLACE: (num) => `3개 일치 (5,000원) - ${String(num)}개`,
-  FOURTH_PLACE: (num) => `4개 일치 (50,000원) - ${String(num)}개`,
-  THIRD_PLACE: (num) => `5개 일치 (1,500,000원) - ${String(num)}개`,
-  SECOND_PLACE: (num) => `5개 일치, 보너스 볼 일치 (30,000,000원) - ${String(num)}개`,
-  FIRST_PLACE: (num) => `6개 일치 (2,000,000,000원) - ${String(num)}개`,
+  FIFTH: (num) => `3개 일치 (5,000원) - ${String(num)}개`,
+  FOURTH: (num) => `4개 일치 (50,000원) - ${String(num)}개`,
+  THIRD: (num) => `5개 일치 (1,500,000원) - ${String(num)}개`,
+  SECOND: (num) => `5개 일치, 보너스 볼 일치 (30,000,000원) - ${String(num)}개`,
+  FIRST: (num) => `6개 일치 (2,000,000,000원) - ${String(num)}개`,
   TOTAL_PER: (percent) => `총 수익률은 ${String(percent)}%입니다.`,
 };
 
