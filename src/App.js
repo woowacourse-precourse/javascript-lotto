@@ -51,7 +51,6 @@ class App {
     Console.print(LOTTO.THIRD_PLACE + result[2] + LOTTO.COUNT);
     Console.print(LOTTO.SECOND_PLACE + result[3] + LOTTO.COUNT);
     Console.print(LOTTO.FIRST_PLACE + result[4] + LOTTO.COUNT);
-
     Console.print(LOTTO.RATE_RETURN + this.#lottoResult.getRate(result) + LOTTO.PERCENT);
     Console.close();
   }
