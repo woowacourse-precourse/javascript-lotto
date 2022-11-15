@@ -54,6 +54,11 @@ class Promptor {
       return false;
     }
 
+    // check for repeated numbers
+    if (new Set(vettedNumbers).size != 6) {
+      return false;
+    }
+
     for (let number of vettedNumbers) {
       if (/^\+?\d+$/.test(number)) {
         return false;
