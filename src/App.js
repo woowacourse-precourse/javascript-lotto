@@ -22,6 +22,18 @@ class App {
       await this.buyer.getInput(SYS_MESSAGE.INPUT_MONEY_MESSAGE)
     );
   }
+
+  async getLottoNum() {
+    return this.judge.lottoInputValid(
+      await this.recommender.getInput(SYS_MESSAGE.INPUT_LOTTO_NUM)
+    );
+  }
+
+  async getBonusNum() {
+    return this.judge.bonusInputValid(
+      await this.recommender.getInput(SYS_MESSAGE.INPUT_BONUS_NUM)
+    );
+  }
 }
 
 module.exports = App;
