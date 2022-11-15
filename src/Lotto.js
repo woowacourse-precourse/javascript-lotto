@@ -4,6 +4,8 @@ class Lotto {
   constructor(numbers) {
     this.validate(numbers);
     this.checkDuplication(numbers);
+    this.checkIsNumber(numbers);
+    this.checkRange(numbers);
     this.#numbers = numbers;
   }
 
@@ -16,7 +18,20 @@ class Lotto {
   checkDuplication(numbers) {
     let set = new Set(numbers);
     if (numbers.length != [...set].length)
-      throw "[ERROR] 중복된 숫자가 있습니다.";
+      throw new Error("[ERROR] 중복된 숫자가 있습니다.");
+  }
+
+  checkRange(numbers) {
+    numbers.forEach((item) => {
+      if (45 < item || item < 1)
+        throw new Error("[ERROR] 로또 번호가 범위를 벗어납니다");
+    });
+  }
+
+  checkIsNumber(numbers) {
+    numbers.forEach((item) => {
+      if (isNaN(item)) throw new Error("[ERROR] 로또 번호는 숫자여야 합니다.");
+    });
   }
 
   // 당첨번호 비교
