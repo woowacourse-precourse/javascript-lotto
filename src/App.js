@@ -7,7 +7,7 @@ const Bonus = require("./Domains/Bonus");
 const LottoBundle = require("./Domains/LottoBundle");
 class App {
   constructor() {
-    this.myMoney = 0;
+    this.userMoney = 0;
   }
 
   play() {
@@ -17,7 +17,7 @@ class App {
   inputAmount() {
     MissionUtils.Console.readLine(MESSAGE.INPUT_AMOUNT, (answer) => {
       if (new Amount(+answer)) {
-        this.myMoney += +answer;
+        this.userMoney += +answer;
       }
       const piece = +answer / UNIT;
       MissionUtils.Console.print(MESSAGE.BUY_LOTTO(piece));
@@ -46,7 +46,7 @@ class App {
     MissionUtils.Console.readLine(MESSAGE.INPUT_BONUS, (answer) => {
       if (new Bonus(numbers, +answer)) {
         const bonus = +answer;
-        new Result(this.myMoney).statistics(bundle, numbers, bonus);
+        new Result(this.userMoney).statistics(bundle, numbers, bonus);
       }
     });
   }

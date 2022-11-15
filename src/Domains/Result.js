@@ -1,8 +1,8 @@
 const { PRIZE } = require("../Utils/constant");
 const Print = require("../UI/Print");
 class Result {
-  constructor(myMoney) {
-    this.myMoney = myMoney;
+  constructor(userMoney) {
+    this.userMoney = userMoney;
     this.collectCount = [0, 0, 0, 0, 0];
   }
 
@@ -53,7 +53,7 @@ class Result {
       this.collectCount[2] * PRIZE.THIRD +
       this.collectCount[3] * PRIZE.SECOND +
       this.collectCount[4] * PRIZE.FIRST;
-    const rate = ((LottoMoney / this.myMoney) * 100).toFixed(1);
+    const rate = ((LottoMoney / this.userMoney) * 100).toFixed(1);
     new Print().result(this.collectCount, rate);
   }
 }

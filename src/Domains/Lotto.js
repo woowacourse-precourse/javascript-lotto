@@ -6,6 +6,7 @@ class Lotto {
     this.validate(numbers);
     this.#numbers = numbers;
   }
+
   validate(numbers) {
     if (numbers.length !== 6) {
       throw new Error(ERROR.NUMBERS_LENGTH);

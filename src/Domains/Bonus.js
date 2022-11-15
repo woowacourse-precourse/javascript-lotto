@@ -3,6 +3,7 @@ class Bonus {
   constructor(numbers, bonus) {
     this.validate(numbers, bonus);
   }
+
   validate(numbers, bonus) {
     if (numbers.includes(bonus)) {
       throw new Error(ERROR.BONUS_DUPLICATION);
