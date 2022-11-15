@@ -13,14 +13,9 @@ describe("페이먼트 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
-
-
-
+  test("구매금액이 0원 미만이면 예외가 발생한다.", () => {
+    expect(() => {
+      new Payment(-1000);
+    }).toThrow("[ERROR]");
+  });
 });
-
-
-//   validatePaymentNotNegative(numbers) {
-//     if (numbers < 0) {
-//       throw new Error("[ERROR] 구매금액은 0 이상이어야 합니다.");
-//     }
-//   }
