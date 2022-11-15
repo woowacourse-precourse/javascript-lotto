@@ -11,6 +11,9 @@ class Calculate {
         return (sum / money) * 100;
     }
 
+    static sortUserLotto (newLotto) {
+        newLotto.sort((a,b) => a - b);
+    }
     
 }
 
