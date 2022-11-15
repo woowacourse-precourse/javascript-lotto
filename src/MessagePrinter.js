@@ -2,7 +2,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 
 class MessagePrinter {
     static printPurchaseAmount(amount) {
-        MissionUtils.Console.print(`${amount}개를 구매했습니다.`);
+        MissionUtils.Console.print(`\n${amount}개를 구매했습니다.`);
     }
 
     static printAllLottos(lottoWallet) {
@@ -10,7 +10,7 @@ class MessagePrinter {
     }
 
     static printResultStatistics(result) {
-        MissionUtils.Console.print(`당첨 통계
+        MissionUtils.Console.print(`\n당첨 통계
 ---
 3개 일치 (5,000원) - ${result[0]}개
 4개 일치 (50,000원) - ${result[1]}개
