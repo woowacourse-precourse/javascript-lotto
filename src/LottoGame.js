@@ -12,6 +12,10 @@ class LottoGame {
     LottoNumberUtils.validateMoney(inputMoney);
     this.#inputMoney = inputMoney;
   }
+
+  getInputMoney() {
+    return this.#inputMoney;
+  }
 }
 
 module.exports = LottoGame;
