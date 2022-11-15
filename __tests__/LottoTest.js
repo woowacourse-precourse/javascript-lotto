@@ -16,14 +16,14 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
-  test("1000으로 나누어 떨어지는 숫자가 아닌 경우, 예외가 발생한다.", () => {
+  test("유효한 금액인 검증하기", () => {
     const app = new App();
     const number = ["1400", "50", "", "한글", "10005", "900", "나1000"];
 
     number.forEach((output) => expect(app.isValidMoney(output)).toEqual(false));
   });
 
-  test("[입력]당첨 번호에 잘못된 입력시", () => {
+  test("유효한 당첨 숫자인지 검증하기", () => {
     const app = new App();
     const throwInput = [
       "",
@@ -47,7 +47,7 @@ describe("로또 클래스 테스트", () => {
     });
   });
 
-  test("[입력]보너스 번호에 잘못된 입력시", () => {
+  test("유효한 보너스 숫자인지 검증하기", () => {
     const app = new App();
     const throwInput = ["", "46", "0", "한글", "e"];
 
@@ -56,7 +56,7 @@ describe("로또 클래스 테스트", () => {
     });
   });
 
-  test("동일한 로또 번호의 개수를 구하기", () => {
+  test("로또 당첨 확인하기", () => {
     const lottos = [
       new Lotto([7, 21, 23, 30, 42, 43]),
       new Lotto([3, 5, 6, 7, 32, 38]),
@@ -79,7 +79,7 @@ describe("로또 클래스 테스트", () => {
     expect(app.rewards).toEqual(result);
   });
 
-  test("수익률 구하기", () => {
+  test("수익률 계산하기", () => {
     const calculator = new Calculator();
     const rewards = [
       [3, 5_000, 2],
