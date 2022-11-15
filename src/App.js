@@ -10,6 +10,7 @@ class App {
   play() {
     this.purchaseLotto();
     this.winningNumbers();
+    this.bonusNumber();
   }
 
   purchaseLotto() {
@@ -45,6 +46,12 @@ class App {
       const lotto = new Lotto(winningnumbers);
     });
   }
+
+  bonusNumber() {
+    Console.readLine("보너스 번호를 입력해 주세요", (bonusnumber) => {
+    });
+  }
+
 }
 
 module.exports = App;
