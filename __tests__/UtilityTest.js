@@ -5,6 +5,8 @@ const {
   sortAscent,
   percentage,
   convertLocale,
+  convertFromArrayToString,
+  convertStringNumber,
 } = require('../src/libs/Utils');
 
 describe('쉼표(,) 기준으로 번호를 구분하는 함수 테스트 ', () => {
@@ -58,6 +60,20 @@ describe('랜덤 배열을 반환하는 함수 테스트 ', () => {
     test('3자리마다 쉼표(,)를 입력하는 함수 테스트', () => {
       expect(convertLocale('100000.0')).toBe('100,000.0');
       expect(convertLocale('1234567890.0')).toBe('1,234,567,890.0');
+    });
+  });
+
+  describe('배열을 바꾸는 함수 테스트', () => {
+    test('숫자 배열을 문자열로 만드는 함수 테스트', () => {
+      const array = [1, 2, 3, 4, 5, 6];
+      const result = '[1, 2, 3, 4, 5, 6]';
+      expect(convertFromArrayToString(array)).toBe(result);
+    });
+
+    test('문자열 배열을 숫자 배열로 만드는 함수 테스트', () => {
+      const array = ['1', '2', '3', '4', '5', '6'];
+      const result = [1, 2, 3, 4, 5, 6];
+      expect(convertStringNumber(array)).toEqual(result);
     });
   });
 });
