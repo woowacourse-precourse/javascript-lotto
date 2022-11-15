@@ -72,7 +72,7 @@ class App {
     Console.close();
   }
 
-  crintUserLottoNum() {
+  printUserLottoNum() {
     for (const lotto of this.lottos) {
       Console.print(lotto.print());
     }
@@ -84,7 +84,7 @@ class App {
 
   createUserLottoNum() {
     for (let idx = 0; idx < this.lottoCount; idx++) {
-      const lottoNum = this.CreateLottoNum();
+      const lottoNum = this.createLottoNum();
       const lotto = new Lotto(lottoNum);
       this.lottos.push(lotto);
     }

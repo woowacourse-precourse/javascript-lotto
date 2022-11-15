@@ -4,6 +4,7 @@ class Lotto {
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
+    this.sort();
     this.result = {
       lotto: 0,
       bonus: false,
@@ -17,7 +18,9 @@ class Lotto {
     const set = new Set(numbers);
     if (numbers.length !== set.size) throw new Error("[ERROR] 로또 번호는 중복이 불가능합니다.");
   }
-
+  sort() {
+    this.#numbers = this.#numbers.sort((a, b) => a - b);
+  }
   getNumbers() {
     return this.#numbers;
   }
