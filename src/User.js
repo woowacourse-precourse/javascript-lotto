@@ -20,6 +20,7 @@ class User {
       return new Lotto(lottoNumber);
     });
     this.printLottos();
+    return this.#lottos;
   }
 
   pickNumber() {
