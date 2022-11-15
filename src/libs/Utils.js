@@ -2,10 +2,14 @@ const { Console, Random } = require('@woowacourse/mission-utils');
 const { WIN_MESSAGE } = require('./const');
 
 class Utils {
-  static setLotto() {
+  static createRandomLotto() {
     const randomArr = Random.pickUniqueNumbersInRange(1, 45, 6);
-    const lottoArr = randomArr.sort((a, b) => a - b);
-    return lottoArr;
+    return randomArr;
+  }
+
+  static sortAscent(array) {
+    const sortArray = array.sort((a, b) => a - b);
+    return sortArray;
   }
 
   static convertFromArrayToString(array) {

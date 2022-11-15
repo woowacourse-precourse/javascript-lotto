@@ -36,7 +36,8 @@ class Purchase {
     this.money = money;
     const count = money / 1000;
     for (let i = 0; i < count; i += 1) {
-      const lottoArray = Utils.setLotto();
+      const unorderedLotto = Utils.createRandomLotto();
+      const lottoArray = Utils.sortAscent(unorderedLotto);
       this.totalLottoes.push(lottoArray);
     }
     return this.totalLottoes;
