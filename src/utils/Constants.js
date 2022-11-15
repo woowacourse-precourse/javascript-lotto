@@ -12,7 +12,7 @@ const GAME_MESSAGES = Object.freeze({
   ASK_TO_PAY: "구입금액을 입력해 주세요.\n",
   ASK_TO_WINNING_NUMBERS: "\n당첨 번호를 입력해 주세요.\n",
   ASK_TO_BONUS_NUMBER: "\n보너스 번호를 입력해 주세요.\n",
-  RETURN_PURCHASED_AMOUNT: (n) => `${n}개를 구매했습니다.`,
+  ANNOUNCE_AMOUNT: (n) => `\n${n}개를 구매했습니다.`,
 });
 
 const ERROR_MESSAGES = Object.freeze({
@@ -38,7 +38,7 @@ const NUMBERS = Object.freeze({
 });
 
 const RESULT_MESSAGES = Object.freeze({
-  WINNING_STATISTICS: "\n당첨통계\n---",
+  WINNING_STATISTICS: "\n당첨 통계\n---",
   TOTAL_PROFIT_RATE: (profit, payment) => {
     if (profit === 0) {
       return "총 수익률은 0.0%입니다.";
