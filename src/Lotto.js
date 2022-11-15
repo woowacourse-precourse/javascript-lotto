@@ -1,7 +1,6 @@
 const { Random } = require('@woowacourse/mission-utils');
 const LottoValidator = require('./LottoValidator');
-
-// TODO: 6, 1, 45 같은 상수 어떻게 처리할것인지?
+const { MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT } = require('./lottoOptions');
 
 class Lotto {
   #numbers;
@@ -23,7 +22,7 @@ class Lotto {
     new LottoValidator().isValidLottoNumbers(numbers);
   }
 
-  static purchase(numberCount = 6, minNumber = 1, maxNumber = 45) {
+  static purchase(numberCount = NUMBER_COUNT, minNumber = MIN_NUMBER, maxNumber = MAX_NUMBER) {
     const lotto = Random.pickUniqueNumbersInRange(minNumber, maxNumber, numberCount);
 
     return lotto;

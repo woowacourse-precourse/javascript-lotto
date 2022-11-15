@@ -1,4 +1,5 @@
 const Utils = require('./Utils');
+const { FIXED_POINT } = require('./lottoOptions');
 
 class WinnerSelector {
   #prizeResult;
@@ -13,7 +14,7 @@ class WinnerSelector {
 
   #earningRate = 0;
 
-  constructor(lottoPrice, winnerRule, fixedPoint = 1) {
+  constructor(lottoPrice, winnerRule, fixedPoint = FIXED_POINT) {
     this.lottoPrice = Number(lottoPrice);
     this.winnerRule = winnerRule;
     this.fixedPoint = fixedPoint;

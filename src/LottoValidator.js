@@ -1,7 +1,13 @@
 const Validator = require('./Validator');
+const { MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT } = require('./lottoOptions');
 
 class LottoValidator extends Validator {
-  constructor(lottoPrice, minNumber = 1, maxNumber = 45, numbersCount = 6) {
+  constructor(
+    lottoPrice,
+    minNumber = MIN_NUMBER,
+    maxNumber = MAX_NUMBER,
+    numbersCount = NUMBER_COUNT,
+  ) {
     super();
     this.lottoPrice = lottoPrice;
     this.minNumber = minNumber;
