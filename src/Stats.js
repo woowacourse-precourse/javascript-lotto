@@ -1,35 +1,4 @@
-const underThree = (_) => "underThree";
-const three = (_) => "three";
-const four = (_) => "four";
-const five = (bonus) => (bonus ? "fivePlusBonus" : "five");
-const six = (_) => "six";
-
-const scoreMap = {
-  0: underThree,
-  1: underThree,
-  2: underThree,
-  3: three,
-  4: four,
-  5: five,
-  6: six,
-};
-
-const dataForm = {
-  underThree: 0,
-  three: 0,
-  four: 0,
-  five: 0,
-  fivePlusBonus: 0,
-  six: 0,
-};
-
-const incomeMap = {
-  three: Price.FIVE_THOUSAND,
-  four: Price.FIFTY_THOUSAND,
-  five: Price.FIVE_HUNDRED_THOUSAND,
-  fivePlusBonus: Price.THIRTY_MILLION,
-  six: Price.TWO_BILLION,
-};
+const { IncomeMap, ScoreMap, DataForm } = require("./Utils");
 
 class Stats {
   constructor({ winningNumbers, bonusNumber, purchased, cash }) {
@@ -46,12 +15,12 @@ class Stats {
     const correctCount = this.winningNumbers.filter((number) => lottoNumbers.includes(number)).length;
     const bonus = lottoNumbers.includes(this.bonusNumber);
 
-    const score = scoreMap[correctCount](bonus);
+    const score = ScoreMap[correctCount](bonus);
     return score;
   }
 
   gather() {
-    const data = Object.assign({}, dataForm);
+    const data = Object.assign({}, DataForm);
 
     this.purchased.lottoArray.forEach((lotto) => {
       const score = this.getScore(lotto);
@@ -66,7 +35,7 @@ class Stats {
   }
 
   getPerformance() {
-    const income = Object.keys(incomeMap).reduce((acc, currentKey) => acc + this.data[currentKey] * incomeMap[currentKey], 0);
+    const income = Object.keys(IncomeMap).reduce((acc, currentKey) => acc + this.data[currentKey] * IncomeMap[currentKey], 0);
 
     const performance = income / this.expense;
     const percentage = this.formatPercentage(performance);

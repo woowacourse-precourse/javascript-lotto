@@ -1,5 +1,12 @@
 const { ERROR_MESSAGE } = require("./Constants");
 const { Random } = require("@woowacourse/mission-utils");
+const { Price } = require("./Constants");
+
+const underThree = (_) => "underThree";
+const three = (_) => "three";
+const four = (_) => "four";
+const five = (bonus) => (bonus ? "fivePlusBonus" : "five");
+const six = (_) => "six";
 
 module.exports = {
   Check: {
@@ -42,5 +49,32 @@ module.exports = {
     randomNumbers() {
       return Random.pickUniqueNumbersInRange(1, 45, 6);
     },
+  },
+
+  ScoreMap: {
+    0: underThree,
+    1: underThree,
+    2: underThree,
+    3: three,
+    4: four,
+    5: five,
+    6: six,
+  },
+
+  IncomeMap: {
+    three: Price.FIVE_THOUSAND,
+    four: Price.FIFTY_THOUSAND,
+    five: Price.FIVE_HUNDRED_THOUSAND,
+    fivePlusBonus: Price.THIRTY_MILLION,
+    six: Price.TWO_BILLION,
+  },
+
+  DataForm: {
+    underThree: 0,
+    three: 0,
+    four: 0,
+    five: 0,
+    fivePlusBonus: 0,
+    six: 0,
   },
 };

@@ -1,9 +1,9 @@
 module.exports = {
   NOTICE_MESSAGE: Object.freeze({
-    CASH: "구입금액을 입력해 주세요.\n",
+    CASH: "\n구입금액을 입력해 주세요.\n",
     PURCHASE_AMOUNT: "개를 구매했습니다.",
-    WINNING_NUMBERS: "당첨 번호를 입력해 주세요.\n",
-    BONUS_NUMBER: "보너스 번호를 입력해 주세요.\n",
+    WINNING_NUMBERS: "\n당첨 번호를 입력해 주세요.\n",
+    BONUS_NUMBER: "\n보너스 번호를 입력해 주세요.\n",
   }),
 
   ERROR_MESSAGE: Object.freeze({
