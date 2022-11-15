@@ -5,25 +5,25 @@ const { VALUE } = require('./constants/numbers');
 
 class LottoStore {
   askBuyLottoCount(money) {
-    this.validateMoney(money);
+    this.#validateMoney(money);
     return money / VALUE.LOTTO_PRICE;
   }
 
-  validateMoney(input) {
+  #validateMoney(input) {
     const money = Number(input);
     isValidMoneyNumberAmount(money);
   }
 
   sellLotto() {
-    const result = this.getNewLotto();
+    const result = this.#generateNewLotto();
     return result;
   }
 
-  getNewLotto() {
-    return new Lotto(this.getRandomLottoNumbers());
+  #generateNewLotto() {
+    return new Lotto(this.#generateRandomLottoNumbers());
   }
 
-  getRandomLottoNumbers() {
+  #generateRandomLottoNumbers() {
     return MissionUtils.Random.pickUniqueNumbersInRange(
       VALUE.MIN_LOTTO_NUMBER,
       VALUE.MAX_LOTTO_NUMBER,
