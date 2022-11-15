@@ -1,8 +1,8 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const { validateWinNums, validateBounus, validatePrice } = require("./vadiation.js");
 const Lotto = require("./Lotto.js");
-const {calProfit, printMap, printProfit} = require("./profitFn");
-const {initMap, makeMap, printMap} = require("./mapFn");
+const { calProfit, printProfit } = require("./profitFn");
+const { initMap, makeMap, printMap } = require("./mapFn");
 const [Console, Random] = [MissionUtils.Console, MissionUtils.Random];
 
 class App {
