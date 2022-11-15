@@ -1,5 +1,5 @@
 const { ERROR_MESSAGE} = require("./Constants");
-const { NOT_BETWEEN_NUMBER, DUPLICATE_NUMBER, NOT_SIX_NUMBER, IS_NOT_NUMBER, INPUT_NUM_BLANK} = ERROR_MESSAGE;
+const { NOT_BETWEEN_NUMBER, DUPLICATE_NUMBER, NOT_SIX_NUMBER, IS_NOT_NUMBER} = ERROR_MESSAGE;
 class Lotto {
   #numbers;
 
@@ -13,7 +13,6 @@ class Lotto {
     this.checkLottoNumber(numbers);
     this.checkDuplicateNumber(numbers);
     this.isNotLottoNumber(numbers);
-    this.inputNumBlank(numbers);
   }
 
   checkLottoLength(numbers){
@@ -42,12 +41,6 @@ class Lotto {
       if(isNaN(numbers[i])){
         throw new Error(IS_NOT_NUMBER);
       }
-    }
-  }
-
-  inputNumBlank(numbers){
-    if(numbers == "" || numbers == null){
-      throw new Error(INPUT_NUM_BLANK);
     }
   }
 }
