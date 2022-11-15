@@ -37,9 +37,6 @@ class App {
       const fullNumbers = [...winningNumbers, input];
       lottoInputCheckHandler(fullNumbers, 7);
       this.lotto.setBonusNumber(input);
-      // this.user.lottos.map(item =>
-      //   this.lotto.calculateRank(item, this.lotto.numbers, RECORD),
-      // );
       this.printResult();
     });
   }
