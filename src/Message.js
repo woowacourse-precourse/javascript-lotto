@@ -13,6 +13,7 @@ module.exports = Object.freeze({
   },
   ERROR: {
     lottoNumberValidWarning: "[ERROR] 로또 번호는 6개여야 합니다.",
+    lottoOverlapWarning: "[ERROR] 중복된 숫자가 있습니다.",
     moneyValidWarning: "[ERROR] 입력하신 금액이 1000원 단위가 아닙니다.",
   },
 });

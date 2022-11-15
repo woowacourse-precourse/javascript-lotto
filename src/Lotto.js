@@ -87,6 +87,11 @@ class Lotto {
     if (numbers.length !== MAX_LENGTH) {
       throw new Error(Message.ERROR.lottoNumberValidWarning);
     }
+
+    const set = new Set(numbers);
+    if([...set].length !== numbers.length) {
+      throw new Error(Message.ERROR.lottoOverlapWarning);
+    }
   }
 }
 
