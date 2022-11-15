@@ -48,6 +48,26 @@ class App {
   setLotto() {
     const lotto = this.LottoBuilder.build();
     lotto.progress();
+    this.SetOutputStats(lotto.stats, lotto.yield);
+  }
+
+  setOutputStats(lottoRanks, lottoYield) {
+    this.print('당첨통계');
+    this.print('---');
+    this.showRankList(lottoRanks);
+    this.showYield(lottoYield);
+  }
+
+  showRankList(lottoRanks) {
+    this.print(`3개 일치 (5,000원) - ${lottoRanks[4]}개`);
+    this.print(`4개 일치 (50,000원) - ${lottoRanks[3]}개`);
+    this.print(`5개 일치 (1,500,000원) - ${lottoRanks[2]}개`);
+    this.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${lottoRanks[1]}개`);
+    this.print(`6개 일치 (2,000,000,000원) - ${lottoRanks[0]}개`);
+  }
+
+  showYield(lottoYield) {
+    this.print(`총 수익률은 ${lottoYield}%입니다.`);
   }
 
   showLottoList(lists) {
