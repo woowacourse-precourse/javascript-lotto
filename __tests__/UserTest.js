@@ -42,22 +42,6 @@ describe('유저 클래스 테스트', () => {
     const user = new User('12000');
     expect(user.countBuyLimit()).toEqual(12);
   });
-  test('로또번호 출력', () => {
-    const user = new User('2000');
-    mockRandoms([
-      [1, 2, 3, 4, 5, 6],
-      [7, 8, 9, 10, 11, 12],
-    ]);
-    const logs = ['[1, 2, 3, 4, 5, 6]', '[7, 8, 9, 10, 11, 12]'];
-    const logSpy = getLogSpy();
-
-    user.setLottos();
-    user.printMyLottos();
-
-    logs.forEach(log => {
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-    });
-  });
   test('수익률 계산', () => {
     const user = new User('12000');
     const map = new Map();
