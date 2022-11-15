@@ -1,5 +1,6 @@
 const Player = require("../src/Player");
 const Validation = require("../src/Validation");
+const Lotto = require("../src/Lotto");
 
 const {
   ERROR_INPUT_MESSAGE,
@@ -31,7 +32,7 @@ describe("Lotto 클래스 테스트", () => {
     }).toThrow(ERROR_INPUT_MESSAGE.DUPLICATION);
   });
 
-  test("5: 로또 번호는 쉼표로 구분되며, [] 안에 있어야 한다.", () => {
+  test("5: 로또 번호는 다음과 같이 발행되어야 한다: [1,2,3,4,5,6]", () => {
     expect(() => {
       new Validation().formatArray("1, 2, 3, 4, 5, 6");
     }).toThrow(ERROR_INPUT_MESSAGE.FORMAT_ARRAY);
@@ -58,5 +59,35 @@ describe("Player 클래스 테스트", () => {
     expect(() => {
       new Player().buyTickets(3500);
     }).toThrow(ERROR_INPUT_MESSAGE.UNIT);
+  });
+
+  test("3: 당첨 번호는 다음과 같이 입력되어야 한다: 1,2,3,4,5,6", () => {
+    expect(() => {
+      new Validation().checkSixString("1.2.3.4.5.6");
+    }).toThrow(ERROR_INPUT_MESSAGE.FORMAT_STRING);
+  });
+
+  test("4: 입력 당첨 번호의 요소가 숫자가 아닌 경우 예외 발생", () => {
+    expect(() => {
+      new Validation().checkSixString("a,1,2,3,4,5");
+    }).toThrow(ERROR_INPUT_MESSAGE.TYPE);
+  });
+
+  test("5: 입력 당첨 번호의 요소의 범위가 1~45가 아닐 경우 예외 발생", () => {
+    expect(() => {
+      new Validation().checkSixString("0,1,2,3,4,46");
+    }).toThrow(ERROR_INPUT_MESSAGE.RANGE);
+  });
+
+  test("6: 입력 당첨 번호의 요소가 6자리가 아닐 경우 예외 발생", () => {
+    expect(() => {
+      new Validation().checkSixString("1,2,3,4,5");
+    }).toThrow(ERROR_INPUT_MESSAGE.FORMAT_STRING);
+  });
+
+  test("7: 입력 당첨 번호의 요소가 중복될 경우 예외 발생", () => {
+    expect(() => {
+      new Validation().checkSixString("1,2,3,4,5,5");
+    }).toThrow(ERROR_INPUT_MESSAGE.DUPLICATION);
   });
 });
