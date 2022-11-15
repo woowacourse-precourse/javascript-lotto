@@ -13,7 +13,15 @@ class App {
   constructor() {}
   buyLottoNum = new Array();
 
-  play() {}
+  play() {
+    this.lottoNum(); //금액 입력
+    this.changeLotto();//로또 발행
+    this.insertLottoNum();
+    this.insertBonusNum();
+    this.winningList();
+    this.finalResult();
+
+  }
 
   lottoNum(answer) {
     console.readLine('구입금액을 입력 해주세요\n', (answer) => {
@@ -35,13 +43,13 @@ class App {
   }
   //당첨 번호 사용자로부터 입력 받기 + 보너스 번호 
   insertLottoNum () {
-    Console.readLine('당첨 번호를 입력해 주세요\n', (answer)=> {
+    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요\n', (answer)=> {
       Console.print(answer);
       return new Lotto(numbers);
     });
   }
   insertBonusNum() {
-    Console.readLine('보너스 번호를 입력해 주세요\n', (number) => {
+    MissionUtils.Console.readLine('보너스 번호를 입력해 주세요\n', (number) => {
       if(this.insertLottoNum.numbers.indexOf(number)!=-1){
         return number;
         Console.print(number);
