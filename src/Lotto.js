@@ -1,7 +1,7 @@
 // @ts-check
 
-const { LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER } = require('./utils/const');
-const { error } = require('./utils/messages');
+const { LOTTO } = require('./utils/const');
+const { ERROR } = require('./utils/messages');
 
 class Lotto {
   #numbers;
@@ -40,7 +40,7 @@ class Lotto {
    */
   #validateNumbersLength(numbers) {
     if (numbers.length !== 6) {
-      throw new Error(error.LOTTO_LENGTH_ERROR_MESSAGE);
+      throw new Error(ERROR.LOTTO_LENGTH);
     }
   }
 
@@ -52,10 +52,10 @@ class Lotto {
     numbers.forEach((number) => {
       if (
         !Number.isInteger(number) ||
-        number < LOTTO_MIN_NUMBER ||
-        number > LOTTO_MAX_NUMBER
+        number < LOTTO.MIN_NUMBER ||
+        number > LOTTO.MAX_NUMBER
       ) {
-        throw new Error(error.LOTTO_BOUND_ERROR_MESSAGE);
+        throw new Error(ERROR.LOTTO_BOUND);
       }
     });
   }
@@ -68,7 +68,7 @@ class Lotto {
     const numberSet = new Set(numbers);
 
     if (numberSet.size !== numbers.length) {
-      throw new Error(error.DUPLICATE_ERROR_MESSAGE);
+      throw new Error(ERROR.DUPLICATE);
     }
   }
 

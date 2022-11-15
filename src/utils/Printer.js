@@ -1,4 +1,4 @@
-const { message } = require('./messages');
+const { MESSAGE } = require('./messages');
 const Utils = require('./Utils');
 
 class Printer {
@@ -13,14 +13,14 @@ class Printer {
    */
   static printStatistics(statistics, revenue) {
     this.printNewLine();
-    Utils.print(message.STATISTICS);
-    Utils.print(message.DIVIDER);
-    Utils.print(message.FIFTH_PRIZE(statistics.fifth));
-    Utils.print(message.FOURTH_PRIZE(statistics.fourth));
-    Utils.print(message.THIRD_PRIZE(statistics.third));
-    Utils.print(message.SECOND_PRIZE(statistics.second));
-    Utils.print(message.FIRST_PRIZE(statistics.first));
-    Utils.print(message.REVENUE(revenue));
+    Utils.print(MESSAGE.STATISTICS);
+    Utils.print(MESSAGE.DIVIDER);
+    Utils.print(MESSAGE.FIFTH_PRIZE(statistics.fifth));
+    Utils.print(MESSAGE.FOURTH_PRIZE(statistics.fourth));
+    Utils.print(MESSAGE.THIRD_PRIZE(statistics.third));
+    Utils.print(MESSAGE.SECOND_PRIZE(statistics.second));
+    Utils.print(MESSAGE.FIRST_PRIZE(statistics.first));
+    Utils.print(MESSAGE.REVENUE(revenue));
   }
 
   /**
@@ -29,7 +29,7 @@ class Printer {
    */
   static printUserNumberList(userNumbersList) {
     this.printNewLine();
-    Utils.print(message.USER_NUMBERS_LIST_LENGTH(userNumbersList.length));
+    Utils.print(MESSAGE.USER_NUMBERS_LIST_LENGTH(userNumbersList.length));
 
     userNumbersList.forEach((numbers) =>
       Utils.print(`[${numbers.join(', ')}]`)

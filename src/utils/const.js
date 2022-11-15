@@ -1,11 +1,11 @@
-const lotto = {
+const LOTTO = {
   PRICE: 1000,
   MAX_NUMBER: 45,
   MIN_NUMBER: 1,
   MAX_COUNT: 6,
 };
 
-const prize = {
+const PRIZE = {
   LIST_WITHOUT_SECOND: ['none', 'fifth', 'fourth', 'third', 'first'],
   REWARD: {
     first: 2000000000,
@@ -17,6 +17,6 @@ const prize = {
 };
 
 module.exports = {
-  lotto,
-  prize,
+  LOTTO,
+  PRIZE,
 };

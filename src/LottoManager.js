@@ -1,8 +1,8 @@
 // @ts-check
 
 const Lotto = require('./Lotto');
-const { prize, lotto } = require('./utils/const');
-const { error } = require('./utils/messages');
+const { PRIZE, LOTTO } = require('./utils/const');
+const { ERROR } = require('./utils/messages');
 const Utils = require('./utils/Utils');
 
 class LottoManager {
@@ -35,7 +35,7 @@ class LottoManager {
    */
   validateBonusNumber(bonusNumber) {
     if (this.#winningNumbers.includes(bonusNumber)) {
-      throw new Error(error.DUPLICATE_ERROR_MESSAGE);
+      throw new Error(ERROR.DUPLICATE);
     }
   }
 
@@ -64,11 +64,11 @@ class LottoManager {
   generateNumbersList(amount) {
     const list = [];
 
-    for (let i = 0; i < amount / lotto.PRICE; i++) {
+    for (let i = 0; i < amount / LOTTO.PRICE; i++) {
       const randomNumbers = Utils.getRandomNumbers(
-        lotto.MIN_NUMBER,
-        lotto.MAX_NUMBER,
-        lotto.MAX_COUNT
+        LOTTO.MIN_NUMBER,
+        LOTTO.MAX_NUMBER,
+        LOTTO.MAX_COUNT
       );
 
       const lottoNumbers = this.publishLotto(randomNumbers);
@@ -118,7 +118,7 @@ class LottoManager {
 
     const shiftedCount = Math.max(count - 2, 0);
 
-    return prize.LIST_WITHOUT_SECOND[shiftedCount];
+    return PRIZE.LIST_WITHOUT_SECOND[shiftedCount];
   }
 
   /**
@@ -151,7 +151,7 @@ class LottoManager {
 
     Object.entries(statistics).forEach((statistic) => {
       const [type, count] = statistic;
-      sum += prize.REWARD[type] * count;
+      sum += PRIZE.REWARD[type] * count;
     });
 
     const revenue = (sum / amount) * 100;
