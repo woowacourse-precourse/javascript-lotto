@@ -55,5 +55,19 @@ class MadeNumber {
     });
     return new Lotto(number);
   }
+
+  static checkBonusNumber(answer) {
+    let bonusArray = answer.split(' ');
+    if (isNaN(answer)) {
+      throw Error(MESSAGE.NAN_ERROR);
+    }
+    if (bonusArray.length !== 1) {
+      throw Error(MESSAGE.BONUS_ERROR);
+    }
+    if (answer < 0 || answer > 45) {
+      throw Error(MESSAGE.NUMBER_RANGE_ERROR);
+    }
+  }
+
 }
 module.exports = MadeNumber;
