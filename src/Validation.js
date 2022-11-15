@@ -1,4 +1,10 @@
-const { ERROR_MESSAGE, LOTTO_PRICE, LOTTO_SIZE } = require("./Constants");
+const {
+  ERROR_MESSAGE,
+  LOTTO_PRICE,
+  LOTTO_SIZE,
+  LOTTO_MIN_NUMBER,
+  LOTTO_MAX_NUMBER,
+} = require("./Constants");
 
 class Validation {
   static checkPurchaseAmount(purchaseAmount) {
@@ -47,7 +53,7 @@ class Validation {
   }
   static isNumberInRange(winnerNumber) {
     const validRange = (number) => {
-      return number >= 1 && number <= 45;
+      return number >= LOTTO_MIN_NUMBER && number <= LOTTO_MAX_NUMBER;
     };
     return winnerNumber.map(Number).every(validRange);
   }
