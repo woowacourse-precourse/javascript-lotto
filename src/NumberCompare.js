@@ -9,9 +9,16 @@ class NumberCompare{
     }
 
     lottoResults(createNum, winningNum, bonusNum){
+        this.sameWinningNumBonusNum(winningNum, bonusNum);
         this.matchNumbers(createNum,winningNum,bonusNum);
     }
 
+    sameWinningNumBonusNum(winningNum, bonusNum){
+         if(winningNum.includes(bonusNum[0])){
+            throw new Error("[ERROR] 당첨번호와 보너스번호의 숫자가 중복됩니다");
+            }
+        }
+    
     matchNumbers(createNum, winningNum, bonusNum){
         for(let i = 0; i < createNum.length; i++){
             let duplicateNum = createNum[i].filter((el) => winningNum.includes(el));
