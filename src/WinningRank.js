@@ -38,7 +38,7 @@ class WinningRank {
       countMatch.push(this.matchNumber);
     });
 
-    this.countMatch = countMatch;
+    return (this.countMatch = countMatch);
   }
 
   getCountRank() {
