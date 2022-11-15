@@ -17,6 +17,7 @@ class App {
         throw new Error("[ERROR] 구입금액 오류");
         this.money = money;
         this.buy();
+        this.Lottos();
     });
   }
   buy() {
@@ -28,6 +29,11 @@ class App {
       this.lotto.push(new Lotto(numbers));
     }
     Console.print("\n"+ count + "개를 구매했습니다.");
+  }
+  Lottos() {
+    this.lotto.forEach((lottoArr) => {
+      Console.print(lottoArr.toString());
+    });
   }
  
   play() {
