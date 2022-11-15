@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const ErrorChecker = require("./ErrorChecker");
 const PURCHASE_UNIT = 1000;
 
 class InputAcceptor {
@@ -24,7 +25,7 @@ class InputAcceptor {
             MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', resolve)
         });
         const answerArray = answer.split(',');
-        checkNumbers(answerArray);
+        this.checkWinningLottoNumbersValidation(answerArray);
         const winningLottoNumbers = this.stringToNumber(answerArray);
         return winningLottoNumbers;
     }
@@ -41,8 +42,13 @@ class InputAcceptor {
         return true;
     }
 
-    static checkNumbers(numberArray) {
-        numberArray.forEach(numberElement => this.checkANumber(numberElement));
+    static checkWinningLottoNumbersValidation(numberArray) {
+        ErrorChecker.checkSixElementArray(numberArray); //6개 요소를 갖고 있는가
+        ErrorChecker.checkDuplicatedElement(numberArray); //중복은 없는가
+        numberArray.forEach(numberElement => {
+            this.checkANumber(numberElement); //숫자인가
+            this.checkNumberValidRange(numberElement); //범위 내인가
+        });
         return true;
     }
 
