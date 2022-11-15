@@ -3,8 +3,9 @@ const MissionUtils = require('@woowacourse/mission-utils');
 
 class App {
     constructor() {
-        // 생성한 로또 번호 객체를 저장하는 배열.
-        this.lottoNumbers = [];
+        this.lottoNumbers = []; // 생성한 로또 번호 객체를 저장하는 배열.
+        this.winningNumbers = []; // 당첨 번호 집합.
+        this.bonusNumber = 0; // 보너스 번호
     }
 
     // 입력한 금액이 1,000으로 나누어 떨어지지 않으면 예외처리를 한다.
@@ -36,8 +37,32 @@ class App {
         for (let lottoNumber of this.lottoNumbers) {
             MissionUtils.Console.print(lottoNumber.printNumbers());
         }
+        MissionUtils.Console.print('');
     }
 
+    // 당첨 번호를 입력받고 배열로 변환해서 저장한다.8
+    getWinningNums() {
+        MissionUtils.Console.readLine(
+            '당첨 번호를 입력해 주세요.\n',
+            (winningString) => {
+                this.winningNumbers = winningString.split(',');
+                MissionUtils.Console.print('');
+                this.getbounsNum();
+            }
+        );
+    }
+
+    // 보너스 번호를 입력받는다.
+    getbounsNum() {
+        MissionUtils.Console.readLine(
+            '보너스 번호를 입력해 주세요.\n',
+            (numberString) => {
+                this.bonusNumber = Number(numberString);
+                MissionUtils.Console.print('');
+                MissionUtils.Console.close();
+            }
+        );
+    }
     play() {
         MissionUtils.Console.readLine(
             '구입금액을 입력해 주세요.\n',
@@ -45,6 +70,7 @@ class App {
                 this.amountValidate(amount);
                 this.generateLotto(amount);
                 this.getInfo();
+                this.getWinningNums();
             }
         );
     }
