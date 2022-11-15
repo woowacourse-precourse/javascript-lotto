@@ -14,17 +14,22 @@ const UserInput = require("../domain/UserInput");
 const Compare = require("../domain/Compare");
 
 const MissionUtils = require("@woowacourse/mission-utils");
+const Calculator = require("../domain/Calculator");
 
 class State {
   lottoInput = 0;
   winNumbers = [];
   bonusNumber = 0;
+
   moneyInput = 0;
+  lottomoneyOutput = 0;
+
   buyLottoCount = 0;
   buyLottoNumbers = [];
 
   messageOutput = new MessageOutput();
   lottoNumberGenerator = new LottoNumberGenerator();
+  calculator = new Calculator();
 
   setLottoInput() {}
 
@@ -81,7 +86,11 @@ class State {
     messageArr.map((arr) => {
       const message = `${arr.condition} (${arr.price}원) - ${arr.count}개`;
       this.messageOutput.printMesage(message);
+      this.lottomoneyOutput += arr.count
+        ? parseInt(arr.price.split(",").join(""))
+        : 0;
     });
+    this.calculator.calcReturnMoney(this.lottomoneyOutput, this.moneyInput);
   }
 
   isNotInWinNumbers(userInput) {
