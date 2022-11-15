@@ -35,7 +35,7 @@ class LottoMachine {
 
   #validateWinningNumbers(winningNumbers) {
     if (winningNumbers.length !== 6) {
-      throw new Error('[ERROR] 입력한 수가 6개가 아닙니다.')
+      throw new Error('[ERROR] 입력한 수가 6개가 아닙니다.');
     }
     winningNumbers.forEach((winningNumber) => {
       if (winningNumber < 1 || winningNumber > 45) {
@@ -49,6 +49,7 @@ class LottoMachine {
       this.#validateBonusNumber(bonusNumber);
       return bonusNumber;
     });
+    this.#console.close();
   }
 
   #validateBonusNumber(bonusNumber) {
@@ -56,7 +57,7 @@ class LottoMachine {
       throw new Error('[ERROR] 보너스 번호는 숫자만 입력해야 합니다.');
     }
     if (bonusNumber < 1 || bonusNumber > 45) {
-      throw new Error('[ERROR] 보너스 번호는 1에서 45사이의 숫자여야 합니다.')
+      throw new Error('[ERROR] 보너스 번호는 1에서 45사이의 숫자여야 합니다.');
     }
   }
 }
