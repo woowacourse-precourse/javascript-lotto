@@ -96,7 +96,7 @@
 - [x] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현하였는가?
 - [x] 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현하였는가?
 - [x] else를 지양하였는가?
-- [ ] 도메인 로직에 단위 테스트를 구현하였는가? 단, UI(Console.readLine, Console.print) 로직에 대한 단위 테스트는 제외한다.
+- [x] 도메인 로직에 단위 테스트를 구현하였는가? 단, UI(Console.readLine, Console.print) 로직에 대한 단위 테스트는 제외한다.
 - [x] 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 구분하였는가?
 - [x] ApplicationTest의 모든 테스트가 성공하였는가?
 - [x] MissionUtils 라이브러리에서 제공하는 Random 및 Console API를 사용하여 구현하였는가?
