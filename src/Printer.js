@@ -1,12 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const { PLACE } = require('./constants');
-// const PLACE = {
-// 	FIRST: 7,
-// 	SECOND: 6,
-// 	THIRD: 5,
-// 	FOURTH: 4,
-// 	FIFTH: 3,
-// };
 
 class Printer {
 	printLottoBundle(lottoBundle) {

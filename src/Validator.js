@@ -1,8 +1,3 @@
-// const TYPE = {
-// 	LOTTO: '로또',
-// 	WINNINGNUM: '당첨',
-// 	BONUS: '보너스',
-// };
 const { TYPE } = require('./constants');
 const regex = /[^0-9]/;
 

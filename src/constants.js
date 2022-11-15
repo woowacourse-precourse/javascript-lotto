@@ -22,6 +22,6 @@ const PRIZE = {
 
 module.exports = {
 	PLACE,
-	PRIZE,
-	TYPE
+	TYPE,
+	PRIZE
 };
