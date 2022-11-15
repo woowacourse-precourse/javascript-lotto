@@ -13,30 +13,31 @@ describe('로또스토어 클래스 테스트', () => {
 
   test('금액 입력 시 숫자 이외의 값을 입력하면 에러가 발생한다.', () => {
     expect(() => {
-      lottoStore.validateMoney('삼천원');
+      lottoStore.askBuyLottoCount('삼천원');
     }).toThrow('[ERROR]');
   });
 
   test('금액 입력 시 소수점 이하가 포함된 숫자를 입력하면 에러가 발생한다.', () => {
     expect(() => {
-      lottoStore.validateMoney(2000.35);
+      lottoStore.askBuyLottoCount(2000.35);
     }).toThrow('[ERROR]');
   });
 
   test('금액 입력 시 음수를 입력하면 에러가 발생한다.', () => {
     expect(() => {
-      lottoStore.validateMoney(-2000);
+      lottoStore.askBuyLottoCount(-2000);
     }).toThrow('[ERROR]');
   });
 
   test('금액 입력 시 1000으로 나누어 떨어지지 않는 수를 입력하면 에러가 발생한다.', () => {
     expect(() => {
-      lottoStore.validateMoney(1500);
+      lottoStore.askBuyLottoCount(1500);
     }).toThrow('[ERROR]');
   });
 
   test('로또 번호 생성 시 로또 번호 조건에 맞는 배열이 생성된다.', () => {
-    const randomLottoNumbers = lottoStore.getRandomLottoNumbers();
+    const randomLotto = lottoStore.sellLotto();
+    const randomLottoNumbers = randomLotto.numbers;
     for (const element of randomLottoNumbers) {
       expect(
         element >= VALUE.MIN_LOTTO_NUMBER && VALUE.MAX_LOTTO_NUMBER >= element
@@ -51,7 +52,7 @@ describe('로또스토어 클래스 테스트', () => {
   });
 
   test('로또 생성 시 새로운 Lotto 객체의 인스턴스가 생성된다', () => {
-    const lotto = lottoStore.getNewLotto();
+    const lotto = lottoStore.sellLotto();
     expect(lotto instanceof Lotto).toBeTruthy();
   });
 });
