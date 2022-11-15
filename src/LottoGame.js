@@ -52,6 +52,12 @@ class LottoGame {
       ...this.#winningNumbers,
       bonusNumber,
     ]);
+
+    this.#bonusNumber = bonusNumber;
+  }
+  getBonusNumbers() {
+    return this.#bonusNumber;
+  }
 }
 
 module.exports = LottoGame;
