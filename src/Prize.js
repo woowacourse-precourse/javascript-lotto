@@ -55,6 +55,17 @@ class Prize {
 
     return Prize.#rankings;
   }
+
+  static getReturnRate(expense, rankings) {
+    const profit = rankings.reduce((acc, cur) => {
+      const { money, count } = cur;
+      return acc + money * count;
+    }, 0);
+
+    const percentage = (profit / expense) * 100;
+
+    return percentage;
+  }
 }
 
 module.exports = Prize;
