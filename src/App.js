@@ -1,5 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const LottoMachine = require('./LottoMachine')
+const Lotto = require("./Lotto");
+const LottoMachine = require('./LottoMachine');
+const Vaildation = require("./Vaildation");
 
 class App {
   constructor(){
@@ -11,6 +13,7 @@ class App {
     this.bonusNumber;
     this.result = [0,0,0,0,0];
     this.rateOfReturn;
+    
   }
   play() {
     this.getMoney();
@@ -32,14 +35,16 @@ class App {
   printLottoList(){
     this.lottoList = this.lottomachine.makeLottoNumbers();
     this.lottoList.forEach(ele =>MissionUtils.Console.print(ele));
-
     this.getWinningNumbers();
   }
 
   getWinningNumbers(){
     MissionUtils.Console.readLine("\n당첨 번호를 입력해 주세요.\n",(number) => {
+
       const winningNumber = number.split(',').map((v)=>parseInt(v)).sort((a,b)=>a-b);
-      //유효성 검사하기
+      const vaildWinningNum = new Lotto(winningNumber);
+      vaildWinningNum.validate(winningNumber)
+
       this.winningList = winningNumber;
       this.getBonusNumber();
     });
@@ -47,9 +52,13 @@ class App {
 
   getBonusNumber(){
     MissionUtils.Console.readLine("\n보너스 번호를 입력해 주세요.\n",(number) => {
+      const vaildation = new Vaildation(number);
+      vaildation.isVaildBounsNumber(number)
       const bonusNum = parseInt(number);
-      //유효성 검사하기
       this.bonusNumber =bonusNum;
+      if(this.winningList.includes(this.bonusNumber)){
+        throw new Error("[ERROR] 보너스번호는 당첨번호와 중복되지 않게 입력하세요.")
+      }
       this.printResult();
     });
   }
@@ -65,7 +74,7 @@ class App {
     `5개 일치 (1,500,000원) -${this.result[2]}개\n`+
     `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.result[1]}개\n`+
     `6개 일치 (2,000,000,000원) - ${this.result[0]}개\n`+
-    `총 수익률은 ${this.rateOfReturn}입니다.`
+    `총 수익률은 ${this.rateOfReturn}%입니다.`
     );
     MissionUtils.Console.close();
 
