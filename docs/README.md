@@ -123,49 +123,20 @@ JavaScript에서는 클래스 말고도 객체를 만드는 방법은 여러 가
 
 ```
 src/
-  errors/
-    LottoError.js
-    LottoValidationError.js
-  domains/
-    Lotto.js
-      class Lotto
-        NUMBER_SIZE = 6
-        NUMBER_MIN = 1
-        NUMBER_MAX = 45
-        PRICE = 1000
-        #numbers
-        constructor(numbers)
-        validate(numbers)
-        static parseLotto(text)
-        static fromRandom()
-        static buyLottos(money)
-        getNumber()
-        hasNumber()
-        toString()
-    WinningLotto.js
-      class WinningLotto
-        DEFAULT_REWARDS = []
-        #lotto
-        #bonusNumber
-        constructor(lotto, bonusNumber)
-        getRewardFor(lotto)
-    Reward.js
-      class Reward
-        #title
-        #money
-        #condition
-        constructor(title, money, condition)
-        isEligible(lotto)
-        getMoney()
-        toString()
-  views/
-    InteractivePrompt.js
-      class InteractivePrompt
   constants/
-    Messages.js
-  validators/
-  App.js
-  Lotto.js
+    Messages.js  ------ 프로그램에서 출력되는 메세지를 여기에서 관리
+  domains/
+    Lotto.js  --------- 번호 6개를 가지는 로또 클래스
+    WinningLotto.js  -- 번호 6개+보너스 번호를 가지는 당첨 로또 클래스
+    Reward.js  -------- 당첨의 조건 및 보상을 담는 클래스
+  errors/
+    AppError.js  ------ 프로그램에서 발생하는 에러 클래스
+    LottoError.js  ---- 로또의 로직과 관련된 에러 클래스
+    PromptError.js  --- 프롬프트 입력과 관련된 에러 클래스
+  views/
+    Prompt.js  -------- 입력 및 출력의 책임을 담당하는 클래스
+  App.js  ------------- 도메인과 뷰를 사용하여 프로그램을 처음부터 끝까지 수행
+  Lotto.js  ----------- domains/Lotto.js 리다이렉션을 위한 파일
 ```
 
 ## 🥽테스트 작성 목록
@@ -177,8 +148,6 @@ src/
   - 로또 번호가 오름차순으로 정렬되는지 테스트
   - 로또가 랜덤으로 잘 생성되는지 테스트
   - 로또에 특정 번호가 포함되어있는지 확인 테스트
-
-* `User`
   - 로또를 정상적으로 구매할 수 있는지 테스트
   - 로또를 1장도 못 살 돈으로 구매 시 예외처리되는지 테스트
 
