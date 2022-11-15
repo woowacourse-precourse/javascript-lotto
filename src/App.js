@@ -1,4 +1,5 @@
-const { Console, MissionUtils } = require("@woowacourse/mission-utils");
+const { Console } = require("@woowacourse/mission-utils");
+const Bonus = require("./Bonus");
 const { CONSOLE } = require("./constants");
 const Lotto = require("./Lotto");
 const LottoGenerator = require("./LottoGenerator");
@@ -8,6 +9,7 @@ class App {
   #money;
   #lottoSet;
   #winningNumbers;
+  #bonusNumber;
 
   play() {
     this.insertMoney();
@@ -32,6 +34,16 @@ class App {
       const inputNumbers = number.split(",").map(Number);
       const lotto = new Lotto(inputNumbers);
       this.#winningNumbers = lotto.play();
+
+      Console.print("");
+      this.inputBonusNumber(this.#winningNumbers);
+    });
+  }
+
+  inputBonusNumber(winningNumber) {
+    Console.readLine(CONSOLE.BONUS_NUMBER_INPUT + "\n", (bonusNumber) => {
+      this.#bonusNumber = bonusNumber;
+      new Bonus(winningNumber, bonusNumber);
 
       Console.print("");
     });
