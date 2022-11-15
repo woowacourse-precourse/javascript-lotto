@@ -18,7 +18,7 @@ class UserInput {
   handleWinningNumber(winningNumber) {
     this.lotto = new Lotto(winningNumber);
     this.winningNumber = this.lotto.getWinningNumber();
-    this.lotto.checkEachLottoNumber(this.publishedLotto);
+    this.lotto.compareUserAndWinningNumber(this.publishedLotto);
     readLine(INPUT_QUERY.BONUS_NUMBER, this.handleBonusNumber.bind(this));
   }
 

@@ -1,6 +1,6 @@
 const { ERROR, prizeCount } = require('../common/constants');
 const { error } = require('../common/util');
-const { checkBonusLottoNumber } = require('../common/Validation');
+const { checkBonusNumber } = require('../common/Validation');
 
 class Bonus {
   #bonusNumber;
@@ -8,31 +8,31 @@ class Bonus {
 
   constructor(bonusNumber, winningNumber) {
     this.#winningNumber = winningNumber;
-    checkBonusLottoNumber(bonusNumber);
-    this.isBonusInLotto(bonusNumber);
+    checkBonusNumber(bonusNumber);
+    this.isBonusInWinningNumber(bonusNumber);
     this.#bonusNumber = Number(bonusNumber);
   }
 
-  isBonusInLotto(bonusNumber) {
+  isBonusInWinningNumber(bonusNumber) {
     if (this.#winningNumber.includes(Number(bonusNumber))) {
       error(ERROR.DUPLICATE);
     }
   }
 
   compareUserAndBonus(publishedLotto) {
-    let fiveWinningNumber = [];
-    fiveWinningNumber = publishedLotto.filter(
+    let fiveMatchLotto = [];
+    fiveMatchLotto = publishedLotto.filter(
       (eachUserLottoNumber) => this.getFiveMatchNumberArray(eachUserLottoNumber).length === 5
     );
-    this.isBonusInFiveMatchLotto(fiveWinningNumber);
+    this.isBonusInFiveMatchLotto(fiveMatchLotto);
   }
 
   getFiveMatchNumberArray(eachUserLottoNumber) {
     return eachUserLottoNumber.filter((number) => this.#winningNumber.includes(number));
   }
 
-  isBonusInFiveMatchLotto(fiveWinningNumber) {
-    fiveWinningNumber.forEach((eachUserLottoNumber) => {
+  isBonusInFiveMatchLotto(fiveMatchLotto) {
+    fiveMatchLotto.forEach((eachUserLottoNumber) => {
       if (eachUserLottoNumber.includes(this.#bonusNumber)) {
         return (prizeCount.second += 1);
       }

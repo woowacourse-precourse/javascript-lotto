@@ -17,22 +17,22 @@ const isOutOfRange = (input) => {
   return input < 1 || input > 45;
 };
 
-const checkLottoAmount = (amount) => {
-  if (isNotNumber(amount)) {
+const checkLottoAmount = (money) => {
+  if (isNotNumber(money)) {
     error(ERROR.NOT_NUMBER);
   }
 
-  if (amount < 1000) {
+  if (money < 1000) {
     error(ERROR.UNDER_THOUSAND);
   }
 
-  if (amount % 1000 !== 0) {
+  if (money % 1000 !== 0) {
     error(ERROR.NOT_THOUSAND_UNIT);
   }
 };
 
-const checkWinningNumber = (input) => {
-  const array = input.split(',');
+const checkWinningNumber = (numbers) => {
+  const array = numbers.split(',');
 
   if (isNotSixDigits(array)) {
     error(ERROR.NOT_SIX_DIGITS);
@@ -47,13 +47,13 @@ const checkWinningNumber = (input) => {
   }
 };
 
-const checkBonusLottoNumber = (input) => {
-  if (isNotNumber(input)) {
+const checkBonusNumber = (bonusNumber) => {
+  if (isNotNumber(bonusNumber)) {
     error(ERROR.NOT_NUMBER);
   }
-  if (isOutOfRange(input)) {
+  if (isOutOfRange(bonusNumber)) {
     error(ERROR.OUT_OF_RANGE);
   }
 };
 
-module.exports = { checkLottoAmount, checkWinningNumber, checkBonusLottoNumber };
+module.exports = { checkLottoAmount, checkWinningNumber, checkBonusNumber };

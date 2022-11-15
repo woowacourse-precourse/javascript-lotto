@@ -13,7 +13,7 @@ class Lotto {
     return this.#numbers.split(',').map((item) => Number(item));
   }
 
-  checkEachLottoNumber(publishedLotto) {
+  compareUserAndWinningNumber(publishedLotto) {
     const matchedNumberList = [];
     const winningNumber = this.getWinningNumber();
 
