@@ -106,14 +106,14 @@
 - enterLottoNumbers(): 당첨 번호를 입력합니다.
 - splitCharacter(): 입력한 당첨 번호를 ```,```기준으로 나누어 리스트로 반환합니다.
 - enterBonus(): 보너스 번호를 입력합니다.
+- bonusException(): 보너스 번호를 예외처리합니다.
 - winningCalculation(): 당첨 통계를 계산합니다.
 - showResultTable(): 당첨 통계를 순위별로 출력합니다.
 - yieldCalculation(): 수익률을 계산하여 소숫점 둘째 자리에서 반올림 합니다.
 - printYield(): 수익률을 출력합니다.
 
 #### 4.2. Buyer.js: 로또 구입 관련 로직
-- stringException(): 입력한 금액이 정수가 아닐 경우 예외처리합니다.
-- divideException(): 입력한 금액이 1000으로 나누었을 때 나머지가 0이 아닐 시 예외처리 합니다.
+- purchaseException(): 구입 금액에 대한 예외처리를 합니다.
 - countLotto(): 입력한 금액으로 구입할 로또 개수를 계산 후 반환합니다.
 - createLottos(): 로또 개수에 맞게 발행한 로또를 리스트로 반환합니다.
 - createRandomNumbers(): 발행할 로또의 번호를 무작위로 6개 반환합니다.
@@ -121,12 +121,14 @@
 - createOutputPurchaseLotto(): 출력할 발행 로또를 형식에 맞게 문자열 생성 후 반환합니다.
 
 #### 4.3. Lotto.js: 당첨 번호 및 상금 관련 로직
-- validate(): 당첨 번호의 개수를 예외처리합니다.
-- duplicateCheck(): 당첨 번호의 중복을 예외처리합니다.
-- numberRangeCheck(): 당첨 번호의 범위를 예외처리합니다.
-- bonusCharacterCheck(): 보너스 점수가 정수가 아닐 경우를 예외처리합니다.
-- bonusRangeCheck(): 보너스 점수의 범위를 예외처리합니다.
-- bonusDuplicateCheck(): 보너스 점수가 당첨 번호와 중복될 경우를 예외처리합니다.
+- numbersException(): 당첨 번호에 대한 예외처리를 합니다.
 - winningCalculation(): 총 상금과 등수 별 개수를 계산하여 반환합니다.
 - sameCheck(): 발행 번호와 당첨 번호의 중복 개수를 계산하여 반환합니다.
 - rewardCheck(): 발행 번호와 당첨 번호의 중복 개수에 따라 등수 및 상금을 계산하여 반환합니다.
+
+#### 4.4. Exception.js: 예외처리 관련 로직
+- validate(): 당첨 번호의 개수를 예외처리합니다.
+- string(): 입력한 금액이 정수가 아닐 경우 예외처리합니다.
+- divide(): 입력한 금액이 1000으로 나누었을 때 나머지가 0이 아닐 시 예외처리 합니다.
+- duplicate(): 당첨 번호의 중복을 예외처리합니다.
+- range(): 당첨 번호의 범위를 예외처리합니다.
