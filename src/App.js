@@ -36,26 +36,33 @@ class App {
   getBonus() {
     Console.readLine(COMMAND.BONUS, (bonus) => {
       this.#bonus = new BonusExceptions(bonus).check(this.#winningArr);
-      this.printResult(
-        new CompareNumbers(
-          this.#lottoArr,
-          this.#winningArr,
-          this.#bonus
-        ).getResult()
-      );
+      this.printResult();
     });
   }
 
-  printResult(result) {
-    let income = ZERO;
-    console.log(COMMAND.RESULT);
+  printResult() {
+    const result = new CompareNumbers(
+      this.#lottoArr,
+      this.#winningArr,
+      this.#bonus
+    ).getResult();
+
+    Console.print(COMMAND.RESULT);
+
     for (let rank = FIFTH; rank > ZERO; rank--) {
-      income += lotto[rank].amount * result[rank];
       Console.print(`${lotto[rank].message}${result[rank]}개`);
     }
-    const percent = (income / this.#money) * 100;
-    Console.print(`${COMMAND.YIELD}${percent.toFixed(DECIMAL_PLACES)}%입니다.`);
+
+    Console.print(`${COMMAND.YIELD}${this.calculateYield(result)}%입니다.`);
     this.end();
+  }
+
+  calculateYield(result) {
+    const income = result.reduce((acc, num, rank) => {
+      return (acc += lotto[rank].amount * num);
+    });
+    const percent = (income / this.#money) * 100;
+    return percent.toFixed(DECIMAL_PLACES);
   }
 
   end() {
