@@ -2,7 +2,8 @@ class App {
   #myLottoNumbers;
   #winNumbers;
   #bonusNumber;
-  #winRank = [0, 0, 0, 0, 0, 0];
+  #equalNumber = [0, 0, 0, 0, 0, 0, 0];
+  #winBonus = 0;
 
   play() {
     this.buyLotto();
@@ -27,7 +28,7 @@ class App {
 
   getBonusNumber(){
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.\n', (bonus) => {
-      this.#bonusNumber = bonus;
+      this.#bonusNumber = parseInt(bonus);
       // this.printNumbers();
       this.compareEachNumber();
       
@@ -36,7 +37,17 @@ class App {
 
   compareEachNumber() {
     for(let i = 0; i < this.#myLottoNumbers.length; i++) {
-      console.log(this.#myLottoNumbers[i].filter(x => this.#winNumbers.includes(x)));
+      const myWinNumbers = this.#myLottoNumbers[i].filter(x => this.#winNumbers.includes(x));
+      let bonus = 0;
+      if(this.#myLottoNumbers[i].includes(this.#bonusNumber)) {
+        bonus++;
+      }
+
+      if(myWinNumbers.length === 5 && bonus === 1) {
+        this.#winBonus++;
+      } else{
+        this.#equalNumber[myWinNumbers.length+bonus]++;
+      }
     }
   }
 
