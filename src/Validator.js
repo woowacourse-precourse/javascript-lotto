@@ -45,9 +45,7 @@ class Validator {
     );
   }
 
-  static isRightLottoNumbers(target) {
-    const lottoNumbers = target.split(",").map((v) => +v);
-
+  static isRightLottoNumbers(array) {
     if (!lottoNumbers.every(this.isRightLottoNumber.bind(this))) {
       return false;
     }
