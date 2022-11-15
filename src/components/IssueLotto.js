@@ -1,27 +1,29 @@
-const { Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const Validation = require('./Validation');
 const { UTILS } = require('../constant/constant');
+const { Random } = require('@woowacourse/mission-utils');
 
 class IssueLotto {
-  static setLotteryNumber(purchase) {
+  static setLottoNumber(purchase) {
     Validation.validatePurchase(purchase);
     const results = [];
+    const count = IssueLotto.#drawLotto({ results, purchase });
+    return [results, count];
+  }
+
+  static #drawLotto({ results, purchase }) {
     let draw = purchase / UTILS.LOTTO_PRICE;
     let count = draw;
     while (draw !== UTILS.EMPTY_DRAW) {
-      results.push(
-        new Lotto(
-          Random.pickUniqueNumbersInRange(
-            UTILS.LOTTO_MIN,
-            UTILS.LOTTO_MAX,
-            UTILS.LOTTO_COUNT,
-          ),
-        ),
+      const randoms = Random.pickUniqueNumbersInRange(
+        UTILS.LOTTO_MIN,
+        UTILS.LOTTO_MAX,
+        UTILS.LOTTO_COUNT,
       );
+      results.push(new Lotto(randoms));
       draw -= 1;
     }
-    return [results, count];
+    return count;
   }
 }
 
