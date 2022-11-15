@@ -37,7 +37,11 @@ const Statics = class {
   }
 
   getLottoYield(lottoRevenue, budget) {
-    const lottoYield = ((lottoRevenue / budget) * 100).toFixed(1);
+    const commaRegex = /\B(?=(\d{3})+(?!\d))/g;
+
+    let lottoYield = ((lottoRevenue / budget) * 100).toFixed(1);
+    lottoYield = lottoYield.replace(commaRegex, ',');
+
     return lottoYield;
   }
 
