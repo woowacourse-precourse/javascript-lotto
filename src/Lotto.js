@@ -15,10 +15,10 @@ class Lotto {
     if (Array.from(numSet).length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
-    //1-45 사이의 문자인지 보기
-    if(!(parseInt(numbers) >= 1 && parseInt(numbers) <= 45)){
-      throw new Error("[ERROR] 로또 번호는 1~45 사이의 숫자여야 합니다.");
-    }
+    // //1-45 사이의 문자인지 보기
+    // if(!(parseInt(numbers) >= 1 && parseInt(numbers) <= 45)){
+    //   throw new Error("[ERROR] 로또 번호는 1~45 사이의 숫자여야 합니다.");
+    // }
     return numbers;
   }
   printRandom(){
