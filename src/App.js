@@ -1,4 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
+const Lotto = require("./Lotto");
 
 class App {
 
@@ -8,7 +9,7 @@ class App {
   
   play() {
     this.purchaseLotto();
-
+    this.WinningNumbers();
   }
 
   purchaseLotto() {
@@ -29,7 +30,7 @@ class App {
     Console.print(`${this.numberoflotto}개를 구매했습니다.`);
   }
 
-  printingLotto(){
+  printingLotto() {
     for (let count = 1; count <= this.numberoflotto; count++) {
       let lotterynumber = Random.pickUniqueNumbersInRange(1, 45, 6).sort((a,b)=> a-b)
       Console.print(`[${lotterynumber.join(', ')}]`);
@@ -37,9 +38,13 @@ class App {
     }
   }
 
-
-
-
+  WinningNumbers() {
+    let winningnumbers;
+    Console.readLine("당첨 번호를 입력해 주세요", (numbers) => {
+      winningnumbers = numbers.split(",").map(Number);
+      const lotto = new Lotto(winningnumbers);
+    });
+  }
 }
 
 module.exports = App;
