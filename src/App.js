@@ -1,4 +1,3 @@
-/* eslint-disable no-empty-function */
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const PrintInfo = require('./PrintInfo');
