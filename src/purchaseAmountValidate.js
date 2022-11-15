@@ -1,7 +1,7 @@
 class purchaseAmountValidator {
   constructor(amount) {
     purchaseAmountValidator.validate(amount);
-    this.amount = amount;
+    this.validatedAmount = amount;
   }
 
   static validate(amount) {
@@ -10,6 +10,9 @@ class purchaseAmountValidator {
     }
     if (Number(amount) < 1000) {
       throw new Error('[ERROR] 구입 최소 금액은 1000원 입니다.');
+    }
+    if (Number(amount) % 1000) {
+      throw new Error('[ERROR] 구입 금액은 1000원 단위 입니다.');
     }
   }
   // TODO: 추가 기능 구현
