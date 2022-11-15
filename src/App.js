@@ -111,7 +111,30 @@ class App {
         .getNumbers()
         .filter((number) => this.winningNumbers.includes(number));
       const correctCount = correctNumbers.length;
+      if (correctCount > 2) {
+        this.checkRanking(correctCount, lotto.getNumbers());
+      }
     });
+  }
+
+  checkRanking(count, lotto) {
+    if (count === 3) {
+      this.ranking = { ...this.ranking, fifth: this.ranking.fifth + 1 };
+      this.winningReward += 5000;
+    } else if (count === 4) {
+      this.ranking = { ...this.ranking, fourth: this.ranking.fourth + 1 };
+      this.winningReward += 50000;
+    } else if (count === 5) {
+      if (lotto.getNumbers().includes(this.bonusNumber)) {
+        this.ranking = { ...this.ranking, second: this.ranking.second + 1 };
+        this.winningReward += 30000000;
+      }
+      this.ranking = { ...this.ranking, third: this.ranking.third + 1 };
+      this.winningReward += 1500000;
+    } else if (count === 6) {
+      this.ranking = { ...this.ranking, first: this.ranking.first + 1 };
+      this.winningReward += 2000000000;
+    }
   }
 }
 
