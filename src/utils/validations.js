@@ -1,5 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { ERROR, STRING, NUMBER, REGEX } = require('./constant');
+const { STRING, NUMBER, REGEX } = require('../constants/value');
+const { ERROR } = require('../constants/UI');
 
 const isValidNumber = (input) => {
   const numberRegex = REGEX.NUMBER;

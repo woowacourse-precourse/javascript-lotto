@@ -1,5 +1,6 @@
-const { createLotteryTicket, printMyLotteries } = require('./utils/lotteryHandler');
-const { NUMBER } = require('./utils/constant');
+const { createLotteryTicket } = require('./controllers/lottoController');
+const { printTickets } = require('./controllers/UIController');
+const { NUMBER } = require('./constants/value');
 
 class User {
   constructor() {
@@ -24,7 +25,7 @@ class User {
       this.tickets.push(newTicket);
     }
 
-    printMyLotteries(this.tickets);
+    printTickets(this.tickets);
   }
 }
 

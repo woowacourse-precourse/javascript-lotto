@@ -2,9 +2,10 @@ const User = require('./User');
 const Lotto = require('./Lotto');
 const { Console } = require('@woowacourse/mission-utils');
 const { checkMoneyValidation, checkLottoInputValidation } = require('./utils/validations');
-const { getLotteryResult, printResult } = require('./utils/lotteryHandler');
-const { MESSAGE } = require('./utils/constant');
-const { changeToNumbersArray } = require('./utils/lotteryHandler');
+const { getLotteryResult, changeToNumbersArray } = require('./controllers/lottoController');
+const { printResult } = require('./controllers/UIController');
+
+const { MESSAGE } = require('./constants/UI');
 
 class App {
   constructor() {

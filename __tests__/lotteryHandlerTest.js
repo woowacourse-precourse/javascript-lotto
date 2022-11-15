@@ -1,11 +1,6 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-
-const {
-  sortLotteryNumbers,
-  createLotteryTicket,
-  printMyLotteries,
-  changeToNumbersArray,
-} = require('../src/utils/lotteryHandler');
+const { sortLotteryNumbers, createLotteryTicket, changeToNumbersArray } = require('../src/controllers/lottoController');
+const { printTickets } = require('../src/controllers/UIController');
 
 const createMockTickets = jest.fn(() => [
   [1, 2, 3, 4, 5, 6],
@@ -37,7 +32,7 @@ describe('lotteryHandlerTest', () => {
     const tickets = createMockTickets();
     const logSpy = getLogSpy();
     const logs = ['3개를 구매했습니다.', '[1, 2, 3, 4, 5, 6]', '[7, 8, 9, 10, 11, 12]', '[13, 14, 15, 16, 17, 18]'];
-    printMyLotteries(tickets);
+    printTickets(tickets);
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });

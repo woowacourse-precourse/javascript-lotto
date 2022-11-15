@@ -1,5 +1,5 @@
 const { checkLottoNumbersValidation, checkBonusNumberValidation } = require('./utils/validations');
-const { NUMBER } = require('./utils/constant');
+const { NUMBER } = require('./constants/value');
 
 class Lotto {
   #numbers;
