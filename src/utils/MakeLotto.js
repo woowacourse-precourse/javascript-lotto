@@ -26,6 +26,22 @@ class makeLotto {
     let strRandom = "[" + random.join(", ") + "]";
     return strRandom;
   }
+
+  makeArrayAgain(stringArray) {
+    let arr = [];
+    stringArray.forEach((string) => {
+      let onluNumber = string.slice(0, -1).slice(1);
+      let arrOnlyNumber = onluNumber.split(",").map((str) => {
+        let trimStr = str.trim();
+        let numberRegex = /^[0-9]*$/;
+        if (numberRegex.test(trimStr)) {
+          return +trimStr;
+        }
+      });
+      arr.push(arrOnlyNumber);
+    });
+    return arr;
+  }
 }
 
 module.exports = makeLotto;

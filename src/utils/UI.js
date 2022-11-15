@@ -71,33 +71,13 @@ class UI {
         this.lotto = new Lotto(this.#arrUserInputLottoNumbers);
 
         this.#countSameNumberObject = this.lotto.compare(
-          this.makeArrayAgain(this.lottoMachine.lottoNumbers),
+          this.lottoMachine.makeArrayAgain(this.lottoMachine.lottoNumbers),
           this.#bonusNumber
         );
         this.printWin(this.#countSameNumberObject);
         this.printPrizeRate(this.#countSameNumberObject);
       }
     });
-  }
-
-  makeArrayAgain(stringArray) {
-    let arr = [];
-    stringArray.forEach((string) => {
-      let onluNumber = string.slice(0, -1).slice(1);
-      let arrOnlyNumber = onluNumber
-        .split(",")
-        .map((str) => str.trim())
-        .reduce((newArr, item) => {
-          let numberRegex = /^[0-9]*$/;
-          if (numberRegex.test(item)) {
-            newArr.push(+item);
-            return newArr;
-          }
-          return newArr;
-        }, []);
-      arr.push(arrOnlyNumber);
-    });
-    return arr;
   }
 
   showLottosCount() {
