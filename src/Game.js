@@ -4,14 +4,10 @@ const Lotto = require("./Lotto");
 
 class Game {
   constructor(money) {
-    this.validateMoney(money);
+    validate.moneyInput(money);
     this.quantity = money / 1000;
     this.list = [];
     this.generateWinningNumberList();
-  }
-
-  validateMoney(input) {
-    validate.moneyInput(input);
   }
 
   quantityOfPurchase() {

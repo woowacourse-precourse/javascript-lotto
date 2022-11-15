@@ -17,7 +17,7 @@ const validate = {
   bonusNumber: (number, winningNumbers) => {
     if (winningNumbers.includes(number))
       throw new Error(ERROR.INVALID_BONUS_NUMBER_UNIQUE);
-    if (!(Number(number) >= 1 && Number(number) <= 45))
+    if (!number >= 1 && number <= 45)
       throw new Error(ERROR.INVALID_BONUS_NUMBER_RANGE);
   },
 };
