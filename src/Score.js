@@ -16,6 +16,10 @@ class Score {
         this.correctNumber = correctNumber;
     }
 
+    setMoney (money) {
+        this.money = money;
+    }
+
 }
 
 module.exports = Score;
