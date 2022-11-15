@@ -1,4 +1,4 @@
-const { validateNumber } = require('../src/utils/validation');
+const { validateNumber, isNumberSorted } = require('../src/utils/validation');
 
 describe('validation.js 테스트', () => {
   test('보너스 번호 유효 검증 : 0', () => {
@@ -13,5 +13,17 @@ describe('validation.js 테스트', () => {
       const input = 46;
       validateNumber(input);
     }).toThrow('[ERROR]');
+  });
+
+  test('로또 배열 정렬 검증 : 틀렸을 때', () => {
+    const input = [1, 2, 3, 7, 6, 5];
+    const result = isNumberSorted(input);
+    expect(result).toBeFalsy();
+  });
+
+  test('로또 배열 정렬 검증 : 틀렸을 때', () => {
+    const input = [1, 2, 3, 4, 5, 6];
+    const result = isNumberSorted(input);
+    expect(result).toBeTruthy();
   });
 });

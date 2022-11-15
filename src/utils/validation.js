@@ -64,4 +64,6 @@ const validateMoney = (money) => {
   }
 };
 
-module.exports = { validateNumbers, validateMoney, validateNumber };
+module.exports = {
+  validateNumbers, validateMoney, validateNumber, isNumberSorted,
+};
