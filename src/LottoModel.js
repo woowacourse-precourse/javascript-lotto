@@ -1,6 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
-const { WINNINGS } = require("./Constants");
+const { LOTTO, WINNINGS } = require("./Constants");
 const RANKING = [
   WINNINGS.FIFTH_WIN,
   WINNINGS.FOURTH_WIN,
@@ -25,7 +25,11 @@ class LottoModel {
 
   createLottos(amount) {
     for (let i = 0; i < amount; i++) {
-      const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      const numbers = MissionUtils.Random.pickUniqueNumbersInRange(
+        LOTTO.NUMBER_MIN,
+        LOTTO.NUMBER_MAX,
+        LOTTO.COUNT
+      );
       this.#lottos.push(new Lotto(numbers));
     }
     return this.#lottos;

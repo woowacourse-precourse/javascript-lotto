@@ -1,4 +1,10 @@
 module.exports = {
+  LOTTO: {
+    NUMBER_MIN: 1,
+    NUMBER_MAX: 45,
+    COUNT: 6,
+  },
+
   INPUT_ERROR_MESSAGE: {
     REMAINDER_ERROR: "[ERROR] 구매 금액을 1000원 단위로 입력해주세요.",
     NAN_ERROR: "[ERROR] 숫자를 입력해주세요.",
