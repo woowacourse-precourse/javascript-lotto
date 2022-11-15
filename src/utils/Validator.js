@@ -1,4 +1,4 @@
-class validator {
+class Validator {
   isSix(numbers) {
     if (numbers.length !== 6) {
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
@@ -7,11 +7,12 @@ class validator {
 
   isNumber(numbers) {
     const regex = /^[0-9]+$/;
-    if (typeof numbers === Array) {
+    if (typeof numbers === 'object') {
       numbers.forEach(num => {
         if (!regex.test(num)) {
           throw new Error('[ERROR] 숫자만 입력할 수 있습니다.');
         }
+        6;
       });
     } else {
       if (!regex.test(numbers)) {
@@ -40,3 +41,5 @@ class validator {
     }
   }
 }
+
+module.exports = Validator;
