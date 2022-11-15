@@ -16,7 +16,7 @@ class Lotto {
     if (numbers.length !== NUMBERS.CORRECT_LOTTO_LENGTH) {
       throw new Error(ERROR_MESSAGES.INVALID_LOTTO_LENGTH);
     }
-    if (numbers.includes(NaN)) {
+    if (this.circuitItemsForType(numbers).includes(false)) {
       throw new Error(ERROR_MESSAGES.INVALID_LOTTO_TYPE);
     }
     if (this.circuitItemsForRange(numbers).includes(false)) {
@@ -27,6 +27,15 @@ class Lotto {
   circuitItemsForRange(numbers) {
     return numbers.map((value) => {
       if (value >= NUMBERS.MIN_LOTTO_NUMBER && value <= NUMBERS.MAX_LOTTO_NUMBER) {
+        return true;
+      }
+      return false;
+    });
+  }
+
+  circuitItemsForType(numbers) {
+    return numbers.map((value) => {
+      if (Number.isInteger(value)) {
         return true;
       }
       return false;
