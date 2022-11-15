@@ -43,6 +43,7 @@ const LOTTO_ERROR_MSG = {
   IS_WRONG_NUMBER_COUNT: '[ERROR] 로또 번호는 6개여야 합니다.',
   IS_DUPLICATE_NUMBER: '[ERROR] 중복된 숫자가 없어야 합니다.',
   IS_WRONG_MONEY_VALUE: '[ERROR] 구매 금액은 1,000 단위로 입력해주세요',
+  IS_WRONG_NUMBER_RANGE: '[ERROR] 1 ~ 45 범위의 숫자를 입력해주십시오',
 };
 
 const NUM = {
@@ -50,6 +51,7 @@ const NUM = {
   MAX_RANGE: 45,
   HOW_MANY: 6,
   COUNT_INPUT_FOR_WIN: 6,
+  REST_ZERO: 0,
 };
 
 module.exports = {
