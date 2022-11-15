@@ -135,7 +135,12 @@ class Lotto {
   checkPrizeAmount(getCountedArray, getBonusArrays, amountOfMoney) {
     let prizeObj = {};
     for (let val of getCountedArray) {
+      console.log(typeof(val));
       prizeObj[val] = (prizeObj[val] || 0) + 1;
+      if(getBonusArrays.length!==0 && val===5 ) {
+        prizeObj['7']=prizeObj['5']
+        delete prizeObj['5']
+      }
     }
     this.rateofReturn(prizeObj, amountOfMoney);
   }
