@@ -118,6 +118,11 @@ class App {
     5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankList[3]}개
     6개 일치 (2,000,000,000원) - ${rankList[4]}개/n`);
   }
+
+  printRevenue(sameCount, lottoCount) {
+    const revenue = sameCount * 5 / lottoCount;
+    Console.print(`총 수익률은 ${revenue.toFixed(2)}%입니다.`);
+  }
 }
 
 module.exports = App;
