@@ -3,6 +3,7 @@ const Lotto = require('./Lotto')
 const WinningNum = require('./WinningNum')
 const BonusNum = require('./BonusNum')
 const CorrectValue = require('./CorrectValue')
+const Price = require('./Price')
 const { Console } = require('@woowacourse/mission-utils')
 const { Random } = require('@woowacourse/mission-utils')
 
@@ -17,7 +18,6 @@ class App {
     this.getLottoInfo()
     this.calcLottoResult()
   }
-
 
   getLottoInfo() {
     let buyCount = PurchasePrice.getPurchasePrice()
@@ -70,24 +70,14 @@ class App {
     return lottoBonusNum
   }
 
-
-
-
-  
-
   calcLottoResult() {
-    let correctValueList = this.findCorrectValue(
+    let [countNormalWinner, countBonusWinner] = this.findCorrectValue(
       this.userLottoNum,
       this.winningNum,
       this.lottoBonusNum,
     )
 
-    let [countNormalWinner,countBonusWinner]=this.findWinnersInfo(correctValueList)
-
-    console.log(countNormalWinner)
-    console.log(countBonusWinner)
-
-     
+    this.getPrice(countNormalWinner, countBonusWinner)
   }
 
   findCorrectValue(userLottoNum, winningNum, lottoBonusNum) {
@@ -96,26 +86,10 @@ class App {
       winningNum,
       lottoBonusNum,
     ).findSameValue()
+
     return result
   }
 
-  findWinnersInfo(correctValueList){
-    let countNormalWinner = new Array(4).fill(0)
-    let countBonusWinner = [0]
-
-    for (let i = 0; i < correctValueList.length; i++) {
-      if (correctValueList[i][1]) { 
-        countBonusWinner[0] += 1
-      }
-      if (correctValueList[i][0] >= 3 && !correctValueList[i][1]) {
-        countNormalWinner[correctValueList[i][0] - 3] += 1
-      }
-      //[3 4 5 6]
-      // 0 1 2 3
-    }
-    //어차피 더이상 correctValueList는 안 씀
-    return [countNormalWinner,countBonusWinner]
-  }
 }
 
 module.exports = App

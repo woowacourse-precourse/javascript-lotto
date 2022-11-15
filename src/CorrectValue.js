@@ -5,7 +5,7 @@ class CorrectValue {
     this.lottoBonusNum = lottoBonusNum
   }
 
-  //같은 값 찾기
+  
   calc(eachUserLottoNum) {
     let count = 0
     let bonusFlag = false
@@ -28,8 +28,38 @@ class CorrectValue {
       listOfLottoNumReuslt.push(this.calc(this.userLottoNum[i]))
     }
 
-    return listOfLottoNumReuslt
+    return (this.findWinnersInfo(listOfLottoNumReuslt))
+    
   }
+
+
+  findWinnersInfo(correctValueList) {
+
+    let countNormalWinner = new Array(4).fill(0)
+    let countBonusWinner = [0]
+
+    for (let i = 0; i < correctValueList.length; i++) {
+      if (correctValueList[i][1]) {
+        countBonusWinner[0] += 1
+      }
+      if (correctValueList[i][0] >= 3 && !correctValueList[i][1]) {
+        countNormalWinner[correctValueList[i][0] - 3] += 1
+      }
+      //[3 4 5 6]
+      // 0 1 2 3
+    }
+    
+    return [countNormalWinner, countBonusWinner]
+    //      [ 1, 0, 0, 0 ] [ 0 ]
+  }
+
+
+
+
+
+
+
+
 }
 
 module.exports = CorrectValue
