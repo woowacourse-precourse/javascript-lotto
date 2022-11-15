@@ -1,1 +1,6 @@
+# Dependency directories
 node_modules
+
+# Local settings
+.vscode/
+.eslintrc.json

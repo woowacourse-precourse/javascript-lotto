@@ -1,18 +1,32 @@
+const { Random } = require('@woowacourse/mission-utils');
+const LottoValidator = require('./LottoValidator');
+const { MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT } = require('./lottoOptions');
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    Lotto.validate(numbers);
     this.#numbers = numbers;
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+  get numbers() {
+    return this.#numbers;
   }
 
-  // TODO: 추가 기능 구현
+  static isValidBonusNumber(bonusNumber, lottoNumbers) {
+    new LottoValidator().isValidBonusNumber(bonusNumber, lottoNumbers);
+  }
+
+  static validate(numbers) {
+    new LottoValidator().isValidLottoNumbers(numbers);
+  }
+
+  static purchase(numberCount = NUMBER_COUNT, minNumber = MIN_NUMBER, maxNumber = MAX_NUMBER) {
+    const lotto = Random.pickUniqueNumbersInRange(minNumber, maxNumber, numberCount);
+
+    return lotto.sort((a, b) => a - b);
+  }
 }
 
 module.exports = Lotto;
