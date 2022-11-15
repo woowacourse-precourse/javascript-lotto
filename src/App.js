@@ -34,6 +34,9 @@ function winningInput (lotto_number) {
   MissionUtils.Console.readLine('당첨 번호를 입력해 주세요', (winning_inputnumber)=>{
     exceptionWinningInput(winning_inputnumber)
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요', (bonus_inputnumber)=>{
+      if(winning_inputnumber.includes(bonus_inputnumber)){
+        throw '[ERROR] 당첨번호와 다른 번호를 입력해주세요.'
+      }
       return winningNumber(lotto_number, winning_inputnumber, bonus_inputnumber)
     })
   })
@@ -85,13 +88,6 @@ function winningresult(lotto_number, winningPoint) {
   MissionUtils.Console.print(`총 수익률은 ${value*100/dummy}%입니다.`)
   MissionUtils.Console.close()
 }
-// function resultprint (lotto_number, winningPoint) {
-//   MissionUtils.Console.print(`${lotto_number.length}개를 구매했습니다.`)
-//   lotto_number.forEach((item)=>{
-//     MissionUtils.Console.print(`"${item}"`)
-//   })
-//   winningresult(lotto_number, winningPoint)
-// }
 function exceptiondollar(dollarInput) {
   let regExp = new RegExp('/\D/gm')
   if (regExp.test(dollarInput)){
