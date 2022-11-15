@@ -55,6 +55,10 @@ const printArray = (items) => {
   items.forEach((item) => Console.print(item));
 };
 
+const printEmpty = () => {
+  Console.print('');
+};
+
 const resolvedCallback = (callback, resolve) => (input) => {
   callback(input);
   resolve();
@@ -69,6 +73,7 @@ module.exports = {
   validateAmount,
   validatePrizeNumbers,
   validateBonusNumber,
+  printEmpty,
   printArray,
   synchronousReadLine,
 };

@@ -27,7 +27,23 @@ const createLottos = (amount) => {
   return lottos;
 };
 
+const isSecondOrThird = (lotto, bonusNumber) => {
+  if (lotto.includes(bonusNumber)) return 2;
+
+  return 3;
+};
+
+const getKey = (count, lotto, bonusNumber) => {
+  if (count === 6) return 1;
+  if (count === 5) return isSecondOrThird(lotto, bonusNumber);
+  if (count === 4) return 4;
+  if (count === 3) return 5;
+
+  return -1;
+};
+
 module.exports = {
   getSortedLottoNumbers,
   createLottos,
+  getKey,
 };

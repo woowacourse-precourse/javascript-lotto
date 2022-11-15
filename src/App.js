@@ -1,4 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
+const Lotto = require('./Lotto');
 const utils = require('./utils/utils');
 const appUtils = require('./utils/appUtils');
 const APP = require('./constants/app');
@@ -12,6 +13,8 @@ class App {
 
   #lottos;
 
+  #lotto;
+
   constructor() {
     this.getAmount = this.getAmount.bind(this);
     this.getPrizeNumber = this.getPrizeNumber.bind(this);
@@ -24,7 +27,8 @@ class App {
     this.#amount = input / APP.MINIMUM_AMOUNT;
     this.#lottos = utils.createLottos(this.#amount);
 
-    Console.print(`\n${this.#amount}개를 구매했습니다.`);
+    appUtils.printEmpty();
+    Console.print(`${this.#amount}개를 구매했습니다.`);
     appUtils.printArray(this.#lottos);
   }
 
@@ -40,12 +44,13 @@ class App {
 
   async play() {
     await appUtils.synchronousReadLine(APP.AMOUNT_MESSAGE, this.getAmount);
-    await appUtils.synchronousReadLine('\n당첨 번호를 입력해 주세요.\n', this.getPrizeNumber);
-    await appUtils.synchronousReadLine('\n보너스 번호를 입력해 주세요.\n', this.getBonusNumber);
+    appUtils.printEmpty();
+    await appUtils.synchronousReadLine(APP.WINNER_NUMBER_MESSAGE, this.getPrizeNumber);
+    appUtils.printEmpty();
+    await appUtils.synchronousReadLine(APP.BONUS_NUMBER_MESSAGE, this.getBonusNumber);
+
     Console.close();
   }
 }
-
-new App().play();
 
 module.exports = App;
