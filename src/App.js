@@ -1,5 +1,13 @@
+const View = require('./View');
+
 class App {
-  play() {}
+  play() {
+    this.process();
+  }
+
+  process() {
+    new View();
+  }
 }
 
 module.exports = App;
