@@ -38,44 +38,44 @@ function winningList (LOTTO_LIST) {
 }
 function makeBonusNumber (LOTTO_LIST, WINNING_LIST){
   MissionUtils.Console.readLine('보너스 번호를 입력해 주세요', (bonus_Number)=>{
-    if(WINNING_LIST.includes(bonus_Number)){throw 'aaa'}
-    console.log('aaa')
+    exceptionBonus(WINNING_LIST, bonus_Number)
+    return WinningCheck(LOTTO_LIST, WINNING_LIST, bonus_Number)
   })
 }
 
-// function winningNumber (lotto_number, winning_inputnumber, bonus_inputnumber) {
-//   let winningPoint = [0, 0, 0, 0, 0]
-//   lotto_number.forEach((item)=>{
-//     let count = 0
-//     item.forEach((idx)=>{
-//       if(winning_inputnumber.includes(idx)){count ++}
-//     })
-//     countcheck(count, bonus_inputnumber, winningPoint, lotto_number)
-//   })
-//   return winningresult(lotto_number, winningPoint)
-// }
-// function countcheck(count, bonus_inputnumber, winningPoint, lotto_number){
-//   if(count==5 && lotto_number.includes(bonus_inputnumber)){
-//     console.log('----')
-//     count = 100
-//   }
-//   switch (count) {
-//     case 3:
-//       winningPoint[0]++
-//       break;
-//     case 4:
-//       winningPoint[1]++
-//       break;
-//     case 5:
-//       winningPoint[2]++
-//       break;
-//     case 6:
-//       winningPoint[4]++
-//       break;
-//     case 100:
-//       winningPoint[3]++
-//   }
-// }
+function WinningCheck (LOTTO_LIST, WINNING_LIST, bonus_Number) {
+  let winningPoint = [0, 0, 0, 0, 0]
+  LOTTO_LIST.forEach((item)=>{
+    let COUNT = 0
+    let BONUS = 0
+    item.forEach((idx)=>{
+      if(WINNING_LIST.includes(idx)){COUNT ++}
+      if(idx == bonus_Number){BONUS = 1}
+    })
+    countcheck(COUNT, BONUS, winningPoint)
+  })
+  
+}
+function countcheck(COUNT, BONUS, winningPoint){
+  switch (COUNT) {
+    case 3:
+      winningPoint[0]++
+      break;
+    case 4:
+      winningPoint[1]++
+      break;
+    case 5:
+      winningPoint[2]++
+      break;
+    case 6:
+      winningPoint[4]++
+      break;
+  }
+  if (COUNT == 5 && BONUS>0) {
+    winningPoint[2]--
+    winningPoint[3]++
+  }
+}
 // function winningresult(lotto_number, winningPoint) {
 //   let value = 5000*winningPoint[0] + 50000*winningPoint[1] + 1500000*winningPoint[2] + 30000000*winningPoint[3] + 2000000000*winningPoint[4]
 //   let dummy = lotto_number.length*1000
@@ -97,9 +97,7 @@ function exceptionMoney(money) {
     throw '[ERROR] 금액은 1,000원 단위로 입력해야 합니다.'
   }
 }
-function exceptionWinningInput(winningInput){
-  let winningInputArray = winningInput.split(',')
-  let winningSet = new Set(winningInputArray)
+function exceptionWinning(winningInput){
   if (isNaN(winningInput)){
     throw '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.'
   }
@@ -111,6 +109,17 @@ function exceptionWinningInput(winningInput){
   }
   if (winningSet.size !== 6) {
     throw '[ERROR] 로또 번호는 서로 다른 6개여야 합니다.'
+  }
+}
+function exceptionBonus(WINNING_LIST, bonus_Number){
+  if(isNaN(bonus_Number)){
+    throw '[ERROR] 보너스 번호는 숫자만을 입력해 주세요.'
+  }
+  if(bonus_Number>45){
+    throw '[ERROR] 보너스 번호는 1부터 45사이의 숫자이어야 합니다.'
+  }
+  if(WINNING_LIST.includes(bonus_Number)){
+    throw '[ERROR] 보너스 번호는 당첨 번호 이외의 숫자이어야 합니다.'
   }
 }
 
