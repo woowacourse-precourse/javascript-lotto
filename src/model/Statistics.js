@@ -1,3 +1,5 @@
+const generalConstants = require("../constants/generalConstants");
+
 class Statistics {
   constructor(controller) {
     this.controller = controller;
@@ -106,14 +108,14 @@ class Statistics {
    * @return {number} [총 수익으로 얻은 액수]
    */
   getMoneyEarned() {
-    const currentRanks = this.getRanks();
+    const currentRanks = this.ranks;
     let totalMoneyEarned = 0;
 
-    totalMoneyEarned += 5000 * currentRanks.fifth;
-    totalMoneyEarned += 50000 * currentRanks.fourth;
-    totalMoneyEarned += 1500000 * currentRanks.third;
-    totalMoneyEarned += 30000000 * currentRanks.second;
-    totalMoneyEarned += 2000000000 * currentRanks.first;
+    totalMoneyEarned += generalConstants.FIFTH_PRIZE * currentRanks.fifth;
+    totalMoneyEarned += generalConstants.FOURTH_PRIZE * currentRanks.fourth;
+    totalMoneyEarned += generalConstants.THIRD_PRIZE * currentRanks.third;
+    totalMoneyEarned += generalConstants.SECOND_PRIZE * currentRanks.second;
+    totalMoneyEarned += generalConstants.FIRST_PRIZE * currentRanks.first;
 
     return totalMoneyEarned;
   }
