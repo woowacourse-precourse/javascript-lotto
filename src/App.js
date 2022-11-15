@@ -13,6 +13,7 @@ const processLottery = () => {
     player.showLottoNumbers();
     inputWinningNumber(player);
   });
+  Console.close();
 };
 const inputWinningNumber = (player) => {
   Console.readLine("\n당첨 번호를 입력해 주세요\n", (winningNumbers) => {
