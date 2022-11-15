@@ -42,6 +42,8 @@ class App {
       `${INPUT_MESSAGES.INPUT_BOUNS_NUMBER}`,
       (bouns) => {
         this.bouns = parseInt(bouns);
+        CheckVaild.isVaildBounsNumber(this.winningLotto, this.bouns);
+
         const count = new CheckWinner(
           this.winningLotto,
           this.bouns,
