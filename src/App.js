@@ -1,17 +1,17 @@
 const { Console, Random } = require("@woowacourse/mission-utils/");
 const Lotto = require("../src/Lotto");
 class App {
-  winNumbers;
-  bonusNumber;
-  lottos;
-  scores;
-  payMoney;
-  reward;
+  #payMoney;
+  #winNumbers;
+  #bonusNumber;
+  #lottos;
+  #reward;
 
   constructor() {
-    this.bonusNumber = 0;
-
+    this.payMoney = 0;
     this.winNumbers = [];
+
+    this.bonusNumber = 0;
 
     this.lottos = [];
 
@@ -22,8 +22,6 @@ class App {
       [5.5, 30_000_000, 0],
       [6, 2_000_000_000, 0],
     ];
-
-    this.payMoney = 0;
   }
 
   play() {
