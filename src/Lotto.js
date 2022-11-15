@@ -3,11 +3,12 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class Lotto {
   #numbers;
 
-  constructor(numbers, bonus, count, lottoNumArr) {
+  constructor(numbers, bonus, count, lottoNumArr, money) {
     this.validate(numbers);
     this.#numbers = numbers;
     this.lottoCount = count;
     this.bonusNum = bonus;
+    this.userMoney = money;
     this.lottoNumArr = lottoNumArr;
     this.currentScore = [0, 0, 0, 0, 0, 0];
   }
@@ -83,7 +84,7 @@ class Lotto {
   }
 
   showResult() {
-    MissionUtils.Console.print("당첨 통계\n");
+    MissionUtils.Console.print("당첨 통계");
     MissionUtils.Console.print("---");
     MissionUtils.Console.print(
       `3개 일치 (5,000원) - ${this.currentScore[0]}개`
@@ -110,7 +111,7 @@ class Lotto {
       30000000 * this.currentScore[3] +
       2000000000 * this.currentScore[4];
 
-    const Yield = ((totalAmount / this.#numbers) * 100).toFixed(1);
+    const Yield = ((totalAmount / this.userMoney) * 100).toFixed(1);
     MissionUtils.Console.print(`총 수익률은 ${Yield}%입니다.`);
     MissionUtils.Console.close();
   }
