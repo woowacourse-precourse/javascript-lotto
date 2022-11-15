@@ -1,8 +1,9 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { MESSAGE, ERROR } = require("./constant");
+const { MESSAGE, UNIT } = require("./constant");
 const Lotto = require("./Lotto");
 const Result = require("./Result");
 const Amount = require("./Amount");
+const Bonus = require("./Bonus");
 class App {
   constructor() {
     this.myMoney = 0;
@@ -17,8 +18,8 @@ class App {
       if (new Amount(+answer)) {
         this.myMoney += +answer;
       }
-      const piece = +answer / 1000;
-      MissionUtils.Console.print(`${piece}개를 구매했습니다.`);
+      const piece = +answer / UNIT;
+      MissionUtils.Console.print(MESSAGE.BUY_LOTTO(piece));
       this.createLottoBundle(piece);
     });
   }
@@ -51,17 +52,10 @@ class App {
 
   inputBonusNumber(bundle, numbers) {
     MissionUtils.Console.readLine(MESSAGE.INPUT_BONUS, (answer) => {
-      if (numbers.includes(+answer)) {
-        throw new Error(ERROR.BONUS_DUPLICATION);
+      if (new Bonus(numbers, +answer)) {
+        const bonus = +answer;
+        new Result(this.myMoney).statistics(bundle, numbers, bonus);
       }
-      if (+answer > 45 || +answer < 1) {
-        throw new Error(ERROR.BONUS_RANGE);
-      }
-      if (isNaN(+answer)) {
-        throw new Error(ERROR.BONUS_ISNAN);
-      }
-      const bonus = +answer;
-      new Result(this.myMoney).statistics(bundle, numbers, bonus);
     });
   }
 }
