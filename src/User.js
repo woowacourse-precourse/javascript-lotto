@@ -22,7 +22,7 @@ class User {
       const lottoNumbers = lotto.getNumbers();
       const count = this.calcHitNumberCount(lottoNumbers, hitLottoNumbers);
       const isBonus = hitLottoNumbers.includes(bonusNumber);
-      const rank = this.dicideRank(count, isBonus);
+      const rank = this.decideRank(count, isBonus);
       this.hitRanks[rank] += 1;
     });
     return;
@@ -38,7 +38,7 @@ class User {
     return count;
   }
 
-  dicideRank(count, isBonus) {
+  decideRank(count, isBonus) {
     if (count === 6) {
       return rank.FIRST;
     }
