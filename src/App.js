@@ -15,6 +15,10 @@ class App {
     this.#lotteryResult = new Array(5).fill(0);
   }
 
+  getPrizeMoney = () => {
+    return PRIZE_MONEY.reduce((sum, prizeUnit, index) => sum + prizeUnit * this.#lotteryResult[index], 0);
+  };
+
   printProfit = () => {
     this.#profit = ((this.getPrizeMoney() / this.#money) * 100).toFixed(1);
     Console.print(`${MESSAGE.PROFIT_FRONT}${this.#profit}${MESSAGE.PROFIT_BACK}`);
