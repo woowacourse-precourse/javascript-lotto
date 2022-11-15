@@ -16,7 +16,7 @@ class LottoResult {
 
   print(winningNumbers, lotteries) {
     this.countMatch(winningNumbers, lotteries);
-    this.calculateProfitRate(lotteries.length * LOTTO_PRICE);
+    this.setProfit(lotteries.length * LOTTO_PRICE);
     this.printResult();
   }
 
@@ -33,6 +33,29 @@ class LottoResult {
       return LOTTO_MATCHES.fiveWithBonus;
     }
     return LOTTO_MATCHES[count];
+  }
+
+  setProfit(money) {
+    this.profitRate = ((this.calculateProfit() / money) * 100).toFixed(1);
+  }
+
+  calculateProfit() {
+    return Object.entries(this.lottoMatchCounter).reduce((profit, [matching, count]) => {
+      const cumulativeProfit = profit + LOTTO_PRIZE[matching] * count;
+      return cumulativeProfit;
+    }, 0);
+  }
+
+  printResult() {
+    const { three, four, five, fiveWithBonus, six } = this.lottoMatchCounter;
+
+    Console.print(RESULT_MESSAGE.START);
+    Console.print(RESULT_MESSAGE.THREE(three));
+    Console.print(RESULT_MESSAGE.FOUR(four));
+    Console.print(RESULT_MESSAGE.FIVE(five));
+    Console.print(RESULT_MESSAGE.FIVE_BONUS(fiveWithBonus));
+    Console.print(RESULT_MESSAGE.SIX(six));
+    Console.print(RESULT_MESSAGE.PROFIT(this.profitRate));
   }
 }
 
