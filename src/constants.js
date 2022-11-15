@@ -8,7 +8,7 @@ const SET_WINNGNUMBER = Object.freeze({
 
 const LOTTO_PRIZE = Object.freeze({
   six: 2000000000,
-  five_Bonus: 30000000,
+  fiveWithBonus: 30000000,
   five: 1500000,
   four: 50000,
   three: 5000,
@@ -47,7 +47,7 @@ const LOTTO_MATCHES = Object.freeze({
   4: "four",
   5: "five",
   6: "six",
-  five_Bonus: "five_Bonus",
+  fiveWithBonus: "fiveWithBonus",
 });
 
 module.exports = {
