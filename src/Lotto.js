@@ -50,10 +50,11 @@ class Lotto {
   }
 
   printMylotto(lottoCount) {
-    Console.print(`\n${lottoCount}${SENTANCE.BUY}`);
+    Console.print(`${lottoCount}${SENTANCE.BUY}`);
     this.makeLottoNumber(lottoCount);
     this.mylotto.forEach((mylottoArray) => {
-      Console.print(mylottoArray);
+      let strMyLotto = `[${String(mylottoArray).replace(/,/g, ", ")}]`
+      Console.print(strMyLotto);
     });
     this.enterWinningNumber();
   }
@@ -63,7 +64,6 @@ class Lotto {
       let lotto = Random.pickUniqueNumbersInRange(1, 45, 6);
       lotto = this.sortLotto(lotto);
       exception.checkCount(lotto);
-      lotto.forEach((number) => exception.checkString(number));
       this.mylotto.push(lotto);
     }
   }
