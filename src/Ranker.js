@@ -4,6 +4,7 @@ class Ranker {
   static #generateRankCondition(sameCount, [lotto, bonusNumber]) {
     return [3, 4, 5, 5, 6].map((num, idx) => {
       if (idx === 2) return sameCount === num && !lotto.includes(bonusNumber);
+      if (idx === 3) return sameCount === num && lotto.includes(bonusNumber);
       return sameCount === num;
     });
   }
