@@ -20,10 +20,9 @@ class Lotto {
     }
   }
 
-  isNumInRange(randomNumArr) {
-    for (let i = 0; i < randomNumArr.length; i++) {
-      if (randomNumArr[i] < RANGE.MIN && randomNumArr[i] > RANGE.MAX)
-        return false;
+  isNumInRange(numbers) {
+    for (let i = 0; i < numbers.length; i++) {
+      if (numbers[i] < RANGE.MIN || numbers[i] > RANGE.MAX) return false;
     }
     return true;
   }
