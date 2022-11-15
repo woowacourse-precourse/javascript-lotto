@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Validation = require("./Validation.js");
 
 class CreatedLotto{
   #createdLottoList
@@ -13,7 +14,9 @@ class CreatedLotto{
   }
 
   makeUniqueNumbers(){
-    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    const uniqueNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    Validation.isTrue(uniqueNumbers);
+    return uniqueNumbers;
   }
 
   createLotto(quantity){

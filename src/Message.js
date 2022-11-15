@@ -11,11 +11,6 @@ class Message{
 
   isContainBonus(lotto, bonus){
     return lotto.some( number => number === parseInt(bonus)) ? 1 : 0;
-    // let hasBonus = 0;
-    // lotto.forEach(number => {
-    //   if (number === parseInt(bonus)) hasBonus = 1
-    // })
-    // return hasBonus;
   }
 
   makeWinInfo(createdLottoList, numbers, bonus){

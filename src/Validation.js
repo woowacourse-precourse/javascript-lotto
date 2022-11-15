@@ -21,6 +21,10 @@ class Validation {
   static isValidLength(numbers){
     if (numbers.length !== 6 ) throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
   }
+
+  static isTrue(value){
+    if (!value) throw new Error("[ERROR] 유효하지 않은 입력입니다.");
+  }
 }
 
 module.exports = Validation;
