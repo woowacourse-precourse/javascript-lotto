@@ -1,19 +1,18 @@
 const { PRIZE_MONEY, A_LOTTO_PRICE } = require('./constants.js');
 const MIN_MATCH_NUMBER = 3;
-const numberByMatching = {
-  3: 0,
-  4: 0,
-  5: 0,
-  '5+1': 0,
-  6: 0,
-};
 
 class WinningResult {
   constructor(winningNumberList, bunusNumber, lottoTicketList) {
     this.winningNumberList = winningNumberList.map(Number);
     this.bunusNumber = Number(bunusNumber);
     this.lottoTicketList = lottoTicketList;
-    this.numberByMatching = numberByMatching;
+    this.numberByMatching = {
+      3: 0,
+      4: 0,
+      5: 0,
+      '5+1': 0,
+      6: 0,
+    };
     this.setNumberByMatching();
     this.getProfitRate();
   }
