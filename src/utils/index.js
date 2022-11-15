@@ -11,9 +11,7 @@ const getSameElemetCount = (arrayA, arrayB) => {
   return arrayA.filter((elem) => arrayB.includes(elem)).length;
 };
 
-const doesArrayIncludeNumber = (array, number) => {
-  return array.includes(number);
-};
+const doesArrayIncludeNumber = (array, number) => array.includes(number);
 
 module.exports = {
   stringToNumberArray,
