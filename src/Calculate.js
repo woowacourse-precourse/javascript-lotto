@@ -3,6 +3,10 @@ class Calculate {
         return money / 1000;
     }
 
+    static divideByOneThousand (money) {
+        return money % 1000;
+    }
+
     
 }
 
