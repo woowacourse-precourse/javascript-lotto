@@ -4,6 +4,7 @@ const LottoMachine = require('./LottoMachine')
 class App {
   constructor(){
     this.lottomachine = new LottoMachine();
+    this.purchaseAmount;
     this.lottoQuantity;
     this.lottoList;
     this.winningList;
@@ -16,8 +17,8 @@ class App {
 
   getMoney(){
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n",(money) => {
-      const purchaseAmount = parseInt(money)
-      this.lottoQuantity = this.lottomachine.lottoQuantity(purchaseAmount);
+      this.purchaseAmount = parseInt(money)
+      this.lottoQuantity = this.lottomachine.lottoQuantity(this.purchaseAmount);
       this.printQuantity();
     });
   }
@@ -52,6 +53,11 @@ class App {
     });
   }
 
+  printResult(){
+    MissionUtils.Console.print(`
+    `)
+  }
+
   getMatchCount(){
     this.lottoList.forEach(lottoNums=>{
       let isMatch = lottoNums.filter(nums => this.winningList.includes(nums));
@@ -65,6 +71,13 @@ class App {
   getMatchBounsNum(lottoNums){
     if(this.lottoNums.includes(this.bonusNumber)) this.result[1] +=1;
     else this.result[2] +=1
+  }
+
+  getRateOfReturn(){
+    prizeMoney = [2000000000,30000000,1500000,50000,5000];
+    const returnList = prizeMoney.map((prize,index)=>prize*this.result[index]);
+    const rateOfReturn = (returnList.reduce((acc,cur)=>acc+cur)/this.purchaseAmount).toFixed(2);
+    return rateOfReturn;
   }
 
   
