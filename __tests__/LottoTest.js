@@ -1,18 +1,96 @@
-const Lotto = require("../src/Lotto");
+const MissionUtils = require('@woowacourse/mission-utils');
 
-describe("로또 클래스 테스트", () => {
-  test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
-    expect(() => {
-      new Lotto([1, 2, 3, 4, 5, 6, 7]);
-    }).toThrow("[ERROR]");
-  });
+const Lotto = require('../src/Lotto');
 
-  // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
-  test("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.", () => {
-    expect(() => {
-      new Lotto([1, 2, 3, 4, 5, 5]);
-    }).toThrow("[ERROR]");
-  });
+const ERROR_TEXT = '[ERROR]';
 
-  // 아래에 추가 테스트 작성 가능
+afterAll(() => {
+  MissionUtils.Console.close();
 });
+
+describe('lotto test', () => {
+    test('length 6.', () => {
+      const RECEIVED = 6;
+
+      expect(Lotto.createLotto()).toHaveLength(RECEIVED);
+    });
+  });
+
+  describe('test', () => {
+    test('8000', () => {
+      const RECEIVED = '8000';
+      const EXPECTED = 8;
+      expect(Lotto.buyLotto(RECEIVED)).toHaveLength(EXPECTED);
+    });
+
+    test('6', () => {
+      const ZERO = 0;
+      const RECEIVED = '8000';
+      const EXPECTED = 6;
+      expect(Lotto.buyLotto(RECEIVED)[ZERO]).toHaveLength(EXPECTED);
+    });
+
+    test('indivisible.', () => {
+      expect(() => {
+        const EXPECTED = '1234';
+        Lotto.buyLotto(EXPECTED);
+      }).toThrow(ERROR_TEXT);
+    });
+  });
+
+    describe('calculateCount', () => {
+    test('5', () => {
+      const EXPECTED = [[1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 10]];
+      const RECEIVED = 5;
+      expect(Lotto.calculateCount(...EXPECTED)).toEqual(RECEIVED);
+    });
+  });
+
+  describe('calcWonResult', () => {
+    test('', () => {
+      const METHOD_NAME = 'calcWonResult';
+      expect(Lotto.calcWonResult.name).toEqual(METHOD_NAME);
+    });
+    describe('', () => {
+      const { calcWonResult } = Lotto;
+      const wonResult = [0, 0, 0, 0, 0];
+      test('3', () => {
+        const currentLotto = [11, 12, 13, 14, 15, 19];
+        const BONUS = 7;
+        const THREE = 3;
+        const EXPECTED = [wonResult, THREE, currentLotto, BONUS];
+        const RECEIVED = [1, 0, 0, 0, 0];
+
+        expect(calcWonResult(...EXPECTED)).toEqual(RECEIVED);
+      });
+
+      test('4', () => {
+        const currentLotto = [11, 12, 13, 14, 15, 19];
+        const BONUS = 7;
+        const FOUR = 4;
+        const EXPECTED = [wonResult, FOUR, currentLotto, BONUS];
+        const RECEIVED = [0, 1, 0, 0, 0];
+        expect(calcWonResult(...EXPECTED)).toEqual(RECEIVED);
+      });
+
+      test('5', () => {
+        const currentLotto = [11, 12, 13, 14, 15, 19];
+        const BONUS = 7;
+        const FIVE = 5;
+        const EXPECTED = [wonResult, FIVE, currentLotto, BONUS];
+        const RECEIVED = [0, 0, 1, 0, 0];
+        expect(calcWonResult(...EXPECTED)).toEqual(RECEIVED);
+      });
+
+      test('6', () => {
+        const currentLotto = [11, 12, 13, 14, 15, 19];
+        const BONUS = 7;
+        const SIX = 6;
+        const EXPECTED = [wonResult, SIX, currentLotto, BONUS];
+        const RECEIVED = [0, 0, 0, 0, 1]
+        expect(calcWonResult(...EXPECTED)).toEqual(RECEIVED);
+      });
+    });
+  });
+
+  
