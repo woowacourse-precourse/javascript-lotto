@@ -1,5 +1,6 @@
 const App = require('../src/App');
 const MissionUtils = require('@woowacourse/mission-utils');
+const Lotto = require('../src/Lotto');
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();
@@ -91,7 +92,55 @@ describe('로또 테스트', () => {
     });
   });
 
-  test('예외 테스트', () => {
+  test('당첨 번호를 입력하면 Lotto 클래스를 활용해 검증한다.', () => {
+    mockRandoms([
+      [8, 21, 23, 41, 42, 43],
+      [3, 5, 11, 16, 32, 38],
+      [7, 11, 16, 35, 36, 44],
+      [1, 8, 11, 31, 41, 42],
+      [13, 14, 16, 38, 42, 45],
+      [7, 11, 30, 40, 42, 43],
+      [2, 13, 22, 32, 38, 45],
+      [1, 3, 5, 14, 22, 45],
+    ]);
+    mockQuestions(['8000', '1,2,3,4,5,6', '0']);
+
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.');
+  });
+
+  test('당첨 번호를 입력하면 Lotto 클래스를 생성한다.', () => {
+    mockRandoms([[8, 21, 23, 41, 42, 43]]);
+    mockQuestions(['1000', '1,2,3,4,5,6']);
+
+    const app = new App();
+    app.play();
+
+    expect(app.lottoMachine).toBeInstanceOf(Lotto);
+  });
+
+  test('당첨 번호를 입력하면 Lotto 클래스를 활용해 검증한다', () => {
+    mockRandoms([[8, 21, 23, 41, 42, 43]]);
+    mockQuestions(['1000', '1,2,3,4,5,5']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR] 로또 번호에는 중복이 존재할 수 없습니다.');
+  });
+
+  test('보너스 번호를 입력하면 Lotto 클래스를 활용해 검증한다.', () => {
+    mockRandoms([[8, 21, 23, 41, 42, 43]]);
+    mockQuestions(['1000', '1,2,3,4,5,6', '0']);
+
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.');
+  });
+
+  test('금액은 1,000원 단위로 나누어 떨어진다.', () => {
     mockQuestions(['1100']);
     expect(() => {
       const app = new App();
@@ -99,7 +148,7 @@ describe('로또 테스트', () => {
     }).toThrow('[ERROR] 금액은 1,000원 단위로 나누어 떨어져야 합니다.');
   });
 
-  test('예외 테스트', () => {
+  test('금액은 숫자로만 이루어져 있다.', () => {
     mockQuestions(['1000j']);
     expect(() => {
       const app = new App();
