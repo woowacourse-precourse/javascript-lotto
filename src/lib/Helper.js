@@ -1,4 +1,5 @@
-const { Message } = require("./constants/Message");
+const { Message } = require("../static/Message");
+
 
 const Helper = {
   checkValidLength(numbers) {
