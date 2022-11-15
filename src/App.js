@@ -85,9 +85,8 @@ class App {
 
   printStatistic(list) {
     const profit = this.calculateProfit(list);
-    const profitRate = ((profit / this.amount) * 100).toFixed(1);
-    const result = Number(profitRate);
-    Console.print(`총 수익률은 ${result}%입니다.`)
+    const profitRate = this.calculateProfitRate(profit);
+    Console.print(`총 수익률은 ${profitRate}%입니다.`)
     Console.close();
   }
 
@@ -99,6 +98,11 @@ class App {
       list[6] * 2000000000 +
       list[7] * 30000000
     )
+  }
+
+  calculateProfitRate(profit) {
+    const profitRate = ((profit / this.amount) * 100).toFixed(1);
+    return Number(profitRate);
   }
 
 }
