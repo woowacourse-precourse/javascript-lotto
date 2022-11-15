@@ -41,6 +41,10 @@ const checkWinningNumber = (numbers) => {
   if (isDuplicate(array)) {
     error(ERROR.DUPLICATE);
   }
+  
+  if(array.some((eachNumer) => isNotNumber(eachNumer))){
+    error(ERROR.NOT_NUMBER);
+  }
 
   if (array.some((eachNumer) => isOutOfRange(eachNumer))) {
     error(ERROR.OUT_OF_RANGE);
