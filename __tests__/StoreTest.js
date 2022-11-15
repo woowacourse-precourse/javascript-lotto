@@ -1,4 +1,5 @@
 const Store = require('../src/Store');
+const { REGEX } = require('../src/constants');
 
 describe('스토어 클래스 테스트', () => {
   test('잘못된 구입 금액을 입력한 경우 에러처리', () => {
@@ -18,5 +19,16 @@ describe('스토어 클래스 테스트', () => {
         store.validate(value);
       }).toThrow('[ERROR]');
     });
+  });
+
+  test('1~45까지 중복되지 않는 6개 숫자 뽑기', () => {
+    const store = new Store();
+    store.pickNumbers();
+    const [lottoArr] = store.lottos;
+    const lottoStr = lottoArr.join(',');
+    const lottoSet = new Set(lottoArr);
+
+    expect(REGEX.WINNING_NUMBER.test(lottoStr)).toBe(true);
+    expect(lottoSet.size).toEqual(6);
   });
 });
