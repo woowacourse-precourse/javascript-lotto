@@ -62,6 +62,9 @@ class App {
 
   getBonusNumber(){
     MissionUtils.Console.readLine("보너스 번호를 입력해주세요 : ", (bonusInput) => {
+      if(this.WinningLotto.includes(parseInt(bonusInput))){
+        throw new Error("[ERROR] 보너스 번호와 당첨 번호가 겹칩니다.");
+      }
       this.bonusNumber = parseInt(bonusInput);
       MissionUtils.Console.close();
     });
