@@ -25,6 +25,10 @@ class WinningResult {
     return matchedArr.length;
   }
 
+  getResult() {
+    return this.#result;
+  }
+
   setResult() {
     this.#lottoArr.forEach(lotto => {
       const matchedNumber = this.getMatchedLottoNumbers(lotto, this.#winningNumberArr);

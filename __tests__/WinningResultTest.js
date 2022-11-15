@@ -1,5 +1,21 @@
 const WinningResult = require('../src/WinningResult');
 
+test('당첨 금액 계산하기', () => {
+  const set = new Set();
+  set.add(JSON.stringify([1, 2, 3, 4, 5, 6]));
+  set.add(JSON.stringify([2, 3, 4, 5, 6, 7]));
+  const winningResult = new WinningResult(set, [1, 2, 3, 4, 5, 6], 7);
+
+  expect(winningResult.getResult()).toEqual({
+    5000: 0,
+    50000: 0,
+    1500000: 0,
+    30000000: 1,
+    2000000000: 1,
+  });
+  expect(winningResult.calculateSum()).toBe(2030000000);
+});
+
 test('FIRST_PLACE', () => {
   const set = new Set();
   set.add(JSON.stringify([1, 2, 3, 4, 5, 6]));
