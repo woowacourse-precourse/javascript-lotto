@@ -1,3 +1,5 @@
+const Bonus = require('../src/Bonus');
+const Lotto = require('../src/Lotto');
 const Result = require('../src/Result');
 
 describe('리절트 클래스 테스트', () => {
@@ -27,5 +29,40 @@ describe('리절트 클래스 테스트', () => {
         result.validate(value);
       }).toThrow('[ERROR]');
     });
+  });
+
+  test('당첨내역 구하기', () => {
+    // 당첨 번호: [1, 2, 3, 4, 5, 6]
+    const winningNumber = new Lotto([1, 2, 3, 4, 5, 6]);
+    // 보너스 번호: 13
+    const bonusNumber = new Bonus('13', winningNumber);
+    const result = new Result([
+      // 1등: 6개 일치 (2,000,000,000원)
+      [1, 2, 3, 4, 5, 6],
+      // 2등: 5개 일치, 보너스볼 일치 (30,000,000원)
+      [1, 2, 3, 4, 5, 13],
+      // 3등: 5개 일치 (1,500,000원)
+      [2, 3, 4, 5, 6, 7],
+      // 4등: 4개 일치(50,000원)
+      [3, 4, 5, 6, 7, 8],
+      // 5등: 3개 일치 (5,000원)
+      [4, 5, 6, 7, 8, 9],
+      // 미당첨
+      [5, 6, 7, 8, 9, 10],
+      [6, 7, 8, 9, 10, 11],
+      [7, 8, 9, 10, 11, 12],
+    ]);
+
+    result.lottos.forEach((lotto) => {
+      const countMatching = winningNumber.compare(lotto);
+      const hasBonus = bonusNumber.compare(lotto);
+      result.updateHistory(countMatching, hasBonus);
+    });
+
+    expect(result.history.fifthPlace.count).toEqual(1);
+    expect(result.history.fourthPlace.count).toEqual(1);
+    expect(result.history.thirdPlace.count).toEqual(1);
+    expect(result.history.secondPlace.count).toEqual(1);
+    expect(result.history.firstPlace.count).toEqual(1);
   });
 });
