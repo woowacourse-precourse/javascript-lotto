@@ -36,9 +36,23 @@ class App {
       "\n당첨 번호를 입력해 주세요.\n",
       (lottoNumber) => {
         const winLotto = lottoNumber.split(",");
-        this.lotto = new Lotto(winLotto);
+        const validatedLotto = this.wonLottoValidate(winLotto);
+        this.lotto = new Lotto(validatedLotto);
       }
     );
+  }
+
+  wonLottoValidate(winLotto) {
+    const validatedLotto = winLotto.map((number) => {
+      if (isNaN(number)) {
+        throw new Error("[ERROR] 로또번호는 숫자만 입력해주세요.");
+      }
+      if (number.includes(".")) {
+        throw new Error("[ERROR] 로또번호는 자연수만 입력해주세요.");
+      }
+      return parseInt(number);
+    });
+    return validatedLotto;
   }
 }
 
