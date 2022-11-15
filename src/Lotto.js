@@ -1,6 +1,3 @@
-// const MissionUtils = require("@woowacourse/mission-utils");
-/// this.#numbers 가 뭐를 뜻하는지 어디에 써야하는지..??
-// 리턴문이 필요할때와 아닐때의 차이
 class Lotto {
   #numbers;
 

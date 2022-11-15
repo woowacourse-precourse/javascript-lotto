@@ -1,9 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
 class TotalRatio {
-  // constructor(positiveTotalCalculate, negativeTotalCalculate) {
-  //   // this.roundDecimalPoint(positiveTotalCalculate, negativeTotalCalculate);
-  // }
   roundDecimalPoint(positiveTotalCalculate, negativeTotalCalculate) {
     const roundedPositive = Math.round(negativeTotalCalculate * 10) / 10;
     const roundedNegative = Math.round(positiveTotalCalculate * 10) / 10;
