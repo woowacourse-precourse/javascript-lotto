@@ -9,7 +9,7 @@
 
 #### compareNumeric()
 
-- [ ] 로또 번호는 오름차순으로 정렬한다.
+- [x] 로또 번호는 오름차순으로 정렬한다.
 
 ### LottoChecker
 
