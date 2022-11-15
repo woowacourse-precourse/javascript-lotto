@@ -17,9 +17,18 @@ class Player {
   }
 
   buyLottos(money) {
+    this.validateMoney(money);
+
     const lottoCount = money / 1000;
+
     this.spentMoney = money;
     this.lottos = Array.from({ length: lottoCount }, () => Machine.publishLotto());
+  }
+
+  validateMoney(money) {
+    if (!Number.isInteger(money / 1000)) {
+      throw new Error('[ERROR] 1000원 단위의 금액만 입력하세요.');
+    }
   }
 
   addPrizeCounts(prize) {
