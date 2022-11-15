@@ -16,6 +16,12 @@ class Validator {
       }
     });
   }
+
+  static errorIfBonusLottoInvalidFormat(bonusNumber) {
+    if (!REGEX.LOTTO_NUMBER_FORMAT.test(bonusNumber)) {
+      throw Error(ERROR.LOTTO_INVALID_VALUE);
+    }
+  }
 }
 
 module.exports = Validator;
