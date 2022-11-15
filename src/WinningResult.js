@@ -1,5 +1,4 @@
-const { PRIZE_MONEY, A_LOTTO_PRICE } = require('./constants.js');
-const MIN_MATCH_NUMBER = 3;
+const { PRIZE_MONEY, A_LOTTO_PRICE, MIN_MATCH_NUMBER } = require('./constants.js');
 
 class WinningResult {
   constructor(winningNumberList, bunusNumber, lottoTicketList) {
