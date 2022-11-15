@@ -87,4 +87,10 @@ describe("Store 클래스 테스트", () => {
       expect(logSpy).toHaveBeenCalledWith(candidate);
     });
   });
+
+  test("당첨 번호를 입력받아 예외가 발생하지 않으면 저장한다.", () => {
+    mockReadLine("1,2,3,4,5,6");
+    store.getAnswer();
+    expect(store.answer.numbers).toStrictEqual([1, 2, 3, 4, 5, 6]);
+  });
 });
