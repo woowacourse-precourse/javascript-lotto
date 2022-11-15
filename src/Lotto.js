@@ -1,5 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 const { GAME, RULE, ERROR } = require('./modules/Constant');
+const validateNumber = require('./modules/validation');
 
 class Lotto {
   #numbers;
@@ -15,9 +16,8 @@ class Lotto {
     } else if (new Set(numbers).size < GAME.COUNT) {
       throw new Error(`${ERROR.COMMON} ${ERROR.CANT_OVERLAP_LOTTO}`);
     }
-    const numberReg = /^[0-9]*$/;
     numbers.forEach((number) => {
-      if (!numberReg.test(number) || number < GAME.START || number > GAME.END) {
+      if (!validateNumber(number) || number < GAME.START || number > GAME.END) {
         throw new Error(`${ERROR.COMMON} ${ERROR.MUST_IN_RANGE}`);
       }
     });

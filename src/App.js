@@ -2,6 +2,7 @@ const { Console, Random } = require('@woowacourse/mission-utils');
 const { GAME, MESSAGE, PRIZE_BOARD, ERROR } = require('./modules/Constant');
 const Lotto = require('./Lotto');
 const WinLotto = require('./WinLotto');
+const validateNumber = require('./modules/validation');
 
 class App {
   constructor() {
@@ -102,7 +103,7 @@ class App {
 
   validateAmount(amount) {
     const stringToNumber = Number(amount);
-    if (isNaN(stringToNumber)) {
+    if (!validateNumber(amount)) {
       throw new Error(`${ERROR.COMMON} ${ERROR.NOT_NUMBER}`);
     } else if (stringToNumber % GAME.PRICE !== 0) {
       throw new Error(`${ERROR.COMMON} ${ERROR.NOT_MULTIPLE_OF_THOUSAND}`);
