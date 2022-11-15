@@ -7,6 +7,11 @@ class Lotto {
   constructor(numbers) {
     this.#numbers = numbers;
     this.Validator = new Validator();
+    this.validateLotto(numbers);
+  }
+
+  get numbers() {
+    return this.#numbers;
   }
 
   validateLotto(numbers) {
@@ -76,7 +81,6 @@ class Lotto {
 
     return result;
   }
-
   // TODO: 추가 기능 구현
 }
 
