@@ -8,6 +8,7 @@ const LOTTO_REWARD = {
 };
 class Statistic {
   #totalCount;
+  #totalReword;
   constructor() {
     this.#totalCount = {
       "3hit": 0,
@@ -16,7 +17,27 @@ class Statistic {
       "5hitBonus": 0,
       "6hit": 0,
     };
+    this.#totalReword = 0;
   }
+
+  calculateLotteryReturn(purchaseAmount) {
+    Object.keys(this.#totalCount).forEach((hit) => {
+      this.#totalReword += this.#totalCount[hit] * LOTTO_REWARD[hit];
+    });
+    return Math.round((this.#totalReword / purchaseAmount) * 100 * 10) / 10;
+  }
+  countRank(lottoNumbers, winningNumber) {
+    lottoNumbers.forEach((lottoNumber) => {
+      const rank = this.checkRank(
+        this.countHit(lottoNumber, winningNumber),
+        this.checkBonusNumber(lottoNumber, winningNumber)
+      );
+      if (rank) {
+        this.#totalCount[rank] = this.#totalCount[rank] += 1;
+      }
+    });
+  }
+
   checkRank(hit, bonusHit = false) {
     if (hit > 2) {
       if (hit == 5 && bonusHit) {
@@ -26,6 +47,7 @@ class Statistic {
     }
     return null;
   }
+
   countHit(lottoNumber, winningNumber) {
     let hit = 0;
     winningNumber = winningNumber.slice(0, 6);
@@ -36,6 +58,7 @@ class Statistic {
     }
     return hit;
   }
+
   checkBonusNumber(lottoNumber, winningNumber) {
     if (lottoNumber.indexOf(winningNumber[winningNumber.length - 1]) !== -1) {
       return true;
