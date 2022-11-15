@@ -41,7 +41,7 @@ class Game {
     this.getWinningNumbers(guessNumbersTotal, numOfTickets);
   }
   
-  numArraytoStringArray (numArray) {
+  numArraytoStringArray(numArray) {
     const stringArray = [];
     for (let i = 0; i < numArray.length; i += 1) {
       let newArr = "\"[";
