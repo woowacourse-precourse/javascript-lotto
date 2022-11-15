@@ -9,6 +9,10 @@ class Game {
         this.getMoney();
     }
       
+    getMoney () {
+        InputOutput.input(Message.PLEASE_TYPING_MONEY, (money) => this.start(money));
+    }
+
 }
 
 module.exports = Game;
