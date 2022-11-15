@@ -92,5 +92,25 @@ describe("금액 validation 테스트", () => {
     });
   });
   test("로또 수익률을 계산한다", () => {
+    const statistic = new Statistic();
+    const winningNumber = [1, 4, 24, 32, 40, 44, 7];
+    const oneHit = [1, 2, 3, 5, 6, 7];
+    const twoHit = [1, 2, 3, 4, 5, 6];
+    const threeHit = [1, 4, 24, 25, 26, 27];
+    const fourHit = [1, 4, 24, 32, 33, 34];
+    const fiveHit = [1, 4, 24, 32, 40, 41];
+    const fiveHitBonus = [1, 4, 7, 24, 32, 40];
+    const sixHit = [1, 4, 24, 32, 40, 44];
+    const lottos = [
+      oneHit,
+      twoHit,
+      threeHit,
+      fourHit,
+      fiveHit,
+      fiveHitBonus,
+      sixHit,
+    ];
+    statistic.countRank(lottos, winningNumber);
+    expect(statistic.calculateLotteryReturn(7000)).toBe(29022214.3);
   });
 });
