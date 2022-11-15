@@ -61,7 +61,7 @@ class Manager {
     });
   }
 
-  printResult(){
+  makeWinInfo(){
     const winCount = this.createdLottoList.map(lotto => lotto.filter(number => this.numbers.includes(number)).length);
     const hasBonus = this.createdLottoList.map(lotto => lotto.filter(number => number === parseInt(this.bonus)).length)[0];
 
@@ -79,18 +79,30 @@ class Manager {
 
       if (winCount[i] === 6) winInfo[4] += 1;
     }
-    const moneyUnits = ["5,000", "50,000", "1,500,000", "30,000,000", "2,000,000,000"];
+    return winInfo;
+  }
 
+  calRateOfReturn(sum){
+    return ((100 / this.quantity) * (sum / 1000)).toFixed(1); 
+  }
+
+  makeMessage(){
+    const winInfo = this.makeWinInfo();
+    const MONEY_UNITS = ["5,000", "50,000", "1,500,000", "30,000,000", "2,000,000,000"];
     let message = "당첨 통계 \n---\n";
     let sum = 0;
     for (let i = 0; i<5; i++){
       message += (i > 2) ? `${i+2}개 일치` : `${i+3}개 일치`;
       message += (i === 3) ? `, 보너스 볼 일치` : "";
-      message += ` (${moneyUnits[i]}원) - ${winInfo[i]}개\n`;
-      sum += parseInt(moneyUnits[i].replace(/,/g, "")) * winInfo[i];
+      message += ` (${MONEY_UNITS[i]}원) - ${winInfo[i]}개\n`;
+      sum += parseInt(MONEY_UNITS[i].replace(/,/g, "")) * winInfo[i];
     }
-    const rateOfReturn = ((100 / this.quantity) * (sum / 1000)).toFixed(1); 
-    message += `총 수익률은 ${rateOfReturn}%입니다.`;
+    message += `총 수익률은 ${this.calRateOfReturn(sum)}%입니다.`;
+    return message;
+  }
+
+  printResult(){
+    const message = this.makeMessage();
     MissionUtils.Console.print(message);
     MissionUtils.Console.close();
   }
