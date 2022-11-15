@@ -22,7 +22,10 @@ class App {
   }
 
   getInputPurchaseAmount(callback) {
-    MissionUtils.Console.readLine(Constant.PURCHASE_AMOUNT_QUESTION_MESSAGE, callback);
+    MissionUtils.Console.readLine(
+      Constant.PURCHASE_AMOUNT_QUESTION_MESSAGE,
+      callback
+    );
   }
 
   calculateNumberOfTickets(price) {
@@ -65,13 +68,53 @@ class App {
   }
 
   getInputLottoNumbers(callback) {
-    MissionUtils.Console.readLine(Constant.LOTTO_NUMBERS_QUESTION_MESSAGE, callback);
+    MissionUtils.Console.readLine(
+      Constant.LOTTO_NUMBERS_QUESTION_MESSAGE,
+      callback
+    );
   }
-  
+
   getInputBonusNumber(callback) {
-    MissionUtils.Console.readLine(Constant.BONUS_NUMBER_QUESTION_MESSAGE, callback);
+    MissionUtils.Console.readLine(
+      Constant.BONUS_NUMBER_QUESTION_MESSAGE,
+      callback
+    );
   }
-  
+
+  validateInputWinningNumbers(winningNumbersInput) {
+    if (
+      winningNumbersInput[2] !== "," ||
+      winningNumbersInput[4] !== "," ||
+      winningNumbersInput[6] !== "," ||
+      winningNumbersInput[8] !== "," ||
+      winningNumbersInput[10] !== "," ||
+      winningNumbersInput[12] !== ","
+    ) {
+      throw new Error(Constant.WINNING_NUMBERS_ERROR_MESSAGE);
+    }
+    const winningNumbersArray = winningNumbersInput.split(",");
+    if (winningNumbersArray.length !== 6) {
+      throw new Error(Constant.WINNING_NUMBERS_ERROR_MESSAGE);
+    }
+    if (
+      winningNumbersArray
+        .map((number) => Number(number))
+        .some((number) => isNaN(number))
+    ) {
+      throw new Error(Constant.WINNING_NUMBERS_ERROR_MESSAGE);
+    }
+    if (winningNumbersArray.some((number) => number < 1 || number > 45)) {
+      throw new Error(Constant.WINNING_NUMBERS_ERROR_MESSAGE2);
+    }
+    if (
+      winningNumbersArray.some(
+        (number, index) => winningNumbersArray.indexOf(number) !== index
+      )
+    ) {
+      throw new Error(Constant.WINNING_NUMBERS_ERROR_MESSAGE3);
+    }
+  }
+
 }
 
 const app = new App();
