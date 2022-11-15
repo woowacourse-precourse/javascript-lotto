@@ -6,9 +6,9 @@ const Display = require('./Display');
 
 class Machine {
   static user = new User();
-  #rankingCountMap;
   #winningNumbers;
   #bonusNumber;
+  rankingCountMap;
 
   constructor(payment) {
     Machine.user.payment = payment;
@@ -16,7 +16,7 @@ class Machine {
 
     this.#winningNumbers = [];
     this.#bonusNumber = 0;
-    this.#rankingCountMap = new Map();
+    this.rankingCountMap = new Map();
   }
 
   work() {
@@ -56,6 +56,17 @@ class Machine {
     Console.readLine(Display.guidance('BONUS_NUMBER_INPUT'), (bonus) => {
       validateBonusNumberInput(bonus);
       this.#bonusNumber = +bonus;
+
+      this.#countTotalRankings();
+    });
+  }
+
+  #countTotalRankings() {
+    Machine.user.purchasedLotto.forEach((lotto) => {
+      const winningBonusCounts = lotto.countWinningBonusNumbers({
+        winning: this.#winningNumbers,
+        bonus: this.#bonusNumber,
+      });
     });
   }
 }
