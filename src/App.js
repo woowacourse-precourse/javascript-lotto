@@ -4,8 +4,11 @@ const LottoManager = require('./LottoManager');
 class App {
   constructor() {
     this.lottoManager = new LottoManager();
+    this.lottoArray = [];
     this.winningNumbers = [];
     this.bonusNumber = 0;
+    this.ranking = { first: 0, second: 0, third: 0, fourth: 0, fifth: 0 };
+    this.winningReward = 0;
   }
 
   play() {
@@ -14,8 +17,8 @@ class App {
 
   inputPurchaseAmount() {
     Console.readLine('구입금액을 입력해 주세요.\n', (purchaseAmount) => {
-      const lottoArray = this.lottoManager.issueLotto(purchaseAmount);
-      this.printLotto(lottoArray);
+      this.lottoArray = this.lottoManager.issueLotto(purchaseAmount);
+      this.printLotto(this.lottoArray);
       this.inputWinningNumbers();
     });
   }
@@ -72,7 +75,7 @@ class App {
     Console.readLine('보너스 번호를 입력해 주세요.\n', (number) => {
       this.validateBonusNumber(number);
       this.bonusNumber = parseInt(number);
-      this.bonusNumber = number;
+      this.checkCorrectCount();
     });
   }
 
@@ -100,6 +103,15 @@ class App {
 
   isDuplicateWithWinningNumber(number) {
     return this.winningNumbers.includes(number);
+  }
+
+  checkCorrectCount() {
+    this.lottoArray.forEach((lotto) => {
+      const correctNumbers = lotto
+        .getNumbers()
+        .filter((number) => this.winningNumbers.includes(number));
+      const correctCount = correctNumbers.length;
+    });
   }
 }
 
