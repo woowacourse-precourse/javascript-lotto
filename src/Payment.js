@@ -14,6 +14,11 @@ class Payment {
     }
   }
 
+  validatePaymentMultipleOfThousand(numbers) {
+    if (paymentNum % 1000 !== 0) {
+      throw new Error("[ERROR] 구매금액은 1000원 단위여야 합니다.");
+    }
+  }
   // TODO: 추가 기능 구현
 }
 
