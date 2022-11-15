@@ -9,6 +9,7 @@ const LOTTO_REWARD = {
 class Statistic {
   #totalCount;
   #totalReword;
+  #totalReturn;
   constructor() {
     this.#totalCount = {
       "3hit": 0,
@@ -18,13 +19,14 @@ class Statistic {
       "6hit": 0,
     };
     this.#totalReword = 0;
+    this.#totalReturn = 0;
   }
-
   calculateLotteryReturn(purchaseAmount) {
     Object.keys(this.#totalCount).forEach((hit) => {
       this.#totalReword += this.#totalCount[hit] * LOTTO_REWARD[hit];
     });
-    return Math.round((this.#totalReword / purchaseAmount) * 100 * 10) / 10;
+    this.#totalReturn = ((this.#totalReword / purchaseAmount) * 100).toFixed(1);
+    return this.#totalReturn;
   }
   countRank(lottoNumbers, winningNumber) {
     lottoNumbers.forEach((lottoNumber) => {
