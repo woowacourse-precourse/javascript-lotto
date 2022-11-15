@@ -103,3 +103,23 @@ describe('isValidNumber 테스트', () => {
     });
   });
 });
+
+describe('checkWinResult 테스트 코드', () => {
+  test('당첨번호와 일치하는 갯수 주어질 때 등수 나타내는 winResult 배열 검사', () => {
+    const LottoArray = [1, 2, 3, 4, 5, 7];
+    const testInput = [2, 3, 4, 5, 6];
+    const testOutput = [
+      [0, 0, 0, 0, 0],
+      [1, 0, 0, 0, 0],
+      [0, 1, 0, 0, 0],
+      [0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1],
+    ];
+    testInput.forEach((testCnt, idx) => {
+      const app = new App();
+      app.bonusNumber = 7;
+      app.checkWinResult(LottoArray, testCnt);
+      expect(app.winResult).toEqual(testOutput[idx]);
+    });
+  });
+});
