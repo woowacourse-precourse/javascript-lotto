@@ -56,10 +56,15 @@ class App {
   handleBonusNumber(answer) {
     this.#lottoGame.setBonusNumber(answer);
     const statistics = this.#user.createStatisticsText();
+    App.printWinningStatistics(statistics);
+    Console.close();
+  }
+
+  static printWinningStatistics(statistics) {
+    Console.print(`\n${MESSAGE.WINNING_STATISTICS}`);
+    Console.print('---');
+    statistics.forEach(text => Console.print(text));
   }
 }
-
-const app = new App();
-app.play();
 
 module.exports = App;
