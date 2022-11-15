@@ -1,9 +1,3 @@
-const GUIDE_MESSAGES = {
-  PURCHASE: "구입 금액을 입력해주세요.\n",
-  WINNING_NUMS: `\n당첨 번호를 입력해 주세요.\n`,
-  BONUS_NUM: `\n보너스 번호를 입력해 주세요.\n`,
-};
-
 const LOTTO_PRICE = 1000;
 
 const RANGE_OF_LOTTO_NUMBER = {
@@ -13,11 +7,7 @@ const RANGE_OF_LOTTO_NUMBER = {
 
 const TOTAL_COUNTS = 6;
 
-const ERROR_MESSAGES = {
-  PRICE: "[ERROR] 구입 금액은 1000원 단위의 숫자로 입력해야 합니다.",
-  WINNING_NUMS: `[ERROR] 당첨 번호는 중복되지 않는 1 ~ 45 사이의 숫자 6개를 ','로 구분하여 입력해야 합니다.`,
-  BOUNS_NUM: `[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 1 ~ 45 사이의 숫자 1개를 입력해야 합니다.`,
-};
+const FIVE_AND_BONUS = "5andBonus";
 
 const INITIAL_STATICS = {
   3: 0,
@@ -26,8 +16,6 @@ const INITIAL_STATICS = {
   6: 0,
   "5andBonus": 0,
 };
-
-const FIVE_AND_BONUS = "5andBonus";
 
 const WINNING_PRICES = {
   3: 5000,
@@ -40,11 +28,9 @@ const WINNING_PRICES = {
 const ADD_COMMA_EXP = /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g;
 
 module.exports = {
-  GUIDE_MESSAGES,
   LOTTO_PRICE,
   RANGE_OF_LOTTO_NUMBER,
   TOTAL_COUNTS,
-  ERROR_MESSAGES,
   INITIAL_STATICS,
   FIVE_AND_BONUS,
   WINNING_PRICES,
