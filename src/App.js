@@ -1,6 +1,13 @@
 class App {
-  play() {}
-  
+  play() {
+    this.computerNumber();
+    this.userInput();
+    this.compareLottoNumber();
+    this.setRanking();
+    this.printRank();
+    this.printRevenue();
+  }
+
   userInput(lottoCount) {
     this.userMoneyInput();
     for (let i = 0; i < lottoCount; i++) {
