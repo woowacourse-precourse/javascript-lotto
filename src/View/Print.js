@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { RANK_NOTICE, PRINT } = require('./constants/constants');
+const { RANK_NOTICE, PRINT } = require('../constants/constants');
 
 class Print {
   #reward;

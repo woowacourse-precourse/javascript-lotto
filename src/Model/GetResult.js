@@ -1,5 +1,5 @@
-const { PRIZE } = require('./constants/constants');
-const Print = require('./Print');
+const { PRIZE } = require('../constants/constants');
+const Print = require('../View/Print');
 
 class GetResult {
   #randomNumbersArrays;

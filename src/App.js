@@ -1,4 +1,4 @@
-const GameManager = require('./GameManager');
+const GameManager = require('./Controller/GameManager');
 
 class App {
   constructor() {

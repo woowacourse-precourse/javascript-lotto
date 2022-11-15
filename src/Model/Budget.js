@@ -1,4 +1,4 @@
-const { ERROR } = require('./constants/constants.js');
+const { ERROR } = require('../constants/constants.js');
 
 class Budget {
   #budget;
