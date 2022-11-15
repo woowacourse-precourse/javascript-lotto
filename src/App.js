@@ -43,19 +43,19 @@ class App {
   buy() {
     Console.readLine(APP_MESSAGE.INSERT_PURCHASE_COST, (userInput) => {
       if (!verifyNumberType(userInput))
-        makeException(EXCEPTION_REASON.INPUT_NOT_NUMBER);
+        makeException(EXCEPTION_REASON.INPUT_NOT_NUMBER); // 입력값 타입체크 실패하면 예외처리하도록
       if (!verifyStartMoneyUnit(Number(userInput)))
-        makeException(EXCEPTION_REASON.MONEY_UNIT_INCORRECT);
+        makeException(EXCEPTION_REASON.MONEY_UNIT_INCORRECT); // 입력값 단위체크 실패하면 예외처리하도록
       this.#startMoney = Number(userInput);
       this.#myLotteryQuantity = countPurchasedLotteries(this.#startMoney);
       this.#myLotteryList = Array(this.#myLotteryQuantity).fill(0); // 처음부터 Array(Object) 모양 고정시켜 V8 Map Space에 불필요한 hiddenClass 생성을 막기 위함 (push 사용 x)
       this.#myLotteryPrintList = Array(this.#myLotteryQuantity).fill(0); // 위와 동일한 이유로 생성
-      this.breakLine();
-      return this.makeLotteries();
+      this.breakLine(); // 출력 예제에 맞게 한 줄 띄어쓰기용입니다.
+      return this.makeMyLotteries();
     });
   }
 
-  makeLotteries() {
+  makeMyLotteries() {
     this.#myLotteryList = this.#myLotteryList.map((blankObject) => {
       const myLottery = processRandomLottoNumber();
       blankObject = new Lotto(myLottery); // 내 로또 리스트에 로또 객체들 생성 후 할당.
@@ -81,8 +81,8 @@ class App {
         return separateInput;
       });
 
-      const validCheck = verifyValidLottery(answerLottery);
-      if (validCheck !== true) return makeException(validCheck);
+      const answerValidCheck = verifyValidLottery(answerLottery);
+      if (answerValidCheck !== true) return makeException(answerValidCheck);
 
       this.#winNumber = answerLottery;
       this.breakLine();
