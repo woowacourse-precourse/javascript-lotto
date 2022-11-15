@@ -22,8 +22,8 @@ class Lotto {
     return { winCount: winCount, isBonus: isBonus };
   }
 
-  printNumbers() {
-    console.log(this.#numbers);
+  getNumbers() {
+    return this.#numbers;
   }
 
   // TODO: 추가 기능 구현

@@ -1,21 +1,20 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const { MESSAGES, WIN_CONDITIONS } = require("./lib/constant");
+const { MESSAGES, WIN_CONDITIONS, RESULT_MESSAGE } = require("./lib/constant");
 const Lotto = require("./Lotto");
 
 class App {
   async play() {
     let lottoCount = await this.getAmountPaid();
     let lottos = this.issueLottos(lottoCount);
-    lottos.forEach((element) => {
-      element.printNumbers();
-    });
+    this.printLottos(lottos, lottoCount);
     let winningNumbers = await this.getWinningNumbers();
     let bonusNumber = await this.getBonusNumbers();
 
     this.countWinLottos(lottos, winningNumbers, bonusNumber);
+
     let revenue = this.getRevenue();
     let revenueRate = (revenue / (lottoCount * 1000)) * 100;
-    console.log(revenueRate.toFixed(2));
+
     this.appClose();
   }
 
@@ -84,6 +83,13 @@ class App {
       ) {
         condition.count += 1;
       }
+    });
+  }
+
+  printLottos(lottos, count) {
+    Console.print(RESULT_MESSAGE.COUNT_MESSAGE(count));
+    lottos.forEach((lotto) => {
+      Console.print(lotto.getNumbers());
     });
   }
 

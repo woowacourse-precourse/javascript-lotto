@@ -5,6 +5,7 @@ const MESSAGES = {
 };
 
 const RESULT_MESSAGE = {
+  COUNT_MESSAGE: (lottoCount) => `${lottoCount}개를 구매했습니다.`,
   WIN_MESSAGES: (winCount, winPrice, count) =>
     `${winCount}개 일치 (${winPrice}원) - ${count}개`,
   BONUS_WIN_MESSAGE: (winCount, winPrice, count) =>
