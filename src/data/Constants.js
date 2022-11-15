@@ -1,3 +1,9 @@
+const INPUT = Object.freeze({
+  INPUT_USER_MONEY: `구매금액을 입력해 주세요.\n`,
+  INPUT_USER_WINNING_NUM: `당첨 번호를 입력해 주세요.\n`,
+  INPUT_USER_BONUS_NUM: `보너스 번호를 입력해 주세요.\n`,
+});
+
 const ERROR = Object.freeze({
   ERROR_WINNING_NUM_ONLY_NUM: `[ERROR] 0이 아닌 숫자만 입력이 가능합니다.`,
   ERROR_WINNING_NUM_COMMA: `[ERROR] ,이 연속으로 입력되었습니다.`,
@@ -21,4 +27,4 @@ const RESULT = Object.freeze({
   RESULT_LOTTO_1CLASS: `6개 일치 (2,000,000,000원) - `,
 });
 
-module.exports = { ERROR, RESULT };
+module.exports = { INPUT, ERROR, RESULT };
