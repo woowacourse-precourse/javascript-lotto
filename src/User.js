@@ -16,7 +16,7 @@ class User {
       this.lottos = this.issuer.issue(money);
       Console.print(this.lottos);
 
-      this.drawer.draw(this.lottos);
+      this.drawer.draw(this.lottos, this.money);
     });
   }
 }

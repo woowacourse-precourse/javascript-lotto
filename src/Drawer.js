@@ -4,10 +4,14 @@ const Console = MissionUtils.Console;
 const Validation = require("./Validation");
 
 class Drawer {
+  lottos;
+  money;
   winningNumber;
   bonusNumber;
 
-  draw() {
+  draw(lottos, money) {
+    this.lottos = lottos;
+    this.money = money;
     this.generateWinningNumbers();
   }
 
@@ -31,7 +35,40 @@ class Drawer {
       this.bonusNumber = Number(number);
       Console.print(this.bonusNumber);
       this.validateBonusNumber(this.bonusNumber);
+
+      return this.checkLottos();
     });
+  }
+
+  checkLottos() {
+    this.lottos.forEach((lotto) => {
+      lotto.result = this.compareNumbers(lotto);
+    });
+    Console.print(this.lottos);
+  }
+
+  compareNumbers(lotto) {
+    let winningPoint = 0;
+
+    lotto.numbers.forEach((number) => {
+      if (this.winningNumber.includes(number)) {
+        winningPoint = winningPoint + 1;
+      }
+    });
+
+    if (winningPoint === 5) {
+      if (this.checkBonusNumber(lotto.numbers) === true) {
+        return 7;
+      }
+    }
+    return winningPoint;
+  }
+
+  checkBonusNumber(numbers) {
+    if (numbers.includes(this.bonusNumber)) {
+      return true;
+    }
+    return false;
   }
 
   validateWinningNumbers(numbers) {

@@ -66,4 +66,34 @@ describe("로또 클래스 테스트", () => {
       drawer.validateBonusNumber(0);
     }).toThrow("[ERROR]");
   });
+
+  test("보너스 번호 확인 기능 테스트.", () => {
+    const drawer = new Drawer();
+
+    drawer.bonusNumber = 5;
+    const input = [1, 2, 3, 4, 5, 6];
+    const result1 = drawer.checkBonusNumber(input);
+
+    drawer.bonusNumber = 10;
+    const result2 = drawer.checkBonusNumber(input);
+
+    expect(result1).toEqual(true);
+    expect(result2).toEqual(false);
+  });
+
+  test("당첨 번호 확인 기능 테스트.", () => {
+    const drawer = new Drawer();
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+
+    drawer.winningNumber = [1, 2, 3, 4, 5, 6];
+    drawer.bonusNumber = 10;
+
+    const result1 = drawer.compareNumbers(lotto);
+
+    lotto.numbers = [1, 2, 3, 4, 5, 10];
+    const result2 = drawer.compareNumbers(lotto);
+
+    expect(result1).toEqual(6);
+    expect(result2).toEqual(7);
+  });
 });

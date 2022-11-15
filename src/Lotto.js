@@ -2,6 +2,7 @@ const Validation = require("./Validation");
 
 class Lotto {
   numbers;
+  result;
 
   constructor(numbers) {
     this.validate(numbers);
