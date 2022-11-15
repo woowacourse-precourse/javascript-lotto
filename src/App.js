@@ -132,6 +132,9 @@ class App {
   }
 
   calculateProfit() {
+    if (!this.rewards.some((reward) => reward != 0)) {
+      return 0;
+    }
     const sum = this.rewards.reduce((total, arg) => {
       if (arg[2] != 0) {
         return (total += arg[1] * arg[2]);
