@@ -1,10 +1,9 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const User = require('./User');
 const Calculator = require('./Calculator');
 
 class App {
-
   #totalLotto;
   #user;
   #lotto;
@@ -40,7 +39,7 @@ class App {
     MissionUtils.Console.print(`\n${this.#user.lottoCount}개를 구매했습니다.`);
     for(let i = 0; i<this.#totalLotto.length; i++) {
       this.#totalLotto[i].sort((a, b) => a - b);
-      MissionUtils.Console.print(JSON.stringify(this.#totalLotto[i]).replace(/,/gi, ", "));
+      MissionUtils.Console.print(JSON.stringify(this.#totalLotto[i]).replace(/,/gi, ', '));
     }
   }
 
@@ -70,7 +69,6 @@ class App {
       this.printStatatics();
     });
   }
-
 
   printStatatics() {
     const totalScore = this.#calc.totalScore;
