@@ -73,6 +73,7 @@ class App {
   validatePrizeNumberInput(input) {
     for (let word of input) {
       if (isNaN(word) && word !== ",") {
+        Console.close();
         throw new Error(NUMBER_ERROR);
       }
     }
