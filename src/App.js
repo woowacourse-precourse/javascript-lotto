@@ -4,6 +4,7 @@ const ExceptionCheck = require('./ExceptionCheck');
 const Lotto = require('./Lotto');
 const Printer = require('./Printer');
 const Utils = require('./Utils');
+const { LOTTO_MSG } = require('./Constants.js');
 
 class App {
   constructor() {
@@ -14,6 +15,7 @@ class App {
     this.winNumbers;
     this.LottoCount;
     this.lotto = null;
+    this.bundle;
   }
 
   play() {
@@ -21,7 +23,7 @@ class App {
   }
 
   requestForLotto() {
-    Console.readLine('구매 금액을 1,000단위로 입력해주세요.\n', moneyValue => {
+    Console.readLine(LOTTO_MSG.RQEUEST_MONEY, moneyValue => {
       this.exeptionCheck.userInputMoneyValue(moneyValue);
       this.lottoCount = this.calculator.ofPurchaseLottoCount(moneyValue);
       this.requestWinNumbers();
@@ -29,7 +31,7 @@ class App {
   }
 
   requestWinNumbers() {
-    Console.readLine('당첨번호를 입력해주세요.\n', userInput => {
+    Console.readLine(LOTTO_MSG.RQEUEST_WIN_NUMBE, userInput => {
       this.winNumbers = this.utils.transeStringToNumber(userInput);
       this.lotto = new Lotto(this.winNumbers);
       this.requestBonusnumber();
@@ -37,7 +39,7 @@ class App {
   }
 
   requestBonusnumber() {
-    Console.readLine('보너스 숫자를 입력해주세요\n', bonusNumber => {
+    Console.readLine(LOTTO_MSG.RQEUEST_BONUS_NUMBER, bonusNumber => {
       this.bonusNumber = this.utils.transeStringToNumber(bonusNumber);
       this.lotto.getBonusNumber(this.bonusNumber);
       this.printResult();
@@ -45,10 +47,11 @@ class App {
   }
 
   printResult() {
-    Console.print(`${this.lottoCount}개를 구매했습니다.`);
-    this.lotto
-      .bundleCreate(this.lottoCount)
-      .forEach(lottoNums => Console.print(`[${lottoNums.join(', ')}]`));
+    Console.print(LOTTO_MSG.PURCHASE_COUNT(this.lottoCount));
+    this.lotto.bundleCreate(this.lottoCount).forEach(lottoNums => Console.print(`[${lottoNums.join(', ')}]`));
+    this.bundle = this.lotto.getBundle();
+    this.lotto.bundleVerifyForWin(this.winNumbers, this.bonusNumber, this.bundle);
+    this.lotto.print();
   }
 }
 
