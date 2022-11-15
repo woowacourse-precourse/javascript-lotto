@@ -7,7 +7,9 @@ class Lotto {
     this.#numbers = numbers;
     this.validate(numbers);
   }
-
+  get numbers() {
+    return this.#numbers;
+  }
   validate(numbers) {
     this.isLengthSix(numbers);
     this.isNumber(numbers);
