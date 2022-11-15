@@ -97,9 +97,23 @@ describe("Store 클래스 테스트", () => {
   });
 
   test("보너스 번호를 입력받아 예외가 발생하지 않으면 저장한다.", () => {
+    store.setResult = jest.fn();
     store.answer = new LottoAnswer([1, 2, 3, 4, 5, 6]);
     mockReadLine("7");
     store.setBonus();
     expect(store.answer.bonus).toBe(7);
+  });
+
+  test("발행된 로또와 정답을 비교하여 당첨 결과를 저장한다.", () => {
+    store.candidates = [
+      [1, 2, 3, 4, 5, 6],
+      [4, 5, 6, 7, 8, 9],
+      [5, 6, 11, 12, 13, 14],
+    ];
+    store.answer = new LottoAnswer([4, 5, 6, 7, 8, 10]);
+    store.answer.bonus = 9;
+    store.setResult();
+    expect(store.result.get(WINMESSAGE[3])[1]).toBe(1);
+    expect(store.result.get(WINMESSAGE["5+"])[1]).toBe(1);
   });
 });
