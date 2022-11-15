@@ -1,4 +1,3 @@
-const MissionUtils = require("@woowacourse/mission-utils");
 const BuyLotto = require("./BuyLotto");
 const Lotto = require("./Lotto");
 const Winning = require("./Winning");
