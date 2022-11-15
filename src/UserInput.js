@@ -12,6 +12,7 @@ class UserInput {
 
   publishLotto(money) {
     this.lotto = new LottoGenerator(money);
+    this.publishedLotto = this.lotto.publishUserLotto();
     readLine(INPUT_QUERY.WINNING_NUMBER, this.handleLottoNumber.bind(this));
   }
 

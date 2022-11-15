@@ -8,7 +8,6 @@ class LottoGenerator {
     checkLottoAmount(money);
     this.#lottoAmount = money / 1000;
     print(`${this.#lottoAmount}개를 구매했습니다.`);
-    this.publishUserLotto();
   }
 
   publishUserLotto() {
