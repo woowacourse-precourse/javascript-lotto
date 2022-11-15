@@ -3,8 +3,8 @@ const LottoNumberIssuedFromComputer = require('../components/util/LottoNumberIss
 const { LottoNumberData } = require('../components/lotto-data/LottoNumberData');
 const { WHILE_END } = require('../components/lotto-data/Constant');
 
-function printLottoNumberIssued(numberOfLotto) {
-  Console.print(`${numberOfLotto}개를 구매했습니다.`);
+function printLottoNumberIssuedFromComputer(numberOfLotto) {
+  Console.print(`\n${numberOfLotto}개를 구매했습니다.`);
   print(numberOfLotto);
 }
 
@@ -32,4 +32,4 @@ function subtractMinusOne(number) {
   return number - 1;
 }
 
-module.exports = printLottoNumberIssued;
+module.exports = printLottoNumberIssuedFromComputer;

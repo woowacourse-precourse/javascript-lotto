@@ -8,7 +8,7 @@ const {
   LottoNumberData,
 } = require('../components/lotto-data/LottoNumberData');
 
-function printLottoResult() {
+function printFinalLottoResult() {
   console.log(`${RESULT_START_MESSAGE}`);
   for (let message in RESULT_MESSAGE) {
     Console.print(`${RESULT_MESSAGE[message]} - ${LottoRanking[message]}개`);
@@ -17,4 +17,4 @@ function printLottoResult() {
   Console.close();
 }
 
-module.exports = printLottoResult;
+module.exports = printFinalLottoResult;
