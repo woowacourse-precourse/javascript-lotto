@@ -29,7 +29,7 @@ class LottoCompany {
 
   validateMoney(money) {
     const moneyNumber = Number(money);
-    if (!Number.isInteger(moneyNumber) && moneyNumber > 0) {
+    if (!Number.isInteger(moneyNumber) || moneyNumber < 0) {
       throw new Error("[ERROR] 0 이상 정수를 입력해주세요.");
     }
     if (moneyNumber % this.#lottoPrice !== 0) {
