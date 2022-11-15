@@ -8,6 +8,8 @@ class Lotto {
     this.lottoArray = [];
     this.win = [];
     this.bonus = 0;
+    this.sameCount = 0;
+    this.sameBonus = false;
   }
 
   inputAmount() {
@@ -110,18 +112,18 @@ class Lotto {
 
   processList() {
     this.lottoArray.map((numbers) => {
-      let sameCount = 0;
-      let sameBonus = false;
       numbers.map((number) => {
         if (this.win.includes(number)) {
-          sameCount += 1;
+          this.sameCount += 1;
         }
         if (number === this.bonus) {
-          sameBonus = true;
+          this.sameBonus = true;
         }
       });
-      console.log(sameCount, sameBonus);
+      console.log(this.sameCount, this.sameBonus);
     });
   }
+
+  //lottoResult() {}
 }
 module.exports = Lotto;
