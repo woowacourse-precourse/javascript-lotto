@@ -1,4 +1,4 @@
-const { LOTTO } = require("./utils/constant");
+const { LOTTO } = require("./constant");
 
 const MESSAGE = Object.freeze({
   INPUT_AMOUNT: "구입금액을 입력해 주세요.\n",
