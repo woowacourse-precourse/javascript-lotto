@@ -5,23 +5,24 @@ class Lotto {
 
   constructor(numbers) {
     this.#numbers = numbers;
+    this.INPUT_AMOUNT = 0;
     this.lottoArray = [];
     this.win = [];
     this.bonus = 0;
     this.sameCount = 0;
     this.sameBonus = false;
     this.valueResult = {
-      "5,000": 0,
-      "50,000": 0,
-      "1,500,000": 0,
-      "30,000,000": 0,
-      "2,000,000,000": 0,
+      5000: 0,
+      50000: 0,
+      1500000: 0,
+      30000000: 0,
+      2000000000: 0,
     };
   }
 
   inputAmount() {
-    const ENTER_AMOUNT = 0;
     MissionUtils.Console.readLine("금액을 입력해주세요.", (answer) => {
+      this.INPUT_AMOUNT = answer;
       this.checkAmount(answer);
       let num = this.purchaseLotto(answer);
       this.printLotto(num);
@@ -134,15 +135,15 @@ class Lotto {
 
   lottoValueResult(count, bonus) {
     if (this.sameCount === 3) {
-      this.valueResult["5,000"] += 1;
+      this.valueResult["5000"] += 1;
     } else if (this.sameCount === 4) {
-      this.valueResult["50,000"] += 1;
+      this.valueResult["50000"] += 1;
     } else if (this.sameCount === 5 && this.sameBonus === false) {
-      this.valueResult["1,500,000"] += 1;
+      this.valueResult["1500000"] += 1;
     } else if (this.sameCount === 5 && this.sameBonus === true) {
-      this.valueResult["30,000,000"] += 1;
+      this.valueResult["30000000"] += 1;
     } else if (this.sameCount === 6) {
-      this.valueResult["2,000,000,000"] += 1;
+      this.valueResult["2000000000"] += 1;
     }
   }
 
@@ -150,20 +151,33 @@ class Lotto {
     MissionUtils.Console.print(`당첨 통계`);
     MissionUtils.Console.print(`============`);
     MissionUtils.Console.print(
-      `3개 일치 (5,000원) - ${this.valueResult["5,000"]} 개`
+      `3개 일치 (5,000원) - ${this.valueResult["5000"]} 개`
     );
     MissionUtils.Console.print(
-      `4개 일치 (50,000원) - ${this.valueResult["50,000"]} 개`
+      `4개 일치 (50,000원) - ${this.valueResult["50000"]} 개`
     );
     MissionUtils.Console.print(
-      `5개 일치 (1,500,000원) - ${this.valueResult["1,500,000"]} 개`
+      `5개 일치 (1,500,000원) - ${this.valueResult["1500000"]} 개`
     );
     MissionUtils.Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.valueResult["30,000,000"]} 개`
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.valueResult["30000000"]} 개`
     );
     MissionUtils.Console.print(
-      `6개 일치 (2,000,000,000원) - ${this.valueResult["2,000,000,000"]} 개`
+      `6개 일치 (2,000,000,000원) - ${this.valueResult["2000000000"]} 개`
     );
+    this.revenue();
+    MissionUtils.Console.close();
+  }
+  revenue() {
+    let sum = 0;
+    for (let value in this.valueResult) {
+      sum += parseInt(value) * this.valueResult[value];
+      //console.log(parseInt(value), this.valueResult[value]);
+    }
+    //console.log(sum);
+
+    let calculate = ((sum / this.INPUT_AMOUNT) * 100).toFixed(1);
+    MissionUtils.Console.print(`총 수익률은 ${calculate}% 입니다.`);
   }
 }
 module.exports = Lotto;
