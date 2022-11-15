@@ -41,6 +41,9 @@ class App {
       const counts = lotto.calculateStats(this.winningNumber, this.bonusNumber);
       
       lotto.printStats(counts);
+      lotto.printRate(counts);
+
+      Console.close();
     })
   }
 

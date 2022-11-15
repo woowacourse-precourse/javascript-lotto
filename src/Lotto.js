@@ -17,12 +17,14 @@ class Lotto {
   }
 
   calculateStats(winningNumber, bonusNumber) {
-    let counts = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 5.5: 0, 6: 0 }
+    let counts = { 3: 0, 4: 0, 5: 0, 5.5: 0, 6: 0 }
 
     for (let i = 0; i < this.#numbers.length; i++) {
       const number = this.#numbers[i];
       let count = 0;
-      number.map((v) => { if (winningNumber.includes(v)) count++; });
+      number.map((v) => { 
+        if (winningNumber.includes(v)) count++; 
+      });
 
       if (count === 5 && number.includes(bonusNumber)) count = 5.5;
       counts[count]++;
@@ -40,6 +42,27 @@ class Lotto {
     stats += `\n6개 일치 (2,000,000,000원) - ${counts[6]}개`;
 
     Console.print(stats);
+  }
+
+  calculateRate(counts) {
+    const winningAmounts = { 3: 5000, 4: 50000, 5: 1500000, 5.5: 30000000, 6: 2000000000 };
+    const purchasingAmount = this.#numbers.length * 1000;
+    let winningAmount = 0;
+
+    for (let key in counts) {
+      if (!['1', '2'].includes(key) && winningAmounts[key]) {
+        winningAmount += winningAmounts[key] * counts[key];
+      }
+    }
+
+    const rate = ((winningAmount / purchasingAmount) * 100).toFixed(1);
+    return rate;
+  }
+
+  printRate(counts) {
+    const rate = this.calculateRate(counts);
+
+    Console.print(`총 수익률은 ${rate}%입니다.`);
   }
 }
 
