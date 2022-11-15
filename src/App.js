@@ -1,8 +1,9 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const { PRIZE, RANK_NOTICE, INPUT_MESSAGE } = require('./constants/constants');
+const { PRIZE, INPUT_MESSAGE } = require('./constants/constants');
 const Budget = require('./Budget');
 const Lotto = require('./Lotto');
 const Bonus = require('./Bonus');
+const Print = require('./Print');
 
 const randomNumbersArray = [];
 const resultArray = [0, 0, 0, 0, 0, 0];
@@ -12,30 +13,11 @@ const inputObject = {
   bonus: '',
 };
 
-function finishLotto() {
-  Console.close();
-}
-function printLottoResult(reward) {
-  Console.print('당첨 통계');
-  Console.print('---');
-  resultArray.forEach((element, index) => {
-    if (index === 0) return;
-    Console.print(RANK_NOTICE[index] + element + '개');
-  });
-  printRateOfReturn(reward);
-}
-
-function printRateOfReturn(reward) {
-  const rateOfReturn = (reward/inputObject.budget*100).toFixed(1);
-  Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
-  finishLotto();
-}
-
 function getResultStatics() {
   const reward = resultArray.reduce((acc, element, index) => {
     return acc + element * PRIZE[index];
   }, 0);
-  printLottoResult(reward);
+  new Print(reward, resultArray, inputObject.budget);
 }
 function getBonusResult(bonus) {
   return inputObject.numbers.includes(bonus);

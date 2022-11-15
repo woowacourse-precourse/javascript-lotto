@@ -31,11 +31,16 @@ const ERROR = {
     '5개 일치, 보너스 볼 일치 (30,000,000원) - ',
     '6개 일치 (2,000,000,000원) - ',
   ];
+
+  const PRINT = {
+    REVENUE: (rateOfReturn) => `총 수익률은 ${rateOfReturn}%입니다.`,
+    WINNER_HEADER: '당첨 통계\n---',  }
   
   module.exports = {
     ERROR,
     INPUT_MESSAGE,
     PRIZE,
     RANK_NOTICE,
+    PRINT,
   };
   
