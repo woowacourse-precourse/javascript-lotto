@@ -39,7 +39,7 @@ class App {
       let randomNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
       MissionUtils.Console.print(`[${randomNumber.join(',')}]`);
       this.Lotto.validate(randomNumber);
-      this.raffleNumber.push(`${randomNumber}`)
+      this.raffleNumber.push(randomNumber)
     }
   }
 }
