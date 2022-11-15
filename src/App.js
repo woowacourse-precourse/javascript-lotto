@@ -1,11 +1,13 @@
 const Lotto = require("./Lotto.js");
 const MissionUtils = require("@woowacourse/mission-utils");
 const { validateBonusNumber, validatePurchase } = require("../src/Validate");
+const { REWARDS, LOTTO_PRICE } = require("./constants/Price");
 
 class App {
   constructor() {
     this.issuedLottos = [];
     this.lotto = null;
+    this.bonusNumber = null;
   }
 
   play() {
@@ -15,7 +17,7 @@ class App {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
       validatePurchase(input);
 
-      const purchasedNumber = Number(input) / 1000;
+      const purchasedNumber = Number(input) / LOTTO_PRICE;
       MissionUtils.Console.print(`\n${purchasedNumber}개를 구매했습니다.`);
       for (let i = 0; i < purchasedNumber; i++) {
         const issuedLotto = this.issueLotto();
@@ -45,7 +47,7 @@ class App {
       "\n보너스 번호를 입력해 주세요.\n",
       (input) => {
         validateBonusNumber(this.lotto.numbers, input);
-        this.lotto.bonusNumber = Number(input);
+        this.bonusNumber = Number(input);
         this.checkWin(this.lotto, this.issuedLottos);
       }
     );
@@ -64,7 +66,7 @@ class App {
           result["4등"] += 1;
           break;
         case 5:
-          this.checkSecond(issuedLotto, lotto, bonusNumber)
+          this.checkSecond(issuedLotto, lotto, this.bonusNumber)
             ? (result["2등"] += 1)
             : (result["3등"] += 1);
           break;
@@ -84,18 +86,19 @@ class App {
   }
   calculateReturnRate(purchasedNumber, result) {
     const returnRate =
-      ((result["5등"] * 5e3 +
-        result["4등"] * 5e4 +
-        result["3등"] * 15e5 +
-        result["2등"] * 3e7 +
-        result["1등"] * 2e9) /
-        (purchasedNumber * 1000)) *
+      ((result["5등"] * REWARDS.fifth +
+        result["4등"] * REWARDS.fourth +
+        result["3등"] * REWARDS.third +
+        result["2등"] * REWARDS.second +
+        result["1등"] * REWARDS.first) /
+        (purchasedNumber * LOTTO_PRICE)) *
       100;
     let roundedReturnRate = +(Math.round(returnRate + "e+2") + "e-2");
+    console.log("roundedReturnRate:", roundedReturnRate);
     this.printResult(result, roundedReturnRate);
   }
   printResult(result, returnRate) {
-    MissionUtils.Console.print(`당첨 통계
+    MissionUtils.Console.print(`\n당첨 통계
 ---
 3개 일치 (5,000원) - ${result["5등"]}개
 4개 일치 (50,000원) - ${result["4등"]}개
