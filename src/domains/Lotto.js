@@ -48,6 +48,10 @@ class Lotto {
     }
   }
 
+  hasNumber(number) {
+    return this.#numbers.includes(number);
+  }
+
   getNumbers() {
     return this.#numbers;
   }
