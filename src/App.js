@@ -2,14 +2,16 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Console = require("./Console");
 const Validation = require("./Validation");
 const Lotto = require("./Lotto");
+const {
+  THREE,
+  FOUR,
+  FIVE,
+  FIVE_WITH_BONUS,
+  SIX,
+  PRIZE_TABLE,
+} = require("./constants");
 
-const prizeObject = {
-  1: 2000000000,
-  2: 30000000,
-  3: 1500000,
-  4: 50000,
-  5: 5000,
-};
+// 테스트 코드 작성 후 소감문 작성
 
 class App {
   constructor() {
@@ -17,6 +19,7 @@ class App {
     this.winNumber = [];
     this.bonusNumber = null;
     this.lottos = [];
+    this.prizeTable = PRIZE_TABLE;
   }
   setRankMap() {
     let rankMap = new Map();
@@ -41,7 +44,7 @@ class App {
     let totalPrize = 0;
     for (const item in rankingMap) {
       if (rankingMap[item] !== 0)
-        totalPrize += prizeObject[item] * rankingMap[item];
+        totalPrize += this.prizeTable[item] * rankingMap[item];
     }
 
     totalPrize = (totalPrize / this.money) * 100;
@@ -59,15 +62,11 @@ class App {
       this.checkRanking(rankingMap, winningArray)
     );
     Console.printMessage(Console.WINNING_STATUS);
-    Console.printMessage(`3개 일치 (5,000원) - ${rankingMap[5]}개`);
-    Console.printMessage(`4개 일치 (50,000원) - ${rankingMap[4]}개`);
-    Console.printMessage(`5개 일치 (1,500,000원) - ${rankingMap[3]}개`);
-    Console.printMessage(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankingMap[2]}개`
-    );
-    MissionUtils.Console.print(
-      `6개 일치 (2,000,000,000원) - ${rankingMap[1]}개`
-    );
+    Console.printMessage(`${THREE}${rankingMap[5]}개`);
+    Console.printMessage(`${FOUR}${rankingMap[4]}개`);
+    Console.printMessage(`${FIVE}${rankingMap[3]}개`);
+    Console.printMessage(`${FIVE_WITH_BONUS}${rankingMap[2]}개`);
+    Console.printMessage(`${SIX}${rankingMap[1]}개`);
     this.calculateEarningRate(rankingMap);
   }
 
