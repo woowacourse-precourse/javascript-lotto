@@ -104,10 +104,6 @@ describe('로또 기계 클래스 테스트', () => {
     const winningStatistics = {
       ranking: {
         firstPlace: 1,
-        secondPlace: 0,
-        thirdPlace: 0,
-        fourthPlace: 0,
-        fifthPlace: 0,
       },
       totalLottoNum: 8,
       totalWinnings: 5000,

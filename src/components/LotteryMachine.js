@@ -1,5 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const { makeErrorMsg } = require('../utils/index');
+const { makeErrorMsg, invalidNumber } = require('../utils/index');
 const {
   MESSAGE,
   COUNT,
@@ -30,7 +30,7 @@ class LotteryMachine {
   }
 
   static #validateMoney(money) {
-    if (Number.isNaN(money)) {
+    if (invalidNumber([money])) {
       throw new Error(makeErrorMsg(ERROR_MESSAGE.MONEY_NUMBER));
     }
 
@@ -82,20 +82,21 @@ class LotteryMachine {
 
   static #calcWinningStatistics(lottos) {
     const winningStatistics = {
-      ranking: {
-        firstPlace: 0,
-        secondPlace: 0,
-        thirdPlace: 0,
-        fourthPlace: 0,
-        fifthPlace: 0,
-      },
+      ranking: {},
       totalLottoNum: lottos.length,
       totalWinnings: 0,
     };
 
     const winTheLottery = (winner) => {
       const { winnings } = LOTTO_RANK[winner];
-      winningStatistics.ranking[winner] += 1;
+      const { ranking } = winningStatistics;
+
+      if (ranking[winner]) {
+        ranking[winner] += 1;
+      } else {
+        ranking[winner] = 1;
+      }
+
       winningStatistics.totalWinnings += winnings;
     };
 
@@ -117,8 +118,8 @@ class LotteryMachine {
   printWinResult(winningStatistics) {
     Console.print(MESSAGE.LOTTERY_MACHINE.PRINT_STATISTICS);
 
-    Object.keys(winningStatistics.ranking).forEach((rank) => {
-      const correctNum = winningStatistics.ranking[rank];
+    Object.keys(LOTTO_RANK).forEach((rank) => {
+      const correctNum = winningStatistics.ranking[rank] || 0;
       Console.print(MESSAGE.LOTTERY_MACHINE.WIN_STATISTIC(rank, correctNum));
     });
 
