@@ -1,18 +1,53 @@
+const { Console } = require('@woowacourse/mission-utils');
+const { LOTTO_CONSTANT } = require('./utils/constants');
+const Validator = require('./Validator');
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
     this.validate(numbers);
-    this.#numbers = numbers;
+    this.#numbers = this.initNumbers(numbers);
+    this.divisions = new Map([
+      [3, 'fifth'],
+      [4, 'forth'],
+      [5, 'third'],
+      [6, 'first'],
+    ]);
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+    Validator.checkNumberListNotDuplicated(numbers) &&
+      Validator.checkNumberListInRange(numbers) &&
+      Validator.checkLottoNumberListLength(numbers);
   }
 
-  // TODO: 추가 기능 구현
+  initNumbers(numbers) {
+    return [...numbers].sort((a, b) => a - b);
+  }
+
+  print() {
+    Console.print(`[${this.#numbers.join(', ')}]`);
+  }
+
+  getMatchDivision(winningNumbers, bonusNumber) {
+    const sameNumberCount = this.getSameNumberCount(winningNumbers);
+    const match = this.divisions.get(sameNumberCount);
+
+    if (match === undefined) {
+      return 'none';
+    }
+
+    if (match === 'third' && this.#numbers.includes(bonusNumber)) {
+      return 'second';
+    }
+
+    return match;
+  }
+
+  getSameNumberCount(winningNumbers) {
+    return LOTTO_CONSTANT.numbersLength * 2 - new Set([...winningNumbers, ...this.#numbers]).size;
+  }
 }
 
 module.exports = Lotto;
