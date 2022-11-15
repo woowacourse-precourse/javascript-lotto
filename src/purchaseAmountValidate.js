@@ -1,26 +1,15 @@
-const { Console } = require('@woowacourse/mission-utils');
-
-class PurchaseAmountValidate {
+class purchaseAmountValidator {
   constructor(amount) {
-    this.validate(amount);
-    this.validatedAmount = amount;
+    purchaseAmountValidator.validate(amount);
+    this.amount = amount;
   }
 
-  validate(amount) {
+  static validate(amount) {
     if (/[^0-9]/g.test(amount)) {
-      Console.close();
-      throw new Error('[ERROR] 구입 금액은 숫자만 공백없이 입력 가능합니다.');
-    }
-    if (Number(amount) < 1000) {
-      Console.close();
-      throw new Error('[ERROR] 구입 최소 금액은 1000원 입니다.');
-    }
-    if (Number(amount) % 1000) {
-      Console.close();
-      throw new Error('[ERROR] 구입 금액은 1000원 단위 입니다.');
+      throw new Error('[ERROR] 구입 금액은 숫자만 입력 가능합니다.');
     }
   }
   // TODO: 추가 기능 구현
 }
 
-module.exports = PurchaseAmountValidate;
+module.exports = purchaseAmountValidator;

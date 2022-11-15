@@ -1,12 +1,12 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
-const PurchaseAmountValidate = require('./PurchaseAmountValidate');
+const purchaseAmountValidator = require('./purchaseAmountValidate');
 
 class App {
   static lottoPurchaser() {
     Console.readLine('구입금액을 입력해 주세요.\n', purchaseAmount => {
-      const { validatedAmount } = new PurchaseAmountValidate(purchaseAmount);
-      const purchaseLottoCount = this.lottoCountGetter(validatedAmount);
+      const { validatedAmount } = new purchaseAmountValidator(purchaseAmount);
+      const purchaseLottoCount = this.lottoCountGetter(purchaseAmount);
       const purchaseLottoList = this.lottoPublisher(purchaseLottoCount);
       this.printer(`${purchaseLottoCount}개를 구매했습니다.`);
       this.purchaseLottoListPrinter(purchaseLottoList);
@@ -21,12 +21,8 @@ class App {
   static lottoPublisher(purchaseCount) {
     const purchaseLottoNumbers = [];
     for (let lottoCount = 0; lottoCount < purchaseCount; lottoCount += 1) {
-      const { validatedLottoNumbers } = new Lotto(
-        Random.pickUniqueNumbersInRange(1, 45, 6),
-      );
-      purchaseLottoNumbers.push(validatedLottoNumbers);
+      purchaseLottoNumbers.push(Random.pickUniqueNumbersInRange(1, 45, 6));
     }
-
     return purchaseLottoNumbers;
   }
 
@@ -43,12 +39,14 @@ class App {
       const purchaseLottoString = `[${purchaseLottoList[lottoNumber].sort(
         (a, b) => a - b,
       )}]`.replace(/,/g, ', ');
-      this.printer(purchaseLottoString);
+      Console.print(purchaseLottoString);
     }
   }
 
   static winningNumberDecider(purchaseLottoList, purchaseAmount) {
     Console.readLine('\n당첨 번호를 입력해 주세요.\n', winningNumber => {
+      const lotto = new Lotto(winningNumber.split(','));
+      console.log(lotto);
       Console.readLine('\n보너스 번호를 입력해 주세요.\n', bonusNumber => {
         const winningList = this.totalWinningCounter(
           purchaseLottoList,
@@ -118,14 +116,13 @@ class App {
     return procdeeds;
   }
 
-  static returnRateGetter(proceeds, purchaseAmount) {
-    const returnRate = (proceeds / purchaseAmount) * 100;
+  static returnRateGetter(procdeeds, purchaseAmount) {
+    const returnRate = (procdeeds / purchaseAmount) * 100;
     return returnRate.toFixed(1);
   }
 
   static returnRatePrinter(returnRate) {
     this.printer(`총 수익률은 ${returnRate}%입니다.`);
-    Console.close();
   }
 
   play() {

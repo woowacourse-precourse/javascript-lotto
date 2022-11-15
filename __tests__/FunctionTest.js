@@ -4,23 +4,23 @@ describe('로또 구매 테스트', () => {
   test('입력금액에 따른 로또 개수 테스트', () => {
     const inputPricesAndLottoCount = [
       {
-        price: '1000',
+        price: 1000,
         count: 1,
       },
       {
-        price: '2000',
+        price: 2000,
         count: 2,
       },
       {
-        price: '5000',
+        price: 5000,
         count: 5,
       },
       {
-        price: '15000',
+        price: 15000,
         count: 15,
       },
       {
-        price: '21000',
+        price: 21000,
         count: 21,
       },
     ];
