@@ -34,6 +34,18 @@ describe("로또 클래스 테스트", () => {
       new Lotto([0, 2, 100, 4, 5, 55]);
     }).toThrow("[ERROR]");
   })
+
+  test('보너스 번호의 입력 범위를 초과한 경우', () => {
+    expect(() => {
+      checkError.isUnique(123)
+    }).toThrow("[ERROR]");
+  })
+
+  test('보너스 번호에 숫자 이외의 타입이 있는 경우', () => {
+    expect(() => {
+      new Lotto('a');
+    }).toThrow("[ERROR]");
+  })
 });
 
 describe('구입 금액 1,000원 단위 확인 테스트', () => {
