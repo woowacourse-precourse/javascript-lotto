@@ -33,8 +33,8 @@ const ERROR = {
   ];
 
   const PRINT = {
-    REVENUE: (rateOfReturn) => `총 수익률은 ${rateOfReturn}%입니다.`,
-    WINNER_HEADER: '당첨 통계\n---',  }
+    WINNER_HEADER: '당첨 통계\n---',
+  };
   
   module.exports = {
     ERROR,
