@@ -77,6 +77,7 @@ describe('lotto 클래스의 bundleVerifyForWin() 기능 테스트', () => {
       secondGrade: 1,
       firstGrade: 1,
       loseMoney: 1,
+      profitRate: NaN,
     };
     lotto.bundleVerifyForWin(winNumbers, bonusNumber, lottoBundle);
     expect(lotto.resultMap).toEqual(tobe);
