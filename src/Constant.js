@@ -12,7 +12,7 @@ const MESSAGE = {
 const LOTTERY_RESULT = {
   TITLE: "\n당첨 통계\n---",
   UNIT: "개",
-  MATCHED_SIX: "6개 일치 (2,000,000,000원)  - ",
+  MATCHED_SIX: "6개 일치 (2,000,000,000원) - ",
   MATCHED_FIVE_AND_BONUS: "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
   MATCHED_FIVE: "5개 일치 (1,500,000원) - ",
   MATCHED_FOUR: "4개 일치 (50,000원) - ",
