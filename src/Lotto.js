@@ -10,6 +10,7 @@ class Lotto {
     this.validate(numbers);
     this.isCorrectNumber(numbers);
     this.#numbers = numbers;
+    this.inputBonusNumber();
   }
 
   validate(numbers) {
@@ -29,6 +30,30 @@ class Lotto {
       }
       bit |= 1 << numbers[index];
     }
+  }
+
+  inputBonusNumber() {
+    MissionUtils.Console.readLine(
+      "\n보너스 번호를 입력해 주세요.\n",
+      (bonusNumber) => {
+        if (isNaN(bonusNumber)) {
+          throw new Error("[ERROR] 보너스 번호는 숫자이어야합니다.");
+        }
+        const BONUS = this.validateBonusNumber(bonusNumber);
+        this.#bonusNumber = BONUS;
+      }
+    );
+  }
+
+  validateBonusNumber(number) {
+    if (number.includes(".")) {
+      throw new Error("[ERROR] 보너스 번호는 자연수이어야합니다.");
+    }
+    const bonusNumber = parseInt(number);
+    if (bonusNumber < 1 || bonusNumber > 45) {
+      throw new Error("[ERROR] 보너스 번호는 1~45까지만 입력할 수 있습니다.");
+    }
+    return bonusNumber;
   }
 }
 
