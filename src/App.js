@@ -31,8 +31,7 @@ class App {
         Validation.checkPurchaseAmount(inputPurchaseAmount);
         this.purchaseAmount = Number(inputPurchaseAmount);
         this.lottoBuying(this.purchaseAmount);
-        const singleLotto2 = this.getSingleLottoNumber();
-        this.LottoUI.prinntLottoNumber(singleLotto2);
+        this.LottoUI.prinntLottoNumber(this.getSingleLottoNumber());
         this.inputWinnerNumber();
       }
     );
