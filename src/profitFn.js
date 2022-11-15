@@ -30,7 +30,6 @@ function printMap(map) {
 function printProfit(profit, input) {
   const profitRate = (profit * 100 / input).toFixed(1);
   Console.print(`총 수익률은 ${profitRate}%입니다.`);
-  Console.close();
 }
 
 

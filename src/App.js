@@ -43,13 +43,15 @@ class App {
     return this.#bonusNum;
   }
 
-  readMoney() {
-    return new Promise((resolve, _) => {
-      Console.readLine("구입금액을 입력해주세요.", (money) => {
-        const validation = validatePrice(money);
-        resolve(this.setMoney(validation));
-      })
+  play() {
+    this.readMoney();
+  }
 
+  readMoney() {
+    Console.readLine("구입금액을 입력해주세요. : ", (money) => {
+      const validation = validatePrice(money);
+      this.setMoney(validation);
+      this.buyLotto();
     })
   }
 
@@ -59,28 +61,27 @@ class App {
     for (let i = 1; i <= lottoCount; i++) {
       const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
       const lotto = new Lotto(numbers);
-      lotto.printLotto();
       this.pushLotto(lotto);
     }
+    this.readWinNums();
   }
 
   readWinNums() {
-    return new Promise((resolve, _) => {
-      Console.readLine("당첨번호를 입력해주세요", (winNums) => {
-        const validation = validateWinNums(winNums);
-        resolve(this.setWinNums(validation));
-      })
+    Console.readLine("당첨번호를 입력해주세요", (winNums) => {
+      const validation = validateWinNums(winNums);
+      this.setWinNums(validation);
+      this.readBonusNum();
     })
   }
 
   readBonusNum() {
-    return new Promise((resolve, ) => {
-      Console.readLine("보너스 넘버를 입력해주세요.", (bonus) => {
-        const bonusNum = parseInt(bonus);
-        const validation = validateBounus(bonusNum, this.getWinNums());
-        resolve(this.setBonus(validation));
-      })
+    Console.readLine("보너스 넘버를 입력해주세요.", (bonus) => {
+      const bonusNum = parseInt(bonus);
+      const validation = validateBounus(bonusNum, this.getWinNums());
+      this.setBonus(validation);
+      this.makeResult();
     })
+
   }
 
   makeResult() {
@@ -97,25 +98,9 @@ class App {
     printMap(map);
     const profit = calProfit(map);
     printProfit(profit, this.getMoney());
+    Console.close();
   }
 
-
-
-  async play() {
-    try {
-      await this.readMoney();
-      this.buyLotto();
-      await this.readWinNums();
-      await this.readBonusNum();
-      this.makeResult();
-      Console.close();
-    }
-    catch (err) {
-      Console.print(err.message);
-      Console.print("프로그램을 종료합니다.");
-      Console.close();
-    }
-  }
 }
 
 

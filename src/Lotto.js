@@ -8,6 +8,7 @@ class Lotto {
     this.validate(numbers);
     this.#numbers = numbers;
     this.sort();
+    this.printLotto();
   }
 
   validate(numbers) {
@@ -29,7 +30,7 @@ class Lotto {
   }
 
   printLotto(){
-    Console.print(this.#numbers);
+    Console.print(`[${this.#numbers.join(', ')}]`);
   }
   
   filter(array){
