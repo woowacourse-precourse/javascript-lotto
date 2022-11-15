@@ -47,7 +47,7 @@ class UI {
   }
 
   inputUserLottoNumber() {
-    // Console.print("");
+    Console.print("");
     Console.readLine(Constant.INPUT_LOTTO_NUMBERS, (userInputLottoNumbers) => {
       if (Validate.validateUserInputLottoNumbers(userInputLottoNumbers)) {
         this.#arrUserInputLottoNumbers = userInputLottoNumbers
@@ -113,8 +113,8 @@ class UI {
   }
 
   printWin(countObject) {
-    // Console.print(Constant.STATS_WIN);
-    // Console.print(Constant.LINE);
+    Console.print(Constant.STATS_WIN);
+    Console.print(Constant.LINE);
 
     for (let key in countObject) {
       Console.print(
