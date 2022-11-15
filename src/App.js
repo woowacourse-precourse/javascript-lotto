@@ -12,10 +12,16 @@ class App {
       this.inputNumber()
     });
   }
+
   inputIsValid(money) {
     if (money % 1000 != 0) {
       throw Errors.UNIT_ERROR;
     }
+  }
+  inputNumber() {
+    MissionUtils.Console.readLine(Messages.INPUT_NUMBER, (numbers) => {
+
+    })
   }
 }
 
