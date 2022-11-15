@@ -32,8 +32,6 @@ class Lotto {
 
   typeValidate(numbers) {
     numbers.map((data) => {
-      console.log(typeof data + " " + data);
-
       if (isNaN(data)) {
         throw new Error("[ERROR] 로또 번호는 숫자여야 합니다.");
       }
