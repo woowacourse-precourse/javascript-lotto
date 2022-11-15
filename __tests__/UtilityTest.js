@@ -3,6 +3,8 @@ const {
   matchArrayNumbers,
   createRandomLotto,
   sortAscent,
+  percentage,
+  convertLocale,
 } = require('../src/libs/Utils');
 
 describe('쉼표(,) 기준으로 번호를 구분하는 함수 테스트 ', () => {
@@ -44,6 +46,18 @@ describe('랜덤 배열을 반환하는 함수 테스트 ', () => {
       const array = [15, 27, 45, 1, 5, 3];
       const result = [1, 3, 5, 15, 27, 45];
       expect(sortAscent(array)).toEqual(result);
+    });
+  });
+
+  describe('수익률을 계산하는 함수 테스트', () => {
+    test('퍼센트 함수 테스트', () => {
+      expect(percentage(10, 20)).toBe('50.0');
+      expect(percentage(1, 3)).toBe('33.3');
+    });
+
+    test('3자리마다 쉼표(,)를 입력하는 함수 테스트', () => {
+      expect(convertLocale('100000.0')).toBe('100,000.0');
+      expect(convertLocale('1234567890.0')).toBe('1,234,567,890.0');
     });
   });
 });
