@@ -11,6 +11,7 @@ class App {
   reward;
   revenue;
   printer;
+  calculator;
 
   constructor() {
     this.payMoney = 0;
@@ -29,6 +30,7 @@ class App {
     ];
     this.revenue = 0;
     this.printer = new Printer();
+    this.calculator = new Calculator();
   }
 
   play() {
@@ -97,7 +99,6 @@ class App {
         this.bonusNumber = input;
         this.matchLottos(this.lottos, this.winNumbers, this.bonusNumber);
         this.printer.printscore(this.rewards);
-        const calculator = new Calculator();
         this.revenue = calculator.conductRevenue(this.rewards, this.payMoney);
         this.printer.printRevenue(this.revenue);
         this.gameOver();
@@ -111,8 +112,8 @@ class App {
 
   matchLottos(lottos, winNumbers, bonusNumber) {
     lottos
-      .filter((lotto) => lotto.matchNumbers(winNumbers, bonusNumber) >= 3)
-      .map((lotto) => lotto.matchNumbers(winNumbers, bonusNumber))
+      .filter((lotto) => lotto.compareNumbers(winNumbers, bonusNumber) >= 3)
+      .map((lotto) => lotto.compareNumbers(winNumbers, bonusNumber))
       .forEach((score) => {
         this.rewards.forEach((reward) => {
           if (score == reward[0]) reward[2] += 1;

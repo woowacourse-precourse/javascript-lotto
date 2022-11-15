@@ -21,7 +21,7 @@ class Lotto {
     });
   }
 
-  matchNumbers(winNumbers, bonusNumber) {
+  compareNumbers(winNumbers, bonusNumber) {
     let winCount = this.#numbers.filter((value) =>
       winNumbers.includes(value)
     ).length;
