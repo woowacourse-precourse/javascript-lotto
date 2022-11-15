@@ -27,6 +27,9 @@ class UserNumber {
    * @param userPurchasingAmountInput {number} [유저 구입금액]
    */
   validatePurchasingAmount(userPurchasingAmountInput) {
+    if (!/^\d+$/.test(userPurchasingAmountInput.toString())) {
+      throw new Error(PURCHASE_MESSAGE.AMOUNT_ERROR);
+    }
     if (userPurchasingAmountInput % generalConstants.SINGLE_LOTTO_PRICE !== 0) {
       throw new Error(PURCHASE_MESSAGE.AMOUNT_ERROR);
     }
