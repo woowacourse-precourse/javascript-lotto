@@ -1,4 +1,4 @@
-const { pickUniqueNumbersInRange } = require('@woowacourse/mission-utils').Random;
+const { Random } = require('@woowacourse/mission-utils');
 const { NUMBER, ERROR } = require('./Constants');
 
 class LottoStore {
@@ -13,7 +13,7 @@ class LottoStore {
 
   validate(money) {
     if (/[^0-9]/g.test(money)) {
-        throw new Error(ERROR.MONEY_NUMBER);
+      throw new Error(ERROR.MONEY_NUMBER);
     }
 
     if (money % NUMBER.LOTTO_UNIT !== 0) {
@@ -28,7 +28,7 @@ class LottoStore {
 
   setAutoLotto() {
     for(let index = 0; index < this.#count; index++){
-      const numbers = pickUniqueNumbersInRange(NUMBER.LOTTO_MINIMUM, NUMBER.LOTTO_MAXIMUM, NUMBER.LOTTO_NUMBER);
+      const numbers = Random.pickUniqueNumbersInRange(NUMBER.LOTTO_MINIMUM, NUMBER.LOTTO_MAXIMUM, NUMBER.LOTTO_NUMBER);
       this.#autoLotto.push(numbers.sort((a, b) => a - b));
     }
     return this.#autoLotto;
