@@ -16,10 +16,6 @@ const LottoCtrl = class extends GameCtrl {
     super(new LottoView(), new LottoModel());
   }
 
-  start() {
-    this.gameProcess();
-  }
-
   gameProcess() {
     this.inputLottoBudget();
   }
