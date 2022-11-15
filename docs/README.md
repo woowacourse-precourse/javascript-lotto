@@ -24,3 +24,11 @@ Added new method to $App:
 - get input, which is BonusNumber from user
 
 Breaks $App.buyLotto, which calls $App.inputWinning
+---
+feat($Lotto): validate method
+
+Changed the validate method of $Lotto:
+- check if the number overlapped
+- check if the number is not in range(1~45)
+
+Breaks $Lotto.validate, which the check conditions are added
