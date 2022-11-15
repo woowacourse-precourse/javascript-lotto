@@ -25,7 +25,6 @@ class Lotto {
       let num = this.purchaseLotto(answer);
       this.printLotto(num);
       this.winningNumber();
-      //MissionUtils.Console.close();
     });
   }
 
@@ -48,7 +47,6 @@ class Lotto {
       MissionUtils.Console.print(`[${sortPrint.join(", ")}]`);
       this.lottoArray.push(sortPrint);
     }
-    //MissionUtils.Console.close();
   }
 
   sortArray(array) {
@@ -65,7 +63,6 @@ class Lotto {
       this.validate(this.win);
       this.duplicate(this.win);
       this.inrangeNumber(this.win);
-      //MissionUtils.Console.print(this.win);
       this.bonusNumber();
     });
   }
@@ -153,7 +150,8 @@ class Lotto {
   }
 
   printResult() {
-    //console.log("당첨통계==============================");
+    MissionUtils.Console.print("당첨 통계");
+    MissionUtils.Console.print("=========");
     MissionUtils.Console.print(
       "3개 일치 (5,000원) - " + this.valueResult["5000"] + "개"
     );
@@ -178,9 +176,7 @@ class Lotto {
     let sum = 0;
     for (let value in this.valueResult) {
       sum += parseInt(value) * this.valueResult[value];
-      //console.log(parseInt(value), this.valueResult[value]);
     }
-    //console.log(sum);
 
     let calculate = ((sum / this.INPUT_AMOUNT) * 100).toFixed(1);
     MissionUtils.Console.print("총 수익률은 " + calculate + "%입니다.");

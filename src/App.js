@@ -8,7 +8,4 @@ class App {
   }
 }
 
-const app = new App();
-console.log(app.play());
-
 module.exports = App;
