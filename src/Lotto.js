@@ -1,3 +1,5 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+
 let usersRank = {
   5: 0,
   4: 0,
@@ -39,8 +41,8 @@ class Lotto {
 
   checkRank(lottoArray, bonus){
     let sameNumber = this.#numbers.filter(number => lottoArray.includes(number));
-    let same = sameNumber.length;
-    switch (same) {
+    let countSame = sameNumber.length;
+    switch (countSame) {
       case 3:
         usersRank[5]++;
         break;
@@ -48,7 +50,7 @@ class Lotto {
         usersRank[4]++;
         break;
       case 5:
-        if(this.checkBonusNumber(bonus, oneArray)){
+        if(this.checkBonusNumber(bonus, lottoArray)){
           usersRank[2]++;
           break;
         }
