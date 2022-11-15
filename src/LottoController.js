@@ -35,7 +35,8 @@ class LottoController {
       const lotto = this.lottoStore.sellLotto();
       this.customer.purchaseLotto(lotto);
     }
-    this.customer.printLottoPurchaseResult();
+    const purchasedLottos = this.customer.list();
+    this.lottoViewer.printLottoPurchaseResult(purchasedLottos);
   }
 
   matchNumbersPrintResult() {
