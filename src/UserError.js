@@ -1,7 +1,7 @@
 class UserError {
-  includingCharactersError(money) {
-    for (let i = 0; i < money.length; i++) {
-      if (/\D/g.test(money[i])) {
+  includingCharactersError(number) {
+    for (let i = 0; i < number.length; i++) {
+      if (/\D/g.test(number[i])) {
         throw new Error("[ERROR] 숫자를 입력해 주세요.");
       }
     }
