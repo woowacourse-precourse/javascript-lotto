@@ -29,6 +29,7 @@ const WINNING_NUMBER_MESSAGE = Object.freeze({
 const BONUS_NUMBER_MESSAGE = Object.freeze({
   INPUT: "\n보너스 번호를 입력해 주세요.\n",
   NUMBER_ERROR: "[ERROR] 보너스 번호는 1~45 사이의 숫자이어야 합니다.",
+  UNIQUE_ERROR: "[ERROR] 보너스 번호는 당첨번호에 없는 숫자이어야 합니다.",
 });
 
 /**

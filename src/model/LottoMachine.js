@@ -26,8 +26,9 @@ class LottoMachine {
   /**
    * 보너스 번호를 검증하는 메서드
    * @param bonusNumber {number} [보너스 번호]
+   * @param lottoToUse {number[]} [당첨 번호]
    */
-  validateBonusNumber(bonusNumber) {
+  validateBonusNumber(bonusNumber, lottoToUse) {
     // 정수가 아니라면
     if (!/^\d+$/.test(bonusNumber.toString())) {
       throw new Error(BONUS_NUMBER_MESSAGE.NUMBER_ERROR);
@@ -35,6 +36,10 @@ class LottoMachine {
     // 1~45 범주에 들지 않는다면
     if (1 > bonusNumber || bonusNumber > 45) {
       throw new Error(BONUS_NUMBER_MESSAGE.NUMBER_ERROR);
+    }
+    // 당첨 번호에 보너스 번호가 있다면
+    if (lottoToUse.includes(bonusNumber)) {
+      throw new Error(BONUS_NUMBER_MESSAGE.UNIQUE_ERROR);
     }
   }
 
@@ -52,7 +57,7 @@ class LottoMachine {
    */
   setBonusNumber(bonusNumber) {
     this.bonusNumber = bonusNumber;
-    this.validateBonusNumber(bonusNumber);
+    this.validateBonusNumber(bonusNumber, this.lottoToUse);
     this.controller.getStatistics();
   }
 }
