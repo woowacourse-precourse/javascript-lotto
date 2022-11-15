@@ -1,25 +1,27 @@
 const { Console } = require('@woowacourse/mission-utils');
+const { VALIDATION_MESSAGE } = require('./setting/Message');
 
 class Validation {
   static validate(numbers) {
     if (Validation.isThatEmpty(numbers)) {
-      Console.log('[ERROR] 값을 입력해주세요.')
+      Console.close();
+      throw new Error(VALIDATION_MESSAGE.NO_VALUE);
     }
     if (!Validation.itThatRightFormat(numbers)) {
       Console.close();
-      throw new Error('[ERROR] 올바른 형식으로 입력해주세요.');
+      throw new Error(VALIDATION_MESSAGE.WRONG_FORMAT);
     }
     if (!Validation.isThatSix(numbers)) {
       Console.close();
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+      throw new Error(VALIDATION_MESSAGE.NO_SIX);
     }
     if (Validation.numberNet(numbers)) {
       Console.close();
-      throw new Error('[ERROR] 1과 45사이의 숫자를 입력해주세요.');
+      throw new Error(VALIDATION_MESSAGE.WRONG_NUMBER);
     }
     if (Validation.isThatDuplicate(numbers)) {
       Console.close();
-      throw new Error('[ERROR] 중복되는 숫자가 존재합니다.');
+      throw new Error(VALIDATION_MESSAGE.DUPLICATE);
     }
   }
   
@@ -27,15 +29,15 @@ class Validation {
   static bonusValidate(numbers, number) {
     if (!Validation.itThatNumber(number)) {
       Console.close();
-      throw new Error('[ERROR] 숫자를 입력해주세요.');
+      throw new Error(VALIDATION_MESSAGE.WRONG_VALUE);
     }
     if (!Validation.singleNumberNet(number)) {
       Console.close();
-      throw new Error('[ERROR] 1과 45사이의 숫자를 입력해주세요.');
+      throw new Error(VALIDATION_MESSAGE.WRONG_NUMBER_SINGLE);
     }
     if (!Validation.isThatInclude(numbers, number)) {
       Console.close();
-      throw new Error('[ERROR] 당첨 번호와 값이 중복됩니다.');
+      throw new Error(VALIDATION_MESSAGE.DUPLICATE_SINGLE);
     }
   }
 
