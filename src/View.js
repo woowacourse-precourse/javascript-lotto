@@ -37,7 +37,7 @@ class View extends Setting {
       winNumber = winNumber.split(",");
       winNumber = winNumber.map((i) => Number(i));
       this.winNumber = this.sortList(winNumber);
-      // new Lotto(this.winNumber);
+      new Lotto(this.winNumber);
       this.getBonusNumber();
     });
   }
