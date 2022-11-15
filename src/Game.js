@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { LOTTO_NUMBER, PRIZE_UNITS, ROUND_OFF, MESSAGES } = require('./Constants');
+const { PAY_UNIT, LOTTO_NUMBER, PRIZE_UNITS, ROUND_OFF, MESSAGES } = require('./Constants');
 const Lotto = require("./Lotto");
 const Bonus = require("./Bonus");
 const Payment = require("./Payment");
@@ -16,8 +16,7 @@ class Game {
     MissionUtils.Console.readLine(MESSAGES.ENTER_PAYMENT, (userInput) => {
       const payment = Number(userInput);
       (() => new Payment(payment))()
-      const THOUSAND = 1000;
-      const numOfTickets = userInput / THOUSAND;
+      const numOfTickets = userInput / PAY_UNIT;
       this.generateGuessNumbers(numOfTickets);
     });
   }

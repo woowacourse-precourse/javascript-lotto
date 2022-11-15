@@ -1,3 +1,5 @@
+const PAY_UNIT = 1000;
+
 const LOTTO_NUMBER = {
   MIN: 1,
   MAX: 45,
@@ -43,6 +45,7 @@ const MESSAGES = {
 };
 
 module.exports = {
+    PAY_UNIT,
     LOTTO_NUMBER,
     PRIZE_UNITS,
     ROUND_OFF,
