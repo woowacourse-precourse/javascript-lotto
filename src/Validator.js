@@ -41,6 +41,13 @@ class Validator {
         }
       }
 
+      static isBonusRange (number) {
+        if (1 <= number && number <= 45) {
+          return true;
+        }
+        throw new Error('[ERROR] 1-45사이의 수를 입력하세요.');
+      }
+
       static inputPurchase (string) {
         this.isBlank(string);
         this.isNumber(string);
