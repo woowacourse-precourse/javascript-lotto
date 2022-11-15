@@ -70,6 +70,6 @@ describe("통계 기능 검증", () => {
     const cash = 8000;
     const stats = new Stats({ winningNumbers, bonusNumber, purchased, cash });
 
-    expect(stats.performance).toBe(2539.44);
+    expect(stats.performance).toBe(25394437.5);
   });
 });
