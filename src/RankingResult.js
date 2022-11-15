@@ -57,9 +57,7 @@ class RankingResult {
           rank.mathcedCount == matchCount &&
           rank.hasBounsNumber == hasBounsNumber(lotto, bonusLotto)
       );
-      if (ranking) {
-        ranking.amount += 1;
-      }
+      ranking ? (ranking.amount += 1) : null;
     });
     return this.rankingResult;
   }

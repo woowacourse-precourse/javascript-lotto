@@ -64,12 +64,10 @@ class App {
       this.lottoWinning.winningLotto,
       this.lottoWinning.bonusNumber
     );
-    const earningsRate = ranking.setEarningsRate(
-      rankingResult,
-      this.lottoPayment
-    );
     printRankingResult(rankingResult);
-    printEarningsRate(earningsRate);
+    printEarningsRate(
+      ranking.setEarningsRate(rankingResult, this.lottoPayment)
+    );
     Console.close();
   }
 
