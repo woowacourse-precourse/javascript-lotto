@@ -51,6 +51,15 @@ function isInputValidate(money) {
   }
 }
 
+function isValidateBonusNumber(number) {
+  if (0 > number || number > 45) {
+    throw new Error(LOTTO_ERROR_MENTION.bonus_number_range);
+  }
+  if (number.length !== 1) {
+    throw new Error(LOTTO_ERROR_MENTION.bonus_number_length);
+  }
+}
+
 class App {
   constructor(){
     this.lottoCount = 0;
@@ -69,6 +78,7 @@ class App {
 
   inputBonusNumber() {
     Console.readLine(LOTTO_PRINT_MENTION.input_bonus_number,(Bonus) => {
+      isValidateBonusNumber(Bonus);
       this.BonusNumber = Bonus;
     })
   }
@@ -82,7 +92,6 @@ class App {
         if (correctCount === 0) return;
         lottoNumber.calcLottoResultCount(correctCount, lotto, this.lottoResult, this.BonusNumber);
       });
-      this.printLottoJackpotResult();
     })
   }
 
@@ -110,6 +119,7 @@ class App {
     setRandomLottoNumber(this.lottoInfo, this.lottoCount);
     this.printRandomLottoNumber();
     this.inputJackpotNumber();
+    this.printLottoJackpotResult();
   }
 }
 
