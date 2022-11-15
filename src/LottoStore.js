@@ -1,5 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+
 const Lotto = require("./Lotto");
+const Receipt = require("./Receipt");
 
 class LottoStore { 
   static LOTTO_PRICE = 1000;
@@ -7,14 +9,17 @@ class LottoStore {
   buy(money) {
     this.vaildate(money);
 
-    const lottoList = [];
-
+    const purchasedLottos = [];
     while(money > 0) {
       money -= 1000;
-      const lotto =  generateLotto();
-      lottoList.push(lotto);
+      const lotto =  this.generateLotto();
+      purchasedLottos.push(lotto);
     }
-    return lottoList;
+
+    const receipt = new Receipt(purchasedLottos);
+    receipt.print();
+
+    return receipt.purchasedLottos;
   }
 
   vaildate(money) {
@@ -36,6 +41,7 @@ class LottoStore {
   setBonusNum(num) {
     this.bonusNum = num;
   }
+
 }
 
 module.exports = LottoStore;
