@@ -32,3 +32,9 @@ Changed the validate method of $Lotto:
 - check if the number is not in range(1~45)
 
 Breaks $Lotto.validate, which the check conditions are added
+---
+feat($LottoTest): test case addition
+
+Added new test case
+- print the error message and quit, if $Lotto contains number which is not in range
+---
