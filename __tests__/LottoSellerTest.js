@@ -13,6 +13,9 @@ describe('LotteSeller 클래스 테스트', () => {
       && !Number.isNaN(el)
       && el >= 1
       && el <= 45))).toBeTruthy();
+    expect(lottoSeller.lottos
+      .every((lotto) => JSON.stringify(lotto) === JSON.stringify(lotto.sort((a, b) => a - b))))
+      .toBeTruthy();
   });
 
   test('countTicket 메서드 동작확인', () => {
