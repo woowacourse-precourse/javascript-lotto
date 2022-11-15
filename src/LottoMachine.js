@@ -7,8 +7,10 @@ class LottoMachine {
   }
 
   generate() {
-    const numbers = this.#random.pickUniqueNumbersInRange(1, 45, 6);
-    return numbers.sort()
+    let numbers = this.#random.pickUniqueNumbersInRange(1, 45, 6);
+    return numbers.sort((a, b) => {
+      return a - b;
+    });
   }
 }
 
