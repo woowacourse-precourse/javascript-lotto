@@ -9,6 +9,8 @@ const Counter = require('./Counter');
 const intersection = (setA, setB) =>
   new Set([...setA].filter((element) => setB.has(element)));
 
+const addCommas = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
 class BillBoard {
   #tickets;
 
@@ -32,11 +34,13 @@ class BillBoard {
   }
 
   print() {
-    MissionUtils.Console.print('당첨 통계\n');
-    MissionUtils.Console.print('---\n');
+    MissionUtils.Console.print('\n당첨 통계');
+    MissionUtils.Console.print('---');
     Object.entries(this.#counterInstance).forEach(([key, value]) => {
       MissionUtils.Console.print(
-        `${value.matchName} ${value.winnings} - ${value.count}개`,
+        `${value.matchName} (${addCommas(value.winnings)}원) - ${
+          value.count
+        }개`,
       );
     });
   }
