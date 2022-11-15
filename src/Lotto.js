@@ -12,6 +12,10 @@ class Lotto {
     }
   }
 
+  printNumbers() {
+    console.log(this.#numbers);
+  }
+
   // TODO: 추가 기능 구현
 }
 
