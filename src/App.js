@@ -7,6 +7,7 @@ class App {
     validateInputMoney(money);
     const userLotto = createUserLotto(amount);
     const [winningNumbers, bonusNumber] = createLottoNumber();
+    validateLottoNumber(winningNumbers, bonusNumber);
   }
 }
 
@@ -56,4 +57,23 @@ function createLottoNumber() {
   });
   return [winningNumbers, bonusNumber];
 }
+
+function validateLottoNumber(winningNumbers, bonusNumber) {
+  winningNumbers.forEach((i) => {
+    if (i > 45 || i < 1) {
+      throw new Error("[ERROR] 1~45 사이의 숫자를 입력하세요.");
+    }
+
+    if (i == bonusNumber) {
+      throw new Error("[ERROR] 중복되지 않는 숫자를 입력하세요.");
+    }
+  });
+
+  const checkDup = new Set(winningNumbers);
+  const checkDupArr = [...checkDup];
+  if (checkDupArr.length != winningNumbers.length) {
+    throw new Error("[ERROR] 중복되지 않는 숫자를 입력하세요.");
+  }
+}
+
 module.exports = App;
