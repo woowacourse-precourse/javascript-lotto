@@ -9,6 +9,7 @@ class App {
     this.raffleNumber = [];
     this.winNumber = '';
     this.correctList = [0, 0, 0, 0, 0];
+    this.reward = [5000, 50000, 1500000, 30000000, 2000000000]
   }
   play() {
     MissionUtils.Console.readLine(Messages.INPUT_MONEY, (money) => {
