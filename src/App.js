@@ -115,6 +115,18 @@ class App {
     }
   }
 
+  validateInputBonusNumber(bonusNumberInput, winningNumbersArray) {
+    if (isNaN(bonusNumberInput)) {
+      throw new Error(Constant.BONUS_NUMBER_ERROR_MESSAGE);
+    }
+    if (bonusNumberInput < 1 || bonusNumberInput > 45) {
+      throw new Error(Constant.BONUS_NUMBER_ERROR_MESSAGE2);
+    }
+    if (winningNumbersArray.includes(bonusNumberInput)) {
+      throw new Error(Constant.BONUS_NUMBER_ERROR_MESSAGE3);
+    }
+  }
+  
 }
 
 const app = new App();
