@@ -1,13 +1,15 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
-const Lotto = require("./Lotto");
-
 const { error_message } = require("./const");
+
+const Lotto = require("./Lotto");
+const Bonus = require("./Bonus");
 
 class App {
   constructor() {
     this.lottoQuantity = 0;
     this.lottoArrays = [];
     this.winningNumbers = [];
+    this.bonusNumber = 0;
   }
 
   play() {
@@ -46,6 +48,15 @@ class App {
     Console.readLine("\n당첨 번호를 입력해 주세요.\n", (numbers) => {
       this.winningNumbers = numbers.split(",").map(Number);
       new Lotto(this.winningNumbers);
+
+      this.enterBonusNumber();
+    });
+  }
+
+  enterBonusNumber() {
+    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (number) => {
+      this.bonusNumber = Number(number);
+      new Bonus(this.bonusNumber, this.winningNumbers);
     });
   }
 }
