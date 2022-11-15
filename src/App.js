@@ -1,7 +1,7 @@
 const { Console } = require("@woowacourse/mission-utils");
 const Bonus = require("./Bonus");
 const CheckLotto = require("./CheckLotto");
-const { CONSOLE } = require("./constants");
+const { CONSOLE, RESULT, RULES } = require("./constants");
 const Lotto = require("./Lotto");
 const LottoGenerator = require("./LottoGenerator");
 const ValidationCheck = require("./util/ValidationCheck");
@@ -11,6 +11,8 @@ class App {
   #lottoSet;
   #winningNumbers;
   #bonusNumber;
+  #matchResult;
+  #profitResult;
 
   play() {
     this.insertMoney();
@@ -52,11 +54,23 @@ class App {
 
   checkLotto() {
     const checkLotto = new CheckLotto();
-    checkLotto.play(this.#money, this.#lottoSet, this.#winningNumbers, this.#bonusNumber);
+    const result = checkLotto.play(this.#money, this.#lottoSet, this.#winningNumbers, this.#bonusNumber);
+    this.#matchResult = result.matchResult;
+    this.#profitResult = result.profitResult;
+
+    this.printResult(this.#matchResult, this.#profitResult);
   }
 
-  // TODO 로또 추첨 결과 프린트
-  printResult() {}
+  printResult(matchResult, profitResult) {
+    const rankResult = ["FIFTH", "FOURTH", "THIRD", "SECOND", "FIRST"];
+
+    Console.print(CONSOLE.RESULT);
+    rankResult.forEach((rank, idx) => {
+      Console.print(RESULT[rank](matchResult[RULES.RANK_COUNT - 1 - idx]));
+    });
+    Console.print(RESULT.TOTAL_PER(profitResult));
+    Console.close();
+  }
 }
 
 module.exports = App;
