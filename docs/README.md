@@ -17,12 +17,12 @@ javascript-lotto
 ├─ docs
 │ └─ README.md
 ├─ src
-│ ├─ components
-│ │ ├─ App.js
-│ │ └─ Lotto.js
+│ ├─ App.js
+│ ├─ Lotto.js
 │ └─ utils
 │   ├─ constants.js
-│   └─ functions.js
+│   ├─ functions.js
+│   └─ messages.js
 └─ __tests__
 ├─ ApplicationTest.js
 └─ LottoTest.js
@@ -40,6 +40,7 @@ javascript-lotto
 
 - [x] 사용자가 입력한 금액을 1000으로 나눈 개수만큼 로또를 발급하여 출력한다.
   - 로또 발급 - `App.#buyLotto()`
+  - 로또 생성 - `App.#issueLotto()`
   - 로또 출력 - `App.#printLotto()`
 - [x] 당첨 번호를 입력하라는 안내 문구를 출력하고, 사용자의 입력 값으로 중복되지 않는 숫자 6개를 받는다.
   - 당첨 번호 입력 - `App.#getWinningNums()`
