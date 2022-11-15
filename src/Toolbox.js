@@ -30,6 +30,16 @@ function getRecord(storeClass, lottoClasses) {
     });
 }
 
+function showRecord(storeClass) {
+    printMessage('\n당첨통계');
+    printMessage('---');
+    storeClass.record.forEach(prize => printMessage(`${prize.text} - ${prize.numbers}개`));
+}
+
+function showEarningRatio(storeClass) {
+    printMessage(`총 수익률은 ${storeClass.earningRatio}%입니다.`)
+}
+
 
 module.exports = {
     showMylottos,
@@ -39,4 +49,6 @@ module.exports = {
     getPrizeResult,
     numberOfPrizes,
     getRecord,
+    showRecord,
+    showEarningRatio,
 }
