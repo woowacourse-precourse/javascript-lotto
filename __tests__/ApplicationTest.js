@@ -68,4 +68,11 @@ describe("로또 테스트", () => {
       app.play();
     }).toThrow("[ERROR]");
   });
+  test("예외 테스트", () => {
+    mockQuestions(["100"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
 });
