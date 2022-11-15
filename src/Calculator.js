@@ -10,9 +10,9 @@ class Calculator {
   };
 
   constructor(userLotto, winngingLotto, bonusLotto) {
-    this.userLotto = userLotto; // 사용자가 무작위 생성한 로또
-    this.winngingLotto = winngingLotto; // 당첨 번호
-    this.bonusLotto = bonusLotto; // 보너스 번호
+    this.userLotto = userLotto;
+    this.winngingLotto = winngingLotto;
+    this.bonusLotto = bonusLotto;
     this.lotateLotto(userLotto, winngingLotto);
   }
 
