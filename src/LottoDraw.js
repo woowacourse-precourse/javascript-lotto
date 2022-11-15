@@ -1,5 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
+const LottoStore = require("./LottoStore");
 
 class LottoDraw { 
     static PRIZE_MONEY = {
@@ -70,10 +71,9 @@ class LottoDraw {
             }
         })
 
-        this.printResult(result);
-        this.printYield(result);
+        this.printResult(result, this.getGain(result, lottos.length*LottoStore.LOTTO_PRICE));
     }
-    printResult(result) {
+    printResult(result, gain) {
         const prizeMoneytoString = {};
         for(let i = 1; i <= 5; i++) {
             prizeMoneytoString[i] = LottoDraw.PRIZE_MONEY[i].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -84,9 +84,16 @@ class LottoDraw {
         MissionUtils.Console.print('5개 일치 ('+prizeMoneytoString[3]+'원) - '+result[3]+'개');
         MissionUtils.Console.print('5개 일치, 보너스 볼 일치 ('+prizeMoneytoString[2]+'원) - '+result[2]+'개');
         MissionUtils.Console.print('6개 일치 ('+prizeMoneytoString[1]+'원) - '+result[1]+'개');
+
+        MissionUtils.Console.print('총 수익률은 '+ gain +"%입니다.");
     }
-    printYield(result) {
-        return;
+    getGain(result, money) {
+        let total = 0;
+        for(let i = 1; i <= 5; i++) {
+            total += LottoDraw.PRIZE_MONEY[i] * result[i];
+        }
+        
+        return Math.round((total / money) * 10) / 10;
     }
     get_prize(lottoNums) {
         let match = 0;
