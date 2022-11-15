@@ -59,7 +59,7 @@ class Lotto {
 
   showRandomNumbers(randomNumbers) {
     randomNumbers.forEach((arr) => Console.print(arr));
-    this.getUserNumber();
+    this.getUserNumber(randomNumbers);
   }
 
   checkUserNumber(numbers) {
@@ -79,18 +79,18 @@ class Lotto {
     });
   }
 
-  getUserNumber() {
+  getUserNumber(randomNumbers) {
     Console.readLine(`${'\n'}당첨 번호를 입력해 주세요.${'\n'}`, (numbers) => {
       if (!numbers.includes(',')) {
         throw new Error('[ERROR] 쉼표로 구분한 하나의 문자열을 입력해주세요.');
       }
       this.#numbers = numbers.split(',').map(Number);
       this.checkUserNumber(this.#numbers);
-      this.getUserBonusNumber(this.#numbers);
+      this.getUserBonusNumber(this.#numbers, randomNumbers);
     });
   }
 
-  checkUserBonusNumber(bonus, userNumbers) {
+  checkUserBonusNumber(bonus, userNumbers, randomNumbers) {
     if (bonus.length !== 1) {
       throw new Error('[ERROR] 1글자만 입력해주세요');
     }
@@ -103,19 +103,49 @@ class Lotto {
     if (userNumbers.includes(...bonus)) {
       throw new Error('[ERROR] 이미 당첨 번호에서 입력한 숫자입니다.');
     }
-    this.showWinningStatistics();
+    this.showWinningStatistics(userNumbers, bonus, randomNumbers);
   }
 
-  getUserBonusNumber(userNumbers) {
+  getUserBonusNumber(userNumbers, randomNumbers) {
     Console.readLine(`${'\n'}보너스 번호를 입력해 주세요.${'\n'}`, (number) => {
       const bonus = number.split(',').map(Number);
-      this.checkUserBonusNumber(bonus, userNumbers);
+      this.checkUserBonusNumber(bonus, userNumbers, randomNumbers);
     });
   }
 
-  showWinningStatistics() {
+  showWinningStatistics(userNumbers, bonus, randomNumbers) {
     Console.print(`${'\n'}당첨통계`);
     Console.print('---');
+    const matchNumber = this.matchNumberCount(userNumbers, randomNumbers);
+    const matchBonus = this.matchBonusCount(bonus, randomNumbers);
+    Console.print(matchNumber);
+    Console.print(matchBonus);
+  }
+
+  matchNumberCount(userNumbers, randomNumbers) {
+    const generalResult = Array(randomNumbers.length).fill(0);
+    randomNumbers.forEach((arr, idx) => {
+      arr.forEach((_, idx2) => {
+        userNumbers.forEach((num) => {
+          if (randomNumbers[idx][idx2] === num) {
+            generalResult[idx] += 1;
+          }
+        });
+      });
+    });
+    return generalResult;
+  }
+
+  matchBonusCount(bonus, randomNumbers) {
+    const bonusResult = Array(randomNumbers.length).fill(0);
+    randomNumbers.forEach((arr, idx) =>
+      arr.forEach((_, idx2) => {
+        if (randomNumbers[idx][idx2] === Number(bonus.join(''))) {
+          bonusResult[idx] += 1;
+        }
+      })
+    );
+    return bonusResult;
   }
 }
 
