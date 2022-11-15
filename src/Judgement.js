@@ -36,6 +36,35 @@ class Judgement {
     }
     return bonusCount;
   }
+
+  createWinningStatistics(bonusResult, winningResult) {
+    const result = {
+      three: [5000, 0],
+      four: [50000, 0],
+      five: [1500000, 0],
+      fiveBonus: [30000000, 0],
+      six: [2000000000, 0]
+    };
+
+    for (let i = 0; i < winningResult.length; i++) {
+      if (winningResult[i] === 3) {
+        result.three[1]++;
+      } else if (winningResult[i] === 4) {
+        result.four[1]++;
+      } else if (winningResult[i] === 5) {
+        result.five[1]++;
+      } else if (winningResult[i] === 6) {
+        result.six[1]++;
+      }
+    }
+
+    if (bonusResult) {
+      result.five[1] = result.five[1] - bonusResult;
+      result.fiveBonus[1] += bonusResult;
+    }
+
+    return result;
+  }
 }
 
 module.exports = Judgement;
