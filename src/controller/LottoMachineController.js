@@ -1,5 +1,5 @@
-const { generateSortedRandomNumber, checkHowManyCorrect } = require('../utils/lottoGameHandler.js');
-const { LOTTO_RANKING_REWARD } = require('../constants/index.js');
+const { generateSortedRandomNumber } = require('../utils/lottoGameHandler.js');
+const { LOTTO_RANKING_REWARD, RANKING_ACCORDING_MATCH_COUNT } = require('../constants/index.js');
 const Lotto = require('../Lotto.js');
 const InputMoneyView = require('../view/InputMoneyView.js');
 const InputWinningNumberView = require('../view/InputWinningNumberView.js');
@@ -35,17 +35,18 @@ class LottoMachineController {
   }
 
   judgePrize(winningNumber, bonusNumber) {
-    this.winningNumber = winningNumber;
-    this.bonusNumber = bonusNumber;
-
-    const lottoResultData = this.purchasedLottos.map((lotto) =>
-      checkHowManyCorrect(lotto, this.winningNumber, this.bonusNumber),
-    );
     const lottoResult = this.generateLottoResultObject();
-    this.mappingResult(lottoResultData);
-    this.calculateTotalPrizeMoney();
+    this.purchasedLottos.forEach((lotto) => {
+      const matchCount = lotto.checkHowManyCorrect(winningNumber, bonusNumber);
+      const ranking = RANKING_ACCORDING_MATCH_COUNT[matchCount];
 
-    this.view.outputView.printLottoGameResult(this.lottoResultMap, this.calculateYield.bind(this));
+      if (lottoResult[ranking] === undefined) return;
+
+      lottoResult[ranking] += 1;
+    });
+
+    this.calculateTotalPrizeMoney();
+    this.view.outputView.printLottoGameResult(lottoResult, this.calculateYield.bind(this));
   }
 
   generateLottoResultObject() {
@@ -56,16 +57,6 @@ class LottoMachineController {
     }
 
     return lottoResult;
-  }
-
-  mappingResult(lottoResultData) {
-    lottoResultData.forEach((data) => {
-      if (data.correctCount === 3) this.lottoResultMap['3개'] += 1;
-      if (data.correctCount === 4) this.lottoResultMap['4개'] += 1;
-      if (data.correctCount === 5 && data.bonusCount === 0) this.lottoResultMap['5개'] += 1;
-      if (data.correctCount === 5 && data.bonusCount === 1) this.lottoResultMap['5개+보너스'] += 1;
-      if (data.correctCount === 6) this.lottoResultMap['6개'] += 1;
-    });
   }
 
   calculateTotalPrizeMoney() {

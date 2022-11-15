@@ -6,4 +6,12 @@ const LOTTO_RANKING_REWARD = Object.freeze({
   '5등': 5_000,
 });
 
-module.exports = { LOTTO_RANKING_REWARD };
+const RANKING_ACCORDING_MATCH_COUNT = Object.freeze({
+  6: '1등',
+  '5+bonus': '2등',
+  5: '3등',
+  4: '4등',
+  3: '5등',
+});
+
+module.exports = { LOTTO_RANKING_REWARD, RANKING_ACCORDING_MATCH_COUNT };
