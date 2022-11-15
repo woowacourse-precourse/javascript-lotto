@@ -1,3 +1,6 @@
+const MissionUtils = require('@woowacourse/mission-utils');
+const { ERROR_MESSAGE } = require('./constants.js');
+
 class Lotto {
   #numbers;
 
@@ -8,11 +11,43 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      Lotto.handleError(ERROR_MESSAGE.LENGTH);
     }
+    Lotto.validateNumberArrayDuplication(numbers);
+    numbers.forEach((number) => {
+      Lotto.validateLottoNumber(number);
+    });
   }
 
   // TODO: 추가 기능 구현
+  getLottoNumbers() {
+    return this.#numbers;
+  }
+
+  printLotto() {
+    MissionUtils.Console.print(`[${this.ascendingOrderNumbers().join(', ')}]`);
+  }
+
+  ascendingOrderNumbers() {
+    return this.#numbers.sort((a, b) => a - b);
+  }
+
+  static handleError(message) {
+    MissionUtils.Console.close();
+    throw new Error(message);
+  }
+
+  static validateLottoNumber(number) {
+    if (typeof number !== 'number' || isNaN(number))
+      Lotto.handleError(ERROR_MESSAGE.TYPE);
+    if (number < 1 || number > 45) Lotto.handleError(ERROR_MESSAGE.RANGE);
+  }
+
+  static validateNumberArrayDuplication(array) {
+    const arrayToSet = new Set(array);
+    if (array.length !== arrayToSet.size)
+      Lotto.handleError(ERROR_MESSAGE.DUPLICATE);
+  }
 }
 
 module.exports = Lotto;
