@@ -1,4 +1,14 @@
 const LottoMachine = require("../src/LottoMachine");
+const MissionUtils = require("@woowacourse/mission-utils");
+
+const mockQuestions = (answers) => {
+  MissionUtils.Console.readLine = jest.fn();
+  answers.reduce((acc, input) => {
+    return acc.mockImplementationOnce((question, callback) => {
+      callback(input);
+    });
+  }, MissionUtils.Console.readLine);
+};
 
 describe("로또머신 클래스 테스트", () => {
   
@@ -24,4 +34,19 @@ describe("로또머신 클래스 테스트", () => {
     const duplicatedNumber = numbers1.filter((number, idx) => number === numbers2[idx]);
     expect(duplicatedNumber).not.toHaveLength(6);
   });
+
+  test("당첨 번호 입력 테스트", () => {
+    mockQuestions(["1,2,3,4,5,6"]);
+    const lottoMachine = new LottoMachine();
+    const winningNumbers = lottoMachine.takeWinningNumbers();
+    expect(winningNumbers).toEqual([1, 2, 3, 4, 5, 6]);
+  })
+
+  test("보너스 번호 입력 테스트", () => {
+    mockQuestions(["1,2,3,4,5,6", "7"]);
+    const lottoMachine = new LottoMachine();
+    const winningNumbers = lottoMachine.takeWinningNumbers();
+    const bonusNumber = lottoMachine.takeBonusNumberExcept(winningNumbers);
+    expect(bonusNumber).toEqual(7);
+  })
 });
