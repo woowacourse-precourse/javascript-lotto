@@ -15,14 +15,12 @@ class LottoUI {
   }
   printRankingTotal(result) {
     MissionUtils.Console.print(GUIDE_MESSAGE.RESULT_GUIDE);
-    MissionUtils.Console.print(GUIDE_MESSAGE.RESULT_LINE);
     Object.entries(result).forEach(([ranking, count]) =>
       MissionUtils.Console.print(result[ranking])
     );
   }
   printEarningRatio(earningRatio) {
     MissionUtils.Console.print(`총 수익률은 ${earningRatio}%입니다.`);
-    MissionUtils.Console.print(GUIDE_MESSAGE.RESULT_LINE);
     MissionUtils.Console.close();
   }
 }
