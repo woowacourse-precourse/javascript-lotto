@@ -104,7 +104,7 @@ class Controller {
     const bonus = this.bonusModel.getBonus();
 
     if (score === 5) {
-      if (quickPick.includes(bonus)) {
+      if (quickPick.includes(Number(bonus))) {
         return "6"
       }
       return "5";
