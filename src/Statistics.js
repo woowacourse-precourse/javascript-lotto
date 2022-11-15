@@ -23,7 +23,6 @@ class Statistic {
     winningNumber = winningNumber.slice(0, 6);
     for (let number = 0; number < winningNumber.length; number++) {
       if (winningNumber.indexOf(lottoNumber[number]) !== -1) {
-        console.log(winningNumber, lottoNumber[number]);
         hit += 1;
       }
     }
