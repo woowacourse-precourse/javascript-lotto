@@ -31,7 +31,7 @@ class Bonus {
     return false;
   }
 
-  output() {
+  getBonusNumber() {
     return this.#bonusNumber;
   }
 }
