@@ -41,4 +41,9 @@ describe("Validator 클래스 테스트", () => {
     expect(Validator.isPositiveNumber("0")).toEqual(false);
     expect(Validator.isPositiveNumber("abc")).toEqual(false);
   });
+
+  test("isRightFee : 입력한 금액이 1000원 단위인지 테스트", () => {
+    expect(Validator.isRightFee(7000)).toEqual(true);
+    expect(Validator.isRightFee(7014)).toEqual(false);
+  });
 });
