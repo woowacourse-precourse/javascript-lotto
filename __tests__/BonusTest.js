@@ -34,4 +34,15 @@ describe("보너스 클래스 테스트", () => {
       new Bonus("5", exampleWinningNumbers);
     }).toThrow(ERROR_MESSAGES.DUPLICATED_BONUS_NUM);
   });
+
+  test("보너스 클래스 정상 작동 테스트", () => {
+    const exampleOne = 1;
+    const exampleTwo = 45;
+    const winningNumbersExample = [2, 3, 4, 5, 6, 7];
+    const normalOperationOne = new Bonus(exampleOne, winningNumbersExample);
+    const normalOperationTwo = new Bonus(exampleTwo, winningNumbersExample);
+
+    expect(normalOperationOne.getBonusNumber()).toEqual(exampleOne);
+    expect(normalOperationTwo.getBonusNumber()).toEqual(exampleTwo);
+  });
 });
