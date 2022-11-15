@@ -1,5 +1,6 @@
 const PurchaseLotto = require("./PurchaseLotto.js");
 const Lotto = require("./Lotto.js");
+const Bonus = require('./Bonus.js')
 
 class App {
   play() {
@@ -9,6 +10,10 @@ class App {
 
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (numbers) => {
       this.lotto = new Lotto(numbers)
+    });
+
+    MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (number) => {
+      this.bonus = new Bonus(number)
     });
   }
 }
