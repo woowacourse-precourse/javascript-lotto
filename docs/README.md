@@ -1,3 +1,19 @@
+# 설명
+
+```
+입력한 금액 만큼 로또를 구입하고
+당첨번호와 보너스 당첨번호를 입력해 넣으면
+당첨내역과 수익률을 출력합니다.
+```
+
+# 사용법
+
+[code runner 설치](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner)
+
+```
+node "YOUR_PATH/javascript-lotto/src/App.js"
+```
+
 # 기능 목록
 
 - 구입 금액 입력(App.js)
