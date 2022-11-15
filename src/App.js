@@ -1,10 +1,16 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
 class App {
-  play() {}
-}
+  #money;
+  #winningNumbers;
+  #specialNumber;
 
-class Promptor {
+  play() {
+    this.acceptMoney();
+    this.acceptWinningNumbers();
+    this.acceptSpecialNumber();
+  }
+
   acceptMoney() {
     const query = "구입금액을 입력해 주세요.";
     const err =
@@ -14,7 +20,7 @@ class Promptor {
       if (!this.#validateMoney(userInput)) {
         MyErrorHandler(err);
       }
-      this.money = Number(userInput);
+      this.#money = Number(userInput);
     });
   }
 
@@ -39,7 +45,7 @@ class Promptor {
       if (!this.#validateWinningNumbers(userInput)) {
         MyErrorHandler(err);
       }
-      this.winnningNumber = userInput.split(",").map(Number);
+      this.#winnningNumbers = userInput.split(",").map(Number);
     });
   }
 
@@ -80,7 +86,7 @@ class Promptor {
       if (!this.#validateSpecialNumber(userInput)) {
         MyErrorHandler(err);
       }
-      this.specialNumber = Number(userInput);
+      this.#specialNumber = Number(userInput);
     });
   }
 
@@ -94,12 +100,13 @@ class Promptor {
     }
 
     const intNumber = Number(number);
+
     if (intNumber < 1 || intNumber > 45) {
       return false;
     }
 
-    // assumes winningNumbers is already defined at this point
-    if (!this.winningNumbers || this.winningNumbers.includes(intNumber)) {
+    // assumes #winningNumbers is already defined at this point
+    if (!this.#winningNumbers || this.#winningNumbers.includes(intNumber)) {
       return false;
     }
 
