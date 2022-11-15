@@ -18,6 +18,21 @@ class InputAcceptor {
         });
         return answer;
     }
+
+    static async askWinningLottoNumbers() {
+        const answer = await new Promise(resolve => {
+            MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', resolve)
+        });
+        const winningLottoNumbers = this.stringToNumber(answer.split(','));
+        return winningLottoNumbers;
+    }
+
+    static stringToNumber(string) {
+        if (string.length === 1) return parseInt(string);
+        let numberArray = [];
+        string.forEach(element => numberArray.push(parseInt(element)));
+        return numberArray;
+    }
 }
 
 module.exports = InputAcceptor;
