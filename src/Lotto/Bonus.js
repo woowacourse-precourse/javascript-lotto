@@ -1,8 +1,8 @@
 const {
   isNumberOfBonusNumberCorrect,
   isNumbersInRange,
-} = require("./Validate");
-const { ERROR } = require("./Constants");
+} = require("../Validation/App");
+const { ERROR } = require("../Constants/Constants");
 
 class Bonus {
   #number;
@@ -27,7 +27,6 @@ class Bonus {
   }
 
   getNumber() {
-    // 배열임
     return this.#number;
   }
 }

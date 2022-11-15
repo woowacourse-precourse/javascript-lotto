@@ -1,4 +1,4 @@
-const { LOTTO_INFO } = require("./Constants");
+const { LOTTO_INFO } = require("../Constants/Constants");
 const { Random } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 

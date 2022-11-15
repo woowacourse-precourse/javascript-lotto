@@ -1,12 +1,12 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { QUESTION } = require("./Constants");
-const { getValidatedInput } = require("./Validate");
+const { getValidatedInput } = require("./Validation/App");
 const { getPurchaseAmount } = require("./Purchase");
 const Lotto = require("./Lotto");
 const LottosMaker = require("./LottoMaker");
 const Bonus = require("./Bonus");
 const Statistics = require("./Statistics");
-// 인풋, 아웃풋 담당
+
 class App {
   play() {
     this.getInput("purchase");

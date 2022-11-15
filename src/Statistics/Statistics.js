@@ -1,5 +1,10 @@
 const Details = require("./Details");
-const { PRIZE, RANK_TO_ORDINAL, LOTTO_INFO, RESULT } = require("./Constants");
+const {
+  PRIZE,
+  RANK_TO_ORDINAL,
+  LOTTO_INFO,
+  RESULT,
+} = require("../Constants/Constants");
 const { Console } = require("@woowacourse/mission-utils");
 
 const Lotto = require("./Lotto");

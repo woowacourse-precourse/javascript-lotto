@@ -33,6 +33,8 @@
 - [ ] 숫자가 한 개보다 많이 들어온 경우
 - [ ] 형식(숫자)에 위배되는 입력이 들어온 경우
 
+## 설계
+
 ## 사용 방법
 
 ## 2주차 피드백 후기
@@ -69,6 +71,28 @@
   - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Not_a_constructor
 - switch - case 의 default 사용법.
 - new Error() Error() 차이 https://stackoverflow.com/questions/9156176/what-is-the-difference-between-throw-new-error-and-throw-someobject
+
+#### JEST
+
+> https://inpa.tistory.com/entry/JEST-%F0%9F%93%9A-%EB%AA%A8%ED%82%B9-mocking-jestfn-jestspyOn
+
+부끄럽게도 이전 주차에 jest 공부를 못해서 요번 주에 하기로 했다.
+**Mocking 메소드**
+
+-`jest.fn()`: 가짜 함수를 생성해줌. 이를 사용하면 일회성 테스트용으로 내부의 함수를 진짜 같이 구동 가능하다. 함수면 값을 반환해줄텐데 `.mockReturnValue(value)`를 사용하여 반환 값을 지정할 수 있다.
+
+```javascript
+const mockFn = jest.fn();
+mockFn.mockReturnValue("give me RETURN!");
+mockFn(); // give me RETURN!
+```
+
+- `mockImplementaion(value)`: 위에서 지정한 모크 함수는 아무것도 안 들어있는데, 이를 통해 모크 함수를 즉석으로 구현할 수 있다.
+
+```javascript
+mockFn.mockImplementaion((name) => `I am ${name}!`);
+console.log(mockFn("ME")); // I am ME!
+```
 
 ## 소감
 

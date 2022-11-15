@@ -1,4 +1,4 @@
-const { LOTTO_INFO, ERROR } = require("./Constants");
+const { LOTTO_INFO, ERROR } = require("../Constants/Constants");
 
 const getPurchaseAmount = (amount) => {
   const validate = (amount) => {
