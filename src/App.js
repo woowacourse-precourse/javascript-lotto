@@ -2,8 +2,7 @@ const PurchasePrice = require('./PurchasePrice')
 const Lotto = require('./Lotto')
 const WinningNum = require('./WinningNum')
 const BonusNum = require('./BonusNum')
-const CorrectValue = require('./CorrectValue')
-const Price = require('./Price')
+const LottoResult = require('./LottoResult')
 const { Console } = require('@woowacourse/mission-utils')
 const { Random } = require('@woowacourse/mission-utils')
 
@@ -16,7 +15,7 @@ class App {
 
   play() {
     this.getLottoInfo()
-    this.calcLottoResult()
+    this.getResult()
   }
 
   getLottoInfo() {
@@ -70,30 +69,8 @@ class App {
     return lottoBonusNum
   }
 
-  calcLottoResult() {
-    let [countNormalWinner, countBonusWinner] = this.findCorrectValue(
-      this.userLottoNum,
-      this.winningNum,
-      this.lottoBonusNum,
-    )
-
-
-    let revenue=this.getPrice(countNormalWinner, countBonusWinner)
-    console.log(revenue)
-  }
-
-  findCorrectValue(userLottoNum, winningNum, lottoBonusNum) {
-    let result = new CorrectValue(
-      userLottoNum,
-      winningNum,
-      lottoBonusNum,
-    ).findSameValue()
-
-    return result
-  }
-
-  getPrice(countNormalWinner, countBonusWinner) {
-    return new Price(countNormalWinner, countBonusWinner).calcPrice()
+  getResult() {
+    new LottoResult(this.userLottoNum, this.winningNum, this.lottoBonusNum).calcLottoResult()
   }
 }
 
