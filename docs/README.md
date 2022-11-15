@@ -88,6 +88,7 @@ classDiagram
     Error <|-- CustomError
     CustomError <|-- AbstractError
     CustomError <|-- BonusNumberError
+    CustomError <|-- CommonError
     CustomError <|-- PriceError
     CustomError <|-- WinNumberError
 
@@ -123,14 +124,15 @@ classDiagram
         checkAbstract()
         isInputConstructor()
         validate()
+        checkEmpty()
         isEmpty()
+        checkRange()
         isRangeNumber()
     }
 
     class BonusValidation{
         Array winNumberList
         validate()
-        checkEmpty()
         checkRange()
         checkOverlap()
         isNumberHasWinNumberList()
@@ -138,7 +140,6 @@ classDiagram
 
     class PriceValidation{
         validate()
-        checkEmpty()
         checkZero()
         isZero()
         checkNumber()
@@ -149,10 +150,9 @@ classDiagram
 
     class WinNumbersValidation{
         validate()
-        checkEmpty()
         checkValidDivision()
         isWinNumberLengthSix()
-        checkRange()
+        checkRange() // 메소드 오버라이딩
         checkOverlap()
         isSizeSame()
     }
