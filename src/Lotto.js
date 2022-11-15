@@ -27,7 +27,7 @@ class Lotto {
   validateBonusNumber(bonusNumber) {
     const regExp = /[0-9]/g;
     const matchArr = bonusNumber.match(regExp);
-    if (matchArr.length !== bonusNumber.length) {
+    if (!matchArr || matchArr.length !== bonusNumber.length) {
       throw new Error(ERROR_MESSAGE.NOT_NUMBER_ERROR);
     }
     let num = Number(bonusNumber);

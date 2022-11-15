@@ -23,7 +23,7 @@ class Purchase {
   validateCashInput(value) {
     const regExp = /[0-9]/g;
     const matchArr = value.match(regExp);
-    if (matchArr.length !== value.length) {
+    if (!matchArr || matchArr.length !== value.length) {
       throw new Error(ERROR_MESSAGE.NOT_NUMBER_ERROR);
     }
     if (value % MONEY_UNIT !== 0) {
