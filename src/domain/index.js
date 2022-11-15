@@ -1,7 +1,9 @@
-const LottoGenerator = require('./LottoGenerator');
 const Lotto = require('./Lotto');
+const LottoGenerator = require('./LottoGenerator');
+const LottoValidator = require('../validators/LottoValidator');
 
 module.exports = {
-  LottoGenerator,
   Lotto,
+  LottoGenerator,
+  LottoValidator,
 };
