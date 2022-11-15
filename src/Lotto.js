@@ -4,7 +4,6 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
     this.#numbers = numbers;
   }
 
@@ -12,10 +11,17 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
     }
-    if (!numbers.includes(',')) {
-      throw new Error('[ERROR] 쉼표로 구분한 하나의 문자열을 입력해주세요');
+    if (numbers.includes(NaN)) {
+      throw new Error('[ERROR] 숫자만 입력해주세요.');
     }
-    Console.print(numbers.length);
+    if (new Set(numbers).size !== 6) {
+      throw new Error('[ERROR] 중복된 숫자는 입력할 수 없습니다.');
+    }
+    numbers.forEach((number) => {
+      if (number < 1 || number > 45) {
+        throw new Error('[ERROR] 1 ~ 45 사이의 숫자만 입력 가능합니다.');
+      }
+    });
   }
 
   // TODO: 추가 기능 구현
@@ -62,30 +68,13 @@ class Lotto {
     this.getUserNumber(randomNumbers);
   }
 
-  checkUserNumber(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
-    }
-    if (numbers.includes(NaN)) {
-      throw new Error('[ERROR] 숫자만 입력해주세요.');
-    }
-    if (new Set(numbers).size !== 6) {
-      throw new Error('[ERROR] 중복된 숫자는 입력할 수 없습니다.');
-    }
-    numbers.forEach((number) => {
-      if (number < 1 || number > 45) {
-        throw new Error('[ERROR] 1 ~ 45 사이의 숫자만 입력 가능합니다.');
-      }
-    });
-  }
-
   getUserNumber(randomNumbers) {
     Console.readLine(`${'\n'}당첨 번호를 입력해 주세요.${'\n'}`, (numbers) => {
       if (!numbers.includes(',')) {
         throw new Error('[ERROR] 쉼표로 구분한 하나의 문자열을 입력해주세요.');
       }
       this.#numbers = numbers.split(',').map(Number);
-      this.checkUserNumber(this.#numbers);
+      this.validate(this.#numbers);
       this.getUserBonusNumber(this.#numbers, randomNumbers);
     });
   }
