@@ -70,7 +70,15 @@ class App {
         rank.rankOne,
       ),
     );
+    this.showRevenue();
+  }
+
+  showRevenue () {
+    Console.print(Message.getTotalRevenue(this.staticLotto.setTotalRevenue()));
   }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
