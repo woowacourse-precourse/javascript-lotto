@@ -2,7 +2,8 @@ const { Random, Console } = require('@woowacourse/mission-utils');
 
 class LottoNumberGenerator {
   constructor(number) {
-    this.number = number;
+    const quantity = number / 1000;
+    this.number = quantity;
   }
 
   createLotto() {
