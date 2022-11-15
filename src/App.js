@@ -21,7 +21,7 @@ class App {
     for(let i = 0; i < purchaseNumber; i++){
       const numbers = Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
       lottoNumbers.push(numbers);
-      Console.print(numbers);
+      Console.print(`[${numbers.join(', ')}]`);
     } 
     return lottoNumbers;
   }
