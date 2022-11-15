@@ -14,7 +14,7 @@ class App {
   constructor() {
     this.lottoNum; //구입한 로또 수
     this.winningResult = [];
-    this.winningCountResult = [];
+    this.winningCountResult = [0, 0, 0, 0, 0];
     this.earningRate;
   }
 
@@ -85,9 +85,7 @@ class App {
           : "";
       }
       this.winningResult.push(count);
-      if (count === 5) {
-        this.checkBonus(index);
-      }
+      count === 5 ? this.checkBonus(index) : "";
     }
     this.countWinningResult();
   }
@@ -99,7 +97,6 @@ class App {
   }
 
   countWinningResult() {
-    this.winningCountResult = [0, 0, 0, 0, 0];
     this.winningResult.forEach((element) => {
       switch (element) {
         case 3:
