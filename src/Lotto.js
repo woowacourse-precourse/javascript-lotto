@@ -17,7 +17,6 @@ class Lotto {
       throw new Error(LOTTO_ERROR.DUPLICATE);
     }
     if (isNaN(numbers.join(''))) {
-      console.log(isNaN(numbers))
       throw new Error(LOTTO_ERROR.NUMBER);
     }
     if (numbers.some(number => number < 1 || number > 45)) {
