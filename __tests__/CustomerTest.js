@@ -18,16 +18,4 @@ describe('커스터머 클래스 테스트', () => {
     customer.purchaseLotto(lotto2);
     expect(customer.list()).toEqual([lotto1, lotto2]);
   });
-
-  test('printLottoPurchaseResult 메서드를 이용해 로또 구매 결과를 출력할 수 있다.', () => {
-    const logs = ['1개를 구매했습니다.', '[1, 2, 3, 4, 5, 6]'];
-    const logSpy = getLogSpy();
-    const customer = new Customer();
-    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
-    customer.purchaseLotto(lotto);
-    customer.printLottoPurchaseResult();
-    logs.forEach((log) => {
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-    });
-  });
 });
