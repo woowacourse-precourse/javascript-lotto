@@ -35,17 +35,16 @@ class App {
   }
 
   play() {
-    this.getMoney();
+    this.startGame();
   }
 
   printMessage(message) {
     Console.print(message);
   }
 
-  getMoney() {
+  startGame() {
     Console.readLine(GET_MONEY, answer => {
       this.howManyLottos = Number(answer) / 1000;
-      // this.getLottoNum(this.howManyLottos);
       this.buyAutoLottos(this.howManyLottos);
       this.getPrizeNums();
 
@@ -68,7 +67,9 @@ class App {
       this.lottoRandomNums.push(this.buyOneLotto(1, 45, 6));
     }
     this.printMessage(num + SHOW_AMOUNT);
-    this.lottoRandomNums.map(el => this.printMessage(el));
+    this.lottoRandomNums.map(el =>
+      this.printMessage(`[${el.toString().split(',').join(', ')}]`),
+    );
   }
 
   getPrizeNums() {
@@ -156,8 +157,5 @@ class App {
     Console.close();
   }
 }
-
-const app = new App();
-app.play();
 
 module.exports = App;
