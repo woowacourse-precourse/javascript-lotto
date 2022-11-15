@@ -1,1 +1,4 @@
 node_modules
+
+# 우아한테크코스 피드백 - .vscode 파일 제외
+.vscode
