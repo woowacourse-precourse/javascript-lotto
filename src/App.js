@@ -1,4 +1,4 @@
-const { MESSAGE, REWARDS } = require("./constants/constants");
+const { MESSAGE, RANK_MESSAGE } = require("./constants/constants");
 const Lotto = require("../src/Lotto");
 const Money = require("../src/Money");
 const Bonus = require("../src/Bonus");
@@ -6,6 +6,7 @@ const { Console } = require("@woowacourse/mission-utils");
 const createRandomNumbers = require("./utils/createRandomNumbers");
 const calcCount = require("./utils/calcCount");
 const calcResult = require("./utils/calcResult");
+const calcRevenueRate = require("./utils/calcRevenueRate");
 const calcRevenue = require("./utils/calcRevenue");
 
 class App {
@@ -15,10 +16,14 @@ class App {
   #lottoNumbers;
   #bonus;
   #resultArr;
+  #revenue;
+  #revenueRate;
   constructor() {
     this.#money = 0;
     this.#count = 0;
     this.#bonus = 0;
+    this.#revenue = 0;
+    this.#revenueRate = 0;
     this.#randomNumbers = [];
     this.#resultArr = [];
     this.#lottoNumbers = "";
@@ -32,7 +37,7 @@ class App {
       this.#money = inputMoney.getMoney();
       Console.print("");
       this.#count = calcCount(this.#money);
-      Console.print(`${this.#count}개를 구매했습니다.`);
+      Console.print(MESSAGE.LOTTO_AMOUNT(this.#count));
       this.#randomNumbers = createRandomNumbers(this.#count);
       this.pritnRandomNumber();
     });
@@ -68,17 +73,26 @@ class App {
       this.#lottoNumbers,
       this.#bonus
     );
-    this.calculateMoney();
+    this.getRevenue();
   }
-  calculateMoney() {
-    let price = 0;
-    for (let i = 0; i < 6; i++) {
-      price += REWARDS[i] * this.#resultArr[i];
+  getRevenue() {
+    this.#revenue = calcRevenue(this.#resultArr);
+    this.printResult();
+  }
+  printResult() {
+    Console.print(MESSAGE.RESULT);
+    Console.print(MESSAGE.LINE_STROKE);
+    this.printRank();
+    this.#revenueRate = calcRevenueRate(this.#revenue, this.#money);
+    Console.print(RANK_MESSAGE.REVENUE_RATE(this.#revenueRate));
+    Console.close("");
+  }
+  printRank() {
+    for (let rank = 5; rank >= 1; rank -= 1) {
+      const myRankData = this.#resultArr[rank];
+      Console.print(RANK_MESSAGE[rank](myRankData));
     }
-    Console.print("당첨 통계");
-    Console.print("---");
-    this.printMessage();
-    this.printResult(price);
+    return;
   }
 }
 const app = new App();
