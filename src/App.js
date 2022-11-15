@@ -55,8 +55,15 @@ class App {
     Console.readLine('보너스 번호를 입력해 주세요.', answer => {
       if (this.Lotto.validateBonusNum(this.winningNumber, +answer)) {
         this.winningNumber.push(+answer);
+        this.printResult();
       }
     });
+  }
+
+  printResult() {
+    const result = this.Lotto.getResult(this.UsersLottos, this.winningNumber);
+    Console.print(`당첨 통계\n---\n3개 일치 (5,000원) - ${result[0]}개\n4개 일치 (50,000원) - ${result[1]}개\n5개 일치 (1,500,000원) - ${result[2]}개\n5개 일치, 보너스 불 일치 (30,000,000원) - ${result[3]}개\n6개 일치 (2,000,000,000원) - ${result[4]}개
+    `);
   }
 }
 
