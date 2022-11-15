@@ -18,7 +18,7 @@ class GenerateLotto {
   }
 
   purchaseCount() {
-    this.count = this.#money / LOTTO_PRICE;
+    this.count = Math.floor(this.#money / LOTTO_PRICE);
     return this.count;
   }
 
