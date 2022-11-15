@@ -1,3 +1,10 @@
+const {
+  isNumber,
+  isInRange,
+  isSixNums,
+  isDuplicated,
+} = require("../src/Exceptions");
+
 class Lotto {
   #numbers;
 
@@ -7,12 +14,18 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+    numbers.map((item) => {
+      isNumber(item);
+      isInRange(item);
+    });
+
+    isSixNums(numbers);
+    isDuplicated(numbers);
   }
 
-  // TODO: 추가 기능 구현
+  getNumbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
