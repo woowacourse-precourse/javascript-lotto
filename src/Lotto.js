@@ -2,6 +2,16 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Console = MissionUtils.Console;
 const Random = MissionUtils.Random;
 
+const LOTTO_PRICE = 1000;
+
+const PRIZE = {
+  matchThree: 5000,
+  matchFour: 50000,
+  matchFive: 1500000,
+  matchFiveBonus: 30000000,
+  matchSix: 2000000000
+};
+
 class Lotto {
   #numbers;
 
@@ -71,15 +81,22 @@ class Lotto {
   }
 
   priceEarningsRatio(isMatch, matchNums, bonusMatch) {
-    let buyPrice = 1000 * isMatch.length;
-    let earnPrice = 0;
-    earnPrice += 30000000 * bonusMatch;
-    earnPrice += 5000 * matchNums[0];
-    earnPrice += 50000 * matchNums[1];
-    earnPrice += 1500000 * matchNums[2];
-    earnPrice += 2000000000 * matchNums[3];
+    let buyPrice = LOTTO_PRICE * isMatch.length;
+    matchNums.push(matchNums[3]);
+    matchNums[3] = bonusMatch;
+    let earnPrice = this.caculatePrize(matchNums);
     let earningRatio = (100 * (earnPrice / buyPrice).toFixed(3)).toFixed(1);
     return earningRatio;
+  }
+
+  caculatePrize(matchNums) {
+    let matchIndex = 0;
+    let earnPrice = 0;
+    for (let count in PRIZE) {
+      earnPrice += PRIZE[count] * matchNums[matchIndex];
+      matchIndex++;
+    }
+    return earnPrice;
   }
 
   printWinResult(isMatch, bonusMatch) {
