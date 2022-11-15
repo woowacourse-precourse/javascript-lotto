@@ -54,8 +54,17 @@ class Validation {
     return winnerNumber.includes(bonusNumber);
   }
   static checkLottoNumber(lottoNumber) {
-    if (lottoNumber.length != LOTTO_SIZE) {
+    if (lottoNumber.length === 0) {
       throw new Error(ERROR_MESSAGE.SIZE_INVALID);
+    }
+    if (!this.isOnlyNumber(lottoNumber)) {
+      throw new Error(ERROR_MESSAGE.NOT_ONLY_NUMBER);
+    }
+    if (!this.isLottoSize(lottoNumber)) {
+      throw new Error(ERROR_MESSAGE.SIZE_INVALID);
+    }
+    if (!this.isNumberInRange(lottoNumber)) {
+      throw new Error(ERROR_MESSAGE.NOT_IN_RANGE);
     }
     if (new Set(lottoNumber).size != LOTTO_SIZE) {
       throw new Error(ERROR_MESSAGE.NOT_UNIQUE_NUMBER);
