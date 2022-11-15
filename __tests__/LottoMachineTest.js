@@ -21,8 +21,7 @@ describe("로또머신 클래스 테스트", () => {
     const lottoMachine = new LottoMachine();
     const numbers1 = lottoMachine.generate();
     const numbers2 = lottoMachine.generate();
-    numbers1.forEach((number, idx) => {
-      expect(number).not.toEqual(numbers2[2]);
-    })
-  })
+    const duplicatedNumber = numbers1.filter((number, idx) => number === numbers2[idx]);
+    expect(duplicatedNumber).not.toHaveLength(6);
+  });
 });
