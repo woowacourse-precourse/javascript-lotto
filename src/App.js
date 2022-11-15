@@ -67,6 +67,10 @@ class App {
     Console.print(OUTPUT_MESSAGE.SECOND(result.second));
     Console.print(OUTPUT_MESSAGE.FIRST(result.first));
     Console.print(OUTPUT_MESSAGE.RESULT(revenue));
+    this.exitLotto();
+  }
+  exitLotto() {
+    Console.close();
   }
 }
 const app = new App();
