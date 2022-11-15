@@ -12,6 +12,7 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
+    
     if (this.isDuplicate(numbers)) {
       throw new Error("[ERROR]");
     }
@@ -21,7 +22,7 @@ class Lotto {
     const duplicate = numbers.some(function(x) {
       return numbers.indexOf(x) !== numbers.lastIndexOf(x);
     });
-    
+
     return duplicate;
   }
 }
