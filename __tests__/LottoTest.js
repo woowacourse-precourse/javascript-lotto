@@ -89,4 +89,28 @@ describe("Player 클래스 테스트", () => {
       new Validation().checkSixString("1,2,3,4,5,5");
     }).toThrow(ERROR_INPUT_MESSAGE.DUPLICATION);
   });
+
+  test("8: 입력 보너스 번호는 다음과 같이 입력되어야 한다 : 1", () => {
+    expect(() => {
+      new Validation().checkOneString("a.1");
+    }).toThrow(ERROR_INPUT_MESSAGE.FORMAT_STRING_ONE);
+  });
+
+  test("9: 입력 보너스 번호가 숫자가 아닌 경우 예외 발생", () => {
+    expect(() => {
+      new Validation().checkOneString("a");
+    }).toThrow(ERROR_INPUT_MESSAGE.TYPE);
+  });
+
+  test("10: 입력 보너스 번호의 범위가 1~45가 아닌 경우 예외 발생", () => {
+    expect(() => {
+      new Validation().checkOneString("47");
+    }).toThrow(ERROR_INPUT_MESSAGE.RANGE);
+  });
+
+  test("11: 입력 보너스 번호의 갯수가 하나가 아닌 경우 예외 발생", () => {
+    expect(() => {
+      new Validation().checkOneString("1,2");
+    }).toThrow(ERROR_INPUT_MESSAGE.LENGTH_ONE);
+  });
 });

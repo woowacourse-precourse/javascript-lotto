@@ -13,7 +13,6 @@ const ERROR_INPUT_MESSAGE = Object.freeze({
   DUPLICATION: "[ERROR] 입력 요소는 중복되지 않는 수여야 합니다.",
   FORMAT_ARRAY: "[ERROR] 입력 형태는 [1,2,3,4,5,6] 꼴로 입력되어야 합니다.",
   FORMAT_STRING: "[ERROR] 입력 형태는 1,2,3,4,5,6 꼴로 입력되어야 합니다.",
-  FORMAT_STRING_ONE: "[ERROR] 한 개만 입력 되어야 합니다.",
 });
 
 const ERROR_LOGIC_MESSAGE = Object.freeze({

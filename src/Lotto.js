@@ -15,7 +15,8 @@ class Lotto {
     purchased(tickets);
   }
 
-  input() { //안넘어감 문제
+  input() {
+    //안넘어감 문제
     // new Player().insertNumbers();
     new Player().insertBonusNumber();
   }
