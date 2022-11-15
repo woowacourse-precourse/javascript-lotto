@@ -110,7 +110,7 @@ class Lotto {
     Console.print(`${SENTANCE.LINE}`);
     this.matchRank(this.rankCountArray); 
     this.printWinnningResult()
- 
+    this.printEarningRate();
   }
 
   printWinnningResult(){
