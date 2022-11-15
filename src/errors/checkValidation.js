@@ -1,5 +1,5 @@
 const checkValidation = {
-  checkMoney(money) {
+  money(money) {
     if (isNaN(money))
       return {
         errorMessage: "[ERROR] 숫자만 입력할 수 있습니다.",
@@ -10,19 +10,19 @@ const checkValidation = {
         errorMessage: "[ERROR] 최소 구입금액은 1000원입니다.",
       };
 
-    if (money % 1000 !== 0)
+    if (money % 1000)
       return {
         errorMessage: "[ERROR] 1000원 단위로 로또를 구입해야 합니다.",
       };
 
     return { errorMessage: undefined };
   },
-  checkLottoList(numbers) {
+  numbers(numbers) {
     if (numbers.length !== 6)
       return {
         errorMessage: "[ERROR] 로또 번호는 6개여야 합니다.",
       };
-    if (!this.checkType(numbers))
+    if (!checkType(numbers))
       return {
         errorMessage: "[ERROR] 로또 번호는 숫자여야 합니다.",
       };
@@ -30,13 +30,13 @@ const checkValidation = {
       return {
         errorMessage: "[ERROR] 로또 번호는 중복되지 않아야 합니다.",
       };
-    if (!this.checkRange(numbers))
+    if (!checkRange(numbers))
       return {
         errorMessage: "[ERROR] 로또 번호의 범위는 1~45이어야 합니다.",
       };
     return { errorMessage: undefined };
   },
-  checkBonusNumber(number, winningNumbers) {
+  bonusNumber(number, winningNumbers) {
     if (winningNumbers.includes(number))
       return {
         errorMessage:
@@ -50,13 +50,14 @@ const checkValidation = {
       return {
         errorMessage: "[ERROR] 보너스 번호의 범위는 1~45이어야 합니다.",
       };
+    return { errorMessage: undefined };
   },
 };
-function checkType(numbers) {
+const checkType = (numbers) => {
   return numbers.every((number) => !isNaN(number));
-}
-function checkRange(numbers) {
+};
+const checkRange = (numbers) => {
   return numbers.every((number) => number <= 45 && number >= 1);
-}
+};
 
 module.exports = checkValidation;

@@ -1,10 +1,17 @@
 const { Console } = require("@woowacourse/mission-utils");
+const checkValidation = require("./errors/checkValidation");
+const existError = require("./errors/existError");
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    checkValidation.checkLottoList(numbers);
+    this.validate(numbers);
     this.#numbers = numbers;
+  }
+
+  validate(numbers) {
+    const { errorMessage } = checkValidation.numbers(numbers, "로또 번호");
+    if (errorMessage) existError(errorMessage);
   }
 
   printNumbers() {
@@ -16,21 +23,18 @@ class Lotto {
   sortNumbers() {
     this.#numbers.sort((a, b) => a - b);
   }
-  getResult(winningNumberList, bonusNumber) {
-    const winningCount = 0;
+  getResult(winningNumbers, bonusNumber) {
+    let count = 0;
 
     this.#numbers.forEach((number) => {
-      if (winningNumberList.includes(number)) winningCount += 1;
+      if (winningNumbers.includes(number)) count += 1;
     });
 
-    if (winningCount < 3) return null;
-    if (winningCount === 6) return 1;
-    if (winningCount === 5 && this.#numbers.includes(bonusNumber)) return 2;
+    if (count === 6) return 1;
+    if (count === 5 && this.#numbers.includes(bonusNumber)) return 2;
 
-    return 8 - winningCount;
+    return 8 - count;
   }
-
-  // TODO: 추가 기능 구현
 }
 
 module.exports = Lotto;
