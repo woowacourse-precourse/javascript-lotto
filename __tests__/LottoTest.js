@@ -55,4 +55,6 @@ describe('로또 클래스 테스트', () => {
     const result = ticket.calculateNumbers([1, 2, 8, 9, 10, 11], 7);
     expect(result).toBeNull();
   });
+
+  // validate 메소드는 validateNumbers 함수를 테스트하는 ValidationTest.js에서 진행한다.
 });
