@@ -25,30 +25,30 @@ describe("로또 구매 클래스 테스트", () => {
 
       expect(isUnitPrice(input)).toBe(false);
     });
+  });
 
-    test("구입 수량을 구한다", () => {
-      const input = 21000;
-      const quantity = input / 1000;
+  test("구입 수량을 구한다", () => {
+    const input = 21000;
+    const quantity = input / 1000;
 
-      expect(quantity).toBe(21);
+    expect(quantity).toBe(21);
+  });
+
+  test("구입 수량만큼 랜덤으로 로또 번호 생성", () => {
+    Random.pickUniqueNumbersInRange = jest.fn();
+    Random.pickUniqueNumbersInRange.mockReturnValue([1,2,3,4,5,6])
+
+    const input = 21;
+    const lottoNumbers = [];
+    const makeLottoNumbers = jest.fn((quantity) => {
+      for (let i = 0; i < quantity; i++) {
+        lottoNumbers.push(Random.pickUniqueNumbersInRange())
+      }
     });
 
-    test("구입 수량만큼 랜덤으로 로또 번호 생성", () => {
-      Random.pickUniqueNumbersInRange = jest.fn();
-      Random.pickUniqueNumbersInRange.mockReturnValue([1,2,3,4,5,6])
+    makeLottoNumbers(input);
 
-      const input = 21;
-      const lottoNumbers = [];
-      const makeLottoNumbers = jest.fn((quantity) => {
-        for (let i = 0; i < quantity; i++) {
-          lottoNumbers.push(Random.pickUniqueNumbersInRange())
-        }
-      });
-
-      makeLottoNumbers(input);
-
-      expect(lottoNumbers.length).toBe(21);
-      expect(lottoNumbers[0].length).toBe(6);
-    })
+    expect(lottoNumbers.length).toBe(21);
+    expect(lottoNumbers[0].length).toBe(6);
   });
 });
