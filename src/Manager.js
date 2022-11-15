@@ -7,6 +7,7 @@ const MessageFunc = require('./MessageFunc');
 class Manager {
   constructor() {
     this.boughtLottos = [];
+    this.Lotto = null;
   }
 
   buyLottoValidate(answer) {
@@ -55,6 +56,18 @@ class Manager {
       return this.getResultNumber();
     });
   }
+
+  getResultNumber() {
+    Console.readLine(MESSAGE.WINNUMBER, (answer) => {
+      this.getResultNumberValidate(answer);
+
+      const lotto = new Lotto(answer.split(','));
+      this.Lotto = lotto;
+      return this.getBonusNumber();
+    });
+  }
+
+  getBonusNumber() {}
 }
 
 module.exports = Manager;
