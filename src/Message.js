@@ -16,7 +16,7 @@ const MESSAGE = { // 출력 메세지
   third: (count) => `5개 일치 (1,500,000원) - ${count}개`,
   fourth: (count) => `4개 일치 (50,000원) - ${count}개`,
   fifth: (count) => `3개 일치 (5,000원) - ${count}개`,
-  return: (percentage) => `총 수익률은 ${percentage}%입니다.`,
+  returned: (percentage) => `총 수익률은 ${percentage}%입니다.`,
 };
 
 const RANK = { // 등수

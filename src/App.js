@@ -16,14 +16,14 @@ class App {
       fifth: 0,
     };
     this.prize = 0; // 상금
-    this.return = 0; // 수익률
+    this.returned = 0; // 수익률
   }
 
   play() {
-    this.printLotto();
+    this.makeLotto();
   }
 
-  printLotto() {
+  makeLotto() {
     Console.readLine(MESSAGE.BUY, (amount) => { // 로또 구입 금액 입력
       this.validateAmount(amount);
       this.amount = Number(amount);
@@ -43,7 +43,7 @@ class App {
   printLotto(countingLotto) { // 구매 갯수
     Console.print(`${MESSAGE.COUNT(countingLotto)}`);
     this.printedLottos.forEach((printedLotto) => {
-      printedLotto.printLotto();
+      printedLotto.makeLotto();
     });
   }
 
@@ -74,12 +74,12 @@ class App {
         throw new Error(`${ERROR.COMMON} ${ERROR.BONUS}`);
       }
 
-      this.makescore();
+      this.makeScore();
       this.calReturn();
     });
   }
 
-  makescore() { // 등수
+  makeScore() { // 등수
     this.printedLottos.forEach((printedLotto) => {
       const result = printedLotto.calResult(this.winNumbers, this.bonusNumber);
       if (result === undefined) return;
@@ -93,7 +93,7 @@ class App {
     }
     let percentage = (this.prize / this.amount) * 100;
     percentage = Number(percentage.toFixed(1)).toLocaleString();
-    this.return = percentage;
+    this.returned = percentage;
     this.printResult();
   }
 
@@ -102,13 +102,15 @@ class App {
     for (const [result, count] of Object.entries(this.score)) {
       Console.print(MESSAGE[result](count));
     }
-    Console.print(MESSAGE.return(this.return));
+    Console.print(MESSAGE.returned(this.returned));
     Console.close();
   }
 
   validateAmount(amount) { //유효검사
     const stringToNumber = Number(amount);
-    if (isNaN(stringToNumber)) {
+    const numberReg = /^[0-9]*$/;
+
+    if (!numberReg.test(amount)) {
       throw new Error(`${ERROR.COMMON} ${ERROR.PURCHASE_AMOUNT}`);
     } else if (stringToNumber % GAME.PRICE !== 0) {
       throw new Error(`${ERROR.COMMON} ${ERROR.PURCHASE_UNIT}`);
