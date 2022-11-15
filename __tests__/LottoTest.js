@@ -63,4 +63,10 @@ describe('Validator 클래스 테스트', () => {
       LottoValidator.splitLottoNumbers('1,2,3,4,5,46');
     }).toThrow('[ERROR]');
   });
+
+  test('additionalNumber는 lotto의 numbers와 겹치면 안된다. ', () => {
+    expect(() => {
+      LottoValidator.additionalNumber(6, '1,2,3,4,5,6');
+    }).toThrow('[ERROR]');
+  });
 });

@@ -28,11 +28,11 @@ class LottoValidator {
   }
 
   static additionalNumber(lottoAdditinalNumber, lottoNumbers) {
-    if (lottoNumbers.includes(+lottoAdditinalNumber)) {
-      throw new Error(ERROR.CONFLICT_ADDITIONIONL_NUMBER);
-    }
     if (isNaN(+lottoAdditinalNumber)) {
       throw new Error(ERROR.OVER_ADDITINAL_NUMBER);
+    }
+    if (lottoNumbers.includes(+lottoAdditinalNumber)) {
+      throw new Error(ERROR.CONFLICT_ADDITIONIONL_NUMBER);
     }
     return +lottoAdditinalNumber;
   }
