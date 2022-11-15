@@ -31,7 +31,7 @@ class Checker {
   }
 
   checkBudgetThousandUnit(budget) {
-    if (!budget % 1000) return;
+    if (!(budget % 1000)) return;
     throw new Error(ERROR_MSG_BUDGET_THOUSAND_UNIT);
   }
 
@@ -41,10 +41,14 @@ class Checker {
     this.checkAllIsNumber(mainNumStrs);
 
     const mainNums = mainNumStrs.map(Number);
+    this.validateMainNumArray(mainNums);
+    return mainNums;
+  }
+
+  validateMainNumArray(mainNums) {
     this.checkAllIsInteger(mainNums);
     this.checkAllRange(mainNums);
     this.checkDuplicate(mainNums);
-    return mainNums;
   }
 
   checkSix(mainNumStrs) {
