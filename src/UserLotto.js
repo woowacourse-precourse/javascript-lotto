@@ -21,7 +21,7 @@ class UserLotto {
   }
 
   printUserLotto(totalLotto) {
-    MissionUtils.Console.print(`${totalLotto}개를 구매했습니다.`);
+    MissionUtils.Console.print(`\n${totalLotto}개를 구매했습니다.`);
     for (let index = 0; index < totalLotto; index++) {
       const FORMATTED_LOTTO = this.printFormatter(this.userLotto[index]);
       MissionUtils.Console.print("[" + FORMATTED_LOTTO + "]");
