@@ -1,8 +1,6 @@
 const { LottoNumberData } = require('../lotto-data/LottoNumberData');
 const { RESTRICTIONS, ERROR_MESSAGE } = require('../lotto-data/Constant');
 
-// error는 상수화 하지 않는 것이 가독성이 더 좋아 보여 하지 않았습니다.
-
 class Lotto {
   #numbers;
 
