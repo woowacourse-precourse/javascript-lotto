@@ -7,6 +7,8 @@ class App {
   constructor() {
     this.Lotto() = new Lotto()
     this.raffleNumber = [];
+    this.winNumber = '';
+    this.correctList = [0, 0, 0, 0, 0];
   }
   play() {
     MissionUtils.Console.readLine(Messages.INPUT_MONEY, (money) => {
@@ -67,6 +69,21 @@ class App {
     for (let i = 0; i < this.raffleNumber.length; i++) {
       let winningNumber = this.raffleNumber[i].filter(x => this.Winnumber.includes(x))
       console.log(winningNumber)
+      this.createCorrectList(winningNumber)
+    }
+  }
+  createCorrectList(win) {
+    if (win.length == 3) {
+      this.correctList[0] += 1;
+    }
+    else if (win.length == 4) {
+      this.correctList[1] += 1;
+    }
+    else if (win.length == 5) {
+      this.correctList[2] += 1;
+    }
+    else if (win.length == 6) {
+      this.correctList[4] += 1;
     }
   }
   rateOfReturn() {
