@@ -15,6 +15,7 @@ class App {
     Console.readLine(CONSOLE.PURCHASE_MONEY_INPUT + "\n", (input) => {
       ValidationCheck.purchaseMoney(input);
       this.#money = Number(input);
+      this.buyLotto(input);
     });
   }
 
