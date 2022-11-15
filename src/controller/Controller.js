@@ -88,6 +88,15 @@ class Controller {
     return score;
   }
 
+
+  createQuickPick() {
+    return Random.pickUniqueNumbersInRange(
+      LOTTO.MIN,
+      LOTTO.MAX,
+      LOTTO.LENGTH
+    ).sort((a, b) => a - b);
+  }
+
   validateWinningNumber(number) {
     if (!number.includes(",")) {
       throw new Error(ERROR_MESSAGE.COMMA);
