@@ -29,7 +29,7 @@ describe('로또 번호 추첨기 클래스 테스트', () => {
   });
 
   test('당첨 번호가 숫자가 아니면 예외가 발생한다.', () => {
-    const errorMsg = makeErrorMsg(ERROR_MESSAGE.NUMBER);
+    const errorMsg = makeErrorMsg(ERROR_MESSAGE.LOTTO_NUMBER);
     const answers = ['1,2,3,4,5,k', '7'];
 
     mockQuestions(answers);
