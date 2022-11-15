@@ -41,25 +41,17 @@ class LottoModel {
   }
 
   countRank(countWinningNumbers, checkBonusNumber) {
-    if (checkBonusNumber && countWinningNumbers === 5) {
-      this.#winningRankCount[WINNINGS.SECOND_WIN.RANK - 1]++;
-      return;
+    if (countWinningNumbers === 3)
+      this.#winningRankCount[WINNINGS.FIFTH_WIN.RANK - 1]++;
+    if (countWinningNumbers === 4)
+      this.#winningRankCount[WINNINGS.FOURTH_WIN.RANK - 1]++;
+    if (countWinningNumbers === 5) {
+      if (checkBonusNumber)
+        return this.#winningRankCount[WINNINGS.SECOND_WIN.RANK - 1]++;
+      this.#winningRankCount[WINNINGS.THIRD_WIN.RANK - 1]++;
     }
-
-    switch (countWinningNumbers) {
-      case 3:
-        this.#winningRankCount[WINNINGS.FIFTH_WIN.RANK - 1]++;
-        break;
-      case 4:
-        this.#winningRankCount[WINNINGS.FOURTH_WIN.RANK - 1]++;
-        break;
-      case 5:
-        this.#winningRankCount[WINNINGS.THIRD_WIN.RANK - 1]++;
-        break;
-      case 6:
-        this.#winningRankCount[WINNINGS.FIRST_WIN.RANK - 1]++;
-        break;
-    }
+    if (countWinningNumbers === 6)
+      this.#winningRankCount[WINNINGS.FIRST_WIN.RANK - 1]++;
   }
 
   calcWinningAmount() {
