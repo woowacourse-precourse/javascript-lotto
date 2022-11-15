@@ -43,6 +43,7 @@ class App {
 
   inputNumbers() {
     this.inputLottoNumbers();
+    this.inputBonusLottoNumbers();
   }
 
   inputLottoNumbers() {
@@ -55,6 +56,7 @@ class App {
   inputBonusLottoNumbers() {
     readLine('보너스 번호를 입력해주세요.\n', bonusNumber => {
       this.#bonusNumber = bonusNumber;
+      this.#lotto.statistics({ madeLotto: this.#madeLotto, bonusNumber: this.#bonusNumber });
     })
   }
 }
