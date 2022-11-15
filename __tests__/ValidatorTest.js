@@ -1,5 +1,6 @@
-const ERROR = require('../src/constants/error');
+const MissionUtils = require('@woowacourse/mission-utils');
 const Validator = require('../src/Validator');
+const ERROR = require('../src/constants/error');
 
 describe('validateTotalPurchaseAmount 테스트', () => {
   test('자연수이면서 천 단위인 경우 통과한다.', () => {
@@ -61,6 +62,11 @@ describe('validateLottoNumbers 테스트', () => {
     answer.forEach((lottoNumbers) =>
       expect(() => Validator.validateLottoNumbers(lottoNumbers)).toThrow(ERROR.UNIQUE_NUMBERS)
     );
+  });
+
+  test('MissionUtils의 pickUniqueNumbersInRange가 정상적으로 동작하는지 검사한다.', () => {
+    const randomNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    expect(() => Validator.validateLottoNumbers(randomNumbers).toBeTruthy());
   });
 });
 

@@ -61,8 +61,53 @@ describe('로또 테스트', () => {
     });
   });
 
-  test('예외 테스트', () => {
+  test('기능 테스트 2', () => {
+    mockRandoms([
+      [8, 21, 23, 41, 42, 43],
+      [3, 5, 11, 16, 32, 38],
+      [5, 7, 11, 16, 32, 38],
+    ]);
+    mockQuestions(['3000', '3,5,11,16,32,38', '7']);
+    const logs = [
+      '3개를 구매했습니다.',
+      '[8, 21, 23, 41, 42, 43]',
+      '[3, 5, 11, 16, 32, 38]',
+      '[5, 7, 11, 16, 32, 38]',
+      '3개 일치 (5,000원) - 0개',
+      '4개 일치 (50,000원) - 0개',
+      '5개 일치 (1,500,000원) - 0개',
+      '5개 일치, 보너스 볼 일치 (30,000,000원) - 1개',
+      '6개 일치 (2,000,000,000원) - 1개',
+      '총 수익률은 67,666,666.7%입니다.',
+    ];
+    const logSpy = getLogSpy();
+    const app = new App();
+    app.play();
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  test('구입금액 잘못 입력 시 에러를 발생한다.', () => {
     mockQuestions(['1000j']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
+
+  test('당첨 번호 잘못 입력 시 에러를 발생한다.', () => {
+    mockRandoms([[8, 21, 23, 41, 42, 43]]);
+    mockQuestions(['1000', '1,2,3,4,5,6,7']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호 잘못 입력 시 에러를 발생한다.', () => {
+    mockRandoms([[8, 21, 23, 41, 42, 43]]);
+    mockQuestions(['1000', '1,2,3,4,5,6', '50']);
     expect(() => {
       const app = new App();
       app.play();
