@@ -2,8 +2,6 @@ const {
   INPUT_MESSAGE,
   ERROR_MESSAGE,
   RESULT_MESSAGE,
-  LOTTO,
-  LOTTO_PRIZE,
 } = require("../src/Constants");
 
 const MissionUtils = require("@woowacourse/mission-utils");
@@ -18,6 +16,7 @@ class App {
   }
 
   inputMoney(input) {
+    if (money % LOTTO.MONEY_UNIT !== 0) throw new Error(ERROR_MESSAGE.UNIT);
     this.money = input;
   }
 }
