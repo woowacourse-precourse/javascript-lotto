@@ -1,3 +1,5 @@
+const message = require('./Message');
+
 class Lotto {
   #numbers;
 
@@ -8,7 +10,7 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+      throw new Error(message.LOTTO_COUNT_ERROR);
     }
     this.validate_overlap(numbers);
   }
@@ -16,7 +18,7 @@ class Lotto {
   validate_overlap(numbers) {
     const NUMBERS = new Set(numbers);
     if (NUMBERS.size != numbers.length) {
-      throw new Error('[ERROR] 로또 번호는 중복이 없어야 합니다.');
+      throw new Error(message.LOTTO_OVERLAP_ERROR);
     }
   }
 

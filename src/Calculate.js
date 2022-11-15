@@ -39,11 +39,13 @@ class Calculate {
     let ans = [0, 0, 0, 0, 0];
     const RESULTS = this.calculate_lottos();
     RESULTS.map(result => {
-      if (result[0] === 3) ans[0] += 1;
-      if (result[0] === 4) ans[1] += 1;
-      if (result[0] === 5 && result[1] === 0) ans[2] += 1;
-      if (result[0] === 5 && result[1] === 1) ans[3] += 1;
-      if (result[0] === 6) ans[4] += 1;
+      const WIN_NUM = result[0];
+      const BONUS_CHECK = result[1];
+      if (WIN_NUM === 3) ans[0] += 1;
+      if (WIN_NUM === 4) ans[1] += 1;
+      if (WIN_NUM === 5 && BONUS_CHECK === 0) ans[2] += 1;
+      if (WIN_NUM === 5 && BONUS_CHECK === 1) ans[3] += 1;
+      if (WIN_NUM === 6) ans[4] += 1;
     });
     return ans;
   }
