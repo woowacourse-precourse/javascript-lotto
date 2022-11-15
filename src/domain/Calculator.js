@@ -3,15 +3,21 @@ const MessageOutput = require("./MessageOutput");
 
 class Calculator {
   messageOutput = new MessageOutput();
+
   calcReturnMoney(lottoMoneyOutput, moneyInput) {
     const returnMoney = ((lottoMoneyOutput / moneyInput) * 100).toFixed(2);
     const koreanMoney = returnMoney.replace(
       REGEXP_KOREAN_MONEY_COMMA_LOCATION,
       ","
     );
-    this.messageOutput.printMessage(
-      `총 수익률은 ${parseFloat(koreanMoney)}%입니다.`
-    );
+    return parseFloat(koreanMoney);
+    // this.messageOutput.printMessage(
+    //   `총 수익률은 ${parseFloat(koreanMoney)}%입니다.`
+    // );
+  }
+
+  plusLottoMoney(count, price) {
+    return count ? parseInt(price.split(",").join("")) : 0;
   }
 }
 

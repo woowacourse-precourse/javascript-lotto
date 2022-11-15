@@ -15,6 +15,7 @@ const {
   REQUIRE_BONUS_NUMBER_MESSAGE,
   MIN_LOTTO_VALUE,
   MAX_LOTTO_VALUE,
+  ERROR_MESSAGE_BETWEEN_ONE_TO_FORTYFIVE,
 } = require("./constants/constant");
 const LottoNumberGenerator = require("./domain/LottoNumberGenerator");
 const MessageOutput = require("./domain/MessageOutput");
@@ -39,6 +40,7 @@ class State {
   messageOutput = new MessageOutput();
   lottoNumberGenerator = new LottoNumberGenerator();
   calculator = new Calculator();
+  compare = new Compare();
 
   setMoneyInput(userInput) {
     if (!ONLY_NUMBER.test(userInput)) {
@@ -75,10 +77,9 @@ class State {
 
   setBonusNumbersInput(userInput) {
     const number = parseInt(userInput);
-    if (this.isValidate(number) && this.isNotInWinNumbers(number)) {
-      this.bonusNumber = userInput;
-      const compare = new Compare();
-      const resultArray = compare.setResult(
+    if (this.isValidateRange(number) && this.isNotInWinNumbers(number)) {
+      this.bonusNumber = number;
+      const resultArray = this.compare.setResult(
         this.buyLottoNumbers,
         this.winNumbers,
         this.bonusNumber
@@ -93,20 +94,29 @@ class State {
     const messageArr = [THIRD, FORTH, FIFTH, FIFTHBONUS, SIX];
 
     messageArr.map((arr) => {
-      const message = `${arr.condition} (${arr.price}${WON}) - ${arr.count}${COUNT}`;
-      this.messageOutput.printMessage(message);
-      this.lottomoneyOutput += arr.count
-        ? parseInt(arr.price.split(",").join(""))
-        : 0;
+      const { condition, price, count } = arr;
+      this.messageOutput.makeUserResultMessage(condition, price, count);
+      this.lottomoneyOutput += this.calculator.plusLottoMoney(count, price);
     });
-    this.calculator.calcReturnMoney(this.lottomoneyOutput, this.moneyInput);
+    const resultReturnMoney = this.calculator.calcReturnMoney(
+      this.lottomoneyOutput,
+      this.moneyInput
+    );
+    this.messageOutput.makeFinalReturnMoney(resultReturnMoney);
   }
 
   isNotInWinNumbers(userInput) {
-    return !this.winNumbers.includes(userInput) ? true : false;
+    if (!this.winNumbers.includes(userInput)) {
+      return true;
+    }
+    throw new Error(`${ERROR} ${ERROR_MESSAGE_DUPLICATED_NUMBER}`);
   }
-  isValidate(userInput) {
-    return 0 < userInput <= 45 ? true : false;
+
+  isValidateRange(userInput) {
+    if (0 < userInput <= 45) {
+      return true;
+    }
+    throw new Error(`${ERROR} ${ERROR_MESSAGE_BETWEEN_ONE_TO_FORTYFIVE}`);
   }
 
   setWinNumbersInput(userInput) {
@@ -116,6 +126,7 @@ class State {
     this.winNumbers = splitedNumbers;
     this.bonusNumbersInput(REQUIRE_BONUS_NUMBER_MESSAGE);
   }
+
   splitNumber(number, flag) {
     return number.split(flag).map((item) => {
       return parseInt(item);

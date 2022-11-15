@@ -8,6 +8,9 @@ const ERROR = "[ERROR]";
 const ERROR_MESSAGE_INPUT_MONEY = "로또는 천원 단위로 구매할 수 있습니다";
 const ERROR_MESSAGE_ONLY_NUMBER = "금액은 숫자만 입력할 수 있습니다";
 const ERROR_MESSAGE_DUPLICATED_NUMBER = "중복된 숫자는 입력할 수 없습니다";
+const ERROR_MESSAGE_BETWEEN_ONE_TO_FORTYFIVE =
+  "로또 번호는 1에서 45 사이의 정수만 입력할 수 있습니다";
+const ERROR_MESSAGE_ONLY_SIX_NUMBER = "로또 번호는 6개만 입력할 수 있습니다";
 
 const MAX_LOTTO_VALUE = 45;
 const MIN_LOTTO_VALUE = 1;
@@ -72,4 +75,6 @@ module.exports = {
   REQUIRE_BONUS_NUMBER_MESSAGE,
   MIN_LOTTO_VALUE,
   MAX_LOTTO_VALUE,
+  ERROR_MESSAGE_BETWEEN_ONE_TO_FORTYFIVE,
+  ERROR_MESSAGE_ONLY_SIX_NUMBER,
 };
