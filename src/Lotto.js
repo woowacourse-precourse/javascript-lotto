@@ -7,11 +7,7 @@ class Lotto {
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
-    this.firstCount = 0;
-    this.secondCount = 0;
-    this.thirdCount = 0;
-    this.fourthCount = 0;
-    this.fifthCount = 0;
+    this.createCount();
   }
 
   validate(numbers) {
@@ -21,6 +17,14 @@ class Lotto {
       exception.range(number);
     });
     exception.deduplication(numbers);
+  }
+
+  createCount() {
+    this.firstCount = 0;
+    this.secondCount = 0;
+    this.thirdCount = 0;
+    this.fourthCount = 0;
+    this.fifthCount = 0;
   }
 
   bonusExecption(number) {
