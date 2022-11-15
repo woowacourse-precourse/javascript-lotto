@@ -39,7 +39,7 @@ class State {
     }
     this.moneyInput = userInput;
     this.buyLottoCount = parseInt(userInput / 1000);
-    this.messageOutput.printMesage("");
+    // this.messageOutput.printMesage("");
     this.messageOutput.printMesage(`${this.buyLottoCount}${PURCHACE_MESSAGE}`);
     this.pickuserLottos(this.buyLottoCount);
   }
@@ -51,15 +51,15 @@ class State {
       MissionUtils.Console.print(lotto);
       lottos.push(lotto);
     }
-    this.messageOutput.printMesage("");
+    // this.messageOutput.printMesage("");
 
     this.buyLottoNumbers = lottos;
     this.callMessage(REQUIRE_WIN_NUMBER_MESSAGE);
   }
 
   callMessage(message) {
-    this.messageOutput.printMesage(message);
-    this.winNumbersInput("");
+    // this.messageOutput.printMesage(message);
+    this.winNumbersInput(message);
   }
 
   winNumbersInput(message) {
