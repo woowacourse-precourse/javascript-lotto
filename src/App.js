@@ -41,6 +41,7 @@ class App {
       if (checkBonusValidation(input, this.LottoBuilder.WinningNumber)) {
         this.LottoBuilder.bonusNumber = input;
         this.setLotto();
+        this.close();
       }
     });
   }
@@ -48,7 +49,7 @@ class App {
   setLotto() {
     const lotto = this.LottoBuilder.build();
     lotto.progress();
-    this.SetOutputStats(lotto.stats, lotto.yield);
+    this.setOutputStats(lotto.stats, lotto.yield);
   }
 
   setOutputStats(lottoRanks, lottoYield) {
