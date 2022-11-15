@@ -1,3 +1,5 @@
+const { EXCEPTION_MONEY } = require("./constants/constants");
+
 const MONEY_UNIT = 1000;
 
 class Money {
@@ -10,13 +12,13 @@ class Money {
 
   validate(money) {
     if (isNaN(money)) {
-      throw new Error("[ERROR] 금액은 정수여야 합니다.");
+      throw new Error(EXCEPTION_MONEY.INPUT_INTEGER);
     }
     if (money < MONEY_UNIT) {
-      throw new Error("[ERROR] 금액은 1000원 이상이어야 합니다.");
+      throw new Error(EXCEPTION_MONEY.INPUT_ERROR);
     }
     if (parseInt(money) % MONEY_UNIT !== 0) {
-      throw new Error("[ERROR] 금액은 1000원으로 나누어져야 합니다.");
+      throw new Error(EXCEPTION_MONEY.MONEY_UNIT_INCORRECT);
     }
   }
 

@@ -1,3 +1,5 @@
+const { EXCEPTION_MESSAGE_BONUS } = require("./constants/constants");
+
 class Bonus {
   #bonus;
   #lottoNumbers;
@@ -9,17 +11,14 @@ class Bonus {
   }
 
   validate(bonus) {
+    if (Number.isInteger(bonus)) {
+      throw new Error(EXCEPTION_MESSAGE_BONUS.INPUT_INTEGER);
+    }
     if (!(bonus >= 1 && bonus <= 45)) {
-      throw new Error(
-        "[ERROR] 보너스 번호는 1에서 45 사이의 숫자만 가능합니다."
-      );
+      throw new Error(EXCEPTION_MESSAGE_BONUS.INPUT_ERROR);
     }
-    if (!Number.isInteger(bonus)) {
-      throw new Error("[ERROR] 보너스 번호는 정수만 가능합니다.");
-    }
-
     if (this.#lottoNumbers.includes(bonus)) {
-      throw new Error("[ERROR] 보너스 번호는 로또 번호와 중복될 수 없습니다.");
+      throw new Error(EXCEPTION_MESSAGE_BONUS.INPUT_OVERLAPPED);
     }
   }
 
