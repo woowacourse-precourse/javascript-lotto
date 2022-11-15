@@ -1,6 +1,8 @@
 const { Console, Random } = require("@woowacourse/mission-utils/");
 const Lotto = require("../src/Lotto");
 const Calculator = require("../src/Calculator");
+const Printer = require("./Printer");
+
 class App {
   payMoney;
   winNumbers;
@@ -8,6 +10,7 @@ class App {
   lottos;
   reward;
   revenue;
+  printer;
 
   constructor() {
     this.payMoney = 0;
@@ -25,6 +28,7 @@ class App {
       [6, 2_000_000_000, 0],
     ];
     this.revenue = 0;
+    this.printer = new Printer();
   }
 
   play() {
@@ -92,10 +96,11 @@ class App {
       } else {
         this.bonusNumber = input;
         this.matchLottos(this.lottos, this.winNumbers, this.bonusNumber);
-        this.printScore();
+        this.printer.printscore(this.rewards);
         const calculator = new Calculator();
         this.revenue = calculator.conductRevenue(this.rewards, this.payMoney);
-        this.printRevenue();
+        this.printer.printRevenue(this.revenue);
+        this.gameOver();
       }
     });
   }
@@ -114,32 +119,6 @@ class App {
         });
       });
   }
-
-  printScore() {
-    Console.print("\n당첨 통계\n---\n");
-    this.rewards.forEach((reward) => {
-      reward[0] != 5.5
-        ? Console.print(
-            `${reward[0]}개 일치 (${reward[1].toLocaleString()}원) - ${
-              reward[2]
-            }개`
-          )
-        : Console.print(
-            `${Math.floor(
-              reward[0]
-            )}개 일치, 보너스 볼 일치 (${reward[1].toLocaleString()}원) - ${
-              reward[2]
-            }개`
-          );
-    });
-  }
-
-  printRevenue() {
-    Console.print(`총 수익률은 ${this.revenue}%입니다.`);
-    Console.print("```\n\n---");
-    this.gameOver();
-  }
-
   gameOver() {
     Console.close();
   }
