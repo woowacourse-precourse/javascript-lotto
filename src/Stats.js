@@ -1,9 +1,3 @@
-const FIVE_THOUSAND_WON = 5000;
-const FIFTY_THOUSAND_WON = 50000;
-const FIVE_HUNDRED_THOUSAND_WON = 1500000;
-const THIRTY_MILLION_WON = 30000000;
-const TWO_BILLION_WON = 2000000000;
-
 const underThree = (_) => "underThree";
 const three = (_) => "three";
 const four = (_) => "four";
@@ -30,11 +24,11 @@ const dataForm = {
 };
 
 const incomeMap = {
-  three: FIVE_THOUSAND_WON,
-  four: FIFTY_THOUSAND_WON,
-  five: FIVE_HUNDRED_THOUSAND_WON,
-  fivePlusBonus: THIRTY_MILLION_WON,
-  six: TWO_BILLION_WON,
+  three: Price.FIVE_THOUSAND,
+  four: Price.FIFTY_THOUSAND,
+  five: Price.FIVE_HUNDRED_THOUSAND,
+  fivePlusBonus: Price.THIRTY_MILLION,
+  six: Price.TWO_BILLION,
 };
 
 class Stats {

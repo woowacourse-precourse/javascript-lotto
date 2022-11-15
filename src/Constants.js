@@ -12,4 +12,12 @@ module.exports = {
     BONUS_NUMBER: "[ERROR] 1부터 45까지의 정수 중 하나를 입력해주세요.",
     DUPLICATED_BONUS_NUMBER: "[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.",
   }),
+
+  Price: Object.freeze({
+    FIVE_THOUSAND: 5000,
+    FIFTY_THOUSAND: 50000,
+    FIVE_HUNDRED_THOUSAND: 1500000,
+    THIRTY_MILLION: 30000000,
+    TWO_BILLION: 2000000000,
+  }),
 };
