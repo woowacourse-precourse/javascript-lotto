@@ -33,14 +33,14 @@ describe("로또 구매 비용 입력 테스트", () => {
     expect(() => {
       const INPUT = "abc1000";
       APP.checkCost(INPUT)
-    }).toThrow("[ERROR]");
+    }).toThrow("[ERROR] 로또 구입 금액은 숫자여야 합니다.");
   });
 
   test("입력한 로또 구매 비용이 천 단위가 아니면 예외가 발생한다.", () => {
     expect(() => {
       const INPUT = "20500";
       APP.checkCost(INPUT)
-    }).toThrow("[ERROR]")
+    }).toThrow("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.")
   });
 
   test("로또 구매 비용을 올바르게 입력하면 예외가 발생하지 않는다.", () => {
@@ -58,14 +58,14 @@ describe("로또 당첨 번호 입력 테스트", () => {
     expect(() => {
       const INPUT = "1,2,a,4,5,6";
       APP.convertSixInputsToNumbers(INPUT)
-    }).toThrow("[ERROR]")
+    }).toThrow("[ERROR] 번호 입력은 숫자여야 합니다.")
   });
 
   test("입력한 로또 번호에 콤마가 올바르지 않게 들어있으면 예외가 발생한다.", () => {
     expect(() => {
       const INPUT = "1,2,3,4,5,6,";
       APP.convertSixInputsToNumbers(INPUT)
-    }).toThrow("[ERROR]")
+    }).toThrow("[ERROR] 입력된 데이터 중 빈 데이터가 없어야 합니다.")
   });
 
   test("로또 번호를 올바르게 입력했다면 숫자로 변환이 가능하다", () => {
@@ -83,28 +83,28 @@ describe("로또 보너스 번호 입력 테스트", () => {
     expect(() => {
       const INPUT = "";
       APP.checkBonusNumber(INPUT, WON_LOTTO)
-    }).toThrow("[ERROR]")
+    }).toThrow("[ERROR] 입력된 데이터 중 빈 데이터가 없어야 합니다.")
   });
 
   test("보너스 번호에 숫자가 아닌 문자를 입력하면 예외가 발생한다.", () => {
     expect(() => {
       const INPUT = "ab";
       APP.checkBonusNumber(INPUT, WON_LOTTO)
-    }).toThrow("[ERROR]")
+    }).toThrow("[ERROR] 번호 입력은 숫자여야 합니다.")
   });
 
   test("보너스 번호에 1-45를 벗어난 숫자를 입력하면 예외가 발생한다.", () => {
     expect(() => {
       const INPUT = "50";
       APP.checkBonusNumber(INPUT, WON_LOTTO)
-    }).toThrow("[ERROR]")
+    }).toThrow("[ERROR] 보너스 번호는 1-45 범위 숫자여야 합니다.")
   });
 
   test("보너스 번호에 당첨 번호 중 하나를 입력하면 예외가 발생한다.", () => {
     expect(() => {
       const INPUT = "4";
       APP.checkBonusNumber(INPUT, WON_LOTTO)
-    }).toThrow("[ERROR]")
+    }).toThrow("[ERROR] 보너스 번호는 기존 당첨 번호와 중복될 수 없습니다.")
   });
 
   test("보너스 번호를 올바르게 입력하면 예외가 발생하지 않는다.", () => {
@@ -119,19 +119,19 @@ describe("로또 클래스 예외 발생 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 6, 7]);
-    }).toThrow("[ERROR]");
+    }).toThrow("[ERROR] 로또 번호는 6개여야 합니다.");
   });
 
   test("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.", () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 5]);
-    }).toThrow("[ERROR]");
+    }).toThrow("[ERROR] 로또 번호는 중복이 없어야 합니다.");
   });
 
   test("로또 번호에 1-45 범위를 벗어난 숫자가 있으면 예외가 발생한다.", () => {
     expect(() => {
       new Lotto([1, 2, 50, 3, 4, 5]);
-    }).toThrow("[ERROR]");
+    }).toThrow("[ERROR] 로또 번호는 1-45 사이 숫자여야 합니다.");
   });
 
   test("로또 번호를 올바르게 넣으면 예외가 발생하지 않는다.", () => {
