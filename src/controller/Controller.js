@@ -55,6 +55,39 @@ class Controller {
     })
   }
 
+  calcWinningResult() {
+    const numbers = this.lottoModel.getNumbers();
+    const quickPicks = this.quickPickModel.getQuickPick();
+
+    return quickPicks.reduce((result, quickPick) => {
+      const score = numbers.filter((number) => quickPick.includes(number)).length;
+      const count = this.calcWinningCount(quickPick, score);
+      if (result[count]) {
+        result[count] += 1;
+      } else {
+        result[count] = 1
+      }
+      return result;
+    }, {});
+  }
+
+  calcWinningCount(quickPick, score) {
+    const bonus = this.bonusModel.getBonus();
+
+    if (score === 5) {
+      if (quickPick.includes(bonus)) {
+        return "6"
+      }
+      return "5";
+    }
+
+    if (score === 6) {
+      return "7";
+    }
+
+    return score;
+  }
+
   validateWinningNumber(number) {
     if (!number.includes(",")) {
       throw new Error(ERROR_MESSAGE.COMMA);
