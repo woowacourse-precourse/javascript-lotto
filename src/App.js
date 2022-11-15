@@ -1,6 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
-const utils = require('./utils/utils');
+const utils = require('./utils/lottoUtils');
 const appUtils = require('./utils/appUtils');
 const APP = require('./constants/app');
 

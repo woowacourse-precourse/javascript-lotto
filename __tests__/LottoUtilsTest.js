@@ -1,5 +1,5 @@
 const LOTTO = require('../src/constants/lotto');
-const utils = require('../src/utils/utils');
+const utils = require('../src/utils/lottoUtils');
 
 const ascendingOrder = (value1, value2) => value1 - value2;
 

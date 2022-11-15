@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-const utils = require('./utils/utils');
+const utils = require('./utils/lottoUtils');
 const ERROR_MESSAGE = require('./constants/errorMessages');
 
 class Lotto {
