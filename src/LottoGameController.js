@@ -1,5 +1,4 @@
 const LottoGameService = require("./LottoGameService");
-const WinNumber = require("./domain/WinNumber");
 
 class LottoGameController {
   #gameService;
@@ -21,14 +20,13 @@ class LottoGameController {
   }
 
   inputWinNumber(numbers) {
-    const winNumber = new WinNumber(numbers);
-    this.#gameService.setWinNumber(numbers);
+    this.#gameService.setWinNumbers(numbers);
   }
 
-  inputWinNumber(number) {
-    const bonus = new Bonus(number);
-    this.#gameService.setBonus(number);
-  }
+  // inputWinNumber(number) {
+  //   const bonus = new Bonus(number);
+  //   this.#gameService.setBonus(number);
+  // }
 }
 
 module.exports = LottoGameController;

@@ -25,15 +25,28 @@ class InputView {
   #printLottos() {
     const lottos = this.#lottoGameController.outputLottos();
     Console.print(lottos.toString());
-    this.#inputWinNumber();
+    this.inputWinNumber();
   }
 
-  #inputWinNumber() {
+  inputWinNumber() {
     Console.readLine(INPUT_MESSAGE.WIN_NUMBER, (numbers) => {
       this.#lottoGameController.inputWinNumber(numbers);
-      this.#inputBonus();
+      // this.#inputBonus();
     });
   }
+
+  // #inputBonus() {
+  //   Console.readLine(INPUT_MESSAGE.BONUS_NUMBER, (numbers) => {
+  //     this.#lottoGameController.inputBonus(numbers);
+  //     this.#showStatics();
+  //   });
+  // }
+
+  // #showStatics() {
+  //   Console.print(OUTPUT_MESSAGE.STATIC_STATUS);
+  //   Console.print("---");
+  //   Console.print("컨트롤러한테 물어봐서 가져오셈");
+  // }
 }
 
 module.exports = InputView;

@@ -1,5 +1,6 @@
 const Money = require("./domain/Money");
 const Lottos = require("./domain/Lottos");
+const WinNumber = require("./domain/WinNumber");
 
 class LottoGameService {
   #lottos;
@@ -20,7 +21,8 @@ class LottoGameService {
     return this.#lottos.toString();
   }
 
-  setWinNumbers(winNumber) {
+  setWinNumbers(winNumbers) {
+    const winNumber = new WinNumber(winNumbers);
     this.#winNumber = winNumber;
   }
 
