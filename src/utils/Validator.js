@@ -32,10 +32,17 @@ class Validator {
   static #isBonusNumberValid(winningNumber, bonusNumber) {
     if (this.#isBonusLengthOverOne(bonusNumber))
       throw Error("[ERROR] 보너스 번호는 숫자 하나만 입력해주세요.");
+    if (this.#isBonusNotNumber(bonusNumber))
+      throw Error("[ERROR] 보너스 번호는 숫자만 입력해주세요.");
   }
 
   static #isBonusLengthOverOne(bonusNumber) {
     return bonusNumber.length > 1;
+  }
+
+  static #isBonusNotNumber(bonusNumber) {
+    console.log(+bonusNumber, +bonusNumber === "NaN");
+    return isNaN(+bonusNumber);
   }
 
   static #isNotRangeValid(numbers) {
