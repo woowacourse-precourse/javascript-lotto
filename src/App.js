@@ -1,4 +1,4 @@
-const Clerk = require("./play/Clerk");
+const Clerk = require("./Clerk");
 
 class App {
   play() {
