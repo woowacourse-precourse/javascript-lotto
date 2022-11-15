@@ -24,7 +24,6 @@ async function getBudget(inputObjects) {
 }
 
 async function getLottoNumbers(inputObjects) {
-  // console.log('budget을 받음')
   Console.readLine('', (answer) => {
     const numbers = new Lotto(answer);
     numbers.forEach((element) => {
