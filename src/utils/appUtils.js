@@ -52,23 +52,15 @@ const validateBonusNumber = (input, prizeNumbers) => {
   if (prizeNumbers.includes(bonusNumber)) throw new Error(ERROR_MESSAGE.DUPLICATE_ERROR);
 };
 
-const printArray = (items) => {
-  items.forEach((item) => Console.print(item));
+const arrayToString = (array) => `[${array.join(', ')}]`;
+
+const printArray = (array) => {
+  array.forEach((item) => Console.print(arrayToString(item)));
 };
 
 const printEmpty = () => {
   Console.print('');
 };
-
-const resolvedCallback = (callback, resolve) => (input) => {
-  callback(input);
-  resolve();
-};
-
-const synchronousReadLine = (message, callback) =>
-  new Promise((resolve) => {
-    Console.readLine(message, resolvedCallback(callback, resolve));
-  });
 
 const getEarningRate = (stats, amount) => {
   let totalAmount = 0;
@@ -107,7 +99,6 @@ module.exports = {
   validateBonusNumber,
   printEmpty,
   printArray,
-  synchronousReadLine,
   getEarningRate,
   getResultText,
 };

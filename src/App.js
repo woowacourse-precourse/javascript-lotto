@@ -30,27 +30,50 @@ class App {
     appUtils.printEmpty();
     Console.print(`${this.#amount}개를 구매했습니다.`);
     appUtils.printArray(this.#lottos);
+
+    this.nextQuestion(APP.WINNER_NUMBER_MESSAGE, this.getPrizeNumber);
   }
 
   getPrizeNumber(input) {
     appUtils.validatePrizeNumbers(input);
+
     this.#prizeNumbers = input.split(APP.SEPARATOR).map((item) => Number(item));
+
+    this.nextQuestion(APP.BONUS_NUMBER_MESSAGE, this.getBonusNumber);
   }
 
   getBonusNumber(input) {
     appUtils.validateBonusNumber(input, this.#prizeNumbers);
+
     this.#bonusNumber = Number(input);
+
+    this.endLotto();
   }
 
-  async play() {
-    await appUtils.synchronousReadLine(APP.AMOUNT_MESSAGE, this.getAmount);
-    appUtils.printEmpty();
-    await appUtils.synchronousReadLine(APP.WINNER_NUMBER_MESSAGE, this.getPrizeNumber);
-    appUtils.printEmpty();
-    await appUtils.synchronousReadLine(APP.BONUS_NUMBER_MESSAGE, this.getBonusNumber);
+  endLotto() {
+    this.#lotto = new Lotto(this.#prizeNumbers);
+    const stats = this.#lotto.getStats(this.#lottos, this.#bonusNumber);
+    const resultTexts = appUtils.getResultText(stats, this.#amount);
 
+    appUtils.printEmpty();
+    resultTexts.forEach((text) => Console.print(text));
+
+    this.exit();
+  }
+
+  nextQuestion(message, callback) {
+    Console.readLine(message, callback);
+  }
+
+  play() {
+    this.nextQuestion(APP.AMOUNT_MESSAGE, this.getAmount);
+  }
+
+  exit() {
     Console.close();
   }
 }
+
+new App().play();
 
 module.exports = App;
