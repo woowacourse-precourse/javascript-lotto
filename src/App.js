@@ -1,4 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
+const { VALIDATE_NUMBER, ERROR_MESSAGE, INPUT_QUESTION, PRINT_MESSAGE, PRIZE } = require('./utils/Constants'); 
 const Bonus = require('./Bonus');
 const Lotto = require('./Lotto');
 
@@ -22,7 +23,7 @@ class App {
   }
 
   inputPurchaseAmount() {
-    Console.readLine('구매금액을 입력해 주세요. \n', (money) => {
+    Console.readLine(INPUT_QUESTION.money, (money) => {
       if (this.isDividedByTen(money)) {
         this.money = money;
         this.getPurchaseCount();
@@ -31,29 +32,29 @@ class App {
   }
 
   isDividedByTen(money) {
-    if (money % 1000 !== 0) {
-      throw new Error('[ERROR] 1000원 단위로 금액을 입력하지 않았습니다.');
+    if (money % VALIDATE_NUMBER.moneyUnit !== 0) {
+      throw new Error(ERROR_MESSAGE.moneyUnit);
     }
 
     return true;
   }
 
   getPurchaseCount() {
-    const count = this.money / 1000;
+    const count = this.money / VALIDATE_NUMBER.moneyUnit;
     this.count = count;
     this.printPurchaseCount();
     this.getLottoList();
   }
 
   printPurchaseCount() {
-    Console.print(`${this.count}개를 구매했습니다.`);
+    Console.print(PRINT_MESSAGE.count(this.count));
   }
   
   getLottoList() {
     let countIndex = 0;
 
     while (countIndex < this.count) {
-      const lottoNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+      const lottoNumbers = Random.pickUniqueNumbersInRange(VALIDATE_NUMBER.start, VALIDATE_NUMBER.end, VALIDATE_NUMBER.len);
       lottoNumbers.sort((a, b) => a - b);
       this.lottoList.push(lottoNumbers);
       countIndex++;
@@ -71,7 +72,7 @@ class App {
   }
 
   inputWinNumber() {
-    Console.readLine('당첨 번호를 입력해 주세요. \n', (numbers) => {
+    Console.readLine(INPUT_QUESTION.winNum, (numbers) => {
       const  winNumber = numbers.split(',').map(Number);
       new Lotto(winNumber);
       this.winNumber = winNumber;
@@ -80,8 +81,8 @@ class App {
   }
 
   inputBonusNumber() {
-    Console.readLine('보너스 번호를 입력해 주세요. \n', (bonus) => {
-      new Bonus(bonus, this.winNumber);
+    Console.readLine(INPUT_QUESTION.bonusNum, (bonus) => {
+      new Bonus(Number(bonus), this.winNumber);
       this.bonusNumber = bonus;
       this.compare();
     });
@@ -94,6 +95,8 @@ class App {
         this.getRank(matchingNumbers, lotto);
       }
     });
+    this.printResult();
+    this.getProfit();
   }
 
   getRank(matchingNumbers, lotto) {
@@ -103,33 +106,30 @@ class App {
     if (matchCount === 5 && !lotto.includes(this.bonusNumber)) this.rank.third++;
     if (matchCount === 5 && lotto.includes(this.bonusNumber)) this.rank.second++;
     if (matchCount === 6) this.rank.first++;
-
-    this.printResult();
-    this.getProfit();
   }
 
   printResult() {
-    Console.print('당첨 통계\n---');
-    Console.print(`3개 일치 (5,000원) - ${this.rank.fifth}개`);
-    Console.print(`4개 일치 (50,000원) - ${this.rank.fourth}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${this.rank.third}개`);
-    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.rank.second}개`);
-    Console.print(`6개 일치 (2,000,000,000원) - ${this.rank.first}개`);
+    Console.print(PRINT_MESSAGE.statistics);
+    Console.print(PRINT_MESSAGE.matchThree(this.rank.fifth));
+    Console.print(PRINT_MESSAGE.matchFour(this.rank.fourth));
+    Console.print(PRINT_MESSAGE.matchFive(this.rank.third));
+    Console.print(PRINT_MESSAGE.matchFiveBonus(this.rank.second));
+    Console.print(PRINT_MESSAGE.matchSix(this.rank.first));
   }
   getProfit() {
     const rank = this.rank;
     const totalPrize = 
-      rank.fifth * 5000 + 
-      rank.fourth * 50000 + 
-      rank.third * 1500000 + 
-      rank.second * 30000000 + 
-      rank.first * 2000000000;
-    const profit = ((totalPrize / this.money) * 100).toFixed(1);
-    this.printProfit(profit);
+    rank.fifth * PRIZE.fifth + 
+    rank.fourth * PRIZE.fourth + 
+    rank.third * PRIZE.third + 
+    rank.second * PRIZE.second + 
+    rank.first * PRIZE.first;
+  const profitRate = ((totalPrize / this.money) * 100).toFixed(1);
+  this.printProfit(profitRate);
   }
   
-  printProfit(profit) {
-    Console.print(`총 수익률은 ${profit}%입니다.`);
+  printProfit(profitRate) {
+    Console.print(PRINT_MESSAGE.profit(profitRate));
     this.close();
   }
 
