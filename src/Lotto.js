@@ -1,12 +1,15 @@
+const InputOutput = require('./InputOutput.js');
+const Message = require('./Message.js');
+const Score = require('./Score.js');
+
 class Lotto {
   #numbers;
 
-  constructor(numbers) {
+  constructor (numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
   }
 
-  validate(numbers) {
   validate (numbers) {
     numbers.map((item) => {
       if (item < 1 || item > 45) {
@@ -21,7 +24,6 @@ class Lotto {
     })
 
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
       InputOutput.close();
       throw new Error(Message.LOTTO_NUMBER_LENGTH_IS_SIX);
     }
@@ -30,9 +32,8 @@ class Lotto {
       InputOutput.close();
       throw new Error(Message.SAME_NUMBER);
     }
-  }
 
-  // TODO: 추가 기능 구현
+  }
   
   getCorrectNumber () {
     return this.#numbers;
