@@ -4,7 +4,7 @@ class App {
   // 유저가 낸 금액
   userPaid() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (userInput) => {
-      if (userPaidValid(userInput)) {
+      if (this.userPaidValid(userInput)) {
         this.userPrice = userInput;
         MissionUtils.Console.print(
           `${Number(userPrice) / 1000}개를 구매했습니다.`
@@ -15,23 +15,40 @@ class App {
   }
 
   //당첨 로또 번호
-  winLottoNum() {
-    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (userInput) => {
-      validate(userInput);
-    });
-    MissionUtils.Console.print(userInput);
-    return userInput;
-    this.winBonusLottoNum();
+  inputLottoNum() {
+    const inputLotto = "";
+    MissionUtils.Console.readLine(
+      "당첨 번호를 입력해 주세요.",
+      (inputLottoNum) => {
+        inputLotto += inputLottoNum;
+        const inputLottoResult = Lotto.validate(inputLotto);
+        this.inputBonusLottoNum();
+        MissionUtils.Console.close();
+      }
+    );
   }
 
   //당첨 보너스 로또 번호
-  winBonusLottoNum() {
-    MissionUtils.Console.readLine(
-      "보너스 번호를 입력해 주세요.",
-      (userInput) => {
-        MissionUtils.Console.print(userInput);
+  inputBonusLottoNum() {
+    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (bonus) => {
+      if (bunusValid(Number(bonus))) {
+        this.bonus = Number(bonus);
+        MissionUtils.Console.print(bonus);
       }
-    );
+    });
+  }
+
+  bunusValid(bonus) {
+    if (isNaN(bonus)) {
+      throw new Error("[ERROR] 보너스 번호는 숫자여야 합니다.");
+    }
+    if (bonus < 0 || bonus > 46) {
+      throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자입니다.");
+    }
+    if (inputLottoResult.inclue(bonus)) {
+      throw new Error("[ERROR] 보너스 번호는 로또 번호와 중복되서는 안됩니다.");
+    }
+    return true;
   }
 
   //당첨 통계
