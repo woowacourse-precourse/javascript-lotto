@@ -26,7 +26,7 @@ class Player {
   showLottoNumbers = () => {
     Console.print(`\n${this.#lottos.length}개를 구매했습니다.`);
     for (let lotto of this.#lottos) {
-      Console.print(lotto);
+      Console.print(`[${lotto.join(", ")}]`);
     }
   };
 }
