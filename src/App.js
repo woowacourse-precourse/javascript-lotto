@@ -60,18 +60,19 @@ class App {
   }
 
   setRevenue(matched) {
-    const matchedNumber = this.prize[matched.lotto];
-    if(matched.lotto === '5' && matched.bonus === false) {
-      this.revenue += matchedNumber.nonBonus.winningAmount;
-      return matchedNumber.nonBonus.ea += 1;
+    const matchedEA = String(matched.ea);
+    const rank = this.prize[matchedEA];
+    if(matchedEA === LOTTO_BASIC_CONDITION.bonusCheckPoint && matched.bonus === false) {
+      this.revenue += rank.nonBonus.winningAmount;
+      return rank.nonBonus.ea += 1;
     }
-    if(matched.lotto === '5' && matched.bonus === true) {
-      this.revenue += matchedNumber.hasBonus.winningAmount;
-      return matchedNumber.hasBonus.ea += 1;
+    if(matchedEA === LOTTO_BASIC_CONDITION.bonusCheckPoint && matched.bonus) {
+      this.revenue += rank.hasBonus.winningAmount;
+      return rank.hasBonus.ea += 1;
     }
-    if(Object.keys(this.prize).includes(matched.lotto)) {
-      this.revenue += matchedNumber.winningAmount;
-      return matchedNumber.ea += 1;
+    if(Object.keys(this.prize).includes(matchedEA)) {
+      this.revenue += rank.winningAmount;
+      return rank.ea += 1;
     }
   }
 

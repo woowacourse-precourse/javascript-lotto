@@ -26,7 +26,7 @@ class GameUtils {
   }
 
   static addComma(value) {
-    const convertedValue = [...value.toString()];
+    const convertedValue = [...String(value)];
     let result = '';
     let digit = 0;
     for(let i = convertedValue.length - 1; i >= 0; i--) {

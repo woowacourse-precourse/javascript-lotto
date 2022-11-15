@@ -5,17 +5,18 @@ const LOTTO_BASIC_CONDITION = Object.freeze({
   end: 45,
   length: 6,
   bonusLength: 1,
+  bonusCheckPoint: '5',
   price: 1000,
 });
 
 const PRIZE_TABLE = Object.freeze({
-  3: { ea: 0, winningAmount: 5000 },
-  4: { ea: 0, winningAmount: 50000 },
-  5: {
+  '3': { ea: 0, winningAmount: 5000 },
+  '4': { ea: 0, winningAmount: 50000 },
+  [LOTTO_BASIC_CONDITION.bonusCheckPoint]: {
     hasBonus: { ea: 0, winningAmount: 30000000},
     nonBonus: { ea: 0, winningAmount: 1500000 },    
   },
-  6: { ea: 0, winningAmount: 2000000000 },
+  '6': { ea: 0, winningAmount: 2000000000 },
 });
 
 const HEADER = Object.freeze({
@@ -27,9 +28,7 @@ const MESSAGES = Object.freeze({
     REQUIRE_PURCHASE_AMOUNT: '구입금액을 입력해 주세요.',
     REQUIRE_WINNING_LOTTO_NUMBER: '당첨 번호를 입력해 주세요.',
     REQUIRE_BONUS: '보너스 번호를 입력해 주세요.',
-
-    BUY_SHEET: '개를 구매했습니다.',
-    
+    BUY_SHEET: '개를 구매했습니다.',    
     RESULT_HEADER: '당첨 통계\n---',
   },
   ERROR: {

@@ -13,12 +13,11 @@ class Lotto {
     this.bonus = bonus;
   }
   compare(UserLotto) {
-    const matchCount = { lotto: 0, bonus: false};
+    const matchCount = { ea: 0, bonus: false};
     UserLotto.forEach(number => {
-      if(this.#numbers.includes(number)) return matchCount.lotto += 1;
+      if(this.#numbers.includes(number)) return matchCount.ea += 1;
       if(this.bonus.includes(number)) return matchCount.bonus = true;
     });
-    matchCount.lotto = matchCount.lotto.toString();
     return matchCount;
   }
 }
