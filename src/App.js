@@ -8,14 +8,13 @@ class App {
   }
 
   play() {
-    this.InputMoney();
+    this.userInput();
   }
 
-  InputMoney(){
+  userInput(){
     MissionUtils.Console.readLine('구입 금액을 입력해주세요 : ', (money) => {
       this.checkInputMoney(getMoney);
-      this.money = parseInt(money);
-      let amount = money/1000;
+      let amount = parseInt(money)/1000;
       this.getUsersLottoArray(amount);
     });
   }
