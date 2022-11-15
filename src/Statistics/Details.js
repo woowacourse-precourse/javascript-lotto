@@ -6,9 +6,9 @@ class Details {
   #bonusNumbers;
   #winningNumbers;
 
-  constructor(lottos, winning, bonus) {
-    this.#winningNumbers = winning.getNumbers();
-    this.#bonusNumbers = bonus.getNumbers(); // 배열
+  constructor({ lottos, winningNumbers, bonusNumbers }) {
+    this.#winningNumbers = winningNumbers.getNumbers();
+    this.#bonusNumbers = bonusNumbers.getNumbers(); // 배열
     this.getLottosRanks(lottos);
   }
 
@@ -20,7 +20,6 @@ class Details {
     this.#details = lottos.reduce((acc, lotto) => {
       let rank = this.getIssueRank(lotto);
       if (rank < 6) {
-        // 사실 if 문을 축약해서 쓴건데.... 이걸 indent 하나로 볼 수 있을까?
         acc[rank] = (acc[rank] || 0) + 1;
       }
       return acc;
@@ -32,7 +31,7 @@ class Details {
     let duplicatedCount = this.getNumberOfDuplicatedNumbers(lotto);
 
     if (
-      this.checkBonusNumbers(lotto, duplicatedCount) ||
+      this.checkBonusNumbers({ lotto, duplicatedCount }) ||
       duplicatedCount === 6
     ) {
       rank--;
@@ -48,7 +47,7 @@ class Details {
     }).length;
   }
 
-  checkBonusNumbers(lotto, duplicatedCount) {
+  checkBonusNumbers({ lotto, duplicatedCount }) {
     if (
       duplicatedCount === LOTTO_INFO.number_of_numbers - 1 &&
       this.hasBonusNumbers(lotto)

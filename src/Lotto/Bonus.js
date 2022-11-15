@@ -7,12 +7,12 @@ const { ERROR } = require("../Constants");
 class Bonus {
   #numbers;
 
-  constructor(numbers, winningLotto) {
-    this.validate(numbers, winningLotto);
+  constructor({ numbers, winningNumbers }) {
+    this.validate({ numbers, winningNumbers });
     this.#numbers = numbers;
   }
 
-  validate(numbers, winningLotto) {
+  validate({ numbers, winningNumbers }) {
     if (!isNumberOfBonusNumbersCorrect(numbers)) {
       throw new Error(ERROR.incorrect_number_of_bonus_number);
     }
@@ -21,7 +21,7 @@ class Bonus {
       throw new Error(ERROR.number_out_of_range);
     }
 
-    if (winningLotto.isBonusNumbersDuplicated(numbers)) {
+    if (winningNumbers.isBonusNumbersDuplicated(numbers)) {
       throw new Error(ERROR.has_duplicate_number);
     }
   }

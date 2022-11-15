@@ -6,8 +6,8 @@ class Statistics {
   #details;
   #profitRate;
 
-  constructor({ lottos, winning, bonus, amount }) {
-    this.#details = new Details(lottos, winning, bonus);
+  constructor({ lottos, winningNumbers, bonusNumbers, amount }) {
+    this.#details = new Details({ lottos, winningNumbers, bonusNumbers });
     this.#profitRate = this.getProfitRate(amount);
   }
 

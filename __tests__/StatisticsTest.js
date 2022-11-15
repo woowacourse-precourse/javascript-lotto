@@ -21,11 +21,11 @@ const lottos = [
   new Lotto([10, 11, 12, 13, 14, 15]),
 ];
 const winner = new Lotto([1, 23, 4, 10, 11, 2]);
-const bonus = new Bonus([12], winner);
+const bonus = new Bonus({ numbers: [12], winningNumbers: winner });
 const result = new Statistics({
   lottos: lottos,
-  winning: winner,
-  bonus: bonus,
+  winningNumbers: winner,
+  bonusNumbers: bonus,
   amount: 8,
 });
 

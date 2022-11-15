@@ -12,9 +12,12 @@ const lottos = [
   new Lotto([10, 11, 12, 13, 14, 15]),
   new Lotto([10, 11, 12, 13, 14, 15]),
 ];
-const winner = new Lotto([1, 23, 4, 10, 11, 2]);
-const bonus = new Bonus([12], winner);
-const details = new Details(lottos, winner, bonus);
+const winningNumbers = new Lotto([1, 23, 4, 10, 11, 2]);
+const bonusNumbers = new Bonus({
+  numbers: [12],
+  winningNumbers: winningNumbers,
+});
+const details = new Details({ lottos, winningNumbers, bonusNumbers });
 
 describe("통계 클래스 테스트", () => {
   test("getDetails() 함수 테스트", () => {

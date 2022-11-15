@@ -59,7 +59,10 @@ class App {
   }
 
   getBonusNumbers(input) {
-    this.bonusNumbers = new Bonus(input, this.winningNumbers);
+    this.bonusNumbers = new Bonus({
+      numbers: input,
+      winningNumbers: this.winningNumbers,
+    });
     this.getStatistics();
   }
 
@@ -67,8 +70,8 @@ class App {
     if (!this.result) {
       this.result = new Statistics({
         lottos: this.lottos,
-        winning: this.winningNumbers,
-        bonus: this.bonusNumbers,
+        winningNumbers: this.winningNumbers,
+        bonusNumbers: this.bonusNumbers,
         amount: this.issueCount,
       });
     }
