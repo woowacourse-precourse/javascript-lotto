@@ -12,14 +12,14 @@ class DrawMachine {
     this.scoreMachine = new ScoreMachine();
   }
 
-  darwWinningNumber() {
+  askWinningNumber() {
     Console.readLine(PHRASE.WINNING_NUMBER, this.run.bind(this));
   }
 
   run(input) {
     this.validateWinningNumber(input);
     this.acceptWinningNumber(input);
-    this.drawBonusNumber();
+    this.askBonusNumber();
   }
 
   validateWinningNumber(input) {
@@ -32,14 +32,14 @@ class DrawMachine {
     this.#winningNumber = input.split(',').map((number) => Number(number));
   }
 
-  drawBonusNumber() {
+  askBonusNumber() {
     Console.readLine(PHRASE.BONUS_NUMBER, this.run2.bind(this));
   }
 
   run2(input) {
     this.validateBonusNumber(input);
     this.acceptBonusNumber(input);
-    this.scoreMachine.compare(this.#winningNumber, this.#bonusNumber);
+    this.scoreMachine.run(this.#winningNumber, this.#bonusNumber);
   }
 
   validateBonusNumber(input) {

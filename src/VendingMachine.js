@@ -20,7 +20,7 @@ class VendingMachine {
     this.validate(input);
     this.printLottoCount(input);
     this.makeLotto(input);
-    this.drawMachine.darwWinningNumber();
+    this.drawMachine.askWinningNumber();
   }
 
   validate(input) {
@@ -37,13 +37,13 @@ class VendingMachine {
   makeLotto(input) {
     const count = input / LOTTO.PRICE;
     for (let i = 0; i < count; i++) {
-      this.generateLottoNumber();
-      this.generateLotto();
+      this.createLottoNumber();
+      this.createLotto();
       this.printLottoNumber();
     }
   }
 
-  generateLottoNumber() {
+  createLottoNumber() {
     const number = Random.pickUniqueNumbersInRange(
       LOTTO.MIN_NUMBER,
       LOTTO.MAX_NUMBER,
@@ -52,7 +52,7 @@ class VendingMachine {
     this.#lottoNumber = number;
   }
 
-  generateLotto() {
+  createLotto() {
     const lotto = new Lotto(this.#lottoNumber);
     this.conveyLotto(lotto);
   }

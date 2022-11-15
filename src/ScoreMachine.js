@@ -16,25 +16,25 @@ class ScoreMachine {
     [RATE_OF_RETURN]: 0,
   };
 
-  compare(winningNumber, bonusNumber) {
+  run(winningNumber, bonusNumber) {
     this.#winningNumber = winningNumber;
     this.#bonusNumber = bonusNumber;
 
-    this.generateLottoNumberList();
-    this.compareNumbers();
+    this.makeLottoNumberList();
+    this.compare();
     this.calculateRateOfReturn();
     this.printResult();
     this.endGame();
   }
 
-  generateLottoNumberList() {
+  makeLottoNumberList() {
     ScoreMachine.lottoList.forEach((lotto) => {
       const lottoNumber = lotto.getLottoNumber();
       this.#lottoNumberList.push(lottoNumber);
     });
   }
 
-  compareNumbers() {
+  compare() {
     this.#lottoNumberList.forEach((lottoNumber) => {
       this.compareWinningNumber(lottoNumber);
     });
