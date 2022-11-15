@@ -37,7 +37,7 @@ class Lotto {
     });
   }
 
-  checkMatching(bonusNumber) {
+  has(bonusNumber) {
     if (this.matchedNumberCount === 5 && this.#numbers.includes(bonusNumber)) {
       this.isBonusNumberMatched = true;
     }
