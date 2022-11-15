@@ -130,8 +130,13 @@ class App {
   
   printProfit(profit) {
     Console.print(`총 수익률은 ${profit}%입니다.`);
+    this.close();
   }
-  
+
+  close() {
+    Console.close();
+  }
+
 }
 const app = new App();
 app.play();
