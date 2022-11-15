@@ -17,6 +17,7 @@ class App {
     this.Money;
     this.Lotto;
     this.BonusNumber;
+    this.LottoResult;
     this.ProfitResult;
   }
 
