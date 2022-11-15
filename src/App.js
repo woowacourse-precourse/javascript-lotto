@@ -41,7 +41,15 @@ class App {
       throw new Error(PURCHASE_AMOUNT_ERROR_MESSAGE3);
     }
   }
-
+  
+  manageTickets(numberOfTickets) {
+    for (let i = 0; i < numberOfTickets; i++) {
+      const ticketNumbers = this.createTicketNumbers();
+      MissionUtils.Console.print(ticketNumbers);
+      this.tickets.push(new Ticket(randomTicketNumbers));
+    }
+  }
+  
   createTicketNumbers() {
     return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
   }
