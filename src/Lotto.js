@@ -18,6 +18,7 @@ class Lotto {
   bonusNumber(sixlotterynumber,money) {
     Console.readLine("보너스 번호를 입력해 주세요", (bonusnumber) => {
       this.validateBonusNumber(bonusnumber);
+      this.printResult(sixlotterynumber,bonusnumber,money);
     });
   }
 
@@ -25,6 +26,46 @@ class Lotto {
     if (isNaN(bonusNumber)) throw new Error("[ERROR] 보너스 번호는 숫자여야합니다.");
     if (this.#numbers.includes(bonusNumber)) throw new Error("[ERROR] 로또 번호와 중복된 숫자입니다.");
     if (bonusNumber <= 0 || bonusNumber > 45) throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+  }
+
+  printResult(sixlotterynumbers,bonusnumber,purchasemoney){
+    Console.print("\n당첨 통계\n\n---");
+    this.printMatchingNumbers(this.countMatchingNumbers(this.matchingNumbers(sixlotterynumbers,bonusnumber)));
+  }
+
+  matchingNumbers(sixlotterynumbers,bonusnumber){
+    let matchednumbers = [];
+    for (let s of sixlotterynumbers) {
+      let count = 0;
+      let hasbonusnumber = false;
+      for(let n of this.#numbers){
+        if(s.includes(n)) count+=1;
+        if(s.includes(bonusnumber)) hasbonusnumber = true;
+      }
+      matchednumbers.push({count,hasbonusnumber});
+    }
+    return matchednumbers;
+  }
+
+  countMatchingNumbers(matchednumbers){
+    let winningArray = [0,0,0,0,0];
+    matchednumbers.forEach((result) => {
+      const { count, hasBonusNumber } = result;
+      if (count == 3) winningArray[0] += 1;
+      else if (count === 4) winningArray[1] += 1;
+      else if (count === 5) winningArray[2] += 1;
+      else if (count === 5 && hasBonusNumber) winningArray[3] += 1;
+      else if (count === 6) winningArray[4] += 1;
+    });
+    return winningArray;
+  }
+
+  printMatchingNumbers(winningArray){
+    Console.print(`3개 일치 (5,000원) - ${winningArray[0]}개`);
+    Console.print(`4개 일치 (50,000원) - ${winningArray[1]}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${winningArray[2]}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningArray[3]}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${winningArray[4]}개`);
   }
 
 }
