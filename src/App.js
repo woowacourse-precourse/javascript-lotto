@@ -30,6 +30,7 @@ class App {
       }
     }
   }
+  
   showResult() {
     Console.print(CMM_SHOW_STAT);
     const resultMap = this.#user.checkRankWithUserLottos(this.#winningNumList, this.#bonusNum);
@@ -69,12 +70,13 @@ class App {
     if (numSet.size !== 6) {
       throw new Error(ERR_WINNING_DUP);
     }
-
     splitedInput.forEach((num) => {
       this.validateEachNum(num);
     });
-    return splitedInput;
+    const splitedNum = splitedInput.map((e) => parseInt(e));
+    return splitedNum;
   }
+
   validateEachNum(num) {
     if (!Number.isInteger(parseInt(num)) || isNaN(num)) {
       throw new Error(ERR_NOT_NUM);
@@ -102,5 +104,3 @@ class App {
 
 module.exports = App;
 
-const app = new App();
-app.play();
