@@ -56,7 +56,40 @@ class App {
   inputBonusNumber() {
     Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (number) => {
       this.bonus = new Bonus(number, this.lotto.getNumbers());
+
+      this.compareTotal(
+        this.lottos.values,
+        this.lotto.getNumbers(),
+        this.bonus.getNumber()
+      );
     });
+  }
+
+  compareTotal(lottoNumbersZip, winningNumbers, bonusNumber) {
+    const winningResult = new Array(5).fill(0);
+
+    for (let index = 0; index < lottoNumbersZip.length; index += 1) {
+      const result = this.compare(lottoNumbersZip[index], winningNumbers, bonusNumber);
+
+      if (result <= 5) {
+        winningResult[result - 1] += 1;
+      }
+    }
+  }
+
+  compare(lottoNumbers, winningNumbers, bonusNumber) {
+    if (lottoNumbers.join() === winningNumbers.join()) {
+      return 1;
+    }
+
+    let rank =
+      8 - lottoNumbers.filter((number) => winningNumbers.includes(number)).length;
+
+    if (rank === 3 && lottoNumbers.includes(bonusNumber)) {
+      rank -= 1;
+    }
+
+    return rank;
   }
 }
 

@@ -19,6 +19,10 @@ class Bonus {
       throw new Error(ERROR_MESSAGE.SAME_LOTTO_NUMBER);
     }
   }
+
+  getNumber() {
+    return parseInt(this.#number, 10);
+  }
 }
 
 module.exports = Bonus;
