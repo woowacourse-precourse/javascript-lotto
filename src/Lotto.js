@@ -22,6 +22,13 @@ class Lotto {
 
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      InputOutput.close();
+      throw new Error(Message.LOTTO_NUMBER_LENGTH_IS_SIX);
+    }
+
+    if ([...new Set(numbers)].length !== 6) {
+      InputOutput.close();
+      throw new Error(Message.SAME_NUMBER);
     }
   }
 
