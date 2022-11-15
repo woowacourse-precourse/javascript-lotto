@@ -21,11 +21,18 @@ const {
   RETURN_RATE_ENDING_WORD,
   ERROR,
 } = require('./Messages');
+const {
+  howManyWinningNums,
+  bonusNum,
+  calcMoney,
+  winningRate,
+} = require('./Calculator');
 
 class App {
   constructor() {
     this.howManyLottos = 0;
     this.lottoWinNums = [];
+    this.lottoBonusNum = 0;
     this.lottoRandomNums = [];
   }
 
@@ -42,6 +49,7 @@ class App {
       this.howManyLottos = Number(answer) / 1000;
       this.getLottoNum(this.howManyLottos);
       this.buyAutoLottos(this.howManyLottos);
+      this.getPrizeNums();
 
       if (!isNumber(answer)) {
         throw new Error(ERROR.NOT_A_NUMBER);
@@ -65,7 +73,24 @@ class App {
     while (this.lottoRandomNums.length < num) {
       this.lottoRandomNums.push(this.buyOneLotto(1, 45, 6));
     }
-    this.printMessage(this.lottoRandomNums);
+    this.lottoRandomNums.map(el => this.printMessage(el));
+  }
+
+  getPrizeNums() {
+    Console.readLine(GET_NUMBERS, answer => {
+      this.lottoWinNums = answer
+        .replace(' ', '')
+        .split(',')
+        .map(el => Number(el));
+      return this.getBonusNum();
+    });
+  }
+
+  getBonusNum() {
+    Console.readLine(GET_BONUS_NUMBER, answer => {
+      this.lottoBonusNum = Number(answer);
+      return this.getScoreArray(this.lottoRandomNums);
+    });
   }
 }
 
