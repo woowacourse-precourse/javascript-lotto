@@ -15,4 +15,4 @@ const RANK_REWARD = Object.freeze({
     forth: 50000,
     fifth: 5000,
 });
-module.exports = { LOTTO_PRICE };
+module.exports = { LOTTO_PRICE, RANK_COUNT, RANK_REWARD };
