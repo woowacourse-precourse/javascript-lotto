@@ -30,11 +30,10 @@ const INPUT_ERROR = {
   INVALID_UNIT: `${ERROR} 천 원 단위로 입력해야 합니다.`,
 };
 
-const GENERATE_LOTTO_ERROR = {
-  // NOT_NULL_ALLOWED: `${ERROR} 로또 번호를 입력해야 합니다.`,
-  SIX_DIGIT_ALLOWED: `${ERROR} 로또 번호는 6개여야 합니다.`,
-  NOT_DUPLICATED_ALLOWED: `${ERROR} 로또 번호는 중복될 수 없습니다.`,
-  NUM_IN_RANGE_ALLOWED: `${ERROR} 로또 번호는 1부터 45 사이의 숫자여야 합니다.`,
+const LOTTO_ERROR = {
+  INVALID_DIGIT: `${ERROR} 로또 번호는 6개여야 합니다.`,
+  INVALID_DUPLICATE: `${ERROR} 로또 번호는 중복될 수 없습니다.`,
+  INVALID_RANGE: `${ERROR} 로또 번호는 1부터 45 사이의 숫자여야 합니다.`,
 };
 
 const BONUS_NUM_ERROR = {
@@ -51,7 +50,7 @@ module.exports = {
   RESULT,
   WINNING_MONEY,
   INPUT_ERROR,
-  GENERATE_LOTTO_ERROR,
+  LOTTO_ERROR,
   MIN_LOTTO_NUM,
   MAX_LOTTO_NUM,
   NUM_OF_LOTTO,

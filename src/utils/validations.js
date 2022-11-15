@@ -1,6 +1,6 @@
 const {
   INPUT_ERROR,
-  GENERATE_LOTTO_ERROR,
+  LOTTO_ERROR,
   BONUS_NUM_ERROR,
 } = require('../constants/constants');
 
@@ -19,13 +19,13 @@ const validateInputMoney = (money) => {
 
 const validateLotto = (numbers) => {
   if (numbers.length !== 6) {
-    throw new Error(GENERATE_LOTTO_ERROR.SIX_DIGIT_ALLOWED);
+    throw new Error(LOTTO_ERROR.INVALID_DIGIT);
   }
   if (new Set(numbers).size !== numbers.length) {
-    throw new Error(GENERATE_LOTTO_ERROR.NOT_DUPLICATED_ALLOWED);
+    throw new Error(LOTTO_ERROR.INVALID_DUPLICATE);
   }
   if (!numbers.filter((num) => 1 > num || num > 45)) {
-    throw new Error(GENERATE_LOTTO_ERROR.NUM_IN_RANGE_ALLOWED);
+    throw new Error(LOTTO_ERROR.INVALID_RANGE);
   }
 };
 
