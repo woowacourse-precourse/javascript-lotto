@@ -14,7 +14,15 @@ const ERROR_MESSAGE = {
   BONUS_OVERLAP: "[ERROR] 보너스 번호와 로또 번호는 중복되지 않아야합니다.",
 };
 
+const LOTTO = {
+  MONEY_UNIT: 1000,
+  SIZE: 6,
+  VALUE_MIN: 1,
+  VALUE_MAX: 45,
+};
+
 module.exports = {
   INPUT_MESSAGE,
   ERROR_MESSAGE,
+  LOTTO,
 };
