@@ -84,9 +84,7 @@ class Statistic {
   showCount(hit) {
     Console.print(
       `${hit}개 일치 ` +
-        `(${LOTTO_REWARD[hit + "hit"]
-          .toString()
-          .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원) ` +
+        `(${formatingNummber(LOTTO_REWARD[hit + "hit"])}원) ` +
         `- ${this.#totalCount[hit + "hit"]}개`
     );
     if (hit === 5) {
@@ -95,19 +93,18 @@ class Statistic {
   }
   showBonusCount() {
     Console.print(
-      `5개 일치, 보너스 볼 일치 (${LOTTO_REWARD["5hitBonus"]
-        .toString()
-        .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원) - ${
-        this.#totalCount["5hitBonus"]
-      }개`
+      `5개 일치, 보너스 볼 일치 (${formatinNumber(
+        LOTTO_REWARD["5hitBonus"]
+      )}원) - ${this.#totalCount["5hitBonus"]}개`
     );
   }
   showLotteryReturn() {
     Console.print(
-      `총 수익률은 ${this.#totalReturn
-        .toString()
-        .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}%입니다.\n`
+      `총 수익률은 ${formatingNumber(this.#totalReturn)}%입니다.\n`
     );
+  }
+  formatingNumber(number) {
+    return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
   }
 }
 
