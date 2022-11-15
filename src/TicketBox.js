@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-shadow */
 /* eslint-disable function-paren-newline */
 /* eslint-disable implicit-arrow-linebreak */
@@ -8,6 +9,12 @@ const { TICKET_NUMBER, DECIMAL_NUMBER, PRICE_PER_TICKET } = require('./Constant'
 const Lotto = require('./Lotto');
 const Bonus = require('./Bonus');
 const BillBoard = require('./BillBoard');
+
+const ascendingSort = (front, rear) => {
+  if (front > rear) return 1;
+  if (front === rear) return 0;
+  if (front < rear) return -1;
+};
 
 class TicketBox {
   #budget;
@@ -79,7 +86,7 @@ class TicketBox {
         TICKET_NUMBER.RANGE_END,
         TICKET_NUMBER.COUNT_OF_NUMBER,
       );
-      // TODO: 오름차순
+      ticketNumbers.sort(ascendingSort);
       this.#tickets.push(ticketNumbers);
     }
     MissionUtils.Console.print(`\n${ticketCount}개를 구매했습니다.`);
