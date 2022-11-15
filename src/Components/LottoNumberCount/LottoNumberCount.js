@@ -12,6 +12,10 @@ class LottoNumberCount {
   isSame(lottoNumberCount) {
     return this.#lottoNumberCount === lottoNumberCount.getLottoNumberCount();
   }
+
+  isNull() {
+    return this.#lottoNumberCount === null;
+  }
 }
 
 module.exports = LottoNumberCount;
