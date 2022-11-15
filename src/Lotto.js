@@ -4,6 +4,7 @@ class Lotto {
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
+    this.myLotto = [];
   }
 
   validate(numbers) {
@@ -33,6 +34,31 @@ class Lotto {
       Console.print(`[${randomNumber.join(", ")}]`);
     }
     this.addWinningNumber();
+  }
+
+  addWinningNumber() {
+    const winningNumber = { winningNumberList: [], bonusNumber: 0 };
+    Console.readLine("당첨 번호를 입력해 주세요.\n", (number) => {
+      const reg = /\d{1,2},\d{1,2},\d{1,2},\d{1,2},\d{1,2},\d{1,2}/;
+      if (!reg.test(number)) {
+        throw new Error("[ERROR] 숫자 사이에 , 를 넣어주세요.");
+      }
+
+      const winningNumberList = number.split(",").map((str) => Number(str));
+      this.validate(winningNumberList);
+
+      winningNumber.winningNumberList = winningNumberList;
+      this.addBonusNumber(winningNumber);
+    });
+  }
+
+  addBonusNumber(winningNumber) {
+    Console.readLine("보너스 번호를 입력해 주세요.\n", (bonusNumber) => {
+      if (bonusNumber > 45 || bonusNumber < 1) throw new Error("[ERROR] 1 - 45 사이의 숫자를 넣어주세요.");
+      if (winningNumber.winningNumberList.includes(bonusNumber)) throw new Error("[ERROR] 중복되지 않는 숫자를 넣어주세요.");
+      winningNumber.bonusNumber = Number(bonusNumber);
+      this.checkLottoNumber(winningNumber);
+    });
   }
 }
 
