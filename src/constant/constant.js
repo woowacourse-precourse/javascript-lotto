@@ -10,7 +10,7 @@ const NUMBER = {
 };
 
 const MESSAGE = {
-  INSERT_PURCHASE_COST: '구입금액을 입력해 주세요.\n',
+  INSERT_COST: '구입금액을 입력해 주세요.\n',
   INSERT_WIN_NUMBER: '당첨 번호를 입력해 주세요.\n',
   INSERT_BONUS_NUMBER: '보너스 번호를 입력해 주세요.\n',
   GET_RANK_STATISTICS: '당첨 통계\n---',
