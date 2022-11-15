@@ -27,10 +27,15 @@ class App {
 
   buyLotto() {
     Console.readLine("로또를 구매할 금액을 입력해주세요.", (input) => {
+      if(isNaN(input)) 
+      throw new Error(
+        "[ERROR] 문자를 입력하셨습니다. 숫자를 입력하셔야 합니다."
+      )
       if (input % 1000 != 0)
         throw new Error(
-          "[ERROR] 구입 금액은 1000원 단위로만 구매 가능합니다.\n"
+          "[ERROR] 구입 금액은 1000원 단위로만 구매 가능합니다."
         );
+      
       this.usedMoney = input;
       this.lottoAmount = input / 1000;
     });
@@ -68,7 +73,7 @@ class App {
         throw new Error("[ERROR] 숫자가 아닌 문자를 입력했습니다.");
       if (1 > input || input > 45)
         throw new Error("[ERROR] 1~45 중의 자연수를 입력하세요.");
-      if (this.winningNumbers.getLottoNumbersArray().includes(input))
+      if (this.winningNumbers.getLottoNumbers().includes(input))
         throw new Error("[ERROR] 입력하신 숫자는 이미 앞에서 뽑았습니다.");
       this.bonusNumber = input;
     });
