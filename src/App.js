@@ -2,8 +2,15 @@ const { Console } = require('@woowacourse/mission-utils');
 const Message = require('../constants/Message');
 const publishLotto =require('./PublishLotto');
 const Validator = require('./Validator');
+const StaticLotto = require('./staticLotto');
+const Lotto = require('./Lotto');
 
 class App {
+
+  constructor () {
+    this.staticLotto = new StaticLotto();
+  }
+
   play() {
     this.askPurchasePrice();
   }
@@ -15,8 +22,54 @@ class App {
 
       Console.print(`${priceNumber}${Message.COUNT_LOTTO}`);
 
-      publishLotto.arrangeTotalLotto(priceNumber)
+      this.staticLotto.setPurchasePrice(price);
+      this.staticLotto.setLottoList(
+        publishLotto.arrangeTotalLotto(priceNumber),
+      );
+
+      this.askWinNumber();
     });
+  }
+
+  askWinNumber () {
+    Console.readLine(Message.WIN_NUMBER, (number) => {
+      const winNumber = number
+        .split(',')
+        .map(Number)
+        .sort((front, back) => front - back);
+
+      this.staticLotto.setWinLotto(new Lotto(winNumber));
+
+      this.askBonusNumber(number);
+    });
+  }
+
+  askBonusNumber (arr) {
+    Console.readLine(Message.BONUS_NUMBER, (number) => {
+      Validator.inputBonusNumber(number, arr);
+      this.staticLotto.setBonusNumber(number);
+
+      this.winStatistic();
+    });
+  }
+
+  winStatistic () {
+    Console.print(Message.WIN_STAT);
+    this.staticLotto.getSameNumberCount();
+    this.showRankList();
+  }
+
+  showRankList () {
+    const rank = this.staticLotto.getRank();
+    Console.print(
+      Message.getTotalMatch(
+        rank.rankFive,
+        rank.rankFour,
+        rank.rankThree,
+        rank.rankTwo,
+        rank.rankOne,
+      ),
+    );
   }
 }
 
