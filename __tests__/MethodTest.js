@@ -37,6 +37,6 @@ describe("기능 구현 테스트", () => {
     const lottoResultArr = [0,0,0,0,0,1];
     const lottoCost = "8000";
     const rateOfReturn = LottoMatching.getRateOfReturn(lottoResultArr, lottoCost);
-    expect(rateOfReturn).toEqual(62.5);
+    expect(rateOfReturn).toEqual("62.5");
   });
 });
