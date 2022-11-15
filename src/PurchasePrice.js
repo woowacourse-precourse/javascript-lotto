@@ -2,8 +2,6 @@ const { Console } = require('@woowacourse/mission-utils')
 
 class PurchasePrice {
 
-
-
   //구입 금액 입력
   static getPurchasePrice() {
     let buyCount=0  
@@ -24,7 +22,7 @@ class PurchasePrice {
   //구입 금액 예외처리
   static vaildatePurchasePrice(price) {
     //단위 테스트할때 이 메소드만 사용해야 하므로 static사용
-    //구입 금액 입력받는 값은 매개변수로 넘길 수가 없기 때문
+    //테스트 코트에서 new 선언하지 않고 바로 구입 금액을 매개변수로 넘기기 위해
 
     if (isNaN(price)) {
       throw Error('[ERROR] 로또 구입 금액은 숫자여야 합니다.')

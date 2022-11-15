@@ -13,13 +13,10 @@ class Price {
       const bonusPrice = 30000000
   
       for (let i = 0; i < this.countNormalWinner.length; i++) {
-        // console.log(this.countNormalWinner[i])
-        // console.log(this.normalPrice[i])
         revenue += this.countNormalWinner[i] * normalPrice[i]
       }
   
       revenue += bonusPrice * this.countBonusWinner[0]
-  
       return revenue
     }
   }
