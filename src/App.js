@@ -2,6 +2,7 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 
 const ONE_THOUSAND_WON = 1000;
+
 const FIRST_LOTTO_WIN = 2000000000;
 const SECOND_LOTTO_WIN = 30000000;
 const TRHID_LOTTO_WIN = 1500000;
@@ -9,7 +10,10 @@ const FOURTH_LOTTO_WIN = 50000;
 const FIFTH_LOTTO_WIN = 5000;
 
 const ERROR_MESSAGE = {
-  NOT_THOUSAND_WON : '[ERROR] 구입 금액은 1,000원 단위 입니다'
+  NOT_THOUSAND_WON : '[ERROR] 구입 금액은 1,000원 단위 입니다',
+  BONUS_NUMBER_BETWEEN : '[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.',
+  BONUS_DUPLICATE_NUMBER : '[ERROR] 당첨 번호와 중복되지 않은 숫자여야 합니다.',
+  BONUS_WRONG_VALUE : '[ERROR] 보너스 번호에 올바른 값이 들어가지 않았습니다.'
 }
 
 class App {
@@ -71,11 +75,11 @@ class App {
   };
  
   bonusCheck(bonusLotto) {
-    if (bonusLotto < 1 && bonusLotto > 45) throw new Error("보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+    if (bonusLotto < 1 && bonusLotto > 45) throw new Error(ERROR_MESSAGE.BONUS_NUMBER_BETWEEN);
 
-    if (this.randomNumberArr.includes(bonusLotto)) throw new Error("당첨 번호와 중복되지 않은 숫자여야 합니다.");
+    if (this.randomNumberArr.includes(bonusLotto)) throw new Error(ERROR_MESSAGE.BONUS_DUPLICATE_NUMBER);
 
-    if (isNaN(bonusLotto) === true) throw new Error("보너스 번호에 올바른 값이 들어가지 않았습니다.");
+    if (isNaN(bonusLotto) === true) throw new Error(ERROR_MESSAGE.BONUS_WRONG_VALUE);
 
     this.randomNumberArr.forEach((randomNumberArr) => this.countLotto(randomNumberArr, this.winningLotto));
     
