@@ -19,6 +19,7 @@ class App {
   }
 
   play() {
+    this.print.print(message.INPUT_MESSAGE);
     this.input.readLine(this.handleByFee.bind(this));
   }
 
@@ -30,6 +31,7 @@ class App {
     }
     this.user.fee = fee;
     this.printUserLottos();
+    this.print.print(message.HIT_NUMBER);
     this.input.readLine(this.handleHitLottos.bind(this));
   }
 
@@ -40,6 +42,7 @@ class App {
       throw new Error("[ERROR]");
     }
     this.hitLotto = new Lotto(hitLottos);
+    this.print.print(message.BONUS_NUMBER);
     this.input.readLine(this.handleBonusNumber.bind(this));
   }
 
@@ -58,6 +61,8 @@ class App {
 
   showStat() {
     this.user.calculateStat(this.hitLotto, this.bonusNumber);
+    this.print.print(message.PRIZE_STAT);
+    this.print.print(message.LINE);
     this.printStat();
     this.input.close();
   }
