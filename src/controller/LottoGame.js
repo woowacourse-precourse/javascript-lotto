@@ -1,14 +1,14 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const { CONSOLE_MESSAGE, PRINT_RESULT, RANK_STRING, profitRateString } = require("../constants");
-const LottoResult = require("../LottoResult");
+const LottoResult = require("./LottoResult");
 const PurchasedLotto = require("../PurchasedLotto");
 const { stringToNumberArray } = require("../utils");
 const WinningLotto = require("../WinningLotto");
 
 class LottoGame {
-  #result;
   #purchasedLotto;
   #winningLotto;
+  #lottoResult;
   #money;
 
   constructor() {
@@ -52,18 +52,18 @@ class LottoGame {
   }
 
   showWinningStats() {
-    this.#result = new LottoResult(this.#winningLotto.getNumbers(), this.#winningLotto.getBonus(), this.#purchasedLotto.getLottoList());
-    this.#result.makeResult();
+    this.#lottoResult = new LottoResult(this.#winningLotto.getNumbers(), this.#winningLotto.getBonus(), this.#purchasedLotto.getLottoList());
+    const rankInfo = this.#lottoResult.makeResult();
     MissionUtils.Console.print(PRINT_RESULT.TITLE);
     Object.keys(RANK_STRING).forEach((rank) => {
-      const ranking = this.#result.getRank();
-      MissionUtils.Console.print(`${RANK_STRING[rank]} - ${ranking[rank] ? 1 : 0}개`);
+      MissionUtils.Console.print(`${RANK_STRING[rank]} - ${rankInfo[rank] ? 1 : 0}개`);
     })
     this.showProfitRate();
   }
 
   showProfitRate() {
-    const profitRate = this.#result.haveProfitRate(this.#money);
+    const rankInfo = this.#lottoResult.makeResult()
+    const profitRate = this.#lottoResult.haveProfitRate(rankInfo, this.#money);
     MissionUtils.Console.print(profitRateString(profitRate));
     MissionUtils.Console.close();
   }

@@ -1,4 +1,4 @@
-const LottoResult = require("../src/LottoResult");
+const LottoResult = require("../src/controller/LottoResult");
 
 describe("로또결과 클래스 테스트", () => {
   test("일치한 로또 번호 수를 반환한다.", () => {

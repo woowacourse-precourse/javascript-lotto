@@ -1,29 +1,25 @@
-const { WINNING_MONEY } = require("./constants");
+const { WINNING_MONEY } = require("../constants");
 class LottoResult {
   #lottoList;
   #winningNumbers;
   #bonusNumber;
-  #rank;
 
   constructor(numbers, bonus, lottoList) {
     this.#lottoList = lottoList;
     this.#winningNumbers = numbers;
     this.#bonusNumber = bonus;
-    this.#rank = {};
-  }
-
-  getRank() {
-    return this.#rank;
   }
 
   makeResult() {
+    let rankList = {};
     this.#lottoList.forEach((Lotto)=>{
       const matchCnt = this.checkWinning(Lotto.getNumbers());
       if(matchCnt > 2) {
         const rank = this.checkRank(matchCnt);
-        this.#rank = {...this.#rank, [rank] : this.#rank?.[rank] + 1 || 1};
+        rankList = {...rankList, [rank] : rankList?.[rank] + 1 || 1};
       }  
     });
+    return rankList;
   }
 
   checkRank(matchCnt) {
@@ -58,9 +54,9 @@ class LottoResult {
     return false;
   }
 
-  haveProfitRate(purchaseMoney) {
+  haveProfitRate(rankInfo, purchaseMoney) {
     let winningMoney = 0;
-    Object.keys(this.#rank).forEach((rank) => {
+    Object.keys(rankInfo).forEach((rank) => {
       winningMoney += WINNING_MONEY[rank];
     })
     return ((winningMoney/purchaseMoney) * 100).toFixed(1);
