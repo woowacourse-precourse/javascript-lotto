@@ -42,6 +42,7 @@ class User {
       tempLottoList.push(this.createLotto());
     }
     this.#lottoList = tempLottoList;
+    this.printLottoList();
   }
 
   createLotto() {
@@ -49,9 +50,9 @@ class User {
   }
 
   printLottoList() {
-    Console.print(`\n${this.#lottoAmount}개를 구매했습니다.`);
+    Console.print(`${this.#lottoAmount}개를 구매했습니다.`);
     this.#lottoList.forEach(lotto => {
-      Console.print(this.sortLottoAscending(lotto));
+      Console.print("[" + this.sortLottoAscending(lotto).join(', ') + "]");
     });
   }
 
