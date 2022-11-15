@@ -16,6 +16,7 @@ class Money {
    */
   validate(amount) {
     if (amount % 1000 !== 0) throw new Error(MESSAGE.ERROR_NO_THOUSAND_WON);
+    if (!(Number.isInteger(amount) && amount > 0)) throw new Error(MESSAGE.ERROR_NO_POSITIVE_INT);
   }
 
   /**
