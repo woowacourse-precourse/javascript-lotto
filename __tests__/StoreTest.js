@@ -107,9 +107,9 @@ describe("Store 클래스 테스트", () => {
   test("발행된 로또와 정답을 비교하여 당첨 결과를 저장한다.", () => {
     store.setPrizeMoney = jest.fn();
     store.candidates = [
-      [1, 2, 3, 4, 5, 6],
-      [4, 5, 6, 7, 8, 9],
-      [5, 6, 11, 12, 13, 14],
+      new Lotto([1, 2, 3, 4, 5, 6]),
+      new Lotto([4, 5, 6, 7, 8, 9]),
+      new Lotto([5, 6, 11, 12, 13, 14]),
     ];
     store.answer = new LottoAnswer([4, 5, 6, 7, 8, 10]);
     store.answer.bonus = 9;

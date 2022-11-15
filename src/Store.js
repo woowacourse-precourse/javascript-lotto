@@ -72,7 +72,7 @@ class Store {
 
   setResult() {
     this.candidates.forEach((candidate) => {
-      const candidateResult = this.answer.compare(candidate);
+      const candidateResult = this.answer.compare(candidate.numbers);
       if (candidateResult) {
         this.result.set(candidateResult, [
           this.result.get(candidateResult)[0],
