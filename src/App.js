@@ -69,18 +69,10 @@ class App {
 
   // 로또 리스트 저장
   getLottoList() {
-    // while (this.lottoNumberList.length < this.lottoCnt) {
-    //   const randomNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
-    //   this.lottoNumberList.push(randomNumbers.sort((a, b) => a - b));
-    // }
-    this.lottoNumberList = [
-      [1, 2, 3, 4, 5, 6],
-      [1, 2, 3, 4, 5, 8],
-      [1, 2, 3, 4, 5, 7],
-      [1, 2, 3, 4, 8, 9],
-      [1, 2, 3, 8, 9, 10],
-      [1, 2, 11, 8, 9, 10],
-    ];
+    while (this.lottoNumberList.length < this.lottoCnt) {
+      const randomNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+      this.lottoNumberList.push(randomNumbers.sort((a, b) => a - b));
+    }
     this.displayLottoList();
   }
 
