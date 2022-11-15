@@ -1,3 +1,10 @@
+const MESSAGES = require('./Messages');
+const {
+  LOTTO_NUMBER_LENGTH,
+  LOTTO_MIN_NUMBER,
+  LOTTO_MAX_NUMBER,
+} = require('./GameConstants');
+
 class Lotto {
   #numbers;
 
@@ -7,12 +14,50 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    this.wrongLengthException(numbers);
+    numbers.forEach((num, index) => {
+      this.notNumberException(num);
+      this.notIntegerException(num);
+      this.outOfRangeException(num);
+      this.duplicationException(numbers, num, index);
+    });
+  }
+
+  getNumber() {
+    return this.#numbers;
+  }
+
+  wrongLengthException(num) {
+    if (num.length !== LOTTO_NUMBER_LENGTH) {
+      throw new Error(MESSAGES.ERROR_LOTTO.LENGTH);
     }
   }
 
-  // TODO: 추가 기능 구현
+  notNumberException(num) {
+    if (Number.isNaN(Number(num))) {
+      throw new Error(MESSAGES.ERROR_LOTTO.NOT_NUMBER);
+    }
+  }
+
+  notIntegerException(num) {
+    if (!Number.isInteger(num)) {
+      throw new Error(MESSAGES.ERROR_LOTTO.NOT_INTEGER);
+    }
+  }
+
+  outOfRangeException(num) {
+    if (num < LOTTO_MIN_NUMBER || num > LOTTO_MAX_NUMBER) {
+      throw new Error(MESSAGES.ERROR_LOTTO.OUT_OF_RANGE);
+    }
+  }
+
+  duplicationException(numbers, comparisonNumber, comparisonIndex) {
+    numbers.forEach((num, index) => {
+      if (comparisonNumber === num && comparisonIndex !== index) {
+        throw new Error(MESSAGES.ERROR_LOTTO.DUPLICATION);
+      }
+    });
+  }
 }
 
 module.exports = Lotto;
