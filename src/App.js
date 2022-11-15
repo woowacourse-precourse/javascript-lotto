@@ -64,6 +64,12 @@ class App {
 
   inputBonusNumbers() {
     Console.readLine("보너스 번호를 입력해 주세요.", (input) => {
+      if (isNaN(input))
+        throw new Error("[ERROR] 숫자가 아닌 문자를 입력했습니다.");
+      if (1 > input || input > 45)
+        throw new Error("[ERROR] 1~45 중의 자연수를 입력하세요.");
+      if (this.winningNumbers.getLottoNumbersArray().includes(input))
+        throw new Error("[ERROR] 입력하신 숫자는 이미 앞에서 뽑았습니다.");
       this.bonusNumber = input;
     });
   }
