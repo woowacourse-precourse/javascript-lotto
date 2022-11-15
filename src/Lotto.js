@@ -17,7 +17,7 @@ class Lotto {
   calcLottoResultCount(correctCount, lotto, lottoResult, BonusNumber) {
     switch(true){
       case correctCount === 5:
-        if (lotto.includes(BonusNumber)) {
+        if (lotto.includes(Number(BonusNumber))) {
           lottoResult[3]++;
           break;
         }
