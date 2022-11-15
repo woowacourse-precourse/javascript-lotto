@@ -22,7 +22,7 @@ class Validator {
   }
 
   static checkRange(input) {
-    if (+input > LOTTO_NUMBER_RANGE.MAX_RANGE || +input === 0) {
+    if (+input > LOTTO_NUMBER_RANGE.MAX_RANGE || +input < 1) {
       throw new Error(COMMON_INVALID_ERROR_MESSAGES.ONLY_NUMBER_BETWEEN_1_45);
     }
     return true;
