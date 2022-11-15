@@ -12,13 +12,13 @@
 
 - [x] `play` 메서드로 프로그램을 실행한다.
 
-## 로또에 대한 기능이 들어있는 `Lotto` 클래스를 생성한다.
+## 로또 영수증인 `Lotto` 클래스를 생성한다.
 
 - [x] 로또 번호를 return한다. : `getLottoNumbers`
 - [x] 로또 번호와 당첨 번호를 비교하여 맞은 개수를 return한다. : `getMatchCount`
 - [x] 보너스 번호가 있는지 확인한다. : `hasBonusNumber`
 
-## Lotto를 살 수 있는 `LottoGameMachine` 클래스를 생성한다.
+## 로또 게임을 할 수 있는  `LottoGameMachine` 클래스를 생성한다.
 
 - [x] 게임 머신을 킨다. : `startLottoGameMachine`
 - [x] 사용자에게 구입 금액을 입력받는다. : `setTotalPurchaseAmount`
