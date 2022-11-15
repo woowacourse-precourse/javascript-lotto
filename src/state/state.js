@@ -49,10 +49,17 @@ class State {
   }
 
   setWinNumbersInput(userInput) {
-    this.splitNumber(userInput, ",");
+    const splitedNumbers = this.splitNumber(userInput, ",");
+    this.isNotNumberDuplicate(splitedNumbers);
   }
   splitNumber(number, flag) {
-    const splited = number.split(flag);
+    return number.split(flag).map((item) => {
+      return parseInt(item);
+    });
+  }
+  isNotNumberDuplicate(numberArr) {
+    const setNumberArr = new Set(numberArr);
+    return setNumberArr.length === 6 ? true : false;
   }
 }
 

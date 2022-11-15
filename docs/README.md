@@ -29,8 +29,8 @@
   - 당첨 번호 입력
   - [x] 사용자에게 당첨 번호 입력을 요구한다 ('당첨 번호를 입력해 주세요.') MessageOutput # printMessage()
   - [x] 사용자에게 당첨 번호를 입력받는다 UserInput # setWinNumbersInput()
-    - [] 쉼표를 기준으로 번호를 구분한다 UserInput # isUsingRestMark()
-    - [] 중복되지 않는 숫자 6개를 입력 받는다 UserInput # isNotNumberDuplicate()
+    - [x] 쉼표를 기준으로 번호를 구분한다 UserInput # isUsingRestMark()
+    - [x] 중복되지 않는 숫자 6개를 입력 받는다 UserInput # isNotNumberDuplicate()
     - [] 1~45 사이의 숫자를 입력 받는다 UserInput # isValidateNumberRange()
   - [] 보너스 번호를 입력 받는다 ('보너스 번호를 입력해 주세요.') UserInput # bonusNumberInput()
 
