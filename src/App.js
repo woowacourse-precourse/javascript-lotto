@@ -11,6 +11,11 @@ const {
   LOTTO_INIT_STR,
   LOTTO_LENGTH,
   USER_NUMBER_LOTTOS,
+  Three,
+  Five,
+  FiveBonus,
+  YIELD_END_MESSAGEL,
+  YIELD_START_MESSAGE,
 } = require('./MESSAGE');
 
 class App {
@@ -56,28 +61,32 @@ class App {
     Console.print(this.#bonusnumber);
   }
 
+  AllLottoCompare(AllLotto, winLotto, bonusNumber) {
+    AllLotto.forEach((eachlotto) => {
+      const result = this.#userlottos.compareLotto(eachlotto, winLotto);
+      if (result >= Three) {
+        numberObj[result] += 1;
+      }
+      if (
+        result === Five &&
+        this.#userlottos.compareBonusNumber(eachlotto, bonusNumber)
+      ) {
+        numberObj[FiveBonus] += 1;
+      }
+    });
+  }
+
   play() {
     this.inputWon();
     this.buylotto();
     this.getrandomlotto();
     this.getwinbonuslotto();
-    /*
-    array,String
-    */
-    this.#lottos.forEach((eachlotto) => {
-      const result = this.#userlottos.compareLotto(eachlotto, this.#winnumbers);
-      if (result >= MESSAGE.Three) {
-        numberObj[result] += 1;
-      }
-      if (
-        result === MESSAGE.Five &&
-        this.#userlottos.compareBonusNumber(eachlotto, this.#bonusnumber)
-      ) {
-        numberObj[MESSAGE.FiveBonus] += 1;
-      }
-    });
-    const totalyield = winWonCount() / this.#numoflottosWon;
-    Console.print(`총 수익률은 ${(totalyield * 100).toFixed(1)}${'%'}입니다.`);
+    this.AllLottoCompare(this.#lottos, this.#winnumbers, this.#bonusnumber);
+    let totalyield = winWonCount() / this.#numoflottosWon;
+    totalyield = (totalyield * 100).toFixed(1);
+    Console.print(
+      YIELD_START_MESSAGE + totalyield.toString() + '%' + YIELD_END_MESSAGEL
+    );
     Console.close();
   }
 }
