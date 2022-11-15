@@ -83,4 +83,38 @@ describe("LottoChecker 클래스 테스트", () => {
       FIRST: 0,
     });
   });
+
+  describe("LottoChecker.getProfitRate", () => {
+    test("수익률을 계산할 수 있어야 한다.", () => {
+      // given
+      const lottoChecker = new LottoChecker(
+        lottoTickets,
+        winningNumbers,
+        bonusNumber,
+      );
+
+      // when
+      const profitRate = lottoChecker.getProfitRate();
+
+      // then
+      expect(profitRate).toBe("62.5");
+    });
+
+    test("소수점 한 자리 까지만 값을 반환해야 한다.", () => {
+      // given
+      const lottoChecker = new LottoChecker(
+        lottoTickets,
+        [7, 11, 14, 16, 38, 39],
+        2,
+      );
+
+      console.log(lottoChecker.getLottoRankings());
+
+      // when
+      const profitRate = lottoChecker.getProfitRate();
+
+      // then
+      expect(profitRate).toBe("187.5");
+    });
+  });
 });
