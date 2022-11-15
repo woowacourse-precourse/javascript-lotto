@@ -4,10 +4,12 @@ const GameModel = require('./GameModel');
 const Lotto = require('../Lotto');
 const Bonus = require('../Bonus');
 const Budget = require('../Budget');
+const Statics = require('../Statics');
 
 const LottoModel = class extends GameModel {
   constructor() {
     super();
+    this.Statics = new Statics();
   }
 
   setLottoBudget(budget) {
@@ -34,15 +36,35 @@ const LottoModel = class extends GameModel {
     this.Bonus = new Bonus({ winningNumbers: this.winningNumbers, bonus });
   }
 
-  setLottoWinnerHistory(winningHistory) {
+  getLottoWinningHistory() {
+    this.setLottoWinningHistory();
+    return this.winningHistory;
+  }
+
+  setLottoWinningHistory() {
+    const winningHistory = this.Statics.getLottoWinningHistory({
+      lottoTickets: this.lottoTickets,
+      winningNumbers: this.winningNumbers,
+      bonus: this.bonus,
+    });
+
     this.winningHistory = winningHistory;
   }
 
-  setLottoRevenue(lottoRevenue) {
+  setLottoRevenue() {
+    const lottoRevenue = this.Statics.getLottoRevenue(this.winningHistory);
     this.lottoRevenue = lottoRevenue;
   }
 
-  setLottoYield(lottoYield) {
+  getLottoYield() {
+    this.setLottoYield();
+    return this.lottoYield;
+  }
+
+  setLottoYield() {
+    this.setLottoRevenue();
+
+    const lottoYield = this.Statics.getLottoYield(this.lottoRevenue, this.budget);
     this.lottoYield = lottoYield;
   }
 

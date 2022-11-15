@@ -86,14 +86,13 @@ const LottoCtrl = class extends GameCtrl {
   }
 
   end() {
-    const winningHistory = this.getLottoWinningHistory();
-    const lottoYield = this.getLottoYield();
+    const winningHistory = this.model.getLottoWinningHistory();
+    const lottoYield = this.model.getLottoYield();
 
     this.renderLottoStatics(winningHistory, lottoYield);
     this.view.close();
   }
 
-  // TODO: 통계 로직 분리 -> Statics 클래스
   renderLottoStatics(winningHistory, lottoYield) {
     const { MESSAGE } = LOTTO_RANK;
 
@@ -104,70 +103,6 @@ const LottoCtrl = class extends GameCtrl {
 
     this.view.output(STATIC_MESSAGE);
     resultMessages.forEach(message => this.view.output(message));
-  }
-
-  getLottoWinningHistory() {
-    const { lottoTickets, winningNumbers, bonus } = this.model;
-
-    const initWinningHistory = [...new Array(6)].fill(0);
-    const winningHistory = lottoTickets.reduce((winningHistory, currTicket) => {
-      // TODO: 로또 등수 구하는 로직 분리 = getLottoRank
-      const intersectionSize = currTicket.filter(number => winningNumbers.includes(number)).length;
-
-      switch (intersectionSize) {
-        case 6:
-          winningHistory[1] += 1;
-          return winningHistory;
-
-        case 5:
-          const isBonus = currTicket.includes(bonus);
-          const rank = isBonus === true ? 2 : 3;
-          winningHistory[rank] += 1;
-          return winningHistory;
-
-        case 4:
-          winningHistory[4] += 1;
-          return winningHistory;
-
-        case 3:
-          winningHistory[5] += 1;
-          return winningHistory;
-
-        default:
-          return winningHistory;
-      }
-    }, initWinningHistory);
-
-    this.model.setLottoWinnerHistory(winningHistory);
-    return winningHistory;
-  }
-
-  getLottoRank() {}
-
-  getLottoYield() {
-    const lottoRevenue = this.getLottoRevenue();
-    const { budget } = this.model;
-
-    const lottoYield = (lottoRevenue / budget) * 100;
-
-    this.model.setLottoYield(lottoYield);
-    return lottoYield;
-  }
-
-  getLottoRevenue() {
-    const { winningHistory } = this.model;
-    const { REWARD } = LOTTO_RANK;
-
-    const lottoRevenue = winningHistory.reduce((lottoRevenue, rankCount, rank) => {
-      const currRankReward = REWARD[rank] ?? 0;
-      const currRankRevenue = rankCount * currRankReward;
-
-      lottoRevenue += currRankRevenue;
-      return lottoRevenue;
-    }, 0);
-
-    this.model.setLottoRevenue(lottoRevenue);
-    return lottoRevenue;
   }
 };
 
