@@ -1,5 +1,9 @@
+const Seller = require("./Seller");
+
 class App {
-  play() {}
+  play() {
+    new Seller().saleLotto();
+  }
 }
 
 module.exports = App;
