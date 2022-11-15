@@ -40,6 +40,28 @@ class App {
     });
   }
 
+  makeMatchList() {
+    this.match = Array(this.total).fill(0);
+    this.bonusMatch = Array(this.total).fill(0);
+    for(let i = 0; i < 6; i++) {
+      this.compareWinningAndLists(this.winningList[i]);
+    }
+    console.log('match: ', this.match);
+    this.makeMatchResult();
+  }
+
+  compareWinningAndLists(num) {
+    for(let i = 0; i < this.total; i++) {
+      if(this.lottoLists[i].includes(num)) {
+        this.match[i] += 1;
+      }
+      if(this.lottoLists[i].includes(this.bonusNum)) {
+        this.bonusMatch[i] = 1;
+      }
+    }
+  }
+
+
 }
 const a = new App;
 a.play();
