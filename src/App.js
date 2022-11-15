@@ -140,17 +140,15 @@ class App {
     // 수익률을 구하고 출력한다.
     printEarningRatio() {
         const objVal = Object.values(this.winningInfo);
-        const cumulativeAmount = objVal.reduce(
-            (sum, curValue) => sum + curValue,
-            0
-        );
-        if (cumulativeAmount === 0) {
-            MissionUtils.Console.print(`총 수익률은 0%입니다.`);
-        } else {
-            const tempRatio = this.initialAmount / cumulativeAmount;
-            const earningRatio = Math.round(tempRatio * 10) / 10;
-            MissionUtils.Console.print(`총 수익률은 ${earningRatio}%입니다.`);
-        }
+        let cumulativeAmount = 0;
+        cumulativeAmount += this.winningInfo.first * 2000000000;
+        cumulativeAmount += this.winningInfo.second * 30000000;
+        cumulativeAmount += this.winningInfo.third * 1500000;
+        cumulativeAmount += this.winningInfo.fourth * 50000;
+        cumulativeAmount += this.winningInfo.fifth * 5000;
+        const tempRatio = (cumulativeAmount / this.initialAmount) * 100;
+        const earningRatio = Math.round(tempRatio * 10) / 10;
+        MissionUtils.Console.print(`총 수익률은 ${earningRatio}%입니다.`);
         MissionUtils.Console.close();
     }
 
@@ -168,7 +166,7 @@ class App {
     }
 }
 
-// const app = new App();
-// app.play();
+const app = new App();
+app.play();
 
 module.exports = App;
