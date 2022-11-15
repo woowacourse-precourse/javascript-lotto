@@ -61,8 +61,16 @@ describe("로또 테스트", () => {
     });
   });
 
-  test("예외 테스트", () => {
+  test("금액에 문자가 포함될 경우 에러발생", () => {
     mockQuestions(["1000j"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+
+  test("금액이 1000단위가 아닐 경우 에러발생", () => {
+    mockQuestions(["4500"]);
     expect(() => {
       const app = new App();
       app.play();
