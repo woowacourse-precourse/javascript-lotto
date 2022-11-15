@@ -14,6 +14,16 @@ class Judgement {
     const result = lottoArr.filter((lotto) => 3 <= lotto);
     return result;
   }
+
+  findIndex(lottoCount) {
+    const fiveLottoIdx = [];
+    lottoCount.forEach((num, idx) => {
+      if (num === 5) {
+        fiveLottoIdx.push(idx);
+      }
+    });
+    return fiveLottoIdx;
+  }
 }
 
 module.exports = Judgement;
