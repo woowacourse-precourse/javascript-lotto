@@ -1,5 +1,4 @@
 const { ERROR, LOTTO } = require('./constants');
-const ScoreMachine = require('./ScoreMachine');
 
 class Lotto {
   #numbers;

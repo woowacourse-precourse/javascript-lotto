@@ -77,16 +77,20 @@ class ScoreMachine {
 
   calculateRateOfReturn() {
     const purchaseAmount = this.#lottoNumberList.length * LOTTO.PRICE;
-    const totalPrizeMoney = Object.keys(PRIZE_MONEY).reduce(
-      (money, ranking) => money + this.#result[RANKING[ranking]] * PRIZE_MONEY[ranking],
-      0
-    );
+    const totalPrizeMoney = this.getTotalPrizeMoney();
     const rateOfReturn = ((totalPrizeMoney / purchaseAmount) * 100)
       .toFixed(1)
       .toString()
       .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
 
     this.#result[RATE_OF_RETURN] = rateOfReturn;
+  }
+
+  getTotalPrizeMoney() {
+    return Object.keys(PRIZE_MONEY).reduce(
+      (money, ranking) => money + this.#result[RANKING[ranking]] * PRIZE_MONEY[ranking],
+      0
+    );
   }
 
   printResult() {
