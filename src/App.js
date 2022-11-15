@@ -48,7 +48,7 @@ class App {
         this.#winningNumbersList = winningNumbers.split(',');
         Helper.checkValidLength(this.#winningNumbersList);
         Helper.checkDuplicatedNumber(this.#winningNumbersList);
-        Helper.checkIsRangedNumber(this.#winningNumbersList);
+        Helper.checkRangedNumber(this.#winningNumbersList);
         this.inputBounsNumber();
       }
     );
@@ -77,7 +77,15 @@ class App {
     this.#matchingNumberCountObj = lotto.returnMatchingNumberObj(winningPrizeList);
   }
 
-
+  printCalculation() {
+    MissionUtils.Console.print("당첨 통계");
+    MissionUtils.Console.print("---");
+    MissionUtils.Console.print(`3개 일치 (${LOTTO_REWARD.FIFTH.toLocaleString()}원) - ${this.#matchingNumberCountObj[3]}개`);
+    MissionUtils.Console.print(`4개 일치 (${LOTTO_REWARD.FOURTH.toLocaleString()}원) - ${this.#matchingNumberCountObj[4]}개`);
+    MissionUtils.Console.print(`5개 일치 (${LOTTO_REWARD.THIRD.toLocaleString()}원) - ${this.#matchingNumberCountObj[5]}개`);
+    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (${LOTTO_REWARD.SECOND.toLocaleString()}원) - ${this.#matchingNumberCountObj["Bonus"]}개`);
+    MissionUtils.Console.print(`6개 일치 (${LOTTO_REWARD.FIRST.toLocaleString()}원) - ${this.#matchingNumberCountObj[6]}개`);
+  }
   
 }
 
