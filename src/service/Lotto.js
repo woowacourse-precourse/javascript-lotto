@@ -20,13 +20,6 @@ class Lotto {
     this.resultMessage = this.getResultMessage(this.result, cost);
     this.printResult(this.resultMessage);
   }
-  setUserInput = (winningNumbers, bonusNumber) => {
-    const userInput = {
-      winningNumbers,
-      bonusNumber,
-    };
-    return userInput;
-  };
 
   getResultMessage = (result, cost) => {
     const rateOfReturn = this.calculateRateOfReturn(result, cost);
@@ -43,6 +36,7 @@ class Lotto {
 
     return resultMessage;
   };
+
   calculateResult = (winningNumbers, bonusNumber) => {
     const result = { fifth: 0, fourth: 0, third: 0, second: 0, first: 0 };
 
