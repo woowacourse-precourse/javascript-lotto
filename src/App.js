@@ -1,5 +1,10 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { MESSAGE, LOTTO } = require("./lib/constants");
+const { MESSAGE, LOTTO, AWARDS_ORDER } = require("./lib/constants");
+const {
+  getDefaultMessages,
+  getMessagesByStatistics,
+} = require("./util/message");
+
 const User = require("./User");
 const Lotto = require("./Lotto");
 
@@ -62,22 +67,20 @@ class App {
   }
 
   printStatistics(statistics) {
-    const awardsOrder = [3, 4, 5, "BONUS", 6];
-
     this.printMessage(MESSAGE.DIVIDER);
 
-    awardsOrder.forEach((awards) =>
-      this.printMessage(
-        // prettier-ignore
-        `${MESSAGE.STATISTICS[awards]} (${LOTTO.PRIZE[awards].toLocaleString()}원) - ${statistics[awards] ?? 0}개`
-      )
+    AWARDS_ORDER.forEach((awards) =>
+      // prettier-ignore
+      this.printMessage(getMessagesByStatistics(awards,statistics[awards] ?? 0))
     );
 
-    this.printMessage(MESSAGE.EARNING_RATE(statistics.earningsRate));
+    this.printMessage(
+      getDefaultMessages.earnings_rate(statistics.earningsRate)
+    );
   }
 
   printPurchaseResult() {
-    this.printMessage(MESSAGE.PURCHASE(this.user.lottoList.length));
+    this.printMessage(getDefaultMessages.purchase(this.user.lottoList.length));
 
     this.user.lottoList.forEach((lotto) => {
       this.printMessage(`[${lotto.numbers.join(", ")}]`);

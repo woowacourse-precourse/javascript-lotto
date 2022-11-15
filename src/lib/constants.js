@@ -1,18 +1,8 @@
 const MESSAGE = Object.freeze({
   AMOUNT: "구입금액을 입력해 주세요.\n",
-  WIN_NUMBERS: "당첨 번호를 입력해 주세요.",
-  BONUS_NUMBER: "보너스 번호를 입력해 주세요.",
+  WIN_NUMBERS: "당첨 번호를 입력해 주세요.\n",
+  BONUS_NUMBER: "보너스 번호를 입력해 주세요.\n",
   DIVIDER: "당첨 통계\n---",
-  PURCHASE: (amount) => `${amount}개를 구매했습니다.`,
-  EARNING_RATE: (rate) => `총 수익률은 ${rate}%입니다.`,
-
-  STATISTICS: {
-    3: "3개 일치",
-    4: "4개 일치",
-    5: "5개 일치",
-    BONUS: "5개 일치, 보너스 볼 일치",
-    6: "6개 일치",
-  },
 });
 
 const LOTTO = Object.freeze({
@@ -30,4 +20,6 @@ const LOTTO = Object.freeze({
   }),
 });
 
-module.exports = { MESSAGE, LOTTO };
+AWARDS_ORDER = [3, 4, 5, "BONUS", 6];
+
+module.exports = { MESSAGE, LOTTO, AWARDS_ORDER };
