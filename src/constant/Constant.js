@@ -24,10 +24,10 @@ const ERROR_MESSAGE = {
     IS_DUPLICATED: "[ERROR] 로또 번호가 중복되어서는 안됩니다.",
   },
   INVALID_BONUS_NUMBER: {
-    NOT_A_NUMBER: "[ERROR] 보너스번호는 숫자로만 입력가능합니다",
-    IS_DUPLICATED: "[ERROR] 보너스번호는 로또 번호와 중복되어선 안됩니다.",
+    NOT_A_NUMBER: "[ERROR] 보너스 번호는 숫자로만 입력가능합니다",
+    IS_DUPLICATED: "[ERROR] 보너스 번호는 로또 번호와 중복되어선 안됩니다.",
     NOT_IN_RANGE:
-      "[ERROR] 보너스번호는 1이상 45이하의 숫자로만 입력가능합니다.",
+      "[ERROR] 보너스 번호는 1이상 45이하의 숫자로만 입력가능합니다.",
   },
 };
 
