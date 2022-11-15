@@ -3,6 +3,7 @@ const RULES = Object.freeze({
   END_RANGE: 45,
   LENGTH: 6,
   PURCHASE_UNIT: 1000,
+  RANK_COUNT: 5,
 });
 
 const PRIZE = Object.freeze({

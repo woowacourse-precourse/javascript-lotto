@@ -1,5 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 const Bonus = require("./Bonus");
+const CheckLotto = require("./CheckLotto");
 const { CONSOLE } = require("./constants");
 const Lotto = require("./Lotto");
 const LottoGenerator = require("./LottoGenerator");
@@ -45,8 +46,17 @@ class App {
       new Bonus(winningNumber, bonusNumber);
 
       Console.print("");
+      this.checkLotto();
     });
   }
+
+  checkLotto() {
+    const checkLotto = new CheckLotto();
+    checkLotto.play(this.#money, this.#lottoSet, this.#winningNumbers, this.#bonusNumber);
+  }
+
+  // TODO 로또 추첨 결과 프린트
+  printResult() {}
 }
 
 module.exports = App;
