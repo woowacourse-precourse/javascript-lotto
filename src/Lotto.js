@@ -23,6 +23,17 @@ class Lotto {
       this.getRandomNumber(buyLotto);
     });
   }
+
+  getRandomNumber(buyLotto) {
+    Console.print(`${buyLotto}개를 구매했습니다.`);
+    for (let i = 0; i < buyLotto; i++) {
+      const randomNumber = Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
+      this.myLotto.push(randomNumber);
+
+      Console.print(`[${randomNumber.join(", ")}]`);
+    }
+    this.addWinningNumber();
+  }
 }
 
 module.exports = Lotto;
