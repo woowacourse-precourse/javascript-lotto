@@ -1,3 +1,5 @@
+const { REGEXP, ERROR_MESSAGE } = require('./constant/constant');
+
 class Lotto {
   #numbers;
 
@@ -7,12 +9,20 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    if (!numbers.every((number) => REGEXP.CHECK_NUMBER.test(number))) {
+      throw new Error(ERROR_MESSAGE.ONLY_INPUT_INTEGER);
+    } else if (!numbers.every((number) => !REGEXP.CHECK_START_NUMBER.test(number))) {
+      throw new Error(ERROR_MESSAGE.START_NUMBER_ZERO);
+    } else if (!numbers.every((number) => number > 0 && number < 46)) {
+      throw new Error(ERROR_MESSAGE.NUMBER_INVALID_RANGE);
+    } else if (new Set(numbers).size !== 6) {
+      throw new Error(ERROR_MESSAGE.SIX_NUMBERS_NOT_DUPLICATE);
     }
   }
 
-  // TODO: 추가 기능 구현
+  getNumbers() {
+    return this.#numbers.map((number) => parseInt(number, 10));
+  }
 }
 
 module.exports = Lotto;
