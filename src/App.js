@@ -54,6 +54,16 @@ class App {
       }
     });
   }
+
+  printRewards(winning) {
+    Console.print('당첨 통계');
+    Console.print('---');
+    Console.print(Const.WINNING_COUNT_MESSAGE.FIFTH + winning.FIFTH + '개');
+    Console.print(Const.WINNING_COUNT_MESSAGE.FOURTH + winning.FOURTH + '개');
+    Console.print(Const.WINNING_COUNT_MESSAGE.THIRD + winning.THIRD + '개');
+    Console.print(Const.WINNING_COUNT_MESSAGE.SECOND + winning.SECOND + '개');
+    Console.print(Const.WINNING_COUNT_MESSAGE.FIRST + winning.FIRST + '개');
+  }
 }
 
 module.exports = App;
