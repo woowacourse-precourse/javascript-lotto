@@ -14,6 +14,9 @@ class Validator {
   }
 
   static validateInputWinningNumbers(winningNumbersArray) {
+    if (winningNumbersArray.some((number) => number % 1 !== 0)) {
+      throw new Error(Constant.WINNING_NUMBERS_ERROR_MESSAGE4);
+    }
     if (winningNumbersArray.length !== 6) {
       throw new Error(Constant.WINNING_NUMBERS_ERROR_MESSAGE);
     }
@@ -27,7 +30,6 @@ class Validator {
     if (winningNumbersArray.some((number) => number < 1 || number > 45)) {
       throw new Error(Constant.WINNING_NUMBERS_ERROR_MESSAGE2);
     }
-
     const set = new Set(winningNumbersArray);
     if (set.size !== winningNumbersArray.length) {
       throw new Error(Constant.WINNING_NUMBERS_ERROR_MESSAGE3);
