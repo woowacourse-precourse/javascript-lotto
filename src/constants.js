@@ -57,12 +57,12 @@ const LOTTO_RANKING = {
   FAIL,
 };
 const LOTTO_MONEY = {
-  "1등": 2000000000,
-  "2등": 30000000,
-  "3등": 1500000,
-  "4등": 50000,
-  "5등": 5000,
-  낙첨: 0,
+  first: 2000000000,
+  second: 30000000,
+  third: 1500000,
+  fourth: 50000,
+  fifth: 5000,
+  fail: 0,
 };
 
 module.exports = {
