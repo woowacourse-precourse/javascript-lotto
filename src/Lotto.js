@@ -16,8 +16,7 @@ class Lotto {
     if(numbers !== undefined) exception.checkInputDuplicate(numbers);
   }
 
-  // TODO: 추가 기능 구현
-  getLotto() {
+  makeLottoNumbers() {
     MissionUtils.Console.readLine("구입 금액 입력.", (pay) => {
       exception.checkInputNotNumber(pay);
       exception.checkPriceNotThousands(pay);
@@ -67,7 +66,7 @@ class Lotto {
           resultLotto.matchLotto(element,this.#numbers,this.bonusNumber)
         })
         resultLotto.printResult();
-        resultLotto.earningsRate(this.price);
+        resultLotto.printEarningsRate(this.price);
       }
     );
   }
