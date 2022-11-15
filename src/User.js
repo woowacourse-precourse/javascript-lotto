@@ -13,13 +13,28 @@ class User {
    *
    * @param {string} amount
    */
-  validateAmount(amount) {
+  setAmount(amount) {
+    this.#validate(amount);
+    this.#amount = Number(amount);
+  }
+
+  /**
+   *
+   * @param {string} amount
+   */
+  validateInteger(amount) {
     const regex = /^[0-9]+$/;
 
     if (!regex.test(amount)) {
       throw new Error(ERROR.INVALID_INTEGER);
     }
+  }
 
+  /**
+   *
+   * @param {string} amount
+   */
+  validateUnit(amount) {
     if (Number(amount) % 1000 !== 0) {
       throw new Error(ERROR.INVALID_UNIT);
     }
@@ -29,9 +44,9 @@ class User {
    *
    * @param {string} amount
    */
-  setAmount(amount) {
-    this.validateAmount(amount);
-    this.#amount = Number(amount);
+  #validate(amount) {
+    this.validateInteger(amount);
+    this.validateUnit(amount);
   }
 
   /**
