@@ -9,12 +9,13 @@ class App {
   }
   play() {
     MissionUtils.Console.readLine(Messages.INPUT_MONEY, (money) => {
-      inputIsValid(money) {
-        if (money % 1000 != 0) {
-          throw Errors.UNIT_ERROR;
-        }
-      }
+      this.inputNumber()
     });
+  }
+  inputIsValid(money) {
+    if (money % 1000 != 0) {
+      throw Errors.UNIT_ERROR;
+    }
   }
 }
 
