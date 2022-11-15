@@ -1,9 +1,13 @@
 const Game = require("./Game");
 const { Console } = require("@woowacourse/mission-utils");
+const WinningNumbers = require("./Generator");
+const BonusNumber = require("./Generator");
 
 class App {
   constructor() {
     this.game = new Game();
+    this.winningNumbers = null;
+    this.bonusNumber = null;
   }
 
   play() {
@@ -21,14 +25,18 @@ class App {
 
   inputWinningNumber() {
     Console.readLine("\n당첨 번호를 입력해 주세요.\n", (input) => {
-      this.game.setWinningNumber(input);
+      input = input.split(",").map((el) => Number(el));
+      this.winningNumbers = new WinningNumbers(input);
       this.inputBonusNumber();
     });
   }
 
   inputBonusNumber() {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (input) => {
-      this.game.setBonusNumber(input);
+      this.bonusNumber = new BonusNumber(
+        Number(input),
+        this.WinningNumbers.value
+      );
       this.printResult();
     });
   }
