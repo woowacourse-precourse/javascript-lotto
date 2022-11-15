@@ -59,13 +59,13 @@ class App {
     this.printResult(result);
   }
   printResult(result) {
+    const revenue = Calculator.calculateRevenue(result, this.userPurchase);
     Console.print(OUTPUT_MESSAGE.WINNING_NOTICE);
     Console.print(OUTPUT_MESSAGE.FIFTH(result.fifth));
     Console.print(OUTPUT_MESSAGE.FOURTH(result.fourth));
     Console.print(OUTPUT_MESSAGE.THIRD(result.third));
     Console.print(OUTPUT_MESSAGE.SECOND(result.second));
     Console.print(OUTPUT_MESSAGE.FIRST(result.first));
-    const revenue = Calculator.calculateRevenue(result, this.userPurchase);
     Console.print(OUTPUT_MESSAGE.RESULT(revenue));
   }
 }
