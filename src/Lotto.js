@@ -1,4 +1,5 @@
 const { LottoNumberData } = require('./components/lotto-data/LottoNumberData');
+//constant
 const {
   RESTRICTIONS,
   ERROR_MESSAGE,
