@@ -1,5 +1,5 @@
 const ErrorCheck = require('../components/ErrorCheck');
-const Lotto = require('../src/Lotto');
+const Lotto = require('../components/Lotto');
 
 describe('로또 클래스 테스트', () => {
   test('콤마로 구분된 숫자 문자열을 숫자 배열로 반환한다', () => {

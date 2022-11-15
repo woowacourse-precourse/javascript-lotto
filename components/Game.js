@@ -2,10 +2,10 @@ const { Console } = require('@woowacourse/mission-utils');
 const { SYSTEM_MESSAGE } = require('../constants/game message');
 const BASIC_NUMBER = require('../constants/basic number');
 const ErrorCheck = require('./ErrorCheck');
-const Lotto = require('../src/Lotto');
+const Lotto = require('./Lotto');
 
 class Game {
-  #lottos;
+  #lottoNumbers;
 
   #purchaseAmount;
 
@@ -20,7 +20,7 @@ class Game {
   #lottoYield;
 
   constructor() {
-    this.#lottos = [];
+    this.#lottoNumbers = [];
     this.#purchaseAmount = BASIC_NUMBER.INIT;
     this.#winningNumber = [];
     this.#bonusNumber = BASIC_NUMBER.INIT;
@@ -45,12 +45,12 @@ class Game {
     const lottoCount = Lotto.getCount(this.#purchaseAmount);
 
     Console.print(SYSTEM_MESSAGE.PURCHASE_COUNT(lottoCount));
-    this.#lottos = Lotto.generate(lottoCount);
+    this.#lottoNumbers = Lotto.generate(lottoCount);
     this.printPurchasedLottos();
   }
 
   printPurchasedLottos() {
-    Lotto.printToString(this.#lottos);
+    Lotto.printToString(this.#lottoNumbers);
     this.getWinningNumbers();
   }
 
@@ -80,7 +80,7 @@ class Game {
 
   getWinningResult() {
     this.#winningResult = this.#lotto.getWinningResult(
-      this.#lottos,
+      this.#lottoNumbers,
       this.#bonusNumber
     );
     this.getLottoYield();

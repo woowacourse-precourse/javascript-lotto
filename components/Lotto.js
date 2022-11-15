@@ -1,4 +1,4 @@
-const ErrorCheck = require('../components/ErrorCheck');
+const ErrorCheck = require('./ErrorCheck');
 const { Random, Console } = require('@woowacourse/mission-utils');
 const { MATCH, RANK, PRIZE } = require('../constants/winning number');
 const { MIN, MAX, PICK } = require('../constants/lotto number');
