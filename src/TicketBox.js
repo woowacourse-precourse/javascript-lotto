@@ -10,6 +10,7 @@ const {
   PRICE_PER_TICKET,
 } = require('./Constant');
 const Lotto = require('./Lotto');
+const Bonus = require('./Bonus');
 
 class TicketBox {
   #budget;
@@ -32,6 +33,14 @@ class TicketBox {
 
   get budget() {
     return this.#budget;
+  }
+
+  inputBonusCallback(inputBonus) {
+    this.bonus = new Bonus(inputBonus, this.lotto.numbers);
+    MissionUtils.Console.print(this.bonus.bonusNumber);
+    MissionUtils.Console.print(this.tickets);
+    MissionUtils.Console.print(this.lotto.numbers);
+    MissionUtils.Console.close();
   }
 
   lottoValidate(input) {
@@ -57,7 +66,10 @@ class TicketBox {
       .split(',')
       .map((number) => parseInt(number, DECIMAL_NUMBER));
     this.lotto = new Lotto(inputLotto);
-    MissionUtils.Console.close();
+    MissionUtils.Console.readLine(
+      '보너스 번호를 입력해 주세요.\n',
+      this.inputBonusCallback.bind(this),
+    );
   }
 
   makeTickets() {
