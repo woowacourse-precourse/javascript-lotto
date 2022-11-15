@@ -15,12 +15,24 @@ class BonusNumber{
   }
 
   validateBonusNumber(bonusNum, winLotto) {
+    this.checkBonusNumberIsInt(bonusNum);
+    this.checkBonusNumberValue(bonusNum);
+    this.checkBonusNumberOverlap(bonusNum, winLotto);
+  }
+
+  checkBonusNumberIsInt(bonusNum) {
     if(Number(bonusNum) % 1 !== 0) {
       throw new Error(ERROR_BONUS_IS_INT_MESSAGE);
     }
+  }
+
+  checkBonusNumberValue(bonusNum) {
     if(Number(bonusNum) < 1 || 45 < Number(bonusNum)) {
       throw new Error(ERROR_BONUS_VALUE_MESSAGE);
     }
+  }
+
+  checkBonusNumberOverlap(bonusNum, winLotto) {
     if(winLotto.includes(Number(bonusNum))) {
       throw new Error(ERROR_BONUS_OVERLAP_MESSAGE);
     }
