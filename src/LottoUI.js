@@ -8,7 +8,7 @@ class LottoUI {
   }
   prinntLottoNumber(lotto) {
     lotto.forEach((lottoNumbers) => {
-      const lottoList = lottoNumbers.getLottoNumber().join(", ");
+      const lottoList = lottoNumbers.join(", ");
       MissionUtils.Console.print(`[${lottoList}]`);
     });
   }
@@ -19,6 +19,7 @@ class LottoUI {
   }
   printEarningRatio(earningRatio) {
     MissionUtils.Console.print(`총 수익률은 ${earningRatio}%입니다.`);
+    MissionUtils.Console.close();
   }
 }
 
