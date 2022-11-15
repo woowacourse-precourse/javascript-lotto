@@ -50,5 +50,12 @@ describe('기능 테스트', () => {
         );
     });
 
+    test('6개 숫자가 일치할 경우 1등에 해당한다.', () => {
+        const app = new App();
+        expect(app.getSingleResult([1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6, 7])).toBe(
+            6
+        );
+    });
+
 
 })
