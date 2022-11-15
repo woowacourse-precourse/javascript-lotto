@@ -13,7 +13,7 @@ class WinningHistory{
     }
     
     printLottoStats(lottoRanking, issudLotto){
-        Console.print(WINNING_STATISTICS)
+        Console.print(WINNING_STATISTICS);
         this.fifthPlace(lottoRanking);
         this.fourthPlace(lottoRanking);
         this.thirdPlace(lottoRanking);
