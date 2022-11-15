@@ -6,8 +6,12 @@ const Lotto = class extends ErrorBoundary {
 
   constructor(numbers) {
     super();
-    this.#numbers = numbers;
+    this.#numbers = this.sortNumbers(numbers);
     this.validateInput(this.#numbers);
+  }
+
+  sortNumbers(numbers) {
+    return numbers.sort((prevNumber, currNumber) => prevNumber - currNumber);
   }
 
   validate(numbers) {
