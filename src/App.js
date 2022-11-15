@@ -4,6 +4,9 @@ class App {
     this.Game = new Game();
   }
 
+  play() {
+    this.Game.play();
+  }
 }
 
 module.exports = App;
