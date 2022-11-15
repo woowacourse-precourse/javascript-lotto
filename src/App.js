@@ -42,6 +42,7 @@ class App {
   /**
    * @param {Prompt} prompt
    */
+  // eslint-disable-next-line require-yield
   *#routineStats(prompt) {
     prompt.print(Messages.ROUTINE_STATS_TITLE);
     [...this.#winningLotto.getAvailableRewards()]

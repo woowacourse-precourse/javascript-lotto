@@ -42,6 +42,7 @@ class Prompt {
    * @param {string} message
    * @param  {...string} args
    */
+  // eslint-disable-next-line class-methods-use-this
   print(message, ...args) {
     MissionUtils.Console.print(Messages.format(message, ...args));
   }
