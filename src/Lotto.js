@@ -25,8 +25,9 @@ class Lotto {
   }
 
   validateForDuplication(numbers) {
+    
+    // 숫자가 아닌 값이 들어오면 set로직이 이상해지므로 여기서 미리 체크
     this.validateForNotNumber(numbers)
-    //숫자가 아닌 값이 들어오면 set로직이 이상해지므로 여기서 미리 체크
 
     const set = new Set(numbers)
     if (numbers.length !== set.size) {
@@ -52,7 +53,8 @@ class Lotto {
   }
 
   resultPrint(){
-    //출력 형식에 맞추기 위해 문자열 처리
+
+    // 출력 형식에 맞추기 위해 문자열 처리
     Console.print(`[${String(this.#numbers).split(',').join(', ')}]`)
   }
 

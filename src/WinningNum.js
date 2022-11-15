@@ -27,8 +27,9 @@ class WinningNum {
     }
 
     validateForDuplication(input) {
+
+      // 숫자가 아닌 값이 들어오면 set로직이 이상해지므로 여기서 미리 체크
       this.validateForNotNumber(input)
-      //숫자가 아닌 값이 들어오면 set로직이 이상해지므로 여기서 미리 체크
 
       const set = new Set(input)
       if (input.length !== set.size) {

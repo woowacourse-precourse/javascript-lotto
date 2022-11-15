@@ -4,7 +4,7 @@ const { Console } = require('@woowacourse/mission-utils')
 class BonusNum {
   #bonus
 
-  //입력받은 보너스 번호 , 로또 당첨 번혼
+  // 입력받은 보너스 번호 , 로또 당첨 번혼
   constructor(bonus, winningNumForDuplication) {
     this.validate(bonus, winningNumForDuplication)
     this.#bonus = bonus

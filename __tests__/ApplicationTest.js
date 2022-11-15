@@ -10,7 +10,8 @@ const mockQuestions = (answers) => { //구입금액 , 구매목록 , 당첨번�
   }, MissionUtils.Console.readLine);
 };
 
-const mockRandoms = (numbers) => { //구매한 로또 번호. 랜덤 생성
+// 구매한 로또 번호. 랜덤 생성
+const mockRandoms = (numbers) => { 
   MissionUtils.Random.pickUniqueNumbersInRange = jest.fn();
   numbers.reduce((acc, number) => {
     return acc.mockReturnValueOnce(number);
