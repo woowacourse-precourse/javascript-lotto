@@ -1,5 +1,7 @@
+const { ERROR_HEADER } = require('./lottoOptions');
+
 class Validator {
-  constructor(ERROR_MESSAGE_HEADER = '[ERROR]') {
+  constructor(ERROR_MESSAGE_HEADER = ERROR_HEADER) {
     this.ERROR_MESSAGE_HEADER = ERROR_MESSAGE_HEADER;
   }
 

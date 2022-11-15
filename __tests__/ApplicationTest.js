@@ -1,4 +1,6 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+
+const { ERROR_HEADER } = require('../src/lottoOptions');
 const App = require('../src/App');
 
 const mockQuestions = (answers) => {
@@ -132,7 +134,7 @@ describe('구입금액 예외 테스트', () => {
     expect(() => {
       const app = new App();
       app.play();
-    }).toThrow('[ERROR] 숫자(양수)만 입력할 수 있습니다.');
+    }).toThrow(`${ERROR_HEADER} 숫자(양수)만 입력할 수 있습니다.`);
   });
 
   test('빈문자 입력 테스트', () => {
@@ -141,7 +143,7 @@ describe('구입금액 예외 테스트', () => {
     expect(() => {
       const app = new App();
       app.play();
-    }).toThrow('[ERROR] 아무것도 입력하지 않았습니다.');
+    }).toThrow(`${ERROR_HEADER} 아무것도 입력하지 않았습니다.`);
   });
 
   test('공백 입력 테스트', () => {
@@ -150,7 +152,7 @@ describe('구입금액 예외 테스트', () => {
     expect(() => {
       const app = new App();
       app.play();
-    }).toThrow('[ERROR] 입력에 공백이 포함되어 있습니다.');
+    }).toThrow(`${ERROR_HEADER} 입력에 공백이 포함되어 있습니다.`);
   });
 
   test('1000원 미만 입력 테스트', () => {
@@ -159,7 +161,7 @@ describe('구입금액 예외 테스트', () => {
     expect(() => {
       const app = new App();
       app.play();
-    }).toThrow('[ERROR] 구입 금액은 1000원 이상이여야 합니다.');
+    }).toThrow(`${ERROR_HEADER} 구입 금액은 1000원 이상이여야 합니다.`);
   });
 
   test('1000원 단위로 나누어 떨어지지 않는 경우 테스트', () => {
@@ -168,6 +170,6 @@ describe('구입금액 예외 테스트', () => {
     expect(() => {
       const app = new App();
       app.play();
-    }).toThrow('[ERROR] 1000원 단위로 입력하여야 합니다. (최소 구매금액 : 1000원)');
+    }).toThrow(`${ERROR_HEADER} 1000원 단위로 입력하여야 합니다. (최소 구매금액 : 1000원)`);
   });
 });

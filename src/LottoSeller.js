@@ -1,3 +1,4 @@
+const { ERROR_HEADER } = require('./lottoOptions');
 const Lotto = require('./Lotto');
 const LottoValidator = require('./LottoValidator');
 const View = require('./View');
@@ -29,7 +30,7 @@ class LottoSeller {
 
   isPurchasableMoney(money) {
     if (Number(money) < this.lottoPrice) {
-      throw new Error(`[ERROR] 구입 금액은 ${this.lottoPrice}원 이상이여야 합니다.`);
+      throw new Error(`${ERROR_HEADER} 구입 금액은 ${this.lottoPrice}원 이상이여야 합니다.`);
     }
   }
 

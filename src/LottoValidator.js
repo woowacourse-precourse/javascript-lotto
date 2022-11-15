@@ -38,7 +38,7 @@ class LottoValidator extends Validator {
 
   isValidNumbersCount(numbers) {
     if (numbers.length !== this.numbersCount) {
-      throw new Error(`[ERROR] 로또 번호는 ${this.numbersCount}개여야 합니다.`);
+      throw new Error(`${this.ERROR_MESSAGE_HEADER} 로또 번호는 ${this.numbersCount}개여야 합니다.`);
     }
   }
 
