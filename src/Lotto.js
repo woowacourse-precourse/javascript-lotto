@@ -6,7 +6,7 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.isValidInputNumbers(numbers);
+    this.isValidLottoNumbers(numbers);
     this.#numbers = numbers;
     MissionUtils.Console.close();
   }
@@ -15,7 +15,7 @@ class Lotto {
     return this.#numbers;
   }
 
-  isValidInputNumbers(numbers) { 
+  isValidLottoNumbers(numbers) { 
     const numSet = new Set(numbers);
 
     if (numbers.length !== 6) {
