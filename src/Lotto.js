@@ -77,6 +77,24 @@ class Lotto {
 
     this.getResult(rankList);
   }
+
+  getResult(rankList) {
+    const { FIFTH_PRIZE, FORTH_PRIZE, THIRD_PRIZE, SECOND_PRIZE, FIRST_PRIZE } = price;
+    Console.print("당첨 통계\n");
+    Console.print("---\n");
+    Console.print(`3개 일치 (${FIFTH_PRIZE.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원) - ${rankList[3]}개`);
+    Console.print(`4개 일치 (${FORTH_PRIZE.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원) - ${rankList[4]}개`);
+    Console.print(`5개 일치 (${THIRD_PRIZE.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원) - ${rankList[5]}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (${SECOND_PRIZE.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원) - ${rankList[6]}개`);
+    Console.print(`6개 일치 (${FIRST_PRIZE.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원) - ${rankList[7]}개`);
+    Console.print(
+      `총 수익률은 ${
+        ((FIFTH_PRIZE * rankList[3] + FORTH_PRIZE * rankList[4] + THIRD_PRIZE * rankList[5] + SECOND_PRIZE * rankList[6] + FIRST_PRIZE * rankList[7]) /
+          (this.myLotto.length * 1000)) *
+        100
+      }%입니다.`
+    );
+  }
 }
 
 module.exports = Lotto;
