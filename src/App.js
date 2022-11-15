@@ -10,14 +10,31 @@ class App {
     this.WinningData = null;
     this.BonusData = null;
   }
-  rateOfReturn(rate) {
+  rateOfReturnPrint(rate) {
     const totalRate = ((rate / this.PurchaseInput.getPurchase()) * 100).toFixed(
       1
     );
     MissionUtils.Console.print(`총 수익률은 ${totalRate}%입니다.`);
     MissionUtils.Console.close();
   }
-  lottoDraw(winningAndBonustNumber) {
+
+  resultPrint(hitsNumber) {
+    MissionUtils.Console.print("당첨 통계");
+    MissionUtils.Console.print("---");
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${hitsNumber.three}개`);
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${hitsNumber.four}개`);
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${hitsNumber.five}개`);
+    MissionUtils.Console.print(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${
+        hitsNumber.five + hitsNumber.bonus
+      }개`
+    );
+    MissionUtils.Console.print(
+      `6개 일치 (2,000,000,000원) - ${hitsNumber.six}개`
+    );
+    this.rateOfReturnPrint(hitsNumber.money);
+  }
+  lottoMatch(winningAndBonustNumber) {
     let lottoMatch = [];
     this.LottoNumber.forEach((num) => {
       lottoMatch.push(
@@ -26,6 +43,10 @@ class App {
         })
       );
     });
+    return lottoMatch;
+  }
+  lottoDraw(winningAndBonustNumber) {
+    const lottoMatch = this.lottoMatch(winningAndBonustNumber);
     let hitsNumber = {
       three: 0,
       four: 0,
@@ -64,28 +85,16 @@ class App {
         hitsNumber.money += 2000000000;
       }
     });
-    MissionUtils.Console.print("당첨 통계");
-    MissionUtils.Console.print("---");
-    MissionUtils.Console.print(`3개 일치 (5,000원) - ${hitsNumber.three}개`);
-    MissionUtils.Console.print(`4개 일치 (50,000원) - ${hitsNumber.four}개`);
-    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${hitsNumber.five}개`);
-    MissionUtils.Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${
-        hitsNumber.five + hitsNumber.bonus
-      }개`
-    );
-    MissionUtils.Console.print(
-      `6개 일치 (2,000,000,000원) - ${hitsNumber.six}개`
-    );
-    this.rateOfReturn(hitsNumber.money);
+    this.resultPrint(hitsNumber);
   }
-  NumberCombine() {
+  numberCombine() {
     let winningAndBonustNumber =
       this.WinningData.getWinning() + "," + this.BonusData.getBonus();
 
     winningAndBonustNumber = winningAndBonustNumber
       .split(",")
       .map((num) => parseInt(num, 10));
+
     this.lottoDraw(winningAndBonustNumber);
   }
   bonusNumber() {
@@ -95,7 +104,7 @@ class App {
         this.BonusData = new Bonus(BonusInput);
       }
     );
-    this.NumberCombine();
+    this.numberCombine();
   }
   winningNumber() {
     MissionUtils.Console.readLine(
