@@ -31,4 +31,12 @@ describe('User 클래스 테스트', () => {
     user.calculateTotalPrize();
     expect(user.prize).toEqual(5000);
   });
+
+  test('수익율을 계산하는 기능', () => {
+    const user = new User();
+    user.prize = 5000;
+    user.amount = 8000;
+    user.calcuateReturnOfInvestment();
+    expect(user.returnOfInvestment).toEqual('62.5');
+  });
 });
