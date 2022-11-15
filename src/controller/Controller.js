@@ -11,14 +11,6 @@ class Controller {
     this.statistics = new Statistics(this);
   }
 
-  /**
-   * 발행된 로또번호 출력 연결 메서드
-   * @param issuedLotto {number[][]} [발행된 로또 배열]
-   */
-  printIssuedLotto(issuedLotto) {
-    this.view.printUserIssuedLotto(issuedLotto);
-  }
-
   // 유저 구입금액 입력 연결 메서드
   getPurchasingAmountFromUser() {
     this.view.getPurchasingAmountFromUser();
@@ -30,6 +22,14 @@ class Controller {
    */
   setPurchasingAmount(userPurchasingAmount) {
     this.userNumber.setPurchasingAmount(userPurchasingAmount);
+  }
+
+  /**
+   * 발행된 로또번호 출력 연결 메서드
+   * @param issuedLotto {number[][]} [발행된 로또 배열]
+   */
+  printIssuedLotto(issuedLotto) {
+    this.view.printUserIssuedLotto(issuedLotto);
   }
 
   // 유저 당첨번호 입력 연결 메서드
