@@ -27,3 +27,5 @@
         - 출력 및 입력의 역할
     - WinningNumber
         - 당첨번호를 담은 객체
+    - Calculate
+        - 수익률을 계산하는 객체

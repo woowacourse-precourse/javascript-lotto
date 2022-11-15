@@ -1,6 +1,5 @@
 const { Random } = require('@woowacourse/mission-utils');
 const Display = require('./Display');
-const View = require('./view');
 
 class Controller {
     constructor() {
