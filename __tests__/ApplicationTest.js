@@ -112,12 +112,11 @@ describe("어플리케이션 로직 단위 테스트", () => {
     });
   });
 
-  test("getWinningNums 단위 테스트, 사용자에게 당첨 번호를 입력받는다.", () => {
-    const answer = [1, 2, 3, 4, 5, 6, 7];
+  test("getWinningLotto 단위 테스트, 사용자에게 당첨 번호를 입력받는다.", () => {
     mockQuestions(["1,2,3,4,5,6", "7"]);
 
     const app = new App();
-    expect(app.getWinningNums()).toEqual(answer);
+    expect(app.getWinningLotto().getNumbers()).toEqual([1, 2, 3, 4, 5, 6, 7]);
   });
 
   test("showProfitResult 단위 테스트, 등수 정보와 수익률을 출력한다.", () => {

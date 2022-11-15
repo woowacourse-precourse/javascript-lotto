@@ -25,7 +25,7 @@ const getLogSpy = () => {
 };
 
 describe("도메인 로직 단위 테스트", () => {
-  test("isValidMoney(), 금액을 확인하고 입력 금액이 올바르지 않다면 예외를 발생한다.", () => {
+  test("isValidMoney 단위 테스트, 입력 금액이 올바르지 않다면 예외를 발생한다.", () => {
     const moneys = [12345, "1000j", 988, 1000001];
     mockQuestions(moneys);
 
@@ -37,7 +37,7 @@ describe("도메인 로직 단위 테스트", () => {
     });
   });
 
-  test("generateLottoNumber() 단위 테스트, 랜덤으로 로또 번호를 생성한다.", () => {
+  test("generateLottoNumber 단위 테스트, 랜덤으로 로또 번호를 생성한다.", () => {
     const lottonumbers = [
       [1, 2, 3, 4, 5, 6],
       [2, 3, 4, 5, 6, 7],
@@ -60,30 +60,18 @@ describe("도메인 로직 단위 테스트", () => {
     });
   });
 
-  test("validWinningNums() 단위 테스트, 당첨 번호의 유효성을 확인한다. -> 6자리 미만의 경우", () => {
-    mockQuestions(["1,2,3,4,5", "7"]);
-
-    expect(() => {
-      const app = new App();
-      app.getWinningNums();
-    }).toThrow("[ERROR]");
+  test("addBonusNumber 단위 테스트, 보너스 번호가 유효하면 보너스 번호를 기존의 번호에 추가한다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    lotto.addBonusNumber(7);
+    expect(lotto.getNumbers()).toEqual([1, 2, 3, 4, 5, 6, 7]);
   });
 
-  test("validWinningNums() 단위테스트, 당첨 번호의 유효성을 확인한다. -> 보너스 번호의 형식이 잘못된 경우", () => {
-    const winningNums = [
-      "1,2,3,4,5,6","5",
-      "1,2,3,4,5,6","0",
-      "1,2,3,4,5,6","100",
-    ];
-    mockQuestions(winningNums);
-
-    expect(() => {
-      const app = new App();
-      app.getWinningNums();
-    }).toThrow("[ERROR]");
+  test("isValidNumber 단위 테스트, 해당 번호가 유효하면 true를 반환", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    expect(lotto.isValidNumber(7)).toEqual(true);
   });
 
-  test("calLottoProfit() 단위 테스트, 당첨된 로또를 계산하고 등수 Object를 만들어 수익률을 보여준다.", () => {
+  test("calLottoPrize 단위 테스트, 당첨된 로또를 계산하고 등수 Object를 만들어 수익률을 보여준다.", () => {
     const myLotto = [
       new Lotto([21, 22, 23, 24, 25, 26]),
       new Lotto([31, 32, 33, 34, 35, 36]),
@@ -101,7 +89,9 @@ describe("도메인 로직 단위 테스트", () => {
 
     const logSpy = getLogSpy();
     const app = new App();
-    app.calLottoProfit(myLotto,[1, 2, 33, 34, 35, 36, 7])
+    const winningLotto = new Lotto([1, 2, 33, 34, 35, 36])
+    winningLotto.addBonusNumber(7);
+    app.calLottoPrize(myLotto, winningLotto);
 
     messages.forEach((output) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(output));

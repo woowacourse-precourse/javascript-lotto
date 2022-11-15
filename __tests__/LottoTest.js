@@ -37,15 +37,35 @@ describe("로또 클래스 단위 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
-  test("validata, 로또 번호에 숫자가 아닌 값이 있으면 예외가 발생한다. 4. undefined", () => {
+  test("validate, 로또 번호에 숫자가 아닌 값이 있으면 예외가 발생한다. 4. undefined", () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, undefined]);
     }).toThrow("[ERROR]");
   });
   
-  test("validata, 로또 번호에 숫자가 아닌 값이 있으면 예외가 발생한다. 5. null", () => {
+  test("validate, 로또 번호에 숫자가 아닌 값이 있으면 예외가 발생한다. 5. null", () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, null]);
+    }).toThrow("[ERROR]");
+  });
+
+  test("isValidNumber, 번호가 숫자값이 아니면 예외가 발생한다.", () => {
+    expect(() => {
+      const lotto = new Lotto([1, 2, 3, 4, 5, "예외"]);
+    }).toThrow("[ERROR]");
+  });
+
+  test("isValidNumber, 범위를 벗어나는 숫자면 예외가 발생한다.", () => {
+    expect(() => {
+      const lotto = new Lotto([1, 2, 3, 4, 5, 100]);
+      }).toThrow("[ERROR]");
+  });
+
+  test("isValidNumber, 보너스 번호가 앞의 여섯자리 숫자와 중복되면 예외가 발생한다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+
+    expect(() => {
+      lotto.isValidNumber(1, true);
     }).toThrow("[ERROR]");
   });
 
@@ -63,7 +83,7 @@ describe("로또 클래스 단위 테스트", () => {
     winningLottos.forEach((numbers, index) => {
       expect(lotto.getRankFromLotto(numbers)).toEqual(expectRank[index]);
     })
-  })
+  });
 
   test("decideRank, 카운트 개수와 플래그로 등수를 반환한다.",() => {
     const countAndFlag = [
@@ -81,5 +101,5 @@ describe("로또 클래스 단위 테스트", () => {
       const flag = element[1];
       expect(lotto.decideRank(count, flag)).toEqual(expectRank[index]);
     });
-  })
+  });
 });
