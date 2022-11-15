@@ -15,17 +15,17 @@ class LogicChain {
     this.deque.push([this.#ASYNC, job]);
   }
 
-  #executeNext() {
+  #executeNext(value) {
     if (this.deque.length === 0) return;
 
     const job = this.deque.shift();
     if (job[0] === this.#SYNC) {
-      job[1]();
+      job[1](value);
       this.#executeNext();
     }
     if (job[0] === this.#ASYNC) {
-      job[1](() => {
-        this.#executeNext();
+      job[1]((val) => {
+        this.#executeNext(val);
       });
     }
   }

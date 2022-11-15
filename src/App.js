@@ -3,6 +3,7 @@ const { Console } = require("@woowacourse/mission-utils");
 const LottoCompany = require("./LottoCompany");
 const LottoManager = require("./LottoManager");
 const LogicChain = require("./LogicChain");
+const getUserInputAsync = require("./lib/userInput");
 
 const lottoPrice = 1000;
 const winningMoney = [2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000];
@@ -21,10 +22,13 @@ class App {
   }
 
   makeLogicOrders() {
-    this.#logicChain.addNextAsyncJob((next) => { this.#lottoManager.buyLottosAsync(this.#lottoCompany, next); });
+    this.#logicChain.addNextAsyncJob((next) => { getUserInputAsync("\n구매금액을 입력해 주세요.\n" ,next); });
+    this.#logicChain.addNextJob((inputMoney) => { this.#lottoManager.buyLottos(this.#lottoCompany, inputMoney); });
     this.#logicChain.addNextJob(() => { this.#lottoManager.printLottosStatus(); });
-    this.#logicChain.addNextAsyncJob((next) => this.#lottoCompany.makeWinningNumbersAsync(next));
-    this.#logicChain.addNextAsyncJob((next) => this.#lottoCompany.makeBonusNumberAsync(next));
+    this.#logicChain.addNextAsyncJob((next) => { getUserInputAsync("\n당첨 번호를 입력해 주세요.\n" ,next);});
+    this.#logicChain.addNextJob((inputNumbers) => this.#lottoCompany.setWinningNumbers(inputNumbers));
+    this.#logicChain.addNextAsyncJob((next) => { getUserInputAsync("\n보너스 번호를 입력해 주세요.\n" ,next);});
+    this.#logicChain.addNextJob((inputNumber) => this.#lottoCompany.setBonusNumber(inputNumber));
     [
       () => { this.#lottoManager.checkResults(this.#lottoCompany); },
       () => { this.#lottoCompany.printReportByRanks(this.#lottoManager.getLottoResults()); },
@@ -37,5 +41,6 @@ class App {
     this.#logicChain.execute();
   }
 }
-
+const app = new App();
+app.play();
 module.exports = App;

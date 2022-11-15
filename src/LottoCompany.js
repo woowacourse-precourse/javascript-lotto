@@ -39,14 +39,11 @@ class LottoCompany {
     }
   }
 
-  makeWinningNumbersAsync(next) {
-    Console.readLine("\n당첨 번호를 입력해 주세요\n", (input) => {
-      this.validateWinningNumbers(input);
-      const winningNumbers = input.split(",").map((elem) => Number(elem));
-      winningNumbers.sort((a, b) => a - b);
-      this.#winningNumbers = winningNumbers;
-      if (next) next();
-    });
+  setWinningNumbers(numbers) {
+    this.validateWinningNumbers(numbers);
+    const winningNumbers = numbers.split(",").map((elem) => Number(elem));
+    winningNumbers.sort((a, b) => a - b);
+    this.#winningNumbers = winningNumbers;
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -55,12 +52,9 @@ class LottoCompany {
     Lotto.validate(numbers);
   }
 
-  makeBonusNumberAsync(next) {
-    Console.readLine("\n보너스 번호를 입력해 주세요\n", (input) => {
-      this.validateBonusNumber(input);
-      this.#bonusNumber = Number(input);
-      if (next) next();
-    });
+  setBonusNumber(number) {
+    this.validateBonusNumber(number);
+    this.#bonusNumber = Number(number);
   }
 
   // eslint-disable-next-line class-methods-use-this
