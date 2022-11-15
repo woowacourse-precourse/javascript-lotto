@@ -14,12 +14,12 @@ class App {
 
   play() {
     this.inputStartWithMoney();
-    // Console.close();
+    Console.close();
   }
 
   inputStartWithMoney() {
     Console.readLine(INPUTS.INPUT_MONEY, (money) => {
-      if (inputValidation.checkThousandNum(money)) {
+      if (inputValidation.checkThousandNum(money) && inputValidation.checkIsInputNum(money)) {
         this.#countLottos = Number(money) / 1000;
         this.printCountLottos();
         this.makeLottosList();
