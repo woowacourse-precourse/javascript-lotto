@@ -113,7 +113,7 @@ const SYSTEM = Object.freeze({
     },
 
     printRate(rate) {
-        SYSTEM.print(`총 수익률은 ${rate}%입니다.`);
+        SYSTEM.print(`총 수익률은 ${rate.toLocaleString()}%입니다.`);
     },
 
     exit() {
