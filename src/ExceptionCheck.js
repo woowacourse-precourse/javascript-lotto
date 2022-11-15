@@ -27,7 +27,8 @@ class ExceptionCheck {
   }
 
   isNumber(test) {
-    if (!Number(test)) throw new CustomError(ErrorMessage.notNumber);
+    if (!Number(test) && Number(test) !== 0)
+      throw new CustomError(ErrorMessage.notNumber);
   }
   isPositiveNumber(test) {
     if (test < 0) throw new CustomError(ErrorMessage.notPositiveNumber);
