@@ -41,8 +41,7 @@ class Utils {
   }
 
   static getEarningsRate(totalReward, lottoPayment) {
-    const earningsRate = ((totalReward / lottoPayment) * 100).toFixed(1);
-    return earningsRate;
+    return ((totalReward / lottoPayment) * 100).toFixed(1);
   }
 
   static changeNumberWithCommas(string) {

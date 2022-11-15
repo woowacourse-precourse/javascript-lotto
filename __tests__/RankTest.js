@@ -143,7 +143,7 @@ describe("당첨 로또 테스트", () => {
     const winningLotto = [1, 3, 8, 11, 31, 41];
     const bonusLotto = 44;
     const lottoPayment = 8000
-    const output = "18,750.0"
+    const output = "18750.0"
 
     const ranking = new RankingResult();
     ranking.setRankingResult(

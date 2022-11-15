@@ -1,4 +1,4 @@
-const {Utils} = require("../src/utils/Utils");
+const Utils = require("../src/utils/Utils");
 
 describe("기능 테스트", () => {
   test("당첨로또와 겹치는 개수 계산한다.", () => {
@@ -19,11 +19,11 @@ describe("기능 테스트", () => {
   });
 
   test("당첨함수의 수익률을 계산한다.", () => {
-    const input = 5000;
+    const totalReward = 5000;
     const payment = 8000;
 
     const output = "62.5";
-    const earningsRate = Utils.getEarningsRate(input, payment);
+    const earningsRate = Utils.getEarningsRate(totalReward, payment);
 
     expect(earningsRate).toEqual(output);
   });
