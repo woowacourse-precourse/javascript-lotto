@@ -29,7 +29,7 @@ const COMPARE_VALUE = Object.freeze({
     one: 1,
     two: 2,
     three: 3,
-    four: 1,
+    four: 4,
 })
 
 const PRIZE = 1;
