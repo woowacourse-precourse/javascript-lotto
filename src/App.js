@@ -15,6 +15,7 @@ class App {
       this.#inputMoneyExceptionCheck(money);
       this.#ticketCnt = money / 1000;
       this.#generateLotto();
+      this.#printPurchasedLotto();
     });
   }
 
@@ -46,6 +47,11 @@ class App {
     return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort(
       (a, b) => a - b
     );
+  }
+
+  #printPurchasedLotto() {
+    MissionUtils.Console.print(`\n${this.#ticketCnt}개를 구매했습니다.`);
+    this.#purchased.map((lotto) => lotto.printNumbers());
   }
 }
 

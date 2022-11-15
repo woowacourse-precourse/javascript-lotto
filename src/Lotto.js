@@ -1,3 +1,5 @@
+const MissionUtils = require('@woowacourse/mission-utils');
+
 class Lotto {
   #numbers;
 
@@ -32,6 +34,10 @@ class Lotto {
     for (let i = 0; i < numbers.length; ++i) {
       if (numbers[i] < 1 || numbers[i] > 45) return true;
     }
+  }
+
+  printNumbers() {
+    MissionUtils.Console.print(this.#numbers);
   }
 }
 
