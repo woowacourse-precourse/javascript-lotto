@@ -22,4 +22,11 @@ const OUTPUT_MESSAGE = {
   FIRST: (count) => `6개 일치 (2,000,000,000원) - ${count}개`,
   RESULT: (benefit) => `총 수익률은 ${benefit}%입니다.`,
 };
-module.exports = { INPUT_MESSAGE, ERROR_MESSAGE, OUTPUT_MESSAGE };
+const PRICE = {
+  FIRST: 2000000000,
+  SECOND: 30000000,
+  THIRD: 1500000,
+  FOURTH: 50000,
+  FIFTH: 5000,
+};
+module.exports = { INPUT_MESSAGE, ERROR_MESSAGE, OUTPUT_MESSAGE, PRICE };
