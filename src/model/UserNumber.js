@@ -56,7 +56,6 @@ class UserNumber {
    */
   getIssuedLotto() {
     const issuedLotto = [];
-
     for (
       let idx = 0;
       idx < this.purchasingAmount / generalConstants.SINGLE_LOTTO_PRICE;
@@ -67,7 +66,6 @@ class UserNumber {
         singleLottoCombination.sort((first, second) => first - second),
       );
     }
-
     return issuedLotto;
   }
 
