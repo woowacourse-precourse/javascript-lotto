@@ -1,5 +1,5 @@
 const { LOTTO_DIGITS, PRIZE } = require('./Constants');
-const Validater = require('./Validater');
+const Validator = require('./Validator');
 
 class Lotto {
   #numbers;
@@ -11,17 +11,17 @@ class Lotto {
   }
 
   static validateLuckyNumber(numbers) {
-    Validater.checkNumberOfDigits(numbers);
-    Validater.checkInteger(numbers);
-    Validater.checkRange(numbers);
-    Validater.checkDuplication(numbers);
+    Validator.checkNumberOfDigits(numbers);
+    Validator.checkInteger(numbers);
+    Validator.checkRange(numbers);
+    Validator.checkDuplication(numbers);
   }
 
   validateBonusNumber(number) {
-    Validater.checkSingleDigit(number);
-    Validater.checkInteger(number);
-    Validater.checkRange(number);
-    Validater.checkDuplication(number, this.#numbers);
+    Validator.checkSingleNumber(number);
+    Validator.checkInteger(number);
+    Validator.checkRange(number);
+    Validator.checkDuplication(number, this.#numbers);
     this.bonusNumber = number;
   }
 

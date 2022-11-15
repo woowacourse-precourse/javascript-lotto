@@ -2,7 +2,7 @@ const { Console } = require('@woowacourse/mission-utils');
 const { PRIZE_MONEY, INPUT_MESSAGE, RESULT_MESSAGE } = require('./Constants');
 const Lotto = require('./Lotto');
 const LottoIssuer = require('./LottoIssuer');
-const Validater = require('./Validater');
+const Validator = require('./Validator');
 
 class App {
   #lotto;
@@ -18,8 +18,8 @@ class App {
 
   buyLottoes() {
     Console.readLine(INPUT_MESSAGE.money, (money) => {
+      Validator.validateMoney(Number(money));
       this.money = Number(money);
-      Validater.validateMoney(this.money);
       this.issuedLottoes = LottoIssuer.issueLottoes(this.money);
       this.getLuckyNumbers();
     });
@@ -55,7 +55,7 @@ class App {
         Console.print(`${RESULT_MESSAGE[prize]} - ${number}개`)
       );
     Console.print(`총 수익률은 ${earningRate.toFixed(1)}%입니다.`);
-    Console.close();
+    App.finish();
   }
 
   calculateEarningRate(prizeRecord) {
@@ -68,6 +68,10 @@ class App {
       (sum, prize) => sum + PRIZE_MONEY[prize] * prizeRecord[prize],
       0
     );
+  }
+
+  static finish() {
+    Console.close();
   }
 }
 

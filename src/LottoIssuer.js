@@ -18,7 +18,7 @@ class LottoIssuer {
   static generateLottoes(numberOfLottoes) {
     const lottoes = [];
 
-    for (let i = 0; i < numberOfLottoes; i++) {
+    for (let i = 0; i < numberOfLottoes; i += 1) {
       lottoes.push(LottoIssuer.generateLottoNumbers());
     }
 
@@ -39,6 +39,10 @@ class LottoIssuer {
       const lottoString = lotto.toString();
       Console.print(`[${lottoString.replace(/,/g, ', ')}]`);
     });
+  }
+
+  static finish() {
+    Console.close();
   }
 }
 
