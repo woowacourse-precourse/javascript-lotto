@@ -2,7 +2,14 @@ class Validation {
   checkPositiveInteger(input) {
     const regex = /^[0-9]+$/;
     if (!regex.test(input)) {
-      throw '숫자를 입력해주세요.';
+      throw '숫자를 입력해 주세요.';
+    }
+  }
+
+  checkEmptyItem(array) {
+    const hasEmptyItem = array.includes(undefined);
+    if (hasEmptyItem) {
+      throw '빈 번호가 없게 입력해 주세요.';
     }
   }
 

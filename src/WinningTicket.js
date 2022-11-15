@@ -16,6 +16,7 @@ class WinningTicket {
 
   validateWinningNumbers(numbers) {
     try {
+      validation.checkEmptyItem(numbers);
       validation.checkArrayLength(numbers, LOTTO_NUMBER_COUNT);
       validation.checkDuplication(numbers);
       numbers.forEach((number) => {
