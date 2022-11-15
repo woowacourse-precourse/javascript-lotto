@@ -56,18 +56,18 @@ class App {
   }
 
   printLottoList(lottoList) {
-    MissionUtils.Console.print(lottoList.length + '개를 구매했습니다.');
+    MissionUtils.Console.print(lottoList.length + "개를 구매했습니다.");
     for (const lotto of lottoList) {
-      MissionUtils.Console.print(lotto);
+      MissionUtils.Console.print("[" + lotto.join(', ') + "]");
     }
   }
 
   printLottoResult() {
-    MissionUtils.Console.print('3개 일치 (5,000원) - ' + this.result['5등']);
-    MissionUtils.Console.print('4개 일치 (50,000원) - ' + this.result['4등']);
-    MissionUtils.Console.print('5개 일치 (1,500,000원) - ' + this.result['3등']);
-    MissionUtils.Console.print('5개 일치, 보너스 볼 일치 (30,000,000원) - ' + this.result['2등']);
-    MissionUtils.Console.print('6개 일치 (2,000,000,000원) - ' + this.result['1등']);
+    MissionUtils.Console.print('3개 일치 (5,000원) - ' + this.result['5등'] + '개');
+    MissionUtils.Console.print('4개 일치 (50,000원) - ' + this.result['4등'] + '개');
+    MissionUtils.Console.print('5개 일치 (1,500,000원) - ' + this.result['3등'] + '개');
+    MissionUtils.Console.print('5개 일치, 보너스 볼 일치 (30,000,000원) - ' + this.result['2등'] + '개');
+    MissionUtils.Console.print('6개 일치 (2,000,000,000원) - ' + this.result['1등'] + '개');
   }
 
   printLottoRateOfReturn(rateOfReturn) {
