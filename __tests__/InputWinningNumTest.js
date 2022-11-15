@@ -18,4 +18,12 @@ describe("보너스 번호 값 테스트", () => {
             inputWinningNum.bonusNumber();
         }).toThrow("[ERROR]");
     });
+
+    test("보너스 번호가 빈칸인 경우 예외 처리", () => {
+        mockQuestions([""]);
+        const inputWinningNum = new InputWinningNum();
+        expect(() => {
+            inputWinningNum.bonusNumber();
+        }).toThrow("[ERROR]");
+    });
 });
