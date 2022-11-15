@@ -52,7 +52,7 @@ class PurchaseLotto {
 
     getPurcahseAmount() {
         return this.#purchaseAmount
-    }   
+    }
 }
 
 module.exports = PurchaseLotto;

@@ -39,7 +39,7 @@ class HandleLotto {
                     this.#rank[1]++;
                     break;
                 case 5:
-                    if (lotto.includes(this.#bonusNum)) {
+                    if (lotto.getNumbers().includes(this.#bonusNum)) {
                         this.#rank[3]++;
                     } else {
                         this.#rank[2]++;
@@ -78,10 +78,10 @@ class HandleLotto {
     }
 
     calRateOfReturn() {
-        let totalWinnings = Math.round(this.#winnings.reduce(function add(a, b) { return a + b }, 0));
+        let totalWinnings = this.#winnings.reduce(function add(a, b) { return a + b }, 0);
         let amount = this.#purchasedLotto.getPurcahseAmount();
 
-        this.#rateOfReturn = totalWinnings / amount * 100;
+        this.#rateOfReturn = Math.round(totalWinnings / amount * 10000) / 100;
 
         return this.#rateOfReturn
     }
