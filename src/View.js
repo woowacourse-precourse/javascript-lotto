@@ -1,10 +1,15 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
 const Setting = require("./Setting");
+const Exception = require("./Exception");
+const Lotto = require("./Lotto");
 const { checkMyNumber, getRevenue } = require("./utils");
+const exception = new Exception();
 class View extends Setting {
   lottoStart() {
     Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
       money = Number(money);
+      exception.isNumber(money);
+      exception.isMultipleOfThousand(money);
       this.money = money / 1000;
       this.buyLotto();
       this.getWinNumber();
@@ -31,12 +36,14 @@ class View extends Setting {
       winNumber = winNumber.split(",");
       winNumber = winNumber.map((i) => Number(i));
       this.winNumber = this.sortList(winNumber);
+      new Lotto(this.winNumber);
       this.getBonusNumber();
     });
   }
   getBonusNumber() {
     Console.readLine("보너스 번호를 입력해 주세요.\n", (bonusNumber) => {
       this.bonusNumber = Number(bonusNumber);
+      exception.isInWinNumber(this.bonusNumber, this.winNumber);
       this.lottoBox.map((oneLine) => {
         checkMyNumber(
           oneLine,
@@ -76,6 +83,7 @@ class View extends Setting {
         }
       });
       Console.print(`총 수익률은 ${this.revenue}%입니다.`);
+      this.lottoClose();
     });
   }
 
