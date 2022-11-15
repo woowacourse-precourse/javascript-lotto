@@ -11,7 +11,7 @@ class PurchaseLotto {
     const purchasedLottoList = [];
     for (let i = 1; i <= this.#purchasedCount; i++) {
       purchasedLottoList.push(
-        this.returnPurchaseLottoNumbers().sort((a, b) => {
+        this.returnPurchasedLottoNumbers().sort((a, b) => {
           return a - b;
         })
       );
@@ -21,6 +21,10 @@ class PurchaseLotto {
 
   returnPurchasedLottoNumbers() {
     return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+  }
+
+  printLottoCount() {
+    MissionUtils.Console.print(this.#purchasedCount + "개를 구매했습니다.");
   }
 }
 
