@@ -7,10 +7,18 @@ const { RULE } = require("./constants/rule");
 class LottoController {
   constructor() {
     this.validation = new Validation();
+    this.checkedMoney;
     this.lottoAmount;
     this.boughtLotto = [];
     this.winningNumber;
     this.bonusNumber;
+  }
+
+  setMoney(inputMoney) {
+    if (this.validation.isValidMoney(inputMoney))
+      this.checkedMoney = inputMoney;
+    this.countLottoAmount(this.checkedMoney);
+    return this.checkedMoney;
   }
 
   countLottoAmount(checkedMoney) {

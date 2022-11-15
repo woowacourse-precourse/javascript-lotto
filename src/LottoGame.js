@@ -1,18 +1,15 @@
-const { Console } = require("@woowacourse/mission-utils");
 const LottoController = require("./LottoController");
-const Validation = require("./validator/Validation");
+const { Console } = require("@woowacourse/mission-utils");
 const { GAME_MESSAGES } = require("./constants/messages");
 
 class LottoGame {
   constructor() {
-    this.validation = new Validation();
     this.lottoController = new LottoController();
   }
 
   getMoney() {
     Console.readLine(GAME_MESSAGES.PURCHASE_MONEY, (purchaseAmount) => {
-      if (this.validation.isValidMoney(purchaseAmount))
-        this.lottoController.countLottoAmount(purchaseAmount);
+      this.lottoController.setMoney(purchaseAmount);
       this.lottoController.printLottoAmount();
       this.lottoController.printLottoList();
       this.getWinNumbers();
