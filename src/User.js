@@ -31,6 +31,11 @@ class User {
         this.setUserLotto(userLottoList);
     }
 
+    makeUserRandomOneLotto () {
+        const oneLotto = Random.pickUniqueNumbersInRange(1, 45, 6);
+        Calculate.sortUserLotto(oneLotto);
+        return oneLotto;
+    };   
 }
 
 module.exports = User;
