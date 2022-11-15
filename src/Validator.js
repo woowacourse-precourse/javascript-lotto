@@ -33,10 +33,26 @@ class Validator {
         throw new Error('[ERROR] 중복되지 않은 값을 입력하세요.');
       }
 
+      static isRightRange (numbers) {
+        for (let idx = 0; idx < numbers.length; idx++) {
+          if (numbers[idx] > 45 || numbers[idx] < 1) {
+            throw new Error('[ERROR] 1-45사이의 수를 입력하세요.');
+          }
+        }
+      }
+
       static inputPurchase (string) {
         this.isBlank(string);
         this.isNumber(string);
         this.isPurchaseUnit(string);
+      }
+
+      static inputWinNumber (numbers) {
+        this.isBlank(numbers);
+        this.isRightLength(numbers);
+        this.isDuplicate(numbers);
+        this.isRightRange(numbers);
+        return numbers;
       }
   
 }
