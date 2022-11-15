@@ -9,7 +9,7 @@ class LottoGameView {
     Console.print(`${quantity}개를 구매했습니다.`);
   }
 
-  printEachLottoNumbers(eachLottoNumbers) {
+  printEachPlayerLottoNumbers(eachLottoNumbers) {
     eachLottoNumbers.forEach((numbers) => {
       const lottoNumbers = numbers.join(", ");
 

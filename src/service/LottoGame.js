@@ -30,7 +30,7 @@ class LottoGame {
       this.playerLottos = this.lottoPerchaseMachine.purchaseLottos();
 
       this.LottoGameView.printLottoQuantity(this.playerLottos.length);
-      this.LottoGameView.printEachLottoNumbers(this.getEachLottoNumbers());
+      this.LottoGameView.printEachPlayerLottoNumbers(this.getEachPlayerLottoNumbers());
 
       this.setWinningNumbersPhase();
     });
@@ -54,7 +54,7 @@ class LottoGame {
 
   prizeCalculatePhase() {
     const eachLottoPrize = this.prizeCalculator.calculatePrize(
-      this.getEachLottoNumbers(),
+      this.getEachPlayerLottoNumbers(),
       this.winningLotto.getWinningNumbers(),
       this.winningLotto.getBonusNumber()
     );
@@ -71,7 +71,7 @@ class LottoGame {
     Console.close();
   }
 
-  getEachLottoNumbers() {
+  getEachPlayerLottoNumbers() {
     return this.playerLottos.map((lotto) => lotto.getNumbers());
   }
 }
