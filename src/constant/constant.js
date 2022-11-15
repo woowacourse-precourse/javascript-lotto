@@ -15,14 +15,14 @@ const INPUT_MESSAGE = {
 };
 
 const RESULT_MEESAGE = {
-  purchase: "N개를 구매했습니다.",
+  purchase: (n) => `${n}개를 구매했습니다.`,
   lottoResult: `당첨 통계${NEW_LINE}---`,
-  match3: `3개 일치 (5,000원) - N개`,
-  match4: `4개 일치 (50,000원) - N개`,
-  match5: `5개 일치 (1,500,000원) - N개`,
-  match5andBonus: `5개 일치, 보너스 볼 일치 (30,000,000원) - N개`,
-  match6: `6개 일치 (2,000,000,000원) - N개`,
-  profit: "총 수익률은 N%입니다.",
+  match3: (n) => `3개 일치 (5,000원) - ${n}개`,
+  match4: (n) => `4개 일치 (50,000원) - ${n}개`,
+  match5: (n) => `5개 일치 (1,500,000원) - ${n}개`,
+  match5andBonus: (n) => `5개 일치, 보너스 볼 일치 (30,000,000원) - ${n}개`,
+  match6: (n) => `6개 일치 (2,000,000,000원) - ${n}개`,
+  profit: (n) => `총 수익률은 ${n}%입니다.`,
 };
 
 const UNIT = {

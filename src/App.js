@@ -47,7 +47,7 @@ class App {
   }
 
   printLottos(lottos) {
-    Console.print(RESULT_MEESAGE.purchase.replace("N", lottos.length));
+    Console.print(RESULT_MEESAGE.purchase(lottos.length));
     lottos.forEach((lotto) => lotto.printNumbers());
   }
 
@@ -73,25 +73,27 @@ class App {
       this.#result[match] += 1;
     });
 
-    const totalPrize = this.getTotalPrize(this.#result);
-    this.#profitRatio = this.caculateProfitRatio(this.#money, totalPrize);
+    this.#profitRatio = this.caculateProfitRatio(
+      this.#money,
+      this.getTotalPrize(this.#result)
+    );
     this.printResult();
   }
 
   printResult() {
     Console.print(RESULT_MEESAGE.lottoResult);
     Console.print(
-      RESULT_MEESAGE.match3.replace("N", this.#result[3]) +
+      RESULT_MEESAGE.match3(this.#result[3]) +
         NEW_LINE +
-        RESULT_MEESAGE.match4.replace("N", this.#result[4]) +
+        RESULT_MEESAGE.match4(this.#result[4]) +
         NEW_LINE +
-        RESULT_MEESAGE.match5.replace("N", this.#result[5]) +
+        RESULT_MEESAGE.match5(this.#result[5]) +
         NEW_LINE +
-        RESULT_MEESAGE.match5andBonus.replace("N", this.#result[5.5]) +
+        RESULT_MEESAGE.match5andBonus(this.#result[5.5]) +
         NEW_LINE +
-        RESULT_MEESAGE.match6.replace("N", this.#result[6])
+        RESULT_MEESAGE.match6(this.#result[6])
     );
-    Console.print(RESULT_MEESAGE.profit.replace("N", this.#profitRatio));
+    Console.print(RESULT_MEESAGE.profit(this.#profitRatio));
     Console.close();
   }
 
