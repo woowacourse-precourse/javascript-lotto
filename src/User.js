@@ -47,6 +47,19 @@ class User {
   createLotto() {
     return Random.pickUniqueNumbersInRange(1, 45, 6);
   }
+
+  printLottoList() {
+    Console.print(`\n${this.#lottoAmount}개를 구매했습니다.`);
+    this.#lottoList.forEach(lotto => {
+      Console.print(this.sortLottoAscending(lotto));
+    });
+  }
+
+  sortLottoAscending(lotto) {
+    return lotto.sort(function(a, b){
+      return a - b;
+    }); 
+  }
 }
 
 module.exports = User;

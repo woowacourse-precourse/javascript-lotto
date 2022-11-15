@@ -35,4 +35,12 @@ describe("사용자 클래스 테스트", () => {
     ).toBe(6);
   });
 
+  test("로또 번호를 출력할 때 오름차순 정렬하여 출력한다.", () => {
+    const user = new User(6000);
+    const lotto = [1,6,5,3,4,2];
+    expect(
+      user.sortLottoAscending(lotto) 
+    ).toEqual([1,2,3,4,5,6]);
+  });
+
 });
