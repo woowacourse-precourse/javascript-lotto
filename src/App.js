@@ -1,5 +1,12 @@
+const User = require("./User");
+
 class App {
-  play() {}
+  constructor() {
+    this.user = new User();
+  }
+  play() {
+    this.user.purchaseLotto();
+  }
 }
 
 module.exports = App;

@@ -1,51 +1,63 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
+
 const UserValidation = require("./Validation/UserValidation");
-const LottoGenerator = require("../src/LottoGenerator");
+const LottoValidation = require("./Validation/LottoValidation");
+const Lotto = require("./Lotto");
 
 class User {
-  lottoNumbers;
+  lottoList;
+  userMoney;
   constructor() {
-    this.lottoNumbers = []; //로또 발행 번호 목록
-    this.lottoGenerator = new LottoGenerator(); //로또 당첨 번호 생성기
+    this.lottoList = [];
   }
-  buyLotto() {
-    // 로또를 구입한다.
-    let numberOfPurchase;
-    Console.readLine("구입금액을 입력해 주세요.\n", (userInput) => {
-      User.isValidPurchase(userInput);
-      numberOfPurchase = Number(userInput) / 1000;
-      this.generateLottoNumbers(numberOfPurchase);
-      this.lottoGenerator.getWinningNumbers();
+  purchaseLotto() {
+    Console.readLine("구입금액을 입력해 주세요.", (money) => {
+      User.isValidPurchase(money);
+      this.userMoney = Number(money);
+      const amount = Number(money) / 1000;
+      return this.generateLottoArray(amount);
     });
   }
-  generateLottoNumbers(numberOfPurchase) {
-    for (let i = 0; i < numberOfPurchase; i++) {
-      const lottoNumber = User.randomSortedNumbers();
-      this.lottoNumbers.push(lottoNumber);
+  generateLottoArray(amount) {
+    for (let i = 0; i < amount; i++) {
+      const randomNumberArr = Random.pickUniqueNumbersInRange(1, 45, 6);
+      randomNumberArr.sort((a, b) => a - b);
+      this.lottoList.push(randomNumberArr);
     }
-    this.showLottoNumbers();
+    return this.showLottoArray();
   }
-  showLottoNumbers() {
-    const count = this.lottoNumbers.length;
-    Console.print(`\n${count}개를 구매했습니다.`);
-    for (let lottoNumber of this.lottoNumbers) {
-      Console.print(lottoNumber);
+  showLottoArray() {
+    const count = this.lottoList.length;
+    Console.print(`${count}개를 구매했습니다.`);
+    for (let lottoNumbers of this.lottoList) {
+      Console.print(`[${lottoNumbers.join(", ")}]`);
     }
+    return this.generateWinnerNumbers();
   }
-  static randomSortedNumbers() {
-    const lottoNumber = Random.pickUniqueNumbersInRange(1, 45, 6);
-    lottoNumber.sort((a, b) => a - b);
-    return lottoNumber;
+  generateWinnerNumbers() {
+    Console.readLine("당첨 번호를 입력해 주세요.", (numbers) => {
+      let winnerNumberArr = numbers.split(",");
+      const lotto = new Lotto(winnerNumberArr);
+      const winnerNumbers = lotto
+        .getNumbers()
+        .map((number) => Number(number))
+        .sort((a, b) => a - b);
+      return this.generateBonusNumber(winnerNumbers);
+    });
   }
-  static isValidPurchase(amount) {
-    // 로또 구입 금액에 대한 유효성 검사
-    amount = Number(amount);
-    return UserValidation.isDivisible(amount) && UserValidation.isUnderMaxPurchase(amount) && UserValidation.isPositiveInteger(amount);
+  generateBonusNumber(winnerNumbers) {
+    Console.readLine("보너스 번호를 입력해 주세요.", (number) => {
+      User.isValidBonus(number);
+      const bonusNumber = Number(number);
+      return this.comparisonOperator(this.lottoList, winnerNumbers, bonusNumber);
+    });
+  }
+  static isValidBonus(number) {
+    return LottoValidation.isBonusNotNumber(number) && LottoValidation.checkBonusRange(number) && LottoValidation.isBonusInteger(number);
+  }
+  static isValidPurchase(number) {
+    return UserValidation.isNumber(number) && UserValidation.isDivisible(number) && UserValidation.isUnderMaxPurchase(number) && UserValidation.isPositiveInteger(number);
   }
 }
-
-const user = new User();
-// user.buyLotto();
-// user.generateLottoNumbers();
 
 module.exports = User;
