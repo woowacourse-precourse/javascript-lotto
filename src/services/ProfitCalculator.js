@@ -1,8 +1,4 @@
-const FIRST_PRIZE = 2000000000;
-const SECOND_PRIZE = 30000000;
-const THIRD_PRIZE = 1500000;
-const FOURTH_PRIZE = 50000;
-const FIFTH_PRIZE = 5000;
+const PRIZE = require('../utils/prize');
 
 class ProfitCalculator {
   static calculate({ result, purchaseAmount }) {
@@ -17,7 +13,7 @@ class ProfitCalculator {
   }
 
   static #adder(accumulator, currentValue, currentIndex) {
-    const prizeMoney = [FIRST_PRIZE, SECOND_PRIZE, THIRD_PRIZE, FOURTH_PRIZE, FIFTH_PRIZE];
+    const prizeMoney = [PRIZE.first, PRIZE.second, PRIZE.third, PRIZE.fourth, PRIZE.fifth];
 
     return accumulator + currentValue * prizeMoney[currentIndex];
   }
