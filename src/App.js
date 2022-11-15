@@ -23,7 +23,7 @@ class Promptor {
       return false;
     }
 
-    if (!/^\d+000$/.test(money)) {
+    if (!/^\+?\d+000$/.test(money)) {
       return false;
     }
     return true;
@@ -61,6 +61,34 @@ class Promptor {
       if (Number(number) < 1 || Number(number) > 45) {
         return false;
       }
+    }
+
+    return true;
+  }
+
+  acceptSpecialNumber() {
+    const query = "보너스 번호를 입력해 주세요.";
+    const err = "여섯 개의 정수 (1과 45 사이)를 입력해 주세요. ( 예: 45 )";
+
+    MissionUtils.readLine(query, (userInput) => {
+      if (!this.#validateSpecialNumber(userInput)) {
+        MyErrorHandler(err);
+      }
+      this.specialNumber = Number(userInput);
+    });
+  }
+
+  #validateSpecialNumber(number) {
+    if (typeof number != "string") {
+      return false;
+    }
+
+    if (!/^\+?[1-9]\d*$/.test(number)) {
+      return false;
+    }
+
+    if (Number(number) < 1 || Number(number) > 45) {
+      return false;
     }
 
     return true;
