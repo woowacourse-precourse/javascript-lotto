@@ -1,4 +1,4 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { Console, Random } = require("@woowacourse/mission-utils");
 
 class App {
   constructor() {
@@ -8,11 +8,12 @@ class App {
 
   play() {
     this.buyLotto();
+    this.consoleLottoAmount();
   }
 
   buyLotto() {
-    MissionUtils.Console.readLine(
-      "로또를 구매할 금액을 입력해주세요.ㅜ",
+    Console.readLine(
+      "로또를 구매할 금액을 입력해주세요.",
       (input) => {
         if (input % 1000 != 0)
           throw new Error(
@@ -24,7 +25,7 @@ class App {
     );
   }
   consoleLottoAmount() {
-    MissionUtils.Console.print(this.lottoAmount + "개를 구매했습니다.\n");
+    Console.print(this.lottoAmount + "개를 구매했습니다.\n");
   }
 }
 
