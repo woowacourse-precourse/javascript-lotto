@@ -51,16 +51,12 @@ class App {
 
   getWinNumber() {
     Console.readLine(MESSAGE.CONFIRM_WIN, (win) => {
-      // TODO: validate win
-      // 쉼표로 구분안하는 경우
-      // 길이가 6이 아닌 경우
-      // 문자를 가지고 있는 경우
-      // 쉼표로 끝나는 경우
-      // 숫자의 범위가 맞지 않는 경우
-      // 중복 숫자를 가지고 있는 경우
+      this.validateWinNumbers(win);
 
       this.winNumbers = win.split(',').map((el) => Number(el));
       console.log(this.winNumbers);
+
+      new Lotto(this.winNumbers);
 
       this.getBonusNumber();
     });
