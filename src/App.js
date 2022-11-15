@@ -31,7 +31,9 @@ class App {
   getInputMoney() {
     Console.print("```\n");
     Console.readLine("구매금액을 입력해 주세요.\n", (input) => {
-      this.isValidMoney(input);
+      if (!this.isValidMoney(input)) {
+        throw "[ERROR]";
+      }
       this.payMoney = input;
       this.lottos = this.publishLottos(input / 1000);
       this.printLottosNumbers();
@@ -40,9 +42,10 @@ class App {
   }
 
   isValidMoney(input) {
-    if (input === "") throw "[ERROR] 입력이 없습니다.";
-    if (/[\D]/.test(input)) throw "[ERROR] 숫자만 입력이 가능합니다.";
-    if (input % 1000 != 0) throw "[ERROR] 1000으로 나눠지지 않습니다.";
+    if (input === "") return false;
+    if (/[\D]/.test(input)) return false;
+    if (input % 1000 != 0) return false;
+    return true;
   }
 
   publishLottos(count) {
