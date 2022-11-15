@@ -1,15 +1,24 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { QUESTION_MESSAGE } = require('./libs/const');
-const Purchase = require('./libs/Purchase');
-const Utils = require('./libs/Utils');
-const Validations = require('./libs/Validations');
 const Lotto = require('./Lotto');
+const Purchase = require('./libs/Purchase');
+const { splitComma, convertStringNumber } = require('./libs/Utils');
+const { isNotCommaPrize } = require('./libs/Validations');
+const { QUESTION_MESSAGE } = require('./libs/const');
 
 class Game {
   constructor() {
     this.totalLottoes = [];
     this.Lotto = null;
     this.Purchase = null;
+    this.bonusNumber = 0;
+    this.winningAmount = 0;
+    this.ranking = {
+      first: 0,
+      second: 0,
+      third: 0,
+      fourth: 0,
+      fifth: 0,
+    };
   }
 
   init() {
@@ -30,11 +39,11 @@ class Game {
   }
 
   enterPrizeNumbers(userInput) {
-    Validations.isNotCommaPrize(userInput);
-    const prizeStringArray = Utils.splitComma(userInput);
-    const prizeNumberArray = Utils.convertStringNumber(prizeStringArray);
+    isNotCommaPrize(userInput);
+    const prizeStringArray = splitComma(userInput);
+    const prizeNumberArray = convertStringNumber(prizeStringArray);
     this.Lotto = new Lotto(prizeNumberArray);
-    this.setBonusNumber();
+    this.bonusNumber = this.setBonusNumber();
   }
 
   setBonusNumber() {
@@ -45,15 +54,32 @@ class Game {
 
   enterBounsNumber(userInput) {
     this.Lotto.setBonusNum(userInput);
-    this.getView();
+    this.lottoResults();
   }
 
-  getView() {
-    this.Lotto.winCheck(this.totalLottoes);
-    this.Lotto.winningAmountCalculation();
-    this.Lotto.printWinner();
-    const yieldPercent = this.Lotto.yieldCaculation(this.Purchase.money);
+  getRanking() {
+    this.ranking = this.Lotto.winCheck(this.totalLottoes, this.bonusNumber);
+
+    this.exit();
+  }
+
+  getWinningAmount() {
+    this.winningAmount = this.Lotto.winningAmountCalculation(this.ranking);
+  }
+
+  printYeild() {
+    const yieldPercent = this.Lotto.yieldCaculation(
+      this.winningAmount,
+      this.Purchase.money,
+    );
     this.Lotto.printYield(yieldPercent);
+  }
+
+  lottoResults() {
+    this.getRanking();
+    this.getWinningAmount();
+    this.Lotto.printWinner(this.ranking);
+    this.printYeild();
     this.exit();
   }
 

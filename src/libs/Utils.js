@@ -23,7 +23,7 @@ class Utils {
     return string;
   }
 
-  static isRange(number) {
+  static isRangeNumber(number) {
     if (number >= 1 && number <= 45) return true;
     return false;
   }

@@ -1,4 +1,4 @@
-const Utils = require('./Utils');
+const { isRangeNumber } = require('./Utils');
 const { ERROR_MESSAGE } = require('./const');
 
 class Validations {
@@ -26,12 +26,14 @@ class Validations {
 
   static isRangePrize(numbers) {
     numbers.forEach(number => {
-      this.isRange(number);
+      if (isRangeNumber(number) === false) {
+        throw new Error(ERROR_MESSAGE.range);
+      }
     });
   }
 
-  static isRange(number) {
-    if (Utils.isRange(number) === false) {
+  static isRangeBonus(number) {
+    if (isRangeNumber(number) === false) {
       throw new Error(ERROR_MESSAGE.range);
     }
   }

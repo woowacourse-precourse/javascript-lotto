@@ -83,6 +83,7 @@
 - [x] refactor: 배열과 다른 배열에 중복되는 개수를 반환하는 함수를 분리
   - Lotto 클래스에서 Utils 클래스로 함수 분리
 - [x] refactor: 랜덤 로또를 만드는 함수와 오름차순으로 정렬하는 함수를 분리
+- [x] refactor: Lotto 클래스의 필드를 Game 클래스로 분리
 
 ### 체크리스트
 
@@ -99,7 +100,7 @@
 - [x] ApplicationTest의 모든 테스트가 성공하였는가?
 - [x] MissionUtils 라이브러리에서 제공하는 Random 및 Console API를 사용하여 구현하였는가?
 - [x] single quotes를 사용하였는가?
-- [ ] 제공된 Lotto 클래스를 활용해 구현하였는가?
+- [x] 제공된 Lotto 클래스를 활용해 구현하였는가?
   - Lotto에 필드를 추가할 수 없다.
   - numbers의 # prefix를 변경할 수 없다.
 - [x] 올바른 커밋 메세지 컨벤션을 사용하였는가?
