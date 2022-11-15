@@ -42,7 +42,7 @@ class WinningResult {
     });
   }
 
-  getResultMessage(rank) {
+  winningResultMessage(rank) {
     let message = '';
     if (rank === RANK.FIFTH)
       message = MESSAGE.FIFTH_PLACE_RESULT(this.#result[WINNING_PRIZE.FIFTH]);

@@ -60,7 +60,7 @@ class App {
       this.bonusNumber,
     );
     for (let rank = RANK.FIFTH; rank >= RANK.FIRST; rank--) {
-      Console.print(winningResult.getResultMessage(rank));
+      Console.print(winningResult.winningResultMessage(rank));
     }
     Console.print(MESSAGE.TOTAL_YIELD_RESULT(winningResult.setYield()));
     this.close();
