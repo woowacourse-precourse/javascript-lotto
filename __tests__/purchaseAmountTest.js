@@ -1,4 +1,4 @@
-const purchaseAmountValidator = require('../src/purchaseAmountValidate');
+const PurchaseAmountValidator = require('../src/purchaseAmountValidate');
 
 describe('로또 입력 금액 테스트', () => {
   test('입력 금액이 숫자가 아니면 예외가 발생한다', () => {
@@ -6,7 +6,7 @@ describe('로또 입력 금액 테스트', () => {
 
     wrongInputAmounts.map(wrongInputAmount => {
       expect(() => {
-        new purchaseAmountValidator(wrongInputAmount);
+        new PurchaseAmountValidator(wrongInputAmount);
       }).toThrow('[ERROR]');
     });
   });
@@ -16,7 +16,7 @@ describe('로또 입력 금액 테스트', () => {
 
     wrongInputAmounts.map(wrongInputAmount => {
       expect(() => {
-        new purchaseAmountValidator(wrongInputAmount);
+        new PurchaseAmountValidator(wrongInputAmount);
       }).toThrow('[ERROR]');
     });
   });
@@ -26,7 +26,7 @@ describe('로또 입력 금액 테스트', () => {
 
     wrongInputAmounts.map(wrongInputAmount => {
       expect(() => {
-        new purchaseAmountValidator(wrongInputAmount);
+        new PurchaseAmountValidator(wrongInputAmount);
       }).toThrow('[ERROR]');
     });
   });
