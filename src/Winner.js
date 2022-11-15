@@ -1,8 +1,11 @@
-const { Console } = require('@woowacourse/mission-utils');
 const Utils = require('./Utils');
 
 class Winner {
   #prizeResult;
+
+  #winnerNumber;
+
+  #data;
 
   #prizeMoney = 0;
 
@@ -15,6 +18,22 @@ class Winner {
     this.lottos = lottos;
     this.winnerRule = winnerRule;
     this.fixedPoint = fixedPoint;
+  }
+
+  set winnerNumber(winnerNumber) {
+    this.#winnerNumber = winnerNumber;
+  }
+
+  get winnerNumber() {
+    return this.#winnerNumber;
+  }
+
+  set data(data) {
+    this.#data = data;
+  }
+
+  get data() {
+    return this.#data;
   }
 
   set prizeResult(result) {
@@ -39,6 +58,10 @@ class Winner {
 
   get earningRate() {
     return this.#earningRate;
+  }
+
+  setWinnerNumber(winnerNumber) {
+    this.winnerNumber = winnerNumber;
   }
 
   calcEarningRate() {
@@ -70,8 +93,8 @@ class Winner {
     return result;
   }
 
-  setLottoResult(winnerNumber) {
-    const { numbers: winner, bonus: bonusNumber } = winnerNumber;
+  setLottoResult() {
+    const { numbers: winner, bonus: bonusNumber } = this.winnerNumber;
     const { bonus } = this.winnerRule;
     const result = this.getMatchedLottos(winner);
     const bonusMatchedLottos = this.getBonusMatchedLottos(result, bonusNumber);
@@ -92,8 +115,8 @@ class Winner {
     this.prizeMoney += this.prizeResult.bonus * bonus.prizeMoney;
   }
 
-  getResult(winnerNumber) {
-    this.setLottoResult(winnerNumber);
+  getResult() {
+    this.setLottoResult();
     this.calcPrizeMoney();
     this.calcEarningRate();
   }
@@ -108,13 +131,13 @@ class Winner {
     return [...prizes, bonusResult].sort().join('\n');
   }
 
-  inform(winnerNumber) {
-    this.getResult(winnerNumber);
+  setResultData() {
+    this.getResult();
 
-    Console.print('\n당첨 통계\n---');
-    Console.print(this.stringifyResult());
-    Console.print(`총 수익률은 ${this.earningRate}%입니다.`);
-    Console.close();
+    const message = ('\n당첨 통계\n---');
+    const result = `${this.stringifyResult()}\n총 수익률은 ${this.earningRate}%입니다.`;
+
+    this.data = { message, result };
   }
 }
 

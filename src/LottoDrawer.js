@@ -1,6 +1,7 @@
 const { Console } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const Validator = require('./Validator');
+const View = require('./View');
 
 class LottoDrawer {
   #result;
@@ -34,7 +35,9 @@ class LottoDrawer {
 
       this.result = { ...this.result, bonus };
       // TODO: 호출위치 변경
-      winner.inform(this.result);
+
+      winner.setWinnerNumber(this.result);
+      View.print(winner);
     });
   }
 

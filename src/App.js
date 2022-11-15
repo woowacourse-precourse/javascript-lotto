@@ -12,9 +12,8 @@ const WINNER_RULE = {
   },
   bonus: { count: 5, prizeMoney: 30000000, message: '보너스 볼 일치' },
 };
-class App {
-  lottos;
 
+class App {
   constructor(lottoNumberCount = 6, winnerRule = WINNER_RULE) {
     this.lottoNumberCount = lottoNumberCount;
     this.winnerRule = winnerRule;
@@ -22,9 +21,14 @@ class App {
 
   play() {
     Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
-      this.lottos = new LottoSeller().purchase(money);
-      const winner = new Winner(money, this.lottos, this.winnerRule);
-      new LottoDrawer(this.lottoNumberCount).drawLotto(winner);
+      const lottoSeller = new LottoSeller();
+
+      lottoSeller.purchase(money);
+
+      const lottoDrawer = new LottoDrawer(this.lottoNumberCount);
+      const winner = new Winner(money, lottoSeller.lottos, this.winnerRule);
+
+      lottoDrawer.drawLotto(winner);
     });
   }
 }

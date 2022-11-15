@@ -12,8 +12,6 @@ class Validator {
   }
 
   isValidInput = (input) => {
-    console.log('input:', input);
-
     if (!input.length) {
       throw new Error(`${this.ERROR_MESSAGE_HEADER} 아무것도 입력하지 않았습니다.`);
     }

@@ -1,9 +1,11 @@
-const { Console } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const LottoValidator = require('./LottoValidator');
+const View = require('./View');
 
 class LottoSeller {
   #lottos;
+
+  #data;
 
   // TODO: constructor로 초기화
   #LOTTO_PRICE = 1000;
@@ -14,6 +16,14 @@ class LottoSeller {
 
   get lottos() {
     return this.#lottos;
+  }
+
+  set data(data) {
+    this.#data = data;
+  }
+
+  get data() {
+    return this.#data;
   }
 
   get lottoPrice() {
@@ -45,20 +55,20 @@ class LottoSeller {
     this.lottos = lottos;
   }
 
-  informPurchaseResult() {
+  setResultData() {
     const lottoCount = this.lottos.length;
     const purchaseMessage = `\n${lottoCount}개를 구매했습니다.`;
     const result = this.lottos.map((lotto) => `[${lotto.join(', ')}]`).join('\n');
 
-    Console.print(purchaseMessage);
-    Console.print(result);
+    this.data = {
+      message: purchaseMessage,
+      result,
+    };
   }
 
   purchase = (money) => {
     this.issueLotto(this.countLottoTicket(money));
-    this.informPurchaseResult();
-
-    return this.lottos;
+    View.print(this);
   };
 }
 
