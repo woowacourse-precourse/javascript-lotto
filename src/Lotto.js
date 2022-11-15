@@ -33,6 +33,7 @@ class Lotto {
     let i = 0;
     while (i < quantity) {
       const lotto = Random.pickUniqueNumbersInRange(1, 45, 6);
+      lotto.sort((a, b) => a - b);
       usersLottos.push(lotto);
       i++;
     }
