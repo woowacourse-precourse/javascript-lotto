@@ -7,12 +7,7 @@ class Customer {
     }
 
     buyLotto() {
-        let lottoNumbers = [];
-        while(lottoNumbers.length < 6) {
-            const currNum = Random.pickNumberInRange(1, 45);
-            if(lottoNumbers.includes(currNum)) continue;
-            lottoNumbers.push(currNum);
-        }
+        const lottoNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(lottoNumbers);
     }
 }
