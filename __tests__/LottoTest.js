@@ -1,3 +1,4 @@
+const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("../src/Lotto");
 
 describe("로또 클래스 테스트", () => {
@@ -15,4 +16,8 @@ describe("로또 클래스 테스트", () => {
   });
 
   // 아래에 추가 테스트 작성 가능
+  test("로또 번호 배열 정렬.", () => {
+    let lotto = new Lotto([6, 5, 4, 3, 2, 1]);
+    expect(lotto.getLottoNumbers()).toEqual([1, 2, 3, 4, 5, 6]);
+  });
 });
