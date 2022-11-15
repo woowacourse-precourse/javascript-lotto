@@ -7,12 +7,21 @@ const Bonus = require('./Bonus');
 const Result = require('./Result');
 
 class Service {
-  printLottoCount() {
+  startGame() {
+    this.getLottoCount();
+  }
+
+  getLottoCount() {
     Console.readLine(ServiceMessage.PURCHASE_INPUT, (amount) => {
       this.amount = amount;
       new Purchase(amount);
-      Console.print(amount / 1000 + ServiceMessage.PURCHASE_MESSAGE);
+      this.printLottoCount(amount);
     });
+  }
+
+  printLottoCount() {
+    Console.print(`\n${this.amount / 1000}` + ServiceMessage.PURCHASE_MESSAGE);
+    this.printLottoNumbers();
   }
 
   printLottoNumbers() {
@@ -23,6 +32,7 @@ class Service {
       Console.print(`[${lottoList[lottoList.length - 1].join(', ')}]`);
     }
     this.lottoList = lottoList;
+    this.printGetWinningNumber();
   }
 
   printGetWinningNumber() {
@@ -30,6 +40,7 @@ class Service {
       const lottoArray = winningNumber.split(',').map((number) => number * 1);
       new Lotto(lottoArray);
       this.lottoNumber = winningNumber;
+      this.printGetBonusNumber();
     });
   }
 
@@ -37,6 +48,7 @@ class Service {
     Console.readLine(ServiceMessage.BONUS_INPUT, (bonusNumber) => {
       new Bonus(bonusNumber);
       this.bonusNumber = bonusNumber;
+      this.printResult();
     });
   }
 
@@ -60,14 +72,17 @@ class Service {
       0
     );
     const yields = (gotPrize / this.amount) * 100;
-    Console.print(`당첨 통계
-    ---
+    Console.print(
+      `\n당첨 통계
+  ---
   3개 일치 (5,000원) - ${ranking[5]}개
   4개 일치 (50,000원) - ${ranking[4]}개
   5개 일치 (1,500,000원) - ${ranking[3]}개
   5개 일치, 보너스 볼 일치 (30,000,000원) - ${ranking[2]}개
   6개 일치 (2,000,000,000원) - ${ranking[1]}개
-  총 수익률은 ${yields}%입니다.`);
+  총 수익률은 ${yields}%입니다.`
+    );
+    Console.close();
   }
 }
 
