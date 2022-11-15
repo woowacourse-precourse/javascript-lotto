@@ -10,7 +10,7 @@ class App {
     validateLottoNumber(winningNumbers, bonusNumber);
     const result = calculateLottoResult(userLotto, winningNumbers, bonusNumber);
     const LottoResult = createLottoResult(result);
-
+    printResult(LottoResult,money)
   }
 }
 
@@ -125,5 +125,24 @@ function createLottoResult(result) {
   });
   return LottoResult;
 }
-
+function printResult(LottoResult,money){
+      
+  Console.print(`당첨 통계
+  ---
+  3개 일치 (5,000원) - ${LottoResult.matchThree}개
+  4개 일치 (50,000원) - ${LottoResult.matchFour}개
+  5개 일치 (1,500,000원) - ${LottoResult.matchFive}개
+  5개 일치, 보너스 볼 일치 (30,000,000원) - ${LottoResult.matchFiveAndBous}개
+  6개 일치 (2,000,000,000원) - ${LottoResult.matchSix}개`);
+  
+      const gain =
+      LottoResult.matchThree * 5000 +
+      LottoResult.matchFour * 50000 +
+      LottoResult.matchFive * 1500000 +
+      LottoResult.matchFiveAndBous * 30000000 +
+      LottoResult.matchSix * 2000000000;
+  
+      Console.print(`총 수익률은 ${((gain / money) * 100).toFixed(1)}%입니다.`);
+      Console.close();
+  }
 module.exports = App;
