@@ -18,7 +18,7 @@
   - 숫자 6개 + 보너스 숫자 1개
   - checkNumRange(), checkNumDuplicate() 실행
 
-- [] 당첨 범호 입력받기 : inputWinNum()
+- [V] 당첨 범호 입력받기 : inputWinNum()
 
   - 숫자 6개 입력받기 (쉼표 기준으로 구분)
 
@@ -29,7 +29,8 @@
   - validateWinNum() 실행
 
   - 보너스 숫자 1개 입력
-    - 예외 : 숫자가 1개가 아닌 경우, 숫자가 1~45가 아닌 경우
+    - 예외 : 숫자가 1개가 아닌 경우, 숫자가 1~45가 아닌 경우, 기존 숫자 중복인 경우
+    - 보너스 숫자 예외 체크 함수 : validateBonusNum()
   - checkNumRange() 실행
 
 - [V] 구입 금액 입력받기 : inputMoney()
