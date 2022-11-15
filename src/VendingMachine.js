@@ -27,6 +27,7 @@ class VendingMachine {
     if (isNaN(input)) throw new Error(ERROR.PURCHASE_AMOUNT_TYPE);
     if (input % LOTTO.PRICE !== 0 || input == 0)
       throw new Error(ERROR.PURCHASE_AMOUNT_UNIT);
+    if (input < 0) throw new Error(ERROR.PURCHASE_AMOUNT_POSITIVE);
   }
 
   printLottoCount(input) {
