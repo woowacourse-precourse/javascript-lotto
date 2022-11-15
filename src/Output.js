@@ -1,10 +1,12 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { MESSAGE, RESULT } = require('./utils/constant');
+const { MESSAGE, RESULT, RANK } = require('./utils/constant');
 
 class Output {
-  lottoNumbers(lottoAmount, purchasedNumbers) {
-    Console.print(`\n${lottoAmount}${MESSAGE.OUTPUT_PURCHASE_AMOUNT}`);
+  lottoAmount(lottoAmount) {
+    Console.print(MESSAGE.OUTPUT_PURCHASE_AMOUNT(lottoAmount));
+  }
 
+  lottoNumbers(purchasedNumbers) {
     purchasedNumbers.forEach((numbers) => {
       const strNumbers = numbers.join(', ');
 
@@ -12,25 +14,30 @@ class Output {
     });
   }
 
-  resultHeader() {
-    Console.print(RESULT.STATISTIC);
+  purchasedResult(lottoAmount, purchasedNumbers) {
+    this.lottoAmount(lottoAmount);
+    this.lottoNumbers(purchasedNumbers);
+  }
+
+  drawResultHeader() {
+    Console.print(RESULT.HEADER);
     Console.print(RESULT.BOUNDARY_LINE);
   }
 
-  resultStatistic(totalRank) {
-    for (let rank = 1; rank <= 6; rank++) {
-      Console.print(`${RESULT.MATCHES[rank]}${totalRank[rank]}${RESULT.PEICE}`);
+  drawResultStatistic(totalRank) {
+    for (let rank = RANK.FIFTH; rank >= RANK.FIRST; rank--) {
+      Console.print(RESULT.STATISTIC(rank, totalRank[rank]));
     }
   }
 
-  resultRateOfReturn(rateOfReturn) {
-    Console.print(`${RESULT.RATE_OF_RETURN}${rateOfReturn}%입니다.`);
+  drawResultRateOfReturn(rateOfReturn) {
+    Console.print(RESULT.RATE_OF_RETURN(rateOfReturn));
   }
 
-  result(totalRank, rateOfReturn) {
-    this.resultHeader();
-    this.resultStatistic(totalRank);
-    this.resultRateOfReturn(rateOfReturn);
+  drawResult(totalRank, rateOfReturn) {
+    this.drawResultHeader();
+    this.drawResultStatistic(totalRank);
+    this.drawResultRateOfReturn(rateOfReturn);
     Console.close();
   }
 }
