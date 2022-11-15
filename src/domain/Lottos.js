@@ -1,6 +1,10 @@
 const { Random } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const LottoNumber = require("./LottoNumber");
+const {
+  CHECK_MATCH_BONUS_LIMIT,
+  STATIC_RANK,
+} = require("../constants/gameCondition");
 
 class Lottos {
   #lottos;
@@ -45,6 +49,27 @@ class Lottos {
     this.#lottos.forEach((lotto) => {
       if (lotto.isEqual(newLotto)) return true;
     });
+  }
+
+  rankLottos(winNumebrs, bonusNumber) {
+    const rankCounts = this.#initializeRankCounts();
+
+    this.#lottos.forEach((lotto) => {
+      const rank = lotto.getRank(winNumebrs, bonusNumber);
+      rankCounts.set(rank, rankCounts.get(rank) + 1);
+    });
+
+    return rankCounts;
+  }
+
+  #initializeRankCounts() {
+    const rankCounts = new Map();
+
+    Object.values(STATIC_RANK).forEach((rank) => {
+      rankCounts.set(rank, 0);
+    });
+
+    return rankCounts;
   }
 }
 

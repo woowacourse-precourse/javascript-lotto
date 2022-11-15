@@ -26,6 +26,14 @@ class LottoGameController {
   inputBonus(number) {
     this.#gameService.setBonus(number);
   }
+
+  outputStatics() {
+    return this.#gameService.getStatics();
+  }
+
+  outputIncomeRate() {
+    return this.#gameService.getIncomeRate();
+  }
 }
 
 module.exports = LottoGameController;

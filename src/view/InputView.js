@@ -24,7 +24,10 @@ class InputView {
 
   #printLottos() {
     const lottos = this.#lottoGameController.outputLottos();
-    Console.print(lottos.toString());
+    const printLottos = lottos.split("\n");
+    printLottos.forEach((lotto) => {
+      Console.print(lotto.toString());
+    });
     this.inputWinNumber();
   }
 
@@ -44,6 +47,14 @@ class InputView {
 
   #showStatics() {
     Console.print(OUTPUT_MESSAGE.START_STATICS);
+    const statics = this.#lottoGameController.outputStatics();
+    Console.print(statics);
+    this.#showIncomeRate();
+  }
+
+  #showIncomeRate() {
+    const incomeRate = this.#lottoGameController.outputIncomeRate();
+    Console.print(OUTPUT_MESSAGE.TOTAL_INCOME(incomeRate));
   }
 }
 

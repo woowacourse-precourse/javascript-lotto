@@ -29,10 +29,7 @@ class BonusValidator {
   }
 
   #isDuplicated(bonus, winNumbers) {
-    const winNumbersArr = winNumbers
-      .split(",")
-      .map((str) => str.trim())
-      .map((str) => parseInt(str));
+    const winNumbersArr = winNumbers;
 
     return winNumbersArr.includes(bonus);
   }

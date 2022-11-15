@@ -5,7 +5,7 @@ class WinNumber {
 
   constructor(numbers) {
     this.validate(numbers);
-    this.winNumbers = this.#toFormat(numbers);
+    this.#winNumbers = this.#toFormat(numbers);
   }
 
   validate(numbers) {
@@ -13,7 +13,14 @@ class WinNumber {
   }
 
   #toFormat(numbers) {
-    return numbers.split(",").map((num) => +num);
+    return numbers
+      .split(",")
+      .map((str) => str.trim())
+      .map((num) => +num);
+  }
+
+  getWinNumbers() {
+    return this.#winNumbers;
   }
 }
 

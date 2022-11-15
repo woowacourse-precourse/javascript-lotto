@@ -1,6 +1,12 @@
 const { Random } = require("@woowacourse/mission-utils");
 const LottoNumbers = require("./LottoNumber");
 const LottoValidator = require("../validator/LottoValidator");
+const LottoRank = require("./LottoRank");
+const {
+  CHECK_MATCH_BONUS_LIMIT,
+  STATIC_RANK,
+  STATIC_TEMPLATE,
+} = require("../constants/gameCondition");
 
 class Lotto {
   #numbers;
@@ -25,7 +31,22 @@ class Lotto {
   }
 
   toString() {
-    return JSON.stringify(this.#numbers);
+    return "[" + this.#numbers.join(", ") + "]";
+  }
+
+  getRank(winNumbers, bonusNumber) {
+    const matchCount = this.#containWinNumber(winNumbers);
+    const hasBonus = this.#containBonusNumber(bonusNumber);
+
+    return new LottoRank().getRank(matchCount, hasBonus);
+  }
+
+  #containWinNumber(winNumbers) {
+    return this.#numbers.filter((number) => winNumbers.includes(number)).length;
+  }
+
+  #containBonusNumber(bonusNumber) {
+    return this.#numbers.includes(bonusNumber);
   }
 }
 

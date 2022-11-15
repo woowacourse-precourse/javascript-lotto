@@ -17,6 +17,10 @@ class Money {
   getAmount() {
     return this.#money / LOTTO_PRICE;
   }
+
+  getInComeRate(income) {
+    return ((income / this.#money) * 100).toFixed(1);
+  }
 }
 
 module.exports = Money;

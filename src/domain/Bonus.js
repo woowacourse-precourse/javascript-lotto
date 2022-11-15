@@ -4,12 +4,16 @@ class Bonus {
   #bonus;
 
   constructor(bonus, winNumbers) {
-    this.validate(bonus, winNumbers);
+    this.validate(bonus, winNumbers.getWinNumbers());
     this.#bonus = bonus;
   }
 
-  validate(bonus, winNumbers) {
-    const bonusValidator = new BonusValidator(bonus, winNumbers);
+  validate(bonus, winNumbersArr) {
+    const bonusValidator = new BonusValidator(bonus, winNumbersArr);
+  }
+
+  getBonusNumber() {
+    return this.#bonus;
   }
 }
 
