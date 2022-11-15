@@ -1,12 +1,12 @@
 function DoubleCheckBonus(input, WinningNumber) {
-  const includes = WinningNumber.split(',').includes(input);
+  const includes = WinningNumber.includes(input);
   if (includes) {
     throw new Error('[ERROR] 중복되지 않는 숫자만 입력해주세요.');
   }
 }
 
 function checkBonusNumberRange(input) {
-  if (Number(input) < 1 || Number(input) > 45) {
+  if (Number(input) < 1 || Number(input) > 45 || Number.isNaN(Number(input))) {
     throw new Error('[ERROR] 1~45의 숫자만 입력해 주세요.');
   }
 }
