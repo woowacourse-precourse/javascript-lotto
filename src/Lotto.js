@@ -38,7 +38,7 @@ class Lotto {
   }
 
   getBonus() {
-    return this.#numbers[this.#numbers.length];
+    return this.#numbers[this.#numbers.length-1];
   }
 }
 
