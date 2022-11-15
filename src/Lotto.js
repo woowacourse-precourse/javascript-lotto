@@ -1,4 +1,3 @@
-const MissionUtils = require("@woowacourse/mission-utils");
 class Lotto {
   #numbers;
 
@@ -15,14 +14,10 @@ class Lotto {
     if (Array.from(numSet).length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
-    // //1-45 사이의 문자인지 보기
-    // if(!(parseInt(numbers) >= 1 && parseInt(numbers) <= 45)){
-    //   throw new Error("[ERROR] 로또 번호는 1~45 사이의 숫자여야 합니다.");
-    // }
     return numbers;
   }
   printRandom(){
-    return `[${this.#numbers.sort((a, b) => a - b).join(", ")}]`;
+    return `[${this.#numbers.sort((a, b) => a - b).join(", ")}]`; //오름차순은 정렬해서 조인
   }
 
   numberObj() {

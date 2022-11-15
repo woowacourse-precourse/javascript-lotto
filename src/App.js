@@ -1,5 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
+const Consolee = MissionUtils.Console;
 
 class App {
   constructor(){
@@ -15,7 +16,7 @@ class App {
     this.inputPurchaseMoney();
   }
   inputPurchaseMoney(){
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
+    Consolee.readLine("구입금액을 입력해 주세요.\n", (money) => {
       const purchase = this.validatePurchase(money);
       this.purchase = purchase; 
     });
@@ -29,7 +30,7 @@ class App {
     return money;
   }
   setWinningLottoNumber(){
-    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.\n", (winning) => {
+    Consolee.readLine("당첨 번호를 입력해 주세요.\n", (winning) => {
       this.winningNumber = this.validateWinningNumber(winning);
     });
     this.setBonusLottoNumber();
@@ -51,7 +52,7 @@ class App {
     return winNum.map((num) => parseInt(num));
   }
   setBonusLottoNumber(){
-    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.\n", (bonus) => {
+    Consolee.readLine("보너스 번호를 입력해 주세요.\n", (bonus) => {
       this.bonusNumber = this.validateBonusNumber(bonus);
     });
     this.setUserRandomLottoNumber();
@@ -68,7 +69,7 @@ class App {
   setUserRandomLottoNumber(){
     let num = this.purchase / 1000;
     this.setRandomNumber(num);
-    MissionUtils.Console.print(num + "개를 구매했습니다.");
+    Consolee.print(num + "개를 구매했습니다.");
     this.printUserLottoNumber();
   }
   setRandomNumber(num){
@@ -84,7 +85,7 @@ class App {
   }
   printUserLottoNumber(){
     this.lottoNumber.forEach((lotto) => {
-      MissionUtils.Console.print(lotto.printRandom());
+      Consolee.print(lotto.printRandom());
     });
     this.calculateLotto();
   }
@@ -103,15 +104,15 @@ class App {
     this.resultLotto();
   }
   resultLotto(){
-    MissionUtils.Console.print("당첨 통계\n---");
-    MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.ranking[1]}개`);
-    MissionUtils.Console.print(`4개 일치 (50,000원) - ${this.ranking[2]}개`);
-    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${this.ranking[3]}개`);
-    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.ranking[5]}개`);
-    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${this.ranking[4]}개`);
-    MissionUtils.Console.print(`총 수익률은 ${this.resultRateOfReturn()}%입니다.`);
+    Consolee.print("당첨 통계\n---");
+    Consolee.print(`3개 일치 (5,000원) - ${this.ranking[1]}개`);
+    Consolee.print(`4개 일치 (50,000원) - ${this.ranking[2]}개`);
+    Consolee.print(`5개 일치 (1,500,000원) - ${this.ranking[3]}개`);
+    Consolee.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.ranking[5]}개`);
+    Consolee.print(`6개 일치 (2,000,000,000원) - ${this.ranking[4]}개`);
+    Consolee.print(`총 수익률은 ${this.resultRateOfReturn()}%입니다.`);
 
-    MissionUtils.Console.close();
+    Consolee.close();
   }
   resultRateOfReturn(){
     let sum = 0;
