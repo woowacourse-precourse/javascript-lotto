@@ -105,6 +105,10 @@ class App {
     Console.print(`총 수익률은 ${this.rateOfResult}%입니다.`);
   }
 
+  endLottoGame() {
+    Console.close();
+  }
+
   play() {
     this.getCost();
     this.getLottoArray();
@@ -113,6 +117,7 @@ class App {
     this.getLottoResult();
     this.getRateOfReturn();
     this.resultPrint();
+    this.endLottoGame();
   }
 }
 
