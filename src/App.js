@@ -61,6 +61,12 @@ function printMap(map){
   }
 }
 
+function printProfit(profit, input){
+  const profitRate = (profit*100/input).toFixed(1);
+  Console.print(`총 수익률은 ${profitRate}%입니다.`);
+  Console.close();
+}
+
 
 class App {
   #totalMoney;
@@ -153,18 +159,16 @@ class App {
     const [lottos, winNums, bonus] = [this.getLotto(), this.getWinNums(), this.getBonus()];
     const result = [];
     const map = new Map();
-
     lottos.forEach(lotto => {
       const winCount = lotto.filter(winNums).length;
       const bonusCount = lotto.includes(bonus) ? 1 : 0;
       result.push([winCount, bonusCount]);
     });
-
     initMap(map);
     makeMap(map, result);
     printMap(map);
     const profit = calProfit(map);
-    Console.print(profit);
+    printProfit(profit, this.getMoney());
   }
 
 
