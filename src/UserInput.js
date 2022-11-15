@@ -1,6 +1,6 @@
-const { readLine, print, close } = require("./util.js");
-const { INPUT_QUERY, prizeCount, OUTPUT } = require("./constants.js");
-const LottoGenerator = require("./LottoGenerator");
+const { readLine, print, close } = require("./common/util.js");
+const { INPUT_QUERY, prizeCount, OUTPUT } = require("./common/constants.js");
+const LottoGenerator = require("./Lotto/LottoGenerator");
 const Lotto = require("./Lotto/Lotto");
 const Bonus = require("./Lotto/Bonus.js");
 

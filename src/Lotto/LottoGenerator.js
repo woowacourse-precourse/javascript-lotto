@@ -1,6 +1,6 @@
-const { prizeCount, PRIZE_MONEY } = require('./constants');
-const { print, random } = require('./util');
-const { checkLottoAmount } = require('./validation');
+const { prizeCount, PRIZE_MONEY } = require('../common/constants');
+const { print, random } = require('../common/util');
+const { checkLottoAmount } = require('../validation');
 
 class LottoGenerator {
   #lottoAmount;
