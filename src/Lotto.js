@@ -1,6 +1,8 @@
+const MissionUtils = require('@woowacourse/mission-utils');
+const CheckVaild = require('./CheckVaild');
+const { ERROR_MESSAGES } = require('./common/message');
 class Lotto {
   #numbers;
-
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
@@ -8,11 +10,10 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error(`${ERROR_MESSAGES.NO_VALID_LOTTO_LENGTH}`);
     }
+    CheckVaild.isVaildWinningNumber(numbers);
   }
-
-  // TODO: 추가 기능 구현
 }
 
 module.exports = Lotto;
