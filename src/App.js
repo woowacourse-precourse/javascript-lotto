@@ -1,4 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+const Computer = require('./Computer');
 const { checkRange, checkUnit, checkType, checkLottoType } = require('./Exception');
 const Lotto = require('./Lotto');
 const { Message } = require('./Message');
@@ -27,20 +28,22 @@ class App {
     }
   }
   createWinLotto() {
-    MissionUtils.Console.readLine(`${Message.LOTTO_MESSAGE}`, input => {
+    MissionUtils.Console.readLine(`\n${Message.LOTTO_MESSAGE}`, input => {
       const numbers = Array.from(input.split(','), Number);
       checkLottoType(numbers);
       this.winLotto = new WinLotto(numbers);
       MissionUtils.Console.readLine(`${Message.BONUS_MESSAGE}`, input => {
         this.winLotto.setBonusNumber(Number(input));
+        MissionUtils.Console.print(Computer.userLottoRankResult(this.userLottoList, this.winLotto));
       });
     });
   }
+
   play() {
     MissionUtils.Console.readLine(`${Message.COST_MESSAGE}`, input => {
       this.validate(input);
       this.buyLottos(this.inputMoney / 1000);
-      MissionUtils.Console.print(`${this.userLottoList.length}개를 구매했습니다.`);
+      MissionUtils.Console.print(`\n${this.userLottoList.length}개를 구매했습니다.`);
       this.userLottoList.forEach(lotto => MissionUtils.Console.print(`[${lotto.getNumbers().join(', ')}]`));
       this.createWinLotto();
     });

@@ -1,5 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const { checkLottoRange, checkLottoDuplicate, checkLottoLength, checkLottoType } = require('./Exception');
+const { checkLottoRange, checkLottoDuplicate, checkLottoLength } = require('./Exception');
 const { Message } = require('./Message');
 
 class Lotto {
