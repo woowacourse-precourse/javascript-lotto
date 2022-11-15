@@ -51,4 +51,10 @@ describe("Validator 클래스 테스트", () => {
     expect(Validator.isNumberInArray([1, 2, 3, 4, 5, 6], 1)).toEqual(true);
     expect(Validator.isNumberInArray([1, 2, 3, 4, 5, 6], 7)).toEqual(false);
   });
+
+  test("isUniqueArray: 배열 안에 숫자가 중복인지 테스트", () => {
+    expect(Validator.isUniqueArray([1, 2, 3, 4, 5, 6])).toEqual(true);
+    expect(Validator.isUniqueArray([1, 1, 2, 3, 4, 5])).toEqual(false);
+    expect(Validator.isUniqueArray([6, 6, 3, 4, 5, 1])).toEqual(false);
+  });
 });
