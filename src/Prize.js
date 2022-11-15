@@ -33,6 +33,7 @@ class Prize {
 		}
 		return false;
 	}
+
 	parseNums(nums, bonusNum) {
 		let arr = nums.split(',');
 		arr.forEach((num) => {
