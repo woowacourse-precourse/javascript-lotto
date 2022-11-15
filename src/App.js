@@ -19,10 +19,10 @@ class App {
   }
 
   play() {
-    this.input.readLine(this.handleBuyAmount.bind(this));
+    this.input.readLine(this.handleAmount.bind(this));
   }
 
-  handleBuyAmount(amount) {
+  handleAmount(amount) {
     amount = +amount;
     if (!Vaildator.isRightAmount(+amount)) {
       throw new Error('[ERROR]');
