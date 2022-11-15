@@ -44,7 +44,8 @@ class Validator {
   static lottoInputCheckHandler(input, len = 6) {
     const target = numList(input);
     reducer(
-      input,
+      target,
+      target.map(x => Validator.isValidLottoNumber(x)),
       Validator.isNotExceedAmount(target, len),
       Validator.isNotDuplicated(target, len),
     );

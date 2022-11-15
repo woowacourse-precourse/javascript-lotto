@@ -20,23 +20,6 @@ class User {
       count--;
     }
   }
-
-  calculateRank() {
-    const myLottos = this.lottos;
-    const calculator = this.lotto.calculateRank;
-    reducer(
-      myLottos,
-      myLottos.map(item => calculator(item, this.lotto.numbers, RECORD)),
-    );
-  }
-
-  calculateProfitRatio(record) {
-    const table = Object.entries(record).map(item => item[1]);
-    const total = table.reduce((acc, cur) => {
-      return acc + cur.count * cur.money;
-    }, 0);
-    return ((total / this.money) * 100).toFixed(1);
-  }
 }
 
 module.exports = User;

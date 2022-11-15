@@ -1,9 +1,12 @@
 const { print } = require('./Funcs.js');
 
 const MESSAGES = Object.freeze({
-  MONEY: '구입 금액을 입력해주세요.',
-  WINNING_NUMBER: '당첨 번호를 입력해주세요.',
-  BONUS_NUMBER: '보너스 번호를 입력해주세요.',
+  MONEY: '구입 금액을 입력해주세요.\n',
+  WINNING_NUMBER: '당첨 번호를 입력해주세요.\n',
+  BONUS_NUMBER: '보너스 번호를 입력해주세요.\n',
+  PURCHASED_LOTTO: num => `${num}개를 구매했습니다.`,
+  HEADER: '당첨 통계',
+  LINE: '---',
 });
 
 const ERROR = Object.freeze({
