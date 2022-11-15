@@ -61,24 +61,24 @@ describe("보너스 번호 에러 테스트",()=>{
   test("당첨 번호와 보너스 번호가 겹치면 예외가 발생한다.",()=>{
     expect(()=>{
       new Exception().exceptBonusNumber([1, 2, 3, 4, 5, 6], 6)
-    })
+    }).toThrow("[ERROR]") 
   })
 
   test("보너스 번호가 1-45가 아니면 예외가 발생한다.",()=>{
     expect(()=>{
       new Exception().exceptBonusNumber([1, 2, 3, 4, 5, 6], 46)
-    })
+    }).toThrow("[ERROR]") 
   })
 
   test("보너스 번호가 정수가 아니면 예외가 발생한다.",()=>{
     expect(()=>{
       new Exception().exceptBonusNumber([1, 2, 3, 4, 5, 6], 7.7)
-    })
+    }).toThrow("[ERROR]") 
   })
 
   test("보너스 번호가 숫자값이 아니면 예외가 발생한다.",()=>{
     expect(()=>{
       new Exception().exceptBonusNumber([1, 2, 3, 4, 5, 6], "a")
-    })
+    }).toThrow("[ERROR]") 
   })
 })

@@ -40,6 +40,7 @@ class App {
 
   #makeLotteryTickets(lotteryTicketNumber) {
     let lotteryTickets = new Array(lotteryTicketNumber).fill([]);
+
     lotteryTickets.map((lotteryTicket, ticketsIdx) => {
       lotteryTickets[ticketsIdx] = MissionUtils.Random.pickUniqueNumbersInRange(
         START_RANDOM,END_RANDOM,RANDOM_NUMBER
