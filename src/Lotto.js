@@ -15,9 +15,7 @@ class Lotto {
   validate(numbers) {
     const notInRange = (numbers) =>
       numbers.filter(
-        (number) =>
-          number < TICKET_NUMBER.RANGE_START ||
-          number > TICKET_NUMBER.RANGE_END,
+        (number) => number < TICKET_NUMBER.RANGE_START || number > TICKET_NUMBER.RANGE_END,
       ).length;
 
     if (numbers.length !== 6) {

@@ -31,9 +31,7 @@ class Bonus {
       throw new Error('[ERROR] 1~45 사이 숫자를 입력하여 주십시오.');
     }
     if (lottoNumbers.includes(parseInt(bonusNumber, DECIMAL_NUMBER))) {
-      throw new Error(
-        '[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.',
-      );
+      throw new Error('[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.');
     }
   }
 

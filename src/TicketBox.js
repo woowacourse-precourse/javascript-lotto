@@ -4,11 +4,7 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable class-methods-use-this */
 const MissionUtils = require('@woowacourse/mission-utils');
-const {
-  TICKET_NUMBER,
-  DECIMAL_NUMBER,
-  PRICE_PER_TICKET,
-} = require('./Constant');
+const { TICKET_NUMBER, DECIMAL_NUMBER, PRICE_PER_TICKET } = require('./Constant');
 const Lotto = require('./Lotto');
 const Bonus = require('./Bonus');
 const BillBoard = require('./BillBoard');
@@ -42,6 +38,7 @@ class TicketBox {
       this.tickets,
       this.lotto.numbers,
       this.bonus.bonusNumber,
+      this.#budget,
     );
     this.billBoard.makeBillBoard();
     MissionUtils.Console.close();
@@ -66,9 +63,7 @@ class TicketBox {
 
   inputLottoCallback(input) {
     this.lottoValidate(input);
-    const inputLotto = input
-      .split(',')
-      .map((number) => parseInt(number, DECIMAL_NUMBER));
+    const inputLotto = input.split(',').map((number) => parseInt(number, DECIMAL_NUMBER));
     this.lotto = new Lotto(inputLotto);
     MissionUtils.Console.readLine(
       '\n보너스 번호를 입력해 주세요.\n',
@@ -84,6 +79,7 @@ class TicketBox {
         TICKET_NUMBER.RANGE_END,
         TICKET_NUMBER.COUNT_OF_NUMBER,
       );
+      // TODO: 오름차순
       this.#tickets.push(ticketNumbers);
     }
     MissionUtils.Console.print(`\n${ticketCount}개를 구매했습니다.`);
@@ -101,9 +97,7 @@ class TicketBox {
   }
 
   printTickets() {
-    this.#tickets.forEach((ticket) =>
-      MissionUtils.Console.print(`[${ticket.join(', ')}]`),
-    );
+    this.#tickets.forEach((ticket) => MissionUtils.Console.print(`[${ticket.join(', ')}]`));
   }
 }
 
