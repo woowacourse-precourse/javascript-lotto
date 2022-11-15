@@ -30,8 +30,12 @@ class Lotto {
     return new Array(count).fill([]).map(() => Lotto.#issueSingleLotto());
   }
 
-  static #printPurchaseLog(count) {
+  static #printPurchaseLog(count, issuedLottos) {
     let purchaseLog = `\n${count}${Message.PURCHASE}`;
+
+    issuedLottos.forEach((lotto) => {
+      purchaseLog += `\n[${lotto.sort((a, b) => a - b).join(', ')}]`;
+    });
 
     Console.print(purchaseLog);
   }
@@ -39,7 +43,7 @@ class Lotto {
   static issue(count) {
     const issuedLottos = Lotto.issueAllLottos(count);
 
-    Lotto.#printPurchaseLog(count);
+    Lotto.#printPurchaseLog(count, issuedLottos);
 
     return issuedLottos;
   }
