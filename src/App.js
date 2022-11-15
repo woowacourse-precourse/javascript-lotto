@@ -13,9 +13,6 @@ class App {
       const tickets = player.buyTickets(Number(amount));
       const lottos = lotto.issue(tickets);
       lotto.insertNumbers(lottos);
-
-      //당첨 로직
-      //통계, 수익률 출력 로직
     });
   }
 }

@@ -68,7 +68,6 @@ class Lotto {
   }
 
   // 그다음 총 test 되어야하고, #numbers 활용 하도록 리팩토링
-  // }
 }
 
 module.exports = Lotto;
