@@ -66,10 +66,6 @@ class App {
 
   inputWinNumber() {
     Console.readLine(INPUT_QUESTION.winNum, (numbers) => {
-      if(!/^(\d{1,2}[,]){5}\d{1,2}$/.test(numbers)) {
-        throw new Error("[ERROR] 올바른 형식으로 입력해 주세요.");
-      }
-
       const  winNumber = numbers.split(',').map(Number);
       new Lotto(winNumber);
       this.winNumber = winNumber;
@@ -80,7 +76,7 @@ class App {
   inputBonusNumber() {
     Console.readLine(INPUT_QUESTION.bonusNum, (bonus) => {
       new Bonus(Number(bonus), this.winNumber);
-      this.bonusNumber = bonus;
+      this.bonusNumber = Number(bonus);
       this.compare();
     });
   }
@@ -102,8 +98,8 @@ class App {
     
     if (matchCount === 3) rank.fifth++;
     if (matchCount === 4) rank.fourth++;
-    if (matchCount === 5 && !lotto.includes(this.bonusNumber)) rank.third++;
-    if (matchCount === 5 && lotto.includes(this.bonusNumber)) rank.second++;
+    if (matchCount === 5 && (lotto.includes(this.bonusNumber) === false)) rank.third++;
+    if (matchCount === 5 && (lotto.includes(this.bonusNumber) === true)) rank.second++;
     if (matchCount === 6) rank.first++;
   }
 
@@ -136,6 +132,9 @@ class App {
   close() {
     Console.close();
   }
-
 }
+
+const app = new App();
+app.play();
+
 module.exports = App;
