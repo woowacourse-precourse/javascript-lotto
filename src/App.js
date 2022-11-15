@@ -80,7 +80,7 @@ class App {
     this.printMessage(MESSAGE.PURCHASE(this.user.lottoList.length));
 
     this.user.lottoList.forEach((lotto) => {
-      this.printMessage(JSON.stringify(lotto.numbers).replaceAll(",", ", "));
+      this.printMessage(`[${lotto.numbers.join(", ")}]`);
     });
   }
 
