@@ -69,6 +69,15 @@ class App {
       console.log(winningNumber)
     }
   }
+  rateOfReturn() {
+    let gather = 0
+    const purchase = 1000 * (this.raffleNumber.length)
+    for (let i = 0; i < 5; i++) {
+      gather += this.correctList[i] * this.getMoney[i]
+    }
+    const rateReturn = (gather / purchase).toFixed(2)
+    return rateReturn
+  }
 }
 
 const app = new App();
