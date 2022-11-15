@@ -1,18 +1,32 @@
+const { LOTTO_NUMBER } = require("./constants/index");
+const Validator = require("./utils/Validator");
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    this.validateLotto(numbers);
     this.#numbers = numbers;
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+  validateLotto(numbers) {
+    Validator.isLength(numbers, LOTTO_NUMBER.VALID_NUMBER_LENGTH).isDuplicated(
+      numbers
+    );
+    numbers.every(Validator.isNumber);
+    numbers.every((number) =>
+      Validator.isRange({
+        target: number,
+        start: LOTTO_NUMBER.MIN_NUMBER,
+        end: LOTTO_NUMBER.MAX_NUMBER,
+      })
+    );
+    return true;
   }
 
-  // TODO: 추가 기능 구현
+  getSortedLotto() {
+    return this.#numbers.sort((a, b) => a - b);
+  }
 }
 
 module.exports = Lotto;
