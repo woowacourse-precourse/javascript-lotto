@@ -17,6 +17,7 @@ class App {
     this.getBonusNumber();
     const rankCountTable = util.getRankCount(this.#User.getLottoList(), this.#Lotto.getNumbers(), this.#bonusNumber);
     util.printRankCount(rankCountTable);
+    util.printEarningRate(rankCountTable, this.#User.getMoney());
   }
 
   getPerchaseAmount() {

@@ -60,6 +60,11 @@ class Util {
     return 0;
   }
 
+  printEarningRate(rankCountTable, userMoney) {
+    const earningRate = this.calculateEarningRate(rankCountTable, userMoney);
+    Console.print(`총 수익률은 ${earningRate}%입니다.`);
+  }
+
   calculateEarningRate(rankCountTable, userMoney) {
     const totalEarn = this.calculateTotalEarn(rankCountTable);
     let earningRate = totalEarn / userMoney * 100;
