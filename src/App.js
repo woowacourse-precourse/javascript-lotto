@@ -11,6 +11,7 @@ class App {
   reward;
   revenue;
   printer;
+  calculator;
 
   constructor() {
     this.payMoney = 0;
@@ -29,6 +30,7 @@ class App {
     ];
     this.revenue = 0;
     this.printer = new Printer();
+    this.calculator = new Calculator();
   }
 
   play() {
@@ -87,7 +89,10 @@ class App {
         this.bonusNumber = input;
         this.matchLottos(this.lottos, this.winNumbers, this.bonusNumber);
         this.printer.printscore(this.rewards);
-        this.revenue = calculator.conductRevenue(this.rewards, this.payMoney);
+        this.revenue = this.calculator.conductRevenue(
+          this.rewards,
+          this.payMoney
+        );
         this.printer.printRevenue(this.revenue);
         this.gameOver();
       }
