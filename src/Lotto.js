@@ -49,9 +49,8 @@ class Lotto {
   sortRank(cnt, bonusCnt) {
     if (cnt === 5 && bonusCnt === 1) {
       return 7;
-    } else {
-      return cnt;
     }
+    return cnt;
   }
 
   comparisonNumbers(publishedlottos, bonusNumber) {
