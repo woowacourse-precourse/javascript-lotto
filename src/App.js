@@ -66,6 +66,25 @@ class App {
       );
     }
   }
+  ResultPrize() {
+    let count = 0;
+    let finalPrize = 0;
+    // this.countLottoArray = Array.from({ length: 5 });
+    this.countLottoArray = this.lottoList;
+    this.countLottoArray.forEach((lotto) => {
+      lotto.getNumbers().forEach((test) => {
+        if (this.#winningNumberList.includes(test)) count++;
+      });
+      if (count === 3) LOTTO_PRIZE[5].count++;
+      if (count === 4) LOTTO_PRIZE[4].count++;
+      if (count === 5)
+        lotto.includes(this.bonusNumber)
+          ? LOTTO_PRIZE[2].count++
+          : LOTTO_PRIZE[3].count++;
+      if (count === 6) LOTTO_PRIZE[1].count++;
+      count = 0;
+    });
+  }
 }
 
 module.exports = App;
