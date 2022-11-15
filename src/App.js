@@ -75,6 +75,8 @@ class App {
         winningResult[result - 1] += 1;
       }
     }
+
+    this.showWinningResult(winningResult);
   }
 
   compare(lottoNumbers, winningNumbers, bonusNumber) {
@@ -90,6 +92,14 @@ class App {
     }
 
     return rank;
+  }
+
+  showWinningResult(winningResult) {
+    Console.print(MESSAGE.WINNING_STATISTICS);
+
+    for (let index = 4; index >= 0; index -= 1) {
+      Console.print(`${MESSAGE.RANK[index + 1]}${winningResult[index]}${MESSAGE.AMOUNT}`);
+    }
   }
 }
 
