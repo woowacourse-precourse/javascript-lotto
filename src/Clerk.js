@@ -35,6 +35,16 @@ class Clerk {
       if (lottoCnt === 6) this.#place[4]++;
     }
   }
+
+  countReward() {
+    return (
+      this.#place[0] * 5000 +
+      this.#place[1] * 50000 +
+      this.#place[2] * 1500000 +
+      this.#place[3] * 30000000 +
+      this.#place[4] * 2000000000
+    );
+  }
 }
 
 module.exports = Clerk;
