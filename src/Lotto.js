@@ -1,18 +1,39 @@
 class Lotto {
-  #numbers;
+    #numbers;
 
-  constructor(numbers) {
-    this.validate(numbers);
-    this.#numbers = numbers;
-  }
-
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    constructor(numbers) {
+        this.validate(numbers);
+        this.checkDuplicate(numbers);
+        this.checkNumber(numbers);
+        this.#numbers = numbers;
     }
-  }
 
-  // TODO: 추가 기능 구현
+    validate(numbers) {
+        if (numbers.length !== 6) {
+            throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+    }
+
+    checkDuplicate(numbers) {
+        const set = new Set(numbers);
+        const uniqueArr = [...set];
+        if (numbers.length !== uniqueArr.length) {
+            throw new Error("[ERROR] 로또 번호는 중복될 수 없습니다.")
+        }
+    }
+
+    checkNumber(numbers) {
+        for (let x of numbers) {
+            if (isNaN(x) === true) {
+                throw new Error("[ERROR] 로또 번호는 숫자여야 합니다.");
+            }
+        }
+    }
+
+    getNumber() {
+        return this.#numbers;
+    }
+
 }
 
 module.exports = Lotto;
