@@ -144,15 +144,13 @@ class Vendor {
 
   announceResult(tickets) {
     MissionUtils.Console.print("당첨 통계\n---");
-    MisstionUtils.Console.print("3개 일치 (5,000원) - 1개");
-    MisstionUtils.Console.print("4개 일치 (50,000원) - 0개");
-    MisstionUtils.Console.print("5개 일치 (1,500,000원) - 0개");
-    MisstionUtils.Console.print(
-      "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개"
-    );
-    MisstionUtils.Console.print("6개 일치 (2,000,000,000원) - 0개");
-    MisstionUtils.Console.print("총 수익률은 62.5%입니다.");
-    MisstionUtils.Console.print("```\n\n---");
+    MissionUtils.Console.print("3개 일치 (5,000원) - 1개");
+    MissionUtils.Console.print("4개 일치 (50,000원) - 0개");
+    MissionUtils.Console.print("5개 일치 (1,500,000원) - 0개");
+    MissionUtils.Console.print("5개 일치, 보너스 볼 일치 (30,000,000원) - 0개");
+    MissionUtils.Console.print("6개 일치 (2,000,000,000원) - 0개");
+    MissionUtils.Console.print("총 수익률은 62.5%입니다.");
+    MissionUtils.Console.print("```\n\n---");
   }
 
   #computeResult(tickets) {}
