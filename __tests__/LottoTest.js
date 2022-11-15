@@ -1,6 +1,7 @@
 const Bonus = require("../src/bonus");
 const Lotto = require("../src/Lotto");
 const { ERROR_MESSAGE } = require("../src/constant/message");
+const validatePayment = require("../src/modules/validatePayment");
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
