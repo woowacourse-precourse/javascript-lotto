@@ -1,7 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { OUTPUT_MESSAGE } = require('./utils/constant');
-const { ENTER_COST, ENTER_WINNING_NUMBERS, ENTER_BONUS_NUMBER, WINNING_STATISTICS } =
-    OUTPUT_MESSAGE;
+const { OUTPUT_MESSAGE } = require('./constant/constantOfLotto');
+const { ENTER_COST, ENTER_WINNING_NUMBERS, ENTER_BONUS_NUMBER, WINNING_STATISTICS } = OUTPUT_MESSAGE;
 
 class Display {
     constructor(controller) {
@@ -14,22 +13,24 @@ class Display {
 
     inputCost() {
         Console.readLine(ENTER_COST, (answer) => {
-            this.controller.amountInputValidate(answer);
+            this.controller.costValidate(answer);
         });
     }
 
     static printLottoList(lottos) {
         Console.print(`${lottos.length}개를 구매했습니다.`);
-        lottos.forEach((lotto) => Console.print(`[${String(lotto.getNumber()).replace(/,/g, ', ')}]`));
+        lottos.forEach((lotto) => Console.print(`[${String(lotto.getNumbers()).replace(/,/g, ', ')}]`));
     }
 
     inputWinningNumber() {
         Console.readLine(ENTER_WINNING_NUMBERS, (answer) => {
+            this.controller.setWinningNumber(answer.split(','));
         });
     }
 
     inputBonusNumber() {
         Console.readLine(ENTER_BONUS_NUMBER, (answer) => {
+            this.controller.setBonusNumber(answer);
         });
     }
 

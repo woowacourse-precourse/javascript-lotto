@@ -2,8 +2,8 @@ const { Random } = require('@woowacourse/mission-utils');
 const CheckWinning = require('./checkWinning');
 const Lotto = require('./Lotto');
 const Calculate = require('./Calculate');
-const View = require('./view');
-const WinningNumber = require('./winning-number');
+const Display = require('./Display');
+const WinningNumber = require('./WinningNumber');
 
 const { NUMBERS_LIMIT, ERROR_MESSAGE } = require('./constant/constantOfLotto');
 const { MIN_NUMBER, MAX_NUMBER, COUNT, UNIT_AMOUNT } = NUMBERS_LIMIT;
@@ -12,7 +12,7 @@ const { INCORRECT_AMOUNT_NUMBER_MESSAGE, INCORRECT_COST_MESSAGE } = ERROR_MESSAG
 class Controller {
     constructor() {
         this.lottos = [];
-        this.view = new View(this);
+        this.display = new Display(this);
         this.winningNumber = new WinningNumber();
         this.checkWinning = new CheckWinning(this);
         this.calculate = new Calculate(this);
@@ -41,13 +41,13 @@ class Controller {
             );
         }
 
-        View.printLottoList(this.lottos);
-        this.view.inputWinningNumber();
+        Display.printLottoList(this.lottos);
+        this.display.inputWinningNumber();
     }
 
     setWinningNumber(answer) {
         this.winningNumber.setWinningNumber(answer);
-        this.view.bonusNumberInput();
+        this.display.inputBonusNumber();
     }
 
     setBonusNumber(answer) {
@@ -63,12 +63,12 @@ class Controller {
     endGame() {
         const winningCount = this.checkWinning.getCountWinning();
         const earningCount = this.calculate.getYield(winningCount);
-        View.printResult(winningCount, earningCount);
-        View.endGame();
+        Display.printResult(winningCount, earningCount);
+        Display.endGame();
     }
 
     init() {
-        this.view.inputCost();
+        this.display.inputCost();
     }
 }
 

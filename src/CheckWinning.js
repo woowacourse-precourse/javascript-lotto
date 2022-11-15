@@ -43,7 +43,7 @@ class CheckWinning {
 
     checkLotto() {
         const lottoNumbers = this.#controller.lottos.map((lotto) =>
-            lotto.getNumber().map((number) => String(number)),
+            lotto.getNumbers().map((number) => String(number)),
         );
 
         this.#result = this.#compareWinLottos(lottoNumbers);
