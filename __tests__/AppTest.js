@@ -1,6 +1,6 @@
 const App = require('../src/App.js');
 const MissionUtils = require('@woowacourse/mission-utils');
-const { createLottoNumber, generateLottoNumber } = require('../src/utils/lottoGameHandler.js');
+const { createLottoNumber, generateLottoNumber } = require('../src/utils/common.js');
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();

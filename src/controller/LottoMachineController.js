@@ -1,4 +1,4 @@
-const { generateSortedRandomNumber } = require('../utils/lottoGameHandler.js');
+const { generateSortedRandomNumber } = require('../utils/common.js');
 const { LOTTO_RANKING_REWARD, RANKING_ACCORDING_MATCH_COUNT } = require('../constants/index.js');
 const Lotto = require('../Lotto.js');
 const InputMoneyView = require('../view/InputMoneyView.js');
@@ -27,14 +27,14 @@ class LottoMachineController {
     );
 
     this.view.outputView.printInformationPurchasedLotto(this.userBuyHowManyLotto, this.purchasedLottos);
-    this.view.inputWinningNumberView.inputWinningNumberFromUser(this.judgePrize.bind(this));
+    this.view.inputWinningNumberView.inputWinningNumberFromUser(this.judgePurchasedLottoOfResult.bind(this));
   }
 
   calculatesUserBuyHowManyLotto(purchaseAmount) {
     this.userBuyHowManyLotto = purchaseAmount / 1000;
   }
 
-  judgePrize(winningNumber, bonusNumber) {
+  judgePurchasedLottoOfResult(winningNumber, bonusNumber) {
     const lottoResult = this.generateLottoResultObject();
     this.purchasedLottos.forEach((lotto) => {
       const matchCount = lotto.checkHowManyCorrect(winningNumber, bonusNumber);
@@ -44,6 +44,7 @@ class LottoMachineController {
 
       lottoResult[ranking] += 1;
     });
+
     const profitRate = this.calculateTotalPrizeMoney(lottoResult);
     this.view.outputView.printLottoGameResult(lottoResult, profitRate);
   }
