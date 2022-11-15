@@ -22,6 +22,10 @@ class App {
     WinningNum = this.Input('당첨 번호를 입력해 주세요.');
     WinningNum = this.InputArrangment(WinningNum);
     BonusNum = this.Input('보너스 번호를 입력해 주세요.');
+
+    const lotto = new Lotto(WinningNum);
+
+    result = lotto.CompareResult(BonusNum, LottoList);
   }
 
   Input(text) {
