@@ -3,11 +3,11 @@ const ErrorChecker = require("./ErrorChecker");
 class InputAcceptor {
 
     static async askPurchaseAmountAsyncAwait() {
-        const answer = await new Promise(resolve => {
+        const purchaseAmount = await new Promise(resolve => {
             MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', resolve)
         });
-        this.checkANumber(answer);
-        return answer;
+        this.checkANumber(purchaseAmount);
+        return purchaseAmount;
     }
 
     static async askWinningLottoNumbers() {
