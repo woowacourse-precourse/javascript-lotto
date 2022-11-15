@@ -61,12 +61,15 @@
 - [x] 로또 랭킹을 가져온다. : `getLottoRanking.js`
 - [x] 로또 통계를 수집한다. : `collectLottoStatistics.js`
 
-## utils/
+## 로또 번호를 생성하는 `LottoGenerator` 클래스를 생성한다.
 
-- [x] 로또 번호를 랜덤으로 생성한다. : `generateRandomLottoNumbers.js`
+- [ ] 로또 번호를 랜덤으로 생성한다. : `generateRandomLottoNumbers`
   - 로또 번호의 숫자 범위는 1~45까지이다.
   - 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다.
   - 오름차순으로 정렬하여 배열에 담아 return한다.
+- [ ] 원하는 수만큼 로또를 뽑는다. : `getLottos`
+
+## utils/
 
 ## constants/
 
