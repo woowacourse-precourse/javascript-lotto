@@ -83,7 +83,9 @@ class App {
   printReturnRate() {
     Console.print(
       MESSAGE.PRINT_RETURN_RATE.format(
-        this.lottoSimulator.calcReturnRate(this.purchaseMoney)
+        toLocaleMoney(
+          this.lottoSimulator.calcReturnRate(this.purchaseMoney)
+        )
       ) 
     );
   }
