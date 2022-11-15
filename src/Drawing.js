@@ -44,7 +44,7 @@ class Drawing {
 
     const fifth = matchCount.filter(([count]) => count === 3).length;
     const fourth = matchCount.filter(([count]) => count === 4).length;
-    const third = matchCount.filter(([count]) => count === 5).length;
+    const third = matchCount.filter(([count, bonusMatch]) => count === 5 && !bonusMatch).length;
     const second = matchCount.filter(([count, bonusMatch]) => count === 5 && bonusMatch).length;
     const first = matchCount.filter(([count]) => count === 6).length;
 
