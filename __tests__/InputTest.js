@@ -1,7 +1,28 @@
 const {
   validateWinNumbers,
   validateBonusNumber,
+  validatePurchaseCost,
 } = require("../src/validateInput");
+
+describe("구입 가격 클래스 테스트", () => {
+  test("구입 가격을 숫자로 입력했는가?", () => {
+    expect(() => {
+      validatePurchaseCost("1000.");
+    }).toThrow("[ERROR]");
+  });
+
+  test("구입 금액의 단위는 1,000인가?", () => {
+    expect(() => {
+      validatePurchaseCost("12345");
+    }).toThrow("[ERROR]");
+  });
+
+  test("최소 구입 금액을 입력했는가?", () => {
+    expect(() => {
+      validatePurchaseCost("900");
+    }).toThrow("[ERROR]");
+  });
+});
 
 describe("당첨 번호 클래스 테스트", () => {
   test("당첨 번호의 개수가 6개인가?", () => {
