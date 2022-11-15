@@ -18,4 +18,22 @@ describe('로또 클래스 테스트', () => {
     const lotto = new Lotto([6, 5, 4, 3, 2, 1]);
     expect(lotto.toString()).toContain('[1, 2, 3, 4, 5, 6]');
   });
+
+  test('getRank 메서드는 당첨 순위를 반환', () => {
+    const numbers = [
+      [8, 21, 23, 31, 32, 33],
+      [8, 21, 23, 31, 32, 34],
+      [8, 21, 23, 31, 32, 35],
+      [8, 21, 23, 31, 36, 37],
+      [8, 21, 23, 36, 37, 38],
+    ];
+    const lottos = numbers.map(number => new Lotto(number));
+    const winningNumbers = [8, 21, 23, 31, 32, 33];
+    const bonusNumber = 34;
+    const ranks = lottos.map(lotto =>
+      lotto.getRank(winningNumbers, bonusNumber),
+    );
+
+    expect(ranks).toEqual([1, 2, 3, 4, 5]);
+  });
 });
