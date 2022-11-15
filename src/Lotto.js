@@ -36,11 +36,12 @@ class Lotto {
       throw new Error(ERROR_MESSATE.DUPLICATED);
   }
 
-  sortedLottos(){
-    const sorted = this.#numbers.sort((a, b) => a - b).join(', ');
-    Console.print(`[${sorted}]`);
+  notBonusDuplicated(bonusNumber){
+    if (this.#numbers.includes(bonusNumber)) {
+      throw new Error(ERROR_MESSATE.DUPLICATED);
+    }
+    return true;
   }
-
 // TODO: 추가 기능 구현 
 
 }
