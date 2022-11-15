@@ -13,6 +13,6 @@ const payValidate = (userInput) =>  {
     if(parseInt(userInput) % MONEY_UNIT != 0) throw new Error(ERROR_MESSAGE.UNIT_ERROR);
     
     
-  }
+}
   
 module.exports = payValidate;
