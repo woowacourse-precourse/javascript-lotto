@@ -1,29 +1,33 @@
 const Input = require("./Input.js");
+const MissionUtils = require("@woowacourse/mission-utils");
 const keys = require("../src/utils/key");
-
+const Customer = require("./Customer");
+const Print = require("./Print");
 class App {
   #purchaseMoney;
   #lotteryNumber;
   #bonusNumber;
+  customer;
 
-  constructor() {}
+  constructor() {
+    this.customer = new Customer();
+  }
 
   play() {
     Input.getValueWithType(keys.inputType.purchaseMoney, (money) => {
       this.#purchaseMoney = Number(money);
+      this.customer.buyLotto(this.#purchaseMoney);
       this.lotteryNumberPhase();
     });
   }
 
   lotteryNumberPhase() {
-    console.log("당첨번호 입력받는 페이즈");
     Input.getValueWithType(keys.inputType.lotteryNumber, (lotteryNumber) => {
-      this.#lotteryNumber = lotteryNumber.split(",");
+      this.#lotteryNumber = lotteryNumber.split(",").map(Number);
       this.bonusNumberPhase();
     });
   }
   bonusNumberPhase() {
-    console.log("보너스번호 입력받는 페이즈");
     Input.getValueWithType(
       keys.inputType.bonusNumber,
       (bonusNumber) => {
@@ -35,17 +39,21 @@ class App {
   }
 
   statisticPhase() {
-    console.log("통계 페이즈");
-
-    console.log(this.#purchaseMoney);
-    console.log(this.#lotteryNumber);
-    console.log(this.#bonusNumber);
+    const winningLottoNumber = {
+      lottery: this.#lotteryNumber,
+      bonus: this.#bonusNumber,
+    };
+    const lottoResult = this.customer.allLottoConfirm(winningLottoNumber);
+    Print.it(lottoResult);
+    Print.it({
+      profit: this.customer.profit,
+      purchaseMoney: this.customer.purchaseMoney,
+    });
     this.end();
   }
 
   end() {
-    console.log("끝");
-    Input.close();
+    MissionUtils.Console.close();
   }
 }
 
