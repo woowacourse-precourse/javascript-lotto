@@ -15,6 +15,12 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
+  test("로또 번호에 1-45 외 입력시 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, 50]);
+    }).toThrow("[ERROR]");
+  });
+
   test("1000원 단위로 구입하지 않았을때 에러 발생", () => {
     expect(() => {
       new AmountError(1500);
