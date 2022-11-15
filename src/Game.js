@@ -95,6 +95,10 @@ class Game {
         InputOutput.output(Message.getStaticsMessage(this.score.getScore()));
     }
 
+    printProfit () {
+        InputOutput.output(Message.getProfitMessage(this.score.getProfit()));
+    }
+
 }
 
 module.exports = Game;
