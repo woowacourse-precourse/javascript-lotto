@@ -12,9 +12,14 @@ class Validation {
   }
 
   winningInputValue(inputValue) {
-    let winningNumbers = inputValue.split(',');
+    let winningNumbers;
     if (inputValue.includes(',') === false) {
       throw new Error(WINNING_ERROR_MESSAGE.INPUT_SEPARATION_NUMBER);
+    }
+    if (Array.isArray(inputValue) === false) {
+      winningNumbers = inputValue.split(',');
+    } else {
+      winningNumbers = inputValue;
     }
     if (winningNumbers.length !== 6) {
       throw new Error(WINNING_ERROR_MESSAGE.INPUT_SIX_NUMBER);
@@ -32,6 +37,8 @@ class Validation {
     if (winningNumbers.size !== 6) {
       throw new Error(WINNING_ERROR_MESSAGE.INPUT_DIFFERENT_NUMBER);
     }
+    winningNumbers = [...winningNumbers].map((item) => Number(item));
+    return winningNumbers;
   }
 
   bonusInputValue(winningInput, bonusInput) {
