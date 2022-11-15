@@ -1,4 +1,4 @@
-const { ERROR_MESSAGES, LOTTO } = require("./Constants/Constants");
+const { ERROR_MESSAGES, LOTTO } = require("./Utils/Constants");
 
 class Validation {
   /**

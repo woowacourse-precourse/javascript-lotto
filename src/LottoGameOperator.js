@@ -1,5 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const { LOTTO } = require("./Constants/Constants");
+const { LOTTO } = require("./Utils/Constants");
 const Lotto = require("./Lotto");
 
 class LottoGameOperator {

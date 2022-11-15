@@ -4,7 +4,7 @@ const {
   LOTTO_RANK,
   LOTTO_PRIZE,
   LOTTO_STATS_MESSAGES,
-} = require("./Constants/Constants");
+} = require("./Utils/Constants");
 const Validation = require("./Validation");
 const LottoGameOperator = require("./LottoGameOperator");
 
