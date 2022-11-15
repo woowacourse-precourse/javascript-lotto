@@ -10,17 +10,17 @@ class Match {
   }
 
   matchLottoNumber() {
-    for (let i = 0; i < this.lottoNumbers.length; i++) {
+    for (let index = 0; index < this.lottoNumbers.length; index++) {
       let match = 0;
-      if (this.lottoNumbers[i].includes(this.winningNumber[0])) match += 1;
-      if (this.lottoNumbers[i].includes(this.winningNumber[1])) match += 1;
-      if (this.lottoNumbers[i].includes(this.winningNumber[2])) match += 1;
-      if (this.lottoNumbers[i].includes(this.winningNumber[3])) match += 1;
-      if (this.lottoNumbers[i].includes(this.winningNumber[4])) match += 1;
-      if (this.lottoNumbers[i].includes(this.winningNumber[5])) match += 1;
+      if (this.lottoNumbers[index].includes(this.winningNumber[0])) match += 1;
+      if (this.lottoNumbers[index].includes(this.winningNumber[1])) match += 1;
+      if (this.lottoNumbers[index].includes(this.winningNumber[2])) match += 1;
+      if (this.lottoNumbers[index].includes(this.winningNumber[3])) match += 1;
+      if (this.lottoNumbers[index].includes(this.winningNumber[4])) match += 1;
+      if (this.lottoNumbers[index].includes(this.winningNumber[5])) match += 1;
 
       if (match > 2 && match !== 5) this.setPrize(match);
-      if (match === 5) this.matchBonusNumber(this.lottoNumbers[i]);
+      if (match === 5) this.matchBonusNumber(this.lottoNumbers[index]);
     }
   }
 
