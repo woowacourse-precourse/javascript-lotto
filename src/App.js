@@ -61,7 +61,7 @@ class App {
   }
 
   validateWinningInput(winningInput) {
-    const splitedInput = winningInput.split(',').map((el) => parseInt(el));
+    const splitedInput = winningInput.split(',');
     const numSet = new Set(splitedInput);
     if (splitedInput.length !== 6) {
       throw new Error(ERR_SPLIT_SIX);
@@ -69,15 +69,20 @@ class App {
     if (numSet.size !== 6) {
       throw new Error(ERR_WINNING_DUP);
     }
+
     splitedInput.forEach((num) => {
-      if (!Number.isInteger(num)) {
-        throw new Error(ERR_NOT_NUM);
-      }
-      if (num < 1 || num > 45) {
-        throw new Error(ERR_NOT_NUM);
-      }
+      this.validateEachNum(num);
     });
     return splitedInput;
+  }
+  validateEachNum(num) {
+    if (!Number.isInteger(parseInt(num)) || isNaN(num)) {
+      throw new Error(ERR_NOT_NUM);
+    }
+    num = parseInt(num);
+    if (num < 1 || num > 45) {
+      throw new Error(ERR_NOT_NUM);
+    }
   }
 
   validateBonusInput(bonusInput) {
