@@ -21,6 +21,7 @@ class Machine {
 
   work() {
     this.#issue();
+    this.#displayPurchasedInfo();
   }
 
   #issue() {
@@ -31,6 +32,14 @@ class Machine {
       Machine.user.purchasedLotto.push(lotto);
       cnt += 1;
     }
+  }
+
+  #displayPurchasedInfo() {
+    Console.print(Display.statistics('QUANTITY', Machine.user.quantity));
+
+    Machine.user.purchasedLotto.forEach((lotto) => {
+      Console.print(Display.lottoFormat(lotto.numbers));
+    });
   }
 }
 
