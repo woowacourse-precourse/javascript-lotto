@@ -6,6 +6,10 @@ const BonusNumber = require("./BonusNumber");
 const LottoResult = require("./LottoResult");
 const ProfitResult = require("./ProfitResult");
 
+const INPUT_MONEY_MESSAGE = "구입금액을 입력해 주세요.\n";
+const INPUT_WIN_LOTTO_MESSAGE = "\n당첨 번호를 입력해 주세요.\n";
+const INPUT_BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요.\n";
+
 class App {
 
   constructor() {
@@ -21,7 +25,7 @@ class App {
   }
 
   inputMoney() {
-    Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
+    Console.readLine(INPUT_MONEY_MESSAGE, (money) => {
       this.Money = new Money(money);
       this.buyLotto();
     });
@@ -34,7 +38,7 @@ class App {
   }
 
   inputWinLotto() {
-    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (winLotto) => {
+    Console.readLine(INPUT_WIN_LOTTO_MESSAGE, (winLotto) => {
       let lotto = winLotto.split(',');
       for(let i = 0; i < lotto.length; i++) {
         lotto[i] = Number(lotto[i]);
@@ -45,7 +49,7 @@ class App {
   }
 
   inputBonusNumber() {
-    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusNumber) => {
+    Console.readLine(INPUT_BONUS_NUMBER_MESSAGE, (bonusNumber) => {
       const winLotto = this.Lotto.getWinLotto();
       this.BonusNumber = new BonusNumber(bonusNumber, winLotto);
       this.deriveLottoResult();
