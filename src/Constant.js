@@ -46,7 +46,8 @@ const INITIALIZE_VALUES = {
   ZERO: 0,
   REPLACE_BEFORE: / /g,
   REPLACE_AFTER: '',
-  SPLIT_CHAR: ','
+  SPLIT_CHAR: ',',
+  PRINT_RATE_COMMA: /\B(?=(\d{3})+(?!\d))/g
 }
 
 module.exports = {

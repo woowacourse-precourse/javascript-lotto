@@ -74,7 +74,10 @@ class GetStat {
     const totalCost =
       this.lottoInfo.numbersOfLotto * LOTTO_INFO_VALUES.LOTTO_COST;
     const rate = (totalCost === 0) ?
-      0 : ((profit / totalCost) * 100).toFixed(1);
+      0 : ((profit / totalCost) * 100)
+        .toFixed(1)
+        .toString()
+        .replace(INITIALIZE_VALUES.PRINT_RATE_COMMA, INITIALIZE_VALUES.SPLIT_CHAR);
     Console.print(`총 수익률은 ${rate}%입니다.`);
   }
 }
