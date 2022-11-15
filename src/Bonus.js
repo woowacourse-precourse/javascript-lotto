@@ -18,7 +18,7 @@ class Bonus {
   }
 
   checkRange(number) {
-    if (number > VALIDATE_NUMBER.end || number < VALIDATE_NUMBER.start) {
+    if (number > VALIDATE_NUMBER.end || number < VALIDATE_NUMBER.start || number === 0) {
       throw new Error(ERROR_MESSAGE.range);
     }
   }
