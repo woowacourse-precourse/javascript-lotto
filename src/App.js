@@ -14,6 +14,11 @@ class App {
     this.#lotteryResult = new Array(5).fill(0);
   }
 
+  checkBonusNumber = (index) => {
+    if (this.#myLottery[index].includes(this.#bonusNumber)) return this.#lotteryResult[PRIZE.SECOND_PLACE]++;
+    else return this.#lotteryResult[PRIZE.THIRD_PLACE]++;
+  };
+
   getLotteryResult = () => {
     this.#matchedCounts.forEach((count, index) => {
       if (count === 6) this.#lotteryResult[PRIZE.FIRST_PLACE]++;
