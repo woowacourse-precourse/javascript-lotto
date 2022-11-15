@@ -58,6 +58,25 @@ class LottoGame {
   getBonusNumbers() {
     return this.#bonusNumber;
   }
+
+  // [x]저장된 로또들 등수 계산하고, 통계내는 기능
+  getStatistics() {
+    const rankingCountList = [0, 0, 0, 0, 0];
+
+    for (let i = 0; i < this.#lottoArray.length; i++) {
+      const countMatches = this.#lottoArray[i].getCountMatches(
+        this.#winningNumbers,
+        this.#bonusNumber
+      );
+
+      const index = this.convertToIndex(countMatches);
+      if (index >= 0) rankingCountList[index] += 1;
+    }
+
+    const ratio = this.getRatio(rankingCountList);
+
+    return [...rankingCountList, ratio];
+  }
 }
 
 module.exports = LottoGame;
