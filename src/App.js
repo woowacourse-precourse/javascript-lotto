@@ -30,7 +30,7 @@ class App {
 
   resultLotto = (lotto, lottoNumbers, bonusNumber) => {
     const result = lotto.checkLotto(lottoNumbers, bonusNumber);
-    console.log(result);
+    this.printResultLotto(result);
   }
 
   validatePayment = (payment) => {
@@ -56,6 +56,17 @@ class App {
     if(bonusNumber > 45 || bonusNumber < 1) {
       throw new Error(MESSAGES.ERROR.RANGE);
     }
+  }
+
+  printResultLotto = (result) => {
+    Console.print(`당첨 통계\n`);
+    Console.print(`---\n`);
+    Console.print(`3개 일치 (5,000원) - ${result.fifthPlace}개\n`);
+    Console.print(`4개 일치 (50,000원) - ${result.fourthPlace}개\n`);
+    Console.print(`5개 일치 (1,500,000원) - ${result.thirdPlace}개\n`);
+    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${result.secondPlace}개\n`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${result.firstPlace}개\n`);
+    Console.print(`총 수익률은 %입니다.\n`);
   }
 }
 
