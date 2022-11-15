@@ -3,6 +3,11 @@ class QuickPick {
 
   constructor(quickPick) {
     this.#quickPick = quickPick;
+    this.getQuickPick = this.getQuickPick.bind(this);
+  }
+
+  getQuickPick() {
+    return this.#quickPick;
   }
 }
 
