@@ -34,6 +34,13 @@ const validateWinningNumbersInput = (input) => {
   isOutOfRangeAndThrowError(input);
 };
 
+const validateBonusNumberInput = (input) => {
+  input = input.split(',');
+
+  isOutOfVolumeAndThrowError(input, 1);
+  isOutOfRangeAndThrowError(input);
+};
+
 module.exports = {
   REG_NUMBER_RANGE,
   isOutOfRangeAndThrowError,
@@ -41,4 +48,5 @@ module.exports = {
   isOutOfVolumeAndThrowError,
   validatePayment,
   validateWinningNumbersInput,
+  validateBonusNumberInput,
 };
