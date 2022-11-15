@@ -4,9 +4,11 @@ const Lotto = require("../src/Lotto");
 class App {
   #lottoCount;
   #lottoNumbers;
+  #winningNumbers;
+  #winningBonus;
 
   async play() {
-    await this.inputMoney();
+    this.inputMoney();
   } 
 
   async inputMoney(){
@@ -29,9 +31,18 @@ class App {
       MissionUtils.Console.print(tmp);
     }
     this.#lottoNumbers = lottoNumbers;
-    MissionUtils.Console.print(this.#lottoNumbers);
+    this.inputWinning();
   }
 
+  async inputWinning(){
+    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.\n", (numbers)=>{
+      this.#winningNumbers = numbers.split(',');
+      MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.\n", (bonus) => {
+        this.#winningBonus = bonus;
+        this.#winningNumbers.push(bonus);
+      })
+    });
+  }
 }
 
 module.exports = App;

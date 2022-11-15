@@ -16,3 +16,11 @@ Added new method to $App:
 
 Breaks LottoCount, which was removed from $App.play
 Changes $App.inputMoney, which calls $App.buyLotto
+---
+feat($App): inputWinning method
+
+Added new method to $App:
+- get input, which is WinningNumbers from user
+- get input, which is BonusNumber from user
+
+Breaks $App.buyLotto, which calls $App.inputWinning
