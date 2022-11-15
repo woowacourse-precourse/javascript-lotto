@@ -7,7 +7,7 @@ class Lotto {
     this.validate(numbers);
     this.#numbers = numbers;
     this.matchedNumberCount = 0;
-    this.hasbonusNumber = false;
+    this.isBonusNumberMatched = false;
   }
 
   validate(numbers) {
@@ -22,6 +22,7 @@ class Lotto {
 
   compareWith(winNumber) {
     const winNumbers = winNumber.split(",").map((number) => Number(number));
+
     this.#numbers.forEach((lottoNumber) => {
       if (winNumbers.includes(lottoNumber)) this.matchedNumberCount += 1;
     });
@@ -29,12 +30,12 @@ class Lotto {
 
   checkMatching(bonusNumber) {
     if (this.matchedNumberCount === 5 && this.#numbers.includes(bonusNumber)) {
-      this.hasBonusNumber = true;
+      this.isBonusNumberMatched = true;
     }
   }
 
   setRank() {
-    if (this.hasBonusNumber === true) {
+    if (this.isBonusNumberMatched === true) {
       return ranks[ranks.length - 1];
     }
 
