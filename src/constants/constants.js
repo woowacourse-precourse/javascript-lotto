@@ -24,11 +24,10 @@ const WINNING_MONEY = {
 
 const ERROR = '[ERROR]';
 
-const INPUT_MONEY_ERROR = {
-  NOT_NULL_ALLOWED: `${ERROR} 구입 금액을 입력해야 합니다.`,
-  NUM_OVER_ZERO_ALLOWED: `${ERROR} 금액은 0보다 커야 합니다.`,
-  THOUSAND_UNIT_ALLOWED: `${ERROR} 천 원 단위로 입력해야 합니다.`,
-  ONLY_NUM_ALLOWED: `${ERROR} 금액은 0보다 큰 숫자로 입력해야 합니다.`,
+const INPUT_ERROR = {
+  INVALID_NULL: `${ERROR} 구입 금액을 입력해야 합니다.`,
+  INVALID_NUM: `${ERROR} 금액은 0보다 큰 숫자로만 입력되어야 합니다.`,
+  INVALID_UNIT: `${ERROR} 천 원 단위로 입력해야 합니다.`,
 };
 
 const GENERATE_LOTTO_ERROR = {
@@ -51,7 +50,7 @@ const NUM_OF_LOTTO = 6;
 module.exports = {
   RESULT,
   WINNING_MONEY,
-  INPUT_MONEY_ERROR,
+  INPUT_ERROR,
   GENERATE_LOTTO_ERROR,
   MIN_LOTTO_NUM,
   MAX_LOTTO_NUM,

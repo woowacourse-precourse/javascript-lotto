@@ -1,5 +1,5 @@
 const {
-  INPUT_MONEY_ERROR,
+  INPUT_ERROR,
   GENERATE_LOTTO_ERROR,
   BONUS_NUM_ERROR,
 } = require('../constants/constants');
@@ -7,17 +7,13 @@ const {
 const validateInputMoney = (money) => {
   const NUM = /^[0-9]+$/;
   if (!money) {
-    throw new Error(INPUT_MONEY_ERROR.NOT_NULL_ALLOWED);
+    throw new Error(INPUT_ERROR.INVALID_NULL);
   }
   if (!NUM.test(money)) {
-    throw new Error(INPUT_MONEY_ERROR.ONLY_NUM_ALLOWED);
+    throw new Error(INPUT_ERROR.INVALID_NUM);
   }
-  // if (money < 0) {
-  //   throw new Error(INPUT_MONEY_ERROR.NUM_OVER_ZERO_ALLOWED);
-  // }
-
   if (money % 1000 !== 0) {
-    throw new Error(INPUT_MONEY_ERROR.THOUSAND_UNIT_ALLOWED);
+    throw new Error(INPUT_ERROR.INVALID_UNIT);
   }
 };
 
