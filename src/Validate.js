@@ -9,7 +9,7 @@ class Validate {
 
   purchaseAmount(input) {
     this.format(REG_EXP.NUMBER_ONLY, input);
-    if (input % 1000 !== 0) {
+    if (input % 1000 !== 0 || input === '0') {
       throw new InputError(`${ERROR.PREFIX} ${ERROR.PURCHASE_AMOUNT}`);
     }
   }
