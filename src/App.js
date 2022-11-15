@@ -21,12 +21,8 @@ const {
   RETURN_RATE_ENDING_WORD,
   ERROR,
 } = require('./Messages');
-const {
-  howManyWinningNums,
-  bonusNum,
-  calcMoney,
-  winningRate,
-} = require('./Calculator');
+
+const { howManyWinningNums, bonusNum } = require('./Calculator');
 
 class App {
   constructor() {
