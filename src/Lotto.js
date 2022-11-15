@@ -53,12 +53,18 @@ class Lotto {
   compareLottoNums(myNumbers, winNums) {
     let isMatch = new Array(myNumbers.length).fill(0);
     for (let i in myNumbers) {
-      for (let j in winNums) {
-        let winnum = Number(winNums[j]);
-        isMatch[i] += this.isMatching(winnum, myNumbers[i]);
-      }
+      isMatch[i] = this.compareLottoNumsGetIndex(myNumbers, i, winNums);
     }
     return isMatch;
+  }
+
+  compareLottoNumsGetIndex(myNumbers, i, winNums) {
+    let numberMatch = 0;
+    for (let j in winNums) {
+      let winnum = Number(winNums[j]);
+      numberMatch += this.isMatching(winnum, myNumbers[i]);
+    }
+    return numberMatch;
   }
 
   compareBonus(myNumbers, bonus, isMatch) {
