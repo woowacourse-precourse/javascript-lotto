@@ -28,15 +28,13 @@ class App {
 
   buyLotto() {
     Console.readLine("로또를 구매할 금액을 입력해주세요.", (input) => {
-      if(isNaN(input)) 
-      throw new Error(
-        "[ERROR] 문자를 입력하셨습니다. 숫자를 입력하셔야 합니다."
-      )
-      if (input % 1000 != 0)
+      if (isNaN(input))
         throw new Error(
-          "[ERROR] 구입 금액은 1000원 단위로만 구매 가능합니다."
+          "[ERROR] 문자를 입력하셨습니다. 숫자를 입력하셔야 합니다."
         );
-      
+      if (input % 1000 != 0)
+        throw new Error("[ERROR] 구입 금액은 1000원 단위로만 구매 가능합니다.");
+
       this.usedMoney = input;
       this.lottoAmount = input / 1000;
     });
@@ -120,10 +118,23 @@ class App {
       winningCount == 5
     ) {
       this.countOfWinningways[3]++;
-    } else if (winningCount == 3) this.countOfWinningways[0]++;
-    else if (winningCount == 4) this.countOfWinningways[1]++;
-    else if (winningCount == 5) this.countOfWinningways[2]++;
-    else if (winningCount == 6) this.countOfWinningways[4]++;
+    }
+    if (winningCount == 3) {
+      this.countOfWinningways[0]++;
+      return;
+    }
+    if (winningCount == 4) {
+      this.countOfWinningways[1]++;
+      return;
+    }
+    if (winningCount == 5) {
+      this.countOfWinningways[2]++;
+      return;
+    }
+    if (winningCount == 6) {
+      this.countOfWinningways[4]++;
+      return;
+    }
   }
 
   calculateResultPercentage() {
