@@ -29,21 +29,21 @@ class App {
   }
 
   getWinNumber(lottoList) {
-    this.LottoView.input(OUTPUT.PUT_WIN_NUMBER, (numbers) => {
-      GetNumber.toWin(numbers);
-      this.getBonusNumber(lottoList, numbers);
+    this.LottoView.input(OUTPUT.PUT_WIN_NUMBER, (winNumber) => {
+      GetNumber.toWin(winNumber);
+      this.getBonusNumber(lottoList, winNumber);
     });
   }
 
-  getBonusNumber(lottoList, numbers) {
-    this.LottoView.input(OUTPUT.PUT_BONUS_NUMBER, (number) => {
-      GetNumber.bonus(numbers, number);
-      this.compareResult(lottoList, numbers, number);
+  getBonusNumber(lottoList, winNumber) {
+    this.LottoView.input(OUTPUT.PUT_BONUS_NUMBER, (bonusNumber) => {
+      GetNumber.bonus(winNumber, bonusNumber);
+      this.compareResult(lottoList, winNumber, bonusNumber);
     });
   }
 
-  compareResult(lottoList, numbers, number) {
-    const result = CompareLotto.result(lottoList, numbers, number);
+  compareResult(lottoList, winNumbers, bonusNumber) {
+    const result = CompareLotto.result(lottoList, winNumbers, bonusNumber);
     this.#winningAmount = CompareLotto.totalMoney(result);
     this.printValue(result);
   }

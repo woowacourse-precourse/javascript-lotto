@@ -9,6 +9,12 @@ describe("Lotto 클래스 테스트", () => {
     expect(result).toBe(8);
   });
 
+  test("값이 없을 경우 테스트", () => {
+    const input = 0;
+
+    expect(() => lotto.isItEmpty(input)).toThrow('[ERROR] 값이 존재하지 않습니다.');
+  });
+
   test("배열 정렬 테스트", () => {
     const input = [5, 4, 3, 2, 1, 7];
     const result = lotto.sortLottoNumber(input);
@@ -20,7 +26,7 @@ describe("Lotto 클래스 테스트", () => {
     const input = "money";
 
     expect(() => lotto.NumberPackage(input)).toThrow();
-    expect(() => lotto.NumberPackage(input)).toThrow('[ERROR] 돈이 아닙니다.');
+    expect(() => lotto.NumberPackage(input)).toThrow('[ERROR] 숫자를 입력해주세요.');
   });
 
   test("천원 단위로 입력되지 않으면 에러 발생", () => {
