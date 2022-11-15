@@ -81,6 +81,39 @@ class Lotto {
       }
     });
   }
+
+  showResult() {
+    MissionUtils.Console.print("당첨 통계\n");
+    MissionUtils.Console.print("---");
+    MissionUtils.Console.print(
+      `3개 일치 (5,000원) - ${this.currentScore[0]}개`
+    );
+    MissionUtils.Console.print(
+      `4개 일치 (50,000원) - ${this.currentScore[1]}개`
+    );
+    MissionUtils.Console.print(
+      `5개 일치 (1,500,000원) - ${this.currentScore[2]}개`
+    );
+    MissionUtils.Console.print(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.currentScore[3]}개`
+    );
+    MissionUtils.Console.print(
+      `6개 일치 (2,000,000,000원) - ${this.currentScore[4]}개`
+    );
+  }
+
+  showYield() {
+    const totalAmount =
+      5000 * this.currentScore[0] +
+      50000 * this.currentScore[1] +
+      1500000 * this.currentScore[2] +
+      30000000 * this.currentScore[3] +
+      2000000000 * this.currentScore[4];
+
+    const Yield = ((totalAmount / this.#numbers) * 100).toFixed(1);
+    MissionUtils.Console.print(`총 수익률은 ${Yield}%입니다.`);
+    MissionUtils.Console.close();
+  }
 }
 
 module.exports = Lotto;
