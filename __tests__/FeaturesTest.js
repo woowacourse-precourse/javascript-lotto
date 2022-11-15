@@ -15,11 +15,19 @@ describe('기능 테스트', () => {
         );
     });
 
-    test('당첨 내역을 알 수 있다.', () => {
+    test('당첨 번호와 로또가 몇 개 숫자가 일치하는지 알 수 있다.', () => {
         const app = new App();
-        expect(app.getSingleResult([3, 5, 12, 31, 40, 41], [1, 2, 3, 4, 5, 6])).toBe(
+        expect(app.getSingleResult([3, 5, 12, 31, 40, 41], [1, 2, 3, 4, 5, 6, 7])).toBe(
             2
         );
-    }
-    )
+    });
+
+    test('5개 숫자가 일치하고 보너스 번호가 일치할 경우 2등에 해당한다.', () => {
+        const app = new App();
+        expect(app.getSingleResult([1, 3, 4, 5, 6, 7], [1, 2, 3, 4, 5, 6, 7])).toBe(
+            7
+        );
+    });
+
+
 })
