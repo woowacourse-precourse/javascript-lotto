@@ -57,15 +57,15 @@ class Result {
 
   compare(winningNumber, bonusNumber) {
     this.lottos.forEach((lotto) => {
-      const countMatching = winningNumber.compare(lotto);
+      const numberOfMatches = winningNumber.compare(lotto);
       const hasBonus = bonusNumber.compare(lotto);
-      this.updateHistory(countMatching, hasBonus);
+      this.updateHistory(numberOfMatches, hasBonus);
     });
     this.printStatistics();
   }
 
-  updateHistory(countMatching, hasBonus) {
-    switch (countMatching) {
+  updateHistory(numberOfMatches, hasBonus) {
+    switch (numberOfMatches) {
       case 3:
         this.history.fifthPlace.count += 1;
         break;

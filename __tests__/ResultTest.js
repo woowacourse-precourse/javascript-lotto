@@ -54,9 +54,9 @@ describe('리절트 클래스 테스트', () => {
     ]);
 
     result.lottos.forEach((lotto) => {
-      const countMatching = winningNumber.compare(lotto);
+      const numberOfMatches = winningNumber.compare(lotto);
       const hasBonus = bonusNumber.compare(lotto);
-      result.updateHistory(countMatching, hasBonus);
+      result.updateHistory(numberOfMatches, hasBonus);
     });
 
     expect(result.history.fifthPlace.count).toEqual(1);
