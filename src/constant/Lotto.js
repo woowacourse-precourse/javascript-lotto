@@ -17,6 +17,7 @@ const LOTTO = Object.freeze({
 const MESSAGE = Object.freeze({
   INPUT_MONEY: '구입금액을 입력해 주세요.\n',
   PURCHASE_RESULT: (number) => `\n${number}개를 구매했습니다.`,
+  LOTTO_NUMBER: (lotto) => `[${lotto.join(', ')}]`,
   INPUT_NUMBER: '\n당첨 번호를 입력해 주세요.\n',
   INPUT_BONUS_NUMBER: '\n보너스 번호를 입력해 주세요.\n',
   RESULT: '\n당첨 통계\n---',
@@ -24,7 +25,8 @@ const MESSAGE = Object.freeze({
   RATES_OF_RETURN: (number) => `총 수익률은 ${number}%입니다.`
 });
 const REGEX = Object.freeze({
-  NUMBER: /^\d+$/
+  NUMBER: /^\d+$/,
+  PARSE_INPUT: /(\s*)/g
 });
 
 module.exports = {
