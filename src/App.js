@@ -15,6 +15,10 @@ class App {
     this.#lotteryResult = new Array(5).fill(0);
   }
 
+  exitLottery = () => {
+    Console.close();
+  };
+
   getPrizeMoney = () => {
     return PRIZE_MONEY.reduce((sum, prizeUnit, index) => sum + prizeUnit * this.#lotteryResult[index], 0);
   };
@@ -22,6 +26,8 @@ class App {
   printProfit = () => {
     this.#profit = ((this.getPrizeMoney() / this.#money) * 100).toFixed(1);
     Console.print(`${MESSAGE.PROFIT_FRONT}${this.#profit}${MESSAGE.PROFIT_BACK}`);
+
+    this.exitLottery();
   };
 
   printLotteryResult = () => {
@@ -48,7 +54,6 @@ class App {
       if (count === 3) this.#lotteryResult[PRIZE.FIFTH_PLACE]++;
     });
 
-    console.log(this.#matchedCounts, this.#lotteryResult);
     this.printLotteryResult();
   };
 
