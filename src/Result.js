@@ -1,5 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const { PRIZE, RANK } = require("./Utils/constant");
+const Print = require("./UI/Print");
 class Result {
   constructor(myMoney) {
     this.myMoney = myMoney;
@@ -54,24 +55,7 @@ class Result {
       this.collectCount[3] * PRIZE.SECOND +
       this.collectCount[4] * PRIZE.FIRST;
     const rate = ((LottoMoney / this.myMoney) * 100).toFixed(1);
-    this.printResult(rate);
-  }
-
-  printResult(rate) {
-    MissionUtils.Console.print(`
-${RANK.MESSAGE}
-${RANK.FIFTH(this.collectCount[0])}
-${RANK.FOURTH(this.collectCount[1])}
-${RANK.THIRD(this.collectCount[2])}
-${RANK.SECOND(this.collectCount[3])}
-${RANK.FIRST(this.collectCount[4])}
-${RANK.RATE(rate)}
-`);
-    this.close();
-  }
-
-  close() {
-    MissionUtils.Console.close();
+    new Print().result(this.collectCount, rate);
   }
 }
 module.exports = Result;
