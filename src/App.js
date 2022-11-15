@@ -13,9 +13,9 @@ class App {
   }
 
   userInput(){
-    MissionUtils.Console.readLine('구입 금액을 입력해주세요 : ', (money) => {
+    MissionUtils.Console.readLine(`구입금액을 입력해 주세요 \n`, (getMoney) => {
       this.checkInputMoney(getMoney);
-      let amount = parseInt(money)/1000;
+      let amount = parseInt(getMoney)/1000;
       this.getUsersLottoArray(amount);
     });
   }
@@ -37,7 +37,9 @@ class App {
   getUsersLottoArray(amount){
     MissionUtils.Console.print(`\n${amount}개를 구매했습니다.`);
     for (let i=0; i<amount; i++){
-      this.UsersLotto.push(his.createLottoNumber());
+      let lottoArray = this.createLottoNumber()
+      this.UsersLotto.push(lottoArray);
+      MissionUtils.Console.print(`[${lottoArray.join(", ")}]`);
     }
     this.getWinningNumber();
   }
@@ -54,7 +56,7 @@ class App {
   }
 
   getWinningNumber(){
-    MissionUtils.Console.readLine("당첨 번호를 입력해주세요 : ", (winningNumber) => {
+    MissionUtils.Console.readLine(`\n당첨 번호를 입력해주세요 :\n`, (winningNumber) => {
       let winningArray = winningNumber.split(",").map(Number);
       this.WinningLotto=this.sortNumber(winningArray);
       this.getBonusNumber();
@@ -62,7 +64,7 @@ class App {
   }
 
   getBonusNumber(){
-    MissionUtils.Console.readLine("보너스 번호를 입력해주세요 : ", (bonusInput) => {
+    MissionUtils.Console.readLine(`\n보너스 번호를 입력해주세요 :\n`, (bonusInput) => {
       if(this.WinningLotto.includes(parseInt(bonusInput))){
         throw new Error("[ERROR] 보너스 번호와 당첨 번호가 겹칩니다.");
       }
