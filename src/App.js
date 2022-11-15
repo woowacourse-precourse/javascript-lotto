@@ -28,9 +28,17 @@ class App {
 
   printStartGame() {
     MissionUtils.Console.readLine("구입금액을 입력해주세요: ", (amount) => {
+      this.validateAmount(+amount);
       this.userAmount = amount;
       this.howManyBuyLotto(amount);
     });
+  }
+
+  validateAmount(amount) {
+    if (typeof amount !== "number" || isNaN(amount))
+      throw new TypeError("[ERROR] 숫자를 입력해주세요.");
+    if (amount % this.STANDARD_AMOUNT !== 0)
+      throw new RangeError("[ERROR] 1,000 단위로만 입력가능합니다.");
   }
 
   howManyBuyLotto(amount) {
@@ -67,7 +75,6 @@ class App {
       "당첨 번호를 입력해 주세요.\n",
       (winningNumber) => {
         this.winningNums = winningNumber.split(",").map((number) => +number);
-        winningNumber;
         this.getBonusNumber();
       }
     );
@@ -75,9 +82,19 @@ class App {
 
   getBonusNumber() {
     MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.\n", (bonus) => {
+      this.validateBonusNumber(+bonus);
       this.bonusNumber = +bonus;
       this.matchLottoNumbers();
     });
+  }
+
+  validateBonusNumber(bonus) {
+    if (typeof bonus !== "number" || isNaN(bonus))
+      throw new TypeError("[ERROR] 숫자로 입력해주세요.");
+    if (bonus < 1 || bonus > 45)
+      throw new RangeError("[ERROR] 1~45 사이의 숫자를 입력하세요");
+    if (this.winningNums.includes(bonus))
+      throw new Error("[ERROR] 당첨번호와 중복된 숫자는 입력할 수 없습니다.");
   }
 
   matchLottoNumbers() {
