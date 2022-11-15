@@ -3,23 +3,6 @@ const Lotto = require("./Lotto");
 const LottoMachineValidator = require("./validator/LottoMachineValidator");
 
 class LottoMachine {
-  #lottoList;
-
-  constructor(purchaseMoney) {
-    this.validate(purchaseMoney);
-    this.#lottoList = this.purchaseLotto(purchaseMoney);
-  }
-
-  validate(purchaseMoney) {
-    const validator = new LottoMachineValidator();
-    validator.validateMoney(purchaseMoney);
-    validator.validateIsNaN(purchaseMoney);
-  }
-
-  getLottoList() {
-    return this.#lottoList; 
-  }
-
   makeLotto() {
     return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
   }

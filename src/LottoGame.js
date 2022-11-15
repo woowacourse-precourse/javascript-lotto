@@ -1,13 +1,13 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const { CONSOLE_MESSAGE, PRINT_RESULT, RANK_STRING, profitRateString } = require("./constants");
-const LottoMachine = require("./LottoMachine");
 const LottoResult = require("./LottoResult");
+const PurchasedLotto = require("./PurchasedLotto");
 const { stringToNumberArray } = require("./utils");
 const WinningLotto = require("./WinningLotto");
 
 class LottoGame {
   #result;
-  #lottoMachine;
+  #purchasedLotto;
   #winningLotto;
   #money;
 
@@ -21,14 +21,14 @@ class LottoGame {
   
   inputPurchaseMoney() {
     MissionUtils.Console.readLine(CONSOLE_MESSAGE.INPUT_PURCHASE_MONEY,(inputMoney)=>{
-      this.#lottoMachine = new LottoMachine(inputMoney);
+      this.#purchasedLotto = new PurchasedLotto(Number(inputMoney));
       this.#money = Number(inputMoney);
       this.showPurchasedLotto();
     });
   }
 
   showPurchasedLotto() {
-    const lottoList = this.#lottoMachine.getLottoList();
+    const lottoList = this.#purchasedLotto.getLottoList();
     MissionUtils.Console.print(`${lottoList.length}${CONSOLE_MESSAGE.SHOW_PURCHASED_MONEY}`);
     lottoList.forEach((lotto)=>{
       MissionUtils.Console.print(`[${lotto.getNumbers().join(', ')}]`);
@@ -52,7 +52,7 @@ class LottoGame {
   }
 
   showWinningStats() {
-    this.#result = new LottoResult(this.#winningLotto.getNumbers(), this.#winningLotto.getBonus(), this.#lottoMachine.getLottoList());
+    this.#result = new LottoResult(this.#winningLotto.getNumbers(), this.#winningLotto.getBonus(), this.#purchasedLotto.getLottoList());
     this.#result.makeResult();
     MissionUtils.Console.print(PRINT_RESULT.TITLE);
     Object.keys(RANK_STRING).forEach((rank) => {
