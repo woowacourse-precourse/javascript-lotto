@@ -1,18 +1,23 @@
 const Utils = require('./Utils');
-const { LOTTO_ERROR_MSG } = require('./Constants');
+const { LOTTO_ERROR_MSG, LOTTO, NUM } = require('./Constants');
 
 class ExceptionCheck {
   constructor() {
     this.utils = new Utils();
   }
   userInputMoneyValue(moneyValue) {
-    if (moneyValue % 1000 !== 0 || moneyValue === 0) {
+    if (moneyValue % LOTTO.PRICE !== NUM.REST_ZERO || moneyValue === NUM.REST_ZERO) {
       throw new Error(LOTTO_ERROR_MSG.IS_WRONG_MONEY_VALUE);
     }
   }
   userInputWinNumbers(winNumbers) {
-    if (winNumbers.lenght !== 6) {
+    if (winNumbers.lenght !== NUM.HOW_MANY) {
       throw new Error(LOTTO_ERROR_MSG.IS_WRONG_NUMBER_COUNT);
+    }
+  }
+  userInputWinNumberRange(winNumbers) {
+    if (winNumbers.some(number => number <= 0 || number >= 46)) {
+      throw new Error(LOTTO_ERROR_MSG.IS_WRONG_NUMBER_RANGE);
     }
   }
 }
