@@ -46,7 +46,7 @@ class LottoList {
       lotto.printNumbers();
     });
   }
-  getResult(winningNumbers, bonusNumber) {
+  getResults(winningNumbers, bonusNumber) {
     let lottoResultList = [];
 
     this.list.forEach((lotto) => {

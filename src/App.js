@@ -46,7 +46,7 @@ class App {
   printWinningStat() {
     Console.print(MESSAGE.WINNING_STATS);
 
-    const lottoResultList = this.lottos.getResult(
+    const lottoResultList = this.lottos.getResults(
       this.winningNumbers.value,
       this.bonusNumber.value
     );
