@@ -1,66 +1,40 @@
-const Mission = require("@woowacourse/mission-utils");
+const { Console, Random } = require("@woowacourse/mission-utils");
 const { LOTTO_INFO, GAME_MESSAGES, NUMBERS, ERROR_MESSAGES } = require("../utils/Constants");
 
 class QuickPick {
-  #payment;
   #amount;
   #myLottoArray;
 
-  constructor(payment) {
-    this.validate(payment);
-    this.#payment = Number(payment);
-    this.countAmount();
-    this.pickRandomNumbers();
+  constructor(amount) {
+    this.#amount = amount;
+    this.#myLottoArray = QuickPick.pickRandomNumbers(amount);
   }
 
-  validate(payment) {
-    if (Number(payment) < LOTTO_INFO.LOTTO_PRICE) {
-      throw new Error(ERROR_MESSAGES.INVALID_COST_MIN);
-    }
-
-    if (Number.isNaN(+payment)) {
-      throw new Error(ERROR_MESSAGES.INVALID_COST_TYPE);
-    }
-
-    if (Number(payment) % LOTTO_INFO.LOTTO_PRICE !== 0) {
-      throw new Error(ERROR_MESSAGES.INVALID_COST_UNIT);
-    }
-  }
-
-  countAmount() {
-    this.#amount = this.#payment / LOTTO_INFO.LOTTO_PRICE;
-  }
-
-  pickRandomNumbers() {
-    this.#myLottoArray = Array(this.#amount)
-      .fill(null)
-      .map((item) =>
-        Mission.Random.pickUniqueNumbersInRange(
+  static pickRandomNumbers(amount) {
+    return Array(amount)
+      .fill(0)
+      .map(() =>
+        Random.pickUniqueNumbersInRange(
           NUMBERS.MIN_LOTTO_NUMBER,
           NUMBERS.MAX_LOTTO_NUMBER,
           NUMBERS.CORRECT_LOTTO_LENGTH
         ).sort((a, b) => a - b)
       );
-    this.printNumbersArray();
   }
 
   printNumbersArray() {
-    Mission.Console.print(`\n${GAME_MESSAGES.RETURN_PURCHASED_AMOUNT(this.#amount)}`);
+    Console.print(GAME_MESSAGES.ANNOUNCE_AMOUNT(this.#amount));
     this.#myLottoArray.forEach((item) => {
-      let eachItems = String(item).replace(/,/gi, ", ");
-      Mission.Console.print(`[${eachItems}]`);
+      Console.print(`[${item.join(", ")}]`);
     });
   }
 
-  arrayOutput() {
-    return this.#myLottoArray;
-  }
-
-  amountOutput() {
+  getLottoAmout() {
     return this.#amount;
   }
-  paymentOutput() {
-    return this.#payment;
+
+  getMyLottoArray() {
+    return this.#myLottoArray;
   }
 }
 
