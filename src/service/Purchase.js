@@ -16,7 +16,7 @@ class Purchase {
     return this.lottoNumbers;
   }
 
-  isValidCost = (cost) => {
+  validateCost = (cost) => {
     if (cost / NUMBERS.MIN_COST_NUM !== Math.floor(cost / NUMBERS.MIN_COST_NUM))
       throw new Error(ERROR_MESSAGES.INVALID_COST_UNIT);
     if (cost < NUMBERS.MIN_COST_NUM || cost > NUMBERS.MAX_COST_NUM)
@@ -25,7 +25,7 @@ class Purchase {
     return true;
   };
   purchaseLotto = (cost) => {
-    this.isValidCost(cost);
+    this.validateCost(cost);
     this.amountOfLotto = Number(cost) / 1000;
 
     return this.amountOfLotto;
@@ -42,13 +42,13 @@ class Purchase {
     for (let i = 0; i < amount; i++) {
       lottoNumbers.push(this.generateOneLotto());
     }
-    this.isValidNumber(amount, lottoNumbers);
+    this.validateLottoNumbers(amount, lottoNumbers);
     this.lottoNumbers = lottoNumbers;
 
     return lottoNumbers;
   };
 
-  isValidNumber = (amount, lottoNumbers) => {
+  validateLottoNumbers = (amount, lottoNumbers) => {
     lottoNumbers.forEach((eachLotto) => {
       if (eachLotto.length !== 6)
         throw new Error(ERROR_MESSAGES.INVALID_LOTTO_LENGTH);

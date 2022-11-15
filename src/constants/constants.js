@@ -12,7 +12,7 @@ const ERROR_MESSAGES = Object.freeze({
   INVALID_COST_RANGE:
     "[ERROR] 가격은 1,000원 이상, 10,000원 이하로 입력해 주세요.",
   INVALID_LOTTO_RANGE: "[ERROR] 각 로또 번호는 1~45 사이의 숫자여야 합니다.",
-  INVALID_LOTTO_LENGTH: "[ERROR] 로또 번호는 6개여야 합니다.",
+  INVALID_LOTTO_LENGTH: "[ERROR] 6자리로 입력해 주세요.",
   DUPLICATED_LOTTO_NUM: "[ERROR] 로또 번호는 중복될 수 없습니다.",
   INVALID_LOTTO_AMOUNT:
     "[ERROR] 구입한 로또의 갯수와 생성된 로또 번호의 갯수가 맞는지 확인해 주세요.",
