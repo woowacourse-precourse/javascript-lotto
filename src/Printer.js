@@ -1,52 +1,60 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const Prize = require('./Prize');
+
+const FIRST_PLACE = 7;
+const SECOND_PLACE = 6;
+const THIRD_PLACE = 5;
+const FOURTH_PLACE = 4;
+const FIFTH_PLACE = 3;
 
 class Printer {
 	static printLottoBundle(lottoBundle) {
 		MissionUtils.Console.print(`${lottoBundle.length}개를 구매했습니다.`);
 		for (let i = 0; i < lottoBundle.length; i++) {
-			MissionUtils.Console.print(lottoBundle[i]);
+			let forPrint = "[" + lottoBundle[i].toString() + "]";
+			forPrint = forPrint.replace(/,/g, ", ");
+			MissionUtils.Console.print(forPrint);
 		}
 	}
 
-	static printWinningResult(winningCount, place) {
-		switch(place) {
-			case Prize.FIFTH_PLACE:
-				MissionUtils.Console.print(`3개 일치 (5,000원) - ${winningCount[place]}개`);
+	printWinningResult(winningCount, place) {
+		let count = winningCount[place];
+		switch(place) { 
+			case FIFTH_PLACE:
+				MissionUtils.Console.print(`3개 일치 (5,000원) - ${count}개`);
 				break;
-			case Prize.FOURTH_PLACE:
-				MissionUtils.Console.print(`4개 일치 (50,000원) - ${winningCount[place]}개`);
+			case FOURTH_PLACE:
+				MissionUtils.Console.print(`4개 일치 (50,000원) - ${count}개`);
 				break;
-			case Prize.THIRD_PLACE:
-				MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${winningCount[place]}개`);
+			case THIRD_PLACE:
+				MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${count}개`);
 				break;
-			case Prize.SECOND_PLACE:
-				MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningCount[place]}개`);
+			case SECOND_PLACE:
+				MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`);
 				break;
-			case Prize.FIRST_PLACE:
-				MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${winningCount[place]}개`);
+			case FIRST_PLACE:
+				MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${count}개`);
 				break;
 			default:
 				break;
 		}
 	}
 
-	static winningResult(winningCount) {
-		MissionUtils.Console.print('당첨 통계');
+	winningResult(winningCount) {
+		MissionUtils.Console.print('\n당첨 통계');
 		MissionUtils.Console.print('---');
 		for (let correct = 3; correct < 8; correct++) {
-			Printer.printWinningResult(winningCount, correct);
+			this.printWinningResult(winningCount, correct);
 		}
 	}
 
-	static earningsRate(seedMoney, earnings) {
-		let earningsRate = ((earnings / seedMoney) * 100).toFixed(1);
-		MissionUtils.Console.print(`총 수익률은 ${earningsRate}%입니다.`);
+	earningsRate(seedMoney, earnings) {
+		let rate = ((earnings / seedMoney) * 100).toFixed(1);
+		MissionUtils.Console.print(`총 수익률은 ${rate}%입니다.`);
 	}
 
 	result(user, winningCount) {
-		Printer.winningResult(winningCount);
-		Printer.earningsRate(user.getSeedMoney(), user.earnings);
+		this.winningResult(winningCount);
+		this.earningsRate(user.getSeedMoney(), user.earnings);
 	}
 }
 
