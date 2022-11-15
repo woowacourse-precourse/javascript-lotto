@@ -26,8 +26,8 @@ class LotteryMachine {
     Console.readLine(MESSAGE.LOTTERY_MACHINE.INPUT_MONEY, (input) => {
       const money = Number(input);
       LotteryMachine.#validateMoney(money);
-      lottos = LotteryMachine.generateLottos(money);
-      LotteryMachine.printTicket(lottos);
+      lottos = LotteryMachine.#generateLottos(money);
+      LotteryMachine.#printTicket(lottos);
     });
 
     return lottos;
@@ -43,7 +43,7 @@ class LotteryMachine {
     }
   }
 
-  static generateLottos(money) {
+  static #generateLottos(money) {
     const purchaseQuantity = money / NUMBER.MONEY_UNIT;
     const lottos = new Array(purchaseQuantity).fill(true);
 
@@ -57,7 +57,7 @@ class LotteryMachine {
     });
   }
 
-  static printTicket(lottos) {
+  static #printTicket(lottos) {
     Console.print(MESSAGE.LOTTERY_MACHINE.BUY_LOTTO(lottos.length));
 
     lottos.forEach((lotto) => {
@@ -119,22 +119,18 @@ class LotteryMachine {
   }
 
   static printWinResult(winningStatistics) {
-    const { ranking, totalLottoNum, totalWinnings } = winningStatistics;
     Console.print(MESSAGE.LOTTERY_MACHINE.PRINT_STATISTICS);
 
-    Object.keys(ranking).forEach((rank) => {
-      const correctNum = ranking[rank];
+    Object.keys(winningStatistics.ranking).forEach((rank) => {
+      const correctNum = winningStatistics.ranking[rank];
       Console.print(MESSAGE.LOTTERY_MACHINE.WIN_STATISTIC(rank, correctNum));
     });
 
-    const earningRate = LotteryMachine.calcEarningRate({
-      totalWinnings,
-      totalLottoNum,
-    });
+    const earningRate = LotteryMachine.#calcEarningRate(winningStatistics);
     Console.print(MESSAGE.LOTTERY_MACHINE.EARNING_RATE(earningRate));
   }
 
-  static calcEarningRate({ totalWinnings, totalLottoNum }) {
+  static #calcEarningRate({ totalWinnings, totalLottoNum }) {
     const digits = 1;
     const earningRate =
       (totalWinnings / (totalLottoNum * NUMBER.MONEY_UNIT)) * 100;
