@@ -34,6 +34,10 @@ class LottoShop {
   getLottosQuantity() {
     return this.lottosQuantity;
   }
+
+  getLottoPrice() {
+    return this.#lottoPrice;
+  }
 }
 
 module.exports = LottoShop;
