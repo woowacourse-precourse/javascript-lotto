@@ -2,10 +2,11 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class Lotto {
   #numbers;
 
-  constructor(numbers, pickRandomNumberArr) {
+  constructor(numbers, pickRandomNumberArr, lottoMoney) {
     this.checkWinBonusNumber(numbers, 6);
     this.#numbers = numbers;
-    this.inputBonusNumber(pickRandomNumberArr);
+    this.inputBonusNumber(pickRandomNumberArr, lottoMoney);
+    // this.lottoMoney = lottoMoney;
   }
 
   checkWinBonusNumber(winNumberArr, arrSize) {
@@ -21,14 +22,14 @@ class Lotto {
     }
   }
 
-  inputBonusNumber(pickNumberArray) {
+  inputBonusNumber(pickNumberArray, lottoMoney) {
     MissionUtils.Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusNumber) => {
       this.checkWinBonusNumber(bonusNumber.split(), 1);
-      this.winningCalculate(bonusNumber, pickNumberArray);
+      this.winningCalculate(bonusNumber, pickNumberArray, lottoMoney);
     });
   }
 
-  winningCalculate(bonusNumber, randomNumberArr) {
+  winningCalculate(bonusNumber, randomNumberArr, lottoMoney) {
     let matchNumberArr = [0, 0, 0, 0, 0];
     randomNumberArr.forEach((randomNumber) => {
       let matchNumCnt = randomNumber.filter((it) => this.#numbers.includes(it)).length;
@@ -37,7 +38,7 @@ class Lotto {
       }
       this.countMatchNumber(matchNumberArr, matchNumCnt);
     });
-    this.printMatchNumber(matchNumberArr);
+    this.printMatchNumber(matchNumberArr, lottoMoney);
   }
 
   countMatchNumber(matchNumberArr, matchNum) {
@@ -55,13 +56,25 @@ class Lotto {
     }
   }
 
-  printMatchNumber(matchNumberArr) {
+  printMatchNumber(matchNumberArr, lottoMoney) {
     MissionUtils.Console.print("\n당첨 통계\n---");
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${matchNumberArr[0]}개`);
     MissionUtils.Console.print(`4개 일치 (50,000원) - ${matchNumberArr[1]}개`);
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${matchNumberArr[2]}개`);
     MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${matchNumberArr[3]}개`);
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${matchNumberArr[4]}개`);
+    this.printLottoReturn(matchNumberArr, lottoMoney);
+  }
+
+  printLottoReturn(matchNumArr, lottoMoney) {
+    let total = 0;
+    let returnMoney = [5000, 50000, 1500000, 30000000, 2000000000];
+    for (let index = 0; index < 5; index++) {
+      total += matchNumArr[index] * returnMoney[index];
+    }
+    const lottoReturn = ((total / lottoMoney) * 100).toFixed(2);
+    MissionUtils.Console.print(`총 수익률은 ${parseFloat(lottoReturn)}%입니다.`);
+    MissionUtils.Console.close();
   }
 }
 

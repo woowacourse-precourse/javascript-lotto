@@ -3,6 +3,7 @@ const Lotto = require("./Lotto");
 
 class App {
   pickRandomNumberArr = [];
+  lottoMoney;
 
   play() {
     this.inputPurchaseAmount();
@@ -10,7 +11,8 @@ class App {
 
   inputPurchaseAmount() {
     MissionUtils.Console.readLine("구입 금액을 입력해주세요.\n", (inputMoney) => {
-      return this.checkPurchaseAmount(inputMoney);
+      this.lottoMoney = inputMoney;
+      return this.checkPurchaseAmount(this.lottoMoney);
     });
   }
 
@@ -51,7 +53,7 @@ class App {
 
   winNumberArr(winNumber) {
     const WIN_NUMBER_ARRAY = winNumber.split(",").map((x) => parseInt(x));
-    let lotto = new Lotto(WIN_NUMBER_ARRAY, this.pickRandomNumberArr);
+    let lotto = new Lotto(WIN_NUMBER_ARRAY, this.pickRandomNumberArr, this.lottoMoney);
   }
 }
 
