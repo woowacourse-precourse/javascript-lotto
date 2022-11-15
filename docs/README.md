@@ -16,6 +16,29 @@
   - `clerk`클래스를 통해, 구매자로부터 구매수량, 당첨번호, 보너스 번호를 관리
   - `private fields`엔 구매수량, 구입한 랜덤 로또 번호, 당첨번호, 보너스번호, 지불금액을 저장하여 내부에서 관리
 
+    [x] 로또 구매 금액 입력받기
+
+    - [x] private fields `this.#payment`를 `PurChase`클래스의 인스턴스로 생성
+    - [x] 입력받은 금액은 `PurChase`클래스를 통해 Validate 진행
+    - [x] private fields `this.#quickPick`는 `QuickPick`클래스의 인스턴스로 생성
+    - [x] `#quickPick`에는 입력받은 금액만큼 생성한 로또 번호의 정보 저장.
+
+    [x] 로또 당첨 번호 입력받기
+
+    - [x] `this.#lotto`를 `Lotto`클래스의 인스턴스로 생성
+    - [x] 인스턴스로 생성 후 이에 대한 validate성공한 값 저장.
+
+    [x] 보너스 번호 입력받기
+
+    - [x] `this.#bonus`를 `Bonus`클래스의 인스턴스로 생성
+    - [x] 인스턴스로 생성 후 이에 대한 validate성공한 값 저장.
+
+    [x] 결과출력하기
+
+    - [x] `this.#result`를 `Result`클래스의 인스턴스로 생성
+    - [x] 생성자로 앞서 만든 private fields를 제공.
+    - [x] 인스턴스를 통해 메소드를 통해 당첨 결과 및 총 수익률 출력 후 게임 종료.
+
 <br>
 
 - [x] **2. 나의 로또 번호를 랜덤으로 생성하는 기능(클래스)**
