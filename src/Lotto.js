@@ -34,7 +34,6 @@ class Lotto {
     });
   }
 
-  // 당첨번호 비교
   isWinning(answer, bonus) {
     let rank;
     const winningNum = this.#numbers.filter((item) =>
@@ -54,7 +53,6 @@ class Lotto {
     return rank;
   }
 
-  //보너스 번호 비교
   isBonus(bonus) {
     return this.#numbers.includes(bonus);
   }

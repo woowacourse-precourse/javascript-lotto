@@ -29,7 +29,6 @@ class App {
     Console.close();
   }
 
-  //금액 입력
   enterPrice() {
     let price = 0;
     Console.readLine(ENTER_PRICE, (answer) => {
@@ -38,7 +37,6 @@ class App {
     return price;
   }
 
-  //금액 유효성 검증
   isRightPrice(price) {
     if (price % 1000 != 0) {
       throw new Error(ERROR_MARK + "로또 가격의 단위는 1000이어야 합니다.");
@@ -49,7 +47,6 @@ class App {
     }
   }
 
-  //로또 발행
   issueTotalLotto(price) {
     this.lottoCnt = price / 1000;
     let lottoArray = [];
@@ -65,7 +62,6 @@ class App {
     return Random.pickUniqueNumbersInRange(1, 45, 6);
   }
 
-  //로또 출력
   printLottoAll() {
     this.printLottoNumber();
     this.printLotto();
@@ -81,7 +77,6 @@ class App {
     }
   }
 
-  //당첨번호 입력
   enterNumbers() {
     this.enterWinningNum();
     this.enterBonusNum();
@@ -94,21 +89,18 @@ class App {
     });
   }
 
-  //당첨번호 입력 유효성 검증
   checkDuplication(numbers) {
     let set = new Set(numbers);
     if (numbers.length != [...set].length)
       throw "[ERROR] 중복된 숫자가 있습니다.";
   }
 
-  //보너스번호 입력
   enterBonusNum() {
     Console.readLine("보너스 번호를 입력해주세요.", (answer) => {
       this.bonusNum = answer;
     });
   }
 
-  //당첨계산
   calculateTotalRank() {
     let rank = new Array(5);
     rank.fill(0);
@@ -126,7 +118,6 @@ class App {
     return lotto.isWinning(this.winningNum, this.bonusNum);
   }
 
-  //수익률 계산
   calculateProfit() {
     let percent = (this.calculateWinnings() / (this.lottoCnt * 1000)) * 100;
     return percent.toFixed(1);
@@ -138,7 +129,6 @@ class App {
       .reduce((a, b) => a + b);
   }
 
-  //당첨통계 출력
   printWinningStatics() {
     const profit = this.calculateProfit();
 
