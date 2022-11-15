@@ -69,3 +69,48 @@ describe("로또 테스트", () => {
     }).toThrow("[ERROR] 숫자만 입력 가능합니다.");
   });
 });
+
+describe("로또 등수 결과 확인 테스트", () => {
+  test("1등인 경우", () => {
+    const app = new App();
+    const result = app.checkLottoResultRank([1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6], 7)
+
+    expect(result).toEqual('1등');
+  });
+
+  test("2등인 경우", () => {
+    const app = new App();
+    const result = app.checkLottoResultRank([1, 2, 3, 4, 5, 7], [1, 2, 3, 4, 5, 6], 7)
+
+    expect(result).toEqual('2등');
+  });
+
+  test("3등인 경우", () => {
+    const app = new App();
+    const result = app.checkLottoResultRank([1, 2, 3, 4, 5, 10], [1, 2, 3, 4, 5, 6], 7)
+
+    expect(result).toEqual('3등');
+  });
+
+  test("4등인 경우", () => {
+    const app = new App();
+    const result = app.checkLottoResultRank([1, 2, 3, 4, 11, 10], [1, 2, 3, 4, 5, 6], 7)
+
+    expect(result).toEqual('4등');
+  });
+
+  test("5등인 경우", () => {
+    const app = new App();
+    const result = app.checkLottoResultRank([1, 2, 3, 12, 11, 10], [1, 2, 3, 4, 5, 6], 7)
+
+    expect(result).toEqual('5등');
+  });
+
+  test("당첨되지 않은 경우", () => {
+    const app = new App();
+    const result = app.checkLottoResultRank([15, 14, 13, 12, 11, 10], [1, 2, 3, 4, 5, 6], 7)
+
+    expect(result).toEqual('none');
+  });
+})
+
