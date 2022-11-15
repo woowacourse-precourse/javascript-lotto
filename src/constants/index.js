@@ -33,7 +33,7 @@ const ERROR_MESSAGE = {
   PURCHASE_MONEY_ERROR: "[ERROR] 구매 금액은 1000원 이상이어야 합니다.",
   PURCHASE_IS_NAN_ERROR: "[ERROR] 구매 금액은 숫자여야 합니다.",
   WINNING_LOTTO_DUPLICATION_ERROR: "[ERROR] 당첨 번호는 중복 없는 6개 숫자여야 합니다.",
-  BONUS_NUMBER_DUPLICATION_ERROR: "[ERROR] 당첨 번호는 중복 없는 6개 숫자여야 합니다.",
+  BONUS_NUMBER_DUPLICATION_ERROR: "[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.",
   NUMBER_RANGE_ERROR: "[ERROR] 로또 번호는 1 ~ 45 사이여야 합니다.",
   NUMBER_IS_NAN_ERROR: "[ERROR] 로또 번호는 숫자여야 합니다.",
 }
