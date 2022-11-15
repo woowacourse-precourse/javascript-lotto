@@ -15,6 +15,7 @@ class Compare {
       let count = { winningCount: 0, bonusCount: 0 };
       numbers.forEach((number) => {
         this.compareNumber(number, count);
+        this.compareBonus(number, count);
       });
     });
   }
@@ -22,6 +23,12 @@ class Compare {
   compareNumber(number, count) {
     if (this.#winning.includes(number)) {
       count.winningCount += 1;
+    }
+  }
+
+  compareBonus(number, count) {
+    if (number === this.#bonus) {
+      count.bonusCount += 1;
     }
   }
 }
