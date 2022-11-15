@@ -38,4 +38,9 @@ describe("로또 클래스 테스트", () => {
     const comparison = new Comparison();
     expect(comparison.checkTheRank([4, 5, 6])).toEqual(undefined);
   });
+
+  test("수익률", () => {
+    const comparison = new Comparison();
+    expect(comparison.RateOfReturn(5000, [3, 0, 4])).toEqual(undefined);
+  });
 });
