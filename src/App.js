@@ -1,6 +1,10 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
+function roundToTwo(num) {
+  return +(Math.round(num + "e+2") + "e-2");
+}
+
 class App {
   play() {
     const BoxOffice = new Vendor();
@@ -167,7 +171,9 @@ class Vendor {
     MissionUtils.Console.print(
       `6개 일치 (2,000,000,000원) - ${this.winningStatistics[3]}개`
     );
-    MissionUtils.Console.print("총 수익률은 62.5%입니다.");
+    MissionUtils.Console.print(
+      `총 수익률은 ${Math.trunc(this.#money)}%입니다.`
+    );
     MissionUtils.Console.print("```\n\n---");
     MissionUtils.Console.close();
   }
@@ -193,6 +199,17 @@ class Vendor {
 
     ++this.winningStatistics[cnt - 3];
     return;
+  }
+
+  #computeROI() {
+    let award = 0;
+    award += this.winningStatistics[0] * 5000;
+    award += this.winningStatistics[1] * 50000;
+    award += this.winningStatistics[2] * 1500000;
+    award += this.winningStatistics[3] * 2000000000;
+    award += this.winningStatistics[4] * 30000000;
+
+    return roundToTwo(award / this.#money);
   }
 }
 
