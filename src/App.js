@@ -1,5 +1,3 @@
-const Lotto = require("./Lotto");
-const Console = require("./utils/Console");
 const UI = require("./utils/UI");
 
 class App {

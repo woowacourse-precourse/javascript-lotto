@@ -7,7 +7,7 @@ class UI {
   #countLotto;
   #arrUserInputLottoNumbers;
   #bonusNumber;
-  #countSameNumber;
+  #countSameNumberObject;
 
   askMoney() {
     Console.readLine("구입금액을 입력해 주세요.\n", (userInputMoney) => {
@@ -37,8 +37,8 @@ class UI {
     return this.#bonusNumber;
   }
 
-  get countSameNumber() {
-    return this.#countSameNumber;
+  get countSameNumberObject() {
+    return this.#countSameNumberObject;
   }
 
   inputUserLottoNumber() {
@@ -61,10 +61,11 @@ class UI {
       if (Validate.validateBonusNumber(numberBonusNumber)) {
         this.#bonusNumber = numberBonusNumber;
         this.lotto = new Lotto(this.#arrUserInputLottoNumbers);
-        this.#countSameNumber = this.lotto.compare(
-          this.lottoMachine.lottoNumbers
+        this.#countSameNumberObject = this.lotto.compare(
+          this.lottoMachine.lottoNumbers,
+          this.#bonusNumber
         );
-        console.log(this.#countSameNumber);
+        this.printWin(this.#countSameNumberObject);
       }
       Console.close();
     });
@@ -80,6 +81,11 @@ class UI {
     this.lottoMachine.lottoNumbers.forEach((numbers) => {
       Console.print(numbers);
     });
+  }
+
+  printWin(winObject) {
+    Console.print("\n당첨 통계\n" + "---");
+    winObject.forEach((winCount) => console.log(winCount.countSameNumber));
   }
 }
 

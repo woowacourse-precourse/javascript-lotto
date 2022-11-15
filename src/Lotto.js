@@ -21,12 +21,20 @@ class Lotto {
     return this.#numbers;
   }
 
-  compare(lottoNumbers) {
+  compare(lottoNumbers, bonusNumber) {
     let countArr = [];
     lottoNumbers.forEach((lottoNumber) => {
-      countArr.push(this.compareBetween(lottoNumber));
+      let countSameNumber = this.compareBetween(lottoNumber);
+      if (countSameNumber === 5) {
+        countArr.push({
+          countSameNumber,
+          bonusNumber: this.checkHasBonusNumber(lottoNumber, bonusNumber),
+        });
+        return;
+      }
+      countArr.push({ countSameNumber });
     });
-    return this.makeCountObject(countArr);
+    return countArr;
   }
 
   compareBetween(lottoNumber) {
@@ -38,11 +46,15 @@ class Lotto {
     }, 0);
   }
 
-  makeCountObject(countArr) {
-    return countArr.reduce((countObject, count) => {
-      countObject[count] = (countObject[count] || 0) + 1;
-      return countObject;
-    }, {});
+  // makeCountObject(countArr) {
+  //   return countArr.reduce((countObject, count) => {
+  //     countObject[count] = (countObject[count] || 0) + 1;
+  //     return countObject;
+  //   }, {});
+  // }
+
+  checkHasBonusNumber(lottoNumber, bonusNumber) {
+    return !!lottoNumber.includes(bonusNumber);
   }
 }
 

@@ -1,6 +1,5 @@
 const Lotto = require("../src/Lotto");
 const Constant = require("../src/Constant");
-const UI = require("../src/utils/UI");
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
@@ -31,11 +30,15 @@ describe("로또 클래스 테스트", () => {
       [1, 4, 5, 8, 9, 12],
       [1, 4, 5, 6, 11, 40],
     ];
-    const userInputNumbers = [1, 4, 5, 6, 10, 15];
+    const userInputNumbers = [1, 4, 5, 6, 11, 7];
+    const bonusNumber = 40;
     //when
     const lotto = new Lotto(userInputNumbers);
     //then
-    expect(lotto.compare(randomLottoNumbers)).toStrictEqual([3, 4]);
+    expect(lotto.compare(randomLottoNumbers, bonusNumber)).toStrictEqual([
+      { countSameNumber: 3 },
+      { countSameNumber: 5, bonusNumber: true },
+    ]);
   });
 
   test("계산된 로또번호가 몇개가 당첨됐는지 object형태로 만든다..", () => {
