@@ -32,10 +32,10 @@ class App {
 
   printBuyingLottoList() {
     this.lottoTicketList = LottoTicket.publish(this.buyingLottoNumber);
-    return this.InputWinningNumber();
+    return this.inputWinningNumber();
   }
 
-  InputWinningNumber() {
+  inputWinningNumber() {
     Console.readLine(MESSAGE.INPUT_WINNING_NUMBER, (winningNumber) => {
       this.getWinningNumberList(winningNumber);
     });
