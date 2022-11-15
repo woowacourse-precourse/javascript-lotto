@@ -23,4 +23,12 @@ const prizeCount = {
   fifth: 0,
 }
 
-module.exports = { INPUT_QUERY, ERROR, prizeCount };
+const PRIZE_MONEY = [
+  2000000000, 
+  30000000, 
+  1500000, 
+  50000, 
+  5000
+]
+
+module.exports = { INPUT_QUERY, ERROR, prizeCount, PRIZE_MONEY };

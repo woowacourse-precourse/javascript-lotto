@@ -1,3 +1,4 @@
+const { prizeCount, PRIZE_MONEY } = require('./constants');
 const { print, random } = require('./util');
 const { checkLottoAmount } = require('./validation');
 
@@ -19,6 +20,15 @@ class LottoGenerator {
       print(`[${eachUserLottoNumber.join(', ')}]`);
     }
     return publishedUserLotto;
+  }
+
+  calculateProfit() {
+    const inputMoney = this.#lottoAmount * 1000;
+    const outpuMoney = Object.values(prizeCount).reduce(
+      (accumulator, currentValue, index) => currentValue * PRIZE_MONEY[index] + accumulator,
+      0
+    );
+    return ((outpuMoney / inputMoney) * 100).toFixed(1);
   }
 }
 
