@@ -28,10 +28,9 @@
     - [x] 로또 당첨 수익률 계산 
 - [x] 로또 당첨 결과 및 수익률 출력 
 
-- [ ] 상수 만들기 
+- [x] 상수 만들기 
 - [x] 게임 메세지 콘솔에 출력하기 
 
-- [ ] 단위 테스트
-  - [ ] 클래스 별 기능 단위 테스트
-  - [ ] ExceptionTest 
-  - [ ] LottoGameTest
+- [x] 단위 테스트
+  - [x] ExceptionTest 
+  - [x] LottoGameTest
