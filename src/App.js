@@ -55,6 +55,23 @@ class App {
      countRank.push(sameCount);
      sameCount = 0;
   }
+
+  setRanking(lottoCount, countRank, computerBonusNumber, userBonusInputList) {
+    let rankList = [0, 0, 0, 0, 0];
+    for (let i = 0; i < lottoCount; i++) {
+      if (countRank[i] === 5 && computerBonusNumber === userBonusInputList[i]) {
+        ++rankList[3];
+      }  else if (countRank[i] === 3) {
+        ++rankList[0];
+      } else if (countRank[i] === 4) {
+        ++rankList[1];
+      } else if (countRank[i] === 5) {
+        ++rankList[2];
+      } else if (countRank[i] === 6) {
+        ++rankList[4];
+      }
+    }
+  }
 }
 
 module.exports = App;
