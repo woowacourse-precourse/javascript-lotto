@@ -5,6 +5,7 @@ class App {
   play() {
     const [amount, money] = createUserInput();
     validateInputMoney(money);
+    const userLotto = createUserLotto(amount);
   }
 }
 
@@ -25,6 +26,20 @@ function validateInputMoney(money) {
   if (money < 1000) {
     throw new Error("[ERROR] 1000원이상의 금액을 입력하세요.");
   }
+}
+
+function createUserLotto(amount) {
+  const lottoArr = [];
+  for (let i = 0; i < amount; i++) {
+    const lotto = Random.pickUniqueNumbersInRange(1, 45, 6);
+    lotto.sort((a, b) => a - b);
+    lottoArr.push(lotto);
+  }
+  Console.print(`${amount}개를 구매했습니다.`);
+  lottoArr.forEach((i) => {
+    Console.print(`[${i.join(", ")}]`);
+  });
+  return lottoArr;
 }
 
 module.exports = App;
