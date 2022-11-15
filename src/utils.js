@@ -27,3 +27,4 @@ function checkValidWinningNumber(inputWinningNumbers) {
 }
 
 module.exports.checkValiPrice = checkValiPrice;
+module.exports.checkValidWinningNumber = checkValidWinningNumber;
