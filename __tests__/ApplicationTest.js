@@ -77,4 +77,13 @@ describe('로또 테스트', () => {
       app.play();
     }).toThrow(message.AMOUNT_ERROR);
   });
+
+  test('보너스번호와 당첨 번호는 일치하지 않아야 한다', () => {
+    mockRandoms([[5, 13, 26, 27, 39, 40]]);
+    mockQuestions(['1000', '5,13,26,27,39,40', '13']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow(message.BONUS_OVERLAP_ERROR);
+  });
 });
