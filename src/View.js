@@ -7,14 +7,14 @@ const PurChase = require('./Purchase');
 const Statistics = require('./Statistics');
 
 class View {
-  constructor() {
+  constructor () {
     this.amount;
     this.lotteryTickets;
     this.fullLottoNumbers;
     this.inputLottoAmount();
   }
 
-  inputLottoAmount() {
+  inputLottoAmount () {
     Console.readLine(INPUT_MESSAGE.BUY, (amount) => {
       const generateTickets = new PurChase(amount).showLotteryTickets();
       this.amount = amount;
@@ -23,13 +23,13 @@ class View {
     });
   }
 
-  printLotteryTickets(lotteryTickets) {
+  printLotteryTickets (lotteryTickets) {
     Console.print(PRINT_MESSAGE.PURCHASENUMBER(lotteryTickets.length));
     lotteryTickets.forEach((lottery) => Console.print(PRINT_MESSAGE.LOTTERY(lottery)));
     this.inputLottoNumbers();
   }
 
-  inputLottoNumbers() {
+  inputLottoNumbers () {
     Console.readLine(INPUT_MESSAGE.LOTTONUMBERS, (lottoNumbers) => {
       const lottoNumbersList = lottoNumbers.split(LOTTO_INFO.SPLITUNIT);
       new Lotto(lottoNumbersList);
@@ -37,7 +37,7 @@ class View {
     });
   }
 
-  inputBonusLottoNumbers(lottoNumbersList) {
+  inputBonusLottoNumbers (lottoNumbersList) {
     Console.readLine(INPUT_MESSAGE.BONUSNUMBERS, (bonusNumber) => {
       const fullNumbers = [lottoNumbersList, bonusNumber];
       this.fullLottoNumbers = new BonusLotto(fullNumbers) ? fullNumbers : '';
@@ -45,7 +45,7 @@ class View {
     });
   }
 
-  printStats() {
+  printStats () {
     Console.print(PRINT_MESSAGE.WINNING);
     Console.print(PRINT_MESSAGE.DIVIDE);
     const stats = new Statistics(this.fullLottoNumbers, this.lotteryTickets).showMatchResult();
@@ -53,13 +53,13 @@ class View {
     this.printProFit(stats);
   }
 
-  printProFit(profitList) {
+  printProFit (profitList) {
     const profitFigure = new Profit([this.amount, profitList]).calculateProfit();
     Console.print(PRINT_MESSAGE.PROFIT(profitFigure));
     this.gameEnd();
   }
 
-  gameEnd() {
+  gameEnd () {
     Console.close();
   }
 }

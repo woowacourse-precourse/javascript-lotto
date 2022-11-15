@@ -4,18 +4,19 @@ class Profit {
   #amount;
   #matchInfo;
 
-  constructor(purchaseInfo) {
+  constructor (purchaseInfo) {
     [this.#amount, this.#matchInfo] = purchaseInfo;
   }
 
-  calculateProfit() {
-    const profitRate = (this.calculateTotalAmount(this.#matchInfo) / parseInt(this.#amount)) * 100;
-    return Math.round(profitRate * DECIMAL_PLACES) / DECIMAL_PLACES;
+  calculateProfit () {
+    const rate = this.calculateTotalAmount(this.#matchInfo) / parseInt(this.#amount, 10) * 100;
+    return Math.round(rate * DECIMAL_PLACES) / DECIMAL_PLACES;
   }
 
-  calculateTotalAmount(matchInfo) {
+  calculateTotalAmount (matchInfo) {
     return matchInfo.reduce((amount, { matchCount, matchMoney }) => {
-      return amount + matchCount * parseInt(matchMoney);
+      const plus = amount + (matchCount * parseInt(matchMoney, 10));
+      return plus;
     }, 0);
   }
 }

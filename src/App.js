@@ -1,11 +1,11 @@
 const View = require('./View');
 
 class App {
-  play() {
+  play () {
     this.process();
   }
 
-  process() {
+  process () {
     new View();
   }
 }
