@@ -5,6 +5,7 @@ class App {
   constructor() {
     this.userMoney = 0;
     this.lottoCount = 0;
+    // this.lotto = new Lotto(this.lottoCount);
   }
 
   getUserInputNumber() {
@@ -32,12 +33,27 @@ class App {
       this.userMoney = forValidate;
       this.lottoCount = forValidate / THOUSAND_WON;
       MissionUtils.Console.print(`${this.lottoCount}개를 구매했습니다.`);
-      this.generateLottoNum(this.lottoCount);
+      this.generateLottoNumb(this.lottoCount);
     });
   }
 
-  generateLottoNum(lottoCount) {}
-  play() {}
+  generateLottoNumb(lottoCount) {
+    const lottoNumArr = [];
+    for (let i = 0; i < lottoCount; i++) {
+      const lottoRandomNum = MissionUtils.Random.pickUniqueNumbersInRange(
+        1,
+        45,
+        6
+      );
+      lottoRandomNum.sort((a, b) => a - b);
+      MissionUtils.Console.print(lottoRandomNum);
+      lottoNumArr.push(lottoRandomNum);
+    }
+  }
+
+  play() {
+    this.getUserInputNumber();
+  }
 }
 
 module.exports = App;

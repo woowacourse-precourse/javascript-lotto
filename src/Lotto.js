@@ -3,9 +3,10 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class Lotto {
   #numbers;
 
-  constructor(numbers) {
+  constructor(numbers, count) {
     this.validate(numbers);
     this.#numbers = numbers;
+    this.lottoCount = count;
   }
 
   validate(numbers) {
