@@ -29,8 +29,8 @@ class App {
 
   printResult() {
     Console.print(`\n${GUIDE.TITLE}\n${GUIDE.LINE}`);
-    const rank = Object.keys(RANK).slice(0, 5).reverse();
-    rank.forEach((nowRank) => {
+    const rankNumber = Object.keys(RANK).slice(0, 5).reverse();
+    rankNumber.forEach((nowRank) => {
       Console.print(
         `${CORRECT[nowRank]} (${this.divideThousandUnit(
           PRIZE_MONEY[RANK[nowRank]]

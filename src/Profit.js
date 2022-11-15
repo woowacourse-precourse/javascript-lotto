@@ -10,13 +10,12 @@ class Profit {
   }
 
   receiveMoney() {
-    Object.keys(RANK)
-      .slice(0, 5)
-      .forEach((target) => {
-        this.nowCheckRank = RANK[target];
-        this.receiveAmount +=
-          this.result[target] * PRIZE_MONEY[this.nowCheckRank];
-      });
+    const rankNumber = Object.keys(RANK).slice(0, 5);
+    rankNumber.forEach((target) => {
+      this.nowCheckRank = RANK[target];
+      this.receiveAmount +=
+        this.result[target] * PRIZE_MONEY[this.nowCheckRank];
+    });
   }
 
   calculateProfit() {

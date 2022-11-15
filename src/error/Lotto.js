@@ -7,8 +7,9 @@ class Lotto extends Exception {
 
   constructor(numbers) {
     super();
+
     this.#numbers = numbers;
-    this.checkInput(this.#numbers);
+    this.checkInput();
   }
 
   duplicateCheck() {
