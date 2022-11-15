@@ -9,6 +9,7 @@ const buyLotto = require("./BuyLotto");
 
 const Budget = require("./Budget");
 const Lotto = require("./Lotto");
+const Result = require("./Result");
 
 class App {
   play() {
