@@ -24,6 +24,14 @@ class App {
       this.#winLottoInputPhase();
     });
   }
+
+  #winLottoInputPhase() {
+    BetterConsole.readLine(MESSAGE.PLEASE_INPUT_LOTTOS_NO, (winLotto) => {
+      const splittedWinLotto = winLotto.split(',');
+      this.#lottos = new Lotto(splittedWinLotto);
+      this.#bonusNumberInputPhase();
+    });
+  }
 }
 
 module.exports = App;
