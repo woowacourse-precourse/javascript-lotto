@@ -17,16 +17,22 @@ const mockRandoms = numbers => {
 };
 
 describe('로또 관리자 클래스 테스트', () => {
-  test(`로또 구입 금액이 ${LOTTO.UNIT_PRICE}으로 나누어 떨어지지 않으면 예외가 발생한다`, () => {
-    expect(() => {
-      new LottoManager().initLottos('1001');
-    }).toThrow(ERROR.PURCHASE_AMOUNT.CANNOT_BE_DIVIDED);
-  });
-
   test('로또 구입 금액에 숫자가 아닌 문자가 존재하면 예외가 발생한다.', () => {
     expect(() => {
       new LottoManager().initLottos('1000j');
     }).toThrow(ERROR.PURCHASE_AMOUNT.NOT_NUMBER);
+  });
+
+  test(`로또 구입 금액이 ${LOTTO.UNIT_PRICE}미만이면 예외가 발생한다.`, () => {
+    expect(() => {
+      new LottoManager().initLottos('0');
+    }).toThrow(ERROR.PURCHASE_AMOUNT.SMALLER);
+  });
+
+  test(`로또 구입 금액이 ${LOTTO.UNIT_PRICE}으로 나누어 떨어지지 않으면 예외가 발생한다`, () => {
+    expect(() => {
+      new LottoManager().initLottos('1001');
+    }).toThrow(ERROR.PURCHASE_AMOUNT.CANNOT_BE_DIVIDED);
   });
 
   test('올바른 구입 금액이 입력되면 구입 금액만큼의 로또를 발행한다.', () => {
