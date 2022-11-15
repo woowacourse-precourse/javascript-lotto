@@ -34,4 +34,12 @@ describe('게임 클래스 테스트', () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
+
+  test('주어진 문자열에서 공백을 제거하고 콤마를 기준으로 나눈 배열을 반환한다.', () => {
+    const input = '1 , 2, 3, 4, 5, 6';
+    const expectedOutput = ['1', '2', '3', '4', '5', '6'];
+    const game = new Game();
+    const output = game.parseInput(input);
+    expect(output).toStrictEqual(expectedOutput);
+  });
 });
