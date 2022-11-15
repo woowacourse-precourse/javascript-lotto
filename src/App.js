@@ -55,6 +55,7 @@ class App {
 
   handleBonusNumber(answer) {
     this.#lottoGame.setBonusNumber(answer);
+    const statistics = this.#user.createStatisticsText();
   }
 }
 
