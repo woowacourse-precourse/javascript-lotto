@@ -52,6 +52,9 @@ class App {
       return +number;
     });
   }
+  inputBonusNumber(bonusNumber) {
+    this.bonusNumber = (bonusNumber) => {};
+  }
 }
 
 module.exports = App;
