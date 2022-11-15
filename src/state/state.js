@@ -85,12 +85,18 @@ class State {
         this.bonusNumber
       );
       this.makeResultMessage();
+      return;
     }
+    throw new Error("[ERROR] 중복된 숫자입니다");
   }
 
   makeResultMessage() {
     const messageArr = [THIRD, FORTH, FIFTH, FIFTHBONUS, SIX];
+    // this.messageOutput.printMesage("당첨 통계");
+    // this.messageOutput.printMesage("---");
+
     messageArr.map((arr) => {
+      console.log(arr);
       const message = `${arr.condition} (${arr.price}원) - ${arr.count}개`;
       this.messageOutput.printMesage(message);
       this.lottomoneyOutput += arr.count
@@ -112,9 +118,9 @@ class State {
 
     new Lotto(splitedNumbers);
     this.winNumbers = splitedNumbers;
-    this.messageOutput.printMesage("");
-    this.messageOutput.printMesage("보너스 번호를 입력해 주세요");
-    this.bonusNumbersInput("");
+    // this.messageOutput.printMesage("");
+    // this.messageOutput.printMesage("보너스 번호를 입력해 주세요");
+    this.bonusNumbersInput("보너스 번호를 입력해 주세요.\n");
   }
   splitNumber(number, flag) {
     return number.split(flag).map((item) => {

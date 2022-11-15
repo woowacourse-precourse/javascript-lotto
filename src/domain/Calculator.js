@@ -8,7 +8,7 @@ class Calculator {
     const koreanMoney = returnMoney
       .toLocaleString("ko-KR")
       .replace(REGEXP_KOREAN_MONEY_COMMA_LOCATION, ",");
-    this.messageOutput.printMesage(`${koreanMoney}%`);
+    this.messageOutput.printMesage(`총 수익률은 ${koreanMoney}%입니다.`);
   }
 }
 

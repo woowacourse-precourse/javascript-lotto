@@ -12,7 +12,7 @@ class LottoNumberGenerator {
     const nums = numbers.sort((a, b) => a - b);
 
     return "[" + nums.toString().replaceAll(",", ", ").trim() + "]";
-    return nums;
+    // return nums;
   }
 }
 

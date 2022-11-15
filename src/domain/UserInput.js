@@ -24,7 +24,6 @@ class UserInput {
     for (let lottoCount = 0; lottoCount < userLottoCount; lottoCount++) {
       userLottos.push(this.lottoNumberGenerator.createRandomNumbers());
     }
-    console.log(userLottos);
   }
 }
 

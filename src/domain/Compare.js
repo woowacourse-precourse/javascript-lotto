@@ -10,17 +10,19 @@ const {
 class Compare {
   setResult(buyLottoNumbers, winNumbers, bonusNumber) {
     buyLottoNumbers.forEach((lottoNumbers) => {
-      const setLottoNumbers = new Set(lottoNumbers);
+      let sameNumberCount = 0;
       winNumbers.forEach((winNumber) => {
-        setLottoNumbers.delete(winNumber);
+        if (lottoNumbers.includes(winNumber)) {
+          sameNumberCount++;
+        }
       });
-      const sameNumberCount = 6 - setLottoNumbers.size;
       this.makeResult(sameNumberCount, lottoNumbers, bonusNumber);
     });
     return;
   }
 
   makeResult(sameNumberCount, lottoNumbers, bonusNumber) {
+    console.log(sameNumberCount, lottoNumbers, bonusNumber);
     if (sameNumberCount === 3) {
       THIRD.count += 1;
     } else if (sameNumberCount === 4) {
