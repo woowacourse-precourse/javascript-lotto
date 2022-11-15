@@ -19,7 +19,6 @@ class Lotto {
   validate(numbers) {
     let uniqueNumbers = new Set(numbers);
 
-
     if (numbers.length !== 6)
       throw new Error(ERROR.NOT_SIX_NUMBER);
 
