@@ -7,12 +7,15 @@ class App {
   }
   play() {
     let amount;
+    let LottoList;
 
     this.purchase = this.Input('구입금액을 입력해 주세요.\n');
     if (this.purchase === undefined) return 0;
     this.CheckError();
 
     amount = this.getQuantity();
+    LottoList = this.LottoNum(amount);
+    this.PrintLottoList(amount);
   }
 
   Input(text) {
@@ -44,6 +47,32 @@ class App {
     }
     let result = amount / 1000;
     return result;
+  }
+
+  LottoNum(amount) {
+    let LottoList = [];
+    for (let i = 0; i < amount; i++) {
+      LottoList.push(this.randomNum());
+    }
+    return LottoList;
+  }
+
+  randomNum() {
+    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    return numbers;
+  }
+
+  LottoListSort(LottoList) {
+    LottoList?.forEach((element) => {
+      let str = `[`;
+      element.forEach((val) => {
+        str += val;
+        str += `, `;
+      });
+      str = str.slice(0, str.length - 2);
+      str += `]`;
+      MissionUtils.Console.print(str);
+    });
   }
 }
 
