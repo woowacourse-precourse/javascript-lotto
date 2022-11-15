@@ -47,13 +47,6 @@ describe("로또 발행기 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
-  test("문자열을 숫자 배열로 만드는 기능 테스트", () => {
-    const machine = new LotteryMachine();
-    const result = machine.changeNumArray("1,2,3,4,5,6");
-
-    expect(result).toEqual([1, 2, 3, 4, 5, 6]);
-  });
-
   test("예외 - 당첨 번호가 숫자가 아닌 값이 들어간 경우", () => {
     mockQuestions(["5,10,15,20,25,a", "7"]);
 
