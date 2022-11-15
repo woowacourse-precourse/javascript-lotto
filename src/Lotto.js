@@ -1,4 +1,5 @@
 const Constant = require("./components/Constant");
+const NumberValidator = require("./components/NumberValidator");
 
 class Lotto {
   #numbers;
@@ -17,33 +18,14 @@ class Lotto {
       throw new Error(Constant.DUPLICATE_ERROR);
     }
 
-    if (this.isWrongRange(numbers)) {
-      throw new Error(Constant.WRONG_NUMBER_ERROR);
-    }
-
-    if (this.isNotNumber(numbers)) {
+    const numberValidator = new NumberValidator(this.numberArray);
+    if (numberValidator.confirm(numbers)) {
       throw new Error(Constant.WRONG_NUMBER_ERROR);
     }
   }
 
   hasDuplicate(numbers) {
     return [...new Set(numbers)].length !== 6;
-  }
-
-  isWrongRange(numbers) {
-    return numbers.find(this.checkRange);
-  }
-
-  checkRange(number) {
-    return number < 1 || number > 45;
-  }
-
-  isNotNumber(numbers) {
-    return numbers.find(this.checkNumber);
-  }
-
-  checkNumber(number) {
-    return !Number(number);
   }
 }
 

@@ -1,4 +1,5 @@
 const Constant = require("./components/Constant");
+const NumberValidator = require("./components/NumberValidator");
 
 class BonusNumber {
   #numbers;
@@ -15,33 +16,14 @@ class BonusNumber {
       throw new Error(Constant.NUMBER_LENGTH_ERROR);
     }
 
-    if (this.isWrongRange(numberArray)) {
-      throw new Error(Constant.WRONG_NUMBER_ERROR);
-    }
-
-    if (this.isNotNumber(numberArray)) {
+    const numberValidator = new NumberValidator(numberArray);
+    if (numberValidator.confirm(numberArray)) {
       throw new Error(Constant.WRONG_NUMBER_ERROR);
     }
 
     if (this.duplicateWinningNumber(numberArray)) {
       throw new Error(Constant.DUPLICATE_WINNING_NUMBER_ERROR);
     }
-  }
-
-  isWrongRange(numberArray) {
-    return numberArray.find(this.checkRange);
-  }
-
-  checkRange(number) {
-    return number < 1 || number > 45;
-  }
-
-  isNotNumber(numberArray) {
-    return numberArray.find(this.checkNumber);
-  }
-
-  checkNumber(number) {
-    return !Number(number);
   }
 
   duplicateWinningNumber(numberArray) {
