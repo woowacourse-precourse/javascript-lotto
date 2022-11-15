@@ -18,12 +18,12 @@ class User {
   }
 
   validatePurchaseAmount(amount) {
-    if (Number(amount) % 1000 !== 0) {
-      throw new Error("[ERROR] 입력 금액은 1000원 단위여야 합니다.");
-    }
-
     if (isNaN(Number(amount))) {
       throw new Error("[ERROR] 입력 금액은 숫자여야 합니다.");
+    }
+    
+    if (Number(amount) % 1000 !== 0) {
+      throw new Error("[ERROR] 입력 금액은 1000원 단위여야 합니다.");
     }
   }
 
