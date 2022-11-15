@@ -7,6 +7,10 @@ const Exception = require('./Exception');
 
 const WINNING_PRICE = [0, 2000000000, 30000000, 1500000, 50000, 5000];
 
+const START_RANDOM = 1
+const END_RANDOM = 45
+const RANDOM_NUMBER = 6
+
 class App {
   #lotteryTicketNumber; //로또 수량
   #lotteryTickets = [[]];
@@ -38,10 +42,9 @@ class App {
     let lotteryTickets = new Array(lotteryTicketNumber).fill([]);
     lotteryTickets.map((lotteryTicket, ticketsIdx) => {
       lotteryTickets[ticketsIdx] = MissionUtils.Random.pickUniqueNumbersInRange(
-        1,
-        45,
-        6
-      );
+        START_RANDOM,END_RANDOM,RANDOM_NUMBER
+        );
+
       lotteryTickets[ticketsIdx].sort((a, b) => {
         if (a < b) {return -1;}
         if (a > b) {return 1;}
