@@ -5,15 +5,28 @@ class Validation {
    * 플레이어가 게임 중 입력 값이 형식에 어긋날 경우 예외를 발생시킵니다.
    * @param {string} playerInput - 플레이어의 입력
    */
-  static validatePurchaseAmount(purchaseAmount) {
-    if (!this.isValidAmountUnit(purchaseAmount)) {
-      throw new ERROR(ERROR_MESSAGES.INVALID_AMOUNT_UNIT);
+  static validatePurchaseAmount(amount) {
+    const purchaseAmountArr = amount.split("");
+
+    if (!Validation.isValidAmountType(purchaseAmountArr)) {
+      throw new Error(ERROR_MESSAGES.INVALID_AMOUNT_TYPE);
+    }
+
+    if (!Validation.isValidAmountUnit(amount)) {
+      throw new Error(ERROR_MESSAGES.INVALID_AMOUNT_UNIT);
     }
   }
 
-  static isValidAmountUnit(amount) {
-    return amount % LOTTO.PRICE === 0;
+  static isValidAmountType(input) {
+    const isTypeNumber = (number) => !Number.isNaN(number);
+
+    return input.map((number) => Number(number)).every(isTypeNumber);
   }
+
+  static isValidAmountUnit(amount) {
+    return Number(amount) % LOTTO.PRICE === 0;
+  }
+
   /**
    * 플레이어가 게임 중 당첨 번호, 보너스 번호가 형식에 어긋날 경우 예외를 발생시킵니다.
    * @param {array} winningNumbers - 플레이어가 입력한 당첨 번호
@@ -35,7 +48,7 @@ class Validation {
     if (!this.isValidNumberofNumbers(bonusNumberArray, LOTTO.BONUS)) {
       throw new Error(ERROR_MESSAGES.ERROR_INVALID_NUMBER);
     }
-    if (!this.isValidRangeOfBonusNumber(bonusNumberArray)) {
+    if (!this.isValidRangeOfNumber(bonusNumberArray)) {
       throw new Error(ERROR_MESSAGES.ERROR_INVALID_RANGE);
     }
     if (!this.hasUniqueBonusNumber(bonusNumber, winningNumbers)) {

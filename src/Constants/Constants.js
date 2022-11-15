@@ -1,10 +1,12 @@
 const MESSAGES = {
   ENTER_PURCHASE_AMOUNT: "구입 금액을 입력해 주세요.\n",
   INPUT_WINNING_NUMBERS: "\n당첨 번호를 입력해 주세요.\n",
-  INPUT_BONUS_NUMBER: "\n보너스 번호를 입력해 주세요.",
+  INPUT_BONUS_NUMBER: "\n보너스 번호를 입력해 주세요.\n",
+  LOTTO_STATS: "\n당첨 통계\n---",
 };
 
 const ERROR_MESSAGES = {
+  INVALID_AMOUNT_TYPE: "[ERROR] 구입 금액은 숫자만 입력해야 합니다.",
   INVALID_AMOUNT_UNIT: "[ERROR] 구입 금액은 1000원 단위여야 합니다.",
   INVALID_NUMBER: "[ERROR] 로또 번호는 6개여야 합니다.",
   INVALID_RANGE: "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.",
