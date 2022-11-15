@@ -61,18 +61,18 @@ describe('LottoResult 테스트', () => {
     // 준비(arrange)
     const lottoResult = new LottoResult();
     lottoResult.lottoMatchCounter = {
-      three: 1,
+      three: 0,
       four: 0,
       five: 0,
       fiveWithBonus: 0,
-      six: 0,
-      out: 7,
+      six: 1,
+      out: 10,
     };
 
     // 실행(act)
-    lottoResult.calculateProfitRate(8000);
+    lottoResult.calculateProfitRate(11000);
 
     // 검증(assert)
-    expect(lottoResult.profitRate).toEqual('62.5');
+    expect(lottoResult.profitRate).toEqual('18,181,818.2');
   });
 });
