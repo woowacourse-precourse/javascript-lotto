@@ -46,7 +46,7 @@ class App {
         const winLotto = lottoNumber.split(",");
         const validatedLotto = this.wonLottoValidate(winLotto);
         this.lotto = new Lotto(validatedLotto);
-        this.wonLotto = this.lotto.getWonLotto;
+        this.wonLotto = this.lotto.getWonLotto();
         this.bonusNumber = this.lotto.getBonus();
       }
     );
