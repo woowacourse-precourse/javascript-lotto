@@ -25,4 +25,10 @@ class Statistic {
     }
     return hit;
   }
+  checkBonusNumber(lottoNumber, winningNumber) {
+    if (lottoNumber.indexOf(winningNumber[winningNumber.length - 1]) !== -1) {
+      return true;
+    }
+    return false;
+  }
 }
