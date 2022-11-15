@@ -1,5 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
+const Lotto = require("../src/Lotto.js");
+
 class App {
   play() {
     //필요한 변수 선언
@@ -60,6 +62,7 @@ class App {
       MissionUtils.Console.readLine("당첨 번호를 입력해주세요.", (answer) => {
         let temp = answer.split(',');
         userLottoNumbers = temp.map((ind) => Number(ind));
+        userLottoNumbers = new Lotto(temp.map((ind) => Number(ind)));
       });
     }
 
@@ -93,8 +96,8 @@ class App {
 
     function compareLottoNumber(lottoIndNum){
       let cnt = 0;
-      for (let ind=0; ind < userLottoNumbers.length; ind++){
-        if (lottos[lottoIndNum].includes(userLottoNumbers[ind])){
+      for (let ind=0; ind < userLottoNumbers.getNumbers().length; ind++){
+        if (lottos[lottoIndNum].includes(userLottoNumbers.getNumbers()[ind])){
           cnt += 1;
         }
       }
