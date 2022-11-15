@@ -19,6 +19,12 @@ class Exception {
       throw new Error(ERROR.NUMBER_ONLY);
     }
   }
+
+  checkRangeofNumber(number) {
+    if (number < 1 || number >45){
+      throw new Error(ERROR.RANGE);
+    }
+  }
 }
 
 module.exports = Exception;
