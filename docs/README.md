@@ -10,10 +10,10 @@
     [:deciduous_tree:] 오름차순으로 정렬한다.
 [:deciduous_tree:] 발행한 로또 번호 리스트를 출력한다.
 [:deciduous_tree:] 당첨 번호를 입력 받는다.
-    1. [Error] 쉼표를 제외하고 숫자가 아니면 에러
-    2. [Error] 1~45 사이의 숫자가 아니면 에러
-    3. [Error] 쉼표를 기준으로 6개의 수가 아니면 에러
-    4. [Error] 중복된 숫자를 입력하면 에러
+    [:deciduous_tree:] [Error] 쉼표를 제외하고 숫자가 아니면 에러
+    [:deciduous_tree:] [Error] 1~45 사이의 숫자가 아니면 에러
+    [:deciduous_tree:] [Error] 쉼표를 기준으로 6개의 수가 아니면 에러
+    [:deciduous_tree:] [Error] 중복된 숫자를 입력하면 에러
 7. 보너스 번호를 입력 받는다.
     1. [Error] 숫자가 아니면 에러
     2. [Error] 1~45 사이의 숫자가 아니면 에러
