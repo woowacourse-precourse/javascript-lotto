@@ -25,8 +25,10 @@ class ComparisonOfWinningNumbers {
       if (numberComparison === 5 && this.winningNumber.includes(this.bonusNumber)) {
         return 1;
       }
+
       return numberComparison;
     }
+    
     return 0;
   }
 
