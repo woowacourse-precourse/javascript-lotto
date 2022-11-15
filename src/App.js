@@ -48,8 +48,8 @@ class App {
     Console.readLine(LOTTO_MESSAGE.BONUS_NUM, (input) => {
       const number = Number(input);
       this.bonusLotto = this.checkBonusNum(number);
+      this.makeResult();
     });
-    this.makeResult();
   }
   checkBonusNum(number) {
     if (isNaN(number)) {
