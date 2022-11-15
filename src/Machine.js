@@ -67,7 +67,14 @@ class Machine {
         winning: this.#winningNumbers,
         bonus: this.#bonusNumber,
       });
+      this.#computeRankingCountMap(winningBonusCounts);
     });
+  }
+
+  #computeRankingCountMap(lottoCounts) {
+    const ranking = this.#getRanking(lottoCounts);
+    let count = this.rankingCountMap.get(ranking) || 0;
+    this.rankingCountMap.set(ranking, (count += 1));
   }
 }
 
