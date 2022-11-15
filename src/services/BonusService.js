@@ -1,9 +1,10 @@
 const BonusChecker = require('./BonusChecker');
+const Parser = require('../utils/Parser');
 
 class BonusService {
   static setBonus(rowDataOfBonus, sixNumbers) {
     BonusChecker.checkRowDataOfBonus(rowDataOfBonus);
-    const bonus = parseInt(rowDataOfBonus, 10);
+    const bonus = Parser.convertStringToDecimalNumber(rowDataOfBonus);
     BonusChecker.checkBonus(bonus, sixNumbers);
 
     return bonus;
