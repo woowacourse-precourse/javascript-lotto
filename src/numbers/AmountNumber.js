@@ -12,6 +12,7 @@ class AmountNumber {
     MissionUtils.Console.readLine(
       "구입금액을 입력해 주세요.\n",
       (amountInput) => {
+        console.log("");
         this.purchaseAmout = amountInput;
         this.amounterror();
         this.amountDivide();

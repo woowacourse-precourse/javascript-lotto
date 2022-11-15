@@ -9,12 +9,14 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
+    this.duplicatedate(numbers);
   }
 
   duplicatedate(numbers) {
     if (new Set(numbers).size !== 6) {
       throw new Error("[ERROR] 로또 번호는 중복되는 수가 없어야 합니다.");
     }
+    this.rangedate(numbers);
   }
 
   rangedate(numbers) {
