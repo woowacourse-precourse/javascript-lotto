@@ -47,14 +47,14 @@ class App {
     return true;
   }
 
+  printMoney() {
+    Console.print(`\n${this.payMoney / 1000}개를 구매했습니다.`);
+  }
+
   publishLottos(count) {
     return new Array(count)
       .fill(undefined)
       .map((e) => new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6)));
-  }
-
-  printMoney() {
-    Console.print(`\n${this.payMoney / 1000}개를 구매했습니다.`);
   }
 
   printLottosNumbers() {
