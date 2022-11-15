@@ -20,6 +20,7 @@ class Result {
 				.map((item) => [item[0], 0]));
 		return scores.reduce((acc, score) => {
 			if (score in scoreCounts) acc[score] += 1
+			else if (Math.floor(score) in scoreCounts) acc[Math.floor(score)] += 1;
 			return acc;
 		}, scoreCounts);
 	}
