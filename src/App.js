@@ -1,5 +1,10 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-
+const Constant = {
+  PURCHASE_AMOUNT_QUESTION_MESSAGE: "구입금액을 입력해 주세요.",
+  PURCHASE_AMOUNT_ERROR_MESSAGE: "구입 금액은 숫자여야 합니다.",
+  PURCHASE_AMOUNT_ERROR_MESSAGE2: "구입 금액은 0원 이상이어야 합니다.",
+  PURCHASE_AMOUNT_ERROR_MESSAGE3: "구입 금액은 1000원 단위여야 합니다.",
+};
 class App {
   play() {}
 
@@ -14,7 +19,7 @@ class App {
   }
 
   getInputPurchaseAmount(callback) {
-    MissionUtils.Console.readLine("구매금액을 입력해 주세요.", callback);
+    MissionUtils.Console.readLine(Constant.PURCHASE_AMOUT_QUESTION_MESSAGE, callback);
   }
 
   calculateNumberOfTickets(price) {
