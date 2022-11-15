@@ -1,13 +1,14 @@
-const Checker = require("./Checker.js");
-const Generator = require("./Generator.js");
+const Checker = require("./Utils/Checker.js");
+const Counter = require("./utils/Counter.js");
+const Question3 = require("./mainLogic/Question3.js");
 
 class Lotto {
   #numbers;
 
-  constructor(numbers, ticket) {
+  constructor(numbers, ticket, spendMoney) {
     this.validate(numbers);
     this.#numbers = numbers;
-    this.matchingResult = this.generateLottoResult(numbers, ticket);
+    this.getBonusNumber(ticket, spendMoney);
   }
 
   validate(numbers) {
@@ -21,11 +22,14 @@ class Lotto {
     checker.isRightRangeNumber(numbers);
   }
 
-  // TODO: 추가 기능 구현
+  getBonusNumber(ticket, spendMoney) {
+    const matchingResult = this.getResult(ticket);
+    const question3 = new Question3(this.#numbers, matchingResult, spendMoney);
+  }
 
-  generateLottoResult(lottoNumber, ticke) {
-    const generator = new Generator();
-    return generator.generateMatchingResult(lottoNumber, ticke);
+  getResult(ticket) {
+    const counter = new Counter(this.#numbers, ticket);
+    return counter.matchingResult;
   }
 }
 
