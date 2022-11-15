@@ -49,6 +49,10 @@ class Reward {
   getMoney() {
     return this.#money;
   }
+
+  toString() {
+    return `${this.#title} (${this.#money.toLocaleString()}원)`;
+  }
 }
 
 module.exports = Reward;
