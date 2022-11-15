@@ -40,6 +40,10 @@ class LottoGame {
 
     this.#winningNumbers = winningNumbers;
   }
+
+  getWinningNumbers() {
+    return this.#winningNumbers;
+  }
 }
 
 module.exports = LottoGame;
