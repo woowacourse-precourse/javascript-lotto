@@ -15,15 +15,7 @@ describe('로또 클래스 테스트', () => {
 
   test('로또 번호는 배열로 받아야합니다.', () => {
     expect(() => {
-      new Lotto(1, 2, 3, 4, 5, 6);
-    }).toThrow('[ERROR] 배열이 아닙니다.');
+      new Lotto((1, 2, 3, 4, 5, 6));
+    }).toThrow('[ERROR]');
   });
-
-  test('로또 번호', () => {
-    const lotto = new Lotto([1, 3, 2, 5, 6, 4]);
-    const result = lotto.show();
-    expect(result).toContainEqual('1', '2', '3', '4', '5', '6');
-  });
-
-  test();
 });
