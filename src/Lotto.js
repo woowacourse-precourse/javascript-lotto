@@ -1,3 +1,8 @@
+const { Random } = require('@woowacourse/mission-utils');
+const { LOTTO_LENGTH, LOTTO_RANGE } = require('./constants');
+const { ERROR } = require('./messages');
+const { hasDuplicate, isNumber } = require('./utils');
+
 class Lotto {
   #numbers;
 
@@ -7,12 +12,39 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+    if (numbers.length !== LOTTO_LENGTH)
+      throw new Error(ERROR.LOTTO.VALID_AMOUNT);
+
+    if (hasDuplicate(numbers)) throw new Error(ERROR.LOTTO.VALID_UNIQUE);
+
+    numbers.forEach((number) => this.validateNumber(number));
   }
 
-  // TODO: 추가 기능 구현
+  validateNumber(number) {
+    if (isNumber(number)) throw new TypeError(ERROR.LOTTO.VALID_TYPE);
+
+    if (+number < LOTTO_RANGE.MIN || +number > LOTTO_RANGE.MAX)
+      throw new RangeError(ERROR.LOTTO.VALID_RANGE);
+  }
+
+  getMatchedCount(lotto) {
+    return lotto.filter((number) => this.#numbers.includes(number)).length;
+  }
+
+  isValidBonusNumber(bonus) {
+    if (this.#numbers.includes(+bonus))
+      throw new Error(ERROR.LOTTO.VALID_BONUS);
+
+    this.validateNumber(bonus);
+  }
+
+  static issueLotto = () => {
+    return Random.pickUniqueNumbersInRange(
+      LOTTO_RANGE.MIN,
+      LOTTO_RANGE.MAX,
+      LOTTO_LENGTH
+    );
+  };
 }
 
 module.exports = Lotto;
