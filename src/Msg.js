@@ -12,3 +12,5 @@ const ETC_MSG = {
   RATE: "총 수익률은 ",
   END: "입니다.",
 };
+
+module.exports = { HIT_MSG, ETC_MSG };

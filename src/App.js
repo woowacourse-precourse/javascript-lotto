@@ -1,6 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
-
+const { HIT_MSG, ETC_MSG } = require("./Msg");
 class App {
   play() {
     this.lottoList = [];
@@ -12,6 +12,10 @@ class App {
     this.bonusNum = 0;
     this.increase = 0;
     this.score = new Array(6).fill(0);
+
+    this.inputWinNum();
+    this.printHit();
+    this.printIncrease();
   }
 
   inputMoney() {
@@ -81,7 +85,8 @@ class App {
   }
 
   printIncrease() {
-    const rate = 
+    const rate = Math.round((this.increase / this.buyPrice) * 100 * 100) / 100;
+    Console.print(`${ETC_MSG.RATE}${rate}%${ETC_MSG.END}`);
   }
 }
 
