@@ -72,9 +72,11 @@ class Prize {
 	}
 
 	winningCheck(user) {
-		MissionUtils.Console.readLine('\n당첨 번호를 입력해 주세요.\n', (nums) => {
+		MissionUtils.Console.print('');
+		MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (nums) => {
 			this.validate(nums, TYPE.WINNINGNUM);
-			MissionUtils.Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNum) => {
+			MissionUtils.Console.print('');
+			MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.\n', (bonusNum) => {
 				this.validate(nums + ',' + bonusNum, TYPE.BONUS);
 				this.parseNums(nums, bonusNum);
 				this.countingPrize(user.lottoBundle);

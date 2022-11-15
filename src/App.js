@@ -7,7 +7,7 @@ class App {
   play() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
       const user = new User(money);
-      user.buyLottos(parseInt(money / 1000));
+      user.buyLottos(parseInt(money) / 1000);
 
       const printer = new Printer();
       printer.printLottoBundle(user.lottoBundle);

@@ -11,7 +11,7 @@ class User {
 		this.lottoBundle = [];
 	}
 	
-	getSeedMoney(money) {
+	getSeedMoney() {
 		return this.#seedMoney;
 	}
 

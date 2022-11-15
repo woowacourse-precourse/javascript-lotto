@@ -3,7 +3,8 @@ const { PLACE } = require('./constants');
 
 class Printer {
 	printLottoBundle(lottoBundle) {
-		MissionUtils.Console.print(`\n${lottoBundle.length}개를 구매했습니다.`);
+		MissionUtils.Console.print('');
+		MissionUtils.Console.print(`${lottoBundle.length}개를 구매했습니다.`);
 		for (let i = 0; i < lottoBundle.length; i++) {
 			let forPrint = '[' + lottoBundle[i].toString() + ']';
 			forPrint = forPrint.replace(/,/g, ', ');
@@ -35,7 +36,8 @@ class Printer {
 	}
 
 	winningResult(winningCount) {
-		MissionUtils.Console.print('\n당첨 통계');
+		MissionUtils.Console.print('');
+		MissionUtils.Console.print('당첨 통계');
 		MissionUtils.Console.print('---');
 		for (let correct = 3; correct < 8; correct++) {
 			this.printWinningResult(winningCount, correct);
