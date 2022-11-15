@@ -9,7 +9,7 @@ class App {
     BoxOffice.acceptWinningNumbers;
     BoxOffice.acceptSpecialNumber;
 
-    const tickets = BoxOffice.getTickets();
+    const Tickets = BoxOffice.getTickets();
   }
 }
 
@@ -127,6 +127,8 @@ class Vendor {
     for (i = 0; i < total; ++i) {
       Tickets.push(this.#drawLotto());
     }
+
+    return Tickets;
   }
 
   #drawLotto() {
