@@ -32,7 +32,7 @@ describe("금액 입력 예외 테스트", () => {
     }).toThrow("[ERROR] 입력이 없습니다.");
   });
 
-  test("입력 받은 금액이 없다면 예외가 발생한다.", () => {
+  test("입력 받은 금액이 6개가 아니라면 예외가 발생한다.", () => {
     expect(() => {
       Validator.winnigLottoNumberValidator([1, 2, 3, 4, 5], 7);
     }).toThrow("[ERROR] 로또 번호는 6개여야 합니다.");
