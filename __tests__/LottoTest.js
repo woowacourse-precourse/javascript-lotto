@@ -74,6 +74,13 @@ describe("Validator 클래스 테스트", () => {
     expect(user.lottoCount).toEqual(10);
   });
 
+  test("로또 당첨 여부를 계산 테스트", () => {
+    const user = new User();
+    expect(
+      user.calcHitNumberCount([1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6])
+    ).toEqual(6);
+  });
+
   test("로또 순위를 계산 테스트", () => {
     const user = new User();
     expect(user.dicideRank(6, false)).toEqual(1);
