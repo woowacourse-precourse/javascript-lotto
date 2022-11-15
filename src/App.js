@@ -3,6 +3,7 @@ const MissionUtils = require('@woowacourse/mission-utils');
 
 class App {
     constructor() {
+        this.initialAmount = 0;
         this.lottoNumbers = []; // 생성한 로또 번호 객체를 저장하는 배열.
         this.winningNumbers = []; // 당첨 번호 집합.
         this.bonusNumber = 0; // 보너스 번호
@@ -97,6 +98,7 @@ class App {
             );
             this.updateWinningInfo(winningAmount);
         }
+        MissionUtils.Console.print('당첨 통계\n---');
         MissionUtils.Console.print(
             `3개 일치 (5,000원) - ${this.winningInfo.fifth}개`
         );
@@ -112,7 +114,7 @@ class App {
         MissionUtils.Console.print(
             `6개 일치 (2,000,000,000원) - ${this.winningInfo.first}개`
         );
-        MissionUtils.Console.close();
+        this.printEarningRatio();
     }
 
     // 금액을 확인하고 당첨 내역을 업데이트 한다.
@@ -135,10 +137,28 @@ class App {
         }
     }
 
+    // 수익률을 구하고 출력한다.
+    printEarningRatio() {
+        const objVal = Object.values(this.winningInfo);
+        const cumulativeAmount = objVal.reduce(
+            (sum, curValue) => sum + curValue,
+            0
+        );
+        if (cumulativeAmount === 0) {
+            MissionUtils.Console.print(`총 수익률은 0%입니다.`);
+        } else {
+            const tempRatio = this.initialAmount / cumulativeAmount;
+            const earningRatio = Math.round(tempRatio * 10) / 10;
+            MissionUtils.Console.print(`총 수익률은 ${earningRatio}%입니다.`);
+        }
+        MissionUtils.Console.close();
+    }
+
     play() {
         MissionUtils.Console.readLine(
             '구입금액을 입력해 주세요.\n',
             (amount) => {
+                this.initialAmount = amount;
                 this.amountValidate(amount);
                 this.generateLotto(amount);
                 this.getInfo();
@@ -148,7 +168,7 @@ class App {
     }
 }
 
-const app = new App();
-app.play();
+// const app = new App();
+// app.play();
 
 module.exports = App;
