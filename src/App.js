@@ -1,5 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 const { OUTPUT } = require('./setting/Message');
+const { APP_VALUE } = require('./setting/Constants');
 
 const GetNumber = require('./GetNumber');
 const Lotto = require('./Lotto');
@@ -53,7 +54,7 @@ class App {
   }
 
   printRate() {
-    const rate = ((this.#winningAmount / this.#purchaseAmount) * 100).toFixed(1);
+    const rate = ((this.#winningAmount / this.#purchaseAmount) * APP_VALUE.rate).toFixed(APP_VALUE.point);
     this.LottoView.printTotal(rate);
     Console.close();
   }

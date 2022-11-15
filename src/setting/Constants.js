@@ -36,6 +36,11 @@ const PRIZE = 1;
 
 const LOTTO_WIN = [5000, 50000, 1500000, 30000000, 2000000000];
 
+const APP_VALUE = Object.freeze({
+    point: 1,
+    rate: 100,
+})
+
 module.exports = {
     VALIDATION_VALUE,
     LOTTO_VALUE,
@@ -43,6 +48,7 @@ module.exports = {
     LOTTO_WIN,
     MATCH,
     PRIZE,
+    APP_VALUE,
 }
 
 
