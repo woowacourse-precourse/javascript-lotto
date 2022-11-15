@@ -1,6 +1,6 @@
 const Lotto = require("./Lotto");
 
-const MATCHES = {
+const WINMESSAGE = {
   3: "3개 일치",
   4: "4개 일치",
   5: "5개 일치",
@@ -37,17 +37,17 @@ class LottoAnswer extends Lotto {
     let match = candidate.filter((number) => this.numbers.includes(number)).length;
     switch (match) {
       case 3:
-        return MATCHES[3];
+        return WINMESSAGE[3];
       case 4:
-        return MATCHES[4];
+        return WINMESSAGE[4];
       case 5: {
-        if (candidate.includes(this.#bonus)) return MATCHES["5+"];
-        return MATCHES[5];
+        if (candidate.includes(this.#bonus)) return WINMESSAGE["5+"];
+        return WINMESSAGE[5];
       }
       case 6:
-        return MATCHES[6];
+        return WINMESSAGE[6];
     }
   }
 }
 
-module.exports = { LottoAnswer, MATCHES };
+module.exports = { LottoAnswer, WINMESSAGE };

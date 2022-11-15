@@ -1,17 +1,17 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
-const { MATCHES } = require("./LottoAnswer");
+const { WINMESSAGE } = require("./LottoAnswer");
 
 class Store {
   constructor() {
     this.price = 0;
     this.candidates = [];
     this.result = new Map([
-      [MATCHES[3], [5000, 0]],
-      [MATCHES[4], [50000, 0]],
-      [MATCHES[5], [1500000, 0]],
-      [MATCHES["5+"], [3000000, 0]],
-      [MATCHES[6], [20000000, 0]],
+      [WINMESSAGE[3], [5000, 0]],
+      [WINMESSAGE[4], [50000, 0]],
+      [WINMESSAGE[5], [1500000, 0]],
+      [WINMESSAGE["5+"], [30000000, 0]],
+      [WINMESSAGE[6], [2000000000, 0]],
     ]);
   }
 
