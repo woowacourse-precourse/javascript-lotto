@@ -6,12 +6,27 @@ class App {
     lotteryNumbersArr = [];
     lotteryWinningNumbersArr = [];
     lotteryBonusNumberArr = [];
+    winningThreeArr = [];
+
+
+    contrastThree() {
+        let countThree = 0;
+
+        for (let x of this.lotteryNumbersArr) {
+            let intersection = x.getNumber().filter(y => this.lotteryWinningNumbersArr[0].getNumber().includes(y))
+            if (intersection.length === 3) {
+                countThree++;
+            }
+        }
+        this.winningThreeArr.push(countThree);
+    }
 
     lotteryBonusNumber() {
         MissionUtils.Console.print("\n보너스 번호를 입력해 주세요.");
         MissionUtils.Console.readLine("", (inputNumber) => {
             let lotteryBonusNumber = parseInt(inputNumber);
             this.lotteryBonusNumberArr.push(lotteryBonusNumber);
+            this.contrastThree();
         });
     }
 
