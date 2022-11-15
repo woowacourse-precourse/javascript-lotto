@@ -14,34 +14,34 @@ class App {
   #Lotto;
 
   play() {
-    this.startGame();
+    this.#startGame();
   }
 
-  startGame() {
+  #startGame() {
     Console.readLine(GUIDE_MESSAGES.PURCHASE, (price) => {
-      this.validatePrice(price);
+      this.#validatePrice(price);
 
-      this.buyLotto(price);
+      this.#buyLotto(price);
     });
   }
 
-  buyLotto(price) {
+  #buyLotto(price) {
     const numOfLotto = price / LOTTO_PRICE;
 
     Console.print(`\n${numOfLotto}개를 구매했습니다.`);
 
     Array.from({ length: numOfLotto }).forEach(() => {
-      const newLotto = this.issueLotto();
+      const newLotto = this.#issueLotto();
 
       this.#issuedLottos = [...this.#issuedLottos, newLotto];
 
-      this.printLotto(newLotto);
+      this.#printLotto(newLotto);
     });
 
-    this.getWinningNums();
+    this.#getWinningNums();
   }
 
-  issueLotto() {
+  #issueLotto() {
     const { MIN, MAX } = RANGE_OF_LOTTO_NUMBER;
 
     return Random.pickUniqueNumbersInRange(MIN, MAX, TOTAL_COUNTS).sort(
@@ -49,35 +49,35 @@ class App {
     );
   }
 
-  printLotto(newLotto) {
+  #printLotto(newLotto) {
     Console.print(JSON.stringify(newLotto).replace(/,/g, ", "));
   }
 
-  getWinningNums() {
+  #getWinningNums() {
     Console.readLine(GUIDE_MESSAGES.WINNING_NUMS, (userInput) => {
       const winningNums = userInput.split(",");
 
       this.#Lotto = new Lotto(winningNums);
 
-      this.getBonusNum();
+      this.#getBonusNum();
     });
   }
 
-  getBonusNum() {
+  #getBonusNum() {
     Console.readLine(GUIDE_MESSAGES.BONUS_NUM, (userInput) => {
       this.#Lotto.validateBonusNum(+userInput);
 
       const bonusNumber = +userInput;
 
-      this.printResults(this.getResults(bonusNumber));
+      this.#printResults(this.#getResults(bonusNumber));
     });
   }
 
-  getResults(bonusNumber) {
+  #getResults(bonusNumber) {
     return this.#Lotto.calculateStatics(this.#issuedLottos, bonusNumber);
   }
 
-  printResults(results) {
+  #printResults(results) {
     const { statics, earningsRate } = results;
 
     const resultMessage = `
@@ -99,7 +99,7 @@ class App {
     Console.close();
   }
 
-  validatePrice(price) {
+  #validatePrice(price) {
     if (
       typeof +price !== "number" ||
       Number.isNaN(+price) ||
