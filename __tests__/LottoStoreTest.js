@@ -1,4 +1,3 @@
-const App = require("../src/App");
 const LottoStore = require("../src/LottoStore");
 const MissionUtils = require("@woowacourse/mission-utils");
 
@@ -49,7 +48,6 @@ describe("로또를 구매하는 기능", () => {
         [2, 13, 22, 32, 38, 45],
         [1, 3, 5, 14, 22, 45]
       ]);
-      mockQuestions(["8000"]);
       const logs = [
         "8개를 구매했습니다.",
         "[8, 21, 23, 41, 42, 43]",
@@ -64,8 +62,8 @@ describe("로또를 구매하는 기능", () => {
 
       const logSpy = getLogSpy();
 
-      const app = new App();
-      app.play();
+      const store = new LottoStore();
+      store.buy(8000);
 
       logs.forEach((log) => {
         expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
