@@ -2,6 +2,7 @@ const { Console } = require("@woowacourse/mission-utils");
 
 class InputAmount {
   #inputAmount;
+  LOTTO_PRICE = 1000;
 
   constructor(input) {
     this.validate(input);
@@ -16,11 +17,12 @@ class InputAmount {
     const inputAmount = input;
     const error = new Error("[ERROR] 구입금액은 천 원 단위여야 합니다.");
     if (
-      inputAmount < 1000 ||
-      inputAmount / 1000 !== Math.floor(inputAmount / 1000)
+      inputAmount < this.LOTTO_PRICE ||
+      inputAmount / this.LOTTO_PRICE !==
+        Math.floor(inputAmount / this.LOTTO_PRICE)
     )
       throw error;
-    Console.print(`\n${inputAmount / 1000}개를 구매했습니다.`);
+    Console.print(`\n${inputAmount / this.LOTTO_PRICE}개를 구매했습니다.`);
   }
 }
 

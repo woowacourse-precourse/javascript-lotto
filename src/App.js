@@ -5,6 +5,7 @@ const Lotto = require("./Lotto");
 const Prize = require("./Prize");
 
 class App {
+  LOTTO_PRICE = 1000;
   inputAmount;
   generatedLottos = [];
   lottoNumbers;
@@ -29,7 +30,7 @@ class App {
    * 로또 수량을 계산하여 수량만큼 로또를 발행합니다.
    */
   generateLotto() {
-    const quantityOfLottos = this.inputAmount / 1000;
+    const quantityOfLottos = this.inputAmount / this.LOTTO_PRICE;
     for (let i = 0; i < quantityOfLottos; i++) {
       const pickedNumbers = Random.pickUniqueNumbersInRange(1, 45, 6).sort(
         (a, b) => a - b
