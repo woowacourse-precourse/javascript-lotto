@@ -9,9 +9,7 @@ class LottoNumberGenerator {
   createLotto() {
     const lottos = [];
     for (let i = 0; i < this.number; i++) {
-      const numbers = Random.pickUniqueNumbersInRange(1, 45, 6).sort(
-        (a, b) => a - b
-      );
+      const numbers = Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
       lottos.push(numbers);
     }
     return lottos;
