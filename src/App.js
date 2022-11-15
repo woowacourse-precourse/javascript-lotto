@@ -16,7 +16,7 @@ class App {
       this.money = money;
       this.cntLotto = money / 1000;
       MissionUtils.Console.print(`${ this.cntLotto }개를 구매했습니다.`);
-      
+
       this.showMeTheUserLotto(); 
 
       this.showMeWinLotto(); 
@@ -41,12 +41,16 @@ class App {
 
   showMeWinLotto() {
     MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", winningLotto => {
+
       winningLotto = winningLotto.split(",").map(Number);
+
       this.winningLottoArr = [this.checkWinLotto(winningLotto)]; 
+      
       MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", winningLottoBonus => {
-        winningLottoBonus = +winningLottoBonus;
+
         this.winningLottoArr.push(this.checkWinBonusLotto(winningLottoBonus))
-        this.printRank(this.rankCount());
+
+        this.printLotto(this.CheckRankCount());
         MissionUtils.Console.close();
       });
     });
@@ -57,11 +61,11 @@ class App {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
     let lottoSet = new Set(lottoNum);
-    if (lottoSet.size != 6) throw new Error("[ERROR] 로또 번호가 중복 됩니다")
+    if (lottoSet.size != 6) throw new Error("[ERROR] 로또 번호가 중복 됩니다. ")
 
     for(let i=0; i<lottoNum.length; i++){
       if(lottoNum[i]>45 || lottoNum[i]<1 ){
-        throw new Error("[ERROR] 로또 번호 사이는 1에서 45 사이 입니다");
+        throw new Error("[ERROR] 로또 번호 사이는 1에서 45 사이 입니다. ");
       }
     }
 
@@ -70,7 +74,7 @@ class App {
   }
 
   checkWinBonusLotto(num) {
-    if (this.winningLottoArr[0].indexOf(num) !== -1) {
+    if (this.winningLottoArr[0].indexOf(num) != -1) {
       throw new Error("[ERROR] 보너스 로또 번호가 다른 로또 번호와 중복 됩니다")
     }
 
@@ -81,35 +85,32 @@ class App {
     return num
   }
 
-  rankCount() {
+  CheckRankCount() {
     let rank = [0, 0, 0, 0, 0]; //각 순서대로 3개 일치 ~ 6개 일치
-    this.#lotto.forEach(x => {
-      rank[x.userLottoWinningLottoCompare(this.winningLottoArr)]++
+    this.#lotto.forEach(
+      x => {
+      rank[x.winningConditionRate(this.winningLottoArr)]++
     })
-    rank.push(Math.round(((this.yieldCal(rank) / this.money) * 1000)) / 10);  
+
+    rank.push(Math.round((1000*  (this.RankLotto(rank) / this.money) )) / 10);  
     return rank;
   }
-
-  yieldCal(rank) {
-    let yieldLotto = rank[0] * 5000;
-    yieldLotto += rank[1] * 50000;
-    yieldLotto += rank[2] * 1500000;
-    yieldLotto += rank[3] * 30000000;
-    yieldLotto += rank[4] * 2000000000;
-    return yieldLotto;
+  RankLotto(rank) {
+    let checkRankLotto = rank[4] * 5000 + rank[0] * 2000000000 + rank[1] * 30000000 + rank[2] * 1500000 + rank[3] * 50000;;
+    return checkRankLotto;
   }
-
-  printRank(rank) {
-    MissionUtils.Console.print("당첨 통계\n")
-    MissionUtils.Console.print("---")
-    MissionUtils.Console.print(`3개 일치 (5,000원) - ${rank[0]}개`)
-    MissionUtils.Console.print(`4개 일치 (50,000원) - ${rank[1]}개`)
-    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${rank[2]}개`)
-    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${rank[3]}개`)
-    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${rank[4]}개`)
-    MissionUtils.Console.print(`총 수익률은 ${rank[5]}%입니다.`)
+  printLotto(rank) {
+    let rankPrint ="";
+    rankPrint +="당첨 통계\n";
+    rankPrint+="---\n";
+    rankPrint+=`3개 일치 (5,000원) - ${rank[4]}개\n`;
+    rankPrint+=`4개 일치 (50,000원) - ${rank[3]}개\n`;
+    rankPrint+=`5개 일치 (1,500,000원) - ${rank[2]}개`;
+    rankPrint+=`5개 일치, 보너스 볼 일치 (30,000,000원) - ${rank[1]}개`;
+    rankPrint+=`6개 일치 (2,000,000,000원) - ${rank[0]}개`;
+    rankPrint+=`총 수익률은 ${rank[5]}%입니다.`;
+    MissionUtils.Console.print(rankPrint)
   }
-
 }
 
 module.exports = App;
