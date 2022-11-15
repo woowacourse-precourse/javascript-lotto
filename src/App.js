@@ -4,9 +4,8 @@ const message = require("./util/message");
 const User = require("./User");
 const Validator = require("./Validator");
 const LottoGenerator = require("./LottoGenerator");
-const Lotto = require("./Lotto")
-const TypeConverter = require("./util/TypeConverter")
-
+const Lotto = require("./Lotto");
+const TypeConverter = require("./util/TypeConverter");
 
 class App {
   constructor() {
@@ -14,12 +13,14 @@ class App {
     this.print = new print();
     this.user = new User();
     this.hitlotto;
+    this.bonusNumber;
   }
 
   async play() {
     await this.inputByFeeView();
     printUserLottos();
     await this.inputHitNumberView();
+    await this.inputBonusView();
   }
 
   async inputByFeeView() {
@@ -36,9 +37,23 @@ class App {
   async inputHitNumberView() {
     this.print.print(message.HIT_NUMBER);
 
-    const numbers = await this.input.hitNumber().then((resolve) => resolve).catch((e) => {})
+    const numbers = await this.input
+      .hitNumber()
+      .then((resolve) => resolve)
+      .catch((e) => {});
 
-    this.hitlotto = new Lotto(numbers)
+    this.hitlotto = new Lotto(numbers);
+  }
+
+  async inputBonusView() {
+    this.print.print(message.BONUS_NUMBER);
+
+    const bonusNumber = await this.input
+      .bonus(this.hitlotto.getNumbers())
+      .then((resolve) => resolve)
+      .catch((e) => {});
+
+    this.bonusNumber = bonusNumber;
   }
 
   printUserLottos() {

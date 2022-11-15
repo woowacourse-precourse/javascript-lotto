@@ -27,6 +27,22 @@ class input extends console {
       });
     });
   }
+
+  bonus(hitNumbers, message = "") {
+    return new Promise((resolve, reject) => {
+      MissionUtils.Console.readLine(message, (answer) => {
+        answer = TypeConverter.stringToNumber(answer);
+
+        if (
+          Validator.isRightLottoNumber(answer) &&
+          Validator.isNumberInArray(hitNumbers, answer)
+        ) {
+          resolve(answer);
+        }
+        reject("error");
+      });
+    });
+  }
 }
 
 module.exports = input;
