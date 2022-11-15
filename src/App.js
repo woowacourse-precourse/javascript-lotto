@@ -3,7 +3,6 @@ class App {
   play() {
     const manager = new Manager();
     manager.buyLotto();
-    manager.getResultNumber();
   }
 }
 
