@@ -8,7 +8,6 @@ class Lotto {
   }
   validate(numbers) {
     const setNumbers = new Set(numbers);
-    const validReg = /[0-9]/;
 
     if (numbers.length !== 6) {
       throw new Error(ERR_MSG.notSixCount);
@@ -17,13 +16,17 @@ class Lotto {
       throw new Error(ERR_MSG.notUniqueNumber);
     }
     numbers.map((number) => {
-      if (!validReg.test(number)) {
-        throw new Error(ERR_MSG.notLottoNumber);
-      }
-      if (!(number >= 1 && number <= 45)) {
-        throw new Error(ERR_MSG.notLottoRange);
-      }
+      this.validNum(number);
     });
+  }
+
+  validNum(number) {
+    if (isNaN(+number)) {
+      throw new Error(ERR_MSG.notLottoNumber);
+    }
+    if (!(number >= 1 && number <= 45)) {
+      throw new Error(ERR_MSG.notLottoRange);
+    }
   }
 
   sortNumber(numbers) {
