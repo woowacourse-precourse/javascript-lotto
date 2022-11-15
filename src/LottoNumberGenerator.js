@@ -34,21 +34,24 @@ class LottoNumberGenerator {
   }
 
   static #validate(numbers, type) {
+    const { LOTTO_NUMBER, DUPLICATION, RANGE } = ERROR_MESSAGE;
+
     if (invalidNumber(numbers)) {
-      throw new Error(makeErrorMsg(ERROR_MESSAGE.NUMBER));
+      throw new Error(makeErrorMsg(LOTTO_NUMBER));
     }
     if (invalidInputNum(numbers, COUNT[type])) {
-      throw new Error(makeErrorMsg(ERROR_MESSAGE[`${type}_LENTH`]));
+      const inputLength = `${type}_LENTH`;
+      throw new Error(makeErrorMsg(ERROR_MESSAGE[inputLength]));
     }
 
     if (invalidDuplication(numbers, COUNT[type])) {
-      throw new Error(makeErrorMsg(ERROR_MESSAGE.DUPLICATION));
+      throw new Error(makeErrorMsg(DUPLICATION));
     }
 
     if (
       invalidRange(numbers, [COUNT.MIN_LOTTO_NUMBER, COUNT.MAX_LOTTO_NUMBER])
     ) {
-      throw new Error(makeErrorMsg(ERROR_MESSAGE.RANGE));
+      throw new Error(makeErrorMsg(RANGE));
     }
   }
 

@@ -20,6 +20,7 @@ const COUNT = {
 
 const ERROR_PREFIX = '[ERROR]';
 const ERROR_MESSAGE = {
+  LOTTO_NUMBER: '로또 번호는 숫자여야 합니다.',
   MONEY_NUMBER: '구매 금액은 숫자여야 합니다.',
   LOTTO_LENGTH: `로또 번호는 ${COUNT.LOTTO_NUMBER}개여야 합니다.`,
   WINNER_NUMBER_LENTH: `당첨 번호는 ${COUNT.WINNER_NUMBER}개여야 합니다.`,

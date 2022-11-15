@@ -16,22 +16,24 @@ class Lotto {
   }
 
   static #validate(numbers) {
+    const { LOTTO_NUMBER, LOTTO_LENGTH, DUPLICATION, RANGE } = ERROR_MESSAGE;
+
     if (invalidNumber(numbers)) {
-      throw new Error(makeErrorMsg(ERROR_MESSAGE.NUMBER));
+      throw new Error(makeErrorMsg(LOTTO_NUMBER));
     }
 
     if (invalidInputNum(numbers, COUNT.LOTTO_NUMBER)) {
-      throw new Error(makeErrorMsg(ERROR_MESSAGE.LOTTO_LENGTH));
+      throw new Error(makeErrorMsg(LOTTO_LENGTH));
     }
 
     if (invalidDuplication(numbers, COUNT.LOTTO_NUMBER)) {
-      throw new Error(makeErrorMsg(ERROR_MESSAGE.DUPLICATION));
+      throw new Error(makeErrorMsg(DUPLICATION));
     }
 
     if (
       invalidRange(numbers, [COUNT.MIN_LOTTO_NUMBER, COUNT.MAX_LOTTO_NUMBER])
     ) {
-      throw new Error(makeErrorMsg(ERROR_MESSAGE.RANGE));
+      throw new Error(makeErrorMsg(RANGE));
     }
   }
 
