@@ -31,20 +31,44 @@ class LottoManager {
 
   /**
    *
-   * @param {number} bonusNumber
+   * @param {string} bonusNumber
    */
-  validateBonusNumber(bonusNumber) {
-    if (this.#winningNumbers.includes(bonusNumber)) {
+  validateDuplicate(bonusNumber) {
+    if (this.#winningNumbers.includes(Number(bonusNumber))) {
       throw new Error(ERROR.DUPLICATE);
     }
   }
 
   /**
    *
-   * @param {number} bonusNumber
+   * @param {string} bonusNumber
+   */
+  validateInteger(bonusNumber) {
+    const number = Number(bonusNumber);
+    if (
+      !Number.isInteger(number) ||
+      number < LOTTO.MIN_NUMBER ||
+      number > LOTTO.MAX_NUMBER
+    ) {
+      throw new Error(ERROR.LOTTO_BOUND);
+    }
+  }
+
+  /**
+   *
+   * @param {string} bonusNumber
+   */
+  #validate(bonusNumber) {
+    this.validateDuplicate(bonusNumber);
+    this.validateInteger(bonusNumber);
+  }
+
+  /**
+   *
+   * @param {string} bonusNumber
    */
   setBonusNumber(bonusNumber) {
-    this.validateBonusNumber(bonusNumber);
+    this.#validate(bonusNumber);
     this.#bonusNumber = Number(bonusNumber);
   }
 

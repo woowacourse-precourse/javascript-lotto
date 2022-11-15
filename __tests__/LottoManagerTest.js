@@ -5,7 +5,14 @@ describe('로또 매니저 클래스 테스트', () => {
     expect(() => {
       const lottoManager = new LottoManager();
       lottoManager.setWinningNumbers([1, 2, 3, 4, 5, 6]);
-      lottoManager.validateBonusNumber(6);
+      lottoManager.validateDuplicate(6);
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호가 숫자가 아니라면 예외가 발생한다.', () => {
+    expect(() => {
+      const lottoManager = new LottoManager();
+      lottoManager.validateInteger('123');
     }).toThrow('[ERROR]');
   });
 
