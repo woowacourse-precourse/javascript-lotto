@@ -14,9 +14,12 @@ class ResultStats {
 
   changeToArray(numbers){
     let lotto_list = (numbers + "").split(",");
-    this.getLottoNumbers(lotto_list);
+    this.createLottoNumbersList(lotto_list);
   }
 
+  createLottoNumbersList(lotto_list){
+    this.#lotto_num.push(lotto_list);
+  }
 }
 
 module.exports = ResultStats;
