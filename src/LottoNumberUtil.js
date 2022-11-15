@@ -18,8 +18,15 @@ function validateDuplication(numbers) {
   }
 }
 
+function validateRange(number) {
+  if (number < 1 || number > 45 || number % 1 !== 0) {
+    throw new Error(LOTTO_ERROR_MESSAGE.LOTTO_NUMBER_RANGE_ERROR);
+  }
+}
+
 module.exports = {
   validateMoney,
   validateLength,
   validateDuplication,
+  validateRange,
 };
