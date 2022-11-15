@@ -44,6 +44,14 @@ class LottoGame {
   getWinningNumbers() {
     return this.#winningNumbers;
   }
+
+  // [x]사용자가 입력한 보너스 번호를 확인하고 저장하는 기능
+  setBonusNumbers(bonusNumber) {
+    LottoNumberUtils.validateRange(bonusNumber);
+    LottoNumberUtils.validateDuplication([
+      ...this.#winningNumbers,
+      bonusNumber,
+    ]);
 }
 
 module.exports = LottoGame;
