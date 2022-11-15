@@ -22,6 +22,13 @@ describe('기능 테스트', () => {
         );
     });
 
+    test('3개 숫자가 일치할 경우 5등에 해당한다.', () => {
+        const app = new App();
+        expect(app.getSingleResult([1, 3, 4, 10, 11, 12], [1, 2, 3, 4, 5, 6, 7])).toBe(
+            3
+        );
+    });
+
     test('5개 숫자가 일치하고 보너스 번호가 일치할 경우 2등에 해당한다.', () => {
         const app = new App();
         expect(app.getSingleResult([1, 3, 4, 5, 6, 7], [1, 2, 3, 4, 5, 6, 7])).toBe(
