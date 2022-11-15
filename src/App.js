@@ -80,7 +80,17 @@ class App {
       second.money += second_Money;
     }
   }
-  //수익률 출력
+  //수익률 및 결과 출력
+  finalResult () {
+    MissionUtils.Console.print(
+      `3개 일치 (5,000원) - ${fifth.count}개/n,
+       4개 일치 (50,000원) - ${fourth.count}개/n,
+       5개 일치 (1,500,000원) - ${fifth.count}개/n,
+       5개 일치, 보너스 볼 일치 (30,000,000원) - ${second.count}개/n,
+       6개 일치 (2,000,000원) - ${first.count}개/n
+       `
+    )
+  }
 }
 
 
