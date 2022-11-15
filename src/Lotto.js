@@ -9,12 +9,13 @@ const {
 
 let exception = new Exception();
 
-
-
 class Lotto {
   #numbers;
 
   constructor(numbers) {
+    if (numbers !== undefined) exception.checkCount(numbers);
+    if (numbers !== undefined) exception.checkDuplicate(numbers);
+
     this.cost = 0;
     this.#numbers = numbers;
     this.mylotto = [];
@@ -53,7 +54,7 @@ class Lotto {
     Console.print(`${lottoCount}${SENTANCE.BUY}`);
     this.makeLottoNumber(lottoCount);
     this.mylotto.forEach((mylottoArray) => {
-      let strMyLotto = `[${String(mylottoArray).replace(/,/g, ", ")}]`
+      let strMyLotto = `[${String(mylottoArray).replace(/,/g, ", ")}]`;
       Console.print(strMyLotto);
     });
     this.enterWinningNumber();
