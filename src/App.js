@@ -36,6 +36,12 @@ class App {
       this.printLotto();
     });
   }
+
+  printLotto() {
+    Console.print(PRINT.LOTTO_COUNT(this.lottos.length));
+    this.lottos.map((lotto) => Console.print(lotto.printLotto()));
+    this.inputWinningNumber();
+  }
 }
 
 module.exports = App;
