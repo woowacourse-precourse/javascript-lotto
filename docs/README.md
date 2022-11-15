@@ -1,0 +1,18 @@
+<기능 요구 사항> 
+
+1. 당첨번호 추첨(computerNumber)
+2. 사용자 구입금액 입력 처리(userMoneyInput)
+3. 사용자 로또번호 입력 처리(userLottoInput)
+4. 사용자 보너스 번호 입력 처리(userBonusInput)
+5. 당첨번호와 사용자 로또번호 비교하여 숫자 일치 개수를 배열(countRank)에 저장(compareLottoNumber)
+6. 숫자 일치 개수 배열과 각 로또 당첨 조건이 일치하는지 비교하여 당첨 횟수를 배열(rankList)에 저장(setRanking)
+7. 예외처리_ 입력값이 숫자가 아닐 경우(inputExceptionNotANumber)
+8. 예외처리_ 입력한 구입금액이 1000단위가 아닐 경우(inputExceptionThosand)
+9. 예외처리_ 입력값이 1부터 45까지의 값이 아닐 경우(inputExceptionNumberRange)
+10. 예외처리_ 입력한 로또번호에 중복값이 있을 경우(inputExceptionLottoDuplicate)
+11. 예외처리_ 로또번호 6자리를 입력하지 않았을 경우(inputExceptionLottoLength)
+12. 예외처리_ 보너스 번호 1개를 입력하지 않았을 경우(inputExceptionBonusLength)
+13. 당첨 통계 출력(printRank)
+14. 수익률 출력(printRevenue)
+15. 반복되는 사용자 입력 함수 묶음(userInput)
+16. 게임 시작(play)
