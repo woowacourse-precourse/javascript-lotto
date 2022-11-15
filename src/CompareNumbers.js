@@ -7,7 +7,7 @@ const {
   FIVE,
 } = require('../util/constants');
 
-let rank = {
+const rankAccordToMatchNum = {
   3: FIFTH,
   4: FOURTH,
   6: FIRST,
@@ -34,12 +34,12 @@ class CompareNumbers {
   countSameNumbers(lotto) {
     let count = 0;
     this.winningArr.forEach((winningNum) => {
-      if (this.searchSameNumber(lotto, winningNum)) count += 1;
+      if (this.hasSameNumber(lotto, winningNum)) count += 1;
     });
     return count;
   }
 
-  searchSameNumber(lotto, winningNum) {
+  hasSameNumber(lotto, winningNum) {
     let start = 0;
     let end = lotto.length - 1;
     while (start <= end) {
@@ -53,7 +53,8 @@ class CompareNumbers {
   }
 
   ranking(matchNumber) {
-    if (rank[matchNumber]) this.result[rank[matchNumber]] += 1;
+    if (rankAccordToMatchNum[matchNumber])
+      this.result[rankAccordToMatchNum[matchNumber]] += 1;
   }
 
   compareSecondThird(index) {

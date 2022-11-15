@@ -9,7 +9,7 @@ const {
 
 class CreateLotto {
   constructor(money) {
-    this.result = [];
+    this.lottoArr = [];
     this.money = parseInt(money);
     this.lottoNum = this.money / MONEY_UNIT;
   }
@@ -17,7 +17,7 @@ class CreateLotto {
   make() {
     this.start();
     this.create();
-    return this.result;
+    return this.lottoArr;
   }
 
   start() {
@@ -40,7 +40,7 @@ class CreateLotto {
   }
 
   save(lotto) {
-    this.result.push(lotto);
+    this.lottoArr.push(lotto);
     Console.print(`[${lotto.join(', ')}]`);
   }
 }
