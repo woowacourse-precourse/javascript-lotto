@@ -1,4 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+const Bonus = require('./Bonus');
 const Cost = require('./Cost');
 const Lotto = require('./Lotto');
 const { Console, Random } = MissionUtils;
@@ -8,6 +9,7 @@ class App {
     this.cost;
     this.lottoArray = [];
     this.winningLottoNumberArray = [];
+    this.bonusNumber;
   }
 
   getCost() {
@@ -39,10 +41,20 @@ class App {
     });
   }
 
+  getBonusNumber() {
+    Console.readLine('보너스 번호를 입력해 주세요.', bonumNumberInput => {
+      this.bonusNumber = new Bonus(
+        bonumNumberInput,
+        this.winningLottoNumberArray.getValue()
+      );
+    });
+  }
+
   play() {
     this.getCost();
     this.getLottoArray();
     this.getWinningLottoNumberArray();
+    this.getBonusNumber();
   }
 }
 
