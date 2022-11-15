@@ -2,6 +2,7 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const Lottos = require('./Lottos');
 const Lotto = require('./Lotto');
 const Calculate = require('./Calculate');
+const message = require('./Message');
 class User {
   constructor() {
     this.amount = '';
@@ -27,10 +28,10 @@ class User {
   }
 
   input_amount() {
-    MissionUtils.Console.readLine('구입 금액을 입력해 주세요\n', amount => {
+    MissionUtils.Console.readLine(message.INPUT_AMOUNT, amount => {
       const VALIDATION = this.validate_amount(amount);
       if (!VALIDATION) {
-        throw new Error('[ERROR] 구입 금액은 1000의 단위 숫자여야 합니다.');
+        throw new Error(message.AMOUNT_ERROR);
       }
       const COUNT = amount / 1000;
       this.setAmount(amount);
@@ -54,19 +55,16 @@ class User {
   }
 
   input_winning_number() {
-    MissionUtils.Console.readLine(
-      '\n당첨 번호를 입력해 주세요.\n',
-      winning_number => {
-        winning_number = winning_number.split(',');
-        const VALIDATION = this.validate_winning_number(winning_number);
-        if (!VALIDATION) {
-          throw new Error('[Error] 로또 번호는 1~45 사이의 6자리 숫자입니다.');
-        }
-        const toNumbers = arr => arr.map(Number);
-        this.setWinningNumber(toNumbers(winning_number));
-        this.input_bonus_number();
-      },
-    );
+    MissionUtils.Console.readLine(message.INPUT_WINNING, winning_number => {
+      winning_number = winning_number.split(',');
+      const VALIDATION = this.validate_winning_number(winning_number);
+      if (!VALIDATION) {
+        throw new Error(message.RANGE_ERROR);
+      }
+      const toNumbers = arr => arr.map(Number);
+      this.setWinningNumber(toNumbers(winning_number));
+      this.input_bonus_number();
+    });
   }
 
   validate_winning_number(numbers) {
@@ -82,21 +80,16 @@ class User {
   }
 
   input_bonus_number() {
-    MissionUtils.Console.readLine(
-      '\n보너스 번호를 입력해 주세요.\n',
-      bonus_number => {
-        const VALIDATION = this.validate_bonus_number(bonus_number);
-        if (VALIDATION === 'outofrange') {
-          throw new Error('[Error] 보너스 번호는 1~45 사이의 숫자입니다.');
-        } else if (VALIDATION === 'overlap') {
-          throw new Error(
-            '[Error] 보너스 번호는 당첨번호와 일치할 수 없습니다.',
-          );
-        }
-        this.setBonusNumber(Number(bonus_number));
-        this.calculate();
-      },
-    );
+    MissionUtils.Console.readLine(message.INPUT_BONUS, bonus_number => {
+      const VALIDATION = this.validate_bonus_number(bonus_number);
+      if (VALIDATION === 'outofrange') {
+        throw new Error(message.BONUS_RANGE_ERROR);
+      } else if (VALIDATION === 'overlap') {
+        throw new Error(message.BONUS_OVERLAP_ERROR);
+      }
+      this.setBonusNumber(Number(bonus_number));
+      this.calculate();
+    });
   }
 
   validate_bonus_number(number) {
