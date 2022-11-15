@@ -1,5 +1,6 @@
 const Lotto = require("../src/Lotto");
 const App = require("../src/App");
+const Calculator = require("../src/Calculator");
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
@@ -79,18 +80,18 @@ describe("로또 클래스 테스트", () => {
   });
 
   test("수익률 구하기", () => {
-    const app = new App();
-    app.rewards = [
+    const calculator = new Calculator();
+    const rewards = [
       [3, 5_000, 1],
       [4, 50_000, 2],
       [5, 1_500_000, 0],
       [5.5, 30_000_000, 0],
       [6, 2_000_000_000, 0],
     ];
-    app.payMoney = 10000;
-    const result =
-      Math.round(5000 + ((10000 * 2) / app.payMoney) * 10000) / 100;
 
-    expect(app.calculateProfit()).toEqual(1050);
+    const payMoney = 10000;
+    const result = Math.round(5000 + ((50000 * 2) / payMoney) * 10000) / 100;
+
+    expect(calculator.conductRevenue(rewards, payMoney)).toEqual(result);
   });
 });
