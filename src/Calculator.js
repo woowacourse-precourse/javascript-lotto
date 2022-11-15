@@ -1,4 +1,6 @@
 const User = require('./User');
+const { PROGRESS_TEXT } = require('../src/const/text');
+const { SCORE_KEY, WINNING_AMOUNT } = require('../src/const/lotto');
 
 class Calculator {
   #user;
@@ -12,11 +14,11 @@ class Calculator {
     this.#user = new User();
     this.#yield = 0;
     this.#totalScore = {
-      'three': 0,
-      'four': 0,
-      'five': 0,
-      'five_ball': 0,
-      'six': 0
+      [SCORE_KEY.THREE] : 0,
+      [SCORE_KEY.FOUR]: 0,
+      [SCORE_KEY.FIVE]: 0,
+      [SCORE_KEY.FIVE_BONUS]: 0,
+      [SCORE_KEY.SIX]: 0
     };
   }
 
@@ -40,7 +42,7 @@ class Calculator {
         this.#totalScore.four += 1;
       } else if (score === 5) {
         if(this.#totalLotto[index].includes(this.#bonusNumber)) {
-          this.#totalScore.five_ball += 1;
+          this.#totalScore.five_bonus += 1;
         } else this.#totalScore.five += 1;
       } else if (score === 6) {
         this.#totalScore.six += 1;
@@ -49,11 +51,9 @@ class Calculator {
   }
     
   calcYield() {
-    this.#yield += 5000*Number(this.#totalScore['three']);
-    this.#yield += 50000*Number(this.#totalScore['four']);
-    this.#yield += 15000000*Number(this.#totalScore['five']);
-    this.#yield += 30000000*Number(this.#totalScore['five_ball']);
-    this.#yield += 2000000000*Number(this.#totalScore['six']);
+    Object.keys(SCORE_KEY).forEach((key) => {
+      this.#yield += (WINNING_AMOUNT[`${key}`])*Number(this.#totalScore[SCORE_KEY[`${key}`]]);
+    })
   }
 
   get totalScore() {

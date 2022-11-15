@@ -1,4 +1,3 @@
-const MissionUtils = require("@woowacourse/mission-utils");
 const App = require('../src/App');
 const User = require('../src/User');
 const Calculator = require('../src/Calculator');
@@ -80,7 +79,7 @@ describe('4. 당첨 내역 계산', () => {
       'three': 1,
       'four': 1,
       'five': 0,
-      'five_ball': 0,
+      'five_bonus': 0,
       'six': 0
     }
     expect(calc.totalScore).toStrictEqual(result);
@@ -101,7 +100,7 @@ describe('4. 당첨 내역 계산', () => {
       'three': 0,
       'four': 1,
       'five': 0,
-      'five_ball': 1,
+      'five_bonus': 1,
       'six': 0
     }
     expect(calc.totalScore).toStrictEqual(result);
