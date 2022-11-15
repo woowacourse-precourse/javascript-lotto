@@ -5,22 +5,24 @@ class PurchaseLotto {
   #totalLotto;
 
   constructor(payment) {
+    this.payment = payment;
     this.isValid(payment);
     this.setPayment(payment);
     this.setTotalLotto(payment);
   }
 
   isValid(payment) {
-    if (payment % 1000 != 0 && payment === 0) {
+    if (payment % 1000 != 0 || payment === 0) {
       throw new Error("[ERROR] 로또 구입 금액은 1000의 배수만 입력해주세요.");
     }
   }
 
-  setPayment(payment) {
-    this.#payment = payment;
+  setPayment() {
+    this.#payment = this.payment;
   }
-  setTotalLotto(payment) {
-    this.#totalLotto = payment / 1000;
+
+  setTotalLotto() {
+    this.#totalLotto = this.payment / 1000;
   }
 
   getPayment() {
