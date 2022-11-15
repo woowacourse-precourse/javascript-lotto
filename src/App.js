@@ -33,6 +33,12 @@ class App {
         throw new Error("[ERROR] 당첨 번호가 6개가 아닙니다.")
       }
 
+      this.winningNumber.map((v) => {
+        if(Number.isNaN(v)) {
+          throw new Error('[ERROR] 당첨 번호가 올바르지 않습니다.');
+        }
+      })
+
       this.inputBonusNumber();
     })
   }
@@ -40,6 +46,10 @@ class App {
   inputBonusNumber() {
     Console.readLine(GET_BONUS_NUMBER_SENTENCE, (bonusNumber) => {
       this.bonusNumber = parseInt(bonusNumber);
+
+      if(Number.isNaN(this.bonusNumber)) {
+        throw new Error('[ERROR] 보너스 번호가 올바르지 않습니다.');
+      }
 
       const lotto = new Lotto(this.lottos);
       const counts = lotto.calculateStats(this.winningNumber, this.bonusNumber);
