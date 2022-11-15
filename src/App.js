@@ -48,6 +48,10 @@ class App {
       this.bonusNumber = new BonusNumber(parseInt(number), this.lotto.getLottoNumbers());
 
       this.checkAllLottoResult(this.myLotto.getMyLottoList(), this.lotto.getLottoNumbers(), this.bonusNumber.getBonusNumber());
+      this.printLottoResult();
+      this.printLottoRateOfReturn(this.calculateRateOfReturn());
+
+      MissionUtils.Console.close();
     });
   }
 
@@ -56,6 +60,18 @@ class App {
     for (const lotto of lottoList) {
       MissionUtils.Console.print(lotto);
     }
+  }
+
+  printLottoResult() {
+    MissionUtils.Console.print('3개 일치 (5,000원) - ' + this.result['5등']);
+    MissionUtils.Console.print('4개 일치 (50,000원) - ' + this.result['4등']);
+    MissionUtils.Console.print('5개 일치 (1,500,000원) - ' + this.result['3등']);
+    MissionUtils.Console.print('5개 일치, 보너스 볼 일치 (30,000,000원) - ' + this.result['2등']);
+    MissionUtils.Console.print('6개 일치 (2,000,000,000원) - ' + this.result['1등']);
+  }
+
+  printLottoRateOfReturn(rateOfReturn) {
+    MissionUtils.Console.print('총 수익률은 ' + rateOfReturn + '%입니다.');
   }
 
   validateIsNumber(money) {
