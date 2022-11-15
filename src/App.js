@@ -4,7 +4,6 @@ const Bonus = require('./Bonus');
 const Lotto = require('./Lotto');
 const PurchaseAmount = require('./PurchaseAmount');
 
-
 class App {
   constructor() {
     this.money = 0;
@@ -22,13 +21,12 @@ class App {
   }
 
   play() {
-    this.purchaseAmount = new PurchaseAmount();
     this.inputPurchaseAmount();
   }
 
   inputPurchaseAmount() {
     Console.readLine(INPUT_QUESTION.money, (money) => {
-      this.purchaseAmount.checkError(money);
+      new PurchaseAmount(money);
       this.money = money;
       this.getPurchaseCount();
     });
