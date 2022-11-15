@@ -1,16 +1,11 @@
 const Calculator = require('./Calculator');
-const {
-  ERROR_MSG,
-  GAME_MSG,
-  NEW_LINE,
-  INCOMES,
-  RESULT_MSG,
-} = require('./Constant');
+const { GAME_MSG, NEW_LINE, INCOMES, RESULT_MSG } = require('./Constant');
 const IO = require('./IO');
 const Lotto = require('./Lotto');
 const NumberGenerator = require('./NumberGenerator');
 const Person = require('./Person');
 const Referee = require('./Referee');
+const Validator = require('./Validator');
 
 const {
   bought,
@@ -35,11 +30,6 @@ class Game {
   static winningNumbers;
   static bonusNumber;
 
-  static validate(money) {
-    if (money % 1000 > 0)
-      throw new Error(ERROR_MSG.prefix + ERROR_MSG.only1000WonUnits);
-  }
-
   static start() {
     Game.enterMoney();
   }
@@ -48,7 +38,7 @@ class Game {
     IO.readLine(pleaseEnterMoney + NEW_LINE, (input) => {
       const money = +input;
       Person.cost = money;
-      Game.validate(money);
+      Validator.validateMoney(money);
       Game.printMoneyInfo(money);
     });
   }
@@ -68,7 +58,7 @@ class Game {
   static enterWinningNumbers() {
     IO.readLine(NEW_LINE + pleaseEnterWinningNumbers + NEW_LINE, (input) => {
       Game.winningNumbers = input.trim().split(',').map(Number);
-      IO.validateNumbers(Game.winningNumbers);
+      Validator.validateNumbers(Game.winningNumbers);
       Game.enterBonusNumber();
     });
   }
