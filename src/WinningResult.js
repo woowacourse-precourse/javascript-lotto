@@ -20,16 +20,21 @@ class WinningResult {
     this.setResult();
   }
 
+  getMatchedLottoNumbers(arr1, arr2) {
+    let matchedArr = arr1.filter(num => arr2.includes(num));
+    return matchedArr.length;
+  }
+
   setResult() {
     this.#lottoArr.forEach(lotto => {
-      let sameArr = lotto.filter(num => this.#winningNumberArr.includes(num));
-      if (sameArr.length === 3) this.#result[WINNING_PRIZE.FIFTH]++;
-      if (sameArr.length === 4) this.#result[WINNING_PRIZE.FOURTH]++;
-      if (sameArr.length === 5 && !lotto.includes(this.#bonusNumber))
+      const matchedNumber = this.getMatchedLottoNumbers(lotto, this.#winningNumberArr);
+      if (matchedNumber === 3) this.#result[WINNING_PRIZE.FIFTH]++;
+      if (matchedNumber === 4) this.#result[WINNING_PRIZE.FOURTH]++;
+      if (matchedNumber === 5 && !lotto.includes(this.#bonusNumber))
         this.#result[WINNING_PRIZE.THIRD]++;
-      if (sameArr.length === 5 && lotto.includes(this.#bonusNumber))
+      if (matchedNumber === 5 && lotto.includes(this.#bonusNumber))
         this.#result[WINNING_PRIZE.SECOND]++;
-      if (sameArr.length === 6) this.#result[WINNING_PRIZE.FIRST]++;
+      if (matchedNumber === 6) this.#result[WINNING_PRIZE.FIRST]++;
     });
   }
 
