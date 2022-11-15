@@ -1,6 +1,7 @@
 const { Console } = require('@woowacourse/mission-utils');
 const { MESSAGE } = require('./utils/constant');
 const LottoShop = require('./LottoShop');
+const Lotto = require('./Lotto');
 
 class LottoGame {
   constructor() {
@@ -17,6 +18,16 @@ class LottoGame {
       this.purchaseAmount = Number(amount);
       this.purchasedNumbers = lottoShop.getPurchasedNumbers();
       this.inputWinningNumber();
+    });
+  }
+
+  inputWinningNumber() {
+    Console.readLine(MESSAGE.INPUT_LOTTO_NUMBER, (lottoNumbers) => {
+      const lotto = new Lotto(
+        lottoNumbers.split(',').map((number) => Number(number))
+      );
+      this.winningNumbers = lotto.getWinningNumbers();
+      this.inputBonusNumber();
     });
   }
 }
