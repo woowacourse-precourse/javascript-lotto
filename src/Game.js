@@ -34,6 +34,10 @@ class Game {
         }
     }
 
+    printUserLottoCount () {
+        InputOutput.output(Message.getLottoCountMessage(this.user.getUserLottoCount()));
+    }
+
 }
 
 module.exports = Game;
