@@ -11,6 +11,7 @@ class LottoStore {
     this.#console.readLine('구입금액을 입력해 주세요. \n', (payment) => {
       this.validatePayment(payment);
       this.#console.print(payment);
+      this.payment = payment
     });
     this.#console.close();
     return this.payment / 1000;
