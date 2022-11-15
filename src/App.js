@@ -3,7 +3,7 @@ const { QUESTION } = require("./Constants");
 const { getValidatedInput } = require("./Validation/App");
 const { getPurchaseAmount } = require("./Lotto/Purchase");
 const Lotto = require("./Lotto/Lotto");
-const LottosMaker = require("./Lotto/LottoMaker");
+const LottosMaker = require("./Lotto/LottosMaker");
 const Bonus = require("./Lotto/Bonus");
 const Statistics = require("./Statistics/Statistics");
 

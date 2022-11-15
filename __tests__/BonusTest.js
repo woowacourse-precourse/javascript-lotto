@@ -22,4 +22,8 @@ describe("보너스 클래스 테스트", () => {
       new Bonus([1, 2], lotto);
     }).toThrow(ERROR.incorrect_number_of_bonus_number);
   });
+
+  test("getNumbers() 테스트", () => {
+    expect(new Bonus([45], lotto).getNumbers()).toEqual([45]);
+  });
 });

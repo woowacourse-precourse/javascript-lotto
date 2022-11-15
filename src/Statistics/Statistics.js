@@ -23,7 +23,10 @@ class Statistics {
       profit += PRIZE[ordinal] * winningDetails[rank];
     });
 
-    return ((profit / (amount * LOTTO_INFO.price)) * 100).toFixed(1);
+    return ((profit / (amount * LOTTO_INFO.price)) * 100).toLocaleString(
+      undefined,
+      { minimumFractionDigits: 1 }
+    );
   }
 
   print() {
@@ -38,24 +41,3 @@ class Statistics {
 }
 
 module.exports = Statistics;
-
-// const lottos = [
-//   new Lotto([1, 23, 4, 10, 11, 12]),
-//   new Lotto([10, 11, 12, 13, 14, 15]),
-//   new Lotto([10, 11, 12, 13, 14, 15]),
-//   new Lotto([10, 11, 12, 13, 14, 15]),
-//   new Lotto([10, 11, 12, 13, 14, 15]),
-//   new Lotto([10, 11, 12, 13, 14, 15]),
-//   new Lotto([10, 11, 12, 13, 14, 15]),
-//   new Lotto([10, 11, 12, 13, 14, 15]),
-// ];
-// const winner = new Lotto([1, 23, 4, 5, 6, 7]);
-// const bonus = new Bonus(2, winner);
-// const result = new Statistics({
-//   lottos: lottos,
-//   winning: winner,
-//   bonus: bonus,
-//   amount: 8,
-// });
-
-// result.print();
