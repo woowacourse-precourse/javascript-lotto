@@ -12,6 +12,9 @@ class Message {
         return `${count}개를 구매했습니다.`
     }
 
+    static getProfitMessage (profit) {
+        return `총 수익률은 ${profit}%입니다.`
+    }
 }
   
   module.exports = Message;
