@@ -58,9 +58,19 @@ describe("계산 로직 테스트", () => {
   });
 
   test("당첨 목록과 투입 금액을 입력하면 수익률이 도출된다.", () => {
+    const calculatorModel = new calculator();
     expect(calculatorModel.getEarningRate({ 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }, "8000")).toEqual("0.0");
+  });
+
+  test("당첨 목록과 투입 금액을 입력하면 수익률이 도출된다.", () => {
+    const calculatorModel = new calculator();
     expect(calculatorModel.getEarningRate({ 1: 1, 2: 1, 3: 1, 4: 1, 5: 1 }, "5000")).toEqual(
       "40631100.0"
     );
+  });
+
+  test("당첨 목록과 투입 금액을 입력하면 수익률이 도출된다.", () => {
+    const calculatorModel = new calculator();
+    expect(calculatorModel.getEarningRate({ 1: 0, 2: 0, 3: 0, 4: 0, 5: 1 }, 3000)).toEqual("166.7");
   });
 });
