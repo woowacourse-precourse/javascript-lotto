@@ -2,7 +2,7 @@ const {Console} = require("@woowacourse/mission-utils");
 const CreateRandomLotto = require("./CreateRandomLotto");
 const { INPUT_MESSAGE, BUY_LOTTO_MESSAGE, ERROR_MESSAGE, THOUSAND} = require("./Constants");
 const { INPUT_MONEY_MESSAGE } = INPUT_MESSAGE;
-const { NOT_THOUSAND_UNIT } = ERROR_MESSAGE;
+const { NOT_THOUSAND_UNIT, INPUT_NUM_BLANK } = ERROR_MESSAGE;
 
 class UserInputNumber {
     constructor(){
@@ -27,7 +27,7 @@ class UserInputNumber {
             throw new Error(NOT_THOUSAND_UNIT);
         }
         if(value == "" || value == null){
-            throw new Error("[ERROR]")
+            throw new Error(INPUT_NUM_BLANK);
         }
     }
 }
