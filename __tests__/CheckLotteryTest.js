@@ -11,7 +11,7 @@ const mockRandoms = (numbers) => {
 };
 
 describe('CheckLottery 테스트', () => {
-  test('당첨된 등수를 관리하는 winList와 당첨 금액의 총합인 total을 검증 (2)', () => {
+  test('당첨된 등수를 관리하는 winList와 당첨 금액의 총합인 total을 검증', () => {
     //조건
     mockRandoms([
       [1, 2, 3, 4, 5, 6],
