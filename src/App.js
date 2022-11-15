@@ -5,7 +5,7 @@ const { LOTTO_ERROR_MENTION, LOTTO_PRINT_MENTION, LOTTO_REWARD } = require("./co
 function printLottoRevenuePercent(lottoRevenue, lottoCount) {
   let investMoney = 1000 * lottoCount;
   let RevenuePercent = lottoRevenue / investMoney;
-  Console.print(`총 수익률은 ${RevenuePercent * 100}%입니다.`)
+  Console.print(`총 수익률은 ${(RevenuePercent * 100).toLocaleString('en')}%입니다.`)
   Console.close();
 }
 
