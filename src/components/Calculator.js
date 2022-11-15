@@ -14,7 +14,7 @@ class Calculator {
 
   calculateStatistics() {
     this.lotteries.forEach((lotto) => this.compareLotteries(lotto));
-    this.yield = this.calculateYield(this.statistic) && "0.0";
+    this.yield = this.calculateYield(this.statistic) || "0.0";
   }
 
   compareLotteries(lotto) {
@@ -24,7 +24,7 @@ class Calculator {
     const count = sameNumber.length;
 
     const scoreIndex = this.getScoreIndex(count, lotto);
-    if (scoreIndex) {
+    if (!isNaN(scoreIndex)) {
       this.statistic[scoreIndex] += 1;
     }
   }
