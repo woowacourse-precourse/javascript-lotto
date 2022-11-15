@@ -93,7 +93,6 @@ class BuyLotto {
   }
 
   getResult() {
-    const prizeArray = [...this.userInputNum, ...this.userInputBonusNum];
     this.fifthPrize = 0;
     this.fourthPrize = 0;
     this.thirdPrize = 0;
@@ -136,16 +135,15 @@ class BuyLotto {
           : null;
       }
     }
-    console.log(this.sum);
 
     this.sum = this.sum + this.firstPrize * PRIZE_MONEY.FIRST_PRIZE;
     this.sum = this.sum + this.secondPrize * PRIZE_MONEY.SECOND_PRIZE;
     this.sum = this.sum + this.thirdPrize * PRIZE_MONEY.THIRD_PRIZE;
     this.sum = this.sum + this.fourthPrize * PRIZE_MONEY.FOURTH_PRIZE;
     this.sum = this.sum + this.fifthPrize * PRIZE_MONEY.FIFTH_PRIZE;
-    console.log(this.sum);
 
     this.getYield = (this.sum / (this.howMany * 1000)) * 100;
+    this.getYield = this.getYield.toFixed(1);
     this.printResult();
   }
 
@@ -157,7 +155,7 @@ class BuyLotto {
       `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.secondPrize}개`
     );
     Console.print(`6개 일치 (2,000,000,000원) - ${this.firstPrize}개`);
-    Console.print(`총 수익률은 ${this.getYield}%입니다`);
+    Console.print(`총 수익률은 ${this.getYield}%입니다.`);
   }
 }
 
