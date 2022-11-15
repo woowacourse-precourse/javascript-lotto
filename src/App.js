@@ -46,7 +46,6 @@ class App {
     for(let i = 0; i < 6; i++) {
       this.compareWinningAndLists(this.winningList[i]);
     }
-    console.log('match: ', this.match);
     this.makeMatchResult();
   }
 
