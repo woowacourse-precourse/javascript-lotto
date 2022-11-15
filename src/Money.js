@@ -6,10 +6,10 @@ class Money {
     this.validate(this.money);
   }
 
-  validate() {
+  validate(money) {
     const error = new UserError();
-    error.includingCharactersError(this.money);
-    error.validateMoney(this.money);
+    error.includingCharactersError(money);
+    error.validateMoney(money);
   }
 
   divideMoney(money) {
