@@ -26,12 +26,7 @@ class UserInterface {
     lottos.forEach((lotto) => Console.print(lotto.getNumbers()));
   }
 
-  printTotalResult(drawer, earningRate) {
-    this.printWinningResults(drawer);
-    this.printEarningRate(earningRate);
-  }
-
-  printWinningResults(drawer) {
+  printWinningResult(drawer) {
     const results = drawer.getResults();
     const INTRO_MESSAGE = '\n당첨 통계\n---\n';
 
