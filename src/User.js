@@ -9,9 +9,7 @@ class User {
   }
 
   readWinNumbers(query, callback) {
-    MissionUtils.Console.readLine(query, (winNumbers) => {
-      callback(winNumbers);
-    });
+    MissionUtils.Console.readLine(query, Validator.winNumbers(callback));
   }
 }
 

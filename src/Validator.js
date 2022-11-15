@@ -15,6 +15,28 @@ class Validator {
     };
   }
 
+  static winNumbers(callback) {
+    return (winNumbers) => {
+      if (winNumbers.split(",").length === 1) {
+        throw new CustomError(ERROR_CODE.WRONG_FORMAT);
+      }
+
+      if (winNumbers.split(",").length !== 6) {
+        throw new CustomError(ERROR_CODE.WRONG_COUNT);
+      }
+
+      if (new Set(winNumbers.split(",")).size !== 6) {
+        throw new CustomError(ERROR_CODE.DUPLICATED);
+      }
+
+      if (winNumbers.split(",").some((number) => number < 1 || number > 45)) {
+        throw new CustomError(ERROR_CODE.OUT_OF_RANGE);
+      }
+
+      callback(winNumbers);
+    };
+  }
+
   static lottoNumbers(lottoNumbers) {
     if (lottoNumbers.length !== 6) {
       throw new CustomError(ERROR_CODE.WRONG_COUNT);

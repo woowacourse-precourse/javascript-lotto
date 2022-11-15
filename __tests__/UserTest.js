@@ -48,4 +48,40 @@ describe("유저 클래스 테스트", () => {
 
     expect(logSpy).toHaveBeenCalledWith("당첨 번호", expect.anything());
   });
+
+  test("당첨 번호가 올바른 형식이 아니면 예외가 발생한다", () => {
+    mockQuestions(["1 2 3 4 5 6"]);
+
+    expect(() => {
+      const user = new User();
+      user.readWinNumbers("당첨 번호", (amount) => {});
+    }).toThrow("[ERROR]");
+  });
+
+  test("당첨 번호가 6개가 아니면 예외가 발생한다", () => {
+    mockQuestions(["1,2,3,4,5"]);
+
+    expect(() => {
+      const user = new User();
+      user.readWinNumbers("당첨 번호", (amount) => {});
+    }).toThrow("[ERROR]");
+  });
+
+  test("당첨 번호가 중복되었다면 예외가 발생한다", () => {
+    mockQuestions(["1,1,2,3,4,5"]);
+
+    expect(() => {
+      const user = new User();
+      user.readWinNumbers("당첨 번호", (amount) => {});
+    }).toThrow("[ERROR]");
+  });
+
+  test("당첨 번호가 1부터 45 사이의 숫자가 아니면 예외가 발생한다", () => {
+    mockQuestions(["1,2,3,4,5,99"]);
+
+    expect(() => {
+      const user = new User();
+      user.readWinNumbers("당첨 번호", (amount) => {});
+    }).toThrow("[ERROR]");
+  });
 });
