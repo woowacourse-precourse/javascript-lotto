@@ -25,6 +25,14 @@ class App {
   // statistics(){
   // }
 
+  PrintLotto(){
+    Console.print(`3개 일치 (5,000원) - ${this.result2[3]}개`);
+    Console.print(`4개 일치 (50,000원) - ${this.result2[4]}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${this.result2[5]}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.result2['5bonus']}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${this.result2[6]}개`);
+  }
+
   statistics(){ // 두개 비교
     // console.log(`통계: ${this.winLotto.getNumbers().includes(this.lottos)}`);
 
@@ -119,8 +127,8 @@ class App {
     // 통계
     this.statistics();
 
-    // 출력
-    //PrintLotto();
+    // 당첨내역 출력
+    this.PrintLotto();
   }
 }
 
