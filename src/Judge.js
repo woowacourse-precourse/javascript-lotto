@@ -2,6 +2,8 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const { RANGE } = require("./Constant");
 
 class Judge {
+  #lottoArr;
+
   constructor() {}
 
   isBuyerInputValid(buyerInput) {
@@ -14,6 +16,16 @@ class Judge {
       );
     }
     return buyerInput;
+  }
+
+  lottoInputValid(lottoInput) {
+    const lottoArr = lottoInput.split(",");
+    this.isLottoInputNaN(lottoArr);
+    this.isLottoInputInRange(lottoArr);
+    this.isLottoInputLengthValid(lottoArr);
+    this.isLottoInputDuplicate(lottoArr);
+    this.#lottoArr = lottoArr;
+    return this.#lottoArr;
   }
 
   isLottoInputNaN(lottoInput) {
