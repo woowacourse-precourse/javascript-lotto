@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+
 class Lotto {
   #numbers;
 
@@ -6,7 +7,6 @@ class Lotto {
     this.checkWinBonusNumber(numbers, 6);
     this.#numbers = numbers;
     this.inputBonusNumber(pickRandomNumberArr, lottoMoney);
-    // this.lottoMoney = lottoMoney;
   }
 
   checkWinBonusNumber(winNumberArr, arrSize) {
