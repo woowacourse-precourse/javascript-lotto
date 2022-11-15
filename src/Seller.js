@@ -3,7 +3,7 @@ const Buyer = require("./Buyer");
 const Statistic = require("./Statistic");
 const Io = require("./utils/Io");
 const Validator = require("./utils/Validator");
-const { LOTTO_AMOUNT, LOTTO_NUMBER } = require("./constants/index");
+const { LOTTO_AMOUNT, LOTTO_NUMBER, MESSAGE } = require("./constants/index");
 const MissionUtils = require("@woowacourse/mission-utils");
 
 const Seller = ((_) => {
@@ -23,15 +23,15 @@ const Seller = ((_) => {
     }
 
     #requestLottoSale() {
-      this.#io.readline("구입금액을 입력해주세요.\n", this.#handleLottoSale.bind(this));
+      this.#io.readline(MESSAGE.SELLER.SALE, this.#handleLottoSale.bind(this));
     }
 
     #requestLottoWinNumber() {
-      this.#io.readline("\n당첨 번호를 입력해 주세요.\n", this.#handleLottoWinNumber.bind(this));
+      this.#io.readline(MESSAGE.SELLER.WINNUMBER, this.#handleLottoWinNumber.bind(this));
     }
 
     #requestLottoBonusNumber() {
-      this.#io.readline("\n보너스 번호를 입력해 주세요.\n", this.#handleLottoBonusNumber.bind(this));
+      this.#io.readline(MESSAGE.SELLER.BONUSNUMBER, this.#handleLottoBonusNumber.bind(this));
     }
 
     #handleLottoSale(amount) {
@@ -57,7 +57,11 @@ const Seller = ((_) => {
 
     #lottoResult() {
       const { winNumber, lottos, bonusNumber } = this[Private];
-      this.#statistic.outputView({ lottos, winNumber, bonusNumber });
+      this.#statistic.outputView({
+        lottos,
+        winNumber,
+        bonusNumber,
+      });
       this.#io.close();
     }
 

@@ -34,6 +34,17 @@ const LOTTO_RANK = Object.freeze({
   },
 });
 
+const MESSAGE = Object.freeze({
+  SELLER: {
+    SALE: "구입금액을 입력해주세요.\n",
+    WINNUMBER: "\n당첨 번호를 입력해 주세요.\n",
+    BONUSNUMBER: "\n보너스 번호를 입력해 주세요.\n",
+  },
+  STATISTIC: {
+    WIN: "\n당첨 통계",
+  },
+});
+
 const LOTTO_RANK_HASH = {
   CASE: {
     6: "RANK_ONE",
@@ -56,4 +67,5 @@ module.exports = {
   LOTTO_NUMBER,
   LOTTO_RANK,
   LOTTO_RANK_HASH,
+  MESSAGE,
 };

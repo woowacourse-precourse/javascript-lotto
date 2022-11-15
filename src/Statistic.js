@@ -1,5 +1,5 @@
 const Io = require("./utils/Io");
-const { LOTTO_RANK, LOTTO_AMOUNT, LOTTO_RANK_HASH } = require("./constants/index");
+const { LOTTO_RANK, LOTTO_AMOUNT, LOTTO_RANK_HASH, MESSAGE } = require("./constants/index");
 
 const Statistic = class {
   #io;
@@ -13,7 +13,7 @@ const Statistic = class {
       rank,
       totalYield: this.getYield({ rank, lottos }),
     });
-    this.#io.print("\n당첨 통계");
+    this.#io.print(MESSAGE.STATISTIC.WIN);
     this.#io.print("---");
     messages.forEach((message) => this.#io.print(message));
   }
