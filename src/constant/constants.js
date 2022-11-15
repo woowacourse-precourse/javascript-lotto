@@ -46,4 +46,14 @@ const CONSTANT = {
   RATE: (prize, amount) => ((prize / amount) * 100).toFixed(1),
 };
 
+const deepFreeze = obj => {
+  [...Object.getOwnPropertyNames(obj)].forEach(name => {
+    const value = obj[name];
+    if (value && typeof value === 'object') deepFreeze(value);
+  });
+  return Object.freeze(obj);
+}
+
+deepFreeze(CONSTANT);
+
 module.exports = CONSTANT;

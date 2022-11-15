@@ -70,7 +70,7 @@ class App {
     const { CHECK, ERROR_MSG } = CONSTANT;
 
     if (!CHECK.IS_NUMBER(bonus)) throw new Error(`${ERROR_MSG.NAN}`);
-    if (!CHECK.IS_IN_RANGE([...bonus])) throw new Error(`${ERROR_MSG.OUT_OF_RANGE}`);
+    if (!CHECK.IS_IN_RANGE([+bonus])) throw new Error(`${ERROR_MSG.OUT_OF_RANGE}`);
     if (CHECK.IS_IN_WINNER(+bonus, this.#winner)) throw new Error(`${ERROR_MSG.DUPLICATE_BONUS}`);
 
     this.#lottos
