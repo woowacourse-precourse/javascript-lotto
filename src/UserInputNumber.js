@@ -26,6 +26,9 @@ class UserInputNumber {
         if(value % THOUSAND !==  0){
             throw new Error(NOT_THOUSAND_UNIT);
         }
+        if(value == "" || value == null){
+            throw new Error("[ERROR]")
+        }
     }
 }
 
