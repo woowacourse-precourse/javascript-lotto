@@ -118,7 +118,11 @@ class App {
     return stringToNumber;
   }
 
-
+  validateWinNumbers(win) { //유효검사
+    if (win.split(',').length !== GAME.COUNT) {
+      throw new Error(`${ERROR.COMMON} ${ERROR.SIX_LENGTH}`);
+    }
+  }
 }
 
 const app = new App();
