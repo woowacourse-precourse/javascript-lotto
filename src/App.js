@@ -27,13 +27,18 @@ class App {
       this.buyPrice = price;
       this.priceValidate();
       this.createLottoNumber();
-      //this.getWinningNumber();
     });
   }
 
   priceValidate() {
     if (this.buyPrice % 1000 !== 0) {
       throw new Error("[ERROR] 로또 구입 금액은 1000원 단위여야 합니다.");
+    }
+  }
+
+  bonusValidate() {
+    if (this.bonusNumber.legnth !== 1) {
+      throw new Error("[ERROR] 보너스 번호는 한 자리여야 합니다.");
     }
   }
 
@@ -50,7 +55,12 @@ class App {
         MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6)
       );
     }
+    this.sortLottoNumber();
 
+    this.getWinningNumber();
+  }
+
+  sortLottoNumber() {
     this.lottoArray.map((data) => {
       data.sort((a, b) => {
         return a - b;
@@ -58,7 +68,6 @@ class App {
 
       MissionUtils.Console.print(`[${data.join(", ")}]`);
     });
-    this.getWinningNumber();
   }
 
   getWinningNumber() {
@@ -83,7 +92,7 @@ class App {
       "\n보너스 번호를 입력해 주세요.\n",
       (number) => {
         this.bonusNumber = number;
-
+        this.bonusValidate();
         this.compareLottoNumber();
 
         MissionUtils.Console.close();
