@@ -2,7 +2,8 @@ const Calculator = require("../model/Calculator");
 const { MESSAGE_ACCORDING_ASK } = require("../constants/Message");
 const MyNumberGenerator = require("../model/Generator");
 const Lotto = require("../model/Lotto");
-const { readLine } = require("../utils/MissionUtils");
+const MissionUtils = require("@woowacourse/mission-utils");
+const { readLine, close } = require("../utils/MissionUtils");
 const View = require("../view/View");
 
 class LottoGameController {
@@ -81,6 +82,7 @@ class LottoGameController {
     );
 
     this.#view.print.eariningRate(earningRate);
+    MissionUtils.Console.close();
   }
 }
 
