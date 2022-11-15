@@ -1,4 +1,4 @@
-const { validateLotto } = require('../src/utils/validations');
+const { validateLotto, validateBonus } = require('../src/utils/validations');
 
 class Lotto {
   #numbers;
@@ -26,6 +26,7 @@ class WinningLotto {
   }
 
   setBonusNum(bonusNum) {
+    validateBonus(bonusNum, this.lotto);
     this.bonusNum = bonusNum;
   }
 

@@ -1,6 +1,7 @@
 const {
   INPUT_MONEY_ERROR,
   GENERATE_LOTTO_ERROR,
+  BONUS_NUM_ERROR,
 } = require('../constants/constants');
 
 const validateInputMoney = (money) => {
@@ -32,4 +33,17 @@ const validateLotto = (numbers) => {
   }
 };
 
-module.exports = { validateInputMoney, validateLotto };
+const validateBonus = (bonusNum, winningLotto) => {
+  bonusNum = parseInt(bonusNum);
+  if (bonusNum.length === 0) {
+    throw new Error(BONUS_NUM_ERROR.ONE_DIGIT_ALLOWED);
+  }
+  if (winningLotto.includes(bonusNum)) {
+    throw new Error(BONUS_NUM_ERROR.NOT_DUPLICATED_ALLOWED);
+  }
+  if (!1 > bonusNum || bonusNum > 45) {
+    throw new Error(BONUS_NUM_ERROR.NUM_IN_RANGE_ALLOWED);
+  }
+};
+
+module.exports = { validateInputMoney, validateLotto, validateBonus };
