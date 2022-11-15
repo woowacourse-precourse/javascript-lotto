@@ -102,6 +102,10 @@ class Machine {
       Console.print(Display.rankingStatistics(ranking, this.rankingCountMap.get(ranking) || 0));
     });
 
+    this.#displayProfits();
+  }
+
+  #displayProfits() {
     this.#computeProfits();
     Console.print(Display.statistics('PROFITS', Machine.user.profits));
   }
@@ -111,10 +115,9 @@ class Machine {
       let prize = 0;
       if (ranking) {
         prize = Display.rankingInfo(ranking).prize.replaceAll(',', '');
-
-        sum += +prize * count;
-        return sum;
       }
+      sum += prize * count;
+      return sum;
     }, 0);
 
     Machine.user.profits = ((Machine.user.winningPrize / Machine.user.payment) * 100).toFixed(1);
