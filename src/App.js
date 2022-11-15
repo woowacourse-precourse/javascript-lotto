@@ -9,6 +9,18 @@ class App {
     winningThreeArr = [];
     winningFourArr = [];
     winningFiveArr = [];
+    winningFivePlusBonusArr = [];
+
+    contrastFivePlusBonus() {
+        let countFivePlusBonus = 0;
+        for (let x of this.lotteryNumbersArr) {
+            let intersection = x.getNumber().filter(y => this.lotteryWinningNumbersArr[0].getNumber().includes(y))
+            if (intersection.length === 5 && x.getNumber().includes(this.lotteryBonusNumberArr[0])) {
+                countFivePlusBonus++;
+            }
+        }
+        this.winningFivePlusBonusArr.push(countFivePlusBonus);
+    }
 
     contrastFive() {
         let countFive = 0;
@@ -19,6 +31,7 @@ class App {
             }
         }
         this.winningFiveArr.push(countFive);
+        this.contrastFivePlusBonus();
     }
 
     contrastFour() {
