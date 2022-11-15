@@ -40,12 +40,26 @@ class Issuer {
     Console.print(`\n${numbersOfLottos}개를 구매했습니다.`);
 
     lottos.forEach((lotto) => {
-      Console.print(lotto.numbers);
+      Console.print(
+        "[" +
+          lotto.numbers[0] +
+          ", " +
+          lotto.numbers[1] +
+          ", " +
+          lotto.numbers[2] +
+          ", " +
+          lotto.numbers[3] +
+          ", " +
+          lotto.numbers[4] +
+          ", " +
+          lotto.numbers[5] +
+          "]"
+      );
     });
   }
 
   validate(money) {
-    if (money % 1000 !== 0) {
+    if (money % 1000 !== 0 || money <= 0) {
       throw new Error("[ERROR] 1000원 단위로 입력해야 합니다.");
     }
   }
