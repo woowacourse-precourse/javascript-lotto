@@ -88,4 +88,13 @@ describe('로또 도메인 테스트', () => {
 
     expect(Lotto.fromRandom().getNumbers()).toEqual(numbers);
   });
+
+  test('로또에 특정 번호가 포함되어 있는지 확인할 수 있어야 한다.', () => {
+    const numbers = Array(Lotto.NUMBER_COUNT)
+      .fill()
+      .map((_, index) => Lotto.NUMBER_MIN + index)
+      .sort(() => 0.5 - Math.random());
+
+    expect(new Lotto(numbers).hasNumber(numbers[0])).toBe(true);
+  });
 });
