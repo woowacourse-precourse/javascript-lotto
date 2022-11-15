@@ -23,7 +23,7 @@ class User {
     }
 
     if (isNaN(Number(amount))) {
-      throw new Error("[ERROR] 입력 금액은 숫자여야 합니다.")
+      throw new Error("[ERROR] 입력 금액은 숫자여야 합니다.");
     }
   }
 
@@ -35,19 +35,7 @@ class User {
     for (let i = 0; i < lottosAmount; i++) {
       let lotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       MissionUtils.Console.print(
-        "[" +
-          lotto[0] +
-          ", " +
-          lotto[1] +
-          ", " +
-          lotto[2] +
-          ", " +
-          lotto[3] +
-          ", " +
-          lotto[4] +
-          ", " +
-          lotto[5] +
-          "]"
+        `[${lotto[0]}, ${lotto[1]}, ${lotto[2]}, ${lotto[3]}, ${lotto[4]}, ${lotto[5]}]`
       );
       this.lottos.push(lotto);
     }
