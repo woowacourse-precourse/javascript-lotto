@@ -1,5 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Calculator = require("./Calculator");
+const Comparator = require("./Comparator");
 const Lotto = require("./Lotto");
 const NumberGenerator = require("./NumberGenerator");
 
@@ -13,19 +14,24 @@ class App {
     MissionUtils.Console.print(`${amountOfLotto}개를 구매했습니다.`);
 
     const numberGenerator = new NumberGenerator();
+    const listOfNumbers = new Array();
     for (let i = 0; i < amountOfLotto; i++) {
       let numbersOfLotto = numberGenerator.createNumbersOfLotto(amountOfLotto);
       const lotto = new Lotto(numbersOfLotto);
       lotto.validate(numbersOfLotto);
-
-      MissionUtils.Console.print(numbersOfLotto);
+      MissionUtils.Console.print(`[${numbersOfLotto.join(", ")}]`);
+      listOfNumbers.push(numbersOfLotto);
     }
 
     MissionUtils.Console.print("당첨 번호를 입력해 주세요.");
-    this.receiveWinningNumbers();
+    const winningNumbers = this.receiveWinningNumbers();
 
     MissionUtils.Console.print("보너스 번호를 입력해 주세요.");
-    this.receiveBonusNumber();
+    const bonusNumber = this.receiveBonusNumber();
+
+    MissionUtils.Console.print("당첨 통계");
+    const comparator = new Comparator();
+    comparator.compare(listOfNumbers, winningNumbers, bonusNumber);
   }
 
   receivePurchaseAmount() {
