@@ -1,11 +1,12 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
-const { error_message } = require("./const");
+const { error_message, winning_money } = require("./const");
 
 const Lotto = require("./Lotto");
 const Bonus = require("./Bonus");
 
 class App {
   constructor() {
+    this.purchasePrice = 0;
     this.lottoQuantity = 0;
     this.lottoArrays = [];
     this.winningNumbers = [];
@@ -19,9 +20,9 @@ class App {
 
   getPurchasePrice() {
     Console.readLine("구입금액을 입력해 주세요.\n", (price) => {
+      this.purchasePrice = price;
       this.checkPurchasePrice(price);
       this.printLottoQuantity(price);
-      this.printLottoArrays();
     });
   }
 
@@ -33,14 +34,16 @@ class App {
   printLottoQuantity(price) {
     this.lottoQuantity = parseInt(price) / 1000;
     Console.print(`\n${this.lottoQuantity}개를 구매했습니다.`);
+    this.printLottoArrays();
   }
 
   printLottoArrays() {
     for (let i = 0; i < this.lottoQuantity; i++) {
-      const lottoNums = Random.pickUniqueNumbersInRange(1, 45, 6);
-      const sortedLottoNums = lottoNums.sort((a, b) => a - b);
-      Console.print(sortedLottoNums);
+      const sortedLottoNums = Random.pickUniqueNumbersInRange(1, 45, 6).sort(
+        (a, b) => a - b
+      );
       this.lottoArrays.push(sortedLottoNums);
+      Console.print(`[${this.lottoArrays[i].join(", ")}]`);
     }
     this.enterWinningNumbers();
   }
@@ -103,13 +106,28 @@ class App {
   printWinningStatistics() {
     Console.print("\n당첨 통계");
     Console.print("---");
-    Console.print(`3개 일치 (5,000원) - ${this.winningRanks.fifth}`);
-    Console.print(`4개 일치 (50,000원) - ${this.winningRanks.fourth}`);
-    Console.print(`5개 일치 (1,500,000원) - ${this.winningRanks.third}`);
+    Console.print(`3개 일치 (5,000원) - ${this.winningRanks.fifth}개`);
+    Console.print(`4개 일치 (50,000원) - ${this.winningRanks.fourth}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${this.winningRanks.third}개`);
     Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.winningRanks.second}`
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.winningRanks.second}개`
     );
-    Console.print(`6개 일치 (2,000,000,000원) - ${this.winningRanks.first}`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${this.winningRanks.first}개`);
+
+    this.getRateOfReturn();
+    Console.close();
+  }
+
+  getRateOfReturn() {
+    let winningMoney = 0;
+    for (let winningRank in this.winningRanks) {
+      winningMoney +=
+        winning_money[winningRank] * this.winningRanks[winningRank];
+    }
+
+    const rateOfReturn = ((winningMoney / this.purchasePrice) * 100).toFixed(1);
+
+    Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
   }
 }
 
