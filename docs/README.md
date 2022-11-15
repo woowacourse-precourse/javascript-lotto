@@ -19,10 +19,13 @@
 
 8. [x] 비교하여 전체 등수(rank)를 얻는다. - getRank()
 
-9. [ ] 등수에 따라 당첨 통계를 출력한다.
+9. [x] 등수에 따라 당첨 통계를 출력한다. - printResult()
 
-10 [ ] 수익률을 계산하여 출력한다.
-  - 수익률은 소수점 둘째 자리에서 반올림해야 한다.
+10 [x] 수익률을 계산한다. - getProfit()
+
+11.[x] 수익률을 출력한다. - printProfit()
+
+12.[x] 프로그램을 종료한다. - close()
 ```
 
 ## 🚀예외 처리 기능 리스트
@@ -33,7 +36,6 @@
 - [x] 입력받은 당첨 번호가 중복인 경우 - Lotto.js # checkDuplicate()
 - [x] 입력받은 당첨 번호가 1 ~ 45 범위를 벗어나는 경우 - Lotto.js # checkRange()
 - [x] 입력받은 보너스 번호가 숫자가 아닌 경우 - Bonus.js # checkIsNumber()
-- [x] 입력받은 보너스 번호의 길이가 1이 아닌 경우 - Bonus.js # checkLength()
 - [x] 입력받은 보너스 번호가 1 ~ 45 범위를 벗어나는 경우 - Bonus.js # checkRange()
 - [x] 입력받은 보너스 번호가 당첨 번호와 중복되는 경우 - Bonus.js # checkDuplicate()
 ```
