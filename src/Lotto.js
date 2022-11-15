@@ -1,7 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const { INGAME_INFORM, INGAME_INPUT, INGAME_RESULT } = require("./constants");
 const purchased = require("./utils/listPurchased");
-// const Player = require("./Player");
 const Validation = require("./Validation");
 const stringToArray = require("./utils/stringToArray");
 const makeStat = require("./utils/makeStat");
@@ -18,7 +17,9 @@ class Lotto {
   issue(tickets) {
     MissionUtils.Console.print(tickets + INGAME_INFORM.PURCHASED);
     const lottos = purchased(tickets);
-    lottos.map((el) => MissionUtils.Console.print(el));
+    lottos.map((el) =>
+      MissionUtils.Console.print(`[${el}]`.split(",").join(", "))
+    );
     return lottos;
   }
 
@@ -65,9 +66,8 @@ class Lotto {
         profitResult
       )
     );
+    MissionUtils.Console.close();
   }
-
-  // 그다음 총 test 되어야하고, #numbers 활용 하도록 리팩토링
 }
 
 module.exports = Lotto;
