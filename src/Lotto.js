@@ -63,7 +63,7 @@ class Lotto {
       throw new Error("[ERROR] 보너스 번호는 1~45까지만 입력할 수 있습니다.");
     }
     if (bonusNumber % 1 > 0) {
-      throw new Error("[ERROR] 보너스 번호는 1~45까지만 입력할 수 있습니다.");
+      throw new Error("[ERROR] 보너스 번호는 자연수 이어야합니다.");
     }
     return bonusNumber;
   }
