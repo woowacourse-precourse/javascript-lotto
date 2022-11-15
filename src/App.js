@@ -6,10 +6,11 @@ const Errors = require("./Error.js")
 class App {
   constructor() {
     this.Lotto() = new Lotto()
-    this.raffleNumber = [];
-    this.winNumber = '';
-    this.correctList = [0, 0, 0, 0, 0];
+    this.raffleNumber = []
+    this.winNumber = ''
+    this.correctList = [0, 0, 0, 0, 0]
     this.reward = [5000, 50000, 1500000, 30000000, 2000000000]
+    this.profit = 0
   }
   play() {
     MissionUtils.Console.readLine(Messages.INPUT_MONEY, (money) => {
@@ -72,6 +73,8 @@ class App {
       console.log(winningNumber)
       this.createCorrectList(winningNumber)
     }
+    this.rateOfReturn()
+    this.result()
   }
   createCorrectList(win) {
     if (win.length == 3) {
@@ -95,6 +98,13 @@ class App {
     }
     const rateReturn = (gather / purchase).toFixed(2)
     return rateReturn
+  }
+  result() {
+    for (let i = 0; i < 5; i++) {
+      MissionUtils.Console.print(Messages.WIN_LOTTO[i] + this.correctList[i] + "개")
+    }
+    MissionUtils.Console.print(`총 수익률은 ${this.profit}% 입니다.`)
+    MissionUtils.Console.close()
   }
 }
 
