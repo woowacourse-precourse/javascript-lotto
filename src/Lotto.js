@@ -36,6 +36,7 @@ class Lotto {
     lottoNumbers.forEach(lottoNumber => {
       const duplicateNumber = lottoNumber.filter(number => this.#numbers.some(winNumber => winNumber === number ));
       const duplicateBonus = lottoNumber.includes(bonusNumber);
+      console.log('bonus', duplicateBonus);
       if(duplicateNumber.length === 6) {
         result.firstPlace++;
       } else if(duplicateNumber.length === 5 && duplicateBonus) {
