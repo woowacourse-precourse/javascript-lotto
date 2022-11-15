@@ -1,4 +1,4 @@
-const LottoMachine = require("../src/LottoMachine");
+const LottoMachine = require("../src/controller/LottoMachine");
 
 describe("로또머신 클래스 테스트", () => {
   test("6개의 로또를 발행한다.", () => {

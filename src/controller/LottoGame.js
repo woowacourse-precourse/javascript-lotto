@@ -1,9 +1,9 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { CONSOLE_MESSAGE, PRINT_RESULT, RANK_STRING, profitRateString } = require("./constants");
-const LottoResult = require("./LottoResult");
-const PurchasedLotto = require("./PurchasedLotto");
-const { stringToNumberArray } = require("./utils");
-const WinningLotto = require("./WinningLotto");
+const { CONSOLE_MESSAGE, PRINT_RESULT, RANK_STRING, profitRateString } = require("../constants");
+const LottoResult = require("../LottoResult");
+const PurchasedLotto = require("../PurchasedLotto");
+const { stringToNumberArray } = require("../utils");
+const WinningLotto = require("../WinningLotto");
 
 class LottoGame {
   #result;

@@ -1,4 +1,4 @@
-const LottoMachine = require("./LottoMachine");
+const LottoMachine = require("./controller/LottoMachine");
 const LottoMachineValidator = require("./validator/LottoMachineValidator");
 
 class PurchasedLotto {
