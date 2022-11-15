@@ -119,6 +119,7 @@ describe("Store 클래스 테스트", () => {
   });
 
   test("총 당첨금을 산출한다.", () => {
+    store.printReport = jest.fn();
     store.result = new Map([
       [WINMESSAGE[3], [5000, 0]],
       [WINMESSAGE[4], [50000, 1]],
@@ -128,5 +129,30 @@ describe("Store 클래스 테스트", () => {
     ]);
     store.setPrizeMoney();
     expect(store.prizeMoney).toBe(1550000);
+  });
+
+  test("수익률을 산출한다.", () => {
+    store.price = 5000;
+    store.prizeMoney = 5000;
+    expect(store.getEarningRate()).toBe("100.0");
+  });
+
+  test("당첨 통계를 출력한다.", () => {
+    const logs = [
+      "당첨 통계\n---",
+      "3개 일치 (5,000원) - 0개",
+      "4개 일치 (50,000원) - 0개",
+      "5개 일치 (1,500,000원) - 0개",
+      "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+      "6개 일치 (2,000,000,000원) - 0개",
+      "총 수익률은 100.0%입니다.",
+    ];
+    const logSpy = getLogSpy();
+    store.price = 10000;
+    store.prizeMoney = 10000;
+    store.printReport();
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
   });
 });
