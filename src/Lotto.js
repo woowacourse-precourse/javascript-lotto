@@ -20,6 +20,15 @@ class Lotto {
             }
             dict[num] = 1;
         }
+
+        // 범위에 맞지 않는 로또 번호가 있는지 체크.
+        for (let num of numbers) {
+            if (num < 1 || num > 45) {
+                throw new Error(
+                    '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.'
+                );
+            }
+        }
     }
 
     // Lotto 번호들을 문자열로 변환하여 리턴한다.

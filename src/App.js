@@ -59,6 +59,11 @@ class App {
         if (!bonusNum) {
             throw new Error('[ERROR] 숫자 하나만 입력하세요');
         }
+        if (bonusNum < 1 || bonusNum > 45) {
+            throw new Error(
+                '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.'
+            );
+        }
     }
 
     // 당첨 번호를 입력받고 배열로 변환해서 저장한다.
@@ -165,8 +170,5 @@ class App {
         );
     }
 }
-
-const app = new App();
-app.play();
 
 module.exports = App;
