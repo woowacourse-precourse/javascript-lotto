@@ -48,9 +48,10 @@ class App {
   }
 
   // 수익률 계산
+  // 소수점 둘째 자리에서 반올림
   #calcYield(){
     // 100 - ((당첨금 - 로또 구매 가격) / (로또 구매 가격) ) * 100
-    return 100 + ((this.#winnings - this.#price) /(this.#price)) * 100;
+    return Math.round((100 + ((this.#winnings - this.#price) /(this.#price)) * 100) * 100 ) / 100;
   }
 
   // 당첨 통계
