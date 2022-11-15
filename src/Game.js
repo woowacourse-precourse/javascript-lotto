@@ -84,13 +84,13 @@ class Game {
       const matchCount = guessNumbers.filter((guessNumber) => winningNumArray.includes(guessNumber)).length;
       return matchCount;
     });
-    this.getBonusNumber(guessNumbersTotal, matchCountTotal, numOfTickets);
+    this.getBonusNumber(guessNumbersTotal, matchCountTotal, numOfTickets, winningNumArray);
   }
 
-  getBonusNumber(guessNumbersTotal, matchCountTotal, numOfTickets) {
+  getBonusNumber(guessNumbersTotal, matchCountTotal, numOfTickets, winningNumArray) {
     MissionUtils.Console.readLine("\n보너스 번호를 입력해 주세요.\n", (userInput) => {
       const bonusNumber = Number(userInput);
-      (() => new Bonus(bonusNumber))()
+      (() => new Bonus(bonusNumber, winningNumArray))()
       this.compareGuessandBounus(guessNumbersTotal, matchCountTotal, bonusNumber, numOfTickets);
     });
   }

@@ -1,11 +1,12 @@
 class Bonus {
   #numbers;
 
-  constructor(numbers) {
+  constructor(numbers, winningNumArray) {
     this.#numbers = numbers;
     this.validateBonusNumLength(numbers);
     this.validateBonusNumBetween1To45(numbers);
     this.validateBonusNumInteger(numbers);
+    this.validateBonusNumUnique(numbers, winningNumArray);
   }
 
   validateBonusNumLength(numbers) {
@@ -24,6 +25,13 @@ class Bonus {
   validateBonusNumInteger(numbers) {
     if (!Number.isInteger(numbers)) {
       throw new Error("[ERROR] 보너스 번호는 정수여야 합니다.");
+    }
+  }
+
+  validateBonusNumUnique(numbers, winningNumArray) {
+    // throw error if numbers is in winningNumArray
+    if (winningNumArray.includes(numbers)) {
+      throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
     }
   }
 }
