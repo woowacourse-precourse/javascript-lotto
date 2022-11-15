@@ -27,22 +27,8 @@ const getLogSpy = () => {
   return logSpy;
 };
 
-const resetLottoNumberData = () => {
-  for (let lottoNumber in LottoNumberData) {
-    if (lottoNumber === 'Issued' || lottoNumber === 'Winning') {
-      LottoNumberData[lottoNumber] = [];
-      continue;
-    }
-    LottoNumberData[lottoNumber] = 0;
-  }
-  for (let ranking in LottoRanking) {
-    LottoRanking[ranking] = 0;
-  }
-};
-
 describe('lottoGameMainSystem 클래스 테스트', () => {
   beforeEach(() => {
-    resetLottoNumberData();
     mockRandoms([
       [2, 5, 11, 12, 33, 39],
       [2, 11, 12, 33, 39, 42],
