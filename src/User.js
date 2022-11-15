@@ -1,6 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Validator = require("./Validator");
-
+const Lotto = require("./Lotto");
 class User {
   lottoList = [];
 
@@ -13,9 +13,13 @@ class User {
   }
 
   readBonusNumber(query, callback) {
-    MissionUtils.Console.readLine(query, (bonusNumber) => {
-      callback(bonusNumber);
-    });
+    MissionUtils.Console.readLine(
+      query,
+      Validator.bonusNumber(callback).bind(
+        Validator,
+        Lotto.prototype.winNumbers
+      )
+    );
   }
 }
 

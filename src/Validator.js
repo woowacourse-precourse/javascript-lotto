@@ -37,6 +37,24 @@ class Validator {
     };
   }
 
+  static bonusNumber(callback) {
+    return (winNumbers, bonusNumber) => {
+      if (bonusNumber.trim().length === 0 || isNaN(bonusNumber - 0)) {
+        throw new CustomError(ERROR_CODE.NOT_NUMBER);
+      }
+
+      if (bonusNumber < 1 || bonusNumber > 45) {
+        throw new CustomError(ERROR_CODE.OUT_OF_RANGE);
+      }
+
+      if (winNumbers.includes(parseInt(bonusNumber))) {
+        throw new CustomError(ERROR_CODE.DUPLICATED);
+      }
+
+      callback(bonusNumber);
+    };
+  }
+
   static lottoNumbers(lottoNumbers) {
     if (lottoNumbers.length !== 6) {
       throw new CustomError(ERROR_CODE.WRONG_COUNT);
