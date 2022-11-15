@@ -9,6 +9,11 @@ class Judgement {
     }
     return lottoCount;
   }
+
+  countLotto(lottoArr) {
+    const result = lottoArr.filter((lotto) => 3 <= lotto);
+    return result;
+  }
 }
 
 module.exports = Judgement;
