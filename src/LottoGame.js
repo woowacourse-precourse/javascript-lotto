@@ -26,22 +26,16 @@ class LottoGame {
   }
 
   purchaseLotto() {
-    MissionUtils.Console.print(this.lottoCount + "개를 구매했습니다.");
     for (let i = 0; i < this.lottoCount; i++) {
       const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 46, 6);
       const lotto = new Lotto(numbers);
       this.lottos.push(lotto.getLotto());
-      MissionUtils.Console.print(lotto.getLotto());
     }
     this.printLottoInfo();
   }
 
   printLottoInfo() {
     print.lottoInfo(this.lottoCount, this.lottos);
-    this.lottos.map((lotto) =>
-      MissionUtils.Console.print("[" + lotto.join(", ") + "]")
-    );
-
     this.inputWinninNumbers();
   }
 
