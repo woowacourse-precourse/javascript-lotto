@@ -16,7 +16,16 @@ class Calculator {
     this.lotateLotto(userLotto, winngingLotto);
   }
 
-  static calculateRevenue(rank) {}
+  static calculateRevenue(rank, purchase) {
+    const totalPrice =
+      rank.first * PRICE.FIRST +
+      rank.second * PRICE.SECOND +
+      rank.third * PRICE.THIRD +
+      rank.fourth * PRICE.FOURTH +
+      rank.fifth * PRICE.FIFTH;
+    const revenue = (totalPrice / purchase) * 100;
+    return revenue.toFixed(1);
+  }
 
   lotateLotto(userLotto, winngingLotto) {
     userLotto.forEach((lotto) => {

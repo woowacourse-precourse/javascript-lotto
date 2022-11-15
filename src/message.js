@@ -13,7 +13,7 @@ const ERROR_MESSAGE = {
   SPLIT_COMMA: "[ERROR] 입력은 숫자와 ','로 구분해 입력해주세요.",
 };
 const OUTPUT_MESSAGE = {
-  PURCHASE: (count) => `\n${count}개를 구매했습니다.`,
+  PURCHASE: (count) => `${count}개를 구매했습니다.`,
   WINNING_NOTICE: "당첨 통계\n---",
   FIFTH: (count) => `3개 일치 (5,000원) - ${count}개`,
   FOURTH: (count) => `4개 일치 (50,000원) - ${count}개`,
