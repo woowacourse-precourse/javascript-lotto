@@ -5,9 +5,9 @@ class GenerateLotto {
   #money;
   #lotto;
   constructor(money) {
+    this.validate(money);
     this.#money = money;
     this.#lotto = [];
-    this.validate(money);
   }
 
   validate(money) {
