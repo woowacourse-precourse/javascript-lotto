@@ -45,14 +45,14 @@ class LottoList {
     return lottoResultList.filter((result) => result <= 5);
   }
   printWinningList(lottoResultList) {
-    const winningList = [
+    const winningLists = [
       "3개 일치 (5,000원)",
       "4개 일치 (50,000원)",
       "5개 일치 (1,500,000원)",
       "5개 일치, 보너스 볼 일치 (30,000,000원)",
       "6개 일치 (2,000,000,000원)",
     ];
-    winningList.forEach((winningList, idx) => {
+    winningLists.forEach((winningList, idx) => {
       const winningCount = this.getWinningCount(lottoResultList, idx);
       Console.print(`${winningList} - ${winningCount}개`);
     });
