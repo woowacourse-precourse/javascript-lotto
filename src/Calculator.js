@@ -1,8 +1,8 @@
-const { LOTTO_PRIZE } = require('./Constants');
+const { LOTTO_PRIZE, LOTTO } = require('./Constants');
 
 class Calculator {
   ofPurchaseLottoCount(moneyValue) {
-    return Number(moneyValue / 1000);
+    return Number(moneyValue / LOTTO.PRICE);
   }
 
   matchNumberCount(winNumbers, userPurchaselotto) {
