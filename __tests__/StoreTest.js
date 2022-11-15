@@ -1,8 +1,20 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Store = require("../src/Store");
+const { WINMESSAGE, LottoAnswer } = require("../src/LottoAnswer");
+
+const mockReadLine = (input) => {
+  MissionUtils.Console.readLine = jest
+    .fn()
+    .mockImplementation((question, callback) => {
+      callback(input);
+    });
+};
 
 describe("Store 클래스 테스트", () => {
-  const store = new Store();
+  let store;
+  beforeEach(() => {
+    store = new Store();
+  });
 
   test("로또 발행", () => {
     MissionUtils.Random.pickUniqueNumbersInRange = jest
@@ -45,5 +57,11 @@ describe("Store 클래스 테스트", () => {
     expect(() => {
       store.validatePrice(0);
     }).toThrow("[ERROR] 양의 정수를 입력해 주세요.");
+  });
+
+  test("구입 금액을 입력하면 금액만큼 로또를 발행한다.", () => {
+    mockReadLine(8000);
+    store.buy();
+    expect(store.candidates).toHaveLength(8);
   });
 });
