@@ -25,19 +25,19 @@ class Lotto {
 
   comparison(matchCount) {
     if (matchCount === 3) {
-      this.winningCounterArr[0] += 1;
+      return this.winningCounterArr[0] += 1;
     }
     if (matchCount === 4) {
-      this.winningCounterArr[1] += 1;
+      return this.winningCounterArr[1] += 1;
     }
     if (matchCount === 5 && issue.includes(this.bonusNumber) !== false) {
-      this.winningCounterArr[2] += 1;
+      return this.winningCounterArr[2] += 1;
     }
     if (matchCount === 5 && issue.includes(this.bonusNumber)) {
-      this.winningCounterArr[3] += 1;
+      return this.winningCounterArr[3] += 1;
     }
     if (matchCount === 6) {
-      this.winningCounterArr[4] += 1;
+      return this.winningCounterArr[4] += 1;
     }
   }
 
