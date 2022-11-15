@@ -18,5 +18,15 @@ describe('입력 공통 예외 테스트', () => {
       Validator.isNumber(input);
     }).toThrow('[ERROR] 숫자가 아닙니다.');
   });
+
+  describe('구입금액 입력 예외 테스트', () => {
+    test('구입금액 단위 테스트', () => {
+      const input = '23900';
   
+      expect(() => {
+        Validator.inputPurchase(input);
+      }).toThrow('[ERROR] 1000단위로 입력하세요.');
+    });
+  });
+
 });
