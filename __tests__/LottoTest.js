@@ -25,27 +25,35 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR] 입력값에 중복이 있습니다.");
   });
 
-  test("입력한 로또 번호의 개수가 6개가 아니면 예외 발생",()=>{
-    mockQuestions(["3000","1,2,3,4,5"]);
-    expect(()=>{
+  test("입력한 로또 번호의 개수가 6개가 아니면 예외 발생", () => {
+    mockQuestions(["3000", "1,2,3,4,5"]);
+    expect(() => {
       const app = new App();
       app.play();
     }).toThrow("[ERROR] 로또 번호는 6개여야 합니다.");
-  })
+  });
 
-  test("입력한 로또 번호가 중복되면 예외 발생",()=>{
-    mockQuestions(["3000","1,2,3,4,5,5"]);
-    expect(()=>{
+  test("입력한 로또 번호가 중복되면 예외 발생", () => {
+    mockQuestions(["3000", "1,2,3,4,5,5"]);
+    expect(() => {
       const app = new App();
       app.play();
     }).toThrow("[ERROR] 입력값에 중복이 있습니다.");
-  })
+  });
 
-  test("입력한 값이 숫자가 아니면 예외 발생",()=>{
-    mockQuestions(["3000","1,2,3,4,5,a"]);
-    expect(()=>{
+  test("입력한 값이 숫자가 아니면 예외 발생", () => {
+    mockQuestions(["3000", "1,2,3,4,5,a"]);
+    expect(() => {
       const app = new App();
       app.play();
     }).toThrow("[ERROR] 숫자만 입력할 수 있습니다.");
-  })
+  });
+
+  test("입력한 값의 범위가 1~45가 아닌 경우 예외 발생", () => {
+    mockQuestions(["3000", "1,2,3,4,5,62"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR] 로또 번호의 숫자 범위는 1~45입니다.");
+  });
 });
