@@ -1,61 +1,57 @@
-const Lotto = require('./Lotto');
 const LottoGenerator = require('./LottoGenerator');
 const CheckWinner = require('./CheckWinner');
 const MissionUtils = require('@woowacourse/mission-utils');
+const CheckVaild = require('./CheckVaild');
+const Print = require('./Print');
+const { INPUT_MESSAGES } = require('./common/message');
 class App {
   constructor() {
     this.winningLotto = [];
     this.myLotto = [];
-    this.lottoCount = 0;
     this.bouns = 0;
+    this.reward = 0;
   }
   getBuyLottoMoney() {
     let buyMoney = 0;
     const moneyInput = async (money) => {
-      this.isValidMoney(money);
+      CheckVaild.isValidMoney(money);
       buyMoney = money;
-      this.lottoCount = buyMoney / 1000;
       const lottoGenerator = new LottoGenerator(buyMoney / 1000);
       this.myLotto = lottoGenerator.getLottoNumber();
-      MissionUtils.Console.print(this.myLotto);
+      Print.myLotto(this.myLotto);
+      Print.countLotto(this.myLotto.length);
       this.winningNum();
     };
     MissionUtils.Console.readLine(
-      '구매금액을 입력해주세요(1000원 단위로 입력):',
+      `${INPUT_MESSAGES.INPUT_BUY_LOTTO}`,
       moneyInput
     );
   }
 
   winningNum() {
-    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (winning) => {
-      this.winningLotto = winning.split(',').map(Number);
-      this.bonusNum();
-    });
+    MissionUtils.Console.readLine(
+      `${INPUT_MESSAGES.INPUT_BUY_LOTTO}`,
+      (winning) => {
+        this.winningLotto = winning.split(',').map(Number);
+        CheckVaild.isVaildWinningNumber(this.winningLotto);
+        this.bonusNum();
+      }
+    );
   }
   bonusNum() {
-    MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.\n', (bouns) => {
-      this.bouns = parseInt(bouns);
+    MissionUtils.Console.readLine(
+      `${INPUT_MESSAGES.INPUT_WINNING_NUMBER}`,
+      (bouns) => {
+        this.bouns = parseInt(bouns);
 
-      const count = new CheckWinner(
-        this.winningLotto,
-        this.bouns,
-        this.myLotto
-      );
-    });
-  }
-  isValidMoney(money) {
-    if (Number.isNaN(money)) {
-      throw `[ERROR] 입력 금액이 숫자형태가 아닙니다.`;
-    }
-    if (money % 1000 !== 0) {
-      throw `[ERROR] 천원 단위로 금액을 지불해주세요.`;
-    }
-    if (money > 1000000) {
-      throw `[ERROR] 최대 구입 가능 금액은 100만원 입니다. 다시 시작하세요. 입력한 금액: ${money}`;
-    }
-    if (money < 1000) {
-      throw `[ERROR] 로또 한장의 가격은 1000원입니다. 1000원 보다 높은 금액을 입력하세요. 입력한 금액: ${money}`;
-    }
+        const count = new CheckWinner(
+          this.winningLotto,
+          this.bouns,
+          this.myLotto
+        );
+        this.reward = count.getReward();
+      }
+    );
   }
 
   play() {
