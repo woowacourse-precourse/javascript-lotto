@@ -14,10 +14,12 @@ class App {
     this.inputMoney();
     this.lottoArr =[];
     this.winningNum = [];
+    this.money = 0;
   }
   inputMoney(){
     Console.readLine("구입금액을 입력해 주세요.", (money) => {
       Console.print(money);
+      this.money = money;
       let InpuValidation = new InpuVal(money);
       let cnt = money / 1000;
       Console.print(cnt + "개를 구매했습니다.");
@@ -26,6 +28,8 @@ class App {
       this.InputBonusNum();
       const result = this.getStatistics();
       this.printStatistics(result);
+      const profitRate = this.calculate(result);
+      this.printResult(profitRate);
       Console.close();
     });
   }
@@ -101,6 +105,17 @@ class App {
       const winningMoney = MONEY[idx].toLocaleString();
       Console.print(`${matchingMessage} (${winningMoney}원) - ` + cnt + '개');
     });
+  }
+  calculate(result) {
+    const profit = result.reduce((acc, cur, idx) => {
+      return acc + MONEY[idx] * cur;
+    }, 0);
+    const profitRate = (profit / this.money) * 10;
+    return profitRate.toFixed(1);
+  }
+  printResult(rate) {
+    Console.print(`총 수익률은 ${rate}%입니다.`);
+    Console.close();
   }
 }
   
