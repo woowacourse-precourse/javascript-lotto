@@ -1,5 +1,6 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const { LOTTO_MESSAGE } = require('./setting/Message');
+const { LOTTO_VALUE } = require('./setting/Constants');
 
 class Lotto {
   #numbers;
@@ -14,7 +15,7 @@ class Lotto {
     this.#numbers = this.howManyLotto(money);
     this.printHowManyLotto();
 
-    for (let i = 0; i < this.#numbers; i += 1) {
+    for (let i = LOTTO_VALUE.zero; i < this.#numbers; i += LOTTO_VALUE.plus) {
       const lottoNumber = this.sortLottoNumber(Random.pickUniqueNumbersInRange(1, 45, 6));
       Console.print(`[${lottoNumber.join(', ')}]`);
       this.lottoList.push(lottoNumber);
@@ -27,7 +28,7 @@ class Lotto {
   }
 
   howManyLotto(money) {
-    return money / 1000;
+    return money / LOTTO_VALUE.thousand;
   }
 
   sortLottoNumber(Array) {
@@ -45,7 +46,7 @@ class Lotto {
   }
 
   rightAmount(money) {
-    if (money % 1000 !== 0)
+    if (money % LOTTO_VALUE.thousand !== LOTTO_VALUE.zero)
       throw new Error(LOTTO_MESSAGE.WRONG_UNIT);
   }
 }
