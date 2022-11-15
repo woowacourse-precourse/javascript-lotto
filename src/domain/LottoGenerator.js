@@ -12,7 +12,7 @@ class LottoGenerator {
   }
 
   validateInputMoney(money) {
-    return validateInputMoney(parseInt(money));
+    return validateInputMoney(money);
   }
 
   getNumOfLottos(money) {
