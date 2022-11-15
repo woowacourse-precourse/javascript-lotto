@@ -1,11 +1,9 @@
 const Constant = require("./Constant");
 
 class MoneyValidator {
-  #money;
-
   constructor(money) {
     this.validate(money);
-    this.#money = money;
+    this.money = money;
   }
 
   validate(money) {
