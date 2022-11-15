@@ -57,7 +57,9 @@ class App {
     Console.print('');
     Console.print('당첨번호를 입력해주세요.');
     Console.readLine('', (input) => {
-      const winNumbers = input.split(',').map(Number);
+      const whiteSpaceRegExp = new RegExp(/\s/, 'g');
+      const whiteSpaceRemoved = input.replace(whiteSpaceRegExp, '');
+      const winNumbers = whiteSpaceRemoved.split(',').map(Number);
       this.validateWinNumbers(winNumbers);
 
       this.winNumbers = winNumbers;
