@@ -55,23 +55,21 @@ class Lotto {
     return Number(numbers);
   }
 
-  static sameCount(lotto, lottoObj, winNumber) {
+  static sameCount(lotto, winNumber) {
     let sameCount = 0;
     lotto.map(numbers => {
       if (winNumber.includes(String(numbers))) {
         sameCount += 1;
       }
     });
-    lottoObj.sameCount = sameCount;
-    return lottoObj.sameCount;
+    return sameCount;
   }
 
-  static bonusCount(lotto, lottoObj, bonusNumber) {
+  static bonusCount(lotto, bonusNumber) {
     if (lotto.includes(bonusNumber)) {
-      lottoObj.isBonus = true;
-      return lottoObj.isBonus;
+      return true;
     }
-    return lottoObj.isBonus;
+    return false;
   }
 
   static countNumberOfWins(numberOfWins, sameArr) {

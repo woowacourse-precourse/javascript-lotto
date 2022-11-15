@@ -111,12 +111,12 @@ class App {
   }
 
   winNumberCompare(object) {
-    object.sameCount = Lotto.sameCount(object.lotto, object, this.winningNum);
+    object.sameCount = Lotto.sameCount(object.lotto, this.winningNum);
     this.bonusNumberCompare(object);
   }
 
   bonusNumberCompare(object) {
-    object.isBonus = Lotto.bonusCount(object.lotto, object, this.bonusNum);
+    object.isBonus = Lotto.bonusCount(object.lotto, this.bonusNum);
   }
 
   countWins() {
