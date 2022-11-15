@@ -37,7 +37,7 @@ const Statics = class {
   }
 
   getLottoYield(lottoRevenue, budget) {
-    const lottoYield = (lottoRevenue / budget) * 100;
+    const lottoYield = ((lottoRevenue / budget) * 100).toFixed(1);
     return lottoYield;
   }
 
