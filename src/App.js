@@ -100,7 +100,10 @@ class App {
   calculateRateOfReturn() {
     let benefitSum = this.addAllbenefit();
 
-    this.rateOfResult = ((benefitSum / this.cost.getValue()) * 100).toFixed(1);
+    this.rateOfResult = ((benefitSum / this.cost.getValue()) * 100)
+      .toFixed(1)
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 
   addAllbenefit() {
