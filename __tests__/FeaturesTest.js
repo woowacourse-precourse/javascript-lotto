@@ -14,4 +14,12 @@ describe('기능 테스트', () => {
             '[ERROR] 중복된 번호입니다.'
         );
     });
+
+    test('당첨 내역을 알 수 있다.', () => {
+        const app = new App();
+        expect(app.getSingleResult([3, 5, 12, 31, 40, 41], [1, 2, 3, 4, 5, 6])).toBe(
+            2
+        );
+    }
+    )
 })
