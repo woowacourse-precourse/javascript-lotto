@@ -168,5 +168,7 @@ class App {
     return resultTable;
   }
 }
+const app = new App();
+app.play();
 
 module.exports = App;
