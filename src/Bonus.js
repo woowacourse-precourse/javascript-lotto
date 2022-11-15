@@ -11,7 +11,7 @@ class Bonus {
   }
 
   validate(bonusNumber) {
-    if (!Number(bonusNumber)) {
+    if (Number.isNaN(Number(bonusNumber))) {
       throw new Error(ERROR_MESSAGES.INVALID_BONUS_TYPE);
     }
 
