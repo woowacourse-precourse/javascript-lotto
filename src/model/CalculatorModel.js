@@ -9,7 +9,7 @@ class CalculatorModel {
     const winningList = [];
 
     lottos.forEach((lotto) => {
-      const comparedResult = this.compare(lotto, winning);
+      const comparedResult = this.getComparedResult(lotto, winning);
 
       winningList.push(comparedResult);
     });
@@ -17,7 +17,7 @@ class CalculatorModel {
     return this.getRank(winningList);
   }
 
-  compare(lotto, winning) {
+  getComparedResult(lotto, winning) {
     const [winningLotto, bonus] = winning;
 
     let comparedLotto = lotto.compare(winningLotto);
