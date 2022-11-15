@@ -5,31 +5,8 @@ const LottoWinning = require("../src/models/LottoWinning");
 const {
   getMatchedinWinningNumberCount,
   getEarningsRate,
-} = require("../src/utils/utils");
-const App = require("../src/App")
-const {Console, Random} = require("@woowacourse/mission-utils");
-
-const mockQuestions = (answers) => {
-  Console.readLine = jest.fn();
-  answers.reduce((acc, input) => {
-    return acc.mockImplementationOnce((question, callback) => {
-      callback(input);
-    });
-  }, Console.readLine);
-};
-
-const mockRandoms = (numbers) => {
-  Random.pickUniqueNumbersInRange = jest.fn();
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, Random.pickUniqueNumbersInRange);
-};
-
-const getLogSpy = () => {
-  const logSpy = jest.spyOn(Console, "print");
-  logSpy.mockClear();
-  return logSpy;
-};
+  hasBounsNumber,
+} = require("../src/utils/Utils");
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
@@ -56,6 +33,17 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 });
+
+describe("발행한 로또 클래스 테스트",()=>{
+  test("로또 구매 개수를 입력 받는다.",()=>{
+    const lottoCount = 3;
+    const output = 3;
+
+    const lottoIssued = new LottoIsuued(lottoCount)
+
+    expect(lottoIssued.lottoIssued).toHaveLength(output)
+  })
+})
 
 describe("구매 금액 테스트", () => {
   test("구매 금액은 1000단위만 입력 가능하다.", () => {
@@ -124,7 +112,7 @@ describe("당첨 로또 테스트", () => {
   });
 
   test("보너스 번호는 당첨 번호와 중복되지 않습니다.", () => {
-    const winningInput = "1,2,3,4,5,6"
+    const winningInput = "1,2,3,4,5,6";
     const input = "3";
 
     const winnigLotto = new LottoWinning();
@@ -137,7 +125,6 @@ describe("당첨 로또 테스트", () => {
 });
 
 describe("기능 테스트", () => {
-
   test("당첨로또와 겹치는 개수 계산한다.", () => {
     const lotto = [2, 3, 5, 6, 8, 9];
     const winnigLotto = [1, 2, 3, 4, 5, 6];
@@ -146,6 +133,15 @@ describe("기능 테스트", () => {
     const count = getMatchedinWinningNumberCount(lotto, winnigLotto);
 
     expect(count).toEqual(output);
+  });
+
+  test("로또가 보너스 번호를 가지고 있는지 확인 한다.", () => {
+    const lotto = [2, 3, 5, 6, 8, 9];
+    const bonusNumber = 6;
+
+    const output = hasBounsNumber(lotto, bonusNumber);
+
+    expect(output).toBeTruthy();
   });
 
   test("당첨함수의 수익률을 계산한다.", () => {
@@ -187,9 +183,10 @@ describe("기능 테스트", () => {
         amount: 0,
       },
     ];
+    const output = "62.5";
 
-    const output = "62.5"
-  
-    expect(getEarningsRate(input,payment)).toEqual(output);
+    const earningsRate = getEarningsRate(input, payment);
+
+    expect(earningsRate).toEqual(output);
   });
 });
