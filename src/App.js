@@ -65,10 +65,7 @@ class App {
 
   getBonusNumber(){
     MissionUtils.Console.readLine(`\n보너스 번호를 입력해주세요 :\n`, (bonusInput) => {
-      if(this.WinningLotto.includes(parseInt(bonusInput))){
-        throw new Error("[ERROR] 보너스 번호와 당첨 번호가 겹칩니다.");
-      }
-      this.bonusNumber = parseInt(bonusInput);
+      this.bonusNumber = this.checkBonusNumber(bonusInput);
       this.checkLotto();
       MissionUtils.Console.close();
     });
@@ -80,9 +77,27 @@ class App {
     lotto.printResult();
     lotto.calculateProfit(this.UsersLotto.length);
   }
+
+  checkBonusNumber(input){
+    if (isNaN(input)){
+      throw new Error("[ERROR] 숫자가 아닌 값이 입력되었습니다.");
+    }
+
+    let inputNumber = parseInt(input);
+
+    if(this.WinningLotto.includes(inputNumber)){
+      throw new Error("[ERROR] 보너스 번호와 당첨 번호가 겹칩니다.");
+    }
+
+    if(inputNumber < 1 || inputNumber > 45){
+      throw new Error("[ERROR] 보너스 번호는 1과 45 사이여야 합니다.");
+    }
+
+    return inputNumber;
+  }
 }
 
-// let app = new App();
-// app.play();
+let app = new App();
+app.play();
 
 module.exports = App;
