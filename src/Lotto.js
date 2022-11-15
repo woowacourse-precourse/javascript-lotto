@@ -2,7 +2,6 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const str=require("./Constant")
 const nums=require("./Number")
 
-console.log(nums);
 class Lotto {
   #numbers;
 
