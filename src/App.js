@@ -49,7 +49,20 @@ class App {
     if (duplication.size != 6)
       throw new Error("[ERROR] 중복번호가 포함되어 있습니다.");
       this.winNum = numbers;
+      this.bonusNumber();
   })
+ }
+ bonusNumber() {
+  Console.readLine("\n보너스 번호를 입력해 주세요.\n", (num) => {
+    if (!/^\d+$/.test(num)) 
+      throw new Error("[ERROR] 번호가 올바르지 않습니다.");
+    const bonus = parseInt(num);
+    if(bonus < 1 || bonus > 45)
+      throw new Error("[ERROR] 보너스 번호는 1부터 45까지의 숫자입니다.");
+    if(this.winNum.includes(num))
+      throw new Error("[ERROR] 당첨번호에 포함되어 있는 번호입니다.");
+      this.bonusNum = bonus;   
+  });
  }
   play() {
     this.setMoney();
