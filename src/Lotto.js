@@ -1,3 +1,8 @@
+const {
+  validateLottoNumber,
+  validateBonusNumber,
+} = require("./validation/validator");
+
 class Lotto {
   #numbers;
 
@@ -6,13 +11,14 @@ class Lotto {
     this.#numbers = numbers;
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+  setBonusNumber(number) {
+    let bonusNumber = number;
+    validateBonusNumber(this.#numbers, bonusNumber);
   }
 
-  // TODO: 추가 기능 구현
+  validate(numbers) {
+    validateLottoNumber(numbers);
+  }
 }
 
 module.exports = Lotto;
