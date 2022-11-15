@@ -1,9 +1,10 @@
 const Random = require("@woowacourse/mission-utils").Random;
 const Ticket = require("./Ticket");
+const {isNumber} = require("../validator");
 
 class Buyer {
 	static #validate(money) {
-		if (/[^0-9]/.test(money))
+		if (!isNumber(money))
 			throw new Error("[ERROR] 숫자를 입력해주세요.");
 		else if (money % Ticket.price())
 			throw new Error("[ERROR] 1000원 단위로 입력해주세요.");

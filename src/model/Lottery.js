@@ -1,3 +1,5 @@
+const {isNumber, isInRange, isUnique} = require("../validator");
+
 class Lotto {
   #numbers;
   /**
@@ -11,9 +13,9 @@ class Lotto {
   #validate(numbers) {
     if (numbers.length !== 6)
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    else if (numbers.length !== [...new Set(numbers)].length)
+    else if (!isUnique(numbers))
       throw new Error("[ERROR] 로또 번호는 중복되면 안됩니다.");
-    else if (numbers.some((number) => number <= 0 || number > 45))
+    else if (numbers.some((number) => !isNumber(number) || !isInRange(1, 45, number)))
       throw new Error("[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다.");
   }
 
@@ -37,7 +39,7 @@ class Lottery extends Lotto {
   #validate(bonus) {
     if (super.hasNumber(bonus))
       throw new Error("[ERROR] 보너스 번호는 6개 번호에 포함되어선 안됩니다.");
-    else if (bonus <= 0 || bonus > 45)
+    else if (!isNumber(bonus) || !isInRange(1, 45, bonus))
       throw new Error("[ERROR] 보너스 번호는 1부터 45사이의 숫자여야 합니다.");
   }
 
