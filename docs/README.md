@@ -31,4 +31,37 @@
 - [x] 리팩터링을 한다
   - [x] 상수는 따로 분리
 
+## 느낀 점
 
+- `LottoTest.js`와 `ApplicationTest.js`를 각각 작성하면서 단위테스트와 통합테스트가 어떻게 다른지를 간접적으로 체험할 수 있었다. 그리고 TDD처럼 처음 작성해봤는데 생각보단 괜찮았다.
+- 상수 선언, `mission-utils` 분리, 필요한 것만 `import`하기 등 지난 과제의 코드 리뷰하고 받으면서 배운 내용을 최대한 적용해보았다. 
+- 변수명 정하는 게 어려웠다. 당첨 로또 번호, 내가 랜덤으로 뽑는 로또 번호, 그 로또 목록 등등 이해하기 쉽게 작성하고 싶었는데 갈수록 애매해진 것 같다.
+- 프로그래밍 요구사항을 꼼꼼하게 읽었다고 생각했는데 `pickUniqueNumbersInRange`를 사용하라는 문구를 놓쳐서 1시간 넘게 헤맸다.
+- 클래스형으로 대부분 작성했지만 로또 결과를 구하고 출력하는 것은 함수형으로 편하게 작성했다.
+- 결과 출력과 관련된 상수는 모두 결과 출력하는 파일 안에 두었다. 따로 뺄까 고민했는데, 해당 파일 내에서만 필요한 거라서 분리하지는 않았다.
+
+## 배운 점
+
+- `private`를 어떻게 활용하는지 [이 질문](https://stackoverflow.com/questions/22156326/private-properties-in-javascript-es6-classes)에 대한 답을 보고 감을 잡을 수 있었다.
+- `number.toLocaleString()`하면 숫자 3자리마다 `,`를 넣을 수 있다.
+
+## 파일 설명
+
+```
+.
+├── __test__/
+│   ├── ApplicationTest.js
+│   ├── BonusTest.js
+│   ├── CostTest.js
+│   └── LottoTest.js
+└── src/
+    ├── constant/
+    │   └── constant.js
+    ├── App.js (입출력 위주)
+    ├── Bonus.js (보너스 번호)
+    ├── BuyLotto.js (구입한 로또)
+    ├── Cost.js (구입 금액)
+    ├── Lotto.js (로또 당첨)
+    ├── lottoResult.js (로또 결과 구하기)
+    └── utils.js (mission-utils 관련)
+```
