@@ -20,8 +20,21 @@ class App {
     generateLotto(amount) {
         const COUNT = parseInt(amount / 1000);
         for (let i = 0; i < COUNT; i++) {
-            const genNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+            const genNumbers = MissionUtils.Random.pickUniqueNumbersInRange(
+                1,
+                45,
+                6
+            );
             this.lottoNumbers.push(new Lotto(genNumbers));
+        }
+    }
+
+    // 발행한 로또 번호의 개수와, 번호들을 오름차순으로 정렬해서 콘솔에 출력한다.
+    getInfo() {
+        const LOTTO_COUNT = this.lottoNumbers.length;
+        MissionUtils.Console.print(`${LOTTO_COUNT}개를 구매했습니다.\n`);
+        for (let lottoNumber of this.lottoNumbers) {
+            MissionUtils.Console.print(lottoNumber.printNumbers());
         }
     }
 
@@ -31,6 +44,7 @@ class App {
             (amount) => {
                 this.amountValidate(amount);
                 this.generateLotto(amount);
+                this.getInfo();
             }
         );
     }

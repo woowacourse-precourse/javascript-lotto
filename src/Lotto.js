@@ -20,6 +20,12 @@ class Lotto {
             dict[num] = 1;
         }
     }
+
+    // Lotto 번호들을 문자열로 변환하여 리턴한다.
+    printNumbers() {
+        const result = this.#numbers.join(', ');
+        return `[${result}]`;
+    }
 }
 
 // TODO: 추가 기능 구현
