@@ -49,6 +49,12 @@ class App {
         lottos.push(lotto);
       }
     }
+
+    function showLottos(){
+      for (let ind = 0; ind < lottos.length; ind++){
+        MissionUtils.Console.print("[" + lottos[ind].join(', ') + "]");
+      }
+    }
   } //Play() 닫는 닫는 괄호
 }//class App 닫는괄호
 
