@@ -52,4 +52,16 @@ class LottoGame {
       Console.print(`[${lottoNumbers.join(", ")}]`);
     });
   }
+  setWinningNumber() {
+    Console.readLine(INPUT_MESSAGE.winning, (winningNumbers) => {
+      this.#winningNumber = new Lotto(winningNumbers.split(","));
+      this.drawBonusNumber();
+    });
+  }
+  setBonusNumber() {
+    Console.readLine(INPUT_MESSAGE.bonus, (bonusNumber) => {
+      this.#winningNumber.setBonusNumber(bonusNumber);
+      this.printResult();
+    });
+  }
 }
