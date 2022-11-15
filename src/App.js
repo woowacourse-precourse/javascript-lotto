@@ -6,6 +6,7 @@ const Winning = require('./Winning.js');
 class App {
   play() {
     Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
+      this.userPay = money;
       this.generateLotto = new GenerateLotto(money);
       this.printPurchaseCount();
     });
