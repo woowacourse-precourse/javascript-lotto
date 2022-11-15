@@ -40,7 +40,7 @@ class Lotto {
     const score = this.#numbers.slice(0, bonusIdx).filter(isIncludeNum).length;
     const bonusScore = isIncludeNum(bonus) ? 1 : 0;
 
-    return { score, bonusScore };
+    return [score, bonusScore];
   }
 }
 

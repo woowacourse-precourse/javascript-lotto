@@ -91,8 +91,7 @@ class VendingMachine {
   askBonusNumberCb(answer) {
     this.#lottoMachine.setBonus(Number(answer));
     this.#randomNumbers.forEach((numbers) => {
-      const { score, bonusScore } = this.#lottoMachine.getScore(numbers);
-      this.#scores.push([score, bonusScore]);
+      this.#scores.push(this.#lottoMachine.getScore(numbers));
     });
 
     this.#rankBoard = this.getRanksByScores();
