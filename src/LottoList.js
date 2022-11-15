@@ -1,5 +1,6 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
+const MONEY_UNIT = 1000;
 
 class LottoList {
 
@@ -8,10 +9,10 @@ class LottoList {
 	}
 	
 	isValidAmount(amount) {
-		if(amount % 1000 !== 0) {
+		if(amount % MONEY_UNIT !== 0) {
 			throw new Error("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다."); 
 		}
-		return amount / 1000;
+		return amount / MONEY_UNIT;
 	}
 	
 	makeLottoList(total) {
