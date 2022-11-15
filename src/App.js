@@ -33,6 +33,7 @@ class App {
     const lottoSeller = new LottoSeller();
     this.money = new UserMoney(Number(amount));
     this.lottos = lottoSeller.sellLotto(this.money);
+
     this.userInterface.printLottoCount(this.lottos);
   }
 
@@ -42,15 +43,15 @@ class App {
 
   setLottoNumbers(numberWithComma) {
     const numbers = numberWithComma.split(',').map(Number);
-
     this.lottoNumbersValidator.execute(numbers);
+
     this.lottoNumbers = numbers;
   }
 
   setBonusNumber(number) {
     const bonusNumber = Number(number);
-
     this.lottoNumberValidator.execute(bonusNumber);
+
     this.bonusNumber = bonusNumber;
   }
 
@@ -59,9 +60,11 @@ class App {
       lotto.compareTo(this.lottoNumbers, this.bonusNumber)
     );
     this.lottoDrawer = new LottoDrawer(lottoResults);
+    this.userInterface.printWinningResult(this.lottoDrawer);
+
     const totalWinningMoney = this.lottoDrawer.getTotalWinningMoney();
     const earningRate = this.money.calculateEarningRate(totalWinningMoney);
-    this.userInterface.printTotalResult(this.lottoDrawer, earningRate);
+    this.userInterface.printEarningRate(earningRate);
   }
 }
 
