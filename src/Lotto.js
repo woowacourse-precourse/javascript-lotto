@@ -16,13 +16,17 @@ class Lotto {
     this.validate(money);
     this.#numbers = this.howManyLotto(money);
     this.LottoView.buyLotto(this.#numbers);
+    this.printLotto();
+    
+    return this.lottoList;
+  }
 
+  printLotto() {
     for (let i = LOTTO_VALUE.zero; i < this.#numbers; i += LOTTO_VALUE.plus) {
       const lottoNumber = this.sortLottoNumber(Random.pickUniqueNumbersInRange(LOTTO_VALUE.min, LOTTO_VALUE.max, LOTTO_VALUE.digit));
       Console.print(`[${lottoNumber.join(', ')}]`);
       this.lottoList.push(lottoNumber);
     }
-    return this.lottoList;
   }
 
   howManyLotto(money) {
