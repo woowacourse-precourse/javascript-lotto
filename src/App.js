@@ -62,6 +62,23 @@ class App {
     });
   }
 
+  getBonusNumber() { // 보너스 번호
+    Console.readLine(MESSAGE.BONUS_NUM, (bonus) => {
+      this.bonusNumber = Number(bonus);
+
+      const numberReg = /^[0-9]*$/;
+      if (!numberReg.test(this.bonusNumber) || this.bonusNumber < GAME.START || this.bonusNumber > GAME.END) {
+        throw new Error(`${ERROR.COMMON} ${ERROR.RANGE}`);
+      }
+      if (this.winNumbers.includes(this.bonusNumber)) {
+        throw new Error(`${ERROR.COMMON} ${ERROR.BONUS}`);
+      }
+
+      this.makescore();
+      this.calReturn();
+    });
+  }
+
 
 }
 
