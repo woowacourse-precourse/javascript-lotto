@@ -23,13 +23,7 @@ describe('로또 클래스 테스트', () => {
     }).toThrow(ERROR_MESSAGE);
   });
 
-  test('로또 번호에 공백이 포함되어있으면 예외가 발생한다.', () => {
-    expect(() => {
-      new Lotto([1, 2, 3, , 5, 5]);
-    }).toThrow(ERROR_MESSAGE);
-  });
-
-  test('로또 번호가 1보다 작으면 예외가 발생한다.', () => {
+  test('로또 번호가 공백이 포함되어 있거나, 1보다 작으면 예외가 발생한다.', () => {
     expect(() => {
       new Lotto([1, 2, 3, -12, 5, 6]);
     }).toThrow(ERROR_MESSAGE);
@@ -37,7 +31,7 @@ describe('로또 클래스 테스트', () => {
 
   test('로또 번호가 45보다 크면 예외가 발생한다.', () => {
     expect(() => {
-      new Lotto([1, 2, 3, 123, 5, 5]);
+      new Lotto([1, 2, 3, 123, 5, 6]);
     }).toThrow(ERROR_MESSAGE);
   });
 });
