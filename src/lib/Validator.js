@@ -22,6 +22,12 @@ class Validator {
       throw Error(ERROR.LOTTO_INVALID_VALUE);
     }
   }
+
+  static errorIfMoneyInvalidFormat(money) {
+    if (!REGEX.MONEY_FORMAT.test(money)) {
+      throw Error(ERROR.MONEY_INVALID_VALUE);
+    }
+  }
 }
 
 module.exports = Validator;
