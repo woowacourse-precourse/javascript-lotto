@@ -1,3 +1,5 @@
+const { ERROR_MESSAGE_LOTTO } = require('../constants/constants');
+
 class Lotto {
   #numbers;
 
@@ -8,22 +10,22 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error(ERROR_MESSAGE_LOTTO.LENGTH);
     }
     if (!numbers.every((e) => e >= 1 && e <= 45)) {
-      throw new Error("[ERROR] 로또 번호는 1에서 45 사이의 숫자만 가능합니다.");
+      throw new Error(ERROR_MESSAGE_LOTTO.RANGE);
     }
     if (!numbers.every((e) => Number.isInteger(e))) {
-      throw new Error("[ERROR] 로또 번호는 정수만 가능합니다.");
+      throw new Error(ERROR_MESSAGE_LOTTO.ISINTEGER);
     }
     const setNumbers = new Set(numbers)
     if (numbers.length !== setNumbers.size) {
-      throw new Error("[ERROR] 로또 번호는 중복될 수 없습니다");
+      throw new Error(ERROR_MESSAGE_LOTTO.OVERLAP);
     }
   }
 
   getNumbers() {
-    return this.#numbers
+    return this.#numbers;
   }
 }
 

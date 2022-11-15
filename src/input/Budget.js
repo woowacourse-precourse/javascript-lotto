@@ -1,3 +1,5 @@
+const { ERROR_MESSAGE_BUDGET } = require('../constants/constants');
+
 class Budget {
   #budget;
 
@@ -8,23 +10,19 @@ class Budget {
 
   validate(budget) {
     if (isNaN(budget)) {
-      throw new Error("[ERROR] 금액은 정수 값이어야 합니다.");
+      throw new Error(ERROR_MESSAGE_BUDGET.ISNAN);
     }
     if (budget < 1000) {
-      throw new Error("[ERROR] 금액은 최소 1000원 이상이어야만 합니다.");
+      throw new Error(ERROR_MESSAGE_BUDGET.RANGE);
     }
     if (budget % 1000 !== 0) {
-      throw new Error("[ERROR] 금액은 1000원 단위어야만 합니다.");
-    }
-    if (budget < 0) {
-      throw new Error("[ERROR] 금액은 음수가 될 수 없습니다.");
+      throw new Error(ERROR_MESSAGE_BUDGET.UNIT);
     }
   }
 
   getBudget() {
-    return this.#budget
+    return this.#budget;
   }
-
 }
 
 module.exports = Budget;
