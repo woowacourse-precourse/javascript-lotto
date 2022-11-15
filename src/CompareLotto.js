@@ -1,8 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 const { COMPARE_VALUE, MATCH, LOTTO_WIN, PRIZE } = require('./setting/Constants');
 
-const LOTTO_WIN = [5000, 50000, 1500000, 30000000, 2000000000];
-
 class CompareLotto {
   static count(lottoList, winNumber) {
     return lottoList.filter((number) => winNumber.includes(number)).length;
