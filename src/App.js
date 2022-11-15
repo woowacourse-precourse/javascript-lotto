@@ -72,7 +72,5 @@ class App {
     Console.close();
   }
 }
-const app = new App();
-app.play();
 
 module.exports = App;
