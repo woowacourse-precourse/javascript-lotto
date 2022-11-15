@@ -27,4 +27,13 @@ class LottoGame {
     this.setNumberPurchase(input);
     this.drawNumber(this.money / LOTTO_PRICE);
   }
+  setNumberPurchase(input) {
+    this.money = this.validateMoney(input);
+  }
+  validateMoney(input) {
+    checkIsNumber(input);
+    checkZero(input);
+    isUnit(input, LOTTO_PRICE);
+    return input;
+  }
 }
