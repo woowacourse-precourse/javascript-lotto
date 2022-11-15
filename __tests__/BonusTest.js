@@ -25,4 +25,18 @@ describe('Bonus 클래스 테스트', () => {
       }).toThrow('[ERROR]');
     });
   });
+
+  test('사용자가 구매한 로또 번호와 보너스 번호 비교', () => {
+    const winningNumber = new Lotto([1, 2, 3, 4, 5, 6]);
+    const bonusNumber = new Bonus('7', winningNumber);
+    values = [
+      // [보너스 번호의 포함 여부, 사용자가 구매한 로또 번호]
+      [true, [2, 3, 4, 5, 6, 7]],
+      [false, [1, 2, 3, 4, 5, 6]],
+    ];
+
+    values.map(([hasBonus, lotto]) => {
+      expect(bonusNumber.compare(lotto)).toEqual(hasBonus);
+    });
+  });
 });
