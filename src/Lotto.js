@@ -23,6 +23,22 @@ class Lotto {
     isDuplicatedAndThrowError(numbers);
     isOutOfRangeAndThrowError(numbers);
   }
+
+  countWinningBonusNumbers(numbers) {
+    const { winning, bonus } = numbers;
+    let winningCount = 0;
+    let bonusCount = 0;
+    this.#numbers.forEach((number) => {
+      if (winning.include(number)) {
+        winningCount += 1;
+      }
+      if (bonus === number) {
+        bonusCount = 1;
+      }
+    });
+
+    return { winningCount, bonusCount };
+  }
 }
 
 module.exports = Lotto;
