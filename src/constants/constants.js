@@ -32,6 +32,8 @@ const LOTTO = {
 
   MONEY: "money",
   COUNT: "count",
+
+  MIN_SCORE: 3,
 };
 
 module.exports = {
