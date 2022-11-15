@@ -15,7 +15,13 @@ const MessageFunc = {
         total += Number(REWARD[grade].split(',').join(''));
       }
     });
-    Console.print(`총 수익률은 ${total / (count * 10).toFixed(1)}%입니다.`);
+    const yieldresult = total / (count * 10);
+    Console.print(
+      `총 수익률은 ${yieldresult.toLocaleString('ko-KR', {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      })}%입니다.`
+    );
   },
 
   RESULT: (result, count) => {
