@@ -31,8 +31,6 @@ class State {
   lottoNumberGenerator = new LottoNumberGenerator();
   calculator = new Calculator();
 
-  setLottoInput() {}
-
   setMoneyInput(userInput) {
     this.moneyInput = userInput;
     this.buyLottoCount = parseInt(userInput / 1000);

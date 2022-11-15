@@ -4,6 +4,8 @@ const {
   GAME_START_MESSAGE,
   PURCHACE_MESSAGE,
   REQUIRE_WIN_NUMBER_MESSAGE,
+  ERROR,
+  ERROR_MESSAGE_INPUT_MONEY,
 } = require("./constants/constant");
 const LottoNumberGenerator = require("./domain/LottoNumberGenerator");
 const MessageOutput = require("./domain/MessageOutput");
@@ -22,15 +24,9 @@ class App {
         this.state.setMoneyInput(userInput);
         return;
       }
-      throw new Error("[ERROR] 에러 발생");
+      throw new Error(`${ERROR} ${ERROR_MESSAGE_INPUT_MONEY}`);
     });
   }
-
-  // winNumbersInput(message) {
-  //   MissionUtils.Console.readLine(message, (userInput) => {
-  //     this.state.setWinNumbersInput(userInput);
-  //   });
-  // }
 
   play() {
     this.messageOutput.printMesage(GAME_START_MESSAGE);

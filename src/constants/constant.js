@@ -3,6 +3,9 @@ const REQUIRE_WIN_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
 
 const PURCHACE_MESSAGE = "개를 구매했습니다.";
 
+const ERROR = "[ERROR]";
+const ERROR_MESSAGE_INPUT_MONEY = "로또는 천원 단위로 구매할 수 있습니다";
+
 const SIX = {
   rank: "1등",
   condition: "6개 일치",
@@ -51,4 +54,6 @@ module.exports = {
   FIFTH,
   FIFTHBONUS,
   SIX,
+  ERROR,
+  ERROR_MESSAGE_INPUT_MONEY,
 };

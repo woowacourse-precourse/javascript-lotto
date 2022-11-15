@@ -14,26 +14,11 @@ class UserInput {
     this.message = message;
   }
 
-  // moneyInput(message) {
-  //   MissionUtils.Console.readLine(message, (userInput) => {
-  //     if (this.checkExceptCaseInMoney(userInput)) {
-  //       this.state.setMoneyInput(userInput);
-  //       return;
-  //     }
-  //     throw new Error("[ERROR] 에러 발생");
-  //   });
-  // }
-
-  // winNumbersInput(message) {
-  //   MissionUtils.Console.readLine(message, (userInput) => {
-  //     this.state.setWinNumbersInput(userInput);
-  //   });
-  // }
-
   checkExceptCaseInMoney(money) {
     const remains = money % 1000;
     return remains > 0 ? false : true;
   }
+
   makeUserLottoNumbers(userLottoCount) {
     const userLottos = [];
     for (let lottoCount = 0; lottoCount < userLottoCount; lottoCount++) {
