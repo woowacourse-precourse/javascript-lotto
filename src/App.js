@@ -4,7 +4,7 @@ const {
   RANGE_OF_LOTTO_NUMBER,
   TOTAL_COUNTS,
   ERROR_MESSAGES,
-} = require("../utils/constants");
+} = require("./utils/constants");
 
 const Lotto = require("./Lotto");
 const { Console, Random } = require("@woowacourse/mission-utils");

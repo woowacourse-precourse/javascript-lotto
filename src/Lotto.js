@@ -5,8 +5,8 @@ const {
   WINNING_PRICES,
   ERROR_MESSAGES,
   ADD_COMMA_EXP,
-} = require("../utils/constants");
-const { validateType } = require("../utils/functions");
+} = require("./utils/constants");
+const { validateType } = require("./utils/functions");
 
 class Lotto {
   #winningNums;
