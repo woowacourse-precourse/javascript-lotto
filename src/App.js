@@ -12,13 +12,13 @@ class App {
     this.buyMoney = 0;
   }
   getBuyLottoMoney() {
-    const moneyInput = async (money) => {
+    const moneyInput = (money) => {
       CheckVaild.isValidMoney(money);
       this.buyMoney = money;
       const lottoGenerator = new LottoGenerator(this.buyMoney / 1000);
       this.myLotto = lottoGenerator.getLottoNumber();
-      Print.myLotto(this.myLotto);
       Print.countLotto(this.myLotto.length);
+      Print.myLotto(this.myLotto);
       this.winningNum();
     };
     MissionUtils.Console.readLine(
