@@ -1,3 +1,5 @@
+const ranks = ["noRank", "noRank", "noRank", "rank5", "rank4", "rank3", "rank1", "rank2"];
+
 class Lotto {
   #numbers;
 
@@ -29,6 +31,14 @@ class Lotto {
     if (this.matchedNumberCount === 5 && this.#numbers.includes(bonusNumber)) {
       this.hasBonusNumber = true;
     }
+  }
+
+  setRank() {
+    if (this.hasBonusNumber === true) {
+      return ranks[ranks.length - 1];
+    }
+
+    return ranks[this.matchedNumberCount];
   }
 }
 
