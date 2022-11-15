@@ -47,6 +47,7 @@ class App {
         Helper.checkValidLength(this.#winningNumbersList);
         Helper.checkDuplicatedNumber(this.#winningNumbersList);
         Helper.checkIsRangedNumber(this.#winningNumbersList);
+        this.inputBounsNumber();
       }
     );
   }
