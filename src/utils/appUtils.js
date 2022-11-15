@@ -69,6 +69,25 @@ const synchronousReadLine = (message, callback) =>
     Console.readLine(message, resolvedCallback(callback, resolve));
   });
 
+const getEarningRate = (stats, amount) => {
+  const prize = {
+    1: 2000000000,
+    2: 30000000,
+    3: 1500000,
+    4: 50000,
+    5: 5000,
+  };
+  let totalAmount = 0;
+
+  for (let i = 1; i < 6; i += 1) {
+    totalAmount += stats[i] * prize[i];
+  }
+
+  const earningRate = (totalAmount / (amount * APP.MINIMUM_AMOUNT)) * 100;
+
+  return earningRate.toFixed(1);
+};
+
 module.exports = {
   validateAmount,
   validatePrizeNumbers,
@@ -76,4 +95,5 @@ module.exports = {
   printEmpty,
   printArray,
   synchronousReadLine,
+  getEarningRate,
 };

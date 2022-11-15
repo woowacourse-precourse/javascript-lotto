@@ -98,3 +98,31 @@ describe('보너스 번호 입력 테스트', () => {
     expect(appUtils.validateBonusNumber(input, prizeNumbers)).toBeUndefined();
   });
 });
+
+describe('수익률 테스트', () => {
+  test('원하는 대로 계산해주는 경우', () => {
+    const stats = {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 1,
+    };
+    const amount = 8;
+
+    expect(appUtils.getEarningRate(stats, amount)).toBe('62.5');
+  });
+
+  test('소숫점 첫째 자리의 값까지 반환한다.', () => {
+    const stats = {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 1,
+    };
+    const amount = 5;
+
+    expect(appUtils.getEarningRate(stats, amount)).toBe('100.0');
+  });
+});
