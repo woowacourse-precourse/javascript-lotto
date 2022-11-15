@@ -45,7 +45,6 @@ class App {
     const lottos = [];
     for (let i = 0; i < numberOfLotto; i++) {
       const lottoNumbers = this.generateLottoNumber();
-      console.log(lottoNumbers);
       lottos.push(new Lotto(lottoNumbers));
     }
 
@@ -88,12 +87,14 @@ class App {
     if (winnerNumber.length !== App.LENGTH_OF_LOTTO_NUMBER) {
       Console.print("6개의 번호를 입력해주세요.");
       this.getWinner(lottos, amountOfPaid);
-      return;
+
+      return { state: "exception" };
     }
 
     Console.readLine("보너스 번호를 입력해주세요.", (value) => {
       this.getBonusNumber(value, winnerNumber, lottos, amountOfPaid);
     });
+    return { state: "success" };
   }
 
   getBonusNumber(bonusNumber, winnerNumber, lottos, amountOfPaid) {
@@ -172,12 +173,11 @@ class App {
   }
 
   caculateEarningsRate(winningDetails, amountOfPaid) {
-    const totalEarnings = Object.values(winningDetails).reduce(
-      (pre, cur, i) => {
+    const totalEarnings = Object.values(winningDetails) //
+      .reduce((pre, cur, i) => {
         return pre + cur * App.PRIZE[i];
-      },
-      0
-    );
+      }, 0);
+
     const earningsRate = ((totalEarnings / amountOfPaid) * 100).toFixed(1);
 
     return earningsRate;
