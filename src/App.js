@@ -89,20 +89,13 @@ class App {
                 this.validateBonus(newBonus);
                 this.bonusNumber = newBonus;
                 MissionUtils.Console.print('');
-                this.printWinningInfo();
+                this.updateWinningInfoEachNumber();
             }
         );
     }
 
     // 당첨 내역을 출력한다.
     printWinningInfo() {
-        for (const lottoNums of this.lottoNumbers) {
-            const winningAmount = lottoNums.getWinningMoney(
-                this.winningNumbers,
-                this.bonusNumber
-            );
-            this.updateWinningInfo(winningAmount);
-        }
         MissionUtils.Console.print('당첨 통계\n---');
         MissionUtils.Console.print(
             `3개 일치 (5,000원) - ${this.winningInfo.fifth}개`
@@ -120,6 +113,18 @@ class App {
             `6개 일치 (2,000,000,000원) - ${this.winningInfo.first}개`
         );
         this.printEarningRatio();
+    }
+
+    // 로또 번호 하나하나의 당첨 내역을 업데이트한다.
+    updateWinningInfoEachNumber() {
+        for (const lottoNums of this.lottoNumbers) {
+            const winningAmount = lottoNums.getWinningMoney(
+                this.winningNumbers,
+                this.bonusNumber
+            );
+            this.updateWinningInfo(winningAmount);
+        }
+        this.printWinningInfo();
     }
 
     // 금액을 확인하고 당첨 내역을 업데이트 한다.
