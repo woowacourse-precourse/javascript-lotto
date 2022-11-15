@@ -18,8 +18,13 @@ const isOutOfRangeAndThrowError = (input) => {
   }
 };
 
+const isOutOfVolumeAndThrowError = (input, volume) => {
+  if (input.length !== volume) throwErrorMessage(Display.error('OUT_OF_VOLUME'));
+};
+
 module.exports = {
   REG_NUMBER_RANGE,
   isOutOfRangeAndThrowError,
   isDuplicatedAndThrowError,
+  isOutOfVolumeAndThrowError,
 };
