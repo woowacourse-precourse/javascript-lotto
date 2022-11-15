@@ -74,6 +74,7 @@ const checkLottoNumberDuplicate = (numbersArray) => {
   const filtered = numbersArray.filter((value, index) => numbersArray.indexOf(value) !== index);
   if (filtered.length === 0) return;
 
+  Console.close();
   throw new Error(ERROR.LOTTO_NUMBER_DUPLICATE);
 };
 
