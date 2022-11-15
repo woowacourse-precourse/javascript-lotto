@@ -1,14 +1,6 @@
 class Exception {
   isEmpty(money) {
-    if (
-      money === "0" ||
-      money === "" ||
-      money === null ||
-      money === undefined ||
-      (money !== null &&
-        typeof money === "object" &&
-        !Object.keys(money).length)
-    ) {
+    if (money === "0" || money === "" || money === null) {
       throw new Error("[ERROR] : 1000원 이상의 금액을 입력하세요.");
     }
   }
