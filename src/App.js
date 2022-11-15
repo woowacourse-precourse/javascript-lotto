@@ -4,7 +4,12 @@ const {
   LOTTOREQUIREMENT,
   LOTTOPRIZE,
 } = require("./constant/Constant");
-const { printNumber, printLotto, printResult } = require("./LottoView");
+const {
+  printNumber,
+  printLotto,
+  printResult,
+  makeStrLotto,
+} = require("./LottoView");
 const { validateLotto, validateBonus } = require("./LottoValidation");
 const Lotto = require("./Lotto");
 
@@ -48,10 +53,10 @@ class App {
   }
 
   publishLottos() {
-    const myLotto = ~~(this.#purchaseLotto / LOTTOREQUIREMENT.LOTTOPRICE);
-    printNumber(myLotto);
+    const purchased = ~~(this.#purchaseLotto / LOTTOREQUIREMENT.LOTTOPRICE);
+    printNumber(purchased);
 
-    for (let i = 0; i < myLotto; i++) {
+    for (let i = 0; i < purchased; i++) {
       const publishLotto = MissionUtils.Random.pickUniqueNumbersInRange(
         LOTTOREQUIREMENT.MIN,
         LOTTOREQUIREMENT.MAX,
