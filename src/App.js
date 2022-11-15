@@ -1,6 +1,7 @@
 const Prompt = require('./views/Prompt');
 const Lotto = require('./domains/Lotto');
 const WinningLotto = require('./domains/WinningLotto');
+const Messages = require('./constants/Messages');
 
 class App {
   /** @type {Lotto[]} */
@@ -16,11 +17,11 @@ class App {
    * @param {Prompt} prompt
    */
   *#routineBuy(prompt) {
-    yield '구입금액을 입력해 주세요. ';
+    yield Messages.ROUTINE_BUY_PUT_MONEY;
     const money = prompt.readNumber();
     this.#lottos = Lotto.buyLottos(money);
 
-    prompt.print(`${this.#lottos.length}개를 구매했습니다.`);
+    prompt.print(Messages.ROUTINE_BUY_SUCCESS, this.#lottos.length);
     this.#lottos.forEach((lotto) => prompt.print(lotto.toString()));
   }
 
@@ -28,8 +29,8 @@ class App {
    * @param {Prompt} prompt
    */
   *#routineReward(prompt) {
-    yield '당첨 번호를 입력해 주세요. ';
-    yield '보너스 번호를 입력해 주세요. ';
+    yield Messages.ROUTINE_REWARD_PUT_WINNING_NUMBERS;
+    yield Messages.ROUTINE_REWARD_PUT_BONUS_NUMBER;
     this.#winningLotto = new WinningLotto(Lotto.fromString(prompt.read()), prompt.readNumber());
     this.#rewards = this.#lottos
       .map((lotto) => this.#winningLotto.getRewardFor(lotto))
@@ -40,7 +41,7 @@ class App {
    * @param {Prompt} prompt
    */
   *#routineStats(prompt) {
-    prompt.print('당첨 통계');
+    prompt.print(Messages.ROUTINE_STATS_TITLE);
     [...this.#winningLotto.getAvailableRewards()]
       .reverse()
       .map((reward) => [reward, this.#rewards.filter((myReward) => myReward === reward).length])

@@ -1,4 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+const Messages = require('../constants/Messages');
 const PromptError = require('../errors/PromptError');
 
 /**
@@ -38,9 +39,10 @@ class Prompt {
 
   /**
    * @param {string} message
+   * @param  {...string} args
    */
-  print(message) {
-    MissionUtils.Console.print(message);
+  print(message, ...args) {
+    MissionUtils.Console.print(Messages.format(message, ...args));
   }
 
   read() {
@@ -52,7 +54,7 @@ class Prompt {
    */
   readNumber() {
     const number = Number(this.read());
-    if (Number.isNaN(number)) throw new PromptError('숫자를 입력해야 합니다.');
+    if (Number.isNaN(number)) throw new PromptError(Messages.PROMPT_READ_MUST_NUMBER);
 
     return number;
   }

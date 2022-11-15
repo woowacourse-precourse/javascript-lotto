@@ -1,3 +1,4 @@
+const Messages = require('../constants/Messages');
 const LottoError = require('../errors/LottoError');
 const Lotto = require('./Lotto');
 const Reward = require('./Reward');
@@ -26,10 +27,10 @@ class WinningLotto {
 
   validate() {
     if (typeof this.#bonusNumber !== 'number' || Number.isNaN(this.#bonusNumber)) {
-      throw new LottoError('보너스 번호는 Number 타입이어야 합니다.');
+      throw new LottoError(Messages.WINNING_LOTTO_VALIDATE_TYPE_MUST_NUMBER);
     }
     if (this.#lotto.hasNumber(this.#bonusNumber)) {
-      throw new LottoError('로또의 번호와 보너스 번호가 중복됩니다.');
+      throw new LottoError(Messages.WINNING_LOTTO_VALIDATE_NO_DUPLICATE);
     }
   }
 

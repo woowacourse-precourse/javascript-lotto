@@ -1,17 +1,34 @@
+const Messages = require('../constants/Messages');
 const Lotto = require('./Lotto');
 const WinningLotto = require('./WinningLotto');
 
 class Reward {
   static DEFAULT_REWARDS = Object.freeze([
-    new Reward('6개 일치', 2_000_000_000, (numberCount) => numberCount === 6),
     new Reward(
-      '5개 일치, 보너스 볼 일치',
+      Messages.format(Messages.REWARD_TITLE_NUMBER_MATCHES, 6),
+      2_000_000_000,
+      (numberCount) => numberCount === 6,
+    ),
+    new Reward(
+      Messages.format(Messages.REWARD_TITLE_NUMBER_AND_BONUS_MATCHES, 5),
       30_000_000,
       (numberCount, bonusNumber) => numberCount === 5 && bonusNumber,
     ),
-    new Reward('5개 일치', 1_500_000, (numberCount) => numberCount === 5),
-    new Reward('4개 일치', 50_000, (numberCount) => numberCount === 4),
-    new Reward('3개 일치', 5_000, (numberCount) => numberCount === 3),
+    new Reward(
+      Messages.format(Messages.REWARD_TITLE_NUMBER_MATCHES, 5),
+      1_500_000,
+      (numberCount) => numberCount === 5,
+    ),
+    new Reward(
+      Messages.format(Messages.REWARD_TITLE_NUMBER_MATCHES, 4),
+      50_000,
+      (numberCount) => numberCount === 4,
+    ),
+    new Reward(
+      Messages.format(Messages.REWARD_TITLE_NUMBER_MATCHES, 3),
+      5_000,
+      (numberCount) => numberCount === 3,
+    ),
   ]);
 
   /** @type {string} */
