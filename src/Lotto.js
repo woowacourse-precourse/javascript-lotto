@@ -5,15 +5,19 @@ class Lotto {
 
   constructor(numbers) {
     this.#numbers = numbers;
+    this.lottoArray = [];
+    this.win = [];
+    this.bonus = 0;
   }
 
-  inputAmount(numbers) {
+  inputAmount() {
+    const ENTER_AMOUNT = 0;
     MissionUtils.Console.readLine("금액을 입력해주세요.", (answer) => {
-      console.log(`입력한 금액: ${answer}`);
       this.checkAmount(answer);
-      this.purchaseLotto(answer);
-      MissionUtils.Console.close();
-      return answer;
+      let num = this.purchaseLotto(answer);
+      this.printLotto(num);
+      this.winningNumber();
+      //MissionUtils.Console.close();
     });
   }
 
@@ -25,17 +29,18 @@ class Lotto {
 
   purchaseLotto(amount) {
     let num = amount / 1000;
-    console.log(num);
     return num;
   }
 
   printLotto(num) {
-    const lottery = [];
+    MissionUtils.Console.print(num + "개를 구매했습니다.");
     for (var int = 0; int < num; int++) {
-      lottery[int] = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      const print = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      const sortPrint = this.sortArray(print);
+      MissionUtils.Console.print(sortPrint);
+      this.lottoArray.push(sortPrint);
     }
-    MissionUtils.Console.close();
-    return lottery;
+    //MissionUtils.Console.close();
   }
 
   sortArray(array) {
@@ -45,14 +50,15 @@ class Lotto {
     return array;
   }
 
-  winningNumber(numbers) {
-    MissionUtils.Console.readLine("당첨 번호를 입력해주세요. ", (answer) => {
-      numbers = answer.split(",");
-      this.validate(numbers);
-      console.log(numbers);
-      this.duplicate(numbers);
-      console.log(numbers);
-      MissionUtils.Console.close();
+  winningNumber(winNumber) {
+    MissionUtils.Console.readLine("당첨 번호를 입력해주세요. ", (win) => {
+      this.win = win.split(",").map((element) => parseInt(element));
+      console.log(this.win);
+      this.validate(this.win);
+      this.duplicate(this.win);
+      this.inrangeNumber(this.win);
+      //MissionUtils.Console.print(this.win);
+      this.bonusNumber();
     });
   }
 
@@ -79,18 +85,24 @@ class Lotto {
   }
 
   bonusNumber(number) {
-    MissionUtils.Console.readLine("보너스 번호를 입력해주세요. ", (answer) => {
-      console.log(`입력한 숫자 : ${answer}`);
+    MissionUtils.Console.readLine("보너스 번호를 입력해주세요. ", (bonus) => {
+      const bonusNum = parseInt(bonus);
+      this.bonusInrangeNumber(bonusNum);
+      this.checkBonusNumber(bonusNum);
       MissionUtils.Console.close();
     });
   }
 
+  bonusInrangeNumber(number) {
+    if (number < 0 || number > 45) {
+      throw new Error("[ERROR] 1 ~ 45 사이의 수가 아닙니다.");
+    }
+  }
+
   checkBonusNumber(number) {
-    const winNumber = this.winningNumber();
-    const newNumber = number;
-    for (var i = 0; i < winNumber.length; i++) {
-      if (winNumber[i] === newNumber) {
-        throw new Error("[ERROR] 중복된 숫자를 입력하면 안됩니다.");
+    for (var i = 0; i < this.win.length; i++) {
+      if (number === this.win[i]) {
+        throw new Error("당첨 번호와 같은 번호를 입력하셨습니다.");
       }
     }
   }

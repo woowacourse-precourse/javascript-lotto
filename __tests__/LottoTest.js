@@ -1,5 +1,7 @@
+const App = require("../src/App");
 const Lotto = require("../src/Lotto");
 const lotto = new Lotto();
+const app = new App();
 
 describe("로또 클래스 테스트", () => {
   // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
@@ -12,11 +14,6 @@ describe("로또 클래스 테스트", () => {
   test("로또 구입 개수 확인하기", () => {
     const result = lotto.purchaseLotto(10000);
     expect(result).toBe(10);
-  });
-
-  test("로또 구입 후 그 개수만큼 반복문을 돌아 출력되는지 확인하기", () => {
-    const result = lotto.printLotto(6);
-    expect(result).toHaveLength(6);
   });
 
   test("오름차순 정렬이 맞는지 확인하기", () => {
