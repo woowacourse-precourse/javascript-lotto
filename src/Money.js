@@ -5,17 +5,16 @@ class Money{
   
     constructor(money) {
       this.validate(money);
-      this.money = money;
-      
+      this.money = money;      
     }
   
     validate(money) {
-        if(isNaN(money))
-            throw new Error("[ERROR] 숫자를 입력해 주세요.");
-        if(money < 0)
-            throw new Error("[ERROR] 양수를 입력해 주세요.");
-        if(!(money % 1 === 0))
-            throw new Error("[ERROR] 정수를 입력해 주세요.");    
+      if(isNaN(money))
+        throw new Error(ERROR.NOT_NUMBER_ERROR);
+      if(money < 0)
+        throw new Error(ERROR.NEGATIVE_ERROR);
+      if(!(money % 1 === 0))
+        throw new Error(ERROR.NOT_INT_ERROR);    
     }
 
     getMoney(){
@@ -24,4 +23,3 @@ class Money{
   }
   
   module.exports = Money;
-  

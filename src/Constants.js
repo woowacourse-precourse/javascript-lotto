@@ -25,4 +25,13 @@ const ERROR = {
     LOTTO_COUNT_ERROR : "[ERROR] 로또 번호는 6개여야 합니다."
 }
 
-module.exports = {MESSAGE, RESULT_MESSAGE, ERROR};
+const REWARD =
+{
+    FIFTH : 5000,
+    FOURTH : 50000,
+    THIRD : 1500000,
+    SECOND : 30000000,
+    FIRST : 2000000000,
+}
+
+module.exports = {MESSAGE, RESULT_MESSAGE, ERROR, REWARD};

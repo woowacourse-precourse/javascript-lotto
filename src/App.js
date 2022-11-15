@@ -6,7 +6,7 @@ const LottoTicket = require("./LottoTicket.js");
 const BonusNumber = require("./BonusNumber.js");
 const Money = require("./Money.js");
 
-const {MESSAGE, RESULT_MESSAGE, ERROR} = require("./Constants.js");
+const {MESSAGE, RESULT_MESSAGE, ERROR, REWARD} = require("./Constants.js");
 
 class App {
   lottocount;
@@ -66,6 +66,7 @@ class App {
       Console.print(str);
     }
     Console.print("");
+
   }
 
   arrToStr(arr){
@@ -143,11 +144,11 @@ class App {
 
   calRevenue(){
     let reward = 0;
-    reward = reward + 5000 * this.results[0];
-    reward = reward + 50000 * this.results[1];
-    reward = reward + 1500000 * this.results[2];
-    reward = reward + 30000000 * this.results[3];
-    reward = reward + 2000000000 * this.results[4];
+    reward = reward + REWARD.FIFTH * this.results[0];
+    reward = reward + REWARD.FOURTH * this.results[1];
+    reward = reward + REWARD.THIRD * this.results[2];
+    reward = reward + REWARD.SECOND * this.results[3];
+    reward = reward + REWARD.FIRST * this.results[4];
     
     this.revenue = reward / (this.lottocount * 1000) * 100;
     this.revenue = Math.round(this.revenue * 10) / 10;
