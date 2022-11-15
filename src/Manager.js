@@ -70,7 +70,6 @@ class Manager {
 
   getBonusNumber() {
     Console.readLine(MESSAGE.BONUS, (answer) => {
-      console.log('왜 안돔?');
       this.getBonusNumberValidate(answer);
       this.boughtLottos.forEach((element) => {
         const compareResult = this.Lotto.result(element, answer);
