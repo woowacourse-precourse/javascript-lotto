@@ -1,3 +1,4 @@
+const Lotto = require('../src/Lotto');
 const WinningHistory = require('../src/WinningHistory');
 
 const lottoNumbersList = [
@@ -54,6 +55,19 @@ describe('당첨 내역 클래스 테스트', () => {
     );
 
     expect(result).toEqual([5, 4, 3, 2, 1]);
+  });
+
+  test('당첨된 로또의 개수를 등수에 따라 배열로 저장한다.', () => {
+    const lottos = lottoNumbersList.map(
+      lottoNumbers => new Lotto(lottoNumbers),
+    );
+    const winningNumbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+    const winningHistory = new WinningHistory();
+
+    winningHistory.initWinningList({ lottos, winningNumbers, bonusNumber });
+    const result = winningHistory.winningList;
+    expect(result).toEqual([0, 0, 0, 0, 1]);
   });
 
   test('구입 금액과 총 수익을 기반으로 수익률을 계산한다.', () => {
