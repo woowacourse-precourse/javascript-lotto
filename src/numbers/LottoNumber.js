@@ -8,7 +8,6 @@ class LottoNumber {
     this.inputBonusNumbers = inputBonusNumbers;
     this.computerNumbers = computerNumbers;
     this.compareNumber = new CompareNumber();
-    this.lotto = new Lotto();
   }
 
   lottoNumbers(computerNumbers) {
@@ -17,7 +16,7 @@ class LottoNumber {
       (inputNumbers) => {
         this.inputLottoNumbers = inputNumbers.split(",").map(Number);
         this.computerNumbers = computerNumbers;
-        this.lotto.validate(this.inputLottoNumbers);
+        new Lotto(this.inputLottoNumbers);
         this.bonusNumber();
       }
     );
