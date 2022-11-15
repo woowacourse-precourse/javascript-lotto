@@ -109,7 +109,6 @@ class App {
   #getWinningNumber() {
     ui.input(`${INPUT.WINNING_NUMBER}\n`, (winningNumbers) => {
       const winningNumberInput = winningNumbers.split(',').map(Number);
-      console.log(winningNumberInput);
       this.#winningTicket.setWinningNumbers(winningNumberInput);
       this.#getBonusNumber();
     });
