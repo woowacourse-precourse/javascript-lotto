@@ -19,6 +19,10 @@ class Validator {
   static isRightFee(fee) {
     return fee % config.FEE_PER_GAME === 0;
   }
+
+  static isNumberInArray(array, number) {
+    return array.includes(number);
+  }
 }
 
 module.exports = Validator;
