@@ -47,6 +47,11 @@ class App {
     });
   }
 
+  makingLotto() { // 로또 번호 만들기
+    const lotto = Random.pickUniqueNumbersInRange(GAME.START, GAME.END, GAME.COUNT);
+    return lotto.sort((prev, next) => prev - next);
+  }
+
 
 }
 
