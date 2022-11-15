@@ -91,6 +91,7 @@
 - [ ] `bonusNumberInputPhase`: 보너스 숫자를 입력받고 저장하는 단계 구현하기
 - [ ] `showingResultPhase`: 로또 게임의 최종 결과를 출력하는 단계 구현하기
 - [ ] `exitPhase`: 게임을 종료하는 단계 구현하기
+- [ ] `play`: 게임 시작 기능 구현하기
 
 ### Library
 
