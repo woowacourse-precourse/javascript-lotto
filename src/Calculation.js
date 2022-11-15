@@ -1,6 +1,6 @@
 class Calculation {
-  static getRatesOfReturn(a, b) {
-    const num = (a / b) * 100;
+  static getRatesOfReturn(earning, amountPaid) {
+    const num = (earning / amountPaid) * 100;
     const ROR = this.roundToTwo(num);
     return this.setCommas(ROR);
   }
