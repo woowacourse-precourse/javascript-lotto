@@ -20,4 +20,22 @@ describe('로또 클래스 테스트', () => {
 
     expect(lotto.isBonusValid(6)).toBe(false);
   });
+
+  test('사용자가 구매한 로또 번호와 당첨 번호 비교', () => {
+    const winningNumber = new Lotto([1, 2, 3, 4, 5, 6]);
+    values = [
+      // [일치 개수, 사용자가 구매한 로또 번호]
+      [0, [7, 8, 9, 10, 11, 12]],
+      [1, [6, 7, 8, 9, 10, 11]],
+      [2, [5, 6, 7, 8, 9, 10]],
+      [3, [4, 5, 6, 7, 8, 9]],
+      [4, [3, 4, 5, 6, 7, 8]],
+      [5, [2, 3, 4, 5, 6, 7]],
+      [6, [1, 2, 3, 4, 5, 6]],
+    ];
+
+    values.map(([numberOfMatches, lotto]) => {
+      expect(winningNumber.compare(lotto)).toEqual(numberOfMatches);
+    });
+  });
 });
