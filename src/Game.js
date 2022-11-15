@@ -43,6 +43,10 @@ class Game {
     return input.replace(REGEX.PARSE_INPUT, '').split(',');
   }
   proceedStepThree(input) {
+    const winningNumber = this.winningNumber;
+    const bonusNumber = Number(input);
+    Validation.validateBonusNumber(bonusNumber, winningNumber);
+    this.bonusNumber = bonusNumber;
     Console.close();
   }
 }
