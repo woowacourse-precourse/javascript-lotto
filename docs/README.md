@@ -16,4 +16,11 @@
  7-1. Lotto.js calculate() / 당첨 계산
  8. resultLotto(rank), resultRate(rank) / 당첨 출력, 수익률 계산
 
+예외처리
+ 3. validatePurchase 구입금액 예외 처리 ->App.js 내
+    [구입금액 단위 확인]
+ 4. validateWinning 당첨 번호 예외 처리, validateBonus 보너스 번호 예외처리
+    [길이(6) 확인, 숫자중복 확인, 1-45사이 확인]
+ 5. Lotto.js에 랜덤 사용자 로또 예외 처리
+    [길이(6) 확인, 숫자중복 확인, //1-45사이 확인]
 ---
