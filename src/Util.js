@@ -59,6 +59,22 @@ class Util {
     }
     return 0;
   }
+
+  calculateEarningRate(rankCountTable, userMoney) {
+    const totalEarn = this.calculateTotalEarn(rankCountTable);
+    let earningRate = totalEarn / userMoney * 100;
+    return earningRate.toFixed(1);
+  }
+
+  calculateTotalEarn(rankCountTable) {
+    const rewardTable = {1: 2000000000, 2: 30000000, 3: 1500000, 4: 50000, 5: 5000};
+    let totalEarn = 0;
+    for (let i = 1; i < 6; i++) {
+      totalEarn += (rankCountTable[i] * rewardTable[i]);
+    }
+    return totalEarn;
+  }
+
 }
 
 module.exports = Util;

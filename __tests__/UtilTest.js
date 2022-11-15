@@ -30,4 +30,13 @@ describe("유틸 클래스 테스트", () => {
       util.getRankCount(userLottoList, winNumbers, bonusNumber)
     ).toEqual({1: 1, 2: 1, 3: 1, 4: 0, 5: 0});
   });
+
+  test("총 당첨 금액 합계와 로또 구입 금액을 바탕으로 수익률을 계산한다.", () => {
+    const util = new Util();
+    const rankCountTable = {1: 0, 2: 0, 3: 1, 4: 0, 5: 0};
+    const userMoney = 6000;
+    expect(
+      util.calculateEarningRate(rankCountTable, userMoney)
+    ).toEqual("25000.0");
+  });
 })
