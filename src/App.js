@@ -7,8 +7,7 @@ class App {
   play() {
     Console.readLine(LOTTO_USER_INPUT.PURCHASE_LOTTO, (purchaseLotto) => {
       if (this.validateUserInput(purchaseLotto)) {
-        createLottoNumbers(purchaseLotto / 1000);
-        this.inputWinLottoNumbers();
+        this.inputWinLottoNumbers(createLottoNumbers(purchaseLotto / 1000));
       }
     });
   }
@@ -21,16 +20,16 @@ class App {
     return true;
   }
 
-  inputWinLottoNumbers() {
+  inputWinLottoNumbers(purchaseLotto) {
     Console.readLine(LOTTO_USER_INPUT.WIN_LOTTO_NUMBERS, (winLottoNumbers) => {
       const lottoNumbersAnswer = winLottoNumbers.split(',');
-      this.inputBonusLottoNumber(lottoNumbersAnswer);
+      this.inputBonusLottoNumber(purchaseLotto, lottoNumbersAnswer);
     });
   }
 
-  inputBonusLottoNumber(lottoNumbers) {
+  inputBonusLottoNumber(purchaseLotto, lottoNumbers) {
     Console.readLine(LOTTO_USER_INPUT.BONUS_LOTTO_NUMBER, (bonusLottoNumber) => {
-      new Lotto(lottoNumbers, bonusLottoNumber);
+      new Lotto(lottoNumbers, bonusLottoNumber, purchaseLotto);
     });
   }
 }

@@ -37,6 +37,21 @@ class Lotto {
     
     this.printLottoResult(matchNumber, matchBonus);
   }
+
+  rankLottoResult(matchNumber, matchBonus) {
+    let fifthCount = 0;
+    let fourthCount = 0;
+    let thirdCount = 0;
+    let secondCount = 0;
+    let firstCount = 0;
+    for (let i=0; i<matchNumber.length; i++) {
+      if (matchNumber[i] === 6) firstCount++;
+      if (matchNumber[i] === 5 && matchBonus === true) secondCount++;
+      if (matchNumber[i] === 5 && matchBonus === false) thirdCount++;
+      if (matchNumber[i] === 4) fourthCount++;
+      if (matchNumber[i] === 3) fifthCount++;
+    }
+  }
 }
 
 
