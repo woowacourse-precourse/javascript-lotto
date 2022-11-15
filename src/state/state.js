@@ -48,9 +48,36 @@ class State {
     });
   }
 
+  bonusNumbersInput(message) {
+    MissionUtils.Console.readLine(message, (userInput) => {
+      this.setBonusNumbersInput(userInput);
+    });
+  }
+
+  setBonusNumbersInput(userInput) {
+    const number = parseInt(userInput);
+    this.isValidate(number);
+    this.isNotInWinNumbers(number);
+  }
+  isNotInWinNumbers(userInput) {
+    if (!this.winNumbers.includes(userInput)) {
+      console.log(`중복 아님`);
+    }
+  }
+  isValidate(userInput) {
+    return 0 < userInput <= 45 ? true : false;
+  }
+
   setWinNumbersInput(userInput) {
     const splitedNumbers = this.splitNumber(userInput, ",");
-    this.isNotNumberDuplicate(splitedNumbers);
+    if (
+      this.isNotNumberDuplicate(splitedNumbers) &&
+      this.isValidateNumberRange([splitedNumbers])
+    ) {
+      this.winNumbers = splitedNumbers;
+      this.messageOutput.printMesage("보너스 번호를 입력해 주세요");
+      this.bonusNumbersInput("");
+    }
   }
   splitNumber(number, flag) {
     return number.split(flag).map((item) => {
@@ -59,7 +86,20 @@ class State {
   }
   isNotNumberDuplicate(numberArr) {
     const setNumberArr = new Set(numberArr);
-    return setNumberArr.length === 6 ? true : false;
+    console.log(setNumberArr.size);
+    return setNumberArr.size === 6 ? true : false;
+  }
+
+  isValidateNumberRange(numberArr) {
+    let flag = true;
+    numberArr.map((number) => {
+      if (number <= 0 || number > 45) {
+        flag = false;
+        return;
+      }
+    });
+    console.log(flag);
+    return flag;
   }
 }
 
