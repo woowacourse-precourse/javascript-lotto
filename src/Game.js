@@ -64,6 +64,18 @@ class Game {
         InputOutput.input(Message.PLEASE_TYPING_BONUS_NUMBER, (bonus) => this.setBonusNumber(bonus));
     }
 
+    checkBonusNumber (bonusNumber) {
+        const correctNumber = this.score.getCorrectNumber();
+        if (this.bonusNumber < 1 || bonusNumber > 45) {
+            InputOutput.close();
+            throw new Error(Message.LOTTO_NUMBER_BIGGER_THAN_ONE_SMALLER_THAN_FOURTY_FIVE);
+        }
+        if (correctNumber.includes(Number(bonusNumber))) {
+            InputOutput.close();
+            throw new Error(Message.EXIST_BONUS_NUMBER_IN_CORRECT_NUMBER);
+        }
+    }
+
 }
 
 module.exports = Game;
