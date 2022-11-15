@@ -50,7 +50,8 @@ class App {
 
       if (!isNumber(answer)) {
         throw new Error(ERROR.NOT_A_NUMBER);
-      } else if (!isVaildMoney(answer, 1000)) {
+      }
+      if (!isVaildMoney(answer, 1000)) {
         throw new Error(ERROR.NOT_VALID_MONEY);
       }
     });
@@ -92,8 +93,8 @@ class App {
 
       if (winNums.includes(Number(answer)))
         throw new Error(ERROR.DUPLICATED_BONUS_NUM);
-      else if (!isNumber(answer)) throw new Error(ERROR.NOT_A_NUMBER);
-      else if (!isValidRange([answer], 1, 45))
+      if (!isNumber(answer)) throw new Error(ERROR.NOT_A_NUMBER);
+      if (!isValidRange([answer], 1, 45))
         throw new Error(ERROR.NOT_VALID_RANGE);
       return this.getScoreArray(this.lottoRandomNums);
     });

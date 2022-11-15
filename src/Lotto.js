@@ -21,9 +21,11 @@ class Lotto {
   validate(numbers) {
     if (!isRightSizeAndNotDuplicated(numbers, 6)) {
       throw new Error(ERROR.NOT_RIGHT_SIZE_AND_DUPLICATED);
-    } else if (numbers.filter(num => !isNumber(num)).length > 0) {
+    }
+    if (numbers.filter(num => !isNumber(num)).length > 0) {
       throw new Error(ERROR.NOT_A_NUMBER);
-    } else if (!isValidRange(numbers, 1, 45)) {
+    }
+    if (!isValidRange(numbers, 1, 45)) {
       throw new Error(ERROR.NOT_VALID_RANGE);
     }
   }
