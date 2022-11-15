@@ -1,5 +1,6 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const { LOTTO } = require("./utils/constant");
+const { ERROR_MESSAGE } = require("./utils/UI");
 
 class User {
   #myLottos;
@@ -31,7 +32,7 @@ class User {
 
   validate(amount) {
     if (amount % LOTTO.PRICE !== 0) {
-      throw new Error(`[ERROR] 구입 금액은 ${LOTTO.PRICE}원 단위여야 합니다.`);
+      throw new Error(ERROR_MESSAGE.INPUT_AMOUNT);
     }
   }
 
