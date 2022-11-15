@@ -86,28 +86,36 @@ class Lotto {
       }
       this.#numbers = numbers.split(',').map(Number);
       this.checkUserNumber(this.#numbers);
-      this.getUserBonusNumber();
+      this.getUserBonusNumber(this.#numbers);
     });
   }
 
-  checkUserBonusNumber(number) {
-    if (number.length !== 1) {
+  checkUserBonusNumber(bonus, userNumbers) {
+    if (bonus.length !== 1) {
       throw new Error('[ERROR] 1글자만 입력해주세요');
     }
-    if (number.includes(NaN)) {
+    if (bonus.includes(NaN)) {
       throw new Error('[ERROR] 숫자만 입력해주세요.');
     }
-    if (number < 1 || number > 45) {
+    if (bonus < 1 || bonus > 45) {
       throw new Error('[ERROR] 1 ~ 45 사이의 숫자만 입력 가능합니다.');
     }
+    if (userNumbers.includes(...bonus)) {
+      throw new Error('[ERROR] 이미 당첨 번호에서 입력한 숫자입니다.');
+    }
+    this.showWinningStatistics();
   }
 
-  getUserBonusNumber() {
+  getUserBonusNumber(userNumbers) {
     Console.readLine(`${'\n'}보너스 번호를 입력해 주세요.${'\n'}`, (number) => {
       const bonus = number.split(',').map(Number);
-      Console.print(bonus);
-      this.checkUserBonusNumber(bonus);
+      this.checkUserBonusNumber(bonus, userNumbers);
     });
+  }
+
+  showWinningStatistics() {
+    Console.print(`${'\n'}당첨통계`);
+    Console.print('---');
   }
 }
 
