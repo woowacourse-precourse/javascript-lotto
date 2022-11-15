@@ -11,6 +11,13 @@ class App {
     this.lottoList = [];
     this.winningNumbers;
     this.bonusNumber;
+    this.profitList = {
+      SIX: 2000000000,
+      FIVEWITHBONUS: 30000000,
+      FIVE: 1500000,
+      FOUR: 50000,
+      THREE: 5000,
+    };
     this.profit = 0;
   }
 
@@ -71,12 +78,21 @@ class App {
       this.winningNumbers,
       this.bonusNumber
     );
-    const getProfit = compare.profit;
-    this.printTotalProfit(getProfit);
+    this.getProfit(compare.winningStatistics);
   }
+
+  getProfit(winningStatistics) {
+    Object.entries(winningStatistics).forEach(([count, score]) => {
+      if (score !== 0) {
+        this.profit = this.profitList[count] * score;
+      }
+    });
+    this.printTotalProfit();
+  }
+
   printTotalProfit(getProfit) {
     const PERCENTAGE = 100;
-    const profitPercentage = (getProfit / this.money) * PERCENTAGE;
+    const profitPercentage = (this.profit / this.money) * PERCENTAGE;
     this.profit = Math.round(profitPercentage * 10) / 10;
     Console.print(`총 수익률은 ${this.profit}%입니다.`);
     Console.close();

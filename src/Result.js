@@ -9,11 +9,11 @@ class Result {
     this.#winningNumbers = winningNumbers;
     this.#bonusNumber = bonusNumber;
     this.winningStatistics = {
-      three: 0,
-      four: 0,
-      five: 0,
-      fiveWithBonus: 0,
-      six: 0,
+      THREE: 0,
+      FOUR: 0,
+      FIVE: 0,
+      FIVEWITHBONUS: 0,
+      SIX: 0,
     };
     this.profit = 0;
     this.compare();
@@ -48,33 +48,19 @@ class Result {
   }
 
   getWinningStatus(countList) {
-    const FIRST_PRIZE_MONEY = 2000000000;
-    const SECOND_PRIZE_MONEY = 30000000;
-    const THIRD_PRIZE_MONEY = 1500000;
-    const FOURTH_PRIZE_MONEY = 50000;
-    const FIFTH_PRIZE_MONEY = 5000;
-
     if (countList.winningNumbers === 6) {
-      this.winningStatistics.six += 1;
-      this.profit += FIRST_PRIZE_MONEY;
+      this.winningStatistics.SIX += 1;
     }
-
     if (countList.winningNumbers === 5 && countList.bonusNumber === 1) {
-      this.winningStatistics.fiveWithBonus += 1;
-      this.profit += SECOND_PRIZE_MONEY;
+      this.winningStatistics.FIVEWITHBONUS += 1;
     } else if (countList.winningNumbers === 5) {
-      this.winningStatistics.five += 1;
-      this.profit += THIRD_PRIZE_MONEY;
+      this.winningStatistics.FIVE += 1;
     }
-
     if (countList.winningNumbers === 4) {
-      this.winningStatistics.four += 1;
-      this.profit += FOURTH_PRIZE_MONEY;
+      this.winningStatistics.FOUR += 1;
     }
-
     if (countList.winningNumbers === 3) {
-      this.winningStatistics.three += 1;
-      this.profit += FIFTH_PRIZE_MONEY;
+      this.winningStatistics.THREE += 1;
     }
   }
 
@@ -83,16 +69,16 @@ class Result {
   }
 
   printResult() {
-    const { three, four, five, fiveWithBonus, six } = this.winningStatistics;
+    const { THREE, FOUR, FIVE, FIVEWITHBONUS, SIX } = this.winningStatistics;
 
     Console.print("\n당첨 통계\n---");
-    Console.print(`3개 일치 (5,000원) - ${three}개`);
-    Console.print(`4개 일치 (50,000원) - ${four}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${five}개`);
+    Console.print(`3개 일치 (5,000원) - ${THREE}개`);
+    Console.print(`4개 일치 (50,000원) - ${FOUR}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${FIVE}개`);
     Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${fiveWithBonus}개`
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${FIVEWITHBONUS}개`
     );
-    Console.print(`6개 일치 (2,000,000,000원) - ${six}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${SIX}개`);
   }
 }
 
