@@ -9,4 +9,13 @@ module.exports = Object.freeze({
   //UI
   INPUT_ONLY_1_TO_45: "[ERROR] 보너스 번호는 1부터 45까지만 입력하세요.",
   INPUT_ONLY_ONE_BONUS_NUMBER: "[ERROR] 보너스 번호는 1개만 입력하세요",
+
+  //price
+  PRICE: {
+    3: { text: "3개 일치", price: 5000, count: 0 },
+    4: { text: "4개 일치", price: 50000, count: 0 },
+    5: { text: "5개 일치", price: 1500000, count: 0 },
+    6: { text: "5개 일치, 보너스 볼 일치", price: 30000000, count: 0 },
+    7: { text: "6개 일치", price: 2000000000, count: 0 },
+  },
 });

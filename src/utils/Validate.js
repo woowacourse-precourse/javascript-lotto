@@ -28,17 +28,20 @@ class Validate {
     if (!isAllNumber) {
       throw new Error("당첨번호는 숫자만 입력하세요.");
     }
-    return true
+    return true;
   }
 
-  static validateBonusNumber(bonusNumber) {
+  static validateBonusNumber(arrUserNumberInput, bonusNumber) {
     if (isNaN(bonusNumber)) {
       throw new Error(Constant.INPUT_ONLY_NUMBER);
     }
     if ((!isNaN(bonusNumber) && bonusNumber < 1) || bonusNumber > 45) {
       throw new Error(Constant.INPUT_ONLY_1_TO_45);
     }
-    return true
+    if (arrUserNumberInput.includes(bonusNumber)) {
+      throw new Error("보너스 넘버는 기존 번호와 중복될 수 없습니다.");
+    }
+    return true;
   }
 }
 

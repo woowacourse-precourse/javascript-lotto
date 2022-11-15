@@ -22,17 +22,23 @@ class Lotto {
   }
 
   compare(lottoNumbers, bonusNumber) {
-    let countArr = [];
+    let countArr = Constant.PRICE;
     lottoNumbers.forEach((lottoNumber) => {
       let countSameNumber = this.compareBetween(lottoNumber);
-      if (countSameNumber === 5) {
-        countArr.push({
-          countSameNumber,
-          bonusNumber: this.checkHasBonusNumber(lottoNumber, bonusNumber),
-        });
+      if (
+        countSameNumber === 5 &&
+        this.checkHasBonusNumber(lottoNumber, bonusNumber)
+      ) {
+        countArr[countSameNumber + 1].count += 1;
         return;
       }
-      countArr.push({ countSameNumber });
+      if (countSameNumber === 6) {
+        countArr[countSameNumber + 1].count += 1;
+        return;
+      }
+      if (countSameNumber >= 3) {
+        countArr[countSameNumber].count += 1;
+      }
     });
     return countArr;
   }
@@ -46,15 +52,24 @@ class Lotto {
     }, 0);
   }
 
-  // makeCountObject(countArr) {
-  //   return countArr.reduce((countObject, count) => {
-  //     countObject[count] = (countObject[count] || 0) + 1;
-  //     return countObject;
-  //   }, {});
-  // }
-
   checkHasBonusNumber(lottoNumber, bonusNumber) {
     return !!lottoNumber.includes(bonusNumber);
+  }
+
+  sumAllcountNumber(winObject) {
+    let sumAllcountNumber = winObject.reduce((countObject, now) => {
+      if (now?.bonusNumber === true) {
+        let count = (countObject[now.countSameNumber] || 0) + 1;
+        countObject[now.countSameNumber] = { bonusNumber: true, count };
+        return countObject;
+      }
+      countObject[now.countSameNumber] =
+        (countObject[now.countSameNumber] || 0) + 1;
+      return countObject;
+    }, {});
+    return Object.fromEntries(
+      Object.entries(sumAllcountNumber).filter((item) => item[0] >= 3)
+    );
   }
 }
 
