@@ -65,12 +65,17 @@ class User {
   calculateStat(hitLotto, bonusNumber) {
     this.calculateHitLottoCount(hitLotto, bonusNumber);
     this.calculateTotalPrize();
+    this.calcuateReturnOfInvestment();
   }
 
   calculateTotalPrize() {
     this.hitRanks.forEach((count, index) => {
       this.prize += lottoRank[index].prize * count;
     });
+  }
+
+  calcuateReturnOfInvestment() {
+    this.returnOfInvestment = (this.prize / this.amount).toFixed(2);
   }
 }
 
