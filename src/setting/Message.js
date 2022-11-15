@@ -1,12 +1,14 @@
 const NO_MONEY = '[ERROR] 돈이 아닙니다.';
 const WRONG_UNIT = '[ERROR] 천원 단위로 입력해주세요.';
+const EMPTY = '[ERROR] 값이 존재하지 않습니다.';
 
 const LOTTO_MESSAGE = {
     NO_MONEY,
     WRONG_UNIT,
+    EMPTY,
 }
 
-const NO_VALUE = '[ERROR] 값을 입력해주세요.';
+const NO_VALUE = '[ERROR] 값이 존재하지 않습니다.';
 const WRONG_FORMAT = '[ERROR] 올바른 형식으로 입력해주세요.';
 const NO_SIX = '[ERROR] 로또 번호는 6개여야 합니다.';
 const WRONG_NUMBER = '[ERROR] 1과 45사이의 숫자를 입력해주세요.';

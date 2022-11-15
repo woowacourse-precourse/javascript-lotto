@@ -45,7 +45,7 @@ class Lotto {
   }
 
   isItEmpty(money) {
-    if (money < 1) throw new Error(LOTTO_MESSAGE.EMPTY);
+    if (money < LOTTO_VALUE.min) throw new Error(LOTTO_MESSAGE.EMPTY);
   }
 
   isItNumber(money) {
