@@ -1,4 +1,4 @@
-const LottoValidator = require('../validators/LottoValidator');
+const { LottoValidator } = require('../validators');
 
 class Lotto {
   #numbers;
