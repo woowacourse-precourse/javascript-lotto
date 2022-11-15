@@ -8,6 +8,8 @@ const {
   LOTTO_WIN,
   LOTTO_WIN_SEPERATOR,
   LOTTO_BONUS,
+  LOTTO_OUT_RANGE_ERROR,
+  LAST_RANGE,
 } = require('./MESSAGE');
 
 class Lotto {
@@ -29,6 +31,9 @@ class Lotto {
     const setWinLotto = new Set();
     const winLottoArr = [...numbers];
     winLottoArr.forEach((eachLottoNum) => {
+      if (eachLottoNum < FIRST_RANGE || eachLottoNum > LAST_RANGE) {
+        throw new Error(LOTTO_OUT_RANGE_ERROR);
+      }
       setWinLotto.add(eachLottoNum);
     });
     if (setWinLotto.size !== LOTTO_LENGTH) {
