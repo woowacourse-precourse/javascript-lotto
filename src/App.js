@@ -57,6 +57,15 @@ class App {
       if (number < 1 || number > 45) throw new Error(ERROR_MESSAGE.RANGE);
     };
   }
+  showResult(LOTTO_PRIZE, finalPrize) {
+    for (let key in LOTTO_PRIZE) {
+      MissionUtils.Console.print(
+        `${LOTTO_PRIZE[key].MATCHED} (${parseInt(
+          LOTTO_PRIZE[key].MONEY
+        ).toLocaleString()}원) - ${LOTTO_PRIZE[key].count}개`
+      );
+    }
+  }
 }
 
 module.exports = App;
