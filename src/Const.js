@@ -45,7 +45,7 @@ const ALERT = {
     MONEY_UNIT : "구입 금액은 1000원 단위 입니다.",
 }
 
-const DIPLAY = {
+const DISPLAY = {
     SPLIT_UNIT : ','
 }
 
