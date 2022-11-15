@@ -61,7 +61,7 @@ describe("로또 테스트", () => {
     });
   });
 
-  test("예외 테스트 (숫자가 아닐 경우)", () => {
+  test("입력받은 금액이 숫자가 아닐 경우 예외가 발생한다.", () => {
     mockQuestions(["1000j"]);
     expect(() => {
       const app = new App();
@@ -69,7 +69,7 @@ describe("로또 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
-  test("예외 테스트 (1000원 단위가 아닐 경우)", () => {
+  test("입력받은 금액이 1000원 단위가 아닐 경우 예외가 발생한다.", () => {
     mockQuestions(["1100"]);
     expect(() => {
       const app = new App();
@@ -77,7 +77,7 @@ describe("로또 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
-  test("예외 테스트 (음수일 경우)", () => {
+  test("음력받은 금액이 음수일 경우 예외가 발생한다.", () => {
     mockQuestions([-1000]);
     expect(() => {
       const app = new App();
