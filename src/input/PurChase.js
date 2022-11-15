@@ -13,7 +13,7 @@ class PurChase {
       throw new Error(ERROR_MESSAGES.INVALID_COST_MIN);
     }
 
-    if (Number.isNaN(+payment)) {
+    if (Number.isNaN(Number(payment))) {
       throw new Error(ERROR_MESSAGES.INVALID_COST_TYPE);
     }
 
