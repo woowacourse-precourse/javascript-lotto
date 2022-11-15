@@ -22,6 +22,8 @@ const WINNING_MONEY = {
   FIRST_RANK: 2000000000,
 };
 
+const NUM_REGIX = /^[0-9]+$/;
+
 const ERROR = '[ERROR]';
 
 const INPUT_ERROR = {
@@ -33,13 +35,8 @@ const INPUT_ERROR = {
 const LOTTO_ERROR = {
   INVALID_DIGIT: `${ERROR} 로또 번호는 6개여야 합니다.`,
   INVALID_DUPLICATE: `${ERROR} 로또 번호는 중복될 수 없습니다.`,
+  INVALID_NUM: `${ERROR} 로또 번호는 0보다 큰 숫자로만 입력되어야 합니다.`,
   INVALID_RANGE: `${ERROR} 로또 번호는 1부터 45 사이의 숫자여야 합니다.`,
-};
-
-const BONUS_NUM_ERROR = {
-  ONE_DIGIT_ALLOWED: `${ERROR} 1개의 보너스 번호를 입력해 주세요.`,
-  NOT_DUPLICATED_ALLOWED: `${ERROR} 보너수 번호는 중복될 수 없습니다.`,
-  NUM_IN_RANGE_ALLOWED: `${ERROR} 보너스 번호는 1부터 45 사이의 숫자여야 합니다.`,
 };
 
 const MIN_LOTTO_NUM = 1;
@@ -54,5 +51,5 @@ module.exports = {
   MIN_LOTTO_NUM,
   MAX_LOTTO_NUM,
   NUM_OF_LOTTO,
-  BONUS_NUM_ERROR,
+  NUM_REGIX,
 };
