@@ -39,6 +39,19 @@ describe("로또 클래스 테스트", () => {
     expect(lotto.winningCount).toBe(6);
   });
 
+  test("2등 당첨 로직이 잘 작동하는지 확인한다.", () => {
+    const lotto = new Lotto();
+    const game = [1, 2, 3, 4, 5, 6];
+    const numbers = [1, 2, 3, 4, 5, 45];
+    const bonusNumber = 6;
+
+    lotto.bonusNumber = bonusNumber;
+
+    lotto.checkPrize(game, numbers);
+
+    expect(lotto.prize.second).toBe(1);
+  });
+
   test("당첨 금액 합계를 구매 금액으로 나눠서 수익률을 구한다.", () => {
     const lotto = new Lotto();
     lotto.calculateYield(5000, 8000);
