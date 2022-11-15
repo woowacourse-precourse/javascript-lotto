@@ -46,7 +46,7 @@ class App {
   creatLottosOutput(lottoCount){
     Console.print('');
     Console.print(`${lottoCount}개를 구매했습니다.`);
-    this.lottoArr.forEach(lotto => lotto.print());
+    this.lottoArr.forEach(lotto => Console.print('[' + lotto.numbers.join(", ") + ']'));
     this.inputWinningNumber();
   }
 
@@ -75,7 +75,7 @@ class App {
     lottoResult.compareLotto(this.lottoArr, winningNumber);
     this.print(lottoResult);
   }
-  
+
   //** 8.통계값 출력 */
   print(lottoResult) {
     lottoResult.printResult(this.amount);
