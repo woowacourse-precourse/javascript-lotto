@@ -28,6 +28,17 @@ class App {
   setMoneyCount() {
     this.count = this.money / LOTTO_MONEY_UNIT;
   }
+  issueLotto() {
+    for (let i = 0; i < this.count; i++) {
+      const numbers = MissionUtils.Random.pickUniqueNumbersInRange(
+        LOTTO_VALUE_MIN,
+        LOTTO_VALUE_MAX,
+        LOTTO_SIZE
+      ).sort((a, b) => a - b);
+      const lotto = new Lotto(numbers);
+      this.lottoList.push(lotto);
+    }
+  }
 }
 
 module.exports = App;
