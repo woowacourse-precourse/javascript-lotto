@@ -1,5 +1,5 @@
-const Lotto = require("../src/Lotto");
-const { GAME_MESSAGES, ERROR_MESSAGES } = require("../src/constants");
+const Lotto = require("../src/service/Lotto");
+const { GAME_MESSAGES, ERROR_MESSAGES } = require("../src/constants/constants");
 
 describe("로또 클래스 테스트", () => {
   test("1. 입력 받은 당첨번호가 올바르지 않은 형식이면 예외가 발생한다.", () => {

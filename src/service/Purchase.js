@@ -1,6 +1,6 @@
-const { GAME_MESSAGES, ERROR_MESSAGES } = require("./constants");
+const { GAME_MESSAGES, ERROR_MESSAGES } = require("../constants/constants");
 const { Console, Random } = require("@woowacourse/mission-utils");
-const { isDuplicated, isOutOfRange } = require("./utils");
+const { isDuplicated, isOutOfRange } = require("../utils/utils");
 
 class Purchase {
   constructor(cost) {

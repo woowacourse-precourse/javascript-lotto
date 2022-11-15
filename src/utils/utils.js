@@ -1,4 +1,4 @@
-const { NUMBERS } = require("../src/constants");
+const { NUMBERS } = require("../constants/constants");
 
 const getRandomInt = () => {
   min = Math.ceil(NUMBERS.MIN_LOTTO_NUM);

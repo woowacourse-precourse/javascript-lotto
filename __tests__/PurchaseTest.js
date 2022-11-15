@@ -1,5 +1,5 @@
-const Purchase = require("../src/Purchase");
-const { ERROR_MESSAGES, GAME_MESSAGES } = require("../src/constants");
+const Purchase = require("../src/service/Purchase");
+const { ERROR_MESSAGES, GAME_MESSAGES } = require("../src/constants/constants");
 
 describe("구매 클래스 테스트", () => {
   test("1. 구매 금액은 1000원 이하 10000원 이상을 넘으면 예외가 발생한다.", () => {

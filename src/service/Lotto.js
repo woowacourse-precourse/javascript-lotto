@@ -1,6 +1,10 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { GAME_MESSAGES, ERROR_MESSAGES, NUMBERS } = require("./constants");
-const { isOutOfRange, isDuplicated } = require("../src/utils");
+const {
+  GAME_MESSAGES,
+  ERROR_MESSAGES,
+  NUMBERS,
+} = require("../constants/constants");
+const { isOutOfRange, isDuplicated } = require("../utils/utils");
 
 class Lotto {
   #numbers;
