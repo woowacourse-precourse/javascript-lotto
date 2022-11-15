@@ -14,11 +14,10 @@
     [:deciduous_tree:] [Error] 1~45 사이의 숫자가 아니면 에러
     [:deciduous_tree:] [Error] 쉼표를 기준으로 6개의 수가 아니면 에러
     [:deciduous_tree:] [Error] 중복된 숫자를 입력하면 에러
-7. 보너스 번호를 입력 받는다.
-    1. [Error] 숫자가 아니면 에러
-    2. [Error] 1~45 사이의 숫자가 아니면 에러
-    3. [Error] 1개의 수가 아니면 에러
-    4. [Error] 앞서 입력한 6개의 수와 중복되면 에러
+[:deciduous_tree:] 보너스 번호를 입력 받는다.
+    [:deciduous_tree:] [Error] 숫자가 아니면 에러
+    [:deciduous_tree:] [Error] 1~45 사이의 숫자가 아니면 에러
+    [:deciduous_tree:] [Error] 앞서 입력한 6개의 수와 중복되면 에러
 8. 당첨 내역 계산한다.
 9. 당첨 내역을 출력한다.
 10. 수익률을 계산한다.
