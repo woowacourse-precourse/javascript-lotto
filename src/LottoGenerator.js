@@ -1,4 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+const Lotto = require('./Lotto');
 
 class LottoGenerator {
   #lottoNumber;
@@ -16,7 +17,9 @@ class LottoGenerator {
         6
       ).sort((a, b) => a - b);
 
-      this.#lottoNumber.push(Array.from(makeLotto));
+      new Lotto(makeLotto);
+
+      this.#lottoNumber.push(makeLotto);
     }
   }
 
