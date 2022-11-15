@@ -36,6 +36,7 @@ class App {
       this.payMoney = input;
       this.printMoney();
       this.lottos = this.publishLottos(input / 1000);
+      this.printLottosNumbers();
       this.getWinNumbers();
     });
   }
@@ -64,22 +65,20 @@ class App {
   }
 
   getWinNumbers() {
-    Console.readLine("\n 당첨 번호를 입력해 주세요.\n", (input) => {
-      let wins = new Set(input.split(",").map(Number));
-      if (!this.isValidWinNumbers(wins)) {
+    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (input) => {
+      if (!this.isValidWinNumbers(input)) {
         throw "[ERROR]";
-      } else {
-        this.winNumbers = wins;
-        this.getBonusNumber();
       }
+      this.winNumbers = input.split(",").map(Number);
+      this.getBonusNumber();
     });
   }
 
-  isValidWinNumbers(winNumbers) {
-    if (winNumbers.size != 6) return false;
-    if (winNumbers.has(NaN)) return false;
-    if ([...winNumbers].filter((e) => e < 1 || e > 45).length != 0)
-      return false;
+  isValidWinNumbers(input) {
+    let numbers = input.split(",").map(Number);
+    if (new Set(numbers).size != 6) return false;
+    if (numbers.includes(NaN)) return false;
+    if (numbers.filter((e) => e < 1 || e > 45).length != 0) return false;
     else return true;
   }
 
