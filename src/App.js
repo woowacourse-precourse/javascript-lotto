@@ -1,22 +1,17 @@
-const {
-  getPurchaseAmount,
-  getWinningNumber,
-  getBonusNumber,
-} = require("./UserInput.js");
+const { Console } = require("@woowacourse/mission-utils");
 const {
   printUserPurchaseAmount,
   printLottoResult,
   printProfit,
-} = require("./Output.js");
+} = require("./LottoOutput.js");
 const {
   validateSixLength,
   validatePurchaseAmount,
   validateNumberArray,
   validateBonusDuplicate,
   validateBlank,
-} = require("./Exception.js");
-const { Print } = require("./lib/MissionUtils.js");
-const { createLotto } = require("./Random.js");
+} = require("./LottoValidate.js");
+const { createLotto } = require("./LottoUtils.js");
 const { RESULT_WINNINGS } = require("./ResultMessage.js");
 class App {
   $purchaseAmount;
@@ -24,33 +19,34 @@ class App {
   $winNum;
   $bonus;
   $lottoResult = [];
-  async play() {
-    await this.savePurchaseAmount();
-    this.$lottos = createLotto(this.$purchaseAmount);
-    await this.saveWinningNumber();
-    await this.saveBonusNumber();
-    this.saveLottoResult();
+  play() {
+    this.savePurchaseAmount();
   }
-  async savePurchaseAmount() {
-    this.$purchaseAmount = await getPurchaseAmount().then((data) =>
-      validatePurchaseAmount(Number(data))
-    );
-    printUserPurchaseAmount(this.$purchaseAmount);
+  savePurchaseAmount() {
+    Console.readLine("구입금액을 입력해 주세요.\n", (ans) => {
+      if (isNaN(ans)) throw new Error("[ERROR] 숫자 입력");
+      this.$purchaseAmount = validatePurchaseAmount(ans);
+      printUserPurchaseAmount(this.$purchaseAmount);
+      this.$lottos = createLotto(this.$purchaseAmount);
+      this.saveWinningNumber();
+    });
   }
-  async saveWinningNumber() {
-    this.$winNum = await getWinningNumber().then((data) => {
-      let splitedData = data.split(",");
+  saveWinningNumber() {
+    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (ans) => {
+      let splitedData = ans.split(",");
       validateSixLength(splitedData);
       validateNumberArray(splitedData);
       validateBlank(splitedData);
-      return splitedData.map((v) => +v);
+      this.$winNum = splitedData.map((v) => +v);
+      this.saveBonusNumber();
     });
   } //나눌 때 예외처리, 숫자,6개인지
-  async saveBonusNumber() {
-    this.$bonus = await getBonusNumber().then((data) => {
-      validateNumberArray(data.split(""));
-      validateBonusDuplicate(+data, this.$winNum);
-      return +data;
+  saveBonusNumber() {
+    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (ans) => {
+      validateNumberArray(ans.split(""));
+      validateBonusDuplicate(+ans, this.$winNum);
+      this.$bonus = +ans;
+      this.saveLottoResult();
     });
   }
   saveLottoResult() {
