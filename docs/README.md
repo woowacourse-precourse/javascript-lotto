@@ -20,14 +20,14 @@
 
 ### 공통
 
-- [x] 숫자, 쉼표(,) 이외의 값이 입력될 경우 - IO#validate()
+- [x] 숫자, 쉼표(,) 이외의 값이 입력될 경우 - Validator#validateInput()
 
 ## Lotto
 
-- [x] 1 ~ 45 이외의 숫자가 입력될 경우
+- [x] 1 ~ 45 이외의 숫자가 입력될 경우 - Validator#validateNumber()
 - [x] 6개의 숫자가 입력되지 않을 경우
-- [x] 중복된 숫자가 입력될 경우 - Lotto#validate()
+- [x] 중복된 숫자가 입력될 경우 - Validator#validateNumbers()
 
 ## Game
 
-- [x] 1,000원 단위가 아닌 금액이 입력 될 경우 - Game#validate()
+- [x] 1,000원 단위가 아닌 금액이 입력 될 경우 - Validator#validateMoney()
