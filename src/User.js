@@ -4,6 +4,10 @@ class User {
         this.userLotto = null;
     }
 
+    getUserLottoCount () {  
+        return this.lottoCount;
+    }
+
 }
 
 module.exports = User;
