@@ -1,6 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 const Bonus = require('./Bonus');
-const { REGEXP, MESSAGE, ERROR_MESSAGE } = require('./constant/constant');
+const { REGEXP, MESSAGE, ERROR_MESSAGE, PRIZE_MONEY } = require('./constant/constant');
 const Lotto = require('./Lotto');
 const Lottos = require('./Lottos');
 
@@ -100,6 +100,34 @@ class App {
     for (let index = 4; index >= 0; index -= 1) {
       Console.print(`${MESSAGE.RANK[index + 1]}${winningResult[index]}${MESSAGE.AMOUNT}`);
     }
+
+    this.calculateReturn(winningResult);
+  }
+
+  calculateReturn(winningResult) {
+    let sum = 0;
+
+    for (let index = 0; index < winningResult.length; index += 1) {
+      sum += PRIZE_MONEY[index + 1] * winningResult[index];
+    }
+
+    this.calculateRateOfReturn(sum);
+  }
+
+  calculateRateOfReturn(sum) {
+    const result = sum / (this.lottos.amount * 10);
+    const tempResult = Number((Math.abs(result) * 10).toPrecision(15));
+    const rateOfReturn = (Math.round(tempResult) / 10) * Math.sign(result);
+
+    this.showRateOfReturn(rateOfReturn.toFixed(1));
+  }
+
+  showRateOfReturn(rateOfReturn) {
+    Console.print(
+      `${MESSAGE.RATE_OF_RETURN.slice(0, 7)}${rateOfReturn}${MESSAGE.RATE_OF_RETURN.slice(
+        7
+      )}`
+    );
   }
 }
 
