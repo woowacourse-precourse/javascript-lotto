@@ -1,5 +1,4 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-
 class Lotto {
   #numbers;
 
@@ -29,6 +28,7 @@ class Lotto {
       "\n보너스 번호를 입력해 주세요.\n",
       (bonusNumber) => {
         this.checkWinNumber(bonusNumber.split(), 1);
+        // winningCalculate(this.#numbers, bonusNumber);
       }
     );
   }

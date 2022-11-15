@@ -2,6 +2,8 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
 class App {
+  pickNumberArray = [];
+
   play() {
     this.inputPurchaseAmount();
   }
@@ -47,13 +49,15 @@ class App {
 
   pickRandomNumber(lottoCnt) {
     // 로또 번호 출력
-    let pickNumberArray = [];
+    // let pickNumberArray = [];
     for (let i = 0; i < lottoCnt; i++) {
-      pickNumberArray.push(
-        MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6)
-      );
+      let randomNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      randomNumber.sort(function (a, b) {
+        return a - b;
+      });
+      this.pickNumberArray.push(randomNumber);
     }
-    return pickNumberArray;
+    return this.pickNumberArray;
   }
 
   winNumberArr(winNumber) {
