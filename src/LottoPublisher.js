@@ -17,21 +17,21 @@ class LottoPublisher {
 
   receiveUserInputWinningNumbers(input) {
     const numbers = input.split(',').map(Number);
-    this.validateWinningNumbers(numbers);
+    this.#validateWinningNumbers(numbers);
     this.#winningNumbers = numbers;
   }
 
   receiveUserInputBonusNumber(input) {
     const number = Number(input);
-    this.validateBonusNumber(number);
+    this.#validateBonusNumber(number);
     this.#bonusNumber = number;
   }
 
-  validateWinningNumbers(numbers) {
+  #validateWinningNumbers(numbers) {
     isValidLottoNumbers(numbers);
   }
 
-  validateBonusNumber(number) {
+  #validateBonusNumber(number) {
     isValidLottoBonusNumber(number, this.#winningNumbers);
   }
 
