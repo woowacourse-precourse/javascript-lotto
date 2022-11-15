@@ -101,6 +101,9 @@ class Machine {
     rankings.forEach((ranking) => {
       Console.print(Display.rankingStatistics(ranking, this.rankingCountMap.get(ranking) || 0));
     });
+
+    // this.#computeProfits();
+    // Console.print(Display.statistics('PROFITS', Machine.user.profits));
   }
 }
 
