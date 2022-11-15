@@ -97,6 +97,15 @@ class App {
     this.printResult();
   }
 
+  printResult() { //결과 출력
+    Console.print(MESSAGE.RESULT);
+    for (const [result, count] of Object.entries(this.score)) {
+      Console.print(MESSAGE[result](count));
+    }
+    Console.print(MESSAGE.return(this.return));
+    Console.close();
+  }
+
 
 }
 
