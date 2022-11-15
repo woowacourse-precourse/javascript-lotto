@@ -35,7 +35,7 @@ async function getLottoNumbers(inputObjects) {
 
 async function getBonusNumber(inputObjects) {
   Console.readLine('', (answer) => {
-    const bonusNum = new Bonus(answer);
+    const bonusNum = new Bonus(inputObjects['numbers'], answer);
     inputObjects['bonus'] = bonusNum;
   })
   return inputObjects;
