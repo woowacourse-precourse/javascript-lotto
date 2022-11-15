@@ -1,6 +1,6 @@
-const { ERROR_PREFIX, ERROR_MSG } = require('./constants');
+const { ERROR_PREFIX } = require('./constants');
 
-const makeErrorMsg = (errorType) => `${ERROR_PREFIX} ${ERROR_MSG[errorType]}`;
+const makeErrorMsg = (errorMsg) => `${ERROR_PREFIX} ${errorMsg}`;
 
 const invalidNumber = (numbers) =>
   numbers.filter((number) => typeof number !== 'number' || Number.isNaN(number))
