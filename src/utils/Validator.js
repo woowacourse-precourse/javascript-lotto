@@ -29,6 +29,15 @@ class Validator {
       throw Error(MESSAGE_ACCORDING_ERROR.LOTTO_NOT_DUPLICATED);
   }
 
+  static #isBonusNumberValid(winningNumber, bonusNumber) {
+    if (this.#isBonusLengthOverOne(bonusNumber))
+      throw Error("[ERROR] 보너스 번호는 숫자 하나만 입력해주세요.");
+  }
+
+  static #isBonusLengthOverOne(bonusNumber) {
+    return bonusNumber.length > 1;
+  }
+
   static #isNotRangeValid(numbers) {
     return numbers.some((number) => number < LOTTO_INFO.MIN_VALUE || number > LOTTO_INFO.MAX_VALUE);
   }
