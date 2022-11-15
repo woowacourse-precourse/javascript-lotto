@@ -28,12 +28,6 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
-  test("로또 번호는 숫자만 입력해야 합니다.", () => {
-    expect(() => {
-      new Lotto([1, 2, 3, 4, 5, 49]);
-    }).toThrow("[ERROR]");
-  });
-
   test("금액에 문자가 있는지 확인하고 있다면 예외가 발생한다.", () => {
     expect(() => {
       new MoneyExceptionHandling("1000j");
@@ -45,5 +39,7 @@ describe("로또 클래스 테스트", () => {
       new MoneyExceptionHandling(1200);
     }).toThrow("[ERROR]");
   });
+
+
   // 아래에 추가 테스트 작성 가능
 });
