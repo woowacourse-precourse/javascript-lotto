@@ -89,8 +89,10 @@ function printProfitRate(staticLotto) {
     staticLotto[2] * 1500000 +
     staticLotto[3] * 30000000 +
     staticLotto[4] * 2000000000;
-  const profitRate = ((profit / money) * 100).toFixed(1);
-  ConsoleWork.print(`총 수익률은 ${profitRate}%입니다.`);
+  const profitRate = Number(((profit / money) * 100).toFixed(1));
+  const profitRate2 = profitRate.toLocaleString('ko-KR');
+
+  ConsoleWork.print(`총 수익률은 ${profitRate2}%입니다.`);
   ConsoleWork.close();
 }
 
