@@ -92,7 +92,7 @@ class Purchase {
 
   createBonusLotto(number) {
     this.bonusNumber = Number(number);
-    const bonusLotto = new BonusNumber(number);
+    const bonusLotto = new BonusNumber(number, this.winningNumber);
     this.getResult();
   }
 
