@@ -1,6 +1,7 @@
 const Money = require("./domain/Money");
 const Lottos = require("./domain/Lottos");
 const WinNumber = require("./domain/WinNumber");
+const Bonus = require("./domain/Bonus");
 
 class LottoGameService {
   #lottos;
@@ -23,11 +24,12 @@ class LottoGameService {
 
   setWinNumbers(winNumbers) {
     const winNumber = new WinNumber(winNumbers);
-    this.#winNumber = winNumber;
+    this.#winNumber = winNumbers;
   }
 
-  setBonus(bonus) {
-    this.#bonus = bonus;
+  setBonus(bonusNumber) {
+    const bonus = new Bonus(bonusNumber, this.#winNumber);
+    this.#bonus = bonusNumber;
   }
 }
 

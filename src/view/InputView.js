@@ -31,16 +31,16 @@ class InputView {
   inputWinNumber() {
     Console.readLine(INPUT_MESSAGE.WIN_NUMBER, (numbers) => {
       this.#lottoGameController.inputWinNumber(numbers);
-      // this.#inputBonus();
+      this.#inputBonus();
     });
   }
 
-  // #inputBonus() {
-  //   Console.readLine(INPUT_MESSAGE.BONUS_NUMBER, (numbers) => {
-  //     this.#lottoGameController.inputBonus(numbers);
-  //     this.#showStatics();
-  //   });
-  // }
+  #inputBonus() {
+    Console.readLine(INPUT_MESSAGE.BONUS_NUMBER, (numbers) => {
+      this.#lottoGameController.inputBonus(numbers);
+      // this.#showStatics();
+    });
+  }
 
   // #showStatics() {
   //   Console.print(OUTPUT_MESSAGE.STATIC_STATUS);

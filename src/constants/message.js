@@ -1,6 +1,7 @@
 const INPUT_MESSAGE = Object.freeze({
   BUY: "구입금액을 입력해 주세요.\n",
-  WIN_NUMBER: "\n당첨번호를 입력해주세요.\n",
+  WIN_NUMBER: "\n당첨 번호를 입력해주세요.\n",
+  BONUS_NUMBER: "\n보너스 번호를 입력해주세요.\n",
 });
 
 const OUTPUT_MESSAGE = Object.freeze({
@@ -19,7 +20,11 @@ const ERROR_MESSAGE = Object.freeze({
   WIN_NUMBERS_RIGHT_LENGTH: "[ERROR] 당첨 번호를 6개 입력해주세요.",
   WIN_NUMBERS_NOT_NUMBER: "[ERROR] 당첨 번호는 숫자여야 합니다.",
   WIN_NUMBERS_IN_LOTTO_BOUNDARY:
-    "[ERROR] 당첨번호는 1부터 45사이의 숫자를 입력해주세요.",
+    "[ERROR] 당첨 번호를 1부터 45사이의 숫자를 입력해주세요.",
+  BONUS_NOT_NUMBER: "[ERROR] 보너스 번호는 숫자여야 합니다.",
+  BONUS_DUPLICATE: "[ERROR] 보너스 번호가 당첨 번호와 중복되었습니다.",
+  BONUS_NUMBERS_IN_LOTTO_BOUNDARY:
+    "[ERROR] 보너스 번호를 1부터 45사이의 숫자를 입력해주세요.",
 });
 
 module.exports = { INPUT_MESSAGE, OUTPUT_MESSAGE, ERROR_MESSAGE };

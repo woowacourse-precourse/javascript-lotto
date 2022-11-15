@@ -23,10 +23,9 @@ class LottoGameController {
     this.#gameService.setWinNumbers(numbers);
   }
 
-  // inputWinNumber(number) {
-  //   const bonus = new Bonus(number);
-  //   this.#gameService.setBonus(number);
-  // }
+  inputBonus(number) {
+    this.#gameService.setBonus(number);
+  }
 }
 
 module.exports = LottoGameController;
