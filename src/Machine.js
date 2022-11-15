@@ -2,10 +2,12 @@ const { Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 
 const { PRIZE } = require('./constants/prize');
+const SETTING = require('./constants/setting');
 
 class Machine {
   static publishLotto() {
-    const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+    const { MIN_NUMBER, MAX_NUMBER, LOTTO_COUNT } = SETTING;
+    const numbers = Random.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_COUNT);
     numbers.sort((a, b) => a - b);
 
     return new Lotto(numbers);

@@ -1,4 +1,5 @@
 const { ERROR } = require('./constants/message');
+const SETTING = require('./constants/setting');
 
 class Lotto {
   #numbers;
@@ -9,7 +10,7 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
+    if (numbers.length !== SETTING.LOTTO_COUNT) {
       throw new Error(ERROR.LOTTO_COUNT);
     }
 
@@ -17,7 +18,7 @@ class Lotto {
       throw new Error(ERROR.NO_DUPLICATE);
     }
 
-    if (Math.min(...numbers) < 1 || Math.max(...numbers) > 45) {
+    if (Math.min(...numbers) < SETTING.MIN_NUMBER || Math.max(...numbers) > SETTING.MAX_NUMBER) {
       throw new Error(ERROR.NUMBER_IN_RANGE);
     }
   }

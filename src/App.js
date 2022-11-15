@@ -5,6 +5,7 @@ const Message = require('./Message');
 
 const { PRIZE, WIN_MONEY } = require('./constants/prize');
 const { ASK, ERROR, ALERT } = require('./constants/message');
+const SETTING = require('./constants/setting');
 
 class App {
   constructor() {
@@ -74,11 +75,17 @@ class App {
       throw new Error(ERROR.ONLY_NUMBER);
     }
 
-    if (winNumbers.length !== 6 || new Set(winNumbers).size !== 6) {
+    if (
+      winNumbers.length !== SETTING.LOTTO_COUNT ||
+      new Set(winNumbers).size !== SETTING.LOTTO_COUNT
+    ) {
       throw new Error(ERROR.NO_DUPLICATE);
     }
 
-    if (Math.min(...winNumbers) < 1 || Math.max(...winNumbers) > 45) {
+    if (
+      Math.min(...winNumbers) < SETTING.MIN_NUMBER ||
+      Math.max(...winNumbers) > SETTING.MAX_NUMBER
+    ) {
       throw new Error(ERROR.NUMBER_IN_RANGE);
     }
   }
@@ -101,7 +108,7 @@ class App {
       throw new Error(ERROR.ONLY_NUMBER);
     }
 
-    if (bonus < 1 || bonus > 45) {
+    if (bonus < SETTING.MIN_NUMBER || bonus > SETTING.MAX_NUMBER) {
       throw new Error(ERROR.NUMBER_IN_RANGE);
     }
 

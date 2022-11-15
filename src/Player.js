@@ -2,6 +2,7 @@ const Machine = require('./Machine');
 
 const { PRIZE } = require('./constants/prize');
 const { ERROR } = require('./constants/message');
+const SETTING = require('./constants/setting');
 
 class Player {
   constructor() {
@@ -20,14 +21,14 @@ class Player {
   buyLottos(money) {
     this.validateMoney(money);
 
-    const lottoCount = money / 1000;
+    const lottoCount = money / SETTING.LOTTO_PRICE;
 
     this.spentMoney = money;
     this.lottos = Array.from({ length: lottoCount }, () => Machine.publishLotto());
   }
 
   validateMoney(money) {
-    if (!Number.isInteger(money / 1000)) {
+    if (!Number.isInteger(money / SETTING.LOTTO_PRICE)) {
       throw new Error(ERROR.LOTTO_PRICE);
     }
   }
