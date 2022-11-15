@@ -1,18 +1,45 @@
+const {
+  checkDuplicate,
+  checkLength,
+  checkLottoRange,
+  checkNumberRange,
+  checkBonusDuplicate,
+} = require("./LottoValidation");
 class Lotto {
-  #numbers;
+  #numbers = {
+    winning: [],
+    bonus: null,
+  };
 
-  constructor(numbers) {
-    this.validate(numbers);
-    this.#numbers = numbers;
+  constructor(winningNumbers) {
+    // 당첨 번호 생성자
+    const winning = winningNumbers.map((number) => Number(number));
+    Lotto.validate(winning);
+    this.#numbers = { winning };
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+  static validate(number) {
+    // 당첨 번호 유효성 검사
+    checkLength(number);
+    checkLottoRange(number);
+    checkDuplicate(number);
+  }
+  static validate_Bonus(number, winningNumbers) {
+    // 당첨 번호 및 보너스 번호 유효성 검사
+    checkNumberRange(number);
+    checkBonusDuplicate(number, winningNumbers);
+  }
+  setBonusNumber(bonusNumber) {
+    // 보너스 번호 셋
+    Lotto.validate_Bonus(bonusNumber, this.#numbers.winning);
+
+    this.#numbers.bonus = bonusNumber;
   }
 
-  // TODO: 추가 기능 구현
+  getNumbers() {
+    // 당첨 번호 출력
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
