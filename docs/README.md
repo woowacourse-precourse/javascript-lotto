@@ -8,7 +8,7 @@
   - MissionUtils의 Console.readLine 사용
 - [x] 보너스 번호를 입력받는다.
   - MissionUtils의 Console.readLine 사용
-- [ ] 당첨 통계를 계산한다.
+- [x] 당첨 통계를 계산한다.
 - [ ] 수익률을 계산한다.
 - [ ] throw문을 통해 예외를 잡아낸다.  
   - [ ] cost가 나누어 떨어지지 않는 경우

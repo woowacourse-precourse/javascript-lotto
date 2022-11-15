@@ -1,4 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
+const Lotto = require('./Lotto.js');
 const Machine = require('./Machine.js');
 const machine = new Machine();
 
@@ -35,6 +36,11 @@ class App {
   inputBonusNumber() {
     Console.readLine(GET_BONUS_NUMBER_SENTENCE, (bonusNumber) => {
       this.bonusNumber = parseInt(bonusNumber);
+
+      const lotto = new Lotto(this.lottos);
+      const stats = lotto.calculateStats(this.winningNumber, this.bonusNumber);
+      
+      Console.print(stats);
     })
   }
 
