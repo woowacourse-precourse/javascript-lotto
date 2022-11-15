@@ -29,6 +29,19 @@ class Store {
       throw new Error("[ERROR] 1000원 단위로 입력해 주세요.");
     if (price <= 0) throw new Error("[ERROR] 양의 정수를 입력해 주세요.");
   }
+
+  buy() {
+    MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (userInput) => {
+      this.validatePrice(Number(userInput));
+      this.price = Number(userInput);
+      const lottoMaxCount = this.price / 1000;
+      MissionUtils.Console.print(`${lottoMaxCount}개를 구매했습니다.`);
+      for (let lottoCount = 0; lottoCount < lottoMaxCount; lottoCount++) {
+        this.issue();
+      }
+      return;
+    });
+  }
 }
 
 module.exports = Store;
