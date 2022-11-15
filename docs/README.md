@@ -217,3 +217,7 @@
 - LottoAdjustment 클래스에 개수, 수익률이라는 여러가지 책임을 부여, 이를 분리하는 객체 설계 구현
 
 <img width="800px" alt="스크린샷 2022-11-14 20 08 21" src="https://user-images.githubusercontent.com/78203399/201645380-b2846080-c9c1-4038-b702-586df7d2eab2.png" />
+
+### 그 외
+
+- 이번 과제를 하면서 어떤 식으로 구현하고 학습한 과정을 [우테코 프리코스 5기 3주차 회고](https://velog.io/@turtle601/%ED%9A%8C%EA%B3%A0-%EC%9A%B0%ED%85%8C%EC%BD%94-%ED%94%84%EB%A6%AC%EC%BD%94%EC%8A%A4-5%EA%B8%B0-3%EC%A3%BC%EC%B0%A8-%ED%9A%8C%EA%B3%A0)에서 자세히 작성했습니다.
