@@ -22,7 +22,9 @@ class Lotto {
 
   validate(numbers) {
     const checkSixNum = inputValidation.checkSixNum(numbers);
-    if (checkSixNum) return true;
+    const checkNoOverlap = inputValidation.checkNoOverlap(numbers);
+    const checkLottoRange = inputValidation.checkLottoRange(numbers);
+    if (checkSixNum && checkNoOverlap && checkLottoRange) return true;
   }
 }
 
