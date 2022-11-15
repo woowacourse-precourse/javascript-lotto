@@ -79,16 +79,16 @@ class Lotto {
   createLottoNumArrays(money) {
     let amountOfMoney = Number(money) / 1000;
     let computerNumberArray = this.setComputerRandomNumber(amountOfMoney);
-    this.showLottoArrays(amountOfMoney, computerNumberArray, amountOfMoney);
+    this.showLottoArrays(amountOfMoney, computerNumberArray);
   }
 
-  showLottoArrays(amount, computerNumberArray, amountOfMoney) {
+  showLottoArrays(amount, computerNumberArray ) {
     MissionUtils.Console.print(`${amount}${str.AMOUNT_LONG}`);
     computerNumberArray.forEach((computerNumbers) => {
       MissionUtils.Console.print("["+computerNumbers+"]");
     });
     MissionUtils.Console.print('')
-    this.getUserLottoNumber(computerNumberArray, amountOfMoney);
+    this.getUserLottoNumber(computerNumberArray, amount);
   }
 
   calculatePrizeLottery(computerNumberArray,userLottoNumber,bonusNumber,amountOfMoney) {
