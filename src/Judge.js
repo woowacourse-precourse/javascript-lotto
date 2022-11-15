@@ -26,6 +26,19 @@ class Judge {
       }
     }
   }
+
+  isLottoInputInRange(lottoInput) {
+    for (let i = 0; i < lottoInput.length; i++) {
+      if (lottoInput[i] < RANGE.MIN || lottoInput[i] > RANGE.MAX) {
+        MissionUtils.Console.print(
+          `[ERROR] 당첨 번호는 ${RANGE.MIN}-${RANGE.MAX} 범위 안의 숫자여야 합니다.`
+        );
+        throw new Error(
+          `[ERROR] 당첨 번호는 ${RANGE.MIN}-${RANGE.MAX} 범위 안의 숫자여야 합니다.`
+        );
+      }
+    }
+  }
 }
 
 module.exports = Judge;
