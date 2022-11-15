@@ -5,7 +5,6 @@
 - getResult: 결과 출력
 
 - setLottosRandomNumbers: 로또 발행하기 위해 랜덤의 숫자 6개 발행
-- printLottos: 각 발행된 로또 번호 출력
 - validateOverLapWithWinningNumbers: 보너스와 로또번호에 곂치는 것 확인
 - setBonusNumber: 보너스 숫자 할당
 - setWinningNumbers: 로또 번호 할당
@@ -14,8 +13,12 @@
 - setLottoResult: App 클래서에서 값을 할당하려고 노력
 - getRankInLotto: Lotto 클래스 내에서 결과값을 출력
 
+### UI
+
+- printLottos: lotto의 각각의 값 출력
 - printResult: 결과값 출력
 - printRankResult: 각 등급에 맞는 결과값 출력
+- printLottoCount: Lotto를 몇개 발행하는가 출력
 
 ### Lotto
 
