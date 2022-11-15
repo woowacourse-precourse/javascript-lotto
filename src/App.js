@@ -9,12 +9,10 @@ class App {
   #lottosList = []; //8개 [[1,2,1,2,2],[],...]
   #inputWinningLottoNums;
   #inputBonusNum;
-  #scoreList = [];
+  #scoreList = [0,0,0,0,0];
 
   play() {
     this.inputStartWithMoney();
-    // this.makeLottosList();
-    // this.inputNumbers();
     // Console.close();
   }
 
@@ -25,7 +23,6 @@ class App {
         this.printCountLottos();
         this.makeLottosList();
         this.inputWinningNumbers();
-        this.inputBonusNumber();
       }
     });
   }
@@ -43,7 +40,9 @@ class App {
   makeLottosList() {
     let lottosList = [];
     for (let lottos = 0; lottos < this.#countLottos; lottos++) {
-      const pickRandomLottoNumber = this.pickRandomLottoNumber().sort();
+      const pickRandomLottoNumber = this.pickRandomLottoNumber().sort(
+        (a, b) => a - b
+      );
       const validateLottoNumber = new Lotto(pickRandomLottoNumber);
       lottosList.push(validateLottoNumber.inputLottoNumbers);
       Console.print(pickRandomLottoNumber); //
@@ -55,7 +54,7 @@ class App {
 
   //당첨번호 입력받기 -> Lotto에 넣어서 validation 검증 받기
   inputWinningNumbers() {
-    Console.readLine(INPUTS.INPUT_NUMBERS, (winningNumbers) => {
+    Console.readLine("\n" + INPUTS.INPUT_NUMBERS, (winningNumbers) => {
       const inputWinningNumArr = winningNumbers
         .split(",")
         .map((value) => Number(value));
@@ -63,17 +62,19 @@ class App {
       this.#inputWinningLottoNums =
         validateWinningLottoNumber.inputLottoNumbers;
       Console.print(this.#inputWinningLottoNums); //
+      this.inputBonusNumber();
     });
   }
 
   inputBonusNumber() {
-    Console.readLine(INPUTS.INPUT_BONUS, (bonus) => {
+    Console.readLine("\n" + INPUTS.INPUT_BONUS, (bonus) => {
       if (this.#inputWinningLottoNums.includes(Number(bonus))) {
         throw new Error(
           "[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다."
         );
       }
-      
+      this.#inputBonusNum = Number(bonus);
+      Console.print(this.#inputBonusNum); //
     });
   }
 
