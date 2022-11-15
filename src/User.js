@@ -42,8 +42,9 @@ class User {
     for (let i = 0; i < count; i++) {
 			let randomNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
 			randomNumbers.sort((a, b) => (a - b));
-			let newLotto = new Lotto(randomNumbers);
-			this.lottoBundle.push(newLotto.getLotto());
+			// let newLotto = new Lotto(randomNumbers);
+			let newLotto = randomNumbers;
+			this.lottoBundle.push(newLotto);
     }
 	}
 }	
