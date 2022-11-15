@@ -18,6 +18,7 @@ class App {
         this.money = money;
         this.buy();
         this.Lottos();
+        this.winningNum();
     });
   }
   buy() {
@@ -35,7 +36,21 @@ class App {
       Console.print(lottoArr.toString());
     });
   }
- 
+ winningNum() {
+  Console.readLine("\n당첨 번호를 입력해 주세요.\n",(num) => {
+    if (!/^(\d{1,2}[,]){5}\d{1,2}$/.test(num))
+      throw new Error("[ERROR] 입력형식이 올바르지 않습니다.");
+    const numbers = num.split(",").map((number) => {
+      if(number < 1 || number > 45)
+      throw new Error("[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다.");
+      return parseInt(number);
+    });
+    const duplication =  new Set(numbers);
+    if (duplication.size != 6)
+      throw new Error("[ERROR] 중복번호가 포함되어 있습니다.");
+      this.winNum = numbers;
+  })
+ }
   play() {
     this.setMoney();
   }
