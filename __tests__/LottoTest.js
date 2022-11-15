@@ -2,7 +2,7 @@ const Lotto = require('../src/Lotto');
 const { makeErrorMsg } = require('../src/utils');
 const { ERROR_MESSAGE } = require('../src/constants');
 
-describe.only('로또 클래스 테스트', () => {
+describe('로또 클래스 테스트', () => {
   test('로또 번호가 숫자가 아니면 예외가 발생한다.', () => {
     const errorMsg = makeErrorMsg(ERROR_MESSAGE.NUMBER);
     expect(() => {

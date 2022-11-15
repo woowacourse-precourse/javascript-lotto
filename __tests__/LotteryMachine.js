@@ -1,4 +1,3 @@
-const LotteryMachine = require('../src/LotteryMachine');
 const MissionUtils = require('@woowacourse/mission-utils');
 const LotteryMachine = require('../src/LotteryMachine');
 const Lotto = require('../src/Lotto');
@@ -31,7 +30,7 @@ const getLogSpy = () => {
 };
 
 describe('로또 기계 클래스 테스트', () => {
-  test.only('구매금액을 입력하고 구매 금액만큼의 로또를 발행한다', () => {
+  test('구매금액을 입력하고 구매 금액만큼의 로또를 발행한다', () => {
     const answers = ['8000'];
     mockQuestions(answers);
 
@@ -63,7 +62,7 @@ describe('로또 기계 클래스 테스트', () => {
     });
   });
 
-  test.only('구매금액으로 입력받은 값이 숫자가 아니면 예외가 발생한다.', () => {
+  test('구매금액으로 입력받은 값이 숫자가 아니면 예외가 발생한다.', () => {
     const answers = ['8000j'];
     mockQuestions(answers);
 
@@ -72,7 +71,7 @@ describe('로또 기계 클래스 테스트', () => {
     }).toThrow(makeErrorMsg(ERROR_MESSAGE.MONEY_NUMBER));
   });
 
-  test.only('구매금액이 천원 단위가 아니면 예외가 발생한다.', () => {
+  test('구매금액이 천원 단위가 아니면 예외가 발생한다.', () => {
     const answers = ['8200'];
     mockQuestions(answers);
 

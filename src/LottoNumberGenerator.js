@@ -39,6 +39,7 @@ class LottoNumberGenerator {
     if (invalidNumber(numbers)) {
       throw new Error(makeErrorMsg(LOTTO_NUMBER));
     }
+
     if (invalidInputNum(numbers, COUNT[type])) {
       const inputLength = `${type}_LENTH`;
       throw new Error(makeErrorMsg(ERROR_MESSAGE[inputLength]));

@@ -14,7 +14,7 @@ const mockQuestions = (answers) => {
   );
 };
 
-describe.only('로또 번호 추첨기 클래스 테스트', () => {
+describe('로또 번호 추첨기 클래스 테스트', () => {
   test('당첨 번호와 보너스 번호를 입력받는다.', () => {
     const answers = ['1,2,3,4,5,6', '7'];
 
