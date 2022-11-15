@@ -10,11 +10,12 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
+    this.isValidNumber(numbers);
     const temp = new Set(numbers);
+
     if (temp.size !== numbers.length) {
       throw new Error("[ERROR] 로또 번호는 중복되어서는 안됩니다.");
     }
-    this.isValidNumber(numbers);
   }
 
   isValidNumber(numbers) {
