@@ -4,26 +4,26 @@ const MissionUtils = require('@woowacourse/mission-utils');
 
 class InputConsole {
   static readLine(message) {
-    return new Promise((resolve, reject) => {
-      MissionUtils.Console.readLine(message, resolve);
+    let retunrValue = '';
+    MissionUtils.Console.readLine(message, (returnMessage) => {
+      retunrValue = returnMessage;
     });
+    return retunrValue;
   }
 
-  static async getMoney() {
-    const money = await this.readLine(INPUT.GET_MONEY);
+  static getMoney() {
+    const money = this.readLine(INPUT.GET_MONEY);
     LottoValidator.checkMoney(money);
     return money;
   }
 
-  static async getLotto() {
-    const lottoNumbersString = await this.readLine(INPUT.GET_LOTTO);
+  static getLotto() {
+    const lottoNumbersString = this.readLine(INPUT.GET_LOTTO);
     return LottoValidator.splitLottoNumbers(lottoNumbersString);
   }
 
-  static async getLottoAdditional(lottoNumbers) {
-    const LottoAdditinalNumberString = await this.readLine(
-      INPUT.GET_LOTTO_ADDITINAL,
-    );
+  static getLottoAdditional(lottoNumbers) {
+    const LottoAdditinalNumberString = this.readLine(INPUT.GET_LOTTO_ADDITINAL);
     return LottoValidator.additionalNumber(
       LottoAdditinalNumberString,
       lottoNumbers,

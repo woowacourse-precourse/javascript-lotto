@@ -5,6 +5,7 @@ const {
   LottoPrizeDto,
 } = require('./LottoDto');
 const LottoValidator = require('./Lotto.validator');
+const MissionUtils = require('@woowacourse/mission-utils');
 
 class App {
   #lottoPurchaseDtos;
@@ -22,10 +23,11 @@ class App {
     this.#makeLottoPurchaseDtos();
     this.#makeLottoInputDto();
     this.#getResult();
+    MissionUtils.Console.close();
   }
 
-  async #getMoney() {
-    this.#money = await InputConsole.getMoney();
+  #getMoney() {
+    this.#money = InputConsole.getMoney();
     this.#purchaseNumber = LottoValidator.getLottoPuchaseNumber(this.#money);
     OutputConsole.lottoPurchaseNumber(this.#purchaseNumber);
   }
@@ -38,11 +40,9 @@ class App {
     OutputConsole.lottoNumbers(this.#lottoPurchaseDtos);
   }
 
-  async #makeLottoInputDto() {
-    const lottoNumbers = await InputConsole.getLotto();
-    const lottoAdditinalNumber = await InputConsole.getLottoAdditional(
-      lottoNumbers,
-    );
+  #makeLottoInputDto() {
+    const lottoNumbers = InputConsole.getLotto();
+    const lottoAdditinalNumber = InputConsole.getLottoAdditional(lottoNumbers);
     this.#lottoInputDto = new LottoInputDto(lottoNumbers, lottoAdditinalNumber);
   }
 
@@ -60,5 +60,3 @@ class App {
 }
 
 module.exports = App;
-
-new App().play();

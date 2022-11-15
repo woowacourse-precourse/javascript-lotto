@@ -30,7 +30,7 @@ describe('Console 클래스 테스트', () => {
     mockQuestions(['가나다']);
 
     expect(() => {
-      new InputConsole().getMoney();
+      InputConsole.getMoney();
     }).toThrow('[ERROR]');
   });
 });

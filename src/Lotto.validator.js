@@ -8,6 +8,9 @@ class LottoValidator {
   }
 
   static checkMoney(number) {
+    if(isNaN(+number)) {
+      throw new Error(ERROR.MONEY_UNIT);
+    }
     if (+number / LOTTO.LOTTO_COST == 0) {
       throw new Error(ERROR.MONEY_UNIT);
     }
