@@ -8,10 +8,10 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw Error.LENGTH_ERROR;
     }
   }
-  rageIsValid(max, min) {
+  rangeIsValid(max, min) {
     if (max > 45 || min < 1) {
       throw Error.RANGE_ERROR
     }
