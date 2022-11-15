@@ -1,5 +1,5 @@
 const { Random } = require('@woowacourse/mission-utils');
-const Lotto = require('./Lotto');
+const Lotto = require('../Lotto');
 
 class IssueLotto {
   static setLotteryNumber(purchaseNumber) {
