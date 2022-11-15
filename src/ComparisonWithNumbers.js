@@ -34,9 +34,7 @@ class ComparisonWithNumbers {
   }
 
   findNumberOfMatchingBalls(LotteryTickets) {
-    this.numberOfMatchingBalls = LotteryTickets.map(
-      (ticket) => (ticket = ticket.length)
-    );
+    this.numberOfMatchingBalls = LotteryTickets.map((ticket) => ticket.length);
 
     this.acceptBonusNumber();
   }
@@ -52,11 +50,16 @@ class ComparisonWithNumbers {
       throw new Error(NOT_BETWEEN_ONE_AND_FORTYFIVE);
     }
 
-    return this.isSameBonusNumber(userBonus);
+    return this.makeBonusNumber(userBonus);
   }
 
-  isSameBonusNumber(userBonus) {
+  makeBonusNumber(userBonus) {
     const lottoBonus = RANDOM_UTIL.pickNumberInRange(1, 45);
+
+    this.isSameBonusNumber(userBonus, lottoBonus);
+  }
+
+  isSameBonusNumber(userBonus, lottoBonus) {
     let isSameBonus = userBonus === lottoBonus;
 
     this.findNumberOfWinningTickets(isSameBonus);
@@ -64,10 +67,6 @@ class ComparisonWithNumbers {
 
   findNumberOfWinningTickets(isSameBonus) {
     let places = {};
-    this.numberOfMatchingBalls = this.numberOfMatchingBalls.filter(
-      (num) => num > 2
-    );
-
     places[5] = this.numberOfMatchingBalls.filter((num) => num === 3).length;
     places[4] = this.numberOfMatchingBalls.filter((num) => num === 4).length;
     places[3] = places[2] = 0;

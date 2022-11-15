@@ -26,9 +26,7 @@ class LottoNumbers {
   }
 
   sortLotteryNumbers(randomNumbers) {
-    randomNumbers = randomNumbers.sort(
-      (firstEl, secondEl) => firstEl - secondEl
-    );
+    randomNumbers = randomNumbers.sort((first, second) => first - second);
 
     this.printTickets(randomNumbers);
   }
