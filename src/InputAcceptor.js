@@ -23,7 +23,9 @@ class InputAcceptor {
         const answer = await new Promise(resolve => {
             MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', resolve)
         });
-        const winningLottoNumbers = this.stringToNumber(answer.split(','));
+        const answerArray = answer.split(',');
+        checkNumbers(answerArray);
+        const winningLottoNumbers = this.stringToNumber(answerArray);
         return winningLottoNumbers;
     }
 
@@ -32,6 +34,16 @@ class InputAcceptor {
         let numberArray = [];
         string.forEach(element => numberArray.push(parseInt(element)));
         return numberArray;
+    }
+
+    static checkANumber(number) { //보너스 넘버
+        if (!parseInt(number)) throw new Error('[ERROR] 숫자만 입력해주세요.');
+        return true;
+    }
+
+    static checkNumbers(numberArray) {
+        numberArray.forEach(numberElement => this.checkANumber(numberElement));
+        return true;
     }
 }
 
