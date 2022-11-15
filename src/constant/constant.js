@@ -25,5 +25,5 @@ module.exports = {
   LOTTERY_PRICE,
   MESSAGE,
   EXCEPTIONS,
-  LOTTERY_LENGTH,
+  LOTTERY_INFO,
 };
