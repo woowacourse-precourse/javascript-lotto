@@ -11,7 +11,7 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error(ERROR_MESSAGE.LENGTH);
+      Lotto.handleError(ERROR_MESSAGE.LENGTH);
     }
     Lotto.validateNumberArrayDuplication(numbers);
     numbers.forEach((number) => {
@@ -26,14 +26,14 @@ class Lotto {
 
   static validateLottoNumber(number) {
     if (typeof number !== 'number' || isNaN(number))
-      throw new Error(ERROR_MESSAGE.TYPE);
-    if (number < 1 || number > 45) throw new Error(ERROR_MESSAGE.RANGE);
+      Lotto.handleError(ERROR_MESSAGE.TYPE);
+    if (number < 1 || number > 45) Lotto.handleError(ERROR_MESSAGE.RANGE);
   }
 
   static validateNumberArrayDuplication(array) {
     const arrayToSet = new Set(array);
     if (array.length !== arrayToSet.size)
-      throw new Error(ERROR_MESSAGE.DUPLICATE);
+      Lotto.handleError(ERROR_MESSAGE.DUPLICATE);
   }
 
   printLotto() {
@@ -42,6 +42,11 @@ class Lotto {
 
   ascendingOrderNumbers() {
     return this.#numbers.sort((a, b) => a - b);
+  }
+
+  static handleError(message) {
+    MissionUtils.Console.close();
+    throw new Error(message);
   }
 }
 

@@ -15,10 +15,10 @@ class LottoUser {
 
   validate(amount) {
     if (!/^[0-9]+$/.test(amount)) {
-      throw new TypeError(ERROR_MESSAGE.TYPE);
+      Lotto.handleError(ERROR_MESSAGE.TYPE);
     }
     if (amount % 1000 !== 0) {
-      throw new Error(ERROR_MESSAGE.DIVISED);
+      Lotto.handleError(ERROR_MESSAGE.DIVISED);
     }
     return parseInt(amount, 10);
   }
