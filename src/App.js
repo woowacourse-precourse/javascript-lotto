@@ -87,36 +87,8 @@ class App {
   }
 
   checkLotto(lotto) {
-    const lottoNums = lotto.getNumbers();
-    const mainCount = this.checkMainNumMatch(lottoNums);
-    const bonusCount = this.checkBonusNumMatch(lottoNums);
-    const resultLotto = this.getResultLotto(mainCount, bonusCount);
+    const resultLotto = lotto.getResult(this.mainNums, this.bonusNum);
     this.lottoResult[resultLotto]++;
-  }
-
-  checkMainNumMatch(lotto) {
-    let mainMatch = 0;
-    lotto.forEach((num) => {
-      if (!this.checkMainNumEachMatch(num)) return;
-      mainMatch++;
-    });
-    return mainMatch;
-  }
-
-  checkMainNumEachMatch(num) {
-    return this.mainNums.includes(num);
-  }
-
-  checkBonusNumMatch(lotto) {
-    return lotto.includes(this.bonusNum) ? 1 : 0;
-  }
-
-  getResultLotto(mainCount, bonusCount) {
-    if (mainCount === 6) return "first";
-    if (mainCount === 5) return bonusCount ? "second" : "third";
-    if (mainCount === 4) return "fourth";
-    if (mainCount === 3) return "fifth";
-    return "nothing";
   }
 
   getMatchResult() {
