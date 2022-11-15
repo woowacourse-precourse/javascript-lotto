@@ -11,15 +11,22 @@ class App {
     let count;
 
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (input) => {
-      this.validate(input);
-      count = this.countLotto(parseInt(input));
+      this.validateCost(input);
+      count = parseInt(input) / 1000;
       this.printMessage(`${count}개를 구매했습니다.`);
       this.buyLotto(count);
       this.getWinningNumbersInput();
     });
   }
 
-  getResult() {}
+  validateCost(input) {
+    this.isNumber(input);
+    let cost = parseInt(input);
+
+    if (cost % 1000) {
+      throw new Error("[ERROR] 1,000원 단위로 입력해야합니다");
+    }
+  }
 
   buyLotto(count) {
     let lotto;
@@ -30,11 +37,38 @@ class App {
     }
   }
 
+  getResult() {}
+
   getWinningNumbersInput() {
     MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (input) => {
       this.validateWinningNumbers(input);
+      this.getBonusNumberInput();
+    });
+  }
+
+  validateWinningNumbers(input) {
+    let splitInput = input.split(",");
+    let checkNumber;
+
+    this.validateLength(splitInput, 6);
+    for (let index = 0; index < splitInput.length; index++) {
+      this.isNumber(splitInput[index]);
+      checkNumber = parseInt(splitInput[index]);
+      this.validateNumberRange(checkNumber);
+      this.winningNumber.push(checkNumber);
+    }
+  }
+
+  getBonusNumberInput() {
+    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (input) => {
+      this.validateBonusNumber(input);
       this.getResult();
     });
+  }
+
+  validateBonusNumber(input) {
+    this.isNumber(input);
+    this.validateNumberRange(parseInt(input));
   }
 
   printMessage(message) {
@@ -57,35 +91,24 @@ class App {
     return ret;
   }
 
-  validate(input) {
+  isNumber(number) {
     const regExp = /\D/g;
 
-    if (regExp.test(input)) {
+    if (regExp.test(number)) {
       throw new Error("[ERROR] 숫자만 입력할 수 있습니다.");
     }
   }
 
-  validateWinningNumbers(input) {
-    let splitInput = input.split(",");
-    let checkNumber;
-    if (splitInput.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
-    for (let index = 0; index < splitInput.length; index++) {
-      this.validate(splitInput[index]);
-      checkNumber = parseInt(splitInput[index]);
-      if (checkNumber < 1 || checkNumber > 45) {
-        throw new Error("[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다.");
-      }
-      this.winningNumber.push(parseInt(checkNumber));
+  validateLength(numbers, length) {
+    if (numbers.length !== length) {
+      throw new Error(`[ERROR] 로또 번호는 ${length}개여야 합니다.`);
     }
   }
 
-  countLotto(cost) {
-    if (cost % 1000) {
-      throw new Error("[ERROR] 1,000원 단위로 입력해야합니다");
+  validateNumberRange(number) {
+    if (number < 1 || number > 45) {
+      throw new Error("[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다.");
     }
-    return cost / 1000;
   }
 
   play() {
