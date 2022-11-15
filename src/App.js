@@ -7,6 +7,7 @@ class App {
 
   play() {
     this.game.startLottery();
+    this.game.EndLottery();
   }
 }
 

@@ -126,6 +126,9 @@ class Game {
       MissionUtils.Console.print(`${key} - ${value}개`);
     });
     MissionUtils.Console.print(`총 수익률은 ${earningRate}%입니다.`);
+  }
+
+  EndLottery() {
     MissionUtils.Console.close();
   }
 }
