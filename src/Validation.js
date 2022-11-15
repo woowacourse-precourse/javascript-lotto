@@ -3,6 +3,7 @@ const {
   PRICE_PER_LOTTO,
   LOTTO_PICK_COUNT,
   LOTTO_HIT_NUMBER_INPUT_ERROR,
+  LOTTO_BONUS_NUMBER_INPUT_ERROR,
   LOTTO_MIN_NUMBER,
   LOTTO_MAX_NUMBER,
 } = require('./Const');
@@ -44,6 +45,22 @@ class Validation {
         throw new Error(LOTTO_HIT_NUMBER_INPUT_ERROR.NOT_A_NUMBER_EXCEPTION);
       }
     });
+
+    return true;
+  }
+
+  static checkInputBonusNumber(hitLottoNumber, bonusNumber) {
+    if (hitLottoNumber.includes(bonusNumber)) {
+      throw new Error(LOTTO_BONUS_NUMBER_INPUT_ERROR.DUPLICATED_NUMBER_EXIST_EXCEPTION);
+    }
+
+    if (Number(bonusNumber) < LOTTO_MIN_NUMBER || Number(bonusNumber) > LOTTO_MAX_NUMBER) {
+      throw new Error(LOTTO_BONUS_NUMBER_INPUT_ERROR.NOT_IN_RANGE_EXCEPTION);
+    }
+
+    if (isNaN(bonusNumber)) {
+      throw new Error(LOTTO_BONUS_NUMBER_INPUT_ERROR.NOT_A_NUMBER_EXCEPTION);
+    }
 
     return true;
   }
