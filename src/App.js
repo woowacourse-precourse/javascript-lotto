@@ -75,8 +75,12 @@ class App {
     let all_results = [0, 0, 0, 0, 0];
     for(let i = 0; i < how_many; i++){
       const result = this.getSingleResult(published_Lottos[i], winning);
+      if(result === 7) {
+        all_results[3] += 1;
+        continue
+      }
       if(result >= 3){
-        all_results[result - 3] += 1
+        all_results[result - 3] += 1;
       }
     }
     this.printResults(all_results, how_many);
@@ -88,9 +92,9 @@ class App {
       if(published_Lotto.includes(Number(winning[i]))){
         result += 1;
       }
-      if(result == 5 && published_Lotto.includes(Number(winning[-1]))) {
-        result += 1;
-      }
+    }
+    if(result == 5 && published_Lotto.includes(Number(winning[6]))) {
+      result += 2;
     }
     return result
   }
