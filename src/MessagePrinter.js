@@ -19,6 +19,11 @@ class MessagePrinter {
 6개 일치 (2,000,000,000원) - ${result[4]}개`
         );
     }
+
+    static printReturn(lottoReturn) {
+        MissionUtils.Console.print(`총 수익률은 ${lottoReturn}%입니다.`);
+        MissionUtils.Console.close();
+    }
 }
 
 module.exports = MessagePrinter;
