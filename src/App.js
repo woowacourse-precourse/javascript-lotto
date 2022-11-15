@@ -1,9 +1,13 @@
 const Lotto = require('./Lotto');
-const playLotto = require('./playLotto');
+const PlayLotto = require('./playLotto');
 
 class App {
+  constructor() {
+    this.PlayLotto = new PlayLotto();
+  }
+  
   play() {
-    this.playLotto.playGame();
+    this.PlayLotto.playGame();
   }
 }
 
