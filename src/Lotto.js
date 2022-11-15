@@ -39,6 +39,7 @@ class Lotto {
       this.checkInputMoney(money);
     });
   }
+
   checkInputMoney(money) {
     if (money[0] === "0") throw str.PREFIX_ZERO_IMPOSSIBLE;
     if (Number(money)<0) throw str.MINUS
@@ -61,17 +62,18 @@ class Lotto {
     MissionUtils.Console.readLine(
       str.BONUS_NUM,
       (bonusNumber) => {
-        this.checkBonusNumber(bonusNumber);
+        this.checkBonusNumber(bonusNumber,userLottoNumber);
         this.calculatePrizeLottery(computerNumberArray,userLottoNumber,Number(bonusNumber),amountOfMoney);
       }
     );
   }
 
-  checkBonusNumber(bonusNumber) {
+  checkBonusNumber(bonusNumber,userLottoNumber) {
+    let userNumArr=userLottoNumber.split(',').map((num)=>Number(num))
     if (/[ㄱ-ㅎㅏ-ㅣ가-힣]/g.test(bonusNumber)) throw str.KOREA_IMPOSSIBLE;
     if (/[a-zA-Z]/g.test(bonusNumber)) throw str.ENGLISH_IMPOSSIBLE;
-    if (Number(bonusNumber) < 1 || Number(bonusNumber) > 45)
-      throw str.ONE_TO_FOUTYFIVE;
+    if (Number(bonusNumber) < 1 || Number(bonusNumber) > 45) throw str.ONE_TO_FOUTYFIVE;
+    if(userNumArr.includes(Number(bonusNumber))) throw str.CHECK_OVERLAP_BONUS
   }
 
   createLottoNumArrays(money) {
@@ -126,7 +128,6 @@ class Lotto {
   checkPrizeAmount(getCountedArray, getBonusArrays, amountOfMoney) {
     let prizeObj = {};
     for (let val of getCountedArray) {
-      console.log(typeof(val));
       prizeObj[val] = (prizeObj[val] || 0) + 1;
       if(getBonusArrays.length!==0 && val===5 ) {
         prizeObj['7']=prizeObj['5']

@@ -9,6 +9,7 @@ const error = {
   UNIT_1000: "[ERROR] 1000원 단위로 입력해주세요",
   MINUS: "[ERROR] 음수는 불가능합니다",
   ONE_TO_FOUTYFIVE: "[ERROR] 1~45사이",
+  CHECK_OVERLAP_BONUS: "[ERROR] 사용자 번호와 중복된 보너스 번호입니다.",
   MONEY_INPUT: "구입금액을 입력해주세요.\n",
   USER_LOTTO_NUM: "당첨 번호를 입력해 주세요.\n",
   BONUS_NUM: "보너스 번호를 입력해 주세요.\n",
