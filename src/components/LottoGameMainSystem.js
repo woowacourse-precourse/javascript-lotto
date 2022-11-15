@@ -9,7 +9,7 @@ const Lotto = require('../Lotto');
 // UI
 const printFinalLottoResult = require('../ui/printFinalLottoResult');
 const printLottoNumberIssuedFromComputer = require('../ui/printLottoNumberIssuedFromComputer');
-// constant
+// const
 const { INPUT_CONSOLE_MESSAGE } = require('../components/lotto-data/Constant');
 
 class LottoGameMainSystem {
