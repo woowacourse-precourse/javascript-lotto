@@ -1,7 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const ErrorChecker = require("./ErrorChecker");
 const PURCHASE_UNIT = 1000;
-
 class InputAcceptor {
 
     static async askPurchaseAmountAsyncAwait() {
@@ -29,9 +28,9 @@ class InputAcceptor {
         });
         this.checkANumber(answer);
         this.checkNumberValidRange(answer);
-        const allNumbers = [...winningLottoNumbers, parseInt(answer)];
-
-        return winningLottoNumbers;
+        const winningLottoNumbersIncludingBonusNumber = [...winningLottoNumbers, parseInt(answer)];
+        ErrorChecker.checkDuplicatedElement(winningLottoNumbersIncludingBonusNumber, 7);
+        return parseInt(answer);
     }
 
     static stringToNumber(string) {
@@ -52,7 +51,7 @@ class InputAcceptor {
 
     static checkWinningLottoNumbersValidation(numberArray) {
         ErrorChecker.checkSixElementArray(numberArray); //6개 요소를 갖고 있는가
-        ErrorChecker.checkDuplicatedElement(numberArray); //중복은 없는가
+        ErrorChecker.checkDuplicatedElement(numberArray, 6); //중복은 없는가
         numberArray.forEach(numberElement => {
             this.checkANumber(numberElement); //숫자인가
             this.checkNumberValidRange(numberElement); //범위 내인가
