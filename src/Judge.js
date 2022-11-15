@@ -3,6 +3,7 @@ const { RANGE } = require("./Constant");
 
 class Judge {
   #lottoArr;
+  #bonusNum;
 
   constructor() {}
 
@@ -26,6 +27,14 @@ class Judge {
     this.isLottoInputDuplicate(lottoArr);
     this.#lottoArr = lottoArr;
     return this.#lottoArr;
+  }
+
+  bonusInputValid(bonusInput) {
+    this.isLottoInputNaN(bonusInput);
+    this.isLottoInputInRange(bonusInput);
+    this.isBonusNumDuplicate(bonusInput);
+    this.#bonusNum = bonusInput;
+    return this.#bonusNum;
   }
 
   isLottoInputNaN(lottoInput) {
