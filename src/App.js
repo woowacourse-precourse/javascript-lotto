@@ -16,14 +16,17 @@ const {
 } = require('./Constant');
 
 class App {
+  lottoObj = {
+    lotto: [],
+    sameCount: 0,
+    isBonus: false,
+  };
   inputPrice; // 받은 금액
   lottoCnt; // 로또 개수
   lottoNumberList = []; // 구매한 로또 리스트
   winningNum; // 당첨 번호
   bonusNum; // 보너스 번호
-  sameCnt = 0; // 각 로또 당 같은 번호 개수
-  bonusCnt = 0; // 보너스 번호 같으면 1, 다르면 0
-  sameArr = []; // 로또 마다 같은 개수 배열
+  objArr = []; // 로또 마다 같은 개수 배열
   numberOfWins = [0, 0, 0, 0, 0]; // 1,2,3,4,5등 당첨 개수
   revenueRate; // 수익률
 
@@ -31,13 +34,20 @@ class App {
     this.getLottoPrice();
   }
 
+  objArrConstructor() {
+    for (let i = 0; i < this.lottoCnt; i++) {
+      this.objArr.push(new Object());
+      this.objArr[i].lotto = this.lottoNumberList[i];
+      this.objArr[i].sameCount = 0;
+      this.objArr[i].isBonus = false;
+    }
+  }
   // 로또 가격 입력
   getLottoPrice() {
     Console.readLine(`${PLZ_INPUT_PRICE}\n`, price => {
       this.priceValidate(price);
       this.inputPrice = price;
       this.lottoCount();
-      this.getLottoList();
     });
   }
   // 로또 가격 예외 처리
@@ -54,23 +64,33 @@ class App {
   lottoCount() {
     this.lottoCnt = Math.floor(this.inputPrice / 1000);
     Console.print(`\n${this.lottoCnt}${PURCHASE_LOTTO_COUNT}`);
+    this.getLottoList();
   }
 
   // 로또 리스트 저장
   getLottoList() {
-    while (this.lottoNumberList.length < this.lottoCnt) {
-      const randomNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
-      this.lottoNumberList.push(randomNumbers.sort((a, b) => a - b));
-    }
+    // while (this.lottoNumberList.length < this.lottoCnt) {
+    //   const randomNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+    //   this.lottoNumberList.push(randomNumbers.sort((a, b) => a - b));
+    // }
+    this.lottoNumberList = [
+      [1, 2, 3, 4, 5, 6],
+      [1, 2, 3, 4, 5, 8],
+      [1, 2, 3, 4, 5, 7],
+      [1, 2, 3, 4, 8, 9],
+      [1, 2, 3, 8, 9, 10],
+      [1, 2, 11, 8, 9, 10],
+    ];
     this.displayLottoList();
-    this.getWinNumberInput();
   }
 
   // 로또 리스트 출력
   displayLottoList() {
+    this.objArrConstructor();
     this.lottoNumberList.map(lotto => {
       Console.print(lotto);
     });
+    this.getWinNumberInput();
   }
 
   // 당첨 번호 입력
@@ -92,24 +112,23 @@ class App {
   }
 
   lottoCompare() {
-    this.lottoNumberList.map(lotto => {
-      this.winNumberCompare(lotto);
-      this.bonusNumberCompare(lotto);
+    this.objArr.map(object => {
+      this.winNumberCompare(object);
     });
     this.countWins();
   }
 
-  winNumberCompare(lotto) {
-    this.sameArr = Lotto.sameCount(lotto, this.sameCnt, this.sameArr, this.winningNum);
-    this.sameCnt = 0;
+  winNumberCompare(object) {
+    object.sameCount = Lotto.sameCount(object.lotto, object, this.winningNum);
+    this.bonusNumberCompare(object);
   }
 
-  bonusNumberCompare(lotto) {
-    this.bonusCnt = Lotto.bonusCount(lotto, this.bonusCnt, this.bonusNum);
+  bonusNumberCompare(object) {
+    object.isBonus = Lotto.bonusCount(object.lotto, object, this.bonusNum);
   }
 
   countWins() {
-    this.numberOfWins = Lotto.countNumberOfWins(this.numberOfWins, this.sameArr, this.bonusCnt);
+    this.numberOfWins = Lotto.countNumberOfWins(this.numberOfWins, this.objArr);
     this.displayWinStatics();
   }
 

@@ -55,36 +55,36 @@ class Lotto {
     return Number(numbers);
   }
 
-  static sameCount(lotto, sameCount, sameArr, winNumber) {
+  static sameCount(lotto, lottoObj, winNumber) {
+    let sameCount = 0;
     lotto.map(numbers => {
       if (winNumber.includes(String(numbers))) {
         sameCount += 1;
       }
     });
-    sameArr.push(sameCount);
-    return sameArr;
+    lottoObj.sameCount = sameCount;
+    return lottoObj.sameCount;
   }
 
-  static bonusCount(lotto, bonusCnt, bonusNumber) {
-    lotto.map(numbers => {
-      if (numbers === bonusNumber) {
-        bonusCnt = 1;
-      }
-    });
-    return bonusCnt;
+  static bonusCount(lotto, lottoObj, bonusNumber) {
+    if (lotto.includes(bonusNumber)) {
+      lottoObj.isBonus = true;
+      return lottoObj.isBonus;
+    }
+    return lottoObj.isBonus;
   }
 
-  static countNumberOfWins(numberOfWins, sameArr, bonusCount) {
-    sameArr.map(count => {
-      if (count === 3) {
+  static countNumberOfWins(numberOfWins, sameArr) {
+    sameArr.forEach(object => {
+      if (object.sameCount === 3) {
         numberOfWins[0] += 1;
-      } else if (count === 4) {
+      } else if (object.sameCount === 4) {
         numberOfWins[1] += 1;
-      } else if (count === 5 && bonusCount === 0) {
+      } else if (object.sameCount === 5 && object.isBonus === false) {
         numberOfWins[2] += 1;
-      } else if (count === 5 && bonusCount === 1) {
+      } else if (object.sameCount === 5 && object.isBonus === true) {
         numberOfWins[3] += 1;
-      } else if (count === 6) {
+      } else if (object.sameCount === 6) {
         numberOfWins[4] += 1;
       }
     });
