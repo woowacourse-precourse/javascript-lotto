@@ -1,7 +1,7 @@
 const Calculator = require("../model/Calculator");
 const { MESSAGE_ACCORDING_ASK } = require("../constants/Message");
 const MyNumberGenerator = require("../model/Generator");
-const Lotto = require("../Lotto");
+const Lotto = require("../model/Lotto");
 
 const { readLine, close } = require("../utils/MissionUtils");
 const View = require("../view/View");
@@ -15,7 +15,7 @@ class LottoGameController {
     generatorModel: new MyNumberGenerator(),
     calculatorModel: new Calculator(),
   };
-  #view = { print: new View() };
+  #view = { Print: new View() };
 
   start() {
     this.#inputMoneyFromUser();
@@ -76,7 +76,7 @@ class LottoGameController {
       this.#winningNumbers
     );
 
-    this.#view.print.rankingResult(this.#winningCount);
+    this.#view.Print.rankingResult(this.#winningCount);
     this.#calculateEarningRate();
   }
 
@@ -86,7 +86,7 @@ class LottoGameController {
       this.#moneyInput
     );
 
-    this.#view.print.eariningRate(earningRate);
+    this.#view.Print.eariningRate(earningRate);
     close();
   }
 }
