@@ -1,5 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-
+const Lotto = require("./Lotto.js");
+const utils = require("./utils.js");
 class LottoGame {
   constructor() {
     this.lottoCount = 0;
@@ -37,7 +38,7 @@ class LottoGame {
 
   inputWinninNumbers() {
     MissionUtils.Console.readLine(
-      "당첨번호를 입력해 주세요.\n",
+      "\n당첨번호를 입력해 주세요.\n",
       (winningNumbers) => {
         this.winningNumbers = winningNumbers
           .split(",")
@@ -49,7 +50,7 @@ class LottoGame {
 
   inputBonusNumber() {
     MissionUtils.Console.readLine(
-      "보너스 번호를 입력해 주세요.\n",
+      "\n보너스 번호를 입력해 주세요.\n",
       (inputBonusNumber) => {
         this.bonusNumber = Number(inputBonusNumber);
         this.compareWinningLotto();
@@ -77,14 +78,15 @@ class LottoGame {
   countWinningCost(countMatch, lotto) {
     if (countMatch === 3) this.countEachWinningCost[0]++;
     if (countMatch === 4) this.countEachWinningCost[1]++;
-    if (countMatch === 4 && lotto.includes(this.bonusNumber))
-      this.countEachWinningCost[3]++;
-    if (countMatch === 5) this.countEachWinningCost[2]++;
+    if (countMatch === 5)
+      lotto.includes(this.bonusNumber)
+        ? this.countEachWinningCost[3]++
+        : this.countEachWinningCost[2]++;
     if (countMatch === 6) this.countEachWinningCost[4]++;
   }
 
   printLottoResult() {
-    MissionUtils.Console.print("당첨 통계");
+    MissionUtils.Console.print("\n당첨 통계");
     MissionUtils.Console.print("---");
     MissionUtils.Console.print(
       `3개 일치 (5,000원) - ${this.countEachWinningCost[0]}개`
