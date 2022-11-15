@@ -1,6 +1,16 @@
 const { Console } = require("@woowacourse/mission-utils/");
 
 class Printer {
+  printMoney(payMoney) {
+    Console.print(`\n${payMoney / 1000}개를 구매했습니다.`);
+  }
+
+  printLottosNumbers(lottos) {
+    lottos.forEach((lotto) => {
+      Console.print(`[${lotto.getNumbers().join(", ")}]`);
+    });
+  }
+
   printscore(rewards) {
     Console.print("\n당첨 통계\n---\n");
     rewards.forEach((reward) => {

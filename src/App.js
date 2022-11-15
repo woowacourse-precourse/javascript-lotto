@@ -11,7 +11,6 @@ class App {
   reward;
   revenue;
   printer;
-  calculator;
 
   constructor() {
     this.payMoney = 0;
@@ -30,7 +29,6 @@ class App {
     ];
     this.revenue = 0;
     this.printer = new Printer();
-    this.calculator = new Calculator();
   }
 
   play() {
@@ -43,9 +41,9 @@ class App {
         throw "[ERROR]";
       }
       this.payMoney = input;
-      this.printMoney();
+      this.printer.printMoney(this.payMoney);
       this.lottos = this.publishLottos(input / 1000);
-      this.printLottosNumbers();
+      this.printer.printLottosNumbers(this.lottos);
       this.getWinNumbers();
     });
   }
@@ -57,20 +55,10 @@ class App {
     return true;
   }
 
-  printMoney() {
-    Console.print(`\n${this.payMoney / 1000}개를 구매했습니다.`);
-  }
-
   publishLottos(count) {
     return new Array(count)
       .fill(undefined)
       .map((e) => new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6)));
-  }
-
-  printLottosNumbers() {
-    this.lottos.forEach((lotto) => {
-      Console.print(`[${lotto.getNumbers().join(", ")}]`);
-    });
   }
 
   getWinNumbers() {
