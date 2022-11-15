@@ -1,4 +1,4 @@
-const { LOTTO_RESULT, LOTTO } = require('../constants');
+const { LOTTO_RESULT } = require('../constants');
 
 class RankDeterminator {
   #winningNumbers;
