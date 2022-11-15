@@ -50,9 +50,10 @@ class UserNumber {
 
   /**
    * 유저에게 로또를 발행해주는 메서드
+   * @param purchasingAmount {number} [유저 구입금액]
    * @return {number[][]} [발행된 로또]
    */
-  getIssuedLotto() {
+  getIssuedLotto(purchasingAmount) {
     const issuedLotto = [];
     for (
       let idx = 0;
@@ -69,7 +70,7 @@ class UserNumber {
 
   // 유저의 구입 금액에 따라 로또를 발행하는 메서드
   setUserIssuedLottoWithPurchasingAmount() {
-    this.userIssuedLotto = this.getIssuedLotto();
+    this.userIssuedLotto = this.getIssuedLotto(this.purchasingAmount);
     this.controller.printIssuedLotto(this.userIssuedLotto);
     this.controller.getWinningNumberFromUser();
   }
