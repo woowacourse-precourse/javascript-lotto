@@ -1,18 +1,38 @@
 const { Console } = require('@woowacourse/mission-utils');
-const Purchase = require('./Purchase');
+const Lotto = require('./Lotto');
+const MyLotto = require('./MyLotto');
+const {
+  PURCHASE_PRICE_MESSAGE,
+  WINNING_NUMBER_MESSAGE,
+} = require('./constants/constants');
 
 class App {
-  constructor() {}
-
-  start() {
-    Console.readLine('구입금액을 입력해 주세요.\n', (answer) => {
-      const purchase = new Purchase(answer);
-    });
+  constructor() {
+    this.lotto = 0;
+    this.myLotto = 0;
+    this.bonus = 0;
   }
 
   play() {
-    this.start();
+    Console.readLine(PURCHASE_PRICE_MESSAGE, this.start.bind(this));
+  }
+
+  start(answer) {
+    this.myLotto = new MyLotto(answer);
+    this.myLotto.purchase();
+    this.myLotto.print();
+
+    Console.readLine(WINNING_NUMBER_MESSAGE, this.input.bind(this));
+  }
+
+  input(answer) {
+    const numbers = answer.split(',').map(Number);
+    const myLotto = this.myLotto.myLotto;
+
+    this.lotto = new Lotto(numbers);
+    this.lotto.inputBonus(myLotto);
   }
 }
-
+const app = new App();
+app.play();
 module.exports = App;
