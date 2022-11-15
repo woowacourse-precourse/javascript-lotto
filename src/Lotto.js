@@ -1,3 +1,4 @@
+const { MESSAGES, WIN_CONDITIONS, RESULT_MESSAGE } = require("./lib/constant");
 class Lotto {
   #numbers;
 
@@ -10,6 +11,15 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
+  }
+
+  countWinNumbers(winningNumbers, bonusNumber) {
+    let winCount = this.#numbers.filter((x) =>
+      winningNumbers.includes(x)
+    ).length;
+    let isBonus = this.#numbers.includes(bonusNumber);
+
+    return { winCount: winCount, isBonus: isBonus };
   }
 
   printNumbers() {

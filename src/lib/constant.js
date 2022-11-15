@@ -4,6 +4,35 @@ const MESSAGES = {
   TAKE_BONUS_NUMBERS: "보너스 번호를 입력해 주세요.\n",
 };
 
+const RESULT_MESSAGE = {
+  WIN_MESSAGES: (winCount, winPrice, count) =>
+    `${winCount}개 일치 (${winPrice}원) - ${count}개`,
+  BONUS_WIN_MESSAGE: (winCount, winPrice, count) =>
+    `${winCount}개 일치, 보너스 볼 일치 (${winPrice}원) - ${count}개`,
+};
+
+const WIN_CONDITIONS = [
+  { winCount: 3, checkBonus: false, winPrice: 5000, count: 0 },
+  { winCount: 4, checkBonus: false, winPrice: 50000, count: 0 },
+  {
+    winCount: 5,
+    checkBonus: true,
+    isBonus: false,
+    winPrice: 1500000,
+    count: 0,
+  },
+  {
+    winCount: 5,
+    checkBonus: true,
+    isBonus: true,
+    winPrice: 30000000,
+    count: 0,
+  },
+  { winCount: 6, checkBonus: false, winPrice: 2000000000, count: 0 },
+];
+
 module.exports = {
   MESSAGES,
+  WIN_CONDITIONS,
+  RESULT_MESSAGE,
 };
