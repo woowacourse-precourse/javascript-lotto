@@ -11,6 +11,7 @@ class App {
     this.lottoLists = [];
     this.winningNumbers = [];
     this.bonusNumber = 0;
+    this.benefitResult = 0;
   }
 
   play() {
@@ -84,9 +85,16 @@ class App {
       Console.print(
         `${compare.resultMessage[index]} (${compare.resultReward[index].toLocaleString()}원) - ${result}개`
       );
+      this.benefitResult += (compare.resultReward[index])*result
     });
+    this.calculateRate()
+  }
+
+  calculateRate() {
+    const totalBenefit = (this.benefitResult / this.money) * 100;
+    const benefitRate = Math.round(totalBenefit * 10) / 10; 
+    Console.print(`총 수익률은 ${benefitRate}%입니다.`);
   }
 }
-const app = new App();
-app.play();
-// module.exports = App;
+
+module.exports = App;
