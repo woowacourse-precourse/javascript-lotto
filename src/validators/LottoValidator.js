@@ -30,10 +30,8 @@ class LottoValidator {
       RANGE: LottoValidator.#hasValidRangeValues,
     };
 
-    Object.entries(validations).forEach(([key, validate]) => {
-      if (!validate(numbers)) {
-        throw new ValidationError(errorMessage[key]);
-      }
+    Object.entries(validations).forEach(([key, validateFunc]) => {
+      LottoValidator.#validate(numbers, validateFunc, errorMessage[key]);
     });
   }
 
@@ -43,11 +41,15 @@ class LottoValidator {
       RANGE: LottoValidator.#isInRange,
     };
 
-    Object.entries(validations).forEach(([key, validate]) => {
-      if (!validate(number)) {
-        throw new ValidationError(errorMessage[key]);
-      }
+    Object.entries(validations).forEach(([key, validateFunc]) => {
+      LottoValidator.#validate(number, validateFunc, errorMessage[key]);
     });
+  }
+
+  static #validate(value, validateFunc, errorMessage) {
+    if (!validateFunc(value)) {
+      throw new ValidationError(errorMessage);
+    }
   }
 
   static #hasValidLength(numbers) {
