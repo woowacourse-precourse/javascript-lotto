@@ -79,6 +79,12 @@ class Score {
         return false;
     }
     
+    calculateGrade (count) {
+        if (count >= 3) {
+            this.score[count - 3]++;
+        }
+    }
+
 }
 
 module.exports = Score;
