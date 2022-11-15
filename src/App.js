@@ -31,11 +31,10 @@ class App {
   }
 
   inputLottoNumbers() {
-    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (numbersString) => {
-      let numbers = numbersString.split(',').map((number) => {
-        this.validateIsNumber(number);
-        return parseInt(number);
-      })
+    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (string) => {
+      this.validateIsNumberList(string.split(','))
+      let numbers = string.split(',').map((x) => parseInt(x))
+
       this.lotto = new Lotto(numbers);
 
       this.inputBonusNumber();
@@ -75,9 +74,15 @@ class App {
     MissionUtils.Console.print('총 수익률은 ' + rateOfReturn + '%입니다.');
   }
 
-  validateIsNumber(money) {
-    if (isNaN(money)) {
+  validateIsNumber(string) {
+    if (isNaN(string)) {
       throw new Error("[ERROR] 숫자만 입력 가능합니다.");
+    }
+  }
+
+  validateIsNumberList(list) {
+    for (const string of list) {
+      this.validateIsNumber(string)
     }
   }
 
