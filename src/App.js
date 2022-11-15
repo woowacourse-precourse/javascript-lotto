@@ -109,6 +109,6 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const app = new App();
 app.play();
-
+// app.buyLotto();
 
 module.exports = App;
