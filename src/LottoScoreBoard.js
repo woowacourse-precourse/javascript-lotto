@@ -30,6 +30,11 @@ class LottoScoreBoard {
     this.#profit += PRIZE_AMOUNT[sameCount];
   }
 
+  getLottosDrawResult() {
+    this.#drawResult.profitRate = this.#getProfitRate();
+    return this.#drawResult;
+  }
+
   #getProfitRate() {
     return ((this.#profit / this.#totalCost) * 100).toFixed(1);
   }
