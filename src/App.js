@@ -36,11 +36,9 @@ class App {
   }
 
   exchangeLotto(quantity) {
-    const lottos = [...Array(quantity)].map(
+    return [...Array(quantity)].map(
       () => new Lotto(this.generateRandomNumbers())
     );
-
-    return lottos;
   }
 
   generateRandomNumbers() {
@@ -109,7 +107,5 @@ class App {
     return ((totalPrize / money) * 100).toFixed(1);
   }
 }
-
-new App().play();
 
 module.exports = App;
