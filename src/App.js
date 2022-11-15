@@ -56,10 +56,10 @@ class App {
     this.view.showProfit(
       this.lottoMachine.getProfitRate(equalScore, this.userMoney)
     );
-    this.end();
+    this.endGame();
   }
 
-  end() {
+  endGame() {
     Console.close();
   }
 }
