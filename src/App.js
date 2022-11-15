@@ -39,7 +39,7 @@ class App {
 
   InputWinLotto(){
     Console.readLine('당첨 번호를 입력해 주세요.', (answer)=>{
-      const splitNum = answer.split(',');
+      const splitNum = answer.split(',').map((num)=>+num);
       this.winLotto = new Lotto(splitNum);
       Console.readLine('보너스 번호를 입력해 주세요.', (answer)=>{
         this.bonus=answer;
