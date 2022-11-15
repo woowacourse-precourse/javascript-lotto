@@ -9,8 +9,6 @@ class App {
   inputBudgetCallback(inputBudget) {
     this.ticket = new TicketBox(inputBudget);
     this.ticket.makeTickets();
-    this.ticket.printTickets();
-    MissionUtils.Console.close();
   }
 
   play() {

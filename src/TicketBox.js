@@ -8,6 +8,7 @@ const {
   DECIMAL_NUMBER,
   PRICE_PER_TICKET,
 } = require('./Constant');
+const Lotto = require('./Lotto');
 
 class TicketBox {
   #budget;
@@ -32,6 +33,14 @@ class TicketBox {
     return this.#budget;
   }
 
+  inputLottoCallback(input) {
+    const inputLotto = input
+      .split(',')
+      .map((number) => parseInt(number, DECIMAL_NUMBER));
+    this.lotto = new Lotto(inputLotto);
+    MissionUtils.Console.close();
+  }
+
   makeTickets() {
     const ticketCount = this.#budget / PRICE_PER_TICKET;
     while (this.#tickets.length < ticketCount) {
@@ -42,7 +51,14 @@ class TicketBox {
       );
       this.#tickets.push(ticketNumbers);
     }
-    MissionUtils.Console.print(`${ticketCount}개를 구매했습니다.`);
+    MissionUtils.Console.print(`\n${ticketCount}개를 구매했습니다.`);
+
+    this.printTickets();
+
+    MissionUtils.Console.readLine(
+      '\n당첨 번호를 입력해 주세요.\n',
+      this.inputLottoCallback.bind(this),
+    );
   }
 
   get tickets() {
