@@ -3,17 +3,20 @@ const Lotto = require("./Lotto.js");
 const { RANGE } = require("./Constant");
 
 class LottoMachine {
-  constructor() {
-    this.lottoArr = [];
+  #lottoArr = [];
+  #lottoCnt;
+
+  constructor() {}
+
+  makeLotto(lottoCnt) {
+    this.#lottoCnt = lottoCnt;
+    for (let i = 0; i < lottoCnt; i++) {
+      const lotto = new Lotto(this.makeRandomArr());
+      this.#lottoArr.push(lotto.numbers);
+    }
+    return this.#lottoArr;
   }
 
-  makeLotto(number) {
-    for (let i = 0; i < number; i++) {
-      const lotto = new Lotto(this.makeRandomArr());
-      this.lottoArr.push(lotto);
-    }
-    return this.lottoArr;
-  }
   makeRandomArr() {
     return MissionUtils.Random.pickUniqueNumbersInRange(
       RANGE.MIN,
