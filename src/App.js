@@ -44,8 +44,9 @@ class App {
   }
 
   inputWonLotto() {
+    MissionUtils.Console.print("\n");
     MissionUtils.Console.readLine(
-      "\n당첨 번호를 입력해 주세요.\n",
+      "당첨 번호를 입력해 주세요.\n",
       (lottoNumber) => {
         this.initialInputLotto = lottoNumber;
       }

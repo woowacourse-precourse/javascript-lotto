@@ -37,8 +37,9 @@ class Lotto {
   }
 
   inputBonusNumber() {
+    MissionUtils.Console.print("\n");
     MissionUtils.Console.readLine(
-      "\n보너스 번호를 입력해 주세요.\n",
+      "보너스 번호를 입력해 주세요.\n",
       (bonusNumber) => {
         this.bonusNumber = bonusNumber;
       }

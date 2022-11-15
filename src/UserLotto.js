@@ -1,12 +1,12 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
 class UserLotto {
-  #userLotto;
+  #userLottoes;
 
   constructor(totalLotto) {
-    this.userLotto = [];
+    this.userLottoes = [];
     this.createUserLotto(totalLotto);
-    this.setUserLotto(this.userLotto);
+    this.setUserLotto(this.userLottoes);
     this.printUserLotto(totalLotto);
   }
 
@@ -20,14 +20,17 @@ class UserLotto {
   }
 
   saveSortedLotto(randomLotto) {
-    const NEW_LOTTO = randomLotto.sort((a, b) => a - b);
-    this.userLotto.push(NEW_LOTTO);
+    console.log(randomLotto);
+    const SORTED_LOTTO = randomLotto.sort((first, second) => {
+      first - second;
+    });
+    this.userLottoes.push(SORTED_LOTTO);
   }
 
   printUserLotto(totalLotto) {
-    MissionUtils.Console.print(`\n${totalLotto}개를 구매했습니다.`);
+    MissionUtils.Console.print(`${totalLotto}개를 구매했습니다.`);
     for (let index = 0; index < totalLotto; index++) {
-      const FORMATTED_LOTTO = this.printFormatter(this.userLotto[index]);
+      const FORMATTED_LOTTO = this.printFormatter(this.userLottoes[index]);
       MissionUtils.Console.print("[" + FORMATTED_LOTTO + "]");
     }
   }
@@ -40,12 +43,12 @@ class UserLotto {
     return FORMATTED_LOTTO;
   }
 
-  setUserLotto(userLotto) {
-    this.#userLotto = userLotto;
+  setUserLotto(userLottoes) {
+    this.#userLottoes = userLottoes;
   }
 
   getUserLotto() {
-    return this.#userLotto;
+    return this.#userLottoes;
   }
 }
 
