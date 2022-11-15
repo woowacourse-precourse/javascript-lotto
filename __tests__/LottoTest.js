@@ -35,14 +35,6 @@ const mockRandoms = (numbers) => {
   }, MissionUtils.Random.pickUniqueNumbersInRange);
 };
 
-// const testBonusNumber = (bonusNumber) => {
-//   const winNumbers = [1, 2, 3, 4, 5, 6];
-//   expect(() => {
-//     const lotto = new Lotto(winNumbers);
-//     lotto.inputBonusNumber([...winNumbers, bonusNumber], 7);
-//   }).toThrow("[ERROR]");
-// };
-
 describe("[기능2] 금액 입력 예외 처리", () => {
   test("[2-1] 1000원 이하로 입력하면 예외가 발생한다.", () => {
     mockQuestions(["900"]);
@@ -69,10 +61,7 @@ describe("[기능2] 금액 입력 예외 처리", () => {
 
 describe("[기능4] 랜덤 번호 뽑기 테스트", () => {
   test("3000원 입력 시 3번 랜덤 번호 뽑기", () => {
-    const logSpyRandom = jest.spyOn(
-      MissionUtils.Random,
-      "pickUniqueNumbersInRange"
-    );
+    const logSpyRandom = jest.spyOn(MissionUtils.Random, "pickUniqueNumbersInRange");
 
     mockQuestions(["3000"]);
 
