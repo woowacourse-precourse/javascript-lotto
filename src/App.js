@@ -74,7 +74,7 @@ class App {
   }
 
   isValidWinNumbers(input) {
-    let numbers = input.split(",").map(Number);
+    let numbers = input.split(",").map(Number); //문자열을 콤마로 나누고, 나눈 원소들을 String->Number로 변환
     if (new Set(numbers).size != 6) return false;
     if (numbers.includes(NaN)) return false;
     if (numbers.filter((e) => e < 1 || e > 45).length != 0) return false;
@@ -85,17 +85,16 @@ class App {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (input) => {
       if (!this.isValidBonusNumber(input)) {
         throw "[ERROR]";
-      } else {
-        this.bonusNumber = input;
-        this.matchLottos(this.lottos, this.winNumbers, this.bonusNumber);
-        this.printer.printScore(this.rewards);
-        this.revenue = this.calculator.conductRevenue(
-          this.rewards,
-          this.payMoney
-        );
-        this.printer.printRevenue(this.revenue);
-        this.gameOver();
       }
+      this.bonusNumber = input;
+      this.matchLottos(this.lottos, this.winNumbers, this.bonusNumber);
+      this.printer.printScore(this.rewards);
+      this.revenue = this.calculator.conductRevenue(
+        this.rewards,
+        this.payMoney
+      );
+      this.printer.printRevenue(this.revenue);
+      this.gameOver();
     });
   }
 
