@@ -69,7 +69,7 @@ class App {
 
   validateIsNotNumber(number) {
     for (let i = 0; i < number.length; i++) {
-      if (isNaN(...number[i])) {
+      if (isNaN(number[i])) {
         Console.close();
         throw new Error('[ERROR] 당첨 번호는 숫자만 입력해야 합니다.');
       }
