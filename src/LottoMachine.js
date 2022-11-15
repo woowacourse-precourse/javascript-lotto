@@ -34,7 +34,9 @@ class LottoMachine {
       this.#lottoCnt + SYS_MESSAGE.OUTPUT_LOTTO_COUNT_MESSAGE
     );
     for (let i = 0; i < this.#lottoArr.length; i++) {
-      MissionUtils.Console.print(this.sortLottoNum(this.#lottoArr[i]));
+      MissionUtils.Console.print(
+        `[${this.sortLottoNum(this.#lottoArr[i]).join(", ")}]`
+      );
     }
   }
 }

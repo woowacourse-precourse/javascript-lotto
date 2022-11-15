@@ -17,12 +17,12 @@ class App {
     this.statistics = new Statistics();
   }
 
-  async play() {
-    let money = await this.getMoney();
+  play() {
+    let money = this.getMoney();
     let lottoCnt = money / 1000;
     let lottoArr = this.lottoMachine.makeLotto(lottoCnt);
     this.lottoMachine.printLotto();
-    let lottoNum = await this.getAllLottoNum();
+    let lottoNum = this.getAllLottoNum();
     this.clerk.setData(lottoArr, lottoNum);
     let revenue = this.clerk.countReward(this.clerk.countPlace());
     this.clerk.showPlace();
@@ -31,25 +31,25 @@ class App {
     MissionUtils.Console.close();
   }
 
-  async getMoney() {
+  getMoney() {
     return this.judge.isBuyerInputValid(
-      await this.buyer.getInput(SYS_MESSAGE.INPUT_MONEY_MESSAGE)
+      this.buyer.getInput(SYS_MESSAGE.INPUT_MONEY_MESSAGE)
     );
   }
 
-  async getAllLottoNum() {
-    return [await this.getLottoNum(), await this.getBonusNum()];
+  getAllLottoNum() {
+    return [this.getLottoNum(), this.getBonusNum()];
   }
 
-  async getLottoNum() {
+  getLottoNum() {
     return this.judge.lottoInputValid(
-      await this.recommender.getInput(SYS_MESSAGE.INPUT_LOTTO_NUM)
+      this.recommender.getInput(SYS_MESSAGE.INPUT_LOTTO_NUM)
     );
   }
 
-  async getBonusNum() {
+  getBonusNum() {
     return this.judge.bonusInputValid(
-      await this.recommender.getInput(SYS_MESSAGE.INPUT_BONUS_NUM)
+      this.recommender.getInput(SYS_MESSAGE.INPUT_BONUS_NUM)
     );
   }
 }
