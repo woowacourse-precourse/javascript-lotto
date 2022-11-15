@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const PRIZE_INDEX = require('./constants').PRIZE_INDEX;
 
 class MessagePrinter {
     static printPurchaseAmount(amount) {
@@ -12,11 +13,11 @@ class MessagePrinter {
     static printResultStatistics(result) {
         MissionUtils.Console.print(`\n당첨 통계
 ---
-3개 일치 (5,000원) - ${result[0]}개
-4개 일치 (50,000원) - ${result[1]}개
-5개 일치 (1,500,000원) - ${result[2]}개
-5개 일치, 보너스 볼 일치 (30,000,000원) - ${result[3]}개
-6개 일치 (2,000,000,000원) - ${result[4]}개`
+3개 일치 (5,000원) - ${result[PRIZE_INDEX.FIFTH]}개
+4개 일치 (50,000원) - ${result[PRIZE_INDEX.FOURTH]}개
+5개 일치 (1,500,000원) - ${result[PRIZE_INDEX.THIRD]}개
+5개 일치, 보너스 볼 일치 (30,000,000원) - ${result[PRIZE_INDEX.SECOND]}개
+6개 일치 (2,000,000,000원) - ${result[PRIZE_INDEX.FIRST]}개`
         );
     }
 

@@ -1,3 +1,5 @@
+const PRIZE_INDEX = require('./constants').PRIZE_INDEX;
+
 class Matcher {
     constructor(winningNumbers, bonusNumber) {
         this.winningNumbers = winningNumbers;
@@ -9,8 +11,8 @@ class Matcher {
         for (let idx = 0; idx < lottoWallet.length; idx++) {
             const lotto = lottoWallet[idx].numbers;
             const resultIdx = this.matchWithWinningNumbers(lotto);
-            if (resultIdx === -1) continue;
-            if (resultIdx === 2) {
+            if (resultIdx === PRIZE_INDEX.NOTHING) continue;
+            if (resultIdx === PRIZE_INDEX.THIRD) {
                 this.matchWithBonusNumber(lotto);
                 continue;
             }
@@ -24,22 +26,21 @@ class Matcher {
         const matchTargetGroup = [...lotto, ...this.winningNumbers];
         const matchTargetGroupRemovedDuplicate = new Set(matchTargetGroup);
         switch (matchTargetGroupRemovedDuplicate.size) {
-            case 6: return 4;
-            case 7: return 2;
-            case 8: return 1;
-            case 9: return 0;
-            default: return -1;
+            case 6: return PRIZE_INDEX.FIRST;
+            case 7: return PRIZE_INDEX.THIRD;
+            case 8: return PRIZE_INDEX.FOURTH;
+            case 9: return PRIZE_INDEX.FIFTH;
+            default: return PRIZE_INDEX.NOTHING;
         }
     }
 
     matchWithBonusNumber(lotto) {
         const bonusMatch = lotto.includes(this.bonusNumber);
-        console.log(lotto, bonusMatch);
         if (bonusMatch) {
-            this.matchResult[3]++;
+            this.matchResult[PRIZE_INDEX.SECOND]++;
             return true;
         }
-        this.matchResult[2]++;
+        this.matchResult[PRIZE_INDEX.THIRD]++;
         return false;
     }
 }

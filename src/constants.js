@@ -6,6 +6,16 @@ const PRIZE_MONEY = {
     FIFTH: 5000
 }
 
+const PRIZE_INDEX = {
+    FIRST: 4,
+    SECOND: 3,
+    THIRD: 2,
+    FOURTH: 1,
+    FIFTH: 0,
+    NOTHING: -1,
+}
+
 module.exports = {
-    PRIZE_MONEY
+    PRIZE_MONEY,
+    PRIZE_INDEX,
 };
