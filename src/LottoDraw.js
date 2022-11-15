@@ -74,7 +74,16 @@ class LottoDraw {
         this.printYield(result);
     }
     printResult(result) {
-        return;
+        const prizeMoneytoString = {};
+        for(let i = 1; i <= 5; i++) {
+            prizeMoneytoString[i] = LottoDraw.PRIZE_MONEY[i].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        }
+         
+        MissionUtils.Console.print('3개 일치 ('+prizeMoneytoString[5]+'원) - '+result[5]+'개');
+        MissionUtils.Console.print('4개 일치 ('+prizeMoneytoString[4]+'원) - '+result[4]+'개');
+        MissionUtils.Console.print('5개 일치 ('+prizeMoneytoString[3]+'원) - '+result[3]+'개');
+        MissionUtils.Console.print('5개 일치, 보너스 볼 일치 ('+prizeMoneytoString[2]+'원) - '+result[2]+'개');
+        MissionUtils.Console.print('6개 일치 ('+prizeMoneytoString[1]+'원) - '+result[1]+'개');
     }
     printYield(result) {
         return;
