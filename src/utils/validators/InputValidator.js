@@ -1,8 +1,5 @@
-const {
-  LOTTO,
-  CASHER: { ERROR_MESSAGE: CASHER_ERROR },
-  LOTTO_PICKER: { PICKER_ERROR: PICKER_ERROR },
-} = require('../../constants');
+const { LOTTO } = require('../../constants');
+const { CASHER_ERROR, SELECT_ERROR } = require('../../error/error.constants');
 const { isNumber, isInRange } = require('./numbers');
 
 const validateMoney = (userInput) => {
@@ -18,13 +15,13 @@ const validateMoney = (userInput) => {
 const validateWinningNumbers = (winningNumbers) => {
   const numbers = winningNumbers.split(',').map((num) => Number(num));
   if (numbers.length !== LOTTO.NUMBER_COUNT) {
-    throw new Error(PICKER_ERROR.WINNING_NUMBERS_LENGTH);
+    throw new Error(SELECT_ERROR.WINNING_NUMBERS_LENGTH);
   };
   if (numbers.some((num) => !isNumber(num))) {
-    throw new Error(PICKER_ERROR.WINNIG_NUMBERS_IS_NOT_NUMBER);
+    throw new Error(SELECT_ERROR.WINNIG_NUMBERS_IS_NOT_NUMBER);
   }
   if (numbers.some((num) => !isInRange(num))) {
-    throw new Error(PICKER_ERROR.WINNING_NUMBERS_IS_NOT_IN_RANGE);
+    throw new Error(SELECT_ERROR.WINNING_NUMBERS_IS_NOT_IN_RANGE);
   }
 
   return true;
@@ -32,13 +29,13 @@ const validateWinningNumbers = (winningNumbers) => {
 
 const validateBonuesNumber = (bonusNumber, winningNumbers) => {
   if (!isNumber(bonusNumber)) {
-    throw new Error(PICKER_ERROR.BONUS_NUMBER_IS_NOT_NUMBER);
+    throw new Error(SELECT_ERROR.BONUS_NUMBER_IS_NOT_NUMBER);
   }
   if (winningNumbers.includes(Number(bonusNumber))) {
-    throw new Error(PICKER_ERROR.BONUS_NUMBER_IS_DUPLICATED);
+    throw new Error(SELECT_ERROR.BONUS_NUMBER_IS_DUPLICATED);
   }
   if (!isInRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER, bonusNumber)) {
-    throw new Error(PICKER_ERROR.BONUS_NUMBER_IS_NOT_IN_RANGE);
+    throw new Error(SELECT_ERROR.BONUS_NUMBER_IS_NOT_IN_RANGE);
   }
 };
 

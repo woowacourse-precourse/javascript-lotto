@@ -1,4 +1,5 @@
 const { LOTTO } = require('./constants');
+const { LOTTO_ERROR } = require('./error/error.constants');
 const { isUnique, isInRange, isNumber } = require('./utils/validators/numbers');
 
 class Lotto {
@@ -12,16 +13,16 @@ class Lotto {
 
   static validate(numbers) {
     if (numbers.length !== LOTTO.NUMBER_COUNT) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+      throw new Error(LOTTO_ERROR.LENGTH_NOT_ENOUGH);
     }
     if (!numbers.every(isInRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER))) {
-      throw new Error('[ERROR] 로또 번호는 1부터 45까지입니다.');
+      throw new Error(LOTTO_ERROR.IS_NOT_IN_RANGE);
     }
     if (!isUnique(numbers)) {
-      throw new Error('[ERROR] 로또 번호는 중복되지 않아야 합니다.');
+      throw new Error(LOTTO_ERROR.IS_DUPLICATED);
     }
     if (!numbers.every(isNumber)) {
-      throw new Error('[ERROR] 로또 번호는 숫자여야 합니다.');
+      throw new Error(LOTTO_ERROR.IS_NOT_NUMBER);
     }
   }
 
