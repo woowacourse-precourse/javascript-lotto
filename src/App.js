@@ -2,27 +2,21 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const User = require("./User");
 const Lotto = require("./Lotto");
 const WinningNumbers = require("./WinningNumbers");
+const {
+  LOTTO_RESULT_MESSAGE,
+  TOTAL_PROFIT_MESSAGE,
+  LOTTO_PROCEEDS_INFO,
+  GAME_MESSAGES,
+  LOTTO_PRICE,
+  LOTTO_START_NUMBER,
+  LOTTO_END_NUMBER,
+  LOTTO_NUMBER,
+  RANKING_2_COLLECT_NUMBER,
+  LOTTO_PROCEED_INDEX,
+  INDEX_CORRECTION_VALUE,
+} = require("./constants");
 
 const { Console, Random } = MissionUtils;
-
-const LOTTO_RESULT_MESSAGE = (resultNumber) => `
-3개 일치 (5,000원) - ${resultNumber[0]}개
-4개 일치 (50,000원) - ${resultNumber[1]}개
-5개 일치 (1,500,000원) - ${resultNumber[2]}개
-5개 일치, 보너스 볼 일치 (30,000,000원) - ${resultNumber[4]}개
-6개 일치 (2,000,000,000원) - ${resultNumber[3]}개
-`;
-
-const TOTAL_PROFIT_MESSAGE = (profit) => `총 수익률은 ${profit}%입니다.`;
-
-// 5,4,3,1,2등 순서
-const LOTTO_PROCEEDS_INFO = [
-  { ranking: 5, proceed: 5000 },
-  { ranking: 4, proceed: 50000 },
-  { ranking: 3, proceed: 1500000 },
-  { ranking: 1, proceed: 2000000000 },
-  { ranking: 2, proceed: 30000000 },
-];
 
 class App {
   constructor() {
@@ -39,7 +33,7 @@ class App {
   }
 
   chargePurchaseMoney() {
-    Console.readLine("구입금액을 입력하세요 : ", (answer) => {
+    Console.readLine(GAME_MESSAGES.ENTER_MONEY, (answer) => {
       this.user.changeMoney(answer);
       Console.print(answer);
       this.purchaseLotto(this.user.getMoney());
@@ -47,10 +41,10 @@ class App {
   }
 
   purchaseLotto(money) {
-    const purChaseNumber = money / 1000;
-    Console.print(`${purChaseNumber}개를 구매했습니다.`);
+    const purChaseNumber = money / LOTTO_PRICE;
+    Console.print(GAME_MESSAGES.PURCHASE_MESSAGE(purChaseNumber));
     for (let i = 0; i < purChaseNumber; i += 1) {
-      this.lottos.push(new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6)));
+      this.lottos.push(this.getNewLotto());
     }
     this.lottos.forEach((lotto) => {
       Console.print(lotto.getLottoNumbersByString());
@@ -58,8 +52,18 @@ class App {
     this.enterWinningNumbers();
   }
 
+  getNewLotto() {
+    return new Lotto(
+      Random.pickUniqueNumbersInRange(
+        LOTTO_START_NUMBER,
+        LOTTO_END_NUMBER,
+        LOTTO_NUMBER
+      )
+    );
+  }
+
   enterWinningNumbers() {
-    Console.readLine("당첨 번호를 입력해 주세요. : ", (answer) => {
+    Console.readLine(GAME_MESSAGES.ENTER_WINNING_NUMBER, (answer) => {
       Console.print(answer);
       const numbericAnswer = answer.split(",").map((number) => Number(number));
       this.winningNumbers.addWinningNumbers(numbericAnswer);
@@ -68,7 +72,7 @@ class App {
   }
 
   enterBonusNumber() {
-    Console.readLine("보너스 번호를 입력해 주세요. : ", (answer) => {
+    Console.readLine(GAME_MESSAGES.ENTER_BONUS_NUMBER, (answer) => {
       Console.print(answer);
       this.winningNumbers.addBonusNumber(Number(answer));
       this.showResultMessage();
@@ -76,15 +80,15 @@ class App {
   }
 
   showResultMessage() {
-    Console.print("당첨 통계");
-    Console.print("---");
+    Console.print(GAME_MESSAGES.WINNING_RESULT);
+    Console.print(GAME_MESSAGES.RESULT_SEPARATOR);
     this.checkResult();
   }
 
   checkResult() {
     this.lottos.forEach((lotto) => {
-      const collectInfo = this.getCollectInfo(lotto.getLottoNumbers());
-      this.plusWinnerCount(collectInfo);
+      const correctInfo = this.getCorrectInfo(lotto.getLottoNumbers());
+      this.plusWinnerCount(correctInfo);
     });
     Console.print(LOTTO_RESULT_MESSAGE(this.lottoResults));
     const totalProceeds = this.getTotalProceeds(this.lottoResults);
@@ -94,27 +98,32 @@ class App {
     Console.close();
   }
 
-  getCollectInfo(lottoNumbers) {
-    let collectNumber = 0;
+  getCorrectInfo(lottoNumbers) {
+    let correctNumber = 0;
     let bonusNumber = false;
     lottoNumbers.forEach((number) => {
       if (this.winningNumbers.bonusNumber === number) {
         bonusNumber = true;
       }
       if (this.winningNumbers.winningNumbers.includes(number)) {
-        collectNumber += 1;
+        correctNumber += 1;
       }
     });
-    return { collectNumber, bonusNumber };
+    return { collectNumber: correctNumber, bonusNumber };
   }
 
-  plusWinnerCount(collectInfo) {
-    if (collectInfo.collectNumber === 5 && collectInfo.bonusNumber) {
-      this.lottoResults[4] += 1;
+  plusWinnerCount(correctInfo) {
+    if (
+      correctInfo.collectNumber === RANKING_2_COLLECT_NUMBER &&
+      correctInfo.bonusNumber
+    ) {
+      this.lottoResults[LOTTO_PROCEED_INDEX.RANKING2] += 1;
       return;
     }
-    if (collectInfo.collectNumber > 2) {
-      this.lottoResults[collectInfo.collectNumber - 3] += 1;
+    if (correctInfo.collectNumber >= LOTTO_PROCEED_INDEX.RANKING5) {
+      this.lottoResults[
+        correctInfo.collectNumber - INDEX_CORRECTION_VALUE
+      ] += 1;
     }
   }
 

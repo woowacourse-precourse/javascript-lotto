@@ -1,3 +1,5 @@
+const { ERROR_MESSAGES } = require("./constants");
+
 class Lotto {
   #numbers;
 
@@ -19,7 +21,7 @@ class Lotto {
       numberSet.add(number);
     });
     if (numberSet.size !== 6) {
-      throw new Error("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+      throw new Error(ERROR_MESSAGES.WINNING_NUMBER_DUPLICATE);
     }
   }
 

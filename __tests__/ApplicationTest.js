@@ -72,11 +72,11 @@ describe("로또 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
-  test("getCollectInfo에 2등 로또 번호를 넣어 호출하였을 때, 맞은 번호의 정보(2등)을 반환한다", () => {
+  test("getCorrectInfo에 2등 로또 번호를 넣어 호출하였을 때, 맞은 번호의 정보(2등)을 반환한다", () => {
     const app = new App();
     app.winningNumbers.addWinningNumbers([1, 2, 3, 4, 5, 6]);
     app.winningNumbers.addBonusNumber(7);
-    const result = app.getCollectInfo([1, 2, 3, 4, 5, 7]);
+    const result = app.getCorrectInfo([1, 2, 3, 4, 5, 7]);
     expect(result).toEqual({ collectNumber: 5, bonusNumber: true });
   });
 

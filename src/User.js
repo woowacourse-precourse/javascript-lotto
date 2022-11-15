@@ -1,3 +1,5 @@
+const { LOTTO_PRICE, ERROR_MESSAGES } = require("./constants");
+
 class User {
   #money;
 
@@ -7,13 +9,13 @@ class User {
 
   changeMoney(amount) {
     if (!this.validateMoney(amount)) {
-      throw new Error("[ERROR] 구입 금액은 천원 단위로 입력해주세요");
+      throw new Error(ERROR_MESSAGES.WRONG_UNIT_OF_MONEY);
     }
     this.#money += Number(amount);
   }
 
   validateMoney(amount) {
-    return !(amount % 1000 !== 0 || amount < 1000);
+    return !(amount % LOTTO_PRICE !== 0 || amount < LOTTO_PRICE);
   }
 
   getMoney() {
