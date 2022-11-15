@@ -7,8 +7,8 @@ class Validation {
     if (AMOUNT % 1000 !== 0)
       throw new Error("[ERROR] 1000원 단위의 금액을 입력하세요.");
 
-    if (AMOUNT < 0)
-      throw new Error("[ERROR] 구입급액이 0원 이상이어야 합니다.");
+    if (AMOUNT < 1000)
+      throw new Error("[ERROR] 구입급액은 1000원 이상이어야 합니다.");
 
     return AMOUNT;
   }
