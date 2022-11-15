@@ -27,7 +27,7 @@ class WinningNumber {
 
   #enterBonusNumber() {
     MissionUtils.Console.readLine(COMMENT.BONUS, (number) => {
-      if (this.validateBonusNumber(number)) {
+      if (this.validateBonusNumber(Number(number))) {
         this.#bonusNumber = Number(number);
         new LottoResult(
           this.#winningNumbers,
@@ -52,7 +52,7 @@ class WinningNumber {
     }
 
     numbers.forEach((number) => {
-      this.#checkLottoRange(number);
+      this.#checkLottoRange(number.toString());
     });
 
     return true;
@@ -64,7 +64,7 @@ class WinningNumber {
       throw new Error("[ERROR] 보너스 번호는 당첨번호와 중복될 수 없습니다.");
     }
 
-    this.#checkLottoRange(number);
+    this.#checkLottoRange(number.toString());
 
     return true;
   }
@@ -74,8 +74,6 @@ class WinningNumber {
       MissionUtils.Console.close();
       throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
-
-    return true;
   }
 }
 
