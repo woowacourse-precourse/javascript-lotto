@@ -12,6 +12,7 @@ const VALUE_NUMBER = {
 
   PRIZES: [2000000000, 30000000, 1500000, 50000, 5000],
 };
+Object.freeze(VALUE_NUMBER);
 
 const GRADE = {
   FIRST: 1,
@@ -20,6 +21,7 @@ const GRADE = {
   FOURTH: 4,
   FIFTH: 5,
 };
+Object.freeze(GRADE);
 
 const ERROR_INPUT = {
   NOT_NUMBER: "[ERROR] 숫자를 입력해 주세요.",
@@ -30,18 +32,21 @@ const ERROR_INPUT = {
   BONUS_NUMBER_DUPLICATE: "[ERROR] 이전에 입력한 번호가 보너스 숫자와 중복됩니다.",
   WINNING_NUMBER_IS_NOT_VALID: "[ERROR] 숫자+',' 형태로 입력해 주세요. ex) 1,2,3,4,5,6",
 };
+Object.freeze(ERROR_INPUT);
 
 const ERROR_LOTTO_NUMBER = {
   NOT_SIX: "[ERROR] 로또 번호는 6개여야 합니다.",
   DUPLICATE_NUMBER: "[ERROR] 중복되는 숫자가 있습니다.",
   OUT_OF_RANGE: "[ERROR] 숫자는 1-45 사이의 수여야 합니다.",
 };
+Object.freeze(ERROR_LOTTO_NUMBER);
 
 const GET_INPUT = {
   MONEY: "구입금액을 입력해 주세요.\n",
   WINNING_NUMBER: "\n당첨 번호를 입력해 주세요.\n",
   BONUS_NUMBER: "\n보너스 번호를 입력해 주세요.\n",
 };
+Object.freeze(GET_INPUT);
 
 const RESULT = {
   BORDER_LINE: "---",
@@ -52,5 +57,6 @@ const RESULT = {
   SECOND: "5개 일치, 보너스 볼 일치 (30,000,000원)",
   FIRST: "6개 일치 (2,000,000,000원)",
 };
+Object.freeze(RESULT);
 
 module.exports = { VALUE_NUMBER, GRADE, ERROR_INPUT, ERROR_LOTTO_NUMBER, GET_INPUT, RESULT };
