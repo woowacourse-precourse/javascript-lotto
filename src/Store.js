@@ -48,7 +48,7 @@ class Store {
 
   printCandidates() {
     this.candidates.forEach((candidate) => {
-      MissionUtils.Console.print(candidate.numbers);
+      MissionUtils.Console.print(`[${candidate.numbers.join(", ")}]`);
     });
     this.setAnswer();
   }

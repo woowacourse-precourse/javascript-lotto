@@ -75,17 +75,15 @@ describe("Store 클래스 테스트", () => {
 
   test("발행된 로또를 출력한다.", () => {
     store.setAnswer = jest.fn();
-    const testCandidates = [
-      [1, 2, 3, 4, 5, 6],
-      [4, 5, 6, 7, 8, 9],
-    ];
+    const logs = ["[1, 2, 3, 4, 5, 6]", "[4, 5, 6, 7, 8, 9]"];
     const logSpy = getLogSpy();
-    testCandidates.forEach((candidate) =>
-      store.candidates.push(new Lotto(candidate))
-    );
+    store.candidates = [
+      new Lotto([1, 2, 3, 4, 5, 6]),
+      new Lotto([4, 5, 6, 7, 8, 9]),
+    ];
     store.printCandidates();
-    testCandidates.forEach((candidate) => {
-      expect(logSpy).toHaveBeenCalledWith(candidate);
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
 
