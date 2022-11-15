@@ -64,7 +64,7 @@ Score Class
        유저 로또 구매 금액 저장 함수 (setMoney)(#4)
        유저 수익률 저장 함수 (setProfit)(#5)
        보너스 점수 저장 함수 (setBonusNumber)(#6)
-       유저 로또 반환 함수 (getCorrectNumber)(#7)
+       당첨 점수 반환 함수 (getCorrectNumber)(#7)
        유저 점수 반환 함수 (getScore)(#8)
        유저 수익률 반환 함수 (getProfit)(#9)
        유저 각점수 계산 함수 (calculateMatchCount)(#10)
