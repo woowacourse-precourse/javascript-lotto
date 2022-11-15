@@ -1,4 +1,5 @@
 const Constant = require("./utils/Constant");
+const Validate = require("./utils/Validate");
 const MissionUtils = require("@woowacourse/mission-utils");
 class Lotto {
   #numbers;
@@ -20,15 +21,12 @@ class Lotto {
   }
 
   validate(numbers) {
-    const numbersArr = numbers.split(",").map((elem) => parseInt(elem));
-    if (numbersArr.length !== 6) {
-      throw new Error(Constant.MESSAGE.ERROR.OUT_OF_RANGE);
-    }
-    return numbersArr;
+    Validate.InputNumberValidation(numbers);
+    return numbers;
   }
 
   setBonusNum(number) {
-    //유효성 검사
+    Validate.InputBonusValidation(number);
     this.#bonusNumber = number;
   }
 
@@ -47,6 +45,7 @@ class Lotto {
     }
     this.resultStatics();
   }
+
   saveResult(prizeCnt, hitBonus) {
     if (prizeCnt === 3) {
       this.prizeList.fifthPrize++;

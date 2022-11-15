@@ -1,4 +1,6 @@
 const Constant = require("./utils/Constant");
+const Validate = require("./utils/Validate");
+
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
@@ -10,16 +12,11 @@ class Customer {
     this.money = 0;
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error(Constant.MESSAGE.ERROR.OUT_OF_RANGE);
-    }
-  }
   purchaseLotto() {
     MissionUtils.Console.readLine(
       Constant.MESSAGE.GUIDE.ENTER_MONEY,
       (answer) => {
-        //유효성검사
+        Validate.InputMoneyValidation(answer);
         this.publishLotto(answer);
         this.money = answer;
         this.getWinningNumber();
@@ -33,8 +30,9 @@ class Customer {
     );
     for (let i = 0; i < lottoNum; i++) {
       const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      MissionUtils.Console.print(`[${numbers.join(", ")}]`);
+
       this.lottoList.push(numbers);
-      MissionUtils.Console.print(`[${numbers}]`);
     }
   }
 
@@ -42,7 +40,9 @@ class Customer {
     MissionUtils.Console.readLine(
       Constant.MESSAGE.GUIDE.ENTER_NUMBER,
       (answer) => {
-        this.#lotto = new Lotto(answer, this.lottoList, this.money);
+        const numbersArr = answer.split(",").map((elem) => parseInt(elem));
+
+        this.#lotto = new Lotto(numbersArr, this.lottoList, this.money);
         this.getBonusNumber();
       }
     );
