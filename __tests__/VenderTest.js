@@ -40,21 +40,33 @@ describe("로또 구매 클래스 테스트", () => {
     });
   });
 
-  test("예외 - 로또 구매 시 1000원 단위에 값이 아닌 경우", () => {
+  test("valid 메서드 테스트", () => {
+    const vender = new Vender(1000);
+
+    //로또 구매 시 구매할 수 없는 값이 들어온 경우
     expect(() => {
-      new Vender(1100);
+      vender.valid(0);
+    }).toThrow("[ERROR]");
+
+    expect(() => {
+      vender.valid(1100);
+    }).toThrow("[ERROR]");
+
+    // 로또 구매 시 숫자가 아닌 다른 값이 들어온 경우
+    expect(() => {
+      vender.valid("1000a");
     }).toThrow("[ERROR]");
   });
 
-  test("예외 - 로또 구매 시 구매할 수 없는 값이 들어온 경우", () => {
-    expect(() => {
-      new Vender(0);
-    }).toThrow("[ERROR]");
-  });
+  test("generateLotto 메서드 테스트", () => {
+    mockRandoms([[4, 8, 14, 17, 23, 24]]);
+    const logs = ["[4, 8, 14, 17, 23, 24]"];
+    const logSpy = getLogSpy();
+    const vender = new Vender(1000);
 
-  test("예외 - 로또 구매 시 숫자가 아닌 다른 값이 들어온 경우", () => {
-    expect(() => {
-      new Vender("1000a");
-    }).toThrow("[ERROR]");
+    vender.generateLotto();
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
   });
 });
