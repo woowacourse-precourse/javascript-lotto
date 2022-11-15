@@ -1,26 +1,36 @@
 const { Console } = require('@woowacourse/mission-utils');
 
 class Money {
-  #money;
+  #amount;
 
-  constructor(money = 0) {
-    this.#money = money;
+  constructor(amount = 0) {
+    this.#validate(amount);
+    this.#amount = amount;
+  }
+
+  #validate(amount) {
+    if (isNaN(amount))
+      throw new Error('[ERROR] Money 클래스는 number 타입 값으로 초기화해야 합니다.');
   }
 
   multiply(count) {
-    return new Money(this.#money * count);
+    return new Money(this.#amount * count);
   }
 
-  getMoney() {
-    return this.#money;
+  divide(money) {
+    return Math.trunc(this.#amount / money.getAmount());
+  }
+
+  getAmount() {
+    return this.#amount;
   }
 
   addMoney(money) {
-    this.#money += money.getMoney();
+    this.#amount += money.getAmount();
   }
 
   addSeperator() {
-    return String(this.#money)
+    return String(this.#amount)
       .split('')
       .reverse()
       .reduce((strings, string, index) => {
@@ -33,10 +43,8 @@ class Money {
       .join('');
   }
 
-  printEarningRate(earning) {
-    const earningRate = Number.parseFloat((earning.getMoney() / this.#money) * 100).toFixed(1);
-
-    Console.print(`총 수익률은 ${earningRate}%입니다.`);
+  calculateEarningRate(earning) {
+    return Number.parseFloat((earning.getAmount() / this.#amount) * 100).toFixed(1) + '%';
   }
 }
 
