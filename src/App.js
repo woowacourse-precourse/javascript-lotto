@@ -8,6 +8,7 @@ class App {
   #countLottos;
   #lottosList = []; //8개 [[1,2,1,2,2],[],...]
   #inputWinningLottoNums;
+  #inputBonusNum;
   #scoreList = [];
 
   play() {
@@ -24,6 +25,7 @@ class App {
         this.printCountLottos();
         this.makeLottosList();
         this.inputWinningNumbers();
+        this.inputBonusNumber();
       }
     });
   }
@@ -60,7 +62,18 @@ class App {
       const validateWinningLottoNumber = new Lotto(inputWinningNumArr);
       this.#inputWinningLottoNums =
         validateWinningLottoNumber.inputLottoNumbers;
-      Console.print(this.#inputWinningLottoNums);
+      Console.print(this.#inputWinningLottoNums); //
+    });
+  }
+
+  inputBonusNumber() {
+    Console.readLine(INPUTS.INPUT_BONUS, (bonus) => {
+      if (this.#inputWinningLottoNums.includes(Number(bonus))) {
+        throw new Error(
+          "[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다."
+        );
+      }
+      
     });
   }
 
@@ -70,7 +83,7 @@ class App {
   }
 
   //lottos는 array, numbers
-  matchCountLotto(lottos, numbers) {}
+  countMatchingLotto(lottos, numbers) {}
 }
 
 const startLotto = new App();
