@@ -1,52 +1,71 @@
-const { Console } = require("@woowacourse/mission-utils");
-const Budget = require('./Budget')
-const Lotto = require('./Lotto')
-const Bonus = require('./Bonus')
-
+const { Console, Random } = require("@woowacourse/mission-utils");
+const Budget = require('./input/Budget')
+const Lotto = require('./input/Lotto')
+const Bonus = require('./input/Bonus')
 const inputObjects = {
   'budget': '',
   'numbers': [],
   'bonus': '',
 }
 
-async function getInputs() {
-  getBudget()
-    .then(getLottoNumbers())
-    .then(getBonusNumber())
-}
+const randomNumberList = []
 
-async function getBudget(inputObjects) {
+function getBudget() {
   Console.readLine('', (answer) => {
     const gameBudget = new Budget(Number(answer));
     inputObjects['budget'] = gameBudget;
+    getLottoNumbers()
   })
-  return inputObjects;
 }
 
-async function getLottoNumbers(inputObjects) {
+function getLottoNumbers(inputObjects) {
   Console.readLine('', (answer) => {
     const numbers = new Lotto(answer);
     numbers.forEach((element) => {
       inputObjects['numbers'].push(element);
     })
+    getBonusNumber()
   })
-  return inputObjects;
 }
 
-async function getBonusNumber(inputObjects) {
+function getBonusNumber(inputObjects) {
   Console.readLine('', (answer) => {
     const bonusNum = new Bonus(inputObjects['numbers'], answer);
     inputObjects['bonus'] = bonusNum;
+    startLotto()
   })
-  return inputObjects;
+}
+
+function startLotto() {
+  Console.print(`${inputObjects['budget']/1000}개를 구매했습니다.`)
+  getRandomNumberList()
+}
+
+function getRandomNumber() {
+  const randomNumber = MissionUtils.Random.pickNumberInRange(1, 45)
+  return randomNumber
+}
+
+function getRandomNumbers() {
+  const randomNumbers = []
+  while(randomNumbers.length < 6) {
+    const randomNumber = makeRandomNumber();
+    if(randomNumbers.includes(randomNumber)) continue;
+    randomNumbers.push(randomNumber);
+  }
+  return randomNumbers;
+}
+
+function getRandomNumberList() {
+  for(let i=0; i<budget/10; i++){
+    const randomNumbers = getRandomNumbers()
+    randomNumberList.push(randomNumbers)
+    Console.print(randomNumbers)
+  }
 }
 
 class App {
-  constructor() {
-    this.play()
-  }
-
   play() {
-    const inputObjects = getInputs()
+    getBudget()
   }
 }
