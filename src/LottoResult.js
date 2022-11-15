@@ -16,10 +16,10 @@ class LottoResult {
     let bonus = false;
 
     autoLotto.map((lotto) => {
-        if (this.#lotto.includes(String(lotto))){
+        if (this.#lotto.includes(lotto)){
             count += 1;
         }
-        if (String(lotto).includes(this.#bonus)){
+        if (this.#lotto.includes(this.#bonus)){
             bonus = true;
         }
     });

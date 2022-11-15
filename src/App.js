@@ -30,7 +30,7 @@ class App {
 
   getLottoNumber() {
     Console.readLine(INPUT.LOTTO_NUMBER, (numbers) => {
-      this.#lotto = new Lotto(numbers.split(','));
+      this.#lotto = new Lotto(numbers.split(',').map((number) => Number(number)));
       this.getBonusNumber();
     });
   }
