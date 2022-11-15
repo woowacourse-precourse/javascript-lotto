@@ -25,6 +25,15 @@ class LottoMachine {
   sortLottoNum(randomNumArr) {
     return randomNumArr.sort((a, b) => a - b);
   }
+
+  printLotto() {
+    MissionUtils.Console.print(
+      this.#lottoCnt + SYS_MESSAGE.OUTPUT_LOTTO_COUNT_MESSAGE
+    );
+    for (let i = 0; i < this.#lottoArr.length; i++) {
+      MissionUtils.Console.print(this.sortLottoNum(this.#lottoArr[i]));
+    }
+  }
 }
 
 module.exports = LottoMachine;
