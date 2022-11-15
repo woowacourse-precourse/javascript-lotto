@@ -1,6 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 
-class Output {
+class OutputUtils {
   static createLottoString(numbers) {
     let lottoStr = "";
     for (let i = 0; i < numbers.length; i++) {
@@ -25,4 +25,4 @@ class Output {
   }
 }
 
-module.exports = Output;
+module.exports = OutputUtils;

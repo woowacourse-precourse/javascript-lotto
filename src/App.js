@@ -2,7 +2,7 @@ const { Console } = require("@woowacourse/mission-utils");
 const { INPUT_MESSAGE, PRINT_MESSAGE } = require("./constants/constants");
 
 const Lotto = require("./Lotto");
-const Output = require("./Output");
+const OutputUtils = require("./OutputUtils");
 const Result = require("./Result");
 
 class App {
@@ -11,25 +11,27 @@ class App {
 
   constructor() {
     this.result = new Result();
-    // this.lotto = new Lotto();
     this.lottoArr = [];
   }
 
   play() {
-    this.inputBuyMoney();
+    this.startLotto();
   }
 
-  inputBuyMoney() {
+  startLotto() {
     Console.readLine(INPUT_MESSAGE.BUY_MONEY, (answer) => {
-      let lottoNum;
       this.#buyMoney = answer;
       this.validateBuyMoney(answer);
-      lottoNum = this.divideMoneyByThousand();
-      this.lottoArr = Lotto.createTotalLottoArr(lottoNum);
+      this.createLottos();
 
-      Output.printLottos(this.lottoArr);
+      OutputUtils.printLottos(this.lottoArr);
       this.getWinningNum(this.lottoArr);
     });
+  }
+
+  createLottos() {
+    const lottoNum = this.divideMoneyByThousand();
+    this.lottoArr = Lotto.createTotalLottoArr(lottoNum);
   }
 
   validateBuyMoney(inputBuyMoney) {
