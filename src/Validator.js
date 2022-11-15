@@ -26,6 +26,13 @@ class Validator {
         }
       }
 
+      static isDuplicate (numbers) {
+        if (numbers.length - Array.from(new Set(numbers)).length === 0) {
+          return true;
+        }
+        throw new Error('[ERROR] 중복되지 않은 값을 입력하세요.');
+      }
+
       static inputPurchase (string) {
         this.isBlank(string);
         this.isNumber(string);
