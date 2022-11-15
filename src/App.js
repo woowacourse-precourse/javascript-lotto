@@ -50,6 +50,15 @@ class App {
       this.inputBonusNumber();
     });
   }
+
+  inputBonusNumber() {
+    Console.readLine(INPUT.BONUS_NUMBER, (input) => {
+      checkValidBonusNumberInput(this.winningNumber, input);
+      this.bonusNumber = input;
+      const checker = new LottoChecker(this.winningNumber, this.bonusNumber);
+      this.printWinningStatistics(this.lottos, checker, this.money);
+    });
+  }
 }
 
 module.exports = App;
