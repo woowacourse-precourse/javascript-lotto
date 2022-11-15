@@ -76,6 +76,21 @@ class Machine {
     let count = this.rankingCountMap.get(ranking) || 0;
     this.rankingCountMap.set(ranking, (count += 1));
   }
+
+  #getRanking({ winningCount, bonusCount }) {
+    switch (winningCount) {
+      case 3:
+        return 'FIFTH';
+      case 4:
+        return 'FOURTH';
+      case 5:
+        return bonusCount === 1 ? 'SECOND' : 'THIRD';
+      case 6:
+        return 'FIRST';
+      default:
+        return null;
+    }
+  }
 }
 
 module.exports = Machine;
