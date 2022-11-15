@@ -107,6 +107,7 @@ class App {
     if (matchCount === 6) this.rank.first++;
 
     this.printResult();
+    this.getProfit();
   }
 
   printResult() {
@@ -116,6 +117,18 @@ class App {
     Console.print(`5개 일치 (1,500,000원) - ${this.rank.third}개`);
     Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.rank.second}개`);
     Console.print(`6개 일치 (2,000,000,000원) - ${this.rank.first}개`);
+  }
+
+  getProfit() {
+    const rank = this.rank;
+    const totalPrize = 
+      rank.fifth * 5000 + 
+      rank.fourth * 50000 + 
+      rank.third * 1500000 + 
+      rank.second * 30000000 + 
+      rank.first * 2000000000;
+    const profit = ((totalPrize / this.money) * 100).toFixed(1);
+    this.printProfit(profit);
   }
 }
 
