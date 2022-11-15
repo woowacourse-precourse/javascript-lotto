@@ -15,7 +15,7 @@ class Bonus {
       throw new Error(ERROR_MESSAGE.START_NUMBER_ZERO);
     } else if (number < 1 || number > 45) {
       throw new Error(ERROR_MESSAGE.NUMBER_INVALID_RANGE);
-    } else if (lottoNumber.includes(number)) {
+    } else if (lottoNumber.includes(parseInt(number, 10))) {
       throw new Error(ERROR_MESSAGE.SAME_LOTTO_NUMBER);
     }
   }
