@@ -4,6 +4,8 @@ const LottoMachine = require('./LottoMachine');
 const Lotto = require('./Lotto');
 const LottoBonus = require('./LottoBonus');
 const INPUT_BUDGET = '구입금액을 입력해 주세요.\n';
+const INPUT_WIN_NUMBER = '당첨 번호를 입력해 주세요.';
+const INPUT_BONUS_NUMBER = '보너스 번호를 입력해 주세요.\n';
 
 class App {
   userBudget;
@@ -33,7 +35,7 @@ class App {
   }
 
   getWinLottoNumbers() {
-    Console.readLine('당첨 번호를 입력해 주세요.', (input) => {
+    Console.readLine(INPUT_WIN_NUMBER, (input) => {
       const winNumber = input.split(',');
       this.validateIsNotNumber(winNumber);
       this.lottoWinNumbers = new Lotto(winNumber);
@@ -43,7 +45,7 @@ class App {
   }
 
   getLottoBonusNumber() {
-    Console.readLine('보너스 번호를 입력해 주세요.\n', (input) => {
+    Console.readLine(INPUT_BONUS_NUMBER, (input) => {
       this.validateIsNotNumber(input);
       this.lottoBonusNumber = new LottoBonus(Number(input));
       this.lottoWinNumbers.compareWithWinNumbers(input);
@@ -68,6 +70,7 @@ class App {
   validateIsNotNumber(number) {
     for (let i = 0; i < number.length; i++) {
       if (isNaN(...number[i])) {
+        Console.close();
         throw new Error('[ERROR] 당첨 번호는 숫자만 입력해야 합니다.');
       }
     }
