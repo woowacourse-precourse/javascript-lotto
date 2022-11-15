@@ -33,18 +33,32 @@ class Lotto {
   }
 
   validateWinningNumbers(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+    this.validateWinningNumbersCount(numbers);
+    this.validateWinningNumbersRange(numbers);
+    this.validateWinningNumbersUniqueness(numbers);
+  }
 
+  validateWinningNumbersRange(numbers) {
     for (let num of numbers) {
       this.validateNumberRange(num);
     }
   }
 
-  validateNumberRange(number) {
-    if (number < 1 || number > 45) {
+  validateWinningNumbersCount(numbers) {
+    if (numbers.length !== 6) {
+      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    }
+  }
+
+  validateNumberRange(num) {
+    if (num < 1 || num > 45) {
       throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+  }
+
+  validateWinningNumbersUniqueness(numbers) {
+    if (numbers.length !== Array.from(new Set(numbers)).length) {
+      throw new Error("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
     }
   }
 }
