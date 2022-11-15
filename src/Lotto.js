@@ -25,7 +25,7 @@ class Lotto {
   static purchase(numberCount = NUMBER_COUNT, minNumber = MIN_NUMBER, maxNumber = MAX_NUMBER) {
     const lotto = Random.pickUniqueNumbersInRange(minNumber, maxNumber, numberCount);
 
-    return lotto;
+    return lotto.sort((a, b) => a - b);
   }
 }
 
