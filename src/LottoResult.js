@@ -79,7 +79,7 @@ class LottoResult {
 
   validateWinningLottoDuplication(winningLotto) {
     const winningLottoSet = new Set(winningLotto);
-    if(winningLottoSet.size < 6){
+    if(winningLottoSet.size !== 6){
       throw ERROR_MESSAGE.WINNING_LOTTO_DUPLICATION_ERROR;
     }
   }
