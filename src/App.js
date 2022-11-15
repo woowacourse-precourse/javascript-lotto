@@ -43,11 +43,11 @@ class App {
     Console.readLine("보너스 번호를 입력해 주세요.", (input) => {
       this.bonusNumber = Number(input);
       new Bonus(this.bonusNumber, this.luckyNumber);
-      this.getEarningRate();
+      this.getLottoResult();
     });
   }
 
-  getEarningRate() {
+  getLottoResult() {
     Console.print("당첨 통계");
     Console.print("---");
 
@@ -59,7 +59,10 @@ class App {
     this.lottoResult = lottoResult.getResult();
 
     lottoResult.printLottoResult(this.lottoResult);
+    this.getEarningRate();
+  }
 
+  getEarningRate() {
     const earning = new Earning(this.lottoResult);
 
     const totalEarning = earning.getTotalLottoEarning();
