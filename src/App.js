@@ -1,4 +1,4 @@
-const LottoGameView = require("./LottoGameView");
+const LottoGameView = require('./LottoGameView');
 
 class App {
   play() {

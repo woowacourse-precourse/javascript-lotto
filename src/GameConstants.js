@@ -10,7 +10,6 @@ const GameConstants = Object.freeze({
     FOURTH: 50000,
     FIFTH: 5000,
   },
-
   PRIZE_CRITERIA: {
     FIRST: 6,
     SECOND_THIRD: 5,

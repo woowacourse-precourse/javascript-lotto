@@ -1,7 +1,13 @@
-const Lotto = require("./Lotto");
-const { Random } = require("@woowacourse/mission-utils");
-const MESSAGES = require("./Messages");
-const { LOTTO_PRICE, LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, PRIZE_CRITERIA, PRIZE_MONEY_PRICE} = require("./GameConstants");
+const { Random } = require('@woowacourse/mission-utils');
+const Lotto = require('./Lotto');
+const MESSAGES = require('./Messages');
+const {
+  LOTTO_PRICE,
+  LOTTO_MIN_NUMBER,
+  LOTTO_MAX_NUMBER,
+  PRIZE_CRITERIA,
+  PRIZE_MONEY_PRICE,
+} = require('./GameConstants');
 
 class LottoGame {
   constructor(LottoGameView) {
@@ -11,15 +17,14 @@ class LottoGame {
     this.lottoQuantity = null;
     this.winningLotto = null;
     this.bonusNumber = null;
+    this.totalYield = null;
     this.prizeCount = {
       first: 0,
       second: 0,
       third: 0,
       fourth: 0,
       fifth: 0,
-    },
-    
-    this.totalYield = 0;
+    };
   }
 
   setPurchaseAmount(purchaseAmount) {
@@ -40,7 +45,7 @@ class LottoGame {
       throw new Error(MESSAGES.ERROR_LOTTO_GAME.UNIT_OF_AMOUNT);
     }
   }
-  
+
   issueLottos() {
     this.setLottoQuantity();
     while (this.lottos.length < this.lottoQuantity) {
@@ -120,13 +125,12 @@ class LottoGame {
   }
 
   comparePrizeCriteria(matchCount, bonusMatch) {
-    for (const criteria of Object.keys(PRIZE_CRITERIA)) {
+    Object.keys(PRIZE_CRITERIA).forEach((criteria) => {
       const winningCount = PRIZE_CRITERIA[criteria];
       if (matchCount === winningCount) {
         this.increasePrizeCount(criteria, bonusMatch);
-        return;
       }
-    }
+    });
   }
 
   increasePrizeCount(criteria, bonusMatch) {

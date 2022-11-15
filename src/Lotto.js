@@ -1,5 +1,9 @@
-const MESSAGES = require("./Messages");
-const { LOTTO_NUMBER_LENGTH, LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER } = require("./GameConstants");
+const MESSAGES = require('./Messages');
+const {
+  LOTTO_NUMBER_LENGTH,
+  LOTTO_MIN_NUMBER,
+  LOTTO_MAX_NUMBER,
+} = require('./GameConstants');
 
 class Lotto {
   #numbers;

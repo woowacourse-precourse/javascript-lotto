@@ -1,13 +1,16 @@
-const LottoGame = require("./LottoGame");
-const { Console } = require("@woowacourse/mission-utils");
-const MESSAGES = require("./Messages");
-const { PRIZE_CRITERIA, PRIZE_MONEY_PRICE } = require("./GameConstants");
+const { Console } = require('@woowacourse/mission-utils');
+const LottoGame = require('./LottoGame');
+const MESSAGES = require('./Messages');
+const {
+  PRIZE_CRITERIA,
+  PRIZE_MONEY_PRICE,
+} = require('./GameConstants');
 
 class LottoGameView {
   constructor() {
     this.game = new LottoGame(this);
   }
-  
+
   gameStart() {
     this.receivePurchaseAmount();
   }
@@ -50,14 +53,31 @@ class LottoGameView {
     const prizes = [...Object.keys(PRIZE_CRITERIA)].reverse();
     prizes.forEach((prize) => {
       if (prize === 'SECOND_THIRD') {
-        this.printEachWinning(PRIZE_CRITERIA.SECOND_THIRD, MESSAGES.PRIZE_MONEY.THIRD, prizeCount.third);
-        this.printEachWinning(PRIZE_CRITERIA.SECOND_THIRD, MESSAGES.PRIZE_MONEY.SECOND, prizeCount.second);
+        this.printThirdWinning(prizeCount);
+        this.printSecondWinning(prizeCount);
       } else {
-        this.printEachWinning(PRIZE_CRITERIA[prize], MESSAGES.PRIZE_MONEY[prize], prizeCount[prize.toLowerCase()]);
+        const criteria = PRIZE_CRITERIA[prize];
+        const price = MESSAGES.PRIZE_MONEY[prize];
+        const count = prizeCount[prize.toLowerCase()];
+        this.printEachWinning(criteria, price, count);
       }
     });
 
     this.game.setTotalYield();
+  }
+
+  printThirdWinning(prizeCount) {
+    const criteria = PRIZE_CRITERIA.SECOND_THIRD;
+    const price = MESSAGES.PRIZE_MONEY.THIRD;
+    const count = prizeCount.third;
+    this.printEachWinning(criteria, price, count);
+  }
+
+  printSecondWinning(prizeCount) {
+    const criteria = PRIZE_CRITERIA.SECOND_THIRD;
+    const price = MESSAGES.PRIZE_MONEY.SECOND;
+    const count = prizeCount.second;
+    this.printEachWinning(criteria, price, count);
   }
 
   printEachWinning(criteria, price, count) {
