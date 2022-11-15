@@ -38,4 +38,59 @@ describe('메소드 테스트', () => {
       }).toThrow(ERROR_MESSAGE.MIN_PRICE);
     }
   );
+
+  test.each([
+    [
+      [1, 2, 3, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6],
+    ],
+  ])(
+    '로또 번호 %p와 당첨 번호 %p를 비교했을 때 3개가 일치하면 5를 반환한다.',
+    (lottoNumbers, winningNumbers) => {
+      expect(app.compare(lottoNumbers, winningNumbers)).toEqual(5);
+    }
+  );
+
+  test.each([
+    [
+      [1, 2, 3, 4, 8, 9],
+      [1, 2, 3, 4, 5, 6],
+    ],
+  ])(
+    '로또 번호 %p와 당첨 번호 %p를 비교했을 때 4개가 일치하면 4를 반환한다.',
+    (lottoNumbers, winningNumbers) => {
+      expect(app.compare(lottoNumbers, winningNumbers)).toEqual(4);
+    }
+  );
+
+  test.each([
+    [
+      [1, 2, 3, 4, 5, 9],
+      [1, 2, 3, 4, 5, 6],
+    ],
+  ])(
+    '로또 번호 %p와 당첨 번호 %p를 비교했을 때 5개가 일치하면 3을 반환한다.',
+    (lottoNumbers, winningNumbers) => {
+      expect(app.compare(lottoNumbers, winningNumbers)).toEqual(3);
+    }
+  );
+
+  test.each([[[1, 2, 3, 4, 5, 7], [1, 2, 3, 4, 5, 6], 7]])(
+    '로또 번호 %p와 당첨 번호 %p를 비교했을 때 5개가 일치하고 보너스 번호 %s가 일치하면 2를 반환한다.',
+    (lottoNumbers, winningNumbers, bonusNumber) => {
+      expect(app.compare(lottoNumbers, winningNumbers, bonusNumber)).toEqual(2);
+    }
+  );
+
+  test.each([
+    [
+      [1, 2, 3, 4, 5, 6],
+      [1, 2, 3, 4, 5, 6],
+    ],
+  ])(
+    '로또 번호 %p와 당첨 번호 %p를 비교했을 때 6개가 일치하면 1을 반환한다.',
+    (lottoNumbers, winningNumbers) => {
+      expect(app.compare(lottoNumbers, winningNumbers)).toEqual(1);
+    }
+  );
 });
