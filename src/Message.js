@@ -13,14 +13,13 @@ class Message{
     const winInfo = Array.from({length: 5}, () => 0);
     const winCount = createdLottoList.map(lotto => lotto.filter(number => numbers.includes(number)).length);
     const hasBonus = createdLottoList.map(lotto => lotto.filter(number => number === parseInt(bonus)).length)[0];
-
-    for (let i = 0; i < winCount.length; i++) {
-      if (winCount[i] === 3) winInfo[0] += 1;
-      if (winCount[i] === 4) winInfo[1] += 1;
-      if (winCount[i] === 5 && hasBonus === 0) winInfo[2] += 1;
-      if (winCount[i] === 5 && hasBonus === 1) winInfo[3] += 1;
-      if (winCount[i] === 6) winInfo[4] += 1;
-    }
+    winCount.forEach(sameCount => {
+      if (sameCount === 3) winInfo[0] += 1;
+      if (sameCount === 4) winInfo[1] += 1;
+      if (sameCount === 5 && hasBonus === 0) winInfo[2] += 1;
+      if (sameCount === 5 && hasBonus === 1) winInfo[3] += 1;
+      if (sameCount === 6) winInfo[4] += 1;
+    })
     return winInfo;
   }
 
