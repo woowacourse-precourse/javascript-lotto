@@ -72,7 +72,7 @@ class App {
   }
 
   getAllResults(published_Lottos, winning, how_many) {
-    let all_results = [0, 0, 0, 0, 0];
+    let all_results = Constants.INITIAL_RESULT;
     for(let i = 0; i < how_many; i++){
       const result = this.getSingleResult(published_Lottos[i], winning);
       if(result === 7) {

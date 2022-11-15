@@ -18,6 +18,8 @@ const GAME_MESSAGES = {
 
 const PRICE = 1000;
 
+const INITIAL_RESULT = [0, 0, 0, 0, 0];
+
 const PRIZES = [
     5000, 
     50000, 
@@ -34,4 +36,4 @@ const RESULT = [
     "6개 일치 (2,000,000,000원)"
 ];
 
-module.exports = {INPUT_ERROR, GAME_MESSAGES, PRICE, PRIZES, RESULT};
+module.exports = {INPUT_ERROR, GAME_MESSAGES, PRICE, INITIAL_RESULT,PRIZES, RESULT};
