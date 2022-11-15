@@ -19,7 +19,6 @@ class App {
   purchase() {
     this.user.readAmount(MESSAGE.AMOUNT, (amount) => {
       this.user.lottoList = Lotto.purchase(amount);
-      this.printMessage("");
       this.printPurchaseResult();
       this.setWinNumbers();
     });
@@ -28,7 +27,6 @@ class App {
   setWinNumbers() {
     this.user.readWinNumbers(MESSAGE.WIN_NUMBERS, (winNumbers) => {
       Lotto.prototype.winNumbers = winNumbers.split(",").map(Number);
-      this.printMessage("");
       this.setBonusNumber();
     });
   }
@@ -36,7 +34,6 @@ class App {
   setBonusNumber() {
     this.user.readBonusNumber(MESSAGE.BONUS_NUMBER, (bonusNumber) => {
       Lotto.prototype.bonusNumber = bonusNumber;
-      this.printMessage("");
       this.draw();
     });
   }
@@ -45,7 +42,7 @@ class App {
     const resultList = this.user.lottoList.map(Lotto.draw);
     const statistics = this.getStatistics(resultList);
 
-    console.log(statistics);
+    this.printStatistics(statistics);
     this.exit();
   }
 
@@ -62,6 +59,21 @@ class App {
     statistics.earningsRate = (earnings / (LOTTO.PRICE * resultList.length) * 100).toFixed(1);
 
     return statistics;
+  }
+
+  printStatistics(statistics) {
+    const awardsOrder = [3, 4, 5, "BONUS", 6];
+
+    this.printMessage(MESSAGE.DIVIDER);
+
+    awardsOrder.forEach((awards) =>
+      this.printMessage(
+        // prettier-ignore
+        `${MESSAGE.STATISTICS[awards]} (${LOTTO.PRIZE[awards].toLocaleString()}원) - ${statistics[awards] ?? 0}개`
+      )
+    );
+
+    this.printMessage(MESSAGE.EARNING_RATE(statistics.earningsRate));
   }
 
   printPurchaseResult() {
