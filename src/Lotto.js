@@ -1,5 +1,8 @@
-const { LottoNumberData } = require('../lotto-data/LottoNumberData');
-const { RESTRICTIONS, ERROR_MESSAGE } = require('../lotto-data/Constant');
+const { LottoNumberData } = require('./components/lotto-data/LottoNumberData');
+const {
+  RESTRICTIONS,
+  ERROR_MESSAGE,
+} = require('./components/lotto-data/Constant');
 
 class Lotto {
   #numbers;

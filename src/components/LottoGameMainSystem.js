@@ -1,4 +1,4 @@
-const Lotto = require('./number-check/Lotto');
+const Lotto = require('../Lotto');
 const { Console } = require('@woowacourse/mission-utils');
 const { LottoNumberData } = require('./lotto-data/LottoNumberData');
 const { INPUT_CONSOLE_MESSAGE } = require('../components/lotto-data/Constant');

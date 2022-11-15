@@ -1,6 +1,6 @@
 const { Random } = require('@woowacourse/mission-utils');
 const { RESTRICTIONS } = require('../lotto-data/Constant');
-const Lotto = require('../number-check/Lotto');
+const Lotto = require('../../Lotto');
 
 class LottoNumberIssuedFromComputer {
   return() {
