@@ -1,5 +1,4 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { CONSOLE_MESSAGE } = require("./constants");
 const Lotto = require("./Lotto");
 
 class LottoMachine {
