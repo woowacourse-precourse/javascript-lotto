@@ -73,6 +73,10 @@ class CalculatorModel {
 
     return { rank, reward };
   }
+
+  getRewardRates(reward, money) {
+    return ((reward / money) * 100).toFixed(1);
+  }
 }
 
 module.exports = CalculatorModel;

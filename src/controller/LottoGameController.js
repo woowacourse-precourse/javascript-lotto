@@ -22,8 +22,15 @@ class LottoGameController {
     this.setGame();
     this.pickWinningLotto();
 
-    const result = this.#calculatorModel.draw(this.lottos, this.winningLotto);
-    this.#lottoGameView.printResult(result, this.money);
+    const { rank, reward } = this.#calculatorModel.draw(
+      this.lottos,
+      this.winningLotto
+    );
+    const rewardRates = this.#calculatorModel.getRewardRates(
+      reward,
+      this.money
+    );
+    this.#lottoGameView.printResult(rank, rewardRates);
   }
 
   setGame() {

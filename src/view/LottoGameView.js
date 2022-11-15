@@ -12,11 +12,9 @@ class LottoGameView {
     });
   }
 
-  printResult(result, money) {
-    const { rank, reward } = result;
-
+  printResult(rank, rewardRates) {
     this.printRank(rank);
-    this.printRawardRates(reward, money);
+    this.printRawardRates(rewardRates);
     close();
   }
 
@@ -30,9 +28,7 @@ class LottoGameView {
     });
   }
 
-  printRawardRates(reward, money) {
-    const rewardRates = ((reward / money) * 100).toFixed(1);
-
+  printRawardRates(rewardRates) {
     print(`총 수익률은 ${rewardRates}%입니다.`);
   }
 }
