@@ -1,16 +1,16 @@
-const Validation = require("./Validation");
+const Validation = require("./hooks/Validation");
 
 class Lotto {
-	#numbers;
+	numbers;
 
 	constructor(numbers) {
 		const validation = new Validation();
-		validation.validateLotto(numbers);
-		this.#numbers = numbers;
+		validation.isValidLotto(numbers);
+		this.numbers = numbers;
 	}
 
-	getNumbers() {
-		return this.#numbers;
+	lottoNumbers() {
+		return this.numbers;
 	}
 }
 
