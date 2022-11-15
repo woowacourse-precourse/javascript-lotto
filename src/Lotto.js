@@ -1,3 +1,4 @@
+const { Console } = require("@woowacourse/mission-utils");
 const { ERROR_MESSAGE } = require("./constant/constant");
 
 class Lotto {
@@ -14,10 +15,8 @@ class Lotto {
     }
   }
 
-  get numbers() {
-    return this.#numbers.map((number, ind) =>
-      ind === 0 ? number : ` ${number}`
-    );
+  printNumbers() {
+    Console.print(`[${this.#numbers.join(", ")}]`);
   }
 
   compare(winningNumber, bonusNumber) {

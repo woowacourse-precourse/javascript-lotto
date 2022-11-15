@@ -53,9 +53,8 @@ class App {
   }
 
   printLottos(lottos) {
-    const numbers = lottos.map((lotto) => `[${lotto.numbers}]`);
-    Console.print(RESULT_MEESAGE.purchase.replace("N", numbers.length));
-    Console.print(numbers.join("\n"));
+    Console.print(RESULT_MEESAGE.purchase.replace("N", lottos.length));
+    lottos.forEach((lotto) => lotto.printNumbers());
   }
 
   getWinningNumbers() {
@@ -99,10 +98,11 @@ class App {
   }
 
   compare(lottos, winningNumber, bonusNumber) {
-    for (const lotto of lottos) {
+    lottos.forEach((lotto) => {
       const match = lotto.compare(winningNumber, bonusNumber);
       this.#result[match] += 1;
-    }
+    });
+
     this.#profitRatio = this.caculateProfitRatio(
       this.#money,
       this.getTotalPrize(this.#result)
