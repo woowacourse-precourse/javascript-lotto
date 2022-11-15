@@ -1,5 +1,5 @@
-const LotteryMachine = require('./LotteryMachine');
-const LottoNumberGenerator = require('./LottoNumberGenerator');
+const LotteryMachine = require('./components/LotteryMachine');
+const LottoNumberGenerator = require('./components/LottoNumberGenerator');
 
 class App {
   constructor() {

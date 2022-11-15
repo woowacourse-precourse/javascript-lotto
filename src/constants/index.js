@@ -21,6 +21,20 @@ const LOTTO_RANK = {
   },
 };
 
+const NUMBER = {
+  MONEY_UNIT: 1000,
+  CORRECT_WINNER_NUMBER: 1,
+  CORRECT_BONUS_NUMBER: 0.5,
+};
+
+const COUNT = {
+  LOTTO_NUMBER: 6,
+  WINNER_NUMBER: 6,
+  BONUS_NUMBER: 1,
+  MIN_LOTTO_NUMBER: 1,
+  MAX_LOTTO_NUMBER: 45,
+};
+
 const MESSAGE = {
   LOTTO_NUMBER_GENERATOR: {
     INPUT_WINNER_NUMBER: '당첨 번호를 입력해 주세요.',
@@ -49,20 +63,6 @@ const MESSAGE = {
   },
 };
 
-const NUMBER = {
-  MONEY_UNIT: 1000,
-  CORRECT_WINNER_NUMBER: 1,
-  CORRECT_BONUS_NUMBER: 0.5,
-};
-
-const COUNT = {
-  LOTTO_NUMBER: 6,
-  WINNER_NUMBER: 6,
-  BONUS_NUMBER: 1,
-  MIN_LOTTO_NUMBER: 1,
-  MAX_LOTTO_NUMBER: 45,
-};
-
 const ERROR_PREFIX = '[ERROR]';
 const ERROR_MESSAGE = {
   LOTTO_NUMBER: '로또 번호는 숫자여야 합니다.',
@@ -79,10 +79,10 @@ const ERROR_MESSAGE = {
 };
 
 module.exports = {
-  MESSAGE,
-  ERROR_MESSAGE,
-  ERROR_PREFIX,
+  LOTTO_RANK,
   COUNT,
   NUMBER,
-  LOTTO_RANK,
+  MESSAGE,
+  ERROR_PREFIX,
+  ERROR_MESSAGE,
 };

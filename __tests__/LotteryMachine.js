@@ -1,8 +1,8 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const LotteryMachine = require('../src/LotteryMachine');
-const Lotto = require('../src/Lotto');
-const { ERROR_MESSAGE } = require('../src/constants');
-const { makeErrorMsg } = require('../src/utils');
+const LotteryMachine = require('../src/components/LotteryMachine');
+const Lotto = require('../src/components/Lotto');
+const { ERROR_MESSAGE } = require('../src/constants/index');
+const { makeErrorMsg } = require('../src/utils/index');
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();

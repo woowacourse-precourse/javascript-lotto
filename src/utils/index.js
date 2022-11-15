@@ -1,4 +1,4 @@
-const { ERROR_PREFIX, COUNT } = require('./constants');
+const { ERROR_PREFIX, COUNT } = require('../constants/index');
 
 const makeErrorMsg = (errorMsg) => `${ERROR_PREFIX} ${errorMsg}`;
 

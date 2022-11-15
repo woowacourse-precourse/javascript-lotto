@@ -1,13 +1,13 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
+const { makeErrorMsg } = require('../utils/index');
 const {
   MESSAGE,
   COUNT,
   ERROR_MESSAGE,
   NUMBER,
   LOTTO_RANK,
-} = require('./constants');
+} = require('../constants/index');
 const Lotto = require('./Lotto');
-const { makeErrorMsg } = require('./utils');
 
 class LotteryMachine {
   #winningNumbers = { winnerNumbers: [], bonusNumber: 0 };

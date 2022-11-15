@@ -4,8 +4,8 @@ const {
   invalidInputNum,
   invalidDuplication,
   invalidRange,
-} = require('./utils');
-const { ERROR_MESSAGE, COUNT } = require('./constants');
+} = require('../utils/index');
+const { ERROR_MESSAGE, COUNT } = require('../constants/index');
 
 class Lotto {
   #numbers;

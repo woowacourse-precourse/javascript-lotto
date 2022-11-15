@@ -5,8 +5,8 @@ const {
   invalidInputNum,
   invalidDuplication,
   invalidRange,
-} = require('./utils');
-const { MESSAGE, ERROR_MESSAGE, COUNT } = require('./constants');
+} = require('../utils/index');
+const { MESSAGE, ERROR_MESSAGE, COUNT } = require('../constants/index');
 
 class LottoNumberGenerator {
   #winningNumbers = { winnerNumbers: [], bonusNumber: 0 };
