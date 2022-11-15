@@ -8,6 +8,7 @@ class App {
     const userLotto = createUserLotto(amount);
     const [winningNumbers, bonusNumber] = createLottoNumber();
     validateLottoNumber(winningNumbers, bonusNumber);
+    const result = calculateLottoResult(userLotto, winningNumbers, bonusNumber);
   }
 }
 
@@ -74,6 +75,25 @@ function validateLottoNumber(winningNumbers, bonusNumber) {
   if (checkDupArr.length != winningNumbers.length) {
     throw new Error("[ERROR] 중복되지 않는 숫자를 입력하세요.");
   }
+}
+
+function calculateLottoResult(userLotto, winningNumbers, bonusNumber) {
+  const result = [];
+  userLotto.forEach((numbers) => {
+    let count = 0;
+    let bonusRight = false;
+    numbers.forEach((i) => {
+      if (winningNumbers.includes(i)) {
+        count++;
+      }
+      if (bonusNumber === i) {
+        bonusRight = true;
+      }
+    });
+    result.push({ countResult: count, bonusResult: bonusRight });
+  });
+
+  return result;
 }
 
 module.exports = App;
