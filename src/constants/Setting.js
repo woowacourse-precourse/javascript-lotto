@@ -1,0 +1,28 @@
+const WINNING_ARRAY = {
+  COUNTER: ['3개 일치', '4개 일치', '5개 일치', '5개 일치, 보너스 볼 일치', '6개 일치'],
+  AMOUNT: ['5,000', '50,000', '1,500,000', '30,000,000', '2,000,000,000'],
+  EMPTY: [0, 0, 0, 0, 0, 0],
+}
+
+const NUMBER = {
+  TOTAL_RANKING: 5,
+  MATCH_COUNTER_THREE: 3,
+  MATCH_COUNTER_FOUR: 4,
+  MATCH_COUNTER_FIVE: 5,
+  MATCH_COUNTER_SIX: 6,
+  PURCHASE_UNIT: 1000,
+  MIN_RANGE: 1,
+  MAX_RANGE: 45,
+  LOTTO_COUNT: 6,
+  POINT_PLACE: 1,
+  PLACE_1ST: 4,
+  PLACE_2ND: 3,
+  PLACE_3RD: 2,
+  PLACE_4TH: 1,
+  PLACE_5TH: 0,
+}
+
+module.exports = {
+  WINNING_ARRAY,
+  NUMBER,
+}
