@@ -1,3 +1,6 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+const { WINNING_MONEY } = require("./constants");
+
 class LottoResult {
   #number;
   #bonus;
@@ -18,8 +21,10 @@ class LottoResult {
   makeResult() {
     this.#lottoMachine.getLottoList().forEach((Lotto)=>{
       const matchCnt = this.checkWinning(Lotto.getNumbers());
-      const rank = this.checkRank(matchCnt);
-      this.#rank = {...this.#rank, [rank] : this.#rank?.[rank] + 1 || 1};
+      if(matchCnt > 2) {
+        const rank = this.checkRank(matchCnt);
+        this.#rank = {...this.#rank, [rank] : this.#rank?.[rank] + 1 || 1};
+      }  
     });
   }
 
@@ -53,6 +58,14 @@ class LottoResult {
       return true
     }
     return false;
+  }
+
+  haveProfitRate(purchaseMoney) {
+    let winningMoney = 0;
+    Object.keys(this.#rank).forEach((rank) => {
+      winningMoney += WINNING_MONEY[rank];
+    })
+    return ((winningMoney/purchaseMoney) * 100).toFixed(1);
   }
 }
 
