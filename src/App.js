@@ -6,12 +6,14 @@ class App {
   #purchased;
   #winNumbers;
   #bonusNumber;
+  #gradeList;
 
   constructor() {
     this.#ticketCnt = 0;
     this.#purchased = [];
     this.#winNumbers = [];
     this.#bonusNumber = 0;
+    this.#gradeList = [0, 0, 0, 0, 0]; // 앞에서부터 각각 1등, 2등... 5등까지 당첨 로또 수
   }
 
   play() {
@@ -101,6 +103,7 @@ class App {
       (secondNum) => {
         this.#bonusNumber = parseInt(secondNum);
         this.#inputBonusNumExceptionCheck();
+        this.#calGrade();
       }
     );
   }
@@ -109,6 +112,13 @@ class App {
       throw new Error('[ERROR] 보너스 번호는 숫자여야 합니다.');
     if (this.#winNumbers.includes(this.#bonusNumber))
       throw new Error('[ERROR] 보너스 번호는 당첨번호와 중복될 수 없습니다.');
+  }
+
+  #calGrade() {
+    this.#purchased.forEach((lotto) => {
+      const grade = lotto.grade(this.#winNumbers, this.#bonusNumber);
+      if (grade < 5) this.#gradeList[grade] += 1;
+    });
   }
 }
 
