@@ -7,8 +7,9 @@ class LottoSeller {
 
   #data;
 
-  // TODO: constructor로 초기화
-  #LOTTO_PRICE = 1000;
+  constructor(lottoPrice) {
+    this.lottoPrice = lottoPrice;
+  }
 
   set lottos(lottoList) {
     this.#lottos = lottoList;
@@ -24,10 +25,6 @@ class LottoSeller {
 
   get data() {
     return this.#data;
-  }
-
-  get lottoPrice() {
-    return this.#LOTTO_PRICE;
   }
 
   isPurchasableMoney(money) {

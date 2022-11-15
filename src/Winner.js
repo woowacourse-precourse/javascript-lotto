@@ -11,10 +11,8 @@ class Winner {
 
   #earningRate = 0;
 
-  // NOTE: purchaseAmount를 상수로 뺼 수 있음
-  // 뺀다면 LottoSeller와 함께 빼야함
-  constructor(purchaseAmount, lottos, winnerRule, fixedPoint = 1) {
-    this.purchaseAmount = Number(purchaseAmount);
+  constructor(lottoPrice, lottos, winnerRule, fixedPoint = 1) {
+    this.lottoPrice = Number(lottoPrice);
     this.lottos = lottos;
     this.winnerRule = winnerRule;
     this.fixedPoint = fixedPoint;
@@ -65,7 +63,8 @@ class Winner {
   }
 
   calcEarningRate() {
-    const earningRate = (this.prizeMoney / this.purchaseAmount) * 100;
+    const purchaseAmount = this.lottoPrice * this.lottos.length;
+    const earningRate = (this.prizeMoney / purchaseAmount) * 100;
 
     this.earningRate = earningRate.toFixed(this.fixedPoint);
   }
