@@ -1,4 +1,3 @@
-const MissionUtils = require("@woowacourse/mission-utils");
 const UserError = require("./UserError");
 const Judgement = require("./Judgement");
 
@@ -24,32 +23,33 @@ class Lotto {
     userError.validateBonusNumber(this.#numbers, bonus);
   }
 
+  createResult(bonusResult, winningResult, lottoCount) {
+    const judgement = new Judgement();
+    const result = judgement.createWinningStatistics(
+      bonusResult,
+      winningResult
+    );
+    const ror = judgement.rateOfReturn(result, lottoCount);
+    result.ror = ror;
+    return result;
+  }
+
   judgement(lotto, winning, bonus, lottoCount) {
     const judgement = new Judgement();
     const lottoArr = judgement.compare(lotto, winning);
     const winningResult = judgement.countLotto(lottoArr);
-    // 당첨 번호 하나도 없는 경우
+
     if (winningResult.length === 0) {
-      const result = judgement.createWinningStatistics(0, 0);
-      const ror = judgement.rateOfReturn(result, lottoCount);
-      result.ror = ror;
-      return result;
+      return this.createResult(0, 0, lottoCount);
     }
+
     if (winningResult.includes(5)) {
       const fiveNumIdx = judgement.findIndex(winningResult);
       const bonusResult = judgement.bonusCompare(lotto, fiveNumIdx, bonus);
-      const result = judgement.createWinningStatistics(
-        bonusResult,
-        winningResult
-      );
-      const ror = judgement.rateOfReturn(result, lottoCount);
-      result.ror = ror;
-      return result;
+      return this.createResult(bonusResult, winningResult, lottoCount);
     }
-    const result = judgement.createWinningStatistics(0, winningResult);
-    const ror = judgement.rateOfReturn(result, lottoCount);
-    result.ror = ror;
-    return result;
+
+    return this.createResult(0, winningResult, lottoCount);
   }
 
   printResult(result) {
