@@ -1,5 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const { LOTTO_INFO, GAME_MESSAGES, NUMBERS, ERROR_MESSAGES } = require("./Constants");
+const { GAME_MESSAGES, NUMBERS } = require("./Constants");
 
 class QuickPick {
   #amount;
