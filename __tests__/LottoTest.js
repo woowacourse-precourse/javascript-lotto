@@ -1,4 +1,4 @@
-const Lotto = require("../src/Lotto");
+const Lotto = require("../src/Lotto.js");
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
@@ -15,4 +15,9 @@ describe("로또 클래스 테스트", () => {
   });
 
   // 아래에 추가 테스트 작성 가능
+  test("정렬된 로또 번호를 발급한다.", () => {
+    const numbers = [5, 6, 1, 8, 3, 2];
+    const lotto = new Lotto(numbers);
+    expect(lotto.getSortedLotto()).toEqual([1, 2, 3, 5, 6, 8]);
+  });
 });

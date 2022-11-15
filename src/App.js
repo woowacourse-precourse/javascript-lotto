@@ -1,5 +1,13 @@
+const Seller = require("./Seller.js");
+
 class App {
-  play() {}
+  #seller;
+  constructor() {
+    this.#seller = new Seller();
+  }
+  play() {
+    this.#seller.saleLotto();
+  }
 }
 
 module.exports = App;
