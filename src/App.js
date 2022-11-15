@@ -10,6 +10,7 @@ const {
   LOTTO_NUMBER_COUNT,
   MINIMUM_MATCH_COUNT,
   INPUT,
+  PRINT_ORDER,
 } = require('./Constants');
 const Money = require('./Money');
 
@@ -75,8 +76,7 @@ class App {
   #printAnalysis() {
     ui.print('당첨 통계');
     ui.print('---');
-    const orders = [3, 4, 5, '5B', 6];
-    orders.forEach((order) => {
+    PRINT_ORDER.forEach((order) => {
       ui.print(`${REVENUE[order].message} - ${this.#result[order]}개`);
     });
   }

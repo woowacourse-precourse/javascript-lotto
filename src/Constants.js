@@ -4,6 +4,8 @@ const LOTTO_END = 45;
 const LOTTO_NUMBER_COUNT = 6;
 const MINIMUM_MATCH_COUNT = 3;
 
+const PRINT_ORDER = [3, 4, 5, '5B', 6];
+
 const REVENUE = {
   3: {
     message: '3개 일치 (5,000원)',
@@ -41,4 +43,5 @@ module.exports = {
   REVENUE,
   MINIMUM_MATCH_COUNT,
   INPUT,
+  PRINT_ORDER,
 };
