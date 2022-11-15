@@ -1,8 +1,12 @@
 class Result {
+  #lottoNumber;
+  #myLottoNumber;
+  #bonusNumber;
+
   constructor(lottoNumber, myLottoNumber, bonusNumber) {
-    this.lottoNumber = lottoNumber;
-    this.myLottoNumber = myLottoNumber;
-    this.bonusNumber = bonusNumber;
+    this.#lottoNumber = lottoNumber;
+    this.#myLottoNumber = myLottoNumber;
+    this.#bonusNumber = bonusNumber;
   }
 
   compare(lottoNumber, myLottoNumber, bonusNumber) {

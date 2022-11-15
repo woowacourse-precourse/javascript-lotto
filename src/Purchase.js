@@ -1,9 +1,11 @@
 const { purchaseError } = require('./Constants/ErrorMessages');
 
 class Purchase {
+  #number;
+
   constructor(number) {
     this.validate(number);
-    this.number = number;
+    this.#number = number;
   }
 
   validate(number) {
