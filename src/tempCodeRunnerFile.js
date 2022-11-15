@@ -52,10 +52,12 @@ class Lottery {
     Console.print(LOTTO.SECOND_PLACE + result[3] + LOTTO.COUNT);
     Console.print(LOTTO.FIRST_PLACE + result[4] + LOTTO.COUNT);
 
-    Console.print(LOTTO.RATE_RETURN + this.#lottoResult.getRate(result) + LOTTO.PREDICATIVE_PARTICLE);
+    Console.print(this.#lottoResult.getRate(result) + LOTTO.PREDICATIVE_PARTICLE);
     Console.close();
   }
 
 }
+
+new Lottery().progress();
 
 module.exports = Lottery;

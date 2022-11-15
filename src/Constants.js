@@ -19,7 +19,7 @@ const LOTTO = {
 
   COUNT: '개',
   RATE_RETURN: '총 수익률은 ',
-  PREDICATIVE_PARTICLE: '%입니다.',
+  PERCENT: '%입니다.',
 };
 
 const NUMBER = {
