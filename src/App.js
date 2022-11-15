@@ -1,19 +1,17 @@
 const { Console } = require("@woowacourse/mission-utils");
-
-const getRandomNum = () => {
-  const randomArr = Random.pickUniqueNumbersInRange(1, 45, 6);
-  getRandomNumAscendingSort(randomArr);
-  return randomArr;
-};
-
-const getRandomNumAscendingSort = (randomArr) => {
-  randomArr.sort(function (prev, next) {
-    return prev - next;
-  });
-};
+const { getRandomNum } = require("./utils");
+const { validateInputMoney } = require("./validator");
 
 class App {
-  play() {}
+  play() {
+    this.inputMoney();
+  }
+
+  inputMoney() {
+    Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
+      validateInputMoney(money);
+    });
+  }
 }
 
 const app = new App();
