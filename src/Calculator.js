@@ -1,3 +1,5 @@
+const { PRICE } = require("./message");
+
 class Calculator {
   rank = {
     fifth: 0,
@@ -13,6 +15,8 @@ class Calculator {
     this.bonusLotto = bonusLotto; // 보너스 번호
     this.lotateLotto(userLotto, winngingLotto);
   }
+
+  static calculateRevenue(rank) {}
 
   lotateLotto(userLotto, winngingLotto) {
     userLotto.forEach((lotto) => {

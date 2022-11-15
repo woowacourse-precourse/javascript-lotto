@@ -8,6 +8,7 @@ const { Console } = MissionUtils;
 
 class App {
   constructor() {
+    this.userPurchase = null;
     this.userLottos = null;
     this.winningLotto = null;
     this.bonusLotto = null;
@@ -21,6 +22,7 @@ class App {
       const lottoGenerator = new LottoGenerator();
       const myLotto = lottoGenerator.generate(payment);
       this.userLottos = myLotto;
+      this.userPurchase = Number(payment);
       this.printMyLotto(myLotto);
     });
   }
