@@ -64,6 +64,16 @@ class App {
 	evaluate() {
 		const score = this.evaluator.getScore(this.tickets, this.lotto, this.bonus);
 		this.book.setEarnings(score);
+		this.showResult(score);
+	}
+
+	showResult(score) {
+		Prompter.logResult(score, this.book.getProfitRate());
+		this.end();
+	}
+
+	end() {
+		IO.close();
 	}
 }
 
