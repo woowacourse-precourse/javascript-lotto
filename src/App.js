@@ -33,7 +33,7 @@ class App {
   }
 
   getBonusNumber(lottoList, numbers) {
-    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (number) => {
+    this.LottoView.input('\n보너스 번호를 입력해 주세요.\n', (number) => {
       GetNumber.bonus(numbers, number);
       this.compareResult(lottoList, numbers, number);
     });
