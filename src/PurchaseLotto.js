@@ -48,6 +48,10 @@ class PurchaseLotto {
     getPurchasedLotto() {
         return this.#purchasedLotto
     }
+
+    getPurcahseAmount() {
+        return this.#purchaseAmount
+    }
 }
 
 module.exports = PurchaseLotto;
