@@ -10,7 +10,7 @@ class LottoGameMachine {
     this.totalPurchaseAmount = 0;
     this.totalLottosCount = 0;
     this.lottoStatistics = {};
-    this.Lottos = new Map();
+    this.lottos = new Map();
     this.winningLotto = new Map();
   }
 
@@ -23,8 +23,8 @@ class LottoGameMachine {
   }
 
   printLottoNumbers() {
-    Console.print(MESSAGE.OUTPUT.totalPurchaseAmount(this.Lottos.size));
-    this.Lottos.forEach((lotto) => Console.print(`[${lotto.getLottoNumbers().join(', ')}]`));
+    Console.print(MESSAGE.OUTPUT.totalPurchaseAmount(this.lottos.size));
+    this.lottos.forEach((lotto) => Console.print(`[${lotto.getLottoNumbers().join(', ')}]`));
   }
 
   printLottoStatistics() {
@@ -55,12 +55,12 @@ class LottoGameMachine {
   }
 
   setLottoStatistics() {
-    this.lottoStatistics = LottoStatistics.collectLottoStatistics(this.Lottos, this.winningLotto);
+    this.lottoStatistics = LottoStatistics.collectLottoStatistics(this.lottos, this.winningLotto);
     return this;
   }
 
   setLottos() {
-    this.Lottos = LottoGenerator.getLottos(this.totalLottosCount);
+    this.lottos = LottoGenerator.getLottos(this.totalLottosCount);
     this.printLottoNumbers();
     return this;
   }

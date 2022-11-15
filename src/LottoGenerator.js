@@ -18,14 +18,14 @@ class LottoGenerator {
   }
 
   static getLottos(totalLottosCount) {
-    const Lottos = new Map();
+    const lottos = new Map();
     let count = 0;
     while (count < totalLottosCount) {
       count += 1;
-      Lottos.set(`로또${count}`, new Lotto(this.generateRandomLottoNumbers()));
+      lottos.set(`로또${count}`, new Lotto(this.generateRandomLottoNumbers()));
     }
 
-    return Lottos;
+    return lottos;
   }
 }
 
