@@ -26,3 +26,11 @@ const RANK = { // 등수
   6: 'first',
 };
 
+const PRIZE = { // 당첨 금액
+  first: 2000000000,
+  second: 30000000,
+  third: 1500000,
+  fourth: 50000,
+  fifth: 5000,
+};
+
