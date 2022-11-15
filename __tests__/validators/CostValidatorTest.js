@@ -1,4 +1,4 @@
-const CostValidator = require("../../src/validators/CostValidator");
+const { CostValidator } = require("../../src/validators");
 
 describe("CostValidator.validatePurchaseCost", () => {
   test("입력받은 비용이 숫자가 아니라면 예외가 발생해야 한다.", () => {
