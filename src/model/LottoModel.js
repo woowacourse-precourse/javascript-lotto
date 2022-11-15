@@ -3,13 +3,15 @@ const Lotto = require("./Lotto");
 const Validate = require("../domain/Validate");
 
 class LottoModel {
-  #lottos = [];
-  #winNumber = "";
-  #bonuse = "";
+  #lottos;
+  #winNumber;
+  #bonuse;
 
   constructor(money) {
     Validate.money(money);
     this.#lottos = this.buyLottos(money);
+    this.#bonuse = "";
+    this.#winNumber = "";
   }
 
   get lottos() {
