@@ -64,8 +64,21 @@ class Store {
       "보너스 번호를 입력해 주세요.",
       (userInput) => {
         this.answer.bonus = parseBonusInput(userInput);
+        return this.setResult();
       }
     );
+  }
+
+  setResult() {
+    this.candidates.forEach((candidate) => {
+      const candidateResult = this.answer.compare(candidate);
+      if (candidateResult) {
+        this.result.set(candidateResult, [
+          this.result.get(candidateResult)[0],
+          this.result.get(candidateResult)[1] + 1,
+        ]);
+      }
+    });
   }
 }
 
