@@ -1,4 +1,6 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { Random } = require("@woowacourse/mission-utils");
+const { LOTTO_PURCHASE_UNIT, ERROR_MESSAGE } = require("../constants/LottoConstants");
+
 
 class LottoPurchase {
 
@@ -8,18 +10,18 @@ class LottoPurchase {
   }
 
   devide(amount) {
-    if((amount % 1000) !== 0) {
-      throw new Error("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다. ");
+    if((amount % LOTTO_PURCHASE_UNIT) !== 0) {
+      throw new Error(ERROR_MESSAGE.INPUT_AMOUNT_BE_THOUSANDS_UNIT);
     }
   } 
 
   randomNumbers() {
-    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
     return numbers;
   }
 
   lottoPublish() {
-    const count = this.amount / 1000;
+    const count = this.amount / LOTTO_PURCHASE_UNIT;
     const lottoNumbers = [];
 
     for (let i = 0; i < count; i++) {

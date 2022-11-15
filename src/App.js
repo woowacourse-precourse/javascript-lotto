@@ -1,4 +1,5 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { Console } = require("@woowacourse/mission-utils");
+const { INPUT_MESSAGE, OUPPUT_MESSAGE, LOTTO_PURCHASE_UNIT } = require("../constants/LottoConstants");
 const Lotto = require("../src/Lotto");
 const LottoPurchase = require("../src/LottoPurchase");
 
@@ -15,7 +16,8 @@ class App {
   }
 
   inputAmount() {
-    MissionUtils.Console.readLine("구입 금액을 입력해 주세요.", (amount) => {
+    Console.readLine(INPUT_MESSAGE.INPUT_AMOUNT, (amount) => {
+      Console.print(INPUT_MESSAGE.INPUT_AMOUNT + "\n" + amount);
       amount = Number(amount);
       const lottoPurchase = new LottoPurchase(amount);
       this.lottoListPrint(lottoPurchase);
@@ -25,24 +27,26 @@ class App {
   lottoListPrint(lottoPurchase) {
     this.lottoList = lottoPurchase.lottoPublish();
     this.amount = lottoPurchase.amount;
-    const count = (this.amount / 1000);
+    const count = (this.amount / LOTTO_PURCHASE_UNIT);
 
-    MissionUtils.Console.print(`${count}개를 구매했습니다.`)
+    Console.print(count + OUPPUT_MESSAGE.PURCHASE_COUNT);
     this.lottoList.forEach(lottoNumbers => {
       lottoNumbers = lottoNumbers.join(", ");
-      MissionUtils.Console.print(`[${lottoNumbers}]`);
+      Console.print(`[${lottoNumbers}]`);
     })
   }
 
   inputWinningNumber() {
-    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (numbers) => {
+    Console.readLine(INPUT_MESSAGE.INPUT_WINNING_NUMBERS, (numbers) => {
+      Console.print(INPUT_MESSAGE.INPUT_WINNING_NUMBERS + "\n" + numbers);
       numbers = numbers.split(",").map(number => parseInt(number));
       this.inputBonusNumber(numbers);
     })
   }
 
   inputBonusNumber(numbers) {
-    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (bonusNumber) => {
+    Console.readLine(INPUT_MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
+      Console.print(INPUT_MESSAGE.INPUT_BONUS_NUMBER + "\n" + bonusNumber);
       bonusNumber = Number(bonusNumber);
       const lotto = new Lotto(numbers, bonusNumber);
       this.LottoStatistics(lotto);
@@ -53,12 +57,12 @@ class App {
     lotto.lottoCompareRepeat(this.lottoList);
     const winningNumber = lotto.winningNumbers;
 
-    MissionUtils.Console.print(`당첨 통계\n---`);
-    MissionUtils.Console.print(`3개 일치 (5,000원) - ${winningNumber[0]}개`);
-    MissionUtils.Console.print(`4개 일치 (50,000원) - ${winningNumber[1]}개`);
-    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${winningNumber[2]}개`);
-    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningNumber[4]}개`);
-    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${winningNumber[3]}개`);
+    Console.print(OUPPUT_MESSAGE.WINNING_STATISTICS);
+    Console.print(OUPPUT_MESSAGE.FIFTH_PLACE + winningNumber[0] + OUPPUT_MESSAGE.COUNT);
+    Console.print(OUPPUT_MESSAGE.FOURTH_PLACE + winningNumber[1] + OUPPUT_MESSAGE.COUNT);
+    Console.print(OUPPUT_MESSAGE.THIRD_PLACE + winningNumber[2] + OUPPUT_MESSAGE.COUNT);
+    Console.print(OUPPUT_MESSAGE.SECOND_PLACE + winningNumber[3] + OUPPUT_MESSAGE.COUNT);
+    Console.print(OUPPUT_MESSAGE.FIRST_PLACE + winningNumber[4] + OUPPUT_MESSAGE.COUNT);
     this.getRevenueRate(lotto);
   }
 
@@ -66,7 +70,7 @@ class App {
     const revenue = lotto.getRevenue();
     const revenueRate = lotto.caculationRevenueRate(revenue, this.amount);
 
-    MissionUtils.Console.print(`총 수익률은 ${revenueRate}%입니다.`);
+    Console.print(OUPPUT_MESSAGE.FRONT_REVENUE_RATE + revenueRate + OUPPUT_MESSAGE.BACK_REVENUE_RATE);
   }
 }
 
