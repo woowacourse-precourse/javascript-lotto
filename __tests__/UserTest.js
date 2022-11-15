@@ -84,4 +84,14 @@ describe("유저 클래스 테스트", () => {
       user.readWinNumbers("당첨 번호", (amount) => {});
     }).toThrow("[ERROR]");
   });
+
+  test("보너스 번호 입력 문구 출력 테스트", () => {
+    const message = "보너스 번호";
+    const logSpy = jest.spyOn(MissionUtils.Console, "readLine");
+
+    const user = new User();
+    user.readBonusNumber(message, (bonusNumber) => {});
+
+    expect(logSpy).toHaveBeenCalledWith("보너스 번호", expect.anything());
+  });
 });

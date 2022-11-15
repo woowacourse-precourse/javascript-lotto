@@ -29,6 +29,13 @@ class App {
     this.user.readWinNumbers(MESSAGE.WIN_NUMBERS, (winNumbers) => {
       Lotto.prototype.winNumbers = winNumbers.split(",").map(Number);
       this.printMessage("");
+      this.setBonusNumber();
+    });
+  }
+
+  setBonusNumber() {
+    this.user.readBonusNumber(MESSAGE.BONUS_NUMBER, (bonusNumber) => {
+      console.log(bonusNumber);
     });
   }
 

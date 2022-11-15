@@ -11,6 +11,12 @@ class User {
   readWinNumbers(query, callback) {
     MissionUtils.Console.readLine(query, Validator.winNumbers(callback));
   }
+
+  readBonusNumber(query, callback) {
+    MissionUtils.Console.readLine(query, (bonusNumber) => {
+      callback(bonusNumber);
+    });
+  }
 }
 
 module.exports = User;
