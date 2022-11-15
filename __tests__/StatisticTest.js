@@ -62,4 +62,33 @@ describe("금액 validation 테스트", () => {
       "6hit"
     );
   });
+
+  test("로또 번호 전체 등수를 센다", () => {
+    const statistic = new Statistic();
+    const winningNumber = [1, 4, 24, 32, 40, 44, 7];
+    const oneHit = [1, 2, 3, 5, 6, 7];
+    const twoHit = [1, 2, 3, 4, 5, 6];
+    const threeHit = [1, 4, 24, 25, 26, 27];
+    const fourHit = [1, 4, 24, 32, 33, 34];
+    const fiveHit = [1, 4, 24, 32, 40, 41];
+    const fiveHitBonus = [1, 4, 7, 24, 32, 40];
+    const sixHit = [1, 4, 24, 32, 40, 44];
+    const lottos = [
+      oneHit,
+      twoHit,
+      threeHit,
+      fourHit,
+      fiveHit,
+      fiveHitBonus,
+      sixHit,
+    ];
+    statistic.countRank(lottos, winningNumber);
+    expect(statistic.getTotalCount()).toEqual({
+      "3hit": 1,
+      "4hit": 1,
+      "5hit": 1,
+      "5hitBonus": 1,
+      "6hit": 1,
+    });
+  });
 });
