@@ -115,4 +115,36 @@ describe('로또 테스트', () => {
       app.play();
     }).toThrow('[ERROR] 로또 번호는 중복되지 않아야 합니다.');
   });
+
+  test('보너스 테스트 - 맞았을 때(2등)', () => {
+    mockRandoms([[8, 21, 23, 41, 42, 43]]);
+    mockQuestions(['1000', '8,21,23,41,42,6', '43']);
+    const logs = [
+      '1개를 구매했습니다.',
+      '[8, 21, 23, 41, 42, 43]',
+      '5개 일치, 보너스 볼 일치 (30,000,000원) - 1개',
+    ];
+    const logSpy = getLogSpy();
+    const app = new App();
+    app.play();
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  test('로또 결과 테스트 - (3등)', () => {
+    mockRandoms([[8, 21, 23, 41, 42, 43]]);
+    mockQuestions(['1000', '8,21,23,41,42,6', '40']);
+    const logs = [
+      '1개를 구매했습니다.',
+      '[8, 21, 23, 41, 42, 43]',
+      '4개 일치 (50,000원) - 1개',
+    ];
+    const logSpy = getLogSpy();
+    const app = new App();
+    app.play();
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
 });
