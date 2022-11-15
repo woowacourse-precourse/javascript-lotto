@@ -1,5 +1,5 @@
 const Lotto = require("./Lotto");
-const { Console } = require("@woowacourse/mission-utils");
+const { Random, Console } = require("@woowacourse/mission-utils");
 
 class App {
   inputValue = {
@@ -20,7 +20,7 @@ class App {
   inputPurchaseAmount() {
     Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
       this.validateMoney(Number(money))
-      this.inputValue[purchaseAmount] = Number(money);
+      this.inputValue['purchaseAmount'] = Number(money);
     });
     Console.close();
   }
@@ -33,21 +33,21 @@ class App {
 
   inputWinningNumbers() {
     Console.readLine('당첨 번호를 입력해 주세요.\n', (numbers) => {
-      changeNumber(numbers.split(','));
+      this.changeNumber(numbers.split(','));
     });
     Console.close();
   }
 
   inputBonusNumber() {
     Console.readLine('보너스 번호를 입력해 주세요.\n', (number) => {
-      this.inputValue[bonusNumber] = Number(number);
+      this.inputValue['bonusNumber'] = Number(number);
     });
     Console.close();
   }
 
   changeNumber(numbers) {
     const toNumbers = arr => arr.map(Number);
-    this.inputValue[winningNumbers] = toNumbers(numbers);
+    this.inputValue['winningNumbers'] = toNumbers(numbers);
   }
 
   calculateWinningAmount() {
@@ -63,7 +63,7 @@ class App {
     Console.close();
 
     for (let index = 0; index<frequency; index++) {
-      Console.print(this.inputValue[purchaseLotto[index]]);
+      Console.print(this.inputValue['purchaseLotto'[index]]);
     }
     Console.close();
   }
@@ -76,35 +76,50 @@ class App {
     Console.print("5개 일치 (1,500,000원) - " + this.inputValue[this.winningCount["5"]] + "개");
     Console.print("5개 일치, 보너스 볼 일치 (30,000,000원) - " + this.inputValue[this.winningCount["5+"]] + "개");
     Console.print("6개 일치 (2,000,000,000원) - " + this.inputValue[this.winningCount["6"]] + "개");
-    Console.print("총 수익률은 " + this.calculateYield(this.inputValue[purchaseAmount]) + "%입니다.");
+    Console.print("총 수익률은 " + this.calculateYield(this.inputValue['purchaseAmount']) + "%입니다.");
     Console.close();
     //Console.print("---");
   }
 
   checkBonusException() {
-    const tempNumbers = this.inputValue[winningNumbers];
-    tempNumbers.push(this.inputValue[bonusNumber]);
+    const tempNumbers = this.inputValue['winningNumbers'];
+    tempNumbers.push(this.inputValue['bonusNumber']);
     return tempNumbers;
+  }
+
+  randomGeneration() {
+    const randomLotto = Random.pickUniqueNumbersInRange(1, 45, 6);
+    randomLotto.sort((a, b) => a - b);
+    return randomLotto;
+  }
+
+  createLotto(frequency) {
+    const lotto = [];
+    while (frequency) {
+      frequency--;
+      lotto.push(this.randomGeneration());
+    }
+    return lotto;
   }
 
   play() {
     this.inputPurchaseAmount();
 
-    const frequency = this.inputValue[purchaseAmount]/1000;
-    this.inputValue[purchaseLotto] = rotto.createLotto(frequency);
+    const frequency = this.inputValue['purchaseAmount']/1000;
+    this.inputValue['purchaseLotto'] = this.createLotto(frequency);
     this.printLottoList(frequency);
 
     this.inputWinningNumbers();
-    const rotto = new Lotto(this.inputValue[winningNumbers]);
-    rotto.validate(this.inputValue[winningNumbers]);
-    rotto.deduplication(this.inputValue[winningNumbers]);
-    rotto.outerRange(this.inputValue[winningNumbers]);
+    const rotto = new Lotto(this.inputValue['winningNumbers']);
+    rotto.validate(this.inputValue['winningNumbers']);
+    rotto.deduplication(this.inputValue['winningNumbers']);
+    rotto.outerRange(this.inputValue['winningNumbers']);
 
     this.inputBonusNumber();
     rotto.deduplication(this.checkBonusException());
     rotto.outerRange(this.checkBonusException());
 
-    printWinningStatistics();
+    this.printWinningStatistics();
   }
 
 

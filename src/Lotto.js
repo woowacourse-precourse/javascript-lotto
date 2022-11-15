@@ -1,5 +1,3 @@
-const { Random } = require("@woowacourse/mission-utils");
-
 class Lotto {
   #numbers;
 
@@ -30,23 +28,6 @@ class Lotto {
     });
   }
 
-  randomGeneration() {
-    const randomLotto = Random.pickUniqueNumbersInRange(1, 45, 6);
-    this.validate(randomLotto);
-    this.deduplication(randomLotto);
-    this.outerRange(randomLotto);
-    randomLotto.sort((a, b) => a - b);
-    return randomLotto;
-  }
-
-  createLotto(frequency) {
-    const lotto = [];
-    while (frequency) {
-      frequency--;
-      lotto.push(this.randomGeneration());
-    }
-    return lotto;
-  }
 }
 
 module.exports = Lotto;
