@@ -1,4 +1,5 @@
 const Lotto = require("../src/Lotto");
+const Validator = require("../src/Validator");
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
@@ -15,4 +16,13 @@ describe("로또 클래스 테스트", () => {
   });
 
   // 아래에 추가 테스트 작성 가능
+});
+
+describe("Validator 클래스 테스트", () => {
+  test("isRange : 1 ~ 45의 숫자인지 테스트", () => {
+    expect(Validator.isRange(1, 45, 1)).toEqual(true);
+    expect(Validator.isRange(1, 45, 45)).toEqual(true);
+    expect(Validator.isRange(1, 45, 0)).toEqual(false);
+    expect(Validator.isRange(1, 45, 50)).toEqual(false);
+  });
 });
