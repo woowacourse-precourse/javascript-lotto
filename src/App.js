@@ -65,6 +65,8 @@ class App {
   inputBonusLotto(){
     Console.readLine('보너스 번호를 입력해 주세요.\n', (num) => {
      const inputBonusNumber = parseInt(num);
+     const inputBonusLength = num.split("").map(str => Number(str));
+     if(inputBonusLength.length != 1) throw new Error("[ERROR] 보너스 번호는 하나만 입력가능합니다.");
      this.bonusNum = inputBonusNumber;
      this.result();
    });
