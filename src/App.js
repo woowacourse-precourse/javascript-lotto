@@ -2,8 +2,8 @@ const LottoGameView = require("./LottoGameView");
 
 class App {
   play() {
-    const game = new LottoGameView();
-    game.gameStart();
+    const view = new LottoGameView();
+    view.gameStart();
   }
 }
 
