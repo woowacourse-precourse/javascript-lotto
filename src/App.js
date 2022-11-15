@@ -1,12 +1,12 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
-const PurchaseAmountValidator = require('./PurchaseAmountValidate');
+const purchaseAmountValidator = require('./purchaseAmountValidate');
 
 class App {
   static lottoPurchaser() {
     Console.readLine('구입금액을 입력해 주세요.\n', purchaseAmount => {
-      const { validatedAmount } = new PurchaseAmountValidator(purchaseAmount);
-      const purchaseLottoCount = this.lottoCountGetter(validatedAmount);
+      const { validatedAmount } = new purchaseAmountValidator(purchaseAmount);
+      const purchaseLottoCount = this.lottoCountGetter(purchaseAmount);
       const purchaseLottoList = this.lottoPublisher(purchaseLottoCount);
       this.printer(`${purchaseLottoCount}개를 구매했습니다.`);
       this.purchaseLottoListPrinter(purchaseLottoList);
@@ -21,7 +21,9 @@ class App {
   static lottoPublisher(purchaseCount) {
     const purchaseLottoNumbers = [];
     for (let lottoCount = 0; lottoCount < purchaseCount; lottoCount += 1) {
-      purchaseLottoNumbers.push(Random.pickUniqueNumbersInRange(1, 45, 6));
+      const lotto = Random.pickUniqueNumbersInRange(1, 45, 6);
+      const lottoForValdate = new Lotto(lotto);
+      purchaseLottoNumbers.push(lotto);
     }
     return purchaseLottoNumbers;
   }
