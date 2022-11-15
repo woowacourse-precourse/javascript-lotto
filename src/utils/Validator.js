@@ -30,7 +30,6 @@ class Validator {
   }
 
   static isBonusNumberValid(winningNumber, bonusNumber) {
-    console.log(winningNumber, bonusNumber);
     if (this.#isBonusNotNumber(bonusNumber))
       throw Error(MESSAGE_ACCORDING_ERROR.BONUS_TYPE_NOT_NUMBER);
     if (this.#isBonusAlreadyInWinNumber(winningNumber, bonusNumber))

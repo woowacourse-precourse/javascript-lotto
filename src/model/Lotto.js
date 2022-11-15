@@ -14,10 +14,6 @@ class Lotto {
   #validate(numbers) {
     Validator.isWinningNumberValid(numbers);
   }
-
-  #convertArgsStringToInt(number) {
-    return +number;
-  }
 }
 
 module.exports = Lotto;

@@ -1,4 +1,4 @@
-const { print } = require("../utils/MissionUtils");
+const { print, close } = require("../utils/MissionUtils");
 const {
   MESSAGE_ACCORDING_CORRECT_COUNT,
   MESSAGE_ACCORDING_PRIZE_MONEY,
@@ -27,6 +27,7 @@ class view {
 
   eariningRate(percentage) {
     print(MESSAGE_ACCORDING_INPUT_ACTION.RETURN_EARNING_RATE(percentage));
+    close();
   }
 
   purchasedSize(purchaseNumbers) {
