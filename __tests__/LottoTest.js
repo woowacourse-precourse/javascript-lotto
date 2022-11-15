@@ -41,8 +41,8 @@ describe('로또 클래스 테스트', () => {
 
   // 아래에 추가 테스트 작성 가능
   test('금액 입력, 출력 기능 테스트', () => {
-    mockQuestions(['8000']);
-    const logs = ['8개를 구매했습니다.'];
+    mockQuestions(['5000']);
+    const logs = ['5개를 구매했습니다.'];
     const logSpy = getLogSpy();
     const app = new App();
     app.play();
@@ -66,5 +66,17 @@ describe('로또 클래스 테스트', () => {
       const app = new App();
       app.play();
     }).toThrow('[ERROR]');
+  });
+
+  test('당첨, 보너스 번호 입력 기능 테스트', () => {
+    mockQuestions(['5000', '1,5,10,15,20,25', '6']);
+    const logs = ['\n당첨 통계\n---'];
+    const logSpy = getLogSpy();
+    const app = new App();
+    app.play();
+
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
   });
 });
