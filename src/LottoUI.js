@@ -1,17 +1,11 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
 class LottoUI {
-  requestPurchaseAmount(message, callbackFunction) {
+  inputRequest(message, callbackFunction) {
     MissionUtils.Console.readLine(message, callbackFunction);
   }
   printLottoCount(lottoCount) {
     MissionUtils.Console.print(`${lottoCount}개를 구매했습니다.`);
-  }
-  requestWinnerNumber(message, callbackFunction) {
-    MissionUtils.Console.readLine(message, callbackFunction);
-  }
-  requestBonusNumber(message, callbackFunction) {
-    MissionUtils.Console.readLine(message, callbackFunction);
   }
   prinntLottoNumber(lotto) {
     lotto.forEach((lottoNumbers) => {

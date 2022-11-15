@@ -27,7 +27,7 @@ class App {
     this.inputBonusNumber();
   }
   inputPurchaseAmount() {
-    this.LottoUI.requestPurchaseAmount(
+    this.LottoUI.inputRequest(
       GUIDE_MESSAGE.PURCHASEAMOUNT_INPUT,
       (inputPurchaseAmount) => {
         Validation.checkPurchaseAmount(inputPurchaseAmount);
@@ -46,7 +46,7 @@ class App {
     return parseInt(purchaseAmount, 10) / LOTTO_PRICE;
   }
   inputWinnerNumber() {
-    this.LottoUI.requestWinnerNumber(
+    this.LottoUI.inputRequest(
       GUIDE_MESSAGE.WINNERNUMBER_INPUT,
       (winnerNumberElement) => {
         const winnerNumberArr = winnerNumberElement.split(",");
@@ -56,7 +56,7 @@ class App {
     );
   }
   inputBonusNumber() {
-    this.LottoUI.requestBonusNumber(
+    this.LottoUI.inputRequest(
       GUIDE_MESSAGE.BONUSNUMBER_INPUT,
       (bonusNumberElement) => {
         const bonusNumberArr = bonusNumberElement.split("");
