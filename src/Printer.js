@@ -1,14 +1,9 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-
-const FIRST_PLACE = 7;
-const SECOND_PLACE = 6;
-const THIRD_PLACE = 5;
-const FOURTH_PLACE = 4;
-const FIFTH_PLACE = 3;
+const {PLACE} = require('./constants.js');
 
 class Printer {
 	static printLottoBundle(lottoBundle) {
-		MissionUtils.Console.print(`${lottoBundle.length}개를 구매했습니다.`);
+		MissionUtils.Console.print(`\n${lottoBundle.length}개를 구매했습니다.`);
 		for (let i = 0; i < lottoBundle.length; i++) {
 			let forPrint = "[" + lottoBundle[i].toString() + "]";
 			forPrint = forPrint.replace(/,/g, ", ");
@@ -19,19 +14,19 @@ class Printer {
 	printWinningResult(winningCount, place) {
 		let count = winningCount[place];
 		switch(place) { 
-			case FIFTH_PLACE:
+			case PLACE.FIFTH:
 				MissionUtils.Console.print(`3개 일치 (5,000원) - ${count}개`);
 				break;
-			case FOURTH_PLACE:
+			case PLACE.FOURTH:
 				MissionUtils.Console.print(`4개 일치 (50,000원) - ${count}개`);
 				break;
-			case THIRD_PLACE:
+			case PLACE.THIRD:
 				MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${count}개`);
 				break;
-			case SECOND_PLACE:
+			case PLACE.SECOND:
 				MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`);
 				break;
-			case FIRST_PLACE:
+			case PLACE.FIRST:
 				MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${count}개`);
 				break;
 			default:
