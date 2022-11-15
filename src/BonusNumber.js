@@ -2,7 +2,14 @@ class BonusNumber {
     #number;
 
     constructor(number, lotto) {
+        this.validateDuplicatedLotto(lotto, number)
+        this.validateRangeOfNumber(number)
+        this.validateIsInteger(number)
         this.#number = number;
+    }
+
+    validate(number) {
+
     }
 
     validateDuplicatedLotto(lotto, number) {
