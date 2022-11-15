@@ -1,14 +1,14 @@
 const App = require("../src/App");
 
-describe('기능 테스트', () => {
-    test('로또 구입 금액 예외 처리', () => {
+describe('App 클래스 테스트', () => {
+    test('로또 구입 금액이 가격(1000원)으로 나누어 떨어지지 않는 경우 예외가 발생한다.', () => {
         const app = new App();
         expect(() => app.isPurchaseAmountValid('1200')).toThrow(
             '[ERROR] 로또를 살 수 없는 금액입니다.'
         );
     });
 
-    test('보너스 번호 중복 여부 예외 처리', () => {
+    test('보너스 번호가 당첨 번호와 중복되었을 경우 예외가 발생한다.', () => {
         const app = new App();
         expect(() => app.isBonusDuplicated(1, [1, 2, 3, 4, 5, 6])).toThrow(
             '[ERROR] 중복된 번호입니다.'
