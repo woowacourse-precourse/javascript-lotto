@@ -6,8 +6,8 @@ const SETTING = require('./constants/setting');
 
 class Machine {
   static publishLotto() {
-    const { MIN_NUMBER, MAX_NUMBER, LOTTO_COUNT } = SETTING;
-    const numbers = Random.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_COUNT);
+    const { MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT } = SETTING;
+    const numbers = Random.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT);
     numbers.sort((a, b) => a - b);
 
     return new Lotto(numbers);

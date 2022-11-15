@@ -76,8 +76,8 @@ class App {
     }
 
     if (
-      winNumbers.length !== SETTING.LOTTO_COUNT ||
-      new Set(winNumbers).size !== SETTING.LOTTO_COUNT
+      winNumbers.length !== SETTING.NUMBER_COUNT ||
+      new Set(winNumbers).size !== SETTING.NUMBER_COUNT
     ) {
       throw new Error(ERROR.NO_DUPLICATE);
     }

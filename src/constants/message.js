@@ -7,7 +7,7 @@ const ASK = Object.freeze({
 const ERROR = Object.freeze({
   LOTTO_PRICE: '[ERROR] 1000원 단위의 금액만 입력하세요.',
   ONLY_NUMBER: '[ERROR] 숫자만 입력해주세요.',
-  LOTTO_COUNT: '[ERROR] 로또 번호는 6개여야 합니다.',
+  NUMBER_COUNT: '[ERROR] 로또 번호는 6개여야 합니다.',
   NO_DUPLICATE: '[ERROR] 중복되지 않는 숫자를 입력해주세요.',
   NUMBER_IN_RANGE: '[ERROR] 1부터 45까지의 숫자만 입력해주세요.',
 });

@@ -10,8 +10,8 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== SETTING.LOTTO_COUNT) {
-      throw new Error(ERROR.LOTTO_COUNT);
+    if (numbers.length !== SETTING.NUMBER_COUNT) {
+      throw new Error(ERROR.NUMBER_COUNT);
     }
 
     if (numbers.length !== new Set(numbers).size) {
