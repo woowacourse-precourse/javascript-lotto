@@ -1,5 +1,4 @@
-const { DEFAULT, ERROR } = require("../utils/constant.js");
-const { Console } = require("@woowacourse/mission-utils");
+const { DEFAULT, ERROR } = require("./utils/constant.js");
 
 class Bonus {
   #number;
@@ -23,18 +22,10 @@ class Bonus {
   }
 
   check() {
-    if (this.checkNumber(this.#number)) {
-      Console.close();
-      throw ERROR.BONUS_NUM_ERROR;
-    }
-    if (!this.checkRange(this.#number)) {
-      Console.close();
-      throw ERROR.RANGE_ERROR;
-    }
-    if (this.checkDuplicate(this.#number, this.#luckyNumbers)) {
-      Console.close();
+    if (this.checkNumber(this.#number)) throw ERROR.BONUS_NUM_ERROR;
+    if (!this.checkRange(this.#number)) throw ERROR.RANGE_ERROR;
+    if (this.checkDuplicate(this.#number, this.#luckyNumbers))
       throw ERROR.DUPLICATE_ERROR;
-    }
   }
 
   getBonusNumber() {

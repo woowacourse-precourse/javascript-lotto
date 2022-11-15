@@ -1,6 +1,4 @@
-const { DEFAULT, ERROR } = require("../utils/constant.js");
-const { Console } = require("@woowacourse/mission-utils");
-
+const { DEFAULT, ERROR } = require("./utils/constant.js");
 class Lotto {
   #numbers;
 
@@ -36,22 +34,10 @@ class Lotto {
   }
 
   check() {
-    if (!this.checkLength(this.#numbers)) {
-      Console.close();
-      throw ERROR.LENGTH_ERROR;
-    }
-    if (this.checkNumber(this.#numbers)) {
-      Console.close();
-      throw ERROR.CORRECT_NUM_ERROR;
-    }
-    if (!this.checkRange(this.#numbers)) {
-      Console.close();
-      throw ERROR.RANGE_ERROR;
-    }
-    if (!this.checkDuplicate(this.#numbers)) {
-      Console.close();
-      throw ERROR.DUPLICATE_ERROR;
-    }
+    if (!this.checkLength(this.#numbers)) throw ERROR.LENGTH_ERROR;
+    if (this.checkNumber(this.#numbers)) throw ERROR.CORRECT_NUM_ERROR;
+    if (!this.checkRange(this.#numbers)) throw ERROR.RANGE_ERROR;
+    if (!this.checkDuplicate(this.#numbers)) throw ERROR.DUPLICATE_ERROR;
   }
 
   getLuckyNumber() {

@@ -2,9 +2,9 @@ const Earning = require("./controller/Earning.js");
 const PurchaseLotto = require("./controller/PurchaseLotto.js");
 const LottoResult = require("./controller/LottoResult.js");
 
-const Lotto = require("./validate/Lotto.js");
-const PurchaseValudate = require("./validate/PurchaseValidate.js");
-const Bonus = require("./validate/Bonus.js");
+const Lotto = require("./Lotto.js");
+const PurchaseValudate = require("./PurchaseValidate.js");
+const Bonus = require("./Bonus.js");
 
 const { Console } = require("@woowacourse/mission-utils");
 const { DEFAULT } = require("./utils/constant.js");
