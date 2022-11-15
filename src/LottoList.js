@@ -1,5 +1,4 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
-const Lotto = require("./Lotto");
 const MONEY_UNIT = 1000;
 
 class LottoList {
