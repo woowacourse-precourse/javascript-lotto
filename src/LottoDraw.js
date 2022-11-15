@@ -86,14 +86,15 @@ class LottoDraw {
         MissionUtils.Console.print('6개 일치 ('+prizeMoneytoString[1]+'원) - '+result[1]+'개');
 
         MissionUtils.Console.print('총 수익률은 '+ gain +"%입니다.");
+
     }
     getGain(result, money) {
         let total = 0;
         for(let i = 1; i <= 5; i++) {
             total += LottoDraw.PRIZE_MONEY[i] * result[i];
         }
-        
-        return Math.round((total / money) * 10) / 10;
+
+        return Math.round((total / money) * 1000) / 10;
     }
     get_prize(lottoNums) {
         let match = 0;
