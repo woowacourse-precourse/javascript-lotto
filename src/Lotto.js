@@ -3,6 +3,8 @@ class Lotto {
 
   constructor(numbers) {
     this.validate(numbers);
+    this.checkNumDuplicate(numbers);
+    this.checkNumRange(numbers);
     this.#numbers = numbers;
   }
 
