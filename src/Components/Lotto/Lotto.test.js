@@ -1,5 +1,6 @@
 const LottoNumberCount = require('../LottoNumberCount/LottoNumberCount');
 const Lotto = require('./Lotto');
+const { getLogSpy } = require('../../testFunction');
 
 describe('Lotto 클래스 테스트', () => {
   test('로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.', () => {
@@ -19,8 +20,15 @@ describe('Lotto 클래스 테스트', () => {
     const winningNumbers = [1, 2, 3, 4, 5, 6];
     const BONUS_NUMBER = 7;
     const lottoResult = new Lotto(lottoNumbers).compareTo(winningNumbers, BONUS_NUMBER);
-    const lottoNumberCount = new LottoNumberCount(3);
+    const isWinning = lottoResult.isWinning(new LottoNumberCount(3), new LottoNumberCount(null));
 
-    expect(lottoResult.isWinning(lottoNumberCount)).toBe(true);
+    expect(isWinning).toBe(true);
+  });
+
+  test('로또 번호를 출력한다.', () => {
+    const lottoNumbers = [1, 3, 5, 14, 22, 45];
+    const numbersString = new Lotto(lottoNumbers).getNumbers();
+
+    expect(numbersString).toBe('[1, 3, 5, 14, 22, 45]');
   });
 });
