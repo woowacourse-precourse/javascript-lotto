@@ -1,8 +1,12 @@
 const Seller = require("./Seller");
 
 class App {
+  #seller;
+  constructor() {
+    this.#seller = new Seller();
+  }
   play() {
-    new Seller().saleLotto();
+    this.#seller.saleLotto();
   }
 }
 
