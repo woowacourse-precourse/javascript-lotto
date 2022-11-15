@@ -31,10 +31,15 @@ class Manager {
   }
 
   printCreatedLotto(){
+    let lottoToString = "";
     const createLotto = new CreatedLotto(this.quantity);
     this.createdLottoList = createLotto.getCreatedLottoList();
-    this.createdLottoList.map(lottos => MissionUtils.Console.print(lottos));
-    
+    this.createdLottoList.map(lottos =>  {
+      lottoToString = "["
+      lottos.map((item, index) => index !== (lottos.length-1)? lottoToString+=`${item}, ` : lottoToString+=`${item}`);
+      lottoToString += "]"
+      MissionUtils.Console.print(lottoToString);
+    })
     this.enterNumbers();
   };
 
@@ -58,8 +63,8 @@ class Manager {
 
   printResult(){
     const winCount = this.createdLottoList.map(lotto => lotto.filter(number => this.numbers.includes(number)).length);
-    const hasBonus = this.createdLottoList.map(lotto => lotto.filter(number => this.numbers.includes(this.bonus)).length);
-    
+    const hasBonus = this.createdLottoList.map(lotto => lotto.filter(number => number === parseInt(this.bonus)).length)[0];
+
     let winInfo = Array.from({length: 5}, () => 0)
 
     for (let i = 0; i < winCount.length; i++) {
@@ -69,7 +74,7 @@ class Manager {
 
       if (winCount[i] === 5) { 
         winInfo[2] += 1;
-        if (hasBonus[i] === 1) winInfo[3] += 1; 
+        if (hasBonus === 1) winInfo[3] += 1; 
       }
 
       if (winCount[i] === 6) winInfo[4] += 1;
@@ -77,11 +82,11 @@ class Manager {
     const moneyUnits = ["5,000", "50,000", "1,500,000", "30,000,000", "2,000,000,000"];
 
     let message = "당첨 통계 \n---\n";
-
     let sum = 0;
     for (let i = 0; i<5; i++){
-      message += (i > 2) ? `${i+2}개 일치, 보너스 볼 일치 (${moneyUnits[i]}원) - ${winInfo[i]}개` : `${i+3}개 일치 (${moneyUnits[i]}원) - ${winInfo[i]}개`;
-      message += "\n";
+      message += (i > 2) ? `${i+2}개 일치` : `${i+3}개 일치`;
+      message += (i === 3) ? `, 보너스 볼 일치` : "";
+      message += ` (${moneyUnits[i]}원) - ${winInfo[i]}개\n`;
       sum += parseInt(moneyUnits[i].replace(/,/g, "")) * winInfo[i];
     }
     const rateOfReturn = ((100 / this.quantity) * (sum / 1000)).toFixed(1); 
