@@ -3,12 +3,14 @@ const View = require("../view/View");
 const UserNumber = require("../model/UserNumber");
 const Lotto = require("../model/Lotto");
 const Statistics = require("../model/Statistics");
+const LottoMachine = require("../model/LottoMachine");
 
 class Controller {
   constructor() {
     this.view = new View(this);
     this.userNumber = new UserNumber(this);
     this.statistics = new Statistics(this);
+    this.lottoMachine = new LottoMachine(this);
   }
 
   // 유저 구입금액 입력 연결 메서드
@@ -51,7 +53,7 @@ class Controller {
    * @param lotto {number[]} [유저 당첨번호]
    */
   setLottoToUse(lotto) {
-    this.userNumber.setLottoToUse(lotto);
+    this.lottoMachine.setLottoToUse(lotto);
     this.getBonusNumberFromUser();
   }
 
@@ -65,7 +67,7 @@ class Controller {
    * @param bonusNumber {string} [유저에게 받은 보너스 번호]
    */
   setBonusNumberFromUser(bonusNumber) {
-    this.userNumber.setBonusNumber(Number(bonusNumber));
+    this.lottoMachine.setBonusNumber(Number(bonusNumber));
   }
 
   /**
@@ -74,8 +76,8 @@ class Controller {
    */
   getOverallInformationForStatistics() {
     return {
-      winningNumber: this.userNumber.getLottoToUse(),
-      bonusNumber: this.userNumber.getBonusNumber(),
+      winningNumber: this.lottoMachine.getLottoToUse(),
+      bonusNumber: this.lottoMachine.getBonusNumber(),
       userIssuedLotto: this.userNumber.getUserIssuedLotto(),
       purchasingAmount: this.userNumber.getPurchasingAmount(),
     };
