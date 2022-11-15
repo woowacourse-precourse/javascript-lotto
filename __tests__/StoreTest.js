@@ -1,6 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Store = require("../src/Store");
 const { WINMESSAGE, LottoAnswer } = require("../src/LottoAnswer");
+const Lotto = require("../src/Lotto");
 
 const mockReadLine = (input) => {
   MissionUtils.Console.readLine = jest
@@ -8,6 +9,12 @@ const mockReadLine = (input) => {
     .mockImplementation((question, callback) => {
       callback(input);
     });
+};
+
+const getLogSpy = () => {
+  const logSpy = jest.spyOn(MissionUtils.Console, "print");
+  logSpy.mockClear();
+  return logSpy;
 };
 
 describe("Store 클래스 테스트", () => {
@@ -60,8 +67,24 @@ describe("Store 클래스 테스트", () => {
   });
 
   test("구입 금액을 입력하면 금액만큼 로또를 발행한다.", () => {
+    store.printCandidates = jest.fn();
     mockReadLine(8000);
     store.buy();
     expect(store.candidates).toHaveLength(8);
+  });
+
+  test("발행된 로또를 출력한다.", () => {
+    const testCandidates = [
+      [1, 2, 3, 4, 5, 6],
+      [4, 5, 6, 7, 8, 9],
+    ];
+    const logSpy = getLogSpy();
+    testCandidates.forEach((candidate) =>
+      store.candidates.push(new Lotto(candidate))
+    );
+    store.printCandidates();
+    testCandidates.forEach((candidate) => {
+      expect(logSpy).toHaveBeenCalledWith(candidate);
+    });
   });
 });
