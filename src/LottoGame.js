@@ -36,4 +36,20 @@ class LottoGame {
     isUnit(input, LOTTO_PRICE);
     return input;
   }
+  drawNumber(number) {
+    this.lotteries = this.draw(number);
+    this.printDrawNumber();
+    this.setWinningNumber();
+  }
+  draw(number) {
+    return Array(number)
+      .fill(0)
+      .map(() => Random.pickUniqueNumbersInRange(1, 45, 6).sort((current, next) => current - next));
+  }
+  printDrawNumber() {
+    Console.print(RESULT_MESSAGE.PURCHASE(number_Purchase));
+    this.#lotteries.forEach((lottoNumbers) => {
+      Console.print(`[${lottoNumbers.join(", ")}]`);
+    });
+  }
 }
