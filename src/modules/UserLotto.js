@@ -1,10 +1,14 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Lotto = require("../Lotto");
+
 class UserLotto {
   #number = [];
   //로또 번호 1~45까지의 서로 다른 임의의 수 6자리를 뽑는다.
   haveLotto(nTime) {
     for (let index = 0; index < nTime; index += 1) {
-      this.#number.push(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
+      let randomNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      const LOTTO = new Lotto(randomNumber);
+      this.#number.push(randomNumber);
     }
     //종료
     MissionUtils.Console.close();
