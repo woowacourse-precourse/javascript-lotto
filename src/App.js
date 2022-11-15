@@ -6,55 +6,60 @@ const LottoGenerator = require("./LottoGenerator");
 const Lotto = require("./Lotto");
 const rank = require("./util/rank");
 const lottoRank = require("./util/lottoRank");
+const Validator = require("./Validator");
+const TypeConverter = require("./util/TypeConverter");
 
 class App {
   constructor() {
     this.input = new input();
     this.print = new print();
     this.user = new User();
-    this.hitlotto;
+    this.hitLotto;
     this.bonusNumber;
   }
 
-  async play() {
-    await this.inputByFeeView();
+  play() {
+    this.input.readLine(this.handleByFee.bind(this));
+  }
+
+  handleByFee(fee) {
+    fee = +fee;
+
+    if (!Validator.isRightFee(+fee)) {
+      throw new Error("[ERROR]");
+    }
+    this.user.fee = +fee;
     this.printUserLottos();
-    await this.inputHitNumberView();
-    await this.inputBonusView();
-    this.user.calculateStat(this.hitlotto, this.bonusNumber);
+    this.input.readLine(this.handleHitLottos.bind(this));
+  }
+
+  handleHitLottos(hitLottos) {
+    hitLottos = TypeConverter.stringToArray(hitLottos, ",").map((e) => +e);
+
+    if (!Validator.isRightLottoNumbers(hitLottos)) {
+      throw new Error("[ERROR]");
+    }
+    this.hitLotto = new Lotto(hitLottos);
+    this.input.readLine(this.handleBonusNumber.bind(this));
+  }
+
+  handleBonusNumber(number) {
+    number = TypeConverter.stringToNumber(number);
+
+    if (
+      !Validator.isRightLottoNumber(number) ||
+      Validator.isNumberInArray(this.hitLotto.getNumbers(), number)
+    ) {
+      throw new Error("[ERROR]");
+    }
+    this.bonusNumber = number;
+    this.showStat();
+  }
+
+  showStat() {
+    this.user.calculateStat(this.hitLotto, this.bonusNumber);
     this.printStat();
     this.input.close();
-  }
-
-  async inputByFeeView() {
-    // this.print.print(message.INPUT_MESSAGE);
-
-    let fee = await this.input
-      .fee()
-      .then((resolve) => resolve)
-      .catch((e) => {});
-
-    this.user.fee = fee;
-  }
-
-  async inputHitNumberView() {
-    this.print.print(message.HIT_NUMBER);
-
-    const numbers = await this.input
-      .hitNumber()
-      .then((resolve) => resolve)
-      .catch((e) => {});
-
-    this.hitlotto = new Lotto(numbers);
-  }
-
-  async inputBonusView() {
-    this.print.print(message.BONUS_NUMBER);
-
-    this.bonusNumber = await this.input
-      .bonus(this.hitlotto.getNumbers())
-      .then((resolve) => resolve)
-      .catch((e) => {});
   }
 
   printUserLottos() {
