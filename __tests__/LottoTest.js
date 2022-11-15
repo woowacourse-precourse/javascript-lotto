@@ -20,4 +20,16 @@ describe("로또 클래스 테스트", () => {
       new Lotto([1, 2, 3, 4, 46, 5]);
     }).toThrow("[ERROR]");
   });
+
+  test("보너스 번호는 1~45사이 숫자가 아니면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, 6]).setBonusNum(46);
+    }).toThrow("[ERROR]");
+  });
+
+  test("보너스 번호는 숫자가 아니면 예외가 발생한다", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, 6]).setBonusNum("bonus");
+    }).toThrow("[ERROR]");
+  });
 });
