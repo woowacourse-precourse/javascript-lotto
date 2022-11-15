@@ -7,14 +7,17 @@ class App {
   play() {
     MissionUtils.Console.readLine('구입금액을 입력해주세요.\n', (money) => {
       this.ticketing(money);
-      MissionUtils.Console.readLine('\n당첨 번호를 입력해 주세요.\n', (win) => {
-        const lotto = new Lotto(win);
-        lotto.validate(win);
-      });
+      MissionUtils.Console.readLine(
+        '\n당첨 번호를 입력해 주세요.\n',
+        (winningNumber) => {
+          winningNumber = winningNumber.split(',');
+          const lotto = new Lotto(winningNumber);
+          lotto.validate(winningNumber);
+          lotto.getBonusNumber(this.tickets, winningNumber, money);
+        }
+      );
     });
   }
-
-  getWinningNumbers() {}
 
   ticketing(money) {
     if (money % 1000 !== 0) {
@@ -24,7 +27,7 @@ class App {
 
     MissionUtils.Console.print(`\n${numberOfTickets}개를 구매했습니다.`);
     for (let i = 0; i < numberOfTickets; i++) {
-      this.tickets.push(this.issueOneTicket());
+      this.tickets.push(this.issueOneTicket().sort((a, b) => a - b));
       MissionUtils.Console.print(this.tickets[i]);
     }
   }
@@ -32,7 +35,9 @@ class App {
   issueOneTicket() {
     let oneTicket = [];
     for (let i = 0; i < 6; i++) {
-      oneTicket.push(MissionUtils.Random.pickNumberInRange(1, 45));
+      let tmp = MissionUtils.Random.pickNumberInRange(1, 45);
+      if (oneTicket.includes(tmp)) i--;
+      else oneTicket.push(tmp);
     }
     return oneTicket;
   }
