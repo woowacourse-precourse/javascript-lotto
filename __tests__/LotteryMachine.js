@@ -112,4 +112,30 @@ describe('로또 기계 클래스 테스트', () => {
     expect(winningStatistics).toEqual(calculationResult);
   });
 
+  test('발행한 로또들의 당첨 내역과 수익률을 출력한다.', () => {
+    const logs = [
+      '3개 일치 (5,000원) - 1개',
+      '4개 일치 (50,000원) - 0개',
+      '5개 일치 (1,500,000원) - 0개',
+      '5개 일치, 보너스 볼 일치 (30,000,000원) - 0개',
+      '6개 일치 (2,000,000,000원) - 0개',
+      '총 수익률은 62.5%입니다.',
+    ];
+    const logSpy = getLogSpy();
+    const winningStatistics = {
+      ranking: {
+        firstPlace: 1,
+        secondPlace: 0,
+        thirdPlace: 0,
+        fourthPlace: 0,
+        fifthPlace: 0,
+      },
+      totalLottoNum: 8,
+      totalWinnings: 5000,
+    };
+    LotteryMachine.printWinResult(winningStatistics);
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
 });
