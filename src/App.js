@@ -34,6 +34,11 @@ class App {
       lottoEa = parseInt(payCash/1000);
       MissionUtils.Console.print(`${lottoEa}개를 구매했습니다.`);
     }
+
+    function issueLottoNumbers(){
+      let tempLotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      return tempLotto;
+    }
   } //Play() 닫는 닫는 괄호
 }//class App 닫는괄호
 
