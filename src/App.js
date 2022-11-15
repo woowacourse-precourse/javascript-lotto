@@ -1,4 +1,3 @@
-const UI = require("./utils/UI");
 const { BUY_LOTTO, LOTTO } = require("./constant/constant");
 const BuyLotto = require("./BuyLotto");
 const Lotto = require("./Lotto");
