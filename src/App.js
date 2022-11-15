@@ -40,12 +40,26 @@ class App {
         MissionUtils.Console.print('');
     }
 
-    // 당첨 번호를 입력받고 배열로 변환해서 저장한다.8
+    // 입력 받은 당첨 번호의 유효성 검사.
+    validateWinning(winningNum) {
+        new Lotto(winningNum);
+    }
+
+    // 보너스 번호의 유효성 검사.
+    validateBonus(bonusNum) {
+        if (!bonusNum) {
+            throw new Error('[ERROR] 숫자 하나만 입력하세요');
+        }
+    }
+
+    // 당첨 번호를 입력받고 배열로 변환해서 저장한다.
     getWinningNums() {
         MissionUtils.Console.readLine(
             '당첨 번호를 입력해 주세요.\n',
             (winningString) => {
-                this.winningNumbers = winningString.split(',');
+                const inputWinning = winningString.split(',');
+                this.validateWinning(inputWinning);
+                this.winningNumbers = inputWinning;
                 MissionUtils.Console.print('');
                 this.getbounsNum();
             }
@@ -57,12 +71,15 @@ class App {
         MissionUtils.Console.readLine(
             '보너스 번호를 입력해 주세요.\n',
             (numberString) => {
-                this.bonusNumber = Number(numberString);
+                const newBonus = Number(numberString);
+                this.validateBonus(newBonus);
+                this.bonusNumber = newBonus;
                 MissionUtils.Console.print('');
                 MissionUtils.Console.close();
             }
         );
     }
+
     play() {
         MissionUtils.Console.readLine(
             '구입금액을 입력해 주세요.\n',
