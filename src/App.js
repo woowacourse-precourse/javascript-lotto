@@ -1,5 +1,21 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+const Recommender = require("./Recommender.js");
+const Buyer = require("./Buyer.js");
+const Judge = require("./Judge.js");
+const LottoMachine = require("./LottoMachine.js");
+const Clerk = require("./Clerk.js");
+const Statistics = require("./Statistics.js");
+const { SYS_MESSAGE } = require("./Constant.js");
+
 class App {
-  play() {}
+  constructor() {
+    this.buyer = new Buyer();
+    this.recommender = new Recommender();
+    this.judge = new Judge();
+    this.lottoMachine = new LottoMachine();
+    this.clerk = new Clerk();
+    this.statistics = new Statistics();
+  }
 }
 
 module.exports = App;
