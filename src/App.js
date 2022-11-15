@@ -2,6 +2,7 @@ const { LOTTO } = require('./constants');
 const { ConsoleAdapter } = require('./adapters');
 const { LottoGenerator, LottoChecker } = require('./domain');
 const { CostValidator, LottoValidator } = require('./validators');
+const { STATISTICS } = require('./constants');
 
 class App {
   #console;
@@ -81,7 +82,12 @@ class App {
       this.#bonusNumber,
     );
     const ranks = lottoChecker.getLottoRankings();
-    console.log(ranks);
+
+    this.#console.print('\n당첨 통계\n---');
+
+    Object.entries(STATISTICS).forEach(([key, message]) => {
+      this.#console.print(message(ranks[key]));
+    });
   }
 
   #quit() {
