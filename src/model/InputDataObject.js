@@ -1,7 +1,7 @@
 const inputDataObject = {
   principal: 0,
   inputMoney: 0,
-  raffleNumbers: [],
+  raffle: [],
   bonusNumber: 0,
   publishLotto: [],
   correctNumber: [],
