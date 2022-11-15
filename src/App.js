@@ -88,6 +88,37 @@ class App {
       return this.getScoreArray(this.lottoRandomNums);
     });
   }
+
+  getScoreArray(arr) {
+    let setScoreArr = [];
+    for (let i = 0; i < arr.length; i++) {
+      let setScore = { correct: 0, bonus: 0 };
+      setScore.correct = howManyWinningNums(this.lottoWinNums, arr[i]);
+      setScore.bonus = bonusNum(this.lottoBonusNum, arr[i]);
+      setScoreArr.push(setScore);
+    }
+    return this.matchingPrize(setScoreArr);
+  }
+
+  matchingPrize(arr) {
+    let prizeState = {
+      matching_3: 0,
+      matching_4: 0,
+      matching_5: 0,
+      matching_5_bonus: 0,
+      matching_6: 0,
+    };
+    prizeState.matching_3 = arr.filter(el => el.correct === 3).length;
+    prizeState.matching_4 = arr.filter(el => el.correct === 4).length;
+    prizeState.matching_5 = arr.filter(
+      el => el.correct === 5 && el.bonus === 0,
+    ).length;
+    prizeState.matching_5_bonus = arr.filter(
+      el => el.correct === 5 && el.bonus === 1,
+    ).length;
+    prizeState.matching_6 = arr.filter(el => el.correct === 6).length;
+    return this.getStatistics(prizeState);
+  }
 }
 
 const app = new App();
