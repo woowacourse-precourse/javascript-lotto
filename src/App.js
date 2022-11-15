@@ -6,6 +6,14 @@ class App {
     lotteryNumbersArr = [];
     lotteryWinningNumbersArr = [];
 
+    lotteryWinningNumbers() {
+        MissionUtils.Console.print("\n당첨 번호를 입력해 주세요.");
+        MissionUtils.Console.readLine("", (inputNumbers) => {
+            let lotteryWinningNumbers = inputNumbers.split(",").map(Number)
+            this.lotteryWinningNumbersArr.push(new Lotto(lotteryWinningNumbers));
+        });
+    }
+
     showLotteryNumbers() {
         this.lotteryNumbersArr.forEach((lotto) => {
             MissionUtils.Console.print(`[${String(lotto.getNumber()).split(',').join(', ')}]`);
