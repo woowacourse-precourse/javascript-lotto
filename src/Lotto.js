@@ -118,8 +118,46 @@ class Lotto {
     Console.print('---');
     const matchNumber = this.matchNumberCount(userNumbers, randomNumbers);
     const matchBonus = this.matchBonusCount(bonus, randomNumbers);
-    Console.print(matchNumber);
-    Console.print(matchBonus);
+    this.printWinningDetails(matchNumber, matchBonus);
+  }
+
+  printWinningDetails(matchNumber, matchBonus) {
+    let num5 = 0;
+    let num4 = 0;
+    let num3 = 0;
+    let num2 = 0;
+    let num1 = 0;
+    matchNumber.forEach((num, idx) => {
+      if (num === 3) {
+        num5 += 1;
+      }
+      if (num === 4) {
+        num4 += 1;
+      }
+      if (num === 5) {
+        num3 += 1;
+      }
+      if (num === 5 && matchBonus[idx] === 1) {
+        num2 += 1;
+      }
+      if (num === 6) {
+        num1 += 1;
+      }
+    });
+    this.resultPrint(num5, num4, num3, num2, num1).forEach((result) =>
+      Console.print(result)
+    );
+  }
+
+  resultPrint(num5, num4, num3, num2, num1) {
+    const result = [
+      `3개 일치 (5,000원) - ${num5}개`,
+      `4개 일치 (50,000원) - ${num4}개`,
+      `5개 일치 (1,500,000원) - ${num3}개`,
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${num2}개`,
+      `6개 일치 (2,000,000,000원) - ${num1}개`,
+    ];
+    return result;
   }
 
   matchNumberCount(userNumbers, randomNumbers) {
