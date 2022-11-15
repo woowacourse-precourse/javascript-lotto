@@ -25,7 +25,7 @@ class Winning {
     const winningNumArr = setArray(winningString);
     if (!isNotUnique(winningNumArr)) throw new Error(ERROR.NOT_UNIQUE);
     if (!isAllExceedRange(winningNumArr, NUMBER.START_LOTTO, NUMBER.END_LOTTO))
-      throw new Error(ERROR.RANGE);
+      throw new Error(ERROR.LOTTO_RANGE);
   }
 
   setBonusNum(bonusNumber) {
@@ -37,7 +37,7 @@ class Winning {
   validateBonus(bonusNumber) {
     if (!isMatchFormBonus(bonusNumber)) throw new Error(ERROR.BONUS_COUNT);
     if (!isExceedRange(bonusNumber, NUMBER.START_LOTTO, NUMBER.END_LOTTO))
-      throw new Error(ERROR.RANGE);
+      throw new Error(ERROR.LOTTO_RANGE);
     if (isOverlap(parseInt(bonusNumber), this.winningNumber))
       throw new Error(ERROR.NOT_UNIQUE);
   }

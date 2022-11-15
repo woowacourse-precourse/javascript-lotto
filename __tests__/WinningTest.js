@@ -16,7 +16,7 @@ describe('로또 당첨번호 입력 테스트', () => {
   test('숫자 범위 테스트', () => {
     expect(() => {
       new Winning('1,2,3,4,0,25');
-    }).toThrow(ERROR.RANGE);
+    }).toThrow(ERROR.LOTTO_RANGE);
   });
   test('보너스 번호 형식 테스트', () => {
     expect(() => {
@@ -28,7 +28,7 @@ describe('로또 당첨번호 입력 테스트', () => {
     expect(() => {
       const win = new Winning('1,2,3,4,5,6');
       win.setBonusNum('0');
-    }).toThrow(ERROR.RANGE);
+    }).toThrow(ERROR.LOTTO_RANGE);
   });
   test('보너스 번호 중복 테스트', () => {
     expect(() => {

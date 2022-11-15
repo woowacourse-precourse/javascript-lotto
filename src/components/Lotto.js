@@ -21,7 +21,7 @@ class Lotto {
     }
     if (!isNotUnique(numbers)) throw new Error(ERROR.NOT_UNIQUE);
     if (!isAllExceedRange(numbers, NUMBER.START_LOTTO, NUMBER.END_LOTTO))
-      throw new Error(ERROR.RANGE);
+      throw new Error(ERROR.LOTTO_RANGE);
   }
 
   getLottoNum() {
