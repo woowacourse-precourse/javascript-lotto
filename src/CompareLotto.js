@@ -53,17 +53,15 @@ class CompareLotto {
     return total.reduce((a, b) => a + b);
   }
 
-  // 수익률 내려면 howManyWin, 로또 구입비
-
-  static printResult(howManyWin) {
-    Console.print('\n당첨 통계');
-    Console.print('---');
-    Console.print(`3개 일치 (5,000원) - ${howManyWin[COMPARE_VALUE.zero]}개`);
-    Console.print(`4개 일치 (50,000원) - ${howManyWin[COMPARE_VALUE.one]}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${howManyWin[COMPARE_VALUE.two]}개`);
-    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${howManyWin[COMPARE_VALUE.three]}개`);
-    Console.print(`6개 일치 (2,000,000,000원) - ${howManyWin[COMPARE_VALUE.four]}개`);
-  }
+  // static printResult(howManyWin) {
+  //   Console.print('\n당첨 통계');
+  //   Console.print('---');
+  //   Console.print(`3개 일치 (5,000원) - ${howManyWin[COMPARE_VALUE.zero]}개`);
+  //   Console.print(`4개 일치 (50,000원) - ${howManyWin[COMPARE_VALUE.one]}개`);
+  //   Console.print(`5개 일치 (1,500,000원) - ${howManyWin[COMPARE_VALUE.two]}개`);
+  //   Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${howManyWin[COMPARE_VALUE.three]}개`);
+  //   Console.print(`6개 일치 (2,000,000,000원) - ${howManyWin[COMPARE_VALUE.four]}개`);
+  // }
 }
 
 module.exports = CompareLotto;

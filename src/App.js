@@ -48,7 +48,7 @@ class App {
   }
 
   printValue(result) {
-    CompareLotto.printResult(result);
+    this.LottoView.eachResult(result);
     this.printRate();
   }
 
