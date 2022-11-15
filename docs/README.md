@@ -18,8 +18,8 @@
     [:deciduous_tree:] [Error] 숫자가 아니면 에러
     [:deciduous_tree:] [Error] 1~45 사이의 숫자가 아니면 에러
     [:deciduous_tree:] [Error] 앞서 입력한 6개의 수와 중복되면 에러
-8. 당첨 내역 계산한다.
-9. 당첨 내역을 출력한다.
+[:deciduous_tree:] 당첨 내역 계산한다.
+[:deciduous_tree:] 당첨 내역을 출력한다.
 10. 수익률을 계산한다.
     - 수익률을 소수점 둘째 자리에서 반올림한다.
 11. 수익률을 출력한다.
