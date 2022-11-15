@@ -22,7 +22,7 @@ class App {
     // 보너스번호 입력받기
     const bonusNumber = this.getBonusNumber();
 
-    // 당첨 결과 출력
+    // 최종 결과 출력
     this.printResult();
   }
 
@@ -125,37 +125,27 @@ class App {
     return [rankFifth, rankFourth, rankThird, rankSecond, rankFirst];
   }
 
-  // 최종 결과 출력
+  /// 최종 결과 출력
   printResult() {
-    const [rankFifth, rankFourth, rankThird, rankSecond, rankFirst] =
-      this.creatWinningChart();
-
-    MissionUtils.Console.print(
-      `3개 일치 (5,000원) - ${rankFifth}개,
-      4개 일치 (50,000원) - ${rankFourth}개,
-      5개 일치 (1,500,000원) - ${rankThird}개,
-      5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankSecond}개,
-      6개 일치 (2,000,000,000원) - ${rankFirst}개)
-      총 수익률은 ${this.prizeMoneyRate()}입니다.`
-    );
-  }
-
-  // 최종 상금
-  prizeMoney() {
     const [fifth, fourth, third, second, first] = this.creatWinningChart();
     const fifthMoney = fifth * FIFTH_MONEY;
     const fourthMoney = fourth * FOURTH_MONEY;
     const thirdMoney = third * THIRD_MONEY;
     const secondMoney = second * SECOND_MONEY;
-    const firstMoney = first * FIRST_MONEY;
-    return fifthMoney + fourthMoney + thirdMoney + secondMoney + firstMoney;
-  }
-
-  // 총 수익률
-  prizeMoneyRate() {
-    const profitRate = (this.money / this.prizeMoney()) * 100;
+    const firstMoney = first * FIFTH_MONEY;
+    const prizeMoney =
+      fifthMoney + fourthMoney + thirdMoney + secondMoney + firstMoney;
+    const profitRate = (this.money / prizeMoney) * 100;
     const rounding = profitRate.toFixed(1);
-    return rounding;
+
+    MissionUtils.Console.print(
+      `3개 일치 (5,000원) - ${fifth}개,
+      4개 일치 (50,000원) - ${fourth}개,
+      5개 일치 (1,500,000원) - ${third}개,
+      5개 일치, 보너스 볼 일치 (30,000,000원) - ${second}개,
+      6개 일치 (2,000,000,000원) - ${first}개)
+      총 수익률은 ${rounding}입니다.`
+    );
   }
 }
 
