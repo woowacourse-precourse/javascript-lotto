@@ -7,10 +7,51 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
+    const numSet = new Set(numbers);
+    if(numSet.size != 6){
+      throw new Error("[ERROR] 중복된 숫자가 포함되어 있습니다.");
+    }
+    if (Array.from(numSet).length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
+    return numbers;
   }
+  printRandom(){
+    return `[${this.#numbers.sort((a, b) => a - b).join(", ")}]`; //오름차순은 정렬해서 조인
+  }
+
+  numberObj() {
+    const num = {};
+    for (let i = 1; i <= 45; i++) {
+      num[i] = false;
+    }
+    return num;
+  }
+
+  winCheck(winNum, bonusNum) {
+    let count = 0;
+    const obj = this.numberObj();
+    this.#numbers.forEach((number) => {
+      obj[number] = true;
+    });
+    winNum.forEach((number) => {
+      if (obj[number]) count++;
+    });
+    let bonus = this.#numbers.includes(bonusNum) ? 2 : 0; //6당첨과 겹치지 않게 보너스는 2점으로 계산
+    count += bonus;
+    return count;
+  }
+
+  calculate(win, bonus) {
+    const count = this.winCheck(win, bonus);
+
+    if(count === 3) return 1;
+    if(count === 4) return 2;
+    if(count === 5) return 3;
+    if(count === 6) return 4;
+    if(count === 7) return 5; //5개 일치, 보너스 일치
+  }
+
 
   // TODO: 추가 기능 구현
 }
