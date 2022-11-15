@@ -39,6 +39,20 @@ class Lotto {
   get numbers() {
     return this.#numbers;
   }
+  static getMatchingNumber(lotto) {
+    const { winNumbers, bonusNumber } = lotto;
+    let count = 0;
+
+    lotto.numbers.forEach((number) => {
+      if (winNumbers.includes(number)) {
+        count += 1;
+      }
+    });
+    if (count === 5 && winNumbers.includes(bonusNumber)) {
+      count = "BONUS";
+    }
+    return count;
+  }
 }
 
 module.exports = Lotto;

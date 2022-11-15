@@ -4,6 +4,7 @@ class App {
   constructor() {
     this.purchase = 0;
     this.lotto = [];
+    this.matchingNumbers = [];
   }
   play() {
     this.getUserInput();
@@ -33,8 +34,12 @@ class App {
   }
   getBonusNumber() {
     MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.\n", (input) => {
-      Lotto.prototype.bonus = input;
-      
+      Lotto.prototype.bonusNumber = input;
+      this.lotto.forEach((lotto) => {
+        let count = Lotto.getMatchingNumber(lotto);
+        console.log(count);
+        this.matchingNumbers.push(count);
+      });
       MissionUtils.Console.close();
     });
   }
