@@ -4,8 +4,7 @@ const User = require('./User');
 const MESSAGE = require('./constants/message');
 const { UNIT_OF_AMOUNT, RANKING_ARRAY } = require('./constants/gameSetting');
 const generateRandomLottoNumbers = require('./utils/generateRandomLottoNumbers');
-const getLottoRanking = require('./utils/getLottoRanking');
-const collectLottoStatistics = require('./utils/collectLottoStatistics');
+const LottoStatistics = require('./LottoStatistics');
 
 class LottoGameMachine {
   constructor() {
@@ -54,6 +53,11 @@ class LottoGameMachine {
     this.setLottoStatistics().printLottoStatistics().endLottoGame();
   }
 
+  setLottoStatistics() {
+    this.lottoStatistics = LottoStatistics.collectLottoStatistics(this.Lottos, this.winningLotto);
+    return this;
+  }
+
   setLottos() {
     const totalLottosCount = this.totalPurchaseAmount / UNIT_OF_AMOUNT;
     let count = 0;
@@ -64,18 +68,6 @@ class LottoGameMachine {
 
     this.printLottoNumbers();
     return this;
-  }
-
-  setLottoStatistics() {
-    this.lottoStatistics = collectLottoStatistics(this.getLottosResult());
-    return this;
-  }
-
-  getLottosResult() {
-    let lottosResult = [];
-    this.Lottos.forEach((lotto) => lottosResult.push(getLottoRanking(lotto, this.winningLotto)));
-
-    return lottosResult;
   }
 }
 

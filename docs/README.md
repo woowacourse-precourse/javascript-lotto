@@ -56,10 +56,10 @@
 
 ## 로또 통계를 내는 `LottoStatistics` 클래스를 생성한다.
 
-- [] 수익률을 계산한다. : `calculateProfitRate.js`
+- [x] 수익률을 계산한다. : `calculateProfitRate.js`
   - 수익률은 소수점 둘째 자리에서 반올림한다.
-- [] 로또 랭킹을 가져온다. : `getLottoRanking.js`
-- [] 로또 통계를 수집한다. : `collectLottoStatistics.js`
+- [x] 로또 랭킹을 가져온다. : `getLottoRanking.js`
+- [x] 로또 통계를 수집한다. : `collectLottoStatistics.js`
 
 ## utils/
 

@@ -8,7 +8,7 @@ class User {
       const totalPurchaseAmount = Number(answer);
       Validator.validateTotalPurchaseAmount(totalPurchaseAmount);
 
-      callback(totalPurchaseAmount);
+      return callback(totalPurchaseAmount);
     });
     return this;
   }
