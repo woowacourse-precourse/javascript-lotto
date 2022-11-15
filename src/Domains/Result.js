@@ -30,19 +30,19 @@ class Result {
 
   setCollectCount(count, bonusCount) {
     if (count === 3) {
-      this.collectCount[0]++;
+      this.collectCount[0] += 1;
     }
     if (count === 4) {
-      this.collectCount[1]++;
+      this.collectCount[1] += 1;
     }
     if (count === 5 && bonusCount !== 1) {
-      this.collectCount[2]++;
+      this.collectCount[2] += 1;
     }
     if (count === 5 && bonusCount === 1) {
-      this.collectCount[3]++;
+      this.collectCount[3] += 1;
     }
     if (count === 6) {
-      this.collectCount[4]++;
+      this.collectCount[4] += 1;
     }
   }
 
