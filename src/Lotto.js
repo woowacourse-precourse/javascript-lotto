@@ -1,5 +1,6 @@
-const { Random } = require('@woowacourse/mission-utils');
+const { Console, Random } = require('@woowacourse/mission-utils');
 const { MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_LENGTH } = require('./settings');
+const Message = require('./Message');
 
 class Lotto {
   #numbers;
@@ -29,8 +30,16 @@ class Lotto {
     return new Array(count).fill([]).map(() => Lotto.#issueSingleLotto());
   }
 
+  static #printPurchaseLog(count) {
+    let purchaseLog = `\n${count}${Message.PURCHASE}`;
+
+    Console.print(purchaseLog);
+  }
+
   static issue(count) {
     const issuedLottos = Lotto.issueAllLottos(count);
+
+    Lotto.#printPurchaseLog(count);
 
     return issuedLottos;
   }
