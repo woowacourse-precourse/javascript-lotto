@@ -1,4 +1,4 @@
-const { MissionUtils } = require("@woowacourse/mission-utils");
+const MissionUtils = require("@woowacourse/mission-utils");
 const console = require("./console");
 
 class print extends console {

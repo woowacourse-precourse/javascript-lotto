@@ -12,19 +12,23 @@ class App {
   }
 
   play() {
-    this.buyMessagePrint();
+    this.inputByFeeView();
   }
 
-  async buyMessagePrint() {
+  inputByFeeView() {
     this.print.print(message.INPUT_MESSAGE);
-    let buyFee = await this.input.inputLine();
+    this.input.inputLine(this.handleInputByFee.bind(this));
+  }
 
-    if (!Validator.isRightNumber(buyFee)) {
-      throw new Error("[ERROR] : 올바른 금액이 아닙니다.");
+  handleInputByFee(value) {
+    const fee = +value;
 
-      return;
+    if (!Validator.isRightFee(fee)) {
+      throw new Error("[ERROR] : 잘못된 금액을 입력했습니다.");
     }
-    this.user.fee = buyFee;
+
+    this.user.fee = fee;
+    this.input.close();
   }
 }
 
