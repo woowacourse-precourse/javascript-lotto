@@ -15,27 +15,27 @@ class App {
 		Console.readLine("구입금액을 입력해주세요.\n", (amount) => {
       this.amount = Number(amount);
       this.total = this.makeLotto.isValidAmount(this.amount);
-      [this.lottoLists, this.stringedLottoLists] = this.makeLotto.makeLottoList(this.total);
-      this.makeLotto.printLottoList(this.total, this.stringedLottoLists);
-      this.letWinningNumbers();
+      [this.lottoLists, this.stringifiedLottoLists] = this.makeLotto.makeLottoList(this.total);
+      this.makeLotto.printLottoList(this.total, this.stringifiedLottoLists);
+      this.putWinningNumbers();
     });
 	}
 
-  letWinningNumbers() {
+  putWinningNumbers() {
     Console.readLine("\n당첨 번호를 입력해 주세요.\n", this.stringToNumbers);
   }
 
   stringToNumbers = (winningNumbers) => {
     this.winningList = winningNumbers.split(',').map(num => parseInt(num));
-    this.startLotto = new Lotto(this.winningList);
-    this.startLotto;
-    this.letBonusNumber();
+    this.validateLotto = new Lotto(this.winningList);
+    this.validateLotto;
+    this.putBonusNumber();
   }
 
-  letBonusNumber() {
+  putBonusNumber() {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusNum) => {
       this.bonusNum = Number(bonusNum);
-      this.startLotto.validateBonus(bonusNum);
+      this.validateLotto.validateBonus(bonusNum);
       this.makeMatchList();
     });
   }
