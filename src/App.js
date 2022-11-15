@@ -1,11 +1,11 @@
 const { Console, Random } = require("@woowacourse/mission-utils/");
 const Lotto = require("../src/Lotto");
 class App {
-  #payMoney;
-  #winNumbers;
-  #bonusNumber;
-  #lottos;
-  #reward;
+  payMoney;
+  winNumbers;
+  bonusNumber;
+  lottos;
+  reward;
 
   constructor() {
     this.payMoney = 0;
@@ -29,14 +29,13 @@ class App {
   }
 
   getInputMoney() {
-    Console.print("```\n");
     Console.readLine("구매금액을 입력해 주세요.\n", (input) => {
       if (!this.isValidMoney(input)) {
         throw "[ERROR]";
       }
       this.payMoney = input;
+      this.printMoney();
       this.lottos = this.publishLottos(input / 1000);
-      this.printLottosNumbers();
       this.getWinNumbers();
     });
   }
@@ -54,8 +53,11 @@ class App {
       .map((e) => new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6)));
   }
 
-  printLottosNumbers() {
+  printMoney() {
     Console.print(`\n${this.payMoney / 1000}개를 구매했습니다.`);
+  }
+
+  printLottosNumbers() {
     this.lottos.forEach((lotto) => {
       Console.print(`[${lotto.getNumbers().join(", ")}]`);
     });
