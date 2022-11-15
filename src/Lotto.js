@@ -1,3 +1,9 @@
+const {
+  isOutOfRangeAndThrowError,
+  isDuplicatedAndThrowError,
+  isOutOfVolumeAndThrowError,
+} = require('./utils/inputValidate');
+
 class Lotto {
   #numbers;
 
@@ -6,13 +12,34 @@ class Lotto {
     this.#numbers = numbers;
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+  get numbers() {
+    this.#numbers.sort((a, b) => a - b);
+
+    return this.#numbers;
   }
 
-  // TODO: 추가 기능 구현
+  validate(numbers) {
+    isOutOfVolumeAndThrowError(numbers, 6);
+    isDuplicatedAndThrowError(numbers);
+    isOutOfRangeAndThrowError(numbers);
+  }
+
+  countWinningBonusNumbers(numbers) {
+    const { winning, bonus } = numbers;
+    let winningCount = 0;
+    let bonusCount = 0;
+    this.#numbers.forEach((number) => {
+      if (winning.includes(number)) {
+        winningCount += 1;
+      }
+
+      if (bonus === number) {
+        bonusCount = 1;
+      }
+    });
+
+    return { winningCount, bonusCount };
+  }
 }
 
 module.exports = Lotto;
