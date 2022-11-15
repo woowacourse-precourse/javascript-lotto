@@ -5,8 +5,8 @@ const {
   BONUS_NUMBER_MESSAGE,
   STATISTICS,
   LOTTO_RESULT,
+  WINNING_AMOUNT,
   LOTTO_PRICE,
-  LOTTO_ERROR,
 } = require('./constants/constants');
 
 class Lotto {
@@ -74,6 +74,19 @@ class Lotto {
     });
 
     return prize;
+  }
+
+  rateOfReturn(purchasePrice, { first, second, third, fourth, fifth }) {
+    const profit =
+      first * WINNING_AMOUNT.FIRST +
+      second * WINNING_AMOUNT.SECOND +
+      third * WINNING_AMOUNT.THIRD +
+      fourth * WINNING_AMOUNT.FOURTH +
+      fifth * WINNING_AMOUNT.FIFTH;
+    const rate = (profit / purchasePrice) * 100;
+    const roundRate = Math.round((rate + Number.EPSILON) * 100) / 100;
+
+    Console.print(`총 수익률은 ${roundRate}%입니다.`);
   }
 
   validate(numbers) {
