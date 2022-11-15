@@ -35,6 +35,15 @@ class Lotto {
     if (validationArray.includes(numbers[index]))
       throw new Error(Data.ERROR_MESSAGES.errDuplication);
   }
+  run() {
+    this.inputPay();
+    this.lotto();
+    this.inputWinNumbers();
+    this.inputBonusNumbers();
+    this.myLottoAndWinNumber();
+    this.printMatchResult();
+    this.printProfitRate();
+  }
 
   // TODO: 추가 기능 구현
 }
