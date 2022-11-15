@@ -44,6 +44,8 @@ class App {
       prizeMoney
     );
     MissionUtils.Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
+
+    MissionUtils.Console.close();
   }
 
   receivePurchaseAmount() {
