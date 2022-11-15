@@ -16,6 +16,10 @@ class Calculator {
       return accemulateProfit + LOTTO_PRIZE[grade] * count;
     }, 0);
   }
+
+  profitRate(totalProfit, money) {
+    return Number(((totalProfit / money) * 100).toFixed(1));
+  }
 }
 
 module.exports = Calculator;
