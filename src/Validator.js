@@ -45,7 +45,7 @@ class Validator {
     );
   }
 
-  static isRightLottoNumbers(array) {
+  static isRightLottoNumbers(lottoNumbers) {
     if (!lottoNumbers.every(this.isRightLottoNumber.bind(this))) {
       return false;
     }

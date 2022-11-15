@@ -1,4 +1,5 @@
 const Lotto = require("../src/Lotto");
+const User = require("../src/User")
 const Validator = require("../src/Validator");
 
 describe("로또 클래스 테스트", () => {
@@ -59,8 +60,18 @@ describe("Validator 클래스 테스트", () => {
   });
 
   test("isRightLottoNumbers: 올바른 로또 번호인지 테스트", () => {
-    expect(Validator.isRightLottoNumbers('1,2,3,4,5,6,7')).toEqual(false);
-    expect(Validator.isRightLottoNumbers('1,2,3,4,5,5')).toEqual(false);
-    expect(Validator.isRightLottoNumbers('1,2c,3,4b,5,5a')).toEqual(false);
+    expect(Validator.isRightLottoNumbers([1, 2, 3, 4, 5, 6, 7])).toEqual(false);
+    expect(Validator.isRightLottoNumbers([1, 2, 3, 4, 5, 5])).toEqual(false);
+    expect(Validator.isRightLottoNumbers([1, 2, 'sdf', 4, 'sdf', 5])).toEqual(false);
+  });
+
+  test("로또 순위를 계산 테스트", () => {
+    const user = new User();
+    expect(user.dicideRank(6, false)).toEqual(1);
+    expect(user.dicideRank(5, true)).toEqual(2);
+    expect(user.dicideRank(5, false)).toEqual(3);
+    expect(user.dicideRank(4, false)).toEqual(4);
+    expect(user.dicideRank(3, false)).toEqual(5);
+    expect(user.dicideRank(2, false)).toEqual(0);
   });
 });

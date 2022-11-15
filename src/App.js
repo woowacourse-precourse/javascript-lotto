@@ -18,7 +18,7 @@ class App {
 
   async play() {
     await this.inputByFeeView();
-    printUserLottos();
+    this.printUserLottos();
     await this.inputHitNumberView();
     await this.inputBonusView();
   }
