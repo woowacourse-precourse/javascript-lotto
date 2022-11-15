@@ -1,6 +1,10 @@
 /* eslint-disable prettier/prettier */
 const { Console } = require('@woowacourse/mission-utils');
 
+const {
+  THREE_MATCH, FOUR_MATCH, FIVE_MATCH, FIVE_BONUS_MATCH, SIX_MATCH
+} = require('./constants/scores');
+
 class User {
   constructor() {
     this.money = 0;
@@ -18,13 +22,13 @@ class User {
   }
 
   getScore() {
-    Console.print(`3개 일치 (5,000원) - ${this.three}개`);
-    Console.print(`4개 일치 (50,000원) - ${this.four}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${this.five}개`);
+    Console.print(`${THREE_MATCH} - ${this.three}개`);
+    Console.print(`${FOUR_MATCH} - ${this.four}개`);
+    Console.print(`${FIVE_MATCH} - ${this.five}개`);
     Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.fiveBonus}개`
+      `${FIVE_BONUS_MATCH} - ${this.fiveBonus}개`
     );
-    Console.print(`6개 일치 (2,000,000,000원) - ${this.six}개`);
+    Console.print(`${SIX_MATCH} - ${this.six}개`);
   }
 
   setProfit() {

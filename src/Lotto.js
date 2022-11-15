@@ -1,3 +1,8 @@
+const {
+  LOTTO_COUNT_ERROR,
+  LOTTO_DUPLICATE_ERROR
+} = require('./constants/errors/lotto');
+
 class Lotto {
   #numbers;
 
@@ -10,11 +15,11 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+      throw new Error(LOTTO_COUNT_ERROR);
     }
 
     if (new Set(numbers).size !== numbers.length) {
-      throw new Error('[ERROR] 로또 번호는 중복될 수 없습니다.');
+      throw new Error(LOTTO_DUPLICATE_ERROR);
     }
   }
 

@@ -1,6 +1,19 @@
 const User = require('./User');
 const Lotto = require('./Lotto');
 
+const {
+  WINNING_NUMBER_COUNT_ERROR,
+  WINNING_NUMBER_TYPE_ERROR,
+  WINNING_NUMBER_DUPLICATE_ERROR,
+  WINNING_NUMBER_RANGE_ERROR,
+  WINNING_NUMBER_SEPARATOR_ERROR
+} = require('/src/constants/errors/winningNum');
+const {
+  BONUS_NUMBER_TYPE_ERROR,
+  BONUS_NUMBER_DUPLICATE_ERROR,
+  BONUS_NUMBER_RANGE_ERROR
+} = require('/src/constants/errors/bonusNum');
+
 const { Console, Random } = require('@woowacourse/mission-utils');
 
 class Machine {
@@ -21,14 +34,14 @@ class Machine {
 
   #checkLength() {
     if (this.#winningNumbers.length !== 6) {
-      throw Error('[ERROR] 당첨 번호는 6개의 숫자여야 합니다.');
+      throw Error(WINNING_NUMBER_COUNT_ERROR);
     }
   }
 
   #checkIsAllNum() {
     this.#winningNumbers.forEach((number) => {
       if (Number.isNaN(number)) {
-        throw Error('[ERROR] 당첨 번호는 숫자여야 합니다.');
+        throw Error(WINNING_NUMBER_TYPE_ERROR);
       }
     });
   }
@@ -36,14 +49,14 @@ class Machine {
   #checkIsAllUnique() {
     const set = new Set(this.#winningNumbers);
     if (set.size !== this.#winningNumbers.length) {
-      throw Error('[ERROR] 당첨 번호는 중복되지 않아야 합니다.');
+      throw Error(WINNING_NUMBER_DUPLICATE_ERROR);
     }
   }
 
   #checkRange(numbers) {
     numbers.forEach((number) => {
       if (number < 1 || number > 45) {
-        throw Error('[ERROR] 당첨 번호는 1과 45 사이의 숫자여야 합니다.');
+        throw Error(WINNING_NUMBER_RANGE_ERROR);
       }
     });
   }
@@ -57,7 +70,7 @@ class Machine {
 
   #checkIsNum() {
     if (Number.isNaN(this.#bonusNumber)) {
-      throw Error('[ERROR] 보너스 번호는 숫자여야 합니다.');
+      throw Error(BONUS_NUMBER_TYPE_ERROR);
     }
   }
 
@@ -67,13 +80,13 @@ class Machine {
     );
 
     if (finalNumbers.size === this.#winningNumbers.length) {
-      throw Error('[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.');
+      throw Error(BONUS_NUMBER_DUPLICATE_ERROR);
     }
   }
 
   #checkBonusRange() {
     if (this.#bonusNumber < 1 || this.#bonusNumber > 45) {
-      throw Error('[ERROR] 보너스 번호는 1과 45 사이의 숫자여야 합니다.');
+      throw Error(BONUS_NUMBER_RANGE_ERROR);
     }
   }
 
@@ -85,7 +98,7 @@ class Machine {
 
   checkSeparator(answer) {
     if (!answer.includes(',')) {
-      throw Error('[ERROR] 당첨 번호는 쉼표로 구분되어야 합니다.');
+      throw Error(WINNING_NUMBER_SEPARATOR_ERROR);
     }
   }
 
@@ -180,10 +193,6 @@ class Machine {
     this.#count();
     this.user.getScore();
     this.user.getProfit();
-  }
-
-  printSpace() {
-    Console.print('\n');
   }
 }
 
