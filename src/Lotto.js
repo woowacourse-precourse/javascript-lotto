@@ -14,6 +14,14 @@ class Lotto {
       throw Error.OVERLAP_ERROR
     }
   }
+  bonusIsValid(number) {
+    if (Number.isInteger(Number(number)) == false) {
+      throw Error.BONUS_ERROR
+    }
+    else if (number > 45 || number < 1) {
+      throw Error.RANGE_ERROR
+    }
+  }
   rangeIsValid(max, min) {
     if (max > 45 || min < 1) {
       throw Error.RANGE_ERROR

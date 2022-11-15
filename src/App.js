@@ -28,6 +28,7 @@ class App {
   }
   inputBonusNumber() {
     MissionUtils.Console.readLine(Notice.INPUT_BONUSNUMBER, (numbers) => {
+      this.Lotto.bonusIsValid(numbers)
       this.bonusnumber = numbers
       this.checkNumber()
     });
