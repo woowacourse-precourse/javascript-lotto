@@ -1,10 +1,20 @@
+const { Random } = require('@woowacourse/mission-utils');
+const { AMOUNT_STANDARD } = require('./constants');
+const Lotto = require('./Lotto');
+
 const LottoNumberUtils = require('./LottoNumberUtil');
 
 class LottoGame {
   #inputMoney;
+  #lottoArray;
+  #winningNumbers;
+  #bonusNumber;
 
   constructor() {
     this.#inputMoney = 0;
+    this.#lottoArray = [];
+    this.#winningNumbers = [];
+    this.#bonusNumber = 0;
   }
 
   // [x]사용자가 입력한 금액을 저장하는 기능
@@ -95,6 +105,16 @@ class LottoGame {
     return LottoNumberUtils.roundCustom((totalPrize / totalBuy) * 100);
   }
 
+  // [x]당첨 결과 받아서 총 상금을 계산하는 기능
+  getTotalPrize(rankingCountList) {
+    const prizeMoneyList = [5000, 50000, 1500000, 30000000, 200000000];
+
+    let sumPrizeMoney = 0;
+    for (let i = 0; i < prizeMoneyList.length; i++) {
+      sumPrizeMoney += prizeMoneyList[i] * rankingCountList[i];
+    }
+    return sumPrizeMoney;
+  }
 }
 
 module.exports = LottoGame;
