@@ -5,6 +5,7 @@ const {
   winNumberValidate,
   bonusNumberValidate,
 } = require('./Validates');
+const { printLottoAmount } = require('./Print');
 
 class App {
   #amount;
@@ -32,6 +33,7 @@ class App {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (amount) => {
       this.setAmount(amount);
       this.issueLottos();
+      printLottoAmount(this.getLottos());
       this.inputWinNumbers();
     });
   }
