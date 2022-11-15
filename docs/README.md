@@ -64,18 +64,18 @@
     * [x] isThatInclude 당첨번호와 값이 중복되는지 검사
 ---
 * [ ] CompareLottoTest.js
-    * [ ] count 당첨 번호와 로또 대조 결과 검사
-    * [ ] countBonus 로또와 보너스 대조 결과 검사
+    * [x] count 당첨 번호와 로또 대조 결과 검사
+    * [x] countBonus 로또와 보너스 대조 결과 검사
     * [ ] result 몇등에 몇번 당첨됐는지 확인 검사
     * [ ] number 몇개 당첨됐고 보너스 점수는 맞았는지 확인 검사
     * [ ] totalMoney 총 당첨 상금 계산 검사
 
 ## 마무리
 * [ ] 함수 세분화하기 
-    * [ ] 로또 발행하기
-    * [ ] 당첨번호 및 보너스 번호 입력받기
-    * [ ] 비교하기
-    * [ ] 예외사항
+    * [ ] 로또 발행하기 Lotto
+    * [ ] 당첨번호 및 보너스 번호 입력받기 App
+    * [ ] 비교하기 CompareLotto
+    * [ ] 예외사항 Validation
 
 
 

@@ -1,4 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
+const { LOTTO_MESSAGE } = require('./setting/Message');
 
 class Lotto {
   #numbers;
@@ -11,7 +12,6 @@ class Lotto {
   NumberPackage(money) {
     this.validate(money);
     this.#numbers = this.howManyLotto(money);
-    
     this.printHowManyLotto();
 
     for (let i = 0; i < this.#numbers; i += 1) {
@@ -41,12 +41,12 @@ class Lotto {
   }
 
   isItNumber(money) {
-    if (isNaN(money)) throw new Error('[ERROR] 돈이 아닙니다.');
+    if (isNaN(money)) throw new Error(LOTTO_MESSAGE.NO_MONEY);
   }
 
   rightAmount(money) {
     if (money % 1000 !== 0)
-      throw new Error('[ERROR] 천원 단위로 입력해주세요.');
+      throw new Error(LOTTO_MESSAGE.WRONG_UNIT);
   }
 }
 

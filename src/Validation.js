@@ -27,7 +27,7 @@ class Validation {
   static bonusValidate(numbers, number) {
     if (!Validation.itThatNumber(number)) {
       Console.close();
-      throw new Error('[ERROR] 1개의 보너스 숫자를 입력해주세요.');
+      throw new Error('[ERROR] 숫자를 입력해주세요.');
     }
     if (!Validation.singleNumberNet(number)) {
       Console.close();
