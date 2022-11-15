@@ -15,6 +15,18 @@ class Inventory {
   getLottosData() {
     return this.#lottos;
   }
+
+  #calculateDrawResult(winLotto, bonusNumber) {
+    this.#lottos.forEach((currentLotto) => {
+      const { sameCount, bonusSameCount } = this.#getLottoScore(
+        currentLotto,
+        winLotto,
+        bonusNumber
+      );
+
+      this.#lottoScoreBoard.addLottoDrawResult(sameCount, bonusSameCount);
+    });
+  }
 }
 
 module.exports = Inventory;
