@@ -177,6 +177,16 @@ describe('로또 테스트', () => {
     }).toThrow('[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.');
   });
 
+  test('보너스 번호는 당첨 번호와 중복될 수 없다.', () => {
+    mockRandoms([[8, 21, 23, 41, 42, 43]]);
+    mockQuestions(['1000', '1,2,3,4,5,6', '6']);
+
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[Error] 중복된 숫자를 보너스 번호로 지정할 수 없습니다.');
+  });
+
   test('금액은 1,000원 단위로 나누어 떨어진다.', () => {
     mockQuestions(['1100']);
     expect(() => {
