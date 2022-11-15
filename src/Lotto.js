@@ -41,8 +41,8 @@ class Lotto {
   }
   checkInputMoney(money) {
     if (money[0] === "0") throw str.PREFIX_ZERO_IMPOSSIBLE;
-    if (Number(money) % 1000 !== 0) throw str.UNIT_1000;
     if (Number(money)<0) throw str.MINUS
+    if (Number(money) % 1000 !== 0) throw str.UNIT_1000;
     this.createLottoNumArrays(money);
   }
 

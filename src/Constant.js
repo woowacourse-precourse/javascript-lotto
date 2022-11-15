@@ -13,7 +13,7 @@ const error = {
   USER_LOTTO_NUM: "당첨 번호를 입력해 주세요.\n",
   BONUS_NUM: "보너스 번호를 입력해 주세요.\n",
   AMOUNT_LONG: "개를 구매했습니다.",
-  AMOUNT_SHORT:'개',
+  AMOUNT_SHORT:"개",
   PRIZE_STATS: "\n당첨 통계\n---",
   FIFTH_PRIZE: "3개 일치 (5,000원) -",
   FORTH_PRIZE: "4개 일치 (50,000원) -",
