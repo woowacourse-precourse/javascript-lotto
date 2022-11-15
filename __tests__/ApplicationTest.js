@@ -23,7 +23,7 @@ const getLogSpy = () => {
   return logSpy;
 };
 
-describe("로또 기능 테스트", () => {
+describe("로또 테스트", () => {
   test("기능 테스트", () => {
     mockRandoms([
       [8, 21, 23, 41, 42, 43],
@@ -90,6 +90,14 @@ describe("로또 기능 테스트", () => {
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
+  });
+
+  test("예외 테스트", () => {
+    mockQuestions(["1000j"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
   });
 });
 
