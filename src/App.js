@@ -52,7 +52,7 @@ class App {
     const lottoCalculator = new LottoCalculator(lottos, winningLotto, bonusNum);
     const PROFIT = lottoCalculator.calculateProfit();
     const SCORE = lottoCalculator.score;
-    return printLottoResult(SCORE, PROFIT), Console.close();
+    return printLottoResult(SCORE, PROFIT);
   }
 }
 

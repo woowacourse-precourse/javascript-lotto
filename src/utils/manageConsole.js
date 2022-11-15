@@ -17,6 +17,7 @@ const printLottoResult = (score, profit) => {
   Console.print(RESULT.SCORE.SECOND_RANK(score['bonus']));
   Console.print(RESULT.SCORE.FIRST_RANK(score['6']));
   Console.print(RESULT.PROFIT(profit));
+  Console.close();
 };
 
 module.exports = { printLottoResult, printGeneratedLottos, printNumOfLottos };
