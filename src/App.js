@@ -30,10 +30,9 @@ class App {
   }
 
   inputWinningNumbers() {
-    Console.readLine(CONSOLE.WINNING_NUMBER_INPUT + "\n", (number) => {
-      const inputNumbers = number.split(",").map(Number);
-      const lotto = new Lotto(inputNumbers);
-      this.#winningNumbers = lotto.play();
+    Console.readLine(CONSOLE.WINNING_NUMBER_INPUT + "\n", (winningNumber) => {
+      this.#winningNumbers = winningNumber.split(",").map(Number);
+      new Lotto(this.#winningNumbers);
 
       Console.print("");
       this.inputBonusNumber(this.#winningNumbers);

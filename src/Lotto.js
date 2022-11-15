@@ -1,23 +1,23 @@
 const { RULES, ERROR } = require("./constants");
 
 class Lotto {
-  #numbers;
+  #winningNumber;
 
-  constructor(numbers) {
-    this.validate(numbers);
-    this.#numbers = numbers;
+  constructor(winningNumber) {
+    this.validate(winningNumber);
+    this.#winningNumber = winningNumber;
   }
 
-  validate(numbers) {
-    if (numbers.length !== RULES.LENGTH) {
+  validate(winningNumber) {
+    if (winningNumber.length !== RULES.LENGTH) {
       throw new Error(ERROR.WINNING_NUMBER_COUNT_CHECK);
     }
 
-    if (new Set(numbers).size !== RULES.LENGTH) {
+    if (new Set(winningNumber).size !== RULES.LENGTH) {
       throw new Error(ERROR.DUPLICATE_CHECK);
     }
 
-    numbers.forEach((number) => {
+    winningNumber.forEach((number) => {
       if (number < RULES.START_RANGE || number > RULES.END_RANGE) {
         throw new Error(ERROR.WINNING_NUMBER_RANGE_CHECK);
       }
@@ -26,11 +26,8 @@ class Lotto {
         throw new Error(ERROR.INPUT_NUMBER_CHECK);
       }
     });
-  }
 
-  play() {
-    this.validate(this.#numbers);
-    return this.#numbers;
+    return this.#winningNumber;
   }
 }
 
