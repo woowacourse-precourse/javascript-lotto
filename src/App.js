@@ -6,6 +6,8 @@ const LottoTicket = require("./LottoTicket.js");
 const BonusNumber = require("./BonusNumber.js");
 const Money = require("./Money.js");
 
+const {MESSAGE, RESULT_MESSAGE, ERROR} = require("./Constants.js");
+
 class App {
   lottocount;
   lottotickets;
@@ -20,7 +22,7 @@ class App {
   }
 
   inputMoney(){
-    Console.readLine('구입금액을 입력해 주세요.\n', (input) => {
+    Console.readLine(MESSAGE.PUT_MONEY, (input) => {
       this.input_money = new Money(input);
 
       Console.print("");
@@ -33,7 +35,7 @@ class App {
   }
 
   inputWinNumber(){
-    Console.readLine('당첨 번호를 입력해 주세요.\n', (input) => {
+    Console.readLine(MESSAGE.PUT_WIN_NUMBER, (input) => {
       input = input.split(",");
       this.input_lotto = new Lotto(input);
       
@@ -43,7 +45,7 @@ class App {
   }
 
   inputBonusNumber(){
-    Console.readLine('보너스 번호를 입력해 주세요.\n', (input) => {
+    Console.readLine(MESSAGE.PUT_BONUS_NUMBER, (input) => {
       this.input_bonus = new BonusNumber(input, this.input_lotto.getNumbers());
 
       this.calResults();
@@ -56,7 +58,7 @@ class App {
   }
 
   printLotto(){
-    Console.print(this.lottocount + "개를 구매했습니다.");
+    Console.print(this.lottocount + MESSAGE.LOTTO_COUNT);
 
     for(let i=0; i < this.lottocount; i++){
       let lottoticket = this.lottotickets[i];
@@ -77,14 +79,13 @@ class App {
 
   printWin(){
     Console.print("");
-    Console.print("당첨 통계");
-    Console.print("---");
+    Console.print(MESSAGE.WIN_STATISTICS);
     
-    Console.print("3개 일치 (5,000원) - " + this.results[0] + "개");
-    Console.print("4개 일치 (50,000원) - " + this.results[1] + "개");
-    Console.print("5개 일치 (1,500,000원) - " + this.results[2] + "개");
-    Console.print("5개 일치, 보너스 볼 일치 (30,000,000원) - " + this.results[3] + "개");
-    Console.print("6개 일치 (2,000,000,000원) - " + this.results[4] + "개");
+    Console.print(RESULT_MESSAGE.FIFTH + this.results[0] + "개");
+    Console.print(RESULT_MESSAGE.FOURTH + this.results[1] + "개");
+    Console.print(RESULT_MESSAGE.THIRD + this.results[2] + "개");
+    Console.print(RESULT_MESSAGE.SECOND + this.results[3] + "개");
+    Console.print(RESULT_MESSAGE.FIRST + this.results[4] + "개");
   }
 
   printRevenue(){
@@ -94,7 +95,7 @@ class App {
   countLotto(){
     const money = this.input_money.getMoney();
     if(!(money % 1000 === 0))
-      throw new Error("[ERROR] 1,000원 단위로 입력해 주세요.");
+      throw new Error(ERROR.MONEY_ERROR);
     this.lottocount = money / 1000;
   }
 

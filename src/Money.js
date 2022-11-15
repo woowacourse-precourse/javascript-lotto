@@ -1,9 +1,12 @@
+const {ERROR} = require("./Constants.js");
+
 class Money{
     money;
   
     constructor(money) {
       this.validate(money);
       this.money = money;
+      
     }
   
     validate(money) {
@@ -13,11 +16,6 @@ class Money{
             throw new Error("[ERROR] 양수를 입력해 주세요.");
         if(!(money % 1 === 0))
             throw new Error("[ERROR] 정수를 입력해 주세요.");    
-    }
-
-    toNumber(number){
-        number = Number(number);
-        return number;
     }
 
     getMoney(){

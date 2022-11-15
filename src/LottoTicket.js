@@ -1,7 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const {Random} = MissionUtils;
 
-
 class LottoTicket{
     purchase_numbers;
 

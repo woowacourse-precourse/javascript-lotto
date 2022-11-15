@@ -1,3 +1,5 @@
+const {ERROR} = require("./Constants.js");
+
 class Lotto {
   #numbers;
 
@@ -9,13 +11,13 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error(ERROR.LOTTO_COUNT_ERROR);
     }
 
     const set = new Set(numbers);
     const not_overlap = [...set];
     if(not_overlap.length != numbers.length)
-      throw new Error("[ERROR] 로또 번호는 서로 중복되지 않아야 합니다.");
+      throw new Error(ERROR.LOTTO_OVERLAP_ERROR);
 
     for(const number of numbers){
       this.validate_EachNumber(number);
@@ -24,13 +26,13 @@ class Lotto {
 
   validate_EachNumber(number){
     if(isNaN(number))
-      throw new Error("[ERROR] 숫자를 입력해 주세요.");
+      throw new Error(ERROR.NOT_NUMBER_ERROR);
     if(number < 0)
-      throw new Error("[ERROR] 양수를 입력해 주세요.");
+      throw new Error(ERROR.NEGATIVE_ERROR);
     if(!(number % 1 === 0))
-      throw new Error("[ERROR] 정수를 입력해 주세요.");    
+      throw new Error(ERROR.NOT_INT_ERROR);    
     if(number<1 || number>45)
-      throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");   
+      throw new Error(ERROR.LOTTO_DOMAIN_ERROR);   
   }
 
   toNumbers(numbers){
