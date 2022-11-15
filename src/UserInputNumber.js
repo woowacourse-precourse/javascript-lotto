@@ -11,7 +11,7 @@ class UserInputNumber {
         this.issudLotto;
     }
     
-    userLottoPaymentAmount(){
+    userLottoPaymentAmount(input){
         Console.readLine( INPUT_MONEY_MESSAGE , (input) => {
             let issuedLotto = input/THOUSAND;
             this.issudLotto = issuedLotto;
