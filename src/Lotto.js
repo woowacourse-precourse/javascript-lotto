@@ -13,9 +13,15 @@ class Lotto {
     }
     this.checkRange(numbers);
     this.checkDuplicates(numbers);
+    this.checkAllNumbers(numbers);
   }
 
   // TODO: 추가 기능 구현
+  checkAllNumbers(numbers) {
+    if (numbers.filter((number) => isNaN(number)).length > 0) {
+      throw new Error(error_message.not_all_numbers);
+    }
+  }
 
   checkRange(numbers) {
     numbers.forEach((number) => {
