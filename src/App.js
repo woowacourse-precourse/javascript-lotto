@@ -70,7 +70,7 @@ class App {
   compare(lottos, winningNumbers, bonusNumber) {
     lottos.forEach((lotto) => {
       const match = lotto.compare(winningNumbers, bonusNumber);
-      this.#result[match] += 1;
+      match >= 3 ? (this.#result[match] += 1) : null;
     });
 
     this.#profitRatio = this.caculateProfitRatio(
@@ -99,14 +99,13 @@ class App {
 
   getTotalPrize(result) {
     return Object.entries(result).reduce(
-      (total, [match, number]) =>
-        (total += PRIZE_MONEY[match] ? PRIZE_MONEY[match] * number : 0),
+      (total, [match, number]) => (total += PRIZE_MONEY[match] * number),
       0
     );
   }
 
   caculateProfitRatio(money, totalPrize) {
-    return (Math.round((totalPrize / money) * 1000) / 10).toFixed(1);
+    return ((totalPrize / money) * 100).toFixed(1);
   }
 }
 
