@@ -88,7 +88,7 @@ class App {
       } else {
         this.bonusNumber = input;
         this.matchLottos(this.lottos, this.winNumbers, this.bonusNumber);
-        this.printer.printscore(this.rewards);
+        this.printer.printScore(this.rewards);
         this.revenue = this.calculator.conductRevenue(
           this.rewards,
           this.payMoney

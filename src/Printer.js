@@ -11,7 +11,7 @@ class Printer {
     });
   }
 
-  printscore(rewards) {
+  printScore(rewards) {
     Console.print("\n당첨 통계\n---\n");
     rewards.forEach((reward) => {
       reward[0] != 5.5
