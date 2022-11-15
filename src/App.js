@@ -28,6 +28,9 @@ class App {
     GenerateLotto.printLottoNumber(this.lottos);
     this.hitLottoNumber = HitLottoNumber.inputHitLottoNumber();
     this.bonusNumber = HitLottoNumber.inputBonusNumber();
+    this.checkRewards(this.lottos, this.bonusNumber);
+    this.printRewards(this.winning);
+    this.carculateProfitRate(this.lottoCount, this.winning);
   }
 
   countSameNumber(lotto, hitLottoNumber) {
