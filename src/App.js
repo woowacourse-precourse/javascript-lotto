@@ -5,6 +5,11 @@ function roundToTwo(num) {
   return +(Math.round(num + "e+2") + "e-2");
 }
 
+function handleError(errMessage) {
+  MissionUtils.Console.close();
+  throw new Error("[ERROR] " + errMessage);
+}
+
 class App {
   play() {
     const BoxOffice = new Vendor();
@@ -14,15 +19,16 @@ class App {
     BoxOffice.acceptSpecialNumber;
 
     const Tickets = BoxOffice.getTickets();
+    BoxOffice.announceResult(Tickets);
   }
 }
 
 class Vendor {
-  #money;
-  #winningNumbers;
-  #specialNumber;
-
   constructor() {
+    this.money = 0;
+    this.winningNumbers = [];
+    this.specicalNumber = 0;
+    this.numbers = [];
     this.winningStatistics = [0, 0, 0, 0, 0];
   }
 
@@ -31,11 +37,11 @@ class Vendor {
     const err =
       "천의 배수의 양의 정수만 입력할 수 있습니다. ( 예: 135000 (O); -2342 (X) )";
 
-    MissionUtils.readLine(query, (userInput) => {
+    MissionUtils.Console.readLine(query, (userInput) => {
       if (!this.#validateMoney(userInput)) {
-        MyErrorHandler(err);
+        handleError(err);
       }
-      this.#money = Number(userInput);
+      this.money = Number(userInput);
     });
   }
 
@@ -56,11 +62,11 @@ class Vendor {
     const err =
       "여섯 개의 정수 (1과 45 사이)를 입력해 주세요. 정수와 정수 사이는 쉼표로 구분되어야 합니다. ( 예: 21, 32, 1, 45, 10, 6 )";
 
-    MissionUtils.readLine(query, (userInput) => {
+    MissionUtils.Console.readLine(query, (userInput) => {
       if (!this.#validateWinningNumbers(userInput)) {
-        MyErrorHandler(err);
+        handleError(err);
       }
-      this.#winnningNumbers = userInput.split(",").map(Number);
+      this.winningNumbers = userInput.split(",").map(Number);
     });
   }
 
@@ -97,11 +103,11 @@ class Vendor {
     const query = "보너스 번호를 입력해 주세요.";
     const err = "여섯 개의 정수 (1과 45 사이)를 입력해 주세요. ( 예: 45 )";
 
-    MissionUtils.readLine(query, (userInput) => {
+    MissionUtils.Console.readLine(query, (userInput) => {
       if (!this.#validateSpecialNumber(userInput)) {
-        MyErrorHandler(err);
+        handleError(err);
       }
-      this.#specialNumber = Number(userInput);
+      this.specialNumber = Number(userInput);
     });
   }
 
@@ -120,8 +126,8 @@ class Vendor {
       return false;
     }
 
-    // assumes #winningNumbers is already defined at this point
-    if (!this.#winningNumbers || this.#winningNumbers.includes(intNumber)) {
+    // assumes winningNumbers is already defined at this point
+    if (!this.winningNumbers || this.winningNumbers.includes(intNumber)) {
       return false;
     }
 
@@ -129,7 +135,7 @@ class Vendor {
   }
 
   getTickets() {
-    const total = this.#money / 1000;
+    const total = this.money / 1000;
     const Tickets = [];
 
     MissionUtils.Console.print(`${total}개를 구매했습니다.`);
@@ -147,11 +153,12 @@ class Vendor {
     numbers.sort(function (a, b) {
       return a - b;
     });
+    this.numbers.push(numbers);
     return new Lotto(numbers);
   }
 
   announceResult(tickets) {
-    for (let ticket in tickets) {
+    for (let ticket in this.numbers) {
       this.#computeOneResult(ticket);
     }
 
@@ -171,9 +178,7 @@ class Vendor {
     MissionUtils.Console.print(
       `6개 일치 (2,000,000,000원) - ${this.winningStatistics[3]}개`
     );
-    MissionUtils.Console.print(
-      `총 수익률은 ${Math.trunc(this.#money)}%입니다.`
-    );
+    MissionUtils.Console.print(`총 수익률은 ${this.#computeROI()}%입니다.`);
     MissionUtils.Console.print("```\n\n---");
     MissionUtils.Console.close();
   }
@@ -182,13 +187,13 @@ class Vendor {
     let cnt = 0;
     let bonus = false;
 
-    for (number in ticket) {
-      if (this.#winningNumbers.includes(number)) {
+    for (let number in ticket) {
+      if (this.winningNumbers.includes(number)) {
         ++cnt;
       }
     }
 
-    if (ticket.includes(this.#specialNumber)) {
+    if (ticket.includes(this.specialNumber)) {
       bonus = true;
     }
 
@@ -209,7 +214,7 @@ class Vendor {
     award += this.winningStatistics[3] * 2000000000;
     award += this.winningStatistics[4] * 30000000;
 
-    return roundToTwo(award / this.#money);
+    return roundToTwo(award / this.money);
   }
 }
 
