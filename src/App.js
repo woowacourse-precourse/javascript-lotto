@@ -7,6 +7,7 @@ const {
   getRoundto2,
   isStringNumbers,
 } = require('./utils');
+const { ERROR, CONSOLE, getMsg } = require('./messages');
 
 class App {
   price = 0;
@@ -20,17 +21,15 @@ class App {
 
   validate(price) {
     if (!isStringNumbers(price)) {
-      throw new TypeError('[ERROR] 금액은 숫자만 입력할 수 있습니다.');
+      throw new TypeError(ERROR.PRICE.VALID_TYPE);
     }
     if (+price % LOTTO_PRICE) {
-      throw new RangeError(
-        '[ERROR] 금액은 1,000원 단위로 나누어 떨어져야 합니다.'
-      );
+      throw new RangeError(ERROR.PRICE.VALID_UNIT);
     }
   }
 
   purchaseLottos() {
-    Console.readLine('구입금액을 입력해 주세요.\n', (price) => {
+    Console.readLine(CONSOLE.REQUEST_PRICE, (price) => {
       this.validate(price);
       this.price = +price;
 
@@ -43,7 +42,7 @@ class App {
   }
 
   printLottos() {
-    Console.print(`\n${this.price / LOTTO_PRICE}개를 구매했습니다.`);
+    Console.print(getMsg.purchased(this.price));
 
     this.lottos.forEach((lotto) => {
       lotto.sort(sortByNumber);
@@ -54,10 +53,10 @@ class App {
   }
 
   setWinning() {
-    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (numbers) => {
+    Console.readLine(CONSOLE.REQUEST_WINNING, (numbers) => {
       this.lottoMachine = new Lotto(numbers.split(',').map(Number));
 
-      Console.readLine('\n보너스 번호를 입력해 주세요.\n', (number) => {
+      Console.readLine(CONSOLE.REQUEST_BONUS, (number) => {
         this.lottoMachine.isValidBonusNumber(number);
         this.bonus = +number;
         this.printResult();
@@ -90,19 +89,10 @@ class App {
 
   printResult() {
     const result = this.calculateResult(this.lottos);
-    Console.print('\n당첨 통계\n---');
-    [
-      '3개 일치',
-      '4개 일치',
-      '5개 일치',
-      '5개 일치, 보너스 볼 일치',
-      '6개 일치',
-    ].forEach((stat, i) => {
-      Console.print(
-        `${stat} (${AWARD[i].toLocaleString()}원) - ${result[i]}개`
-      );
-    });
-    Console.print(`총 수익률은 ${this.getProfit(result)}%입니다.`);
+
+    Console.print(CONSOLE.ENTRY_RESULT);
+    Console.print(getMsg.statistic(result));
+    Console.print(getMsg.profit(this.getProfit(result)));
     Console.close();
   }
 }
