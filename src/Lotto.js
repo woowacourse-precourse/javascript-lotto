@@ -105,7 +105,6 @@ class Lotto {
   }
 
   printEarningsRate(earningsRate) {
-    console.log('check', earningsRate);
     return (
       '총 수익률은 ' + earningsRate.toFixed(1).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '%입니다.'
     );

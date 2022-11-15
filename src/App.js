@@ -61,7 +61,6 @@ class App {
       this.userBudget.budget,
       this.lottoWinNumbers.calculratePrizeMoney(lottoWinResult)
     );
-    console.log('수익률', earningsRate);
 
     this.printLottoResult(this.lottoWinNumbers.printLottoStatistics(lottoWinResult, earningsRate));
   }
