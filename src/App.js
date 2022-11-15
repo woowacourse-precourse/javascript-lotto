@@ -1,5 +1,10 @@
+const MissionUtils = require("@woowacourse/mission-utils");
 class App {
-  play() {}
+  play() {
+    Input();
+    Rotto();
+    print();
+  }
 }
 
 module.exports = App;
