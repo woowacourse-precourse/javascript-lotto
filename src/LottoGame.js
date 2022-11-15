@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { MESSAGE } = require('./utils/constant');
+const { MESSAGE, RANK } = require('./utils/constant');
 const LottoShop = require('./LottoShop');
 const Lotto = require('./Lotto');
 const Bonus = require('./Bonus');
@@ -47,6 +47,25 @@ class LottoGame {
     });
 
     return correctNumbers;
+  }
+
+  isCorrectBonus() {
+    return this.winningNumbers.includes(this.bonusNumber);
+  }
+
+  getLottoRank(correctNumbers) {
+    switch (correctNumbers) {
+      case 3:
+        return RANK.FIFTH;
+      case 4:
+        return RANK.FOURTH;
+      case 5:
+        return this.isCorrectBonus() ? RANK.SECOND : RANK.THIRD;
+      case 6:
+        return RANK.FIRST;
+      default:
+        return RANK.SIXTH;
+    }
   }
 }
 module.exports = LottoGame;
