@@ -12,7 +12,6 @@ class App {
     this.purchaseLottoSet = new Set();
     this.winningNumberArr = [];
     this.bonusNumber = 0;
-    this.Lotto = undefined;
   }
 
   play() {
