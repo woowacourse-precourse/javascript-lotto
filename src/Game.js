@@ -5,8 +5,6 @@ const Bonus = require("./Bonus");
 const Payment = require("./Payment");
 
 class Game {
-  constructor() {
-  }
 
   startLottery() {
     this.getUserPayment();
