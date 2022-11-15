@@ -18,11 +18,18 @@ function checkWinningRest(string) {
   }
 }
 
+function checkWinningSixNumber(string) {
+  const splitArray = string.split(',');
+  if (splitArray.length !== 6) {
+    throw new Error('[ERROR] 6개의 숫자만 입력해 주세요.');
+  }
+}
+
 function checkWinningValidation(string) {
   checkWinningEmpty(string);
   checkWinningString(string);
   checkWinningRest(string);
-
+  checkWinningSixNumber(string);
   return true;
 }
 
