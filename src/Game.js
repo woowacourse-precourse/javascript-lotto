@@ -38,6 +38,13 @@ class Game {
         InputOutput.output(Message.getLottoCountMessage(this.user.getUserLottoCount()));
     }
 
+    printUserLotto () {
+        const array = this.user.getUserLotto();
+        for(let oneLotto of array){
+            InputOutput.output(`\"[${oneLotto[0]}, ${oneLotto[1]}, ${oneLotto[2]}, ${oneLotto[3]}, ${oneLotto[4]}, ${oneLotto[5]}]\"`)
+        }
+    }
+
 }
 
 module.exports = Game;
