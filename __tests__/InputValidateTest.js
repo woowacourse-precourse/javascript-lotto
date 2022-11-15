@@ -37,4 +37,15 @@ describe('사용자 입력값 에러 테스트', () => {
       }).toThrow(Display.error('UNACCEPTABLE_PAYMENT'));
     });
   });
+
+  test('사용자의 당첨 번호 입력값이 유효하지 않으면 예외가 발생한다.', () => {
+    const inputs = ['1,2', '6,1,1,6,7,10', '50,40,30,20,10,1'];
+    const result = ['OUT_OF_VOLUME', 'DUPLICATED', 'OUT_OF_RANGE'];
+
+    inputs.forEach((input, i) => {
+      expect(() => {
+        validateWinningNumbersInput(input);
+      }).toThrow(Display.error(result[i]));
+    });
+  });
 });
