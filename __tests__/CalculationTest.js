@@ -9,4 +9,11 @@ describe('Calculation 클래스 테스트', () => {
       expect(output).toBe(expectedOutput[index]);
     });
   });
+
+  test('천 단위마다 콤마를 찍는다.', () => {
+    const input = 1000000;
+    const expectedOutput = '1,000,000';
+    const output = Calculation.setCommas(input);
+    expect(output).toBe(expectedOutput);
+  });
 });
