@@ -77,8 +77,8 @@ class Result {
   setProfit() {
     const money = PRICE_PER_LOTTO * this.randomNumUnits.length;
     const totalGain = this.getTotalGain();
-    // console.log(money, ' and ', totalGain);
     this.profit = ((totalGain / money) * 100).toFixed(1);
+    if (isNaN(this.profit)) this.profit = '0.0';
   }
 
   getTotalGain() {
