@@ -87,7 +87,7 @@
 #### App.js
 
 - [x] `play`: 게임 시작 기능 구현하기
-- [ ] `MoneyInputPhase`: 돈을 입력받으면 랜덤 생성된 로또를 보여주는 단계 구현하기
+- [x] `MoneyInputPhase`: 돈을 입력받으면 랜덤 생성된 로또를 보여주는 단계 구현하기
 - [ ] `winLottoInputPhase`: 6개의 일반 로또 숫자를 입력받고 저장하는 단계 구현하기
 - [ ] `bonusNumberInputPhase`: 보너스 숫자를 입력받고 저장하는 단계 구현하기
 - [ ] `showingResultPhase`: 로또 게임의 최종 결과를 출력하는 단계 구현하기

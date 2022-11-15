@@ -15,6 +15,15 @@ class App {
     this.#inventory = new Inventory();
     this.#moneyInputPhase();
   }
+
+  #moneyInputPhase() {
+    BetterConsole.readLine(MESSAGE.PLEASE_INPUT_MONEY, (money) => {
+      this.#inventory.generateLottoWithMoney(money);
+      const lottosData = this.#inventory.getLottosData();
+      Printer.printPurchaseMessage(lottosData);
+      this.#winLottoInputPhase();
+    });
+  }
 }
 
 module.exports = App;
