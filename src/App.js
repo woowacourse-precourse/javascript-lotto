@@ -61,6 +61,17 @@ class App {
     }
   }
 
+  makeMatchResult() {
+    let list = Array(8).fill(0);
+    for(let i = 0; i < this.total; i++) {
+      list[this.match[i]] += 1;
+      if(this.match[i] === 5 && this.bonusMatch[i] === 1) {
+        list[7] += 1;
+      }
+    }
+    this.printResult(list);
+  }
+
 
 }
 const a = new App;
