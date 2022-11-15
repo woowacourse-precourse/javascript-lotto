@@ -43,27 +43,36 @@ class App {
 
   getBonusNumber() {
     Console.readLine(MESSAGE.GET_BONUS, (answer) => {
-      if (!this.isValidBonusNumberInput(answer)) {
-        throw new Error(ERROR.INVALID_BONUS_INPUT);
-      }
+      this.validate(answer);
       this.#bonusNumber = answer;
     });
   }
 
-  isValidBonusNumberInput(answer) {
-    if (!Number(answer)) {
-      return false;
+  validate(answer) {
+    this.validateNumber(answer);
+    this.validateRange(answer);
+    this.validateDuplicate(answer);
+  }
+
+  validateNumber(answer) {
+    if(!Number(answer)) {
+      throw new Error(ERROR.INVALID_BONUS_NUMBER);
     }
+  }
+
+  validateRange(answer) {
     if (answer < 1 || answer > 45) {
-      return false;
+      throw new Error(ERROR.INVALID_BONUS_RANGE);
     }
+  }
+
+  validateDuplicate(answer) {
     const lottoList = this.#User.getLottoList();
     lottoList.forEach(lotto => {
       if(lotto.includes(answer)) {
-        return false;
+        throw new Error(ERROR.INVALID_BONUS_DUPLICATE);
       }
     });
-    return true;
   }
 }
 

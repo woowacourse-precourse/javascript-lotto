@@ -4,8 +4,8 @@ const { RESULT, LOTTO } = require("./constants");
 class Util {
   printRankCount(rankCountTable) {
     Console.print("\n당첨 통계\n---\n");
-    for (let i = 5; i > 0; i--) {
-      Console.print(RESULT.RANK_PHRASE[i] + rankCountTable[i] + "개");
+    for (let index = 5; index > 0; index--) {
+      Console.print(RESULT.RANK_PHRASE[index] + rankCountTable[index] + "개");
     }
   }
 
@@ -46,7 +46,7 @@ class Util {
     let count = 0;
     userLotto.forEach(number => {
       if (winNumbers.includes(number)) {
-        count++;
+        count += 1;
       }
     });
     return count;
@@ -72,8 +72,8 @@ class Util {
 
   calculateTotalEarn(rankCountTable) {
     let totalEarn = 0;
-    for (let i = 1; i < LOTTO.NUMBER_COUNT; i++) {
-      totalEarn += (rankCountTable[i] * LOTTO.REWARD_TABLE[i]);
+    for (let index = 1; index < LOTTO.NUMBER_COUNT; index++) {
+      totalEarn += (rankCountTable[index] * LOTTO.REWARD_TABLE[index]);
     }
     return totalEarn;
   }

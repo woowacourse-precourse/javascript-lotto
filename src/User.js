@@ -7,9 +7,7 @@ class User {
   #lottoList;
 
   constructor(money) {
-    if (!this.isValid(money)) {
-      throw new Error(ERROR.INVALID_MONEY);
-    }
+    this.validate(money);
     this.#money = money;
     this.#lottoAmount = money / 1000;
   }
@@ -26,14 +24,21 @@ class User {
     return this.#lottoList;
   }
 
-  isValid(money) {
+  validate(money) {
+    this.validateNumber(money);
+    this.validateUnit(money);
+  }
+
+  validateNumber(money) {
     if (isNaN(money)) {
-      return false;
+      throw new Error(ERROR.INVALID_MONEY_NUMBER);
     }
+  }
+
+  validateUnit(money) {
     if (money % 1000 != 0) {
-      return false;
+      throw new Error(ERROR.INVALID_MONEY_UNIT);
     }
-    return true;
   }
 
   createLottoList() {

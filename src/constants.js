@@ -14,11 +14,14 @@ const Constants = {
       5: "3개 일치 (5,000원) - "},
   },
   ERROR: {
-    INVALID_MONEY: "[ERROR] 구입 금액은 1000원 단위의 수여야 합니다.",
+    INVALID_MONEY_NUMBER: "[ERROR] 구입 금액은 정수여야 합니다.",
+    INVALID_MONEY_UNIT: "[ERROR] 구입 금액은 1000단위여야 합니다.",
     INVALID_WIN_INPUT: "[ERROR] 로또 번호는 쉼표로 구분된 6개의 수를 입력해야 합니다.",
     INVALID_WIN_DUPLICATE: "[ERROR] 로또 번호는 중복되지 않는 수여야 합니다.",
     INVALID_WIN_RANGE: "[ERROR] 로또 번호는 1과 45 사이의 수여야 합니다.",
-    INVALID_BONUS_INPUT: "[ERROR] 보너스 번호는 로또 번호와 중복되지 않는 1과 45 사이의 수여야 합니다.",
+    INVALID_BONUS_NUMBER: "[ERROR] 보너스 번호는 정수여야 합니다.",
+    INVALID_BONUS_RANGE: "[ERROR] 보너스 번호는 1과 45 사이의 수여야 합니다.",
+    INVALID_BONUS_DUPLICATE: "[ERROR] 보너스 번호는 로또 번호와 중복되지 않는 수여야 합니다.",
   },
   LOTTO: {
     NUMBER_COUNT: 6,
