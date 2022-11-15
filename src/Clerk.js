@@ -1,11 +1,11 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { GAME_MESSAGES, LOTTO_INFO } = require("../utils/Constants");
-const LottoUtils = require("../utils/LottoUtils");
-const QuickPick = require("../input/QuickPick");
-const Lotto = require("../Lotto");
-const Bonus = require("../input/Bonus");
-const PurChase = require("../input/PurChase");
-const Result = require("../play/Result");
+const { GAME_MESSAGES, LOTTO_INFO } = require("./Constants");
+const LottoUtils = require("./LottoUtils");
+const QuickPick = require("./QuickPick");
+const Lotto = require("./Lotto");
+const Bonus = require("./Bonus");
+const PurChase = require("./PurChase");
+const Result = require("./Result");
 
 class Clerk {
   #payment;

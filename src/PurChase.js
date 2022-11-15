@@ -1,4 +1,4 @@
-const { LOTTO_INFO, ERROR_MESSAGES } = require("../utils/Constants");
+const { LOTTO_INFO, ERROR_MESSAGES } = require("./Constants");
 
 class PurChase {
   #payment;
