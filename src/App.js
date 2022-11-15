@@ -41,22 +41,20 @@ class App {
     this.inputLottoNumber();
   }
 
-inputLottoNumber(lottos){
-  Console.readLine("\n당첨 번호를 입력해 주세요.\n",(num) => {
-    if (!/^(\d{1,2}[,]){5}\d{1,2}$/.test(num))
-      throw new Error("[ERROR] 입력형식이 올바르지 않습니다.");
-    const numbers = num.split(",").map((number) => {
-      if(number < 1 || number > 45)
-      throw new Error("[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다.");
-      return parseInt(number);
+  inputLottoNumber(){
+    Console.readLine('당첨 번호를 입력해 주세요.\n', (num) => {
+      if (!/^(\d{1,2}[,]){5}\d{1,2}$/.test(num))
+        throw new Error("[ERROR] 입력형식이 올바르지 않습니다.");
+     const inputSixNumber = num.split(",").map((str) => {
+      Number(str)
+      return parseInt(str);
+     });
+     const checkArr = new Set(inputSixNumber);
+     if(checkArr.size != 6) throw new Error("[ERROR] 중복번호가 포함되어 있습니다.");
+      this.winNum = inputSixNumber;
+      this.inputBonusLotto();
     });
-    const duplication =  new Set(numbers);
-    if (duplication.size != 6)
-      throw new Error("[ERROR] 중복번호가 포함되어 있습니다.");
-      this.inputBonusLotto(numbers,lottos);
-  })
- 
-}
+  }
 
 inputBonusLotto(inputSixNumber, lottos){
   let inputBonusNumber = [];
