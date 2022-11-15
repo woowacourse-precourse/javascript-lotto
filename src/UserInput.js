@@ -28,8 +28,8 @@ class UserInput {
   }
 
   handleBonusNumber(bonusNumber) {
-    const winningNumber = this.winningNumber.getWinningNumber()
-    this.bonusNumber = new Bonus(bonusNumber, winningNumber);
+    this.bonusNumber = new Bonus(bonusNumber, this.winningNumbers);
+    this.bonusNumber.compareUserAndBonus(this.publishedLotto);
   }
 }
 
