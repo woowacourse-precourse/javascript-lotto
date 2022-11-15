@@ -1,5 +1,13 @@
+const LotteryMachine = require('./LotteryMachine');
 class App {
-  play() {}
+  constructor() {
+    this.lotteryMachine = new LotteryMachine();
+  }
+
+  play() {
+    const lottos = LotteryMachine.issueTicket();
+  }
+
 }
 
 module.exports = App;
