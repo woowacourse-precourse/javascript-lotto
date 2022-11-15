@@ -1,8 +1,11 @@
 const { Console } = require('@woowacourse/mission-utils');
 const { BUY_MESSAGE } = require('./const');
-
-const Utils = require('./Utils');
-const Validations = require('./Validations');
+const {
+  convertFromArrayToString,
+  createRandomLotto,
+  sortAscent,
+} = require('./Utils');
+const { isThousand } = require('./Validations');
 
 class Purchase {
   constructor(money) {
@@ -12,7 +15,7 @@ class Purchase {
   }
 
   validate(money) {
-    Validations.isThousand(money);
+    isThousand(money);
   }
 
   print() {
@@ -27,7 +30,7 @@ class Purchase {
 
   printLottoArray() {
     this.totalLottoes.forEach(lotto => {
-      const stringArray = Utils.convertFromArrayToString(lotto);
+      const stringArray = convertFromArrayToString(lotto);
       Console.print(stringArray);
     });
   }
@@ -35,8 +38,8 @@ class Purchase {
   createLottoArray() {
     const count = this.money / 1000;
     for (let i = 0; i < count; i += 1) {
-      const unorderedLotto = Utils.createRandomLotto();
-      const lottoArray = Utils.sortAscent(unorderedLotto);
+      const unorderedLotto = createRandomLotto();
+      const lottoArray = sortAscent(unorderedLotto);
       this.totalLottoes.push(lottoArray);
     }
     return this.totalLottoes;
