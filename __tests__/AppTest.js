@@ -287,7 +287,7 @@ describe('수익률을 계산하는 기능', () => {
     const lottoMachineController = new LottoMachineController();
     lottoMachineController.purchaseAmount = 8000;
 
-    expect(lottoMachineController.calculateTotalPrizeMoney(lottoResult)).toEqual('25000000.0');
+    expect(lottoMachineController.calculateTotalPrizeMoney(lottoResult)).toEqual('25,000,000.0');
   });
 
   test('Test1', () => {
@@ -295,6 +295,6 @@ describe('수익률을 계산하는 기능', () => {
     const lottoMachineController = new LottoMachineController();
     lottoMachineController.purchaseAmount = 8000;
 
-    expect(lottoMachineController.calculateTotalPrizeMoney(lottoResult)).toEqual('25394437.5');
+    expect(lottoMachineController.calculateTotalPrizeMoney(lottoResult)).toEqual('25,394,437.5');
   });
 });
