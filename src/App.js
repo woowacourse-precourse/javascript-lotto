@@ -4,14 +4,7 @@ const Print = require("./Print");
 const ErrorCase = require("./ErrorCase");
 const { NOTICE_MESSAGE, ERROR_MESSAGE } = require("./Constants");
 const { Console } = require("@woowacourse/mission-utils");
-
-const formatWinningNumbers = (winningNumbers) => {
-  return winningNumbers
-    .split(" ")
-    .join("")
-    .split(",")
-    .map((number) => parseInt(number));
-};
+const { Check, Format } = require("./Utils");
 
 class App {
   cash;
@@ -32,7 +25,7 @@ class App {
   }
 
   receiveCash(userInput) {
-    this.checkWrongInput(userInput, ErrorCase.isWrongCashInput, ERROR_MESSAGE.CASH);
+    Check.wrongInput(userInput, ErrorCase.isWrongCashInput, ERROR_MESSAGE.CASH);
 
     this.cash = Number(userInput);
   }
@@ -52,9 +45,9 @@ class App {
   }
 
   receiveWinningNumbers(userInput) {
-    this.checkWrongInput(userInput, ErrorCase.isWrongWinningNumbersInput, ERROR_MESSAGE.WINNING_NUMBERS);
+    Check.wrongInput(userInput, ErrorCase.isWrongWinningNumbersInput, ERROR_MESSAGE.WINNING_NUMBERS);
 
-    const winningNumbers = formatWinningNumbers(userInput);
+    const winningNumbers = Format.winningNumbers(userInput);
     this.winningNumbers = winningNumbers;
   }
 
@@ -62,14 +55,14 @@ class App {
     Console.readLine(NOTICE_MESSAGE.BONUS_NUMBER, (userInput) => {
       this.receiveBonusNumber(userInput);
 
-      this.checkBonusNumberDuplicated();
+      Check.bonusNumberDuplicated(this.winningNumbers, this.bonusNumber, ErrorCase.isDuplicatedBonusNumber);
 
       this.produceStats();
     });
   }
 
   receiveBonusNumber(userInput) {
-    this.checkWrongInput(userInput, ErrorCase.isWrongBonusNumberInput, ERROR_MESSAGE.BONUS_NUMBER);
+    Check.wrongInput(userInput, ErrorCase.isWrongBonusNumberInput, ERROR_MESSAGE.BONUS_NUMBER);
 
     const bonusNumber = Number(userInput);
     this.bonusNumber = bonusNumber;
@@ -90,17 +83,6 @@ class App {
 
   terminate() {
     Console.close();
-  }
-
-  checkWrongInput(userInput, errorHandler, errorMessage) {
-    const isWrongInput = errorHandler(userInput);
-    if (isWrongInput) throw new Error(errorMessage);
-  }
-
-  checkBonusNumberDuplicated() {
-    const isDuplicated = ErrorCase.isDuplicatedBonusNumber(this.winningNumbers, this.bonusNumber);
-
-    if (isDuplicated) throw new Error(ERROR_MESSAGE.DUPLICATED_BONUS_NUMBER);
   }
 }
 
