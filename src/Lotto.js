@@ -1,10 +1,9 @@
+const { LOTTO_NUMBER_LIMIT ,ERROR_MESSAGE, WINNINGS } = require("../constants/LottoConstants");
 
 class Lotto {
   #numbers;
 
   constructor(numbers, bonusNumber) {
-    this.lottoNumberMax = 45;
-    this.lottoNumberMin = 1;
     this.winningNumbers = [0, 0, 0, 0, 0];
     this.validate(numbers);
     this.duplicate(numbers);
@@ -17,80 +16,81 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error(ERROR_MESSAGE.NUMBERS_NOT_SIX_LENGTH);
     }
   }
 
   // TODO: 추가 기능 구현
   duplicate(numbers) {
     if ([...new Set(numbers)].length !== 6) {
-      throw new Error("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+      throw new Error(ERROR_MESSAGE.NUMBERS_IN_DUPLICATE);
     }
   }
 
   numberLimit(numbers) {
     numbers.forEach((number) => {
-      if (number > this.lottoNumberMax || number < this.lottoNumberMin) {
-        throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+      if (number > LOTTO_NUMBER_LIMIT.LOTTO_NUMBER_MAX || 
+          number < LOTTO_NUMBER_LIMIT.LOTTO_NUMBER_MIN) {
+        throw new Error(ERROR_MESSAGE.NUMBERS_FIXED_NUMBER);
       }
     })
   }
 
   bonusDuplicate(bonuseNumber) {
     if (this.#numbers.includes(bonuseNumber)) {
-      throw new Error("[ERROR] 보너스 번호는 로또 번호와 같을 수 없습니다.");
+      throw new Error(ERROR_MESSAGE.BONUS_NUMBER_NO_SAME);
     }
   }
 
   bonusLimit(bonusNumber) {
-    if (bonusNumber > this.lottoNumberMax || bonusNumber < this.lottoNumberMin) {
-      throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+    if (bonusNumber > LOTTO_NUMBER_LIMIT.LOTTO_NUMBER_MAX ||
+        bonusNumber < LOTTO_NUMBER_LIMIT.LOTTO_NUMBER_MIN) {
+      throw new Error(ERROR_MESSAGE.BONUS_NUMBER_FIXED_NUMBER);
     }
   }
 
   lottoCompare(lottoNumbers) {
-    let sameNumber = lottoNumbers.filter(num => this.#numbers.includes(num));
-    let matchNumber = sameNumber.length
+    const sameNumber = lottoNumbers.filter(num => this.#numbers.includes(num));
+    const matchNumber = sameNumber.length
 
     if (matchNumber === 5) {
-      return this.bonusCompare(matchNumber, lottoNumbers);
+      return this.bonusCompare(lottoNumbers);
     }
     return this.lottoWinning(matchNumber);
   }
 
-  bonusCompare(matchNumber, lottoNumbers) {
+  bonusCompare(lottoNumbers) {
     if (lottoNumbers.includes(this.bonusNumber)) {
-      this.winningNumbers[4] += 1;
+      this.winningNumbers[3] += 1;
     } else {
-      this.winningNumbers[matchNumber - 3] += 1;
+      this.winningNumbers[2] += 1;
     }
     return this.winningNumbers;
   }
 
   lottoWinning(matchNumber) {
-    if (matchNumber >= 3) {
-      this.winningNumbers[matchNumber - 3] += 1;
+    if (matchNumber === 6) {
+      this.winningNumbers[4] += 1;
+    } else if (matchNumber === 4) {
+      this.winningNumbers[1] += 1;
+    } else if (matchNumber === 3) {
+      this.winningNumbers[0] +=1;
     }
     return this.winningNumbers;
   }
 
   lottoCompareRepeat(lottoList) {
-
     lottoList.forEach(lottoNumbers => {
       this.lottoCompare(lottoNumbers);
     })
   }
 
   getRevenue() {
-    let revenue = 0; 
-    let firstPlace = this.winningNumbers[3] * 20e8;
-    let secondPlace = this.winningNumbers[4] * 30e6;
-    let thirdPlace = this.winningNumbers[2] * 150e4;
-    let fourthPlace = this.winningNumbers[1] * 50e3;
-    let fifthPlace = this.winningNumbers[0] * 50e2;
+    let revenue = 0;
 
-    revenue = firstPlace + secondPlace + thirdPlace 
-    + fourthPlace + fifthPlace;
+    for (let i = 0; i < this.winningNumbers.length; i++) {
+      revenue += this.winningNumbers[i] * WINNINGS[i];
+    }
     return revenue;
   }
 
