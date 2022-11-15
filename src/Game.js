@@ -1,6 +1,7 @@
 const { Console } = require('@woowacourse/mission-utils');
 const { LOTTO, MESSAGE } = require('./constant/Lotto');
 const Validation = require('./Validation');
+const Lotto = require('./Lotto');
 
 class Game {
   initGame() {
@@ -12,7 +13,19 @@ class Game {
   proceedStepOne(input) {
     Validation.validateMoney(input);
     const numberOfLotto = Math.floor(input / LOTTO.PRICE);
-    Console.print(MESSAGE.PURCHASE_RESULT(numberOfLotto));
+    const lottoList = this.issueLotto(numberOfLotto);
+    this.lottoList = lottoList;
+    this.printPurchaseResult(lottoList);
+    this.askNumber(MESSAGE.INPUT_NUMBER, this.proceedStepTwo.bind(this));
+  }
+  issueLotto(numberOfLotto) {
+    const lottoList = [];
+    for (let i = 0; i < numberOfLotto; i++) {
+      const numbers = Lotto.generateNumbers();
+      const lottoNumber = new Lotto(numbers).getNumbers();
+      lottoList.push(lottoNumber);
+    }
+    return lottoList;
   }
 }
 
