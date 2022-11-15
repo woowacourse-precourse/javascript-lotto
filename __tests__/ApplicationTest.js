@@ -68,4 +68,21 @@ describe("로또 테스트", () => {
       app.play();
     }).toThrow("[ERROR]");
   });
+
+  test("1000미만의 수가 입력되면 에러가 발생한다", () => {
+    mockQuestions(["900"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+
+  test("1000으로 나누어 떨어지지 않으면 에러가 발생한다", () => {
+    mockQuestions(["1300"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+
 });
