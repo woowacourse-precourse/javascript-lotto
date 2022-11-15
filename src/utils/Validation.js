@@ -1,3 +1,5 @@
+const { MAX_LENGTH } = require("./Constants");
+
 class Validation {
   #state;
   constructor() {
@@ -14,6 +16,11 @@ class Validation {
     if (array.indexOf(item) !== index)
       throw new Error("[ERROR] 중복된 번호가 있습니다.");
     return this.#state;
+  }
+
+  isValidateLength(array) {
+    if (array.length !== MAX_LENGTH)
+      throw new Error("[ERROR] 로또의 길이가 유효하지 않습니다.");
   }
 }
 
