@@ -71,6 +71,30 @@ class Controller {
     }, {});
   }
 
+  calcStatistics() {
+    const winningResult = this.calcWinningResult();
+    const statistics = ["3", "4", "5", "6", "7"].reduce((acc, curr) => {
+      if (winningResult[curr]) {
+        acc[curr] = winningResult[curr];
+      } else {
+        acc[curr] = 0;
+      }
+      return acc;
+    }, {});
+
+    this.view.printStatistics(statistics);
+    const winningPrice = this.calcWinningPrice(statistics);
+  }
+
+  calcWinningPrice(statistics) {
+    return Object.keys(statistics).reduce((acc, curr) => {
+      if (WINNING_PRICE_MAP[curr]) {
+        acc += (statistics[curr] * WINNING_PRICE_MAP[curr]);
+      }
+      return acc;
+    }, 0);
+  }
+
   calcWinningCount(quickPick, score) {
     const bonus = this.bonusModel.getBonus();
 
