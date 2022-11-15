@@ -44,7 +44,13 @@ class App {
       if(Number.isNaN(v)) {
         throw new Error('[ERROR] 당첨 번호가 올바르지 않습니다.');
       }
-    })
+    });
+
+    for (let i = 0; i < 5; i++) {
+      if (this.winningNumber.slice(i+1).includes(this.winningNumber[i])) {
+        throw new Error('[ERROR] 중복되는 당첨 번호가 있습니다.');
+      }
+    }
   }
 
   inputBonusNumber() {
