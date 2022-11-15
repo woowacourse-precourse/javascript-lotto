@@ -85,8 +85,28 @@ class Lotto {
         throw new Error('[ERROR] 쉼표로 구분한 하나의 문자열을 입력해주세요.');
       }
       this.#numbers = numbers.split(',').map(Number);
-      Console.print(this.#numbers);
       this.checkUserNumber(this.#numbers);
+      this.getUserBonusNumber();
+    });
+  }
+
+  checkUserBonusNumber(number) {
+    if (number.length !== 1) {
+      throw new Error('[ERROR] 1글자만 입력해주세요');
+    }
+    if (number.includes(NaN)) {
+      throw new Error('[ERROR] 숫자만 입력해주세요.');
+    }
+    if (number < 1 || number > 45) {
+      throw new Error('[ERROR] 1 ~ 45 사이의 숫자만 입력 가능합니다.');
+    }
+  }
+
+  getUserBonusNumber() {
+    Console.readLine(`${'\n'}보너스 번호를 입력해 주세요.${'\n'}`, (number) => {
+      const bonus = number.split(',').map(Number);
+      Console.print(bonus);
+      this.checkUserBonusNumber(bonus);
     });
   }
 }
