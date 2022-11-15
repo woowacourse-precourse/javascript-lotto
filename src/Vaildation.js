@@ -1,8 +1,9 @@
 class Vaildation{
   constructor(number) {
-    this.isVaildBounsNumber(number);
+    this.isVaildAmount(number);
     this.number= number;
   }
+
   isVaildBounsNumber(number){
 
     const numberPattern = /[^0-9]/g;
