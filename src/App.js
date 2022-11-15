@@ -10,6 +10,7 @@ class App {
   #lotto;
   #bonus;
   #numbers = [];
+  #winList = { three: 0, four: 0, five: 0, bonus: 0, six: 0 };
 
   countLotto(money) {
     this.#count = money / 1000;
@@ -57,9 +58,17 @@ class App {
     Console.print(this.arrayToString(lottos));
   }
 
+  calculateCount(count) {
+    if (count === 3) this.#winList.three++;
+    else if (count === 4) this.#winList.four++;
+    else if (count === 5) this.#winList.five++;
+    else if (count === 6) this.#winList.six++;
+  }
+
   getResult() {
     this.#numbers.map((userLotto) => {
       let count = this.#lotto.matchNumber(userLotto);
+      this.calculateCount(count);
     });
   }
 
@@ -67,6 +76,7 @@ class App {
     this.inputPurchase();
     this.inputWinNumber();
     this.createLottos();
+    this.getResult();
   }
 }
 
