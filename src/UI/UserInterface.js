@@ -1,4 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
+
 const {
   MATCHING_MESSAGES,
   PRIZE_MESSAGES,
@@ -52,7 +53,7 @@ class UserInterface {
 
   showResult() {
     Console.print(ACTION_MESSAGES.result);
-    const matchedCountList = this.purchaser.countMatchedNumber(
+    const matchedCountList = this.purchaser.countMatchedNumberAll(
       this.#lottos,
       this.#winnerNumber,
       this.#bonusNumber
