@@ -70,8 +70,8 @@ class App {
   }
 
   printLottoList() {
-    for(let idex = 0; idex < this.lottoAmount; idex++) {
-      Console.print(`[${this.lottoList[idex].join(", ")}]`);
+    for(let index = 0; index < this.lottoAmount; index++) {
+      Console.print(`[${this.lottoList[index].join(", ")}]`);
     }
 
     this.initLuckyNumbers();
