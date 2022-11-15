@@ -57,9 +57,18 @@ class Lotto {
   compareNumberOfLotto(winNumbers, bonusNumber, lotto) {
     const count = winNumbers.filter(number => lotto.has(number)).length;
     if (count === 5 && lotto.has(bonusNumber)) {
-      return PRIZE_MATCHp[fivePlusBonus];
+      return PRIZE_MATCH.FIVEPLUSBONUS;
     }
     return PRIZE_MATCH[count];
+  }
+
+  print() {
+    const { fifthGrade, forthGrade, thirdGrade, secondGrade, firstGrade } = this.resultMap;
+    Console.print(`3개 일치 (5,000원) - ${fifthGrade}개`);
+    Console.print(`4개 일치 (50,000원) - ${forthGrade}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${thirdGrade}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${secondGrade}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${firstGrade}개`);
   }
 }
 
