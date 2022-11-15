@@ -16,12 +16,9 @@ class Prize {
     const bonusNumber = this.#lottoMachine.takeBonusNumberExcept(winningNumbers);
     this.lottos.reduce((acc, lotto) => {
       const place = lotto.winWhatPlace(winningNumbers, bonusNumber);
-      console.log(`${place}, ${winningNumbers}, ${bonusNumber}`);
       acc[5-place] += 1;
       return acc;
     }, this.wins);
-    this.#console.print(this.wins);
-    this.#console.close();
   }
 
   announceResult() {
@@ -32,6 +29,14 @@ class Prize {
       }
     });
     this.#console.close();
+  }
+  
+  calcualteResult() {
+    const prizeMoney = this.wins.reduce((acc, numberWins, idx) => {
+      acc += numberWins * RESULT[idx];
+      return acc;
+    }, 0)
+    return prizeMoney;
   }
 }
 

@@ -23,6 +23,7 @@ const RESULT = Object.freeze([
   1500000,
   30000000,
   2000000000,
+  0,
 ]);
 
 module.exports = Object.freeze({
