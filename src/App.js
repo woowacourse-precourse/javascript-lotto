@@ -4,7 +4,6 @@ const IO = require('./IO');
 const Lotto = require('./Lotto');
 const NumberGenerator = require('./NumberGenerator');
 const Person = require('./Person');
-const Referee = require('./Referee');
 const Validator = require('./Validator');
 
 const {
@@ -72,14 +71,9 @@ class App {
   }
 
   static calcResult() {
-    const calcEachLotto = (result, lotto) => {
-      const { numbers } = lotto;
-      const { winningNumbers, bonusNumber } = App;
-      const place = Referee.compare(numbers, winningNumbers, bonusNumber);
-      place > 0 && result[place - 1]++;
-      return result;
-    };
-    const result = Person.lottos.reduce(calcEachLotto, [0, 0, 0, 0, 0]);
+    const { winningNumbers, bonusNumber } = App;
+    const { lottos } = Person;
+    const result = Calculator.calcLottos(lottos, winningNumbers, bonusNumber);
     App.convertGameResult(result);
   }
 
