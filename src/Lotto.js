@@ -5,8 +5,7 @@ class Lotto {
 
   constructor(numbers) {
     Validator.lottoValidCheck(numbers);
-    numbers = [...numbers];
-    this.#numbers = numbers;
+    this.#numbers = [...numbers];
   }
   setBonus(bonus) {
     Validator.bonusValidCheck(bonus, this.#numbers);
