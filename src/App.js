@@ -21,8 +21,12 @@ class App {
   static lottoPublisher(purchaseCount) {
     const purchaseLottoNumbers = [];
     for (let lottoCount = 0; lottoCount < purchaseCount; lottoCount += 1) {
-      purchaseLottoNumbers.push(Random.pickUniqueNumbersInRange(1, 45, 6));
+      const { validatedLottoNumbers } = new Lotto(
+        Random.pickUniqueNumbersInRange(1, 45, 6),
+      );
+      purchaseLottoNumbers.push(validatedLottoNumbers);
     }
+
     return purchaseLottoNumbers;
   }
 
@@ -127,8 +131,5 @@ class App {
     App.lottoPurchaser();
   }
 }
-
-const app = new App();
-app.play();
 
 module.exports = App;
