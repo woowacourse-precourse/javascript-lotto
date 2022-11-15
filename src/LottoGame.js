@@ -87,6 +87,14 @@ class LottoGame {
     if (countMatches < 6) return 3;
     return 4;
   }
+
+  // [x]수익률 계산하는 기능
+  getRatio(rankingCountList) {
+    const totalBuy = this.#inputMoney;
+    const totalPrize = this.getTotalPrize(rankingCountList);
+    return LottoNumberUtils.roundCustom((totalPrize / totalBuy) * 100);
+  }
+
 }
 
 module.exports = LottoGame;
