@@ -89,6 +89,12 @@ class Lotto {
       this.winNumbers = answer.split(",");
     });
   }
+  inputBonusNumber() {
+    MissionUtils.Console.print(`${Data.INPUT_MESSAGES.inputBonusNumbers}`);
+    MissionUtils.Console.readLine("", (answer) => {
+      this.bonusNumber = parseInt(answer);
+    });
+  }
 
   // TODO: 추가 기능 구현
 }
