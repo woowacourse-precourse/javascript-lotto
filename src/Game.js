@@ -83,7 +83,6 @@ class Game {
 		inputNumbers.forEach((e) => {
 			if (e < 1 || e > 45) throw new Error("[ERROR] 1부터 45까지의 수만 입력해 주세요.");
 		});
-
 	}
 
   getBonusNumberInput() {
@@ -96,11 +95,13 @@ class Game {
   priceEarning() {
     const lotto = new Lotto(this.winningNumber);
     this.countArr = lotto.compareNumbers(this.publishNumbers, this.bonusNumber);
+
     let total = 0;
-    
     this.countArr.forEach((count, idx) => {
-      total += this.static[idx].prize * count;
+      const winMoney = this.static[idx].prize;
+      total += winMoney * count;
     });
+    
     this.earningPercent = ((total / this.price) * 100).toFixed(1);
   }
 
