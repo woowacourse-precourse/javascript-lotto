@@ -43,6 +43,15 @@ class App {
       this.#showingResultPhase();
     });
   }
+
+  #showingResultPhase() {
+    const drawResult = this.#inventory.getLottosDrawResult(
+      this.#lottos.getLotto(),
+      this.#bonusNumber.getBonusNumber()
+    );
+    Printer.printDrawResultMessage(drawResult);
+    this.#exitPhase();
+  }
 }
 
 module.exports = App;
