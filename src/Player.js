@@ -22,7 +22,7 @@ class Player {
     return true;
   };
   showLottoNumbers = () => {
-    Console.print(`${this.#lottos.length}개를 구매했습니다.`);
+    Console.print(`\n${this.#lottos.length}개를 구매했습니다.`);
     for (let lotto of this.#lottos) {
       Console.print(lotto);
     }
