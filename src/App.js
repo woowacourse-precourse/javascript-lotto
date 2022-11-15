@@ -21,18 +21,18 @@ class App {
 
   drawLotto() {
     Console.readLine(MESSAGE.INPUT.WINNUMBER, (numbers) => {
-      let WINNUMBER = numbers.split(',').map((v) => Number(v));
-      checkValidLotto(WINNUMBER);
-      this.#winNumber = WINNUMBER;
+      let winNumber = numbers.split(',').map((v) => Number(v));
+      checkValidLotto(winNumber);
+      this.#winNumber = winNumber;
       this.drawBonus();
     });
   }
 
   drawBonus() {
     Console.readLine(MESSAGE.INPUT.BONUSNUMBER, (number) => {
-      let BONUSNUMBER = number.split(',').map((v) => Number(v));
-      checkValidBonus(this.#winNumber, BONUSNUMBER);
-      this.#bonusNumber = BONUSNUMBER[0];
+      let bonusNumber = number.split(',').map((v) => Number(v));
+      checkValidBonus(this.#winNumber, bonusNumber);
+      this.#bonusNumber = bonusNumber[0];
     });
   }
 }
