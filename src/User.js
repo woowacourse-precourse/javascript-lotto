@@ -9,7 +9,9 @@ class User {
     MissionUtils.Console.readLine("금액을 입력해주세요", (price) => {
       lottoPrice = price;
     });
+
     MissionUtils.Console.close();
+    
     if (lottoPrice % LOTTO_PRICE != 0 || lottoPrice <= 0 || lottoPrice === String || SPECIAL_CHARACTERS.test(lottoPrice)) {
       throw "[ERROR]";
     }
@@ -29,7 +31,7 @@ class User {
       lottoNumber[paper] = (MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
       MissionUtils.Console.print(`[${lottoNumber[paper].join(", ")}]`);
     }
-    
+
     return lottoNumber;
   }
 }
