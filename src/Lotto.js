@@ -8,9 +8,18 @@ class Lotto {
   }
 
   validate(numbers) {
+    Print(numbers);
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
+    if (!this.checkDuplicateNumber(numbers)) {
+      throw new Error("[ERROR] 로또 번호는 겹치면 안됩니다.");
+    }
+  }
+  checkDuplicateNumber(numbers) {
+    let setNumbers = Array.from(new Set(numbers));
+    if (setNumbers.length < 6) return false;
+    return true;
   }
 
   checkCorrespond(winNum, bonus) {

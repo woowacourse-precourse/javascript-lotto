@@ -16,14 +16,9 @@ const createLottoNumber = () => {
   let numArr = [];
   while (numArr.length < 6) {
     let randomNumber = RandomNumInRange(1, 45);
-    if (!checkDuplicateNumber(randomNumber, numArr)) numArr.push(randomNumber);
+    numArr.push(randomNumber);
   }
   return numArr.sort((a, b) => a - b);
-};
-
-const checkDuplicateNumber = (num, arr) => {
-  if (arr.includes(num)) return true;
-  return false;
 };
 
 module.exports = { createLotto };
