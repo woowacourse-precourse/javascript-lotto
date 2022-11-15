@@ -10,4 +10,5 @@ const winWon = new Map([
   [Six, '2,000,000,000'],
 ]);
 
+Object.freeze(winWon);
 module.exports = winWon;

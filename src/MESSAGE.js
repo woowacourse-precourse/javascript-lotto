@@ -28,4 +28,6 @@ const MESSAGE = {
   YIELD_END_MESSAGEL: '입니다.',
 };
 
+Object.freeze(MESSAGE);
+
 module.exports = MESSAGE;
