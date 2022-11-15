@@ -12,9 +12,9 @@ class LottoViewer {
 
   arrangeLottoWinningResult(ranks, money) {
     const result = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, returnRate: 0 };
-    for (const element of ranks) {
-      result[element] = (result[element] || 0) + 1;
-    }
+    ranks.forEach((x) => {
+      result[x] = (result[x] || 0) + 1;
+    })
     const totalIncome =
       REWARD.SIX_MATCH_REWARD * result[1] +
       REWARD.BONUS_MATCH_REWARD * result[2] +
