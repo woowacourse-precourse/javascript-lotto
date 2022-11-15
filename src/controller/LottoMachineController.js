@@ -64,8 +64,11 @@ class LottoMachineController {
       (total, ranking) => (total += lottoResult[ranking] * LOTTO_RANKING_REWARD[ranking]),
       0,
     );
-
-    return ((totalProfit / this.purchaseAmount) * 100).toFixed(1);
+    // console.log('test', ((totalProfit / this.purchaseAmount) * 100).toFixed(1).toString().toLocaleString('ko-KR'));
+    return ((totalProfit / this.purchaseAmount) * 100)
+      .toFixed(1)
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 }
 
