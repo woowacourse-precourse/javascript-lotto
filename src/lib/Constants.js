@@ -34,23 +34,23 @@ const LOTTO_RESULT_PRICE = Object.freeze({
 
 const ERROR_CODE = '[ERROR]';
 
+const COMMON_ERROR_MESSAGE = Object.freeze({
+  not_valid_range_number: '1부터 45 중 6개의 숫자를 입력해주세요.',
+  not_valid_answer: '입력값이 없습니다.',
+});
+
 const PRICE_ERROR_MESSAGE = Object.freeze({
   not_valid_number: '숫자를 입력해주세요.',
   not_valid_unit_number: '1000원 단위로 입력해주세요.',
-  not_valid_answer: '입력값이 없습니다.',
   not_valid_zero: '최소 1000원 이상 금액을 입력해주세요.',
 });
 
 const WIN_NUMBER_ERROR_MESSAGE = Object.freeze({
-  not_valid_answer: '입력값이 없습니다.',
   not_valid_division: '구분은 쉼표(,)를 사용해주세요.',
-  not_valid_range_number: '1부터 45 중 6개의 숫자를 입력해주세요.',
   not_valid_overlap_number: '중복되는 숫자는 입력할 수 없습니다.',
 });
 
 const BONUS_NUMBER_ERROR_MESSAGE = Object.freeze({
-  not_valid_answer: '입력값이 없습니다.',
-  not_valid_range_number: '1부터 45 중 6개의 숫자를 입력해주세요.',
   not_valid_overlap_number: '중복되는 숫자는 입력할 수 없습니다.',
 });
 
@@ -75,6 +75,7 @@ module.exports = {
   LOTTO_RESULT_PRICE,
   LOTTO_RESULT_TYPE,
   ERROR_CODE,
+  COMMON_ERROR_MESSAGE,
   PRICE_ERROR_MESSAGE,
   WIN_NUMBER_ERROR_MESSAGE,
   BONUS_NUMBER_ERROR_MESSAGE,

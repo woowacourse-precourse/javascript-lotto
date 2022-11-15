@@ -25,6 +25,11 @@ const getRoundSecondDecimalPlace = (number) => Math.round(number * 100) / 100;
 
 const getRate = (prize, price) => getRoundSecondDecimalPlace((prize / price) * 100);
 
+const isOneToFourtyFiveRangeNumber = (number) => {
+  const regExp = /^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$/;
+  return !regExp.test(number);
+};
+
 module.exports = {
   print,
   readLine,
@@ -34,4 +39,5 @@ module.exports = {
   isLessThanNumber,
   getRoundSecondDecimalPlace,
   getRate,
+  isOneToFourtyFiveRangeNumber,
 };

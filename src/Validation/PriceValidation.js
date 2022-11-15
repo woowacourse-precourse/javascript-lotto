@@ -10,17 +10,10 @@ class PriceValidation extends Validation {
   }
 
   validate() {
-    this.checkEmpty();
+    super.checkEmpty();
     this.checkZero();
     this.checkNumber();
     this.checkUnitNumber();
-  }
-
-  checkEmpty() {
-    if (super.isEmpty()) {
-      throw new PriceError(PRICE_ERROR_MESSAGE.not_valid_answer);
-    }
-    return true;
   }
 
   checkZero() {

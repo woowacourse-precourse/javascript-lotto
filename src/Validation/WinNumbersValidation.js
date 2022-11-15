@@ -1,7 +1,8 @@
-const { WIN_NUMBER_ERROR_MESSAGE } = require('../lib/Constants');
+const { WIN_NUMBER_ERROR_MESSAGE, COMMON_ERROR_MESSAGE } = require('../lib/Constants');
 
 const Validation = require('./index');
 const WinNumberError = require('../Error/WinNumberError');
+const { isOneToFourtyFiveRangeNumber } = require('../lib/Utils');
 
 class WinNumbersValidation extends Validation {
   constructor(answer) {
@@ -10,17 +11,10 @@ class WinNumbersValidation extends Validation {
   }
 
   validate() {
-    this.checkEmpty();
+    super.checkEmpty();
     this.checkValidDivision();
     this.checkRange();
     this.checkOverlap();
-  }
-
-  checkEmpty() {
-    if (super.isEmpty()) {
-      throw new WinNumberError(WIN_NUMBER_ERROR_MESSAGE.not_valid_answer);
-    }
-    return true;
   }
 
   checkValidDivision() {
@@ -39,8 +33,8 @@ class WinNumbersValidation extends Validation {
     const winNumberArray = this.answer.split(',');
 
     winNumberArray.forEach((number) => {
-      if (Validation.isRangeNumber(number)) {
-        throw new WinNumberError(WIN_NUMBER_ERROR_MESSAGE.not_valid_range_number);
+      if (isOneToFourtyFiveRangeNumber(number)) {
+        throw new WinNumberError(COMMON_ERROR_MESSAGE.not_valid_range_number);
       }
       return true;
     });

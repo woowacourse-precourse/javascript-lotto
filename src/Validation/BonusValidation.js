@@ -12,23 +12,9 @@ class BonusValidation extends Validation {
   }
 
   validate() {
-    this.checkEmpty();
-    this.checkRange();
+    super.checkEmpty();
+    super.checkRange();
     this.checkOverlap();
-  }
-
-  checkEmpty() {
-    if (super.isEmpty()) {
-      throw new BonusNumberError(BONUS_NUMBER_ERROR_MESSAGE.not_valid_answer);
-    }
-    return true;
-  }
-
-  checkRange() {
-    if (Validation.isRangeNumber(this.answer)) {
-      throw new BonusNumberError(BONUS_NUMBER_ERROR_MESSAGE.not_valid_range_number);
-    }
-    return true;
   }
 
   checkOverlap() {

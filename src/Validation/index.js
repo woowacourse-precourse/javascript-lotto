@@ -1,5 +1,7 @@
-const { ABSTRACT_ERROR_MESSAGE } = require('../lib/Constants');
+const { ABSTRACT_ERROR_MESSAGE, COMMON_ERROR_MESSAGE } = require('../lib/Constants');
+const { isOneToFourtyFiveRangeNumber } = require('../lib/Utils');
 const AbstractError = require('../Error/AbstractError');
+const CommonError = require('../Error/CommonError');
 
 class Validation {
   constructor(answer) {
@@ -21,13 +23,22 @@ class Validation {
     throw new AbstractError(ABSTRACT_ERROR_MESSAGE.abstract_method);
   }
 
+  checkEmpty() {
+    if (this.isEmpty()) {
+      throw new CommonError(COMMON_ERROR_MESSAGE.not_valid_answer);
+    }
+    return true;
+  }
+
   isEmpty() {
     return this.answer === null || this.answer === undefined || this.answer === '';
   }
 
-  static isRangeNumber(number) {
-    const regExp = /^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$/;
-    return !regExp.test(number);
+  checkRange() {
+    if (isOneToFourtyFiveRangeNumber(this.answer)) {
+      throw new CommonError(COMMON_ERROR_MESSAGE.not_valid_range_number);
+    }
+    return true;
   }
 }
 
