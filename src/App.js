@@ -1,7 +1,7 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const UI = require('./UI');
-const Validation = require('./Validation');
+const WinningTicket = require('./WinningTicket');
 const {
   LOTTO_END,
   LOTTO_PRICE,
@@ -14,16 +14,14 @@ const {
 const Money = require('./Money');
 
 const ui = new UI();
-const validation = new Validation();
 
 class App {
   #money;
   #lottoCount;
   #lottos;
-  #winningNumber;
-  #bonusNumber;
   #result;
   #revenue;
+  #winningTicket;
 
   constructor() {
     this.#money = 0;
@@ -36,37 +34,7 @@ class App {
       6: 0,
     };
     this.#revenue = 0;
-  }
-
-  #validateWinningNumbers() {
-    try {
-      validation.checkArrayLength(this.#winningNumber, LOTTO_NUMBER_COUNT);
-      validation.checkDuplication(this.#winningNumber);
-      this.#winningNumber.forEach((number) => {
-        validation.checkPositiveInteger(number);
-        validation.checkNumberIncludeInRange(number, LOTTO_START, LOTTO_END);
-      });
-    } catch (error) {
-      ui.printError(error);
-    }
-
-    return true;
-  }
-
-  #validateBonusNumber() {
-    try {
-      validation.checkPositiveInteger(this.#bonusNumber);
-      validation.checkNumberIncludeInRange(
-        this.#bonusNumber,
-        LOTTO_START,
-        LOTTO_END,
-      );
-      validation.checkDuplication([...this.#winningNumber, this.#bonusNumber]);
-    } catch (error) {
-      ui.printError(error);
-    }
-
-    return true;
+    this.#winningTicket = new WinningTicket();
   }
 
   #publishLotto() {
@@ -116,8 +84,8 @@ class App {
   #matchLotto() {
     this.#lottos.forEach((lotto) => {
       const matchCount = lotto.countMatchNumbers(
-        this.#winningNumber,
-        this.#bonusNumber,
+        this.#winningTicket.getWinningNumbers(),
+        this.#winningTicket.getBonusNumber(),
       );
 
       if (matchCount >= MINIMUM_MATCH_COUNT || matchCount === '5B') {
@@ -128,21 +96,21 @@ class App {
 
   #getBonusNumber() {
     ui.input(`${INPUT.BONUS_NUMBER}\n`, (bonusNumber) => {
-      this.#bonusNumber = Number(bonusNumber);
-
-      if (this.#validateBonusNumber(bonusNumber)) {
-        this.#matchLotto();
-        this.#printAnalysis();
-        this.#printRevenuePercentage();
-        ui.end();
-      }
+      const bonusNumberInput = Number(bonusNumber);
+      this.#winningTicket.setBonusNumber(bonusNumberInput);
+      this.#matchLotto();
+      this.#printAnalysis();
+      this.#printRevenuePercentage();
+      ui.end();
     });
   }
 
   #getWinningNumber() {
-    ui.input(`${INPUT.WINNING_NUMBER}\n`, (winningNumber) => {
-      this.#winningNumber = winningNumber.split(',').map(Number);
-      if (this.#validateWinningNumbers()) this.#getBonusNumber();
+    ui.input(`${INPUT.WINNING_NUMBER}\n`, (winningNumbers) => {
+      const winningNumberInput = winningNumbers.split(',').map(Number);
+      console.log(winningNumberInput);
+      this.#winningTicket.setWinningNumbers(winningNumberInput);
+      this.#getBonusNumber();
     });
   }
 
@@ -167,8 +135,5 @@ class App {
     this.#getMoney();
   }
 }
-
-const app = new App();
-app.play();
 
 module.exports = App;
