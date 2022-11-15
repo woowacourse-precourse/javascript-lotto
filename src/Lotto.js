@@ -1,6 +1,7 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const { LOTTO_MESSAGE } = require('./setting/Message');
 const { LOTTO_VALUE } = require('./setting/Constants');
+const LottoView = require('./view/LottoView')
 
 class Lotto {
   #numbers;
@@ -8,12 +9,13 @@ class Lotto {
   constructor(numbers) {
     this.#numbers = numbers;
     this.lottoList = [];
+    this.LottoView = new LottoView();
   }
 
   NumberPackage(money) {
     this.validate(money);
     this.#numbers = this.howManyLotto(money);
-    this.printHowManyLotto();
+    this.LottoView.buyLotto(this.#numbers);
 
     for (let i = LOTTO_VALUE.zero; i < this.#numbers; i += LOTTO_VALUE.plus) {
       const lottoNumber = this.sortLottoNumber(Random.pickUniqueNumbersInRange(LOTTO_VALUE.min, LOTTO_VALUE.max, LOTTO_VALUE.digit));
@@ -21,10 +23,6 @@ class Lotto {
       this.lottoList.push(lottoNumber);
     }
     return this.lottoList;
-  }
-
-  printHowManyLotto() {
-    Console.print(`\n${this.#numbers}개를 구매했습니다.`);
   }
 
   howManyLotto(money) {

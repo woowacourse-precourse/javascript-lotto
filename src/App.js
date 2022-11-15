@@ -2,6 +2,7 @@ const { Console } = require('@woowacourse/mission-utils');
 const GetNumber = require('./GetNumber');
 const Lotto = require('./Lotto');
 const CompareLotto = require('./CompareLotto');
+const LottoView = require('./view/LottoView');
 
 class App {
   #purchaseAmount;
@@ -12,6 +13,7 @@ class App {
     this.GetNumber = new GetNumber();
     this.lotto = new Lotto();
     this.CompareLotto = new CompareLotto();
+    this.LottoView = new LottoView();
   }
 
   play() {
@@ -50,7 +52,7 @@ class App {
 
   printRate() {
     const rate = ((this.#winningAmount / this.#purchaseAmount) * 100).toFixed(1);
-    Console.print(`총 수익률은 ${rate}%입니다.`);
+    this.LottoView.printTotal(rate);
     Console.close();
   }
 }
