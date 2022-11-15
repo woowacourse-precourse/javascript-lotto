@@ -38,7 +38,7 @@ class LottoMatching {
       if (rank === RANK.FIFTH) winSum += PRIZE.FIFTH * rankCount;
     });
     const rateOfReturn = (winSum / lottoCost) * 100;
-    return Math.round(rateOfReturn * 100) / 100;
+    return rateOfReturn.toFixed(1);
   }
 }
 
