@@ -10,6 +10,7 @@ class App {
     this.vendingMachine = new VendingMachine();
     this.numberGenerator = new NumberGenerator();
   }
+
   play() {
     Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
       this.vendingMachine.setMoney(money);
@@ -38,7 +39,14 @@ class App {
     Console.readLine("\n당첨 번호를 입력해 주세요.\n", (winningNumber) => {
       const winningNumbers = winningNumber.split(",").map(Number);
       const winningLotto = new Lotto(winningNumbers);
+      const winningLottoNumbers = winningLotto.getNumbers();
 
+      return this.inputBonusNumber(totalLotto, winningLottoNumbers);
+    });
+  }
+
+  inputBonusNumber(totalLotto, winningLotto) {
+    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonus) => {
       return;
     });
   }

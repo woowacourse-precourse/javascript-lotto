@@ -23,6 +23,10 @@ class Lotto {
       throw new Error("[ERROR] 로또 번호는 숫자여야 합니다.");
     }
   }
+
+  getNumbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
