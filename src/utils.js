@@ -42,12 +42,6 @@ function validateNumber(numbers) {
     }
 }
 
-function validateLotto(numbers){
-    validateLength(numbers);
-    validateNumber(numbers);
-    validateOverlap(numbers);
-}
-
 function onlyNumber(x){
     if(isNaN(Number(x))) throw new Error("[ERROR] 숫자가 아닙니다.");
 }
@@ -62,4 +56,4 @@ function arrayPrint(array){
 }
 
 
-module.exports = {print, scan, ascSort, validateLotto, onlyNumber, arrayPrint};
+module.exports = {print, scan, ascSort, validateOverlap,validateNumber, validateLength,onlyNumber, arrayPrint};

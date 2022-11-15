@@ -8,7 +8,9 @@ class Lotto {
   rank;
 
   constructor(numbers) {
-    utils.validateLotto(numbers);
+    utils.validateLength(numbers);
+    utils.validateNumber(numbers);
+    utils.validateOverlap(numbers);
     this.#numbers = numbers;
     this.#same = 0;
     this.#bonus = false;

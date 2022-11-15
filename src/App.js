@@ -19,7 +19,7 @@ class App {
     this.#Lotto = [];
     this.#bonus = 0;
     this.#winnerNumber = '';
-    this.#statistics = [];
+    this.#initStatistics();
     this.#winnings = 0;
   }
 
@@ -29,9 +29,10 @@ class App {
     this.#lottoNumber = this.#getLottoNumber();
     utils.print(this.#lottoNumber+"개를 구매했습니다.");
     this.#Lotto = this.#issueLotto();
-    this.#initStatistics();
     this.#winnerNumber = utils.scan(Constant.MESSAGE.LOTTO_NUMBER_INPUT).split(','); // 당첨 번호 입력 받는 로직
-    utils.validateLotto(this.#winnerNumber);
+    utils.validateLength(this.#winnerNumber);
+    utils.validateNumber(this.#winnerNumber);
+    utils.validateOverlap(this.#winnerNumber);
     this.#bonus = utils.scan(Constant.MESSAGE.BONUS_NUMBER_INPUT); // 보너스 번호 입력
     this.#validateBonus();
     this.#calcLotto();
