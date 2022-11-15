@@ -43,6 +43,7 @@
  ┣ 📂 Error // 오류 관련 클래스
  ┃ ┣ 📜 AbstractError.js
  ┃ ┣ 📜 BonusNumberError.js
+ ┃ ┣ 📜 CommonError.js
  ┃ ┣ 📜 CustomError.js
  ┃ ┣ 📜 PriceError.js
  ┃ ┗ 📜 WinNumberError.js
