@@ -1,0 +1,9 @@
+const LOTTO_WINNING_NUMBER_LENGTH = 6;
+const LOTTO_MAX_LANGE = 45;
+const LOTTO_MIN_LANGE = 1;
+
+module.exports = {
+    LOTTO_WINNING_NUMBER_LENGTH,
+    LOTTO_MAX_LANGE,
+    LOTTO_MIN_LANGE,
+};
