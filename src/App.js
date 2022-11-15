@@ -37,6 +37,14 @@ class App {
       this.inputBonusNumber(numbers);
     })
   }
+
+  inputBonusNumber(numbers) {
+    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (bonusNumber) => {
+      bonusNumber = Number(bonusNumber);
+      const lotto = new Lotto(numbers, bonusNumber)
+      this.LottoStatistics(lotto)
+    })
+  }
 }
 
 const app = new App;
