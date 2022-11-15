@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Lotto = require("./Lotto");
 
 class App {
   
@@ -25,7 +26,6 @@ class App {
     for(let i=0; i<lotto_cnt; i++){
       let drawed = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       MissionUtils.Console.print(drawed);
-      
       lotto_arr.push(drawed);
     } 
   }
@@ -37,6 +37,8 @@ class App {
       for(let i=0; i<winning_num.length; i++){
         winning_arr.push(parseInt(winning_num[i]))
       }
+
+      const lotto = new Lotto(winning_arr);
     });
   }
 
@@ -125,11 +127,14 @@ class App {
           const result = this.resultCompare(winning_arr, bonus_arr[0], lotto_arr);
           this.printResult(result, lotto_cnt);
         }
+        else{
+          throw new Error("[ERROR]");
+        }
         await MissionUtils.Console.close();
       });
     }catch(e){
       console.log(e);
-      // throw "[ERROR]"
+      throw new Error ("[ERROR]");
     }
   }
 }
