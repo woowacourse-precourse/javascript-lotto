@@ -4,6 +4,7 @@ const Machine = require('./Machine');
 const Message = require('./Message');
 
 const { PRIZE, WIN_MONEY } = require('./constants/prize');
+const { ASK, ERROR, ALERT } = require('./constants/message');
 
 class App {
   constructor() {
@@ -17,7 +18,7 @@ class App {
   }
 
   askForPayment() {
-    Console.print('구입금액을 입력해 주세요.');
+    Console.print(ASK.PAYMENT);
     Console.readLine('', (input) => {
       const money = Number(input);
       this.player.buyLottos(money);
@@ -55,7 +56,7 @@ class App {
 
   askWinNumbers() {
     Console.print('');
-    Console.print('당첨번호를 입력해주세요.');
+    Console.print(ASK.WIN_NUMBERS);
     Console.readLine('', (input) => {
       const whiteSpaceRegExp = new RegExp(/\s/, 'g');
       const whiteSpaceRemoved = input.replace(whiteSpaceRegExp, '');
@@ -70,21 +71,21 @@ class App {
 
   validateWinNumbers(winNumbers) {
     if (winNumbers.some((number) => !Number.isInteger(number))) {
-      throw new Error('[ERROR] 숫자만 입력해주세요.');
+      throw new Error(ERROR.ONLY_NUMBER);
     }
 
     if (winNumbers.length !== 6 || new Set(winNumbers).size !== 6) {
-      throw new Error('[ERROR] 중복되지 않는 6개의 숫자를 입력해주세요.');
+      throw new Error(ERROR.NO_DUPLICATE);
     }
 
     if (Math.min(...winNumbers) < 1 || Math.max(...winNumbers) > 45) {
-      throw new Error('[ERROR] 1부터 45까지의 숫자만 입력해주세요.');
+      throw new Error(ERROR.NUMBER_IN_RANGE);
     }
   }
 
   askWinBonus() {
     Console.print('');
-    Console.print('보너스 번호를 입력해 주세요.');
+    Console.print(ASK.WIN_NUMBERS);
     Console.readLine('', (input) => {
       const winBonus = Number(input);
       this.validateWinBonus(winBonus);
@@ -97,15 +98,15 @@ class App {
 
   validateWinBonus(bonus) {
     if (!Number.isInteger(bonus)) {
-      throw new Error('[ERROR] 숫자만 입력해주세요.');
+      throw new Error(ERROR.ONLY_NUMBER);
     }
 
     if (bonus < 1 || bonus > 45) {
-      throw new Error('[ERROR] 1부터 45까지의 숫자만 입력해주세요.');
+      throw new Error(ERROR.NUMBER_IN_RANGE);
     }
 
     if (this.winNumbers.includes(bonus)) {
-      throw new Error('[ERROR] 당첨 번호와 중복된 번호를 입력하지 마세요.');
+      throw new Error(ERROR.NO_DUPLICATE);
     }
   }
 
@@ -125,7 +126,7 @@ class App {
 
   printStatistics() {
     Console.print('');
-    Console.print('당첨 통계');
+    Console.print(ALERT.STATISTICS_PREFIX);
     Console.print('---');
 
     this.printResult();

@@ -1,6 +1,7 @@
 const Machine = require('./Machine');
 
 const { PRIZE } = require('./constants/prize');
+const { ERROR } = require('./constants/message');
 
 class Player {
   constructor() {
@@ -27,7 +28,7 @@ class Player {
 
   validateMoney(money) {
     if (!Number.isInteger(money / 1000)) {
-      throw new Error('[ERROR] 1000원 단위의 금액만 입력하세요.');
+      throw new Error(ERROR.LOTTO_PRICE);
     }
   }
 
