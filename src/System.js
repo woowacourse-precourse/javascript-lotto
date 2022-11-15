@@ -1,5 +1,13 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { ERROR, MESSAGE, WINNING_LOTTO } = require('./Constants')
+const {
+    ERROR,
+    MESSAGE,
+    LOTTO_PRICE,
+    WINNING_LOTTO,
+    MIN_NUMBER,
+    MAX_NUMBER,
+    MAX_NUMBER_COUNT
+} = require('./Constants')
 const Lotto = require('./Lotto');
 const SYSTEM = Object.freeze({
     print(message) {
@@ -8,12 +16,12 @@ const SYSTEM = Object.freeze({
 
     // publishLotto callback chain start
     publishLotto(cash) {
-        let maxCount = cash / 1000;
+        let maxCount = cash / LOTTO_PRICE;
         return this.autoWrite(maxCount);
     },
 
     makeLotto() {
-        return new Lotto(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
+        return new Lotto(MissionUtils.Random.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, MAX_NUMBER_COUNT));
     },
 
     autoWrite(maxCount) {
@@ -55,7 +63,7 @@ const SYSTEM = Object.freeze({
         if (isNaN(number)) {
             throw new Error(ERROR.NOT_NUMBER);
         }
-        if (number < 1 || number > 45) {
+        if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new Error(ERROR.INVAID_NUMBER);
         }
 

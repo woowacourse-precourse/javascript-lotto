@@ -1,4 +1,4 @@
-const { ERROR } = require('./Constants')
+const { ERROR, MIN_NUMBER, MAX_NUMBER, MAX_NUMBER_COUNT } = require('./Constants')
 
 class Lotto {
   #numbers;
@@ -19,16 +19,16 @@ class Lotto {
   validate(numbers) {
     let uniqueNumbers = new Set(numbers);
 
-    if (numbers.length !== 6)
+    if (numbers.length !== MAX_NUMBER_COUNT)
       throw new Error(ERROR.NOT_SIX_NUMBER);
 
     if (uniqueNumbers.has(NaN))
       throw new Error(ERROR.NOT_NUMBER);
 
-    if (uniqueNumbers.size !== 6)
+    if (uniqueNumbers.size !== MAX_NUMBER_COUNT)
       throw new Error(ERROR.NOT_UNIQUE);
 
-    if (numbers.some((value) => value < 1 || value > 45))
+    if (numbers.some((number) => number < MIN_NUMBER || number > MAX_NUMBER))
       throw new Error(ERROR.INVAID_NUMBER);
   }
 }

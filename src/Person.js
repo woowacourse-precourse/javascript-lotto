@@ -1,5 +1,5 @@
 const { MissionUtils, SYSTEM } = require('./System');
-const { MESSAGE, ERROR } = require('./Constants')
+const { MESSAGE, ERROR, LOTTO_PRICE } = require('./Constants')
 class Person {
     constructor() {
         this.lottos = null;
@@ -12,7 +12,7 @@ class Person {
         if (cash <= 0)
             throw new Error(ERROR.CASH_IS_NOT_NATURAL_NUMBER);
 
-        if (cash % 1000)
+        if (cash % LOTTO_PRICE)
             throw new Error(ERROR.INVAID_CASH);
     }
 
