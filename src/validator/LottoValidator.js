@@ -11,7 +11,7 @@ class LottoValidator {
       Exception.throwError(ERROR_MESSAGE.NOT_LOTTO_NUMBER);
 
     if (this.isDuplicated(numbers))
-      Exception.throwError(ERROR_MESSAGE.IS_DUPLICATE);
+      Exception.throwError(ERROR_MESSAGE.LOTTO_DUPLICATE);
   }
 
   isRightLength(numbers) {
