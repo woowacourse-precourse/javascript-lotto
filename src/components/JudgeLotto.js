@@ -1,3 +1,5 @@
+const { CONDITION } = require('../constant/constant');
+
 class JudgeLotto {
   static compareLotto({ lottos, wins, bonus }) {
     const results = [];
@@ -13,7 +15,7 @@ class JudgeLotto {
     wins.forEach((number) => {
       if (lotto.getNumbers().includes(number)) winCount += 1;
     });
-    if (winCount === 5) {
+    if (winCount === CONDITION.THIRD_PLACE) {
       isBonus = JudgeLotto.#checkBonus({ lotto, bonus, isBonus });
     }
     return { win: winCount, bonus: isBonus };

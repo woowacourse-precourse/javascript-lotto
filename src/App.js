@@ -4,6 +4,12 @@ const JudgeLotto = require('./components/JudgeLotto');
 const WinStatistics = require('./components/WinStatistics');
 const EarningRate = require('./components/EarningRate');
 const Validation = require('./components/Validation');
+const {
+  INPUT,
+  OUTPUT_PURCHASE,
+  OUTPUT_STATISTICS,
+  OUTPUT_EARNING_RATE,
+} = require('./constant/constant');
 
 class App {
   play() {
@@ -11,10 +17,10 @@ class App {
   }
 
   buyLotto() {
-    Console.readLine('구입금액을 입력해 주세요.\n', (input) => {
+    Console.readLine(INPUT.GET_PURCHASE, (input) => {
       const purchase = Number(input);
       const [lottos, count] = IssueLotto.setLotteryNumber(purchase);
-      Console.print(`\n${count}개를 구매했습니다.`);
+      Console.print(OUTPUT_PURCHASE(count));
       lottos.forEach((lotto) => {
         Console.print(`[${lotto.getNumbers().join(', ')}]`);
       });
@@ -23,7 +29,7 @@ class App {
   }
 
   typedWinNumber({ lottos, purchase }) {
-    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (input) => {
+    Console.readLine(INPUT.GET_WIN_NUMBER, (input) => {
       const wins = input.split(',').map((number) => Number(number));
       Validation.validateLotto(wins);
       this.typedBonusNumber({ lottos, wins, purchase });
@@ -31,7 +37,7 @@ class App {
   }
 
   typedBonusNumber({ lottos, wins, purchase }) {
-    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (input) => {
+    Console.readLine(INPUT.GET_BONUS_NUMBER, (input) => {
       const bonus = Number(input);
       Validation.validateBonus(bonus);
       this.printWinStatistics({ lottos, wins, bonus, purchase });
@@ -41,21 +47,13 @@ class App {
   printWinStatistics({ lottos, wins, bonus, purchase }) {
     const judgeLotto = JudgeLotto.compareLotto({ lottos, wins, bonus });
     const winPlace = WinStatistics.getWinStatistics(judgeLotto);
-    Console.print('\n당첨 통계');
-    Console.print('---');
-    Console.print(`3개 일치 (5,000원) - ${winPlace.fifthPlace}개`);
-    Console.print(`4개 일치 (50,000원) - ${winPlace.fourthPlace}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${winPlace.thirdPlace}개`);
-    Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${winPlace.secondPlace}개`,
-    );
-    Console.print(`6개 일치 (2,000,000,000원) - ${winPlace.firstPlace}개`);
+    Console.print(OUTPUT_STATISTICS(winPlace));
     this.printEarningRate({ winPlace, purchase });
   }
 
   printEarningRate({ winPlace, purchase }) {
     const earningRate = EarningRate.getEarningRate({ winPlace, purchase });
-    Console.print(`총 수익률은 ${earningRate}%입니다.`);
+    Console.print(OUTPUT_EARNING_RATE(earningRate));
     Console.close();
   }
 }
