@@ -58,4 +58,9 @@ describe('Validator 클래스 테스트', () => {
       LottoValidator.splitLottoNumbers('1,2,3,4,5,5,');
     }).toThrow('[ERROR]');
   });
+  test('splitLottoNumbers는 6개의 서로 다른 1~45사이의 숫자이어야 한다.', () => {
+    expect(() => {
+      LottoValidator.splitLottoNumbers('1,2,3,4,5,46');
+    }).toThrow('[ERROR]');
+  });
 });
