@@ -38,6 +38,38 @@ class Lotto {
       throw new Error('[ERROR] 보너스 번호와 당첨 번호는 중복되지 않아야 합니다.');
     }
   }
+
+  checkLottoWinResult(userBuyedTickets, bonusNumber) {
+    const lottoResult = [0, 0, 0, 0, 0];
+    userBuyedTickets.forEach((numbers) => {
+      switch (this.checkMatchLottoNumber(numbers)) {
+        case 3:
+          lottoResult[0] += 1;
+          break;
+        case 4:
+          lottoResult[1] += 1;
+          break;
+        case 5:
+          this.checkHasBonusNumber(numbers, bonusNumber)
+            ? (lottoResult[3] += 1)
+            : (lottoResult[2] += 1);
+          break;
+        case 6:
+          lottoResult[4] += 1;
+          break;
+      }
+    });
+    console.log('lottoResult', lottoResult);
+    return lottoResult;
+  }
+
+  checkMatchLottoNumber(numbers) {
+    return numbers.filter((number) => this.#numbers.includes(String(number))).length;
+  }
+
+  checkHasBonusNumber(numbers, bonusNumber) {
+    return numbers.includes(bonusNumber);
+  }
 }
 
 module.exports = Lotto;

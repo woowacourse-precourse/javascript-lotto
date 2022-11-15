@@ -6,7 +6,7 @@ const LottoBonus = require('./LottoBonus');
 const INPUT_BUDGET = '구입금액을 입력해 주세요.\n';
 
 class App {
-  budget;
+  userBudget;
   lottoTickets;
   lottoWinNumbers;
   lottoBonusNumber;
@@ -27,7 +27,7 @@ class App {
   }
 
   validateUserBudget(budget) {
-    this.budget = new UserBudget(Number(budget));
+    this.userBudget = new UserBudget(Number(budget));
     this.lottoTickets = new LottoMachine(budget);
     this.getWinLottoNumbers();
   }
@@ -48,7 +48,15 @@ class App {
       this.lottoBonusNumber = new LottoBonus(Number(input));
       this.lottoWinNumbers.compareWithWinNumbers(input);
       this.printSpaceLine();
+      this.getLottoResult();
     });
+  }
+
+  getLottoResult() {
+    this.lottoWinNumbers.checkLottoWinResult(
+      this.lottoTickets.userBuyedTickets,
+      this.lottoBonusNumber.number
+    );
   }
 
   validateIsNotNumber(number) {
