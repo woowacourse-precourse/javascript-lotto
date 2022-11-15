@@ -5,11 +5,13 @@ const Lotto = require("./Lotto")
 class App {
   #User;
   #Lotto;
+  #bonusNumber;
 
   play() {
     this.getPerchaseAmount();
     this.#User.createLottoList();
     this.getWinLottoNumber();
+    this.getBonusNumber();
   }
 
   getPerchaseAmount() {
@@ -31,6 +33,12 @@ class App {
 
   isValidWinNumberInput(answer) {
     return (/^(\d{1,2},){5}\d{1,2}$/).test(answer);
+  }
+
+  getBonusNumber() {
+    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (answer) => {
+      this.#bonusNumber = answer;
+    })
   }
 }
 
