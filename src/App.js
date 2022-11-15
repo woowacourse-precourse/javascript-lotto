@@ -60,7 +60,4 @@ class App {
   }
 }
 
-let a = new App();
-a.play();
-
 module.exports = App;

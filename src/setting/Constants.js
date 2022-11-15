@@ -50,5 +50,3 @@ module.exports = {
     PRIZE,
     APP_VALUE,
 }
-
-
