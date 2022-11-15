@@ -18,6 +18,10 @@ class Vendor {
   #winningNumbers;
   #specialNumber;
 
+  constructor() {
+    this.winningStatistics = [0, 0, 0, 0, 0];
+  }
+
   acceptMoney() {
     const query = "구입금액을 입력해 주세요.";
     const err =
@@ -143,17 +147,53 @@ class Vendor {
   }
 
   announceResult(tickets) {
+    for (let ticket in tickets) {
+      this.#computeOneResult(ticket);
+    }
+
     MissionUtils.Console.print("당첨 통계\n---");
-    MissionUtils.Console.print("3개 일치 (5,000원) - 1개");
-    MissionUtils.Console.print("4개 일치 (50,000원) - 0개");
-    MissionUtils.Console.print("5개 일치 (1,500,000원) - 0개");
-    MissionUtils.Console.print("5개 일치, 보너스 볼 일치 (30,000,000원) - 0개");
-    MissionUtils.Console.print("6개 일치 (2,000,000,000원) - 0개");
+    MissionUtils.Console.print(
+      `3개 일치 (5,000원) - ${this.winningStatistics[0]}개`
+    );
+    MissionUtils.Console.print(
+      `4개 일치 (50,000원) - ${this.winningStatistics[1]}개`
+    );
+    MissionUtils.Console.print(
+      `5개 일치 (1,500,000원) - ${this.winningStatistics[2]}개`
+    );
+    MissionUtils.Console.print(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.winningStatistics[4]}개`
+    );
+    MissionUtils.Console.print(
+      `6개 일치 (2,000,000,000원) - ${this.winningStatistics[3]}개`
+    );
     MissionUtils.Console.print("총 수익률은 62.5%입니다.");
     MissionUtils.Console.print("```\n\n---");
+    MissionUtils.Console.close();
   }
 
-  #computeResult(tickets) {}
+  #computeOneResult(ticket) {
+    let cnt = 0;
+    let bonus = false;
+
+    for (number in ticket) {
+      if (this.#winningNumbers.includes(number)) {
+        ++cnt;
+      }
+    }
+
+    if (ticket.includes(this.#specialNumber)) {
+      bonus = true;
+    }
+
+    if (cnt == 5 && bonus) {
+      ++this.winningStatistics[4];
+      return;
+    }
+
+    ++this.winningStatistics[cnt - 3];
+    return;
+  }
 }
 
 module.exports = App;
