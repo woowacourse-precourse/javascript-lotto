@@ -6,6 +6,14 @@ class App {
         this.lottoNumbers = []; // 생성한 로또 번호 객체를 저장하는 배열.
         this.winningNumbers = []; // 당첨 번호 집합.
         this.bonusNumber = 0; // 보너스 번호
+        this.winningInfo = {
+            // 당첨 정보
+            first: 0,
+            second: 0,
+            third: 0,
+            fourth: 0,
+            fifth: 0,
+        };
     }
 
     // 입력한 금액이 1,000으로 나누어 떨어지지 않으면 예외처리를 한다.
@@ -75,9 +83,56 @@ class App {
                 this.validateBonus(newBonus);
                 this.bonusNumber = newBonus;
                 MissionUtils.Console.print('');
-                MissionUtils.Console.close();
+                this.printWinningInfo();
             }
         );
+    }
+
+    // 당첨 내역을 출력한다.
+    printWinningInfo() {
+        for (const lottoNums of this.lottoNumbers) {
+            const winningAmount = lottoNums.getWinningMoney(
+                this.winningNumbers,
+                this.bonusNumber
+            );
+            this.updateWinningInfo(winningAmount);
+        }
+        MissionUtils.Console.print(
+            `3개 일치 (5,000원) - ${this.winningInfo.fifth}개`
+        );
+        MissionUtils.Console.print(
+            `4개 일치 (50,000원) - ${this.winningInfo.fourth}개`
+        );
+        MissionUtils.Console.print(
+            `5개 일치 (1,500,000원) - ${this.winningInfo.third}개`
+        );
+        MissionUtils.Console.print(
+            `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.winningInfo.second}개`
+        );
+        MissionUtils.Console.print(
+            `6개 일치 (2,000,000,000원) - ${this.winningInfo.first}개`
+        );
+        MissionUtils.Console.close();
+    }
+
+    // 금액을 확인하고 당첨 내역을 업데이트 한다.
+    updateWinningInfo(winningAmount) {
+        switch (winningAmount) {
+            case 2000000000:
+                this.winningInfo.first++;
+                break;
+            case 30000000:
+                this.winningInfo.second++;
+                break;
+            case 1500000:
+                this.winningInfo.third++;
+                break;
+            case 50000:
+                this.winningInfo.fourth++;
+                break;
+            case 5000:
+                this.winningInfo.fifth++;
+        }
     }
 
     play() {
