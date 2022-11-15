@@ -32,6 +32,7 @@ class Lotto {
       if (winning.includes(number)) {
         winningCount += 1;
       }
+
       if (bonus === number) {
         bonusCount = 1;
       }
