@@ -1,3 +1,11 @@
+let usersRank = {
+  5: 0,
+  4: 0,
+  3: 0,
+  2: 0,
+  1: 0,
+}
+
 class Lotto {
   #numbers;
 
@@ -12,14 +20,38 @@ class Lotto {
     }
   }
 
-  createLottoNumber(){
-    let lottoNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-    lottoNumber=this.sortNumber(lottoNumber);
+  checkWinning(userArray, bonus){
+    userArray.forEach(array => {
+      this.checkRank(array,bonus);
+    });
   }
 
-  sortNumber(numberArray){
-    numberArray.sort((a, b) => a - b);
-    return numberArray;
+  checkRank(lottoArray, bonus){
+    let sameNumber = this.#numbers.filter(number => lottoArray.includes(number));
+    let same = sameNumber.length;
+    switch (same) {
+      case 3:
+        usersRank[5]++;
+        break;
+      case 4:
+        usersRank[4]++;
+        break;
+      case 5:
+        if(this.checkBonusNumber(bonus, oneArray)){
+          usersRank[2]++;
+          break;
+        }
+        usersRank[3]++;
+        break;
+      case 6:
+        usersRank[1]++;
+        break;      
+    }
+  }
+
+  checkBonusNumber(number, userArray){
+    if (userArray.includes(number)) return true;
+    return false;
   }
 
   // TODO: 추가 기능 구현
