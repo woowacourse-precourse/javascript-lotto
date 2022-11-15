@@ -21,5 +21,12 @@ class App {
     })
   }
 
+  userNumber() {
+    Console.readLine(MESSAGE.WINNING_NUMBER, (answer) => {
+      MadeNumber.checkLotto(answer);
+      this.userArray = answer.split(',').map(v => parseInt(v));
+      this.bonusNumber(answer);
+    })
+  }
 }
 module.exports = App;
