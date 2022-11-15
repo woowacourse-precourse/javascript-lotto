@@ -30,6 +30,7 @@ class Lotto {
     this.validateBonusNumber(number);
     this.#numbers.push(number);
     isDuplicate(this.#numbers);
+    this.#numbers.sort((a, b) => a - b);
   }
   getNumber() {
     return this.#numbers;
