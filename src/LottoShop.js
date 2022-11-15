@@ -9,6 +9,7 @@ class LottoShop {
   constructor(money) {
     this.#purchaseMoney = money;
     this.#lottoPrice = 1000;
+    this.validatePurchaseMoney();
   }
 
   validatePurchaseMoney() {
@@ -19,7 +20,6 @@ class LottoShop {
   }
 
   getLottos() {
-    this.validatePurchaseMoney();
     this.lottosQuantity = parseInt(this.#purchaseMoney / this.#lottoPrice);
     const lottos = [];
     for (let i = 1; i <= this.lottosQuantity; i++) {
