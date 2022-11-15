@@ -13,7 +13,7 @@ class Bonus {
 
   constructor(bonusNumber, lottoNumbers) {
     this.validate(bonusNumber, lottoNumbers);
-    this.#bonusNumber = bonusNumber;
+    this.#bonusNumber = parseInt(bonusNumber, DECIMAL_NUMBER);
     this.#lottoNumbers = lottoNumbers;
   }
 

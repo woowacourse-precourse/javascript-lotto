@@ -11,6 +11,7 @@ const {
 } = require('./Constant');
 const Lotto = require('./Lotto');
 const Bonus = require('./Bonus');
+const BillBoard = require('./BillBoard');
 
 class TicketBox {
   #budget;
@@ -37,9 +38,15 @@ class TicketBox {
 
   inputBonusCallback(inputBonus) {
     this.bonus = new Bonus(inputBonus, this.lotto.numbers);
-    MissionUtils.Console.print(this.bonus.bonusNumber);
-    MissionUtils.Console.print(this.tickets);
-    MissionUtils.Console.print(this.lotto.numbers);
+    // MissionUtils.Console.print(this.bonus.bonusNumber);
+    // MissionUtils.Console.print(this.tickets);
+    // MissionUtils.Console.print(this.lotto.numbers);
+    this.billBoard = new BillBoard(
+      this.tickets,
+      this.lotto.numbers,
+      this.bonus.bonusNumber,
+    );
+    this.billBoard.makeBillBoard();
     MissionUtils.Console.close();
   }
 
