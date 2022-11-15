@@ -16,6 +16,8 @@ const ERROR_PARAM_NOT_NUMBER_ARRAY = "주어진 파라미터가 숫자 배열이
 const ERROR_NUMBER_LUST_LENGTH_MUST_SIX = "로또 번호는 6개여야 합니다.";
 const ERROR_NUMBER_NONEXISTENCE = "저장된 번호가 없습니다.";
 const ERROR_PRARM_INVALID = "유효한 파라미터값이 아닙니다";
+const ERROR_BUY_LOTTO_COUNT_MUST_MORE_THAN_ONE =
+  "로또는 반드시 하나 이상 구입해야합니다.";
 module.exports = {
   notNumber: ERROR_NOT_NUMBER,
   notNumberArray: ERROR_NOT_NUMBER_ARRAY,
@@ -35,4 +37,5 @@ module.exports = {
   paramInvalid: ERROR_PRARM_INVALID,
   numberListLengthMustSix: ERROR_NUMBER_LUST_LENGTH_MUST_SIX,
   lottoNumberNonexistence: ERROR_NUMBER_NONEXISTENCE,
+  buyLottoCountMustMoreThanOne: ERROR_BUY_LOTTO_COUNT_MUST_MORE_THAN_ONE,
 };
