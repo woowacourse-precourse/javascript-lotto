@@ -21,7 +21,7 @@ const ERROR = {
     BONUS: '보너스 번호를 입력해주세요.\n',
   };
   
-  const REWARDS = [0, 5000, 50000, 1500000, 30000000, 2000000000];
+  const PRIZE = [0, 5000, 50000, 1500000, 30000000, 2000000000];
   
   const RANK_NOTICE = [
     '',
@@ -35,7 +35,7 @@ const ERROR = {
   module.exports = {
     ERROR,
     INPUT_MESSAGE,
-    REWARDS,
+    PRIZE,
     RANK_NOTICE,
   };
   
