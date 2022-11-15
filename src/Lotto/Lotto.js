@@ -1,4 +1,4 @@
-const { prizeCount } = require('../common/constants');
+const { prizeCount, NUMBER } = require('../common/constants');
 const { checkWinningNumber } = require('../common/Validation');
 
 class Lotto {
@@ -30,14 +30,14 @@ class Lotto {
   countMatchNumber(matchedNumberList) {
     matchedNumberList.forEach((number) => {
       switch (number) {
-        case 6:
-          prizeCount.first += 1;
+        case NUMBER.SIX_MATCHED:
+          prizeCount.first += NUMBER.INCREASED_COUNT;
           break;
-        case 4:
-          prizeCount.fourth += 1;
+        case NUMBER.FOUR_MATCHED:
+          prizeCount.fourth += NUMBER.INCREASED_COUNT;
           break;
-        case 3:
-          prizeCount.fifth += 1;
+        case NUMBER.THREE_MATCHED:
+          prizeCount.fifth += NUMBER.INCREASED_COUNT;
           break;
       }
     });

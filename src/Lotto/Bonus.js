@@ -1,4 +1,4 @@
-const { ERROR, prizeCount } = require('../common/constants');
+const { ERROR, prizeCount, NUMBER } = require('../common/constants');
 const { error } = require('../common/util');
 const { checkBonusNumber } = require('../common/Validation');
 
@@ -22,7 +22,7 @@ class Bonus {
   compareUserAndBonus(publishedLotto) {
     let fiveMatchLotto = [];
     fiveMatchLotto = publishedLotto.filter(
-      (eachUserLottoNumber) => this.getFiveMatchNumberArray(eachUserLottoNumber).length === 5
+      (eachUserLottoNumber) => this.getFiveMatchNumberArray(eachUserLottoNumber).length === NUMBER.FIVE_MATCHED
     );
     this.isBonusInFiveMatchLotto(fiveMatchLotto);
   }
@@ -34,9 +34,9 @@ class Bonus {
   isBonusInFiveMatchLotto(fiveMatchLotto) {
     fiveMatchLotto.forEach((eachUserLottoNumber) => {
       if (eachUserLottoNumber.includes(this.#bonusNumber)) {
-        return (prizeCount.second += 1);
+        return (prizeCount.second += NUMBER.INCREASED_COUNT);
       }
-      prizeCount.third += 1;
+      prizeCount.third += NUMBER.INCREASED_COUNT;
     });
   }
 }

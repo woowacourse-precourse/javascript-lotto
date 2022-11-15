@@ -16,6 +16,7 @@ const ERROR = {
 };
 
 const OUTPUT = {
+  PURCHASED_AMONUT: (number) => `${number}개를 구매했습니다.`,
   THREE: (fifth) => `3개 일치 (5,000원) - ${fifth}개`,
   FOUR: (fourth) => `4개 일치 (50,000원) - ${fourth}개`,
   FIVE: (third) => `5개 일치 (1,500,000원) - ${third}개`,
@@ -34,4 +35,18 @@ const prizeCount = {
   fifth: 0
 };
 
-module.exports = { INPUT_QUERY, ERROR, prizeCount, PRIZE_MONEY, OUTPUT };
+const NUMBER = {
+  MIN_VALUE: 1,
+  MAX_VALUE: 45,
+  COUNT: 6,
+  THOUSAND_WON: 1000,
+  SIX_MATCHED: 6,
+  FIVE_MATCHED: 5,
+  FOUR_MATCHED: 4,
+  THREE_MATCHED: 3,
+  INCREASED_COUNT: 1,
+  ONE_HUNDRED: 100,
+  INITIAL_VALUE: 0,
+}
+
+module.exports = { INPUT_QUERY, ERROR, prizeCount, PRIZE_MONEY, OUTPUT, NUMBER };

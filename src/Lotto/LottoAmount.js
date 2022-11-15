@@ -1,4 +1,4 @@
-const { prizeCount, PRIZE_MONEY } = require('../common/constants');
+const { prizeCount, PRIZE_MONEY, OUTPUT, NUMBER } = require('../common/constants');
 const { print, random } = require('../common/util');
 const { checkLottoAmount } = require('../common/Validation');
 
@@ -7,8 +7,8 @@ class LottoAmount {
 
   constructor(money) {
     checkLottoAmount(money);
-    this.#lottoAmount = money / 1000;
-    print(`${this.#lottoAmount}개를 구매했습니다.`);
+    this.#lottoAmount = money / NUMBER.THOUSAND_WON;
+    print(OUTPUT.PURCHASED_AMONUT(this.#lottoAmount));
   }
 
   publishUserLotto() {
@@ -23,12 +23,12 @@ class LottoAmount {
   }
 
   calculateProfit() {
-    const inputMoney = this.#lottoAmount * 1000;
+    const inputMoney = this.#lottoAmount * NUMBER.THOUSAND_WON;
     const outpuMoney = Object.values(prizeCount).reduce(
       (accumulator, currentValue, index) => currentValue * PRIZE_MONEY[index] + accumulator,
-      0
+      NUMBER.INITIAL_VALUE
     );
-    return ((outpuMoney / inputMoney) * 100).toFixed(1);
+    return ((outpuMoney / inputMoney) * NUMBER.ONE_HUNDRED).toFixed(1);
   }
 }
 
