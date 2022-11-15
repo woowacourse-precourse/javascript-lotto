@@ -27,6 +27,10 @@ class LottoGame {
       this.#lottoArray.push(new Lotto(lottoNumbers));
     }
   }
+
+  getLottoGames() {
+    return this.#lottoArray;
+  }
 }
 
 module.exports = LottoGame;
