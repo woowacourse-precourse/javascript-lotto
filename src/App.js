@@ -73,6 +73,10 @@ class App {
     if(Number.isNaN(this.bonusNumber)) {
       throw new Error('[ERROR] 보너스 번호가 올바르지 않습니다.');
     }
+
+    if(this.winningNumber.includes(this.bonusNumber)) {
+      throw new Error('[ERROR] 당첨 번호내에 보너스 번호와 중복되는 숫자가 있습니다.');
+    }
   }
 
   play() {
