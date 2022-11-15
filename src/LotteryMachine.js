@@ -110,6 +110,28 @@ class LotteryMachine {
       return correctNum;
     }, 0);
   }
+
+  static printWinResult(winningStatistics) {
+    const { ranking, totalLottoNum, totalWinnings } = winningStatistics;
+
+    Object.keys(ranking).forEach((rank) => {
+      const correctNum = ranking[rank];
+      Console.print(MESSAGE.LOTTERY_MACHINE.WIN_STATISTIC(rank, correctNum));
+    });
+
+    const earningRate = LotteryMachine.calcEarningRate({
+      totalWinnings,
+      totalLottoNum,
+    });
+    Console.print(MESSAGE.LOTTERY_MACHINE.EARNING_RATE(earningRate));
+  }
+
+  static calcEarningRate({ totalWinnings, totalLottoNum }) {
+    const digits = 1;
+    const earningRate =
+      (totalWinnings / (totalLottoNum * NUMBER.MONEY_UNIT)) * 100;
+    return earningRate.toFixed(digits);
+  }
 }
 
 module.exports = LotteryMachine;

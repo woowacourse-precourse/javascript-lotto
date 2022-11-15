@@ -28,6 +28,23 @@ const MESSAGE = {
   },
   LOTTERY_MACHINE: {
     INPUT_MONEY: '구입금액을 입력해 주세요.',
+    BUY_LOTTO(count) {
+      return `${count}개를 구매했습니다.`;
+    },
+    EARNING_RATE(rate) {
+      return `총 수익률은 ${rate}%입니다.`;
+    },
+    WIN_STATISTIC(rank, correntNum) {
+      const { matchNum, winnings } = LOTTO_RANK[rank];
+      const matchStr =
+        matchNum === LOTTO_RANK.fourthPlace.matchNum
+          ? '5개 일치, 보너스 볼 일치'
+          : `${matchNum}개 일치`;
+      const winningsStr = `(${winnings.toLocaleString()}원)`;
+      const correctNumStr = `${correntNum}개`;
+
+      return `${matchStr} ${winningsStr} - ${correctNumStr}`;
+    },
   },
 };
 
