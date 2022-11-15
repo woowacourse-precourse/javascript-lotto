@@ -4,18 +4,17 @@ const ExceptionCheck = require('./ExceptionCheck');
 const Lotto = require('./Lotto');
 const Printer = require('./Printer');
 const Utils = require('./Utils');
-const { LOTTO_MSG } = require('./Constants.js');
+const { LOTTO_RESULT_MSG, LOTTO_RQUEST_MSG } = require('./Constants.js');
 
 class App {
   constructor() {
     this.exeptionCheck = new ExceptionCheck();
     this.calculator = new Calculator();
     this.utils = new Utils();
-    this.bonusNumber;
-    this.winNumbers;
+    this.print = new Printer();
     this.LottoCount;
-    this.lotto = null;
-    this.bundle;
+    this.lotto;
+    this.lottoResult;
   }
 
   play() {
@@ -23,7 +22,7 @@ class App {
   }
 
   requestForLotto() {
-    Console.readLine(LOTTO_MSG.RQEUEST_MONEY, moneyValue => {
+    Console.readLine(LOTTO_RQUEST_MSG.MONEY, moneyValue => {
       this.exeptionCheck.userInputMoneyValue(moneyValue);
       this.lottoCount = this.calculator.ofPurchaseLottoCount(moneyValue);
       this.requestWinNumbers();
@@ -31,31 +30,32 @@ class App {
   }
 
   requestWinNumbers() {
-    Console.readLine(LOTTO_MSG.RQEUEST_WIN_NUMBE, userInput => {
-      this.winNumbers = this.utils.transeStringToNumber(userInput);
-      this.lotto = new Lotto(this.winNumbers);
+    Console.readLine(LOTTO_RQUEST_MSG.WIN_NUMBE, userInput => {
+      this.lotto = new Lotto(this.utils.transeStringToNumber(userInput));
       this.requestBonusnumber();
     });
   }
 
   requestBonusnumber() {
-    Console.readLine(LOTTO_MSG.RQEUEST_BONUS_NUMBER, bonusNumber => {
-      this.bonusNumber = this.utils.transeStringToNumber(bonusNumber);
-      this.lotto.getBonusNumber(this.bonusNumber);
-      this.printResult();
+    Console.readLine(LOTTO_RQUEST_MSG.BONUS_NUMBER, bonusNumber => {
+      this.lotto.setBonusNumber(bonusNumber);
+      this.lottoVerification();
     });
   }
 
-  printResult() {
-    Console.print(LOTTO_MSG.PURCHASE_COUNT(this.lottoCount));
-    this.lotto.bundleCreate(this.lottoCount).forEach(lottoNums => Console.print(`[${lottoNums.join(', ')}]`));
-    this.bundle = this.lotto.getBundle();
-    this.lotto.bundleVerifyForWin(this.winNumbers, this.bonusNumber, this.bundle);
-    this.lotto.print();
+  lottoVerification() {
+    this.print.purchaseCount(LOTTO_RESULT_MSG.PURCHASE_COUNT(this.lottoCount));
+    this.print.purchaseLottoBundle(this.lotto.bundleCreate(this.lottoCount));
+    this.checkYourLuck();
+  }
+
+  checkYourLuck() {
+    this.lottoResult = this.lotto.getResultMap();
+    this.print.lottoResult(this.lottoResult);
+    Console.close();
   }
 }
 
 const app = new App();
 app.play();
-
 module.exports = App;
