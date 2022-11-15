@@ -4,7 +4,7 @@ const Lotto = require("./Lotto.js");
 const [Console, Random] = [MissionUtils.Console, MissionUtils.Random];
 
 const mapKey = Object.freeze({
-  THREE: "3개 일치 (5000원)",
+  THREE: "3개 일치 (5,000원)",
   FOUR: "4개 일치 (50,000원)",
   FIVE: "5개 일치 (1,500,000원)",
   FIVE_BOUNS: "5개 일치, 보너스 볼 일치 (30,000,000원)",
@@ -52,6 +52,13 @@ function calProfit(map){
   }
 
   return profit;
+}
+
+function printMap(map){
+  Console.print("당첨 통계\n---");
+  for (const [key,value] of map){
+    Console.print(`${key} - ${value}개`);
+  }
 }
 
 
@@ -155,7 +162,7 @@ class App {
 
     initMap(map);
     makeMap(map, result);
-    Console.print(map);
+    printMap(map);
     const profit = calProfit(map);
     Console.print(profit);
   }
