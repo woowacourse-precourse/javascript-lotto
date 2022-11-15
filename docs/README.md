@@ -3,8 +3,28 @@
     <img src="https://woowacourse.github.io/img/logo_full_white.339e6416.png">
 </p>
 
-# 프리코스 3주차 미션 - 로또
+# 프리코스 3주차 미션
 작성자: [FE] 허지예(HeoJiye)
+
+<br>
+
+## 💸 로또 시뮬레이션 게임 개요
+
+### [App 클래스](../src/App.js)
+로또 시뮬레이션을 실행하고, 사용자의 입력을 받아 적절한 곳에 전달하는 역할을 한다.  
+
+### [Lotto 클래스](../src/Lotto.js)
+발행된 로또의 정보를 저장하는 객체를 생성하는 역할을 한다.  
+
+### [LottoStore 클래스](../src/LottoStore.js)
+로또를 판매하는 역할을 한다.    
+금액을 전달하면 가격에 맞게 적절한 갯수만큼 Lotto 객체를 생성해서 되돌려준다.  
+
+### [Receipt 클래스](../src/Receipt.js)
+판매된 로또의 정보를 출력하는 역할을 한다.  
+
+### [LottoDraw 클래스](../src/LottoDraw.js)
+로또의 당첨 번호와 보너스 번호를 가지고 전달된 로또들의 당첨 결과와 수익률을 출력하는 역할을 한다.  
 
 <br>
 
