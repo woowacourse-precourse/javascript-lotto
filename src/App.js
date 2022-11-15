@@ -3,7 +3,7 @@ const { Random } = require("@woowacourse/mission-utils");
 
 const { GAME_START_MESSAGE, ANSWER_INPUT_MESSAGE, BONUS_INPUT_MESSAGE } = require("./message");
 const { MONEY_UNIT, LOTTO_START, LOTTO_END, LOTTO_NUM, ANSWER_NUM_FIVE, FIFTH_PRIZE, FOURTH_PRIZE, THIRD_PRIZE, SECOND_PRIZE, FIRST_PRIZE } = require("./constants");
-const { LOTTO_STATISTICS, PRINT_MESSAGE, showGameRank } = require("./ConsolePrint");
+const { LOTTO_STATISTICS, PURCHASE_NUM_MESSAGE, showGameRank } = require("./ConsolePrint");
 
 const Lotto = require("./Lotto");
 const payValidate = require("./payValidate");
@@ -93,7 +93,7 @@ class App {
   }
 
 //4. 로또 수량만큼 랜덤으로 로또 번호 생성하고 출력하기
-  makeLottoNums(ticketNums){
+  generateLottoNums(ticketNums){
     const allLines = []; 
     for(var i=0; i<ticketNums; i++){
       const oneLine = Random.pickUniqueNumbersInRange(LOTTO_START, LOTTO_END, LOTTO_NUM);
@@ -109,12 +109,12 @@ class App {
   }
 
   //3. 로또 수량 계산하고 출력하기
-  showTicketNums(money) { 
-    const ticketNums = parseInt(money) / MONEY_UNIT;
+  calculateTicketNums(total) { 
+    const ticketNums = parseInt(total) / MONEY_UNIT;
     this.ticketNums = ticketNums;
-    Console.print('\n'+ this.ticketNums + PRINT_MESSAGE);
+    Console.print('\n'+ this.ticketNums + PURCHASE_NUM_MESSAGE);
     
-    return this.makeLottoNums(ticketNums);
+    return ticketNums;
   }
 
   //1. 로또 구입 금액 입력받기
@@ -122,12 +122,13 @@ class App {
     Console.readLine(GAME_START_MESSAGE, (total) => {    
       payValidate(total); //2. 구입 금액이 1,000원 단위인지 체크
       this.payment = total;
-      return this.showTicketNums(total);
+      this.ticketNums = this.calculateTicketNums(total);
+      this.generateLottoNums(this.ticketNums);
     });
   }
 
   play() {
-    this.payLottoMoney(); 
+    this.payLottoMoney();
   }
 }
 

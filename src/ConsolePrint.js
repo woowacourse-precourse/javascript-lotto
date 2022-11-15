@@ -2,7 +2,7 @@ const { Console } = require("@woowacourse/mission-utils");
 
 const LOTTO_STATISTICS = '\n당첨 통계\n---';
 
-const PRINT_MESSAGE = '개를 구매했습니다.';
+const PURCHASE_NUM_MESSAGE = '개를 구매했습니다.';
 
 const RESULT_MESSAGE = Object.freeze({
     RANK_FIVE: "3개 일치 (5,000원) - ",
@@ -22,7 +22,7 @@ const showGameRank = (rankCntList) => {
 
 module.exports = {
     LOTTO_STATISTICS,
-    PRINT_MESSAGE, 
+    PURCHASE_NUM_MESSAGE, 
     RESULT_MESSAGE,
     showGameRank
 };
