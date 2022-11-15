@@ -40,10 +40,10 @@ class ComparisonOfWinningNumbers {
 
   RateOfReturn(price, rank) {
     let totalMoney = rank.filter(element => 3 === element).length * 5000 +
-                            rank.filter(element => 4 === element).length * 50000 + 
-                            rank.filter(element => 5 === element).length * 1500000 + 
-                            rank.filter(element => 1 === element).length * 30000000 + 
-                            rank.filter(element => 6 === element).length * 2000000000;
+                    rank.filter(element => 4 === element).length * 50000 + 
+                    rank.filter(element => 5 === element).length * 1500000 + 
+                    rank.filter(element => 1 === element).length * 30000000 + 
+                    rank.filter(element => 6 === element).length * 2000000000;
     let lottoRateOfReturn = totalMoney / price * 100;
     return lottoRateOfReturn;
   }
