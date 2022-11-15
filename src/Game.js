@@ -37,9 +37,13 @@ class Game {
     const parsedInput = this.parseInput(input);
     const winningNumber = new Lotto(parsedInput).getNumbers();
     this.winningNumber = winningNumber;
+    this.askNumber(MESSAGE.INPUT_BONUS_NUMBER, this.proceedStepThree.bind(this));
   }
   parseInput(input) {
     return input.replace(REGEX.PARSE_INPUT, '').split(',');
+  }
+  proceedStepThree(input) {
+    Console.close();
   }
 }
 
