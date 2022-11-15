@@ -1,5 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const RandomNumber = require("./RandomNumber");
+const AmountError = require("../errors/AmountError");
 
 class AmountNumber {
   constructor(purchaseAmout, purchaseNumber) {
@@ -14,7 +15,7 @@ class AmountNumber {
       (amountInput) => {
         console.log("");
         this.purchaseAmout = amountInput;
-        this.amounterror();
+        new AmountError(this.purchaseAmout);
         this.amountDivide();
       }
     );
