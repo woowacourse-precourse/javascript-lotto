@@ -32,6 +32,14 @@ class App {
     this.letBonusNumber();
   }
 
+  letBonusNumber() {
+    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusNum) => {
+      this.bonusNum = Number(bonusNum);
+      this.startLotto.validateBonus(bonusNum);
+      this.makeMatchList();
+    });
+  }
+
 }
 const a = new App;
 a.play();
