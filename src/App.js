@@ -26,8 +26,8 @@ class App {
     return lottoNumbers;
   }
   setLottoNumber = () => {
-    Console.readLine(MESSAGES.SET_LOTTO, (answer) => {
-      const lotto = new Lotto(answer);
+    Console.readLine(MESSAGES.SET_LOTTO, (numbers) => {
+      const lotto = new Lotto(numbers.split(',').map((number) => parseInt(number)));
     })
   }
 }

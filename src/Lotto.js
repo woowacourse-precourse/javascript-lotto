@@ -4,11 +4,8 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.#numbers = this.validate(this.changeForm(numbers));
-  }
-
-  changeForm(numbers) {
-    return numbers.split(',').map((number) => parseInt(number));
+    this.validate(numbers);
+    this.#numbers = numbers;
   }
 
   validate(numbers) {
@@ -26,7 +23,6 @@ class Lotto {
     if ([...new Set(numbers)].length !== 6) {
       throw new Error(MESSAGES.ERROR.DUPICATION);
     }
-    return numbers;
   }
 }
 
