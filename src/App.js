@@ -21,6 +21,20 @@ class App {
     });
   }
 
+  getLottoNumbers(count) {
+    const numbers = [];
+    for(let i = 0; i < count; i++) {
+      const number = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      const lotto = new Lotto(number);
+      numbers.push(lotto.getNumbers());
+    }
+    numbers.forEach(lotto => {
+      MissionUtils.Console.print(lotto);
+    });
+    
+    this.#myLottoNumbers = numbers;
+  }
+
   getWinNumbers() {
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (numbers) => {
       numbers = numbers.split(',');
@@ -80,32 +94,11 @@ class App {
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${this.#equalNumber[6]}개`);
     MissionUtils.Console.print(`총 수익률은 - ${this.#profitPercent}%입니다.`);
   }
-
-
-
-
-  getLottoNumbers(count) {
-    const numbers = [];
-    for(let i = 0; i < count; i++) {
-      numbers.push(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
-    }
-    numbers.forEach(lotto => {
-      MissionUtils.Console.print(lotto);
-    });
-    
-    this.#myLottoNumbers = numbers;
-  }
-
-  printNumbers() {
-    MissionUtils.Console.print(this.#myLottoNumbers);
-    MissionUtils.Console.print(this.#winNumbers);
-    MissionUtils.Console.print(this.#bonusNumber);
-  }
 }
 
 
 const MissionUtils = require("@woowacourse/mission-utils");
-
+const Lotto = require("./Lotto");
 const app = new App();
 app.play();
 
