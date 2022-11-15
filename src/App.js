@@ -3,11 +3,14 @@ const Machine = require('./Machine.js');
 const machine = new Machine();
 
 const GET_WINNING_NUMBER_SENTENCE = '당첨 번호를 입력해 주세요.\n';
+const GET_BONUS_NUMBER_SENTENCE = '\n보너스 번호를 입력해 주세요.\n';
 
 class App {
   constructor() {
     this.lottos;
     this.winningNumber;
+    this.bonusNumber;
+    this.stats = [];
   }
 
   inputCost() {
@@ -23,8 +26,15 @@ class App {
 
   inputWinningNumber() {
     Console.readLine(GET_WINNING_NUMBER_SENTENCE, (winningNumber) => {
-      this.winningNumber = winningNumber.split(',');
-      Console.print(this.winningNumber);
+      this.winningNumber = winningNumber.split(',').map(Number);
+
+      this.inputBonusNumber();
+    })
+  }
+
+  inputBonusNumber() {
+    Console.readLine(GET_BONUS_NUMBER_SENTENCE, (bonusNumber) => {
+      this.bonusNumber = parseInt(bonusNumber);
     })
   }
 
