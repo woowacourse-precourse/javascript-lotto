@@ -1,4 +1,8 @@
+const CheckError = require("./CheckError.js");
 class Lotto {
+  // Lotto 번호 유효성 검사하는 클래스.
+  // 이런식으로 로또 한 줄을 넣는다.
+  // new Lotto([1, 2, 3, 4, 5, 6, 7]);
   #numbers;
 
   constructor(numbers) {
@@ -7,12 +11,12 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+    CheckError.checkLottoNumbers(numbers);
   }
 
-  // TODO: 추가 기능 구현
+  getLotto() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
