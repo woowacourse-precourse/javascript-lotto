@@ -5,6 +5,7 @@ const Lotto = require('./Lotto');
 class App {
   #lotto;
   #madeLotto;
+  #bonusNumber;
   play() {
     this.inputPrice();
   }
@@ -48,6 +49,12 @@ class App {
     readLine('당첨 번호를 입력해 주세요.\n', lottoNumber => {
       const lottoNumbers = lottoNumber.split(',').map(Number);
       this.#lotto = new Lotto(lottoNumbers);
+    })
+  }
+
+  inputBonusLottoNumbers() {
+    readLine('보너스 번호를 입력해주세요.\n', bonusNumber => {
+      this.#bonusNumber = bonusNumber;
     })
   }
 }
