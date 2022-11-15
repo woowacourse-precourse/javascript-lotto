@@ -7,6 +7,7 @@ class Compare {
     this.#lotto = lotto;
     this.#winning = winning;
     this.#bonus = bonus;
+    this.compareResult = { THREE: 0, FOUR: 0, FIVE: 0, FIVE_BONUS: 0, SIX: 0 };
     this.compare();
   }
 
@@ -17,6 +18,8 @@ class Compare {
         this.compareNumber(number, count);
         this.compareBonus(number, count);
       });
+
+      this.compareTotal(count);
     });
   }
 
@@ -30,6 +33,17 @@ class Compare {
     if (number === this.#bonus) {
       count.bonusCount += 1;
     }
+  }
+
+  compareTotal(count) {
+    if (count.winningCount === 3) this.compareResult.THREE += 1;
+    if (count.winningCount === 4) this.compareResult.FOUR += 1;
+    if (count.winningCount === 5) {
+      if (count.bonusCount === 1) this.compareResult.FIVE_BONUS += 1;
+      else this.compareResult.FIVE += 1;
+    }
+    if (count.winningCount === 6) this.compareResult.SIX += 1;
+    console.log(this.compareResult);
   }
 }
 
