@@ -2,6 +2,12 @@ const Lotto = require('./Lotto');
 const LottoList = require('./LottoList');
 const { Random, Console } = require("@woowacourse/mission-utils");
 
+const THREE_MATCHED = 3;
+const FOUR_MATCHED = 4;
+const FIVE_MATCHED = 5;
+const SIX_MATCHED = 6;
+const FIVE_AND_BONUS_MATCHED = 7;
+
 class App {
   constructor() {
     this.makeLotto = new LottoList();
@@ -75,11 +81,11 @@ class App {
   printResult(list) {
     this.list = list;
     Console.print('\n당첨 통계\n---');
-    Console.print(`3개 일치 (5,000원) - ${list[3]}개`);
-    Console.print(`4개 일치 (50,000원) - ${list[4]}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${list[5]}개`);
-    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${list[7]}개`);
-    Console.print(`6개 일치 (2,000,000,000원) - ${list[6]}개`);
+    Console.print(`3개 일치 (5,000원) - ${list[THREE_MATCHED]}개`);
+    Console.print(`4개 일치 (50,000원) - ${list[FOUR_MATCHED]}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${list[FIVE_MATCHED]}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${list[FIVE_AND_BONUS_MATCHED]}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${list[SIX_MATCHED]}개`);
     this.printStatistic(list);
   }
 
@@ -92,11 +98,11 @@ class App {
 
   calculateProfit(list) {
     return(
-      list[3] * 5000 +
-      list[4] * 50000 +
-      list[5] * 1500000 +
-      list[6] * 2000000000 +
-      list[7] * 30000000
+      list[THREE_MATCHED] * 5000 +
+      list[FOUR_MATCHED] * 50000 +
+      list[FIVE_MATCHED] * 1500000 +
+      list[FIVE_AND_BONUS_MATCHED] * 30000000 +
+      list[SIX_MATCHED] * 2000000000
     )
   }
 
