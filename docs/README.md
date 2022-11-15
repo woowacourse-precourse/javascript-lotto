@@ -55,7 +55,10 @@
 
 - [x] `ApplicationTest`
 
-- [x] `LottoTest`
+- [ ] `LottoTest`
+
+  - [x] 로또 번호 입력이 공백이면 예외가 발생하는지 테스트
+  - [ ]
 
 ## 🚀 기능 요구 사항
 
