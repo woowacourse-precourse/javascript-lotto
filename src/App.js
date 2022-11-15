@@ -6,61 +6,58 @@ const { CostValidator, LottoValidator } = require('./validators');
 class App {
   #console;
   #lottoGenerator;
+  #lottoTickets;
+  #winningNumbers;
+  #bonusNumber;
 
   constructor() {
     this.#console = new ConsoleAdapter();
     this.#lottoGenerator = new LottoGenerator();
+    this.#lottoTickets = [];
+    this.#winningNumbers = [];
+    this.bonusNumber = null;
   }
 
-  async play() {
-    const cost = await this.#queryPurchaseCost();
-    const lotteryTickets = this.#purchaseLotteryTickets(cost);
-
-    this.#printPurchaseInformation(lotteryTickets);
-
-    const winningNumbers = await this.#queryWinningNumbers();
+  play() {
+    this.#queryPurchaseCost();
   }
 
-  async #queryPurchaseCost() {
-    const input = await this.#requestUserInput('구입 금액을 입력해 주세요.');
-    const cost = Number(input);
+  #queryPurchaseCost() {
+    this.#console.readLine('구입 금액을 입력해 주세요.\n', (input) => {
+      const cost = Number(input);
 
-    CostValidator.validatePurchaseCost(cost);
+      CostValidator.validatePurchaseCost(cost);
 
-    return cost;
-  }
+      const lottoTickets = this.#purchaseLottoTickets(cost);
+      this.#lottoTickets = lottoTickets;
 
-  #requestUserInput(query) {
-    const userInput = new Promise((resolve) => {
-      this.#question(query, resolve);
+      this.#printPurchaseInformation(lottoTickets);
+      this.#queryWinningNumbers();
     });
-
-    return userInput;
   }
 
-  #question(query, callback) {
-    this.#console.readLine(`${query}\n`, (input) => callback(input));
-  }
-
-  #purchaseLotteryTickets(cost) {
+  #purchaseLottoTickets(cost) {
     const quantity = cost / LOTTO.PRICE;
-    const lotteryTickets = this.#lottoGenerator.createMultipleLotto(quantity);
+    const lottoTickets = this.#lottoGenerator.createMultipleLotto(quantity);
 
-    return lotteryTickets;
+    return lottoTickets;
   }
 
-  #printPurchaseInformation(lotteryTickets) {
-    this.#console.print(`\n${lotteryTickets.length}개를 구매했습니다.`);
-    lotteryTickets.forEach((lotto) => this.#console.print(lotto.numbers));
+  #printPurchaseInformation(lottoTickets) {
+    this.#console.print(`\n${lottoTickets.length}개를 구매했습니다.`);
+
+    lottoTickets.forEach(({ numbers }) => {
+      this.#console.print(`[${numbers.join(', ')}]`);
+    });
   }
 
-  async #queryWinningNumbers() {
-    const input = await this.#requestUserInput('\n당첨 번호를 입력해 주세요.');
-    const winningNumbers = input.split(',').map(Number);
+  #queryWinningNumbers() {
+    this.#console.readLine('\n당첨 번호를 입력해 주세요.\n', (input) => {
+      const winningNumbers = input.split(',').map(Number);
 
-    LottoValidator.validateWinningNumbers(winningNumbers);
-
-    return winningNumbers;
+      LottoValidator.validateWinningNumbers(winningNumbers);
+      this.#winningNumbers = winningNumbers;
+    });
   }
 }
 
