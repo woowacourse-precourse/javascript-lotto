@@ -15,7 +15,7 @@ class GamePrint {
     });    
   }
   
-  static result(prize, profitRate) {
+  static result(prize, revenueRate) {
     MissionUtils.Console.print(MESSAGES.GAME.RESULT_HEADER);
     for(let rank in prize) {
       if(rank === LOTTO_BASIC_CONDITION.bonusCheckPoint) {
@@ -25,7 +25,7 @@ class GamePrint {
       }
       MissionUtils.Console.print(`${rank}개 일치 (${GameUtils.addComma(prize[rank].winningAmount)}원) - ${prize[rank].ea}개`);
     }
-    MissionUtils.Console.print(`총 수익률은 ${profitRate}%입니다.`);
+    MissionUtils.Console.print(`총 수익률은 ${revenueRate}%입니다.`);
   }
 }
 
