@@ -1,4 +1,4 @@
-class App {
+class App {gg
   play() {}
 }
 
