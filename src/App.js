@@ -29,10 +29,10 @@ class App {
   }
 
   getInputMoney() {
-    Console.readLine("```\n구매금액을 입력해 주세요.\n", (input) => {
-      if (!this.isValidMoney(input)) {
-        throw "[ERROR]";
-      }
+    Console.print("```\n");
+    Console.readLine("구매금액을 입력해 주세요.\n", (input) => {
+      this.isValidMoney(input);
+
       this.payMoney = input;
       this.lottos = this.publishLottos(input / 1000);
       this.printLottosNumbers();
