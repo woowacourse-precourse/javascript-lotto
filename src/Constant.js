@@ -48,7 +48,7 @@ const WINNER = {
         }
     },
     '6' : {
-        rank : 6,
+        rank : 1,
         winnings : 200000000,
     },
 };
