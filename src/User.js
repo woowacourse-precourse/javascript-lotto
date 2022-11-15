@@ -23,6 +23,7 @@ class User {
     this.makeLotto(this.#lottoCnt);
     Console.print(`\n${this.#lottoCnt}${CMM_BUY_LOTTO}`);
   }
+
   makeLotto(lottoCnt) {
     for (let i = 0; i < lottoCnt; i++) {
       const randomNum = Random.pickUniqueNumbersInRange(
@@ -34,13 +35,16 @@ class User {
       this.#lottos.push(lotto);
     }
   }
+
   buyLotto(money) {
     this.validateMoneyInput(money);
     return money / 1000;
   }
+
   printUsersLottos() {
     this.#lottos.forEach((e) => e.toString());
   }
+
   validateMoneyInput(money) {
     const money_int = parseInt(money);
     if (!money_int || !Number.isInteger(money_int) || isNaN(money)) {
@@ -53,6 +57,7 @@ class User {
       throw new Error(ERR_MONEY_UNIT);
     }
   }
+
   checkRankWithUserLottos(winningNumList, bonusNum) {
     const resultMap = new Map();
     this.#lottos.forEach((userLotto) => {
@@ -66,6 +71,7 @@ class User {
     });
     return resultMap;
   }
+
   checkRankWithOneLotto(userLottoNum, winningNumList, bonusNum) {
     const answerList = [...winningNumList, bonusNum];
     const answerCount = this.count(userLottoNum, answerList);
@@ -82,10 +88,12 @@ class User {
         return 6;
     }
   }
+
   checkRank1or2(bonusNum, userLottoNum) {
     if (userLottoNum.includes(bonusNum)) return 2;
     return 1;
   }
+
   count(userList, answerList) {
     //두 배열의 일치하는 원소의 갯수를 반환 (단, 두 배열은 모두 다른 6,7개의 숫자로 구성되어있어야함)
     let count = 0;
@@ -94,9 +102,11 @@ class User {
     });
     return count;
   }
+
   getEarns() {
     return this.#earns;
   }
+
   showEarningRate() {
     const earningRate = ((this.#earns * 100) / this.#money).toFixed(1);
     Console.print(`총 수익률은 ${earningRate}%입니다.`);

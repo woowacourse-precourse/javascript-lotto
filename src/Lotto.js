@@ -28,6 +28,7 @@ class Lotto {
   getNumbers() {
     return this.#numbers;
   }
+  
   toString() {
     let return_str = '[';
     for (let number = 0; number < this.#numbers.length; number++) {
