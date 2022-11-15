@@ -39,7 +39,13 @@ class Store {
       for (let lottoCount = 0; lottoCount < lottoMaxCount; lottoCount++) {
         this.issue();
       }
-      return;
+      return this.printCandidates();
+    });
+  }
+
+  printCandidates() {
+    this.candidates.forEach((candidate) => {
+      MissionUtils.Console.print(candidate.numbers);
     });
   }
 }
