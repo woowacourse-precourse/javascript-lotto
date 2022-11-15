@@ -3,9 +3,15 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class App {
   
   checkInput(money){
-    if(isNaN(money)){
-      throw "[ERROR] 구입금액은 숫자로만 이루어져야 합니다."
+    try{
+      if(isNaN(money)){
+        // throw "[ERROR] 숫자로만 이루어져야합니다."
+        return 0;
+      }
+    }catch(e){
+      console.log(e);
     }
+
     return 1;
   }
 
@@ -19,6 +25,7 @@ class App {
     for(let i=0; i<lotto_cnt; i++){
       let drawed = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       MissionUtils.Console.print(drawed);
+      
       lotto_arr.push(drawed);
     } 
   }
@@ -82,15 +89,14 @@ class App {
 
   calRevenue(lotto_cnt, total_winnings){
     const purchase_price = lotto_cnt*1000;
-    console.log(total_winnings/purchase_price);
-    const revenue = (total_winnings/purchase_price * 100).toFixed(2);
+    const revenue = (total_winnings/purchase_price * 100);
     return revenue;
   }
 
 
   printResult(result, lotto_cnt){
-    MissionUtils.Console.print(`당첨 통계`);
-    MissionUtils.Console.print(`---`);
+    // MissionUtils.Console.print(`당첨 통계`);
+    // MissionUtils.Console.print(`---`);
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${result[0]}개`);
     MissionUtils.Console.print(`4개 일치 (50,000원) - ${result[1]}개`);
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${result[2]}개`);
@@ -122,7 +128,8 @@ class App {
         await MissionUtils.Console.close();
       });
     }catch(e){
-      throw "[ERROR]"
+      console.log(e);
+      // throw "[ERROR]"
     }
   }
 }
