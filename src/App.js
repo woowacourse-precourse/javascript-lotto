@@ -32,14 +32,14 @@ class App {
 
   inputWinningLotto() {
     MissionUtils.Console.readLine(CONSOLE_MESSAGE.INPUT_WINNING_LOTTO,(winningNumberString)=>{
-      const winningNumber = stringToNumberArray(winningNumberString);
-      this.inputBonusNumber(winningNumber);
+      const winningLotto = stringToNumberArray(winningNumberString);
+      this.inputBonusNumber(winningLotto);
     });
   }
   
-  inputBonusNumber(winningNumber) {
+  inputBonusNumber(winningLotto) {
     MissionUtils.Console.readLine(CONSOLE_MESSAGE.INPUT_BONUS_LOTTO,(bonusNumber)=>{
-      this.#result = new LottoResult(winningNumber,Number(bonusNumber),this.#lottoMachine);
+      this.#result = new LottoResult(winningLotto,Number(bonusNumber),this.#lottoMachine);
       this.showWinningStats();
     });
   }
