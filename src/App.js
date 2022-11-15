@@ -1,9 +1,9 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const { MESSAGE, UNIT } = require("./Utils/constant");
-const Lotto = require("./Lotto");
+const Lotto = require("./Domians/Lotto");
 const Result = require("./Result");
-const Amount = require("./Amount");
-const Bonus = require("./Bonus");
+const Amount = require("./Domians/Amount");
+const Bonus = require("./Domians/Bonus");
 class App {
   constructor() {
     this.myMoney = 0;

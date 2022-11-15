@@ -1,4 +1,4 @@
-const { ERROR } = require("./Utils/constant");
+const { ERROR } = require("../Utils/constant");
 class Amount {
   #amount;
 
