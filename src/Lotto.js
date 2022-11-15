@@ -5,14 +5,16 @@ class Lotto {
 
   constructor(numbers) {
     this.validate(numbers);
-    this.#numbers = numbers;
+    this.#numbers = this.sortNumber(numbers);
   }
 
   validate(numbers) {
     Validation.validateLottoNumber(numbers);
   }
 
-  // TODO: 추가 기능 구현
+  sortNumber(lotto) {
+    return lotto.sort((a, b) => a - b);
+  }
 }
 
 module.exports = Lotto;
