@@ -7,7 +7,7 @@ class GetLotto {
    this.lottoPrice = 1000;
    this.countOfLottos = 0;
    this.lottoList = [];
-  }
+  };
 
   isValidMoney(userMoney) {
     if (userMoney % this.lottoPrice !== 0) {
@@ -19,17 +19,25 @@ class GetLotto {
     }
 
     return true;
-  }
+  };
+
+  countLottos(userMoney) {
+    if (this.isValidMoney(userMoney)) {
+      this.countOfLottos = userMoney / this.lottoPrice;
+    }
+
+    return this.countOfLottos;
+  };
     
   generateLottoNum(userMoney) {
+
    for (let count = 1; count <= this.countOfLottos; count++) {
     const LottoNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
     const lotto = new Lotto(LottoNumbers);
     this.lottoList.push(lotto);
    }
     
-  return this.lottoList;
- }
-
+   return this.lottoList;
+  };
     
 }
