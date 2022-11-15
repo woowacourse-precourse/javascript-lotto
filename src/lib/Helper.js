@@ -24,6 +24,12 @@ const Helper = {
       }
     }
   },
+
+  checkValidMoney(money){
+    if (money % 1000 !== 0) {
+      throw new Error(Message.ERROR.PRICE_UNIT);
+    }
+  }
 };
 
 module.exports = { Helper };
