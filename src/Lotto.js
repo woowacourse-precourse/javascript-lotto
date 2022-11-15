@@ -24,12 +24,15 @@ class Lotto {
       numbers[2] === numbers[4] ||
       numbers[2] === numbers[5] ||
       numbers[3] === numbers[4] ||
-      numbers[3] === numbers[5]
+      numbers[3] === numbers[5] ||
+      numbers[4] === numbers[5]
     ) {
       throw new Error("[ERROR] 로또 번호는 중복되서는 안됩니다.");
     }
-    if (isNaN(numbers)) {
-      throw new Error("[ERROR] 로또 번호는 숫자여야 합니다.");
+    for (let i = 0; i < numbers.length; i++) {
+      if (isNaN(numbers[i])) {
+        throw new Error("[ERROR] 로또 번호는 숫자여야 합니다.");
+      }
     }
     for (let i = 0; i < 6; i++) {
       if (Number(numbers[i]) < 1 || Number(numbers[i]) > 46) {
