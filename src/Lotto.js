@@ -1,3 +1,10 @@
+const { LOTTO } = require('./Constants');
+const UI = require('./UI');
+const Validation = require('./Validation');
+
+const ui = new UI();
+const validation = new Validation();
+
 class Lotto {
   #numbers;
 
@@ -7,12 +14,27 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    try {
+      validation.checkArrayLength(numbers, LOTTO.LENGTH);
+      validation.checkDuplication(numbers);
+    } catch (error) {
+      ui.printError(error);
     }
   }
 
-  // TODO: 추가 기능 구현
+  countMatchNumbers(winningNumber, bonusNumber) {
+    const matchNumbers = this.#numbers.filter((number) =>
+      winningNumber.includes(number),
+    );
+    if (matchNumbers.length === 5 && this.#numbers.includes(bonusNumber)) {
+      return '5B';
+    }
+    return matchNumbers.length;
+  }
+
+  getNumbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
