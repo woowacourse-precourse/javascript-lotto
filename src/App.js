@@ -72,6 +72,7 @@ class App {
         printWinStatistics(this.getWinHistory());
         this.makeTotalRevenue();
         printRevenueRate(this.getRevenueRate());
+        MissionUtils.Console.close();
       },
     );
   }

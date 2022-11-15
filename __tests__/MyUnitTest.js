@@ -36,11 +36,10 @@ describe('My Unit test', () => {
     app.setAmount(amount);
     app.issueLottos();
     const lottos = app.getLottos();
-
     lottos.forEach((lotto) => {
-      const sortedLotto = [...lotto];
-      sortedLotto.sort();
-      expect(lotto).toEqual(sortedLotto);
+      const sortedLotto = [...lotto.getNumbers()];
+      sortedLotto.sort((a, b) => a - b);
+      expect(lotto.getNumbers()).toEqual(sortedLotto);
     });
   });
 
