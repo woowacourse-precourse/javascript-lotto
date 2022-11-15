@@ -1,5 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const { MESSAGE, PRIZE_MONEY } = require('./Constants');
+const { MESSAGE, PRIZE_MONEY, LOTTO } = require('./Constants');
 
 const { Console } = MissionUtils;
 
@@ -7,7 +7,7 @@ class Money {
   constructor(amount) {
     this.validate(amount);
     this.amount = amount;
-    this.numOfLotto = amount / 1000;
+    this.numOfLotto = amount / LOTTO.BASE_PRICE;
   }
 
   /**
@@ -15,8 +15,12 @@ class Money {
    * @param {number} amount - 구입 금액
    */
   validate(amount) {
-    if (amount % 1000 !== 0) throw new Error(MESSAGE.ERROR_NO_THOUSAND_WON);
-    if (!(Number.isInteger(amount) && amount > 0)) throw new Error(MESSAGE.ERROR_NO_POSITIVE_INT);
+    if (amount % LOTTO.BASE_PRICE !== 0) {
+      throw new Error(MESSAGE.ERROR_NO_THOUSAND_WON);
+    }
+    if (!(Number.isInteger(amount) && amount > 0)) {
+      throw new Error(MESSAGE.ERROR_NO_POSITIVE_INT);
+    }
   }
 
   /**

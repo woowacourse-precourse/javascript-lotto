@@ -1,5 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const { MESSAGE } = require('./Constants');
+const { MESSAGE, LOTTO } = require('./Constants');
 
 const { Console } = MissionUtils;
 
@@ -16,13 +16,15 @@ class Lotto {
    * @param {Array<number>} numbers - 로또 배열
    */
   validate(numbers) {
-    if (numbers.length !== 6) throw new Error(MESSAGE.ERROR_SIX_ELEMENT);
     const numSet = new Set(numbers);
+    if (numbers.length !== 6) throw new Error(MESSAGE.ERROR_SIX_ELEMENT);
     if (numSet.size !== 6) throw new Error(MESSAGE.ERROR_NO_DUPLICATE);
 
     numbers.forEach((num) => {
       if (!Number.isInteger(num)) throw new Error(MESSAGE.ERROR_NO_INTEGER);
-      if (num < 1 || num > 45) throw new Error(MESSAGE.ERROR_OUT_OF_RANGE);
+      if (num < LOTTO.START_NUMBER || num > LOTTO.END_NUMBER) {
+        throw new Error(MESSAGE.ERROR_OUT_OF_RANGE);
+      }
     });
   }
 

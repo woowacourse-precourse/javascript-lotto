@@ -1,5 +1,5 @@
 const Lotto = require('./Lotto');
-const { MESSAGE } = require('./Constants');
+const { MESSAGE, LOTTO } = require('./Constants');
 
 class WinningLotto extends Lotto {
   /**
@@ -19,7 +19,9 @@ class WinningLotto extends Lotto {
   validateBonus(numbers, bonus) {
     if (numbers.includes(bonus)) throw new Error(MESSAGE.ERROR_BONUS_IN_NUMS);
     if (!Number.isInteger(bonus)) throw new Error(MESSAGE.ERROR_NO_INTEGER);
-    if (bonus < 1 || bonus > 45) throw new Error(MESSAGE.ERROR_OUT_OF_RANGE);
+    if (bonus < LOTTO.START_NUMBER || bonus > LOTTO.END_NUMBER) {
+      throw new Error(MESSAGE.ERROR_OUT_OF_RANGE);
+    }
   }
 
   /**

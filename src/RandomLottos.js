@@ -1,5 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const { CONSTANT } = require('./Constants');
+const { CONSTANT, LOTTO } = require('./Constants');
 const Lotto = require('./Lotto');
 const WinningLotto = require('./WinningLotto');
 
@@ -24,7 +24,11 @@ class RandomLottos {
    * @returns {Lotto} 랜덤으로 새로 발행한 로또
    */
   lottoGenerator() {
-    const lottoNums = Random.pickUniqueNumbersInRange(1, 45, 6);
+    const lottoNums = Random.pickUniqueNumbersInRange(
+      LOTTO.START_NUMBER,
+      LOTTO.END_NUMBER,
+      LOTTO.NUM_OF_DRAWN,
+    );
     return new Lotto(lottoNums);
   }
 

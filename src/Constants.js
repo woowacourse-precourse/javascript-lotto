@@ -8,6 +8,12 @@ const CONSTANT = Object.freeze({
   CORRECT: 0,
   BONUS: 1,
 });
+const LOTTO = Object.freeze({
+  BASE_PRICE: 1000,
+  START_NUMBER: 1,
+  END_NUMBER: 45,
+  NUM_OF_DRAWN: 6,
+});
 
 const PRIZE_MONEY = [5000, 50000, 1500000, 30000000, 2000000000];
 
@@ -29,4 +35,6 @@ const MESSAGE = Object.freeze({
   ERROR_BONUS_IN_NUMS: '[ERROR] 보너스 번호가 당첨번호 안에 있습니다.',
   ERROR_NO_POSITIVE_INT: '[ERROR] 구매금액이 양의 정수여야 합니다.',
 });
-module.exports = { CONSTANT, PRIZE_MONEY, MESSAGE };
+module.exports = {
+  CONSTANT, PRIZE_MONEY, MESSAGE, LOTTO,
+};
