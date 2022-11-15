@@ -8,6 +8,10 @@ class Score {
         this.profit = 0;
     }
 
+    setUserLotto (userLotto) {
+        this.userLotto = userLotto;
+    }
+    
 }
 
 module.exports = Score;
