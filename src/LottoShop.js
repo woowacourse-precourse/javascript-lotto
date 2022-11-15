@@ -1,6 +1,6 @@
-const Validator = require('./Vaildator');
 const { Random } = require('@woowacourse/mission-utils');
-const { outputLottoNumbers } = require('./output');
+const Validator = require('./Vaildator');
+const Output = require('./Output');
 
 class LottoShop {
   #purchasedNumbers;
@@ -37,7 +37,7 @@ class LottoShop {
     const lottoAmount = this.countLottoAmount(purchaseAmount);
     this.setpurchasedNumbers(lottoAmount);
 
-    outputLottoNumbers(lottoAmount, this.#purchasedNumbers);
+    new Output().lottoNumbers(lottoAmount, this.#purchasedNumbers);
   }
 
   getPurchasedNumbers() {
