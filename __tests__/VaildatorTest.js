@@ -23,6 +23,12 @@ describe('Validator 클래스 테스트', () => {
     expect(Vaildator.isPositiveNumber('121ss')).toEqual(false);
   });
 
+  test('isDivisible: 입력한 금액이 단위 금액으로 나누어 떨어지는지 확인하는 기능 테스트', () => {
+    expect(Vaildator.isDivisible(10000)).toEqual(true);
+    expect(Vaildator.isDivisible(8000)).toEqual(true);
+    expect(Vaildator.isDivisible(1200)).toEqual(false);
+  });
+
   test('isRightAmount: 입력한 금액을 모두 사용해 게임을 구매할 수 있는지 확인하는 기능 테스트', () => {
     expect(Vaildator.isRightAmount(8000)).toEqual(true);
     expect(Vaildator.isRightAmount(8001)).toEqual(false);
@@ -52,15 +58,5 @@ describe('Validator 클래스 테스트', () => {
       false
     );
     expect(Vaildator.isRightLottoNumbers([1, 2, 3, 4, 5, 6])).toEqual(true);
-  });
-
-  test('로또 순위를 계산하는 기능:', () => {
-    const user = new User();
-    expect(user.dicideRank(6, false)).toEqual(1);
-    expect(user.dicideRank(5, true)).toEqual(2);
-    expect(user.dicideRank(5, false)).toEqual(3);
-    expect(user.dicideRank(4, false)).toEqual(4);
-    expect(user.dicideRank(3, false)).toEqual(5);
-    expect(user.dicideRank(2, false)).toEqual(0);
   });
 });
