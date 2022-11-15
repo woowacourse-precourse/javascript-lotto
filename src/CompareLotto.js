@@ -2,7 +2,7 @@ const { Console } = require('@woowacourse/mission-utils');
 const { COMPARE_VALUE, MATCH, LOTTO_WIN, PRIZE } = require('./setting/Constants');
 
 class CompareLotto {
-  static count(lottoList, winNumber) {
+  static countPrize(lottoList, winNumber) {
     return lottoList.filter((number) => winNumber.includes(number)).length;
   }
 
@@ -14,19 +14,19 @@ class CompareLotto {
     const count = [];
 
     lottoList.forEach((lotto) => {
-      const correctNumber = this.count(lotto, winNumber);
+      const correctNumber = this.countPrize(lotto, winNumber);
       const correctBonus = this.countBonus(winNumber, bonus);
 
       count.push({ correctNumber, correctBonus });
     });
-    const howManyWin = this.number(count);
+    const howManyWin = this.eachResult(count);
 
     return howManyWin;
   }
 
-  static number(count) {
-    const howManyWin = Array.from({ length: COMPARE_VALUE.length }, () => COMPARE_VALUE.zero);
-
+  static eachResult(count) {
+    const howManyWin = this.makeZeroArray();
+    
     for (let i = COMPARE_VALUE.zero; i < count.length; i += COMPARE_VALUE.one) {
       const { correctNumber, correctBonus } = count[i];
 
@@ -38,6 +38,10 @@ class CompareLotto {
     }
 
     return howManyWin;
+  }
+
+  static makeZeroArray() {
+    return Array.from({ length: COMPARE_VALUE.length }, () => COMPARE_VALUE.zero);
   }
 
   static totalMoney(howManyWin) {
