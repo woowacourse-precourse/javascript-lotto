@@ -97,11 +97,14 @@ class App {
   checkMainNumMatch(lotto) {
     let mainMatch = 0;
     lotto.forEach((num) => {
-      if (this.mainNums.includes(num)) {
-        mainMatch++;
-      }
+      if (!this.checkMainNumEachMatch(num)) return;
+      mainMatch++;
     });
     return mainMatch;
+  }
+
+  checkMainNumEachMatch(num) {
+    return this.mainNums.includes(num);
   }
 
   checkBonusNumMatch(lotto) {
@@ -120,22 +123,18 @@ class App {
     Console.print(this.lottoResult);
     Console.print("\n당첨 통계");
     Console.print("---");
-    Console.print(
-      `3개 일치 (${WINNINGS_STR.fifth}원) - ${this.lottoResult.fifth}개`
-    );
-    Console.print(
-      `4개 일치 (${WINNINGS_STR.fourth}원) - ${this.lottoResult.fourth}개`
-    );
-    Console.print(
-      `5개 일치 (${WINNINGS_STR.third}원) - ${this.lottoResult.third}개`
-    );
-    Console.print(
-      `5개 일치, 보너스 볼 일치 (${WINNINGS_STR.second}원) - ${this.lottoResult.second}개`
-    );
-    Console.print(
-      `6개 일치 (${WINNINGS_STR.first}원) - ${this.lottoResult.first}개`
-    );
+    this.printMatchResult("3개 일치", "fifth");
+    this.printMatchResult("4개 일치", "fourth");
+    this.printMatchResult("5개 일치", "third");
+    this.printMatchResult("5개 일치, 보너스 볼 일치", "second");
+    this.printMatchResult("6개 일치", "first");
     this.getYieldResult();
+  }
+
+  printMatchResult(matchMsg, ordNum) {
+    Console.print(
+      `${matchMsg} (${WINNINGS_STR[ordNum]}원 - ${this.lottoResult[ordNum]}개)`
+    );
   }
 
   getYieldResult() {
@@ -151,6 +150,6 @@ class App {
   }
 }
 
-// module.exports = App;
-const app = new App();
-app.play();
+module.exports = App;
+// const app = new App();
+// app.play();
