@@ -43,8 +43,8 @@ const WHILE_END = 0;
 
 const INPUT_CONSOLE_MESSAGE = Object.freeze({
   purchaseAmount: '구입금액을 입력해 주세요\n',
-  winningNumber: '당첨 번호를 입력해 주세요.\n',
-  bonusNumber: '보너스 번호를 입력해 주세요.\n',
+  winningNumber: '\n당첨 번호를 입력해 주세요.\n',
+  bonusNumber: '\n보너스 번호를 입력해 주세요.\n',
 });
 
 // printLottoResult.js 상수
@@ -56,6 +56,8 @@ const RESULT_MESSAGE = Object.freeze({
   second: '5개 일치, 보너스 볼 일치 (30,000,000원)',
   first: '6개 일치 (2,000,000,000원)',
 });
+
+const RESULT_START_MESSAGE = '\n당첨 통계\n---';
 
 // Lotto.js 상수
 
@@ -73,6 +75,7 @@ const ERROR_MESSAGE = Object.freeze({
 module.exports = {
   ERROR_MESSAGE,
   INPUT_CONSOLE_MESSAGE,
+  RESULT_START_MESSAGE,
   MONEY,
   RANK,
   RESTRICTIONS,
