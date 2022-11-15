@@ -20,6 +20,7 @@ class Lotto {
   inputBonus(myLotto) {
     Console.readLine(BONUS_NUMBER_MESSAGE, (answer) => {
       const bonus = new Bonus(answer, this.#numbers);
+
       this.result(myLotto, bonus.number);
       Console.close();
     });
