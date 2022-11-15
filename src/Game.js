@@ -1,7 +1,7 @@
 "use strict";
 
 const Lotto = require("./Lotto");
-const { Notice, Result } = require("./Constants");
+const { Notice, Result, RateOfReturn } = require("./Constants");
 const {
   validateUserMoney,
   sortAscending,
@@ -15,6 +15,7 @@ class Game {
   #tickets;
   #winningNumbers;
   #bonusNumber;
+  #winnings;
 
   constructor() {
     this.score = {
@@ -102,7 +103,32 @@ class Game {
     );
     Console.print(`${Result.six}${this.score.six}${Result.unit}`);
 
+    return this.calcWinnings();
+  }
+
+  calcWinnings() {
+    this.#winnings =
+      5000 * this.score.three +
+      50000 * this.score.four +
+      1500000 * this.score.five +
+      30000000 * this.score.fiveWithBonus +
+      2000000000 * this.score.six;
+
+    return this.totalRateOfReturn();
+  }
+
+  totalRateOfReturn() {
+    const rateOfReturn = this.calcRateOfReturn(this.#money, this.#winnings);
+    Console.print(
+      `${RateOfReturn.title}${Number(rateOfReturn).toFixed(1)}${
+        RateOfReturn.closing
+      }`
+    );
     return;
+  }
+
+  calcRateOfReturn(purchase, winnings) {
+    return (winnings / purchase) * 100;
   }
 }
 
