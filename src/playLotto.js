@@ -27,18 +27,18 @@ class PlayLotto {
   pickUserLotto(cost) {
     const num = parseInt(cost / 1000);
     MissionUtils.Console.print(`${num}개를 구매했습니다.`);
-    
-    for (let i = 0; i<num; i++) {
+
+    for (let i = 0; i < num; i++) {
       const numbers = MissionUtils.Random.pickUniqueNumbersInRange(
         1,
         45,
         6
-      ).sort((a,b) => a-b); //오름차순 정렬
+      ).sort((a, b) => a - b); //오름차순 정렬
       this.userNumArray.push(numbers);
     }
 
     this.userNumArray.map((lotto) => {
-      MissionUtils.Console.print(`[${lotto.join(", ")}]`); //, 로 다시 정렬
+      MissionUtils.Console.print(`[${lotto.join(', ')}]`); //, 로 다시 정렬
     });
     this.pickRandomNum();
   }
@@ -50,7 +50,7 @@ class PlayLotto {
         const numbers = userInput.split(',').map((number) => {
           if (parseInt(number) < 1 || parseInt(number) > 45)
             throw '[ERROR] 로또 번호는 1부터 45 사이의 숫자입니다.';
-          if(isNaN(number)) throw '[ERROR] 숫자를 입력하세요.';
+          if (isNaN(number)) throw '[ERROR] 숫자를 입력하세요.';
           return parseInt(number);
         });
         new Lotto(numbers);
