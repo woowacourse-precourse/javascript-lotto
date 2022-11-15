@@ -28,6 +28,43 @@ class Promptor {
     }
     return true;
   }
+
+  acceptWinningNumbers() {
+    const query = "당첨 번호를 입력해 주세요 (쉼표로 구분).";
+    const err =
+      "여섯 개의 정수 (1과 45 사이)를 입력해 주세요. 정수와 정수 사이는 쉼표로 구분되어야 합니다. ( 예: 21, 32, 1, 45, 10, 6 )";
+
+    MissionUtils.readLine(query, (userInput) => {
+      if (!this.#validateWinningNumbers(userInput)) {
+        MyErrorHandler(err);
+      }
+      this.winnningNumber = userInput.split(",").map(Number);
+    });
+  }
+
+  #validateWinningNumbers(numbers) {
+    if (typeof numbers != "string") {
+      return false;
+    }
+
+    vettedNumbers = numbers.split(",");
+
+    if (vettedNumbers.length != 6) {
+      return false;
+    }
+
+    for (let number of vettedNumbers) {
+      if (/^\+?\d+$/.test(number)) {
+        return false;
+      }
+
+      if (Number(number) < 1 || Number(number) > 45) {
+        return false;
+      }
+    }
+
+    return true;
+  }
 }
 
 module.exports = App;
