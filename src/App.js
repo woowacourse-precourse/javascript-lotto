@@ -32,6 +32,18 @@ class App {
     MissionUtils.Console.print("당첨 통계");
     MissionUtils.Console.print("---");
     this.printWinningList(listOfNumbers, winningNumbers, bonusNumber);
+
+    const comparator = new Comparator();
+    const prizeMoney = comparator.compare(
+      listOfNumbers,
+      winningNumbers,
+      bonusNumber
+    ).prizeMoney;
+    const rateOfReturn = calculator.calculateRateOfReturn(
+      purchaseAmount,
+      prizeMoney
+    );
+    MissionUtils.Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
   }
 
   receivePurchaseAmount() {
@@ -75,7 +87,7 @@ class App {
       listOfNumbers,
       winningNumbers,
       bonusNumber
-    );
+    ).winningList;
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${winningList.three}개`);
     MissionUtils.Console.print(`4개 일치 (50,000원) - ${winningList.four}개`);
     MissionUtils.Console.print(
