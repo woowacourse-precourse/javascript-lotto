@@ -15,9 +15,16 @@ class App {
     this.readLine('', input => {
       if (checkPriceValidation(input)) {
         const lottoList = this.LottoBuilder.createLottoList(input);
-        // console.log(lottoList);
+        this.showLottoList(lottoList);
       }
       this.close();
+    });
+  }
+
+  showLottoList(lists) {
+    this.print(`${lists.length}개를 구매했습니다.`);
+    lists.forEach(list => {
+      this.print(`[${list}]`);
     });
   }
 
