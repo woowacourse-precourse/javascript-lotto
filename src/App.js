@@ -27,6 +27,8 @@ class App {
 
 	handleInvest(invest) {
 		this.book.setInvest(Number(invest));
+		const boughtCnt = this.book.getAffordableCnt();
+		Prompter.logBoughtCnt(boughtCnt);
 	}
 }
 
