@@ -1,6 +1,7 @@
 const LottoNumberCount = require('../LottoNumberCount/LottoNumberCount');
 const LottoNumbersValidator = require('../LottoNumbersValidator/LottoNumbersValidator');
 const LottoResult = require('../LottoResult/LottoResult');
+const { Console } = require('@woowacourse/mission-utils');
 
 class Lotto {
   #numbers;
@@ -10,10 +11,6 @@ class Lotto {
     this.#numbers = numbers;
   }
 
-  #validate(numbers) {
-    LottoNumbersValidator.execute(numbers);
-  }
-
   compareTo(winningNumbers, bonusNumber) {
     const matchedNumberCount = new LottoNumberCount(this.#getMatchedNumberCount(winningNumbers));
     const matchedBonusNumberCount = new LottoNumberCount(
@@ -21,6 +18,14 @@ class Lotto {
     );
 
     return new LottoResult(matchedNumberCount, matchedBonusNumberCount);
+  }
+
+  getNumbers() {
+    return JSON.stringify(this.#numbers).split(',').join(', ');
+  }
+
+  #validate(numbers) {
+    LottoNumbersValidator.execute(numbers);
   }
 
   #getMatchedNumberCount(winningNumbers) {
