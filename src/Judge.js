@@ -48,6 +48,14 @@ class Judge {
       throw new Error("[ERROR] 당첨 번호는 6개로 이루어져야 합니다.");
     }
   }
+
+  isLottoInputDuplicate(lottoInput) {
+    const lottoSet = new Set(lottoInput);
+    if (lottoInput.length !== lottoSet.size) {
+      MissionUtils.Console.print("[ERROR] 당첨 번호는 중복될 수 없습니다.");
+      throw new Error("[ERROR] 당첨 번호는 중복될 수 없습니다.");
+    }
+  }
 }
 
 module.exports = Judge;
