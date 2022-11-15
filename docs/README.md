@@ -33,7 +33,7 @@
         - [x] 숫자가 아닌 경우
 
 
-- [x] 구입한 로또 번호를 입력 받는다 - getLottoInfo() > getLottoNum()
+- [x] 구입한 로또 번호를 입력 받고 정렬한다 - getLottoInfo() > getLottoNum()
     - [x] 로또 번호에 대해서 예외 처리 및 단위테스트를 진행 한다 - __tests__/LottoTest.js
         - [x] 1~45 사이의 값이 아닌 경우
         - [x] 중복된 값이 존재하는 경우
@@ -45,7 +45,7 @@
 
 ### 당첨 번호 입력
 
-- [x] 당첨 번호를 입력 받는다 - getLottoInfo() > getWinningNum()
+- [x] 당첨 번호를 입력 받고 정렬한다 - getLottoInfo() > getWinningNum()
     - [x]  당첨 번호에 대해서 예외 처리 및 단위테스트를 진행 한다 - __tests__/LottoTest.js
         - [x] 1~45 사이의 값이 아닌 경우
         - [x] 중복된 값이 존재하는 경우

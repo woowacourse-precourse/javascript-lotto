@@ -35,7 +35,7 @@ class App {
       즉, 한번에 6자리 로또번호가 들어옴
       */
       const userLottoPick = Random.pickUniqueNumbersInRange(1, 45)
-      let lotto = new Lotto(userLottoPick)
+      let lotto = new Lotto(userLottoPick.sort((a,b)=>a-b))
       lotto.resultPrint()
       userLottoNum.push(lotto.showLottoNum())
       count+=1
@@ -47,7 +47,7 @@ class App {
     let winningNum
     Console.readLine('당첨 번호를 입력해 주세요', (inputs) => {
       let winner = new WinningNum(
-        inputs.split(',').map(Number)
+        (inputs.split(',').map(Number)).sort((a,b)=>a-b)
       )
 
       // 당첨번호  출력
