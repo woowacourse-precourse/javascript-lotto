@@ -25,3 +25,14 @@ class Lotto {
     Console.print(`[${this.number.join(', ')}]`);
   }
 
+  calResult(winNumbers, bonus) { // 등수
+    const section = this.number.filter((number) => winNumbers.includes(number));
+    const dupliCount = section.length;
+    if (dupliCount === 5 && this.number.includes(bonus)) { //2등
+      return 'second';
+    }
+    return RANK[dupliCount];
+  }
+}
+
+module.exports = Lotto;
