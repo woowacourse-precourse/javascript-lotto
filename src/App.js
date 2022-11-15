@@ -7,6 +7,7 @@ class App {
     this.lottoAmount = 0;
     this.lottoNumbers = [];
     this.winningNumbers = 0;
+    this.bonusNumber = 0;
   }
 
   play() {
@@ -15,6 +16,7 @@ class App {
     this.getRandomLottoNumbers();
     this.consoleRandomLottoNumbers();
     this.inputWinningNumbers();
+    this.inputBonusNumbers();
   }
 
   buyLotto() {
@@ -54,6 +56,12 @@ class App {
       this.winningNumbers = new Lotto(
         input.split(",").map((element) => Number(element))
       );
+    });
+  }
+
+  inputBonusNumbers() {
+    Console.readLine("보너스 번호를 입력해 주세요.", (input) => {
+      this.bonusNumber = input;
     });
   }
 }
