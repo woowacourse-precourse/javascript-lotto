@@ -73,8 +73,13 @@ class App {
   resultMatching(winningNumber) {
     var lottoResult = new LottoResult();
     lottoResult.compareLotto(this.lottoArr, winningNumber);
+    this.print(lottoResult);
   }
   
+  //** 8.통계값 출력 */
+  print(lottoResult) {
+    lottoResult.printResult(this.amount);
+  }
 }
 
 const app = new App();
