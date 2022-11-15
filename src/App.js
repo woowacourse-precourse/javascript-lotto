@@ -1,12 +1,13 @@
 const { Console } = require('@woowacourse/mission-utils');
 const { INPUT_MONEY_UNIT, ERROR_MESSAGE } = require('./Constant');
 
-const { getRateOfReturn, splitNumbers } = require('./Utils');
+const { splitNumbers } = require('./Utils');
 const { MESSAGE } = require('./Constant');
 
 const Utils = require('./Utils');
 const Validator = require('./Validator');
 const Lotto = require('./Lotto');
+const UI = require('./UI');
 
 class App {
   constructor() {
@@ -34,12 +35,12 @@ class App {
 
   getLottoCount(inputMoney) {
     this.lottoCount = Number(inputMoney) / INPUT_MONEY_UNIT;
-    Console.print(MESSAGE.PRINT_LOTTO_NUMBER(this.lottoCount));
+    UI.printLottoCount(this.lottoCount);
   }
 
   issueLottos() {
     this.setLottosRandomNumbers();
-    this.printLottos();
+    UI.printLottos(this.lottos);
   }
 
   getResult() {
@@ -48,7 +49,7 @@ class App {
       Console.readLine(MESSAGE.GET_BONUS_NUMBER, inputBonusNumber => {
         this.setBonusNumber(inputBonusNumber);
         this.setResult();
-        this.printResult();
+        UI.printResult(this.result, this.lottoCount);
         Console.close();
       });
     });
@@ -59,12 +60,6 @@ class App {
       const numbers = Utils.setRandomNumbers();
       const lotto = new Lotto(numbers);
       this.lottos.push(lotto);
-    }
-  }
-
-  printLottos() {
-    for (const lotto of this.lottos) {
-      lotto.print();
     }
   }
 
@@ -103,22 +98,6 @@ class App {
 
   getRankInLotto(lotto) {
     return lotto.checkRank(this.winningNumbers, this.bonusNumber);
-  }
-
-  printResult() {
-    Console.print(MESSAGE.RESULT);
-    this.printRankResult();
-    Console.print(
-      MESSAGE.REWARD(getRateOfReturn(this.result, this.lottoCount)),
-    );
-  }
-
-  printRankResult() {
-    const ranks = Utils.getRewardKey();
-
-    for (const rank of ranks) {
-      Console.print(MESSAGE[rank](this.result[rank]));
-    }
   }
 }
 
