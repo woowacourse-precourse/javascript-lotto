@@ -31,27 +31,29 @@ class App {
 
   inputBonusNum(winning_arr){
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (bonus_num) => {
-      winning_arr.push(parseInt(bonus_num));
+       winning_arr.push(parseInt(bonus_num));
     });
   }
-
   
   play() {
-    MissionUtils.Console.readLine('구입금액을 입력해 주세요.', async(money) => {
-      if(await this.checkInput(money)){
-        const lotto_cnt = Math.floor(money/1000);
-        const lotto_arr = [];
-        const winning_arr = [];
-
-        this.print_lotto_cnt(lotto_cnt);
-        this.draw_lotto(lotto_cnt, lotto_arr);
-        this.inputWinningNum(winning_arr);
-        this.inputBonusNum(winning_arr);
-        // console.log(winning_arr);
-        // console.log(lotto_arr);
-      }
-      await MissionUtils.Console.close();
-    });
+    try{
+      MissionUtils.Console.readLine('구입금액을 입력해 주세요.', async(money) => {
+        if(await this.checkInput(money)){
+          const lotto_cnt = Math.floor(money/1000);
+          const lotto_arr = [];
+          const winning_arr = [];
+  
+          this.print_lotto_cnt(lotto_cnt);
+          this.draw_lotto(lotto_cnt, lotto_arr);
+          this.inputWinningNum(winning_arr);
+          this.inputBonusNum(winning_arr);
+          // this.resultCompare(winning_arr, lotto_arr);
+        }
+        await MissionUtils.Console.close();
+      });
+    }catch(e){
+      throw "[ERROR]"
+    }
   }
 }
 
