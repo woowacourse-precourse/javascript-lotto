@@ -1,6 +1,7 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const Validator = require("./Validator");
+const ExceptionState = require("./ExceptionState");
 
 class App {
   static LENGTH_OF_LOTTO_NUMBER = 6;
@@ -28,13 +29,10 @@ class App {
     }
 
     if (value % 1000 !== 0) {
-      return {
-        state: "exception",
-        reason: "1000원 단위로 입력해주세요.",
-      };
+      return new ExceptionState("exception", "1000원 단위로 입력해주세요.");
     }
 
-    return { state: "success" };
+    return new ExceptionState("success");
   }
 
   makePayment(value) {
@@ -92,10 +90,7 @@ class App {
     const winnerNumber = value.split(",").map((string) => parseInt(string, 10));
 
     if (winnerNumber.length !== App.LENGTH_OF_LOTTO_NUMBER) {
-      return {
-        state: "exception",
-        reason: "6개의 번호를 입력해주세요",
-      };
+      return new ExceptionState("exception", "6개의 번호를 입력해주세요");
     }
 
     Console.readLine("보너스 번호를 입력해주세요.", (value) => {
@@ -103,7 +98,7 @@ class App {
       this.getBonusNumber(bonusNumber, winnerNumber, lottos, amountOfPaid);
     });
 
-    return { state: "success" };
+    return new ExceptionState("success");
   }
 
   getBonusNumber(bonusNumber, winnerNumber, lottos, amountOfPaid) {

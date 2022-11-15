@@ -21,7 +21,7 @@ describe("App 클래스 추가 테스트", () => {
       )
     ).toMatchObject({
       state: "exception",
-      reason: "[ERROR] 6개의 번호를 입력해주세요",
+      reason: "6개의 번호를 입력해주세요",
     });
   });
 
