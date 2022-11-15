@@ -91,6 +91,7 @@ function printProfitRate(staticLotto) {
     staticLotto[4] * 2000000000;
   const profitRate = ((profit / money) * 100).toFixed(1);
   ConsoleWork.print(`총 수익률은 ${profitRate}%입니다.`);
+  ConsoleWork.close();
 }
 
 function checkErrorBonusInput(bonus) {
