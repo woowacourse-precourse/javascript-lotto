@@ -18,14 +18,20 @@ class App {
     this.bonusOrNot = false;
     this.profit;
   };
-  //10. 당첨 통계 - 수익률 계산 후 출력
-  calculateProfitRate(rankCntList) {
 
-    this.profit = rankCntList[0]* FIFTH_PRIZE + rankCntList[1]* FOURTH_PRIZE + rankCntList[2]* THIRD_PRIZE + rankCntList[3]* SECOND_PRIZE+ rankCntList[4]* FIRST_PRIZE;
-    this.profitRate = ((this.profit / this.payment) * 100).toFixed(1);
+  //10. 당첨 통계 - 수익률 계산 후 출력
+  calculateProfitRate(profit, payment) {
+    this.profitRate = ((profit / payment) * 100).toFixed(1);
 
     Console.print('총 수익률은 '+ this.profitRate  + '%입니다.');
     Console.close(); //로도 게임 종료
+    return this.profitRate;
+  }
+  //수익 계산
+  calculateProfit(rankCntList) {
+    this.profit = rankCntList[0]* FIFTH_PRIZE + rankCntList[1]* FOURTH_PRIZE + rankCntList[2]* THIRD_PRIZE + rankCntList[3]* SECOND_PRIZE+ rankCntList[4]* FIRST_PRIZE;
+
+    return this.calculateProfitRate(this.profit, this.payment);
   }
 
   countRank(rankList) {
@@ -51,6 +57,11 @@ class App {
     return 0;
   }
 
+  countAnswerNums(oneLine, winningNums){
+    const count = oneLine.filter(x => winningNums.includes(x)).length;
+    return count;
+  }
+  //5개가 일치하는 로또 번호들 중에서 보너스 번호도 포함되는지 계산
   checkBonusOrNot(oneLine, bonusNum) {
     if(oneLine.includes(bonusNum)) return true;
   }
@@ -61,7 +72,7 @@ class App {
     
     for(var i=0;i<this.allLines.length;i++){
       const oneLine = this.allLines[i];
-      const answerCnt = oneLine.filter(x => this.winningNums.includes(x)).length;
+      const answerCnt = this.countAnswerNums(oneLine, this.winningNums);
       if(answerCnt == ANSWER_NUM_FIVE) this.bonusOrNot = this.checkBonusOrNot(oneLine, bonusNum)
 
       const rank = this.calculateRank(answerCnt);
@@ -69,7 +80,7 @@ class App {
     }
     const rankCntList = this.countRank(rankList);
   
-    return this.calculateProfitRate(rankCntList);
+    return this.calculateProfit(rankCntList);
   }
 
   //6. 보너스 번호 입력받기
