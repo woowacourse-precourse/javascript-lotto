@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { LOTTO, MESSAGE } = require('./constant/Lotto');
+const { REGEX, LOTTO, MESSAGE } = require('./constant/Lotto');
 const Validation = require('./Validation');
 const Lotto = require('./Lotto');
 
@@ -32,6 +32,14 @@ class Game {
     lottoList.forEach((lotto) => {
       Console.print(MESSAGE.LOTTO_NUMBER(lotto));
     });
+  }
+  proceedStepTwo(input) {
+    const parsedInput = this.parseInput(input);
+    const winningNumber = new Lotto(parsedInput).getNumbers();
+    this.winningNumber = winningNumber;
+  }
+  parseInput(input) {
+    return input.replace(REGEX.PARSE_INPUT, '').split(',');
   }
 }
 
