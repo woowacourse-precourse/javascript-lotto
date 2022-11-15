@@ -24,18 +24,6 @@ class Lotto {
     return this.#numbers;
   }
 
-  static validateLottoNumber(number) {
-    if (typeof number !== 'number' || isNaN(number))
-      Lotto.handleError(ERROR_MESSAGE.TYPE);
-    if (number < 1 || number > 45) Lotto.handleError(ERROR_MESSAGE.RANGE);
-  }
-
-  static validateNumberArrayDuplication(array) {
-    const arrayToSet = new Set(array);
-    if (array.length !== arrayToSet.size)
-      Lotto.handleError(ERROR_MESSAGE.DUPLICATE);
-  }
-
   printLotto() {
     MissionUtils.Console.print(`[${this.ascendingOrderNumbers().join(', ')}]`);
   }
@@ -47,6 +35,18 @@ class Lotto {
   static handleError(message) {
     MissionUtils.Console.close();
     throw new Error(message);
+  }
+
+  static validateLottoNumber(number) {
+    if (typeof number !== 'number' || isNaN(number))
+      Lotto.handleError(ERROR_MESSAGE.TYPE);
+    if (number < 1 || number > 45) Lotto.handleError(ERROR_MESSAGE.RANGE);
+  }
+
+  static validateNumberArrayDuplication(array) {
+    const arrayToSet = new Set(array);
+    if (array.length !== arrayToSet.size)
+      Lotto.handleError(ERROR_MESSAGE.DUPLICATE);
   }
 }
 
