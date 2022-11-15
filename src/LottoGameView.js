@@ -1,7 +1,7 @@
 const LottoGame = require("./LottoGame");
 const { Console } = require("@woowacourse/mission-utils");
 const MESSAGE = require("./Message");
-const { PRIZE_CRITERIA } = require("./GameConstants");
+const { PRIZE_CRITERIA, PRIZE_MONEY_PRICE } = require("./GameConstants");
 
 class LottoGameView {
   constructor() {
@@ -20,11 +20,12 @@ class LottoGameView {
   }
 
   printPurchasedLotteries(lottoQuantity, lotteries) {
-    Console.print(`\n${lottoQuantity}${MESSAGE.OUTPUT.PURCHASE_COUNT}`);
+    const quantitNotificationMessage = `\n${lottoQuantity}${MESSAGE.OUTPUT.PURCHASE_COUNT}`;
+    Console.print(quantitNotificationMessage);
     lotteries.forEach((lotto) => {
-      const number = lotto.getNumber();
-      const printNumber = number.map((num) => num).join(', ');
-      Console.print(`[${printNumber}]`);
+      const number = lotto.getNumber().map((num) => num).join(', ');
+      const numberMessage = `[${number}]`;
+      Console.print(numberMessage);
     });
 
     this.receiveWinningNumber();
@@ -46,16 +47,32 @@ class LottoGameView {
 
   printWinningStatistics(prizeCount) {
     Console.print(MESSAGE.OUTPUT.WINNING_STATISTICS);
-    Console.print(`${PRIZE_CRITERIA.FIFTH}개 일치 (${MESSAGE.PRIZE_MONEY.FIFTH}원) - ${prizeCount.fifth}개`);
-    Console.print(`${PRIZE_CRITERIA.FOURTH}개 일치 (${MESSAGE.PRIZE_MONEY.FOURTH}원) - ${prizeCount.fourth}개`);
-    Console.print(`${PRIZE_CRITERIA.SECOND_THIRD}개 일치 (${MESSAGE.PRIZE_MONEY.THIRD}원) - ${prizeCount.third}개`);
-    Console.print(`${PRIZE_CRITERIA.SECOND_THIRD}개 일치, 보너스 볼 일치 (${MESSAGE.PRIZE_MONEY.SECOND}원) - ${prizeCount.second}개`);
-    Console.print(`${PRIZE_CRITERIA.FIRST}개 일치 (${MESSAGE.PRIZE_MONEY.FIRST}원) - ${prizeCount.first}개`);
+    const prizes = [...Object.keys(PRIZE_CRITERIA)].reverse();
+    prizes.forEach((prize) => {
+      if (prize === 'SECOND_THIRD') {
+        this.printEachWinning(PRIZE_CRITERIA.SECOND_THIRD, MESSAGE.PRIZE_MONEY.THIRD, prizeCount.third);
+        this.printEachWinning(PRIZE_CRITERIA.SECOND_THIRD, MESSAGE.PRIZE_MONEY.SECOND, prizeCount.second);
+      } else {
+        this.printEachWinning(PRIZE_CRITERIA[prize], MESSAGE.PRIZE_MONEY[prize], prizeCount[prize.toLowerCase()]);
+      }
+    });
+
     this.game.setTotalYield();
   }
 
+  printEachWinning(criteria, price, count) {
+    if (Number(price.replace(/,/g, '')) === PRIZE_MONEY_PRICE.SECOND) {
+      const secondPrizeMessage = `${criteria}개 일치, 보너스 볼 일치 (${price}원) - ${count}개`;
+      Console.print(secondPrizeMessage);
+      return;
+    }
+    const eachPrizeMessage = `${criteria}개 일치 (${price}원) - ${count}개`;
+    Console.print(eachPrizeMessage);
+  }
+
   printYield(totalYield) {
-    Console.print(`총 수익률은 ${totalYield}%입니다.`);
+    const totalYieldMessage = `총 수익률은 ${totalYield}%입니다.`;
+    Console.print(totalYieldMessage);
     this.gameFinish();
   }
 
