@@ -109,6 +109,22 @@ class App {
     MissionUtils.Console.print(
       `6개 일치 (2,000,000,000원) - ${this.matchCount.first}개`
     );
+
+    this.printReward();
+  }
+
+  printReward() {
+    let reward;
+    reward =
+      2000000000 * this.matchCount.first +
+      30000000 * this.matchCount.second +
+      1500000 * this.matchCount.third +
+      50000 * this.matchCount.fourth +
+      5000 * this.matchCount.fifth;
+    this.rateOfReturn = (reward / this.userAmount) * 100;
+    this.rateOfReturn = Math.round(this.rateOfReturn * 100) / 100;
+
+    MissionUtils.Console.print(`총 수익률은 ${this.rateOfReturn}%입니다.`);
   }
 }
 
