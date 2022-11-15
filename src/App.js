@@ -125,6 +125,12 @@ class App {
     this.rateOfReturn = Math.round(this.rateOfReturn * 100) / 100;
 
     MissionUtils.Console.print(`총 수익률은 ${this.rateOfReturn}%입니다.`);
+
+    this.endGame();
+  }
+
+  endGame() {
+    MissionUtils.Console.close();
   }
 }
 
