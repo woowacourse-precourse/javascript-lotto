@@ -2,7 +2,8 @@
 
 ## 순서도
 
-<img width="100%" src="{C:\Users\skw19\Desktop\CS\wowacourse\weekMission\thirdWeek\로또게임.png}"/>
+![로또게임](https://user-images.githubusercontent.com/87527736/201945409-5dc98303-d10b-4632-9f68-1f11d06665a2.png)
+
 
 ## 파일 구조
 
