@@ -1,5 +1,6 @@
 const checkValidation = require("./errors/checkValidation");
 const existError = require("./errors/existError");
+const { WINNING_NUMBER } = require("./errors/message");
 
 class WinningNumbers {
   constructor(numbers) {
@@ -7,7 +8,7 @@ class WinningNumbers {
     this.value = numbers;
   }
   validate(numbers) {
-    const { errorMessage } = checkValidation.numbers(numbers, "당첨번호");
+    const { errorMessage } = checkValidation.numbers(numbers, WINNING_NUMBER);
     if (errorMessage) existError(errorMessage);
   }
 }

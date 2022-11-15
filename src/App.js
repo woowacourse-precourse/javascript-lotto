@@ -2,6 +2,7 @@ const { Console } = require("@woowacourse/mission-utils");
 const LottoList = require("./LottoList");
 const WinningNumbers = require("./WinningNumbers");
 const BonusNumber = require("./BonusNumber");
+const { MESSAGE } = require("./errors/message");
 
 class App {
   constructor() {
@@ -13,7 +14,7 @@ class App {
     this.requestMoney();
   }
   requestMoney() {
-    Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
+    Console.readLine(MESSAGE.REQUEST_MONEY, (money) => {
       this.lottos = new LottoList(money);
 
       this.lottos.printCount();
@@ -22,7 +23,7 @@ class App {
     });
   }
   setWinningNumbers() {
-    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (winningNumbers) => {
+    Console.readLine(MESSAGE.REQUEST_WINNING_NUMBERS, (winningNumbers) => {
       winningNumbers = winningNumbers.split(",").map((item) => Number(item));
 
       this.winningNumbers = new WinningNumbers(winningNumbers);
@@ -31,7 +32,7 @@ class App {
     });
   }
   setBonusNumber() {
-    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusNumber) => {
+    Console.readLine(MESSAGE.REQUEST_BONUS_NUMBER, (bonusNumber) => {
       bonusNumber = Number(bonusNumber);
 
       this.bonusNumber = new BonusNumber(
@@ -43,7 +44,7 @@ class App {
     });
   }
   printWinningStat() {
-    Console.print("\n당첨 통계\n---");
+    Console.print(MESSAGE.WINNING_STATS);
 
     const lottoResultList = this.lottos.getResult(
       this.winningNumbers.value,

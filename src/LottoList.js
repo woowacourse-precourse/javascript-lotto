@@ -2,11 +2,18 @@ const { Console, Random } = require("@woowacourse/mission-utils");
 const checkValidation = require("./errors/checkValidation");
 const existError = require("./errors/existError");
 const Lotto = require("./Lotto");
+const {
+  MONEY,
+  LOTTO,
+  PRIZE,
+  WINNING_DETAIL,
+  PLACE,
+} = require("./errors/message");
 
 class LottoList {
   constructor(money) {
     this.validate(money);
-    this.count = money / 1000;
+    this.count = money / MONEY.UNIT;
     this.list = [];
     this.publish();
   }
@@ -24,7 +31,11 @@ class LottoList {
     }
   }
   createNewLotto() {
-    const newNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+    const newNumbers = Random.pickUniqueNumbersInRange(
+      LOTTO.MIN_NUMBER,
+      LOTTO.MAX_NUMBER,
+      LOTTO.NUMBERS_COUNT
+    );
     return new Lotto(newNumbers);
   }
   printCount() {
@@ -42,15 +53,15 @@ class LottoList {
       lottoResultList.push(lotto.getResult(winningNumbers, bonusNumber));
     });
 
-    return lottoResultList.filter((result) => result <= 5);
+    return lottoResultList.filter((result) => result <= PLACE.LAST);
   }
   printWinningList(lottoResultList) {
     const winningLists = [
-      "3개 일치 (5,000원)",
-      "4개 일치 (50,000원)",
-      "5개 일치 (1,500,000원)",
-      "5개 일치, 보너스 볼 일치 (30,000,000원)",
-      "6개 일치 (2,000,000,000원)",
+      WINNING_DETAIL.FIFTH,
+      WINNING_DETAIL.FOURTH,
+      WINNING_DETAIL.THIRD,
+      WINNING_DETAIL.SECOND,
+      WINNING_DETAIL.FIRST,
     ];
     winningLists.forEach((winningList, idx) => {
       const winningCount = this.getWinningCount(lottoResultList, idx);
@@ -63,14 +74,20 @@ class LottoList {
     Console.print(`총 수익률은 ${lottoRate}% 입니다.`);
   }
   calculateRate(lottoResultList) {
-    const lottoPrize = [5000, 50000, 1500000, 30000000, 2000000000];
+    const lottoPrize = [
+      PRIZE.FIFTH,
+      PRIZE.FOURTH,
+      PRIZE.THIRD,
+      PRIZE.SECOND,
+      PRIZE.FIRST,
+    ];
     const finalPrize = lottoPrize.reduce((acc, cur, idx) => {
       const winningCount = this.getWinningCount(lottoResultList, idx);
 
       return acc + cur * winningCount;
     }, 0);
 
-    const purchaseMoney = this.count * 1000;
+    const purchaseMoney = this.count * MONEY.UNIT;
     return ((finalPrize / purchaseMoney) * 100).toFixed(1);
   }
   getWinningCount(lottoResultList, idx) {
