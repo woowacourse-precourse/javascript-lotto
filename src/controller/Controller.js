@@ -3,6 +3,7 @@ const { LOTTO, QUERY, WINNING_PRICE_MAP, ERROR_MESSAGE } = require("../constants
 const Payment = require("../model/Payment");
 const QuickPick = require("../model/QuickPick");
 const Lotto = require("../model/Lotto");
+const Bonus = require("../model/Bonus");
 
 class Controller {
   view;
