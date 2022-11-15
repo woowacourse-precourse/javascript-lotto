@@ -1,6 +1,12 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
+const FIRST_PRIZE = 2000000000;
+const SECOND_PRIZE = 30000000;
+const THIRD_PRIZE = 1500000;
+const FOURTH_PRIZE = 50000;
+const FIFTH_PRIZE = 5000;
+
 class App {
   constructor() {
     this.winningNumber = [];
@@ -48,6 +54,34 @@ class App {
       );
       this.result[lottoResult]++;
     }
+    this.printMessage("당첨 통계\n---");
+    this.printPrize();
+    this.calcProfit();
+  }
+
+  printPrize() {
+    this.printMessage(
+      `3개 일치 (${FIFTH_PRIZE.toLocaleString()}원) - ${this.result[5]}개\n
+      4개 일치 (${FOURTH_PRIZE.toLocaleString()}원) - ${this.result[4]}개\n
+      5개 일치 (${THIRD_PRIZE.toLocaleString()}원) - ${this.result[3]}개\n
+      5개 일치, 보너스 볼 일치 (${SECOND_PRIZE.toLocaleString()}원) - ${
+        this.result[2]
+      }개\n
+      6개 일치 (${FIRST_PRIZE.toLocaleString()}원) - ${this.result[1]}개`
+    );
+  }
+
+  calcProfit() {
+    let totalPrize =
+      this.result[1] * FIRST_PRIZE +
+      this.result[2] * SECOND_PRIZE +
+      this.result[3] * THIRD_PRIZE +
+      this.result[4] * FOURTH_PRIZE +
+      this.result[5] * FIFTH_PRIZE;
+    let cost = this.myLottery.length * 1000;
+    let profit = ((totalPrize / cost) * 100).toFixed(1);
+
+    this.printMessage(`총 수익률은 ${profit}%입니다.`);
   }
 
   getWinningNumbersInput() {
@@ -133,8 +167,5 @@ class App {
     this.getPlayerInput();
   }
 }
-
-const app = new App();
-app.play();
 
 module.exports = App;
