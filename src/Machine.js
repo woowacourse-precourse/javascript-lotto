@@ -104,6 +104,7 @@ class Machine {
     });
 
     this.#displayProfits();
+    Console.close();
   }
 
   #displayProfits() {
