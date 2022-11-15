@@ -137,11 +137,6 @@ class Lotto {
   }
 
   rateofReturn(prizeObj, amountOfMoney) {
-    let fifthPrize = 5000;
-    let forthPrize = 50000;
-    let thirdPrize = 1500000;
-    let secondPrize = 3000000;
-    let firstPrize = 2000000000;
     let totalMoney = 0;
     for (const num in prizeObj) {
       if (num === "3") totalMoney += prizeObj[num] * nums.fifthPrize;
