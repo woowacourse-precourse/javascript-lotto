@@ -16,8 +16,8 @@ class Lotto {
     this.validateWinningNumbers(winningNumbers);
     this.validateBonusNumber(bonusNumber, winningNumbers);
 
-    this.userInput = this.setUserInput(winningNumbers, bonusNumber);
-    this.resultMessage = this.getResultMessage(this.userInput, cost);
+    this.result = this.calculateResult(winningNumbers, bonusNumber);
+    this.resultMessage = this.getResultMessage(this.result, cost);
     this.printResult(this.resultMessage);
   }
   setUserInput = (winningNumbers, bonusNumber) => {
@@ -28,8 +28,7 @@ class Lotto {
     return userInput;
   };
 
-  getResultMessage = (userInput, cost) => {
-    const result = this.calculateResult(userInput);
+  getResultMessage = (result, cost) => {
     const rateOfReturn = this.calculateRateOfReturn(result, cost);
 
     const resultMessage = `당첨 통계
@@ -44,11 +43,9 @@ class Lotto {
 
     return resultMessage;
   };
-  calculateResult = (userInput) => {
+  calculateResult = (winningNumbers, bonusNumber) => {
     const result = { fifth: 0, fourth: 0, third: 0, second: 0, first: 0 };
 
-    const winningNumbers = userInput.winningNumbers;
-    const bonusNumber = userInput.bonusNumber;
     const sevenNums = [...winningNumbers, bonusNumber].map((x) => Number(x));
     const lottoNumbers = this.#numbers;
 
