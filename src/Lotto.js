@@ -1,5 +1,5 @@
 const { print } = require('./utils');
-const { LOTTO_PRICE } = require('./var');
+const { LOTTO_PRICE, RANK_COUNT, RANK_REWARD } = require('./var');
 const ranks = ['fail', 'fifth', 'forth', 'third', 'first'];
 class Lotto {
   #numbers;
@@ -30,7 +30,7 @@ class Lotto {
 
   countStatistics(madeLotto, bonusNumber) {
     const resultLotto = { first: 0, second: 0, third: 0, forth: 0, fifth: 0, fail: 0 };
-    madeLotto.forEach(lotto => {
+    Array.from(madeLotto).forEach(lotto => {
       const rank = this.checkingLottoNumber({ lotto, bonusNumber });
       resultLotto[rank] += 1;
     });
@@ -39,8 +39,8 @@ class Lotto {
   }
 
   resultLotto(prize, count) {
-    const correctCount = PRIZE_CORRECT_COUNT[prize];
-    const rewardLocalString = PRIZE_REWARD[prize].toLocaleString();
+    const correctCount = RANK_COUNT[prize];
+    const rewardLocalString = RANK_REWARD[prize].toLocaleString();
 
     if (prize === 'second')
       return `${correctCount}개 일치, 보너스 볼 일치 (${rewardLocalString}원) - ${count}개`;
