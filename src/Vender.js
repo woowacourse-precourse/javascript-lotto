@@ -18,9 +18,11 @@ class Vender {
 
   valid(amount) {
     if (isNaN(+amount)) {
+      MissionUtils.Console.close();
       throw new Error(ERR_MSG.notNumber);
     }
     if (!(amount % LOTTO_PRICE === 0 && amount / LOTTO_PRICE !== 0)) {
+      MissionUtils.Console.close();
       throw new Error(ERR_MSG.notThousand);
     }
     return amount;
