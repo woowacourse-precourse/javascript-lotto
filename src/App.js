@@ -21,6 +21,10 @@ class App {
     });
 	}
 
+  letWinningNumbers() {
+    Console.readLine("\n당첨 번호를 입력해 주세요.\n", this.stringToNumbers);
+  }
+
 }
 const a = new App;
 a.play();
