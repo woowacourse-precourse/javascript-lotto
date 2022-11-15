@@ -21,7 +21,8 @@ class Machine {
 
   work() {
     this.#issue();
-    this.#displayPurchasedInfo();
+    this.#displayPurchasedLottoInfo();
+    this.#getWinningNumbersInput();
   }
 
   #issue() {
@@ -34,11 +35,27 @@ class Machine {
     }
   }
 
-  #displayPurchasedInfo() {
+  #displayPurchasedLottoInfo() {
     Console.print(Display.statistics('QUANTITY', Machine.user.quantity));
 
     Machine.user.purchasedLotto.forEach((lotto) => {
       Console.print(Display.lottoFormat(lotto.numbers));
+    });
+  }
+
+  #getWinningNumbersInput() {
+    Console.readLine(Display.guidance('WINNING_NUMBER_INPUT'), (winning) => {
+      validateWinningNumbersInput(winning);
+      this.#winningNumbers = winning.split(',').map((s) => +s);
+
+      this.#getBonusNumberInput();
+    });
+  }
+
+  #getBonusNumberInput() {
+    Console.readLine(Display.guidance('BONUS_NUMBER_INPUT'), (bonus) => {
+      validateBonusNumberInput(bonus);
+      this.#bonusNumber = +bonus;
     });
   }
 }
