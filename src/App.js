@@ -52,6 +52,10 @@ class App {
     Printer.printDrawResultMessage(drawResult);
     this.#exitPhase();
   }
+
+  #exitPhase() {
+    BetterConsole.close();
+  }
 }
 
 module.exports = App;

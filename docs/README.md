@@ -91,7 +91,7 @@
 - [x] `winLottoInputPhase`: 6개의 일반 로또 숫자를 입력받고 저장하는 단계 구현하기
 - [x] `bonusNumberInputPhase`: 보너스 숫자를 입력받고 저장하는 단계 구현하기
 - [x] `showingResultPhase`: 로또 게임의 최종 결과를 출력하는 단계 구현하기
-- [ ] `exitPhase`: 게임을 종료하는 단계 구현하기
+- [x] `exitPhase`: 게임을 종료하는 단계 구현하기
 
 ### Library
 
