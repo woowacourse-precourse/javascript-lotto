@@ -8,6 +8,7 @@ class Manager {
   constructor() {
     this.boughtLottos = [];
     this.Lotto = null;
+    this.lottoResults = [];
   }
 
   buyLottoValidate(answer) {
@@ -67,7 +68,17 @@ class Manager {
     });
   }
 
-  getBonusNumber() {}
+  getBonusNumber() {
+    Console.readLine(MESSAGE.BONUS, (answer) => {
+      this.getBonusNumberValidate(answer);
+
+      this.boughtLottos.forEach((element) => {
+        const compareResult = this.Lotto.result(element, answer);
+        this.lottoResults.push(compareResult);
+      });
+    });
+    return MessageFunc.RESULT(this.lottoResults, this.boughtLottos.length);
+  }
 }
 
 module.exports = Manager;
