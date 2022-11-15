@@ -9,7 +9,8 @@ class App {
   #lottosList = []; //8개 [[1,2,1,2,2],[],...]
   #inputWinningLottoNums;
   #inputBonusNum;
-  #scoreList = [0,0,0,0,0];
+  #countList = [];
+  #scoreList = [0, 0, 0, 0, 0];
 
   play() {
     this.inputStartWithMoney();
@@ -75,23 +76,67 @@ class App {
       }
       this.#inputBonusNum = Number(bonus);
       Console.print(this.#inputBonusNum); //
+      this.printLottoScore();
     });
   }
 
-  //등수 logic -> 8개의 로또를 돌면서 체크
-  winLottoScore() {
-    for (let index = 0; index < this.#lottosList.length; index++) {}
+  printLottoScore() {
+    Console.print("\n" + "당첨 통계\n" + "---");
+    Console.print(OUTPUTS.CORRECT_THREE + this.#scoreList[0] + "개");
+    Console.print(OUTPUTS.CORRECT_FOUR + this.#scoreList[1] + "개");
+    Console.print(OUTPUTS.CORRECT_ONLY_FIVE + this.#scoreList[2] + "개");
+    Console.print(OUTPUTS.CORRECT_FIVE_BONUS + this.#scoreList[3] + "개");
+    Console.print(OUTPUTS.CORRECT_SIX + this.#scoreList[4] + "개");
   }
 
-  //lottos는 array, numbers
-  countMatchingLotto(lottos, numbers) {}
+  //score 합계
+  winLottoScore() {
+    for (let index = 0; index < this.#countList.length; index++) {
+      if (this.#countList[index] === 3 || this.#countList[index] === 13) {
+        this.#scoreList[0] += 1;
+      }
+      if (this.#countList[index] === 4 || this.#countList[index] === 14) {
+        this.#scoreList[1] += 1;
+      }
+      if (this.#countList[index] === 5) {
+        this.#scoreList[2] += 1;
+      }
+      if (this.#countList[index] === 15) {
+        this.#scoreList[3] += 1;
+      }
+      if (this.#countList[index] === 6 || this.#countList[index] === 16) {
+        this.#scoreList[4] += 1;
+      }
+    }
+  }
+
+  //등수 logic -> 8개의 로또를 돌면서 체크
+  countLottoScore() {
+    for (let index = 0; index < this.#lottosList.length; index++) {
+      const countPlus = countMatchingLotto(this.#lottosList[index]);
+      Console.print(countPlus); //
+      return this.#countList.push(countPlus);
+    }
+  }
+
+  //랜덤 로또번호에 같은 번호 개수 구하기
+  //보너스 번호가 같을 경우 10을 더하기
+  countMatchingLotto(lottos) {
+    let count = 0;
+    const overlap = lottos.filter((same) =>
+      this.#inputWinningLottoNums.includes(same)
+    );
+    count += overlap.length;
+
+    if (lottos.includes(this.#inputBonusNum)) {
+      count += 10;
+    }
+    Console.print(count); //
+    return count;
+  }
 }
 
 const startLotto = new App();
 startLotto.play();
 
 module.exports = App;
-
-//   randomBonusNumber() {
-//     // const bonusNum = Random.
-//   }
