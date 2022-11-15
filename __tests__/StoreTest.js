@@ -1,5 +1,5 @@
 const Store = require('../src/Store');
-const { REGEX } = require('../src/constants');
+const { LOTTO, REGEX } = require('../src/constants');
 
 describe('스토어 클래스 테스트', () => {
   test('잘못된 구입 금액을 입력한 경우 에러처리', () => {
@@ -29,6 +29,6 @@ describe('스토어 클래스 테스트', () => {
     const lottoSet = new Set(lottoArr);
 
     expect(REGEX.WINNING_NUMBER.test(lottoStr)).toBe(true);
-    expect(lottoSet.size).toEqual(6);
+    expect(lottoSet.size).toEqual(LOTTO.NUMBER_OF_NUMBERS);
   });
 });
