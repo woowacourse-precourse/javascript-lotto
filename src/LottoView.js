@@ -19,8 +19,8 @@ const printResult = ({ three, four, five, bonus, six }, profitRate) => {
   MissionUtils.Console.print(
     StatisticsMessage({ three, four, five, bonus, six })
   );
-  MissionUtils.Console.print(ProfitMessage(profitRate));
   MissionUtils.Console.close();
+  MissionUtils.Console.print(ProfitMessage(profitRate));
 };
 // 로또의 문자열화
 const makeStrLotto = (lotto) => {
