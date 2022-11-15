@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Lotto = require('./Lotto.js');
 class App {
 
   constructor(){
@@ -66,8 +67,16 @@ class App {
         throw new Error("[ERROR] 보너스 번호와 당첨 번호가 겹칩니다.");
       }
       this.bonusNumber = parseInt(bonusInput);
+      this.checkLotto();
       MissionUtils.Console.close();
     });
+  }
+
+  checkLotto(){
+    let lotto = new Lotto(this.WinningLotto);
+    lotto.checkWinning(this.UsersLotto, this.bonusNumber);
+    lotto.printResult();
+    lotto.calculateProfit(this.UsersLotto.length);
   }
 }
 
