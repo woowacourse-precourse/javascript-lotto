@@ -9,7 +9,7 @@ const isCorrectLength = (numbers) => {
 };
 
 const isOnlyNumber = (numbers) => {
-  if (!REG_EXP.onlyNumber.test(numbers.join(""))) {
+  if (!REG_EXP.onlyNumber.test(numbers)) {
     throw new Error(ERROR.notNumber);
   }
   return true;
