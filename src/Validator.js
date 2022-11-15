@@ -23,6 +23,12 @@ class Validator {
   static isNumberInArray(array, number) {
     return array.includes(number);
   }
+
+  static isUniqueArray(array) {
+    const set = new Set(array);
+
+    return set.size === array.length;
+  }
 }
 
 module.exports = Validator;
