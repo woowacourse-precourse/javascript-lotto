@@ -40,6 +40,15 @@ class App {
 			IO.output('[' + pick.join(', ') + ']');
 		});
 		this.tickets = tickets;
+		this.getAnswer();
+	}
+
+	getAnswer() {
+		Prompter.promptAnswer(this.handleAnswer.bind(this));
+	}
+
+	handleAnswer(answer) {
+		this.lotto = new Lotto(answer.split(',').map((v) => Number(v)));
 	}
 }
 
