@@ -82,7 +82,7 @@ class App {
   }
 
   checkAllLottoResultAndRevenue(myLottoNumbersList, lottoNumbers, bonusNumber) {
-    for (const myLottoNumbers of this.myLotto.getMyLottoList()) {
+    for (const myLottoNumbers of myLottoNumbersList) {
       let rank = this.checkLottoResultRank(myLottoNumbers, lottoNumbers, bonusNumber);
       this.result[rank] += 1
       this.revenue += this.reward[rank]
