@@ -14,7 +14,6 @@ class App {
     Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
       this.isNull(money);
       storeClass.setStoreVariables(money);
-      storeClass.isValidCharacter(storeClass.purchase);
       storeClass.isValidNumber(storeClass.purchase);
       storeClass.isValidUnit(storeClass.purchase);
 
@@ -28,7 +27,7 @@ class App {
     Console.readLine('\n당첨 번호를 입력해 주세요.\n', (commaNumbers) => {
       this.isNull(commaNumbers);
       storeClass.setWinningNumber(commaNumbers);
-      storeClass.isValidLotto(storeClass.winningNumber);
+      storeClass.isValidWinning(storeClass.winningNumber);
       this.readBonusNumber(storeClass, lottoClasses);
     })
   }
@@ -37,7 +36,6 @@ class App {
     Console.readLine('\n보너스 번호를 입력해 주세요.\n', (number) => {
       this.isNull(number);
       storeClass.setBonusNumber(number);
-      storeClass.isValidCharacter(storeClass.purchase);
       storeClass.isValidNumber(storeClass.purchase);
       storeClass.isValidBonus(storeClass.bonusNumber);
 
