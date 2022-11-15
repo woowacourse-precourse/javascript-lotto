@@ -106,6 +106,18 @@ class App {
     Console.close();
   }
 
+  validateAmount(amount) { //유효검사
+    const stringToNumber = Number(amount);
+    if (isNaN(stringToNumber)) {
+      throw new Error(`${ERROR.COMMON} ${ERROR.PURCHASE_AMOUNT}`);
+    } else if (stringToNumber % GAME.PRICE !== 0) {
+      throw new Error(`${ERROR.COMMON} ${ERROR.PURCHASE_UNIT}`);
+    } else if (stringToNumber === 0) {
+      throw new Error(`${ERROR.COMMON} ${ERROR.ZERO}`);
+    }
+    return stringToNumber;
+  }
+
 
 }
 
