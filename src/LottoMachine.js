@@ -21,6 +21,10 @@ class LottoMachine {
       RANGE.PICK_COUNT
     );
   }
+
+  sortLottoNum(randomNumArr) {
+    return randomNumArr.sort();
+  }
 }
 
 module.exports = LottoMachine;
