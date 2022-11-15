@@ -5,6 +5,7 @@ const purchased = require("./utils/listPurchased");
 const Validation = require("./Validation");
 const stringToArray = require("./utils/stringToArray");
 const makeStat = require("./utils/makeStat");
+const makeResult = require("./utils/makeResult");
 
 class Lotto {
   #numbers;
@@ -47,16 +48,38 @@ class Lotto {
     const bonusWin = stringToArray(bonus);
     const result = makeStat(lottos, win, bonusWin);
 
-    this.makeResult(result);
+    makeResult(result);
   }
 
-  makeResult(result) {
-    console.log(result.stats, result.bonusHit);
-    MissionUtils.Console.print(INGAME_RESULT.STATS(3, 4, 5, 6, 6, 61));
-  }
+  // makeResult(result) {
+  //   const hitResult = [0, 0, 0, 0, 0, 0];
+  //   console.log(result.stats, result.bonusHit);
 
-  // 출력시키도록
-  //그다음 수익률
+  //   for (let i = 0; i < result.stats.length; i++) {
+  //     if (result.stats[i] === 3) {
+  //       hitResult[0]++;
+  //     }
+  //     if (result.stats[i] === 4) {
+  //       hitResult[1]++;
+  //     }
+  //     if (result.stats[i] === 5 && result.bonusHit[i]) {
+  //       hitResult[3];
+  //     }
+  //     if (result.stats[i] === 5) {
+  //       hitResult[2]++;
+  //     }
+  //     if (result.stats[i] === 6) {
+  //       hitResult[4];
+  //     }
+  //   }
+
+  //   this.showResult;
+  // }
+
+  // showResult(result) {
+  //   MissionUtils.Console.print(INGAME_RESULT.STATS(1, 0, 0, 0, 0, 62.5));
+  // }
+
   // 그다음 총 test 되어야하고, #numbers 활용 하도록 리팩토링
   // }
 }
