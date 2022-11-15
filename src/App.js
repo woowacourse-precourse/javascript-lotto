@@ -1,4 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
+const { OUTPUT } = require('./setting/Message');
+
 const GetNumber = require('./GetNumber');
 const Lotto = require('./Lotto');
 const CompareLotto = require('./CompareLotto');
@@ -17,7 +19,7 @@ class App {
   }
 
   play() {
-    this.LottoView.input('구입금액을 입력해 주세요.\n', (money) => {
+    this.LottoView.input(OUTPUT.TO_BUY, (money) => {
       const lottoList = this.Lotto.NumberPackage(money);
 
       this.#purchaseAmount = money;
@@ -26,14 +28,14 @@ class App {
   }
 
   getWinNumber(lottoList) {
-    this.LottoView.input('\n당첨 번호를 입력해 주세요.\n', (numbers) => {
+    this.LottoView.input(OUTPUT.PUT_WIN_NUMBER, (numbers) => {
       GetNumber.toWin(numbers);
       this.getBonusNumber(lottoList, numbers);
     });
   }
 
   getBonusNumber(lottoList, numbers) {
-    this.LottoView.input('\n보너스 번호를 입력해 주세요.\n', (number) => {
+    this.LottoView.input(OUTPUT.PUT_BONUS_NUMBER, (number) => {
       GetNumber.bonus(numbers, number);
       this.compareResult(lottoList, numbers, number);
     });

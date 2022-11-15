@@ -26,7 +26,18 @@ const VALIDATION_MESSAGE = {
     DUPLICATE_SINGLE,
 }
 
+const TO_BUY = '구입금액을 입력해 주세요.\n';
+const PUT_WIN_NUMBER = '\n당첨 번호를 입력해 주세요.\n';
+const PUT_BONUS_NUMBER = '\n보너스 번호를 입력해 주세요.\n';
+
+const OUTPUT = {
+    TO_BUY,
+    PUT_WIN_NUMBER,
+    PUT_BONUS_NUMBER,
+}
+
 module.exports = {
     LOTTO_MESSAGE,
     VALIDATION_MESSAGE,
+    OUTPUT,
 };
