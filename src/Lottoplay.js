@@ -9,6 +9,7 @@ const { CONSTANTS } = require("./constant/constants");
 const Lotto = require("./Lotto");
 
 class LottoPlay {
+  amount;
   lottoes;
   randomLottoNumbers;
   winNumber;
@@ -28,6 +29,7 @@ class LottoPlay {
 
   play() {
     Console.readLine(INPUT_MESSAGE.INPUT_MONEY_MESSAGE, (amount) => {
+      this.amount = amount;
       this.validateAmount(amount);
       this.lottoes = this.countLotto(amount);
       this.printCountedLottoes();
@@ -39,7 +41,7 @@ class LottoPlay {
   countLotto(amount) {
     return amount / CONSTANTS.LOTTO_PRICE;
   }
-  printCountedLottoes(amount) {
+  printCountedLottoes() {
     Console.print(`\n${this.lottoes}개를 구매했습니다.`);
   }
   validateAmount(amount) {
@@ -75,7 +77,8 @@ class LottoPlay {
     const randomLottoNumbers = this.createRandomLottoes();
     this.randomLottoNumbers = randomLottoNumbers;
     randomLottoNumbers.forEach((lottonumber) => {
-      Console.print(lottonumber);
+      const lottonumbers = lottonumber.join(", ");
+      Console.print(`[${lottonumbers}]`);
     });
   }
 
@@ -93,6 +96,7 @@ class LottoPlay {
       this.bonusNumber = [Number(bonusNum)];
       this.getResult();
       this.printResult();
+      this.printRateOfReturn();
     });
   }
   lottoNumberRange(element) {
@@ -167,9 +171,25 @@ class LottoPlay {
       `${WINNING_STATICS_MESSAGE.FIRST_PLACE_MESSAGE} ${this.whatPlace.firstPlace}개`
     );
   }
+  calculateRevenue() {
+    const revenue =
+      this.whatPlace.fifthPlace * CONSTANTS.FIFTH_PLACE_REWARD +
+      this.whatPlace.fourthPlace * CONSTANTS.FOURTH_PLACE_REWARD +
+      this.whatPlace.thirdPlace * CONSTANTS.THIRD_PLACE_REWARD +
+      this.whatPlace.secondPlace * CONSTANTS.SECOND_PLACE_REWARD +
+      this.whatPlace.firstPlace * CONSTANTS.FIRST_PLACE_REWARD;
+    return revenue;
+  }
+  calculateRateOfReturn() {
+    const revenue = this.calculateRevenue();
+    const rateOfReturn = (revenue / this.amount) * 100;
+    return rateOfReturn;
+  }
+  printRateOfReturn() {
+    const rateOfReturn = this.calculateRateOfReturn().toFixed(1);
+    Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
+    Console.close();
+  }
 }
-
-const lottoplay = new LottoPlay();
-lottoplay;
 
 module.exports = LottoPlay;

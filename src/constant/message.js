@@ -31,11 +31,11 @@ const LOTTO_NUM_ERROR_MESSAGE = {
 };
 
 const WINNING_STATICS_START_MESSAGE = "\n당첨 통계 \n---";
-const FIFTH_PLACE_MESSAGE = "3개 일치 (5000원) :";
-const FOURTH_PLACE_MESSAGE = "4개 일치 (10000원) :";
-const THIRD_PLACE_MESSAGE = "5개 일치 (1,500,000원) :";
-const SECOND_PLACE_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) :";
-const FIRST_PLACE_MESSAGE = "6개 일치 (2,000,000,000원) :";
+const FIFTH_PLACE_MESSAGE = "3개 일치 (5,000원) -";
+const FOURTH_PLACE_MESSAGE = "4개 일치 (50,000원) -";
+const THIRD_PLACE_MESSAGE = "5개 일치 (1,500,000원) -";
+const SECOND_PLACE_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) -";
+const FIRST_PLACE_MESSAGE = "6개 일치 (2,000,000,000원) -";
 const WINNING_STATICS_MESSAGE = {
   WINNING_STATICS_START_MESSAGE,
   FIFTH_PLACE_MESSAGE,
