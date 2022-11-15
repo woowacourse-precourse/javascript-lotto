@@ -3,6 +3,7 @@ const validateSixLength = (arr) => {
 };
 
 const validatePurchaseAmount = (amount) => {
+  validateNumber(amount);
   if (amount < 1000)
     throw new Error("[ERROR] 구입 금액은 1000원 이상이어야 합니다.");
   if (amount % 1000 !== 0)
@@ -10,12 +11,18 @@ const validatePurchaseAmount = (amount) => {
   return amount / 1000;
 };
 
-const validateNumber = (num) => {
-  num.forEach((el) => {
+const validateNumberArray = (numArr) => {
+  numArr.forEach((el) => {
     if (isNaN(el)) throw new Error("[ERROR] 숫자를 입력해 주세요");
     if (el < 1 || el > 45)
       throw new Error("[ERROR] 1 ~ 45 범위 내 숫자를 입력해 주세요");
   });
+};
+
+const validateNumber = (num) => {
+  if (isNaN(num)) {
+    throw new Error("[ERROR] 숫자를 입력해 주세요");
+  }
 };
 
 const validateBonusDuplicate = (bonus, winNum) => {
@@ -33,7 +40,7 @@ const validateBlank = (arr) => {
 module.exports = {
   validateSixLength,
   validatePurchaseAmount,
-  validateNumber,
+  validateNumberArray,
   validateBonusDuplicate,
   validateBlank,
 };
