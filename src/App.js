@@ -7,6 +7,7 @@ class App {
   }
 
   play() {
+    let input_amount
     let amount;
     let lotto_list;
     let winning_number;
@@ -14,10 +15,10 @@ class App {
     let result;
     let yield_amount;
 
-    this.purchase = this.input('구입금액을 입력해 주세요.\n');
-    if (this.purchase === undefined)
+    input_amount = this.input('구입금액을 입력해 주세요.\n');
+    if (input_amount === undefined)
       return 0;
-    this.input_exception();
+    this.input_exception(input_amount);
 
     amount = this.get_quantity();
     lotto_list = this.publish_lotto(amount);
@@ -41,26 +42,31 @@ class App {
     return result;
   }
 
-  input_exception() {
+  input_exception(numbers) {
     let regex = /^[0-9]+$/;
-
-    if (this.purchase === undefined || this.purchase === null) {
+  
+    if (!regex.test(numbers)) {
       MissionUtils.Console.close();
-      throw new Error("[ERROR] 입력된 구입금액이 없습니다.");
+      throw new Error("[ERROR] 숫자여야 합니다.");
     }
-    if (!regex.test(this.purchase)) {
-      MissionUtils.Console.close();
-      throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-    }
+    this.purchase = numbers;
+    return true;
   }
 
   get_quantity() {
-    let amount = Number(this.purchase);
+    if (this.get_quantity_exception(Number(this.purchase))) {
+      return Number(this.purchase) / 1000;
+    }
+  }
+
+  get_quantity_exception(amount) {
+    if (amount === NaN) {
+      throw new Error("[ERROR] 숫자가 아닙니다.");
+    }
     if (amount % 1000 !== 0) {
       throw new Error("[ERROR] 1,000원 단위가 아닙니다.");
     }
-    let result = amount / 1000;
-    return result;
+    return true;
   }
 
   publish_lotto(amount) {
@@ -96,6 +102,9 @@ class App {
 
   input_arrangement(winning_number) {
     let result = winning_number.split(",").map(function(value) {
+      if (isNaN(parseInt(value, 10))) {
+        throw new Error("[ERROR] 당첨 번호 입력이 잘못되었습니다.");
+      }
       return parseInt(value, 10);
     })
     return result;
