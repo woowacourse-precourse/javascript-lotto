@@ -15,15 +15,19 @@ class Game {
     MissionUtils.Console.readLine("구입금액을 입력해주세요 : \n", (userInput) => {
       const payment = Number(userInput);
       (() => new Payment(payment))()
-      const numOfTickets = userInput / 1000;
+      const THOUSAND = 1000;
+      const numOfTickets = userInput / THOUSAND;
       this.generateGuessNumbers(numOfTickets);
     });
   }
 
   generateGuessNumbers(numOfTickets) {
     const guessNumbersTotal = [];
+    const MIN_LOTTO_NUMBER = 1;
+    const MAX_LOTTO_NUMBER = 45;
+    const LOTTO_NUMBERS = 6;
     for (let i = 0; i < numOfTickets; i += 1) {
-      const guessNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
+      const guessNumbers = MissionUtils.Random.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBERS).sort((a, b) => a - b);
       guessNumbersTotal[i] = guessNumbers;
     }
     this.printNumTickets(numOfTickets, guessNumbersTotal);
@@ -104,12 +108,17 @@ class Game {
     this.getEarningRate(winStats, numOfTickets);
   }
 
-  getEarningRate(winStats, numOfTickets) { 
-    const earnings = (winStats.get("3개 일치 (5,000원)") * 5000
-      + winStats.get("4개 일치 (50,000원)") * 50000
-      + winStats.get("5개 일치 (1,500,000원)") * 1500000
-      + winStats.get("5개 일치, 보너스 볼 일치 (30,000,000원)") * 30000000
-      + winStats.get("6개 일치 (2,000,000,000원)") * 2000000000);
+  getEarningRate(winStats, numOfTickets) {
+    const FIVE_THOUSAND = 5000;
+    const FIFTY_THOUSAND = 50000;
+    const ONE_POINT_FIVE_MILLION = 1500000;
+    const THIRTY_MILLION = 30000000;
+    const TWO_BILLION = 2000000000; 
+    const earnings = (winStats.get("3개 일치 (5,000원)") * FIVE_THOUSAND
+      + winStats.get("4개 일치 (50,000원)") * FIFTY_THOUSAND
+      + winStats.get("5개 일치 (1,500,000원)") * ONE_POINT_FIVE_MILLION
+      + winStats.get("5개 일치, 보너스 볼 일치 (30,000,000원)") * THIRTY_MILLION
+      + winStats.get("6개 일치 (2,000,000,000원)") * TWO_BILLION);
     const earningRate = this.roundOffToNearestTenth((earnings / (numOfTickets * 1000)) * 100);
     this.printWinStats(winStats, earningRate);
   }
