@@ -63,11 +63,11 @@ class LottoSeller {
     };
   }
 
-  run = (money) => {
+  run(money) {
     this.issueLotto(this.countLottoTicket(money));
     this.setResultData();
     View.print(this);
-  };
+  }
 }
 
 module.exports = LottoSeller;
