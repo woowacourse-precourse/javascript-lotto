@@ -132,6 +132,17 @@ class App {
       MissionUtils.Console.print(`총 수익률은 ${amount}%입니다.`);
       MissionUtils.Console.close();
     }
+
+    payMoney();
+    checkMoney();
+    countLotto();
+    issueLottos();
+    showLottos();
+    getUserLottoNumbers();
+    getUserBonusNumber();
+    sendLotto();
+    statisticYield();
+    printResult();
   } //Play() 닫는 닫는 괄호
 }//class App 닫는괄호
 
