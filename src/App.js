@@ -1,136 +1,86 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const userException = require("./utils/userException");
-const numberException = require('./utils/numberException');
 const Lotto = require('./Lotto');
+const User = require('./User');
+const Calculator = require('./Calculator');
 
 class App {
 
-  // 로또 개수
-  #lottoCount;
-  #totalLotto = [];
-  #userWinningNumber;
-  #userBonusNumber;
-  #totalScore = {
-    'three': 0,
-    'four': 0,
-    'five': 0,
-    'five_ball': 0,
-    'six': 0
-  };
-  #yield = 0;
+  #totalLotto;
+  #user;
+  #lotto;
+  #calc;
 
-  userEnterException(userEnterAmount) {
-    userException.isInDivisible(userEnterAmount);
-    userException.isNotNumber(userEnterAmount);
+  constructor() {
+    this.#totalLotto = [];
   }
 
-  userNumberException(parsingUserNumber) {
-    numberException.isNotSix(parsingUserNumber);
-    numberException.includeNotNumber(parsingUserNumber);
-    numberException.isDuplicated(parsingUserNumber);
-  }
-
-  printLotto() {
-    MissionUtils.Console.print(`\n${this.#lottoCount}개를 구매했습니다.`);
-    for(let i = 0; i<this.#totalLotto.length; i++) {
-      this.#totalLotto[i].sort((a, b) => a - b)
-      MissionUtils.Console.print(JSON.stringify(this.#totalLotto[i]).replace(/,/gi, ", "));
-    }
-  }
-
-  enterAmount() {
+  progressLotto() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (userEnterAmount) => {
-      this.userEnterException(userEnterAmount);
-      this.#lottoCount = parseInt(Number(userEnterAmount) / 1000);
-      // 기능 2 : 구입 금액 만큼의 로또 발행
+      this.#user = new User(userEnterAmount);
+      this.#user.userAmountException();
+      
       this.generateLotto();
-      // 기능 3 : 사용자의 당첨 번호, 보너스 번호 입력
+      this.printLotto();
       this.enterUserNumber();
+      this.printStatatics();
     });
   }
 
   generateLotto() {
-    for(let count = 0; count < this.#lottoCount; count++) {
+    for(let count = 0; count < this.#user.lottoCount; count++) {
       const randomSixLottoNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-      const lotto = new Lotto(randomSixLottoNumber);
-      this.#totalLotto.push(lotto.getNumbers());
+      this.#lotto = new Lotto(randomSixLottoNumber);
+      this.#totalLotto.push(randomSixLottoNumber);
     }
-    this.printLotto();
+  }
+
+  printLotto() {
+    MissionUtils.Console.print(`\n${this.#user.lottoCount}개를 구매했습니다.`);
+    for(let i = 0; i<this.#totalLotto.length; i++) {
+      this.#totalLotto[i].sort((a, b) => a - b);
+      MissionUtils.Console.print(JSON.stringify(this.#totalLotto[i]).replace(/,/gi, ", "));
+    }
   }
 
   enterUserNumber() {
     MissionUtils.Console.readLine('\n당첨 번호를 입력해 주세요.\n', (userNumber) => {
-      const parsingUserNumber = String(userNumber).trim().split(',').map(number => +number);
-      this.userNumberException(parsingUserNumber);
-      this.#userWinningNumber = userNumber;
+      const parsedWinningNumber = this.#user.parsingWinningNumber(userNumber);
+      this.#user.winningNumber = parsedWinningNumber;
+      this.#user.userWinningNumberException();
+
+      this.#calc = new Calculator();
+      this.#calc.winningNumber = parsedWinningNumber;
+      
       this.enterBonusNumber();
     });
   }
 
   enterBonusNumber() {
     MissionUtils.Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
-      if(isNaN(Number(bonusNumber)) || Number(bonusNumber) > 45 || Number(bonusNumber) < 1) {
-        throw new Error('[ERROR] 보너스 번호는 1~45사이의 숫자입니다.');
-      }
-      this.#userBonusNumber = bonusNumber;
-      // 기능 4 : 당첨 내역 계산
-      this.calculateRank();
-      // 기능 4 : 수익률 계산
-      this.calcYield(); 
-      this.printStatatics();
+      this.#user.bonusNumber = bonusNumber;
+      this.#user.bonusNumberException();
+      
+      this.#calc.totalLotto = this.#totalLotto;
+      this.#calc.calculateRank();
+      this.#calc.calcYield(); 
     });
   }
 
-  calculateRank() {
-    const totalScore = [];
-    this.#totalLotto.map((lotto) => {
-      let count = 0;
-      lotto.forEach(lottoNumber => {
-        if(this.#userWinningNumber.includes(lottoNumber)) count++
-      });
-      totalScore.push(count);
-    })
-    this.extractScore(totalScore);
-  }
-
-  extractScore(totalScore) {
-    totalScore.map((score, index) => {
-      if(score === 3) {
-        this.#totalScore.three += 1;
-      } else if (score === 4) {
-        this.#totalScore.four += 1;
-      } else if (score === 5) {
-        if(this.#totalLotto[index].includes(Number(this.#userBonusNumber))) {
-          this.#totalScore.five_ball += 1;
-        } else this.#totalScore.five += 1;
-      } else if (score === 6) {
-        this.#totalScore.six += 1;
-      }
-    })
-  }
-
-  calcYield() {
-    this.#yield += 5000*Number(this.#totalScore['three']);
-    this.#yield += 50000*Number(this.#totalScore['four']);
-    this.#yield += 15000000*Number(this.#totalScore['five']);
-    this.#yield += 30000000*Number(this.#totalScore['five_ball']);
-    this.#yield += 2000000000*Number(this.#totalScore['six']);
-  }
 
   printStatatics() {
-    MissionUtils.Console.print('\n당첨 통계\n---\n');
-    MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.#totalScore['three']}개\n`);
-    MissionUtils.Console.print(`4개 일치 (50,000원) - ${this.#totalScore['four']}개\n`);
-    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${this.#totalScore['five']}개\n`);
-    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.#totalScore['five_ball']}개\n`);
-    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${this.#totalScore['six']}개\n`);
-    MissionUtils.Console.print(`총 수익률은 ${parseFloat((this.#yield/(this.#lottoCount*10)).toFixed(2))}%입니다.\n`);
+    const totalScore = this.#calc.totalScore;
+    MissionUtils.Console.print('\n당첨 통계\n---');
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${totalScore['three']}개`);
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${totalScore['four']}개`);
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${totalScore['five']}개`);
+    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${totalScore['five_ball']}개`);
+    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${totalScore['six']}개`);
+    MissionUtils.Console.print(`총 수익률은 ${parseFloat((this.#calc.yield/(this.#user.lottoCount*10)).toFixed(2))}%입니다.`);
     MissionUtils.Console.close();
   }
 
   play() {
-    // 기능 1 : 사용자의 구입 금액 입력
-    this.enterAmount();
+    this.progressLotto();
   }
 }
 
