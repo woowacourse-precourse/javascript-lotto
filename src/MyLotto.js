@@ -27,7 +27,9 @@ class MyLotto {
 
         for (let i = 0; i < LOTTO_COUNT; i++) {
             MY_LOTTO_NUM = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+            MY_LOTTO_NUM.sort();
             this.MY_LOTTO_LIST.push(MY_LOTTO_NUM);
+
         }
     }
 
