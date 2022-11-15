@@ -17,24 +17,28 @@ class Lotto {
   statistics() {
     this.issueList.forEach((issueNumber) => {
       const matchCount = issueNumber.filter((number) => this.winningNumber.includes(number)).length;
-      if (matchCount === 3) {
-        this.winningCounterArr[0] += 1;
-      }
-      if (matchCount === 4) {
-        this.winningCounterArr[1] += 1;
-      }
-      if (matchCount === 5 && issue.includes(this.bonusNumber) !== false) {
-        this.winningCounterArr[2] += 1;
-      }
-      if (matchCount === 5 && issue.includes(this.bonusNumber)) {
-        this.winningCounterArr[3] += 1;
-      }
-      if (matchCount === 6) {
-        this.winningCounterArr[4] += 1;
-      }
+      this.comparison(matchCount);
     });
     this.yieldCalculation();
     this.print();
+  }
+
+  comparison(matchCount) {
+    if (matchCount === 3) {
+      this.winningCounterArr[0] += 1;
+    }
+    if (matchCount === 4) {
+      this.winningCounterArr[1] += 1;
+    }
+    if (matchCount === 5 && issue.includes(this.bonusNumber) !== false) {
+      this.winningCounterArr[2] += 1;
+    }
+    if (matchCount === 5 && issue.includes(this.bonusNumber)) {
+      this.winningCounterArr[3] += 1;
+    }
+    if (matchCount === 6) {
+      this.winningCounterArr[4] += 1;
+    }
   }
 
   yieldCalculation() {
