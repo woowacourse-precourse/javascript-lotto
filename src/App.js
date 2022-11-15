@@ -44,15 +44,16 @@ class App {
 
   getLottoBonusNumber() {
     Console.readLine('보너스 번호를 입력해 주세요.\n', (input) => {
-      const bonusNumber = input.split(',');
-      this.validateIsNotNumber(bonusNumber);
-      this.lottoBonusNumber = new LottoBonus(bonusNumber);
+      this.validateIsNotNumber(input);
+      this.lottoBonusNumber = new LottoBonus(Number(input));
+      this.lottoWinNumbers.compareWithWinNumbers(input);
+      this.printSpaceLine();
     });
   }
 
-  validateIsNotNumber(winNumber) {
-    for (let i = 0; i < winNumber.length; i++) {
-      if (isNaN(...winNumber[i])) {
+  validateIsNotNumber(number) {
+    for (let i = 0; i < number.length; i++) {
+      if (isNaN(...number[i])) {
         throw new Error('[ERROR] 당첨 번호는 숫자만 입력해야 합니다.');
       }
     }
