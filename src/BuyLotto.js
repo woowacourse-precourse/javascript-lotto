@@ -1,6 +1,7 @@
-const { LOTTO_DETAILS } = require("./constant/constant");
+const { LOTTO_DETAILS, BUY_LOTTO } = require("./constant/constant");
 const { Random } = require("@woowacourse/mission-utils");
 const Validation = require("./utils/Validation");
+const UI = require("./utils/UI");
 
 class BuyLotto {
   userLottoArr;
@@ -29,6 +30,13 @@ class BuyLotto {
         LOTTO_DETAILS.MAX,
         LOTTO_DETAILS.EA
       );
+    });
+  }
+
+  printUserLottoList() {
+    UI.print(`${this.userLottoArr.length}${BUY_LOTTO.PURCHASE}`);
+    this.userLottoArr.forEach((currentLotto) => {
+      UI.print(`"[${currentLotto.join(", ")}]"`);
     });
   }
 }

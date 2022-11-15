@@ -6,8 +6,6 @@ const { Console } = require("@woowacourse/mission-utils");
 
 class App {
   userLottoArr;
-  winningNumber;
-  bonusNumber;
 
   play() {
     this.buyLotto();
@@ -15,17 +13,12 @@ class App {
 
   buyLotto() {
     Console.readLine(BUY_LOTTO.ANNOUNCEMENT, (userMoney) => {
-      const buyLotto = new BuyLotto(Number(userMoney));
-      this.userLottoArr = buyLotto.userLottoArr;
-      this.printUserLottoList();
-      this.playLotto();
-    });
-  }
-
-  printUserLottoList() {
-    UI.print(`${this.userLottoArr.length}${BUY_LOTTO.PURCHASE}`);
-    this.userLottoArr.forEach((currentLotto) => {
-      UI.print(`"[${currentLotto.join(", ")}]"`);
+      if (userMoney) {
+        const buyLotto = new BuyLotto(Number(userMoney));
+        this.userLottoArr = buyLotto.userLottoArr;
+        buyLotto.printUserLottoList();
+        this.playLotto();
+      }
     });
   }
 
