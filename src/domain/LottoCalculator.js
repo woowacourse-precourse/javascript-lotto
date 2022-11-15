@@ -11,7 +11,7 @@ class LottoCalculator {
 
   #scoreBoard;
 
-  #ERROR_MESSAGE = 'OVERIDING_ERROR';
+  #ERROR_MESSAGE = '[ERROR] YOU SHOULD DECLARE OVERIDING';
 
   constructor(inputs) {
     this.#lotto = inputs.getInstance(VARIABLE_FACTORY.lotto);
