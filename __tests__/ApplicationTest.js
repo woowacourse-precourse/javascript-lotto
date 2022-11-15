@@ -56,13 +56,64 @@ describe("로또 테스트", () => {
     const logSpy = getLogSpy();
     const app = new App();
     app.play();
+
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
 
+  
+
   test("예외 테스트", () => {
     mockQuestions(["1000j"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+
+  test("예외 테스트", () => {
+    mockQuestions(["0"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+
+  test("예외 테스트", () => {
+    mockQuestions(["1000", "0"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+
+  test("예외 테스트", () => {
+    mockQuestions(["1000", "1,2,3,4,56"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+  
+  test("예외 테스트", () => {
+    mockQuestions(["1000", "1,2,3,4,5,6", "0"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+  
+  test("예외 테스트", () => {
+    mockQuestions(["1000", "1,2,3,4,5,6", "46"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+
+  test("예외 테스트", () => {
+    mockQuestions(["1000", "1,g2,3,4,5,6", "46"]);
     expect(() => {
       const app = new App();
       app.play();
