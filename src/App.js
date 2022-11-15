@@ -16,6 +16,12 @@ function finishLotto() {
   Console.close();
 }
 
+function printRateOfReturn(reward) {
+  const rateOfReturn = (reward/inputObjects.budget*100).toFixed(1);
+  Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
+  finishLotto();
+}
+
 function printLottoResult(reward) {
   Console.print('당첨 통계');
   Console.print('---');
@@ -23,9 +29,7 @@ function printLottoResult(reward) {
     if(index === 0) return;
     Console.print(RANK_MESSAGE[index]+element+'개');
   });
-  const rateOfReturn = (reward/inputObjects.budget*100).toFixed(1);
-  Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
-  finishLotto();
+  printRateOfReturn(reward)
 }
 
 function getResultStatics() {
