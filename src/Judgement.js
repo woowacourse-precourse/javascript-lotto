@@ -24,6 +24,18 @@ class Judgement {
     });
     return fiveLottoIdx;
   }
+
+  bonusCompare(lotto, fiveNumIdx, bonus) {
+    let bonusCount = 0;
+    bonus = +bonus;
+    for (let i = 0; i < fiveNumIdx.length; i++) {
+      const index = fiveNumIdx[i];
+      if (lotto[index].includes(bonus)) {
+        bonusCount++;
+      }
+    }
+    return bonusCount;
+  }
 }
 
 module.exports = Judgement;
