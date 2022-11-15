@@ -6,17 +6,18 @@ const Lotto = require("./Lotto");
 class App {
   constructor() {
     this.lottos=[];
+    this.bonus=0;
     this.lottoCount=0;
   }
 
   InputWinLotto(){
     Console.readLine('당첨 번호를 입력해 주세요.', (answer)=>{
-      // console.log(answer, typeof(answer)); // 1,2,3,4,5,6 -> [1, 2, 3, 4, 5, 6]
       const splitNum = answer.split(',');
-      // console.log(splitNum, typeof(splitNum)); // 1,2,3,4,5,6 -> [1, 2, 3, 4, 5, 6]
-
       const lotto = new Lotto(splitNum);
-      // console.log(`당첨 번호 : ` + lotto.getNumbers());
+      Console.readLine('보너스 번호를 입력해 주세요.', (answer)=>{
+        this.bonus=answer;
+        console.log(`bonus : ${this.bonus}`);
+      })
     })
     Console.close();
   }
@@ -28,11 +29,11 @@ class App {
   CreateUserLottoNum(){
     for(let idx=0; idx<this.lottoCount; idx++){
       const lottoNum = this.CreateLottoNum();
-      console.log(lottoNum);
+      // console.log(lottoNum);
 
       const lotto = new Lotto(lottoNum);
       this.lottos.push(lotto);
-      console.log(lotto.getNumbers());
+      // console.log(lotto.getNumbers());
     }
   }
 
