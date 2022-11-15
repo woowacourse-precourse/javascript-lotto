@@ -1,7 +1,7 @@
 const App = require("../src/App");
 const MissionUtils = require("@woowacourse/mission-utils");
 
-const mockQuestions = (answers) => {
+const mockQuestions = (answers) => { //구입금액 , 구매목록 , 당첨번호 , 보너스 번호 입력받기
   MissionUtils.Console.readLine = jest.fn();
   answers.reduce((acc, input) => {
     return acc.mockImplementationOnce((question, callback) => {
@@ -10,7 +10,8 @@ const mockQuestions = (answers) => {
   }, MissionUtils.Console.readLine);
 };
 
-const mockRandoms = (numbers) => {
+// 구매한 로또 번호. 랜덤 생성
+const mockRandoms = (numbers) => { 
   MissionUtils.Random.pickUniqueNumbersInRange = jest.fn();
   numbers.reduce((acc, number) => {
     return acc.mockReturnValueOnce(number);
