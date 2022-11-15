@@ -93,7 +93,7 @@ class App {
 
   lottoResult() { // 당첨 내역을 확인하고 수익률을 출력하는 메서드
     let prize = new Array(8).fill(0);
-    const LOTTO_PRIZE = [5000, 50000, 1500000, 30000000, 2000000000];
+    const LOTTO_PRIZE = [5000, 50000, 1500000, 2000000000, 30000000];
     for (let i = 0; i < this.auto.length; i++) {
       prize[this.compareLotto(i)] += 1;
     }
@@ -101,8 +101,8 @@ class App {
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${prize[3]}개`);
     MissionUtils.Console.print(`4개 일치 (50,000원) - ${prize[4]}개`);
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${prize[5]}개`);
-    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${prize[6]}개`);
-    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${prize[7]}개`);
+    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${prize[7]}개`);
+    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${prize[6]}개`);
     MissionUtils.Console.print(`총 수익률은 ${this.lottoyield(LOTTO_PRIZE, prize)}%입니다.`);
   }
 
