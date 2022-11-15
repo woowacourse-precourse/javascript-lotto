@@ -1,6 +1,8 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const MyLotto = require("./MyLotto");
 class App {
   money;
+  myLotto;
   play() {
     this.inputBuyLottoMoney();
   }
@@ -10,6 +12,8 @@ class App {
       this.validateIsNumber(money);
 
       this.money = parseInt(money);
+      this.myLotto = new MyLotto(this.money);
+
     });
   }
 
