@@ -3,6 +3,7 @@ const Constant = require("./components/Constant");
 const MoneyValidator = require("./components/MoneyValidator");
 const Lotto = require("./Lotto");
 const BonusNumber = require("./BonusNumber");
+const Calculate = require("./components/Calculator");
 
 class Purchase {
   constructor() {
@@ -92,6 +93,18 @@ class Purchase {
   createBonusLotto(number) {
     this.bonusNumber = Number(number);
     const bonusLotto = new BonusNumber(number);
+    this.getResult();
+  }
+
+  getResult() {
+    const calculateResult = new Calculate(
+      this.lotteries,
+      this.winningNumber,
+      this.bonusNumber,
+      this.money
+    );
+    calculateResult.printResult();
+    MissionUtils.Console.close();
   }
 }
 
