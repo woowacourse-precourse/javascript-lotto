@@ -1,5 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const DrawLotto = require("../draw-machine/DrawLotto");
 const CalculateLotto = require("./CalculateLotto");
+const ResultStats = require("./ResultStats");
 
 class Lotto {
   #numbers;
@@ -13,13 +15,12 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
-    this.createLottoNumbersList(numbers);
+    this.printLottoNumbersList(numbers);
+  }
+  
+  printLottoNumbersList(numbers){
+    MissionUtils.Console.print(numbers);
   }
 
-  createLottoNumbersList(numbers_arr){
-    let lotto_numbers_list = [];
-    lotto_numbers_list += numbers_arr;
-  }
 }
-
 module.exports = Lotto;
