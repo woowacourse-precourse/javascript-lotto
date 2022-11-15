@@ -1,9 +1,10 @@
-const { MESSAGES, WIN_CONDITIONS, RESULT_MESSAGE } = require("./lib/constant");
+const { ERROR } = require("./lib/error");
 class Lotto {
   #numbers;
 
   constructor(numbers) {
     this.validate(numbers);
+    ERROR.CHECK_LOTTO(numbers);
     this.#numbers = numbers;
   }
 
@@ -25,8 +26,6 @@ class Lotto {
   getNumbers() {
     return this.#numbers;
   }
-
-  // TODO: 추가 기능 구현
 }
 
 module.exports = Lotto;

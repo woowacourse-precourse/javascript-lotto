@@ -1,26 +1,29 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const { MESSAGES, WIN_CONDITIONS, RESULT_MESSAGE } = require("./lib/constant");
+const { ERROR } = require("./lib/error");
 const Lotto = require("./Lotto");
 
 class App {
-  async play() {
-    let lottoCount = await this.getAmountPaid();
-    let lottos = this.issueLottos(lottoCount);
-    this.printLottos(lottos, lottoCount);
-    let winningNumbers = await this.getWinningNumbers();
-    let bonusNumber = await this.getBonusNumbers();
-
-    this.countWinLottos(lottos, winningNumbers, bonusNumber);
-    this.printResult();
-    this.printRevenue(lottoCount);
-    this.appClose();
+  play() {
+    this.getAmountPaid((amount) => {
+      let lottoCount = amount / 1000;
+      let lottos = this.issueLottos(lottoCount);
+      this.printLottos(lottos, lottoCount);
+      this.getWinningNumbers((winningNums) => {
+        this.getBonusNumbers((bonusNumber) => {
+          this.countWinLottos(lottos, winningNums, bonusNumber);
+          this.printResult();
+          this.printRevenue(lottoCount);
+          this.appClose();
+        }, winningNums);
+      });
+    });
   }
 
-  getAmountPaid() {
-    return new Promise((resolve) => {
-      Console.readLine(MESSAGES.TAKE_MONEY, (input) => {
-        resolve(input / 1000);
-      });
+  getAmountPaid(callback) {
+    Console.readLine(MESSAGES.TAKE_MONEY, (input) => {
+      ERROR.CHECK_PAIDAMOUNT(input);
+      callback(input);
     });
   }
 
@@ -35,20 +38,18 @@ class App {
     return lottos;
   }
 
-  getWinningNumbers() {
-    return new Promise((resolve) => {
-      Console.readLine(MESSAGES.TAKE_WINNING_NUMBERS, (input) => {
-        let winnigNumbers = input.split(",").map((x) => Number(x));
-        resolve(winnigNumbers);
-      });
+  getWinningNumbers(callback) {
+    Console.readLine(MESSAGES.TAKE_WINNING_NUMBERS, (input) => {
+      ERROR.CHECK_WINNUMS(input);
+      let winnigNumbers = input.split(",").map((x) => Number(x));
+      callback(winnigNumbers);
     });
   }
 
-  getBonusNumbers() {
-    return new Promise((resolve) => {
-      Console.readLine(MESSAGES.TAKE_BONUS_NUMBERS, (input) => {
-        resolve(Number(input));
-      });
+  getBonusNumbers(callback, winningNumbers) {
+    Console.readLine(MESSAGES.TAKE_BONUS_NUMBERS, (input) => {
+      ERROR.CHECK_BONUS(input, winningNumbers);
+      callback(Number(input));
     });
   }
 
@@ -86,7 +87,7 @@ class App {
   printLottos(lottos, count) {
     Console.print(RESULT_MESSAGE.COUNT_MESSAGE(count));
     lottos.forEach((lotto) => {
-      Console.print(lotto.getNumbers());
+      Console.print(`[${lotto.getNumbers().join(", ")}]`);
     });
   }
 
@@ -116,6 +117,3 @@ class App {
 }
 
 module.exports = App;
-
-let app = new App();
-app.play();
