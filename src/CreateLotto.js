@@ -15,7 +15,7 @@ class CreateLotto {
   }
 
   start() {
-    Console.print('\n' + this.lottoNum.toString() + COMMAND.LOTTONUM);
+    Console.print(`\n${this.lottoNum.toString()}${COMMAND.LOTTONUM}`);
   }
 
   create() {
@@ -31,7 +31,7 @@ class CreateLotto {
 
   save(lotto) {
     this.result.push(lotto);
-    Console.print(lotto);
+    Console.print(`[${lotto.join(', ')}]`);
   }
 }
 
