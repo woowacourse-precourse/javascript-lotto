@@ -2,6 +2,7 @@ const { Console } = require('@woowacourse/mission-utils');
 const { REGEX, LOTTO, MESSAGE } = require('./constant/Lotto');
 const Validation = require('./Validation');
 const Lotto = require('./Lotto');
+const Calculation = require('./Calculation');
 
 class Game {
   initGame() {
@@ -48,6 +49,7 @@ class Game {
     Validation.validateBonusNumber(bonusNumber, winningNumber);
     this.bonusNumber = bonusNumber;
     const result = this.compareLotto();
+    this.printWinningResult(result);
     Console.close();
   }
   compareLotto() {
@@ -75,6 +77,21 @@ class Game {
     if (match == 5) return lottoNumber.includes(bonusNumber) ? LOTTO.RANK.SECOND : LOTTO.RANK.THIRD;
     if (match == 4) return LOTTO.RANK.FOURTH;
     if (match == 3) return LOTTO.RANK.FIFTH;
+  }
+  printWinningResult(result) {
+    Console.print(MESSAGE.RESULT);
+    const totalPrize = result.reduce((totalPrize, count, index) => {
+      const match = LOTTO.MATCH[index];
+      const prize = LOTTO.PRIZE[index];
+      totalPrize += prize * count;
+      let bonus = '';
+      if (index == LOTTO.RANK.SECOND) bonus = ', 보너스 볼 일치';
+      Console.print(MESSAGE.WIN(match, bonus, prize.toLocaleString(), count));
+      return totalPrize;
+    }, 0);
+    const amountPaid = this.lottoList.length * LOTTO.PRICE;
+    const ROR = Calculation.getRatesOfReturn(totalPrize, amountPaid);
+    Console.print(MESSAGE.RATES_OF_RETURN(ROR.toLocaleString()));
   }
 }
 
