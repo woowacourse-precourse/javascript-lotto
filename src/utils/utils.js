@@ -11,7 +11,7 @@ const changePrintFormat = () => {
 }
 
 const toLocaleMoney = (money) => {
-  return money.toLocaleString(FORMAT.LOCALE_MONEY);
+  return money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 module.exports = { round, changePrintFormat, toLocaleMoney };
