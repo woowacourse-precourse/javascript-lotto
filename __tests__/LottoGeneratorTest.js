@@ -1,5 +1,5 @@
 const LottoGenerator = require("../src/LottoGenerator");
-const { ERROR_MESSAGE } = require("../src/message");
+const { ERROR_MESSAGE } = require("../src/constant/message");
 
 describe("로또 생성기 예외 테스트", () => {
   test("구매금액이 숫자가 아니면 예외가 발생한다.", () => {

@@ -1,5 +1,5 @@
 const Calculator = require("../src/Calculator");
-const { ERROR_MESSAGE } = require("../src/message");
+const { ERROR_MESSAGE } = require("../src/constant/message");
 
 describe("당첨 계산기 테스트", () => {
   const winngingLotto = [1, 2, 3, 4, 5, 6];

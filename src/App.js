@@ -3,7 +3,7 @@ const Bonus = require("./bonus");
 const Calculator = require("./Calculator");
 const Lotto = require("./Lotto");
 const LottoGenerator = require("./LottoGenerator");
-const { INPUT_MESSAGE, OUTPUT_MESSAGE } = require("./message");
+const { INPUT_MESSAGE, OUTPUT_MESSAGE } = require("./constant/message");
 const { Console } = MissionUtils;
 
 class App {

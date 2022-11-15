@@ -1,4 +1,4 @@
-const { PRICE } = require("./message");
+const { PRICE } = require("./constant/message");
 
 class Calculator {
   rank = {

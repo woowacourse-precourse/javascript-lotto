@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { ERROR_MESSAGE } = require("./message");
+const { ERROR_MESSAGE } = require("./constant/message");
 const { Random } = MissionUtils;
 
 class LottoGenerator {
