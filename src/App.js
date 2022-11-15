@@ -7,13 +7,25 @@ class App {
     this.lottoPrice();
   }
   constructor() {
+    this.lottoNumber = null;
     this.WinningData = null;
     this.BonusData = null;
   }
   lottoDraw = () => {
-    const winningAndBonustNumber =
+    let lottoMatch = [];
+    let winningAndBonustNumber =
       this.WinningData.getWinning() + "," + this.BonusData.getBonus();
-    console.log(winningAndBonustNumber);
+    winningAndBonustNumber = winningAndBonustNumber
+      .split(",")
+      .map((num) => parseInt(num, 10));
+
+    this.lottoNumber.forEach((num) => {
+      lottoMatch.push(
+        num.getNumbers().filter((lottoNum) => {
+          return winningAndBonustNumber.includes(lottoNum);
+        })
+      );
+    });
   };
   BonusInput = () => {
     MissionUtils.Console.readLine(
@@ -38,7 +50,7 @@ class App {
 
   lottoIssuance = (count) => {
     MissionUtils.Console.print(`${count}개를 구매했습니다.`);
-    const lottoNumber = Array.from({ length: count }, () => {
+    this.lottoNumber = Array.from({ length: count }, () => {
       const randomNumber = MissionUtils.Random.pickUniqueNumbersInRange(
         1,
         45,
@@ -47,7 +59,7 @@ class App {
       const ascending = randomNumber.sort((a, b) => a - b);
       return new Lotto(ascending);
     });
-    lottoNumber.forEach((num) => {
+    this.lottoNumber.forEach((num) => {
       MissionUtils.Console.print(num.getNumbers());
     });
     this.winningNumber();
