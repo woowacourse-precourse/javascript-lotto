@@ -29,10 +29,7 @@ describe("로또 테스트", () => {
 
   test("1000단위인 숫자를 입력했을 때 정상동작 테스트", () => {
     mockQuestions(["10000"]);
-    expect(() => {
-      const lottoStore = new LottoStore();
-      const numbersOfLottos = lottoStore.sellLottos();
-      expect(numbersOfLottos).toEqual(10);
-    });
+    const lottoStore = new LottoStore();
+    expect(lottoStore.sellLottos()).toEqual(10);
   });
 });
