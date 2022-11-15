@@ -106,3 +106,19 @@
 
 - winnumStr - 당첨 내역 출력(몇 개가 일치하고, 일치 개수에 따른 금액) 출력
 - printorderNum - 당첨금액을 모두 더해서 전체 당첨 금액의 합 반환
+
+## `App`의 구조
+
+### 필드
+
+- winnumbers - 당첨번호
+- numoflottos - 내가 로또를 몇 장 구매했나요?
+- numoflottosWon - 내가 몇원을 써서 로또를 구매했나요?
+- bonusnumber - 보너스 번호
+- userlottos - 새로운 UserLotto 객체 생성
+- lottos - 내가 산 로또의 금액 저장
+
+### play()
+
+- 당첨금액 입력->로또 구입->로또발행->당첨금액,보너스번호입력->로또번호를 당첨번
+  호와 비교->수익률계산
