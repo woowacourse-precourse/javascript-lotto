@@ -1,3 +1,4 @@
+const { lottoNumberError } = require('./Constants/ErrorMessages');
 class Lotto {
   #numbers;
 
@@ -8,7 +9,16 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error(lottoNumberError.NOT_SIX);
+    }
+    if (numbers.length !== [...new Set(numbers)].length) {
+      throw new Error(lottoNumberError.NUMBER_DUPLICATION);
+    }
+    if (
+      numbers.length !==
+      numbers.filter((number) => number >= 1 && number <= 45).length
+    ) {
+      throw new Error(lottoNumberError.NOT_VALID_NUMBER_SCOPE);
     }
   }
 
