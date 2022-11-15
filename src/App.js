@@ -57,6 +57,12 @@ class App {
     Console.print(this.arrayToString(lottos));
   }
 
+  getResult() {
+    this.#numbers.map((userLotto) => {
+      let count = this.#lotto.matchNumber(userLotto);
+    });
+  }
+
   play() {
     this.inputPurchase();
     this.inputWinNumber();

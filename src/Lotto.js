@@ -27,7 +27,14 @@ class Lotto {
       throw new Error("[ERROR] 보너스 번호가 중복됩니다.");
     }
   }
-  // TODO: 추가 기능 구현
+
+  matchNumber(user) {
+    let count = 0;
+    user.map((number) => {
+      if (this.#numbers.indexOf(number) !== -1) count++;
+    });
+    return count;
+  }
 }
 
 module.exports = Lotto;
