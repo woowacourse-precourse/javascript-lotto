@@ -1,5 +1,6 @@
 const App = require("../src/App");
 const MissionUtils = require("@woowacourse/mission-utils");
+const { ERROR } = require("../src/Constants");
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();
@@ -61,11 +62,19 @@ describe("로또 테스트", () => {
     });
   });
 
-  test("예외 테스트", () => {
+  test("구입 금액에 숫자가 아닌 문자가 들어가면 예외가 발생한다.", () => {
     mockQuestions(["1000j"]);
     expect(() => {
       const app = new App();
       app.play();
-    }).toThrow("[ERROR]");
+    }).toThrow(ERROR.incorrect_form);
+  });
+
+  test("구입 금액이 1000 단위가 아니라면 예외가 발생한다.", () => {
+    mockQuestions(["1200"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow(ERROR.incorrect_purchase_amount);
   });
 });
