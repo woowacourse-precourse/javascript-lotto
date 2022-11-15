@@ -11,6 +11,7 @@ class Message {
   static ERROR_MONEY = '[ERROR] 구매할 금액은 1000단위의 숫자여야 합니다.';
   static ERROR_PRIZE =
     '[ERROR] 당첨 번호는 ,로 구별되는 6자리의 1~45 사이의 숫자여야 합니다.';
+  static ERROR_BONUS = '[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.';
 }
 
 module.exports = Message;

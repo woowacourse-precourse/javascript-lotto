@@ -6,6 +6,7 @@ class LottoMain {
     ConsoleWork.takeInput(
       `\n${Message.BONUSNUMBER_MESSAGE}\n`,
       function (bonus) {
+        checkErrorBonusInput(bonus);
         printResult(lottoList, prize, bonus);
       }
     );
@@ -90,5 +91,11 @@ function printProfitRate(staticLotto) {
     staticLotto[4] * 2000000000;
   const profitRate = ((profit / money) * 100).toFixed(1);
   ConsoleWork.print(`총 수익률은 ${profitRate}%입니다.`);
+}
+
+function checkErrorBonusInput(bonus) {
+  if (!(0 < Number(bonus)) || !(Number(bonus) < 46)) {
+    throw new Error(Message.ERROR_BONUS);
+  }
 }
 module.exports = LottoMain;
