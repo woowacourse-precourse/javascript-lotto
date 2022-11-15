@@ -61,6 +61,7 @@ javascript-lotto
 
 **__tests__ 폴더**  
 - ApplicationTest.js: App.js의 실행을 테스트하는 파일
-- LottoTest.js: Lotto.js를 테스트하는 파일
 - BonusTest.js: Bonus.js를 테스트하는 파일
+- GameTest.js: Game.js를 테스트하는 파일
+- LottoTest.js: Lotto.js를 테스트하는 파일
 - PaymentTest.js: Payment.js를 테스트하는 파일
