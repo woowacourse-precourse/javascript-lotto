@@ -55,7 +55,7 @@ class App {
     let myLotto = { };
     for(let i=0;i<money/ LOTTO.PRICE;i++){
       let newLotto = MissionUtils.Random.pickUniqueNumbersInRange(LOTTO.MIN, LOTTO.MAX, LOTTO.COUNT);
-      myLotto[`lotto${i}`] = new Lotto(newLotto);
+      myLotto[i] = new Lotto(newLotto);
     }
     return myLotto;
   }
@@ -63,7 +63,7 @@ class App {
     const NUMBER_OF_LOTTO = Object.keys(myLotto).length;
     MissionUtils.Console.print(RESULT_MESSAGE.HOW_MANY_TICKET(NUMBER_OF_LOTTO))
     for(let i=0;i<NUMBER_OF_LOTTO;i++){
-      MissionUtils.Console.print("["+(myLotto[`lotto${i}`].getLotto().sort(function compare(a, b) { //오름차순으로 정렬
+      MissionUtils.Console.print("["+(myLotto[i].getLotto().sort(function compare(a, b) { //오름차순으로 정렬
         return a - b;
       })).join(', ')+"]");
     }
@@ -73,8 +73,8 @@ class App {
     winningNumbers = winningNumbers.split(',').map((i)=>Number(i));
     winningNumbers.push(Number(bonusNumber))
     for(let i=0;i<Object.keys(myLotto).length;i++){
-      let intersection = myLotto[`lotto${i}`].getLotto().filter(num => winningNumbers.includes(num));
-      if(intersection.length === 6 && !(myLotto[`lotto${i}`].getLotto().includes(Number(bonusNumber)))){
+      let intersection = myLotto[i].getLotto().filter(num => winningNumbers.includes(num));
+      if(intersection.length === 6 && !(myLotto[i].getLotto().includes(Number(bonusNumber)))){
           result.push(7) //6개일치는 5+보너스와 구별을 위해 7로 넣어준다
       }
       else result.push(intersection.length)
