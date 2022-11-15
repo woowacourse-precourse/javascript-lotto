@@ -16,7 +16,7 @@ class Lotto {
       LOTTO.COUNT
     );
 
-    return numbers;
+    return numbers.sort((a, b) => a - b);
   }
 
   static draw(lotto) {
