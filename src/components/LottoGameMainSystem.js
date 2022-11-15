@@ -1,4 +1,4 @@
-//library
+// library
 const { Console } = require('@woowacourse/mission-utils');
 // util
 const matchLottoNumberWithWinningNumber = require('./util/matchLottoNumberWithWinningNumber');
@@ -11,6 +11,11 @@ const printFinalLottoResult = require('../ui/printFinalLottoResult');
 const printLottoNumberIssuedFromComputer = require('../ui/printLottoNumberIssuedFromComputer');
 // constant
 const { INPUT_CONSOLE_MESSAGE } = require('../components/lotto-data/Constant');
+// variable
+const {
+  LottoNumberData,
+  LottoRanking,
+} = require('../components/lotto-data/LottoNumberData');
 
 class LottoGameMainSystem {
   getUserPurchaseAmountFromInputFiled() {
@@ -55,7 +60,21 @@ class LottoGameMainSystem {
     printFinalLottoResult();
   }
 
+  resetLottoNumberData() {
+    for (let lottoNumber in LottoNumberData) {
+      if (lottoNumber === 'Issued' || lottoNumber === 'Winning') {
+        LottoNumberData[lottoNumber] = [];
+        continue;
+      }
+      LottoNumberData[lottoNumber] = 0;
+    }
+    for (let ranking in LottoRanking) {
+      LottoRanking[ranking] = 0;
+    }
+  }
+
   runGame() {
+    this.resetLottoNumberData();
     this.getUserPurchaseAmountFromInputFiled();
   }
 }
