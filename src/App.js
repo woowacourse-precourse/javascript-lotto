@@ -3,8 +3,7 @@ const View = require("./view/View");
 
 class App {
   play() {
-    const view = new View;
-    const controller = new Controller(view);
+    new Controller(new View());
   }
 }
 
