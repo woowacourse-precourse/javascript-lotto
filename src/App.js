@@ -4,9 +4,9 @@ const Budget = require('./Budget');
 const Lotto = require('./Lotto');
 const Bonus = require('./Bonus');
 
-const randomNumbersArrays = [];
-const results = [0, 0, 0, 0, 0, 0];
-const inputObjects = {
+const randomNumbersArray = [];
+const resultArray = [0, 0, 0, 0, 0, 0];
+const inputObject = {
   budget: '',
   numbers: [],
   bonus: '',
@@ -18,7 +18,7 @@ function finishLotto() {
 function printLottoResult(reward) {
   Console.print('당첨 통계');
   Console.print('---');
-  results.forEach((element, index) => {
+  resultArray.forEach((element, index) => {
     if (index === 0) return;
     Console.print(RANK_NOTICE[index] + element + '개');
   });
@@ -26,23 +26,23 @@ function printLottoResult(reward) {
 }
 
 function printRateOfReturn(reward) {
-  const rateOfReturn = (reward/inputObjects.budget*100).toFixed(1);
+  const rateOfReturn = (reward/inputObject.budget*100).toFixed(1);
   Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
   finishLotto();
 }
 
 function getResultStatics() {
-  const reward = results.reduce((acc, element, index) => {
+  const reward = resultArray.reduce((acc, element, index) => {
     return acc + element * PRIZE[index];
   }, 0);
   printLottoResult(reward);
 }
 function getBonusResult(bonus) {
-  return inputObjects.numbers.includes(bonus);
+  return inputObject.numbers.includes(bonus);
 }
 function getNumbersResult(randomNumbers) {
   const sameNumbers = randomNumbers.filter((element) => {
-    return inputObjects.numbers.includes(element);
+    return inputObject.numbers.includes(element);
   });
   return sameNumbers;
 }
@@ -57,16 +57,16 @@ function getResult(randomNumbers, bonus) {
   return 0;
 }
 function countSameNumbers() {
-  randomNumbersArrays.forEach((element) => {
-    const result = getResult(element, inputObjects.bonus);
-    results[result] += 1;
+  randomNumbersArray.forEach((element) => {
+    const result = getResult(element, inputObject.bonus);
+    resultArray[result] += 1;
   });
   getResultStatics();
 }
 function getBonusNumber() {
   Console.readLine(INPUT_MESSAGE.BONUS, (answer) => {
-    const bonusNum = new Bonus(inputObjects.numbers, Number(answer));
-    inputObjects.bonus = bonusNum.getBonus();
+    const bonusNum = new Bonus(inputObject.numbers, Number(answer));
+    inputObject.bonus = bonusNum.getBonus();
     Console.print('');
     countSameNumbers();
   });
@@ -83,7 +83,7 @@ function getLottoNumbers() {
     const inputArray = inputValueToArray(answer);
     const lotto = new Lotto(inputArray);
     lotto.getNumbers().forEach((element) => {
-      inputObjects.numbers.push(element);
+      inputObject.numbers.push(element);
     });
     Console.print('');
     getBonusNumber();
@@ -96,7 +96,7 @@ function getRandomNumbers() {
 }
 
 function printNumberList() {
-  randomNumbersArrays.forEach((element) => {
+  randomNumbersArray.forEach((element) => {
     Console.print(`[${element.join(', ')}]`);
   });
   Console.print('');
@@ -104,21 +104,21 @@ function printNumberList() {
 }
 
 function getRandomNumberList() {
-  for (let i = 0; i < inputObjects.budget / 1000; i++) {
+  for (let i = 0; i < inputObject.budget / 1000; i++) {
     const randomNumbers = getRandomNumbers();
-    randomNumbersArrays.push(randomNumbers);
+    randomNumbersArray.push(randomNumbers);
   }
   printNumberList();
 }
 
 function startLotto() {
-  Console.print(`${inputObjects.budget / 1000}개를 구매했습니다.`);
+  Console.print(`${inputObject.budget / 1000}개를 구매했습니다.`);
   getRandomNumberList();
 }
 function getBudget() {
   Console.readLine(INPUT_MESSAGE.BUDGET, (answer) => {
     const gameBudget = new Budget(Number(answer));
-    inputObjects.budget = gameBudget.getBudget();
+    inputObject.budget = gameBudget.getBudget();
     Console.print('');
     startLotto();
   });
