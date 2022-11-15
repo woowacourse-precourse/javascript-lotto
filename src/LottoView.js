@@ -1,10 +1,10 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { Console } = require("@woowacourse/mission-utils");
+const { WINNINGS } = require("./Constants");
 const {
   checkPurchaseAmount,
   checkLottoNumbers,
   checkBonusNumber,
 } = require("./Validation");
-const { WINNINGS } = require("./Constants");
 const RANKING = [
   WINNINGS.FIFTH_WIN,
   WINNINGS.FOURTH_WIN,
@@ -12,59 +12,58 @@ const RANKING = [
   WINNINGS.SECOND_WIN,
   WINNINGS.FIRST_WIN,
 ];
+const LottoModel = require("./LottoModel");
+const lottoModel = new LottoModel();
 
 class LottoView {
   #winningNumbers;
+  #purchaseAmount;
+  #lottoCount;
 
-  inputPurchaseAmount(resolve) {
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (answer) => {
-      checkPurchaseAmount(answer);
-      resolve(answer);
-    });
-  }
-
-  inputWinningNumbers(resolve) {
-    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.\n", (answer) => {
-      this.#winningNumbers = answer.split(",");
-      checkLottoNumbers(this.#winningNumbers);
-      resolve(this.#winningNumbers);
-    });
-  }
-
-  inputBonusNumber(resolve) {
-    MissionUtils.Console.readLine(
-      "보너스 번호를 입력해 주세요.\n",
-      (answer) => {
-        checkBonusNumber(this.#winningNumbers, answer);
-        resolve(answer);
-        MissionUtils.Console.close();
-      }
-    );
+  startLotto() {
+    this.getPurchaseAmount();
   }
 
   getPurchaseAmount() {
-    return new Promise((resolve) => {
-      this.inputPurchaseAmount(resolve);
+    Console.readLine("구입금액을 입력해 주세요.\n", (answer) => {
+      this.#purchaseAmount = answer;
+      this.#lottoCount = answer / 1000;
+      checkPurchaseAmount(this.#purchaseAmount);
+      this.printLottos(this.#lottoCount);
+      return this.getWinningNumbers();
     });
   }
 
   getWinningNumbers() {
-    return new Promise((resolve) => {
-      this.inputWinningNumbers(resolve);
+    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (answer) => {
+      this.#winningNumbers = answer.split(",");
+      checkLottoNumbers(this.#winningNumbers);
+      return this.getBonusNumber();
     });
   }
 
   getBonusNumber() {
-    return new Promise((resolve) => {
-      this.inputBonusNumber(resolve);
+    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (answer) => {
+      checkBonusNumber(this.#winningNumbers, answer);
+      Console.close();
+      return this.getWinningRank(answer);
     });
   }
 
-  printLottos(amount, lottos) {
-    MissionUtils.Console.print(`${amount}개를 구매했습니다.`);
+  getWinningRank(bonusNumber) {
+    const winningRank = lottoModel.checkWinning(
+      this.#winningNumbers.map(Number),
+      Number(bonusNumber)
+    );
+    return this.printWinnings(winningRank);
+  }
+
+  printLottos(amount) {
+    Console.print(`\n${amount}개를 구매했습니다.`);
+    const lottos = lottoModel.createLottos(this.#lottoCount);
     for (const lotto of lottos) {
       let lottoNumbers = lotto.getLottoNumbers().sort((a, b) => a - b);
-      MissionUtils.Console.print(lottoNumbers);
+      Console.print(`[${lottoNumbers.join(", ")}]`);
     }
   }
 
@@ -76,20 +75,28 @@ class LottoView {
   }
 
   printWinnings(winningRank) {
+    Console.print("\n당첨 통계");
+    Console.print("---");
     for (const rank of RANKING) {
       let bonus = false;
       if (rank.RANK === 2) bonus = true;
       const numberCount = rank.COUNT;
       const winningCount = winningRank[rank.RANK - 1];
       const amount = rank.AMOUNT;
-      MissionUtils.Console.print(
+      Console.print(
         this.makeWinningMessage(numberCount, bonus, amount, winningCount)
       );
     }
+    return this.getTotalYield();
+  }
+
+  getTotalYield() {
+    const totalYield = lottoModel.calcYield(this.#purchaseAmount);
+    return this.printTotalYield(totalYield);
   }
 
   printTotalYield(totalYield) {
-    MissionUtils.Console.print(`총 수익률은 ${totalYield}%입니다.`);
+    Console.print(`총 수익률은 ${totalYield}%입니다.`);
   }
 }
 
