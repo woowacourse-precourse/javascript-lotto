@@ -1,4 +1,4 @@
-const { MissionUtils } = require("@woowacourse/mission-utils");
+const MissionUtils = require("@woowacourse/mission-utils");
 
 const NUMBER_OF_MATCHES = 3;
 
@@ -30,11 +30,11 @@ class ComparisonOfWinningNumbers {
   }
 
   checkTheRank(rank) {
-    MissionUtils.Console.print(`3개 일치 (5,000원) - ${rank.filter(element => '3' === element).length}개`);
-    MissionUtils.Console.print(`4개 일치 (50,000원) - ${rank.filter(element => '4' === element).length}개`);
-    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${rank.filter(element => '5' === element).length}개`);
-    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${rank.filter(element => '1' === element).length}개`);
-    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${rank.filter(element => '6' === element).length}개`);
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${rank.filter(element => 3 === element).length}개`);
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${rank.filter(element => 4 === element).length}개`);
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${rank.filter(element => 5 === element).length}개`);
+    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${rank.filter(element => 1 === element).length}개`);
+    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${rank.filter(element => 6 === element).length}개`);
   }
 
 }
