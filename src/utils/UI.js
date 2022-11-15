@@ -11,10 +11,10 @@ class UI {
   #numberUserInputMoney;
 
   askMoney() {
-    Console.readLine("구입금액을 입력해 주세요.\n", (userInputMoney) => {
+    Console.readLine(Constant.INPUT_MONEY, (userInputMoney) => {
       this.#numberUserInputMoney = Number(userInputMoney) ?? NaN;
       if (Validate.validateMoney(this.#numberUserInputMoney)) {
-        this.#countLotto = this.#numberUserInputMoney / 1000;
+        this.#countLotto = this.#numberUserInputMoney / Constant.MINIMUM_AMOUNT;
         this.showLottosCount();
         this.showLottoNumber();
         this.inputUserLottoNumber();
@@ -47,21 +47,18 @@ class UI {
   }
 
   inputUserLottoNumber() {
-    Console.readLine(
-      "\n당첨 번호를 입력해 주세요.\n",
-      (userInputLottoNumbers) => {
-        if (Validate.validateUserInputLottoNumbers(userInputLottoNumbers)) {
-          this.#arrUserInputLottoNumbers = userInputLottoNumbers
-            .split(",")
-            .map((number) => +number);
-          this.inputBonusNumber();
-        }
+    Console.readLine(Constant.INPUT_LOTTO_NUMBERS, (userInputLottoNumbers) => {
+      if (Validate.validateUserInputLottoNumbers(userInputLottoNumbers)) {
+        this.#arrUserInputLottoNumbers = userInputLottoNumbers
+          .split(",")
+          .map((number) => +number);
+        this.inputBonusNumber();
       }
-    );
+    });
   }
 
   inputBonusNumber() {
-    Console.readLine("\n보너스 번호를 입력해 주세요.\n", (strBonusNumber) => {
+    Console.readLine(Constant.INPUT_BONUS_NUMBER, (strBonusNumber) => {
       let numberBonusNumber = +strBonusNumber ?? NaN;
       if (
         Validate.validateBonusNumber(
@@ -83,7 +80,7 @@ class UI {
   }
 
   showLottosCount() {
-    Console.print(`${this.#countLotto}개를 구매했습니다.`);
+    Console.print(Constant.SHOW_LOTTO_COUNT(this.#countLotto));
   }
 
   showLottoNumber() {
@@ -95,14 +92,16 @@ class UI {
   }
 
   printWin(countObject) {
-    Console.print("당첨 통계");
-    Console.print("---");
+    Console.print(Constant.STATS_WIN);
+    Console.print(Constant.Line);
 
     for (let key in countObject) {
       Console.print(
-        `${countObject[key].text} (${countObject[
-          key
-        ].price.toLocaleString()}원) - ${countObject[key].count}개`
+        Constant.SHOW_RESULT_ONE_BYONE(
+          countObject[key].text,
+          countObject[key].price.toLocaleString(),
+          countObject[key].count
+        )
       );
     }
   }
@@ -115,7 +114,7 @@ class UI {
         resultObject[resultObjectKey].count;
     }
     let rate = Number((allPrice / this.#numberUserInputMoney) * 100).toFixed(1);
-    Console.print(`총 수익률은 ${rate}%입니다.`);
+    Console.print(Constant.SHOW_RATE(rate));
   }
 }
 module.exports = UI;
