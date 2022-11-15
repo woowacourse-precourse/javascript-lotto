@@ -2,6 +2,7 @@ const {
   INPUT_MESSAGE,
   ERROR_MESSAGE,
   RESULT_MESSAGE,
+  LOTTO,
 } = require("../src/Constants");
 
 const MissionUtils = require("@woowacourse/mission-utils");

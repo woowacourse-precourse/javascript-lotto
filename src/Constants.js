@@ -14,6 +14,11 @@ const ERROR_MESSAGE = {
   BONUS_OVERLAP: "[ERROR] 보너스 번호와 로또 번호는 중복되지 않아야합니다.",
 };
 
+const RESULT_MESSAGE = {
+  PURCHASE: "개를 구매했습니다.",
+  DRAW: "\n 당첨 통계 \n---",
+};
+
 const LOTTO = {
   MONEY_UNIT: 1000,
   SIZE: 6,
