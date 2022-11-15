@@ -10,6 +10,15 @@ class Game {
     this.publishNumbers = [];
     this.winningNumber = [];
     this.bonusNumber = 0;
+    this.earningPercent = 0;
+
+    this.static = [
+      {match:3, prize: 5000},
+      {match:4, prize: 50000},
+      {match:5, prize: 1500000},
+      {match:5, prize: 30000000},
+      {match:6, prize: 2000000000},
+    ];
   }
 
   gameStart() {
@@ -18,7 +27,7 @@ class Game {
     this.getWinningNumberInput();
     this.getBonusNumberInput();
     this.lotto = new Lotto(this.winningNumber);
-    this.getResult();
+    this.priceEarning();
   } 
 
   getPriceInput() {
@@ -74,6 +83,15 @@ class Game {
     });
   }
 
+  priceEarning() {
+    let countArr = this.lotto.compareNumbers(this.publishNumbers, this.bonusNumber);
+    let total = 0;
+    
+    countArr.forEach((count, idx) => {
+      total += this.static[idx].prize * count;
+    });
+    this.earningPercent = ((add / this.price) * 100).toFixed(1);
+  }
 
 
 }
