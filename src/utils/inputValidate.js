@@ -26,10 +26,19 @@ const validatePayment = (payment) => {
   if (payment % Display.info('PRICE') !== 0) throwErrorMessage(Display.error('UNACCEPTABLE_PAYMENT'));
 };
 
+const validateWinningNumbersInput = (input) => {
+  input = input.split(',');
+
+  isOutOfVolumeAndThrowError(input, 6);
+  isDuplicatedAndThrowError(input);
+  isOutOfRangeAndThrowError(input);
+};
+
 module.exports = {
   REG_NUMBER_RANGE,
   isOutOfRangeAndThrowError,
   isDuplicatedAndThrowError,
   isOutOfVolumeAndThrowError,
   validatePayment,
+  validateWinningNumbersInput,
 };
