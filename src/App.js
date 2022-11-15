@@ -79,6 +79,14 @@ class App {
     });
   }
 
+  makescore() { // 등수
+    this.printedLottos.forEach((printedLotto) => {
+      const result = printedLotto.calResult(this.winNumbers, this.bonusNumber);
+      if (result === undefined) return;
+      this.score[result]++;
+    });
+  }
+
 
 }
 
