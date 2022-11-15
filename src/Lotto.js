@@ -2,7 +2,7 @@ const ErrorCheck = require('../components/ErrorCheck');
 const { Random, Console } = require('@woowacourse/mission-utils');
 const { MATCH, RANK, PRIZE } = require('../constants/winning number');
 const { MIN, MAX, PICK } = require('../constants/lotto number');
-const { RESULT_MESSAGE, SYSTME_MESSAGE } = require('../constants/game message');
+const { RESULT_MESSAGE, SYSTEM_MESSAGE } = require('../constants/game message');
 const {
   INIT,
   ONE,
@@ -32,12 +32,12 @@ class Lotto {
   }
 
   static digitize(inputNumber) {
-    return inputNumber.split(SYSTME_MESSAGE.COMMA).map((num) => +num);
+    return inputNumber.split(SYSTEM_MESSAGE.COMMA).map((num) => +num);
   }
 
   static printToString(lottos) {
     lottos.forEach((lotto) => {
-      Console.print(`[${lotto.join(SYSTME_MESSAGE.COMMA_WITH_SPACE)}]`);
+      Console.print(`[${lotto.join(SYSTEM_MESSAGE.COMMA_WITH_SPACE)}]`);
     });
   }
 

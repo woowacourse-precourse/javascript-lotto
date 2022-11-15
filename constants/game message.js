@@ -1,7 +1,7 @@
 const BASIC_NUMBER = require('./basic number');
 const { PRIZE, MATCH } = require('./winning number');
 
-const SYSTME_MESSAGE = Object.freeze({
+const SYSTEM_MESSAGE = Object.freeze({
   PURCHASE_INPUT: '구입금액을 입력해 주세요.\n',
   PURCHASE_COUNT: (num) => `\n${num}개를 구매했습니다.`,
   WINNING_INPUT: '\n당첨 번호를 입력해 주세요.\n',
@@ -22,4 +22,4 @@ const RESULT_MESSAGE = Object.freeze({
     `총 수익률은 ${yieldRate * BASIC_NUMBER.HUNDRED}%입니다.`,
 });
 
-module.exports = { SYSTME_MESSAGE, RESULT_MESSAGE };
+module.exports = { SYSTEM_MESSAGE, RESULT_MESSAGE };

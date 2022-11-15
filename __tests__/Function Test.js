@@ -41,12 +41,13 @@ describe('로또 클래스 테스트', () => {
   test('보너스 번호 입력 오류', () => {
     expect(() => {
       const winningNumber = [1, 2, 3, 4, 5, 6];
+      const bonusNumber = 6;
 
-      ErrorCheck.bonusNumber(winningNumber, 6);
+      ErrorCheck.bonusNumber(winningNumber, bonusNumber);
     }).toThrow();
   });
 
-  test('수익률 계산하는 함수', () => {
+  test('수익률 계산', () => {
     const purchaseAmount = 50000;
     const winningResult = [0, 1, 0, 0, 0];
     const lottoYield = (30000000 / 50000).toFixed(3);

@@ -1,8 +1,8 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { SYSTME_MESSAGE } = require('../constants/game message');
+const { SYSTEM_MESSAGE } = require('../constants/game message');
+const BASIC_NUMBER = require('../constants/basic number');
 const ErrorCheck = require('./ErrorCheck');
 const Lotto = require('../src/Lotto');
-const INIT = require('../constants/basic number');
 
 class Game {
   #lottos;
@@ -21,16 +21,16 @@ class Game {
 
   constructor() {
     this.#lottos = [];
-    this.#purchaseAmount = INIT;
+    this.#purchaseAmount = BASIC_NUMBER.INIT;
     this.#winningNumber = [];
-    this.#bonusNumber = INIT;
+    this.#bonusNumber = BASIC_NUMBER.INIT;
     this.#winningResult = [];
-    this.#lotto = INIT;
+    this.#lotto = BASIC_NUMBER.INIT;
     this.#lottoYield = [];
   }
 
   start() {
-    Console.readLine(SYSTME_MESSAGE.PURCHASE_INPUT, (money) => {
+    Console.readLine(SYSTEM_MESSAGE.PURCHASE_INPUT, (money) => {
       this.#purchaseAmount = Number(money);
       this.validateMoney();
     });
@@ -44,7 +44,7 @@ class Game {
   purchaseLottos() {
     const lottoCount = Lotto.getCount(this.#purchaseAmount);
 
-    Console.print(SYSTME_MESSAGE.PURCHASE_COUNT(lottoCount));
+    Console.print(SYSTEM_MESSAGE.PURCHASE_COUNT(lottoCount));
     this.#lottos = Lotto.generate(lottoCount);
     this.printPurchasedLottos();
   }
@@ -55,7 +55,7 @@ class Game {
   }
 
   getWinningNumbers() {
-    Console.readLine(SYSTME_MESSAGE.WINNING_INPUT, (inputNumber) => {
+    Console.readLine(SYSTEM_MESSAGE.WINNING_INPUT, (inputNumber) => {
       this.#winningNumber = Lotto.digitize(inputNumber);
       this.validateWinningNumber();
     });
@@ -67,7 +67,7 @@ class Game {
   }
 
   getBonusNumber() {
-    Console.readLine(SYSTME_MESSAGE.BONUS_INPUT, (inputNumber) => {
+    Console.readLine(SYSTEM_MESSAGE.BONUS_INPUT, (inputNumber) => {
       this.#bonusNumber = +inputNumber;
       this.validateBonusNumber();
     });
