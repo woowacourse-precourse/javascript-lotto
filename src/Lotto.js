@@ -8,7 +8,7 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
+    if(numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
   }
@@ -21,6 +21,10 @@ class Lotto {
   numbers.sort(function(a, b) { 
     return a - b;
   });
+ }
+
+ get numbers() {
+  return this.#numbers;
  }
 }
 

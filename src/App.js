@@ -1,6 +1,8 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const WinningNumber = require("./WinningNumber");
+const LottoResult = require("./LottoResult");
+
 
 class App {
   constructor() {
@@ -42,13 +44,15 @@ class App {
 
   /** 4. 구입금액 대비 구매한 결과 출력 */
   creatLottosOutput(lottoCount){
-    Console.print(`${lottoCount} 개를 구매했습니다.`);
+    Console.print('');
+    Console.print(`${lottoCount}개를 구매했습니다.`);
     this.lottoArr.forEach(lotto => lotto.print());
     this.inputWinningNumber();
   }
 
   /** 5. 당첨번호 입력 안내 및 입력 구현 */
   inputWinningNumber() {
+    Console.print('');
     Console.readLine('당첨 번호를 입력해 주세요.\n', (winning) => {
       var winningArr = Array.from(winning.split(','),Number);
       var winningNumber = new WinningNumber(winningArr);
@@ -58,12 +62,19 @@ class App {
 
   /** 6. 보너스 번호 입력 안내 및 출력 */
   inputBonusNumber(winningNumber) {
+    Console.print('');
     Console.readLine('보너스 번호를 입력해 주세요. \n', (bonus) => {
       winningNumber.bonusNumber = bonus;
+      this.resultMatching(winningNumber);
     });
   }
+
+  /** 7. 당첨통계 결과 매칭 */
+  resultMatching(winningNumber) {
+    var lottoResult = new LottoResult();
+    lottoResult.compareLotto(this.lottoArr, winningNumber);
+  }
   
- 
 }
 
 const app = new App();
