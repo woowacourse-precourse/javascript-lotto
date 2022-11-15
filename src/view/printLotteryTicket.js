@@ -1,5 +1,7 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const inputDataObject = require('../model/InputDataObject')
+const inputLotteryNumber = require('../controller/InputLotteryNumber')
+const inputMessage = require('../model/InputMessage')
 
 const printLotteryTicket = {
   printLotteryTicket() {
@@ -7,7 +9,7 @@ const printLotteryTicket = {
     inputDataObject.raffle.forEach(element => {
       MissionUtils.Console.print(element);
     });
-    return null
+    return inputLotteryNumber.inputLotteryNumber(inputMessage.RAFFLE_NUMBERS)
   },
 };
 
