@@ -40,7 +40,7 @@ class Lotto {
     this.lotto();
     this.inputWinNumbers();
     this.inputBonusNumbers();
-    this.myLottoAndWinNumber();
+    this.checkReward();
     this.printMatchResult();
     this.printProfitRate();
   }
@@ -94,6 +94,31 @@ class Lotto {
     MissionUtils.Console.readLine("", (answer) => {
       this.bonusNumber = parseInt(answer);
     });
+  }
+  checkReward() {
+    for (let i = 0; i < this.myLottoNumbers.length; i++) {
+      const matchNumber = this.winNumbers.filter((item) =>
+        this.myLottoNumbers[i].includes(parseInt(item))
+      );
+      if (matchNumber.length >= 3) {
+        this.selectReward(matchNumber, i);
+      }
+    }
+  }
+  selectReward(matchNumber, i) {
+    if (matchNumber.length == 3) this.rewardLotto.fifth++;
+    if (matchNumber.length == 4) this.rewardLotto.fourth++;
+    if (
+      matchNumber.length == 5 &&
+      this.myLottoNumbers[i].includes(this.bonusNumber) === false
+    )
+      this.rewardLotto.third++;
+    if (
+      matchNumber.length == 5 &&
+      this.myLottoNumbers[i].includes(this.bonusNumber)
+    )
+      this.rewardLotto.second++;
+    if (matchNumber.length == 6) this.rewardLotto.first++;
   }
 
   // TODO: 추가 기능 구현
