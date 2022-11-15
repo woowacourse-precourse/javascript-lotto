@@ -78,6 +78,7 @@ class Lotto {
         exception.checkString(number);
         exception.checkRangeofNumber(number);
       });
+      
       this.enterBonusNumber();
     });
   }

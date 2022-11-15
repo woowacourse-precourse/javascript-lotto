@@ -4,19 +4,20 @@
 - [askLottoCost] 구매 금액을 입력하여 로또 개수를 생성한다. 
 - [makeLottoNumber] 로또 개수만큼 사용자가 구매한 로또 번호를 발행한다. (로또는 6자리이며, 중복이 없다)
     - [sortLotto] 이 때 로또 번호는 오름차순으로 정렬
-    - [] 로또 번호가 1보다 작고 45보다 크면 예외 발생. 
-    - [] 로또 번호가 6자리가 아니면 예외 발생
+    - [checkRangeofNumber] 로또 번호가 1보다 작고 45보다 크면 예외 발생. 
+    - [checkCount] 로또 번호가 6자리가 아니면 예외 발생
 - [enterWinningNumber] 당첨 번호를 입력받는다. 
     - [sortLotto] 당첨 번호 오름차순으로 정렬
-    - [] 당첨 번호가 1보다 작고 45보다 0크면 예외 발생. 
-    - [] 당첨 번호의 개수가 5가 아니면 예외 발생.
+    - [checkRangeofNumber] 당첨 번호가 1보다 작고 45보다 크면 예외 발생. 
+    - [checkCount] 당첨 번호의 개수가 5가 아니면 예외 발생.
 - [enterBonusNumber] 보너스 번호를 입력받는다. 
-    - [] 보너스 번호가 1보다 작고 45보다 크면 예외 발생. 
-    - [] 보너스 번호가 1개가 아니면 예외 발생.
+    - [checkRangeofNumber] 보너스 번호가 1보다 작고 45보다 크면 예외 발생. 
 - [printWinnningResult] 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역을 출력한다.
     - [calcWinningResult]
     - [compareNumbers]
 - [] 순위와 수익률을 계산하여 출력한다. 
+    - [printWinnningResult] 당첨 결과 출력
+    - [printEarningResult] 수익률 출력
 
 ## 기능 요구 사항
 로또 게임 기능을 구현해야 한다. 로또 게임은 아래와 같은 규칙으로 진행된다.
