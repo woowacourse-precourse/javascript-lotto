@@ -18,7 +18,11 @@ const MESSAGE_ACCORDING_ERROR = {
   LOTTO_NOT_LENGTH_SIX: "[ERROR] 로또 번호는 6개여야 합니다.",
   LOTTO_NOT_NUMBER: "[ERROR] 로또 번호는 숫자여야 합니다.",
   LOTTO_NOT_RANGE: "[ERROR] 로또 번호의 범위는 1~45 입니다.",
-  LOTTO_NOT_DUPLICATED: "[ERROR] 로또 번호는 중복되지 않습니다."
+  LOTTO_NOT_DUPLICATED: "[ERROR] 로또 번호는 중복되지 않습니다.",
+
+  BONUS_LENGTH_OVER_ONE: "[ERROR] 보너스 번호는 숫자 하나만 입력해주세요.",
+  BONUS_TYPE_NOT_NUMBER: "[ERROR] 보너스 번호는 숫자만 입력해주세요.",
+  BONUS_ALREADY_EXISTED: "[ERROR] 보너스 번호가 이미 존재하는 당첨 번호 입니다."
 };
 
 const MESSAGE_ACCORDING_PRIZE_MONEY = {
