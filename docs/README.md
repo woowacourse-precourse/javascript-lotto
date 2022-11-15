@@ -80,8 +80,12 @@
 
 ### 7. 상수 객체 파일 (constants)
 
-- [ ] 입력 요청 메세지 객체 (INPUT_QUERY)
+- [x] 입력 요청 메세지 객체 (INPUT_QUERY)
 
-- [ ] 에러 메세지 객체 (ERROR)
+- [x] 에러 메세지 객체 (ERROR)
 
-- [ ] 출력 메세지 객체 (OUTPUT)
+- [x] 출력 메세지 객체 (OUTPUT)
+
+- [x] 당첨금 배열 (PRIZE_MONEY)
+
+- [x] 당첨개수 객체 (prizeCount)
