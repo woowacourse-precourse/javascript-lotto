@@ -1,5 +1,5 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
-const { MESSAGE, LOTTERY_PRICE } = require("./Constant");
+const { MESSAGE, LOTTERY_PRICE, LOTTERY_RESULT } = require("./Constant");
 class App {
   #money;
   #numberOfLottery;
@@ -12,6 +12,8 @@ class App {
     this.#matchedCounts = [];
   }
 
+  printLotteryResult = () => {};
+
   compareLotteryNumbers = (lottery) => {
     let matchedCount = 0;
     lottery.forEach((number) => {
@@ -20,7 +22,7 @@ class App {
     return matchedCount;
   };
 
-  computeLotteryResult = () => {
+  getMatchedCounts = () => {
     this.#myLottery.forEach((lottery) => {
       const numberOfMatchedNumbers = this.compareLotteryNumbers(lottery);
       this.#matchedCounts.push(numberOfMatchedNumbers);
@@ -32,7 +34,7 @@ class App {
     Console.readLine(MESSAGE.GET_BONUS_NUMBER, (bonusNumber) => {
       this.#bonusNumber = Number(bonusNumber);
       // TODO: bonusNumber Validate Test
-      this.computeLotteryResult();
+      this.getMatchedCounts();
     });
   };
 
