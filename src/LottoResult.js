@@ -13,6 +13,12 @@ class LottoResult {
       out: 0,
     };
   }
+
+  print(winningNumbers, lotteries) {
+    this.countMatching(winningNumbers, lotteries);
+    this.calculateProfitRate(lotteries.length * LOTTO_PRICE);
+    this.printResult();
+  }
 }
 
 module.exports = LottoResult;
