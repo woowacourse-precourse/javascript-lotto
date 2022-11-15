@@ -37,8 +37,18 @@ class RandomNums {
     MissionUtils.Console.print('');
     MissionUtils.Console.print(`${this.amount}개를 구매했습니다.`);
     this.randomNumUnits.forEach((randomNums) => {
-      MissionUtils.Console.print(randomNums);
+      this.printNum(randomNums);
     });
+  }
+
+  printNum(randomNums) {
+    let print = '[';
+    randomNums.forEach((num, index) => {
+      print += num;
+      if (index === 5) print += ']';
+      else print += ', ';
+    });
+    MissionUtils.Console.print(print);
   }
 }
 
