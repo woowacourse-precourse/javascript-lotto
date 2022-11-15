@@ -3,11 +3,11 @@ const Lotto = require("./Lotto");
 
 class App {
   constructor() {
-    this.LottoCount = 8;
+    this.LottoCount = null;
     this.Lotto = [];
     this.winNum = [];
     this.bonusNum = null;
-    this.score = { 3: 1, 4: 0, 5: 0, bonus: 0, 6: 0 };
+    this.score = {};
     this.prize = {
       3: 5000,
       4: 50000,
@@ -20,7 +20,7 @@ class App {
 
   play() {
     // 구입 금액 입력
-    // this.getLottoCount();
+    this.getLottoCount();
     // 구입 금액만큼 로또 번호 출력
     // this.buyLotto();
     // 당첨 번호 입력
@@ -31,13 +31,14 @@ class App {
     // this.compareWinToLotto();
     // score를 금액으로 환산
     // this.calculateScoreToMoney(); // 5000
-    console.log(this.calculateProfit());
+    // console.log(this.calculateProfit());
   }
 
   getLottoCount() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (answers) => {
-      this.checkPrice(answers);
+      this.checkPrice(+answers);
       this.LottoCount = answers / 1000;
+      this.buyLotto();
     });
   }
 
@@ -52,6 +53,8 @@ class App {
     for (let i = 0; i < this.LottoCount; i++) {
       this.Lotto = [...this.Lotto, new Lotto()];
     }
+    MissionUtils.Console.print(`${this.LottoCount}개를 구매했습니다.`);
+    MissionUtils.Console.print(this.Lotto);
   }
 
   getWinNum() {
@@ -122,5 +125,8 @@ class App {
     return ((this.totalMoney / (this.LottoCount * 1000)) * 100).toFixed(1);
   }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
