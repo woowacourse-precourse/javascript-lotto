@@ -1,6 +1,6 @@
 const { ERROR, prizeCount } = require('../common/constants');
 const { error } = require('../common/util');
-const { checkBonusLottoNumber } = require('../validation');
+const { checkBonusLottoNumber } = require('../common/Validation');
 
 class Bonus {
   #bonusNumber;

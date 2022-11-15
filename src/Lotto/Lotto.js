@@ -1,5 +1,5 @@
 const { prizeCount } = require('../common/constants');
-const { checkWinningNumber } = require('../Validation');
+const { checkWinningNumber } = require('../common/Validation');
 
 class Lotto {
   #numbers;

@@ -1,5 +1,5 @@
-const { ERROR } = require('./common/constants');
-const { error } = require('./common/util');
+const { ERROR } = require('./constants');
+const { error } = require('./util');
 
 const isNotNumber = (input) => {
   return /[^\d]+/.test(input);
