@@ -1,11 +1,11 @@
-const { print } = require("../utils/Missionutils");
-
+const { print } = require("../utils/MissionUtils");
 const {
   MESSAGE_ACCORDING_CORRECT_COUNT,
   MESSAGE_ACCORDING_PRIZE_MONEY,
   MESSAGE_ACCORDING_ACTION,
   MESSAGE_ACCORDING_INPUT_ACTION
-} = require("../constants/message");
+} = require("../constants/Message");
+const { LOTTO_INFO } = require("../constants/Value");
 
 class view {
   #winngingResult;
@@ -13,7 +13,7 @@ class view {
   rankingResult(winngingResult) {
     this.#winngingResult = winngingResult;
     print(MESSAGE_ACCORDING_ACTION.NOTIFY_WINNING);
-    [...Array(5).keys()]
+    [...Array(LOTTO_INFO.LEAST_PLACE).keys()]
       .map((key) => key + 1)
       .reverse()
       .forEach((place) => {
@@ -30,7 +30,7 @@ class view {
   }
 
   purchasedSize(purchaseNumbers) {
-    print(MESSAGE_ACCORDING_INPUT_ACTION.RETURN_PURCHASED_LENGTH(purchaseNumbers.size));
+    print(MESSAGE_ACCORDING_INPUT_ACTION.RETURN_PURCHASED_LENGTH(purchaseNumbers.length));
   }
 
   purchasedList(purchaseNumbers) {

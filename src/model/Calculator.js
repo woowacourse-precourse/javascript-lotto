@@ -5,13 +5,25 @@ const {
   RANKING,
   LOTTO_INFO,
   MATH_INFO
-} = require("../constants/value");
+} = require("../constants/Value");
 
 class Calculator {
   #myNumbers;
   #winningNumber;
   #prizeStatus = {};
   #earningMoney = MATH_INFO.INT_ZERO;
+
+  getWinningResult(myNumbers, winningNumber) {
+    this.#initPrizeStatus();
+    this.#setNumbers(myNumbers, winningNumber);
+    this.#compareWinningNumberToMine();
+    return this.#prizeStatus;
+  }
+
+  getEarningRate(moneyInput) {
+    this.#getEarnedMoney();
+    return this.#getEarnedPercenage(moneyInput);
+  }
 
   #getRankAccordingMatchCount(myLottoNumber) {
     const matchCount = this.#getMatchCount(myLottoNumber);
@@ -21,6 +33,7 @@ class Calculator {
     }
     return matchCount;
   }
+
   #initPrizeStatus() {
     [...Array(LOTTO_INFO.LEAST_PLACE).keys()]
       .map((key) => key + 1)
@@ -40,13 +53,6 @@ class Calculator {
     );
   }
 
-  getWinningResult(myNumbers, winningNumber) {
-    this.#initPrizeStatus();
-    this.#setNumbers(myNumbers, winningNumber);
-    this.#compareWinningNumberToMine();
-    return this.#prizeStatus;
-  }
-
   #compareWinningNumberToMine() {
     let matchCountFromEachLotto;
     Array.from(this.#myNumbers).forEach((myNumber) => {
@@ -64,11 +70,6 @@ class Calculator {
   #setNumbers(myNumbers, winningNumber) {
     this.#myNumbers = myNumbers;
     this.#winningNumber = winningNumber;
-  }
-
-  getEarningRate(moneyInput) {
-    this.#getEarnedMoney();
-    return this.#getEarnedPercenage(moneyInput);
   }
 
   #getEarnedMoney() {
