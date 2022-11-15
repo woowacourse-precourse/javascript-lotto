@@ -2,9 +2,6 @@ const {isNumber, isInRange, isUnique} = require("../validator");
 
 class Lotto {
   #numbers;
-  /**
-   * @param {Array{number}} numbers
-   */
   constructor(numbers) {
     this.#validate(numbers);
     this.#numbers = numbers;
@@ -19,53 +16,70 @@ class Lotto {
       throw new Error("[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다.");
   }
 
-  hasNumber(number) {
-    return this.#numbers.includes(number);
-  }
-
   getNumbers() {
     return this.#numbers;
   }
 }
 
-class Lottery extends Lotto {
-  #bonus;
-  constructor(builder) {
-    super(builder.getNumbers());
-    this.#validate(builder.getBonus());
-    this.#bonus = builder.getBonus();
-  }
+class Bonus {
+  #number;
   
-  #validate(bonus) {
-    if (super.hasNumber(bonus))
-      throw new Error("[ERROR] 보너스 번호는 6개 번호에 포함되어선 안됩니다.");
-    else if (!isNumber(bonus) || !isInRange(1, 45, bonus))
+  constructor(number) {
+    this.#validate(number);
+    this.#number = number;
+  }
+
+  #validate(number) {
+    if (!isNumber(number) || !isInRange(1, 45, number))
       throw new Error("[ERROR] 보너스 번호는 1부터 45사이의 숫자여야 합니다.");
   }
 
+  getNumber() {
+    return this.#number;
+  }
+}
+
+class Lottery{
+  #lotto;
+  #bonus;
+  constructor(builder) {
+    this.#validate(builder.getLotto().getNumbers(), builder.getBonus().getNumber());
+    this.#lotto = builder.getLotto();
+    this.#bonus = builder.getBonus();
+  }
+  
+  #validate(numbers, bonus) {
+    if (numbers.includes(bonus))
+      throw new Error("[ERROR] 보너스 번호는 6개 번호에 포함되어선 안됩니다.");
+  }
+
   getBonus() {
-    return this.#bonus;
+    return this.#bonus.getNumber();
+  }
+
+  getNumbers() {
+    return this.#lotto.getNumbers();
   }
 
   static Builder = class {
-    #numbers = [];
-    #bonus = 0;
+    #lotto;
+    #bonus;
     
-    getNumbers() {
-      return this.#numbers;
+    getLotto() {
+      return this.#lotto;
     }
 
     getBonus() {
       return this.#bonus;
     }
 
-    setNumbers(numbers) {
-      this.#numbers = [...numbers];
+    setLotto(numbers) {
+      this.#lotto = new Lotto(numbers);
       return this;
     }
     
     setBonus(bonus) {
-      this.#bonus = bonus;
+      this.#bonus = new Bonus(bonus);
       return this;
     }
 

@@ -36,7 +36,7 @@ class Controller {
 	#chargeAnswer(command) {
 		const numbers = command.split(",").map((number) => number.trim());
 		this.#validate(numbers);
-		this.#lotteryBuilder.setNumbers(numbers.map(Number));
+		this.#lotteryBuilder.setLotto(numbers.map(Number));
 		this.#bonusAnswerInput.render();
 	}
 

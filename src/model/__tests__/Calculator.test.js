@@ -18,7 +18,7 @@ describe("Calculator 메서드 테스트", () => {
 	calculator.appendTicket(new Ticket([1,5,7,10,13,15]));
 	calculator.appendTicket(new Ticket([1,5,7,10,13,15]));
 	calculator.setLottery(new Lottery.Builder()
-		.setNumbers([1, 2, 3, 4, 8, 9])
+		.setLotto([1, 2, 3, 4, 8, 9])
 		.setBonus(10)
 		.build());
 	test("calculate()", () => {
