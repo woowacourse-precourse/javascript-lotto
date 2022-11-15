@@ -14,21 +14,25 @@ class LottoNumberGenerator {
   drawLottery() {
     Console.readLine(
       MESSAGE.LOTTO_NUMBER_GENERATOR.INPUT_WINNER_NUMBER,
-      (numbers) => {
-        const winnerNumbers = numbers.split(',').map((n) => +n);
-        this.#validate(winnerNumbers, 'WINNER_NUMBER');
-        this.#winningNumbers.winnerNumbers = winnerNumbers;
-      },
+      this.inputWinnerNumber.bind(this),
     );
 
     Console.readLine(
       MESSAGE.LOTTO_NUMBER_GENERATOR.INPUT_BONUS_NUMBER,
-      (number) => {
-        const bonusNumber = number.split(',').map((n) => +n);
-        this.#validate(bonusNumber, 'BONUS_NUMBER');
-        this.#winningNumbers.bonusNumber = bonusNumber[0];
-      },
+      this.inputBonusNumber.bind(this),
     );
+  }
+
+  inputWinnerNumber(numbers) {
+    const winnerNumbers = numbers.split(',').map((n) => +n);
+    this.#validate(winnerNumbers, 'WINNER_NUMBER');
+    this.#winningNumbers.winnerNumbers = winnerNumbers;
+  }
+
+  inputBonusNumber(number) {
+    const bonusNumber = number.split(',').map((n) => +n);
+    this.#validate(bonusNumber, 'BONUS_NUMBER');
+    this.#winningNumbers.bonusNumber = bonusNumber[0];
   }
 
   #validate(numbers, type) {
