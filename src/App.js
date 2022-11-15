@@ -27,25 +27,24 @@ class App {
 
   getMoney() {
     Console.readLine(INPUT_MESSAGE.money, (money) => {
-      this.validateMoney(money);
-      this.#money = money;
-      this.#lottos = this.exchangeLotto(+money / UNIT.money);
+      this.#money = +money;
+      this.validateMoney(this.#money);
+      this.#lottos = this.exchangeLotto(this.#money / UNIT.money);
       this.printLottos(this.#lottos);
       this.getWinningNumbers();
     });
   }
 
   validateMoney(money) {
-    if (+money % 1000 !== 0) {
+    if (money % 1000 !== 0) {
       throw new Error(ERROR_MESSAGE.wrongQuantity);
     }
   }
 
   exchangeLotto(quantity) {
-    const lottos = [];
-    for (let i = 0; i < quantity; i++) {
-      lottos.push(new Lotto(this.generateRandomNumbers()));
-    }
+    const lottos = [...Array(quantity)].map(
+      () => new Lotto(this.generateRandomNumbers())
+    );
     return lottos;
   }
 
@@ -106,7 +105,7 @@ class App {
     }
     this.#profitRatio = this.caculateProfitRatio(
       this.#money,
-      this.getTotalPrize()
+      this.getTotalPrize(this.#result)
     );
     this.printResult();
   }
@@ -128,18 +127,17 @@ class App {
     Console.close();
   }
 
-  getTotalPrize() {
-    let total = 0;
-    for (const [key, value] of Object.entries(this.#result)) {
-      if (PRIZE_MONEY[key]) {
-        total += PRIZE_MONEY[key] * value;
-      }
-    }
-    return total;
+  getTotalPrize(result) {
+    return Object.entries(result).reduce(
+      (total, [match, prize]) =>
+        PRIZE_MONEY[match]
+          ? (total += PRIZE_MONEY[match] * prize)
+          : (total += 0),
+      0
+    );
   }
 
   caculateProfitRatio(money, totalPrize) {
-    const prize = this.getTotalPrize();
     return (Math.round((totalPrize / money) * 1000) / 10).toFixed(1);
   }
 }
