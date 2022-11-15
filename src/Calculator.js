@@ -1,8 +1,4 @@
 class Calculator {
-  result;
-  constructor() {
-    this.result = 0;
-  }
   conductRevenue(rewards, payMoney) {
     const sum = rewards.reduce((total, arg) => {
       if (arg[2] != 0) {
