@@ -1,18 +1,38 @@
+const { LOTTO } = require('./constants');
+const { LOTTO_ERROR } = require('./error/error.constants');
+const { isUnique, isInRange, isNumber } = require('./utils/validators/numbers');
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    Lotto.validate(numbers);
     this.#numbers = numbers;
+    return this;
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+  static validate(numbers) {
+    if (numbers.length !== LOTTO.NUMBER_COUNT) {
+      throw new Error(LOTTO_ERROR.LENGTH_NOT_ENOUGH);
+    }
+    if (!numbers.every(isInRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER))) {
+      throw new Error(LOTTO_ERROR.IS_NOT_IN_RANGE);
+    }
+    if (!isUnique(numbers)) {
+      throw new Error(LOTTO_ERROR.IS_DUPLICATED);
+    }
+    if (!numbers.every(isNumber)) {
+      throw new Error(LOTTO_ERROR.IS_NOT_NUMBER);
     }
   }
 
-  // TODO: 추가 기능 구현
+  toString() {
+    return `[${this.#numbers.join(', ')}]`;
+  }
+
+  getRank(rankDeterminator) {
+    return rankDeterminator.getRank(this.#numbers);
+  }
 }
 
 module.exports = Lotto;
