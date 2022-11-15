@@ -1,9 +1,11 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { CONSOLE } = require("./constants");
+const LottoGenerator = require("./LottoGenerator");
 const ValidationCheck = require("./util/ValidationCheck");
 
 class App {
   #money;
+  #lottoSet;
 
   play() {
     this.insertMoney();
@@ -14,6 +16,11 @@ class App {
       ValidationCheck.purchaseMoney(input);
       this.#money = Number(input);
     });
+  }
+
+  buyLotto(money) {
+    const lottoSet = new LottoGenerator(money);
+    this.#lottoSet = lottoSet.play();
   }
 }
 
