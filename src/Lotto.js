@@ -1,9 +1,10 @@
 const Validator = require('./Validator');
-const TYPE = {
-	LOTTO: '로또',
-	WINNINGNUM: '당첨',
-	BONUS: '보너스',
-};
+const { TYPE } = require('./constants');
+// const TYPE = {
+// 	LOTTO: '로또',
+// 	WINNINGNUM: '당첨',
+// 	BONUS: '보너스',
+// };
 
 class Lotto {
   #numbers;
