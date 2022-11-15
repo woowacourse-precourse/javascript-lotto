@@ -17,7 +17,8 @@ class LottoGame {
       third: 0,
       fourth: 0,
       fifth: 0,
-    }
+    },
+    
     this.totalYield = 0;
   }
 
@@ -113,14 +114,15 @@ class LottoGame {
       if (lottoNumber.includes(winning)) {
         count += 1;
       }
-    })
+    });
+
     return count;
   }
 
   comparePrizeCriteria(matchCount, bonusMatch) {
     for (const criteria of Object.keys(PRIZE_CRITERIA)) {
       const winningCount = PRIZE_CRITERIA[criteria];
-      if(matchCount === winningCount){
+      if (matchCount === winningCount) {
         this.increasePrizeCount(criteria, bonusMatch);
         return;
       }

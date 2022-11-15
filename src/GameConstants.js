@@ -3,7 +3,6 @@ const GameConstants = Object.freeze({
   LOTTO_MIN_NUMBER: 1,
   LOTTO_MAX_NUMBER: 45,
   LOTTO_PRICE: 1000,
-
   PRIZE_MONEY_PRICE: {
     FIRST: 2000000000,
     SECOND: 30000000,

@@ -66,6 +66,7 @@ class LottoGameView {
       Console.print(secondPrizeMessage);
       return;
     }
+
     const eachPrizeMessage = `${criteria}개 일치 (${price}원) - ${count}개`;
     Console.print(eachPrizeMessage);
   }
