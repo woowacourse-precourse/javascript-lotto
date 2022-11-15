@@ -37,15 +37,7 @@ class Judgement {
     return bonusCount;
   }
 
-  createWinningStatistics(bonusResult, winningResult) {
-    const result = {
-      three: [5000, 0],
-      four: [50000, 0],
-      five: [1500000, 0],
-      fiveBonus: [30000000, 0],
-      six: [2000000000, 0]
-    };
-
+  winningCount(result, winningResult) {
     for (let i = 0; i < winningResult.length; i++) {
       if (winningResult[i] === 3) {
         result.three[1]++;
@@ -57,6 +49,18 @@ class Judgement {
         result.six[1]++;
       }
     }
+  }
+
+  createWinningStatistics(bonusResult, winningResult) {
+    const result = {
+      three: [5000, 0],
+      four: [50000, 0],
+      five: [1500000, 0],
+      fiveBonus: [30000000, 0],
+      six: [2000000000, 0]
+    };
+
+    this.winningCount(result, winningResult);
 
     if (bonusResult) {
       result.five[1] = result.five[1] - bonusResult;
