@@ -13,6 +13,8 @@ function checkNumberRange(numbers) {
 function checkLottoValidation(numbers) {
   checkSixNumber(numbers);
   checkNumberRange(numbers);
+
+  return true;
 }
 
 module.exports = checkLottoValidation;

@@ -40,12 +40,21 @@ class Lotto {
     this.lottoList = lottoList;
     this.bonusNumber = bonusNumber;
     this.stats = [];
+    this.yield = null;
   }
 
   validate(numbers) {
-    checkLottoValidation(numbers);
+    if (checkLottoValidation(numbers)) {
+    }
   }
 
-  // TODO: 추가 기능 구현
+  countLotto(lotto, numbers) {
+    return lotto.reduce((count, value) => {
+      if (numbers.includes(value.toString())) {
+        return count + 1;
+      }
+      return count;
+    }, 0);
+  }
 }
 module.exports = { LottoBuilder, Lotto };
