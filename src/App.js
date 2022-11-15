@@ -88,8 +88,8 @@ class App {
     if (!Number.isInteger(parseInt(Num))) {
       throw "[ERROR] 1에서 45사이의 정수를 입력해주세요";
     }
-    const WINNUMBER = this.WinLotto.getLotto();
-    if (WINNUMBER.includes(parseInt(Num))) {
+    const WIN_NUMBER = this.WinLotto.getLotto();
+    if (WIN_NUMBER.includes(parseInt(Num))) {
       throw "[ERROR] 보너스 번호는 당첨번호와 겹치면 안됩니다.";
     }
     this.Bonus = parseInt(Num);
@@ -103,9 +103,9 @@ class App {
 
   forLotto(arr) {
     let cnt = 0;
-    const WINNUM = this.WinLotto.getLotto();
+    const WIN_NUM = this.WinLotto.getLotto();
     for (let j = 0; j < 6; j++) {
-      if (arr.includes(WINNUM[j])) {
+      if (arr.includes(WIN_NUM[j])) {
         cnt++;
       }
     }
@@ -165,7 +165,7 @@ class App {
   }
 }
 
-app = new App();
-app.play();
+const TEST_APP = new App();
+TEST_APP.play();
 
 module.exports = App;

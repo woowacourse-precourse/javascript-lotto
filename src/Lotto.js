@@ -33,8 +33,8 @@ class Lotto {
   }
 
   findOverLap(NumArray) {
-    const setNumber = new Set(NumArray);
-    if (setNumber.size != NumArray.length) {
+    const SET_NUMBER = new Set(NumArray);
+    if (SET_NUMBER.size != NumArray.length) {
       throw new Error("[ERROR] 번호가 중복됩니다!");
     }
   }
