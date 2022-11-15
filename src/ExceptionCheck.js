@@ -11,13 +11,9 @@ class ExceptionCheck {
     }
   }
   userInputWinNumbers(winNumbers) {
-    if (winNumbers.lenght !== NUM.HOW_MANY) {
+    const numbers = winNumbers;
+    if (numbers.lenght !== NUM.HOW_MANY) {
       throw new Error(LOTTO_ERROR_MSG.IS_WRONG_NUMBER_COUNT);
-    }
-  }
-  userInputWinNumberRange(winNumbers) {
-    if (winNumbers.some(number => number <= 0 || number >= 46)) {
-      throw new Error(LOTTO_ERROR_MSG.IS_WRONG_NUMBER_RANGE);
     }
   }
 }
