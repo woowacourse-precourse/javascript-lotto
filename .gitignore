@@ -2,3 +2,4 @@ node_modules
 .eslintrc.js
 temp.js
 Domain.js
+DomainTest.js
