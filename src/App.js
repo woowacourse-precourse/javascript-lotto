@@ -1,7 +1,7 @@
-const MissionUtils = require("@woowacourse/mission-utils");
-const User = require("./User");
-const Prize = require("./Prize");
-const Printer = require("./Printer");
+const MissionUtils = require('@woowacourse/mission-utils');
+const User = require('./User');
+const Prize = require('./Prize');
+const Printer = require('./Printer');
 
 class App {
   play() {
@@ -17,6 +17,3 @@ class App {
 }
 
 module.exports = App;
-
-const app = new App();
-app.play();

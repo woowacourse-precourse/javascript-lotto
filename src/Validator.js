@@ -1,5 +1,5 @@
-const regex = /[^0-9]/;
 const {TYPE} = require('./constants.js');
+const regex = /[^0-9]/;
 
 class Validator {	
 	static isNum(numbers, type) {

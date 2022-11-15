@@ -1,4 +1,4 @@
-const Validator = require("./Validator");
+const Validator = require('./Validator');
 const {TYPE} = require('./constants.js');
 
 class Lotto {

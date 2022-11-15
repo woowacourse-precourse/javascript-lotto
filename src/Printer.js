@@ -5,8 +5,8 @@ class Printer {
 	static printLottoBundle(lottoBundle) {
 		MissionUtils.Console.print(`\n${lottoBundle.length}개를 구매했습니다.`);
 		for (let i = 0; i < lottoBundle.length; i++) {
-			let forPrint = "[" + lottoBundle[i].toString() + "]";
-			forPrint = forPrint.replace(/,/g, ", ");
+			let forPrint = '[' + lottoBundle[i].toString() + ']';
+			forPrint = forPrint.replace(/,/g, ', ');
 			MissionUtils.Console.print(forPrint);
 		}
 	}
