@@ -1,7 +1,11 @@
 const { VALIDATE_NUMBER, ERROR_MESSAGE } = require('./utils/Constants');
 
 class PurchaseAmount {
-  checkError(input) {
+  constructor(input) {
+    this.validate(input);
+  }
+  
+  validate(input) {
     this.isNumber(input);
     this.isDividedByTen(input);
     this.isEmpty(input);
