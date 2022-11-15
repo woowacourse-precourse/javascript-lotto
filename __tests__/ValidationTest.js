@@ -1,4 +1,4 @@
-const { validateNumber, isNumberSorted } = require('../src/utils/validation');
+const { validateNumber, isNumberSorted, isNumbersUnique } = require('../src/utils/validation');
 
 describe('validation.js 테스트', () => {
   test('보너스 번호 유효 검증 : 0', () => {
@@ -25,5 +25,11 @@ describe('validation.js 테스트', () => {
     const input = [1, 2, 3, 4, 5, 6];
     const result = isNumberSorted(input);
     expect(result).toBeTruthy();
+  });
+
+  test('로또 배열에 중복된 글자가 포함되어 있는지 검사', () => {
+    const input = [1, 2, 3, 4, 5, 5];
+    const result = isNumbersUnique(input);
+    expect(result).toBeFalsy();
   });
 });
