@@ -26,13 +26,20 @@ class LottoBuilder {
   countAmountLotto(input) {
     return Number(input.slice(0, input.length - 3));
   }
+
+  build() {
+    return new Lotto(this.WinningNumber, this.lottoList, this.bonusNumber);
+  }
 }
 
 class Lotto {
   #numbers;
-  constructor(numbers) {
+  constructor(numbers, lottoList, bonusNumber) {
     this.validate(numbers);
     this.#numbers = numbers;
+    this.lottoList = lottoList;
+    this.bonusNumber = bonusNumber;
+    this.stats = [];
   }
 
   validate(numbers) {
