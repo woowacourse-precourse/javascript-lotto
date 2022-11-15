@@ -52,6 +52,16 @@ class App {
     return lotto.sort((prev, next) => prev - next);
   }
 
+  getWinNumber() { // 당첨 번호
+    Console.readLine(MESSAGE.WIN_NUM, (win) => {
+      this.validateWinNumbers(win);
+      this.winNumbers = win.split(',').map((el) => Number(el));
+      new Lotto(this.winNumbers);
+
+      this.getBonusNumber();
+    });
+  }
+
 
 }
 
