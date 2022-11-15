@@ -1,0 +1,54 @@
+const RANKING_FROM_MATCH_COUNT = Object.freeze({
+  6: 1,
+  5: 3,
+  4: 4,
+  3: 5
+});
+
+const RANK_ACCORDING_REWARD = Object.freeze({
+  1: 2000000000,
+  2: 30000000,
+  3: 1500000,
+  4: 50000,
+  5: 5000
+});
+
+const LOTTO_INFO = Object.freeze({
+  MIN_VALUE: 1,
+  MAX_VALUE: 45,
+  WINNING_LOTTO_LENGTH: 6,
+  BONUS_LOTTO_LENGTH: 1,
+  LEAST_LOTTO_PURCHASED_PRICE: 1000,
+  LEAST_REWARD_POSSIBLE_MATCH_COUNT: 3,
+  LEAST_PLACE: 5,
+  SECOND_PLACE_OR_THIRD_PLACE: 5
+});
+
+const MATH_INFO = Object.freeze({
+  INT_ZERO: 0,
+  STRING_ZERO: "0",
+  DECIMAL_TO_PERCENTAGE_NUMBER: 100,
+  DIGIT_FOR_ROUND: 1
+});
+
+const NUMBER_TYPE = Object.freeze({
+  WINNING_NUMBER: "winningNumber",
+  BONUS_NUMBER: "bonusNumber"
+});
+
+const RANKING = Object.freeze({
+  FIFTH_PLACE: 5,
+  FOURTH_PLACE: 4,
+  THIRD_PLACE: 3,
+  SECOND_PLACE: 2,
+  FIRST_PLACE: 1
+});
+
+module.exports = {
+  RANKING_FROM_MATCH_COUNT,
+  RANK_ACCORDING_REWARD,
+  NUMBER_TYPE,
+  RANKING,
+  LOTTO_INFO,
+  MATH_INFO
+};
