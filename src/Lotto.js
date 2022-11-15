@@ -1,3 +1,5 @@
+const { LOTTO, ALERT } = require('./Const.js');
+
 class Lotto {
   #numbers;
 
@@ -7,12 +9,31 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    if (numbers.length !== LOTTO.LENGTH) {
+      throw new Error(ALERT.HEADER+ALERT.LOTTO_LENGTH);
     }
+    
+    if ((new Set([...numbers])).size !== LOTTO.LENGTH) {
+      throw new Error(ALERT.HEADER+ALERT.LOTTO_UNIQUE);
+    }
+
+    for(let elem of numbers) {
+      if(isNaN(elem) || !Number.isInteger(elem)) {
+        throw new Error(ALERT.HEADER+ALERT.LOTTO_INT);
+      }
+    }
+    
+    for(let elem of numbers) {
+      if(LOTTO.RANGE_LEFT > elem || elem > LOTTO.RANGE_RIGHT) {
+        throw new Error(ALERT.HEADER+ALERT.LOTTO_RANGE);
+      }
+    }
+
   }
 
-  // TODO: 추가 기능 구현
+  getLottoNums() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
