@@ -7,7 +7,6 @@ class App {
     this.buyAmount;
     this.lottoArray = [];
     this.winningNumber;
-    this.bonusNumber;
     this.collectNumber;
     this.matchNumber = [0, 0, 0, 0, 0];
     this.yield = 0;
@@ -36,9 +35,12 @@ class App {
     }
   }
 
-  bonusValidate() {
-    if (this.bonusNumber.legnth !== 1) {
-      throw new Error("[ERROR] 보너스 번호는 한 자리여야 합니다.");
+  bonusValidate(bonus) {
+    if (bonus.length > 1) {
+      throw new Error("[ERROR] 보너스 번호가 한 자리가 아닙니다.");
+    }
+    if (bonus.length < 1) {
+      throw new Error("[ERROR] 보너스 번호가 한 자리가 아닙니다.");
     }
   }
 
@@ -49,14 +51,12 @@ class App {
 
   createLottoNumber() {
     this.buyAmountCalculate();
-
     for (let index = 0; index < this.buyAmount; index++) {
       this.lottoArray.push(
         MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6)
       );
     }
     this.sortLottoNumber();
-
     this.getWinningNumber();
   }
 
@@ -65,7 +65,6 @@ class App {
       data.sort((a, b) => {
         return a - b;
       });
-
       MissionUtils.Console.print(`[${data.join(", ")}]`);
     });
   }
@@ -75,13 +74,10 @@ class App {
       "\n당첨 번호를 입력해 주세요. \n",
       (number) => {
         this.winningNumber = this.splitWinningNumber(number);
-
         this.winningNumber.sort((a, b) => {
           return a - b;
         });
-
         new Lotto(this.winningNumber);
-
         this.getBonusNumber();
       }
     );
@@ -91,10 +87,8 @@ class App {
     MissionUtils.Console.readLine(
       "\n보너스 번호를 입력해 주세요.\n",
       (number) => {
-        this.bonusNumber = number;
-        this.bonusValidate();
+        this.bonusValidate(number);
         this.compareLottoNumber();
-
         MissionUtils.Console.close();
       }
     );
@@ -103,7 +97,6 @@ class App {
   collectLottoNumber(numbers) {
     const collectLength = this.collectNumber.length;
     const collectBonus = numbers.includes(this.bonusNumber);
-
     if (collectLength >= 3 && collectLength <= 5 && !collectBonus) {
       this.matchNumber[collectLength - 3]++;
     }
@@ -137,7 +130,6 @@ class App {
     for (let index = 0; index < 5; index++) {
       this.yield += this.matchNumber[index] * this.winningMoney[index];
     }
-
     MissionUtils.Console.print(
       `총 수익률은 ${(
         (this.yield / (this.lottoArray.length * 1000)) *
@@ -153,7 +145,6 @@ class App {
       );
       this.collectLottoNumber(numbers);
     });
-
     this.winningStatsResult();
     this.yieldResult();
   }
