@@ -20,7 +20,9 @@ class Validator {
       throw new Error(prefix + outOfRange);
   }
 
-  static validateNumber() {}
+  static validateNumber(number) {
+    if (number < 1 || 45 < number) throw new Error(prefix + outOfRange);
+  }
 }
 
 module.exports = Validator;
