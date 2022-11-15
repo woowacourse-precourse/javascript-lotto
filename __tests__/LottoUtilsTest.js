@@ -105,6 +105,6 @@ describe("lottoUtils 메서드 테스트", () => {
 
     const yieldResult = LottoUtils.getYield(tickets, result);
 
-    expect(yieldResult).toEqual(500);
+    expect(yieldResult).toEqual("500");
   });
 });

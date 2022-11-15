@@ -100,7 +100,9 @@ class LottoUtils {
       return acc + RANK_REWARD[key] * result[key];
     }, 0);
 
-    return roundNumber((totalReward / (lottoTickets.length * PRICE)) * 100);
+    return commaizeNumber(
+      roundNumber((totalReward / (lottoTickets.length * PRICE)) * 100)
+    );
   }
 }
 
