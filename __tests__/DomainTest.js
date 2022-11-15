@@ -33,28 +33,28 @@ describe('기능 1번. 로또 구입 금액 입력 받기', () => {
     const model = new Model();
     const controller = new Controller(model);
     mockQuestions(['1000d ']);
-    expect(() => controller.getUserMoneyAndLottos()).toThrow(
+    expect(() => controller.getUserMoneyAndGenWinningNumbers()).toThrow(
       ERROR.USER.MONEY.TYPE,
     );
   });
   test('1000원 미만의 값을 입력한 경우', () => {
     const controller = new Controller();
     mockQuestions(['900']);
-    expect(() => controller.getUserMoneyAndLottos()).toThrow(
+    expect(() => controller.getUserMoneyAndGenWinningNumbers()).toThrow(
       ERROR.USER.MONEY.MIN_RANGE,
     );
   });
   test('NUMBER.MAX_SAFE_INTEGER 이상 값을 입력한 경우', () => {
     const controller = new Controller();
     mockQuestions([`${Number.MAX_SAFE_INTEGER}`]);
-    expect(() => controller.getUserMoneyAndLottos()).toThrow(
+    expect(() => controller.getUserMoneyAndGenWinningNumbers()).toThrow(
       ERROR.USER.MONEY.MAX_RANGE,
     );
   });
   test('1000원으로 나누어 떨어지지 않는 경우', () => {
     const controller = new Controller();
     mockQuestions(['1350']);
-    expect(() => controller.getUserMoneyAndLottos()).toThrow(
+    expect(() => controller.getUserMoneyAndGenWinningNumbers()).toThrow(
       ERROR.USER.MONEY.DIVIDE,
     );
   });
@@ -63,7 +63,7 @@ describe('기능 1번. 로또 구입 금액 입력 받기', () => {
     const model = new Model();
     const controller = new Controller(model);
     mockQuestions(['2 00 0']);
-    controller.getUserMoneyAndLottos();
+    controller.getUserMoneyAndGenWinningNumbers();
     expect(logSpy).toBeCalledTimes(4);
   });
 });
@@ -73,7 +73,7 @@ describe('기능 2번. 로또 구입 금액 만큼의 로또 번호 생성', () 
     const model = new Model();
     const controller = new Controller(model);
     mockQuestions(['2000']);
-    controller.getUserMoneyAndLottos();
+    controller.getUserMoneyAndGenWinningNumbers();
     expect(model.lottoLists.length).toEqual(2);
   });
   test('로또 번호가 숫자 이외의 type인 경우', () => {
