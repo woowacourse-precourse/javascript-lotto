@@ -18,6 +18,7 @@ const ERROR_MESSAGE = {
   isNumbersInRange: '로또 번호는 1부터 45 사이의 숫자여야 합니다.',
   isNumber: '숫자여야 합니다.',
   isThousands: '원 단위로 입력하세요',
+  isNumberSorted: '배열이 되지 않았습니다.',
 };
 const RANK = [
   {

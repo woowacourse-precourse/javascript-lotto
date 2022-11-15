@@ -20,6 +20,14 @@ const isNumbersInRange = (numbers) => {
   return result;
 };
 
+const isNumberSorted = (numbers) => {
+  const sortedNumbers = [...numbers].sort((a, b) => a - b);
+  if (JSON.stringify(sortedNumbers) !== JSON.stringify(numbers)) {
+    return false;
+  }
+  return true;
+};
+
 const isNaN = (number) => {
   if (Number.isNaN(number)) {
     throw Error(`[ERROR] ${ERROR_MESSAGE.isNumber}`);
@@ -35,6 +43,9 @@ const validateNumbers = (numbers) => {
   }
   if (!isNumbersInRange(numbers)) {
     throw new Error(`[ERROR] ${ERROR_MESSAGE.isNumbersInRange}`);
+  }
+  if (!isNumberSorted(numbers)) {
+    throw new Error(`[ERROR] ${ERROR_MESSAGE.isNumberSorted}`);
   }
   numbers.forEach((number) => isNaN(number));
 };

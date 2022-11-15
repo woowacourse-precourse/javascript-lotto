@@ -42,7 +42,7 @@ class App {
   setLottoNumbers() {
     MissionUtils.Console.readLine(`\n${MESSAGE.inputNumbers}\n`, (answer) => {
       const numbers = answer.split(',').map((i) => Number(i));
-      validateNumbers(numbers);
+      validateNumbers(numbers.sort((a, b) => a - b));
       this.#answerNumbers = numbers;
       this.setBonusNumber();
     });
