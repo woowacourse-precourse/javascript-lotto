@@ -1,6 +1,6 @@
 const { Random, Console } = require('@woowacourse/mission-utils');
 const Calculator = require('./Calculator');
-const { PRIZE_MATCH, LOTTO_MSG, NUM } = require('./Constants');
+const { PRIZE_MATCH, LOTTO_ERROR_MSG, NUM, LOTTO_RESULT_MSG } = require('./Constants');
 const Utils = require('./Utils');
 
 class Lotto {
@@ -10,8 +10,10 @@ class Lotto {
     this.validate(userInputWinNumbers);
     this.#numbers = userInputWinNumbers;
     this.calculator = new Calculator();
+    this.utils = new Utils();
     this.bonusNumber;
     this.bundle;
+    this.spendMoneyOfUser;
     this.resultMap = {
       fifthGrade: 0,
       forthGrade: 0,
@@ -20,16 +22,14 @@ class Lotto {
       firstGrade: 0,
       loseMoney: 0,
     };
-    this.spendMoneyOfUser;
-    this.profitRate;
   }
 
   validate(numbers) {
-    if (numbers.length !== NUM.DEMAND_FOR_LOTTO_INPUT_COUNT) {
-      throw new Error(LOTTO_MSG.INPUT_NUMBER_COUNT_ERROR);
+    if (numbers.length !== NUM.COUNT_INPUT_FOR_WIN) {
+      throw new Error(LOTTO_ERROR_MSG.IS_WRONG_NUMBER_COUNT);
     }
     if (numbers.length !== [...new Set(numbers)].length) {
-      throw new Error(LOTTO_MSG.DUPLICATE_NUMBER_ERROR);
+      throw new Error(LOTTO_ERROR_MSG.IS_DUPLICATE_NUMBER);
     }
   }
 
@@ -42,15 +42,12 @@ class Lotto {
   bundleCreate(lottoCount) {
     this.bundle = Array.from({ length: lottoCount }, this.makeSixNumbers);
     this.spendMoneyOfUser = lottoCount * 1000;
+    this.bundleVerifyForWin(this.#numbers, this.bonusNumber, this.bundle);
     return this.bundle;
   }
 
-  getBundle() {
-    return this.bundle;
-  }
-
-  getBonusNumber(UserInputBonusNumber) {
-    this.bonusNumber = UserInputBonusNumber;
+  setBonusNumber(UserInputBonusNumber) {
+    this.bonusNumber = this.utils.transeStringToNumber(UserInputBonusNumber);
   }
 
   bundleVerifyForWin(winNumbers, bonusNumber, lottoBundle) {
@@ -58,6 +55,7 @@ class Lotto {
       const count = this.compareNumberOfLotto(winNumbers, bonusNumber, new Set(lotto));
       this.resultMap[count] += 1;
     });
+    this.profitRateOfUserPurchase(this.resultMap, this.spendMoneyOfUser);
   }
 
   compareNumberOfLotto(winNumbers, bonusNumber, lotto) {
@@ -70,19 +68,11 @@ class Lotto {
 
   profitRateOfUserPurchase(resultMap, UserInputMoney) {
     const totalprofit = this.calculator.profit(resultMap);
-    return (this.profitRate = this.calculator.profitRate(totalprofit, UserInputMoney));
+    this.resultMap.profitRate = this.calculator.profitRate(totalprofit, UserInputMoney);
   }
 
-  print() {
-    const { fifthGrade, forthGrade, thirdGrade, secondGrade, firstGrade } = this.resultMap;
-    Console.print('당첨 통계\n---');
-    Console.print(LOTTO_MSG.FIFTH_GRADE(fifthGrade));
-    Console.print(LOTTO_MSG.FORTH_GRADE(forthGrade));
-    Console.print(LOTTO_MSG.THIRTH_GRADE(thirdGrade));
-    Console.print(LOTTO_MSG.SECOND_GRADE(secondGrade));
-    Console.print(LOTTO_MSG.FIRST_GRADE(firstGrade));
-    this.profitRateOfUserPurchase(this.resultMap, this.spendMoneyOfUser);
-    Console.print(LOTTO_MSG.PROFIT_RATE(this.profitRate));
+  getResultMap() {
+    return this.resultMap;
   }
 }
 
