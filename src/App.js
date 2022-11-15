@@ -1,5 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const MyLotto = require("./MyLotto");
+const Lotto = require("./Lotto");
 
 class App {
   money;
@@ -22,6 +23,11 @@ class App {
 
   inputLottoNumbers() {
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (numbersString) => {
+      let numbers = numbersString.split(',').map((number) => {
+        this.validateIsNumber(number);
+        return parseInt(number);
+      })
+      this.lotto = new Lotto(numbers);
     });
   }
 
