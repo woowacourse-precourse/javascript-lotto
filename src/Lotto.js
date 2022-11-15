@@ -1,3 +1,6 @@
+const { ERROR_MESSAGE } = require("./constants/MessageConstants");
+const { LOTTO } = require("./constants/NumberConstants");
+
 class Lotto {
   #numbers;
 
@@ -7,12 +10,19 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    if (numbers.length !== LOTTO.SIX_NUMBERS) {
+      throw new Error(ERROR_MESSAGE.LOTTO_NOT_SIX_LENGTH);
+    }
+
+    const noOverlapNumbers = new Set(numbers);
+    if (noOverlapNumbers.size !== LOTTO.SIX_NUMBERS) {
+      throw new Error(ERROR_MESSAGE.LOTTO_DO_NOT_OVERLAP);
     }
   }
 
-  // TODO: 추가 기능 구현
+  getLottoNumbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
