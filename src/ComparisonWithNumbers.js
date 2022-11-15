@@ -30,7 +30,7 @@ class ComparisonWithNumbers {
       );
     }
 
-    this.findNumberOfMatchingBalls(LotteryTickets);
+    return this.findNumberOfMatchingBalls(LotteryTickets);
   }
 
   findNumberOfMatchingBalls(LotteryTickets) {
@@ -60,13 +60,13 @@ class ComparisonWithNumbers {
   }
 
   isSameBonusNumber(userBonus, lottoBonus) {
-    let isSameBonus = userBonus === lottoBonus;
+    const isSameBonus = userBonus === lottoBonus;
 
     this.findNumberOfWinningTickets(isSameBonus);
   }
 
   findNumberOfWinningTickets(isSameBonus) {
-    let places = {};
+    const places = {};
     places[5] = this.numberOfMatchingBalls.filter((num) => num === 3).length;
     places[4] = this.numberOfMatchingBalls.filter((num) => num === 4).length;
     places[3] = places[2] = 0;
@@ -77,7 +77,7 @@ class ComparisonWithNumbers {
   }
 
   compareWithBonus(places, isSameBonus) {
-    let SecondOrThird = this.numberOfMatchingBalls.filter(
+    const SecondOrThird = this.numberOfMatchingBalls.filter(
       (num) => num === 5
     ).length;
     if (SecondOrThird) {
@@ -88,7 +88,7 @@ class ComparisonWithNumbers {
   printResult(numberOfWinningTickets) {
     CONSOLE_UTIL.print(RESULT_MESSAGE);
 
-    let index = this.index;
+    let { index } = this;
     for (index; index > 0; index--) {
       CONSOLE_UTIL.print(
         `${PRIZE_MESSAGES[index]} - ${numberOfWinningTickets[index]}개`
@@ -100,13 +100,13 @@ class ComparisonWithNumbers {
   }
 
   calculateRateOfReturn(numberOfWinningTickets) {
-    let index = this.index;
+    let { index } = this;
     let totalPrize = 0;
     for (index; index > 0; index--) {
       totalPrize += numberOfWinningTickets[index] * PRIZE_MONEY[index];
     }
 
-    this.printRateOfReturn(totalPrize);
+    return this.printRateOfReturn(totalPrize);
   }
 
   printRateOfReturn(totalPrize) {
