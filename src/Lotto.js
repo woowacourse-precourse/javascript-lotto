@@ -130,14 +130,11 @@ class Lotto {
       if (count === 7) this.match.SECOND += 1;
       if (count === 6) this.match.FIRST += 1;
     })
-    
-    
+
   }
 
   printEarningRate(){
-    this.calEarningRate();
-
-
+    Console.print(`${SENTANCE.PROFIT_HEAD} ${this.calEarningRate()}${SENTANCE.PROFIT_REAR}`);
   }
 
   calEarningRate(){
@@ -145,6 +142,8 @@ class Lotto {
       this.earningProfit += CORRECT_MONEY[key]*this.match[key]
     })
     const EARNING_RATE = (this.earningProfit/this.cost)*100;
+
+    return EARNING_RATE;
   }
 
   // validate(numbers) {
