@@ -7,7 +7,7 @@ class Lotto {
     numbers[NUMBER_TYPE.WINNING_NUMBER] = this.#setConvertedWinningLottoNumber(
       numbers[NUMBER_TYPE.WINNING_NUMBER]
     );
-    this.validate(numbers);
+    this.#validate(numbers);
     this.#winningNumbers = numbers;
   }
 
@@ -15,7 +15,7 @@ class Lotto {
     return this.#winningNumbers;
   }
 
-  validate(numbers) {
+  #validate(numbers) {
     Validator.winnigLottoNumberValidator(
       numbers[NUMBER_TYPE.WINNING_NUMBER],
       numbers[NUMBER_TYPE.BONUS_NUMBER]
