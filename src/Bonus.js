@@ -13,8 +13,8 @@ class Bonus{
   }
 
   validate(numbers, bonus){
-    Validation.isValidRangeNumber(bonus)
-    Validation.isNotContained(numbers, bonus)
+    Validation.isValidRangeNumber(bonus);
+    Validation.isNotContained(numbers, bonus);
   }
 }
 
