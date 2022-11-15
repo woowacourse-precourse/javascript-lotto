@@ -1,35 +1,34 @@
-const LottoNumberGenerator = require("../src/LottoNumberGenerator");
+const { Validator } = require("../src/utils/Validator");
 
-const generator = new LottoNumberGenerator();
 describe("입력 예외 테스트", () => {
   //expectThrow();
   test("입력 받은 금액이 숫자로 구성 되어있지 않다면 예외가 발생한다.", () => {
     expect(() => {
-      generator.isInputNumbersValid("  ");
+      Validator.isInputMoneyValid(" ");
     }).toThrow("[ERROR] 숫자만 입력 가능합니다.");
     expect(() => {
-      generator.isInputNumbersValid("122415000a");
+      Validator.isInputMoneyValid("122415000a");
     }).toThrow("[ERROR] 숫자만 입력 가능합니다.");
   });
   test("입력 받은 금액이 음수라면 예외가 발생한다.", () => {
     expect(() => {
-      generator.isInputNumbersValid("-1");
+      Validator.isInputMoneyValid("-1");
     }).toThrow("ERROR] 양수만 입력해주세요.");
     expect(() => {
-      generator.isInputNumbersValid("-5000");
+      Validator.isInputMoneyValid("-5000");
     }).toThrow("ERROR] 양수만 입력해주세요.");
   });
   test("입력 받은 금액이 1000원 단위가 아니라면, 예외가 발생한다.", () => {
     expect(() => {
-      generator.isInputNumbersValid("5200");
+      Validator.isInputMoneyValid("5200");
     }).toThrow("[ERROR] 천원 단위 입력을 해주세요.");
     expect(() => {
-      generator.isInputNumbersValid("10009");
+      Validator.isInputMoneyValid("10009");
     }).toThrow("[ERROR] 천원 단위 입력을 해주세요.");
   });
   test("입력 받은 금액이 없다면 예외가 발생한다.", () => {
     expect(() => {
-      generator.isInputNumbersValid("");
+      Validator.isInputMoneyValid("");
     }).toThrow("[ERROR] 입력이 없습니다.");
   });
 });
