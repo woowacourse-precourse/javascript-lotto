@@ -12,13 +12,12 @@ class App {
   }
 
   inputAmount() {
-    let piece = 0;
     MissionUtils.Console.readLine(MESSAGE.INPUT_AMOUNT, (answer) => {
       if (+answer % 1000 > 0) {
         throw new Error(ERROR.AMOUNT_UNIT);
       }
       this.myMoney += +answer;
-      piece = +answer / 1000;
+      const piece = +answer / 1000;
       if (isNaN(piece)) {
         throw new Error(ERROR.AMOUNT_ISNAN);
       }
@@ -43,9 +42,9 @@ class App {
   }
 
   inputLottoNumber(bundle) {
-    let numbers = [];
+    const numbers = [];
     MissionUtils.Console.readLine(MESSAGE.INPUT_LOTTO, (answer) => {
-      let answerArray = answer.split(",");
+      const answerArray = answer.split(",");
       if (new Lotto(answerArray)) {
         answerArray.forEach((x) => numbers.push(+x));
       }
@@ -54,7 +53,6 @@ class App {
   }
 
   inputBonusNumber(bundle, numbers) {
-    let bonus = 0;
     MissionUtils.Console.readLine(MESSAGE.INPUT_BONUS, (answer) => {
       if (numbers.includes(+answer)) {
         throw new Error(ERROR.BONUS_DUPLICATION);
@@ -65,7 +63,7 @@ class App {
       if (isNaN(+answer)) {
         throw new Error(ERROR.BONUS_ISNAN);
       }
-      bonus += +answer;
+      const bonus = +answer;
       new Result(this.myMoney).statistics(bundle, numbers, bonus);
     });
   }

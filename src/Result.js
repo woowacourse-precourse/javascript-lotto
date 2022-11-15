@@ -12,7 +12,7 @@ class Result {
       if (bundle[i].includes(bonus)) {
         bonusCount += 1;
       }
-      let count = this.setCount(bundle[i], numbers);
+      const count = this.setCount(bundle[i], numbers);
       this.setCollectCount(count, bonusCount);
     }
     this.calculationResult();
