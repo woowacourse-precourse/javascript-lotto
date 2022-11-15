@@ -1,5 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const Exception = require("./error");
+const Exception = require("./Exception");
 const {
   MESSAGE,
   SENTANCE,
@@ -74,7 +74,10 @@ class Lotto {
       this.#numbers = winningNumber.split(",").map(Number);
       exception.checkCount(this.#numbers);
       exception.checkDuplicate(this.#numbers);
-      this.#numbers.map((number) => exception.checkString(number));
+      this.#numbers.map((number) => {
+        exception.checkString(number);
+        exception.checkRangeofNumber(number);
+      });
       this.enterBonusNumber();
     });
   }
@@ -83,6 +86,7 @@ class Lotto {
     Console.readLine(`\n${MESSAGE.BONUS}\n`, (bonusNumber) => {
       this.bonusNumber = parseInt(bonusNumber);
       exception.checkString(this.bonusNumber);
+      exception.checkRangeofNumber(this.bonusNumber);
       this.calcResults();
     });
   }

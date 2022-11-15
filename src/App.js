@@ -1,5 +1,5 @@
 const Lotto = require("./Lotto");
-const Exception = require("./error");
+const Exception = require("./Exception");
 const { Console } = require("@woowacourse/mission-utils");
 const { MESSAGE } = require("./constant/constant.js");
 
