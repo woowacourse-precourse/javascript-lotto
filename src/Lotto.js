@@ -14,7 +14,7 @@ class Lotto {
     }
 
     const numPattern = /[^0-9]/g;
-    if (!numPattern.test(numbers)) {
+    if (numPattern.test(numbers)) {
       throw new Error("[ERROR] 숫자만 입력하세요.");
     }
 
