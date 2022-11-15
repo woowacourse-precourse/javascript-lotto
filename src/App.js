@@ -102,7 +102,7 @@ class App {
     })
   }
   getMatchBounsNum(lottoNums){
-    if(this.lottoNums.includes(this.bonusNumber)) this.result[1] +=1;
+    if(lottoNums.includes(this.bonusNumber)) this.result[1] +=1;
     else this.result[2] +=1
   }
 
@@ -113,5 +113,6 @@ class App {
     this.rateOfReturn =rateOfReturn;
   }
 }
+
 
 module.exports = App;
