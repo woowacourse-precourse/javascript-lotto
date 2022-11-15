@@ -23,7 +23,7 @@ class App {
         throw new Error("[ERROR] 구입 금액은 1000원 단위로 입력해야 합니다.");
       }
     }
-    if ((price === '0') || (price % 1000 !== 0)) {
+    if ((Number(price) === 0) || (price % 1000 !== 0)) {
       throw new Error("[ERROR] 구입 금액은 1000원 단위로 입력해야 합니다.");
     }
     return true;
