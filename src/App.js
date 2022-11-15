@@ -39,6 +39,14 @@ class App {
       }
 
       const lotto = new Lotto(winning_arr);
+      
+      try{
+        if(!lotto.checkDuplicated(winning_arr)){
+          throw new Error("[ERROR]");
+        }
+      }catch(e){
+        console.log(e);
+      }
     });
   }
 
