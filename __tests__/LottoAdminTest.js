@@ -17,15 +17,16 @@ describe("로또 관리자 테스트", () => {
     ).toEqual(4);
   });
   test("당첨 통계를 알려준다.", () => {
+    const statistics = [1, 2, 1, 4, 1];
     const logs = [
-      "3개 일치 (5,000원) - 1개",
-      "4개 일치 (50,000원) - 2개",
-      "5개 일치 (1,500,000원) - 1개",
-      "5개 일치, 보너스 볼 일치 (30,000,000원) - 4개",
-      "6개 일치 (2,000,000,000원) - 1개",
+      `3개 일치 (5,000원) - ${statistics[0]}개`,
+      `4개 일치 (50,000원) - ${statistics[1]}개`,
+      `5개 일치 (1,500,000원) - ${statistics[2]}개`,
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${statistics[3]}개`,
+      `6개 일치 (2,000,000,000원) - ${statistics[4]}개`,
     ];
     const logSpy = getLogSpy();
-    LottoAdmin.printWinStatistics([1, 2, 1, 4, 1]);
+    LottoAdmin.printWinStatistics(statistics);
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
