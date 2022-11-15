@@ -12,6 +12,13 @@ class Validator {
         }
         throw new Error('[ERROR] 숫자가 아닙니다.');
       }
+
+      static isPurchaseUnit (number) {
+        if (number % 1000 === 0) {
+          return true;
+        }
+        throw new Error('[ERROR] 1000단위로 입력하세요.');
+      }
   
 }
   
