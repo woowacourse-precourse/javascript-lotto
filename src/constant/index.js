@@ -1,3 +1,6 @@
 const UNIT_OF_AMOUNT = 1000;
+const VALID_LENGTH = 6;
+const VALID_MIN_NUM = 1;
+const VALID_MAX_NUM = 45;
 
-module.exports = { UNIT_OF_AMOUNT };
+module.exports = { UNIT_OF_AMOUNT, VALID_LENGTH, VALID_MIN_NUM, VALID_MAX_NUM };
