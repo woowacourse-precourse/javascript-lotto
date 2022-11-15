@@ -23,7 +23,7 @@ class Draw {
   static #getBonusNumber(callback) {
     Console.readLine(BONUS, (answer) => {
       const bonus = Number(answer);
-      Draw.bonus = bonus;
+      Draw.bonus = Draw.validateBonusNumber(bonus);
 
       callback(Draw);
     });
@@ -43,6 +43,17 @@ class Draw {
     Lotto.validate(numbers, '당첨 번호는');
 
     return numbers;
+  }
+
+  static validateBonusNumber(number) {
+    const { handleException, checkIsNaturalNumber, checkIsLottoNumberInRange } = ErrorHandling;
+    const isDuplicate = Draw.winning.includes(number);
+
+    handleException(isDuplicate, '보너스 번호는 당첨 번호와 중복되지 않아야 합니다.');
+    checkIsNaturalNumber(number, '보너스 번호는');
+    checkIsLottoNumberInRange(number, '보너스 번호는');
+
+    return number;
   }
 }
 
