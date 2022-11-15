@@ -121,6 +121,25 @@ class Lotto {
     if (matchNumber.length == 6) this.rewardLotto.first++;
   }
 
+  printMatchResult() {
+    MissionUtils.Console.print(Data.RESULT_MESSAGES.winnig);
+    MissionUtils.Console.print(
+      `${Data.RESULT_MESSAGES.matchThree(this.rewardLotto.fifth)}`
+    );
+    MissionUtils.Console.print(
+      `${Data.RESULT_MESSAGES.matchFour(this.rewardLotto.fourth)}`
+    );
+    MissionUtils.Console.print(
+      `${Data.RESULT_MESSAGES.matchFive(this.rewardLotto.third)}`
+    );
+    MissionUtils.Console.print(
+      `${Data.RESULT_MESSAGES.matchFiveBonus(this.rewardLotto.second)}`
+    );
+    MissionUtils.Console.print(
+      `${Data.RESULT_MESSAGES.matchSix(this.rewardLotto.first)}`
+    );
+  }
+
   // TODO: 추가 기능 구현
 }
 
