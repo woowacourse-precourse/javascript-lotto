@@ -40,4 +40,6 @@ function printorderNum() {
   return sum;
 }
 
-module.exports = printorderNum;
+const UserwinNUmCount = { winnumStr, printorderNum };
+
+module.exports = UserwinNUmCount;
