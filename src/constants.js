@@ -19,4 +19,19 @@ const INPUT_MESSAGE = {
   BONUS: '\n보너스 번호를 입력해 주세요.\n',
   STATISTIC: '\n당첨 통계\n---',
 };
-module.exports = { STATISTIC_KEY, MATCH_NUMBER, PRIZE, INPUT_MESSAGE };
+const ERROR_MESSAGE = {
+  LENGTH: '[ERROR] 로또 번호는 6개여야 합니다.',
+  NUMBER: '[ERROR] 로또 번호는 숫자여야 합니다.',
+  RANGE: '[ERROR] 로또 번호의 범위는 1 ~ 45여야 합니다.',
+  DUPLICATE: '[ERROR] 번호는 중복되지 않아야 합니다.',
+  TYPE: '[ERROR] 로또 구입 금액은 숫자여야 합니다.',
+  DIVISED: '[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.',
+};
+
+module.exports = {
+  STATISTIC_KEY,
+  MATCH_NUMBER,
+  PRIZE,
+  INPUT_MESSAGE,
+  ERROR_MESSAGE,
+};

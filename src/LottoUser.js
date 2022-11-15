@@ -1,5 +1,6 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
+const { ERROR_MESSAGE } = require('./constants.js');
 
 class LottoUser {
   #amount;
@@ -14,10 +15,10 @@ class LottoUser {
 
   validate(amount) {
     if (!/^[0-9]+$/.test(amount)) {
-      throw new TypeError('[ERROR] 로또 구입 금액은 숫자여야 합니다.');
+      throw new TypeError(ERROR_MESSAGE.TYPE);
     }
     if (amount % 1000 !== 0) {
-      throw new Error('[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.');
+      throw new Error(ERROR_MESSAGE.DIVISED);
     }
     return parseInt(amount, 10);
   }
