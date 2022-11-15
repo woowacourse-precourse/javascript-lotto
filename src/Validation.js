@@ -37,7 +37,7 @@ class Validation {
   }
 
   static validWinningAndBonus(data) {
-    if (new Set(data).size !== 7) {
+    if (new Set(data.toString().split(",")).size !== 7) {
       throw new Error("[ERROR] 중복된 데이터가 있습니다.");
     }
   }
