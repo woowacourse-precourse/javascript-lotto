@@ -2,8 +2,8 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const PurchaseLotto = require("./PurchaseLotto");
 const Lotto = require("./Lotto");
 const { Helper } = require("./lib/Helper");
-const { LOTTO_REWARD } = require("./constants/Constants");
-const { Message } = require("./constants/Message");
+const { LOTTO_REWARD } = require("./static/Constants");
+const { Message } = require("./static/Message");
 
 class App {
   #inputMoney = 0;
@@ -12,7 +12,9 @@ class App {
   #bonusNumber = 0;
   #matchingNumberCountObj = {};
 
-  play() {}
+  play() {
+    this.startLotto();
+  }
 
   startLotto() {
     MissionUtils.Console.readLine(
@@ -69,7 +71,7 @@ class App {
   }
 
   matchLottoGame() {
-    const lotto = new Lotto(this.#winningNumberList.map((number) => +number));
+    const lotto = new Lotto(this.#winningNumbersList.map((number) => +number));
     const winningPrizeList = [];
     for (let purchaseLotto of this.#purchaseLottoList) {
       winningPrizeList.push(
