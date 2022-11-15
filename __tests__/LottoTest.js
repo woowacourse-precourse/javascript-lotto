@@ -35,4 +35,10 @@ describe("에러 발생 테스트", () => {
       new BonusNumberError([1, 2, 3, 4, 5, 6], 4);
     }).toThrow("[ERROR]");
   });
+
+  test("보너스 번호에 1-45 외 입력시 예외가 발생한다.", () => {
+    expect(() => {
+      new BonusNumberError(50);
+    }).toThrow("[ERROR]");
+  });
 });
