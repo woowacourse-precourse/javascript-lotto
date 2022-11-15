@@ -25,4 +25,10 @@ describe("Validator 클래스 테스트", () => {
     expect(Validator.isRange(1, 45, 0)).toEqual(false);
     expect(Validator.isRange(1, 45, 50)).toEqual(false);
   });
+
+  test("isLottoLength : 로또 길이가 6인지 테스트", () => {
+    expect(Validator.isLottoLength(6)).toEqual(true);
+    expect(Validator.isLottoLength(5)).toEqual(false);
+    expect(Validator.isLottoLength(7)).toEqual(false);
+  });
 });
