@@ -30,7 +30,10 @@ const SENTANCE = Object.freeze({
 });
 
 
-const ERROR = Object.freeze({});
+const ERROR = Object.freeze({
+    "COUNT" : "[ERROR] 로또 번호는 6개여야 합니다.",
+    "DUPLICATE" : "[ERROR] 입력값에 중복이 있습니다",
+});
 
 module.exports = {
     MESSAGE,CORRECT,CORRECT_MONEY,SENTANCE,ERROR,
