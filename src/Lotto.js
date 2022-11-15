@@ -12,8 +12,8 @@ class Lotto {
     this.lottoCount = 0;
     this.bonusNumber = 0;
     this.myLottos = [];
-    if(numbers !== undefined) exception.checkInputCount(numbers);
-    if(numbers !== undefined) exception.checkInputDuplicate(numbers);
+    if (numbers !== undefined) exception.checkInputCount(numbers);
+    if (numbers !== undefined) exception.checkInputDuplicate(numbers);
   }
 
   makeLottoNumbers() {
@@ -33,14 +33,18 @@ class Lotto {
       let lotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       lotto.sort((first, second) => first - second);
       this.myLottos.push(lotto);
-      let strLotto = `[${String(lotto).replace(/,/g, ", ")}]`
+      let strLotto = `[${String(lotto).replace(/,/g, ", ")}]`;
       MissionUtils.Console.print(strLotto);
     }
   }
 
   getLottoNumbers() {
-    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.",(lottoNumbers) => {
-        this.#numbers = lottoNumbers.split(",").map((element) => Number(element));
+    MissionUtils.Console.readLine(
+      "당첨 번호를 입력해 주세요.",
+      (lottoNumbers) => {
+        this.#numbers = lottoNumbers
+          .split(",")
+          .map((element) => Number(element));
         exception.checkInputCount(this.#numbers);
         this.#numbers.map((element) => {
           exception.checkInputNotNumber(element);
@@ -62,9 +66,9 @@ class Lotto {
         exception.checkInputNotNumber(this.bonusNumber);
         exception.checkInputRange(this.bonusNumber);
         exception.checkBonusInLotto(this.bonusNumber, this.#numbers);
-        this.myLottos.map((element)=>{
-          resultLotto.matchLotto(element,this.#numbers,this.bonusNumber)
-        })
+        this.myLottos.map((element) => {
+          resultLotto.matchLotto(element, this.#numbers, this.bonusNumber);
+        });
         resultLotto.printResult();
         resultLotto.printEarningsRate(this.price);
       }

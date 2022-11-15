@@ -1,5 +1,4 @@
 class Exceptions {
-
   checkPriceNotThousands(price) {
     if (price % 1000 !== 0)
       throw new Error("[ERROR] 금액이 1000원 단위가 아님");
@@ -16,7 +15,7 @@ class Exceptions {
   checkInputDuplicate(input) {
     let uniqueInput = [...new Set(input)];
     if (uniqueInput.length !== input.length)
-    throw new Error("[ERROR] 입력값에 중복이 있습니다");
+      throw new Error("[ERROR] 입력값에 중복이 있습니다");
   }
   checkInputRange(input) {
     const FIRST_NUMBER = 1;
