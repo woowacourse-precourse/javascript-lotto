@@ -7,12 +7,12 @@ const {
   WINNING_NUMBER_DUPLICATE_ERROR,
   WINNING_NUMBER_RANGE_ERROR,
   WINNING_NUMBER_SEPARATOR_ERROR
-} = require('/src/constants/errors/winningNum');
+} = require('./constants/errors/winningNum');
 const {
   BONUS_NUMBER_TYPE_ERROR,
   BONUS_NUMBER_DUPLICATE_ERROR,
   BONUS_NUMBER_RANGE_ERROR
-} = require('/src/constants/errors/bonusNum');
+} = require('./constants/errors/bonusNum');
 
 const { Console, Random } = require('@woowacourse/mission-utils');
 
