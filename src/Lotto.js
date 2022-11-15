@@ -1,3 +1,5 @@
+const { ERROR } = require('./utils/constants');
+
 class Lotto {
   #numbers;
 
@@ -8,11 +10,17 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error(ERROR.notSixNumbers);
+    } else if (numbers.length !== new Set(numbers).size) {
+      throw new Error(ERROR.duplicatedNumbers);
+    } else if (!numbers.every((number) => number >= 1 && number <= 45)) {
+      throw new Error(ERROR.notOneToFourtyFiveRange);
     }
   }
 
-  // TODO: 추가 기능 구현
+  getWinningNumbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
