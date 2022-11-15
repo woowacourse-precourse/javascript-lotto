@@ -87,10 +87,7 @@ class Lotto {
     MissionUtils.Console.print(
       `\n당첨 통계\n---\n3개 일치 (5,000원) -${this.three}개\n4개 일치 (50,000원) - ${this.four}개\n5개 일치 (1,500,000원) - ${this.five}개\n5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.bonusFive}개\n6개 일치 (2,000,000,000원) - ${this.six}개\n총 수익률은 ${this.rateOfReturn}%입니다.`
     );
-    this.endLotteryGame;
-  }
-  endLotteryGame() {
-    return MissionUtils.Console.close();
+    MissionUtils.Console.close();
   }
 }
 

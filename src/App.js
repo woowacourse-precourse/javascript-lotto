@@ -11,7 +11,9 @@ class App {
         '\n당첨 번호를 입력해 주세요.\n',
         (winningNumber) => {
           winningNumber = winningNumber.split(',');
+
           const lotto = new Lotto(winningNumber);
+
           lotto.validate(winningNumber);
           lotto.getBonusNumber(this.tickets, winningNumber, money);
         }
@@ -42,8 +44,5 @@ class App {
     return oneTicket;
   }
 }
-
-const test = new App();
-test.play();
 
 module.exports = App;
