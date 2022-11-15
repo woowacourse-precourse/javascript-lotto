@@ -1,39 +1,40 @@
 const { Console } = require('@woowacourse/mission-utils');
+const { RULES, ERROR_MESSAGE } = require('../constants/index.js');
 
 const isValidateNumber = (number) => {
   const numberRegex = /^[0-9]+$/g;
   if (!number.match(numberRegex)) {
     Console.close();
-    throw new Error('[ERROR] 숫자가 아닌 값은 입력할 수 없습니다.');
+    throw new Error(ERROR_MESSAGE.NON_NUMERIC_VALUE);
   }
 };
 
-const isAmountUnitOf1000 = (number) => {
-  if (number % 1000 !== 0) {
+const isAmountUnitOfLottoPrice = (number) => {
+  if (number % RULES.LOTTO_PRICE !== 0) {
     Console.close();
-    throw new Error('[ERROR] 구입금액은 1000 단위 입니다.');
+    throw new Error(ERROR_MESSAGE.INVALID_PRICE_UNIT);
   }
 };
 
 const isZeroNumber = (number) => {
   if (number === '0') {
     Console.close();
-    throw new Error('[ERROR] 최소금액은 1000원입니다.');
+    throw new Error(ERROR_MESSAGE.ZERO_NUMBER);
   }
 };
 
 const isLottoRange = (number) => {
-  if (number < 1 || number > 45) {
+  if (number < RULES.MIN_LOTTO_NUMBER || number > RULES.MAX_LOTTO_NUMBER) {
     Console.close();
-    throw new Error('[ERROR] 로또번호는 1부터 45까지입니다.');
+    throw new Error(ERROR_MESSAGE.INVALID_NUMERIC_RANGE);
   }
 };
 
 const isDuplicate = (number) => {
-  if (new Set(number).size !== 6) {
+  if (new Set(number).size !== RULES.LOTTO_NUMS) {
     Console.close();
-    throw new Error('[ERROR] 로또 번호는 중복되지 않는 숫자여야 합니다.');
+    throw new Error(ERROR_MESSAGE.DUPLICATE_NUMBER);
   }
 };
 
-module.exports = { isValidateNumber, isAmountUnitOf1000, isZeroNumber, isLottoRange, isDuplicate };
+module.exports = { isValidateNumber, isAmountUnitOfLottoPrice, isZeroNumber, isLottoRange, isDuplicate };

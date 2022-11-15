@@ -1,5 +1,5 @@
 const { generateSortedRandomNumber } = require('../utils/common.js');
-const { LOTTO_RANKING_REWARD, RANKING_ACCORDING_MATCH_COUNT } = require('../constants/index.js');
+const { RULES, LOTTO_RANKING_REWARD, RANKING_ACCORDING_MATCH_COUNT } = require('../constants/index.js');
 const Lotto = require('../Lotto.js');
 const InputMoneyView = require('../view/InputMoneyView.js');
 const InputWinningNumberView = require('../view/InputWinningNumberView.js');
@@ -23,7 +23,7 @@ class LottoMachineController {
     this.calculatesUserBuyHowManyLotto(this.purchaseAmount);
     this.purchasedLottos = Array.from(
       { length: this.userBuyHowManyLotto },
-      () => new Lotto(generateSortedRandomNumber(1, 45, 6)),
+      () => new Lotto(generateSortedRandomNumber(RULES.MIN_LOTTO_NUMBER, RULES.MAX_LOTTO_NUMBER, RULES.LOTTO_NUMS)),
     );
 
     this.view.outputView.printInformationPurchasedLotto(this.userBuyHowManyLotto, this.purchasedLottos);
@@ -31,7 +31,7 @@ class LottoMachineController {
   }
 
   calculatesUserBuyHowManyLotto(purchaseAmount) {
-    this.userBuyHowManyLotto = purchaseAmount / 1000;
+    this.userBuyHowManyLotto = purchaseAmount / RULES.LOTTO_PRICE;
   }
 
   judgePurchasedLottoOfResult(winningNumber, bonusNumber) {
