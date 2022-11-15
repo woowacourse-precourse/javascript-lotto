@@ -3,16 +3,10 @@ const { Console } = require('@woowacourse/mission-utils');
 
 class Lotto {
   #numbers;
-  #rank;
-  #right;
-  #bonus;
 
   constructor(numbers) {
     checkValidLotto(numbers);
     this.#numbers = this.sortLotto(numbers);
-    this.#rank = 0;
-    this.#right = 0;
-    this.#bonus = false;
   }
 
   sortLotto(numbers) {
@@ -26,23 +20,25 @@ class Lotto {
   }
 
   check(winNumber, bonusNumber) {
+    let right = 0;
+    let bonus = false;
     winNumber.forEach((winNum) => {
-      if (this.#numbers.includes(winNum)) this.#right += 1;
+      if (this.#numbers.includes(winNum)) right += 1;
     });
-    if (this.#numbers.includes(bonusNumber)) this.#bonus = true;
-    return this.checkRank();
+    if (this.#numbers.includes(bonusNumber)) bonus = true;
+    return this.checkRank(right, bonus);
   }
 
-  checkRank() {
-    this.#rank = 8 - this.#right;
-    if (this.#right === 5) {
-      this.#rank = 2;
-      if (!this.#bonus) this.#rank = 3;
+  checkRank(right, bonus) {
+    let rank = 8 - right;
+    if (right === 5) {
+      rank = 2;
+      if (!bonus) rank = 3;
     }
-    if (this.#right === 6) {
-      this.#rank = 1;
+    if (right === 6) {
+      rank = 1;
     }
-    return this.#rank;
+    return rank;
   }
 }
 
