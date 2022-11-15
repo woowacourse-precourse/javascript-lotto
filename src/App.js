@@ -1,6 +1,14 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
+//상금 
+const first_Money = 2000000000;
+const second_Money = 30000000;
+const third_Money = 1500000;
+const fourth_Money = 50000;
+const fifth_Money = 5000;
+
+
 class App {
   constructor() {}
   buyLottoNum = new Array();
@@ -42,6 +50,37 @@ class App {
       }
     });
   };
+  //사용자 당첨 등수에 따른 상금 지정
+  winningList() {
+    let first = {count: 0, money: 0};
+    let second = {count: 0, money: 0};
+    let third = {count: 0, money: 0};
+    let fourth = {count: 0, money: 0};
+    let fifth = {count: 0, money: 0};
+
+
+    const [numCount, bonusCount] = Lotto.checkLotto();
+    for( let i = 0; i< checkLotto.length; i++){
+      if(numCount[i] === 3){
+        ++fifth.count;
+        fifth.money += fifth_Money;
+      }if(numCount[i] === 4){
+        ++fourth.count;
+        fourth.money += fourth_Money;
+      }if(numCount[i] === 5){
+        ++third.count;
+        third.money += third_Money;
+      }if(numCount[i] === 6){
+        ++first.count;
+        first.money += first_Money;
+      }
+    }
+    if(bonusCount > 0){
+      ++second.count;
+      second.money += second_Money;
+    }
+  }
+  //수익률 출력
 }
 
 
