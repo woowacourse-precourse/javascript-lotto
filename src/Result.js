@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { PRIZE, RANK } = require("./constant");
+const { PRIZE, RANK } = require("./Utils/constant");
 class Result {
   constructor(myMoney) {
     this.myMoney = myMoney;

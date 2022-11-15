@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { MESSAGE, UNIT } = require("./constant");
+const { MESSAGE, UNIT } = require("./Utils/constant");
 const Lotto = require("./Lotto");
 const Result = require("./Result");
 const Amount = require("./Amount");

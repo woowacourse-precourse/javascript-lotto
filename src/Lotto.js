@@ -1,4 +1,4 @@
-const { ERROR, MIN_NUMBER, MAX_NUBER } = require("./constant");
+const { ERROR, MIN_NUMBER, MAX_NUBER } = require("./Utils/constant");
 class Lotto {
   #numbers;
 

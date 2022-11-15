@@ -1,4 +1,4 @@
-const { ERROR, MAX_NUBER, MIN_NUMBER } = require("./constant");
+const { ERROR, MAX_NUBER, MIN_NUMBER } = require("./Utils/constant");
 class Bonus {
   constructor(numbers, bonus) {
     this.validate(numbers, bonus);
