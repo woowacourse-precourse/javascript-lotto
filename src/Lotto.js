@@ -12,7 +12,7 @@ class Lotto {
   }
 
   startGame() {
-    ConsoleWork.print(`\n${this.#numbers / 1000}${Message.PURCHASE_MESSAGE}`);
+    ConsoleWork.print(`\n${this.#numbers / 1000}${Message.PURCHASE_MESSAGE}.`);
     const lottoList = this.makeLottoList(this.#numbers / 1000);
     this.printLotttoList(lottoList);
     this.takePrizeNumber(lottoList);
@@ -28,21 +28,26 @@ class Lotto {
   }
 
   makeOneLotto() {
-    const result = [];
-    while (result.length < 6) {
-      const number = RandomWork.makeRandom(1, 45);
-      if (!result.includes(number)) {
-        result.push(number);
-      }
-    }
-    result.sort((a, b) => a - b);
-    return result;
+    const lotto = RandomWork.makeRandom(1, 45, 6);
+    lotto.sort((a, b) => a - b);
+    return lotto;
   }
 
   printLotttoList(lottoList) {
+    const forPrint = this.makeLottoListForPrint(lottoList);
     for (let i = 0; i < lottoList.length; i++) {
-      ConsoleWork.print(lottoList[i]);
+      ConsoleWork.print(`[${forPrint[i]}]`);
     }
+  }
+
+  makeLottoListForPrint(lottoList) {
+    let result = lottoList.map((x) => [...x]); // 2중 배열인 lottoList를 깊은 복사
+    for (let i = 0; i < result.length; i++) {
+      for (let j = 1; j < 6; j++) {
+        result[i][j] = ' ' + result[i][j];
+      }
+    }
+    return result;
   }
 
   takePrizeNumber(lottoList) {

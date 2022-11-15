@@ -1,8 +1,8 @@
 const { Random } = require('@woowacourse/mission-utils');
 
 class RandomWork {
-  static makeRandom(start, end) {
-    const result = Random.pickNumberInRange(start, end);
+  static makeRandom(start, end, count) {
+    const result = Random.pickUniqueNumbersInRange(start, end, count);
     return result;
   }
 }
