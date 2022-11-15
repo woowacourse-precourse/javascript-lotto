@@ -68,7 +68,7 @@ class Game {
 
   getBonusNumber() {
     Console.readLine(SYSTEM_MESSAGE.BONUS_INPUT, (inputNumber) => {
-      this.#bonusNumber = +inputNumber;
+      this.#bonusNumber = Number(inputNumber);
       this.validateBonusNumber();
     });
   }

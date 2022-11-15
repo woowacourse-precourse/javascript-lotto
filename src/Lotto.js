@@ -32,7 +32,7 @@ class Lotto {
   }
 
   static digitize(inputNumber) {
-    return inputNumber.split(SYSTEM_MESSAGE.COMMA).map((num) => +num);
+    return inputNumber.split(SYSTEM_MESSAGE.COMMA).map((num) => Number(num));
   }
 
   static printToString(lottos) {
