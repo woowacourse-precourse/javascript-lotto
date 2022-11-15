@@ -72,7 +72,7 @@ class App {
 
   validInput(input) {
     for (let word of input) {
-      if (isNaN(word) || word !== ",") {
+      if (isNaN(word) && word !== ",") {
         throw new Error(NUMBER_ERROR);
       }
     }
@@ -93,14 +93,11 @@ class App {
       Console.close();
       throw new Error(BONUS_ERROR.number);
     }
-    if (bonusNumber > 45 && bonusNumber < 1) {
+    if (bonusNumber > 45 || bonusNumber < 1) {
       Console.close();
       throw new Error(BONUS_ERROR.range);
     }
   }
 }
-
-const app = new App();
-app.play();
 
 module.exports = App;
