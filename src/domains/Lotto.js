@@ -34,6 +34,10 @@ class Lotto {
     return new Lotto(numbers);
   }
 
+  static fromString(text) {
+    return new Lotto(text.split(',').map(Number));
+  }
+
   /**
    * @param {number} money
    * @returns {Lotto[]}
@@ -78,6 +82,10 @@ class Lotto {
 
   getNumbers() {
     return this.#numbers;
+  }
+
+  toString() {
+    return `[${this.#numbers.join(', ')}]`;
   }
 }
 
