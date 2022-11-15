@@ -8,14 +8,14 @@ const getPurchaseAmount = () => {
 
 const getWinningNumber = () => {
   return new Promise((resolve) => {
-    ReadLine("당첨 번호를 입력해 주세요.\n", resolve);
+    ReadLine("\n당첨 번호를 입력해 주세요.\n", resolve);
   }); //쉼표 단위로 구분 안되어 있을 시 에러처리 + 숫자 체크
 };
 
 const getBonusNumber = () => {
   return new Promise((resolve) => {
-    ReadLine("보너스 번호를 입력해 주세요.\n", resolve);
-  }); //숫자 + 1개인 지 체크
+    ReadLine("\n보너스 번호를 입력해 주세요.\n", resolve);
+  }); //숫자 + 1개인 지 체크 + 넘버랑 겹치지는 않는지
 };
 //로또 번호는 범위 체크!
 
