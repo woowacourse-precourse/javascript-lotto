@@ -9,7 +9,8 @@ class App {
     this.lottoList;
     this.winningList;
     this.bonusNumber;
-    this.result = [0,0,0,0,0]
+    this.result = [0,0,0,0,0];
+    this.rateOfReturn;
   }
   play() {
     this.getMoney();
@@ -49,13 +50,25 @@ class App {
       const bonusNum = parseInt(number);
       //유효성 검사하기
       this.bonusNumber =bonusNum;
-      this.getMatchCount();
+      this.printResult();
     });
   }
 
   printResult(){
-    MissionUtils.Console.print(`
-    `)
+    this.getMatchCount();
+    this.getRateOfReturn();
+    MissionUtils.Console.print(
+    ` \n당첨 통계\n`+
+    `---\n`+
+    `3개 일치 (5,000원) - ${this.result[4]}개\n`+
+    `4개 일치 (50,000원) - ${this.result[3]}개\n`+
+    `5개 일치 (1,500,000원) -${this.result[2]}개\n`+
+    `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.result[1]}개\n`+
+    `6개 일치 (2,000,000,000원) - ${this.result[0]}개\n`+
+    `총 수익률은 ${this.rateOfReturn}입니다.`
+    );
+    MissionUtils.Console.close();
+
   }
 
   getMatchCount(){
@@ -74,10 +87,10 @@ class App {
   }
 
   getRateOfReturn(){
-    prizeMoney = [2000000000,30000000,1500000,50000,5000];
+    const prizeMoney = [2000000000,30000000,1500000,50000,5000];
     const returnList = prizeMoney.map((prize,index)=>prize*this.result[index]);
-    const rateOfReturn = (returnList.reduce((acc,cur)=>acc+cur)/this.purchaseAmount).toFixed(2);
-    return rateOfReturn;
+    const rateOfReturn = (returnList.reduce((acc,cur)=>acc+cur)/this.purchaseAmount).toFixed(1);
+    this.rateOfReturn =rateOfReturn;
   }
 
   
