@@ -8,6 +8,7 @@ const NOT_ONLY_NUMBER = "[ERROR] 숫자만 입력하실 수 있습니다.";
 const NOT_UNIQUE_NUMBER = "[ERROR] 중복된 숫자가 있습니다.";
 const SIZE_INVALID = "[ERROR] 로또의 크기는 6 이어야 합니다.";
 const NOT_IN_RANGE = "[ERROR] 로또 번호는 1이상 45이하의 숫자만 가능합니다.";
+const NOT_EMPTY_INPUT = "[ERROR] 공백을 입력하실 수 없습니다";
 
 const LOTTO_PRICE = 1000;
 const LOTTO_SIZE = 6;
@@ -37,6 +38,7 @@ const ERROR_MESSAGE = {
   NOT_UNIQUE_NUMBER,
   SIZE_INVALID,
   NOT_IN_RANGE,
+  NOT_EMPTY_INPUT,
 };
 const LOTTO_RANKING_CONDITION = {
   FIRST_RANK,

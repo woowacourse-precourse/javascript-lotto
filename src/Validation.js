@@ -2,6 +2,9 @@ const { ERROR_MESSAGE, LOTTO_PRICE, LOTTO_SIZE } = require("./Constants");
 
 class Validation {
   static checkPurchaseAmount(purchaseAmount) {
+    if (purchaseAmount.length === 0) {
+      throw new Error(ERROR_MESSAGE.NOT_EMPTY_INPUT);
+    }
     if (this.isOnlyNumber(purchaseAmount)) {
       throw new Error(ERROR_MESSAGE.NOT_ONLY_NUMBER);
     }
@@ -17,6 +20,9 @@ class Validation {
     return change === 0;
   }
   static checkInputWinnerNumber(winnerNumber) {
+    if (winnerNumber.length === 0) {
+      throw new Error(ERROR_MESSAGE.NOT_EMPTY_INPUT);
+    }
     if (!this.isLottoSize(winnerNumber)) {
       throw new Error(ERROR_MESSAGE.SIZE_INVALID);
     }
@@ -40,6 +46,9 @@ class Validation {
     return winnerNumber.every((number) => number >= 1 && number <= 45);
   }
   static checkBonusNumber(bonusNumber, winnerNumber) {
+    if (bonusNumber.length === 0) {
+      throw new Error(ERROR_MESSAGE.NOT_EMPTY_INPUT);
+    }
     if (this.isOnlyNumber(bonusNumber)) {
       throw new Error(ERROR_MESSAGE.NOT_ONLY_NUMBER);
     }
