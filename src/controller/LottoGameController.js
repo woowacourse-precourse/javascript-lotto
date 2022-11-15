@@ -5,6 +5,7 @@ const Lotto = require("../model/Lotto");
 
 const { readLine, close } = require("../utils/MissionUtils");
 const View = require("../view/View");
+const { Validator } = require("../utils/Validator");
 
 class LottoGameController {
   #winningCount;
@@ -53,14 +54,18 @@ class LottoGameController {
       this.#getBonusNumberFromUser(myLottoNumbers, winningNumber);
     });
   }
+  #setSplittedNumber(numbers) {
+    return Array.from(numbers.split(","), this.#convertArgsStringToInt);
+  }
+  #convertArgsStringToInt(number) {
+    return +number;
+  }
 
   #getBonusNumberFromUser(myLottoNumbers, winningNumber) {
     readLine(MESSAGE_ACCORDING_ASK.INPUT_BONUS_NUMBER, (bonusNumber) => {
-      const lottoModel = new Lotto({
-        winningNumber,
-        bonusNumber: +bonusNumber,
-      });
+      const lottoModel = new Lotto(this.#setSplittedNumber(winningNumber));
       this.#winningNumbers = lottoModel.getConvertedLottoNumber();
+      Validator.isBonusNumberValid(this.#winningNumbers, bonusNumber);
       this.#calculateWinningCount(myLottoNumbers);
     });
   }

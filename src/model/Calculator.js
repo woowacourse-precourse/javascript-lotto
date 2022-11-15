@@ -4,7 +4,7 @@ const {
   NUMBER_TYPE,
   RANKING,
   LOTTO_INFO,
-  MATH_INFO
+  MATH_INFO,
 } = require("../constants/Value");
 
 class Calculator {
@@ -41,9 +41,8 @@ class Calculator {
   }
 
   #getMatchCount(myLotto) {
-    return myLotto.filter((number) =>
-      this.#winningNumber[NUMBER_TYPE.WINNING_NUMBER].includes(number)
-    ).length;
+    return myLotto.filter((number) => this.#winningNumber.includes(number))
+      .length;
   }
 
   #isSecondPlace(matchCount, myLotto) {
@@ -58,7 +57,9 @@ class Calculator {
     Array.from(this.#myNumbers).forEach((myNumber) => {
       matchCountFromEachLotto = this.#getRankAccordingMatchCount(myNumber);
       if (this.#isRanked(matchCountFromEachLotto)) {
-        this.#prizeStatus[RANKING_FROM_MATCH_COUNT[matchCountFromEachLotto]] += 1;
+        this.#prizeStatus[
+          RANKING_FROM_MATCH_COUNT[matchCountFromEachLotto]
+        ] += 1;
       }
     });
   }
@@ -80,6 +81,7 @@ class Calculator {
 
   #getEarnedPercenage(moneyInput) {
     this.#earningMoney /= moneyInput;
+
     this.#earningMoney = this.#makePercent();
 
     return this.#getTwoDecimalDown();

@@ -27,7 +27,9 @@ class MyNumberGenerator {
 
   #addValidNumberIntoSet(pickedNumber) {
     if (Validator.isLottoSetValid(pickedNumber))
-      this.#selectedLottoNumberSet.push(this.#makeArrayAscendingOrder(pickedNumber));
+      this.#selectedLottoNumberSet.push(
+        this.#makeArrayAscendingOrder(pickedNumber)
+      );
   }
 
   #makeArrayAscendingOrder(array) {
