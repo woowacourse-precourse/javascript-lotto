@@ -13,13 +13,6 @@ class InputAcceptor {
         return answer / PURCHASE_UNIT;
     }
 
-    static askPurchaseAmount() {
-        const answer = new Promise(resolve => {
-            MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', resolve)
-        });
-        return answer;
-    }
-
     static async askWinningLottoNumbers() {
         const answer = await new Promise(resolve => {
             MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', resolve)
