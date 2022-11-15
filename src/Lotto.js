@@ -7,12 +7,23 @@ class LottoBuilder {
     this.WinningNumber = [];
     this.bonusNumber = null;
   }
+  createLottoList(input) {
+    const lottoList = [];
+    const countLotto = this.#countAmountLotto(input);
 
-  createLottoNumber() {
+    Array(countLotto)
+      .fill(countLotto)
+      .forEach(_ => lottoList.push(this.#createLottoNumber()));
+
+    this.lottoList = lottoList;
+    return lottoList;
+  }
+
+  #createLottoNumber() {
     const randomNumber = Random.pickUniqueNumbersInRange(1, 45, 6);
     return randomNumber.sort((a, b) => a - b);
   }
-  countAmountLotto(input) {
+  #countAmountLotto(input) {
     return Number(input.slice(0, input.length - 3));
   }
 }

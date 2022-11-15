@@ -14,7 +14,10 @@ class App {
     this.print('구입금액을 입력해 주세요.');
     this.readLine('', input => {
       if (checkPriceValidation(input)) {
+        const lottoList = this.LottoBuilder.createLottoList(input);
+        // console.log(lottoList);
       }
+      this.close();
     });
   }
 
@@ -24,6 +27,10 @@ class App {
 
   print(message) {
     return Console.print(message);
+  }
+
+  close() {
+    return Console.close();
   }
 }
 
