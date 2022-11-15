@@ -31,6 +31,21 @@ class Lotto {
   getNumString() {
     return `[${this.#numbers.join(", ")}]`;
   }
+
+  checkHit(winNum, bonusNum) {
+    const hitNums = this.#numbers.filter((num) => winNum.includes(num));
+    switch (hitNums.length) {
+      case 6:
+        return 1;
+      case 5:
+        if (this.#numbers.includes(bonusNum)) return 2;
+        return 3;
+      case 4:
+        return 4;
+      case 3:
+        return 5;
+    }
+  }
 }
 
 module.exports = Lotto;
