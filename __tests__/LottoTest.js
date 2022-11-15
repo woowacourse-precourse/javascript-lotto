@@ -76,4 +76,53 @@ describe("로또 클래스 테스트", () => {
       LottoValidation.checkZero("0");
     }).toThrow("[ERROR]");
   });
+
+  //result 검사
+  test("로또 당첨 번호와 발행한 로또간 매칭 카운트를 반환해주는 getMatchCount 함수가 정상 작동한다.", () => {
+    const winningNumbers = { winning: [1, 2, 3, 4, 5, 6], bonus: 7 };
+    const lottery = new Set([1, 2, 3, 4, 11, 12]);
+
+    const count = LottoResult.getMatchCount(winningNumbers, lottery);
+
+    expect(count).toEqual("four");
+  });
+
+  test("당첨 번호와 추첨 번호를 비교하여 count하는 countMatch()함수가 정상 작동한다.", () => {
+    const lottoResult = new LottoResult();
+    const winningNumbers = { winning: [1, 2, 3, 4, 5, 6], bonus: 7 };
+    const lotteries = [
+      [1, 2, 3, 4, 6, 7],
+      [1, 2, 3, 4, 5, 12],
+      [1, 2, 3, 11, 12, 13],
+      [33, 32, 31, 34, 37, 38],
+      [1, 2, 3, 4, 5, 6],
+    ];
+
+    lottoResult.countMatch(winningNumbers, lotteries);
+
+    expect(lottoResult.lottoMatchCounter).toEqual({
+      three: 1,
+      four: 0,
+      five: 1,
+      fiveWithBonus: 1,
+      six: 1,
+      out: 1,
+    });
+  });
+
+  test("누적 수익을 리턴하는 calculateProfit 함수가 정상 작동한다.", () => {
+    const lottoResult = new LottoResult();
+    lottoResult.lottoMatchCounter = {
+      three: 1,
+      four: 1,
+      five: 1,
+      fiveWithBonus: 1,
+      six: 1,
+      out: 1,
+    };
+
+    const totalProfit = lottoResult.calculateProfit();
+
+    expect(totalProfit).toEqual(2031555000);
+  });
 });
