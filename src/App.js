@@ -10,6 +10,7 @@ class App {
     this.winNum = [];
     this.bonusNum = 0;
     this.increase = 0;
+    this.score = new Array(6).fill(0);
   }
 
   inputMoney() {
@@ -63,6 +64,20 @@ class App {
     });
 
     return true;
+  }
+
+  printHit() {
+    this.lottoList.forEach((lotto) => {
+      this.score[lotto.checkHit(this.winNum, this.bonusNum)] += 1;
+    });
+
+    const lottoMoney = [0, 2000000000, 30000000, 1500000, 50000, 5000];
+    for (let grade = 5; grade > 0; grade--) {
+      Console.print(
+        `${HIT_MSG[grade]}${this.score[grade]}${ETC_MSG.HIT_MSG_END}`
+      );
+      this.increase += this.score[grade] * lottoMoney[grade];
+    }
   }
 }
 
