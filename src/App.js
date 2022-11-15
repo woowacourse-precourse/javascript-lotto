@@ -1,5 +1,6 @@
 const LottoArray = require("./LottoArray");
 const Stats = require("./Stats");
+const Print = require("./Print");
 const ErrorCase = require("./ErrorCase");
 const { NOTICE_MESSAGE, ERROR_MESSAGE } = require("./Constants");
 const { Console } = require("@woowacourse/mission-utils");
@@ -10,18 +11,6 @@ const formatWinningNumbers = (winningNumbers) => {
     .join("")
     .split(",")
     .map((number) => parseInt(number));
-};
-
-const makeStatsBoard = (data, performance) => {
-  return `당첨 통계
----
-3개 일치 (5,000원) - ${data.three}개
-4개 일치 (50,000원) - ${data.four}개
-5개 일치 (1,500,000원) - ${data.five}개
-5개 일치, 보너스 볼 일치 (30,000,000원) - ${data.fivePlusBonus}개
-6개 일치 (2,000,000,000원) - ${data.six}개
-총 수익률은 ${performance}%입니다.
-  `;
 };
 
 class App {
@@ -51,7 +40,7 @@ class App {
   purchaseLotto() {
     this.purchased = new LottoArray(this.cash);
 
-    this.printPurchasedLottoStatus(this.purchased);
+    Print.purchasedLottoStatus(this.purchased);
   }
 
   getWinningNumbers() {
@@ -94,7 +83,7 @@ class App {
       cash: this.cash,
     });
 
-    this.printTotalStats();
+    Print.totalStats(this.totalStats);
 
     this.terminate();
   }
@@ -108,32 +97,10 @@ class App {
     if (isWrongInput) throw new Error(errorMessage);
   }
 
-  printPurchasedLottoAmount(purchased) {
-    Console.print(purchased.amount + NOTICE_MESSAGE.PURCHASE_AMOUNT);
-  }
-
-  printPurchasedLottoList(purchased) {
-    purchased.lottoArray.forEach((lotto) => {
-      const lottoNumbers = lotto.showNumbers().join(", ");
-      Console.print(`[${lottoNumbers}]`);
-    });
-  }
-
-  printPurchasedLottoStatus(purchased) {
-    this.printPurchasedLottoAmount(purchased);
-    this.printPurchasedLottoList(purchased);
-  }
-
   checkBonusNumberDuplicated() {
     const isDuplicated = ErrorCase.isDuplicatedBonusNumber(this.winningNumbers, this.bonusNumber);
 
     if (isDuplicated) throw new Error(ERROR_MESSAGE.DUPLICATED_BONUS_NUMBER);
-  }
-
-  printTotalStats() {
-    const { data, performance } = this.totalStats;
-    const statsBoard = makeStatsBoard(data, performance);
-    Console.print(statsBoard);
   }
 }
 
