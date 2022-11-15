@@ -1,3 +1,5 @@
+const { ERROR_MESSAGES } = require('./constant');
+
 class Cost {
   #cost;
 
@@ -8,11 +10,11 @@ class Cost {
 
   validate(cost) {
     if (isNaN(Number(cost))) {
-      throw new Error('[ERROR] 구입 금액은 숫자로 입력해야 합니다.');
+      throw new Error(`${ERROR_MESSAGES.VALID_COST_NUMBER}`);
     }
 
     if (cost % 1000 !== 0) {
-      throw new Error('[ERROR] 구입 금액은 1000원으로 나누어떨어져야합니다.');
+      throw new Error(`${ERROR_MESSAGES.VALID_COST_UNIT}`);
     }
   }
 

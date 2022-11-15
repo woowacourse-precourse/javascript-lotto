@@ -8,6 +8,8 @@ const ERROR_MESSAGES = {
   LOTTO_NUMBER_COUNT: '[ERROR] 로또 번호는 6개여야 합니다.',
   LOTTO_REDUPLICATION: '[ERROR] 로또 번호는 중복되면 안됩니다.',
   LOTTO_OUT_OF_RANGE: '[ERROR] 로또 번호는 1~45사이의 숫자여야 합니다.',
+  VALID_COST_NUMBER: '[ERROR] 구입 금액은 숫자로 입력해야 합니다.',
+  VALID_COST_UNIT: '[ERROR] 구입 금액은 1000원으로 나누어떨어져야합니다.',
 };
 
 const INPUT_MESSAGE = {
