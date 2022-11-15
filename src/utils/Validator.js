@@ -2,13 +2,9 @@ const { MESSAGE_ACCORDING_ERROR } = require("../constants/Message");
 const { LOTTO_INFO, MATH_INFO } = require("../constants/Value");
 
 class Validator {
-  static myLottoNumberValidator(numbers) {
-    if (this.#isLengthNotEqualsSix(numbers))
-      throw Error(MESSAGE_ACCORDING_ERROR.LOTTO_NOT_LENGTH_SIX);
-    if (this.#isIncludeNotNumber(numbers)) throw Error(MESSAGE_ACCORDING_ERROR.LOTTO_NOT_NUMBER);
-    if (this.#isNotRangeValid(numbers)) throw Error(MESSAGE_ACCORDING_ERROR.LOTTO_NOT_RANGE);
-    if (this.#isDuplicatedValueExist(numbers))
-      throw Error(MESSAGE_ACCORDING_ERROR.LOTTO_NOT_DUPLICATED);
+  static WinnigLottoNumberValidator(winningNumber, bonusNumber) {
+    this.#isWinningNumberValid(winningNumber);
+    this.#isBonusNumberValid(winningNumber, bonusNumber);
   }
 
   static isInputMoneyValid(numbers) {
@@ -22,6 +18,17 @@ class Validator {
     if (this.#hasDuplicatedValue(lottoList)) return false;
     return true;
   }
+
+  static #isWinningNumberValid(winningNumber) {
+    if (this.#isLengthNotEqualsSix(winningNumber))
+      throw Error(MESSAGE_ACCORDING_ERROR.LOTTO_NOT_LENGTH_SIX);
+    if (this.#isIncludeNotNumber(winningNumber))
+      throw Error(MESSAGE_ACCORDING_ERROR.LOTTO_NOT_NUMBER);
+    if (this.#isNotRangeValid(winningNumber)) throw Error(MESSAGE_ACCORDING_ERROR.LOTTO_NOT_RANGE);
+    if (this.#isDuplicatedValueExist(winningNumber))
+      throw Error(MESSAGE_ACCORDING_ERROR.LOTTO_NOT_DUPLICATED);
+  }
+
   static #isNotRangeValid(numbers) {
     return numbers.some((number) => number < LOTTO_INFO.MIN_VALUE || number > LOTTO_INFO.MAX_VALUE);
   }
