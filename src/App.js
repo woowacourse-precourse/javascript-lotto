@@ -10,28 +10,33 @@ class App {
   }
   play() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.', (answer) => {
-      this.로또구입(answer);
+      this.buyLotto(answer);
     });
   }
-  async 로또구입(answer) {
+  async buyLotto(answer) {
     let result = await lottoLogic.purchased(answer);
     this.purchasedLotto = result;
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (answer) => {
-      this.번호선택(answer);
+      this.luckyNumberSelect(answer);
     });
   }
-  async 번호선택(answer) {
-    let result = await lottoLogic.사용자번호선택(answer);
+  async luckyNumberSelect(answer) {
+    let result = await lottoLogic.luckyNumberSplit(answer);
+    lottoLogic.validate(result);
     this.winningNumber = result;
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (answer) => {
-      this.보너스번호(answer);
+      this.bonusNumberSelect(answer);
     });
   }
-  보너스번호(answer) {
-    if (answer < 1 || answer > 45) {
-      throw new Error('[ERROR] 1~45 수를 입력해주세요. ');
-    }
+  bonusNumberSelect(answer) {
+    lottoLogic.validateBonusNumber(answer, this.winningNumber);
     this.bonusNumber = answer;
+    lottoLogic.print('당첨 통계.');
+    lottoLogic.calculationProcess(
+      this.winningNumber,
+      this.purchasedLotto,
+      this.bonusNumber
+    );
   }
 }
 const app = new App();
