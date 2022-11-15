@@ -4,50 +4,116 @@ const terms = require("./constants/terms");
 
 class Lotto {
   #numbers;
-
   constructor(numbers) {
-    this.validate(numbers);
-    this.#numbers = numbers;
+    this.#numbers = this.validate(numbers);
   }
 
-  validate(numbers) {
+  getWinningNumbers() {
+    return this.#numbers;
+  }
+
+  getBonusNumber() {
+    return this.bonusNumber;
+  }
+
+  createBonusNumber(number) {
+    const { result, errorMessage } = this.checkBonusNumber(number);
     try {
-      this.checkNumbersLength(numbers);
-      this.checkSameNumber(numbers);
-      this.checkNotNumber(numbers);
-      this.checkNumberRange(numbers);
+      if (!result) {
+        throw new Error(errorMessage);
+      }
     } catch (e) {
-      MissionUtils.Console.print(e);
       MissionUtils.Console.close();
+      MissionUtils.Console.print(errorMessage);
     }
   }
 
-  checkNumbersLength(numbers) {
-    if (numbers.length !== messages.NUMBERS_LENGTH) {
-      throw new Error(messages.TOTAL_NUMBER_ERROR);
+  checkBonusNumber(number) {
+    if (isNaN(number)) {
+      return {
+        result: false,
+        errorMessage: messages.NOT_A_NUMBER_ERROR,
+      };
     }
-  }
-  checkSameNumber(numbers) {
-    if (set(numbers).length !== messages.NUMBERS_LENGTH) {
-      throw new Error(messages.SAME_NUMBER_ERROR);
+    this.bonusNumber = [parseInt(number)];
+    if (!this.checkLottoLength(this.bonusNumber, terms.BONUS_NUMBER_LENGTH)) {
+      return {
+        result: false,
+        errorMessage: messages.BONUS_NUMBER_LENGTH_ERROR,
+      };
     }
+    if (!this.checkLottoIsNumber(this.bonusNumber)) {
+      return { result: false, errorMessage: messages.NOT_A_NUMBER_ERROR };
+    }
+    if (!this.checkNumberRange(this.bonusNumber)) {
+      return { result: false, errorMessage: messages.NUMBER_RANGE_ERROR };
+    }
+    if (!this.checkWinningNumberBonusNumber()) {
+      return {
+        result: false,
+        errorMessage: messages.BONUS_NUMBER_IN_WINNING_NUMBERS_ERROR,
+      };
+    }
+    return { result: true };
   }
-  checkNotNumber(numbers) {
-    if (numbers.every((number) => !isNaN(number))) {
+
+  checkWinningNumberBonusNumber() {
+    if (
+      this.#numbers.filter((number) => number === parseInt(this.bonusNumber[0]))
+        .length === terms.BONUS_NUMBER_LENGTH
+    ) {
+      return false;
+    }
+    return true;
+  }
+
+  validate(number) {
+    if (!this.checkLottoIsNumber(number)) {
       throw new Error(messages.NOT_A_NUMBER_ERROR);
     }
+    if (!this.checkSameNumber(number, terms.NUMBERS_LENGTH)) {
+      throw new Error(messages.SAME_NUMBER_ERROR);
+    }
+    if (!this.checkLottoLength(number, terms.NUMBERS_LENGTH)) {
+      throw new Error(messages.TOTAL_NUMBER_ERROR);
+    }
+    if (!this.checkNumberRange(number)) {
+      throw new Error(messages.NUMBER_RANGE_ERROR);
+    }
+    return number;
   }
-  checkNumberRange(numbers) {
+
+  checkLottoLength(lotto, lottoLength) {
+    if (lotto.length !== lottoLength) {
+      return false;
+    }
+    return true;
+  }
+
+  checkLottoIsNumber(lotto) {
+    if (lotto.every((number) => isNaN(number))) {
+      return false;
+    }
+    return true;
+  }
+  checkSameNumber(lotto) {
+    const numberSet = new Set(lotto);
+    if (numberSet.size !== terms.NUMBERS_LENGTH) {
+      return false;
+    }
+    return true;
+  }
+  checkNumberRange(lotto) {
     if (
-      !numbers.every(
+      !lotto.every(
         (number) =>
           terms.MIN_NUMBER_RANGE <= number && number <= terms.MAX_NUMBER_RANGE
       )
     ) {
-      throw new Error(messages.NUMBER_RANGE_ERROR);
+      return false;
     }
+    return true;
   }
 }
 
-a = new Lotto([1, 2, 3, 4]);
 module.exports = Lotto;
