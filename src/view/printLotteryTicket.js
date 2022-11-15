@@ -7,7 +7,7 @@ const printLotteryTicket = {
   printLotteryTicket() {
     MissionUtils.Console.print(`\n${inputDataObject.principal / 1000}개를 구매했습니다.`);
     inputDataObject.raffle.forEach(element => {
-      MissionUtils.Console.print(element);
+      MissionUtils.Console.print(`[${element.join(', ')}]`);
     });
     return inputLotteryNumber.inputLotteryNumber(inputMessage.RAFFLE_NUMBERS)
   },
