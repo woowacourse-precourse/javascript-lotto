@@ -5,16 +5,17 @@ const Winning = require("./Winning");
 const Bonus = require("./Bonus");
 class App {
   constructor() {
-    // 로또 번호
     this.PurchaseInput = null;
-    this.LottoNumber = null;
+    this.LottoNumber = [];
     this.WinningData = null;
     this.BonusData = null;
   }
   rateOfReturn = (rate) => {
-    console.log(
-      `총 수익률은 ${(rate / this.PurchaseInput.getPurchase()) * 100}%입니다.`
+    const totalRate = ((rate / this.PurchaseInput.getPurchase()) * 100).toFixed(
+      1
     );
+    MissionUtils.Console.print(`총 수익률은 ${totalRate}%입니다.`);
+    MissionUtils.Console.close();
   };
   lottoDraw = () => {
     let lottoMatch = [];
@@ -23,10 +24,9 @@ class App {
     winningAndBonustNumber = winningAndBonustNumber
       .split(",")
       .map((num) => parseInt(num, 10));
-
     this.LottoNumber.forEach((num) => {
       lottoMatch.push(
-        num.getNumbers().filter((lottoNum) => {
+        num.filter((lottoNum) => {
           return winningAndBonustNumber.includes(lottoNum);
         })
       );
@@ -69,6 +69,8 @@ class App {
         hitsNumber.money += 2000000000;
       }
     });
+    MissionUtils.Console.print("당첨 통계");
+    MissionUtils.Console.print("---");
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${hitsNumber.three}개`);
     MissionUtils.Console.print(`4개 일치 (50,000원) - ${hitsNumber.four}개`);
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${hitsNumber.five}개`);
@@ -87,7 +89,6 @@ class App {
       "보너스 번호를 입력해 주세요.",
       (BonusInput) => {
         this.BonusData = new Bonus(BonusInput);
-        MissionUtils.Console.print(BonusInput);
       }
     );
     this.lottoDraw();
@@ -97,7 +98,6 @@ class App {
       "당첨 번호를 입력해 주세요.",
       (winningInput) => {
         this.WinningData = new Winning(winningInput);
-        MissionUtils.Console.print(winningInput);
       }
     );
     this.bonusNumber();
@@ -111,11 +111,11 @@ class App {
         6
       );
       const ascending = randomNumber.sort((a, b) => a - b);
-      return new Lotto(ascending);
+      new Lotto(ascending);
+      MissionUtils.Console.print("[" + ascending.join(", ") + "]");
+      return ascending;
     });
-    this.LottoNumber.forEach((num) => {
-      MissionUtils.Console.print(num.getNumbers());
-    });
+
     this.winningNumber();
   };
   lottoPurchase = () => {
