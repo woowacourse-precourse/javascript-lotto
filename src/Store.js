@@ -1,7 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const { WINMESSAGE, LottoAnswer } = require("./LottoAnswer");
-const { parseAnswerInput } = require("./Utils");
+const { parseAnswerInput, parseBonusInput } = require("./Utils");
 
 class Store {
   constructor() {
@@ -55,8 +55,17 @@ class Store {
   getAnswer() {
     MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (userInput) => {
       this.answer = new LottoAnswer(parseAnswerInput(userInput));
-      return;
+      return this.getBonus();
     });
+  }
+
+  getBonus() {
+    MissionUtils.Console.readLine(
+      "보너스 번호를 입력해 주세요.",
+      (userInput) => {
+        this.answer.bonus = parseBonusInput(userInput);
+      }
+    );
   }
 }
 

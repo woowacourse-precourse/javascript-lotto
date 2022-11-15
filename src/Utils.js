@@ -2,4 +2,8 @@ function parseAnswerInput(userInput) {
   return userInput.split(",").map((singleUserInput) => Number(singleUserInput));
 }
 
-module.exports = { parseAnswerInput };
+function parseBonusInput(userInput) {
+  return Number(userInput);
+}
+
+module.exports = { parseAnswerInput, parseBonusInput };
