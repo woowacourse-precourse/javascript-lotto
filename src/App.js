@@ -115,19 +115,14 @@ class App {
     const numbersOfMatch = this.winningLotteryNumbers.filter((num) => lotto.includes(num)).length;
     switch (numbersOfMatch) {
       case 3:
-        this.result.fifth += 1;
-        break;
+        return (this.result.fifth += 1);
       case 4:
-        this.result.fourth += 1;
-        break;
+        return (this.result.fourth += 1);
       case 5:
-        if (!lotto.includes(this.bonusNumber)) {
-          this.result.third += 1;
-        } else {
-          this.result.second += 1;
-        }
+        if (!lotto.includes(this.bonusNumber)) return (this.result.third += 1);
+        return (this.result.second += 1);
       case 6:
-        this.result.first += 1;
+        return (this.result.first += 1);
       default:
         return;
     }
