@@ -1,6 +1,6 @@
-const PURCHASEAMOUNT_INPUT = "구입금액을 입력해 주세요.";
-const WINNERNUMBER_INPUT = "당첨 번호를 입력해 주세요.";
-const BONUSNUMBER_INPUT = "보너스 번호를 입력해 주세요.";
+const PURCHASEAMOUNT_INPUT = "구입금액을 입력해 주세요.\n";
+const WINNERNUMBER_INPUT = "\n당첨 번호를 입력해 주세요.\n";
+const BONUSNUMBER_INPUT = "\n보너스 번호를 입력해 주세요.\n";
 const RESULT_GUIDE = "당첨 통계\n---";
 
 const PURCHASEAMOUNT_UNDIVIDED =

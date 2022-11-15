@@ -5,7 +5,7 @@ class LottoUI {
     MissionUtils.Console.readLine(message, callbackFunction);
   }
   printLottoCount(lottoCount) {
-    MissionUtils.Console.print(`${lottoCount}개를 구매했습니다.`);
+    MissionUtils.Console.print(`\n${lottoCount}개를 구매했습니다.`);
   }
   prinntLottoNumber(lotto) {
     lotto.forEach((lottoNumbers) => {
