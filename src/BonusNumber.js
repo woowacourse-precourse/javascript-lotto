@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const SPECIAL_CHARACTERS = /[~!@#$%^&*()_+|<>?:{}]/;
 
 class BonusNumber{
 
@@ -7,6 +8,9 @@ class BonusNumber{
     MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (BonusNumber) => {
       bonusNumber = BonusNumber;
     });
+    if (bonusNumber <= 0 || bonusNumber === String || SPECIAL_CHARACTERS.test(bonusNumber)) {
+      throw "[ERROR]";
+    }
     return bonusNumber;
   }
 
