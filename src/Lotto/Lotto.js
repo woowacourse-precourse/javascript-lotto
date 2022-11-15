@@ -11,6 +11,9 @@ class Lotto {
   validate(numbers) {
     this.checkNumbersLength(numbers);
     this.checkNumbersType(numbers);
+    this.checkDuplicateNumber(numbers);
+  }
+
   checkNumbersLength(numbers) {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
@@ -23,6 +26,12 @@ class Lotto {
         throw new Error("[ERROR] 로또는 모두 숫자여야 합니다.");
     });
   }
+
+  checkDuplicateNumber(numbers) {
+    if (numbers.length !== new Set(numbers).size)
+      throw new Error("[ERROR] 로또는 중복이 있어선 안됩니다.");
+  }
+
 }
 
 module.exports = Lotto;
