@@ -67,6 +67,13 @@ class Validator {
         this.isRightRange(numbers);
         return numbers;
       }
+
+      static inputBonusNumber (string, winArray) {
+        this.isBlank(string);
+        this.isNumber(string);
+        this.isBonusRange(string);
+        this.isSame(string, winArray);
+      }
   
 }
   
