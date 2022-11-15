@@ -1,5 +1,4 @@
 const Earning = require("../src/controller/Earning.js");
-const { ERROR } = require("../src/utils/constant.js");
 
 describe("통계 수익 클래스 테스트", () => {
   test("당첨되지 않았을 때 수익률 확인", () => {
