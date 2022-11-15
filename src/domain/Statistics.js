@@ -44,7 +44,7 @@ class Statistics {
       return ((totalPrizeMoney / purchaseAmount) * 100).toFixed(1);
     }
 
-    return 0;
+    return "0.0";
   }
 
   calculatePrizeStatisticsTemplates(prizeStatistics) {
