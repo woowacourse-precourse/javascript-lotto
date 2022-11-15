@@ -11,7 +11,7 @@ const {
 const {
   validateSixLength,
   validatePurchaseAmount,
-  validateNumber,
+  validateNumberArray,
   validateBonusDuplicate,
   validateBlank,
 } = require("./Exception.js");
@@ -41,14 +41,14 @@ class App {
     this.$winNum = await getWinningNumber().then((data) => {
       let splitedData = data.split(",");
       validateSixLength(splitedData);
-      validateNumber(splitedData);
+      validateNumberArray(splitedData);
       validateBlank(splitedData);
       return splitedData.map((v) => +v);
     });
   } //나눌 때 예외처리, 숫자,6개인지
   async saveBonusNumber() {
     this.$bonus = await getBonusNumber().then((data) => {
-      validateNumber(data.split(""));
+      validateNumberArray(data.split(""));
       validateBonusDuplicate(+data, this.$winNum);
       return +data;
     });
