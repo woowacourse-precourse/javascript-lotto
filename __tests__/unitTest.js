@@ -81,7 +81,7 @@ describe("로또 게임 계산 테스트", () => {
     expect(Arr[0].length).toBe(6); //길이가 6인지 테스트
   });
 
-  test("중복이 없고 길이가 6인 배열 생성_중복이 유무 테스트", () => {
+  test("중복이 없고 길이가 6인 배열 생성_중복 유무 테스트", () => {
     const Arr = calculationOfLottoGame.makeUsersLotto(1);
     let checkArr = [];
 
@@ -100,7 +100,7 @@ describe("로또 게임 계산 테스트", () => {
     expect(checkDuplication()).toBeTruthy();
   });
 
-  test("유저가 가지고있는 로또 번호 배열 중 당첨번호의 개수를 배열로 리턴 함수 테스트", () => {
+  test("유저가 가지고있는 로또 번호 배열 중 당첨번호의 개수를 배열로 리턴 하는 함수 테스트", () => {
     const usersLotto = [
       [1, 2, 3],
       [4, 5, 6],

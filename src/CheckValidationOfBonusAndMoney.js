@@ -11,7 +11,7 @@ const validateMoney = (money) => {
 
 const validateBonusNum = (bonusNum, winningNum) => {
   if (bonusNum > 45 || bonusNum < 1) {
-    throw new Error(ERROR.ERROR_BONUS_RANGE); //1~45
+    throw new Error(ERROR.ERROR_BONUS_RANGE);
   }
   if (/^[0-9]*$/g.test(bonusNum) === false) {
     throw new Error(ERROR.ERROR_BONUS_NUMBER);

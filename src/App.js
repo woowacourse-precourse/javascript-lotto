@@ -8,6 +8,7 @@ const {
   makeWinningOfLottoArr,
   makeArrayOfArrayPlusNum,
 } = require("./CalculationOfLottoGame");
+
 const {
   showHowmanyboughtLotto,
   showLottoMade,
@@ -15,6 +16,7 @@ const {
   showResultOfWinLotto,
   lineBreak,
 } = require("./Render");
+
 const {
   validateMoney,
   validateBonusNum,
@@ -76,11 +78,11 @@ class App {
 
       lineBreak();
 
-      this.makeWinningOfLottoArr();
+      this.makeWinningLottoArr();
     });
   }
 
-  makeWinningOfLottoArr() {
+  makeWinningLottoArr() {
     this.totalWinningNum = makeArrayOfArrayPlusNum(
       this.winningNum,
       this.bonusNum

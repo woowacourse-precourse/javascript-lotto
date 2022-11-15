@@ -1,4 +1,4 @@
-const { Console, Random } = require("@woowacourse/mission-utils");
+const { Random } = require("@woowacourse/mission-utils");
 
 function checkOfBonusNumHave(usersLotto, bonusNum, { index }, winLotto) {
   if (usersLotto[index].includes(parseInt(bonusNum)) === true) {
@@ -6,6 +6,10 @@ function checkOfBonusNumHave(usersLotto, bonusNum, { index }, winLotto) {
   }
 
   return winLotto.set("3등", winLotto.get("3등") + 1);
+}
+
+function ascendingArr(array) {
+  return array.sort((a, b) => a - b);
 }
 
 class CalculationOfLottoGame {
@@ -19,21 +23,22 @@ class CalculationOfLottoGame {
 
     for (; i < numOfLotto; i++) {
       let randomNum = Random.pickUniqueNumbersInRange(1, 45, 6);
-      lottoNum.push(randomNum.sort((a, b) => a - b));
+
+      lottoNum.push(ascendingArr(randomNum));
     }
     return lottoNum;
   }
 
-  makeWinningOfLottoArr(usersLotto, winLotto) {
+  makeWinningOfLottoArr(usersLottos, winLotto) {
     let i = 0;
     let winningNumArr = [];
 
-    for (; i < usersLotto.length; i++) {
-      let find = usersLotto[i].filter((lottoNum) =>
-        winLotto.includes(String(lottoNum))
+    for (; i < usersLottos.length; i++) {
+      let howManyOverLap = usersLottos[i].filter((userLotto) =>
+        winLotto.includes(String(userLotto))
       );
 
-      winningNumArr.push(find.length);
+      winningNumArr.push(howManyOverLap.length);
     }
 
     return winningNumArr;
@@ -83,15 +88,19 @@ class CalculationOfLottoGame {
         case "5등":
           winningAmount = winningAmount + 5000 * result[i][1];
           break;
+
         case "4등":
           winningAmount = winningAmount + 50000 * result[i][1];
           break;
+
         case "3등":
           winningAmount = winningAmount + 1500000 * result[i][1];
           break;
+
         case "2등":
           winningAmount = winningAmount + 30000000 * result[i][1];
           break;
+
         case "1등":
           winningAmount = winningAmount + 2000000000 * result[i][1];
           break;
