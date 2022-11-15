@@ -37,12 +37,18 @@ describe("Validation 클래스 테스트", () => {
     expect(Validation.itThatNumber(input)).toBe(false);
   });
 
-//   test("돈이 아닐 경우 에러 발생 테스트", () => {
-//     const input = "money";
+  test("보너스 번호 입력값이 1 ~ 45 사이인지 검사", () => {
+    const input = [1, 2, 3, 4, 5, 70];
 
-//     expect(() => lotto.NumberPackage(input)).toThrow();
-//     expect(() => lotto.NumberPackage(input)).toThrow('[ERROR] 돈이 아닙니다.');
-//   });
+    expect(Validation.singleNumberNet(input)).toBe(false);
+  });
+
+  test("당첨번호와 보너스번호가 중복되는지 검사", () => {
+    const lotto = [1, 2, 3, 4, 5, 45];
+    const bonusNumber = 1;
+
+    expect(Validation.isThatInclude(lotto, bonusNumber)).toBe(false);
+  });
 
 //   test("천원 단위로 입력되지 않으면 에러 발생", () => {
 //     const input = 2999;
