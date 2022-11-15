@@ -11,6 +11,10 @@ class Lotto {
     this.#numbers = numbers;
   }
 
+  getWinLotto() {
+    return this.#numbers;
+  }
+
   validate(numbers) {
     this.checkLottoSize(numbers);
     this.checkLottoIsInt(numbers);
