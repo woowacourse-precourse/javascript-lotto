@@ -1,4 +1,4 @@
-const { Random } = require('@woowacourse/mission-utils');
+const { Random, Console } = require('@woowacourse/mission-utils');
 
 class Display {
   // 사용자 입력값 안내 메시지
@@ -76,7 +76,7 @@ class Display {
     if (ranking === 'SECOND') {
       return `${info.winning}개 일치, 보너스 볼 일치 (${info.prize}원) - ${rankingCount}개`;
     }
-    return `${info.winning}개 일치, (${info.prize}원) - ${rankingCount}개`;
+    return `${info.winning}개 일치 (${info.prize}원) - ${rankingCount}개`;
   }
 
   // 로또 포멧
