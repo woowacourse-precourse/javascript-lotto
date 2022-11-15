@@ -140,7 +140,10 @@ class App {
     return sumMoney;
   }
   getEarningRatio(winningMoney) {
-    return ((winningMoney / this.purchaseAmount) * 100).toFixed(1);
+    if (winningMoney) {
+      return ((winningMoney / this.purchaseAmount) * 100).toFixed(1);
+    }
+    return 0.0;
   }
   resultSynthesis(rankingTotal) {
     const resultTable = {
