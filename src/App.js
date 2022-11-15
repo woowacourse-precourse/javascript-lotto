@@ -2,15 +2,16 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const { checkRange, checkUnit, checkType, checkLottoType } = require('./Exception');
 const Lotto = require('./Lotto');
 const { Message } = require('./Message');
+const WinLotto = require('./WinLotto');
 
 class App {
   inputMoney;
   userLottoList;
-  winNumber;
+  winLotto;
 
   constructor() {
     this.userLottoList = [];
-    this.winNumber = [];
+    this.winLotto = [];
   }
 
   validate(money) {
@@ -29,7 +30,10 @@ class App {
     MissionUtils.Console.readLine(`${Message.LOTTO_MESSAGE}`, input => {
       const numbers = Array.from(input.split(','), Number);
       checkLottoType(numbers);
-      this.winNumber = new Lotto(numbers);
+      this.winLotto = new WinLotto(numbers);
+      MissionUtils.Console.readLine(`${Message.BONUS_MESSAGE}`, input => {
+        this.winLotto.setBonusNumber(Number(input));
+      });
     });
   }
   play() {
