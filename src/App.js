@@ -9,6 +9,7 @@ class App {
     this.getMyLottoNum();
     this.getInputLottoNum();
     this.winCost();
+    this.getEarningsRate();
   }
 }
 
