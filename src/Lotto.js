@@ -1,4 +1,4 @@
-const { ERROR_MSG, RANK, MATCH, RANK_NAME } = require("./utils/string");
+const { ERROR_MSG, RANK, MATCH, RANK_NAME, LOTTO } = require("./utils/string");
 const Validation = require("./utils/Validation");
 
 class Lotto {
@@ -29,7 +29,7 @@ class Lotto {
   }
   isNotInRange(numbers) {
     for (const num of numbers) {
-      if (parseInt(num) === 0 || parseInt(num) > 45) {
+      if (parseInt(num) < LOTTO.START || parseInt(num) > LOTTO.END) {
         return true;
       }
     }
