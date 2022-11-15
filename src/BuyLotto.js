@@ -109,23 +109,37 @@ class BuyLotto {
       if (result.length === 6) {
         // Console.print("6개 일치 (2,000,000,000원)");
         this.firstPrize += 1;
-        console.log("1등" + this.firstPrize);
         this.printResult();
         this.prize(result.length);
+      }
+
+      if (result.length === 5) {
+        this.makeNumbers[i].includes(String(this.userInputBonusNum))
+          ? (this.secondPrize += 1)
+          : (this.thirdPrize += 1);
+        this.printResult();
       }
     }
 
     for (let i = 0; i < this.howMany; i++) {
       const result = this.makeNumbers[i].filter((x) => prizeArray.includes(x));
-      console.log(result);
-      this.checkBonusPrize(result, i);
+      // console.log(result);
+      // this.checkBonusPrize(result, i);
     }
   }
 
   checkBonusPrize(result, i) {
+    if (result.length === 5) {
+      this.makeNumbers[i].includes(String(this.userInputBonusNum))
+        ? (this.secondPrize += 1)
+        : (this.thirdPrize += 1);
+    }
     console.log(result);
 
     console.log(this.makeNumbers[i].includes(String(this.userInputBonusNum)));
+
+    this.printResult();
+
     // if (this.makeNumbers[i].includes(String(this.userInputBonusNum))) {
     //   const prize = result.length + 1;
     //   Console.print(`${prize}개 일치`);
