@@ -1,6 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("../src/Lotto");
-const winstatistics = require("../src/statistics");
 
 class App {
   constructor() {
@@ -8,6 +7,13 @@ class App {
     this.myLotto = [];
     this.winLotto = undefined;
     this.bonusNum = 0;
+    this.winstatistics = {
+      "3개 일치 (5,000원)": 0,
+      "4개 일치 (50,000원)": 0,
+      "5개 일치 (1,500,000원)": 0,
+      "5개 일치, 보너스 볼 일치 (30,000,000원)": 0,
+      "6개 일치 (2,000,000,000원)": 0,
+    };
   }
 
   costValidation(cost) {
@@ -107,44 +113,44 @@ class App {
     const equalBonus = winContent.equalBonus;
 
     if (equalNumCount + equalBonus === 3) {
-      winstatistics["3개 일치 (5,000원)"] += 1;
+      this.winstatistics["3개 일치 (5,000원)"] += 1;
     }
 
     if (equalNumCount + equalBonus === 4) {
-      winstatistics["4개 일치 (50,000원)"] += 1;
+      this.winstatistics["4개 일치 (50,000원)"] += 1;
     }
 
     if (equalNumCount + equalBonus === 5) {
-      winstatistics["5개 일치 (1,500,000원)"] += 1;
+      this.winstatistics["5개 일치 (1,500,000원)"] += 1;
     }
 
     if (equalNumCount === 5 && equalBonus === 1) {
-      winstatistics["5개 일치, 보너스 볼 일치 (30,000,000원)"] += 1;
+      this.winstatistics["5개 일치, 보너스 볼 일치 (30,000,000원)"] += 1;
     }
 
     if (equalNumCount === 6) {
-      winstatistics["6개 일치 (2,000,000,000원)"] += 1;
+      this.winstatistics["6개 일치 (2,000,000,000원)"] += 1;
     }
   }
 
   getEarnings() {
     let earnings = 0;
 
-    for (let item in winstatistics) {
+    for (let item in this.winstatistics) {
       if (item === "3개 일치 (5,000원)") {
-        earnings += winstatistics[item] * 5000;
+        earnings += this.winstatistics[item] * 5000;
       }
       if (item === "4개 일치 (50,000원)") {
-        earnings += winstatistics[item] * 50000;
+        earnings += this.winstatistics[item] * 50000;
       }
       if (item === "5개 일치 (1,500,000원)") {
-        earnings += winstatistics[item] * 1500000;
+        earnings += this.winstatistics[item] * 1500000;
       }
       if (item === "5개 일치, 보너스 볼 일치 (30,000,000원)") {
-        earnings += winstatistics[item] * 30000000;
+        earnings += this.winstatistics[item] * 30000000;
       }
       if (item === "6개 일치 (2,000,000,000원)") {
-        earnings += winstatistics[item] * 2000000000;
+        earnings += this.winstatistics[item] * 2000000000;
       }
     }
 
@@ -165,8 +171,8 @@ class App {
 
     MissionUtils.Console.print("당첨 통계");
     MissionUtils.Console.print("---");
-    for (let item in winstatistics) {
-      MissionUtils.Console.print(`${item} - ${winstatistics[item]}개`);
+    for (let item in this.winstatistics) {
+      MissionUtils.Console.print(`${item} - ${this.winstatistics[item]}개`);
     }
 
     const earnings = this.getEarnings();
