@@ -1,14 +1,10 @@
 const { readLine, print, close } = require("./util.js");
 const { INPUT_QUERY, prizeCount, OUTPUT } = require("./constants.js");
 const LottoGenerator = require("./LottoGenerator");
-const Lotto = require("./Lotto");
-const Bonus = require("./Bonus.js");
-const LottoResult = require("./LottoResult.js");
+const Lotto = require("./Lotto/Lotto");
+const Bonus = require("./Lotto/Bonus.js");
 
 class UserInput {
-  constructor() {
-    this.lottoResult = new LottoResult();
-  }
 
   play() {
     readLine(INPUT_QUERY.LOTTO_AMOUNT, this.publishLotto.bind(this));
@@ -23,7 +19,7 @@ class UserInput {
   handleLottoNumber(winningNumber) {
     this.winningNumber = new Lotto(winningNumber);
     this.winningNumbers = this.winningNumber.getWinningNumber();
-    this.lottoResult.checkEachLottoNumber(this.publishedLotto, this.winningNumbers);
+    this.winningNumber.checkEachLottoNumber(this.publishedLotto);
     readLine(INPUT_QUERY.BONUS_NUMBER, this.handleBonusNumber.bind(this));
   }
 
