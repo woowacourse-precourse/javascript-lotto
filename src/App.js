@@ -6,6 +6,7 @@ class App {
   price = 0;
   lottos = [];
   lottoMachine;
+  bonus = 0;
 
   play() {
     this.purchaseLottos();
@@ -47,7 +48,8 @@ class App {
       this.lottoMachine = new Lotto(numbers.split(',').map(Number));
 
       Console.readLine('\n보너스 번호를 입력해 주세요.\n', (number) => {
-        this.lottoMachine.bonus = +number;
+        this.lottoMachine.isValidBonusNumber(number);
+        this.bonus = +number;
         this.printResult();
       });
     });
@@ -59,7 +61,7 @@ class App {
     lottos.forEach((lotto) => {
       const count = this.lottoMachine.getMatchedCount(lotto);
 
-      if (count === 5 && this.lottoMachine.isBonusMatched(lotto)) {
+      if (count === 5 && lotto.includes(this.bonus)) {
         result[3] += 1;
       } else if (count > 2) {
         result[count - 3] += 1;
@@ -81,9 +83,7 @@ class App {
 
   printResult() {
     const result = this.calculateResult(this.lottos);
-
-    Console.print('\n당첨 통계');
-    Console.print('---');
+    Console.print('\n당첨 통계\n---');
     [
       '3개 일치',
       '4개 일치',
@@ -95,9 +95,7 @@ class App {
         `${stat} (${AWARD[i].toLocaleString()}원) - ${result[i]}개`
       );
     });
-
     Console.print(`총 수익률은 ${this.getProfit(result)}%입니다.`);
-
     Console.close();
   }
 }

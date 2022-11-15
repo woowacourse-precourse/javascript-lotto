@@ -3,7 +3,6 @@ const { LOTTO_LENGTH, LOTTO_RANGE } = require('./constants');
 
 class Lotto {
   #numbers;
-  #bonus;
 
   constructor(numbers) {
     this.validate(numbers);
@@ -36,8 +35,13 @@ class Lotto {
     return lotto.filter((number) => this.#numbers.includes(number)).length;
   }
 
-  isBonusMatched(lotto) {
-    return lotto.includes(this.#bonus);
+  isValidBonusNumber(bonus) {
+    if (this.#numbers.includes(+bonus))
+      throw new Error(
+        '[Error] 중복된 숫자를 보너스 번호로 지정할 수 없습니다.'
+      );
+    this.validateNumber(bonus);
+    return true;
   }
 
   static issueLotto = () => {
@@ -47,18 +51,6 @@ class Lotto {
       LOTTO_LENGTH
     );
   };
-
-  /**
-   * @param {number} number
-   */
-  set bonus(number) {
-    if (this.#numbers.includes(number))
-      throw new Error(
-        '[Error] 중복된 숫자를 보너스 번호로 지정할 수 없습니다.'
-      );
-    this.validateNumber(number);
-    this.#bonus = +number;
-  }
 }
 
 module.exports = Lotto;
