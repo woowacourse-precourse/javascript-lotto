@@ -28,6 +28,12 @@ class Validator {
       throw Error(ERROR.MONEY_INVALID_VALUE);
     }
   }
+
+  static errorIfRegularLottoAndBonusNumberDuplicated(lottos, bonusNumber) {
+    if (lottos.includes(bonusNumber)) {
+      throw Error(ERROR.REGULAR_LOTTO_AND_BONUS_NUMBER_DUPLICATED);
+    }
+  }
 }
 
 module.exports = Validator;
