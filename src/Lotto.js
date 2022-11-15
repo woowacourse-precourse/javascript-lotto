@@ -26,7 +26,8 @@ class Lotto {
   validateBonus(bonus) {
     if (this.#numbers.indexOf(bonus) !== -1) {
       throw new Error("[ERROR] 보너스 번호가 중복됩니다.");
-    }
+    } else if (isNaN(bonus))
+      throw new Error("[ERROR] 보너스 번호가 숫자 형식이 아닙니다.");
   }
 
   matchNumber(user) {
