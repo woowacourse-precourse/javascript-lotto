@@ -35,4 +35,5 @@ describe("로또 클래스 테스트", () => {
       lotto.validateBonus("a", [1, 2, 3, 4, 5, 6], 8000);
     }).toThrow("[ERROR]");
   });
+
 });
