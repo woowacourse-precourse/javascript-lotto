@@ -21,6 +21,16 @@ class User {
         this.userLotto = userLottoList;
     }
 
+    makeUserLotto () {
+        const userLottoList = [];
+
+        for( let i = 0; i < this.lottoCount; i++) {
+            userLottoList.push(this.makeUserRandomOneLotto());
+        }
+
+        this.setUserLotto(userLottoList);
+    }
+
 }
 
 module.exports = User;
