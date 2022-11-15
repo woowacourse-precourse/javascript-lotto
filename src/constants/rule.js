@@ -32,9 +32,17 @@ const RANKING = {
   FIFTH: 5,
 };
 
+const MATCH = {
+  THREE: 3,
+  FOUR: 4,
+  FIVE: 5,
+  SIX: 6,
+};
+
 module.exports = {
   RULE,
   RANK,
   REWARD,
   RANKING,
+  MATCH,
 };
