@@ -11,6 +11,10 @@ class BonusNumber {
   #validate(bonusNumber) {
     errorIfBonusLottoInvalidFormat(bonusNumber);
   }
+
+  getBonusNumber() {
+    return this.#bonusNumber;
+  }
 }
 
 module.exports = BonusNumber;
