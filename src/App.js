@@ -10,8 +10,8 @@ class App {
   }
 
   play() {
-    this.inputAmount()
-    this.inputWinningNumber()
+    this.inputAmount();
+    this.inputWinningNumber();
   }
 
   inputAmount() {
@@ -25,11 +25,11 @@ class App {
   lottoListPrint(lottoPurchase) {
     this.lottoList = lottoPurchase.lottoPublish();
     this.amount = lottoPurchase.amount;
-    const count = this.amount / 1000;
+    const count = (this.amount / 1000);
 
     MissionUtils.Console.print(`${count}개를 구매했습니다.`)
     this.lottoList.forEach(lottoNumbers => {
-      lottoNumbers = lottoNumbers.join(", ")
+      lottoNumbers = lottoNumbers.join(", ");
       MissionUtils.Console.print(`[${lottoNumbers}]`);
     })
   }
@@ -44,8 +44,8 @@ class App {
   inputBonusNumber(numbers) {
     MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (bonusNumber) => {
       bonusNumber = Number(bonusNumber);
-      const lotto = new Lotto(numbers, bonusNumber)
-      this.LottoStatistics(lotto)
+      const lotto = new Lotto(numbers, bonusNumber);
+      this.LottoStatistics(lotto);
     })
   }
 
@@ -53,20 +53,20 @@ class App {
     lotto.lottoCompareRepeat(this.lottoList);
     const winningNumber = lotto.winningNumbers;
 
-    MissionUtils.Console.print(`당첨 통계\n---`)
-    MissionUtils.Console.print(`3개 일치 (5,000원) - ${winningNumber[0]}개`)
-    MissionUtils.Console.print(`4개 일치 (50,000원) - ${winningNumber[1]}개`)
-    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${winningNumber[2]}개`)
-    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningNumber[4]}개`)
-    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${winningNumber[3]}개`)
-    this.getRevenueRate(lotto)
+    MissionUtils.Console.print(`당첨 통계\n---`);
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${winningNumber[0]}개`);
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${winningNumber[1]}개`);
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${winningNumber[2]}개`);
+    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningNumber[4]}개`);
+    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${winningNumber[3]}개`);
+    this.getRevenueRate(lotto);
   }
 
   getRevenueRate(lotto) {
     const revenue = lotto.getRevenue();
-    const revenueRate = lotto.caculationRevenueRate(revenue, this.amount)
+    const revenueRate = lotto.caculationRevenueRate(revenue, this.amount);
 
-    MissionUtils.Console.print(`총 수익률은 ${revenueRate}%입니다.`)
+    MissionUtils.Console.print(`총 수익률은 ${revenueRate}%입니다.`);
   }
 }
 
