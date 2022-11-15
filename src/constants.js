@@ -1,3 +1,5 @@
+const CURRENCY = `원`;
+
 const ROUNDING_DIGIT = 1;
 
 const LOTTO_BASIC_CONDITION = Object.freeze({
@@ -35,16 +37,17 @@ const MESSAGES = Object.freeze({
     IS_BLANK: `${HEADER.ERROR} 공백이 아닌 값을 입력해주세요!`,
     IS_NOT_NUMBER: `${HEADER.ERROR} 숫자를 입력해주세요!`,
     HAS_BLANK: `${HEADER.ERROR} 공백이 없는 숫자를 입력해주세요!`,
-    IS_NOT_KILO: `${HEADER.ERROR} 1,000원 단위의 금액을 입력해주세요!`,
+    IS_NOT_KILO: `${HEADER.ERROR} ${LOTTO_BASIC_CONDITION.price}${CURRENCY} 단위의 금액을 입력해주세요!`,
     IS_DEMICAL: `${HEADER.ERROR} 소수가 아닌 정수를 입력해주세요!`,
     IS_DIFFRENT_LOTTO_LENGTH: `${HEADER.ERROR} ${LOTTO_BASIC_CONDITION.length}개의 숫자를 입력해주세요!`,
     IS_DIFFRENT_BONUS_LENGTH: `${HEADER.ERROR} ${LOTTO_BASIC_CONDITION.bonusLength}개의 숫자를 입력해주세요!`,
-    IS_NOT_RANGE: `${HEADER.ERROR} 1에서 45 사이의 값으로만 입력해주세요!`,
+    IS_NOT_RANGE: `${HEADER.ERROR} ${LOTTO_BASIC_CONDITION.start}에서 ${LOTTO_BASIC_CONDITION.end} 사이의 값으로만 입력해주세요!`,
     IS_DUPLICATED: `${HEADER.ERROR} 중복되지 않은 값들로 입력해주세요!`,
     IS_INCLUDED_BONUS: `${HEADER.ERROR} 당첨 번호와 중복되지 않은 값으로 입력해주세요!`,
   },
 });
 
+exports.CURRENCY = CURRENCY;
 exports.MESSAGES = MESSAGES;
 exports.LOTTO_BASIC_CONDITION = LOTTO_BASIC_CONDITION;
 exports.PRIZE_TABLE = PRIZE_TABLE;
