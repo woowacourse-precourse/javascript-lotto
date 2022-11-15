@@ -7,10 +7,7 @@ const Printer = require('./utils/Printer.js');
 const { MESSAGE } = require('./utils/messages.js');
 
 class App {
-  /** @type {User} */
   #user;
-
-  /** @type {LottoManager} */
   #lottoManager;
 
   constructor() {

@@ -6,11 +6,6 @@ class Printer {
     Utils.print('');
   }
 
-  /**
-   *
-   * @param {{first: number, second: number, third:number, fourth:number, fifth:number}} statistics
-   * @param {string} revenue
-   */
   static printStatistics(statistics, revenue) {
     this.printNewLine();
     Utils.print(MESSAGE.STATISTICS);
@@ -23,10 +18,6 @@ class Printer {
     Utils.print(MESSAGE.REVENUE(revenue));
   }
 
-  /**
-   *
-   * @param {number[][]} userNumbersList
-   */
   static printUserNumberList(userNumbersList) {
     this.printNewLine();
     Utils.print(MESSAGE.USER_NUMBERS_LIST_LENGTH(userNumbersList.length));

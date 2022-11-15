@@ -1,48 +1,27 @@
-// @ts-check
-
 const Lotto = require('./Lotto');
+const Utils = require('./utils/Utils');
 const { PRIZE, LOTTO } = require('./utils/const');
 const { ERROR } = require('./utils/messages');
-const Utils = require('./utils/Utils');
 
 class LottoManager {
-  /** @type {number[]} */
   #winningNumbers;
-
-  /** @type {number} */
   #bonusNumber;
 
-  /**
-   *
-   * @param {number[]} winningNumbers
-   */
   setWinningNumbers(winningNumbers) {
     const lotto = new Lotto(winningNumbers);
     this.#winningNumbers = lotto.getNumbers();
   }
 
-  /**
-   *
-   * @returns {number[]}
-   */
   getWinningNumbers() {
     return this.#winningNumbers;
   }
 
-  /**
-   *
-   * @param {string} bonusNumber
-   */
   validateDuplicate(bonusNumber) {
     if (this.#winningNumbers.includes(Number(bonusNumber))) {
       throw new Error(ERROR.DUPLICATE);
     }
   }
 
-  /**
-   *
-   * @param {string} bonusNumber
-   */
   validateInteger(bonusNumber) {
     const number = Number(bonusNumber);
     if (
@@ -54,37 +33,20 @@ class LottoManager {
     }
   }
 
-  /**
-   *
-   * @param {string} bonusNumber
-   */
   #validate(bonusNumber) {
     this.validateDuplicate(bonusNumber);
     this.validateInteger(bonusNumber);
   }
 
-  /**
-   *
-   * @param {string} bonusNumber
-   */
   setBonusNumber(bonusNumber) {
     this.#validate(bonusNumber);
     this.#bonusNumber = Number(bonusNumber);
   }
 
-  /**
-   *
-   * @returns {number}
-   */
   getBonusNumber() {
     return this.#bonusNumber;
   }
 
-  /**
-   *
-   * @param {number} amount
-   * @returns {number[][]}
-   */
   generateNumbersList(amount) {
     const list = [];
 
@@ -102,21 +64,11 @@ class LottoManager {
     return list;
   }
 
-  /**
-   *
-   * @param {number[]} numbers
-   * @returns {number[]}
-   */
   publishLotto(numbers) {
     const lotto = new Lotto(numbers);
     return lotto.getNumbers();
   }
 
-  /**
-   *
-   * @param {number[]} userNumbers
-   * @returns {{count: number, isBonusCorrect: boolean}}
-   */
   countSame(userNumbers) {
     let count = 0;
     let isBonusCorrect = false;
@@ -129,12 +81,6 @@ class LottoManager {
     return { count, isBonusCorrect };
   }
 
-  /**
-   *
-   * @param {number} count
-   * @param {boolean} isBonusCorrect
-   * @returns {string}
-   */
   getPrize(count, isBonusCorrect) {
     if (isBonusCorrect && count === 5) {
       return 'second';
@@ -145,11 +91,6 @@ class LottoManager {
     return PRIZE.LIST_WITHOUT_SECOND[shiftedCount];
   }
 
-  /**
-   *
-   * @param {number[][]} userNumbersList
-   * @returns {{first: number, second: number, third:number, fourth:number, fifth:number}}
-   */
   getPrizes(userNumbersList) {
     const prizes = { first: 0, second: 0, third: 0, fourth: 0, fifth: 0 };
 
@@ -164,12 +105,6 @@ class LottoManager {
     return prizes;
   }
 
-  /**
-   *
-   * @param {{first: number, second: number, third:number, fourth:number, fifth:number}} statistics
-   * @param {number} amount
-   * @returns {string}
-   */
   calculateRevenue(statistics, amount) {
     let sum = 0;
 
@@ -183,12 +118,6 @@ class LottoManager {
     return revenue.toFixed(1);
   }
 
-  /**
-   *
-   * @param {number} amount
-   * @param {number[][]} userNumbersList
-   * @returns {{prizes:{first: number, second: number, third:number, fourth:number, fifth:number}, revenue: string}}
-   */
   generateStatistics(amount, userNumbersList) {
     const prizes = this.getPrizes(userNumbersList);
     const revenue = this.calculateRevenue(prizes, amount);
