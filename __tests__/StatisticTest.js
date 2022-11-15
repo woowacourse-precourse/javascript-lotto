@@ -20,7 +20,12 @@ describe("금액 validation 테스트", () => {
     expect(statistic.countHit(sixHit, winningNumber)).toBe(6);
   });
 
-  test("보너스 번호가 맞았는지를 판단한다", () => {});
+  test("보너스 번호가 맞았는지를 판단한다", () => {
+    const statistic = new Statistic();
+    const winningNumber = [1, 4, 24, 32, 40, 44, 7];
+    const bonusHit = [1, 4, 7, 24, 32, 40];
+    expect(statistic.checkBonusNumber(bonusHit, winningNumber)).toBe(true);
+  });
 
   test("로또 등수를 계산한다", () => {});
 });
