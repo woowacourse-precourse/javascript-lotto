@@ -4,7 +4,15 @@ const Stats = require("./Stats");
 const MissionUtils = require("@woowacourse/mission-utils");
 
 class App {
-  play() {}
+  async play() {
+    const information = await this.getInformation();
+
+    const totalStats = this.processInformation(information);
+
+    this.publishResults(totalStats);
+
+    this.terminate();
+  }
 
   async getInformation() {
     const cash = await UI.getCash();
