@@ -17,7 +17,7 @@ class App {
   }
 
   play() {
-    Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
+    this.LottoView.input('구입금액을 입력해 주세요.\n', (money) => {
       const lottoList = this.Lotto.NumberPackage(money);
 
       this.#purchaseAmount = money;
@@ -26,14 +26,14 @@ class App {
   }
 
   getWinNumber(lottoList) {
-    Console.readLine('\n당첨 번호를 입력해 주세요.\n', (numbers) => {
+    this.LottoView.input('\n당첨 번호를 입력해 주세요.\n', (numbers) => {
       GetNumber.toWin(numbers);
       this.getBonusNumber(lottoList, numbers);
     });
   }
 
   getBonusNumber(lottoList, numbers) {
-    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (number) => {
+    this.LottoView.input('\n보너스 번호를 입력해 주세요.\n', (number) => {
       GetNumber.bonus(numbers, number);
       this.compareResult(lottoList, numbers, number);
     });
