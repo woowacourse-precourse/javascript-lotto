@@ -1,3 +1,5 @@
+const {Console, Random} = require("@woowacourse/mission-utils");
+
 class Lotto {
   #numbers;
 
@@ -31,6 +33,21 @@ class Lotto {
     if (money%1000 !== 0) {
       throw new Error("[ERROR] 구입 금액을 1000원 단위로 입력해주세요.");
     }
+  }
+
+  randomGeneration() {
+    const randomLotto = Random.pickUniqueNumbersInRange(1, 45, 6);
+    randomLotto.sort((a, b) => a - b);
+    return randomLotto;
+  }
+
+  createLotto(frequency) {
+    const lotto = [];
+    while (frequency) {
+      frequency--;
+      lotto.push(this.randomGeneration());
+    }
+    return lotto;
   }
 }
 
