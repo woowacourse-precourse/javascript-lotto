@@ -140,6 +140,10 @@ class WinnerSelector {
     return [...prizes, bonusResult].sort().join('\n');
   }
 
+  setPurchasedLottos(lottos) {
+    this.lottos = lottos;
+  }
+
   setResultData() {
     this.getResult();
 

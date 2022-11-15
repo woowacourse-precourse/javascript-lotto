@@ -10,7 +10,8 @@ const mockQuestions = (answers) => {
   }), MissionUtils.Console.readLine);
 };
 
-const lottoDrawer = new LottoDrawer(NUMBER_COUNT, new WinnerSelector(PRICE, WINNER_RULE));
+const winnerSelector = new WinnerSelector(PRICE, WINNER_RULE);
+const lottoDrawer = new LottoDrawer(NUMBER_COUNT, winnerSelector);
 
 describe('LottoDrawer 클래스 테스트', () => {
   test('당첨 번호 입력 테스트', () => {
@@ -24,7 +25,7 @@ describe('LottoDrawer 클래스 테스트', () => {
   test('보너스 번호 입력 테스트', () => {
     mockQuestions(['11']);
 
-    lottoDrawer.setPurchasedLottos([]);
+    winnerSelector.setPurchasedLottos([]);
     lottoDrawer.setBonusNumber();
     expect(lottoDrawer.result).toEqual(expect.objectContaining({
       bonus: 11,
