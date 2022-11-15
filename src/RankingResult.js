@@ -3,7 +3,7 @@ const {
   getMatchedinWinningNumberCount,
   hasBounsNumber,
   getEarningsRate,
-} = require("./utils/utils");
+} = require("./utils/Utils");
 
 class RankingResult {
   rankingResult;

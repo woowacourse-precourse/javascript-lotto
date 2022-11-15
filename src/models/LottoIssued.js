@@ -1,4 +1,4 @@
-const {makeLottoNumber,sortLottoNumberInAscendignOrder} = require("../utils/utils")
+const {makeLottoNumber,sortLottoNumberInAscendignOrder} = require("../utils/Utils")
 
 class LottoIsuued {
   lottoIssued=[];
