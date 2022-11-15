@@ -7,13 +7,24 @@ class Lotto {
   }
 
   validate(numbers) {
+    let regex = /^[0-9]+$/;
+    const set = new Set(numbers);
+
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
-    const set = new Set(numbers);
     if (set.size !== numbers.length) {
       throw new Error("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
     }
+    
+    numbers.map( (val) => {
+      if (!regex.test(val)) {
+        throw new Error("[ERROR] 로또 번호는 숫자만 가능합니다.");
+      }
+      if (val < 1 || val > 45) {
+        throw new Error("[ERROR] 로또 번호는 1부터 45까지만 가능합니다.");
+      }
+    });
   }
 
   compare_result(bonus, lotto_list) {
