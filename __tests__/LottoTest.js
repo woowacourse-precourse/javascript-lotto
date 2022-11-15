@@ -21,6 +21,4 @@ describe("로또 클래스 테스트", () => {
   });
 
   MissionUtils.Console.close();
-
-  // 아래에 추가 테스트 작성 가능
 });
