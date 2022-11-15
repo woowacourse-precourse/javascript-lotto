@@ -7,7 +7,9 @@ class Profit{
     this.view = new View(this);
   }
   calculateProfit(paid, prize){
-    return prize/(paid/1000)*100;
+    let profit = prize/(paid/1000)*100;
+    const roundProfit = Math.round(profit * 10) / 10;
+    return roundProfit;
   }
   eachRankPrize(rank){
     if(rank===0){ return 5 }
