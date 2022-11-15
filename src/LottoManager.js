@@ -28,7 +28,7 @@ class LottoManager {
   }
 
   isNumber(input) {
-    return input.match(/^\d+$/g);
+    return String(input).match(/^\d+$/g);
   }
 
   isDivisibleByLottoPrice(input) {
