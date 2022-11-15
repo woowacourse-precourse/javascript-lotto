@@ -1,4 +1,5 @@
 const { ERROR_MESSAGES } = require('./common/message');
+const MissionUtils = require('@woowacourse/mission-utils');
 
 class CheckVaild {
   static isValidMoney(money) {
@@ -18,7 +19,22 @@ class CheckVaild {
       throw new Error(`${ERROR_MESSAGES.UNDER_THE_MIN} 입력금액: ${money}`);
     }
   }
-  static isVaildWinningNumber(winningNumber) {}
+  static isVaildWinningNumber(winningNumber) {
+    const tempWinningNumber = new Set(winningNumber);
+    if (winningNumber.length !== 6) {
+      throw new Error(`${ERROR_MESSAGES.NO_VALID_LOTTO_LENGTH}`);
+    }
+    if (winningNumber.length !== Array.from(tempWinningNumber).length) {
+      throw new Error(`${ERROR_MESSAGES.DUPLICATE_NUMBER}`);
+    }
+  }
+  static isVaildBounsNumber(winningNumber, bounsNumber) {
+    const totalNumber = [...winningNumber, bounsNumber];
+    const tempTotalNumber = new Set(totalNumber);
+    if (Array.from(tempTotalNumber).length !== 7) {
+      throw new Error(`${ERROR_MESSAGES.DUPLICATE_NUMBER}`);
+    }
+  }
 }
 
 module.exports = CheckVaild;
