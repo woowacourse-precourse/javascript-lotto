@@ -83,9 +83,12 @@ class Validation {
     if (!this.isNumberInRange(lottoNumber)) {
       throw new Error(ERROR_MESSAGE.NOT_IN_RANGE);
     }
-    if (new Set(lottoNumber).size != LOTTO_SIZE) {
+    if (!this.isUniqueLottoNumber(lottoNumber)) {
       throw new Error(ERROR_MESSAGE.NOT_UNIQUE_NUMBER);
     }
+  }
+  static isUniqueLottoNumber(lottoNumber) {
+    return new Set(lottoNumber).size === LOTTO_SIZE;
   }
 }
 
