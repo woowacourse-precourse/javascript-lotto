@@ -10,21 +10,26 @@ class App {
   #lottoPurchaseDtos;
   #lottoInputDto;
   #lottoPrizeDto;
+  #purchaseNumber;
+  #money;
 
   constructor() {
     this.#lottoPrizeDto = new LottoPrizeDto();
   }
 
-  play() {
-    const { purchaseNumber, money } = this.#getMoney();
-
-    this.#makeLottoPurchaseDtos(purchaseNumber);
-    this.#makeLottoInputDto();
-
-    this.#getResult(money);
+  async play() {
+    let waterfall = [
+      await this.#getMoney(),
+      this.#makeLottoPurchaseDtos(),
+      await this.#makeLottoInputDto(),
+      this.#getResult(),
+    ];
+    waterfall.forEach((fn) => {
+      fn;
+    });
   }
 
-  #getResult(money) {
+  #getResult() {
     this.#lottoPurchaseDtos.forEach((lottoPurchaseDto) => {
       LottoValidator.checkLottoWin(
         this.#lottoInputDto,
@@ -33,29 +38,32 @@ class App {
       );
     });
     OutputConsole.result(this.#lottoPrizeDto);
-    OutputConsole.sumMoney(this.#lottoPrizeDto, money);
+    OutputConsole.sumMoney(this.#lottoPrizeDto, this.#money);
   }
 
-  #makeLottoInputDto() {
-    const lottoNumbers = InputConsole.getLotto();
-    const lottoAdditinalNumber = InputConsole.getLottoAdditional(lottoNumbers);
+  async #makeLottoInputDto() {
+    const lottoNumbers = await InputConsole.getLotto();
+    const lottoAdditinalNumber = await InputConsole.getLottoAdditional(
+      lottoNumbers,
+    );
     this.#lottoInputDto = new LottoInputDto(lottoNumbers, lottoAdditinalNumber);
   }
 
-  #makeLottoPurchaseDtos(purchaseNumber) {
+  #makeLottoPurchaseDtos() {
     this.#lottoPurchaseDtos = Array.from(
-      { length: purchaseNumber },
+      { length: this.#purchaseNumber },
       () => new LottoPurchaseDto(),
     );
     OutputConsole.lottoNumbers(this.#lottoPurchaseDtos);
   }
 
-  #getMoney() {
-    const money = InputConsole.getMoney();
-    const purchaseNumber = LottoValidator.getLottoPuchaseNumber(money);
-    OutputConsole.lottoPurchaseNumber(purchaseNumber);
-    return { purchaseNumber, money };
+  async #getMoney() {
+    this.#money = await InputConsole.getMoney();
+    this.#purchaseNumber = LottoValidator.getLottoPuchaseNumber(this.#money);
+    OutputConsole.lottoPurchaseNumber(this.#purchaseNumber);
   }
 }
 
 module.exports = App;
+
+new App().play();
