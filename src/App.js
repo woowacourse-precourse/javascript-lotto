@@ -27,8 +27,13 @@ class App {
 
   inputBonusNumber() {
     Console.readLine('보너스 번호를 입력해 주세요.\n', (number) => {
-      this.inputValue[bonusNumber] = number;
+      this.inputValue[bonusNumber] = parseInt(number);
     });
+  }
+
+  changeNumber() {
+    const toNumbers = arr => arr.map(Number);
+    this.inputValue[winningNumbers] = toNumbers(this.inputValue[winningNumbers]);
   }
 
   calculateWinningAmount() {
