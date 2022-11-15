@@ -42,6 +42,15 @@ class App {
       this.raffleNumber.push(randomNumber)
     }
   }
+  numbersRange(numbers) {
+    for (let i in numbers) {
+      numbers[i] = parseInt(numbers[i])
+    }
+    const max = Math.max(...numbers)
+    const min = Math.min(...numbers)
+
+    this.Lotto.rangeIsValid(max, min)
+  }
 }
 
 const app = new App();
