@@ -97,4 +97,22 @@ describe('로또 테스트', () => {
       new Lotto([1, 2, 3, 4, 5, 49]);
     }).toThrow('[ERROR] 로또 번호는 1부터 45 사이여야 합니다.');
   });
+
+  test('예외 테스트 - 당첨번호[길이]', () => {
+    mockRandoms([[8, 21, 23, 41, 42, 43]]);
+    mockQuestions(['1000', '1,2,3,4,5,6,7']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR] 로또 번호는 6개여야 합니다.');
+  });
+
+  test('예외 테스트 - 보너스번호[중복]', () => {
+    mockRandoms([[8, 21, 23, 41, 42, 43]]);
+    mockQuestions(['1000', '1,2,3,4,5,6', '5']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR] 로또 번호는 중복되지 않아야 합니다.');
+  });
 });
