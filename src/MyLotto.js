@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-import {sortAscending} from './Util';
+const {sortAscending} = require('./Util');
 
 class MyLotto {
     #lottoList = [];
