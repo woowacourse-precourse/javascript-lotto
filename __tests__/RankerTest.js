@@ -34,4 +34,12 @@ describe("순위 계산 단위 테스트", () => {
       1, 0, 0, 1, 0,
     ]);
   });
+
+  const win4 = [8, 21, 23, 41, 42, 45];
+  const bonus4 = 44;
+  test("3, 5등 당첨 개수 계산", () => {
+    expect(Ranker.getPriceRank(lottos, [win4, bonus4])).toEqual([
+      1, 0, 1, 0, 0,
+    ]);
+  });
 });
