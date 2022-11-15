@@ -4,7 +4,10 @@ const LottoPurchase = require("../src/LottoPurchase");
 
 class App {
 
-  constructor() {}
+  constructor() {
+    this.lottoList;
+    this.amount;
+  }
 
   play() {}
 
@@ -13,6 +16,18 @@ class App {
       amount = Number(amount);
       const lottoPurchase = new LottoPurchase(amount);
       this.lottoListPrint(lottoPurchase);
+    })
+  }
+
+  lottoListPrint(lottoPurchase) {
+    this.lottoList = lottoPurchase.lottoPublish();
+    this.amount = lottoPurchase.amount;
+    const count = this.amount / 1000;
+    MissionUtils.Console.print(`${count}개를 구매했습니다.`)
+
+    this.lottoList.forEach(lottoNumbers => {
+      lottoNumbers = lottoNumbers.join(", ")
+      MissionUtils.Console.print(`[${lottoNumbers}]`);
     })
   }
 }
