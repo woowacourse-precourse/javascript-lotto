@@ -16,4 +16,12 @@ describe('Calculation 클래스 테스트', () => {
     const output = Calculation.setCommas(input);
     expect(output).toBe(expectedOutput);
   });
+
+  test('수익률을 반환한다.', () => {
+    const earning = 50000;
+    const amountPaid = 1000;
+    const expectedOutput = '5,000.0';
+    const output = Calculation.getRatesOfReturn(earning, amountPaid);
+    expect(output).toBe(expectedOutput);
+  });
 });
