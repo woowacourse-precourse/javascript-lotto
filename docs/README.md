@@ -1,32 +1,26 @@
 # 로또 게임
 
-<hr>
-
 ## 순서도
 
 <img width="100%" src="{C:\Users\skw19\Desktop\CS\wowacourse\weekMission\thirdWeek\로또게임.png}"/>
 
-<hr>
-
 ## 파일 구조
 
-> 📦src
-> ┣ 📜App.js
-> ┣ 📜Lotto.js
-> ┣ 📜LottoGame.js
-> ┣ 📜LottoGameOperator.js
-> ┣ 📜Validation.js
-> 📦Utils.js
-> ┗ 📜Constant.js
+> 📦src<br>
+> ┣ 📜App.js<br>
+> ┣ 📜Lotto.js<br>
+> ┣ 📜LottoGame.js<br>
+> ┣ 📜LottoGameOperator.js<br>
+> ┣ 📜Validation.js<br>
+> 📦Utils.js<br>
+> ┗ 📜Constant.js<br>
 
-`App.js` : **게임을 시작** 하는 역할로 `LottoGame`을 시작합니다.
-`Lotto.js` : **로또 번호** 를 유효성 검사를 하고 로또 번호를 가져오는 역할을 합니다.
-`LottoGame.js` : **게임이 진행** 하는 파일로 로또를 구입하고 구입한 로또 번호를 보여주고 당첨 번호, 보너스 번호를 입력 받고 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 및 수익률을 보여줍니다.
-`LottoGameOperator.js` : **게임 진행에 필요한 메서드** 들이 모아 관리합니다.
-`Validation.js` : 사용자의 입력 값 **구입 금액, 당첨 번호, 보너스 번호** 의 유효성 검사를 진행합니다.
-`Constant.js` : 로또 게임에 필요한 메세지, 상수 관련 정보가 담겨 있는 파일로 상수 값들을 의미에 맞게 객체에 담아 관리합니다..
-
-<hr>
+`App.js` : **게임을 시작** 하는 역할로 `LottoGame`을 시작합니다.<br>
+`Lotto.js` : **로또 번호** 를 유효성 검사를 하고 로또 번호를 가져오는 역할을 합니다.<br>
+`LottoGame.js` : **게임이 진행** 하는 파일로 로또를 구입하고 구입한 로또 번호를 보여주고 당첨 번호, 보너스 번호를 입력 받고 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 및 수익률을 보여줍니다.<br>
+`LottoGameOperator.js` : **게임 진행에 필요한 메서드** 들이 모아 관리합니다.<br>
+`Validation.js` : 사용자의 입력 값 **구입 금액, 당첨 번호, 보너스 번호** 의 유효성 검사를 진행합니다.<br>
+`Constant.js` : 로또 게임에 필요한 메세지, 상수 관련 정보가 담겨 있는 파일로 상수 값들을 의미에 맞게 객체에 담아 관리합니다.<br>
 
 ## 기능 목록
 
@@ -54,8 +48,6 @@
 
 - [v] 사용자가 구매한 로또 번호와 당첨 번호를 비교하는 기능
 - [v] 당첨 내역 및 수익률을 출력하는 기능
-
-<hr>
 
 ## 예외 목록
 
