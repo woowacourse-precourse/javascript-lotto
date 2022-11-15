@@ -21,9 +21,19 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    if (Array.isArray(numbers)) {
+      if (numbers.length !== 6) {
+        throw new Error(Data.ERROR_MESSAGES.errSixNumber);
+      }
+      for (let i = 0; i < numbers.length; i++) {
+        let validationArray = numbers.splice(i, 1);
+        this.checkDuplication(numbers, validationArray, i);
+      }
     }
+  }
+  checkDuplication(numbers, validationArray, index) {
+    if (validationArray.includes(numbers[index]))
+      throw new Error(Data.ERROR_MESSAGES.errDuplication);
   }
 
   // TODO: 추가 기능 구현
