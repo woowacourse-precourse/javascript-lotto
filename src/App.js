@@ -16,7 +16,7 @@ class App {
   play() {}
 
   lottoNum(answer) {
-    console.readLine('구입금액을 입력 해주세요/n', (answer) => {
+    console.readLine('구입금액을 입력 해주세요\n', (answer) => {
       console.log(answer);
     });
   }
@@ -35,13 +35,13 @@ class App {
   }
   //당첨 번호 사용자로부터 입력 받기 + 보너스 번호 
   insertLottoNum () {
-    Console.readLine('당첨 번호를 입력해 주세요/n', (answer)=> {
+    Console.readLine('당첨 번호를 입력해 주세요\n', (answer)=> {
       Console.print(answer);
       return new Lotto(numbers);
     });
   }
   insertBonusNum() {
-    Console.readLine('보너스 번호를 입력해 주세요/n', (number) => {
+    Console.readLine('보너스 번호를 입력해 주세요\n', (number) => {
       if(this.insertLottoNum.numbers.indexOf(number)!=-1){
         return number;
         Console.print(number);
@@ -83,11 +83,11 @@ class App {
   //수익률 및 결과 출력
   finalResult () {
     MissionUtils.Console.print(
-      `3개 일치 (5,000원) - ${fifth.count}개/n,
-       4개 일치 (50,000원) - ${fourth.count}개/n,
-       5개 일치 (1,500,000원) - ${fifth.count}개/n,
-       5개 일치, 보너스 볼 일치 (30,000,000원) - ${second.count}개/n,
-       6개 일치 (2,000,000원) - ${first.count}개/n
+      `3개 일치 (5,000원) - ${fifth.count}개\n,
+       4개 일치 (50,000원) - ${fourth.count}개\n,
+       5개 일치 (1,500,000원) - ${fifth.count}개\n,
+       5개 일치, 보너스 볼 일치 (30,000,000원) - ${second.count}개\n,
+       6개 일치 (2,000,000원) - ${first.count}개\n
        총 수익률은 ${totalRatio()}입니다.
        `
     );
