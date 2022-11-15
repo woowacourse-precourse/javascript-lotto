@@ -1,3 +1,5 @@
+const Calculate = require('./Calculate.js');
+
 class Score {
     constructor () {
         this.userLotto = null
