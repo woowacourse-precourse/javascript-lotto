@@ -12,7 +12,7 @@ class App {
     this.#matchedCounts = [];
   }
 
-  printLotteryResult = () => {};
+  getLotteryResult = () => {};
 
   compareLotteryNumbers = (lottery) => {
     let matchedCount = 0;
@@ -27,7 +27,7 @@ class App {
       const numberOfMatchedNumbers = this.compareLotteryNumbers(lottery);
       this.#matchedCounts.push(numberOfMatchedNumbers);
     });
-    this.printLotteryResult();
+    this.getLotteryResult();
   };
 
   getBonusNumber = () => {
