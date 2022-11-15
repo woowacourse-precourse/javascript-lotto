@@ -24,7 +24,7 @@ class LottoProgram {
   }
 
   inputPrice() {
-    readLine(GAME_MESSAGE.input_price, (answer) => this.getPrice(answer));
+    readLine(GAME_MESSAGE.input_price, this.getPrice.bind(this));
   }
 
   getPrice(answer) {
@@ -40,7 +40,7 @@ class LottoProgram {
   }
 
   inputLotto() {
-    readLine(GAME_MESSAGE.input_win_number, (answer) => this.getWinNumbers(answer));
+    readLine(GAME_MESSAGE.input_win_number, this.getWinNumbers.bind(this));
   }
 
   getWinNumbers(answer) {
@@ -49,7 +49,7 @@ class LottoProgram {
   }
 
   inputBonus() {
-    readLine(GAME_MESSAGE.input_bonus_number, (answer) => this.getBonusNumber(answer));
+    readLine(GAME_MESSAGE.input_bonus_number, this.getBonusNumber.bind(this));
   }
 
   getBonusNumber(answer) {
