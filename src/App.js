@@ -58,7 +58,7 @@ class App {
 
   getTotalReward() {
     const totalReward = this.winning.getTotalReward(this.winningResult);
-    const percent = totalReward / this.userPay * 100;
+    const percent = (totalReward / this.userPay * 100).toFixed(1);
     Console.print(`총 수익률은 ${percent}%입니다.`);
   }
 }
