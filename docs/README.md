@@ -36,10 +36,12 @@
 
   - 예외 발생 시(1000원으로 나누어떨어지지 않는 경우) throw new error("[ERROR] 잘못된 금액입니다.")
 
-- [] 로또 발행 : publishLotto()
+- [V] 로또 발행 : publishLotto()
 
   - 구입 금액에 해당하는 만큼의 로또 발행 (로또 1장 : 1000원)
-  - 오름차순 출력
+
+- [V] 로또 출력 : printLotto()
+- [V] 로또 내 번호 조건 내 문자열로 변환하여 리턴하는 메서드 : Lotto클래스 내 getNumString()
 
 - [] 당첨 여부 체크 : checkHit()
 

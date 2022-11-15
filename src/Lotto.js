@@ -27,6 +27,10 @@ class Lotto {
       throw new Error("[ERROR] 로또 번호는 중복이 허용되지 않습니다.");
     }
   }
+
+  getNumString() {
+    return `[${this.#numbers.join(", ")}]`;
+  }
 }
 
 module.exports = Lotto;
