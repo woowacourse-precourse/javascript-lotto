@@ -1,0 +1,13 @@
+const WINNING_NUMBER_COUNT_ERROR = '[ERROR] 당첨 번호는 6개의 숫자여야 합니다.';
+const WINNING_NUMBER_TYPE_ERROR = '[ERROR] 당첨 번호는 숫자여야 합니다.';
+const WINNING_NUMBER_DUPLICATE_ERROR =  '[ERROR] 당첨 번호는 중복되지 않아야 합니다.';
+const WINNING_NUMBER_RANGE_ERROR =  '[ERROR] 당첨 번호는 1과 45 사이의 숫자여야 합니다.';
+const WINNING_NUMBER_SEPARATOR_ERROR =  '[ERROR] 당첨 번호는 쉼표(,)로 구분되어야 합니다.';
+
+module.exports = {
+  WINNING_NUMBER_COUNT_ERROR,
+  WINNING_NUMBER_TYPE_ERROR,
+  WINNING_NUMBER_DUPLICATE_ERROR,
+  WINNING_NUMBER_RANGE_ERROR,
+  WINNING_NUMBER_SEPARATOR_ERROR
+};
