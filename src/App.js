@@ -51,6 +51,17 @@ class App {
     );
   }
 
+  inputBounsNumber() {
+    MissionUtils.Console.readLine(
+      Message.REQUEST.BONUS_NUMBER+"\n",
+      (bonusNumber) => {
+        Helper.checkDuplicatedNumber([this.#winningNumbersList, bonusNumber]);
+        Helper.checkIsRangedNumber([bonusNumber]);
+        this.#bonusNumber = bonusNumber;
+      }
+    );
+  }
+
 }
 
 module.exports = App;
