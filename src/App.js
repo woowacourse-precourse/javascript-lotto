@@ -1,5 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const { isNumber, isVaildMoney } = require('./Validation');
+const { isNumber, isVaildMoney, isValidRange } = require('./Validation');
 const {
   GET_MONEY,
   SHOW_AMOUNT,
@@ -93,6 +93,8 @@ class App {
       if (winNums.includes(Number(answer)))
         throw new Error(ERROR.DUPLICATED_BONUS_NUM);
       else if (!isNumber(answer)) throw new Error(ERROR.NOT_A_NUMBER);
+      else if (!isValidRange([answer], 1, 45))
+        throw new Error(ERROR.NOT_VALID_RANGE);
       return this.getScoreArray(this.lottoRandomNums);
     });
   }
@@ -157,5 +159,8 @@ class App {
     Console.close();
   }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
