@@ -68,4 +68,16 @@ describe("로또 테스트", () => {
       app.play();
     }).toThrow("[ERROR]");
   });
+
+  test("generateRandomLottoNumber 로또 개수를 입력 받아 로또번호를 담은 배열을 리턴한다.", () => {
+    mockRandoms([
+      [7, 11, 16, 35, 36, 44],
+      [3, 6, 9, 12, 15, 18],
+      [4, 10, 11, 16, 33, 45],
+    ]);
+    const app = new App();
+    const lottos = app.generateRandomLottoNumber(3);
+
+    expect(lottos.length).toEqual(3);
+  });
 });
