@@ -8,6 +8,14 @@ class Compare {
     this.#winning = winning;
     this.#bonus = bonus;
     this.compareResult = { THREE: 0, FOUR: 0, FIVE: 0, FIVE_BONUS: 0, SIX: 0 };
+    this.resultMessage = [
+      "3개 일치",
+      "4개 일치",
+      "5개 일치",
+      "5개 일치, 보너스 볼 일치",
+      "6개 일치",
+    ];
+    this.resultReward = [5000, 50000, 1500000, 30000000, 2000000000];
     this.compare();
   }
 
@@ -43,7 +51,6 @@ class Compare {
       else this.compareResult.FIVE += 1;
     }
     if (count.winningCount === 6) this.compareResult.SIX += 1;
-    console.log(this.compareResult);
   }
 }
 
