@@ -28,6 +28,15 @@ class App {
 
     this.readWinningNumbers();
   }
-}
+
+  // [v][사용자가 당첨 번호 입력 후에 메서드 순서대로 호출 기능]
+  readWinningNumbers() {
+    Console.readLine(APP_MESSAGE.INPUT_WINNING_NUMBER, (userInputString) => {
+      const winningNumbers = userInputString.split(",").map(Number);
+      this.lottoGame.setWinningNumbers(winningNumbers);
+
+      this.readBonusNumber();
+    });
+  }
 
 module.exports = App;
