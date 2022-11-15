@@ -68,6 +68,15 @@ class Judge {
       throw new Error("[ERROR] 당첨 번호는 중복될 수 없습니다.");
     }
   }
+
+  isBonusNumDuplicate(bonusInput) {
+    if (this.#lottoArr.includes(bonusInput)) {
+      MissionUtils.Console.print(
+        "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다."
+      );
+      throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    }
+  }
 }
 
 module.exports = Judge;
