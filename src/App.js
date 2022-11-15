@@ -14,6 +14,7 @@ class App {
       this.money = parseInt(money);
       this.myLotto = new MyLotto(this.money);
 
+      this.printLottoList(this.myLotto.getMyLottoList());
     });
   }
 
@@ -23,6 +24,14 @@ class App {
       throw new Error("[ERROR] 숫자만 입력 가능합니다.");
     }
   }
+
+  printLottoList(lottoList) {
+    MissionUtils.Console.print(lottoList.length + '개를 구매했습니다.');
+    for (const lotto of lottoList) {
+      MissionUtils.Console.print(lotto);
+    }
+  }
+
 }
 
 module.exports = App;
