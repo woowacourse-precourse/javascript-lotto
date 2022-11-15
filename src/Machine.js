@@ -15,7 +15,7 @@ class Machine {
 
   calculateCount(cost) {
     if (cost % 1000 !== 0) {
-      // 에러 처리
+      throw new Error("[ERROR] 구입 금액이 1,000원으로 나눠지지 않습니다.");
     } 
 
     this.count = parseInt(cost / 1000);
