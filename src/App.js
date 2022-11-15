@@ -1,6 +1,5 @@
-const { Console, Random } = require('@woowacourse/mission-utils');
+const { Console } = require('@woowacourse/mission-utils');
 const { MESSAGE } = require('./data/constants');
-const Lotto = require('./components/Lotto');
 const User = require('./components/User');
 const Winning = require('./components/Winning');
 const { allMatchNum } = require('./utils/utils');
@@ -27,12 +26,15 @@ class App {
   inputBonusNum() {
     Console.readLine('\n' + MESSAGE.BONUS_INPUT + '\n', bonusNumber => {
       this.winning.setBonusNum(bonusNumber);
-      const map = allMatchNum(this.user.lottos, this.winning.winningNumber);
-      this.printResult(map);
+
+      const winningCountMap = this.user.checkWinningCount(
+        this.winning.winningNumber,
+        this.winning.bonusNumber,
+      );
+
+      this.printResult(winningCountMap);
     });
   }
-
-  compareLotto() {}
 
   printResult(countMap) {
     Console.print(MESSAGE.WINNING);
@@ -47,7 +49,7 @@ class App {
     );
     Console.print(
       MESSAGE.MATCH_FIVE_BONUS +
-        (countMap.get(5) || 0).toString() +
+        (countMap.get('bonus') || 0).toString() +
         MESSAGE.COUNT,
     );
     Console.print(
@@ -63,8 +65,5 @@ class App {
     this.inputMoney();
   }
 }
-
-const app = new App();
-app.play();
 
 module.exports = App;

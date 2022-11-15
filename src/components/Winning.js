@@ -11,6 +11,7 @@ const {
 
 class Winning {
   winningNumber;
+  bonusNumber;
 
   constructor(winningString) {
     this.validate(winningString);
@@ -30,7 +31,7 @@ class Winning {
   setBonusNum(bonusNumber) {
     this.validateBonus(bonusNumber);
 
-    this.winningNumber.push(parseInt(bonusNumber));
+    this.bonusNumber = parseInt(bonusNumber);
   }
 
   validateBonus(bonusNumber) {

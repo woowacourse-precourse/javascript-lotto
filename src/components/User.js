@@ -37,8 +37,14 @@ class User {
     }
   }
 
-  countWinningLottos(winningNum) {
-    const winningMap = allMatchNum(this.lottos, winningNum);
+  checkWinningCount(winningNum, bonusNum) {
+    const winningCountMap = new Map();
+    this.lottos.forEach(lotto => {
+      const result = lotto.checkWinning(winningNum, bonusNum);
+      const count = winningCountMap.get(result) + 1 || 1;
+      winningCountMap.set(result, count);
+    });
+    return winningCountMap;
   }
 
   calculateYield(winningMap) {
@@ -46,7 +52,7 @@ class User {
       (winningMap.get(3) || 0) * NUMBER.THREE_WINNING +
       (winningMap.get(4) || 0) * NUMBER.FOUR_WINNING +
       (winningMap.get(5) || 0) * NUMBER.FIVE_WINNING +
-      (winningMap.get(5) || 0) * NUMBER.FIVE_BONUS_WINNIGN +
+      (winningMap.get('bonus') || 0) * NUMBER.FIVE_BONUS_WINNIGN +
       (winningMap.get(6) || 0) * NUMBER.SIX_WINNING;
     return (divisor / this.inputMoney) * 100;
   }

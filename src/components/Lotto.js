@@ -1,5 +1,5 @@
-const { Console } = require('@woowacourse/mission-utils');
 const { ERROR, NUMBER } = require('../data/constants');
+const { checkMatchNum, checkBonus } = require('../utils/utils');
 
 const {
   isNotUnique,
@@ -11,11 +11,11 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    this.#validate(numbers);
     this.#numbers = numbers;
   }
 
-  validate(numbers) {
+  #validate(numbers) {
     if (!isMatchLength(numbers, NUMBER.LENGTH_LOTTO)) {
       throw new Error(ERROR.LENGTH);
     }
@@ -28,11 +28,13 @@ class Lotto {
     return this.#numbers;
   }
 
-  print() {
-    Console.print(this.#numbers);
+  checkWinning(winningNum, bonusNum) {
+    let result = checkMatchNum(this.#numbers, winningNum);
+    if (result === 5 && checkBonus(this.#numbers, bonusNum)) {
+      return 'bonus';
+    }
+    return result;
   }
-
-  // TODO: 추가 기능 구현
 }
 
 module.exports = Lotto;
