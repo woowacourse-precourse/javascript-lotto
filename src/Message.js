@@ -8,6 +8,10 @@ class Message {
     static LOTTO_NUMBER_BIGGER_THAN_ONE_SMALLER_THAN_FOURTY_FIVE = "[ERROR]로또 번호는 1부터 45 사이의 숫자여야 합니다."
     static NOT_NUMBER = "[ERROR]숫자가 아닙니다.";
     static SAME_NUMBER = "[ERROR]중복된 숫자가 있습니다.";
+    static getLottoCountMessage (count) {
+        return `${count}개를 구매했습니다.`
+    }
+
 }
   
   module.exports = Message;
