@@ -1,6 +1,7 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 
 const App = require('../src/App');
+const { getLogSpy, mockRandoms, mockQuestions } = require('../src/testFunction');
 
 describe('로또 테스트', () => {
   test('기능 테스트', () => {
