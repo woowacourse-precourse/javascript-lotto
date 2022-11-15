@@ -26,33 +26,34 @@
 
 ###
 
-- [x] 로또 발행 : 발행 - Lotto#issue
-  - [x] 구입 금액만큼 발행 - Issue
+- [x] 로또 발행 : 발행
+  - [x] 구입 금액만큼 발행
     - [x] 각각의 경우 에러 발생시 throw
 
 ###
 
-- [ ] user: 당첨 번호 입력 - Player#winningNumbers
-  - [ ] 요소가 숫자 타입인가 - Input#type
-  - [ ] 요소가 범위 내에 있는가 - Input#range
-  - [ ] 요소가 6개 인가 - Input#lengthSix
-  - [ ] 요소가 중복되지 않는가 - Input#duplication
-  - [ ] 발생 결과가 ',' 형태로 만들어지는가 - Input#format#input
-    - [ ] 각각의 경우 에러 발생시 throw
+- [x] user: 당첨 번호 입력
+  - [x] 요소가 숫자 타입인가
+  - [x] 요소가 범위 내에 있는가
+  - [x] 요소가 6개 인가
+  - [x] 요소가 중복되지 않는가
+  - [x] 발생 결과가 ',' 형태로 만들어지는가
+    - [x] 각각의 경우 에러 발생시 throw
 
 ###
 
-- [ ] user: 보너스 번호 입력 - Player#winningBonusNumber
-  - [ ] 요소가 숫자 타입인가 - Input#type
-  - [ ] 요소가 범위 내에 있는가 - Input#range
-  - [ ] 요소가 1개 인가 - Input#lengthOne
-    - [ ] 각각의 경우 에러 발생시 throw
+- [x] user: 보너스 번호 입력
+  - [x] 요소가 숫자 타입인가
+  - [x] 요소가 범위 내에 있는가
+  - [x] 요소가 1개 인가
+    - [x] 각각의 경우 에러 발생시 throw
 
 ###
 
-- [ ] 당첨 결과 - Result
-  - [ ] 내역 - Result#winning
-  - [ ] 수익률 (소수점 둘째자리에서 반올림) - Result#profit - [ ] 각각의 경우 에러 발생시 throw
+- [x] 당첨 결과 
+  - [x] 내역 
+  - [x] 수익률 (소수점 둘째자리에서 반올림)
+    - [x] 각각의 경우 에러 발생시 throw
 
 ###
 
