@@ -1,4 +1,6 @@
-const { Console, Random } = require('@woowacourse/mission-utils');
+const { PRIZE } = require('./Constants/number');
+const { SECOND, THIRD, FIFTH, NONEPRIZE } = PRIZE;
+const validate = require('./Utils/validate');
 
 /**
  * @classdesc User가 소유한 로또
@@ -6,55 +8,33 @@ const { Console, Random } = require('@woowacourse/mission-utils');
 class Lotto {
   #numbers;
 
-  constructor() {
-    this.genRndLotto();
-  }
-
-  /**
-   * @param {Array} numbers
-   * @description 로또 번호가 유효한지 검사
-   */
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
-    }
-  }
-
-  /**
-   * @description 랜덤한 로또 번호를 생성
-   */
-  genRndLotto() {
-    this.#numbers = Random.pickUniqueNumbersInRange(1, 49, 6).sort(
-      (a, b) => a - b
-    );
+  constructor(number) {
+    validate.Length(number, 6);
+    validate.Overlap(number);
+    validate.ArrOnlyInputNum(number);
+    this.#numbers = number;
   }
 
   /**
    * @description 로또 번호를 반환
    */
-  get getLotto() {
-    Console.print(this.#numbers);
+  getLotto() {
     return this.#numbers;
   }
 
   /**
-   * @param {Six Number Array}winning
+   * @param {Six Number Array}winNums
    * @param {Number} bonusNum
-   * @returns {Number} - 0, 1, 2, 3, 4, 5
+   * @returns 3,4,5,5.5,6 순으로 1등부터 꼴등까지의 등수를 반터
    */
-  isPrize(winning, bonusNum) {
-    let winningNotMatch = this.#numbers.filter((num) => !winning.includes(num));
-
-    if (winningNotMatch.length === 0) return 1;
-    if (winningNotMatch.length === 1 && winningNotMatch[0] === bonusNum)
-      return 2;
-    if (winningNotMatch.length === 1 && winningNotMatch[0] !== bonusNum)
-      return 3;
-    if (winningNotMatch.length === 2) return 4;
-    if (winningNotMatch.length === 3) return 5;
+  isPrize(winNums, bonusNum) {
+    let count = 0;
+    winNums.forEach((num) => {
+      this.#numbers.includes(num) ? count++ : count;
+    });
+    if (count === THIRD && this.#numbers.includes(bonusNum)) count = SECOND;
+    return count >= FIFTH ? count : NONEPRIZE;
   }
-
-  // TODO: 추가 기능 구현
 }
 
 module.exports = Lotto;
