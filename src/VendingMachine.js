@@ -10,7 +10,7 @@ const {
   getWinAmount,
   getRateStrOfProfit,
   lottoArrToString,
-} = require('./lib/utilFns.js');
+} = require('./Util');
 const { LOTTOS, CONSOLE_MSG, ERROR_MSG } = require('./lib/constant');
 
 class VendingMachine {
@@ -76,8 +76,9 @@ class VendingMachine {
   }
 
   askLottoNumbersCb(answer) {
-    const lottoNumbers = splitStrByComma(answer).map(Number);
-    lottoNumbers.sort((a, b) => a - b);
+    const lottoNumbers = splitStrByComma(answer)
+      .map(Number)
+      .sort((a, b) => a - b);
 
     this.#lottoMachine = new Lotto(lottoNumbers);
     this.askBonusNumber();

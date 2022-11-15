@@ -1,4 +1,4 @@
-const { isLottoNumbers, isDuplicated, isInclude } = require('./lib/utilFns');
+const { isLottoNumbers, isDuplicated, isInclude } = require('./Util');
 const { ERROR_MSG, LOTTOS } = require('./lib/constant');
 
 class Lotto {

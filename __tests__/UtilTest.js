@@ -5,7 +5,7 @@ const {
   splitStrByComma,
   getRandomNumbers,
   getRateStrOfProfit,
-} = require('../src/lib/utilFns');
+} = require('../src/Util');
 const MissionUtils = require('@woowacourse/mission-utils');
 
 const mockRandoms = (numbers) => {
