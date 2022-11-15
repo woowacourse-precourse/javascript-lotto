@@ -8,22 +8,34 @@ class LottoResult {
     this.#lottoMachine = LottoMachine;
     this.#number = winningLotto;
     this.#bonus = bonusNumber;
-    this.#rank = Array(5).fill(0);
+    this.#rank = {};
   }
 
-  checkRank() {
+  getRank() {
+    return this.#rank;
+  }
+
+  makeResult() {
     this.#lottoMachine.getLottoList().forEach((Lotto)=>{
       const matchCnt = this.checkWinning(Lotto.getNumbers());
-      if(matchCnt === 3 || matchCnt === 4){
-        this.#rank[matchCnt-3] += 1;
-      }
-      if(matchCnt === 5){
-        this.checkBonus(Lotto.getNumbers()) ? this.#rank[matchCnt-2] += 1 : this.#rank[matchCnt-3] += 1;
-      }
-      if(matchCnt === 6){
-        this.#rank[matchCnt-2] += 1; 
-      }
-    })
+      const rank = this.checkRank(matchCnt);
+      this.#rank = {...this.#rank, [rank] : this.#rank?.[rank] + 1 || 1};
+    });
+  }
+
+  checkRank(matchCnt) {
+    if(matchCnt === 3){
+      return 'RANK_5';
+    }
+    if(matchCnt === 4){
+      return 'RANK_4';
+    }  
+    if(matchCnt === 5){
+      return `RANK_${this.checkBonus(Lotto.getNumbers()) ?  2 : 3}`
+    }
+    if(matchCnt === 6){
+      return 'RANK_1';
+    }
   }
 
   checkWinning(lotto) {
