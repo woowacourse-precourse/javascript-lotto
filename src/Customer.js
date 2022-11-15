@@ -7,6 +7,7 @@ class Customer {
 
   constructor() {
     this.lottoList = [];
+    this.money = 0;
   }
 
   validate(numbers) {
@@ -14,12 +15,13 @@ class Customer {
       throw new Error(Constant.MESSAGE.ERROR.OUT_OF_RANGE);
     }
   }
-  async purchaseLotto() {
-    await MissionUtils.Console.readLine(
+  purchaseLotto() {
+    MissionUtils.Console.readLine(
       Constant.MESSAGE.GUIDE.ENTER_MONEY,
       (answer) => {
         //유효성검사
         this.publishLotto(answer);
+        this.money = answer;
         this.getWinningNumber();
       }
     );
@@ -40,20 +42,20 @@ class Customer {
     MissionUtils.Console.readLine(
       Constant.MESSAGE.GUIDE.ENTER_NUMBER,
       (answer) => {
-        this.#lotto = new Lotto(answer);
+        this.#lotto = new Lotto(answer, this.lottoList, this.money);
         this.getBonusNumber();
       }
     );
   }
   getBonusNumber() {
     MissionUtils.Console.readLine(
-      Constant.MESSAGE.GUIDE.ENTER_NUMBER,
+      Constant.MESSAGE.GUIDE.ENTER_BONUS_NUMBER,
       (answer) => {
-        this.#lotto.setBonusNum(answer);
+        this.#lotto.setBonusNum(parseInt(answer));
+        this.#lotto.checkNumber();
       }
     );
   }
-  // TODO: 추가 기능 구현
 }
 
 module.exports = Customer;
