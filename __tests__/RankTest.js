@@ -15,7 +15,7 @@ describe("로또 테스트", () => {
     );
     const firstRanking = ranking.rankingResult.find((v) => v.ranking == "FIRST");
 
-    expect(firstRanking.amount).toEqual(outputAmount);
+    return expect(firstRanking.amount).toEqual(outputAmount);
   });
   
   test("2등 당첨자 수 구하기", () => {
@@ -32,7 +32,7 @@ describe("로또 테스트", () => {
     );
     const secondRanking = ranking.rankingResult.find((v) => v.ranking == "SECOND");
 
-    expect(secondRanking.amount).toEqual(outputAmount);
+    return expect(secondRanking.amount).toEqual(outputAmount);
   });
 
   test("3등 당첨자 수 구하기", ()=>{
@@ -45,7 +45,7 @@ describe("로또 테스트", () => {
     ranking.setRankingResult(issuedLotto,winningLotto,bonusLotto)
     const thirdRanking = ranking.rankingResult.find((v)=>v.ranking=="THIRD")
 
-    expect(thirdRanking.amount).toEqual(outputAmount);
+    return expect(thirdRanking.amount).toEqual(outputAmount);
   })
 
   test("여러개 로또 비교해 당첨자 수 구하기", () => {
@@ -107,7 +107,7 @@ describe("로또 테스트", () => {
       bonusLotto
     );
 
-    expect(ranking.rankingResult).toEqual(output);
+    return expect(ranking.rankingResult).toEqual(output);
   });
 });
 

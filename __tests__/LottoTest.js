@@ -42,7 +42,7 @@ describe("발행한 로또 클래스 테스트",()=>{
 
     const lottoIssued = new LottoIsuued(lottoCount)
 
-    expect(lottoIssued.lottoIssued).toHaveLength(output)
+    return expect(lottoIssued.lottoIssued).toHaveLength(output)
   })
 })
 
@@ -67,7 +67,7 @@ describe("구매 금액 테스트", () => {
 
     const buyer = new LottoPayment(input);
 
-    expect(buyer.lottoCount).toEqual(output);
+    return expect(buyer.lottoCount).toEqual(output);
   });
 });
 

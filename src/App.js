@@ -67,7 +67,8 @@ class App {
     ranking.setEarningsRate(ranking.rankingResult, this.lottoPayment)
     printRankingResult(ranking.rankingResult);
     printEarningsRate(ranking.earningsRate);
-    Console.close();
+
+    return Console.close();
   }
 
   play() {
