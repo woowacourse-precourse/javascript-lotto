@@ -1,6 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 
-const User = require('./User');
+const Buyer = require('./Buyer');
 const Lotto = require('./Lotto');
 const Drawing = require('./Drawing');
 const { MESSAGE } = require('../src/utils/constants');
@@ -24,8 +24,8 @@ class App {
     const trimmedAmount = amount.trim();
     validateAmount(amount);
 
-    this.drawing.user = new User(trimmedAmount);
-    this.printBoughtLottos(this.drawing.user.buyLotto());
+    this.drawing.buyer = new Buyer(trimmedAmount);
+    this.printBoughtLottos(this.drawing.buyer.buyLotto());
 
     this.getWinningNumbers(this.setLottoWinningNumbers.bind(this));
   }

@@ -2,12 +2,12 @@ const { roundToTwo } = require('./utils/utils');
 const { REWARD, STATISTICS } = require('./utils/constants');
 
 class Drawing {
-  #user;
+  #buyer;
   #winningNumbers;
   #bonusNumber;
 
-  set user(user) {
-    this.#user = user;
+  set buyer(buyer) {
+    this.#buyer = buyer;
   }
 
   set winningNumbers(winningNumbers) {
@@ -18,8 +18,8 @@ class Drawing {
     this.#bonusNumber = bonusNumber;
   }
 
-  get user() {
-    return this.#user;
+  get buyer() {
+    return this.#buyer;
   }
 
   get winningNumbers() {
@@ -38,7 +38,7 @@ class Drawing {
   }
 
   getDrawResult() {
-    const matchCount = this.user.lottos.map(lotto =>
+    const matchCount = this.buyer.lottos.map(lotto =>
       this.getMatchCount(lotto.numbers, this.winningNumbers, this.bonusNumber)
     );
 
@@ -70,7 +70,7 @@ class Drawing {
   }
 
   calcRevenue(reward) {
-    const revenue = (reward / this.user.purchaseAmount) * 100;
+    const revenue = (reward / this.buyer.purchaseAmount) * 100;
     return roundToTwo(revenue);
   }
 

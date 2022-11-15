@@ -1,7 +1,7 @@
 const Lotto = require('./Lotto');
 const { AMOUNT_UNIT } = require('./utils/constants');
 
-class User {
+class Buyer {
   constructor(purchaseAmount) {
     this.purchaseAmount = Number(purchaseAmount);
   }
@@ -19,4 +19,4 @@ class User {
   }
 }
 
-module.exports = User;
+module.exports = Buyer;
