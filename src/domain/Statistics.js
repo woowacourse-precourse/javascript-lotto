@@ -8,9 +8,9 @@ class Statistics {
   makeStatisticsData(eachLottoPrize, purchaseAmount) {
     const prizeStatistics = this.makePrizeStatistics(eachLottoPrize);
 
-    this.totalPrizeMoney = this.makeTotalPrizeMoney(prizeStatistics);
-    this.yieldRatio = this.makeYieldRatio(this.totalPrizeMoney, purchaseAmount);
-    this.prizeStatisticsTemplates = this.makePrizeStatisticsTemplates(prizeStatistics);
+    this.totalPrizeMoney = this.calculateTotalPrizeMoney(prizeStatistics);
+    this.yieldRatio = this.calculateYieldRatio(this.totalPrizeMoney, purchaseAmount);
+    this.prizeStatisticsTemplates = this.calculatePrizeStatisticsTemplates(prizeStatistics);
   }
 
   makePrizeStatistics(eachLottoPrize) {
@@ -28,7 +28,7 @@ class Statistics {
     return prizeStatistics;
   }
 
-  makeTotalPrizeMoney(prizeStatistics) {
+  calculateTotalPrizeMoney(prizeStatistics) {
     let totalPrizeMoney = 0;
 
     for (const [prize, count] of Object.entries(prizeStatistics)) {
@@ -39,7 +39,7 @@ class Statistics {
     return totalPrizeMoney;
   }
 
-  makeYieldRatio(totalPrizeMoney, purchaseAmount) {
+  calculateYieldRatio(totalPrizeMoney, purchaseAmount) {
     if (totalPrizeMoney) {
       return ((totalPrizeMoney / purchaseAmount) * 100).toFixed(1);
     }
@@ -47,7 +47,7 @@ class Statistics {
     return 0;
   }
 
-  makePrizeStatisticsTemplates(prizeStatistics) {
+  calculatePrizeStatisticsTemplates(prizeStatistics) {
     const ranks = ["fifthPrize", "fourthPrize", "thirdPrize", "secondPrize", "firstPrize"];
 
     const templates = ranks.map((rank) => {
