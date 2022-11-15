@@ -13,6 +13,9 @@ class Lotto {
     LottoNumberUtils.validateDuplication(numbers);
     numbers.forEach((value) => LottoNumberUtils.validateRange(value));
   }
+
+  getNumberString() {
+    return "[" + this.#numbers.join(", ") + "]";
   }
 
   // TODO: 추가 기능 구현
