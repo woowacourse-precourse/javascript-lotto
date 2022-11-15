@@ -8,11 +8,11 @@ class App {
   play() {}
   #Lotto;
   #purchaseAmount; //입력금액
-  #lottoNum; //구입한 로또 수
   #issuedLottoNum = [];
   #bonusNum;
 
   constructor() {
+    this.lottoNum; //구입한 로또 수
     this.winningResult = [];
     this.winningCountResult = [];
     this.earningRate;
@@ -39,8 +39,8 @@ class App {
   }
 
   issueLotto() {
-    this.#lottoNum = this.#purchaseAmount / LOTTOPRICE;
-    for (var count = 0; count < this.#lottoNum; count++) {
+    this.lottoNum = this.#purchaseAmount / LOTTOPRICE;
+    for (var count = 0; count < this.lottoNum; count++) {
       let issuedLottoNum = Random.pickUniqueNumbersInRange(1, 45, 6);
       issuedLottoNum = issuedLottoNum.sort((x, y) => x - y);
       this.#issuedLottoNum.push(issuedLottoNum);
@@ -49,7 +49,7 @@ class App {
   }
 
   printIssuedLotto() {
-    Console.print(`${this.#lottoNum}개를 구매했습니다.`);
+    Console.print(`${this.lottoNum}개를 구매했습니다.`);
 
     this.#issuedLottoNum.forEach((num) => {
       Console.print(`[${num.join(", ")}]`);
@@ -75,7 +75,7 @@ class App {
   }
 
   compareLottoNum() {
-    for (var index = 0; index < this.#lottoNum; index++) {
+    for (var index = 0; index < this.lottoNum; index++) {
       let count = 0;
       for (var winningIndex = 0; winningIndex < LOTTONUMCOUNT; winningIndex++) {
         this.#issuedLottoNum[index].includes(
