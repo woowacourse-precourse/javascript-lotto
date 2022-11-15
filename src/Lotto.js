@@ -1,7 +1,7 @@
 const Random = require("@woowacourse/mission-utils").Random;
 const Console = require("@woowacourse/mission-utils").Console;
-const inputValidation = require("../inputValidation");
-const { INPUTS } = require("../constants");
+const inputValidation = require("./inputValidation");
+const { INPUTS } = require("./constants");
 
 class Lotto {
   #numbers;
@@ -23,13 +23,6 @@ class Lotto {
 
   validate(numbers) {
     const checkSixNum = inputValidation.checkSixNum(numbers);
-  }
-
-  //당첨번호 입력받기
-  inputNumbers() {
-    Console.readLine(INPUTS.INPUT_NUMBERS, (numbers) => {
-      this.#numbers = numbers;
-    });
   }
 }
 

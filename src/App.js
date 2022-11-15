@@ -5,9 +5,11 @@ const inputValidation = require("./inputValidation");
 
 class App {
   #countLottos;
+  #pickedLottoNum;
+
   play() {
     this.inputMoney();
-    this.outputCountLottos();
+    this.printCountLottos();
     Console.close();
   }
 
@@ -18,29 +20,27 @@ class App {
     });
   }
 
-  outputCountLottos() {
+  printCountLottos() {
     Console.print(`${this.#countLottos}개를 구매했습니다.`);
   }
 
-  makeLottosList() {
-    
+  //로또 뽑기 logic
+  pickRandomLottoNumber() {
+    const pickedLottoNum = Random.pickUniqueNumbersInRange(1, 45, 6);
+    this.#pickedLottoNum = pickedLottoNum;
   }
+
+  makeLottosList() {}
 }
 
 module.exports = App;
 
-//  //당첨번호 입력받기
+//당첨번호 입력받기
 // inputNumbers() {
 //   Console.readLine(INPUTS.INPUT_NUMBERS, (numbers) => {
 //     this.#numbers = numbers;
 //   });
 // };
-
-//   //로또 뽑기 logic
-//   randomLottoNumber() {
-//     const lottoNum = Random.pickUniqueNumbersInRange(1, 45, 6);
-//     return lottoNum;
-//   }
 
 //   randomBonusNumber() {
 //     // const bonusNum = Random.
