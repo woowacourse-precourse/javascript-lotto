@@ -29,7 +29,6 @@ class Bonus {
   }
 
   validateBonusNumUnique(numbers, winningNumArray) {
-    // throw error if numbers is in winningNumArray
     if (winningNumArray.includes(numbers)) {
       throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
     }

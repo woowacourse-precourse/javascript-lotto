@@ -18,4 +18,10 @@ describe("보너스 클래스 테스트", () => {
       new Bonus(6.7);
     }).toThrow("[ERROR]");
   });
+
+  test("보너스 번호가 당첨번호와 중복되면 예외가 발생한다.", () => {
+    expect(() => {
+      new Bonus(1, [1, 2, 3, 4, 5, 6]);
+    }).toThrow("[ERROR]");
+  });
 });
