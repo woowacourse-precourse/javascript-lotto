@@ -1,7 +1,9 @@
 const { print, readLine } = require('./utils');
 const { LOTTO_PRICE } = require('./var');
-
+const {Random} = require("@woowacourse/mission-utils");
 class App {
+  #lotto;
+  #madeLotto;
   play() {
     this.inputPrice();
   }
@@ -22,9 +24,19 @@ class App {
     if (!isNaN(money) && money >= 1000) {
       const countLotto = Math.floor(Number(money) / LOTTO_PRICE);
       print(`${countLotto}개를 구매했습니다.\n`);
+      this.#madeLotto = this.makingLottoNumbers(countLotto);
+      this.#madeLotto.forEach(lottoNumber => print(`[${lottoNumber.join(', ')}]`));
     }
   }
 
+  makingLottoNumbers(count) {
+    let lottoNumbers = [];
+    for (let i = 0; i < count; i++) {
+      let lottoNumber = Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
+      lottoNumbers.push(lottoNumber);
+    }
+    return lottoNumbers;
+  }
 }
 
 module.exports = App;
