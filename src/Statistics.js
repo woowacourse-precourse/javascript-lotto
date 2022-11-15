@@ -1,12 +1,8 @@
 const { Console } = require("@woowacourse/mission-utils");
 
 class Statistic {
-  #player;
-  #winningLotto;
   #totalCount;
-  constructor(player, winningLotto) {
-    this.#player = player;
-    this.#winningLotto = winningLotto;
+  constructor() {
     this.#totalCount = {
       "3hit": 0,
       "4hit": 0,
@@ -15,13 +11,21 @@ class Statistic {
       "6hit": 0,
     };
   }
+  checkWin(lottoNumber, winningLotto) {
+    const hit = this.countHit(lottoNumber, winningLotto);
+    if (hit === 5) {
+      this.checkBonusNumber(lottoNumber, winningLotto);
+    }
+    return hit;
+  }
   countHit(lottoNumber, winningNumber) {
     let hit = 0;
-    for (let number = 0; number < winningNumber.length - 1; number++) {
-      if (lottoNumber[number] !== winningNumber[number]) {
-        return hit;
+    winningNumber = winningNumber.slice(0, 6);
+    for (let number = 0; number < winningNumber.length; number++) {
+      if (winningNumber.indexOf(lottoNumber[number]) !== -1) {
+        console.log(winningNumber, lottoNumber[number]);
+        hit += 1;
       }
-      hit += 1;
     }
     return hit;
   }
@@ -32,3 +36,5 @@ class Statistic {
     return false;
   }
 }
+
+module.exports = { Statistic };
