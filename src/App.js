@@ -4,29 +4,44 @@ const {
   CMM_INPUT_MONEY,
   CMM_INPUT_WINNING,
   CMM_INPUT_BONUS,
+  CMM_SHOW_STAT,
   ERR_SPLIT_SIX,
   ERR_NOT_NUM,
   ERR_WINNING_DUP,
   ERR_BONIUS_DUP,
+  LOTTO_MIN_NUM,
+  LOTTO_MAX_NUM,
 } = require('./Constants');
+const Rank = require('./RankEnum');
 
 class App {
   #user;
   #winningNumList;
   #bonusNum;
 
-  printResultMap(resultMap) {}
+  printResultMap(resultMap) {
+    for (let i = 0; i < Rank.length; i++) {
+      let count = 0;
+      if (resultMap.has(i + 1)) {
+        count = resultMap.get(i + 1);
+      }
+      if (Rank[i].earn > 0) {
+        Console.print(`${Rank[i].comment}${count}`);
+      }
+    }
+  }
   showResult() {
+    Console.print(CMM_SHOW_STAT);
     const resultMap = this.#user.checkRankWithUserLottos(this.#winningNumList, this.#bonusNum);
     this.printResultMap(resultMap);
-    console.log(this.#user.getEarns());
+    this.#user.showEarningRate();
+    Console.close();
   }
 
   askBonusNum() {
     Console.readLine(CMM_INPUT_BONUS, (input) => {
       this.#bonusNum = this.validateBonusInput(input);
       this.showResult();
-      Console.close();
     });
   }
 
@@ -71,7 +86,7 @@ class App {
     if (!Number.isInteger(bonusInput)) {
       throw new Error(ERR_NOT_NUM);
     }
-    if (bonusInput < 1 || bonusInput > 45) {
+    if (bonusInput < LOTTO_MIN_NUM || bonusInput > LOTTO_MAX_NUM) {
       throw new Error(ERR_NOT_NUM);
     }
     if (this.#winningNumList.includes(parseInt(bonusInput))) {

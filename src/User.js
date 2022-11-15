@@ -13,6 +13,7 @@ const {
   RANK1_MONEY,
   RANK_NO_MONEY,
 } = require('./Constants');
+const Rank = require('./RankEnum');
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 
@@ -63,13 +64,13 @@ class User {
   checkRankWithUserLottos(winningNumList, bonusNum) {
     const resultMap = new Map();
     this.#lottos.forEach((userLotto) => {
-      const earn = this.checkRankWithOneLotto(userLotto.getNumbers(), winningNumList, bonusNum);
-      if (resultMap.has(earn)) {
-        resultMap.set(earn, resultMap.get(earn) + 1);
+      const rank = this.checkRankWithOneLotto(userLotto.getNumbers(), winningNumList, bonusNum);
+      if (resultMap.has(rank)) {
+        resultMap.set(rank, resultMap.get(rank) + 1);
       } else {
-        resultMap.set(earn, 1);
+        resultMap.set(rank, 1);
       }
-      this.#earns += earn;
+      this.#earns += Rank[rank - 1].earn;
     });
     return resultMap;
   }
@@ -79,20 +80,20 @@ class User {
     const answerCount = this.count(userLottoNum, answerList);
     switch (answerCount) {
       case 3:
-        return RANK5_MONEY;
+        return 5;
       case 4:
-        return RANK4_MONEY;
+        return 4;
       case 5:
-        return RANK3_MONEY;
+        return 3;
       case 6:
         return this.checkRank1or2(bonusNum, userLottoNum);
       default:
-        return RANK_NO_MONEY;
+        return 6;
     }
   }
   checkRank1or2(bonusNum, userLottoNum) {
-    if (userLottoNum.includes(bonusNum)) return RANK2_MONEY;
-    return RANK1_MONEY;
+    if (userLottoNum.includes(bonusNum)) return 2;
+    return 1;
   }
   count(userList, answerList) {
     //두 배열의 일치하는 원소의 갯수를 반환 (단, 두 배열은 모두 다른 6,7개의 숫자로 구성되어있어야함)
@@ -104,6 +105,10 @@ class User {
   }
   getEarns() {
     return this.#earns;
+  }
+  showEarningRate() {
+    const earningRate = (this.#earns * 100) / this.#money;
+    Console.print(`총 수익률은 ${earningRate}%입니다.`);
   }
 }
 
