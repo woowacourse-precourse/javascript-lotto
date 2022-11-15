@@ -70,6 +70,19 @@ describe('당첨 내역 클래스 테스트', () => {
     expect(result).toEqual([0, 0, 0, 0, 1]);
   });
 
+  test('당첨된 로또에 대한 정보를 기반으로 총 수익을 계산한다.', () => {
+    const lottos = lottoNumbersList.map(
+      lottoNumbers => new Lotto(lottoNumbers),
+    );
+    const winningNumbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+    const winningHistory = new WinningHistory();
+
+    winningHistory.initWinningList({ lottos, winningNumbers, bonusNumber });
+    const result = winningHistory.calcTotalProfit();
+    expect(result).toEqual(5000);
+  });
+
   test('구입 금액과 총 수익을 기반으로 수익률을 계산한다.', () => {
     const winningHistory = new WinningHistory();
     winningHistory.calcProfitRate(8000, 5000);
