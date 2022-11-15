@@ -1,14 +1,15 @@
 class Bonus {
   #bonus;
 
-  constructor(bonus) {
-    this.validate(bonus);
+  constructor(bonus, winningNumbers) {
+    this.validate(bonus, winningNumbers);
     this.#bonus = bonus;
   }
 
-  validate(bonus) {
+  validate(bonus, winningNumbers) {
     this.checkNumberAndInrange(bonus);
     this.checkCountNumber(bonus);
+    this.checkDuplicateWithWinngNumbers(bonus, winningNumbers);
   }
 
   checkNumberAndInrange(bonus) {
@@ -29,6 +30,14 @@ class Bonus {
     const NUMBER_LENGTH = 1;
     if (bonus.length > 2) {
       throw new Error(`[ERROR] 보너스 번호는 ${NUMBER_LENGTH}개여야 합니다.`);
+    }
+  }
+
+  checkDuplicateWithWinngNumbers(bonus, winningNumbers) {
+    if (winningNumbers.includes(bonus)) {
+      throw new Error(
+        `[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.`
+      );
     }
   }
 }

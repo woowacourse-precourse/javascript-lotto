@@ -66,7 +66,7 @@ class App {
 
   inputBonusNumber() {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusNumber) => {
-      new Bonus(bonusNumber);
+      new Bonus(bonusNumber, this.winningNumbers);
       this.bonusNumber = bonusNumber;
       this.getResult();
     });
