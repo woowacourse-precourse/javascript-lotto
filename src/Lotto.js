@@ -15,13 +15,12 @@ class Lotto {
     } else if (new Set(numbers).size < 6) {
       throw new Error(`${ERROR.COMMON} ${ERROR.CANT_OVERLAP_LOTTO}`);
     }
-    const temp = numbers.filter((number) => {
-      return number < 1 || number > 45;
+    const numberInRange = /^[1-45]$/;
+    numbers.forEach((number) => {
+      if (!numberInRange.test(number)) {
+        throw new Error(`${ERROR.COMMON} ${ERROR.MUST_IN_RANGE}`);
+      }
     });
-    console.log(temp);
-    if (temp.length > 0) {
-      throw new Error(`${ERROR.COMMON} ${ERROR.MUST_IN_RANGE}`);
-    }
   }
 
   publishLotto() {
