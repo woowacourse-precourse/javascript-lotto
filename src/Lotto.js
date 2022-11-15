@@ -27,7 +27,6 @@ class Lotto {
     this.#numbers.forEach((el) => {
       if (winningNumberList.includes(el)) correctCount += 1;
     });
-    console.log(correctCount)
     if (correctCount < 3) return null;
     if (correctCount === 6) return 1;
     if (correctCount === 5 && this.#numbers.includes(bonusNumber)) return 2;

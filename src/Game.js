@@ -69,7 +69,7 @@ class Game {
       "6개 일치 (2,000,000,000원)",
     ];
     winningHistoryList.forEach((el, i) => {
-      const correctCount = this.getWinningCount(i)
+      const correctCount = this.getWinningCount(i);
       Console.print(`${el} - ${correctCount}개`);
     });
   }
@@ -86,6 +86,17 @@ class Game {
       );
     });
     this.resultList = lottoResultList.filter((el) => el);
+  }
+
+  getResultRate() {
+    const lotto = [5000, 50000, 1500000, 30000000, 2000000000];
+    const result = lotto.reduce((acc, cur, i) => {
+      const correctCount = this.getWinningCount(i);
+      return acc + cur * correctCount;
+    }, 0);
+
+    const rate = (result / (this.quantity * 1000)).toFixed(1);
+    Console.print(`총 수익률은 ${rate}%입니다.`);
   }
 }
 

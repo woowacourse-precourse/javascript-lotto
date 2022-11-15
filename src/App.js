@@ -36,6 +36,7 @@ class App {
   printResult() {
     Console.print("\n당첨 통계\n---");
     this.game.printWinningHistory();
+    this.game.getResultRate();
   }
 }
 
