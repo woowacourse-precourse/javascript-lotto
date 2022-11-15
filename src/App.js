@@ -33,13 +33,27 @@ class App {
 
   inputBonusNumber() {
     Console.readLine("보너스 번호를 입력해 주세요.", (bonus) => {
+      this.#lotto.validateBonus(bonus);
       this.#bonus = bonus;
     });
+  }
+
+  createLottos() {
+    for (let i = 0; i < this.#count; i++) {
+      this.createLottoNumber();
+    }
+  }
+
+  createLottoNumber() {
+    let lottos = Random.pickUniqueNumbersInRange(1, 45, 9);
+    this.#numbers.push(lottos);
+    Console.print(lottos);
   }
 
   play() {
     this.inputPurchase();
     this.inputWinNumber();
+    this.createLottos();
   }
 }
 
