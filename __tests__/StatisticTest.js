@@ -111,6 +111,6 @@ describe("금액 validation 테스트", () => {
       sixHit,
     ];
     statistic.countRank(lottos, winningNumber);
-    expect(statistic.calculateLotteryReturn(7000)).toBe(29022214.3);
+    expect(statistic.calculateLotteryReturn(7000)).toBe(String(29022214.3));
   });
 });
