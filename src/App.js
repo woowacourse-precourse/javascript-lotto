@@ -48,7 +48,7 @@ class App {
 
       this.bonusNumber = new BonusNumber(parseInt(number), this.lotto.getLottoNumbers());
 
-      this.checkAllLottoResult(this.myLotto.getMyLottoList(), this.lotto.getLottoNumbers(), this.bonusNumber.getBonusNumber());
+      this.checkAllLottoResultAndRevenue(this.myLotto.getMyLottoList(), this.lotto.getLottoNumbers(), this.bonusNumber.getBonusNumber());
       this.printLottoResult();
       this.printLottoRateOfReturn(this.calculateRateOfReturn());
 
@@ -81,22 +81,21 @@ class App {
     }
   }
 
-  checkAllLottoResult(myLottoNumbersList, lottoNumbers, bonusNumber) {
+  checkAllLottoResultAndRevenue(myLottoNumbersList, lottoNumbers, bonusNumber) {
     for (const myLottoNumbers of this.myLotto.getMyLottoList()) {
-      let [lottoCount, bonus] = this.checkLottoResult(myLottoNumbers, lottoNumbers, bonusNumber);
-      let rank = this.getRank(lottoCount, bonus)
+      let rank = this.checkLottoResultRank(myLottoNumbers, lottoNumbers, bonusNumber);
       this.result[rank] += 1
       this.revenue += this.reward[rank]
     }
   }
 
-  checkLottoResult(myLottoNumbers, lottoNumbers, bonusNumber) {
+  checkLottoResultRank(myLottoNumbers, lottoNumbers, bonusNumber) {
     let lottoCount = 0;
     for (const number of myLottoNumbers) {
       lottoCount += this.checkMatchingNumber(lottoNumbers, number)
     }
     let bonus = this.checkMatchingNumber(myLottoNumbers, bonusNumber)
-    return [lottoCount, bonus];
+    return this.getRank(lottoCount, bonus);
   }
 
   checkMatchingNumber(lottoNumbers, number) {
