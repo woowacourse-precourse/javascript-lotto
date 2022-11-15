@@ -43,7 +43,7 @@ class LottoGame {
     MissionUtils.Console.readLine(
       "\n당첨번호를 입력해 주세요.\n",
       (winningNumbers) => {
-        utils.checkValidWinningNumber(winningNumbers);
+        utils.checkValidNumbers(winningNumbers.split(","));
         this.winningNumbers = winningNumbers
           .split(",")
           .map((number) => Number(number));
