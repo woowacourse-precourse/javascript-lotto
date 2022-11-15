@@ -1,7 +1,8 @@
 const {Console} = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto")
-const INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
-const INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+const {INPUT_MESSAGE, ERROR_MESSAGE} = require("./Constants")
+const {INPUT_BONUS_NUMBER, INPUT_WINNING_NUMBER} = INPUT_MESSAGE;
+const {NOT_ONE_NUMBER, NOT_BETWEEN_NUMBER} = ERROR_MESSAGE;
 
 class InputWinningNumber{
     constructor(){
@@ -11,7 +12,7 @@ class InputWinningNumber{
     winningNumber(){
         Console.readLine(INPUT_WINNING_NUMBER,(num) => {
             num = num.split(',').map(Number);
-            this.validateNum(num)
+            this.validateNum(num);
             this.winningNum = num;
         })
     }
@@ -31,10 +32,10 @@ class InputWinningNumber{
 
     bonusNumExceptions(num){
         if(num.length !== 1){
-            throw new Error("[ERROR] 로또 번호는 1개여야 합니다.");
+            throw new Error(NOT_ONE_NUMBER);
         }
         if(num < 1 || num > 45){
-            throw new Error("[ERROR] 로또 번호는 1이상 45이하여야 합니다.")
+            throw new Error(NOT_BETWEEN_NUMBER);
         }
     }
 }

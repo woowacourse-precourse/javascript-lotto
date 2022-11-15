@@ -1,5 +1,5 @@
-const { Console } = require("@woowacourse/mission-utils");
-
+const { ERROR_MESSAGE} = require("./Constants")
+const { NOT_BETWEEN_NUMBER, DUPLICATE_NUMBER, NOT_SIX_NUMBER, IS_NOT_NUMBER} = ERROR_MESSAGE
 class Lotto {
   #numbers;
 
@@ -16,14 +16,14 @@ class Lotto {
 
   checkLottoLength(numbers){
     if(numbers.length !== 6){
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error(NOT_SIX_NUMBER);
     }
   }
 
   checkLottoNumber(numbers){
     for(let i = 0; i < numbers.length; i++){
       if(numbers.length[i] < 1 || numbers.length[i] > 45){
-        throw new Error("[ERROR] 로또 번호는 1이상 45이하여야 합니다.")
+        throw new Error(NOT_BETWEEN_NUMBER);
       }
     }
   }
@@ -31,13 +31,13 @@ class Lotto {
   checkDuplicateNumber(numbers){
     const set = new Set(numbers);
     if(set.size < numbers.length){
-      throw new Error("[ERROR] 로또 번호안에 중복 숫자가 존재합니다.");
+      throw new Error(DUPLICATE_NUMBER);
     }
   }
 
   isNotLottoNumber(numbers){
     if(isNaN(numbers)){
-      throw new Error("[ERROR] 로또의 값이 숫자가 아닙니다.");
+      throw new Error(IS_NOT_NUMBER);
     }
   }
 }

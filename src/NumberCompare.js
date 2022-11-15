@@ -1,6 +1,5 @@
 const InputWinningNum = require("./InputWinningNum");
 const CreateRandomLotto = require("./CreateRandomLotto");
-const { Console } = require("@woowacourse/mission-utils");
 
 class NumberCompare{
     constructor(){
@@ -10,17 +9,17 @@ class NumberCompare{
     }
 
     lottoResults(createNum, winningNum, bonusNum){
-        this.matchNumbers(createNum,winningNum,bonusNum)
+        this.matchNumbers(createNum,winningNum,bonusNum);
     }
 
     matchNumbers(createNum, winningNum, bonusNum){
         for(let i = 0; i < createNum.length; i++){
             let duplicateNum = createNum[i].filter((el) => winningNum.includes(el));
             let duplicateBonusNum = createNum[i].filter((el) => bonusNum.includes(el));
-            this.matchThreeNumbers(duplicateNum)
-            this.matchFourNumbers(duplicateNum)
-            this.matchFiveNumbers(duplicateNum)
-            this.matchFiveAndBonusNumbers(duplicateNum, duplicateBonusNum)
+            this.matchThreeNumbers(duplicateNum);
+            this.matchFourNumbers(duplicateNum);
+            this.matchFiveNumbers(duplicateNum);
+            this.matchFiveAndBonusNumbers(duplicateNum, duplicateBonusNum);
             this.matchSixNumbers(duplicateNum);
         }
         return this.lottoRanking;

@@ -1,6 +1,9 @@
 const { Console } = require("@woowacourse/mission-utils");
 const NumberCompare = require("./NumberCompare");
 const UserInputNumber = require("./UserInputNumber");
+const {REWARD_MESSAGE, REWARD_MONEY, THOUSAND, HUNDRED } = require("./Constants")
+const {WINNING_STATISTICS ,MATCH_SIX ,MATCH_SIX_AND_BONUS, MATCH_FIVE, MATCH_FOUR, MATCH_THREE } = REWARD_MESSAGE;
+const {FIFTH_PLACE, FOURTH_PLACE, THIRD_PLACE, SECOND_PLACE, FIRST_PLACE} = REWARD_MONEY;
 
 
 class WinningHistory{
@@ -10,6 +13,7 @@ class WinningHistory{
     }
     
     printLottoStats(lottoRanking, issudLotto){
+        Console.print(WINNING_STATISTICS)
         this.fifthPlace(lottoRanking);
         this.fourthPlace(lottoRanking);
         this.thirdPlace(lottoRanking);
@@ -19,34 +23,34 @@ class WinningHistory{
     }
 
     fifthPlace(lottoRanking){
-        Console.print(`3개 일치 (5,000원) - ${lottoRanking[0]}개`);
+        Console.print(`${MATCH_THREE} ${lottoRanking[0]}개`);
     }
 
     fourthPlace(lottoRanking){
-        Console.print(`4개 일치 (50,000원) - ${lottoRanking[1]}개`);
+        Console.print(`${MATCH_FOUR} ${lottoRanking[1]}개`);
     }
 
     thirdPlace(lottoRanking){
-        Console.print(`5개 일치 (1,500,000원) - ${lottoRanking[2]}개`);
+        Console.print(`${MATCH_FIVE} ${lottoRanking[2]}개`);
     }
     
     secondPlace(lottoRanking){
-        Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${lottoRanking[3]}개`);
+        Console.print(`${MATCH_SIX_AND_BONUS} ${lottoRanking[3]}개`);
     }
 
     firstPlace(lottoRanking){
-        Console.print(`6개 일치 (2,000,000,000원) - ${lottoRanking[4]}개`);
+        Console.print(`${MATCH_SIX} ${lottoRanking[4]}개`);
     }
 
     lottoRevenue(lottoRanking, issudLotto){
         let revenue = 
-        lottoRanking[0] * 5000 +
-        lottoRanking[1] * 50000 +
-        lottoRanking[2] * 1500000 +
-        lottoRanking[3] * 30000000 +
-        lottoRanking[4] * 2000000000;
+        lottoRanking[0] * FIFTH_PLACE +
+        lottoRanking[1] * FOURTH_PLACE +
+        lottoRanking[2] * THIRD_PLACE +
+        lottoRanking[3] * SECOND_PLACE +
+        lottoRanking[4] * FIRST_PLACE;
 
-        let revenueTotal = revenue/(issudLotto * 1000) * 100 ;
+        let revenueTotal = revenue/(issudLotto * THOUSAND) * HUNDRED ;
         this.lottoRevenueRound(revenueTotal);
     }
 
