@@ -22,6 +22,10 @@ class Lotto {
         if (typeof numbers[i][j] !== 'number') {
           throw new Error('[ERROR] 로또 번호는 숫자로 이루어져야 합니다.');
         }
+
+        if (1 > numbers[i][j] || 45 < numbers[i][j]) {
+          throw new Error('[ERROR] 로또 번호는 1에서 45사이의 숫자여야 합니다.');
+        }
       }
     }
   }
