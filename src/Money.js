@@ -13,7 +13,8 @@ class Money {
   }
 
   divideMoney(money) {
-    const count = +money / 1000;
+    const MONEY_MIN = 1000;
+    const count = +money / MONEY_MIN;
     return count;
   }
 }
