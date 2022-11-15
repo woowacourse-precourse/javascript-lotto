@@ -37,6 +37,8 @@ class App {
       const number = Number(answer);
 
       this.draw.setBonusNum(number);
+
+      this.draw.checkResult(this.purchasedLottos);
     });
   }
 }
