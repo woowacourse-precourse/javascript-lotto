@@ -2,13 +2,20 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
 class LottoDraw { 
+    static PRIZE_MONEY = {
+        1: 2000000000,
+        2: 30000000,
+        3: 1500000,
+        4: 50000,
+        5: 5000,
+    };
     #winningNums
     #bonusNum
 
     setWinningNums(nums){
         this.vaildateWinningNums(nums);
 
-        this.winningNums = nums.sort((a, b) => a - b);
+        this.#winningNums = nums.sort((a, b) => a - b);
     }
     vaildateWinningNums(nums) {
         if (nums.length != 6) {
@@ -34,7 +41,7 @@ class LottoDraw {
 
     setBonusNum(num) {
         this.vaildateBonusNum(num);
-        this.bonusNum = num;
+        this.#bonusNum = num;
     }
     vaildateBonusNum(num) {
         if (isNaN(num)) {
@@ -45,30 +52,32 @@ class LottoDraw {
         }
 
         for (let i = 1; i < 6; i++) {
-            if (num == this.winningNums[i]) {
+            if (num == this.#winningNums[i]) {
                 throw new Error("[ERROR] 중복 값이 포함되어 있습니다.");
             }
         }
     }
 
     checkResult(lottos) {
+        console.log(this.#winningNums, this.#bonusNum);
         const result = {};
-        for(let i = 0; i < 6; i++) result[i] = 0;
+        for(let i = 0; i <= 5; i++) result[i] = 0;
 
         lottos.forEach((element) => {
-            const prize = get_prize(element.getNumbers());
+            const prize = this.get_prize(element.getNumbers());
             if (prize > 0) {
                 result[prize] += 1;
             }
         })
 
         this.printResult(result);
+        this.printYield(result);
     }
     printResult(result) {
-
+        return;
     }
-    getYield(result) {
-
+    printYield(result) {
+        return;
     }
     get_prize(lottoNums) {
         let match = 0;
