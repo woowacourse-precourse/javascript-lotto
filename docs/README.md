@@ -2,14 +2,14 @@
 
 - 유효성 검사 함수
 
-  - [] 숫자 범위 1~45 : checkNumRange()
+  - [V] 숫자 범위 1~45 : checkNumRange()
     - 범위 밖의 숫자인 경우 예외 발생 : throw new error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
-  - [] 중복 허용X : checkNumDuplicate()
+  - [V] 중복 허용X : checkNumDuplicate()
     - 중복되는 숫자가 있는 경우 예외 발생 : throw new error("[ERROR] 로또 번호는 중복이 허용되지 않습니다.")
-  - [] 숫자 6개 : validate()
+  - [V] 숫자 6개 : validate()
     - 숫자 6개 아닌 경우 throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
 
-- [] 발행된 로또 유효성 검사 : constructor 내에서
+- [V] 발행된 로또 유효성 검사 : constructor 내에서
 
   - checkNumRange, checkNumDuplicate, validate 실행
 
@@ -32,7 +32,7 @@
     - 예외 : 숫자가 1개가 아닌 경우, 숫자가 1~45가 아닌 경우
   - checkNumRange() 실행
 
-- [] 구입 금액 입력받기 : inputMoney()
+- [V] 구입 금액 입력받기 : inputMoney()
 
   - 예외 발생 시(1000원으로 나누어떨어지지 않는 경우) throw new error("[ERROR] 잘못된 금액입니다.")
 
