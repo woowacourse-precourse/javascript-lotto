@@ -9,10 +9,10 @@ class App {
   #Lotto;
   #purchaseAmount; //입력금액
   #lottoNum; //구입한 로또 수
+  #issuedLottoNum = [];
   #bonusNum;
 
   constructor() {
-    this.issuedLottoNum = [];
     this.winningResult = [];
     this.winningCountResult = [];
     this.earningRate;
@@ -41,16 +41,19 @@ class App {
   issueLotto() {
     this.#lottoNum = this.#purchaseAmount / LOTTOPRICE;
     for (var count = 0; count < this.#lottoNum; count++) {
-      this.issuedLottoNum.push(Random.pickUniqueNumbersInRange(1, 45, 6));
+      let issuedLottoNum = Random.pickUniqueNumbersInRange(1, 45, 6);
+      issuedLottoNum = issuedLottoNum.sort((x, y) => x - y);
+      this.#issuedLottoNum.push(issuedLottoNum);
     }
     this.printIssuedLotto();
   }
 
   printIssuedLotto() {
     Console.print(`${this.#lottoNum}개를 구매했습니다.`);
-    for (var count = 0; count < this.#lottoNum; count++) {
-      Console.print(this.issuedLottoNum[count]);
-    }
+
+    this.#issuedLottoNum.forEach((num) => {
+      Console.print(`[${num.join(", ")}]`);
+    });
     this.inputWinningNum();
   }
 
@@ -83,7 +86,7 @@ class App {
     for (var index = 0; index < this.#lottoNum; index++) {
       let count = 0;
       for (var winningIndex = 0; winningIndex < LOTTONUMCOUNT; winningIndex++) {
-        this.issuedLottoNum[index].includes(
+        this.#issuedLottoNum[index].includes(
           this.#Lotto.getLottoNum()[winningIndex]
         )
           ? count++
@@ -98,7 +101,7 @@ class App {
   }
 
   checkBonus(index) {
-    if (this.issuedLottoNum[index].includes(parseInt(this.#bonusNum))) {
+    if (this.#issuedLottoNum[index].includes(parseInt(this.#bonusNum))) {
       this.winningResult[index] = bonus;
     }
   }
@@ -134,7 +137,7 @@ class App {
     Console.print(`4개 일치 (50,000원) - ${this.winningCountResult[1]}개`);
     Console.print(`5개 일치 (1,500,000원) - ${this.winningCountResult[2]}개`);
     Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원)) - ${this.winningCountResult[3]}개`
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.winningCountResult[3]}개`
     );
     Console.print(
       `6개 일치 (2,000,000,000원) - ${this.winningCountResult[4]}개`
