@@ -2,12 +2,10 @@ const MissionUtils = require("@woowacourse/mission-utils");
 
 class Lotto {
   #numbers;
-  #bonusNum;
 
-  constructor(numbers) {
+  constructor(numbers,bonus) {
     this.validate(numbers);
     this.#numbers = numbers;
-    this.#bonusNum = bonusNum;
   }
 
   validate(numbers) {
@@ -20,18 +18,17 @@ class Lotto {
       throw new Error("[ERROR] 중복 되지 않는 숫자를 입력하세요.")
     }
     
-    const numPattern = /[^1-45]/g;
+    numbers.forEach((number)=>{
+      if(number < 1 || number > 45){
+        throw new Error("[ERROR] 1~45 사이에 숫자만 입력하세요.")
+      }
+    })
+
+    const numPattern = /^[0-9]*$/;
     if(numPattern.test(numbers)){
-      throw new Error("[ERROR] 1~45 사이의 숫자만 입력하세요.")
-    }
+      throw new Error("[ERROR] 숫자만 입력하세요.")
+    }  
   }
-
-  isDuplicate(numbers,bonusNum){
-    if(numbers.includes(bonusNum))
-    throw new Error("[ERROR] 보너스번호는 당첨번호와 중복되지 않게 입력하세요.")
-  }
-
-  // TODO: 추가 기능 구현
 }
 
 module.exports = Lotto;
