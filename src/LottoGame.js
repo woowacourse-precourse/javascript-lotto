@@ -14,6 +14,7 @@ class LottoGame {
     MissionUtils.Console.readLine(
       "구입금액을 입력해 주세요.\n",
       (purchasePrice) => {
+        utils.checkValiPrice(purchasePrice);
         this.purchasePrice = purchasePrice;
         this.lottoCount = purchasePrice / 1000;
         this.purchaseLotto();
