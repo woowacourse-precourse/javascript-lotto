@@ -1,6 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const { INGAME_INFORM } = require("./constants");
 const purchased = require("./utils/listPurchased");
+const Player = require("./Player");
 
 class Lotto {
   #numbers;
@@ -11,8 +12,11 @@ class Lotto {
 
   issue(tickets) {
     MissionUtils.Console.print(tickets + INGAME_INFORM.PURCHASED);
-
     purchased(tickets);
+  }
+
+  input() {
+    new Player().insertNumbers();
   }
 
   result() {

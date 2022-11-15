@@ -12,8 +12,11 @@ class App {
 
       const tickets = player.buyTickets(Number(amount));
       lotto.issue(tickets);
+      lotto.input();
 
-      console.log("ans", new Player().buyTickets(8000));
+      //당첨 번호 입력 로직
+      //보너스 번호 입력 로직
+      //통계, 수익률 출력 로직
     });
   }
 }

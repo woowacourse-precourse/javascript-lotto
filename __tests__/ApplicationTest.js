@@ -1,6 +1,6 @@
 const App = require("../src/App");
 const MissionUtils = require("@woowacourse/mission-utils");
-const { ERROR_INPUT_MESSAGE, INGAME_INPUT } = require("../src/constants");
+const { ERROR_INPUT_MESSAGE } = require("../src/constants");
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();
