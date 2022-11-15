@@ -78,6 +78,7 @@ class App {
       this.countLottoScore();
       this.winLottoScore();
       this.printLottoScore();
+      this.printRevenue();
     });
   }
 
@@ -109,7 +110,7 @@ class App {
         this.#scoreList[4] += 1;
       }
     }
-    Console.print(this.#scoreList);//
+    Console.print(this.#scoreList); //
   }
 
   //등수 logic -> 8개의 로또를 돌면서 체크
@@ -134,6 +135,19 @@ class App {
       count += 10;
     }
     return count;
+  }
+
+  printRevenue() {
+    const prizeMoney =
+      ((5 * this.#scoreList[0] +
+        50 * this.#scoreList[1] +
+        1500 * this.#scoreList[2] +
+        30000 * this.#scoreList[3] +
+        2000000 * this.#scoreList[4]) /
+        this.#countLottos) *
+      100;
+    const finalRevenue = prizeMoney.toFixed(1);
+    Console.print(`총 수익률은 ${finalRevenue}%입니다.`);
   }
 }
 
