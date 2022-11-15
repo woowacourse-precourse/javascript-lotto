@@ -28,6 +28,10 @@ class Score {
         this.profit = profit;
     }
 
+    getCorrectNumber () {
+        return this.correctNumber;
+    }
+
 }
 
 module.exports = Score;
