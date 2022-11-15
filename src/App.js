@@ -22,8 +22,10 @@ class App {
       this.printer('/n');
 
       //당첨 번호 입력받음
+      const Numbers = 0;
       this.readLine("당첨 번호를 입력해 주세요."), (numbers) => {
-        console.log(numbers);
+        Numbers = numbers;
+        console.log(Numbers);
       }
 
       //보너스 번호 입력받음
