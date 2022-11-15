@@ -71,10 +71,10 @@ class App {
     const { prize, ranksCnt } = totalResult;
 
     ranksCnt.reduce((acc, currentCnt, idx) => {
-      Console.print(`${CONSOLE_MATCH_MESSAGE[idx]}${currentCnt}개`);
+      Console.print(CONSOLE_MATCH_MESSAGE[idx](currentCnt));
     }, 0);
 
-    Console.print(`총 수익률은 ${getRate(this.pay, prize)}%입니다.`);
+    Console.print(CONSOLE_MESSAGE.Rate(getRate(this.pay, prize)));
     Console.close();
   }
 }
