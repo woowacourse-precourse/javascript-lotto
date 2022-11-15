@@ -27,21 +27,11 @@ describe("UserLotto 클래스 테스트", () => {
       [1, 3, 5, 14, 22, 45],
     ];
 
-    const SORTED_LOTTO = [
-      [8, 21, 23, 41, 42, 43],
-      [3, 5, 11, 16, 32, 38],
-      [7, 11, 16, 35, 36, 44],
-      [1, 8, 11, 31, 41, 42],
-      [13, 14, 16, 38, 42, 45],
-      [7, 11, 30, 40, 42, 43],
-      [2, 13, 22, 32, 38, 45],
-      [1, 3, 5, 14, 22, 45],
-    ];
     mockRandoms(MOCK_LOTTO);
 
     const userLotto = new UserLotto(8);
 
-    expect(userLotto.userLottoes).toEqual(SORTED_LOTTO);
+    expect(userLotto.userLottoes).toEqual(MOCK_LOTTO);
   });
 
   test("getUserLotto 메서드가 정상 동작한다.", () => {

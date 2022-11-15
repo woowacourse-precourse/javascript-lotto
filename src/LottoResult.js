@@ -61,6 +61,14 @@ class LottoResult {
     }
   }
 
+  setScore(score) {
+    this.#score = score;
+  }
+
+  getScore() {
+    return this.#score;
+  }
+
   printResult() {
     MissionUtils.Console.print(
       `\n당첨 통계
