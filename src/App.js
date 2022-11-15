@@ -7,12 +7,14 @@ const { INPUTS, OUTPUTS } = require("./constants");
 class App {
   #countLottos;
   #pickedLottoNum;
+  #lottosList = [];
 
   play() {
     this.inputMoney();
-    this.pickRandomLottoNumber();
-
-    Console.close();
+    // this.pickRandomLottoNumber();
+    this.makeLottosList();
+    this.inputNumbers();
+    // Console.close();
   }
 
   inputMoney() {
@@ -25,7 +27,7 @@ class App {
   }
 
   printCountLottos() {
-    Console.print(`${this.#countLottos}개를 구매했습니다.`);
+    Console.print(`\n${this.#countLottos}개를 구매했습니다.`);
   }
 
   //로또 뽑기 logic
@@ -34,11 +36,23 @@ class App {
     this.#pickedLottoNum = pickedLottoNum;
   }
 
+  //여기 안됨
   makeLottosList() {
+    let lottosList = [];
     for (let lottos = 0; lottos < this.#countLottos; lottos++) {
-      const lottosList = new Lotto(this.pickRandomLottoNumber());
-      Console.print(lottosList);
+      const lottoNums = new Lotto(this.pickRandomLottoNumber());
+      lottosList.push(lottoNums.inputLottoNumbers);
+      Console.print(sort(lottoNums.inputLottoNumbers));
     }
+    this.#lottosList = lottosList;
+    return this.#lottosList;
+  }
+
+  //당첨번호 입력받기 -> Lotto에 넣어서 validation 검증 받기
+  inputNumbers() {
+    Console.readLine(INPUTS.INPUT_NUMBERS, (numbers) => {
+      this.#numbers = numbers;
+    });
   }
 }
 
@@ -46,13 +60,6 @@ const startLotto = new App();
 startLotto.play();
 
 module.exports = App;
-
-//당첨번호 입력받기
-// inputNumbers() {
-//   Console.readLine(INPUTS.INPUT_NUMBERS, (numbers) => {
-//     this.#numbers = numbers;
-//   });
-// };
 
 //   randomBonusNumber() {
 //     // const bonusNum = Random.

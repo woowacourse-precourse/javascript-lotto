@@ -15,7 +15,7 @@ class Lotto {
     return this.#numbers;
   }
 
-  set inputNumbers(value) {
+  set inputLottoNumbers(value) {
     const inputArr = value.split(",").map((value) => Number(value));
     this.#numbers = inputArr;
   }
