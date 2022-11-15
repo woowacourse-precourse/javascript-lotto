@@ -60,6 +60,11 @@ class Score {
         }
     }
 
+    calculateSum () {
+        return Calculate.calculateSum(this.score)
+       
+    }
+
 }
 
 module.exports = Score;
