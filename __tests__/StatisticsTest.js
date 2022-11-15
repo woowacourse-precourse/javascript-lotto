@@ -18,4 +18,15 @@ describe("통계 관련 테스트", () => {
     expect(statistics.getFinalRank(5, [1, 2, 3, 4, 5, 6], 7)).toEqual("third");
     expect(statistics.getFinalRank(2, [1, 2, 3, 4, 5, 6], 7)).toEqual(null);
   });
+
+  test("수익률 판단 테스트", () => {
+    statistics.setRanks("fifth", 1);
+    expect(statistics.getMoneyEarned()).toEqual(5000);
+    statistics.setRanks("fourth", 1);
+    expect(statistics.getMoneyEarned()).toEqual(55000);
+    statistics.updateRateOfReturn(8000, 5000);
+    expect(statistics.getRateOfReturn()).toEqual(62.5);
+    statistics.updateRateOfReturn(5, 1560000);
+    expect(statistics.getRateOfReturn()).toEqual(31200000.0);
+  });
 });
