@@ -29,6 +29,13 @@ const ERROR = {
   },
 };
 
+const LOTTO_SPEC = {
+  MIN_COST: 1000,
+  MIN_NUMBER: 1,
+  MAX_NUMBER: 45,
+  PROPER_LENGTH: 6,
+};
+
 const LOTTO_RANK = {
   FIVE: 3,
   FOUR: 4,
@@ -44,4 +51,16 @@ const LOTTO_PRIZE = {
   ONE_ST: 2000000000,
 };
 
-module.exports = { ERROR, LOTTO_RANK, LOTTO_PRIZE };
+const MESSAGE = {
+  INPUT_MONEY: '구입금액을 입력해 주세요.',
+  INPUT_LOTTONUMBERS: '당첨 번호를 입력해 주세요.',
+  INPUT_BONUSNUMBER: '보너스 번호를 입력해 주세요.',
+};
+
+module.exports = {
+  ERROR,
+  LOTTO_SPEC,
+  LOTTO_RANK,
+  LOTTO_PRIZE,
+  MESSAGE,
+};

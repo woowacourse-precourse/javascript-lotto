@@ -1,18 +1,25 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Validation = require('../Utilities/Validation');
+const { LOTTO_SPEC } = require('../Constants');
 
 const { Random } = MissionUtils;
 
 class Lotto {
   #numbers;
 
-  constructor(numbers = Random.pickUniqueNumbersInRange(1, 45, 6)) {
+  constructor(
+    numbers = Random.pickUniqueNumbersInRange(
+      LOTTO_SPEC.MIN_NUMBER,
+      LOTTO_SPEC.MAX_NUMBER,
+      LOTTO_SPEC.PROPER_LENGTH,
+    ),
+  ) {
     this.validation = new Validation();
-    this.validation.isValidLottoNumber(numbers);
+    this.validation.isValidWinningNumbers(numbers);
     this.#numbers = numbers;
   }
 
-  get genLotto() {
+  get genWinningNumbers() {
     return this.#numbers;
   }
 }

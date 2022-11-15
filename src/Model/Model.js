@@ -5,11 +5,11 @@ class Model {
     this.userLottoNumber = '';
     this.lottoLists = [];
     this.lottoResults = {
-      five: 0,
-      four: 0,
-      three: 0,
-      two: 0,
-      one: 0,
+      five_th: 0,
+      four_th: 0,
+      three_rd: 0,
+      two_nd: 0,
+      one_st: 0,
     };
   }
 }

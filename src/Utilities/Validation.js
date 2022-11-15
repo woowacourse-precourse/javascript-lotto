@@ -1,9 +1,9 @@
-const { ERROR } = require('../Constants');
+const { ERROR, LOTTO_SPEC } = require('../Constants');
 
 class Validation {
-  // Computer가 lotto를 제대로 생성했는지 확인
-  isValidLottoNumber(numbers) {
-    if (numbers.length !== 6) {
+  // Computer가 winningNumbers를 제대로 생성했는지 확인
+  isValidWinningNumbers(numbers) {
+    if (numbers.length !== LOTTO_SPEC.PROPER_LENGTH) {
       throw new Error(ERROR.LOTTO.LENGTH);
     }
     if (!this.isNotDuplicated(numbers)) {
@@ -18,7 +18,7 @@ class Validation {
   }
 
   isNotDuplicated(numbers) {
-    return new Set(numbers).size === 6;
+    return new Set(numbers).size === LOTTO_SPEC.PROPER_LENGTH;
   }
 
   isValidType(numbers) {
@@ -27,7 +27,9 @@ class Validation {
   }
 
   isValidRange(numbers) {
-    return numbers.every((num) => num >= 1 && num <= 45);
+    return numbers.every(
+      (num) => num >= LOTTO_SPEC.MIN_NUMBER && num <= LOTTO_SPEC.MAX_NUMBER,
+    );
   }
 
   // User가 금액을 제대로 입력했는지 확인
@@ -53,7 +55,7 @@ class Validation {
   }
 
   isValidMinRange(userMoney) {
-    return Number(userMoney) >= 1000;
+    return Number(userMoney) >= LOTTO_SPEC.MIN_COST;
   }
 
   isValidMaxRange(userMoney) {
@@ -61,7 +63,7 @@ class Validation {
   }
 
   isValidToDivide(userMoney) {
-    return Number(userMoney) % 1000 === 0;
+    return Number(userMoney) % LOTTO_SPEC.MIN_COST === 0;
   }
 
   // User가 Lotto 번호를 제대로 입력했는지 확인
@@ -98,15 +100,24 @@ class Validation {
   }
 
   isNotSixNumber(userLottoNumber) {
-    return userLottoNumber.split(',').filter((num) => num !== '').length === 6;
+    return (
+      userLottoNumber.split(',').filter((num) => num !== '').length ===
+      LOTTO_SPEC.PROPER_LENGTH
+    );
   }
 
   isValidLottoRange(userLottoNumber) {
-    return userLottoNumber.split(',').every((num) => num >= 1 && num <= 45);
+    return userLottoNumber
+      .split(',')
+      .every(
+        (num) => num >= LOTTO_SPEC.MIN_NUMBER && num <= LOTTO_SPEC.MAX_NUMBER,
+      );
   }
 
   isLottoNotDuplicated(userLottoNumber) {
-    return new Set(userLottoNumber.split(',')).size === 6;
+    return (
+      new Set(userLottoNumber.split(',')).size === LOTTO_SPEC.PROPER_LENGTH
+    );
   }
 }
 

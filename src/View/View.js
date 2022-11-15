@@ -1,10 +1,11 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+const { MESSAGE } = require('../Constants');
 
 const { Console } = MissionUtils;
 
 class View {
   showMoney(userMoney) {
-    Console.print(`구입금액을 입력해 주세요. \n ${userMoney}`);
+    Console.print(`${MESSAGE.INPUT_MONEY} \n ${userMoney}`);
   }
 
   showGenLottos(lottoLists) {
@@ -13,11 +14,11 @@ class View {
   }
 
   showUserLottosNumber(userLottoNumber) {
-    Console.print(`당첨 번호를 입력해 주세요. ${userLottoNumber}`);
+    Console.print(`${MESSAGE.INPUT_LOTTONUMBERS} ${userLottoNumber}`);
   }
 
   showUserBonusNumber(userBonusNumber) {
-    Console.print(`보너스 번호를 입력해 주세요. ${userBonusNumber}`);
+    Console.print(`${MESSAGE.INPUT_BONUSNUMBER} ${userBonusNumber}`);
   }
 
   showUserLottoResults(lottoResults) {

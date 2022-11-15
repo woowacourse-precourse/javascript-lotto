@@ -2,7 +2,12 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('../Model/Lotto');
 const Validation = require('../Utilities/Validation');
 const View = require('../View/View');
-const { LOTTO_RANK, LOTTO_PRIZE } = require('../Constants');
+const {
+  LOTTO_RANK,
+  LOTTO_PRIZE,
+  MESSAGE,
+  LOTTO_SPEC,
+} = require('../Constants');
 
 const { Console } = MissionUtils;
 
@@ -14,33 +19,35 @@ class Controller {
   }
 
   start() {
-    this.getUserMoneyAndLottos();
+    this.getUserMoneyAndGenWinningNumbers();
     this.getUserLottoNumber();
     this.getUserBonusNumber();
     this.getUserLottoResult();
     this.getUserRateOfReturn();
   }
 
-  getUserMoneyAndLottos() {
-    Console.readLine('구입금액을 입력해 주세요.', (userMoney) => {
+  getUserMoneyAndGenWinningNumbers() {
+    Console.readLine(MESSAGE.INPUT_MONEY, (userMoney) => {
       const userInput = userMoney.replace(/\s/g, '');
       this.model.userMoney = this.validation.isValidUserMoney(userInput);
-      this.model.lottoLists = this.genLottoAsMoney(userInput);
+      this.model.lottoLists = this.genWinningNumbersAsMoney(userInput);
       this.view.showMoney(this.model.userMoney);
       this.view.showGenLottos(this.model.lottoLists);
     });
   }
 
-  genLottoAsMoney(userMoney) {
-    const lottoList = Array.from({ length: Number(userMoney / 1000) });
+  genWinningNumbersAsMoney(userMoney) {
+    const lottoList = Array.from({
+      length: Number(userMoney / LOTTO_SPEC.MIN_COST),
+    });
     return lottoList.map(() => {
       const lotto = new Lotto();
-      return lotto.genLotto;
+      return lotto.genWinningNumbers;
     });
   }
 
   getUserLottoNumber() {
-    Console.readLine('당첨 번호를 입력해 주세요.', (userLottoNumber) => {
+    Console.readLine(MESSAGE.INPUT_LOTTONUMBERS, (userLottoNumber) => {
       this.model.userLottoNumber = this.validation.isValidUserLottoNumber(
         userLottoNumber.replace(/\s/g, ''),
       );
@@ -49,7 +56,7 @@ class Controller {
   }
 
   getUserBonusNumber() {
-    Console.readLine('보너스 번호를 입력해 주세요.', (userBonusNumber) => {
+    Console.readLine(MESSAGE.INPUT_BONUSNUMBER, (userBonusNumber) => {
       this.model.userBonusNumber = this.validation.isValidBonusNumber(
         userBonusNumber.replace(/\s/g, ''),
       );
@@ -59,14 +66,14 @@ class Controller {
 
   getUserLottoResult() {
     const { lottoLists, userLottoNumber, userBonusNumber } = this.model;
-    const results = lottoLists.map(
+    const finalResults = lottoLists.map(
       (lotto) => lotto.filter((num) => userLottoNumber.includes(num)).length,
     );
-    this.getUserChart(results, userBonusNumber);
+    this.genLottoResults(finalResults, userBonusNumber);
   }
 
-  getUserChart(results, bonus) {
-    results.forEach((correctNum) => {
+  genLottoResults(finalResults, bonus) {
+    finalResults.forEach((correctNum) => {
       this.compareLottos(correctNum, bonus);
     });
     this.view.showUserLottoResults(this.model.lottoResults);
@@ -74,15 +81,15 @@ class Controller {
 
   compareLottos(correctNum, bonus) {
     const { lottoResults } = this.model;
-    if (correctNum === LOTTO_RANK.FIVE) lottoResults.five += 1;
-    if (correctNum === LOTTO_RANK.FOUR) lottoResults.four += 1;
+    if (correctNum === LOTTO_RANK.FIVE) lottoResults.five_th += 1;
+    if (correctNum === LOTTO_RANK.FOUR) lottoResults.four_th += 1;
     if (correctNum === LOTTO_RANK.THREE) {
-      lottoResults.three += 1;
+      lottoResults.three_rd += 1;
       if (bonus === this.model.userBonusNumber) {
-        lottoResults.two += 1;
+        lottoResults.two_nd += 1;
       }
     }
-    if (correctNum === LOTTO_RANK.ONE) lottoResults.one += 1;
+    if (correctNum === LOTTO_RANK.ONE) lottoResults.one_st += 1;
   }
 
   getUserRateOfReturn() {
