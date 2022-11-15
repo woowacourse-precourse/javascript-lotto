@@ -1,5 +1,3 @@
-const { ERROR_MESSAGE_WINNING_NUMBER, GAME_RULES } = require("./constant");
-
 class Lotto {
   #numbers;
 
@@ -9,20 +7,20 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== GAME_RULES.LENGTH) {
-      throw new Error(ERROR_MESSAGE_WINNING_NUMBER.LENGTH);
+    if (numbers.length !== 6) {
+      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
     for (let num of numbers) {
-      if (num < GAME_RULES.MIN_NUMBER || num > GAME_RULES.MAX_NUMBER) {
-        throw new Error(ERROR_MESSAGE_WINNING_NUMBER.RANGE);
+      if (num < 1 || num > 45) {
+        throw new Error("[ERROR] 로또 번호의 범위는 1부터 45까지여야 합니다.");
       }
       if (isNaN(num)) {
-        throw new Error(ERROR_MESSAGE_WINNING_NUMBER.TYPE);
+        throw new Error("[ERROR] 로또 번호는 숫자로만 이루어져야 합니다.");
       }
     }
     const numbersSet = new Set(numbers);
     if (numbersSet.size !== numbers.length) {
-      throw new Error(ERROR_MESSAGE_WINNING_NUMBER.DUPLICATION);
+      throw new Error("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
     }
   }
 }
