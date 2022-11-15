@@ -3,7 +3,7 @@ const { UNIT, ERROR_MESSAGE } = require("./constant/constant");
 class Validation {
   static validateMoney(money) {
     if (money % UNIT.money !== 0) {
-      throw new Error(ERROR_MESSAGE.wrongQuantity);
+      throw new Error(ERROR_MESSAGE.wrongUnit);
     }
   }
 
