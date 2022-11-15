@@ -10,11 +10,15 @@ class CostValidator {
       UNIT: CostValidator.#isDividedByLottoPrice,
     };
 
-    Object.entries(validations).forEach(([key, validateCost]) => {
-      if (!validateCost(cost)) {
-        throw new ValidationError(ERROR_MESSAGE.COST[key]);
-      }
+    Object.entries(validations).forEach(([key, validateFunc]) => {
+      CostValidator.#validate(cost, validateFunc, ERROR_MESSAGE.COST[key]);
     });
+  }
+
+  static #validate(cost, validateFunc, errorMessage) {
+    if (!validateFunc(cost)) {
+      throw new ValidationError(errorMessage);
+    }
   }
 
   static #isNumber(value) {
