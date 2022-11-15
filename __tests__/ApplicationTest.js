@@ -114,3 +114,20 @@ describe("로또 등수 결과 확인 테스트", () => {
   });
 })
 
+describe("로또 결과 및 수익 확인 테스트", () => {
+  test("테스트 1", () => {
+    const app = new App();
+    app.checkAllLottoResultAndRevenue([[1, 2, 3, 4, 5, 6]], [1, 2, 3, 4, 5, 6], 7)
+
+    expect(app.result).toEqual({'1등': 1, '2등': 0, '3등': 0, '4등': 0, '5등': 0, 'none': 0});
+    expect(app.revenue).toEqual(2000000000);
+  });
+
+  test("테스트 2", () => {
+    const app = new App();
+    app.checkAllLottoResultAndRevenue([[1, 2, 3, 4, 5, 7], [1, 2, 3, 4, 11, 10], [10, 11, 12, 13, 14, 15, 16]], [1, 2, 3, 4, 5, 6], 7)
+
+    expect(app.result).toEqual({'1등': 0, '2등': 1, '3등': 0, '4등': 1, '5등': 0, 'none': 1});
+    expect(app.revenue).toEqual(30050000);
+  });
+})
