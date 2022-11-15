@@ -84,6 +84,7 @@ class Controller {
 
     this.view.printStatistics(statistics);
     const winningPrice = this.calcWinningPrice(statistics);
+    this.calcYield(winningPrice);
   }
 
   calcWinningPrice(statistics) {
@@ -110,6 +111,12 @@ class Controller {
     }
 
     return score;
+  }
+
+  calcYield(winningPrice) {
+    const payment = this.paymentModel.getPayment();
+    const _yield = Number(((winningPrice / Number(payment)) * 100).toFixed(2));
+    this.view.printYield(_yield);
   }
 
   calcLottoCount(price) {
