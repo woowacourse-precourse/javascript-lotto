@@ -1,7 +1,14 @@
+const UNIT = 1000;
+const MAX_NUBER = 45;
+const MIN_NUMBER = 1;
+
 const MESSAGE = {
   INPUT_AMOUNT: "구입금액을 입력해 주세요. ",
   INPUT_LOTTO: "당첨 번호를 입력해 주세요.",
   INPUT_BONUS: "보너스 번호를 입력해 주세요.",
+  BUY_LOTTO(piece) {
+    return `${piece}개를 구매했습니다.`;
+  },
 };
 
 const PRIZE = {
@@ -55,4 +62,7 @@ module.exports = {
   PRIZE,
   RANK,
   ERROR,
+  UNIT,
+  MAX_NUBER,
+  MIN_NUMBER,
 };
