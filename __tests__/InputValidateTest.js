@@ -48,4 +48,15 @@ describe('사용자 입력값 에러 테스트', () => {
       }).toThrow(Display.error(result[i]));
     });
   });
+
+  test('사용자의 보너스 번호 입력값이 유효하지 않으면 예외가 발생한다', () => {
+    const inputs = ['34, 9', '50'];
+    const results = ['OUT_OF_VOLUME', 'OUT_OF_RANGE'];
+
+    inputs.forEach((input, i) => {
+      expect(() => {
+        validateBonusNumberInput(input);
+      }).toThrow(Display.error(results[i]));
+    });
+  });
 });
