@@ -38,15 +38,19 @@ class LottoGame {
   createUserLotto = () => {
     return [...Array(this.money / 1000).keys()].map(() => {
       const randLotto = new UserLotto().number;
-      let lottoStrForPrint = "[";
-      [...randLotto].map((num) => {
-        lottoStrForPrint = lottoStrForPrint + num + ", ";
-      });
-      lottoStrForPrint =
-        lottoStrForPrint.substring(0, lottoStrForPrint.length - 2) + "]";
-      MissionUtils.Console.print(lottoStrForPrint);
+      this.printUserLotto(randLotto);
       return randLotto;
     });
+  };
+
+  printUserLotto = (randLotto) => {
+    let lottoStrForPrint = "[";
+    [...randLotto].map((num) => {
+      lottoStrForPrint = lottoStrForPrint + num + ", ";
+    });
+    lottoStrForPrint =
+      lottoStrForPrint.substring(0, lottoStrForPrint.length - 2) + "]";
+    MissionUtils.Console.print(lottoStrForPrint);
   };
 
   inputLottoNum = () => {
