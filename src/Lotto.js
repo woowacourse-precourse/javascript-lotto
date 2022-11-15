@@ -1,4 +1,5 @@
-const { ERR_LOTTO_CNT } = require('./Constants');
+const { ERR_LOTTO_CNT, ERR_LOTTO_DUP } = require('./Constants');
+const { Console } = require('@woowacourse/mission-utils');
 class Lotto {
   #numbers;
 
@@ -11,6 +12,10 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error(ERR_LOTTO_CNT);
     }
+    const numberSet = new Set(numbers);
+    if (numberSet.size !== 6) {
+      throw new Error(ERR_LOTTO_DUP);
+    }
   }
   // TODO: 추가 기능 구현
 
@@ -19,11 +24,21 @@ class Lotto {
     const sortedNumbers = numbers.sort((a, b) => a - b);
     return sortedNumbers;
   }
-  toString() {
-    console.log(this.#numbers);
-  }
+
   getNumbers() {
     return this.#numbers;
+  }
+  toString() {
+    let return_str = '[';
+    for (let number = 0; number < this.#numbers.length; number++) {
+      if (number !== this.#numbers.length - 1) {
+        return_str += `${this.#numbers[number]}, `;
+      } else {
+        return_str += `${this.#numbers[number]}`;
+      }
+    }
+    return_str += ']';
+    Console.print(return_str);
   }
 }
 

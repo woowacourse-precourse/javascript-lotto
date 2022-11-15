@@ -20,13 +20,13 @@ class App {
   #bonusNum;
 
   printResultMap(resultMap) {
-    for (let i = 0; i < Rank.length; i++) {
+    for (let i = Rank.length - 2; i >= 0; i--) {
       let count = 0;
       if (resultMap.has(i + 1)) {
         count = resultMap.get(i + 1);
       }
       if (Rank[i].earn > 0) {
-        Console.print(`${Rank[i].comment}${count}`);
+        Console.print(`${Rank[i].comment}${count}개`);
       }
     }
   }
@@ -77,7 +77,6 @@ class App {
         throw new Error(ERR_NOT_NUM);
       }
     });
-
     return splitedInput;
   }
 

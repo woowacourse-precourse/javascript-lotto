@@ -6,12 +6,6 @@ const {
   LOTTO_MIN_NUM,
   LOTTO_MAX_NUM,
   LOTTO_NUM_COUNT,
-  RANK2_MONEY,
-  RANK5_MONEY,
-  RANK4_MONEY,
-  RANK3_MONEY,
-  RANK1_MONEY,
-  RANK_NO_MONEY,
 } = require('./Constants');
 const Rank = require('./RankEnum');
 const { Console, Random } = require('@woowacourse/mission-utils');
@@ -22,9 +16,7 @@ class User {
   #lottoCnt;
   #lottos = [];
   #earns = 0;
-  toString() {
-    console.log(`${this.#money}, ${this.#lottoCnt}`);
-  }
+
   constructor(money) {
     this.#money = money;
     this.#lottoCnt = this.buyLotto(money);
@@ -51,7 +43,7 @@ class User {
   }
   validateMoneyInput(money) {
     const money_int = parseInt(money);
-    if (!money_int || !Number.isInteger(money_int)) {
+    if (!money_int || !Number.isInteger(money_int) || isNaN(money)) {
       throw new Error(ERR_ONLY_NUM);
     }
     if (money_int < 1000) {
@@ -75,7 +67,6 @@ class User {
     return resultMap;
   }
   checkRankWithOneLotto(userLottoNum, winningNumList, bonusNum) {
-    //높은 순위부터 체크
     const answerList = [...winningNumList, bonusNum];
     const answerCount = this.count(userLottoNum, answerList);
     switch (answerCount) {
