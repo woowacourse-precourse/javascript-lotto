@@ -1,3 +1,11 @@
+const {Random} = require("@woowacourse/mission-utils");
+const Lotto = require('./Lotto.js');
+const InputOutput = require('./InputOutput.js');
+const Calculate = require('./Calculate.js');
+const User = require('./User.js');
+const Message = require('./Message.js');
+const Score = require('./Score.js');
+
 class Game {
     constructor () {
         this.user = new User();
