@@ -1,5 +1,4 @@
 const Machine = require('../src/Machine');
-const User = require('../src/User');
 const Display = require('../src/Display');
 
 describe('로또 머신 테스트', () => {
