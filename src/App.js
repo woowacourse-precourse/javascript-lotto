@@ -20,6 +20,11 @@ class App {
       cash,
     };
   }
+
+  processInformation(information) {
+    const totalStats = new Stats(information);
+    return totalStats;
+  }
 }
 
 module.exports = App;
