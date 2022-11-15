@@ -17,6 +17,10 @@ class App {
       if(money % 1000) {
         throw new Error("[ERROR] 구입 금액이 잘못되었습니다.");
       }
+      
+      if(isNaN(money)) {
+        throw new Error("[ERROR] 숫자가 아닙니다.");
+      }
       const count = money / 1000;
       MissionUtils.Console.print(`${count}개를 구매했습니다.`);
       this.getLottoNumbers(count);
