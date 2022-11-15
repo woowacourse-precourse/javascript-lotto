@@ -56,14 +56,14 @@ class App {
     });
   }
 
-inputBonusLotto(inputSixNumber, lottos){
-  let inputBonusNumber = [];
-  Console.readLine('보너스 번호를 입력해 주세요.\n', (num) => {
-    inputBonusNumber = Number(num);
-    inputSixNumber.push(inputBonusNumber);
-    this.compareLotto(inputSixNumber, lottos);
-  });
-}
+  inputBonusLotto(){
+    Console.readLine('보너스 번호를 입력해 주세요.\n', (num) => {
+     const inputBonusNumber = parseInt(num);
+     this.bonusNum = inputBonusNumber;
+     console.log(this.bonusNum)
+     this.result();
+   });
+ }
 
 compareLotto(inputSixNumber, lottos){
   let checkLength = [];
