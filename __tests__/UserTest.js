@@ -38,4 +38,14 @@ describe("유저 클래스 테스트", () => {
       user.readAmount("금액", (amount) => {});
     }).toThrow();
   });
+
+  test("당첨 번호 입력 문구 출력 테스트", () => {
+    const message = "당첨 번호";
+    const logSpy = jest.spyOn(MissionUtils.Console, "readLine");
+
+    const user = new User();
+    user.readWinNumbers(message, (winNumbers) => {});
+
+    expect(logSpy).toHaveBeenCalledWith("당첨 번호", expect.anything());
+  });
 });

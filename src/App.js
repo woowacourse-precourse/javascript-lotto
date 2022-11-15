@@ -21,6 +21,14 @@ class App {
       this.user.lottoList = Lotto.purchase(amount);
       this.printMessage("");
       this.printPurchaseResult();
+      this.setWinNumbers();
+    });
+  }
+
+  setWinNumbers() {
+    this.user.readWinNumbers(MESSAGE.WIN_NUMBERS, (winNumbers) => {
+      Lotto.prototype.winNumbers = winNumbers.split(",").map(Number);
+      this.printMessage("");
     });
   }
 
