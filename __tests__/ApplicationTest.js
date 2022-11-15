@@ -105,4 +105,12 @@ describe("로또 테스트", () => {
       app.play();
     }).toThrow("[ERROR]");
   });
+
+  test("보너스 번호가 숫자가 아니라면 예외가 발생한다.", () => {
+    mockQuestions(["8000", "1, 3, 5, 14, 22, 45", "k"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
 });
