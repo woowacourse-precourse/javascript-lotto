@@ -1,6 +1,6 @@
-const { Console } = require('@woowacourse/mission-utils');
 const Machine = require('./Machine');
 const Display = require('./Display');
+const { Console } = require('@woowacourse/mission-utils');
 
 class App {
   play() {

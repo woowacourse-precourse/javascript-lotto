@@ -1,8 +1,8 @@
-const { Console } = require('@woowacourse/mission-utils');
-const { validateWinningNumbersInput, validateBonusNumberInput } = require('./utils/inputValidate');
 const Lotto = require('./Lotto');
 const User = require('./User');
 const Display = require('./Display');
+const { Console } = require('@woowacourse/mission-utils');
+const { validateWinningNumbersInput, validateBonusNumberInput } = require('./utils/inputValidate');
 
 class Machine {
   static user = new User();

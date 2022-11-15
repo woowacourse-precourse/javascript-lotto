@@ -1,5 +1,4 @@
 const Display = require('../src/Display');
-
 const {
   isDuplicatedAndThrowError,
   isOutOfRangeAndThrowError,

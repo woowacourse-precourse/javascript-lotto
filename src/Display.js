@@ -1,7 +1,6 @@
-const { Random, Console } = require('@woowacourse/mission-utils');
+const { Random } = require('@woowacourse/mission-utils');
 
 class Display {
-  // 사용자 입력값 안내 메시지
   static guidance(type) {
     switch (type) {
       case 'PAYMENT':
@@ -15,7 +14,6 @@ class Display {
     }
   }
 
-  // 로또 통계 관련 정보 메시지
   static statistics(type, info) {
     switch (type) {
       case 'QUANTITY':
@@ -25,7 +23,6 @@ class Display {
     }
   }
 
-  // 로또 정보
   static info(type) {
     switch (type) {
       case 'PRICE':
@@ -39,7 +36,6 @@ class Display {
     }
   }
 
-  // 에러 메시지
   static error(type) {
     switch (type) {
       case 'UNACCEPTABLE_PAYMENT':
@@ -53,7 +49,6 @@ class Display {
     }
   }
 
-  // 등수 정보
   static rankingInfo(ranking) {
     switch (ranking) {
       case 'FIFTH':
@@ -69,7 +64,6 @@ class Display {
     }
   }
 
-  // 등수 통계 정보 메시지
   static rankingStatistics(ranking, rankingCount) {
     const info = Display.rankingInfo(ranking);
 
@@ -79,12 +73,10 @@ class Display {
     return `${info.winning}개 일치 (${info.prize}원) - ${rankingCount}개`;
   }
 
-  // 로또 포멧
   static lottoFormat(numbers) {
     return `[${numbers.join(', ')}]`;
   }
 
-  // 랜덤 숫자
   static randomNumbers() {
     return Random.pickUniqueNumbersInRange(
       Display.info('RANGE_START'),
