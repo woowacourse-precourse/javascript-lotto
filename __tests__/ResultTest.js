@@ -1,6 +1,7 @@
 const Bonus = require('../src/Bonus');
 const Lotto = require('../src/Lotto');
 const Result = require('../src/Result');
+const { FORMAT } = require('../src/constants');
 
 describe('리절트 클래스 테스트', () => {
   test('잘못된 당첨 번호을 입력한 경우 에러처리', () => {
@@ -85,6 +86,6 @@ describe('리절트 클래스 테스트', () => {
       result.updateHistory(numberOfMatches, hasBonus);
     });
 
-    expect(result.findReturn().toFixed(1)).toEqual('62.5');
+    expect(result.findReturn().toFixed(FORMAT.POINT)).toEqual('62.5');
   });
 });

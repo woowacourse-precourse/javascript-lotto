@@ -1,5 +1,5 @@
 const Store = require('../src/Store');
-const { LOTTO, REGEX } = require('../src/constants');
+const { LOTTO, REGEX, FORMAT } = require('../src/constants');
 
 describe('스토어 클래스 테스트', () => {
   test('잘못된 구입 금액을 입력한 경우 에러처리', () => {
@@ -25,7 +25,7 @@ describe('스토어 클래스 테스트', () => {
     const store = new Store();
     store.pickNumbers();
     const [lottoArr] = store.lottos;
-    const lottoStr = lottoArr.join(',');
+    const lottoStr = lottoArr.join(FORMAT.COMMA);
     const lottoSet = new Set(lottoArr);
 
     expect(REGEX.WINNING_NUMBER.test(lottoStr)).toBe(true);

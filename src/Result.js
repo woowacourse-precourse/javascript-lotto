@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { MESSAGE, PRIZE, REGEX, ERROR } = require('./constants');
+const { MESSAGE, LOTTO, PRIZE, REGEX, FORMAT, ERROR } = require('./constants');
 const Lotto = require('./Lotto');
 const Bonus = require('./Bonus');
 
@@ -45,7 +45,7 @@ class Result {
       throw new Error(ERROR.ENTER_VALID_WINNING_NUMBER);
     }
 
-    return inputStr.split(',').map(Number);
+    return inputStr.split(FORMAT.COMMA).map(Number);
   }
 
   drawBonusNumber(winningNumber) {
@@ -107,7 +107,7 @@ class Result {
   }
 
   printReturn() {
-    const totalReturn = this.findReturn().toFixed(1);
+    const totalReturn = this.findReturn().toFixed(FORMAT.POINT);
     Console.print(
       `${MESSAGE.RETURN_TOTAL}${totalReturn}${MESSAGE.RETURN_PERCENT}`
     );
@@ -121,9 +121,9 @@ class Result {
       this.history.thirdPlace.prize * this.history.thirdPlace.count +
       this.history.secondPlace.prize * this.history.secondPlace.count +
       this.history.firstPlace.prize * this.history.firstPlace.count;
-    const purchaseAmount = this.lottos.length * 1000;
+    const purchaseAmount = this.lottos.length * LOTTO.PRICE;
 
-    return (winningAmount * 100) / purchaseAmount;
+    return (winningAmount * FORMAT.TO_PERCENT) / purchaseAmount;
   }
 }
 

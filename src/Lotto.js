@@ -1,4 +1,4 @@
-const { ERROR } = require('./constants');
+const { LOTTO, ERROR } = require('./constants');
 
 class Lotto {
   #numbers;
@@ -9,7 +9,7 @@ class Lotto {
 
   validate(inputArr) {
     const inputSet = new Set(inputArr);
-    if (inputSet.size !== 6) {
+    if (inputSet.size !== LOTTO.NUMBER_OF_NUMBERS) {
       throw new Error(ERROR.ENTER_WITHOUT_REPETITION);
     }
 

@@ -36,6 +36,12 @@ const REGEX = Object.freeze({
   BONUS_NUMBER: /^([1-9]{1}|[1-3]{1}[0-9]{1}|4{1}[0-5]{1}){1}$/,
 });
 
+const FORMAT = Object.freeze({
+  COMMA: ',',
+  POINT: 1,
+  TO_PERCENT: 100,
+});
+
 const ERROR = Object.freeze({
   ENTER_VALID_PURCHASE_AMOUNT: '[ERROR] 구입 금액은 1,000원 단위 입니다.',
   ENTER_VALID_WINNING_NUMBER:
@@ -45,4 +51,4 @@ const ERROR = Object.freeze({
   ENTER_WITHOUT_REPETITION: '[ERROR] 중복되지 않는 숫자를 입력해 주세요.',
 });
 
-module.exports = { MESSAGE, LOTTO, PRIZE, REGEX, ERROR };
+module.exports = { MESSAGE, LOTTO, PRIZE, REGEX, FORMAT, ERROR };
