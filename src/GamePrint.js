@@ -1,5 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const { MESSAGES } = require('./constants');
+const { MESSAGES, LOTTO_BASIC_CONDITION } = require('./constants');
 const GameUtils = require('./Utils/GameUtils');
 
 class GamePrint {
@@ -18,7 +18,7 @@ class GamePrint {
   static result(prize, profitRate) {
     MissionUtils.Console.print(MESSAGES.GAME.RESULT_HEADER);
     for(let rank in prize) {
-      if(rank === '5') {
+      if(rank === LOTTO_BASIC_CONDITION.bonusCheckPoint) {
         MissionUtils.Console.print(`${rank}개 일치 (${GameUtils.addComma(prize[rank].nonBonus.winningAmount)}원) - ${prize[rank].nonBonus.ea}개`);
         MissionUtils.Console.print(`${rank}개 일치, 보너스 볼 일치 (${GameUtils.addComma(prize[rank].hasBonus.winningAmount)}원) - ${prize[rank].hasBonus.ea}개`);
         continue;
