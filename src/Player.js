@@ -35,8 +35,10 @@ class Player {
   }
 
   insertBonusNumber() {
-    //검증 로직: '7'
-    //출력은 [7]
+    MissionUtils.Console.readLine(INGAME_INPUT.WINNING_BONUS, (string) => {
+      new Validation().checkOneString(string);
+      MissionUtils.Console.print(string);
+    });
   }
   //결과 로직은 [1,2,3,4,5,6].includes 갯수 체크
   //[7] 따로 체크해서 로직에 넣고, 출력시키도록

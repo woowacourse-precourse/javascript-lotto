@@ -1,6 +1,5 @@
 const Player = require("../src/Player");
 const Validation = require("../src/Validation");
-const Lotto = require("../src/Lotto");
 
 const {
   ERROR_INPUT_MESSAGE,

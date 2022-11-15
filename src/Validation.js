@@ -40,11 +40,22 @@ class Validation {
   checkSixString(string) {
     if (this.stringType(string)) {
       const resolved = string.split(",").map((el) => Number(el));
-      this.formatString(resolved);
+      this.formatStringSix(resolved);
       this.type(resolved);
       this.range(resolved);
       this.lengthSix(resolved);
       this.duplication(resolved);
+      return string;
+    }
+  }
+
+  checkOneString(string) {
+    if (this.stringType(string)) {
+      const resolved = string.split(",").map((el) => Number(el));
+      this.formatStringOne(resolved);
+      this.type(resolved);
+      this.range(resolved);
+      this.lengthOne(resolved);
       return string;
     }
   }
@@ -87,9 +98,15 @@ class Validation {
     }
   }
 
-  formatString(resolved) {
+  formatStringSix(resolved) {
     if (isNaN(resolved) && resolved.length !== 6) {
       throw new Error(ERROR_INPUT_MESSAGE.FORMAT_STRING);
+    }
+  }
+
+  formatStringOne(resolved) {
+    if (isNaN(resolved) && resolved.length !== 1) {
+      throw new Error(ERROR_INPUT_MESSAGE.FORMAT_STRING_ONE);
     }
   }
 }
