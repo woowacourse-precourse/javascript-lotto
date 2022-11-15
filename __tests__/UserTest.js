@@ -12,16 +12,6 @@ const mockQuestions = (answers) => {
 };
 
 describe("유저 클래스 테스트", () => {
-  test("구입 문구 출력 테스트", () => {
-    const message = "금액";
-    const logSpy = jest.spyOn(MissionUtils.Console, "readLine");
-
-    const user = new User();
-    user.readAmount(message, (amount) => {});
-
-    expect(logSpy).toHaveBeenCalledWith("금액", expect.anything());
-  });
-
   test("구입 금액이 숫자가 아니면 예외가 발생한다", () => {
     mockQuestions(["1000j"]);
 
@@ -38,16 +28,6 @@ describe("유저 클래스 테스트", () => {
       const user = new User();
       user.readAmount("금액", (amount) => {});
     }).toThrow("[ERROR]");
-  });
-
-  test("당첨 번호 입력 문구 출력 테스트", () => {
-    const message = "당첨 번호";
-    const logSpy = jest.spyOn(MissionUtils.Console, "readLine");
-
-    const user = new User();
-    user.readWinNumbers(message, (winNumbers) => {});
-
-    expect(logSpy).toHaveBeenCalledWith("당첨 번호", expect.anything());
   });
 
   test("당첨 번호가 올바른 형식이 아니면 예외가 발생한다", () => {
@@ -84,16 +64,6 @@ describe("유저 클래스 테스트", () => {
       const user = new User();
       user.readWinNumbers("당첨 번호", (amount) => {});
     }).toThrow("[ERROR]");
-  });
-
-  test("보너스 번호 입력 문구 출력 테스트", () => {
-    const message = "보너스 번호";
-    const logSpy = jest.spyOn(MissionUtils.Console, "readLine");
-
-    const user = new User();
-    user.readBonusNumber(message, (bonusNumber) => {});
-
-    expect(logSpy).toHaveBeenCalledWith("보너스 번호", expect.anything());
   });
 
   test("보너스 번호가 숫자가 아니면 예외가 발생한다", () => {
