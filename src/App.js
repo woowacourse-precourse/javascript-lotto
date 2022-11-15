@@ -19,7 +19,7 @@ class App {
       money = parseInt(input);
     });
     if(money < 1000 || money % 1000 !== 0)
-      throw new error("잘못된 입력입니다.");
+      throw new error("[ERROR] 잘못된 입력입니다.");
     cntLotto = money/1000;
     MissionUtils.Console.print(cntLotto +'개를 구매했습니다.');
     return cntLotto;
@@ -35,6 +35,13 @@ class App {
     }
     return Lotto_list;
   }
+
+  printLotto(Lotto_list){
+    for(lotto of Lotto_list)
+    MissionUtils.Console.print(lotto);
+  }
+
+
 }
 
 module.exports = App;
