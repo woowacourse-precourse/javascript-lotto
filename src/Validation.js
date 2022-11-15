@@ -2,19 +2,23 @@ const { ERROR_MESSAGE, LOTTO_PRICE, LOTTO_SIZE } = require("./Constants");
 
 class Validation {
   static checkPurchaseAmount(purchaseAmount) {
+    const purchaseAmountArr = purchaseAmount.split("");
     if (purchaseAmount.length === 0) {
       throw new Error(ERROR_MESSAGE.NOT_EMPTY_INPUT);
     }
-    if (this.isOnlyNumber(purchaseAmount)) {
+    if (!this.isOnlyNumber(purchaseAmountArr)) {
       throw new Error(ERROR_MESSAGE.NOT_ONLY_NUMBER);
     }
     if (!this.isDivided(purchaseAmount)) {
       throw new Error(ERROR_MESSAGE.PURCHASEAMOUNT_UNDIVIDED);
     }
   }
-  static isOnlyNumber(purchaseAmount) {
-    return isNaN(purchaseAmount);
+  static isOnlyNumber(input) {
+    const isNumber = (number) => !Number.isNaN(number);
+
+    return input.map((eachLetter) => parseInt(eachLetter, 10)).every(isNumber);
   }
+
   static isDivided(purchaseAmount) {
     const change = purchaseAmount % LOTTO_PRICE;
     return change === 0;
@@ -52,7 +56,7 @@ class Validation {
     if (bonusNumber.length === 0) {
       throw new Error(ERROR_MESSAGE.NOT_EMPTY_INPUT);
     }
-    if (this.isOnlyNumber(bonusNumber)) {
+    if (!this.isOnlyNumber(bonusNumber)) {
       throw new Error(ERROR_MESSAGE.NOT_ONLY_NUMBER);
     }
     if (!this.isNumberInRange(bonusNumber)) {

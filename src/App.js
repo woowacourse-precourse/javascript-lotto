@@ -29,9 +29,8 @@ class App {
       GUIDE_MESSAGE.PURCHASEAMOUNT_INPUT,
       (inputPurchaseAmount) => {
         Validation.checkPurchaseAmount(inputPurchaseAmount);
-        this.lottoBuying(inputPurchaseAmount);
-        this.LottoUI.prinntLottoNumber(this.lotto);
         this.purchaseAmount = Number(inputPurchaseAmount);
+        this.lottoBuying(inputPurchaseAmount);
         this.inputWinnerNumber();
       }
     );
@@ -62,6 +61,7 @@ class App {
         const bonusNumberArr = bonusNumberElement.split("");
         Validation.checkBonusNumber(bonusNumberArr, this.winnerNumber);
         this.bonusNumber = Number(bonusNumberElement);
+        this.LottoUI.prinntLottoNumber(this.lotto);
         this.getResult();
       }
     );
