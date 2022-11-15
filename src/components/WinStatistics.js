@@ -16,21 +16,15 @@ class WinStatistics {
   }
 
   static #winCondition({ winAndBonus, winPlace }) {
-    if (winAndBonus.win === CONDITION.FIRST_PLACE) {
-      winPlace.firstPlace += 1;
-    }
+    if (winAndBonus.win === CONDITION.FIRST_PLACE) winPlace.firstPlace += 1;
     if (winAndBonus.win === CONDITION.THIRD_PLACE && winAndBonus.bonus) {
       winPlace.secondPlace += 1;
     }
     if (winAndBonus.win === CONDITION.THIRD_PLACE && !winAndBonus.bonus) {
       winPlace.thirdPlace += 1;
     }
-    if (winAndBonus.win === CONDITION.FOURTH_PLACE) {
-      winPlace.fourthPlace += 1;
-    }
-    if (winAndBonus.win === CONDITION.FIFTH_PLACE) {
-      winPlace.fifthPlace += 1;
-    }
+    if (winAndBonus.win === CONDITION.FOURTH_PLACE) winPlace.fourthPlace += 1;
+    if (winAndBonus.win === CONDITION.FIFTH_PLACE) winPlace.fifthPlace += 1;
   }
 }
 
