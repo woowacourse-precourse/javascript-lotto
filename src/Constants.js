@@ -41,4 +41,4 @@ module.exports = {
     REWARD_MONEY,
     BUY_LOTTO_MESSAGE,
     THOUSAND,
-    HUNDRED}
+    HUNDRED };

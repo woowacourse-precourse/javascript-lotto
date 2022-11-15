@@ -39,7 +39,7 @@ class Lotto {
   isNotLottoNumber(numbers){
     for(let i = 0; i < numbers.length; i++){
       if(isNaN(numbers[i])){
-        throw new Error("[ERROR]")
+        throw new Error(IS_NOT_NUMBER);
       }
     }
   }

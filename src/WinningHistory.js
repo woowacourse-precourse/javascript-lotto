@@ -1,7 +1,7 @@
 const { Console } = require("@woowacourse/mission-utils");
 const NumberCompare = require("./NumberCompare");
 const UserInputNumber = require("./UserInputNumber");
-const {REWARD_MESSAGE, REWARD_MONEY, THOUSAND, HUNDRED } = require("./Constants")
+const {REWARD_MESSAGE, REWARD_MONEY, THOUSAND, HUNDRED } = require("./Constants");
 const {WINNING_STATISTICS ,MATCH_SIX ,MATCH_SIX_AND_BONUS, MATCH_FIVE, MATCH_FOUR, MATCH_THREE } = REWARD_MESSAGE;
 const {FIFTH_PLACE, FOURTH_PLACE, THIRD_PLACE, SECOND_PLACE, FIRST_PLACE} = REWARD_MONEY;
 
@@ -58,7 +58,6 @@ class WinningHistory{
         let revenueRound = revenueTotal.toFixed(1);
         Console.print(`총 수익률은 ${revenueRound}%입니다.`);
     }
-    
 }
 
 module.exports = WinningHistory;
