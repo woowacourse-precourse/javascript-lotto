@@ -17,6 +17,10 @@ class User {
         
     }
 
+    setUserLotto (userLottoList) {
+        this.userLotto = userLottoList;
+    }
+
 }
 
 module.exports = User;
