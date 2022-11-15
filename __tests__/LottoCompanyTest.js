@@ -1,8 +1,10 @@
 const LottoCompany = require("../src/LottoCompany");
+const Lotto = require("../src/Lotto");
+const { LOTTO_PRICE, WINNING_MONEYS } = require("../src/lib/constants");
 
-describe("로또 발행 회사 테스트", () => {
+describe("로또 발행 테스트", () => {
   test("금액에 맞는 개수만큼 로또를 발행한다.", () => {
-    const lottoCompany = new LottoCompany(1000);
+    const lottoCompany = new LottoCompany(LOTTO_PRICE, WINNING_MONEYS);
     const lottos = lottoCompany.publishLottos(2000);
     const lottos2 = lottoCompany.publishLottos(5000);
     expect(lottos.length).toBe(2);
@@ -15,7 +17,26 @@ describe("로또 발행 회사 테스트", () => {
     expect(() => lottoCompany.publishLottos(1500)).toThrow("[ERROR]");
     expect(() => lottoCompany.publishLottos(2500)).toThrow("[ERROR]");
   });
+});
 
+describe("당첨 순위 확인 테스트", () => {
+  test("당첨 순위를 잘 반환하는지 확인한다.", () => {
+    const lottoCompany = new LottoCompany(LOTTO_PRICE, WINNING_MONEYS);
+    lottoCompany.setWinningNumbers("1,2,3,4,5,6");
+    lottoCompany.setBonusNumber("7");
+    const lotto5th = new Lotto([1, 2, 3, 23, 24, 25]);
+    const lottoNone = new Lotto([6, 7, 8, 9, 10, 11]);
+    const lotto2nd = new Lotto([1, 2, 3, 5, 6, 7]);
+    const lotto1st = new Lotto([1, 2, 3, 4, 5, 6]);
+
+    expect(lottoCompany.checkResult(lotto5th)).toBe(5);
+    expect(lottoCompany.checkResult(lottoNone)).toBe(-1);
+    expect(lottoCompany.checkResult(lotto2nd)).toBe(2);
+    expect(lottoCompany.checkResult(lotto1st)).toBe(1);
+  });
+});
+
+describe("정적(부가) 기능 테스트", () => {
   test("숫자를 천의 단위로 끊어서 문자열로 반환하는 기능..", () => {
     expect(LottoCompany.breakInThosands(333555)).toBe("333,555");
     expect(LottoCompany.breakInThosands(1233433598555)).toBe(
