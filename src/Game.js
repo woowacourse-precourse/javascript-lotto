@@ -24,6 +24,16 @@ class Game {
         this.getAnotherInput();
     }
 
+    checkMoney (money) {
+        if (parseInt(money) != money) {
+            throw new Error(Message.NOT_NUMBER)
+        }
+        if (Calculate.divideByOneThousand(money)) {
+            InputOutput.close();
+            throw new Error(Message.CANT_DIVIDED_BY_ONETHOUSAND);
+        }
+    }
+
 }
 
 module.exports = Game;
