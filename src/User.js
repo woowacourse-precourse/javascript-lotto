@@ -1,7 +1,8 @@
 const Lotto = require('./Lotto');
+const CONSTANT = require('./constants/constant');
+const MESSAGE = require('./constants/message');
 const { checkValidMoney } = require('./utils/validator');
 const { Console, Random } = require('@woowacourse/mission-utils');
-const MESSAGE = require('./constants/message');
 
 class User {
   #money;
@@ -17,7 +18,7 @@ class User {
 
   buyLottos(money) {
     checkValidMoney(money);
-    this.#lottos = Array.from({ length: money / 1000 }, () => {
+    this.#lottos = Array.from({ length: money / CONSTANT.MONEY.UNIT }, () => {
       this.#money = money;
       let lottoNumber = this.pickNumber();
       return new Lotto(lottoNumber);
@@ -27,7 +28,11 @@ class User {
   }
 
   pickNumber() {
-    return Random.pickUniqueNumbersInRange(1, 45, 6);
+    return Random.pickUniqueNumbersInRange(
+      CONSTANT.LOTTO.START,
+      CONSTANT.LOTTO.END,
+      CONSTANT.LOTTO.LENGTH
+    );
   }
 
   printLottos() {
@@ -63,8 +68,9 @@ class User {
   }
 
   calculateRevenue() {
-    let reward = [2000000000, 30000000, 1500000, 50000, 5000, 0, 0, 0];
-    this.#results.forEach((num, idx) => (this.#revenue += reward[idx] * num));
+    this.#results.forEach(
+      (num, idx) => (this.#revenue += CONSTANT.REWARD[idx] * num)
+    );
     return this.#revenue;
   }
 }

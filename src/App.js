@@ -12,10 +12,10 @@ class App {
   }
 
   play() {
-    this.getMoney();
+    this.inputMoney();
   }
 
-  getMoney() {
+  inputMoney() {
     Console.readLine(MESSAGE.INPUT.MONEY, (money) => {
       this.user.buyLottos(Number(money));
       this.drawLotto();

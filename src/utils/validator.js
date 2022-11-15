@@ -1,8 +1,9 @@
+const CONSTANT = require('../constants/constant');
 const MESSAGE = require('../constants/message');
 
 function checkValidMoney(money) {
-  let numberStyle = /^[0-9]+$/;
-  if (!numberStyle.test(money)) throw new Error(MESSAGE.ERROR.MONEY.NUMBER);
+  if (!CONSTANT.REGEX.NUMBER.test(money))
+    throw new Error(MESSAGE.ERROR.MONEY.NUMBER);
   if (money % 1000 !== 0) throw new Error(MESSAGE.ERROR.MONEY.THOUSAND);
   if (money === 0) throw new Error(MESSAGE.ERROR.MONEY.ZERO);
 }
@@ -27,8 +28,7 @@ function isLength(numbers, length) {
 }
 
 function isNumber(numbers) {
-  let numberStyle = /^[0-9]+$/;
-  let isNumberMethod = (num) => numberStyle.test(num);
+  let isNumberMethod = (num) => CONSTANT.REGEX.NUMBER.test(num);
   return numbers.every(isNumberMethod);
 }
 
