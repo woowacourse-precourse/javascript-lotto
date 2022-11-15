@@ -18,9 +18,9 @@ class App {
   }
 
   validate(money) {
+    if (!checkType(money)) throw new Error(Message.ERROR_COST_TYPE);
     if (!checkRange(money)) throw new Error(Message.ERROR_COST_RANGE);
     if (!checkUnit(money)) throw new Error(Message.ERROR_COST_UNIT);
-    if (!checkType(money)) throw new Error(Message.ERROR_COST_TYPE);
     this.inputMoney = Number(money);
   }
 
