@@ -99,8 +99,19 @@ class LottoGame {
     MissionUtils.Console.print(
       `6개 일치 (2,000,000,000원) - ${this.countEachWinningCost[4]}개`
     );
-    this.calculateRevenue();
-    this.printRevenue();
+    const totalRevenue =
+      this.countEachWinningCost[0] * 5000 +
+      this.countEachWinningCost[1] * 50000 +
+      this.countEachWinningCost[2] * 1500000 +
+      this.countEachWinningCost[3] * 30000000 +
+      this.countEachWinningCost[4] * 2000000000;
+
+    const calculatedRevenue = (
+      (totalRevenue / this.purchasePrice) *
+      100
+    ).toFixed(1);
+    MissionUtils.Console.print(`총 수익률은 ${calculatedRevenue}%입니다.`);
+    MissionUtils.Console.close();
   }
 }
 
