@@ -49,11 +49,4 @@ describe("Validation 클래스 테스트", () => {
 
     expect(Validation.isThatInclude(lotto, bonusNumber)).toBe(false);
   });
-
-//   test("천원 단위로 입력되지 않으면 에러 발생", () => {
-//     const input = 2999;
-
-//     expect(() => lotto.rightAmount(input)).toThrow();
-//     expect(() => lotto.rightAmount(input)).toThrow('[ERROR] 천원 단위로 입력해주세요.');
-//   });
 });
