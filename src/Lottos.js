@@ -17,12 +17,15 @@ class Lottos {
       const lotto = Random.pickUniqueNumbersInRange(1, 45, 6).sort(
         (num1, num2) => num1 - num2
       );
+
       this.values.push(lotto);
     }
   }
 
   showLottosNumber() {
-    this.values.forEach((lotto) => Console.print(lotto));
+    this.values.forEach((lotto) => {
+      Console.print(`[${lotto.join(', ')}]`);
+    });
   }
 }
 
