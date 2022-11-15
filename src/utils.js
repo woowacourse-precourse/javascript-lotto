@@ -1,4 +1,4 @@
-const checkMyNumber = (list, winNumber, score, bonusNumber, reword) => {
+const checkMyNumber = (list, winNumber, score, bonusNumber) => {
   let correctCount = 0;
   if (JSON.stringify(list) === JSON.stringify(winNumber)) {
     return (score[2000000000] += 1);

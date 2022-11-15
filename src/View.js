@@ -7,6 +7,7 @@ const exception = new Exception();
 class View extends Setting {
   lottoStart() {
     Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
+      exception.isEmpty(money);
       money = Number(money);
       exception.isNumber(money);
       exception.isMultipleOfThousand(money);
@@ -45,13 +46,7 @@ class View extends Setting {
       this.bonusNumber = Number(bonusNumber);
       exception.isInWinNumber(this.bonusNumber, this.winNumber);
       this.lottoBox.map((oneLine) => {
-        checkMyNumber(
-          oneLine,
-          this.winNumber,
-          this.score,
-          this.bonusNumber,
-          this.reword
-        );
+        checkMyNumber(oneLine, this.winNumber, this.score, this.bonusNumber);
       });
       for (const [key, value] of Object.entries(this.score)) {
         this.reword += key * value;

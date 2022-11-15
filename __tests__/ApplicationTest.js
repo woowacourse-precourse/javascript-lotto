@@ -62,10 +62,10 @@ describe("로또 테스트", () => {
   });
 
   test("예외 테스트", () => {
-    mockQuestions(["1000j"]);
+    mockQuestions([""]);
     expect(() => {
       const app = new App();
       app.play();
-    }).toThrow("[ERROR]");
+    }).toThrow("[ERROR] : 1000원 이상의 금액을 입력하세요.");
   });
 });
