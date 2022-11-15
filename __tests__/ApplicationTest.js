@@ -103,4 +103,12 @@ describe("단위 테스트", () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
+
+  test("수익률을 포함한 등수별 통계를 생성한다", () => {
+    const app = new App();
+    const statistics = app.getStatistics([0, 1, 2, 3]);
+    const logs = { 0: 1, 1: 1, 2: 1, 3: 1, earningsRate: "125.0" };
+
+    expect(statistics).toEqual(logs);
+  });
 });

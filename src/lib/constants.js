@@ -10,6 +10,14 @@ const LOTTO = Object.freeze({
   MIN: 1,
   MAX: 45,
   COUNT: 6,
+
+  PRIZE: Object.freeze({
+    3: 5000,
+    4: 50000,
+    5: 1500000,
+    BONUS: 30000000,
+    6: 2000000000,
+  }),
 });
 
 module.exports = { MESSAGE, LOTTO };
