@@ -4,6 +4,7 @@ const Lotto = require("./Domains/Lotto");
 const Result = require("./Domains/Result");
 const Amount = require("./Domains/Amount");
 const Bonus = require("./Domains/Bonus");
+const LottoBundle = require("./Domains/LottoBundle");
 class App {
   constructor() {
     this.myMoney = 0;
@@ -20,21 +21,12 @@ class App {
       }
       const piece = +answer / UNIT;
       MissionUtils.Console.print(MESSAGE.BUY_LOTTO(piece));
-      this.createLottoBundle(piece);
+      this.printLottoBundle(piece);
     });
   }
 
-  createLottoBundle(piece) {
-    const bundle = [];
-    for (let i = 0; i < piece; i++) {
-      bundle.push(
-        MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort(
-          (a, b) => a - b
-        )
-      );
-    }
-    const bundleString = bundle.map((x) => JSON.stringify(x));
-    const bundleForPrint = bundleString.map((x) => x.replaceAll(",", ", "));
+  printLottoBundle(piece) {
+    const [bundle, bundleForPrint] = new LottoBundle().createLottoBundle(piece);
     bundleForPrint.forEach((x) => MissionUtils.Console.print(x));
     this.inputLottoNumber(bundle);
   }
