@@ -15,6 +15,11 @@ const MESSAGE = {
   ERROR: {
     NOT_A_NUMBER: '[ERROR]숫자를 입력해주세요.',
     NOT_VALID_MONEY: '[ERROR]1000원 단위의 수를 입력해주세요.',
+    NOT_RIGHT_SIZE_AND_DUPLICATED:
+      '[ERROR]중복되지 않는 6개의 "숫자"를 입력해주세요.',
+    NOT_VALID_RANGE: '[ERROR]1~45 사이의 수만 입력해주세요.',
+    DUPLICATED_BONUS_NUM:
+      '[ERROR]보너스번호는 기존 6개의 번호와 겹치지 않으며, 숫자형태여야합니다.',
   },
 };
 

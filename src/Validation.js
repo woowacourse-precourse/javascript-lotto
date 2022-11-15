@@ -7,9 +7,8 @@ const Validation = {
     return Number(input) % money === 0;
   },
 
-  isValidRange: function (input, min, max) {
-    let numArr = input.replace(' ', '').split(',');
-    let errorCount = numArr.filter(num => num < min || num > max).length;
+  isValidRange: function (inputArr, min, max) {
+    let errorCount = inputArr.filter(num => num < min || num > max).length;
     return errorCount === 0;
   },
 

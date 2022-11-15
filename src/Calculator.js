@@ -1,7 +1,7 @@
 const Calculator = {
   howManyWinningNums: function (winningNums, myNums) {
     let correct = 0;
-    for (let i = 0; i < winningNums.length; i++) {
+    for (let i = 0; i < winningNums.length; i += 1) {
       if (myNums.indexOf(winningNums[i]) !== -1) {
         correct += 1;
       }

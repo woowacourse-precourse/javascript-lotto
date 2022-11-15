@@ -1,10 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const {
-  isNumber,
-  isVaildMoney,
-  isRightSizeAndNotDuplicated,
-  isValidRange,
-} = require('./Validation');
+const { isNumber, isVaildMoney } = require('./Validation');
 const {
   GET_MONEY,
   SHOW_AMOUNT,
@@ -22,7 +17,14 @@ const {
   ERROR,
 } = require('./Messages');
 
-const { howManyWinningNums, bonusNum } = require('./Calculator');
+const {
+  howManyWinningNums,
+  bonusNum,
+  getTotalPrize,
+  getWinningRate,
+} = require('./Calculator');
+
+const Lotto = require('./Lotto');
 
 class App {
   constructor() {
@@ -43,7 +45,7 @@ class App {
   getMoney() {
     Console.readLine(GET_MONEY, answer => {
       this.howManyLottos = Number(answer) / 1000;
-      this.getLottoNum(this.howManyLottos);
+      // this.getLottoNum(this.howManyLottos);
       this.buyAutoLottos(this.howManyLottos);
       this.getPrizeNums();
 
@@ -53,10 +55,6 @@ class App {
         throw new Error(ERROR.NOT_VALID_MONEY);
       }
     });
-  }
-
-  getLottoNum(input) {
-    this.printMessage(input + SHOW_AMOUNT);
   }
 
   buyOneLotto(min, max, count) {
@@ -69,15 +67,19 @@ class App {
     while (this.lottoRandomNums.length < num) {
       this.lottoRandomNums.push(this.buyOneLotto(1, 45, 6));
     }
+    this.printMessage(num + SHOW_AMOUNT);
     this.lottoRandomNums.map(el => this.printMessage(el));
   }
 
   getPrizeNums() {
     Console.readLine(GET_NUMBERS, answer => {
-      this.lottoWinNums = answer
-        .replace(' ', '')
-        .split(',')
-        .map(el => Number(el));
+      const prizeNum = new Lotto(
+        answer
+          .replace(' ', '')
+          .split(',')
+          .map(el => Number(el)),
+      );
+      this.lottoWinNums = prizeNum.getNumbers;
       return this.getBonusNum();
     });
   }
@@ -85,13 +87,18 @@ class App {
   getBonusNum() {
     Console.readLine(GET_BONUS_NUMBER, answer => {
       this.lottoBonusNum = Number(answer);
+      const winNums = this.lottoWinNums;
+
+      if (winNums.includes(Number(answer)))
+        throw new Error(ERROR.DUPLICATED_BONUS_NUM);
+      else if (!isNumber(answer)) throw new Error(ERROR.NOT_A_NUMBER);
       return this.getScoreArray(this.lottoRandomNums);
     });
   }
 
   getScoreArray(arr) {
     let setScoreArr = [];
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length; i += 1) {
       let setScore = { correct: 0, bonus: 0 };
       setScore.correct = howManyWinningNums(this.lottoWinNums, arr[i]);
       setScore.bonus = bonusNum(this.lottoBonusNum, arr[i]);
@@ -118,6 +125,35 @@ class App {
     ).length;
     prizeState.matching_6 = arr.filter(el => el.correct === 6).length;
     return this.getStatistics(prizeState);
+  }
+
+  getStatistics(prizeState) {
+    const totalRate = getWinningRate(
+      getTotalPrize(prizeState),
+      this.howManyLottos,
+    );
+    this.printMessage(
+      WINNING_STASTICS +
+        MATCHING_3 +
+        prizeState.matching_3 +
+        COUNT +
+        MATCHING_4 +
+        prizeState.matching_4 +
+        COUNT +
+        MATCHING_5 +
+        prizeState.matching_5 +
+        COUNT +
+        MATCHING_5_BONUS +
+        prizeState.matching_5_bonus +
+        COUNT +
+        MATCHING_6 +
+        prizeState.matching_6 +
+        COUNT +
+        RETURN_RATE +
+        totalRate +
+        RETURN_RATE_ENDING_WORD,
+    );
+    Console.close();
   }
 }
 
