@@ -6,12 +6,20 @@ class App {
   play() {
     this.lottoPrice();
   }
-  lottoDraw = () => {};
+  constructor() {
+    this.WinningData = null;
+    this.BonusData = null;
+  }
+  lottoDraw = () => {
+    const winningAndBonustNumber =
+      this.WinningData.getWinning() + "," + this.BonusData.getBonus();
+    console.log(winningAndBonustNumber);
+  };
   BonusInput = () => {
     MissionUtils.Console.readLine(
       "보너스 번호를 입력해 주세요.",
       (BonusInput) => {
-        new Winning.BonusNumber(BonusInput);
+        this.BonusData = new Bonus(BonusInput);
         MissionUtils.Console.print(BonusInput);
       }
     );
@@ -21,7 +29,7 @@ class App {
     MissionUtils.Console.readLine(
       "당첨 번호를 입력해 주세요.",
       (winningInput) => {
-        new Winning(winningInput);
+        this.WinningData = new Winning(winningInput);
         MissionUtils.Console.print(winningInput);
       }
     );
