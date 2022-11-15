@@ -22,6 +22,20 @@ const PRIZE_MONEY = Object.freeze({
     FIFTH: 5000,
 });
 
+const RANGKING_COUNT = Object.freeze({
+    FIFTH_RANKING_COUNT: 3,
+    FORTH_RANKING_COUNT: 4,
+    THIRD_RANKING_COUNT: 5,
+    SECOND_RANKING_COUNT: 5.5,
+    FIRST_RANKING_COUNT: 6,
+});
+
+const NUMBERS_LIMIT = Object.freeze({
+    COUNT: 6,
+    MIN_NUMBER: 1,
+    MAX_NUMBER: 45,
+    UNIT_AMOUNT: 1000,
+});
 
 module.exports = {
     ERROR_MESSAGE,
