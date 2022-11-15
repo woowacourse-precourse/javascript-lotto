@@ -18,4 +18,5 @@ describe('입력 공통 예외 테스트', () => {
       Validator.isNumber(input);
     }).toThrow('[ERROR] 숫자가 아닙니다.');
   });
+  
 });

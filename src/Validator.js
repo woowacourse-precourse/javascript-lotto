@@ -19,6 +19,12 @@ class Validator {
         }
         throw new Error('[ERROR] 1000단위로 입력하세요.');
       }
+
+      static inputPurchase (string) {
+        this.isBlank(string);
+        this.isNumber(string);
+        this.isPurchaseUnit(string);
+      }
   
 }
   
