@@ -39,4 +39,9 @@ describe('로또 결과 판단 클래스 테스트', () => {
     const expected = 1;
     expect(compareNumbers.countSameNumbers(lotto)).toBe(expected);
   });
+
+  test('(getResult) 등수 당 당첨 횟수 구하기', () => {
+    const expected = [0, 0, 0, 0, 0, 1];
+    expect(compareNumbers.getResult()).toEqual(expected);
+  });
 });
