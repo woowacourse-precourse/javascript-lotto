@@ -16,6 +16,13 @@ class App {
     Console.print(`${this.#count}` + MESSAGE.USER_BOUGHT);
   }
 
+  arrayToString(array) {
+    let tempString = "[";
+    tempString += array.join(", ");
+    tempString += "]";
+    return tempString;
+  }
+
   inputPurchase() {
     Console.readLine(MESSAGE.USER_ENTER_PURCHASE, (money) => {
       this.#amount = money;
@@ -47,7 +54,7 @@ class App {
   createLottoNumber() {
     let lottos = Random.pickUniqueNumbersInRange(1, 45, 9);
     this.#numbers.push(lottos);
-    Console.print(lottos);
+    Console.print(this.arrayToString(lottos));
   }
 
   play() {
