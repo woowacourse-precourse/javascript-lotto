@@ -17,7 +17,7 @@ class Lotto {
     }
   }
 
-  isDuplicate(numbers)  {
+  isDuplicate(numbers) {
     const duplicate = numbers.some(function(x) {
       return numbers.indexOf(x) !== numbers.lastIndexOf(x);
     });
