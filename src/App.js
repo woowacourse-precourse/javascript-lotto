@@ -1,6 +1,7 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const { GAME, MESSAGE, PRIZE_BOARD, ERROR } = require('./modules/Constant');
 const Lotto = require('./Lotto');
+const WinLotto = require('./WinLotto');
 
 class App {
   constructor() {
@@ -67,12 +68,9 @@ class App {
 
   getBonusNumber() {
     Console.readLine(MESSAGE.CONFIRM_BONUS, (bonus) => {
-      // TODO: validate bonus
-      // 숫자여야한다
-      // 1 ~ 45 사이여야 한다
-      // 중복이면 안된다
-
       this.bonusNumber = Number(bonus);
+
+      new WinLotto(this.winNumbers, this.bonusNumber);
       console.log(this.bonusNumber);
       this.publishedLottos.forEach((publishedLotto) => {
         const result = publishedLotto.calculateResult(this.winNumbers, this.bonusNumber);
