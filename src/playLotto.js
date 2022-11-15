@@ -1,6 +1,7 @@
 const pickLotto = require('./PickLotto');
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
+const LottoResult = require('./LottoResult');
 
 class playLotto {
   cost = 0;
@@ -65,7 +66,15 @@ class playLotto {
         if (this.answerLotto.includes(number))
           throw '[ERROR] 보너스 번호가 중복되었습니다.';
         this.bonus = number;
+        this.LottoResult = new LottoResult(
+          this.userNumArray,
+          this.answerLotto,
+          this.bonus,
+          this.cost
+        );
       }
     );
   }
 }
+
+module.exports = playLotto;
