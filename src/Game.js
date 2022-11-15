@@ -45,6 +45,10 @@ class Game {
         }
     }
 
+    getAnotherInput () {
+        this.inputCorrectNumbers();
+    }
+
 }
 
 module.exports = Game;
