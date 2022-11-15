@@ -24,7 +24,25 @@ class Lotto {
   }
 
   win(winnerNumbers, bonusNumber) {
-    const intersectionNum = [
+    const INTERSECTION_NUMBERS = this.getIntersectionNumberList(winnerNumbers);
+
+    if (INTERSECTION_NUMBERS.length === 5) {
+      const LASTNUM = this.getExceptionNumberList(
+        this.#numbers,
+        INTERSECTION_NUMBERS,
+      )[0];
+
+      if (LASTNUM === bonusNumber) return 2;
+      return 3;
+    }
+
+    if (INTERSECTION_NUMBERS.length === 6) return 1;
+
+    return 6 - INTERSECTION_NUMBERS.length + 2;
+  }
+
+  getIntersectionNumberList(winnerNumbers) {
+    const INTERSECTION_NUMBERS = [
       ...new Set(
         [...winnerNumbers].filter((number) =>
           new Set(this.#numbers).has(number),
@@ -32,15 +50,15 @@ class Lotto {
       ),
     ];
 
-    if (intersectionNum.length === 5) {
-      const lastNum = [...new Set([...intersectionNum], this.#numbers)][0];
-      if (lastNum === bonusNumber) return 2;
-      return 3;
-    }
+    return INTERSECTION_NUMBERS;
+  }
 
-    if (intersectionNum.length === 6) return 1;
+  getExceptionNumberList(list_a, list_b) {
+    const EXCEPTION_NUMBERS = [
+      ...new Set([...list_a].filter((number) => !new Set(list_b).has(number))),
+    ];
 
-    return 6 - intersectionNum.length + 2;
+    return EXCEPTION_NUMBERS;
   }
 }
 
