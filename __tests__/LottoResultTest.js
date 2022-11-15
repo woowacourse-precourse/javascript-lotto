@@ -19,7 +19,6 @@ describe("LottoResult 클래스 테스트", () => {
     [2, 13, 22, 32, 38, 45],
     [1, 3, 5, 14, 22, 45],
   ];
-
   const WON_LOTTO = [1, 2, 3, 4, 5, 6];
   const BONUS_NUMBER = 7;
   const MOCK_SCORE = {
