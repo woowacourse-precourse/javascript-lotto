@@ -40,6 +40,7 @@ class PurchaseLotto {
 
             this.#purchasedLotto.push(lotto);
         }
+
         this.#purchasedLotto.map((lotto) => {
             Console.print(lotto.getNumbersToString());
         });
@@ -51,7 +52,7 @@ class PurchaseLotto {
 
     getPurcahseAmount() {
         return this.#purchaseAmount
-    }
+    }   
 }
 
 module.exports = PurchaseLotto;
