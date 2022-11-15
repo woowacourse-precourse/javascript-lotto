@@ -23,7 +23,7 @@ class LottoGameOperator {
     });
 
     this.showLottoNumbers(lottoArray);
-    return;
+    return lottoArray;
   }
 
   showLottoNumbers(lottoArray) {
