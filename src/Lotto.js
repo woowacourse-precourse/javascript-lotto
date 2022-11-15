@@ -28,7 +28,7 @@ class Lotto {
   }
 
   // 당첨된 번호 갯수 계산하는 함수
-  calcWinning(winnings){
+  #calcWinning(winnings){
     for(let i = 0 ; i <Constant.LOTTO_LENGTH ; i++ ){
       if(this.#numbers.includes(Number(winnings[i]))){
         this.#same += 1;
@@ -37,7 +37,7 @@ class Lotto {
   }
 
   // 보너스 번호 일치하는지 확인하는 함수
-  matchBonus(bonus){
+  #matchBonus(bonus){
     if(this.#numbers.includes(Number(bonus))){
       this.#bonus = true;
     }
@@ -45,8 +45,8 @@ class Lotto {
 
   // 순위
   calcRanking(winnings, bonus) {
-    this.calcWinning(winnings);
-    this.matchBonus(bonus);
+    this.#calcWinning(winnings);
+    this.#matchBonus(bonus);
     if (this.#same !== 5) {
       this.rank = Constant.WINNER[this.#same];
     }
