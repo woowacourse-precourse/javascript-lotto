@@ -1,10 +1,10 @@
-const { Console } = require("@woowacourse/mission-utils");
-const { MESSAGE, WINNING_RESULT_PRINT } = require("./constants.js");
-const buyingValidate = require("./buyingValidate.js");
-const bonusValidate = require("./bonusValidate.js");
-const LottoTicket = require("./LottoTicket.js");
-const Lotto = require("./Lotto.js");
-const WinningResult = require("./WinningResult");
+const { Console } = require('@woowacourse/mission-utils');
+const { MESSAGE, WINNING_RESULT_PRINT } = require('./constants.js');
+const buyingValidate = require('./buyingValidate.js');
+const bonusValidate = require('./bonusValidate.js');
+const LottoTicket = require('./LottoTicket.js');
+const Lotto = require('./Lotto.js');
+const WinningResult = require('./WinningResult');
 
 class App {
   constructor() {
@@ -42,7 +42,7 @@ class App {
   }
 
   getWinningNumberList(winningNumber) {
-    this.winningNumberList = winningNumber.split(",");
+    this.winningNumberList = winningNumber.split(',');
     new Lotto(this.winningNumberList);
     this.inputBonusNumber();
   }
@@ -61,7 +61,7 @@ class App {
     Console.print(`${WINNING_RESULT_PRINT[3]} - ${winningResult.numberByMatching[3]}개`);
     Console.print(`${WINNING_RESULT_PRINT[4]} - ${winningResult.numberByMatching[4]}개`);
     Console.print(`${WINNING_RESULT_PRINT[5]} - ${winningResult.numberByMatching[5]}개`);
-    Console.print(`${WINNING_RESULT_PRINT["5+1"]} - ${winningResult.numberByMatching["5+1"]}개`);
+    Console.print(`${WINNING_RESULT_PRINT['5+1']} - ${winningResult.numberByMatching['5+1']}개`);
     Console.print(`${WINNING_RESULT_PRINT[6]} - ${winningResult.numberByMatching[6]}개`);
     Console.print(`총 수익률은 ${winningResult.getProfitRate()}%입니다.`);
     Console.close();

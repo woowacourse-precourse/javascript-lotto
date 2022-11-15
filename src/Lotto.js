@@ -1,4 +1,4 @@
-const { RULE, ERROR } = require("./constants.js");
+const { RULE, ERROR } = require('./constants.js');
 
 class Lotto {
   #numbers;
@@ -52,7 +52,7 @@ class Lotto {
   }
 
   containsBlanks(numbers) {
-    return numbers.includes(" ");
+    return numbers.includes(' ');
   }
 
   containsCharacter(numbers) {

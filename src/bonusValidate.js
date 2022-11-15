@@ -1,4 +1,4 @@
-const { ERROR, RULE } = require("./constants.js");
+const { ERROR, RULE } = require('./constants.js');
 
 function bonusValidate(winningNumberList, bonusNumber) {
   if (hasCharacter(bonusNumber)) {
@@ -35,7 +35,7 @@ function containsWinningNumber(winningNumberList, bonusNumber) {
 }
 
 function containsBlanks(bonusNumber) {
-  return bonusNumber.includes(" ");
+  return bonusNumber.includes(' ');
 }
 
 module.exports = bonusValidate;

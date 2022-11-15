@@ -1,10 +1,10 @@
-const { PRIZE_MONEY, A_LOTTO_PRICE } = require("./constants.js");
+const { PRIZE_MONEY, A_LOTTO_PRICE } = require('./constants.js');
 const MIN_MATCH_NUMBER = 3;
 const numberByMatching = {
   3: 0,
   4: 0,
   5: 0,
-  "5+1": 0,
+  '5+1': 0,
   6: 0,
 };
 
@@ -24,7 +24,7 @@ class WinningResult {
         return this.winningNumberList.includes(number);
       }).length;
       if (matchNumber === 5 && ticket.includes(this.bunusNumber)) {
-        this.numberByMatching["5+1"] += 1;
+        this.numberByMatching['5+1'] += 1;
       }
       if (matchNumber >= MIN_MATCH_NUMBER) {
         this.numberByMatching[matchNumber] += 1;

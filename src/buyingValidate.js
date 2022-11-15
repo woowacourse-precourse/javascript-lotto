@@ -1,4 +1,4 @@
-const { ERROR, RULE } = require("./constants.js");
+const { ERROR, RULE } = require('./constants.js');
 
 function buyingValidate(buyingAmount) {
   if (hasBlank(buyingAmount)) {
@@ -17,7 +17,7 @@ function buyingValidate(buyingAmount) {
 }
 
 function hasBlank(buyingAmount) {
-  return buyingAmount.includes(" ");
+  return buyingAmount.includes(' ');
 }
 
 function hasChar(buyingAmount) {
@@ -28,7 +28,7 @@ function hasRemainder(buyingAmount) {
 }
 
 function isZeroWon(buyingAmount) {
-  return buyingAmount === "0";
+  return buyingAmount === '0';
 }
 
 module.exports = buyingValidate;

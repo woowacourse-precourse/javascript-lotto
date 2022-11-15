@@ -1,5 +1,5 @@
-const { Console, Random } = require("@woowacourse/mission-utils");
-const { RULE } = require("./constants.js");
+const { Console, Random } = require('@woowacourse/mission-utils');
+const { RULE } = require('./constants.js');
 
 module.exports = class LottoTicket {
   static generateNumber() {
@@ -10,7 +10,7 @@ module.exports = class LottoTicket {
     const lottoTicketList = [];
     for (let number = 1; number <= lottoTicketNumber; number++) {
       const lottoTicket = LottoTicket.generateNumber();
-      Console.print(`[${lottoTicket.join(", ")}]`);
+      Console.print(`[${lottoTicket.join(', ')}]`);
       lottoTicketList.push(lottoTicket);
     }
     return lottoTicketList;
