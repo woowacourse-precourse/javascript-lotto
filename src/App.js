@@ -13,8 +13,7 @@ const lottoPriceInput = () => {
     lottoPriceValidate(+answer);
     const lottoCnt = answer / LOTTO;
     const lottoArr = createLottoArr(lottoCnt);
-    winLottoNum();
-    bonusLottoNum();
+    winLottoNum(lottoArr);
   });
 
 }
@@ -38,17 +37,23 @@ const createLottoArr = (lottoCnt) => {
 }
 
 
-const winLottoNum = () => {
+const winLottoNum = (lottoArr) => {
   MissionUtils.Console.readLine('\n당첨 번호를 입력해 주세요.', (answer) => {
     winLottoValidate(answer);
-    bonusLottoNum();
+    bonusLottoNum(lottoArr);
+    
   })
 }
 
 const winLottoValidate = (winNumber) => {
-  if (winNumber.split(",").length !== 6) {
+  const text = /[^0-9,]/;
+  if (text.test(winNumber)) {
     throw new Error("[ERROR] 올바른 당첨 번호를 입력 하세요.");
   }
+  if (winNumber.split(",").join('').trim().length !== 6) {
+    throw new Error("[ERROR] 올바른 당첨 번호를 입력 하세요.");
+  }
+
   for (let num of winNumber) {
     if (+num > 45 || +num < 1) {
       throw new Error("[ERROR] 올바른 당첨 번호를 입력 하세요.");
@@ -56,9 +61,11 @@ const winLottoValidate = (winNumber) => {
   }
 }
 
-const bonusLottoNum = () => {
+const bonusLottoNum = (lottoArr) => {
   MissionUtils.Console.readLine('\n보너스 번호를 입력해 주세요.', (answer) => {
     bonusLottoValidate(answer);
+    calLotto(lottoArr);
+
   })
 }
 
@@ -69,14 +76,14 @@ const bonusLottoValidate = (bonusNumber) => {
   if (+bonusNumber > 45 || +bonusNumber < 1) {
       throw new Error("[ERROR] 올바른 보너스 번호를 입력 하세요.");
   }
-  if (!Number.isNaN(bonusNumber)) {
+  if (isNaN(bonusNumber)) {
       throw new Error("[ERROR] 올바른 보너스 번호를 입력 하세요.");
   }
 } 
 
 
-const calLotto = (lottoArr, ) => {
-
+const calLotto = (lottoArr) => {
+  MissionUtils.Console.print("당첨통계");
 }
 
 const app = new App();
