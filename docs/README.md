@@ -12,7 +12,7 @@
 # 기능목록
 - 로또 구입금액, 당첨 번호, 보너스 번호 입력받기. :white_check_mark:
 - 로또 구입 금액에 해당하는 만큼 로또를 발행해야 한다. 1장당 1000원. :white_check_mark:
-    - 1000원으로 나누어떨어지지 않는 경우 예외처리.
+    - 1000원으로 나누어떨어지지 않는 경우 예외처리. :white_check_mark:
 - 사용자가 구매한 로또 번호와 당첨 번호를 비교. :white_check_mark:
 - 각 로또가 몇 등 당첨 됐는지 저장. :white_check_mark:
 - 당첨 내역 출력. :white_check_mark:

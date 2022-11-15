@@ -14,7 +14,10 @@ class App {
 
   buyLotto() {
     MissionUtils.Console.readLine('구입 금액을 입력해 주세요.\n', (money) => {
-      const count = Math.floor(money / 1000);
+      if(money % 1000) {
+        throw new Error("[ERROR] 구입 금액이 잘못되었습니다.");
+      }
+      const count = money / 1000;
       MissionUtils.Console.print(`${count}개를 구매했습니다.`);
       this.getLottoNumbers(count);
       this.getWinNumbers();
