@@ -48,7 +48,7 @@ describe("로또 발행기 클래스 테스트", () => {
   });
 
   test("예외 - 당첨 번호가 숫자가 아닌 값이 들어간 경우", () => {
-    mockQuestions(["5,10,15,20,25,a", "7"]);
+    mockQuestions(["5,10,15,20,25,a"]);
 
     expect(() => {
       const machine = new LotteryMachine();
@@ -57,7 +57,7 @@ describe("로또 발행기 클래스 테스트", () => {
   });
 
   test("예외 - 당첨 번호가 6개가 아닌 경우", () => {
-    mockQuestions(["5,10,15,20,25,30,35", "7"]);
+    mockQuestions(["5,10,15,20,25,30,35"]);
 
     expect(() => {
       const machine = new LotteryMachine();
@@ -66,7 +66,7 @@ describe("로또 발행기 클래스 테스트", () => {
   });
 
   test("예외 - 당첨 번호가 1~45 사이에 수가 아닌 경우", () => {
-    mockQuestions(["5,10,15,20,25,46", "7"]);
+    mockQuestions(["5,10,15,20,25,46"]);
 
     expect(() => {
       const machine = new LotteryMachine();
@@ -75,7 +75,7 @@ describe("로또 발행기 클래스 테스트", () => {
   });
 
   test("예외 - 당첨번호에 중복된 수가 있는 경우", () => {
-    mockQuestions(["5,10,15,20,25,25", "7"]);
+    mockQuestions(["5,10,15,20,25,25"]);
 
     expect(() => {
       const machine = new LotteryMachine();
@@ -85,6 +85,15 @@ describe("로또 발행기 클래스 테스트", () => {
 
   test("예외 - 보너스 번호가 당첨번호와 중복된 경우", () => {
     mockQuestions(["5,10,15,20,25,30", "30"]);
+
+    expect(() => {
+      const machine = new LotteryMachine();
+      machine.draw();
+    }).toThrow("[ERROR]");
+  });
+
+  test("예외 - 당첨 번호를 쉼표로 구분하지 않은 경우", () => {
+    mockQuestions(["5,10,15,20.25.30"]);
 
     expect(() => {
       const machine = new LotteryMachine();
