@@ -10,6 +10,9 @@ const {
 } = require("../src/const/ErrorMessages");
 const WINNING = require("./const/Winning");
 const Lotto = require("./Lotto");
+const formatMoney = require("./utils/formatMoney");
+const formatNumber = require("./utils/formatNumber");
+
 class App {
   #amount;
   #userLottos;
@@ -37,7 +40,6 @@ class App {
 
       const AMOUNT = parseInt(money / 1000);
       this.#amount = AMOUNT;
-      // Console.print("");
       Console.print(`${AMOUNT}개를 구매했습니다.`);
       this.inializeLottos(AMOUNT);
     });
@@ -52,7 +54,6 @@ class App {
       this.#userLottos.push(newLotto);
       newLotto.print();
     }
-    // Console.print("");
     this.inputWinnerNumbers();
   }
 
@@ -81,7 +82,9 @@ class App {
     Console.print("---");
     const RESULT_LIST = this.calculateResult();
     this.showResult(RESULT_LIST);
-    Console.print(`총 수익률은 ${this.calculateBenefits(RESULT_LIST)}%입니다.`);
+
+    const BENEFIT = formatNumber(this.calculateBenefits(RESULT_LIST));
+    Console.print(`총 수익률은 ${BENEFIT}%입니다.`);
   }
 
   calculateResult() {
@@ -100,13 +103,15 @@ class App {
   }
 
   showResult(resultList) {
-    Console.print(`3개 일치 (5,000원) - ${resultList.WIN_5 || 0}개`);
-    Console.print(`4개 일치 (50,000원) - ${resultList.WIN_4 || 0}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${resultList.WIN_3 || 0}개`);
-    Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${resultList.WIN_2 || 0}개`,
-    );
-    Console.print(`6개 일치 (2,000,000,000원) - ${resultList.WIN_1 || 0}개`);
+    const ORDER = ["WIN_5", "WIN_4", "WIN_3", "WIN_2", "WIN_1"];
+
+    ORDER.forEach((item) => {
+      const { CONDITIONS, PRICE } = WINNING[item];
+
+      Console.print(
+        `${CONDITIONS} (${formatMoney(PRICE)}원) - ${resultList[item] || 0}개`,
+      );
+    });
     Console.close();
   }
 
@@ -115,8 +120,8 @@ class App {
     let earned = 0;
 
     for (const [key, value] of Object.entries(resultList)) {
-      if (WINNING[key]) {
-        earned += WINNING[key] * value;
+      if (WINNING[key]?.PRICE) {
+        earned += WINNING[key].PRICE * value;
       }
     }
 
@@ -154,8 +159,5 @@ class App {
     this.inputUserLottoAmount();
   }
 }
-
-const app = new App();
-app.play();
 
 module.exports = App;
