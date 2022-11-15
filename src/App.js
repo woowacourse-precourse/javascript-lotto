@@ -36,6 +36,7 @@ class App {
       this.winLotto = new WinLotto(numbers);
       MissionUtils.Console.readLine(`\n${Message.BONUS_MESSAGE}`, input => {
         this.winLotto.setBonusNumber(Number(input));
+        this.getLottoResult();
       });
     });
   }
@@ -53,7 +54,6 @@ class App {
       View.printUserLottoNum(this.userLottoList.length);
       this.userLottoList.forEach(lotto => View.printUserLotto(lotto.getNumbers()));
       this.createWinLotto();
-      this.getLottoResult();
     });
   }
 }
