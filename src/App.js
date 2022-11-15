@@ -82,12 +82,15 @@ class App {
       this.#bonusNumber,
     );
     const ranks = lottoChecker.getLottoRankings();
+    const profitRate = lottoChecker.getProfitRate();
 
     this.#console.print('\n당첨 통계\n---');
 
     Object.entries(STATISTICS).forEach(([key, message]) => {
       this.#console.print(message(ranks[key]));
     });
+
+    this.#console.print(`총 수익률은 ${profitRate}%입니다.`);
   }
 
   #quit() {

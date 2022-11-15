@@ -1,4 +1,4 @@
-const { RANKS } = require('../constants');
+const { RANKS, PRIZE, LOTTO } = require('../constants');
 
 class LottoChecker {
   #lottoTickets;
@@ -9,6 +9,24 @@ class LottoChecker {
     this.#lottoTickets = lottoTickets;
     this.#winningNumbers = winningNumbers;
     this.#bonusNumber = bonusNumber;
+  }
+
+  getProfitRate() {
+    const cost = this.#lottoTickets.length * LOTTO.PRICE;
+    const totalPrize = this.#calcTotalPrize();
+    const profiRate = ((totalPrize / cost) * 100).toFixed(1);
+
+    return profiRate;
+  }
+
+  #calcTotalPrize() {
+    const ranks = this.getLottoRankings();
+    const totalPrize = Object.entries(ranks).reduce(
+      (acc, [key, value]) => acc + PRIZE[key] * value,
+      0,
+    );
+
+    return totalPrize;
   }
 
   getLottoRankings() {

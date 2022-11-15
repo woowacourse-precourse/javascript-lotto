@@ -41,9 +41,18 @@ const STATISTICS = {
   FIRST: (count) => `6개 일치 (2,000,000,000원) - ${count}개`,
 };
 
+const PRIZE = {
+  FIFTH: 5000,
+  FOURTH: 50000,
+  THIRD: 1500000,
+  SECOND: 30000000,
+  FIRST: 2000000000,
+};
+
 module.exports = {
   ERROR_MESSAGE,
   LOTTO,
   RANKS,
   STATISTICS,
+  PRIZE,
 };
