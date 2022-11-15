@@ -9,7 +9,7 @@ class App {
     this.numberGenerator = new NumberGenerator();
     this.lottoCount = null;
     this.lottoWinningCount = [];
-    this.lottoWinningCountList = [0, 0, 0, 0, 0, 0];
+    this.lottoWinningCountList = [0, 0, 0, 0, 0];
     this.lottoArr = [];
     this.userLottoNumber = null;
     this.userBonusLottoNumber = null;
@@ -90,9 +90,9 @@ class App {
       if (count.length === 3) this.lottoWinningCountList[0]++;
       if (count.length === 4) this.lottoWinningCountList[1]++;
       if (count.length === 5 && this.count.includes(bonusLottoNumber))
-        this.lottoWinningCountList[4]++;
-      if (count.length === 5) this.lottoWinningCountList[3]++;
-      if (count.length === 6) this.lottoWinningCountList[5]++;
+        this.lottoWinningCountList[3]++;
+      if (count.length === 5) this.lottoWinningCountList[2]++;
+      if (count.length === 6) this.lottoWinningCountList[4]++;
     });
   }
 }
