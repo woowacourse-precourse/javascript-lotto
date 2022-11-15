@@ -6,6 +6,14 @@ class App {
     this.lottoNumbers;
     this.winningNums;
     this.bonusNumber;
+    this.matchCount = {
+      first: 0,
+      second: 0,
+      third: 0,
+      fourth: 0,
+      fifth: 0,
+    };
+    this.rateOfReturn;
   }
 
   play() {}
