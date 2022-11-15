@@ -3,7 +3,6 @@ const { ERROR_MSG, LOTTOS } = require('./lib/constant');
 
 class Lotto {
   #numbers;
-  #bonus;
 
   constructor(numbers) {
     this.validate(numbers);
@@ -23,7 +22,7 @@ class Lotto {
   setBonus(bonusNumber) {
     const allNumbers = [...this.#numbers, bonusNumber];
     this.validateAllNumbers(allNumbers);
-    this.#bonus = bonusNumber;
+    this.#numbers = [...allNumbers];
   }
 
   validateAllNumbers(allNumbers) {
@@ -35,9 +34,11 @@ class Lotto {
   }
 
   getScore(pickedNumbers) {
+    const bonusIdx = this.#numbers.length - 1;
+    const bonus = this.#numbers[bonusIdx];
     const isIncludeNum = isInclude(pickedNumbers);
-    const score = this.#numbers.filter(isIncludeNum).length;
-    const bonusScore = isIncludeNum(this.#bonus) ? 1 : 0;
+    const score = this.#numbers.slice(0, bonusIdx).filter(isIncludeNum).length;
+    const bonusScore = isIncludeNum(bonus) ? 1 : 0;
 
     return { score, bonusScore };
   }
