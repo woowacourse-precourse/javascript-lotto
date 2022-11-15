@@ -72,6 +72,13 @@ class Score {
         this.setProfit(profit);
     }
 
+    isBonus (userOneLotto) {
+        if (userOneLotto.includes(this.bonusNumber)) {
+            return true;
+        }
+        return false;
+    }
+    
 }
 
 module.exports = Score;
