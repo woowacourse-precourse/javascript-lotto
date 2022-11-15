@@ -49,3 +49,10 @@ Added new methods to $Lotto:
 - check if user's lotto includes the winning Bonus
 
 Breaks, $Lotto.statistics, $Lotto.check, $Lotto.checkBonus
+
+---
+feat($App): check, statistics method
+
+Added new methods to $App:
+- check the lotto numbers
+- print the statistics of the result
