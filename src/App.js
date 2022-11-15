@@ -11,10 +11,8 @@ class App {
     let bonusNumber = await this.getBonusNumbers();
 
     this.countWinLottos(lottos, winningNumbers, bonusNumber);
-
-    let revenue = this.getRevenue();
-    let revenueRate = (revenue / (lottoCount * 1000)) * 100;
-
+    this.printResult();
+    this.printRevenue(lottoCount);
     this.appClose();
   }
 
@@ -59,7 +57,6 @@ class App {
       let winNumbers = lotto.countWinNumbers(winnigNumbers, bonusNumber);
       this.findConditions(winNumbers);
     });
-    console.log(WIN_CONDITIONS);
   }
 
   getRevenue() {
@@ -93,6 +90,26 @@ class App {
     });
   }
 
+  printResult() {
+    Console.print(MESSAGES.RESULT_TITLE);
+    Console.print(MESSAGES.RESULT_LINE);
+    WIN_CONDITIONS.forEach((condition) => {
+      Console.print(
+        RESULT_MESSAGE.WIN_MESSAGES(
+          condition.winCount,
+          condition.winPrice,
+          condition.count,
+          condition.isBonus
+        )
+      );
+    });
+  }
+
+  printRevenue(lottoCount) {
+    let revenue = this.getRevenue();
+    let revenueRate = (revenue / (lottoCount * 1000)) * 100;
+    Console.print(RESULT_MESSAGE.REVENUE_MESSAGE(revenueRate));
+  }
   appClose() {
     Console.close();
   }
