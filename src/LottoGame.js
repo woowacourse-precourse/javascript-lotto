@@ -1,34 +1,25 @@
-const { PURCHASE, LOTTO_PRICE } = require("./constants");
+const { PURCHASE, LOTTO_PRICE, RESULT_MESSAGE, SET_WINNGNUMBER } = require("./constants");
 const { LottoValidation, checkIsNumber, checkZero, isUnit } = require("./LottoValidation");
+const { Console, Random } = require("@woowacourse/mission-utils");
+const Lotto = require("./Lotto");
+const LottoResult = require("./LottoResult");
 
 class LottoGame {
-  constructor() {
-    this.profit = 0;
-    this.lottoMatch = {
-      three: 0,
-      four: 0,
-      five: 0,
-      five_Bonus: 0,
-      six: 0,
-      out: 0,
-    };
-  }
   #money;
   #number_Purchase;
   #lotteries;
   #winningNumber;
-  #lottoResult;
-  #lottoIssuer;
-
+  #lottoResult = new LottoResult();
   start() {
     Console.readLine(PURCHASE.INPUT_PRICE, (input) => this.purchase(input));
   }
+
   purchase(input) {
     this.setNumberPurchase(input);
-    this.drawNumber(this.money / LOTTO_PRICE);
+    this.drawNumber(this.#money / LOTTO_PRICE);
   }
   setNumberPurchase(input) {
-    this.money = this.validateMoney(input);
+    this.#money = this.validateMoney(input);
   }
   validateMoney(input) {
     checkIsNumber(input);
@@ -37,7 +28,8 @@ class LottoGame {
     return input;
   }
   drawNumber(number) {
-    this.lotteries = this.draw(number);
+    this.#number_Purchase = this.#money / LOTTO_PRICE;
+    this.#lotteries = this.draw(number);
     this.printDrawNumber();
     this.setWinningNumber();
   }
@@ -47,21 +39,30 @@ class LottoGame {
       .map(() => Random.pickUniqueNumbersInRange(1, 45, 6).sort((current, next) => current - next));
   }
   printDrawNumber() {
-    Console.print(RESULT_MESSAGE.PURCHASE(number_Purchase));
+    Console.print(RESULT_MESSAGE.PURCHASE(this.#number_Purchase));
     this.#lotteries.forEach((lottoNumbers) => {
       Console.print(`[${lottoNumbers.join(", ")}]`);
     });
   }
   setWinningNumber() {
-    Console.readLine(INPUT_MESSAGE.winning, (winningNumbers) => {
+    Console.readLine(SET_WINNGNUMBER.INPUT_NUMBER, (winningNumbers) => {
       this.#winningNumber = new Lotto(winningNumbers.split(","));
-      this.drawBonusNumber();
+      this.setBonusNumber();
     });
   }
   setBonusNumber() {
-    Console.readLine(INPUT_MESSAGE.bonus, (bonusNumber) => {
+    Console.readLine(SET_WINNGNUMBER.INPUT_BONUS_NUMBER, (bonusNumber) => {
       this.#winningNumber.setBonusNumber(bonusNumber);
       this.printResult();
     });
   }
+
+  printResult() {
+    this.#lottoResult.print(this.#winningNumber.getNumbers(), this.#lotteries);
+    Console.close();
+  }
 }
+
+lottoGame = new LottoGame();
+lottoGame.start();
+module.exports = LottoGame;
