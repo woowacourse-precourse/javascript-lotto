@@ -70,8 +70,9 @@ class LottoResult {
   }
 
   printResult() {
+    MissionUtils.Console.print("\n");
     MissionUtils.Console.print(
-      `\n당첨 통계
+      `당첨 통계
 ---
 3개 일치 (5,000원) - ${this.score[3]}개
 4개 일치 (50,000원) - ${this.score[4]}개
