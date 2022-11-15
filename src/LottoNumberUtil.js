@@ -12,7 +12,14 @@ function validateLength(numbers) {
   }
 }
 
+function validateDuplication(numbers) {
+  if (new Set(numbers).size !== numbers.length) {
+    throw new Error(LOTTO_ERROR_MESSAGE.LOTTO_NUMBER_DOUBLE_ERROR);
+  }
+}
+
 module.exports = {
   validateMoney,
   validateLength,
+  validateDuplication,
 };
