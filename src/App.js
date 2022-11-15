@@ -3,6 +3,8 @@ const Lotto = require("./Lotto");
 const Console = MissionUtils.Console;
 const Random = MissionUtils.Random;
 
+const LOTTO_PRICE = 1000;
+
 class App {
   play() {
     this.lottoAmount();
@@ -12,17 +14,17 @@ class App {
   lottoAmount() {
     Console.readLine("구입금액을 입력해 주세요.\n", (inputMoney) => {
       this.amountException(inputMoney);
-      let amount = inputMoney / 1000;
+      let amount = inputMoney / LOTTO_PRICE;
       Console.print(amount + "개를 구매했습니다.");
       let myNumbers = this.autoLottoNums(amount);
       this.inputWinningNums(myNumbers);
-      return amount;
+      return;
     });
   }
 
   amountException(input) {
-    if (input % 1000 != 0) throw "[ERROR] 올바르지 않은 입력입니다.";
-    if(input < 1000) throw "[ERROR] 로또는 1000원부터 구매 가능합니다.";
+    if (input % LOTTO_PRICE != 0) throw "[ERROR] 올바르지 않은 입력입니다.";
+    if(input < LOTTO_PRICE) throw "[ERROR] 로또는 1000원부터 구매 가능합니다.";
     return;
   }
 
@@ -57,8 +59,6 @@ class App {
       winNums.push(inputBonus);
       let isMatch = lotto.compareLottoNums(myNumbers, winNums);
       let bonusMatch = lotto.compareBonus(myNumbers, inputBonus, isMatch);
-      console.log(isMatch);
-      console.log(bonusMatch);
       lotto.printWinResult(isMatch, bonusMatch);
       Console.close();
     });
