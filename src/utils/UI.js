@@ -7,6 +7,7 @@ class UI {
   #countLotto;
   #arrUserInputLottoNumbers;
   #bonusNumber;
+  #countSameNumber;
 
   askMoney() {
     Console.readLine("구입금액을 입력해 주세요.\n", (userInputMoney) => {
@@ -36,6 +37,10 @@ class UI {
     return this.#bonusNumber;
   }
 
+  get countSameNumber() {
+    return this.#countSameNumber;
+  }
+
   inputUserLottoNumber() {
     Console.readLine(
       "\n당첨 번호를 입력해 주세요.\n",
@@ -56,7 +61,10 @@ class UI {
       if (Validate.validateBonusNumber(numberBonusNumber)) {
         this.#bonusNumber = numberBonusNumber;
         this.lotto = new Lotto(this.#arrUserInputLottoNumbers);
-        Console.print(this.lotto.compare(this.lottoMachine.lottoNumbers));
+        this.#countSameNumber = this.lotto.compare(
+          this.lottoMachine.lottoNumbers
+        );
+        console.log(this.#countSameNumber);
       }
       Console.close();
     });

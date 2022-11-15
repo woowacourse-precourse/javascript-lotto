@@ -1,6 +1,4 @@
-const Console = require("./utils/Console");
 const Constant = require("./Constant");
-const Random = require("./utils/Random");
 class Lotto {
   #numbers;
 
@@ -18,8 +16,33 @@ class Lotto {
       throw new Error(Constant.LOTTO_NUMBERS_SHOULD_BE_UNIQUE);
     }
   }
+
+  get numbers() {
+    return this.#numbers;
+  }
+
   compare(lottoNumbers) {
-    return 2;
+    let countArr = [];
+    lottoNumbers.forEach((lottoNumber) => {
+      countArr.push(this.compareBetween(lottoNumber));
+    });
+    return this.makeCountObject(countArr);
+  }
+
+  compareBetween(lottoNumber) {
+    return lottoNumber.reduce((count, number) => {
+      if (this.#numbers.includes(number)) {
+        count += 1;
+      }
+      return count;
+    }, 0);
+  }
+
+  makeCountObject(countArr) {
+    return countArr.reduce((countObject, count) => {
+      countObject[count] = (countObject[count] || 0) + 1;
+      return countObject;
+    }, {});
   }
 }
 

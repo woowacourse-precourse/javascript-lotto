@@ -17,11 +17,35 @@ describe("로또 클래스 테스트", () => {
   });
   test("로또 번호와 사용자가 입력한 로또번호를 비교해서 같은 번호를 세준다.", () => {
     //given
-    const randomLottoNumbers = [1, 4, 13, 23, 34, 36];
+    const randomLottoNumbers = [1, 4, 5, 8, 9, 12];
     const userInputNumbers = [1, 4, 5, 6, 10, 15];
     //when
     const lotto = new Lotto(userInputNumbers);
     //then
-    expect(lotto.compare(randomLottoNumbers)).toBe(2);
+    expect(lotto.compareBetween(randomLottoNumbers)).toBe(3);
+  });
+
+  test("로또 번호와 사용자가 입력한 로또번호를 비교해서 총 몇개가 같은지 배열에 담아준다..", () => {
+    //given
+    const randomLottoNumbers = [
+      [1, 4, 5, 8, 9, 12],
+      [1, 4, 5, 6, 11, 40],
+    ];
+    const userInputNumbers = [1, 4, 5, 6, 10, 15];
+    //when
+    const lotto = new Lotto(userInputNumbers);
+    //then
+    expect(lotto.compare(randomLottoNumbers)).toStrictEqual([3, 4]);
+  });
+
+  test("계산된 로또번호가 몇개가 당첨됐는지 object형태로 만든다..", () => {
+    //given
+    const countArr = [3, 1, 3];
+
+    const userInputNumbers = [1, 4, 5, 6, 10, 15];
+    //when
+    const lotto = new Lotto(userInputNumbers);
+    //then
+    expect(lotto.makeCountObject(countArr)).toStrictEqual({ 1: 1, 3: 2 });
   });
 });
