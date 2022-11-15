@@ -6,6 +6,11 @@ const MESSAGE = require('./constants/message');
 class User {
   #money;
   #lottos;
+  #results;
+
+  constructor() {
+    this.#results = new Array(8).fill(0);
+  }
 
   buyLottos(money) {
     checkValidMoney(money);
@@ -24,6 +29,23 @@ class User {
   printLottos() {
     Console.print(`\n${this.#lottos.length}${MESSAGE.OUTPUT.PURCHASE}`);
     this.#lottos.forEach((lotto) => lotto.printLotto());
+  }
+
+  checkLottos(winNumber, bonusNumber) {
+    this.#lottos.forEach((lotto) => {
+      let rank = lotto.check(winNumber, bonusNumber);
+      this.#results[rank - 1] += 1;
+    });
+    this.printResult();
+  }
+
+  printResult() {
+    Console.print(`${MESSAGE.OUTPUT.RESULT.INFO}`);
+    Console.print(`${MESSAGE.OUTPUT.RESULT.RANK5}${this.#results[4]}개`);
+    Console.print(`${MESSAGE.OUTPUT.RESULT.RANK4}${this.#results[3]}개`);
+    Console.print(`${MESSAGE.OUTPUT.RESULT.RANK3}${this.#results[2]}개`);
+    Console.print(`${MESSAGE.OUTPUT.RESULT.RANK2}${this.#results[1]}개`);
+    Console.print(`${MESSAGE.OUTPUT.RESULT.RANK1}${this.#results[0]}개`);
   }
 }
 

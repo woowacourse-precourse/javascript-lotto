@@ -7,8 +7,11 @@ class App {
   #winNumber;
   #bonusNumber;
 
-  play() {
+  constructor() {
     this.user = new User();
+  }
+
+  play() {
     this.getMoney();
   }
 
@@ -33,7 +36,12 @@ class App {
       let bonusNumber = number.split(',').map((v) => Number(v));
       checkValidBonus(this.#winNumber, bonusNumber);
       this.#bonusNumber = bonusNumber[0];
+      this.lottoResult();
     });
+  }
+
+  lottoResult() {
+    this.user.checkLottos(this.#winNumber, this.#bonusNumber);
   }
 }
 
