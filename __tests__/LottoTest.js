@@ -21,7 +21,10 @@ describe("로또 클래스 테스트", () => {
       new Lotto([1, 2, 3, 4, 5, 46]);
     }).toThrow("[ERROR]");
   });
-
-
+  
+  test("구입한 로또 리스트와 보너스 번호를 넣으면 일치하는 개수의 숫자를 출력한다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    expect(lotto.returnSameNumberCount([1, 2, 3, 4, 5, 6], 7)).toBe(6);
+  });
 
 });
