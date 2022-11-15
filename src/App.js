@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { MESSAGE } = require('./constants');
+const { MESSAGE } = require('./utils/constants');
 const LottoStore = require('./LottoStore');
 const LottoGame = require('./LottoGame');
 const User = require('./User');
@@ -15,52 +15,52 @@ class App {
   }
 
   play() {
-    this.askPurchaseAmount();
+    this.#askPurchaseAmount();
   }
 
-  askPurchaseAmount() {
+  #askPurchaseAmount() {
     Console.readLine(`${MESSAGE.PURCHASE_QUESTION}\n`, answer =>
-      this.handlePurchasingLotto(answer),
+      this.#handlePurchasingLotto(answer),
     );
   }
 
-  handlePurchasingLotto(answer) {
+  #handlePurchasingLotto(answer) {
     const purchasedTickets = LottoStore.sellLottoTickets(answer);
     this.#user.setLottoTickets(purchasedTickets);
-    App.printPurchasedTicket(purchasedTickets);
-    this.askWinningNumbers();
+    App.#printPurchasedTicket(purchasedTickets);
+    this.#askWinningNumbers();
   }
 
-  static printPurchasedTicket(tickets) {
+  static #printPurchasedTicket(tickets) {
     Console.print(`\n${tickets.length}${MESSAGE.PURCHASE_RESULT}`);
     tickets.forEach(ticket => Console.print(ticket.toString()));
   }
 
-  askWinningNumbers() {
+  #askWinningNumbers() {
     Console.readLine(`\n${MESSAGE.WINNING_QUESTION}\n`, answer =>
-      this.handleWinnigNumbers(answer),
+      this.#handleWinnigNumbers(answer),
     );
   }
 
-  handleWinnigNumbers(answer) {
+  #handleWinnigNumbers(answer) {
     this.#lottoGame.setWinningNumbers(answer);
-    this.askBonusNumber();
+    this.#askBonusNumber();
   }
 
-  askBonusNumber() {
-    Console.readLine(`\n${MESSAGE.BONUS_QUESTION}\n`, answer =>
-      this.handleBonusNumber(answer),
-    );
+  #askBonusNumber() {
+    Console.readLine(`\n${MESSAGE.BONUS_QUESTION}\n`, answer => {
+      this.#handleBonusNumber(answer);
+    });
   }
 
-  handleBonusNumber(answer) {
+  #handleBonusNumber(answer) {
     this.#lottoGame.setBonusNumber(answer);
     const statistics = this.#user.createStatisticsText();
-    App.printWinningStatistics(statistics);
+    App.#printWinningStatistics(statistics);
     Console.close();
   }
 
-  static printWinningStatistics(statistics) {
+  static #printWinningStatistics(statistics) {
     Console.print(`\n${MESSAGE.WINNING_STATISTICS}`);
     Console.print('---');
     statistics.forEach(text => Console.print(text));

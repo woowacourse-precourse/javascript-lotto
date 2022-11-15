@@ -1,4 +1,8 @@
-const { validate, areWinningNumbers, isBonusNumber } = require('./Validator');
+const {
+  validate,
+  areWinningNumbers,
+  isBonusNumber,
+} = require('./utils/Validator');
 
 class LottoGame {
   #winningNumbers = [];

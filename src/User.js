@@ -3,7 +3,7 @@ const {
   LOTTO_PRIZES,
   LOTTO_RESULT_MESSAGES,
   LOTTO_BASE,
-} = require('./constants');
+} = require('./utils/constants');
 
 class User {
   #lottoGame;
@@ -21,12 +21,12 @@ class User {
   createStatisticsText() {
     const winningMap = this.#lottoGame.computeWinningMap(this.#lottoTickets);
     return [
-      ...User.createWinningResultText(winningMap),
-      this.createReturnRateText(winningMap),
+      ...User.#createWinningResultText(winningMap),
+      this.#createReturnRateText(winningMap),
     ];
   }
 
-  static createWinningResultText(winningMap) {
+  static #createWinningResultText(winningMap) {
     return Object.values(LOTTO_RANKINGS).map(rank => {
       const count = winningMap[rank] ?? 0;
       const prize = Number(LOTTO_PRIZES[rank]).toLocaleString();
@@ -34,22 +34,24 @@ class User {
     });
   }
 
-  createReturnRateText(winningMap) {
+  #createReturnRateText(winningMap) {
     const purchaseAmount = this.#lottoTickets.length * LOTTO_BASE.PRICE;
-    const totalPrize = User.computeTotalPrize(winningMap);
-    const returnRate = User.computeReturnRate(totalPrize, purchaseAmount);
+    const totalPrize = User.#computeTotalPrize(winningMap);
+    const returnRate = User.#computeReturnRate(totalPrize, purchaseAmount);
     return `총 수익률은 ${returnRate}%입니다.`;
   }
 
-  static computeTotalPrize(winningMap) {
+  static #computeTotalPrize(winningMap) {
     return Object.entries(winningMap).reduce((acc, [rank, count]) => {
       acc += LOTTO_PRIZES[rank] * count;
       return acc;
     }, 0);
   }
 
-  static computeReturnRate(totalPrize, purchaseAmount) {
-    return Number((totalPrize / purchaseAmount) * 100).toFixed(1);
+  static #computeReturnRate(totalPrize, purchaseAmount) {
+    const returnRate = Number((totalPrize / purchaseAmount) * 100).toFixed(1);
+    const RETURN_RATE_FORMAT = /\B(?=(\d{3})+(?!\d))/g;
+    return returnRate.replace(RETURN_RATE_FORMAT, ',');
   }
 }
 

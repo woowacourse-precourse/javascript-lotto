@@ -1,6 +1,6 @@
 const { Random } = require('@woowacourse/mission-utils');
-const { validate, areLottoNumbers } = require('./Validator');
-const { LOTTO_BASE, LOTTO_RANKINGS } = require('./constants');
+const { validate, areLottoNumbers } = require('./utils/Validator');
+const { LOTTO_BASE, LOTTO_RANKINGS } = require('./utils/constants');
 
 class Lotto {
   #numbers;
@@ -19,16 +19,16 @@ class Lotto {
 
   getRank(winningNumbers, bonusNumber) {
     const hasBonusNumber = this.#numbers.includes(bonusNumber);
-    const matchCount = this.countMatchingNumbers(winningNumbers);
-    return Lotto.getComputedRank(matchCount, hasBonusNumber);
+    const matchCount = this.#countMatchingNumbers(winningNumbers);
+    return Lotto.#getComputedRank(matchCount, hasBonusNumber);
   }
 
-  countMatchingNumbers(winningNumbers) {
+  #countMatchingNumbers(winningNumbers) {
     return this.#numbers.filter(number => winningNumbers.includes(number))
       .length;
   }
 
-  static getComputedRank(matchCount, hasBonusNumber) {
+  static #getComputedRank(matchCount, hasBonusNumber) {
     switch (matchCount) {
       case 6:
         return LOTTO_RANKINGS.FIRST;

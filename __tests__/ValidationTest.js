@@ -4,7 +4,7 @@ const {
   areLottoNumbers,
   areWinningNumbers,
   isBonusNumber,
-} = require('../src/Validator');
+} = require('../src/utils/Validator');
 
 describe('Validator 클래스 테스트', () => {
   test('로또 구입 금액이 1000원 단위의 숫자가 아니면 예외 발생', () => {
