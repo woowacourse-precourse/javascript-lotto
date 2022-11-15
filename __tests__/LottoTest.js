@@ -35,9 +35,15 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   })
 
-  test('보너스 번호의 입력 범위를 초과한 경우', () => {
+  test('보너스 번호의 입력 범위를 초과한 경우1', () => {
     expect(() => {
       checkError.isUnique(123)
+    }).toThrow("[ERROR]");
+  })
+
+  test('보너스 번호의 입력 범위를 초과한 경우2', () => {
+    expect(() => {
+      checkError.isUnique('12 3')
     }).toThrow("[ERROR]");
   })
 
