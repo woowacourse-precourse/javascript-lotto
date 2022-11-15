@@ -17,6 +17,13 @@ class Game {
   #bonusNumber;
 
   constructor() {
+    this.score = {
+      three: 0,
+      four: 0,
+      five: 0,
+      fiveWithBonus: 0,
+      six: 0,
+    };
     this.inputMoney();
   }
 
@@ -57,6 +64,31 @@ class Game {
       this.#bonusNumber = userInput;
       return;
     });
+  }
+
+  calcResult() {
+    Array.from(this.#tickets).forEach((number) => {
+      const intersection = Array.from(number).filter((x) => {
+        return this.#winningNumbers.includes(x);
+      });
+      this.calcScore(intersection.length, number.includes(this.#bonusNumber));
+    });
+    return;
+  }
+
+  calcScore(count, hasBonus) {
+    if (count === 6) {
+      this.score.six++;
+    } else if (count === 5 && hasBonus) {
+      this.score.fiveWithBonus++;
+    } else if (count === 5) {
+      this.score.five++;
+    } else if (count === 4) {
+      this.score.four++;
+    } else if (count === 3) {
+      this.score.three++;
+    }
+    return;
   }
 }
 
