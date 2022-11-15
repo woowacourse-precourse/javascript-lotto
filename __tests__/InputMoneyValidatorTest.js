@@ -1,6 +1,6 @@
 const { Validator } = require("../src/utils/Validator");
 
-describe("입력 예외 테스트", () => {
+describe("금액 입력 예외 테스트", () => {
   //expectThrow();
   test("입력 받은 금액이 숫자로 구성 되어있지 않다면 예외가 발생한다.", () => {
     expect(() => {
@@ -30,5 +30,11 @@ describe("입력 예외 테스트", () => {
     expect(() => {
       Validator.isInputMoneyValid("");
     }).toThrow("[ERROR] 입력이 없습니다.");
+  });
+
+  test("입력 받은 금액이 없다면 예외가 발생한다.", () => {
+    expect(() => {
+      Validator.winnigLottoNumberValidator([1, 2, 3, 4, 5], 7);
+    }).toThrow("[ERROR] 로또 번호는 6개여야 합니다.");
   });
 });
