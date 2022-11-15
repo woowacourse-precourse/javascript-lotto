@@ -8,6 +8,10 @@ class Lotto {
     this.#numbers = this.sortNumber(numbers);
   }
 
+  getNumbers() {
+    return this.#numbers;
+  }
+
   validate(numbers) {
     Validation.validateLottoNumber(numbers);
   }
