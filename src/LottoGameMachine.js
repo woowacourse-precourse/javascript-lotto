@@ -29,8 +29,8 @@ class LottoGameMachine {
 
   printLottoStatistics() {
     Console.print(MESSAGE.OUTPUT.WINNING_HISTORY);
-    RANKING_ARRAY.forEach((RANK) =>
-      Console.print(MESSAGE.OUTPUT.match(RANK, this.lottoStatistics[RANK.NAME]))
+    RANKING_ARRAY.forEach((RANKING) =>
+      Console.print(MESSAGE.OUTPUT.match(RANKING, this.lottoStatistics[RANKING.NAME]))
     );
 
     Console.print(MESSAGE.OUTPUT.profitRate(this.lottoStatistics.profitRate));

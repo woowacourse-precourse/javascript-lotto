@@ -10,7 +10,14 @@ const {
 class LottoStatistics {
   static calculateProfitRate(totalPrizeMoney, totalPurchaseAmount) {
     const profitRate = (totalPrizeMoney / totalPurchaseAmount) * 100;
-    return profitRate.toFixed(DECIMAL_PLACE_OF_PROFIT_RATE);
+    const option = {
+      maximumFractionDigits: 1,
+      minimumFractionDigits: 1,
+    };
+    return Number(profitRate.toFixed(DECIMAL_PLACE_OF_PROFIT_RATE)).toLocaleString(
+      undefined,
+      option
+    );
   }
 
   static getLottoRanking(lotto, winningLotto) {

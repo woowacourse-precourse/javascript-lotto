@@ -29,8 +29,6 @@
   - [x] 당첨번호 입력 : `setWinningLottoNumbers`
   - [x] 보너스 번호 입력 : `setBonusLottoNumber`
 - [x] 로또 결과 통계를 저장한다.. : `setLottoStatistics`
-- [x] 로또의 결과들을 return한다. : `getLottosResult`
-  - `getLottoRanking` util 함수를 사용한다.
 - [x] 통계를 출력하고 로또 게임을 종료한다.
   - [x] 당첨 통계 및 수익률 통계 출력 : `printLottoStatistics`
   - [x] 로또 게임 종료 : `endLottoGame`
@@ -56,10 +54,11 @@
 
 ## 로또 통계를 내는 `LottoStatistics` 클래스를 생성한다.
 
-- [x] 수익률을 계산한다. : `calculateProfitRate.js`
+- [x] 수익률을 계산한다. : `calculateProfitRate`
   - 수익률은 소수점 둘째 자리에서 반올림한다.
-- [x] 로또 랭킹을 가져온다. : `getLottoRanking.js`
-- [x] 로또 통계를 수집한다. : `collectLottoStatistics.js`
+- [x] 로또 랭킹을 가져온다. : `getLottoRanking`
+- [x] 로또의 결과들을 return한다. : `getLottosResult`
+- [x] 로또 통계를 수집한다. : `collectLottoStatistics`
 
 ## 로또 번호를 생성하는 `LottoGenerator` 클래스를 생성한다.
 
@@ -68,8 +67,6 @@
   - 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다.
   - 오름차순으로 정렬하여 배열에 담아 return한다.
 - [x] 원하는 수만큼 로또를 뽑는다. : `getLottos`
-
-## utils/
 
 ## constants/
 

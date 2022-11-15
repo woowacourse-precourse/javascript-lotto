@@ -37,8 +37,9 @@ describe('LottoStatistics 테스트', () => {
       [5000, 1000],
       [50000, 5000],
       [15000, 7000],
+      [2000000000, 5000],
     ];
-    const result = ['0.0', '500.0', '1000.0', '214.3'];
+    const result = ['0.0', '500.0', '1,000.0', '214.3', '40,000,000.0'];
     answer.forEach((arr, index) =>
       expect(LottoStatistics.calculateProfitRate(...arr)).toBe(result[index])
     );
@@ -74,7 +75,7 @@ describe('LottoStatistics 테스트', () => {
       '3등': 0,
       '2등': 0,
       '1등': 0,
-      '꽝': 1,
+      '꽝' : 1,
       profitRate: '333.3',
     };
 
