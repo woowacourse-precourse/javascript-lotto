@@ -30,6 +30,40 @@ class Lotto {
       }
     }
   }
+
+  isWinLottery(winningNumbers, bonusNumber) {
+    let winningNumberCount = 0;
+
+    for (let index = 0; index < winningNumbers.length; index++) {
+      if (this.#numbers.includes(winningNumbers[index])) {
+        winningNumberCount++;
+      }
+    }
+    if (winningNumberCount === 5) {
+      return this.checkBonusNumber(bonusNumber);
+    }
+    return this.finalResult(winningNumberCount);
+  }
+
+  checkBonusNumber(bonusNumber) {
+    if (this.#numbers.includes(bonusNumber)) {
+      return 2;
+    }
+    return 3;
+  }
+
+  finalResult(rightNumber) {
+    if (rightNumber === 3) {
+      return 5;
+    }
+    if (rightNumber === 4) {
+      return 4;
+    }
+    if (rightNumber === 6) {
+      return 1;
+    }
+    return 0;
+  }
 }
 
 module.exports = Lotto;
