@@ -1,20 +1,23 @@
-const App = require("../src/App");
 const MissionUtils = require("@woowacourse/mission-utils");
+const App = require("../src/App");
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();
-  answers.reduce((acc, input) => {
-    return acc.mockImplementationOnce((question, callback) => {
-      callback(input);
-    });
-  }, MissionUtils.Console.readLine);
+  answers.reduce(
+    (acc, input) =>
+      acc.mockImplementationOnce((question, callback) => {
+        callback(input);
+      }),
+    MissionUtils.Console.readLine
+  );
 };
 
 const mockRandoms = (numbers) => {
   MissionUtils.Random.pickUniqueNumbersInRange = jest.fn();
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, MissionUtils.Random.pickUniqueNumbersInRange);
+  numbers.reduce(
+    (acc, number) => acc.mockReturnValueOnce(number),
+    MissionUtils.Random.pickUniqueNumbersInRange
+  );
 };
 
 const getLogSpy = () => {
@@ -67,5 +70,33 @@ describe("로또 테스트", () => {
       const app = new App();
       app.play();
     }).toThrow("[ERROR]");
+  });
+
+  test("getCorrectInfo에 2등 로또 번호를 넣어 호출하였을 때, 맞은 번호의 정보(2등)을 반환한다", () => {
+    const app = new App();
+    app.winningNumbers.addWinningNumbers([1, 2, 3, 4, 5, 6]);
+    app.winningNumbers.addBonusNumber(7);
+    const result = app.getCorrectInfo([1, 2, 3, 4, 5, 7]);
+    expect(result).toEqual({ collectNumber: 5, bonusNumber: true });
+  });
+
+  test("plusWinnerCount에 2등 결과를 넣어 호출하였을 때, app의 lottoResults의 2등 카운트(index: 5)를 증가시킨다", () => {
+    const app = new App();
+    app.plusWinnerCount({ collectNumber: 5, bonusNumber: true });
+    const result = app.lottoResults;
+    expect(result).toEqual([0, 0, 0, 0, 1]);
+  });
+
+  test("getTotalProceed 2등 결과를 넣어 호출하였을 때, 총 수익금을 반환한다", () => {
+    const app = new App();
+    const result = app.getTotalProceeds([0, 0, 0, 0, 1]);
+    expect(result).toEqual(30000000);
+  });
+
+  test("changeProceedFormat 총 수입금을 넣어 호출하였을 때, 소숫점 첫번째 까지를 백분률로 표시하는 수익률을 반환한다", () => {
+    const app = new App();
+    app.user.changeMoney(10000);
+    const result = app.changeProceedFormat(5000);
+    expect(result).toEqual("50.0");
   });
 });
