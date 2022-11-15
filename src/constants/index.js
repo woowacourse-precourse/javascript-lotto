@@ -1,3 +1,5 @@
+const deepFreeze = require('../utils/deepFreeze');
+
 const MESSAGE = {
   INPUT_CASH: '구입금액을 입력해 주세요.',
   BOUGHT_LOTTO_INFO(amount) {
@@ -66,7 +68,7 @@ const ERROR_MESSAGE = {
   WINNING_NUMBER_LENGTH_ERROR: '[ERROR] 로또 번호는 6개여야 합니다.',
 };
 
-const constants = Object.freeze({
+const constants = deepFreeze({
   MESSAGE,
   WINNING_PRIZE,
   ERROR_MESSAGE,
