@@ -52,6 +52,47 @@ class User {
       return this.comparisonOperator(this.lottoList, winnerNumbers, bonusNumber);
     });
   }
+  comparisonOperator(lottoList, winnerNumbers, bonusNumber) {
+    let result = [0, 0, 0, 0, 0];
+    lottoList.forEach((lottoNumbers) => {
+      const count = User.compareOneLotto(lottoNumbers, winnerNumbers, bonusNumber);
+      const index = User.getEachResult(count);
+      result[index]++;
+    });
+    return this.calculateTotalRate(result);
+  }
+  static compareOneLotto(lottoNumbers, winnerNumbers, bonusNumber) {
+    let countWin = 0;
+    let countBonusWin = 0;
+    if (!lottoNumbers.includes(bonusNumber)) {
+      // TODO: include로 바꿀것
+      winnerNumbers.forEach((number) => {
+        if (lottoNumbers.includes(number)) countWin++;
+      });
+    } else {
+      winnerNumbers.forEach((number) => {
+        if (lottoNumbers.includes(number)) countBonusWin++;
+      });
+    }
+    return [countWin, countBonusWin];
+  }
+  static getEachResult(count) {
+    if (count[0] === 0) {
+      //보너스 있는 판
+      if (count[1] === 6) return 3;
+    } else {
+      // 보너스 없는 판
+      if (count[0] === 3) return 0;
+      if (count[0] === 4) return 1;
+      if (count[0] === 5) return 2;
+      if (count[0] === 6) return 4;
+    }
+  }
+  calculateTotalRate(priceCount) {
+    const totalPrice = priceCount[0] * 5000 + priceCount[1] * 50000 + priceCount[2] * 1500000 + priceCount[3] * 30000000 + priceCount[4] * 200000000;
+    const rateOfReturn = Math.round((totalPrice * 100 * 100) / this.userMoney) / 100;
+    // return User.showTotalResult(priceCount, rateOfReturn);
+  }
   static isValidBonus(number) {
     return LottoValidation.isBonusNotNumber(number) && LottoValidation.checkBonusRange(number) && LottoValidation.isBonusInteger(number);
   }
