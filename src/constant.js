@@ -13,11 +13,28 @@ const PRIZE = {
 };
 
 const RANK = {
-  FIRST: "6개 일치 (2,000,000,000원)",
-  SECOND: "5개 일치, 보너스 볼 일치 (30,000,000원)",
-  THIRD: "5개 일치 (1,500,000원)",
-  FOURTH: "4개 일치 (50,000원)",
-  FIFTH: "3개 일치 (5,000원)",
+  MESSAGE: `
+당첨 통계
+---
+  `,
+  FIRST(count) {
+    return `6개 일치 (2,000,000,000원) - ${count}개`;
+  },
+  SECOND(count) {
+    return `5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`;
+  },
+  THIRD(count) {
+    return `5개 일치 (1,500,000원) - ${count}개`;
+  },
+  FOURTH(count) {
+    return `4개 일치 (50,000원) - ${count}개`;
+  },
+  FIFTH(count) {
+    return `3개 일치 (5,000원) - ${count}개`;
+  },
+  RATE(rate) {
+    return `총 수익률은 ${rate}%입니다.`;
+  },
 };
 
 const ERROR = {

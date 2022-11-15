@@ -59,14 +59,13 @@ class Result {
 
   printResult(rate) {
     MissionUtils.Console.print(`
-당첨 통계
----
-${RANK.FIFTH} - ${this.collectCount[0]}개
-${RANK.FOURTH} - ${this.collectCount[1]}개
-${RANK.THIRD} - ${this.collectCount[2]}개
-${RANK.SECOND} - ${this.collectCount[3]}개
-${RANK.FIRST} - ${this.collectCount[4]}개
-총 수익률은 ${rate}%입니다.
+${RANK.MESSAGE}
+${RANK.FIFTH(this.collectCount[0])}
+${RANK.FOURTH(this.collectCount[1])}
+${RANK.THIRD(this.collectCount[2])}
+${RANK.SECOND(this.collectCount[3])}
+${RANK.FIRST(this.collectCount[4])}
+${RANK.RATE(rate)}
 `);
     this.close();
   }
