@@ -4,6 +4,7 @@ const {
   COUNT,
   ERROR_MESSAGE,
   NUMBER,
+  LOTTO_RANK,
 } = require('./constants');
 const Lotto = require('./Lotto');
 const { makeErrorMsg } = require('./utils');
@@ -53,6 +54,61 @@ class LotteryMachine {
       const qrCode = lotto.getQrCode();
       Console.print(`"[${[qrCode.join(', ')]}]"`);
     });
+  }
+
+  static readQrCode(lottos, winnerNumbers) {
+    const { winningStatistics, winTheLottery } =
+      LotteryMachine.#calcWinningStatistics(lottos);
+
+    const correctNums = lottos.map((lotto) =>
+      LotteryMachine.#calcCorrectNum(lotto, winnerNumbers),
+    );
+
+    correctNums.forEach((num) => {
+      const winner = Object.keys(LOTTO_RANK).find(
+        (rank) => LOTTO_RANK[rank].matchNum === num,
+      );
+
+      if (!winner) return;
+      winTheLottery(winner);
+    });
+
+    return winningStatistics;
+  }
+
+  static #calcWinningStatistics(lottos) {
+    const winningStatistics = {
+      ranking: {
+        firstPlace: 0,
+        secondPlace: 0,
+        thirdPlace: 0,
+        fourthPlace: 0,
+        fifthPlace: 0,
+      },
+      totalLottoNum: lottos.length,
+      totalWinnings: 0,
+    };
+
+    const winTheLottery = (winner) => {
+      const { winnings } = LOTTO_RANK[winner];
+      winningStatistics.ranking[winner] += 1;
+      winningStatistics.totalWinnings += winnings;
+    };
+
+    return { winningStatistics, winTheLottery };
+  }
+
+  static #calcCorrectNum(lotto, winnerNumbers) {
+    const [winnerNumber, bonusNumber] = winnerNumbers;
+    return lotto.getQrCode().reduce((correctNum, lottoNumber) => {
+      if (winnerNumber.includes(lottoNumber)) {
+        correctNum += NUMBER.CORRECT_WINNER_NUMBER;
+      }
+      if (bonusNumber === lottoNumber) {
+        correctNum += NUMBER.CORRECT_BONUS_NUMBER;
+      }
+      return correctNum;
+    }, 0);
   }
 }
 

@@ -1,3 +1,26 @@
+const LOTTO_RANK = {
+  firstPlace: {
+    matchNum: 3,
+    winnings: 5000,
+  },
+  secondPlace: {
+    matchNum: 4,
+    winnings: 50000,
+  },
+  thirdPlace: {
+    matchNum: 5,
+    winnings: 1500000,
+  },
+  fourthPlace: {
+    matchNum: 5.5,
+    winnings: 30000000,
+  },
+  fifthPlace: {
+    matchNum: 6,
+    winnings: 2000000000,
+  },
+};
+
 const MESSAGE = {
   LOTTO_NUMBER_GENERATOR: {
     INPUT_WINNER_NUMBER: '당첨 번호를 입력해 주세요.',
@@ -10,6 +33,8 @@ const MESSAGE = {
 
 const NUMBER = {
   MONEY_UNIT: 1000,
+  CORRECT_WINNER_NUMBER: 1,
+  CORRECT_BONUS_NUMBER: 0.5,
 };
 
 const COUNT = {
@@ -38,4 +63,5 @@ module.exports = {
   ERROR_PREFIX,
   COUNT,
   NUMBER,
+  LOTTO_RANK,
 };
