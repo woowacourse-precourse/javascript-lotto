@@ -22,12 +22,11 @@ class Lotto {
     Console.print(`[${this.#numbers.join(", ")}]`);
   }
 
-  getResult(winningNumberList, bonusNumber) {
+  getResult(winningNumbers, bonusNumber) {
     let correctCount = 0;
     this.#numbers.forEach((el) => {
-      if (winningNumberList.includes(el)) correctCount += 1;
+      if (winningNumbers.includes(el)) correctCount++;
     });
-    if (correctCount < 3) return null;
     if (correctCount === 6) return 1;
     if (correctCount === 5 && this.#numbers.includes(bonusNumber)) return 2;
     return 8 - correctCount;

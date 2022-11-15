@@ -1,13 +1,13 @@
 const Game = require("./Game");
+const WinningNumbers = require("./InputWinningNumbers");
+const BonusNumber = require("./InputWinningNumbers");
 const { Console } = require("@woowacourse/mission-utils");
-const WinningNumbers = require("./InputNumbers");
-const BonusNumber = require("./InputNumbers");
 
 class App {
   constructor() {
-    this.game = null;
-    this.winningNumbers = null;
-    this.bonusNumber = null;
+    this.game;
+    this.winningNumbers;
+    this.bonusNumber;
   }
 
   play() {
@@ -33,10 +33,8 @@ class App {
 
   inputBonusNumber() {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (input) => {
-      this.bonusNumber = new BonusNumber(
-        Number(input),
-        this.winningNumbers.value
-      );
+      input = Number(input);
+      this.bonusNumber = new BonusNumber(input, this.winningNumbers.value);
       this.printResult();
     });
   }
