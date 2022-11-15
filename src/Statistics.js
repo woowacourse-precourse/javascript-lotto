@@ -11,12 +11,14 @@ class Statistic {
       "6hit": 0,
     };
   }
-  checkWin(lottoNumber, winningLotto) {
-    const hit = this.countHit(lottoNumber, winningLotto);
-    if (hit === 5) {
-      this.checkBonusNumber(lottoNumber, winningLotto);
+  checkRank(hit, bonusHit = false) {
+    if (hit > 2) {
+      if (hit == 5 && bonusHit) {
+        return "5hitBonus";
+      }
+      return `${hit}hit`;
     }
-    return hit;
+    return null;
   }
   countHit(lottoNumber, winningNumber) {
     let hit = 0;
