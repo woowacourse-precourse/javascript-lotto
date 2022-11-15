@@ -6,7 +6,7 @@ class Lotto {
 
   constructor(numbers) {
     this.validate(numbers);
-    this.#numbers = numbers;
+    this.#numbers = numbers.map(Number);
   }
 
   validate(numbers) {
