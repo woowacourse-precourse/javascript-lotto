@@ -12,7 +12,9 @@ class Player {
   makeLottoNumbers = (quantity) => {
     let lottos = [];
     for (let line = 0; line < Number(quantity) / 1000; line++) {
-      lottos.push(Random.pickUniqueNumbersInRange(1, 45, 6));
+      let lottoNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+      lottoNumbers = lottoNumbers.sort((a, b) => a - b);
+      lottos.push(lottoNumbers);
     }
     return lottos;
   };
