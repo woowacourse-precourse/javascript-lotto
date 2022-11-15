@@ -5,12 +5,11 @@ const Lotto = require('./Lotto');
 const User = require('./User');
 
 class App {
-  #WinningNumber;
+  winningNumber = [];
 
   constructor() {
     this.Lotto = new Lotto();
     this.User = new User();
-    this.#WinningNumber = [];
   }
 
   play() {
@@ -38,15 +37,24 @@ class App {
     this.inputWinNumber();
   }
 
-  /*   getWinningNumber() {
-    return this.#WinningNumber;
+  /*   getwinningNumber() {
+    return this.#winningNumber;
   } */
 
   inputWinNumber() {
     Console.readLine('당첨 번호를 입력해 주세요.', answer => {
       const winNumbersArr = answer.split(',').map(Number);
       if (this.Lotto.validateLotto(winNumbersArr)) {
-        this.#WinningNumber = winNumbersArr;
+        this.winningNumber = winNumbersArr;
+        this.inputBonusNumber();
+      }
+    });
+  }
+
+  inputBonusNumber() {
+    Console.readLine('보너스 번호를 입력해 주세요.', answer => {
+      if (this.Lotto.validateBonusNum(this.winningNumber, +answer)) {
+        this.winningNumber.push(+answer);
       }
     });
   }
