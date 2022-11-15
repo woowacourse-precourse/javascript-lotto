@@ -24,7 +24,7 @@ class User {
     }
 
     bonusNumberException() {
-        if(isNaN(Number(this.#bonusNumber)) || Number(this.#bonusNumber) > 45 || Number(this.#bonusNumber) < 1) {
+        if(isNaN(this.#bonusNumber) || this.#bonusNumber > 45 || this.#bonusNumber < 1) {
           throw new Error('[ERROR] 보너스 번호는 1~45사이의 숫자입니다.');
         }
 

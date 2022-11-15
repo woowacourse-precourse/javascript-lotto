@@ -16,14 +16,17 @@ class App {
 
   progressLotto() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (userEnterAmount) => {
-      this.#user = new User(userEnterAmount);
-      this.#user.userAmountException();
-      
+      this.createUser(userEnterAmount);
       this.generateLotto();
       this.printLotto();
       this.enterUserNumber();
       this.printStatatics();
     });
+  }
+
+  createUser(userEnterAmount) {
+    this.#user = new User(userEnterAmount);
+    this.#user.userAmountException();
   }
 
   generateLotto() {
@@ -57,10 +60,11 @@ class App {
 
   enterBonusNumber() {
     MissionUtils.Console.readLine('\n보너스 번호를 입력해 주세요.\n', (bonusNumber) => {
-      this.#user.bonusNumber = bonusNumber;
+      this.#user.bonusNumber = Number(bonusNumber);
       this.#user.bonusNumberException();
       
       this.#calc.totalLotto = this.#totalLotto;
+      this.#calc.bonusNumber = Number(bonusNumber);
       this.#calc.calculateRank();
       this.#calc.calcYield(); 
     });
@@ -77,6 +81,10 @@ class App {
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${totalScore['six']}개`);
     MissionUtils.Console.print(`총 수익률은 ${parseFloat((this.#calc.yield/(this.#user.lottoCount*10)).toFixed(2))}%입니다.`);
     MissionUtils.Console.close();
+  }
+
+  get totalLotto() {
+    return this.#totalLotto;
   }
 
   play() {
