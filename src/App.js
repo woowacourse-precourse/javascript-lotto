@@ -82,8 +82,25 @@ class App {
     Console.print(`6개 일치 (2,000,000,000원) - ${list[6]}개`);
     this.printStatistic(list);
   }
-  
 
+  printStatistic(list) {
+    const profit = this.calculateProfit(list);
+    const profitRate = ((profit / this.amount) * 100).toFixed(1);
+    const result = Number(profitRate);
+    Console.print(`총 수익률은 ${result}%입니다.`)
+    Console.close();
+  }
+
+  calculateProfit(list) {
+    return(
+      list[3] * 5000 +
+      list[4] * 50000 +
+      list[5] * 1500000 +
+      list[6] * 2000000000 +
+      list[7] * 30000000
+    )
+  }
+  
 }
 const a = new App;
 a.play();
