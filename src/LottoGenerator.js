@@ -10,6 +10,11 @@ class LottoGenerator {
   constructor(payment) {
     this.validate(payment);
     this.numberOfPurchasedLotto = Number(payment) / LOTTO_PRICE;
+    this.print(this.numberOfPurchasedLotto);
+  }
+
+  print(numberOfPurchasedLotto) {
+    MissionUtils.Console.print(`${numberOfPurchasedLotto}개를 구매했습니다.`);
   }
 
   validate(payment) {
