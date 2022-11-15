@@ -1,6 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { INPUT, RANKING } = require("./utils/Constants");
-const {getResultRanking} = require("./utils/Utils")
+const Utils = require("./utils/Utils")
 
 const printAskLottoPayment = () => {
   Console.print(INPUT.LOTTO_PAYMENT);
@@ -24,12 +24,12 @@ const printRankingResult = (rankingResult) => {
   Console.print("\n당첨 통계\n---");
   for (let rankName of RANKING.OUTPUT_ORDER) {
     const rank = rankingResult.find((rank) => rank.ranking == rankName);
-    Console.print(getResultRanking(rank));
+    Console.print(Utils.getResultRanking(rank));
   }
 };
 
 const printEarningsRate = (earningsRate) => {
-  Console.print(`총 수익률은 ${earningsRate}%입니다.`);
+  Console.print(`총 수익률은 ${Utils.changeNumberWithCommas(earningsRate)}%입니다.`);
 };
 
 module.exports = {

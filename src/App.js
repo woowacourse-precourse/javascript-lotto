@@ -17,11 +17,8 @@ const ASK_BONUS_LOTTO_NUMBER = "보너스 번호를 입력해 주세요.";
 
 class App {
   lottoPayment;
-  lottoCount;
   lottoIsuued;
   lottoWinning;
-  winningNumber;
-  bonusLotto;
 
   constructor() {
     this.lottoWinning = new LottoWinning();
@@ -32,7 +29,7 @@ class App {
     Console.readLine("", (input) => {
       const payment = new LottoPayment(input);
       this.lottoPayment = payment.lottoPayment;
-      return this.showLottoIsuued(payment.lottoCount);
+      this.showLottoIsuued(payment.lottoCount);
     });
   }
 
@@ -40,20 +37,20 @@ class App {
     printLottoCount(lottoCount);
     this.lottoIsuued = new LottoIsuued(lottoCount).lottoIssued;
     printIssuendLotto(this.lottoIsuued);
-    return this.getwinningNumbers();
+    this.getwinningNumbers();
   }
 
   getwinningNumbers() {
     Console.readLine(`\n${ASK_WINNING_LOTTO_NUMBER}\n`, (input) => {
       this.lottoWinning.setWinningLotto(input);
-      return this.getBonumsNumbers();
+      this.getBonumsNumbers();
     });
   }
 
   getBonumsNumbers() {
     Console.readLine(`\n${ASK_BONUS_LOTTO_NUMBER}\n`, (input) => {
       this.lottoWinning.setBonusNumber(input);
-      return this.showLottoResult();
+      this.showLottoResult();
     });
   }
 
@@ -64,7 +61,7 @@ class App {
       this.lottoWinning.winningLotto,
       this.lottoWinning.bonusNumber
     );
-    ranking.setEarningsRate(ranking.rankingResult, this.lottoPayment)
+    ranking.setEarningsRate(this.lottoPayment);
     printRankingResult(ranking.rankingResult);
     printEarningsRate(ranking.earningsRate);
 
@@ -78,6 +75,5 @@ class App {
 
 const app = new App();
 app.play();
-
 
 module.exports = App;

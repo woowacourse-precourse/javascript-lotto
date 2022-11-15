@@ -1,9 +1,5 @@
 const { RANKING } = require("./utils/Constants");
-const {
-  getMatchedinWinningNumberCount,
-  hasBounsNumber,
-  getEarningsRate,
-} = require("./utils/Utils");
+const Utils = require("./utils/Utils");
 
 class RankingResult {
   rankingResult;
@@ -51,18 +47,19 @@ class RankingResult {
 
   setRankingResult(issuedLotto, winniglotto, bonusLotto) {
     issuedLotto.forEach((lotto) => {
-      const matchCount = getMatchedinWinningNumberCount(lotto, winniglotto);
+      const matchCount = Utils.getMatchedinWinningNumberCount(lotto, winniglotto);
       const ranking = this.rankingResult.find(
         (rank) =>
           rank.mathcedCount == matchCount &&
-          rank.hasBounsNumber == hasBounsNumber(lotto, bonusLotto)
+          rank.hasBounsNumber == Utils.hasBounsNumber(lotto, bonusLotto)
       );
       ranking ? (ranking.amount += 1) : null;
     });
   }
 
-  setEarningsRate(rankingResult, lottopayment) {
-    this.earningsRate = getEarningsRate(rankingResult, lottopayment);
+  setEarningsRate(lottopayment) {
+    const totalReward = Utils.getTotalReward(this.rankingResult)
+    this.earningsRate = Utils.getEarningsRate(totalReward, lottopayment);
   }
 }
 

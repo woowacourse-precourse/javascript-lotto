@@ -1,4 +1,4 @@
-const {makeLottoNumber,sortLottoNumberInAscendignOrder} = require("../utils/Utils")
+const Utils = require("../utils/Utils")
 
 class LottoIsuued {
   lottoIssued=[];
@@ -9,8 +9,8 @@ class LottoIsuued {
 
   setLottoIssued(lottoCount) {
     for (let i = 0; i < lottoCount; i++) {
-      const lottoNumber = sortLottoNumberInAscendignOrder(
-        makeLottoNumber()
+      const lottoNumber = Utils.sortLottoNumberInAscendignOrder(
+        Utils.makeLottoNumber()
       );
       this.lottoIssued.push(lottoNumber);
     }
