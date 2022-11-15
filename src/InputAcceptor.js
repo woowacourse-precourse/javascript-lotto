@@ -39,7 +39,7 @@ class InputAcceptor {
     }
 
     static checkANumber(number) { //보너스 넘버
-        if (isNaN(number)) throw new Error('[ERROR] 숫자만 입력해주세요.');
+        if (isNaN(number)) throw new Error("[ERROR]");
         return true;
     }
 
