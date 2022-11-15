@@ -37,7 +37,7 @@ describe('Message 클래스 테스트', () => {
   });
 
   test('수익률 메시지를 반환한다.', () => {
-    const profitRate = '10.1';
+    const profitRate = '10.1%';
     const profitRateMessage = Message.getProfitRateMessage(profitRate);
 
     expect(profitRateMessage).toBe('총 수익률은 10.1%입니다.');

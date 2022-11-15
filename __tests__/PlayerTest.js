@@ -34,8 +34,8 @@ describe('Player 클래스 테스트', () => {
     const player = new Player();
 
     player.buyLottos(90000);
-    player.addWinMoney(30000);
+    player.addWinMoney(60000);
 
-    expect(player.getProfitRate()).toBe('33.3');
+    expect(player.getProfitRate()).toBe('66.7%');
   });
 });
