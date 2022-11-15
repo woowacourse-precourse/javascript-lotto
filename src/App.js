@@ -29,6 +29,17 @@ class App {
 		this.book.setInvest(Number(invest));
 		const boughtCnt = this.book.getAffordableCnt();
 		Prompter.logBoughtCnt(boughtCnt);
+		this.getRandomTickets(boughtCnt);
+	}
+
+	getRandomTickets(boughtCnt) {
+		const tickets = Array(boughtCnt).fill(0);
+		tickets.forEach((v, i, arr) => {
+			const pick = Pick.getSixNums().sort((a, b) => a - b);
+			arr[i] = pick;
+			IO.output('[' + pick.join(', ') + ']');
+		});
+		this.tickets = tickets;
 	}
 }
 
