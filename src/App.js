@@ -117,7 +117,11 @@ class App {
       sum += prizes[i] * all_results[i]
     }
     let total = ((sum / money) * 100).toFixed(1);
-    MissionUtils.Console.print(`${Constants.GAME_MESSAGES.YIELD_FIRST}${total}${Constants.GAME_MESSAGES.YIELD_LAST}`)
+    this.printYield(total);
+  }
+
+  printYield(total) {
+    MissionUtils.Console.print(`${Constants.GAME_MESSAGES.YIELD_FIRST}${total}${Constants.GAME_MESSAGES.YIELD_LAST}`);
   }
 
 }
