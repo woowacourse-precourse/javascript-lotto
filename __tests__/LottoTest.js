@@ -35,6 +35,12 @@ const mockRandoms = (numbers) => {
   }, MissionUtils.Random.pickUniqueNumbersInRange);
 };
 
+const getLogSpy = () => {
+  const logSpy = jest.spyOn(MissionUtils.Console, "print");
+  logSpy.mockClear();
+  return logSpy;
+};
+
 describe("[기능2] 금액 입력 예외 처리", () => {
   test("[2-1] 1000원 이하로 입력하면 예외가 발생한다.", () => {
     mockQuestions(["900"]);
@@ -115,5 +121,35 @@ describe("[기능8] 보너스 번호 입력 예외 처리", () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 6]).checkWinBonusNumber(["1", 1]);
     }).toThrow("[ERROR]");
+  });
+});
+
+describe("[기능10] 당첨 통계 출력", () => {
+  test("당첨 통계 출력", () => {
+    mockRandoms([
+      [1, 2, 3, 4, 5, 6],
+      [1, 2, 3, 4, 5, 7],
+      [1, 2, 3, 4, 8, 9],
+      [11, 12, 13, 14, 15, 16],
+    ]);
+    mockQuestions(["4000", "1,2,3,4,5,6", "7"]);
+    const logs = [
+      "4개를 구매했습니다.",
+      "[1, 2, 3, 4, 5, 6]",
+      "[1, 2, 3, 4, 5, 7]",
+      "[1, 2, 3, 4, 8, 9]",
+      "[11, 12, 13, 14, 15, 16]",
+      "3개 일치 (5,000원) - 0개",
+      "4개 일치 (50,000원) - 1개",
+      "5개 일치 (1,500,000원) - 0개",
+      "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
+      "6개 일치 (2,000,000,000원) - 1개",
+    ];
+    const logSpy = getLogSpy();
+    const app = new App();
+    app.play();
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
   });
 });

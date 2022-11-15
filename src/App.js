@@ -33,7 +33,7 @@ class App {
 
   printLottoNumber(lottoCnt) {
     MissionUtils.Console.print(`\n${lottoCnt}개를 구매했습니다.`);
-    this.pickRandomNumber(lottoCnt).forEach((lottoSixNum) => MissionUtils.Console.print(lottoSixNum));
+    this.pickRandomNumber(lottoCnt).forEach((lottoSixNum) => MissionUtils.Console.print(`[${lottoSixNum.join(", ")}]`));
     this.inputWinNumber();
   }
 

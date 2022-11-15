@@ -35,10 +35,9 @@ class Lotto {
       if (matchNumCnt == 5 && randomNumber.includes(Number(bonusNumber))) {
         matchNumCnt += 2;
       }
-      MissionUtils.Console.print(matchNumCnt);
       this.countMatchNumber(matchNumberArr, matchNumCnt);
     });
-    MissionUtils.Console.print(matchNumberArr);
+    this.printMatchNumber(matchNumberArr);
   }
 
   countMatchNumber(matchNumberArr, matchNum) {
@@ -54,6 +53,15 @@ class Lotto {
       case 6:
         return (matchNumberArr[4] = matchNumberArr[4] + 1);
     }
+  }
+
+  printMatchNumber(matchNumberArr) {
+    MissionUtils.Console.print("\n당첨 통계\n---");
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${matchNumberArr[0]}개`);
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${matchNumberArr[1]}개`);
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${matchNumberArr[2]}개`);
+    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${matchNumberArr[3]}개`);
+    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${matchNumberArr[4]}개`);
   }
 }
 
