@@ -3,52 +3,14 @@ const { REWARDS, INPUT_MESSAGE } = require('./constants/constants');
 const Budget = require('./input/Budget');
 const Lotto = require('./input/Lotto');
 const Bonus = require('./input/Bonus');
-const Result = require('./Output/Result')
+const GetResult = require('./Result/GetResult')
+const PrintResult = require('./Result/PrintResult')
 
 const randomNumbersArrays = [];
-const results = [0, 0, 0, 0, 0, 0];
 const inputObjects = {
   'budget': '',
   'numbers': [],
   'bonus': '',
-}
-
-function getResultStatics() {
-  const reward = results.reduce((acc, element, index) => {
-    return acc + element * REWARDS[index];
-  }, 0);
-  new Result(reward, results, inputObjects.budget);
-}
-
-function getBonusResult(bonus) {
-  return inputObjects.numbers.includes(bonus);
-}
-
-function getNumbersResult(randomNumbers) {
-  const sameNumbers = randomNumbers.filter((element) => {
-    return inputObjects.numbers.includes(element);
-  })
-  return sameNumbers;
-}
-
-function getResult(randomNumbers, bonus) {
-  const sameNumbersCount = getNumbersResult(randomNumbers).length;
-  const bonusResult = getBonusResult(bonus);
-
-  if(sameNumbersCount===6) return 5;
-  if(sameNumbersCount===5 && bonusResult===true) return 4;
-  if(sameNumbersCount===5 && bonusResult===false) return 3;
-  if(sameNumbersCount===4) return 2;
-  if(sameNumbersCount===3) return 1;
-  return 0;
-}
-
-function countSameNumbers() {
-  randomNumbersArrays.forEach((element) => {
-    const result = getResult(element, inputObjects['bonus']);
-    results[result] += 1;
-  })
-  getResultStatics();
 }
 
 function getBonusNumber() {
@@ -56,7 +18,8 @@ function getBonusNumber() {
     const bonusNum = new Bonus(inputObjects.numbers, Number(answer));
     inputObjects.bonus = bonusNum.getBonus();
     Console.print('')
-    countSameNumbers();
+    console.log(randomNumbersArrays)
+    new GetResult(randomNumbersArrays, inputObjects);
   })
 }
 
