@@ -3,6 +3,7 @@ const { INPUT } = require("./lib/library");
 const LottoBuy = require("./LottoBuy");
 const LottoCalculate = require("./LottoCalculator");
 const LottoSetting = require("./LottoSetting");
+const LottoPrint = require("./LottoPrint");
 
 class App {
   #lottos;
@@ -33,8 +34,16 @@ class App {
 
   lottoResultCalculator(winSetting) {
     const calculator = new LottoCalculate();
-    const result = calculator.resultCaculator(this.#lottos, winSetting);
-    calculator.printWinResult(result).printGainPercent(result);
+    const [result, gain] = calculator
+      .resultCaculator(this.#lottos, winSetting)
+      .gainPercent()
+      .getLottoResult();
+    this.lottoResultPrint(result, gain);
+  }
+
+  lottoResultPrint(result, gain) {
+    const printer = new LottoPrint();
+    printer.printWinResult(result).printGainPercent(gain);
     Console.close();
   }
 }

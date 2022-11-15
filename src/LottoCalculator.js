@@ -2,6 +2,10 @@ const { Console } = require("@woowacourse/mission-utils");
 const { WINNING, PRINT, LOTTO_RESULT, LOTTO } = require("./lib/library");
 
 class LottoCalculate {
+  //순위와 카운트가 같이 있는 객체
+  #result;
+  #count;
+  #gainPercent;
   resultCaculator(lottos, { winLotto, bonus }) {
     Console.print(PRINT.RESULT);
     const resultArr = [];
@@ -13,7 +17,9 @@ class LottoCalculate {
       );
       if (result !== undefined) resultArr.push(result);
     });
-    return this.calculatorWiningResult([resultArr, lottos.length]);
+    this.#count = lottos.length;
+    this.#result = this.calculatorWiningResult(resultArr);
+    return this;
   }
 
   compareLotto(lotto, win, bonus) {
@@ -31,9 +37,9 @@ class LottoCalculate {
     }
   }
 
-  calculatorWiningResult(result) {
-    const wining = { ...LOTTO_RESULT, count: result[1] };
-    result[0].map((num) => {
+  calculatorWiningResult(resultArr) {
+    const wining = { ...LOTTO_RESULT };
+    resultArr.map((num) => {
       if (num === 1) wining.FIRST++;
       if (num === 2) wining.SECOND++;
       if (num === 3) wining.THIRD++;
@@ -43,31 +49,20 @@ class LottoCalculate {
     return wining;
   }
 
-  printWinResult(result) {
-    const lottoResult = { ...LOTTO_RESULT };
-    Object.keys(lottoResult).forEach((rank) => {
-      Console.print(WINNING.MENT[rank](result[rank]));
-    });
-
-    return this;
-  }
-
-  gainPercent(lottoResult, count) {
+  gainPercent() {
     let allPrice = 0;
     const winPrice = WINNING.PRICE;
-    const purchacePrice = count * LOTTO.PRICE;
-    Object.keys(lottoResult).forEach((rank) => {
-      allPrice += winPrice[rank] * lottoResult[rank];
+    const purchacePrice = this.#count * LOTTO.PRICE;
+    Object.keys(this.#result).forEach((rank) => {
+      allPrice += winPrice[rank] * this.#result[rank];
     });
-    return allPrice !== 0 ? ((allPrice / purchacePrice) * 100).toFixed(1) : 0.0;
+    this.#gainPercent =
+      allPrice !== 0 ? ((allPrice / purchacePrice) * 100).toFixed(1) : 0.0;
+    return this;
   }
 
-  printGainPercent(result) {
-    const count = result.count;
-    const lottoResult = { ...result };
-    delete lottoResult.count;
-    Console.print(PRINT.GAIN_PECENT(this.gainPercent(lottoResult, count)));
-    return this;
+  getLottoResult() {
+    return [this.#result, this.#gainPercent];
   }
 }
 
