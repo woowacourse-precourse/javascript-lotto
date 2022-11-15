@@ -40,6 +40,13 @@ class App {
     });
   }
 
+  printLotto(countingLotto) { // 구매 갯수
+    Console.print(`${MESSAGE.COUNT(countingLotto)}`);
+    this.printedLottos.forEach((printedLotto) => {
+      printedLotto.printLotto();
+    });
+  }
+
 
 }
 
