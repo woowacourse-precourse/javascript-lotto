@@ -10,25 +10,25 @@ class App {
 function purchaseLotto() {
   MissionUtils.Console.readLine('금액을 입력해 주세요', (money)=>{
     exceptionMoney(money)
-    MissionUtils.Console.close()
-    // lotto(purchase_input)
+    return makeLottoList(money)
   })
 }
 
-// function lotto(dollarInput) {
-//   MissionUtils.Console.print(`${dollarInput/1000}개를 구매했습니다.`)
-//   let lotto_number = []
-//   for (let i = 0; i < dollarInput/1000; i++){
-//     let numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort((a,b)=> {
-//       if(a>b){return 1}
-//       if(a<b){return -1}
-//     })
-//     MissionUtils.Console.print(`[${numbers[0]}, ${numbers[1]}, ${numbers[2]}, ${numbers[3]}, ${numbers[4]}, ${numbers[5]}]`)
-//     lotto_number.push(numbers)
-//   }
+function makeLottoList(money) {
+  MissionUtils.Console.print(`${money/1000}개를 구매했습니다.`)
+  const LOTTO_LIST = []
+  for (let i = 0; i < money/1000; i++){
+    let numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort((a,b)=> {
+      if(a>b){return 1}
+      if(a<b){return -1}
+    })
+    MissionUtils.Console.print(`[${numbers[0]}, ${numbers[1]}, ${numbers[2]}, ${numbers[3]}, ${numbers[4]}, ${numbers[5]}]`)
+    LOTTO_LIST.push(numbers)
+  }
+  MissionUtils.Console.close()
   
-//   return winningInput(lotto_number)
-// }
+  // return winningInput(lotto_number)
+}
 
 // function winningInput (lotto_number) {
 //   MissionUtils.Console.readLine('당첨 번호를 입력해 주세요', (winning_inputnumber)=>{
