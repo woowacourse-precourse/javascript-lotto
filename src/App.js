@@ -86,7 +86,10 @@ class App {
   }
 
   CheckRankCount() {
-    let rank = [0, 0, 0, 0, 0]; //각 순서대로 3개 일치 ~ 6개 일치
+    let rank =  new Array(5);
+    for(let i=0; i<rank.length; i++){
+      rank[i]=0;
+    }
     this.#lotto.forEach(
       x => {
       rank[x.winningConditionRate(this.winningLottoArr)]++
