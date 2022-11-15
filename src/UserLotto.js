@@ -6,7 +6,7 @@ class UserLotto {
   constructor(totalLotto) {
     this.userLotto = [];
     this.createUserLotto(totalLotto);
-    this.#userLotto = this.userLotto;
+    this.setUserLotto(this.userLotto);
     this.printUserLotto(totalLotto);
   }
 
@@ -14,10 +14,14 @@ class UserLotto {
     for (let number = 0; number < totalLotto; number++) {
       const RANDOM = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       if (RANDOM) {
-        const NEW_LOTTO = RANDOM.sort((a, b) => a - b);
-        this.userLotto.push(NEW_LOTTO);
+        this.saveSortedLotto(RANDOM);
       }
     }
+  }
+
+  saveSortedLotto(randomLotto) {
+    const NEW_LOTTO = randomLotto.sort((a, b) => a - b);
+    this.userLotto.push(NEW_LOTTO);
   }
 
   printUserLotto(totalLotto) {
@@ -34,6 +38,10 @@ class UserLotto {
     });
     const FORMATTED_LOTTO = STR_LOTTO.join(", ");
     return FORMATTED_LOTTO;
+  }
+
+  setUserLotto(userLotto) {
+    this.#userLotto = userLotto;
   }
 
   getUserLotto() {
