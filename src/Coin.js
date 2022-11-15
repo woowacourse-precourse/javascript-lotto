@@ -8,7 +8,7 @@ class Coin {
 
   insertCoin() {
       let inputCoin = 0;
-      MissionUtils.Console.readLine('구매 금액을 입력하세요 : ', (answer) => {
+      MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (answer) => {
           inputCoin = answer;
           this.userInputMoney = parseInt(inputCoin / 1000);
       })

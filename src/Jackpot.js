@@ -6,7 +6,7 @@ class JackpotNum{
       this.setJackpotNum();
   }
   setJackpotNum(){
-      MissionUtils.Console.readLine((answer)=>{
+      MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.\n", (answer)=>{
           this.winningList = answer.split(",");
       })
   }
