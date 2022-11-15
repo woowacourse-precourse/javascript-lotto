@@ -14,9 +14,18 @@ class RandomLottos {
     this.lottoArray = [];
     this.numOfLotto = numOfLotto;
     for (let i = 0; i < numOfLotto; i += 1) {
-      const newLotto = Random.pickUniqueNumbersInRange(1, 45, 6);
-      this.lottoArray.push(new Lotto(newLotto));
+      const newLotto = this.lottoGenerator();
+      this.lottoArray.push(newLotto);
     }
+  }
+
+  /**
+   * 로또를 한개 발행하여 반환합니다..
+   * @returns {Lotto} 랜덤으로 새로 발행한 로또
+   */
+  lottoGenerator() {
+    const lottoNums = Random.pickUniqueNumbersInRange(1, 45, 6);
+    return new Lotto(lottoNums);
   }
 
   /**
