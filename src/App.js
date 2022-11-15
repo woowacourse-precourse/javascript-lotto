@@ -1,8 +1,6 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-
 const Bonus = require('./Bonus');
 const Lotto = require('./Lotto');
-const Error = require('./components/Error');
 
 class App {
   constructor() {
@@ -26,10 +24,9 @@ class App {
 
   inputPurchaseAmount() {
     Console.readLine('구매금액을 입력해 주세요. \n', (money) => {
-      if (this.error.isDividedByTen(money)) {
+      if () {
         this.money = money;
         this.getPurchaseCount();
-        this.getLottoList();
       }
     });
   }
@@ -38,6 +35,7 @@ class App {
     const count = this.money / 1000;
     this.count = count;
     this.printPurchaseCount();
+    this.getLottoList();
   }
 
   printPurchaseCount() {
