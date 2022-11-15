@@ -37,10 +37,6 @@ const Statistic = class {
     return ((winAmounts.reduce((acc, cur) => acc + cur, 0) / buyAmount) * 100).toFixed(1);
   }
 
-  getRankTwoMatchingCount({ lottos, winNumber }) {
-    return lottos.filter((lotto) => this.getMatchingCount({ lotto, winNumber }) === LOTTO_RANK.CASE.RANK_TWO).length;
-  }
-
   getMatchingCount({ lotto, winNumber }) {
     return lotto.reduce((count, number) => (winNumber.includes(number) ? count + 1 : count), 0);
   }

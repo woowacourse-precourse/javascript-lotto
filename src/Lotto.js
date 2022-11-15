@@ -1,5 +1,5 @@
 const { LOTTO_NUMBER } = require("./constants/index.js");
-const Validator = require("./utils/Checker.js");
+const Validator = require("./utils/Validator.js");
 
 class Lotto {
   #numbers;
