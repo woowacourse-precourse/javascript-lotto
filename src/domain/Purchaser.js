@@ -1,4 +1,3 @@
-const { ERROR_MESSAGES } = require('../constant/messages');
 const { PRIZE } = require('../constant/prize');
 const Lotto = require('../Lotto/Lotto');
 const NumberGenerator = require('../utils/NumberGenerator');
@@ -24,7 +23,6 @@ class Purchaser {
       tokens.push(numberGenerator.pickRandomNumbers().sort((a, b) => a - b));
       count += 1;
     }
-    if (tokens.length !== number) throw Error(ERROR_MESSAGES.length);
     return tokens;
   }
 
