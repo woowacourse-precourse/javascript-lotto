@@ -1,6 +1,7 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const purchaseAmountValidator = require('./purchaseAmountValidate');
+const BonusValidate = require('./BonusValidate');
 
 class App {
   static lottoPurchaser() {
@@ -48,6 +49,7 @@ class App {
   static winningNumberDecider(purchaseLottoList, purchaseAmount) {
     Console.readLine('\n당첨 번호를 입력해 주세요.\n', winningNumber => {
       Console.readLine('\n보너스 번호를 입력해 주세요.\n', bonusNumber => {
+        const bonusValidate = new BonusValidate(bonusNumber);
         const winningList = this.totalWinningCounter(
           purchaseLottoList,
           winningNumber,
