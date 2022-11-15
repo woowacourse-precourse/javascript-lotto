@@ -19,7 +19,7 @@ class App {
       const purchase = this.validatePurchase(money);
       this.purchase = purchase; 
     });
-    this.winningLottoNumber();
+    this.setWinningLottoNumber();
   }
   validatePurchase(money){
     money = parseInt(money);
@@ -28,13 +28,13 @@ class App {
     }
     return money;
   }
-  winningLottoNumber(){
+  setWinningLottoNumber(){
     MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.\n", (winning) => {
-      this.winningNumber = this.validateWinning(winning);
+      this.winningNumber = this.validateWinningNumber(winning);
     });
-    this.bonusLottoNumber();
+    this.setBonusLottoNumber();
   }
-  validateWinning(win){
+  validateWinningNumber(win){
     const winNum = win.split(",");
     if(winNum.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
@@ -50,13 +50,13 @@ class App {
 
     return winNum.map((num) => parseInt(num));
   }
-  bonusLottoNumber(){
+  setBonusLottoNumber(){
     MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.\n", (bonus) => {
-      this.bonusNumber = this.validateBonus(bonus);
+      this.bonusNumber = this.validateBonusNumber(bonus);
     });
-    this.randomPurchaseLotto();
+    this.setUserRandomLottoNumber();
   }
-  validateBonus(num){
+  validateBonusNumber(num){
     if(!(num >= 1 && num <= 45)){
       throw new Error("[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.");
     }
@@ -65,24 +65,24 @@ class App {
     }
     return num;
   }
-  randomPurchaseLotto(){
+  setUserRandomLottoNumber(){
     let num = this.purchase / 1000;
-    this.setRandomNumberLotto(num);
+    this.setRandomNumber(num);
     MissionUtils.Console.print(num + "개를 구매했습니다.");
-    this.printLottoNumber();
+    this.printUserLottoNumber();
   }
-  setRandomNumberLotto(num){
+  setRandomNumber(num){
     while (num > 0) {
       num -= 1;
-      this.random = this.randomNumber();
+      this.random = this.computerRandom();
       this.lottoNumber.push(new Lotto(this.random));
     }
   }
-  randomNumber(){
+  computerRandom(){
     const number = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
     return number;
   }
-  printLottoNumber(){
+  printUserLottoNumber(){
     this.lottoNumber.forEach((lotto) => {
       MissionUtils.Console.print(lotto.printRandom());
     });
@@ -109,11 +109,11 @@ class App {
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${rank[3]}개`);
     MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${rank[5]}개`);
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${rank[4]}개`);
-    MissionUtils.Console.print(`총 수익률은 ${this.resultRate(rank)}%입니다.`);
+    MissionUtils.Console.print(`총 수익률은 ${this.resultRateOfReturn(rank)}%입니다.`);
 
     MissionUtils.Console.close();
   }
-  resultRate(rank){
+  resultRateOfReturn(rank){
     let sum = 0;
     sum += rank[1]*5000;
     sum += rank[2]*50000;
