@@ -1,4 +1,4 @@
-const { print, close } = require("../utils/MissionUtils");
+const { print } = require("../utils/MissionUtils");
 const {
   MESSAGE_ACCORDING_CORRECT_COUNT,
   MESSAGE_ACCORDING_PRIZE_MONEY,
@@ -7,7 +7,7 @@ const {
 } = require("../constants/Message");
 const { LOTTO_INFO } = require("../constants/Value");
 
-class View {
+class view {
   #winngingResult;
 
   rankingResult(winningResults) {
@@ -27,7 +27,6 @@ class View {
 
   eariningRate(percentage) {
     print(MESSAGE_ACCORDING_INPUT_ACTION.RETURN_EARNING_RATE(percentage));
-    close();
   }
 
   purchasedSize(purchaseNumbers) {
@@ -44,4 +43,4 @@ class View {
     );
   }
 }
-module.exports = View;
+module.exports = view;

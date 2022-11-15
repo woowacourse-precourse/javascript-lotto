@@ -41,8 +41,9 @@ class Calculator {
   }
 
   #getMatchCount(myLotto) {
-    return myLotto.filter((number) => this.#winningNumber.includes(number))
-      .length;
+    return myLotto.filter((number) =>
+      this.#winningNumber[NUMBER_TYPE.WINNING_NUMBER].includes(number)
+    ).length;
   }
 
   #isSecondPlace(matchCount, myLotto) {
@@ -81,7 +82,6 @@ class Calculator {
 
   #getEarnedPercenage(moneyInput) {
     this.#earningMoney /= moneyInput;
-
     this.#earningMoney = this.#makePercent();
 
     return this.#getTwoDecimalDown();

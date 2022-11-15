@@ -2,6 +2,11 @@ const { MESSAGE_ACCORDING_ERROR } = require("../constants/Message");
 const { LOTTO_INFO, MATH_INFO } = require("../constants/Value");
 
 class Validator {
+  static winnigLottoNumberValidator(winningNumber, bonusNumber) {
+    this.#isWinningNumberValid(winningNumber);
+    this.#isBonusNumberValid(winningNumber, bonusNumber);
+  }
+
   static isInputMoneyValid(numbers) {
     if (this.#isInputless(numbers))
       throw Error(MESSAGE_ACCORDING_ERROR.NOT_INPUTTED);
@@ -18,7 +23,7 @@ class Validator {
     return true;
   }
 
-  static isWinningNumberValid(winningNumber) {
+  static #isWinningNumberValid(winningNumber) {
     if (this.#isLengthNotEqualsSix(winningNumber))
       throw Error(MESSAGE_ACCORDING_ERROR.LOTTO_NOT_LENGTH_SIX);
     if (this.#isIncludeNotNumber(winningNumber))
@@ -29,13 +34,19 @@ class Validator {
       throw Error(MESSAGE_ACCORDING_ERROR.LOTTO_NOT_DUPLICATED);
   }
 
-  static isBonusNumberValid(winningNumber, bonusNumber) {
+  static #isBonusNumberValid(winningNumber, bonusNumber) {
+    if (this.#isBonusLengthOverOne(bonusNumber))
+      throw Error(MESSAGE_ACCORDING_ERROR.BONUS_LENGTH_OVER_ONE);
     if (this.#isBonusNotNumber(bonusNumber))
       throw Error(MESSAGE_ACCORDING_ERROR.BONUS_TYPE_NOT_NUMBER);
     if (this.#isBonusAlreadyInWinNumber(winningNumber, bonusNumber))
       throw Error(MESSAGE_ACCORDING_ERROR.BONUS_ALREADY_EXISTED);
     if (this.#isBonusRangeValid(bonusNumber))
       throw Error(MESSAGE_ACCORDING_ERROR.BONUS_OUT_OF_RANGE);
+  }
+
+  static #isBonusLengthOverOne(bonusNumber) {
+    return bonusNumber.length > 1;
   }
 
   static #isBonusNotNumber(bonusNumber) {
