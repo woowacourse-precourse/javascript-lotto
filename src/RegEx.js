@@ -1,5 +1,5 @@
 const REG_EXP = {
-  onlyNumber: /[0-9]/g,
+  onlyNumber: /\d/,
 };
 
 module.exports = { REG_EXP };
