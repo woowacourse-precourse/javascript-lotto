@@ -26,8 +26,22 @@ const LOTTO = {
   VALUE_MAX: 45,
 };
 
+const LOTTO_PRIZE = {
+  1: { MONEY: 2000000000, MATCHED: "6개 일치", BONUS: false, count: 0 },
+  2: {
+    MONEY: 30000000,
+    MATCHED: "5개 일치, 보너스 볼 일치",
+    BONUS: true,
+    count: 0,
+  },
+  3: { MONEY: 1500000, MATCHED: "5개 일치", BONUS: false, count: 0 },
+  4: { MONEY: 50000, MATCHED: "4개 일치", BONUS: false, count: 0 },
+  5: { MONEY: 5000, MATCHED: "3개 일치", BONUS: false, count: 0 },
+};
+
 module.exports = {
   INPUT_MESSAGE,
   ERROR_MESSAGE,
   LOTTO,
+  LOTTO_PRIZE,
 };

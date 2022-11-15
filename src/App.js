@@ -3,6 +3,7 @@ const {
   ERROR_MESSAGE,
   RESULT_MESSAGE,
   LOTTO,
+  LOTTO_PRIZE,
 } = require("../src/Constants");
 
 const MissionUtils = require("@woowacourse/mission-utils");
@@ -84,6 +85,15 @@ class App {
       if (count === 6) LOTTO_PRIZE[1].count++;
       count = 0;
     });
+    for (let i = 1; i < 6; i++) {
+      finalPrize += LOTTO_PRIZE[i].MONEY * LOTTO_PRIZE[i].count;
+    }
+    MissionUtils.Console.print(RESULT_MESSAGE.DRAW);
+
+    this.showResult(LOTTO_PRIZE, finalPrize);
+    MissionUtils.Console.print(
+      `총 수익률은 ${((finalPrize / this.money) * 100).toFixed(1)}%입니다.`
+    );
   }
 }
 
