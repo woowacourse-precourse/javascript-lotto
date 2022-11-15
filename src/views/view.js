@@ -1,6 +1,6 @@
 const MissionUtils = require('@woowacourse/mission-utils')
 const {
-  PURCHASE_LOTTO,
+    PURCHASE_LOTTO,
     WINNING_STATICS,
     THREE_MATCHED,
     FOUR_MATCHED,
@@ -10,7 +10,7 @@ const {
     TOTAL_PROFIT,
     PROFIC_PERCENT,
     THE_NUMBER_OF,
-} = require("../constants");
+} = require('../utils/constants')
 class View {
     constructor() {}
 
@@ -27,7 +27,9 @@ class View {
         MissionUtils.Console.print(THREE_MATCHED + rank[3] + THE_NUMBER_OF)
         MissionUtils.Console.print(FOUR_MATCHED + rank[2] + THE_NUMBER_OF)
         MissionUtils.Console.print(FIVE_MATCHED + rank[1] + THE_NUMBER_OF)
-        MissionUtils.Console.print(FIVE_WITH_BONUS_MATCHED + rank[4] + THE_NUMBER_OF)
+        MissionUtils.Console.print(
+            FIVE_WITH_BONUS_MATCHED + rank[4] + THE_NUMBER_OF
+        )
         MissionUtils.Console.print(SIX_MATCHED + rank[0] + THE_NUMBER_OF)
         MissionUtils.Console.print(TOTAL_PROFIT + rateOfReturn + PROFIC_PERCENT)
     }

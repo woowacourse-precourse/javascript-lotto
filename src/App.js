@@ -5,13 +5,13 @@ const {
     INPUT_MONEY,
     INPUT_WINNING_NUMBER,
     INPUT_BONUS_NUMBER,
-  } = require("./constants");
+} = require('./utils/constants')
 const {
     validateBonus,
     validateMoney,
-    validateWinningNumber
-  } = require('./functionValidation')
-  
+    validateWinningNumber,
+} = require('./functionValidation')
+
 class App {
     money
     lottoCount
@@ -52,7 +52,11 @@ class App {
     }
 
     makeLottoNumber() {
-        for (let luckyNumber = 0; luckyNumber < this.lottoCount; luckyNumber++) {
+        for (
+            let luckyNumber = 0;
+            luckyNumber < this.lottoCount;
+            luckyNumber++
+        ) {
             const numbers = new Lotto(
                 MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6)
             )
@@ -72,12 +76,11 @@ class App {
 
     BonusNumberInput() {
         MissionUtils.Console.readLine(INPUT_BONUS_NUMBER, (answer) => {
-            validateBonus(this.winningNumbers,answer)
+            validateBonus(this.winningNumbers, answer)
             this.bonusNumber = Number(answer)
             this.putWinNumToArray()
         })
     }
-
 
     winningCount(order) {
         return this.userLottoNumbers[order].filter((lotto) =>
@@ -99,12 +102,17 @@ class App {
     }
 
     calculationOfEarnings() {
-        for (let calculNumber = 0; calculNumber < this.rank.length; calculNumber++) {
-            this.rateOfReturn += this.rank[calculNumber] * this.prizeMoney[calculNumber]
+        for (
+            let calculNumber = 0;
+            calculNumber < this.rank.length;
+            calculNumber++
+        ) {
+            this.rateOfReturn +=
+                this.rank[calculNumber] * this.prizeMoney[calculNumber]
         }
         this.rateOfReturn = (this.rateOfReturn / this.money) * 100
         this.view.winningStatistics(this.rank, this.rateOfReturn)
-        MissionUtils.Console.close();
+        MissionUtils.Console.close()
     }
 }
 
