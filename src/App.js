@@ -22,7 +22,9 @@ class App {
     Console.print(ASK.PAYMENT);
     Console.readLine('', (input) => {
       const money = Number(input);
+
       this.player.buyLottos(money);
+
       this.printPlayerLottos();
     });
   }
