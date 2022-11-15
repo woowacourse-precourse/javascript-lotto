@@ -1,10 +1,13 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
+const Lotto = require("./Lotto");
+
 const { error_message } = require("./const");
 
 class App {
   constructor() {
     this.lottoQuantity = 0;
     this.lottoArrays = [];
+    this.winningNumbers = [];
   }
 
   play() {
@@ -36,6 +39,14 @@ class App {
       Console.print(sortedLottoNums);
       this.lottoArrays.push(sortedLottoNums);
     }
+    this.enterWinningNumbers();
+  }
+
+  enterWinningNumbers() {
+    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (numbers) => {
+      this.winningNumbers = numbers.split(",").map(Number);
+      new Lotto(this.winningNumbers);
+    });
   }
 }
 
