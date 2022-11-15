@@ -29,11 +29,7 @@ class PlayLotto {
     MissionUtils.Console.print(`${num}개를 구매했습니다.`);
 
     for (let i = 0; i < num; i++) {
-      const numbers = MissionUtils.Random.pickUniqueNumbersInRange(
-        1,
-        45,
-        6
-      ).sort((a, b) => a - b); //오름차순 정렬
+      const numbers = this.PickLotto.pickRandomLotto();
       this.userNumArray.push(numbers);
     }
 
