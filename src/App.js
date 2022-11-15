@@ -8,6 +8,7 @@ class App {
   constructor() {
     this.lottoMachine = new LottoMachine();
     this.userLottoNumbers;
+    this.userMoney;
   }
 
   play() {
@@ -17,6 +18,7 @@ class App {
   inputMoney() {
     Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
       validateInputMoney(money);
+      this.userMoney = money;
       this.userLottoNumbers = lottoQuantity(money);
       this.inputWinningNum();
     });
@@ -53,6 +55,20 @@ class App {
       '5개 일치, 보너스 볼 일치 (30,000,000원) - ' + equalScore[1] + '개'
     );
     Console.print('6개 일치 (2,000,000,000원) - ' + equalScore[0] + '개');
+    this.calculateYield(equalScore);
+  }
+
+  calculateYield(equalScore) {
+    const prizeMoney = [2000000000, 30000000, 1500000, 50000, 5000];
+
+    let sumPrizeMoney = 0;
+    for (let i = 0; i < prizeMoney.length; i++) {
+      const result = prizeMoney[i] * equalScore[i];
+      sumPrizeMoney += result;
+    }
+    const lottoYield = (sumPrizeMoney / this.userMoney) * 100;
+    Console.print(`총 수익률은 ${lottoYield.toFixed(1)}%입니다.`);
+    Console.close();
   }
 }
 
