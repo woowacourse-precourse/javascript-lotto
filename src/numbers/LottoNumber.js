@@ -1,6 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const CompareNumber = require("../process/CompareNumber");
 const Lotto = require("../Lotto");
+const BonusNumberError = require("../errors/BonusNumberError");
 
 class LottoNumber {
   constructor(inputLottoNumbers, inputBonusNumbers, computerNumbers) {
@@ -27,7 +28,7 @@ class LottoNumber {
       "\n보너스 번호를 입력해 주세요.\n",
       (inputBonusNumber) => {
         this.inputBonusNumbers = inputBonusNumber;
-        this.bonusNumbersError(this.inputBonusNumbers);
+        new BonusNumberError(this.inputLottoNumbers, inputBonusNumber);
         this.compareNumber.comparefirstCipher(
           this.computerNumbers,
           this.inputLottoNumbers,
@@ -35,15 +36,6 @@ class LottoNumber {
         );
       }
     );
-  }
-
-  bonusNumbersError(inputBonusNumbers) {
-    this.inputLottoNumbers.forEach(function (number) {
-      const DATA = inputBonusNumbers.indexOf(number);
-      if (DATA > -1) {
-        throw new Error("[ERROR] 당첨번호와 보너스번호와 달라야합니다.");
-      }
-    });
   }
 }
 

@@ -1,5 +1,6 @@
 const Lotto = require("../src/Lotto");
 const AmountError = require("../src/errors/AmountError");
+const BonusNumberError = require("../src/errors/BonusNumberError");
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
@@ -19,11 +20,19 @@ describe("로또 클래스 테스트", () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 50]);
     }).toThrow("[ERROR]");
-  });
+  }); // 아래에 추가 테스트 작성 가능
+});
 
+describe("에러 발생 테스트", () => {
   test("1000원 단위로 구입하지 않았을때 에러 발생", () => {
     expect(() => {
       new AmountError(1500);
+    }).toThrow("[ERROR]");
+  });
+
+  test("당첨 숫자와 보너스 숫자랑 중복되면 에러 발생", () => {
+    expect(() => {
+      new BonusNumberError([1, 2, 3, 4, 5, 6], 4);
     }).toThrow("[ERROR]");
   });
 
