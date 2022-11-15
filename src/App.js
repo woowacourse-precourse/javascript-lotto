@@ -130,6 +130,10 @@ class App {
     const profit = ((totalPrize / this.money) * 100).toFixed(1);
     this.printProfit(profit);
   }
+
+  printProfit(profit) {
+    Console.print(`총 수익률은 ${profit}%입니다.`);
+  }
 }
 
 const app = new App();
