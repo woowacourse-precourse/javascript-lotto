@@ -11,19 +11,18 @@ class CheckError {
   }
 
   static checkLottoNumbers(lottoNumbers) {
-    // TODO : 1 - 45 사이 숫자.
     const lottoNumberSet = new Set(lottoNumbers);
     const arrayToString = lottoNumbers.join("");
     if (lottoNumbers.length !== 6)
       // 로또 길이가 6이 아닐 때
       throw new Error(ERROR_MESSAGE.NOT_SIX_LENGTH);
-    else if (lottoNumberSet.size !== 6)
+    if (lottoNumberSet.size !== 6)
       // 로또가 중복된 숫자를 가질 때.
       throw new Error(ERROR_MESSAGE.IS_OVERLAPPED);
-    else if (isNaN(arrayToString))
+    if (isNaN(arrayToString))
       // 로또에 숫자 이외의 문자가 있을 때.
       throw new Error(ERROR_MESSAGE.NOT_NUMBER_IN_LOTTO);
-    else if (!CheckError.checkEachNumberInRange(lottoNumbers))
+    if (!CheckError.checkEachNumberInRange(lottoNumbers))
       // 로또에 1 ~ 45 범위를 벗아난 숫자가 있을 때
       throw new Error(ERROR_MESSAGE.NOT_RANGE_LOTTO_NUMBER);
   }
@@ -60,9 +59,9 @@ class CheckError {
   static checkBonusNumber(bonusNumber, winnerNumberArray) {
     if (!CheckError.isNumber(bonusNumber))
       throw new Error(ERROR_MESSAGE.NOT_NUMBER);
-    else if (!CheckError.isRangeInLottoNumber(bonusNumber))
+    if (!CheckError.isRangeInLottoNumber(bonusNumber))
       throw new Error(ERROR_MESSAGE.NOT_RANGE_LOTTO_NUMBER);
-    else if (!CheckError.isUniqueNumber(bonusNumber, winnerNumberArray))
+    if (!CheckError.isUniqueNumber(bonusNumber, winnerNumberArray))
       throw new Error(ERROR_MESSAGE.NOT_UNIQUE_BONUS_NUMBER);
   }
 
