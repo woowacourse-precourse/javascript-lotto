@@ -1,5 +1,6 @@
 "use strict";
 
+const Lotto = require("./Lotto");
 const { Notice } = require("./Constants");
 const { validateUserMoney, sortAscending } = require("./Utils");
 const MissionUtils = require("@woowacourse/mission-utils");
@@ -8,6 +9,7 @@ const [Console, Random] = [MissionUtils.Console, MissionUtils.Random];
 class Game {
   #money;
   #tickets;
+  #winningNumbers;
 
   constructor() {
     this.inputMoney();
@@ -32,7 +34,16 @@ class Game {
     }
     this.#tickets = tickets;
 
-    return;
+    return this.inputWinningNumbers();
+  }
+
+  inputWinningNumbers() {
+    Console.readLine(Notice.inputWinningNumbers, (userInput) => {
+      const input = userInput.split(",");
+      new Lotto(input);
+      this.#winningNumbers = input.map((number) => Number(number));
+      return;
+    });
   }
 }
 
