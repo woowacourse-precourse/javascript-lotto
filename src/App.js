@@ -1,10 +1,12 @@
-const { MESSAGE } = require("./constants/constants");
+const { MESSAGE, REWARDS } = require("./constants/constants");
 const Lotto = require("../src/Lotto");
 const Money = require("../src/Money");
 const Bonus = require("../src/Bonus");
 const { Console } = require("@woowacourse/mission-utils");
 const createRandomNumbers = require("./utils/createRandomNumbers");
 const calcCount = require("./utils/calcCount");
+const calcResult = require("./utils/calcResult");
+const calcRevenue = require("./utils/calcRevenue");
 
 class App {
   #money;
@@ -12,11 +14,13 @@ class App {
   #randomNumbers;
   #lottoNumbers;
   #bonus;
+  #resultArr;
   constructor() {
     this.#money = 0;
     this.#count = 0;
     this.#bonus = 0;
     this.#randomNumbers = [];
+    this.#resultArr = [];
     this.#lottoNumbers = "";
   }
   play() {
@@ -35,7 +39,7 @@ class App {
   }
   pritnRandomNumber() {
     this.#randomNumbers.forEach((element) => {
-      Console.print(element);
+      Console.print(`[${element.join(", ")}]`);
     });
     Console.print("");
     this.getLottoNumber();
@@ -44,10 +48,8 @@ class App {
     Console.readLine(MESSAGE.LOTTO_NUMBER_INPUT, (userInput) => {
       const splitedInput = userInput.split(",");
       splitedInput.forEach((e, idx) => (splitedInput[idx] = Number(e)));
-      console.log(splitedInput);
       const lotto = new Lotto(splitedInput);
       this.#lottoNumbers = lotto.getNumbers();
-      Console.print(this.#lottoNumbers);
       Console.print("");
       this.getBonusNumber();
     });
@@ -56,10 +58,27 @@ class App {
     Console.readLine(MESSAGE.BONUS_NUMBER_INPUT, (userInput) => {
       const bonus = new Bonus(this.#lottoNumbers, parseInt(userInput));
       this.#bonus = bonus.getBonus();
-      console.log(this.#bonus);
       Console.print("");
-      Console.close();
+      this.getResult();
     });
+  }
+  getResult() {
+    this.#resultArr = calcResult(
+      this.#randomNumbers,
+      this.#lottoNumbers,
+      this.#bonus
+    );
+    this.calculateMoney();
+  }
+  calculateMoney() {
+    let price = 0;
+    for (let i = 0; i < 6; i++) {
+      price += REWARDS[i] * this.#resultArr[i];
+    }
+    Console.print("당첨 통계");
+    Console.print("---");
+    this.printMessage();
+    this.printResult(price);
   }
 }
 const app = new App();
