@@ -24,7 +24,7 @@ class Lotto {
   printLotto() {
     for (let i = LOTTO_VALUE.zero; i < this.#numbers; i += LOTTO_VALUE.plus) {
       const lottoNumber = this.sortLottoNumber(Random.pickUniqueNumbersInRange(LOTTO_VALUE.min, LOTTO_VALUE.max, LOTTO_VALUE.digit));
-      Console.print(`[${lottoNumber.join(', ')}]`);
+      this.LottoView.printList(lottoNumber);
       this.lottoList.push(lottoNumber);
     }
   }

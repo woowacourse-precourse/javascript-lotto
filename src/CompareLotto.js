@@ -50,7 +50,7 @@ class CompareLotto {
     for (let i = COMPARE_VALUE.zero; i < howManyWin.length; i += COMPARE_VALUE.one) {
       total.push(howManyWin[i] * LOTTO_WIN[i]);
     }
-    console.log(total.reduce((a, b) => a + b));
+
     return total.reduce((a, b) => a + b);
   }
 }

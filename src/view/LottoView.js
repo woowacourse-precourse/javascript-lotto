@@ -10,6 +10,10 @@ class LottoView {
         Console.print(`\n${numbers}개를 구매했습니다.`);
     }
 
+    printList(lottoNumber) {
+        Console.print(`[${lottoNumber.join(', ')}]`);
+    }
+
     eachResult(howManyWin) {
         Console.print('\n당첨 통계');
         Console.print('---');
