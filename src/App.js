@@ -34,8 +34,38 @@ class App {
         console.log(bonus);
       }
 
+      //당첨 통계 출력
+      console.log("당첨 통계 \n");
+      console.log("--- \n");
+
+      const n = []; //일치하는 값을 담을 배열
+      const cnt3 = 0; //3개 일치하는 로또 갯수
+      const cnt4 = 0; //4개 일치하는 로또 갯수
+      const cnt5 = 0; //5개 일치하는 로또 갯수
+      const cnt5_bonus = 0; //5개, 보너스 일치하는 로또 갯수
+      const cnt6 = 0; //6개 일치하는 로또 갯수
       
-  
+      for(i = 0; i < count; i++){
+        n = lotto[i].filter(it => Numbers.includes(it)); //일치하는 값을 찾아서 배열 n에 넣음
+        if(n.length == 3) cnt3++;
+        if(n.length == 4) cnt4++;
+        if(n.length == 5 && !lotto[i].include(bonus)) cnt5++;
+        if(n.length == 5 && lotto[i].include(bonus)) cnt5_bonus++;
+        if(n.length == 6) cnt6++;
+      }
+
+      //수익률 계산
+      const revenue = 0;
+      revenue = (5000*cnt3 + 50000*cnt4 + 1500000*cnt5 
+        + 30000000*cnt5_bonus + 2000000000*cnt6) / purchaseInput * 100;
+      revenue = revenue.toFixed(1); //소숫점 둘째자리에서 반올림
+
+      this.printer("3개 일치(5,000원) - %d개", cnt3);
+      this.printer("4개 일치(50,000원) - %d개", cnt4);
+      this.printer("5개 일치(1,500,000원) - %d개", cnt5);
+      this.printer("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개", cnt5_bonus);
+      this.printer("6개 일치(2,000,000,000원) - %d개", cnt6);
+      this.printer("총 수익률은 %d%%입니다.", revenue);
     };
 
   }
