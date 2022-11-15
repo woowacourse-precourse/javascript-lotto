@@ -15,6 +15,7 @@ const {
   showLottoRateOfReturn,
   showResultOfWinLotto,
   lineBreak,
+  userInputRequest,
 } = require("./Render");
 
 const {
@@ -22,16 +23,17 @@ const {
   validateBonusNum,
 } = require("./CheckValidationOfBonusAndMoney");
 
+const { INPUT } = require("./data/Constants");
+
 class App {
   play() {
     this.getUserMoney();
   }
 
   getUserMoney() {
-    Console.readLine(`구매금액을 입력해 주세요.\n`, (userInputMoney) => {
+    userInputRequest(INPUT.INPUT_USER_MONEY, (userInputMoney) => {
       this.userInputMoney = userInputMoney;
       validateMoney(userInputMoney);
-
       this.showPurchasedLotto();
     });
   }
@@ -57,22 +59,19 @@ class App {
   }
 
   getWinningNum() {
-    Console.readLine(
-      "당첨 번호를 입력해 주세요.\n",
-      (userInputOfWinningNum) => {
-        this.winningNum = userInputOfWinningNum.split(",");
+    userInputRequest(INPUT.INPUT_USER_WINNING_NUM, (userInputOfWinningNum) => {
+      this.winningNum = userInputOfWinningNum.split(",");
 
-        const lotto = new Lotto(this.winningNum);
+      const lotto = new Lotto(this.winningNum);
 
-        lineBreak();
+      lineBreak();
 
-        this.getBonusNum();
-      }
-    );
+      this.getBonusNum();
+    });
   }
 
   getBonusNum() {
-    Console.readLine("보너스 번호를 입력해 주세요.\n", (bonusNum) => {
+    userInputRequest(INPUT.INPUT_USER_BONUS_NUM, (bonusNum) => {
       this.bonusNum = bonusNum;
       validateBonusNum(bonusNum, this.winningNum);
 

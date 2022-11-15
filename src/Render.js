@@ -1,6 +1,10 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { RESULT } = require("./data/Constants");
 class Render {
+  userInputRequest(message, callback) {
+    Console.readLine(message, callback);
+  }
+
   showHowmanyboughtLotto(lotto) {
     Console.print(`${lotto}개를 구매했습니다.`);
   }
