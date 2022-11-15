@@ -68,4 +68,18 @@ describe("로또 테스트", () => {
       app.play();
     }).toThrow("[ERROR]");
   });
+
+  test("amountException Method Test", () => {
+    expect(() => {
+      const app = new App();
+      app.amountException("32120");
+    }).toThrow("[ERROR]");
+  });
+
+  test("amountException Method Test-2", () => {
+    expect(() => {
+      const app = new App();
+      app.amountException("900");
+    }).toThrow("[ERROR]");
+  });
 });
