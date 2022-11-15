@@ -11,9 +11,13 @@ class Lotto {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
   }
-  
+
   getLottoNumbers(){
     return `[${this.#numbers.join(', ')}]`;
+  }
+
+  getLottoNumbersArray(){
+    return this.#numbers;
   }
   
 }
