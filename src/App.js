@@ -82,7 +82,7 @@ class App {
     this.getrandomlotto();
     this.getwinbonuslotto();
     this.AllLottoCompare(this.#lottos, this.#winnumbers, this.#bonusnumber);
-    let totalyield = winWonCount() / this.#numoflottosWon;
+    let totalyield = winWonCount.printorderNum() / this.#numoflottosWon;
     totalyield = (totalyield * 100).toFixed(1);
     Console.print(
       YIELD_START_MESSAGE + totalyield.toString() + '%' + YIELD_END_MESSAGEL
