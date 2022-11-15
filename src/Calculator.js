@@ -5,7 +5,8 @@ class Calculator {
     #totalLotto;
     #yield;
     #winningNumber;
-    #totalScore 
+    #bonusNumber;
+    #totalScore; 
 
     constructor() {
         this.#user = new User();
@@ -38,7 +39,7 @@ class Calculator {
           } else if (score === 4) {
             this.#totalScore.four += 1;
           } else if (score === 5) {
-            if(this.#totalLotto[index].includes(Number(this.#user.bonusNumber()))) {
+            if(this.#totalLotto[index].includes(this.#bonusNumber)) {
               this.#totalScore.five_ball += 1;
             } else this.#totalScore.five += 1;
           } else if (score === 6) {
@@ -69,6 +70,10 @@ class Calculator {
 
     set winningNumber(winning) {
         this.#winningNumber = winning;
+    }
+
+    set bonusNumber(number) {
+      this.#bonusNumber = number;
     }
 }
 
