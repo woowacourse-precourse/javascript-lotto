@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { INPUT_MONEY_UNIT, ERROR_MESSAGE } = require('./Constant');
+const { INPUT_MONEY_UNIT } = require('./Constant');
 
 const { splitNumbers } = require('./Utils');
 const { MESSAGE } = require('./Constant');
@@ -65,14 +65,11 @@ class App {
 
   setBonusNumber(inputBonusNumber) {
     Validator.validateInputNumber(inputBonusNumber);
-    this.validateOverLapWithWinningNumbers(inputBonusNumber);
+    Validator.validateOverLapWithWinningNumbers(
+      inputBonusNumber,
+      this.winningNumbers,
+    );
     this.bonusNumber = inputBonusNumber;
-  }
-
-  validateOverLapWithWinningNumbers(inputBonusNumber) {
-    if (this.winningNumbers.includes(Number(inputBonusNumber))) {
-      throw new Error(ERROR_MESSAGE.INPUT_MONEY);
-    }
   }
 
   setWinningNumbers(inputNumbers) {

@@ -50,6 +50,12 @@ class Validator {
   static validateTypeNumber(number) {
     if (Number.isNaN(number)) throw new Error(ERROR_MESSAGE.INPUT_TYPE_ERROR);
   }
+
+  static validateOverLapWithWinningNumbers(inputBonusNumber, winningNumbers) {
+    if (winningNumbers.includes(Number(inputBonusNumber))) {
+      throw new Error(ERROR_MESSAGE.INPUT_MONEY);
+    }
+  }
 }
 
 module.exports = Validator;
