@@ -26,7 +26,7 @@ class Comparator {
       if (countWinningNumbers === 4) {
         winningList.four += 1;
       }
-      if (countWinningNumbers === 5) {
+      if (countWinningNumbers === 5 && countBonusNumbers === 0) {
         winningList.five += 1;
       }
       if (countWinningNumbers === 5 && countBonusNumbers === 1) {
@@ -36,6 +36,7 @@ class Comparator {
         winningList.six += 1;
       }
     });
+    return winningList;
   }
 }
 
