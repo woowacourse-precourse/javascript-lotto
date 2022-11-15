@@ -7,7 +7,6 @@ class Lotto {
   constructor(numbers) {
     Lotto.validate(numbers);
     this.#numbers = numbers;
-    this.recordLottoNumber();
   }
 
   static validate(numbers) {
@@ -21,8 +20,8 @@ class Lotto {
     });
   }
 
-  recordLottoNumber() {
-    ScoreMachine.lottoNumberList.push([...this.#numbers]);
+  getLottoNumber() {
+    return this.#numbers;
   }
 }
 

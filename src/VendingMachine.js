@@ -2,6 +2,7 @@ const { Console, Random } = require('@woowacourse/mission-utils');
 
 const { PHRASE, ERROR, LOTTO } = require('./constants');
 const DrawMachine = require('./DrawMachine');
+const ScoreMachine = require('./ScoreMachine');
 const Lotto = require('./Lotto');
 
 class VendingMachine {
@@ -31,7 +32,8 @@ class VendingMachine {
 
     for (let i = 0; i < count; i++) {
       this.generateLottoNumber();
-      new Lotto(this.#lottoNumber);
+      const lotto = new Lotto(this.#lottoNumber);
+      ScoreMachine.lottoList.push(lotto);
       this.printLottoNumber();
     }
   }
@@ -50,7 +52,7 @@ class VendingMachine {
   }
 
   printLottoNumber() {
-    Console.print(`[${this.#lottoNumber.join(', ')}]`);
+    Console.print(`[${this.#lottoNumber.sort((a, b) => a - b).join(', ')}]`);
   }
 }
 

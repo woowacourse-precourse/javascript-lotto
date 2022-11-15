@@ -3,7 +3,8 @@ const { Console } = require('@woowacourse/mission-utils');
 const { RANKING, PRIZE_MONEY, RATE_OF_RETURN, LOTTO, RESULT } = require('./constants');
 
 class ScoreMachine {
-  static lottoNumberList = [];
+  static lottoList = [];
+  #lottoNumberList = [];
   #winningNumber;
   #bonusNumber;
   #result = {
@@ -19,7 +20,12 @@ class ScoreMachine {
     this.#winningNumber = winningNumber;
     this.#bonusNumber = bonusNumber;
 
-    ScoreMachine.lottoNumberList.forEach((lottoNumber) => {
+    ScoreMachine.lottoList.forEach((lotto) => {
+      const lottoNumber = lotto.getLottoNumber();
+      this.#lottoNumberList.push(lottoNumber);
+    });
+
+    this.#lottoNumberList.forEach((lottoNumber) => {
       this.compareWinningNumber(lottoNumber);
     });
 
@@ -49,7 +55,7 @@ class ScoreMachine {
   }
 
   calculateRateOfReturn() {
-    const purchaseAmount = ScoreMachine.lottoNumberList.length * LOTTO.PRICE;
+    const purchaseAmount = this.#lottoNumberList.length * LOTTO.PRICE;
     const totalPrizeMoney = Object.keys(PRIZE_MONEY).reduce(
       (money, ranking) => money + this.#result[RANKING[ranking]] * PRIZE_MONEY[ranking],
       0
