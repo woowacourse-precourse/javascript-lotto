@@ -15,6 +15,7 @@ const MESSAGE = {
   LOTTO_WIN: '당첨 번호를 입력해 주세요.',
   LOTTO_WIN_SEPERATOR: /,/g,
   LOTTO_BONUS: '보너스 번호를 입력해 주세요.',
+  LOTTO_OUT_RANGE_ERROR: '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.',
   Three: 3,
   Four: 4,
   Five: 5,
