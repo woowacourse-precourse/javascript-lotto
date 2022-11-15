@@ -30,7 +30,9 @@ class App {
 
   resultLotto = (lotto, lottoNumbers, bonusNumber) => {
     const result = lotto.checkLotto(lottoNumbers, bonusNumber);
-    this.printResultLotto(result);
+    const rateOfReturn = this.caculateYield(result, lottoNumbers.length);
+    this.printResultLotto(result, rateOfReturn);
+    Console.close();
   }
 
   validatePayment = (payment) => {
@@ -58,15 +60,24 @@ class App {
     }
   }
 
-  printResultLotto = (result) => {
-    Console.print(`당첨 통계\n`);
-    Console.print(`---\n`);
-    Console.print(`3개 일치 (5,000원) - ${result.fifthPlace}개\n`);
-    Console.print(`4개 일치 (50,000원) - ${result.fourthPlace}개\n`);
-    Console.print(`5개 일치 (1,500,000원) - ${result.thirdPlace}개\n`);
-    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${result.secondPlace}개\n`);
-    Console.print(`6개 일치 (2,000,000,000원) - ${result.firstPlace}개\n`);
-    Console.print(`총 수익률은 %입니다.\n`);
+  caculateYield = (result, lottoNumber) => {
+    const price = result.firstPlace * 2000000000 
+    + result.secondPlace * 30000000 
+    + result.thirdPlace * 1500000 
+    + result.fourthPlace * 50000 
+    + result.fifthPlace * 5000;
+    return price / (lottoNumber * 1000) * 100;
+  }
+
+  printResultLotto = (result, rateOfReturn) => {
+    Console.print(`당첨 통계`);
+    Console.print(`---`);
+    Console.print(`3개 일치 (5,000원) - ${result.fifthPlace}개`);
+    Console.print(`4개 일치 (50,000원) - ${result.fourthPlace}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${result.thirdPlace}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${result.secondPlace}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${result.firstPlace}개`);
+    Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
   }
 }
 
