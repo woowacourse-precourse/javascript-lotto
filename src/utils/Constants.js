@@ -24,11 +24,8 @@ const ERROR_MESSAGES = Object.freeze({
   INVALID_LOTTO_TYPE: "[ERROR] 로또 번호는 숫자로만 이루어져야 합니다.",
   INVALID_BONUS_RANGE: "[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.",
   INVALID_BONUS_TYPE: "[ERROR] 보너스 번호는 숫자로만 이루어져야 합니다.",
-  INVALID_BONUS_LENGTH: "[ERROR] 보너스 번호는 1개여야 합니다.",
   DUPLICATED_BONUS_NUM: "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.",
   DUPLICATED_LOTTO_NUM: "[ERROR] 로또 번호는 중복될 수 없습니다.",
-  INVALID_LOTTO_AMOUNT:
-    "[ERROR] 구입한 로또의 갯수와 생성된 로또 번호의 갯수가 맞는지 확인해 주세요.",
 });
 
 const NUMBERS = Object.freeze({
