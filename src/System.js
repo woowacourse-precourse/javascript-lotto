@@ -30,6 +30,7 @@ const SYSTEM = Object.freeze({
     printLottos(lottos, maxCount) {
         this.print(`${maxCount}${MESSAGE.BUY_LOTTOS_COUNT}`);
         lottos.forEach(lotto => { SYSTEM.print(`[${lotto.getNumber().join(', ')}]`); });
+        this.print(MESSAGE.NEW_LINE);
     },
 
     // getResult() callback chain start
@@ -39,6 +40,7 @@ const SYSTEM = Object.freeze({
 
     makeWinningLotto(lottos, cash) {
         MissionUtils.Console.readLine(MESSAGE.ENTER_WINNING_LOTTO, (winningLotto) => {
+            this.print(MESSAGE.NEW_LINE);
             winningLotto = new Lotto(winningLotto.split(",").map(Number));
             this.makeBonusNumber(lottos, winningLotto.getNumber(), cash);
         });
@@ -61,6 +63,7 @@ const SYSTEM = Object.freeze({
 
     makeBonusNumber(lottos, winningLotto, cash) {
         MissionUtils.Console.readLine(MESSAGE.ENTER_BOUNS_NUMBER, (bonusNumber) => {
+            this.print(MESSAGE.NEW_LINE);
             bonusNumber = Number(bonusNumber);
             this.isCorrectBonusNumber(bonusNumber, winningLotto);
             this.printResult(lottos, winningLotto, bonusNumber, cash);
