@@ -5,6 +5,7 @@ class App {
   constructor() {
     this.purchase;
   }
+
   play() {
     let amount;
     let LottoList;
@@ -75,6 +76,11 @@ class App {
   randomNum() {
     const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
     return numbers;
+  }
+
+  PrintLottoList(amount, LottoList) {
+    MissionUtils.Console.print(`${amount}개를 구매헸습니다.`);
+    this.LottoListSort(LottoList);
   }
 
   LottoListSort(LottoList) {
