@@ -42,6 +42,7 @@ class App {
 
   lottoResult() {
     this.user.checkLottos(this.#winNumber, this.#bonusNumber);
+    this.user.checkRateOfReturn();
   }
 }
 

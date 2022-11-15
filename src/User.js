@@ -7,9 +7,12 @@ class User {
   #money;
   #lottos;
   #results;
+  #rateOfReturn;
+  #revenue;
 
   constructor() {
     this.#results = new Array(8).fill(0);
+    this.#revenue = 0;
   }
 
   buyLottos(money) {
@@ -37,7 +40,6 @@ class User {
       let rank = lotto.check(winNumber, bonusNumber);
       this.#results[rank - 1] += 1;
     });
-    this.printResult();
   }
 
   printResult() {
@@ -47,6 +49,23 @@ class User {
     Console.print(`${MESSAGE.OUTPUT.RESULT.RANK3}${this.#results[2]}개`);
     Console.print(`${MESSAGE.OUTPUT.RESULT.RANK2}${this.#results[1]}개`);
     Console.print(`${MESSAGE.OUTPUT.RESULT.RANK1}${this.#results[0]}개`);
+    Console.print(
+      `${MESSAGE.OUTPUT.RESULT.REVENUE}${this.#rateOfReturn}%입니다.`
+    );
+    Console.close();
+  }
+
+  checkRateOfReturn() {
+    this.calculateRevenue();
+    this.#rateOfReturn = ((this.#revenue / this.#money) * 100).toFixed(1);
+    this.printResult();
+    return this.#rateOfReturn;
+  }
+
+  calculateRevenue() {
+    let reward = [2000000000, 30000000, 1500000, 50000, 5000, 0, 0, 0];
+    this.#results.forEach((num, idx) => (this.#revenue += reward[idx] * num));
+    return this.#revenue;
   }
 }
 
