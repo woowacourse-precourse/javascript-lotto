@@ -66,6 +66,6 @@ describe("로또 테스트", () => {
     expect(() => {
       const app = new App();
       app.play();
-    }).toThrow("[ERROR]");
+    }).toThrow("[ERROR] 구입 금액은 1000원 단위로 입력하셔야 합니다.");
   });
 });
