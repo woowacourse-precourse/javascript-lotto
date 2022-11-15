@@ -1,5 +1,6 @@
 const Lotto = require('./Lotto');
 const NumberGenerator = require('./NumberGenerator');
+const { ERROR } = require('./constants/constants');
 
 class LottoManager {
   issueLotto(purchaseAmount) {
@@ -16,10 +17,10 @@ class LottoManager {
 
   validatePurchaseAmount(purchaseAmount) {
     if (!this.isNumber(purchaseAmount)) {
-      throw new Error('[ERROR] 숫자를 입력해 주세요.');
+      throw new Error(ERROR.PURCHASE_AMOUNT.NOT_NUMBER);
     }
     if (!this.isDivisibleByLottoPrice(purchaseAmount)) {
-      throw new Error('[ERROR] 1,000원 단위의 금액을 입력해 주세요.');
+      throw new Error(ERROR.PURCHASE_AMOUNT.NOT_DIVISIBLE);
     }
   }
 

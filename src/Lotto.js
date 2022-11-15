@@ -1,3 +1,5 @@
+const { ERROR } = require('./constants/constants');
+
 class Lotto {
   #numbers;
 
@@ -8,18 +10,25 @@ class Lotto {
 
   validate(numbers) {
     if (!this.isLength(numbers)) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+      throw new Error(ERROR.LOTTO_NUMBER.NOT_LENGTH);
+    }
+    if (!this.isNumber(numbers)) {
+      throw new Error(ERROR.LOTTO_NUMBER.NOT_NUMBER);
     }
     if (!this.isRange(numbers)) {
-      throw new Error('[ERROR] 로또 번호는 1이상 45이하의 정수여야 합니다.');
+      throw new Error(ERROR.LOTTO_NUMBER.NOT_RANGE);
     }
     if (!this.isUnique(numbers)) {
-      throw new Error('[ERROR] 로또 번호는 중복된 숫자가 없어야 합니다.');
+      throw new Error(ERROR.LOTTO_NUMBER.NOT_UNIQUE);
     }
   }
 
   isLength(numbers) {
     return numbers.length === 6;
+  }
+
+  isNumber(numbers) {
+    return numbers.every((number) => number.match(/^[0-9]+$/));
   }
 
   isRange(numbers) {

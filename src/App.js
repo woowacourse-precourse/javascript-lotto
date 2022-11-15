@@ -1,5 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 const LottoManager = require('./LottoManager');
+const { ERROR } = require('./constants/constants');
 
 class App {
   constructor() {
@@ -44,16 +45,16 @@ class App {
 
   validateWinningNumbers(numbers) {
     if (!this.isLength(numbers)) {
-      throw new Error('[ERROR] 당첨 번호는 6개여야 합니다.');
+      throw new Error(ERROR.WINNING_NUMBERS.NOT_LENGTH);
     }
     if (!this.isAllNumber(numbers)) {
-      throw new Error('[ERROR] 당첨 번호는 숫자여야 합니다.');
+      throw new Error(ERROR.WINNING_NUMBERS.NOT_NUMBER);
     }
     if (!this.isAllRange(numbers)) {
-      throw new Error('[ERROR] 당첨 번호는 1이상 45이하의 정수여야 합니다.');
+      throw new Error(ERROR.WINNING_NUMBERS.NOT_RANGE);
     }
     if (!this.isUnique(numbers)) {
-      throw new Error('[ERROR] 당첨 번호는 중복된 숫자가 없어야 합니다.');
+      throw new Error(ERROR.WINNING_NUMBERS.NOT_UNIQUE);
     }
   }
 
@@ -83,15 +84,13 @@ class App {
 
   validateBonusNumber(number) {
     if (!this.isNumber(number)) {
-      throw new Error('[ERROR] 보너스 번호는 숫자여야 합니다.');
+      throw new Error(ERROR.BONUS_NUMBER.NOT_NUMBER);
     }
     if (!this.isRange(number)) {
-      throw new Error('[ERROR] 보너스 번호는 1이상 45이하의 정수여야 합니다.');
+      throw new Error(ERROR.BONUS_NUMBER.NOT_RANGE);
     }
     if (this.isDuplicateWithWinningNumber(number)) {
-      throw new Error(
-        '[ERROR] 보너스 번호는 당첨 번호와 중복이 아닌 숫자여야 합니다.'
-      );
+      throw new Error(ERROR.BONUS_NUMBER.DUPLICATE);
     }
   }
 
