@@ -1,13 +1,13 @@
 # 미션 - 로또
 
-<details open>
+<details>
     <summary>
     <h2 style="display:inline"> ✅ 미션 요구사항</h2></br>
     우테코 3주차 로또 미션에 대한 요구사항입니다.
     </summary>
 
 </br>
-<details open>
+<details>
     <summary>
        <h3 style="display:inline;"> 🚀 기능 요구 사항!</h2>
     </summary>
@@ -124,8 +124,8 @@
 총 수익률은 62.5%입니다.
 ```
 
-</details open>
-<details open>
+</details>
+<details>
     <summary> 
         <h3 style="display: inline"> 🎯 프로그래밍 요구사항 </h3>
 </summary>
@@ -199,9 +199,9 @@ class Lotto {
 }
 ```
 
-</details open>
+</details>
 
-<details open>
+<details>
     <summary> 
          <h3 style="display: inline"> ✏️ 과제 진행 요구 사항 </h3>
     </summary>
@@ -212,12 +212,12 @@ class Lotto {
   - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
 
-</details open>
-</details open>
+</details>
+</details>
 
 ---
 
-<details open>
+<details>
     <summary>
         <h2 style="display:inline-block;"> ✍🏻 프로젝트 관련 주요사항 </h2> 
         </br>
@@ -269,8 +269,21 @@ class Lotto {
 
 ```javascript
 // 로또 구입 목록과 관련된 클래스
-class Customer {}
+class Customer {
+  purChaseMoney;
+  lottoList;
+  profit;
+
+  buyLotto(){}  //
+  allLottoConfirm()
+  profitCheck(){}
+}
 ```
+
+- 구입한 로또 목록을 관리하는 클래스입니다.
+  - buyLotto(money) : 구입 금액을 전달받아 구입할 수 있는 수만큼 로또 인스턴스를 생성하여 lottoList 배열에 담습니다.
+  - allLottoConfirm(winninglottoNumber) : 당첨 번호 객체를 전달받아, 이득본 금액을 저장하고, 현재 가지고 있는 로또 목록의 당첨 결과를 리턴합니다.
+  - profitCheck(winningResult) : 당첨 결과 객체를 전달받아 이득본 금액을 현재 인스턴스의 profit에 저장합니다.
 
 </br>
 
@@ -412,11 +425,11 @@ class Input {
 }
 ```
 
-</details open>
+</details>
 
 ---
 
-<details open>
+<details>
     <summary>
         <h2 style="display:inline-block;"> 📌 구현할 기능 목록  </h2>
         </br>
@@ -448,11 +461,11 @@ class Input {
 - [x] 당첨 통계 출력
 - [x] 수익률 출력
 
-</details open>
+</details>
 
 ---
 
-<details open>
+<details>
     <summary>
         <h2 style="display:inline-block;"> 📜 테스트 목록  </h2>
         </br>
@@ -528,6 +541,6 @@ Input 클래스 테스트
    - profitRate 출력값 확인
   </br>
 
- </details open>
+ </details>
 
 ---
