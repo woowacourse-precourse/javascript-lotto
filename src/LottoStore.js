@@ -13,8 +13,10 @@ class LottoStore {
       this.#console.print(payment);
       this.payment = payment
     });
+    const numberOfLottos = this.payment / 1000;
+    this.#console.print(`${numberOfLottos}개를 구매했습니다.`)
     this.#console.close();
-    return this.payment / 1000;
+    return numberOfLottos;
   }
 
   validatePayment(payment) {
