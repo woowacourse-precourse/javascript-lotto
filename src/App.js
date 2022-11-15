@@ -31,7 +31,7 @@ class App {
     Console.readLine('당첨 번호를 입력해 주세요.\n', (numbers) => {
       const splittedNumbers = numbers.split(',');
       this.validateWinningNumbers(splittedNumbers);
-      this.winningNumbers = splittedNumbers;
+      this.winningNumbers = splittedNumbers.map((number) => parseInt(number));
 
       this.inputBonusNumber();
     });
