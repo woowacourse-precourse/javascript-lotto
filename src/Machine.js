@@ -6,10 +6,31 @@ const Display = require('./Display');
 
 class Machine {
   static user = new User();
+  #rankingCountMap;
+  #winningNumbers;
+  #bonusNumber;
 
   constructor(payment) {
-    this.payment = Machine.user.payment = payment;
-    this.quantity = Machine.user.quantity = payment / Display.info('PRICE');
+    Machine.user.payment = payment;
+    Machine.user.quantity = payment / Display.info('PRICE');
+
+    this.#winningNumbers = [];
+    this.#bonusNumber = 0;
+    this.#rankingCountMap = new Map();
+  }
+
+  work() {
+    this.#issue();
+  }
+
+  #issue() {
+    let cnt = 0;
+    while (cnt < Machine.user.quantity) {
+      const numbers = Display.randomNumbers();
+      const lotto = new Lotto(numbers);
+      Machine.user.purchasedLotto.push(lotto);
+      cnt += 1;
+    }
   }
 }
 
