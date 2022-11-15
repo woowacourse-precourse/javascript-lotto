@@ -6,6 +6,15 @@ function validateUserMoney(userMoney) {
   }
 }
 
+function sortAscending(numbers) {
+  numbers.sort((a, b) => {
+    if (a > b) return 1;
+    if (a === b) return 0;
+    if (a < b) return -1;
+  });
+}
+
 module.exports = {
   validateUserMoney,
+  sortAscending,
 };
