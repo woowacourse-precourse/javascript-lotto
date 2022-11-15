@@ -28,6 +28,14 @@ class App {
         throw new Error("[ERROR] 당첨 번호는 6개를 입력해주세요.");
       }
       Lotto.prototype.winNumbers = input;
+      this.getBonusNumber();
+    });
+  }
+  getBonusNumber() {
+    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.\n", (input) => {
+      Lotto.prototype.bonus = input;
+      
+      MissionUtils.Console.close();
     });
   }
 }
