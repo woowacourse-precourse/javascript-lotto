@@ -1,14 +1,14 @@
 const OutputUI = require('./ui/OutputUI');
 const InputUI = require('./ui/InputUI');
 const message = require('./util/message');
-const User = require('./User');
-const LottoGenerator = require('./lotto/LottoGenerator');
-const Lotto = require('./lotto/Lotto');
 const rank = require('./util/rank');
 const lottoRank = require('./util/lottoRank');
-const Vaildator = require('./Vaildator');
 const TypeConverter = require('./util/TypeConverter');
 const error = require('./util/error');
+const LottoGenerator = require('./lotto/LottoGenerator');
+const Lotto = require('./lotto/Lotto');
+const Vaildator = require('./Vaildator');
+const User = require('./User');
 
 class App {
   constructor() {

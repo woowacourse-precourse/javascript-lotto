@@ -1,4 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+
 const gameConfig = require('../util/gameConfig');
 const Lotto = require('./Lotto');
 
