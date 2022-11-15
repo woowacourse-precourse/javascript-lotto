@@ -12,7 +12,7 @@ const ERROR_MESSAGE = {
     IS_NOT_NUMBER : "[ERROR] 로또의 값이 숫자가 아닙니다.",
     NOT_THOUSAND_UNIT : "[ERROR] 구입 금액은 1000원 단위입니다.",
     DUPLICATE_WINNING_BONUS : "[ERROR] 당첨번호와 보너스번호의 숫자가 중복됩니다.",
-    INPUT_NUM_BLANK : "[ERROR] 구입 금액에 값을 입력해주세요."
+    INPUT_NUM_BLANK : "[ERROR] 값을 입력해주세요."
 };
 
 const REWARD_MESSAGE = {

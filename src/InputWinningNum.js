@@ -40,7 +40,11 @@ class InputWinningNumber{
         if(isNaN(num)){
             throw new Error(IS_NOT_NUMBER);
         }
+        if(num == "" || num == null){
+            throw new Error(INPUT_NUM_BLANK);
+        }
     }
 }
+
 
 module.exports = InputWinningNumber;
