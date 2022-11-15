@@ -30,8 +30,8 @@ class Drawer {
   enterWinningNumbers() {
     Console.readLine("\n당첨 번호를 입력해 주세요.\n", (numbers) => {
       const mapfn = (arg) => Number(arg);
-      this.winningNumber = Array.from(numbers.split(","), mapfn);
 
+      this.winningNumber = Array.from(numbers.split(","), mapfn);
       this.validateWinningNumbers(this.winningNumber);
 
       return this.enterBonusNumber();
@@ -40,7 +40,6 @@ class Drawer {
   enterBonusNumber() {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (number) => {
       this.bonusNumber = Number(number);
-
       this.validateBonusNumber(this.bonusNumber);
 
       return this.checkLottos();
@@ -51,7 +50,6 @@ class Drawer {
     this.lottos.forEach((lotto) => {
       lotto.result = this.compareNumbers(lotto);
     });
-
     this.checkResult(this.lottos);
   }
 
@@ -117,7 +115,10 @@ class Drawer {
     Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${bonus}개`);
     Console.print(`6개 일치 (2,000,000,000원) - ${first}개`);
 
-    this.rateOfReturn(bonus, first, second, third, fourth);
+    const result = this.rateOfReturn(bonus, first, second, third, fourth);
+
+    Console.print(`총 수익률은 ${result}%입니다.`);
+    Console.close();
   }
 
   rateOfReturn(bonus, first, second, third, fourth) {
@@ -128,10 +129,7 @@ class Drawer {
       third * 50000 +
       fourth * 5000;
 
-    const result = Math.round((sum / this.money) * 100 * 100) / 100;
-
-    Console.print(`총 수익률은 ${result}%입니다.`);
-    Console.close();
+    return Math.round((sum / this.money) * 100 * 100) / 100;
   }
 
   validateWinningNumbers(numbers) {

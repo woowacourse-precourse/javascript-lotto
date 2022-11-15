@@ -13,7 +13,6 @@ class Lotto {
     const validation = new Validation();
 
     validation.length(numbers);
-
     validation.isDuplicate(numbers);
   }
 }

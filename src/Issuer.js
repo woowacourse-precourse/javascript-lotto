@@ -28,7 +28,6 @@ class Issuer {
         )
       );
     }
-
     this.displayResultOfBuy(lottos);
 
     return lottos;
