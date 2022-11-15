@@ -67,14 +67,14 @@ class App {
     Console.readLine(GUIDE_MESSAGES.BONUS_NUM, (userInput) => {
       this.#Lotto.validateBonusNum(+userInput);
 
-      const bonusNumber = +userInput;
+      const bonusNum = +userInput;
 
-      this.#printResults(this.#getResults(bonusNumber));
+      this.#printResults(this.#getResults(bonusNum));
     });
   }
 
-  #getResults(bonusNumber) {
-    return this.#Lotto.calculateStatics(this.#issuedLottos, bonusNumber);
+  #getResults(bonusNum) {
+    return this.#Lotto.calculateStatics(this.#issuedLottos, bonusNum);
   }
 
   #printResults(results) {
