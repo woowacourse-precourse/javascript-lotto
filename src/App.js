@@ -26,7 +26,39 @@ class App {
     this.createLotto(amountLotto);
   }
 
-  
+  createLotto(amount) {
+    for (let i = 0; i < amount; i++) {
+      const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+      Console.print(`[${numbers[0]}, ${numbers[1]}, ${numbers[2]}, ${numbers[3]}, ${numbers[4]}, ${numbers[5]}]`);
+      this.arrayLotto.push(numbers);
+    }
+    this.lottoInput(MESSAGE.PrintWinningNum);
+  }
+
+  lottoInput(prompt) {
+    Console.readLine(`\n${prompt}\n`, (input) => {
+      this.arrayWinLotto = input.split(",");
+      new Lotto(this.arrayWinLotto);
+      this.arrayWinLotto = this.arrayWinLotto.map(number => parseInt(number));
+      this.bonusInput(MESSAGE.PrintBonusNum);
+    });
+  }
+
+  bonusInput(prompt) {
+    Console.readLine(`\n${prompt}\n`, (input) => {
+      // this.validBonusInput(input);
+      this.numberBonus = parseInt(input);
+      this.compareLottoNumbers();
+    });
+  }
+
+  validBonusInput(input) {
+    if (!(Number(input) >= 1 && Number(input) <= 45)) throw new Error(ERROR_MESSAGE.lottoRangeError);
+    this.arrayWinLotto.map(number => {
+      if (number === Number(input)) throw new Error(ERROR_MESSAGE.overlapBonusNumError);
+    });
+  }
+
 }
 
 let app = new App().play;
