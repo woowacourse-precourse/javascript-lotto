@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { CONSOLE_MESSAGE } = require("./constants");
+const { CONSOLE_MESSAGE, PRINT_RESULT, RANK_STRING } = require("./constants");
 const LottoMachine = require("./LottoMachine");
 const LottoResult = require("./LottoResult");
 const { stringToNumberArray } = require("./utils");
@@ -29,16 +29,25 @@ class App {
   }
 
   inputWinningLotto() {
-    MissionUtils.Console.readLine(CONSOLE_MESSAGE.INPUT_WINNING_LOTTO,(winningNumber)=>{
-      stringToNumberArray(winningNumber);
+    MissionUtils.Console.readLine(CONSOLE_MESSAGE.INPUT_WINNING_LOTTO,(winningNumberString)=>{
+      const winningNumber = stringToNumberArray(winningNumberString);
       this.inputBonusNumber(winningNumber);
     });
   }
   
   inputBonusNumber(winningNumber) {
     MissionUtils.Console.readLine(CONSOLE_MESSAGE.INPUT_BONUS_LOTTO,(bonusNumber)=>{
-      this.#result = new LottoResult(winningNumber,bonusNumber,this.#lottoMachine);
+      this.#result = new LottoResult(winningNumber,Number(bonusNumber),this.#lottoMachine);
+      this.showWinningStats();
     });
+  }
+  showWinningStats() {
+    this.#result.makeResult();
+    MissionUtils.Console.print(PRINT_RESULT.TITLE);
+    Object.keys(RANK_STRING).forEach((rank) => {
+      const ranking = this.#result.getRank();
+      MissionUtils.Console.print(`${RANK_STRING[rank]} - ${ranking[rank] ? 1 : 0}개`);
+    })
   }
 }
 
