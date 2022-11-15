@@ -16,7 +16,7 @@ test('당첨 금액 계산하기', () => {
   expect(winningResult.calculateSum()).toBe(2030000000);
 });
 
-test('FIRST_PLACE', () => {
+test('FIRST_PLACE 수익률 계산', () => {
   const set = new Set();
   set.add(JSON.stringify([1, 2, 3, 4, 5, 6]));
   const winningResult = new WinningResult(set, [1, 2, 3, 4, 5, 6], 7);
@@ -24,7 +24,7 @@ test('FIRST_PLACE', () => {
   expect(winningResult.setYield()).toBe('200000000.0');
 });
 
-test('SECOND_PLACE', () => {
+test('SECOND_PLACE 수익률 계산', () => {
   const set = new Set();
   set.add(JSON.stringify([1, 2, 3, 4, 5, 6]));
   const winningResult = new WinningResult(set, [1, 2, 3, 4, 7, 6], 5);
@@ -32,7 +32,7 @@ test('SECOND_PLACE', () => {
   expect(winningResult.setYield()).toBe('3000000.0');
 });
 
-test('THIRD_PLACE', () => {
+test('THIRD_PLACE 수익률 계산', () => {
   const set = new Set();
   set.add(JSON.stringify([1, 2, 3, 4, 5, 6]));
   const winningResult = new WinningResult(set, [1, 2, 3, 4, 5, 8], 9);
@@ -40,7 +40,7 @@ test('THIRD_PLACE', () => {
   expect(winningResult.setYield()).toBe('150000.0');
 });
 
-test('FOURTH_PLACE', () => {
+test('FOURTH_PLACE 수익률 계산', () => {
   const set = new Set();
   set.add(JSON.stringify([1, 2, 3, 4, 5, 6]));
   const winningResult = new WinningResult(set, [1, 2, 3, 4, 7, 8], 9);
@@ -48,7 +48,7 @@ test('FOURTH_PLACE', () => {
   expect(winningResult.setYield()).toBe('5000.0');
 });
 
-test('FIFTH_PLACE', () => {
+test('FIFTH_PLACE 수익률 계산', () => {
   const set = new Set();
   set.add(JSON.stringify([1, 2, 3, 4, 5, 6]));
   const winningResult = new WinningResult(set, [1, 2, 3, 12, 7, 8], 9);
