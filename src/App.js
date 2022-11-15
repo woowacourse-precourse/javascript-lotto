@@ -62,6 +62,17 @@ class App {
         userLottoNumbers = temp.map((ind) => Number(ind));
       });
     }
+
+    function getUserBonusNumber(){
+      MissionUtils.Console.readLine("보너스 번호를 입력해주세요.", (answer) => {
+        bonusNum = answer;
+        if (parseInt(bonusNum) != Number(bonusNum)){
+          throw new Error("[ERROR] 제대로 입력해주세요.");
+        } else if (parseInt(bonusNum) > 45 || parseInt(bonusNum) <= 0){
+          throw new Error("[ERROR] 1 ~ 45사이의 숫자를 입력해주세요.");
+        }
+      });
+    }
   } //Play() 닫는 닫는 괄호
 }//class App 닫는괄호
 
