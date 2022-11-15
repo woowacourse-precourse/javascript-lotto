@@ -31,6 +31,8 @@ class App {
         Validation.checkPurchaseAmount(inputPurchaseAmount);
         this.purchaseAmount = Number(inputPurchaseAmount);
         this.lottoBuying(this.purchaseAmount);
+        const singleLotto2 = this.getSingleLottoNumber();
+        this.LottoUI.prinntLottoNumber(singleLotto2);
         this.inputWinnerNumber();
       }
     );
@@ -38,10 +40,10 @@ class App {
   lottoBuying(purchaseAmount) {
     const lottoCount = this.getLottoCount(purchaseAmount);
     this.LottoUI.printLottoCount(lottoCount);
-    this.getTotalLottoNumber(lottoCount);
+    const singleLotto = this.getTotalLottoNumber(lottoCount);
   }
   getLottoCount(purchaseAmount) {
-    return parseInt(purchaseAmount, 10) / LOTTO_PRICE;
+    return purchaseAmount / LOTTO_PRICE;
   }
   inputWinnerNumber() {
     this.LottoUI.inputRequest(
@@ -71,6 +73,7 @@ class App {
       LOTTO_SIZE
     );
   }
+
   getTotalLottoNumber(lottoCount) {
     this.lotto = Array.from({ length: lottoCount }, () => {
       const lottoNumber = this.randomLottoNumberPick();
@@ -78,17 +81,17 @@ class App {
       return new Lotto(ascLottoNumber);
     });
   }
+  getSingleLottoNumber() {
+    return this.lotto.map((lotto) => lotto.getLottoNumber());
+  }
   getResult() {
-    const singleLotto = this.lotto.map((lottoNumber) =>
-      lottoNumber.getLottoNumber()
-    );
+    const singleLotto = this.getSingleLottoNumber();
     const eachResult = singleLotto.map(this.compareNumber.bind(this));
     const eachLottoRanking = eachResult.map(this.getLottoRaking.bind(this));
     const rankingTotal = this.getRankingTotal(eachLottoRanking);
     const winningMoney = this.getWinningMoney(rankingTotal);
     const earningRatio = this.getEarningRatio(winningMoney);
     const result = this.resultSynthesis(rankingTotal);
-    this.LottoUI.prinntLottoNumber(singleLotto);
     this.LottoUI.printRankingTotal(result);
     this.LottoUI.printEarningRatio(earningRatio);
   }
