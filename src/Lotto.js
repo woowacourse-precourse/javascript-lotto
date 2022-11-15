@@ -1,5 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { LOTTO, PRIZE, RANK } = require("./utils/constant");
+const { ERROR_MESSAGE } = require("./utils/UI");
 const RATE_PROFIT_FIXED = 1;
 
 class Lotto {
@@ -31,21 +32,19 @@ class Lotto {
 
   validateLength(numbers) {
     if (numbers.length !== LOTTO.NUM_LENGTH) {
-      throw new Error(`[ERROR] 로또 번호는 ${LOTTO.NUM_LENGTH}개여야 합니다.`);
+      throw new Error(ERROR_MESSAGE.LOTTO_NUM_LENGTH);
     }
   }
   validateRange(numbers) {
     for (let i = 0; i < numbers.length; i++) {
       if (numbers[i] < LOTTO.NUM_START || numbers[i] > LOTTO.NUM_LAST) {
-        throw new Error(
-          `[ERROR] 로또 번호는 ${LOTTO.NUM_START}~${LOTTO.NUM_LAST} 사이만 가능합니다.`
-        );
+        throw new Error(ERROR_MESSAGE.LOTTO_NUM_RANGE);
       }
     }
   }
   validateDuplicate(numbers) {
     if (numbers.length !== new Set(numbers).size) {
-      throw new Error("[ERROR] 로또 번호는 중복된 숫자가 없어야 합니다.");
+      throw new Error(ERROR_MESSAGE.LOTTO_NUM_DUPLICATE);
     }
   }
 
