@@ -93,7 +93,13 @@ class Promptor {
       return false;
     }
 
-    if (Number(number) < 1 || Number(number) > 45) {
+    const intNumber = Number(number);
+    if (intNumber < 1 || intNumber > 45) {
+      return false;
+    }
+
+    // assumes winningNumbers is already defined at this point
+    if (!this.winningNumbers || this.winningNumbers.includes(intNumber)) {
       return false;
     }
 
