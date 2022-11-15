@@ -2,15 +2,16 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const { PRIZES } = require('./common/constants');
 class Print {
   static myLotto(lotto) {
-    lotto.forEach((v) => MissionUtils.Console.print(v));
+    lotto.forEach((v) => {
+      const lottoNum = v.join(', ');
+      MissionUtils.Console.print(`[${lottoNum}]`);
+    });
   }
   static countLotto(countLotto) {
-    MissionUtils.Console.print(`${countLotto}개를 구매하였습니다.`);
+    MissionUtils.Console.print(`${countLotto}개를 구매했습니다.`);
   }
   static result(reward, rinking, money) {
-    MissionUtils.Console.print('당첨 통계');
-    MissionUtils.Console.print('---');
-
+    MissionUtils.Console.print('당첨 통계\n---');
     MissionUtils.Console.print(
       `3개 일치 (${PRIZES[String('5등')]}) - ${rinking[String('5등')]}개`
     );
@@ -29,7 +30,7 @@ class Print {
       `6개 일치 (${PRIZES[String('1등')]}) - ${rinking[String('1등')]}개`
     );
     const yielRate = (reward / money) * 100;
-    MissionUtils.Console.print(`총 수익률은 ${yielRate.toFixed(2)}%입니다.`);
+    MissionUtils.Console.print(`총 수익률은 ${yielRate.toFixed(1)}%입니다.`);
     MissionUtils.Console.close();
   }
 }
