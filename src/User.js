@@ -21,7 +21,7 @@ class User {
 
     this.lottos.forEach((lotto) => {
       const lottoNumbers = lotto.getNumbers();
-      const count = calcHitNumberCount(lottoNumbers, hitLottoNumbers);
+      const count = this.calcHitNumberCount(lottoNumbers, hitLottoNumbers);
       const isBonus = hitLottoNumbers.includes(bonusNumber);
       const rank = this.dicideRank(count, isBonus);
 
@@ -75,7 +75,7 @@ class User {
   }
 
   calcuateReturnOfInvestment() {
-    this.returnOfInvestment = (this.prize / this.amount).toFixed(2);
+    this.returnOfInvestment = ((this.prize / this.amount) * 100).toFixed(1);
   }
 }
 
