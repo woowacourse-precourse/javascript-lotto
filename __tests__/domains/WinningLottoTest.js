@@ -5,6 +5,18 @@ const WinningLotto = require('../../src/domains/WinningLotto');
 const Lotto = require('../../src/Lotto');
 
 describe('당첨 로또 도메인 테스트', () => {
+  test(`보너스 번호와 ${Lotto.NUMBER_COUNT}개의 번호와 중복 체크가 잘 되는지 확인.`, () => {
+    const numbers = Array(Lotto.NUMBER_COUNT)
+      .fill()
+      .map((_, index) => Lotto.NUMBER_MIN + index)
+      .sort(() => 0.5 - Math.random());
+    const bonusNumber = numbers[0];
+
+    expect(() => {
+      new WinningLotto(new Lotto(numbers), bonusNumber);
+    }).toThrow('[ERROR]');
+  });
+
   test('주어진 로또에 대해 5개 번호 일치, 보너스 번호 일치를 센다.', () => {
     const numbers = Array(Lotto.NUMBER_COUNT + 1)
       .fill()
