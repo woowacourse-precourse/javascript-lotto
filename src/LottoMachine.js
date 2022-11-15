@@ -1,6 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto.js");
-const { RANGE } = require("./Constant");
+const { SYS_MESSAGE, RANGE } = require("./Constant");
 
 class LottoMachine {
   #lottoArr = [];
