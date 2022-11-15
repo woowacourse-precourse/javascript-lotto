@@ -1,4 +1,4 @@
-const Lotto = require("../src/Lotto");
+const Lotto = require("../src/Model/Lotto");
 
 describe("로또 클래스 테스트", () => {
   // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
