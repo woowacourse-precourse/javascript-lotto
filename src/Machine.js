@@ -6,6 +6,8 @@ const { PRIZE } = require('./constants/prize');
 class Machine {
   static publishLotto() {
     const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+    numbers.sort((a, b) => a - b);
+
     return new Lotto(numbers);
   }
 
