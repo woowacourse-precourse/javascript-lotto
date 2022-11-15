@@ -20,7 +20,11 @@ class makeLotto {
     }
   }
   makeLottoNumbers() {
-    return Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
+    let random = Random.pickUniqueNumbersInRange(1, 45, 6).sort(
+      (a, b) => a - b
+    );
+    let strRandom = "[" + random.join(", ") + "]";
+    return strRandom;
   }
 }
 

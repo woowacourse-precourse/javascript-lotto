@@ -11,12 +11,12 @@ class UI {
   _numberUserInputMoney;
 
   askMoney() {
-    Console.readLine(Constant.INPUT_MONEY, async (userInputMoney) => {
+    Console.readLine(Constant.INPUT_MONEY, (userInputMoney) => {
       this._numberUserInputMoney = Number(userInputMoney) ?? NaN;
       if (Validate.validateMoney(this._numberUserInputMoney)) {
         this.#countLotto = this._numberUserInputMoney / Constant.MINIMUM_AMOUNT;
-        await this.showLottosCount();
-        await this.showLottoNumber();
+        this.showLottosCount();
+        this.showLottoNumber();
         this.inputUserLottoNumber();
       }
     });
@@ -47,6 +47,7 @@ class UI {
   }
 
   inputUserLottoNumber() {
+    // Console.print("");
     Console.readLine(Constant.INPUT_LOTTO_NUMBERS, (userInputLottoNumbers) => {
       if (Validate.validateUserInputLottoNumbers(userInputLottoNumbers)) {
         this.#arrUserInputLottoNumbers = userInputLottoNumbers
@@ -68,15 +69,35 @@ class UI {
       ) {
         this.#bonusNumber = numberBonusNumber;
         this.lotto = new Lotto(this.#arrUserInputLottoNumbers);
+
         this.#countSameNumberObject = this.lotto.compare(
-          this.lottoMachine.lottoNumbers,
+          this.makeArrayAgain(this.lottoMachine.lottoNumbers),
           this.#bonusNumber
         );
         this.printWin(this.#countSameNumberObject);
         this.printPrizeRate(this.#countSameNumberObject);
       }
-      Console.close();
     });
+  }
+
+  makeArrayAgain(stringArray) {
+    let arr = [];
+    stringArray.forEach((string) => {
+      let onluNumber = string.slice(0, -1).slice(1);
+      let arrOnlyNumber = onluNumber
+        .split(",")
+        .map((str) => str.trim())
+        .reduce((newArr, item) => {
+          let numberRegex = /^[0-9]*$/;
+          if (numberRegex.test(item)) {
+            newArr.push(+item);
+            return newArr;
+          }
+          return newArr;
+        }, []);
+      arr.push(arrOnlyNumber);
+    });
+    return arr;
   }
 
   showLottosCount() {
@@ -92,8 +113,8 @@ class UI {
   }
 
   printWin(countObject) {
-    Console.print(Constant.STATS_WIN);
-    Console.print(Constant.LINE);
+    // Console.print(Constant.STATS_WIN);
+    // Console.print(Constant.LINE);
 
     for (let key in countObject) {
       Console.print(
@@ -112,6 +133,7 @@ class UI {
       this._numberUserInputMoney
     );
     Console.print(Constant.SHOW_RATE(rate));
+    Console.close();
   }
 }
 module.exports = UI;
