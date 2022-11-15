@@ -28,5 +28,16 @@ class App {
       this.bonusNumber(answer);
     })
   }
+
+  bonusNumber() {
+    Console.readLine(MESSAGE.BONUS_NUMBER, (answer) => {
+      if (this.userArray.includes(Number(answer.split(' ')))){
+        throw Error(MESSAGE.BONUS_NUMBER_ERROR);
+      }
+      
+      MadeNumber.checkBonusNumber(answer);
+    })
+  }
+
 }
 module.exports = App;
