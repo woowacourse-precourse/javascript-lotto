@@ -14,8 +14,8 @@ class Lotto {
   }
 
   validate(numbers) {
-    Validation.isEachUniqueNumber(numbers);
     Validation.isValidLength(numbers);
+    Validation.isEachUniqueNumber(numbers);
     numbers.forEach(number => Validation.isValidRangeNumber(number));
   }
 }
