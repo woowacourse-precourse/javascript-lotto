@@ -2,7 +2,7 @@ const Lotto = require("./Lotto");
 
 class App {
   play() {
-    new Lotto().process();
+    new Lotto().run();
   }
 }
 
