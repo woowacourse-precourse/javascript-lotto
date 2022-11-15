@@ -40,4 +40,12 @@ describe("로또 클래스 테스트", () => {
       app.play();
     }).toThrow("[ERROR] 입력값에 중복이 있습니다.");
   })
+
+  test("입력한 값이 숫자가 아니면 예외 발생",()=>{
+    mockQuestions(["3000","1,2,3,4,5,a"]);
+    expect(()=>{
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR] 숫자만 입력할 수 있습니다.");
+  })
 });
