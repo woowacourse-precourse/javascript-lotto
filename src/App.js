@@ -58,6 +58,7 @@ class App {
     Console.print(RESULT.SECOND + placeResult[2] + RESULT.UNIT);
     Console.print(RESULT.FIRST + placeResult[1] + RESULT.UNIT);
     Console.print(RESULT.YIELD + earned + RESULT.YEILD_UNIT);
+    Console.close();
   }
 
   getTotalResult() {
