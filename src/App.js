@@ -52,8 +52,49 @@ class App {
   }
 
   //당첨 통계
-  LottoResult() {
-    MissionUtils.Console.print("당첨 통계");
+  lottoResult() {
+    let won = new Array(8).fill(0);
+    let lottoPrize = [5000, 50000, 1500000, 2000000000, 30000000];
+    for (let i = 0; i < userLottoNum.length; i++) {
+      won[this.calculateLotto(i)] += 1;
+    }
+    MissionUtils.Console.print("당첨 통계\n---");
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${won[3]}개`);
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${won[4]}개`);
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${won[5]}개`);
+    MissionUtils.Console.print(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${won[7]}개`
+    );
+    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${won[6]}개`);
+    MissionUtils.Console.print(
+      `총 수익률은 ${winnings(lottoPrize, won)}%입니다.`
+    );
+  }
+
+  winnings(lottoPrize, won) {
+    let winnings = 0;
+    for (let i = 0; i < 5; i++) {
+      winnings += lottoPrize[i] + won[i + 3];
+    }
+    if (winnings !== 0) {
+      winnings = ((winnings / won) * 100).toFixed(1);
+    }
+    return winnings;
+  }
+
+  calculateLotto(number) {
+    let count = 0;
+    for (let i = 0; i < 6; i++) {
+      if (this.userLottoNum[number].includes(inputLotto[i])) {
+        count++;
+      }
+    }
+    if (count === 5) {
+      if (this.userLottoNum[number].includes(this.bonus)) {
+        count += 2;
+      }
+    }
+    return count;
   }
 
   // 유저가 낸 금액 확인하는 메서드
@@ -64,13 +105,12 @@ class App {
   }
 
   userLottoNum(userPrice) {
-    const userLottoNum = new Array();
+    const userLottoNum = [];
     const gameTime = Number(userPrice) / 1000;
     for (let i = 0; i < gameTime; i++) {
       userLottoNum.push(this.lottoAuto());
       MissionUtils.Console.print(userLottoNum);
     }
-    this.userLottoNum = userLottoNum;
   }
 
   // 로또 번호 자동 생성
