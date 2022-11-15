@@ -30,8 +30,11 @@ class App {
     Console.print(OUTPUT_MESSAGE.PURCHASE(myLotto.length));
     myLotto.forEach((lotto) => {
       lotto.sort((a, b) => a - b);
-      Console.print(lotto);
+      Console.print(
+        `[${lotto[0]}, ${lotto[1]}, ${lotto[2]}, ${lotto[3]}, ${lotto[4]}, ${lotto[5]}]`
+      );
     });
+
     this.inputWinning();
   }
   inputWinning() {
