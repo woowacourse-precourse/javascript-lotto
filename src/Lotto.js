@@ -13,12 +13,12 @@ class Lotto {
       throw new Error(ERROR.LOTTO_COUNT);
     }
 
-    if (new Set(numbers).size !== NUMBER.LOTTO_NUMBER){
+    if (new Set(numbers).size !== NUMBER.LOTTO_NUMBER) {
       throw new Error(ERROR.LOTTO_OVERLAP);
     }
-    
+
     numbers.map((number) => {
-      if (/[^0-9]/g.test(number)){
+      if (/[^0-9]/g.test(number)) {
         throw new Error(ERROR.LOTTO_NUMBER);
       }
 
@@ -28,13 +28,13 @@ class Lotto {
     });
   }
 
-  setBonus(number){
+  setBonus(number) {
     this.validateBonus(number);
     this.#numbers.push(number);
   }
 
   validateBonus(number) {
-    if (/[^0-9]/g.test(number)){
+    if (/[^0-9]/g.test(number)) {
       throw new Error(ERROR.BONUS_NUMBER);
     }
 
@@ -42,15 +42,14 @@ class Lotto {
       throw new Error(ERROR.BONUS_RANGE);
     }
 
-    if (this.#numbers.includes(number)){
-      throw new Error(ERROR.BONUS_OVERLAP)
+    if (this.#numbers.includes(number)) {
+      throw new Error(ERROR.BONUS_OVERLAP);
     }
   }
-  
+
   getLotto() {
     return this.#numbers;
   }
-
 }
 
 module.exports = Lotto;

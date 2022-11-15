@@ -11,23 +11,23 @@ class LottoResult {
     this.#autoLotto = autoLotto;
   }
 
-  getCount(autoLotto){
+  getCount(autoLotto) {
     let count = 0;
     let bonus = false;
 
     autoLotto.map((lotto) => {
-        if (this.#lotto.includes(lotto)){
-            count += 1;
-        }
-        if (this.#lotto.includes(this.#bonus)){
-            bonus = true;
-        }
+      if (this.#lotto.includes(lotto)) {
+        count += 1;
+      }
+      if (this.#lotto.includes(this.#bonus)) {
+        bonus = true;
+      }
     });
 
     return { count, bonus };
   }
 
-  getResult(){
+  getResult() {
     let result = [0, 0, 0, 0, 0];
 
     this.#autoLotto.map((lotto) => {
@@ -50,9 +50,8 @@ class LottoResult {
     total += result[3] * NUMBER.LOTTO_SECOND_PLACE;
     total += result[4] * NUMBER.LOTTO_FIRST_PLACE;
 
-    return (total / (this.#autoLotto.length * 10)).toFixed(1); 
+    return (total / (this.#autoLotto.length * 10)).toFixed(1);
   }
-
 }
 
 module.exports = LottoResult;

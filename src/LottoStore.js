@@ -37,7 +37,6 @@ class LottoStore {
   getAutoLotto() {
     return this.#autoLotto;
   }
-
 }
 
 module.exports = LottoStore;

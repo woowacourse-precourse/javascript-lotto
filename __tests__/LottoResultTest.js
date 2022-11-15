@@ -1,9 +1,8 @@
-const LottoResult = require("../src/LottoResult");
+const LottoResult = require('../src/LottoResult');
 
-describe("로또 결과 클래스 테스트", () => {
-
+describe('로또 결과 클래스 테스트', () => {
   // getCount
-  test("정답인 번호의 개수와 보너스 번호의 유무를 반환한다.", () => {
+  test('정답인 번호의 개수와 보너스 번호의 유무를 반환한다.', () => {
     const lotto = [1, 2, 3, 4, 5, 6, 7];
     const autoLotto = [
       [1, 8, 11, 31, 41, 42],
@@ -12,15 +11,14 @@ describe("로또 결과 클래스 테스트", () => {
       [2, 13, 22, 32, 38, 45],
       [1, 3, 5, 14, 22, 45],
     ];
-
     const lottoResult = new LottoResult(lotto, autoLotto);
-    const result = lottoResult.getCount([1, 3, 5, 14, 22, 45])
+    const result = lottoResult.getCount([1, 3, 5, 14, 22, 45]);
 
-    expect(result).toEqual({"bonus": false, "count": 3});
+    expect(result).toEqual({ bonus: false, count: 3 });
   });
 
   // getResult
-  test("로또의 등수 결과 반환한다.", () => {
+  test('로또의 등수 결과 반환한다.', () => {
     const lotto = [1, 2, 3, 4, 5, 6, 7];
     const autoLotto = [
       [1, 2, 3, 4, 5, 6],
@@ -29,7 +27,6 @@ describe("로또 결과 클래스 테스트", () => {
       [1, 2, 3, 4, 38, 45],
       [1, 3, 5, 14, 22, 45],
     ];
-
     const lottoResult = new LottoResult(lotto, autoLotto);
     const result = lottoResult.getResult();
 
@@ -37,7 +34,7 @@ describe("로또 결과 클래스 테스트", () => {
   });
 
   // getRate
-  test("로또의 총 수익률을 반환한다.", () => {
+  test('로또의 총 수익률을 반환한다.', () => {
     const lotto = [1, 2, 3, 4, 5, 6, 7];
     const autoLotto = [
       [8, 21, 23, 41, 42, 43],
@@ -49,11 +46,9 @@ describe("로또 결과 클래스 테스트", () => {
       [2, 13, 22, 32, 38, 45],
       [1, 3, 5, 14, 22, 45],
     ];
-
     const lottoResult = new LottoResult(lotto, autoLotto);
     const result = lottoResult.getRate([1, 0, 0, 0, 0]);
 
-    expect(result).toEqual("62.5");
+    expect(result).toEqual('62.5');
   });
-
 });
