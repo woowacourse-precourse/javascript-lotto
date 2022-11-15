@@ -1,6 +1,6 @@
-const NotNumberException = require('../../exception/NotNumberException');
 const LottoAmountDivideException = require('../../exception/lotto/LottoAmountDivideException');
 const LottoAmountLessException = require('../../exception/lotto/LottoAmountLessException');
+const NotNumberException = require('../../exception/NotNumberException');
 const { checkNotNumber } = require('../../util/validate');
 
 class LottoAmount {
@@ -21,9 +21,11 @@ class LottoAmount {
     if (checkNotNumber(value)) {
       throw new NotNumberException(value);
     }
+
     if (value < LottoAmount.#LOTTO_PRICE) {
       throw new LottoAmountLessException(LottoAmount.#LOTTO_PRICE);
     }
+
     if (value % 1000 !== 0) {
       throw new LottoAmountDivideException(LottoAmount.#LOTTO_PRICE);
     }

@@ -1,6 +1,6 @@
 const Lotto = require('./Lotto');
-const { createRandomNumbers } = require('../generator/NumberGenerator');
 const InstanceException = require('../../exception/InstanceException');
+const { createRandomNumbers } = require('../generator/NumberGenerator');
 
 class LottoTicket {
   #lottos;
