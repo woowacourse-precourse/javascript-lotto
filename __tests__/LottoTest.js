@@ -19,7 +19,7 @@ describe("로또 클래스 테스트", () => {
   // 아래에 추가 테스트 작성 가능
   test("사용자가 구매한 로또 번호와 당첨 번호를 비교", () => {
     const comparison = new Comparison([2, 4, 6, 8, 10, 12], [1, 2, 3, 4, 5, 6]);
-    expect(comparison.Comparison()).toEqual([2, 4, 6]);
+    expect(comparison.comparison()).toEqual([2, 4, 6]);
   });
 
   test("사용자가 구매한 로또 번호들과 당첨 번호 비교", () => {
@@ -29,7 +29,7 @@ describe("로또 클래스 테스트", () => {
     let result = [3, 0, 3];
     for (let i of userLottoNumber) {
       const comparison = new Comparison(i, winningNumber);
-      answer.push(comparison.countAndSave(comparison.checkTheNumber(comparison.Comparison())));
+      answer.push(comparison.countAndSave(comparison.checkTheNumber(comparison.comparison())));
     }
     expect(answer).toEqual(result);
   });
