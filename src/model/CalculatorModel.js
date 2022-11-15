@@ -9,9 +9,9 @@ class CalculatorModel {
     const winningList = [];
 
     lottos.forEach((lotto) => {
-      const result = this.compare(lotto, winning);
+      const comparedResult = this.compare(lotto, winning);
 
-      winningList.push(result);
+      winningList.push(comparedResult);
     });
 
     return this.getRank(winningList);
