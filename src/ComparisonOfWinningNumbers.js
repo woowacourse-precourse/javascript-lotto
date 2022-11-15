@@ -44,7 +44,7 @@ class ComparisonOfWinningNumbers {
                     rank.filter(element => 5 === element).length * 1500000 + 
                     rank.filter(element => 1 === element).length * 30000000 + 
                     rank.filter(element => 6 === element).length * 2000000000;
-    MissionUtils.Console.print(`총 수익률은 ${totalMoney / price * 100}입니다.`);
+    MissionUtils.Console.print(`총 수익률은 ${(totalMoney / price * 100).toFixed(1)}입니다.`);
   }
 }
 
