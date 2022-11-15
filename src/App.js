@@ -15,7 +15,7 @@ class App {
   }
   inputWinningNumber() {
     Console.readLine("\n당첨 번호를 입력해 주세요.\n", (input) => {
-      lotto = new Lotto(input, user.getLottos());
+      lotto = new Lotto(input.split(","), user.getLottos());
     });
   }
 }

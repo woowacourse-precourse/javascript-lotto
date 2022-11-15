@@ -4,10 +4,9 @@ class Lotto {
   #numbers; // 로또 당첨번호
 
   constructor(numbers, userLottos) {
-    let winningNumbers = numbers.split(",");
-    this.validateLength(winningNumbers);
-    this.validateRange(winningNumbers);
-    this.#numbers = winningNumbers.map((num) => Number(num));
+    this.validateLength(numbers);
+    this.validateRange(numbers);
+    this.#numbers = numbers.map((num) => Number(num));
 
     this.inputBonusNumber(userLottos);
   }
