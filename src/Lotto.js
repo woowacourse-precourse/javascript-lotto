@@ -4,19 +4,19 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    // this.validate(numbers);
+    this.validate(numbers);
     this.#numbers = numbers;
   }
 
-  // validate(numbers) {
-  //   // // if (numbers.length !== 6) {
-  //   // //   throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
-  //   // // }
-  //   // if (!numbers.includes(',')) {
-  //   //   throw new Error('[ERROR] 쉼표로 구분한 하나의 문자열을 입력해주세요');
-  //   // }
-  //   Console.print(numbers.length);
-  // }
+  validate(numbers) {
+    if (numbers.length !== 6) {
+      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+    }
+    if (!numbers.includes(',')) {
+      throw new Error('[ERROR] 쉼표로 구분한 하나의 문자열을 입력해주세요');
+    }
+    Console.print(numbers.length);
+  }
 
   // TODO: 추가 기능 구현
 
@@ -134,7 +134,7 @@ class Lotto {
       if (num === 4) {
         num4 += 1;
       }
-      if (num === 5) {
+      if (num === 5 && matchBonus[idx] === 0) {
         num3 += 1;
       }
       if (num === 5 && matchBonus[idx] === 1) {
@@ -147,6 +147,19 @@ class Lotto {
     this.resultPrint(num5, num4, num3, num2, num1).forEach((result) =>
       Console.print(result)
     );
+    this.rateOfReturn(matchNumber, num5, num4, num3, num2, num1);
+  }
+
+  rateOfReturn(matchNumber, num5, num4, num3, num2, num1) {
+    const cost = matchNumber.length * 1000;
+    const win =
+      num5 * 5000 +
+      num4 * 50000 +
+      num3 * 1500000 +
+      num2 * 30000000 +
+      num1 * 2000000000;
+    Console.print(`총 수익률은 ${((win / cost) * 100).toFixed(1)}%입니다.`);
+    Console.close();
   }
 
   resultPrint(num5, num4, num3, num2, num1) {
