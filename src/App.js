@@ -100,8 +100,7 @@ class App {
       list[7] * 30000000
     )
   }
-  
+
 }
-const a = new App;
-a.play();
+
 module.exports = App;
