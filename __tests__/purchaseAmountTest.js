@@ -1,4 +1,4 @@
-const PurchaseAmountValidator = require('../src/purchaseAmountValidate');
+const PurchaseAmountValidator = require('../src/PurchaseAmountValidate');
 
 describe('로또 입력 금액 테스트', () => {
   test('입력 금액이 숫자가 아니면 예외가 발생한다', () => {
