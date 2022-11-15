@@ -135,11 +135,16 @@ class Lotto {
   }
 
   printEarningRate(){
+    this.calEarningRate();
+
+
+  }
+
+  calEarningRate(){
     Object.keys(this.match).forEach((key)=>{
       this.earningProfit += CORRECT_MONEY[key]*this.match[key]
     })
     const EARNING_RATE = (this.earningProfit/this.cost)*100;
-    Console.print(EARNING_RATE);
   }
 
   // validate(numbers) {
