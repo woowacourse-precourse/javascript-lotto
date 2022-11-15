@@ -1,3 +1,5 @@
+const { reducer, numList } = require('./Funcs');
+
 class Validator {
   static isNumber(target) {
     if (isNaN(target)) throw new Error('[ERROR] 숫자가 아닙니다.');
@@ -9,7 +11,7 @@ class Validator {
     throw new Error('[ERROR] 1000원 이상의 금액을 입력해주세요.');
   }
 
-  static isNotDuplicated(list, len = 6) {
+  static isNotDuplicated(list, len) {
     const set = new Set(list);
     if (set.size < len) {
       throw new Error('[ERROR] 중복된 숫자가 있습니다.');
@@ -17,8 +19,8 @@ class Validator {
     return true;
   }
 
-  static isNotExceedAmount(list, len = 6) {
-    if (list.length > 6) {
+  static isNotExceedAmount(list) {
+    if (list.length >= 7) {
       throw new Error('[ERROR] 6개 이하의 숫자를 입력하세요.');
     }
     return true;
@@ -27,6 +29,25 @@ class Validator {
     if (number < 1 || number > 45)
       throw new Error('[ERROR] 1~45 사이의 숫자를 입력하세요.');
     return true;
+  }
+
+  static moneyInputCheckHandler(input) {
+    reducer(
+      input,
+      Validator.isNumber(input),
+      Validator.isValidPayAmount(input),
+    );
+    return Number(input);
+  }
+
+  static lottoInputCheckHandler(input, len = 6) {
+    const target = numList(input);
+    reducer(
+      input,
+      Validator.isNotExceedAmount(target),
+      Validator.isNotDuplicated(target, len),
+    );
+    return target;
   }
 }
 module.exports = Validator;
