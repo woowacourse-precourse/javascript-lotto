@@ -1,5 +1,7 @@
 const LotteryMachine = require('../src/LotteryMachine');
 const MissionUtils = require('@woowacourse/mission-utils');
+const LotteryMachine = require('../src/LotteryMachine');
+const Lotto = require('../src/Lotto');
 const { ERROR_MESSAGE } = require('../src/constants');
 const { makeErrorMsg } = require('../src/utils');
 
@@ -78,4 +80,36 @@ describe('로또 기계 클래스 테스트', () => {
       LotteryMachine.issueTicket();
     }).toThrow(makeErrorMsg(ERROR_MESSAGE.MONEY_UNIT));
   });
+
+  test('로또 번호와 당첨 번호를 비교하여 로또의 등수와 당첨금을 계산한다', () => {
+    const winnerNumbers = [[1, 2, 3, 4, 5, 6], 7];
+
+    const lottos = [
+      new Lotto([8, 21, 23, 41, 42, 43]),
+      new Lotto([3, 5, 11, 16, 32, 38]),
+      new Lotto([7, 11, 16, 35, 36, 44]),
+      new Lotto([1, 8, 11, 31, 41, 42]),
+      new Lotto([13, 14, 16, 38, 42, 45]),
+      new Lotto([7, 11, 30, 40, 42, 43]),
+      new Lotto([2, 13, 22, 32, 38, 45]),
+      new Lotto([1, 3, 5, 14, 22, 45]),
+    ];
+
+    const winningStatistics = {
+      ranking: {
+        firstPlace: 1,
+        secondPlace: 0,
+        thirdPlace: 0,
+        fourthPlace: 0,
+        fifthPlace: 0,
+      },
+      totalLottoNum: 8,
+      totalWinnings: 5000,
+    };
+
+    const calculationResult = LotteryMachine.readQrCode(lottos, winnerNumbers);
+
+    expect(winningStatistics).toEqual(calculationResult);
+  });
+
 });
