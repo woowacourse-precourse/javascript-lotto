@@ -35,7 +35,8 @@ const ERROR = Object.freeze({
   INVALID_DIVIDE: '[ERROR] 당첨 번호는 쉼표로 구분해야 합니다.',
   INVALID_LENGTH: '[ERROR] 로또 번호는 6개여야 합니다.',
   INVALID_RANGE: '[ERROR] 입력할 수 있는 범위는 1에서 45 사이입니다.',
-  DUPLICATE: '[ERROR] 당첨 번호와 중복된 번호는 선택할 수 없습니다.',
+  LOTTO_NUMBER_DUPLICATE: '[ERROR] 중복된 번호는 입력할 수 없습니다.',
+  BONUS_DUPLICATE: '[ERROR] 당첨 번호와 중복된 번호는 선택할 수 없습니다.',
 });
 
 const STRING = Object.freeze({

@@ -5,7 +5,6 @@ const {
   createLotteryTicket,
   printMyLotteries,
   changeToNumbersArray,
-  printResult,
 } = require('../src/utils/lotteryHandler');
 
 const createMockTickets = jest.fn(() => [

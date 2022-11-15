@@ -1,9 +1,10 @@
 const User = require('./User');
 const Lotto = require('./Lotto');
 const { Console } = require('@woowacourse/mission-utils');
-const { checkMoneyValidation } = require('./utils/validations');
+const { checkMoneyValidation, checkLottoInputValidation } = require('./utils/validations');
 const { getLotteryResult, printResult } = require('./utils/lotteryHandler');
 const { MESSAGE } = require('./utils/constant');
+const { changeToNumbersArray } = require('./utils/lotteryHandler');
 
 class App {
   constructor() {
@@ -24,7 +25,9 @@ class App {
 
   inputLottoNumbers() {
     Console.readLine(MESSAGE.INPUT.LOTTO_NUMBER, (inputNumbers) => {
-      this.lotto = new Lotto(inputNumbers);
+      checkLottoInputValidation(inputNumbers);
+      const numbersArray = changeToNumbersArray(inputNumbers);
+      this.lotto = new Lotto(numbersArray);
       this.inputBonusNumber();
     });
   }

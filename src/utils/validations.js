@@ -37,8 +37,15 @@ const checkIncludeComma = (numbers) => {
   throw new Error(ERROR.INVALID_DIVIDE);
 };
 
-const checkValidLength = (inputNumbers) => {
+const checkValidStringLength = (inputNumbers) => {
   const numbersArray = inputNumbers.split(STRING.COMMA);
+  if (numbersArray.length === NUMBER.LOTTO_LENGTH) return;
+
+  Console.close();
+  throw new Error(ERROR.INVALID_LENGTH);
+};
+
+const checkValidArrayLength = (numbersArray) => {
   if (numbersArray.length === NUMBER.LOTTO_LENGTH) return;
 
   Console.close();
@@ -52,9 +59,9 @@ const isValidRange = (number) => {
   throw new Error(ERROR.INVALID_LENGTH);
 };
 
-const checkLottoNumbersValidation = (inputNumbers) => {
+const checkLottoInputValidation = (inputNumbers) => {
   checkIncludeComma(inputNumbers);
-  checkValidLength(inputNumbers);
+  checkValidStringLength(inputNumbers);
 
   const numbersArray = inputNumbers.split(STRING.COMMA);
   numbersArray.forEach((number) => {
@@ -63,12 +70,24 @@ const checkLottoNumbersValidation = (inputNumbers) => {
   });
 };
 
+const checkLottoNumberDuplicate = (numbersArray) => {
+  const filtered = numbersArray.filter((value, index) => numbersArray.indexOf(value) !== index);
+  if (filtered.length === 0) return;
+
+  throw new Error(ERROR.LOTTO_NUMBER_DUPLICATE);
+};
+
+const checkLottoNumbersValidation = (numbersArray) => {
+  checkValidArrayLength(numbersArray);
+  checkLottoNumberDuplicate(numbersArray);
+};
+
 /* Bonus Number Validation */
 const checkBonusIsDuplicated = (bonusNumber, numbers) => {
   if (!numbers.includes(Number(bonusNumber))) return;
 
   Console.close();
-  throw new Error(ERROR.DUPLICATE);
+  throw new Error(ERROR.BONUS_DUPLICATE);
 };
 
 const checkBonusNumberValidation = (bonusNumber, numbers) => {
@@ -79,6 +98,7 @@ const checkBonusNumberValidation = (bonusNumber, numbers) => {
 
 module.exports = {
   checkMoneyValidation,
+  checkLottoInputValidation,
   checkLottoNumbersValidation,
   checkBonusNumberValidation,
   isValidNumber,
