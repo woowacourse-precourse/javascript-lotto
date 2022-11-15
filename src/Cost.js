@@ -4,7 +4,7 @@ class Cost {
   #cost;
 
   constructor(cost) {
-    this.validate(cost);
+    this.#validate(cost);
     this.#cost = cost;
   }
 
@@ -12,7 +12,7 @@ class Cost {
     return this.#cost;
   }
 
-  validate(cost) {
+  #validate(cost) {
     if (cost !== +cost) {
       throw new Error(ERROR_MESSAGE.NOT_NUMBER);
     }

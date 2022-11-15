@@ -4,7 +4,7 @@ class Bonus {
   #bonus;
 
   constructor(bonus) {
-    this.validate(bonus);
+    this.#validate(bonus);
     this.#bonus = bonus;
   }
 
@@ -12,7 +12,7 @@ class Bonus {
     return this.#bonus;
   }
 
-  validate(bonus) {
+  #validate(bonus) {
     if (bonus !== +bonus) {
       throw new Error(ERROR_MESSAGE.NOT_NUMBER);
     }

@@ -4,7 +4,7 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    this.#validate(numbers);
     this.#numbers = numbers;
   }
 
@@ -12,7 +12,7 @@ class Lotto {
     return this.#numbers;
   }
 
-  validate(numbers) {
+  #validate(numbers) {
     if (numbers.length !== numbers.filter((number) => number === +number).length) {
       throw new Error(ERROR_MESSAGE.NOT_NUMBER);
     }

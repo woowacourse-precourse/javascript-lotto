@@ -22,13 +22,14 @@ class App {
     this.cost = new Cost(inputCost);
   }
 
+  // 구매한 로또 번호
   buyLottoCountTimes() {
     this.buyLotto = new BuyLotto(this.cost.getValue() / COST.DIVIDE);
     let buyLottoResult = `${this.buyLotto.getBuyCount()}\n`;
     this.buyLotto.getValue().forEach((buy) => {
       buyLottoResult += `[${buy.join(', ')}]\n`;
     });
-    print(buyLottoResult);
+    return buyLottoResult;
   }
 
   getLottoNumber() {
@@ -43,6 +44,7 @@ class App {
     });
   }
 
+  // 로또와 보너스 번호가 겹치는지 확인
   lottoBonusCheck() {
     if (this.lotto.getValue().filter((number) => number === this.bonus.getValue()).length === 1) {
       throw new Error(ERROR_MESSAGE.BONUS.NUMBER_DUPLICATED);
@@ -50,15 +52,15 @@ class App {
   }
 
   getInputAndValidate() {
+    this.getCost();
     this.getLottoNumber();
     this.getBonusNumber();
     this.lottoBonusCheck();
   }
 
   play() {
-    this.getCost();
     this.getInputAndValidate();
-    this.buyLottoCountTimes();
+    print(this.buyLottoCountTimes());
     print(
       getLottoResult(
         this.cost.getValue(),
