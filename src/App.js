@@ -64,6 +64,7 @@ class App {
   }
 
   #initStatistics(){
+    this.#statistics = [];
     for(let i = 0 ; i < Constant.LOTTO_LENGTH ; i++){
       this.#statistics[i] = 0;
     }
