@@ -21,7 +21,17 @@ class App {
       }
       this.printer('/n');
 
+      //당첨 번호 입력받음
+      this.readLine("당첨 번호를 입력해 주세요."), (numbers) => {
+        console.log(numbers);
+      }
 
+      //보너스 번호 입력받음
+      const Bonus = 0;
+      this.readLine("당첨 번호를 입력해 주세요."), (bonus) => {
+        Bonus = bonus;
+        console.log(Bonus);
+      }
   
     };
 
