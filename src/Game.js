@@ -1,9 +1,7 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 
-
 class Game {
-
 
   constructor() {
     this.price = 0;
@@ -24,10 +22,10 @@ class Game {
 
   gameStart() {
     this.getPriceInput();
-    this.showNumbers();
+    this.publishLottoNumbers();
     this.getWinningNumberInput();
     this.getBonusNumberInput();
-    this.lotto = new Lotto(this.winningNumber);
+    
     this.priceEarning();
     this.printResult();
   } 
@@ -45,7 +43,6 @@ class Game {
     if(isNaN(inputPrice) === true) throw "[ERROR] 숫자를 입력해 주세요.";
     if(inputPrice % 1000 !== 0) throw "[ERROR] 로또 1장의 가격은 1,000원입니다. 1,000원 단위로 입력해 주세요.";
     if(inputPrice < 1000) throw "[ERROR] 로또 1장의 가격은 1,000원입니다. 1,000원 이상을 입력해 주세요.";
-
   }
 
   generateNumbers() {
@@ -53,7 +50,7 @@ class Game {
     return numbers;
   }
 
-  showNumbers(){
+  publishLottoNumbers(){
     let count = this.price / 1000;
   
     Console.print(`${count}개를 구매했습니다.`);
@@ -73,17 +70,17 @@ class Game {
     });
   }
 
-	checkWinningNumber(input) {
-    input.forEach((e) => {
+	checkWinningNumber(inputNumbers) {
+    inputNumbers.forEach((e) => {
 			if (isNaN(e)) throw "[ERROR] 숫자로만 입력해 주세요.";
 		});
 
-    if (input.length !== 6) throw "[ERROR] 개수를 맞게 입력해 주세요.";
+    if (inputNumbers.length !== 6) throw "[ERROR] 개수를 맞게 입력해 주세요.";
 
-    const arr = new Set(input);
-		if (input.length !== [...arr].length) throw "[ERROR] 중복되지 않는 수를 입력해 주세요.";
+    const arr = new Set(inputNumbers);
+		if (inputNumbers.length !== [...arr].length) throw "[ERROR] 중복되지 않는 수를 입력해 주세요.";
 
-		input.forEach((e) => {
+		inputNumbers.forEach((e) => {
 			if (e < 1 || e > 45) throw "[ERROR] 1부터 45까지의 수만 입력해 주세요.";
 		});
 
@@ -91,21 +88,20 @@ class Game {
 
   getBonusNumberInput() {
     return Console.readLine('보너스 번호를 입력해 주세요.', (inputBonusNumber) => {
-      //console.log(inputBonusNumber);
       this.bonusNumber = Number(inputBonusNumber);
       Console.close();
     });
   }
 
   priceEarning() {
-    this.countArr = this.lotto.compareNumbers(this.publishNumbers, this.bonusNumber);
+    const lotto = new Lotto(this.winningNumber);
+    this.countArr = lotto.compareNumbers(this.publishNumbers, this.bonusNumber);
     let total = 0;
     
     this.countArr.forEach((count, idx) => {
       total += this.static[idx].prize * count;
     });
     this.earningPercent = ((total / this.price) * 100).toFixed(1);
-    console.log(this.earningPercent);
   }
 
   printResult() {
