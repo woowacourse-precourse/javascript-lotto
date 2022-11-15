@@ -10,14 +10,10 @@ class Matcher {
     getMatchResult(lottoWallet) {
         for (let idx = 0; idx < lottoWallet.length; idx++) {
             const lotto = lottoWallet[idx].numbers;
-            const resultIdx = this.matchWithWinningNumbers(lotto);
+            let resultIdx = this.matchWithWinningNumbers(lotto);
             if (resultIdx === PRIZE_INDEX.NOTHING) continue;
-            if (resultIdx === PRIZE_INDEX.THIRD) {
-                this.matchWithBonusNumber(lotto);
-                continue;
-            }
+            if (resultIdx === PRIZE_INDEX.THIRD) resultIdx = this.matchWithBonusNumber(lotto);
             this.matchResult[resultIdx]++;
-
         }
         return this.matchResult;
     }
@@ -36,12 +32,8 @@ class Matcher {
 
     matchWithBonusNumber(lotto) {
         const bonusMatch = lotto.includes(this.bonusNumber);
-        if (bonusMatch) {
-            this.matchResult[PRIZE_INDEX.SECOND]++;
-            return true;
-        }
-        this.matchResult[PRIZE_INDEX.THIRD]++;
-        return false;
+        if (bonusMatch) return PRIZE_INDEX.SECOND;
+        return PRIZE_INDEX.THIRD;
     }
 }
 
