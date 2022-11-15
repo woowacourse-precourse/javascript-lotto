@@ -2,11 +2,17 @@ const { Console } = require('@woowacourse/mission-utils');
 const { BUY_MESSAGE } = require('./const');
 
 const Utils = require('./Utils');
+const Validations = require('./Validations');
 
 class Purchase {
-  constructor() {
-    this.money = 0;
+  constructor(money) {
+    this.validate(money);
+    this.money = money;
     this.totalLottoes = [];
+  }
+
+  validate(money) {
+    Validations.isThousand(money);
   }
 
   print() {

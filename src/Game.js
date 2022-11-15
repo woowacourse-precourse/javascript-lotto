@@ -11,7 +11,6 @@ class Game {
     this.prizeNumber = null;
     this.bonusNumber = null;
     this.winnigAmount = 0;
-    this.purchaseAmount = 0;
     this.lottoNumber = null;
     this.ranking = {
       first: 0,
@@ -20,7 +19,7 @@ class Game {
       fourth: 0,
       fifth: 0,
     };
-    this.Purchase = new Purchase();
+    this.Purchase = null;
   }
 
   init() {
@@ -28,9 +27,9 @@ class Game {
   }
 
   purchaseLotto(money) {
-    Validations.isThousand(money);
-    this.purchaseAmount = money;
-    this.totalLottoes = this.Purchase.createLottoArray(this.purchaseAmount);
+    this.Purchase = new Purchase(money);
+    this.Purchase.money = money;
+    this.totalLottoes = this.Purchase.createLottoArray(this.Purchase.money);
     this.Purchase.print();
     this.setPrizeNumber();
   }
@@ -65,7 +64,7 @@ class Game {
     this.lottoNumber.winCheck(this.totalLottoes);
     this.lottoNumber.winningAmountCalculation();
     this.lottoNumber.printWinner();
-    const yieldPercent = this.lottoNumber.yieldCaculation(this.purchaseAmount);
+    const yieldPercent = this.lottoNumber.yieldCaculation(this.Purchase.money);
     this.lottoNumber.printYield(yieldPercent);
     this.exit();
   }
