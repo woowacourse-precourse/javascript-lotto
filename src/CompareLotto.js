@@ -5,22 +5,21 @@ class CompareLotto {
     this.userLotto = userLotto;
     this.winNumber = winNumber;
     this.bonusNumber = bonusNumber;
-    this.compareNumber = 8;
     this.ranking = {};
   }
 
-  saveResult(calculatedValue, correctBonus) {
-    switch (calculatedValue) {
-      case 2:
+  saveResult(correctCnt, correctBonus) {
+    switch (correctCnt) {
+      case 6:
         return RANK.FIRST;
-      case 3:
+      case 5:
         if (correctBonus) {
           return RANK.SECOND;
         }
         return RANK.THIRD;
       case 4:
         return RANK.FOURTH;
-      case 5:
+      case 3:
         return RANK.FIFTH;
     }
   }
@@ -45,9 +44,8 @@ class CompareLotto {
       });
     this.userLotto.forEach((lotto) => {
       const [correctCnt, correctBonus] = this.cntCorrect(lotto);
-      const calculatedValue = this.compareNumber - correctCnt;
       if (correctCnt >= UNIT.MIN_CNT) {
-        this.ranking[this.saveResult(calculatedValue, correctBonus)] += 1;
+        this.ranking[this.saveResult(correctCnt, correctBonus)] += 1;
       }
     });
     return this.ranking;
