@@ -9,7 +9,7 @@ class Calculator {
       REGEXP_KOREAN_MONEY_COMMA_LOCATION,
       ","
     );
-    this.messageOutput.printMesage(
+    this.messageOutput.printMessage(
       `총 수익률은 ${parseFloat(koreanMoney)}%입니다.`
     );
   }

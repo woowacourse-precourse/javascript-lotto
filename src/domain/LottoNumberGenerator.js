@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const App = require("../App");
 
 class LottoNumberGenerator {
   constructor() {}

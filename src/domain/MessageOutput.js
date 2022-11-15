@@ -1,14 +1,19 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
 class MessageOutput {
-  #message;
+  // #message;
 
-  constructor(message) {
-    this.#message = message;
-  }
+  // constructor(message) {
+  //   this.#message = message;
+  // }
 
-  printMesage(message) {
+  printMessage(message) {
     MissionUtils.Console.print(message);
+  }
+  makeUserLottoMessage(lotto) {
+    this.printMessage(
+      "[" + lotto.toString().replaceAll(",", ", ").trim() + "]"
+    );
   }
 }
 

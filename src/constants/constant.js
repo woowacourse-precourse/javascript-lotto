@@ -1,10 +1,19 @@
 const GAME_START_MESSAGE = "구입금액을 입력해 주세요.\n";
 const REQUIRE_WIN_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.\n";
+const REQUIRE_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.\n";
 
 const PURCHACE_MESSAGE = "개를 구매했습니다.";
 
 const ERROR = "[ERROR]";
 const ERROR_MESSAGE_INPUT_MONEY = "로또는 천원 단위로 구매할 수 있습니다";
+const ERROR_MESSAGE_ONLY_NUMBER = "금액은 숫자만 입력할 수 있습니다";
+const ERROR_MESSAGE_DUPLICATED_NUMBER = "중복된 숫자는 입력할 수 없습니다";
+
+const MAX_LOTTO_VALUE = 45;
+const MIN_LOTTO_VALUE = 1;
+
+const WON = "원";
+const COUNT = "개";
 
 const SIX = {
   rank: "1등",
@@ -56,4 +65,11 @@ module.exports = {
   SIX,
   ERROR,
   ERROR_MESSAGE_INPUT_MONEY,
+  ERROR_MESSAGE_ONLY_NUMBER,
+  ERROR_MESSAGE_DUPLICATED_NUMBER,
+  WON,
+  COUNT,
+  REQUIRE_BONUS_NUMBER_MESSAGE,
+  MIN_LOTTO_VALUE,
+  MAX_LOTTO_VALUE,
 };
