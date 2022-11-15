@@ -1,11 +1,13 @@
-const { Console } = require("@woowacourse/mission-utils");
+const { Console, MissionUtils } = require("@woowacourse/mission-utils");
 const { CONSOLE } = require("./constants");
+const Lotto = require("./Lotto");
 const LottoGenerator = require("./LottoGenerator");
 const ValidationCheck = require("./util/ValidationCheck");
 
 class App {
   #money;
   #lottoSet;
+  #winningNumbers;
 
   play() {
     this.insertMoney();
@@ -22,6 +24,17 @@ class App {
   buyLotto(money) {
     const lottoSet = new LottoGenerator(money);
     this.#lottoSet = lottoSet.play();
+    this.inputWinningNumbers();
+  }
+
+  inputWinningNumbers() {
+    Console.readLine(CONSOLE.WINNING_NUMBER_INPUT + "\n", (number) => {
+      const inputNumbers = number.split(",").map(Number);
+      const lotto = new Lotto(inputNumbers);
+      this.#winningNumbers = lotto.play();
+
+      Console.print("");
+    });
   }
 }
 

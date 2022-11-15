@@ -1,3 +1,5 @@
+const { RULES, ERROR } = require("./constants");
+
 class Lotto {
   #numbers;
 
@@ -7,12 +9,29 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    if (numbers.length !== RULES.LENGTH) {
+      throw new Error(ERROR.WINNING_NUMBER_COUNT_CHECK);
     }
+
+    if (new Set(numbers).size !== RULES.LENGTH) {
+      throw new Error(ERROR.DUPLICATE_CHECK);
+    }
+
+    numbers.forEach((number) => {
+      if (number < RULES.START_RANGE || number > RULES.END_RANGE) {
+        throw new Error(ERROR.WINNING_NUMBER_RANGE_CHECK);
+      }
+
+      if (isNaN(number)) {
+        throw new Error(ERROR.INPUT_NUMBER_CHECK);
+      }
+    });
   }
 
-  // TODO: 추가 기능 구현
+  play() {
+    this.validate(this.#numbers);
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
