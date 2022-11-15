@@ -33,36 +33,13 @@ class App {
     Console.print(`${count}개를 구매했습니다.`);
     this.showLottoNum();
   }
-  
+
   showLottoNum() {
     this.lotto.forEach((lottoArr) => {
       Console.print(lottoArr.toString());
     })
     this.inputLottoNumber();
   }
-
-setLottoNumbers(){
-  const lottoNumber = Random.pickUniqueNumbersInRange(1, 45, 6);
-  const checkLotto = new Lotto(lottoNumber);
-  checkLotto.checkNum();
-  lottoNumber.sort(function (a, b) {
-    if (a > b) return 1;
-    if (a === b) return 0;
-    if (a < b) return -1;
-  });
-  this.lotto.push(new Lotto(lottoNumber));
-  return lottoNumber;
-}
-
-showLottoNumber(countLotto, throwInput){
-  let lottos = [];
-  if (throwInput > 0) throw '[ERROR] 금액은 1,000원 단위로 입력해주세요.';
-  for (let i = 0; i < countLotto; i++) {
-    lottos[i] = this.setLottoNumbers();
-    Console.print(lottos[i]);
-  }
-this.inputLottoNumber(lottos);
-}
 
 inputLottoNumber(lottos){
   Console.readLine("\n당첨 번호를 입력해 주세요.\n",(num) => {
