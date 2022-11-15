@@ -79,7 +79,13 @@ class App {
   #printResults(results) {
     const { statics, earningsRate } = results;
 
-    const resultMessage = `
+    const resultMessage = this.#createResultMessage(statics, earningsRate);
+
+    this.#endGame(resultMessage);
+  }
+
+  #createResultMessage(statics, earningsRate) {
+    return `
 당첨 통계
 ---
 3개 일치 (5,000원) - ${statics[3]}개
@@ -89,8 +95,6 @@ class App {
 6개 일치 (2,000,000,000원) - ${statics[6]}개
 총 수익률은 ${earningsRate}입니다.
 `;
-
-    this.#endGame(resultMessage);
   }
 
   #endGame(resultMessage) {
@@ -102,7 +106,7 @@ class App {
     if (
       typeof +price !== "number" ||
       Number.isNaN(+price) ||
-      price % LOTTO_PRICE !== 0
+      price % LOTTO_PRICE
     ) {
       throw new Error(ERROR_MESSAGES.WRONG_PRICE);
     }
