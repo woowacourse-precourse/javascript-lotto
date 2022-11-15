@@ -5,6 +5,10 @@ class Statistics {
 
   constructor() {}
 
+  showRateOfReturn() {
+    MissionUtils.Console.print(`총 수익률은 ${this.#rateOfReturn}% 입니다.`);
+  }
+
   getRateOfReturn(money, revenue) {
     this.#rateOfReturn = ((revenue / money) * 100).toFixed(2);
   }
