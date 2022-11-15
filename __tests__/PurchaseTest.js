@@ -1,4 +1,4 @@
-const PurchaseValidate = require("../src/validate/PurchaseValidate.js");
+const PurchaseValidate = require("../src/PurchaseValidate.js");
 const { ERROR } = require("../src/utils/constant.js");
 
 describe("구매 클래스 테스트", () => {

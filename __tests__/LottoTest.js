@@ -1,4 +1,4 @@
-const Lotto = require("../src/validate/Lotto.js");
+const Lotto = require("../src/Lotto.js");
 const { ERROR } = require("../src/utils/constant.js");
 
 describe("로또 클래스 테스트", () => {

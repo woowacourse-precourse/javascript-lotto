@@ -1,4 +1,4 @@
-const Bonus = require("../src/validate/Bonus");
+const Bonus = require("../src/Bonus");
 const { ERROR } = require("../src/utils/constant.js");
 
 describe("보너스 번호 클래스 테스트", () => {
