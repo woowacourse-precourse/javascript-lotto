@@ -61,4 +61,18 @@ describe('유효성 검사 테스트', () => {
       }).toThrow('[ERROR]');
     });
   });
+
+  test('로또 번호(당첨 번호) 예외 테스트', () => {
+    const inputs = [
+      ['a', 2, 3, 4, 5, 6],
+      [1, 2, 3, 4],
+      [0, 1, 2, 3, 4, 5],
+      [1, 1, 2, 3, 4, 5]
+    ];
+    inputs.forEach((input) => {
+      expect(() => {
+        Validation.validateLottoNumber(input);
+      }).toThrow('[ERROR]');
+    });
+  });
 });
