@@ -3,12 +3,9 @@ const MESSAGE = require("../assets/Message");
 const Utils = require("../assets/Utils");
 
 class LottoView {
-  lottoController;
+  constructor() {}
 
-  constructor(lottoController) {
-    this.lottoController = lottoController;
-  }
-
+  //몇장구매,구매로또출력
   printStartInfo(amount, lottos) {
     this.printAmount(amount);
     this.printAllLottery(lottos);
@@ -24,6 +21,7 @@ class LottoView {
     );
   }
 
+  //결과출력
   printResultInfo(prize, buyPrice) {
     this.printLastResult();
     this.printWinResult(prize);

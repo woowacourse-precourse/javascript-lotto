@@ -65,7 +65,7 @@ class Prize {
 
   applyResult(result) {
     result.forEach((number) => this.setResult(number));
-  }
+  } //맞춘 배열을 받음.
 
   setResult(number) {
     if (number === CONSTANT.MATCH.THREE) this.setThreeWin(CONSTANT.INCREASE);

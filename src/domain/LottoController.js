@@ -17,8 +17,7 @@ class LottoController {
 
   start() {
     MissionUtils.Console.readLine(MESSAGE.INSERT_MONEY, (money) => {
-      this.lottoModel = new LottoModel(money);
-      this.lottoModel.controller = this;
+      this.lottoModel = new LottoModel(money); //Lotto 배열을생성
 
       const amount = money / CONSTANT.LOTTO_PRICE;
       this.lottoView.printStartInfo(amount, this.lottoModel.lottos);
@@ -44,8 +43,8 @@ class LottoController {
   }
 
   evaluateLotto() {
-    const result = this.lottoModel.result;
-    this.prize.applyResult(result);
+    const result = this.lottoModel.result; //맞춘 갯수로 이루어진 배열 반환
+    this.prize.applyResult(result); // 위의 배열로 필드값 set
 
     const buyPrice = this.lottoModel.lottos.length * CONSTANT.LOTTO_PRICE;
     this.lottoView.printResultInfo(this.prize, buyPrice);
