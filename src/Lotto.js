@@ -60,6 +60,23 @@ class Lotto {
       this.checkLottoNumber(winningNumber);
     });
   }
+
+  checkLottoNumber(winningNumber) {
+    const rankList = new Array(8).fill(0);
+    const correctNumber = this.myLotto.map((lotto) => ({
+      winningCount: lotto.filter((num) => winningNumber.winningNumberList.includes(num)).length,
+      bonusNumber: lotto.includes(winningNumber.bonusNumber) ? 1 : 0,
+    }));
+    correctNumber.forEach(({ winningCount, bonusNumber }) => {
+      let rank = winningCount + bonusNumber;
+      if (rank === 6 && bonusNumber === 0) {
+        rank = 7;
+      }
+      rankList[rank]++;
+    });
+
+    this.getResult(rankList);
+  }
 }
 
 module.exports = Lotto;
