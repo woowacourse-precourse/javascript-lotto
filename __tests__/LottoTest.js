@@ -19,7 +19,6 @@ const CORRECT_TEST_CASES = [
 
 describe('잘못된 입력에 대한 예외 테스트', () => {
   test.each(ERROR_TEST_CASES)('%p', (_, data) => {
-    console.log('DATA', data);
     expect(() => new Lotto(data)).toThrow('[ERROR]');
   });
 });
