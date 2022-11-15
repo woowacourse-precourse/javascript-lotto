@@ -1,7 +1,7 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
 const Lotto = require("../Lotto");
 
-class Lottery {
+class MakeLotteries {
   #lotteries = [];
   #lottery = [];
   #quantity;
@@ -54,4 +54,4 @@ class Lottery {
   }
 }
 
-module.exports = Lottery;
+module.exports = MakeLotteries;

@@ -1,6 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 const ValidateLotto = require("./validation/ValidateLotto");
-const Bonus = require("./components/Bonus");
+const MakeWinResult = require("./components/MakeWinResult");
 
 class Lotto {
   #numbers;
@@ -19,8 +19,12 @@ class Lotto {
     Console.readLine("\n보너스 번호를 입력해 주세요,\n", (number) => {
       bonusNumber = number;
 
-      const bonus = new Bonus(this.#numbers, bonusNumber, lotteries);
-      bonus.iterateLotteries();
+      const makeWinResult = new MakeWinResult(
+        this.#numbers,
+        bonusNumber,
+        lotteries
+      );
+      makeWinResult.iterateLotteries();
     });
   }
 }

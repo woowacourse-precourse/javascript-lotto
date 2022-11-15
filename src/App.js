@@ -1,5 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
-const Lottery = require("./components/Lottery");
+const MakeLotteries = require("./components/MakeLotteries");
 
 class App {
   play() {
@@ -8,8 +8,8 @@ class App {
 
   inputPurchaseAmount() {
     Console.readLine("구입금액을 입력해 주세요.\n", (amount) => {
-      const lottery = new Lottery(amount);
-      lottery.inputSixNumbers();
+      const makeLotteries = new MakeLotteries(amount);
+      makeLotteries.inputSixNumbers();
     });
   }
 }

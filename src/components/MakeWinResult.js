@@ -2,7 +2,7 @@ const Statistic = require("./Statistic");
 const ValidateBonus = require("../validation/ValidateBonus");
 const { MIN_MATCH, MAX_MATCH } = require("../constants");
 
-class Bonus {
+class MakeWinResult {
   #numbers;
   #bonusNumber;
   #winResult;
@@ -71,4 +71,4 @@ class Bonus {
   }
 }
 
-module.exports = Bonus;
+module.exports = MakeWinResult;
