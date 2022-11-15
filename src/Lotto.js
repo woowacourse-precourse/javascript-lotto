@@ -29,6 +29,24 @@ class Lotto {
     }
   }
 
+  comparisonNumbers(publishedlottos, bonusNumber) {
+    let arr = [0, 0, 0, 0, 0, 0, 0, 0];
+
+    publishedlottos.forEach((lotto) => {
+      const { cnt, bonusCnt } = this.comparisonEachothers(lotto, bonusNumber);
+      const idx = this.sortRank(cnt, bonusCnt);
+      arr[idx] += 1;
+    });
+
+    return {
+      three: arr[3],
+      four: arr[4],
+      five: arr[5],
+      bonus: arr[7],
+      six: arr[6],
+    };
+  }
+
   comparisonEachothers(lotto, bonusNumber) {
     let cnt = 0;
     let bonusCnt = 0;
@@ -51,24 +69,6 @@ class Lotto {
       return 7;
     }
     return cnt;
-  }
-
-  comparisonNumbers(publishedlottos, bonusNumber) {
-    let arr = [0, 0, 0, 0, 0, 0, 0, 0];
-
-    publishedlottos.forEach((lotto) => {
-      const { cnt, bonusCnt } = this.comparisonEachothers(lotto, bonusNumber);
-      const idx = this.sortRank(cnt, bonusCnt);
-      arr[idx] += 1;
-    });
-
-    return {
-      three: arr[3],
-      four: arr[4],
-      five: arr[5],
-      bonus: arr[7],
-      six: arr[6],
-    };
   }
 }
 
