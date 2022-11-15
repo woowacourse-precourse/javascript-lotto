@@ -15,7 +15,6 @@ class Validation {
   }
   static isOnlyNumber(input) {
     const isNumber = (number) => !Number.isNaN(number);
-
     return input.map((eachLetter) => parseInt(eachLetter, 10)).every(isNumber);
   }
 
@@ -53,13 +52,14 @@ class Validation {
     return winnerNumber.map(Number).every(validRange);
   }
   static checkBonusNumber(bonusNumber, winnerNumber) {
+    const bonusNumberArr = bonusNumber.split("");
     if (bonusNumber.length === 0) {
       throw new Error(ERROR_MESSAGE.NOT_EMPTY_INPUT);
     }
-    if (!this.isOnlyNumber(bonusNumber)) {
+    if (!this.isOnlyNumber(bonusNumberArr)) {
       throw new Error(ERROR_MESSAGE.NOT_ONLY_NUMBER);
     }
-    if (!this.isNumberInRange(bonusNumber)) {
+    if (!this.isNumberInRange(bonusNumberArr)) {
       throw new Error(ERROR_MESSAGE.NOT_IN_RANGE);
     }
     if (this.isUniqueBonusNumber(bonusNumber, winnerNumber)) {

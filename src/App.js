@@ -30,7 +30,7 @@ class App {
       (inputPurchaseAmount) => {
         Validation.checkPurchaseAmount(inputPurchaseAmount);
         this.purchaseAmount = Number(inputPurchaseAmount);
-        this.lottoBuying(inputPurchaseAmount);
+        this.lottoBuying(this.purchaseAmount);
         this.inputWinnerNumber();
       }
     );
@@ -49,7 +49,7 @@ class App {
       (winnerNumberElement) => {
         const winnerNumberArr = winnerNumberElement.split(",");
         Validation.checkInputWinnerNumber(winnerNumberArr);
-        this.winnerNumber = winnerNumberElement;
+        this.winnerNumber = winnerNumberArr.map(Number);
         this.inputBonusNumber();
       }
     );
@@ -58,10 +58,9 @@ class App {
     this.LottoUI.inputRequest(
       GUIDE_MESSAGE.BONUSNUMBER_INPUT,
       (bonusNumberElement) => {
-        const bonusNumberArr = bonusNumberElement.split("");
-        Validation.checkBonusNumber(bonusNumberArr, this.winnerNumber);
+        Validation.checkBonusNumber(bonusNumberElement, this.winnerNumber);
         this.bonusNumber = Number(bonusNumberElement);
-        this.LottoUI.prinntLottoNumber(this.lotto);
+
         this.getResult();
       }
     );
@@ -90,6 +89,7 @@ class App {
     const winningMoney = this.getWinningMoney(rankingTotal);
     const earningRatio = this.getEarningRatio(winningMoney);
     const result = this.resultSynthesis(rankingTotal);
+    this.LottoUI.prinntLottoNumber(this.lotto);
     this.LottoUI.printRankingTotal(result);
     this.LottoUI.printEarningRatio(earningRatio);
     MissionUtils.Console.close();
