@@ -1,6 +1,15 @@
 class Util {
-  getUserRank(userLottoList, winNumbers, bonusNumber) {
-    const result = this.compareUserNumberWithWinNumber(userLottoList, winNumbers, bonusNumber);
+  getRankCount(userLottoList, winNumbers, bonusNumber) {
+    let rankCountTable = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0};
+    userLottoList.forEach(userLotto => {
+      rankCountTable[this.getUserRank(userLotto, winNumbers, bonusNumber)] += 1;
+    });
+
+    return rankCountTable;
+  }
+
+  getUserRank(userLotto, winNumbers, bonusNumber) {
+    const result = this.compareUserNumberWithWinNumber(userLotto, winNumbers, bonusNumber);
     const matchingWinNumber = result[0];
     const matchingBonusNumber = result[1];
     switch (matchingWinNumber) {
@@ -17,11 +26,9 @@ class Util {
     }
   }
 
-  compareUserNumberWithWinNumber(userLottoList, winNumbers, bonusNumber) {
-    userLottoList.forEach(userLotto => {
-      matchingWinNumber = this.countUserNumberMatchingWithWinNumber(userLotto, winNumbers)
-      matchingBonusNumber = this.countUserNumberMatchingWithBonusNumber(userLotto, bonusNumber);
-    });
+  compareUserNumberWithWinNumber(userLotto, winNumbers, bonusNumber) {
+    const matchingWinNumber = this.countUserNumberMatchingWithWinNumber(userLotto, winNumbers)
+    const matchingBonusNumber = this.countUserNumberMatchingWithBonusNumber(userLotto, bonusNumber);
     return [matchingWinNumber, matchingBonusNumber];
   }
   

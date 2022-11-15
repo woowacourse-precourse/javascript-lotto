@@ -18,4 +18,16 @@ describe("유틸 클래스 테스트", () => {
       util.countUserNumberMatchingWithBonusNumber(userLotto, bonusNumber)
     ).toBe(1);
   });
+
+  test("1등부터 5등까지의 당첨 횟수를 반환한다.", () => {
+    const util = new Util();
+    const userLottoList = [[1, 43, 27, 3, 10, 31],
+                           [1, 43, 27, 3, 10, 30],
+                           [1, 43, 27, 3, 10, 32]];
+    const winNumbers = [1, 43, 27, 3, 10, 31];
+    const bonusNumber = 32;
+    expect(
+      util.getRankCount(userLottoList, winNumbers, bonusNumber)
+    ).toEqual({1: 1, 2: 1, 3: 1, 4: 0, 5: 0});
+  });
 })
