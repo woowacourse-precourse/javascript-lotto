@@ -1,14 +1,14 @@
 const { Console } = require('@woowacourse/mission-utils');
-const Lotto = require('./Lotto');
 const User = require('./User');
 const MESSAGE = require('./constants/message');
 const { UNIT_OF_AMOUNT, RANKING_ARRAY } = require('./constants/gameSetting');
-const generateRandomLottoNumbers = require('./utils/generateRandomLottoNumbers');
 const LottoStatistics = require('./LottoStatistics');
+const LottoGenerator = require('./LottoGenerator');
 
 class LottoGameMachine {
   constructor() {
     this.totalPurchaseAmount = 0;
+    this.totalLottosCount = 0;
     this.lottoStatistics = {};
     this.Lottos = new Map();
     this.winningLotto = new Map();
@@ -39,6 +39,7 @@ class LottoGameMachine {
 
   setTotalPurchaseAmount(totalPurchaseAmount) {
     this.totalPurchaseAmount = totalPurchaseAmount;
+    this.totalLottosCount = totalPurchaseAmount / UNIT_OF_AMOUNT;
     this.setLottos();
     User.inputWinningLottoNumbers(this.setWinningLottoNumbers.bind(this));
   }
@@ -59,13 +60,7 @@ class LottoGameMachine {
   }
 
   setLottos() {
-    const totalLottosCount = this.totalPurchaseAmount / UNIT_OF_AMOUNT;
-    let count = 0;
-    while (count < totalLottosCount) {
-      count += 1;
-      this.Lottos.set(`로또${count}`, new Lotto(generateRandomLottoNumbers()));
-    }
-
+    this.Lottos = LottoGenerator.getLottos(this.totalLottosCount);
     this.printLottoNumbers();
     return this;
   }
