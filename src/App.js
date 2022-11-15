@@ -119,11 +119,24 @@ class App {
       const grade = lotto.grade(this.#winNumbers, this.#bonusNumber);
       if (grade < 5) this.#gradeList[grade] += 1;
     });
-
-    this.#printResult();
+    this.#calEarnRate();
   }
 
-  #printResult() {
+  #calEarnRate() {
+    const earnRate = (
+      ((5000 * this.#gradeList[4] +
+        50000 * this.#gradeList[3] +
+        1500000 * this.#gradeList[2] +
+        30000000 * this.#gradeList[1] +
+        2000000000 * this.#gradeList[0]) /
+        1000 /
+        this.#ticketCnt) *
+      100
+    ).toFixed(1);
+    this.#printResult(earnRate);
+  }
+
+  #printResult(earnRate) {
     MissionUtils.Console.print('\n당첨 통계 \n---');
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.#gradeList[4]}개`);
     MissionUtils.Console.print(`4개 일치 (50,000원) - ${this.#gradeList[3]}개`);
@@ -136,6 +149,8 @@ class App {
     MissionUtils.Console.print(
       `6개 일치 (2,000,000,000원) - ${this.#gradeList[0]}개`
     );
+    MissionUtils.Console.print(`총 수익률은 ${earnRate}%입니다.`);
+    MissionUtils.Console.close();
   }
 }
 
