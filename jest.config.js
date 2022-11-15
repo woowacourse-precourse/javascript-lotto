@@ -1,5 +1,3 @@
-const config = {
-  modulePathIgnorePatterns: ["<rootDir>/__tests__/ApplicationTest.js"],
-};
+const config = {};
 
 module.exports = config;
