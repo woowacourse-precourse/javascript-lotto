@@ -2,7 +2,7 @@ const Lotto = require("../src/Lotto");
 const MissionUtils = require("@woowacourse/mission-utils");
 const PRIZE_MONEY = [0,2000000000,30000000,1500000,50000,5000];
 class App {
-  #numberOfLottos;
+  #countOfLottos;
   #issuedLottosList = new Array();
   #lottoWinningNumbers;
   #lottoBonusNumber;
@@ -22,14 +22,14 @@ class App {
       const regex = /^[1-9]+[0-9]*[0]{3}$/;
       if (!regex.test(moneyToBuyLottos))
         throw new Error("[ERROR] 구입 금액은 1000원 단위의 금액을 입력해주세요.");
-      this.#numberOfLottos = Number(moneyToBuyLottos)/1000;
+      this.#countOfLottos = Number(moneyToBuyLottos)/1000;
     });
   }
   printNumberOfLottos() {
-    MissionUtils.Console.print(`${this.#numberOfLottos}개를 구매했습니다.`);
+    MissionUtils.Console.print(`${this.#countOfLottos}개를 구매했습니다.`);
   }
   createIssuedLottoList(){
-    for(let i=0; i<this.#numberOfLottos; i++){
+    for(let i=0; i<this.#countOfLottos; i++){
       const tempRandomNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       tempRandomNumbers.sort((a,b) => a - b);
       const issuedLottoNumbers = new Lotto(tempRandomNumbers);
@@ -61,7 +61,7 @@ class App {
   }
   printLottoWinningResult(){
     let countOfLottoWinning = [0,0,0,0,0,0];
-    for(let i=0; i<this.#numberOfLottos; i++){
+    for(let i=0; i<this.#countOfLottos; i++){
       const prize = this.getPrize(this.#issuedLottosList[i]);
       if(prize<=5)
         countOfLottoWinning[prize]++;
@@ -75,7 +75,7 @@ class App {
       this.#totalLottosPrizeMoney += PRIZE_MONEY[i]*countOfLottoWinning[i];
   }
   printRateOfReturn(){
-    const rateOfReturn = Math.round(this.#totalLottosPrizeMoney/this.#numberOfLottos)/10;
+    const rateOfReturn = Math.round(this.#totalLottosPrizeMoney/this.#countOfLottos)/10;
     MissionUtils.Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
   }
   getPrize(numbers){
