@@ -2,21 +2,21 @@ const PurchaseAmountValidator = require('../src/PurchaseAmountValidate');
 
 describe('로또 입력 금액 테스트', () => {
   test('입력 금액이 숫자가 아니면 예외가 발생한다', () => {
-    const wrongInputAmounts = ['1000j', 'jjjj', ' '];
+    const stringInputs = ['1000j', 'jjjj', ' '];
 
-    wrongInputAmounts.map(wrongInputAmount => {
+    stringInputs.map(stringInput => {
       expect(() => {
-        new PurchaseAmountValidator(wrongInputAmount);
+        new PurchaseAmountValidator(stringInput);
       }).toThrow('[ERROR]');
     });
   });
 
   test('입력 금액이 1000원 이하면 예외가 발생한다', () => {
-    const wrongInputAmounts = ['1', '100', '999'];
+    const underThousandInputs = ['1', '100', '999'];
 
-    wrongInputAmounts.map(wrongInputAmount => {
+    underThousandInputs.map(underThousandInput => {
       expect(() => {
-        new PurchaseAmountValidator(wrongInputAmount);
+        new PurchaseAmountValidator(underThousandInput);
       }).toThrow('[ERROR]');
     });
   });

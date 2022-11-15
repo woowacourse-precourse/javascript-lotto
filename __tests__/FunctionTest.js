@@ -121,18 +121,18 @@ describe('로또 당첨 테스트', () => {
       fiveAndBonusMatches: 1,
       sixMatches: 1,
     };
-    const procdeeds = 2030060000;
+    const proceeds = 2030060000;
 
-    expect(proceedsGetter(winningList)).toEqual(procdeeds);
+    expect(proceedsGetter(winningList)).toEqual(proceeds);
   });
 
   test('수익률 구하기 테스트', () => {
     const { returnRateGetter } = App;
     const purchaseAmount = 8000;
-    const procdeeds = [5000, 1000, 1500000, 1505000, 2000005000];
+    const proceeds = [5000, 1000, 1500000, 1505000, 2000005000];
     const returnRate = ['62.5', '12.5', '18750.0', '18812.5', '25000062.5'];
 
-    procdeeds.map((proceed, index) => {
+    proceeds.map((proceed, index) => {
       expect(returnRateGetter(proceed, purchaseAmount)).toEqual(
         returnRate[index],
       );
