@@ -12,7 +12,13 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
+  checkNumRange(numbers) {
+    for (num in numbers) {
+      if (1 <= num <= 45 === false) {
+        throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+      }
+    }
+  }
 }
 
 module.exports = Lotto;
