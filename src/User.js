@@ -12,6 +12,11 @@ class User {
         return this.userLotto;
     }
 
+    setUserLottoCount (input) {
+        this.lottoCount = Math.floor(Calculate.calculateLottoCount(input));
+        
+    }
+
 }
 
 module.exports = User;
