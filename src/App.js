@@ -5,6 +5,7 @@ class App {
   #equalNumber = [0, 0, 0, 0, 0, 0, 0];
   #winMoney = [0, 0, 0, 5000, 50000, 1500000, 2000000000];
   #winBonus = 0;
+  #profitPercent;
   #BONUS_PROFIT = 30000000;
 
   play() {
@@ -57,12 +58,14 @@ class App {
   calculateProfit() {
     let profit = 0;
     for(let i = 3; i < 7; i++) {
-      profit += this.#winMoney*this.#equalNumber[i];
+      profit += this.#winMoney[i]*this.#equalNumber[i];
     }
     if(this.#winBonus) {
-      profit += this.#winBonus * this.#BONUS_PROFIT
+      profit += this.#winBonus * this.#BONUS_PROFIT;
     }
-    
+    profit = profit / (this.#myLottoNumbers.length*1000);
+    this.#profitPercent = profit.toFixed(1);
+    // this.#profitPercent = parseInt(String(this.#profitPercent).toLocalString('ko-KR'));
     this.printResult();
   }
 
@@ -75,7 +78,7 @@ class App {
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${this.#equalNumber[5]}개`);
     MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.#winBonus}개`);
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${this.#equalNumber[6]}개`);
-    MissionUtils.Console.print(`총 수익률은 - ${this.#equalNumber[6]}개입니다.`);
+    MissionUtils.Console.print(`총 수익률은 - ${this.#profitPercent}%입니다.`);
   }
 
 
