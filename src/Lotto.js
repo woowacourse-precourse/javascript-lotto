@@ -45,9 +45,12 @@ class Lotto {
 
   validate(numbers) {
     if (checkLottoValidation(numbers)) {
-      this.setStats(this.#numbers, this.lottoList, this.bonusNumber);
-      this.setYield(this.stats, this.lottoList);
     }
+  }
+
+  progress() {
+    this.setStats(this.#numbers, this.lottoList, this.bonusNumber);
+    this.setYield(this.stats, this.lottoList);
   }
 
   setStats(numbers, lottos, bonus) {

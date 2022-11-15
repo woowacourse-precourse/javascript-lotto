@@ -40,8 +40,14 @@ class App {
     this.readLine('', input => {
       if (checkBonusValidation(input, this.LottoBuilder.WinningNumber)) {
         this.LottoBuilder.bonusNumber = input;
+        this.setLotto();
       }
     });
+  }
+
+  setLotto() {
+    const lotto = this.LottoBuilder.build();
+    lotto.progress();
   }
 
   showLottoList(lists) {
