@@ -9,9 +9,7 @@ const {
 const { MESSAGE, ERROR_MESSAGE, COUNT } = require('./constants');
 
 class LottoNumberGenerator {
-  #winnerNumbers = [];
-
-  #bonusNumber;
+  #winningNumbers = { winnerNumbers: [], bonusNumber: 0 };
 
   drawLottery() {
     Console.readLine(
@@ -19,7 +17,7 @@ class LottoNumberGenerator {
       (numbers) => {
         const winnerNumbers = numbers.split(',').map((n) => +n);
         this.#validate(winnerNumbers, 'WINNER_NUMBER');
-        this.#winnerNumbers = winnerNumbers;
+        this.#winningNumbers.winnerNumbers = winnerNumbers;
       },
     );
 
@@ -28,7 +26,7 @@ class LottoNumberGenerator {
       (number) => {
         const bonusNumber = number.split(',').map((n) => +n);
         this.#validate(bonusNumber, 'BONUS_NUMBER');
-        this.#bonusNumber = bonusNumber;
+        this.#winningNumbers.bonusNumber = bonusNumber[0];
       },
     );
   }
@@ -46,7 +44,10 @@ class LottoNumberGenerator {
       throw new Error(makeErrorMsg(ERROR_MESSAGE[inputLength]));
     }
 
-    if (type === 'BONUS_NUMBER' && this.#winnerNumbers.includes(numbers[0])) {
+    if (
+      type === 'BONUS_NUMBER' &&
+      this.#winningNumbers.winnerNumbers.includes(numbers[0])
+    ) {
       throw new Error(makeErrorMsg(BONUS_DUPLICATION));
     }
 
@@ -62,7 +63,7 @@ class LottoNumberGenerator {
   }
 
   getNumbers() {
-    return [this.#winnerNumbers, this.#bonusNumber];
+    return this.#winningNumbers;
   }
 }
 

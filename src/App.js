@@ -15,8 +15,8 @@ class App {
 
   drawLots() {
     this.lottoNumberGenerator.drawLottery();
-    const winnerNumbers = this.lottoNumberGenerator.getNumbers();
-    this.lotteryMachine.updateWinnerNumber(winnerNumbers);
+    const winningNumbers = this.lottoNumberGenerator.getNumbers();
+    this.lotteryMachine.updateWinnerNumber(winningNumbers);
   }
 
   confirmWin(lottos) {

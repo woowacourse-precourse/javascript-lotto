@@ -22,10 +22,11 @@ describe('로또 번호 추첨기 클래스 테스트', () => {
 
     const lottoNumberGenerator = new LottoNumberGenerator();
     lottoNumberGenerator.drawLottery();
-    expect(lottoNumberGenerator.getNumbers()).toEqual([
-      [1, 2, 3, 4, 5, 6],
-      [7],
-    ]);
+
+    expect(lottoNumberGenerator.getNumbers()).toEqual({
+      winnerNumbers: [1, 2, 3, 4, 5, 6],
+      bonusNumber: 7,
+    });
   });
 
   test('당첨 번호가 숫자가 아니면 예외가 발생한다.', () => {

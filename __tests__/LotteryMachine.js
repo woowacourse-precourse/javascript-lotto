@@ -81,8 +81,10 @@ describe('로또 기계 클래스 테스트', () => {
   });
 
   test('로또 번호와 당첨 번호를 비교하여 로또의 등수와 당첨금을 계산한다', () => {
-    const winnerNumbers = [[1, 2, 3, 4, 5, 6], 7];
-
+    const winningNumbers = {
+      winnerNumbers: [1, 2, 3, 4, 5, 6],
+      bonusNumber: 7,
+    };
     const lottos = [
       new Lotto([8, 21, 23, 41, 42, 43]),
       new Lotto([3, 5, 11, 16, 32, 38]),
@@ -106,7 +108,9 @@ describe('로또 기계 클래스 테스트', () => {
       totalWinnings: 5000,
     };
 
-    const calculationResult = LotteryMachine.readQrCode(lottos, winnerNumbers);
+    const lotteryMachine = new LotteryMachine();
+    lotteryMachine.updateWinnerNumber(winningNumbers);
+    const calculationResult = lotteryMachine.readQrCode(lottos);
 
     expect(winningStatistics).toEqual(calculationResult);
   });

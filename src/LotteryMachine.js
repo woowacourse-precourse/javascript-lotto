@@ -10,14 +10,10 @@ const Lotto = require('./Lotto');
 const { makeErrorMsg } = require('./utils');
 
 class LotteryMachine {
-  #winnerNumber = [];
+  #winningNumbers = { winnerNumbers: [], bonusNumber: 0 };
 
-  #bonusNumber;
-
-  updateWinnerNumber(winnerNumbers) {
-    const [winnerNumber, bonusNumber] = winnerNumbers;
-    this.#winnerNumber = winnerNumber;
-    this.#bonusNumber = bonusNumber;
+  updateWinnerNumber(winningNumbers) {
+    this.#winningNumbers = winningNumbers;
   }
 
   static issueTicket() {
@@ -108,10 +104,10 @@ class LotteryMachine {
 
   #calcCorrectNum(lotto) {
     return lotto.getQrCode().reduce((correctNum, lottoNumber) => {
-      if (this.#winnerNumber.includes(lottoNumber)) {
+      if (this.#winningNumbers.winnerNumbers.includes(lottoNumber)) {
         correctNum += NUMBER.CORRECT_WINNER_NUMBER;
       }
-      if (this.#bonusNumber === lottoNumber) {
+      if (this.#winningNumbers.bonusNumber === lottoNumber) {
         correctNum += NUMBER.CORRECT_BONUS_NUMBER;
       }
       return correctNum;
