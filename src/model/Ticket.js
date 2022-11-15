@@ -1,20 +1,12 @@
-const Random = require("@woowacourse/mission-utils").Random;
-
 class Ticket {
 	static #price = 1000;
 	#numbers;
-	constructor() {
-		this.#numbers = this.#createRandomNumbers();
+	constructor(numbers) {
+		this.#numbers = numbers.sort((a, b) => a - b);
 	}
 
 	static price() {
 		return Ticket.#price;
-	}
-
-	#createRandomNumbers() {
-		return Random
-			.pickUniqueNumbersInRange(1, 45, 6)
-			.sort((a, b)=> a - b);
 	}
 
 	getNumbers() {
