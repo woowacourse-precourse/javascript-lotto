@@ -127,6 +127,36 @@ class App {
     }
   }
 
+  getEarnings() {
+    let earnings = 0;
+
+    for (let item in winstatistics) {
+      if (item === "3개 일치 (5,000원)") {
+        earnings += winstatistics[item] * 5000;
+      }
+      if (item === "4개 일치 (50,000원)") {
+        earnings += winstatistics[item] * 50000;
+      }
+      if (item === "5개 일치 (1,500,000원)") {
+        earnings += winstatistics[item] * 1500000;
+      }
+      if (item === "5개 일치, 보너스 볼 일치 (30,000,000원)") {
+        earnings += winstatistics[item] * 30000000;
+      }
+      if (item === "6개 일치 (2,000,000,000원)") {
+        earnings += winstatistics[item] * 2000000000;
+      }
+    }
+
+    return earnings;
+  }
+
+  getEarningsRate(earnings) {
+    const earningsRate = (earnings / this.buyCost) * 100;
+
+    return earningsRate.toFixed(1);
+  }
+
   printWinContent() {
     this.winLotto = this.winLotto.getWinLotto();
     this.myLotto.forEach((lotto) => {
@@ -138,6 +168,13 @@ class App {
     for (let item in winstatistics) {
       MissionUtils.Console.print(`${item} - ${winstatistics[item]}개`);
     }
+
+    const earnings = this.getEarnings();
+    MissionUtils.Console.print(
+      `총 수익률은 ${this.getEarningsRate(earnings)}%입니다.`
+    );
+
+    MissionUtils.Console.close();
   }
 
   play() {
@@ -153,6 +190,4 @@ class App {
   }
 }
 
-const app = new App();
-app.play();
 module.exports = App;
