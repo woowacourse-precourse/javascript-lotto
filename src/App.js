@@ -6,6 +6,7 @@ const NumberGenerator = require("./NumberGenerator");
 
 class App {
   constructor() {
+    this.lotto = new Lotto();
     this.numberGenerator = new NumberGenerator();
     this.lottoCount = null;
     this.lottoWinningCount = [];
@@ -47,14 +48,14 @@ class App {
       this.userLottoNumber = lottoNumber
         .split(",")
         .map((number) => Number(number));
-      // new Lotto(lottoNumber);
+      this.lotto.validate(this.userLottoNumber);
       this.requestBonusNumber;
     });
   }
 
   requestBonusNumber() {
     Console.readLine(Message.SET_BONUSNUMBER, (bonusNumber) => {
-      // new Lotto(bonusNumber);
+      this.lotto.validateBonusNumber(bonusNumber, this.userLottoNumber);
       this.userBonusLottoNumber = bonusNumber;
     });
   }

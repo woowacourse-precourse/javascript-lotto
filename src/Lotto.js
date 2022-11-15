@@ -21,6 +21,24 @@ class Lotto {
       );
     }
   }
+
+  validateBonusNumber(bonusNumber, lottoNumber) {
+    if (lottoNumber.includes(bonusNumber)) {
+      throw new Error(
+        "[ERROR] 보너스 로또 번호가 로또 번호에 포함되어 있습니다."
+      );
+    }
+
+    if (isNaN(bonusNumber)) {
+      throw new Error("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
+    }
+
+    if (bonusNumber < 1 || bonusNumber > 45) {
+      throw new Error(
+        "[ERROR] 보너스 번호는 1 ~ 45 사이의 숫자만 입력이 가능합니다."
+      );
+    }
+  }
 }
 
 module.exports = Lotto;
