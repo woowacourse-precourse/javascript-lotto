@@ -1,5 +1,9 @@
+const VendingMachine = require('./VendingMachine');
+
 class App {
-  play() {}
+  play() {
+    new VendingMachine().init();
+  }
 }
 
 module.exports = App;
