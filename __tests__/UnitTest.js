@@ -111,6 +111,7 @@ describe("App 클래스 메소드 테스트 ", () => {
     const logs = ["총 수익률은 250.0%입니다."];
     const logSpy = getLogSpy();
     app.matchNumber[0] = 1;
+
     app.lottoArray = [[], []];
     app.yieldResult();
 
