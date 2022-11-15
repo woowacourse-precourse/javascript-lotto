@@ -20,8 +20,8 @@ class Calculator {
     return this.#prizeStatus;
   }
 
-  getEarningRate(moneyInput) {
-    this.#getEarnedMoney();
+  getEarningRate(winningStatus, moneyInput) {
+    this.#getEarnedMoney(winningStatus);
     return this.#getEarnedPercenage(moneyInput);
   }
 
@@ -72,20 +72,21 @@ class Calculator {
     this.#winningNumber = winningNumber;
   }
 
-  #getEarnedMoney() {
-    Object.keys(this.#prizeStatus).forEach((key) => {
-      this.#earningMoney += this.#prizeStatus[key] * RANK_ACCORDING_REWARD[key];
+  #getEarnedMoney(winningStatus) {
+    Object.keys(winningStatus).forEach((key) => {
+      this.#earningMoney += winningStatus[key] * RANK_ACCORDING_REWARD[key];
     });
   }
 
   #getEarnedPercenage(moneyInput) {
     this.#earningMoney /= moneyInput;
-    this.#getTwoDecimalDown();
-    return this.#makePercent();
+    this.#earningMoney = this.#makePercent();
+
+    return this.#getTwoDecimalDown();
   }
 
   #getTwoDecimalDown() {
-    this.#earningMoney.toFixed(MATH_INFO.DIGIT_FOR_ROUND);
+    return this.#earningMoney.toFixed(MATH_INFO.DIGIT_FOR_ROUND);
   }
 
   #makePercent() {
