@@ -11,19 +11,23 @@ class Customer {
     this.lottoList = [];
     this.money = 0;
   }
-
+  setMoney(money) {
+    this.money = money;
+  }
   purchaseLotto() {
     MissionUtils.Console.readLine(
       Constant.MESSAGE.GUIDE.ENTER_MONEY,
       (answer) => {
-        Validate.InputMoneyValidation(answer);
         this.publishLotto(answer);
-        this.money = answer;
+        this.setMoney(answer);
+
         this.getWinningNumber();
       }
     );
   }
   publishLotto(money) {
+    Validate.InputMoneyValidation(money);
+
     const lottoNum = Math.floor(money / Constant.LOTTO.LOTTO_PRICE);
     MissionUtils.Console.print(
       Constant.MESSAGE.GUIDE.SUCCESS_TO_PURCHASE(lottoNum)
