@@ -8,6 +8,7 @@ class Lotto {
   constructor(numbers) {
     this.validateLength(numbers);
     this.validateDuplicate(numbers);
+    numbers.map((item) => this.validateIsNotNumber(item));
     this.#numbers = numbers;
   }
 
@@ -21,6 +22,11 @@ class Lotto {
     numbers.map((item, index) => {
       validation.isDuplicate(numbers, item, index);
     });
+  }
+
+  validateIsNotNumber(item) {
+    if (isNaN(item))
+      throw new Error("[ERROR] 당첨 번호가 숫자 형식이 아닙니다.");
   }
 
   validateBonus(bonus) {
