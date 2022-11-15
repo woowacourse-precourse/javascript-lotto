@@ -37,12 +37,12 @@ class App {
 
   winningNumberVaildate() {
     if (this.winningNumber.length !== 6) {
-      throw new Error("[ERROR] 당첨 번호가 6개가 아닙니다.")
+      throw new Error("[ERROR] 당첨 번호는 6개여야 합니다.")
     }
 
     this.winningNumber.map((v) => {
       if (Number.isNaN(v)) {
-        throw new Error('[ERROR] 당첨 번호가 올바르지 않습니다.');
+        throw new Error('[ERROR] 당첨 번호는 숫자로 이루어져야 합니다.');
       }
 
       if (1 > v || 45 < v) {
@@ -52,7 +52,7 @@ class App {
 
     for (let i = 0; i < 5; i++) {
       if (this.winningNumber.slice(i+1).includes(this.winningNumber[i])) {
-        throw new Error('[ERROR] 중복되는 당첨 번호가 있습니다.');
+        throw new Error('[ERROR] 당첨번호는 중복되면 안됩니다.');
       }
     }
   }
@@ -75,7 +75,7 @@ class App {
 
   bonusNumberValidate() {
     if(Number.isNaN(this.bonusNumber)) {
-      throw new Error('[ERROR] 보너스 번호가 올바르지 않습니다.');
+      throw new Error('[ERROR] 보너스 번호는 숫자로 이루어져야 합니다.');
     }
 
     if(this.winningNumber.includes(this.bonusNumber)) {
