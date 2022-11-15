@@ -21,6 +21,20 @@ class LottoMachine {
     });
     return [winningCount, bonusCount];
   }
+
+  getRank(counts) {
+    const rank = Array.from({ length: 5 }, () => 0);
+
+    counts.forEach(([winningCount, bonusCount]) => {
+      if (winningCount === 6) rank[0] += 1;
+      else if (winningCount === 5 && bonusCount === 1) rank[1] += 1;
+      else if (winningCount === 5) rank[2] += 1;
+      else if (winningCount === 4) rank[3] += 1;
+      else if (winningCount === 3) rank[4] += 1;
+    });
+
+    return rank;
+  }
 }
 
 module.exports = LottoMachine;
