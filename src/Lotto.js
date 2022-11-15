@@ -9,7 +9,6 @@ const {
   LOTTO_WIN_SEPERATOR,
   LOTTO_BONUS,
 } = require('./MESSAGE');
-const MESSAGE = require('./MESSAGE');
 
 class Lotto {
   #numbers;
@@ -51,13 +50,18 @@ class Lotto {
     });
   }
 
+  WinLottoReplace(winlotto) {
+    winlotto = winlotto.split(',');
+    return winlotto.map(Number);
+  }
+
   getWinLotto() {
     let winLotto;
     Console.readLine(LOTTO_WIN, (winNumber) => {
       winLotto = winNumber;
     });
     Console.print(winLotto);
-    winLotto = winLotto.replace(LOTTO_WIN_SEPERATOR, '');
+    winLotto = this.WinLottoReplace(winLotto);
     this.validate(winLotto);
     this.validate_indepence(winLotto);
     return winLotto;
