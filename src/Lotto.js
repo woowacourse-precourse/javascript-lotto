@@ -1,5 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { LOTTO, ERROR, RESULT, PRIZE } = require("./constant/lotto");
+const { LOTTO, ERROR, RESULT, PRIZE } = require("./constant/constant");
 const Utils = require("./utils/utils");
 
 class Lotto {

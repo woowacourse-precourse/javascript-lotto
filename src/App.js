@@ -1,5 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const { MESSEGE, ERROR } = require("./constant/lotto");
+const { MESSEGE, ERROR } = require("./constant/constant");
 const Utils = require("./utils/utils");
 const Lotto = require("./Lotto");
 
