@@ -53,6 +53,10 @@
   - [x] 입력된 당첨 번호 각 숫자들의 범위가 1이상 45이하인지 검사하는 메서드 테스트 (Validation.isNumberRange)
   - [x] 입력된 보너스 번호의 숫자가 당첨 번호 숫자와 중복되는지 검사하는 메서드 테스트 (Validation.isUniqueBonusNumber)
 
+- [x] `ApplicationTest`
+
+- [x] `LottoTest`
+
 ## 🚀 기능 요구 사항
 
 로또 게임 기능을 구현해야 한다. 로또 게임은 아래와 같은 규칙으로 진행된다.
