@@ -69,11 +69,13 @@ class Lotto {
 
 function checkErrorPrizeInput(prize) {
   const prizeArrayWithNumberType = prize.split(',').map(Number);
+  const set = new Set(prizeArrayWithNumberType); // 중복 검사
   if (
     !prize.includes(',') ||
     prize.split(',').length !== 6 ||
     prizeArrayWithNumberType.every((number) => number < 46) == false ||
-    prizeArrayWithNumberType.every((number) => 0 < number) == false
+    prizeArrayWithNumberType.every((number) => 0 < number) == false ||
+    prizeArrayWithNumberType.length !== set.size
   ) {
     throw new Error(Message.ERROR_PRIZE);
   }
