@@ -5,7 +5,6 @@ const {
   createLotteryTicket,
   printMyLotteries,
   changeToNumbersArray,
-  getLotteryResult,
   printResult,
 } = require('../src/utils/lotteryHandler');
 
@@ -14,6 +13,8 @@ const createMockTickets = jest.fn(() => [
   [7, 8, 9, 10, 11, 12],
   [13, 14, 15, 16, 17, 18],
 ]);
+
+const mockInput = jest.fn(() => '4,8,13,22,24,35');
 
 const getLogSpy = () => {
   const logSpy = jest.spyOn(MissionUtils.Console, 'print');
@@ -41,5 +42,12 @@ describe('lotteryHandlerTest', () => {
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
+  });
+
+  test('예외처리 된 문자열을 숫자 배열로 변환한 길이는 6이다.', () => {
+    const inputString = mockInput();
+    console.log(inputString);
+    const convertedNumberArray = changeToNumbersArray(inputString);
+    expect(convertedNumberArray.length).toBe(6);
   });
 });
